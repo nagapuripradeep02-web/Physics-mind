@@ -1,0 +1,836 @@
+{
+  "concept_id": "equilibrium_of_particles",
+  "concept_name": "Equilibrium of Particles — Every Direction Balances on Its Own",
+  "chapter": 8,
+  "section": "8.5",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.5 (Laws of Motion — equilibrium of concurrent forces) — table-of-contents scope only, teaching authored from first principles. The atomic concept: a particle acted on by several concurrent forces is in equilibrium when, and only when, the vector sum of those forces is zero, which means each direction balances on its own (ΣFₓ = 0 AND ΣF_y = 0) — and only that. Does NOT cover friction as one of the balancing forces (friction_force, friction_static_kinetic), equilibrium on an incline (block_on_incline, inclined_plane_components), connected bodies and shared acceleration (connected_bodies, tension_force), torque or rotational equilibrium (a particle is a point, so there is no lever arm), Lami's theorem (deliberately cut — the engine exposes no inter-string angle readout and no angle-arc drawable, so any on-screen Lami statement would be authored text asserting physics the picture does not show), or non-concurrent forces. Built on the force_rig field_3d engine (docs/loop_runs/lom_g/_engine/force_rig_json_contract.md), branch A `force_table`, pure configuration, zero renderer edits. DC Pandey and NCERT tables of contents consulted for chapter placement only; no teaching sequence, example problem, figure or explanation phrasing imported.",
+
+  "prerequisites": [
+    "newton_first_law",
+    "tension_force",
+    "vector_resolution",
+    "free_body_diagram"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "force_rig"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A sign hanging from two cables. A shop sign, a hanging light, a road sign: it hangs from a single point, and two cables run up to a wall or post on either side. The point where the cables meet is a particle in equilibrium — three pulls, one of them the weight of the sign. This is literally the STATE_5 and STATE_6 fixture: the load string is the sign, the two support strings are the cables. The surprise a student can be shown is that each cable often pulls harder than the sign weighs.",
+    "secondary": "A clothes line. Pull a line as tight as you can between two posts and it still dips in the middle. Hang something on it and it dips more. Pull harder to flatten it and the posts start to lean. That is the primary insight in an object a student can touch, and it is why the line can never be made perfectly straight."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+
+      "m1": { "name": "hanging mass on string 1", "unit": "kg", "min": 1.2, "max": 5.0, "default": 3.0 },
+      "m2": { "name": "hanging mass on string 2", "unit": "kg", "min": 1.2, "max": 5.0, "default": 4.0 },
+      "m3": { "name": "hanging mass on string 3", "unit": "kg", "min": 1.2, "max": 5.0, "default": 5.0 },
+      "m_load": { "name": "hanging mass of the load at the junction (cable states STATE_5/STATE_6); ramped 3.0 to 5.0 kg as strings[0]", "unit": "kg", "min": 1.2, "max": 5.0, "default": 3.0 },
+
+      "phi1": { "name": "pulley 1 position angle from the +x axis", "unit": "deg", "min": 0, "max": 359, "default": 0 },
+      "phi2": { "name": "pulley 2 position angle from the +x axis", "unit": "deg", "min": 0, "max": 359, "default": 90 },
+      "phi3": { "name": "pulley 3 position angle from the +x axis", "unit": "deg", "min": 0, "max": 359, "default": 233.13010235 },
+
+      "T1": { "name": "tension in string 1", "unit": "N", "min": 11.76, "max": 49.0, "default": 29.4, "derived": "m1 * g" },
+      "T2": { "name": "tension in string 2", "unit": "N", "min": 11.76, "max": 49.0, "default": 39.2, "derived": "m2 * g" },
+      "T3": { "name": "tension in string 3", "unit": "N", "min": 11.76, "max": 49.0, "default": 49.0, "derived": "m3 * g" },
+
+      "W": { "name": "load hanging at the junction (cable states)", "unit": "N", "min": 11.76, "max": 49.0, "default": 29.4, "derived": "m_load * g" },
+      "T_cable": { "name": "tension in one support cable (cable states)", "unit": "N", "min": 11.76, "max": 49.0, "default": 29.4, "derived": "W / (2 * sin(radians(theta)))" },
+      "theta": { "name": "angle a support cable makes with the horizontal, at the ring's actual position — SOLVED, never authored; distinct from the pulley position angle phi", "unit": "deg", "min": 6.9, "max": 90, "default": 30, "derived": "degrees(asin(W / (2 * T_cable)))" }
+    },
+    "computed_outputs": {
+      "T1_N": { "formula": "m1 * g — tension in string 1, N; 29.4 N at the 3.0 kg default, 49.0 N at the 5.0 kg end of the STATE_1 ramp." },
+      "T2_N": { "formula": "m2 * g — tension in string 2, N; 39.2 N throughout every home-fixture state." },
+      "T3_N": { "formula": "m3 * g — tension in string 3, N; 49.0 N throughout every home-fixture state." },
+      "cable_tension_N": { "formula": "W / (2 * sin(radians(theta))) — tension in one support cable of a symmetric two-cable fixture, N; 29.40 N at theta = 30.0 deg (STATE_5 opening), 49.00 N at theta = 17.46 deg (STATE_6 opening), same 29.4 N load." },
+      "sum_F_N": { "formula": "sqrt(sum_Fx^2 + sum_Fy^2) — the magnitude of the resultant on the ring, N; the engine computes and displays it live. Zero at every balance point (measured 7.1e-15 N on the 3-4-5 home fixture)." }
+    },
+    "formulas": {
+      "T1": "m1 * g",
+      "T2": "m2 * g",
+      "T3": "m3 * g",
+      "sum_Fx_at_centre": "T1 * cos(radians(phi1)) + T2 * cos(radians(phi2)) + T3 * cos(radians(phi3))",
+      "sum_Fy_at_centre": "T1 * sin(radians(phi1)) + T2 * sin(radians(phi2)) + T3 * sin(radians(phi3))",
+      "sum_F_at_centre": "sqrt(sum_Fx_at_centre * sum_Fx_at_centre + sum_Fy_at_centre * sum_Fy_at_centre)",
+      "cable_tension": "W / (2 * sin(radians(theta)))",
+      "cable_angle_deg": "degrees(asin(W / (2 * T_cable)))",
+      "ring_equation_of_motion": "a = (sum_F - b * v) / m_ring"
+    },
+    "constraints": [
+      "T_i = m_i * g exactly — the hanging mass IS the tension, at every pulley angle and every ring position.",
+      "Each string pulls the ring toward its own pulley; the direction is solved by the engine as unit(pulley_i - p), never authored, and no arrow ever points away from a pulley.",
+      "Equilibrium is ΣF = 0, and that is two independent statements: ΣFx = 0 AND ΣFy = 0.",
+      "For a symmetric two-cable support, 2 T sin(theta) = W, so T = W / (2 sin theta) and T grows without limit as theta approaches 0.",
+      "A cable can never be perfectly straight under any load: theta = 0 would need infinite tension.",
+      "Sum_Fx_at_centre and sum_Fy_at_centre are exact only at p = 0; off centre the string directions rotate, which is where the restoring stiffness comes from. Never author a component VALUE while the ring is off centre — the engine's live ΣFx / ΣFy readouts are the only correct source.",
+      "Damping and ring_mass_kg are display conveniences that make the settle finite and legible; they never move the equilibrium point, are never a force in the free-body diagram, and are never drawn or named."
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 24
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "A cable can only carry a load by sagging; pulled flatter, it pulls harder.",
+    "visual_confirmation": "At a 17.5° cable each support reads 49.00 N against a 29.40 N load, versus 29.40 N at a 30.0° cable for the same load — one number, 1.67 times bigger, on screen."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_4" },
+    "cables": { "start": "STATE_5", "end": "STATE_6" },
+    "explore": { "start": "STATE_7", "end": "STATE_7" },
+    "exit_pills": {
+      "foundational_to_cables": "Why does a tight rope pull so hard? →"
+    }
+  },
+
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Tension Equals the Hanging Weight",
+        "duration": 16,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "core",
+        "motion_archetype": "mass-ramp-track",
+        "delta_cue": "Heavier weight, longer arrow",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Heavier weight, longer arrow",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "string 1 grows 3.0 → 5.0 kg, so T₁ grows 29.4 → 49.0 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "arrow length is proportional to the tension",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Each string runs over a pulley and holds a hanging weight." },
+            { "id": "s1_2", "text_en": "The tension in that string equals the weight exactly." },
+            { "id": "s1_3", "text_en": "The first weight grows, its arrow grows too, and the ring slides across." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Balanced: the Resultant Is Zero",
+        "duration": 15,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "core",
+        "motion_archetype": "release-and-settle",
+        "delta_cue": "Resultant shrinks to a dot",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Resultant shrinks to a dot",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "T₁ = 29.4 N, T₂ = 39.2 N, T₃ = 49.0 N — and ΣF = 0.00 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "three full-length arrows beside a single dot",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The ring starts off centre, so the three pulls do not balance." },
+            { "id": "s2_2", "text_en": "It swings back and stops at the middle." },
+            { "id": "s2_3", "text_en": "All three tension arrows are still full length." },
+            { "id": "s2_4", "text_en": "Only their sum is zero." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "If something is not moving, there is no force on it — the forces have been switched off.",
+            "visual_counter": "Three tension arrows at full length, reading 29.40, 39.20 and 49.00 N, beside a resultant collapsed to a single dot, with the ring still.",
+            "one_line_fix": "At rest the pulls cancel each other — they are still there."
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "Each Direction Balances Separately",
+        "duration": 16,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "extended",
+        "motion_archetype": "release-and-settle (declared contrast pair with STATE_2 — the return is a straight line, not a curve, and the vertical sum is pinned at 0.00 N the whole way)",
+        "delta_cue": "Vertical sum stays zero",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_two_equations_not_one",
+          "choosing_the_axes",
+          "sign_of_a_component"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Vertical sum stays zero",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "ΣFx runs −35.03 N → 0.00 N while ΣFy reads 0.00 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "the return is a straight line along the x-axis",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Four strings now, in two opposite pairs." },
+            { "id": "s3_2", "text_en": "The ring is released to the right and returns along a straight line." },
+            { "id": "s3_3", "text_en": "The vertical sum reads zero the whole way." },
+            { "id": "s3_4", "text_en": "Only the horizontal sum brings it back." }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "Balance Moves When a Pulley Moves",
+        "duration": 17,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "extended",
+        "motion_archetype": "angle-ramp-track",
+        "delta_cue": "Pulley moves, balance moves",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Pulley moves, balance moves",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "pulley 1 sweeps 0° → 34°; the three tensions never change",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "the zero dot settles at a NEW place, not the centre",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Nothing is added or taken away." },
+            { "id": "s4_2", "text_en": "Only the first pulley moves round the rim." },
+            { "id": "s4_3", "text_en": "The three tensions stay at 29.4, 39.2 and 49.0 newtons." },
+            { "id": "s4_4", "text_en": "But the balance point moves, and the ring follows it there." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "Steep Cables Pull Less Than the Load",
+        "duration": 18,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "extended",
+        "motion_archetype": "axis-locked-sag",
+        "delta_cue": "Steep cables, smaller pull",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Steep cables, smaller pull",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "each cable 29.4 N; load grows 29.4 → 49.0 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "the ring travels straight down 148 mm and the cables steepen",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Two cables hold a load at one point." },
+            { "id": "s5_2", "text_en": "Each cable pulls 29.4 newtons, set by its own hanging weight." },
+            { "id": "s5_3", "text_en": "The load now grows to 49.0 newtons." },
+            { "id": "s5_4", "text_en": "The ring sinks, the cables get steeper, and each cable pulls less than the load." }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "Flat Cables Pull Much Harder",
+        "duration": 15,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "extended",
+        "motion_archetype": "axis-locked-sag (declared contrast pair with STATE_5 — identical load ramp, cables at 17° instead of 50°, and each cable now reads 49.0 N instead of 29.4 N)",
+        "delta_cue": "Flat cables, much larger pull",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_tension_blows_up_near_flat",
+          "why_cables_and_ropes_always_sag",
+          "tension_larger_than_the_load"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Flat cables, much larger pull",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "each cable 49.0 N against a 29.4 N load — 1.67 times bigger",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "pulled as hard as this table allows, and still not straight",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Same load, same growth." },
+            { "id": "s6_2", "text_en": "Each cable now pulls 49.0 newtons, the largest pull this table can supply." },
+            { "id": "s6_3", "text_en": "The cables run almost flat." },
+            { "id": "s6_4", "text_en": "They still sag, and more load means more sag." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Pull a rope hard enough and you can make it perfectly straight; a flatter cable is under less strain because it barely leans.",
+            "visual_counter": "Support tension 49.0 N — the largest this rig supplies — against a 29.4 N load at a 17.5° cable, versus 29.4 N at a 30.0° cable for the same load; the cables are pulled as hard as the apparatus allows and are still not straight.",
+            "one_line_fix": "The flatter the cable, the larger the tension needed; perfectly straight would need infinite tension."
+          }
+        ]
+      },
+
+      "STATE_7": {
+        "title": "Explore: Change Any Weight or Angle",
+        "duration": 0,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "depth_ring": "core",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change any weight or angle",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change any weight or angle",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_note",
+            "position": { "x": 380, "y": 250 },
+            "text": "three hanging weights and two pulley angles, all live",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_note",
+            "position": { "x": 380, "y": 440 },
+            "text": "ΣF = 0 wherever the ring comes to rest",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Change any hanging weight, or move either pulley, and watch where the ring settles." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "hanging_shop_sign",
+      "type": "B",
+      "label": "A Sign Hanging From Two Cables",
+      "physical_world": "A sign hangs from a single point, with two cables running up to a wall or post on either side. The junction where the cables and the sign meet is a particle held by three pulls.",
+      "same_physics": "Identical two-cable support physics: the horizontal parts cancel by symmetry and the vertical parts share the load, so 2 T sin θ = W and each cable's tension rises without limit as the cables are pulled flatter.",
+      "scene_hint": "Same two-support-plus-load fixture — only the labelled world changes from a force table to a sign on its two cables."
+    },
+    {
+      "variant_id": "clothes_line_dip",
+      "type": "B",
+      "label": "A Clothes Line Between Two Posts",
+      "physical_world": "A line is pulled tight between two posts and still dips in the middle. Hang something on it and it dips further; pull harder to flatten it and the posts lean.",
+      "same_physics": "Identical cable-angle law: the dip IS the angle θ, and T = W / (2 sin θ) means the tension needed grows without limit as the dip is reduced, so the line can never be pulled perfectly straight.",
+      "scene_hint": "Same two-support-plus-load fixture — only the labelled world changes from a force table to a line between two posts."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student has mastered equilibrium of particles when they can (1) state that a particle is in equilibrium when, and only when, the vector sum of the forces on it is zero, and that a body at rest is not force-free — the forces are still acting at full size; (2) recognise that balancing forces need not be equal in size, because equilibrium is a vector-sum condition and not an equal-magnitude condition; (3) turn ΣF = 0 into TWO independent equations, ΣFx = 0 and ΣFy = 0, and explain why one sum alone being zero is not enough; (4) state that on a force table the hanging weight sets the string's tension exactly, T = m g, independent of the pulley's angle and of where the ring sits; (5) solve a symmetric two-cable support by resolving into components, obtaining 2 T sin θ = W and hence T = W / (2 sin θ); (6) explain why the tension grows without limit as the cables flatten, so a loaded cable or rope can never be pulled perfectly straight, and why each cable can pull harder than the load it carries.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "On a force table, three strings pull a ring in three different directions and the ring sits perfectly still at the centre. What is true about the forces acting on the ring?",
+        "options": {
+          "A": "All three pulls are still acting at full size — 29.4 N, 39.2 N and 49.0 N — and only their vector sum is zero",
+          "B": "There are no forces on the ring at all, because a body at rest has no force acting on it",
+          "C": "The three pulls switch off once the ring reaches the centre, and switch back on only if the ring is moved",
+          "D": "Only the smallest pull is still acting; the two larger ones destroy each other and stop existing"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the core misconception this state exists to break — confuses 'not moving' with 'no forces'; the three hanging weights are still hanging and the three tension readouts still show 29.4, 39.2 and 49.0 N",
+          "C": "invents an on/off rule for forces with no physical basis — each string's tension is fixed by the weight hanging on it and does not depend on whether the ring happens to be moving",
+          "D": "treats cancellation as destruction — two forces that cancel still both act; what is zero is their sum, not the forces themselves"
+        },
+        "tested_idea": "A body at rest is not force-free: the forces are still acting at full size, and only their vector sum is zero.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A hanging light is held still by two cables and its own weight. Explain why 'it is not moving' does not mean 'no forces act on it'."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "The three strings on the ring hold 3.0 kg, 4.0 kg and 5.0 kg, so their tensions are 29.4 N, 39.2 N and 49.0 N. The ring is in equilibrium. How can three unequal pulls balance?",
+        "options": {
+          "A": "Equilibrium needs the vector SUM to be zero, not the sizes to be equal — the three directions are arranged so the three pulls add to nothing",
+          "B": "They cannot balance; for equilibrium all three tensions must be equal, so the ring must really be drifting slowly",
+          "C": "The 49.0 N pull cancels the 39.2 N pull, and the leftover 9.8 N is taken up by the ring's own weight",
+          "D": "The two smaller pulls add as plain numbers to 68.6 N, which is larger than 49.0 N, so the ring is driven the other way"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the sibling misconception this state also kills — assumes 'balanced' means 'equal in size'; the three numbers on screen are different and the ring still holds",
+          "C": "invents a spare force (the ring's weight) that acts perpendicular to the table and cannot enter the in-plane balance at all",
+          "D": "adds force magnitudes as plain numbers instead of as vectors — direction is exactly what makes the three sum to zero here"
+        },
+        "tested_idea": "Balancing forces need not be equal in size; equilibrium is a vector-sum condition, not an equal-magnitude condition.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Three ropes pull a ring with 20 N, 30 N and 40 N and the ring does not move. Explain how three unequal pulls can hold it."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Four strings pull a ring: 29.4 N along +x, 29.4 N along −x, 39.2 N along +y and 39.2 N along −y. The ring is moved to the right along the x-axis and released. The vertical sum reads 0.00 N the whole way back, yet the ring still moves. Why?",
+        "options": {
+          "A": "Equilibrium needs BOTH sums to be zero; here the vertical sum is zero but the horizontal sum is not, so the horizontal sum alone drives the ring back",
+          "B": "The vertical sum being zero is already enough for equilibrium, so the motion must come from something other than a force",
+          "C": "A force can only act along one axis at a time, and here the forces have switched over to the x-axis",
+          "D": "Moving the ring switches the two vertical strings off, leaving only the horizontal pair to act"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the exact error this state is built to break — treats one component sum as sufficient; ΣF = 0 is two independent statements and both must hold",
+          "C": "invents an exclusive-axis rule; every string pulls along its own line and contributes to both sums at once",
+          "D": "assumes the strings turn off — the vertical strings keep pulling 39.2 N each throughout; their vertical parts cancel while their horizontal parts do the restoring"
+        },
+        "tested_idea": "Equilibrium requires both component sums to be zero; one sum alone being zero is not enough.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A ring is pulled by forces whose up-and-down parts already cancel but whose sideways parts do not. State whether it is in equilibrium and say why."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "On a force table, a string runs over a rim pulley with a 4.0 kg mass hanging freely from its end (g = 9.8 m/s²). What is the tension in that string?",
+        "options": {
+          "A": "39.2 N — the hanging weight sets the tension exactly, whatever angle the pulley sits at and wherever the ring sits",
+          "B": "It depends on the pulley's angle around the rim; a string at 90° pulls harder than one at 0°",
+          "C": "It depends on how far the ring has moved off centre, because a longer stretch of string carries more tension",
+          "D": "19.6 N — the pulley splits the hanging weight equally between its two sides"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the string's DIRECTION with its SIZE — the pulley angle sets which way the string pulls, never how hard; the tension is fixed by the hanging weight alone",
+          "C": "assumes tension depends on string length; an ideal string carries the same tension along its whole length, and the ring's position changes only the direction of the pull",
+          "D": "invents a splitting rule an ideal pulley cannot have — the pulley redirects the string's pull, it never halves it"
+        },
+        "tested_idea": "On a force table the hanging weight sets the string's tension exactly, T = m g, independent of the pulley's angle and of the ring's position.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A force-table string passes over a pulley and carries a 2.5 kg mass. Give the tension in that string and name two things it does not depend on."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A load of weight W hangs from a single point held by two cables, each making the same angle θ with the horizontal. What is the tension in each cable?",
+        "options": {
+          "A": "T = W / (2 sin θ) — the horizontal parts cancel and the two vertical parts share the load, so 2 T sin θ = W",
+          "B": "T = W / 2 — each cable simply carries half the load, whatever the angle",
+          "C": "T = W — each cable has to carry the whole load, since both are attached to it",
+          "D": "T = W / (2 cos θ) — it is the horizontal parts of the cables that carry the load"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic equal-sharing error — only the VERTICAL part of each cable's tension carries the load, so the tension itself is W/2 only in the impossible θ = 90° case",
+          "C": "double-counts the load; the two cables share it, and the correct share is set by the geometry, not by attachment",
+          "D": "resolves along the wrong axis — the load is vertical, so it is the vertical (sin θ) parts that must add to W, not the horizontal (cos θ) parts, which cancel"
+        },
+        "tested_idea": "For a symmetric two-cable support, only the vertical parts carry the load: 2 T sin θ = W.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A 200 N sign hangs from a point held by two cables, each at 40° to the horizontal. Write the equation that gives the tension in each cable."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "The same load is now held by two cables pulled almost horizontal, at about 17° to the horizontal instead of 30°. What happens to the tension in each cable, and could the cables be pulled perfectly straight?",
+        "options": {
+          "A": "The tension rises sharply, because T = W / (2 sin θ) grows without limit as θ falls; at exactly 0° it would need infinite tension, so the cables can never be pulled perfectly straight",
+          "B": "The tension falls, because a flatter cable leans less and so is under less strain",
+          "C": "The tension is unchanged, because the load has not changed",
+          "D": "The tension rises to a maximum of W at 0°, so a perfectly straight cable is possible if you pull hard enough"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the primary misconception of this concept — mistakes a small lean for a small force; sin θ is in the DENOMINATOR, so a flatter cable needs a larger tension, not a smaller one",
+          "C": "assumes only the load matters; the geometry matters just as much, which is why the same load gives 29.4 N at 30° and 49.0 N at 17.5°",
+          "D": "invents a finite ceiling for the tension; W / (2 sin θ) has no maximum, which is exactly why a perfectly straight loaded cable is impossible"
+        },
+        "tested_idea": "Tension in a symmetric two-cable support grows without limit as the cables flatten, so a loaded cable can never be pulled perfectly straight.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A clothes line is pulled tighter and tighter to remove the dip under a hanging load. Explain why the dip can never be removed completely."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q4"],
+      "STATE_2": ["Q1", "Q2"],
+      "STATE_3": ["Q3"],
+      "STATE_5": ["Q5"],
+      "STATE_6": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_4", "STATE_7"]
+  },
+
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "No external syllabus web-search verification was run during this authoring pass. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Laws of Motion content). Every other row carries verified:false + needs_teacher_verification:true rather than a guess, per Rule 38g — no preset goes teacher-visible until a real teacher of that curriculum confirms it.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 11",
+        "coverage": "full",
+        "syllabus_unit": "Ch.5 Laws of Motion — equilibrium of concurrent forces",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE-Main / JEE-Advanced / NEET",
+        "coverage": "full",
+        "syllabus_unit": "Laws of Motion — equilibrium of a particle, two-cable support problems",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE / CAIE A-Level Physics",
+        "coverage": "full",
+        "syllabus_unit": "Forces — equilibrium of coplanar forces",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "US High School / AP Physics 1",
+        "coverage": "full",
+        "syllabus_unit": "Dynamics — static equilibrium, ΣF = 0",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "force_rig",
+    "explorer_id": "force_rig_explorer",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "slider_controls": {
+      "m1": { "min": 1.2, "max": 5.0, "step": 0.1, "default": 3.0, "dp": 1 },
+      "m2": { "min": 1.2, "max": 5.0, "step": 0.1, "default": 4.0, "dp": 1 },
+      "m3": { "min": 1.2, "max": 5.0, "step": 0.1, "default": 5.0, "dp": 1 },
+      "angle1": { "min": 0, "max": 359, "step": 1, "default": 0, "dp": 0 },
+      "angle2": { "min": 0, "max": 359, "step": 1, "default": 90, "dp": 0 }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The hanging weight sets the tension: T = m g",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Heavier weight, longer arrow",
+        "formula_overlay": "T = m g",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 3,
+            "damping": 120,
+            "strings": [
+              { "id": "s1", "angle_deg": 0, "hanging_mass_kg": 3.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s2", "angle_deg": 90, "hanging_mass_kg": 4.0, "label": "T₂", "color": "#42A5F5" },
+              { "id": "s3", "angle_deg": 233.13010235, "hanging_mass_kg": 5.0, "label": "T₃", "color": "#EF5350" }
+            ],
+            "show_resultant": false,
+            "show_components": false
+          },
+          "arrows": [{ "show": ["tension"] }],
+          "readouts": ["T"],
+          "controls_visible": [],
+          "glow_focal": "fr_arrow_0",
+          "param_ramp": { "param": "m1", "from": 3.0, "to": 5.0, "start_ms": 1000, "end_ms": 13000 }
+        }
+      },
+
+      "STATE_2": {
+        "label": "At rest the three pulls are still full size; only their sum is zero",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Resultant shrinks to a dot",
+        "formula_overlay": "ΣF = 0",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 70,
+            "damping": 64,
+            "ring_start_offset_m": [0.115, 0.045],
+            "strings": [
+              { "id": "s1", "angle_deg": 0, "hanging_mass_kg": 3.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s2", "angle_deg": 90, "hanging_mass_kg": 4.0, "label": "T₂", "color": "#42A5F5" },
+              { "id": "s3", "angle_deg": 233.13010235, "hanging_mass_kg": 5.0, "label": "T₃", "color": "#EF5350" }
+            ],
+            "show_resultant": true
+          },
+          "arrows": [{ "show": ["tension", "resultant"], "labels": { "resultant": "ΣF" } }],
+          "readouts": ["T", "sum_F"],
+          "controls_visible": [],
+          "glow_focal": "fr_resultant",
+          "phases": [{ "id": "resultant_is_zero", "at_ms": 13500 }]
+        }
+      },
+
+      "STATE_3": {
+        "label": "Vertical sum 0.00 N the whole way; the horizontal sum drives the ring back",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Vertical sum stays zero",
+        "formula_overlay": "ΣFx = 0\nΣFy = 0",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 70,
+            "damping": 64,
+            "ring_start_offset_m": [0.125, 0.0],
+            "strings": [
+              { "id": "s1", "angle_deg": 0, "hanging_mass_kg": 3.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s2", "angle_deg": 180, "hanging_mass_kg": 3.0, "label": "T₂", "color": "#FFD166" },
+              { "id": "s3", "angle_deg": 90, "hanging_mass_kg": 4.0, "label": "T₃", "color": "#42A5F5" },
+              { "id": "s4", "angle_deg": 270, "hanging_mass_kg": 4.0, "label": "T₄", "color": "#42A5F5" }
+            ],
+            "show_resultant": true
+          },
+          "arrows": [{ "show": ["tension", "resultant"], "labels": { "resultant": "ΣF" } }],
+          "readouts": ["sum_Fx", "sum_Fy", "T"],
+          "controls_visible": [],
+          "glow_focal": "fr_ring",
+          "phases": [{ "id": "both_sums_zero", "at_ms": 14000 }]
+        }
+      },
+
+      "STATE_4": {
+        "label": "Move one pulley and the balance point moves; the ring follows it there",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Pulley moves, balance moves",
+        "formula_overlay": "ΣF = 0",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 3,
+            "damping": 120,
+            "strings": [
+              { "id": "s1", "angle_deg": 0, "hanging_mass_kg": 3.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s2", "angle_deg": 90, "hanging_mass_kg": 4.0, "label": "T₂", "color": "#42A5F5" },
+              { "id": "s3", "angle_deg": 233.13010235, "hanging_mass_kg": 5.0, "label": "T₃", "color": "#EF5350" }
+            ],
+            "show_resultant": true
+          },
+          "arrows": [{ "show": ["tension", "resultant"], "labels": { "resultant": "ΣF" } }],
+          "readouts": ["T", "sum_F"],
+          "controls_visible": ["angle1"],
+          "glow_focal": "fr_pulley_0",
+          "param_ramp": { "param": "angle1", "from": 0, "to": 34, "start_ms": 1000, "end_ms": 13000 },
+          "phases": [{ "id": "rebalanced", "at_ms": 15000 }]
+        }
+      },
+
+      "STATE_5": {
+        "label": "Two steep cables pull 29.4 N each while the load grows to 49.0 N",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Steep cables, smaller pull",
+        "formula_overlay": "T = W / (2 sin θ)",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 3,
+            "damping": 120,
+            "ring_start_offset_m": [0, 0.09873],
+            "strings": [
+              { "id": "s_load", "angle_deg": 270, "hanging_mass_kg": 3.0, "label": "W", "color": "#EF5350" },
+              { "id": "s_left", "angle_deg": 130, "hanging_mass_kg": 3.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s_right", "angle_deg": 50, "hanging_mass_kg": 3.0, "label": "T₂", "color": "#FFD166" }
+            ],
+            "show_resultant": false
+          },
+          "arrows": [{ "show": ["tension"] }],
+          "readouts": ["T"],
+          "controls_visible": [],
+          "glow_focal": "fr_ring",
+          "param_ramp": { "param": "m1", "from": 3.0, "to": 5.0, "start_ms": 1000, "end_ms": 13000 },
+          "phases": [{ "id": "sagged", "at_ms": 16500 }]
+        }
+      },
+
+      "STATE_6": {
+        "label": "Two nearly flat cables pull 49.0 N each — the largest pull this table supplies",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Flat cables, much larger pull",
+        "formula_overlay": "T = W / (2 sin θ)",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 3,
+            "damping": 120,
+            "ring_start_offset_m": [0, -0.00209],
+            "strings": [
+              { "id": "s_load", "angle_deg": 270, "hanging_mass_kg": 3.0, "label": "W", "color": "#EF5350" },
+              { "id": "s_left", "angle_deg": 163, "hanging_mass_kg": 5.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s_right", "angle_deg": 17, "hanging_mass_kg": 5.0, "label": "T₂", "color": "#FFD166" }
+            ],
+            "show_resultant": false
+          },
+          "arrows": [{ "show": ["tension"] }],
+          "readouts": ["T"],
+          "controls_visible": [],
+          "glow_focal": "fr_ring",
+          "param_ramp": { "param": "m1", "from": 3.0, "to": 5.0, "start_ms": 1000, "end_ms": 13000 }
+        }
+      },
+
+      "STATE_7": {
+        "label": "Explore: three hanging weights and two pulley angles, all live",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Change any weight or angle",
+        "formula_overlay": "ΣF = 0",
+        "force_rig": {
+          "apparatus": "force_table",
+          "force_table": {
+            "view": "top_down",
+            "ring_mass_kg": 3,
+            "damping": 120,
+            "ring_start_offset_m": [0.10, 0.06],
+            "strings": [
+              { "id": "s1", "angle_deg": 0, "hanging_mass_kg": 3.0, "label": "T₁", "color": "#FFD166" },
+              { "id": "s2", "angle_deg": 90, "hanging_mass_kg": 4.0, "label": "T₂", "color": "#42A5F5" },
+              { "id": "s3", "angle_deg": 233.13010235, "hanging_mass_kg": 5.0, "label": "T₃", "color": "#EF5350" }
+            ],
+            "show_resultant": true
+          },
+          "arrows": [{ "show": ["tension", "resultant"], "labels": { "resultant": "ΣF" } }],
+          "readouts": ["T", "sum_F"],
+          "controls_visible": ["m1", "m2", "m3", "angle1", "angle2"],
+          "trusted_drag_seizes": true,
+          "glow_focal": "fr_ring",
+          "phases": [{ "id": "settled", "at_ms": 5000 }]
+        }
+      }
+    }
+  }
+}

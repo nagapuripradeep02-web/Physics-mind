@@ -52,6 +52,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' | 'force_rig' |
         'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator' | 'magnetic_flux_loop' | 'capacitance' | 'ac_resistor' | 'ac_inductor' | 'ac_capacitor' | 'displacement_current' | 'em_wave_propagation' | 'newtons_laws_body' |
         // kinematics_1d_track (Class-11 Kinematics Ch.2 — 1D straight-line
         // motion: track/runner/displacement-arrow/ghost-odometer; first
@@ -1621,6 +1622,88 @@ export interface Field3DConfig {
             // STATE_6 explore: suppress ALL magnitude/Newton readouts the shared
             // lorentz slider panel would otherwise show. Always honored regardless.
             hide_magnitude_readout?: boolean;
+        };
+        // ── force_rig per-state config (Laws of Motion, off-axis forces) ──
+        // docs/FORCE_RIG_ENGINE_SPEC.md, founder-approved 2026-07-30. ONE
+        // scenario_type serving BOTH remaining Laws of Motion concepts:
+        // `equilibrium_of_particles` (the force table) and
+        // `uniform_circular_motion` (the whirl). They are the SAME code — a point
+        // mass acted on by several forces whose DIRECTIONS are authored angles
+        // rather than a single track axis, integrated with damping so the mass
+        // visibly settles or visibly circles. `newtons_laws_body` cannot serve
+        // either: it is strictly 1-D along a straight surface.
+        //   Branch A (`force_table`) is implemented; branch B (`whirl`) is
+        //   declared here and built in its own dispatch.
+        force_rig?: {
+            apparatus: 'force_table' | 'whirl';
+
+            // ── force_table: a ring pulled by N strings over rim pulleys ─────
+            force_table?: {
+                view?: 'top_down' | 'perspective';   // default 'top_down' — the lab view
+                ring_mass_kg?: number;               // default 0.05; only affects settling speed
+                damping?: number;                    // b in F = -b*v; default settles in ~1.5 s
+                strings: Array<{
+                    id: string;
+                    angle_deg: number;               // measured CCW from +x in the table plane
+                    hanging_mass_kg: number;         // tension = m*g along this string, exactly
+                    label?: string;                  // e.g. "T₁"
+                    color?: string;
+                }>;
+                show_resultant?: boolean;            // draw ΣF from the ring; length ∝ |ΣF|
+                show_components?: boolean;           // resolve each tension into x and y
+                // Start the ring displaced (metres, table frame) so the state SEES
+                // it settle instead of opening on a still picture (the Rule-31 trap
+                // this apparatus is most exposed to). NOT in the founder spec §1 —
+                // added by the engine build and flagged for founder-proxy.
+                ring_start_offset_m?: number[];
+            };
+
+            // ── whirl: a bob on a string sweeping a circle ───────────────────
+            // The bob is INTEGRATED under gravity plus the inextensible-string
+            // constraint. Nothing here poses it on a parametric circle: the cone
+            // half-angle θ is SOLVED (cos θ = g/(ω²L)) and is never authored, so
+            // the sim cannot be made to show an impossible pose.
+            whirl?: {
+                // 'flat'    — the bob slides on a frictionless horizontal plane
+                //             with the string anchored at the centre. The plane's
+                //             normal cancels gravity exactly, so the tension is the
+                //             ONLY horizontal force: T = m·ω²·r with r = L. This is
+                //             the clean cut-the-string case.
+                // 'conical' — a real conical pendulum. T = m·ω²·L and
+                //             cos θ = g/(ω²·L); below ω²L = g there is no conical
+                //             solution and the engine CLAMPS ω to sqrt(g/L),
+                //             reports the clamp in the HUD, snaps the slider back,
+                //             and draws the bob hanging — never a nonsense angle.
+                geometry: 'conical' | 'flat';
+                string_length_m: number;             // L
+                bob_mass_kg: number;
+                omega_rad_per_s?: number;            // drives the motion; θ and r follow from it
+                anchor_height_m?: number;            // conical pivot height; default = L
+                // THE MISCONCEPTION BEAT. At at_ms the string constraint is
+                // REMOVED — not replaced by a scripted path. 'flat' then has no
+                // horizontal force at all, so the bob travels straight at constant
+                // speed along the tangent; 'conical' becomes a projectile. No
+                // outward force is drawn before or after, because none exists.
+                release?: { at_ms: number; trail?: boolean; ghost_circle?: boolean };
+                show_radius?: boolean;               // draw r from the axis to the bob
+                show_velocity?: boolean;             // tangential v arrow
+            };
+
+            // Force arrows on the particle. Directions come from the solver, never
+            // authored. One entry; `show` is the closed set of kinds this state draws.
+            arrows?: Array<{
+                show: Array<'tension' | 'weight' | 'normal' | 'resultant' | 'centripetal'>;
+                labels?: Partial<Record<'tension' | 'weight' | 'normal' | 'resultant' | 'centripetal', string>>;
+            }>;
+
+            // Rule 33d instruments — live numerics only.
+            readouts?: Array<'T' | 'sum_F' | 'sum_Fx' | 'sum_Fy' | 'theta' | 'v' | 'omega' | 'r' | 'a_c'>;
+
+            glow_focal?: string;                     // EXACTLY ONE per state (Rule 32e)
+            controls_visible?: Array<'m1' | 'm2' | 'm3' | 'angle1' | 'angle2' | 'omega' | 'L' | 'bob_mass'>;
+            trusted_drag_seizes?: boolean;           // sandbox state only
+            param_ramp?: { param: 'angle1' | 'angle2' | 'omega' | 'm1'; from: number; to: number; start_ms?: number; end_ms: number };
+            phases?: Array<{ id: string; at_ms?: number; until_ms?: number | null; glow_focal?: string }>;
         };
         // ── magnetic_no_work per-state config ────────────────────────────
         // DIRECTION + NO-WORK sibling of lorentz_force_uniform_field. Teaches:
@@ -45594,6 +45677,2463 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbFitRopes();
     }
 
+    // ════════════════════════════════════════════════════════════════════════
+    // force_rig — the concurrent-force / circular-motion engine (prefix "fr")
+    //   docs/FORCE_RIG_ENGINE_SPEC.md, founder-approved 2026-07-30.
+    //   THIS DISPATCH BUILDS BRANCH A ONLY (apparatus: "force_table"). The
+    //   whirl branch is declared in the config type and built separately; a
+    //   whirl state renders nothing here rather than guessing its physics.
+    //
+    //   Branch A is a REAL damped 2-D particle. The ring is integrated, never
+    //   posed: it drifts off centre when the pulls do not balance and settles
+    //   where they do. That is the entire reason this engine exists — an
+    //   equilibrium asserted by three arrows drawn head-to-tail teaches nothing.
+    //
+    //   THE RESTORING MECHANISM, stated once because everything depends on it:
+    //   each string pulls the ring TOWARD ITS OWN PULLEY, so the pull direction
+    //   is unit(pulley_i - p), not the authored angle. At p = 0 that IS the
+    //   authored angle and the sum is exactly the spec section 2 expression
+    //   ΣF = Σ T_i (cos φ_i, sin φ_i). Off centre the directions rotate, which
+    //   linearises to a positive-definite stiffness K = (1/R)Σ T_i (I - e_i e_iᵀ)
+    //   for any three non-collinear strings — so an imbalance has a genuine new
+    //   fixed point to settle at instead of drifting forever at terminal speed.
+    //   This is the real force table, not a modelling convenience.
+    //
+    //   Tension magnitude is m_i·g EXACTLY (spec section 2): the hanging mass IS
+    //   the tension, which is what makes this apparatus teachable. Changing a
+    //   mass changes the drawn weight AND the pull through ONE funnel
+    //   (frSetStringMass), so the picture can never disagree with the number.
+    // ════════════════════════════════════════════════════════════════════════
+    var FR_G = 9.8;                       // m/s^2 — a constant, NOT a clock (Rule 36)
+    // The ONE fixed sub-step. Rule 36 note, because this is the only place in
+    // this scenario where a step size is named at all:
+    //   the shared clock hands this scenario dtStep = 0.016 * __pmSteps, i.e. the
+    //   dt is ALREADY quantised to whole 0.016 s steps whose COUNT is derived from
+    //   real elapsed wall time (0-3 per frame). Branch A recovers that count
+    //   (n = round(dt / FR_STEP_S)) and takes n steps of exactly FR_STEP_S.
+    //   Consequences, all of them the point:
+    //     • rate-correct at any refresh rate — the count comes from real elapsed
+    //       ms, never from an assumed frame rate, so 120 Hz runs half as many
+    //       steps per frame and the same number per second;
+    //     • EXACTLY fold-invariant — N frames of one step and one frame of N
+    //       steps execute the identical arithmetic sequence, to the last bit,
+    //       which a damped integrator taking the whole dt in one Euler step
+    //       cannot be (its error is O(dt²·b/m));
+    //     • dt = 0 under SET_TIME_FREEZE takes ZERO steps, so a frozen frame is
+    //       byte-identical with no special-case branch.
+    var FR_STEP_S = 0.016;
+    var FR_MAX_STRINGS = 4;               // meshes built once; a state shows its first N
+    var FR_TABLE_R_M = 0.25;              // physical table radius (a real force table is ~25 cm)
+    var FR_TABLE_R_W = 2.40;              // ... drawn this many world units across the radius
+    var FR_WORLD_PER_M = FR_TABLE_R_W / FR_TABLE_R_M;   // 9.6 world units per metre of ring travel
+    var FR_RING_CLAMP = 0.80;             // the ring may never leave the table (fraction of R)
+    // ── FRAMING. A pure display zoom on the fr_root node: scale + a branch-A
+    //   re-centre, applied ONCE to the scene-graph root so EVERY child rides it
+    //   and nothing can be missed. NOT a geometry change — every fr constant
+    //   below stays in the same world units, so every RATIO the apparatus is
+    //   built on (arrow length vs its ring->pulley run, arrow shaft vs string
+    //   radius, drawn length vs newtons) is preserved exactly and both arrow
+    //   scars stay fixed by construction. Rule 29 is untouched: this is one
+    //   uniform framing factor for the whole rig, never per element and never
+    //   per state, so no element grows relative to another.
+    //
+    //   WHY IT EXISTS. The rig was drawn at ~40% of the frame height with wide
+    //   empty margins on every side, so the shared newtons->world arrow map
+    //   (rescaled to 0.026 to keep every arrow inside its own run) produced
+    //   ~45 px stubs on the states whose whole point is comparing two tensions.
+    //   Zooming the drawn apparatus and the arrow map together is the only fix
+    //   that adds device pixels without touching a single ratio.
+    //
+    //   WHY 1.42 AND NOT 1.5+. The outermost thing on screen is NOT the table
+    //   (r = 2.40) but the hanging weight's "N kg" label at the end of the
+    //   radial hanger: r = FR_TABLE_R_W + FR_HANG_OUT + h + 0.36, i.e. 3.61 at
+    //   the 5 kg slider maximum, plus half a label. The authored camera looks
+    //   DOWN at the table plane from (0, 3.4, 9.2), so +y content is nearer the
+    //   lens and magnified: a string at 90 deg is the binding case, and with the
+    //   re-centre below it reaches the top of a 1280x720 frame at k ~ 1.55.
+    //   1.42 lands that worst label ~64 px from the top edge (clear of the
+    //   delta-cue chip, which ends at y = 46) and the matching 270 deg label
+    //   ~50 px from the bottom, at every authored angle on both branches.
+    var FR_VIEW_SCALE = 1.42;
+    //   The frame band the camera actually covers is not centred on the origin
+    //   (the same perspective asymmetry: the top of the table plane is closer
+    //   than the bottom), so the table branch re-centres itself downward — the
+    //   FR_W_PIVOT_Y idiom, for the same reason: a concept JSON can author
+    //   camera_position but NOT the camera target. The whirl branch already
+    //   places itself via frwShiftY and is left at 0 so it is not double-shifted.
+    //   It is NOT free: moving the rig away from the lens costs magnification
+    //   (depth = 9.808 - 0.3466 y), so the pair (1.42, -1.05) is the measured
+    //   optimum of k / depth subject to both frame edges, not two loose knobs —
+    //   it nets 1.37x more device pixels per world unit at the ring than the
+    //   un-zoomed rig, where a shift-free k would have had to stop at 1.20.
+    var FR_VIEW_SHIFT_Y = -1.05;
+    var FR_DEFAULT_RING_MASS = 0.05;      // kg (spec section 1 default)
+    // b in F = -b*v. Overdamped on purpose: the settle time constant is b/K with
+    // K the string stiffness above (~120 N/m for three few-kilogram weights), so
+    // this lands at tau ~ 0.33 s and a visible settle of ~1.5 s (spec section 1).
+    // Disclosed as SETTLING BEHAVIOUR only — never drawn as a force in the
+    // free-body diagram, because it is not part of the physics being taught.
+    var FR_DEFAULT_DAMPING = 40;
+    var FR_REST_V = 1e-7;                 // m/s below which the ring is reported at rest
+    var FR_TABLE_COLOR = "#37474F";
+    var FR_RIM_COLOR = "#78909C";
+    var FR_RING_COLOR = "#FFF176";
+    var FR_CENTRE_COLOR = "#546E7A";
+    var FR_PULLEY_COLOR = "#B0BEC5";
+    var FR_STRING_COLOR = "#ECEFF1";
+    var FR_WEIGHT_COLOR = "#90A4AE";
+    var FR_AXIS_COLOR = "#607D8B";
+    var FR_STRING_COLORS = ["#42A5F5", "#EF5350", "#66BB6A", "#AB47BC"];
+    var FR_RESULTANT_COLOR = "#E0E0E0";   // light grey, never pure white — a white focal
+                                          // cannot brighten, so Rule 29 emphasis on the
+                                          // resultant would be a total no-op
+    var FR_TABLE_Z = -0.06;               // the top behind the working parts
+    var FR_RING_R = 0.15;                 // ring torus radius (world)
+    var FR_RING_TUBE = 0.045;
+    var FR_PULLEY_R = 0.17;
+    var FR_PULLEY_TUBE = 0.05;
+    // An IDEAL string: thin, straight, taut — and deliberately THINNER and dimmer
+    // than the tension arrow that runs along it. A tension acts along its own
+    // string, so the two are exactly collinear; at the nlb string weight the white
+    // cylinder swallowed the coloured arrow and the taught object of the whole
+    // chapter read as a bare arrowhead (observed in the first bring-up frame).
+    // Thinner + dimmer AGAIN (2026-07-31): 0.013/0.72 still put a near-white
+    // ~1.6px line under a coloured arrow shaft, so the apparatus line and the
+    // taught vector competed. The arrow now owns the visual weight along that
+    // direction; the string is present, readable and subordinate. FR_ARROW_SHAFT_R
+    // (below) is 5x this radius by construction, so the ordering cannot invert.
+    var FR_STRING_R = 0.009;
+    var FR_STRING_OPACITY = 0.55;
+    var FR_STRING_EMISSIVE = 0.12;
+    var FR_SEG_MIN = 0.02;                // below this a segment is genuinely gone, so it HIDES
+    var FR_HANG_OUT = 0.30;               // string continues this far PAST the pulley to the weight
+    // The hanging weight is drawn along the OUTWARD RADIAL direction rather than
+    // straight down the screen. In a top-down view that IS the honest projection
+    // of a weight hanging over a rim pulley, and it is the only placement that
+    // works at every angle: a screen-down drop from a pulley at the TOP of the
+    // table folds the string back over the table and buries the weight, its label
+    // and the pulley in each other (observed in the first bring-up frame).
+    var FR_WEIGHT_W = 0.30;               // hanger plate width
+    var FR_WEIGHT_H_PER_KG = 0.11;        // stack height per kilogram (the DRAWN weight)
+    var FR_WEIGHT_H_MIN = 0.10;
+    var FR_WEIGHT_H_MAX = 0.72;
+    // Arrow map — the newtons_laws_body map (NLB_ARROW_SCALE / MIN_LEN / MAX_LEN
+    // / EPS) RESCALED for this apparatus, residual floor included: every force
+    // under FR_ARROW_FLOOR_N draws at the same floor length. The consequence for
+    // authoring is real and is carried into the JSON contract: hanging masses
+    // live in the 1.2-5 kg band so the drawn lengths are genuinely proportional
+    // across the slider range.
+    //
+    // WHY THIS SCALE IS NOT THE NLB 0.048. A tension arrow is drawn from the ring
+    // ALONG its own string, so unlike a free-body arrow standing off a block it
+    // has a finite run to live in: ring -> pulley. That run is FR_TABLE_R_W (2.40)
+    // only while the ring sits at the exact table centre, and the ring is a solved,
+    // moving object — every time it settles toward a pulley the run on that side
+    // shrinks. At 0.048 a 49 N tension drew 2.352 units, so the moment the ring
+    // moved the arrow shot past its own pulley and terminated inside the hanging
+    // weight, burying its label under the weight's label (seen at 0/90/270 deg).
+    //   A PER-ARROW clamp is NOT available as a fix: clamping each arrow to its own
+    // available run would draw a 39.2 N and a 49 N tension at the same length
+    // whenever both are long, and length-means-magnitude is the physics this sim
+    // exists to show. So the ONE SHARED newtons -> world map is rescaled instead —
+    // every arrow on screen keeps a single common scale, and the drawn ratio of any
+    // two arrows is still exactly their ratio of newtons.
+    //   0.026 is the largest round scale that keeps the tip clear of the pulley rim
+    // in EVERY authored configuration of this concept, swept over both param_ramps
+    // and both branches (worst case STATE_4 at angle1 = 34 deg: run 1.334, arrow
+    // 1.019, pulley rim 0.22 -> 0.095 clear). It also stops the whirl branch's
+    // T arrow from punching through the anchor at high omega (T = 63 N capped at
+    // 2.80 exceeded the 2.40-unit string; it now draws 1.517).
+    //   FLOOR/CAP are written in NEWTONS so the three constants cannot drift apart
+    // and silently change WHICH forces are proportional: the floor still bites at
+    // 11.46 N and the cap at 58.33 N, exactly as before this rescale.
+    var FR_ARROW_SCALE = 0.026;           // world units PER NEWTON
+    var FR_ARROW_FLOOR_N = 11.4583;       // at/below this, every force draws one floor length
+    var FR_ARROW_CAP_N = 58.3333;         // at/above this, every force draws one cap length
+    var FR_ARROW_MIN_LEN = FR_ARROW_SCALE * FR_ARROW_FLOOR_N;   // 0.298
+    var FR_ARROW_MAX_LEN = FR_ARROW_SCALE * FR_ARROW_CAP_N;     // 1.517
+    var FR_ARROW_EPS = 0.05;              // newtons; at or below this the force IS zero
+    //   SIZE FLOOR. At 0.26 the glyph rendered ~10 px tall, and the 8 px dark
+    //   outline the shared sprite helper bakes in (correct, and not ours to
+    //   change) then ate most of the stroke on the way down: even the FOCAL gold
+    //   label measured only 0.42x its own colour's luminance, i.e. the ink was
+    //   losing more contrast to its own halo than to the background. 0.30 is the
+    //   weight label's height — the one label on this apparatus the founder reads
+    //   cleanly — so the arrow labels are now floored at a size already proven
+    //   legible on this exact backdrop rather than at a number nobody chose.
+    var FR_ARROW_LABEL_H = 0.30;
+    //   A peer label recedes, but never below readable (see frApplyGlow).
+    var FR_LABEL_DIM_OPACITY = 0.85;
+    var FR_ARROW_LABEL_GAP = 0.24;
+    // ... and this far to the SIDE of it (see frUpdateArrow). The arrow, its
+    // string, the pulley, the hanger and the weight plus the weight's own label
+    // are all collinear by construction, so a label placed straight ahead of the
+    // tip is placed into whatever apparatus that one direction runs into.
+    var FR_ARROW_LABEL_SIDE = 0.32;
+    var FR_ZERO_DOT_R = 0.085;            // the ΣF = 0 dot (see frDriveArrows)
+    // Every arrow and arrow label sits IN FRONT of the apparatus plane. A tension
+    // acts along its own string, so at z = 0 the arrow is drawn inside the string
+    // cylinder and the taught object of the whole chapter is invisible (observed
+    // in the first bring-up frame: three correct arrows, none of them readable).
+    var FR_ARROW_Z = 0.14;
+    // The arrow SHAFT is a real mesh cylinder, never the ArrowHelper's THREE.Line.
+    // WebGL ignores Line linewidth on essentially every desktop driver, so an
+    // ArrowHelper shaft renders ONE device pixel wide no matter what is asked for.
+    // A tension acts along its own string, so the arrow is exactly collinear with
+    // the apparatus line it lies on: a 1px shaft beside a lit string read as a
+    // detached cone head — three floating triangles instead of three arrows. Pure
+    // z-offset (FR_ARROW_Z) cannot fix that, because depth ordering was never the
+    // problem; a 1px line IN FRONT of a brighter line is still not an arrow. Only
+    // real geometry is driver-independent, so the shaft can never silently vanish
+    // again on different hardware. Rule 29 is untouched: this is a fixed WIDTH,
+    // never scaled for emphasis, and arrow LENGTH still means magnitude alone.
+    var FR_ARROW_SHAFT_R = 0.045;         // ≈5x FR_STRING_R
+    var FR_Y_AXIS = new THREE.Vector3(0, 1, 0);
+    var FR_MATH_FONT = "'Cambria Math','Times New Roman',serif";
+
+    // Explicit id registry — addToScene() only registers the object handed to it,
+    // so a child mesh would never be reachable from sceneObjects (the "child mesh
+    // never registered, updater never matches" scar). Every id-addressable fr
+    // object goes through frRegister().
+    var frIndex = [];
+    function frRegister(obj) { frIndex.push(obj); return obj; }
+    function frFindById(id) {
+        for (var i = 0; i < frIndex.length; i++) {
+            var o = frIndex[i];
+            if (o && o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+    function frEach(fn) {
+        for (var i = 0; i < frIndex.length; i++) { if (frIndex[i]) fn(frIndex[i], frIndex[i].userData || {}); }
+    }
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    function frFx(v, dp) {
+        var d = (dp == null) ? 2 : dp;
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
+        return n.toFixed(d);
+    }
+    function frStateCfg() {
+        var sd = (config.states && PM_currentState) ? config.states[PM_currentState] : null;
+        return (sd && sd.force_rig) ? sd.force_rig : {};
+    }
+    function frTableCfg(fr) {
+        return (fr && fr.force_table) ? fr.force_table : {};
+    }
+    function frIsTable(fr) {
+        var f = fr || frStateCfg();
+        return (f.apparatus || "force_table") === "force_table";
+    }
+
+    // ── Geometry helpers (pure presentation; no clock, no integration) ─────
+    function frWorld(px, py, z) { return new THREE.Vector3(px * FR_WORLD_PER_M, py * FR_WORLD_PER_M, z || 0); }
+    function frRingWorld() {
+        var eng = window.PM_frEngine;
+        if (!eng) return new THREE.Vector3(0, 0, 0);
+        return frWorld(eng.p.x, eng.p.y, 0);
+    }
+    function frPulleyWorld(angleDeg) {
+        var t = angleDeg * Math.PI / 180;
+        return new THREE.Vector3(FR_TABLE_R_W * Math.cos(t), FR_TABLE_R_W * Math.sin(t), 0);
+    }
+    // Fit a unit-height, +y-axis cylinder between two world points. Geometry only:
+    // the caller owns visibility, so a state hide can never be undone here.
+    function frFitSegment(obj, p0, p1, on) {
+        if (!obj) return;
+        var dx = p1.x - p0.x, dy = p1.y - p0.y, dz = p1.z - p0.z;
+        var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(len > FR_SEG_MIN)) { obj.visible = false; return; }
+        obj.visible = !!on;
+        obj.position.set((p0.x + p1.x) / 2, (p0.y + p1.y) / 2, (p0.z + p1.z) / 2);
+        obj.scale.set(1, len, 1);
+        obj.quaternion.setFromUnitVectors(FR_Y_AXIS, new THREE.Vector3(dx / len, dy / len, dz / len));
+    }
+    function frArrowLen(magN) {
+        var L = (typeof magN === "number" && isFinite(magN)) ? Math.abs(magN) * FR_ARROW_SCALE : 0;
+        if (L < FR_ARROW_MIN_LEN) L = FR_ARROW_MIN_LEN;
+        if (L > FR_ARROW_MAX_LEN) L = FR_ARROW_MAX_LEN;
+        return L;
+    }
+    // ── The mesh shaft (see FR_ARROW_SHAFT_R) ─────────────────────────────
+    //   Cloned LOCALLY into the fr region rather than promoted into a shared
+    //   helper: the thick-vector pattern already exists three times over in this
+    //   file (gauss sphere / line / sheet) and once inline on fcw_F_net, and
+    //   refactoring sealed siblings to share it is a founder decision.
+    //   The shaft is a CHILD of the ArrowHelper group, whose local +y IS the
+    //   arrow direction, so setDirection() carries it for free and only its
+    //   length has to be written per frame.
+    function frAddShaft(arrow, hex) {
+        if (!arrow) return arrow;
+        var sh = new THREE.Mesh(
+            new THREE.CylinderGeometry(FR_ARROW_SHAFT_R, FR_ARROW_SHAFT_R, 1, 12),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(hex), emissive: hexToThreeColor(hex),
+                emissiveIntensity: 0.42, shininess: 60, transparent: true, opacity: 1.0
+            }));
+        sh.scale.set(1, Math.max(1e-4, FR_ARROW_MIN_LEN - 0.21), 1);
+        sh.position.set(0, Math.max(1e-4, FR_ARROW_MIN_LEN - 0.21) / 2, 0);
+        arrow._frShaft = sh;
+        arrow.add(sh);
+        return arrow;
+    }
+    // Spans tail -> base of the cone, exactly the span ArrowHelper gives its own
+    // line, so head and shaft always meet and the tip stays at len.
+    function frFitShaft(arrow, len, headLen) {
+        var sh = arrow ? arrow._frShaft : null;
+        if (!sh) return;
+        var L = Math.max(1e-4, len - headLen);
+        sh.scale.set(1, L, 1);
+        sh.position.set(0, L / 2, 0);
+    }
+    function frSetLabelText(lbl, text) {
+        if (!lbl) return;
+        var t = (text == null) ? "" : String(text);
+        if (lbl._frText === t) return;      // pmCreateAutoLabel re-allocates its canvas
+        lbl._frText = t;                    // texture on every redraw — never per frame
+        updateLabelSpriteText(lbl, t);
+    }
+    // ── Identity colour IN, legible INK out — the legibility floor ─────────
+    //   A label is TEXT, and text that cannot be read is a silent failure
+    //   (Rule 24: the sim must read sound-off). Fix E2 made every label take its
+    //   arrow's AUTHORED identity colour — which is exactly what ties a label to
+    //   its arrow and must not be undone — but an identity colour is picked for
+    //   IDENTITY, never for luminance. Measured on real EYE pixels before this
+    //   floor existed: a saturated blue (#42A5F5, relative luminance 0.35) label
+    //   on the lit table disc (0.047) read at 1.27:1, and a saturated red
+    //   (#EF5350, 0.25) at 1.34:1 — present on screen, unreadable. Nothing in
+    //   the path guaranteed otherwise: legibility was left to whichever hex an
+    //   author happened to pick and to wherever the solved ring happened to put
+    //   the label.
+    //   The floor is applied to the INK ONLY — the arrow keeps the authored
+    //   colour byte-for-byte, and the label is drawn in the SMALLEST tint of that
+    //   same hue that clears the floor. Tinting toward white in sRGB is
+    //   c' = c*(1-t) + 255*t, which scales every channel gap by (1-t) and so
+    //   leaves the HSL hue mathematically UNCHANGED: a lifted blue is still blue,
+    //   a lifted red still red, so matching a label to its arrow by colour alone
+    //   survives. Saturation is the only thing spent, and only as much of it as
+    //   the floor costs; a colour already above the floor (#FFD166, 0.68) is
+    //   returned untouched.
+    //   WHY A LUMINANCE FLOOR AND NOT A BACKING PLATE OR A FATTER HALO. The
+    //   backdrop is not knowable here: the ring is SOLVED and moves, so a label
+    //   lands on the table disc, on the page background, or over a grey weight
+    //   depending on the state and on the slider. The dark halo already baked
+    //   into every label sprite carries the BRIGHT end of that range; this floor
+    //   carries the DARK end; between them the guarantee holds for any backdrop —
+    //   without adding one pixel of new chrome to the canvas (Rule 34) and
+    //   without touching a single shared sprite helper (Rule 40: those are fleet
+    //   platform, and re-styling them from a chapter branch would silently
+    //   restyle every field_3d concept).
+    //   WHERE 0.62 COMES FROM. The requirement is that a label clear WCAG AA body
+    //   contrast (4.5:1) at its stroke centre against the brightest apparatus it
+    //   can land on — the lit table disc, measured at relative luminance 0.047 —
+    //   INCLUDING when it is a dimmed peer. That needs a rendered stroke at
+    //   4.5 * (0.047 + 0.05) - 0.05 = 0.385. Measured on real frames, a rendered
+    //   stroke arrives at about 0.68x the ink's own luminance (the sprite's baked
+    //   8 px dark outline eats the rest on the way down) and a peer costs another
+    //   0.94x, so the ink itself has to sit at >= 0.385 / (0.68 * 0.94) = 0.60.
+    //   0.62 takes that with margin and lands just BELOW the gold #FFD166 already
+    //   on screen (0.68) — so the rule is also statable in one line: no label is
+    //   ever dimmer than the one label the founder already reads cleanly, and
+    //   that colour is the one the floor never has to move.
+    var FR_INK_LUM_MIN = 0.62;            // WCAG relative luminance, 0..1
+    function frSrgbLin(c) {
+        var s = c / 255;
+        return (s <= 0.04045) ? (s / 12.92) : Math.pow((s + 0.055) / 1.055, 2.4);
+    }
+    function frRelLum(r, g, b) {
+        return 0.2126 * frSrgbLin(r) + 0.7152 * frSrgbLin(g) + 0.0722 * frSrgbLin(b);
+    }
+    function frHexRgb(hex) {
+        if (typeof hex !== "string") return null;
+        var h = hex.charAt(0) === "#" ? hex.slice(1) : hex;
+        if (h.length === 3) h = h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2);
+        if (h.length !== 6) return null;
+        var n = parseInt(h, 16);
+        if (!isFinite(n)) return null;
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+    function frHex2(v) {
+        var s = Math.max(0, Math.min(255, Math.round(v))).toString(16);
+        return s.length < 2 ? "0" + s : s;
+    }
+    function frLabelInk(hex) {
+        var c = frHexRgb(hex);
+        if (!c) return hex;
+        if (frRelLum(c[0], c[1], c[2]) >= FR_INK_LUM_MIN) return hex;
+        // Luminance is strictly increasing in t, so bisect for the SMALLEST tint
+        // that reaches the floor — the least hue-identity spent for the contrast.
+        var lo = 0, hi = 1, t, r, g, b;
+        for (var k = 0; k < 18; k++) {
+            t = (lo + hi) / 2;
+            r = c[0] + (255 - c[0]) * t; g = c[1] + (255 - c[1]) * t; b = c[2] + (255 - c[2]) * t;
+            if (frRelLum(r, g, b) >= FR_INK_LUM_MIN) hi = t; else lo = t;
+        }
+        return "#" + frHex2(c[0] + (255 - c[0]) * hi) + frHex2(c[1] + (255 - c[1]) * hi) +
+               frHex2(c[2] + (255 - c[2]) * hi);
+    }
+    //   THE ONE FUNNEL. Every fr label sprite is born here and nowhere else, so
+    //   the floor cannot be bypassed by a future call site — the same discipline
+    //   frSetStringMass enforces for mass. The two guards below are set at birth
+    //   for the same reason updateLabelSpriteText must not run per frame: it
+    //   re-allocates a canvas texture on every redraw.
+    function frMakeLabel(text, hex, heightScale) {
+        var lbl = pmCreateAutoLabel(text, frLabelInk(hex), heightScale);
+        lbl._frText = text;       // frSetLabelText guard  (same string  -> no redraw)
+        lbl._frInkSrc = hex;      // frRecolourLabel guard (same AUTHORED hex -> no redraw)
+        return lbl;
+    }
+    // ── Authored string colour -> the drawn arrow + its label ──────────────
+    //   A THREE.ArrowHelper is a GROUP (.line + .cone children) and has NO
+    //   .material of its own, so the obvious o.material.color.set(...) guard is
+    //   simply false and every arrow silently kept the build-time index palette —
+    //   two physically identical cables rendered red and green, which teaches a
+    //   distinction that does not exist. setColor() is the ArrowHelper API (the
+    //   same call bmPulseColor / the flux arrows already use).
+    //   The glow pass caches each material's resting colour in
+    //   userData._glowBaseCol and restores it EVERY frame, so a re-colour that
+    //   does not invalidate that cache is reverted one frame later; the cached
+    //   OPACITY is deliberately left alone (it is the build-time baseline and
+    //   re-caching it mid-dim would strand the arrow at 40%).
+    function frRecolourArrow(o, hex) {
+        if (!o || !hex) return;
+        if (o.setColor) o.setColor(hexToThreeColor(hex));
+        else if (o.material && o.material.color) o.material.color.set(hexToThreeColor(hex));
+        //   setColor() is the ArrowHelper API and reaches ONLY its own .line and
+        //   .cone, so the mesh shaft added by frAddShaft has to be recoloured
+        //   explicitly or a re-coloured arrow ships a build-palette shaft.
+        if (o._frShaft && o._frShaft.material) {
+            if (o._frShaft.material.color) o._frShaft.material.color.set(hexToThreeColor(hex));
+            if (o._frShaft.material.emissive) o._frShaft.material.emissive.set(hexToThreeColor(hex));
+        }
+        if (!o.traverse) return;
+        o.traverse(function (n) {
+            if (!n.material) return;
+            var ms = Array.isArray(n.material) ? n.material : [n.material];
+            for (var q = 0; q < ms.length; q++) {
+                if (ms[q].userData) ms[q].userData._glowBaseCol = null;
+            }
+        });
+    }
+    //   The label is a sprite whose colour is BAKED into its canvas texture, so
+    //   tinting material.color multiplies the new ink onto the old palette ink
+    //   (and onto the dark outline). Re-draw the glyphs in the authored colour
+    //   and keep the material white, so a gold arrow can never carry a blue T.
+    //   The re-draw goes through frLabelInk for the same reason frMakeLabel does:
+    //   this is the OTHER of the two ways ink reaches a label, and a floor with a
+    //   second door in it is not a floor.
+    //   The no-churn guard now compares the AUTHORED hex (_frInkSrc), not the
+    //   drawn ink (_pmColor), because ink != authored colour once the floor bites;
+    //   comparing _pmColor to hex would miss on every lifted colour and redraw the
+    //   canvas texture on every call.
+    function frRecolourLabel(o, hex) {
+        if (!o || !hex) return;
+        if (o.material && o.material.color) o.material.color.set(0xFFFFFF);
+        if (o._frInkSrc === hex) return;
+        o._frInkSrc = hex;
+        o._pmColor = frLabelInk(hex);
+        if (o._frText != null) updateLabelSpriteText(o, o._frText);
+    }
+    // The spec section 3 update primitive: a real ZERO force HIDES its arrow
+    // rather than drawing a stub, because "no force here" is exactly what the
+    // absence of an arrow should mean.
+    function frUpdateArrow(id, originWorld, dirx, diry, magnitudeN, labelText, on) {
+        var arrow = frFindById(id);
+        var lbl = frFindById(id + "_label");
+        if (!arrow) return;
+        var mag = (typeof magnitudeN === "number" && isFinite(magnitudeN)) ? Math.abs(magnitudeN) : 0;
+        var d = Math.sqrt(dirx * dirx + diry * diry);
+        var vis = !!on && mag > FR_ARROW_EPS && d > 1e-9;
+        arrow.visible = vis;
+        if (lbl) lbl.visible = vis && !!labelText;
+        if (!vis) return;
+        var len = frArrowLen(mag);
+        // Head sizing is the nlb map, unchanged. The SHAFT is the mesh cylinder
+        // (FR_ARROW_SHAFT_R), refitted here — the ArrowHelper's own THREE.Line
+        // still draws underneath it and is simply hidden inside the tube.
+        // Rule 29: LENGTH tracks magnitude and nothing here scales an arrow for
+        // emphasis — emphasis is brightness, frApplyGlow only.
+        var headLen = Math.min(0.34, len * 0.40);
+        var u = new THREE.Vector3(dirx / d, diry / d, 0);
+        arrow.position.copy(originWorld);
+        arrow.setDirection(u);
+        arrow.setLength(len, headLen, headLen * 0.80);
+        frFitShaft(arrow, len, headLen);
+        if (lbl && labelText) {
+            //   OFF the string line, never on it. Ahead of the tip lies the
+            //   pulley, then the hanger, then the weight and the weight's label —
+            //   the collision is structural, not a matter of how long the arrow
+            //   happens to be, so it is fixed by stepping the label sideways off
+            //   the shared axis rather than by shortening anything. The normal is
+            //   taken the same way for every arrow (+90 deg from the direction),
+            //   so labels stay spread around the ring instead of stacking.
+            lbl.position.copy(originWorld)
+                .addScaledVector(u, len + FR_ARROW_LABEL_GAP)
+                .addScaledVector(new THREE.Vector3(-u.y, u.x, 0), FR_ARROW_LABEL_SIDE);
+            frSetLabelText(lbl, labelText);
+        }
+    }
+
+    // ── The active state's string list, and the ONE mass funnel ────────────
+    function frStrings() {
+        var eng = window.PM_frEngine;
+        return (eng && eng.strings) ? eng.strings : [];
+    }
+    // Changing a hanging mass changes the DRAWN weight and the tension together —
+    // spec section 3 ("one funnel"). Every writer (state seed, slider, param_ramp)
+    // goes through here, so the plate a teacher sees can never disagree with the
+    // newtons the arrow and the HUD report.
+    function frSetStringMass(i, kg) {
+        var st = frStrings()[i];
+        if (!st || !(kg > 0) || !isFinite(kg)) return;
+        st.m = kg;
+        st.T = kg * FR_G;
+        var w = frFindById("fr_weight_" + i);
+        if (w) {
+            var h = Math.max(FR_WEIGHT_H_MIN, Math.min(FR_WEIGHT_H_MAX, kg * FR_WEIGHT_H_PER_KG));
+            w.scale.set(1, h, 1);
+            w.userData.drawnHeight = h;
+        }
+        frSetLabelText(frFindById("fr_weightlbl_" + i), frFx(kg, 1) + " kg");
+    }
+    // Stand pulley i at its angle, run its hanger over the rim, and hang the
+    // weight below it. Pure geometry, called on entry and on every angle/mass write.
+    function frPlaceString(i) {
+        var st = frStrings()[i];
+        var pul = frFindById("fr_pulley_" + i);
+        var hangOut = frFindById("fr_hangout_" + i);
+        var hangDrop = frFindById("fr_hangdrop_" + i);
+        var wgt = frFindById("fr_weight_" + i);
+        var wlbl = frFindById("fr_weightlbl_" + i);
+        var on = !!st;
+        if (!st) {
+            if (pul) pul.visible = false;
+            if (hangOut) hangOut.visible = false;
+            if (hangDrop) hangDrop.visible = false;
+            if (wgt) wgt.visible = false;
+            if (wlbl) wlbl.visible = false;
+            return;
+        }
+        var t = st.angle_deg * Math.PI / 180;
+        var ux = Math.cos(t), uy = Math.sin(t);
+        var u = new THREE.Vector3(ux, uy, 0);
+        var P = frPulleyWorld(st.angle_deg);
+        if (pul) { pul.position.copy(P); pul.visible = true; }
+        // The string runs OVER the pulley and the weight hangs beyond it, along the
+        // outward radial direction (see FR_HANG_OUT for why radial, not screen-down).
+        var h = (wgt && wgt.userData.drawnHeight) ? wgt.userData.drawnHeight : FR_WEIGHT_H_MIN;
+        var A = new THREE.Vector3(P.x + ux * FR_HANG_OUT, P.y + uy * FR_HANG_OUT, 0);
+        frFitSegment(hangOut, P, A, on);
+        if (hangDrop) hangDrop.visible = false;   // one radial hanger; kept for the whirl branch
+        if (wgt) {
+            wgt.position.set(A.x + ux * h / 2, A.y + uy * h / 2, 0);
+            wgt.quaternion.setFromUnitVectors(FR_Y_AXIS, u);
+            wgt.visible = true;
+        }
+        if (wlbl) {
+            wlbl.position.set(A.x + ux * (h + 0.36), A.y + uy * (h + 0.36), 0);
+            wlbl.visible = true;
+        }
+    }
+    // The taut string from the ring to each pulley. Re-fitted every frame, because
+    // the ring moves — this is what makes the pull DIRECTION visibly the thing the
+    // solver uses, rather than a decorative radial line.
+    function frFitStrings() {
+        var sts = frStrings();
+        var R = frRingWorld();
+        for (var i = 0; i < FR_MAX_STRINGS; i++) {
+            var seg = frFindById("fr_string_" + i);
+            if (i >= sts.length) { if (seg) seg.visible = false; continue; }
+            frFitSegment(seg, R, frPulleyWorld(sts[i].angle_deg), true);
+        }
+        var ring = frFindById("fr_ring");
+        if (ring) ring.position.copy(R);
+        var dot = frFindById("fr_zero_dot");
+        if (dot) dot.position.set(R.x, R.y, FR_ARROW_Z);   // in front, like the arrow it replaces
+    }
+
+    // ── Branch A physics (spec section 2) ─────────────────────────────────
+    // Unit vector from the ring TOWARD pulley i, in the table (metres) frame.
+    // At p = 0 this is exactly (cos φ_i, sin φ_i) — the spec expression — and off
+    // centre it is the real string direction, which is where the restoring
+    // stiffness comes from (see the block header).
+    function frStringDir(eng, st) {
+        var t = st.angle_deg * Math.PI / 180;
+        var dx = eng.R_m * Math.cos(t) - eng.p.x;
+        var dy = eng.R_m * Math.sin(t) - eng.p.y;
+        var L = Math.sqrt(dx * dx + dy * dy);
+        if (!(L > 1e-9)) return { x: Math.cos(t), y: Math.sin(t) };
+        return { x: dx / L, y: dy / L };
+    }
+    // ΣF = Σ T_i * u_i, with T_i = m_i * g EXACTLY. Writes each string record so
+    // the arrows and the HUD are pure presentation of the SAME numbers the
+    // integrator used — there is no second physics path.
+    function frSumForce(eng) {
+        var fx = 0, fy = 0;
+        for (var i = 0; i < eng.strings.length; i++) {
+            var st = eng.strings[i];
+            var u = frStringDir(eng, st);
+            st.T = st.m * FR_G;
+            st.ux = u.x; st.uy = u.y;
+            fx += st.T * u.x;
+            fy += st.T * u.y;
+        }
+        eng.sumFx = fx; eng.sumFy = fy;
+        eng.sumF = Math.sqrt(fx * fx + fy * fy);
+    }
+    // ONE fixed step of semi-implicit Euler. The linear drag is taken IMPLICITLY —
+    // v_new = (v + (ΣF/m)h) / (1 + (b/m)h) — which is the one deviation from the
+    // spec section 2 literal (v += a*dt) and it is a stability requirement, not a
+    // preference: an explicit drag term needs b*h/m < 2, and the legible settling
+    // time this apparatus needs (tau ~ 0.33 s at m_ring = 0.05 kg) puts b*h/m near
+    // 13. The reported acceleration is still the spec free-body value
+    // a = (ΣF - b*v)/m, so nothing the HUD or an arrow shows is affected.
+    function frStep(eng, h) {
+        frSumForce(eng);
+        var m = eng.m_ring, b = eng.damping;
+        eng.ax = (eng.sumFx - b * eng.v.x) / m;
+        eng.ay = (eng.sumFy - b * eng.v.y) / m;
+        var den = 1 + (b / m) * h;
+        eng.v.x = (eng.v.x + (eng.sumFx / m) * h) / den;
+        eng.v.y = (eng.v.y + (eng.sumFy / m) * h) / den;
+        eng.p.x += eng.v.x * h;
+        eng.p.y += eng.v.y * h;
+        // The ring can never leave the table. A clamp that fires is a REAL
+        // constraint (the ring is on a finite top), so the velocity into the wall
+        // is killed with it rather than left to push forever.
+        var r = Math.sqrt(eng.p.x * eng.p.x + eng.p.y * eng.p.y);
+        var rmax = eng.R_m * FR_RING_CLAMP;
+        if (r > rmax) {
+            var k = rmax / r;
+            eng.p.x *= k; eng.p.y *= k;
+            eng.v.x = 0; eng.v.y = 0;
+        }
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // Branch B — whirl (spec section 2). A bob on an inextensible string,
+    // INTEGRATED in 3-D, never posed on a parametric circle.
+    //
+    // World frame: +y is up, gravity is (0, -g, 0), the swept circle lies in
+    // the horizontal xz plane and the axis of rotation is the y-axis through
+    // x = z = 0. A straight line projects to a straight line under ANY
+    // projection, so the cut-the-string beat reads correctly from every camera
+    // the JSON can author — which is why the plane is drawn honestly horizontal
+    // rather than tilted to face the lens.
+    //
+    // THE CONSTRAINT, stated once because the whole branch rests on it. With
+    // u = unit(bob - anchor) and |bob - anchor| = L held exactly, differentiating
+    // the constraint twice gives r·a = -|v|², and a = a_free - (T/m)·u, so
+    //
+    //     T = m · ( u·a_free + |v|²/L )
+    //
+    // is the string tension — SOLVED, never authored. Substituting the conical
+    // steady state (u_y = -cosθ, |v| = ωL sinθ) collapses it to T = m ω² L, and
+    // the vertical balance T cosθ = mg then forces cos θ = g/(ω² L). Neither
+    // number is written down anywhere in this engine: both fall out of the
+    // integration, which is exactly why the picture cannot lie about the pose.
+    //
+    // Below ω² L = g there is NO conical solution (cos θ would exceed 1). The
+    // engine CLAMPS ω to sqrt(g/L), reports the clamp in the HUD and snaps the
+    // slider back to the clamped value, and renders the bob HANGING (θ = 0) —
+    // it never draws a nonsense angle and never silently swallows the write.
+    //
+    // RELEASE deletes the constraint. It does not substitute a scripted path:
+    // after the cut the only call is frwAccel with eng.released set, which
+    // returns gravity alone ('conical') or the ZERO vector ('flat'). The flat
+    // bob therefore travels straight at constant speed because nothing acts on
+    // it — the straight line is the OUTPUT, not the instruction. There is no
+    // outward term anywhere in this file, before or after the cut, because
+    // there is no outward force.
+    // ════════════════════════════════════════════════════════════════════════
+    var FR_W_WORLD_PER_M = 2.40;     // whirl world scale: L = 1 m draws 2.4 world units
+    // The whirl micro-step. The shared clock still hands this scenario
+    // dtStep = 0.016 * __pmSteps; the whirl subdivides each 0.016 s into
+    // FR_W_MICRO_PER_STEP fixed micro-steps, so the step COUNT stays a pure
+    // function of real elapsed ms (Rule 36: rate-correct, exactly fold-invariant,
+    // and zero steps at dt = 0 under a SET_TIME_FREEZE pin). The subdivision is a
+    // numerical requirement, not a preference: a constrained orbit integrated at
+    // 1/60 s carries a fixed-point radius error of order (ωh)², which at ω = 6
+    // is ~1% — visible as a cone angle that disagrees with cos θ = g/(ω²L).
+    var FR_W_STEP_S = 0.002;
+    var FR_W_MICRO_PER_STEP = 8;
+    var FR_W_TRAIL_EVERY = 8;        // one trail sample per 0.016 s of sim time
+    var FR_W_TRAIL_MAX = 720;
+    var FR_W_BOB_R = 0.17;
+    var FR_W_STRING_R = 0.016;
+    var FR_W_ANCHOR_R = 0.10;
+    var FR_W_PLANE_PAD = 1.28;
+    var FR_W_RING_SEG = 96;
+    var FR_W_BOB_COLOR = "#FFF176";
+    var FR_W_ANCHOR_COLOR = "#B0BEC5";
+    var FR_W_PLANE_COLOR = "#37474F";
+    var FR_W_RING_COLOR = "#4DD0E1";
+    var FR_W_TRAIL_COLOR = "#FFB74D";
+    var FR_W_RADIUS_COLOR = "#B0BEC5";
+    var FR_W_TENSION_COLOR = "#FFCA28";
+    var FR_W_WEIGHT_COLOR = "#EF5350";
+    var FR_W_NORMAL_COLOR = "#66BB6A";
+    var FR_W_CENTRIP_COLOR = "#4DD0E1";
+    var FR_W_VEL_COLOR = "#4FC3F7";
+    var FR_W_GUIDE_OPACITY = 0.34;   // "a faint guide ring" (spec section 3)
+    var FR_W_GHOST_OPACITY = 0.20;   // the abandoned circle after the cut
+    // Velocity is NOT a force, so it gets its own length map rather than the
+    // newtons-per-world-unit one — a v arrow scaled by FR_ARROW_SCALE would claim
+    // a magnitude in the wrong units.
+    var FR_W_VEL_SCALE = 0.30;       // world units per (m/s)
+    var FR_W_VEL_MIN = 0.45;
+    var FR_W_VEL_MAX = 1.90;         // never longer than the swept radius it belongs to
+    // Vertical framing. A concept JSON can author camera_position but NOT the
+    // camera target, so the rig has to place ITSELF around the origin: an
+    // apparatus hung from a pivot at y = L would otherwise sit entirely in the top
+    // half of the frame with the bottom half empty (observed in the first whirl
+    // bring-up frame). The shift is captured ONCE at state entry from the AUTHORED
+    // string length, so dragging L afterwards lengthens the string from a pivot
+    // that stays exactly where it was — which is also the honest picture.
+    var FR_W_PIVOT_Y = 1.15;
+    var FR_W_LABEL_H = 0.32;         // whirl arrow labels sit further from the lens
+    // ── POST-CUT FLIGHT ENVELOPE (force_rig_whirl_post_cut_flight_envelope_too_
+    //   short_to_watch, founder-directed 2026-08-01). The cut-the-string beat IS
+    //   this concept, and it used to last 1.4 s: the bob left the plane when
+    //   sqrt(L² + (v t)²) = 2.8 L, and with v = ω L the L cancels, so
+    //   flight = sqrt(2.8² − 1)/ω = 2.615/ω — a number authoring cannot raise
+    //   without dropping ω, which drops T = m ω² L under the arrow's legibility
+    //   floor. Three engine changes buy the time, none of them physics:
+    //     1. the surface is a SHEET (16 L) with a radial alpha fade, so it has no
+    //        rim for the bob to slide off — the Phase-0 scar (a bob crossing a
+    //        visible edge reads as flying, the exact misreading the state kills);
+    //     2. the bob's START azimuth is chosen so the cut throws it along world
+    //        +x (frwReleasePhi) — the widest screen axis, at CONSTANT depth, so
+    //        nothing shrinks with perspective and nothing heads for the horizon;
+    //     3. the rig's own framing transform (FR_VIEW_SCALE / fr_root, already a
+    //        pure display zoom) eases back and follows HALF the displacement, so
+    //        the departing bob and the abandoned circle both stay in frame.
+    //   The integrator is untouched: after the cut frwAccel still returns the ZERO
+    //   vector and the straight constant-speed line is still its OUTPUT.
+    //
+    //   ONE radius for EVERY flat state, not one for the state that cuts (founder
+    //   ruling 2026-08-01). The first cut of this work sized the sheet only where a
+    //   release was authored and left the other flat states on a 1.3 L disc with a
+    //   hard rim — so clicking from the steady-circling beat into the cut beat
+    //   visibly TRANSFORMED the apparatus, and that transformation is not the
+    //   state's new thing (the cut is). Rule 32d: the same apparatus persists from a
+    //   recognizable home pose, and at every click the only visible change IS the
+    //   new thing. The sheet is also the honest picture of an idealized frictionless
+    //   surface — it has no edge, so it should not draw one.
+    var FR_W_PLANE_R = 16.0;         // the frictionless sheet, sized from L
+    var FR_W_PLANE_FADE0 = 0.72;     // alpha fade starts here (fraction of the radius)
+    var FR_W_FLIGHT_PAN = 0.50;      // baseline share of the displacement the framing follows
+    var FR_W_FLIGHT_EASE_S = 0.55;   // smoothstep-in, so the follow starts at ZERO rate
+    var FR_W_FLIGHT_ZOOM_MAX = 2.40; // ease-back ceiling (bob still ~10 px across at the cap)
+    var FR_W_FLIGHT_MARGIN = 0.86;   // fraction of the half-frame the fit may fill
+    var FR_W_FLIGHT_BOB_PAD = 1.30;  // world units reserved past the bob (v arrow + label)
+    // The abandoned circle is a RING, not a point, and the fit below measures screen
+    // extent linearly about the rig origin — which under-reads it, because the ring's
+    // near arc is closer to the camera than the origin and so projects WIDER and
+    // further off-axis than its radius. Measured on the first frozen frame of the new
+    // envelope: the linear fit allowed 0.90 of the half-frame and the ring reached
+    // 0.99, clipping on the left edge. 1.40 is that measured ratio.
+    var FR_W_FLIGHT_RING_MAGN = 1.40;
+    // Arrows sit slightly toward the camera, the 3-D analogue of FR_ARROW_Z: the
+    // tension acts ALONG the string, so at zero offset the arrow is drawn inside
+    // the string cylinder and the taught object of the concept is invisible. A
+    // camera-facing offset moves the arrow off the string WITHOUT rotating it, so
+    // the drawn direction stays exactly the solved one.
+    var FR_W_ARROW_LIFT = 0.13;
+    // ── THE CUT ITSELF (force_rig_whirl_string_vanishes_instead_of_visibly_being_
+    //   cut, founder-directed 2026-08-01). The release used to delete the string
+    //   between one frame and the next: nothing severed, nothing went slack,
+    //   nothing was left behind — which is what made a real physical event read as
+    //   graphics being switched off. What follows draws the SEVERING, and only the
+    //   severing; the bob's own motion is untouched (frwAccel still returns the ZERO
+    //   vector after the cut, so the straight constant-speed line is still the
+    //   integrator's output, and severing a string cannot change a velocity).
+    //
+    //   The string is MASSLESS in this engine — it is a constraint, not a body — so
+    //   the model determines nothing about the two loose lengths once the constraint
+    //   is deleted. Rather than invent dynamics for a body that does not exist, the
+    //   engine draws the two remnants for the ~1.3 s the severing takes and then
+    //   stops drawing them, and each one moves by the kinematics that ARE determined
+    //   at the instant of the cut:
+    //     • ANCHOR SIDE — still tied to the post, no longer pulled by anything. It
+    //       carries the angular velocity it had (nothing torqued it), so it keeps
+    //       swinging about the post; with no bob to hold it taut against the knot
+    //       and the sheet, that swing bleeds away over FR_W_CUT_SPIN_S and its free
+    //       end settles down onto the sheet. It stays exactly its own length: an
+    //       inextensible string does not shorten because it was cut.
+    //     • BALL SIDE — still tied to the bob. At the cut every material point of it
+    //       is moving tangentially at ω·s, so the piece lies along the ray through
+    //       the post and, as the bob outruns it, it swings back from radial toward
+    //       trailing: direction −(û + ω·τ·t̂), which is the free-flight geometry, not
+    //       a tween. Its own free end drops to the sheet as it goes.
+    //   The two ends SEPARATE from the first frame — the ball side is dragged off at
+    //   1.8 m/s while the anchor side slows to a stop — so the gap opening at the cut
+    //   point is the event itself. No flash, no spark, no blade: Rule 24/34 keeps the
+    //   canvas to the physical picture, and Rule 29 keeps emphasis to brightness, so
+    //   nothing here bulges, scales or pulses.
+    //   Every one of these is a pure closed form of τ = (t_ms − release_at)/1000 and
+    //   of the pose READ OFF the integrator at the cut, so a frozen frame and a
+    //   time-pin rewind reproduce it exactly (Rule 36).
+    var FR_W_CUT_FRAC = 0.82;        // where the thread parts, as a fraction of L from the post
+    var FR_W_CUT_SPIN_S = 0.45;      // the loose anchor length loses its swing over this
+    var FR_W_CUT_SAG_S = 0.60;       // ... and its free end reaches the sheet over this
+    var FR_W_CUT_FADE0 = 0.75;       // the remnants start fading here (seconds after the cut)
+    var FR_W_CUT_FADE1 = 1.30;       // ... and are gone here: a cut, not a set-piece
+
+    function frWhirlCfg(fr) { return (fr && fr.whirl) ? fr.whirl : {}; }
+    // Positive-finite coercion with a fallback: an authoring typo must never throw
+    // out of the builder (the createTubeLine scar — one throw inside build means a
+    // blank scene, no SIM_READY, and a stalled clock).
+    function frwPos(a, b) { return (typeof a === "number" && isFinite(a) && a > 0) ? a : b; }
+    function frwW(m) { return m * FR_W_WORLD_PER_M; }
+    function frwShiftY(eng) {
+        return (eng.geometry === "flat") ? -FR_W_BOB_R : (FR_W_PIVOT_Y - frwW(frwAnchorY(eng)));
+    }
+    // The ONE metres -> world conversion for every whirl mesh, framing shift
+    // included. Anything that skipped it would render in a different frame from
+    // everything else.
+    function frwPt(eng, px, py, pz) {
+        return new THREE.Vector3(frwW(px), frwW(py) + (eng.yShift || 0), frwW(pz));
+    }
+    // Smallest ω that has a conical solution. 'flat' has none: gravity is
+    // cancelled by the plane, so every ω is physical.
+    function frwOmegaMin(eng) {
+        return (eng.geometry === "flat") ? 0 : Math.sqrt(FR_G / eng.L);
+    }
+    // The honest slider clamp (spec section 2). eng.omega_req keeps what was
+    // WRITTEN and eng.omega is what the physics uses, so the difference between
+    // them is observable at the HUD and at the slider — never swallowed.
+    function frwClampOmega(eng) {
+        var wmin = frwOmegaMin(eng);
+        var w = eng.omega_req;
+        if (!(typeof w === "number" && isFinite(w) && w > 0)) w = (wmin > 0) ? wmin : 1;
+        eng.omega_min = wmin;
+        if (w < wmin) { eng.omega = wmin; eng.omega_clamped = true; }
+        else { eng.omega = w; eng.omega_clamped = false; }
+    }
+    // The SOLVED cone half-angle. Nothing authored reaches this value.
+    function frwTheta(eng) {
+        if (eng.geometry === "flat") return Math.PI / 2;
+        var c = FR_G / (eng.omega * eng.omega * eng.L);
+        if (c > 1) c = 1;
+        if (c < 0) c = 0;
+        return Math.acos(c);
+    }
+    function frwAnchorY(eng) {
+        // 'flat': the string is anchored at the centre of the plane, at the height
+        // of the bob's own centre, so it lies IN the plane of motion.
+        if (eng.geometry === "flat") return FR_W_BOB_R / FR_W_WORLD_PER_M;
+        var h = eng.anchor_h;
+        return (typeof h === "number" && isFinite(h) && h > 0) ? h : eng.L;
+    }
+    function frwAzimuth(eng) {
+        if (!eng.p3) return 0;
+        var x = eng.p3.x - eng.anchor.x, z = eng.p3.z - eng.anchor.z;
+        if (Math.abs(x) < 1e-12 && Math.abs(z) < 1e-12) return eng.phi_last || 0;
+        return Math.atan2(z, x);
+    }
+    // Seed the CONSTRAINT, not its projections (the
+    // nlb_coupled_initial_velocity_never_seeded scar): a pose ON the constraint
+    // manifold plus a velocity IN its tangent space, both rebuilt from the live
+    // (ω, L) after every write. The azimuth is carried over so a slider drag
+    // re-shapes the cone in place instead of teleporting the bob (Rule 32d).
+    function frwSeed(eng, phi) {
+        frwClampOmega(eng);
+        var th = frwTheta(eng);
+        var ay = frwAnchorY(eng);
+        var r = eng.L * Math.sin(th);
+        eng.anchor = { x: 0, y: ay, z: 0 };
+        eng.theta = th;
+        eng.p3 = {
+            x: r * Math.cos(phi),
+            y: ay - eng.L * Math.cos(th),
+            z: r * Math.sin(phi)
+        };
+        var sp = eng.omega * r;
+        eng.v3 = { x: -sp * Math.sin(phi), y: 0, z: sp * Math.cos(phi) };
+        eng.phi_last = phi;
+        eng.phi_unwrapped = phi;
+    }
+    // The START azimuth for a state that CUTS the string. Nothing physical depends
+    // on where the bob begins its circle — the whole problem is symmetric about the
+    // vertical axis — so the entry phase is a FRAMING choice, exactly like the
+    // camera azimuth, and it is spent buying the departure the widest screen it can
+    // have. v(φ) = ω r (−sin φ, 0, cos φ), so φ_cut = −π/2 sends the bob along world
+    // +x: screen-right, at CONSTANT depth from the camera. That is the difference
+    // between a flight that recedes toward the horizon (shrinking, foreshortened,
+    // heading for the far rim — the authored at_ms happened to do exactly that) and
+    // one that traverses the frame at full size. Because it is solved BACKWARDS from
+    // the authored at_ms, re-timing the cut cannot break it.
+    function frwReleasePhi(eng) {
+        if (eng.release_at == null || eng.geometry !== "flat") return 0;
+        var p = -Math.PI / 2 - eng.omega * (eng.release_at / 1000);
+        p = p % (2 * Math.PI);
+        if (p < 0) p += 2 * Math.PI;
+        return p;
+    }
+    // a = a_free - (T/m)·u with T solved from the constraint. AFTER the cut the
+    // string term is simply gone — that single deletion IS the misconception beat.
+    function frwAccel(eng, p, v, out) {
+        var gy = (eng.geometry === "flat") ? 0 : -FR_G;
+        if (eng.released) {
+            out.x = 0; out.y = gy; out.z = 0; out.T = 0;
+            return out;
+        }
+        var dx = p.x - eng.anchor.x, dy = p.y - eng.anchor.y, dz = p.z - eng.anchor.z;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(d > 1e-9)) { out.x = 0; out.y = gy; out.z = 0; out.T = 0; return out; }
+        var ux = dx / d, uy = dy / d, uz = dz / d;
+        var v2 = v.x * v.x + v.y * v.y + v.z * v.z;
+        // T = m ( u·a_free + |v|²/L ). A string can only PULL, so a negative
+        // solution means it has gone slack and carries no force at all.
+        var T = eng.m_bob * (uy * gy + v2 / eng.L);
+        if (!(T > 0)) T = 0;
+        out.T = T;
+        var k = T / eng.m_bob;
+        out.x = -k * ux;
+        out.y = gy - k * uy;
+        out.z = -k * uz;
+        return out;
+    }
+    var FR_W_A0 = { x: 0, y: 0, z: 0, T: 0 };
+    var FR_W_A1 = { x: 0, y: 0, z: 0, T: 0 };
+    // ONE micro-step: velocity Verlet with the inextensible constraint enforced
+    // by SHAKE (project the position back onto |r| = L) and RATTLE (project the
+    // velocity onto the tangent plane at the NEW pose). Both projections are the
+    // constraint itself, not a nudge toward a desired answer: the tangential
+    // dynamics stay completely free, so a bob seeded off the conical condition
+    // genuinely wobbles. Projecting the velocity against the OLD pose instead
+    // would bleed |v| by (ωh)²/2 per step — a circle that visibly slows down.
+    function frwStep(eng, h) {
+        var p = eng.p3, v = eng.v3;
+        var a = frwAccel(eng, p, v, FR_W_A0);
+        v.x += a.x * h * 0.5; v.y += a.y * h * 0.5; v.z += a.z * h * 0.5;
+        var qx = p.x + v.x * h, qy = p.y + v.y * h, qz = p.z + v.z * h;
+        if (!eng.released) {
+            var dx = qx - eng.anchor.x, dy = qy - eng.anchor.y, dz = qz - eng.anchor.z;
+            var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (d > 1e-9) {
+                var s = eng.L / d;
+                var nx = eng.anchor.x + dx * s, ny = eng.anchor.y + dy * s, nz = eng.anchor.z + dz * s;
+                v.x += (nx - qx) / h; v.y += (ny - qy) / h; v.z += (nz - qz) / h;
+                qx = nx; qy = ny; qz = nz;
+            }
+        }
+        p.x = qx; p.y = qy; p.z = qz;
+        var a2 = frwAccel(eng, p, v, FR_W_A1);
+        v.x += a2.x * h * 0.5; v.y += a2.y * h * 0.5; v.z += a2.z * h * 0.5;
+        if (!eng.released) {
+            var ex = p.x - eng.anchor.x, ey = p.y - eng.anchor.y, ez = p.z - eng.anchor.z;
+            var e = Math.sqrt(ex * ex + ey * ey + ez * ez);
+            if (e > 1e-9) {
+                var wx = ex / e, wy = ey / e, wz = ez / e;
+                var vr = v.x * wx + v.y * wy + v.z * wz;
+                v.x -= vr * wx; v.y -= vr * wy; v.z -= vr * wz;
+            }
+        }
+    }
+    // Cut the string. ONE flag; no scripted path is installed in its place. The
+    // abandoned circle is frozen here so the ghost shows where the bob WOULD have
+    // gone, which is what makes the tangential departure legible as a departure.
+    function frwCut(eng) {
+        eng.released = true;
+        eng.ghost_r = eng.r_m;
+        eng.ghost_y = eng.p3.y;
+        eng.T = 0;
+        // The cut pose + the departure direction, both read off the INTEGRATED
+        // state at the instant of the cut. The framing follow below is built on
+        // these and never on the authored numbers, so it tracks the line the bob
+        // is actually on (and stays correct if a slider re-shaped the circle).
+        eng.cut_p = { x: eng.p3.x, y: eng.p3.y, z: eng.p3.z };
+        var sp = Math.sqrt(eng.v3.x * eng.v3.x + eng.v3.z * eng.v3.z);
+        eng.cut_dir = (sp > 1e-9) ? { x: eng.v3.x / sp, z: eng.v3.z / sp } : { x: 1, z: 0 };
+        // The severed lengths are drawn from THIS pose (see THE CUT ITSELF above):
+        // û is the string's own direction at the instant it parted and cut_w the
+        // swing the anchor side carries away. Both read off the integrator, so a
+        // re-timed cut or a slider-reshaped circle needs no other change.
+        var dux = eng.p3.x - eng.anchor.x, duy = eng.p3.y - eng.anchor.y, duz = eng.p3.z - eng.anchor.z;
+        var du = Math.sqrt(dux * dux + duy * duy + duz * duz);
+        if (!(du > 1e-9)) du = 1;
+        eng.cut_u = { x: dux / du, y: duy / du, z: duz / du };
+        eng.cut_w = eng.omega;
+        frwPushTrail(eng);
+    }
+    // Live measured quantities — all read off the INTEGRATED pose, so the HUD
+    // reports the picture on screen rather than the algebra that seeded it.
+    function frwMeasure(eng) {
+        var dx = eng.p3.x - eng.anchor.x, dy = eng.p3.y - eng.anchor.y, dz = eng.p3.z - eng.anchor.z;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        eng.r_m = Math.sqrt(eng.p3.x * eng.p3.x + eng.p3.z * eng.p3.z);
+        eng.speed = Math.sqrt(eng.v3.x * eng.v3.x + eng.v3.y * eng.v3.y + eng.v3.z * eng.v3.z);
+        eng.theta_meas = (d > 1e-9) ? Math.acos(Math.max(-1, Math.min(1, -dy / d))) : 0;
+        if (!eng.released) eng.theta = eng.theta_meas;
+        // T is recomputed from the CURRENT integrated pose (not carried out of the
+        // last sub-step), so the very first rendered frame of a state already
+        // reports the right tension and a frozen frame reports the tension of the
+        // pose actually on screen.
+        if (eng.released || !(d > 1e-9)) {
+            eng.T = 0;
+        } else {
+            var gy = (eng.geometry === "flat") ? 0 : -FR_G;
+            var tt = eng.m_bob * ((dy / d) * gy + (eng.speed * eng.speed) / eng.L);
+            eng.T = (tt > 0) ? tt : 0;
+        }
+        eng.a_c = (eng.r_m > 1e-9) ? (eng.speed * eng.speed) / eng.r_m : 0;
+        if (eng.released) eng.a_c = 0;
+        var phi = frwAzimuth(eng);
+        var dphi = phi - eng.phi_last;
+        while (dphi > Math.PI) dphi -= 2 * Math.PI;
+        while (dphi < -Math.PI) dphi += 2 * Math.PI;
+        eng.phi_unwrapped = (eng.phi_unwrapped || 0) + dphi;
+        eng.phi_last = phi;
+        eng.phi = phi;
+    }
+
+    // ── Whirl rendering (spec section 3) ──────────────────────────────────
+    //   Opacity is NOT written here: each ring's faintness is a build-time
+    //   material property, and re-writing it every frame would fight
+    //   applyGlowEmphasis, which caches its baseline ON the material (the
+    //   glow-focal-on-a-live-driven-channel no-op).
+    function frwSetRing(eng, id, radiusM, yM, on) {
+        var o = frFindById(id);
+        if (!o) return;
+        o.visible = !!on && radiusM > 1e-4;
+        if (!o.visible) return;
+        var rw = frwW(radiusM);
+        o.position.set(0, frwW(yM) + (eng.yShift || 0), 0);
+        o.scale.set(rw, 1, rw);
+    }
+    // One whirl arrow. Direction is the SOLVED unit vector; length comes from the
+    // shared newtons map (frArrowLen) for forces or the velocity map for v.
+    function frwArrow(id, origin, dx, dy, dz, worldLen, labelText, on) {
+        var arrow = frFindById(id);
+        var lbl = frFindById(id + "_label");
+        if (!arrow) return;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        var vis = !!on && d > 1e-9 && worldLen > 1e-4;
+        arrow.visible = vis;
+        if (lbl) lbl.visible = vis && !!labelText;
+        if (!vis) return;
+        var u = new THREE.Vector3(dx / d, dy / d, dz / d);
+        var headLen = Math.min(0.34, worldLen * 0.40);
+        arrow.position.copy(origin);
+        arrow.setDirection(u);
+        arrow.setLength(worldLen, headLen, headLen * 0.80);
+        frFitShaft(arrow, worldLen, headLen);
+        if (lbl && labelText) {
+            lbl.position.copy(origin).addScaledVector(u, worldLen + FR_ARROW_LABEL_GAP);
+            frSetLabelText(lbl, labelText);
+        }
+    }
+    function frwHideArrows() {
+        var ids = ["fr_w_tension", "fr_w_weight", "fr_w_normal", "fr_w_centripetal",
+                   "fr_w_resultant", "fr_w_velocity"];
+        for (var i = 0; i < ids.length; i++) {
+            var a = frFindById(ids[i]); if (a) a.visible = false;
+            var l = frFindById(ids[i] + "_label"); if (l) l.visible = false;
+        }
+    }
+    // The camera-facing lift (see FR_W_ARROW_LIFT).
+    function frwLift(out) {
+        out.set(0, 0, 0);
+        try {
+            if (camera && camera.position) {
+                out.copy(camera.position).normalize().multiplyScalar(FR_W_ARROW_LIFT);
+            }
+        } catch (e) {}
+        return out;
+    }
+    // Every drawn force, in TRUE solved directions. eng.wArrows records exactly
+    // what went on screen so the bring-up harness can assert, frame by frame,
+    // that nothing ever points away from the axis (spec section 5 assertion 8).
+    function frwDriveArrows(fr, eng) {
+        var kinds = frArrowKinds(fr);
+        var lift = frwLift(new THREE.Vector3());
+        var O = frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z).add(lift);
+        var dx = eng.p3.x - eng.anchor.x, dy = eng.p3.y - eng.anchor.y, dz = eng.p3.z - eng.anchor.z;
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1;
+        // toward the anchor — a string can only pull, never push
+        var tx = -dx / d, ty = -dy / d, tz = -dz / d;
+        var gy = (eng.geometry === "flat") ? 0 : -FR_G;
+        var W = eng.m_bob * FR_G;
+        var rec = [];
+        function put(kind, ux, uy, uz, mag, on) {
+            if (on) rec.push({ kind: kind, ux: ux, uy: uy, uz: uz, mag: mag });
+        }
+        var T = eng.released ? 0 : eng.T;
+        var showT = !!kinds.tension && T > FR_ARROW_EPS;
+        frwArrow("fr_w_tension", O, tx, ty, tz, frArrowLen(T),
+            (typeof kinds.tension === "string") ? kinds.tension : "T", showT);
+        put("tension", tx, ty, tz, T, showT);
+
+        var showW = !!kinds.weight;
+        frwArrow("fr_w_weight", O, 0, -1, 0, frArrowLen(W),
+            (typeof kinds.weight === "string") ? kinds.weight : "W", showW);
+        put("weight", 0, -1, 0, W, showW);
+
+        // The plane's normal exists only where there IS a plane.
+        var showN = !!kinds.normal && eng.geometry === "flat";
+        frwArrow("fr_w_normal", O, 0, 1, 0, frArrowLen(W),
+            (typeof kinds.normal === "string") ? kinds.normal : "N", showN);
+        put("normal", 0, 1, 0, W, showN);
+
+        // ΣF = m·a, straight out of the integrator. It is horizontal and inward in
+        // the steady state and, after a flat cut, it is ZERO — which is why the
+        // arrow disappears rather than turning outward.
+        var ax = 0, ay = gy, az = 0;
+        if (!eng.released && T > 0) {
+            var k = T / eng.m_bob;
+            ax = k * tx; ay = gy + k * ty; az = k * tz;
+        }
+        var Fx = eng.m_bob * ax, Fy = eng.m_bob * ay, Fz = eng.m_bob * az;
+        var Fmag = Math.sqrt(Fx * Fx + Fy * Fy + Fz * Fz);
+        var showR = !!kinds.resultant && Fmag > FR_ARROW_EPS;
+        frwArrow("fr_w_resultant", O, Fx, Fy, Fz, frArrowLen(Fmag),
+            (typeof kinds.resultant === "string") ? kinds.resultant : "ΣF", showR);
+        put("resultant", Fx, Fy, Fz, Fmag, showR);
+
+        // The centripetal force is not a new force — it is the HORIZONTAL part of
+        // the net force above, which is why it is drawn from the same ΣF and never
+        // added to it.
+        var Ch = Math.sqrt(Fx * Fx + Fz * Fz);
+        var showC = !!kinds.centripetal && Ch > FR_ARROW_EPS;
+        frwArrow("fr_w_centripetal", O, Fx, 0, Fz, frArrowLen(Ch),
+            (typeof kinds.centripetal === "string") ? kinds.centripetal : "F", showC);
+        put("centripetal", Fx, 0, Fz, Ch, showC);
+
+        var vl = eng.speed * FR_W_VEL_SCALE;
+        if (vl < FR_W_VEL_MIN) vl = FR_W_VEL_MIN;
+        if (vl > FR_W_VEL_MAX) vl = FR_W_VEL_MAX;
+        var showV = !!eng.show_velocity && eng.speed > 1e-6;
+        frwArrow("fr_w_velocity", O, eng.v3.x, eng.v3.y, eng.v3.z, vl, "v", showV);
+        eng.wArrows = rec;
+    }
+    // The radial alpha ramp that turns the disc into a SHEET. Built once, from a
+    // canvas, and hung on the plane material at BUILD time (it is unconditional —
+    // every flat state wears it): CircleGeometry's uv is the inscribed unit circle,
+    // so the fade is a fixed FRACTION of the radius and stays right at every L.
+    // Without it a 16 L surface still ends in a rim, and a rim is the one thing
+    // this apparatus cannot show — a bob crossing an edge reads as flying off a
+    // table, and a rim that changes size between states is a Rule-32d break.
+    var frwFadeTex = null;
+    function frwPlaneFade() {
+        if (frwFadeTex) return frwFadeTex;
+        var cv = document.createElement("canvas");
+        cv.width = 256; cv.height = 256;
+        var cx = cv.getContext("2d");
+        var g = cx.createRadialGradient(128, 128, 128 * FR_W_PLANE_FADE0, 128, 128, 128);
+        g.addColorStop(0, "#ffffff");
+        g.addColorStop(1, "#000000");
+        cx.fillStyle = g;
+        cx.fillRect(0, 0, 256, 256);
+        frwFadeTex = new THREE.CanvasTexture(cv);
+        return frwFadeTex;
+    }
+    // ── The post-cut framing follow ────────────────────────────────────────
+    //   A camera move, expressed on the rig's OWN framing node (FR_VIEW_SCALE
+    //   lives there and is already documented as a pure display zoom), which is
+    //   why it needs no camera code at all: it cannot fight lerpSpherical, it
+    //   cannot strand the next state at a foreign radius, and a teacher's orbit
+    //   and wheel keep working — the fit reads the live camera and adapts.
+    //
+    //   TWO moves, both pure functions of the distance ALREADY travelled (so a
+    //   frozen frame and a time-pin rewind reproduce the framing exactly, Rule 36):
+    //     • FOLLOW — the rig slides back along half the bob's displacement, so the
+    //       departing bob and the abandoned circle drift apart on either side of
+    //       centre instead of one of them leaving the frame. Ramped in over
+    //       FR_W_FLIGHT_EASE_S so the follow starts at ZERO rate: no jerk at the cut.
+    //     • EASE-BACK — the display scale shrinks only as much as the fit demands,
+    //       never below FR_VIEW_SCALE (it never zooms IN) and never past the
+    //       FR_W_FLIGHT_ZOOM_MAX cap. It is FRAMING, not emphasis: it is applied to
+    //       the whole rig, never to one object, so Rule 29 is untouched.
+    //   The bob still crosses the frame — pan 0.5 leaves half the displacement as
+    //   real on-screen travel — which is what keeps "constant speed" readable
+    //   rather than collapsing into the dolly-zoom trap where a fully-tracked
+    //   object hangs motionless while the world shrinks around it.
+    function frwFrameFollow(eng) {
+        var rootObj = frFindById("fr_root");
+        if (!rootObj) return;
+        var S = FR_VIEW_SCALE, cx = 0, cz = 0;
+        if (eng.released && eng.geometry === "flat" && eng.cut_p && eng.cut_dir) {
+            var dxm = eng.p3.x - eng.cut_p.x, dzm = eng.p3.z - eng.cut_p.z;
+            var s = frwW(Math.sqrt(dxm * dxm + dzm * dzm));          // travelled, world units
+            var tSince = (eng.t_ms - (eng.release_at || 0)) / 1000;
+            var e = tSince / FR_W_FLIGHT_EASE_S;
+            if (e < 0) e = 0; if (e > 1) e = 1;
+            // The share is SOLVED, not fixed: the two things that must stay framed
+            // are unequal (a ring of radius r on one side, a bob plus its v arrow on
+            // the other), so the centre that needs the least frame sits off the
+            // midpoint by half their difference. Clamped so the early flight — where
+            // the difference dwarfs the displacement — still pans forward.
+            var rEff = frwW(eng.ghost_r || 0) * FR_W_FLIGHT_RING_MAGN;
+            var share = FR_W_FLIGHT_PAN;
+            if (s > 1e-6) share = FR_W_FLIGHT_PAN - (rEff - FR_W_FLIGHT_BOB_PAD) / (2 * s);
+            if (share < 0.30) share = 0.30;
+            if (share > 0.55) share = 0.55;
+            var pan = share * (e * e * (3 - 2 * e)) * s;             // smoothstep-in
+            cx = pan * eng.cut_dir.x; cz = pan * eng.cut_dir.z;
+            // Screen axes of the LIVE camera (lookAt is always the origin), so the
+            // fit is right whether or not a teacher has orbited.
+            var fx = -camera.position.x, fy = -camera.position.y, fz = -camera.position.z;
+            var fl = Math.sqrt(fx * fx + fy * fy + fz * fz) || 1;
+            fx /= fl; fy /= fl; fz /= fl;
+            var rx = -fz, rz = fx;                                    // r = f × up(0,1,0)
+            var rl = Math.sqrt(rx * rx + rz * rz) || 1;
+            rx /= rl; rz /= rl;
+            var ux = -rz * fy, uy = rz * fx - rx * fz, uz = rx * fy;  // u = r × f
+            var half = Math.tan(camera.fov * Math.PI / 360) * fl;     // half-height, scene units
+            var halfW = half * camera.aspect;
+            // Two things must stay inside the frame: the bob (plus the room its v
+            // arrow and label need) and the whole abandoned circle.
+            var needW = 0, needH = 0;
+            function want(px, py, pz, rad) {
+                var ax = px - cx, ay = py, az = pz - cz;
+                var w = Math.abs(ax * rx + az * rz) + rad;
+                var h = Math.abs(ax * ux + ay * uy + az * uz) + rad;
+                if (w > needW) needW = w;
+                if (h > needH) needH = h;
+            }
+            want(frwW(eng.p3.x), 0, frwW(eng.p3.z), FR_W_FLIGHT_BOB_PAD);
+            want(0, 0, 0, rEff);
+            var sW = (needW > 1e-6) ? (FR_W_FLIGHT_MARGIN * halfW / needW) : S;
+            var sH = (needH > 1e-6) ? (FR_W_FLIGHT_MARGIN * half / needH) : S;
+            S = Math.min(S, sW, sH);
+            if (S < FR_VIEW_SCALE / FR_W_FLIGHT_ZOOM_MAX) S = FR_VIEW_SCALE / FR_W_FLIGHT_ZOOM_MAX;
+            window.PM_frFlightZoom = FR_VIEW_SCALE / S;
+            window.PM_frFlightM = s / FR_W_WORLD_PER_M;
+        }
+        rootObj.scale.setScalar(S);
+        rootObj.position.set(-cx * S, 0, -cz * S);   // rig-local offset, expressed in scene units
+    }
+    // A loose end, placed by the ONE thing that survives the cut: the length of the
+    // piece. Given the horizontal direction it is lying along and how far its free
+    // end has dropped, the endpoint is solved so |end − base| is EXACTLY the piece's
+    // length — an inextensible string sags by leaning, never by stretching.
+    function frwCutEnd(base, hx, hz, uy, lenSeg, drop, out) {
+        var ty = lenSeg * uy - drop;
+        if (ty < -lenSeg) ty = -lenSeg;
+        if (ty > lenSeg) ty = lenSeg;
+        var hr = Math.sqrt(Math.max(0, lenSeg * lenSeg - ty * ty));
+        out.x = base.x + hx * hr;
+        out.y = base.y + ty;
+        out.z = base.z + hz * hr;
+        return out;
+    }
+    // How far a loose free end has fallen, τ seconds after the cut. Flat: it settles
+    // onto the sheet it was lying just above (the bob was holding it at bob-centre
+    // height; nothing holds it there now). Conical: it swings down toward hanging.
+    // Smoothstep, so it leaves at zero rate — a cut severs a string, it does not
+    // kick it.
+    function frwCutDrop(eng, lenSeg, tau) {
+        var s = tau / FR_W_CUT_SAG_S;
+        if (s < 0) s = 0;
+        if (s > 1) s = 1;
+        s = s * s * (3 - 2 * s);
+        var target = (eng.geometry === "flat") ? Math.max(0, eng.anchor.y) : lenSeg;
+        var d = s * target;
+        return (d > lenSeg) ? lenSeg : d;
+    }
+    var FR_W_CUT_E0 = { x: 0, y: 0, z: 0 };
+    function frwCutRemnants(eng) {
+        var oa = frFindById("fr_cut_anchor"), ob = frFindById("fr_cut_ball");
+        if (!oa && !ob) return;
+        var live = !!(eng.released && eng.cut_u && eng.cut_dir && eng.release_at != null);
+        var tau = live ? (eng.t_ms - eng.release_at) / 1000 : -1;
+        if (!live || !(tau >= 0) || tau >= FR_W_CUT_FADE1) {
+            if (oa) oa.visible = false;
+            if (ob) ob.visible = false;
+            return;
+        }
+        var op = FR_STRING_OPACITY;
+        if (tau > FR_W_CUT_FADE0) {
+            var f = (tau - FR_W_CUT_FADE0) / (FR_W_CUT_FADE1 - FR_W_CUT_FADE0);
+            if (f > 1) f = 1;
+            op = FR_STRING_OPACITY * (1 - f * f * (3 - 2 * f));
+        }
+        var u = eng.cut_u;
+        var uh = Math.sqrt(u.x * u.x + u.z * u.z);
+        var hx0 = (uh > 1e-9) ? (u.x / uh) : 1, hz0 = (uh > 1e-9) ? (u.z / uh) : 0;
+        var lenA = FR_W_CUT_FRAC * eng.L;
+        var lenB = (1 - FR_W_CUT_FRAC) * eng.L;
+
+        // ── the length still tied to the post ──────────────────────────────
+        //   Its swing decays from the ω it carried away: dφ/dτ = ω·e^(−τ/T), so the
+        //   angle it has turned through is ω·T·(1 − e^(−τ/T)) — a closed form, and
+        //   one that starts at exactly the pre-cut rate so there is no jump at the
+        //   instant of the cut.
+        if (oa) {
+            var sw = (eng.cut_w || 0) * FR_W_CUT_SPIN_S * (1 - Math.exp(-tau / FR_W_CUT_SPIN_S));
+            var cs = Math.cos(sw), sn = Math.sin(sw);
+            var ax = hx0 * cs - hz0 * sn, az = hx0 * sn + hz0 * cs;
+            frwCutEnd(eng.anchor, ax, az, u.y, lenA, frwCutDrop(eng, lenA, tau), FR_W_CUT_E0);
+            frFitSegment(oa,
+                frwPt(eng, eng.anchor.x, eng.anchor.y, eng.anchor.z),
+                frwPt(eng, FR_W_CUT_E0.x, FR_W_CUT_E0.y, FR_W_CUT_E0.z), true);
+            if (oa.material) { oa.material.transparent = true; oa.material.opacity = op; }
+        }
+        // ── the length still tied to the bob ───────────────────────────────
+        //   Every material point of it left the cut moving tangentially at ω·s, so
+        //   the piece lies along −(û + ω·τ·t̂): radial at the instant of the cut,
+        //   swinging back behind the bob as the bob outruns it.
+        if (ob) {
+            var k = (eng.cut_w || 0) * tau;
+            var bx = -(hx0 + k * eng.cut_dir.x), bz = -(hz0 + k * eng.cut_dir.z);
+            var bh = Math.sqrt(bx * bx + bz * bz);
+            if (bh > 1e-9) { bx /= bh; bz /= bh; }
+            else { bx = -hx0; bz = -hz0; }
+            frwCutEnd(eng.p3, bx, bz, -u.y, lenB, frwCutDrop(eng, lenB, tau), FR_W_CUT_E0);
+            frFitSegment(ob,
+                frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z),
+                frwPt(eng, FR_W_CUT_E0.x, FR_W_CUT_E0.y, FR_W_CUT_E0.z), true);
+            if (ob.material) { ob.material.transparent = true; ob.material.opacity = op; }
+        }
+    }
+    function frwFit(fr, eng) {
+        var A = frwPt(eng, eng.anchor.x, eng.anchor.y, eng.anchor.z);
+        var B = frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z);
+        var bob = frFindById("fr_bob");
+        if (bob) { bob.position.copy(B); bob.visible = true; }
+        var ball = frFindById("fr_anchor");
+        if (ball) { ball.position.copy(A); ball.visible = true; }
+        // The support: a mast rising above a conical pivot, a stub post standing on
+        // the plane for the flat case.
+        var mast = frFindById("fr_anchor_post");
+        if (mast) {
+            var top = (eng.geometry === "flat")
+                ? frwPt(eng, 0, 0, 0)
+                : new THREE.Vector3(A.x, A.y + 0.55, A.z);
+            frFitSegment(mast, A, top, true);
+        }
+        // The intact string ends at the cut; the two loose lengths take over from
+        // exactly where it parted (frwCutRemnants).
+        frFitSegment(frFindById("fr_wstring"), A, B, !eng.released);
+        frwCutRemnants(eng);
+        var plane = frFindById("fr_plane");
+        if (plane) {
+            plane.visible = (eng.geometry === "flat");
+            // A SHEET (FR_W_PLANE_R), sized from THIS state's string length and
+            // identical for every flat state, whose rim is both outside the framed
+            // band and dissolved by the build-time alpha ramp — so there is no edge
+            // anywhere for the bob to slide off and none to redraw between states.
+            // A bob crossing a visible edge reads as flying through the air, which
+            // is the exact misreading the cut state exists to kill (seen in the
+            // first bring-up frame, and again at 1.4 s of flight before this
+            // envelope landed).
+            var pr = frwW(eng.L) * FR_W_PLANE_R;
+            plane.scale.set(pr, pr, 1);
+            plane.position.set(0, (eng.yShift || 0) - 0.02, 0);
+        }
+        // Guide ring: the circle actually being swept, at the bob's own height.
+        var ghostOn = eng.released && !!eng.ghost_on;
+        frwSetRing(eng, "fr_guide_ring", eng.r_m, eng.p3.y, !eng.released);
+        frwSetRing(eng, "fr_ghost_ring", eng.ghost_r || 0, eng.ghost_y || 0, ghostOn);
+        var rad = frFindById("fr_radius_line");
+        if (rad) {
+            frFitSegment(rad, new THREE.Vector3(0, B.y, 0), B, !!eng.show_radius && !eng.released);
+        }
+        frwDriveArrows(fr, eng);
+        frwDrawTrail(eng);
+        frwFrameFollow(eng);
+    }
+    function frwDrawTrail(eng) {
+        var line = frFindById("fr_trail");
+        if (!line) return;
+        var n = eng.trailN || 0;
+        line.visible = !!eng.trail_on && n > 1;
+        if (!line.visible) return;
+        var attr = line.geometry.attributes.position;
+        attr.needsUpdate = true;
+        line.geometry.setDrawRange(0, n);
+    }
+    function frwPushTrail(eng) {
+        var line = frFindById("fr_trail");
+        if (!line || !eng.trail_on) return;
+        var n = eng.trailN || 0;
+        if (n >= FR_W_TRAIL_MAX) return;
+        var arr = line.geometry.attributes.position.array;
+        arr[n * 3] = frwW(eng.p3.x);
+        arr[n * 3 + 1] = frwW(eng.p3.y) + (eng.yShift || 0);
+        arr[n * 3 + 2] = frwW(eng.p3.z);
+        eng.trailN = n + 1;
+    }
+
+    // ── phases[] (one-shot glow script) + param_ramp — Rule 36 closed forms ─
+    //   Both read ONLY eng.t_ms, the state-local clock advanced solely by the dt
+    //   handed to updateForceRigFrame. dt = 0 recomputes the same value, so a
+    //   frozen frame is byte-stable and a time-pin rewind reproduces the earlier
+    //   value exactly. Every gate holds at t = 0 (nothing pre-fires on entry).
+    function frRunPhases(fr, eng, tMs) {
+        var ph = fr.phases;
+        if (!ph || !ph.length) return;
+        var focal = fr.glow_focal || "";
+        for (var i = 0; i < ph.length; i++) {
+            var p = ph[i];
+            if (!p || typeof p.id !== "string" || !p.id.length) continue;
+            var at = (typeof p.at_ms === "number" && isFinite(p.at_ms)) ? p.at_ms : 0;
+            var until = (typeof p.until_ms === "number" && isFinite(p.until_ms)) ? p.until_ms : null;
+            var open = (tMs >= at) && (until === null || tMs < until);
+            if (open && p.glow_focal) focal = p.glow_focal;
+        }
+        eng.glow_focal = focal;
+    }
+    // ONE-SHOT monotonic reveal: "from" before start_ms, linear to "to" across the
+    // window, then HOLDS at "to" forever. Writes through frApplyParam — the SAME
+    // path a trusted slider drag uses — so there is no parallel physics.
+    // Rule 37: never runs in a sandbox state; a trusted slider input seizes it for
+    // the rest of the state.
+    function frRunParamRamp(fr, eng) {
+        var pr = fr.param_ramp;
+        if (!pr || !pr.param) return;
+        if (!(isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms))) return;
+        if (fr.trusted_drag_seizes) return;
+        if (window.PM_frSeized) return;
+        if (!FR_SLIDER_SPEC[pr.param]) return;
+        var t0 = (typeof pr.start_ms === "number" && isFinite(pr.start_ms)) ? pr.start_ms : 0;
+        var t1 = pr.end_ms;
+        var tMs = eng.t_ms || 0;
+        var v;
+        if (tMs <= t0) v = pr.from;
+        else if (tMs >= t1) v = pr.to;
+        else v = pr.from + (pr.to - pr.from) * ((t1 > t0) ? (tMs - t0) / (t1 - t0) : 1);
+        if (eng._ramp_last != null && Math.abs(v - eng._ramp_last) < 1e-4) return;   // churn guard
+        eng._ramp_last = v;
+        frApplyParam(pr.param, v);
+        var reff = frSliderValueFromEngine(pr.param);
+        frSyncSliderRow(pr.param, (reff == null) ? v : reff);
+    }
+
+    // ── The explorer surface (Rule 31 per-state contextual controls) ───────
+    //   Rows are built ONCE into #fr_sliders and only shown/hidden per state, so a
+    //   shared slider keeps the same screen position (Rule 32d): a hidden row keeps
+    //   its RESERVED SLOT (visibility:hidden) rather than collapsing the panel.
+    //   Rule 39f: the panel is an inline position:fixed dynamic panel and each row
+    //   id is <prefix>_<name>_row, so the generic ⚙ widget engine discovers both
+    //   with no per-scenario widget code.
+    //   Rule 34c: every glyph below is REAL Unicode (m₁ m₂ m₃ φ₁ φ₂ °), never an
+    //   ASCII transcription; the label span carries the math-serif stack because
+    //   U+2081.. are missing from most monospace faces (the tofu-subscript scar).
+    var FR_SLIDER_TOKENS = ["m1", "m2", "m3", "angle1", "angle2", "omega", "L", "bob_mass"];
+    var FR_SLIDER_SPEC = {
+        m1:     { param: "hanging_mass_1", idx: 0, kind: "mass",  slider: "fr_m1_slider",     row: "fr_m1_row",     val: "fr_m1_val",     lbl: "fr_m1_lbl",     glyph: "m₁", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 3 },
+        m2:     { param: "hanging_mass_2", idx: 1, kind: "mass",  slider: "fr_m2_slider",     row: "fr_m2_row",     val: "fr_m2_val",     lbl: "fr_m2_lbl",     glyph: "m₂", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 4 },
+        m3:     { param: "hanging_mass_3", idx: 2, kind: "mass",  slider: "fr_m3_slider",     row: "fr_m3_row",     val: "fr_m3_val",     lbl: "fr_m3_lbl",     glyph: "m₃", unit: " kg", dp: 1, min: 1.2, max: 5, step: 0.1, def: 5 },
+        angle1: { param: "angle_1",        idx: 0, kind: "angle", slider: "fr_angle1_slider", row: "fr_angle1_row", val: "fr_angle1_val", lbl: "fr_angle1_lbl", glyph: "φ₁", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 0 },
+        angle2: { param: "angle_2",        idx: 1, kind: "angle", slider: "fr_angle2_slider", row: "fr_angle2_row", val: "fr_angle2_val", lbl: "fr_angle2_lbl", glyph: "φ₂", unit: "°",   dp: 0, min: 0, max: 359, step: 1, def: 90 },
+        // ── whirl tokens. Every one has a REAL write path through frApplyParam
+        // into the constraint seed (frwSeed), and frToggleSliderRows only exposes
+        // them on a whirl state — an inert row that swallows the write is the trap
+        // that cost two earlier trays a fix cycle each.
+        //   Band note (the arrow map has a floor at FR_ARROW_MIN_LEN/FR_ARROW_SCALE
+        //   = 11.5 N and a cap at 58.3 N): with the defaults below, T = m ω² L runs
+        //   24 N at ω = 4 to 63 N at ω = 6.5, so "length ∝ magnitude" is genuinely
+        //   readable across the conical range. ω is allowed BELOW sqrt(g/L) on
+        //   purpose — the clamp is a teaching surface, not an error to hide.
+        omega:    { param: "omega",       kind: "whirl", wkey: "omega",    slider: "fr_omega_slider",    row: "fr_omega_row",    val: "fr_omega_val",    lbl: "fr_omega_lbl",    glyph: "ω", unit: " rad/s", dp: 1, min: 1,   max: 6.5, step: 0.1,  def: 4 },
+        L:        { param: "string_length", kind: "whirl", wkey: "L",      slider: "fr_L_slider",        row: "fr_L_row",        val: "fr_L_val",        lbl: "fr_L_lbl",        glyph: "L", unit: " m",     dp: 2, min: 0.6, max: 1.4, step: 0.05, def: 1 },
+        bob_mass: { param: "bob_mass",    kind: "whirl", wkey: "m_bob",    slider: "fr_bob_mass_slider", row: "fr_bob_mass_row", val: "fr_bob_mass_val", lbl: "fr_bob_mass_lbl", glyph: "m", unit: " kg",    dp: 1, min: 0.8, max: 4.5, step: 0.1,  def: 1.5 }
+    };
+    // Per-concept min/max/step/default/label override, keyed by the SAME token
+    // controls_visible[] uses (the nlbSc / acgSc idiom). Every numeric is coerced
+    // with a finite fallback: an authoring typo must never throw out of the builder
+    // (the createTubeLine scar — one throw inside build = blank scene, no SIM_READY).
+    function frSc(token) {
+        var sp = FR_SLIDER_SPEC[token] || {};
+        var o = (config.slider_controls || {})[token] || {};
+        function num(a, b) { return (typeof a === "number" && isFinite(a)) ? a : b; }
+        var dp = num(o.dp, sp.dp);
+        return {
+            min: num(o.min, sp.min), max: num(o.max, sp.max), step: num(o.step, sp.step),
+            def: num(o.default, sp.def), dp: dp,
+            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph
+        };
+    }
+    function frSliderTokensUsed() {
+        var want = {}, keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var fr = (config.states[keys[i]] || {}).force_rig;
+            var cv = (fr && fr.controls_visible) || [];
+            for (var c = 0; c < cv.length; c++) { if (FR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        }
+        var out = [];
+        for (var t = 0; t < FR_SLIDER_TOKENS.length; t++) { if (want[FR_SLIDER_TOKENS[t]]) out.push(FR_SLIDER_TOKENS[t]); }
+        return out;
+    }
+    var frSliderRowsBuilt = [];
+    function frRowsBuilt() { return frSliderRowsBuilt || []; }
+    function frBuildSliderRows(panel) {
+        frSliderRowsBuilt = frSliderTokensUsed();
+        if (!panel || !frSliderRowsBuilt.length) return;
+        var html = "";
+        for (var i = 0; i < frSliderRowsBuilt.length; i++) {
+            var tok = frSliderRowsBuilt[i], sp = FR_SLIDER_SPEC[tok], sc = frSc(tok);
+            html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">' +
+                '<label><span id="' + sp.lbl + '" style="font-family:' + FR_MATH_FONT + '">' + sc.label + '</span> = ' +
+                '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
+                '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
+                '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled></div>';
+        }
+        panel.innerHTML = html;
+        for (var w = 0; w < frSliderRowsBuilt.length; w++) frWireSlider(frSliderRowsBuilt[w]);
+    }
+    function frEmit(param, value) {
+        try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "force_rig_explorer"), param: param, value: value }, "*"); } catch (e) {}
+    }
+    // Write one param into the engine record. Everything downstream — the solver,
+    // the drawn weight, the arrows, the HUD, the strings — picks it up with no
+    // extra wiring, because they all read the SAME record.
+    function frApplyParam(token, value) {
+        var eng = window.PM_frEngine;
+        var sp = FR_SLIDER_SPEC[token];
+        if (!eng || !sp || !isFinite(value)) return;
+        // ── whirl writes re-seed the CONSTRAINT, never its projections ─────
+        //   ω and L change the physical shape of the cone, so the bob is placed
+        //   back on the constraint manifold at its CURRENT azimuth with the
+        //   matching tangential velocity — the cone re-shapes in place instead of
+        //   teleporting (Rule 32d). Bob mass changes T only, so it deliberately
+        //   does NOT re-seed: re-seeding on every mass tick would jerk the phase.
+        if (sp.kind === "whirl") {
+            if (eng.apparatus !== "whirl") return;
+            if (!(value > 0)) return;
+            if (sp.wkey === "m_bob") {
+                eng.m_bob = value;
+            } else if (sp.wkey === "L") {
+                eng.L = value;
+                frwSeed(eng, frwAzimuth(eng));
+            } else {
+                eng.omega_req = value;
+                frwSeed(eng, frwAzimuth(eng));
+            }
+            frwMeasure(eng);
+            frwFit(frStateCfg(), eng);
+            return;
+        }
+        var st = eng.strings[sp.idx];
+        if (!st) return;
+        if (sp.kind === "mass") {
+            if (!(value > 0)) return;
+            frSetStringMass(sp.idx, value);
+        } else {
+            st.angle_deg = value;
+        }
+        frPlaceString(sp.idx);
+        frSumForce(eng);
+        frFitStrings();
+    }
+    function frSliderValueFromEngine(token) {
+        var eng = window.PM_frEngine;
+        var sp = FR_SLIDER_SPEC[token];
+        if (!eng || !sp) return null;
+        // The EFFECTIVE value, not the requested one: eng.omega is post-clamp, so
+        // a sub-critical ω visibly snaps the slider back instead of leaving the
+        // handle parked at a pose the physics refused.
+        if (sp.kind === "whirl") {
+            if (eng.apparatus !== "whirl") return null;
+            if (sp.wkey === "m_bob") return eng.m_bob;
+            if (sp.wkey === "L") return eng.L;
+            return eng.omega;
+        }
+        var st = eng.strings[sp.idx];
+        if (!st) return null;
+        return (sp.kind === "mass") ? st.m : st.angle_deg;
+    }
+    function frSyncSliderRow(token, value) {
+        var sp = FR_SLIDER_SPEC[token];
+        if (!sp || value == null || !isFinite(value)) return;
+        var el = document.getElementById(sp.slider);
+        if (el) el.value = String(value);
+        var vv = document.getElementById(sp.val);
+        if (vv) vv.textContent = frFx(value, frSc(token).dp);
+    }
+    function frToggleSliderRows(fr) {
+        var panel = document.getElementById("fr_sliders");
+        var cv = fr.controls_visible || [], want = {}, shown = 0;
+        var eng = window.PM_frEngine;
+        var n = (eng && eng.strings) ? eng.strings.length : 0;
+        for (var c = 0; c < cv.length; c++) { if (FR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        var built = frRowsBuilt();
+        for (var i = 0; i < built.length; i++) {
+            var tok = built[i], sp = FR_SLIDER_SPEC[tok];
+            // A control for a string this state does not have is never exposed: an
+            // inert slider that silently swallows the write is exactly the trap that
+            // cost two earlier trays a fix cycle each. Same rule across the branch
+            // line: a whirl control is dead on a force-table state and vice versa.
+            var on = !!want[tok] &&
+                ((sp.kind === "whirl") ? (eng && eng.apparatus === "whirl") : (sp.idx < n));
+            var row = document.getElementById(sp.row), el = document.getElementById(sp.slider);
+            if (row) row.style.visibility = on ? "visible" : "hidden";
+            if (el) el.disabled = !on;
+            if (on) shown++;
+        }
+        if (panel) panel.style.display = shown ? "block" : "none";
+    }
+    // One TRUSTED slider input seizes the state for the rest of the state (Rule 37:
+    // a scripted param_ramp animates only until a real teacher input takes over).
+    // A SYNTHETIC input (the ramp own sync, THE EYE driver) is deliberately NOT a
+    // seizure, so frozen baselines see the authored script.
+    function frWireSlider(token) {
+        var sp = FR_SLIDER_SPEC[token];
+        var el = document.getElementById(sp.slider);
+        if (!el) return;
+        el.addEventListener("input", function (ev) {
+            var v = parseFloat(el.value);
+            if (!isFinite(v)) return;
+            if (ev && ev.isTrusted) window.PM_frSeized = true;
+            frApplyParam(token, v);
+            // Sync from the EFFECTIVE engine value, never from the raw write. When
+            // the physics refuses a value (the whirl's omega-squared-L > g range)
+            // the handle and the number snap back to what is actually being
+            // simulated, so a clamp is visible on screen instead of leaving the
+            // slider claiming a pose that is not there.
+            var eff = frSliderValueFromEngine(token);
+            var shown = (eff == null) ? v : eff;
+            frSyncSliderRow(token, shown);
+            frEmit(sp.param, shown);
+        });
+    }
+
+    // ── Value-only HUD (Rule 33d live numerics, Rule 34b no formula here) ──
+    //   Rows are rebuilt on STATE ENTRY only; per-frame writers use frSetReadout.
+    //   The x/y subscripts go through real <sub> markup rather than a Unicode
+    //   codepoint, because subscript y HAS no codepoint (the X_C problem): an
+    //   ASCII "Fy" or "F_y" on screen would be a Rule 34c break, and U+1D67 is a
+    //   subscript GAMMA that most faces draw as γ.
+    function frReadoutRowId(key) { return "fr_ro_" + key; }
+    function frRebuildReadout(fr) {
+        var el = document.getElementById("fr_readout");
+        if (!el) return;
+        var keys = fr.readouts || [];
+        var eng = window.PM_frEngine;
+        var sts = (eng && eng.strings) ? eng.strings : [];
+        var h = "";
+        function row(id, labelHtml, unit) {
+            return '<div id="' + frReadoutRowId(id) + '">' +
+                '<span style="font-family:' + FR_MATH_FONT + '">' + labelHtml + '</span> = ' +
+                '<span id="' + frReadoutRowId(id) + '_val">--</span>' + unit + '</div>';
+        }
+        var isWhirl = (eng && eng.apparatus === "whirl");
+        if (isWhirl) {
+            // Rule 34c: real Unicode for every glyph that HAS a codepoint (θ ω °
+            // ² ⁻), and <sub> markup for the one that does not — subscript c has no
+            // Unicode codepoint at all, so "a_c" or "ac" on screen would be the
+            // ASCII break the rule exists to stop.
+            if (keys.indexOf("T") >= 0) h += row("wT", "T", " N");
+            // θ is the CONE half-angle. On a flat plane there is no cone, so the
+            // row is dropped rather than reporting a constant 90° that means
+            // nothing to the student reading it (Rule 24: no untaught quantity).
+            if (keys.indexOf("theta") >= 0 && eng && eng.geometry !== "flat") h += row("theta", "θ", "°");
+            if (keys.indexOf("v") >= 0) h += row("v", "v", " m/s");
+            if (keys.indexOf("omega") >= 0) h += row("omega", "ω", " rad/s");
+            if (keys.indexOf("r") >= 0) h += row("r", "r", " m");
+            if (keys.indexOf("a_c") >= 0) h += row("a_c", "a<sub>c</sub>", " m/s²");
+            // The clamp line. Present in the markup from entry (never injected
+            // mid-state) and revealed only while the requested ω is below the
+            // slowest speed a cone can exist at — a VALUE, per Rule 34b, not prose.
+            h += '<div id="' + frReadoutRowId("omega_min") + '" style="display:none;color:#FFB74D">' +
+                '<span style="font-family:' + FR_MATH_FONT + '">ω</span> min = ' +
+                '<span id="' + frReadoutRowId("omega_min") + '_val">--</span> rad/s</div>';
+            el.innerHTML = h;
+            el.style.display = h ? "block" : "none";
+            return;
+        }
+        if (keys.indexOf("T") >= 0) {
+            for (var i = 0; i < sts.length; i++) {
+                h += row("T" + i, sts[i].label || ("T<sub>" + (i + 1) + "</sub>"), " N");
+            }
+        }
+        if (keys.indexOf("sum_Fx") >= 0) h += row("sum_Fx", "ΣF<sub>x</sub>", " N");
+        if (keys.indexOf("sum_Fy") >= 0) h += row("sum_Fy", "ΣF<sub>y</sub>", " N");
+        if (keys.indexOf("sum_F") >= 0) h += row("sum_F", "ΣF", " N");
+        el.innerHTML = h;
+        el.style.display = h ? "block" : "none";
+    }
+    function frSetReadout(key, text) {
+        var v = document.getElementById(frReadoutRowId(key) + "_val");
+        if (v) v.textContent = text;
+    }
+    function frWriteReadouts(fr, eng) {
+        var keys = fr.readouts || [];
+        if (eng.apparatus === "whirl") {
+            if (keys.indexOf("T") >= 0) frSetReadout("wT", frFx(eng.T, 2));
+            if (keys.indexOf("theta") >= 0) frSetReadout("theta", frFx(eng.theta_meas * 180 / Math.PI, 1));
+            if (keys.indexOf("v") >= 0) frSetReadout("v", frFx(eng.speed, 2));
+            if (keys.indexOf("omega") >= 0) frSetReadout("omega", frFx(eng.omega, 2));
+            if (keys.indexOf("r") >= 0) frSetReadout("r", frFx(eng.r_m, 3));
+            if (keys.indexOf("a_c") >= 0) frSetReadout("a_c", frFx(eng.a_c, 2));
+            var cl = document.getElementById(frReadoutRowId("omega_min"));
+            if (cl) {
+                cl.style.display = eng.omega_clamped ? "block" : "none";
+                if (eng.omega_clamped) frSetReadout("omega_min", frFx(eng.omega_min, 2));
+            }
+            return;
+        }
+        if (keys.indexOf("T") >= 0) {
+            for (var i = 0; i < eng.strings.length; i++) frSetReadout("T" + i, frFx(eng.strings[i].T, 2));
+        }
+        if (keys.indexOf("sum_Fx") >= 0) frSetReadout("sum_Fx", frFx(eng.sumFx, 2));
+        if (keys.indexOf("sum_Fy") >= 0) frSetReadout("sum_Fy", frFx(eng.sumFy, 2));
+        if (keys.indexOf("sum_F") >= 0) frSetReadout("sum_F", frFx(eng.sumF, 2));
+    }
+
+    // ── The arrow overlay: TRUE solved directions, length ∝ magnitude ──────
+    //   Nothing here is authored: a tension arrow points where the solver says the
+    //   string pulls, and the resultant is the vector the integrator just used.
+    //   When |ΣF| falls under FR_ARROW_EPS the resultant arrow does not shrink to a
+    //   stub — it is replaced by a DOT at the ring. That dot IS the visual
+    //   signature of ΣF = 0 (spec section 3), and it is far better teaching than a
+    //   caption saying so.
+    function frArrowKinds(fr) {
+        var out = {}, ar = fr.arrows;
+        if (!ar || !ar.length) return out;
+        for (var i = 0; i < ar.length; i++) {
+            var e = ar[i];
+            if (!e || !e.show) continue;
+            for (var k = 0; k < e.show.length; k++) out[e.show[k]] = (e.labels && e.labels[e.show[k]]) || true;
+        }
+        return out;
+    }
+    function frHideAllArrows() {
+        frEach(function (o, ud) {
+            if (ud.elementType === "fr_arrow" || ud.elementType === "fr_arrow_label" ||
+                ud.elementType === "fr_comp" || ud.elementType === "fr_axis" ||
+                ud.elementType === "fr_axis_label" || ud.elementType === "fr_zero_dot") o.visible = false;
+        });
+    }
+    function frDriveArrows(fr, eng) {
+        var kinds = frArrowKinds(fr);
+        var tbl = frTableCfg(fr);
+        var R0 = frRingWorld();
+        var R = new THREE.Vector3(R0.x, R0.y, FR_ARROW_Z);   // in front of the strings
+        var showT = !!kinds.tension;
+        var showR = !!kinds.resultant || !!tbl.show_resultant;
+        var showC = !!tbl.show_components;
+        for (var i = 0; i < FR_MAX_STRINGS; i++) {
+            var st = eng.strings[i];
+            if (!st) {
+                frUpdateArrow("fr_arrow_" + i, R, 1, 0, 0, null, false);
+                frUpdateArrow("fr_compx_" + i, R, 1, 0, 0, null, false);
+                frUpdateArrow("fr_compy_" + i, R, 0, 1, 0, null, false);
+                continue;
+            }
+            var lab = (typeof kinds.tension === "string") ? kinds.tension : (st.label || ("T" + (i + 1)));
+            frUpdateArrow("fr_arrow_" + i, R, st.ux, st.uy, st.T, lab, showT);
+            // The components are drawn from the RING along the axes, NOT head to
+            // tail off the tension arrow: the length map has a floor (see
+            // FR_ARROW_MIN_LEN), so a head-to-tail construction would visibly fail
+            // to close and the picture would be a lie about its own arithmetic.
+            frUpdateArrow("fr_compx_" + i, R, st.ux >= 0 ? 1 : -1, 0, st.T * Math.abs(st.ux), null, showC);
+            frUpdateArrow("fr_compy_" + i, R, 0, st.uy >= 0 ? 1 : -1, st.T * Math.abs(st.uy), null, showC);
+        }
+        // Axes, shown only with the components they exist to resolve onto.
+        var axX = frFindById("fr_axis_x"), axY = frFindById("fr_axis_y");
+        if (axX) axX.visible = showC;
+        if (axY) axY.visible = showC;
+        var axXL = frFindById("fr_axis_x_label"), axYL = frFindById("fr_axis_y_label");
+        if (axXL) axXL.visible = showC;
+        if (axYL) axYL.visible = showC;
+
+        var zeroDot = frFindById("fr_zero_dot");
+        var atZero = eng.sumF <= FR_ARROW_EPS;
+        var rlab = (typeof kinds.resultant === "string") ? kinds.resultant : "ΣF";
+        frUpdateArrow("fr_resultant", R, eng.sumFx, eng.sumFy, eng.sumF, rlab, showR && !atZero);
+        if (zeroDot) zeroDot.visible = showR && atZero;
+    }
+
+    // ── Rule 32e glow: read glow_focal, exact-match ONE id, dim the rest ───
+    function frApplyGlow() {
+        var fr = frStateCfg();
+        var eng0 = window.PM_frEngine;
+        var focal = (eng0 && eng0.glow_focal) || fr.glow_focal || (glowTargets.length ? glowTargets[0] : "");
+        var glowActive = !!focal || glowTargets.length > 0;
+        var glowP = glowEmphT(time);
+        frEach(function (o, ud) {
+            if (ud.elementType === "fr_root") return;   // the container: its children each get their own pass
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal);
+            // BRIGHTEN-ONLY for the solid apparatus, the same carve-out nlb makes:
+            // the dim branch drops opacity to GLOW_DIM_OPACITY, which is right for an
+            // OVERLAY (an arrow at 40% still reads as an arrow) and wrong for a
+            // physical OBJECT (a 40% table renders as glass). Arrows, their labels
+            // and the component overlays keep the real dim channel, so Rule 32e is
+            // unchanged — only the peers that were never meant to be see-through
+            // stop being see-through.
+            //   An arrow LABEL is text, not a peer competing for attention, and
+            //   the generic peer dim (GLOW_DIM_OPACITY = 0.40) is what actually
+            //   put the ink on the floor: measured on the real frames, a peer T
+            //   label rendered as 0.40*ink + 0.60*disc — #42A5F5 arriving as
+            //   rgb(55,100,135) at 1.27:1. No ink floor survives being multiplied
+            //   by 0.40 over a lit backdrop, so the floor has to hold at the glow
+            //   pass too. fr_weight_label already had exactly this carve-out and
+            //   is exactly the label the founder reads cleanly; the arrow labels
+            //   now join it, and the label's own recede is written below at a
+            //   value that stays readable. Rule 32e is untouched: the ARROW still
+            //   dims to 0.40, so the single focal is as loud as it ever was — the
+            //   name tag beside it simply stays a name tag.
+            var solid = (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
+                         ud.elementType === "fr_pulley" || ud.elementType === "fr_string" ||
+                         ud.elementType === "fr_ring" || ud.elementType === "fr_weight" ||
+                         ud.elementType === "fr_weight_label" || ud.elementType === "fr_arrow_label" ||
+                         ud.elementType === "fr_centre" ||
+                         ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
+                         ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
+                         // The severed lengths own their own opacity: it is the FADE
+                         // that ends the cut (frwCutRemnants), and a generic peer dim
+                         // writing 0.40 over it would fight that channel to a standstill
+                         // (the glow-focal-on-a-live-driven-channel no-op, in reverse).
+                         ud.elementType === "fr_wcut" ||
+                         // The post-cut path is EVIDENCE, not a peer competing for
+                         // attention: dimming it to 40% while the bob holds the
+                         // focal would erase the one thing the cut state proves.
+                         ud.elementType === "fr_trail");
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
+            //   brightenOnly writes no opacity at all, so the label's recede is
+            //   written here instead of being skipped: a peer label is still
+            //   visibly quieter than the focal one, at a level that measurement
+            //   shows still reads (0.85 vs 1.00 over the disc keeps every label
+            //   above the 4.5:1 floor, where 0.40 put them at 1.3:1).
+            if (ud.elementType === "fr_arrow_label" && o.material) {
+                o.material.transparent = true;
+                o.material.opacity = (glowActive && !isFocal) ? FR_LABEL_DIM_OPACITY : 1.0;
+            }
+        });
+    }
+    function applyForceRigGlow() { frApplyGlow(); }
+
+    // ── Scene skeleton ────────────────────────────────────────────────────
+    //   Everything is built ONCE from the UNION of every state (FR_MAX_STRINGS
+    //   sets of pulley/string/hanger/weight/arrow) and then only shown/hidden +
+    //   re-seeded per state — Rule 32d home-pose persistence, no mid-state
+    //   rebuild and no teleport.
+    //   The table lies in the world XY plane, so a top-down camera on +z sees the
+    //   lab view directly and an authored angle_deg maps to screen without any
+    //   projection step: (cos φ, sin φ) IS the drawn direction.
+    function buildForceRig() {
+        frIndex = [];
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        var root = new THREE.Group();
+        root.userData = { elementType: "fr_root", id: "fr_root" };
+        // The ONE framing transform (see FR_VIEW_SCALE). Set here, on the root,
+        // so every mesh, sprite, arrow and guide built below inherits it and no
+        // constant can be forgotten; the y re-centre is per BRANCH and is written
+        // in applyForceRigState.
+        root.scale.setScalar(FR_VIEW_SCALE);
+        addToScene(root);
+        frRegister(root);
+
+        var top = new THREE.Mesh(
+            new THREE.CircleGeometry(FR_TABLE_R_W, 64),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_TABLE_COLOR), emissive: hexToThreeColor(FR_TABLE_COLOR),
+                emissiveIntensity: 0.10, shininess: 20, transparent: true, opacity: 0.95, side: THREE.DoubleSide
+            }));
+        top.position.set(0, 0, FR_TABLE_Z);
+        top.userData = { elementType: "fr_table", id: "fr_table" };
+        root.add(top); frRegister(top);
+
+        var rim = new THREE.Mesh(
+            new THREE.TorusGeometry(FR_TABLE_R_W, 0.035, 10, 72),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_RIM_COLOR), emissive: hexToThreeColor(FR_RIM_COLOR),
+                emissiveIntensity: 0.18, shininess: 50, transparent: true, opacity: 1.0
+            }));
+        rim.position.set(0, 0, FR_TABLE_Z + 0.01);
+        rim.userData = { elementType: "fr_rim", id: "fr_rim" };
+        root.add(rim); frRegister(rim);
+
+        // The centre mark. Without it "the ring is off centre" is unreadable —
+        // there is nothing on a plain disc to be off centre FROM.
+        var centre = new THREE.Mesh(
+            new THREE.TorusGeometry(0.055, 0.014, 8, 24),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_CENTRE_COLOR), emissive: hexToThreeColor(FR_CENTRE_COLOR),
+                emissiveIntensity: 0.25, shininess: 30, transparent: true, opacity: 0.9
+            }));
+        centre.position.set(0, 0, FR_TABLE_Z + 0.02);
+        centre.userData = { elementType: "fr_centre", id: "fr_centre" };
+        root.add(centre); frRegister(centre);
+
+        // Component axes through the table centre (shown only with show_components).
+        var axPts = [new THREE.Vector3(-FR_TABLE_R_W, 0, FR_TABLE_Z + 0.02), new THREE.Vector3(FR_TABLE_R_W, 0, FR_TABLE_Z + 0.02)];
+        var axX = new THREE.Line(new THREE.BufferGeometry().setFromPoints(axPts),
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(FR_AXIS_COLOR), transparent: true, opacity: 0.7 }));
+        axX.userData = { elementType: "fr_axis", id: "fr_axis_x" };
+        axX.visible = false;
+        root.add(axX); frRegister(axX);
+        var ayPts = [new THREE.Vector3(0, -FR_TABLE_R_W, FR_TABLE_Z + 0.02), new THREE.Vector3(0, FR_TABLE_R_W, FR_TABLE_Z + 0.02)];
+        var axY = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ayPts),
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(FR_AXIS_COLOR), transparent: true, opacity: 0.7 }));
+        axY.userData = { elementType: "fr_axis", id: "fr_axis_y" };
+        axY.visible = false;
+        root.add(axY); frRegister(axY);
+        var axXL = frMakeLabel("x", FR_AXIS_COLOR, 0.3);
+        axXL.position.set(FR_TABLE_R_W + 0.28, 0.22, 0);
+        axXL.userData = { elementType: "fr_axis_label", id: "fr_axis_x_label" };
+        axXL.visible = false;
+        root.add(axXL); frRegister(axXL);
+        var axYL = frMakeLabel("y", FR_AXIS_COLOR, 0.3);
+        axYL.position.set(0.26, FR_TABLE_R_W + 0.28, 0);
+        axYL.userData = { elementType: "fr_axis_label", id: "fr_axis_y_label" };
+        axYL.visible = false;
+        root.add(axYL); frRegister(axYL);
+
+        for (var i = 0; i < FR_MAX_STRINGS; i++) {
+            var col = FR_STRING_COLORS[i % FR_STRING_COLORS.length];
+
+            var pul = new THREE.Mesh(
+                new THREE.TorusGeometry(FR_PULLEY_R - FR_PULLEY_TUBE, FR_PULLEY_TUBE, 10, 24),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(FR_PULLEY_COLOR), emissive: hexToThreeColor(FR_PULLEY_COLOR),
+                    emissiveIntensity: 0.16, shininess: 70, transparent: true, opacity: 1.0
+                }));
+            pul.userData = { elementType: "fr_pulley", id: "fr_pulley_" + i, stringIndex: i };
+            pul.visible = false;
+            root.add(pul); frRegister(pul);
+
+            // Three unit-height cylinders per string: ring->pulley (re-fitted every
+            // frame because the ring moves), pulley->outward, and the drop to the
+            // weight. Each gets its OWN material: applyGlowEmphasis caches its
+            // baseline ON the material, so a shared instance would make a focal
+            // string fight its peers.
+            var segIds = ["fr_string_" + i, "fr_hangout_" + i, "fr_hangdrop_" + i];
+            for (var s = 0; s < segIds.length; s++) {
+                var seg = new THREE.Mesh(
+                    new THREE.CylinderGeometry(FR_STRING_R, FR_STRING_R, 1, 8),
+                    new THREE.MeshPhongMaterial({
+                        color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
+                        emissiveIntensity: FR_STRING_EMISSIVE, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+                    }));
+                seg.userData = { elementType: "fr_string", id: segIds[s], stringIndex: i };
+                seg.visible = false;
+                root.add(seg); frRegister(seg);
+            }
+
+            // The hanging weight. Its DRAWN height tracks the hanging mass through
+            // frSetStringMass — the same call that sets the tension — so the plate
+            // and the newtons can never disagree (spec section 3, one funnel).
+            var wgt = new THREE.Mesh(
+                new THREE.BoxGeometry(FR_WEIGHT_W, 1, FR_WEIGHT_W * 0.6),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(FR_WEIGHT_COLOR), emissive: hexToThreeColor(FR_WEIGHT_COLOR),
+                    emissiveIntensity: 0.14, shininess: 40, transparent: true, opacity: 1.0
+                }));
+            wgt.scale.set(1, FR_WEIGHT_H_MIN, 1);
+            wgt.userData = { elementType: "fr_weight", id: "fr_weight_" + i, stringIndex: i, drawnHeight: FR_WEIGHT_H_MIN };
+            wgt.visible = false;
+            root.add(wgt); frRegister(wgt);
+
+            var wl = frMakeLabel("0.0 kg", FR_WEIGHT_COLOR, 0.30);
+            wl.userData = { elementType: "fr_weight_label", id: "fr_weightlbl_" + i, stringIndex: i };
+            wl.visible = false;
+            root.add(wl); frRegister(wl);
+
+            // Tension arrow + its two component arrows, hidden until a state asks.
+            var arrIds = ["fr_arrow_" + i, "fr_compx_" + i, "fr_compy_" + i];
+            var arrTypes = ["fr_arrow", "fr_comp", "fr_comp"];
+            for (var a = 0; a < arrIds.length; a++) {
+                var ah = frAddShaft(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                    FR_ARROW_MIN_LEN, hexToThreeColor(col), 0.21, 0.17), col);
+                ah.userData = { elementType: arrTypes[a], id: arrIds[a], stringIndex: i };
+                ah.visible = false;
+                root.add(ah); frRegister(ah);
+            }
+            var al = frMakeLabel("T", col, FR_ARROW_LABEL_H);
+            al.userData = { elementType: "fr_arrow_label", id: "fr_arrow_" + i + "_label", stringIndex: i };
+            al.visible = false;
+            root.add(al); frRegister(al);
+        }
+
+        // The resultant, and the dot it collapses to at equilibrium.
+        var res = frAddShaft(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            FR_ARROW_MIN_LEN, hexToThreeColor(FR_RESULTANT_COLOR), 0.21, 0.17), FR_RESULTANT_COLOR);
+        res.userData = { elementType: "fr_arrow", id: "fr_resultant" };
+        res.visible = false;
+        root.add(res); frRegister(res);
+        var resL = frMakeLabel("ΣF", FR_RESULTANT_COLOR, FR_ARROW_LABEL_H);
+        resL.userData = { elementType: "fr_arrow_label", id: "fr_resultant_label" };
+        resL.visible = false;
+        root.add(resL); frRegister(resL);
+        var zdot = new THREE.Mesh(
+            new THREE.SphereGeometry(FR_ZERO_DOT_R, 16, 16),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_RESULTANT_COLOR), emissive: hexToThreeColor(FR_RESULTANT_COLOR),
+                emissiveIntensity: 0.5, shininess: 80, transparent: true, opacity: 1.0
+            }));
+        zdot.userData = { elementType: "fr_zero_dot", id: "fr_zero_dot" };
+        zdot.visible = false;
+        root.add(zdot); frRegister(zdot);
+
+        // The ring itself — the particle every force acts on.
+        var ring = new THREE.Mesh(
+            new THREE.TorusGeometry(FR_RING_R, FR_RING_TUBE, 12, 32),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_RING_COLOR), emissive: hexToThreeColor(FR_RING_COLOR),
+                emissiveIntensity: 0.35, shininess: 80, transparent: true, opacity: 1.0
+            }));
+        ring.userData = { elementType: "fr_ring", id: "fr_ring" };
+        root.add(ring); frRegister(ring);
+
+        // ── Branch B apparatus (whirl). Built ONCE alongside the table and
+        //    hidden; applyForceRigState shows exactly one branch, so the two
+        //    apparatus never co-exist on screen and neither needs a rebuild.
+        var wplane = new THREE.Mesh(
+            new THREE.CircleGeometry(1, 72),   // unit disc; scaled per state from L
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_PLANE_COLOR), emissive: hexToThreeColor(FR_W_PLANE_COLOR),
+                // Half-transparent on purpose: the bob rests ON the top, so its
+                // weight arrow points DOWN THROUGH it. At full opacity the table
+                // swallowed W and the free-body pair read as a lone normal force.
+                emissiveIntensity: 0.10, shininess: 18, transparent: true, opacity: 0.55, side: THREE.DoubleSide,
+                // The rimless sheet (see FR_W_PLANE_R). Hung here, once, rather than
+                // per-state: assigning alphaMap recompiles the shader, and there is
+                // no state that wants a hard edge.
+                alphaMap: frwPlaneFade()
+            }));
+        wplane.rotation.x = -Math.PI / 2;      // CircleGeometry is built in xy; the plane is horizontal
+        wplane.position.set(0, -0.02, 0);
+        wplane.userData = { elementType: "fr_plane", id: "fr_plane" };
+        wplane.visible = false;
+        root.add(wplane); frRegister(wplane);
+
+        var wanchor = new THREE.Mesh(
+            new THREE.SphereGeometry(FR_W_ANCHOR_R, 16, 12),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_ANCHOR_COLOR), emissive: hexToThreeColor(FR_W_ANCHOR_COLOR),
+                emissiveIntensity: 0.20, shininess: 60, transparent: true, opacity: 1.0
+            }));
+        wanchor.userData = { elementType: "fr_anchor", id: "fr_anchor" };
+        wanchor.visible = false;
+        root.add(wanchor); frRegister(wanchor);
+
+        var wpost = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.045, 0.045, 1, 10),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_ANCHOR_COLOR), emissive: hexToThreeColor(FR_W_ANCHOR_COLOR),
+                emissiveIntensity: 0.14, shininess: 40, transparent: true, opacity: 0.95
+            }));
+        wpost.userData = { elementType: "fr_anchor", id: "fr_anchor_post" };
+        wpost.visible = false;
+        root.add(wpost); frRegister(wpost);
+
+        // The string. Its OWN mesh rather than a borrowed table hanger, because
+        // glow_focal is authored by id and "fr_hangdrop_0" would be an unreadable
+        // thing to write in a concept JSON for the string of a whirling bob.
+        var wstr = new THREE.Mesh(
+            new THREE.CylinderGeometry(FR_W_STRING_R, FR_W_STRING_R, 1, 8),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
+                emissiveIntensity: FR_STRING_EMISSIVE, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+            }));
+        wstr.userData = { elementType: "fr_wstring", id: "fr_wstring" };
+        wstr.visible = false;
+        root.add(wstr); frRegister(wstr);
+
+        // The two severed lengths (see THE CUT ITSELF). Same cord — same radius,
+        // colour and material recipe as the intact string, so what is on screen after
+        // the cut is recognisably the SAME thread that was there before it. Each gets
+        // its OWN material because the fade writes opacity per frame; sharing one with
+        // fr_wstring would fade the intact string on every other state.
+        var wcIds = ["fr_cut_anchor", "fr_cut_ball"];
+        for (var wc = 0; wc < wcIds.length; wc++) {
+            var wcm = new THREE.Mesh(
+                new THREE.CylinderGeometry(FR_W_STRING_R, FR_W_STRING_R, 1, 8),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
+                    emissiveIntensity: FR_STRING_EMISSIVE, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+                }));
+            wcm.userData = { elementType: "fr_wcut", id: wcIds[wc] };
+            wcm.visible = false;
+            wcm.frustumCulled = false;      // the ball-side length leaves the seeded bounding sphere
+            root.add(wcm); frRegister(wcm);
+        }
+
+        var wbob = new THREE.Mesh(
+            new THREE.SphereGeometry(FR_W_BOB_R, 20, 16),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_BOB_COLOR), emissive: hexToThreeColor(FR_W_BOB_COLOR),
+                emissiveIntensity: 0.34, shininess: 80, transparent: true, opacity: 1.0
+            }));
+        wbob.userData = { elementType: "fr_bob", id: "fr_bob" };
+        wbob.visible = false;
+        root.add(wbob); frRegister(wbob);
+
+        // Unit circles in the xz plane, SCALED per frame to the swept radius: one
+        // live guide ring, one dim ghost frozen at the pre-cut circle so the
+        // departure is visibly not along it.
+        var ringPts = [];
+        for (var rp = 0; rp <= FR_W_RING_SEG; rp++) {
+            var rt = (rp / FR_W_RING_SEG) * Math.PI * 2;
+            ringPts.push(new THREE.Vector3(Math.cos(rt), 0, Math.sin(rt)));
+        }
+        var ringIds = ["fr_guide_ring", "fr_ghost_ring"];
+        var ringOps = [FR_W_GUIDE_OPACITY, FR_W_GHOST_OPACITY];
+        for (var rg = 0; rg < ringIds.length; rg++) {
+            var rl = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ringPts),
+                new THREE.LineBasicMaterial({
+                    color: hexToThreeColor(FR_W_RING_COLOR), transparent: true, opacity: ringOps[rg]
+                }));
+            rl.userData = { elementType: "fr_guide", id: ringIds[rg] };
+            rl.visible = false;
+            root.add(rl); frRegister(rl);
+        }
+
+        var wrad = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.014, 0.014, 1, 8),
+            new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(FR_W_RADIUS_COLOR), emissive: hexToThreeColor(FR_W_RADIUS_COLOR),
+                emissiveIntensity: 0.20, shininess: 20, transparent: true, opacity: 0.85
+            }));
+        wrad.userData = { elementType: "fr_guide", id: "fr_radius_line" };
+        wrad.visible = false;
+        root.add(wrad); frRegister(wrad);
+
+        // The post-cut path. Preallocated + setDrawRange, so no per-frame geometry
+        // churn and no allocation inside the animate loop.
+        var trailGeo = new THREE.BufferGeometry();
+        trailGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(FR_W_TRAIL_MAX * 3), 3));
+        trailGeo.setDrawRange(0, 0);
+        var wtrail = new THREE.Line(trailGeo,
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(FR_W_TRAIL_COLOR), transparent: true, opacity: 0.95 }));
+        wtrail.userData = { elementType: "fr_trail", id: "fr_trail" };
+        wtrail.frustumCulled = false;      // the bob leaves the seeded bounding sphere
+        wtrail.visible = false;
+        root.add(wtrail); frRegister(wtrail);
+
+        // Whirl force arrows get their OWN ids (not the table's fr_arrow_i) so
+        // every glow_focal a concept can author reads as the thing it names.
+        var wArrIds = ["fr_w_tension", "fr_w_weight", "fr_w_normal", "fr_w_centripetal",
+                       "fr_w_resultant", "fr_w_velocity"];
+        var wArrCols = [FR_W_TENSION_COLOR, FR_W_WEIGHT_COLOR, FR_W_NORMAL_COLOR,
+                        FR_W_CENTRIP_COLOR, FR_RESULTANT_COLOR, FR_W_VEL_COLOR];
+        var wArrLbls = ["T", "W", "N", "F", "ΣF", "v"];
+        for (var wa = 0; wa < wArrIds.length; wa++) {
+            var wah = frAddShaft(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+                FR_ARROW_MIN_LEN, hexToThreeColor(wArrCols[wa]), 0.21, 0.17), wArrCols[wa]);
+            wah.userData = { elementType: "fr_arrow", id: wArrIds[wa] };
+            wah.visible = false;
+            root.add(wah); frRegister(wah);
+            var wal = frMakeLabel(wArrLbls[wa], wArrCols[wa], FR_W_LABEL_H);
+            wal.userData = { elementType: "fr_arrow_label", id: wArrIds[wa] + "_label" };
+            wal.visible = false;
+            root.add(wal); frRegister(wal);
+        }
+
+        // Value-only HUD (Rule 33d / 34b). top:52px clears the review-chrome
+        // "Full screen" button (top:10px, ~40px tall) — Rule 34d.
+        var ro = document.createElement("div");
+        ro.id = "fr_readout";
+        ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(ro);
+
+        // The SINGLE formula surface (Rule 34b) — math-serif Unicode, its own zone,
+        // never duplicated by the generic #formula_overlay (which the applyState
+        // hide-chain suppresses for this scenario).
+        var ff = document.createElement("div");
+        ff.id = "fr_formula";
+        ff.style.cssText = "position:fixed;top:42%;left:22px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:320px;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var sp2 = document.createElement("div");
+        sp2.id = "fr_sliders";
+        sp2.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        document.body.appendChild(sp2);
+        frBuildSliderRows(sp2);
+
+        window.PM_frSeized = false;
+    }
+
+    // ── Per-state seed. NO clock code and NO integration here (Rule 36). ────
+    function applyForceRigState(stateDef) {
+        var fr = (stateDef && stateDef.force_rig) ? stateDef.force_rig : {};
+        var tbl = frTableCfg(fr);
+        var defs = (frIsTable(fr) && tbl.strings) ? tbl.strings : [];
+        var eng = {
+            apparatus: fr.apparatus || "force_table",
+            view: tbl.view || "top_down",
+            R_m: FR_TABLE_R_M,
+            m_ring: (typeof tbl.ring_mass_kg === "number" && tbl.ring_mass_kg > 0) ? tbl.ring_mass_kg : FR_DEFAULT_RING_MASS,
+            damping: (typeof tbl.damping === "number" && tbl.damping > 0) ? tbl.damping : FR_DEFAULT_DAMPING,
+            strings: [],
+            p: { x: 0, y: 0 },
+            v: { x: 0, y: 0 },
+            ax: 0, ay: 0, sumFx: 0, sumFy: 0, sumF: 0,
+            glow_focal: fr.glow_focal || "",
+            // The state's OWN entry focal, kept so a RESET_TRAJECTORY rewind can
+            // put it back after a phases[] one-shot has overridden it (the
+            // nlb base_glow_focal idiom).
+            base_glow_focal: fr.glow_focal || "",
+            t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
+            _ramp_last: null,     // param_ramp churn guard, rebased on every entry
+            _sub: 0,
+            // Authored ring START pose, kept alongside the live p so a rewind can
+            // restore it (p is an ACCUMULATOR — see frResetTrajectory).
+            p0: { x: 0, y: 0 },
+            // ── whirl (branch B) record; inert on a force_table state ──────
+            geometry: "conical", L: 1, m_bob: 1.5,
+            omega_req: 4, omega: 4, omega_min: 0, omega_clamped: false,
+            anchor: { x: 0, y: 1, z: 0 }, p3: { x: 0, y: 0, z: 0 }, v3: { x: 0, y: 0, z: 0 },
+            theta: 0, theta_meas: 0, r_m: 0, speed: 0, a_c: 0, T: 0,
+            phi: 0, phi_last: 0, phi_unwrapped: 0,
+            released: false, release_at: null, trail_on: false, ghost_on: false,
+            phi0: 0, cut_p: null, cut_dir: null, cut_u: null, cut_w: 0,
+            show_radius: false, show_velocity: false,
+            ghost_r: 0, ghost_y: 0, trailN: 0, micro: 0, wArrows: []
+        };
+        for (var i = 0; i < defs.length && i < FR_MAX_STRINGS; i++) {
+            var d = defs[i] || {};
+            eng.strings.push({
+                id: d.id || ("s" + i),
+                index: i,
+                angle_deg: (typeof d.angle_deg === "number" && isFinite(d.angle_deg)) ? d.angle_deg : 0,
+                m: (typeof d.hanging_mass_kg === "number" && d.hanging_mass_kg > 0) ? d.hanging_mass_kg : 1,
+                T: 0, ux: 1, uy: 0,
+                label: d.label || null,
+                color: d.color || FR_STRING_COLORS[i % FR_STRING_COLORS.length]
+            });
+        }
+        var off = tbl.ring_start_offset_m;
+        if (off && off.length === 2 && isFinite(off[0]) && isFinite(off[1])) {
+            eng.p.x = off[0]; eng.p.y = off[1];
+        }
+        eng.p0 = { x: eng.p.x, y: eng.p.y };
+        window.PM_frEngine = eng;
+        window.PM_frSeized = false;
+        window.PM_frTimeMs = 0;
+
+        // Colours follow the state (a string re-coloured between states must not
+        // keep the previous state ink) and the mass funnel runs for every string,
+        // so the drawn weight is right on the very first rendered frame.
+        frEach(function (o, ud) {
+            if (ud.stringIndex == null) return;
+            var st = eng.strings[ud.stringIndex];
+            if (!st) { o.visible = false; return; }
+            if (ud.elementType === "fr_arrow" || ud.elementType === "fr_comp") {
+                frRecolourArrow(o, st.color);
+            } else if (ud.elementType === "fr_arrow_label") {
+                frRecolourLabel(o, st.color);
+            }
+            if (o.material && o.material.userData) { o.material.userData._glowBaseCol = null; o.material.userData._glowBaseOp = null; }
+        });
+        for (var s2 = 0; s2 < FR_MAX_STRINGS; s2++) {
+            if (eng.strings[s2]) frSetStringMass(s2, eng.strings[s2].m);
+            frPlaceString(s2);
+        }
+        frSumForce(eng);
+        frFitStrings();
+
+        // Whole-scene visibility: exactly ONE apparatus is on screen. A whirl
+        // state has no table and a table state has no bob, so the other branch
+        // hides rather than standing there as apparatus that does nothing.
+        var tableOn = frIsTable(fr);
+        // Branch framing (see FR_VIEW_SHIFT_Y). Written on the root, in UNSCALED
+        // world units, so it is a pure re-centre of the whole rig and not a pose
+        // any physics depends on. Identical for every table state, so nothing
+        // moves between states (Rule 32d home pose).
+        var frRoot = frFindById("fr_root");
+        if (frRoot) {
+            frRoot.position.set(0, tableOn ? FR_VIEW_SHIFT_Y : 0, 0);
+            // The whirl's post-cut follow writes both of these (frwFrameFollow);
+            // restoring them HERE is what guarantees a state entered after a
+            // flight — or a table state entered after one — starts from the
+            // authored framing rather than wherever the last cut left it.
+            frRoot.scale.setScalar(FR_VIEW_SCALE);
+        }
+        frEach(function (o, ud) {
+            if (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
+                ud.elementType === "fr_centre" || ud.elementType === "fr_ring") o.visible = tableOn;
+            if (ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
+                ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
+                ud.elementType === "fr_wcut" ||
+                ud.elementType === "fr_guide" || ud.elementType === "fr_trail") o.visible = false;
+        });
+        if (!tableOn) frwHideArrows();
+
+        // ── Branch B seed. Physics parameters only: the pose comes from frwSeed,
+        //    which puts the bob ON the constraint manifold with the tangential
+        //    velocity the live ω demands, so the first rendered frame already
+        //    shows the correct cone rather than settling into it.
+        if (!tableOn) {
+            var wc = frWhirlCfg(fr);
+            eng.geometry = (wc.geometry === "flat") ? "flat" : "conical";
+            eng.L = frwPos(wc.string_length_m, 1);
+            eng.m_bob = frwPos(wc.bob_mass_kg, frSc("bob_mass").def);
+            eng.omega_req = frwPos(wc.omega_rad_per_s, frSc("omega").def);
+            eng.anchor_h = (typeof wc.anchor_height_m === "number" && isFinite(wc.anchor_height_m) && wc.anchor_height_m > 0) ? wc.anchor_height_m : null;
+            var rel = wc.release;
+            eng.release_at = (rel && typeof rel.at_ms === "number" && isFinite(rel.at_ms)) ? rel.at_ms : null;
+            eng.trail_on = !!rel && rel.trail !== false;
+            eng.ghost_on = !!rel && !!rel.ghost_circle;
+            eng.show_radius = !!wc.show_radius;
+            eng.show_velocity = !!wc.show_velocity;
+            eng.released = false;
+            eng.trailN = 0;
+            eng.micro = 0;
+            eng.cut_p = null; eng.cut_dir = null; eng.cut_u = null; eng.cut_w = 0;
+            var tl = frFindById("fr_trail");
+            if (tl) tl.geometry.setDrawRange(0, 0);
+            // Captured ONCE, from the authored L (see FR_W_PIVOT_Y).
+            eng.yShift = frwShiftY(eng);
+            // Solved from the live (clamped) ω, so a re-timed cut still departs
+            // along +x (see frwReleasePhi); 0 for every state without a release,
+            // which is exactly what those states seeded before.
+            frwClampOmega(eng);
+            eng.phi0 = frwReleasePhi(eng);
+            frwSeed(eng, eng.phi0);
+            frwMeasure(eng);
+            frwFit(fr, eng);
+        }
+
+        // The SINGLE formula surface for this state (Rule 34b).
+        var ffe = document.getElementById("fr_formula");
+        if (ffe) {
+            var ftext = stateDef.formula_overlay || "";
+            ffe.textContent = ftext;
+            ffe.style.display = ftext ? "block" : "none";
+        }
+        frRebuildReadout(fr);
+        // Every arrow surface is blanked on entry so a kind dropped from this
+        // state can never keep a stale arrow on screen; the per-frame pass then
+        // re-shows exactly the named kinds at their live magnitudes.
+        frHideAllArrows();
+        if (tableOn) frDriveArrows(fr, eng);
+        else frwDriveArrows(fr, eng);
+        frWriteReadouts(fr, eng);
+
+        frToggleSliderRows(fr);
+        for (var t2 = 0; t2 < FR_SLIDER_TOKENS.length; t2++) {
+            var tk = FR_SLIDER_TOKENS[t2];
+            var vv = frSliderValueFromEngine(tk);
+            if (vv != null) frSyncSliderRow(tk, vv);
+        }
+        frApplyGlow();
+    }
+
+    // ── The per-frame step (spec section 2) ────────────────────────────────
+    //   ONE call per tick with the COMBINED dtStep (already 0.016 * __pmSteps).
+    //   The sub-step COUNT is recovered from that dt (see FR_STEP_S) rather than
+    //   assumed, so this is rate-correct at any refresh rate, exactly
+    //   fold-invariant, and a no-op at dt = 0 under a SET_TIME_FREEZE pin.
+    function updateForceRigFrame(dt) {
+        var eng = window.PM_frEngine;
+        if (!eng) return;                                  // build ran, no state seeded yet
+        var h = (typeof dt === "number" && isFinite(dt) && dt > 0) ? dt : 0;
+        var fr = frStateCfg();
+        eng.t_ms += h * 1000;
+        window.PM_frTimeMs = eng.t_ms;
+        frRunPhases(fr, eng, eng.t_ms);
+        // Inputs first (a ramp is exactly a slider write), so the step, the arrows
+        // and the readouts are all consistent within the SAME frame.
+        frRunParamRamp(fr, eng);
+
+        if (eng.apparatus === "force_table") {
+            var steps = (h > 0) ? Math.round(h / FR_STEP_S) : 0;
+            if (steps < 0) steps = 0;
+            if (steps > 8) steps = 8;                      // a pathological dt can never stall the frame
+            for (var k = 0; k < steps; k++) frStep(eng, FR_STEP_S);
+            frSumForce(eng);                               // report the pose actually on screen
+            if (Math.abs(eng.v.x) < FR_REST_V) eng.v.x = 0;
+            if (Math.abs(eng.v.y) < FR_REST_V) eng.v.y = 0;
+            frFitStrings();
+            frDriveArrows(fr, eng);
+        } else {
+            // ── Branch B. The micro-step COUNT is recovered from the combined dt
+            //    exactly as branch A recovers its step count, so N frames of one
+            //    shared step and one frame of N run the identical arithmetic
+            //    sequence, 120 Hz runs the same number of micro-steps per SECOND,
+            //    and dt = 0 under a pin runs none at all.
+            var t0 = eng.t_ms - h * 1000;
+            var micro = (h > 0) ? Math.round(h / FR_W_STEP_S) : 0;
+            if (micro < 0) micro = 0;
+            if (micro > FR_W_MICRO_PER_STEP * 4) micro = FR_W_MICRO_PER_STEP * 4;
+            for (var k = 0; k < micro; k++) {
+                // The cut is evaluated per MICRO-step against absolute state-local
+                // time, so it fires at the same instant whether the browser
+                // delivered one frame or three (a per-frame test would drift the
+                // release by up to 50 ms between refresh rates).
+                var tMicro = t0 + (k + 1) * FR_W_STEP_S * 1000;
+                if (!eng.released && eng.release_at != null && tMicro >= eng.release_at) {
+                    frwMeasure(eng);
+                    frwCut(eng);
+                }
+                frwStep(eng, FR_W_STEP_S);
+                eng.micro++;
+                if (eng.released && eng.trail_on && (eng.micro % FR_W_TRAIL_EVERY) === 0) frwPushTrail(eng);
+            }
+            frwMeasure(eng);
+            frwFit(fr, eng);
+        }
+        frWriteReadouts(fr, eng);
+    }
+
+    // ── RESET_TRAJECTORY — rewind THIS state to its own t = 0 ─────────────
+    //   Every CLOSED-FORM field_3d scenario poses from (time - stateStartTime),
+    //   so the shared RESET_TRAJECTORY handler rebasing stateStartTime rewinds it
+    //   for free. force_rig is a genuine INTEGRATOR on BOTH branches — the damped
+    //   ring's p/v, the whirl bob's p3/v3 + its trail — plus a state-local clock
+    //   t_ms that drives the phases[] script and the param_ramp. Those are
+    //   accumulators seeded only by applyForceRigState, so the rebase left them
+    //   exactly where the previous capture had run them to, and because a
+    //   SET_TIME_FREEZE pin advances virtual time FORWARD to its target and holds
+    //   (it never runs backwards), the pinned frame handed back the CONVERGED
+    //   steady state instead of the authored instant.
+    //   (engine_bug_queue force_rig_not_reproducible_under_set_time_freeze_pin:
+    //   all seven equilibrium_of_particles states photographed motionless — ring
+    //   centroid sub-pixel identical across 114 dense frames — and STATE_1 read
+    //   the param_ramp's END tension T₁ = 49.00 N at the t = 0 pin instead of the
+    //   authored 29.40 N. D5/D6/D7 then certified 31/31 on seven dead frames.)
+    //   Mirrors nlbResetTrajectory exactly, including its semantics: this is a
+    //   REWIND, not a re-seed. The pose, the clock and the one-shot latches go
+    //   back to entry; a teacher's live slider values are deliberately preserved
+    //   (a SEIZED state keeps them — Rule 37; an unseized one has its param_ramp
+    //   re-evaluated at t_ms = 0, which restores the authored "from" value through
+    //   the SAME frApplyParam write path a slider drag uses, so there is still no
+    //   parallel physics). Rule 36 is untouched: the replay that follows is the
+    //   ordinary fixed-step crawl (h = 1/60 s, __pmSteps forced to 1 under a pin),
+    //   so the reconstructed pose is byte-identical run to run.
+    function frResetTrajectory() {
+        var eng = window.PM_frEngine;
+        if (!eng) return;
+        var fr = frStateCfg();
+        eng.t_ms = 0;                        // state-local sim clock, back to 0
+        window.PM_frTimeMs = 0;
+        eng._ramp_last = null;               // the param_ramp is a closed form of t_ms
+        eng._sub = 0;
+        if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
+        var tableOn = (eng.apparatus === "force_table");
+        if (tableOn) {
+            var p0 = eng.p0 || { x: 0, y: 0 };
+            eng.p.x = p0.x; eng.p.y = p0.y;  // back to the authored ring start pose
+            eng.v.x = 0; eng.v.y = 0;
+            eng.ax = 0; eng.ay = 0;
+        } else {
+            eng.released = false;            // the cut re-arms and re-fires on replay
+            eng.trailN = 0;
+            eng.micro = 0;
+            eng.T = 0;
+            eng.ghost_r = 0; eng.ghost_y = 0;
+            eng.cut_p = null; eng.cut_dir = null;   // framing follow re-arms with it
+            eng.cut_u = null; eng.cut_w = 0;        // ... and so does the severing
+            var tl = frFindById("fr_trail");
+            if (tl) tl.geometry.setDrawRange(0, 0);
+        }
+        // The ramp runs AFTER the pose is restored (it writes through frApplyParam,
+        // which re-solves ΣF against the CURRENT ring position) and BEFORE the
+        // whirl re-seed (so the cone is rebuilt from the rewound ω / L).
+        frRunParamRamp(fr, eng);
+        if (tableOn) {
+            frSumForce(eng);
+            frFitStrings();
+            frDriveArrows(fr, eng);
+        } else {
+            frwClampOmega(eng);
+            eng.phi0 = frwReleasePhi(eng);   // re-solved: a ramp may have moved ω
+            frwSeed(eng, eng.phi0);          // bob back ON the constraint manifold
+            frwMeasure(eng);
+            frwFit(fr, eng);
+            frwDriveArrows(fr, eng);
+        }
+        frWriteReadouts(fr, eng);
+        frApplyGlow();
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     // ================================================================
     // displacement_current (Ch.8 §8.2 — I_d = ε₀ dΦ_E/dt, the
@@ -48288,7 +50828,10 @@ export const FIELD_3D_RENDERER_CODE = `
     //   four bonding successors (hydrogen_bonding / bond_polarity_dipole_moment /
     //   ionic_bonding / metallic_bonding); E1 builds the SUBSTRATE only and is
     //   proven against bond_polarity_dipole_moment (the simplest consumer, one
-    //   unit). E2 adds the inter-unit link layer, E3 the lattice layer.
+    //   unit). E2 (2026-08-01) adds the inter-unit LINK layer — the derived
+    //   charge-threshold criterion, its lookback hysteresis, the links-per-unit
+    //   readout, the temperature-driven jiggle and the row-O trend surface,
+    //   proven against hydrogen_bonding. E3 adds the lattice layer.
     //
     //   A UNIT is the abstraction that unifies all four: an addressable object
     //   with a position, an orientation, a charge, and one or more atoms in a
@@ -48304,9 +50847,28 @@ export const FIELD_3D_RENDERER_CODE = `
     //             compare | lattice_grow | coordination | layer_shift |
     //             electron_sea | drift | melt | explore,      // CLOSED, 13 modes
     //       units: [{ id, species, at:[x,y,z], orient:auto|[az_deg,el_deg], charge }],
-    //       lattice / groups / links / sea / ions / transfer / shift / trend /
-    //       compare_at_ms / compare_species,        // PARSED + PASSED THROUGH by
-    //                                               // E1, behaviour owned by E2/E3
+    //       links: { enabled, delta_min:{donor,acceptor}, form_pm, break_pm,
+    //                min_pm, angle_window_deg, show_count, pm_per_unit },  // E2
+    //       trend: { show, x_label, y_label, points:[{label,x,y}],
+    //                extrapolate_from:[label] },                           // E2
+    //       separation, separation_axis, approach_from, approach_at_ms,
+    //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
+    //       compare_at_ms, compare_duration_ms, compare_species,           // E2
+    //       unit_spacing, count_max, label_units, delta_units,             // E2
+    //       lattice: { cell: rock_salt|fcc|bcc|hcp,                        // E3a
+    //                  n:[nx,ny,nz],         // GRID STEPS per axis, forced ODD.
+    //                                        // rock_salt/fcc/bcc step = a/2, so
+    //                                        // [3,3,3] spans one conventional
+    //                                        // cube; hcp = [a1, a2, layers]
+    //                  a_pm,                 // conventional cubic edge
+    //                  grow_at_ms, grow_duration_ms, grow_from,
+    //                  reveal: none|cutaway|peer_fade, reveal_at_ms,
+    //                  cutaway_normal, focal_site, label_sites },
+    //       transfer: { at_ms, duration_ms, from, to },                    // E3a
+    //                  // from/to are units[].id; both species change size on
+    //                  // the LINEAR-pm scale and charge ramps with the radius
+    //       groups / sea / ions / shift,          // PARSED + PASSED THROUGH by
+    //                                             // E1/E2/E3a, owned by E3b
     //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale },
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
     //       thermal: { T_K, jiggle_scale },
@@ -48337,8 +50899,43 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MAX_UNITS = 40;          // hydrogen_bonding S5 is thirty water molecules
     var BS_MAX_ATOMS = 7;           // central + MG_MAX_BONDS
     var BS_MAX_DELTA_LABELS = 8;    // D-6 label budget
+    var BS_MAX_ATOM_LABELS = 12;    // D-6, the OTHER half: 30 units = 90 element labels
     var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
     var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
+
+    // ── E2 (intermolecular link layer) constants ─────────────────────────────
+    //   THE SCALE. Distances in the link contract are PICOMETRES (form_pm /
+    //   break_pm), the scene is in abstract units, so one number ties them: the
+    //   H2O O-H bond is 96 pm and is drawn at BS_BOND_LEN = 2.0 units, i.e.
+    //   48 pm per scene unit. A hydrogen bond's H...O 180 pm is then 3.75 units
+    //   and the O...O separation of a linear H-bond is 5.75 units — which is what
+    //   json_author must author units[].at against. Overridable per state via
+    //   links.pm_per_unit so a denser box is possible without an engine edit.
+    var BS_PM_PER_UNIT = 48;
+    var BS_MAX_LINKS = 72;          // pooled dashed links (30 waters bulk-bond to ~52)
+    var BS_LINK_DASHES = 5;         // dash segments drawn per link
+    // HYSTERESIS WITHOUT AN ACCUMULATOR (D-1). A latch ("this pair is bonded
+    // until it stretches past break_pm") is state, and state cannot survive a
+    // SET_TIME_FREEZE rewind. So the latch is evaluated instead over a BOUNDED
+    // LOOKBACK anchored on the current state-local t: the criterion is replayed
+    // on a fixed grid of BS_LINK_SAMPLES times spanning BS_LINK_LOOKBACK_MS back
+    // from t, oldest first, forming at form_pm and surviving out to break_pm.
+    // Every sample is a closed-form position, so the whole link SET is a pure
+    // function of t — it flickers, and it flickers identically on every replay.
+    var BS_LINK_LOOKBACK_MS = 640;
+    var BS_LINK_SAMPLES = 9;        // 80 ms apart; jiggle periods are 1.5-3 s
+    // Defaults for the links block. delta_min is on the DERIVED per-atom charge
+    // (bscCharges), never on an element whitelist (D-2): in H2O the donor H
+    // carries +0.319 and the acceptor O -0.638, in H2S +0.035 and -0.071, so
+    // BOTH ends of the criterion separate water from sulfide by ~9x with room to
+    // spare. min_pm is a hard floor so two atoms that interpenetrate never draw
+    // a link. angle_window_deg is the tolerance on the IDEAL 180 deg D-H...A.
+    var BS_LINK_DEFAULTS = {
+        enabled: true,
+        delta_min: { donor: 0.15, acceptor: 0.30 },
+        form_pm: 210, break_pm: 260, min_pm: 90,
+        angle_window_deg: 40, show_count: false
+    };
 
     // CLOSED enums. A member absent from these is a CONFIG ERROR, not a silent
     // no-op (the sigma-pi scar: nine decorative mode strings nothing ever read).
@@ -48346,18 +50943,66 @@ export const FIELD_3D_RENDERER_CODE = `
     // rendered as a static unit scene until E2/E3 own them — declared, never
     // silently ignored, and check:bonding-scene asserts the split explicitly.
     var BS_MODES_E1 = ["dipole_sum", "explore"];
-    var BS_MODES_DEFERRED = ["assemble", "transfer", "approach_link", "network",
-        "compare", "lattice_grow", "coordination", "layer_shift", "electron_sea",
-        "drift", "melt"];
-    var BS_MODES = BS_MODES_E1.concat(BS_MODES_DEFERRED);
+    var BS_MODES_E2 = ["assemble", "approach_link", "network", "compare"];
+    var BS_MODES_E3A = ["transfer", "lattice_grow", "coordination"];
+    var BS_MODES_DEFERRED = ["layer_shift", "electron_sea", "drift", "melt"];
+    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A);
+    var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
     var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
         "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
     var BS_HUD_LINES = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
         "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
         "valence", "atomisation", "bp", "like_contacts", "conductivity"];
     var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
+    var BS_HUD_LINES_E2 = ["links", "links_per_unit", "bp"];
+    var BS_HUD_LINES_E3A = ["coordination", "lattice_a"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
+    // ── E3a (lattice PLACEMENT layer) constants ──────────────────────────────
+    var BS_CELLS = ["rock_salt", "fcc", "bcc", "hcp"];
+    var BS_LATTICE_REVEALS = ["none", "cutaway", "peer_fade"];
+    var BS_MAX_SITES = 125;         // rock_salt n=[5,5,5]; a 3x3x3 block is 27
+    var BS_MAX_SITE_LABELS = 8;     // D-6: a 27-site lattice never labels 27 sites
+    var BS_MAX_NEIGHBOURS = 12;     // hcp/fcc coordination is the pool ceiling
+    var BS_HCP_C_OVER_A = Math.sqrt(8 / 3);   // the IDEAL hcp axial ratio
+    // D-5, DECIDED ONCE and authored per state via lattice.reveal. Glow is
+    // brightness (Rule 29) and brightness cannot defeat occlusion: a rock-salt
+    // block is a wall of identical spheres and
+    // field3d_uniform_translucent_same_family_surfaces_fuse_with_no_silhouette_cue
+    // is a CRITICAL FIXED scar on three chemistry concepts. So the interior
+    // reveal is a real geometric mechanism, not a glow, and the peers do NOT
+    // become a uniform translucent fog: peer_fade drops them to
+    // BS_PEER_FADE_OPACITY *and* the counted set keeps solid neighbour RODS, so
+    // what the caption counts is six opaque sticks and six opaque spheres
+    // against a ghost wall — a silhouette cue the fused-surface scar has no
+    // purchase on. cutaway removes a half-space instead, for a state that wants
+    // the cut face itself. Neither is improvised per concept.
+    var BS_PEER_FADE_OPACITY = 0.12;
+    var BS_REVEAL_MS = 900;         // the reveal is a RAMP, never a pop
+    // Ball-and-stick target for a coordination state. A space-filling block
+    // physically ENCLOSES its focal ion — six touching neighbours hide it
+    // completely, at every camera — so "every ion is surrounded by six" cannot be
+    // read off a packed render at all. The reveal ramps every site radius to this
+    // fraction while the peers fade, so the state opens in the packed home pose
+    // (Rule 32d, continuous with the growth state before it) and the opening-up
+    // IS the beat (Rule 32a, cause first). It is a UNIFORM factor, so every
+    // radius RATIO is preserved and the linear-in-pm reading survives intact —
+    // this is a render convention, not a Rule-29 emphasis knob.
+    var BS_COORD_RADIUS_SCALE = 0.35;
+    // Camera auto-fit. The renderer camera is PerspectiveCamera(60, ...), so the
+    // half-height visible at distance d is d*tan(30 deg) = 0.5774*d. Fitting an
+    // extent e therefore needs d >= e/0.5774 = 1.732*e; 1.90 is that with margin.
+    var BS_FIT_MARGIN = 1.90;
+    // The five rock-salt pairs ionic_bonding's explore picker offers — ONE cell
+    // covers all of them, which is why that explore state needs no second cell
+    // type. a_pm is the conventional cubic edge (X-ray values).
+    var BS_ION_PAIRS = {
+        NaCl: { cation: "Na+", anion: "Cl-", a_pm: 564.0 },
+        KCl:  { cation: "K+",  anion: "Cl-", a_pm: 629.3 },
+        LiF:  { cation: "Li+", anion: "F-",  a_pm: 402.6 },
+        MgO:  { cation: "Mg2+", anion: "O2-", a_pm: 421.2 },
+        CaO:  { cation: "Ca2+", anion: "O2-", a_pm: 481.1 }
+    };
 
     // Per-species radius on a LINEAR-IN-PICOMETRE scale (doc row K / §reuse item 4).
     // MG_ELEMENTS.radius is legibility-COMPRESSED (H 0.30 vs Cl 0.52 = 1.7x where
@@ -48467,8 +51112,64 @@ export const FIELD_3D_RENDERER_CODE = `
         dipole_sum: { az: 35, el: 47, dist: 7.0 },
         explore:    { az: 35, el: 47, dist: 7.0 },
         assemble:   { az: 35, el: 47, dist: 7.0 },
-        network:    { az: 35, el: 24, dist: 13.0 },
-        compare:    { az: 35, el: 24, dist: 10.0 }
+        // E2 re-solved. A linear hydrogen bond is O-H 2.0 units + H...O 3.75
+        // units, so two linked waters span ~7.8 units and a 27-unit box spans
+        // ~11.5: the E1 placeholder distances framed neither. approach_link
+        // holds the pair side-on (el 16) so the D-H...A angle is READABLE, which
+        // is half of what S2-S4 teach.
+        approach_link: { az: 35, el: 16, dist: 11.0 },
+        network:    { az: 35, el: 22, dist: 17.0 },
+        compare:    { az: 35, el: 20, dist: 12.0 },
+        // ── E3a solved cameras (D-4). fit:true adds the auto-fit above, so a
+        //    state that authors a bigger block than the canonical 3x3x3 cannot
+        //    silently overflow the frame.
+        //
+        //    coordination is THE countability state of this dispatch: ionic S5
+        //    reads "Six neighbours, every ion" against the highlighted ion PLUS
+        //    its six neighbours — that 7-element set is what the caption counts,
+        //    which is the E1 lesson verbatim (solving over the ligands alone
+        //    certified a camera on which an element swung to 0.064 NDC of the
+        //    central atom).
+        //
+        //    TWO measured findings changed this solve, and both are worth
+        //    writing down because each contradicts the obvious answer.
+        //
+        //    (1) CENTRE SEPARATION IS THE WRONG METRIC FOR A LATTICE. On a
+        //    close-packed crystal the spheres TOUCH by construction, so their
+        //    projections always overlap and a centre-separation floor certifies
+        //    a view in which the focal ion is completely enclosed by its own six
+        //    neighbours — which is what a real rock-salt crystal does, and it is
+        //    the scar (a counted element hidden behind another) not its absence.
+        //    The metric is therefore OCCLUSION: no counted element's projected
+        //    centre may fall inside a NEARER counted sphere's projected disc.
+        //    Under that metric a space-filling block is unsolvable at ANY camera
+        //    (best margin -0.21), which is why lattice.radius_scale exists and
+        //    why the reveal ramps to it: the block opens from its packed home
+        //    pose into ball-and-stick as the peers fade, one beat, cause first.
+        //
+        //    (2) el 45 IS THE BEST ELEVATION, AND THE ORTHOGRAPHIC METRIC WOULD
+        //    HAVE REJECTED IT. Orthographically el 45 is degenerate: a ring
+        //    neighbour crossing the screen centre-line sits sin(el) below the
+        //    focal ion and the -y neighbour cos(el) below it, and those are EQUAL
+        //    at 45, so an orthographic solver scores it ZERO and picks el 26.6.
+        //    Under the shipped PERSPECTIVE projection the two sit at different
+        //    depths and separate cleanly — el 45 measures 0.334 min pairwise NDC
+        //    against 0.172 at el 20, and el 26 measures 0.076, i.e. a FAIL. The
+        //    OPEN scar orthographic_separation_metric_underpredicts_perspective_
+        //    overlap fires here in the OPPOSITE direction: the cheap metric does
+        //    not merely pass a bad camera, it rejects the best one.
+        //    NO fit here, deliberately: the doc's state teaches from INSIDE a
+        //    block, so the wall is allowed to bleed past the frame edge while the
+        //    counted set stays large and separable.
+        transfer:      { az: 90, el: 12, dist: 15.0 },
+        lattice_grow:  { az: 35, el: 26, dist: 20.0, fit: true },
+        //    dist 16, not 14: the runtime smoke showed the two counted neighbours
+        //    nearest the camera CLIPPED by the viewport edge at 14 — a counted
+        //    element half off-screen is the same defect as one hidden behind
+        //    another, and only frames caught it. 16 is the joint solution:
+        //    occlusion margin +0.057 NDC, counted-set box 0.80 (floor 0.85),
+        //    min pairwise centre separation 0.250.
+        coordination:  { az: 35, el: 45, dist: 16.0 }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
 
@@ -48591,6 +51292,379 @@ export const FIELD_3D_RENDERER_CODE = `
             amp * (0.62 * Math.sin(2.30 * tSec + 2.9 * p) + 0.38 * Math.sin(3.30 * tSec + 1.3 * p))
         ];
     }
+    // ── E2: THE DERIVED LINK CRITERION (D-2) ─────────────────────────────────
+    //   There is NO element whitelist. A link needs, at BOTH ends, a charge the
+    //   scene already derived from electronegativity (bscCharges), plus a
+    //   distance in range and a D-H...A angle inside the window. N, O and F pass
+    //   because their derived delta is large; S does not. That is the whole of
+    //   hydrogen_bonding S4 — a number driving pixels, not a script.
+    function bscLinkCfg(bs) {
+        var L = (bs && bs.links) || {};
+        var dm = L.delta_min || {};
+        return {
+            enabled: (L.enabled != null) ? !!L.enabled : BS_LINK_DEFAULTS.enabled,
+            donor: (dm.donor != null) ? dm.donor : BS_LINK_DEFAULTS.delta_min.donor,
+            acceptor: (dm.acceptor != null) ? dm.acceptor : BS_LINK_DEFAULTS.delta_min.acceptor,
+            form_pm: (L.form_pm != null) ? L.form_pm : BS_LINK_DEFAULTS.form_pm,
+            break_pm: (L.break_pm != null) ? L.break_pm : BS_LINK_DEFAULTS.break_pm,
+            min_pm: (L.min_pm != null) ? L.min_pm : BS_LINK_DEFAULTS.min_pm,
+            window: (L.angle_window_deg != null) ? L.angle_window_deg : BS_LINK_DEFAULTS.angle_window_deg,
+            show_count: !!L.show_count,
+            pm_per_unit: (L.pm_per_unit != null) ? L.pm_per_unit : BS_PM_PER_UNIT
+        };
+    }
+    // The predicate itself: pure, and the ONLY place a link is decided. useBreak
+    // picks the outer (hold) distance instead of the inner (form) one — that IS
+    // the hysteresis: form_pm < break_pm, so a pair sitting on the boundary keeps
+    // whatever it already had and cannot flicker frame to frame.
+    function bscLinkOk(qDonor, qAcceptor, distPm, angDeg, L, useBreak) {
+        if (!(qDonor >= L.donor)) return false;
+        if (!(-qAcceptor >= L.acceptor)) return false;
+        if (!(distPm >= L.min_pm)) return false;
+        if (!(distPm <= (useBreak ? L.break_pm : L.form_pm))) return false;
+        return angDeg >= (180 - L.window);
+    }
+    // Replay the criterion over the bounded lookback. samples[] is OLDEST-FIRST,
+    // each { d, a } in pm / degrees; a null entry is a time before the state
+    // started and is skipped. This is the whole of the no-accumulator hysteresis:
+    // the latch is recomputed from closed-form positions every frame instead of
+    // being carried, so a SET_TIME_FREEZE rewind reproduces the link SET exactly.
+    function bscLinkLatch(qD, qA, samples, L) {
+        var held = false, i;
+        for (i = 0; i < samples.length; i++) {
+            var s = samples[i];
+            if (!s) continue;
+            held = bscLinkOk(qD, qA, s.d, s.a, L, held);
+        }
+        return held;
+    }
+    // Which atoms of a species can DONATE (a hydrogen carrying delta+) and which
+    // can ACCEPT (any atom carrying delta-). Derived from bscCharges + the
+    // element list, so a new species never needs a table entry. partner is the
+    // slot the donor hydrogen is bonded to (the D of D-H...A).
+    function bscLinkSites(molKey) {
+        var mol = MG_MOLECULES[molKey];
+        if (!mol) return { donors: [], acceptors: [] };
+        var q = bscCharges(molKey), ligs = bscLigands(mol);
+        var donors = [], acceptors = [], i;
+        for (i = 0; i < q.length; i++) {
+            var el = (i === 0) ? mol.central : (ligs[i - 1] || mol.ligand);
+            if (el === "H" && q[i] > 0) donors.push({ slot: i, q: q[i], partner: (i === 0 ? 1 : 0) });
+            if (q[i] < 0) acceptors.push({ slot: i, q: q[i] });
+        }
+        return { donors: donors, acceptors: acceptors };
+    }
+    // Deterministic fallback placement for a pool unit the state did not author
+    // (the count slider driven past units.length). A shell-ordered cubic packing
+    // keyed on the INDEX, so growing the count adds units on the OUTSIDE and
+    // never moves the ones already on screen — D-1's index-derived rule applied
+    // to position instead of phase.
+    function bscUnitSlot(idx, spacing) {
+        if (idx <= 0) return [0, 0, 0];
+        var n = 1;
+        while (n * n * n <= idx) n += 2;
+        var h = (n - 1) / 2, prev = (n - 2) * (n - 2) * (n - 2);
+        if (prev < 0) prev = 0;
+        var k = idx - prev, c = 0, x, y, z;
+        for (z = -h; z <= h; z++) {
+            for (y = -h; y <= h; y++) {
+                for (x = -h; x <= h; x++) {
+                    if (Math.abs(x) !== h && Math.abs(y) !== h && Math.abs(z) !== h) continue;
+                    if (c === k) return [x * spacing, y * spacing, z * spacing];
+                    c++;
+                }
+            }
+        }
+        return [0, 0, 0];
+    }
+    // ── E3a: THE LATTICE PLACEMENT LAYER ─────────────────────────────────────
+    //   Four cells, ONE generator: every cell is a FILTER over an integer grid
+    //   plus a cartesian map, so each site carries its exact INTEGER key and its
+    //   sublattice index all the way to the frame pass and onto
+    //   window.PM_bscSites.
+    //
+    //   That integer key is deliberate and it is what keeps D-7 OPEN for E3b.
+    //   like_contacts is defined as like-charge nearest-neighbour contacts
+    //   CREATED BY THE SHIFT and left UNSCREENED — a delta against the unshifted
+    //   lattice, not a raw count (a raw count reads 8 -> 8 on a cation-only bcc
+    //   metal and would teach that a metal has no like-charge neighbours, which
+    //   is false). A delta needs an exact identity for "the same contact before
+    //   and after", and only an integer key gives that; a float position compare
+    //   would not survive the shift ramp. Sublattice + species + charge are all
+    //   exposed per site for the same reason.
+    //
+    //   ORDERING is bscUnitSlot's pattern generalised to a crystal basis: sites
+    //   sort by distance from the block centre, ties broken lexicographically on
+    //   the integer key. So the growth beat reveals shell by shell OUTWARD and a
+    //   site already on screen NEVER moves — which is exactly ionic S4's
+    //   misconception kill ("the pair does not stay a pair"): the pair holds
+    //   still and gets surrounded. Presence is D-1 applied to existence: site k
+    //   is on screen at time t iff k < shown(t), and shown(t) is a closed-form
+    //   ramp of state-local t. Nothing is remembered; a SET_TIME_FREEZE rewind
+    //   reproduces the same site SET by construction.
+    //
+    //   n = GRID STEPS per axis, forced ODD so the block has a true centre site
+    //   (a coordination state needs one). For rock_salt / fcc / bcc the grid step
+    //   is a/2, so n = [3,3,3] spans one conventional cube; the site count then
+    //   follows from the cell's own filter (rock_salt 27, fcc 14, bcc 9). For hcp
+    //   n = [a1 count, a2 count, layers].
+    function bscOddN(v) {
+        var n = Math.max(1, Math.round(v || 3));
+        return (n % 2 === 0) ? n + 1 : n;
+    }
+    function bscCellSites(cell, nx, ny, nz) {
+        var out = [], i, j, k;
+        var hx = (bscOddN(nx) - 1) / 2, hy = (bscOddN(ny) - 1) / 2, hz = (bscOddN(nz) - 1) / 2;
+        var m2 = function (v) { return ((v % 2) + 2) % 2; };
+        if (cell === "hcp") {
+            // stacking runs along +y; in-plane a1 = (1,0,0), a2 = (1/2,0,sqrt3/2);
+            // the B layer sits at (a1 + a2)/3 and the ideal spacing c/2 puts every
+            // one of the twelve neighbours at exactly one lattice constant.
+            var s3 = Math.sqrt(3);
+            for (j = -hz; j <= hz; j++) {
+                var od = m2(j);
+                for (i = -hx; i <= hx; i++) {
+                    for (k = -hy; k <= hy; k++) {
+                        out.push({
+                            key: [i, k, j], sub: 0,
+                            at: [i + 0.5 * k + (od ? 0.5 : 0),
+                                 j * BS_HCP_C_OVER_A * 0.5,
+                                 k * (s3 / 2) + (od ? s3 / 6 : 0)]
+                        });
+                    }
+                }
+            }
+        } else {
+            for (i = -hx; i <= hx; i++) for (j = -hy; j <= hy; j++) for (k = -hz; k <= hz; k++) {
+                var sub = 0;
+                if (cell === "fcc") {
+                    if (m2(i + j + k) !== 0) continue;          // face-centred cubic
+                } else if (cell === "bcc") {
+                    var ae = (m2(i) === 0 && m2(j) === 0 && m2(k) === 0);
+                    var ao = (m2(i) === 1 && m2(j) === 1 && m2(k) === 1);
+                    if (!ae && !ao) continue;                   // body-centred cubic
+                } else {
+                    sub = m2(i + j + k);                        // rock salt: 2 sublattices
+                }
+                out.push({ key: [i, j, k], sub: sub, at: [i * 0.5, j * 0.5, k * 0.5] });
+            }
+        }
+        out.sort(function (A, B) {
+            var ra = A.at[0] * A.at[0] + A.at[1] * A.at[1] + A.at[2] * A.at[2];
+            var rb = B.at[0] * B.at[0] + B.at[1] * B.at[1] + B.at[2] * B.at[2];
+            if (Math.abs(ra - rb) > 1e-9) return ra - rb;
+            if (A.key[0] !== B.key[0]) return A.key[0] - B.key[0];
+            if (A.key[1] !== B.key[1]) return A.key[1] - B.key[1];
+            return A.key[2] - B.key[2];
+        });
+        return out;
+    }
+    // Coordination number, DERIVED from the generator above and never asserted as
+    // a constant: build a block big enough that the centre site has its whole
+    // first shell, then count the sites at the minimum distance. rock_salt 6,
+    // fcc 12, bcc 8, hcp 12 all fall out; the gate asserts those four numbers
+    // against THIS function, so a generator error cannot hide behind a table.
+    var BS_COORD_CACHE = {};
+    function bscCoordination(cell) {
+        if (BS_COORD_CACHE[cell] != null) return BS_COORD_CACHE[cell];
+        var S = bscCellSites(cell, 5, 5, 5), c = S[0], best = 1e9, i, n = 0;
+        for (i = 1; i < S.length; i++) {
+            var d = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (d < best - 1e-9) best = d;
+        }
+        for (i = 1; i < S.length; i++) {
+            var d2 = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (Math.abs(d2 - best) < 1e-6) n++;
+        }
+        BS_COORD_CACHE[cell] = n;
+        return n;
+    }
+    // Formal charge parsed from the species STRING, so a new ion never needs a
+    // table row: Na+ -> +1, Mg2+ -> +2, O2- -> -2, Cl- -> -1, a neutral atom 0.
+    // Charge conservation across the transfer beat is asserted on this.
+    function bscSpeciesCharge(sp) {
+        var s = String(sp || ""), last = s.charAt(s.length - 1);
+        if (last !== "+" && last !== "-") return 0;
+        var mag = 1, d = s.charAt(s.length - 2);
+        if (d >= "0" && d <= "9") mag = parseInt(d, 10);
+        return (last === "+") ? mag : -mag;
+    }
+    // Na+ -> Na(sup +), Mg2+ -> Mg(sup 2+), O2- -> O(sup 2-). Rule 34c: the
+    // charge NEVER renders as an ASCII trailing plus.
+    var BS_SUPDIG = ["\\u2070", "\\u00B9", "\\u00B2", "\\u00B3", "\\u2074",
+        "\\u2075", "\\u2076", "\\u2077", "\\u2078", "\\u2079"];
+    function bscSpeciesLabel(sp) {
+        var q = bscSpeciesCharge(sp);
+        if (q === 0) return String(sp || "");
+        var el = BS_ION_PARENT[sp] || String(sp).replace(/[0-9+-]+$/, "");
+        var mag = Math.abs(q);
+        return el + (mag > 1 ? BS_SUPDIG[mag] : "") + (q > 0 ? "\\u207A" : "\\u207B");
+    }
+    // The LINEAR-IN-PM radius (doc row K / §reuse item 4). Ions and lattice sites
+    // read this; molecule atoms stay on the legibility-compressed MG_ELEMENTS
+    // scale, because in ionic S2 the size change IS the lesson and it has to read
+    // as proportional (Na 186 -> 102 pm is a 45% shrink, and the compressed
+    // scale would flatten it).
+    function bscRadiusPm(sp) {
+        if (BS_RADIUS_PM[sp] != null) return BS_RADIUS_PM[sp];
+        var par = BS_ION_PARENT[sp];
+        if (par && BS_RADIUS_PM[par] != null) return BS_RADIUS_PM[par];
+        return 100;
+    }
+    // Derived inverse of BS_ION_PARENT (each parent has exactly one ion), so the
+    // transfer beat needs no second table: Na -> Na+, Cl -> Cl-.
+    var BS_ION_OF = (function () {
+        var o = {}, k;
+        for (k in BS_ION_PARENT) if (BS_ION_PARENT.hasOwnProperty(k)) o[BS_ION_PARENT[k]] = k;
+        return o;
+    })();
+    // A species the SITE layer draws: a bare atom or an ion, i.e. anything with a
+    // linear-pm radius that is not a molecule. Single-atom units therefore need
+    // no new config key — units[].species already accepts atoms and ions in the
+    // frozen enum, and E1 simply had nothing to draw them with.
+    function bscIsSite(sp) {
+        return !!sp && !MG_MOLECULES[sp] && (BS_RADIUS_PM[sp] != null || BS_ION_PARENT[sp] != null);
+    }
+    // Opacity on a pooled mesh WITHOUT a material recompile every frame: three.js
+    // needs needsUpdate only when the transparent FLAG flips, so the flag is
+    // compared before it is written. Peer fade would otherwise recompile ~120
+    // materials a frame.
+    function bscSetOpacity(mesh, op) {
+        if (!mesh || !mesh.material) return;
+        var m = mesh.material, tr = op < 0.999;
+        if (m.transparent !== tr) { m.transparent = tr; m.needsUpdate = true; }
+        m.opacity = op;
+    }
+    // THE site list for a state, at FULL growth — pure, and the single source of
+    // truth for the mesh pool size, the camera fit and the frame pass. Sublattice
+    // 0 takes units[0].species and sublattice 1 units[1].species, so a lattice
+    // needs NO new config key: the pair the transfer beat just made becomes the
+    // two sublattices of the block that grows out of it. pairOverride is the
+    // explore picker (ion_pair), which swaps BOTH species AND the cell edge
+    // together — a picker that changed the species and left a stale 564 pm edge
+    // would render LiF ions rattling inside a NaCl cage.
+    //
+    // ONE SCALE for radii and spacings (links.pm_per_unit, 48 pm/unit by
+    // default). That is not a convenience: rock salt at a = 564 pm puts nearest
+    // neighbours 282 pm apart, and r(Na+) + r(Cl-) = 102 + 181 = 283 pm, so on a
+    // shared linear scale the ions TOUCH — which is the whole of ionic S3's
+    // "attraction stops at 282". Two scales and that reading is gone.
+    function bscSiteList(bs, pairOverride) {
+        var out = [], i;
+        var p2u = bscLinkCfg(bs).pm_per_unit;
+        var units = (bs && bs.units) || [];
+        var lat = (bs && bs.lattice) || null;
+        if (bs && bs.placement === "lattice" && lat) {
+            var cell = (BS_CELLS.indexOf(lat.cell) >= 0) ? lat.cell : "rock_salt";
+            var spA = pairOverride ? pairOverride.cation
+                : ((units[0] && units[0].species) || "Na+");
+            var spB = pairOverride ? pairOverride.anion
+                : ((units[1] && units[1].species) || spA);
+            var aPm = pairOverride ? pairOverride.a_pm : ((lat.a_pm != null) ? lat.a_pm : 564);
+            var aU = aPm / p2u;
+            var n = lat.n || [3, 3, 3];
+            var S = bscCellSites(cell, n[0], n[1], n[2]);
+            for (i = 0; i < S.length && out.length < BS_MAX_SITES; i++) {
+                var sp = (S[i].sub === 1) ? spB : spA;
+                out.push({
+                    key: S[i].key, sub: S[i].sub, cell: cell, a_pm: aPm, species: sp,
+                    q: bscSpeciesCharge(sp), rPm: bscRadiusPm(sp), unit: null,
+                    at: [S[i].at[0] * aU, S[i].at[1] * aU, S[i].at[2] * aU]
+                });
+            }
+            return out;
+        }
+        // free placement: any unit whose species is an ATOM or an ION (rather
+        // than a molecule) is a site. mode transfer is exactly this case.
+        for (i = 0; i < units.length && out.length < BS_MAX_SITES; i++) {
+            var u = units[i];
+            if (!u || !bscIsSite(u.species)) continue;
+            out.push({
+                key: [i, 0, 0], sub: 0, cell: null, a_pm: 0, species: u.species,
+                q: bscSpeciesCharge(u.species), rPm: bscRadiusPm(u.species),
+                unit: u.id || ("u" + i), uidx: i,
+                at: u.at ? [u.at[0], u.at[1], u.at[2]] : [0, 0, 0]
+            });
+        }
+        return out;
+    }
+    // Growth: how many of the shell-ordered sites exist at state-local ms. A
+    // ROUNDED RAMP, so presence is a closed-form function of t and a rewind
+    // reproduces the same block. A latch remembering which sites already exist is
+    // exactly the accumulator D-1 forbids.
+    function bscGrowShown(bs, ms, total) {
+        var L = (bs && bs.lattice) || {};
+        if (L.grow_at_ms == null) return total;
+        var from = (L.grow_from != null) ? L.grow_from : Math.min(2, total);
+        return Math.round(mgRamp(ms, L.grow_at_ms,
+            (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000, from, total));
+    }
+    // Transfer progress: a closed-form ramp of state-local ms (D-1).
+    function bscTransferProg(bs, ms) {
+        var T = (bs && bs.transfer) || {};
+        if (T.at_ms == null) return 0;
+        return mgRamp(ms, T.at_ms, (T.duration_ms != null) ? T.duration_ms : 2000, 0, 1);
+    }
+    // The per-site state at transfer progress p: species, FORMAL CHARGE and
+    // radius. The ONE place the ionisation arithmetic lives, so the gate asserts
+    // the shipped path rather than a copy of it. Charge ramps WITH the radius, so
+    // Sigma q = 0 at every instant of the beat and not only at its endpoints.
+    // Radius is linear in PICOMETRES — Na 186 -> 102 pm has to read as a real
+    // 45% shrink, which the compressed MG_ELEMENTS scale would flatten.
+    function bscTransferSite(SI, p) {
+        if (!(p > 0)) return { species: SI.species, q: SI.q, r_pm: SI.rPm };
+        var ionSp = BS_ION_OF[SI.species] || SI.species;
+        return {
+            species: (p >= 0.5) ? ionSp : SI.species,
+            q: SI.q + (bscSpeciesCharge(ionSp) - SI.q) * p,
+            r_pm: SI.rPm + (bscRadiusPm(ionSp) - SI.rPm) * p
+        };
+    }
+    // Half-extent of the site block in scene units, radii included — what the
+    // camera auto-fit measures against.
+    function bscSiteExtent(bs, pairOverride) {
+        var S = bscSiteList(bs, pairOverride), p2u = bscLinkCfg(bs).pm_per_unit, e = 0, i;
+        for (i = 0; i < S.length; i++) {
+            var d = bscMag(S[i].at) + S[i].rPm / p2u;
+            if (d > e) e = d;
+        }
+        return e;
+    }
+
+    // Authored labels arrive as plain ASCII (H2S) and are COMPOSED to real
+    // Unicode subscripts here (Rule 34c). Same discipline as the fleet's
+    // styled-subscript routines, except Unicode HAS all ten digit subscripts, so
+    // one map does it and no reduced-size run is needed.
+    var BS_SUBDIG = ["\\u2080", "\\u2081", "\\u2082", "\\u2083", "\\u2084",
+        "\\u2085", "\\u2086", "\\u2087", "\\u2088", "\\u2089"];
+    function bscSub(txt) {
+        var s = String(txt == null ? "" : txt), out = "", i;
+        for (i = 0; i < s.length; i++) {
+            var ch = s.charAt(i), code = s.charCodeAt(i);
+            var p = (i > 0) ? s.charAt(i - 1) : "";
+            var alpha = (p >= "A" && p <= "Z") || (p >= "a" && p <= "z") || p === ")";
+            out += (code >= 48 && code <= 57 && alpha) ? BS_SUBDIG[code - 48] : ch;
+        }
+        return out;
+    }
+    // Least-squares line through the extrapolate_from family (row O). The
+    // extrapolation is NOT decoration — the gap between this line and the anomaly
+    // point IS hydrogen_bonding S7's whole argument, so it is FITTED from the
+    // authored family and never authored itself.
+    function bscTrendFit(pts) {
+        var n = pts.length, i, sx = 0, sy = 0;
+        if (n < 2) return null;
+        for (i = 0; i < n; i++) { sx += pts[i].x; sy += pts[i].y; }
+        var mx = sx / n, my = sy / n, sxy = 0, sxx = 0;
+        for (i = 0; i < n; i++) {
+            sxy += (pts[i].x - mx) * (pts[i].y - my);
+            sxx += (pts[i].x - mx) * (pts[i].x - mx);
+        }
+        if (Math.abs(sxx) < 1e-12) return null;
+        var m = sxy / sxx;
+        return { m: m, b: my - m * mx };
+    }
+
     // Ring-gated controls (doc §contract): a member is either a bare id or
     // { id, min_ring }. The renderer shows the row when the state authors the id;
     // min_ring is recorded for the Rule-38h preset builder (hiding a ring must not
@@ -48608,9 +51682,20 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
         return false;
     }
+    // Memoised by id. E1's linear scan was fine for one unit; E2's network state
+    // is 30 units x 7 atoms x 4 handles PLUS 360 link dashes per frame against a
+    // ~1500-object sceneObjects, i.e. millions of string compares a frame. The
+    // map is filled lazily and the fallback scan is unchanged, so behaviour is
+    // identical — only the cost moves.
     function bscFindById(id) {
+        if (!window.PM_bscIdx) window.PM_bscIdx = {};
+        var hit = window.PM_bscIdx[id];
+        if (hit) return hit;
         for (var i = 0; i < sceneObjects.length; i++) {
-            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) {
+                window.PM_bscIdx[id] = sceneObjects[i];
+                return sceneObjects[i];
+            }
         }
         return null;
     }
@@ -48630,19 +51715,43 @@ export const FIELD_3D_RENDERER_CODE = `
         var elecColor = CO.electron || "#B39DDB";
         var i, u;
 
+        window.PM_bscIdx = {};
+
         // Pool sizing is DERIVED from the states this concept actually authors, so
         // a one-unit concept (bond_polarity) does not pay for hydrogen_bonding's
         // thirty molecules. Capped at BS_MAX_UNITS.
+        // DECIDED IN E2 (the dispatch asks which): the pool is sized from the
+        // largest authored units.length — hydrogen_bonding S5 authors 30 waters
+        // and gets a 30-unit pool with no extra key. count_max is the EXPLICIT
+        // override, for the one case units.length cannot express: an explore
+        // state whose count slider should run past its own authored opening
+        // scene. Both are honoured, units.length is the norm.
         var need = 1, sKey;
+        // E3a: the SITE pool is sized the same way, from the states that actually
+        // author a lattice (or single-atom units) — so bond_polarity and
+        // hydrogen_bonding, which author neither, pay ZERO site meshes. The
+        // explore picker can swap the ion pair, and LiF's smaller edge never adds
+        // sites, but the pool is measured across every pair anyway so a future
+        // pair with a different cell cannot silently truncate the block.
+        var needSites = 0;
         for (sKey in (config.states || {})) {
             var sb = (config.states[sKey] || {}).bonding_scene;
             if (!sb) continue;
             if (sb.units && sb.units.length > need) need = sb.units.length;
-            var cc = sb.count_max || (sb.controls ? 0 : 0);
-            if (cc > need) need = cc;
+            if (sb.count_max > need) need = sb.count_max;
+            var nsp = bscSiteList(sb, null).length;
+            if (nsp > needSites) needSites = nsp;
+            var pk;
+            for (pk in BS_ION_PAIRS) {
+                if (!BS_ION_PAIRS.hasOwnProperty(pk)) continue;
+                var np = bscSiteList(sb, BS_ION_PAIRS[pk]).length;
+                if (np > needSites) needSites = np;
+            }
         }
         var nUnits = Math.min(BS_MAX_UNITS, Math.max(1, need));
         window.PM_bscUnitPool = nUnits;
+        var nSites = Math.min(BS_MAX_SITES, needSites);
+        window.PM_bscSitePool = nSites;
 
         var atomGeo = new THREE.SphereGeometry(1, 24, 24);
         var bondGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 14);
@@ -48763,6 +51872,80 @@ export const FIELD_3D_RENDERER_CODE = `
             addToScene(sd);
         }
 
+        // ── E2 row E: the inter-unit LINK pool. The glow key bsc_link existed in
+        //    E1 with no meshes behind it (engine_bug_queue
+        //    field3d_scenario_declares_bead_element_but_never_builds_the_meshes:
+        //    presence is not correctness), so these are the meshes that key now
+        //    addresses. A link is drawn as BS_LINK_DASHES short cylinders along
+        //    the H...A axis — dashed, because it is NOT a bond and must not read
+        //    like one beside the solid intra-unit sticks (that contrast is the
+        //    misconception kill in hydrogen_bonding S3/S6).
+        var linkColor = CO.link || "#B2EBF2";
+        var dashGeo = new THREE.CylinderGeometry(0.055, 0.055, 1, 8);
+        dashGeo.translate(0, 0.5, 0);
+        for (u = 0; u < BS_MAX_LINKS; u++) {
+            for (i = 0; i < BS_LINK_DASHES; i++) {
+                var dm = new THREE.Mesh(dashGeo.clone(), new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(linkColor), transparent: true, opacity: 0.92
+                }));
+                dm.userData = { elementType: "bsc_link", id: "bsc_link" + u + "_d" + i, link: u, slot: i };
+                dm.visible = false;
+                addToScene(dm);
+            }
+        }
+
+        // ── E3a: THE SITE POOL (lattice sites + single-atom ion/atom units).
+        //    A site is ONE sphere plus its own label, drawn on the linear-pm
+        //    radius scale. Kept separate from the unit pool on purpose: a unit
+        //    costs BS_MAX_ATOMS spheres + sticks + two labels each, so putting a
+        //    125-site block through it would build ~875 meshes for a scene that
+        //    needs 125. The glow key lattice (declared in BS_GLOW_ELS since E1)
+        //    finally has meshes behind it — presence is not correctness
+        //    (field3d_scenario_declares_bead_element_but_never_builds_the_meshes),
+        //    which is the same defect E2 had to fix for bsc_link.
+        for (u = 0; u < nSites; u++) {
+            var st = new THREE.Mesh(atomGeo.clone(), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#90A4AE"),
+                emissiveIntensity: 0.30, shininess: 70
+            }));
+            st.userData = { elementType: "bsc_lattice", id: "bsc_site" + u, site: u };
+            st.visible = false;
+            addToScene(st);
+            // D-6: this label's text changes (Na -> Na(sup +) across the transfer
+            // beat), so pmCreateAutoLabel is mandatory — createLabelSprite
+            // measures its canvas once from the seed string and clips the wider
+            // one. Only BS_MAX_SITE_LABELS of these are ever visible at once.
+            var sl = pmCreateAutoLabel("Na", textColor, 0.44);
+            sl.userData = { elementType: "bsc_lattice", id: "bsc_site" + u + "_lab", site: u };
+            sl.visible = false;
+            addToScene(sl);
+        }
+        // The coordination rods: the counted set of ionic S5 is the highlighted
+        // ion PLUS its six neighbours, and a rod per neighbour is a countable
+        // element that does NOT depend on telling two identical spheres apart —
+        // the fused-silhouette scar has no purchase on a stick.
+        var nbColor = CO.neighbour || "#FFD54F";
+        for (u = 0; u < BS_MAX_NEIGHBOURS; u++) {
+            var nb = new THREE.Mesh(bondGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(nbColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            nb.renderOrder = 995;
+            nb.userData = { elementType: "bsc_neighbour", id: "bsc_nb" + u, slot: u };
+            nb.visible = false;
+            addToScene(nb);
+        }
+        // The transferred electron (ionic S2). One dot, on the existing
+        // bsc_electron glow key — no new key, the enum is frozen.
+        var te = new THREE.Mesh(new THREE.SphereGeometry(0.30, 14, 14), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(elecColor), transparent: true, opacity: 0.98,
+            depthTest: false, depthWrite: false
+        }));
+        te.renderOrder = 998;
+        te.userData = { elementType: "bsc_electron", id: "bsc_transfer_e" };
+        te.visible = false;
+        addToScene(te);
+
         // DOM surfaces. top:52px clears the review-chrome Full-screen button and
         // the #simPenBar glass buttons at BOTH edges (Rule 34d; engine_bug_queue
         // field3d_sliders_panel_top12_vs_fsbtn_top10). Rule 39f: inline
@@ -48775,6 +51958,19 @@ export const FIELD_3D_RENDERER_CODE = `
         var ff = document.createElement("div"); ff.id = "bsc_formula";
         ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
         document.body.appendChild(ff);
+
+        // ── E2 row O: the TREND surface. A value-only HUD can state four numbers;
+        //    it cannot show that water misses its own family's line by ~190 K,
+        //    and that gap is hydrogen_bonding S7's entire argument. Bottom-LEFT:
+        //    the HUD owns top-right, the sliders bottom-right, and the formula
+        //    surface is re-anchored to the top-left whenever this panel is up
+        //    (Rule 34d — mid-left at 44% would overlap it on a short viewport).
+        //    Inline position:fixed = Rule 39f auto-discovery, so the teacher
+        //    toggle comes free.
+        var tc = document.createElement("canvas"); tc.id = "bsc_trend";
+        tc.width = 700; tc.height = 460;
+        tc.style.cssText = "position:fixed;bottom:12px;left:12px;width:350px;height:230px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(tc);
 
         // Per-state contextual control rows (Rule 31) — ALL thirteen ids are built
         // ONCE here so E2/E3 never have to touch this panel, each row keeping the
@@ -48888,6 +52084,13 @@ export const FIELD_3D_RENDERER_CODE = `
         var th = bs.thermal || {};
         window.PM_bscTemp = (th.T_K != null) ? th.T_K : BS_T0_K;
         window.PM_bscCount = Math.max(1, units.length || 1);
+        // A scripted beat and the slider that shares its quantity must agree at
+        // state entry (FIXED scar scripted_change_desyncs_the_dom_control_that
+        // _shares_it) — hydrogen_bonding S3 pulls the pair apart on a script AND
+        // exposes the separation slider, so the widget opens at the beat's OWN
+        // starting value, not at the panel default.
+        window.PM_bscSep = (bs.approach_from != null) ? bs.approach_from
+            : ((bs.separation != null) ? bs.separation : 3.0);
         var molNow = MG_MOLECULES[window.PM_bscMol];
         window.PM_bscAngle = (bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5);
 
@@ -48922,13 +52125,23 @@ export const FIELD_3D_RENDERER_CODE = `
         seedRng("spin", window.PM_bscSpin, function (v) { return Number(v).toFixed(2); });
         seedRng("temperature", window.PM_bscTemp, function (v) { return String(Math.round(v)); });
         seedRng("count", window.PM_bscCount, function (v) { return String(Math.round(v)); });
+        seedRng("separation", window.PM_bscSep, function (v) { return Number(v).toFixed(1); });
 
         var hud = document.getElementById("bsc_hud");
         if (hud) hud.style.display = bs.show_hud ? "block" : "none";
+        var tr = bs.trend || {};
+        var trOn = !!tr.show && !!(tr.points && tr.points.length);
+        var tcv = document.getElementById("bsc_trend");
+        if (tcv) tcv.style.display = trOn ? "block" : "none";
         var ff = document.getElementById("bsc_formula");
         if (ff) {
             if (bs.show_formula && bs.formula) { ff.innerHTML = bs.formula; ff.style.display = "block"; }
             else { ff.style.display = "none"; }
+            // Rule 34d: the trend panel owns the bottom-left, so the ONE formula
+            // surface moves to the top-left beside it rather than overlapping it
+            // on a short viewport (44% of 400px lands inside the panel).
+            if (trOn) { ff.style.top = "52px"; ff.style.transform = "none"; }
+            else { ff.style.top = "44%"; ff.style.transform = "translateY(-50%)"; }
         }
 
         // The SOLVED camera (D-4), derived from the STATE's own mode — never read
@@ -48938,7 +52151,26 @@ export const FIELD_3D_RENDERER_CODE = `
         if (bs.camera || !stateDef.camera_position) {
             var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
             var dd = cam.dist || 7;
+            // E3a auto-fit: a solved camera is solved for the CANONICAL block, and
+            // a state that authors a bigger one would otherwise overflow the frame
+            // silently. Derived from config, so it is still identical on the first
+            // frame and under a freeze pin.
+            if (!bs.camera && cam.fit) {
+                var ext = bscSiteExtent(bs, null);
+                if (ext > 0) dd = Math.max(dd, ext * BS_FIT_MARGIN);
+            }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
+        }
+        // Seed the ion-pair picker from the state's OWN sublattice species, so a
+        // scripted lattice and the widget that shares it agree at state entry
+        // (FIXED scar scripted_change_desyncs_the_dom_control_that_shares_it).
+        if (bs.placement === "lattice" && bs.units && bs.units[0]) {
+            var pkey;
+            for (pkey in BS_ION_PAIRS) {
+                if (!BS_ION_PAIRS.hasOwnProperty(pkey)) continue;
+                if (BS_ION_PAIRS[pkey].cation === bs.units[0].species) { window.PM_bscIonPair = pkey; break; }
+            }
+            seedSel("ion_pair", window.PM_bscIonPair);
         }
 
         // Hide every transient the frame updater owns, so a capture landing between
@@ -48957,6 +52189,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 var dl = bscFindById("bsc_u" + i + "_delta" + j); if (dl) dl.visible = false;
             }
         }
+        for (i = 0; i < BS_MAX_LINKS; i++) {
+            for (var k2 = 0; k2 < BS_LINK_DASHES; k2++) {
+                var ld = bscFindById("bsc_link" + i + "_d" + k2); if (ld) ld.visible = false;
+            }
+        }
+        for (i = 0; i < (window.PM_bscSitePool || 0); i++) {
+            var sm = bscFindById("bsc_site" + i); if (sm) sm.visible = false;
+            var smL = bscFindById("bsc_site" + i + "_lab"); if (smL) smL.visible = false;
+        }
+        for (i = 0; i < BS_MAX_NEIGHBOURS; i++) { var nbm = bscFindById("bsc_nb" + i); if (nbm) nbm.visible = false; }
+        var tem = bscFindById("bsc_transfer_e"); if (tem) tem.visible = false;
     }
 
     // The single per-frame pass. Every value below is a closed-form pure function
@@ -48979,6 +52222,16 @@ export const FIELD_3D_RENDERER_CODE = `
             : ((bs.units && bs.units[0] && bs.units[0].species) || bs.species || "HCl");
         if (!MG_MOLECULES[molKey]) molKey = "HCl";
         var mol = MG_MOLECULES[molKey];
+        // mode compare (hydrogen_bonding S7): the comparison species takes the
+        // scene at compare_at_ms — the swap IS the beat, and deriveStateMeta
+        // already pins compare_at_ms + 1500 as a frozen candidate, so no new cue
+        // key is introduced.
+        if (mode === "compare" && bs.compare_species != null && bs.compare_at_ms != null &&
+            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] &&
+            !window.PM_bscSpeciesDragged) {
+            molKey = bs.compare_species;
+            mol = MG_MOLECULES[molKey];
+        }
         var angleNow = (bscHasControl(ctrls, "angle") && window.PM_bscAngleDragged)
             ? window.PM_bscAngle : ((bs.angle_deg != null) ? bs.angle_deg : mol.angle);
         var T_K = (bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged)
@@ -49018,25 +52271,81 @@ export const FIELD_3D_RENDERER_CODE = `
         var jScale = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
         var showLabels = (bs.show_atom_labels !== false);
         var deltaBudget = BS_MAX_DELTA_LABELS;      // D-6
+        var atomLabelBudget = BS_MAX_ATOM_LABELS;   // D-6, the OTHER half
         var focalIdx = (bs.focal_unit != null) ? bs.focal_unit : 0;
+        // D-6 CHECKED at thirty units, not assumed: 30 waters are 90 element
+        // labels and 60 delta labels, and every label-collision scar on this
+        // surface fires at once. Both budgets are hard-capped AND both collapse
+        // to the leading (focal) units the moment the scene stops being a
+        // two-molecule close-up — every other unit then carries colour only.
+        var labelUnits = (bs.label_units != null) ? bs.label_units : (nUnits <= 3 ? nUnits : 1);
+        var deltaUnits = (bs.delta_units != null) ? bs.delta_units : (nUnits <= 3 ? nUnits : 1);
+
+        // ── E2: the closed-form position layer. sepAt/baseAt/orgAt/spinAng are
+        //    pure functions of state-local ms and NOTHING else, because the link
+        //    pass REPLAYS them at earlier times to resolve the hysteresis (D-1).
+        var linkCfg = bscLinkCfg(bs);
+        var unitSpacing = (bs.unit_spacing != null) ? bs.unit_spacing
+            : (BS_BOND_LEN + linkCfg.form_pm / linkCfg.pm_per_unit);
+        var sepDragged = bscHasControl(ctrls, "separation") && window.PM_bscSepDragged;
+        var sepAt = function (mms) {
+            if (sepDragged) return window.PM_bscSep;
+            var to = (bs.separation != null) ? bs.separation : 3.0;
+            if (bs.approach_at_ms == null || bs.approach_from == null) return to;
+            return mgRamp(mms, bs.approach_at_ms,
+                (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400,
+                bs.approach_from, to);
+        };
+        var baseAt = function (uu, mms) {
+            var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
+            // an authored separation_axis puts the leading PAIR on that axis and
+            // drives it from the (scripted or dragged) separation
+            if (bs.separation_axis && uu < 2) {
+                var sa = bscNorm(bs.separation_axis), sv = sepAt(mms) * (uu === 0 ? -0.5 : 0.5);
+                return [sa[0] * sv, sa[1] * sv, sa[2] * sv];
+            }
+            if (ud && ud.at) return [ud.at[0], ud.at[1], ud.at[2]];
+            return bscUnitSlot(uu, unitSpacing);     // count slider past units[]
+        };
+        var orgAt = function (uu, mms) {
+            var b = baseAt(uu, mms);
+            if (!(jScale > 0)) return b;
+            var jg = bscJiggle(uu, mms / 1000, T_K, jScale);
+            return [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
+        };
+        var spinAng = function (mms) {
+            return (spinRate > 0 && mms > spinAt) ? spinRate * (mms - spinAt) / 1000 : 0;
+        };
+        sepNow = sepAt(ms);
+        // A species PICKER (or the compare swap) must change the MESHES, not just
+        // the readout — engine_bug_queue field3d_explore_picker_updates_global_
+        // but_frame_reads_authored_state_value, and it is hydrogen_bonding S4's
+        // entire lesson ("swap O for S and no link forms"). Rule: every unit that
+        // authored the state's BASE species follows the live species; a unit that
+        // authored something else keeps its own (so a mixed scene stays mixed).
+        var baseSpecies = (bs.units && bs.units[focalIdx] && bs.units[focalIdx].species) ||
+            bs.species || null;
+        var uSpecOf = function (uu) {
+            var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
+            var sp = (ud && ud.species) ? ud.species : molKey;
+            if (sp === baseSpecies) sp = molKey;
+            return MG_MOLECULES[sp] ? sp : molKey;
+        };
 
         for (u = 0; u < pool; u++) {
-            var on = u < nUnits;
             var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
-            var uSpec = (udef && udef.species) ? udef.species : molKey;
+            // E3a: a unit whose species is an ATOM or an ION is drawn by the SITE
+            // layer below, not by the molecular pool — so the molecular meshes for
+            // it stay hidden rather than falling back to a stand-in molecule.
+            var on = u < nUnits && !(udef && bscIsSite(udef.species));
+            var uSpec = uSpecOf(u);
             var uMol = MG_MOLECULES[uSpec] || mol;
             var uLigs = bscLigands(uMol);
             var uFrame = on ? mgFrame(uSpec, (uSpec === molKey ? angleNow : null), null) : null;
             var rot = udef ? bscOrientRot(udef.orient) : null;
-            var base = (udef && udef.at) ? udef.at.slice(0) : [0, 0, 0];
-            if (udef && udef.at && sepNow != null && bs.separation_axis) {
-                var sa = bscNorm(bs.separation_axis);
-                base = [sa[0] * sepNow * (u === 0 ? -0.5 : 0.5), sa[1] * sepNow * (u === 0 ? -0.5 : 0.5), sa[2] * sepNow * (u === 0 ? -0.5 : 0.5)];
-            }
-            var jig = (on && jScale > 0) ? bscJiggle(u, tSec, T_K, jScale) : [0, 0, 0];
-            var org = [base[0] + jig[0], base[1] + jig[1], base[2] + jig[2]];
+            var org = orgAt(u, ms);
             var uq = on ? bscCharges(uSpec) : [0];
-            var deltaOn = on && (u === focalIdx) && !!dip.show_charges;
+            var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges;
 
             for (i = 0; i < BS_MAX_ATOMS; i++) {
                 var atom = bscFindById("bsc_u" + u + "_atom" + i);
@@ -49045,7 +52354,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var stick = (i > 0) ? bscFindById("bsc_u" + u + "_bond" + i) : null;
                 var have = on && (i === 0 || i <= uFrame.bonds.length);
                 if (atom) atom.visible = have;
-                if (lab) lab.visible = have && showLabels;
+                if (lab) {
+                    lab.visible = have && showLabels && (u < labelUnits || u === focalIdx) && atomLabelBudget > 0;
+                    if (lab.visible) atomLabelBudget--;
+                }
                 if (dlab) dlab.visible = false;
                 if (stick) stick.visible = have && i > 0;
                 if (!have) continue;
@@ -49082,6 +52394,184 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
         }
+
+        // ── E3a: THE SITE LAYER (lattice placement · growth · coordination ·
+        //    transfer). EVERY value below is a closed-form pure function of
+        //    state-local ms: site EXISTENCE is a rounded ramp, the interior
+        //    reveal is a ramp, the transfer progress is a ramp, and the spin is
+        //    the same closed-form angle the unit layer uses. Nothing is
+        //    remembered — a growth beat that latched which sites already exist is
+        //    exactly the accumulator D-1 forbids, and a SET_TIME_FREEZE rewind
+        //    would then photograph an arbitrary block.
+        var pairLive = (bscHasControl(ctrls, "ion_pair") && window.PM_bscIonPairDragged)
+            ? (BS_ION_PAIRS[window.PM_bscIonPair] || null) : null;
+        var siteList = bscSiteList(bs, pairLive);
+        var sitePool = window.PM_bscSitePool || 0;
+        var lat = bs.lattice || {};
+        var p2uS = linkCfg.pm_per_unit;
+        var trc = bs.transfer || {};
+
+        // GROWTH. shown(t) walks the shell-ordered list, so sites appear from the
+        // centre OUTWARD and everything already on screen holds still. That is
+        // ionic S4's misconception kill: the pair does not move, it gets
+        // surrounded.
+        var nShown = bscGrowShown(bs, ms, siteList.length);
+        if (nShown > sitePool) nShown = sitePool;
+        if (nShown > siteList.length) nShown = siteList.length;
+        if (nShown < 0) nShown = 0;
+
+        // TRANSFER. One electron travels donor -> acceptor and BOTH species change
+        // size on the linear-pm scale (Na 186 -> 102, Cl 99 -> 181). Charge is
+        // ramped alongside the radius, so Sigma q = 0 at EVERY instant and not
+        // merely at the two endpoints.
+        var trProg = bscTransferProg(bs, ms);
+        var trFrom = -1, trTo = -1;
+        for (i = 0; i < siteList.length; i++) {
+            if (trc.from != null && siteList[i].unit === trc.from) trFrom = i;
+            if (trc.to != null && siteList[i].unit === trc.to) trTo = i;
+        }
+        var sitePos = [], siteQ = [], siteRU = [], siteSp = [], siteRpm = [], qSum = 0;
+        for (i = 0; i < siteList.length; i++) {
+            var SI = siteList[i];
+            var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
+            sitePos.push((spin !== 0) ? mgRotY(SI.at, spin) : SI.at);
+            siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
+            siteRpm.push(TS.r_pm);
+            if (i < nShown) qSum += TS.q;
+        }
+
+        // COORDINATION. The neighbour set is DERIVED from the geometry — the
+        // sites at the minimum distance from the focal site — never authored, so
+        // rock salt gives 6, fcc and hcp 12 and bcc 8 without a table.
+        var focalSite = (lat.focal_site != null) ? lat.focal_site : 0;
+        var nbIdx = [], nnU = 0;
+        if (siteList.length > 1 && focalSite < nShown) {
+            var fAt = siteList[focalSite].at, bestD = 1e9;
+            for (i = 0; i < nShown; i++) {
+                if (i === focalSite) continue;
+                var dq = bscMag([siteList[i].at[0] - fAt[0], siteList[i].at[1] - fAt[1], siteList[i].at[2] - fAt[2]]);
+                if (dq < bestD - 1e-6) bestD = dq;
+            }
+            nnU = bestD;
+            for (i = 0; i < nShown && nbIdx.length < BS_MAX_NEIGHBOURS; i++) {
+                if (i === focalSite) continue;
+                var dr = bscMag([siteList[i].at[0] - fAt[0], siteList[i].at[1] - fAt[1], siteList[i].at[2] - fAt[2]]);
+                if (Math.abs(dr - bestD) < 1e-4) nbIdx.push(i);
+            }
+        }
+        var isCounted = function (ix) {
+            if (ix === focalSite) return true;
+            for (var z = 0; z < nbIdx.length; z++) if (nbIdx[z] === ix) return true;
+            return false;
+        };
+        // INTERIOR REVEAL (D-5) — ONE decided mechanism, authored per state.
+        var revMode = (BS_LATTICE_REVEALS.indexOf(lat.reveal) >= 0) ? lat.reveal : "none";
+        var revF = (revMode === "none") ? 0
+            : ((lat.reveal_at_ms != null) ? mgRamp(ms, lat.reveal_at_ms, BS_REVEAL_MS, 0, 1) : 1);
+        var cutN = bscNorm(lat.cutaway_normal || [0, 1, 0]);
+        // ball-and-stick target, reached over the SAME reveal ramp (see
+        // BS_COORD_RADIUS_SCALE): packed home pose -> open polyhedron, one beat.
+        var rsTarget = (lat.radius_scale != null) ? lat.radius_scale
+            : ((mode === "coordination") ? BS_COORD_RADIUS_SCALE : 1);
+        var rsNow = 1 + (rsTarget - 1) * revF;
+        // D-6 label budget: a 27-site block never renders 27 labels. In a
+        // coordination state the focal ion and ONE neighbour are named (that is
+        // both species) and the RODS carry the count; elsewhere the leading
+        // sites only, which in a growth beat is the original pair.
+        // Frames finding (E3a runtime smoke): on a LATTICE the site labels render
+        // at the fitted camera distance as ~2 px specks buried behind the wall —
+        // clutter, not information (Rule 24 / D-6). So labels default OFF for any
+        // lattice and ON for a free-placement site close-up, which is the
+        // transfer beat, where "Na" becoming "Na+" IS the lesson. Authorable
+        // per state via lattice.label_sites.
+        var labelDefault = (bs.placement === "lattice") ? 0 : Math.min(2, siteList.length);
+        var siteLabelN = (lat.label_sites != null) ? lat.label_sites : labelDefault;
+        var siteLabelBudget = BS_MAX_SITE_LABELS;
+        for (i = 0; i < sitePool; i++) {
+            var sm2 = bscFindById("bsc_site" + i), sl2 = bscFindById("bsc_site" + i + "_lab");
+            var sOn = i < nShown;
+            if (sm2) sm2.visible = sOn;
+            if (sl2) sl2.visible = false;
+            if (!sOn || !sm2) continue;
+            var sp3 = siteSp[i], em3 = bscElement(sp3);
+            sm2.position.set(sitePos[i][0], sitePos[i][1], sitePos[i][2]);
+            sm2.scale.setScalar(siteRU[i] * rsNow);
+            mgSetColor(sm2, em3.color);
+            var op3 = 1;
+            if (revF > 0 && !isCounted(i)) {
+                if (revMode === "peer_fade") op3 = 1 + (BS_PEER_FADE_OPACITY - 1) * revF;
+                else if (revMode === "cutaway") {
+                    var rel = [siteList[i].at[0] - siteList[focalSite].at[0],
+                               siteList[i].at[1] - siteList[focalSite].at[1],
+                               siteList[i].at[2] - siteList[focalSite].at[2]];
+                    if (rel[0] * cutN[0] + rel[1] * cutN[1] + rel[2] * cutN[2] > 0.25 * (nnU || 1)) op3 = 1 - revF;
+                }
+            }
+            bscSetOpacity(sm2, op3);
+            var labWant = (mode === "coordination")
+                ? (i === focalSite || (nbIdx.length && i === nbIdx[0]))
+                : (i < siteLabelN);
+            if (sl2 && labWant && siteLabelBudget > 0 && op3 > 0.5) {
+                sl2.visible = true;
+                siteLabelBudget--;
+                updateLabelSpriteText(sl2, bscSpeciesLabel(sp3));
+                mgPlaceLabelClear(sl2, sitePos[i], siteRU[i] * rsNow + 0.46, [sitePos[i]]);
+            }
+        }
+        // the neighbour rods: SIX solid sticks are a countable set that does not
+        // ask the eye to tell two identical spheres apart.
+        var showNb = (mode === "coordination") && nbIdx.length > 0;
+        for (i = 0; i < BS_MAX_NEIGHBOURS; i++) {
+            var nbm2 = bscFindById("bsc_nb" + i);
+            if (!nbm2) continue;
+            var nOn = showNb && i < nbIdx.length && revF > 0.05;
+            nbm2.visible = nOn;
+            if (!nOn) continue;
+            var pF = sitePos[focalSite], pN = sitePos[nbIdx[i]];
+            var rv2 = [pN[0] - pF[0], pN[1] - pF[1], pN[2] - pF[2]];
+            mgOrientStick(nbm2, bscNorm(rv2), bscMag(rv2), 0.55);
+            nbm2.position.set(pF[0], pF[1], pF[2]);
+            bscSetOpacity(nbm2, 0.95 * Math.min(1, (revF - 0.05) / 0.45));
+        }
+        // the transferred electron, parked on the donor's surface before the beat
+        // and absorbed into the acceptor's at the end.
+        var teM = bscFindById("bsc_transfer_e");
+        if (teM) {
+            var teOn = (mode === "transfer") && trFrom >= 0 && trTo >= 0;
+            teM.visible = teOn;
+            if (teOn) {
+                var pA = sitePos[trFrom], pB = sitePos[trTo];
+                var axv = bscNorm([pB[0] - pA[0], pB[1] - pA[1], pB[2] - pA[2]]);
+                var rA = siteRU[trFrom] * rsNow, rB = siteRU[trTo] * rsNow;
+                var sA = [pA[0] + axv[0] * rA, pA[1] + axv[1] * rA, pA[2] + axv[2] * rA];
+                var sB = [pB[0] - axv[0] * rB, pB[1] - axv[1] * rB, pB[2] - axv[2] * rB];
+                teM.position.set(
+                    sA[0] + (sB[0] - sA[0]) * trProg,
+                    sA[1] + (sB[1] - sA[1]) * trProg + 1.1 * Math.sin(Math.PI * trProg),
+                    sA[2] + (sB[2] - sA[2]) * trProg
+                );
+            }
+        }
+        // Exposed for the gate and for E3b. The INTEGER key and the sublattice
+        // travel with every site precisely so E3b can define like_contacts as
+        // like-charge contacts CREATED BY THE SHIFT and left UNSCREENED (D-7) —
+        // a delta against the unshifted lattice needs an exact contact identity,
+        // and a raw like-neighbour count would read 8 -> 8 on a cation-only
+        // metal and teach something false.
+        var siteOut = [];
+        for (i = 0; i < nShown; i++) {
+            siteOut.push({
+                key: siteList[i].key, sub: siteList[i].sub, species: siteSp[i],
+                q: siteQ[i], r_pm: siteRpm[i], at: sitePos[i]
+            });
+        }
+        window.PM_bscSites = siteOut;
+        window.PM_bscSiteCount = nShown;
+        window.PM_bscChargeSum = qSum;
+        window.PM_bscCoordination = nbIdx.length;
+        window.PM_bscLatticeA = siteList.length ? siteList[0].a_pm : 0;
+        window.PM_bscTransfer = trProg;
+        window.PM_bscCell = (siteList.length && siteList[0].cell) ? siteList[0].cell : null;
 
         // ── bond-dipole arrows + the derived resultant (row F).
         //    Arrow length = |bond moment| in debye off the SAME table the readout
@@ -49152,6 +52642,15 @@ export const FIELD_3D_RENDERER_CODE = `
         //    deformation (the Fajans deferral depends on this scoping).
         var showPair = (elc.show === "pair_glyph");
         var shift = (elc.pair_shift != null) ? elc.pair_shift : 0;
+        // mode assemble (hydrogen_bonding S1 / polarity S1, the declared
+        // cross-concept pair-shift repeat): the shared pair SLIDES to its
+        // authored offset on a closed-form ramp instead of already being there
+        // on frame 0 — that slide is the whole beat. pair_shift_at_ms is already
+        // a frozen-pin candidate in deriveStateMeta, so no new cue key.
+        if (bs.pair_shift_at_ms != null) {
+            shift = mgRamp(ms, bs.pair_shift_at_ms,
+                (bs.pair_shift_duration_ms != null) ? bs.pair_shift_duration_ms : 1600, 0, shift);
+        }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) {
             var pd2 = bscFindById("bsc_pair_" + i);
             if (!pd2) continue;
@@ -49194,6 +52693,107 @@ export const FIELD_3D_RENDERER_CODE = `
             );
         }
 
+        // ── E2 row E: THE LINK LAYER ─────────────────────────────────────────
+        //   Presence is DERIVED every frame from the closed-form positions above
+        //   (D-2) — no element whitelist, no script — and the hysteresis is
+        //   replayed over the bounded lookback rather than latched (D-1). So the
+        //   network flickers, and flickers IDENTICALLY on every replay: a
+        //   SET_TIME_FREEZE pin reproduces the same link set byte for byte.
+        var nLinks = 0, linkGeom = [];
+        if (bs.links && linkCfg.enabled && nUnits > 1) {
+            var S = BS_LINK_SAMPLES, dtS = BS_LINK_LOOKBACK_MS / (S - 1);
+            var p2u = linkCfg.pm_per_unit;
+            var reachU = linkCfg.break_pm / p2u + 2 * BS_BOND_LEN + 1.0;   // coarse cull
+            var offs = [], sites = [], sI, uA, uB;
+            for (u = 0; u < nUnits; u++) {
+                var lSpec = uSpecOf(u);
+                var lFr = mgFrame(lSpec, (lSpec === molKey ? angleNow : null), null);
+                var lRot = (bs.units && bs.units[u]) ? bscOrientRot(bs.units[u].orient) : null;
+                var oo = [[0, 0, 0]];
+                for (i = 0; i < lFr.bonds.length; i++) {
+                    var dv = lRot ? lRot(lFr.bonds[i]) : lFr.bonds[i];
+                    oo.push([dv[0] * BS_BOND_LEN, dv[1] * BS_BOND_LEN, dv[2] * BS_BOND_LEN]);
+                }
+                offs.push(oo);
+                sites.push(bscLinkSites(lSpec));
+            }
+            // world atom positions at every lookback sample, OLDEST FIRST. A
+            // sample before the state started is null and simply does not vote.
+            var frames = [];
+            for (sI = 0; sI < S; sI++) {
+                var mms = ms - (S - 1 - sI) * dtS;
+                if (mms < 0) { frames.push(null); continue; }
+                var sp2 = spinAng(mms), fpts = [];
+                for (u = 0; u < nUnits; u++) {
+                    var og = orgAt(u, mms), row = [];
+                    for (i = 0; i < offs[u].length; i++) {
+                        var ov = (sp2 !== 0) ? mgRotY(offs[u][i], sp2) : offs[u][i];
+                        row.push([og[0] + ov[0], og[1] + ov[1], og[2] + ov[2]]);
+                    }
+                    fpts.push(row);
+                }
+                frames.push(fpts);
+            }
+            var last = frames[S - 1];
+            for (uA = 0; last && uA < nUnits && nLinks < BS_MAX_LINKS; uA++) {
+                for (uB = 0; uB < nUnits && nLinks < BS_MAX_LINKS; uB++) {
+                    if (uA === uB) continue;
+                    var cA = last[uA][0], cB = last[uB][0];
+                    var cx = cA[0] - cB[0], cy = cA[1] - cB[1], cz = cA[2] - cB[2];
+                    if (cx * cx + cy * cy + cz * cz > reachU * reachU) continue;
+                    var dn = sites[uA].donors, ac = sites[uB].acceptors;
+                    for (var di = 0; di < dn.length && nLinks < BS_MAX_LINKS; di++) {
+                        for (var aj = 0; aj < ac.length && nLinks < BS_MAX_LINKS; aj++) {
+                            var hS = dn[di].slot, pS = dn[di].partner, aS = ac[aj].slot;
+                            if (!last[uA][hS] || !last[uA][pS] || !last[uB][aS]) continue;
+                            var samp = [];
+                            for (sI = 0; sI < S; sI++) {
+                                var F = frames[sI];
+                                if (!F) { samp.push(null); continue; }
+                                var Hp = F[uA][hS], Dp = F[uA][pS], Ap = F[uB][aS];
+                                var vx = Ap[0] - Hp[0], vy = Ap[1] - Hp[1], vz = Ap[2] - Hp[2];
+                                var dU = Math.sqrt(vx * vx + vy * vy + vz * vz);
+                                var wx = Dp[0] - Hp[0], wy = Dp[1] - Hp[1], wz = Dp[2] - Hp[2];
+                                var wL = Math.sqrt(wx * wx + wy * wy + wz * wz) || 1;
+                                var ca = (vx * wx + vy * wy + vz * wz) / ((dU || 1) * wL);
+                                samp.push({ d: dU * p2u, a: Math.acos(bscClamp(ca, -1, 1)) * 180 / Math.PI });
+                            }
+                            if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg)) {
+                                linkGeom.push({ h: last[uA][hS], a: last[uB][aS] });
+                                nLinks++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        window.PM_bscLinks = nLinks;
+        // The readout the doc names: links PER MOLECULE, not a raw count — each
+        // link is shared by two units, so the mean degree is 2L/N. It is the
+        // number that explains the boiling-point anomaly in S7.
+        window.PM_bscLinksPerUnit = (nUnits > 0) ? (2 * nLinks / nUnits) : 0;
+        for (i = 0; i < BS_MAX_LINKS; i++) {
+            var lk = (i < linkGeom.length) ? linkGeom[i] : null;
+            for (j = 0; j < BS_LINK_DASHES; j++) {
+                var dmesh = bscFindById("bsc_link" + i + "_d" + j);
+                if (!dmesh) continue;
+                dmesh.visible = !!lk;
+                if (!lk) continue;
+                var ax = [lk.a[0] - lk.h[0], lk.a[1] - lk.h[1], lk.a[2] - lk.h[2]];
+                var aLn = bscMag(ax), aDr = bscNorm(ax), segL = aLn / BS_LINK_DASHES;
+                var s0 = j * segL + segL * 0.18, s1 = (j + 1) * segL - segL * 0.18;
+                mgOrientStick(dmesh, aDr, Math.max(0.02, s1 - s0), 1);
+                dmesh.position.set(lk.h[0] + aDr[0] * s0, lk.h[1] + aDr[1] * s0, lk.h[2] + aDr[2] * s0);
+            }
+        }
+
+        // ── row O: the trend surface, revealed on compare_at_ms.
+        if (bs.trend && bs.trend.show) {
+            bscDrawTrend(bs.trend, (bs.compare_at_ms != null)
+                ? mgRamp(ms, bs.compare_at_ms, (bs.compare_duration_ms != null) ? bs.compare_duration_ms : 1800, 0, 1)
+                : 1);
+        }
+
         // ── value-only HUD (Rule 34b: numbers, never a restated equation).
         var hud = document.getElementById("bsc_hud");
         if (hud && hud.style.display !== "none") {
@@ -49202,8 +52802,33 @@ export const FIELD_3D_RENDERER_CODE = `
                 var w = want[i];
                 if (w === "mu") lines.push("\\u03BC = " + bscFmtD(D.mag) + " D");
                 else if (w === "delta_chi") lines.push("\\u0394\\u03C7 = " + dchi.toFixed(2));
-                else if (w === "radius_pm") lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
+                else if (w === "radius_pm") {
+                    // E3a: when a SITE layer is on screen the radius readout is
+                    // the thing that is actually changing size — ionic S2's whole
+                    // payoff — so it reports the LIVE ramped radius of the two
+                    // participants (or the focal site), never a molecule's
+                    // central atom. One instrument per quantity (D-3).
+                    if (trFrom >= 0 && trTo >= 0) {
+                        lines.push("r(" + bscSpeciesLabel(siteSp[trFrom]) + ") = " + Math.round(siteRpm[trFrom]) + " pm");
+                        lines.push("r(" + bscSpeciesLabel(siteSp[trTo]) + ") = " + Math.round(siteRpm[trTo]) + " pm");
+                    } else if (nShown > 0) {
+                        lines.push("r(" + bscSpeciesLabel(siteSp[focalSite]) + ") = " + Math.round(siteRpm[focalSite]) + " pm");
+                    } else {
+                        lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
+                    }
+                }
+                else if (w === "coordination") lines.push("neighbours = " + nbIdx.length);
+                else if (w === "lattice_a") lines.push("a = " + Math.round(window.PM_bscLatticeA) + " pm");
                 else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                else if (w === "links") lines.push("links = " + nLinks);
+                else if (w === "links_per_unit") lines.push("links per molecule = " + window.PM_bscLinksPerUnit.toFixed(2));
+                else if (w === "bp") {
+                    // derived from the state's OWN trend data, so the HUD and the
+                    // trend panel can never disagree (D-3: one instrument).
+                    var bpv = null, tps = (bs.trend && bs.trend.points) || [];
+                    for (j = 0; j < tps.length; j++) if (tps[j].label === molKey) bpv = tps[j].y;
+                    if (bpv != null) lines.push("boiling point = " + Math.round(bpv) + " K");
+                }
             }
             hud.innerHTML = lines.join("<br>");
         }
@@ -49217,12 +52842,154 @@ export const FIELD_3D_RENDERER_CODE = `
             if (asl) asl.value = String(angleNow);
             if (avl) avl.textContent = Number(angleNow).toFixed(1);
         }
+        // hydrogen_bonding S3 pulls the pair apart on a SCRIPT while exposing the
+        // separation slider — the FIXED scar scripted_change_desyncs_the_dom_
+        // control_that_shares_it is exactly this pair, so the widget tracks the
+        // scripted value every frame until a trusted drag seizes it.
+        if (bscHasControl(ctrls, "separation") && !window.PM_bscSepDragged) {
+            var ssl = document.getElementById("bsc_separation_slider"), svl = document.getElementById("bsc_separation_val");
+            if (ssl) ssl.value = String(sepNow);
+            if (svl) svl.textContent = Number(sepNow).toFixed(1);
+        }
+        if (bscHasControl(ctrls, "temperature") && !window.PM_bscTempDragged) {
+            var tsl = document.getElementById("bsc_temperature_slider"), tvl = document.getElementById("bsc_temperature_val");
+            if (tsl) tsl.value = String(T_K);
+            if (tvl) tvl.textContent = String(Math.round(T_K));
+        }
+        if (bscHasControl(ctrls, "count") && !window.PM_bscCountDragged) {
+            var csl = document.getElementById("bsc_count_slider"), cvl = document.getElementById("bsc_count_val");
+            if (csl) csl.value = String(nUnits);
+            if (cvl) cvl.textContent = String(nUnits);
+        }
+        if (bscHasControl(ctrls, "ion_pair") && !window.PM_bscIonPairDragged) {
+            var ipl = document.getElementById("bsc_ion_pair_select");
+            if (ipl && window.PM_bscIonPair && ipl.value !== window.PM_bscIonPair) ipl.value = window.PM_bscIonPair;
+        }
     }
 
     // Glow (Rule 29 — brightness only) from the CLOSED enum. Scene-object focals
     // only; the DOM surfaces carry their own prominence and are deliberately
     // absent, so a DOM key can never set anyScene=true with nothing to brighten
     // (scar #33 — a non-keyed glow_focal dims the whole scene with no focal lit).
+    // ── E2 row O: the trend surface ──────────────────────────────────────────
+    //   Family points, the FITTED family line, its dashed extrapolation, and the
+    //   anomaly point with the measured gap. The gap is computed here from the
+    //   fit (bscTrendFit over extrapolate_from) — nothing about it is authored,
+    //   which is what makes hydrogen_bonding S7 an argument rather than a claim.
+    //   rev in [0,1] is the closed-form reveal fraction, so the panel is a pure
+    //   function of state-local t like everything else (D-1).
+    //   Rule 34c: every label goes through bscSub, so an authored ASCII "H2S"
+    //   renders with a real Unicode subscript, in Cambria Math (a small
+    //   monospace subscript renders as a merged blob — the fleet subscript scar).
+    function bscDrawTrend(tr, rev) {
+        var cv = document.getElementById("bsc_trend");
+        if (!cv || cv.style.display === "none") return;
+        var g = cv.getContext("2d");
+        if (!g) return;
+        var W = cv.width, H = cv.height, i, k;
+        g.clearRect(0, 0, W, H);
+        var pts = tr.points || [];
+        if (!pts.length) return;
+        var famKeys = tr.extrapolate_from || [], fam = [], odd = [];
+        for (i = 0; i < pts.length; i++) {
+            var isFam = false;
+            for (k = 0; k < famKeys.length; k++) if (famKeys[k] === pts[i].label) isFam = true;
+            if (isFam) fam.push(pts[i]); else odd.push(pts[i]);
+        }
+        var fit = bscTrendFit(fam);
+        var L0 = 106, R0 = W - 30, T0 = 40, B0 = H - 62;
+        var xmin = 1e9, xmax = -1e9, ymin = 1e9, ymax = -1e9;
+        for (i = 0; i < pts.length; i++) {
+            if (pts[i].x < xmin) xmin = pts[i].x;
+            if (pts[i].x > xmax) xmax = pts[i].x;
+            if (pts[i].y < ymin) ymin = pts[i].y;
+            if (pts[i].y > ymax) ymax = pts[i].y;
+        }
+        // the extrapolated value must sit INSIDE the y range or the gap — the
+        // whole point of the panel — is drawn off the top of its own axis
+        // (engine_bug_queue field3d_ppane_fixed_range_buries_offresonance_lobe).
+        if (fit) for (i = 0; i < odd.length; i++) {
+            var pv0 = fit.m * odd[i].x + fit.b;
+            if (pv0 < ymin) ymin = pv0;
+            if (pv0 > ymax) ymax = pv0;
+        }
+        var pad = Math.max(12, (ymax - ymin) * 0.14);
+        ymin -= pad; ymax += pad;
+        if (xmax - xmin < 1e-9) { xmin -= 1; xmax += 1; }
+        var xp = (xmax - xmin) * 0.16, xlo = xmin - xp, xhi = xmax + xp;
+        var X = function (v) { return L0 + (v - xlo) / (xhi - xlo) * (R0 - L0); };
+        var Y = function (v) { return B0 - (v - ymin) / (ymax - ymin) * (B0 - T0); };
+
+        g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(L0, T0 - 10); g.lineTo(L0, B0); g.lineTo(R0, B0); g.stroke();
+        g.fillStyle = "#B0BEC5";
+        g.font = "22px \\u0027Cambria Math\\u0027,serif";
+        g.textAlign = "center";
+        g.fillText(bscSub(tr.x_label || ""), (L0 + R0) / 2, H - 20);
+        g.save(); g.translate(28, (T0 + B0) / 2); g.rotate(-Math.PI / 2);
+        g.fillText(bscSub(tr.y_label || ""), 0, 0); g.restore();
+        g.textAlign = "right"; g.font = "20px monospace";
+        for (i = 0; i <= 3; i++) {
+            var yv = ymin + (ymax - ymin) * i / 3;
+            g.fillStyle = "#78909C";
+            g.fillText(String(Math.round(yv)), L0 - 8, Y(yv) + 7);
+            g.strokeStyle = "rgba(120,144,156,0.20)"; g.lineWidth = 1;
+            g.beginPath(); g.moveTo(L0, Y(yv)); g.lineTo(R0, Y(yv)); g.stroke();
+        }
+
+        if (fit) {
+            var fx0 = 1e9, fx1 = -1e9;
+            for (i = 0; i < fam.length; i++) {
+                if (fam[i].x < fx0) fx0 = fam[i].x;
+                if (fam[i].x > fx1) fx1 = fam[i].x;
+            }
+            g.strokeStyle = "#4FC3F7"; g.lineWidth = 3;
+            g.beginPath();
+            g.moveTo(X(fx0), Y(fit.m * fx0 + fit.b));
+            g.lineTo(X(fx1), Y(fit.m * fx1 + fit.b));
+            g.stroke();
+            if (odd.length && rev > 0) {
+                var ex = fx0 + (odd[0].x - fx0) * rev;
+                g.setLineDash([10, 8]);
+                g.strokeStyle = "#4DD0E1"; g.lineWidth = 3;
+                g.beginPath();
+                g.moveTo(X(fx0), Y(fit.m * fx0 + fit.b));
+                g.lineTo(X(ex), Y(fit.m * ex + fit.b));
+                g.stroke();
+                g.setLineDash([]);
+            }
+        }
+        g.textAlign = "left";
+        for (i = 0; i < fam.length; i++) {
+            g.fillStyle = "#4FC3F7";
+            g.beginPath(); g.arc(X(fam[i].x), Y(fam[i].y), 7, 0, Math.PI * 2); g.fill();
+            g.fillStyle = "#CFD8DC"; g.font = "21px \\u0027Cambria Math\\u0027,serif";
+            // lifted clear of the fitted line it sits on — a canvas-internal
+            // text collision is invisible to founder_drive's DOM probe (scar
+            // canvas_graph_label_collides_with_peak_reference_line).
+            g.fillText(bscSub(fam[i].label) + " " + Math.round(fam[i].y),
+                Math.min(X(fam[i].x) + 12, R0 - 120), Y(fam[i].y) - 17);
+        }
+        if (fit && odd.length && rev > 0.55) {
+            var al = (rev - 0.55) / 0.45; if (al > 1) al = 1;
+            var o = odd[0], py = fit.m * o.x + fit.b;
+            g.globalAlpha = al;
+            g.fillStyle = "#4DD0E1";
+            g.beginPath(); g.arc(X(o.x), Y(py), 6, 0, Math.PI * 2); g.fill();
+            g.fillStyle = "#80DEEA"; g.font = "19px monospace";
+            g.fillText(Math.round(py) + " K on the line", X(o.x) + 14, Y(py) + 26);
+            g.strokeStyle = "#FFCA28"; g.lineWidth = 3;
+            g.beginPath(); g.moveTo(X(o.x), Y(o.y)); g.lineTo(X(o.x), Y(py)); g.stroke();
+            g.fillStyle = "#FFCA28";
+            g.beginPath(); g.arc(X(o.x), Y(o.y), 9, 0, Math.PI * 2); g.fill();
+            g.font = "22px \\u0027Cambria Math\\u0027,serif";
+            g.fillText(bscSub(o.label) + " " + Math.round(o.y), X(o.x) + 14, Y(o.y) + 8);
+            g.fillStyle = "#FFE082"; g.font = "21px monospace";
+            g.fillText("+" + Math.round(o.y - py) + " K", X(o.x) + 14, (Y(o.y) + Y(py)) / 2 + 7);
+            g.globalAlpha = 1;
+        }
+    }
+
     var BS_GLOW_ELS = {
         units: ["bsc_atom", "bsc_bond", "bsc_atom_label"],
         central: ["bsc_central"],
@@ -53246,6 +57013,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildNewtonsLawsBody();
                 break;
 
+            case "force_rig":
+                buildForceRig();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -53840,6 +57611,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyNewtonsLawsBodyState(stateDef);
         }
 
+        // force_rig — per-state seed of the concurrent-force rig: the string list
+        // (angle + hanging mass, so the tension IS the weight), the ring start
+        // pose, the arrow surfaces, the value-only HUD rows, the contextual
+        // slider rows and the Rule-32e glow focal. The solver
+        // (updateForceRigFrame) hooks the same engine-state object
+        // (window.PM_frEngine) it seeds here.
+        if (config.scenario_type === "force_rig") {
+            applyForceRigState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -54235,6 +58016,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
         // itself to this NOT-list, same as isMag/isFaraday/isMfl/... above).
         var isNlb = config.scenario_type === "newtons_laws_body";
+        // force_rig owns its OWN #fr_sliders panel (m1/m2/m3/angle1/angle2) -- must
+        // be excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to this
+        // NOT-list, same as isNlb/isMfl/isCap/... above).
+        var isFrig = config.scenario_type === "force_rig";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -54299,7 +58085,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isOrbShapes && !isBondScene && !isKt) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isOrbShapes && !isBondScene && !isKt) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -54486,7 +58272,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -57425,6 +61211,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var __pmAccumMs = 0;
     var __pmLastWall;
     var __pmSteps = 1; // read by scenario updaters' inline accumulators too
+    // The freezeAtTime value whose force_rig catch-up has already been replayed
+    // (see the COMPRESSED CRAWL block below). Compared by VALUE, so a fresh pin —
+    // which always follows a RESET_TRAJECTORY that rebases stateStartTime, hence
+    // a different freezeAtTime — re-arms it, while the frames that follow one pin
+    // skip the replay. Cleared outright by the SET_TIME_FREEZE handler.
+    var __frPinCaughtUp = null;
     function animate() {
         animationId = requestAnimationFrame(animate);
         // ⚙ generic widget engine heartbeat (~2 Hz): catches mid-state reveals
@@ -57452,6 +61244,75 @@ export const FIELD_3D_RENDERER_CODE = `
         // trail, slow_rotation integration) build the exact same frame count
         // every run → deterministic pixels for regression baselines.
         var heldAtPin = false;
+        // COMPRESSED CRAWL (force_rig) — the fast-forward for a scenario that
+        // CANNOT snap. The block below lets accumulator-free scenarios jump
+        // straight to the pin; force_rig is a genuine integrator (the whirl bob's
+        // p3/v3, its trail, the released latch, the damped ring) so a jump would
+        // skip the physics entirely. It has the SAME disease though: rAF in
+        // headless Chromium delivers ~18 fps, so the 0.016-s-per-frame crawl
+        // covers only ~290 ms of sim time per wall SECOND — a 20.8 s pin needs
+        // ~75 s of wall clock. captureFrozenFrame polls for at_ms*2.5+4000 ms
+        // (56 s here) and then, unlike the primary capture, photographs anyway.
+        // Solve 0.29*(2.5*at + 4000) >= at and every pin past ~4.2 s is a coin
+        // flip on this tray. That is how uniform_circular_motion STATE_3 — the
+        // cut-the-string aha, pinned at 20800 ms — kept photographing the PRE-CUT
+        // orbit (T = 12.96 N, string intact, no trail) at a wall-clock-dependent
+        // instant: the only frozen frame in the fleet that was both WRONG and
+        // UNSTABLE run to run (0.289 % of pixels). Nothing was broken in the
+        // release itself — frResetTrajectory re-arms it correctly and a crawl
+        // given 75 s fires the cut at exactly 19600 ms — the clock simply never
+        // arrived. (engine_bug_queue force_rig_whirl_release_not_reproduced_
+        // under_set_time_freeze_pin.)
+        //
+        // The cure runs the crawl's OWN frames, thousands per rAF tick instead of
+        // one, from a known origin: rewind through the ONE rewind path
+        // (frResetTrajectory) and replay exactly round(at_ms/16) chunks of
+        // dt = 0.016. Identical dt, identical order (phases + param_ramp once per
+        // chunk, then the 8 fixed 0.002-s micro-steps), identical count — the
+        // same arithmetic sequence the slow crawl produced, just not spread over
+        // wall clock. It is NOT a jump: a ramped state still ramps, the release
+        // still fires inside the micro-step that contains it, and the trail still
+        // accumulates sample by sample. Replaying from the rewind ALSO removes
+        // the residual jitter: the handful of live frames between THE EYE's
+        // RESET_TRAJECTORY and its SET_TIME_FREEZE (three separate round trips)
+        // run at wall-clock __pmSteps, so the crawl's chunk boundaries — and with
+        // them the bob's phase at the pin — used to depend on machine load.
+        // Replay from t_ms = 0 makes the pinned pose a pure function of at_ms.
+        //
+        // Gated on a lag of more than 2 s so the LIVE player is untouched: its
+        // pins are "hold here" (pause pins at the current sim time, lag 0) or the
+        // 1500 ms entry default, both of which keep today's ordinary crawl.
+        // Rule 36 untouched: dtStep and __pmSteps are read, never written, and
+        // nothing here runs unless a pin is active.
+        //
+        // THE LAG IS MEASURED ON THE ENGINE'S OWN CLOCK, not on the master clock
+        // (2026-08-01 — the same bug_class recurring, caught two runs after the
+        // first fix). eng.t_ms is what decides the POSE; time is only the master clock,
+        // and THE EYE leaves it wherever the previous capture pinned it. After a
+        // dense series ending at at_ms = 21000, the frozen capture's 22600 ms pin
+        // is only 1.6 s ahead of the master clock — under the 2 s gate — so the replay was
+        // SKIPPED, while RESET_TRAJECTORY had just zeroed eng.t_ms: the ordinary
+        // crawl then advanced the engine 1.6 s and the frame photographed t = 1.9 s
+        // of a pin that claimed 22.6 s (bob still circling, string intact, T = 12.96 N,
+        // measured phase matching t ≈ 1.9 s exactly). Whether the master clock
+        // happened to sit inside or outside the gate was pure wall-clock luck, so
+        // one run in two was wrong. Comparing the pin's STATE-LOCAL target with the
+        // engine's own state-local clock removes the master clock from the test
+        // entirely; the live player's lag-0 pins still skip the replay, and a
+        // BACKWARDS pin (target behind the engine — the shape the original scar
+        // took) now rewinds instead of silently holding a too-late pose.
+        var __frPinLagMs = (freezeAtTime !== null && window.PM_frEngine)
+            ? ((freezeAtTime - stateStartTime) * 1000 - window.PM_frEngine.t_ms) : 0;
+        if (config.scenario_type === "force_rig" && freezeAtTime !== null && dtStep > 0
+            && __frPinCaughtUp !== freezeAtTime && (__frPinLagMs > 2000 || __frPinLagMs < -2000)) {
+            __frPinCaughtUp = freezeAtTime;                     // once per pin, not once per frame
+            var __frChunks = Math.round(((freezeAtTime - stateStartTime) * 1000) / 16);
+            if (__frChunks < 0) __frChunks = 0;
+            if (__frChunks > 4000) __frChunks = 4000;           // ≤64 s of sim time per pin
+            frResetTrajectory();
+            for (var __frI = 0; __frI < __frChunks; __frI++) updateForceRigFrame(0.016);
+            time = freezeAtTime;
+        }
         // ACCUMULATOR-FREE FAST-FORWARD: electric_potential_meaning has NO per-frame
         // accumulators — every reveal is a pure function of (time - stateStartTime)
         // (route lerp, badge drain, q→2q grow, shell fade-in, ΔV/∞ draw, idle sweep).
@@ -57966,6 +61827,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "newtons_laws_body") {
             updateNewtonsLawsBodyFrame(heldAtPin ? 0 : dtStep);
             applyNewtonsLawsBodyGlow();
+        }
+
+        // force_rig — the off-axis force rig. ONE call per tick with the COMBINED
+        // dtStep; the function recovers the fixed sub-step COUNT from it, so the
+        // damped ring integrates identically at 60 and 120 Hz and dt = 0 under a
+        // pin takes zero steps (byte-stable frozen frames, no special case).
+        if (config.scenario_type === "force_rig") {
+            updateForceRigFrame(heldAtPin ? 0 : dtStep);
+            applyForceRigGlow();
         }
 
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
@@ -60602,6 +64472,11 @@ export const FIELD_3D_RENDERER_CODE = `
                     // form of (time - stateStartTime), so the rebase above cannot
                     // rewind it — its accumulators are rewound explicitly.
                     nlbResetTrajectory();
+                    // force_rig is the same shape (damped ring / whirl bob + the
+                    // t_ms that drives phases[] and param_ramp) — without this the
+                    // pin returned the converged steady state, not the pinned
+                    // instant (force_rig_not_reproducible_under_set_time_freeze_pin).
+                    frResetTrajectory();
                     break;
 
                 case "SET_GLOW":
@@ -60677,6 +64552,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // stateStartTime + at_ms/1000 (see freezeAtTime declaration
                     // for the determinism contract + compass caveat). Callers
                     // send RESET_TRAJECTORY first so the pin is state-local.
+                    __frPinCaughtUp = null;   // re-arm force_rig's compressed crawl for THIS pin
                     if (data.frozen === false) {
                         freezeAtTime = null;
                     } else {

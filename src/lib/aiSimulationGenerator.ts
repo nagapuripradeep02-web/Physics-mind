@@ -2840,7 +2840,8 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     friction_force:                 "field_3d",   // NEW 2026-07-29 — newtons_laws_body Branch A (flat push: static self-adjust, maximum + drop)
     rolling_friction:               "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch A + SEAM G (bodies[].shape:'wheel'): sliding block vs rolling wheel, same push, ~200x friction gap
     tension_force:                  "field_3d",   // NEW 2026-07-30 — newtons_laws_body Branch B (pulley, STATE_1-3) then SEAM H train (STATE_4-6): T set by motion not the string, T1 != T2 in a chain
-    uniform_circular_motion:        "mechanics_2d",
+    equilibrium_of_particles:       "field_3d",   // NEW 2026-07-31 — force_rig Branch A (force_table): concurrent forces on a ring, SigmaF = 0 as TWO sums, and the two-cable law T = W/(2 sin theta)
+    uniform_circular_motion:        "field_3d",   // RETROFIT 2026-08-01 — force_rig Branch B (whirl): T = m omega^2 r on a flat orbit, cut-the-string tangent departure (no outward force), then the conical pendulum's cos theta = g/(omega^2 L) and its omega_min existence boundary (was mechanics_2d)
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",
     work_energy_theorem:            "mechanics_2d",
@@ -3556,7 +3557,11 @@ const MECHANICS_SCENARIO_MAP: Record<string, string> = {
     equilibrium_rigid_body:         "free_body_diagram",
     pseudo_forces:                  "non_inertial_frame",
     // Circular Motion
-    uniform_circular_motion:        "circular",
+    // uniform_circular_motion REMOVED 2026-08-01 — retrofitted onto field_3d
+    // (CONCEPT_RENDERER_MAP above), so this mechanics_2d scenario key is dead
+    // for it; other field_3d retrofits (free_body_diagram, connected_bodies,
+    // block_on_incline, normal_force, friction_force, rolling_friction,
+    // tension_force, equilibrium_of_particles) likewise carry no entry here.
     circular_motion_vertical:       "circular",
     circular_motion_banking:        "banking",
     // Rotation

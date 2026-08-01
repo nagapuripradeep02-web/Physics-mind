@@ -143,11 +143,78 @@ the countability-metric omission (CRITICAL, FIXED), the bond-moment double-count
 `deferred_enum_members_must_be_declared_not_merely_unimplemented` (MODERATE, FIXED) — the answer to
 "how do you keep 11 unimplemented modes from becoming the σ/π decorative-string scar".
 
+### E2 — the intermolecular link layer (`096e9c1`, master)
+Four deferred modes implemented (`assemble` · `approach_link` · `network` · `compare`), the derived
+two-ended link criterion, the trend surface, and gate sections 6 + 9. `deriveStateMeta` **untouched**
+— every beat rides a cue key E1 pre-wired. **No closed enum widened** (modes, controls, hud_lines,
+glow keys, placements all unchanged; gate 10 asserts them against the frozen contract).
+
+**The N/O/F requirement genuinely emerges.** Thresholds `donor 0.15 / acceptor 0.30` on the derived
+per-atom charge, and the emerged acceptor set is **exactly {N, O, F}** — no whitelist anywhere:
+
+| species | donor H δ+ | acceptor δ− | links? |
+|---|---|---|---|
+| H₂O | +0.319 | O **−0.638** | yes |
+| NH₃ | +0.162 | N −0.485 | yes |
+| HF | +0.547 | F −0.547 | yes |
+| HCl | +0.206 | Cl −0.206 | **no** — acceptor fails |
+| H₂S | +0.036 | S −0.071 | **no** — both fail |
+| H₂Te | −0.003 | Te +0.003 | no — no donor at all |
+
+⚠ **Correction to the E1 handoff carried into the last entry:** *"δ(O in H₂O) = 0.319"* is the
+**per-bond ionic fraction, i.e. the donor H's charge**. The acceptor O carries **0.638** (two bonds).
+The 9× O-vs-S separation survives, but a threshold authored at 0.319 for the acceptor would have been
+wrong by 2×.
+
+**The finding that mattered — hysteresis and determinism collide, and the obvious fix is the one
+Rule 36 forbids.** `form_pm < break_pm` is meaningless without memory of whether a pair was already
+bonded, and the natural implementation carries a per-pair **latch** across frames. That is exactly
+the accumulator D-1 bans: THE EYE pins the clock, and a latched link set reproduces whatever phase
+the browser happened to reach rather than the pinned one. Resolved by **replaying the latch instead
+of carrying it** — the criterion is evaluated over a bounded lookback of absolutely-anchored sample
+times (9 samples over 640 ms), oldest first, forming at the inner threshold and surviving to the
+outer. Every sample is a closed-form position, so the whole latched *set* stays a pure function of
+state-local t. Proven by rewind: pin 4000 → 9000 → 4000 ms gives byte-identical frames, and the set
+is not constant over the window (92/131 frames linked). **The pattern generalises to any E3 beat
+needing memory — a melt front, a shift outcome. Do not introduce a latch.**
+
+**What the gates could not catch, and running it did.** A throwaway Playwright smoke over five states
+found E1's frame pass reading each unit's *authored* species while the picker and the `compare` swap
+wrote only the global — a **yellow H₂S molecule under an `H₂O` formula surface and a
+`boiling point = 373 K` HUD**. That is a recurrence of the FIXED scar
+`field3d_explore_picker_updates_global_but_frame_reads_authored_state_value`, inside a brand-new
+scenario, and it is precisely S4's lesson rendering the opposite of itself. Fixed with `uSpecOf(u)`.
+Fourth chemistry concept in a row where every machine gate was green and the defect came from frames.
+
+**Four more E1 defects the second consumer exposed** — none visible with one unit: the `network` and
+`compare` cameras framed nothing (13.0/10.0 against an ~11.5-unit box); the count slider stacked
+every extra unit at the origin; `bscFindById` was an O(sceneObjects) linear scan, free at one unit and
+millions of string compares per frame at thirty; and **D-6 was only half-built** — δ labels were
+capped but atom element labels rendered on all 90 atoms at 30 waters.
+
+**Verification (re-run independently, not taken on report):** tsc 0 · renderer-syntax + backticks
+clean · `check:bonding-scene` **all E1 + E2 sections pass** (2/3/7/8/13/14 declared E3 stubs) ·
+`validate:concepts` **146/146** · `validate:chemistry` **10/10** · `check:hybrid-orbitals` +
+`check:sigma-pi` unregressed · THE EYE `vsepr_molecular_shapes` **44/44 with all 14 baselines at
+exactly 0.00%**. Gate evidence: jiggle is √(T/T₀) to a worst residual of 2.8e-17; **every intra-unit
+bond stick is invariant under temperature** (4.4e-16 — S6's misconception kill, asserted); links fall
+79.5% → 61.6% from 120 K to 600 K; the family line extrapolates to 180.7 K and water misses it by
+192.3 K.
+
+**Scars: 3 rows, SQL text only, NOT APPLIED** — one UPDATE reopening the picker scar as a recurrence,
+plus `hysteretic_state_cannot_be_latched_under_a_time_pin` (MAJOR, FIXED) and
+`pooled_mesh_lookup_is_linear_scan_and_degrades_with_pool_growth` (MODERATE, FIXED).
+
 ### ⏭ NEXT
-**E2 — the intermolecular link layer** (derived charge-threshold criterion, form/break hysteresis,
-links-per-unit readout, temperature → jiggle, the row-O trend surface), then **Desk 1**
-(`feat/chemistry-polarity-hbonding`). E1's handoff records that δ(O in H₂O) = 0.319 vs δ(S in H₂S) =
-0.036 — a 9.0× gap, already gated — so the N/O/F requirement genuinely *emerges* from the threshold.
+**E3 — the lattice layer** (rock_salt/fcc/bcc/hcp · growth · interior reveal · transfer + linear-pm
+radii · the D-7 `like_contacts` metric · electron sea + drift · row Q ion drift · row R `groups`),
+which unblocks **Desk 2**. **Desk 1 (`feat/chemistry-polarity-hbonding`) can open now** — E1 + E2
+are both on master and it touches only JSON.
+
+⚠ **Carry into Desk 1's prompt:** the smoke's loose 30-water box gave **≈1.07 links/molecule against
+the doc's authored ≈3.5**. That is an *authoring* gap, not an engine one — reaching 3.5 needs tighter
+`at` spacing and near-tetrahedral `orient` values. `json_author` must not conclude the thresholds are
+wrong. Scale: **1 scene unit = 48 pm**, so a linear H-bond is 5.75 scene units O···O.
 
 ---
 
