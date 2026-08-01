@@ -43039,7 +43039,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!(maxJ > 0)) return 0;
         var f = v / maxJ;
         if (!(f > 0)) return 0;
-        return f > 1 ? 100 : f * 100;
+        // SEAM M scar row 3, discharged (SEAM N). The return value is written
+        // straight into a style.height string, so an unrounded full-precision float
+        // makes frozen-frame byte-identity a property of the CSSOM's number
+        // normalisation rather than of this code. SEAM M already rounded its own
+        // derived style values to 3 dp for exactly this reason and correctly
+        // declined to reach into a sealed sibling seam; this closes the gap before
+        // the first ch6 concept authors an energy_layer and makes it live.
+        // 3 dp of a percentage is ~0.001% of a bar's track — far below one pixel,
+        // so nothing visible changes and no baseline can move.
+        var pct = f > 1 ? 100 : f * 100;
+        return Math.round(pct * 1000) / 1000;
     }
     function nlbEnWarnOnce(eng, flag, prefix, msg) {
         if (!eng || eng[flag]) return;
