@@ -699,7 +699,7 @@
       "STATE_5": {
         "label": "Two pulls, 20 N flat and 20 N tilted to 60°, release together on the same track. The flat crate moves farther and collects more work per metre; one formula — the dot product of force and displacement — matches both live readings exactly.",
         "visible_elements": [],
-        "camera_position": [0, 2.0, 10],
+        "camera_position": [3, 2.5, 9],
         "caption": "Two pulls, one formula",
         "show_sliders": true,
         "formula_overlay": "W = F⃗ · d⃗ = F d cos θ",
@@ -707,7 +707,7 @@
           "mode": "accelerate_applied_force",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "crate_a", "label": "A", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } },
+            { "id": "crate_a", "label": "A", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -3.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } },
             { "id": "crate_b", "label": "B", "mass_kg": 5, "color": "#AB47BC", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
           ],
           "arrows": [
