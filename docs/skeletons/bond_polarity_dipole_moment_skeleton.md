@@ -34,6 +34,50 @@
 
 ---
 
+## ⛔ CHECKPOINT A — SKELETON CYCLE 1: `DESIGN_FIX` (2026-08-01). All findings applied above.
+
+The 8-state arc was NOT re-litigated and stands. What failed was that the per-state detail was
+written against a *described* contract rather than against `BS_BOND_MOMENT_D`, `BS_CAMERAS` and the
+compare branch **as shipped** — four load-bearing claims were contradicted by code. Every finding
+below was re-verified against renderer source by the dispatching session before being applied.
+
+| # | Finding | Where it landed |
+|---|---|---|
+| **F1** | S7 attributed the 1.47 → 0.23 D drop to arrows flipping. Reversing three symmetric vectors cannot shrink \|sum\| — the drop is entirely `N\|H −1.31` vs `N\|F 0.17`, and the higher-Δχ bond gets the SHORTER arrow, contradicting S2's core rule. | S7 re-specced to the **four-vector model** |
+| **F2** | S2 narrated HF 1.83 / HI 0.44; the engine prints 1.82 / **0.38** — 16% apart on HI. | S2 blocked pending a table ratification (direction: **up**, to CRC) |
+| **F3** | The Rule-35 anchor was specified in §9 and claimed as the macro vertex, but appeared in **no** state's narration and every state was at budget. Placing it at S1 (as DoD said) would pre-spoil S4's aha. | Anchor moved to **S4**, S4 re-budgeted |
+| **F3b** | "Oil molecules barely respond" overstates it — oil does heat. | Oil clause **cut**; the dry-plate contrast kept |
+| **F4** | The CHCl₃ override applied to CHCl₃ only, so three *surviving* Cl arrows halve mid-swap under "three arrows keep their directions." | Override extended to **CCl₄** |
+| **F9** | The ring-cut walk covered states only; assessment items 1 and 3 name hidden-ring species. | Items now carry `depth_ring` |
+| **F10** | `config.explore_species` was never named, and its **default contains CHCl₃ and NF₃** — silence is a 38b breach. | Key named and authored |
+| **F11/F12/F13** | S7 opened on S3's exact two-beat; S2 ran 6 sentences / two ideas; "symmetry cancels" gives a noun agency. | Timings shifted, S2 compressed, wording fixed |
+
+**Verdict on the three routings:** all correct. `compare` for S2/S6/S7 is right and forced; the S4
+angle-ramp block is real with no acceptable JSON fallback; "never narrate what is not drawn" on S7
+is right. But the `compare` correction has a side effect nobody could have seen without reading
+`BS_CAMERAS`: **in this engine the mode string picks the camera**, so S2/S6/S7 introduce four
+elevation-and-distance teleports the taught variable never caused.
+
+### E1c — expanded from 2 items to 7 (one surgeon, one region, Rule 40)
+
+| # | Ask | Blocking? |
+|---|---|---|
+| E1c-1 | Scripted angle ramp: `angle_from` / `angle_at_ms` / `angle_ramp_ms` | **blocks S4** |
+| E1c-2 | Draw the lone-pair lobe (and, under F1, its vector) | **blocks S7** |
+| E1c-3 | Single-unit `compare` inherits the `dipole_sum` camera (scene-derived, not mode-keyed). Verify S4's bend reads at el 47 in the same pass. | **blocking** |
+| E1c-4 | Arrow head scales with magnitude (`headLen = min(0.30, aLen*0.5)`) — drawn length is currently constant below 0.52 D, and HI 0.38, N–F 0.17 and C–H 0.30 all sit under that floor while narration says length IS the magnitude | **blocking** |
+| E1c-5 | Compare-swap guard reads `PM_bscLigDragged` / `PM_bscMolDragged`, not only `PM_bscSpeciesDragged` — S2's ligand slider is dead from 9 s onward | **blocking** |
+| E1c-6 | `angle_deg` applies to 2- and 3-bond centres with zero lone pairs, so CO₂ can be bent live (today the explore `angle` slider is inert for 8 of 9 picker species) | ride-along |
+| E1c-7 | Ratified `BS_LONE_PAIR_D.N` + intrinsic N–H/N–F moments (F1); ratified `H\|F/H\|Cl/H\|Br/H\|I` row (F2); `Cl: 0.74` on CCl₄ (F4) — **data, values from `chemistry_author`** | **blocks S2/S6/S7** |
+
+**E1c stays queued behind E3a** — two surgeons in `field_3d_renderer.ts` at once is the Rule-40
+hazard this Phase 0 exists to prevent.
+
+**`chemistry_author` is UNBLOCKED**: F1 and F3 were the two blockers and both are settled above.
+F2/F4/F11/F12/F13 are its own first-pass work; F10 rides to `json_author`; F9 is applied.
+
+---
+
 ## 1. Atomic claim + tier justification (honest)
 
 This concept teaches ONE thing: a bond's polarity is a vector, and a molecule's dipole moment is the
@@ -85,7 +129,7 @@ and the dashed resultant — same visual language every state, only the molecule
 | S4 | core | bend it and it is polar — **PRIMARY aha** | `bend-and-sum` | "Bent shape, arrows add" | angle (core) | 22 s | 53 | `resultant` |
 | S5 | core | four arrows in 3D still sum to zero — **the 💎 state** | `tetra-sum` | "Four arrows, still zero" | spin (core) | 22 s | 48 | `arrows` → `resultant` |
 | S6 | ext | one substitution breaks the symmetry | `substitute-one` | "One swap breaks symmetry" | — | 20 s | 44 | `resultant` |
-| S7 | adv | the lone pair has a dipole too (taught as a DIRECTION reversal — see engine note) | `lone-pair-add` | "Arrows flip, dipole drops" ⚠ *(revised — see verification note)* | — | 22 s | 53 | `arrows` → `resultant` |
+| S7 | adv | the lone pair carries its own dipole, and the bond arrows can oppose it | `lone-pair-add` | "Arrows flip, dipole drops" | — | 22 s | 53 | `arrows` → `resultant` |
 | S8 | core | explore | `interaction_complete` | — | molecule · angle · ligand (all core) | open | 0 | none (sandbox) |
 
 **Rule 32 legibility plan (all states):** cause first with a readable beat — S1 the pair slides,
@@ -126,10 +170,20 @@ on every annotation), `config.field_lines.opacity: {}` at config level (blank-sc
   contract trap 3), so the teacher visits HCl (1.08 D) and HBr (0.82 D) themselves — the four-rung
   ladder Checkpoint A required.
 - `hud_lines: ['mu','delta_chi']`. No formula surface. `controls: [{id:'ligand', min_ring:'core'}]`.
-- Narration intent (53 w): "A polar bond gets an arrow, drawn from delta plus to delta minus. Its
-  length is the measured dipole moment. Hydrogen fluoride: 1.83 debye — a long arrow. Swap fluorine
-  for iodine: 0.44 debye — a short one. A bigger electronegativity difference gives a longer arrow.
-  Use the slider for chlorine and bromine."
+- 🔴 **NUMBERS BLOCKED pending a data ratification (F2).** The engine's `BS_BOND_MOMENT_D` currently
+  holds HF **1.82** · HCl **1.08** · HBr **0.78** · HI **0.38**, while this narration quotes 1.83 and
+  0.44 — a **16% disagreement on HI between the spoken number and the on-screen instrument**, which
+  is the σ/π two-instrument scar verbatim. The skeleton's numbers are the *better* ones (CRC
+  gas-phase: 1.826 / 1.109 / 0.827 / 0.448); the engine carries an older bond-moment tabulation. So
+  the fix direction is **up**: ratify the `H|F / H|Cl / H|Br / H|I` row to the measured values.
+  Blast radius checked — `hydrogen_bonding` derives its charges from `bscIonicFraction(Δχ)`, not
+  from this table, so nothing else in the wave moves. `chemistry_author` ratifies; the surgeon
+  applies it in E1c.
+- Narration intent (≤48 w, 4 sentences — compressed at Checkpoint A cycle 1, F12: the draft ran 6
+  sentences and carried two ideas; the teacher-chrome line was cut): "A polar bond gets an arrow,
+  drawn from delta plus to delta minus. Its length is the measured dipole moment. Hydrogen
+  fluoride: 1.83 debye, a long arrow. Swap fluorine for iodine and it falls to 0.45 — a bigger
+  electronegativity difference gives a longer arrow." *(final digits follow the ratified table.)*
 
 **S3 — "Two arrows cancel — CO₂"** · `mode:'dipole_sum'` · `species:'CO2'` · MISCONCEPTION BEAT 1
 - Contrast beat, sequential (Rule 16a, never superimposed): `charges_at_ms: 2500` +
@@ -161,10 +215,17 @@ on every annotation), `config.field_lines.opacity: {}` at config level (blank-sc
 - `hud_lines: ['mu']`. Formula surface persists. `controls: [{id:'angle', min_ring:'core'}]`.
 - Prerequisite patch (one clause, non-condescending): "its two lone pairs hold the bonds at 104.5
   degrees" — the VSEPR cliff sentence.
-- Narration intent (53 w): "Water has the same kind of polar bonds, but the molecule is bent — its
-  two lone pairs hold the bonds at 104.5 degrees. The two arrows no longer point opposite ways.
-  Their sum is a new arrow: 1.85 debye. Same polar bonds, different shape, polar molecule. Drag
-  the angle and watch the sum."
+- 🔴 **The Rule-35 anchor lives HERE** (fixed at Checkpoint A cycle 1, F3). It was specified in §9
+  and claimed as the Rule-33 macro vertex in DoD (g), but no state's narration contained it and
+  every state was already at budget — an unbuildable anchor under a DoD claiming zero TBDs. It
+  belongs immediately after the resultant grows, because that is the first moment "water is polar"
+  is true on screen. **Putting it at S1 would have pre-spoiled S4's primary aha by three states**
+  (OPEN directive `teach_do_not_prespoil_a_later_reveal`). Recalled in one clause at S8.
+- Narration intent (51 w, 4 sentences — the drag line was cut per F12; the VSEPR clause trimmed to
+  make room): "Water has the same polar bonds, but the molecule is bent — its lone pairs hold them
+  at 104.5 degrees. The two arrows no longer point opposite ways. Their sum is 1.85 debye: same
+  bonds, different shape, polar molecule. This is why a microwave heats food and leaves a dry plate
+  cool."
 
 **S5 — "Four arrows, zero — CCl₄"** · `mode:'dipole_sum'` · `species:'CCl4'` · the 💎 ·
 MISCONCEPTION BEAT 2
@@ -179,7 +240,9 @@ MISCONCEPTION BEAT 2
 - Narration intent (48 w): "Four carbon–chlorine bonds, each polar, point at the four corners of a
   tetrahedron — the shape from the shapes lesson. Turn the molecule: from every side the four
   arrows balance. Their sum is exactly zero, in three dimensions. Carbon tetrachloride has no
-  dipole moment. Symmetry cancels four polar bonds."
+  dipole moment. The symmetric shape makes the four arrows cancel." *(final sentence reworded at
+  Checkpoint A cycle 1, F13 — "symmetry cancels four polar bonds" gives an abstract noun agency,
+  Rule 41a.)*
 
 **S6 — "One swap — CHCl₃"** · `mode:'compare'` · start `species:'CCl4'`, `compare_species:'CHCl3'` · extended
 - Scripted single substitution CCl₄ → CHCl₃ at `compare_at_ms: 5000`: one Cl swaps to H
@@ -196,28 +259,54 @@ MISCONCEPTION BEAT 2
   hydrogen. Three arrows keep their directions; the fourth is different. The arrows no longer
   cancel: a resultant appears along the hydrogen–carbon axis. This is chloroform, measured at
   1.04 debye. One substitution removes the symmetry."
+- 🔴 **The override must ALSO be applied to CCl₄ (F4).** As specced it lives on the CHCl₃ entry only,
+  so the `compare` swap goes C\|Cl **1.46** → C\|Cl **0.74** and the three *surviving* chlorine arrows
+  visibly halve — under a narration that says "three arrows keep their directions." That is an
+  unexplained change to the exact elements the state claims are unchanged, and a Rule-32b breach.
+  Ratify `Cl: 0.74` on **CCl₄ as well**: its μ stays exactly zero by symmetry (< 1e-15), S5's and
+  S6's opening pose stay identical (Rule 32d), the Δχ ordering against C–H is preserved
+  (0.74 > 0.30), and the swap then changes exactly ONE arrow — which is the whole lesson.
+  *(Checkpoint A confirmed the 1.04 D value itself is honest and needs no on-canvas disclosure —
+  the arrows carry no numeric labels, and a calibration note would violate Rule 34. Record it in the
+  teacher notes.)*
 
 **S7 — "Lone pair: NH₃ vs NF₃"** · `mode:'compare'` · start `species:'NH3'`,
 `compare_species:'NF3'` · advanced · MISCONCEPTION BEAT 3
-- `charges_at_ms: 2500` + `arrows_at_ms: 4000`: three N–H arrows point TOWARD nitrogen (H δ+,
-  N δ−) — the same side as the lone pair; `resultant_at_ms: 6500` → 1.47 D up the C₃ axis.
+- `charges_at_ms: 2000` + `arrows_at_ms: 3200` *(shifted from 2500/4000 at Checkpoint A cycle 1,
+  F11 — identical to S3's opening two-beat, and an identical opening is the hybridisation scar (d):
+  an archetype is a claim about rhythm, not a label)*: three N–H arrows point TOWARD nitrogen
+  (H δ+, N δ−) — the same way the lone pair points; `resultant_at_ms: 6500` → 1.47 D up the C₃ axis.
   Scripted swap NH₃ → NF₃ at `compare_at_ms: 10000`: every arrow FLIPS (N now δ+, F δ−, arrows
   point away from the lone-pair side), the resultant flips and shrinks → 0.23 D
   (`resultant` re-lands after the swap).
-- **ENGINE FACT, binding on narration:** `BS_LONE_PAIR_D` ships at 0 — the published bond moments
-  already absorb the lone-pair contribution. The contrast is a DIRECTION reversal, NOT a fourth
-  drawn vector. The narration below teaches it that way; no sentence may claim an extra arrow is
-  drawn, or it contradicts the instrument.
-- ⚠ **CONFIRMED: `bonding_scene` does NOT render a lone-pair lobe** (the `mgFrame` lone-pair
-  machinery belongs to `molecular_geometry`). Either E1c adds it, or the narration says "the top of
-  the pyramid" instead of "its lone pair" — **never narrate what is not drawn** (checklist
-  directive). Decision rides with E1c.
-- `hud_lines: ['mu','delta_chi']` — Δχ reads 0.84 (N–H) then 0.94 (N–F): the belief-killer number
-  pair (MORE polar bonds, SMALLER molecular dipole). Formula surface persists. No controls.
-- Narration intent (53 w): "Ammonia: nitrogen pulls harder than hydrogen, so all three bond arrows
-  point toward nitrogen — the same side as its lone pair. Total: 1.47 debye. Swap the hydrogens
-  for fluorines. Now fluorine pulls, every arrow flips away from the lone pair, and the total
-  drops to 0.23 debye. Direction decides, not just difference."
+- 🔴 **RE-SPECCED at Checkpoint A cycle 1 (F1) — the previous version taught a cause the engine's own
+  numbers cannot produce.** As shipped, `BS_BOND_MOMENT_D` holds `N|H −1.31` and `N|F 0.17` with
+  `BS_LONE_PAIR_D.N = 0` (verified at `:48520`/`:48538`). So the whole 1.47 → 0.23 D drop comes from
+  the **bond-moment magnitude**, not from the flip — reversing three symmetric vectors reverses the
+  resultant, it cannot shrink it. Worse, the *geometry* factor moves the wrong way (NF₃'s axial
+  cos 0.437 > NH₃'s 0.372), and the higher-Δχ bond gets the **shorter** arrow, which directly
+  contradicts S2's core-ring rule "a bigger electronegativity difference gives a longer arrow." A
+  student who watched S2 and then S7 would have been shown two incompatible rules.
+- **DECISION (adopted, ratification pending): the FOUR-VECTOR model.** Ratify *intrinsic*
+  (un-absorbed) N–H / N–F bond moments plus a real `BS_LONE_PAIR_D.N`, and **draw the lone-pair
+  vector** — which E1c is already visiting this region to make visible. A self-consistent set exists
+  (illustrative only: L ≈ 1.0 D along the lone pair with b(N–H) ≈ 0.42 and b(N–F) ≈ 0.79 reproduces
+  1.47 and 0.23 **and** restores "bigger Δχ ⇒ longer arrow"). Then S7 is four arrows, "direction
+  decides" becomes literally true on canvas, and the state teaches the examined textbook explanation.
+  **`chemistry_author` ratifies the actual values and SHOWS the calibration** (OPEN-DECISION-1's
+  standing requirement) — including whether the whole `BS_BOND_MOMENT_D` table moves to one
+  convention or N is documented as the exception. Do NOT keep the old wording over a three-vector
+  model.
+- ⚠ **CONFIRMED: `bonding_scene` renders no lone-pair lobe today** (that machinery belongs to
+  `molecular_geometry`). Under the four-vector decision E1c must draw both the lobe and its vector —
+  **never narrate what is not drawn**.
+- `hud_lines: ['mu','delta_chi']` — Δχ reads 0.84 (N–H) then 0.94 (N–F). Under the four-vector model
+  this is the honest belief-killer: the bonds ARE more polar (longer arrows) and the molecule's
+  dipole is SMALLER, because the lone-pair vector now opposes them instead of adding.
+- Narration intent (≤53 w, to be finalised against the ratified numbers): "Ammonia: nitrogen pulls
+  harder than hydrogen, so the three bond arrows point toward nitrogen — the same way its lone pair
+  points. They add: 1.47 debye. Swap the hydrogens for fluorines. Fluorine pulls harder still, so
+  the bond arrows now point away — against the lone pair. They cancel most of it: 0.23 debye."
 
 **S8 — "Explore polarity"** · `mode:'explore'` · core · `advance_mode: interaction_complete`
 - Controls (ALL, Rule 31c): `[{id:'molecule',min_ring:'core'}, {id:'angle',min_ring:'core'},
@@ -229,7 +318,13 @@ MISCONCEPTION BEAT 2
   extended/advanced states' species; including them would leak hidden-ring content under the
   core-only preset). BF₃ and CH₄ are included un-taught-but-core-safe: they are new EXAMPLES of the
   core rule (symmetry ⇒ zero), not new content — and BF₃ covers the trigonal-planar exam case the
-  guided arc skips. Formula surface = the S3 core surface only.
+  guided arc skips (recorded honestly: sandbox-only coverage is weak exam coverage, acceptable at
+  ⭐ tier). Formula surface = the S3 core surface only.
+- 🔴 **The key is `config.explore_species` (F10, verified at `:49065`), and it MUST be authored.**
+  Its default is `["HCl","CO2","H2O","CCl4","CHCl3","NH3","NF3"]` — which contains CHCl₃ **and** NF₃,
+  so **silence is a Rule-38b breach**, not a neutral omission. Author
+  `config.explore_species: ["H2O","CO2","CCl4","CH4","BF3","HF","HCl","HBr","HI"]`.
+  `config.explore_ligands`' default `["HF","HCl","HBr","HI"]` is already correct; author it anyway.
 - Narration: 0 / open.
 
 ## 4. Misconception confrontation plan (Rule 16a — 3 rows, at genuine pivots only)
@@ -238,7 +333,7 @@ MISCONCEPTION BEAT 2
 |---|---|---|
 | "If the bonds are polar, the molecule is polar" | **S3** | both CO₂ arrows shown long and polar FIRST (the belief's honest evidence), then the vector sum runs to zero on the live HUD |
 | same belief, re-killed in 3D where a board cannot follow | **S5** | four polar arrows, then the 3D sum lands exactly zero and stays zero under rotation |
-| "More polar bonds mean a bigger molecular dipole" | **S7** | Δχ on the HUD RISES (0.84 → 0.94) while μ falls 1.47 → 0.23 D in the same frame — direction, not magnitude, decides |
+| "More polar bonds mean a bigger molecular dipole" | **S7** | Δχ on the HUD RISES (0.84 → 0.94), the bond arrows get LONGER, and μ still falls 1.47 → 0.23 D in the same frame — because the arrows now oppose the lone-pair vector instead of adding to it. *(Requires the four-vector ratification; under the shipped three-vector model this row is FALSE as drawn — see S7.)* |
 
 No other state carries a `misconception_watch` — S1/S2/S4/S6/S8 are straightforward teaching.
 Belief source: NCERT Exemplar Ch.4 (belief only; no problem text imported).
@@ -278,14 +373,21 @@ exploration:           STATE_8
 
 ## 9. Real-world anchor (Rule 35 / 38f — universal, physics-true)
 
-**Primary — the microwave oven.** A microwave oven's field flips direction billions of times a
-second. Water molecules are tiny dipoles — a δ− oxygen end and δ+ hydrogen ends — so each flip
-turns them, and that turning is heat. Oil molecules have almost no dipole moment, so they barely
-respond: the water-rich food gets hot while the dry plate stays cool. This is dielectric heating
-of polar molecules — physics-true at every depth this concept reaches, present in kitchens on
-every continent, and a widest-syllabus-overlap device (38f). It hooks because it converts an
-invisible molecular property (μ = 1.85 D) into something the student has felt: why the food is hot
-and the plate is not.
+**Primary — the microwave oven. SPOKEN AT S4** (after the resultant grows), recalled in one clause
+at S8. A microwave oven's field flips direction billions of times a second. Water molecules are tiny
+dipoles — a δ− oxygen end and δ+ hydrogen ends — so each flip turns them, and that turning is heat.
+**The water-rich food gets hot while the dry ceramic plate stays cool.** This is dielectric heating
+of polar molecules — physics-true at every depth this concept reaches, present in kitchens on every
+continent, and a widest-syllabus-overlap device (38f). It hooks because it converts an invisible
+molecular property (μ = 1.85 D) into something the student has felt.
+
+⚠ **The oil comparison was CUT at Checkpoint A cycle 1 (F3b).** The draft said "oil molecules have
+almost no dipole moment, so they barely respond" — an overstatement of the same kind the architect
+rightly rejected the charged-rod demo for. Triglycerides carry real ester dipoles; oil's dielectric
+loss at 2.45 GHz is far below water's, but oil **does** heat in a microwave (every teacher has
+melted butter) and its specific heat is about half water's. The unimpeachable contrast is the dry
+plate, which is already in the anchor. If a second case is ever wanted, "oil absorbs far less" is
+the defensible wording — never "barely responds."
 **Secondary (one clause, S8):** oil and water refuse to mix — polar molecules attract each other
 more strongly than they attract nonpolar ones, so the liquids separate. (The full story is
 `hydrogen_bonding`'s; here it is one foreshadowing clause only.)
@@ -319,11 +421,16 @@ no static state; cause before effect throughout.
 `compare` (S2, S6, S7), `explore` (S8) — all in the E1+E2 LIVE list; NO E3 block
 (`lattice`/`sea`/`ions`/`transfer`/`shift`/`groups`) authored anywhere; `render_annotations: true`;
 `config.field_lines.opacity: {}`; `eye_capture_ms` per state ≥ last cue + 2000.
-(f) **assessment + coverage_map:** 4 items, authored by chemistry_author — (1) pick the zero-μ
-species from H₂O/NH₃/CCl₄/CHCl₃ [S5/S6] · (2) why is CO₂ nonpolar though its bonds are polar
-[S3] · (3) rank H₂O/NH₃/NF₃ by μ and give the NF₃ reason [S4/S7] · (4) predict the effect of
-bending a linear AB₂ molecule [S4]. coverage_map ties each to its state. misconception_watch:
-exactly the §4 three rows.
+(f) **assessment + coverage_map:** 4 items, authored by chemistry_author, **each tagged with a
+`depth_ring` so the presets filter items as well as states** (F9 — the cut walk in (i-1) covered
+states only, and items 1 and 3 name hidden-ring species): (1) `extended` — pick the zero-μ species
+from H₂O/NH₃/CCl₄/CHCl₃ [S5/S6] · (2) `core` — why is CO₂ nonpolar though its bonds are polar
+[S3] · (3) `advanced` — rank H₂O/NH₃/NF₃ by μ and give the NF₃ reason [S4/S7] · (4) `core` —
+predict the effect of bending a linear AB₂ molecule [S4]. Under `core-only` the surviving set is
+(2) and (4), which is a coherent two-item check of the taught rule. coverage_map ties each to its
+state. misconception_watch: exactly the §4 three rows. **Note (F9, P3):** the S5 drill-down cluster
+`ccl4_vs_chcl3_contrast` bridges into S6 and dangles under `core-only` — acceptable while
+drill-down is a dormant path, but it must not be counted as core coverage.
 (g) **Macro↔micro / representation triangle (Rule 33, chemistry form):** the taught variable is
 natively PARTICULATE — the particulate vertex leads every guided state; the macro vertex is
 carried by the anchor narration (microwave, S1 intro + S8); the symbolic vertex (μ formula, δ
