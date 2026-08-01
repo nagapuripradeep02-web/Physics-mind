@@ -397,6 +397,102 @@ export function deriveMotionExpectations(
             // anyway).
             const kt = state ? asObj(state.track) : null;
             if (kt) { out[stateId] = (kt.mode && kt.mode !== 'sandbox') ? true : false; continue; }
+            // force_rig (Laws of Motion, off-axis forces — docs/FORCE_RIG_ENGINE_SPEC.md;
+            // the per-state `force_rig` block, prefix `fr`). ONE engine, two branches:
+            // the force table's damped ring and the whirl's constrained bob.
+            //
+            // WHY THIS BRANCH EXISTS (2026-08-01): force_rig was wired into the reveal
+            // keys, the reveal pins and the hold classification but NOT here, so every
+            // force_rig state derived `undefined` and D5 skipped the whole concept — the
+            // gate could not fail. It did not: force_rig_not_reproducible_under_set_time_
+            // freeze_pin shipped seven MOTIONLESS states of equilibrium_of_particles past
+            // a 31/31 green run (114 dense frames, ring centroid sub-pixel identical),
+            // and a human, not the machine, caught it.
+            //
+            // WHAT IS DECLARED. Only what the engine PROVABLY repaints between the dense
+            // capture's pinned instants (t = 1 ms, then every 1000 ms — captureDenseSeries).
+            // Over-declaring is worse than skipping: a D5 that fails on correct work is a
+            // gate people learn to ignore. Everything not listed below is left undefined
+            // (D5 skips, exactly as before this branch existed) — never `false`, which
+            // would claim the engine asserts stillness.
+            const frig = state ? asObj(state.force_rig) : null;
+            if (frig) {
+                if (frig.apparatus === 'whirl') {
+                    // Branch B. The bob is INTEGRATED (frwStep, velocity Verlet + SHAKE/
+                    // RATTLE) at the solved ω every micro-step, so it repaints forever —
+                    // provided the circle it sweeps is bigger than the bob itself.
+                    // r = L·sinθ, and θ is SOLVED, never authored: cosθ = g/(ω²L) for
+                    // 'conical' (frwTheta), θ = π/2 for 'flat'. frwClampOmega raises a
+                    // conical ω up to ω_min = √(g/L), and AT that clamp cosθ = 1 → θ = 0
+                    // → r = 0: the bob hangs dead still. So a conical state authored at or
+                    // below ω_min genuinely does not move and must not be declared.
+                    // Floor = the bob's own radius (FR_W_BOB_R 0.17 world ÷ FR_W_WORLD_PER_M
+                    // 2.40 = 0.0708 m): below that the whole orbit fits inside the bob.
+                    const w = asObj(frig.whirl);
+                    if (w) {
+                        const L = asNum(w.string_length_m, 0) > 0 ? asNum(w.string_length_m, 1) : 1;   // frwPos default
+                        const omReq = asNum(w.omega_rad_per_s, 0) > 0 ? asNum(w.omega_rad_per_s, 4) : 4;
+                        const flat = w.geometry === 'flat';
+                        const omMin = flat ? 0 : Math.sqrt(FR.G / L);
+                        const om = omReq < omMin ? omMin : omReq;                       // frwClampOmega
+                        const cos = flat ? 0 : Math.min(1, Math.max(0, FR.G / (om * om * L)));
+                        const r = L * Math.sqrt(Math.max(0, 1 - cos * cos));            // L·sinθ
+                        if (r >= FR.BOB_R_M) { out[stateId] = true; continue; }
+                    }
+                    // A whirl state with no whirl block, or a collapsed cone: skip.
+                } else {
+                    // Branch A (force_table). The ring is a damped integrator with GEOMETRIC
+                    // restoring stiffness — frStringDir re-aims every string at the ring's
+                    // live position — so a displaced or re-tensioned ring always travels.
+                    //   (1) param_ramp: one-shot monotonic write through the same
+                    //       frApplyParam path a slider drag uses. It repaints (tension
+                    //       arrow lengths + the ring's new balance point) only if it
+                    //       actually WRITES: frRunParamRamp bails on a sandbox state
+                    //       (trusted_drag_seizes), on a value delta under its own 1e-4
+                    //       churn guard, and frApplyParam drops a whirl-kind write
+                    //       ('omega') on a table engine, leaving an inert ramp.
+                    const tbl = asObj(frig.force_table);
+                    const ramp = asObj(frig.param_ramp);
+                    if (ramp && frig.trusted_drag_seizes !== true
+                        && (ramp.param === 'm1' || ramp.param === 'angle1' || ramp.param === 'angle2')
+                        && typeof ramp.from === 'number' && Number.isFinite(ramp.from)
+                        && typeof ramp.to === 'number' && Number.isFinite(ramp.to)
+                        && typeof ramp.end_ms === 'number' && Number.isFinite(ramp.end_ms)
+                        && Math.abs(ramp.to - ramp.from) > FR.RAMP_CHURN) {
+                        out[stateId] = true; continue;
+                    }
+                    //   (2) ring_start_offset_m: the state opens with the ring displaced
+                    //       and it settles (~0.2 s at the default damping — well inside
+                    //       the 1 ms → 1000 ms pair). Declared only when the travel is
+                    //       unmistakable: floor = the ring's own DIAMETER in metres
+                    //       (2·FR_RING_R 0.15 ÷ FR_WORLD_PER_M 9.6 = 0.03125 m), i.e. the
+                    //       start and settled silhouettes do not even overlap. Below it
+                    //       the repaint is a couple of pixels of a thin torus, which is
+                    //       under D5's calibrated floor — equilibrium_of_particles STATE_6
+                    //       opens 2.1 mm off centre and is honestly not visible. The
+                    //       sandbox is NOT excluded here: the settle is pure integration,
+                    //       nothing seizes it, and the headless capture never drags.
+                    const off = tbl && Array.isArray(tbl.ring_start_offset_m) ? tbl.ring_start_offset_m : null;
+                    if (off && off.length === 2 && typeof off[0] === 'number' && typeof off[1] === 'number'
+                        && Number.isFinite(off[0]) && Number.isFinite(off[1])
+                        && Math.sqrt(off[0] * off[0] + off[1] * off[1]) >= FR.RING_D_M) {
+                        out[stateId] = true; continue;
+                    }
+                    //   (3) NOT a motion signal: `phases[]`. frRunPhases only ever rewrites
+                    //       eng.glow_focal, so a phase without its own `glow_focal` (every
+                    //       phase authored on equilibrium_of_particles) repaints NOTHING —
+                    //       it is a reveal-pin marker. A phase that does carry a distinct
+                    //       focal changes brightness, which is real but is not the moving-
+                    //       body signal D5 was calibrated against, so it is not claimed.
+                    //   (4) A settled table with neither a ramp nor a real offset does not
+                    //       move, by construction. "No static guided state" is Rule 31, an
+                    //       AUTHORING gate — D5 must not demand pixels the engine never
+                    //       repaints.
+                }
+                // Deliberately no `continue` on the not-provable paths: they fall through
+                // to the shared epic_l_path pass exactly like acl_element 'integrated'
+                // does, so no other scenario's control flow is touched.
+            }
             // bar_magnet_as_dipole: STATE_2's loop trace + STATE_3's break
             // genuinely CYCLE (the payoff is the repetition — "cut it
             // again, still two dipoles"), so they declare ongoing motion. Every
@@ -503,6 +599,25 @@ const F3D = {
     rcReveal: 6000, rcFade: 800,
     axReveal: 8500, axArise: 1000,
     morphStraight: 3000, morphDur: 1500,
+} as const;
+
+/**
+ * Mirror of the force_rig geometry/physics constants in field_3d_renderer.ts
+ * (the `fr` block, ~line 43212). Used ONLY by the force_rig motion branch, to
+ * decide whether the engine's repaint between two pinned dense instants is big
+ * enough for D5 to honestly demand it. Every value is derived from a renderer
+ * constant, never tuned to a concept:
+ *   G         = FR_G
+ *   RING_D_M  = 2 * FR_RING_R (0.15 world) / FR_WORLD_PER_M (FR_TABLE_R_W 2.40 /
+ *               FR_TABLE_R_M 0.25 = 9.6)  → the ring's own diameter in metres
+ *   BOB_R_M   = FR_W_BOB_R (0.17 world) / FR_W_WORLD_PER_M (2.40)
+ *   RAMP_CHURN = frRunParamRamp's own 1e-4 no-write guard
+ */
+const FR = {
+    G: 9.8,
+    RING_D_M: (2 * 0.15) / (2.40 / 0.25),
+    BOB_R_M: 0.17 / 2.40,
+    RAMP_CHURN: 1e-4,
 } as const;
 
 function asObj(v: unknown): Record<string, unknown> | null {
@@ -630,6 +745,14 @@ const F3D_REVEAL_KEYS = [
     // PCPL branch (which would derive a wall-clock reveal pin and a PCPL hold
     // classification for a field_3d state).
     'newtons_laws_body',
+    // Laws of Motion, off-axis forces (force_rig): the per-state `force_rig` block
+    // (the force table's damped ring + the whirl's constrained bob, plus its
+    // `phases[]` glow script, `param_ramp` reveal and the whirl's cut-the-string
+    // `release`). Registered here for the same reason newtons_laws_body is: a
+    // cached physics_config that flattened field_3d_config.states to the top level
+    // must still be recognised as field_3d rather than falling through to the PCPL
+    // branch (which would derive a wall-clock reveal pin and a PCPL hold class).
+    'force_rig',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -2748,6 +2871,59 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
     }
 
+    // force_rig (the off-axis force engine, prefix `fr`): the guided beats run on
+    // the state's OWN clock (`eng.t_ms` — reset to 0 on state entry, advanced only
+    // by the dt handed to updateForceRigFrame, so it freezes with the
+    // SET_TIME_FREEZE pin). Three scripted reveals can push the pin, and the pin
+    // must land past the LAST one:
+    //   • `phases[]` — same [at_ms, until_ms) window semantics as
+    //     newtons_laws_body above, so the pin lands INSIDE an open window
+    //     (eye_frozen_candidate_offset_falls_outside_engine_display_band) and past
+    //     a bare fire instant otherwise;
+    //   • `param_ramp` — one-shot monotonic, HOLDS at `to` from end_ms;
+    //   • `release.at_ms` (whirl) — the cut-the-string beat; the payoff is the
+    //     straight tangential departure AFTER the cut, so the pin must clear it.
+    // The ring/bob also needs real settling time after the last write, hence the
+    // FR_SETTLE_MS floor: a force table pinned the instant a ramp ends photographs
+    // a ring still visibly mid-drift, which would mint a self-contradictory H2
+    // baseline (field3d_scenario_missing_maxreveal_block_...).
+    const frig = asObj(state.force_rig);
+    if (frig) {
+        const frCushion = 500;
+        const FR_SETTLE_MS = 1600;   // damped ring settle, mirrors FR_DEFAULT_DAMPING
+        let frFound = false;
+        const frPhases = Array.isArray(frig.phases) ? frig.phases : [];
+        for (const phRaw of frPhases) {
+            const ph = asObj(phRaw);
+            if (!ph || typeof ph.id !== 'string' || ph.id.length === 0) continue;   // mirrors frRunPhases' skip
+            frFound = true;
+            const at = asNum(ph.at_ms, 0);
+            const until = typeof ph.until_ms === 'number' && Number.isFinite(ph.until_ms) ? ph.until_ms : null;
+            if (until != null && until > at) candidates.push(Math.max(at, Math.min(at + frCushion, until - 200)));
+            else candidates.push(at + frCushion);
+        }
+        const frRamp = asObj(frig.param_ramp);
+        if (frRamp && typeof frRamp.end_ms === 'number' && Number.isFinite(frRamp.end_ms)) {
+            frFound = true;
+            candidates.push(frRamp.end_ms + FR_SETTLE_MS);
+        }
+        // Registered NOW, so the whirl branch needs no edit here when it lands.
+        const frWhirl = asObj(frig.whirl);
+        const frRelease = frWhirl ? asObj(frWhirl.release) : null;
+        if (frRelease && typeof frRelease.at_ms === 'number' && Number.isFinite(frRelease.at_ms)) {
+            frFound = true;
+            // 3000, not 1200 (2026-08-01, with force_rig_whirl_post_cut_flight_
+            // envelope_too_short_to_watch): the flight used to LAST 1.4 s, so a
+            // 1.2 s pin was already near its end. The envelope now supports ~5 s
+            // of straight-line travel, and the payoff — a long straight track that
+            // is visibly NOT the abandoned circle — only reads once the bob is
+            // well clear of it. Still a pure reveal pin: it lands mid-flight, on a
+            // beat the engine holds (constant velocity, nothing transitional).
+            candidates.push(frRelease.at_ms + 3000);   // past the cut, into the straight departure
+        }
+        if (!frFound) candidates.push(FR_SETTLE_MS);   // no script: still let the rig settle
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -3425,6 +3601,21 @@ export function deriveHoldExpectations(
             const nlbHold = asObj(state.newtons_laws_body);
             if (nlbHold) {
                 out[stateId] = (nlbHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // force_rig (Laws of Motion, off-axis forces): every state exposes its
+            // own contextual slider row(s) (Rule 31 `controls_visible`), so the
+            // generic show_sliders catch must never decide these. The explore
+            // sandbox is the state that declares `trusted_drag_seizes` (Rule 37
+            // free-run under the teacher) → interactive; every other state is a
+            // guided beat whose ramp/phase payoff settles to a HOLD (the ring stops
+            // where the pulls balance) → reveal_hold, so D7 (stuck tail) / D1p
+            // (frozen) permit the settled tail instead of false-failing it. Both
+            // branches are pure RELAXATIONS in pixelGate — neither asserts
+            // stillness, so a still-settling beat is not mis-gated.
+            const frigHold = asObj(state.force_rig);
+            if (frigHold) {
+                out[stateId] = frigHold.trusted_drag_seizes === true ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

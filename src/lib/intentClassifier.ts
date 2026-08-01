@@ -223,6 +223,43 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // tension_in_string bundle (bare formula lookup, kept for historical
     // cache compatibility only).
     'tension_force',
+    // Equilibrium of Particles (Class 11 Ch.8.5 — eighth concept of the Laws of
+    // Motion track, and the FIRST on the force_rig field_3d engine, Branch A
+    // `force_table` — docs/loop_runs/lom_g/_engine/force_rig_json_contract.md).
+    // A particle acted on by several concurrent forces is in equilibrium when,
+    // and only when, the vector sum of those forces is zero — which means each
+    // direction balances on its own (ΣFₓ = 0 AND ΣF_y = 0). On the force table
+    // the hanging weight sets each string's tension exactly (T = m g), so arrow
+    // length means something; three UNEQUAL pulls (29.4, 39.2, 49.0 N) sum to
+    // nothing while every arrow stays full length; balance is a live condition
+    // (move a pulley and the balance point moves with it); and the symmetric
+    // two-cable support gives 2 T sin θ = W, so a flatter cable pulls HARDER —
+    // without limit as θ → 0, which is why a loaded rope can never be pulled
+    // perfectly straight. Does NOT cover friction as a balancing force
+    // (friction_force), equilibrium on an incline (block_on_incline), connected
+    // bodies and shared acceleration (connected_bodies, tension_force), torque
+    // or rotational equilibrium (a particle is a point — no lever arm), or
+    // Lami's theorem (deliberately cut: the engine exposes no inter-string angle
+    // readout, so it could only be asserted in text, never shown).
+    'equilibrium_of_particles',
+    // Uniform Circular Motion (Class 11 Ch.4 §4.11 + Ch.5 §5.9 — retrofitted
+    // 2026-08-01 onto the force_rig field_3d engine, Branch B `whirl` —
+    // docs/loop_runs/lom_g/_engine/force_rig_json_contract.md). A body
+    // circling at constant SPEED is not in equilibrium: its velocity's
+    // direction is always changing, so it needs a net inward force, here the
+    // string's tension, T = m ω² r, growing with the SQUARE of the spin rate.
+    // Cut the string and the body departs straight along the tangent at
+    // unchanged speed — no outward force is ever drawn or ever existed. Once
+    // gravity joins (a conical pendulum), the SAME tension splits into a
+    // vertical component balancing weight and a horizontal component that is
+    // the net inward force, and the cone angle is SOLVED, never chosen:
+    // cos θ = g / (ω²L), so the string approaches horizontal but never
+    // reaches it, and below ω = √(g/L) no cone exists at all — the bob simply
+    // hangs. Does NOT cover the kinematic derivation a = v²/r (that is
+    // centripetal_acceleration_kinematic, not yet shipped), a car on a level
+    // or banked road (circular_motion_banking), non-uniform vertical circular
+    // motion, or centrifugal force as a rotating-frame tool.
+    'uniform_circular_motion',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -1177,6 +1214,8 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   friction_force          ← static friction self-adjusts to cancel a FLAT push exactly, up to a ceiling f_max = μₛN, then DROPS to the smaller constant μₖN once sliding; two identical blocks at one force can have two different fates (resting held vs already-sliding runs away); kinetic friction is speed-independent. NO incline, NO tan θ (that is block_on_incline)
   rolling_friction        ← same mass, same push: a sliding block (μₖ = 0.40) vs a rolling wheel (μᵣ ≈ 0.002), SAME law f = μN but ~200× smaller coefficient — the wheel crosses the whole track while the block barely moves; rolling friction is small but NEVER zero (a coasting wheel still slows); both frictions grow with load, but only the sliding side's growth can stop motion entirely. NO torque, NO moment of inertia, NO angular acceleration; does NOT re-teach static vs kinetic friction (that is friction_force)
   tension_force           ← what tension IS as a force: a pull along the string's own line at both ends, whose SIZE is set by the motion, not by the string — T = m₂g only at rest (a=0); T = m₂(g−a) strictly less than m₂g the instant it accelerates; one ideal string carries ONE tension throughout (a pulley changes direction only, never size); a CHAIN of separate strings carries a DIFFERENT tension in each one, since each string only moves the mass behind it (T₁ ≠ T₂). Does NOT re-derive the shared-|a|/one-T pulley SOLVING METHOD or Atwood (that is connected_bodies)
+  equilibrium_of_particles ← a particle held by several CONCURRENT forces (a force-table ring pulled by 3–4 strings): equilibrium is ΣF = 0, and that is TWO independent statements, ΣFₓ = 0 AND ΣF_y = 0; three UNEQUAL pulls (29.4, 39.2, 49.0 N) can sum to nothing while every arrow stays full length — "not moving" never means "no forces"; the hanging weight sets each tension exactly (T = m g), independent of the pulley's angle; balance is a live condition (move a pulley, the balance point moves and the ring follows); and a symmetric two-cable support gives 2 T sin θ = W, so a FLATTER cable pulls HARDER, without limit as θ → 0 — a loaded rope can never be pulled perfectly straight. NO friction (that is friction_force), NO incline (block_on_incline), NO shared acceleration or Atwood (connected_bodies), NO torque / rotational equilibrium, NO Lami's theorem
+  uniform_circular_motion ← a body circling at CONSTANT SPEED still needs a net INWARD force, because its velocity's direction keeps changing (a whirled ball on a string): T = m ω² r, growing with the SQUARE of the spin rate; cut the string and it departs STRAIGHT along the tangent at unchanged speed — no outward force is ever drawn or ever existed ("flung outward" is the exact misconception this confronts); once gravity joins (conical pendulum) the SAME tension splits into a vertical part balancing weight and a horizontal part that is the net inward force, T cos θ = m g so T > m g always; the cone angle is SOLVED, never chosen, cos θ = g/(ω²L), so the string approaches horizontal but never reaches it at any finite spin rate; and below ω = √(g/L) no cone exists — the bob simply hangs. NO a = v²/r kinematic derivation (centripetal_acceleration_kinematic, not shipped), NO car on a road (circular_motion_banking), NO vertical circular motion, NO centrifugal / rotating-frame force
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -1425,6 +1464,8 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "why doesn't friction just equal mu N" / "does friction change as I push harder" / "why does the block suddenly lurch when it starts moving" / "why is friction weaker once something is already sliding" / "does a faster-sliding block feel more friction" / "push a heavy box until it slides" (FLAT surface, NO incline, NO tilt) → friction_force (NOT block_on_incline — that concept needs a ramp/tilt; this one is a flat push with static self-adjustment + the ceiling + the drop to kinetic. NOT friction_static_kinetic — that is the legacy bundle; friction_force is the new newtons_laws_body-engine concept)
 - "why is rolling friction so much smaller than sliding friction" / "does a rolling wheel have any friction at all" / "isn't rolling supposed to be frictionless" / "why does a ball eventually stop rolling" / "why do heavy things get moved on wheels" / "why is a wheeled suitcase easier to move than dragging it" / "does a heavier wheel still roll easily" → rolling_friction (NOT friction_force — that concept is the sliding-only static/kinetic self-adjust arc on ONE contact type; this one COMPARES a sliding block to a rolling wheel at the same push, ~200× friction gap, and confronts "rolling means frictionless". NOT block_on_incline — flat concept, no tilt anywhere)
 - "why isn't tension always equal to the weight" / "does tension in a string ever change" / "why is tension less than mg once it starts accelerating" / "why do two strings in a line read different tensions" / "why does the front string carry more than the back string" / "does one pull mean one tension everywhere" / "why isn't the front string's tension just equal to the applied force" / "tension in an elevator cable while accelerating" / "why does a pulley change tension" → tension_force (NOT connected_bodies — that concept teaches the shared-constraint SOLVING METHOD with one string/one T; this one teaches what tension IS and the same-vs-different question across a CHAIN of strings, T1 vs T2. NOT tension_in_string — that is the legacy mechanics_2d bare-formula bundle)
+- "equilibrium of a particle" / "concurrent forces" / "when do forces balance" / "does balanced mean the forces are equal" / "why doesn't it move if forces act on it" / "sum of forces is zero in both directions" / "force table experiment" / "a sign hanging from two cables" / "tension in each of two support cables" / "why does a tight rope pull so hard" / "why can't a clothes line be pulled perfectly straight" / "why is the cable tension bigger than the weight it holds" → equilibrium_of_particles (NOT free_body_diagram — that concept teaches how to DRAW the arrows for one body; this one teaches the equilibrium CONDITION itself, ΣFₓ = 0 and ΣF_y = 0, on a live many-string rig. NOT connected_bodies or tension_force — those need a rope over a pulley joining two MOVING bodies with a shared acceleration; this one is a single particle at rest under several concurrent pulls. NOT block_on_incline — no ramp, no friction anywhere)
+- "circular motion" / "centripetal force" / "why does a whirled ball need a force" / "does constant speed mean no force" / "why is tension bigger when it spins faster" / "cut the string what happens" / "why does it go outward when released" / "conical pendulum" / "why does the string tilt when it spins" / "cos theta equals g over omega squared L" / "minimum spin for a conical pendulum" / "why can't the string ever go horizontal" → uniform_circular_motion (NOT centripetal_acceleration_kinematic — that concept, not yet shipped, derives a = v²/r kinematically; this one is the FORCE-side concept, T = m ω² r read off a live rig. NOT circular_motion_banking — that concept is a car on a road, not a whirled ball or a conical pendulum. NOT pseudo_forces — this concept shows only that no outward force exists in the ground frame; it does NOT teach the rotating-frame centrifugal-force tool. NOT equilibrium_of_particles — that concept is a particle at REST under concurrent forces; this one is a particle IN MOTION around a circle)
 - "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 - "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 - "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)
