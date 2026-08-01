@@ -308,3 +308,30 @@ INSERT INTO engine_bug_queue (
 );
 
 -- END OF APPENDED BLOCK - nothing above was executed.
+
+
+-- ---------------------------------------------------------------------
+-- Candidate K - founder-directed realism finding (third of three dispatches
+-- authorised for STATE_3), fixed by this dispatch.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_whirl_string_vanishes_instead_of_visibly_being_cut',
+    'The cut deleted the string between two frames - nothing severed, nothing went slack, nothing was left behind - so the one physical event the state exists to show read as graphics being switched off',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The release was implemented as a single visibility flip: frwFit drew the string with on = !eng.released, so at release.at_ms the one object that embodied the constraint disappeared instantly and completely. Physically a taut cord under 12.96 N is severed at an instant and leaves TWO loose lengths, one still tied to the post and one still tied to the ball; the engine drew neither. The founder read the result exactly as it was built - "I feel like I am moving the graphics" - because a state change with no visible cause is indistinguishable from an author toggling a layer. The deeper cause is a modelling gap, not a drawing bug: the string in this engine is a CONSTRAINT (a term in frwAccel), not a body, so when the constraint is deleted there is nothing left to draw, and no code path had ever needed to ask what the string itself does.',
+    'When a scenario deletes a constraint at a scripted instant, the OBJECT that embodied that constraint needs its own brief post-deletion depiction, authored from the kinematics that ARE determined at the instant of deletion - never a fade of the constrained body, never a new force on it. Concretely for this class: (1) the severed pieces keep their own lengths (inextensible), (2) the anchor side carries away the angular velocity it had and bleeds it off, (3) the ball side lies along the ray through the anchor and swings back toward trailing as the body outruns it, (4) both free ends settle onto whatever surface was holding them up, (5) the pieces are drawn for the duration of the SEVERING and then stop being drawn, because a massless string is not a body the model can integrate and inventing dynamics for it would be a second lie. Every one of those is a closed form of (t_ms - at_ms) and of the pose read off the integrator at the cut, so the frozen frame and the time-pin rewind reproduce it (Rule 36). NEVER add a spark, flash, particle burst or blade: Rule 24/34 keeps the canvas to the physical picture and Rule 29 keeps emphasis to brightness, and an unphysical effect at the exact instant of the aha competes with the aha. GENERAL: presence-vs-absence is the cheapest possible animation and the least believable one - if a real event has debris, draw the debris.',
+    'js_eval',
+    'For any scenario with a scripted constraint deletion: pin frames at at_ms - 200, at_ms, at_ms + 350 and at_ms + 700 and assert (a) the frame AT at_ms is geometrically continuous with the frame before it (no object jumps or vanishes at the instant itself), (b) by at_ms + 350 there are two separated remnants where there was one object, (c) the constrained body speed is bit-identical across all four (severing cannot change a velocity), and (d) every remnant position recomputed from the same t reproduces exactly under a rewind.',
+    'FIXED',
+    ARRAY['uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g field3d_surgeon engine dispatch 2026-08-01 (the cut itself)',
+    'incident'
+);
+
+-- END OF APPENDED BLOCK - nothing above was executed.

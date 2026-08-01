@@ -176,7 +176,7 @@
 
       "STATE_3": {
         "title": "Cut the String",
-        "duration": 21,
+        "duration": 18,
         "focal_primitive_id": "delta_cue",
         "advance_mode": "manual_click",
         "depth_ring": "core",
@@ -213,10 +213,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The ball has been circling steadily." },
-            { "id": "s3_2", "text_en": "Now the string is cut." },
-            { "id": "s3_3", "text_en": "With the inward pull gone, the ball keeps the velocity it had — it moves in a straight line, along the tangent to the circle, at the same speed as before." },
-            { "id": "s3_4", "text_en": "No force pushes the ball outward, because none exists." }
+            { "id": "s3_1", "text_en": "The ball keeps circling steadily, held on its circle only by the string's inward pull." },
+            { "id": "s3_2", "text_en": "No force ever pushes the ball outward — just watch what happens when the string is cut." },
+            { "id": "s3_3", "text_en": "Now the string is cut." },
+            { "id": "s3_4", "text_en": "It moves straight, tangent, at the same speed." }
           ]
         },
         "misconception_watch": [
@@ -676,7 +676,7 @@
             "omega_rad_per_s": 1.8,
             "show_radius": false,
             "show_velocity": true,
-            "release": { "at_ms": 19600, "trail": true, "ghost_circle": true }
+            "release": { "at_ms": 12800, "trail": true, "ghost_circle": true }
           },
           "arrows": [{ "show": ["tension"] }],
           "readouts": ["T", "v"],
