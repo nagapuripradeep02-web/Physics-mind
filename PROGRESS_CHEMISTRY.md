@@ -19,31 +19,294 @@
 | 3 | First concept — **Bohr energy levels** (Wave 1 pivoted from Rutherford; prove-first) | ✅ **MERGED TO MASTER 2026-07-27** (`b9eb735`) — authored, validated, quality_auditor gated, THE EYE 39/39, eye_walker walked, baselines approved. **Only Asmi's professor review remains.** |
 | 3b | Second concept — **law_of_conservation_of_mass** (NCERT Cl.11 Ch.1 §1.3, archetype O) | ✅ **MERGED TO MASTER 2026-07-27** (`df3d993`) — full traditional pipeline, quality_auditor FAIL→fixed, THE EYE 44/44, baselines locked, 23/23 EN audio. **Only Asmi's professor review remains.** |
 | 4 | Chemistry machine gates (ledger check, animation vocab) | ◐ 2026-07-28: `validate:chemistry` is now IN CI (`verify.yml`) — it had never run there, so a broken chemistry concept passed the whole workflow green. Ledger/animation-vocab gates still ☐ (4 scar candidates waiting to seed them). |
-| 5 | Chemistry render surface — **both halves now LIVE** | ✅ 2026-07-28: `field_3d` `molecular_geometry` (electron-domain 3D) **and** `particle_field` `gas_box` (2D hard-disc gas) both on master, each with its first concept shipped. Still ☐: **orbital lobes / lattices (P2)**, wet-lab apparatus (Phase 5b). |
+| 5 | Chemistry render surface — **four scenarios LIVE** | ✅ 2026-07-28/30: `field_3d` `molecular_geometry` (electron-domain 3D) · `field_3d` `orbital_shapes` (lobes; `kind:"hybrid"` + `kind:"mo"`) · `particle_field` `gas_box` (2D hard-disc gas) · `parametric` (2D). Still ☐: **lattices** (ionic/metallic solids) + **multi-molecule scenes** (intermolecular forces) — both now SPECCED as ONE scenario, `bonding_scene`, in `docs/CHEMISTRY_PHASE0_BONDING.md` (Phase 0 done 2026-08-01, engine not dispatched); wet-lab apparatus (Phase 5b). |
 
 **Chemistry is a first-class subject ON MASTER across THREE renderer families, in 2D and 3D.**
-Baseline-locked concepts:
+All 10 concepts are baseline-locked. *(Table re-derived from disk 2026-08-01 — the previous version
+double-listed `le_chateliers_principle`, omitted `dynamic_equilibrium` and
+`collision_theory_activation_energy`, and swapped the states/baselines columns. Baselines = 2 × states:
+`STATE_N.png` + `STATE_N__frozen.png`.)*
 
-| Concept | Renderer | Baselines | EN clips |
-|---|---|---|---|
-| `bohr_model_energy_levels` | parametric | 9 | 31 |
-| `law_of_conservation_of_mass` | parametric | 7 | 23 |
-| `le_chateliers_principle` | particle_field (`gas_box`) | 17 | 32 |
-| `vsepr_molecular_shapes` | field_3d · `molecular_geometry` | 14 | 17 |
-| `kinetic_particle_theory` | particle_field · `gas_box` | 7 | 19 |
-| `atomic_orbitals_s_p_d` | field_3d · **`orbital_shapes`** | 18 | — (silent; Rule 30h) |
-| `hybridisation_sp_sp2_sp3` | field_3d · `orbital_shapes` (`kind:"hybrid"`) | 16 | 23 |
-| `le_chateliers_principle` | particle_field · `gas_box` | 12 | 32 |
-| `sigma_pi_bonding` | field_3d · `orbital_shapes` (**`kind:"mo"`**) | 9 | — (silent; Rule 30h) |
+| Concept | NCERT | States | Baselines | Renderer · scenario | EN clips |
+|---|---|---|---|---|---|
+| `law_of_conservation_of_mass` | Cl.11 Ch.1 | 7 | 14 | parametric | 23 |
+| `bohr_model_energy_levels` | Cl.11 Ch.2 | 9 | 18 | parametric | 31 |
+| `atomic_orbitals_s_p_d` | Cl.11 Ch.2 | 9 | 18 | field_3d · `orbital_shapes` | — silent (30h) |
+| `collision_theory_activation_energy` | Cl.12 Ch.3 | 9 | 18 | particle_field · `gas_box` | — silent (30h) |
+| `vsepr_molecular_shapes` | Cl.11 Ch.4 | 7 | 14 | field_3d · `molecular_geometry` | 17 |
+| `hybridisation_sp_sp2_sp3` | Cl.11 Ch.4 | 8 | 16 | field_3d · `orbital_shapes` (`kind:"hybrid"`) | 23 |
+| `sigma_pi_bonding` | Cl.11 Ch.4 | 9 | 18 | field_3d · `orbital_shapes` (`kind:"mo"`) | — silent (30h) |
+| `kinetic_particle_theory` | Cl.11 Ch.5 ⚠ | 7 | 14 | particle_field · `gas_box` | 19 |
+| `dynamic_equilibrium` | Cl.11 Ch.6 | 7 | 14 | particle_field · `gas_box` | 24 |
+| `le_chateliers_principle` | Cl.11 Ch.6 | 8 | 16 | particle_field · `gas_box` | 32 |
 
-The isolation contract held through every merge: all register at site #1 only, and
-`validate:concepts` reports 141/141 without ever seeing them.
+**Totals: 10 concepts · 80 states · 160 baselines · 169 EN clips · 3 silent.**
+`validate:chemistry` **10/10 PASS**. The isolation contract held through every merge: all register at
+site #1 only, and `validate:concepts` reports **146/146** without ever seeing them.
 
-**The one gate none of them has passed is Asmi's professor review** — now **eight** concepts deep,
+**The one gate none of them has passed is Asmi's professor review** — now **ten** concepts deep,
 spanning both dimensionalities and four renderer surfaces. That is the bottleneck, not renderer
-coverage, and it has been the stated bottleneck for **five** consecutive sessions. Put as plainly as
+coverage, and it has been the stated bottleneck for **six** consecutive sessions. Put as plainly as
 it can be: `sigma_pi_bonding` cleared three full audit rounds and every machine gate, and **not one
 of those measures whether it teaches.**
+
+---
+
+## ⚙ SESSION — Phase 0 gated and E1 landed: the `bonding_scene` substrate is on master (2026-08-01, master — engine only, Rule 40)
+
+> Continuation of the Phase-0 session below. founder-proxy Checkpoint A ran two cycles on the two
+> deepest skeletons; E1 was dispatched to `field3d-surgeon` only after `DESIGN_OK`.
+> **Engine on master (`12cac9a`); no concept authored. Desk 1 opens after E2.**
+
+**Checkpoint A cycle 1: `DESIGN_FIX`, and it earned its place.** The load-bearing finding was a
+process one: §0d's success test — *"no designed state needs a feature outside A–M"* — had been
+written as a **claim rather than a walk**. Walking it state by state found **seven designed states,
+three of them core-ring, consuming capabilities the union did not list**: a drawn valence/shared
+electron pair, a trend surface (the boiling-point anomaly only reads as an anomaly against its
+family's rising line — a value-only HUD just states four numbers), interior reveal on a lattice
+(glow is brightness; it cannot defeat occlusion), and a per-species radius. Three more, verified
+against the renderer: **the closed enums could not name substances the state tables teach**
+(`MG_MOLECULES` has no H₂S/CO₂/CCl₄/CHCl₃/NF₃; `MG_ELEMENTS` no Na/Mg/Al), so the "one edit"
+reuse claim was wrong; **the derived-outcome principle had been applied to the layer shift but not
+to the H-bond criterion**, which was a hardcoded N/O/F whitelist — scripted in exactly the way that
+decision forbids; and **Rule 38a broke at the explore states**, where a flat `controls` array left a
+sandbox exposing a slider that shatters a crystal in a lesson that never showed the shatter.
+
+**Cycle 2: `DESIGN_OK`**, on two enum edits plus seven carry-forward items. Two would have cost an
+E3 re-architecture: the states cycle 1 added need **two co-present samples** (solid vs melt; NaCl vs
+MgO) against a contract holding one `lattice` and a global `thermal` — fixed with a `groups: []`
+layer, because the sample-vs-sample race *is* the teaching; and **`like_contacts` was specified by
+its two outputs, not by what it measures** — in a cation-only lattice every nearest-neighbour contact
+is already like-charged, so a literal count reads 8 → 8 and the gate would have passed a metric
+teaching *"a metal has no like-charge neighbours."* Now defined as contacts created by the shift and
+left unscreened, with the gate asserting the definition on the case where a naive metric and the
+intended values disagree.
+
+**The cycle-2 lesson, general:** a state added during a fix cycle was checked against the union rows
+and against the closed enums, and never against whether **one config object can hold it**.
+Cardinality is a third axis.
+
+**Ring promotion.** `hydrogen_bonding` S6–S7 and `ionic_bonding` S6–S8 moved extended → **core**.
+Both cuts survived, so no rule was broken — but it left hydrogen bonding's boiling-point anomaly (its
+*literal* whiteboard-test justification) and all three examinable ionic properties outside the
+core-only preset, i.e. outside IGCSE, the grade this wave exists to serve and where ionic bonding is
+the chapter opener.
+
+### E1 — what landed (`12cac9a`, master)
+`field_3d` `scenario_type: 'bonding_scene'` (+1063 in `field_3d_renderer.ts`), `deriveStateMeta`
+registration in the same change (+84), and a new **`npm run check:bonding-scene`** (493 lines,
+negative controls on every section). Tables: 11 new `MG_MOLECULES` rows + an optional `ligands`
+array, 10 new `MG_ELEMENTS` rows, and a **separate** `BS_RADIUS_PM` linear-pm table — molecule atoms
+stay on the compressed legibility scale, ions and lattice sites use the linear one, because there the
+size change *is* the lesson. Plus units, derived δ charges, the rigid two-dot electron glyph,
+dipole arrows + derived resultant, index-derived deterministic jiggle, 13 ring-gated control rows,
+closed mode/glow/hud/species enums with an explicit **implemented vs deferred** split.
+
+**Three findings that corrected the spec — all from measurement, none from reading:**
+
+1. **D-4's countability criterion, as written, omits the central atom — and that omission IS the
+   scar.** Solved over the four ligands alone, the fleet house camera scores a comfortable 0.484 NDC
+   across a full spin; add the central atom to the counted set and the same camera drops to **0.064
+   NDC** mid-spin — one ligand swinging onto the carbon under a caption counting four. That is
+   `field3d_counted_element_occluded_along_view_axis` reproduced verbatim on a camera the metric had
+   just certified. **The counted set is whatever the caption is read against.** Re-solved; shipped
+   camera 0.2258 with the central atom included, negative control 0.0000.
+2. **OPEN-DECISION-1's ratified model double-counts.** Checkpoint A had corrected the original
+   HCl-calibrated constant to *published bond moments **plus** an explicit lone-pair term* — and that
+   correction was itself half-wrong. With the published values, N–H 1.31 reproduces NH₃ at **1.462 D**
+   and N–F 0.17 reproduces NF₃ at **0.223 D** with a lone-pair term of **zero**, because tabulated
+   bond moments are empirically fitted and already absorb it; a textbook-sized term pushes NH₃ to
+   2.46 D and breaks H₂O at the same time. The mechanism ships, authored at 0. **S7's teaching still
+   holds — the NH₃/NF₃ reversal is a *direction* reversal, not an extra vector**, and
+   `chemistry-author` needs to know that before writing its narration.
+3. **CHCl₃ is the one number the model misses** — 1.760 D against a literature 1.04 D, because bond
+   moments are famously non-additive across the chloromethanes. Everything else lands (HF/HCl/HBr/HI
+   exact, H₂O 1.849, NH₃ 1.462, NF₃ 0.223, every symmetric species < 1.2e-15). A per-molecule
+   override hook is read by the model, so ratification is a data edit, and the gate **prints**
+   model-vs-literature with a ratify flag rather than asserting values it cannot yet justify.
+
+### Verification (independently re-run by the dispatching session, not taken on report)
+`tsc` 0 · `check:renderer-syntax` + backticks clean · **`check:bonding-scene` all E1 sections PASS**
+(2/3/6/7/8/9/13/14 declared E2/E3 stubs) · `validate:concepts` **146/146** · `validate:chemistry`
+**10/10** · `check:hybrid-orbitals` + `check:sigma-pi` unregressed · THE EYE **vsepr 44/44 with all
+14 baselines at 0.00%** — the concept that actually reads the grown tables · hybridisation 50/50 ·
+σ/π 56/56. `MG_EXPLORE_MOLECULES` unchanged (no leak into VSEPR's picker), and gate §12 asserts every
+pre-existing `MG_MOLECULES`/`MG_ELEMENTS` row is byte-identical.
+
+The hybridisation/σ-π H₂ figures are non-zero (0.21–0.46%, tolerance 2.0%). The surgeon did not
+accept that on a green total: it stashed the two engine files, re-seeded and re-ran on the pre-E1
+renderer, getting **identical** figures — pre-existing baseline vintage, zero E1 pixel delta.
+
+### Scars
+**3 rows** drafted as SQL text, **NOT APPLIED** (engine_bug_queue writes are a founder decision):
+the countability-metric omission (CRITICAL, FIXED), the bond-moment double-count (MAJOR, OPEN), and
+`deferred_enum_members_must_be_declared_not_merely_unimplemented` (MODERATE, FIXED) — the answer to
+"how do you keep 11 unimplemented modes from becoming the σ/π decorative-string scar".
+
+### ⏭ NEXT
+**E2 — the intermolecular link layer** (derived charge-threshold criterion, form/break hysteresis,
+links-per-unit readout, temperature → jiggle, the row-O trend surface), then **Desk 1**
+(`feat/chemistry-polarity-hbonding`). E1's handoff records that δ(O in H₂O) = 0.319 vs δ(S in H₂S) =
+0.036 — a 9.0× gap, already gated — so the N/O/F requirement genuinely *emerges* from the threshold.
+
+---
+
+## 🧱 SESSION — Phase 0 for the bonding-successors wave: four concepts, ONE scenario, three sequenced dispatches, two desks (2026-08-01, no branch — design only, no code)
+
+> Founder asked to complete Phase 0 for `hydrogen_bonding`, `bond_polarity_dipole_moment`,
+> `ionic_bonding` and `metallic_bonding`, then open two working branches. **Phase 0a + 0b are done;
+> 0c is planned and NOT dispatched.** Full artifact: **`docs/CHEMISTRY_PHASE0_BONDING.md`**.
+
+**The result that matters: the four concepts need ONE new `field_3d` scenario, not the two the
+survey feared and not the four that four parallel desks would have produced.** `bonding_scene` —
+a scene of charged *units* (a molecule, or an ion on a lattice site) with links between them —
+covers all four because `placement: 'free' | 'lattice'` is the only structural difference between
+them. The shared substrate (units, per-atom charge, deterministic jiggle, HUD) is ~60–70% of the
+build. Rule 40a sweep across all branches: `bonding_scene`, `lattice_cell`, `rock_salt`,
+`electron_sea`, `hydrogen_bond`, `molecular_assembly`, `unit_cell` — **0 hits each**, nothing is
+being built twice.
+
+**No existing scenario stretches, but `molecular_geometry`'s geometry layer is directly reusable.**
+`mgFrame` / `mgIdealDirs` / `MG_ELEMENTS` sit at the same template scope as every other scenario's
+functions, so the new one *calls* them instead of re-deriving the VSEPR angle table. That reuse is
+the whole reason this is one build. `gas_box` (2D), `orbital_shapes` and the electric `dipole`
+scenario were each measured against the need and each fails it — the electric dipole shares a word
+with bond polarity and nothing else.
+
+**Three engine decisions taken now rather than discovered mid-build** — the Phase-0 payoff:
+1. **No integrator anywhere.** The obvious implementation of "forty jiggling molecules whose
+   H-bonds keep breaking" is a molecular-dynamics step loop, and it would break the fleet's
+   frozen-baseline contract (Rules 26/36) — `SET_TIME_FREEZE` snaps to a pinned time and must
+   reproduce byte-identical pixels. Required form: seeded sums of sines, amplitude ∝ √T, link
+   presence evaluated from those closed-form positions. The network flickers, and flickers
+   identically every replay.
+2. **The layer-shift outcome is DERIVED from the lattice's charge pattern, never authored.**
+   Like-charge alignment splits the ionic crystal; a cation lattice with a shared sea holds. This
+   is the `gas_box` `Ea_rev` lesson — the derivation is what makes ionic S7 vs metallic S5 a real
+   contrast instead of two animations.
+3. **One instrument per quantity** — flagged as OPEN-DECISION-1, because polarity has exactly the
+   σ/π hazard (a modelled vector sum that tracks the slider vs a literature μ in debye).
+
+**Curriculum finding: this wave is the fix for the IGCSE hole.** The σ/π session recorded that for
+IGCSE our bonding chapter is effectively empty — hybridisation and σ/π both carry *"hide the whole
+concept for this board"*, leaving VSEPR alone. **Ionic, metallic and hydrogen bonding are all
+full-coverage IGCSE topics.** No ranked P2 concept does that. ⚠ Counterweight: **metallic bonding is
+the weakest of the four on CBSE** (Solid State was removed from the rationalised NCERT) — build it
+fourth, with its CBSE cell authored `partial`, never `full`. And every international cell in all
+four new files will ship `needs_teacher_verification: true` — this wave enlarges that gap rather
+than closing it.
+
+**Honest tier call:** `bond_polarity_dipole_moment` is ⭐, not 💎. A teacher *can* draw CO₂ with two
+opposing arrows. Exactly one of its states is a diamond — four tetrahedral bond dipoles summing to
+zero, then one substitution breaking it. It earns its build on the pairing: **it is hydrogen
+bonding's prerequisite** (Rule 25 — δ+/δ− is otherwise an untaught term).
+
+**0b delivered two full skeletons, not one**, because the union has two disjoint halves and one
+skeleton cannot spec both: `hydrogen_bonding` (8 states, deepest on the free-placement half) and
+`ionic_bonding` (9 states, deepest on the lattice half), each with the Rule-31 per-state control
+table (archetype · delta cue · controls · real number) and its Rule-38 rings. Engine-facing tables
+for polarity (8 states) and metallic (7 states) complete the union check: **every engine feature
+A–M is exercised by at least one designed state, and no designed state needs a feature outside
+A–M** — the §0d success test made checkable before a line of code.
+
+**The plan (0c/0d), and why the desks pair the way they do:**
+
+| Step | What | Lands |
+|---|---|---|
+| E1 | `bonding_scene` substrate (units · charges · dipole arrows · jiggle · `deriveStateMeta` registration · `check:bonding-scene`) | master |
+| E2 | intermolecular link layer (form/break criterion · live count · temperature) | master |
+| → | **Desk 1 `feat/chemistry-polarity-hbonding`** — polarity → hydrogen bonding, pure JSON | branch |
+| E3 | lattice layer (rock_salt/fcc/bcc · transfer + radius re-scale · derived layer shift · electron sea) | master |
+| → | **Desk 2 `feat/chemistry-ionic-metallic`** — ionic → metallic, pure JSON | branch |
+
+Sequential engine dispatches, one `bug_class` each (Amendment 4), all to `field3d-surgeon`. Desk 1
+opens while E3 is still in flight — it never touches an engine file, so there is no Rule-40
+conflict, and a desk is working at all times without two sessions in `field_3d_renderer.ts`.
+**Both pairings are doubly justified — by engine surface AND by pedagogy:** polarity precedes
+hydrogen bonding, and metallic bonding's aha is a contrast against ionic bonding's cleavage beat.
+Splitting either pair would put one half of a contrast beat in a branch that cannot see the other.
+
+**The alarm-rule ledger is written in advance.** Six things this wave deliberately does not build —
+ice I_h, Born–Haber, hydration shells, Fajans polarisation, alloys, covalent network solids — each
+with its re-open condition, so a later concept does not ambush the engine.
+
+**One regression-bearing edit is required and is called out:** `MG_MOLECULES` entries carry a single
+`ligand:` string and cannot express CHCl₃ or NF₃. The safe change is an **optional** `ligands` array
+read only by the new scenario. `vsepr_molecular_shapes` must come back unchanged from THE EYE, and
+hybridisation and σ/π re-run, before E1 is called done.
+
+### ⏭ NEXT — the gate before any engine code
+**founder-proxy Checkpoint A on the two 0b skeletons** (`hydrogen_bonding`, `ionic_bonding`).
+§0b puts it before any engine code for a reason: it is the highest-ROI quality slot in the pipeline.
+**E1 must not be dispatched until it returns DESIGN_OK.** Three open decisions ride with it
+(dipole instrument · the ice beat · desk order).
+
+---
+
+## 🔗 SESSION — Chemical Bonding coverage survey: the chapter is DONE per the ranked list, and the four proposed successors all need engine work (2026-08-01, no branch — survey only, nothing authored)
+
+> Founder asked what was left in Chemical Bonding (NCERT Cl.11 Ch.4) and then which bonding concepts
+> intersect Indian **and** international curricula. No concept was built this session; the output is
+> the survey below and a build decision that is still open.
+
+**1. Ch.4 is complete against the ranked list.** All three Ch.4 entries in `CHEMISTRY_DISCUSSIONS.md`
+Session C5 §6 are built and baseline-locked: **#12 `vsepr_molecular_shapes`** (7 states),
+**#13 `hybridisation_sp_sp2_sp3`** (8), **#17 `sigma_pi_bonding`** (9), plus **#16
+`atomic_orbitals_s_p_d`** (Ch.2) which feeds them. **There is no remaining ranked work in this chapter.**
+
+**2. Only VSEPR is genuinely universal — read from the concepts' OWN `curriculum_tags`.** All 10
+chemistry concepts carry authored tags (physics is far patchier), so this is repo data, not recall:
+
+| Concept | CBSE | JEE/NEET | IB DP | AP | A-level | IGCSE |
+|---|---|---|---|---|---|---|
+| `vsepr_molecular_shapes` | full ✅ | — | full | full | full | **partial** |
+| `hybridisation_sp_sp2_sp3` | full ✅ | full | **partial — HL only** | full | full | **absent** |
+| `sigma_pi_bonding` | full ✅ | full | **partial — HL only** | full | full | **absent** |
+| `atomic_orbitals_s_p_d` | full ✅ | full | partial | partial | partial | **absent** |
+
+Both hybridisation and σ/π carry the tag text *"hide the whole concept for this board"* for IGCSE.
+So the Ch.4 trio is strong for CBSE/JEE/AP/A-level and weak-to-absent for the younger international
+grades; **VSEPR is the only bonding concept every board touches.**
+
+**⚠ 3. Every international cell is an unverified CLAIM.** In all four files only the **CBSE/NCERT row
+is `verified: true`**; every IB / AP / A-level / IGCSE / NGSS row is `needs_teacher_verification: true`.
+Rule 38g therefore blocks all of them from teacher-visible presets. **Ten concepts deep, not one
+international mapping has been confirmed by a teacher of that board** — the same shape of gap as the
+Asmi bottleneck, and it will silently cap the international story if it stays unclosed.
+
+**4. The four proposed successors are unranked AND engine-blocked.** Founder proposed building, in
+order: intermolecular forces / hydrogen bonding → polarity & dipole moment → ionic bonding → (4th TBD).
+None is on the C5 list (the whiteboard test excluded most of Ch.4 as board-drawable). Measured against
+the live scenarios:
+
+| Proposed | Needs | Exists today? |
+|---|---|---|
+| Intermolecular forces / H-bonding | **multiple molecules** attracting, H-bonds forming/breaking | ❌ `molecular_geometry` renders ONE molecule |
+| Polarity / dipole moment | one molecule + per-bond dipole vectors + resultant | ⚠️ extension of `molecular_geometry` |
+| Ionic bonding | electron transfer → repeating **3D lattice** | ❌ no lattice scenario |
+| Metallic bonding (4th candidate) | lattice + electron sea | ❌ shares the lattice gap |
+
+**Three of four need engine work, on two different surfaces.** That makes four parallel desks the
+exact Rule-40 hazard: three sessions editing `field_3d_renderer.ts` at once (cf. the twice-built PCPL
+focal-glow fix, and PR #10's nine deceptive hunks). **Phase 0 must run before any concept desk opens.**
+
+**5. Correction carried forward — Molecular Orbital Theory is NOT the universal pick.** MOT was
+proposed mid-session as "the biggest remaining Ch.4 diamond"; that is wrong by the intersection test.
+MOT is full in CBSE and heavy in JEE but **absent from IB DP and AP Chemistry**. By curriculum reach
+the order is **hydrogen bonding / IMF → polarity → ionic**, with MOT among the *weakest* in the
+chapter. (Assessment, not repo data — Rule 38g: needs teacher verification.)
+
+**6. Where the ranked list actually still has work.** Unbuilt: **P1 #3 rate of reaction · #5
+Maxwell–Boltzmann · #7 diffusion/Graham's** (all harvest the existing `gas_box`), and the whole of
+**P2 — #8 titration curve · #9 reaction profiles · #10 hydrogen emission spectrum · #11 periodic
+trends**, which the plan marks *"NO new engine work"*. That P2 block is exactly four concepts on
+engines that already work — the cheapest four available, versus three engine builds for the bonding
+successors.
+
+**NEXT (open founder decision):** (a) the four zero-engine P2 concepts, or (b) close out Ch.4 with the
+unranked bonding concepts, which requires a Phase-0 survey → one engine build landed on master
+separately (Rule 40) → *then* two desks of pure-JSON concepts. Recommendation on record: run the
+Phase-0 survey before opening any desk, and pair desks by **engine surface**, not curriculum order.
 
 ---
 

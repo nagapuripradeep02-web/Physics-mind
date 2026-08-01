@@ -42,6 +42,10 @@
     "log:lesson": "npx tsx --env-file=.env.local src/scripts/log_lesson.ts",
     "prewarm:deepdive": "npx tsx --env-file=.env.local src/scripts/prewarm_deepdive.ts",
     "solve:layout": "npx tsx --env-file=.env.local src/scripts/solve_layout.ts",
+    "desk:audit": "node scripts/desk.js audit",
+    "desk:sync": "node scripts/desk.js sync",
+    "desk:new": "node scripts/desk.js new",
+    "desk:close": "node scripts/desk.js close",
     "sync:agents": "node scripts/sync-agents.js",
     "check:agents": "node scripts/sync-agents.js --check",
     "test": "vitest run",
@@ -49,7 +53,8 @@
     "grant:paid": "npx tsx --env-file=.env.local src/scripts/grant_paid.ts",
     "check:gas-reaction": "npx tsx src/scripts/check_gas_reaction_physics.ts",
     "check:hybrid-orbitals": "npx tsx src/scripts/check_hybrid_orbitals.ts",
-    "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts"
+    "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts",
+    "check:bonding-scene": "npx tsx src/scripts/check_bonding_scene.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",

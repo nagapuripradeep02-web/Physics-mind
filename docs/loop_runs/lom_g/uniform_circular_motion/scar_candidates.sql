@@ -116,7 +116,12 @@ INSERT INTO engine_bug_queue (
 
 
 -- ---------------------------------------------------------------------
--- Candidate D - MINOR, incident. Narration references an object that is not
+-- Candidate D - MODERATE, incident. Narration references an object that is not
+-- (severity was authored MINOR; the table's CHECK constraint allows only
+--  CRITICAL / MAJOR / MODERATE - there is no MINOR tier, and the INSERT was
+--  rejected with 23514 on first apply. Mapped UP to the lowest legal tier
+--  rather than dropping the row: the finding is real, already fixed, and its
+--  prevention rule is worth keeping. Corrected 2026-08-01.)
 -- on screen and belongs to a different concept apparatus.
 -- STATE_1 sentence s1_2 ends: "...unlike the balanced ring's zero sum."
 -- The ring is the force_table fixture of the sibling concept
@@ -134,7 +139,7 @@ INSERT INTO engine_bug_queue (
 ) VALUES (
     'narration_references_a_prerequisite_concepts_apparatus_that_is_not_on_screen',
     'A prerequisite-bridging sentence names a fixture from the sibling concept (the balanced ring) that appears nowhere in this concept picture',
-    'MINOR',
+    'MODERATE',
     'alex:physics_author',
     'Chapter-coherence bridging sentences are written while both concepts are in the author head, so a reference to the previous sim apparatus reads as obvious. On screen it is a bare noun with no referent: the student sees a ball on a string and hears about a ring. Prerequisites are advisory (Rule 23), so the bridge cannot assume the prior lesson was taken.',
     'A bridging sentence may reference a prior concept IDEA but never its APPARATUS by name unless that apparatus is visible. Either name the idea (when the forces balanced, their sum was zero) or keep an explicit time-marker that flags it as recall (last time ...). Additionally avoid the phrase zero sum, which collides with the everyday idiom; write the forces summed to zero (Rule 41a).',
