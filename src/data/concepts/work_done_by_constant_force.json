@@ -144,7 +144,7 @@
             "id": "wdcf_s2_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "The same pull, now against a rough floor that will not let go",
+            "text": "The same pull, now against a rough floor with high friction",
             "color": "#FFF176"
           },
           {
@@ -227,7 +227,7 @@
         "misconception_watch": [
           {
             "belief": "The whole force does work: W = F·d for any direction of pull.",
-            "visual_counter": "The identical 20 N pull, tilted to 60°, buys only half the joules per metre — the arc shows the tilt, the full-length F arrow leans away from the motion, and the bar visibly climbs slower against the same growing d.",
+            "visual_counter": "The identical 20 N pull, tilted to 60°, does only half the joules per metre — the arc shows the tilt, the full-length F arrow leans away from the motion, and the bar visibly climbs slower against the same growing d.",
             "one_line_fix": "Tilting the pull leaves less of it pointing along the motion — the work per metre falls by cos θ."
           }
         ]
@@ -275,7 +275,7 @@
       },
 
       "STATE_5": {
-        "title": "W = F⃗·d⃗: two vectors give one number",
+        "title": "The dot product gives the same work",
         "duration": 23,
         "focal_primitive_id": "wdcf_s5_dot",
         "advance_mode": "manual_click",
@@ -295,7 +295,7 @@
             "id": "wdcf_s5_dot",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "W = F⃗ · d⃗ = F d cos θ — one number from the force arrow and the displacement arrow, at any angle",
+            "text": "W = F · d = F d cos θ — one number from the force arrow and the displacement arrow, at any angle",
             "color": "#66BB6A"
           },
           {
@@ -349,7 +349,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Mass does not appear in W = F·d·cos θ at all. A heavier crate takes longer to cover the same distance under the same pull, but the force does exactly the same work over that distance — try 2 kg and 8 kg at the same F and θ and watch the meter climb at the identical rate, just over a different time." }
+            { "id": "s6_1", "text_en": "Change the force, angle, or mass and explore freely." }
           ]
         }
       }
@@ -376,7 +376,7 @@
   ],
 
   "assessment": {
-    "mastery_definition": "A student who has mastered this concept can state that work requires both a force and a displacement along that force's direction; compute W = F·d·cos θ for any angle from 0° up to (not including) 90°; explain why a force with no displacement, or a force whose along-motion component is zero, does zero work; verify a live numeric prediction against a stamped measurement; write work as the scalar product W = F⃗·d⃗; and recognize that work done by a force is independent of the mass being moved.",
+    "mastery_definition": "A student who has mastered this concept can state that work requires both a force and a displacement along that force's direction; compute W = F·d·cos θ for any angle from 0° up to (not including) 90°; explain why a force with no displacement, or a force whose along-motion component is zero, does zero work; verify a live numeric prediction against a stamped measurement; write work as the scalar product W = F·d; and recognize that work done by a force is independent of the mass being moved.",
     "questions": [
       {
         "q_id": "q1_work_definition",
@@ -391,7 +391,7 @@
         "distractor_misconceptions": {
           "B": "confuses work with a rate-like quantity that needs elapsed time to build up, instead of a product of force and displacement",
           "C": "adds the force value and the distance value instead of multiplying them (unit-blind arithmetic)",
-          "D": "halves the product of force and distance, treating work like an average rather than a product"
+          "D": "applies the variable-force averaging rule W = half F d, correct only when a force ramps linearly from zero as with a stretching spring, to this constant-force case"
         },
         "tested_idea": "W = F·d for a force aligned with the displacement; the joule as N·m",
         "teaches_state": "STATE_1",
@@ -444,7 +444,7 @@
         "options": {
           "A": "40.0 J",
           "B": "80.0 J",
-          "C": "34.6 J",
+          "C": "69.3 J",
           "D": "20.0 J"
         },
         "correct": "A",
@@ -462,10 +462,10 @@
         "q_id": "q5_scalar_product",
         "stem": "Which expression correctly gives the work done by a constant force through a displacement, using vector notation?",
         "options": {
-          "A": "W = F⃗ · d⃗ = F d cos θ",
-          "B": "W = F⃗ × d⃗ = F d sin θ",
-          "C": "W = F⃗ + d⃗",
-          "D": "W = |F⃗| + |d⃗|"
+          "A": "W = F · d = F d cos θ",
+          "B": "W = F × d = F d sin θ",
+          "C": "W = F + d",
+          "D": "W = |F| + |d|"
         },
         "correct": "A",
         "distractor_misconceptions": {
@@ -697,7 +697,7 @@
         }
       },
       "STATE_5": {
-        "label": "A third pull, 20 N at 30°, written as two vectors: W = F⃗·d⃗ = F d cos θ, one number from any angle",
+        "label": "A third pull, 20 N at 30°, written as two vectors: W = F·d = F d cos θ, one number from any angle",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Any angle, one number",
