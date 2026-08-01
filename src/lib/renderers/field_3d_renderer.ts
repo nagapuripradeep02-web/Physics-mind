@@ -47340,6 +47340,16 @@ export const FIELD_3D_RENDERER_CODE = `
     // lone-pair-up tripod. n=3 derives from the same constant so the trigonal
     // PLANE faces the camera instead of being seen edge-on.
     var MG_AZ0 = 237 * Math.PI / 180;
+    // E1c: the bend-plane NORMAL used when a zero-centroid set is squeezed (see
+    // mgSqueeze's degenerate branch). A linear AB2 has no defined bisector, so the
+    // plane its V opens in has to be named: this points it at the fleet house
+    // camera AZIMUTH (35 deg — BS_CAMERAS.dipole_sum / explore / assemble all sit
+    // there), which is what makes a bent CO2 read as bent instead of edge-on.
+    // Horizontal by construction, so the V opens across the screen, not into it.
+    // NOT MG_AZ0 + 90: that constant orients the molecular_geometry TRIGONAL PLANE
+    // against ITS camera and the two cameras are 52 deg apart.
+    var MG_BEND_AZ = 35 * Math.PI / 180;
+    var MG_BEND_NORMAL = [Math.cos(MG_BEND_AZ), 0, Math.sin(MG_BEND_AZ)];
 
     // CPK-flavoured but re-picked for legibility on the deep-blue field background.
     // radius = a REAL atomic magnitude (Rule 29), not an emphasis knob.
@@ -47488,14 +47498,49 @@ export const FIELD_3D_RENDERER_CODE = `
     // for a PAIR β = θ/2. A fully symmetric set (CH4 / linear / octahedral) has a
     // zero centroid → returned untouched, which is exactly right: no lone pair,
     // no compression.
-    function mgSqueeze(dirs, targetDeg) {
+    function mgSqueeze(dirs, targetDeg, degenAxis) {
         var n = dirs.length, i;
         if (n < 2 || n > 3 || !(targetDeg > 0)) return dirs;
         var sum = [0, 0, 0];
         for (i = 0; i < n; i++) { sum[0] += dirs[i][0]; sum[1] += dirs[i][1]; sum[2] += dirs[i][2]; }
         var mag = Math.sqrt(sum[0] * sum[0] + sum[1] * sum[1] + sum[2] * sum[2]);
-        if (mag < 1e-6) return dirs;
-        var axis = [sum[0] / mag, sum[1] / mag, sum[2] / mag];
+        var axis;
+        if (mag < 1e-6) {
+            // E1c: THE DEGENERATE CASE — a set with a ZERO centroid (linear AB2,
+            // trigonal planar AB3, i.e. every 2-/3-bond centre with NO lone pair).
+            // Its bisector is undefined, so the caller must NAME the axis or the
+            // bend is arbitrary. Reached ONLY through mgFrame's zero-lone branch
+            // below, which fires only when a state AUTHORS an angle: nothing that
+            // resolves an equilibrium geometry ever lands here (every lone-pair
+            // set has a non-zero centroid), so no shipped molecule changes.
+            //   n = 2: the axis is the V-apex direction, perpendicular to the bond
+            //          line and inside the plane whose normal is degenAxis, so the
+            //          opening V faces the camera instead of being seen edge-on.
+            //   n = 3: the axis is the PLANE NORMAL (the C3 axis) — pyramidalising
+            //          a trigonal-planar centre is a rotation about it, and its
+            //          sign is fixed against degenAxis so the pucker direction is
+            //          deterministic under a SET_TIME_FREEZE rewind.
+            if (!degenAxis) return dirs;
+            if (n === 2) {
+                axis = mgNorm([
+                    degenAxis[1] * dirs[0][2] - degenAxis[2] * dirs[0][1],
+                    degenAxis[2] * dirs[0][0] - degenAxis[0] * dirs[0][2],
+                    degenAxis[0] * dirs[0][1] - degenAxis[1] * dirs[0][0]
+                ]);
+            } else {
+                var e1 = [dirs[1][0] - dirs[0][0], dirs[1][1] - dirs[0][1], dirs[1][2] - dirs[0][2]];
+                var e2 = [dirs[2][0] - dirs[0][0], dirs[2][1] - dirs[0][1], dirs[2][2] - dirs[0][2]];
+                axis = mgNorm([
+                    e1[1] * e2[2] - e1[2] * e2[1],
+                    e1[2] * e2[0] - e1[0] * e2[2],
+                    e1[0] * e2[1] - e1[1] * e2[0]
+                ]);
+                if (mgDot(axis, degenAxis) < 0) axis = [-axis[0], -axis[1], -axis[2]];
+            }
+            if (!(Math.abs(axis[0]) + Math.abs(axis[1]) + Math.abs(axis[2]) > 1e-6)) return dirs;
+        } else {
+            axis = [sum[0] / mag, sum[1] / mag, sum[2] / mag];
+        }
         var ct = Math.cos(targetDeg * Math.PI / 180), beta;
         if (n === 2) beta = (targetDeg / 2) * Math.PI / 180;
         else beta = Math.acos(Math.sqrt(mgClamp((ct + 0.5) / 1.5, 0, 1)));
@@ -47521,6 +47566,21 @@ export const FIELD_3D_RENDERER_CODE = `
         var bonds = ideal.slice(nLone);
         var ang = (angleDeg != null) ? angleDeg : mol.angle;
         if (nLone > 0) bonds = mgSqueeze(bonds, ang);
+        // E1c item 4: an AUTHORED angle also bends a 2-/3-bond centre that carries
+        // NO lone pair — otherwise the explore angle slider is inert for eight of
+        // bond_polarity's nine picker species (a slider that does nothing) and its
+        // own assessment item ("predict the effect of bending a linear AB2
+        // molecule") cannot be explored on CO2, the only linear AB2 it teaches.
+        // GATED THREE WAYS so nothing already shipped can move: the angle must be
+        // EXPLICITLY authored (angleDeg != null — a molecule resolving its own
+        // equilibrium passes null and takes the identical old path), the centre
+        // must carry zero lone pairs and 2 or 3 bonds, and the bare domain-spread
+        // morph (domainsOverride) is excluded. mgSqueeze is identity at the
+        // natural angle in both cases (180 deg for a pair, 120 deg for a tripod),
+        // so authoring the equilibrium value is also a no-op.
+        else if (angleDeg != null && !isSpread && bonds.length >= 2 && bonds.length <= 3) {
+            bonds = mgSqueeze(bonds, ang, MG_BEND_NORMAL);
+        }
         return {
             mol: mol, bonds: bonds, lone: lone, kinds: kinds.slice(nLone),
             angle: ang, domains: nDom, spread: isSpread
@@ -48382,7 +48442,20 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // the LINEAR-pm scale and charge ramps with the radius
     //       groups / sea / ions / shift,          // PARSED + PASSED THROUGH by
     //                                             // E1/E2/E3a, owned by E3b
-    //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale },
+    //       angle_deg,                              // static bond-angle override
+    //       angle_from, angle_at_ms, angle_ramp_ms, // E1c: the SCRIPTED bend.
+    //                  // angle_deg is the DESTINATION; the ramp runs angle_from
+    //                  // -> angle_deg over angle_ramp_ms (default 1600) starting
+    //                  // at angle_at_ms. Closed form in state-local t (D-1). The
+    //                  // angle slider opens at angle_from and tracks the script
+    //                  // until a trusted drag seizes it. angle_deg now also bends
+    //                  // a 2-/3-bond centre with NO lone pair (a linear AB2 or a
+    //                  // trigonal-planar AB3), which is what makes the explore
+    //                  // angle slider live for CO2 and BF3, not H2O alone.
+    //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale,
+    //                 show_lone_pair },             // E1c: lobe + label, plus the
+    //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
+    //                  // is non-zero (N only, per the ratified convention)
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
     //       thermal: { T_K, jiggle_scale },
     //       spin_start_ms, spin_rate,               // rad/s about +y, 0 = hold
@@ -48415,6 +48488,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MAX_ATOM_LABELS = 12;    // D-6, the OTHER half: 30 units = 90 element labels
     var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
     var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
+    var BS_ANGLE_RAMP_MS = 1600;    // E1c: default angle_ramp_ms (pair_shift's default)
+    // E1c: the lone-pair lobe, the molecular_geometry proportions verbatim so a
+    // student meeting both sims sees the SAME object (fatter and shorter than a
+    // bond — the extra girth IS the taught physics, not a Rule-29 bulge).
+    var BS_LONE_LOBE_W = 0.42;
+    var BS_LONE_LOBE_LEN = 0.66;
 
     // ── E2 (intermolecular link layer) constants ─────────────────────────────
     //   THE SCALE. Distances in the link contract are PICOMETRES (form_pm /
@@ -49359,6 +49438,56 @@ export const FIELD_3D_RENDERER_CODE = `
         zl.visible = false;
         addToScene(zl);
 
+        // ── E1c item 3: THE LONE-PAIR LAYER (lobe + its own dipole vector).
+        //   bonding_scene rendered no lone pair at all — that machinery lived in
+        //   molecular_geometry — so bond_polarity S7 (NH3 vs NF3) could not be
+        //   drawn: its whole argument is that the lone pair carries a dipole of
+        //   its own which the bond arrows first ADD to and then OPPOSE, and its
+        //   narration points straight at it. NEVER NARRATE WHAT IS NOT DRAWN.
+        //   The lobe geometry is the molecular_geometry one verbatim (fatter and
+        //   shorter than a bond, a real occupied volume, not a Rule-29 bulge) so
+        //   a student meeting both sims sees the SAME object.
+        //   The VECTOR is drawn only where BS_LONE_PAIR_D[central] is non-zero,
+        //   which is the data half E1c-A ratifies: with the fitted table (every
+        //   central atom except N) the published bond moment already absorbs the
+        //   lone-pair contribution, so drawing a lone-pair arrow there would
+        //   double-count. It carries elementType bsc_arrow deliberately — it IS
+        //   one of the vectors the glow key "arrows" means, and the closed glow
+        //   enum does not grow a key.
+        var loneColor = CO.lone_pair || "#B39DDB";
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var lpb = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 16), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(loneColor), emissive: hexToThreeColor(loneColor),
+                emissiveIntensity: 0.34, shininess: 40, transparent: true, opacity: 0.5
+            }));
+            lpb.userData = { elementType: "bsc_lone", id: "bsc_lone_lobe_" + i, slot: i };
+            lpb.visible = false;
+            addToScene(lpb);
+            var lsh = new THREE.Mesh(shaftGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(loneColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            lsh.renderOrder = 996;
+            lsh.userData = { elementType: "bsc_arrow", id: "bsc_lone_shaft_" + i, slot: i };
+            lsh.visible = false;
+            addToScene(lsh);
+            var lhd = new THREE.Mesh(headGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(loneColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            lhd.renderOrder = 996;
+            lhd.userData = { elementType: "bsc_arrow", id: "bsc_lone_head_" + i, slot: i };
+            lhd.visible = false;
+            addToScene(lhd);
+        }
+        // ONE label for the whole lobe set (plural when there are two), placed
+        // beyond the first lobe — the molecular_geometry pattern. Auto-width
+        // because "lone pair" and "lone pairs" are different widths.
+        var lpl = pmCreateAutoLabel("lone pair", loneColor, 0.42);
+        lpl.userData = { elementType: "bsc_lone", id: "bsc_lone_label" };
+        lpl.visible = false;
+        addToScene(lpl);
+
         // Row N — the shared-pair glyph: TWO DISCRETE DOTS that translate RIGIDLY
         // along the bond axis. Deliberately NOT a deforming cloud: that scoping is
         // what keeps the Fajans-rules deferral honest (doc ledger). Plus a pool of
@@ -49605,7 +49734,14 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscSep = (bs.approach_from != null) ? bs.approach_from
             : ((bs.separation != null) ? bs.separation : 3.0);
         var molNow = MG_MOLECULES[window.PM_bscMol];
-        window.PM_bscAngle = (bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5);
+        // Same rule as separation above (FIXED scar scripted_change_desyncs_the_
+        // dom_control_that_shares_it): a state that SCRIPTS the bend opens its
+        // angle widget at the ramp's OWN starting value, not at the destination —
+        // otherwise S4's slider reads 104.5 while the molecule is drawn linear.
+        // The frame pass then tracks the scripted value every frame until a
+        // trusted drag seizes it, so the two are joined in both directions.
+        window.PM_bscAngle = (bs.angle_from != null && bs.angle_at_ms != null) ? bs.angle_from
+            : ((bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5));
 
         // Rule 31 contextual rows — ring-gated list, recorded for the preset builder.
         var ctrls = bscControlList(bs.controls);
@@ -49689,11 +49825,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // Hide every transient the frame updater owns, so a capture landing between
         // this apply and the first animate frame can never photograph the PREVIOUS
         // state's arrows, delta labels or electron glyph.
-        var transient = ["bsc_res_shaft", "bsc_res_head", "bsc_res_label", "bsc_res_zero"];
+        var transient = ["bsc_res_shaft", "bsc_res_head", "bsc_res_label", "bsc_res_zero",
+            "bsc_lone_label"];
         for (i = 0; i < transient.length; i++) { var t = bscFindById(transient[i]); if (t) t.visible = false; }
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var a1 = bscFindById("bsc_arrow_shaft_" + i); if (a1) a1.visible = false;
             var a2 = bscFindById("bsc_arrow_head_" + i); if (a2) a2.visible = false;
+        }
+        // E1c item 3: the lone-pair layer is a transient too — a capture landing
+        // between this apply and the first animate frame must never photograph the
+        // PREVIOUS state's lobes or lone-pair vector on a molecule that has none.
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var l1 = bscFindById("bsc_lone_lobe_" + i); if (l1) l1.visible = false;
+            var l2 = bscFindById("bsc_lone_shaft_" + i); if (l2) l2.visible = false;
+            var l3 = bscFindById("bsc_lone_head_" + i); if (l3) l3.visible = false;
         }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
         for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
@@ -49745,8 +49890,26 @@ export const FIELD_3D_RENDERER_CODE = `
             molKey = bs.compare_species;
             mol = MG_MOLECULES[molKey];
         }
+        // E1c item 1: THE SCRIPTED BEND. angle_deg alone is a static override, so
+        // a state could only ever open at its final shape — and bond_polarity S4's
+        // primary aha is water opening LINEAR (arrows opposite, resultant zero,
+        // deliberately recreating the previous state's cancelled picture) and then
+        // bending to 104.5 while the resultant grows. Named after the shipped
+        // pair_shift_at_ms / approach_at_ms pattern and ramped with the same pure
+        // mgRamp helper: angle(t) is a CLOSED FORM of state-local t with no
+        // accumulator (D-1), so a SET_TIME_FREEZE rewind photographs the same
+        // pixels. angle_deg stays the DESTINATION (and the static value when no
+        // ramp is authored), exactly as separation is the destination of
+        // approach_from.
+        var angleTo = (bs.angle_deg != null) ? bs.angle_deg : mol.angle;
+        var angleAt = function (mms) {
+            if (bs.angle_from == null || bs.angle_at_ms == null) return angleTo;
+            return mgRamp(mms, bs.angle_at_ms,
+                (bs.angle_ramp_ms != null) ? bs.angle_ramp_ms : BS_ANGLE_RAMP_MS,
+                bs.angle_from, angleTo);
+        };
         var angleNow = (bscHasControl(ctrls, "angle") && window.PM_bscAngleDragged)
-            ? window.PM_bscAngle : ((bs.angle_deg != null) ? bs.angle_deg : mol.angle);
+            ? window.PM_bscAngle : angleAt(ms);
         var T_K = (bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged)
             ? window.PM_bscTemp : ((th.T_K != null) ? th.T_K : BS_T0_K);
         var nWant = (bscHasControl(ctrls, "count") && window.PM_bscCountDragged)
@@ -50150,6 +50313,87 @@ export const FIELD_3D_RENDERER_CODE = `
             updateLabelSpriteText(rzr, "\\u03BC = 0 D");
         }
 
+        // ── E1c item 3: the lone-pair lobe and its own dipole vector.
+        //   The lobe rides mgFrame's OWN lone directions (D.frame.lone) — the
+        //   geometry is never re-derived here, so the lobe sits exactly where
+        //   VSEPR puts it and moves with the same bend, orient and spin as the
+        //   bonds. The vector's tail sits at the LOBE, the way a bond arrow's
+        //   tail sits at its bond midpoint, so the two dipole families read as
+        //   the same kind of object attached to different domains.
+        var showLone = !!dip.show_lone_pair;
+        var loneDrawn = 0;
+        for (i = 0; i < MG_MAX_LONE; i++) {
+            var lob = bscFindById("bsc_lone_lobe_" + i);
+            var lsh2 = bscFindById("bsc_lone_shaft_" + i), lhd2 = bscFindById("bsc_lone_head_" + i);
+            var lEnt = (D.lone && i < D.lone.length) ? D.lone[i] : null;
+            var lOn = showLone && !!lEnt;
+            if (lob) lob.visible = lOn;
+            // the ARROW half is data-gated: zero lone-pair moment draws nothing,
+            // so every fitted-convention central atom keeps its current picture.
+            var lvOn = lOn && Math.abs(lEnt.D) > 1e-6;
+            if (lsh2) lsh2.visible = lvOn;
+            if (lhd2) lhd2.visible = lvOn;
+            if (!lOn) continue;
+            loneDrawn++;
+            var ld0 = lEnt.dir;
+            var ld1 = fRot ? fRot(ld0) : ld0;
+            ld1 = mgRotY(ld1, spin);
+            var lAt = BS_BOND_LEN * 0.52;
+            if (lob) {
+                lob.position.set(fOrg[0] + ld1[0] * lAt, fOrg[1] + ld1[1] * lAt, fOrg[2] + ld1[2] * lAt);
+                mgTmpV.set(ld1[0], ld1[1], ld1[2]).normalize();
+                mgTmpQ.setFromUnitVectors(MG_UP, mgTmpV);
+                lob.quaternion.copy(mgTmpQ);
+                lob.scale.set(BS_LONE_LOBE_W, BS_LONE_LOBE_LEN, BS_LONE_LOBE_W);
+            }
+            if (!lvOn) continue;
+            // signed, exactly like a bond arrow: a NEGATIVE entry would point the
+            // vector back at the central atom.
+            var lSgn = (lEnt.D >= 0) ? 1 : -1;
+            var lDir = [ld1[0] * lSgn, ld1[1] * lSgn, ld1[2] * lSgn];
+            var lLen = Math.abs(lEnt.D) * aScale;
+            // FRAMES FINDING (E1c runtime smoke): tailed at the lobe CENTRE the
+            // whole vector sat INSIDE the lobe — 0.73 D draws 0.45 units and the
+            // lobe is 0.66 long, so the arrow was invisible under a translucent
+            // shell. It launches from the lobe's OUTER FACE instead, which is also
+            // the honest picture (the charge cloud, then the moment it carries).
+            // The LENGTH still comes only from the table (Rule 29) — the offset
+            // moves the tail, never the magnitude.
+            var lTailAt = lAt + BS_LONE_LOBE_LEN;
+            var lTail = [fOrg[0] + ld1[0] * lTailAt, fOrg[1] + ld1[1] * lTailAt, fOrg[2] + ld1[2] * lTailAt];
+            var lBody = Math.max(0.02, lLen - 0.30);
+            if (lsh2) { mgOrientStick(lsh2, lDir, lBody, 1); lsh2.position.set(lTail[0], lTail[1], lTail[2]); }
+            if (lhd2) {
+                mgOrientStick(lhd2, lDir, 1, 1);
+                lhd2.position.set(lTail[0] + lDir[0] * lBody, lTail[1] + lDir[1] * lBody, lTail[2] + lDir[2] * lBody);
+            }
+        }
+        var lLab = bscFindById("bsc_lone_label");
+        if (lLab) {
+            lLab.visible = showLone && loneDrawn > 0;
+            if (lLab.visible) {
+                var lld = D.lone[0].dir;
+                var lld1 = fRot ? fRot(lld) : lld;
+                lld1 = mgRotY(lld1, spin);
+                var llAt = BS_BOND_LEN * 0.52;
+                var lAnch = [fOrg[0] + lld1[0] * llAt, fOrg[1] + lld1[1] * llAt, fOrg[2] + lld1[2] * llAt];
+                // FRAMES FINDING (E1c runtime smoke): anchored straight along the
+                // lone-pair axis this label landed ON TOP of the resultant's
+                // "mu = 1.47 D" label — on NH3 the resultant points ALONG the lone
+                // pair by construction, so the two can never be separated by a
+                // fixed offset. Routed through the shared clear-placement helper
+                // (the same one the atom and delta labels use) with the resultant
+                // label, the resultant TIP and the central atom as avoid points.
+                var lAvoid = [fOrg, lAnch];
+                if (rlb && rlb.visible) lAvoid.push([rlb.position.x, rlb.position.y, rlb.position.z]);
+                if (rhd && rhd.visible) lAvoid.push([rhd.position.x, rhd.position.y, rhd.position.z]);
+                mgPlaceLabelClear(lLab, lAnch, BS_LONE_LOBE_LEN + 0.52, lAvoid);
+                updateLabelSpriteText(lLab, loneDrawn > 1 ? "lone pairs" : "lone pair");
+            }
+        }
+        window.PM_bscLoneD = (D.lone && D.lone.length) ? D.lone[0].D : 0;
+        window.PM_bscLoneDrawn = showLone ? loneDrawn : 0;
+
         // ── row N: the shared pair. TWO DISCRETE DOTS translating RIGIDLY along
         //    the bond axis toward the more electronegative end. Closed form, no
         //    deformation (the Fajans deferral depends on this scoping).
@@ -50510,7 +50754,11 @@ export const FIELD_3D_RENDERER_CODE = `
         arrows: ["bsc_arrow"],
         resultant: ["bsc_resultant"],
         charges: ["bsc_charge"],
-        electrons: ["bsc_electron"],
+        // E1c: the lone-pair LOBE is an electron pair, so it rides the electrons
+        // focal; its dipole VECTOR carries elementType bsc_arrow and rides the
+        // arrows focal with the bond arrows it is summed with. The closed 10-key
+        // glow enum is unchanged — only the element types behind two keys grow.
+        electrons: ["bsc_electron", "bsc_lone"],
         lattice: ["bsc_lattice"],
         layer: ["bsc_layer"],
         neighbours: ["bsc_neighbour"]

@@ -1998,6 +1998,16 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         bscPush(bscState.charges_at_ms, 900);
         bscPush(bscState.pair_shift_at_ms, 1200);
         bscPush(bscState.compare_at_ms, 1500);
+        // E1c: the SCRIPTED BEND (angle_from -> angle_deg over angle_ramp_ms from
+        // angle_at_ms). Registered in the same change as the renderer cue, the
+        // standing new-scenario rule: a state that ramps an angle with no later
+        // reveal cue would otherwise pin at DEFAULT_REVEAL_MS = 1500 ms, i.e.
+        // mid-bend, and mint a self-contradictory baseline. Reads its own duration
+        // the way approach_at_ms / assemble_at_ms already do, so the pin lands past
+        // the SETTLED shape, never inside the transition.
+        if (typeof bscState.angle_at_ms === 'number') {
+            candidates.push(asNum(bscState.angle_at_ms, 0) + asNum(bscState.angle_ramp_ms, 1600) + 600);
+        }
         if (typeof bscState.assemble_at_ms === 'number') {
             candidates.push(asNum(bscState.assemble_at_ms, 600) + asNum(bscState.assemble_duration_ms, 3200) + 500);
         }

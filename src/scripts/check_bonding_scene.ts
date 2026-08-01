@@ -20,7 +20,9 @@
  * 2, 3 and 7 (and extends 10 with the E3a mode/hud/cell split, and 11 with the
  * lattice OCCLUSION metric). 8/13/14 belong to E3b (the lattice DYNAMICS half —
  * layer shift, electron sea, drift, melt, groups) and print as declared SKIPs
- * with their owner — never silently absent.
+ * with their owner — never silently absent. E1c adds section 15 (the two authoring
+ * capabilities bond_polarity S4/S7 could not be authored without, plus the bit-for-
+ * bit mgFrame regression half those three shipped concepts ride).
  *
  *   npm run check:bonding-scene
  */
@@ -83,14 +85,17 @@ function grabRegion(fromFn: string, toFn: string): string {
 }
 
 const VARS = [
-  "MG_BOND_LEN", "MG_MAX_BONDS", "MG_MAX_LONE", "MG_AZ0", "MG_ELEMENTS",
+  "MG_BOND_LEN", "MG_MAX_BONDS", "MG_MAX_LONE", "MG_AZ0",
+  "MG_BEND_AZ", "MG_BEND_NORMAL",        // E1c (order: NORMAL reads AZ)
+  "MG_ELEMENTS",
   "MG_MOLECULES", "MG_EXPLORE_MOLECULES",
   "BS_BOND_LEN", "BS_MAX_UNITS", "BS_MAX_ATOMS", "BS_MAX_DELTA_LABELS", "BS_T0_K",
   // NOTE: order is EXECUTION order inside the extracted body, and BS_MODES_IMPL
   // concatenates the split lists — so every split list must be declared BEFORE
   // it. (E3a found this the hard way: BS_MODES_E3A listed last made
   // BS_MODES_IMPL concat an `undefined` and report 11 modes instead of 13.)
-  "BS_ARROW_D_PER_UNIT", "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
+  "BS_ARROW_D_PER_UNIT", "BS_ANGLE_RAMP_MS",
+  "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
   "BS_CONTROL_IDS", "BS_HUD_LINES", "BS_HUD_LINES_E1", "BS_HUD_LINES_E2",
   "BS_PLACEMENTS",
@@ -1188,7 +1193,178 @@ skip("under a field, the SOLID sample's ions do not move", "E3 (lattice layer)")
 console.log("\n=== 14. ROW R (two independent groups in one frame) ===");
 skip("heating group A leaves group B bit-for-bit unchanged", "E3 (lattice layer)");
 
+console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair · AB2 bend) ===");
+// The two states bond_polarity could not author at all against the shipped engine
+// (S4's linear -> bent water, S7's lone-pair vector) plus the inert explore angle
+// slider. Every assertion below runs the SHIPPED bodies, and the regression half
+// (item 4 touches mgFrame, which vsepr / hybridisation / sigma_pi all ride) is
+// asserted bit-for-bit rather than argued.
+{
+  // ── item 1: the scripted angle ramp is a CLOSED FORM of state-local t (D-1).
+  const bendAt = (mms: number) =>
+    E.mgRamp(mms, 4500, 3000, 180, 104.5) as number;
+  ok("angle ramp holds angle_from before angle_at_ms", bendAt(0) === 180 && bendAt(4499) === 180,
+    `t=0 -> ${bendAt(0)}  t=4499 -> ${bendAt(4499)}`);
+  ok("angle ramp reaches angle_deg at angle_at_ms + angle_ramp_ms",
+    Math.abs(bendAt(7500) - 104.5) < 1e-9 && Math.abs(bendAt(20000) - 104.5) < 1e-9,
+    `t=7500 -> ${bendAt(7500).toFixed(4)}`);
+  ok("the ramp is strictly monotonic through the bend (no overshoot, no latch)",
+    [4500, 5000, 5500, 6000, 6500, 7000, 7500].every((t, i, a) =>
+      i === 0 || (bendAt(t) < bendAt(a[i - 1]) && bendAt(t) >= 104.5 - 1e-9)));
+  {
+    // THE REWIND, sampled MID-BEND (t=6000 is inside the 4500..7500 ramp): pin
+    // 6000 -> 9000 -> 6000 and the bend angle AND the geometry it produces must be
+    // byte-identical. An accumulator cannot do this.
+    const a1 = bendAt(6000), g1 = E.mgFrame("H2O", a1, null).bonds as number[][];
+    bendAt(9000); E.mgFrame("H2O", bendAt(9000), null);
+    const a2 = bendAt(6000), g2 = E.mgFrame("H2O", a2, null).bonds as number[][];
+    ok("rewind t=6000 -> 9000 -> 6000 reproduces the MID-BEND pose byte-for-byte",
+      Object.is(a1, a2) && g1.every((v, i) => v.every((c, k) => Object.is(c, g2[i][k]))),
+      `angle=${a1}`);
+  }
+  ok("BS_ANGLE_RAMP_MS default matches deriveStateMeta's frozen-pin default",
+    E.BS_ANGLE_RAMP_MS === 1600, `${E.BS_ANGLE_RAMP_MS} ms`);
+  {
+    // and the shipped frame pass really reads the three new keys, drag-seizes the
+    // slider both ways, and seeds the widget at angle_from on state entry.
+    const upd = grabFn("updateBondingSceneFrame");
+    const app = grabFn("applyBondingSceneState");
+    ok("the frame pass reads angle_from / angle_at_ms / angle_ramp_ms",
+      /bs\.angle_from/.test(upd) && /bs\.angle_at_ms/.test(upd) && /bs\.angle_ramp_ms/.test(upd));
+    ok("a trusted drag still seizes the angle (and the widget tracks the script)",
+      /PM_bscAngleDragged\s*\)\s*\?\s*window\.PM_bscAngle\s*:\s*angleAt\(ms\)/.test(upd) &&
+      /bscHasControl\(ctrls, "angle"\) && !window\.PM_bscAngleDragged/.test(upd));
+    ok("state entry seeds the angle widget at angle_from, not at the destination",
+      /PM_bscAngle\s*=\s*\(bs\.angle_from != null && bs\.angle_at_ms != null\) \? bs\.angle_from/.test(app));
+  }
+
+  // ── item 3: the lone-pair lobe AND its vector.
+  {
+    const build = grabFn("buildBondingScene");
+    const upd = grabFn("updateBondingSceneFrame");
+    const app = grabFn("applyBondingSceneState");
+    ok("the lone-pair meshes EXIST (lobe + shaft + head + label), not just a key",
+      /bsc_lone_lobe_/.test(build) && /bsc_lone_shaft_/.test(build) &&
+      /bsc_lone_head_/.test(build) && /bsc_lone_label/.test(build));
+    ok("the lone-pair vector rides elementType bsc_arrow (closed glow enum intact)",
+      /elementType: "bsc_arrow", id: "bsc_lone_shaft_/.test(build) &&
+      sameSet(Object.keys(E.BS_GLOW_ELS), ["units", "central", "links", "arrows", "resultant",
+        "charges", "electrons", "lattice", "layer", "neighbours"]));
+    ok("the lobe rides the electrons focal", E.BS_GLOW_ELS.electrons.indexOf("bsc_lone") >= 0,
+      E.BS_GLOW_ELS.electrons.join(","));
+    ok("the frame pass gates the layer on dipole.show_lone_pair", /dip\.show_lone_pair/.test(upd));
+    ok("the lone-pair layer is hidden as a transient on state entry",
+      /bsc_lone_lobe_/.test(app) && /bsc_lone_shaft_/.test(app) && /bsc_lone_label/.test(app));
+    ok("the lobe geometry is mgFrame's own lone direction, never re-derived",
+      /D\.lone\[i\]|D\.lone && i < D\.lone\.length/.test(upd) && !/mgIdealDirs/.test(upd));
+    // the DATA gate: zero lone-pair moment draws no vector, so every fitted-
+    // convention central atom keeps its picture exactly.
+    const lone = (k: string) => (E.bscDipole(k, null) as any).lone as { dir: number[], D: number }[];
+    ok("NH3/NF3 expose exactly ONE lone-pair slot, H2O two, CO2/CCl4/BF3 none",
+      lone("NH3").length === 1 && lone("NF3").length === 1 && lone("H2O").length === 2 &&
+      lone("CO2").length === 0 && lone("CCl4").length === 0 && lone("BF3").length === 0);
+    const drawnNow = ["H2O", "H2S", "NH3", "NF3", "CO2", "CCl4", "CHCl3", "CH4", "BF3", "HCl"]
+      .filter((k) => lone(k).some((L) => Math.abs(L.D) > 1e-6));
+    ok("with the SHIPPED table, |L| > 0 for exactly the centrals E1c-A ratifies",
+      drawnNow.every((k) => E.MG_MOLECULES[k].central === "N"),
+      drawnNow.length ? `vectors drawn on: ${drawnNow.join(",")}` : "none yet (BS_LONE_PAIR_D all 0 — E1c-A lands the data)");
+    // and the vector points ALONG the lone pair, i.e. the same way bscDipole sums
+    // it — one instrument (D-3), so the drawn arrow can never disagree with mu.
+    ok("the drawn lone-pair vector is the SAME term bscDipole adds to the resultant",
+      /lEnt\.D/.test(upd) && /lEnt\.dir/.test(upd));
+    // FORWARD CHECK of the ratified four-vector model (E1c-A's data, asserted here
+    // so the moment it lands the totals are proven, and until then this prints the
+    // shipped fitted numbers): NH3 = 3*b*cos + L, NF3 = |3*b*cos - L|.
+    const nh3 = (E.bscDipole("NH3", null) as any), nf3 = (E.bscDipole("NF3", null) as any);
+    console.log(`    forward check   NH3 mu=${nh3.mag.toFixed(3)} D  (bond ${nh3.arrows[0].D} D, lone ${nh3.lone[0].D} D)`);
+    console.log(`    forward check   NF3 mu=${nf3.mag.toFixed(3)} D  (bond ${nf3.arrows[0].D} D, lone ${nf3.lone[0].D} D)`);
+    ok("NH3 resultant points ALONG the lone pair, NF3 AGAINST it (the S7 argument)",
+      E.mgDot(nh3.vec, nh3.lone[0].dir) > 0 && E.mgDot(nf3.vec, nf3.lone[0].dir) < 0,
+      `NH3 dot=${E.mgDot(nh3.vec, nh3.lone[0].dir).toFixed(3)}  NF3 dot=${E.mgDot(nf3.vec, nf3.lone[0].dir).toFixed(3)}`);
+  }
+
+  // ── item 4: angle_deg bends a 2-/3-bond centre with ZERO lone pairs …
+  {
+    const co2 = E.mgFrame("CO2", 104.5, null).bonds as number[][];
+    ok("CO2 authored at 104.5 deg really bends to 104.5 deg", Math.abs(ang(co2[0], co2[1]) - 104.5) < 1e-6,
+      `${ang(co2[0], co2[1]).toFixed(6)} deg`);
+    const bf3 = E.mgFrame("BF3", 109.5, null).bonds as number[][];
+    ok("BF3 authored at 109.5 deg pyramidalises to 109.5 deg on every pair",
+      [[0, 1], [0, 2], [1, 2]].every(([i, j]) => Math.abs(ang(bf3[i], bf3[j]) - 109.5) < 1e-6),
+      [[0, 1], [0, 2], [1, 2]].map(([i, j]) => ang(bf3[i], bf3[j]).toFixed(3)).join(" "));
+    // the bend PLANE faces the fleet house camera azimuth, or the V reads edge-on
+    const apex = E.mgNorm([co2[0][0] + co2[1][0], co2[0][1] + co2[1][1], co2[0][2] + co2[1][2]]);
+    ok("the CO2 V opens in the plane facing the solved camera azimuth (35 deg)",
+      Math.abs(E.mgDot(apex, E.MG_BEND_NORMAL)) < 1e-9 && Math.abs(apex[1]) < 1e-9,
+      `apex=[${apex.map((v: number) => v.toFixed(3)).join(", ")}]`);
+    ok("MG_BEND_NORMAL is the dipole_sum camera azimuth, horizontal",
+      Math.abs(E.MG_BEND_AZ - E.BS_CAMERAS.dipole_sum.az * Math.PI / 180) < 1e-12 &&
+      E.MG_BEND_NORMAL[1] === 0);
+    // the live slider is now live for the WHOLE explore picker, not H2O alone.
+    const PICKER = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];
+    const bendable = PICKER.filter((k) => {
+      const m = E.MG_MOLECULES[k];
+      const base = E.mgFrame(k, null, null).bonds as number[][];
+      const bent = E.mgFrame(k, m.angle === 180 ? 104.5 : m.angle - 12, null).bonds as number[][];
+      return base.some((v, i) => v.some((c, j) => c !== bent[i][j]));
+    });
+    ok("the explore angle slider now moves every 2-/3-bond species in the picker",
+      sameSet(bendable, ["H2O", "CO2", "BF3"]), `live on: ${bendable.join(",")}`);
+    ok("a 1-bond or 4+-bond centre is still (correctly) inert",
+      ["HF", "HCl", "HBr", "HI", "CH4", "CCl4"].every((k) => bendable.indexOf(k) < 0));
+  }
+
+  // ── item 4, THE REGRESSION HALF. vsepr_molecular_shapes, hybridisation_sp_sp2_sp3
+  //   and sigma_pi_bonding all ride mgFrame. A molecule with NO authored angle must
+  //   resolve bit-for-bit as before, and so must every path those concepts take.
+  {
+    const bad: string[] = [];
+    for (const k of Object.keys(E.MG_MOLECULES)) {
+      const m = E.MG_MOLECULES[k];
+      const nDom = m.bonds + m.lone;
+      const ideal = E.mgIdealDirs(nDom) as number[][];
+      const expect = m.lone > 0
+        ? E.mgSqueeze(ideal.slice(m.lone), m.angle) as number[][]   // old path, unchanged
+        : ideal.slice(m.lone);                                      // old path: NO squeeze
+      const got = E.mgFrame(k, null, null).bonds as number[][];
+      if (got.length !== expect.length ||
+        got.some((v, i) => v.some((c, j) => !Object.is(c, expect[i][j])))) bad.push(k);
+    }
+    ok("every molecule with NO authored angle_deg resolves bit-for-bit as before",
+      bad.length === 0, bad.length ? bad.join(" ") : `${Object.keys(E.MG_MOLECULES).length} molecules`);
+    // vsepr's lone_squeeze walks CH4 -> NH3 -> H2O WITH an explicit angle on every
+    // frame. CH4 is the zero-lone member and must not move (4 bonds, out of range).
+    const ch4a = E.mgFrame("CH4", null, null).bonds as number[][];
+    const ch4b = E.mgFrame("CH4", 109.5, null).bonds as number[][];
+    const ch4c = E.mgFrame("CH4", 92, null).bonds as number[][];
+    ok("CH4 under vsepr's explicit lone_squeeze angle is untouched (4 bonds)",
+      ch4a.every((v, i) => v.every((c, j) => Object.is(c, ch4b[i][j]) && Object.is(c, ch4c[i][j]))));
+    // the bare domain-SPREAD morph (2 -> 3 -> 4 domains, hybridisation/sigma_pi)
+    // passes domainsOverride and must never be bent by a stray angle.
+    const spreadBad: number[] = [];
+    for (const n of [2, 3, 4, 5, 6]) {
+      const a = E.mgFrame("CH4", null, n).bonds as number[][];
+      const b = E.mgFrame("CH4", 97.3, n).bonds as number[][];
+      if (a.some((v, i) => v.some((c, j) => !Object.is(c, b[i][j])))) spreadBad.push(n);
+    }
+    ok("the domain-spread morph ignores any authored angle (spread stays ideal)",
+      spreadBad.length === 0, spreadBad.join(" "));
+    // and mgSqueeze itself is unchanged wherever a real centroid exists
+    const sq = (n: number, lone: number, deg: number) =>
+      E.mgSqueeze((E.mgIdealDirs(n) as number[][]).slice(lone), deg) as number[][];
+    ok("mgSqueeze on a NON-degenerate set needs no axis hint (old signature holds)",
+      Math.abs(ang(sq(4, 2, 104.5)[0], sq(4, 2, 104.5)[1]) - 104.5) < 1e-9 &&
+      Math.abs(ang(sq(4, 1, 107)[0], sq(4, 1, 107)[1]) - 107) < 1e-9);
+    ok("mgSqueeze on a DEGENERATE set with NO axis hint still returns it untouched",
+      (sq(2, 0, 104.5) as number[][]).every((v, i) => v.every((c, j) =>
+        Object.is(c, (E.mgIdealDirs(2) as number[][])[i][j]))));
+  }
+  function ang(a: number[], b: number[]) {
+    return Math.acos(Math.max(-1, Math.min(1, E.mgDot(E.mgNorm(a), E.mgNorm(b))))) * 180 / Math.PI;
+  }
+}
+
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E3a sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
