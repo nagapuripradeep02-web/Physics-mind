@@ -45801,7 +45801,10 @@ export const FIELD_3D_RENDERER_CODE = `
     //   four bonding successors (hydrogen_bonding / bond_polarity_dipole_moment /
     //   ionic_bonding / metallic_bonding); E1 builds the SUBSTRATE only and is
     //   proven against bond_polarity_dipole_moment (the simplest consumer, one
-    //   unit). E2 adds the inter-unit link layer, E3 the lattice layer.
+    //   unit). E2 (2026-08-01) adds the inter-unit LINK layer — the derived
+    //   charge-threshold criterion, its lookback hysteresis, the links-per-unit
+    //   readout, the temperature-driven jiggle and the row-O trend surface,
+    //   proven against hydrogen_bonding. E3 adds the lattice layer.
     //
     //   A UNIT is the abstraction that unifies all four: an addressable object
     //   with a position, an orientation, a charge, and one or more atoms in a
@@ -45817,9 +45820,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //             compare | lattice_grow | coordination | layer_shift |
     //             electron_sea | drift | melt | explore,      // CLOSED, 13 modes
     //       units: [{ id, species, at:[x,y,z], orient:auto|[az_deg,el_deg], charge }],
-    //       lattice / groups / links / sea / ions / transfer / shift / trend /
-    //       compare_at_ms / compare_species,        // PARSED + PASSED THROUGH by
-    //                                               // E1, behaviour owned by E2/E3
+    //       links: { enabled, delta_min:{donor,acceptor}, form_pm, break_pm,
+    //                min_pm, angle_window_deg, show_count, pm_per_unit },  // E2
+    //       trend: { show, x_label, y_label, points:[{label,x,y}],
+    //                extrapolate_from:[label] },                           // E2
+    //       separation, separation_axis, approach_from, approach_at_ms,
+    //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
+    //       compare_at_ms, compare_duration_ms, compare_species,           // E2
+    //       unit_spacing, count_max, label_units, delta_units,             // E2
+    //       lattice / groups / sea / ions / transfer / shift,
+    //                                               // PARSED + PASSED THROUGH by
+    //                                               // E1/E2, behaviour owned by E3
     //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale },
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
     //       thermal: { T_K, jiggle_scale },
@@ -45850,8 +45861,43 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MAX_UNITS = 40;          // hydrogen_bonding S5 is thirty water molecules
     var BS_MAX_ATOMS = 7;           // central + MG_MAX_BONDS
     var BS_MAX_DELTA_LABELS = 8;    // D-6 label budget
+    var BS_MAX_ATOM_LABELS = 12;    // D-6, the OTHER half: 30 units = 90 element labels
     var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
     var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
+
+    // ── E2 (intermolecular link layer) constants ─────────────────────────────
+    //   THE SCALE. Distances in the link contract are PICOMETRES (form_pm /
+    //   break_pm), the scene is in abstract units, so one number ties them: the
+    //   H2O O-H bond is 96 pm and is drawn at BS_BOND_LEN = 2.0 units, i.e.
+    //   48 pm per scene unit. A hydrogen bond's H...O 180 pm is then 3.75 units
+    //   and the O...O separation of a linear H-bond is 5.75 units — which is what
+    //   json_author must author units[].at against. Overridable per state via
+    //   links.pm_per_unit so a denser box is possible without an engine edit.
+    var BS_PM_PER_UNIT = 48;
+    var BS_MAX_LINKS = 72;          // pooled dashed links (30 waters bulk-bond to ~52)
+    var BS_LINK_DASHES = 5;         // dash segments drawn per link
+    // HYSTERESIS WITHOUT AN ACCUMULATOR (D-1). A latch ("this pair is bonded
+    // until it stretches past break_pm") is state, and state cannot survive a
+    // SET_TIME_FREEZE rewind. So the latch is evaluated instead over a BOUNDED
+    // LOOKBACK anchored on the current state-local t: the criterion is replayed
+    // on a fixed grid of BS_LINK_SAMPLES times spanning BS_LINK_LOOKBACK_MS back
+    // from t, oldest first, forming at form_pm and surviving out to break_pm.
+    // Every sample is a closed-form position, so the whole link SET is a pure
+    // function of t — it flickers, and it flickers identically on every replay.
+    var BS_LINK_LOOKBACK_MS = 640;
+    var BS_LINK_SAMPLES = 9;        // 80 ms apart; jiggle periods are 1.5-3 s
+    // Defaults for the links block. delta_min is on the DERIVED per-atom charge
+    // (bscCharges), never on an element whitelist (D-2): in H2O the donor H
+    // carries +0.319 and the acceptor O -0.638, in H2S +0.035 and -0.071, so
+    // BOTH ends of the criterion separate water from sulfide by ~9x with room to
+    // spare. min_pm is a hard floor so two atoms that interpenetrate never draw
+    // a link. angle_window_deg is the tolerance on the IDEAL 180 deg D-H...A.
+    var BS_LINK_DEFAULTS = {
+        enabled: true,
+        delta_min: { donor: 0.15, acceptor: 0.30 },
+        form_pm: 210, break_pm: 260, min_pm: 90,
+        angle_window_deg: 40, show_count: false
+    };
 
     // CLOSED enums. A member absent from these is a CONFIG ERROR, not a silent
     // no-op (the sigma-pi scar: nine decorative mode strings nothing ever read).
@@ -45859,16 +45905,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // rendered as a static unit scene until E2/E3 own them — declared, never
     // silently ignored, and check:bonding-scene asserts the split explicitly.
     var BS_MODES_E1 = ["dipole_sum", "explore"];
-    var BS_MODES_DEFERRED = ["assemble", "transfer", "approach_link", "network",
-        "compare", "lattice_grow", "coordination", "layer_shift", "electron_sea",
-        "drift", "melt"];
-    var BS_MODES = BS_MODES_E1.concat(BS_MODES_DEFERRED);
+    var BS_MODES_E2 = ["assemble", "approach_link", "network", "compare"];
+    var BS_MODES_DEFERRED = ["transfer", "lattice_grow", "coordination",
+        "layer_shift", "electron_sea", "drift", "melt"];
+    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2);
+    var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
     var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
         "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
     var BS_HUD_LINES = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
         "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
         "valence", "atomisation", "bp", "like_contacts", "conductivity"];
     var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
+    var BS_HUD_LINES_E2 = ["links", "links_per_unit", "bp"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
 
@@ -45980,8 +46028,14 @@ export const FIELD_3D_RENDERER_CODE = `
         dipole_sum: { az: 35, el: 47, dist: 7.0 },
         explore:    { az: 35, el: 47, dist: 7.0 },
         assemble:   { az: 35, el: 47, dist: 7.0 },
-        network:    { az: 35, el: 24, dist: 13.0 },
-        compare:    { az: 35, el: 24, dist: 10.0 }
+        // E2 re-solved. A linear hydrogen bond is O-H 2.0 units + H...O 3.75
+        // units, so two linked waters span ~7.8 units and a 27-unit box spans
+        // ~11.5: the E1 placeholder distances framed neither. approach_link
+        // holds the pair side-on (el 16) so the D-H...A angle is READABLE, which
+        // is half of what S2-S4 teach.
+        approach_link: { az: 35, el: 16, dist: 11.0 },
+        network:    { az: 35, el: 22, dist: 17.0 },
+        compare:    { az: 35, el: 20, dist: 12.0 }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
 
@@ -46104,6 +46158,125 @@ export const FIELD_3D_RENDERER_CODE = `
             amp * (0.62 * Math.sin(2.30 * tSec + 2.9 * p) + 0.38 * Math.sin(3.30 * tSec + 1.3 * p))
         ];
     }
+    // ── E2: THE DERIVED LINK CRITERION (D-2) ─────────────────────────────────
+    //   There is NO element whitelist. A link needs, at BOTH ends, a charge the
+    //   scene already derived from electronegativity (bscCharges), plus a
+    //   distance in range and a D-H...A angle inside the window. N, O and F pass
+    //   because their derived delta is large; S does not. That is the whole of
+    //   hydrogen_bonding S4 — a number driving pixels, not a script.
+    function bscLinkCfg(bs) {
+        var L = (bs && bs.links) || {};
+        var dm = L.delta_min || {};
+        return {
+            enabled: (L.enabled != null) ? !!L.enabled : BS_LINK_DEFAULTS.enabled,
+            donor: (dm.donor != null) ? dm.donor : BS_LINK_DEFAULTS.delta_min.donor,
+            acceptor: (dm.acceptor != null) ? dm.acceptor : BS_LINK_DEFAULTS.delta_min.acceptor,
+            form_pm: (L.form_pm != null) ? L.form_pm : BS_LINK_DEFAULTS.form_pm,
+            break_pm: (L.break_pm != null) ? L.break_pm : BS_LINK_DEFAULTS.break_pm,
+            min_pm: (L.min_pm != null) ? L.min_pm : BS_LINK_DEFAULTS.min_pm,
+            window: (L.angle_window_deg != null) ? L.angle_window_deg : BS_LINK_DEFAULTS.angle_window_deg,
+            show_count: !!L.show_count,
+            pm_per_unit: (L.pm_per_unit != null) ? L.pm_per_unit : BS_PM_PER_UNIT
+        };
+    }
+    // The predicate itself: pure, and the ONLY place a link is decided. useBreak
+    // picks the outer (hold) distance instead of the inner (form) one — that IS
+    // the hysteresis: form_pm < break_pm, so a pair sitting on the boundary keeps
+    // whatever it already had and cannot flicker frame to frame.
+    function bscLinkOk(qDonor, qAcceptor, distPm, angDeg, L, useBreak) {
+        if (!(qDonor >= L.donor)) return false;
+        if (!(-qAcceptor >= L.acceptor)) return false;
+        if (!(distPm >= L.min_pm)) return false;
+        if (!(distPm <= (useBreak ? L.break_pm : L.form_pm))) return false;
+        return angDeg >= (180 - L.window);
+    }
+    // Replay the criterion over the bounded lookback. samples[] is OLDEST-FIRST,
+    // each { d, a } in pm / degrees; a null entry is a time before the state
+    // started and is skipped. This is the whole of the no-accumulator hysteresis:
+    // the latch is recomputed from closed-form positions every frame instead of
+    // being carried, so a SET_TIME_FREEZE rewind reproduces the link SET exactly.
+    function bscLinkLatch(qD, qA, samples, L) {
+        var held = false, i;
+        for (i = 0; i < samples.length; i++) {
+            var s = samples[i];
+            if (!s) continue;
+            held = bscLinkOk(qD, qA, s.d, s.a, L, held);
+        }
+        return held;
+    }
+    // Which atoms of a species can DONATE (a hydrogen carrying delta+) and which
+    // can ACCEPT (any atom carrying delta-). Derived from bscCharges + the
+    // element list, so a new species never needs a table entry. partner is the
+    // slot the donor hydrogen is bonded to (the D of D-H...A).
+    function bscLinkSites(molKey) {
+        var mol = MG_MOLECULES[molKey];
+        if (!mol) return { donors: [], acceptors: [] };
+        var q = bscCharges(molKey), ligs = bscLigands(mol);
+        var donors = [], acceptors = [], i;
+        for (i = 0; i < q.length; i++) {
+            var el = (i === 0) ? mol.central : (ligs[i - 1] || mol.ligand);
+            if (el === "H" && q[i] > 0) donors.push({ slot: i, q: q[i], partner: (i === 0 ? 1 : 0) });
+            if (q[i] < 0) acceptors.push({ slot: i, q: q[i] });
+        }
+        return { donors: donors, acceptors: acceptors };
+    }
+    // Deterministic fallback placement for a pool unit the state did not author
+    // (the count slider driven past units.length). A shell-ordered cubic packing
+    // keyed on the INDEX, so growing the count adds units on the OUTSIDE and
+    // never moves the ones already on screen — D-1's index-derived rule applied
+    // to position instead of phase.
+    function bscUnitSlot(idx, spacing) {
+        if (idx <= 0) return [0, 0, 0];
+        var n = 1;
+        while (n * n * n <= idx) n += 2;
+        var h = (n - 1) / 2, prev = (n - 2) * (n - 2) * (n - 2);
+        if (prev < 0) prev = 0;
+        var k = idx - prev, c = 0, x, y, z;
+        for (z = -h; z <= h; z++) {
+            for (y = -h; y <= h; y++) {
+                for (x = -h; x <= h; x++) {
+                    if (Math.abs(x) !== h && Math.abs(y) !== h && Math.abs(z) !== h) continue;
+                    if (c === k) return [x * spacing, y * spacing, z * spacing];
+                    c++;
+                }
+            }
+        }
+        return [0, 0, 0];
+    }
+    // Authored labels arrive as plain ASCII (H2S) and are COMPOSED to real
+    // Unicode subscripts here (Rule 34c). Same discipline as the fleet's
+    // styled-subscript routines, except Unicode HAS all ten digit subscripts, so
+    // one map does it and no reduced-size run is needed.
+    var BS_SUBDIG = ["\\u2080", "\\u2081", "\\u2082", "\\u2083", "\\u2084",
+        "\\u2085", "\\u2086", "\\u2087", "\\u2088", "\\u2089"];
+    function bscSub(txt) {
+        var s = String(txt == null ? "" : txt), out = "", i;
+        for (i = 0; i < s.length; i++) {
+            var ch = s.charAt(i), code = s.charCodeAt(i);
+            var p = (i > 0) ? s.charAt(i - 1) : "";
+            var alpha = (p >= "A" && p <= "Z") || (p >= "a" && p <= "z") || p === ")";
+            out += (code >= 48 && code <= 57 && alpha) ? BS_SUBDIG[code - 48] : ch;
+        }
+        return out;
+    }
+    // Least-squares line through the extrapolate_from family (row O). The
+    // extrapolation is NOT decoration — the gap between this line and the anomaly
+    // point IS hydrogen_bonding S7's whole argument, so it is FITTED from the
+    // authored family and never authored itself.
+    function bscTrendFit(pts) {
+        var n = pts.length, i, sx = 0, sy = 0;
+        if (n < 2) return null;
+        for (i = 0; i < n; i++) { sx += pts[i].x; sy += pts[i].y; }
+        var mx = sx / n, my = sy / n, sxy = 0, sxx = 0;
+        for (i = 0; i < n; i++) {
+            sxy += (pts[i].x - mx) * (pts[i].y - my);
+            sxx += (pts[i].x - mx) * (pts[i].x - mx);
+        }
+        if (Math.abs(sxx) < 1e-12) return null;
+        var m = sxy / sxx;
+        return { m: m, b: my - m * mx };
+    }
+
     // Ring-gated controls (doc §contract): a member is either a bare id or
     // { id, min_ring }. The renderer shows the row when the state authors the id;
     // min_ring is recorded for the Rule-38h preset builder (hiding a ring must not
@@ -46121,9 +46294,20 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
         return false;
     }
+    // Memoised by id. E1's linear scan was fine for one unit; E2's network state
+    // is 30 units x 7 atoms x 4 handles PLUS 360 link dashes per frame against a
+    // ~1500-object sceneObjects, i.e. millions of string compares a frame. The
+    // map is filled lazily and the fallback scan is unchanged, so behaviour is
+    // identical — only the cost moves.
     function bscFindById(id) {
+        if (!window.PM_bscIdx) window.PM_bscIdx = {};
+        var hit = window.PM_bscIdx[id];
+        if (hit) return hit;
         for (var i = 0; i < sceneObjects.length; i++) {
-            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) {
+                window.PM_bscIdx[id] = sceneObjects[i];
+                return sceneObjects[i];
+            }
         }
         return null;
     }
@@ -46143,16 +46327,23 @@ export const FIELD_3D_RENDERER_CODE = `
         var elecColor = CO.electron || "#B39DDB";
         var i, u;
 
+        window.PM_bscIdx = {};
+
         // Pool sizing is DERIVED from the states this concept actually authors, so
         // a one-unit concept (bond_polarity) does not pay for hydrogen_bonding's
         // thirty molecules. Capped at BS_MAX_UNITS.
+        // DECIDED IN E2 (the dispatch asks which): the pool is sized from the
+        // largest authored units.length — hydrogen_bonding S5 authors 30 waters
+        // and gets a 30-unit pool with no extra key. count_max is the EXPLICIT
+        // override, for the one case units.length cannot express: an explore
+        // state whose count slider should run past its own authored opening
+        // scene. Both are honoured, units.length is the norm.
         var need = 1, sKey;
         for (sKey in (config.states || {})) {
             var sb = (config.states[sKey] || {}).bonding_scene;
             if (!sb) continue;
             if (sb.units && sb.units.length > need) need = sb.units.length;
-            var cc = sb.count_max || (sb.controls ? 0 : 0);
-            if (cc > need) need = cc;
+            if (sb.count_max > need) need = sb.count_max;
         }
         var nUnits = Math.min(BS_MAX_UNITS, Math.max(1, need));
         window.PM_bscUnitPool = nUnits;
@@ -46276,6 +46467,28 @@ export const FIELD_3D_RENDERER_CODE = `
             addToScene(sd);
         }
 
+        // ── E2 row E: the inter-unit LINK pool. The glow key bsc_link existed in
+        //    E1 with no meshes behind it (engine_bug_queue
+        //    field3d_scenario_declares_bead_element_but_never_builds_the_meshes:
+        //    presence is not correctness), so these are the meshes that key now
+        //    addresses. A link is drawn as BS_LINK_DASHES short cylinders along
+        //    the H...A axis — dashed, because it is NOT a bond and must not read
+        //    like one beside the solid intra-unit sticks (that contrast is the
+        //    misconception kill in hydrogen_bonding S3/S6).
+        var linkColor = CO.link || "#B2EBF2";
+        var dashGeo = new THREE.CylinderGeometry(0.055, 0.055, 1, 8);
+        dashGeo.translate(0, 0.5, 0);
+        for (u = 0; u < BS_MAX_LINKS; u++) {
+            for (i = 0; i < BS_LINK_DASHES; i++) {
+                var dm = new THREE.Mesh(dashGeo.clone(), new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(linkColor), transparent: true, opacity: 0.92
+                }));
+                dm.userData = { elementType: "bsc_link", id: "bsc_link" + u + "_d" + i, link: u, slot: i };
+                dm.visible = false;
+                addToScene(dm);
+            }
+        }
+
         // DOM surfaces. top:52px clears the review-chrome Full-screen button and
         // the #simPenBar glass buttons at BOTH edges (Rule 34d; engine_bug_queue
         // field3d_sliders_panel_top12_vs_fsbtn_top10). Rule 39f: inline
@@ -46288,6 +46501,19 @@ export const FIELD_3D_RENDERER_CODE = `
         var ff = document.createElement("div"); ff.id = "bsc_formula";
         ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
         document.body.appendChild(ff);
+
+        // ── E2 row O: the TREND surface. A value-only HUD can state four numbers;
+        //    it cannot show that water misses its own family's line by ~190 K,
+        //    and that gap is hydrogen_bonding S7's entire argument. Bottom-LEFT:
+        //    the HUD owns top-right, the sliders bottom-right, and the formula
+        //    surface is re-anchored to the top-left whenever this panel is up
+        //    (Rule 34d — mid-left at 44% would overlap it on a short viewport).
+        //    Inline position:fixed = Rule 39f auto-discovery, so the teacher
+        //    toggle comes free.
+        var tc = document.createElement("canvas"); tc.id = "bsc_trend";
+        tc.width = 700; tc.height = 460;
+        tc.style.cssText = "position:fixed;bottom:12px;left:12px;width:350px;height:230px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(tc);
 
         // Per-state contextual control rows (Rule 31) — ALL thirteen ids are built
         // ONCE here so E2/E3 never have to touch this panel, each row keeping the
@@ -46401,6 +46627,13 @@ export const FIELD_3D_RENDERER_CODE = `
         var th = bs.thermal || {};
         window.PM_bscTemp = (th.T_K != null) ? th.T_K : BS_T0_K;
         window.PM_bscCount = Math.max(1, units.length || 1);
+        // A scripted beat and the slider that shares its quantity must agree at
+        // state entry (FIXED scar scripted_change_desyncs_the_dom_control_that
+        // _shares_it) — hydrogen_bonding S3 pulls the pair apart on a script AND
+        // exposes the separation slider, so the widget opens at the beat's OWN
+        // starting value, not at the panel default.
+        window.PM_bscSep = (bs.approach_from != null) ? bs.approach_from
+            : ((bs.separation != null) ? bs.separation : 3.0);
         var molNow = MG_MOLECULES[window.PM_bscMol];
         window.PM_bscAngle = (bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5);
 
@@ -46435,13 +46668,23 @@ export const FIELD_3D_RENDERER_CODE = `
         seedRng("spin", window.PM_bscSpin, function (v) { return Number(v).toFixed(2); });
         seedRng("temperature", window.PM_bscTemp, function (v) { return String(Math.round(v)); });
         seedRng("count", window.PM_bscCount, function (v) { return String(Math.round(v)); });
+        seedRng("separation", window.PM_bscSep, function (v) { return Number(v).toFixed(1); });
 
         var hud = document.getElementById("bsc_hud");
         if (hud) hud.style.display = bs.show_hud ? "block" : "none";
+        var tr = bs.trend || {};
+        var trOn = !!tr.show && !!(tr.points && tr.points.length);
+        var tcv = document.getElementById("bsc_trend");
+        if (tcv) tcv.style.display = trOn ? "block" : "none";
         var ff = document.getElementById("bsc_formula");
         if (ff) {
             if (bs.show_formula && bs.formula) { ff.innerHTML = bs.formula; ff.style.display = "block"; }
             else { ff.style.display = "none"; }
+            // Rule 34d: the trend panel owns the bottom-left, so the ONE formula
+            // surface moves to the top-left beside it rather than overlapping it
+            // on a short viewport (44% of 400px lands inside the panel).
+            if (trOn) { ff.style.top = "52px"; ff.style.transform = "none"; }
+            else { ff.style.top = "44%"; ff.style.transform = "translateY(-50%)"; }
         }
 
         // The SOLVED camera (D-4), derived from the STATE's own mode — never read
@@ -46470,6 +46713,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 var dl = bscFindById("bsc_u" + i + "_delta" + j); if (dl) dl.visible = false;
             }
         }
+        for (i = 0; i < BS_MAX_LINKS; i++) {
+            for (var k2 = 0; k2 < BS_LINK_DASHES; k2++) {
+                var ld = bscFindById("bsc_link" + i + "_d" + k2); if (ld) ld.visible = false;
+            }
+        }
     }
 
     // The single per-frame pass. Every value below is a closed-form pure function
@@ -46492,6 +46740,16 @@ export const FIELD_3D_RENDERER_CODE = `
             : ((bs.units && bs.units[0] && bs.units[0].species) || bs.species || "HCl");
         if (!MG_MOLECULES[molKey]) molKey = "HCl";
         var mol = MG_MOLECULES[molKey];
+        // mode compare (hydrogen_bonding S7): the comparison species takes the
+        // scene at compare_at_ms — the swap IS the beat, and deriveStateMeta
+        // already pins compare_at_ms + 1500 as a frozen candidate, so no new cue
+        // key is introduced.
+        if (mode === "compare" && bs.compare_species != null && bs.compare_at_ms != null &&
+            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] &&
+            !window.PM_bscSpeciesDragged) {
+            molKey = bs.compare_species;
+            mol = MG_MOLECULES[molKey];
+        }
         var angleNow = (bscHasControl(ctrls, "angle") && window.PM_bscAngleDragged)
             ? window.PM_bscAngle : ((bs.angle_deg != null) ? bs.angle_deg : mol.angle);
         var T_K = (bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged)
@@ -46531,25 +46789,78 @@ export const FIELD_3D_RENDERER_CODE = `
         var jScale = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
         var showLabels = (bs.show_atom_labels !== false);
         var deltaBudget = BS_MAX_DELTA_LABELS;      // D-6
+        var atomLabelBudget = BS_MAX_ATOM_LABELS;   // D-6, the OTHER half
         var focalIdx = (bs.focal_unit != null) ? bs.focal_unit : 0;
+        // D-6 CHECKED at thirty units, not assumed: 30 waters are 90 element
+        // labels and 60 delta labels, and every label-collision scar on this
+        // surface fires at once. Both budgets are hard-capped AND both collapse
+        // to the leading (focal) units the moment the scene stops being a
+        // two-molecule close-up — every other unit then carries colour only.
+        var labelUnits = (bs.label_units != null) ? bs.label_units : (nUnits <= 3 ? nUnits : 1);
+        var deltaUnits = (bs.delta_units != null) ? bs.delta_units : (nUnits <= 3 ? nUnits : 1);
+
+        // ── E2: the closed-form position layer. sepAt/baseAt/orgAt/spinAng are
+        //    pure functions of state-local ms and NOTHING else, because the link
+        //    pass REPLAYS them at earlier times to resolve the hysteresis (D-1).
+        var linkCfg = bscLinkCfg(bs);
+        var unitSpacing = (bs.unit_spacing != null) ? bs.unit_spacing
+            : (BS_BOND_LEN + linkCfg.form_pm / linkCfg.pm_per_unit);
+        var sepDragged = bscHasControl(ctrls, "separation") && window.PM_bscSepDragged;
+        var sepAt = function (mms) {
+            if (sepDragged) return window.PM_bscSep;
+            var to = (bs.separation != null) ? bs.separation : 3.0;
+            if (bs.approach_at_ms == null || bs.approach_from == null) return to;
+            return mgRamp(mms, bs.approach_at_ms,
+                (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400,
+                bs.approach_from, to);
+        };
+        var baseAt = function (uu, mms) {
+            var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
+            // an authored separation_axis puts the leading PAIR on that axis and
+            // drives it from the (scripted or dragged) separation
+            if (bs.separation_axis && uu < 2) {
+                var sa = bscNorm(bs.separation_axis), sv = sepAt(mms) * (uu === 0 ? -0.5 : 0.5);
+                return [sa[0] * sv, sa[1] * sv, sa[2] * sv];
+            }
+            if (ud && ud.at) return [ud.at[0], ud.at[1], ud.at[2]];
+            return bscUnitSlot(uu, unitSpacing);     // count slider past units[]
+        };
+        var orgAt = function (uu, mms) {
+            var b = baseAt(uu, mms);
+            if (!(jScale > 0)) return b;
+            var jg = bscJiggle(uu, mms / 1000, T_K, jScale);
+            return [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
+        };
+        var spinAng = function (mms) {
+            return (spinRate > 0 && mms > spinAt) ? spinRate * (mms - spinAt) / 1000 : 0;
+        };
+        sepNow = sepAt(ms);
+        // A species PICKER (or the compare swap) must change the MESHES, not just
+        // the readout — engine_bug_queue field3d_explore_picker_updates_global_
+        // but_frame_reads_authored_state_value, and it is hydrogen_bonding S4's
+        // entire lesson ("swap O for S and no link forms"). Rule: every unit that
+        // authored the state's BASE species follows the live species; a unit that
+        // authored something else keeps its own (so a mixed scene stays mixed).
+        var baseSpecies = (bs.units && bs.units[focalIdx] && bs.units[focalIdx].species) ||
+            bs.species || null;
+        var uSpecOf = function (uu) {
+            var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
+            var sp = (ud && ud.species) ? ud.species : molKey;
+            if (sp === baseSpecies) sp = molKey;
+            return MG_MOLECULES[sp] ? sp : molKey;
+        };
 
         for (u = 0; u < pool; u++) {
             var on = u < nUnits;
             var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
-            var uSpec = (udef && udef.species) ? udef.species : molKey;
+            var uSpec = uSpecOf(u);
             var uMol = MG_MOLECULES[uSpec] || mol;
             var uLigs = bscLigands(uMol);
             var uFrame = on ? mgFrame(uSpec, (uSpec === molKey ? angleNow : null), null) : null;
             var rot = udef ? bscOrientRot(udef.orient) : null;
-            var base = (udef && udef.at) ? udef.at.slice(0) : [0, 0, 0];
-            if (udef && udef.at && sepNow != null && bs.separation_axis) {
-                var sa = bscNorm(bs.separation_axis);
-                base = [sa[0] * sepNow * (u === 0 ? -0.5 : 0.5), sa[1] * sepNow * (u === 0 ? -0.5 : 0.5), sa[2] * sepNow * (u === 0 ? -0.5 : 0.5)];
-            }
-            var jig = (on && jScale > 0) ? bscJiggle(u, tSec, T_K, jScale) : [0, 0, 0];
-            var org = [base[0] + jig[0], base[1] + jig[1], base[2] + jig[2]];
+            var org = orgAt(u, ms);
             var uq = on ? bscCharges(uSpec) : [0];
-            var deltaOn = on && (u === focalIdx) && !!dip.show_charges;
+            var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges;
 
             for (i = 0; i < BS_MAX_ATOMS; i++) {
                 var atom = bscFindById("bsc_u" + u + "_atom" + i);
@@ -46558,7 +46869,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var stick = (i > 0) ? bscFindById("bsc_u" + u + "_bond" + i) : null;
                 var have = on && (i === 0 || i <= uFrame.bonds.length);
                 if (atom) atom.visible = have;
-                if (lab) lab.visible = have && showLabels;
+                if (lab) {
+                    lab.visible = have && showLabels && (u < labelUnits || u === focalIdx) && atomLabelBudget > 0;
+                    if (lab.visible) atomLabelBudget--;
+                }
                 if (dlab) dlab.visible = false;
                 if (stick) stick.visible = have && i > 0;
                 if (!have) continue;
@@ -46665,6 +46979,15 @@ export const FIELD_3D_RENDERER_CODE = `
         //    deformation (the Fajans deferral depends on this scoping).
         var showPair = (elc.show === "pair_glyph");
         var shift = (elc.pair_shift != null) ? elc.pair_shift : 0;
+        // mode assemble (hydrogen_bonding S1 / polarity S1, the declared
+        // cross-concept pair-shift repeat): the shared pair SLIDES to its
+        // authored offset on a closed-form ramp instead of already being there
+        // on frame 0 — that slide is the whole beat. pair_shift_at_ms is already
+        // a frozen-pin candidate in deriveStateMeta, so no new cue key.
+        if (bs.pair_shift_at_ms != null) {
+            shift = mgRamp(ms, bs.pair_shift_at_ms,
+                (bs.pair_shift_duration_ms != null) ? bs.pair_shift_duration_ms : 1600, 0, shift);
+        }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) {
             var pd2 = bscFindById("bsc_pair_" + i);
             if (!pd2) continue;
@@ -46707,6 +47030,107 @@ export const FIELD_3D_RENDERER_CODE = `
             );
         }
 
+        // ── E2 row E: THE LINK LAYER ─────────────────────────────────────────
+        //   Presence is DERIVED every frame from the closed-form positions above
+        //   (D-2) — no element whitelist, no script — and the hysteresis is
+        //   replayed over the bounded lookback rather than latched (D-1). So the
+        //   network flickers, and flickers IDENTICALLY on every replay: a
+        //   SET_TIME_FREEZE pin reproduces the same link set byte for byte.
+        var nLinks = 0, linkGeom = [];
+        if (bs.links && linkCfg.enabled && nUnits > 1) {
+            var S = BS_LINK_SAMPLES, dtS = BS_LINK_LOOKBACK_MS / (S - 1);
+            var p2u = linkCfg.pm_per_unit;
+            var reachU = linkCfg.break_pm / p2u + 2 * BS_BOND_LEN + 1.0;   // coarse cull
+            var offs = [], sites = [], sI, uA, uB;
+            for (u = 0; u < nUnits; u++) {
+                var lSpec = uSpecOf(u);
+                var lFr = mgFrame(lSpec, (lSpec === molKey ? angleNow : null), null);
+                var lRot = (bs.units && bs.units[u]) ? bscOrientRot(bs.units[u].orient) : null;
+                var oo = [[0, 0, 0]];
+                for (i = 0; i < lFr.bonds.length; i++) {
+                    var dv = lRot ? lRot(lFr.bonds[i]) : lFr.bonds[i];
+                    oo.push([dv[0] * BS_BOND_LEN, dv[1] * BS_BOND_LEN, dv[2] * BS_BOND_LEN]);
+                }
+                offs.push(oo);
+                sites.push(bscLinkSites(lSpec));
+            }
+            // world atom positions at every lookback sample, OLDEST FIRST. A
+            // sample before the state started is null and simply does not vote.
+            var frames = [];
+            for (sI = 0; sI < S; sI++) {
+                var mms = ms - (S - 1 - sI) * dtS;
+                if (mms < 0) { frames.push(null); continue; }
+                var sp2 = spinAng(mms), fpts = [];
+                for (u = 0; u < nUnits; u++) {
+                    var og = orgAt(u, mms), row = [];
+                    for (i = 0; i < offs[u].length; i++) {
+                        var ov = (sp2 !== 0) ? mgRotY(offs[u][i], sp2) : offs[u][i];
+                        row.push([og[0] + ov[0], og[1] + ov[1], og[2] + ov[2]]);
+                    }
+                    fpts.push(row);
+                }
+                frames.push(fpts);
+            }
+            var last = frames[S - 1];
+            for (uA = 0; last && uA < nUnits && nLinks < BS_MAX_LINKS; uA++) {
+                for (uB = 0; uB < nUnits && nLinks < BS_MAX_LINKS; uB++) {
+                    if (uA === uB) continue;
+                    var cA = last[uA][0], cB = last[uB][0];
+                    var cx = cA[0] - cB[0], cy = cA[1] - cB[1], cz = cA[2] - cB[2];
+                    if (cx * cx + cy * cy + cz * cz > reachU * reachU) continue;
+                    var dn = sites[uA].donors, ac = sites[uB].acceptors;
+                    for (var di = 0; di < dn.length && nLinks < BS_MAX_LINKS; di++) {
+                        for (var aj = 0; aj < ac.length && nLinks < BS_MAX_LINKS; aj++) {
+                            var hS = dn[di].slot, pS = dn[di].partner, aS = ac[aj].slot;
+                            if (!last[uA][hS] || !last[uA][pS] || !last[uB][aS]) continue;
+                            var samp = [];
+                            for (sI = 0; sI < S; sI++) {
+                                var F = frames[sI];
+                                if (!F) { samp.push(null); continue; }
+                                var Hp = F[uA][hS], Dp = F[uA][pS], Ap = F[uB][aS];
+                                var vx = Ap[0] - Hp[0], vy = Ap[1] - Hp[1], vz = Ap[2] - Hp[2];
+                                var dU = Math.sqrt(vx * vx + vy * vy + vz * vz);
+                                var wx = Dp[0] - Hp[0], wy = Dp[1] - Hp[1], wz = Dp[2] - Hp[2];
+                                var wL = Math.sqrt(wx * wx + wy * wy + wz * wz) || 1;
+                                var ca = (vx * wx + vy * wy + vz * wz) / ((dU || 1) * wL);
+                                samp.push({ d: dU * p2u, a: Math.acos(bscClamp(ca, -1, 1)) * 180 / Math.PI });
+                            }
+                            if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg)) {
+                                linkGeom.push({ h: last[uA][hS], a: last[uB][aS] });
+                                nLinks++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        window.PM_bscLinks = nLinks;
+        // The readout the doc names: links PER MOLECULE, not a raw count — each
+        // link is shared by two units, so the mean degree is 2L/N. It is the
+        // number that explains the boiling-point anomaly in S7.
+        window.PM_bscLinksPerUnit = (nUnits > 0) ? (2 * nLinks / nUnits) : 0;
+        for (i = 0; i < BS_MAX_LINKS; i++) {
+            var lk = (i < linkGeom.length) ? linkGeom[i] : null;
+            for (j = 0; j < BS_LINK_DASHES; j++) {
+                var dmesh = bscFindById("bsc_link" + i + "_d" + j);
+                if (!dmesh) continue;
+                dmesh.visible = !!lk;
+                if (!lk) continue;
+                var ax = [lk.a[0] - lk.h[0], lk.a[1] - lk.h[1], lk.a[2] - lk.h[2]];
+                var aLn = bscMag(ax), aDr = bscNorm(ax), segL = aLn / BS_LINK_DASHES;
+                var s0 = j * segL + segL * 0.18, s1 = (j + 1) * segL - segL * 0.18;
+                mgOrientStick(dmesh, aDr, Math.max(0.02, s1 - s0), 1);
+                dmesh.position.set(lk.h[0] + aDr[0] * s0, lk.h[1] + aDr[1] * s0, lk.h[2] + aDr[2] * s0);
+            }
+        }
+
+        // ── row O: the trend surface, revealed on compare_at_ms.
+        if (bs.trend && bs.trend.show) {
+            bscDrawTrend(bs.trend, (bs.compare_at_ms != null)
+                ? mgRamp(ms, bs.compare_at_ms, (bs.compare_duration_ms != null) ? bs.compare_duration_ms : 1800, 0, 1)
+                : 1);
+        }
+
         // ── value-only HUD (Rule 34b: numbers, never a restated equation).
         var hud = document.getElementById("bsc_hud");
         if (hud && hud.style.display !== "none") {
@@ -46717,6 +47141,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 else if (w === "delta_chi") lines.push("\\u0394\\u03C7 = " + dchi.toFixed(2));
                 else if (w === "radius_pm") lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
                 else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                else if (w === "links") lines.push("links = " + nLinks);
+                else if (w === "links_per_unit") lines.push("links per molecule = " + window.PM_bscLinksPerUnit.toFixed(2));
+                else if (w === "bp") {
+                    // derived from the state's OWN trend data, so the HUD and the
+                    // trend panel can never disagree (D-3: one instrument).
+                    var bpv = null, tps = (bs.trend && bs.trend.points) || [];
+                    for (j = 0; j < tps.length; j++) if (tps[j].label === molKey) bpv = tps[j].y;
+                    if (bpv != null) lines.push("boiling point = " + Math.round(bpv) + " K");
+                }
             }
             hud.innerHTML = lines.join("<br>");
         }
@@ -46730,12 +47163,150 @@ export const FIELD_3D_RENDERER_CODE = `
             if (asl) asl.value = String(angleNow);
             if (avl) avl.textContent = Number(angleNow).toFixed(1);
         }
+        // hydrogen_bonding S3 pulls the pair apart on a SCRIPT while exposing the
+        // separation slider — the FIXED scar scripted_change_desyncs_the_dom_
+        // control_that_shares_it is exactly this pair, so the widget tracks the
+        // scripted value every frame until a trusted drag seizes it.
+        if (bscHasControl(ctrls, "separation") && !window.PM_bscSepDragged) {
+            var ssl = document.getElementById("bsc_separation_slider"), svl = document.getElementById("bsc_separation_val");
+            if (ssl) ssl.value = String(sepNow);
+            if (svl) svl.textContent = Number(sepNow).toFixed(1);
+        }
+        if (bscHasControl(ctrls, "temperature") && !window.PM_bscTempDragged) {
+            var tsl = document.getElementById("bsc_temperature_slider"), tvl = document.getElementById("bsc_temperature_val");
+            if (tsl) tsl.value = String(T_K);
+            if (tvl) tvl.textContent = String(Math.round(T_K));
+        }
+        if (bscHasControl(ctrls, "count") && !window.PM_bscCountDragged) {
+            var csl = document.getElementById("bsc_count_slider"), cvl = document.getElementById("bsc_count_val");
+            if (csl) csl.value = String(nUnits);
+            if (cvl) cvl.textContent = String(nUnits);
+        }
     }
 
     // Glow (Rule 29 — brightness only) from the CLOSED enum. Scene-object focals
     // only; the DOM surfaces carry their own prominence and are deliberately
     // absent, so a DOM key can never set anyScene=true with nothing to brighten
     // (scar #33 — a non-keyed glow_focal dims the whole scene with no focal lit).
+    // ── E2 row O: the trend surface ──────────────────────────────────────────
+    //   Family points, the FITTED family line, its dashed extrapolation, and the
+    //   anomaly point with the measured gap. The gap is computed here from the
+    //   fit (bscTrendFit over extrapolate_from) — nothing about it is authored,
+    //   which is what makes hydrogen_bonding S7 an argument rather than a claim.
+    //   rev in [0,1] is the closed-form reveal fraction, so the panel is a pure
+    //   function of state-local t like everything else (D-1).
+    //   Rule 34c: every label goes through bscSub, so an authored ASCII "H2S"
+    //   renders with a real Unicode subscript, in Cambria Math (a small
+    //   monospace subscript renders as a merged blob — the fleet subscript scar).
+    function bscDrawTrend(tr, rev) {
+        var cv = document.getElementById("bsc_trend");
+        if (!cv || cv.style.display === "none") return;
+        var g = cv.getContext("2d");
+        if (!g) return;
+        var W = cv.width, H = cv.height, i, k;
+        g.clearRect(0, 0, W, H);
+        var pts = tr.points || [];
+        if (!pts.length) return;
+        var famKeys = tr.extrapolate_from || [], fam = [], odd = [];
+        for (i = 0; i < pts.length; i++) {
+            var isFam = false;
+            for (k = 0; k < famKeys.length; k++) if (famKeys[k] === pts[i].label) isFam = true;
+            if (isFam) fam.push(pts[i]); else odd.push(pts[i]);
+        }
+        var fit = bscTrendFit(fam);
+        var L0 = 106, R0 = W - 30, T0 = 40, B0 = H - 62;
+        var xmin = 1e9, xmax = -1e9, ymin = 1e9, ymax = -1e9;
+        for (i = 0; i < pts.length; i++) {
+            if (pts[i].x < xmin) xmin = pts[i].x;
+            if (pts[i].x > xmax) xmax = pts[i].x;
+            if (pts[i].y < ymin) ymin = pts[i].y;
+            if (pts[i].y > ymax) ymax = pts[i].y;
+        }
+        // the extrapolated value must sit INSIDE the y range or the gap — the
+        // whole point of the panel — is drawn off the top of its own axis
+        // (engine_bug_queue field3d_ppane_fixed_range_buries_offresonance_lobe).
+        if (fit) for (i = 0; i < odd.length; i++) {
+            var pv0 = fit.m * odd[i].x + fit.b;
+            if (pv0 < ymin) ymin = pv0;
+            if (pv0 > ymax) ymax = pv0;
+        }
+        var pad = Math.max(12, (ymax - ymin) * 0.14);
+        ymin -= pad; ymax += pad;
+        if (xmax - xmin < 1e-9) { xmin -= 1; xmax += 1; }
+        var xp = (xmax - xmin) * 0.16, xlo = xmin - xp, xhi = xmax + xp;
+        var X = function (v) { return L0 + (v - xlo) / (xhi - xlo) * (R0 - L0); };
+        var Y = function (v) { return B0 - (v - ymin) / (ymax - ymin) * (B0 - T0); };
+
+        g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(L0, T0 - 10); g.lineTo(L0, B0); g.lineTo(R0, B0); g.stroke();
+        g.fillStyle = "#B0BEC5";
+        g.font = "22px \\u0027Cambria Math\\u0027,serif";
+        g.textAlign = "center";
+        g.fillText(bscSub(tr.x_label || ""), (L0 + R0) / 2, H - 20);
+        g.save(); g.translate(28, (T0 + B0) / 2); g.rotate(-Math.PI / 2);
+        g.fillText(bscSub(tr.y_label || ""), 0, 0); g.restore();
+        g.textAlign = "right"; g.font = "20px monospace";
+        for (i = 0; i <= 3; i++) {
+            var yv = ymin + (ymax - ymin) * i / 3;
+            g.fillStyle = "#78909C";
+            g.fillText(String(Math.round(yv)), L0 - 8, Y(yv) + 7);
+            g.strokeStyle = "rgba(120,144,156,0.20)"; g.lineWidth = 1;
+            g.beginPath(); g.moveTo(L0, Y(yv)); g.lineTo(R0, Y(yv)); g.stroke();
+        }
+
+        if (fit) {
+            var fx0 = 1e9, fx1 = -1e9;
+            for (i = 0; i < fam.length; i++) {
+                if (fam[i].x < fx0) fx0 = fam[i].x;
+                if (fam[i].x > fx1) fx1 = fam[i].x;
+            }
+            g.strokeStyle = "#4FC3F7"; g.lineWidth = 3;
+            g.beginPath();
+            g.moveTo(X(fx0), Y(fit.m * fx0 + fit.b));
+            g.lineTo(X(fx1), Y(fit.m * fx1 + fit.b));
+            g.stroke();
+            if (odd.length && rev > 0) {
+                var ex = fx0 + (odd[0].x - fx0) * rev;
+                g.setLineDash([10, 8]);
+                g.strokeStyle = "#4DD0E1"; g.lineWidth = 3;
+                g.beginPath();
+                g.moveTo(X(fx0), Y(fit.m * fx0 + fit.b));
+                g.lineTo(X(ex), Y(fit.m * ex + fit.b));
+                g.stroke();
+                g.setLineDash([]);
+            }
+        }
+        g.textAlign = "left";
+        for (i = 0; i < fam.length; i++) {
+            g.fillStyle = "#4FC3F7";
+            g.beginPath(); g.arc(X(fam[i].x), Y(fam[i].y), 7, 0, Math.PI * 2); g.fill();
+            g.fillStyle = "#CFD8DC"; g.font = "21px \\u0027Cambria Math\\u0027,serif";
+            // lifted clear of the fitted line it sits on — a canvas-internal
+            // text collision is invisible to founder_drive's DOM probe (scar
+            // canvas_graph_label_collides_with_peak_reference_line).
+            g.fillText(bscSub(fam[i].label) + " " + Math.round(fam[i].y),
+                Math.min(X(fam[i].x) + 12, R0 - 120), Y(fam[i].y) - 17);
+        }
+        if (fit && odd.length && rev > 0.55) {
+            var al = (rev - 0.55) / 0.45; if (al > 1) al = 1;
+            var o = odd[0], py = fit.m * o.x + fit.b;
+            g.globalAlpha = al;
+            g.fillStyle = "#4DD0E1";
+            g.beginPath(); g.arc(X(o.x), Y(py), 6, 0, Math.PI * 2); g.fill();
+            g.fillStyle = "#80DEEA"; g.font = "19px monospace";
+            g.fillText(Math.round(py) + " K on the line", X(o.x) + 14, Y(py) + 26);
+            g.strokeStyle = "#FFCA28"; g.lineWidth = 3;
+            g.beginPath(); g.moveTo(X(o.x), Y(o.y)); g.lineTo(X(o.x), Y(py)); g.stroke();
+            g.fillStyle = "#FFCA28";
+            g.beginPath(); g.arc(X(o.x), Y(o.y), 9, 0, Math.PI * 2); g.fill();
+            g.font = "22px \\u0027Cambria Math\\u0027,serif";
+            g.fillText(bscSub(o.label) + " " + Math.round(o.y), X(o.x) + 14, Y(o.y) + 8);
+            g.fillStyle = "#FFE082"; g.font = "21px monospace";
+            g.fillText("+" + Math.round(o.y - py) + " K", X(o.x) + 14, (Y(o.y) + Y(py)) / 2 + 7);
+            g.globalAlpha = 1;
+        }
+    }
+
     var BS_GLOW_ELS = {
         units: ["bsc_atom", "bsc_bond", "bsc_atom_label"],
         central: ["bsc_central"],
