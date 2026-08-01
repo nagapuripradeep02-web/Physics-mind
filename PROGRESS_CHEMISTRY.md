@@ -19,31 +19,103 @@
 | 3 | First concept — **Bohr energy levels** (Wave 1 pivoted from Rutherford; prove-first) | ✅ **MERGED TO MASTER 2026-07-27** (`b9eb735`) — authored, validated, quality_auditor gated, THE EYE 39/39, eye_walker walked, baselines approved. **Only Asmi's professor review remains.** |
 | 3b | Second concept — **law_of_conservation_of_mass** (NCERT Cl.11 Ch.1 §1.3, archetype O) | ✅ **MERGED TO MASTER 2026-07-27** (`df3d993`) — full traditional pipeline, quality_auditor FAIL→fixed, THE EYE 44/44, baselines locked, 23/23 EN audio. **Only Asmi's professor review remains.** |
 | 4 | Chemistry machine gates (ledger check, animation vocab) | ◐ 2026-07-28: `validate:chemistry` is now IN CI (`verify.yml`) — it had never run there, so a broken chemistry concept passed the whole workflow green. Ledger/animation-vocab gates still ☐ (4 scar candidates waiting to seed them). |
-| 5 | Chemistry render surface — **both halves now LIVE** | ✅ 2026-07-28: `field_3d` `molecular_geometry` (electron-domain 3D) **and** `particle_field` `gas_box` (2D hard-disc gas) both on master, each with its first concept shipped. Still ☐: **orbital lobes / lattices (P2)**, wet-lab apparatus (Phase 5b). |
+| 5 | Chemistry render surface — **four scenarios LIVE** | ✅ 2026-07-28/30: `field_3d` `molecular_geometry` (electron-domain 3D) · `field_3d` `orbital_shapes` (lobes; `kind:"hybrid"` + `kind:"mo"`) · `particle_field` `gas_box` (2D hard-disc gas) · `parametric` (2D). Still ☐: **lattices** (ionic/metallic solids), **multi-molecule scenes** (intermolecular forces — see 2026-08-01 survey), wet-lab apparatus (Phase 5b). |
 
 **Chemistry is a first-class subject ON MASTER across THREE renderer families, in 2D and 3D.**
-Baseline-locked concepts:
+All 10 concepts are baseline-locked. *(Table re-derived from disk 2026-08-01 — the previous version
+double-listed `le_chateliers_principle`, omitted `dynamic_equilibrium` and
+`collision_theory_activation_energy`, and swapped the states/baselines columns. Baselines = 2 × states:
+`STATE_N.png` + `STATE_N__frozen.png`.)*
 
-| Concept | Renderer | Baselines | EN clips |
-|---|---|---|---|
-| `bohr_model_energy_levels` | parametric | 9 | 31 |
-| `law_of_conservation_of_mass` | parametric | 7 | 23 |
-| `le_chateliers_principle` | particle_field (`gas_box`) | 17 | 32 |
-| `vsepr_molecular_shapes` | field_3d · `molecular_geometry` | 14 | 17 |
-| `kinetic_particle_theory` | particle_field · `gas_box` | 7 | 19 |
-| `atomic_orbitals_s_p_d` | field_3d · **`orbital_shapes`** | 18 | — (silent; Rule 30h) |
-| `hybridisation_sp_sp2_sp3` | field_3d · `orbital_shapes` (`kind:"hybrid"`) | 16 | 23 |
-| `le_chateliers_principle` | particle_field · `gas_box` | 12 | 32 |
-| `sigma_pi_bonding` | field_3d · `orbital_shapes` (**`kind:"mo"`**) | 9 | — (silent; Rule 30h) |
+| Concept | NCERT | States | Baselines | Renderer · scenario | EN clips |
+|---|---|---|---|---|---|
+| `law_of_conservation_of_mass` | Cl.11 Ch.1 | 7 | 14 | parametric | 23 |
+| `bohr_model_energy_levels` | Cl.11 Ch.2 | 9 | 18 | parametric | 31 |
+| `atomic_orbitals_s_p_d` | Cl.11 Ch.2 | 9 | 18 | field_3d · `orbital_shapes` | — silent (30h) |
+| `collision_theory_activation_energy` | Cl.12 Ch.3 | 9 | 18 | particle_field · `gas_box` | — silent (30h) |
+| `vsepr_molecular_shapes` | Cl.11 Ch.4 | 7 | 14 | field_3d · `molecular_geometry` | 17 |
+| `hybridisation_sp_sp2_sp3` | Cl.11 Ch.4 | 8 | 16 | field_3d · `orbital_shapes` (`kind:"hybrid"`) | 23 |
+| `sigma_pi_bonding` | Cl.11 Ch.4 | 9 | 18 | field_3d · `orbital_shapes` (`kind:"mo"`) | — silent (30h) |
+| `kinetic_particle_theory` | Cl.11 Ch.5 ⚠ | 7 | 14 | particle_field · `gas_box` | 19 |
+| `dynamic_equilibrium` | Cl.11 Ch.6 | 7 | 14 | particle_field · `gas_box` | 24 |
+| `le_chateliers_principle` | Cl.11 Ch.6 | 8 | 16 | particle_field · `gas_box` | 32 |
 
-The isolation contract held through every merge: all register at site #1 only, and
-`validate:concepts` reports 141/141 without ever seeing them.
+**Totals: 10 concepts · 80 states · 160 baselines · 169 EN clips · 3 silent.**
+`validate:chemistry` **10/10 PASS**. The isolation contract held through every merge: all register at
+site #1 only, and `validate:concepts` reports **146/146** without ever seeing them.
 
-**The one gate none of them has passed is Asmi's professor review** — now **eight** concepts deep,
+**The one gate none of them has passed is Asmi's professor review** — now **ten** concepts deep,
 spanning both dimensionalities and four renderer surfaces. That is the bottleneck, not renderer
-coverage, and it has been the stated bottleneck for **five** consecutive sessions. Put as plainly as
+coverage, and it has been the stated bottleneck for **six** consecutive sessions. Put as plainly as
 it can be: `sigma_pi_bonding` cleared three full audit rounds and every machine gate, and **not one
 of those measures whether it teaches.**
+
+---
+
+## 🔗 SESSION — Chemical Bonding coverage survey: the chapter is DONE per the ranked list, and the four proposed successors all need engine work (2026-08-01, no branch — survey only, nothing authored)
+
+> Founder asked what was left in Chemical Bonding (NCERT Cl.11 Ch.4) and then which bonding concepts
+> intersect Indian **and** international curricula. No concept was built this session; the output is
+> the survey below and a build decision that is still open.
+
+**1. Ch.4 is complete against the ranked list.** All three Ch.4 entries in `CHEMISTRY_DISCUSSIONS.md`
+Session C5 §6 are built and baseline-locked: **#12 `vsepr_molecular_shapes`** (7 states),
+**#13 `hybridisation_sp_sp2_sp3`** (8), **#17 `sigma_pi_bonding`** (9), plus **#16
+`atomic_orbitals_s_p_d`** (Ch.2) which feeds them. **There is no remaining ranked work in this chapter.**
+
+**2. Only VSEPR is genuinely universal — read from the concepts' OWN `curriculum_tags`.** All 10
+chemistry concepts carry authored tags (physics is far patchier), so this is repo data, not recall:
+
+| Concept | CBSE | JEE/NEET | IB DP | AP | A-level | IGCSE |
+|---|---|---|---|---|---|---|
+| `vsepr_molecular_shapes` | full ✅ | — | full | full | full | **partial** |
+| `hybridisation_sp_sp2_sp3` | full ✅ | full | **partial — HL only** | full | full | **absent** |
+| `sigma_pi_bonding` | full ✅ | full | **partial — HL only** | full | full | **absent** |
+| `atomic_orbitals_s_p_d` | full ✅ | full | partial | partial | partial | **absent** |
+
+Both hybridisation and σ/π carry the tag text *"hide the whole concept for this board"* for IGCSE.
+So the Ch.4 trio is strong for CBSE/JEE/AP/A-level and weak-to-absent for the younger international
+grades; **VSEPR is the only bonding concept every board touches.**
+
+**⚠ 3. Every international cell is an unverified CLAIM.** In all four files only the **CBSE/NCERT row
+is `verified: true`**; every IB / AP / A-level / IGCSE / NGSS row is `needs_teacher_verification: true`.
+Rule 38g therefore blocks all of them from teacher-visible presets. **Ten concepts deep, not one
+international mapping has been confirmed by a teacher of that board** — the same shape of gap as the
+Asmi bottleneck, and it will silently cap the international story if it stays unclosed.
+
+**4. The four proposed successors are unranked AND engine-blocked.** Founder proposed building, in
+order: intermolecular forces / hydrogen bonding → polarity & dipole moment → ionic bonding → (4th TBD).
+None is on the C5 list (the whiteboard test excluded most of Ch.4 as board-drawable). Measured against
+the live scenarios:
+
+| Proposed | Needs | Exists today? |
+|---|---|---|
+| Intermolecular forces / H-bonding | **multiple molecules** attracting, H-bonds forming/breaking | ❌ `molecular_geometry` renders ONE molecule |
+| Polarity / dipole moment | one molecule + per-bond dipole vectors + resultant | ⚠️ extension of `molecular_geometry` |
+| Ionic bonding | electron transfer → repeating **3D lattice** | ❌ no lattice scenario |
+| Metallic bonding (4th candidate) | lattice + electron sea | ❌ shares the lattice gap |
+
+**Three of four need engine work, on two different surfaces.** That makes four parallel desks the
+exact Rule-40 hazard: three sessions editing `field_3d_renderer.ts` at once (cf. the twice-built PCPL
+focal-glow fix, and PR #10's nine deceptive hunks). **Phase 0 must run before any concept desk opens.**
+
+**5. Correction carried forward — Molecular Orbital Theory is NOT the universal pick.** MOT was
+proposed mid-session as "the biggest remaining Ch.4 diamond"; that is wrong by the intersection test.
+MOT is full in CBSE and heavy in JEE but **absent from IB DP and AP Chemistry**. By curriculum reach
+the order is **hydrogen bonding / IMF → polarity → ionic**, with MOT among the *weakest* in the
+chapter. (Assessment, not repo data — Rule 38g: needs teacher verification.)
+
+**6. Where the ranked list actually still has work.** Unbuilt: **P1 #3 rate of reaction · #5
+Maxwell–Boltzmann · #7 diffusion/Graham's** (all harvest the existing `gas_box`), and the whole of
+**P2 — #8 titration curve · #9 reaction profiles · #10 hydrogen emission spectrum · #11 periodic
+trends**, which the plan marks *"NO new engine work"*. That P2 block is exactly four concepts on
+engines that already work — the cheapest four available, versus three engine builds for the bonding
+successors.
+
+**NEXT (open founder decision):** (a) the four zero-engine P2 concepts, or (b) close out Ch.4 with the
+unranked bonding concepts, which requires a Phase-0 survey → one engine build landed on master
+separately (Rule 40) → *then* two desks of pure-JSON concepts. Recommendation on record: run the
+Phase-0 survey before opening any desk, and pair desks by **engine surface**, not curriculum order.
 
 ---
 
