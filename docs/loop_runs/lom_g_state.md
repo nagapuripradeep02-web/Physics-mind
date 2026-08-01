@@ -7,7 +7,116 @@ updated: 2026-08-01 (**PHASE 2 BUILT — `uniform_circular_motion` authored, aud
 
 ---
 
-## PHASE 2 — `uniform_circular_motion` — BUILT, AWAITING FOUNDER REVIEW
+## PHASE 2 — FOUNDER REVIEW ROUND 1 (2026-08-01) — "circular motion is really good", TWO defects raised, BOTH FIXED
+
+Founder watched the sim and raised two things. Both were real; both are fixed and re-verified.
+
+### 1. "There should be a realistic way of cutting the thread" — 4 engine commits
+
+The founder's words: *"in the third state, there should be a realistic way of cutting the thread, and
+it's moving in a straight line. Everything should be realistic… I feel like I'm moving the graphics.
+At the same time, physics computed."* They **explicitly authorised** going past the runaway guard for
+this. Four `field3d-surgeon` commits, one `bug_class` each, run SEQUENTIALLY (same file region, and
+`feat/lom-f-momentum` edits it concurrently):
+
+| commit | what |
+|---|---|
+| `7d24724` | the frozen-frame capture actually reaches its pin (see the FLEET finding below) |
+| `910535c` | post-cut flight envelope **1.4 s → 5.5 s**: rimless fading sheet, release azimuth solved backwards so the departure is always across-screen, framing follow on the rig's display node |
+| `fb259a6` | one rimless sheet for EVERY flat state (Rule 32d continuity) + the pin gate re-keyed to the ENGINE clock |
+| `5716010` | **the string is now visibly SEVERED** instead of vanishing |
+
+**The severing is derived, not animated.** The string is a *constraint* in this engine, not a body, so
+at the cut there was literally nothing left to draw. The fix draws the two lengths from the kinematics
+that ARE determined at that instant: the post-side keeps the angular velocity it had (starting at
+exactly the pre-cut rate, so nothing jumps) and settles onto the sheet; the ball-side stub is dragged
+off tangentially. They are continuous at τ=0 and part immediately, so the eye sees the thread part at
+the point it was cut. No spark, no flash, no blade (Rule 24/34); nothing scales (Rule 29).
+**The ball is untouched — measured 1.8000 m/s at every sample from τ = −200 ms to +1600 ms**, with
+T going 12.96 → 0.00 exactly at the cut. The straight line is still the integrator's output.
+
+### 2. "Do the subtitles synchronize with the picture, or is it desync?" — YES, IT WAS. ~17 s off.
+
+**The founder caught a defect BOTH review agents missed.** Measured against the player's own
+clock-driven subtitle path (`activeSiAt(t)` advances on the state clock even when audio is silent):
+`"Now the string is cut."` was displayed at **2.4 s**; the string was actually cut at **19.6 s**; the
+payoff got **1.4 s** at the very end of a 21 s state.
+
+Re-timed (`3505a78`): cut moved to **12800 ms**, landing exactly under the sentence that announces it;
+duration 21 → 18 s; flight 5.2 s (≤ 5.5 cap); pin 15800 ≤ 18000, leaving 2.2 s of flight visible after
+it; consequence narrated WHILE the straight line is on screen. 45 words, in band.
+The static caption and bottom-left label were deliberately KEPT — they are state placards summarising
+the whole beat (STATE_2's cue behaves identically), and only a clock-synced subtitle can contradict
+the picture.
+
+**GATE GAP, worth more than this concept:** quality-auditor and eye-walker both check frames, gates
+and per-state deltas. **Neither checks narration-against-event alignment, and there is no gate that
+does.** A state can announce an event 17 s before it happens and pass every check. This is the second
+"the machine cannot see it" finding on this tray, alongside the D5/motion one.
+
+### 🚨 FLEET FINDING — my diagnosis was WRONG, and the truth is much wider
+
+I filed the STATE_3 pre-cut frozen frame as "the pin path does not reproduce the release". **That was
+wrong** — the release always fired correctly at 19600 ms. `field3d-surgeon` disproved it with a probe
+and found the real mechanism:
+
+Under a `SET_TIME_FREEZE` pin the sim crawls **one fixed 1/60 s step per rendered frame**, and headless
+Chromium delivers ~18 fps → **~290 ms of sim time per wall second**. A 20800 ms pin therefore needs
+~75 s of real time. `captureFrozenFrame` polls for `at_ms*2.5+4000` ≈ 56 s and **then screenshots
+anyway, discarding its own `poll.reached`**. Solving `0.29·(2.5·at + 4000) ≥ at` shows **every pin past
+~4.2 s was a coin flip.** Last session's FIX A made this fatal for the PRIMARY capture path; the
+frozen-frame path was never covered.
+
+**Blast radius, measured by me across the fleet** (`_scratch_pin_blast_radius.ts`, untracked):
+
+| | |
+|---|---|
+| states with pin > 4200 ms | **307 of 845** |
+| concepts affected | **87 of 149** |
+| …of which BASELINE-LOCKED | **45 of 75** |
+
+**This retro-explains a mystery this tray already filed.** `electric_potential_meaning` was recorded
+last session as NON-DETERMINISTIC (STATE_6 H2 at 2.31–2.90%, "cannot distinguish a regression from
+noise"). Its pins are 19–20 s. It was never an unstable baseline — it was this capture lottery.
+
+**Honest limit: 307 is an upper bound on EXPOSURE, not a count of corrupted baselines.** Reachability
+depends on per-scenario frame cost, and `eddy_currents` (24 s pin, baseline-locked) reproduces 12/12
+H2 at 0.00% — either it is cheap enough to reach its pin, or its content is static near the pin so an
+off-pin frame looks identical. **Which of the 307 are actually wrong needs measuring.**
+
+The renderer-side cure landed here (compressed deterministic replay, force_rig-gated). **The TOOLING
+half is filed OPEN and NOT fixed** — `capture_frozen_frame_ignores_its_own_poll_result_and_photographs_off_pin`,
+which still affects EVERY renderer. It is `visual_eyes.ts` = Rule 40 PLATFORM, belongs on master.
+**FOUNDER CALL.**
+
+### Two engine findings still OPEN on this concept
+
+- **`force_rig_whirl_tension_arrow_illegible_at_floor_band_magnitude`** (MODERATE) — unchanged and now
+  the most visible remaining flaw: **STATE_1's caption reads "Tension pulls inward, always" and the
+  tension arrow is essentially invisible** at its constant T = 13.50 N. The state's own claim is the
+  one thing a teacher cannot see. Verified by eye on `20260801-171738/STATE_1__frozen.png`.
+- **Candidate J** (LOW, new) — states whose reveal pin is BELOW the 2000 ms catch-up threshold
+  (STATE_1/4/7 here, all at 1600 ms) skip the deterministic rewind and keep pre-freeze phase jitter;
+  STATE_1's frozen frame varied 0.005–0.175% across runs. Under the H2 2% tolerance so it fails no
+  gate today, **but it means a short-pin baseline is minted from one of several possible phases — know
+  this before approving any baseline.**
+
+### Verification after all five commits
+`tsc` **0** · `validate:concepts` **148 PASS / 0 FAIL** · `check:renderer-syntax` **OK ×3** ·
+THE EYE **31/31** on three consecutive runs · **all 7 frozen frames 0.000%** across runs A-vs-B and
+B-vs-C (A-vs-C differs only on STATE_1 at 0.005% = Candidate J) · regression `eddy_currents`
+**38/38, all 12 H2 at 0.00%** · `equilibrium_of_particles` (the founder-approved `force_table`
+sibling) **31/31**, untouched by every diff · review link rebuilt and verified **OVER THE WIRE**
+(new narration present in the served page, old absent, `at_ms: 12800` in the served sim).
+
+**Standing lesson recorded:** an md5 diff of two PNGs answers "are these bytes equal", NOT "does this
+picture differ" — encoding metadata alone diverges the hash. I filed a fleet-wide non-determinism
+claim on hashes and had to retract it after `pixelmatch` showed 52/137 frames pixel-identical and only
+`STATE_3__frozen` genuinely unstable. **Never file a determinism verdict on hashes.**
+
+---
+
+## PHASE 2 — `uniform_circular_motion` — BUILT (pre-review record below)
 
 **Review link: http://localhost:8093/uniform_circular_motion/** (rebuilt after the fixes and verified
 OVER THE WIRE — the post-fix string is present in the served `sim.html` and the pre-fix string is
@@ -470,14 +579,14 @@ next: **FOUNDER REVIEW of `uniform_circular_motion`** at http://localhost:8093/u
       deploy remain untouched for BOTH concepts, and neither has a `visual_baselines` entry, so
       neither has H2 regression protection.
       **THREE FOUNDER CALLS ARE OPEN, in priority order:**
-      (1) **ONE CRITICAL whirl engine finding** (proven, control run complete): the `release` beat is
-          not reproduced under the `SET_TIME_FREEZE` pin — STATE_3's frozen frame lands PRE-CUT and is
-          the only frozen frame that is also unstable run-to-run (0.289 % vs 0.000 % for the other
-          six). `[owner: peter_parker:field3d_surgeon]`. **It does NOT block teaching** (the live sim
-          cuts correctly) and does NOT block baseline-locking the other six states — it blocks
-          baseline-locking STATE_3, which is the PRIMARY AHA, so the aha would ship with no H2
-          protection. The runaway guard is AT its limit, so a dispatch needs an explicit founder
-          go-ahead. Plus one MODERATE (floor-band arrow) and one LOW (conical dense-frame jitter).
+      (1) **(RESOLVED 2026-08-01)** — the CRITICAL pin defect was fixed in `7d24724` (+ the gate
+          correction in `fb259a6`); the diagnosis in this line was WRONG and the real mechanism is the
+          fleet-wide capture-timeout finding recorded in the Founder Review Round 1 section above.
+          **What replaces it as the top engine call: the TOOLING half is still OPEN** —
+          `capture_frozen_frame_ignores_its_own_poll_result_and_photographs_off_pin` affects EVERY
+          renderer, exposes 307 states / 87 concepts / 45 baseline-locked, and is Rule 40 PLATFORM
+          work for master. Plus, on this concept: the MODERATE floor-band arrow (STATE_1's claim is
+          invisible) and LOW Candidate J (short-pin phase jitter).
       (2) **The fleet-wide D5 fix** (still dark — this run's Motion map printed all `?`). Unchanged
           from last session: one line, but it switches a dormant gate ON for 25 locked concepts at
           once, so it belongs on master with an immediate full-fleet sweep. Now joined by the
