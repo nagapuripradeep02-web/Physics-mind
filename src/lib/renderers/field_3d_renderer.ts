@@ -48541,6 +48541,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_ARROW_HEAD_LEN = 0.30;    // built cone height, bond + lone-pair arrows
     var BS_RES_HEAD_LEN = 0.38;      // built cone height, the resultant
     var BS_HEAD_MIN_THICK = 0.62;    // floor on the head-s radius scale
+    // E1c-D: the screen-diagonal offset the resultant-s value label is placed at,
+    // measured. Swept 0.45 / 0.50 / 0.55 over every species that draws a
+    // resultant, under the shipped perspective: 0.50 maximises the SMALLER of the
+    // two margins (text-vs-text 0.1033 NDC, counted-ligand-vs-text 0.1016 NDC),
+    // where 0.45 favours the text pair and 0.55 the ligands.
+    var BS_RES_LABEL_OFF = 0.50;
     function bscArrowParts(len, built) {
         var h = (len * 0.5 < built) ? len * 0.5 : built;
         var k = h / built;
@@ -48904,18 +48910,38 @@ export const FIELD_3D_RENDERER_CODE = `
     //   BS_CAMERAS.dipole_sum.az by check:bonding-scene so the authored bend cannot
     //   silently go edge-on, and az 45-60 measured only ~0.03 NDC better on the
     //   pyramid — not worth breaking that tie-down.
+    //
+    //   AND A DIATOMIC IS THE OPPOSITE PROBLEM (E1c-D). mgIdealDirs puts a single
+    //   bond on the APEX (+y), so an HX molecule is drawn straight up the view-up
+    //   axis, and a solve that looks DOWN at 47 foreshortens it: measured under the
+    //   same perspective rig, a 1-bond unit-s projected bond length is 0.862 of its
+    //   true length at el 47 and 1.040 at el 12 (it exceeds 1 because the far half
+    //   of the bond leans toward the camera). That is +20.6% of drawn length on the
+    //   ONE quantity S2 teaches — its whole lesson is that the arrow-s LENGTH is
+    //   the measured dipole moment, across a four-rung halide ladder, and at el 47
+    //   HI drew ~21 px against HBr-s ~39 px at 720p. (An ORTHOGRAPHIC estimate of
+    //   the same change reads +44%, cos12/cos47; the perspective number is the
+    //   honest one and is what the gate asserts.) Elevation 15 is the numeric peak
+    //   at 1.043, 0.3% above 12 — not worth deviating from the measured value.
+    //   The diatomic key changes NOTHING else: pyramidal and general keep their
+    //   E1c-A values byte for byte, asserted by check:bonding-scene.
     var BS_UNIT_CAMERAS = {
         pyramidal: { az: 35, el: 62, dist: 7.0 },
+        diatomic:  { az: 35, el: 12, dist: 7.0 },
         general:   { az: 35, el: 47, dist: 7.0 }
     };
     // The scene-derived shape key: a centre whose bonds all sit on ONE side of it
     // (three bonds plus at least one lone pair) puts a ligand behind the centre at
-    // a shallow look-down. Everything else — tetrahedral, trigonal planar, bent,
-    // linear, diatomic — surrounds its centre and reads at the general solve.
+    // a shallow look-down; a centre with ONE bond lays that bond along the view-up
+    // axis and loses its length to foreshortening. Everything else — tetrahedral,
+    // trigonal planar, bent, linear — surrounds its centre and reads at the
+    // general solve.
     function bscUnitShapeKey(molKey) {
         var m = MG_MOLECULES[molKey];
         if (!m) return "general";
-        return (m.bonds === 3 && m.lone >= 1) ? "pyramidal" : "general";
+        if (m.bonds === 3 && m.lone >= 1) return "pyramidal";
+        if (m.bonds === 1) return "diatomic";
+        return "general";
     }
     // Derived from the state ALONE (never from the live camera or a dragged
     // picker), so the countable view is identical on the first frame and under a
@@ -50238,6 +50264,11 @@ export const FIELD_3D_RENDERER_CODE = `
             return MG_MOLECULES[sp] ? sp : molKey;
         };
 
+        // E1c-D: the FOCAL unit's counted geometry, retained for the resultant
+        // label's clear placement below. Collected here because the atom loop is
+        // the only pass that knows each ligand's world position and the screen
+        // diagonal each atom label actually settled on.
+        var fCenLabPos = null, fLigWorld = [];
         for (u = 0; u < pool; u++) {
             var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
             // E3a: a unit whose species is an ATOM or an ION is drawn by the SITE
@@ -50289,6 +50320,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (lab && lab.visible) {
                     mgPlaceLabelClear(lab, pos, rad + 0.34, [org]);
                     updateLabelSpriteText(lab, el);
+                }
+                if (u === focalIdx) {
+                    if (i > 0) fLigWorld.push([pos[0], pos[1], pos[2]]);
+                    else if (lab && lab.visible) fCenLabPos = [lab.position.x, lab.position.y, lab.position.z];
                 }
                 // D-6: delta labels on the FOCAL unit only, capped on screen.
                 if (deltaOn && dlab && deltaBudget > 0 && Math.abs(uq[i] || 0) > 0.02) {
@@ -50570,7 +50605,38 @@ export const FIELD_3D_RENDERER_CODE = `
                 rhd.position.set(rp[0], rp[1], rp[2]);
             }
             if (rlb) {
-                rlb.position.set(fOrg[0] + rdir[0] * (rlen + 0.62), fOrg[1] + rdir[1] * (rlen + 0.62), fOrg[2] + rdir[2] * (rlen + 0.62));
+                // FRAMES FINDING (E1c-D smoke, S7_NH3_pinned.png): placed at a
+                // FIXED offset along its own direction, this label landed on the
+                // central atom's N label and lay across the third hydrogen. The
+                // resultant LAUNCHES FROM the central atom, so no offset along
+                // its own axis can ever clear the body it starts on — and on NH3
+                // the resultant points ALONG the lone pair BY CONSTRUCTION (that
+                // is the state's physics), so collinear anchors here are
+                // guaranteed, not incidental. It goes through the same shared
+                // clear-placement helper E1c-B routed the lone-pair label
+                // through: anchored at the arrow's TIP, avoiding the central
+                // atom, the central atom's label, every counted ligand, and the
+                // lone-pair lobe.
+                //   The lone-pair LABEL itself is deliberately NOT an avoid
+                //   point. It is placed BELOW this block and already avoids this
+                //   label, so naming it here would make the two placements read
+                //   each other across frames — history, not a closed form, and
+                //   a SET_TIME_FREEZE rewind could then photograph a different
+                //   layout. Its LOBE TIP is the closed-form proxy, computed the
+                //   same way the lobe itself is, and the ordering stays acyclic.
+                var rAvoid = [[fOrg[0], fOrg[1], fOrg[2]]];
+                if (fCenLabPos) rAvoid.push(fCenLabPos);
+                for (var rAi = 0; rAi < fLigWorld.length; rAi++) rAvoid.push(fLigWorld[rAi]);
+                if (dip.show_lone_pair && D.lone && D.lone.length) {
+                    var rlDir = D.lone[0].dir;
+                    if (fRot) rlDir = fRot(rlDir);
+                    rlDir = mgRotY(rlDir, spin);
+                    var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN;
+                    rAvoid.push([fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt]);
+                }
+                mgPlaceLabelClear(rlb,
+                    [fOrg[0] + rdir[0] * rlen, fOrg[1] + rdir[1] * rlen, fOrg[2] + rdir[2] * rlen],
+                    BS_RES_LABEL_OFF, rAvoid);
                 updateLabelSpriteText(rlb, "\\u03BC = " + bscFmtD(D.mag) + " D");
             }
         }
