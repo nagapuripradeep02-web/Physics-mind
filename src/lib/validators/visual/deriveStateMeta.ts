@@ -2728,6 +2728,64 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(release + NLB_PUSH_OFF_COAST_MS);
             }
         }
+        // ── SEAM M — site (i), completed: the `sum_merge` one-shot ──────────────
+        //   The bars SLIDE into the stacked column over duration_ms from the cue
+        //   (or from at_ms, which is the fallback THE EYE takes because it posts no
+        //   cue times). A pin landing mid-slide photographs half-merged bars —
+        //   verbatim the mid-transition capture
+        //   field3d_slcr_reveal_hold_captures_transitional_r_family — so the pin
+        //   must clear the END of the slide, plus the standard cushion.
+        //   Deliberately does NOT set phaseFound: the energy-layer settle floor
+        //   below is still the right lower bound (a merge that fires at t = 0 with a
+        //   900 ms slide would otherwise pull the pin down to 1400 ms, back onto a
+        //   picture where the block has barely moved).
+        const nlbEnCfgM = asObj(nlb.energy_layer);
+        const nlbSm = nlbEnCfgM ? asObj(nlbEnCfgM.sum_merge) : null;
+        if (nlbSm) {
+            const smAt = asNum(nlbSm.at_ms, 0);
+            const smDurRaw = nlbSm.duration_ms;
+            const smDur = typeof smDurRaw === 'number' && Number.isFinite(smDurRaw) && smDurRaw > 0
+                ? smDurRaw : 900;   // mirrors NLB_SUM_MERGE_MS in the renderer
+            candidates.push(smAt + smDur + nlbCushion);
+        }
+        // ── SEAM M — site (iii), the OWED frozen-pin instant ────────────────────
+        //   A `loop_reset_ms` state restarts its own kinematics every R ms, so the
+        //   pin is not a time, it is a PHASE: land ~60% into a cycle, which for
+        //   every authored loop in this chapter is inside the DESCENT segment (the
+        //   block was launched at cycle start, turns near the middle, and is coming
+        //   back down through the second half). A pin near a boundary photographs
+        //   the restart frame — the home pose, with every bar back at its seed value
+        //   and nothing to show — and mints an H2 baseline on it.
+        //   The ±150 ms clearance is ASSERTED, not hoped for: the offset is clamped
+        //   into [150, R − 150], so the pin is provably that far from BOTH the reset
+        //   that starts its cycle and the one that ends it. (A loop shorter than
+        //   300 ms cannot satisfy the assertion at all — no such state is authorable
+        //   in practice, and it degrades to mid-cycle rather than to a boundary.)
+        //   Cycle selection mirrors the repeating-push_off pin exactly: fold both of
+        //   clampReveal's bounds in HERE, or a cycle-0 pin gets silently RAISED to
+        //   DEFAULT_REVEAL_MS and lands at an arbitrary phase again.
+        //   Sets phaseFound: this IS the better-informed candidate SEAM L's energy
+        //   floor was written to defer to.
+        const nlbLrRaw = nlb.loop_reset_ms;
+        const nlbLr = typeof nlbLrRaw === 'number' && Number.isFinite(nlbLrRaw) && nlbLrRaw > 0
+            ? nlbLrRaw : 0;
+        const nlbModeLr = typeof nlb.mode === 'string' ? nlb.mode : '';
+        // Mirrors nlbRunLoopReset's own guards: a push_off state's sealed cycle owns
+        // the rewind, and a sandbox never loops (SEAM J's wrap is its loop).
+        if (nlbLr > 0 && !asObj(nlb.push_off) && nlbModeLr !== 'sandbox') {
+            const NLB_LOOP_EDGE_MS = 150;
+            const lo = NLB_LOOP_EDGE_MS;
+            const hi = nlbLr - NLB_LOOP_EDGE_MS;
+            const offset = hi > lo
+                ? Math.min(Math.max(nlbLr * 0.60, lo), hi)
+                : nlbLr * 0.5;
+            const base = Math.max(DEFAULT_REVEAL_MS, ...candidates);
+            const wanted = Math.max(0, Math.ceil((base - offset) / nlbLr));
+            const ceiling = Math.floor((DURATION_MAX_MS - offset) / nlbLr);
+            const cycle = Math.max(0, Math.min(wanted, ceiling));
+            candidates.push(cycle * nlbLr + offset);
+            phaseFound = true;
+        }
         if (!phaseFound) {
             // No authored script this state: fall back per `mode`. These are pure
             // FLOORS used only when phases[] is absent (an authored phase always
