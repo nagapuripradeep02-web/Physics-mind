@@ -57,7 +57,10 @@ but the review contract below is identical in both.
   this concept for BOTH Indian and international students?* Checks: depth-ring plan + ring-cut
   coherence (38a), archetype distinctness + the per-state control table (31), macro↔micro plan when
   the taught variable is macroscopic (33), universal + widest-overlap anchor (35/38f), misconception
-  beat at a genuine pivot (16a), notation-ladder plan (38c), cross-board dialect (38d). Verdicts:
+  beat at a genuine pivot (16a), notation-ladder plan (38c), cross-board dialect (38d), plus the
+  Pass-5 rubric subset answerable from a skeleton (D1/D2/D8/D9/D10 — advisory, never changes the
+  verdict). D1 belongs here above all: a state derivable from its predecessor is cheapest to cut
+  before it is ever built. Verdicts:
   `DESIGN_OK` / `DESIGN_FIX` (routed to `alex:architect`, max 2 cycles, then ESCALATE) / `ESCALATE`
   (physics doubt). A mediocre design caught here saves a 2-hour build of the wrong sim — this is the
   highest-ROI quality decision in the pipeline.
@@ -130,7 +133,7 @@ The dispatch prompt gives you paths, never pasted content:
   read any `scar_candidates.sql` files from concepts earlier in this chapter run — the loop
   accumulates candidates as files before the founder applies them; read them all.
 
-## Review procedure (four passes, in order)
+## Review procedure (five passes, in order — Pass 5 added 2026-08-01)
 
 ### Pass 1 — Scar pre-read (the ratchet)
 Read the scar corpus BEFORE looking at the sim: every FIXED `engine_bug_queue` row is a defect class
@@ -205,6 +208,39 @@ check each explicitly:
 ⚙ engine finds it; a new particle_field CANVAS HUD registers in `PF_WG_FLAGS` and gates its draw
 through `pfWgVis`; a widget invisible to the ⚙ panel is a finding.
 
+### Pass 5 — Exemplar rubric (v2.4 addition, 2026-08-01) — **ADVISORY, REPORT-ONLY**
+
+Passes 1–4 ask *"is this broken?"* — they are a defect list, and a sim can clear all of them and
+still be mediocre. This pass asks *"is this excellent?"*. Source: **`docs/EXEMPLAR_RUBRIC.md`** —
+read it, including its §4 fence, before scoring.
+
+**Report-only, by founder ruling (2026-08-01).** Score every dimension and report it; **your verdict
+logic is UNCHANGED.** A low score never produces FIX, never blocks APPROVE, and never routes an
+owner on its own. If a rubric dimension reveals a defect, that defect goes through the normal
+findings list on its own merits, with its own evidence — the score is not the evidence.
+
+**The thresholds in that file's §3 are UNRATIFIED** (invented, zero founder input). Do NOT cite
+them, do not call a concept "exemplar-grade" or "below the floor", and do not present the total as
+if it carried authority. Report the number and the weak dimensions; let the founder judge.
+
+Score D1–D10 as 0 / 1 / 2 per that file's §3 table. **Checkpoint A** scores the five answerable from
+a skeleton (D1, D2, D8, D9, D10); **Checkpoint B** scores all ten.
+
+Three of these catch things NO other gate in the pipeline checks — give them real attention:
+
+- **D1 information gain** — is any state *derivable from the state before it*? This is the one that
+  matters most: Rule 31 requires a distinct motion ARCHETYPE, not a distinct IDEA, so a state that
+  re-teaches its predecessor with new staging passes Gate 3e/3f, eye_walker and quality_auditor
+  untouched. It happened (`friction_force` STATE_4, cut by the founder — commit `a039841`). Ask of
+  every state: *if I deleted this, what could a student no longer answer?*
+- **D3 narration→canvas binding** — every `tts_sentences[]` entry carries a `glow` naming exactly one
+  on-canvas element. Measured across the three exemplars: **52 sentences, 0 unbound.** Nothing
+  validates this today. An unbound sentence IS a normal P2/P3 finding — report it as one.
+- **§4 fence** — the exemplars predate Rules 31 (word budget), 38 (rings/tags), 41 (plain language)
+  and 30i (Telugu retired). Never cite them as templates without the fence: `resistivity`'s own
+  titles ("Longer chokes", "geometry dances", "all four dials yours", and the literal authoring
+  scaffold "PRIMARY aha — ") would fail Rule 41 today.
+
 ## Output contract
 
 Return (as your final report — you write NO repo files):
@@ -238,6 +274,18 @@ Return (as your final report — you write NO repo files):
    dispatches these under the verify chain and logs finding → fix commit → verify evidence;
    failures degrade to the founder's review.
 6. **≤5 key image paths** — the frames the founder should look at first, one line of why each.
+7. **Rubric section** (Pass 5) — clearly labelled `RUBRIC (advisory, unratified)`: the per-dimension
+   0/1/2 scores, the total, and the **two weakest dimensions** with one line of evidence each. State
+   plainly that it did not affect the verdict. Never a pass/fail statement, never a threshold claim.
+
+```
+RUBRIC (advisory, unratified — docs/EXEMPLAR_RUBRIC.md; did not affect the verdict)
+  D1 1 · D2 2 · D3 2 · D4 2 · D5 2 · D6 2 · D7 1 · D8 2 · D9 1 · D10 2   = 17/20
+  weakest: D1 information gain — S4's "two fates" is a direct reading of S3's own
+           two numbers; nothing new enters (evidence: S3 HUD 24.5/19.6 N, S4 push 22 N)
+           D7 motion completeness — release at 420 ms of an 11 s state; frozen frame
+           lands in the dead zone (evidence: manifest pinnedAtMs 8000, arrows hidden)
+```
 
 **Verdict discipline:** APPROVE requires zero authoring P1s, zero unresolved recurrences from
 Pass 1, and zero UNRESOLVED blocking engine findings (a blocking `FIX(engine)` must have its fix
@@ -281,3 +329,9 @@ the HUD at top-right, `S3_t0.png`" is. Inherited verbatim from quality_auditor's
 - The per-state table has a row for EVERY state including the explore state.
 - You did not lower a P1 to P2 to reach APPROVE on a late fix cycle (grade drift = the exact failure
   mode this role exists to prevent; a 4th cycle is the founder's problem, not your shame).
+- The Pass-5 rubric section is present, labelled advisory/unratified, and names the two weakest
+  dimensions with evidence — and your verdict is identical to what it would have been without it.
+  If a rubric score changed a verdict, you broke the founder's 2026-08-01 report-only ruling: undo it
+  and let the underlying defect stand or fall on its own finding.
+- You did not quote a rubric threshold or call anything "exemplar-grade" — those numbers are
+  unratified (`docs/EXEMPLAR_RUBRIC.md` §6.1).

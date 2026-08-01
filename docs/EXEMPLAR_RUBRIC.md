@@ -1,17 +1,24 @@
 # EXEMPLAR_RUBRIC.md — the ceiling-raising ledger
-# **[UNRATIFIED DRAFT — v0.1, 2026-08-01 — GOVERNS NOTHING]**
+# **[v0.2 — WIRED AS ADVISORY, 2026-08-01 · §3 THRESHOLDS STILL UNRATIFIED]**
 
 # PIPELINE_V2_PLAN.md §2 Phase 4. Counterpart to `engine_bug_queue`: the scar list
-# ratchets the FLOOR, this is the intended CEILING ratchet — once the founder ratifies it.
+# ratchets the FLOOR, this is the CEILING ratchet.
 
 ---
 
 ## ⚠ READ THIS BEFORE USING ANY PART OF THIS FILE
 
-**This file is not doctrine. It was drafted by an agent, and the founder has not reviewed it.**
-It is NOT a gate, NOT a rule, and it is cited by no spec. `.agents/founder_proxy/CLAUDE.md` is
-**unchanged** — founder_proxy does not read this file and does not score against it. Nothing in the
-pipeline behaves differently because this file exists.
+**Wired in on 2026-08-01, REPORT-ONLY by founder ruling.** founder_proxy Pass 5
+(`.agents/founder_proxy/CLAUDE.md`) now scores every concept against §3 and reports the result —
+but **its verdict logic is unchanged.** A low score never produces FIX, never blocks APPROVE, and
+never routes an owner. If a rubric dimension exposes a real defect, that defect goes through the
+normal findings list on its own evidence; the score is not the evidence.
+
+**The §3 scoring sheet is still an agent's proposal, and its thresholds are still invented** — no
+founder input, no scored corpus behind them. They are reported, never applied. Nothing in the
+pipeline fails, blocks, or routes on this file.
+
+Three of the four §6 questions remain open. Only §6.4 (does it gate?) is settled — answer: **no**.
 
 Its sections are not equally trustworthy. Know which you are reading:
 
@@ -22,12 +29,15 @@ Its sections are not equally trustworthy. Know which you are reading:
 | **§3** | A scored sheet — the ten dimensions, the 0/1/2 anchors, and the thresholds | **PROPOSAL, invented by an agent.** The dimensions are derived from §1/§2 and are arguable; **the thresholds and the weighting are guesses with no founder input at all.** |
 | **§4** | The fence — where the exemplars conflict with current rules | **Fact**, but each row is a rule-vs-artifact comparison worth re-checking against live CLAUDE.md. |
 | **§5** | How the ledger is meant to grow | **Proposal.** |
-| **§6** | The four open questions | The actual status. Read it before §3. |
+| **§6** | Founder rulings — 1 settled (report-only), 3 open | The actual status. Read it before §3. |
 
-**Do NOT, on the strength of this file:** score a concept and report the number as if it carried
-authority · fail, block, or FIX a concept for a low score · cite a "threshold" to the founder as a
-standard · quote §3 as a rule in an agent dispatch · treat the three exemplars as approved templates
+**Do NOT, on the strength of this file:** fail, block, or FIX a concept for a low score · cite a
+"threshold" to the founder as a standard · call a concept "exemplar-grade" or "below the floor" ·
+report the total as if it carried authority · treat the three exemplars as approved templates
 without reading §4 first.
+
+**DO** report the scores as advisory evidence (that is Pass 5's whole job), and raise anything the
+rubric exposes as a normal finding with its own evidence.
 
 **Do use it for:** the measured facts in §1, the rejection history in §2, and the fence in §4 —
 all three are evidence and stand on their own regardless of whether §3 is ever ratified.
@@ -123,16 +133,16 @@ failure this rubric exists to catch.
 
 ---
 
-## §3 — The scored sheet  **[UNRATIFIED — an agent's proposal, not a standard]**
+## §3 — The scored sheet  **[ADVISORY — scored and reported, never applied]**
 
-> **If you arrived here directly, read the banner at the top of this file first.** Nothing below is
-> agreed doctrine. founder_proxy does NOT use this sheet — its spec does not reference this file.
-> The ten dimensions are derived from the evidence in §1/§2 and are arguable; **the 0/1/2 anchors
-> and especially the thresholds are invented, with zero founder input.** Do not score a concept and
-> present the number as authoritative, and do not fail anything on it.
+> **If you arrived here directly, read the banner at the top of this file first.** founder_proxy
+> Pass 5 fills this sheet, but **report-only by founder ruling (2026-08-01): it never changes a
+> verdict.** The ten dimensions are derived from §1/§2 and are arguable; **the 0/1/2 anchors and
+> especially the thresholds are invented, with zero founder input.** Report the number, never apply
+> it — no pass/fail statement, no "exemplar-grade", no threshold quoted as a standard.
 
-Once ratified, founder_proxy would fill this at **Checkpoint A** (design — D1/D2/D8/D9/D10 are all
-answerable from a skeleton) and again at **Checkpoint B** (build — all ten). Score each 0 / 1 / 2:
+founder_proxy fills this at **Checkpoint A** (design — D1/D2/D8/D9/D10 are answerable from a
+skeleton) and again at **Checkpoint B** (build — all ten). Score each 0 / 1 / 2:
 
 > **0 = the founder would reject it · 1 = acceptable, unremarkable · 2 = exemplar-grade**
 
@@ -155,7 +165,7 @@ These are a starting point for a conversation, not calibrated values. They were 
 anything — no scored corpus exists yet, and no past concept has been run through this sheet. Read
 them as "roughly this shape, argue with the numbers":
 
-- Any **0** — the sketch treats this as disqualifying. Unverified: whether a single 0 in a minor
+- Any **0** — the sketch would treat this as disqualifying. Unverified: whether a single 0 in a minor
   dimension really matches what the founder would reject is exactly what §6.1 asks.
 - **< 13/20** — sketch value for "not exemplar-grade".
 - **≥ 17/20 with no dimension below 1** — sketch value for "exemplar-grade".
@@ -163,9 +173,11 @@ them as "roughly this shape, argue with the numbers":
 All three numbers are guesses, and the weighting question underneath them (is D1 worth more than
 D4?) is untouched. **Do not quote these figures to anyone as a standard.**
 
-Even ratified, the intended design is **report-only**: founder_proxy would still return its normal
-verdict, and the sheet's job would be to make "this is fine but not good" a reportable finding
-instead of a silent APPROVE. Whether it ever gates anything is §6.4, and is the founder's decision.
+**None of them is applied.** The founder settled §6.4 on 2026-08-01: the rubric is **report-only**.
+founder_proxy returns its normal verdict and prints the score beside it; the sheet's job is to make
+"this is fine but not good" a reportable finding instead of a silent APPROVE. Ratifying the numbers
+would change what gets *said*, not what gets *blocked* — making the score gate anything at all would
+be a further, separate decision.
 
 ---
 
@@ -214,22 +226,27 @@ because it rides along).
 
 ---
 
-## §6 — What needs the founder's ruling before this goes live
+## §6 — Founder rulings: one settled, three open
 
 Everything above §3's thresholds is derived from measured evidence and defensible on its own. These
-four are genuinely taste calls that no amount of file-reading settles:
+four are taste calls that no amount of file-reading settles.
 
-1. **The thresholds** (<13 not-exemplar, ≥17 exemplar, any 0 = reject). Invented as a starting point.
-   Weighting is the real question: is D1 worth more than D4? My read is yes — D1 is the one that
-   every automated gate missed — but that is the founder's call.
-2. **Is the exemplar set still right?** All three are Ch.3/Ch.4-era. `capacitance` (the Rule 38
-   proof-run) and the newer LoM sims may now be better exemplars of *current* doctrine, even if they
-   are less beloved.
-3. **D9 vs the fence.** The rubric asks for plain-English titles that state the result, but the
-   exemplar that best states results has the worst Rule 41 wording. Does the founder want
+1. **The thresholds** (<13 not-exemplar, ≥17 exemplar, any 0 = reject) — **OPEN.** Invented as a
+   starting point. Weighting is the real question: is D1 worth more than D4? My read is yes — D1 is
+   the one that every automated gate missed — but that is the founder's call. Low urgency while §6.4
+   stands: unratified numbers that are reported but never applied cannot do damage.
+2. **Is the exemplar set still right?** — **OPEN.** All three are Ch.3/Ch.4-era. `capacitance` (the
+   Rule 38 proof-run) and the newer LoM sims may now be better exemplars of *current* doctrine, even
+   if they are less beloved. This one decays: the longer the set stays fixed, the more §4's fence
+   grows, and a fence longer than the rubric means the exemplars have aged out (§5.4).
+3. **D9 vs the fence** — **OPEN.** The rubric asks for plain-English titles that state the result,
+   but the exemplar that best states results has the worst Rule 41 wording. Does the founder want
    `resistivity`'s titles retrofitted — which re-baselines it — or left as vintage?
-4. **Does the score gate anything?** Drafted as report-only. Making a 0 blocking at Checkpoint A is a
-   real behaviour change to founder_proxy and should be an explicit decision, not a side effect.
+4. **Does the score gate anything?** — **SETTLED 2026-08-01: NO. Report-only.** founder_proxy Pass 5
+   scores and reports; its verdict logic is untouched. A rubric finding must stand on its own
+   evidence as a normal P1/P2/P3 or it does not stand at all. Making a 0 blocking at Checkpoint A
+   remains available as a future decision, and would be a real behaviour change to a review gate.
 
-**Not yet wired in.** `.agents/founder_proxy/CLAUDE.md` Pass 4 is unchanged until these are settled;
-wiring it is a one-paragraph edit plus `npm run sync:agents`.
+**Wired in 2026-08-01.** `.agents/founder_proxy/CLAUDE.md` carries Pass 5 + output-contract item 7 +
+two self-review lines; emission regenerated via `npm run sync:agents`. The remaining three rulings
+change what the rubric *says*, not what it *does*.
