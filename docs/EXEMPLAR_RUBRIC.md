@@ -1,8 +1,39 @@
 # EXEMPLAR_RUBRIC.md — the ceiling-raising ledger
+# **[UNRATIFIED DRAFT — v0.1, 2026-08-01 — GOVERNS NOTHING]**
 
-# v0.1 DRAFT | 2026-08-01 — PIPELINE_V2_PLAN.md §2 Phase 4.
-# Status: derived from evidence, NOT yet founder-calibrated. §6 lists what needs the founder's ruling.
-# Counterpart to `engine_bug_queue`: the scar list ratchets the FLOOR, this ratchets the CEILING.
+# PIPELINE_V2_PLAN.md §2 Phase 4. Counterpart to `engine_bug_queue`: the scar list
+# ratchets the FLOOR, this is the intended CEILING ratchet — once the founder ratifies it.
+
+---
+
+## ⚠ READ THIS BEFORE USING ANY PART OF THIS FILE
+
+**This file is not doctrine. It was drafted by an agent, and the founder has not reviewed it.**
+It is NOT a gate, NOT a rule, and it is cited by no spec. `.agents/founder_proxy/CLAUDE.md` is
+**unchanged** — founder_proxy does not read this file and does not score against it. Nothing in the
+pipeline behaves differently because this file exists.
+
+Its sections are not equally trustworthy. Know which you are reading:
+
+| § | What it is | Trust level |
+|---|---|---|
+| **§1** | Structure **measured** from the three exemplar JSONs on 2026-08-01 (sentence counts, glow bindings, word counts, aha positions) | **Fact.** Re-measurable; if you doubt a number, re-run it rather than believing it. |
+| **§2** | Founder rejections **quoted verbatim** from the commits that fixed them, each with its SHA | **Fact.** The founder's actual words, verifiable with `git log -1 <sha>`. |
+| **§3** | A scored sheet — the ten dimensions, the 0/1/2 anchors, and the thresholds | **PROPOSAL, invented by an agent.** The dimensions are derived from §1/§2 and are arguable; **the thresholds and the weighting are guesses with no founder input at all.** |
+| **§4** | The fence — where the exemplars conflict with current rules | **Fact**, but each row is a rule-vs-artifact comparison worth re-checking against live CLAUDE.md. |
+| **§5** | How the ledger is meant to grow | **Proposal.** |
+| **§6** | The four open questions | The actual status. Read it before §3. |
+
+**Do NOT, on the strength of this file:** score a concept and report the number as if it carried
+authority · fail, block, or FIX a concept for a low score · cite a "threshold" to the founder as a
+standard · quote §3 as a rule in an agent dispatch · treat the three exemplars as approved templates
+without reading §4 first.
+
+**Do use it for:** the measured facts in §1, the rejection history in §2, and the fence in §4 —
+all three are evidence and stand on their own regardless of whether §3 is ever ratified.
+
+Only the founder can lift this banner, by settling §6. Until then, treat §3 as a conversation
+starter someone left on the table — not as a standard anyone agreed to.
 
 ---
 
@@ -92,10 +123,16 @@ failure this rubric exists to catch.
 
 ---
 
-## §3 — The scored sheet
+## §3 — The scored sheet  **[UNRATIFIED — an agent's proposal, not a standard]**
 
-founder_proxy fills this at **Checkpoint A** (design — D1/D2/D8/D9/D10 are all answerable from a
-skeleton) and again at **Checkpoint B** (build — all ten). Score each 0 / 1 / 2:
+> **If you arrived here directly, read the banner at the top of this file first.** Nothing below is
+> agreed doctrine. founder_proxy does NOT use this sheet — its spec does not reference this file.
+> The ten dimensions are derived from the evidence in §1/§2 and are arguable; **the 0/1/2 anchors
+> and especially the thresholds are invented, with zero founder input.** Do not score a concept and
+> present the number as authoritative, and do not fail anything on it.
+
+Once ratified, founder_proxy would fill this at **Checkpoint A** (design — D1/D2/D8/D9/D10 are all
+answerable from a skeleton) and again at **Checkpoint B** (build — all ten). Score each 0 / 1 / 2:
 
 > **0 = the founder would reject it · 1 = acceptable, unremarkable · 2 = exemplar-grade**
 
@@ -112,14 +149,23 @@ skeleton) and again at **Checkpoint B** (build — all ten). Score each 0 / 1 / 
 | **D9** | **Title as a teaching claim** — states the result, in plain literal English | topic label ("Length"), OR idiom/metaphor/authoring scaffolding | states the result, wording adequate | states the result in Rule 41 plain English, meaning in the first words | §4 below |
 | **D10** | **Explore earns its place** | a sixth guided state wearing an explore label | all sliders, little to discover | every dial changes something a teacher would actually demonstrate | §1 table |
 
-**Proposed thresholds** (these need the founder's ruling — §6):
+**Threshold SKETCH — invented numbers, no founder input, currently binding on nothing (§6.1):**
 
-- Any **0** → `DESIGN_FIX` at A, `FIX` at B. No exceptions; a 0 is a rejection the founder would make.
-- Total **< 13/20** → not exemplar-grade; name the two weakest dimensions and route them.
-- **≥ 17/20 with no dimension below 1** → exemplar-grade. Candidate to JOIN the exemplar set (§5).
+These are a starting point for a conversation, not calibrated values. They were not derived from
+anything — no scored corpus exists yet, and no past concept has been run through this sheet. Read
+them as "roughly this shape, argue with the numbers":
 
-The score is a **conversation-starter, not a gate**: founder_proxy still returns its normal verdict.
-The sheet's job is to make "this is fine but not good" a reportable finding instead of a silent APPROVE.
+- Any **0** — the sketch treats this as disqualifying. Unverified: whether a single 0 in a minor
+  dimension really matches what the founder would reject is exactly what §6.1 asks.
+- **< 13/20** — sketch value for "not exemplar-grade".
+- **≥ 17/20 with no dimension below 1** — sketch value for "exemplar-grade".
+
+All three numbers are guesses, and the weighting question underneath them (is D1 worth more than
+D4?) is untouched. **Do not quote these figures to anyone as a standard.**
+
+Even ratified, the intended design is **report-only**: founder_proxy would still return its normal
+verdict, and the sheet's job would be to make "this is fine but not good" a reportable finding
+instead of a silent APPROVE. Whether it ever gates anything is §6.4, and is the founder's decision.
 
 ---
 
