@@ -69,7 +69,15 @@ export interface Field3DConfig {
         // 90% boundary surface, with its nodes made visible. The P2 slice of the
         // chemistry 3D render surface — see the scenario header comment in the
         // renderer body for the per-state config shape.
-        'orbital_shapes';
+        'orbital_shapes' |
+        // bonding_scene (CHEMISTRY BONDING WAVE — Phase 0 dispatch E1, 2026-08-01):
+        // a scene of charged UNITS (rigid multi-atom molecules, or ions on a
+        // lattice) with per-atom partial charge, bond-dipole arrows + a derived
+        // resultant, a rigid shared-pair electron glyph, and a deterministic
+        // thermal jiggle. Reuses molecular_geometry's mgFrame/mgIdealDirs geometry
+        // layer rather than re-deriving VSEPR angles. See docs/CHEMISTRY_PHASE0_
+        // BONDING.md and the scenario header comment in the renderer body.
+        'bonding_scene';
     // em_wave_propagation (Ch.8 §8.3 — a traveling transverse EM wave: an
     // oscillating antenna charge launches a green E-train on ŷ + a blue B-train
     // on ẑ that self-propagate +x at v = c/n; a receiver post reads live E (V/m)
@@ -44805,7 +44813,24 @@ export const FIELD_3D_RENDERER_CODE = `
         F:  { color: "#9CCC65", radius: 0.38 },
         P:  { color: "#FF8A65", radius: 0.55 },
         S:  { color: "#FFD54F", radius: 0.54 },
-        Cl: { color: "#66BB6A", radius: 0.52 }
+        Cl: { color: "#66BB6A", radius: 0.52 },
+        // ── ADDITIVE growth for bonding_scene (Phase-0 E1, 2026-08-01). Every
+        //    entry above is byte-identical; nothing iterates MG_ELEMENTS (only
+        //    MG_EXPLORE_MOLECULES is iterated, and it is unchanged), so VSEPR /
+        //    hybridisation / sigma-pi cannot see these rows. THIS radius stays on
+        //    the LEGIBILITY-COMPRESSED scale that molecule atoms use — the
+        //    linear-in-pm scale ions and lattice sites need is BS_RADIUS_PM,
+        //    a SEPARATE table (doc §reuse item 4). Never repurpose this one.
+        Li: { color: "#E1BEE7", radius: 0.58 },
+        Na: { color: "#CE93D8", radius: 0.64 },
+        K:  { color: "#BA68C8", radius: 0.72 },
+        Mg: { color: "#80DEEA", radius: 0.56 },
+        Ca: { color: "#4DD0E1", radius: 0.66 },
+        Al: { color: "#B0BEC5", radius: 0.54 },
+        Se: { color: "#FFAB91", radius: 0.56 },
+        Br: { color: "#E57373", radius: 0.56 },
+        Te: { color: "#BCAAA4", radius: 0.60 },
+        I:  { color: "#F06292", radius: 0.62 }
     };
 
     // Every molecule reads its domain directions from ONE shared frame per domain
@@ -44822,7 +44847,27 @@ export const FIELD_3D_RENDERER_CODE = `
         NH3:   { central: "N",  ligand: "H",  bonds: 3, lone: 1, e_geom: "tetrahedral", shape: "trigonal pyramidal", angle: 107, bond_pm: 101, arc_pair: [0, 1], formula: "NH\\u2083" },
         H2O:   { central: "O",  ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 104.5, bond_pm: 96, arc_pair: [0, 1], formula: "H\\u2082O" },
         PCl5:  { central: "P",  ligand: "Cl", bonds: 5, lone: 0, e_geom: "trigonal bipyramidal", shape: "trigonal bipyramidal", angle: 120, bond_pm: 214, arc_pair: [2, 3], formula: "PCl\\u2085" },
-        SF6:   { central: "S",  ligand: "F",  bonds: 6, lone: 0, e_geom: "octahedral", shape: "octahedral", angle: 90, bond_pm: 156, arc_pair: [0, 2], formula: "SF\\u2086" }
+        SF6:   { central: "S",  ligand: "F",  bonds: 6, lone: 0, e_geom: "octahedral", shape: "octahedral", angle: 90, bond_pm: 156, arc_pair: [0, 2], formula: "SF\\u2086" },
+        // ── ADDITIVE growth for bonding_scene (Phase-0 E1, 2026-08-01). Every
+        //    entry above is byte-identical, and MG_EXPLORE_MOLECULES (the ONLY
+        //    place this table is iterated) is deliberately unchanged, so none of
+        //    these leak into VSEPR's explore picker.
+        //    OPTIONAL "ligands" array — read ONLY by bonding_scene
+        //    (bscLigands = ligands || repeat(ligand, bonds)); mgFrame never looks
+        //    at it, so mixed-ligand molecules (CHCl3) cost the VSEPR path nothing.
+        //    Ligand index i pairs with mgFrame().bonds[i], and mgIdealDirs puts
+        //    the APEX first, so CHCl3's H sits on the apex (the iconic pose).
+        HF:    { central: "H",  ligand: "F",  bonds: 1, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 92, arc_pair: [0, 0], formula: "HF" },
+        HCl:   { central: "H",  ligand: "Cl", bonds: 1, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 127, arc_pair: [0, 0], formula: "HCl" },
+        HBr:   { central: "H",  ligand: "Br", bonds: 1, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 141, arc_pair: [0, 0], formula: "HBr" },
+        HI:    { central: "H",  ligand: "I",  bonds: 1, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 161, arc_pair: [0, 0], formula: "HI" },
+        H2S:   { central: "S",  ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 92.1, bond_pm: 134, arc_pair: [0, 1], formula: "H\\u2082S" },
+        H2Se:  { central: "Se", ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 91.0, bond_pm: 146, arc_pair: [0, 1], formula: "H\\u2082Se" },
+        H2Te:  { central: "Te", ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 90.0, bond_pm: 169, arc_pair: [0, 1], formula: "H\\u2082Te" },
+        CO2:   { central: "C",  ligand: "O",  bonds: 2, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 116, arc_pair: [0, 1], formula: "CO\\u2082" },
+        CCl4:  { central: "C",  ligand: "Cl", bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [0, 1], formula: "CCl\\u2084" },
+        CHCl3: { central: "C",  ligand: "Cl", ligands: ["H", "Cl", "Cl", "Cl"], bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [1, 2], formula: "CHCl\\u2083" },
+        NF3:   { central: "N",  ligand: "F",  bonds: 3, lone: 1, e_geom: "tetrahedral", shape: "trigonal pyramidal", angle: 102.3, bond_pm: 137, arc_pair: [0, 1], formula: "NF\\u2083" }
     };
     var MG_EXPLORE_MOLECULES = ["CH4", "NH3", "H2O", "BF3", "BeCl2"];
 
@@ -45745,6 +45790,976 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.elementType || ud.elementType.indexOf("mg_") !== 0) continue;
+            if (o.visible === false) continue;
+            applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
+        }
+    }
+
+    // ── bonding_scene (charged UNITS in one 3D scene) ────────────────────────
+    //   NEW scenario — CHEMISTRY BONDING WAVE, Phase-0 dispatch E1 (2026-08-01).
+    //   Canonical spec: docs/CHEMISTRY_PHASE0_BONDING.md. ONE scenario serves all
+    //   four bonding successors (hydrogen_bonding / bond_polarity_dipole_moment /
+    //   ionic_bonding / metallic_bonding); E1 builds the SUBSTRATE only and is
+    //   proven against bond_polarity_dipole_moment (the simplest consumer, one
+    //   unit). E2 adds the inter-unit link layer, E3 the lattice layer.
+    //
+    //   A UNIT is the abstraction that unifies all four: an addressable object
+    //   with a position, an orientation, a charge, and one or more atoms in a
+    //   RIGID internal frame. The internal frame comes from molecular_geometry's
+    //   mgFrame/mgIdealDirs (doc §reuse) — VSEPR angles are verified there and a
+    //   second table would drift.
+    //
+    //   Per-state config shape (authored by json_author — the CLOSED enums below
+    //   are the authoritative contract; they FREEZE after E1):
+    //     state.bonding_scene = {
+    //       placement: free | lattice,
+    //       mode: assemble | transfer | dipole_sum | approach_link | network |
+    //             compare | lattice_grow | coordination | layer_shift |
+    //             electron_sea | drift | melt | explore,      // CLOSED, 13 modes
+    //       units: [{ id, species, at:[x,y,z], orient:auto|[az_deg,el_deg], charge }],
+    //       lattice / groups / links / sea / ions / transfer / shift / trend /
+    //       compare_at_ms / compare_species,        // PARSED + PASSED THROUGH by
+    //                                               // E1, behaviour owned by E2/E3
+    //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale },
+    //       electrons: { show: none|shells|pair_glyph, pair_shift },
+    //       thermal: { T_K, jiggle_scale },
+    //       spin_start_ms, spin_rate,               // rad/s about +y, 0 = hold
+    //       camera: { az, el, dist },               // overrides the SOLVED camera
+    //       show_hud, hud_lines: [...],             // CLOSED enum, BS_HUD_LINES
+    //       show_formula, formula,                  // ONE surface, Rule 34b
+    //       controls: [{ id, min_ring }] or [id],   // RING-GATED, BS_CONTROL_IDS
+    //       static_readouts: [...]                  // same rows, disabled, same pos
+    //     }
+    //   REQUIRED of the CONFIG (not the state): config.field_lines.opacity must
+    //   exist (an object, even {}) — createTubeLine reads it unconditionally
+    //   (the fleet blank-scene trap). And scene_composition annotations need
+    //   render_annotations: true or they are a SILENT no-op.
+    //
+    //   D-1 (doc): EVERY position is a closed-form pure function of state-local t.
+    //   No integrator anywhere — including the spin and the thermal jiggle, whose
+    //   per-unit phase is derived from the unit INDEX (so changing the count
+    //   slider never re-seeds units already on screen). A SET_TIME_FREEZE pin
+    //   therefore reproduces byte-identical pixels and this scenario joins the
+    //   accumulator-free snap-to-pin set.
+    //   D-6 (doc): delta labels render on FOCAL units only, capped at
+    //   BS_MAX_DELTA_LABELS on screen; every other unit carries colour only.
+    //   Rule 29: the ONLY things that change size are atomic radii and dipole
+    //   arrow lengths (both real physical magnitudes, both driven by the same
+    //   published table). Emphasis is brightness, never size.
+    var BS_BOND_LEN = 2.0;          // scene units per drawn bond (shared with VSEPR)
+    var BS_MAX_UNITS = 40;          // hydrogen_bonding S5 is thirty water molecules
+    var BS_MAX_ATOMS = 7;           // central + MG_MAX_BONDS
+    var BS_MAX_DELTA_LABELS = 8;    // D-6 label budget
+    var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
+    var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
+
+    // CLOSED enums. A member absent from these is a CONFIG ERROR, not a silent
+    // no-op (the sigma-pi scar: nine decorative mode strings nothing ever read).
+    // BS_MODES_E1 are IMPLEMENTED here; BS_MODES_DEFERRED are parsed, accepted and
+    // rendered as a static unit scene until E2/E3 own them — declared, never
+    // silently ignored, and check:bonding-scene asserts the split explicitly.
+    var BS_MODES_E1 = ["dipole_sum", "explore"];
+    var BS_MODES_DEFERRED = ["assemble", "transfer", "approach_link", "network",
+        "compare", "lattice_grow", "coordination", "layer_shift", "electron_sea",
+        "drift", "melt"];
+    var BS_MODES = BS_MODES_E1.concat(BS_MODES_DEFERRED);
+    var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
+        "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
+    var BS_HUD_LINES = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
+        "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
+        "valence", "atomisation", "bp", "like_contacts", "conductivity"];
+    var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
+    var BS_PLACEMENTS = ["free", "lattice"];
+    var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
+
+    // Per-species radius on a LINEAR-IN-PICOMETRE scale (doc row K / §reuse item 4).
+    // MG_ELEMENTS.radius is legibility-COMPRESSED (H 0.30 vs Cl 0.52 = 1.7x where
+    // the real covalent radii are 3.2x) and must NOT be repurposed — changing it
+    // would move every existing VSEPR atom. RULE, decided at Checkpoint A cycle 2:
+    // MOLECULE atoms use the compressed MG_ELEMENTS scale (the compression exists
+    // for legibility — an H at true proportion is a dot); IONS and LATTICE SITES
+    // use this linear table (there the size change IS the lesson: ionic S2's
+    // Na 186 -> 102 pm has to read as proportional). Neutral entries are the
+    // standard atomic radii (metallic for metals, covalent for non-metals);
+    // ionic entries are Shannon 6-coordinate. E1 defines the table, E3 consumes it.
+    var BS_RADIUS_PM = {
+        H: 37, Li: 152, Be: 112, B: 85, C: 77, N: 75, O: 73, F: 71,
+        Na: 186, Mg: 160, Al: 143, P: 110, S: 103, Cl: 99, K: 227, Ca: 197,
+        Se: 116, Br: 114, Te: 135, I: 133,
+        "Li+": 76, "Na+": 102, "K+": 138, "Mg2+": 72, "Ca2+": 100, "Al3+": 53.5,
+        "F-": 133, "Cl-": 181, "O2-": 140
+    };
+    // Ion species resolve to a parent element for colour + valence.
+    var BS_ION_PARENT = {
+        "Li+": "Li", "Na+": "Na", "K+": "K", "Mg2+": "Mg", "Ca2+": "Ca",
+        "Al3+": "Al", "F-": "F", "Cl-": "Cl", "O2-": "O"
+    };
+    // Pauling electronegativity — the SOURCE of every partial charge in this
+    // scenario (D-2: derived, never authored).
+    var BS_CHI = {
+        H: 2.20, Li: 0.98, Be: 1.57, B: 2.04, C: 2.55, N: 3.04, O: 3.44, F: 3.98,
+        Na: 0.93, Mg: 1.31, Al: 1.61, P: 2.19, S: 2.58, Cl: 3.16, K: 0.82,
+        Ca: 1.00, Se: 2.55, Br: 2.96, Te: 2.10, I: 2.66
+    };
+    // Outer-shell electron count (row N shell dots; E3 valence readout).
+    var BS_VALENCE = {
+        H: 1, Li: 1, Be: 2, B: 3, C: 4, N: 5, O: 6, F: 7, Na: 1, Mg: 2, Al: 3,
+        P: 5, S: 6, Cl: 7, K: 1, Ca: 2, Se: 6, Br: 7, Te: 6, I: 7
+    };
+
+    // ── THE DIPOLE INSTRUMENT (doc OPEN-DECISION-1, RESOLVED) ────────────────
+    //   AWAITING chemistry-author RATIFICATION. Both columns below are engine
+    //   scaffolding carrying literature values; chemistry-author ratifies them and
+    //   SHOWS the calibration before Desk 1 ships. check:bonding-scene therefore
+    //   asserts STRUCTURE (symmetric molecules -> 0; CHCl3 non-zero; NH3 > NF3;
+    //   the delta+ -> delta- direction convention), never exact debye values.
+    //
+    //   The v1 proposal (a single global constant calibrated on HCl) is WITHDRAWN:
+    //   a delta-chi-linear model calibrated on HCl cannot reproduce H2O 1.85 D or
+    //   NH3 1.47 D and cannot produce NF3 0.23 D at all. Ratified instead: a table
+    //   of PUBLISHED bond moments plus an EXPLICIT lone-pair term, summed
+    //   vectorially in the mgFrame, read out in debye, with arrow lengths driven
+    //   by the same table (Rule 29 — one instrument, D-3).
+    //
+    //   SIGN CONVENTION, asserted once by the gate: the stored value is SIGNED and
+    //   the moment vector is value * unit(central -> ligand), so the resulting
+    //   vector ALWAYS points delta+ -> delta- (the chemist arrow, crossed tail on
+    //   the positive end). Positive entry = the CENTRAL atom is delta+.
+    //   A sign flip renders perfectly while teaching the reverse (CRITICAL scar
+    //   superposed_orbital_sign_convention_inverts_the_taught_direction).
+    var BS_BOND_MOMENT_D = {
+        "H|F": 1.82, "H|Cl": 1.08, "H|Br": 0.78, "H|I": 0.38,
+        "O|H": -1.51, "S|H": -0.70, "Se|H": -0.44, "Te|H": -0.14,
+        "N|H": -1.31, "N|F": 0.17,
+        "C|H": -0.30, "C|Cl": 1.46, "C|F": 1.41, "C|O": 2.30, "C|Br": 1.38, "C|I": 1.19,
+        "B|F": 1.48, "Be|Cl": 1.60, "P|Cl": 0.81, "S|F": 1.05
+    };
+    // KNOWN LIMIT, flagged for ratification rather than hidden: the simple
+    // additive pair model reproduces HF/HCl/HBr/HI exactly, H2O 1.85, H2S 0.95,
+    // NH3 1.46 and NF3 0.22 (all within textbook tolerance), but over-predicts
+    // CHCl3 at 1.76 D against a literature 1.04 D — bond moments are famously
+    // non-additive across the chloromethane series. A per-molecule override hook
+    // (MG_MOLECULES[key].bond_moments = { Cl: 0.74 }) is read below so
+    // chemistry-author can ratify WITHOUT an engine edit.
+    // Explicit lone-pair moment per central species, in debye, applied along EACH
+    // lone-pair direction. Authored 0 today and that is a DELIBERATE, flagged
+    // call: the published bond moments above are empirically fitted and already
+    // absorb the lone-pair contribution (with them, H2O/NH3/NF3 all land on
+    // literature with a zero term — adding one double-counts). The mechanism is
+    // shipped so ratification is a data edit, not an engine edit.
+    var BS_LONE_PAIR_D = { N: 0, O: 0, S: 0, Se: 0, Te: 0, P: 0, Cl: 0, F: 0 };
+    // Fallback for a pair the table does not carry: sign from delta-chi, magnitude
+    // 1.0 D per unit delta-chi. NEVER silent — every use is recorded on
+    // window.PM_bscMuFallback so the gate can assert the shipped species set
+    // never touches it.
+    var BS_MU_FALLBACK_D_PER_CHI = 1.0;
+
+    // SOLVED cameras (D-4). Criterion: maximise the MIN pairwise NDC separation of
+    // every COUNTED element across the WHOLE spin window, under the PERSPECTIVE
+    // projection, with the molecule inside the safe box. This is not decoration —
+    // bond_polarity S5 is CCl4 with four arrows under the caption "Four arrows,
+    // still zero", i.e. the same geometry, the same count and the same caption
+    // shape as the FIXED CRITICAL scar
+    // field3d_counted_element_occluded_along_view_axis (methane's fourth bond
+    // hidden behind the carbon under "Four bonds, one shape"), and that state also
+    // carries a spin control
+    // (field3d_default_spin_axis_rotates_solved_camera_out_of_countable_view).
+    // Measured with the perspective projection because the orthographic metric
+    // UNDER-predicts overlap (OPEN scar
+    // orthographic_separation_metric_underpredicts_perspective_overlap).
+    // THE COUNTED SET INCLUDES THE CENTRAL ATOM, which is what made the first
+    // solve wrong and is the scar verbatim: at the fleet house elevation (el 28)
+    // a tetrahedral leg swings to within 0.064 NDC of the carbon during the turn —
+    // i.e. one of the four counted arrows sits on top of the central atom under a
+    // caption that counts four. Re-solved over the full 5-element set:
+    // dipole_sum el 47 / dist 7.0 holds a min pairwise NDC separation of 0.172
+    // across a full 360 turn, for the four ligand centres AND the four arrow tips
+    // AND the central atom, against a 0.12 gate floor. Azimuth is free under a
+    // full spin (the spin sweeps it) and is set to the fleet house angle.
+    var BS_CAMERAS = {
+        dipole_sum: { az: 35, el: 47, dist: 7.0 },
+        explore:    { az: 35, el: 47, dist: 7.0 },
+        assemble:   { az: 35, el: 47, dist: 7.0 },
+        network:    { az: 35, el: 24, dist: 13.0 },
+        compare:    { az: 35, el: 24, dist: 10.0 }
+    };
+    var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
+
+    // ── pure helpers (all closed-form; nothing below reads live scene state) ──
+    function bscClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+    function bscNorm(v) {
+        var L = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) || 1;
+        return [v[0] / L, v[1] / L, v[2] / L];
+    }
+    function bscMag(v) { return Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]); }
+    // The one edit the reuse contract asks of the shared table: ligands ||
+    // repeat(ligand, bonds). Every pre-existing MG_MOLECULES entry has no
+    // "ligands" key and therefore resolves EXACTLY as it always did.
+    function bscLigands(mol) {
+        if (!mol) return [];
+        if (mol.ligands && mol.ligands.length) return mol.ligands.slice(0, mol.bonds);
+        var out = [], i;
+        for (i = 0; i < mol.bonds; i++) out.push(mol.ligand);
+        return out;
+    }
+    function bscElement(species) {
+        return MG_ELEMENTS[BS_ION_PARENT[species] || species] || MG_ELEMENTS.C;
+    }
+    function bscChi(el) { return (BS_CHI[el] != null) ? BS_CHI[el] : 2.20; }
+    // Pauling / Hannay-Smyth ionic character: f = 1 - exp(-0.25 * dchi^2). A real
+    // published relation, so the per-atom delta the scene draws is DERIVED from
+    // electronegativity, never authored (D-2). This is also what E2's link
+    // criterion thresholds on: O-H gives 0.319, S-H gives 0.036.
+    function bscIonicFraction(dchi) { return 1 - Math.exp(-0.25 * dchi * dchi); }
+    // Per-atom partial charge for a molecule. Index 0 = the central atom, then one
+    // entry per bond in mgFrame order. Sums to zero by construction.
+    function bscCharges(molKey) {
+        var mol = MG_MOLECULES[molKey];
+        if (!mol) return [0];
+        var ligs = bscLigands(mol), out = [0], i, cen = bscChi(mol.central);
+        for (i = 0; i < ligs.length; i++) {
+            var d = bscChi(ligs[i]) - cen;
+            var f = bscIonicFraction(Math.abs(d)) * (d > 0 ? 1 : (d < 0 ? -1 : 0));
+            out.push(-f);
+            out[0] += f;
+        }
+        return out;
+    }
+    // Signed bond moment in debye for the ORDERED pair (central -> ligand).
+    // Positive = the moment vector points from the central atom toward the ligand
+    // (i.e. the central atom is delta+). molOverride is the per-molecule
+    // ratification hook (MG_MOLECULES[key].bond_moments).
+    function bscBondMoment(central, ligand, molOverride) {
+        if (molOverride && molOverride[ligand] != null) return molOverride[ligand];
+        var k = central + "|" + ligand;
+        if (BS_BOND_MOMENT_D[k] != null) return BS_BOND_MOMENT_D[k];
+        var rk = ligand + "|" + central;
+        if (BS_BOND_MOMENT_D[rk] != null) return -BS_BOND_MOMENT_D[rk];
+        var d = bscChi(ligand) - bscChi(central);
+        if (!window.PM_bscMuFallback) window.PM_bscMuFallback = [];
+        if (window.PM_bscMuFallback.indexOf(k) < 0) window.PM_bscMuFallback.push(k);
+        return d * BS_MU_FALLBACK_D_PER_CHI;
+    }
+    // THE dipole instrument (D-3: ONE per quantity). Returns the resultant vector
+    // in the molecule's own mgFrame, its magnitude in debye, and the per-bond
+    // arrow the canvas draws — all off the SAME table, so the arrows and the
+    // readout can never disagree.
+    function bscDipole(molKey, angleDeg) {
+        var mol = MG_MOLECULES[molKey];
+        if (!mol) return { vec: [0, 0, 0], mag: 0, arrows: [], lone: [] };
+        var fr = mgFrame(molKey, angleDeg, null);
+        var ligs = bscLigands(mol), ovr = mol.bond_moments || null;
+        var v = [0, 0, 0], arrows = [], lonev = [], i;
+        for (i = 0; i < fr.bonds.length; i++) {
+            var m = bscBondMoment(mol.central, ligs[i] || mol.ligand, ovr);
+            var d = fr.bonds[i];
+            v[0] += d[0] * m; v[1] += d[1] * m; v[2] += d[2] * m;
+            arrows.push({ dir: d, D: m, ligand: ligs[i] || mol.ligand });
+        }
+        var lp = BS_LONE_PAIR_D[mol.central] || 0;
+        for (i = 0; i < fr.lone.length; i++) {
+            var ld = fr.lone[i];
+            v[0] += ld[0] * lp; v[1] += ld[1] * lp; v[2] += ld[2] * lp;
+            lonev.push({ dir: ld, D: lp });
+        }
+        return { vec: v, mag: bscMag(v), arrows: arrows, lone: lonev, frame: fr, mol: mol, ligands: ligs };
+    }
+    // Rotate the unit's internal frame so its own +y axis points along
+    // (az_deg, el_deg). Shortest-arc Rodrigues, so it is a pure function of the
+    // authored pair and nothing else. orient 'auto' (or absent) = identity.
+    function bscOrientRot(orient) {
+        if (!orient || orient === "auto" || !orient.length) return null;
+        var a = (orient[0] || 0) * Math.PI / 180, e = (orient[1] || 0) * Math.PI / 180;
+        var t = [Math.cos(e) * Math.cos(a), Math.sin(e), Math.cos(e) * Math.sin(a)];
+        var u = [0, 1, 0];
+        var c = u[0] * t[0] + u[1] * t[1] + u[2] * t[2];
+        var ax = [u[1] * t[2] - u[2] * t[1], u[2] * t[0] - u[0] * t[2], u[0] * t[1] - u[1] * t[0]];
+        var s = bscMag(ax);
+        if (s < 1e-9) {
+            if (c > 0) return null;
+            return function (v) { return [v[0], -v[1], -v[2]]; };   // 180 about +x
+        }
+        var k = [ax[0] / s, ax[1] / s, ax[2] / s];
+        return function (v) {
+            var kv = k[0] * v[0] + k[1] * v[1] + k[2] * v[2];
+            var kx = [k[1] * v[2] - k[2] * v[1], k[2] * v[0] - k[0] * v[2], k[0] * v[1] - k[1] * v[0]];
+            return [v[0] * c + kx[0] * s + k[0] * kv * (1 - c),
+                    v[1] * c + kx[1] * s + k[1] * kv * (1 - c),
+                    v[2] * c + kx[2] * s + k[2] * kv * (1 - c)];
+        };
+    }
+    // Deterministic thermal jiggle (row H, D-1). A seeded sum of sines whose phase
+    // is derived from the unit INDEX, never from a running counter — so changing
+    // the count slider does not re-seed the units already on screen, and a
+    // SET_TIME_FREEZE pin reproduces the pose exactly. Amplitude goes as
+    // sqrt(T/T0) (equipartition: displacement amplitude scales with sqrt of the
+    // thermal energy). NO ACCUMULATOR ANYWHERE, spin included.
+    function bscJiggle(idx, tSec, T_K, scale) {
+        var amp = (scale != null ? scale : 0.10) * Math.sqrt(Math.max(0, (T_K != null ? T_K : BS_T0_K)) / BS_T0_K);
+        if (amp <= 0) return [0, 0, 0];
+        var p = idx * 2.399963229728653;            // golden angle: spreads phases evenly
+        return [
+            amp * (0.62 * Math.sin(2.10 * tSec + p) + 0.38 * Math.sin(3.70 * tSec + 2.1 * p)),
+            amp * (0.62 * Math.sin(1.90 * tSec + 1.7 * p) + 0.38 * Math.sin(4.10 * tSec + 0.6 * p)),
+            amp * (0.62 * Math.sin(2.30 * tSec + 2.9 * p) + 0.38 * Math.sin(3.30 * tSec + 1.3 * p))
+        ];
+    }
+    // Ring-gated controls (doc §contract): a member is either a bare id or
+    // { id, min_ring }. The renderer shows the row when the state authors the id;
+    // min_ring is recorded for the Rule-38h preset builder (hiding a ring must not
+    // leave a surviving state exposing a hidden-ring control).
+    function bscControlList(raw) {
+        var out = [], i;
+        for (i = 0; i < (raw || []).length; i++) {
+            var c = raw[i];
+            if (typeof c === "string") out.push({ id: c, min_ring: "core" });
+            else if (c && c.id) out.push({ id: c.id, min_ring: c.min_ring || "core" });
+        }
+        return out;
+    }
+    function bscHasControl(list, id) {
+        for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
+        return false;
+    }
+    function bscFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+    function bscFmtD(v) {
+        var x = (Math.abs(v) < 0.0005) ? 0 : v;       // never render a signed zero
+        return x.toFixed(2);
+    }
+
+    function buildBondingScene(config) {
+        var CO = config.colors || {};
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var bondColor = CO.bond || "#CFD8DC";
+        var arrowColor = CO.arrow || "#FFCA28";
+        var resColor = CO.resultant || "#4FC3F7";
+        var posColor = CO.delta_plus || "#EF9A9A";
+        var negColor = CO.delta_minus || "#90CAF9";
+        var elecColor = CO.electron || "#B39DDB";
+        var i, u;
+
+        // Pool sizing is DERIVED from the states this concept actually authors, so
+        // a one-unit concept (bond_polarity) does not pay for hydrogen_bonding's
+        // thirty molecules. Capped at BS_MAX_UNITS.
+        var need = 1, sKey;
+        for (sKey in (config.states || {})) {
+            var sb = (config.states[sKey] || {}).bonding_scene;
+            if (!sb) continue;
+            if (sb.units && sb.units.length > need) need = sb.units.length;
+            var cc = sb.count_max || (sb.controls ? 0 : 0);
+            if (cc > need) need = cc;
+        }
+        var nUnits = Math.min(BS_MAX_UNITS, Math.max(1, need));
+        window.PM_bscUnitPool = nUnits;
+
+        var atomGeo = new THREE.SphereGeometry(1, 24, 24);
+        var bondGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 14);
+        bondGeo.translate(0, 0.5, 0);
+        var shaftGeo = new THREE.CylinderGeometry(0.042, 0.042, 1, 10);
+        shaftGeo.translate(0, 0.5, 0);
+        var headGeo = new THREE.ConeGeometry(0.115, 0.30, 12);
+        headGeo.translate(0, 0.15, 0);
+
+        for (u = 0; u < nUnits; u++) {
+            for (i = 0; i < BS_MAX_ATOMS; i++) {
+                var at = new THREE.Mesh(atomGeo.clone(), new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#90A4AE"),
+                    emissiveIntensity: 0.30, shininess: 70
+                }));
+                // atom 0 of every unit is the CENTRAL atom (its own glow key).
+                at.userData = { elementType: (i === 0 ? "bsc_central" : "bsc_atom"), id: "bsc_u" + u + "_atom" + i, unit: u, slot: i };
+                at.visible = false;
+                addToScene(at);
+                if (i > 0) {
+                    var bd = new THREE.Mesh(bondGeo.clone(), new THREE.MeshPhongMaterial({
+                        color: hexToThreeColor(bondColor), emissive: hexToThreeColor(bondColor),
+                        emissiveIntensity: 0.18, shininess: 50
+                    }));
+                    bd.userData = { elementType: "bsc_bond", id: "bsc_u" + u + "_bond" + i, unit: u, slot: i };
+                    bd.visible = false;
+                    addToScene(bd);
+                }
+                // Rule 34c / the auto-width scar: every one of these labels carries
+                // LIVE text that grows past its seed string, so pmCreateAutoLabel
+                // (which re-measures its canvas on every redraw) is mandatory —
+                // createLabelSprite would clip the wider string.
+                var al = pmCreateAutoLabel("H", textColor, 0.42);
+                al.userData = { elementType: "bsc_atom_label", id: "bsc_u" + u + "_lab" + i, unit: u, slot: i };
+                al.visible = false;
+                addToScene(al);
+                var dl = pmCreateAutoLabel("\\u03B4+", posColor, 0.40);
+                dl.userData = { elementType: "bsc_charge", id: "bsc_u" + u + "_delta" + i, unit: u, slot: i };
+                dl.visible = false;
+                addToScene(dl);
+            }
+        }
+
+        // Bond-dipole arrows (shaft + head) + their value labels, one per bond
+        // slot of the FOCAL unit, plus the single derived resultant. Arrow LENGTH
+        // is the bond moment in debye off BS_BOND_MOMENT_D (Rule 29: a real
+        // magnitude), never an emphasis knob.
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var sh = new THREE.Mesh(shaftGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(arrowColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            sh.renderOrder = 996;
+            sh.userData = { elementType: "bsc_arrow", id: "bsc_arrow_shaft_" + i, slot: i };
+            sh.visible = false;
+            addToScene(sh);
+            var hd = new THREE.Mesh(headGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(arrowColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            hd.renderOrder = 996;
+            hd.userData = { elementType: "bsc_arrow", id: "bsc_arrow_head_" + i, slot: i };
+            hd.visible = false;
+            addToScene(hd);
+        }
+        var rs = new THREE.Mesh(new THREE.CylinderGeometry(0.062, 0.062, 1, 12), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(resColor), transparent: true, opacity: 0.98,
+            depthTest: false, depthWrite: false
+        }));
+        rs.geometry.translate(0, 0.5, 0);
+        rs.renderOrder = 997;
+        rs.userData = { elementType: "bsc_resultant", id: "bsc_res_shaft" };
+        rs.visible = false;
+        addToScene(rs);
+        var rh = new THREE.Mesh(new THREE.ConeGeometry(0.155, 0.38, 14), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(resColor), transparent: true, opacity: 0.98,
+            depthTest: false, depthWrite: false
+        }));
+        rh.geometry.translate(0, 0.19, 0);
+        rh.renderOrder = 997;
+        rh.userData = { elementType: "bsc_resultant", id: "bsc_res_head" };
+        rh.visible = false;
+        addToScene(rh);
+        var rl = pmCreateAutoLabel("\\u03BC = 1.85 D", resColor, 0.50);
+        rl.userData = { elementType: "bsc_resultant", id: "bsc_res_label" };
+        rl.visible = false;
+        addToScene(rl);
+        // The zero badge: a symmetric molecule has NO arrow to draw, and a blank
+        // where the answer should be reads as a missing render, not as zero.
+        var zl = pmCreateAutoLabel("\\u03BC = 0 D", resColor, 0.50);
+        zl.userData = { elementType: "bsc_resultant", id: "bsc_res_zero" };
+        zl.visible = false;
+        addToScene(zl);
+
+        // Row N — the shared-pair glyph: TWO DISCRETE DOTS that translate RIGIDLY
+        // along the bond axis. Deliberately NOT a deforming cloud: that scoping is
+        // what keeps the Fajans-rules deferral honest (doc ledger). Plus a pool of
+        // shell dots for electrons.show = shells.
+        var dotGeo = new THREE.SphereGeometry(0.085, 12, 12);
+        for (i = 0; i < MG_MAX_BONDS * 2; i++) {
+            var pd = new THREE.Mesh(dotGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(elecColor), transparent: true, opacity: 0.98,
+                depthTest: false, depthWrite: false
+            }));
+            pd.renderOrder = 998;
+            pd.userData = { elementType: "bsc_electron", id: "bsc_pair_" + i, slot: i };
+            pd.visible = false;
+            addToScene(pd);
+        }
+        for (i = 0; i < 8; i++) {
+            var sd = new THREE.Mesh(dotGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(elecColor), transparent: true, opacity: 0.95,
+                depthTest: false, depthWrite: false
+            }));
+            sd.renderOrder = 998;
+            sd.userData = { elementType: "bsc_electron", id: "bsc_shell_" + i, slot: i };
+            sd.visible = false;
+            addToScene(sd);
+        }
+
+        // DOM surfaces. top:52px clears the review-chrome Full-screen button and
+        // the #simPenBar glass buttons at BOTH edges (Rule 34d; engine_bug_queue
+        // field3d_sliders_panel_top12_vs_fsbtn_top10). Rule 39f: inline
+        // position:fixed on a dynamically created panel is exactly what the
+        // generic widget engine auto-discovers, so the teacher toggle comes free.
+        var hud = document.createElement("div"); hud.id = "bsc_hud";
+        hud.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:190px;display:none;";
+        document.body.appendChild(hud);
+
+        var ff = document.createElement("div"); ff.id = "bsc_formula";
+        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
+        document.body.appendChild(ff);
+
+        // Per-state contextual control rows (Rule 31) — ALL thirteen ids are built
+        // ONCE here so E2/E3 never have to touch this panel, each row keeping the
+        // SAME screen position always, shown/hidden per state. Row ids follow the
+        // Rule-39f discovery convention exactly: <prefix>_<name>_row.
+        var SC = config.slider_controls || {};
+        var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : d; };
+        var molDef = (SC.molecule && SC.molecule["default"]) ? SC.molecule["default"] : "HCl";
+        var molOpts = "", mkeys = (config.explore_species && config.explore_species.length)
+            ? config.explore_species : ["HCl", "CO2", "H2O", "CCl4", "CHCl3", "NH3", "NF3"];
+        for (i = 0; i < mkeys.length; i++) {
+            var mv = MG_MOLECULES[mkeys[i]];
+            if (!mv) continue;
+            molOpts += '<option value="' + mkeys[i] + '"' + (mkeys[i] === molDef ? " selected" : "") + '>' + mv.formula + "</option>";
+        }
+        var ligOpts = "", lkeys = (config.explore_ligands && config.explore_ligands.length)
+            ? config.explore_ligands : ["HF", "HCl", "HBr", "HI"];
+        for (i = 0; i < lkeys.length; i++) {
+            var lv = MG_MOLECULES[lkeys[i]];
+            if (!lv) continue;
+            ligOpts += '<option value="' + lkeys[i] + '">' + lv.formula + "</option>";
+        }
+        var spOpts = "", skeys = (config.explore_units && config.explore_units.length)
+            ? config.explore_units : ["H2O", "H2S", "H2Se", "H2Te"];
+        for (i = 0; i < skeys.length; i++) {
+            var sv = MG_MOLECULES[skeys[i]];
+            if (!sv) continue;
+            spOpts += '<option value="' + skeys[i] + '">' + sv.formula + "</option>";
+        }
+        var sp = document.createElement("div"); sp.id = "bsc_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:238px;display:none;";
+        sp.innerHTML =
+            '<div id="bsc_molecule_row" style="display:none"><label>Molecule: <select id="bsc_molecule_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + molOpts + '</select></label></div>' +
+            '<div id="bsc_ligand_row" style="display:none;margin-top:6px"><label>Halide: <select id="bsc_ligand_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + ligOpts + '</select></label></div>' +
+            '<div id="bsc_species_row" style="display:none;margin-top:6px"><label>Species: <select id="bsc_species_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + spOpts + '</select></label></div>' +
+            '<div id="bsc_angle_row" style="display:none;margin-top:6px"><label>Bond angle: <span id="bsc_angle_val">' + Number(def("angle", 104.5)).toFixed(1) + '</span>\\u00B0</label><input type="range" id="bsc_angle_slider" min="60" max="180" step="0.5" value="' + def("angle", 104.5) + '" style="width:100%"></div>' +
+            '<div id="bsc_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="bsc_spin_val">' + Number(def("spin", 0.16)).toFixed(2) + '</span> rad/s</label><input type="range" id="bsc_spin_slider" min="0" max="0.6" step="0.02" value="' + def("spin", 0.16) + '" style="width:100%"></div>' +
+            '<div id="bsc_temperature_row" style="display:none;margin-top:6px"><label>Temperature: <span id="bsc_temperature_val">' + Math.round(def("temperature", 298)) + '</span> K</label><input type="range" id="bsc_temperature_slider" min="100" max="600" step="5" value="' + def("temperature", 298) + '" style="width:100%"></div>' +
+            '<div id="bsc_count_row" style="display:none;margin-top:6px"><label>Molecules: <span id="bsc_count_val">' + Math.round(def("count", 1)) + '</span></label><input type="range" id="bsc_count_slider" min="1" max="' + nUnits + '" step="1" value="' + def("count", 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_separation_row" style="display:none;margin-top:6px"><label>Separation: <span id="bsc_separation_val">' + Number(def("separation", 3.0)).toFixed(1) + '</span></label><input type="range" id="bsc_separation_slider" min="1.5" max="8" step="0.1" value="' + def("separation", 3.0) + '" style="width:100%"></div>' +
+            '<div id="bsc_shift_row" style="display:none;margin-top:6px"><label>Layer shift: <span id="bsc_shift_val">' + Number(def("shift", 0)).toFixed(2) + '</span></label><input type="range" id="bsc_shift_slider" min="0" max="1" step="0.02" value="' + def("shift", 0) + '" style="width:100%"></div>' +
+            '<div id="bsc_field_row" style="display:none;margin-top:6px"><label>Field: <span id="bsc_field_val">' + Number(def("field", 0)).toFixed(2) + '</span></label><input type="range" id="bsc_field_slider" min="0" max="1" step="0.02" value="' + def("field", 0) + '" style="width:100%"></div>' +
+            '<div id="bsc_valence_row" style="display:none;margin-top:6px"><label>Free electrons per atom: <span id="bsc_valence_val">' + Math.round(def("valence", 1)) + '</span></label><input type="range" id="bsc_valence_slider" min="1" max="3" step="1" value="' + def("valence", 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_ion_pair_row" style="display:none;margin-top:6px"><label>Ion pair: <select id="bsc_ion_pair_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="NaCl">NaCl</option><option value="KCl">KCl</option><option value="LiF">LiF</option><option value="MgO">MgO</option><option value="CaO">CaO</option></select></label></div>' +
+            '<div id="bsc_metal_row" style="display:none;margin-top:6px"><label>Metal: <select id="bsc_metal_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="Na">Na</option><option value="Mg">Mg</option><option value="Al">Al</option></select></label></div>';
+        document.body.appendChild(sp);
+
+        function bscEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "bonding_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        // Drag-seize: a trusted drag latches a *_Dragged flag so the frame updater
+        // reads the LIVE value from then on, and a scripted beat that shares the
+        // quantity re-seeds both the global and the widget on state entry (FIXED
+        // scar scripted_change_desyncs_the_dom_control_that_shares_it).
+        function wireRange(id, key, fmt) {
+            var el = document.getElementById("bsc_" + id + "_slider"), vv = document.getElementById("bsc_" + id + "_val");
+            if (!el) return;
+            el.addEventListener("input", function () {
+                window["PM_bsc" + key] = parseFloat(el.value);
+                if (vv) vv.textContent = fmt(window["PM_bsc" + key]);
+                window["PM_bsc" + key + "Dragged"] = true;
+                bscEmit(id, window["PM_bsc" + key]);
+            });
+        }
+        function wireSelect(id, key) {
+            var el = document.getElementById("bsc_" + id + "_select");
+            if (!el) return;
+            el.addEventListener("change", function () {
+                window["PM_bsc" + key] = el.value;
+                window["PM_bsc" + key + "Dragged"] = true;
+                bscEmit(id, el.value);
+            });
+        }
+        var f1 = function (v) { return v.toFixed(1); };
+        var f2 = function (v) { return v.toFixed(2); };
+        var f0 = function (v) { return String(Math.round(v)); };
+        wireRange("angle", "Angle", f1); wireRange("spin", "Spin", f2);
+        wireRange("temperature", "Temp", f0); wireRange("count", "Count", f0);
+        wireRange("separation", "Sep", f1); wireRange("shift", "Shift", f2);
+        wireRange("field", "Field", f2); wireRange("valence", "Valence", f0);
+        wireSelect("molecule", "Mol"); wireSelect("ligand", "Lig");
+        wireSelect("species", "Species"); wireSelect("ion_pair", "IonPair");
+        wireSelect("metal", "Metal");
+
+        window.PM_bscMolDef = molDef; window.PM_bscMol = molDef;
+        window.PM_bscSpinDef = def("spin", 0.16); window.PM_bscSpin = window.PM_bscSpinDef;
+        window.PM_bscAngle = def("angle", 104.5);
+        window.PM_bscTemp = def("temperature", 298);
+        window.PM_bscCount = def("count", 1);
+        window.PM_bscSep = def("separation", 3.0);
+        window.PM_bscShift = def("shift", 0);
+        window.PM_bscField = def("field", 0);
+        window.PM_bscValence = def("valence", 1);
+        window.PM_bscLig = lkeys[0] || "HCl";
+        window.PM_bscSpecies = skeys[0] || "H2O";
+        window.PM_bscIonPair = "NaCl"; window.PM_bscMetal = "Na";
+    }
+
+    // Authoritative per-state visibility + seeding. Runs AFTER the generic
+    // visible_elements matcher and overrides it (mirrors applyMolecularGeometryState).
+    function applyBondingSceneState(stateDef) {
+        var bs = stateDef.bonding_scene || {};
+        var keys = ["Mol", "Lig", "Species", "Angle", "Spin", "Temp", "Count", "Sep",
+            "Shift", "Field", "Valence", "IonPair", "Metal"], i;
+        for (i = 0; i < keys.length; i++) window["PM_bsc" + keys[i] + "Dragged"] = false;
+
+        var units = bs.units || [];
+        var focal = units.length ? units[0] : null;
+        window.PM_bscMol = (focal && focal.species) || bs.species || window.PM_bscMolDef || "HCl";
+        window.PM_bscSpin = (bs.spin_rate != null) ? bs.spin_rate : 0;
+        var th = bs.thermal || {};
+        window.PM_bscTemp = (th.T_K != null) ? th.T_K : BS_T0_K;
+        window.PM_bscCount = Math.max(1, units.length || 1);
+        var molNow = MG_MOLECULES[window.PM_bscMol];
+        window.PM_bscAngle = (bs.angle_deg != null) ? bs.angle_deg : (molNow ? molNow.angle : 104.5);
+
+        // Rule 31 contextual rows — ring-gated list, recorded for the preset builder.
+        var ctrls = bscControlList(bs.controls);
+        var statics = bscControlList(bs.static_readouts);
+        window.PM_bscControlRings = ctrls;
+        var panel = document.getElementById("bsc_sliders");
+        var anyRow = false;
+        for (i = 0; i < BS_CONTROL_IDS.length; i++) {
+            var id = BS_CONTROL_IDS[i];
+            var live = bscHasControl(ctrls, id), stat = bscHasControl(statics, id);
+            var rowEl = document.getElementById("bsc_" + id + "_row");
+            if (rowEl) {
+                rowEl.style.display = (live || stat) ? "block" : "none";
+                var inp = rowEl.querySelector("input,select");
+                if (inp) inp.disabled = (!live && stat);
+            }
+            if (live || stat) anyRow = true;
+        }
+        if (panel) panel.style.display = (anyRow && stateDef.show_sliders !== false) ? "block" : "none";
+        // Re-seed every widget to the state's authored preset (DOM-only, no input
+        // event, so the isTrusted drag-seize listeners are not tripped).
+        var seedSel = function (id, v) { var e = document.getElementById("bsc_" + id + "_select"); if (e && v) e.value = v; };
+        var seedRng = function (id, v, fmt) {
+            var e = document.getElementById("bsc_" + id + "_slider"), w = document.getElementById("bsc_" + id + "_val");
+            if (e) e.value = String(v);
+            if (w) w.textContent = fmt(v);
+        };
+        seedSel("molecule", window.PM_bscMol);
+        seedRng("angle", window.PM_bscAngle, function (v) { return Number(v).toFixed(1); });
+        seedRng("spin", window.PM_bscSpin, function (v) { return Number(v).toFixed(2); });
+        seedRng("temperature", window.PM_bscTemp, function (v) { return String(Math.round(v)); });
+        seedRng("count", window.PM_bscCount, function (v) { return String(Math.round(v)); });
+
+        var hud = document.getElementById("bsc_hud");
+        if (hud) hud.style.display = bs.show_hud ? "block" : "none";
+        var ff = document.getElementById("bsc_formula");
+        if (ff) {
+            if (bs.show_formula && bs.formula) { ff.innerHTML = bs.formula; ff.style.display = "block"; }
+            else { ff.style.display = "none"; }
+        }
+
+        // The SOLVED camera (D-4), derived from the STATE's own mode — never read
+        // off the live camera, so the countable view is identical on the first
+        // frame and under a freeze pin.
+        var cam = bs.camera || BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        if (bs.camera || !stateDef.camera_position) {
+            var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+            var dd = cam.dist || 7;
+            animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
+        }
+
+        // Hide every transient the frame updater owns, so a capture landing between
+        // this apply and the first animate frame can never photograph the PREVIOUS
+        // state's arrows, delta labels or electron glyph.
+        var transient = ["bsc_res_shaft", "bsc_res_head", "bsc_res_label", "bsc_res_zero"];
+        for (i = 0; i < transient.length; i++) { var t = bscFindById(transient[i]); if (t) t.visible = false; }
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var a1 = bscFindById("bsc_arrow_shaft_" + i); if (a1) a1.visible = false;
+            var a2 = bscFindById("bsc_arrow_head_" + i); if (a2) a2.visible = false;
+        }
+        for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
+        for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
+        for (i = 0; i < (window.PM_bscUnitPool || 1); i++) {
+            for (var j = 0; j < BS_MAX_ATOMS; j++) {
+                var dl = bscFindById("bsc_u" + i + "_delta" + j); if (dl) dl.visible = false;
+            }
+        }
+    }
+
+    // The single per-frame pass. Every value below is a closed-form pure function
+    // of state-local t (Rule 26/36, D-1) — spin angle and thermal jiggle included.
+    function updateBondingSceneFrame(stateDef) {
+        var bs = stateDef.bonding_scene || {};
+        var ms = (time - stateStartTime) * 1000, tSec = ms / 1000;
+        var mode = bs.mode || "dipole_sum";
+        var ctrls = bscControlList(bs.controls);
+        var dip = bs.dipole || {};
+        var elc = bs.electrons || {};
+        var th = bs.thermal || {};
+        var i, j, u;
+
+        // Live values: a trusted drag seizes the quantity, otherwise the authored
+        // beat drives it (drag-seize, so a scripted change and its slider agree).
+        var molKey = (bscHasControl(ctrls, "molecule") && window.PM_bscMolDragged) ? window.PM_bscMol
+            : (bscHasControl(ctrls, "ligand") && window.PM_bscLigDragged) ? window.PM_bscLig
+            : (bscHasControl(ctrls, "species") && window.PM_bscSpeciesDragged) ? window.PM_bscSpecies
+            : ((bs.units && bs.units[0] && bs.units[0].species) || bs.species || "HCl");
+        if (!MG_MOLECULES[molKey]) molKey = "HCl";
+        var mol = MG_MOLECULES[molKey];
+        var angleNow = (bscHasControl(ctrls, "angle") && window.PM_bscAngleDragged)
+            ? window.PM_bscAngle : ((bs.angle_deg != null) ? bs.angle_deg : mol.angle);
+        var T_K = (bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged)
+            ? window.PM_bscTemp : ((th.T_K != null) ? th.T_K : BS_T0_K);
+        var nWant = (bscHasControl(ctrls, "count") && window.PM_bscCountDragged)
+            ? Math.round(window.PM_bscCount) : Math.max(1, (bs.units || []).length || 1);
+        var sepNow = (bscHasControl(ctrls, "separation") && window.PM_bscSepDragged)
+            ? window.PM_bscSep : (bs.separation != null ? bs.separation : 3.0);
+        var spinRate = (bscHasControl(ctrls, "spin") && window.PM_bscSpinDragged)
+            ? window.PM_bscSpin : ((bs.spin_rate != null) ? bs.spin_rate : 0);
+        // The sandbox must MOVE on its own (the headless harness never drags), so
+        // an explore state with no authored spin still turns — Rule 37 free-run.
+        if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
+        var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
+        var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
+
+        window.PM_bscMolLive = molKey;
+        window.PM_bscAngleLive = angleNow;
+        window.PM_bscTempLive = T_K;
+        window.PM_bscCountLive = nWant;
+
+        // The dipole instrument, once per frame, in the molecule's own frame.
+        var D = bscDipole(molKey, angleNow);
+        window.PM_bscMuD = D.mag;
+        window.PM_bscMuVec = D.vec;
+        var q = bscCharges(molKey);
+        window.PM_bscCharges = q;
+        var dchi = 0;
+        for (i = 0; i < D.ligands.length; i++) {
+            var dd = Math.abs(bscChi(D.ligands[i]) - bscChi(mol.central));
+            if (dd > dchi) dchi = dd;
+        }
+        window.PM_bscDeltaChi = dchi;
+
+        var pool = window.PM_bscUnitPool || 1;
+        var nUnits = Math.min(pool, nWant);
+        var jScale = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
+        var showLabels = (bs.show_atom_labels !== false);
+        var deltaBudget = BS_MAX_DELTA_LABELS;      // D-6
+        var focalIdx = (bs.focal_unit != null) ? bs.focal_unit : 0;
+
+        for (u = 0; u < pool; u++) {
+            var on = u < nUnits;
+            var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
+            var uSpec = (udef && udef.species) ? udef.species : molKey;
+            var uMol = MG_MOLECULES[uSpec] || mol;
+            var uLigs = bscLigands(uMol);
+            var uFrame = on ? mgFrame(uSpec, (uSpec === molKey ? angleNow : null), null) : null;
+            var rot = udef ? bscOrientRot(udef.orient) : null;
+            var base = (udef && udef.at) ? udef.at.slice(0) : [0, 0, 0];
+            if (udef && udef.at && sepNow != null && bs.separation_axis) {
+                var sa = bscNorm(bs.separation_axis);
+                base = [sa[0] * sepNow * (u === 0 ? -0.5 : 0.5), sa[1] * sepNow * (u === 0 ? -0.5 : 0.5), sa[2] * sepNow * (u === 0 ? -0.5 : 0.5)];
+            }
+            var jig = (on && jScale > 0) ? bscJiggle(u, tSec, T_K, jScale) : [0, 0, 0];
+            var org = [base[0] + jig[0], base[1] + jig[1], base[2] + jig[2]];
+            var uq = on ? bscCharges(uSpec) : [0];
+            var deltaOn = on && (u === focalIdx) && !!dip.show_charges;
+
+            for (i = 0; i < BS_MAX_ATOMS; i++) {
+                var atom = bscFindById("bsc_u" + u + "_atom" + i);
+                var lab = bscFindById("bsc_u" + u + "_lab" + i);
+                var dlab = bscFindById("bsc_u" + u + "_delta" + i);
+                var stick = (i > 0) ? bscFindById("bsc_u" + u + "_bond" + i) : null;
+                var have = on && (i === 0 || i <= uFrame.bonds.length);
+                if (atom) atom.visible = have;
+                if (lab) lab.visible = have && showLabels;
+                if (dlab) dlab.visible = false;
+                if (stick) stick.visible = have && i > 0;
+                if (!have) continue;
+
+                var el = (i === 0) ? uMol.central : (uLigs[i - 1] || uMol.ligand);
+                var em = bscElement(el);
+                // MOLECULE atoms ride the legibility-compressed MG_ELEMENTS scale
+                // (doc §reuse item 4). Ions and lattice sites use BS_RADIUS_PM.
+                var rad = em.radius;
+                var pos = org.slice(0);
+                if (i > 0) {
+                    var d0 = uFrame.bonds[i - 1];
+                    var d1 = rot ? rot(d0) : d0;
+                    d1 = mgRotY(d1, spin);
+                    pos = [org[0] + d1[0] * BS_BOND_LEN, org[1] + d1[1] * BS_BOND_LEN, org[2] + d1[2] * BS_BOND_LEN];
+                    if (stick) {
+                        mgOrientStick(stick, d1, BS_BOND_LEN, 1);
+                        stick.position.set(org[0], org[1], org[2]);
+                    }
+                }
+                if (atom) { atom.position.set(pos[0], pos[1], pos[2]); atom.scale.setScalar(rad); mgSetColor(atom, em.color); }
+                if (lab && lab.visible) {
+                    mgPlaceLabelClear(lab, pos, rad + 0.34, [org]);
+                    updateLabelSpriteText(lab, el);
+                }
+                // D-6: delta labels on the FOCAL unit only, capped on screen.
+                if (deltaOn && dlab && deltaBudget > 0 && Math.abs(uq[i] || 0) > 0.02) {
+                    dlab.visible = true;
+                    deltaBudget--;
+                    var sgn = (uq[i] > 0) ? "\\u03B4+" : "\\u03B4\\u2212";
+                    var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
+                    updateLabelSpriteText(dlab, txt);
+                    mgPlaceLabelClear(dlab, pos, rad + 0.72, [org, pos]);
+                }
+            }
+        }
+
+        // ── bond-dipole arrows + the derived resultant (row F).
+        //    Arrow length = |bond moment| in debye off the SAME table the readout
+        //    uses (Rule 29 / D-3), and every arrow points delta+ -> delta-.
+        var aScale = (dip.arrow_scale != null) ? dip.arrow_scale : BS_ARROW_D_PER_UNIT;
+        var showArrows = !!dip.show_bond_arrows;
+        var fUnit = (bs.units && bs.units[focalIdx]) ? bs.units[focalIdx] : null;
+        var fRot = fUnit ? bscOrientRot(fUnit.orient) : null;
+        var fOrg = (fUnit && fUnit.at) ? fUnit.at.slice(0) : [0, 0, 0];
+        for (i = 0; i < MG_MAX_BONDS; i++) {
+            var sh = bscFindById("bsc_arrow_shaft_" + i), hd = bscFindById("bsc_arrow_head_" + i);
+            var aOn = showArrows && i < D.arrows.length && Math.abs(D.arrows[i].D) > 1e-6;
+            if (sh) sh.visible = aOn;
+            if (hd) hd.visible = aOn;
+            if (!aOn) continue;
+            var m = D.arrows[i].D;
+            // the moment vector: signed magnitude along the bond direction, so a
+            // NEGATIVE entry draws the arrow pointing back at the central atom.
+            var av = [D.arrows[i].dir[0] * m, D.arrows[i].dir[1] * m, D.arrows[i].dir[2] * m];
+            if (fRot) av = fRot(av);
+            av = mgRotY(av, spin);
+            var aLen = Math.abs(m) * aScale;
+            var aDir = bscNorm(av);
+            // tail sits at the midpoint of the bond it belongs to
+            var bd0 = D.arrows[i].dir;
+            var bd1 = fRot ? fRot(bd0) : bd0;
+            bd1 = mgRotY(bd1, spin);
+            var tail = [fOrg[0] + bd1[0] * BS_BOND_LEN * 0.5, fOrg[1] + bd1[1] * BS_BOND_LEN * 0.5, fOrg[2] + bd1[2] * BS_BOND_LEN * 0.5];
+            if (sh) { mgOrientStick(sh, aDir, Math.max(0.02, aLen - 0.30), 1); sh.position.set(tail[0], tail[1], tail[2]); }
+            if (hd) {
+                var hp = [tail[0] + aDir[0] * Math.max(0.02, aLen - 0.30), tail[1] + aDir[1] * Math.max(0.02, aLen - 0.30), tail[2] + aDir[2] * Math.max(0.02, aLen - 0.30)];
+                mgOrientStick(hd, aDir, 1, 1);
+                hd.position.set(hp[0], hp[1], hp[2]);
+            }
+        }
+        var rsh = bscFindById("bsc_res_shaft"), rhd = bscFindById("bsc_res_head");
+        var rlb = bscFindById("bsc_res_label"), rzr = bscFindById("bsc_res_zero");
+        var resOn = !!dip.show_resultant;
+        // 1e-9 D is the numeric-zero floor: a symmetric molecule sums to ~1e-16.
+        var isZero = D.mag < 1e-9;
+        if (rsh) rsh.visible = resOn && !isZero;
+        if (rhd) rhd.visible = resOn && !isZero;
+        if (rlb) rlb.visible = resOn && !isZero;
+        if (rzr) rzr.visible = resOn && isZero;
+        if (resOn && !isZero) {
+            var rv = D.vec.slice(0);
+            if (fRot) rv = fRot(rv);
+            rv = mgRotY(rv, spin);
+            var rdir = bscNorm(rv), rlen = D.mag * aScale;
+            if (rsh) { mgOrientStick(rsh, rdir, Math.max(0.04, rlen - 0.38), 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
+            if (rhd) {
+                var rp = [fOrg[0] + rdir[0] * Math.max(0.04, rlen - 0.38), fOrg[1] + rdir[1] * Math.max(0.04, rlen - 0.38), fOrg[2] + rdir[2] * Math.max(0.04, rlen - 0.38)];
+                mgOrientStick(rhd, rdir, 1, 1);
+                rhd.position.set(rp[0], rp[1], rp[2]);
+            }
+            if (rlb) {
+                rlb.position.set(fOrg[0] + rdir[0] * (rlen + 0.62), fOrg[1] + rdir[1] * (rlen + 0.62), fOrg[2] + rdir[2] * (rlen + 0.62));
+                updateLabelSpriteText(rlb, "\\u03BC = " + bscFmtD(D.mag) + " D");
+            }
+        }
+        if (resOn && isZero && rzr) {
+            rzr.position.set(fOrg[0], fOrg[1] + 1.15, fOrg[2]);
+            updateLabelSpriteText(rzr, "\\u03BC = 0 D");
+        }
+
+        // ── row N: the shared pair. TWO DISCRETE DOTS translating RIGIDLY along
+        //    the bond axis toward the more electronegative end. Closed form, no
+        //    deformation (the Fajans deferral depends on this scoping).
+        var showPair = (elc.show === "pair_glyph");
+        var shift = (elc.pair_shift != null) ? elc.pair_shift : 0;
+        for (i = 0; i < MG_MAX_BONDS * 2; i++) {
+            var pd2 = bscFindById("bsc_pair_" + i);
+            if (!pd2) continue;
+            var bi = Math.floor(i / 2);
+            var pOn = showPair && bi < D.arrows.length;
+            pd2.visible = pOn;
+            if (!pOn) continue;
+            var pd0 = D.arrows[bi].dir;
+            var pd1 = fRot ? fRot(pd0) : pd0;
+            pd1 = mgRotY(pd1, spin);
+            // sign of the bond moment says which end is delta-: a POSITIVE entry
+            // means the ligand is delta-, so the pair slides OUTWARD.
+            var sgn2 = (D.arrows[bi].D >= 0) ? 1 : -1;
+            var f = 0.5 + sgn2 * shift * 0.34;
+            var perp = bscNorm([pd1[1], -pd1[0], pd1[2] * 0.0 + 0.0001]);
+            var off = (i % 2 === 0) ? 0.16 : -0.16;
+            pd2.position.set(
+                pd1[0] * BS_BOND_LEN * f + perp[0] * off + fOrg[0],
+                pd1[1] * BS_BOND_LEN * f + perp[1] * off + fOrg[1],
+                pd1[2] * BS_BOND_LEN * f + perp[2] * off + fOrg[2]
+            );
+        }
+        var showShells = (elc.show === "shells");
+        var nval = showShells ? (BS_VALENCE[mol.central] || 0) : 0;
+        for (i = 0; i < 8; i++) {
+            var sd2 = bscFindById("bsc_shell_" + i);
+            if (!sd2) continue;
+            sd2.visible = showShells && i < nval;
+            if (!sd2.visible) continue;
+            // the valence ring is drawn in the CAMERA plane so every dot is
+            // countable from the solved view (D-4); the camera has settled by
+            // capture time, so this is stable under a pin.
+            camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
+            var ang2 = (i / Math.max(1, nval)) * Math.PI * 2 + Math.PI / 2;
+            var rr = (MG_ELEMENTS[mol.central] || MG_ELEMENTS.C).radius + 0.42;
+            sd2.position.set(
+                fOrg[0] + (mgCamR.x * Math.cos(ang2) + mgCamU.x * Math.sin(ang2)) * rr,
+                fOrg[1] + (mgCamR.y * Math.cos(ang2) + mgCamU.y * Math.sin(ang2)) * rr,
+                fOrg[2] + (mgCamR.z * Math.cos(ang2) + mgCamU.z * Math.sin(ang2)) * rr
+            );
+        }
+
+        // ── value-only HUD (Rule 34b: numbers, never a restated equation).
+        var hud = document.getElementById("bsc_hud");
+        if (hud && hud.style.display !== "none") {
+            var lines = [], want = bs.hud_lines || ["mu"];
+            for (i = 0; i < want.length; i++) {
+                var w = want[i];
+                if (w === "mu") lines.push("\\u03BC = " + bscFmtD(D.mag) + " D");
+                else if (w === "delta_chi") lines.push("\\u0394\\u03C7 = " + dchi.toFixed(2));
+                else if (w === "radius_pm") lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
+                else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+            }
+            hud.innerHTML = lines.join("<br>");
+        }
+        // keep the explore rows in sync with the scripted (non-dragged) values
+        if (bscHasControl(ctrls, "molecule") && !window.PM_bscMolDragged) {
+            var msel = document.getElementById("bsc_molecule_select");
+            if (msel && msel.value !== molKey && MG_MOLECULES[molKey]) msel.value = molKey;
+        }
+        if (bscHasControl(ctrls, "angle") && !window.PM_bscAngleDragged) {
+            var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
+            if (asl) asl.value = String(angleNow);
+            if (avl) avl.textContent = Number(angleNow).toFixed(1);
+        }
+    }
+
+    // Glow (Rule 29 — brightness only) from the CLOSED enum. Scene-object focals
+    // only; the DOM surfaces carry their own prominence and are deliberately
+    // absent, so a DOM key can never set anyScene=true with nothing to brighten
+    // (scar #33 — a non-keyed glow_focal dims the whole scene with no focal lit).
+    var BS_GLOW_ELS = {
+        units: ["bsc_atom", "bsc_bond", "bsc_atom_label"],
+        central: ["bsc_central"],
+        links: ["bsc_link"],
+        arrows: ["bsc_arrow"],
+        resultant: ["bsc_resultant"],
+        charges: ["bsc_charge"],
+        electrons: ["bsc_electron"],
+        lattice: ["bsc_lattice"],
+        layer: ["bsc_layer"],
+        neighbours: ["bsc_neighbour"]
+    };
+    function applyBondingSceneGlow(stateDef) {
+        var focalTypes = {}, g, k, i;
+        for (g = 0; g < (glowTargets || []).length; g++) {
+            var keys = BS_GLOW_ELS[glowTargets[g]];
+            if (!keys) continue;
+            for (k = 0; k < keys.length; k++) focalTypes[keys[k]] = true;
+        }
+        var anyScene = false;
+        for (k in focalTypes) if (focalTypes[k]) anyScene = true;
+        for (i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("bsc_") !== 0) continue;
             if (o.visible === false) continue;
             applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
         }
@@ -49556,6 +50571,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildMolecularGeometry(config);
                 break;
 
+            case "bonding_scene":
+                buildBondingScene(config);
+                break;
+
             case "orbital_shapes":
                 buildOrbitalShapes(config);
                 break;
@@ -50473,6 +51492,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyOrbitalShapesState(stateDef);
         }
 
+        // bonding_scene (CHEMISTRY BONDING WAVE — Phase-0 E1) — authoritative
+        // per-state seeding (unit species / spin rate / temperature / count), the
+        // ring-gated contextual control rows (Rule 31), the HUD + formula toggles,
+        // and the SOLVED countable camera (D-4). Every mesh is placed by
+        // updateBondingSceneFrame from the state's own clock on the next frame,
+        // so there is nothing positional to seed here.
+        if (config.scenario_type === "bonding_scene") {
+            applyBondingSceneState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -50758,6 +51787,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // (THE-EYE "#sliders exclusion chain" -- every dedicated panel adds itself
         // to this NOT-list, same as isMag/isFaraday/isCap/... above).
         var isOrbShapes = config.scenario_type === "orbital_shapes";
+        // bonding_scene owns its OWN #bsc_sliders panel (molecule/ligand/species/
+        // angle/spin/temperature/count/separation/shift/field/valence/ion_pair/
+        // metal) -- must be excluded here or the generic #sliders panel bleeds
+        // through with its straight-wire-current defaults (THE-EYE "#sliders
+        // exclusion chain" -- every dedicated panel excludes itself here).
+        var isBondScene = config.scenario_type === "bonding_scene";
         var isSwc = config.scenario_type === "straight_wire_current" && !!stateDef.swc;
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
@@ -50777,7 +51812,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isOrbShapes && !isKt) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isOrbShapes && !isBondScene && !isKt) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -50964,7 +51999,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "kinematics_1d_track")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -51465,6 +52500,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // boundary surface + the two-run orbital label carry the meaning, and the
         // generic legend would restate them as prose over the cloud.
         if (config.scenario_type === "orbital_shapes") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // bonding_scene is a silent visual too (Rule 24): the units + bond sticks
+        // + delta labels + dipole arrows + the value-only HUD carry everything,
+        // and a "point charge / drag to rotate" legend would be both wrong and
+        // clutter (Rule 34).
+        if (config.scenario_type === "bonding_scene") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // em_wave_propagation is a silent visual (Rule 24): the antenna + axis +
         // green E-train / blue B-train + receiver dual gauge + motes + the ONE
         // formula surface carry everything — suppress the generic point-charge
@@ -53936,7 +54976,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "kinematics_1d_track")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -54021,6 +55061,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "em_wave_propagation") {
             var emwStateDef = config.states[PM_currentState];
             if (emwStateDef) { updateEmWavePropagationFrame(emwStateDef, heldAtPin); applyEmWavePropagationGlow(emwStateDef); }
+        }
+
+        // bonding_scene (CHEMISTRY BONDING WAVE) — the unit layer, per-atom
+        // partial charges + delta labels, the bond-dipole arrows + derived
+        // resultant, the rigid shared-pair glyph, and the deterministic thermal
+        // jiggle. Accumulator-free: every value INCLUDING the spin angle and the
+        // jiggle offset is a pure fn of state-local t with an index-derived phase
+        // (Rule 26/36, D-1 — byte-stable under a SET_TIME_FREEZE pin).
+        if (config.scenario_type === "bonding_scene") {
+            var bscStateDef = config.states[PM_currentState];
+            if (bscStateDef) { updateBondingSceneFrame(bscStateDef); applyBondingSceneGlow(bscStateDef); }
         }
 
         // molecular_geometry (VSEPR) — the assemble / flat-relax / domain-spread /
