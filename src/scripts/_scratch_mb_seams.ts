@@ -634,6 +634,137 @@ const STEPBAD = benchConfig({
     }),
 });
 
+// ── D — THE DEPARTURE RE-ARM (2026-08-01) ────────────────────────────────────
+// Every state below is impulse STATE_8's apparatus EXACTLY — the DEFAULT 6 m
+// track (no track key on that state), ball at −1.4 m, wall at +2.0 m, natural
+// length 0.4 m, slow ×10, repeat_every_ms 2314 — with ONE CORNER of the three
+// exposed slider ranges baked in as authored values. Baking beats driving the
+// sliders here: mbSetParam has its own deferral semantics (4ecae93) and this
+// section is about the RE-ARM, not the write-path.
+//   The corners are the real MB_CTRL_SPEC extremes: m₁ 0.5…10 kg, v₁ −6…6 m/s,
+// k 50…5000 N/m. Contact duration is π√(m/k) × slow_factor, i.e. 0.31 s at
+// (0.5, 5000) and 14.05 s at (10, 50) — a 45× spread that NO single fixed
+// period can serve, which is the whole reason this section exists.
+const S8_REP = 2314, S8_S0 = -1.4, S8_WALL = 2.0, S8_LEN = 6, S8_SLOW = 10;
+const M_LO = 0.5, M_HI = 10, V_MAX = 6, K_LO = 50, K_HI = 5000;
+function sandboxCorner(m: number, v: number, k: number) {
+    return benchState('m=' + m + ' v=' + v + ' k=' + k, 'sandbox', [
+        { id: 'BALL', label: 'm', mass_kg: m, shape: 'ball', initial_position_m: S8_S0, initial_velocity_mps: v },
+        { id: 'WALL', label: ' ', mass_kg: 1, shape: 'wall', initial_position_m: S8_WALL, fixed: true },
+    ], {
+        between: ['BALL', 'WALL'], stiffness_N_per_m: k, damping_Ns_per_m: 0,
+        natural_length_m: 0.4, label: 'wall',
+    }, {
+        track: { length_m: S8_LEN },
+        slow_window: { slow_factor: S8_SLOW, badge: true },
+        readouts: ['v', 'p', 'F_contact'],
+        force_trace: { show: true, fill_area: true, peak_marker: true },
+        controls_visible: ['m1', 'v1', 'k'],
+        trusted_drag_seizes: true,
+        repeat_every_ms: S8_REP,
+        formula: 'F̄Δt = Δp',
+    });
+}
+// The eight corners of (m₁, k) × (v₁ min, max). v₁ NEGATIVE walks the ball AWAY
+// from the wall toward the FAR clamp with no contact in the run at all — that
+// path must re-arm too, and nothing about a contact can rescue it.
+const CORNERS: Array<[number, number, number]> = [
+    [M_LO, V_MAX, K_HI], [M_LO, -V_MAX, K_HI],
+    [M_HI, V_MAX, K_LO], [M_HI, -V_MAX, K_LO],
+    [M_LO, V_MAX, K_LO], [M_LO, -V_MAX, K_LO],
+    [M_HI, V_MAX, K_HI], [M_HI, -V_MAX, K_HI],
+];
+const REARM = benchConfig({
+    STATE_1: sandboxCorner(CORNERS[0][0], CORNERS[0][1], CORNERS[0][2]),
+    STATE_2: sandboxCorner(CORNERS[1][0], CORNERS[1][1], CORNERS[1][2]),
+    STATE_3: sandboxCorner(CORNERS[2][0], CORNERS[2][1], CORNERS[2][2]),
+    STATE_4: sandboxCorner(CORNERS[3][0], CORNERS[3][1], CORNERS[3][2]),
+    STATE_5: sandboxCorner(CORNERS[4][0], CORNERS[4][1], CORNERS[4][2]),
+    STATE_6: sandboxCorner(CORNERS[5][0], CORNERS[5][1], CORNERS[5][2]),
+    STATE_7: sandboxCorner(CORNERS[6][0], CORNERS[6][1], CORNERS[6][2]),
+    STATE_8: sandboxCorner(CORNERS[7][0], CORNERS[7][1], CORNERS[7][2]),
+    // The AUTHORED default of impulse STATE_8 — the middle of every range. Its
+    // cycle must stay EXACTLY the authored 2314 ms period: the departure guard
+    // is a bound on the period, never a replacement for it.
+    STATE_9: sandboxCorner(1.0, 3.0, 2000),
+    // impulse STATE_2 — a GUIDED state with a fixed period, replicated verbatim
+    // (slow ×20, repeat 4080). The regression guard: its re-arms must still land
+    // on the authored period boundaries and nowhere else.
+    STATE_10: benchState('Guided replica of impulse STATE_2', 'wall_impact', [
+        { id: 'BALL', label: 'm', mass_kg: 1, shape: 'ball', initial_position_m: -3, initial_velocity_mps: 3 },
+        { id: 'WALL', label: ' ', mass_kg: 1, shape: 'wall', initial_position_m: 2, fixed: true },
+    ], {
+        between: ['BALL', 'WALL'], stiffness_N_per_m: 2000, damping_Ns_per_m: 0,
+        natural_length_m: 0.4, label: 'rigid wall',
+    }, {
+        track: { length_m: S8_LEN }, slow_window: { slow_factor: 20, badge: true },
+        readouts: ['v', 'p', 'F_contact'], repeat_every_ms: 4080,
+    }),
+    // impulse STATE_5 — the two-lane guided state whose authored 4900 ms period
+    // is ALREADY too long for its 6 m track: today the ball reaches the far end
+    // and is clamped dead for ~0.5 s of every cycle. Same bug_class, in a state
+    // nobody suspected.
+    STATE_11: benchState('Guided replica of impulse STATE_5', 'wall_impact', [
+        { id: 'BALLA', label: 'm', mass_kg: 1, shape: 'ball', initial_position_m: -3, initial_velocity_mps: 3 },
+        { id: 'WALLA', label: ' ', mass_kg: 1, shape: 'wall', initial_position_m: 2, fixed: true },
+        { id: 'BALLB', label: 'm', mass_kg: 1, shape: 'ball', initial_position_m: -3, initial_velocity_mps: 3 },
+        { id: 'WALLB', label: ' ', mass_kg: 1, shape: 'wall', initial_position_m: 2, fixed: true },
+    ], {
+        between: ['BALLA', 'WALLA'], stiffness_N_per_m: 2000, damping_Ns_per_m: 0,
+        natural_length_m: 0.4, label: 'soft pad',
+    }, {
+        track: { length_m: S8_LEN }, slow_window: { slow_factor: 10, badge: true },
+        lanes: [
+            { id: 'soft', offset_z_m: -1.3, bodies: ['BALLA', 'WALLA'] },
+            { id: 'rigid', offset_z_m: 1.3, bodies: ['BALLB', 'WALLB'], contact_override: { stiffness_N_per_m: 2000 } },
+        ],
+        readouts: ['v', 'p', 'F_contact'], repeat_every_ms: 4900,
+    }),
+});
+// ONE round trip per state: tick and sample INSIDE the page (a per-frame
+// page.evaluate over 1500 frames × 11 states is minutes of IPC). Same rule as
+// SNAP — no named local function inside the probe (tsx keepNames).
+const REARM_RUN = ([n, d]: [number, number]) => {
+    const w = window as any;
+    const out: any[] = [];
+    for (let i = 0; i < n; i++) {
+        w.__MB_TICK(d, 1);
+        const eng = w.PM_mbEngine;
+        let busy = 0;
+        for (const c of (eng.contacts || [])) if (c && c.engaged && !c.latched) busy++;
+        let s = 0, v = 0, s0 = 0, v0 = 0;
+        for (const id of eng.order) {
+            const b = eng.bodies[id];
+            if (b && !b.fixed) { s = b.s; v = b.v; s0 = b.s0; v0 = b.v0; break; }
+        }
+        out.push({
+            t: eng.t_ms, s: s, v: v, s0: s0, v0: v0, busy: busy > 0,
+            bh: eng.bound_hits, bha: eng.bound_hits_all || 0,
+            ra: eng.rearms || 0, inC: eng.rearm_in_contact || 0,
+            nev: (eng.events || []).length,
+        });
+    }
+    return out;
+};
+type RearmFrame = { t: number; s: number; v: number; s0: number; v0: number; busy: boolean; bh: number; bha: number; ra: number; inC: number; nev: number };
+// A re-arm is visible WITHOUT asking the engine: the body is put back at its
+// authored home pose AND relaunched at its authored speed. Derived this way the
+// same detector reads the PRE-fix engine (which has no counter at all) and the
+// post-fix one.
+//   POSITION ALONE IS NOT ENOUGH, and that is a trap worth keeping: a period
+// re-arm can land on the frame the returning ball happens to be PASSING its own
+// start point (impulse STATE_8's default does exactly that — it is back at
+// −1.395 m when the 2314 ms boundary fires from −1.400 m), so a jump test sees
+// nothing at all. The launch VELOCITY is what makes it unambiguous: after the
+// rebound the body carries −v₀ and only a re-arm can restore +v₀.
+function rearmFrames(fr: RearmFrame[]): number[] {
+    const home = fr.map(f =>
+        Math.abs(f.s - f.s0) <= Math.abs(f.v0) * 0.06 + 1e-9 && Math.abs(f.v - f.v0) < 1e-9);
+    const idx: number[] = [];
+    for (let i = 1; i < fr.length; i++) if (home[i] && !home[i - 1]) idx.push(i);
+    return idx;
+}
+
 (async () => {
     fs.mkdirSync(OUT, { recursive: true });
 
@@ -1997,6 +2128,177 @@ const STEPBAD = benchConfig({
             frB[0].v0.toFixed(4) + ' → ' + frB[frB.length - 1].v0.toFixed(4) + ' m/s over ' +
             Math.round(frB[frB.length - 1].t_ms) + ' ms)');
         await g.browser.close();
+    }
+
+    // ══ D — THE DEPARTURE RE-ARM ═════════════════════════════════════════════
+    //   D1 the slider-corner sweep: no clamp, no mid-contact re-arm, still cycling
+    //   D2 the authored default keeps the authored period, to the frame
+    //   D3 a guided state with a fixed period re-arms exactly where it always did
+    //   D4 impulse STATE_5's two lanes — the same defect, already shipped
+    //   D5 rewind / pin determinism: no re-arm latch survives a rewind
+    //   D6 a re-arm can never fire on a frame that advances no time (frozen pin)
+    {
+        const r = await open('mb_rearm', REARM);
+        const runState = async (st: string, n: number, d: number) => {
+            await r.setState(st);
+            return await r.page.evaluate(REARM_RUN, [n, d] as [number, number]) as RearmFrame[];
+        };
+        const cornerRows: Row[] = [];
+        let cornerClamps = 0, cornerMidContact = 0, cornerDead = 0;
+        for (let ci = 0; ci < CORNERS.length; ci++) {
+            const [m, v, k] = CORNERS[ci];
+            // (10 kg, 50 N/m) is a 14.05 s contact — the run must outlast TWO of
+            // them or "still cycling" is untested at the corner that needs it most.
+            const slow = (m === M_HI && k === K_LO);
+            const fr = await runState('STATE_' + (ci + 1), slow ? 1500 : 700, 33.4);
+            const idx = rearmFrames(fr);
+            const clamped = fr.filter(f => f.bh > 0).length;
+            const mid = idx.filter(i => fr[i - 1].busy).length;
+            const inC = fr[fr.length - 1].inC;
+            if (clamped > 0) cornerClamps++;
+            if (mid > 0 || inC > 0) cornerMidContact++;
+            if (idx.length < 2) cornerDead++;
+            cornerRows.push({
+                corner: 'm=' + m + ' v=' + v + ' k=' + k,
+                t_span_s: +(fr[fr.length - 1].t / 1000).toFixed(2),
+                rearms: idx.length,
+                rearm_t_ms: idx.slice(0, 6).map(i => Math.round(fr[i].t)),
+                clamped_frames: clamped, max_bound_hits: Math.max(...fr.map(f => f.bh)),
+                bound_hits_all: fr[fr.length - 1].bha,
+                mid_contact_rearms: mid, engine_in_contact_counter: inC,
+                min_s: +Math.min(...fr.map(f => f.s)).toFixed(3),
+                max_s: +Math.max(...fr.map(f => f.s)).toFixed(3),
+                contacts: fr[fr.length - 1].nev,
+            });
+        }
+        chk('D1a_no_slider_corner_ever_clamps_at_the_track_end',
+            cornerClamps === 0,
+            cornerRows.map(x => x.corner + ': bound_hits ' + x.max_bound_hits + '/' + x.bound_hits_all +
+                ' |s|max ' + Math.max(Math.abs(x.min_s), Math.abs(x.max_s)).toFixed(2) + '/' + S8_LEN).join('  ·  '));
+        chk('D1b_no_corner_re_arms_while_a_contact_is_engaged',
+            cornerMidContact === 0,
+            cornerRows.map(x => x.corner + ': ' + x.mid_contact_rearms + ' mid-contact re-arms (engine counter ' +
+                x.engine_in_contact_counter + ')').join('  ·  '));
+        chk('D1c_every_corner_keeps_cycling',
+            cornerDead === 0,
+            cornerRows.map(x => x.corner + ': ' + x.rearms + ' re-arms in ' + x.t_span_s + ' s at ' +
+                JSON.stringify(x.rearm_t_ms) + ' ms, ' + x.contacts + ' contacts').join('  ·  '));
+
+        // D2 — the authored default (m 1 kg, v 3 m/s, k 2000 N/m) must still run
+        // on the authored 2314 ms period, to the frame. The departure guard is a
+        // BOUND on the period, never a replacement for it.
+        const frD = await runState('STATE_9', 700, 16.7);
+        const idxD = rearmFrames(frD);
+        const wantD = [1, 2, 3, 4].map(n => n * S8_REP).filter(t => t <= frD[frD.length - 1].t);
+        const gotD = idxD.map(i => frD[i].t);
+        // The re-arm lands on the FIRST frame at or past the boundary, so the
+        // error is bounded by one frame of the state clock (16 ms).
+        const offD = wantD.map((t, i) => (gotD[i] == null ? 1e9 : gotD[i] - t));
+        chk('D2_the_authored_default_still_re_arms_on_the_authored_period',
+            gotD.length === wantD.length && offD.every(o => o >= 0 && o <= 17) &&
+            frD.every(f => f.bh === 0),
+            'repeat_every_ms=' + S8_REP + ': boundaries [' + wantD.join(', ') + '] → re-arms [' +
+            gotD.map(t => Math.round(t)).join(', ') + '] ms (lag ' + offD.map(o => Math.round(o)).join('/') +
+            ' ms ≤ one 16 ms frame); bound_hits ' + Math.max(...frD.map(f => f.bh)));
+
+        // D3 — REGRESSION GUARD. impulse STATE_2, verbatim: its re-arms must still
+        // be period re-arms at 4080 / 8160 ms and nowhere else, and the ball must
+        // still never reach the track end.
+        const frG = await runState('STATE_10', 700, 16.7);
+        const idxG = rearmFrames(frG);
+        const wantG = [4080, 8160];
+        const gotG = idxG.map(i => frG[i].t);
+        const offG = wantG.map((t, i) => (gotG[i] == null ? 1e9 : gotG[i] - t));
+        chk('D3_guided_state_with_a_fixed_period_re_arms_exactly_as_before',
+            gotG.length === wantG.length && offG.every(o => o >= 0 && o <= 17) &&
+            frG.every(f => f.bh === 0) && frG[frG.length - 1].nev >= 2,
+            'impulse STATE_2 replica (slow ×20, repeat 4080): re-arms at [' +
+            gotG.map(t => Math.round(t)).join(', ') + '] ms vs boundaries [' + wantG.join(', ') +
+            ']; |s|max ' + Math.max(...frG.map(f => Math.abs(f.s))).toFixed(2) + '/' + S8_LEN +
+            ' m; bound_hits ' + Math.max(...frG.map(f => f.bh)) + '; ' + frG[frG.length - 1].nev + ' contacts');
+
+        // D4 — impulse STATE_5, verbatim. Its authored 4900 ms period is LONGER
+        // than the 6 m track can hold: pre-fix the ball is clamped dead at the far
+        // end for ~0.5 s of every cycle. Same bug_class, already shipped.
+        const frL = await runState('STATE_11', 700, 16.7);
+        const idxL = rearmFrames(frL);
+        chk('D4_two_lane_guided_state_no_longer_parks_at_the_track_end',
+            frL.every(f => f.bh === 0) && idxL.length >= 2,
+            'impulse STATE_5 replica (two lanes, repeat 4900): clamped frames ' +
+            frL.filter(f => f.bh > 0).length + '/' + frL.length + ', |s|max ' +
+            Math.max(...frL.map(f => Math.abs(f.s))).toFixed(3) + '/' + S8_LEN + ' m, re-arms at [' +
+            idxL.map(i => Math.round(frL[i].t)).join(', ') + '] ms');
+
+        // D5 — REWIND / PIN DETERMINISM. The re-arm is a function of physical
+        // state, and physical state is a deterministic function of the frame
+        // sequence from the state's start — but only if NO "already re-armed"
+        // latch survives the rewind. Pin 3000 → 9000 → 3000 on the corner whose
+        // cycle is departure-driven (m 0.5 kg, k 5000 N/m: the period never fires
+        // there, so any latch would show).
+        const pinTo = async (st: string, ms: number) => {
+            await r.setState(st);
+            await r.pin(ms);
+            for (let i = 0; i < 900; i++) {
+                await r.tick(16.7, 8);
+                const t = await r.page.evaluate(() => (window as any).PM_mbTimeMs);
+                if (typeof t === 'number' && t >= ms - 1) break;
+            }
+            return await r.page.evaluate(() => {
+                const eng = (window as any).PM_mbEngine, o: Row = {};
+                for (const id of eng.order) {
+                    const b = eng.bodies[id];
+                    o[id] = { s: b.s, v: b.v, a: b.a, F: b.F_contact, spent: !!b.spent };
+                }
+                return {
+                    bodies: o, t_ms: eng.t_ms, tphys_ms: eng.tphys_ms, cycle: eng._cycle,
+                    rearms: eng.rearms || 0, bha: eng.bound_hits_all || 0, nev: (eng.events || []).length,
+                };
+            });
+        };
+        const p1 = await pinTo('STATE_1', 3000);
+        await pinTo('STATE_1', 9000);
+        const p3 = await pinTo('STATE_1', 3000);
+        const same = JSON.stringify(p1) === JSON.stringify(p3);
+        chk('D5_rewind_3000_9000_3000_leaves_no_re_arm_latch',
+            same,
+            'pin 3000 → 9000 → 3000 identical = ' + same + ' (s ' + p1.bodies['BALL'].s.toFixed(9) +
+            ' → ' + p3.bodies['BALL'].s.toFixed(9) + ', v ' + p1.bodies['BALL'].v.toFixed(9) +
+            ' → ' + p3.bodies['BALL'].v.toFixed(9) + ', re-arms ' + p1.rearms + ' → ' + p3.rearms +
+            ', cycle ' + p1.cycle + ' → ' + p3.cycle + ', events ' + p1.nev + ' → ' + p3.nev + ')');
+
+        // D6 — a pinned frame advances NO time, so it must not re-arm either. The
+        // pin instant is chosen to sit INSIDE the departure zone (the ball is past
+        // the re-arm line and still leaving), which is exactly where a
+        // state-driven re-arm would otherwise fire on every held frame and THE
+        // EYE's frozen baseline would show the home pose instead of the departure.
+        const q1 = await pinTo('STATE_2', 700);          // v = −6: the ball is at the far end by 700 ms
+        await r.tick(16.7, 40);
+        const q2 = await r.page.evaluate(() => {
+            const eng = (window as any).PM_mbEngine, o: Row = {};
+            for (const id of eng.order) {
+                const b = eng.bodies[id];
+                o[id] = { s: b.s, v: b.v, a: b.a, F: b.F_contact, spent: !!b.spent };
+            }
+            return {
+                bodies: o, t_ms: eng.t_ms, tphys_ms: eng.tphys_ms, cycle: eng._cycle,
+                rearms: eng.rearms || 0, bha: eng.bound_hits_all || 0, nev: (eng.events || []).length,
+            };
+        });
+        chk('D6_no_re_arm_on_a_frame_that_advances_no_time',
+            JSON.stringify(q1) === JSON.stringify(q2),
+            'pinned at 700 ms with the ball ' + q1.bodies['BALL'].s.toFixed(3) + ' m (track ±' + S8_LEN +
+            '), 40 further frames under the pin: bodies + counters identical = ' +
+            (JSON.stringify(q1) === JSON.stringify(q2)) + ' (re-arms ' + q1.rearms + ' → ' + q2.rearms + ')');
+
+        chk('D7_no_page_errors_on_the_re_arm_page', r.errors.length === 0, JSON.stringify(r.errors.slice(0, 3)));
+        results.rearm = {
+            corners: cornerRows,
+            default_period: { want: wantD, got: gotD.map(t => Math.round(t)) },
+            guided_2: { want: wantG, got: gotG.map(t => Math.round(t)), stream: frG.filter((_, i) => i % 10 === 0).map(f => [Math.round(f.t), +f.s.toFixed(6), +f.v.toFixed(6)]) },
+            guided_5: { rearms: idxL.map(i => Math.round(frL[i].t)), clamped: frL.filter(f => f.bh > 0).length },
+            pin: { p1, p3, frozen_stable: JSON.stringify(q1) === JSON.stringify(q2) },
+        };
+        await r.browser.close();
     }
 
     // ══ Scene skeleton — the meshes must EXIST, not merely be declared ═══════

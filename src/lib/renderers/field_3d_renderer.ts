@@ -1394,7 +1394,20 @@ export interface Field3DConfig {
                 slow_factor: number;
                 badge?: boolean;                   // default true — the honesty requirement
             };
-            repeat_every_ms?: number;              // re-arm the whole interaction on this cycle
+            // Re-arm the whole interaction on this cycle. The number is the
+            // nominal CADENCE, not a promise: the engine bounds it at both ends
+            // with the physics (2026-08-01), because contact duration is
+            // π√(m/k) × slow_factor and a sandbox teacher owns m and k.
+            //   · a boundary that falls inside a solved contact is SKIPPED (no
+            //     re-arm in the middle of a squish), and the counter keeps
+            //     following the clock, so the next clear boundary fires;
+            //   · a body about to leave the visible track re-arms IMMEDIATELY,
+            //     whatever the clock says — otherwise mbClampToTrack pins it at
+            //     v = 0 and the teacher watches a free body stopped by nothing.
+            // So author this for PACE (how often the beat repeats when the run
+            // fits), never as a safety margin — the engine owns the safety.
+            // A state with no repeat_every_ms is a one-shot and never re-arms.
+            repeat_every_ms?: number;
             // One-shot monotonic parameter reveal. A CLOSED FORM of the state
             // clock (never an accumulator) written through the SAME slider
             // write-path as a teacher drag, so the row's value text tracks it and
@@ -43354,6 +43367,23 @@ export const FIELD_3D_RENDERER_CODE = `
     // ENGINE's own clock (state-local ms), never on the wall clock, so a paused
     // or pinned bench cannot time a lease out under a teacher's hand.
     var MB_SEIZE_IDLE_MS = 1200;
+    // ── The DEPARTURE re-arm (2026-08-01) ─────────────────────────────────
+    //   MB_REARM_LEAD_S — how far ahead of the visible track end the bench
+    // re-arms, expressed in SECONDS OF THE BODY'S OWN FLIGHT rather than metres,
+    // so the lead scales with the speed the teacher dialled in. It only has to
+    // beat ONE frame: the animate loop runs at most 3 fixed 1/60 s steps per
+    // frame, so a frame moves a body at most |v| x 0.048 m, and 0.12 s of lead is
+    // 2.5 of those. That is what makes "the clamp can never fire" a property of
+    // the arithmetic instead of a hope (mbClampToTrack zeroes v, i.e. a free body
+    // stopped by nothing — the defect the founder filmed).
+    var MB_REARM_LEAD_S = 0.12;
+    //   MB_REARM_MIN_MS — the floor between two departure re-arms, on the STATE
+    // clock. Its job is to keep a mis-authored home pose (a body seeded already
+    // outside the lead zone) from re-arming on every single frame; it is never
+    // reached by a legitimate run, where the shortest possible cycle is the time
+    // to cross the track at the fastest slider setting (~0.65 s on the 6 m track
+    // at 6 m/s).
+    var MB_REARM_MIN_MS = 250;
     var MB_CTRL_SPEC = {
         m1: { label: "m₁", unit: " kg", min: 0.5, max: 10, step: 0.1, dp: 1 },
         m2: { label: "m₂", unit: " kg", min: 0.5, max: 10, step: 0.1, dp: 1 },
@@ -43920,13 +43950,20 @@ export const FIELD_3D_RENDERER_CODE = `
     // Keep the bodies on the visible track. A clamp CHANGES momentum, so every
     // one is counted: a state whose teaching depends on Sigma-p must never hit
     // one, and the harness asserts the count is zero.
+    //   bound_hits is per-ARMING (mbSeedKinematics zeroes it, because the count a
+    // state's teaching depends on is the count inside the run being taught).
+    // bound_hits_all is the CUMULATIVE count for the whole state visit and is
+    // cleared only on entry / RESET_TRAJECTORY: a re-arming bench that clamps
+    // once per cycle would otherwise erase its own evidence on the very next
+    // re-arm, which is exactly how the departure defect stayed invisible to a
+    // harness that only ever read bound_hits.
     function mbClampToTrack(eng) {
         var lim = eng.length_m;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
             if (!b || b.fixed) continue;
-            if (b.s < -lim) { b.s = -lim; b.v = 0; eng.bound_hits++; }
-            else if (b.s > lim) { b.s = lim; b.v = 0; eng.bound_hits++; }
+            if (b.s < -lim) { b.s = -lim; b.v = 0; eng.bound_hits++; eng.bound_hits_all++; }
+            else if (b.s > lim) { b.s = lim; b.v = 0; eng.bound_hits++; eng.bound_hits_all++; }
         }
     }
     // ── SEAM B — the slow-motion dt MULTIPLIER (spec section 5) ────────────
@@ -43947,10 +43984,46 @@ export const FIELD_3D_RENDERER_CODE = `
     // The window is open exactly while a real (non-latched) contact is engaged.
     // A latch is instantaneous — there is no pulse to slow down — and the
     // approach runs at true speed so the impact reads as an impact.
-    function mbSlowOpen(eng) {
+    function mbSlowOpen(eng) { return mbAnyContactBusy(eng); }
+    // Is ANY real (non-latched) contact mid-segment right now? The per-contact
+    // form (mbContactBusy) answers "may I write into this contact"; this one
+    // answers "is the bench in the middle of something", which is the question
+    // both the slow window and the re-arm guard ask. A latch is NOT busy: it is
+    // permanent, the pair simply travels joined from then on, and a latched pair
+    // drifting toward the track end must still be allowed to re-arm.
+    function mbAnyContactBusy(eng) {
         var cs = mbContacts(eng);
         for (var i = 0; i < cs.length; i++) {
             if (cs[i] && cs[i].engaged && !cs[i].latched) return true;
+        }
+        return false;
+    }
+    // ── The DEPARTURE test — "this run is over, and the bench is about to run
+    //    out of track" ──────────────────────────────────────────────────────
+    //   THE DEFECT: repeat_every_ms is a FIXED period, and on the explore state
+    // the teacher owns the very quantities that set the cycle length. Contact
+    // duration is pi sqrt(m/k) x slow_factor, which over the authored slider
+    // ranges (m 0.5-10 kg, k 50-5000 N/m) spans 0.31 s to 14.05 s — 45x. The two
+    // corners demand opposite periods: light + stiff needs <= 1.8 s or the ball
+    // overshoots the departure room and mbClampToTrack pins it at v = 0; heavy +
+    // soft needs >= 14.9 s or the re-arm lands in the middle of the squish. The
+    // feasible window is EMPTY, so no number an author can write is right. The
+    // cycle therefore ends on a PHYSICAL EVENT instead: the body has finished its
+    // bounce and is leaving.
+    //   "Leaving" is measured against the visible track, not against an aesthetic
+    // distance, so it is the same test at every slider setting: the body is
+    // moving OUTWARD and is within MB_REARM_LEAD_S of flight of the track end. A
+    // body heading back toward the middle is not departing however far out it is,
+    // and a body already sitting on the bound with v = 0 (clamped while a teacher
+    // held a slider, the one path that can still reach it) is released too.
+    function mbDeparted(eng) {
+        var lim = eng.length_m;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.fixed) continue;
+            if (Math.abs(b.s) + Math.abs(b.v) * MB_REARM_LEAD_S < lim) continue;
+            if (b.v * b.s > 0) return true;                       // outbound, one frame short of the end
+            if (b.v === 0 && Math.abs(b.s) >= lim) return true;   // already parked on the bound
         }
         return false;
     }
@@ -44002,22 +44075,65 @@ export const FIELD_3D_RENDERER_CODE = `
         mbClampToTrack(eng);
         window.PM_mbPhysTimeMs = eng.tphys_ms;
     }
-    // repeat_every_ms — re-arm the whole interaction on a cycle. A CLOSED FORM of
-    // the state clock (floor(t/period)), never an accumulator, so a freeze pin and
-    // a rewind both land on the same cycle (Rule 36).
-    function mbRunRepeat(mb, eng) {
+    // repeat_every_ms — re-arm the whole interaction. The authored number is the
+    // nominal CADENCE and is still a closed form of the state clock
+    // (floor(t/period)), never an accumulator — but it is now BOUNDED AT BOTH
+    // ENDS by what the bodies are actually doing, because a fixed period cannot
+    // serve a slider range that moves the cycle length by 45x (see mbDeparted):
+    //
+    //   · too EARLY — a boundary that falls inside a solved contact segment is
+    //     SKIPPED, never fired. Re-arming there teleports a body out of the
+    //     middle of its own squish. Skipped, not deferred to the release instant:
+    //     the counter keeps following the clock, so the first boundary AFTER the
+    //     release re-arms and the bench stays on the authored grid (which is also
+    //     what a mode:'step' ramp quantises against).
+    //   · too LATE  — a body that is leaving the track re-arms NOW, whatever the
+    //     clock says. That is the only bound that can hold, because the departure
+    //     time is a slider quantity and the period is a constant.
+    //
+    // Scope, deliberately: a state with NO repeat_every_ms is a ONE-SHOT and is
+    // not touched at all — the departure guard is a bound on an existing cycle,
+    // never a new one. So every guided state that does not re-arm behaves exactly
+    // as it did, and every guided state that does keeps its authored boundaries
+    // unless its own ball was already running off the end of the track.
+    //   dtMs > 0 is required: under a SET_TIME_FREEZE pin the frame advances no
+    // time, and a state-driven re-arm would otherwise fire on the held frame and
+    // hand THE EYE the home pose instead of the departure it pinned (Rule 36).
+    function mbRunRepeat(mb, eng, dtMs) {
         var rep = (typeof mb.repeat_every_ms === "number" && mb.repeat_every_ms > 0) ? mb.repeat_every_ms : 0;
         if (!rep) return;
+        if (!(dtMs > 0)) return;
         // Rule 37: the idle sweep keeps the sandbox demonstrating forever, but
         // while a teacher is actually HOLDING a slider it must not re-arm under
-        // their hand. The hold is a LEASE (mbRefreshSeize) and ends with the
-        // drag; the cycle counter keeps tracking the clock throughout, so on
-        // release the very next cycle boundary re-arms — with the teacher's NEW
-        // value, which is the whole point of the slider.
+        // their hand — neither on the period nor on a departure. The hold is a
+        // LEASE (mbRefreshSeize) and ends with the drag; the cycle counter keeps
+        // tracking the clock throughout, so on release the very next cycle
+        // boundary re-arms — with the teacher's NEW value, which is the whole
+        // point of the slider.
         if (window.PM_mbSeized) { eng._cycle = Math.floor(eng.t_ms / rep); return; }
         var cyc = Math.floor(eng.t_ms / rep);
         if (eng._cycle == null) { eng._cycle = cyc; return; }
-        if (cyc !== eng._cycle) { eng._cycle = cyc; mbSeedKinematics(eng); }
+        var busy = mbAnyContactBusy(eng);
+        // Time since the last arming, on the state clock. Nothing may re-arm a
+        // bench that was armed a moment ago: a departure re-arm and a period
+        // boundary can otherwise land within a frame or two of each other and cut
+        // a launch off before the eye has seen it leave home.
+        var since = (eng.rearm_t_ms == null) ? 1e9 : (eng.t_ms - eng.rearm_t_ms);
+        var free = !busy && since >= MB_REARM_MIN_MS;
+        var reason = "";
+        if (cyc !== eng._cycle) {
+            eng._cycle = cyc;                   // the grid keeps following the clock either way
+            if (free) reason = "period";
+            else eng.rearm_skipped++;           // landed inside a contact, or on top of a re-arm
+        }
+        if (!reason && free && mbDeparted(eng)) reason = "depart";
+        if (!reason) return;
+        // Defence in depth, and the harness reads it: if this ever fires while a
+        // contact is being solved, the guard above has a hole.
+        if (busy) eng.rearm_in_contact++;
+        eng.rearms++;
+        eng.rearm_reason = reason;
+        mbSeedKinematics(eng);
     }
     // phases[] — the one-shot glow script. A phase is ACTIVE over
     // [at_ms, until_ms); at until_ms the focal is handed back to the state focal.
@@ -44041,8 +44157,13 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
     // Re-seed s/v from the authored initial conditions and re-arm the contact.
-    // Used on state entry, on RESET_TRAJECTORY and on every repeat_every_ms cycle.
+    // Used on state entry, on RESET_TRAJECTORY and on every re-arm (period or
+    // departure). The re-arm instant is stamped on the STATE clock here — one
+    // place, so it can never disagree with the seed it belongs to — and it is
+    // rewind-safe by construction: a rewind re-enters through this same function
+    // with eng.t_ms already back at 0.
     function mbSeedKinematics(eng) {
+        eng.rearm_t_ms = (typeof eng.t_ms === "number") ? eng.t_ms : 0;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
             if (!b) continue;
@@ -44087,6 +44208,13 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.t_ms = 0; eng.tphys_ms = 0; eng._cycle = null;
         eng.events = []; eng.active_event = null;
         eng.phase_fired = {}; eng.phase_active = {};
+        // The re-arm bookkeeping is HISTORY, exactly like the events buffer: a
+        // rewind that left any of it standing would be the "stale already-re-armed
+        // latch" that breaks a pin/rewind round trip. rearm_t_ms is re-stamped by
+        // mbSeedKinematics on the line below.
+        eng.rearms = 0; eng.rearm_skipped = 0; eng.rearm_in_contact = 0;
+        eng.rearm_reason = ""; eng.rearm_t_ms = null;
+        eng.bound_hits_all = 0;
         if (eng.base_glow_focal != null) eng.glow_focal = eng.base_glow_focal;
         mbSeedKinematics(eng);
         // SEAM B: the instruments carry HISTORY (the trace buffer, the running
@@ -44846,7 +44974,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // launches with the NEW value, never the previous cycle's. Swapping these
         // two lines makes every stepped launch exactly one cycle stale.
         mbRunParamRamp(mb, eng);
-        mbRunRepeat(mb, eng);
+        // h is handed on so a frame that advances NO time (a SET_TIME_FREEZE pin)
+        // cannot re-arm: the departure test reads physical state, not the clock,
+        // and a pin taken inside the departure zone would otherwise re-seed the
+        // bench on the held frame — a frozen EYE baseline showing the home pose
+        // instead of the departure it pinned.
+        mbRunRepeat(mb, eng, h * 1000);
         mbStep(eng, h * mbDtScale(eng, mb));
         mbPresent(eng);
         mbDriveInstruments(eng, mb);
@@ -45065,6 +45198,10 @@ export const FIELD_3D_RENDERER_CODE = `
             t_ms: 0, tphys_ms: 0, _cycle: null,
             events: [], active_event: null, latch: null,
             F_contact: 0, bound_hits: 0,
+            // The re-arm ledger. rearm_t_ms is stamped by mbSeedKinematics (called
+            // at the end of this apply), so it is never null once the state runs.
+            bound_hits_all: 0, rearms: 0, rearm_skipped: 0, rearm_in_contact: 0,
+            rearm_reason: "", rearm_t_ms: null,
             glow_focal: mb.glow_focal || "",
             base_glow_focal: mb.glow_focal || "",
             phase_fired: {}, phase_active: {},
