@@ -24,9 +24,27 @@
 
 const { execSync, execFileSync } = require('child_process');
 const fs   = require('fs');
+const os   = require('os');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
+
+/**
+ * This repo is worked from two machines (docs/GIT_WORKFLOW.md): physics on
+ * Windows, chemistry on macOS. `audit` and `sync` are pure git and were always
+ * portable; `new` and `close` shell out to `cmd /c` and were Windows-only, so on
+ * macOS `close` aborted on every desk and could never finish its job.
+ *
+ * Every Windows branch below is the ORIGINAL line, unchanged — the POSIX branch
+ * is new code Windows never reaches. Windows behaviour is identical by
+ * construction.
+ */
+const IS_WIN = process.platform === 'win32';
+
+/** Where `close` parks untracked files before removing a desk. */
+const BACKUP_ROOT = IS_WIN
+  ? path.join('C:', 'Backups')
+  : path.join(os.homedir(), 'Backups');
 
 /**
  * Branches deliberately parked long-term — never synced, never flagged stale.
@@ -245,7 +263,10 @@ function cmdNew(branch) {
   if (!/^feat\/[a-z0-9]+-[a-z0-9-]+$/.test(branch)) {
     console.error(C.yel(`warning: "${branch}" does not match feat/<subject>-<thing> (e.g. feat/ch9-ray-optics)`));
   }
-  const dir = path.join(path.dirname(ROOT), `physics-mind-${branch.replace(/^feat\//, '')}`);
+  // Named after the checkout it sits beside, so desks stay recognisable on a
+  // clone whose folder is not `physics-mind` (this Windows repo IS physics-mind,
+  // so the resulting path is unchanged there).
+  const dir = path.join(path.dirname(ROOT), `${path.basename(ROOT)}-${branch.replace(/^feat\//, '')}`);
   if (fs.existsSync(dir)) { console.error(C.red(`${dir} already exists`)); process.exit(1); }
 
   git(['fetch', 'origin', '--quiet']);
@@ -261,7 +282,8 @@ function cmdNew(branch) {
   const target = path.join(ROOT, 'node_modules');
   const link = path.join(dir, 'node_modules');
   try {
-    execSync(`cmd /c mklink /J "${link}" "${target}"`, { stdio: 'ignore' });
+    if (IS_WIN) execSync(`cmd /c mklink /J "${link}" "${target}"`, { stdio: 'ignore' });
+    else fs.symlinkSync(target, link, 'dir');   // POSIX equivalent of /J
     console.log(C.grn('  node_modules junction created'));
   } catch {
     console.log(C.yel('  could not create node_modules junction — run `npm install` in the desk'));
@@ -314,7 +336,7 @@ function cmdClose(branch, yes) {
 
   if (untracked.length) {
     const stamp = new Date().toISOString().slice(0, 10);
-    const backup = path.join('C:', 'Backups', `desk-close-${stamp}`, branch.replace(/[/\\]/g, '_'));
+    const backup = path.join(BACKUP_ROOT, `desk-close-${stamp}`, branch.replace(/[/\\]/g, '_'));
     fs.mkdirSync(backup, { recursive: true });
     for (const f of untracked) {
       const src = path.join(wt.path, f);
@@ -329,9 +351,25 @@ function cmdClose(branch, yes) {
   // THE JUNCTION TRAP: remove the node_modules junction BEFORE the worktree.
   // `git worktree remove` follows the junction and empties the REAL node_modules.
   const link = path.join(wt.path, 'node_modules');
-  if (fs.existsSync(link)) {
-    try { execSync(`cmd /c rmdir "${link}"`, { stdio: 'ignore' }); console.log(C.grn('  node_modules junction removed (before worktree — the documented order)')); }
-    catch { console.error(C.red('  could not remove the junction — ABORTING rather than risk the real node_modules')); process.exit(1); }
+  if (IS_WIN) {
+    if (fs.existsSync(link)) {
+      try { execSync(`cmd /c rmdir "${link}"`, { stdio: 'ignore' }); console.log(C.grn('  node_modules junction removed (before worktree — the documented order)')); }
+      catch { console.error(C.red('  could not remove the junction — ABORTING rather than risk the real node_modules')); process.exit(1); }
+    }
+  } else {
+    // lstat, never exists/stat: a stat FOLLOWS the link, which is the very thing
+    // this block exists to avoid.
+    let st = null;
+    try { st = fs.lstatSync(link); } catch { st = null; }
+    if (st && st.isSymbolicLink()) {
+      // unlink removes the LINK itself and never recurses into the office's copy.
+      try { fs.unlinkSync(link); console.log(C.grn('  node_modules symlink removed (before worktree — the documented order)')); }
+      catch { console.error(C.red('  could not remove the symlink — ABORTING rather than risk the real node_modules')); process.exit(1); }
+    } else if (st) {
+      // A real per-desk install (symlink creation failed at desk:new time). It is
+      // this desk's OWN copy and is gitignored, so the worktree removal may take it.
+      console.log(C.dim('  node_modules is a real directory in this desk — it goes with the worktree'));
+    }
   }
 
   try {

@@ -187,9 +187,14 @@ npm run dev            # dev server (localhost:3000)        npm run build / lint
 npm run validate:concepts   # Zod + all gates — must pass   npx tsc --noEmit  # 0 errors, always
 npm run build:review -- <id> / review:all   # build the teacher/reviewer site
 npm run visual:eyes -- <id>                 # THE EYE: deterministic frames + gates ($0)
+npm run numeric:calc -- <id>                # THE CALCULATOR: numeric-physics gate ($0, ADVISORY)
 npm run smoke:visual-validator -- <id> --dense   # vision gate (cost ladder)
+npm run desk:audit | sync | new | close     # desk hygiene (docs/GIT_WORKFLOW.md §7)
 npm run seed:concepts / extract:ncert / mineru / dev:full
 ```
+THE EYE proves the pixels moved; **THE CALCULATOR** proves the NUMBERS are right — complementary,
+neither substitutes for the other. Advisory as of 2026-07-31: read its failures, but hand-confirm
+each against the sim before believing it. Full contract: `docs/PIPELINE_V2_PLAN.md` §5.
 No test suite. Verification = curl against API routes, the admin test pages, or THE EYE.
 
 ### Cache clear — RUN BEFORE EVERY TEST (four SEPARATE queries; never batch)
