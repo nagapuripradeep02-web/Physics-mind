@@ -43945,6 +43945,45 @@ export const FIELD_3D_RENDERER_CODE = `
     // camera-facing offset moves the arrow off the string WITHOUT rotating it, so
     // the drawn direction stays exactly the solved one.
     var FR_W_ARROW_LIFT = 0.13;
+    // ── THE CUT ITSELF (force_rig_whirl_string_vanishes_instead_of_visibly_being_
+    //   cut, founder-directed 2026-08-01). The release used to delete the string
+    //   between one frame and the next: nothing severed, nothing went slack,
+    //   nothing was left behind — which is what made a real physical event read as
+    //   graphics being switched off. What follows draws the SEVERING, and only the
+    //   severing; the bob's own motion is untouched (frwAccel still returns the ZERO
+    //   vector after the cut, so the straight constant-speed line is still the
+    //   integrator's output, and severing a string cannot change a velocity).
+    //
+    //   The string is MASSLESS in this engine — it is a constraint, not a body — so
+    //   the model determines nothing about the two loose lengths once the constraint
+    //   is deleted. Rather than invent dynamics for a body that does not exist, the
+    //   engine draws the two remnants for the ~1.3 s the severing takes and then
+    //   stops drawing them, and each one moves by the kinematics that ARE determined
+    //   at the instant of the cut:
+    //     • ANCHOR SIDE — still tied to the post, no longer pulled by anything. It
+    //       carries the angular velocity it had (nothing torqued it), so it keeps
+    //       swinging about the post; with no bob to hold it taut against the knot
+    //       and the sheet, that swing bleeds away over FR_W_CUT_SPIN_S and its free
+    //       end settles down onto the sheet. It stays exactly its own length: an
+    //       inextensible string does not shorten because it was cut.
+    //     • BALL SIDE — still tied to the bob. At the cut every material point of it
+    //       is moving tangentially at ω·s, so the piece lies along the ray through
+    //       the post and, as the bob outruns it, it swings back from radial toward
+    //       trailing: direction −(û + ω·τ·t̂), which is the free-flight geometry, not
+    //       a tween. Its own free end drops to the sheet as it goes.
+    //   The two ends SEPARATE from the first frame — the ball side is dragged off at
+    //   1.8 m/s while the anchor side slows to a stop — so the gap opening at the cut
+    //   point is the event itself. No flash, no spark, no blade: Rule 24/34 keeps the
+    //   canvas to the physical picture, and Rule 29 keeps emphasis to brightness, so
+    //   nothing here bulges, scales or pulses.
+    //   Every one of these is a pure closed form of τ = (t_ms − release_at)/1000 and
+    //   of the pose READ OFF the integrator at the cut, so a frozen frame and a
+    //   time-pin rewind reproduce it exactly (Rule 36).
+    var FR_W_CUT_FRAC = 0.82;        // where the thread parts, as a fraction of L from the post
+    var FR_W_CUT_SPIN_S = 0.45;      // the loose anchor length loses its swing over this
+    var FR_W_CUT_SAG_S = 0.60;       // ... and its free end reaches the sheet over this
+    var FR_W_CUT_FADE0 = 0.75;       // the remnants start fading here (seconds after the cut)
+    var FR_W_CUT_FADE1 = 1.30;       // ... and are gone here: a cut, not a set-piece
 
     function frWhirlCfg(fr) { return (fr && fr.whirl) ? fr.whirl : {}; }
     // Positive-finite coercion with a fallback: an authoring typo must never throw
@@ -44113,6 +44152,15 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.cut_p = { x: eng.p3.x, y: eng.p3.y, z: eng.p3.z };
         var sp = Math.sqrt(eng.v3.x * eng.v3.x + eng.v3.z * eng.v3.z);
         eng.cut_dir = (sp > 1e-9) ? { x: eng.v3.x / sp, z: eng.v3.z / sp } : { x: 1, z: 0 };
+        // The severed lengths are drawn from THIS pose (see THE CUT ITSELF above):
+        // û is the string's own direction at the instant it parted and cut_w the
+        // swing the anchor side carries away. Both read off the integrator, so a
+        // re-timed cut or a slider-reshaped circle needs no other change.
+        var dux = eng.p3.x - eng.anchor.x, duy = eng.p3.y - eng.anchor.y, duz = eng.p3.z - eng.anchor.z;
+        var du = Math.sqrt(dux * dux + duy * duy + duz * duz);
+        if (!(du > 1e-9)) du = 1;
+        eng.cut_u = { x: dux / du, y: duy / du, z: duz / du };
+        eng.cut_w = eng.omega;
         frwPushTrail(eng);
     }
     // Live measured quantities — all read off the INTEGRATED pose, so the HUD
@@ -44362,6 +44410,89 @@ export const FIELD_3D_RENDERER_CODE = `
         rootObj.scale.setScalar(S);
         rootObj.position.set(-cx * S, 0, -cz * S);   // rig-local offset, expressed in scene units
     }
+    // A loose end, placed by the ONE thing that survives the cut: the length of the
+    // piece. Given the horizontal direction it is lying along and how far its free
+    // end has dropped, the endpoint is solved so |end − base| is EXACTLY the piece's
+    // length — an inextensible string sags by leaning, never by stretching.
+    function frwCutEnd(base, hx, hz, uy, lenSeg, drop, out) {
+        var ty = lenSeg * uy - drop;
+        if (ty < -lenSeg) ty = -lenSeg;
+        if (ty > lenSeg) ty = lenSeg;
+        var hr = Math.sqrt(Math.max(0, lenSeg * lenSeg - ty * ty));
+        out.x = base.x + hx * hr;
+        out.y = base.y + ty;
+        out.z = base.z + hz * hr;
+        return out;
+    }
+    // How far a loose free end has fallen, τ seconds after the cut. Flat: it settles
+    // onto the sheet it was lying just above (the bob was holding it at bob-centre
+    // height; nothing holds it there now). Conical: it swings down toward hanging.
+    // Smoothstep, so it leaves at zero rate — a cut severs a string, it does not
+    // kick it.
+    function frwCutDrop(eng, lenSeg, tau) {
+        var s = tau / FR_W_CUT_SAG_S;
+        if (s < 0) s = 0;
+        if (s > 1) s = 1;
+        s = s * s * (3 - 2 * s);
+        var target = (eng.geometry === "flat") ? Math.max(0, eng.anchor.y) : lenSeg;
+        var d = s * target;
+        return (d > lenSeg) ? lenSeg : d;
+    }
+    var FR_W_CUT_E0 = { x: 0, y: 0, z: 0 };
+    function frwCutRemnants(eng) {
+        var oa = frFindById("fr_cut_anchor"), ob = frFindById("fr_cut_ball");
+        if (!oa && !ob) return;
+        var live = !!(eng.released && eng.cut_u && eng.cut_dir && eng.release_at != null);
+        var tau = live ? (eng.t_ms - eng.release_at) / 1000 : -1;
+        if (!live || !(tau >= 0) || tau >= FR_W_CUT_FADE1) {
+            if (oa) oa.visible = false;
+            if (ob) ob.visible = false;
+            return;
+        }
+        var op = FR_STRING_OPACITY;
+        if (tau > FR_W_CUT_FADE0) {
+            var f = (tau - FR_W_CUT_FADE0) / (FR_W_CUT_FADE1 - FR_W_CUT_FADE0);
+            if (f > 1) f = 1;
+            op = FR_STRING_OPACITY * (1 - f * f * (3 - 2 * f));
+        }
+        var u = eng.cut_u;
+        var uh = Math.sqrt(u.x * u.x + u.z * u.z);
+        var hx0 = (uh > 1e-9) ? (u.x / uh) : 1, hz0 = (uh > 1e-9) ? (u.z / uh) : 0;
+        var lenA = FR_W_CUT_FRAC * eng.L;
+        var lenB = (1 - FR_W_CUT_FRAC) * eng.L;
+
+        // ── the length still tied to the post ──────────────────────────────
+        //   Its swing decays from the ω it carried away: dφ/dτ = ω·e^(−τ/T), so the
+        //   angle it has turned through is ω·T·(1 − e^(−τ/T)) — a closed form, and
+        //   one that starts at exactly the pre-cut rate so there is no jump at the
+        //   instant of the cut.
+        if (oa) {
+            var sw = (eng.cut_w || 0) * FR_W_CUT_SPIN_S * (1 - Math.exp(-tau / FR_W_CUT_SPIN_S));
+            var cs = Math.cos(sw), sn = Math.sin(sw);
+            var ax = hx0 * cs - hz0 * sn, az = hx0 * sn + hz0 * cs;
+            frwCutEnd(eng.anchor, ax, az, u.y, lenA, frwCutDrop(eng, lenA, tau), FR_W_CUT_E0);
+            frFitSegment(oa,
+                frwPt(eng, eng.anchor.x, eng.anchor.y, eng.anchor.z),
+                frwPt(eng, FR_W_CUT_E0.x, FR_W_CUT_E0.y, FR_W_CUT_E0.z), true);
+            if (oa.material) { oa.material.transparent = true; oa.material.opacity = op; }
+        }
+        // ── the length still tied to the bob ───────────────────────────────
+        //   Every material point of it left the cut moving tangentially at ω·s, so
+        //   the piece lies along −(û + ω·τ·t̂): radial at the instant of the cut,
+        //   swinging back behind the bob as the bob outruns it.
+        if (ob) {
+            var k = (eng.cut_w || 0) * tau;
+            var bx = -(hx0 + k * eng.cut_dir.x), bz = -(hz0 + k * eng.cut_dir.z);
+            var bh = Math.sqrt(bx * bx + bz * bz);
+            if (bh > 1e-9) { bx /= bh; bz /= bh; }
+            else { bx = -hx0; bz = -hz0; }
+            frwCutEnd(eng.p3, bx, bz, -u.y, lenB, frwCutDrop(eng, lenB, tau), FR_W_CUT_E0);
+            frFitSegment(ob,
+                frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z),
+                frwPt(eng, FR_W_CUT_E0.x, FR_W_CUT_E0.y, FR_W_CUT_E0.z), true);
+            if (ob.material) { ob.material.transparent = true; ob.material.opacity = op; }
+        }
+    }
     function frwFit(fr, eng) {
         var A = frwPt(eng, eng.anchor.x, eng.anchor.y, eng.anchor.z);
         var B = frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z);
@@ -44378,9 +44509,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 : new THREE.Vector3(A.x, A.y + 0.55, A.z);
             frFitSegment(mast, A, top, true);
         }
-        // The string is CUT at release: it does not linger, and it is not redrawn
-        // shorter — it is simply no longer there.
+        // The intact string ends at the cut; the two loose lengths take over from
+        // exactly where it parted (frwCutRemnants).
         frFitSegment(frFindById("fr_wstring"), A, B, !eng.released);
+        frwCutRemnants(eng);
         var plane = frFindById("fr_plane");
         if (plane) {
             plane.visible = (eng.geometry === "flat");
@@ -44847,6 +44979,11 @@ export const FIELD_3D_RENDERER_CODE = `
                          ud.elementType === "fr_centre" ||
                          ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
                          ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
+                         // The severed lengths own their own opacity: it is the FADE
+                         // that ends the cut (frwCutRemnants), and a generic peer dim
+                         // writing 0.40 over it would fight that channel to a standstill
+                         // (the glow-focal-on-a-live-driven-channel no-op, in reverse).
+                         ud.elementType === "fr_wcut" ||
                          // The post-cut path is EVIDENCE, not a peer competing for
                          // attention: dimming it to 40% while the bob holds the
                          // focal would erase the one thing the cut state proves.
@@ -45094,6 +45231,25 @@ export const FIELD_3D_RENDERER_CODE = `
         wstr.visible = false;
         root.add(wstr); frRegister(wstr);
 
+        // The two severed lengths (see THE CUT ITSELF). Same cord — same radius,
+        // colour and material recipe as the intact string, so what is on screen after
+        // the cut is recognisably the SAME thread that was there before it. Each gets
+        // its OWN material because the fade writes opacity per frame; sharing one with
+        // fr_wstring would fade the intact string on every other state.
+        var wcIds = ["fr_cut_anchor", "fr_cut_ball"];
+        for (var wc = 0; wc < wcIds.length; wc++) {
+            var wcm = new THREE.Mesh(
+                new THREE.CylinderGeometry(FR_W_STRING_R, FR_W_STRING_R, 1, 8),
+                new THREE.MeshPhongMaterial({
+                    color: hexToThreeColor(FR_STRING_COLOR), emissive: hexToThreeColor(FR_STRING_COLOR),
+                    emissiveIntensity: FR_STRING_EMISSIVE, shininess: 20, transparent: true, opacity: FR_STRING_OPACITY
+                }));
+            wcm.userData = { elementType: "fr_wcut", id: wcIds[wc] };
+            wcm.visible = false;
+            wcm.frustumCulled = false;      // the ball-side length leaves the seeded bounding sphere
+            root.add(wcm); frRegister(wcm);
+        }
+
         var wbob = new THREE.Mesh(
             new THREE.SphereGeometry(FR_W_BOB_R, 20, 16),
             new THREE.MeshPhongMaterial({
@@ -45222,7 +45378,7 @@ export const FIELD_3D_RENDERER_CODE = `
             theta: 0, theta_meas: 0, r_m: 0, speed: 0, a_c: 0, T: 0,
             phi: 0, phi_last: 0, phi_unwrapped: 0,
             released: false, release_at: null, trail_on: false, ghost_on: false,
-            phi0: 0, cut_p: null, cut_dir: null,
+            phi0: 0, cut_p: null, cut_dir: null, cut_u: null, cut_w: 0,
             show_radius: false, show_velocity: false,
             ghost_r: 0, ghost_y: 0, trailN: 0, micro: 0, wArrows: []
         };
@@ -45290,6 +45446,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 ud.elementType === "fr_centre" || ud.elementType === "fr_ring") o.visible = tableOn;
             if (ud.elementType === "fr_plane" || ud.elementType === "fr_anchor" ||
                 ud.elementType === "fr_wstring" || ud.elementType === "fr_bob" ||
+                ud.elementType === "fr_wcut" ||
                 ud.elementType === "fr_guide" || ud.elementType === "fr_trail") o.visible = false;
         });
         if (!tableOn) frwHideArrows();
@@ -45314,7 +45471,7 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.released = false;
             eng.trailN = 0;
             eng.micro = 0;
-            eng.cut_p = null; eng.cut_dir = null;
+            eng.cut_p = null; eng.cut_dir = null; eng.cut_u = null; eng.cut_w = 0;
             var tl = frFindById("fr_trail");
             if (tl) tl.geometry.setDrawRange(0, 0);
             // Captured ONCE, from the authored L (see FR_W_PIVOT_Y).
@@ -45458,6 +45615,7 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.T = 0;
             eng.ghost_r = 0; eng.ghost_y = 0;
             eng.cut_p = null; eng.cut_dir = null;   // framing follow re-arms with it
+            eng.cut_u = null; eng.cut_w = 0;        // ... and so does the severing
             var tl = frFindById("fr_trail");
             if (tl) tl.geometry.setDrawRange(0, 0);
         }
