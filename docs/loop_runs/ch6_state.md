@@ -14,8 +14,9 @@ engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a
 
 next: **0d — concepts 1..N as pure JSON** through the ①–④ pipeline. Start with #1
   `work_done_by_constant_force` (architect → Checkpoint A → physics-author → json-author →
-  quality-auditor + eye-walker → Checkpoint B). BEFORE 0d: land K+L+M+N on master (below) and
-  amend `NLB_SPRING_CHOREOGRAPHY_SPEC.md` — the platform doc travels with the platform change.
+  quality-auditor + eye-walker → Checkpoint B). Both pre-0d obligations are DISCHARGED:
+  `NLB_SPRING_CHOREOGRAPHY_SPEC.md` amended (`5d11ff2`) and the platform change is up as **PR #14**
+  (below) — awaiting founder merge, which is not a blocker for starting 0d on this branch.
 done: **PHASE 0 COMPLETE — 0a survey · 0b skeleton + Checkpoint A · 0c engine (4 seams)**
 parked: (none)
 in_flight: conservation_of_mechanical_energy  stage=0c-CLOSED  checkpointA=CLOSED
@@ -426,6 +427,34 @@ ALARM RULE is the real test** (a later concept forcing an engine edit means Phas
 STOP and re-scope with the surgeon, never extend per concept). (2) Still correctly out of scope: the
 five deferred `U(x)`-graph concepts and the different-apparatus set (pendulum, vertical loop, walking
 stride, hanging chain) — each needs its own Phase 0.
+
+## LANDED 2026-08-01 — PR #14 (founder-approved), merge commit `5dd8287`
+
+https://github.com/nagapuripradeep02-web/Physics-mind/pull/14 — `feat/ch6-work-energy-power` → master,
+opened by `git-steward`. **State OPEN + MERGEABLE; merging stays founder-only.** `desk:audit` prints
+`commits existing ONLY on this machine: 0`. The `OFFICE-OFF-MASTER` desk flag is the normal state for
+an unmerged feature branch and clears on `npm run desk:close` after the merge — it is NOT an
+unpushed-work warning.
+
+**The feared three-way conflict did not happen.** `origin/master` was **38 commits ahead**, including
+the landed `feat/lom-g-offaxis` `force_rig` scenario (PR #13) and the chemistry `bonding_scene` E2/E3a
+layers — all three touching `field_3d_renderer.ts` and `deriveStateMeta.ts`. The merge auto-resolved
+with **zero conflicts**, verified by a conflict-marker grep returning 0 in both files. **This is the
+payoff of holding every seam to region-disjoint edits**: `newtons_laws_body`, `force_rig` and
+`bonding_scene` are genuinely separate regions, so three sessions edited one 57K-line platform file
+concurrently and git merged them without a human decision. Keep doing this.
+
+**Verify chain re-measured POST-merge** (deviation would have meant a merge-induced regression):
+renderer-syntax OK (field_3d 3734 KB, up from 3518 — master's additions, expected) · tsc **0 errors** ·
+validate:concepts **148 PASS / 0 FAIL** · vitest **327 tests / 28 files, all pass**. The 146→148 is the
+two lom-g concepts (`equilibrium_of_particles`, `uniform_circular_motion`) the merge brought in, not
+anything from this branch. **Warning profile an exact match to the pre-merge baseline**
+(400/104 · 199/40 · 13/4 · 1/1) — the strongest single signal that the merge changed nothing of ours.
+
+`NLB_SPRING_CHOREOGRAPHY_SPEC.md` amendment (`5d11ff2`) rides the same PR — Rule 40: the platform doc
+travels with the platform change. It records the founder ruling verbatim, keeps the 2026-07-30
+document's finding and intent intact, marks only the MECHANISM superseded, and carries the
+contact-entry trap + `[PM_NLB_ENERGY_DRIFT]` backstop so a future author does not rediscover them.
 
 ### Rule 40 landing decision (dispatching session, 2026-08-01)
 
