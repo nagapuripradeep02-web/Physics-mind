@@ -130,7 +130,7 @@ const FNS = [
   "bscLinkCfg", "bscLinkOk", "bscLinkLatch", "bscLinkSites", "bscUnitSlot",
   "bscSub", "bscTrendFit",
   // E1c-A
-  "bscArrowParts", "bscUnitShapeKey", "bscSolvedCamera",
+  "bscArrowParts", "bscUnitShapeKey", "bscSolvedShapeKey", "bscSolvedCamera",
   // E3a
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
@@ -1641,10 +1641,19 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
     solve({ mode: "coordination", placement: "lattice", units: [{ species: "Na+", at: [0, 0, 0] }] }).el === 45);
   ok("a single unit parked off-centre keeps the mode's wider camera",
     solve({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }).el === 22);
-  ok("a PYRAMIDAL centre gets its own solve; every other shape does not",
+  // E1c-H: the TRIGONAL PLANAR centre is now a shape of its own too (section 21
+  // measures it). The general key keeps the 3-D-surrounded set — tetrahedral,
+  // bent, linear — value for value.
+  ok("a PYRAMIDAL centre gets its own solve; the 3-D-surrounded set keeps general",
     single("dipole_sum", "NH3").el === 15 && single("dipole_sum", "NF3").el === 15 &&
-    ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3"].every((k) => single("dipole_sum", k).el === 47),
+    single("dipole_sum", "NH3").az === 120 &&
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2"].every((k) => single("dipole_sum", k).el === 47),
     `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
+  ok("the three MEASURED constants are asserted value-for-value (E1c-A/D/E)",
+    JSON.stringify(E.BS_UNIT_CAMERAS.general) === JSON.stringify({ az: 35, el: 47, dist: 7 }) &&
+    JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal) === JSON.stringify({ az: 120, el: 15, dist: 7 }) &&
+    JSON.stringify(E.BS_UNIT_CAMERAS.diatomic) === JSON.stringify({ az: 35, el: 12, dist: 7 }),
+    JSON.stringify(E.BS_UNIT_CAMERAS));
   // E1c-E: the pyramid now carries its OWN azimuth as well as its own elevation
   // (which ligand hides behind the centre is an azimuth question — section 18).
   // The tie-down that matters is unchanged and is on the GENERAL key: MG_BEND_AZ
@@ -1950,7 +1959,9 @@ console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solv
   ok("bscUnitShapeKey gives a 1-bond unit its OWN key, and nothing else",
     DIA.every((k) => E.bscUnitShapeKey(k) === "diatomic") &&
     ["NH3", "NF3"].every((k) => E.bscUnitShapeKey(k) === "pyramidal") &&
-    ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3"].every((k) => E.bscUnitShapeKey(k) === "general") &&
+    // E1c-H: BF3 left this set for the measured TRIGONAL key (section 21).
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2"].every((k) => E.bscUnitShapeKey(k) === "general") &&
+    E.bscUnitShapeKey("BF3") === "trigonal" &&
     Object.keys(E.MG_MOLECULES).filter((k) => E.bscUnitShapeKey(k) === "diatomic").sort().join("|")
       === "HBr|HCl|HF|HI");
   ok("E1c-A's GENERAL solve is UNCHANGED, value for value (E1c-E moved only the pyramid)",
@@ -2358,6 +2369,8 @@ console.log("\n=== 19. E1c-F CUE-OBEDIENT INSTRUMENT + TRANSITION (HUD · swap �
 //   pick handler and the SHIPPED closed-form angle resolution — both sliced out
 //   of the renderer and evaluated, never retyped — so a revert cannot leave this
 //   section green.
+/** section 20 builds the shipped-pick-handler driver; section 21 re-uses it. */
+let driveExplore: ((picks: { id: string; v: string }[], mode?: string, preDragAngle?: number | null, camBs?: any) => any) | null = null;
 console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halide row · authored bounds) ===");
 {
   const bld = grabFn("buildBondingScene");
@@ -2399,12 +2412,33 @@ console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halid
   };
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const pickRaw = new Function("document", "window", "MG_MOLECULES", "bscOptionOf", "bscSelValue",
-    pickSrc + "\nreturn bscExploreSpeciesPicked;");
-  const drive = (picks: { id: string; v: string }[], mode = "explore", preDragAngle: number | null = null) => {
+    "bscReframeForSpecies", pickSrc + "\nreturn bscExploreSpeciesPicked;");
+  // E1c-H: the SHIPPED re-frame, on a spied animateCameraTo. Sliced, never
+  // retyped, so a revert cannot leave section 21 green.
+  const reframeSrc = grabFn("bscReframeForSpecies");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const reframeRaw = new Function("window", "BS_UNIT_CAMERAS", "bscSolvedShapeKey", "animateCameraTo",
+    reframeSrc + "\nreturn bscReframeForSpecies;");
+  /** camera moves the drive produced, as [az, el, dist] read back off the vector. */
+  const posToCam = (p: number[]) => {
+    const d = Math.hypot(p[0], p[1], p[2]);
+    return { az: ((Math.atan2(p[2], p[0]) * 180 / Math.PI) + 360) % 360,
+      el: Math.asin(p[1] / d) * 180 / Math.PI, dist: d };
+  };
+  const drive = (picks: { id: string; v: string }[], mode = "explore", preDragAngle: number | null = null,
+                 camBs: any = { mode: "explore", species: "H2O" }) => {
     const dom = newDom();
     const w: Record<string, unknown> = { PM_bscMode: mode, PM_bscMol: "H2O", PM_bscLig: "HF", PM_bscAngle: 104.5 };
     if (preDragAngle != null) { w.PM_bscAngle = preDragAngle; w.PM_bscAngleDragged = true; }
-    const fn = pickRaw(dom.document, w, E.MG_MOLECULES, E.bscOptionOf, E.bscSelValue);
+    // what applyBondingSceneState publishes, verbatim in shape: the state's own
+    // block when it is an explore sandbox that left its camera to the solve, and
+    // the shape key the state-entry camera was actually solved for.
+    w.PM_bscCamBs = camBs;
+    w.PM_bscCamKey = camBs ? E.bscSolvedShapeKey(camBs, null) : null;
+    const moves: any[] = [];
+    const reframe = reframeRaw(w, E.BS_UNIT_CAMERAS, E.bscSolvedShapeKey,
+      (p: number[]) => moves.push(posToCam(p)));
+    const fn = pickRaw(dom.document, w, E.MG_MOLECULES, E.bscOptionOf, E.bscSelValue, reframe);
     for (const p of picks) {
       const selId = "bsc_" + p.id + "_select";
       if (dom.els[selId]) (dom.els[selId] as Sel).value = p.v;
@@ -2417,13 +2451,16 @@ console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halid
     const key = (w.PM_bscMolDragged ? w.PM_bscMol : w.PM_bscLigDragged ? w.PM_bscLig : "H2O") as string;
     const ang = w.PM_bscAngleDragged ? (w.PM_bscAngle as number) : angleTo(key, seized, mode);
     return {
-      w, dom, key, ang, mu: E.bscDipole(key, ang).mag as number,
+      w, dom, key, ang, mu: E.bscDipole(key, ang).mag as number, moves,
+      cam: moves.length ? moves[moves.length - 1] : null,
+      camKey: w.PM_bscCamKey as string | null,
       slider: Number((dom.els.bsc_angle_slider as { value: string }).value),
       span: (dom.els.bsc_angle_val as Span).textContent,
       halide: (dom.els.bsc_ligand_select as Sel).value,
       molSel: (dom.els.bsc_molecule_select as Sel).value
     };
   };
+  driveExplore = drive;
 
   // ── (a) THE WHOLE-PICKER SWEEP. Every species, entered from a fresh explore.
   {
@@ -2583,6 +2620,210 @@ console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halid
       /window\.PM_bscAngle = defc\("angle", 104\.5, 60, 180\);/.test(bld) &&
       /window\.PM_bscSpinDef = defc\("spin", 0\.16, 0, 0\.6\);/.test(bld) &&
       !/window\.PM_bscTemp = def\(/.test(bld));
+  }
+}
+
+// ── 21. E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES ─────────────────
+//   E1c-A solved the camera from the focal unit's SHAPE and E1c-E re-solved the
+//   pyramid, but the solve ran once per STATE — so every species the explore
+//   picker can reach was framed by the camera measured for the species the state
+//   OPENS on. E1c-G's hand-driven sweep made all nine reachable for the first
+//   time and the cost is measurable: the four halides (whose row exists to teach
+//   the arrow's LENGTH) drew at the general solve's el 47, where a 1-bond unit
+//   loses 20.6% of its projected bond length, and BF3 — admitted to the picker as
+//   the "symmetric arrangement, zero resultant" example — was drawn on a plane
+//   tilted 47 deg away, its 120 deg reading 97 deg and its countability BELOW the
+//   floor the pyramid was measured against.
+//   THE ASSERTION THAT WOULD HAVE CAUGHT IT is E1c-G's whole-picker sweep with a
+//   camera on it: every species in explore_species, entered through the SHIPPED
+//   pick handler and re-framed by the SHIPPED bscReframeForSpecies (both sliced
+//   out of the renderer), asserted to land on the key MEASURED for its own shape
+//   and to clear that key's floors — with the negative control that reproduces
+//   today's single-camera behaviour.
+console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker camera sweep) ===");
+{
+  const bld = grabFn("buildBondingScene");
+  const app = grabFn("applyBondingSceneState");
+  const PICKER = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];
+  const drive = driveExplore!;                       // the SHIPPED pick handler, section 20's driver
+  const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TAN = Math.tan(FOV / 2);
+  const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cr3 = (a: number[], b: number[]) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dt3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const scl = (v: number[], k: number) => [v[0] * k, v[1] * k, v[2] * k];
+  const proj = (c: any) => {
+    const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+    const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sub3([0, 0, 0], cam)), r = E.bscNorm(cr3(f, [0, 1, 0])), u = cr3(r, f);
+    return (p: number[]) => {
+      const v = sub3(p, cam), z = dt3(v, f);
+      return { x: dt3(v, r) / (z * TAN * ASPECT), y: dt3(v, u) / (z * TAN), z };
+    };
+  };
+  const ptSeg = (p: any, a: any, b: any) => {
+    const vx = b.x - a.x, vy = b.y - a.y, L2 = vx * vx + vy * vy;
+    if (L2 < 1e-18) return Math.hypot(p.x - a.x, p.y - a.y);
+    const t = Math.max(0, Math.min(1, ((p.x - a.x) * vx + (p.y - a.y) * vy) / L2));
+    return Math.hypot(p.x - (a.x + t * vx), p.y - (a.y + t * vy));
+  };
+  const segGap = (a1: any, a2: any, b1: any, b2: any) =>
+    Math.min(ptSeg(a1, b1, b2), ptSeg(a2, b1, b2), ptSeg(b1, a1, a2), ptSeg(b2, a1, a2));
+  /** the section-16 countability metric, plus the two shape-specific ones. */
+  const metrics = (cam: any, mk: string, angle: number | null = null) => {
+    const P = proj(cam), D = E.bscDipole(mk, angle) as any, m = E.MG_MOLECULES[mk], c0 = P([0, 0, 0]);
+    const atoms = [{ p: c0, r: E.MG_ELEMENTS[m.central].radius }].concat(
+      D.arrows.map((a: any, i: number) =>
+        ({ p: P(scl(a.dir, E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+    const vecs: any[] = D.arrows.map((a: any) => {
+      const L = Math.abs(a.D) * E.BS_ARROW_D_PER_UNIT, sg = a.D >= 0 ? 1 : -1;
+      return [P(scl(a.dir, E.BS_BOND_LEN * 0.5 - sg * L / 2)), P(scl(a.dir, E.BS_BOND_LEN * 0.5 + sg * L / 2))];
+    });
+    if (D.mag > 1e-9) vecs.push([c0, P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT))]);
+    let occ = 9, gap = 9, box = 0, len = 9, angErr = 0;
+    for (const a of atoms) box = Math.max(box, Math.abs(a.p.x), Math.abs(a.p.y));
+    for (const v of vecs) box = Math.max(box, Math.abs(v[0].x), Math.abs(v[0].y), Math.abs(v[1].x), Math.abs(v[1].y));
+    for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+      if (i === j) continue;
+      const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+      const far = near === atoms[i] ? atoms[j] : atoms[i];
+      occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) - near.r / (near.p.z * TAN));
+    }
+    for (let i = 0; i < vecs.length; i++) for (let j = i + 1; j < vecs.length; j++)
+      gap = Math.min(gap, segGap(vecs[i][0], vecs[i][1], vecs[j][0], vecs[j][1]));
+    // E1c-D's metric: drawn bond length against the same world length at the pivot depth.
+    for (let i = 0; i < D.arrows.length; i++) {
+      const q = P(scl(D.arrows[i].dir, E.BS_BOND_LEN));
+      len = Math.min(len, Math.hypot((q.x - c0.x) * ASPECT, q.y - c0.y) / (E.BS_BOND_LEN / (c0.z * TAN)));
+    }
+    // E1c-H's metric: the DRAWN angle between two bonds against the true one.
+    for (let i = 0; i < D.arrows.length; i++) for (let j = i + 1; j < D.arrows.length; j++) {
+      const a = P(scl(D.arrows[i].dir, E.BS_BOND_LEN)), b = P(scl(D.arrows[j].dir, E.BS_BOND_LEN));
+      const va = [(a.x - c0.x) * ASPECT, a.y - c0.y], vb = [(b.x - c0.x) * ASPECT, b.y - c0.y];
+      const cs = (va[0] * vb[0] + va[1] * vb[1]) / (Math.hypot(va[0], va[1]) * Math.hypot(vb[0], vb[1]) || 1);
+      angErr = Math.max(angErr, Math.abs(
+        Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI -
+        Math.acos(Math.max(-1, Math.min(1, E.mgDot(D.arrows[i].dir, D.arrows[j].dir)))) * 180 / Math.PI));
+    }
+    // the resultant a bent (pyramidalised) centre creates, drawn against true.
+    let res = 0;
+    if (D.mag > 1e-9) {
+      const tip = P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT));
+      res = Math.hypot((tip.x - c0.x) * ASPECT, tip.y - c0.y) /
+        ((D.mag * E.BS_ARROW_D_PER_UNIT) / (c0.z * TAN));
+    }
+    return { occ, gap, box, len, angErr, res };
+  };
+  const OCC = 0.09, OCC_3D = 0.06, GAP = 0.015, BOX = 0.85, LEN = 0.9, ANG = 8, RES = 0.50;
+
+  // ── (a) THE SOURCE CONTRACT: the re-frame is an EVENT, explore-gated at apply.
+  ok("the pick handler ends by re-framing the camera on the picked species",
+    /bscReframeForSpecies\(v\);/.test(bld) &&
+    bld.indexOf("bscReframeForSpecies(v)") > bld.indexOf("window.PM_bscAngleDragged = false"));
+  ok("apply publishes the re-frame context ONLY for an explore state that owns its camera",
+    /window\.PM_bscCamBs = \(\(bs\.mode \|\| "dipole_sum"\) === "explore" && !bs\.camera && !stateDef\.camera_position\)/.test(app) &&
+    /window\.PM_bscCamKey = \(bs\.camera \|\| stateDef\.camera_position\) \? null : bscSolvedShapeKey\(bs, null\);/.test(app));
+  ok("the re-frame reads no clock and accumulates nothing (D-1)",
+    !/\bms\b|Date\.now|performance\.now|\+=/.test(grabFn("bscReframeForSpecies")));
+  ok("the FRAME pass still writes no camera state at all (the event half owns it)",
+    !/animateCameraTo|targetSpherical/.test(grabFn("updateBondingSceneFrame")));
+  ok("it MOVES, it does not cut: the same helper state entry uses",
+    /animateCameraTo\(\[dd \* Math\.cos\(elr\) \* Math\.cos\(azr\)/.test(grabFn("bscReframeForSpecies")));
+
+  // ── (b) THE WHOLE-PICKER CAMERA SWEEP.
+  {
+    const bad: string[] = [], rows: string[] = [];
+    for (const k of PICKER) {
+      const r = drive([{ id: "molecule", v: k }]);
+      const key = E.bscUnitShapeKey(k) as string;
+      const want = (E.BS_UNIT_CAMERAS as any)[key];
+      const got = r.cam || { az: 35, el: 47, dist: 7 };          // no move = the opening solve
+      const same = Math.abs(got.az - want.az) < 1e-6 && Math.abs(got.el - want.el) < 1e-6 &&
+        Math.abs(got.dist - want.dist) < 1e-6 && r.camKey === key;
+      const m = metrics(want, k);
+      // the vector-GAP floor does not apply to a 1-bond unit: its resultant IS its
+      // single bond moment, so the two are collinear by construction (physics, not
+      // a framing defect) and no camera can separate them. Its own floor is the
+      // projected LENGTH, which is what that row teaches.
+      const floors = m.occ >= (key === "general" ? OCC_3D : OCC) && m.box <= BOX &&
+        (key === "diatomic" ? m.len >= LEN : m.gap >= GAP) &&
+        (key !== "trigonal" || m.angErr <= ANG);
+      if (!same || !floors) bad.push(`${k}(${same ? "floors" : "camera"})`);
+      rows.push(`${k}:${key}@el${want.el}`);
+    }
+    ok("THE H1 ASSERTION: every picker species is framed by the solve measured for ITS shape",
+      bad.length === 0, bad.length ? "BROKEN: " + bad.join(",") : rows.join("  "));
+    for (const k of ["H2O", "CCl4", "BF3", "HI"]) {
+      const m = metrics((E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k)], k);
+      console.log(`    ${k.padEnd(5)} ${String(E.bscUnitShapeKey(k)).padEnd(9)} occ=${m.occ.toFixed(4)} gap=${m.gap.toFixed(4)} box=${m.box.toFixed(3)} len=${m.len.toFixed(4)} angle-err=${m.angErr.toFixed(1)}deg`);
+    }
+  }
+
+  // ── (c) NEGATIVE CONTROL: one camera for the whole picker — today's behaviour.
+  {
+    const gen = E.BS_UNIT_CAMERAS.general;
+    const bf3 = metrics(gen, "BF3"), bf3t = metrics(E.BS_UNIT_CAMERAS.trigonal, "BF3");
+    ok("NEGATIVE CONTROL: the state's opening solve puts BF3 BELOW the countability floor",
+      bf3.occ < OCC && bf3t.occ >= OCC,
+      `general occ=${bf3.occ.toFixed(4)} -> trigonal occ=${bf3t.occ.toFixed(4)} (floor ${OCC})`);
+    ok("...and draws its 120 deg plane edge-on enough to read 22.6 deg wrong",
+      bf3.angErr > 20 && bf3t.angErr <= ANG,
+      `drawn bond angle off by ${bf3.angErr.toFixed(1)} deg -> ${bf3t.angErr.toFixed(1)} deg`);
+    const dia = ["HF", "HCl", "HBr", "HI"];
+    const worstGen = Math.min(...dia.map((k) => metrics(gen, k).len));
+    const worstDia = Math.min(...dia.map((k) => metrics(E.BS_UNIT_CAMERAS.diatomic, k).len));
+    ok("...and foreshortens all four halide rungs, the one quantity that row teaches",
+      worstGen < LEN && worstDia >= LEN,
+      `${worstGen.toFixed(4)}x -> ${worstDia.toFixed(4)}x true drawn bond length (+${((worstDia / worstGen - 1) * 100).toFixed(1)}%)`);
+  }
+
+  // ── (d) THE TRIGONAL SOLVE, and the CONSTRAINT that fixes its azimuth.
+  //   The angle slider pyramidalises BF3 about its C3 axis (the plane normal, az
+  //   57), so the resultant that bend creates points along that axis: the azimuth
+  //   that draws the flat plane best is the one that hides the bent resultant.
+  {
+    const tri = E.BS_UNIT_CAMERAS.trigonal;
+    ok("the TRIGONAL solve is the measured constant, at the house azimuth",
+      JSON.stringify(tri) === JSON.stringify({ az: 35, el: 15, dist: 7 }) &&
+      tri.az === E.BS_UNIT_CAMERAS.general.az &&
+      Math.abs(E.MG_BEND_AZ - tri.az * Math.PI / 180) < 1e-12, JSON.stringify(tri));
+    const bent = metrics(tri, "BF3", 95);
+    ok("a teacher who BENDS BF3 still sees the resultant the bend creates",
+      bent.res >= RES, `${bent.res.toFixed(4)}x true drawn length (floor ${RES})`);
+    const faceOn = metrics({ az: 57, el: 0, dist: 7 }, "BF3", 95);
+    const faceFlat = metrics({ az: 57, el: 0, dist: 7 }, "BF3");
+    ok("NEGATIVE CONTROL: the azimuth that draws the FLAT plane best kills that resultant",
+      faceFlat.angErr < 0.5 && faceOn.res < 0.02,
+      `az 57 el 0: flat angle-err ${faceFlat.angErr.toFixed(2)} deg but bent resultant ${faceOn.res.toFixed(4)}x`);
+    ok("NEGATIVE CONTROL: the pyramid's own azimuth is wrong for a trigonal plane",
+      metrics({ az: 120, el: 15, dist: 7 }, "BF3").occ < OCC,
+      `az 120 el 15: occ=${metrics({ az: 120, el: 15, dist: 7 }, "BF3").occ.toFixed(4)}`);
+    console.log(`    trigonal solve  az ${tri.az} el ${tri.el}: occ=${metrics(tri, "BF3").occ.toFixed(4)} ` +
+      `angle-err=${metrics(tri, "BF3").angErr.toFixed(1)}deg bent-resultant=${bent.res.toFixed(4)}x  ` +
+      `(was occ=${metrics(E.BS_UNIT_CAMERAS.general, "BF3").occ.toFixed(4)} / ${metrics(E.BS_UNIT_CAMERAS.general, "BF3").angErr.toFixed(1)}deg)`);
+  }
+
+  // ── (e) NO TELEPORT, NO HISTORY, NO GUIDED REACH.
+  {
+    ok("a pick INSIDE one shape key moves the camera by exactly nothing",
+      drive([{ id: "molecule", v: "CO2" }]).moves.length === 0 &&
+      drive([{ id: "molecule", v: "CCl4" }]).moves.length === 0 &&
+      drive([{ id: "ligand", v: "HI" }, { id: "ligand", v: "HF" }]).moves.length === 1,
+      "H2O -> CO2 / CCl4: 0 moves; the four halide rungs share ONE camera");
+    const viaA = drive([{ id: "molecule", v: "BF3" }]).cam;
+    const viaB = drive([{ id: "molecule", v: "HI" }, { id: "molecule", v: "CCl4" }, { id: "molecule", v: "BF3" }]).cam;
+    ok("the destination is a pure function of the RESOLVED species, not of the route",
+      JSON.stringify(viaA) === JSON.stringify(viaB), JSON.stringify(viaA));
+    ok("THE GUIDED ASSERTION: outside explore a pick re-frames nothing",
+      drive([{ id: "molecule", v: "HI" }], "dipole_sum", null, null).moves.length === 0 &&
+      drive([{ id: "molecule", v: "HI" }], "compare", null, null).moves.length === 0);
+    ok("...and an authored camera or camera_position is never overridden by a pick",
+      drive([{ id: "molecule", v: "HI" }], "explore", null, null).moves.length === 0);
+    ok("a lattice / multi-unit / off-centre scene has no per-species key to follow",
+      E.bscSolvedShapeKey({ mode: "coordination", placement: "lattice", units: [{ species: "Na+" }] }, "HI") === null &&
+      E.bscSolvedShapeKey({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] }, "HI") === null &&
+      E.bscSolvedShapeKey({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }, "HI") === null &&
+      E.bscSolvedShapeKey({ mode: "explore", species: "H2O" }, "HI") === "diatomic");
   }
 }
 

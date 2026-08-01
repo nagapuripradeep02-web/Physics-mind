@@ -49008,36 +49008,136 @@ export const FIELD_3D_RENDERER_CODE = `
     //   at 1.043, 0.3% above 12 — not worth deviating from the measured value.
     //   The diatomic key changes NOTHING else: pyramidal and general keep their
     //   E1c-A values byte for byte, asserted by check:bonding-scene.
+    //
+    //   AND A TRIGONAL PLANAR CENTRE IS A THIRD SHAPE, NOT THE GENERAL ONE (E1c-H).
+    //   BF3 is the only 3-bond zero-lone entry in the table, and mgIdealDirs puts
+    //   its plane on the +y apex plus two domains a quarter turn either side of
+    //   MG_AZ0 — so the PLANE CONTAINS the view-up axis and its normal is
+    //   horizontal at azimuth 57. Looking down at the general solve-s 47 therefore
+    //   tilts that plane 47 deg away from the viewer, and the drawn angle between
+    //   two bonds reads 22.6 deg WRONG (97.4 instead of 120) while the countability
+    //   metric falls to occ 0.0875 NDC — BELOW the 0.09 floor the pyramid solve was
+    //   measured against. A state whose whole content is "symmetric arrangement,
+    //   therefore zero" cannot show its symmetry through a 22.6 deg lie.
+    //     THE SWEEP (same rig as above: shipped perspective, FOV 60, aspect 16:9,
+    //   dist 7, the E3a occlusion metric plus the drawn-vs-true bond ANGLE, over
+    //   az 0..359 x el 0..60 at 1 deg). It is genuinely two-dimensional and in the
+    //   E1c-E sense: the OBJECTIVE (a countable, honestly-angled trigonal plane)
+    //   peaks in AZIMUTH at 55..60 — dead down the plane normal, where the drawn
+    //   angle error is 1.6 deg and occ 0.213 — and that is exactly where the
+    //   CONSTRAINT collapses. The explore angle slider PYRAMIDALISES BF3 (mgSqueeze-s
+    //   degenerate n=3 branch rotates the tripod about the C3 axis, which IS that
+    //   normal), and the resultant the bend creates then points at the camera: at
+    //   az 57 it draws 0.33 of its true length, and at az 57 / el 0 exactly 0.0000.
+    //   A 1-D elevation sweep at any single azimuth reports none of this.
+    //     AZIMUTH IS THEREFORE HELD AT 35, the house value every other unit solve
+    //   and every BS_CAMERAS entry already uses (and the value MG_BEND_AZ is tied
+    //   to). It clears the constraint — the bent resultant keeps 0.546 of its true
+    //   drawn length, 68 px at 720p — and costs 3.6 deg of angle fidelity against
+    //   the unreachable az-57 optimum. Holding it also means a species pick moves
+    //   the camera in ELEVATION ONLY: a tilt, never a swing around the molecule.
+    //   ELEVATION then carries the objective, and the solve is the ROBUST INTERIOR
+    //   of the band where both hold (el 10..20, measured at az 35, dist 7):
+    //     el 15  occ 0.1559 NDC (1.7x the 0.09 floor), drawn bond angle 5.2 deg
+    //            from true (was 22.6), vector gap 0.1225, box 0.516, and the bent
+    //            resultant 0.5457x true (9% above the 0.50 floor).
+    //     el 10  the constraint boundary: resultant 0.5024x — inside, but with no
+    //            margin, which is what "interior" means.
+    //     el 47  NEGATIVE CONTROL, i.e. today: occ 0.0875 (fails), angle 22.6 deg
+    //            wrong, and only 22% of the free-run spin cycle stays countable
+    //            against 50% at el 15.
+    //   WHAT THE CAMERA CANNOT FIX, stated because it is measured and it is the
+    //   residual: the explore sandbox free-runs a spin about +y (Rule 37), and
+    //   BF3-s plane CONTAINS +y, so the plane passes edge-on twice per revolution
+    //   and at that phase the far fluorine sits on the boron. The best camera
+    //   anywhere in the whole (az, el) grid holds spin-worst occ 0.0639 at el 4 —
+    //   still below the floor — so no solve removes it. The trigonal key buys the
+    //   COVERAGE (0.22 -> 0.50 of the cycle countable) and the honest angle, not
+    //   the worst phase; removing the worst phase is a spin-AXIS question, not a
+    //   camera one, and is handed off rather than smuggled in here.
     var BS_UNIT_CAMERAS = {
         pyramidal: { az: 120, el: 15, dist: 7.0 },
         diatomic:  { az: 35, el: 12, dist: 7.0 },
+        trigonal:  { az: 35, el: 15, dist: 7.0 },
         general:   { az: 35, el: 47, dist: 7.0 }
     };
     // The scene-derived shape key: a centre whose bonds all sit on ONE side of it
     // (three bonds plus at least one lone pair) puts a ligand behind the centre at
     // a shallow look-down; a centre with ONE bond lays that bond along the view-up
-    // axis and loses its length to foreshortening. Everything else — tetrahedral,
-    // trigonal planar, bent, linear — surrounds its centre and reads at the
-    // general solve.
+    // axis and loses its length to foreshortening; a centre with three bonds and NO
+    // lone pair is PLANAR, and its plane contains the view-up axis. Everything else
+    // — tetrahedral, bent, linear — surrounds its centre in three dimensions and
+    // reads at the general solve.
     function bscUnitShapeKey(molKey) {
         var m = MG_MOLECULES[molKey];
         if (!m) return "general";
         if (m.bonds === 3 && m.lone >= 1) return "pyramidal";
+        if (m.bonds === 3) return "trigonal";
         if (m.bonds === 1) return "diatomic";
         return "general";
     }
-    // Derived from the state ALONE (never from the live camera or a dragged
-    // picker), so the countable view is identical on the first frame and under a
-    // SET_TIME_FREEZE pin — the D-4 property this whole family exists to keep.
-    function bscSolvedCamera(bs) {
-        var base = BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
-        if (bs.placement === "lattice") return base;
+    // The shape key the SOLVE itself uses, or null when the scene is framed by its
+    // mode's own camera (a lattice, a multi-unit box, a unit parked off-centre) and
+    // no per-species key applies at all. Split out by E1c-H so the explore re-frame
+    // asks the SAME question the state-entry solve asks, rather than a second copy
+    // of its guards that could drift out of step. speciesOverride is the species a
+    // picker has just resolved; omitted, this is byte-for-byte the E1c-A behaviour.
+    function bscSolvedShapeKey(bs, speciesOverride) {
+        if (bs.placement === "lattice") return null;
         var units = (bs.units && bs.units.length) ? bs.units : null;
-        if (units && units.length > 1) return base;
+        if (units && units.length > 1) return null;
         var at = (units && units[0] && units[0].at) ? units[0].at : [0, 0, 0];
-        if (bscMag(at) > 0.5) return base;   // parked off-centre: a wider scene
-        var sp = (units && units[0] && units[0].species) || bs.species || null;
-        return BS_UNIT_CAMERAS[bscUnitShapeKey(sp)];
+        if (bscMag(at) > 0.5) return null;   // parked off-centre: a wider scene
+        var sp = speciesOverride || (units && units[0] && units[0].species) || bs.species || null;
+        return bscUnitShapeKey(sp);
+    }
+    // Derived from the state ALONE (never from the live camera), so the countable
+    // view is identical on the first frame and under a SET_TIME_FREEZE pin — the
+    // D-4 property this whole family exists to keep. In an EXPLORE state the
+    // "species" is whatever the picker has resolved (E1c-H), which is still a pure
+    // function of that species and of nothing else: same species, same camera,
+    // however the teacher reached it.
+    function bscSolvedCamera(bs, speciesOverride) {
+        var k = bscSolvedShapeKey(bs, speciesOverride);
+        if (k) return BS_UNIT_CAMERAS[k];
+        return BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+    }
+    // ── E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES.
+    //   The solve was resolved once per STATE, so every picker species was framed
+    //   by the camera measured for the species the state happens to OPEN on: the
+    //   four halides — the ladder the Halide row exists for, whose whole lesson is
+    //   the arrow's LENGTH (E1c-D) — were drawn at the general solve's el 47, where
+    //   a 1-bond unit loses 20.6% of its projected bond length, and BF3 was drawn
+    //   at a solve that reads its 120 deg as 97 deg (see BS_UNIT_CAMERAS above).
+    //   The shape key already existed; explore simply never consulted it per pick.
+    //   THREE PROPERTIES, and they are the contract:
+    //     PURE. The destination is BS_UNIT_CAMERAS[shape key of the resolved
+    //       species] — no clock, no accumulator, no dependence on the route taken,
+    //       so a frozen replay of the same species is the same pixels (D-1). The
+    //       FRAME pass writes no camera state at all; this is the event half, the
+    //       E1c-G shape.
+    //     IT MOVES, IT DOES NOT CUT. animateCameraTo is the same helper state entry
+    //       uses (a fixed-rate lerp that converges and snaps), so a pick reads as
+    //       one caused move in the one camera vocabulary the scenario already has —
+    //       Rule 32a, and no new duration constant to drift.
+    //     ONLY WHEN THE SHAPE CHANGES. A pick inside one shape key (CO2 -> H2O,
+    //       HF -> HI) moves the camera by exactly nothing, so the four-rung halide
+    //       ladder still holds ONE camera across its rungs (the E1c-A no-teleport
+    //       property, carried to the picker) and a teacher who has orbited by hand
+    //       keeps their view for every same-shape pick.
+    //   Guided states never reach it: PM_bscCamBs is published as null unless the
+    //   state's own mode is explore AND the state left the camera to the solve.
+    function bscReframeForSpecies(sp) {
+        var bs = window.PM_bscCamBs;
+        if (!bs) return;
+        var k = bscSolvedShapeKey(bs, sp);
+        if (!k || k === window.PM_bscCamKey) return;
+        window.PM_bscCamKey = k;
+        var cam = BS_UNIT_CAMERAS[k];
+        if (!cam) return;
+        var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+        var dd = cam.dist || 7;
+        animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
     }
 
     // ── pure helpers (all closed-form; nothing below reads live scene state) ──
@@ -50089,6 +50189,10 @@ export const FIELD_3D_RENDERER_CODE = `
             var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
             if (asl) asl.value = String(mv.angle);
             if (avl) avl.textContent = Number(mv.angle).toFixed(1);
+            // E1c-H: and the camera follows the species, so the picked molecule is
+            // seen from the solve measured for ITS shape. Last, after the widgets
+            // agree, and a no-op unless the shape key actually changed.
+            bscReframeForSpecies(v);
         }
         function wireSelect(id, key) {
             var el = document.getElementById("bsc_" + id + "_select");
@@ -50237,6 +50341,17 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
         }
+        // E1c-H: publish what the explore re-frame needs, and NOTHING a guided
+        // state can act on. PM_bscCamKey records the shape key the camera above was
+        // actually solved for (null when the mode's own camera framed the scene),
+        // so a pick can tell "same shape, do not move" from "new shape, re-frame".
+        // PM_bscCamBs is the state's own block, published ONLY when the state is an
+        // explore sandbox that left its camera to the solve — a guided state, an
+        // authored bs.camera and an authored camera_position each publish null, so
+        // the picker path cannot move a camera those three own.
+        window.PM_bscCamKey = (bs.camera || stateDef.camera_position) ? null : bscSolvedShapeKey(bs, null);
+        window.PM_bscCamBs = ((bs.mode || "dipole_sum") === "explore" && !bs.camera && !stateDef.camera_position)
+            ? bs : null;
         // Seed the ion-pair picker from the state's OWN sublattice species, so a
         // scripted lattice and the widget that shares it agree at state entry
         // (FIXED scar scripted_change_desyncs_the_dom_control_that_shares_it).
