@@ -132,6 +132,41 @@ glow focal stays `angle_arc` (on crate B) · DoD (b) gains crate A `#42A5F5` / c
 (visibly distinct per the compared-bodies-must-differ lesson) · FIT CHECK S5 row rewritten to cite
 multi-body `bodies[]`, per-body `applied_force`, and SEAM L's own compare-group design intent.
 
+### F3 narration · physics-author, READY TO APPLY
+
+`text_en` — **47 words total**, inside the architect's tighter 35–50 band for this state:
+
+| id | text | words |
+|---|---|---|
+| `s5_1` | "Two pulls run together on the same track: one flat, one tilted, seen before." | 14 |
+| `s5_2` | "The flat crate moves farther and collects more work per metre — both from the same angle." | 16 |
+| `s5_3` | "One formula, the dot product of force and displacement, matches both live readings exactly, at any angle." | 17 |
+
+`s5_1` grounds the compare in what the student has already met without naming "crate A/B" — the
+on-screen bar labels ("flat pull" / "tilted pull") and colours carry the identification. `s5_3`
+spells the scalar product in words rather than bare symbols (Rule 30) and reuses the old S5's own
+closing claim, "the same rule holds at any angle," for continuity.
+
+**Revised `label` (state-label strip):** *"Two pulls, 20 N flat and 20 N tilted to 60°, release
+together on the same track. The flat crate moves farther and collects more work per metre; one
+formula — the dot product of force and displacement — matches both live readings exactly."*
+
+**Revised `scene_composition` annotations** (documentary — a silent no-op on field_3d, but they must
+stop asserting the old single-crate/30° picture as ground truth):
+`wdcf_s5_head` → "Two pulls, one flat and one tilted, release together on the same track" ·
+`wdcf_s5_dot` → "W = F · d = F d cos θ — one formula, both live readings match exactly" ·
+`wdcf_s5_anchor` → "the same rule holds for any pull, flat or tilted, like a suitcase pulled level
+or by its slanted handle"
+
+**What a teacher says at the pin:** both readings come from the same formula — 57.6 J for the flat
+crate and 14.4 J for the tilted one — because the flat pull has moved farther **and** puts more of
+its force along the floor, not because of any fixed ratio to memorise.
+
+**Confirmed:** neither ratio appears anywhere (no "half", "twice", "four times", or any numeric
+multiple); where the pin guidance quotes the two raw values it attributes the difference to the two
+physical causes and explicitly disclaims a memorisable ratio. No U+20D7 in any authored string — the
+glyph survives only inside `formula_overlay`.
+
 ## P2s not yet routed (Checkpoint B F4/F5/F6)
 
 - **F4** `alex:json_author` — the 3D body label duplicates the HUD (`crate = 5 kg` rendered twice)
