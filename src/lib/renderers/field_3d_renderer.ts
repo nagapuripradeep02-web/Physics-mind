@@ -42993,7 +42993,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         for (var pi = 0; pi < eng.order.length; pi++) {
             var pb = eng.bodies[eng.order[pi]];
-            if (pb) pb._s_pre = null;
+            if (pb) { pb._s_pre = null; pb._cpValid = false; }   // note 11b: and its step segment
         }
         window.PM_nlbWork = null;
         window.PM_nlbWorkApplied = 0;
@@ -44147,11 +44147,23 @@ export const FIELD_3D_RENDERER_CODE = `
         var span = Math.max(1e-6, (eng.length_m || 0) * 2);
         var wk = eng.work_state;
         var wApplied = 0;
+        // SEAM M (note 11b) — the PRE-step endpoints a crossing stamp needs.
+        // nlbPublishEnergy has not run yet this frame, so eng.energy_snapshot
+        // still holds LAST frame's values: exactly the state at s0. They are
+        // captured HERE and nowhere else because this function is the last place
+        // b._s_pre still means "before the step" — it is overwritten below.
+        // Pure bookkeeping: no clock, no integration, nothing a rewind can carry.
+        var sn0 = eng.energy_snapshot;
+        eng._cpHas0 = !!sn0;
+        eng._cpX0 = sn0 ? (sn0.x_m || 0) : 0;
+        eng._cpE0 = sn0 ? (sn0.E_display || 0) : 0;
+        for (var wz = 0; wk && wz < wk.length; wz++) wk[wz]._dW = 0;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
-            if (!b || b.ghost || b.fixed || b._s_pre == null) continue;
+            if (!b) continue;
+            if (b.ghost || b.fixed || b._s_pre == null) { b._cpValid = false; continue; }
             var ds = b.s - b._s_pre;
-            if (!isFinite(ds) || Math.abs(ds) > span * 0.5) { b._s_pre = b.s; continue; }
+            if (!isFinite(ds) || Math.abs(ds) > span * 0.5) { b._s_pre = b.s; b._cpValid = false; continue; }
             // The INTERNAL, always-on applied-work term. It exists whether or not the
             // state authors a display ledger, because spec note 3's scope clause
             // (E_dissipated = E(t₀) + W_applied − (K + U + Uₛ)) is a property of the
@@ -44165,9 +44177,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (wk) {
                 for (var w = 0; w < wk.length; w++) {
                     if (wk[w].body_id !== b.id) continue;
-                    wk[w].W += nlbWorkForceAlong(eng, b, wk[w].force) * ds;
+                    var dWrow = nlbWorkForceAlong(eng, b, wk[w].force) * ds;
+                    wk[w].W += dWrow;
+                    wk[w]._dW += dWrow;      // note 11b: this step's share, for the crossing rewind
                 }
             }
+            // note 11b: the step segment, kept intact for the checkpoint pass that
+            // runs two calls later — by then b._s_pre has already advanced.
+            b._cpS0 = b._s_pre; b._cpS1 = b.s; b._cpValid = true;
             b._s_pre = b.s;
         }
         wApplied = eng.W_applied_J;
@@ -44213,22 +44230,109 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         if (changed) nlbRenderStamps(eng);
     }
+    // ── Note 11b — the CROSSING-INSTANT capture ──────────────────────────────
+    //   engine_bug_queue: nlb_checkpoint_capture_overshoots_exact_crossing_value.
+    //   The detector above can only NOTICE a crossing after the step that made
+    //   it, so every quantity read at that moment belongs to a body already PAST
+    //   the flag by up to one step of travel. The overshoot is F_along·(s1-s_m),
+    //   bounded by F_along·v·h: on concept #1's STATE_4 that is +0.6 J on a
+    //   40.0 J claim whose entire delta cue is "The numbers agree". The relative
+    //   error is h·sqrt(2a/d) — INDEPENDENT of F — so no authored force, distance
+    //   or precision can dodge it; it has to be fixed here.
+    //   THE FIX: every stamped quantity is evaluated AT s = cp.s_m, using the
+    //   step segment [s0, s1] nlbRunWorkAccum recorded two calls earlier, with
+    //   f = (s_m - s0)/(s1 - s0) clamped to [0,1]. Per quantity, and NOT a blind
+    //   lerp of all of them — a lerp is only correct where the quantity is
+    //   affine in the step:
+    //     s        = cp.s_m exactly           the crossing coordinate IS the value.
+    //     W        = W1 - (1-f)·ΔW            the accumulator holds F_along fixed
+    //                                         across a step, so the work it bills
+    //                                         is exactly linear in displacement.
+    //                                         EXACT, and rewound from the SAME
+    //                                         increment that was billed.
+    //     v        = sgn·√(v1² - 2a(s1-s_m))  NOT affine in f. The integrator's
+    //                                         trapezoid is the exact solution for
+    //                                         a constant a, so this identity is
+    //                                         exact — and it is the one that keeps
+    //                                         K in step with W, because it IS the
+    //                                         work-energy theorem. Lerping v would
+    //                                         leave a state that stamps both K and
+    //                                         W showing a theorem that fails by
+    //                                         O(h²). (With a spring the step adds
+    //                                         ½·a_spring·h², so the identity is
+    //                                         first-order there, not exact — still
+    //                                         one order better than the overshoot.)
+    //     K        = ½·m·v*²                  quadratic in v: rebuilt from v*,
+    //                                         never lerped.
+    //     U_grav   = m·g·h(s_m)               nlbHeightM is AFFINE in s, so the
+    //                                         height is shifted exactly, off this
+    //                                         frame's own h_m — no stale snapshot.
+    //     U_spring = ½·k·x*², x* = lerp(x)    x is affine in the body positions and
+    //                                         every body advances over the same
+    //                                         step, so x lerps; Uₛ is quadratic and
+    //                                         so is rebuilt from x*.
+    //     E_total  = lerp(E0, E1)             E_display is the ripple-corrected
+    //                                         CONSERVED total: its change across
+    //                                         one step is drift-level, far below
+    //                                         the displayed precision. The lerp
+    //                                         also stays right for a multi-body
+    //                                         state, where recomposing E from the
+    //                                         crossing body's K + U would not.
+    //   f is the checkpoint body's DISPLACEMENT fraction, which is also the step's
+    //   time fraction to O(h) — exactly so for a coupled train, where every body
+    //   shares one scalar advance. Any frame the segment is unusable (a teleport,
+    //   the sandbox wrap, a ghost, the first frame after a rewind) falls back to
+    //   the post-step read: the old behaviour, never worse.
+    //   Rule 36: pure algebra over values this frame already wrote. Under a
+    //   SET_TIME_FREEZE pin the segment is empty, no crossing can fire, and a
+    //   latched stamp re-renders its own text — so no frozen baseline can move.
+    function nlbCpFrac(cp, b) {
+        if (!b || b._cpValid !== true || b._cpS0 == null || b._cpS1 == null) return null;
+        var ds = b._cpS1 - b._cpS0;
+        if (!isFinite(ds) || ds === 0) return null;
+        var f = (cp.s_m - b._cpS0) / ds;
+        if (!isFinite(f)) return null;
+        return f < 0 ? 0 : (f > 1 ? 1 : f);
+    }
     function nlbCpStampText(eng, cp, b, snap) {
         var prec = (eng.energy_layer && eng.energy_layer.precision != null)
             ? eng.energy_layer.precision : 1;
+        var f = nlbCpFrac(cp, b);
+        // Post-step reads are the fallback for every quantity; each is replaced
+        // below only when the step segment makes the crossing instant recoverable.
+        var vX = b.v, kX = b.K_J || 0, ugX = b.U_grav_J || 0, sX = b.s;
+        var usX = snap ? snap.U_spring : 0;
+        var eX = snap ? snap.E_display : 0;
+        if (f != null) {
+            sX = cp.s_m;
+            var back = b._cpS1 - cp.s_m;               // how far past the flag the step ran
+            var vsq = b.v * b.v - 2 * (b.a || 0) * back;
+            vX = ((b._cpS1 - b._cpS0) >= 0 ? 1 : -1) * Math.sqrt(vsq > 0 ? vsq : 0);
+            kX = 0.5 * b.m * vX * vX;
+            var dh = (cp.s_m - b.s) *
+                (b.hanging ? -1 : Math.sin((eng.theta_deg || 0) * Math.PI / 180));
+            ugX = b.m * NLB_G * ((b.h_m || 0) + dh);
+            if (eng._cpHas0 && snap) {
+                var xX = eng._cpX0 + f * ((snap.x_m || 0) - eng._cpX0);
+                usX = 0.5 * (snap.k || 0) * xX * xX;
+                eX = eng._cpE0 + f * ((snap.E_display || 0) - eng._cpE0);
+            }
+        }
         var parts = [];
         for (var i = 0; i < cp.capture.length; i++) {
             var k = cp.capture[i];
-            if (k === "K") parts.push("K = " + nlbEnFx(b.K_J || 0, prec));
-            else if (k === "U_grav") parts.push("U = " + nlbEnFx(b.U_grav_J || 0, prec));
-            else if (k === "U_spring") parts.push("Uₛ = " + nlbEnFx(snap ? snap.U_spring : 0, prec));
-            else if (k === "E_total") parts.push("E = " + nlbEnFx(snap ? snap.E_display : 0, prec));
-            else if (k === "v") parts.push("v = " + nlbFx(b.v, 2) + " m/s");
-            else if (k === "s") parts.push("s = " + nlbFx(b.s, 2) + " m");
+            if (k === "K") parts.push("K = " + nlbEnFx(kX, prec));
+            else if (k === "U_grav") parts.push("U = " + nlbEnFx(ugX, prec));
+            else if (k === "U_spring") parts.push("Uₛ = " + nlbEnFx(usX, prec));
+            else if (k === "E_total") parts.push("E = " + nlbEnFx(eX, prec));
+            else if (k === "v") parts.push("v = " + nlbFx(vX, 2) + " m/s");
+            else if (k === "s") parts.push("s = " + nlbFx(sX, 2) + " m");
             else if (k === "W") {
                 var wk = eng.work_state || [];
                 for (var w = 0; w < wk.length; w++) {
-                    parts.push("W " + wk[w].label + " = " + nlbEnFx(wk[w].W, prec));
+                    var wv = wk[w].W;
+                    if (f != null && typeof wk[w]._dW === "number") wv -= (1 - f) * wk[w]._dW;
+                    parts.push("W " + wk[w].label + " = " + nlbEnFx(wv, prec));
                 }
             }
         }
