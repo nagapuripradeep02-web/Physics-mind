@@ -12,10 +12,10 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: founder-proxy Checkpoint A RE-REVIEW of skeleton cycle 2 (verify the 16 fixes landed)
+next: 0c — dispatch field3d-surgeon to build the ENERGY LAYER against skeleton.md ENGINE SPEC NOTES
 done: (none yet)
 parked: (none)
-in_flight: conservation_of_mechanical_energy  stage=design(0b) cycle2 written, awaiting re-review
+in_flight: conservation_of_mechanical_energy  stage=0c-ready  checkpointA=CLOSED
 engine_commits: (none yet)
 
 ## Approved chapter map (founder 2026-08-01) — teaching order
@@ -56,6 +56,32 @@ Fix 1 (incline + fixed wall + spring at the base, permanent home pose) collapses
 
 NOTHING dispatches to field3d-surgeon until the spec is corrected — building against the current
 text would build the wrong engine, the exact failure Phase-0 exists to prevent.
+
+## CHECKPOINT A CLOSED 2026-08-01 — skeleton.md IS the 0c build contract
+
+Cycle 1: DESIGN_FIX, 16 findings (3 blocking, independently verified against renderer source).
+Cycle 2: 14/16 landed; 2 must-fix spec-text patches supplied VERBATIM by the reviewer and applied by
+the dispatching session (no third cycle — the reviewer explicitly directed "apply and proceed to 0c,
+no re-review needed"). Union table CLOSED: all 11 sibling concepts now authorable as pure JSON.
+
+The cycle-2 catch worth remembering: the architect asserted the symplectic energy ripple would sit
+"below 0.1 J display precision". The real figure is ~0.55 J (|dE| ~ (w*dt/2)*E is LINEAR in w*dt) —
+re-derived independently before applying. Building it as written would have visibly wobbled the total
+in the very state whose caption claims it is constant. Fix = a display-side shadow-Hamiltonian
+correction term, NOT a bigger slow_factor.
+
+## 0c DISPATCH BRIEF (field3d-surgeon) — read before dispatching
+
+Build target: an ENERGY LAYER on `newtons_laws_body` per skeleton.md "ENGINE SPEC NOTES" (19 notes).
+- ONE bug_class per dispatch, ~100-call ceiling, clean handoff note at the ceiling (Amendment 4).
+- Rule 40: this is a SHARED platform file. lom-f and lom-g are LIVE on branches touching it —
+  diff-first, region-disjoint, and land the engine commit on master separately from concept work.
+- Regression EYE sample MUST include `newton_third_law` (owns the legacy scripted spring apparatus,
+  which note 8c keeps working) AND — because note 19c changes shared `N` — a wider sample than the
+  choreography spec's list (~10 shipped concepts read N).
+- Verify chain: check:renderer-syntax -> tsc -> validate:concepts -> re-seed cache -> visual:eyes ->
+  regression sample. Never leave the build broken.
+- Scar candidates from Checkpoint A (3 directive rows) are FILES only, not yet applied to the DB.
 
 ## FOUNDER DECISION 2026-08-01 — spring: real physics, slowed playback (AMENDS the 2026-07-30 directive)
 
