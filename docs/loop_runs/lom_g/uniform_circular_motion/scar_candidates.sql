@@ -168,3 +168,65 @@ UPDATE engine_bug_queue
    AND owner_cluster = 'peter_parker:renderer_primitives';
 
 -- END OF FILE - nothing above was executed by the auditor.
+
+
+-- =====================================================================
+-- APPENDED 2026-08-01 by peter_parker:field3d_surgeon (engine dispatch,
+-- chapter-loop context -> SQL TEXT ONLY, nothing executed).
+-- =====================================================================
+
+-- ---------------------------------------------------------------------
+-- Candidate F - the dispatched bug_class, now FIXED.
+-- NOTE for the founder: the diagnosis handed to the dispatch (the released
+-- flag / ballistic state "not rebuilt when the clock is pinned") was NOT the
+-- mechanism. frResetTrajectory re-arms the cut correctly and the crawl fires
+-- it at exactly 19600 ms when given enough wall clock (measured). The clock
+-- simply never ARRIVED at the pin inside captureFrozenFrame's wall cap.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_whirl_release_not_reproduced_under_set_time_freeze_pin',
+    'A SET_TIME_FREEZE pin later than about 4 seconds is unreachable under headless rAF, and captureFrozenFrame photographs the un-pinned frame anyway',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'The SET_TIME_FREEZE crawl advances virtual time by one fixed 1/60 s step per rAF frame (__pmSteps is forced to 1 under a pin). Headless Chromium delivers about 18 rAF frames per second, so the crawl covers only about 290 ms of SIM time per WALL second. A 20800 ms pin therefore needs about 75 s of wall clock - measured directly on the tray: sim=19744 at 71.2 s, pin reached at 75.5 s. captureFrozenFrame polls for at_ms*2.5+4000 ms (56 s here) and then, unlike the primary capture which was made fatal on 2026-07-31, screenshots anyway. Solving 0.29*(2.5*at+4000) >= at shows every pin past roughly 4.2 s is a coin flip on this hardware. uniform_circular_motion STATE_3 (the cut-the-string PRIMARY AHA, pinned at 20800 ms, release at 19600 ms) consequently photographed the PRE-CUT orbit - T = 12.96 N, string intact, no trail - at a wall-clock-dependent instant: the only frozen frame in the fleet that was both WRONG and UNSTABLE run to run (0.289 percent of pixels across three identical runs). The release mechanism itself was never broken; the same code fires the cut correctly on the dense/live path and on a crawl given 75 s. A second, smaller nondeterminism rode along: the handful of live frames between THE EYE RESET_TRAJECTORY and its SET_TIME_FREEZE (three separate round trips) run at wall-clock __pmSteps, so the crawl chunk boundaries - and the bob phase at the pin - depended on machine load.',
+    'A pinned frame must be a pure function of at_ms, never of how many rAF frames the host managed to deliver. An integrator scenario that cannot join the accumulator-free SNAP set gets a COMPRESSED CRAWL instead: on the first frame of a new pin whose lag exceeds 2 s, rewind through the ONE rewind path (frResetTrajectory) and replay exactly round(at_ms/16) chunks of dt = 0.016 in that single tick - identical dt, identical order (phases and param_ramp once per chunk, then the fixed 0.002 s micro-steps), identical count, so it is the same arithmetic sequence the slow crawl produced with the wall clock taken out. Replaying from t_ms = 0 also removes the pre-freeze jitter. The 2 s gate keeps the LIVE player on the ordinary crawl (its pins are lag 0 pause pins or the 1500 ms entry default). Never write __pmSteps or dtStep to achieve this - read them only (Rule 36). Any scenario_type whose reveal pins exceed about 4 s and which is NOT in the SNAP set is a candidate for the same treatment; newtons_laws_body is the next one to check.',
+    'js_eval',
+    'For each state, post RESET_TRAJECTORY then SET_TIME_FREEZE {at_ms}, poll window.PM_simTimeMs, and assert it reaches at_ms within 8 s of wall clock. Any state that needs longer is being photographed off its pin. Cross-check: capture the frozen frame twice in one session and assert the two PNGs are byte-identical.',
+    'FIXED',
+    ARRAY['uniform_circular_motion', 'equilibrium_of_particles']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g field3d_surgeon engine dispatch 2026-08-01',
+    'incident'
+);
+
+
+-- ---------------------------------------------------------------------
+-- Candidate G - the tooling half. NOT fixed by this dispatch (screenshotter.ts
+-- is EYE tooling, outside the field3d_surgeon sacred-file scope, and it is a
+-- separate bug_class). Filed so the founder can route it.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'capture_frozen_frame_ignores_its_own_poll_result_and_photographs_off_pin',
+    'captureFrozenFrame discards pollSimTimeReached().reached and screenshots regardless, manufacturing a wrong-phase baseline exactly as the primary capture used to',
+    'MAJOR',
+    'ambiguous',
+    'screenshotter.ts captureFrozenFrame calls pollSimTimeReached(page, panel_a, opts.atMs, {wallCapMs: opts.atMs * 2.5 + 4000}) and then uses ONLY poll.waitedMs to shorten the settle - poll.reached is never read. When the cap expires the function captures the frame anyway and the PNG becomes the H2 baseline. The primary capture path had exactly this defect and was made FATAL on 2026-07-31 with the comment "a frame that missed its pin is not evidence"; the frozen path, which is the path that actually MINTS the baselines, kept the silent behaviour. Its cap is also smaller than the primary path (2.5x+4000 vs 3.5x+8000), so the frozen frame is the first to miss. This is what let force_rig_whirl_release_not_reproduced_under_set_time_freeze_pin reach a founder-visible frame instead of aborting the run.',
+    'Every capture that becomes evidence must abort when its pin was not reached, not degrade into a screenshot. Make captureFrozenFrame throw on !poll.reached with the same message shape the primary capture uses, and align its wall cap with the primary path. A silent off-pin frame is worse than a failed run because it is indistinguishable from a real one downstream.',
+    'js_eval',
+    'grep captureFrozenFrame in src/lib/validators/visual/screenshotter.ts and assert the body references poll.reached in a throw; assert its wallCapMs is not smaller than the primary capture wallCapMs.',
+    'OPEN',
+    ARRAY['uniform_circular_motion', 'equilibrium_of_particles']::text[],
+    ARRAY['src/lib/validators/visual/screenshotter.ts']::text[],
+    'lom-g field3d_surgeon engine dispatch 2026-08-01',
+    'incident'
+);
+
+-- END OF APPENDED BLOCK - nothing above was executed.

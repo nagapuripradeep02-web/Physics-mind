@@ -56116,6 +56116,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var __pmAccumMs = 0;
     var __pmLastWall;
     var __pmSteps = 1; // read by scenario updaters' inline accumulators too
+    // The freezeAtTime value whose force_rig catch-up has already been replayed
+    // (see the COMPRESSED CRAWL block below). Compared by VALUE, so a fresh pin —
+    // which always follows a RESET_TRAJECTORY that rebases stateStartTime, hence
+    // a different freezeAtTime — re-arms it, while the frames that follow one pin
+    // skip the replay. Cleared outright by the SET_TIME_FREEZE handler.
+    var __frPinCaughtUp = null;
     function animate() {
         animationId = requestAnimationFrame(animate);
         // ⚙ generic widget engine heartbeat (~2 Hz): catches mid-state reveals
@@ -56143,6 +56149,56 @@ export const FIELD_3D_RENDERER_CODE = `
         // trail, slow_rotation integration) build the exact same frame count
         // every run → deterministic pixels for regression baselines.
         var heldAtPin = false;
+        // COMPRESSED CRAWL (force_rig) — the fast-forward for a scenario that
+        // CANNOT snap. The block below lets accumulator-free scenarios jump
+        // straight to the pin; force_rig is a genuine integrator (the whirl bob's
+        // p3/v3, its trail, the released latch, the damped ring) so a jump would
+        // skip the physics entirely. It has the SAME disease though: rAF in
+        // headless Chromium delivers ~18 fps, so the 0.016-s-per-frame crawl
+        // covers only ~290 ms of sim time per wall SECOND — a 20.8 s pin needs
+        // ~75 s of wall clock. captureFrozenFrame polls for at_ms*2.5+4000 ms
+        // (56 s here) and then, unlike the primary capture, photographs anyway.
+        // Solve 0.29*(2.5*at + 4000) >= at and every pin past ~4.2 s is a coin
+        // flip on this tray. That is how uniform_circular_motion STATE_3 — the
+        // cut-the-string aha, pinned at 20800 ms — kept photographing the PRE-CUT
+        // orbit (T = 12.96 N, string intact, no trail) at a wall-clock-dependent
+        // instant: the only frozen frame in the fleet that was both WRONG and
+        // UNSTABLE run to run (0.289 % of pixels). Nothing was broken in the
+        // release itself — frResetTrajectory re-arms it correctly and a crawl
+        // given 75 s fires the cut at exactly 19600 ms — the clock simply never
+        // arrived. (engine_bug_queue force_rig_whirl_release_not_reproduced_
+        // under_set_time_freeze_pin.)
+        //
+        // The cure runs the crawl's OWN frames, thousands per rAF tick instead of
+        // one, from a known origin: rewind through the ONE rewind path
+        // (frResetTrajectory) and replay exactly round(at_ms/16) chunks of
+        // dt = 0.016. Identical dt, identical order (phases + param_ramp once per
+        // chunk, then the 8 fixed 0.002-s micro-steps), identical count — the
+        // same arithmetic sequence the slow crawl produced, just not spread over
+        // wall clock. It is NOT a jump: a ramped state still ramps, the release
+        // still fires inside the micro-step that contains it, and the trail still
+        // accumulates sample by sample. Replaying from the rewind ALSO removes
+        // the residual jitter: the handful of live frames between THE EYE's
+        // RESET_TRAJECTORY and its SET_TIME_FREEZE (three separate round trips)
+        // run at wall-clock __pmSteps, so the crawl's chunk boundaries — and with
+        // them the bob's phase at the pin — used to depend on machine load.
+        // Replay from t_ms = 0 makes the pinned pose a pure function of at_ms.
+        //
+        // Gated on a lag of more than 2 s so the LIVE player is untouched: its
+        // pins are "hold here" (pause pins at the current sim time, lag 0) or the
+        // 1500 ms entry default, both of which keep today's ordinary crawl.
+        // Rule 36 untouched: dtStep and __pmSteps are read, never written, and
+        // nothing here runs unless a pin is active.
+        if (config.scenario_type === "force_rig" && freezeAtTime !== null && dtStep > 0
+            && __frPinCaughtUp !== freezeAtTime && (freezeAtTime - time) > 2.0) {
+            __frPinCaughtUp = freezeAtTime;                     // once per pin, not once per frame
+            var __frChunks = Math.round(((freezeAtTime - stateStartTime) * 1000) / 16);
+            if (__frChunks < 0) __frChunks = 0;
+            if (__frChunks > 4000) __frChunks = 4000;           // ≤64 s of sim time per pin
+            frResetTrajectory();
+            for (var __frI = 0; __frI < __frChunks; __frI++) updateForceRigFrame(0.016);
+            time = freezeAtTime;
+        }
         // ACCUMULATOR-FREE FAST-FORWARD: electric_potential_meaning has NO per-frame
         // accumulators — every reveal is a pure function of (time - stateStartTime)
         // (route lerp, badge drain, q→2q grow, shell fade-in, ΔV/∞ draw, idle sweep).
@@ -59371,6 +59427,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // stateStartTime + at_ms/1000 (see freezeAtTime declaration
                     // for the determinism contract + compass caveat). Callers
                     // send RESET_TRAJECTORY first so the pin is state-local.
+                    __frPinCaughtUp = null;   // re-arm force_rig's compressed crawl for THIS pin
                     if (data.frozen === false) {
                         freezeAtTime = null;
                     } else {
