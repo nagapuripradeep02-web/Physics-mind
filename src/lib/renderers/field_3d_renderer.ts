@@ -976,6 +976,30 @@ export interface Field3DConfig {
                 mu_s?: number;                     // omit/0 = frictionless for this body
                 mu_k?: number;
                 applied_force_N?: number;          // signed, along the body's own positive axis
+                // SEAM N (work_done_by_constant_force / positive_negative_zero_work,
+                // 2026-08-01). The applied force at an AUTHORED ANGLE — the chapter's
+                // textbook opening picture (a case pulled by a handle at an angle),
+                // and the only apparatus on which W = F·d·cos θ is a fact on screen
+                // rather than an assertion in the narration.
+                //   ONE vector, resolved in the body's own frame:
+                //       F⃗ = N · ( cos(angle_deg) · axis  +  sin(angle_deg) · perp )
+                //   axis = the body's own +s direction (up-slope), perp = the OUTWARD
+                //   surface normal. So a POSITIVE angle_deg lifts (reduces N), a
+                //   NEGATIVE one presses into the surface (increases N), and a
+                //   negative N flips the whole vector — handle and all.
+                //   • the ALONG component drives the integrator and every ledger, so
+                //     W_applied = ∫F·cos(angle)·ds = F·d·cos(angle) falls out of SEAM
+                //     M's existing accumulator with no new path;
+                //   • the PERP component feeds N (and therefore μN), clamped at N ≥ 0
+                //     — see nlbNormal.
+                //   LEGACY IS SEALED: omit this key (or author angle_deg 0 / a bare
+                //   number) and every expression below takes the identical prior code
+                //   path, bit for bit. `applied_force` WINS over `applied_force_N`
+                //   when both are present.
+                applied_force?: number | {
+                    N: number;                     // signed magnitude along the handle
+                    angle_deg?: number;            // from the surface; default 0 = legacy
+                };
                 ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
                 // The wall / the Earth: infinite effective mass. SKIPPED by the
                 // integrator entirely (v and s never change), but — unlike `ghost` —
@@ -1309,7 +1333,10 @@ export interface Field3DConfig {
             // divided by the elapsed state-local seconds. Union-only (concepts #11 and
             // #12) — this chapter's conservation concept authors neither.
             readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2' | 'P' | 'P_avg'>;
-            controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
+            // 'F_ang' (SEAM N) is the applied force's ANGLE off the surface, in
+            // degrees — the one control that sweeps W = F·d·cos θ through positive →
+            // zero → negative without touching anything else.
+            controls_visible?: Array<'m' | 'm2' | 'F' | 'F_ang' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
             trusted_drag_seizes?: boolean;         // sandbox state only
             // ── SEAM L — the ENERGY DISPLAY LAYER (spec notes 1-5, 12, 13) ───
             // docs/loop_runs/ch6/conservation_of_mechanical_energy/skeleton.md.
@@ -1472,6 +1499,41 @@ export interface Field3DConfig {
                 capture?: Array<'K' | 'U_grav' | 'U_spring' | 'E_total' | 'v' | 's' | 'W'>;
                 capture_mode?: 'first' | 'every';   // default 'first' (latch on pass 1)
             }>;
+            // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ══════════════════
+            //   The two measuring instruments that turn `applied_force {N, angle_deg}`
+            //   into the chapter's opening picture. Both are ADDITIVE and gated on
+            //   their own presence: a state authoring neither renders exactly the
+            //   pixels SEAM M rendered.
+            //
+            // ── Note 19a — the displacement vector d ─────────────────────────────
+            //   A solid arrow lying ALONG the surface, from the body's RELEASE POINT
+            // (its authored initial_position_m — the same seed RESET_TRAJECTORY
+            // rewinds to) to wherever the body is right now. Its length is LIVE, so
+            // it grows as the body travels and it is the `d` in W = F·d·cos θ rather
+            // than a caption claiming one. Hidden while the body has not moved (a
+            // real zero is hidden, never drawn as a stub — the engine's own rule).
+            displacement_vector?: {
+                body_id?: string;              // default: the first integrated body
+                label?: string;                // default 'd'
+                show_value?: boolean;          // append ' = 2.35 m'; default TRUE —
+                                               // the number IS the lesson (the SEAM H
+                                               // segment-label precedent)
+            };
+            // ── Note 19b — the angle arc ─────────────────────────────────────────
+            //   An arc drawn at the body, between any TWO addressable directions,
+            // with a LIVE degree readout. `from`/`to` are a CLOSED enum of directions
+            // the engine already owns — the five force arrows, the displacement
+            // vector, and the surface's own +s axis (the natural reference when the
+            // question is "how far off the surface is this pull?"). An unknown member
+            // is DROPPED and the arc hides, never silently drawn from a default.
+            angle_arc?: {
+                from: 'applied' | 'weight' | 'normal' | 'friction' | 'tension' | 'net' | 'displacement' | 'surface';
+                to: 'applied' | 'weight' | 'normal' | 'friction' | 'tension' | 'net' | 'displacement' | 'surface';
+                body_id?: string;              // default: the first integrated body
+                label?: string;                // default 'θ'
+                show_value?: boolean;          // append ' = 30°'; default TRUE
+                radius?: number;               // world units from the body centre; default 0.85
+            };
             // ── SEAM K — loop_reset_ms (spec note 9) ─────────────────────────
             // Deterministic clock-based restart of the state's KINEMATICS to its
             // authored home pose, every R ms of the state-local clock. It exists
@@ -39426,11 +39488,21 @@ export const FIELD_3D_RENDERER_CODE = `
     //                     surface, and the P / Pₐᵥ readouts. Additive: each
     //                     block is gated on its own presence, so a state
     //                     authoring none of them is bit-for-bit SEAM L.
-    //                     NOT here: off-axis force geometry (applied_force
-    //                     {N, angle_deg}, the displacement vector d, the angle
-    //                     arc, the N >= 0 lift-off clamp) — that is SEAM N, and
-    //                     it goes alone because it changes the shared N that
-    //                     ~10 shipped concepts already read.
+    //                     NOT here: off-axis force geometry — that is SEAM N.
+    //     SEAM N        : OFF-AXIS FORCE GEOMETRY (spec note 19) — the applied
+    //                     force at an authored angle (applied_force {N, angle_deg}),
+    //                     the along/perp resolution that feeds the integrator and
+    //                     the shared N, the N >= 0 LIFT-OFF CLAMP, the live
+    //                     displacement vector d, the angle arc with its degree
+    //                     readout, and the F_ang teacher control. It went LAST and
+    //                     ALONE because it is the only seam that touches the shared
+    //                     N that ~10 shipped concepts already read.
+    //                     Additive by CONSTRUCTION, not by care: every angle-aware
+    //                     expression opens with "if (!angle) return the exact prior
+    //                     expression", so with no angle authored the legacy path is
+    //                     the identical statement, not a numerically-close rewrite.
+    //                     See nlbResolveApplied / nlbFAng / nlbForceAlong /
+    //                     nlbForcePerp / nlbNormal / nlbAppliedDir.
     var NLB_G = 9.8;                   // m/s^2 (a constant, NOT a clock — Rule 36)
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
@@ -40459,6 +40531,20 @@ export const FIELD_3D_RENDERER_CODE = `
         if (signedValue < 0) d.negate();
         return d;
     }
+    // SEAM N — the applied force's DRAWN direction. Its magnitude is the authored
+    // |F| (the whole pull, not one component): the arrow is the handle the case is
+    // pulled by, and the arc/HUD are what resolve it. With no angle authored this
+    // returns nlbSignedDir(axisUnit, F) itself — the same object the legacy call
+    // produced — so no existing arrow moves by a pixel.
+    function nlbAppliedDir(b, axisUnit, perpUnit) {
+        var a = nlbFAng(b);
+        if (!a) return nlbSignedDir(axisUnit, b.F_applied);
+        var r = a * Math.PI / 180;
+        var v = axisUnit.clone().multiplyScalar(Math.cos(r)).addScaledVector(perpUnit, Math.sin(r));
+        if ((b.F_applied || 0) < 0) v.negate();
+        if (v.lengthSq() < 1e-12) return nlbSignedDir(axisUnit, b.F_applied);
+        return v.normalize();
+    }
     function nlbArrowOrigin(bodyId, kind, hanging, thDeg) {
         var p = nlbBodyWorldPos(bodyId);
         var lane = NLB_ARROW_LANE[kind] || 0;
@@ -40675,7 +40761,7 @@ export const FIELD_3D_RENDERER_CODE = `
         else nlbHideArrowKind(b.id, "friction");
 
         // applied — along the body's own axis, direction from the sign of F_applied.
-        if (show.applied) nlbUpdateArrow(b.id, "applied", nlbArrowOrigin(b.id, "applied", b.hanging, th), nlbSignedDir(axis, b.F_applied), b.F_applied, lab.applied || "F");
+        if (show.applied) nlbUpdateArrow(b.id, "applied", nlbArrowOrigin(b.id, "applied", b.hanging, th), nlbAppliedDir(b, axis, perp), b.F_applied, lab.applied || "F");
         else nlbHideArrowKind(b.id, "applied");
 
         // tension — along the string TOWARD the pulley. Seam B's signed T is in
@@ -41601,6 +41687,12 @@ export const FIELD_3D_RENDERER_CODE = `
         //     stands them on the track with no branch anywhere).
         nlbBuildMarkers(surf, world);
 
+        // 6d. SEAM N — the off-axis measuring instruments, same contract: built ONCE
+        //     and hidden, the displacement arrow in the SURFACE group (so it lies
+        //     along the track at every theta) and the angle arc in the world group
+        //     (its two directions are already world vectors).
+        nlbBuildOffAxis(surf, world);
+
         // 7. Home pose: seed the surface from the FIRST state so the very first
         //    frame is already correct (applyNewtonsLawsBodyState re-seeds on entry).
         nlbApplySurface(nlbSurfaceThetaDeg(nlb0), nlbSurfaceLenM(nlb0));
@@ -41699,11 +41791,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // ASCII transcription (no "theta", "mu_s", "m2", "m/s2", "deg"). The label span
     // carries the math-serif stack because U+2081/U+2082/U+209B/U+2096/U+2080 are
     // missing from most monospace faces (the merged-blob / tofu subscript scar).
-    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "theta", "mu_s", "mu_k", "v0"];
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0"];
     var NLB_SLIDER_SPEC = {
         m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
         m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
         F:     { param: "applied_force",    slider: "nlb_f_slider",     row: "nlb_f_row",     val: "nlb_f_val",     lbl: "nlb_f_lbl",     glyph: "F",  unit: " N",   dp: 1, min: -20, max: 20, step: 0.5, def: 0 },
+        // SEAM N — the applied force's ANGLE off the surface. Default glyph is θ
+        // because that IS the symbol in W = F·d·cos θ and it must agree with the
+        // angle arc's own default label. A state exposing BOTH this and "theta"
+        // (the incline) would show two θ rows — override one through
+        // slider_controls.label. Range spans press-down (−90°) through zero-work
+        // (90°) to negative work (>90°), which is the whole of concept #2.
+        F_ang: { param: "applied_force_angle", slider: "nlb_fang_slider",  row: "nlb_fang_row",  val: "nlb_fang_val",  lbl: "nlb_fang_lbl",  glyph: "θ",  unit: "°",   dp: 0, min: -90, max: 180, step: 5, def: 0 },
         theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
         mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
@@ -41850,6 +41949,23 @@ export const FIELD_3D_RENDERER_CODE = `
                 var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value;
             }
         }
+        else if (token === "F_ang") {
+            // SEAM N. Written on the SAME target the F slider writes (and the same
+            // shared-push rule), so a teacher dragging F and θ sees one coherent
+            // pull. Everything downstream — the drive, N, μN, the arrows, the arc,
+            // the work ledgers — picks it up on the next tick with no extra wiring.
+            var ar1 = eng.action_reaction;
+            var arOn1 = !!(ar1 && ar1.engaged && ar1.driver_body_id);
+            if (eng.shared_applied_force && !arOn1) {
+                for (var gi = 0; gi < eng.order.length; gi++) {
+                    var gb = eng.bodies[eng.order[gi]];
+                    if (!gb || gb.ghost || gb.hanging) continue;
+                    gb.F_angle_deg = value;
+                }
+            } else {
+                var tg2 = nlbForceTargetBody(); if (tg2) tg2.F_angle_deg = value;
+            }
+        }
         else if (token === "theta") {
             eng.theta_deg = value;
             nlbApplySurface(value, eng.length_m);
@@ -41894,6 +42010,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (token === "m") return bA ? bA.m : null;
         if (token === "m2") return bB ? bB.m : null;
         if (token === "F") { var tg = nlbForceTargetBody(); return tg ? tg.F_applied : null; }
+        if (token === "F_ang") { var tg3 = nlbForceTargetBody(); return tg3 ? nlbFAng(tg3) : null; }   // SEAM N
         if (token === "theta") return eng.theta_deg;
         if (token === "mu_s") { var s1 = nlbSurfaceBody(); return s1 ? s1.mu_s : null; }
         if (token === "mu_k") { var s2 = nlbSurfaceBody(); return s2 ? s2.mu_k : null; }
@@ -43638,6 +43755,273 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbPublishMarkers(eng, pred);
     }
 
+    // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ═══════════════════════
+    //   The two measuring instruments that make W = F·d·cos θ a picture instead of a
+    //   caption: the live displacement vector d, and an angle arc between any two
+    //   directions the engine already owns. Both are built ONCE, hidden by default,
+    //   and gated on their own config block — a state authoring neither renders
+    //   exactly the pixels SEAM M rendered.
+    //   NO clock code lives here (Rule 36): every number below is a pure function of
+    //   already-stepped state (s, s0, the live force values, theta), so dt = 0 under
+    //   a SET_TIME_FREEZE pin reproduces the identical geometry and the identical
+    //   label strings.
+    var NLB_DISP_COLOR = "#FF8A65";        // deep orange — clear of all six arrow hues
+    var NLB_DISP_LANE = -1.15;             // surface-local y: BELOW the slab (top face y = 0,
+                                           // thickness 0.18), so d reads as the ground distance
+                                           // travelled. The value CLEARS EVERY ARROW LANE: the
+                                           // lowest is net at NLB_ARROW_LANE -0.96 off a body
+                                           // centre at +0.275, i.e. y = -0.685, with its label
+                                           // nudged to about -0.845. -1.15 leaves >0.30 of
+                                           // clearance under the deepest label. (Caught in
+                                           // pixels at -0.46: the ΣF arrow and d shared a lane
+                                           // and their heads met under the block.)
+    var NLB_DISP_MIN_M = 0.02;             // metres. Below this the body has NOT moved and
+                                           // the arrow HIDES — never a stub (the engine's rule)
+    var NLB_DISP_HEAD = 0.22;
+    var NLB_FANG_COLOR = "#FFE082";        // amber 200 — deliberately the SAME family as the
+                                           // incline arc (NLB_ARC_COLOR): an angle is an angle
+    var NLB_FANG_R = 0.85;                 // default arc radius from the body centre
+    var NLB_FANG_MIN_DEG = 1.5;            // below this there is no angle to draw
+    var NLB_FANG_QUANT = 2;                // arc endpoints QUANTIZED to 1/2 degree before the
+                                           // geometry is rebuilt. This is a determinism
+                                           // requirement, not an optimisation: a plain
+                                           // "rebuild when it changed by more than x" guard
+                                           // makes the drawn geometry a function of HISTORY,
+                                           // so the same pinned instant reached by rewinding
+                                           // and by playing forward could differ. Quantizing
+                                           // the INPUT keeps it a pure function of the angle.
+    var NLB_FANG_DIRS = ["applied", "weight", "normal", "friction", "tension", "net", "displacement", "surface"];
+
+    function nlbBuildOffAxis(surf, world) {
+        // d lives in the SURFACE group so the ONE theta rotation lays it along the
+        // track at every incline angle, with no branch (the marker contract).
+        var da = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            1, hexToThreeColor(NLB_DISP_COLOR), NLB_DISP_HEAD, NLB_DISP_HEAD * 0.8);
+        da.userData = { elementType: "nlb_disp", id: "displacement_vector" };
+        da.visible = false;
+        surf.add(da); nlbRegister(da);
+
+        var dl = pmCreateAutoLabel("d", NLB_DISP_COLOR, 0.34);
+        dl._nlbText = "d";
+        dl.userData = { elementType: "nlb_disp_label", id: "displacement_vector_label", bodyId: "displacement_vector" };
+        dl.visible = false;
+        surf.add(dl); nlbRegister(dl);
+
+        // The arc lives in the UN-rotated world group: its two directions are already
+        // world vectors (SEAM C's frame convention), so no second rotation is needed
+        // and a hanging body's arc works through the same path.
+        var arc = new THREE.Line(
+            new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0)]),
+            new THREE.LineBasicMaterial({
+                color: hexToThreeColor(NLB_FANG_COLOR), transparent: true,
+                opacity: 0.95, depthTest: false
+            }));
+        arc.renderOrder = NLB_MK_RENDER_ORDER;
+        arc.userData = { elementType: "nlb_fang", id: "angle_arc" };
+        arc.visible = false;
+        world.add(arc); nlbRegister(arc);
+
+        var al = pmCreateAutoLabel("θ", NLB_FANG_COLOR, 0.34);
+        al._nlbText = "θ";
+        al.userData = { elementType: "nlb_fang_label", id: "angle_arc_label", bodyId: "angle_arc" };
+        al.visible = false;
+        world.add(al); nlbRegister(al);
+    }
+
+    // Resolve the state's two blocks ONCE on entry (same contract as the SEAM M
+    // instruments): an unknown from/to member DROPS the whole arc rather than
+    // silently substituting a direction the narration never named.
+    function nlbApplyOffAxis(nlb, eng) {
+        var dv = nlb.displacement_vector;
+        eng.disp_cfg = null;
+        if (dv) {
+            var dBody = nlbTrackedBody(eng, dv.body_id);
+            if (dBody) {
+                eng.disp_cfg = {
+                    body_id: dBody.id,
+                    label: (typeof dv.label === "string" && dv.label) ? dv.label : "d",
+                    show_value: (dv.show_value !== false)
+                };
+            }
+        }
+        var aa = nlb.angle_arc;
+        eng.fang_cfg = null;
+        if (aa && NLB_FANG_DIRS.indexOf(aa.from) >= 0 && NLB_FANG_DIRS.indexOf(aa.to) >= 0) {
+            var aBody = nlbTrackedBody(eng, aa.body_id);
+            if (aBody) {
+                var rr = Number(aa.radius);
+                eng.fang_cfg = {
+                    body_id: aBody.id,
+                    from: aa.from, to: aa.to,
+                    label: (typeof aa.label === "string" && aa.label) ? aa.label : "θ",
+                    show_value: (aa.show_value !== false),
+                    radius: (isFinite(rr) && rr > 0.2) ? rr : NLB_FANG_R
+                };
+            }
+        }
+        nlbUpdateOffAxis(eng);
+    }
+
+    // One addressable direction, as a UNIT world vector. Returns null when the
+    // quantity is a real zero (no friction, no tension, an unmoved body) — the arc
+    // then hides, because an angle to a vector that does not exist is not a fact.
+    function nlbFangDir(eng, b, token) {
+        var th = eng.theta_deg || 0;
+        var axis = nlbAxisUnit(b.hanging, th);
+        var perp = nlbPerpUnit(b.hanging, th);
+        if (token === "surface") return axis.clone();
+        if (token === "weight") return NLB_DOWN.clone();
+        if (token === "normal") return (b.hanging ? null : perp.clone());
+        if (token === "applied") {
+            if (Math.abs(b.F_applied || 0) <= NLB_ARROW_EPS) return null;
+            return nlbAppliedDir(b, axis, perp);
+        }
+        if (token === "friction") {
+            if (Math.abs(b.f || 0) <= NLB_ARROW_EPS) return null;
+            return nlbSignedDir(axis, b.f);
+        }
+        if (token === "tension") {
+            if (Math.abs(b.T || 0) <= NLB_ARROW_EPS) return null;
+            return nlbSignedDir(axis, b.T);
+        }
+        if (token === "net") {
+            if (Math.abs(b.F_net || 0) <= NLB_ARROW_EPS) return null;
+            return nlbSignedDir(axis, b.F_net);
+        }
+        if (token === "displacement") {
+            var dsd = (b.s || 0) - (b.s0 || 0);
+            if (Math.abs(dsd) < NLB_DISP_MIN_M) return null;
+            return nlbSignedDir(axis, dsd);
+        }
+        return null;
+    }
+
+    //   The per-frame follow. Both instruments are recomputed every frame — d
+    //   because its whole point is a LIVE length, the arc because the angle it
+    //   measures moves with a slider. Everything here is a pure function of the
+    //   values SEAM B has already written this frame.
+    function nlbUpdateOffAxis(eng) {
+        if (!eng) return;
+        var da = nlbFindById("displacement_vector"), dl = nlbFindById("displacement_vector_label");
+        var cfg = eng.disp_cfg;
+        var b = cfg ? eng.bodies[cfg.body_id] : null;
+        if (!cfg || !b || b.ghost) {
+            if (da) da.visible = false;
+            if (dl) dl.visible = false;
+        } else {
+            var ds2 = (b.s || 0) - (b.s0 || 0);
+            var vis = (Math.abs(ds2) >= NLB_DISP_MIN_M) && !b.hanging;
+            if (da) da.visible = vis;
+            if (dl) dl.visible = vis;
+            if (vis) {
+                var x0 = (b.s0 || 0) * NLB_WORLD_PER_M;
+                var lenW = Math.abs(ds2) * NLB_WORLD_PER_M;
+                var sgn = (ds2 < 0) ? -1 : 1;
+                var hd = Math.min(NLB_DISP_HEAD, lenW * 0.4);
+                if (da) {
+                    da.position.set(x0, NLB_DISP_LANE, 0);
+                    da.setDirection(new THREE.Vector3(sgn, 0, 0));
+                    da.setLength(lenW, hd, hd * 0.8);
+                }
+                if (dl) {
+                    // Mid-span, below the shaft: a growing arrow whose label sat at
+                    // the tip would walk off the track on a long run.
+                    dl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - 0.30, 0);
+                    nlbSetArrowLabelText(dl, cfg.label + (cfg.show_value ? (" = " + nlbFx(Math.abs(ds2), 2) + " m") : ""));
+                }
+            }
+        }
+
+        var arc = nlbFindById("angle_arc"), al = nlbFindById("angle_arc_label");
+        var fc = eng.fang_cfg;
+        var fb = fc ? eng.bodies[fc.body_id] : null;
+        var d1 = (fc && fb && !fb.ghost) ? nlbFangDir(eng, fb, fc.from) : null;
+        var d2 = (fc && fb && !fb.ghost) ? nlbFangDir(eng, fb, fc.to) : null;
+        if (!d1 || !d2) {
+            if (arc) arc.visible = false;
+            if (al) al.visible = false;
+            window.PM_nlbOffAxis = nlbOffAxisMirror(eng, cfg, b, null, fc);
+            return;
+        }
+        // Quantized endpoints (see NLB_FANG_QUANT) — the drawn arc is a pure
+        // function of these two numbers and of nothing else.
+        var a1 = Math.round(Math.atan2(d1.y, d1.x) * 180 / Math.PI * NLB_FANG_QUANT) / NLB_FANG_QUANT;
+        var a2 = Math.round(Math.atan2(d2.y, d2.x) * 180 / Math.PI * NLB_FANG_QUANT) / NLB_FANG_QUANT;
+        var sweep = a2 - a1;
+        while (sweep > 180) sweep -= 360;
+        while (sweep < -180) sweep += 360;
+        var mag = Math.abs(sweep);
+        if (mag < NLB_FANG_MIN_DEG) {
+            if (arc) arc.visible = false;
+            if (al) al.visible = false;
+            window.PM_nlbOffAxis = nlbOffAxisMirror(eng, cfg, b, mag, fc);
+            return;
+        }
+        var org = nlbBodyWorldPos(fb.id);
+        var R = fc.radius;
+        if (arc) {
+            // Rebuilt only when the QUANTIZED angle pair or the radius changes, so a
+            // held frame does zero geometry churn and a rewound frame rebuilds to the
+            // identical points.
+            var key = a1 + "|" + sweep + "|" + R;
+            if (arc.userData._key !== key) {
+                arc.userData._key = key;
+                var steps = Math.max(4, Math.round(mag / 3));
+                var pts = [];
+                for (var i = 0; i <= steps; i++) {
+                    var tA = (a1 + sweep * (i / steps)) * Math.PI / 180;
+                    pts.push(new THREE.Vector3(R * Math.cos(tA), R * Math.sin(tA), 0));
+                }
+                if (arc.geometry) arc.geometry.dispose();
+                arc.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+            }
+            arc.position.copy(org);
+            arc.visible = true;
+        }
+        if (al) {
+            var mid = (a1 + sweep * 0.5) * Math.PI / 180;
+            al.position.copy(org).add(new THREE.Vector3((R + 0.34) * Math.cos(mid), (R + 0.34) * Math.sin(mid), 0));
+            nlbSetArrowLabelText(al, fc.label + (fc.show_value ? (" = " + Math.round(mag) + "°") : ""));
+            al.visible = true;
+        }
+        window.PM_nlbOffAxis = nlbOffAxisMirror(eng, cfg, b, mag, fc);
+    }
+    // DERIVED mirror only — nothing in the engine reads it back and no pixel depends
+    // on it. It is what makes the one part of this seam that is pure geometry
+    // verifiable at all (the SEAM M nlbPublishMarkers contract), and it carries the
+    // resolved along/perp components so a probe can check the F·d·cos θ identity
+    // against the values the integrator actually used.
+    function nlbOffAxisMirror(eng, dcfg, dbody, angDeg, fcfg) {
+        var tb = nlbTrackedBody(eng, null);
+        // The DRAWN state too, for the same reason nlbPublishMarkers publishes marker
+        // positions: these objects live on Three meshes inside a closure that no
+        // driver can reach, so without this the geometry half of the seam would be
+        // the half nothing could check.
+        var dAr = nlbFindById("displacement_vector"), dLb = nlbFindById("displacement_vector_label");
+        var aAr = nlbFindById("angle_arc"), aLb = nlbFindById("angle_arc_label");
+        var aPos = (aAr && aAr.geometry && aAr.geometry.attributes) ? aAr.geometry.attributes.position : null;
+        return {
+            drawn: {
+                d_visible: !!(dAr && dAr.visible),
+                d_shaft_scale_y: (dAr && dAr.line) ? dAr.line.scale.y : null,
+                d_label: (dLb && dLb.visible) ? (dLb._nlbText || null) : null,
+                arc_visible: !!(aAr && aAr.visible),
+                arc_point_count: aPos ? aPos.count : 0,
+                arc_key: (aAr && aAr.userData) ? (aAr.userData._key || null) : null,
+                arc_label: (aLb && aLb.visible) ? (aLb._nlbText || null) : null
+            },
+            d_m: (dcfg && dbody) ? ((dbody.s || 0) - (dbody.s0 || 0)) : null,
+            angle_deg: (angDeg == null) ? null : angDeg,
+            from: fcfg ? fcfg.from : null,
+            to: fcfg ? fcfg.to : null,
+            F_N: tb ? (tb.F_applied || 0) : null,
+            F_angle_deg: tb ? nlbFAng(tb) : null,
+            F_along_N: tb ? nlbForceAlong(tb) : null,
+            F_perp_N: tb ? nlbForcePerp(tb) : null,
+            N_N: tb ? (tb.N || 0) : null
+        };
+    }
+
     // ── Note 10 — the SIGNED work ledgers ───────────────────────────────────
     //   The force each ledger integrates, resolved along the BODY'S OWN axis — the
     //   same axis Δs is measured on, so F·Δs is a genuine scalar product and not a
@@ -43648,7 +44032,9 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbWorkForceAlong(eng, b, force) {
         if (force === "gravity") return nlbGravAlong(b, b.hanging ? 90 : (eng.theta_deg || 0));
         if (force === "friction") return b.f || 0;
-        if (force === "applied") return b.F_applied || 0;
+        // SEAM N: the ALONG-surface component — the only part of an angled pull that
+        // does work. Identically b.F_applied when no angle is authored.
+        if (force === "applied") return nlbForceAlong(b);
         if (force === "net") return b.F_net || 0;
         return 0;                                  // 'normal' — exactly zero work, always
     }
@@ -43679,7 +44065,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // PHYSICS, not of what the author chose to draw. Exactly 0 in every state
             // with no applied force, which is why SEAM L's E_dissipated is unchanged
             // wherever it was already correct.
-            eng.W_applied_J += (b.F_applied || 0) * ds;
+            // SEAM N: F·cos α · Δs summed over the run IS F·d·cos α — the identity
+            // union concepts #1/#2 teach, produced by the accumulator that already
+            // existed rather than by a new path. Legacy states are unchanged.
+            eng.W_applied_J += nlbForceAlong(b) * ds;
             if (wk) {
                 for (var w = 0; w < wk.length; w++) {
                     if (wk[w].body_id !== b.id) continue;
@@ -44049,6 +44438,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var d = bodies[i];
             if (!d || !d.id) continue;
             eng.order.push(d.id);
+            var af0 = nlbResolveApplied(d);            // SEAM N — see nlbResolveApplied
             eng.bodies[d.id] = {
                 id: d.id,
                 m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
@@ -44068,7 +44458,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 v0: d.initial_velocity_mps || 0,
                 mu_s: frictionless ? 0 : (d.mu_s || 0),
                 mu_k: frictionless ? 0 : (d.mu_k || 0),
-                F_applied: d.applied_force_N || 0,
+                // SEAM N — ONE resolver for both authoring forms. With no
+                // "applied_force" key it returns { N: d.applied_force_N || 0, ang: 0 },
+                // i.e. literally the prior expression with a zero angle, and every
+                // angle gate downstream then takes its legacy branch.
+                F_applied: af0.N,
+                F_angle_deg: af0.ang,
                 N: 0, f: 0, T: 0, F_net: 0,
                 _boundArrestedSliding: false   // Branch A bound-halt readout latch — see SEAM B
             };
@@ -44261,6 +44656,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // them when the state authors no block, so a marker can never survive into a
         // state that did not ask for it (the frame a frozen pin catches on entry).
         nlbApplyMarkers(nlb, eng);
+        nlbApplyOffAxis(nlb, eng);          // SEAM N — the off-axis instruments, same entry contract
         // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
         // PM_currentState lookup, so the proxies can never be armed one state late
         // if applyState ever runs before PM_currentState is committed.
@@ -44472,9 +44868,73 @@ export const FIELD_3D_RENDERER_CODE = `
         if (b.hanging) return b.m * NLB_G;
         return -b.m * NLB_G * Math.sin(thetaDeg * Math.PI / 180);
     }
+    // ── SEAM N — the applied force resolved in the body's OWN frame ─────────
+    //   ONE vector, authored as {N, angle_deg}:
+    //       F⃗ = F · ( cos α · axis  +  sin α · perp )
+    //   axis = the body's own +s direction, perp = the OUTWARD surface normal. So
+    //   α > 0 lifts, α < 0 presses, and a negative F flips the whole vector.
+    //
+    //   EVERY function below opens with the SAME gate — "if (!a) return the exact
+    //   prior expression".  That is deliberate and is the whole regression story:
+    //   with no angle authored the legacy code path is not merely numerically close,
+    //   it is the identical expression evaluated by the identical statement, so the
+    //   ten shipped concepts that read N cannot move by one ulp. Nothing here relies
+    //   on cos(0) === 1 or on x*1 === x; the multiply is never reached at all.
+    //   The ONE authoring resolver. Three accepted forms, one output shape:
+    //     applied_force: { N: 12, angle_deg: 30 }   → { N: 12,  ang: 30 }
+    //     applied_force: 12                          → { N: 12,  ang: 0  }
+    //     applied_force_N: 12   (LEGACY, sealed)     → { N: 12,  ang: 0  }
+    //   With NO "applied_force" key the return is literally
+    //   { N: d.applied_force_N || 0, ang: 0 } — the expression the seed used before
+    //   this seam existed. Every numeric is coerced with a finite fallback: an
+    //   authoring typo must never throw out of the seed (the createTubeLine scar).
+    function nlbResolveApplied(d) {
+        if (!d) return { N: 0, ang: 0 };
+        var af = d.applied_force;
+        if (af && typeof af === "object") {
+            var n = Number(af.N), a = Number(af.angle_deg);
+            return { N: isFinite(n) ? n : 0, ang: isFinite(a) ? a : 0 };
+        }
+        if (typeof af === "number" && isFinite(af)) return { N: af, ang: 0 };
+        return { N: d.applied_force_N || 0, ang: 0 };
+    }
+    function nlbFAng(b) {
+        // A hanging body has NO surface, so its "perp" is an arbitrary world axis
+        // (see nlbPerpUnit) and an angle against it would be meaningless. Forced to
+        // the legacy path, exactly as its N is forced to 0.
+        if (!b || b.hanging) return 0;
+        var a = b.F_angle_deg;
+        return (typeof a === "number" && isFinite(a)) ? a : 0;
+    }
+    // The component that DRIVES: what the integrator, every work ledger and the
+    // power readout all see. W_applied = ∫F·cos α·ds = F·d·cos α therefore falls out
+    // of SEAM M's existing accumulator with no second code path — which is precisely
+    // the identity union concepts #1/#2 exist to teach.
+    function nlbForceAlong(b) {
+        var a = nlbFAng(b);
+        if (!a) return b.F_applied || 0;
+        return (b.F_applied || 0) * Math.cos(a * Math.PI / 180);
+    }
+    // The component that presses on (or lifts off) the surface. Positive = OUTWARD,
+    // i.e. away from the surface, i.e. it REDUCES N.
+    function nlbForcePerp(b) {
+        var a = nlbFAng(b);
+        if (!a) return 0;
+        return (b.F_applied || 0) * Math.sin(a * Math.PI / 180);
+    }
     function nlbNormal(b, thetaDeg) {
         if (b.hanging) return 0;   // spec section 1: a hanging body has N forced to 0
-        return b.m * NLB_G * Math.cos(thetaDeg * Math.PI / 180);
+        var Nn = b.m * NLB_G * Math.cos(thetaDeg * Math.PI / 180);
+        if (!nlbFAng(b)) return Nn;            // ── LEGACY PATH, bit for bit ──
+        // N = mg·cos θ − F·sin α.
+        //   THE LIFT-OFF CLAMP. Without it a pull steep enough to lift the body off
+        // the surface drives N negative, and friction — computed everywhere as μN
+        // against the direction of travel — silently REVERSES: a body being lifted
+        // would be dragged BACKWARDS by a friction force pointing the wrong way,
+        // with a negative normal arrow drawn pointing into the table. A surface can
+        // only PUSH, so once contact is lost N is 0 and friction is 0 with it.
+        Nn -= nlbForcePerp(b);
+        return Nn > 0 ? Nn : 0;
     }
     // Surface-bound clamp band for a body, in metres along its own axis.
     function nlbBoundsM(b, lenM) {
@@ -44584,7 +45044,9 @@ export const FIELD_3D_RENDERER_CODE = `
             //   Pₐᵥ = W / Δt           the FIRST work accumulator's running signed
             //                          total over the state's own elapsed seconds.
             // Δt = 0 on the entry frame, so Pₐᵥ reads 0 there rather than dividing.
-            else if (key === "P") nlbSetReadout(b.id, key, nlbFx((b.F_applied || 0) * (b.v || 0), 2));
+            // SEAM N: the ALONG component again — power is delivered by the part of
+            // the pull that moves the body. Identical with no angle authored.
+            else if (key === "P") nlbSetReadout(b.id, key, nlbFx(nlbForceAlong(b) * (b.v || 0), 2));
             else if (key === "P_avg") {
                 var engP = window.PM_nlbEngine;
                 var wk0 = (engP && engP.work_state && engP.work_state.length) ? engP.work_state[0] : null;
@@ -44658,6 +45120,11 @@ export const FIELD_3D_RENDERER_CODE = `
                     var ob = eng.bodies[eng.order[oi]];
                     if (!ob || ob.ghost || ob.id === drv.id) continue;
                     ob.F_applied = -drv.F_applied;
+                    // SEAM N: equal and opposite means the WHOLE vector, handle angle
+                    // included — both bodies stand on the same surface, so they share
+                    // one axis/perp frame and F⃗_B = −F⃗_A is the negated magnitude at
+                    // the SAME angle. Writes 0 = 0 in every state with no angle.
+                    ob.F_angle_deg = nlbFAng(drv);
                 }
             }
         }
@@ -44755,7 +45222,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     var thF = b.hanging ? 90 : thetaSurf;
                     b.N = nlbNormal(b, thF);
                     b.a = 0; b.v = 0;
-                    b.f = -(b.F_applied + nlbGravAlong(b, thF));
+                    b.f = -(nlbForceAlong(b) + nlbGravAlong(b, thF));   // SEAM N: === b.F_applied with no angle
                     b.T = 0; b.F_net = 0;
                     b._stuck = true;
                     b._boundArrestedSliding = false;
@@ -44771,7 +45238,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 // with no second code path. It is exactly 0 in every state that
                 // authors no k_N_per_m and in every frame the coil is not touching.
                 var Fspr = b.F_spring || 0;
-                var drive = b.F_applied + nlbGravAlong(b, th) + Fspr;
+                // SEAM N: nlbForceAlong is the along-surface component of the applied
+                // force. It RETURNS b.F_applied unchanged in every state that authors
+                // no angle, so this line is the identical expression it always was.
+                var drive = nlbForceAlong(b) + nlbGravAlong(b, th) + Fspr;
                 var maxStat = b.mu_s * N;
                 var bd = nlbBoundsM(b, lenM);
                 // A body already ARRESTED AT ITS SURFACE BOUND while still sliding must
@@ -44912,6 +45382,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // authored launch conditions and the live theta.
             nlbRunCheckpoints(eng);
             nlbUpdateMarkers(eng);
+            nlbUpdateOffAxis(eng);          // SEAM N — d + the angle arc (pure presentation)
             // SEAM L - the display layer, immediately after its own input.
             // Presentation only: it reads the snapshot just published and writes
             // DOM, never physics and never a clock (Rule 36).
@@ -44974,7 +45445,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // bit-for-bit unchanged. Carried here anyway so a spring authored on a
             // coupled rig cannot be silently dropped (the c_i weighting below is
             // already the right one for a force along the body's own axis).
-            bj._drive = bj.F_applied + nlbGravAlong(bj, thj) + (bj.F_spring || 0);
+            bj._drive = nlbForceAlong(bj) + nlbGravAlong(bj, thj) + (bj.F_spring || 0);   // SEAM N (see branch A)
             bj._c = cj;
             act.push(bj);
             D += cj * bj._drive;
@@ -45104,6 +45575,7 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbPublishEnergy(eng, hPhys);
         nlbRunCheckpoints(eng);             // SEAM M
         nlbUpdateMarkers(eng);              // SEAM M
+        nlbUpdateOffAxis(eng);              // SEAM N — same order/contract as branch A
         nlbUpdateEnergyPanel(eng);          // SEAM L - same contract as branch A
         // SEAM C — presentation only, AFTER the physics writeback (see branch A).
         nlbDriveArrows(eng);
