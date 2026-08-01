@@ -126,7 +126,7 @@ const FNS = [
   "mgIdealDirs", "mgDomainKinds", "mgSqueeze", "mgFrame",
   "bscClamp", "bscNorm", "bscMag", "bscLigands", "bscElement", "bscChi", "bscMixHex",
   "bscIonicFraction", "bscCharges", "bscBondMoment", "bscDipole", "bscOrientRot",
-  "bscJiggle", "bscControlList", "bscHasControl", "bscFmtD",
+  "bscJiggle", "bscControlList", "bscHasControl", "bscOptionOf", "bscSelCur", "bscSelValue", "bscFmtD",
   "bscLinkCfg", "bscLinkOk", "bscLinkLatch", "bscLinkSites", "bscUnitSlot",
   "bscSub", "bscTrendFit",
   // E1c-A
@@ -2341,6 +2341,249 @@ console.log("\n=== 19. E1c-F CUE-OBEDIENT INSTRUMENT + TRANSITION (HUD · swap �
   ok("and the swap-veiled atom SYMBOL takes it too (no state inherits a dark label)",
     /var al = bscFindById\("bsc_u" \+ i \+ "_lab" \+ j\);\s*\n\s*if \(al\) setObjOpacity\(al, 1\);/.test(app) &&
     /if \(uInSwap\) setObjOpacity\(lab, swapVeil\);/.test(upd));
+}
+
+// ── 20. E1c-G: THE EXPLORE SANDBOX MAY NOT REFUTE THE LESSON ─────────────────
+//   Measured live on bond_polarity S8 (fresh entry, molecule picker only):
+//     fresh H2O  mu 1.85 D @ 104.5  ->  CO2  mu 2.82 D @ 104.5
+//                                   ->  BF3  mu 1.81 D @ 104.5
+//   S3 of the same arc teaches that CO2's dipole moment is ZERO (the first
+//   misconception beat) and BF3 was admitted to the picker as the second
+//   "symmetric arrangement, zero resultant" example. The sandbox refuted both,
+//   and the concept's own assessment item with them, because ONE control kept a
+//   value that belonged to the PREVIOUS species.
+//   THE ASSERTION THAT WOULD HAVE CAUGHT IT is a WHOLE-PICKER SWEEP: the defect
+//   was invisible because only the default species was ever exercised. Every
+//   species in the explore picker is entered and read below, through the SHIPPED
+//   pick handler and the SHIPPED closed-form angle resolution — both sliced out
+//   of the renderer and evaluated, never retyped — so a revert cannot leave this
+//   section green.
+console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halide row · authored bounds) ===");
+{
+  const bld = grabFn("buildBondingScene");
+  const upd = grabFn("updateBondingSceneFrame");
+  const app = grabFn("applyBondingSceneState");
+  const cutIn = (src: string, a: string, b: string, what: string) => {
+    const i = src.indexOf(a), j = src.indexOf(b, i);
+    if (i < 0 || j < 0) throw new Error("E1c-G: source slice not found: " + what);
+    return src.slice(i, j);
+  };
+
+  // ── the SHIPPED closed-form angle destination.
+  const angleSrc = cutIn(upd, "var angleTo = (bs.angle_deg != null)", "var angleAt = function", "angleTo");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const angleRaw = new Function("MG_MOLECULES", "molKey", "mode", "swapSeized", "angle_deg", `
+    var mol = MG_MOLECULES[molKey];
+    var bs = {}; if (angle_deg != null) bs.angle_deg = angle_deg;
+    ${angleSrc}
+    return angleTo;
+  `);
+  const angleTo = (key: string, seized: boolean, mode = "explore", authored: number | null = 104.5) =>
+    angleRaw(E.MG_MOLECULES, key, mode, seized, authored) as number;
+
+  // ── the SHIPPED explore pick handler, on a stub DOM.
+  const pickSrc = cutIn(bld, "function bscExploreSpeciesPicked(", "function wireSelect(", "pick handler");
+  type Sel = { value: string; options: { value: string }[] };
+  type Span = { textContent: string };
+  const PICKER = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];   // explore_species, as authored
+  const HALIDES = ["HF", "HCl", "HBr", "HI"];                                      // explore_ligands, as authored
+  const newDom = () => {
+    const els: Record<string, unknown> = {
+      bsc_molecule_select: { value: "H2O", options: PICKER.map((v) => ({ value: v })) } as Sel,
+      // the shipped placeholder leads the halide list (E1c-G G2)
+      bsc_ligand_select: { value: "HF", options: [{ value: "" }, ...HALIDES.map((v) => ({ value: v }))] } as Sel,
+      bsc_angle_slider: { value: "104.5" },
+      bsc_angle_val: { textContent: "104.5" } as Span
+    };
+    return { els, document: { getElementById: (id: string) => els[id] ?? null } };
+  };
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const pickRaw = new Function("document", "window", "MG_MOLECULES", "bscOptionOf", "bscSelValue",
+    pickSrc + "\nreturn bscExploreSpeciesPicked;");
+  const drive = (picks: { id: string; v: string }[], mode = "explore", preDragAngle: number | null = null) => {
+    const dom = newDom();
+    const w: Record<string, unknown> = { PM_bscMode: mode, PM_bscMol: "H2O", PM_bscLig: "HF", PM_bscAngle: 104.5 };
+    if (preDragAngle != null) { w.PM_bscAngle = preDragAngle; w.PM_bscAngleDragged = true; }
+    const fn = pickRaw(dom.document, w, E.MG_MOLECULES, E.bscOptionOf, E.bscSelValue);
+    for (const p of picks) {
+      const selId = "bsc_" + p.id + "_select";
+      if (dom.els[selId]) (dom.els[selId] as Sel).value = p.v;
+      // wireSelect's own two lines, verbatim from the shipped source, precede it
+      w["PM_bsc" + (p.id === "molecule" ? "Mol" : p.id === "ligand" ? "Lig" : "Species")] = p.v;
+      w["PM_bsc" + (p.id === "molecule" ? "Mol" : p.id === "ligand" ? "Lig" : "Species") + "Dragged"] = true;
+      fn(p.id, p.v);
+    }
+    const seized = !!w.PM_bscMolDragged || !!w.PM_bscLigDragged || !!w.PM_bscSpeciesDragged;
+    const key = (w.PM_bscMolDragged ? w.PM_bscMol : w.PM_bscLigDragged ? w.PM_bscLig : "H2O") as string;
+    const ang = w.PM_bscAngleDragged ? (w.PM_bscAngle as number) : angleTo(key, seized, mode);
+    return {
+      w, dom, key, ang, mu: E.bscDipole(key, ang).mag as number,
+      slider: Number((dom.els.bsc_angle_slider as { value: string }).value),
+      span: (dom.els.bsc_angle_val as Span).textContent,
+      halide: (dom.els.bsc_ligand_select as Sel).value,
+      molSel: (dom.els.bsc_molecule_select as Sel).value
+    };
+  };
+
+  // ── (a) THE WHOLE-PICKER SWEEP. Every species, entered from a fresh explore.
+  {
+    const MU: Record<string, number> = {
+      H2O: 1.8489, CO2: 0, CCl4: 0, CH4: 0, BF3: 0,
+      HF: 1.83, HCl: 1.11, HBr: 0.83, HI: 0.45
+    };
+    let bad: string[] = [];
+    const rows: string[] = [];
+    for (const k of PICKER) {
+      const r = drive([{ id: "molecule", v: k }]);
+      const eq = E.MG_MOLECULES[k].angle as number;
+      const geomOk = Math.abs(r.ang - eq) < 1e-9 && r.slider === eq && r.span === eq.toFixed(1);
+      const muOk = Math.abs(r.mu - MU[k]) < 5e-4;
+      if (!geomOk || !muOk) bad.push(k);
+      rows.push(`${k}:${r.ang}deg/${r.mu.toFixed(2)}D`);
+    }
+    ok("THE G1 ASSERTION: every picker species opens at its OWN equilibrium and its own mu",
+      bad.length === 0, bad.length ? "BROKEN: " + bad.join(",") : rows.join("  "));
+    const zeros = ["CO2", "BF3", "CH4", "CCl4"];
+    // "exactly zero" = below the engine's own 1e-6 D ink threshold (summing the
+    // ideal directions leaves a float residue: 3e-16 D on CO2, 5e-8 D on BF3 -
+    // no arrow is ever drawn from it) AND zero on the instrument.
+    ok("...and the four SYMMETRIC species read EXACTLY zero (the arc's own beat)",
+      zeros.every((k) => { const m = drive([{ id: "molecule", v: k }]).mu;
+        return Math.abs(m) < 1e-6 && E.bscFmtD(m) === "0.00"; }),
+      zeros.map((k) => k + " " + E.bscFmtD(drive([{ id: "molecule", v: k }]).mu) + " D").join(" · "));
+    ok("the sweep is the WHOLE picker, not a spot check",
+      PICKER.length === 9 && HALIDES.every((h) => PICKER.indexOf(h) >= 0),
+      `${PICKER.length} species, halide family a subset of it`);
+  }
+
+  // ── (b) NEGATIVE CONTROL: the shipped-before resolution, reproduced exactly.
+  {
+    const oldAng = (k: string) => 104.5;                    // angle_deg, never re-seeded
+    const oldMu = (k: string) => E.bscDipole(k, oldAng(k)).mag as number;
+    ok("NEGATIVE CONTROL: the un-re-seeded angle rendered CO2 bent at 2.82 D and BF3 at 1.81 D",
+      Math.abs(oldMu("CO2") - 2.8162) < 5e-4 && Math.abs(oldMu("BF3") - 1.8112) < 5e-4 &&
+      Math.abs(drive([{ id: "molecule", v: "CO2" }]).mu) < 1e-6 &&
+      Math.abs(drive([{ id: "molecule", v: "BF3" }]).mu) < 1e-6,
+      `was CO2 ${oldMu("CO2").toFixed(4)} / BF3 ${oldMu("BF3").toFixed(4)} — now 0.00 / 0.00`);
+    ok("NEGATIVE CONTROL: a single static default cannot serve the picker (180 breaks the bend beat)",
+      Math.abs((E.bscDipole("H2O", 180).mag as number)) < 1e-9 &&
+      Math.abs((E.bscDipole("H2O", 104.5).mag as number) - 1.8489) < 5e-4,
+      "H2O at 180 deg reads 0.0000 D — why the default must follow the species");
+  }
+
+  // ── (c) THE TEACHER KEEPS CONTROL, and the next pick hands it to the species.
+  {
+    const dragged = drive([{ id: "molecule", v: "CO2" }], "explore", 130);
+    ok("a teacher who has dragged the angle keeps it until the NEXT pick",
+      /var angleNow = \(bscHasControl\(ctrls, "angle"\) && window\.PM_bscAngleDragged\)/.test(upd) &&
+      /\? window\.PM_bscAngle : angleAt\(ms\);/.test(upd));
+    ok("...and a pick hands the angle back to the newly picked species",
+      dragged.w.PM_bscAngleDragged === false && dragged.ang === 180 && Math.abs(dragged.mu) < 1e-6,
+      `dragged to 130 then picked CO2 -> ${dragged.ang} deg, mu ${dragged.mu.toFixed(4)} D`);
+    const seq = drive([{ id: "molecule", v: "CO2" }, { id: "molecule", v: "BF3" }, { id: "molecule", v: "H2O" }]);
+    ok("a run of picks never carries the previous species' geometry forward",
+      seq.ang === 104.5 && Math.abs(seq.mu - 1.8489) < 5e-4 &&
+      Math.abs(drive([{ id: "molecule", v: "H2O" }, { id: "molecule", v: "BF3" }]).mu) < 1e-6,
+      "H2O -> CO2 -> BF3 -> H2O ends at 104.5 deg / 1.85 D");
+  }
+
+  // ── (d) D-1: THE RE-SEED IS AN EVENT, NOT AN ACCUMULATOR.
+  {
+    ok("the angle destination is a pure function of the RESOLVED molecule (no clock, no latch)",
+      !/\bms\b/.test(angleSrc) && !/\+=/.test(angleSrc) && /angleTo = mol\.angle;/.test(angleSrc),
+      angleSrc.split("\n").filter((l) => !/^\s*\/\//.test(l) && l.trim()).join(" ").trim());
+    const a = angleTo("CO2", true), b = (angleTo("H2O", true), angleTo("CO2", true));
+    ok("a frozen replay cannot depend on interaction history (same species -> same angle, always)",
+      Object.is(a, b) && Object.is(angleTo("BF3", true), 120));
+    ok("the pick handler touches no swap state and clears no picker's drag-seize (E1c-F handoff)",
+      !/swapP|PM_bscSwap/.test(pickSrc) &&
+      !/PM_bscMolDragged\s*=\s*false/.test(pickSrc) && !/PM_bscLigDragged\s*=\s*false/.test(pickSrc) &&
+      !/PM_bscSpeciesDragged\s*=\s*false/.test(pickSrc));
+  }
+
+  // ── (e) GUIDED STATES ARE BYTE-IDENTICAL. Explore-gated at both halves.
+  {
+    ok("THE GUIDED ASSERTION: outside explore the authored angle_deg still wins, seized or not",
+      angleTo("CO2", true, "dipole_sum") === 104.5 && angleTo("CO2", true, "compare") === 104.5 &&
+      angleTo("H2O", true, "assemble") === 104.5 && angleTo("CO2", false, "explore") === 104.5);
+    ok("...and a guided pick re-seeds nothing at all (the handler returns on the mode gate)",
+      (() => { const r = drive([{ id: "ligand", v: "HI" }], "compare");
+        return r.w.PM_bscAngle === 104.5 && r.w.PM_bscMolDragged === undefined; })() &&
+      /if \(window\.PM_bscMode !== "explore"\) return;/.test(pickSrc));
+    ok("a state with no authored angle_deg still resolves its own species' equilibrium",
+      angleTo("CO2", false, "explore", null) === 180 && angleTo("NH3", false, "dipole_sum", null) === 107);
+    ok("the state's mode is published for the once-built pick listeners",
+      /window\.PM_bscMode = bs\.mode \|\| "dipole_sum";/.test(app));
+  }
+
+  // ── (f) G2: THE HALIDE ROW IS LIVE, AND NEVER BLANK.
+  {
+    const viaHalide = drive([{ id: "molecule", v: "HF" }, { id: "ligand", v: "HBr" }]);
+    ok("THE G2 ASSERTION: a halide pick moves the molecule (the row was measurably inert)",
+      viaHalide.key === "HBr" && Math.abs(viaHalide.mu - 0.83) < 5e-4 && viaHalide.molSel === "HBr",
+      `HF then halide HBr -> mol ${viaHalide.key}, mu ${viaHalide.mu.toFixed(2)} D, molecule row reads ${viaHalide.molSel}`);
+    ok("NEGATIVE CONTROL: the molecule picker used to SHADOW the halide in the same resolution",
+      /var molKey = \(bscHasControl\(ctrls, "molecule"\) && window\.PM_bscMolDragged\) \? window\.PM_bscMol/.test(upd) &&
+      /: \(bscHasControl\(ctrls, "ligand"\) && window\.PM_bscLigDragged\) \? window\.PM_bscLig/.test(upd),
+      "resolution order is unchanged — the three pickers are kept AGREEING instead");
+    ok("every halide reads its own mu through the halide row",
+      HALIDES.every((h) => Math.abs(drive([{ id: "ligand", v: h }]).mu -
+        ({ HF: 1.83, HCl: 1.11, HBr: 0.83, HI: 0.45 } as Record<string, number>)[h]) < 5e-4),
+      HALIDES.map((h) => h + " " + drive([{ id: "ligand", v: h }]).mu.toFixed(2)).join(" · "));
+    ok("outside the halide family the row shows its PLACEHOLDER, never a blank or a stale halide",
+      drive([{ id: "ligand", v: "HI" }, { id: "molecule", v: "H2O" }]).halide === "" &&
+      drive([{ id: "molecule", v: "HCl" }]).halide === "HCl" &&
+      /var ligOpts = '<option value="">\\u2014<\/option>'/.test(bld));
+    ok("the placeholder is display-only: picking it is not a species choice",
+      /if \(!el\.value\) return;/.test(bld) &&
+      /if \(id === "molecule" \|\| id === "ligand" \|\| id === "species"\) bscExploreSpeciesPicked/.test(bld));
+    ok("the per-frame widget sync never hands the select a value it has no option for",
+      /var ligWant = \(bscOptionOf\(lsel, molKey\) && MG_MOLECULES\[molKey\]\) \? molKey : "";/.test(upd) &&
+      /if \(lsel && bscSelCur\(lsel\) !== ligWant\) bscSelValue\(lsel, ligWant\);/.test(upd) &&
+      /if \(ligWant\) window\.PM_bscLig = molKey;/.test(upd));
+    ok("the placeholder is selected by INDEX (Chromium DESELECTS on select.value = \"\")",
+      /sel\.value = v;\s*\n\s*if \(v\) return;/.test(grabFn("bscSelValue")) &&
+      /if \(sel\.options\[i\]\.value === ""\) \{ sel\.selectedIndex = i; return; \}/.test(grabFn("bscSelValue")) &&
+      E.bscSelCur({ options: [{ value: "" }, { value: "HF" }], selectedIndex: -1 }) === null &&
+      E.bscSelCur({ options: [{ value: "" }, { value: "HF" }], selectedIndex: 0 }) === "",
+      "selectedIndex -1 and the placeholder both read value \"\" — only the index tells them apart");
+    ok("bscOptionOf is total on a missing select and a missing value",
+      E.bscOptionOf(null, "HF") === false &&
+      E.bscOptionOf({ options: [{ value: "HF" }] }, "") === false &&
+      E.bscOptionOf({ options: [{ value: "HF" }] }, "HF") === true &&
+      E.bscOptionOf({ options: [{ value: "HF" }] }, "H2O") === false);
+  }
+
+  // ── (g) G3: THE AUTHORED BOUNDS ARE HONOURED, NOT DECORATIVE.
+  {
+    const limSrc = cutIn(bld, "var lim = function", "var molDef =", "lim/defc");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const limRaw = new Function("SC", "bscClamp", `
+      var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : d; };
+      ${limSrc}
+      return { lim: lim, defc: defc };
+    `);
+    const SC = { angle: { min: 90, max: 180, step: 0.5, "default": 104.5 } };
+    const L = limRaw(SC, E.bscClamp) as { lim: (k: string, w: string, d: number) => number; defc: (k: string, d: number, lo: number, hi: number) => number };
+    ok("THE G3 ASSERTION: an authored min/max/step reaches the widget (angle.min = 90, not 60)",
+      L.lim("angle", "min", 60) === 90 && L.lim("angle", "max", 180) === 180 && L.lim("angle", "step", 0.5) === 0.5);
+    const L0 = (limRaw({}, E.bscClamp) as typeof L);
+    ok("...and a concept that authors none is byte-identical (every hardcoded bound is the default)",
+      L0.lim("angle", "min", 60) === 60 && L0.lim("angle", "max", 180) === 180 &&
+      L0.defc("angle", 104.5, 60, 180) === 104.5 && L0.defc("spin", 0.16, 0, 0.6) === 0.16);
+    ok("the seeded default is CLAMPED into the honoured range (thumb, span and global agree)",
+      (limRaw({ angle: { min: 90, "default": 60 } }, E.bscClamp) as typeof L).defc("angle", 104.5, 60, 180) === 90 &&
+      L.defc("angle", 104.5, 60, 180) === 104.5);
+    const rows = ["angle", "spin", "temperature", "separation", "shift", "field", "valence"];
+    ok("every range row reads its bounds from the authored block, none hardcodes them",
+      rows.every((r) => new RegExp('id="bsc_' + r + '_slider" min="\' \\+ lim\\("' + r + '", "min"').test(bld)) &&
+      /id="bsc_count_slider" min="' \+ lim\("count", "min", 1\) \+ '" max="' \+ nUnits/.test(bld),
+      rows.join(",") + " + count (count.max stays the engine's mesh pool)");
+    ok("the panel's window seeds take the SAME clamped default as the widget",
+      /window\.PM_bscAngle = defc\("angle", 104\.5, 60, 180\);/.test(bld) &&
+      /window\.PM_bscSpinDef = defc\("spin", 0\.16, 0, 0\.6\);/.test(bld) &&
+      !/window\.PM_bscTemp = def\(/.test(bld));
+  }
 }
 
 console.log(failures === 0

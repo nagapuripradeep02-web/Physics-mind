@@ -49564,6 +49564,34 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
         return false;
     }
+    // E1c-G: does this select actually OFFER v? Both the picker re-seed and the
+    // per-frame widget sync need it, so a select is never handed a value it has no
+    // option for (the blank-halide-row defect) and never told to mirror a species
+    // that is not in its own list.
+    function bscOptionOf(sel, v) {
+        if (!sel || !v || !sel.options) return false;
+        for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === v) return true;
+        return false;
+    }
+    // The value CURRENTLY selected, or null when nothing is (which is a different
+    // thing from the empty-valued placeholder being selected, and .value cannot
+    // tell them apart — both read "").
+    function bscSelCur(sel) {
+        return (sel && sel.options && sel.selectedIndex >= 0) ? sel.options[sel.selectedIndex].value : null;
+    }
+    // MEASURED (E1c-G, on the shipped Chromium): assigning select.value = "" does
+    // NOT select the empty-valued placeholder — it DESELECTS (selectedIndex -1)
+    // and the box renders EMPTY, which is the exact defect the placeholder exists
+    // to prevent. So the placeholder is selected by INDEX, after the normal
+    // assignment, and only when the value asked for is the empty one.
+    function bscSelValue(sel, v) {
+        if (!sel) return;
+        sel.value = v;
+        if (v) return;
+        for (var i = 0; i < (sel.options ? sel.options.length : 0); i++) {
+            if (sel.options[i].value === "") { sel.selectedIndex = i; return; }
+        }
+    }
     // Memoised by id. E1's linear scan was fine for one unit; E2's network state
     // is 30 units x 7 atoms x 4 handles PLUS 360 link dashes per frame against a
     // ~1500-object sceneObjects, i.e. millions of string compares a frame. The
@@ -49910,6 +49938,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // Rule-39f discovery convention exactly: <prefix>_<name>_row.
         var SC = config.slider_controls || {};
         var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : d; };
+        // ── E1c-G (G3): THE AUTHORED BOUNDS ARE HONOURED, NOT DECORATIVE.
+        //   slider_controls.<k>.min / .max / .step were ACCEPTED by the schema and
+        //   then ignored by a hardcoded min="60" max="180" — bond_polarity authors
+        //   angle.min = 90 and the panel silently opened at 60. An accepted-but-
+        //   ignored field is this surface-s twice-recorded scar (a decorative mode
+        //   string; an eye_capture_ms nested one level too deep, so THE EYE-s pin
+        //   override never fired on any state): the author reads their own JSON as
+        //   the contract and cannot see that the engine does not. Every hardcoded
+        //   bound below becomes the DEFAULT of an authored read, so a concept that
+        //   authors none is byte-identical. The seeded default is clamped into the
+        //   honoured range so the thumb, the span and window.PM_bsc* can never
+        //   disagree (a browser clamps the thumb silently, the span would not).
+        //   count.max stays engine-owned: it is the built mesh pool, not taste.
+        var lim = function (k, w, d) { return (SC[k] && SC[k][w] != null) ? Number(SC[k][w]) : d; };
+        var defc = function (k, d, lo, hi) { return bscClamp(Number(def(k, d)), lim(k, "min", lo), lim(k, "max", hi)); };
         var molDef = (SC.molecule && SC.molecule["default"]) ? SC.molecule["default"] : "HCl";
         var molOpts = "", mkeys = (config.explore_species && config.explore_species.length)
             ? config.explore_species : ["HCl", "CO2", "H2O", "CCl4", "CHCl3", "NH3", "NF3"];
@@ -49918,7 +49961,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!mv) continue;
             molOpts += '<option value="' + mkeys[i] + '"' + (mkeys[i] === molDef ? " selected" : "") + '>' + mv.formula + "</option>";
         }
-        var ligOpts = "", lkeys = (config.explore_ligands && config.explore_ligands.length)
+        // E1c-G (G2): a LEADING PLACEHOLDER. The halide row is a sub-selector of
+        // the molecule row (every explore_ligands key is also a molecule), so a
+        // species outside the family has no option to show and the select rendered
+        // BLANK — a control that looks broken before it is even touched. The
+        // placeholder is display-only: the change handler ignores an empty value,
+        // so no authored enum grows and nothing can be picked that is not a halide.
+        var ligOpts = '<option value="">\\u2014</option>', lkeys = (config.explore_ligands && config.explore_ligands.length)
             ? config.explore_ligands : ["HF", "HCl", "HBr", "HI"];
         for (i = 0; i < lkeys.length; i++) {
             var lv = MG_MOLECULES[lkeys[i]];
@@ -49938,14 +49987,14 @@ export const FIELD_3D_RENDERER_CODE = `
             '<div id="bsc_molecule_row" style="display:none"><label>Molecule: <select id="bsc_molecule_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + molOpts + '</select></label></div>' +
             '<div id="bsc_ligand_row" style="display:none;margin-top:6px"><label>Halide: <select id="bsc_ligand_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + ligOpts + '</select></label></div>' +
             '<div id="bsc_species_row" style="display:none;margin-top:6px"><label>Species: <select id="bsc_species_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + spOpts + '</select></label></div>' +
-            '<div id="bsc_angle_row" style="display:none;margin-top:6px"><label>Bond angle: <span id="bsc_angle_val">' + Number(def("angle", 104.5)).toFixed(1) + '</span>\\u00B0</label><input type="range" id="bsc_angle_slider" min="60" max="180" step="0.5" value="' + def("angle", 104.5) + '" style="width:100%"></div>' +
-            '<div id="bsc_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="bsc_spin_val">' + Number(def("spin", 0.16)).toFixed(2) + '</span> rad/s</label><input type="range" id="bsc_spin_slider" min="0" max="0.6" step="0.02" value="' + def("spin", 0.16) + '" style="width:100%"></div>' +
-            '<div id="bsc_temperature_row" style="display:none;margin-top:6px"><label>Temperature: <span id="bsc_temperature_val">' + Math.round(def("temperature", 298)) + '</span> K</label><input type="range" id="bsc_temperature_slider" min="100" max="600" step="5" value="' + def("temperature", 298) + '" style="width:100%"></div>' +
-            '<div id="bsc_count_row" style="display:none;margin-top:6px"><label>Molecules: <span id="bsc_count_val">' + Math.round(def("count", 1)) + '</span></label><input type="range" id="bsc_count_slider" min="1" max="' + nUnits + '" step="1" value="' + def("count", 1) + '" style="width:100%"></div>' +
-            '<div id="bsc_separation_row" style="display:none;margin-top:6px"><label>Separation: <span id="bsc_separation_val">' + Number(def("separation", 3.0)).toFixed(1) + '</span></label><input type="range" id="bsc_separation_slider" min="1.5" max="8" step="0.1" value="' + def("separation", 3.0) + '" style="width:100%"></div>' +
-            '<div id="bsc_shift_row" style="display:none;margin-top:6px"><label>Layer shift: <span id="bsc_shift_val">' + Number(def("shift", 0)).toFixed(2) + '</span></label><input type="range" id="bsc_shift_slider" min="0" max="1" step="0.02" value="' + def("shift", 0) + '" style="width:100%"></div>' +
-            '<div id="bsc_field_row" style="display:none;margin-top:6px"><label>Field: <span id="bsc_field_val">' + Number(def("field", 0)).toFixed(2) + '</span></label><input type="range" id="bsc_field_slider" min="0" max="1" step="0.02" value="' + def("field", 0) + '" style="width:100%"></div>' +
-            '<div id="bsc_valence_row" style="display:none;margin-top:6px"><label>Free electrons per atom: <span id="bsc_valence_val">' + Math.round(def("valence", 1)) + '</span></label><input type="range" id="bsc_valence_slider" min="1" max="3" step="1" value="' + def("valence", 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_angle_row" style="display:none;margin-top:6px"><label>Bond angle: <span id="bsc_angle_val">' + defc("angle", 104.5, 60, 180).toFixed(1) + '</span>\\u00B0</label><input type="range" id="bsc_angle_slider" min="' + lim("angle", "min", 60) + '" max="' + lim("angle", "max", 180) + '" step="' + lim("angle", "step", 0.5) + '" value="' + defc("angle", 104.5, 60, 180) + '" style="width:100%"></div>' +
+            '<div id="bsc_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="bsc_spin_val">' + defc("spin", 0.16, 0, 0.6).toFixed(2) + '</span> rad/s</label><input type="range" id="bsc_spin_slider" min="' + lim("spin", "min", 0) + '" max="' + lim("spin", "max", 0.6) + '" step="' + lim("spin", "step", 0.02) + '" value="' + defc("spin", 0.16, 0, 0.6) + '" style="width:100%"></div>' +
+            '<div id="bsc_temperature_row" style="display:none;margin-top:6px"><label>Temperature: <span id="bsc_temperature_val">' + Math.round(defc("temperature", 298, 100, 600)) + '</span> K</label><input type="range" id="bsc_temperature_slider" min="' + lim("temperature", "min", 100) + '" max="' + lim("temperature", "max", 600) + '" step="' + lim("temperature", "step", 5) + '" value="' + defc("temperature", 298, 100, 600) + '" style="width:100%"></div>' +
+            '<div id="bsc_count_row" style="display:none;margin-top:6px"><label>Molecules: <span id="bsc_count_val">' + Math.round(defc("count", 1, 1, nUnits)) + '</span></label><input type="range" id="bsc_count_slider" min="' + lim("count", "min", 1) + '" max="' + nUnits + '" step="' + lim("count", "step", 1) + '" value="' + defc("count", 1, 1, nUnits) + '" style="width:100%"></div>' +
+            '<div id="bsc_separation_row" style="display:none;margin-top:6px"><label>Separation: <span id="bsc_separation_val">' + defc("separation", 3.0, 1.5, 8).toFixed(1) + '</span></label><input type="range" id="bsc_separation_slider" min="' + lim("separation", "min", 1.5) + '" max="' + lim("separation", "max", 8) + '" step="' + lim("separation", "step", 0.1) + '" value="' + defc("separation", 3.0, 1.5, 8) + '" style="width:100%"></div>' +
+            '<div id="bsc_shift_row" style="display:none;margin-top:6px"><label>Layer shift: <span id="bsc_shift_val">' + defc("shift", 0, 0, 1).toFixed(2) + '</span></label><input type="range" id="bsc_shift_slider" min="' + lim("shift", "min", 0) + '" max="' + lim("shift", "max", 1) + '" step="' + lim("shift", "step", 0.02) + '" value="' + defc("shift", 0, 0, 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_field_row" style="display:none;margin-top:6px"><label>Field: <span id="bsc_field_val">' + defc("field", 0, 0, 1).toFixed(2) + '</span></label><input type="range" id="bsc_field_slider" min="' + lim("field", "min", 0) + '" max="' + lim("field", "max", 1) + '" step="' + lim("field", "step", 0.02) + '" value="' + defc("field", 0, 0, 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_valence_row" style="display:none;margin-top:6px"><label>Free electrons per atom: <span id="bsc_valence_val">' + Math.round(defc("valence", 1, 1, 3)) + '</span></label><input type="range" id="bsc_valence_slider" min="' + lim("valence", "min", 1) + '" max="' + lim("valence", "max", 3) + '" step="' + lim("valence", "step", 1) + '" value="' + defc("valence", 1, 1, 3) + '" style="width:100%"></div>' +
             '<div id="bsc_ion_pair_row" style="display:none;margin-top:6px"><label>Ion pair: <select id="bsc_ion_pair_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="NaCl">NaCl</option><option value="KCl">KCl</option><option value="LiF">LiF</option><option value="MgO">MgO</option><option value="CaO">CaO</option></select></label></div>' +
             '<div id="bsc_metal_row" style="display:none;margin-top:6px"><label>Metal: <select id="bsc_metal_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="Na">Na</option><option value="Mg">Mg</option><option value="Al">Al</option></select></label></div>';
         document.body.appendChild(sp);
@@ -49967,13 +50016,91 @@ export const FIELD_3D_RENDERER_CODE = `
                 bscEmit(id, window["PM_bsc" + key]);
             });
         }
+        // ── E1c-G: AN EXPLORE CONTROL MAY NOT KEEP A VALUE THAT BELONGED TO THE
+        //   PREVIOUS SPECIES.
+        //   Measured on the explore state, fresh entry, molecule picker only:
+        //     fresh (H2O) mu 1.85 D at 104.5   ->  pick CO2  mu 2.82 D at 104.5
+        //                                      ->  pick BF3  mu 1.81 D at 104.5
+        //   CO2 stood BENT at water-s angle reading 2.82 D, and BF3 read 1.81 D
+        //   polar. State 3 of this same concept teaches that CO2-s dipole moment is
+        //   ZERO — it is the arc-s first misconception beat — and BF3 was admitted
+        //   to the picker precisely as a second "symmetric arrangement, zero
+        //   resultant" example. The sandbox a teacher explores in after the lesson
+        //   was refuting the lesson, and refuting the concept-s own assessment item.
+        //   ROOT CAUSE: the angle widget is built ONCE from slider_controls.angle
+        //   .default and the frame pass resolves angle_deg, which is the DEFAULT
+        //   species-s equilibrium — neither re-seeds when the species changes. This
+        //   is the shipped E1c item 4 (an authored angle also bends a 2-/3-bond
+        //   centre carrying no lone pair) meeting a picker that can change the
+        //   centre underneath it. There is NO good static default: 104.5 breaks CO2
+        //   and BF3, 180 opens water linear at mu = 0 and destroys the bend beat-s
+        //   aha on the sandbox — the default has to follow the species.
+        //   THE RULE: on an explore-mode species pick, the angle re-seeds to the
+        //   NEWLY PICKED species-s own equilibrium (MG_MOLECULES[key].angle) unless
+        //   the teacher has dragged the angle SINCE that pick. Every species opens
+        //   at its true geometry; a teacher who then drags keeps control, and the
+        //   next pick hands control back to the new species.
+        //   D-1 (no latch): the pick is an EVENT, not an accumulator. It writes the
+        //   widget and clears the angle drag-seize; the FRAME pass stays a pure
+        //   closed form of state-local ms (angleTo takes mol.angle whenever a picker
+        //   has seized the species), so a SET_TIME_FREEZE rewind still photographs
+        //   the same pixels and a frozen replay never depends on interaction
+        //   history. Guided states are untouched: everything here is gated on
+        //   PM_bscMode === "explore", and no guided state carries a picker plus an
+        //   angle control anyway.
+        //   E1c-F handoff honoured: nothing here touches swapP, and no *Dragged flag
+        //   of a picker is CLEARED (only set), so a compare state can never be
+        //   re-seized by this path.
+        function bscExploreSpeciesPicked(id, v) {
+            if (window.PM_bscMode !== "explore") return;
+            var mv = MG_MOLECULES[v];
+            if (!mv) return;
+            // G2: the three pickers NAME ONE QUANTITY — the species on screen — and
+            // the frame pass resolves molecule before ligand before species, so a
+            // halide pick was shadowed by the molecule picker the moment the teacher
+            // had used it: the Halide row was measurably inert (HF -> HCl -> HBr ->
+            // HI all left mu = 1.83 D on HF) while the explore state-s own
+            // annotation and narration tell the teacher to change the halide. A pick
+            // on ANY of the three now writes the same species to all of them, so the
+            // resolution order stops mattering — no history, no most-recent-wins.
+            if (id !== "molecule") {
+                window.PM_bscMol = v; window.PM_bscMolDragged = true;
+                var msel = document.getElementById("bsc_molecule_select");
+                if (bscOptionOf(msel, v)) msel.value = v;
+            }
+            if (id !== "ligand") {
+                // out of the halide family the row shows its placeholder rather
+                // than a stale halide. No *Dragged flag is cleared (the E1c-F
+                // handoff): PM_bscMol has just been seized, and the frame pass
+                // reads the molecule picker first, so PM_bscLig is never consulted.
+                var lsel = document.getElementById("bsc_ligand_select");
+                if (lsel) {
+                    var inFam = bscOptionOf(lsel, v);
+                    bscSelValue(lsel, inFam ? v : "");
+                    if (inFam) window.PM_bscLig = v;
+                }
+            }
+            if (id !== "species") {
+                var ssel = document.getElementById("bsc_species_select");
+                if (bscOptionOf(ssel, v)) { ssel.value = v; window.PM_bscSpecies = v; }
+            }
+            window.PM_bscAngle = mv.angle;
+            window.PM_bscAngleDragged = false;
+            var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
+            if (asl) asl.value = String(mv.angle);
+            if (avl) avl.textContent = Number(mv.angle).toFixed(1);
+        }
         function wireSelect(id, key) {
             var el = document.getElementById("bsc_" + id + "_select");
             if (!el) return;
             el.addEventListener("change", function () {
+                // the halide placeholder is display-only (E1c-G G2): picking it is
+                // not a species choice, so it changes nothing.
+                if (!el.value) return;
                 window["PM_bsc" + key] = el.value;
                 window["PM_bsc" + key + "Dragged"] = true;
                 bscEmit(id, el.value);
+                if (id === "molecule" || id === "ligand" || id === "species") bscExploreSpeciesPicked(id, el.value);
             });
         }
         var f1 = function (v) { return v.toFixed(1); };
@@ -49988,14 +50115,14 @@ export const FIELD_3D_RENDERER_CODE = `
         wireSelect("metal", "Metal");
 
         window.PM_bscMolDef = molDef; window.PM_bscMol = molDef;
-        window.PM_bscSpinDef = def("spin", 0.16); window.PM_bscSpin = window.PM_bscSpinDef;
-        window.PM_bscAngle = def("angle", 104.5);
-        window.PM_bscTemp = def("temperature", 298);
-        window.PM_bscCount = def("count", 1);
-        window.PM_bscSep = def("separation", 3.0);
-        window.PM_bscShift = def("shift", 0);
-        window.PM_bscField = def("field", 0);
-        window.PM_bscValence = def("valence", 1);
+        window.PM_bscSpinDef = defc("spin", 0.16, 0, 0.6); window.PM_bscSpin = window.PM_bscSpinDef;
+        window.PM_bscAngle = defc("angle", 104.5, 60, 180);
+        window.PM_bscTemp = defc("temperature", 298, 100, 600);
+        window.PM_bscCount = defc("count", 1, 1, nUnits);
+        window.PM_bscSep = defc("separation", 3.0, 1.5, 8);
+        window.PM_bscShift = defc("shift", 0, 0, 1);
+        window.PM_bscField = defc("field", 0, 0, 1);
+        window.PM_bscValence = defc("valence", 1, 1, 3);
         window.PM_bscLig = lkeys[0] || "HCl";
         window.PM_bscSpecies = skeys[0] || "H2O";
         window.PM_bscIonPair = "NaCl"; window.PM_bscMetal = "Na";
@@ -50008,6 +50135,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var keys = ["Mol", "Lig", "Species", "Angle", "Spin", "Temp", "Count", "Sep",
             "Shift", "Field", "Valence", "IonPair", "Metal"], i;
         for (i = 0; i < keys.length; i++) window["PM_bsc" + keys[i] + "Dragged"] = false;
+        // E1c-G: the picker re-seed is EXPLORE-ONLY, and the picker listeners are
+        // built once, outside any state — so the state-s mode is published here.
+        window.PM_bscMode = bs.mode || "dipole_sum";
 
         var units = bs.units || [];
         var focal = units.length ? units[0] : null;
@@ -50290,6 +50420,18 @@ export const FIELD_3D_RENDERER_CODE = `
         // ramp is authored), exactly as separation is the destination of
         // approach_from.
         var angleTo = (bs.angle_deg != null) ? bs.angle_deg : mol.angle;
+        // ── E1c-G, THE CLOSED-FORM HALF. An authored angle_deg on an EXPLORE state
+        //   describes the species that state OPENS on; once a picker has seized the
+        //   species it is a value belonging to a molecule that is no longer on
+        //   screen, and it was rendering CO2 bent at 104.5 reading 2.82 D against
+        //   the arc-s own "symmetric arrangement, zero resultant" beat. Whenever a
+        //   picker owns the species, the destination is that species-s OWN
+        //   equilibrium. Pure function of the resolved molecule — no latch, no
+        //   accumulator, no dependence on how the pick was reached (D-1), so a
+        //   SET_TIME_FREEZE rewind photographs the same pixels. Gated on
+        //   swapSeized, so an untouched explore state is byte-identical and every
+        //   guided state is untouched by construction.
+        if (mode === "explore" && swapSeized) angleTo = mol.angle;
         var angleAt = function (mms) {
             if (bs.angle_from == null || bs.angle_at_ms == null) return angleTo;
             return mgRamp(mms, bs.angle_at_ms,
@@ -51165,10 +51307,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // scripted swap every frame until a trusted drag seizes it, exactly as the
         // molecule picker and the separation slider already do. Without it S2-s
         // scripted HF->HI swap moved the molecule while the widget still read HF.
+        // E1c-G (G2): ...and when the species on screen is OUTSIDE the halide
+        // family the row shows its placeholder instead of being handed a value it
+        // has no option for, which is what rendered the select BLANK on the explore
+        // state (default species H2O, halide options HF/HCl/HBr/HI).
         if (bscHasControl(ctrls, "ligand") && !window.PM_bscLigDragged) {
             var lsel = document.getElementById("bsc_ligand_select");
-            if (lsel && lsel.value !== molKey && MG_MOLECULES[molKey]) lsel.value = molKey;
-            window.PM_bscLig = molKey;
+            var ligWant = (bscOptionOf(lsel, molKey) && MG_MOLECULES[molKey]) ? molKey : "";
+            if (lsel && bscSelCur(lsel) !== ligWant) bscSelValue(lsel, ligWant);
+            if (ligWant) window.PM_bscLig = molKey;
         }
         if (bscHasControl(ctrls, "angle") && !window.PM_bscAngleDragged) {
             var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
