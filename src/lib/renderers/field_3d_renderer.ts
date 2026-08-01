@@ -1231,10 +1231,44 @@ export interface Field3DConfig {
             //     picture stops explaining the arrows. The carts then coast for the
             //     rest of the state, which is the whole point: the RESULT of the
             //     interaction stays on screen long after the interaction ended.
+            // ── SEAM K — GENUINE spring physics (founder ruling 2026-08-01) ──
+            // docs/loop_runs/ch6/conservation_of_mechanical_energy/skeleton.md
+            // spec note 8. `k_N_per_m` is the GATE: present (> 0) => the coil is a
+            // real Hooke spring inside the integrator (F = -kx while the block
+            // overlaps its free end) and the slow-motion look is a PLAYBACK
+            // modifier over that real physics; absent => the pre-2026-08-01
+            // scripted `spring_action` path runs bit for bit (spec note 8c, the
+            // `newton_third_law` apparatus).
+            //   The two paths are mutually exclusive by construction: if a state
+            // authors BOTH, `k_N_per_m` wins (the genuine force gate runs after
+            // the scripted one and overwrites the slow window it published).
+            //   COMPRESSION x = max(0, natural_length_m - face-to-face gap), in
+            // METRES, exposed as PM_nlbSpringX for the energy layer's Uₛ = ½kx².
+            // The wall end is whichever body carries `fixed` (nlbSpringAnchorId) —
+            // it is skipped by the integrator, so the whole exchange lands on the
+            // free body, which is exactly a wall-mounted spring.
             spring?: {
                 between: [string, string];   // the two body ids
                 compressed?: boolean;        // render state; the ENGINE drives it from the push_off phase
                 coils?: number;              // default 8
+                // SEAM K. Spring constant in N/m. PRESENCE (> 0, finite) gates the
+                // genuine-physics path. Omit for the legacy scripted behaviour.
+                k_N_per_m?: number;
+                // SEAM K. Free (uncompressed) length in METRES. Default 1.6 (the
+                // apparatus constant NLB_SPRING_NATURAL_W / NLB_WORLD_PER_M, i.e.
+                // the length every pre-SEAM-K state already drew). It sets BOTH the
+                // physics rest length and the drawn coil length, so the picture can
+                // never disagree with the force.
+                natural_length_m?: number;
+                // SEAM K. Playback slowdown WHILE THE SPRING IS TOUCHING, default 6
+                // (1 = real time). A dt multiplier on the integrator only
+                // (dtPhysics = dt / slow_factor) with the mandatory `slow motion ×N`
+                // badge; the HUD, the bars and every published number stay the TRUE
+                // physical values. The window is CONTACT-DETECTED (x > 0, latched
+                // against chatter) — it is NOT the `push_off` phase machine and it
+                // reads no *_at_ms constant. Never opens in a `mode: 'sandbox'`
+                // state, and a trusted drag / slider cancels it (Rule 37).
+                slow_factor?: number;
             };
 
             arrows?: Array<{
@@ -1252,6 +1286,27 @@ export interface Field3DConfig {
             readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2'>;
             controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
             trusted_drag_seizes?: boolean;         // sandbox state only
+            // ── SEAM K — loop_reset_ms (spec note 9) ─────────────────────────
+            // Deterministic clock-based restart of the state's KINEMATICS to its
+            // authored home pose, every R ms of the state-local clock. It exists
+            // because a genuine integrator has no phase to wrap: a slide that ends
+            // is over, and a guided state then shows 80% dead frames (the
+            // no-frozen-tail scar). With it the motion repeats forever, the way a
+            // teacher repeats a demo.
+            //     cycle = floor(t_ms / R)   — on every cycle boundary the engine
+            //     calls its ONE rewind path (nlbResetTrajectory) and keeps t_ms
+            //     MONOTONIC, exactly as push_off.repeat_every_ms already does.
+            // So a SET_TIME_FREEZE pin holds one cycle/phase forever and THE EYE's
+            // dense frames stay deterministic (Rule 36).
+            //   IGNORED when the state authors `push_off` (that block's own
+            // repeat_every_ms is the older, sealed cycle and owns the rewind), in a
+            // `mode: 'sandbox'` state (the teacher owns the clock; SEAM J's wrap is
+            // the sandbox's loop), and once a trusted slider/drag has SEIZED the
+            // state (Rule 37).
+            //   AUTHORING INVARIANT (spec note 9): in a state where the spring is
+            // untaught, choose R so the reset fires BEFORE the block reaches the
+            // spring's free end — the engine cannot check this for you.
+            loop_reset_ms?: number;
             idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
             // ── §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline) ──
             // ONE-SHOT monotonic parameter reveal across a GUIDED state's window —
@@ -39158,7 +39213,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //                     component decomposition + right-angle marker).
     //     SEAM D        : pulley post + wheel + rope segments.
     //     SEAM E        : the #nlb_sliders ROWS + PARAM_UPDATE emitters + drag.
-    var NLB_G = 9.8;                      // m/s^2 (a constant, NOT a clock — Rule 36)
+    //     SEAM K        : GENUINE spring physics (spring.k_N_per_m) — the Hooke
+    //                     force inside the integrator, the CONTACT-DETECTED slow
+    //                     window, the shadow-Hamiltonian ripple correction, the
+    //                     derived energy read points for the energy layer,
+    //                     loop_reset_ms, and the clamp/wrap honesty guards.
+    //                     Additive: with no k_N_per_m every line below is inert
+    //                     and the scripted spring_action path is bit-identical.
+    var NLB_G = 9.8;                   // m/s^2 (a constant, NOT a clock — Rule 36)
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
     var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
@@ -39404,6 +39466,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // feeds the integrator and never moves a cart, and it is clamped to the live
     // gap so it can never overlap either body. ~4.5 cycles decaying to ~3% of
     // amplitude over 450 ms of WALL time ("a few tenths of a second", the spec).
+    // ── SEAM K — GENUINE spring physics constants ──────────────────────────
+    //   Hysteresis on the CONTACT latch. The window arms the first frame the block
+    //   overlaps the coil's free end (x > 0) and only disarms once it has cleared
+    //   it by this much, so a body sitting a micron off the face cannot chatter the
+    //   slow window (and therefore the dt) on and off frame after frame. 1 mm of
+    //   physical clearance — far below anything visible, far above float noise.
+    var NLB_SPRING_CONTACT_EPS_M = 0.001;
+    // The console prefix the clamp/wrap honesty guards emit under (spec note 17b).
+    // UNIQUE on purpose: THE EYE's console audit asserts ZERO occurrences, which is
+    // what turns "no energy-layer state may reach the track bound" from an authoring
+    // hope into a check that fails loudly.
+    var NLB_ENERGY_WARN_PREFIX = "[PM_NLB_ENERGY_CLAMP]";
     var NLB_SPRING_RING_MS = 450;         // wall ms of coast the ring occupies
     var NLB_SPRING_RING_AMP_W = 0.08;     // initial amplitude (world) = 0.16 m on a 1.6 m coil
     var NLB_SPRING_RING_TAU_MS = 130;     // exponential decay constant
@@ -40689,6 +40763,24 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!sp || !sp.between || sp.between.length < 2 || !sp.between[0] || !sp.between[1]) return null;
         return sp;
     }
+    // ── SEAM K — the genuine-physics gate, in ONE place ────────────────────
+    //   Returns the authored spring constant in N/m, or 0 for every pre-SEAM-K
+    //   state. 0 is the whole additivity contract: every SEAM K branch tests this
+    //   and takes the legacy path when it is 0, so a state that omits k_N_per_m
+    //   cannot reach one line of new behaviour.
+    function nlbSpringPhysK(sp) {
+        if (!sp) return 0;
+        var k = sp.k_N_per_m;
+        return (typeof k === "number" && isFinite(k) && k > 0) ? k : 0;
+    }
+    // The coil's free length in WORLD units. Authored in METRES (natural_length_m)
+    // so it is the same number the physics uses; absent => the apparatus constant
+    // every pre-SEAM-K state already drew, so no existing pixel moves.
+    function nlbSpringNaturalW(sp) {
+        var L = sp && sp.natural_length_m;
+        if (typeof L === "number" && isFinite(L) && L > 0) return L * NLB_WORLD_PER_M;
+        return NLB_SPRING_NATURAL_W;
+    }
     // Compressed or free RIGHT NOW. Engine-driven from the push_off contact phase
     // whenever the state has one — with EXACTLY the carve-out nlbRunPushOff itself
     // makes (inert in a sandbox state, where the teacher's F slider owns the force
@@ -40785,22 +40877,37 @@ export const FIELD_3D_RENDERER_CODE = `
         // hides rather than stretching — a spring that kept spanning the widening
         // gap would draw a pull that the physics does not apply. The two
         // choreography phases named above are the only exemptions.
-        if (!(phc === "approach" || ringOn) && gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) {
+        // SEAM K: a spring with a real k is a BOLTED-DOWN OBJECT, not a transient
+        // interaction — it stays on screen at its free length while nothing touches
+        // it (the concept's permanent home pose: "a fixed wall at the base with the
+        // spring mounted against it, coil at natural length, inert"). The hide rule
+        // below exists so a SCRIPTED push-off does not draw a pull it never applies;
+        // with genuine physics the force IS zero past natural length, so there is
+        // nothing to disagree with and hiding the coil would delete the apparatus.
+        var kPhysW = nlbSpringPhysK(sp);
+        var natW = nlbSpringNaturalW(sp);
+        if (!(phc === "approach" || ringOn || kPhysW > 0) && gap > natW + NLB_SPRING_HIDE_EPS) {
             obj.visible = false; nlbPublishSpring(false, 0, gap); return;
         }
         var target;
-        if (phc) {
+        if (kPhysW > 0) {
+            // The drawn length IS the physical length: free when nothing touches it,
+            // compressed by exactly the overlap the integrator is reading (the
+            // min() against the gap below does the compressing). One quantity, so
+            // the picture can never disagree with Uₛ = ½kx².
+            target = natW;
+        } else if (phc) {
             // approach: min() below leaves NATURAL (the gap is wider).
             // compress / hold / release: the gap is the compression, so the coil
             //   tightens to 0.45x natural as the carts close and springs back OUT
             //   with them through the slowed release, hiding at natural.
             // coast: the ring, or the plain cap (a short authored release can leave
             //   the coil still inside the gap here).
-            target = ringOn ? ringLen : NLB_SPRING_NATURAL_W;
+            target = ringOn ? ringLen : natW;
         } else {
             target = nlbSpringCompressedNow(sp)
-                ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
-                : NLB_SPRING_NATURAL_W;
+                ? natW * NLB_SPRING_COMPRESS_FRAC
+                : natW;
         }
         var drawn = (gap < target) ? gap : target;         // never longer than the gap it sits in
         if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; nlbPublishSpring(false, 0, gap); return; }
@@ -42122,6 +42229,302 @@ export const FIELD_3D_RENDERER_CODE = `
         if (el.textContent !== txt) el.textContent = txt;
     }
 
+    // ══ SEAM K — GENUINE SPRING PHYSICS ═══════════════════════════════════════
+    //   Founder ruling 2026-08-01 (skeleton spec note 8): build a REAL spring —
+    //   authored k, F = -kx inside the integrator, the compression x exposed to
+    //   the energy layer — and get the teachable slow-motion LOOK by slowing
+    //   PLAYBACK over that real physics, never by scripting the stroke. The
+    //   2026-07-30 choreography directive's intent survives in full (a real spring
+    //   bounces far too fast to teach from); only its MECHANISM changes, and its
+    //   Rule-36/24/34/37 constraints are reused verbatim (the dt multiplier, the
+    //   slow-motion badge, the sandbox carve-out).
+    //   ADDITIVE, and provably so on two levels:
+    //     • no k_N_per_m  -> every function below early-returns and the scripted
+    //       spring_action path (newton_third_law) is bit-for-bit unchanged;
+    //     • WITH k_N_per_m -> the position step still reduces EXACTLY to the legacy
+    //       trapezoid whenever the coil is not touching (the extra term carries a
+    //       factor x, which is 0), so even a spring state differs from today only
+    //       while the spring is genuinely in contact.
+
+    // The spring pair, resolved to ENGINE body records plus the geometry the force
+    // needs, or null. Everything is in the bodies' OWN axis, in METRES — the same
+    // 1-D coordinate the integrator uses — so there is no theta test anywhere here
+    // and an incline runs the identical code path as flat ground. (A fixed body
+    // in the state pins every body to one z lane, see nlbBodyLaneZ, so the axial
+    // separation IS the physical separation.)
+    function nlbSpringPair(eng) {
+        if (!eng) return null;
+        var sp = nlbSpringCfg();
+        var k = nlbSpringPhysK(sp);
+        if (!k) return null;
+        var bA = eng.bodies[sp.between[0]], bB = eng.bodies[sp.between[1]];
+        if (!bA || !bB || bA.ghost || bB.ghost) return null;
+        // Half-extents from the MESHES (a fixed body is a wall SLAB, not a cart),
+        // world units converted to metres so the gap is in the integrator's units.
+        var halfM = (nlbSpringHalfExtent(bA.id) + nlbSpringHalfExtent(bB.id)) / NLB_WORLD_PER_M;
+        // Which body stands on the HIGH-s side, read LIVE and never assumed from
+        // the authored order: the separation coordinate must GROW with that body's
+        // s or every sign below flips.
+        var hi = (bA.s >= bB.s) ? bA : bB;
+        var lo = (hi === bA) ? bB : bA;
+        var L0 = nlbSpringNaturalW(sp) / NLB_WORLD_PER_M;
+        var xRaw = L0 - ((hi.s - lo.s) - halfM);   // signed penetration
+        return {
+            k: k, L0: L0, hi: hi, lo: lo,
+            xRaw: xRaw,
+            x: (xRaw > 0) ? xRaw : 0,             // COMPRESSION, the layer's Uₛ input
+            // Separation RATE along the spring's own axis (d gap / dt); > 0 = moving
+            // apart. Taken from the two live velocities, so a free-free pair is as
+            // correct as the wall-mounted one, and a fixed end contributes 0.
+            vSep: (hi.fixed ? 0 : hi.v) - (lo.fixed ? 0 : lo.v),
+            freeId: hi.fixed ? lo.id : hi.id,
+            slow: sp.slow_factor
+        };
+    }
+    // The Hooke force, the CONTACT latch and the slow window. INPUT STAGE: called
+    // from updateNewtonsLawsBodyFrame alongside the other input hooks (push_off,
+    // idle sweep, param ramp) and BEFORE both integrator branches, so the step, the
+    // arrows, the readouts and the coil are all consistent inside ONE frame. The
+    // force is evaluated at the position the frame STARTED at — which is exactly
+    // what makes the velocity update a semi-implicit (symplectic) Euler kick.
+    function nlbRunSpringForce(nlb, eng, hFull) {
+        // Cleared every frame on every body: the drive sums F_spring unconditionally
+        // below, so a stale value could never be allowed to survive a state change.
+        for (var i0 = 0; i0 < eng.order.length; i0++) {
+            var b0 = eng.bodies[eng.order[i0]];
+            if (b0) b0.F_spring = 0;
+        }
+        var pr = nlbSpringPair(eng);
+        if (!pr) {
+            eng.spring_phys = false; eng.energy_active = false;
+            eng.spring_x_m = 0; eng.spring_x_raw_m = 0; eng.spring_v_sep = 0;
+            eng.spring_force_N = 0; eng.spring_contact = false; eng.spring_free_id = "";
+            eng.spring_k = 0; eng.spring_L0_m = 0;
+            nlbPublishSpringPhys(eng);
+            return;
+        }
+        eng.spring_phys = true;
+        eng.energy_active = true;                 // SEAM L widens this to energy_layer
+        eng.spring_k = pr.k;
+        eng.spring_L0_m = pr.L0;
+        eng.spring_free_id = pr.freeId;
+        // CONTACT LATCH (spec note 8b: "x > 0, latched against chatter"). It arms
+        // the instant the overlap opens and only releases once the block has
+        // cleared the face by NLB_SPRING_CONTACT_EPS_M, so the dt scale can never
+        // flicker on and off around x = 0. Decided from the PRE-step geometry,
+        // because the dt this frame will take has to be known before the step.
+        eng.spring_contact = eng.spring_contact
+            ? (pr.xRaw > -NLB_SPRING_CONTACT_EPS_M)
+            : (pr.xRaw > 0);
+        eng.spring_x_raw_m = pr.xRaw;
+        eng.spring_x_m = pr.x;
+        eng.spring_v_sep = pr.vSep;
+        // F = -kx, written as the equal-and-opposite PUSH it physically is: ONE
+        // expression drives the pair, so an unequal pair is unrepresentable. A
+        // fixed end is skipped by the integrator, which is precisely a spring
+        // bolted to a wall — the whole exchange lands on the free body.
+        eng.spring_force_N = pr.k * pr.x;
+        pr.hi.F_spring = eng.spring_force_N;      // pushed toward +s
+        pr.lo.F_spring = -eng.spring_force_N;     // pushed toward -s
+        // ── 8b — slow motion as a PLAYBACK modifier over the real physics ──
+        //   CONTACT-DETECTED, deliberately NOT the push_off phase machine and not
+        //   any *_at_ms constant: the window IS the contact, so a pacing trim, a k
+        //   slider or a different release height can never desync it. Rule 37: no
+        //   slow window in a sandbox state (the teacher's rig runs real time), and
+        //   a trusted drag or slider CANCELS an in-progress window through the same
+        //   two latches every other Rule-37 carve-out honours.
+        var S = (typeof pr.slow === "number" && isFinite(pr.slow) && pr.slow >= 1)
+            ? pr.slow : NLB_SPRING_SLOW_DEFAULT;
+        var seized = !!(window.PM_nlbSweepSeized || window.PM_nlbBodyDragged);
+        // ONE-STEP LOOKAHEAD. The window arms while the block is still one FULL
+        // frame away from the coil face, not on the frame it has already overlapped
+        // it. Without this the very first contact frame is taken at the unslowed dt
+        // (the force was still 0 when it started), so the block buries itself up to
+        // v·dt into the spring and gains that whole Uₛ with no work done for it —
+        // an O(dt) hole punched in the sum this layer exists to show constant, and
+        // visually a snap into the coil rather than a settle. The lookahead is
+        // self-sustaining: once armed, the step shrinks by S, so the block cannot
+        // close the remaining distance in one frame either. It costs at most a few
+        // slowed frames before touch, which is exactly the beat a teacher wants.
+        var lookM = Math.abs(eng.spring_v_sep) * ((typeof hFull === "number" && hFull > 0) ? hFull : 0);
+        var nearContact = pr.xRaw > -(lookM + NLB_SPRING_CONTACT_EPS_M);
+        eng.slow_active = (!!eng.spring_contact || nearContact) &&
+            S > 1 && eng.mode !== "sandbox" && !seized;
+        eng.spring_slow_factor = eng.slow_active ? S : 1;
+        nlbPublishSpringPhys(eng);
+    }
+    // The PM_nlb* mirror convention: DERIVED reads only. SEAM L (and any probe)
+    // consumes these; nothing in the engine reads them back, so they can never
+    // become a second source of truth, and they touch no pixels.
+    function nlbPublishSpringPhys(eng) {
+        window.PM_nlbSpringK = eng.spring_k || 0;               // N/m
+        window.PM_nlbSpringNaturalM = eng.spring_L0_m || 0;     // m
+        window.PM_nlbSpringX = eng.spring_x_m || 0;             // COMPRESSION, m (>= 0)
+        window.PM_nlbSpringXRaw = eng.spring_x_raw_m || 0;      // signed penetration, m
+        window.PM_nlbSpringVSep = eng.spring_v_sep || 0;        // d(gap)/dt, m/s
+        window.PM_nlbSpringForceN = eng.spring_force_N || 0;    // |F| = k·x
+        window.PM_nlbSpringContact = !!eng.spring_contact;      // the latched window
+        window.PM_nlbSpringFreeId = eng.spring_free_id || "";
+    }
+    // Height above the state's energy reference, in metres. SEAM K's reference is
+    // s = 0 — the surface origin, where the incline meets the ground and where the
+    // authored h = 0 line is drawn. SEAM L may widen this to an authored value; it
+    // is a pure function of the body's own coordinate, no clock and no history.
+    function nlbHeightM(eng, b) {
+        if (b.hanging) return -b.s;               // a hanging body's s runs DOWNWARD
+        return b.s * Math.sin((eng.theta_deg || 0) * Math.PI / 180);
+    }
+    // ── The energy read points (SEAM L's entire input surface) ───────────────
+    //   Every quantity is DERIVED from the integrator state this frame — nothing
+    //   accumulates, so there is no history to rewind and the three bars are
+    //   frame-rate independent by construction (spec note 2).
+    //   THE RIPPLE CORRECTION (Checkpoint-A cycle-2 must-fix, spec note 8b). A
+    //   symplectic step does not conserve the energy itself; it conserves a SHADOW
+    //   Hamiltonian that differs from it by one term. For the kick-drift spring
+    //   step used below that term is exactly (h/2)·k·x·(d gap/dt), so
+    //       E_display = K + U_grav + U_spring + (dtPhysics/2)·k·x·v_sep
+    //   is conserved to the integrator's own precision while the MOTION is
+    //   untouched (this is a display correction, never a force). It vanishes
+    //   identically at both ends of the contact window (x = 0), which is what
+    //   keeps it continuous across the dt change the slow window makes.
+    //   slow_factor is a LEGIBILITY choice and never the numerical remedy: the raw
+    //   ripple is linear in ω·dt, so no realistic slow factor removes it.
+    function nlbPublishEnergy(eng, hPhys) {
+        if (!eng || !eng.energy_active) { window.PM_nlbEnergy = null; return; }
+        // Spec note 17b — the geometric clamp fired: HOLD the last honest values
+        // rather than render a track artifact as an energy change.
+        if (eng.energy_held && eng.energy_snapshot) {
+            window.PM_nlbEnergy = eng.energy_snapshot;
+            return;
+        }
+        // RE-READ the compression from the POST-step positions. The integrator
+        // deliberately used the pre-step x (that is what makes the kick
+        // semi-implicit), but every quantity below is a STATE function and must be
+        // evaluated at ONE consistent instant — the same instant the coil is drawn
+        // at and the same instant v was just written for. Pairing a pre-step x with
+        // a post-step v would put an O(dt) hole in the very sum this layer exists
+        // to show constant.
+        var prE = nlbSpringPair(eng);
+        if (prE) {
+            eng.spring_x_m = prE.x;
+            eng.spring_x_raw_m = prE.xRaw;
+            eng.spring_v_sep = prE.vSep;
+            nlbPublishSpringPhys(eng);
+        }
+        var K = 0, Ug = 0, tracked = null;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost || b.fixed) continue;
+            // Per-body, so SEAM L's two compact side-by-side bar groups need no
+            // second derivation path.
+            b.h_m = nlbHeightM(eng, b);
+            b.K_J = 0.5 * b.m * b.v * b.v;
+            b.U_grav_J = b.m * NLB_G * b.h_m;
+            K += b.K_J; Ug += b.U_grav_J;
+            // The spring's FREE body is the tracked one when there is a spring;
+            // otherwise the first integrated body. (SEAM L addresses bodies by id.)
+            if (!tracked || b.id === eng.spring_free_id) tracked = b;
+        }
+        var x = eng.spring_x_m || 0;
+        var k = eng.spring_k || 0;
+        var Us = 0.5 * k * x * x;
+        var ripple = 0.5 * (hPhys || 0) * k * x * (eng.spring_v_sep || 0);
+        var snap = {
+            body_id: tracked ? tracked.id : "",
+            v: tracked ? tracked.v : 0,
+            s: tracked ? tracked.s : 0,
+            h_m: tracked ? tracked.h_m : 0,
+            x_m: x, k: k, dt_physics: hPhys || 0,
+            K: K, U_grav: Ug, U_spring: Us,
+            E_raw: K + Ug + Us,
+            E_ripple: ripple,
+            E_display: K + Ug + Us + ripple,
+            E_t0: 0, held: false
+        };
+        // The baseline (spec note 3) is captured on the FIRST published frame of
+        // the state and re-captured by RESET_TRAJECTORY and by a sandbox wrap —
+        // never mid-flight, so E_dissipated stays a state function.
+        if (eng.E_t0 == null) eng.E_t0 = snap.E_display;
+        snap.E_t0 = eng.E_t0;
+        eng.energy_snapshot = snap;
+        window.PM_nlbEnergy = snap;
+    }
+    // Spec note 17b — the ENGINE GUARD. nlbBoundsM() zeroing v at a track bound is
+    // a GEOMETRIC clamp, not physics, so it must never be presented as an energy
+    // change. When it fires while the energy layer is live the bars FREEZE at their
+    // last pre-clamp values and a warning goes to the console under a unique
+    // prefix, so a mis-authored state fails loudly at THE EYE's console audit
+    // instead of silently collapsing the E column. Warned ONCE per state entry:
+    // the audit only needs the occurrence, and a per-frame log would drown it.
+    function nlbEnergyClampGuard(eng, b) {
+        if (!eng || !eng.energy_active || eng.energy_held) return;
+        eng.energy_held = true;
+        if (eng._clamp_warned) return;
+        eng._clamp_warned = true;
+        if (typeof console !== "undefined" && console && console.warn) {
+            console.warn(NLB_ENERGY_WARN_PREFIX + " body '" + (b ? b.id : "?") +
+                "' reached a track bound while the energy layer was active — bars " +
+                "HELD at their last pre-clamp values. The state must be re-authored " +
+                "so the spring turnaround or loop_reset_ms fires first (spec note 17a).");
+        }
+    }
+    // Spec note 17c — the SANDBOX WRAP is not physics either. nlbSandboxWrap()
+    // teleports s across the track and re-seeds v, so the layer treats it as a
+    // state RE-ENTRY: the baseline is re-captured, every latch re-arms and the bar
+    // baseline resets in the SAME frame. A wrap can therefore never render as an
+    // energy change, and it can never leave a stale hold behind either.
+    function nlbEnergyOnWrap(eng) {
+        if (!eng || !eng.energy_active) return;
+        nlbSpringPhysReset(eng);
+    }
+    // Spec note 18e/18f — everything SEAM K owns that carries state across frames.
+    // Called on state entry, on RESET_TRAJECTORY and on a sandbox wrap, so THE
+    // EYE's RESET -> pin -> RESET -> dense -> RESET -> frozen drive can never carry
+    // a compression, a latched slow window, a held bar or a loop cycle across.
+    function nlbSpringPhysReset(eng) {
+        if (!eng) return;
+        eng.spring_contact = false;          // 18e — the contact latch re-arms
+        eng.spring_x_m = 0;
+        eng.spring_x_raw_m = 0;
+        eng.spring_v_sep = 0;
+        eng.spring_force_N = 0;
+        eng.slow_active = false;             // 18e — and the slow window / badge
+        eng.spring_slow_factor = 1;
+        eng.E_t0 = null;                     // 18d — re-captured on the next frame
+        eng.energy_held = false;
+        eng.energy_snapshot = null;
+        eng._clamp_warned = false;
+        eng._loop_cycle = null;              // 18f — the loop clock, back to adopt
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b) b.F_spring = 0;
+        }
+    }
+    // ── Spec note 9 — loop_reset_ms ──────────────────────────────────────────
+    //   A genuine integrator has no phase to wrap: a slide that ends is over. This
+    //   restarts the state's kinematics on a fixed cycle of the state-local clock
+    //   through the ONE rewind path, keeping t_ms MONOTONIC exactly as push_off's
+    //   repeat does — so a SET_TIME_FREEZE pin holds one cycle forever and THE
+    //   EYE's dense frames stay deterministic (Rule 36), while a teacher watching
+    //   live sees the demo repeat instead of a frozen tail.
+    //   Inert when the state authors push_off (that sealed cycle owns the rewind),
+    //   in a sandbox (SEAM J's wrap is the sandbox's loop, Rule 37) and once a
+    //   trusted slider or drag has seized.
+    function nlbRunLoopReset(nlb, eng) {
+        var R = nlb.loop_reset_ms;
+        if (!(typeof R === "number" && isFinite(R) && R > 0)) return;
+        if (eng.push_off || eng.mode === "sandbox") return;
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return;
+        var cycle = Math.floor((eng.t_ms || 0) / R);
+        if (eng._loop_cycle == null) { eng._loop_cycle = cycle; return; }  // adopt, never fire
+        if (cycle === eng._loop_cycle) return;
+        var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+        nlbResetTrajectory();                 // the ONE rewind path
+        eng.t_ms = tKeep;                     // the master clock stays monotonic
+        window.PM_nlbTimeMs = tKeepPub;
+        eng._loop_cycle = cycle;              // AFTER the rewind (which nulls it)
+    }
+
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
     //   engine state object every seam reads, sets glow_focal, resets the
@@ -42176,6 +42579,26 @@ export const FIELD_3D_RENDERER_CODE = `
             t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
             _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
             _po_cycle: null,      // push_off repeat_every_ms edge memo; null = adopt, never fire
+            // ── SEAM K — genuine spring physics + the energy read points ──
+            //   Every field is DERIVED and rewritten by nlbRunSpringForce /
+            //   nlbPublishEnergy each frame; seeded here so a state with no
+            //   k_N_per_m can never read a stale compression, contact latch or
+            //   slow window, and is bit-identical to the pre-SEAM-K engine.
+            spring_phys: false,   // this state runs the genuine Hooke path
+            energy_active: false, // the energy layer's read points are live
+            spring_k: 0,          // N/m (authored)
+            spring_L0_m: 0,       // free length, metres
+            spring_x_m: 0,        // COMPRESSION (>= 0), metres — the layer's Uₛ input
+            spring_x_raw_m: 0,    // signed penetration (negative = clear of the coil)
+            spring_v_sep: 0,      // d(gap)/dt, m/s — the ripple term's velocity
+            spring_force_N: 0,    // |F| = k·x
+            spring_contact: false,// the latched contact window (= the slow window)
+            spring_free_id: "",   // the non-fixed end: the tracked body
+            E_t0: null,           // baseline total, captured on the first frame
+            energy_held: false,   // note 17b: a geometric clamp froze the bars
+            energy_snapshot: null,
+            _clamp_warned: false,
+            _loop_cycle: null,    // loop_reset_ms edge memo; null = adopt, never fire
             phase_fired: {}       // one-shot phase flags, reset on every state entry
         };
         for (var i = 0; i < bodies.length; i++) {
@@ -42235,6 +42658,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // coupled tick. No-op for an uncoupled state beyond the v_string/a_string
         // zeroing the engine literal already did.
         nlbSeedKinematics();
+        // SEAM K — the same rewind the trajectory reset performs, on entry: a state
+        // must never inherit the previous one's compression, contact latch, slow
+        // window, energy baseline or loop cycle (spec note 18e/18f).
+        nlbSpringPhysReset(eng);
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
@@ -42516,6 +42943,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // genuine RESET_TRAJECTORY (t_ms -> 0) starts clean. nlbRunPushOff's own
         // re-arm re-assigns it immediately AFTER calling this function.
         eng._po_cycle = null;
+        // SEAM K (spec note 18e/18f) — the spring compression, the contact latch,
+        // the slow window + badge, the energy baseline, any held bar values and the
+        // loop clock all rewind with the kinematics. Without this a rewind carried
+        // a latched slow window (and therefore a scaled dt) into a state that was
+        // supposed to start clean, which is a determinism failure THE EYE's
+        // RESET -> pin -> RESET -> dense drive would surface as a moving baseline.
+        nlbSpringPhysReset(eng);
         nlbLastEmitS = null;
         nlbFitRopes();
         nlbFitSpring();                     // the coil rewinds with the carts it sits between
@@ -42710,6 +43144,9 @@ export const FIELD_3D_RENDERER_CODE = `
         if (eng.t_ms == null) eng.t_ms = 0;
         eng.t_ms += h * 1000;
         window.PM_nlbTimeMs = eng.t_ms;
+        // SEAM K (spec note 9) — the deterministic loop restart, BEFORE the phase
+        // one-shots so a re-armed cycle's phases fire from this state's own t = 0.
+        nlbRunLoopReset(nlb, eng);
         nlbRunPhases(nlb, eng, eng.t_ms);
 
         // push_off — the contact-then-release phase gate. Hooked at the INPUT
@@ -42754,6 +43191,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // for the same reason: a theta ramp must not leave the arrows/rope one
         // frame behind the incline they are drawn on.
         nlbRunParamRamp(nlb, eng);
+        // SEAM K — the GENUINE Hooke force. Same input-stage placement, and
+        // deliberately LAST of the input hooks: when a state authors both a real k
+        // and the legacy scripted block, the genuine path wins by overwriting the
+        // slow window nlbRunPushOff just published (documented in the config
+        // surface). Inert — and it clears F_spring on every body — when the state
+        // authors no k_N_per_m.
+        nlbRunSpringForce(nlb, eng, h);
 
         // ── spring_action slow motion — a dt MULTIPLIER on the INTEGRATOR ONLY ──
         //   docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md. Physics cannot give a
@@ -42779,6 +43223,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //   eng.slow_active is false in every state with no spring_action, in a
         //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
         var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        // SEAM K read point: the dt the integrator actually took this frame, in
+        // SECONDS. The energy layer needs it for the ripple correction, and a probe
+        // needs it to tell a slowed frame from a real-time one.
+        window.PM_nlbDtPhysics = hPhys;
         nlbUpdateSlowBadge(eng);
         // Mass text (HUD header + on-block number) tracks a live slider drag. One call
         // for both integrator branches, churn-guarded, clock-free.
@@ -42819,7 +43267,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 var th = b.hanging ? 90 : thetaSurf;
                 var N = nlbNormal(b, th);
-                var drive = b.F_applied + nlbGravAlong(b, th);
+                // SEAM K: the Hooke force joins the drive as one more real force
+                // along the body's own axis, so the static-friction test, the
+                // kinetic branch, ΣF, the net arrow and every readout pick it up
+                // with no second code path. It is exactly 0 in every state that
+                // authors no k_N_per_m and in every frame the coil is not touching.
+                var Fspr = b.F_spring || 0;
+                var drive = b.F_applied + nlbGravAlong(b, th) + Fspr;
                 var maxStat = b.mu_s * N;
                 var bd = nlbBoundsM(b, lenM);
                 // A body already ARRESTED AT ITS SURFACE BOUND while still sliding must
@@ -42861,7 +43315,28 @@ export const FIELD_3D_RENDERER_CODE = `
                 // position step taken at h while the velocity step took hPhys would
                 // desynchronize s from v. hPhys === h in every state with no open
                 // slow window, so no existing baseline moves.
-                var s1 = b.s + 0.5 * (v0 + v1) * hPhys;
+                // ── SEAM K — the SEMI-IMPLICIT (symplectic) half-step ──────────
+                //   The trapezoid above is EXACT for a constant acceleration, which
+                //   is why it was chosen (see this seam's header) and why it must
+                //   stay: gravity is constant, so a free slide accumulates ZERO
+                //   energy error and the flat-topped E column reads true.
+                //   A spring force is NOT constant, and for the position-dependent
+                //   part the step that behaves is the semi-implicit (kick-drift)
+                //   Euler the spec names: kick with F(s0), then drift with the NEW
+                //   velocity, i.e. s += v1*h. That differs from the trapezoid by
+                //   exactly +0.5*a_spring*h², which is the term added here — so
+                //   this update IS  v += (F/m)*dt; s += v*dt  for the spring while
+                //   remaining the exact solution for the constant part.
+                //   Rule 36 holds on every count: strictly affine in dt with no
+                //   internal sub-stepping, no literal 0.016, no second clock; and
+                //   with dt = 0 under SET_TIME_FREEZE the whole expression collapses
+                //   to s1 === b.s identically, with no special-case branch.
+                //   BIT-IDENTICAL to the legacy path whenever Fspr === 0 — which is
+                //   every pre-SEAM-K state, and every non-contact frame of a spring
+                //   state (the added term carries a factor x).
+                var aSpr = Fspr / b.m;
+                if (stuck) aSpr = 0;               // held: the step writes no motion
+                var s1 = b.s + 0.5 * (v0 + v1) * hPhys + 0.5 * aSpr * hPhys * hPhys;
                 // SEAM J — the SANDBOX wrap (founder-approved 2026-07-30).
                 //   Rule 37 says the explore state must keep MOVING, and names the
                 // mechanism for every other scenario: "the bead/motion phase wraps
@@ -42889,8 +43364,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (nlbSandboxWrap()) {
                     var span = bd.hi - bd.lo;
                     if (span > 0) {
-                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; }
-                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; }
+                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); }
+                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); }
                     }
                     b.a = a; b.v = v1; b.s = s1;
                     b._boundArrestedSliding = false;
@@ -42910,6 +43385,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     // before the wall, never silently upgraded to static.
                     v1 = 0; a = 0;
                     b._boundArrestedSliding = !stuck;
+                    // SEAM K (spec note 17b): that v = 0 is a TRACK artifact. If the
+                    // energy layer is live it must not be read as an energy change —
+                    // hold the bars and warn loudly (see nlbEnergyClampGuard).
+                    if (eng.energy_active) nlbEnergyClampGuard(eng, b);
                 } else {
                     b._boundArrestedSliding = false;
                 }
@@ -42921,6 +43400,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 nlbWriteReadouts(nlb, b, stuck);
             }
             eng.v_string = 0; eng.a_string = 0;
+            // SEAM K — the derived energy read points, AFTER the writeback that
+            // gives them their inputs (v, s, x) and before the presentation passes.
+            // Pure algebra over already-stepped values: nothing integrated, nothing
+            // accumulated, nothing to rewind (Rule 36).
+            nlbPublishEnergy(eng, hPhys);
             // SEAM C — presentation only, AFTER the physics writeback. One pass over
             // every body (a ghost or an unlisted body gets its arrows hidden here),
             // so there is no second animate() branch and no clock code (Rule 36).
@@ -42975,7 +43459,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
             bj.N = Nj;
-            bj._drive = bj.F_applied + nlbGravAlong(bj, thj);
+            // SEAM K: identically 0 with no k_N_per_m, so every coupled state is
+            // bit-for-bit unchanged. Carried here anyway so a spring authored on a
+            // coupled rig cannot be silently dropped (the c_i weighting below is
+            // already the right one for a force along the body's own axis).
+            bj._drive = bj.F_applied + nlbGravAlong(bj, thj) + (bj.F_spring || 0);
             bj._c = cj;
             act.push(bj);
             D += cj * bj._drive;
@@ -43100,6 +43588,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // SEAM H — per-segment tensions, after the writeback that gives them their
         // inputs (each cart's f) and before the presentation passes that draw them.
         nlbTrainTensions(eng, aStr);
+        // SEAM K — the derived energy read points (see branch A).
+        nlbPublishEnergy(eng, hPhys);
         // SEAM C — presentation only, AFTER the physics writeback (see branch A).
         nlbDriveArrows(eng);
         // SEAM D — re-fit both rope segments to the live body positions, so the
