@@ -268,6 +268,25 @@ export function deriveMotionExpectations(
             // the hold pass instead of being false-failed for standing still. The
             // explore sandbox is user-driven → declare static and let the
             // interactive hold classification relax its tail.
+            // bonding_scene (CHEMISTRY BONDING WAVE): a beat that authors a
+            // non-zero spin_rate turns the whole unit forever on the state clock
+            // (that perpetual turn is what makes the 3D count readable, D-4), and
+            // a beat with a non-zero thermal.jiggle_scale never stops moving
+            // either → DECLARE motion so D5/D6 expect ongoing pixel movement. A
+            // still beat (spin off, no jiggle — Rule 32b, only the taught variable
+            // moves) is a one-shot ramp that SETTLES: left undefined here so the
+            // hold pass classifies it reveal_hold instead of false-failing it for
+            // standing still. The explore sandbox is user-driven → declare static
+            // and let the interactive hold classification relax its tail (the
+            // renderer's idle auto-sweep keeps it moving regardless, Rule 37).
+            const bscMotion = state ? asObj(state.bonding_scene) : null;
+            if (bscMotion) {
+                if (bscMotion.mode === 'explore') { out[stateId] = false; continue; }
+                if (typeof bscMotion.spin_rate === 'number' && bscMotion.spin_rate > 0) { out[stateId] = true; continue; }
+                const bscTh = asObj(bscMotion.thermal);
+                if (bscTh && typeof bscTh.jiggle_scale === 'number' && bscTh.jiggle_scale > 0) { out[stateId] = true; continue; }
+                // still beat: fall through to the reveal_hold classification.
+            }
             const osMotion = state ? asObj(state.orbital_shapes) : null;
             if (osMotion) {
                 if (osMotion.mode === 'explore') { out[stateId] = false; continue; }
@@ -532,6 +551,13 @@ const F3D_REVEAL_KEYS = [
     // that flattened field_3d_config.states is still recognised as field_3d, not
     // PCPL.
     'orbital_shapes',
+    // bonding_scene (CHEMISTRY BONDING WAVE — Phase-0 E1 engine dispatch,
+    // 2026-08-01): the per-state `bonding_scene` block (unit layer / per-atom
+    // partial charge + δ labels / bond-dipole arrows + derived resultant / rigid
+    // shared-pair electron glyph / deterministic thermal jiggle; E2 adds links,
+    // E3 the lattice). Listed here so a cached physics_config that flattened
+    // field_3d_config.states is still recognised as field_3d, not PCPL.
+    'bonding_scene',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -1828,6 +1854,49 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // scripted "hide the lone pairs → the shape is what is left" reveal.
         if (typeof mgState.hull_at_ms === 'number') candidates.push(asNum(mgState.hull_at_ms, 0) + 900 + 400);
         if (typeof mgState.hide_lone_at_ms === 'number') candidates.push(asNum(mgState.hide_lone_at_ms, 0) + 900);
+    }
+    // bonding_scene (CHEMISTRY BONDING WAVE — Phase-0 E1, 2026-08-01): the unit
+    // may turn perpetually and jiggle forever, but each state's TEACHING beat is a
+    // one-shot cue that then holds — the arrows appear, the shared pair slides to
+    // the electronegative end, the resultant resolves, a substitution breaks the
+    // symmetry. Pin the frozen frame PAST the LAST authored cue so THE EYE
+    // photographs the SETTLED picture, never a mid-slide frame. EVERY cue time the
+    // block carries contributes a candidate, so a state that adds a beat cannot
+    // silently keep an older pin. The renderer is accumulator-free (spin angle and
+    // index-derived jiggle phase included, D-1), so the snap-to-pin capture is
+    // byte-identical to crawling there. The explore sandbox (mode 'explore') is
+    // user-driven — classified interactive below, never pinned here.
+    const bscState = asObj(state.bonding_scene);
+    if (bscState) {
+        const bscPush = (v: unknown, extra: number) => { if (typeof v === 'number') candidates.push(v + extra); };
+        bscPush(bscState.spin_start_ms, 1200);
+        bscPush(bscState.arrows_at_ms, 900);
+        bscPush(bscState.resultant_at_ms, 900);
+        bscPush(bscState.charges_at_ms, 900);
+        bscPush(bscState.pair_shift_at_ms, 1200);
+        bscPush(bscState.compare_at_ms, 1500);
+        if (typeof bscState.assemble_at_ms === 'number') {
+            candidates.push(asNum(bscState.assemble_at_ms, 600) + asNum(bscState.assemble_duration_ms, 3200) + 500);
+        }
+        // E2/E3 cue times, derived here so those dispatches need no meta edit.
+        if (typeof bscState.approach_at_ms === 'number') {
+            candidates.push(asNum(bscState.approach_at_ms, 0) + asNum(bscState.approach_duration_ms, 2400) + 600);
+        }
+        const bscTr = asObj(bscState.transfer);
+        if (bscTr && typeof bscTr.at_ms === 'number') {
+            candidates.push(asNum(bscTr.at_ms, 0) + asNum(bscTr.duration_ms, 2000) + 600);
+        }
+        const bscSh = asObj(bscState.shift);
+        if (bscSh && typeof bscSh.at_ms === 'number') {
+            candidates.push(asNum(bscSh.at_ms, 0) + asNum(bscSh.duration_ms, 2000) + 700);
+        }
+        const bscLat = asObj(bscState.lattice);
+        if (bscLat) {
+            if (typeof bscLat.grow_at_ms === 'number') {
+                candidates.push(asNum(bscLat.grow_at_ms, 0) + asNum(bscLat.grow_duration_ms, 3000) + 600);
+            }
+            if (typeof bscLat.reveal_at_ms === 'number') candidates.push(asNum(bscLat.reveal_at_ms, 0) + 1200);
+        }
     }
     // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY, 2026-07-28 engine ask): every
     // beat is a one-shot closed-form ramp over the state's own clock that then
@@ -3320,6 +3389,21 @@ export function deriveHoldExpectations(
             // mode is a guided beat whose one-shot ramp payoff (pinned in
             // maxRevealForField3dState) settles to a HOLD — over a perpetual slow
             // turn where the state authors one — so D7/D1p permit the settled tail.
+            // bonding_scene (CHEMISTRY BONDING WAVE): every state exposes at
+            // least a contextual control row (Rule 31 ring-gated `controls`), so
+            // the generic show_sliders catch below would swallow the guided beats
+            // into 'interactive' before they reach it. Classify explicitly
+            // (mirrors the capacitance / molecular_geometry / orbital_shapes
+            // guided-vs-explore split above): the sandbox (mode 'explore') is
+            // user-driven → interactive; every other mode is a guided beat whose
+            // one-shot payoff (pinned in maxRevealForField3dState) settles to a
+            // HOLD over the perpetual turn/jiggle → reveal_hold, so D7/D1p permit
+            // the settled tail instead of false-failing it.
+            const bscHold = asObj(state.bonding_scene);
+            if (bscHold) {
+                out[stateId] = (bscHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
             const osHold = asObj(state.orbital_shapes);
             if (osHold) {
                 out[stateId] = (osHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
