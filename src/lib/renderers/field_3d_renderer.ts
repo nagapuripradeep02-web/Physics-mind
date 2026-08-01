@@ -48444,6 +48444,13 @@ export const FIELD_3D_RENDERER_CODE = `
     //       separation, separation_axis, approach_from, approach_at_ms,
     //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
     //       compare_at_ms, compare_duration_ms, compare_species,           // E2
+    //                  // E1c-F: the swap is a TRANSITION over compare_duration_ms
+    //                  // (default BS_SWAP_MS = 1500), not a cut. Atom radius and
+    //                  // colour carry continuously from the outgoing species to
+    //                  // the incoming one; the discrete facts (symbol, charges,
+    //                  // dipole table, geometry) flip ONCE at the midpoint, inside
+    //                  // a trough where the vector layer and the atom symbols are
+    //                  // at zero ink. Closed form in state-local t, no latch.
     //       unit_spacing, count_max, label_units, delta_units,             // E2
     //       lattice: { cell: rock_salt|fcc|bcc|hcp,                        // E3a
     //                  n:[nx,ny,nz],         // GRID STEPS per axis, forced ODD.
@@ -48479,6 +48486,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // untouched. Closed form in state-local t (D-1), no latch.
     //                  // deriveStateMeta already pins cue + 900 as a frozen
     //                  // candidate, i.e. the first SETTLED frame.
+    //                  // E1c-F: arrows_at_ms ALSO gates the lone-pair VECTOR (not
+    //                  // its lobe, which is structure), so a vector sum's four
+    //                  // arrows arrive together; and the HUD line that STATES a
+    //                  // value is gated by the cues of its own evidence —
+    //                  // hud_lines 'mu' rides the later of resultant_at_ms and
+    //                  // arrows_at_ms, 'delta_chi' rides charges_at_ms, each
+    //                  // rendering an em dash in place of the number until then.
+    //                  // Author a cue on a state that must WITHHOLD its answer;
+    //                  // author none where the quantity is genuinely changing on
+    //                  // screen (the scripted bend) and the readout stays live.
     //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale,
     //                 show_lone_pair },             // E1c: lobe + label, plus the
     //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
@@ -48635,6 +48652,19 @@ export const FIELD_3D_RENDERER_CODE = `
     // the cut face itself. Neither is improvised per concept.
     var BS_PEER_FADE_OPACITY = 0.12;
     var BS_REVEAL_MS = 900;         // the reveal is a RAMP, never a pop
+    // E1c-F: the compare swap's default duration when a state authors none.
+    // MATCHES the 1500 ms deriveStateMeta already assumes for exactly that case
+    // (its pin is compare_at_ms + 1500 with no authored duration), so a state that
+    // omits compare_duration_ms is still pinned on its FIRST SETTLED frame.
+    var BS_SWAP_MS = 1500;
+    // E1c-F: the fraction of a swap spent in the DARK TROUGH, where the discrete
+    // facts (element symbol, charges, dipole table) change over. A trough of zero
+    // width would be a single instant — the ink would touch zero and leave in the
+    // same frame — and the HUD withhold across a substitution would be nominal
+    // rather than something a teacher can read. 10% of 7300 ms is 730 ms: long
+    // enough to read as a deliberate hand-over, short enough that the atoms
+    // (which keep morphing right through it) never look stalled.
+    var BS_SWAP_TROUGH = 0.10;
     // Ball-and-stick target for a coordination state. A space-filling block
     // physically ENCLOSES its focal ion — six touching neighbours hide it
     // completely, at every camera — so "every ion is surrounded by six" cannot be
@@ -49031,6 +49061,21 @@ export const FIELD_3D_RENDERER_CODE = `
         return MG_ELEMENTS[BS_ION_PARENT[species] || species] || MG_ELEMENTS.C;
     }
     function bscChi(el) { return (BS_CHI[el] != null) ? BS_CHI[el] : 2.20; }
+    // E1c-F: linear sRGB-channel mix of two MG_ELEMENTS hex colours. Used ONLY by
+    // the compare-swap morph, where an atom is genuinely half-way between two
+    // elements and a hard colour cut would re-introduce the very jump the swap
+    // transition exists to remove. Pure function of (a, b, f) — no state, so a
+    // SET_TIME_FREEZE rewind reproduces the same colour.
+    function bscMixHex(a, b, f) {
+        if (!a) return b; if (!b) return a;
+        var pa = parseInt(String(a).replace("#", ""), 16), pb = parseInt(String(b).replace("#", ""), 16);
+        if (!isFinite(pa) || !isFinite(pb)) return a;
+        var g = (f < 0) ? 0 : (f > 1) ? 1 : f;
+        var r = Math.round(((pa >> 16) & 255) + ((((pb >> 16) & 255)) - ((pa >> 16) & 255)) * g);
+        var gr = Math.round(((pa >> 8) & 255) + ((((pb >> 8) & 255)) - ((pa >> 8) & 255)) * g);
+        var bl = Math.round((pa & 255) + ((pb & 255) - (pa & 255)) * g);
+        return "#" + ("000000" + ((r << 16) | (gr << 8) | bl).toString(16)).slice(-6);
+    }
     // Pauling / Hannay-Smyth ionic character: f = 1 - exp(-0.25 * dchi^2). A real
     // published relation, so the per-atom delta the scene draws is DERIVED from
     // electronegativity, never authored (D-2). This is also what E2's link
@@ -50103,8 +50148,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // PREVIOUS state's lobes or lone-pair vector on a molecule that has none.
         for (i = 0; i < MG_MAX_LONE; i++) {
             var l1 = bscFindById("bsc_lone_lobe_" + i); if (l1) l1.visible = false;
-            var l2 = bscFindById("bsc_lone_shaft_" + i); if (l2) l2.visible = false;
-            var l3 = bscFindById("bsc_lone_head_" + i); if (l3) l3.visible = false;
+            // E1c-F: the lone-pair VECTOR now rides arrows_at_ms, so it is a
+            // cue-driven layer and takes the same RESTORE half every other one has
+            // (the dim-with-no-restore scar): leaving a state mid-ramp must not
+            // strand the next state's lone-pair vector at partial ink.
+            var l2 = bscFindById("bsc_lone_shaft_" + i);
+            if (l2) { l2.visible = false; setObjOpacity(l2, BS_ARROW_OPACITY); }
+            var l3 = bscFindById("bsc_lone_head_" + i);
+            if (l3) { l3.visible = false; setObjOpacity(l3, BS_ARROW_OPACITY); }
         }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
         for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
@@ -50112,6 +50163,11 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var j = 0; j < BS_MAX_ATOMS; j++) {
                 var dl = bscFindById("bsc_u" + i + "_delta" + j);
                 if (dl) { dl.visible = false; setObjOpacity(dl, 1); }   // E1c-C restore half
+                // E1c-F: the atom SYMBOL rides the swap veil, so it takes the same
+                // restore — a teacher who leaves a compare state in its trough must
+                // not strand every element label at zero ink on the next state.
+                var al = bscFindById("bsc_u" + i + "_lab" + j);
+                if (al) setObjOpacity(al, 1);
             }
         }
         for (i = 0; i < BS_MAX_LINKS; i++) {
@@ -50165,11 +50221,62 @@ export const FIELD_3D_RENDERER_CODE = `
         var swapSeized = (bscHasControl(ctrls, "molecule") && window.PM_bscMolDragged) ||
             (bscHasControl(ctrls, "ligand") && window.PM_bscLigDragged) ||
             (bscHasControl(ctrls, "species") && window.PM_bscSpeciesDragged);
-        if (mode === "compare" && bs.compare_species != null && bs.compare_at_ms != null &&
-            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] && !swapSeized) {
-            molKey = bs.compare_species;
-            mol = MG_MOLECULES[molKey];
+        // ── E1c-F: THE SWAP IS A TRANSITION, NOT A CUT.
+        //   compare_duration_ms was read by the trend panel and by deriveStateMeta
+        //   (which pins compare_at_ms + duration + 600 precisely so the frozen
+        //   frame lands AFTER the transformation) while the swap itself was a
+        //   single-frame reassignment of molKey. The cost was measured on
+        //   bond_polarity S7: its last apparatus motion was the instant cut, so a
+        //   22 000 ms state stood visually frozen for its final 12.0 s — sixteen
+        //   byte-identical frames under the narration that explains the hardest
+        //   idea in the arc, while its own chemistry block had cleared the state by
+        //   COMPUTING against a "deliberately slow, readable transformation".
+        //   The shape, and it is the JSON contract:
+        //     swapP  = mgRamp(ms, compare_at_ms, compare_duration_ms, 0, 1)
+        //     IDENTITY flips once, at the MIDPOINT (swapP >= 0.5) — species,
+        //       charges, dipole table and atom labels are discrete facts and
+        //       cannot be half-way; they change in the trough where the vector
+        //       layer is at zero ink, so nothing discrete changes in plain view.
+        //     swapVeil = the vector layer's ink: 1 -> 0, a flat dark TROUGH of
+        //       BS_SWAP_TROUGH of the duration in which the discrete change
+        //       happens, then 0 -> 1. Bond arrows, the resultant, the lone-pair
+        //       vector and the delta glyphs all ride it, and so does the HUD line
+        //       that states the answer: evidence and claim leave and return
+        //       together, and across the trough the instrument shows no value.
+        //     swapMixF = a triangle 0 -> 0.5 -> 0 that carries every CONTINUOUS
+        //       atom property (radius, colour) all the way from the outgoing
+        //       element to the incoming one; it is continuous THROUGH the midpoint
+        //       flip by construction (below the flip it mixes cur->peer, above it
+        //       mixes back peer->cur, and both read the same average at 0.5). This
+        //       is what keeps the apparatus MOVING for the whole duration: on
+        //       NH3 -> NF3 the three hydrogens swell 0.30 -> 0.38 and go white ->
+        //       green continuously across the beat.
+        //   A MORPH, not a cross-fade: the scene owns exactly one mesh pool per
+        //   unit, so a true cross-fade would need a second molecule's worth of
+        //   meshes built and driven in parallel — and for the pairs this concept
+        //   actually compares (same central atom, same domain count, one ligand
+        //   substituted) the morph is also the HONEST picture: it shows the
+        //   substitution happening to the same molecule, which is the beat.
+        //   Closed form in state-local ms, no latch, no accumulator (D-1) — a
+        //   SET_TIME_FREEZE rewind photographs the same pixels.
+        var swapFrom = molKey;
+        var swapActive = (mode === "compare" && bs.compare_species != null &&
+            bs.compare_at_ms != null && MG_MOLECULES[bs.compare_species] && !swapSeized);
+        var swapTo = swapActive ? bs.compare_species : molKey;
+        var swapDur = Math.max(1, (bs.compare_duration_ms != null) ? bs.compare_duration_ms : BS_SWAP_MS);
+        var swapMid = swapActive ? (bs.compare_at_ms + swapDur * 0.5) : 0;
+        var swapP = swapActive ? mgRamp(ms, bs.compare_at_ms, swapDur, 0, 1) : 0;
+        var swapVeil = 1, swapMixF = 0;
+        if (swapActive) {
+            var swapRamp = swapDur * (0.5 - BS_SWAP_TROUGH * 0.5);
+            var swapT0 = bs.compare_at_ms + swapRamp, swapT1 = bs.compare_at_ms + swapDur - swapRamp;
+            swapVeil = (ms <= swapT0) ? mgRamp(ms, bs.compare_at_ms, swapRamp, 1, 0)
+                : (ms >= swapT1) ? mgRamp(ms, swapT1, swapRamp, 0, 1) : 0;
+            swapMixF = (swapP < 0.5) ? swapP : (1 - swapP);
+            if (swapP >= 0.5) { molKey = swapTo; mol = MG_MOLECULES[molKey]; }
         }
+        window.PM_bscSwapProgress = swapP;
+        window.PM_bscSwapVeil = swapVeil;
         window.PM_bscSwapSeized = !!swapSeized;
         // E1c item 1: THE SCRIPTED BEND. angle_deg alone is a static override, so
         // a state could only ever open at its final shape — and bond_polarity S4's
@@ -50229,9 +50336,18 @@ export const FIELD_3D_RENDERER_CODE = `
         var bscCueF = function (atMs) {
             return (atMs == null) ? 1 : mgRamp(ms, atMs, BS_REVEAL_MS, 0, 1);
         };
-        var arrowsCued = bscCueOn(bs.arrows_at_ms), arrowsF = bscCueF(bs.arrows_at_ms);
-        var resCued = bscCueOn(bs.resultant_at_ms), resFade = bscCueF(bs.resultant_at_ms);
-        var chargesCued = bscCueOn(bs.charges_at_ms), chargesF = bscCueF(bs.charges_at_ms);
+        //   E1c-F: every one of the three is MULTIPLIED by the swap veil, so a
+        //   compare state's vector layer comes off before the substitution and
+        //   back on after it. swapVeil is a hard 1 whenever no swap is running, so
+        //   a non-compare state is byte-identical to E1c-E by construction; the
+        //   opacity WRITE is still guarded, now on (cue authored OR swap running),
+        //   which keeps a state with neither untouched.
+        var arrowsCued = bscCueOn(bs.arrows_at_ms), arrowsF = bscCueF(bs.arrows_at_ms) * swapVeil;
+        var resCued = bscCueOn(bs.resultant_at_ms), resFade = bscCueF(bs.resultant_at_ms) * swapVeil;
+        var chargesCued = bscCueOn(bs.charges_at_ms), chargesF = bscCueF(bs.charges_at_ms) * swapVeil;
+        var arrowsInk = arrowsCued || swapActive;     // may this pass WRITE opacity?
+        var resInk = resCued || swapActive;
+        var chargesInk = chargesCued || swapActive;
 
         window.PM_bscMolLive = molKey;
         window.PM_bscAngleLive = angleNow;
@@ -50335,6 +50451,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var rot = udef ? bscOrientRot(udef.orient) : null;
             var org = orgAt(u, ms);
             var uq = on ? bscCharges(uSpec) : [0];
+            // E1c-F: does THIS unit take part in the compare swap? Only a unit that
+            // follows the state's base species does — a mixed scene stays mixed,
+            // the same rule uSpecOf already enforces for the identity itself.
+            var uInSwap = swapActive && uSpec === molKey &&
+                !(udef && udef.species && udef.species !== baseSpecies);
+            var uSwaps = uInSwap && swapMixF > 0;
+            var uPeerMol = uSwaps ? MG_MOLECULES[(swapP < 0.5) ? swapTo : swapFrom] : null;
+            var uPeerLigs = uPeerMol ? bscLigands(uPeerMol) : null;
             // E1c-C: charges_at_ms gates the glyph layer ON TOP OF show_charges.
             var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges && chargesF > 0;
 
@@ -50357,7 +50481,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 var em = bscElement(el);
                 // MOLECULE atoms ride the legibility-compressed MG_ELEMENTS scale
                 // (doc §reuse item 4). Ions and lattice sites use BS_RADIUS_PM.
-                var rad = em.radius;
+                var rad = em.radius, col = em.color;
+                // E1c-F: mid-swap this atom is genuinely PART WAY between two
+                // elements, so both of its continuous properties are carried
+                // across on swapMixF while the discrete ones (its symbol, its
+                // partial charge) flip once, in the veiled trough.
+                if (uSwaps && uPeerMol) {
+                    var pel = (i === 0) ? uPeerMol.central : (uPeerLigs[i - 1] || uPeerMol.ligand);
+                    if (pel) {
+                        var pem = bscElement(pel);
+                        rad = rad + (pem.radius - rad) * swapMixF;
+                        col = bscMixHex(col, pem.color, swapMixF);
+                    }
+                }
                 var pos = org.slice(0);
                 if (i > 0) {
                     var d0 = uFrame.bonds[i - 1];
@@ -50369,10 +50505,15 @@ export const FIELD_3D_RENDERER_CODE = `
                         stick.position.set(org[0], org[1], org[2]);
                     }
                 }
-                if (atom) { atom.position.set(pos[0], pos[1], pos[2]); atom.scale.setScalar(rad); mgSetColor(atom, em.color); }
+                if (atom) { atom.position.set(pos[0], pos[1], pos[2]); atom.scale.setScalar(rad); mgSetColor(atom, col); }
                 if (lab && lab.visible) {
                     mgPlaceLabelClear(lab, pos, rad + 0.34, [org]);
                     updateLabelSpriteText(lab, el);
+                    // E1c-F: the SYMBOL is discrete — it cannot be half H and half
+                    // F — so it rides the swap veil and changes in the trough,
+                    // under the same cover the vector layer takes. Written only
+                    // while a swap is running; state entry restores full ink.
+                    if (uInSwap) setObjOpacity(lab, swapVeil);
                 }
                 if (u === focalIdx) {
                     if (i > 0) fLigWorld.push([pos[0], pos[1], pos[2]]);
@@ -50386,7 +50527,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
                     updateLabelSpriteText(dlab, txt);
                     mgPlaceLabelClear(dlab, pos, rad + 0.72, [org, pos]);
-                    if (chargesCued) setObjOpacity(dlab, chargesF);
+                    if (chargesInk) setObjOpacity(dlab, chargesF);
                 }
             }
         }
@@ -50586,7 +50727,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (sh) sh.visible = aOn;
             if (hd) hd.visible = aOn;
             if (!aOn) continue;
-            if (arrowsCued) {
+            if (arrowsInk) {
                 setObjOpacity(sh, BS_ARROW_OPACITY * arrowsF);
                 setObjOpacity(hd, BS_ARROW_OPACITY * arrowsF);
             }
@@ -50636,7 +50777,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (rhd) rhd.visible = resOn && !isZero;
         if (rlb) rlb.visible = resOn && !isZero;
         if (rzr) rzr.visible = resOn && isZero;
-        if (resCued && resOn) {
+        if (resInk && resOn) {
             setObjOpacity(rsh, BS_RESULTANT_OPACITY * resFade);
             setObjOpacity(rhd, BS_RESULTANT_OPACITY * resFade);
             setObjOpacity(rlb, resFade);
@@ -50715,9 +50856,23 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lob) lob.visible = lOn;
             // the ARROW half is data-gated: zero lone-pair moment draws nothing,
             // so every fitted-convention central atom keeps its current picture.
-            var lvOn = lOn && Math.abs(lEnt.D) > 1e-6;
+            // E1c-F: it is ALSO cue-gated, on arrows_at_ms — the SAME cue as the
+            // bond-dipole arrows. E1c-C deliberately left it out (show_lone_pair
+            // was then the only gate anything had), but the eye-walker read it
+            // standing on screen at t~1000 ms of a state whose bond arrows are
+            // authored at 3200: the state's FOURTH vector arrived before the three
+            // it is summed against, which is the wrong reading order for a vector
+            // sum. The LOBE is deliberately NOT swept in — it is a VSEPR domain,
+            // structure rather than a claim about the dipole, and the state's home
+            // pose should already show where the lone pair sits. Same for its
+            // "lone pair" label, which names the lobe.
+            var lvOn = lOn && Math.abs(lEnt.D) > 1e-6 && arrowsF > 0;
             if (lsh2) lsh2.visible = lvOn;
             if (lhd2) lhd2.visible = lvOn;
+            if (lvOn && arrowsInk) {
+                setObjOpacity(lsh2, BS_ARROW_OPACITY * arrowsF);
+                setObjOpacity(lhd2, BS_ARROW_OPACITY * arrowsF);
+            }
             if (!lOn) continue;
             loneDrawn++;
             var ld0 = lEnt.dir;
@@ -50941,11 +51096,36 @@ export const FIELD_3D_RENDERER_CODE = `
         // ── value-only HUD (Rule 34b: numbers, never a restated equation).
         var hud = document.getElementById("bsc_hud");
         if (hud && hud.style.display !== "none") {
+            // ── E1c-F: THE INSTRUMENT OBEYS THE SAME CUES AS THE PICTURE.
+            //   E1c-C gated the arrow, charge and resultant MESHES on their cues
+            //   and left the readout that STATES THE ANSWER ungated, so on a bare
+            //   CO2 at t=0 — no arrows drawn, no resultant, nothing yet said — the
+            //   HUD already read "mu = 0.00 D": the misconception beat's conclusion
+            //   on screen before its own setup, on all three of this concept's
+            //   misconception states. The rule is NOT "hide the HUD": a state whose
+            //   quantity genuinely changes (the water bend, 0.00 -> 0.98 -> 1.85 D
+            //   live with the geometry) authors no cue and is untouched. The rule
+            //   is that a line stating a value may not precede the reveal of the
+            //   evidence for that value.
+            //   Contract: a gated line rides the LATEST cue among the layers that
+            //   are its evidence (min of their ramps, so it appears no earlier than
+            //   the last of them) times the swap veil (so across a substitution the
+            //   number leaves and returns WITH the vectors it describes). Withheld,
+            //   it renders an em dash in place of the number — the instrument stays
+            //   on screen at a fixed size, so nothing reflows when it fills in, and
+            //   the em dash is this scenario's own existing "no value yet" glyph
+            //   (the radius row already uses it). NO cue authored on either
+            //   evidence layer = today's live readout, byte for byte.
+            var muInk = Math.min(resFade, arrowsF);
+            var muHeld = (resCued || arrowsCued) && !(muInk > 0);
+            var chiHeld = chargesCued && !(chargesF > 0);
             var lines = [], want = bs.hud_lines || ["mu"];
             for (i = 0; i < want.length; i++) {
                 var w = want[i];
-                if (w === "mu") lines.push("\\u03BC = " + bscFmtD(D.mag) + " D");
-                else if (w === "delta_chi") lines.push("\\u0394\\u03C7 = " + dchi.toFixed(2));
+                if (w === "mu") lines.push(muHeld ? "\\u03BC = \\u2014 D"
+                    : "\\u03BC = " + bscFmtD(D.mag) + " D");
+                else if (w === "delta_chi") lines.push(chiHeld ? "\\u0394\\u03C7 = \\u2014"
+                    : "\\u0394\\u03C7 = " + dchi.toFixed(2));
                 else if (w === "radius_pm") {
                     // E3a: when a SITE layer is on screen the radius readout is
                     // the thing that is actually changing size — ionic S2's whole

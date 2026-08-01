@@ -114,7 +114,8 @@ const VARS = [
   // E3a (lattice placement layer)
   "BS_HUD_LINES_E3A", "BS_CELLS", "BS_LATTICE_REVEALS",
   "BS_MAX_SITES", "BS_MAX_SITE_LABELS", "BS_MAX_NEIGHBOURS", "BS_HCP_C_OVER_A",
-  "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_COORD_RADIUS_SCALE",
+  "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_SWAP_MS", "BS_SWAP_TROUGH",
+  "BS_COORD_RADIUS_SCALE",
   "BS_FIT_MARGIN", "BS_ION_PAIRS",
   "BS_SUPDIG", "BS_COORD_CACHE"
 ];
@@ -123,7 +124,7 @@ const EXPR_VARS = ["BS_ION_OF"];
 const FNS = [
   "mgSmooth01", "mgClamp", "mgRamp", "mgNorm", "mgDot", "mgRotY", "mgAngleDeg",
   "mgIdealDirs", "mgDomainKinds", "mgSqueeze", "mgFrame",
-  "bscClamp", "bscNorm", "bscMag", "bscLigands", "bscElement", "bscChi",
+  "bscClamp", "bscNorm", "bscMag", "bscLigands", "bscElement", "bscChi", "bscMixHex",
   "bscIonicFraction", "bscCharges", "bscBondMoment", "bscDipole", "bscOrientRot",
   "bscJiggle", "bscControlList", "bscHasControl", "bscFmtD",
   "bscLinkCfg", "bscLinkOk", "bscLinkLatch", "bscLinkSites", "bscUnitSlot",
@@ -1492,9 +1493,16 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
       `${E.BS_REVEAL_MS} ms — the frozen pin lands on the FIRST settled frame`);
     // the absent-cue no-op: opacity is written ONLY under the cue guard, so a
     // state authored before E1c-C is byte-identical BY CONSTRUCTION.
+    // E1c-F widened each write guard from "the cue is authored" to "the cue is
+    // authored OR a swap is running" (the swap veil drives the same three layers).
+    // The invariant the gate defends is UNCHANGED: with neither a cue nor a swap,
+    // opacity is never written at all.
     ok("an ABSENT cue never writes opacity (pre-E1c-C states are untouched)",
-      /if \(arrowsCued\) \{/.test(upd) && /if \(resCued && resOn\) \{/.test(upd) &&
-      /if \(chargesCued\) setObjOpacity\(dlab, chargesF\)/.test(upd) &&
+      /var arrowsInk = arrowsCued \|\| swapActive;/.test(upd) &&
+      /var resInk = resCued \|\| swapActive;/.test(upd) &&
+      /var chargesInk = chargesCued \|\| swapActive;/.test(upd) &&
+      /if \(arrowsInk\) \{/.test(upd) && /if \(resInk && resOn\) \{/.test(upd) &&
+      /if \(chargesInk\) setObjOpacity\(dlab, chargesF\)/.test(upd) &&
       /return \(atMs == null\) \? 1 :/.test(upd));
     ok("the ramp multiplies the SAME ink the build used (BS_ARROW/RESULTANT_OPACITY)",
       /BS_ARROW_OPACITY \* arrowsF/.test(upd) && /BS_RESULTANT_OPACITY \* resFade/.test(upd) &&
@@ -2133,6 +2141,206 @@ console.log("\n=== 18. E1c-E VECTOR PROJECTION (no camera may foreshorten a taug
       `  (el 62 drew ${oldRes.ratio.toFixed(4)}x / ${oldRes.px.toFixed(1)} px)` +
       `  · contrast error ${(err(cam) * 100).toFixed(1)}% (was ${(err(OLD_PYR) * 100).toFixed(1)}%)`);
   }
+}
+
+// ── 19. E1c-F: THE INSTRUMENT AND THE TRANSITION OBEY THE REVEAL CUES ─────────
+//   One root cause, three faces: a piece that STATES the answer (the HUD line),
+//   a piece that CHANGES the answer (the species swap) and a fourth vector (the
+//   lone-pair moment) were each free of the cue that reveals their evidence.
+//   Everything below runs the SHIPPED source text — the swap block and the HUD
+//   gate are sliced out of updateBondingSceneFrame and evaluated, never retyped —
+//   so a revert cannot leave this section green.
+console.log("\n=== 19. E1c-F CUE-OBEDIENT INSTRUMENT + TRANSITION (HUD · swap · lone vector) ===");
+{
+  const upd = grabFn("updateBondingSceneFrame");
+  const app = grabFn("applyBondingSceneState");
+  const cut = (a: string, b: string) => {
+    const i = upd.indexOf(a), j = upd.indexOf(b, i);
+    if (i < 0 || j < 0) throw new Error("E1c-F: source slice not found: " + a);
+    return upd.slice(i, j);
+  };
+
+  // ── (a) THE SWAP IS A TRANSITION. The shipped block, evaluated.
+  const swapSrc = cut("var swapFrom = molKey;", "window.PM_bscSwapProgress");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const swapRaw = new Function("mgRamp", "MG_MOLECULES", "BS_SWAP_MS", "BS_SWAP_TROUGH",
+    "ms", "at", "dur", "seized", "mode", `
+    var molKey = "NH3", mol = MG_MOLECULES["NH3"], swapSeized = !!seized;
+    var bs = { compare_at_ms: at, compare_species: "NF3" };
+    if (dur != null) bs.compare_duration_ms = dur;
+    ${swapSrc}
+    return { p: swapP, veil: swapVeil, mix: swapMixF, key: molKey, active: !!swapActive };
+  `);
+  const swapAt = (ms: number, at = 9800, dur: number | null = 7300, seized = false, mode = "compare") =>
+    swapRaw(E.mgRamp, E.MG_MOLECULES, E.BS_SWAP_MS, E.BS_SWAP_TROUGH, ms, at, dur, seized, mode) as
+      { p: number; veil: number; mix: number; key: string; active: boolean };
+  const AT = 9800, DUR = 7300;                 // bond_polarity S7, as authored
+  const q = (f: number) => swapAt(AT + DUR * f);
+
+  ok("before its instant the swap has not started (species, ink and shape all home)",
+    q(0).p === 0 && q(0).veil === 1 && q(0).mix === 0 && q(0).key === "NH3" &&
+    swapAt(0).key === "NH3" && swapAt(0).veil === 1);
+  ok("THE F2 ASSERTION: at the MIDPOINT of the authored duration the swap is materially INCOMPLETE",
+    q(0.5).veil === 0 && Math.abs(q(0.5).mix - 0.5) < 1e-12,
+    `veil=${q(0.5).veil} (vector layer dark) · mix=${q(0.5).mix.toFixed(3)} (atoms exactly half-way)`);
+  ok("at 25% and 75% the picture is neither endpoint (ink part-way, atoms part-way)",
+    q(0.25).veil > 0 && q(0.25).veil < 1 && q(0.25).mix > 0.05 &&
+    q(0.75).veil > 0 && q(0.75).veil < 1 && q(0.75).mix > 0.05,
+    `25%: veil=${q(0.25).veil.toFixed(3)} mix=${q(0.25).mix.toFixed(3)} · ` +
+    `75%: veil=${q(0.75).veil.toFixed(3)} mix=${q(0.75).mix.toFixed(3)}`);
+  ok("the IDENTITY flips exactly once, at the midpoint, inside the dark trough",
+    q(0.49).key === "NH3" && q(0.5).key === "NF3" && q(1).key === "NF3" &&
+    q(0.49).veil === 0, `veil at the flip ${q(0.49).veil.toFixed(4)}`);
+  {
+    // the trough is a real WINDOW, not an instant: a zero-width trough would let
+    // the ink touch zero and leave inside one frame, and the withhold across a
+    // substitution would be nominal rather than something a teacher can read.
+    const troughMs = DUR * (E.BS_SWAP_TROUGH as number);
+    const inside = [0.5 - 0.04, 0.5 - 0.02, 0.5, 0.5 + 0.02, 0.5 + 0.04];
+    ok("the dark trough is a WINDOW the eye can read, not a single instant",
+      inside.every((f) => q(f).veil === 0) &&
+      q(0.5 - (E.BS_SWAP_TROUGH as number) / 2 - 0.02).veil > 0 &&
+      q(0.5 + (E.BS_SWAP_TROUGH as number) / 2 + 0.02).veil > 0,
+      `${Math.round(troughMs)} ms dark at BS_SWAP_TROUGH=${E.BS_SWAP_TROUGH}`);
+    ok("...and the atoms keep MORPHING right through it (the scene never stalls)",
+      inside.every((f, i) => i === 0 || Math.abs(q(f).mix - q(inside[i - 1]).mix) > 1e-4),
+      inside.map((f) => q(f).mix.toFixed(4)).join(" "));
+  }
+  ok("the transition COMPLETES at compare_at_ms + compare_duration_ms and holds",
+    q(1).p === 1 && q(1).veil === 1 && q(1).mix === 0 &&
+    swapAt(AT + DUR + 5000).veil === 1 && swapAt(AT + DUR + 5000).key === "NF3");
+  {
+    // THE MEASURED DEFECT: S7 stood still for its last 12.0 s because the cut was
+    // its final apparatus motion. Sample the whole beat at 200 ms and require the
+    // picture to CHANGE on every single step.
+    const step = 200, n = Math.floor(DUR / step);
+    let staticSteps = 0;
+    for (let k = 0; k < n; k++) {
+      const a = swapAt(AT + k * step), b = swapAt(AT + (k + 1) * step);
+      if (Object.is(a.veil, b.veil) && Object.is(a.mix, b.mix)) staticSteps++;
+    }
+    ok("the apparatus MOVES on every 200 ms step of the whole authored duration",
+      staticSteps === 0, `${n} steps, ${staticSteps} static`);
+    // NEGATIVE CONTROL: the shipped E1c-E rule, reproduced exactly.
+    const oldKey = (ms: number) => (ms >= AT ? "NF3" : "NH3");
+    let oldStatic = 0;
+    for (let k = 0; k < n; k++) if (oldKey(AT + k * step) === oldKey(AT + (k + 1) * step)) oldStatic++;
+    ok("NEGATIVE CONTROL: the instant switch was static on every step but one",
+      oldStatic >= n - 1, `${oldStatic}/${n} steps unchanged — the 12.0 s freeze`);
+    ok("NEGATIVE CONTROL: the instant switch shows the FINISHED picture at 25% of the beat",
+      oldKey(AT + DUR * 0.25) === "NF3" && q(0.25).key === "NH3");
+  }
+  {
+    // THE REWIND (D-1). A latched "already swapped" flag cannot do this.
+    const a = q(0.25), b = (q(0.9), q(0.25));
+    ok("rewind 25% -> 90% -> 25% reproduces veil, mix and species byte-for-byte",
+      Object.is(a.veil, b.veil) && Object.is(a.mix, b.mix) && a.key === b.key);
+  }
+  ok("a TRUSTED DRAG still stands the whole swap down (the E1c-A seize guard holds)",
+    swapAt(AT + DUR, 9800, 7300, true).active === false &&
+    swapAt(AT + DUR, 9800, 7300, true).veil === 1 &&
+    swapAt(AT + DUR, 9800, 7300, true).key === "NH3");
+  ok("a NON-compare mode never runs a swap (veil is a hard 1: byte-identical to E1c-E)",
+    swapAt(AT + DUR, 9800, 7300, false, "dipole_sum").active === false &&
+    swapAt(AT + DUR, 9800, 7300, false, "dipole_sum").veil === 1 &&
+    swapAt(AT + DUR, 9800, 7300, false, "dipole_sum").mix === 0);
+  {
+    // the pin must land on the FIRST SETTLED frame in BOTH deriveStateMeta cases.
+    const withDur = swapAt(AT + DUR + 600);
+    const noDur = swapAt(AT + 1500, AT, null);
+    ok("deriveStateMeta's pin lands AFTER the transition, authored duration or not",
+      withDur.p === 1 && withDur.veil === 1 && noDur.p === 1 && noDur.veil === 1 &&
+      E.BS_SWAP_MS === 1500 &&
+      /compare_duration_ms === 'number'/.test(META_SRC),
+      `BS_SWAP_MS=${E.BS_SWAP_MS} matches the no-duration pin offset`);
+  }
+
+  // ── (b) the CONTINUOUS half of the morph: radius and colour cross over without
+  //   a step, and they cover the whole distance between the two elements.
+  {
+    const rH = E.bscElement("H").radius as number, rF = E.bscElement("F").radius as number;
+    const radAt = (ms: number) => {
+      const s = swapAt(ms);
+      const cur = s.key === "NH3" ? rH : rF, peer = s.key === "NH3" ? rF : rH;
+      return cur + (peer - cur) * s.mix;
+    };
+    const mid = AT + DUR * 0.5;
+    ok("the ligand RADIUS is continuous THROUGH the midpoint identity flip",
+      Math.abs(radAt(mid - 1) - radAt(mid + 1)) < 2e-3 &&
+      Math.abs(radAt(mid) - (rH + rF) / 2) < 1e-9,
+      `r(mid-1)=${radAt(mid - 1).toFixed(5)} r(mid+1)=${radAt(mid + 1).toFixed(5)} half-way=${((rH + rF) / 2).toFixed(5)}`);
+    ok("it travels the WHOLE way from the outgoing element to the incoming one",
+      Math.abs(radAt(AT - 1) - rH) < 1e-12 && Math.abs(radAt(AT + DUR) - rF) < 1e-12,
+      `H ${rH} -> F ${rF}`);
+    const mono = [0, 0.2, 0.4, 0.6, 0.8, 1].map((f) => radAt(AT + DUR * f));
+    ok("and it is monotonic across the beat (no bounce back through the flip)",
+      mono.every((v, i) => i === 0 || v >= mono[i - 1] - 1e-12), mono.map((v) => v.toFixed(3)).join(" -> "));
+    ok("bscMixHex is a pure endpoint-exact channel mix",
+      E.bscMixHex("#ECEFF1", "#9CCC65", 0) === "#eceff1" &&
+      E.bscMixHex("#ECEFF1", "#9CCC65", 1) === "#9ccc65" &&
+      E.bscMixHex("#000000", "#ffffff", 0.5) === "#808080",
+      `half-way H->F = ${E.bscMixHex("#ECEFF1", "#9CCC65", 0.5)}`);
+    ok("the atom draw reads the MIXED colour and radius, not the raw element's",
+      /rad = rad \+ \(pem\.radius - rad\) \* swapMixF;/.test(upd) &&
+      /col = bscMixHex\(col, pem\.color, swapMixF\);/.test(upd) &&
+      /mgSetColor\(atom, col\)/.test(upd) && !/mgSetColor\(atom, em\.color\)/.test(upd));
+    ok("only a unit that FOLLOWS the state's base species morphs (a mixed scene stays mixed)",
+      /var uInSwap = swapActive && uSpec === molKey &&/.test(upd) &&
+      /!\(udef && udef\.species && udef\.species !== baseSpecies\)/.test(upd));
+  }
+
+  // ── (c) THE INSTRUMENT. The shipped gate expression, evaluated.
+  const hudSrc = cut("var muInk = Math.min", "var lines = []");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const hudRaw = new Function("resFade", "arrowsF", "chargesF", "resCued", "arrowsCued", "chargesCued",
+    `${hudSrc} return { muHeld: muHeld, chiHeld: chiHeld };`);
+  const cueF = (ms: number, at: number | null, veil = 1) =>
+    (at == null ? 1 : (E.mgRamp(ms, at, E.BS_REVEAL_MS, 0, 1) as number)) * veil;
+  const hudAt = (ms: number, cues: { res?: number | null; arr?: number | null; chg?: number | null }, veil = 1) =>
+    hudRaw(cueF(ms, cues.res ?? null, veil), cueF(ms, cues.arr ?? null, veil), cueF(ms, cues.chg ?? null, veil),
+      cues.res != null, cues.arr != null, cues.chg != null) as { muHeld: boolean; chiHeld: boolean };
+
+  ok("THE F1 ASSERTION: a gated HUD line WITHHOLDS its value before its cue",
+    hudAt(0, { res: 6000 }).muHeld && hudAt(5999, { res: 6000 }).muHeld &&
+    hudAt(6000, { res: 6000 }).muHeld,
+    "mu is held at t=0, at 5999 and at the cue instant itself");
+  ok("...and STATES it once the evidence is on screen, and keeps stating it",
+    !hudAt(6001, { res: 6000 }).muHeld && !hudAt(6900, { res: 6000 }).muHeld &&
+    !hudAt(30000, { res: 6000 }).muHeld);
+  ok("it waits for the LATER of the two evidence layers, never the earlier",
+    hudAt(3300, { arr: 3200, res: 6000 }).muHeld &&
+    !hudAt(6100, { arr: 3200, res: 6000 }).muHeld &&
+    hudAt(1000, { arr: 3200 }).muHeld && !hudAt(3300, { arr: 3200 }).muHeld);
+  ok("NEGATIVE CONTROL: with NO cue authored the readout is LIVE from frame 0 (the S4 bend)",
+    !hudAt(0, {}).muHeld && !hudAt(0, {}).chiHeld && !hudAt(500, {}).muHeld);
+  ok("NEGATIVE CONTROL: the ungated E1c-E line stated the answer at t=0 on a bare molecule",
+    /lines\.push\(muHeld \? "\\u03BC = \\u2014 D"/.test(upd) &&
+    !/if \(w === "mu"\) lines\.push\("\\u03BC = " \+ bscFmtD/.test(upd));
+  ok("delta_chi rides the charge glyphs — the evidence for a charge separation",
+    hudAt(0, { chg: 2000 }).chiHeld && !hudAt(2900, { chg: 2000 }).chiHeld &&
+    /lines\.push\(chiHeld \? "\\u0394\\u03C7 = \\u2014"/.test(upd));
+  ok("across a SWAP the number leaves and returns WITH the vectors it describes",
+    hudAt(20000, { res: 6000 }, 0).muHeld && !hudAt(20000, { res: 6000 }, 0.4).muHeld,
+    "veil 0 (the trough) holds the value; veil 0.4 (the vectors returning) states it");
+  ok("the withheld form is this scenario's own em dash, so nothing reflows",
+    /\\u03BC = \\u2014 D/.test(upd) && /: "\\u2014"\) \+ " pm"/.test(upd));
+
+  // ── (d) THE FOURTH VECTOR. arrows_at_ms gates the lone-pair MOMENT; the lobe,
+  //   which is a VSEPR domain rather than a claim, deliberately stays.
+  ok("THE F3 ASSERTION: the lone-pair VECTOR rides arrows_at_ms with the bond arrows",
+    /var lvOn = lOn && Math\.abs\(lEnt\.D\) > 1e-6 && arrowsF > 0;/.test(upd) &&
+    /if \(lvOn && arrowsInk\) \{/.test(upd) &&
+    /setObjOpacity\(lsh2, BS_ARROW_OPACITY \* arrowsF\)/.test(upd) &&
+    /setObjOpacity\(lhd2, BS_ARROW_OPACITY \* arrowsF\)/.test(upd));
+  ok("the LOBE and its label are NOT swept in (structure, not a dipole claim)",
+    /var lOn = showLone && !!lEnt;/.test(upd) && /if \(lob\) lob\.visible = lOn;/.test(upd) &&
+    /lLab\.visible = showLone && loneDrawn > 0;/.test(upd));
+  ok("the lone-pair vector takes the RESTORE half every cue-driven layer has",
+    /bscFindById\("bsc_lone_shaft_" \+ i\);\s*\n\s*if \(l2\) \{ l2\.visible = false; setObjOpacity\(l2, BS_ARROW_OPACITY\); \}/.test(app) &&
+    /if \(l3\) \{ l3\.visible = false; setObjOpacity\(l3, BS_ARROW_OPACITY\); \}/.test(app));
+  ok("and the swap-veiled atom SYMBOL takes it too (no state inherits a dark label)",
+    /var al = bscFindById\("bsc_u" \+ i \+ "_lab" \+ j\);\s*\n\s*if \(al\) setObjOpacity\(al, 1\);/.test(app) &&
+    /if \(uInSwap\) setObjOpacity\(lab, swapVeil\);/.test(upd));
 }
 
 console.log(failures === 0
