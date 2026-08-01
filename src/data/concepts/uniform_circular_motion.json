@@ -1,0 +1,783 @@
+{
+  "concept_id": "uniform_circular_motion",
+  "concept_name": "Uniform Circular Motion — Circling Needs a Constant Inward Force",
+  "chapter": 8,
+  "section": "8.10",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.4 §4.11 (uniform circular motion) + Ch.5 §5.9 (Laws of Motion — circular-motion dynamics) — table-of-contents scope only, teaching authored from first principles. The atomic concept: a body moving in a circle at constant speed is not in equilibrium — it needs a net force pointing at the centre at every instant, and on this apparatus that force is the string's tension (or the tension's horizontal component once gravity joins) — never a new kind of force, and never an outward one. Does NOT cover the kinematic derivation a = v squared over r (that belongs to centripetal_acceleration_kinematic, not yet shipped), a car on a level or banked road (that belongs to circular_motion_banking and related atomics, deliberately out), non-uniform vertical circular motion (taught after work-energy), centrifugal force as a rotating-frame tool (this concept shows only that no outward force exists in the ground frame), angular kinematics theta/omega/alpha as a system, or period and frequency as a formal topic. Built on the force_rig field_3d engine (docs/loop_runs/lom_g/_engine/force_rig_json_contract.md), branch B `whirl`, pure configuration, zero renderer edits. DC Pandey and NCERT tables of contents consulted for chapter placement only; no teaching sequence, example problem, figure or explanation phrasing imported.",
+
+  "prerequisites": [
+    "equilibrium_of_particles",
+    "newton_first_law",
+    "newton_second_law",
+    "tension_force",
+    "vector_resolution"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "force_rig"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A ball whirled on a string, and the moment you let go. Every student has whirled something on a string or swung a bag in a circle, and every student has the body-memory that it flies outward when released — which is exactly wrong, and exactly what this concept settles. The anchor IS the apparatus: no translation gap between the hook and the sim.",
+    "secondary": "A spin dryer. A washing machine's spin cycle dries clothes because the drum turns and the water does NOT get flung outward — at each hole, water that loses its inward hold simply keeps going straight along the tangent it had, and leaves through the wall. A household machine on every syllabus's territory, no country, brand or place named."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "m": { "name": "mass of the whirled ball", "unit": "kg", "min": 0.8, "max": 4.5, "default": 1.5 },
+      "L": { "name": "length of the string", "unit": "m", "min": 0.60, "max": 1.40, "default": 1.00 },
+      "omega": { "name": "spin rate (angular speed)", "unit": "rad/s", "min": 1.0, "max": 6.5, "default": 4.0 },
+
+      "theta": { "name": "cone half-angle from the vertical — SOLVED, never authored", "unit": "deg", "min": 0, "max": 90, "derived": "degrees(acos(clamp(g / (omega * omega * L), 0, 1)))" },
+      "r": { "name": "radius of the circle the ball sweeps", "unit": "m", "derived": "L * sin(radians(theta))" },
+      "v": { "name": "tangential speed of the ball", "unit": "m/s", "derived": "omega * r" },
+      "T": { "name": "tension in the string", "unit": "N", "derived": "m * omega * omega * L" },
+      "W": { "name": "weight of the ball (conical states only)", "unit": "N", "derived": "m * g" },
+      "omega_min": { "name": "smallest spin rate for which a cone exists", "unit": "rad/s", "derived": "sqrt(g / L)" }
+    },
+    "computed_outputs": {
+      "T_N": { "formula": "m * omega^2 * L — tension in the string, N; 13.50 N at the STATE_1/STATE_2 default geometry, up to 57.66 N at STATE_5's ramp end." },
+      "theta_deg_display": { "formula": "degrees(acos(clamp(g/(omega^2 L),0,1))) — cone half-angle from the vertical, deg; not defined on the flat geometry (STATE_1-3), 32.0 deg to 75.2 deg across the conical guided states." },
+      "v_ms": { "formula": "omega * r — tangential speed, m/s; 3.00 m/s at STATE_1's default, held at 1.80 m/s through STATE_3's cut." },
+      "omega_min_display": { "formula": "sqrt(g / L) — smallest spin rate for which a cone exists, rad/s; 3.13 rad/s at L = 1.00 m (STATE_6's clamp boundary)." }
+    },
+    "formulas": {
+      "T": "m * omega * omega * L",
+      "cos_theta": "g / (omega * omega * L)",
+      "theta_deg": "degrees(acos(clamp(g / (omega * omega * L), 0, 1)))",
+      "r": "L * sin(radians(theta_deg))",
+      "v": "omega * r",
+      "W": "m * g",
+      "omega_min": "sqrt(g / L)"
+    },
+    "constraints": [
+      "the tension always points from the ball toward the anchor, solved by the engine, never authored",
+      "the velocity is always tangent to the circle the ball is sweeping, at every instant",
+      "no outward force exists anywhere, at any time — the largest outward radial component of any drawn arrow, measured over a full revolution, is 0.000",
+      "theta is SOLVED from omega and L via cos theta = g / (omega^2 L); it is never authored, and the engine clamps omega to sqrt(g/L) below which no conical solution exists (the bob hangs, theta = 0)",
+      "on the flat plane the normal force exactly cancels gravity, so the string tension is the ONLY horizontal force on the ball; T = m omega^2 L holds on every geometry (r = L on flat, r = L sin theta on the cone)",
+      "the post-cut straight line is the output of deleting the string constraint from the integrator; it is never a scripted animation"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 24
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Cut the string: the ball goes straight, tangent — no outward force ever existed.",
+    "visual_confirmation": "The straight trail leaves the dim ghost circle; v holds 1.80 m/s before and after the cut, and T drops to 0 N."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "conical": { "start": "STATE_4", "end": "STATE_6" },
+    "explore": { "start": "STATE_7", "end": "STATE_7" },
+    "exit_pills": {
+      "foundational_to_conical": "What if the ball also hangs under gravity? →"
+    }
+  },
+
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "The String Pulls Inward",
+        "duration": 15,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "core",
+        "motion_archetype": "orbit-steady",
+        "delta_cue": "Tension pulls inward, always",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Tension pulls inward, always",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "ω = 3.00 rad/s, T = 13.5 N — string pulls ball toward centre",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "velocity direction turns continuously; its size stays 3.00 m/s",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "The ball circles at a steady speed, but its direction changes every instant, so the velocity is not constant." },
+            { "id": "s1_2", "text_en": "The string pulls the ball toward the centre continuously, a nonzero force; balanced forces add to zero, unlike here." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Faster Spin, Larger Pull",
+        "duration": 19,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "core",
+        "motion_archetype": "spin-ramp-lengthen",
+        "delta_cue": "Faster spin, larger tension",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Faster spin, larger tension",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "ω grows 3.00 → 6.00 rad/s; T grows 13.5 → 54.0 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "T grows with ω squared, not with ω itself",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Now the ball spins faster." },
+            { "id": "s2_2", "text_en": "As the spin rate doubles, the tension needed to hold the ball on its circle does not just double — it grows with the square of the spin rate." },
+            { "id": "s2_3", "text_en": "Watch the string's pull grow far faster than the speed does." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "Cut the String",
+        "duration": 21,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "core",
+        "motion_archetype": "release-tangent",
+        "delta_cue": "Cut: straight along tangent",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_tangent_not_outward",
+          "what_you_feel_in_a_turning_car",
+          "speed_unchanged_after_release"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Cut: straight along tangent",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "before the cut: v = 1.80 m/s, T = 12.96 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "after the cut: v still 1.80 m/s, T = 0 N — straight trail, no outward push",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The ball has been circling steadily." },
+            { "id": "s3_2", "text_en": "Now the string is cut." },
+            { "id": "s3_3", "text_en": "With the inward pull gone, the ball keeps the velocity it had — it moves in a straight line, along the tangent to the circle, at the same speed as before." },
+            { "id": "s3_4", "text_en": "No force pushes the ball outward, because none exists." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A whirled object is flung outward — cut the string and it flies away from the centre along the radius.",
+            "visual_counter": "The straight tangent trail departs alongside the dim abandoned ghost circle; v reads 1.80 m/s both before and after the cut, and T drops to 0 N — no outward force is ever drawn.",
+            "one_line_fix": "Nothing throws the ball outward — with the pull gone it keeps its velocity, straight along the tangent."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Tension's Two Components",
+        "duration": 22,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "extended",
+        "motion_archetype": "orbit-steady (declared contrast pair with STATE_1 — the flat plane is gone; the string tilts to θ = 52.2° and one tension carries two jobs at once)",
+        "delta_cue": "Tension splits: vertical and inward",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Tension splits: vertical and inward",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "T = 24.0 N, θ = 52.2° — vertical part balances mg = 14.7 N",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "horizontal part of the same tension is the net inward force ΣF",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Now gravity acts on the ball: the string tilts, and the ball hangs at an angle while it circles." },
+            { "id": "s4_2", "text_en": "The one tension now has two components." },
+            { "id": "s4_3", "text_en": "Its vertical component balances the pull of gravity on the ball; its horizontal component points at the centre — the net inward force that keeps the ball circling." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "Spin Faster, the Cone Opens",
+        "duration": 21,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "extended",
+        "motion_archetype": "cone-opening",
+        "delta_cue": "Faster spin opens the cone",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "deriving_cos_theta_g_over_omega2L",
+          "why_the_string_never_goes_horizontal",
+          "tension_larger_than_weight_on_the_cone"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Faster spin opens the cone",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "ω grows 3.40 → 6.20 rad/s; θ opens 32.0° → 75.2°",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "counter_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "T climbs 17.3 → 57.7 N; the string stops short of horizontal",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Spin the ball faster, and the cone angle is not something we choose — it is solved by the physics." },
+            { "id": "s5_2", "text_en": "As the spin rate climbs, the string swings up, closer to horizontal, and the tension climbs sharply." },
+            { "id": "s5_3", "text_en": "But it never quite reaches horizontal, no matter how fast the ball spins." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Spin fast enough and the string will rise to horizontal, with the bob level with the pivot.",
+            "visual_counter": "θ reaches 75.2° at ω = 6.20 rad/s — near the top of this rig's range — and stops there; cos θ = g/(ω²L) never reaches zero at any real spin rate.",
+            "one_line_fix": "Horizontal needs cos θ = 0, and g/(ω²L) is never zero — the string gets close, never level."
+          }
+        ]
+      },
+
+      "STATE_6": {
+        "title": "Below Minimum Spin, No Cone",
+        "duration": 15,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "manual_click",
+        "depth_ring": "advanced",
+        "motion_archetype": "cone-collapse (declared reversal pair with STATE_5 — ramp DOWN through ω_min = 3.13 rad/s; the cone closes to θ = 0 and the revolution ends)",
+        "delta_cue": "Too slow: no cone",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Too slow: no cone",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "context_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "ω falls 4.50 → 2.60 rad/s; θ closes 61.1° → 0°",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_note",
+            "position": { "x": 560, "y": 380 },
+            "text": "below ω_min = 3.13 rad/s the guide ring vanishes and the ball hangs",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Slow the spin, and the cone shrinks toward zero." },
+            { "id": "s6_2", "text_en": "Cosine cannot exceed one, so a smallest spin rate exists below which no cone can form." },
+            { "id": "s6_3", "text_en": "The string hangs straight down, and the ball stops circling." }
+          ]
+        }
+      },
+
+      "STATE_7": {
+        "title": "Explore: Spin, Length, Mass",
+        "duration": 0,
+        "focal_primitive_id": "delta_cue",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "depth_ring": "core",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change spin, length, mass",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change spin, length, mass",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_note",
+            "position": { "x": 380, "y": 250 },
+            "text": "spin rate, string length and mass are all live sliders",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_note",
+            "position": { "x": 380, "y": 440 },
+            "text": "drive ω below the minimum and watch the honest clamp",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Change the spin rate, the string length, or the mass, and watch how the cone and the tension respond." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "washing_machine_spin_dryer",
+      "type": "B",
+      "label": "A Spin Dryer Draining Water From Clothes",
+      "physical_world": "A washing machine's spin cycle turns a drum full of wet clothes at high speed; water leaves through holes in the drum wall.",
+      "same_physics": "Identical circular-motion physics: water that loses its inward hold at a hole simply continues straight along the tangent it had at that instant — it is never flung outward, it is left behind by the turning drum.",
+      "scene_hint": "Same whirl fixture — only the labelled world changes from a ball on a string to a drop of water at the drum wall."
+    },
+    {
+      "variant_id": "swinging_bag_or_bucket",
+      "type": "B",
+      "label": "A Bag Or Bucket Swung In A Circle",
+      "physical_world": "A bag, a bucket of water, or a ball on a rope is swung around in a circle by hand — a universal childhood experiment.",
+      "same_physics": "Identical tension-provides-centripetal-force physics: the hand's grip, through the rope, supplies the same inward pull the string supplies here; let go, and the object leaves straight along the tangent, exactly as the whirl rig shows.",
+      "scene_hint": "Same whirl fixture — only the labelled world changes from a lab string-and-ball to a hand-swung bag or bucket."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student has mastered uniform circular motion when they can (1) state that a body circling at constant SPEED still needs a net force pointing at the centre, because its velocity's DIRECTION is always changing; (2) apply T = m ω² r and explain that tension grows with the SQUARE of the spin rate, not with the spin rate itself; (3) predict that a released whirled body moves straight along the tangent at unchanged speed, and explain why no outward force ever existed; (4) resolve a conical pendulum's tension into a vertical component that balances weight and a horizontal component that is the net inward force, and state that T > mg always on a real cone; (5) use the solved relation cos θ = g/(ω²L) to explain that the cone opens as spin rises but never reaches horizontal; (6) state the existence condition ω ≥ √(g/L) for a conical pendulum, and describe what happens below it.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A ball moves in a circle at a constant SPEED. Is there a net force acting on it, and if so, which way does it point?",
+        "options": {
+          "A": "Yes — a net force points toward the centre at every instant, because the velocity's DIRECTION keeps changing even though its size does not",
+          "B": "No — since the speed is constant, the net force on the ball must be zero",
+          "C": "Yes, but it points along the direction of motion, keeping the ball moving forward",
+          "D": "Yes, but it points away from the centre, balancing the ball's tendency to fly outward"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the core misconception this state exists to break — confuses constant SPEED with constant VELOCITY; the direction changes every instant, so the net force is not zero",
+          "C": "confuses the force that would speed the ball up with the one that actually acts — an along-motion force would change the SPEED, which stays constant here",
+          "D": "invents an outward force with no source; nothing pulls or pushes the ball away from the centre — only the inward tension acts"
+        },
+        "tested_idea": "Constant-speed circling still needs a net inward force, because the velocity's direction is always changing.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A stone tied to a string is whirled in a horizontal circle at unchanging speed. State whether any net force acts on it and, if so, its direction."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A ball on a string needs tension T to hold it in a circle of radius r at spin rate ω. If the spin rate is doubled (radius unchanged), what happens to the tension?",
+        "options": {
+          "A": "It becomes four times as large, since T = m ω² r and ω is squared",
+          "B": "It becomes twice as large, since tension should scale the same way as spin rate",
+          "C": "It stays the same, since the string length and mass have not changed",
+          "D": "It becomes half as large, since the ball now completes the circle in less time"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes a direct proportionality that the formula does not have — T depends on ω SQUARED, not ω itself",
+          "C": "misses that ω is one of the three quantities T depends on: T = m ω² r changes whenever ω changes, even with m and r fixed",
+          "D": "confuses a shorter period with a smaller force — a shorter period comes WITH a larger ω, which INCREASES the tension needed, not decreases it"
+        },
+        "tested_idea": "Doubling the spin rate quadruples the needed tension, since T = m ω² r.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball on a string requires 20 N of tension to circle at a given spin rate. If the spin rate is doubled, find the new tension."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A ball is whirled in a horizontal circle on a string. The string is cut. Which way does the ball move immediately afterward, and at what speed?",
+        "options": {
+          "A": "Straight along the tangent to the circle at that instant, at the SAME speed it had the moment before",
+          "B": "Straight outward along the radius, away from the centre, speeding up as it goes",
+          "C": "Straight along the tangent, but slower than before, since the inward pull was helping it move",
+          "D": "It keeps moving in the same circle for a moment, then gradually straightens out"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the exact belief this state exists to break — no outward force exists at any point before or after the cut; the ball's velocity was always tangential, never radial",
+          "C": "assumes the tension was contributing to the SPEED, but tension always acted perpendicular to the velocity, so it never did work on the ball; removing it changes nothing about the speed",
+          "D": "invents a gradual transition with no physical cause — the constraint disappears the instant the string is cut, and the ball's motion follows its existing velocity from that instant"
+        },
+        "tested_idea": "A released ball moves along the tangent at unchanged speed — there is no outward force.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball whirled on a string breaks free mid-circle. Describe its path and speed in the instant right after."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A ball hangs from a string and swings in a horizontal circle, with the string tilted at angle θ from the vertical (a conical pendulum). How does the string's tension compare to the ball's weight mg?",
+        "options": {
+          "A": "T = mg / cos θ, which is always LARGER than mg, since cos θ is less than 1 for any real cone",
+          "B": "T = mg exactly, the same as if the ball were just hanging still",
+          "C": "T = mg cos θ, which is always SMALLER than mg",
+          "D": "T depends only on the spin rate, and has no fixed relationship to mg"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "ignores that the string is TILTED — only the string's VERTICAL component (T cos θ) balances mg, so T itself must be larger than mg to supply that component",
+          "C": "inverts the relationship — T cos θ = mg means T = mg / cos θ, not T = mg cos θ",
+          "D": "misses that the vertical balance T cos θ = mg fixes a relationship between T and mg at any angle, even though θ itself is set by the spin rate"
+        },
+        "tested_idea": "On the cone, T cos θ = mg, so T > mg always.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A conical pendulum's string makes a 40° angle with the vertical. State whether its tension is larger, smaller, or equal to the bob's weight, and why."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "In a conical pendulum, the string's angle from the vertical is given by cos θ = g / (ω² L). As the spin rate ω is increased without limit, what happens to θ?",
+        "options": {
+          "A": "θ keeps increasing toward 90°, but never reaches it — reaching horizontal would need an infinitely large ω",
+          "B": "θ increases and reaches exactly 90° once ω is large enough",
+          "C": "θ stays fixed once ω passes a certain value, since the string cannot open any further",
+          "D": "θ increases past 90°, so the ball swings above the level of the pivot"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the exact belief this state exists to break — cos θ = g/(ω²L) is zero only in the limit ω → ∞, never at any finite spin rate",
+          "C": "invents a physical stop with no basis — the formula keeps giving a smaller cos θ, and so a larger θ, for every larger ω, with no ceiling short of 90°",
+          "D": "assumes θ can exceed the geometric limit of a hanging string; a string held from above cannot swing the bob above the pivot's level"
+        },
+        "tested_idea": "cos θ = g/(ω²L); the string never reaches horizontal at any finite spin rate.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A conical pendulum's spin rate is increased again and again. Explain what happens to the string's angle, and whether it can ever become exactly horizontal."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A conical pendulum's angle is set by cos θ = g / (ω² L). What happens if the spin rate ω is reduced below √(g / L)?",
+        "options": {
+          "A": "No conical motion is possible below that spin rate — cos θ would have to exceed 1, so the string simply hangs straight down",
+          "B": "The cone still forms, just at a very small angle close to 0°",
+          "C": "The ball swings in a circle below the horizontal, on the far side of vertical",
+          "D": "Any spin rate, however small, produces some cone angle greater than zero"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the exact belief this state exists to break — below ω = √(g/L), cos θ = g/(ω²L) EXCEEDS 1, which has no solution; there is no small positive angle left, the cone collapses entirely to θ = 0",
+          "C": "invents a geometry the string cannot produce — a string held from a fixed point above can only hang at or below that point, never form a cone on the far side of vertical",
+          "D": "misses the existence boundary entirely — below the minimum spin rate the formula gives no valid angle, so the bob simply hangs, it does not keep some tiny cone"
+        },
+        "tested_idea": "Conical motion exists only for ω ≥ √(g/L); below it the bob hangs.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A conical pendulum's spin rate is slowed down more and more. State the exact condition at which the cone disappears, and what the bob does below that spin rate."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3"],
+      "STATE_4": ["Q4"],
+      "STATE_5": ["Q5"],
+      "STATE_6": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_7"]
+  },
+
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "No external syllabus web-search verification was run during this authoring pass. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Laws of Motion content, per NCERT Ch.4 §4.11 + Ch.5 §5.9). Every other row carries verified:false + needs_teacher_verification:true rather than a guess, per Rule 38g — no preset goes teacher-visible until a real teacher of that curriculum confirms it.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 11",
+        "coverage": "full",
+        "syllabus_unit": "Ch.4 §4.11 (uniform circular motion) + Ch.5 §5.9 (circular-motion dynamics)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE-Main / JEE-Advanced / NEET",
+        "coverage": "full",
+        "syllabus_unit": "Laws of Motion — dynamics of circular motion; conical pendulum",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE / CAIE A-Level Physics",
+        "coverage": "full",
+        "syllabus_unit": "Circular motion — angular speed, centripetal force",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "US High School / AP Physics 1",
+        "coverage": "full",
+        "syllabus_unit": "Dynamics — circular motion and gravitation (force-side)",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "force_rig",
+    "explorer_id": "force_rig_explorer",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "slider_controls": {
+      "omega": { "min": 1.0, "max": 6.5, "step": 0.1, "default": 4.0, "dp": 1 },
+      "L": { "min": 0.60, "max": 1.40, "step": 0.05, "default": 1.00, "dp": 2 },
+      "bob_mass": { "min": 0.8, "max": 4.5, "step": 0.1, "default": 1.5, "dp": 1 }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Circling at constant speed still needs a continuous inward pull",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Tension pulls inward, always",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "flat",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 1.5,
+            "omega_rad_per_s": 3.0,
+            "show_radius": true,
+            "show_velocity": true
+          },
+          "arrows": [{ "show": ["tension"] }],
+          "readouts": ["T", "v"],
+          "controls_visible": [],
+          "glow_focal": "fr_w_velocity"
+        }
+      },
+
+      "STATE_2": {
+        "label": "The inward pull grows with the SQUARE of the spin rate: T = m ω² r",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Faster spin, larger tension",
+        "formula_overlay": "T = m ω² r",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "flat",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 1.5,
+            "omega_rad_per_s": 3.0,
+            "show_radius": true,
+            "show_velocity": true
+          },
+          "arrows": [{ "show": ["tension"] }],
+          "readouts": ["T", "omega", "v"],
+          "controls_visible": ["omega"],
+          "glow_focal": "fr_w_tension",
+          "param_ramp": { "param": "omega", "from": 3.0, "to": 6.0, "start_ms": 1200, "end_ms": 9200 }
+        }
+      },
+
+      "STATE_3": {
+        "label": "Cut the string: the ball departs straight, tangent, at unchanged speed — no outward force exists",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Cut: straight along tangent",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "flat",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 4.0,
+            "omega_rad_per_s": 1.8,
+            "show_radius": false,
+            "show_velocity": true,
+            "release": { "at_ms": 19600, "trail": true, "ghost_circle": true }
+          },
+          "arrows": [{ "show": ["tension"] }],
+          "readouts": ["T", "v"],
+          "controls_visible": [],
+          "glow_focal": "fr_bob"
+        }
+      },
+
+      "STATE_4": {
+        "label": "With gravity, one tension has two components — vertical balances weight, horizontal is the inward force",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Tension splits: vertical and inward",
+        "formula_overlay": "T cos θ = m g",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "conical",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 1.5,
+            "omega_rad_per_s": 4.0,
+            "show_radius": true,
+            "show_velocity": false
+          },
+          "arrows": [{ "show": ["tension", "weight", "resultant"], "labels": { "resultant": "ΣF" } }],
+          "readouts": ["T", "theta"],
+          "controls_visible": [],
+          "glow_focal": "fr_w_resultant"
+        }
+      },
+
+      "STATE_5": {
+        "label": "The cone angle is solved: cos θ = g/(ω²L); faster spin opens it, never to horizontal",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Faster spin opens the cone",
+        "formula_overlay": "cos θ = g / (ω²L)",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "conical",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 1.5,
+            "omega_rad_per_s": 3.4,
+            "show_radius": true,
+            "show_velocity": false
+          },
+          "arrows": [{ "show": ["tension", "weight"] }],
+          "readouts": ["T", "theta", "omega", "r"],
+          "controls_visible": ["omega"],
+          "glow_focal": "fr_wstring",
+          "param_ramp": { "param": "omega", "from": 3.4, "to": 6.2, "start_ms": 1200, "end_ms": 10200 }
+        }
+      },
+
+      "STATE_6": {
+        "label": "Below ω = √(g/L) there is no cone — the bob simply hangs",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Too slow: no cone",
+        "formula_overlay": "ω ≥ √(g/L)",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "conical",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 1.5,
+            "omega_rad_per_s": 4.5,
+            "show_radius": true,
+            "show_velocity": false
+          },
+          "arrows": [{ "show": ["tension", "weight"] }],
+          "readouts": ["theta", "omega"],
+          "controls_visible": ["omega"],
+          "glow_focal": "fr_guide_ring",
+          "param_ramp": { "param": "omega", "from": 4.5, "to": 2.6, "start_ms": 1200, "end_ms": 9200 }
+        }
+      },
+
+      "STATE_7": {
+        "label": "Explore: spin, length and mass all live; the ω minimum clamp is honest at the slider",
+        "visible_elements": [],
+        "camera_position": [0, 3.4, 9.2],
+        "caption": "Change spin, length, mass",
+        "force_rig": {
+          "apparatus": "whirl",
+          "whirl": {
+            "geometry": "conical",
+            "string_length_m": 1.00,
+            "bob_mass_kg": 1.5,
+            "omega_rad_per_s": 4.0,
+            "show_radius": true,
+            "show_velocity": true
+          },
+          "arrows": [{ "show": ["tension", "weight"] }],
+          "readouts": ["T", "v", "omega", "r"],
+          "controls_visible": ["omega", "L", "bob_mass"],
+          "trusted_drag_seizes": true,
+          "glow_focal": "fr_bob"
+        }
+      }
+    }
+  }
+}

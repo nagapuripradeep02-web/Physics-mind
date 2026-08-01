@@ -1,5 +1,164 @@
 # lom-g loop state — Laws of Motion, off-axis forces tray
 
+updated: 2026-08-01 (**PHASE 2 BUILT — `uniform_circular_motion` authored, audited, fixed and
+         re-verified. AWAITING FOUNDER REVIEW.** The Phase-0 success criterion HELD: the concept
+         needed **ZERO renderer edits**. Two content FAILs found and fixed in one cycle; three
+         engine findings reported and NOT dispatched — the runaway guard is at its limit.)
+
+---
+
+## PHASE 2 — `uniform_circular_motion` — BUILT, AWAITING FOUNDER REVIEW
+
+**Review link: http://localhost:8093/uniform_circular_motion/** (rebuilt after the fixes and verified
+OVER THE WIRE — the post-fix string is present in the served `sim.html` and the pre-fix string is
+absent, so this is not last session's stale-link trap.)
+
+### The headline: the engine generalized. Zero renderer edits.
+
+`force_rig`'s whirl branch served the entire concept as pure JSON. Phase 0's stated criterion —
+"`uniform_circular_motion` must require ZERO renderer edits after `equilibrium_of_particles` seals,
+or the design under-generalized" — is **met**. No renderer file was touched at any point in Phase 2.
+
+### Pipeline + verification
+
+architect → physics-author → json-author → (quality-auditor ∥ eye-walker) → fix cycle → re-verify.
+No founder-proxy on this tray (founder review per concept, as lom-c/d/e ran).
+
+| gate | before fixes | after fixes |
+|---|---|---|
+| `npx tsc --noEmit` | 0 | **0** |
+| `npm run validate:concepts` | 148 PASS / 0 FAIL | **148 PASS / 0 FAIL**, target zero warnings |
+| THE EYE | 31/31 exit 0 | **31/31 exit 0** |
+| STATE_6 dead tail | 11 s of 20 s (55%) | **7 s of 15 s (47%)** |
+
+**physics-author measured before authoring** (the sibling's standard, repeated): all four unverified
+assumptions (V1 whirl `param_ramp` reveal pin = `end_ms + 1600`, confirmed by direct code read AND a
+live call; V2 the clamp funnel IS taken by a down-ramp, not just a slider write; V3 the ω slider
+handle tracks a live ramp; V4 post-cut flight stays on the widened plane, edge measured at ≈1.52 s
+→ hard rule "never exceed 1.5 s") came back favorable. **No fallback was invoked and no architect
+number needed correction.**
+
+### quality-auditor: FAIL → 2 MEDIUM content findings, both fixed in ONE cycle
+
+- **F1 — STATE_7 surfaced `T = m ω² L`**, a relation derived only at STATE_5 (outside the `core_only`
+  cut) and contradicting its own value-only HUD (`r = 0.790 m` beside a formula in `L = 1.00 m`).
+  Routed to architect as pass-1. **Ruling: STATE_7 surfaces NO formula** (the deliberate S1/S3
+  pattern). **Substituting STATE_2's `T = m ω² r` was considered and REJECTED as a PHYSICS ERROR on
+  this apparatus** — on the cone `T sin θ = m ω² r` with `r = L sin θ`, so `T = m ω² L ≠ m ω² r`
+  (24.0 N vs ~19.0 N at the authored values; the live HUD would refute the surfaced formula every
+  frame). Worth keeping: the architect's own §12 i-2 self-check missed this because it tested that
+  the SYMBOLS were core-established, not that the RELATION was.
+- **F2 — STATE_6 was byte-frozen for 11 of its 20 s.** Measured independently twice (auditor +
+  orchestrator, agreeing). Cause is physical: at ω ≤ ω_min, cos θ = 1 ⇒ θ = 0 ⇒ r = 0, so the bob
+  hangs on the axis and revolution at zero radius is indistinguishable from a frozen frame. Fixed by
+  PACING, not by touching the measured ramp: narration 46 → 35 words, duration 20 → 15 s.
+  **Residual is physics-imposed and accepted:** motion ends ~7 s (the ω_min crossing lands at ~72% of
+  the ramp), and the reveal pin forces duration ≥ 10.8 s, so ~7 s of hold remains. It is not padding —
+  it is the payoff (hanging bob + amber `ω min = 3.13 rad/s`) held while the last two sentences
+  describe it, which is a legitimate Rule 26 final-picture hold.
+- F3/F4 (LOW, fixed): STATE_1 named "the balanced ring" — the SIBLING's apparatus, not on screen — and
+  used "zero sum" as an idiom; STATE_4 personified gravity ("Gravity joins the picture" / label
+  "Gravity joins:"), Rule 41a.
+
+**Auditor settled the two claims that mattered.** (1) *No outward force anywhere* — **SURVIVES**, and
+it re-established this INDEPENDENTLY rather than citing the physics block's harness proof (whose
+source grep is itself an OPEN bug row): every rendered string yields 3 hits, all negations;
+`centrifugal` authored nowhere; every arrow across ~31 frames is T→anchor, W↓, v tangent, or ΣF
+horizontal-inward. (2) *Rule 38 i-1* — the conical explore picture is **ACCEPTED; do NOT take the flat
+fallback**, which would cost the founder-named ω_min clamp beat for no gain.
+
+### 🚨 THREE ENGINE FINDINGS — reported, NOT dispatched (runaway guard at its limit)
+
+**All three are `[owner: peter_parker:field3d_surgeon]`.** The tray's guard is AT its limit (9 engine
+commits) and the state file already records that any FURTHER engine fix here needs an explicit founder
+call. **None was dispatched. FOUNDER CALL.**
+
+1. **`force_rig_whirl_release_not_reproduced_under_set_time_freeze_pin` — CRITICAL.**
+   STATE_3 is the PRIMARY AHA (cut the string). Its `__frozen.png` — the canonical reveal photograph,
+   and the future H2 baseline — shows the **pre-cut orbit** (`T = 12.96 N`, string intact).
+   **eye-walker found it but hypothesised a stale `simulation_cache`; that hypothesis is WRONG and was
+   disproved before filing:**
+   - the cache was cleared and re-seeded from the current JSON minutes before the capture — twice;
+   - `deriveMaxRevealTimeMs` on the concept JSON returns **STATE_3 = 20800 ms** (= `release.at_ms`
+     19600 + 1200), and THE EYE's own streamed **Reveal map** line confirms `STATE_3=20800ms` was the
+     pin actually used;
+   - the concept authors no `eye_capture_ms` override;
+   - `STATE_3__dense_t20000.png` — the SAME sim time — shows the cut CORRECTLY (`T = 0.00 N`,
+     `v = 1.80 m/s` unchanged, bob off the ghost circle with a trail).
+   So the dense path integrates through the release and gets it right; the `SET_TIME_FREEZE` pin path
+   does not reproduce the constraint-deletion event. **Same defect CLASS as last session's E1**, which
+   `frResetTrajectory` fixed for the `param_ramp` / `phases` beats — the `release` beat was never
+   covered. **Impact is baseline integrity, not teaching:** a teacher pressing play sees the cut
+   correctly, but locking baselines now would freeze a pre-cut frame as the aha's regression baseline —
+   the same blind spot that let seven dead states pass 31/31 last session.
+2. **Non-determinism — CONTROL RUN DONE. The scope is NARROW, and an earlier reading of mine was
+   WRONG; this is the corrected version.**
+   A third EYE run with **identical code, identical JSON, identical cache** was captured and compared
+   against run 2. **A first pass by md5 said "137 of 137 frames differ" — that was misleading and is
+   retracted: md5 also catches PNG encoding metadata.** Re-measured with `pixelmatch` on actual pixel
+   content (`src/scripts/_scratch_ucm_determinism_all.ts`, untracked):
+
+   | | result |
+   |---|---|
+   | frames compared | 137 |
+   | pixel-IDENTICAL | 52 |
+   | genuinely differing | 85, all small (0.13 % – 0.98 %) |
+   | **frozen frames (= the H2 baseline source)** | **ALL 0.000 % EXCEPT `STATE_3__frozen` at 0.289 %** |
+
+   **This is the fact that matters:** THE EYE builds H2 baselines from the FROZEN frames
+   (`visual_eyes.ts` → `frozenFrame: { atMsByState: maxRevealMsByState }`). Six of seven are perfectly
+   reproducible. **Only STATE_3's — the `release` state's — is both WRONG (pre-cut) and UNSTABLE.**
+   So findings 1 and 2 are ONE defect with one root cause, localized to the whirl `release` beat under
+   the time pin — **not** a general engine non-determinism, and **not** a bar to baseline-locking the
+   other six states. The earlier "cannot be baseline-locked" conclusion is withdrawn.
+
+   **Residual, LOW and separate:** dense frames of the ramped/conical states (S2, S4, S5, S6, S7)
+   jitter 0.1–1 % run-to-run — consistent with sub-step jitter in the conical branch's
+   velocity-Verlet + SHAKE/RATTLE micro-stepping (2 ms × 8 per shared step, build note 5). Dense frames
+   are NOT the H2 baseline source, so this does not threaten regression protection. Worth a row, not a
+   dispatch. Note STATE_1 (flat, steady) and STATE_3's dense frames are pixel-identical throughout —
+   the jitter tracks the ramp/cone, not the engine as a whole.
+3. **`force_rig_whirl_tension_arrow_illegible_at_floor_band_magnitude` — MODERATE.**
+   At floor-band magnitudes (~11.5–17 N) the tension arrow is too SHORT to read direction at all,
+   independent of the shaft/string colour fix. Worst in **STATE_1**, where T = 13.5 N is constant for
+   the whole state — so the state's own delta cue ("Tension pulls inward, always") is the one thing a
+   teacher cannot see. eye-walker confirms the `7c6bbb3` mesh-shaft fix DOES generalize to the whirl
+   branch at mid/high magnitudes; this is the narrower residual.
+
+**Owner-tag correction, for the second session running:** eye-walker filed its rows under
+`peter_parker:renderer_primitives`, which maps to `pcpl-surgeon` (2D parametric owner) and would have
+REJECTED the scope. Both root causes are in `field_3d_renderer.ts` → `field3d-surgeon`. The auditor
+independently caught two further OPEN rows carrying the same mis-tag and supplied retag SQL.
+
+### The highest-leverage item is NOT about this concept
+
+quality-auditor's scar candidate A: **THE EYE writes every pixel needed to answer "did anything move"
+and compares none of them.** Three numbers per state — distinct-hash count, last-change ms, and that
+as a fraction of duration — would have caught F2 in the same run that reported 31/31, and would have
+caught last session's seven dead states. $0, renderer-agnostic, and **immune to the missing
+`field_3d_config` that darkened D5**. Platform work for master (Rule 40), not this branch.
+(D5 itself is still dark: this run's **Motion map printed `STATE_1=? … STATE_7=?`** — all skipped.)
+
+### Phase 2 artefacts
+`docs/loop_runs/lom_g/uniform_circular_motion/` → `01_architect_skeleton.md` (§12 i-2 annotated with
+the superseding F1 ruling) · `02_physics_block.md` (§0 = the four measurements) ·
+`03_auditor_report.md` (435 lines, per-gate evidence) · `04_eye_walker_report.md` (per-state verdict +
+the disproved stale-cache hypothesis) · `scar_candidates.sql` (SQL TEXT ONLY — **not applied**).
+Concept: `src/data/concepts/uniform_circular_motion.json` · seed script
+`src/scripts/_seed_uniform_circular_motion_cache.ts` · migration FILE (unapplied).
+
+### Registration trap worth remembering
+`uniform_circular_motion` is one of the ~60 retired-architecture ids, so it already carried STALE
+registrations pointing at the dead `mechanics_2d` path. json-author **overwrote** rather than added:
+`CONCEPT_RENDERER_MAP` `"mechanics_2d"` → `"field_3d"`, the `MECHANICS_SCENARIO_MAP` `"circular"` entry
+removed, `CONCEPT_PANEL_MAP` renderer flipped, and `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT` added
+(both were absent). The map removal was verified safe independently: all 8 other field_3d retrofits
+likewise carry no `MECHANICS_SCENARIO_MAP` entry, and every consumption site is `?? default`.
+
+---
+
+## (Phase 1 history below)
+
 updated: 2026-07-31 (**FOUNDER APPROVED `equilibrium_of_particles` on content and physics —
          "perfect", no content rework. Authoring sign-off ONLY; nothing sealed.** All three
          founder-ordered fixes LANDED (E2, FIX A, E1) and THE EYE re-run independently verified:
@@ -305,18 +464,34 @@ chapter_map (founder-approved 2026-07-30, in build order):
   PROVES the off-axis force solver before `uniform_circular_motion` depends on it. Same
   structural-extremes-first logic lom-a used. Do not reorder to do the exciting one first.
 
-next: **PHASE 2 — `uniform_circular_motion`.** `equilibrium_of_particles` is FOUNDER-APPROVED on
-      content, physics AND visuals (2026-08-01, "perfect"). Authoring sign-off only — `visual:approve`,
-      `tts:*`, `build:pilot` and deploy remain untouched and are a separate founder decision, so the
-      concept is complete but NOT shipped and its baselines are NOT locked.
-      Watch the Phase 0 success criterion: `uniform_circular_motion` must need ZERO renderer edits.
-      If authoring forces one, STOP and re-scope — do not extend the engine per concept.
-      Blocking on a founder call: the fleet-wide D5 fix (see above), which Phase 2's whirl wants.
-      Phase 2 = `uniform_circular_motion` — its whirl needs the D5 gate more than this concept did.
-      (superseded) Phase 1 authoring via the Alex pipeline
-      (architect → physics-author → json-author → quality-auditor), then FOUNDER REVIEW.
-      The engine gate is passed; nothing blocks authoring.
-in_flight: (none)
+next: **FOUNDER REVIEW of `uniform_circular_motion`** at http://localhost:8093/uniform_circular_motion/
+      (link rebuilt post-fix and verified over the wire). BOTH tray concepts are now built; the
+      chapter_map is complete. Nothing is shipped: `visual:approve`, `tts:*`, `build:pilot` and
+      deploy remain untouched for BOTH concepts, and neither has a `visual_baselines` entry, so
+      neither has H2 regression protection.
+      **THREE FOUNDER CALLS ARE OPEN, in priority order:**
+      (1) **ONE CRITICAL whirl engine finding** (proven, control run complete): the `release` beat is
+          not reproduced under the `SET_TIME_FREEZE` pin — STATE_3's frozen frame lands PRE-CUT and is
+          the only frozen frame that is also unstable run-to-run (0.289 % vs 0.000 % for the other
+          six). `[owner: peter_parker:field3d_surgeon]`. **It does NOT block teaching** (the live sim
+          cuts correctly) and does NOT block baseline-locking the other six states — it blocks
+          baseline-locking STATE_3, which is the PRIMARY AHA, so the aha would ship with no H2
+          protection. The runaway guard is AT its limit, so a dispatch needs an explicit founder
+          go-ahead. Plus one MODERATE (floor-band arrow) and one LOW (conical dense-frame jitter).
+      (2) **The fleet-wide D5 fix** (still dark — this run's Motion map printed all `?`). Unchanged
+          from last session: one line, but it switches a dormant gate ON for 25 locked concepts at
+          once, so it belongs on master with an immediate full-fleet sweep. Now joined by the
+          auditor's cheaper, complementary proposal — three motion numbers per state in THE EYE,
+          renderer-agnostic and immune to the missing `field_3d_config`.
+      (3) **Whether scar candidates get applied to `engine_bug_queue`.** Last session the founder
+          LIFTED the file-only ban and 13 rows landed; this session's candidates are still FILES
+          (auditor's 4 INSERT + 2 retag UPDATE, plus the 3 engine findings above). The cost of
+          leaving them as files is on the record: the arrow-shaft scar RECURRED precisely because its
+          prevention rule existed only as prose in an unmerged file.
+      Also open from Phase 1, unchanged: the tray's regression gate still runs on ONE concept
+      (`eddy_currents`) because `electric_potential_meaning` is non-deterministic; two MODERATE
+      `force_rig` table scars remain filed-but-unfixed.
+in_flight: (none — Phase 2 complete pending founder review)
 parked: (none)
 engine_commits: e5c5d01 (force_table + harness), 096157d (whirl), 5801db6 (E2 colour),
                 ea16433 (FIX A — EYE pin fatal, platform/Rule 40), b2ebf9a (E1 time-pin replay),

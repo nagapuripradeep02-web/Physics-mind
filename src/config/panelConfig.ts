@@ -1031,13 +1031,23 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         primary: { renderer: 'mechanics_2d', config_key: 'two_projectile_never_meet', label: 'Two Projectiles Miss' },
     },
 
+    // uniform_circular_motion — RETROFIT 2026-08-01 onto the force_rig field_3d
+    // engine, Branch B (`whirl`): a body circling at constant speed still needs
+    // a net inward force (T = m ω² r), cutting the string sends it straight
+    // along the tangent at unchanged speed (no outward force ever existed),
+    // and once gravity joins (conical pendulum) the same tension splits into a
+    // vertical component balancing weight and a horizontal component that is
+    // the net inward force, solved as cos θ = g/(ω²L) with an honest ω_min
+    // existence boundary. Was routed to the dormant mechanics_2d "circular"
+    // scenario; that registration is now dead (see aiSimulationGenerator.ts).
+    // Single panel, no panel_b_config.
     uniform_circular_motion: {
         concept_id: 'uniform_circular_motion',
         layout: 'single',
         primary: {
-            renderer: 'mechanics_2d',
+            renderer: 'field_3d',
             config_key: 'uniform_circular_motion',
-            label: 'Circular Motion',
+            label: 'Uniform Circular Motion — Circling Needs a Constant Inward Force (3D)',
         },
     },
 
