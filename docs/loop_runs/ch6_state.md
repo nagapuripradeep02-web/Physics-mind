@@ -12,11 +12,113 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: 0c — dispatch field3d-surgeon to build the ENERGY LAYER against skeleton.md ENGINE SPEC NOTES
+next: 0c — SEAM K DONE + verified; SEAM L (energy panel + derived bars) dispatched 2026-08-01
 done: (none yet)
 parked: (none)
-in_flight: conservation_of_mechanical_energy  stage=0c-ready  checkpointA=CLOSED
-engine_commits: (none yet)
+in_flight: conservation_of_mechanical_energy  stage=0c-building  checkpointA=CLOSED
+engine_commits: 9f479f6 SEAM K — genuine spring physics on newtons_laws_body (pushed to the branch;
+  NOT yet landed on master — see "Rule 40 landing decision" below)
+desk_synced: origin/master f69dc28 merged into the desk 2026-08-01 (merge bb6a89c, pushed).
+  Zero file overlap — the desk's 3 commits were docs-only. Baseline re-verified GREEN after the
+  merge: check:renderer-syntax OK · tsc 0 errors. The merge pulled +1063 lines into
+  field_3d_renderer.ts (chemistry `bonding_scene` substrate), so ALL pre-merge renderer line
+  numbers — including the ones quoted in skeleton.md's ENGINE SPEC NOTES — are STALE.
+
+## 0c SEAM PLAN (added 2026-08-01) — the 19 spec notes do NOT fit one dispatch
+
+Amendment 4 caps a dispatch at ONE bug_class / ~100 calls; the spec carries 19 notes. Decomposed
+into 4 sequential seams, mirroring how `momentum_bench` was built on lom-f (SEAM A/B/C). Seam
+letters A–J are already taken inside `newtons_laws_body`, so the energy layer starts at K.
+Sequential, never parallel — all four edit the same region of one shared file.
+
+| Seam | Owns spec notes | Mechanism | Regression sample |
+|---|---|---|---|
+| **K** — spring physics substrate | 8a–8d, 17a–c, 9, 18e–f | genuine `F = −kx` in the integrator; slow motion becomes a PLAYBACK modifier; clamp + sandbox-wrap invariants; `loop_reset_ms` | `newton_third_law` (owns the legacy scripted apparatus) + electric_flux + magnetic_flux |
+| **L** — energy panel + derived bars | 1, 2, 3, 4, 5, 12, 13, 16, 15(i)(ii) | LEFT-edge panel w/ measure-and-reflow; K/U/Uₛ derived every frame; stacked E column; ripple-corrected total displayed | nlb fleet |
+| **M** — teaching instruments | 6, 7, 10, 11, 14, 18 (full), 15(iii) | `sum_merge` one-shot; h=0 line + computed/ghost markers; N concurrent SIGNED W accumulators; checkpoint latch; P readout | nlb fleet |
+| **N** — off-axis force geometry | 19a–c | displacement vector `d`, angle arc, `applied_force {N, angle_deg}`, `N ≥ 0` lift-off clamp | **WIDER than the choreography spec's list — ~10 shipped concepts read `N`** |
+
+Seam N is union-only (concepts #1/#2, unused by the 0b driver) and is the riskiest for regression
+because it changes shared `N`. It goes LAST, on its own, with the wide sample.
+
+**Corrected anchors** (post-merge; supersede the stale numbers inside skeleton.md):
+`nlbBoundsM` L42574 (skeleton says 42897 ✗) · `nlbSandboxWrap` L41641 (skeleton says ~42881 ✗) ·
+nlb config type L922–1250 · scenario region L39139–~43100 (SEAM MAP comment at L39148) ·
+`nlbUpdateSlowBadge` L42113 · scenario RESET_TRAJECTORY L42474 · per-tick entry L55473 ·
+per-state seed L51345.
+
+**Rule 40a pre-check DONE and clean:** `git log --all -S "energy_layer"` and `-S "k_N_per_m"`
+return no renderer hits — neither mechanism exists anywhere in history. Re-run per new symbol.
+
+Per 0c doctrine each seam REPORT's closed enums — not skeleton.md's literal guesses — are the
+authoritative JSON contract for json-author.
+
+## SEAM K RESULT 2026-08-01 — DONE, verified, commit `9f479f6`
+
++512/−13 in `field_3d_renderer.ts`, all `nlb*`/`PM_nlb*` prefixed, contamination grep vs sibling
+prefixes = 0 matches. Verify chain green: renderer-syntax OK · tsc 0 · validate:concepts 146/146
+PASS · regression EYE `newton_third_law` 32/32, `electric_flux` 62/62, `magnetic_flux` 38/38 with
+**all 42 H2 baselines at 0.00%** — the direct proof note 8c's additive claim holds.
+
+**JSON contract (authoritative — supersedes skeleton literals).** Under `newtons_laws_body.spring`:
+`k_N_per_m` (>0, absent = legacy scripted path bit-for-bit — **THE GATE**) · `natural_length_m`
+(default 1.6, metres, drives physics AND drawn coil) · `slow_factor` (≥1, default 6; <1 ignored) ·
+`compressed` IGNORED on the genuine path · `between` still required (one body `fixed: true`).
+New top-level: `loop_reset_ms` (>0; inert under `push_off`, in `mode:'sandbox'`, and once seized).
+**No new closed enum members.** Position contract: compressed when
+`|s_block − s_wall| − (halfA+halfB) < natural_length_m`, half-extents 0.275 m wall slab / 0.55 m
+cart — author the home pose with the block CLEAR of the coil or the state opens pre-loaded.
+`k_N_per_m` + `spring_action` together is unsupported; `k_N_per_m` wins.
+
+**Ripple acceptance probe MEASURED (not asserted):** 0.005240 J at m=2, k=370, slow_factor 6
+(bar < 0.05 J); uncorrected 0.928 J — a 177× reduction, confirming the cycle-2 catch was real.
+Additivity 600 no-contact frames bit-identical to 17 s.f.; rewind byte-identical.
+
+**Independently re-verified by the dispatching session** (the one deviation from a founder-ruled
+spec line): SEAM K ships `s += 0.5(v₀+v₁)h + 0.5·a_spring·h²`, NOT spec 8a's literal
+`s += v·dtPhysics`. Expanding with `a = a_const + a_spring` gives exact integration for the constant
+part plus `v₀h + a_spring·h²` — i.e. the spec's semi-implicit form for the spring, with gravity
+error-free. Taking 8a literally would apply symplectic Euler to gravity and drift ≈0.29 J per second
+of FREE SLIDE with no spring present, visibly tilting the flat-topped E column that is S1/S2's
+PRIMARY aha. The deviation is correct and protective; the added term vanishes identically when
+`Fspr = 0`, which is why all 42 legacy baselines moved 0.00%. **Accepted.**
+
+⚠ The code comment at ~L43330 claims "strictly affine in dt" for this step. That is overstated for
+the spring branch — the `h²` term is quadratic, and the surgeon's own measured 3-folded-step row
+(0.124 J, OVER bar) is the honest number. No explicit integrator is fold-exact against a
+position-dependent force, so this is inherent, transient and self-correcting on a dropped frame —
+not a defect. `SET_TIME_FREEZE` forces dt=0 so frozen baselines stay byte-identical by construction.
+Trust the REPORT's number, not the comment, if founder-proxy asks.
+
+### Open items SEAM K hands forward (must not be lost)
+
+- **A. Sandbox real-time ripple — a genuine spec tension, unresolved.** Spec 8d says sandbox = real
+  time (`slow_factor: 1`), but the measured ripple at `slow_factor: 1` is **0.457 J** — 9× over the
+  0.05 J bar. On S8's ~39 J total at 0.1 J display precision that is a visible wobble, in the very
+  sandbox whose claim is "total flat when μₖ = 0". The founder's slow window turns out to be doing
+  NUMERICAL work, not only legibility work. SEAM L owns resolving this on the DISPLAY side (coarser
+  sandbox precision / display smoothing / a mild sandbox slow factor) — flag to founder-proxy, do
+  not silently pick.
+- **B. Note 15 `deriveStateMeta.ts` co-edit is still OWED.** SEAM K correctly needed none (no new
+  scenario_type, no reveal key, no cue time). All three sites belong to SEAM L/M + the concept's own
+  registration. Do not let this fall through the seam boundary.
+- **C. `U_grav` reference is currently `s = 0`** (surface origin). SEAM L must widen it to an
+  authored reference in the `energy_layer` block (the `h = 0` line is authored per skeleton §3).
+- **D. Scar rows 2–4 are OPEN directives** in `scar_candidates_seam_k.sql`, SQL text only, NOT
+  applied to the DB. Row 4 defines the `[PM_NLB_ENERGY_CLAMP]` console assertion THE EYE should
+  enforce (zero occurrences).
+- **E. Do not author a spring state at `slow_factor: 1` outside the sandbox** — it fails the ripple
+  bar even corrected. An authoring constraint json-author must honour.
+
+### Rule 40 landing decision (dispatching session, 2026-08-01)
+
+SEAM K is PUSHED to `feat/ch6-work-energy-power` but deliberately NOT yet landed on master. Rule 40's
+stated origin is duplicate work on branches *neither side had pushed*; pushing addresses that risk in
+full (`git log --all -S` now sees it, and both sibling sessions fetch). Landing a HALF-BUILT energy
+layer on master would put the shared platform in a state no one wants. **Land the K+L+M+N engine
+commits on master as one coherent platform change when seam N verifies** — separately from all ch6
+concept JSON work, which is the separation Rule 40 actually requires. Revisit if a sibling session
+needs the spring substrate sooner.
 
 ## Approved chapter map (founder 2026-08-01) — teaching order
 
@@ -109,6 +211,16 @@ Consequences:
   branches that also touch it. Rule 40: land the energy-layer commit on master separately and
   immediately; never bundle it into concept work. Re-check `git log --all -S "<symbol>"` before
   building any mechanism (Rule 40a).
+  **Verified 2026-08-01:** neither sibling is merged to origin/master yet, and both work in regions
+  DISJOINT from ours — `feat/lom-f-momentum` owns the `momentum_bench` scenario (SEAM A/B/C, 10
+  commits) and `feat/lom-g-offaxis` owns `force_rig` (10 commits). Ours is `newtons_laws_body`.
+  Staying region-disjoint is what keeps the eventual three-way merge tractable; every seam dispatch
+  carries that instruction. Expect all three to land on master within the same window — whoever
+  lands second merges, never force-pushes.
+- Desk auto-push hook logs occasional `FAILED rc=1 / cannot lock ref` lines. Checked 2026-08-01:
+  those are **stale queued pushes racing each other**, not lost work — `git ls-remote` showed the
+  remote already holding the newer commit each time. Confirm with `ls-remote` before treating an
+  autopush failure as a real problem.
 - Source catalog is PRE-Rule-35: its India-specific anchors must be re-authored universal. See the
   survey's Rule 35 section.
 - Engine verify chain (AUTHORING_PIPELINE.md engine-dispatch discipline): check:renderer-syntax →
