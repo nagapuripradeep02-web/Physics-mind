@@ -1997,7 +1997,20 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         bscPush(bscState.resultant_at_ms, 900);
         bscPush(bscState.charges_at_ms, 900);
         bscPush(bscState.pair_shift_at_ms, 1200);
-        bscPush(bscState.compare_at_ms, 1500);
+        // E1c-A: the compare swap pins past its OWN duration, not past a flat
+        // +1500. bond_polarity S7 authors a deliberately slow 7300 ms NH3 -> NF3
+        // transformation (the hardest single idea in its arc, played out under
+        // the narration that explains it), and a flat offset pinned the frozen
+        // frame at 10700 ms — mid-swap, i.e. a baseline of a molecule caught
+        // half-way between two species, which is exactly the self-contradictory
+        // pin the block above exists to prevent. Reads its sibling the way
+        // approach_at_ms / angle_at_ms / transfer.at_ms already do; the 1500
+        // default is the previous behaviour for a state that authors no duration.
+        if (typeof bscState.compare_at_ms === 'number') {
+            candidates.push(asNum(bscState.compare_at_ms, 0) +
+                (typeof bscState.compare_duration_ms === 'number'
+                    ? asNum(bscState.compare_duration_ms, 1500) + 600 : 1500));
+        }
         // E1c: the SCRIPTED BEND (angle_from -> angle_deg over angle_ramp_ms from
         // angle_at_ms). Registered in the same change as the renderer cue, the
         // standing new-scenario rule: a state that ramps an angle with no later
@@ -2008,9 +2021,19 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (typeof bscState.angle_at_ms === 'number') {
             candidates.push(asNum(bscState.angle_at_ms, 0) + asNum(bscState.angle_ramp_ms, 1600) + 600);
         }
-        if (typeof bscState.assemble_at_ms === 'number') {
-            candidates.push(asNum(bscState.assemble_at_ms, 600) + asNum(bscState.assemble_duration_ms, 3200) + 500);
-        }
+        // assemble_at_ms / assemble_duration_ms were REMOVED here by E1c-A, and the
+        // removal is the decision, not an oversight. E1c-C's cue audit found them
+        // registered as pin candidates with NO bonding_scene code reading them (the
+        // renderer's only *_at_ms hits for "assemble" belong to molecular_geometry),
+        // i.e. the sigma-pi decorative-string defect: a cue key that gates nothing
+        // while a second file treats it as real. Mode 'assemble' is live and has its
+        // own solved camera, but its actual beats are already cued — the shared-pair
+        // slide (pair_shift_at_ms), the approach (approach_at_ms) and the three
+        // dipole layers — and no concept authors assemble_at_ms. Implementing a ramp
+        // nothing asks for would invent a capability; registering a pin for a ramp
+        // that does not exist misreports the settled frame. If E2/E3b ever scripts
+        // an assemble ramp it registers the key IN THE SAME CHANGE as the renderer
+        // read, which is the rule check:bonding-scene already enforces.
         // E2/E3 cue times, derived here so those dispatches need no meta edit.
         if (typeof bscState.approach_at_ms === 'number') {
             candidates.push(asNum(bscState.approach_at_ms, 0) + asNum(bscState.approach_duration_ms, 2400) + 600);

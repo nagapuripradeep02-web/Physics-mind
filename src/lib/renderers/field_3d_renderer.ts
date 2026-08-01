@@ -47415,8 +47415,25 @@ export const FIELD_3D_RENDERER_CODE = `
         H2Se:  { central: "Se", ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 91.0, bond_pm: 146, arc_pair: [0, 1], formula: "H\\u2082Se" },
         H2Te:  { central: "Te", ligand: "H",  bonds: 2, lone: 2, e_geom: "tetrahedral", shape: "bent", angle: 90.0, bond_pm: 169, arc_pair: [0, 1], formula: "H\\u2082Te" },
         CO2:   { central: "C",  ligand: "O",  bonds: 2, lone: 0, e_geom: "linear", shape: "linear", angle: 180, bond_pm: 116, arc_pair: [0, 1], formula: "CO\\u2082" },
-        CCl4:  { central: "C",  ligand: "Cl", bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [0, 1], formula: "CCl\\u2084" },
-        CHCl3: { central: "C",  ligand: "Cl", ligands: ["H", "Cl", "Cl", "Cl"], bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [1, 2], formula: "CHCl\\u2083" },
+        //    RATIFIED 2026-08-01 (chemistry_author R3, landed by E1c-A). bond_moments
+        //    is the per-molecule override bscBondMoment reads (mgFrame never looks at
+        //    it, so the VSEPR path is untouched). The additive pair model famously
+        //    OVER-predicts the chloromethane series — plain C|Cl 1.46 gives CHCl3
+        //    1.76 D against a measured 1.04 D — so the C-Cl bond moment IN THIS
+        //    SERIES is authored at 0.74 D. It must be on BOTH molecules, and the two
+        //    claims are exact, not approximate:
+        //      CCl4 keeps mu EXACTLY 0 — one scalar on four identical ligands times
+        //      four ideal tetrahedral directions that sum to the zero vector.
+        //      CHCl3 lands EXACTLY on 1.04 D — with d1+d2+d3+d4 = 0, the three Cl
+        //      bonds give 0.74*(-d_H) and the H bond gives (-0.30)*d_H, i.e.
+        //      |-(0.74 + 0.30)| = 1.04 D. That identity is WHY 0.74 was chosen.
+        //    Delta-chi ordering survives: C-Cl 0.61 > C-H 0.35 and 0.74 > 0.30, so
+        //    S2-s "bigger Delta-chi, longer arrow" still reads true through S6-s swap.
+        //    E1c-A FINDING: the chemistry block recorded CHCl3 as already carrying
+        //    this override. It did not — only the READ hook shipped in E1 — so CHCl3
+        //    was rendering 1.76 D against narration quoting 1.04 D. Both landed here.
+        CCl4:  { central: "C",  ligand: "Cl", bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [0, 1], bond_moments: { Cl: 0.74 }, formula: "CCl\\u2084" },
+        CHCl3: { central: "C",  ligand: "Cl", ligands: ["H", "Cl", "Cl", "Cl"], bonds: 4, lone: 0, e_geom: "tetrahedral", shape: "tetrahedral", angle: 109.5, bond_pm: 177, arc_pair: [1, 2], bond_moments: { Cl: 0.74 }, formula: "CHCl\\u2083" },
         NF3:   { central: "N",  ligand: "F",  bonds: 3, lone: 1, e_geom: "tetrahedral", shape: "trigonal pyramidal", angle: 102.3, bond_pm: 137, arc_pair: [0, 1], formula: "NF\\u2083" }
     };
     var MG_EXPLORE_MOLECULES = ["CH4", "NH3", "H2O", "BF3", "BeCl2"];
@@ -48505,6 +48522,31 @@ export const FIELD_3D_RENDERER_CODE = `
     // change more than its timing.
     var BS_ARROW_OPACITY = 0.95;     // bond-dipole arrow shaft + head
     var BS_RESULTANT_OPACITY = 0.98; // the derived resultant shaft + head
+    // ── E1c-A item 3: THE HEAD SCALES WITH THE MAGNITUDE ─────────────────────
+    //   The built cone heights. They used to be the head length TOO, added on top
+    //   of a shaft floored at 0.02 — so the DRAWN length was
+    //   max(0.02, |m|*scale - 0.30) + 0.30, i.e. a constant 0.32 units for every
+    //   magnitude below 0.32/0.62 = 0.516 D, while the narration says the arrow-s
+    //   length IS the measured dipole moment (Rule 29 / D-3, one instrument).
+    //   Three authored magnitudes sit under that floor — HI 0.45 D, C|H 0.30 D and
+    //   the NF3 RESULTANT 0.228 D — so S2-s four-rung halide ladder drew HI and
+    //   HBr the same length, and S7 drew NF3-s resultant 3x too long against NH3-s
+    //   (0.42 vs 0.909 units, a ratio of 2.2 where the physics is 6.4).
+    //   The rule: head = min(built, len/2), shaft = len - head, so the TOTAL drawn
+    //   length is exactly |m| * scale at every magnitude, and a small arrow is a
+    //   small arrow with a proportionate head rather than a bare cone. The head-s
+    //   RADIUS eases with it (floored, so a tiny head is still a visible triangle)
+    //   because a full-width cone on a 0.28-unit arrow reads as a blob, not a
+    //   direction.
+    var BS_ARROW_HEAD_LEN = 0.30;    // built cone height, bond + lone-pair arrows
+    var BS_RES_HEAD_LEN = 0.38;      // built cone height, the resultant
+    var BS_HEAD_MIN_THICK = 0.62;    // floor on the head-s radius scale
+    function bscArrowParts(len, built) {
+        var h = (len * 0.5 < built) ? len * 0.5 : built;
+        var k = h / built;
+        return { head: h, shaft: (len - h > 1e-4) ? (len - h) : 1e-4, hy: k,
+            thick: (k < BS_HEAD_MIN_THICK) ? BS_HEAD_MIN_THICK : k };
+    }
     // E1c: the lone-pair lobe, the molecular_geometry proportions verbatim so a
     // student meeting both sims sees the SAME object (fatter and shorter than a
     // bond — the extra girth IS the taught physics, not a Rule-29 bulge).
@@ -48667,10 +48709,46 @@ export const FIELD_3D_RENDERER_CODE = `
     //   the positive end). Positive entry = the CENTRAL atom is delta+.
     //   A sign flip renders perfectly while teaching the reverse (CRITICAL scar
     //   superposed_orbital_sign_convention_inverts_the_taught_direction).
+    //
+    //   RATIFIED 2026-08-01 (chemistry_author, bond_polarity_dipole_moment R1/R2/R3;
+    //   landed by E1c-A). N is the SOLE EXCEPTION to the fitted/absorbed convention.
+    //   Every other central atom (O, S, Se, Te, C, B, Be, P and every H|X row) stays
+    //   FITTED — the published value already absorbs that centre-s lone-pair
+    //   contribution, BS_LONE_PAIR_D stays 0 there, and nothing downstream of them is
+    //   touched. In particular O|H -1.51 is what produces H2O-s 1.849 D, which
+    //   bond_polarity S4 AND hydrogen_bonding-s bscCharges/bscIonicFraction
+    //   donor-acceptor table both depend on: converting O would perturb both.
+    //   N moves to the INTRINSIC + EXPLICIT-LONE-PAIR convention because
+    //   bond_polarity S7 DRAWS the lone-pair vector on screen and teaches
+    //   "direction decides" as a real four-vector composition. Under the fitted
+    //   convention (N|H -1.31, N|F 0.17, L = 0) the whole NH3 -> NF3 drop came from
+    //   bond-moment MAGNITUDE, so the state-s own lesson was arithmetically false AND
+    //   the higher-Delta-chi bond (N-F, 0.94) drew the SHORTER arrow than N-H (0.84),
+    //   contradicting S2-s "bigger Delta-chi, longer arrow" rule.
+    //   Calibration (chemistry_author, full working in the chemistry block): one
+    //   proportionality b = k*Delta-chi plus the two published totals gives
+    //   k = 0.7759, i.e. b(N-H) = 0.66 D, b(N-F) = 0.73 D, L = 0.73 D. Forward check
+    //   against mgSqueeze-s own axial cosines (NH3 107 deg -> 0.3722, NF3 102.3 deg
+    //   -> 0.4374), asserted numerically by check:bonding-scene section 15:
+    //     NH3 = 3*0.66*0.3722 + 0.73 = 1.467 D   (was 1.462 — same picture, real terms)
+    //     NF3 = |3*0.73*0.4374 - 0.73| = 0.228 D (was 0.223)
+    //   and |N-F| 0.73 > |N-H| 0.66 now matches Delta-chi 0.94 > 0.84.
+    //   DO NOT extend this convention to another central atom without a matching
+    //   on-screen lone-pair-vector need — it is a local exception, not a table-wide
+    //   migration, and a table silently carrying two conventions is how the next
+    //   concept gets bitten. check:bonding-scene asserts |L| > 0 for the N centrals
+    //   ONLY, so any other central gaining a lone-pair moment fails the gate loudly.
+    //   R2: the hydrogen-halide row moves to CRC Handbook gas-phase (microwave)
+    //   values — HF 1.826, HCl 1.109, HBr 0.827, HI 0.448 — rounded to this table-s
+    //   own 2-decimal convention. The shipped H|I 0.38 was 16% below the measured
+    //   0.448 the S2 narration quotes: a spoken number and an on-screen instrument
+    //   reading different values for the same quantity (the sigma-pi two-instrument
+    //   scar). bscCharges/bscIonicFraction read Delta-chi only, never this table, so
+    //   hydrogen_bonding-s link formation is untouched by R2.
     var BS_BOND_MOMENT_D = {
-        "H|F": 1.82, "H|Cl": 1.08, "H|Br": 0.78, "H|I": 0.38,
+        "H|F": 1.83, "H|Cl": 1.11, "H|Br": 0.83, "H|I": 0.45,
         "O|H": -1.51, "S|H": -0.70, "Se|H": -0.44, "Te|H": -0.14,
-        "N|H": -1.31, "N|F": 0.17,
+        "N|H": -0.66, "N|F": 0.73,
         "C|H": -0.30, "C|Cl": 1.46, "C|F": 1.41, "C|O": 2.30, "C|Br": 1.38, "C|I": 1.19,
         "B|F": 1.48, "Be|Cl": 1.60, "P|Cl": 0.81, "S|F": 1.05
     };
@@ -48682,12 +48760,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // (MG_MOLECULES[key].bond_moments = { Cl: 0.74 }) is read below so
     // chemistry-author can ratify WITHOUT an engine edit.
     // Explicit lone-pair moment per central species, in debye, applied along EACH
-    // lone-pair direction. Authored 0 today and that is a DELIBERATE, flagged
-    // call: the published bond moments above are empirically fitted and already
-    // absorb the lone-pair contribution (with them, H2O/NH3/NF3 all land on
-    // literature with a zero term — adding one double-counts). The mechanism is
-    // shipped so ratification is a data edit, not an engine edit.
-    var BS_LONE_PAIR_D = { N: 0, O: 0, S: 0, Se: 0, Te: 0, P: 0, Cl: 0, F: 0 };
+    // lone-pair direction. ZERO everywhere the table above stays FITTED (the
+    // published bond moment already absorbs the lone-pair contribution there, so a
+    // second term would double-count), and NON-ZERO only at N, the one central atom
+    // this wave converts to the intrinsic convention — see the R1 block above for
+    // why, and check:bonding-scene for the assertion that keeps the exception
+    // single. This is a DATA edit on a mechanism that shipped in E1; a new non-zero
+    // entry here is a chemistry ratification, never a rendering convenience.
+    var BS_LONE_PAIR_D = { N: 0.73, O: 0, S: 0, Se: 0, Te: 0, P: 0, Cl: 0, F: 0 };
     // Fallback for a pair the table does not carry: sign from delta-chi, magnitude
     // 1.0 D per unit delta-chi. NEVER silent — every use is recorded on
     // window.PM_bscMuFallback so the gate can assert the shipped species set
@@ -48727,6 +48807,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // is half of what S2-S4 teach.
         approach_link: { az: 35, el: 16, dist: 11.0 },
         network:    { az: 35, el: 22, dist: 17.0 },
+        // MULTI-UNIT compare only (hydrogen_bonding-s side-by-side box). A compare
+        // state that swaps ONE molecule in place is the dipole_sum SCENE and is
+        // framed by the single-unit solve below — see bscSolvedCamera.
         compare:    { az: 35, el: 20, dist: 12.0 },
         // ── E3a solved cameras (D-4). fit:true adds the auto-fit above, so a
         //    state that authors a bigger block than the canonical 3x3x3 cannot
@@ -48780,6 +48863,73 @@ export const FIELD_3D_RENDERER_CODE = `
         coordination:  { az: 35, el: 45, dist: 16.0 }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
+
+    // ── THE SINGLE-UNIT SOLVE, KEYED ON THE SCENE (E1c-A, D-4 continued) ──────
+    //   A MODE NAME IS NOT A SCENE. The same mode frames a single molecule swapped
+    //   in place (bond_polarity S2/S6/S7 reach compare only to use compare_species)
+    //   and a multi-unit side-by-side box (hydrogen_bonding). Keying the solve on
+    //   the mode string therefore teleported the camera FOUR times across
+    //   bond_polarity-s arc — S1->S2, S2->S3, S5->S6, S7->S8, each an elevation AND
+    //   distance jump (el 47 dist 7 -> el 20 dist 12) the taught variable never
+    //   caused (Rule 32d), drawing every arrow at ~58% of its neighbouring states-
+    //   size. arrow_scale cannot compensate: it is per-state, so raising it on the
+    //   compare states would draw the SAME CCl4 arrows at two different lengths in
+    //   S5 and S6 — Rule 29-s one-instrument rule broken to patch a camera bug.
+    //
+    //   So the solve reads the SCENE: unit count, the unit-s offset from the
+    //   origin, and the focal unit-s OWN domain geometry. A single unit sitting at
+    //   the origin is the dipole_sum scene whatever mode string the state used, and
+    //   is framed by the single-unit solve below; anything wider keeps the mode-s
+    //   own measured camera.
+    //
+    //   AND THE SINGLE-UNIT SOLVE IS NOT ONE CAMERA. E1 certified el 47 over CCl4-s
+    //   TETRAHEDRON (four bonds surrounding the centre) and never over a PYRAMID.
+    //   Measured at the renderer-s true FOV 60 over S7-s counted set (three bond
+    //   arrows + the lone-pair vector + the resultant + the central atom), az 35,
+    //   dist 7, static pose:
+    //     el 47  ligand-behind-centre margin +0.0350 NDC, disc separation -0.0400
+    //            (the three N-F ligand spheres OVERLAP the nitrogen: E1c-B read
+    //            exactly this in both its NH3 and NF3 smoke frames)
+    //     el 62  ligand-behind-centre margin +0.1194 NDC, disc separation +0.0424
+    //            (the discs genuinely separate; +0.0128 even under a full spin)
+    //     el 90  NEGATIVE CONTROL: straight down the C3 axis the lone-pair vector
+    //            and the resultant project onto each other, vector gap 0.0000
+    //   Cost of el 62 on the pyramid: the lone/resultant projected gap eases from
+    //   0.0273 to 0.0197 NDC — those two are COLLINEAR by construction on NH3 (the
+    //   physics of the state), disjoint along the axis, and drawn in two different
+    //   colours, so a smaller gap is the right thing to spend. A tetrahedral or
+    //   linear or bent centre is NOT moved: at el 62 CCl4-s spinning ligands start
+    //   crossing each other, which is why the key is the SHAPE and not a new global.
+    //   AZIMUTH STAYS 35 EVERYWHERE, deliberately: MG_BEND_AZ is asserted equal to
+    //   BS_CAMERAS.dipole_sum.az by check:bonding-scene so the authored bend cannot
+    //   silently go edge-on, and az 45-60 measured only ~0.03 NDC better on the
+    //   pyramid — not worth breaking that tie-down.
+    var BS_UNIT_CAMERAS = {
+        pyramidal: { az: 35, el: 62, dist: 7.0 },
+        general:   { az: 35, el: 47, dist: 7.0 }
+    };
+    // The scene-derived shape key: a centre whose bonds all sit on ONE side of it
+    // (three bonds plus at least one lone pair) puts a ligand behind the centre at
+    // a shallow look-down. Everything else — tetrahedral, trigonal planar, bent,
+    // linear, diatomic — surrounds its centre and reads at the general solve.
+    function bscUnitShapeKey(molKey) {
+        var m = MG_MOLECULES[molKey];
+        if (!m) return "general";
+        return (m.bonds === 3 && m.lone >= 1) ? "pyramidal" : "general";
+    }
+    // Derived from the state ALONE (never from the live camera or a dragged
+    // picker), so the countable view is identical on the first frame and under a
+    // SET_TIME_FREEZE pin — the D-4 property this whole family exists to keep.
+    function bscSolvedCamera(bs) {
+        var base = BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        if (bs.placement === "lattice") return base;
+        var units = (bs.units && bs.units.length) ? bs.units : null;
+        if (units && units.length > 1) return base;
+        var at = (units && units[0] && units[0].at) ? units[0].at : [0, 0, 0];
+        if (bscMag(at) > 0.5) return base;   // parked off-centre: a wider scene
+        var sp = (units && units[0] && units[0].species) || bs.species || null;
+        return BS_UNIT_CAMERAS[bscUnitShapeKey(sp)];
+    }
 
     // ── pure helpers (all closed-form; nothing below reads live scene state) ──
     function bscClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
@@ -49786,6 +49936,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (w) w.textContent = fmt(v);
         };
         seedSel("molecule", window.PM_bscMol);
+        // E1c-A: the halide picker is seeded from the STATE-s own opening species,
+        // not from whatever the previous state left on window — a scripted swap and
+        // the widget that shares it have to agree at state entry (the FIXED scar
+        // scripted_change_desyncs_the_dom_control_that_shares_it, the entry half).
+        var ligSeed = (bs.units && bs.units[0] && bs.units[0].species) || bs.species || window.PM_bscLig;
+        if (bscHasControl(ctrls, "ligand") && MG_MOLECULES[ligSeed]) window.PM_bscLig = ligSeed;
+        seedSel("ligand", window.PM_bscLig);
         seedRng("angle", window.PM_bscAngle, function (v) { return Number(v).toFixed(1); });
         seedRng("spin", window.PM_bscSpin, function (v) { return Number(v).toFixed(2); });
         seedRng("temperature", window.PM_bscTemp, function (v) { return String(Math.round(v)); });
@@ -49812,7 +49969,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // The SOLVED camera (D-4), derived from the STATE's own mode — never read
         // off the live camera, so the countable view is identical on the first
         // frame and under a freeze pin.
-        var cam = bs.camera || BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        var cam = bs.camera || bscSolvedCamera(bs);
         if (bs.camera || !stateDef.camera_position) {
             var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
             var dd = cam.dist || 7;
@@ -49911,16 +50068,30 @@ export const FIELD_3D_RENDERER_CODE = `
             : ((bs.units && bs.units[0] && bs.units[0].species) || bs.species || "HCl");
         if (!MG_MOLECULES[molKey]) molKey = "HCl";
         var mol = MG_MOLECULES[molKey];
-        // mode compare (hydrogen_bonding S7): the comparison species takes the
-        // scene at compare_at_ms — the swap IS the beat, and deriveStateMeta
-        // already pins compare_at_ms + 1500 as a frozen candidate, so no new cue
-        // key is introduced.
+        // mode compare (hydrogen_bonding S7, bond_polarity S2/S6/S7): the
+        // comparison species takes the scene at compare_at_ms — the swap IS the
+        // beat, and deriveStateMeta pins compare_at_ms + compare_duration_ms as a
+        // frozen candidate, so no new cue key is introduced.
+        // E1c-A: THE GUARD READS EVERY DRAG FLAG THAT CAN SEIZE molKey, not just
+        // the species picker. molKey is resolved above from THREE controls —
+        // molecule, ligand, species — and the swap used to stand down for only one
+        // of them, so bond_polarity S2 (a scripted HF->HI swap paired with a live
+        // 4-rung ligand slider, both required) had its slider stomped back to the
+        // scripted species on every frame from 9 s onward: dead for more than half
+        // the state. That is the FIXED scar
+        // scripted_change_desyncs_the_dom_control_that_shares_it recurring one
+        // control-id sideways, and the fix is the same drag-seize discipline the
+        // angle / temperature / count / separation quantities already use: once a
+        // TRUSTED drag has taken a quantity, the script never writes it again.
+        var swapSeized = (bscHasControl(ctrls, "molecule") && window.PM_bscMolDragged) ||
+            (bscHasControl(ctrls, "ligand") && window.PM_bscLigDragged) ||
+            (bscHasControl(ctrls, "species") && window.PM_bscSpeciesDragged);
         if (mode === "compare" && bs.compare_species != null && bs.compare_at_ms != null &&
-            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] &&
-            !window.PM_bscSpeciesDragged) {
+            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] && !swapSeized) {
             molKey = bs.compare_species;
             mol = MG_MOLECULES[molKey];
         }
+        window.PM_bscSwapSeized = !!swapSeized;
         // E1c item 1: THE SCRIPTED BEND. angle_deg alone is a static override, so
         // a state could only ever open at its final shape — and bond_polarity S4's
         // primary aha is water opening LINEAR (arrows opposite, resultant zero,
@@ -50339,15 +50510,29 @@ export const FIELD_3D_RENDERER_CODE = `
             av = mgRotY(av, spin);
             var aLen = Math.abs(m) * aScale;
             var aDir = bscNorm(av);
-            // tail sits at the midpoint of the bond it belongs to
+            var aP = bscArrowParts(aLen, BS_ARROW_HEAD_LEN);
+            // E1c-A: the arrow is CENTRED on the midpoint of the bond it belongs
+            // to, not tailed there. The two sign cases then draw identically —
+            // which matters, because a NEGATIVE bond moment (O|H, N|H) points its
+            // head BACK at the central atom, and tailed at the midpoint the head
+            // of water-s 1.51 D arrow landed 0.064 units from the oxygen CENTRE,
+            // i.e. inside a sphere of radius 0.42 (E1c-B read yellow heads buried
+            // in the oxygen in its S4 frame). Centred, the same head lands at
+            // 0.532 and clears the sphere on every negative entry the table
+            // carries — asserted for the whole table by check:bonding-scene.
+            // The LENGTH is untouched by this: it is still |m| * scale, from the
+            // same table the HUD reads (Rule 29 / D-3).
             var bd0 = D.arrows[i].dir;
             var bd1 = fRot ? fRot(bd0) : bd0;
             bd1 = mgRotY(bd1, spin);
-            var tail = [fOrg[0] + bd1[0] * BS_BOND_LEN * 0.5, fOrg[1] + bd1[1] * BS_BOND_LEN * 0.5, fOrg[2] + bd1[2] * BS_BOND_LEN * 0.5];
-            if (sh) { mgOrientStick(sh, aDir, Math.max(0.02, aLen - 0.30), 1); sh.position.set(tail[0], tail[1], tail[2]); }
+            var aMid = BS_BOND_LEN * 0.5;
+            var tail = [fOrg[0] + bd1[0] * aMid - aDir[0] * aLen * 0.5,
+                        fOrg[1] + bd1[1] * aMid - aDir[1] * aLen * 0.5,
+                        fOrg[2] + bd1[2] * aMid - aDir[2] * aLen * 0.5];
+            if (sh) { mgOrientStick(sh, aDir, aP.shaft, 1); sh.position.set(tail[0], tail[1], tail[2]); }
             if (hd) {
-                var hp = [tail[0] + aDir[0] * Math.max(0.02, aLen - 0.30), tail[1] + aDir[1] * Math.max(0.02, aLen - 0.30), tail[2] + aDir[2] * Math.max(0.02, aLen - 0.30)];
-                mgOrientStick(hd, aDir, 1, 1);
+                var hp = [tail[0] + aDir[0] * aP.shaft, tail[1] + aDir[1] * aP.shaft, tail[2] + aDir[2] * aP.shaft];
+                mgOrientStick(hd, aDir, aP.hy, aP.thick);
                 hd.position.set(hp[0], hp[1], hp[2]);
             }
         }
@@ -50374,10 +50559,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (fRot) rv = fRot(rv);
             rv = mgRotY(rv, spin);
             var rdir = bscNorm(rv), rlen = D.mag * aScale;
-            if (rsh) { mgOrientStick(rsh, rdir, Math.max(0.04, rlen - 0.38), 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
+            // same magnitude-scaled head (E1c-A). The resultant is the arrow this
+            // matters MOST for: S7 contrasts NH3-s 1.47 D against NF3-s 0.23 D, a
+            // ratio of 6.4, and the fixed 0.38 head drew them at a ratio of 2.2.
+            var rP = bscArrowParts(rlen, BS_RES_HEAD_LEN);
+            if (rsh) { mgOrientStick(rsh, rdir, rP.shaft, 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
             if (rhd) {
-                var rp = [fOrg[0] + rdir[0] * Math.max(0.04, rlen - 0.38), fOrg[1] + rdir[1] * Math.max(0.04, rlen - 0.38), fOrg[2] + rdir[2] * Math.max(0.04, rlen - 0.38)];
-                mgOrientStick(rhd, rdir, 1, 1);
+                var rp = [fOrg[0] + rdir[0] * rP.shaft, fOrg[1] + rdir[1] * rP.shaft, fOrg[2] + rdir[2] * rP.shaft];
+                mgOrientStick(rhd, rdir, rP.hy, rP.thick);
                 rhd.position.set(rp[0], rp[1], rp[2]);
             }
             if (rlb) {
@@ -50438,11 +50627,13 @@ export const FIELD_3D_RENDERER_CODE = `
             // moves the tail, never the magnitude.
             var lTailAt = lAt + BS_LONE_LOBE_LEN;
             var lTail = [fOrg[0] + ld1[0] * lTailAt, fOrg[1] + ld1[1] * lTailAt, fOrg[2] + ld1[2] * lTailAt];
-            var lBody = Math.max(0.02, lLen - 0.30);
-            if (lsh2) { mgOrientStick(lsh2, lDir, lBody, 1); lsh2.position.set(lTail[0], lTail[1], lTail[2]); }
+            // same magnitude-scaled head (E1c-A): the lone-pair vector is 0.73 D
+            // = 0.45 units, which under the old fixed 0.30 head was 67% head.
+            var lP = bscArrowParts(lLen, BS_ARROW_HEAD_LEN);
+            if (lsh2) { mgOrientStick(lsh2, lDir, lP.shaft, 1); lsh2.position.set(lTail[0], lTail[1], lTail[2]); }
             if (lhd2) {
-                mgOrientStick(lhd2, lDir, 1, 1);
-                lhd2.position.set(lTail[0] + lDir[0] * lBody, lTail[1] + lDir[1] * lBody, lTail[2] + lDir[2] * lBody);
+                mgOrientStick(lhd2, lDir, lP.hy, lP.thick);
+                lhd2.position.set(lTail[0] + lDir[0] * lP.shaft, lTail[1] + lDir[1] * lP.shaft, lTail[2] + lDir[2] * lP.shaft);
             }
         }
         var lLab = bscFindById("bsc_lone_label");
@@ -50670,6 +50861,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (bscHasControl(ctrls, "molecule") && !window.PM_bscMolDragged) {
             var msel = document.getElementById("bsc_molecule_select");
             if (msel && msel.value !== molKey && MG_MOLECULES[molKey]) msel.value = molKey;
+        }
+        // E1c-A, the OTHER half of the same scar: the halide picker tracks the
+        // scripted swap every frame until a trusted drag seizes it, exactly as the
+        // molecule picker and the separation slider already do. Without it S2-s
+        // scripted HF->HI swap moved the molecule while the widget still read HF.
+        if (bscHasControl(ctrls, "ligand") && !window.PM_bscLigDragged) {
+            var lsel = document.getElementById("bsc_ligand_select");
+            if (lsel && lsel.value !== molKey && MG_MOLECULES[molKey]) lsel.value = molKey;
+            window.PM_bscLig = molKey;
         }
         if (bscHasControl(ctrls, "angle") && !window.PM_bscAngleDragged) {
             var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");

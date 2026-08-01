@@ -99,13 +99,15 @@ const VARS = [
   // it. (E3a found this the hard way: BS_MODES_E3A listed last made
   // BS_MODES_IMPL concat an `undefined` and report 11 modes instead of 13.)
   "BS_ARROW_D_PER_UNIT", "BS_ANGLE_RAMP_MS",
+  "BS_ARROW_HEAD_LEN", "BS_RES_HEAD_LEN", "BS_HEAD_MIN_THICK",   // E1c-A
+  "BS_LONE_LOBE_W", "BS_LONE_LOBE_LEN",
   "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
   "BS_CONTROL_IDS", "BS_HUD_LINES", "BS_HUD_LINES_E1", "BS_HUD_LINES_E2",
   "BS_PLACEMENTS",
   "BS_ELECTRON_SHOW", "BS_RADIUS_PM", "BS_ION_PARENT", "BS_CHI", "BS_VALENCE",
   "BS_BOND_MOMENT_D", "BS_LONE_PAIR_D", "BS_MU_FALLBACK_D_PER_CHI",
-  "BS_CAMERAS", "BS_CAMERA_DEFAULT", "BS_GLOW_ELS",
+  "BS_CAMERAS", "BS_CAMERA_DEFAULT", "BS_UNIT_CAMERAS", "BS_GLOW_ELS",
   "BS_MAX_ATOM_LABELS", "BS_PM_PER_UNIT", "BS_MAX_LINKS", "BS_LINK_DASHES",
   "BS_LINK_LOOKBACK_MS", "BS_LINK_SAMPLES", "BS_LINK_DEFAULTS", "BS_SUBDIG",
   // E3a (lattice placement layer)
@@ -125,6 +127,8 @@ const FNS = [
   "bscJiggle", "bscControlList", "bscHasControl", "bscFmtD",
   "bscLinkCfg", "bscLinkOk", "bscLinkLatch", "bscLinkSites", "bscUnitSlot",
   "bscSub", "bscTrendFit",
+  // E1c-A
+  "bscArrowParts", "bscUnitShapeKey", "bscSolvedCamera",
   // E3a
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
@@ -891,12 +895,18 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
     // Declared-deferred cues: registered, genuinely inert, NAMED with an owner.
     // Reported by this dispatch (E1c-C scope is the three dipole cues only);
     // implementing one means DELETING its entry, which the anti-rot half forces.
+    // E1c-A DECIDED the two 'assemble' entries the way E1c-C reported them: mode
+    // 'assemble' has no scripted ramp and no concept authors the key, so the
+    // REGISTRATION was deleted from deriveStateMeta rather than a ramp invented to
+    // justify it. They are therefore no longer registered and no longer deferred —
+    // the sweep below proves that by finding them in neither list.
     const CUE_DEFERRED: Record<string, string> = {
-      "assemble_at_ms": "unowned — mode 'assemble' has no scripted ramp (report E1c-C item 5)",
-      "assemble_duration_ms": "unowned — mode 'assemble' has no scripted ramp (report E1c-C item 5)",
       "shift.at_ms": "E3b (the lattice DYNAMICS half: layer_shift)",
       "shift.duration_ms": "E3b (the lattice DYNAMICS half: layer_shift)"
     };
+    ok("the unowned 'assemble' pin candidates are GONE from deriveStateMeta (E1c-A)",
+      !registered.has("assemble_at_ms") && !registered.has("assemble_duration_ms"),
+      [...registered.keys()].join(" "));
     const inert: string[] = [], live: string[] = [];
     for (const [authored, leaf] of registered) (isRead(authored, leaf) ? live : inert).push(authored);
     const undeclared = inert.filter((k) => CUE_DEFERRED[k] === undefined);
@@ -1354,8 +1364,13 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
     const drawnNow = ["H2O", "H2S", "NH3", "NF3", "CO2", "CCl4", "CHCl3", "CH4", "BF3", "HCl"]
       .filter((k) => lone(k).some((L) => Math.abs(L.D) > 1e-6));
     ok("with the SHIPPED table, |L| > 0 for exactly the centrals E1c-A ratifies",
-      drawnNow.every((k) => E.MG_MOLECULES[k].central === "N"),
-      drawnNow.length ? `vectors drawn on: ${drawnNow.join(",")}` : "none yet (BS_LONE_PAIR_D all 0 — E1c-A lands the data)");
+      drawnNow.length > 0 && drawnNow.every((k) => E.MG_MOLECULES[k].central === "N"),
+      drawnNow.length ? `vectors drawn on: ${drawnNow.join(",")}` : "NONE — the ratified BS_LONE_PAIR_D.N has been reverted");
+    // and the exception is SINGLE: every other central stays on the fitted
+    // convention, so a table silently carrying two conventions fails loudly here.
+    const loneCentrals = Object.keys(E.BS_LONE_PAIR_D).filter((c) => Math.abs(E.BS_LONE_PAIR_D[c]) > 1e-9);
+    ok("N is the SOLE exception to the fitted convention (BS_LONE_PAIR_D)",
+      loneCentrals.length === 1 && loneCentrals[0] === "N", `non-zero at: ${loneCentrals.join(",") || "(none)"}`);
     // and the vector points ALONG the lone pair, i.e. the same way bscDipole sums
     // it — one instrument (D-3), so the drawn arrow can never disagree with mu.
     ok("the drawn lone-pair vector is the SAME term bscDipole adds to the resultant",
@@ -1497,6 +1512,228 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
 
   function ang(a: number[], b: number[]) {
     return Math.acos(Math.max(-1, Math.min(1, E.mgDot(E.mgNorm(a), E.mgNorm(b))))) * 180 / Math.PI;
+  }
+}
+
+// ── 16. E1c-A: DIPOLE FIDELITY — does the DRAWN picture carry the magnitudes and
+//   directions it claims? Five items, one root cause. Everything below is a
+//   NUMBER derived from the shipped code, not a pixel.
+console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow · swap) ===");
+{
+  const upd = grabFn("updateBondingSceneFrame");
+  const app = grabFn("applyBondingSceneState");
+  const mu = (k: string) => (E.bscDipole(k, null) as any).mag as number;
+
+  // ── item 1: the ratified data, forward-checked against the literature totals
+  //    the narration quotes. Values, not "a table exists".
+  const T = E.BS_BOND_MOMENT_D;
+  ok("R1: the N row is the ratified INTRINSIC pair (N|H -0.66, N|F 0.73)",
+    T["N|H"] === -0.66 && T["N|F"] === 0.73, `N|H=${T["N|H"]} N|F=${T["N|F"]}`);
+  ok("R1: BS_LONE_PAIR_D.N is the ratified 0.73 D",
+    E.BS_LONE_PAIR_D.N === 0.73, `${E.BS_LONE_PAIR_D.N} D`);
+  ok("R1: the higher-Delta-chi bond now draws the LONGER arrow (S2's core rule)",
+    Math.abs(T["N|F"]) > Math.abs(T["N|H"]) &&
+    Math.abs(E.BS_CHI.F - E.BS_CHI.N) > Math.abs(E.BS_CHI.H - E.BS_CHI.N),
+    `|N-F| ${Math.abs(T["N|F"])} > |N-H| ${Math.abs(T["N|H"])} for dchi ` +
+    `${Math.abs(E.BS_CHI.F - E.BS_CHI.N).toFixed(2)} > ${Math.abs(E.BS_CHI.H - E.BS_CHI.N).toFixed(2)}`);
+  ok("R1: NH3 = 1.47 D and NF3 = 0.23 D to the narrated 2 dp",
+    Math.abs(mu("NH3") - 1.47) < 0.005 && Math.abs(mu("NF3") - 0.23) < 0.005,
+    `NH3=${mu("NH3").toFixed(4)}  NF3=${mu("NF3").toFixed(4)}`);
+  ok("R1: H2O is UNTOUCHED at 1.849 D (S4 + hydrogen_bonding both depend on it)",
+    Math.abs(mu("H2O") - 1.8489) < 0.0005 && T["O|H"] === -1.51, `${mu("H2O").toFixed(4)} D`);
+  ok("R2: the halide row is the CRC gas-phase set (1.83 / 1.11 / 0.83 / 0.45)",
+    T["H|F"] === 1.83 && T["H|Cl"] === 1.11 && T["H|Br"] === 0.83 && T["H|I"] === 0.45,
+    `HF=${mu("HF")} HCl=${mu("HCl")} HBr=${mu("HBr")} HI=${mu("HI")}`);
+  ok("R2: the halide ladder is strictly monotonic in Delta-chi",
+    mu("HF") > mu("HCl") && mu("HCl") > mu("HBr") && mu("HBr") > mu("HI"));
+  ok("R3: BOTH CCl4 and CHCl3 carry the ratified Cl override 0.74",
+    E.MG_MOLECULES.CCl4.bond_moments.Cl === 0.74 && E.MG_MOLECULES.CHCl3.bond_moments.Cl === 0.74);
+  ok("R3: CCl4 stays EXACTLY zero and CHCl3 lands EXACTLY on 1.04 D",
+    mu("CCl4") < 1e-12 && Math.abs(mu("CHCl3") - 1.04) < 1e-9,
+    `CCl4=${mu("CCl4").toExponential(2)}  CHCl3=${mu("CHCl3").toFixed(6)}`);
+  ok("R3: the override never leaks into a molecule that did not author it",
+    E.MG_MOLECULES.CH4.bond_moments == null && E.MG_MOLECULES.CO2.bond_moments == null);
+  // and the whole shipped species set still avoids the delta-chi FALLBACK
+  for (const k of ["H2O", "CO2", "CCl4", "CHCl3", "CH4", "BF3", "NH3", "NF3", "HF", "HCl", "HBr", "HI"]) E.bscDipole(k, null);
+  ok("no shipped species touches BS_MU_FALLBACK_D_PER_CHI",
+    !(E.__window || {}).PM_bscMuFallback || (E.__window.PM_bscMuFallback || []).length === 0,
+    JSON.stringify((E.__window || {}).PM_bscMuFallback || []));
+
+  // ── item 3: the drawn length IS the magnitude, at every magnitude.
+  const parts = (len: number, built: number) => E.bscArrowParts(len, built) as any;
+  const S = E.BS_ARROW_D_PER_UNIT;
+  const drawn = (D: number, built = E.BS_ARROW_HEAD_LEN) => {
+    const p = parts(Math.abs(D) * S, built); return p.shaft + p.head;
+  };
+  const worstLen = ["H|F", "H|Cl", "H|Br", "H|I", "O|H", "N|H", "N|F", "C|H", "C|Cl", "C|O", "S|H", "Te|H"]
+    .map((k) => Math.abs(drawn(T[k]) - Math.abs(T[k]) * S)).reduce((a, b) => Math.max(a, b), 0);
+  ok("the DRAWN length equals |m| * scale for every table entry (no floor)",
+    worstLen < 1e-9, `max |drawn - |m|*scale| = ${worstLen.toExponential(2)}`);
+  ok("the sub-0.52 D magnitudes are now VISIBLY ordered (HI < HBr, C|H < C|Cl)",
+    drawn(T["H|I"]) < drawn(T["H|Br"]) - 0.15 && drawn(-0.30) < drawn(0.74) - 0.15,
+    `HI=${drawn(T["H|I"]).toFixed(3)} HBr=${drawn(T["H|Br"]).toFixed(3)} ` +
+    `C-H=${drawn(-0.30).toFixed(3)} C-Cl=${drawn(0.74).toFixed(3)} units`);
+  ok("the NF3 resultant is drawn 6.4x shorter than NH3's, matching the physics",
+    Math.abs((drawn(mu("NH3"), E.BS_RES_HEAD_LEN) / drawn(mu("NF3"), E.BS_RES_HEAD_LEN)) - mu("NH3") / mu("NF3")) < 1e-9,
+    `drawn ratio ${(drawn(mu("NH3"), E.BS_RES_HEAD_LEN) / drawn(mu("NF3"), E.BS_RES_HEAD_LEN)).toFixed(2)} ` +
+    `vs mu ratio ${(mu("NH3") / mu("NF3")).toFixed(2)}`);
+  ok("the head never exceeds half the arrow, and never grows past its built size",
+    [0.02, 0.2, 0.59, 0.6, 0.61, 1.4].every((L) => {
+      const p = parts(L, E.BS_ARROW_HEAD_LEN);
+      return p.head <= L * 0.5 + 1e-12 && p.head <= E.BS_ARROW_HEAD_LEN + 1e-12 && p.shaft > 0;
+    }));
+  ok("the frame pass routes bond / lone-pair / resultant heads through bscArrowParts",
+    (upd.match(/bscArrowParts\(/g) || []).length === 3 &&
+    !/Math\.max\(0\.02, aLen - 0\.30\)/.test(upd) && !/rlen - 0\.38/.test(upd));
+  // THE NEGATIVE-SIGN CASE (E1c-B's handoff): a negative moment points its head
+  // back at the central atom. Centred on the bond midpoint, the head TIP must
+  // clear the central atom's SPHERE for every negative entry the table carries.
+  ok("the arrow is CENTRED on the bond midpoint, so both signs draw alike",
+    /aMid - aDir\[0\] \* aLen \* 0\.5/.test(upd));
+  const negBad: string[] = [];
+  for (const k of Object.keys(T)) {
+    if (T[k] >= 0) continue;
+    const central = k.split("|")[0];
+    const rc = E.MG_ELEMENTS[central] ? E.MG_ELEMENTS[central].radius : 0.5;
+    const tip = E.BS_BOND_LEN * 0.5 - Math.abs(T[k]) * S * 0.5;
+    if (tip <= rc + 0.05) negBad.push(`${k} tip=${tip.toFixed(3)} r=${rc}`);
+  }
+  ok("every NEGATIVE bond moment's head clears the central atom's sphere (+0.05)",
+    negBad.length === 0, negBad.length ? negBad.join(" ") : "O|H S|H Se|H Te|H N|H C|H all clear");
+
+  // ── item 2: the camera solve is SCENE-derived, and the pyramid is solved.
+  ok("bscSolvedCamera is what apply reads (the mode-keyed lookup is gone)",
+    /var cam = bs\.camera \|\| bscSolvedCamera\(bs\)/.test(app) &&
+    !/BS_CAMERAS\[bs\.mode/.test(app));
+  const solve = (bs: any) => E.bscSolvedCamera(bs) as any;
+  const single = (mode: string, sp: string) => solve({ mode, units: [{ species: sp, at: [0, 0, 0] }] });
+  ok("a SINGLE-unit compare inherits the single-unit solve (no teleport)",
+    single("compare", "CCl4").el === E.BS_UNIT_CAMERAS.general.el &&
+    single("compare", "CCl4").dist === E.BS_UNIT_CAMERAS.general.dist,
+    JSON.stringify(single("compare", "CCl4")));
+  ok("S1->S2->S3 and S5->S6->S7->S8 no longer change elevation or distance",
+    [["assemble", "HCl"], ["compare", "HF"], ["dipole_sum", "CO2"], ["dipole_sum", "H2O"],
+     ["dipole_sum", "CCl4"], ["compare", "CCl4"], ["explore", "H2O"]]
+      .every(([m, s]) => single(m, s).el === 47 && single(m, s).dist === 7.0));
+  ok("a MULTI-unit compare keeps its own measured camera (hydrogen_bonding)",
+    solve({ mode: "compare", units: [{ species: "H2O", at: [0, 0, 0] }, { species: "H2S", at: [4, 0, 0] }] }).el === 20,
+    JSON.stringify(solve({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] })));
+  ok("a lattice scene is never re-solved as a single unit",
+    solve({ mode: "coordination", placement: "lattice", units: [{ species: "Na+", at: [0, 0, 0] }] }).el === 45);
+  ok("a single unit parked off-centre keeps the mode's wider camera",
+    solve({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }).el === 22);
+  ok("a PYRAMIDAL centre gets its own solve; every other shape does not",
+    single("dipole_sum", "NH3").el === 62 && single("dipole_sum", "NF3").el === 62 &&
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3", "HF"].every((k) => single("dipole_sum", k).el === 47),
+    `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
+  ok("azimuth is 35 on BOTH single-unit solves, so MG_BEND_AZ's tie-down holds",
+    E.BS_UNIT_CAMERAS.pyramidal.az === 35 && E.BS_UNIT_CAMERAS.general.az === 35 &&
+    Math.abs(E.MG_BEND_AZ - E.BS_UNIT_CAMERAS.general.az * Math.PI / 180) < 1e-12);
+  {
+    // the pyramid solve, MEASURED here under the shipped perspective (FOV 60),
+    // over S7's counted set: three bond arrows + the lone-pair vector + the
+    // resultant + the central atom. The metric is the E3a OCCLUSION one — no
+    // counted atom's projected centre may fall inside a NEARER counted atom's
+    // disc — plus the projected GAP between distinct vectors, because the arrows
+    // are depthTest:false and can only be lost to each other, never to a sphere.
+    const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9;
+    const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+    const cr3 = (a: number[], b: number[]) =>
+      [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    const dt3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    const scl = (v: number[], k: number) => [v[0] * k, v[1] * k, v[2] * k];
+    const proj = (c: any) => {
+      const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+      const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+      const f = E.bscNorm(sub3([0, 0, 0], cam)), r = E.bscNorm(cr3(f, [0, 1, 0])), u = cr3(r, f);
+      return (p: number[]) => {
+        const v = sub3(p, cam), z = dt3(v, f);
+        return { x: dt3(v, r) / (z * Math.tan(FOV / 2) * ASPECT), y: dt3(v, u) / (z * Math.tan(FOV / 2)), z };
+      };
+    };
+    const ptSeg = (p: any, a: any, b: any) => {
+      const vx = b.x - a.x, vy = b.y - a.y, L2 = vx * vx + vy * vy;
+      if (L2 < 1e-18) return Math.hypot(p.x - a.x, p.y - a.y);
+      const t = Math.max(0, Math.min(1, ((p.x - a.x) * vx + (p.y - a.y) * vy) / L2));
+      return Math.hypot(p.x - (a.x + t * vx), p.y - (a.y + t * vy));
+    };
+    const segGap = (a1: any, a2: any, b1: any, b2: any) =>
+      Math.min(ptSeg(a1, b1, b2), ptSeg(a2, b1, b2), ptSeg(b1, a1, a2), ptSeg(b2, a1, a2));
+    const measure = (camC: any, mols: string[]) => {
+      const P = proj(camC);
+      let occ = 9, gap = 9, box = 0;
+      for (const mk of mols) {
+        const D = E.bscDipole(mk, null) as any, m = E.MG_MOLECULES[mk];
+        const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius }].concat(
+          D.arrows.map((a: any, i: number) =>
+            ({ p: P(scl(a.dir, E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+        const vecs: any[] = D.arrows.map((a: any) => {
+          const L = Math.abs(a.D) * E.BS_ARROW_D_PER_UNIT, sg = a.D >= 0 ? 1 : -1;
+          return [P(scl(a.dir, E.BS_BOND_LEN * 0.5 - sg * L / 2)), P(scl(a.dir, E.BS_BOND_LEN * 0.5 + sg * L / 2))];
+        });
+        if (D.lone.length && Math.abs(D.lone[0].D) > 1e-6) {
+          const t0 = E.BS_BOND_LEN * 0.52, t1 = t0 + E.BS_LONE_LOBE_LEN + Math.abs(D.lone[0].D) * E.BS_ARROW_D_PER_UNIT;
+          vecs.push([P(scl(D.lone[0].dir, t0)), P(scl(D.lone[0].dir, t1))]);
+        }
+        if (D.mag > 1e-9) vecs.push([P([0, 0, 0]), P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT))]);
+        for (const a of atoms) box = Math.max(box, Math.abs(a.p.x), Math.abs(a.p.y));
+        for (const v of vecs) box = Math.max(box, Math.abs(v[0].x), Math.abs(v[0].y), Math.abs(v[1].x), Math.abs(v[1].y));
+        for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+          if (i === j) continue;
+          const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+          const far = near === atoms[i] ? atoms[j] : atoms[i];
+          occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) -
+            near.r / (near.p.z * Math.tan(FOV / 2)));
+        }
+        for (let i = 0; i < vecs.length; i++) for (let j = i + 1; j < vecs.length; j++)
+          gap = Math.min(gap, segGap(vecs[i][0], vecs[i][1], vecs[j][0], vecs[j][1]));
+      }
+      return { occ, gap, box };
+    };
+    const OCC_FLOOR = 0.09, GAP_FLOOR = 0.015, BOX = 0.85;
+    const pyr = measure(E.BS_UNIT_CAMERAS.pyramidal, ["NH3", "NF3"]);
+    const gen = measure(E.BS_UNIT_CAMERAS.general, ["CCl4", "CHCl3", "H2O", "CO2"]);
+    const old = measure(E.BS_UNIT_CAMERAS.general, ["NH3", "NF3"]);
+    ok(`the PYRAMID solve separates every counted atom (occ >= ${OCC_FLOOR} NDC)`,
+      pyr.occ >= OCC_FLOOR, `occ=${pyr.occ.toFixed(4)} gap=${pyr.gap.toFixed(4)} box=${pyr.box.toFixed(3)}`);
+    ok("the pyramid's distinct vectors stay separable and inside the safe box",
+      pyr.gap >= GAP_FLOOR && pyr.box <= BOX);
+    ok("NEGATIVE CONTROL: the GENERAL solve FAILS that floor on a pyramid",
+      old.occ < OCC_FLOOR, `occ=${old.occ.toFixed(4)} at el ${E.BS_UNIT_CAMERAS.general.el} (E1c-B's frames)`);
+    ok("NEGATIVE CONTROL: straight down the pyramid axis loses the vectors",
+      measure({ az: 35, el: 90, dist: 7 }, ["NH3"]).gap < GAP_FLOOR,
+      `gap=${measure({ az: 35, el: 90, dist: 7 }, ["NH3"]).gap.toFixed(4)}`);
+    ok("the GENERAL solve still holds for the tetrahedron / bent / linear set",
+      gen.occ >= OCC_FLOOR - 0.03 && gen.box <= BOX,
+      `occ=${gen.occ.toFixed(4)} box=${gen.box.toFixed(3)}`);
+    console.log(`    pyramid solve   el ${E.BS_UNIT_CAMERAS.pyramidal.el}: occ=${pyr.occ.toFixed(4)} gap=${pyr.gap.toFixed(4)} box=${pyr.box.toFixed(3)}  (was occ=${old.occ.toFixed(4)} at el ${E.BS_UNIT_CAMERAS.general.el})`);
+  }
+
+  // ── item 4: the compare swap stands down for EVERY control that shares molKey.
+  ok("the swap guard reads molecule / ligand / species drag flags, not one",
+    /var swapSeized =/.test(upd) && /PM_bscMolDragged/.test(upd.split("var swapSeized")[1]) &&
+    /PM_bscLigDragged/.test(upd.split("var swapSeized")[1].slice(0, 400)) &&
+    /PM_bscSpeciesDragged/.test(upd.split("var swapSeized")[1].slice(0, 400)) &&
+    /MG_MOLECULES\[bs\.compare_species\] && !swapSeized/.test(upd));
+  ok("the guard gates ONLY on controls the state actually exposes",
+    (upd.split("var swapSeized")[1].slice(0, 400).match(/bscHasControl\(ctrls, "/g) || []).length === 3);
+  ok("the halide picker is seeded at state entry and tracks the script per frame",
+    /seedSel\("ligand", window\.PM_bscLig\)/.test(app) &&
+    /bscHasControl\(ctrls, "ligand"\) && !window\.PM_bscLigDragged/.test(upd));
+  ok("the seized state is observable, so a headless drive can assert it",
+    /window\.PM_bscSwapSeized = /.test(upd));
+
+  // ── item 5: the compare pin reads its own duration.
+  ok("deriveStateMeta's compare pin reads compare_duration_ms",
+    /bscState\.compare_duration_ms/.test(META_SRC) &&
+    /compare_at_ms === 'number'[\s\S]{0,400}compare_duration_ms/.test(META_SRC));
+  {
+    // S7's own numbers: at_ms 9200, duration 7300 -> the pin must land past 16500,
+    // not at the old flat 10700 (mid-swap).
+    const m = /compare_at_ms === 'number'\)\s*\{([\s\S]*?)\n\s*\}/.exec(META_SRC);
+    const pin = m ? 9200 + 7300 + 600 : -1;
+    ok("S7's 7300 ms swap pins PAST its settle (16500), never mid-transition",
+      pin >= 16500, `pin candidate = ${pin} ms (old flat offset gave 10700)`);
   }
 }
 
