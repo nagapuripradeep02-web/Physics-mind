@@ -12,13 +12,16 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: 0c — K/L/M DONE and verified; SEAM N (off-axis force geometry, the LAST seam) dispatched
-done: (none yet)
+next: **0d — concepts 1..N as pure JSON** through the ①–④ pipeline. Start with #1
+  `work_done_by_constant_force` (architect → Checkpoint A → physics-author → json-author →
+  quality-auditor + eye-walker → Checkpoint B). BEFORE 0d: land K+L+M+N on master (below) and
+  amend `NLB_SPRING_CHOREOGRAPHY_SPEC.md` — the platform doc travels with the platform change.
+done: **PHASE 0 COMPLETE — 0a survey · 0b skeleton + Checkpoint A · 0c engine (4 seams)**
 parked: (none)
-in_flight: conservation_of_mechanical_energy  stage=0c-building  checkpointA=CLOSED
-engine_commits: 9f479f6 SEAM K — genuine spring physics · dd2b869 SEAM L — energy display layer ·
-  55c2fd7 SEAM M — teaching instruments (+ dfd249e scars). All on the branch; NOT yet landed on
-  master — see "Rule 40 landing decision" below.
+in_flight: conservation_of_mechanical_energy  stage=0c-CLOSED  checkpointA=CLOSED
+engine_commits: 9f479f6 SEAM K spring physics · dd2b869 SEAM L display layer · 55c2fd7 SEAM M
+  instruments (+ dfd249e scars) · 0527a81 SEAM N off-axis geometry · 0d2adef nlbEnPct rounding.
+  All on the branch; NOT yet landed on master — see "Rule 40 landing decision" below.
 desk_synced: origin/master f69dc28 merged into the desk 2026-08-01 (merge bb6a89c, pushed).
   Zero file overlap — the desk's 3 commits were docs-only. Baseline re-verified GREEN after the
   merge: check:renderer-syntax OK · tsc 0 errors. The merge pulled +1063 lines into
@@ -304,6 +307,125 @@ frozen frame jitters, and it jitters in BOTH builds. **SEAM M moved zero pixels 
   subscript `g`/`f`/`d`, so `W_g` cannot be written honestly at all · `capture_mode: 'every'` added
   because note 11's latch cannot express concept #5's round-trip test ('first' is default and
   preserves the end-pose rule verbatim).
+
+## SEAM N RESULT 2026-08-01 — DONE, verified, commits `0527a81` + `0d2adef`
+
++466/−16 renderer (SEAM N) and +11/−1 (the carry-forward fix). **No `deriveStateMeta.ts` co-edit
+needed** — SEAM N adds no scenario_type, reveal key, cue time or hold class. Contamination grep = 0;
+Rule 40a `-S` clean on all 15 invented symbols; 0 backticks (two caught by `check:renderer-syntax`).
+
+**`feat/lom-g-offaxis` — NO OVERLAP. The branch name is misleading.** `git log --all -S "angle_deg"`
+returns zero lom-g commits; its 10 renderer commits are all `force_rig`, a DIFFERENT `scenario_type`,
+where "off-axis" means a force TABLE (coplanar forces at bearing angles about a hub) — not a
+surface-relative applied force with a normal component. No angled-drive mechanism existed anywhere in
+history. Nothing was copied across branches. *If `force_rig` ever needs a surface-normal
+decomposition it should adopt SEAM N's `{N, angle_deg}` shape rather than invent a second one —
+founder call, recorded not acted on.*
+
+**The legacy-`N` bit-identity proof is CONTROL FLOW, not floating-point luck.** Every angle-aware
+expression opens with a gate that RETURNS THE EXACT PRIOR STATEMENT, so the multiply is never
+reached: `if (!nlbFAng(b)) return b.F_applied || 0;` and `if (!nlbFAng(b)) return Nn;`. `F_angle_deg`
+reaches a body only via `nlbResolveApplied`, which returns the literal pre-seam seed expression when
+the new key is absent. Ten shipped concepts author only `applied_force_N` ⇒ `ang = 0` ⇒ every gate
+short-circuits. Measured three authoring forms (legacy key / bare number / explicit `angle_deg: 0`)
+at one pin: `N` 49, `f` −19.6, `a` 4.08, `along` 40 — **bit-identical across all three**.
+
+**The `N ≥ 0` lift-off clamp — negative control at 60 N / 60° on 5 kg** (`F·sin60 = 51.96 > mg = 49`):
+
+| | shipped (clamped) | unclamped |
+|---|---|---|
+| `N` | **exactly 0.000000** | −2.961524 |
+| `f` (μ=0.4) | **exactly 0.000000** | **+1.184610 N — pushing the body FORWARD** |
+| `a` | 6.000000 m/s² | 6.236922 |
+
+Friction does not reverse. In pixels both the normal and friction arrows are **gone** — a real zero
+hides rather than drawing a reversed stub into the table.
+
+**`W = F·d·cos θ` falls out of SEAM M's accumulator with no new path.** 40 N at 30°, flat, 2000 ms:
+`d = 9.069534 m`, engine `W_applied = 314.177867 J`, `F·d·cos30 = 314.177867 J` — identical to the
+last printed digit; `W_normal = 0.000000`. At 90° the along component is 2.449e-15 and the body never
+moves; at 120° it is **−20 N**, so negative work is representable — concept #2's whole arc.
+
+**Contract.** `applied_force` is a **NEW key beside the sealed `applied_force_N`, not a rename**
+(retiring the old one would have touched 10 shipped JSONs; both work, new one wins). Accepts a number
+or `{ N, angle_deg? }`. `F⃗ = N·(cos·axis + sin·perp)`, perp = OUTWARD surface normal; `angle_deg > 0`
+lifts, `< 0` presses. The **along** component drives the integrator, every work ledger, `W_applied`
+and `P`; the **HUD row and arrow length show the full |F|** (the arrow is the handle — the arc and
+the work bar are what resolve it). Ignored on `hanging` bodies. `action_reaction` mirrors the angle.
+`displacement_vector`: `body_id` · `label` ('d') · `show_value` (**true**); drawn from
+`initial_position_m` (the seed `RESET_TRAJECTORY` rewinds to); hides below `|Δs| < 0.02 m`.
+`angle_arc`: `from`/`to` **CLOSED enum exactly** `'applied'|'weight'|'normal'|'friction'|'tension'|
+'net'|'displacement'|'surface'` (unknown member drops the block — never silently substituted; a
+direction whose quantity is a real zero hides the arc, because an angle to a vector that does not
+exist is not a fact) · `body_id` · `label` ('θ') · `show_value` (true) · `radius` (0.85).
+New `controls_visible` token **`'F_ang'`** (−90…180, step 5, default 0, glyph `θ`). New glow ids
+`displacement_vector` · `angle_arc`. Mirror `PM_nlbOffAxis` publishes DRAWN state (visibility, label
+text, arc point count) as well as numbers — *the computed number and the drawn object are two
+different claims.*
+
+**Determinism:** arc endpoints are **quantized to ½° BEFORE the geometry rebuild**, deliberately not
+guarded by a "changed by more than x" threshold — a change-threshold guard makes drawn geometry a
+function of HISTORY, so one pinned instant reached by rewinding vs playing forward could differ.
+`RESET → pin(700) → pin(1400) → pin(700)` snapshot identical including every drawn value.
+
+**A defect only pixels caught:** at `NLB_DISP_LANE = −0.46` the `d` arrow shared a lane with `ΣF` and
+their heads met under the block — invisible to every numeric probe. Moved to `−1.15`. Residual named
+and accepted: a full-length `mg` arrow crosses the `d` shaft (inherent to the existing arrow geometry;
+`mg` already crosses the `net` lane, and this is normal in an FBD).
+
+**SEAM M scar row 3 is CLOSED** — `0d2adef` rounds SEAM L's `nlbEnPct` to 3 dp as its own reviewable
+commit (~0.001% of a bar track, far below a pixel; nothing visible changes).
+
+Interpretive calls flagged for founder-proxy: new key vs rename · HUD shows |F| not the component ·
+`hanging` ignores the angle · `'surface'` added to the enum (without it, θ between the pull and the
+SURFACE — the actual θ in `W = F·d·cos θ` on a flat floor — is inexpressible) · integer degree readout
+with ½° endpoint quantization · `d` defaults `show_value: true` (SEAM H precedent: the number IS the
+lesson) · the mirror publishes drawn state.
+
+## REGRESSION SWEEP COMPLETED BY THE DISPATCHING SESSION — 10/10, zero drift
+
+SEAM N honestly reported it reached only 4 of the 10 `N`-reading concepts before its ceiling and named
+the six it missed rather than letting a silent cap read as full coverage. Because `N` is shared and a
+regression there silently changes the PHYSICS of ten shipped sims, the sweep was completed rather than
+inferred from the gate proof:
+
+| concept | checks | H2 | by |
+|---|---|---|---|
+| `normal_force` | 32/32 | 0.13–0.28% | SEAM N |
+| `friction_force` | 32/32 | at its known floor | SEAM N |
+| `rolling_friction` | 32/32 | clean | SEAM N |
+| `connected_bodies` | 44/44 | clean | SEAM N |
+| **`newton_third_law`** | **32/32** | **ALL 10 baselines 0.00%** | dispatching session |
+| `block_on_incline` | 32/32 | 9/10 identical TO THE DIGIT vs SEAM M | dispatching session |
+| `free_body_diagram` | 38/38 | 0.20–0.47% | dispatching session |
+| `newton_first_law` | 26/26 | 0.21–0.43% | dispatching session |
+| `newton_second_law` | 26/26 | 0.22–0.38% | dispatching session |
+| `tension_force` | 38/38 | 0.14–0.29% | dispatching session |
+
+**332 deterministic checks · 0 failures · H3 zero console.error on every one.** `newton_third_law` at
+0.00% across all ten baselines is the strongest single result: it is the concept SEAM N actually
+touched (the `action_reaction` mirror gained `ob.F_angle_deg = nlbFAng(drv)`, writing 0 = 0). The only
+mover anywhere is `block_on_incline`'s free-running sandbox frozen frame, which has read 0.28/0.29/0.60
+across SEAM L, M and N alike — a documented pre-existing jitter class, not drift.
+
+Final full chain on the complete K+L+M+N build: renderer-syntax OK (field_3d 3518 KB) · tsc **0
+errors** · validate:concepts **146 PASS / 0 FAIL**, warning profile **identical** to the pre-build
+baseline (400/104 · 199/40 · 13/4 · 1/1).
+
+## PHASE 0c CLOSED 2026-08-01 — union closure
+
+All four seams built and verified; the survey's STOP condition is met. **#1
+`work_done_by_constant_force` and #2 `positive_negative_zero_work` — the two concepts SEAM N existed
+for — are now authorable as pure JSON**, and #3–#12 rest on K/L/M mechanisms that are verified and
+contracted above.
+
+**Two honest qualifications carried from the surgeon, not smoothed over:** (1) the "all 11 siblings
+authorable" claim is the architect's/founder-proxy's union table; SEAM N verified it directly only for
+the two concepts it owns and did NOT re-audit the other nine against the K/L/M contracts — **0d's
+ALARM RULE is the real test** (a later concept forcing an engine edit means Phase 0 under-generalized:
+STOP and re-scope with the surgeon, never extend per concept). (2) Still correctly out of scope: the
+five deferred `U(x)`-graph concepts and the different-apparatus set (pendulum, vertical loop, walking
+stride, hanging chain) — each needs its own Phase 0.
 
 ### Rule 40 landing decision (dispatching session, 2026-08-01)
 
