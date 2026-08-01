@@ -68,7 +68,9 @@ elevation-and-distance teleports the taught variable never caused.
 | E1c-4 | Arrow head scales with magnitude (`headLen = min(0.30, aLen*0.5)`) — drawn length is currently constant below 0.52 D, and HI 0.38, N–F 0.17 and C–H 0.30 all sit under that floor while narration says length IS the magnitude | **blocking** |
 | E1c-5 | Compare-swap guard reads `PM_bscLigDragged` / `PM_bscMolDragged`, not only `PM_bscSpeciesDragged` — S2's ligand slider is dead from 9 s onward | **blocking** |
 | E1c-6 | `angle_deg` applies to 2- and 3-bond centres with zero lone pairs, so CO₂ can be bent live (today the explore `angle` slider is inert for 8 of 9 picker species) | ride-along |
-| E1c-7 | Ratified `BS_LONE_PAIR_D.N` + intrinsic N–H/N–F moments (F1); ratified `H\|F/H\|Cl/H\|Br/H\|I` row (F2); `Cl: 0.74` on CCl₄ (F4) — **data, values from `chemistry_author`** | **blocks S2/S6/S7** |
+| E1c-7 | **RATIFIED (chemistry_author, calibration shown):** `N\|H −1.31 → −0.66` · `N\|F +0.17 → +0.73` · `BS_LONE_PAIR_D.N 0 → 0.73` (four-vector; N is the SOLE exception to the fitted convention — converting O would perturb H₂O's 1.849 D that S4 **and** `hydrogen_bonding` depend on). Halide row → CRC: HF **1.83** · HCl **1.11** · HBr **0.83** · HI **0.45**. `MG_MOLECULES.CCl4.bond_moments = { Cl: 0.74 }`. Code comment supplied in the chemistry block. | **blocks S2/S6/S7** |
+| E1c-8 | Register `angle_at_ms` / `angle_ramp_ms` as frozen-pin candidates in `deriveStateMeta` **in the same change** as E1c-1. Not blocking S4 (its `resultant_at_ms` dominates the candidate list), but a latent gap for any future state that ramps an angle with no following reveal cue. | ride-along |
+| E1c-9 | `compare_at_ms`'s frozen-pin offset is a flat **+1500** and ignores `compare_duration_ms` — it under-reads S7's deliberately slow 7300 ms swap. | ride-along |
 
 **E1c stays queued behind E3a** — two surgeons in `field_3d_renderer.ts` at once is the Rule-40
 hazard this Phase 0 exists to prevent.
