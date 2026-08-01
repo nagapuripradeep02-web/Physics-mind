@@ -97,3 +97,22 @@ VALUES
  ARRAY['work_done_by_constant_force','positive_negative_zero_work','work_energy_theorem','average_power']::text[],
  ARRAY[]::text[],
  'ch6-0d-checkpointA-cycle2-work_done_by_constant_force', 'directive');
+
+-- ── ENGINE FIX (field3d_surgeon dispatch, 2026-08-02) — SQL TEXT ONLY, NOT APPLIED ──
+-- Routed FAIL from quality-auditor. Fixed in this dispatch; row filed as FIXED.
+-- bug_class checked against every row already in this run's files: no collision.
+
+INSERT INTO engine_bug_queue (bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files, discovered_in_session, row_type)
+VALUES
+('nlb_checkpoint_capture_overshoots_exact_crossing_value',
+ 'SEAM M stamps the checkpoint value one physics step PAST the crossing, so a state whose whole claim is "the numbers agree" stamps 40.6 J against a 40.0 J formula',
+ 'MAJOR', 'peter_parker:field3d_surgeon',
+ 'nlbRunCheckpoints detects a crossing by comparing the POST-step side (b.s >= cp.s_m) with the side it remembered last frame, so by the time it fires the body is already past cp.s_m by up to one full step of travel; nlbCpStampText then read every captured quantity (W, K, U_grav, U_spring, E_total, v, s) at that post-step position, with no interpolation back to the crossing coordinate. The stamped work overshoots by F_along*(s1 - s_m), bounded by F_along*v_cross*h. The relative error is h*sqrt(2a/d) - INDEPENDENT of F - so no authored force, distance or display precision can dodge it: reaching a 1-dp-correct stamp on a 2 m flag would need a < 0.0056 m/s^2, a 26.7 s crossing, 13x past the crossing-before-55%-of-loop_reset_ms invariant. The ledger itself was exact everywhere (20.00 J/m x d to the printed digit); SEAM N verified the LEDGER, nobody verified the CAPTURE. Observed: work_done_by_constant_force STATE_4 stamped "W by the pull = 40.6 J" under a formula surface reading 40 x 2.0 x cos 60 = 40.0 J, across two EYE runs, the panel_a frame, the frozen baseline and every dense frame of every loop cycle.',
+ 'Any value captured at the instant a body passes a position must be interpolated back to that position, never read from the post-step state that DETECTED the pass. Interpolate per quantity, never blanket-lerp: linear only where the quantity is affine in the step (W over a step-constant force, U_grav over an affine height map, the spring compression x), and rebuilt from the interpolated primitive where it is not (v from the constant-a identity v^2 = v1^2 - 2a(s1-s_m), K from that v). A one-step-late stamp is invisible to every structural gate and only a numeric read of the pixel catches it.',
+ 'js_eval',
+ 'For every state authoring newtons_laws_body.checkpoints with a capture list containing W: compute the analytic value F_along x (cp.s_m - body.initial_position_m), read the stamp text off #nlb_formula after the crossing, parse the number, and assert |stamped - analytic| < 0.5 x 10^-precision. Independently, sweep the sub-step phase (run the same state from several loop-cycle offsets) and assert the stamped string is byte-identical every time - a stamp that varies with the phase the crossing lands on is this bug.',
+ 'FIXED',
+ ARRAY['work_done_by_constant_force','positive_negative_zero_work','work_energy_theorem','conservative_vs_nonconservative_forces','mechanical_energy_loss_with_friction']::text[],
+ ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch6-0d-engine-field3d_surgeon-work_done_by_constant_force', 'incident');
