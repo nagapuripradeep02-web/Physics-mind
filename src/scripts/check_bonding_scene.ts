@@ -100,6 +100,7 @@ const VARS = [
   // BS_MODES_IMPL concat an `undefined` and report 11 modes instead of 13.)
   "BS_ARROW_D_PER_UNIT", "BS_ANGLE_RAMP_MS",
   "BS_ARROW_HEAD_LEN", "BS_RES_HEAD_LEN", "BS_HEAD_MIN_THICK",   // E1c-A
+  "BS_RES_LABEL_OFF",                                            // E1c-D
   "BS_LONE_LOBE_W", "BS_LONE_LOBE_LEN",
   "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
@@ -1611,10 +1612,20 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
     single("compare", "CCl4").el === E.BS_UNIT_CAMERAS.general.el &&
     single("compare", "CCl4").dist === E.BS_UNIT_CAMERAS.general.dist,
     JSON.stringify(single("compare", "CCl4")));
-  ok("S1->S2->S3 and S5->S6->S7->S8 no longer change elevation or distance",
+  // E1c-D: the camera is a pure function of the focal unit's SHAPE, never of the
+  // mode string — so a state sequence only ever moves the camera when the shape
+  // it is looking at changes. (Before E1c-A every mode carried its own camera and
+  // S1->S2->S3 teleported between three of them.)
+  ok("every single-unit state's camera is decided by SHAPE alone, at one distance",
     [["assemble", "HCl"], ["compare", "HF"], ["dipole_sum", "CO2"], ["dipole_sum", "H2O"],
-     ["dipole_sum", "CCl4"], ["compare", "CCl4"], ["explore", "H2O"]]
-      .every(([m, s]) => single(m, s).el === 47 && single(m, s).dist === 7.0));
+     ["dipole_sum", "CCl4"], ["compare", "CCl4"], ["explore", "H2O"], ["dipole_sum", "NH3"]]
+      .every(([m, s]) => single(m, s).dist === 7.0 &&
+        single(m, s).el === (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(s)].el));
+  ok("the S2 halide LADDER holds ONE camera across all four rungs (no teleport)",
+    ["HF", "HCl", "HBr", "HI"].every((s) =>
+      single("compare", s).el === E.BS_UNIT_CAMERAS.diatomic.el &&
+      single("compare", s).dist === E.BS_UNIT_CAMERAS.diatomic.dist),
+    JSON.stringify(single("compare", "HI")));
   ok("a MULTI-unit compare keeps its own measured camera (hydrogen_bonding)",
     solve({ mode: "compare", units: [{ species: "H2O", at: [0, 0, 0] }, { species: "H2S", at: [4, 0, 0] }] }).el === 20,
     JSON.stringify(solve({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] })));
@@ -1624,10 +1635,11 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
     solve({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }).el === 22);
   ok("a PYRAMIDAL centre gets its own solve; every other shape does not",
     single("dipole_sum", "NH3").el === 62 && single("dipole_sum", "NF3").el === 62 &&
-    ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3", "HF"].every((k) => single("dipole_sum", k).el === 47),
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3"].every((k) => single("dipole_sum", k).el === 47),
     `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
-  ok("azimuth is 35 on BOTH single-unit solves, so MG_BEND_AZ's tie-down holds",
+  ok("azimuth is 35 on EVERY single-unit solve, so MG_BEND_AZ's tie-down holds",
     E.BS_UNIT_CAMERAS.pyramidal.az === 35 && E.BS_UNIT_CAMERAS.general.az === 35 &&
+    E.BS_UNIT_CAMERAS.diatomic.az === 35 &&
     Math.abs(E.MG_BEND_AZ - E.BS_UNIT_CAMERAS.general.az * Math.PI / 180) < 1e-12);
   {
     // the pyramid solve, MEASURED here under the shipped perspective (FOV 60),
@@ -1735,6 +1747,225 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
     ok("S7's 7300 ms swap pins PAST its settle (16500), never mid-transition",
       pin >= 16500, `pin candidate = ${pin} ms (old flat offset gave 10700)`);
   }
+}
+
+// ── 17. E1c-D: VECTOR LEGIBILITY — a drawn vector's supporting furniture must
+//   not obscure the elements its state COUNTS. Two items, one root cause, both
+//   found by reading pinned PNGs behind fully green gates.
+//     item 1  the resultant's value label collided with the central atom's label
+//             and lay across a counted ligand (it launched from the atom it was
+//             offset from, and on NH3 it is COLLINEAR with the lone pair).
+//     item 2  a 1-bond unit is drawn along the view-up axis, so the general
+//             solve foreshortened the one quantity S2 teaches — arrow LENGTH.
+//   Both are measured here in the same isotropic screen units, under the shipped
+//   perspective rig (FOV 60), against a projector written in this file.
+console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solve) ===");
+{
+  const upd = grabFn("updateBondingSceneFrame");
+  const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TH = Math.tan(FOV / 2);
+  type V = number[];
+  const sub = (a: V, b: V) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cr = (a: V, b: V) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dt = (a: V, b: V) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const sc = (v: V, k: number) => [v[0] * k, v[1] * k, v[2] * k];
+  // Screen units are ISOTROPIC here (x is NOT divided by ASPECT, unlike section
+  // 16's occlusion metric): a length must mean the same thing on both axes for
+  // a text box to be a box.
+  const rig = (c: any) => {
+    const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+    const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sub([0, 0, 0], cam)), r = E.bscNorm(cr(f, [0, 1, 0])), u = cr(r, f);
+    const P = (p: V) => {
+      const v = sub(p, cam), z = dt(v, f);
+      return { x: dt(v, r) / (z * TH), y: dt(v, u) / (z * TH), z };
+    };
+    return { r, u, P };
+  };
+  // mgPlaceLabelClear, re-implemented (four screen diagonals, argmax of the min
+  // distance to the avoid set) — never read out of the thing it checks.
+  const placeClear = (R: V, U: V, anchor: V, off: number, avoid: V[], P: any) => {
+    const av = avoid.filter(Boolean).map((a) => P(a));
+    let best = anchor, bestScore = -1;
+    for (const d of [[-1, 1], [1, 1], [-1, -1], [1, -1]]) {
+      const p = [anchor[0] + (R[0] * d[0] + U[0] * d[1]) * off,
+                 anchor[1] + (R[1] * d[0] + U[1] * d[1]) * off,
+                 anchor[2] + (R[2] * d[0] + U[2] * d[1]) * off];
+      const q = P(p);
+      let worst = 9;
+      for (const a of av) worst = Math.min(worst, Math.hypot(q.x - a.x, q.y - a.y));
+      if (worst > bestScore + 1e-6) { bestScore = worst; best = p; }
+    }
+    return best;
+  };
+  // A sprite's INK box. Node has no canvas, so the 76px bold-italic serif advance
+  // is a per-character model, deliberately on the WIDE side (42px = 0.55em for a
+  // glyph) so the assertion cannot pass by under-measuring the text. The rest is
+  // the shipped geometry: canvas height 128, width max(384, ink + 56 pad), sprite
+  // quad width = heightScale * canvasW / 128 (createLabelSprite / pmCreateAutoLabel).
+  const ADV: Record<string, number> = { " ": 20, ".": 20, "=": 44 };
+  const inkPx = (s: string) => [...s].reduce((w, ch) => w + (ADV[ch] != null ? ADV[ch] : 42), 0);
+  const box = (text: string, hs: number, pos: V, P: any) => {
+    const ink = inkPx(text), canvasW = Math.max(384, Math.ceil(ink) + 56);
+    const q = P(pos), k = 1 / (q.z * TH);
+    return { x: q.x, y: q.y, t: text,
+      hw: (hs * (canvasW / 128) * Math.min(1, ink / canvasW)) / 2 * k,
+      hh: (hs * (76 / 128)) / 2 * k };
+  };
+  /** signed gap between two axis-aligned boxes: >0 clear, <0 overlapping. */
+  const boxSep = (a: any, b: any) =>
+    Math.max(Math.abs(a.x - b.x) - (a.hw + b.hw), Math.abs(a.y - b.y) - (a.hh + b.hh));
+  const ptSep = (p: any, b: any) =>
+    Math.max(Math.abs(p.x - b.x) - b.hw, Math.abs(p.y - b.y) - b.hh);
+
+  /** the full text layout of a dipole_sum state, exactly as the frame pass builds it. */
+  const layout = (molKey: string, cam: any, axisPlacement: boolean, spin = 0) => {
+    const { r, u, P } = rig(cam);
+    const mol = E.MG_MOLECULES[molKey], D: any = E.bscDipole(molKey, null);
+    const fr: any = E.mgFrame(molKey, null, null), ligs = E.bscLigands(mol);
+    const RY = (v: V) => (spin ? E.mgRotY(v, spin) : v);
+    const org = [0, 0, 0];
+    const ligPos: V[] = fr.bonds.map((d: V) => sc(RY(d), E.BS_BOND_LEN));
+    const texts: any[] = [];
+    const cenLab = placeClear(r, u, org, E.MG_ELEMENTS[mol.central].radius + 0.34, [org], P);
+    texts.push({ id: "cen", b: box(mol.central, 0.42, cenLab, P) });
+    ligPos.forEach((p, i) => {
+      const q = placeClear(r, u, p, E.MG_ELEMENTS[ligs[i]].radius + 0.34, [org], P);
+      texts.push({ id: "lig" + i, b: box(ligs[i], 0.42, q, P) });
+    });
+    const rdir = RY(E.bscNorm(D.vec)), rlen = D.mag * E.BS_ARROW_D_PER_UNIT;
+    const rP = E.bscArrowParts(rlen, E.BS_RES_HEAD_LEN);
+    const lld = D.lone.length ? RY(D.lone[0].dir) : null;
+    const lAt = E.BS_BOND_LEN * 0.52;
+    const resLab = axisPlacement
+      ? sc(rdir, rlen + 0.62)
+      : placeClear(r, u, sc(rdir, rlen), E.BS_RES_LABEL_OFF,
+          ([org, cenLab] as V[]).concat(ligPos)
+            .concat(lld ? [sc(lld, lAt + E.BS_LONE_LOBE_LEN)] : []), P);
+    texts.push({ id: "res", b: box("μ = " + E.bscFmtD(D.mag) + " D", 0.50, resLab, P) });
+    if (lld) {
+      const lAnch = sc(lld, lAt);
+      const ll = placeClear(r, u, lAnch, E.BS_LONE_LOBE_LEN + 0.52,
+        [org, lAnch, resLab, sc(rdir, rP.shaft)], P);
+      texts.push({ id: "lone", b: box(D.lone.length > 1 ? "lone pairs" : "lone pair", 0.42, ll, P) });
+    }
+    let tSep = 9, tAt = "", lSep = 9, lAt2 = "", rSep = 9, rAt = "", rlSep = 9, rlAt = "";
+    for (let i = 0; i < texts.length; i++) for (let j = i + 1; j < texts.length; j++) {
+      const s = boxSep(texts[i].b, texts[j].b);
+      if (s < tSep) { tSep = s; tAt = texts[i].id + "/" + texts[j].id; }
+      if ((texts[i].id === "res" || texts[j].id === "res") && s < rSep) {
+        rSep = s; rAt = texts[i].id + "/" + texts[j].id;
+      }
+    }
+    const resB = texts[texts.findIndex((t: any) => t.id === "res")].b;
+    ligPos.forEach((p, i) => {
+      const q = P(p);
+      for (const t of texts) {
+        if (t.id === "lig" + i) continue;
+        const s = ptSep(q, t.b);
+        if (s < lSep) { lSep = s; lAt2 = "lig" + i + " under " + t.id; }
+      }
+      const s2 = ptSep(q, resB);
+      if (s2 < rlSep) { rlSep = s2; rlAt = "lig" + i + " under res"; }
+    });
+    return { tSep, tAt, lSep, lAt2, rSep, rAt, rlSep, rlAt };
+  };
+  const CAMK: any = { pyramidal: E.BS_UNIT_CAMERAS.pyramidal, general: E.BS_UNIT_CAMERAS.general,
+    diatomic: E.BS_UNIT_CAMERAS.diatomic };
+  // every shipped species that actually DRAWS a resultant (a symmetric molecule
+  // renders the zero badge instead and has no value label to place)
+  const DRAWN = ["NH3", "NF3", "H2O", "CHCl3", "HF", "HCl", "HBr", "HI"]
+    .filter((k) => (E.bscDipole(k, null) as any).mag > 1e-9);
+  const sweep = (axisPlacement: boolean, spins: number[]) => {
+    const w = { tSep: 9, tAt: "", lSep: 9, lAt2: "", rSep: 9, rAt: "", rlSep: 9, rlAt: "" };
+    for (const k of DRAWN) for (const d of spins) {
+      const m: any = layout(k, CAMK[E.bscUnitShapeKey(k)], axisPlacement, d * Math.PI / 180);
+      if (m.tSep < w.tSep) { w.tSep = m.tSep; w.tAt = `${k}@${d} ${m.tAt}`; }
+      if (m.lSep < w.lSep) { w.lSep = m.lSep; w.lAt2 = `${k}@${d} ${m.lAt2}`; }
+      if (m.rSep < w.rSep) { w.rSep = m.rSep; w.rAt = `${k}@${d} ${m.rAt}`; }
+      if (m.rlSep < w.rlSep) { w.rlSep = m.rlSep; w.rlAt = `${k}@${d} ${m.rlAt}`; }
+    }
+    return w;
+  };
+  const TEXT_FLOOR = 0.05, SPIN_FLOOR = 0.03;
+  const stat = sweep(false, [0]);
+  const spun = sweep(false, Array.from({ length: 72 }, (_, i) => i * 5));
+  const oldS = sweep(true, [0]);
+  const oldSpun = sweep(true, Array.from({ length: 72 }, (_, i) => i * 5));
+
+  ok("the resultant's label goes through the SHARED clear-placement helper",
+    /mgPlaceLabelClear\(rlb,/.test(upd) && !/rlb\.position\.set\(fOrg\[0\] \+ rdir\[0\] \* \(rlen \+ 0\.62\)/.test(upd));
+  ok("its avoid set is the central atom, its label, the ligands and the lone pair",
+    /var rAvoid = \[\[fOrg\[0\], fOrg\[1\], fOrg\[2\]\]\]/.test(upd) &&
+    /if \(fCenLabPos\) rAvoid\.push\(fCenLabPos\)/.test(upd) &&
+    /rAvoid\.push\(fLigWorld\[rAi\]\)/.test(upd) &&
+    /dip\.show_lone_pair && D\.lone && D\.lone\.length/.test(upd));
+  ok("the lone-pair LABEL is not an avoid point (that would be a frame-to-frame loop)",
+    !/rAvoid\.push\(\[lLab|rAvoid\.push\(lLab/.test(upd) &&
+    /BS_LONE_LOBE_LEN;[\s\S]{0,240}rAvoid\.push\(\[fOrg\[0\] \+ rlDir/.test(upd));
+  ok(`NO TWO TEXT SURFACES OVERLAP on any species that draws a resultant (>= ${TEXT_FLOOR})`,
+    stat.tSep >= TEXT_FLOOR, `worst ${stat.tSep.toFixed(4)} NDC at ${stat.tAt}`);
+  ok(`NO COUNTED LIGAND IS COVERED BY TEXT, pyramidal centre included (>= ${TEXT_FLOOR})`,
+    stat.lSep >= TEXT_FLOOR, `worst ${stat.lSep.toFixed(4)} NDC at ${stat.lAt2}`);
+  ok("NEGATIVE CONTROL: the fixed-offset placement OVERLAPS both (E1c-A's frames)",
+    oldS.tSep < 0 && oldS.lSep < 0,
+    `text ${oldS.tSep.toFixed(4)} at ${oldS.tAt} · ligand ${oldS.lSep.toFixed(4)} at ${oldS.lAt2}`);
+  ok(`the resultant label stays clear through a FULL SPIN (>= ${SPIN_FLOOR})`,
+    spun.rSep >= SPIN_FLOOR && spun.rlSep >= SPIN_FLOOR,
+    `vs text ${spun.rSep.toFixed(4)} at ${spun.rAt} · vs ligand ${spun.rlSep.toFixed(4)} at ${spun.rlAt}`);
+  ok("NEGATIVE CONTROL: the fixed offset fails the spin sweep too",
+    oldSpun.rSep < 0 && oldSpun.rlSep < 0,
+    `vs text ${oldSpun.rSep.toFixed(4)} · vs ligand ${oldSpun.rlSep.toFixed(4)}`);
+
+  // ── item 2: the diatomic solve.
+  const projRatio = (molKey: string, cam: any) => {
+    const { r, P } = rig(cam), fr: any = E.mgFrame(molKey, null, null), L = E.BS_BOND_LEN;
+    const a = P([0, 0, 0]), b = P(sc(fr.bonds[0], L));
+    // reference: the SAME world length laid across the view through the pivot
+    const r1 = P(sc(r, -L / 2)), r2 = P(sc(r, L / 2));
+    return Math.hypot(a.x - b.x, a.y - b.y) / Math.hypot(r1.x - r2.x, r1.y - r2.y);
+  };
+  const DIA = ["HF", "HCl", "HBr", "HI"];
+  const worstDia = Math.min(...DIA.map((k) => projRatio(k, E.BS_UNIT_CAMERAS.diatomic)));
+  const worstGen = Math.min(...DIA.map((k) => projRatio(k, E.BS_UNIT_CAMERAS.general)));
+  ok("bscUnitShapeKey gives a 1-bond unit its OWN key, and nothing else",
+    DIA.every((k) => E.bscUnitShapeKey(k) === "diatomic") &&
+    ["NH3", "NF3"].every((k) => E.bscUnitShapeKey(k) === "pyramidal") &&
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2", "BF3"].every((k) => E.bscUnitShapeKey(k) === "general") &&
+    Object.keys(E.MG_MOLECULES).filter((k) => E.bscUnitShapeKey(k) === "diatomic").sort().join("|")
+      === "HBr|HCl|HF|HI");
+  ok("E1c-A's two solves are UNCHANGED, value for value",
+    JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal) === JSON.stringify({ az: 35, el: 62, dist: 7 }) &&
+    JSON.stringify(E.BS_UNIT_CAMERAS.general) === JSON.stringify({ az: 35, el: 47, dist: 7 }),
+    `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
+  ok("a 1-bond unit's PROJECTED bond length is >= 0.9x its true length",
+    worstDia >= 0.9, `${worstDia.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.diatomic.el}`);
+  ok("NEGATIVE CONTROL: the general solve FORESHORTENS it below that floor",
+    worstGen < 0.9,
+    `${worstGen.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.general.el} (+${((worstDia / worstGen - 1) * 100).toFixed(1)}% drawn length)`);
+  {
+    // the diatomic solve still has to pass section 16's own countability floors.
+    const { P } = rig(E.BS_UNIT_CAMERAS.diatomic);
+    let occ = 9, bx = 0;
+    for (const k of DIA) {
+      const m = E.MG_MOLECULES[k], fr: any = E.mgFrame(k, null, null);
+      const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius },
+                     { p: P(sc(fr.bonds[0], E.BS_BOND_LEN)), r: E.MG_ELEMENTS[m.ligand].radius }];
+      for (let i = 0; i < 2; i++) {
+        const near = atoms[0].p.z <= atoms[1].p.z ? atoms[0] : atoms[1];
+        const far = near === atoms[0] ? atoms[1] : atoms[0];
+        occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) -
+          near.r / (near.p.z * TH));
+      }
+      for (const a of atoms) bx = Math.max(bx, Math.abs(a.p.x) / ASPECT, Math.abs(a.p.y));
+    }
+    ok("the diatomic solve separates both atoms and stays inside the safe box",
+      occ >= 0.09 && bx <= 0.85, `occ=${occ.toFixed(4)} box=${bx.toFixed(3)}`);
+  }
+  console.log(`    label placement  static: text=${stat.tSep.toFixed(4)} ligand=${stat.lSep.toFixed(4)}` +
+    `  (fixed offset was text=${oldS.tSep.toFixed(4)} ligand=${oldS.lSep.toFixed(4)})`);
+  console.log(`    diatomic solve   el ${E.BS_UNIT_CAMERAS.diatomic.el}: projected bond ${worstDia.toFixed(4)}x true` +
+    `  (was ${worstGen.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.general.el})`);
 }
 
 console.log(failures === 0
