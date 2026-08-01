@@ -43897,7 +43897,6 @@ export const FIELD_3D_RENDERER_CODE = `
     // that stays exactly where it was — which is also the honest picture.
     var FR_W_PIVOT_Y = 1.15;
     var FR_W_LABEL_H = 0.32;         // whirl arrow labels sit further from the lens
-    var FR_W_PLANE_R_FACTOR = 1.30;  // the frictionless top, sized from L
     // ── POST-CUT FLIGHT ENVELOPE (force_rig_whirl_post_cut_flight_envelope_too_
     //   short_to_watch, founder-directed 2026-08-01). The cut-the-string beat IS
     //   this concept, and it used to last 1.4 s: the bob left the plane when
@@ -43905,7 +43904,7 @@ export const FIELD_3D_RENDERER_CODE = `
     //   flight = sqrt(2.8² − 1)/ω = 2.615/ω — a number authoring cannot raise
     //   without dropping ω, which drops T = m ω² L under the arrow's legibility
     //   floor. Three engine changes buy the time, none of them physics:
-    //     1. the surface is a SHEET (14 L) with a radial alpha fade, so it has no
+    //     1. the surface is a SHEET (16 L) with a radial alpha fade, so it has no
     //        rim for the bob to slide off — the Phase-0 scar (a bob crossing a
     //        visible edge reads as flying, the exact misreading the state kills);
     //     2. the bob's START azimuth is chosen so the cut throws it along world
@@ -43916,7 +43915,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //        the departing bob and the abandoned circle both stay in frame.
     //   The integrator is untouched: after the cut frwAccel still returns the ZERO
     //   vector and the straight constant-speed line is still its OUTPUT.
-    var FR_W_PLANE_R_CUT = 16.0;     // ... a sheet, not a top, when the state cuts
+    //
+    //   ONE radius for EVERY flat state, not one for the state that cuts (founder
+    //   ruling 2026-08-01). The first cut of this work sized the sheet only where a
+    //   release was authored and left the other flat states on a 1.3 L disc with a
+    //   hard rim — so clicking from the steady-circling beat into the cut beat
+    //   visibly TRANSFORMED the apparatus, and that transformation is not the
+    //   state's new thing (the cut is). Rule 32d: the same apparatus persists from a
+    //   recognizable home pose, and at every click the only visible change IS the
+    //   new thing. The sheet is also the honest picture of an idealized frictionless
+    //   surface — it has no edge, so it should not draw one.
+    var FR_W_PLANE_R = 16.0;         // the frictionless sheet, sized from L
     var FR_W_PLANE_FADE0 = 0.72;     // alpha fade starts here (fraction of the radius)
     var FR_W_FLIGHT_PAN = 0.50;      // baseline share of the displacement the framing follows
     var FR_W_FLIGHT_EASE_S = 0.55;   // smoothstep-in, so the follow starts at ZERO rate
@@ -44257,11 +44266,12 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.wArrows = rec;
     }
     // The radial alpha ramp that turns the disc into a SHEET. Built once, from a
-    // canvas, and hung on the plane material only while a state cuts the string:
-    // CircleGeometry's uv is the inscribed unit circle, so the fade is a fixed
-    // FRACTION of the radius and stays right at every L. Without it a 14 L top
-    // still ends in a rim, and a rim is the one thing this state cannot show —
-    // a bob crossing an edge reads as flying off a table.
+    // canvas, and hung on the plane material at BUILD time (it is unconditional —
+    // every flat state wears it): CircleGeometry's uv is the inscribed unit circle,
+    // so the fade is a fixed FRACTION of the radius and stays right at every L.
+    // Without it a 16 L surface still ends in a rim, and a rim is the one thing
+    // this apparatus cannot show — a bob crossing an edge reads as flying off a
+    // table, and a rim that changes size between states is a Rule-32d break.
     var frwFadeTex = null;
     function frwPlaneFade() {
         if (frwFadeTex) return frwFadeTex;
@@ -44374,26 +44384,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var plane = frFindById("fr_plane");
         if (plane) {
             plane.visible = (eng.geometry === "flat");
-            // Sized from THIS state's string length: a fixed-radius top built for
-            // the longest authorable string swamps a 0.6 m circle and takes the
-            // frame over from the physics. A state that CUTS the string does not
-            // get a wider TOP — it gets a SHEET (FR_W_PLANE_R_CUT) whose rim is
-            // both outside the framed band and dissolved by the alpha ramp, so
-            // there is no edge anywhere for the bob to slide off. A bob crossing a
-            // visible edge reads as flying through the air, which is the exact
-            // misreading this state exists to kill (seen in the first bring-up
-            // frame, and again at 1.4 s of flight before this envelope landed).
-            var isCut = (eng.release_at != null);
-            var pr = frwW(eng.L) * (isCut ? FR_W_PLANE_R_CUT : FR_W_PLANE_R_FACTOR);
+            // A SHEET (FR_W_PLANE_R), sized from THIS state's string length and
+            // identical for every flat state, whose rim is both outside the framed
+            // band and dissolved by the build-time alpha ramp — so there is no edge
+            // anywhere for the bob to slide off and none to redraw between states.
+            // A bob crossing a visible edge reads as flying through the air, which
+            // is the exact misreading the cut state exists to kill (seen in the
+            // first bring-up frame, and again at 1.4 s of flight before this
+            // envelope landed).
+            var pr = frwW(eng.L) * FR_W_PLANE_R;
             plane.scale.set(pr, pr, 1);
             plane.position.set(0, (eng.yShift || 0) - 0.02, 0);
-            // Hung/removed only on a CHANGE: assigning alphaMap recompiles the
-            // shader, so an unconditional per-frame write would rebuild the
-            // program every frame.
-            if (plane.material && (!!plane.material.alphaMap) !== isCut) {
-                plane.material.alphaMap = isCut ? frwPlaneFade() : null;
-                plane.material.needsUpdate = true;
-            }
         }
         // Guide ring: the circle actually being swept, at the bob's own height.
         var ghostOn = eng.released && !!eng.ghost_on;
@@ -45048,7 +45049,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 // Half-transparent on purpose: the bob rests ON the top, so its
                 // weight arrow points DOWN THROUGH it. At full opacity the table
                 // swallowed W and the free-body pair read as a lone normal force.
-                emissiveIntensity: 0.10, shininess: 18, transparent: true, opacity: 0.55, side: THREE.DoubleSide
+                emissiveIntensity: 0.10, shininess: 18, transparent: true, opacity: 0.55, side: THREE.DoubleSide,
+                // The rimless sheet (see FR_W_PLANE_R). Hung here, once, rather than
+                // per-state: assigning alphaMap recompiles the shader, and there is
+                // no state that wants a hard edge.
+                alphaMap: frwPlaneFade()
             }));
         wplane.rotation.x = -Math.PI / 2;      // CircleGeometry is built in xy; the plane is horizontal
         wplane.position.set(0, -0.02, 0);
@@ -56367,8 +56372,27 @@ export const FIELD_3D_RENDERER_CODE = `
         // 1500 ms entry default, both of which keep today's ordinary crawl.
         // Rule 36 untouched: dtStep and __pmSteps are read, never written, and
         // nothing here runs unless a pin is active.
+        //
+        // THE LAG IS MEASURED ON THE ENGINE'S OWN CLOCK, not on the master clock
+        // (2026-08-01 — the same bug_class recurring, caught two runs after the
+        // first fix). eng.t_ms is what decides the POSE; time is only the master clock,
+        // and THE EYE leaves it wherever the previous capture pinned it. After a
+        // dense series ending at at_ms = 21000, the frozen capture's 22600 ms pin
+        // is only 1.6 s ahead of the master clock — under the 2 s gate — so the replay was
+        // SKIPPED, while RESET_TRAJECTORY had just zeroed eng.t_ms: the ordinary
+        // crawl then advanced the engine 1.6 s and the frame photographed t = 1.9 s
+        // of a pin that claimed 22.6 s (bob still circling, string intact, T = 12.96 N,
+        // measured phase matching t ≈ 1.9 s exactly). Whether the master clock
+        // happened to sit inside or outside the gate was pure wall-clock luck, so
+        // one run in two was wrong. Comparing the pin's STATE-LOCAL target with the
+        // engine's own state-local clock removes the master clock from the test
+        // entirely; the live player's lag-0 pins still skip the replay, and a
+        // BACKWARDS pin (target behind the engine — the shape the original scar
+        // took) now rewinds instead of silently holding a too-late pose.
+        var __frPinLagMs = (freezeAtTime !== null && window.PM_frEngine)
+            ? ((freezeAtTime - stateStartTime) * 1000 - window.PM_frEngine.t_ms) : 0;
         if (config.scenario_type === "force_rig" && freezeAtTime !== null && dtStep > 0
-            && __frPinCaughtUp !== freezeAtTime && (freezeAtTime - time) > 2.0) {
+            && __frPinCaughtUp !== freezeAtTime && (__frPinLagMs > 2000 || __frPinLagMs < -2000)) {
             __frPinCaughtUp = freezeAtTime;                     // once per pin, not once per frame
             var __frChunks = Math.round(((freezeAtTime - stateStartTime) * 1000) / 16);
             if (__frChunks < 0) __frChunks = 0;

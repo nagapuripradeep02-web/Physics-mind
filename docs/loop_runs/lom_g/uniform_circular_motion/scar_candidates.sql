@@ -259,3 +259,52 @@ INSERT INTO engine_bug_queue (
 );
 
 -- END OF APPENDED BLOCK - nothing above was executed.
+
+
+-- =====================================================================
+-- APPENDED 2026-08-01 (same dispatch, after the founder took interpretive
+-- call #1). Candidate I is NOT a new row - it is a RECURRENCE of Candidate F
+-- (force_rig_whirl_release_not_reproduced_under_set_time_freeze_pin), so it
+-- reopens and re-fixes that bug_class rather than minting a duplicate.
+-- Caught by running THE EYE twice more: the frozen STATE_3 frame came back
+-- PRE-CUT on one run in two.
+-- =====================================================================
+UPDATE engine_bug_queue SET
+    root_cause = root_cause || E'\n\nRECURRENCE 2026-08-01 (same bug_class, one commit later, caught by a 2-run determinism check): the compressed-crawl cure was gated on the MASTER clock - (freezeAtTime - time) > 2.0 - but the master clock is not what decides the pose; eng.t_ms is. THE EYE leaves the master clock wherever the previous capture pinned it, so after a dense series ending at at_ms = 21000 the frozen capture pin of 22600 ms sat only 1.6 s ahead of it, UNDER the 2 s gate. The replay was therefore skipped while captureFrozenFrame''s RESET_TRAJECTORY had just zeroed eng.t_ms, and the ordinary crawl advanced the engine by only the 1.6 s the MASTER clock needed. The frame photographed t = 1.9 s of a pin claiming 22.6 s - bob still circling, string intact, T = 12.96 N - and the measured bob phase matched t = 1.9 s exactly. Whether the master clock happened to sit inside or outside the 2 s gate was wall-clock luck, so one run in two was wrong and the first two verification runs had both landed on the lucky side.',
+    prevention_rule = prevention_rule || E'\n\nRECURRENCE FIX: measure the pin lag on the clock that DECIDES THE POSE. The gate is now |(freezeAtTime - stateStartTime)*1000 - eng.t_ms| > 2000, which removes the master clock from the test entirely. The live player is protected exactly as before (its pins are lag 0 or the 1500 ms entry default, both under the threshold), and a BACKWARDS pin - the shape the original scar took - now rewinds instead of silently holding a too-late pose. GENERAL RULE for any integrator scenario: a catch-up heuristic must be expressed in the accumulator it is repairing, never in a neighbouring clock that merely correlates with it. A two-run determinism check is NOT enough evidence for a race this shape; take three.',
+    probe_logic = probe_logic || E' ALSO: run THE EYE three times, not twice, and assert every __frozen frame is 0.000% across all three - this recurrence passed a 2-run check twice before a 3-run check caught it.',
+    fixed_in_files = ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    discovered_in_session = 'lom-g field3d_surgeon engine dispatch 2026-08-01 (recurrence, flight-envelope dispatch)',
+    status = 'FIXED'
+WHERE bug_class = 'force_rig_whirl_release_not_reproduced_under_set_time_freeze_pin';
+
+-- END OF APPENDED BLOCK - nothing above was executed.
+
+
+-- ---------------------------------------------------------------------
+-- Candidate J - observed while verifying the recurrence fix above, NOT fixed
+-- by this dispatch (it is a separate bug_class, and the fix changes the LIVE
+-- player's entry-pin path, which needs its own 3-run verification). Filed so
+-- the founder can route it.
+-- ---------------------------------------------------------------------
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_short_reveal_pin_below_catchup_threshold_keeps_prefreeze_jitter',
+    'A reveal pin under the 2 s catch-up threshold never rewinds, so its frozen frame still carries the pre-freeze wall-clock jitter - measured 0.175 percent on one run in three',
+    'MODERATE',
+    'peter_parker:field3d_surgeon',
+    'The compressed-crawl catch-up only fires when the pin lag exceeds 2000 ms, so a state whose reveal pin is BELOW that - uniform_circular_motion STATE_1 pins at 1600 ms - never takes the deterministic rewind-and-replay path. It keeps the ordinary crawl, which starts from whatever eng.t_ms the handful of live frames between THE EYE captureFrozenFrame RESET_TRAJECTORY and its SET_TIME_FREEZE happened to accumulate at wall-clock __pmSteps. Measured across three consecutive identical EYE runs: STATE_1 frozen was identical on runs 1 and 3 and differed by 0.175 percent on run 2, with the differing pixels confined to a 238x67 box around the bob, string and v arrow - an orbital PHASE difference, not a rendering artefact. Below the H2 2 percent tolerance today, so it does not fail a gate; it does mean a short-pin baseline is minted from one of several possible phases.',
+    'The rewind-and-replay path is the only construction that makes a pinned pose a pure function of at_ms, so it should run for EVERY pin THE EYE takes, not only long ones. The 2000 ms threshold exists to protect the LIVE player, but the live pins it protects are lag ~0 (a pause pin holds at the current sim time) - a much smaller threshold, of order 300 ms, protects them just as well while making every reveal pin deterministic, at a cost of about 94 replay chunks on a 1500 ms entry pin (sub-millisecond). GENERAL: a determinism mechanism gated by a magnitude threshold silently leaves everything below the threshold nondeterministic; state the floor explicitly and check it.',
+    'js_eval',
+    'Run THE EYE three times on a force_rig concept and assert every __frozen frame is pixel-identical across all three. Any state whose derived reveal pin is under the catch-up threshold is a candidate; list them by comparing deriveMaxRevealTimeMs output against the threshold constant.',
+    'OPEN',
+    ARRAY['uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'lom-g field3d_surgeon engine dispatch 2026-08-01 (flight envelope)',
+    'incident'
+);
+
+-- END OF APPENDED BLOCK - nothing above was executed.
