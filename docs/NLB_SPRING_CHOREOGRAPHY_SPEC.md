@@ -2,6 +2,13 @@
 
 > Founder-approved 2026-07-30, from a screen recording of `newton_third_law`. Applies to EVERY state
 > that uses a spring, in every concept, now and later.
+>
+> ⚠ **AMENDED 2026-08-01 (founder ruling) — the MECHANISM below is superseded for any spring that
+> needs an honest energy quantity. This document's INTENT stands in full; only how the slow look is
+> achieved has changed.** Read the amendment at the end of this file before authoring or editing a
+> spring state. The scripted `spring_action` cycle specified here remains LIVE and unchanged for
+> every state that does not author `k_N_per_m` (including `newton_third_law`, which owns the
+> push-off apparatus).
 
 ## The founder's finding
 
@@ -105,3 +112,99 @@ and both show the coil at an intermediate length. Regression EYE on `electric_fl
 
 Rule 36b full-fleet re-verify is NOT triggered: `dtPhysics` is a local scale inside the nlb frame
 function and never touches the shared `animate()` / `dtStep` / `__pmSteps` clock.
+
+---
+
+# AMENDMENT — genuine spring physics (founder ruling, 2026-08-01)
+
+> Raised during Ch.6 Phase-0 Checkpoint A (`conservation_of_mechanical_energy`), where finding F1
+> surfaced a direct collision: this spec scopes the SCRIPTED `spring_action` cycle to "every state
+> that uses a spring, in every concept, now and later" — but an honest energy layer needs a real
+> force law. There is no spring constant `k` in a scripted stroke, so plotting `½kx²` over it would
+> draw a total that is not flat, in the very state whose caption claims the total is constant.
+
+## The ruling (verbatim)
+
+> Build GENUINE spring physics (authored `k`, force `F = −kx` inside the integrator, `x` exposed to
+> the energy layer), and achieve the teachable slow-motion look by SLOWING PLAYBACK over that real
+> physics — never by scripting the stroke.
+
+**What is preserved, in full:** this document's finding and its intent. A real spring genuinely does
+bounce too fast to teach from — that diagnosis was correct and is unchanged. So are the load-bearing
+constraints: the `slow_factor` dt-multiplier implementation (§"How `slow_factor` must be
+implemented"), the mandatory `slow motion ×N` badge (Rule 24/34 honesty), Rule 36 frame-rate
+independence, and Rule 37's sandbox behaviour.
+
+**What changed:** only the mechanism. `slow_factor` becomes a playback modifier over real physics
+rather than a replacement for it. `spring_action`'s approach → compress → hold → release LOOK now
+*emerges from real dynamics viewed slowly*, instead of from a force ramp and a latch.
+
+## The additive gate — nothing here is retired
+
+`k_N_per_m` present → genuine-physics path. **Absent → the scripted `spring_action` cycle specified
+above runs exactly as before, bit-for-bit.** `newton_third_law` owns the scripted push-off apparatus
+and stays on the legacy path; it is in the regression sample for every seam of this build and read
+**0.00% on all 10 H2 baselines** at every one.
+
+Authoring both `k_N_per_m` and `spring_action` is unsupported — `k_N_per_m` wins.
+
+## Contract additions (`newtons_laws_body.spring`)
+
+| key | type | default | semantics |
+|---|---|---|---|
+| `k_N_per_m` | number > 0 | absent | **THE GATE.** Spring constant; enables `F = −kx` in the integrator and exposes `x` to the energy layer. |
+| `natural_length_m` | number > 0 | `1.6` | Free length in metres. Drives BOTH the physics rest length and the drawn coil length. |
+| `slow_factor` | number ≥ 1 | `6` | Unchanged in meaning; now scales the step of a REAL force law. Values < 1 ignored. |
+| `sandbox_slow_factor` | number ≥ 1 | `1` | The factor inside a `mode: 'sandbox'` state. `1` = real time, as originally specified. |
+
+Position contract: compressed when `|s_a − s_b| − (halfA + halfB) < natural_length_m`, half-extents
+0.275 m for a `fixed` wall slab and 0.55 m for a cart. Author the home pose with the body CLEAR of
+the coil, or the state opens already loaded. `compressed` is ignored on the genuine path — the
+physics owns the length.
+
+## Three constraints that are NOT optional on the genuine path
+
+1. **The integrator must stay honest about gravity.** The shipped step is
+   `s += 0.5(v₀+v₁)·h + 0.5·a_spring·h²`, which expands to *exact* integration for the constant part
+   plus the semi-implicit form for the spring. Applying semi-implicit Euler to gravity as well would
+   drift ≈0.29 J per second of free slide **with no spring present**, visibly tilting a flat-topped
+   energy column. The added term vanishes identically when `F_spring = 0`, which is why every legacy
+   baseline is untouched.
+2. **The displayed total must carry the shadow-Hamiltonian correction:**
+   `E_display = K + U_grav + U_spring + (dtPhysics/2)·k·x·v`. Motion is unchanged; residual O(dt²).
+   `slow_factor` is a legibility choice, **not** the numerical remedy — at m = 2 kg, k ≈ 370 N/m,
+   slow_factor 6 the raw ripple is ≈0.93 J and `|ΔE| ≈ (ω·dt/2)·E` is LINEAR in ω·dt. Measured with
+   the correction: **0.005 J** (bar < 0.05 J), a 177× reduction.
+3. **The slow window is CONTACT-DETECTED** (`x > 0`, latched against chatter), **never** the
+   closed-form phase machine keyed to `contact_from_ms` / `release_at_ms`. Do not reuse the
+   `push_off` gate.
+
+## The real-time trap, and why the guard exists
+
+At `slow_factor: 1` the ripple measures **0.457 J** — 9× the acceptance bar. It is NOT integrator
+ripple: it is a **contact-entry quantization step**. With no slow window the body crosses the coil
+face mid-frame and lands up to `v·h` inside it with zero force having acted, acquiring `½k(v·h)²`
+that no work paid for — `½·370·(3/60)² = 0.4625 J`, matching the measurement. It is a one-time STEP
+at each contact, not a shimmer, so the column top jumps and holds.
+
+The error falls as dt², so `sandbox_slow_factor: 4` divides it by 16 (≈0.03 J, inside the bar).
+**Author `4` on any sandbox state with a spring whose lesson claims a constant total.** The window
+stays contact-gated (shut for the whole free slide) and any trusted drag or slider cancels it, so a
+teacher never feels lag on a control.
+
+Backstop, because remembering is not a plan: a state that shows `E_total`, shows no `E_dissipated`,
+and has no friction or applied force is a state whose whole claim is *"this total does not change"*.
+If the displayed total then moves more than 0.05 J from its entry baseline, **`[PM_NLB_ENERGY_DRIFT]`
+fires once and THE EYE's console audit fails the concept.** The guard is deliberately blind to the
+CAUSE and checks only the CLAIM — so it also catches causes nobody has thought of.
+
+Do **not** author a spring state at `slow_factor: 1` outside a sandbox: it fails the ripple bar even
+corrected.
+
+## Where this landed
+
+Ch.6 Phase-0 stage 0c, seams K–N on `newtons_laws_body`: `9f479f6` (spring physics), `dd2b869`
+(energy display layer), `55c2fd7` (teaching instruments), `0527a81` (off-axis force geometry),
+`0d2adef` (determinism rounding). Full contracts and measured evidence:
+`docs/loop_runs/ch6_state.md`. Regression across all 10 `newtons_laws_body` concepts that read
+normal force: **332 deterministic checks, 0 failures.**
