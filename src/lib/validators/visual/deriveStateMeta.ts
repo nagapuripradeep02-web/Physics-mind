@@ -2570,6 +2570,11 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     //     would photograph the handed-back pose and lose coverage of that beat.
     const nlb = asObj(state.newtons_laws_body);
     if (nlb) {
+        // SEAM L: the reveal FLOOR an energy-layer state raises for itself. 3000 ms
+        // matches the incline_slide floor below for the same physical reason — that
+        // is roughly how much of the state's own clock the block needs to travel
+        // far enough that K and U read as visibly different from their seed values.
+        const NLB_ENERGY_SETTLE_MS = 3000;
         const nlbCushion = 500;
         const phases = Array.isArray(nlb.phases) ? nlb.phases : [];
         let phaseFound = false;
@@ -2738,6 +2743,28 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             //   • sandbox is user-driven (deriveHoldExpectations → 'interactive');
             //     its idle_auto_sweep is supplementary motion, NEVER folded into a
             //     reveal pin.
+            // ── SEAM L (energy display layer) — site (i) of the mandatory
+            //    deriveStateMeta co-edit (skeleton spec note 15). An energy-layer
+            //    state's payoff is the BARS, and at t = 0 every bar still sits at
+            //    its seed value: the block has not moved, so K is 0, the split has
+            //    not shifted, and a frozen frame taken there photographs a picture
+            //    that proves nothing. Worse, an energy state that authors no
+            //    phases[]/param_ramp/push_off and whose `mode` is not in the
+            //    hardcoded list below falls all the way to DEFAULT_REVEAL_MS
+            //    (1500 ms) — the field3d_scenario_missing_maxreveal_block_frozen_
+            //    pin_defaults_1500ms_predates_scripted_reveal scar exactly.
+            //      So the layer registers its OWN floor: enough of the state's own
+            //    clock for the integrator to have visibly traded K against U. It is
+            //    a FLOOR, not a choice of instant — the caller returns
+            //    Math.max(...candidates), so any later, better-informed candidate
+            //    still wins.
+            //      NOT DONE HERE, deliberately: site (iii), the frozen-pin instant
+            //    itself (land inside a descent segment, provably >= 150 ms clear of
+            //    every loop_reset_ms boundary, ~55-65% of the loop period). That
+            //    needs the sum_merge cue and the marker beats to exist and belongs
+            //    with them in SEAM M. This floor is chosen to be compatible with it.
+            const nlbEnergy = asObj(nlb.energy_layer);
+            if (nlbEnergy) candidates.push(NLB_ENERGY_SETTLE_MS);
             const nlbMode = typeof nlb.mode === 'string' ? nlb.mode : '';
             if (nlbMode === 'coast_with_friction') candidates.push(4000);
             else if (nlbMode === 'coast_no_force' || nlbMode === 'accelerate_applied_force'
@@ -3422,6 +3449,24 @@ export function deriveHoldExpectations(
             // permit the settled tail instead of false-failing it. Both branches
             // are pure RELAXATIONS in pixelGate — neither asserts stillness, so a
             // continuously-accelerating beat is not mis-gated by reveal_hold.
+            //   SEAM L — site (ii) of the mandatory deriveStateMeta co-edit
+            //   (skeleton spec note 15). SEAM K added a THIRD shape to this
+            //   scenario that the two-way split above did not anticipate: a state
+            //   with `loop_reset_ms` LOOPS. A genuine integrator has no phase to
+            //   wrap — a slide that ends is over — so loop_reset_ms restarts the
+            //   kinematics every R ms and the state runs forever. Its payoff IS the
+            //   repetition, exactly as bar_magnet_as_dipole STATE_2's loop trace is
+            //   (see that branch below), and it has no settled tail at all.
+            //     It is classified 'reveal_hold' ANYWAY, deliberately, and this is
+            //   the considered call rather than an omission: 'reveal_hold' is a
+            //   pure RELAXATION in pixelGate (it never asserts stillness, so a
+            //   perpetually looping state cannot false-fail on moving pixels),
+            //   while the strict gate `undefined` WOULD assert motion — and a
+            //   spring state legitimately passes through v = 0 at the turnaround,
+            //   where a dense frame pair would read as stuck. Relaxing is safe in
+            //   both directions here; asserting is not.
+            //     The sandbox (Rule 37 free-run under the teacher, trusted_drag_
+            //   seizes) stays 'interactive' — user-driven, D1p must not pin it.
             const nlbHold = asObj(state.newtons_laws_body);
             if (nlbHold) {
                 out[stateId] = (nlbHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
