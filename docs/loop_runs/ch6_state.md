@@ -12,10 +12,10 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: FOUNDER DECISION on the spring-directive collision (F1), then architect cycle 2
+next: founder-proxy Checkpoint A RE-REVIEW of skeleton cycle 2 (verify the 16 fixes landed)
 done: (none yet)
 parked: (none)
-in_flight: conservation_of_mechanical_energy  stage=design(0b) checkpointA=DESIGN_FIX cycle 1 of 2
+in_flight: conservation_of_mechanical_energy  stage=design(0b) cycle2 written, awaiting re-review
 engine_commits: (none yet)
 
 ## Approved chapter map (founder 2026-08-01) — teaching order
@@ -56,6 +56,26 @@ Fix 1 (incline + fixed wall + spring at the base, permanent home pose) collapses
 
 NOTHING dispatches to field3d-surgeon until the spec is corrected — building against the current
 text would build the wrong engine, the exact failure Phase-0 exists to prevent.
+
+## FOUNDER DECISION 2026-08-01 — spring: real physics, slowed playback (AMENDS the 2026-07-30 directive)
+
+F1 surfaced a collision: `NLB_SPRING_CHOREOGRAPHY_SPEC.md` (founder-approved 2026-07-30) scopes the
+SCRIPTED `spring_action` cycle to "every state that uses a spring, in every concept, now and later",
+but an honest energy layer needs a real force law.
+
+**Ruling: build GENUINE spring physics (authored `k`, force `F = -kx` inside the integrator, `x`
+exposed to the energy layer), and achieve the teachable slow-motion look by SLOWING PLAYBACK over
+that real physics — never by scripting the stroke.** The 2026-07-30 directive's INTENT (a real spring
+bounces too fast to teach from) is preserved in full; only its mechanism changes. `slow_factor`
+becomes a playback modifier over real physics rather than a replacement for it.
+
+Consequences:
+- Unblocks union concept #8 `elastic_potential_energy_spring`, which cannot be authored honestly
+  without a real force law.
+- `NLB_SPRING_CHOREOGRAPHY_SPEC.md` MUST be amended to record this when the engine change lands on
+  master (Rule 40: the platform doc travels with the platform change, not with chapter work).
+- The existing scripted push-off states must keep working — the surgeon's build is additive and must
+  re-verify `newton_third_law` (which owns the push-off apparatus) as part of its regression sample.
 
 ## Notes the next resume must know
 
