@@ -12,12 +12,12 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: 0c — SEAM K DONE + verified; SEAM L (energy panel + derived bars) dispatched 2026-08-01
+next: 0c — SEAM K + SEAM L DONE and verified; SEAM M (teaching instruments) dispatched 2026-08-01
 done: (none yet)
 parked: (none)
 in_flight: conservation_of_mechanical_energy  stage=0c-building  checkpointA=CLOSED
-engine_commits: 9f479f6 SEAM K — genuine spring physics on newtons_laws_body (pushed to the branch;
-  NOT yet landed on master — see "Rule 40 landing decision" below)
+engine_commits: 9f479f6 SEAM K — genuine spring physics · dd2b869 SEAM L — energy display layer
+  (both on the branch; NOT yet landed on master — see "Rule 40 landing decision" below)
 desk_synced: origin/master f69dc28 merged into the desk 2026-08-01 (merge bb6a89c, pushed).
   Zero file overlap — the desk's 3 commits were docs-only. Baseline re-verified GREEN after the
   merge: check:renderer-syntax OK · tsc 0 errors. The merge pulled +1063 lines into
@@ -109,6 +109,111 @@ Trust the REPORT's number, not the comment, if founder-proxy asks.
   enforce (zero occurrences).
 - **E. Do not author a spring state at `slow_factor: 1` outside the sandbox** — it fails the ripple
   bar even corrected. An authoring constraint json-author must honour.
+
+## SEAM L RESULT 2026-08-01 — DONE, verified, commit `dd2b869`
+
++569/−11 renderer, +45 `deriveStateMeta.ts`. Contamination grep vs sibling prefixes = 0. Rule 40a
+`-S` check clean on all 11 invented symbols. Verify chain green: renderer-syntax OK · tsc 0 ·
+validate:concepts 146/146 · 0 backticks in the scenario region (Rule 14).
+
+**`energy_layer` config contract (authoritative).** Per-state under `newtons_laws_body`; **presence
+of the block is the gate** — absent, not one pixel changes.
+`bars` (REQUIRED, **CLOSED enum exactly** `'K'|'U_grav'|'U_spring'|'E_total'|'E_dissipated'`; the
+authored ARRAY ORDER IS DISCARDED — bars always render in the fixed panel order so a bar never
+changes screen position between states, Rule 32d) · `bar_max_J` (REQUIRED, >0, shared linear scale;
+author ABOVE the state's real peak — overflow clamps and warns) · `body_ids` (optional, 1–2;
+**omitted = ONE group showing the whole rig's aggregate**, which is what every single-body state
+wants; with it, per-body from `b.K_J`/`b.U_grav_J`, `U_spring` attributed to the spring's free body
+alone) · `h_ref_m` (optional, default 0, metres above surface origin — the SAME height SEAM M draws
+the dashed `h = 0` line at, so number and line cannot disagree; author at/below the body's lowest
+point, the stack is unsigned) · `precision` (0|1|2, default 1, carries a `−0.000` clamp).
+The skeleton's singular `body_id` was dropped in favour of `body_ids` — one key, no second code path.
+New on `spring`: `sandbox_slow_factor` (≥1, **default 1 = spec 8d verbatim**).
+Rendered symbols are engine-fixed Unicode: `K`, `U`, `Uₛ`, `E`, `Eₗₒₛₜ` (there is no Unicode
+subscript "d", which is why `E_dissipated` is not `E_d`).
+
+**Glow ids** (a glow id names a QUANTITY, not a body — with two compare groups one focal lights the
+same bar in both, which is what a mass-independence beat wants): `energy_panel` · `energy_bar_K` ·
+`energy_bar_U_grav` · `energy_bar_U_spring` · `energy_bar_E_dissipated` · `energy_col_E` ·
+`energy_seg_K` · `energy_seg_U_grav` · `energy_seg_U_spring`. Verified live: mesh focal leaves every
+panel element at 1.0 — finding F14 honoured.
+
+### The sandbox ripple was RE-DIAGNOSED — and the new diagnosis is the right one
+
+SEAM K's 0.457 J at `slow_factor: 1` is **NOT** shadow-Hamiltonian ripple. The shipped kick-drift
+step's modified Hamiltonian is exactly conserved for the linear oscillator, which is why the
+correction reaches 0.005 J at slow 6. The residual is a **contact-ENTRY quantization step**: with no
+slow window the block crosses the coil face mid-frame and lands up to `v·h` inside it with zero force
+having acted, acquiring `½k(v·h)²` that no work paid for. **Dispatching session re-derived it
+independently: ½·370·(3/60)² = 0.4625 J vs 0.457 measured** — and it coheres exactly with SEAM K's
+own scar row 2, because that one-step lookahead only helps by SHRINKING dt, so at `slow_factor: 1`
+there is no shrink and the full burial occurs. It is a one-time STEP at each contact, not a shimmer,
+which makes it worse for the teaching claim, not better: the column top jumps and holds.
+
+Resolution (two parts; **the second is load-bearing**): (1) `sandbox_slow_factor`, **default 1 so
+founder-approved 8d is not silently overridden** — error falls as dt², so 4 divides it by 16 →
+≈0.029 J, inside the bar; 8d's INTENT survives because the window is contact-gated (shut for the
+whole free slide) and any trusted drag/slider cancels it, so a teacher never feels lag on a control.
+**json-author MUST author `spring.sandbox_slow_factor: 4` on S8.** (2) A **drift guard**: a state
+that shows `E_total`, shows no `E_dissipated`, and has no friction and no applied force is a state
+whose whole authored claim is "this total does not change" — if the displayed total then moves >0.05 J
+from its entry baseline, `[PM_NLB_ENERGY_DRIFT]` fires once and THE EYE's console audit fails the
+concept. The guard is deliberately blind to the CAUSE and checks only the CLAIM, so it also catches
+causes nobody has thought of. Rejected: display-side smoothing (hides a real artifact, and its
+cross-frame state would break rewind determinism + `SET_TIME_FREEZE` byte-identity — the exact scar
+class SEAM K was built to avoid), coarser precision alone (2.2 px of step survives rounding), and a
+higher-order correction (the error is at the switching boundary, not the interior — no shadow term
+captures a discontinuous force turning on). **Flagged for founder-proxy: 8d's real-time default is
+UNCHANGED; a state may now opt out, and one that should have and didn't fails loudly.**
+
+### Open item B DISCHARGED — `deriveStateMeta.ts` sites (i) and (ii)
+
+(i) reveal floor: an energy state's payoff is the bars, and a state authoring no
+`phases[]`/`param_ramp`/`push_off` with an unlisted `mode` fell to `DEFAULT_REVEAL_MS = 1500` — the
+`field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms…` scar exactly. `energy_layer`
+now raises `NLB_ENERGY_SETTLE_MS = 3000`. It is a FLOOR (`Math.max` of candidates), so SEAM M's
+better-informed candidate still wins. (ii) `loop_reset_ms` states kept `'reveal_hold'` — a considered
+call: `reveal_hold` RELAXES pixelGate (never asserts stillness, so a perpetual loop cannot false-fail),
+whereas strict `undefined` ASSERTS motion, and a spring state legitimately passes through v=0 at
+turnaround where a dense pair reads as stuck. Relaxing is safe both ways here; asserting is not.
+**(iii) the frozen-pin instant is still OWED to SEAM M.**
+
+### A defect only the pixels caught (worth remembering)
+
+The panel first rendered ON TOP of the slow-motion badge. The measure-and-reflow ladder ran once at
+state apply — when the badge is blanked on entry — so it measured a HIDDEN badge and never moved when
+the badge opened at contact. Fixed: re-measure every frame, churn-guarded, rounded to whole pixels so
+sub-pixel layout cannot shift a frozen baseline. **An overlay whose position depends on a sibling that
+can appear MID-STATE must re-measure per frame; entry-time fit is only valid against siblings whose
+visibility is decided by the STATE, not by the PHYSICS.** Filed as a directive scar row in
+`scar_candidates_seam_l.sql` (SQL text, NOT applied). A code read could not have seen this.
+
+### Regression gap CLOSED by the dispatching session
+
+SEAM L honestly reported `connected_bodies` 0.23–1.08% and `friction_force` 0.15–0.27% H2 with **no
+0.00% predecessor to compare against** (neither was in SEAM K's sample), and explicitly declined to
+claim they were vintage. Closed it directly: reverted both files to `9f479f6` (SEAM K), re-seeded, and
+re-ran THE EYE on `connected_bodies` → **0.23 / 0.23 / 0.23 / 0.23 / 0.25 / 0.25 / 0.27 / 0.27 / 0.26
+/ 0.26 / 0.72 / 0.73 / 1.08 / 1.08%, 44/44 pass** — the IDENTICAL range. The diffs are pre-existing
+baseline vintage; **SEAM L moved zero pixels on a non-energy concept.** Files restored to `dd2b869`,
+renderer-syntax re-verified. `newton_third_law` (the only sampled concept exercising the spring path)
+was 0.00% across 10 baselines under SEAM L.
+
+### SEAM L carry-forward
+
+- **`E_dissipated`'s `+ W_applied` term (note 3 scope clause) is NOT built** — it needs SEAM M's work
+  accumulators. The bar and its reserved slot exist and the state-function form is correct for the
+  no-external-work case. **Until SEAM M lands, a state with an applied force must not show this bar**
+  — it would read the drive as dissipation. This concept never shows it.
+- **`E_t0` capture:** `if (eng.E_t0 == null)` means 0 is not null, so a state whose first published
+  frame has zero energy pins `E_t0 = 0` permanently. Correct for a genuine zero-energy start, but a
+  state authored with `v₀ > 0` captures its baseline on the first TICK, not on the seeded pose.
+  json-author should not be surprised.
+- Interpretive call flagged for founder-proxy: note 13 says glow rides "the existing
+  `applyGlowEmphasis` path", but that is a Three.js mesh traversal and structurally cannot reach a DOM
+  overlay, while note 1/F12 mandates a left-edge measured DOM panel — the two cannot both be literal.
+  Kept the DOM panel; gave the energy ids identical semantics via `nlbEnergyApplyGlow` at the same
+  `GLOW_DIM_OPACITY = 0.4`, brightness only, one focal.
 
 ### Rule 40 landing decision (dispatching session, 2026-08-01)
 
