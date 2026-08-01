@@ -1,6 +1,29 @@
 # lom-f loop state — Laws of Motion, momentum tray
 
-updated: 2026-07-31 (**PHASE 1 — B2/B3 FIXED (`4ecae93`), step mode IN FLIGHT.** Founder ruled on
+updated: 2026-08-01 (**PHASE 1 CLOSED for this session — `impulse` built, audited, repaired through TWO
+         founder video reviews, and driven by the founder. 11 commits. Runaway guard raised 2 → 8 by the
+         founder across four separate rulings, all spent. 17 rows in `engine_bug_queue`. THE EYE 35/35,
+         harness 95/95, validator 147 PASS / 0 FAIL. NOT sealed, NOT approved — no `visual:approve`, no
+         TTS, no catalog, no deploy. NEXT: `conservation_of_momentum` in a FRESH session, founder's call.
+         Full narrative in PROGRESS.md's top entry.**
+
+         Engine commits, in order: `4ecae93` mbSetParam state-guarding (+ mass branch) · `bfabb6c`
+         param_ramp step mode + Gate 8n · `28ec871` cherry-picked lom-g EYE capture fix (a stalled pin is
+         now FATAL) · `828c715` MB_TR_H → MB_TRACE_H · `311b5ea` contact element/label/seize-lease ·
+         `8fc6be4` departure-based re-arm · `08142ec` contact element DELETED + slow_window.from_cycle.
+         Content: `c8f980a` B1+R4 · `39a89cf` B4+B5 · `3d82ed7` wall labels · `11db1a1` STATE_5 camera ·
+         `b6c4b24` focals + from_cycle · `f0106cf` natural_length 0 · `2e77895` ball labels.
+
+         STILL OPEN for the founder: STATE_3's frozen review frame lands after a real-speed release (live
+         playback is CORRECT — only the captured still is wrong; the reveal-pin cushion is tied to the old
+         always-slowed behaviour) · the STATE_5 HUD shows two rows both headed "ball" (R1 reopened by
+         founder ruling; fixing it needs the readout header sourced from the lane, i.e. a renderer change,
+         not authoring) · the padded wall's peak interpenetration is 38% of a ball diameter, which may read
+         as the soft wall yielding or as clipping · the guided ramp states 4/6/7 do not author
+         `trusted_drag_seizes`, so a teacher's drag there is overwritten by the scripted sweep next frame
+         (pre-existing, different bug_class, deliberately not widened into).)
+
+previously: 2026-07-31 (**PHASE 1 — B2/B3 FIXED (`4ecae93`), step mode IN FLIGHT.** Founder ruled on
          both open questions and RAISED THE RUNAWAY GUARD 3 → 4 for one more engine commit. B2+B3
          landed as ONE bug_class in one dispatch; the surgeon then surfaced a THIRD defect
          (`param_ramp` sweeps through free flight) which is now the in-flight dispatch. B1 + R4 are
