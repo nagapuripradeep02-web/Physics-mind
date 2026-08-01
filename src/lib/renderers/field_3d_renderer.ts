@@ -43898,7 +43898,38 @@ export const FIELD_3D_RENDERER_CODE = `
     var FR_W_PIVOT_Y = 1.15;
     var FR_W_LABEL_H = 0.32;         // whirl arrow labels sit further from the lens
     var FR_W_PLANE_R_FACTOR = 1.30;  // the frictionless top, sized from L
-    var FR_W_PLANE_R_CUT = 2.80;     // ... wider when the state cuts the string
+    // ── POST-CUT FLIGHT ENVELOPE (force_rig_whirl_post_cut_flight_envelope_too_
+    //   short_to_watch, founder-directed 2026-08-01). The cut-the-string beat IS
+    //   this concept, and it used to last 1.4 s: the bob left the plane when
+    //   sqrt(L² + (v t)²) = 2.8 L, and with v = ω L the L cancels, so
+    //   flight = sqrt(2.8² − 1)/ω = 2.615/ω — a number authoring cannot raise
+    //   without dropping ω, which drops T = m ω² L under the arrow's legibility
+    //   floor. Three engine changes buy the time, none of them physics:
+    //     1. the surface is a SHEET (14 L) with a radial alpha fade, so it has no
+    //        rim for the bob to slide off — the Phase-0 scar (a bob crossing a
+    //        visible edge reads as flying, the exact misreading the state kills);
+    //     2. the bob's START azimuth is chosen so the cut throws it along world
+    //        +x (frwReleasePhi) — the widest screen axis, at CONSTANT depth, so
+    //        nothing shrinks with perspective and nothing heads for the horizon;
+    //     3. the rig's own framing transform (FR_VIEW_SCALE / fr_root, already a
+    //        pure display zoom) eases back and follows HALF the displacement, so
+    //        the departing bob and the abandoned circle both stay in frame.
+    //   The integrator is untouched: after the cut frwAccel still returns the ZERO
+    //   vector and the straight constant-speed line is still its OUTPUT.
+    var FR_W_PLANE_R_CUT = 16.0;     // ... a sheet, not a top, when the state cuts
+    var FR_W_PLANE_FADE0 = 0.72;     // alpha fade starts here (fraction of the radius)
+    var FR_W_FLIGHT_PAN = 0.50;      // baseline share of the displacement the framing follows
+    var FR_W_FLIGHT_EASE_S = 0.55;   // smoothstep-in, so the follow starts at ZERO rate
+    var FR_W_FLIGHT_ZOOM_MAX = 2.40; // ease-back ceiling (bob still ~10 px across at the cap)
+    var FR_W_FLIGHT_MARGIN = 0.86;   // fraction of the half-frame the fit may fill
+    var FR_W_FLIGHT_BOB_PAD = 1.30;  // world units reserved past the bob (v arrow + label)
+    // The abandoned circle is a RING, not a point, and the fit below measures screen
+    // extent linearly about the rig origin — which under-reads it, because the ring's
+    // near arc is closer to the camera than the origin and so projects WIDER and
+    // further off-axis than its radius. Measured on the first frozen frame of the new
+    // envelope: the linear fit allowed 0.90 of the half-frame and the ring reached
+    // 0.99, clipping on the left edge. 1.40 is that measured ratio.
+    var FR_W_FLIGHT_RING_MAGN = 1.40;
     // Arrows sit slightly toward the camera, the 3-D analogue of FR_ARROW_Z: the
     // tension acts ALONG the string, so at zero offset the arrow is drawn inside
     // the string cylinder and the taught object of the concept is invisible. A
@@ -43980,6 +44011,23 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.phi_last = phi;
         eng.phi_unwrapped = phi;
     }
+    // The START azimuth for a state that CUTS the string. Nothing physical depends
+    // on where the bob begins its circle — the whole problem is symmetric about the
+    // vertical axis — so the entry phase is a FRAMING choice, exactly like the
+    // camera azimuth, and it is spent buying the departure the widest screen it can
+    // have. v(φ) = ω r (−sin φ, 0, cos φ), so φ_cut = −π/2 sends the bob along world
+    // +x: screen-right, at CONSTANT depth from the camera. That is the difference
+    // between a flight that recedes toward the horizon (shrinking, foreshortened,
+    // heading for the far rim — the authored at_ms happened to do exactly that) and
+    // one that traverses the frame at full size. Because it is solved BACKWARDS from
+    // the authored at_ms, re-timing the cut cannot break it.
+    function frwReleasePhi(eng) {
+        if (eng.release_at == null || eng.geometry !== "flat") return 0;
+        var p = -Math.PI / 2 - eng.omega * (eng.release_at / 1000);
+        p = p % (2 * Math.PI);
+        if (p < 0) p += 2 * Math.PI;
+        return p;
+    }
     // a = a_free - (T/m)·u with T solved from the constraint. AFTER the cut the
     // string term is simply gone — that single deletion IS the misconception beat.
     function frwAccel(eng, p, v, out) {
@@ -44049,6 +44097,13 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.ghost_r = eng.r_m;
         eng.ghost_y = eng.p3.y;
         eng.T = 0;
+        // The cut pose + the departure direction, both read off the INTEGRATED
+        // state at the instant of the cut. The framing follow below is built on
+        // these and never on the authored numbers, so it tracks the line the bob
+        // is actually on (and stays correct if a slider re-shaped the circle).
+        eng.cut_p = { x: eng.p3.x, y: eng.p3.y, z: eng.p3.z };
+        var sp = Math.sqrt(eng.v3.x * eng.v3.x + eng.v3.z * eng.v3.z);
+        eng.cut_dir = (sp > 1e-9) ? { x: eng.v3.x / sp, z: eng.v3.z / sp } : { x: 1, z: 0 };
         frwPushTrail(eng);
     }
     // Live measured quantities — all read off the INTEGRATED pose, so the HUD
@@ -44201,6 +44256,102 @@ export const FIELD_3D_RENDERER_CODE = `
         frwArrow("fr_w_velocity", O, eng.v3.x, eng.v3.y, eng.v3.z, vl, "v", showV);
         eng.wArrows = rec;
     }
+    // The radial alpha ramp that turns the disc into a SHEET. Built once, from a
+    // canvas, and hung on the plane material only while a state cuts the string:
+    // CircleGeometry's uv is the inscribed unit circle, so the fade is a fixed
+    // FRACTION of the radius and stays right at every L. Without it a 14 L top
+    // still ends in a rim, and a rim is the one thing this state cannot show —
+    // a bob crossing an edge reads as flying off a table.
+    var frwFadeTex = null;
+    function frwPlaneFade() {
+        if (frwFadeTex) return frwFadeTex;
+        var cv = document.createElement("canvas");
+        cv.width = 256; cv.height = 256;
+        var cx = cv.getContext("2d");
+        var g = cx.createRadialGradient(128, 128, 128 * FR_W_PLANE_FADE0, 128, 128, 128);
+        g.addColorStop(0, "#ffffff");
+        g.addColorStop(1, "#000000");
+        cx.fillStyle = g;
+        cx.fillRect(0, 0, 256, 256);
+        frwFadeTex = new THREE.CanvasTexture(cv);
+        return frwFadeTex;
+    }
+    // ── The post-cut framing follow ────────────────────────────────────────
+    //   A camera move, expressed on the rig's OWN framing node (FR_VIEW_SCALE
+    //   lives there and is already documented as a pure display zoom), which is
+    //   why it needs no camera code at all: it cannot fight lerpSpherical, it
+    //   cannot strand the next state at a foreign radius, and a teacher's orbit
+    //   and wheel keep working — the fit reads the live camera and adapts.
+    //
+    //   TWO moves, both pure functions of the distance ALREADY travelled (so a
+    //   frozen frame and a time-pin rewind reproduce the framing exactly, Rule 36):
+    //     • FOLLOW — the rig slides back along half the bob's displacement, so the
+    //       departing bob and the abandoned circle drift apart on either side of
+    //       centre instead of one of them leaving the frame. Ramped in over
+    //       FR_W_FLIGHT_EASE_S so the follow starts at ZERO rate: no jerk at the cut.
+    //     • EASE-BACK — the display scale shrinks only as much as the fit demands,
+    //       never below FR_VIEW_SCALE (it never zooms IN) and never past the
+    //       FR_W_FLIGHT_ZOOM_MAX cap. It is FRAMING, not emphasis: it is applied to
+    //       the whole rig, never to one object, so Rule 29 is untouched.
+    //   The bob still crosses the frame — pan 0.5 leaves half the displacement as
+    //   real on-screen travel — which is what keeps "constant speed" readable
+    //   rather than collapsing into the dolly-zoom trap where a fully-tracked
+    //   object hangs motionless while the world shrinks around it.
+    function frwFrameFollow(eng) {
+        var rootObj = frFindById("fr_root");
+        if (!rootObj) return;
+        var S = FR_VIEW_SCALE, cx = 0, cz = 0;
+        if (eng.released && eng.geometry === "flat" && eng.cut_p && eng.cut_dir) {
+            var dxm = eng.p3.x - eng.cut_p.x, dzm = eng.p3.z - eng.cut_p.z;
+            var s = frwW(Math.sqrt(dxm * dxm + dzm * dzm));          // travelled, world units
+            var tSince = (eng.t_ms - (eng.release_at || 0)) / 1000;
+            var e = tSince / FR_W_FLIGHT_EASE_S;
+            if (e < 0) e = 0; if (e > 1) e = 1;
+            // The share is SOLVED, not fixed: the two things that must stay framed
+            // are unequal (a ring of radius r on one side, a bob plus its v arrow on
+            // the other), so the centre that needs the least frame sits off the
+            // midpoint by half their difference. Clamped so the early flight — where
+            // the difference dwarfs the displacement — still pans forward.
+            var rEff = frwW(eng.ghost_r || 0) * FR_W_FLIGHT_RING_MAGN;
+            var share = FR_W_FLIGHT_PAN;
+            if (s > 1e-6) share = FR_W_FLIGHT_PAN - (rEff - FR_W_FLIGHT_BOB_PAD) / (2 * s);
+            if (share < 0.30) share = 0.30;
+            if (share > 0.55) share = 0.55;
+            var pan = share * (e * e * (3 - 2 * e)) * s;             // smoothstep-in
+            cx = pan * eng.cut_dir.x; cz = pan * eng.cut_dir.z;
+            // Screen axes of the LIVE camera (lookAt is always the origin), so the
+            // fit is right whether or not a teacher has orbited.
+            var fx = -camera.position.x, fy = -camera.position.y, fz = -camera.position.z;
+            var fl = Math.sqrt(fx * fx + fy * fy + fz * fz) || 1;
+            fx /= fl; fy /= fl; fz /= fl;
+            var rx = -fz, rz = fx;                                    // r = f × up(0,1,0)
+            var rl = Math.sqrt(rx * rx + rz * rz) || 1;
+            rx /= rl; rz /= rl;
+            var ux = -rz * fy, uy = rz * fx - rx * fz, uz = rx * fy;  // u = r × f
+            var half = Math.tan(camera.fov * Math.PI / 360) * fl;     // half-height, scene units
+            var halfW = half * camera.aspect;
+            // Two things must stay inside the frame: the bob (plus the room its v
+            // arrow and label need) and the whole abandoned circle.
+            var needW = 0, needH = 0;
+            function want(px, py, pz, rad) {
+                var ax = px - cx, ay = py, az = pz - cz;
+                var w = Math.abs(ax * rx + az * rz) + rad;
+                var h = Math.abs(ax * ux + ay * uy + az * uz) + rad;
+                if (w > needW) needW = w;
+                if (h > needH) needH = h;
+            }
+            want(frwW(eng.p3.x), 0, frwW(eng.p3.z), FR_W_FLIGHT_BOB_PAD);
+            want(0, 0, 0, rEff);
+            var sW = (needW > 1e-6) ? (FR_W_FLIGHT_MARGIN * halfW / needW) : S;
+            var sH = (needH > 1e-6) ? (FR_W_FLIGHT_MARGIN * half / needH) : S;
+            S = Math.min(S, sW, sH);
+            if (S < FR_VIEW_SCALE / FR_W_FLIGHT_ZOOM_MAX) S = FR_VIEW_SCALE / FR_W_FLIGHT_ZOOM_MAX;
+            window.PM_frFlightZoom = FR_VIEW_SCALE / S;
+            window.PM_frFlightM = s / FR_W_WORLD_PER_M;
+        }
+        rootObj.scale.setScalar(S);
+        rootObj.position.set(-cx * S, 0, -cz * S);   // rig-local offset, expressed in scene units
+    }
     function frwFit(fr, eng) {
         var A = frwPt(eng, eng.anchor.x, eng.anchor.y, eng.anchor.z);
         var B = frwPt(eng, eng.p3.x, eng.p3.y, eng.p3.z);
@@ -44225,15 +44376,24 @@ export const FIELD_3D_RENDERER_CODE = `
             plane.visible = (eng.geometry === "flat");
             // Sized from THIS state's string length: a fixed-radius top built for
             // the longest authorable string swamps a 0.6 m circle and takes the
-            // frame over from the physics. A state that CUTS the string gets a
-            // wider top, because a bob that slides off the visible edge a moment
-            // after the cut reads as flying through the air — which is the exact
+            // frame over from the physics. A state that CUTS the string does not
+            // get a wider TOP — it gets a SHEET (FR_W_PLANE_R_CUT) whose rim is
+            // both outside the framed band and dissolved by the alpha ramp, so
+            // there is no edge anywhere for the bob to slide off. A bob crossing a
+            // visible edge reads as flying through the air, which is the exact
             // misreading this state exists to kill (seen in the first bring-up
-            // frame). Authoring note: the post-cut window must stay inside it, so
-            // keep ~1.4 s of flight at the authored ω.
-            var pr = frwW(eng.L) * ((eng.release_at != null) ? FR_W_PLANE_R_CUT : FR_W_PLANE_R_FACTOR);
+            // frame, and again at 1.4 s of flight before this envelope landed).
+            var isCut = (eng.release_at != null);
+            var pr = frwW(eng.L) * (isCut ? FR_W_PLANE_R_CUT : FR_W_PLANE_R_FACTOR);
             plane.scale.set(pr, pr, 1);
             plane.position.set(0, (eng.yShift || 0) - 0.02, 0);
+            // Hung/removed only on a CHANGE: assigning alphaMap recompiles the
+            // shader, so an unconditional per-frame write would rebuild the
+            // program every frame.
+            if (plane.material && (!!plane.material.alphaMap) !== isCut) {
+                plane.material.alphaMap = isCut ? frwPlaneFade() : null;
+                plane.material.needsUpdate = true;
+            }
         }
         // Guide ring: the circle actually being swept, at the bob's own height.
         var ghostOn = eng.released && !!eng.ghost_on;
@@ -44245,6 +44405,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         frwDriveArrows(fr, eng);
         frwDrawTrail(eng);
+        frwFrameFollow(eng);
     }
     function frwDrawTrail(eng) {
         var line = frFindById("fr_trail");
@@ -45056,6 +45217,7 @@ export const FIELD_3D_RENDERER_CODE = `
             theta: 0, theta_meas: 0, r_m: 0, speed: 0, a_c: 0, T: 0,
             phi: 0, phi_last: 0, phi_unwrapped: 0,
             released: false, release_at: null, trail_on: false, ghost_on: false,
+            phi0: 0, cut_p: null, cut_dir: null,
             show_radius: false, show_velocity: false,
             ghost_r: 0, ghost_y: 0, trailN: 0, micro: 0, wArrows: []
         };
@@ -45110,7 +45272,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // any physics depends on. Identical for every table state, so nothing
         // moves between states (Rule 32d home pose).
         var frRoot = frFindById("fr_root");
-        if (frRoot) frRoot.position.set(0, tableOn ? FR_VIEW_SHIFT_Y : 0, 0);
+        if (frRoot) {
+            frRoot.position.set(0, tableOn ? FR_VIEW_SHIFT_Y : 0, 0);
+            // The whirl's post-cut follow writes both of these (frwFrameFollow);
+            // restoring them HERE is what guarantees a state entered after a
+            // flight — or a table state entered after one — starts from the
+            // authored framing rather than wherever the last cut left it.
+            frRoot.scale.setScalar(FR_VIEW_SCALE);
+        }
         frEach(function (o, ud) {
             if (ud.elementType === "fr_table" || ud.elementType === "fr_rim" ||
                 ud.elementType === "fr_centre" || ud.elementType === "fr_ring") o.visible = tableOn;
@@ -45140,11 +45309,17 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.released = false;
             eng.trailN = 0;
             eng.micro = 0;
+            eng.cut_p = null; eng.cut_dir = null;
             var tl = frFindById("fr_trail");
             if (tl) tl.geometry.setDrawRange(0, 0);
             // Captured ONCE, from the authored L (see FR_W_PIVOT_Y).
             eng.yShift = frwShiftY(eng);
-            frwSeed(eng, 0);
+            // Solved from the live (clamped) ω, so a re-timed cut still departs
+            // along +x (see frwReleasePhi); 0 for every state without a release,
+            // which is exactly what those states seeded before.
+            frwClampOmega(eng);
+            eng.phi0 = frwReleasePhi(eng);
+            frwSeed(eng, eng.phi0);
             frwMeasure(eng);
             frwFit(fr, eng);
         }
@@ -45277,6 +45452,7 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.micro = 0;
             eng.T = 0;
             eng.ghost_r = 0; eng.ghost_y = 0;
+            eng.cut_p = null; eng.cut_dir = null;   // framing follow re-arms with it
             var tl = frFindById("fr_trail");
             if (tl) tl.geometry.setDrawRange(0, 0);
         }
@@ -45289,7 +45465,9 @@ export const FIELD_3D_RENDERER_CODE = `
             frFitStrings();
             frDriveArrows(fr, eng);
         } else {
-            frwSeed(eng, 0);                 // bob back ON the constraint manifold
+            frwClampOmega(eng);
+            eng.phi0 = frwReleasePhi(eng);   // re-solved: a ramp may have moved ω
+            frwSeed(eng, eng.phi0);          // bob back ON the constraint manifold
             frwMeasure(eng);
             frwFit(fr, eng);
             frwDriveArrows(fr, eng);

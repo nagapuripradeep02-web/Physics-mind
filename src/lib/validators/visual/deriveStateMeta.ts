@@ -2843,7 +2843,14 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         const frRelease = frWhirl ? asObj(frWhirl.release) : null;
         if (frRelease && typeof frRelease.at_ms === 'number' && Number.isFinite(frRelease.at_ms)) {
             frFound = true;
-            candidates.push(frRelease.at_ms + 1200);   // past the cut, into the straight departure
+            // 3000, not 1200 (2026-08-01, with force_rig_whirl_post_cut_flight_
+            // envelope_too_short_to_watch): the flight used to LAST 1.4 s, so a
+            // 1.2 s pin was already near its end. The envelope now supports ~5 s
+            // of straight-line travel, and the payoff — a long straight track that
+            // is visibly NOT the abandoned circle — only reads once the bob is
+            // well clear of it. Still a pure reveal pin: it lands mid-flight, on a
+            // beat the engine holds (constant velocity, nothing transitional).
+            candidates.push(frRelease.at_ms + 3000);   // past the cut, into the straight departure
         }
         if (!frFound) candidates.push(FR_SETTLE_MS);   // no script: still let the rig settle
     }

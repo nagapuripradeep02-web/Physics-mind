@@ -230,3 +230,32 @@ INSERT INTO engine_bug_queue (
 );
 
 -- END OF APPENDED BLOCK - nothing above was executed.
+
+
+-- =====================================================================
+-- APPENDED 2026-08-01 (second field3d_surgeon dispatch, lom-g worktree).
+-- Candidate H - the founder-directed flight-envelope change. NOT APPLIED:
+-- this file is SQL TEXT for founder batch review, per the chapter-loop
+-- no-DB-writes contract.
+-- =====================================================================
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'force_rig_whirl_post_cut_flight_envelope_too_short_to_watch',
+    'The cut-the-string PRIMARY AHA lasted 1.4 s because the flight envelope was a 2.8 L table top, and no authored number could lengthen it',
+    'MAJOR',
+    'peter_parker:field3d_surgeon',
+    'The whirl bob left the drawn plane when sqrt(L^2 + (v t)^2) = 2.8 L (FR_W_PLANE_R_CUT). With v = omega L the L cancels, so the watchable flight was sqrt(2.8^2 - 1)/omega = 2.615/omega seconds - a function of omega ALONE. Authoring could only buy time by lowering omega, but omega also sets T = m omega^2 L, so any omega low enough to give 4 s drove the tension arrow under the engine legibility floor (the open sibling scar force_rig_whirl_tension_arrow_illegible_at_floor_band_magnitude). At the authored 4.0 kg / 1.8 rad/s / 1.00 m the student got 1.4 s of the straight-line departure that is the entire reason the concept exists. Two further engine defaults made those 1.4 s worse than the number suggests: the departure direction fell out of the authored at_ms, so the bob happened to fly AWAY from the camera (shrinking, foreshortened, straight at the far rim), and the plane ended in a hard rim the bob crossed - the Phase-0 misreading (a bob past a visible edge reads as flying) the state exists to kill.',
+    'A payoff beat cannot be time-boxed by a drawn prop. When the teaching claim IS a duration (watch it travel straight), the engine owns the envelope and authoring owns only the timing: (1) the surface becomes a SHEET with a radial alpha fade so it has no rim to cross - a bob must never approach a drawn edge; (2) the entry PHASE is a framing degree of freedom, not physics - solve it backwards from the cut instant so the departure runs along the widest screen axis at CONSTANT depth (frwReleasePhi), which also makes it immune to a re-timed cut; (3) the framing follows - pan a fixed share of the displacement and ease the display scale back only as much as a live fit demands, on the scenario framing node, never on the shared camera. Never buy the time by touching the integrator: no slow motion, no easing of the bob speed, no curvature. The straight constant-speed line must stay the integrator OUTPUT (frwAccel returns the zero vector after the cut, unchanged). Report the supported envelope back to authoring as a NUMBER so narration and at_ms are timed against it.',
+    'js_eval',
+    'Drive the released state to at_ms + N and assert, at N = 4000: window.PM_frFlightZoom <= 2.0, the bob projects inside 0.90 of the half-frame, the abandoned ring projects entirely inside the frame, and the bob distance from the rig origin is below the drawn plane radius times the alpha-fade start. Assert eng.speed equals its pre-cut value to 1e-6 at every N (the flight must stay the integrator output), and that the trail pixels span no more than 2 rows over its full length (straightness).',
+    'FIXED',
+    ARRAY['uniform_circular_motion']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts', 'src/lib/validators/visual/deriveStateMeta.ts']::text[],
+    'lom-g field3d_surgeon engine dispatch 2026-08-01 (flight envelope)',
+    'incident'
+);
+
+-- END OF APPENDED BLOCK - nothing above was executed.
