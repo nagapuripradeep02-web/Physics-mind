@@ -745,7 +745,7 @@
           "work_accumulators": [
             { "force": "applied", "label": "by the pull", "body_id": "crate" }
           ],
-          "work_scale_J": 240,
+          "work_scale_J": 792,
           "glow_focal": "nlb_body_crate",
           "readouts": ["F_applied"],
           "controls_visible": ["F", "F_ang", "m"],
