@@ -3019,6 +3019,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     newton_first_law:               "field_3d",
     newton_second_law:              "field_3d",
     newton_third_law:               "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #1 — newtons_laws_body extended
+    // with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md).
+    // W = F·d·cos θ: work is the product of force, displacement, and only
+    // the along-motion component. Pure configuration, zero renderer edits
+    // (0d). Alex pipeline, 2026-08-01.
+    work_done_by_constant_force:    "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────
