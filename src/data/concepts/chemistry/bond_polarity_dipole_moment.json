@@ -403,7 +403,7 @@
         "misconception_watch": [
           {
             "belief": "If the bonds are polar, the molecule must be polar.",
-            "visual_counter": "Both carbon-oxygen arrows in CO2 are shown long and polar first — the wrong expectation's honest evidence — while the live HUD already reads zero; only afterward does the dashed resultant arrow appear, showing why.",
+            "visual_counter": "Both carbon-oxygen arrows in CO2 are shown long and polar first — the wrong expectation's honest evidence — while the live HUD holds with no value shown yet; only afterward does a 'μ = 0 D' badge appear at the centre, together with the HUD reading 0.00 D, showing why.",
             "one_line_fix": "Two polar bonds pointing in exactly opposite directions cancel completely, so the molecule ends up with no net dipole at all."
           }
         ]
@@ -555,7 +555,7 @@
         "misconception_watch": [
           {
             "belief": "Four polar bonds must add up to something — a board cannot show them cancelling, so surely they do not.",
-            "visual_counter": "Four polar C-Cl arrows are shown pointing at the four corners of a tetrahedron while the live HUD already reads zero; turning the molecule through a full rotation is what shows every side balances, confirming the resultant.",
+            "visual_counter": "Four polar C-Cl arrows are shown pointing at the four corners of a tetrahedron while the live HUD holds with no value shown yet; turning the molecule through a full rotation shows every side balances, and only then does the 'μ = 0 D' badge appear with the HUD reading 0.00 D.",
             "one_line_fix": "In three dimensions, four identical bonds pointing at the corners of a tetrahedron still cancel to zero, exactly like two opposite arrows do in a line."
           }
         ],
@@ -1042,7 +1042,7 @@
           "arrows_at_ms": 3200,
           "resultant_at_ms": 9800,
           "spin_start_ms": 10400,
-          "spin_rate": 0.15,
+          "spin_rate": 0.55,
           "show_atom_labels": true,
           "show_hud": true,
           "hud_lines": [
