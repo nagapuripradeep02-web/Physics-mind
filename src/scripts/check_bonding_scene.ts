@@ -112,7 +112,8 @@ const VARS = [
   "BS_BOND_MOMENT_D", "BS_LONE_PAIR_D", "BS_MU_FALLBACK_D_PER_CHI",
   "BS_CAMERAS", "BS_CAMERA_DEFAULT", "BS_UNIT_CAMERAS", "BS_GLOW_ELS",
   "BS_MAX_ATOM_LABELS", "BS_PM_PER_UNIT", "BS_MAX_LINKS", "BS_LINK_DASHES",
-  "BS_LINK_LOOKBACK_MS", "BS_LINK_SAMPLES", "BS_LINK_FRAMES", "BS_LINK_DEFAULTS",
+  "BS_LINK_LOOKBACK_MS", "BS_LINK_SAMPLES", "BS_LINK_FRAMES",
+  "BS_LINK_HIST_DT_MS", "BS_LINK_HIST_MAX", "BS_LINK_DEFAULTS",
   "BS_T_RAMP_MS", "BS_SUBDIG",
   // E3a (lattice placement layer)
   "BS_HUD_LINES_E3A", "BS_CELLS", "BS_LATTICE_REVEALS",
@@ -142,6 +143,7 @@ const FNS = [
   // E3a
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
+  "bscOpeningExtent",                                            // E2d
   "bscGrowShown", "bscTransferProg", "bscTransferSite"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -3565,8 +3567,9 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       /\bNF = BS_LINK_FRAMES\b/.test(updSrc) &&
       /for \(sI = 0; sI < NF; sI\+\+\) \{\s*var mms = ms - \(NF - 1 - sI\) \* dtS;/.test(updSrc) &&
       /var last = frames\[NF - 1\];/.test(updSrc) &&
-      /bscLinkLatch\(dn\[di\]\.q, ac\[aj\]\.q, samp, linkCfg, sI, S\)\) linkWin\[sI\]\+\+/.test(updSrc) &&
-      /bscLinkLatch\(dn\[di\]\.q, ac\[aj\]\.q, samp, linkCfg, S - 1, S\)\) \{/.test(updSrc) &&
+      /for \(sI = 0; sI < NF; sI\+\+\) samp\.push\(pairSamp\(frames\[sI\], uA, uB, hS, pS, aS\)\);/.test(updSrc) &&
+      /bscLinkLatch\(dn\[di\]\.q, ac\[aj\]\.q, samp, linkCfg, sI, S, pre\)\) linkWin\[sI\]\+\+/.test(updSrc) &&
+      /bscLinkLatch\(dn\[di\]\.q, ac\[aj\]\.q, samp, linkCfg, S - 1, S, pre\)\) \{/.test(updSrc) &&
       /for \(sI = 0; sI < S; sI\+\+\) if \(frames\[sI \+ S - 1\]\) linkWinN\+\+;/.test(updSrc) &&
       /linkSum \/ linkWinN/.test(updSrc),
       `${E.BS_LINK_FRAMES} frames -> ${E.BS_LINK_SAMPLES} windows`);
@@ -3661,9 +3664,344 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       E.BS_FIT_MARGIN === 1.90 && !/fit_margin/.test(SRC),
       `margin ${E.BS_FIT_MARGIN} -> dist ${fitted.toFixed(2)}, border ${((1 - worstNdc(fitted)) * 100).toFixed(0)}%`);
   }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 23. E2c LATCH HISTORY (break_pm reachable on a slow scripted ramp) ===");
+  // The FIXED scar hysteretic_state_cannot_be_latched_under_a_time_pin states the
+  // contract as "forming at the inner threshold and SURVIVING TO THE OUTER ONE".
+  // The 640 ms lookback honours it only while the form -> break traversal fits
+  // inside the window; hydrogen_bonding S3 traverses it in 3675 ms, so the link
+  // died at H...O ~ 210-223 pm under a caption naming 260. Everything below runs
+  // the SHIPPED bscLinkOk / bscLinkLatch — the gate supplies positions, never the
+  // criterion — and the pre-fix behaviour is kept as the negative control.
+  const S3BS: any = {
+    placement: "free", mode: "approach_link", separation_axis: [1, 0, 0],
+    approach_from: 5.75, separation: 8.0, approach_at_ms: 1000, approach_duration_ms: 11500,
+    links: { enabled: true }, hud_lines: ["links"],
+    units: [{ id: "hb_donor", species: "H2O", at: [0, 0, 0], orient: [190, 69] },
+            { id: "hb_acceptor", species: "H2O", at: [0, 0, 0], orient: [180, 0] }]
+  };
+  const S2BS: any = Object.assign({}, S3BS, {
+    approach_from: 12.0, separation: 5.75, approach_at_ms: 1500, approach_duration_ms: 10500
+  });
+  const pairOffs = (bs: any) => bs.units.map((u: any) => {
+    const rot = E.bscOrientRot(u.orient);
+    const oo: number[][] = [[0, 0, 0]];
+    for (const d of (E.mgFrame("H2O", null, null) as any).bonds as number[][]) {
+      const dv = rot ? rot(d) : d;
+      oo.push([dv[0] * BLn, dv[1] * BLn, dv[2] * BLn]);
+    }
+    return oo;
+  });
+  /**
+   * The SHIPPED two-unit pass, transcribed: closed-form separation ramp, the fine
+   * BS_LINK_FRAMES window, and (hist) the E2c coarse history folded once per pair
+   * into the seed. Returns the drawn link count and the H...O it is drawn at.
+   */
+  const approachPass = (bs: any, ms: number, hist: boolean) => {
+    const offs = pairOffs(bs), sites = E.bscLinkSites("H2O") as any;
+    const cfg = E.bscLinkCfg(bs), p2u = cfg.pm_per_unit;
+    const sepAt = (m: number) => E.mgRamp(m, bs.approach_at_ms, bs.approach_duration_ms,
+      bs.approach_from, bs.separation);
+    const posAt = (m: number) => {
+      const s = sepAt(m);
+      return [0, 1].map((u) => offs[u].map((o: number[]) =>
+        [(u === 0 ? -0.5 : 0.5) * s + o[0], o[1], o[2]]));
+    };
+    const fine: (number[][][] | null)[] = [];
+    for (let sI = 0; sI < NFR; sI++) {
+      const m = ms - (NFR - 1 - sI) * dtSm;
+      fine.push(m < 0 ? null : posAt(m));
+    }
+    // the shipped gate on the history: an approach ramp SLOWER than the lookback
+    const apDur = bs.approach_duration_ms, histOn = hist &&
+      bs.approach_at_ms != null && bs.approach_from != null && apDur > E.BS_LINK_LOOKBACK_MS;
+    const hFrames: number[][][][] = [];
+    if (histOn) {
+      const hSpan = ms - (NFR - 1) * dtSm;
+      if (hSpan > 0) {
+        const hN = Math.min(E.BS_LINK_HIST_MAX, Math.max(1, Math.ceil(hSpan / E.BS_LINK_HIST_DT_MS)));
+        for (let h = 0; h < hN; h++) hFrames.push(posAt(h * (hSpan / hN)));
+      }
+    }
+    const samp1 = (F: number[][][] | null, hS: number, pS: number, aS: number) => {
+      if (!F) return null;
+      const Hp = F[0][hS], Dp = F[0][pS], Ap = F[1][aS];
+      const v = [Ap[0] - Hp[0], Ap[1] - Hp[1], Ap[2] - Hp[2]];
+      const dU = Math.hypot(v[0], v[1], v[2]);
+      const w = [Dp[0] - Hp[0], Dp[1] - Hp[1], Dp[2] - Hp[2]];
+      const wL = Math.hypot(w[0], w[1], w[2]) || 1;
+      const ca = (v[0] * w[0] + v[1] * w[1] + v[2] * w[2]) / ((dU || 1) * wL);
+      return { d: dU * p2u, a: Math.acos(E.bscClamp(ca, -1, 1)) * 180 / Math.PI };
+    };
+    let links = 0, drawnD = 0;
+    for (const dn of sites.donors) for (const ac of sites.acceptors) {
+      const s = fine.map((F) => samp1(F, dn.slot, dn.partner, ac.slot));
+      const pre = hFrames.length
+        ? E.bscLinkLatch(dn.q, ac.q, hFrames.map((F) => samp1(F, dn.slot, dn.partner, ac.slot)),
+            cfg, 0, hFrames.length)
+        : false;
+      if (E.bscLinkLatch(dn.q, ac.q, s, cfg, SS - 1, SS, pre)) {
+        links++;
+        drawnD = Math.max(drawnD, (s[NFR - 1] as any).d);
+      }
+    }
+    return { links, drawnD };
+  };
+  {
+    const fixed = (m: number) => approachPass(S3BS, m, true);
+    const old = (m: number) => approachPass(S3BS, m, false);
+    // where the two thresholds actually fall on S3's shipped cue times
+    const dAt = (m: number) => approachPass(S3BS, m, true).drawnD ||
+      (E.mgRamp(m, 1000, 11500, 5.75, 8.0) - E.BS_BOND_LEN) * 48;
+    ok("THE DEFECT, measurable: without the history the link dies far inside break_pm",
+      old(5000).links === 1 && old(6000).links === 0,
+      `t=5000 links ${old(5000).links} @ ${old(5000).drawnD.toFixed(1)} pm  ->  t=6000 links ${old(6000).links}`);
+    ok("THE FIX: the link SURVIVES past 223 pm and out to the authored break_pm",
+      fixed(6000).links === 1 && fixed(8000).links === 1 && fixed(8600).links === 1,
+      `t=6000 ${fixed(6000).drawnD.toFixed(1)} pm  t=8000 ${fixed(8000).drawnD.toFixed(1)} pm  ` +
+      `t=8600 ${fixed(8600).drawnD.toFixed(1)} pm`);
+    ok("...and it BREAKS at break_pm, not before and not after (260 +- 4 pm)",
+      fixed(8600).links === 1 && fixed(8800).links === 0 &&
+      Math.abs(fixed(8600).drawnD - E.BS_LINK_DEFAULTS.break_pm) < 4,
+      `last drawn at ${fixed(8600).drawnD.toFixed(1)} pm (t=8600), gone by t=8800 ` +
+      `(${dAt(8800).toFixed(1)} pm)`);
+    ok("the link never re-forms once broken (the ramp only opens)",
+      [9200, 10000, 12000, 16000].every((m) => fixed(m).links === 0));
+    ok("forming still needs form_pm: the pair is NOT linked before it ever closed",
+      approachPass(S2BS, 1500, true).links === 0 &&
+      approachPass(S2BS, 4000, true).links === 0,
+      `S2 opens at 480 pm: t=1500 ${approachPass(S2BS, 1500, true).links} links, ` +
+      `t=4000 ${approachPass(S2BS, 4000, true).links}`);
+    ok("the INBOUND approach (S2) is unchanged by the history, sample for sample",
+      [800, 2000, 4000, 6000, 8000, 9000, 10000, 11500, 13000].every((m) =>
+        approachPass(S2BS, m, true).links === approachPass(S2BS, m, false).links),
+      "history can only ADD memory of a form event, and S2 has none until it closes");
+    // D-1: the seed is memory, and memory is exactly what the pin scar forbids
+    // LATCHING. It is closed-form, so the rewind is asserted, not argued.
+    const a = [5000, 6000, 7000, 8000, 8600].map((m) => fixed(m).links);
+    fixed(30000); fixed(1200);
+    const b = [5000, 6000, 7000, 8000, 8600].map((m) => fixed(m).links);
+    ok("REWIND: t -> 30 000 -> t reproduces the link set byte-for-byte (no latch)",
+      a.every((v, i) => v === b[i]), `[${a.join(",")}]`);
+    ok("the coarse history is bounded and evenly spaced (no unbounded replay)",
+      E.BS_LINK_HIST_DT_MS === E.BS_LINK_LOOKBACK_MS && E.BS_LINK_HIST_MAX === 32,
+      `${E.BS_LINK_HIST_MAX} x ${E.BS_LINK_HIST_DT_MS} ms = ` +
+      `${(E.BS_LINK_HIST_MAX * E.BS_LINK_HIST_DT_MS / 1000).toFixed(1)} s ceiling`);
+  }
+  {
+    // BYTE-IDENTITY: a state that authors no slow approach builds no history at
+    // all — asserted on the shipped gate expression and on the fold itself.
+    ok("no approach ramp -> no history (the shipped gate reads all three terms)",
+      /var histOn = \(bs\.approach_at_ms != null && bs\.approach_from != null &&\s*apDur > BS_LINK_LOOKBACK_MS\);/
+        .test(updSrc));
+    ok("a ramp FASTER than the lookback also builds none (the window already spans it)",
+      (() => {
+        const fast = Object.assign({}, S3BS, { approach_duration_ms: 400 });
+        return [1200, 1400, 2000, 5000].every((m) =>
+          approachPass(fast, m, true).links === approachPass(fast, m, false).links);
+      })());
+    ok("bscLinkLatch with no seed is the pre-E2c fold (every earlier call intact)",
+      (() => {
+        const q = E.bscCharges("H2O") as number[];
+        const s = [{ d: 240, a: 176 }, { d: 250, a: 171 }];
+        return E.bscLinkLatch(q[1], q[0], s, LC) === false &&
+          E.bscLinkLatch(q[1], q[0], s, LC, 0, 2, false) === false &&
+          E.bscLinkLatch(q[1], q[0], s, LC, 0, 2, true) === true;   // the seed IS the memory
+      })());
+    ok("the network states never build a history (30 units, no approach authored)",
+      (NBS as any).approach_at_ms === undefined && netPass(8200, flat(298)).raw === 51,
+      "S5/S6/S7/S8 fold exactly the 640 ms window, as measured in section 22");
+  }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 24. E2d OPENING CAMERA (the new scene is never drawn under the old one) ===");
+  {
+    const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, tn = Math.tan(FOV / 2);
+    const sub3 = (x: number[], y: number[]) => [x[0] - y[0], x[1] - y[1], x[2] - y[2]];
+    const cr3 = (x: number[], y: number[]) =>
+      [x[1] * y[2] - x[2] * y[1], x[2] * y[0] - x[0] * y[2], x[0] * y[1] - x[1] * y[0]];
+    const dt3 = (x: number[], y: number[]) => x[0] * y[0] + x[1] * y[1] + x[2] * y[2];
+    /** worst |NDC| over every DRAWN atom of a two-unit approach scene at t=0 */
+    const worstAt = (bs: any, cam: any, dist: number) => {
+      const offs = pairOffs(bs), s = bs.approach_from;
+      const atoms: { p: number[]; r: number }[] = [];
+      for (let u = 0; u < 2; u++) for (let k = 0; k < offs[u].length; k++) {
+        const o = offs[u][k];
+        atoms.push({
+          p: [(u === 0 ? -0.5 : 0.5) * s + o[0], o[1], o[2]],
+          r: (k === 0 ? E.MG_ELEMENTS.O.radius : E.MG_ELEMENTS.H.radius)
+        });
+      }
+      const a = (cam.az || 0) * Math.PI / 180, e = (cam.el || 0) * Math.PI / 180;
+      const c = [dist * Math.cos(e) * Math.cos(a), dist * Math.sin(e), dist * Math.cos(e) * Math.sin(a)];
+      const f = E.bscNorm(sub3([0, 0, 0], c)), r = E.bscNorm(cr3(f, [0, 1, 0])), up = cr3(r, f);
+      let w = 0;
+      for (const at2 of atoms) {
+        const d = sub3(at2.p, c), z = dt3(d, f);
+        if (z <= 0.01) return 9;
+        w = Math.max(w, (Math.abs(dt3(d, r)) + at2.r) / (z * tn * ASPECT));
+        w = Math.max(w, (Math.abs(dt3(d, up)) + at2.r) / (z * tn));
+      }
+      return w;
+    };
+    const S1CAM = E.BS_UNIT_CAMERAS.general;                 // what S2 opens UNDER
+    const S2CAM = E.BS_CAMERAS.approach_link;                // what S2 is solved FOR
+    ok("THE DEFECT, measurable: at S1's camera the S2 opening pose CLIPS",
+      worstAt(S2BS, S1CAM, S1CAM.dist) > 1,
+      `worst |NDC| ${worstAt(S2BS, S1CAM, S1CAM.dist).toFixed(3)} at el ${S1CAM.el} / dist ${S1CAM.dist}`);
+    ok("...and it is NOT authorable around — every usable approach_from clips too",
+      [12, 9, 8, 7, 6.6].every((v) =>
+        worstAt(Object.assign({}, S2BS, { approach_from: v }), S1CAM, S1CAM.dist) > 1),
+      [12, 9, 8, 7, 6.6].map((v) =>
+        `${v}:${worstAt(Object.assign({}, S2BS, { approach_from: v }), S1CAM, S1CAM.dist).toFixed(2)}`).join(" "));
+    ok("ACCEPTANCE: at its OWN camera no drawn atom exceeds |NDC| 1 at t=0",
+      worstAt(S2BS, S2CAM, S2CAM.dist) <= 1,
+      `approach_from 12.0 unchanged -> worst |NDC| ${worstAt(S2BS, S2CAM, S2CAM.dist).toFixed(3)}`);
+    // the TRIGGER: a measurement, not a threshold
+    const ext0 = E.bscOpeningExtent(S2BS) as number;
+    ok("bscOpeningExtent sees the OPENING pull, which units[].at cannot express",
+      Math.abs(ext0 - (12.0 * 0.5 + E.BS_BOND_LEN + E.MG_ELEMENTS.O.radius)) < 1e-9 &&
+      ext0 > (E.bscSiteExtent(S2BS, null) as number),
+      `opening ${ext0.toFixed(2)} vs settled ${(E.bscSiteExtent(S2BS, null) as number).toFixed(2)}`);
+    ok("the snap FIRES for S2 under S1's camera and would not for its own",
+      S1CAM.dist < ext0 * E.BS_FIT_MARGIN && S2CAM.dist * 1.0 < ext0 * E.BS_FIT_MARGIN,
+      `needs ${(ext0 * E.BS_FIT_MARGIN).toFixed(1)}, has ${S1CAM.dist}`);
+    ok("the glide is KEPT wherever it survives (E1c-H: it moves, it does not cut)",
+      (E.bscOpeningExtent({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) *
+        E.BS_FIT_MARGIN < E.BS_UNIT_CAMERAS.general.dist &&
+      (E.bscOpeningExtent(S3BS) as number) * E.BS_FIT_MARGIN < E.BS_CAMERAS.approach_link.dist,
+      `single unit ${((E.bscOpeningExtent({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) * E.BS_FIT_MARGIN).toFixed(2)} < 7  |  ` +
+      `S3 ${((E.bscOpeningExtent(S3BS) as number) * E.BS_FIT_MARGIN).toFixed(2)} < 11`);
+    ok("bscOpeningExtent is config-only (no clock, no live camera — pin-stable)",
+      !/\bms\b|time|Date\.now|spherical/.test(grabFn("bscOpeningExtent")));
+    ok("a scene with no separation_axis reports exactly bscSiteExtent (byte-identical)",
+      Object.is(E.bscOpeningExtent(NBS), E.bscSiteExtent(NBS, null)) &&
+      Object.is(E.bscOpeningExtent(LATTICE_BS), E.bscSiteExtent(LATTICE_BS, null)));
+    ok("the shipped apply snaps the WHOLE pose and only on the measured overflow",
+      /var ext0 = bscOpeningExtent\(bs\);/.test(appSrc) &&
+      /if \(ext0 > 0 && spherical\.radius < ext0 \* BS_FIT_MARGIN\) \{/.test(appSrc) &&
+      /spherical\.radius = targetSpherical\.radius;/.test(appSrc) &&
+      /animating = false;/.test(appSrc) && /updateCameraFromSpherical\(\);/.test(appSrc));
+  }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 25. E2e EXPLORE SANDBOX (a multi-unit network survives being a sandbox) ===");
+  {
+    ok("the explore camera opts into the auto-fit, keeping dist 7.0 as a FLOOR",
+      E.BS_CAMERAS.explore.fit === true && E.BS_CAMERAS.explore.dist === 7.0);
+    const extS8 = E.bscSiteExtent(NBS, null) as number;
+    const fitS8 = Math.max(E.BS_CAMERAS.explore.dist, extS8 * E.BS_FIT_MARGIN);
+    ok("a 30-unit sandbox is framed like the network it came from (not at dist 7)",
+      fitS8 > 28 && Math.abs(fitS8 - Math.max(E.BS_CAMERAS.network.dist, extS8 * E.BS_FIT_MARGIN)) < 1e-9,
+      `dist ${fitS8.toFixed(2)} (visible half-height at 7.0 is ${(7 * Math.tan(Math.PI / 6)).toFixed(2)} vs radius 12.84)`);
+    ok("...and every single-unit sandbox is byte-identical (the fit is a no-op there)",
+      (E.bscSiteExtent({ units: [{ species: "CCl4", at: [0, 0, 0] }] }, null) as number) *
+        E.BS_FIT_MARGIN < E.BS_CAMERAS.explore.dist,
+      `${((E.bscSiteExtent({ units: [{ species: "CCl4", at: [0, 0, 0] }] }, null) as number) * E.BS_FIT_MARGIN).toFixed(2)} < 7.0`);
+    // Defect 2 — the forced idle spin rotates intra-unit offsets, not the camera.
+    const spinPass = (ms: number, rate: number) => {
+      const ax = E.bscSpinAxis(E.BS_CAMERAS.explore) as number[];
+      const frames: (number[][][] | null)[] = [];
+      for (let sI = 0; sI < NFR; sI++) {
+        const mms = ms - (NFR - 1 - sI) * dtSm;
+        if (mms < 0) { frames.push(null); continue; }
+        const ang = rate > 0 ? rate * mms / 1000 : 0;
+        const fpts: number[][][] = [];
+        for (let u = 0; u < NU; u++) {
+          const jg = E.bscJiggle(u, mms / 1000, 298, 0.9) as number[];
+          const og = [NET[u].at[0] + jg[0], NET[u].at[1] + jg[1], NET[u].at[2] + jg[2]];
+          fpts.push(netOffs[u].map((o: number[]) => {
+            const ov = ang !== 0 ? E.bscSpinRot(o, ax, ang) : o;
+            return [og[0] + ov[0], og[1] + ov[1], og[2] + ov[2]];
+          }));
+        }
+        frames.push(fpts);
+      }
+      const last = frames[NFR - 1]!;
+      let nL = 0;
+      for (let uA = 0; uA < NU && nL < E.BS_MAX_LINKS; uA++) {
+        for (let uB = 0; uB < NU && nL < E.BS_MAX_LINKS; uB++) {
+          if (uA === uB) continue;
+          const cA = last[uA][0], cB = last[uB][0];
+          if (Math.hypot(cA[0] - cB[0], cA[1] - cB[1], cA[2] - cB[2]) > reachU) continue;
+          for (const dn of netSites.donors) for (const ac of netSites.acceptors) {
+            if (nL >= E.BS_MAX_LINKS) break;
+            const samp = frames.map((F) => {
+              if (!F) return null;
+              const Hp = F[uA][dn.slot], Dp = F[uA][dn.partner], Ap = F[uB][ac.slot];
+              const v = [Ap[0] - Hp[0], Ap[1] - Hp[1], Ap[2] - Hp[2]];
+              const dU = Math.hypot(v[0], v[1], v[2]);
+              const w = [Dp[0] - Hp[0], Dp[1] - Hp[1], Dp[2] - Hp[2]];
+              const wL = Math.hypot(w[0], w[1], w[2]) || 1;
+              const ca = (v[0] * w[0] + v[1] * w[1] + v[2] * w[2]) / ((dU || 1) * wL);
+              return { d: dU * LC.pm_per_unit, a: Math.acos(E.bscClamp(ca, -1, 1)) * 180 / Math.PI };
+            });
+            if (E.bscLinkLatch(dn.q, ac.q, samp, LC, SS - 1, SS)) nL++;
+          }
+        }
+      }
+      return 2 * nL / NU;
+    };
+    const TS = [3000, 5000, 8000, 12000];
+    const spun = TS.map((m) => spinPass(m, 0.14)), still = TS.map((m) => spinPass(m, 0));
+    const mean = (v: number[]) => v.reduce((x, y) => x + y, 0) / v.length;
+    ok("THE DEFECT, measurable: the forced turn tumbles units and kills the links",
+      mean(spun) < 0.6 * mean(still),
+      `spun ${r2(mean(spun))} vs still ${r2(mean(still))} links per molecule ` +
+      `(${(mean(still) / Math.max(1e-9, mean(spun))).toFixed(1)}x)`);
+    ok("ACCEPTANCE: the sandbox reads within +-0.2 of the network at the same T",
+      TS.every((m, i) => Math.abs(still[i] - netPass(m, flat(298)).inst) < 0.2),
+      TS.map((m, i) => `t=${m} S8 ${r2(still[i])} / S5 ${r2(netPass(m, flat(298)).inst)}`).join("  "));
+    ok("the shipped guard stands the idle turn down only when jiggle already moves",
+      /mode === "explore" && !\(spinRate > 0\) && !window\.PM_bscSpinDragged &&\s*!\(th\.jiggle_scale > 0\)\) spinRate = 0\.14;/
+        .test(updSrc),
+      "a sandbox with no jiggle and no authored spin still turns (Rule 37 intact)");
+    ok("...and deriveStateMeta still declares such a state MOVING (jiggle is the motion)",
+      /jiggle_scale/.test(META_SRC));
+  }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 26. E2f CONTROL WRITE-BACK SWEEP (every scripted quantity syncs its row) ===");
+  {
+    // The FIXED scar scripted_change_desyncs_the_dom_control_that_shares_it, swept
+    // over the WHOLE closed control enum rather than one id at a time — which is
+    // how it recurred twice. A row is either written back every frame, or it is
+    // declared here as having no scripted driver at all.
+    const DRIVEN: [string, string][] = [
+      ["molecule", "PM_bscMolDragged"], ["ligand", "PM_bscLigDragged"],
+      ["species", "PM_bscSpeciesDragged"], ["angle", "PM_bscAngleDragged"],
+      ["temperature", "PM_bscTempDragged"], ["count", "PM_bscCountDragged"],
+      ["separation", "PM_bscSepDragged"], ["spin", "PM_bscSpinDragged"],
+      ["ion_pair", "PM_bscIonPairDragged"]
+    ];
+    for (const [id, flag] of DRIVEN) {
+      ok(`the ${id} row tracks its scripted value until a trusted drag seizes it`,
+        new RegExp(`bscHasControl\\(ctrls, "${id}"\\) && !window\\.${flag}`).test(updSrc));
+    }
+    const NO_DRIVER = ["shift", "field", "valence", "metal"];
+    for (const id of NO_DRIVER) {
+      ok(`the ${id} row has NO scripted driver to desync from (E3b, declared)`,
+        !new RegExp(`bs\\.${id}\\b`).test(updSrc) &&
+        !new RegExp(`bscHasControl\\(ctrls, "${id}"\\)`).test(updSrc));
+    }
+    ok("the sweep covers the whole closed control enum, with nothing unaccounted for",
+      DRIVEN.length + NO_DRIVER.length === (E.BS_CONTROL_IDS as string[]).length &&
+      DRIVEN.map((d) => d[0]).concat(NO_DRIVER).every((id) =>
+        (E.BS_CONTROL_IDS as string[]).indexOf(id) >= 0),
+      `${DRIVEN.length} driven + ${NO_DRIVER.length} declared = ${(E.BS_CONTROL_IDS as string[]).length}`);
+    // the species row specifically: it is the one the compare swap rewrites
+    ok("E2f: the species picker is written back from the LIVE (post-swap) species",
+      /bscHasControl\(ctrls, "species"\) && !window\.PM_bscSpeciesDragged\) \{[\s\S]{0,320}?bscOptionOf\(spl, molKey\)[\s\S]{0,120}?spl\.value = molKey;/
+        .test(updSrc));
+    ok("...as a DOM-only write (no dispatched input event, so drag-seize is intact)",
+      !/dispatchEvent/.test(updSrc));
+    ok("...and the frame pass rewrites molKey at the swap midpoint, which is what it mirrors",
+      /if \(swapP >= 0\.5\) \{ molKey = swapTo; mol = MG_MOLECULES\[molKey\]; \}/.test(updSrc));
+  }
 }
 
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-f + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
