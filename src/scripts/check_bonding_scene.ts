@@ -20,13 +20,19 @@
  * 2, 3 and 7 (and extends 10 with the E3a mode/hud/cell split, and 11 with the
  * lattice OCCLUSION metric). 8/13/14 belong to E3b (the lattice DYNAMICS half —
  * layer shift, electron sea, drift, melt, groups) and print as declared SKIPs
- * with their owner — never silently absent.
+ * with their owner — never silently absent. E1c adds section 15 (the two authoring
+ * capabilities bond_polarity S4/S7 could not be authored without, plus the bit-for-
+ * bit mgFrame regression half those three shipped concepts ride).
  *
  *   npm run check:bonding-scene
  */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
 
 const SRC = FIELD_3D_RENDERER_CODE;
+/** deriveStateMeta's SOURCE — the second file that treats a cue key as real. */
+const META_SRC = readFileSync(join(process.cwd(), "src/lib/validators/visual/deriveStateMeta.ts"), "utf8");
 
 /** Pull `function NAME(...) { ... }` out of the emitted renderer by brace matching. */
 function grabFn(name: string): string {
@@ -83,39 +89,53 @@ function grabRegion(fromFn: string, toFn: string): string {
 }
 
 const VARS = [
-  "MG_BOND_LEN", "MG_MAX_BONDS", "MG_MAX_LONE", "MG_AZ0", "MG_ELEMENTS",
+  "MG_BOND_LEN", "MG_MAX_BONDS", "MG_MAX_LONE", "MG_AZ0",
+  "MG_BEND_AZ", "MG_BEND_NORMAL",        // E1c (order: NORMAL reads AZ)
+  "MG_ELEMENTS",
   "MG_MOLECULES", "MG_EXPLORE_MOLECULES",
   "BS_BOND_LEN", "BS_MAX_UNITS", "BS_MAX_ATOMS", "BS_MAX_DELTA_LABELS", "BS_T0_K",
   // NOTE: order is EXECUTION order inside the extracted body, and BS_MODES_IMPL
   // concatenates the split lists — so every split list must be declared BEFORE
   // it. (E3a found this the hard way: BS_MODES_E3A listed last made
   // BS_MODES_IMPL concat an `undefined` and report 11 modes instead of 13.)
-  "BS_ARROW_D_PER_UNIT", "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
+  "BS_ARROW_D_PER_UNIT", "BS_ANGLE_RAMP_MS",
+  "BS_ARROW_HEAD_LEN", "BS_RES_HEAD_LEN", "BS_HEAD_MIN_THICK",   // E1c-A
+  "BS_RES_LABEL_OFF",                                            // E1c-D
+  "BSC_ATOM_LABEL_OFF", "BSC_PAIR_GAP", "BSC_ZERO_LABEL_OFF",     // E1c-I
+  "BSC_LABEL_RINGS", "BSC_CLEAR_CAP", "BSC_SAFE_X", "BSC_SAFE_Y",
+  "BS_LONE_LOBE_W", "BS_LONE_LOBE_LEN",
+  "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
   "BS_CONTROL_IDS", "BS_HUD_LINES", "BS_HUD_LINES_E1", "BS_HUD_LINES_E2",
   "BS_PLACEMENTS",
   "BS_ELECTRON_SHOW", "BS_RADIUS_PM", "BS_ION_PARENT", "BS_CHI", "BS_VALENCE",
   "BS_BOND_MOMENT_D", "BS_LONE_PAIR_D", "BS_MU_FALLBACK_D_PER_CHI",
-  "BS_CAMERAS", "BS_CAMERA_DEFAULT", "BS_GLOW_ELS",
+  "BS_CAMERAS", "BS_CAMERA_DEFAULT", "BS_UNIT_CAMERAS", "BS_GLOW_ELS",
   "BS_MAX_ATOM_LABELS", "BS_PM_PER_UNIT", "BS_MAX_LINKS", "BS_LINK_DASHES",
   "BS_LINK_LOOKBACK_MS", "BS_LINK_SAMPLES", "BS_LINK_DEFAULTS", "BS_SUBDIG",
   // E3a (lattice placement layer)
   "BS_HUD_LINES_E3A", "BS_CELLS", "BS_LATTICE_REVEALS",
   "BS_MAX_SITES", "BS_MAX_SITE_LABELS", "BS_MAX_NEIGHBOURS", "BS_HCP_C_OVER_A",
-  "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_COORD_RADIUS_SCALE",
+  "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_SWAP_MS", "BS_SWAP_TROUGH",
+  "BS_COORD_RADIUS_SCALE",
   "BS_FIT_MARGIN", "BS_ION_PAIRS",
   "BS_SUPDIG", "BS_COORD_CACHE"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
-const EXPR_VARS = ["BS_ION_OF"];
+const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
+// (BSC_LABEL_RINGS / BSC_CLEAR_CAP are plain literals — see VARS)
 const FNS = [
   "mgSmooth01", "mgClamp", "mgRamp", "mgNorm", "mgDot", "mgRotY", "mgAngleDeg",
   "mgIdealDirs", "mgDomainKinds", "mgSqueeze", "mgFrame",
-  "bscClamp", "bscNorm", "bscMag", "bscLigands", "bscElement", "bscChi",
+  "bscClamp", "bscNorm", "bscMag", "bscLigands", "bscElement", "bscChi", "bscMixHex",
   "bscIonicFraction", "bscCharges", "bscBondMoment", "bscDipole", "bscOrientRot",
-  "bscJiggle", "bscControlList", "bscHasControl", "bscFmtD",
+  "bscJiggle", "bscControlList", "bscHasControl", "bscOptionOf", "bscSelCur", "bscSelValue", "bscFmtD",
   "bscLinkCfg", "bscLinkOk", "bscLinkLatch", "bscLinkSites", "bscUnitSlot",
   "bscSub", "bscTrendFit",
+  // E1c-A
+  "bscArrowParts", "bscUnitShapeKey", "bscSolvedShapeKey", "bscSolvedCamera",
+  // E1c-I: the SHIPPED separation math (pure 2D — the camera half is written here)
+  "bscBoxPt", "bscBoxBox", "bscBoxSeg",
   // E3a
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
@@ -825,6 +845,96 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   const leaked = E.BS_MODES_DEFERRED.filter((m: string) => upd.includes('"' + m + '"'));
   ok("no DEFERRED mode is half-implemented", leaked.length === 0, leaked.join(" "));
 
+  // ── E1c-C: CUE-KEY COVERAGE. The same test as "every implemented mode is
+  //   read", extended from mode strings to CUE KEYS — and it is the check that
+  //   would have caught bonding_scene_reveal_cues_inert on day one.
+  //   deriveStateMeta registers a set of *_ms keys as frozen-pin candidates for
+  //   bonding_scene; a key it registers that the renderer's FRAME PATH never
+  //   reads is a cue that gates nothing while a second file treats it as real —
+  //   the sigma-pi decorative-string scar moved one layer out. It looked wired
+  //   end-to-end and survived four dispatches. Every registered key must
+  //   therefore be READ here, or be DECLARED deferred with an owner (never
+  //   silently absent — same discipline as BS_MODES_DEFERRED).
+  {
+    // the exact block deriveStateMeta uses to push bonding_scene pin candidates
+    const anchor = "const bscState = asObj(state.bonding_scene);";
+    const a0 = META_SRC.indexOf(anchor);
+    const b0 = META_SRC.indexOf("{", META_SRC.indexOf("if (bscState)", a0));
+    let d = 0, end = -1;
+    for (let j = b0; j < META_SRC.length && a0 >= 0; j++) {
+      if (META_SRC[j] === "{") d++;
+      else if (META_SRC[j] === "}") { d--; if (d === 0) { end = j + 1; break; } }
+    }
+    ok("deriveStateMeta's bonding_scene pin block is locatable", a0 >= 0 && end > a0);
+    const block = META_SRC.slice(a0, end);
+    // receiver -> the authored JSON path prefix it stands for
+    const RECV: Record<string, string> = {
+      bscState: "", bscTr: "transfer.", bscSh: "shift.", bscLat: "lattice."
+    };
+    const registered = new Map<string, string>();   // authored path -> leaf key
+    for (const m of block.matchAll(/\b(\w+)\.([A-Za-z_][A-Za-z0-9_]*_ms)\b/g)) {
+      const pre = RECV[m[1]];
+      if (pre === undefined) continue;
+      registered.set(pre + m[2], m[2]);
+    }
+    // nothing in the block may be reached through a receiver this gate does not
+    // know about, or a whole family of cues would be invisible to the sweep.
+    const allLeaves = new Set([...block.matchAll(/\.([A-Za-z_][A-Za-z0-9_]*_ms)\b/g)].map((m) => m[1]));
+    const leafSeen = new Set([...registered.values()]);
+    const missedLeaf = [...allLeaves].filter((k) => !leafSeen.has(k));
+    ok("the cue sweep sees every *_ms key in the pin block (no unknown receiver)",
+      missedLeaf.length === 0, missedLeaf.join(" "));
+    ok("the pin block registers a non-trivial cue set", registered.size >= 12, `${registered.size} keys`);
+
+    // the FRAME PATH: the bsc* helpers + apply + the frame updater. NOT
+    // buildBondingScene — a key referenced only at build time still gates nothing.
+    const framePath = grabRegion("bscClamp", "buildBondingScene") +
+      grabFn("applyBondingSceneState") + grabFn("updateBondingSceneFrame");
+    const isRead = (authored: string, leaf: string) => {
+      const dot = authored.indexOf(".");
+      if (dot < 0) return new RegExp("\\." + leaf + "\\b").test(framePath);
+      // a NESTED cue (transfer.at_ms) carries a generic leaf, so both halves
+      // must hold: the sub-object is consumed AND its leaf is read somewhere.
+      const sub = authored.slice(0, dot);
+      return new RegExp("bs\\." + sub + "\\b").test(framePath) &&
+        new RegExp("\\." + leaf + "\\b").test(framePath);
+    };
+    // Declared-deferred cues: registered, genuinely inert, NAMED with an owner.
+    // Reported by this dispatch (E1c-C scope is the three dipole cues only);
+    // implementing one means DELETING its entry, which the anti-rot half forces.
+    // E1c-A DECIDED the two 'assemble' entries the way E1c-C reported them: mode
+    // 'assemble' has no scripted ramp and no concept authors the key, so the
+    // REGISTRATION was deleted from deriveStateMeta rather than a ramp invented to
+    // justify it. They are therefore no longer registered and no longer deferred —
+    // the sweep below proves that by finding them in neither list.
+    const CUE_DEFERRED: Record<string, string> = {
+      "shift.at_ms": "E3b (the lattice DYNAMICS half: layer_shift)",
+      "shift.duration_ms": "E3b (the lattice DYNAMICS half: layer_shift)"
+    };
+    ok("the unowned 'assemble' pin candidates are GONE from deriveStateMeta (E1c-A)",
+      !registered.has("assemble_at_ms") && !registered.has("assemble_duration_ms"),
+      [...registered.keys()].join(" "));
+    const inert: string[] = [], live: string[] = [];
+    for (const [authored, leaf] of registered) (isRead(authored, leaf) ? live : inert).push(authored);
+    const undeclared = inert.filter((k) => CUE_DEFERRED[k] === undefined);
+    ok("EVERY registered cue key is READ by the frame path (or declared deferred)",
+      undeclared.length === 0,
+      undeclared.length ? `INERT + UNDECLARED: ${undeclared.join(" ")}` : `${live.length} live`);
+    // anti-rot: a declared-deferred key that HAS been implemented must leave the list
+    const stale = Object.keys(CUE_DEFERRED).filter((k) => live.indexOf(k) >= 0);
+    ok("no declared-deferred cue is actually implemented (the list cannot rot)",
+      stale.length === 0, stale.join(" "));
+    // the three this dispatch makes real, asserted by name so a revert is loud
+    ok("arrows_at_ms / resultant_at_ms / charges_at_ms each gate their own layer",
+      /bs\.arrows_at_ms/.test(framePath) && /bs\.resultant_at_ms/.test(framePath) &&
+      /bs\.charges_at_ms/.test(framePath) &&
+      /showArrows && arrowsF > 0/.test(framePath) &&
+      /dip\.show_resultant && resFade > 0/.test(framePath) &&
+      /dip\.show_charges && chargesF > 0/.test(framePath));
+    for (const k of inert) console.log(`    deferred cue    ${k.padEnd(24)}${CUE_DEFERRED[k] || "UNDECLARED"}`);
+    console.log(`    cue coverage    ${live.length}/${registered.size} registered cue keys are read by the frame path`);
+  }
+
   // Every implemented hud line is actually rendered; all are in the closed enum.
   const hudImpl = [...E.BS_HUD_LINES_E1, ...E.BS_HUD_LINES_E2, ...E.BS_HUD_LINES_E3A];
   const unreadHud = hudImpl.filter((h: string) => !upd.includes('"' + h + '"'));
@@ -1188,7 +1298,1866 @@ skip("under a field, the SOLID sample's ions do not move", "E3 (lattice layer)")
 console.log("\n=== 14. ROW R (two independent groups in one frame) ===");
 skip("heating group A leaves group B bit-for-bit unchanged", "E3 (lattice layer)");
 
+console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair · AB2 bend) ===");
+// The two states bond_polarity could not author at all against the shipped engine
+// (S4's linear -> bent water, S7's lone-pair vector) plus the inert explore angle
+// slider. Every assertion below runs the SHIPPED bodies, and the regression half
+// (item 4 touches mgFrame, which vsepr / hybridisation / sigma_pi all ride) is
+// asserted bit-for-bit rather than argued.
+{
+  // ── item 1: the scripted angle ramp is a CLOSED FORM of state-local t (D-1).
+  const bendAt = (mms: number) =>
+    E.mgRamp(mms, 4500, 3000, 180, 104.5) as number;
+  ok("angle ramp holds angle_from before angle_at_ms", bendAt(0) === 180 && bendAt(4499) === 180,
+    `t=0 -> ${bendAt(0)}  t=4499 -> ${bendAt(4499)}`);
+  ok("angle ramp reaches angle_deg at angle_at_ms + angle_ramp_ms",
+    Math.abs(bendAt(7500) - 104.5) < 1e-9 && Math.abs(bendAt(20000) - 104.5) < 1e-9,
+    `t=7500 -> ${bendAt(7500).toFixed(4)}`);
+  ok("the ramp is strictly monotonic through the bend (no overshoot, no latch)",
+    [4500, 5000, 5500, 6000, 6500, 7000, 7500].every((t, i, a) =>
+      i === 0 || (bendAt(t) < bendAt(a[i - 1]) && bendAt(t) >= 104.5 - 1e-9)));
+  {
+    // THE REWIND, sampled MID-BEND (t=6000 is inside the 4500..7500 ramp): pin
+    // 6000 -> 9000 -> 6000 and the bend angle AND the geometry it produces must be
+    // byte-identical. An accumulator cannot do this.
+    const a1 = bendAt(6000), g1 = E.mgFrame("H2O", a1, null).bonds as number[][];
+    bendAt(9000); E.mgFrame("H2O", bendAt(9000), null);
+    const a2 = bendAt(6000), g2 = E.mgFrame("H2O", a2, null).bonds as number[][];
+    ok("rewind t=6000 -> 9000 -> 6000 reproduces the MID-BEND pose byte-for-byte",
+      Object.is(a1, a2) && g1.every((v, i) => v.every((c, k) => Object.is(c, g2[i][k]))),
+      `angle=${a1}`);
+  }
+  ok("BS_ANGLE_RAMP_MS default matches deriveStateMeta's frozen-pin default",
+    E.BS_ANGLE_RAMP_MS === 1600, `${E.BS_ANGLE_RAMP_MS} ms`);
+  {
+    // and the shipped frame pass really reads the three new keys, drag-seizes the
+    // slider both ways, and seeds the widget at angle_from on state entry.
+    const upd = grabFn("updateBondingSceneFrame");
+    const app = grabFn("applyBondingSceneState");
+    ok("the frame pass reads angle_from / angle_at_ms / angle_ramp_ms",
+      /bs\.angle_from/.test(upd) && /bs\.angle_at_ms/.test(upd) && /bs\.angle_ramp_ms/.test(upd));
+    ok("a trusted drag still seizes the angle (and the widget tracks the script)",
+      /PM_bscAngleDragged\s*\)\s*\?\s*window\.PM_bscAngle\s*:\s*angleAt\(ms\)/.test(upd) &&
+      /bscHasControl\(ctrls, "angle"\) && !window\.PM_bscAngleDragged/.test(upd));
+    ok("state entry seeds the angle widget at angle_from, not at the destination",
+      /PM_bscAngle\s*=\s*\(bs\.angle_from != null && bs\.angle_at_ms != null\) \? bs\.angle_from/.test(app));
+  }
+
+  // ── item 3: the lone-pair lobe AND its vector.
+  {
+    const build = grabFn("buildBondingScene");
+    const upd = grabFn("updateBondingSceneFrame");
+    const app = grabFn("applyBondingSceneState");
+    ok("the lone-pair meshes EXIST (lobe + shaft + head + label), not just a key",
+      /bsc_lone_lobe_/.test(build) && /bsc_lone_shaft_/.test(build) &&
+      /bsc_lone_head_/.test(build) && /bsc_lone_label/.test(build));
+    ok("the lone-pair vector rides elementType bsc_arrow (closed glow enum intact)",
+      /elementType: "bsc_arrow", id: "bsc_lone_shaft_/.test(build) &&
+      sameSet(Object.keys(E.BS_GLOW_ELS), ["units", "central", "links", "arrows", "resultant",
+        "charges", "electrons", "lattice", "layer", "neighbours"]));
+    ok("the lobe rides the electrons focal", E.BS_GLOW_ELS.electrons.indexOf("bsc_lone") >= 0,
+      E.BS_GLOW_ELS.electrons.join(","));
+    ok("the frame pass gates the layer on dipole.show_lone_pair", /dip\.show_lone_pair/.test(upd));
+    ok("the lone-pair layer is hidden as a transient on state entry",
+      /bsc_lone_lobe_/.test(app) && /bsc_lone_shaft_/.test(app) && /bsc_lone_label/.test(app));
+    ok("the lobe geometry is mgFrame's own lone direction, never re-derived",
+      /D\.lone\[i\]|D\.lone && i < D\.lone\.length/.test(upd) && !/mgIdealDirs/.test(upd));
+    // the DATA gate: zero lone-pair moment draws no vector, so every fitted-
+    // convention central atom keeps its picture exactly.
+    const lone = (k: string) => (E.bscDipole(k, null) as any).lone as { dir: number[], D: number }[];
+    ok("NH3/NF3 expose exactly ONE lone-pair slot, H2O two, CO2/CCl4/BF3 none",
+      lone("NH3").length === 1 && lone("NF3").length === 1 && lone("H2O").length === 2 &&
+      lone("CO2").length === 0 && lone("CCl4").length === 0 && lone("BF3").length === 0);
+    const drawnNow = ["H2O", "H2S", "NH3", "NF3", "CO2", "CCl4", "CHCl3", "CH4", "BF3", "HCl"]
+      .filter((k) => lone(k).some((L) => Math.abs(L.D) > 1e-6));
+    ok("with the SHIPPED table, |L| > 0 for exactly the centrals E1c-A ratifies",
+      drawnNow.length > 0 && drawnNow.every((k) => E.MG_MOLECULES[k].central === "N"),
+      drawnNow.length ? `vectors drawn on: ${drawnNow.join(",")}` : "NONE — the ratified BS_LONE_PAIR_D.N has been reverted");
+    // and the exception is SINGLE: every other central stays on the fitted
+    // convention, so a table silently carrying two conventions fails loudly here.
+    const loneCentrals = Object.keys(E.BS_LONE_PAIR_D).filter((c) => Math.abs(E.BS_LONE_PAIR_D[c]) > 1e-9);
+    ok("N is the SOLE exception to the fitted convention (BS_LONE_PAIR_D)",
+      loneCentrals.length === 1 && loneCentrals[0] === "N", `non-zero at: ${loneCentrals.join(",") || "(none)"}`);
+    // and the vector points ALONG the lone pair, i.e. the same way bscDipole sums
+    // it — one instrument (D-3), so the drawn arrow can never disagree with mu.
+    ok("the drawn lone-pair vector is the SAME term bscDipole adds to the resultant",
+      /lEnt\.D/.test(upd) && /lEnt\.dir/.test(upd));
+    // FORWARD CHECK of the ratified four-vector model (E1c-A's data, asserted here
+    // so the moment it lands the totals are proven, and until then this prints the
+    // shipped fitted numbers): NH3 = 3*b*cos + L, NF3 = |3*b*cos - L|.
+    const nh3 = (E.bscDipole("NH3", null) as any), nf3 = (E.bscDipole("NF3", null) as any);
+    console.log(`    forward check   NH3 mu=${nh3.mag.toFixed(3)} D  (bond ${nh3.arrows[0].D} D, lone ${nh3.lone[0].D} D)`);
+    console.log(`    forward check   NF3 mu=${nf3.mag.toFixed(3)} D  (bond ${nf3.arrows[0].D} D, lone ${nf3.lone[0].D} D)`);
+    ok("NH3 resultant points ALONG the lone pair, NF3 AGAINST it (the S7 argument)",
+      E.mgDot(nh3.vec, nh3.lone[0].dir) > 0 && E.mgDot(nf3.vec, nf3.lone[0].dir) < 0,
+      `NH3 dot=${E.mgDot(nh3.vec, nh3.lone[0].dir).toFixed(3)}  NF3 dot=${E.mgDot(nf3.vec, nf3.lone[0].dir).toFixed(3)}`);
+  }
+
+  // ── item 4: angle_deg bends a 2-/3-bond centre with ZERO lone pairs …
+  {
+    const co2 = E.mgFrame("CO2", 104.5, null).bonds as number[][];
+    ok("CO2 authored at 104.5 deg really bends to 104.5 deg", Math.abs(ang(co2[0], co2[1]) - 104.5) < 1e-6,
+      `${ang(co2[0], co2[1]).toFixed(6)} deg`);
+    const bf3 = E.mgFrame("BF3", 109.5, null).bonds as number[][];
+    ok("BF3 authored at 109.5 deg pyramidalises to 109.5 deg on every pair",
+      [[0, 1], [0, 2], [1, 2]].every(([i, j]) => Math.abs(ang(bf3[i], bf3[j]) - 109.5) < 1e-6),
+      [[0, 1], [0, 2], [1, 2]].map(([i, j]) => ang(bf3[i], bf3[j]).toFixed(3)).join(" "));
+    // the bend PLANE faces the fleet house camera azimuth, or the V reads edge-on
+    const apex = E.mgNorm([co2[0][0] + co2[1][0], co2[0][1] + co2[1][1], co2[0][2] + co2[1][2]]);
+    ok("the CO2 V opens in the plane facing the solved camera azimuth (35 deg)",
+      Math.abs(E.mgDot(apex, E.MG_BEND_NORMAL)) < 1e-9 && Math.abs(apex[1]) < 1e-9,
+      `apex=[${apex.map((v: number) => v.toFixed(3)).join(", ")}]`);
+    ok("MG_BEND_NORMAL is the dipole_sum camera azimuth, horizontal",
+      Math.abs(E.MG_BEND_AZ - E.BS_CAMERAS.dipole_sum.az * Math.PI / 180) < 1e-12 &&
+      E.MG_BEND_NORMAL[1] === 0);
+    // the live slider is now live for the WHOLE explore picker, not H2O alone.
+    const PICKER = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];
+    const bendable = PICKER.filter((k) => {
+      const m = E.MG_MOLECULES[k];
+      const base = E.mgFrame(k, null, null).bonds as number[][];
+      const bent = E.mgFrame(k, m.angle === 180 ? 104.5 : m.angle - 12, null).bonds as number[][];
+      return base.some((v, i) => v.some((c, j) => c !== bent[i][j]));
+    });
+    ok("the explore angle slider now moves every 2-/3-bond species in the picker",
+      sameSet(bendable, ["H2O", "CO2", "BF3"]), `live on: ${bendable.join(",")}`);
+    ok("a 1-bond or 4+-bond centre is still (correctly) inert",
+      ["HF", "HCl", "HBr", "HI", "CH4", "CCl4"].every((k) => bendable.indexOf(k) < 0));
+  }
+
+  // ── item 4, THE REGRESSION HALF. vsepr_molecular_shapes, hybridisation_sp_sp2_sp3
+  //   and sigma_pi_bonding all ride mgFrame. A molecule with NO authored angle must
+  //   resolve bit-for-bit as before, and so must every path those concepts take.
+  {
+    const bad: string[] = [];
+    for (const k of Object.keys(E.MG_MOLECULES)) {
+      const m = E.MG_MOLECULES[k];
+      const nDom = m.bonds + m.lone;
+      const ideal = E.mgIdealDirs(nDom) as number[][];
+      const expect = m.lone > 0
+        ? E.mgSqueeze(ideal.slice(m.lone), m.angle) as number[][]   // old path, unchanged
+        : ideal.slice(m.lone);                                      // old path: NO squeeze
+      const got = E.mgFrame(k, null, null).bonds as number[][];
+      if (got.length !== expect.length ||
+        got.some((v, i) => v.some((c, j) => !Object.is(c, expect[i][j])))) bad.push(k);
+    }
+    ok("every molecule with NO authored angle_deg resolves bit-for-bit as before",
+      bad.length === 0, bad.length ? bad.join(" ") : `${Object.keys(E.MG_MOLECULES).length} molecules`);
+    // vsepr's lone_squeeze walks CH4 -> NH3 -> H2O WITH an explicit angle on every
+    // frame. CH4 is the zero-lone member and must not move (4 bonds, out of range).
+    const ch4a = E.mgFrame("CH4", null, null).bonds as number[][];
+    const ch4b = E.mgFrame("CH4", 109.5, null).bonds as number[][];
+    const ch4c = E.mgFrame("CH4", 92, null).bonds as number[][];
+    ok("CH4 under vsepr's explicit lone_squeeze angle is untouched (4 bonds)",
+      ch4a.every((v, i) => v.every((c, j) => Object.is(c, ch4b[i][j]) && Object.is(c, ch4c[i][j]))));
+    // the bare domain-SPREAD morph (2 -> 3 -> 4 domains, hybridisation/sigma_pi)
+    // passes domainsOverride and must never be bent by a stray angle.
+    const spreadBad: number[] = [];
+    for (const n of [2, 3, 4, 5, 6]) {
+      const a = E.mgFrame("CH4", null, n).bonds as number[][];
+      const b = E.mgFrame("CH4", 97.3, n).bonds as number[][];
+      if (a.some((v, i) => v.some((c, j) => !Object.is(c, b[i][j])))) spreadBad.push(n);
+    }
+    ok("the domain-spread morph ignores any authored angle (spread stays ideal)",
+      spreadBad.length === 0, spreadBad.join(" "));
+    // and mgSqueeze itself is unchanged wherever a real centroid exists
+    const sq = (n: number, lone: number, deg: number) =>
+      E.mgSqueeze((E.mgIdealDirs(n) as number[][]).slice(lone), deg) as number[][];
+    ok("mgSqueeze on a NON-degenerate set needs no axis hint (old signature holds)",
+      Math.abs(ang(sq(4, 2, 104.5)[0], sq(4, 2, 104.5)[1]) - 104.5) < 1e-9 &&
+      Math.abs(ang(sq(4, 1, 107)[0], sq(4, 1, 107)[1]) - 107) < 1e-9);
+    ok("mgSqueeze on a DEGENERATE set with NO axis hint still returns it untouched",
+      (sq(2, 0, 104.5) as number[][]).every((v, i) => v.every((c, j) =>
+        Object.is(c, (E.mgIdealDirs(2) as number[][])[i][j]))));
+  }
+  // ── E1c-C item: the three dipole-layer REVEAL CUES, as SEMANTICS not as text.
+  {
+    const upd = grabFn("updateBondingSceneFrame");
+    const app = grabFn("applyBondingSceneState");
+    const cueF = (mms: number, at: number) => E.mgRamp(mms, at, E.BS_REVEAL_MS, 0, 1) as number;
+    ok("a cue holds the layer fully hidden until its own instant",
+      cueF(0, 4000) === 0 && cueF(3999, 4000) === 0 && cueF(4000, 4000) === 0,
+      `t=3999 -> ${cueF(3999, 4000)}`);
+    ok("the reveal reaches full ink at cue + BS_REVEAL_MS and HOLDS (no fade-out tail)",
+      Math.abs(cueF(4900, 4000) - 1) < 1e-12 && Math.abs(cueF(30000, 4000) - 1) < 1e-12,
+      `t=4900 -> ${cueF(4900, 4000).toFixed(6)}`);
+    ok("the ramp is strictly monotonic across the reveal (no latch, no overshoot)",
+      [4100, 4300, 4500, 4700, 4900].every((t, i, a) =>
+        i === 0 || (cueF(t, 4000) > cueF(a[i - 1], 4000) && cueF(t, 4000) <= 1)));
+    {
+      // THE REWIND, sampled MID-REVEAL: a SET_TIME_FREEZE pin must reproduce the
+      // same ink. A latched "once shown, stays shown" flag cannot do this.
+      const f1 = cueF(4450, 4000); cueF(9000, 4000); const f2 = cueF(4450, 4000);
+      ok("rewind t=4450 -> 9000 -> 4450 reproduces the MID-REVEAL ink byte-for-byte",
+        Object.is(f1, f2), `f=${f1}`);
+    }
+    ok("BS_REVEAL_MS matches the +900 ms deriveStateMeta pins after each cue",
+      E.BS_REVEAL_MS === 900 &&
+      /bscPush\(bscState\.arrows_at_ms, 900\)/.test(META_SRC) &&
+      /bscPush\(bscState\.resultant_at_ms, 900\)/.test(META_SRC) &&
+      /bscPush\(bscState\.charges_at_ms, 900\)/.test(META_SRC),
+      `${E.BS_REVEAL_MS} ms — the frozen pin lands on the FIRST settled frame`);
+    // the absent-cue no-op: opacity is written ONLY under the cue guard, so a
+    // state authored before E1c-C is byte-identical BY CONSTRUCTION.
+    // E1c-F widened each write guard from "the cue is authored" to "the cue is
+    // authored OR a swap is running" (the swap veil drives the same three layers).
+    // The invariant the gate defends is UNCHANGED: with neither a cue nor a swap,
+    // opacity is never written at all.
+    ok("an ABSENT cue never writes opacity (pre-E1c-C states are untouched)",
+      /var arrowsInk = arrowsCued \|\| swapActive;/.test(upd) &&
+      /var resInk = resCued \|\| swapActive;/.test(upd) &&
+      /var chargesInk = chargesCued \|\| swapActive;/.test(upd) &&
+      /if \(arrowsInk\) \{/.test(upd) && /if \(resInk && resOn\) \{/.test(upd) &&
+      /if \(chargesInk\) setObjOpacity\(dlab2, chargesF\)/.test(upd) &&
+      /return \(atMs == null\) \? 1 :/.test(upd));
+    ok("the ramp multiplies the SAME ink the build used (BS_ARROW/RESULTANT_OPACITY)",
+      /BS_ARROW_OPACITY \* arrowsF/.test(upd) && /BS_RESULTANT_OPACITY \* resFade/.test(upd) &&
+      /opacity: BS_ARROW_OPACITY/.test(grabFn("buildBondingScene")) &&
+      /opacity: BS_RESULTANT_OPACITY/.test(grabFn("buildBondingScene")));
+    // the RESTORE half (the dim-with-no-restore scar): leaving a state mid-ramp
+    // must not strand the next state's arrows at partial ink.
+    ok("state entry restores every cue-driven layer to its BUILT ink",
+      /setObjOpacity\(ar1, BS_ARROW_OPACITY\)/.test(app) &&
+      /setObjOpacity\(ar2, BS_ARROW_OPACITY\)/.test(app) &&
+      /setObjOpacity\(rs0, BS_RESULTANT_OPACITY\)/.test(app) &&
+      /setObjOpacity\(rh0, BS_RESULTANT_OPACITY\)/.test(app) &&
+      /setObjOpacity\(rl0, 1\)/.test(app) && /setObjOpacity\(rz0, 1\)/.test(app) &&
+      /setObjOpacity\(dl, 1\)/.test(app));
+  }
+
+  function ang(a: number[], b: number[]) {
+    return Math.acos(Math.max(-1, Math.min(1, E.mgDot(E.mgNorm(a), E.mgNorm(b))))) * 180 / Math.PI;
+  }
+}
+
+// ── 16. E1c-A: DIPOLE FIDELITY — does the DRAWN picture carry the magnitudes and
+//   directions it claims? Five items, one root cause. Everything below is a
+//   NUMBER derived from the shipped code, not a pixel.
+console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow · swap) ===");
+{
+  const upd = grabFn("updateBondingSceneFrame");
+  const app = grabFn("applyBondingSceneState");
+  const mu = (k: string) => (E.bscDipole(k, null) as any).mag as number;
+
+  // ── item 1: the ratified data, forward-checked against the literature totals
+  //    the narration quotes. Values, not "a table exists".
+  const T = E.BS_BOND_MOMENT_D;
+  ok("R1: the N row is the ratified INTRINSIC pair (N|H -0.66, N|F 0.73)",
+    T["N|H"] === -0.66 && T["N|F"] === 0.73, `N|H=${T["N|H"]} N|F=${T["N|F"]}`);
+  ok("R1: BS_LONE_PAIR_D.N is the ratified 0.73 D",
+    E.BS_LONE_PAIR_D.N === 0.73, `${E.BS_LONE_PAIR_D.N} D`);
+  ok("R1: the higher-Delta-chi bond now draws the LONGER arrow (S2's core rule)",
+    Math.abs(T["N|F"]) > Math.abs(T["N|H"]) &&
+    Math.abs(E.BS_CHI.F - E.BS_CHI.N) > Math.abs(E.BS_CHI.H - E.BS_CHI.N),
+    `|N-F| ${Math.abs(T["N|F"])} > |N-H| ${Math.abs(T["N|H"])} for dchi ` +
+    `${Math.abs(E.BS_CHI.F - E.BS_CHI.N).toFixed(2)} > ${Math.abs(E.BS_CHI.H - E.BS_CHI.N).toFixed(2)}`);
+  ok("R1: NH3 = 1.47 D and NF3 = 0.23 D to the narrated 2 dp",
+    Math.abs(mu("NH3") - 1.47) < 0.005 && Math.abs(mu("NF3") - 0.23) < 0.005,
+    `NH3=${mu("NH3").toFixed(4)}  NF3=${mu("NF3").toFixed(4)}`);
+  ok("R1: H2O is UNTOUCHED at 1.849 D (S4 + hydrogen_bonding both depend on it)",
+    Math.abs(mu("H2O") - 1.8489) < 0.0005 && T["O|H"] === -1.51, `${mu("H2O").toFixed(4)} D`);
+  ok("R2: the halide row is the CRC gas-phase set (1.83 / 1.11 / 0.83 / 0.45)",
+    T["H|F"] === 1.83 && T["H|Cl"] === 1.11 && T["H|Br"] === 0.83 && T["H|I"] === 0.45,
+    `HF=${mu("HF")} HCl=${mu("HCl")} HBr=${mu("HBr")} HI=${mu("HI")}`);
+  ok("R2: the halide ladder is strictly monotonic in Delta-chi",
+    mu("HF") > mu("HCl") && mu("HCl") > mu("HBr") && mu("HBr") > mu("HI"));
+  ok("R3: BOTH CCl4 and CHCl3 carry the ratified Cl override 0.74",
+    E.MG_MOLECULES.CCl4.bond_moments.Cl === 0.74 && E.MG_MOLECULES.CHCl3.bond_moments.Cl === 0.74);
+  ok("R3: CCl4 stays EXACTLY zero and CHCl3 lands EXACTLY on 1.04 D",
+    mu("CCl4") < 1e-12 && Math.abs(mu("CHCl3") - 1.04) < 1e-9,
+    `CCl4=${mu("CCl4").toExponential(2)}  CHCl3=${mu("CHCl3").toFixed(6)}`);
+  ok("R3: the override never leaks into a molecule that did not author it",
+    E.MG_MOLECULES.CH4.bond_moments == null && E.MG_MOLECULES.CO2.bond_moments == null);
+  // and the whole shipped species set still avoids the delta-chi FALLBACK
+  for (const k of ["H2O", "CO2", "CCl4", "CHCl3", "CH4", "BF3", "NH3", "NF3", "HF", "HCl", "HBr", "HI"]) E.bscDipole(k, null);
+  ok("no shipped species touches BS_MU_FALLBACK_D_PER_CHI",
+    !(E.__window || {}).PM_bscMuFallback || (E.__window.PM_bscMuFallback || []).length === 0,
+    JSON.stringify((E.__window || {}).PM_bscMuFallback || []));
+
+  // ── item 3: the drawn length IS the magnitude, at every magnitude.
+  const parts = (len: number, built: number) => E.bscArrowParts(len, built) as any;
+  const S = E.BS_ARROW_D_PER_UNIT;
+  const drawn = (D: number, built = E.BS_ARROW_HEAD_LEN) => {
+    const p = parts(Math.abs(D) * S, built); return p.shaft + p.head;
+  };
+  const worstLen = ["H|F", "H|Cl", "H|Br", "H|I", "O|H", "N|H", "N|F", "C|H", "C|Cl", "C|O", "S|H", "Te|H"]
+    .map((k) => Math.abs(drawn(T[k]) - Math.abs(T[k]) * S)).reduce((a, b) => Math.max(a, b), 0);
+  ok("the DRAWN length equals |m| * scale for every table entry (no floor)",
+    worstLen < 1e-9, `max |drawn - |m|*scale| = ${worstLen.toExponential(2)}`);
+  ok("the sub-0.52 D magnitudes are now VISIBLY ordered (HI < HBr, C|H < C|Cl)",
+    drawn(T["H|I"]) < drawn(T["H|Br"]) - 0.15 && drawn(-0.30) < drawn(0.74) - 0.15,
+    `HI=${drawn(T["H|I"]).toFixed(3)} HBr=${drawn(T["H|Br"]).toFixed(3)} ` +
+    `C-H=${drawn(-0.30).toFixed(3)} C-Cl=${drawn(0.74).toFixed(3)} units`);
+  ok("the NF3 resultant is drawn 6.4x shorter than NH3's, matching the physics",
+    Math.abs((drawn(mu("NH3"), E.BS_RES_HEAD_LEN) / drawn(mu("NF3"), E.BS_RES_HEAD_LEN)) - mu("NH3") / mu("NF3")) < 1e-9,
+    `drawn ratio ${(drawn(mu("NH3"), E.BS_RES_HEAD_LEN) / drawn(mu("NF3"), E.BS_RES_HEAD_LEN)).toFixed(2)} ` +
+    `vs mu ratio ${(mu("NH3") / mu("NF3")).toFixed(2)}`);
+  ok("the head never exceeds half the arrow, and never grows past its built size",
+    [0.02, 0.2, 0.59, 0.6, 0.61, 1.4].every((L) => {
+      const p = parts(L, E.BS_ARROW_HEAD_LEN);
+      return p.head <= L * 0.5 + 1e-12 && p.head <= E.BS_ARROW_HEAD_LEN + 1e-12 && p.shaft > 0;
+    }));
+  ok("the frame pass routes bond / lone-pair / resultant heads through bscArrowParts",
+    (upd.match(/bscArrowParts\(/g) || []).length === 3 &&
+    !/Math\.max\(0\.02, aLen - 0\.30\)/.test(upd) && !/rlen - 0\.38/.test(upd));
+  // THE NEGATIVE-SIGN CASE (E1c-B's handoff): a negative moment points its head
+  // back at the central atom. Centred on the bond midpoint, the head TIP must
+  // clear the central atom's SPHERE for every negative entry the table carries.
+  ok("the arrow is CENTRED on the bond midpoint, so both signs draw alike",
+    /aMid - aDir\[0\] \* aLen \* 0\.5/.test(upd));
+  const negBad: string[] = [];
+  for (const k of Object.keys(T)) {
+    if (T[k] >= 0) continue;
+    const central = k.split("|")[0];
+    const rc = E.MG_ELEMENTS[central] ? E.MG_ELEMENTS[central].radius : 0.5;
+    const tip = E.BS_BOND_LEN * 0.5 - Math.abs(T[k]) * S * 0.5;
+    if (tip <= rc + 0.05) negBad.push(`${k} tip=${tip.toFixed(3)} r=${rc}`);
+  }
+  ok("every NEGATIVE bond moment's head clears the central atom's sphere (+0.05)",
+    negBad.length === 0, negBad.length ? negBad.join(" ") : "O|H S|H Se|H Te|H N|H C|H all clear");
+
+  // ── item 2: the camera solve is SCENE-derived, and the pyramid is solved.
+  ok("bscSolvedCamera is what apply reads (the mode-keyed lookup is gone)",
+    /var cam = bs\.camera \|\| bscSolvedCamera\(bs\)/.test(app) &&
+    !/BS_CAMERAS\[bs\.mode/.test(app));
+  const solve = (bs: any) => E.bscSolvedCamera(bs) as any;
+  const single = (mode: string, sp: string) => solve({ mode, units: [{ species: sp, at: [0, 0, 0] }] });
+  ok("a SINGLE-unit compare inherits the single-unit solve (no teleport)",
+    single("compare", "CCl4").el === E.BS_UNIT_CAMERAS.general.el &&
+    single("compare", "CCl4").dist === E.BS_UNIT_CAMERAS.general.dist,
+    JSON.stringify(single("compare", "CCl4")));
+  // E1c-D: the camera is a pure function of the focal unit's SHAPE, never of the
+  // mode string — so a state sequence only ever moves the camera when the shape
+  // it is looking at changes. (Before E1c-A every mode carried its own camera and
+  // S1->S2->S3 teleported between three of them.)
+  ok("every single-unit state's camera is decided by SHAPE alone, at one distance",
+    [["assemble", "HCl"], ["compare", "HF"], ["dipole_sum", "CO2"], ["dipole_sum", "H2O"],
+     ["dipole_sum", "CCl4"], ["compare", "CCl4"], ["explore", "H2O"], ["dipole_sum", "NH3"]]
+      .every(([m, s]) => single(m, s).dist === 7.0 &&
+        single(m, s).el === (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(s)].el));
+  ok("the S2 halide LADDER holds ONE camera across all four rungs (no teleport)",
+    ["HF", "HCl", "HBr", "HI"].every((s) =>
+      single("compare", s).el === E.BS_UNIT_CAMERAS.diatomic.el &&
+      single("compare", s).dist === E.BS_UNIT_CAMERAS.diatomic.dist),
+    JSON.stringify(single("compare", "HI")));
+  ok("a MULTI-unit compare keeps its own measured camera (hydrogen_bonding)",
+    solve({ mode: "compare", units: [{ species: "H2O", at: [0, 0, 0] }, { species: "H2S", at: [4, 0, 0] }] }).el === 20,
+    JSON.stringify(solve({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] })));
+  ok("a lattice scene is never re-solved as a single unit",
+    solve({ mode: "coordination", placement: "lattice", units: [{ species: "Na+", at: [0, 0, 0] }] }).el === 45);
+  ok("a single unit parked off-centre keeps the mode's wider camera",
+    solve({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }).el === 22);
+  // E1c-H: the TRIGONAL PLANAR centre is now a shape of its own too (section 21
+  // measures it). The general key keeps the 3-D-surrounded set — tetrahedral,
+  // bent, linear — value for value.
+  ok("a PYRAMIDAL centre gets its own solve; the 3-D-surrounded set keeps general",
+    single("dipole_sum", "NH3").el === 15 && single("dipole_sum", "NF3").el === 15 &&
+    single("dipole_sum", "NH3").az === 120 &&
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2"].every((k) => single("dipole_sum", k).el === 47),
+    `pyramidal=${JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal)} general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
+  ok("the three MEASURED constants are asserted value-for-value (E1c-A/D/E)",
+    JSON.stringify(E.BS_UNIT_CAMERAS.general) === JSON.stringify({ az: 35, el: 47, dist: 7 }) &&
+    JSON.stringify(E.BS_UNIT_CAMERAS.pyramidal) === JSON.stringify({ az: 120, el: 15, dist: 7 }) &&
+    JSON.stringify(E.BS_UNIT_CAMERAS.diatomic) === JSON.stringify({ az: 35, el: 12, dist: 7 }),
+    JSON.stringify(E.BS_UNIT_CAMERAS));
+  // E1c-E: the pyramid now carries its OWN azimuth as well as its own elevation
+  // (which ligand hides behind the centre is an azimuth question — section 18).
+  // The tie-down that matters is unchanged and is on the GENERAL key: MG_BEND_AZ
+  // must equal it, or an authored bend can silently go edge-on.
+  ok("MG_BEND_AZ's tie-down holds on the GENERAL solve, whose azimuth never moves",
+    E.BS_UNIT_CAMERAS.general.az === 35 && E.BS_UNIT_CAMERAS.diatomic.az === 35 &&
+    Math.abs(E.MG_BEND_AZ - E.BS_UNIT_CAMERAS.general.az * Math.PI / 180) < 1e-12);
+  {
+    // the pyramid solve, MEASURED here under the shipped perspective (FOV 60),
+    // over S7's counted set: three bond arrows + the lone-pair vector + the
+    // resultant + the central atom. The metric is the E3a OCCLUSION one — no
+    // counted atom's projected centre may fall inside a NEARER counted atom's
+    // disc — plus the projected GAP between distinct vectors, because the arrows
+    // are depthTest:false and can only be lost to each other, never to a sphere.
+    const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9;
+    const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+    const cr3 = (a: number[], b: number[]) =>
+      [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    const dt3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    const scl = (v: number[], k: number) => [v[0] * k, v[1] * k, v[2] * k];
+    const proj = (c: any) => {
+      const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+      const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+      const f = E.bscNorm(sub3([0, 0, 0], cam)), r = E.bscNorm(cr3(f, [0, 1, 0])), u = cr3(r, f);
+      return (p: number[]) => {
+        const v = sub3(p, cam), z = dt3(v, f);
+        return { x: dt3(v, r) / (z * Math.tan(FOV / 2) * ASPECT), y: dt3(v, u) / (z * Math.tan(FOV / 2)), z };
+      };
+    };
+    const ptSeg = (p: any, a: any, b: any) => {
+      const vx = b.x - a.x, vy = b.y - a.y, L2 = vx * vx + vy * vy;
+      if (L2 < 1e-18) return Math.hypot(p.x - a.x, p.y - a.y);
+      const t = Math.max(0, Math.min(1, ((p.x - a.x) * vx + (p.y - a.y) * vy) / L2));
+      return Math.hypot(p.x - (a.x + t * vx), p.y - (a.y + t * vy));
+    };
+    const segGap = (a1: any, a2: any, b1: any, b2: any) =>
+      Math.min(ptSeg(a1, b1, b2), ptSeg(a2, b1, b2), ptSeg(b1, a1, a2), ptSeg(b2, a1, a2));
+    const measure = (camC: any, mols: string[]) => {
+      const P = proj(camC);
+      let occ = 9, gap = 9, box = 0;
+      for (const mk of mols) {
+        const D = E.bscDipole(mk, null) as any, m = E.MG_MOLECULES[mk];
+        const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius }].concat(
+          D.arrows.map((a: any, i: number) =>
+            ({ p: P(scl(a.dir, E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+        const vecs: any[] = D.arrows.map((a: any) => {
+          const L = Math.abs(a.D) * E.BS_ARROW_D_PER_UNIT, sg = a.D >= 0 ? 1 : -1;
+          return [P(scl(a.dir, E.BS_BOND_LEN * 0.5 - sg * L / 2)), P(scl(a.dir, E.BS_BOND_LEN * 0.5 + sg * L / 2))];
+        });
+        if (D.lone.length && Math.abs(D.lone[0].D) > 1e-6) {
+          const t0 = E.BS_BOND_LEN * 0.52, t1 = t0 + E.BS_LONE_LOBE_LEN + Math.abs(D.lone[0].D) * E.BS_ARROW_D_PER_UNIT;
+          vecs.push([P(scl(D.lone[0].dir, t0)), P(scl(D.lone[0].dir, t1))]);
+        }
+        if (D.mag > 1e-9) vecs.push([P([0, 0, 0]), P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT))]);
+        for (const a of atoms) box = Math.max(box, Math.abs(a.p.x), Math.abs(a.p.y));
+        for (const v of vecs) box = Math.max(box, Math.abs(v[0].x), Math.abs(v[0].y), Math.abs(v[1].x), Math.abs(v[1].y));
+        for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+          if (i === j) continue;
+          const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+          const far = near === atoms[i] ? atoms[j] : atoms[i];
+          occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) -
+            near.r / (near.p.z * Math.tan(FOV / 2)));
+        }
+        for (let i = 0; i < vecs.length; i++) for (let j = i + 1; j < vecs.length; j++)
+          gap = Math.min(gap, segGap(vecs[i][0], vecs[i][1], vecs[j][0], vecs[j][1]));
+      }
+      return { occ, gap, box };
+    };
+    const OCC_FLOOR = 0.09, GAP_FLOOR = 0.015, BOX = 0.85;
+    const pyr = measure(E.BS_UNIT_CAMERAS.pyramidal, ["NH3", "NF3"]);
+    const gen = measure(E.BS_UNIT_CAMERAS.general, ["CCl4", "CHCl3", "H2O", "CO2"]);
+    const old = measure(E.BS_UNIT_CAMERAS.general, ["NH3", "NF3"]);
+    ok(`the PYRAMID solve separates every counted atom (occ >= ${OCC_FLOOR} NDC)`,
+      pyr.occ >= OCC_FLOOR, `occ=${pyr.occ.toFixed(4)} gap=${pyr.gap.toFixed(4)} box=${pyr.box.toFixed(3)}`);
+    ok("the pyramid's distinct vectors stay separable and inside the safe box",
+      pyr.gap >= GAP_FLOOR && pyr.box <= BOX);
+    ok("NEGATIVE CONTROL: the GENERAL solve FAILS that floor on a pyramid",
+      old.occ < OCC_FLOOR, `occ=${old.occ.toFixed(4)} at el ${E.BS_UNIT_CAMERAS.general.el} (E1c-B's frames)`);
+    ok("NEGATIVE CONTROL: straight down the pyramid axis loses the vectors",
+      measure({ az: 35, el: 90, dist: 7 }, ["NH3"]).gap < GAP_FLOOR,
+      `gap=${measure({ az: 35, el: 90, dist: 7 }, ["NH3"]).gap.toFixed(4)}`);
+    ok("the GENERAL solve still holds for the tetrahedron / bent / linear set",
+      gen.occ >= OCC_FLOOR - 0.03 && gen.box <= BOX,
+      `occ=${gen.occ.toFixed(4)} box=${gen.box.toFixed(3)}`);
+    console.log(`    pyramid solve   el ${E.BS_UNIT_CAMERAS.pyramidal.el}: occ=${pyr.occ.toFixed(4)} gap=${pyr.gap.toFixed(4)} box=${pyr.box.toFixed(3)}  (was occ=${old.occ.toFixed(4)} at el ${E.BS_UNIT_CAMERAS.general.el})`);
+  }
+
+  // ── item 4: the compare swap stands down for EVERY control that shares molKey.
+  ok("the swap guard reads molecule / ligand / species drag flags, not one",
+    /var swapSeized =/.test(upd) && /PM_bscMolDragged/.test(upd.split("var swapSeized")[1]) &&
+    /PM_bscLigDragged/.test(upd.split("var swapSeized")[1].slice(0, 400)) &&
+    /PM_bscSpeciesDragged/.test(upd.split("var swapSeized")[1].slice(0, 400)) &&
+    /MG_MOLECULES\[bs\.compare_species\] && !swapSeized/.test(upd));
+  ok("the guard gates ONLY on controls the state actually exposes",
+    (upd.split("var swapSeized")[1].slice(0, 400).match(/bscHasControl\(ctrls, "/g) || []).length === 3);
+  ok("the halide picker is seeded at state entry and tracks the script per frame",
+    /seedSel\("ligand", window\.PM_bscLig\)/.test(app) &&
+    /bscHasControl\(ctrls, "ligand"\) && !window\.PM_bscLigDragged/.test(upd));
+  ok("the seized state is observable, so a headless drive can assert it",
+    /window\.PM_bscSwapSeized = /.test(upd));
+
+  // ── item 5: the compare pin reads its own duration.
+  ok("deriveStateMeta's compare pin reads compare_duration_ms",
+    /bscState\.compare_duration_ms/.test(META_SRC) &&
+    /compare_at_ms === 'number'[\s\S]{0,400}compare_duration_ms/.test(META_SRC));
+  {
+    // S7's own numbers: at_ms 9200, duration 7300 -> the pin must land past 16500,
+    // not at the old flat 10700 (mid-swap).
+    const m = /compare_at_ms === 'number'\)\s*\{([\s\S]*?)\n\s*\}/.exec(META_SRC);
+    const pin = m ? 9200 + 7300 + 600 : -1;
+    ok("S7's 7300 ms swap pins PAST its settle (16500), never mid-transition",
+      pin >= 16500, `pin candidate = ${pin} ms (old flat offset gave 10700)`);
+  }
+}
+
+// ── 17. E1c-D: VECTOR LEGIBILITY — a drawn vector's supporting furniture must
+//   not obscure the elements its state COUNTS. Two items, one root cause, both
+//   found by reading pinned PNGs behind fully green gates.
+//     item 1  the resultant's value label collided with the central atom's label
+//             and lay across a counted ligand (it launched from the atom it was
+//             offset from, and on NH3 it is COLLINEAR with the lone pair).
+//     item 2  a 1-bond unit is drawn along the view-up axis, so the general
+//             solve foreshortened the one quantity S2 teaches — arrow LENGTH.
+//   Both are measured here in the same isotropic screen units, under the shipped
+//   perspective rig (FOV 60), against a projector written in this file.
+console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solve) ===");
+{
+  const upd = grabFn("updateBondingSceneFrame");
+  const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TH = Math.tan(FOV / 2);
+  type V = number[];
+  const sub = (a: V, b: V) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cr = (a: V, b: V) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dt = (a: V, b: V) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const sc = (v: V, k: number) => [v[0] * k, v[1] * k, v[2] * k];
+  // Screen units are ISOTROPIC here (x is NOT divided by ASPECT, unlike section
+  // 16's occlusion metric): a length must mean the same thing on both axes for
+  // a text box to be a box.
+  const rig = (c: any) => {
+    const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+    const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sub([0, 0, 0], cam)), r = E.bscNorm(cr(f, [0, 1, 0])), u = cr(r, f);
+    const P = (p: V) => {
+      const v = sub(p, cam), z = dt(v, f);
+      return { x: dt(v, r) / (z * TH), y: dt(v, u) / (z * TH), z };
+    };
+    // screen units per WORLD unit at a point — the renderer's bscScreenK.
+    const K = (p: V) => 1 / (dt(sub(p, cam), f) * TH);
+    return { r, u, P, K };
+  };
+  // ── E1c-I: the placement the renderer SHIPS, re-implemented here — the
+  //   camera half only. The SEPARATION half (bscBoxPt / bscBoxBox / bscBoxSeg)
+  //   is pulled out of the renderer and run, because that arithmetic IS the
+  //   thing under test and re-deriving it here would only test this file.
+  //   A sprite's INK box, exactly as the renderer measures it: half-width =
+  //   sprite.scale.x * _pmInkFrac / 2, in which the canvas width cancels to
+  //   hs * inkPx / 256, and half-height = sprite.scale.y / 2 = hs / 2. Node has
+  //   no canvas, so the 76px bold-italic serif advance is a per-character model,
+  //   deliberately on the WIDE side (42px = 0.55em for a glyph) so the assertion
+  //   cannot pass by under-measuring the text.
+  const ADV: Record<string, number> = { " ": 20, ".": 20, "=": 44 };
+  const inkPx = (s2: string) => [...s2].reduce((w, ch) => w + (ADV[ch] != null ? ADV[ch] : 42), 0);
+  const halfW = (t: string, hs: number) => hs * inkPx(t) / 256;
+  const halfH = (hs: number) => hs / 2;
+  const resolve = (avoid: any[], G: any) => avoid.filter(Boolean).map((e: any) => {
+    if (e.box) return { k: 2, p: e.box.c, h: e.box.h };
+    if (e.a) { const A = G.P(e.a), B = G.P(e.b); return { k: 1, a: [A.x, A.y], b: [B.x, B.y] }; }
+    const Q = G.P(e.p); return { k: 0, p: [Q.x, Q.y], r: (e.r || 0) * G.K(e.p) };
+  });
+  const sepOf = (c: number[], h: number[], en: any): number =>
+    en.k === 1 ? E.bscBoxSeg(c, h, en.a, en.b)
+      : en.k === 2 ? E.bscBoxBox(c, h, en.p, en.h)
+        : E.bscBoxPt(c, h, en.p) - en.r;
+  /** bscPlaceLabel: eight UNIT screen directions, argmax of the min box separation. */
+  const place = (G: any, text: string, hs: number, anchor: V, off: number,
+                 avoid: any[], padH = 0, padW = 0) => {
+    const ent = resolve(avoid, G);
+    // the offset is a CLEARANCE to the box's nearest edge: each candidate is
+    // pushed out by the box's own support in that direction (the shipped rule).
+    const hwW = halfW(text, hs) + padW, hhW = halfH(hs) + padH;
+    let bi = 0, bsc = -9, bp: V = anchor;
+    for (const ring of E.BSC_LABEL_RINGS) {
+      for (let i = 0; i < E.BSC_LABEL_DIRS.length; i++) {
+        const ux = E.BSC_LABEL_DIRS[i][0], uy = E.BSC_LABEL_DIRS[i][1];
+        const o2 = off + ring + Math.abs(ux) * hwW + Math.abs(uy) * hhW;
+        const p: V = [anchor[0] + (G.r[0] * ux + G.u[0] * uy) * o2,
+                      anchor[1] + (G.r[1] * ux + G.u[1] * uy) * o2,
+                      anchor[2] + (G.r[2] * ux + G.u[2] * uy) * o2];
+        const k = G.K(p), q0 = G.P(p);
+        const c = [q0.x, q0.y], h = [hwW * k, hhW * k];
+        let worst = 9;
+        for (const en of ent) worst = Math.min(worst, sepOf(c, h, en));
+        worst = Math.min(worst, E.BSC_SAFE_X - (Math.abs(c[0]) + h[0]),
+                                E.BSC_SAFE_Y - (Math.abs(c[1]) + h[1]));
+        if (worst > E.BSC_CLEAR_CAP) worst = E.BSC_CLEAR_CAP;
+        if (worst > bsc + 1e-6) { bsc = worst; bi = i; bp = p; }
+      }
+    }
+    const kk = G.K(bp), qq = G.P(bp);
+    return { dir: bi, pos: bp, c: [qq.x, qq.y] as number[],
+             h: [halfW(text, hs) * kk, halfH(hs) * kk], t: text, id: "" };
+  };
+  /** E1c-D's placement, kept ONLY as the negative control: four RAW diagonals,
+   *  point-vs-point distance, an avoid set of centres. */
+  const placeOld = (G: any, anchor: V, off: number, avoid: V[]) => {
+    const av = avoid.filter(Boolean).map((a) => G.P(a));
+    let best = anchor, bestScore = -1;
+    for (const d of [[-1, 1], [1, 1], [-1, -1], [1, -1]]) {
+      const p: V = [anchor[0] + (G.r[0] * d[0] + G.u[0] * d[1]) * off,
+                    anchor[1] + (G.r[1] * d[0] + G.u[1] * d[1]) * off,
+                    anchor[2] + (G.r[2] * d[0] + G.u[2] * d[1]) * off];
+      const q0 = G.P(p);
+      let worst = 9;
+      for (const a of av) worst = Math.min(worst, Math.hypot(q0.x - a.x, q0.y - a.y));
+      if (worst > bestScore + 1e-6) { bestScore = worst; best = p; }
+    }
+    return best;
+  };
+  const boxAt = (G: any, p: V, text: string, hs: number) => {
+    const k = G.K(p), q0 = G.P(p);
+    return { c: [q0.x, q0.y], h: [halfW(text, hs) * k, halfH(hs) * k], t: text, pos: p };
+  };
+  const HS_SYM = 0.42, HS_DELTA = 0.40, HS_RES = 0.50, HS_LONE = 0.42;
+
+  /**
+   * The whole TEXT LAYOUT and COUNTED GEOMETRY of a dipole state, built in the
+   * shipped order so the avoid chain stays acyclic: symbol i, then its delta
+   * glyph stacked on the symbol's own side, then the resultant (or the zero
+   * badge), then the lone-pair label.
+   */
+  const layout = (molKey: string, cam: any, opt: any = {}) => {
+    const G: any = rig(cam);
+    const spin = opt.spin || 0, mix = opt.mix || 0;
+    const peer = opt.peer ? E.MG_MOLECULES[opt.peer] : null;
+    const rot = opt.orient ? E.bscOrientRot(opt.orient) : null;
+    const mol = E.MG_MOLECULES[molKey];
+    const ang = (opt.angle != null) ? opt.angle : null;
+    const D: any = E.bscDipole(molKey, ang);
+    const fr: any = E.mgFrame(molKey, ang, null);
+    const ligs = E.bscLigands(mol), peerLigs: any = peer ? E.bscLigands(peer) : null;
+    const RY = (v: V): V => { const w = rot ? rot(v) : v; return spin ? E.mgRotY(w, spin) : w; };
+    const org: V = [0, 0, 0];
+    const n = fr.bonds.length;
+    const pos: V[] = [org];
+    for (let i = 0; i < n; i++) pos.push(sc(RY(fr.bonds[i]), E.BS_BOND_LEN));
+    const rad = (i: number) => {
+      const el = i === 0 ? mol.central : (ligs[i - 1] || mol.ligand);
+      let r0 = E.MG_ELEMENTS[el].radius;
+      if (peer) {
+        const pe = i === 0 ? peer.central : (peerLigs[i - 1] || peer.ligand);
+        if (pe) r0 = r0 + (E.MG_ELEMENTS[pe].radius - r0) * mix;
+      }
+      return r0;
+    };
+    const discs = pos.map((p, i) => ({ p, r: rad(i) }));
+    const bonds = pos.slice(1).map((p) => ({ a: org, b: p }));
+    const aScale = E.BS_ARROW_D_PER_UNIT;
+    // the DRAWN vectors, for the "no text over an arrow" half of the assertion
+    const arrows: any[] = [];
+    for (let i = 0; i < D.arrows.length; i++) {
+      const m = D.arrows[i].D;
+      if (Math.abs(m) < 1e-6) continue;
+      const ad = E.bscNorm(RY(sc(D.arrows[i].dir, m))), L = Math.abs(m) * aScale;
+      const mid = sc(RY(D.arrows[i].dir), E.BS_BOND_LEN * 0.5);
+      arrows.push({ a: [mid[0] - ad[0] * L / 2, mid[1] - ad[1] * L / 2, mid[2] - ad[2] * L / 2],
+                    b: [mid[0] + ad[0] * L / 2, mid[1] + ad[1] * L / 2, mid[2] + ad[2] * L / 2] });
+    }
+    const isZero = D.mag < 1e-9;
+    const rdir: V | null = isZero ? null : E.bscNorm(RY(D.vec));
+    const rlen = D.mag * aScale;
+    const rBase: V | null = rdir ? sc(rdir, rad(0)) : null;
+    const lone = (opt.lone && D.lone && D.lone.length) ? D.lone : null;
+    const lAt = E.BS_BOND_LEN * 0.52;
+    if (!isZero && rBase) {
+      arrows.push({ a: rBase, b: sc(rdir as V, rad(0) + rlen) });
+    }
+    if (lone) {
+      for (const L of lone) {
+        if (Math.abs(L.D) < 1e-6) continue;
+        const ld = RY(L.dir);
+        arrows.push({ a: sc(ld, lAt + E.BS_LONE_LOBE_LEN),
+                      b: sc(ld, lAt + E.BS_LONE_LOBE_LEN + Math.abs(L.D) * aScale) });
+      }
+    }
+    // the frame pass's fVecAvoid, resolved before the atom loop
+    const fVec: any[] = [];
+    if (!isZero) fVec.push({ a: org, b: sc(rdir as V, rlen) });
+    if (lone) {
+      for (const L of lone) {
+        fVec.push({ a: org, b: sc(RY(L.dir), lAt + E.BS_LONE_LOBE_LEN + Math.abs(L.D) * aScale) });
+      }
+    }
+    const q = E.bscCharges(molKey);
+    const texts: any[] = [], placed: any[] = [];
+    for (let i = 0; i <= n; i++) {
+      const el = i === 0 ? mol.central : (ligs[i - 1] || mol.ligand);
+      const av: any[] = [];
+      for (let z = 0; z < discs.length; z++) if (z !== i) av.push(discs[z]);
+      for (const b of bonds) av.push(b);
+      for (const v of fVec) av.push(v);
+      for (const t of placed) av.push(t);
+      const dOn = opt.charges !== false && Math.abs(q[i] || 0) > 0.02;
+      const dtx = (q[i] || 0) > 0 ? "δ+" : "δ−";
+      const padH = dOn ? HS_DELTA + E.BSC_PAIR_GAP : 0;
+      const padW = dOn ? Math.max(0, halfW(dtx, HS_DELTA) - halfW(el, HS_SYM)) : 0;
+      const sym = place(G, el, HS_SYM, pos[i], rad(i) + E.BSC_ATOM_LABEL_OFF, av, padH, padW);
+      texts.push({ ...sym, id: "sym" + i, atom: i });
+      placed.push({ box: { c: sym.c, h: sym.h } });
+      if (dOn) {
+        const sy = E.BSC_LABEL_DIRS[sym.dir][1] >= 0 ? 1 : -1;
+        const gap = (HS_SYM + HS_DELTA) * 0.5 + E.BSC_PAIR_GAP;
+        const stack = (sgn: number): V => [sym.pos[0] + G.u[0] * sgn * gap,
+                                           sym.pos[1] + G.u[1] * sgn * gap,
+                                           sym.pos[2] + G.u[2] * sgn * gap];
+        const scoreAt = (pp: V) => {
+          const kk = G.K(pp), qq = G.P(pp);
+          const cc = [qq.x, qq.y], hh = [halfW(dtx, HS_DELTA) * kk, halfH(HS_DELTA) * kk];
+          let w = 9;
+          for (const en of resolve(av, G)) w = Math.min(w, sepOf(cc, hh, en));
+          return Math.min(w, E.BSC_SAFE_X - (Math.abs(cc[0]) + hh[0]),
+                             E.BSC_SAFE_Y - (Math.abs(cc[1]) + hh[1]));
+        };
+        const pA = stack(sy), pB = stack(-sy);
+        const dp: V = scoreAt(pB) > scoreAt(pA) + 1e-6 ? pB : pA;
+        const db = { ...boxAt(G, dp, dtx, HS_DELTA), id: "del" + i, atom: i };
+        texts.push(db);
+        placed.push({ box: { c: db.c, h: db.h } });
+      }
+    }
+    const cenLab = texts.find((t: any) => t.id === "sym0");
+    const ligAv: any[] = [];
+    for (let i = 1; i <= n; i++) { ligAv.push(discs[i]); ligAv.push({ a: org, b: pos[i] }); }
+    let resB: any = null;
+    if (isZero) {
+      const zAv: any[] = [{ p: org, r: rad(0) }];
+      if (cenLab) zAv.push({ p: cenLab.pos, r: 0 });
+      for (const e of ligAv) zAv.push(e);
+      for (const t of placed) zAv.push(t);
+      resB = place(G, "μ = 0 D", HS_RES, org, E.BSC_ZERO_LABEL_OFF, zAv);
+      resB.id = "zero";
+    } else {
+      const rAv: any[] = [{ p: org, r: rad(0) }];
+      if (cenLab) rAv.push({ p: cenLab.pos, r: 0 });
+      for (const e of ligAv) rAv.push(e);
+      rAv.push({ a: rBase as V, b: sc(rdir as V, rad(0) + rlen) });
+      for (const t of placed) rAv.push(t);
+      if (lone) {
+        rAv.push({ a: org,
+          b: sc(RY(lone[0].dir), lAt + E.BS_LONE_LOBE_LEN + Math.abs(lone[0].D) * aScale) });
+      }
+      resB = place(G, "μ = " + E.bscFmtD(D.mag) + " D", HS_RES,
+        sc(rdir as V, rad(0) + rlen), E.BS_RES_LABEL_OFF, rAv);
+      resB.id = "res";
+    }
+    texts.push(resB);
+    placed.push({ box: { c: resB.c, h: resB.h } });
+    if (lone) {
+      const lAnch = sc(RY(lone[0].dir), lAt);
+      const lAv: any[] = [{ p: org, r: rad(0) },
+        { a: org, b: sc(RY(lone[0].dir), lAt + E.BS_LONE_LOBE_LEN + Math.abs(lone[0].D) * aScale) }];
+      for (const e of ligAv) lAv.push(e);
+      for (const t of placed) lAv.push(t);
+      const lb = place(G, lone.length > 1 ? "lone pairs" : "lone pair", HS_LONE,
+        lAnch, E.BS_LONE_LOBE_LEN + 0.52, lAv);
+      lb.id = "lone";
+      texts.push(lb);
+    }
+    // ── the MEASUREMENT. Four families, all in the same isotropic screen units.
+    let tSep = 9, tAt = "", lSep = 9, lAt2 = "", bSep = 9, bAt = "", aSep = 9, aAt = "";
+    for (let i = 0; i < texts.length; i++) {
+      for (let j = i + 1; j < texts.length; j++) {
+        const s2 = E.bscBoxBox(texts[i].c, texts[i].h, texts[j].c, texts[j].h);
+        if (s2 < tSep) { tSep = s2; tAt = texts[i].id + "/" + texts[j].id; }
+      }
+    }
+    for (const t of texts) {
+      for (let i = 1; i <= n; i++) {
+        const Q = G.P(pos[i]);
+        const s2 = E.bscBoxPt(t.c, t.h, [Q.x, Q.y]) - rad(i) * G.K(pos[i]);
+        if (s2 < lSep) { lSep = s2; lAt2 = t.id + " over lig" + i; }
+      }
+      for (let i = 0; i < bonds.length; i++) {
+        const A = G.P(bonds[i].a), B = G.P(bonds[i].b);
+        const s2 = E.bscBoxSeg(t.c, t.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < bSep) { bSep = s2; bAt = t.id + " over bond" + i; }
+      }
+      for (let i = 0; i < arrows.length; i++) {
+        const A = G.P(arrows[i].a), B = G.P(arrows[i].b);
+        const s2 = E.bscBoxSeg(t.c, t.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < aSep) { aSep = s2; aAt = t.id + " over arrow" + i; }
+      }
+    }
+    return { texts, tSep, tAt, lSep, lAt2, bSep, bAt, aSep, aAt, G, pos, discs, bonds,
+             rdir, rlen, rBase, isZero, cenLab, D, n };
+  };
+
+  // every species the concept can reach: the eight-entry explore picker plus the
+  // three that only a guided state shows.
+  const EXPLORE = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];
+  const GUIDED_ONLY = ["NH3", "NF3", "CHCl3"];
+  const ALLSPEC = EXPLORE.concat(GUIDED_ONLY);
+  const camOf = (k: string) => (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k)];
+  const optOf = (k: string, extra: any = {}) =>
+    Object.assign({ lone: k === "NH3" || k === "NF3" }, extra);
+  const worstOf = (runs: any[]) => {
+    const w: any = { tSep: 9, tAt: "", lSep: 9, lAt2: "", bSep: 9, bAt: "", aSep: 9, aAt: "" };
+    for (const r of runs) {
+      if (r.m.tSep < w.tSep) { w.tSep = r.m.tSep; w.tAt = r.tag + " " + r.m.tAt; }
+      if (r.m.lSep < w.lSep) { w.lSep = r.m.lSep; w.lAt2 = r.tag + " " + r.m.lAt2; }
+      if (r.m.bSep < w.bSep) { w.bSep = r.m.bSep; w.bAt = r.tag + " " + r.m.bAt; }
+      if (r.m.aSep < w.aSep) { w.aSep = r.m.aSep; w.aAt = r.tag + " " + r.m.aAt; }
+    }
+    return w;
+  };
+  const SPINS = Array.from({ length: 72 }, (_, i) => i * 5);
+  const spinRuns: any[] = [];
+  for (const k of ALLSPEC) {
+    for (const d of SPINS) {
+      spinRuns.push({ tag: `${k}@${d}`,
+        m: layout(k, camOf(k), optOf(k, { spin: d * Math.PI / 180 })) });
+    }
+  }
+  const statRuns = ALLSPEC.map((k) => ({ tag: k, m: layout(k, camOf(k), optOf(k)) }));
+  // the two angle sliders a teacher can reach (S4/S8 water, S8 BF3 — the bent
+  // BF3 frame that found the label/label near-miss was at 95 deg).
+  const angRuns: any[] = [];
+  for (const k of ["H2O", "BF3"]) {
+    for (const a of [90, 95, 104.5, 120, 150, 180]) {
+      for (const d of [0, 60, 120, 180, 240, 300]) {
+        angRuns.push({ tag: `${k}@${a}deg/${d}`,
+          m: layout(k, camOf(k), optOf(k, { angle: a, spin: d * Math.PI / 180 })) });
+      }
+    }
+  }
+  // the three authored compare swaps, DURING the morph (E1c-F): the ligand radii
+  // are part way between two elements, which is exactly the geometry the avoid
+  // set has to be reading.
+  const SWAPS = [["HF", "HI"], ["CCl4", "CHCl3"], ["NH3", "NF3"]];
+  const swapRuns: any[] = [];
+  for (const [a, b] of SWAPS) {
+    for (const f of [0.25, 0.5, 0.75, 1]) {
+      for (const d of [0, 90, 180, 270]) {
+        swapRuns.push({ tag: `${a}->${b}@${(f * 100).toFixed(0)}%/${d}`,
+          m: layout(a, camOf(a), optOf(a, { peer: b, mix: f, spin: d * Math.PI / 180 })) });
+        swapRuns.push({ tag: `${b}<-${a}@${(f * 100).toFixed(0)}%/${d}`,
+          m: layout(b, camOf(b), optOf(b, { peer: a, mix: f, spin: d * Math.PI / 180 })) });
+      }
+    }
+  }
+  const wStat = worstOf(statRuns), wSpin = worstOf(spinRuns);
+  const wAng = worstOf(angRuns), wSwap = worstOf(swapRuns);
+  const wAll = worstOf(statRuns.concat(spinRuns, angRuns, swapRuns));
+
+  ok("the resultant's label goes through the SHARED clear-placement helper",
+    /bscPlaceLabel\(rlb,/.test(upd) &&
+    !/mgPlaceLabelClear\(rlb,/.test(upd) &&
+    !/rlb\.position\.set\(fOrg\[0\] \+ rdir\[0\] \* \(rlen \+ 0\.62\)/.test(upd));
+  ok("E1c-I: the ZERO badge goes through it too (it was the one text never placed)",
+    /bscPlaceLabel\(rzr, \[fOrg\[0\], fOrg\[1\], fOrg\[2\]\], BSC_ZERO_LABEL_OFF/.test(upd) &&
+    !/rzr\.position\.set\(fOrg\[0\], fOrg\[1\] \+ 1\.15, fOrg\[2\]\)/.test(upd));
+  ok("the avoid set is DISCS, bond SEGMENTS, the vectors and the placed text",
+    /rAvoid = \[\{ p: \[fOrg\[0\], fOrg\[1\], fOrg\[2\]\], r: fCenRad \}\]/.test(upd) &&
+    /if \(fCenLabPos\) rAvoid\.push\(fCenLabPos\)/.test(upd) &&
+    /rAvoid\.push\(\{ p: fLigWorld\[rAi\], r: fLigRad\[rAi\] \|\| 0 \}\)/.test(upd) &&
+    /rAvoid\.push\(\{ a: \[fOrg\[0\], fOrg\[1\], fOrg\[2\]\], b: fLigWorld\[rAi\] \}\)/.test(upd) &&
+    /rAvoid\.push\(\{ a: rBase, b: \[rBase\[0\] \+ rdir\[0\] \* rlen/.test(upd) &&
+    /for \(rAi = 0; rAi < fTextAvoid\.length; rAi\+\+\) rAvoid\.push\(fTextAvoid\[rAi\]\)/.test(upd) &&
+    /dip\.show_lone_pair && D\.lone && D\.lone\.length/.test(upd));
+  ok("the lone-pair LABEL is not an avoid point (that would be a frame-to-frame loop)",
+    !/rAvoid\.push\(\[lLab|rAvoid\.push\(lLab|rAvoid\.push\(\{ s: lLab/.test(upd) &&
+    /BS_LONE_LOBE_LEN \+ Math\.abs\(D\.lone\[0\]\.D\) \* aScale;[\s\S]{0,240}rAvoid\.push\(\{ a: \[fOrg/.test(upd));
+  ok("a delta glyph is STACKED on its own symbol, never searched independently",
+    /var syA = \(BSC_LABEL_DIRS\[dirIx\]\[1\] >= 0\) \? 1 : -1;/.test(upd) &&
+    /var pA = \[lab2\.position\.x \+ bscCamU\.x \* syA \* gap/.test(upd) &&
+    /var dp = \(bscScoreBox\(dlab2, pB, av\) >[\s\S]{0,60}bscScoreBox\(dlab2, pA, av\) \+ 1e-6\) \? pB : pA;/.test(upd) &&
+    !/mgPlaceLabelClear\(dlab/.test(upd));
+  {
+    // D-1 by construction: the placement helpers read the camera and the avoid
+    // geometry and NOTHING else. A standalone file:// page cannot prove the
+    // rewind (it has no player, so nothing halts the clock and even a same-value
+    // re-pin differs), so the closed-form property is proved at the source.
+    const src = ["bscProj", "bscScreenK", "bscBoxPt", "bscBoxBox", "bscBoxSeg",
+      "bscInkHalf", "bscAvoidScreen", "bscScoreBox", "bscPlaceLabel"].map(grabFn).join("\n");
+    const bad = [/\btime\s*\+=/, /\bphase\s*\+=/, /\+=\s*dt\b/, /\+=\s*0\.016/,
+      /Date\.now\s*\(/, /performance\.now\s*\(/, /Math\.random\s*\(/,
+      /window\./, /_pmPrev|_bscLast|lastPos/];
+    const hits = bad.filter((re) => re.test(src)).map(String);
+    ok("the E1c-I placement helpers are CLOSED FORM (no clock, no RNG, no memory)",
+      hits.length === 0, hits.join(" "));
+  }
+  ok("the candidates are UNIT screen directions (the offset means what it says)",
+    E.BSC_LABEL_DIRS.length === 16 && E.BSC_LABEL_RINGS.length === 3 &&
+    E.BSC_LABEL_RINGS[0] === 0 && E.BSC_CLEAR_CAP > 0 &&
+    E.BSC_LABEL_DIRS.every((d: number[]) => Math.abs(Math.hypot(d[0], d[1]) - 1) < 1e-12),
+    `${E.BSC_LABEL_DIRS.length} dirs x ${E.BSC_LABEL_RINGS.length} rings, cap ${E.BSC_CLEAR_CAP}`);
+
+  const FLOOR = 0.02;
+  ok(`NO TEXT SURFACE OVERLAPS ANOTHER, every species at its own camera (>= ${FLOOR})`,
+    wStat.tSep >= FLOOR, `worst ${wStat.tSep.toFixed(4)} NDC at ${wStat.tAt}`);
+  ok(`NO TEXT SURFACE COVERS A COUNTED LIGAND DISC (>= ${FLOOR})`,
+    wStat.lSep >= FLOOR, `worst ${wStat.lSep.toFixed(4)} NDC at ${wStat.lAt2}`);
+  ok(`NO TEXT SURFACE LIES ACROSS A BOND SHAFT (>= ${FLOOR})`,
+    wStat.bSep >= FLOOR, `worst ${wStat.bSep.toFixed(4)} NDC at ${wStat.bAt}`);
+  ok(`NO TEXT SURFACE LIES ACROSS AN ARROW (>= ${FLOOR})`,
+    wStat.aSep >= FLOOR, `worst ${wStat.aSep.toFixed(4)} NDC at ${wStat.aAt}`);
+  {
+    // and none of it leaves the frame or climbs into the review chrome's caption
+    // band — the outer ring's own scar, read off the re-shot frames.
+    let worst = 9, at = "";
+    for (const r of statRuns.concat(spinRuns, angRuns, swapRuns)) {
+      for (const t of r.m.texts) {
+        const e = Math.min(E.BSC_SAFE_X - (Math.abs(t.c[0]) + t.h[0]),
+                           E.BSC_SAFE_Y - (Math.abs(t.c[1]) + t.h[1]));
+        if (e < worst) { worst = e; at = r.tag + " " + t.id; }
+      }
+    }
+    ok("NO TEXT SURFACE LEAVES THE SAFE SCREEN BOX (the caption band included)",
+      worst >= 0, `worst ${worst.toFixed(4)} NDC at ${at}`);
+  }
+  ok(`...and it HOLDS THROUGH A FULL SPIN, all ${ALLSPEC.length} species x 72 phases (>= ${FLOOR})`,
+    Math.min(wSpin.tSep, wSpin.lSep, wSpin.bSep, wSpin.aSep) >= FLOOR,
+    `text ${wSpin.tSep.toFixed(4)} ${wSpin.tAt} · lig ${wSpin.lSep.toFixed(4)} ${wSpin.lAt2}` +
+    ` · bond ${wSpin.bSep.toFixed(4)} ${wSpin.bAt} · arrow ${wSpin.aSep.toFixed(4)} ${wSpin.aAt}`);
+  // The angle slider's EXTREME end is measured against its own floor, and the
+  // number is stated rather than smoothed away: at BF3 bent to 90 degrees the
+  // three ligands are crushed into a quarter turn, and at one spin phase the
+  // outermost delta glyph clears the nearest arrowhead by 0.0120 NDC (4.3 px at
+  // 720p). That is a CLEARANCE, not an overlap, and no candidate on any of the
+  // three rings does better — the frame is genuinely full. Everything else on
+  // the slider, and every other family, holds the 0.02 comfort floor.
+  const ANGLE_FLOOR = 0.010;
+  ok(`...through the whole ANGLE slider, spun (>= ${ANGLE_FLOOR} at the 90 deg extreme)`,
+    Math.min(wAng.tSep, wAng.lSep, wAng.bSep, wAng.aSep) >= ANGLE_FLOOR,
+    `text ${wAng.tSep.toFixed(4)} ${wAng.tAt} · lig ${wAng.lSep.toFixed(4)} ${wAng.lAt2}` +
+    ` · bond ${wAng.bSep.toFixed(4)} ${wAng.bAt} · arrow ${wAng.aSep.toFixed(4)} ${wAng.aAt}`);
+  ok(`...and DURING a compare swap, not only at its endpoints (>= ${FLOOR})`,
+    Math.min(wSwap.tSep, wSwap.lSep, wSwap.bSep, wSwap.aSep) >= FLOOR,
+    `text ${wSwap.tSep.toFixed(4)} ${wSwap.tAt} · lig ${wSwap.lSep.toFixed(4)} ${wSwap.lAt2}` +
+    ` · bond ${wSwap.bSep.toFixed(4)} ${wSwap.bAt} · arrow ${wSwap.aSep.toFixed(4)} ${wSwap.aAt}`);
+
+  // ── NEGATIVE CONTROL I1: the zero badge's hardcoded +1.15 on world y. It is
+  //   the frame that would have been APPROVED (STATE_5__frozen.png).
+  {
+    let worst = 9, at = "";
+    for (const k of ALLSPEC) {
+      const m: any = layout(k, camOf(k), optOf(k));
+      if (!m.isZero) continue;
+      const G = m.G, zb = boxAt(G, [0, 1.15, 0], "μ = 0 D", HS_RES);
+      for (let i = 1; i <= m.n; i++) {
+        const Q = G.P(m.pos[i]);
+        const s2 = E.bscBoxPt(zb.c, zb.h, [Q.x, Q.y]) - m.discs[i].r * G.K(m.pos[i]);
+        if (s2 < worst) { worst = s2; at = `${k} lig${i}`; }
+      }
+      for (let i = 0; i < m.bonds.length; i++) {
+        const A = G.P(m.bonds[i].a), B = G.P(m.bonds[i].b);
+        const s2 = E.bscBoxSeg(zb.c, zb.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < worst) { worst = s2; at = `${k} bond${i}`; }
+      }
+    }
+    ok("NEGATIVE CONTROL (I1): the hardcoded zero badge sits ON counted geometry",
+      worst < 0, `worst ${worst.toFixed(4)} NDC at ${at} (now ${wStat.lSep.toFixed(4)} / ${wStat.bSep.toFixed(4)})`);
+  }
+  // ── NEGATIVE CONTROL I2: E1c-D's point metric on points. A label that clears
+  //   both ENDPOINTS of the apex bond still lies across its middle.
+  {
+    let worst = 9, at = "";
+    for (const k of ALLSPEC) {
+      const m: any = layout(k, camOf(k), optOf(k));
+      if (m.isZero) continue;
+      const G = m.G;
+      const av: V[] = [[0, 0, 0]];
+      if (m.cenLab) av.push(m.cenLab.pos);
+      for (let i = 1; i <= m.n; i++) av.push(m.pos[i]);
+      const p = placeOld(G, sc(m.rdir, m.rlen), E.BS_RES_LABEL_OFF, av);
+      const bx = boxAt(G, p, "μ = " + E.bscFmtD(m.D.mag) + " D", HS_RES);
+      for (let i = 0; i < m.bonds.length; i++) {
+        const A = G.P(m.bonds[i].a), B = G.P(m.bonds[i].b);
+        const s2 = E.bscBoxSeg(bx.c, bx.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < worst) { worst = s2; at = `${k} bond${i}`; }
+      }
+    }
+    ok("NEGATIVE CONTROL (I2): the point metric lays the value label ACROSS a bond",
+      worst < 0, `worst ${worst.toFixed(4)} NDC at ${at} (now ${wStat.bSep.toFixed(4)})`);
+  }
+  // ── I7: the resultant is an ARROW, not a stub inside the atom it starts on.
+  {
+    let worstOut = 9, at = "", worstOld = 9, atOld = "";
+    for (const k of ALLSPEC) {
+      const m: any = layout(k, camOf(k), optOf(k));
+      if (m.isZero) continue;
+      // fraction of the drawn length that clears the central sphere
+      const outNew = (m.rlen) / m.rlen;                       // tailed at the rim: all of it
+      const outOld = Math.max(0, m.rlen - m.discs[0].r) / m.rlen;
+      if (outNew < worstOut) { worstOut = outNew; at = k; }
+      if (outOld < worstOld) { worstOld = outOld; atOld = k; }
+    }
+    ok("THE RESULTANT LAUNCHES FROM THE CENTRAL ATOM'S SURFACE, whole length visible",
+      /var rBase = \[fOrg\[0\] \+ rdir\[0\] \* fCenRad/.test(upd) &&
+      /rsh\.position\.set\(rBase\[0\], rBase\[1\], rBase\[2\]\)/.test(upd) &&
+      /var rp = \[rBase\[0\] \+ rdir\[0\] \* rP\.shaft/.test(upd) &&
+      worstOut >= 0.999,
+      `${(worstOut * 100).toFixed(0)}% of the drawn length outside the sphere`);
+    ok("NEGATIVE CONTROL (I7): tailed at the CENTRE it was mostly buried",
+      worstOld < 0.5, `worst ${(worstOld * 100).toFixed(0)}% visible at ${atOld}`);
+  }
+  // the cameras this whole measurement is taken at, asserted value for value —
+  // E1c-H's handoff: a collision number is only meaningful against its framing.
+  ok("every camera the sweep uses is the MEASURED constant, unmoved",
+    JSON.stringify(E.BS_UNIT_CAMERAS) === JSON.stringify({
+      pyramidal: { az: 120, el: 15, dist: 7 },
+      diatomic: { az: 35, el: 12, dist: 7 },
+      trigonal: { az: 35, el: 15, dist: 7 },
+      general: { az: 35, el: 47, dist: 7 }
+    }), JSON.stringify(E.BS_UNIT_CAMERAS));
+  console.log(`    label placement  worst over ${statRuns.length + spinRuns.length + angRuns.length + swapRuns.length}` +
+    ` layouts: text=${wAll.tSep.toFixed(4)} ligand=${wAll.lSep.toFixed(4)}` +
+    ` bond=${wAll.bSep.toFixed(4)} arrow=${wAll.aSep.toFixed(4)}`);
+
+  // ── item 2: the diatomic solve.
+  const projRatio = (molKey: string, cam: any) => {
+    const { r, P } = rig(cam), fr: any = E.mgFrame(molKey, null, null), L = E.BS_BOND_LEN;
+    const a = P([0, 0, 0]), b = P(sc(fr.bonds[0], L));
+    // reference: the SAME world length laid across the view through the pivot
+    const r1 = P(sc(r, -L / 2)), r2 = P(sc(r, L / 2));
+    return Math.hypot(a.x - b.x, a.y - b.y) / Math.hypot(r1.x - r2.x, r1.y - r2.y);
+  };
+  const DIA = ["HF", "HCl", "HBr", "HI"];
+  const worstDia = Math.min(...DIA.map((k) => projRatio(k, E.BS_UNIT_CAMERAS.diatomic)));
+  const worstGen = Math.min(...DIA.map((k) => projRatio(k, E.BS_UNIT_CAMERAS.general)));
+  ok("bscUnitShapeKey gives a 1-bond unit its OWN key, and nothing else",
+    DIA.every((k) => E.bscUnitShapeKey(k) === "diatomic") &&
+    ["NH3", "NF3"].every((k) => E.bscUnitShapeKey(k) === "pyramidal") &&
+    // E1c-H: BF3 left this set for the measured TRIGONAL key (section 21).
+    ["CCl4", "CHCl3", "CH4", "H2O", "CO2"].every((k) => E.bscUnitShapeKey(k) === "general") &&
+    E.bscUnitShapeKey("BF3") === "trigonal" &&
+    Object.keys(E.MG_MOLECULES).filter((k) => E.bscUnitShapeKey(k) === "diatomic").sort().join("|")
+      === "HBr|HCl|HF|HI");
+  ok("E1c-A's GENERAL solve is UNCHANGED, value for value (E1c-E moved only the pyramid)",
+    JSON.stringify(E.BS_UNIT_CAMERAS.general) === JSON.stringify({ az: 35, el: 47, dist: 7 }),
+    `general=${JSON.stringify(E.BS_UNIT_CAMERAS.general)}`);
+  ok("a 1-bond unit's PROJECTED bond length is >= 0.9x its true length",
+    worstDia >= 0.9, `${worstDia.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.diatomic.el}`);
+  ok("NEGATIVE CONTROL: the general solve FORESHORTENS it below that floor",
+    worstGen < 0.9,
+    `${worstGen.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.general.el} (+${((worstDia / worstGen - 1) * 100).toFixed(1)}% drawn length)`);
+  {
+    // the diatomic solve still has to pass section 16's own countability floors.
+    const { P } = rig(E.BS_UNIT_CAMERAS.diatomic);
+    let occ = 9, bx = 0;
+    for (const k of DIA) {
+      const m = E.MG_MOLECULES[k], fr: any = E.mgFrame(k, null, null);
+      const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius },
+                     { p: P(sc(fr.bonds[0], E.BS_BOND_LEN)), r: E.MG_ELEMENTS[m.ligand].radius }];
+      for (let i = 0; i < 2; i++) {
+        const near = atoms[0].p.z <= atoms[1].p.z ? atoms[0] : atoms[1];
+        const far = near === atoms[0] ? atoms[1] : atoms[0];
+        occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) -
+          near.r / (near.p.z * TH));
+      }
+      for (const a of atoms) bx = Math.max(bx, Math.abs(a.p.x) / ASPECT, Math.abs(a.p.y));
+    }
+    ok("the diatomic solve separates both atoms and stays inside the safe box",
+      occ >= 0.09 && bx <= 0.85, `occ=${occ.toFixed(4)} box=${bx.toFixed(3)}`);
+  }
+  console.log(`    diatomic solve   el ${E.BS_UNIT_CAMERAS.diatomic.el}: projected bond ${worstDia.toFixed(4)}x true` +
+    `  (was ${worstGen.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.general.el})`);
+}
+
+// ── 18. E1c-E: EVERY VECTOR A STATE DRAWS MUST SURVIVE ITS OWN CAMERA ──────────
+//   The scar this closes: a camera solved for one legibility metric (ligand
+//   countability) silently destroyed another (arrow LENGTH). Both were measured;
+//   only one was asserted, so the fix for the first shipped the second as a
+//   regression. S7's whole argument is a 6.4x magnitude contrast between NH3's
+//   resultant and NF3's, and at el 62 the smaller one drew at 5.8 px — a dot.
+//   So the projected length of every arrow the scene draws is now a GATED
+//   quantity, in both units that matter: as a fraction of the arrow's true world
+//   length (is the camera lying about the magnitude?) and in absolute pixels at
+//   720p (can a teacher see it at all?).
+console.log("\n=== 18. E1c-E VECTOR PROJECTION (no camera may foreshorten a taught length) ===");
+{
+  const FOV = 60 * Math.PI / 180, TH = Math.tan(FOV / 2);
+  const PX720 = 720 / 2;              // isotropic NDC y in [-1,1] spans 720 px
+  type W = number[];
+  const sb = (a: W, b: W) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cx = (a: W, b: W) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dp = (a: W, b: W) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const k3 = (v: W, k: number) => [v[0] * k, v[1] * k, v[2] * k];
+  const rig18 = (c: any) => {
+    const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+    const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sb([0, 0, 0], cam)), r = E.bscNorm(cx(f, [0, 1, 0])), u = cx(r, f);
+    const P = (p: W) => {
+      const v = sb(p, cam), z = dp(v, f);
+      return { x: dp(v, r) / (z * TH), y: dp(v, u) / (z * TH), z };
+    };
+    return { r, P };
+  };
+  /**
+   * Projected length of a world vector, against the SAME world length laid across
+   * the view through the same pivot — so the ratio isolates foreshortening from
+   * perspective scale, and px is what a 720p frame actually shows.
+   */
+  const projOf = (cam: any, dir: W, L: number) => {
+    const { r, P } = rig18(cam);
+    const a = P([0, 0, 0]), b = P(k3(dir, L));
+    const r1 = P(k3(r, -L / 2)), r2 = P(k3(r, L / 2));
+    const drawn = Math.hypot(a.x - b.x, a.y - b.y);
+    return { ratio: drawn / Math.hypot(r1.x - r2.x, r1.y - r2.y), px: drawn * PX720 };
+  };
+  /** every arrow the dipole layer draws for one species: bonds, lone pair, resultant. */
+  const vectorsOf = (molKey: string) => {
+    const D: any = E.bscDipole(molKey, null);
+    const out: any[] = [];
+    if (D.mag > 1e-9) out.push({ id: "resultant", dir: E.bscNorm(D.vec), L: D.mag * E.BS_ARROW_D_PER_UNIT });
+    D.arrows.forEach((a: any, i: number) => {
+      if (Math.abs(a.D) > 1e-6) out.push({ id: "bond" + i, dir: a.dir, L: Math.abs(a.D) * E.BS_ARROW_D_PER_UNIT });
+    });
+    D.lone.forEach((l: any, i: number) => {
+      if (Math.abs(l.D) > 1e-6) out.push({ id: "lone" + i, dir: l.dir, L: Math.abs(l.D) * E.BS_ARROW_D_PER_UNIT });
+    });
+    return out;
+  };
+  const DRAWN18 = ["NH3", "NF3", "H2O", "CHCl3", "HF", "HCl", "HBr", "HI"]
+    .filter((k) => (E.bscDipole(k, null) as any).mag > 1e-9);
+  /** worst projection over a species set, with the pyramidal key swappable (controls). */
+  const worst = (mols: string[], pyr: any, only?: string) => {
+    const CAM: any = { pyramidal: pyr, general: E.BS_UNIT_CAMERAS.general, diatomic: E.BS_UNIT_CAMERAS.diatomic };
+    let ratio = 9, px = 1e9, atR = "", atP = "";
+    for (const k of mols) {
+      const cam = CAM[E.bscUnitShapeKey(k)];
+      for (const v of vectorsOf(k)) {
+        if (only && v.id !== only) continue;
+        const q = projOf(cam, v.dir, v.L);
+        if (q.ratio < ratio) { ratio = q.ratio; atR = k + " " + v.id; }
+        if (q.px < px) { px = q.px; atP = k + " " + v.id; }
+      }
+    }
+    return { ratio, px, atR, atP };
+  };
+  const OLD_PYR = { az: 35, el: 62, dist: 7 };       // the E1c-A solve E1c-E replaced
+  const RATIO_FLOOR = 0.50, PX_FLOOR = 11.0;         // every arrow, every species
+  const RES_RATIO = 0.60, RES_PX = 11.0;             // the resultant specifically
+  const PYR_RES_RATIO = 0.90;                        // the pyramid's on-axis resultant
+  const now = worst(DRAWN18, E.BS_UNIT_CAMERAS.pyramidal);
+  const nowRes = worst(DRAWN18, E.BS_UNIT_CAMERAS.pyramidal, "resultant");
+  const pyrRes = worst(["NH3", "NF3"], E.BS_UNIT_CAMERAS.pyramidal, "resultant");
+  const oldRes = worst(["NH3", "NF3"], OLD_PYR, "resultant");
+  const azOnly = worst(["NH3", "NF3"], { az: 120, el: 62, dist: 7 }, "resultant");
+
+  ok(`EVERY arrow drawn projects to >= ${RATIO_FLOOR}x its true length and >= ${PX_FLOOR} px at 720p`,
+    now.ratio >= RATIO_FLOOR && now.px >= PX_FLOOR,
+    `worst ${now.ratio.toFixed(4)}x at ${now.atR} · worst ${now.px.toFixed(1)} px at ${now.atP}`);
+  ok(`every RESULTANT — the vector a magnitude claim rests on — clears ${RES_RATIO}x and ${RES_PX} px`,
+    nowRes.ratio >= RES_RATIO && nowRes.px >= RES_PX,
+    `worst ${nowRes.ratio.toFixed(4)}x at ${nowRes.atR} · worst ${nowRes.px.toFixed(1)} px at ${nowRes.atP}`);
+  ok(`the PYRAMID's on-axis resultant is drawn near full length (>= ${PYR_RES_RATIO}x)`,
+    pyrRes.ratio >= PYR_RES_RATIO,
+    `worst ${pyrRes.ratio.toFixed(4)}x / ${pyrRes.px.toFixed(1)} px at ${pyrRes.atR}`);
+  ok("NEGATIVE CONTROL: the el-62 solve foreshortens NF3's resultant to a dot (E1c-D's frames)",
+    oldRes.ratio < RES_RATIO && oldRes.px < RES_PX,
+    `${oldRes.ratio.toFixed(4)}x / ${oldRes.px.toFixed(1)} px at ${oldRes.atP}` +
+    ` — vs ${pyrRes.px.toFixed(1)} px now (+${((pyrRes.px / oldRes.px - 1) * 100).toFixed(0)}%)`);
+  ok("NEGATIVE CONTROL: the new AZIMUTH alone does not fix it — elevation is load-bearing",
+    Math.abs(azOnly.px - oldRes.px) < 0.05,
+    `az 120 el 62 still draws ${azOnly.px.toFixed(1)} px (an on-axis length depends on elevation only)`);
+  {
+    // ... and the new ELEVATION alone does not clear the ligand-occlusion floor,
+    // measured on section 16's metric: azimuth is what opens the joint band.
+    const ASP = 16 / 9;
+    const P16 = (c: any) => {
+      const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+      const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+      const f = E.bscNorm(sb([0, 0, 0], cam)), r = E.bscNorm(cx(f, [0, 1, 0])), u = cx(r, f);
+      return (p: W) => {
+        const v = sb(p, cam), z = dp(v, f);
+        return { x: dp(v, r) / (z * TH * ASP), y: dp(v, u) / (z * TH), z };
+      };
+    };
+    const occAt = (c: any) => {
+      const P = P16(c);
+      let o = 9;
+      for (const mk of ["NH3", "NF3"]) {
+        const D: any = E.bscDipole(mk, null), m = E.MG_MOLECULES[mk];
+        const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius }].concat(
+          D.arrows.map((a: any, i: number) =>
+            ({ p: P(k3(a.dir, E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+        for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+          if (i === j) continue;
+          const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+          const far = near === atoms[i] ? atoms[j] : atoms[i];
+          o = Math.min(o, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) - near.r / (near.p.z * TH));
+        }
+      }
+      return o;
+    };
+    ok("NEGATIVE CONTROL: the new ELEVATION at the old azimuth re-overlaps the tripod",
+      occAt({ az: 35, el: 15, dist: 7 }) < 0.09 &&
+      occAt(E.BS_UNIT_CAMERAS.pyramidal) >= 0.09,
+      `az 35 el 15 occ=${occAt({ az: 35, el: 15, dist: 7 }).toFixed(4)} vs shipped ` +
+      `occ=${occAt(E.BS_UNIT_CAMERAS.pyramidal).toFixed(4)} (floor 0.09)`);
+  }
+  {
+    // S7 argues from a RATIO of two drawn lengths, so the ratio itself is a gated
+    // quantity: the drawn contrast must equal the physical contrast, not amplify it.
+    const cam = E.BS_UNIT_CAMERAS.pyramidal;
+    const pxOf = (k: string, c: any) => {
+      const D: any = E.bscDipole(k, null);
+      return projOf(c, E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT).px;
+    };
+    const phys = (E.bscDipole("NH3", null) as any).mag / (E.bscDipole("NF3", null) as any).mag;
+    const err = (c: any) => Math.abs((pxOf("NH3", c) / pxOf("NF3", c)) / phys - 1);
+    ok("S7's TAUGHT CONTRAST is drawn to scale: |drawn ratio / physical ratio - 1| <= 6%",
+      err(cam) <= 0.06,
+      `drawn ${(pxOf("NH3", cam) / pxOf("NF3", cam)).toFixed(3)}x vs physical ${phys.toFixed(3)}x` +
+      ` = ${(err(cam) * 100).toFixed(1)}% error`);
+    ok("NEGATIVE CONTROL: el 62 exaggerated that contrast while hiding the small arrow",
+      err(OLD_PYR) > 0.06,
+      `drawn ${(pxOf("NH3", OLD_PYR) / pxOf("NF3", OLD_PYR)).toFixed(3)}x = ${(err(OLD_PYR) * 100).toFixed(1)}% error`);
+    console.log(`    vector projection  pyramid resultants ${pyrRes.ratio.toFixed(4)}x / ${pyrRes.px.toFixed(1)} px` +
+      `  (el 62 drew ${oldRes.ratio.toFixed(4)}x / ${oldRes.px.toFixed(1)} px)` +
+      `  · contrast error ${(err(cam) * 100).toFixed(1)}% (was ${(err(OLD_PYR) * 100).toFixed(1)}%)`);
+  }
+}
+
+// ── 19. E1c-F: THE INSTRUMENT AND THE TRANSITION OBEY THE REVEAL CUES ─────────
+//   One root cause, three faces: a piece that STATES the answer (the HUD line),
+//   a piece that CHANGES the answer (the species swap) and a fourth vector (the
+//   lone-pair moment) were each free of the cue that reveals their evidence.
+//   Everything below runs the SHIPPED source text — the swap block and the HUD
+//   gate are sliced out of updateBondingSceneFrame and evaluated, never retyped —
+//   so a revert cannot leave this section green.
+console.log("\n=== 19. E1c-F CUE-OBEDIENT INSTRUMENT + TRANSITION (HUD · swap · lone vector) ===");
+{
+  const upd = grabFn("updateBondingSceneFrame");
+  const app = grabFn("applyBondingSceneState");
+  const cut = (a: string, b: string) => {
+    const i = upd.indexOf(a), j = upd.indexOf(b, i);
+    if (i < 0 || j < 0) throw new Error("E1c-F: source slice not found: " + a);
+    return upd.slice(i, j);
+  };
+
+  // ── (a) THE SWAP IS A TRANSITION. The shipped block, evaluated.
+  const swapSrc = cut("var swapFrom = molKey;", "window.PM_bscSwapProgress");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const swapRaw = new Function("mgRamp", "MG_MOLECULES", "BS_SWAP_MS", "BS_SWAP_TROUGH",
+    "ms", "at", "dur", "seized", "mode", `
+    var molKey = "NH3", mol = MG_MOLECULES["NH3"], swapSeized = !!seized;
+    var bs = { compare_at_ms: at, compare_species: "NF3" };
+    if (dur != null) bs.compare_duration_ms = dur;
+    ${swapSrc}
+    return { p: swapP, veil: swapVeil, mix: swapMixF, key: molKey, active: !!swapActive };
+  `);
+  const swapAt = (ms: number, at = 9800, dur: number | null = 7300, seized = false, mode = "compare") =>
+    swapRaw(E.mgRamp, E.MG_MOLECULES, E.BS_SWAP_MS, E.BS_SWAP_TROUGH, ms, at, dur, seized, mode) as
+      { p: number; veil: number; mix: number; key: string; active: boolean };
+  const AT = 9800, DUR = 7300;                 // bond_polarity S7, as authored
+  const q = (f: number) => swapAt(AT + DUR * f);
+
+  ok("before its instant the swap has not started (species, ink and shape all home)",
+    q(0).p === 0 && q(0).veil === 1 && q(0).mix === 0 && q(0).key === "NH3" &&
+    swapAt(0).key === "NH3" && swapAt(0).veil === 1);
+  ok("THE F2 ASSERTION: at the MIDPOINT of the authored duration the swap is materially INCOMPLETE",
+    q(0.5).veil === 0 && Math.abs(q(0.5).mix - 0.5) < 1e-12,
+    `veil=${q(0.5).veil} (vector layer dark) · mix=${q(0.5).mix.toFixed(3)} (atoms exactly half-way)`);
+  ok("at 25% and 75% the picture is neither endpoint (ink part-way, atoms part-way)",
+    q(0.25).veil > 0 && q(0.25).veil < 1 && q(0.25).mix > 0.05 &&
+    q(0.75).veil > 0 && q(0.75).veil < 1 && q(0.75).mix > 0.05,
+    `25%: veil=${q(0.25).veil.toFixed(3)} mix=${q(0.25).mix.toFixed(3)} · ` +
+    `75%: veil=${q(0.75).veil.toFixed(3)} mix=${q(0.75).mix.toFixed(3)}`);
+  ok("the IDENTITY flips exactly once, at the midpoint, inside the dark trough",
+    q(0.49).key === "NH3" && q(0.5).key === "NF3" && q(1).key === "NF3" &&
+    q(0.49).veil === 0, `veil at the flip ${q(0.49).veil.toFixed(4)}`);
+  {
+    // the trough is a real WINDOW, not an instant: a zero-width trough would let
+    // the ink touch zero and leave inside one frame, and the withhold across a
+    // substitution would be nominal rather than something a teacher can read.
+    const troughMs = DUR * (E.BS_SWAP_TROUGH as number);
+    const inside = [0.5 - 0.04, 0.5 - 0.02, 0.5, 0.5 + 0.02, 0.5 + 0.04];
+    ok("the dark trough is a WINDOW the eye can read, not a single instant",
+      inside.every((f) => q(f).veil === 0) &&
+      q(0.5 - (E.BS_SWAP_TROUGH as number) / 2 - 0.02).veil > 0 &&
+      q(0.5 + (E.BS_SWAP_TROUGH as number) / 2 + 0.02).veil > 0,
+      `${Math.round(troughMs)} ms dark at BS_SWAP_TROUGH=${E.BS_SWAP_TROUGH}`);
+    ok("...and the atoms keep MORPHING right through it (the scene never stalls)",
+      inside.every((f, i) => i === 0 || Math.abs(q(f).mix - q(inside[i - 1]).mix) > 1e-4),
+      inside.map((f) => q(f).mix.toFixed(4)).join(" "));
+  }
+  ok("the transition COMPLETES at compare_at_ms + compare_duration_ms and holds",
+    q(1).p === 1 && q(1).veil === 1 && q(1).mix === 0 &&
+    swapAt(AT + DUR + 5000).veil === 1 && swapAt(AT + DUR + 5000).key === "NF3");
+  {
+    // THE MEASURED DEFECT: S7 stood still for its last 12.0 s because the cut was
+    // its final apparatus motion. Sample the whole beat at 200 ms and require the
+    // picture to CHANGE on every single step.
+    const step = 200, n = Math.floor(DUR / step);
+    let staticSteps = 0;
+    for (let k = 0; k < n; k++) {
+      const a = swapAt(AT + k * step), b = swapAt(AT + (k + 1) * step);
+      if (Object.is(a.veil, b.veil) && Object.is(a.mix, b.mix)) staticSteps++;
+    }
+    ok("the apparatus MOVES on every 200 ms step of the whole authored duration",
+      staticSteps === 0, `${n} steps, ${staticSteps} static`);
+    // NEGATIVE CONTROL: the shipped E1c-E rule, reproduced exactly.
+    const oldKey = (ms: number) => (ms >= AT ? "NF3" : "NH3");
+    let oldStatic = 0;
+    for (let k = 0; k < n; k++) if (oldKey(AT + k * step) === oldKey(AT + (k + 1) * step)) oldStatic++;
+    ok("NEGATIVE CONTROL: the instant switch was static on every step but one",
+      oldStatic >= n - 1, `${oldStatic}/${n} steps unchanged — the 12.0 s freeze`);
+    ok("NEGATIVE CONTROL: the instant switch shows the FINISHED picture at 25% of the beat",
+      oldKey(AT + DUR * 0.25) === "NF3" && q(0.25).key === "NH3");
+  }
+  {
+    // THE REWIND (D-1). A latched "already swapped" flag cannot do this.
+    const a = q(0.25), b = (q(0.9), q(0.25));
+    ok("rewind 25% -> 90% -> 25% reproduces veil, mix and species byte-for-byte",
+      Object.is(a.veil, b.veil) && Object.is(a.mix, b.mix) && a.key === b.key);
+  }
+  ok("a TRUSTED DRAG still stands the whole swap down (the E1c-A seize guard holds)",
+    swapAt(AT + DUR, 9800, 7300, true).active === false &&
+    swapAt(AT + DUR, 9800, 7300, true).veil === 1 &&
+    swapAt(AT + DUR, 9800, 7300, true).key === "NH3");
+  ok("a NON-compare mode never runs a swap (veil is a hard 1: byte-identical to E1c-E)",
+    swapAt(AT + DUR, 9800, 7300, false, "dipole_sum").active === false &&
+    swapAt(AT + DUR, 9800, 7300, false, "dipole_sum").veil === 1 &&
+    swapAt(AT + DUR, 9800, 7300, false, "dipole_sum").mix === 0);
+  {
+    // the pin must land on the FIRST SETTLED frame in BOTH deriveStateMeta cases.
+    const withDur = swapAt(AT + DUR + 600);
+    const noDur = swapAt(AT + 1500, AT, null);
+    ok("deriveStateMeta's pin lands AFTER the transition, authored duration or not",
+      withDur.p === 1 && withDur.veil === 1 && noDur.p === 1 && noDur.veil === 1 &&
+      E.BS_SWAP_MS === 1500 &&
+      /compare_duration_ms === 'number'/.test(META_SRC),
+      `BS_SWAP_MS=${E.BS_SWAP_MS} matches the no-duration pin offset`);
+  }
+
+  // ── (b) the CONTINUOUS half of the morph: radius and colour cross over without
+  //   a step, and they cover the whole distance between the two elements.
+  {
+    const rH = E.bscElement("H").radius as number, rF = E.bscElement("F").radius as number;
+    const radAt = (ms: number) => {
+      const s = swapAt(ms);
+      const cur = s.key === "NH3" ? rH : rF, peer = s.key === "NH3" ? rF : rH;
+      return cur + (peer - cur) * s.mix;
+    };
+    const mid = AT + DUR * 0.5;
+    ok("the ligand RADIUS is continuous THROUGH the midpoint identity flip",
+      Math.abs(radAt(mid - 1) - radAt(mid + 1)) < 2e-3 &&
+      Math.abs(radAt(mid) - (rH + rF) / 2) < 1e-9,
+      `r(mid-1)=${radAt(mid - 1).toFixed(5)} r(mid+1)=${radAt(mid + 1).toFixed(5)} half-way=${((rH + rF) / 2).toFixed(5)}`);
+    ok("it travels the WHOLE way from the outgoing element to the incoming one",
+      Math.abs(radAt(AT - 1) - rH) < 1e-12 && Math.abs(radAt(AT + DUR) - rF) < 1e-12,
+      `H ${rH} -> F ${rF}`);
+    const mono = [0, 0.2, 0.4, 0.6, 0.8, 1].map((f) => radAt(AT + DUR * f));
+    ok("and it is monotonic across the beat (no bounce back through the flip)",
+      mono.every((v, i) => i === 0 || v >= mono[i - 1] - 1e-12), mono.map((v) => v.toFixed(3)).join(" -> "));
+    ok("bscMixHex is a pure endpoint-exact channel mix",
+      E.bscMixHex("#ECEFF1", "#9CCC65", 0) === "#eceff1" &&
+      E.bscMixHex("#ECEFF1", "#9CCC65", 1) === "#9ccc65" &&
+      E.bscMixHex("#000000", "#ffffff", 0.5) === "#808080",
+      `half-way H->F = ${E.bscMixHex("#ECEFF1", "#9CCC65", 0.5)}`);
+    ok("the atom draw reads the MIXED colour and radius, not the raw element's",
+      /rad = rad \+ \(pem\.radius - rad\) \* swapMixF;/.test(upd) &&
+      /col = bscMixHex\(col, pem\.color, swapMixF\);/.test(upd) &&
+      /mgSetColor\(atom, col\)/.test(upd) && !/mgSetColor\(atom, em\.color\)/.test(upd));
+    ok("only a unit that FOLLOWS the state's base species morphs (a mixed scene stays mixed)",
+      /var uInSwap = swapActive && uSpec === molKey &&/.test(upd) &&
+      /!\(udef && udef\.species && udef\.species !== baseSpecies\)/.test(upd));
+  }
+
+  // ── (c) THE INSTRUMENT. The shipped gate expression, evaluated.
+  const hudSrc = cut("var muInk = Math.min", "var lines = []");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const hudRaw = new Function("resFade", "arrowsF", "chargesF", "resCued", "arrowsCued", "chargesCued",
+    `${hudSrc} return { muHeld: muHeld, chiHeld: chiHeld };`);
+  const cueF = (ms: number, at: number | null, veil = 1) =>
+    (at == null ? 1 : (E.mgRamp(ms, at, E.BS_REVEAL_MS, 0, 1) as number)) * veil;
+  const hudAt = (ms: number, cues: { res?: number | null; arr?: number | null; chg?: number | null }, veil = 1) =>
+    hudRaw(cueF(ms, cues.res ?? null, veil), cueF(ms, cues.arr ?? null, veil), cueF(ms, cues.chg ?? null, veil),
+      cues.res != null, cues.arr != null, cues.chg != null) as { muHeld: boolean; chiHeld: boolean };
+
+  ok("THE F1 ASSERTION: a gated HUD line WITHHOLDS its value before its cue",
+    hudAt(0, { res: 6000 }).muHeld && hudAt(5999, { res: 6000 }).muHeld &&
+    hudAt(6000, { res: 6000 }).muHeld,
+    "mu is held at t=0, at 5999 and at the cue instant itself");
+  ok("...and STATES it once the evidence is on screen, and keeps stating it",
+    !hudAt(6001, { res: 6000 }).muHeld && !hudAt(6900, { res: 6000 }).muHeld &&
+    !hudAt(30000, { res: 6000 }).muHeld);
+  ok("it waits for the LATER of the two evidence layers, never the earlier",
+    hudAt(3300, { arr: 3200, res: 6000 }).muHeld &&
+    !hudAt(6100, { arr: 3200, res: 6000 }).muHeld &&
+    hudAt(1000, { arr: 3200 }).muHeld && !hudAt(3300, { arr: 3200 }).muHeld);
+  ok("NEGATIVE CONTROL: with NO cue authored the readout is LIVE from frame 0 (the S4 bend)",
+    !hudAt(0, {}).muHeld && !hudAt(0, {}).chiHeld && !hudAt(500, {}).muHeld);
+  ok("NEGATIVE CONTROL: the ungated E1c-E line stated the answer at t=0 on a bare molecule",
+    /lines\.push\(muHeld \? "\\u03BC = \\u2014 D"/.test(upd) &&
+    !/if \(w === "mu"\) lines\.push\("\\u03BC = " \+ bscFmtD/.test(upd));
+  ok("delta_chi rides the charge glyphs — the evidence for a charge separation",
+    hudAt(0, { chg: 2000 }).chiHeld && !hudAt(2900, { chg: 2000 }).chiHeld &&
+    /lines\.push\(chiHeld \? "\\u0394\\u03C7 = \\u2014"/.test(upd));
+  ok("across a SWAP the number leaves and returns WITH the vectors it describes",
+    hudAt(20000, { res: 6000 }, 0).muHeld && !hudAt(20000, { res: 6000 }, 0.4).muHeld,
+    "veil 0 (the trough) holds the value; veil 0.4 (the vectors returning) states it");
+  ok("the withheld form is this scenario's own em dash, so nothing reflows",
+    /\\u03BC = \\u2014 D/.test(upd) && /: "\\u2014"\) \+ " pm"/.test(upd));
+
+  // ── (d) THE FOURTH VECTOR. arrows_at_ms gates the lone-pair MOMENT; the lobe,
+  //   which is a VSEPR domain rather than a claim, deliberately stays.
+  ok("THE F3 ASSERTION: the lone-pair VECTOR rides arrows_at_ms with the bond arrows",
+    /var lvOn = lOn && Math\.abs\(lEnt\.D\) > 1e-6 && arrowsF > 0;/.test(upd) &&
+    /if \(lvOn && arrowsInk\) \{/.test(upd) &&
+    /setObjOpacity\(lsh2, BS_ARROW_OPACITY \* arrowsF\)/.test(upd) &&
+    /setObjOpacity\(lhd2, BS_ARROW_OPACITY \* arrowsF\)/.test(upd));
+  ok("the LOBE and its label are NOT swept in (structure, not a dipole claim)",
+    /var lOn = showLone && !!lEnt;/.test(upd) && /if \(lob\) lob\.visible = lOn;/.test(upd) &&
+    /lLab\.visible = showLone && loneDrawn > 0;/.test(upd));
+  ok("the lone-pair vector takes the RESTORE half every cue-driven layer has",
+    /bscFindById\("bsc_lone_shaft_" \+ i\);\s*\n\s*if \(l2\) \{ l2\.visible = false; setObjOpacity\(l2, BS_ARROW_OPACITY\); \}/.test(app) &&
+    /if \(l3\) \{ l3\.visible = false; setObjOpacity\(l3, BS_ARROW_OPACITY\); \}/.test(app));
+  ok("and the swap-veiled atom SYMBOL takes it too (no state inherits a dark label)",
+    /var al = bscFindById\("bsc_u" \+ i \+ "_lab" \+ j\);\s*\n\s*if \(al\) setObjOpacity\(al, 1\);/.test(app) &&
+    /if \(uInSwap\) setObjOpacity\(lab2, swapVeil\);/.test(upd));
+}
+
+// ── 20. E1c-G: THE EXPLORE SANDBOX MAY NOT REFUTE THE LESSON ─────────────────
+//   Measured live on bond_polarity S8 (fresh entry, molecule picker only):
+//     fresh H2O  mu 1.85 D @ 104.5  ->  CO2  mu 2.82 D @ 104.5
+//                                   ->  BF3  mu 1.81 D @ 104.5
+//   S3 of the same arc teaches that CO2's dipole moment is ZERO (the first
+//   misconception beat) and BF3 was admitted to the picker as the second
+//   "symmetric arrangement, zero resultant" example. The sandbox refuted both,
+//   and the concept's own assessment item with them, because ONE control kept a
+//   value that belonged to the PREVIOUS species.
+//   THE ASSERTION THAT WOULD HAVE CAUGHT IT is a WHOLE-PICKER SWEEP: the defect
+//   was invisible because only the default species was ever exercised. Every
+//   species in the explore picker is entered and read below, through the SHIPPED
+//   pick handler and the SHIPPED closed-form angle resolution — both sliced out
+//   of the renderer and evaluated, never retyped — so a revert cannot leave this
+//   section green.
+/** section 20 builds the shipped-pick-handler driver; section 21 re-uses it. */
+let driveExplore: ((picks: { id: string; v: string }[], mode?: string, preDragAngle?: number | null, camBs?: any) => any) | null = null;
+console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halide row · authored bounds) ===");
+{
+  const bld = grabFn("buildBondingScene");
+  const upd = grabFn("updateBondingSceneFrame");
+  const app = grabFn("applyBondingSceneState");
+  const cutIn = (src: string, a: string, b: string, what: string) => {
+    const i = src.indexOf(a), j = src.indexOf(b, i);
+    if (i < 0 || j < 0) throw new Error("E1c-G: source slice not found: " + what);
+    return src.slice(i, j);
+  };
+
+  // ── the SHIPPED closed-form angle destination.
+  const angleSrc = cutIn(upd, "var angleTo = (bs.angle_deg != null)", "var angleAt = function", "angleTo");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const angleRaw = new Function("MG_MOLECULES", "molKey", "mode", "swapSeized", "angle_deg", `
+    var mol = MG_MOLECULES[molKey];
+    var bs = {}; if (angle_deg != null) bs.angle_deg = angle_deg;
+    ${angleSrc}
+    return angleTo;
+  `);
+  const angleTo = (key: string, seized: boolean, mode = "explore", authored: number | null = 104.5) =>
+    angleRaw(E.MG_MOLECULES, key, mode, seized, authored) as number;
+
+  // ── the SHIPPED explore pick handler, on a stub DOM.
+  const pickSrc = cutIn(bld, "function bscExploreSpeciesPicked(", "function wireSelect(", "pick handler");
+  type Sel = { value: string; options: { value: string }[] };
+  type Span = { textContent: string };
+  const PICKER = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];   // explore_species, as authored
+  const HALIDES = ["HF", "HCl", "HBr", "HI"];                                      // explore_ligands, as authored
+  const newDom = () => {
+    const els: Record<string, unknown> = {
+      bsc_molecule_select: { value: "H2O", options: PICKER.map((v) => ({ value: v })) } as Sel,
+      // the shipped placeholder leads the halide list (E1c-G G2)
+      bsc_ligand_select: { value: "HF", options: [{ value: "" }, ...HALIDES.map((v) => ({ value: v }))] } as Sel,
+      bsc_angle_slider: { value: "104.5" },
+      bsc_angle_val: { textContent: "104.5" } as Span
+    };
+    return { els, document: { getElementById: (id: string) => els[id] ?? null } };
+  };
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const pickRaw = new Function("document", "window", "MG_MOLECULES", "bscOptionOf", "bscSelValue",
+    "bscReframeForSpecies", pickSrc + "\nreturn bscExploreSpeciesPicked;");
+  // E1c-H: the SHIPPED re-frame, on a spied animateCameraTo. Sliced, never
+  // retyped, so a revert cannot leave section 21 green.
+  const reframeSrc = grabFn("bscReframeForSpecies");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const reframeRaw = new Function("window", "BS_UNIT_CAMERAS", "bscSolvedShapeKey", "animateCameraTo",
+    reframeSrc + "\nreturn bscReframeForSpecies;");
+  /** camera moves the drive produced, as [az, el, dist] read back off the vector. */
+  const posToCam = (p: number[]) => {
+    const d = Math.hypot(p[0], p[1], p[2]);
+    return { az: ((Math.atan2(p[2], p[0]) * 180 / Math.PI) + 360) % 360,
+      el: Math.asin(p[1] / d) * 180 / Math.PI, dist: d };
+  };
+  const drive = (picks: { id: string; v: string }[], mode = "explore", preDragAngle: number | null = null,
+                 camBs: any = { mode: "explore", species: "H2O" }) => {
+    const dom = newDom();
+    const w: Record<string, unknown> = { PM_bscMode: mode, PM_bscMol: "H2O", PM_bscLig: "HF", PM_bscAngle: 104.5 };
+    if (preDragAngle != null) { w.PM_bscAngle = preDragAngle; w.PM_bscAngleDragged = true; }
+    // what applyBondingSceneState publishes, verbatim in shape: the state's own
+    // block when it is an explore sandbox that left its camera to the solve, and
+    // the shape key the state-entry camera was actually solved for.
+    w.PM_bscCamBs = camBs;
+    w.PM_bscCamKey = camBs ? E.bscSolvedShapeKey(camBs, null) : null;
+    const moves: any[] = [];
+    const reframe = reframeRaw(w, E.BS_UNIT_CAMERAS, E.bscSolvedShapeKey,
+      (p: number[]) => moves.push(posToCam(p)));
+    const fn = pickRaw(dom.document, w, E.MG_MOLECULES, E.bscOptionOf, E.bscSelValue, reframe);
+    for (const p of picks) {
+      const selId = "bsc_" + p.id + "_select";
+      if (dom.els[selId]) (dom.els[selId] as Sel).value = p.v;
+      // wireSelect's own two lines, verbatim from the shipped source, precede it
+      w["PM_bsc" + (p.id === "molecule" ? "Mol" : p.id === "ligand" ? "Lig" : "Species")] = p.v;
+      w["PM_bsc" + (p.id === "molecule" ? "Mol" : p.id === "ligand" ? "Lig" : "Species") + "Dragged"] = true;
+      fn(p.id, p.v);
+    }
+    const seized = !!w.PM_bscMolDragged || !!w.PM_bscLigDragged || !!w.PM_bscSpeciesDragged;
+    const key = (w.PM_bscMolDragged ? w.PM_bscMol : w.PM_bscLigDragged ? w.PM_bscLig : "H2O") as string;
+    const ang = w.PM_bscAngleDragged ? (w.PM_bscAngle as number) : angleTo(key, seized, mode);
+    return {
+      w, dom, key, ang, mu: E.bscDipole(key, ang).mag as number, moves,
+      cam: moves.length ? moves[moves.length - 1] : null,
+      camKey: w.PM_bscCamKey as string | null,
+      slider: Number((dom.els.bsc_angle_slider as { value: string }).value),
+      span: (dom.els.bsc_angle_val as Span).textContent,
+      halide: (dom.els.bsc_ligand_select as Sel).value,
+      molSel: (dom.els.bsc_molecule_select as Sel).value
+    };
+  };
+  driveExplore = drive;
+
+  // ── (a) THE WHOLE-PICKER SWEEP. Every species, entered from a fresh explore.
+  {
+    const MU: Record<string, number> = {
+      H2O: 1.8489, CO2: 0, CCl4: 0, CH4: 0, BF3: 0,
+      HF: 1.83, HCl: 1.11, HBr: 0.83, HI: 0.45
+    };
+    let bad: string[] = [];
+    const rows: string[] = [];
+    for (const k of PICKER) {
+      const r = drive([{ id: "molecule", v: k }]);
+      const eq = E.MG_MOLECULES[k].angle as number;
+      const geomOk = Math.abs(r.ang - eq) < 1e-9 && r.slider === eq && r.span === eq.toFixed(1);
+      const muOk = Math.abs(r.mu - MU[k]) < 5e-4;
+      if (!geomOk || !muOk) bad.push(k);
+      rows.push(`${k}:${r.ang}deg/${r.mu.toFixed(2)}D`);
+    }
+    ok("THE G1 ASSERTION: every picker species opens at its OWN equilibrium and its own mu",
+      bad.length === 0, bad.length ? "BROKEN: " + bad.join(",") : rows.join("  "));
+    const zeros = ["CO2", "BF3", "CH4", "CCl4"];
+    // "exactly zero" = below the engine's own 1e-6 D ink threshold (summing the
+    // ideal directions leaves a float residue: 3e-16 D on CO2, 5e-8 D on BF3 -
+    // no arrow is ever drawn from it) AND zero on the instrument.
+    ok("...and the four SYMMETRIC species read EXACTLY zero (the arc's own beat)",
+      zeros.every((k) => { const m = drive([{ id: "molecule", v: k }]).mu;
+        return Math.abs(m) < 1e-6 && E.bscFmtD(m) === "0.00"; }),
+      zeros.map((k) => k + " " + E.bscFmtD(drive([{ id: "molecule", v: k }]).mu) + " D").join(" · "));
+    ok("the sweep is the WHOLE picker, not a spot check",
+      PICKER.length === 9 && HALIDES.every((h) => PICKER.indexOf(h) >= 0),
+      `${PICKER.length} species, halide family a subset of it`);
+  }
+
+  // ── (b) NEGATIVE CONTROL: the shipped-before resolution, reproduced exactly.
+  {
+    const oldAng = (k: string) => 104.5;                    // angle_deg, never re-seeded
+    const oldMu = (k: string) => E.bscDipole(k, oldAng(k)).mag as number;
+    ok("NEGATIVE CONTROL: the un-re-seeded angle rendered CO2 bent at 2.82 D and BF3 at 1.81 D",
+      Math.abs(oldMu("CO2") - 2.8162) < 5e-4 && Math.abs(oldMu("BF3") - 1.8112) < 5e-4 &&
+      Math.abs(drive([{ id: "molecule", v: "CO2" }]).mu) < 1e-6 &&
+      Math.abs(drive([{ id: "molecule", v: "BF3" }]).mu) < 1e-6,
+      `was CO2 ${oldMu("CO2").toFixed(4)} / BF3 ${oldMu("BF3").toFixed(4)} — now 0.00 / 0.00`);
+    ok("NEGATIVE CONTROL: a single static default cannot serve the picker (180 breaks the bend beat)",
+      Math.abs((E.bscDipole("H2O", 180).mag as number)) < 1e-9 &&
+      Math.abs((E.bscDipole("H2O", 104.5).mag as number) - 1.8489) < 5e-4,
+      "H2O at 180 deg reads 0.0000 D — why the default must follow the species");
+  }
+
+  // ── (c) THE TEACHER KEEPS CONTROL, and the next pick hands it to the species.
+  {
+    const dragged = drive([{ id: "molecule", v: "CO2" }], "explore", 130);
+    ok("a teacher who has dragged the angle keeps it until the NEXT pick",
+      /var angleNow = \(bscHasControl\(ctrls, "angle"\) && window\.PM_bscAngleDragged\)/.test(upd) &&
+      /\? window\.PM_bscAngle : angleAt\(ms\);/.test(upd));
+    ok("...and a pick hands the angle back to the newly picked species",
+      dragged.w.PM_bscAngleDragged === false && dragged.ang === 180 && Math.abs(dragged.mu) < 1e-6,
+      `dragged to 130 then picked CO2 -> ${dragged.ang} deg, mu ${dragged.mu.toFixed(4)} D`);
+    const seq = drive([{ id: "molecule", v: "CO2" }, { id: "molecule", v: "BF3" }, { id: "molecule", v: "H2O" }]);
+    ok("a run of picks never carries the previous species' geometry forward",
+      seq.ang === 104.5 && Math.abs(seq.mu - 1.8489) < 5e-4 &&
+      Math.abs(drive([{ id: "molecule", v: "H2O" }, { id: "molecule", v: "BF3" }]).mu) < 1e-6,
+      "H2O -> CO2 -> BF3 -> H2O ends at 104.5 deg / 1.85 D");
+  }
+
+  // ── (d) D-1: THE RE-SEED IS AN EVENT, NOT AN ACCUMULATOR.
+  {
+    ok("the angle destination is a pure function of the RESOLVED molecule (no clock, no latch)",
+      !/\bms\b/.test(angleSrc) && !/\+=/.test(angleSrc) && /angleTo = mol\.angle;/.test(angleSrc),
+      angleSrc.split("\n").filter((l) => !/^\s*\/\//.test(l) && l.trim()).join(" ").trim());
+    const a = angleTo("CO2", true), b = (angleTo("H2O", true), angleTo("CO2", true));
+    ok("a frozen replay cannot depend on interaction history (same species -> same angle, always)",
+      Object.is(a, b) && Object.is(angleTo("BF3", true), 120));
+    ok("the pick handler touches no swap state and clears no picker's drag-seize (E1c-F handoff)",
+      !/swapP|PM_bscSwap/.test(pickSrc) &&
+      !/PM_bscMolDragged\s*=\s*false/.test(pickSrc) && !/PM_bscLigDragged\s*=\s*false/.test(pickSrc) &&
+      !/PM_bscSpeciesDragged\s*=\s*false/.test(pickSrc));
+  }
+
+  // ── (e) GUIDED STATES ARE BYTE-IDENTICAL. Explore-gated at both halves.
+  {
+    ok("THE GUIDED ASSERTION: outside explore the authored angle_deg still wins, seized or not",
+      angleTo("CO2", true, "dipole_sum") === 104.5 && angleTo("CO2", true, "compare") === 104.5 &&
+      angleTo("H2O", true, "assemble") === 104.5 && angleTo("CO2", false, "explore") === 104.5);
+    ok("...and a guided pick re-seeds nothing at all (the handler returns on the mode gate)",
+      (() => { const r = drive([{ id: "ligand", v: "HI" }], "compare");
+        return r.w.PM_bscAngle === 104.5 && r.w.PM_bscMolDragged === undefined; })() &&
+      /if \(window\.PM_bscMode !== "explore"\) return;/.test(pickSrc));
+    ok("a state with no authored angle_deg still resolves its own species' equilibrium",
+      angleTo("CO2", false, "explore", null) === 180 && angleTo("NH3", false, "dipole_sum", null) === 107);
+    ok("the state's mode is published for the once-built pick listeners",
+      /window\.PM_bscMode = bs\.mode \|\| "dipole_sum";/.test(app));
+  }
+
+  // ── (f) G2: THE HALIDE ROW IS LIVE, AND NEVER BLANK.
+  {
+    const viaHalide = drive([{ id: "molecule", v: "HF" }, { id: "ligand", v: "HBr" }]);
+    ok("THE G2 ASSERTION: a halide pick moves the molecule (the row was measurably inert)",
+      viaHalide.key === "HBr" && Math.abs(viaHalide.mu - 0.83) < 5e-4 && viaHalide.molSel === "HBr",
+      `HF then halide HBr -> mol ${viaHalide.key}, mu ${viaHalide.mu.toFixed(2)} D, molecule row reads ${viaHalide.molSel}`);
+    ok("NEGATIVE CONTROL: the molecule picker used to SHADOW the halide in the same resolution",
+      /var molKey = \(bscHasControl\(ctrls, "molecule"\) && window\.PM_bscMolDragged\) \? window\.PM_bscMol/.test(upd) &&
+      /: \(bscHasControl\(ctrls, "ligand"\) && window\.PM_bscLigDragged\) \? window\.PM_bscLig/.test(upd),
+      "resolution order is unchanged — the three pickers are kept AGREEING instead");
+    ok("every halide reads its own mu through the halide row",
+      HALIDES.every((h) => Math.abs(drive([{ id: "ligand", v: h }]).mu -
+        ({ HF: 1.83, HCl: 1.11, HBr: 0.83, HI: 0.45 } as Record<string, number>)[h]) < 5e-4),
+      HALIDES.map((h) => h + " " + drive([{ id: "ligand", v: h }]).mu.toFixed(2)).join(" · "));
+    ok("outside the halide family the row shows its PLACEHOLDER, never a blank or a stale halide",
+      drive([{ id: "ligand", v: "HI" }, { id: "molecule", v: "H2O" }]).halide === "" &&
+      drive([{ id: "molecule", v: "HCl" }]).halide === "HCl" &&
+      /var ligOpts = '<option value="">\\u2014<\/option>'/.test(bld));
+    ok("the placeholder is display-only: picking it is not a species choice",
+      /if \(!el\.value\) return;/.test(bld) &&
+      /if \(id === "molecule" \|\| id === "ligand" \|\| id === "species"\) bscExploreSpeciesPicked/.test(bld));
+    ok("the per-frame widget sync never hands the select a value it has no option for",
+      /var ligWant = \(bscOptionOf\(lsel, molKey\) && MG_MOLECULES\[molKey\]\) \? molKey : "";/.test(upd) &&
+      /if \(lsel && bscSelCur\(lsel\) !== ligWant\) bscSelValue\(lsel, ligWant\);/.test(upd) &&
+      /if \(ligWant\) window\.PM_bscLig = molKey;/.test(upd));
+    ok("the placeholder is selected by INDEX (Chromium DESELECTS on select.value = \"\")",
+      /sel\.value = v;\s*\n\s*if \(v\) return;/.test(grabFn("bscSelValue")) &&
+      /if \(sel\.options\[i\]\.value === ""\) \{ sel\.selectedIndex = i; return; \}/.test(grabFn("bscSelValue")) &&
+      E.bscSelCur({ options: [{ value: "" }, { value: "HF" }], selectedIndex: -1 }) === null &&
+      E.bscSelCur({ options: [{ value: "" }, { value: "HF" }], selectedIndex: 0 }) === "",
+      "selectedIndex -1 and the placeholder both read value \"\" — only the index tells them apart");
+    ok("bscOptionOf is total on a missing select and a missing value",
+      E.bscOptionOf(null, "HF") === false &&
+      E.bscOptionOf({ options: [{ value: "HF" }] }, "") === false &&
+      E.bscOptionOf({ options: [{ value: "HF" }] }, "HF") === true &&
+      E.bscOptionOf({ options: [{ value: "HF" }] }, "H2O") === false);
+  }
+
+  // ── (g) G3: THE AUTHORED BOUNDS ARE HONOURED, NOT DECORATIVE.
+  {
+    const limSrc = cutIn(bld, "var lim = function", "var molDef =", "lim/defc");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const limRaw = new Function("SC", "bscClamp", `
+      var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : d; };
+      ${limSrc}
+      return { lim: lim, defc: defc };
+    `);
+    const SC = { angle: { min: 90, max: 180, step: 0.5, "default": 104.5 } };
+    const L = limRaw(SC, E.bscClamp) as { lim: (k: string, w: string, d: number) => number; defc: (k: string, d: number, lo: number, hi: number) => number };
+    ok("THE G3 ASSERTION: an authored min/max/step reaches the widget (angle.min = 90, not 60)",
+      L.lim("angle", "min", 60) === 90 && L.lim("angle", "max", 180) === 180 && L.lim("angle", "step", 0.5) === 0.5);
+    const L0 = (limRaw({}, E.bscClamp) as typeof L);
+    ok("...and a concept that authors none is byte-identical (every hardcoded bound is the default)",
+      L0.lim("angle", "min", 60) === 60 && L0.lim("angle", "max", 180) === 180 &&
+      L0.defc("angle", 104.5, 60, 180) === 104.5 && L0.defc("spin", 0.16, 0, 0.6) === 0.16);
+    ok("the seeded default is CLAMPED into the honoured range (thumb, span and global agree)",
+      (limRaw({ angle: { min: 90, "default": 60 } }, E.bscClamp) as typeof L).defc("angle", 104.5, 60, 180) === 90 &&
+      L.defc("angle", 104.5, 60, 180) === 104.5);
+    const rows = ["angle", "spin", "temperature", "separation", "shift", "field", "valence"];
+    ok("every range row reads its bounds from the authored block, none hardcodes them",
+      rows.every((r) => new RegExp('id="bsc_' + r + '_slider" min="\' \\+ lim\\("' + r + '", "min"').test(bld)) &&
+      /id="bsc_count_slider" min="' \+ lim\("count", "min", 1\) \+ '" max="' \+ nUnits/.test(bld),
+      rows.join(",") + " + count (count.max stays the engine's mesh pool)");
+    ok("the panel's window seeds take the SAME clamped default as the widget",
+      /window\.PM_bscAngle = defc\("angle", 104\.5, 60, 180\);/.test(bld) &&
+      /window\.PM_bscSpinDef = defc\("spin", 0\.16, 0, 0\.6\);/.test(bld) &&
+      !/window\.PM_bscTemp = def\(/.test(bld));
+  }
+}
+
+// ── 21. E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES ─────────────────
+//   E1c-A solved the camera from the focal unit's SHAPE and E1c-E re-solved the
+//   pyramid, but the solve ran once per STATE — so every species the explore
+//   picker can reach was framed by the camera measured for the species the state
+//   OPENS on. E1c-G's hand-driven sweep made all nine reachable for the first
+//   time and the cost is measurable: the four halides (whose row exists to teach
+//   the arrow's LENGTH) drew at the general solve's el 47, where a 1-bond unit
+//   loses 20.6% of its projected bond length, and BF3 — admitted to the picker as
+//   the "symmetric arrangement, zero resultant" example — was drawn on a plane
+//   tilted 47 deg away, its 120 deg reading 97 deg and its countability BELOW the
+//   floor the pyramid was measured against.
+//   THE ASSERTION THAT WOULD HAVE CAUGHT IT is E1c-G's whole-picker sweep with a
+//   camera on it: every species in explore_species, entered through the SHIPPED
+//   pick handler and re-framed by the SHIPPED bscReframeForSpecies (both sliced
+//   out of the renderer), asserted to land on the key MEASURED for its own shape
+//   and to clear that key's floors — with the negative control that reproduces
+//   today's single-camera behaviour.
+console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker camera sweep) ===");
+{
+  const bld = grabFn("buildBondingScene");
+  const app = grabFn("applyBondingSceneState");
+  const PICKER = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];
+  const drive = driveExplore!;                       // the SHIPPED pick handler, section 20's driver
+  const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TAN = Math.tan(FOV / 2);
+  const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cr3 = (a: number[], b: number[]) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dt3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const scl = (v: number[], k: number) => [v[0] * k, v[1] * k, v[2] * k];
+  const proj = (c: any) => {
+    const a = c.az * Math.PI / 180, e = c.el * Math.PI / 180, d = c.dist;
+    const cam = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sub3([0, 0, 0], cam)), r = E.bscNorm(cr3(f, [0, 1, 0])), u = cr3(r, f);
+    return (p: number[]) => {
+      const v = sub3(p, cam), z = dt3(v, f);
+      return { x: dt3(v, r) / (z * TAN * ASPECT), y: dt3(v, u) / (z * TAN), z };
+    };
+  };
+  const ptSeg = (p: any, a: any, b: any) => {
+    const vx = b.x - a.x, vy = b.y - a.y, L2 = vx * vx + vy * vy;
+    if (L2 < 1e-18) return Math.hypot(p.x - a.x, p.y - a.y);
+    const t = Math.max(0, Math.min(1, ((p.x - a.x) * vx + (p.y - a.y) * vy) / L2));
+    return Math.hypot(p.x - (a.x + t * vx), p.y - (a.y + t * vy));
+  };
+  const segGap = (a1: any, a2: any, b1: any, b2: any) =>
+    Math.min(ptSeg(a1, b1, b2), ptSeg(a2, b1, b2), ptSeg(b1, a1, a2), ptSeg(b2, a1, a2));
+  /** the section-16 countability metric, plus the two shape-specific ones. */
+  const metrics = (cam: any, mk: string, angle: number | null = null) => {
+    const P = proj(cam), D = E.bscDipole(mk, angle) as any, m = E.MG_MOLECULES[mk], c0 = P([0, 0, 0]);
+    const atoms = [{ p: c0, r: E.MG_ELEMENTS[m.central].radius }].concat(
+      D.arrows.map((a: any, i: number) =>
+        ({ p: P(scl(a.dir, E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+    const vecs: any[] = D.arrows.map((a: any) => {
+      const L = Math.abs(a.D) * E.BS_ARROW_D_PER_UNIT, sg = a.D >= 0 ? 1 : -1;
+      return [P(scl(a.dir, E.BS_BOND_LEN * 0.5 - sg * L / 2)), P(scl(a.dir, E.BS_BOND_LEN * 0.5 + sg * L / 2))];
+    });
+    if (D.mag > 1e-9) vecs.push([c0, P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT))]);
+    let occ = 9, gap = 9, box = 0, len = 9, angErr = 0;
+    for (const a of atoms) box = Math.max(box, Math.abs(a.p.x), Math.abs(a.p.y));
+    for (const v of vecs) box = Math.max(box, Math.abs(v[0].x), Math.abs(v[0].y), Math.abs(v[1].x), Math.abs(v[1].y));
+    for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+      if (i === j) continue;
+      const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+      const far = near === atoms[i] ? atoms[j] : atoms[i];
+      occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) - near.r / (near.p.z * TAN));
+    }
+    for (let i = 0; i < vecs.length; i++) for (let j = i + 1; j < vecs.length; j++)
+      gap = Math.min(gap, segGap(vecs[i][0], vecs[i][1], vecs[j][0], vecs[j][1]));
+    // E1c-D's metric: drawn bond length against the same world length at the pivot depth.
+    for (let i = 0; i < D.arrows.length; i++) {
+      const q = P(scl(D.arrows[i].dir, E.BS_BOND_LEN));
+      len = Math.min(len, Math.hypot((q.x - c0.x) * ASPECT, q.y - c0.y) / (E.BS_BOND_LEN / (c0.z * TAN)));
+    }
+    // E1c-H's metric: the DRAWN angle between two bonds against the true one.
+    for (let i = 0; i < D.arrows.length; i++) for (let j = i + 1; j < D.arrows.length; j++) {
+      const a = P(scl(D.arrows[i].dir, E.BS_BOND_LEN)), b = P(scl(D.arrows[j].dir, E.BS_BOND_LEN));
+      const va = [(a.x - c0.x) * ASPECT, a.y - c0.y], vb = [(b.x - c0.x) * ASPECT, b.y - c0.y];
+      const cs = (va[0] * vb[0] + va[1] * vb[1]) / (Math.hypot(va[0], va[1]) * Math.hypot(vb[0], vb[1]) || 1);
+      angErr = Math.max(angErr, Math.abs(
+        Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI -
+        Math.acos(Math.max(-1, Math.min(1, E.mgDot(D.arrows[i].dir, D.arrows[j].dir)))) * 180 / Math.PI));
+    }
+    // the resultant a bent (pyramidalised) centre creates, drawn against true.
+    let res = 0;
+    if (D.mag > 1e-9) {
+      const tip = P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT));
+      res = Math.hypot((tip.x - c0.x) * ASPECT, tip.y - c0.y) /
+        ((D.mag * E.BS_ARROW_D_PER_UNIT) / (c0.z * TAN));
+    }
+    return { occ, gap, box, len, angErr, res };
+  };
+  const OCC = 0.09, OCC_3D = 0.06, GAP = 0.015, BOX = 0.85, LEN = 0.9, ANG = 8, RES = 0.50;
+
+  // ── (a) THE SOURCE CONTRACT: the re-frame is an EVENT, explore-gated at apply.
+  ok("the pick handler ends by re-framing the camera on the picked species",
+    /bscReframeForSpecies\(v\);/.test(bld) &&
+    bld.indexOf("bscReframeForSpecies(v)") > bld.indexOf("window.PM_bscAngleDragged = false"));
+  ok("apply publishes the re-frame context ONLY for an explore state that owns its camera",
+    /window\.PM_bscCamBs = \(\(bs\.mode \|\| "dipole_sum"\) === "explore" && !bs\.camera && !stateDef\.camera_position\)/.test(app) &&
+    /window\.PM_bscCamKey = \(bs\.camera \|\| stateDef\.camera_position\) \? null : bscSolvedShapeKey\(bs, null\);/.test(app));
+  ok("the re-frame reads no clock and accumulates nothing (D-1)",
+    !/\bms\b|Date\.now|performance\.now|\+=/.test(grabFn("bscReframeForSpecies")));
+  ok("the FRAME pass still writes no camera state at all (the event half owns it)",
+    !/animateCameraTo|targetSpherical/.test(grabFn("updateBondingSceneFrame")));
+  ok("it MOVES, it does not cut: the same helper state entry uses",
+    /animateCameraTo\(\[dd \* Math\.cos\(elr\) \* Math\.cos\(azr\)/.test(grabFn("bscReframeForSpecies")));
+
+  // ── (b) THE WHOLE-PICKER CAMERA SWEEP.
+  {
+    const bad: string[] = [], rows: string[] = [];
+    for (const k of PICKER) {
+      const r = drive([{ id: "molecule", v: k }]);
+      const key = E.bscUnitShapeKey(k) as string;
+      const want = (E.BS_UNIT_CAMERAS as any)[key];
+      const got = r.cam || { az: 35, el: 47, dist: 7 };          // no move = the opening solve
+      const same = Math.abs(got.az - want.az) < 1e-6 && Math.abs(got.el - want.el) < 1e-6 &&
+        Math.abs(got.dist - want.dist) < 1e-6 && r.camKey === key;
+      const m = metrics(want, k);
+      // the vector-GAP floor does not apply to a 1-bond unit: its resultant IS its
+      // single bond moment, so the two are collinear by construction (physics, not
+      // a framing defect) and no camera can separate them. Its own floor is the
+      // projected LENGTH, which is what that row teaches.
+      const floors = m.occ >= (key === "general" ? OCC_3D : OCC) && m.box <= BOX &&
+        (key === "diatomic" ? m.len >= LEN : m.gap >= GAP) &&
+        (key !== "trigonal" || m.angErr <= ANG);
+      if (!same || !floors) bad.push(`${k}(${same ? "floors" : "camera"})`);
+      rows.push(`${k}:${key}@el${want.el}`);
+    }
+    ok("THE H1 ASSERTION: every picker species is framed by the solve measured for ITS shape",
+      bad.length === 0, bad.length ? "BROKEN: " + bad.join(",") : rows.join("  "));
+    for (const k of ["H2O", "CCl4", "BF3", "HI"]) {
+      const m = metrics((E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k)], k);
+      console.log(`    ${k.padEnd(5)} ${String(E.bscUnitShapeKey(k)).padEnd(9)} occ=${m.occ.toFixed(4)} gap=${m.gap.toFixed(4)} box=${m.box.toFixed(3)} len=${m.len.toFixed(4)} angle-err=${m.angErr.toFixed(1)}deg`);
+    }
+  }
+
+  // ── (c) NEGATIVE CONTROL: one camera for the whole picker — today's behaviour.
+  {
+    const gen = E.BS_UNIT_CAMERAS.general;
+    const bf3 = metrics(gen, "BF3"), bf3t = metrics(E.BS_UNIT_CAMERAS.trigonal, "BF3");
+    ok("NEGATIVE CONTROL: the state's opening solve puts BF3 BELOW the countability floor",
+      bf3.occ < OCC && bf3t.occ >= OCC,
+      `general occ=${bf3.occ.toFixed(4)} -> trigonal occ=${bf3t.occ.toFixed(4)} (floor ${OCC})`);
+    ok("...and draws its 120 deg plane edge-on enough to read 22.6 deg wrong",
+      bf3.angErr > 20 && bf3t.angErr <= ANG,
+      `drawn bond angle off by ${bf3.angErr.toFixed(1)} deg -> ${bf3t.angErr.toFixed(1)} deg`);
+    const dia = ["HF", "HCl", "HBr", "HI"];
+    const worstGen = Math.min(...dia.map((k) => metrics(gen, k).len));
+    const worstDia = Math.min(...dia.map((k) => metrics(E.BS_UNIT_CAMERAS.diatomic, k).len));
+    ok("...and foreshortens all four halide rungs, the one quantity that row teaches",
+      worstGen < LEN && worstDia >= LEN,
+      `${worstGen.toFixed(4)}x -> ${worstDia.toFixed(4)}x true drawn bond length (+${((worstDia / worstGen - 1) * 100).toFixed(1)}%)`);
+  }
+
+  // ── (d) THE TRIGONAL SOLVE, and the CONSTRAINT that fixes its azimuth.
+  //   The angle slider pyramidalises BF3 about its C3 axis (the plane normal, az
+  //   57), so the resultant that bend creates points along that axis: the azimuth
+  //   that draws the flat plane best is the one that hides the bent resultant.
+  {
+    const tri = E.BS_UNIT_CAMERAS.trigonal;
+    ok("the TRIGONAL solve is the measured constant, at the house azimuth",
+      JSON.stringify(tri) === JSON.stringify({ az: 35, el: 15, dist: 7 }) &&
+      tri.az === E.BS_UNIT_CAMERAS.general.az &&
+      Math.abs(E.MG_BEND_AZ - tri.az * Math.PI / 180) < 1e-12, JSON.stringify(tri));
+    const bent = metrics(tri, "BF3", 95);
+    ok("a teacher who BENDS BF3 still sees the resultant the bend creates",
+      bent.res >= RES, `${bent.res.toFixed(4)}x true drawn length (floor ${RES})`);
+    const faceOn = metrics({ az: 57, el: 0, dist: 7 }, "BF3", 95);
+    const faceFlat = metrics({ az: 57, el: 0, dist: 7 }, "BF3");
+    ok("NEGATIVE CONTROL: the azimuth that draws the FLAT plane best kills that resultant",
+      faceFlat.angErr < 0.5 && faceOn.res < 0.02,
+      `az 57 el 0: flat angle-err ${faceFlat.angErr.toFixed(2)} deg but bent resultant ${faceOn.res.toFixed(4)}x`);
+    ok("NEGATIVE CONTROL: the pyramid's own azimuth is wrong for a trigonal plane",
+      metrics({ az: 120, el: 15, dist: 7 }, "BF3").occ < OCC,
+      `az 120 el 15: occ=${metrics({ az: 120, el: 15, dist: 7 }, "BF3").occ.toFixed(4)}`);
+    console.log(`    trigonal solve  az ${tri.az} el ${tri.el}: occ=${metrics(tri, "BF3").occ.toFixed(4)} ` +
+      `angle-err=${metrics(tri, "BF3").angErr.toFixed(1)}deg bent-resultant=${bent.res.toFixed(4)}x  ` +
+      `(was occ=${metrics(E.BS_UNIT_CAMERAS.general, "BF3").occ.toFixed(4)} / ${metrics(E.BS_UNIT_CAMERAS.general, "BF3").angErr.toFixed(1)}deg)`);
+  }
+
+  // ── (e) NO TELEPORT, NO HISTORY, NO GUIDED REACH.
+  {
+    ok("a pick INSIDE one shape key moves the camera by exactly nothing",
+      drive([{ id: "molecule", v: "CO2" }]).moves.length === 0 &&
+      drive([{ id: "molecule", v: "CCl4" }]).moves.length === 0 &&
+      drive([{ id: "ligand", v: "HI" }, { id: "ligand", v: "HF" }]).moves.length === 1,
+      "H2O -> CO2 / CCl4: 0 moves; the four halide rungs share ONE camera");
+    const viaA = drive([{ id: "molecule", v: "BF3" }]).cam;
+    const viaB = drive([{ id: "molecule", v: "HI" }, { id: "molecule", v: "CCl4" }, { id: "molecule", v: "BF3" }]).cam;
+    ok("the destination is a pure function of the RESOLVED species, not of the route",
+      JSON.stringify(viaA) === JSON.stringify(viaB), JSON.stringify(viaA));
+    ok("THE GUIDED ASSERTION: outside explore a pick re-frames nothing",
+      drive([{ id: "molecule", v: "HI" }], "dipole_sum", null, null).moves.length === 0 &&
+      drive([{ id: "molecule", v: "HI" }], "compare", null, null).moves.length === 0);
+    ok("...and an authored camera or camera_position is never overridden by a pick",
+      drive([{ id: "molecule", v: "HI" }], "explore", null, null).moves.length === 0);
+    ok("a lattice / multi-unit / off-centre scene has no per-species key to follow",
+      E.bscSolvedShapeKey({ mode: "coordination", placement: "lattice", units: [{ species: "Na+" }] }, "HI") === null &&
+      E.bscSolvedShapeKey({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] }, "HI") === null &&
+      E.bscSolvedShapeKey({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }, "HI") === null &&
+      E.bscSolvedShapeKey({ mode: "explore", species: "H2O" }, "HI") === "diatomic");
+  }
+}
+
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E3a sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);

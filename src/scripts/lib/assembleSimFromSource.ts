@@ -52,7 +52,23 @@ export function assembleSimFromSource(conceptId: string): AssembledSim | null {
     const json = JSON.parse(readFileSync(resolved.path, 'utf-8')) as SeedableConceptJson;
 
     if (json.field_3d_config) {
-        return { simHtml: assembleField3DHtml(json.field_3d_config), rendererType: 'field_3d', engine: 'threejs', json, subject: resolved.subject };
+        // epic_l_path is NOT optional in practice — `assembleField3DHtml` calls
+        // `mergeSceneAnnotations(config, epicLPath)`, and a `scene_composition`
+        // annotation only reaches the renderer through that merge. Omitting the
+        // second argument leaves `render_annotations: true` satisfied and every
+        // authored annotation silently absent.
+        //
+        // Why this mattered: `build_review_site.ts` DOES pass it, so annotations
+        // render in the teacher-facing product — but this helper feeds
+        // `_seed_chemistry_cache.ts`, which is what THE EYE drives. So the gate
+        // was photographing a DIFFERENT picture from the one that ships: every
+        // frozen baseline was approved on frames missing all annotation text, and
+        // eye_walker could not verify annotation content at all. Two concepts
+        // (`sigma_pi_bonding`, `hybridisation_sp_sp2_sp3`) had already worked
+        // around it with bespoke seeders that pass the argument — a per-concept
+        // patch for what is a shared-path defect.
+        // Found via bond_polarity_dipole_moment review round 2, 2026-08-02.
+        return { simHtml: assembleField3DHtml(json.field_3d_config, json.epic_l_path as never), rendererType: 'field_3d', engine: 'threejs', json, subject: resolved.subject };
     }
     if (json.particle_field_config) {
         return { simHtml: assembleParticleFieldHtml(json.particle_field_config), rendererType: 'particle_field', engine: 'p5', json, subject: resolved.subject };
