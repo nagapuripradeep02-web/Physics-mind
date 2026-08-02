@@ -3034,6 +3034,14 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // signed sum. Pure configuration, zero renderer edits (0d). Alex
     // pipeline, 2026-08-02.
     positive_negative_zero_work:    "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #3 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author the SEAM L energy_layer (the
+    // K bar). Kinetic energy K = ½mv²: proportional to the mass, proportional
+    // to the SQUARE of the speed, never negative, and exactly zero at rest.
+    // Authors ZERO work_accumulators — the mechanically-greppable boundary with
+    // work_energy_theorem (#4). Pure configuration, zero renderer edits (0d).
+    // Alex pipeline, 2026-08-02.
+    kinetic_energy_definition:      "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────
