@@ -134,6 +134,8 @@ const FNS = [
   "bscSub", "bscTrendFit",
   // E1c-A
   "bscArrowParts", "bscUnitShapeKey", "bscSolvedShapeKey", "bscSolvedCamera",
+  // E1c-J: the SHIPPED spin axis and the SHIPPED rotation it feeds
+  "bscSpinAxis", "bscSpinRot",
   // E1c-I: the SHIPPED separation math (pure 2D — the camera half is written here)
   "bscBoxPt", "bscBoxBox", "bscBoxSeg",
   // E3a
@@ -2747,7 +2749,10 @@ console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halid
   // retyped, so a revert cannot leave section 21 green.
   const reframeSrc = grabFn("bscReframeForSpecies");
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  // E1c-J: bscSpinAxis is injected, not re-implemented — the driver runs the
+  // SHIPPED re-frame, and the axis it publishes is the shipped one.
   const reframeRaw = new Function("window", "BS_UNIT_CAMERAS", "bscSolvedShapeKey", "animateCameraTo",
+    "bscSpinAxis",
     reframeSrc + "\nreturn bscReframeForSpecies;");
   /** camera moves the drive produced, as [az, el, dist] read back off the vector. */
   const posToCam = (p: number[]) => {
@@ -2767,7 +2772,7 @@ console.log("\n=== 20. E1c-G EXPLORE PICKER RE-SEED (whole-picker sweep · halid
     w.PM_bscCamKey = camBs ? E.bscSolvedShapeKey(camBs, null) : null;
     const moves: any[] = [];
     const reframe = reframeRaw(w, E.BS_UNIT_CAMERAS, E.bscSolvedShapeKey,
-      (p: number[]) => moves.push(posToCam(p)));
+      (p: number[]) => moves.push(posToCam(p)), E.bscSpinAxis);
     const fn = pickRaw(dom.document, w, E.MG_MOLECULES, E.bscOptionOf, E.bscSelValue, reframe);
     for (const p of picks) {
       const selId = "bsc_" + p.id + "_select";
@@ -2999,7 +3004,68 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
   };
   const segGap = (a1: any, a2: any, b1: any, b2: any) =>
     Math.min(ptSeg(a1, b1, b2), ptSeg(a2, b1, b2), ptSeg(b1, a1, a2), ptSeg(b2, a1, a2));
-  /** the section-16 countability metric, plus the two shape-specific ones. */
+  /**
+   * THE COUNTABILITY METRIC, REPAIRED (E1c-J). The metric this section shipped
+   * with had three independent defects and it CERTIFIED the defect it existed to
+   * catch — CCl4's fourth chlorine bitten for a third of S5's turn, NH3 losing a
+   * hydrogen outright, and BF3's residual all passed it:
+   *   (1) it subtracted only the NEAR radius, so it tested "the far ligand's
+   *       CENTRE is outside the near silhouette" — a crescent passed as a disc.
+   *       A countable disc needs BOTH radii off the separation.
+   *   (2) it measured one static pose (phase 0) and took no phase argument at
+   *       all, so a spin was invisible to it. Section 11 does sweep 360 deg but
+   *       is radius-blind, and its CCl4 call projects D.arrows only — the central
+   *       atom, the thing that does the biting, is not in its counted set.
+   *   (3) UNIT MISMATCH: proj returns x divided by (z*TAN*ASPECT) — horizontal
+   *       NDC — while the radius is r/(z*TAN), vertical NDC. Multiplying x by
+   *       ASPECT puts both in the vertical-NDC unit, which is isotropic PIXELS
+   *       (x_px = x_cam*H/(2 z tan) exactly as y_px), so a gap is a real screen
+   *       distance: 1 unit = H/2 = 360 px at 720p. Line 1132 already did this and
+   *       carried the comment; the two metrics in one file disagreed.
+   * discGaps returns, in that unit, the smallest disjoint-disc gap over every
+   * atom pair at spin phase `ang` about unit axis `ax`. Negative = one disc bites
+   * another. It is also what makes the E1c-J invariant assertable: a spin about
+   * the view axis leaves every one of these numbers EXACTLY where the home pose
+   * put it, so no spin_rate and no spin_start_ms any JSON can author can move it.
+   */
+  const discGap = (cam: any, mk: string, ax: number[], ang: number, angle: number | null = null) => {
+    const P = proj(cam), D: any = E.bscDipole(mk, angle), m = E.MG_MOLECULES[mk];
+    const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS[m.central].radius }].concat(
+      D.arrows.map((a: any, i: number) =>
+        ({ p: P(scl(E.bscSpinRot(a.dir, ax, ang), E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+    let g = 9;
+    for (let i = 0; i < atoms.length; i++) for (let j = i + 1; j < atoms.length; j++) {
+      const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
+      const far = near === atoms[i] ? atoms[j] : atoms[i];
+      g = Math.min(g, Math.hypot((near.p.x - far.p.x) * ASPECT, near.p.y - far.p.y)
+        - near.r / (near.p.z * TAN) - far.r / (far.p.z * TAN));
+    }
+    return g;
+  };
+  /** the drawn resultant length as a fraction of true, at spin phase `ang`. */
+  const resAt = (cam: any, mk: string, ax: number[], ang: number, angle: number | null = null) => {
+    const P = proj(cam), D: any = E.bscDipole(mk, angle), c0 = P([0, 0, 0]);
+    if (!(D.mag > 1e-9)) return 1;
+    const tip = P(scl(E.bscSpinRot(E.bscNorm(D.vec), ax, ang), D.mag * E.BS_ARROW_D_PER_UNIT));
+    return Math.hypot((tip.x - c0.x) * ASPECT, tip.y - c0.y) /
+      ((D.mag * E.BS_ARROW_D_PER_UNIT) / (c0.z * TAN));
+  };
+  /** the FULL-TURN sweep: 720 phases, worst gap, worst drawn length, and the
+   *  largest departure from the home pose (0 iff the axis preserves depth). */
+  const spinSweep = (cam: any, mk: string, ax: number[], angle: number | null = null) => {
+    const g0 = discGap(cam, mk, ax, 0, angle), r0 = resAt(cam, mk, ax, 0, angle);
+    let worst = g0, drift = 0, resDrift = 0, resWorst = r0, neg = 0;
+    for (let i = 0; i < 720; i++) {
+      const a = i * 2 * Math.PI / 720, g = discGap(cam, mk, ax, a, angle), r = resAt(cam, mk, ax, a, angle);
+      worst = Math.min(worst, g); drift = Math.max(drift, Math.abs(g - g0));
+      resWorst = Math.min(resWorst, r); resDrift = Math.max(resDrift, Math.abs(r - r0));
+      if (g < 0) neg++;
+    }
+    return { home: g0, worst, drift, resHome: r0, resWorst, resDrift, pctNeg: neg / 720 * 100 };
+  };
+  /** the SHIPPED axis for a species: the view axis of the camera it is framed by. */
+  const shipAx = (mk: string) => E.bscSpinAxis((E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(mk) as string]);
+  /** the section-16 camera-solve margin, plus the two shape-specific ones. */
   const metrics = (cam: any, mk: string, angle: number | null = null) => {
     const P = proj(cam), D = E.bscDipole(mk, angle) as any, m = E.MG_MOLECULES[mk], c0 = P([0, 0, 0]);
     const atoms = [{ p: c0, r: E.MG_ELEMENTS[m.central].radius }].concat(
@@ -3010,14 +3076,19 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
       return [P(scl(a.dir, E.BS_BOND_LEN * 0.5 - sg * L / 2)), P(scl(a.dir, E.BS_BOND_LEN * 0.5 + sg * L / 2))];
     });
     if (D.mag > 1e-9) vecs.push([c0, P(scl(E.bscNorm(D.vec), D.mag * E.BS_ARROW_D_PER_UNIT))]);
-    let occ = 9, gap = 9, box = 0, len = 9, angErr = 0;
+    // silh = the LEGACY near-silhouette clearance in horizontal NDC. It is NOT a
+    // countability test (discGap above is) and E1c-J deliberately did not redefine
+    // it: every camera floor below was MEASURED against this quantity by E1c-A/D/
+    // E/H, so redefining it would silently re-scale five solves' recorded numbers.
+    // It keeps its job — comparing one camera against another — under its own name.
+    let silh = 9, gap = 9, box = 0, len = 9, angErr = 0;
     for (const a of atoms) box = Math.max(box, Math.abs(a.p.x), Math.abs(a.p.y));
     for (const v of vecs) box = Math.max(box, Math.abs(v[0].x), Math.abs(v[0].y), Math.abs(v[1].x), Math.abs(v[1].y));
     for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
       if (i === j) continue;
       const near = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j];
       const far = near === atoms[i] ? atoms[j] : atoms[i];
-      occ = Math.min(occ, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) - near.r / (near.p.z * TAN));
+      silh = Math.min(silh, Math.hypot(near.p.x - far.p.x, near.p.y - far.p.y) - near.r / (near.p.z * TAN));
     }
     for (let i = 0; i < vecs.length; i++) for (let j = i + 1; j < vecs.length; j++)
       gap = Math.min(gap, segGap(vecs[i][0], vecs[i][1], vecs[j][0], vecs[j][1]));
@@ -3042,7 +3113,7 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
       res = Math.hypot((tip.x - c0.x) * ASPECT, tip.y - c0.y) /
         ((D.mag * E.BS_ARROW_D_PER_UNIT) / (c0.z * TAN));
     }
-    return { occ, gap, box, len, angErr, res };
+    return { silh, gap, box, len, angErr, res };
   };
   const OCC = 0.09, OCC_3D = 0.06, GAP = 0.015, BOX = 0.85, LEN = 0.9, ANG = 8, RES = 0.50;
 
@@ -3075,7 +3146,7 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
       // single bond moment, so the two are collinear by construction (physics, not
       // a framing defect) and no camera can separate them. Its own floor is the
       // projected LENGTH, which is what that row teaches.
-      const floors = m.occ >= (key === "general" ? OCC_3D : OCC) && m.box <= BOX &&
+      const floors = m.silh >= (key === "general" ? OCC_3D : OCC) && m.box <= BOX &&
         (key === "diatomic" ? m.len >= LEN : m.gap >= GAP) &&
         (key !== "trigonal" || m.angErr <= ANG);
       if (!same || !floors) bad.push(`${k}(${same ? "floors" : "camera"})`);
@@ -3085,7 +3156,7 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
       bad.length === 0, bad.length ? "BROKEN: " + bad.join(",") : rows.join("  "));
     for (const k of ["H2O", "CCl4", "BF3", "HI"]) {
       const m = metrics((E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k)], k);
-      console.log(`    ${k.padEnd(5)} ${String(E.bscUnitShapeKey(k)).padEnd(9)} occ=${m.occ.toFixed(4)} gap=${m.gap.toFixed(4)} box=${m.box.toFixed(3)} len=${m.len.toFixed(4)} angle-err=${m.angErr.toFixed(1)}deg`);
+      console.log(`    ${k.padEnd(5)} ${String(E.bscUnitShapeKey(k)).padEnd(9)} occ=${m.silh.toFixed(4)} gap=${m.gap.toFixed(4)} box=${m.box.toFixed(3)} len=${m.len.toFixed(4)} angle-err=${m.angErr.toFixed(1)}deg`);
     }
   }
 
@@ -3094,8 +3165,8 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
     const gen = E.BS_UNIT_CAMERAS.general;
     const bf3 = metrics(gen, "BF3"), bf3t = metrics(E.BS_UNIT_CAMERAS.trigonal, "BF3");
     ok("NEGATIVE CONTROL: the state's opening solve puts BF3 BELOW the countability floor",
-      bf3.occ < OCC && bf3t.occ >= OCC,
-      `general occ=${bf3.occ.toFixed(4)} -> trigonal occ=${bf3t.occ.toFixed(4)} (floor ${OCC})`);
+      bf3.silh < OCC && bf3t.silh >= OCC,
+      `general occ=${bf3.silh.toFixed(4)} -> trigonal occ=${bf3t.silh.toFixed(4)} (floor ${OCC})`);
     ok("...and draws its 120 deg plane edge-on enough to read 22.6 deg wrong",
       bf3.angErr > 20 && bf3t.angErr <= ANG,
       `drawn bond angle off by ${bf3.angErr.toFixed(1)} deg -> ${bf3t.angErr.toFixed(1)} deg`);
@@ -3126,11 +3197,11 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
       faceFlat.angErr < 0.5 && faceOn.res < 0.02,
       `az 57 el 0: flat angle-err ${faceFlat.angErr.toFixed(2)} deg but bent resultant ${faceOn.res.toFixed(4)}x`);
     ok("NEGATIVE CONTROL: the pyramid's own azimuth is wrong for a trigonal plane",
-      metrics({ az: 120, el: 15, dist: 7 }, "BF3").occ < OCC,
-      `az 120 el 15: occ=${metrics({ az: 120, el: 15, dist: 7 }, "BF3").occ.toFixed(4)}`);
-    console.log(`    trigonal solve  az ${tri.az} el ${tri.el}: occ=${metrics(tri, "BF3").occ.toFixed(4)} ` +
+      metrics({ az: 120, el: 15, dist: 7 }, "BF3").silh < OCC,
+      `az 120 el 15: occ=${metrics({ az: 120, el: 15, dist: 7 }, "BF3").silh.toFixed(4)}`);
+    console.log(`    trigonal solve  az ${tri.az} el ${tri.el}: occ=${metrics(tri, "BF3").silh.toFixed(4)} ` +
       `angle-err=${metrics(tri, "BF3").angErr.toFixed(1)}deg bent-resultant=${bent.res.toFixed(4)}x  ` +
-      `(was occ=${metrics(E.BS_UNIT_CAMERAS.general, "BF3").occ.toFixed(4)} / ${metrics(E.BS_UNIT_CAMERAS.general, "BF3").angErr.toFixed(1)}deg)`);
+      `(was occ=${metrics(E.BS_UNIT_CAMERAS.general, "BF3").silh.toFixed(4)} / ${metrics(E.BS_UNIT_CAMERAS.general, "BF3").angErr.toFixed(1)}deg)`);
   }
 
   // ── (e) NO TELEPORT, NO HISTORY, NO GUIDED REACH.
@@ -3154,6 +3225,117 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
       E.bscSolvedShapeKey({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] }, "HI") === null &&
       E.bscSolvedShapeKey({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }, "HI") === null &&
       E.bscSolvedShapeKey({ mode: "explore", species: "H2O" }, "HI") === "diatomic");
+  }
+
+  // ── (f) E1c-J: THE SPIN AXIS. ────────────────────────────────────────────
+  //   E1c-E bought the pyramid's azimuth with an AUTHORING premise written in a
+  //   comment — "no shipped state spins a pyramid" — and one round later the JSON
+  //   authored spin_rate on that state. check:bonding-scene reads the RENDERER,
+  //   not the concept, so it could not have caught it: a comment cannot fail.
+  //   The repair is not a better comment and not a JSON assertion this gate has
+  //   no standing to make. It is to make the premise MOOT: the spin axis is the
+  //   state's VIEW axis, about which a rotation preserves every atom's depth
+  //   exactly, so the projected picture is a rigid roll and EVERY quantity below
+  //   is invariant. spin_rate and spin_start_ms choose where in a cycle a frozen
+  //   pin lands; after E1c-J every phase of every cycle is the home pose rotated,
+  //   so nothing an author can write reaches the solve. THAT is the assertion.
+  {
+    const SP = [...PICKER, "NH3", "NF3"];
+    const PX = 360;                    // 1 vertical-NDC unit = H/2 = 360 px at 720p
+    const PX_FLOOR = -0.5;             // half a pixel of silhouette: tangency, not a bite
+    const bad: string[] = [], rows: string[] = [];
+    for (const k of SP) {
+      const cam = (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k) as string];
+      const s = spinSweep(cam, k, shipAx(k));
+      if (s.drift > 1e-9 || s.resDrift > 1e-9 || s.worst * PX < PX_FLOOR) bad.push(k);
+      rows.push(`${k}:${(s.worst * PX).toFixed(1)}px`);
+    }
+    ok("THE E1c-J ASSERTION: a full turn about the shipped axis moves NOTHING",
+      bad.length === 0, bad.length ? "BROKEN: " + bad.join(",") : rows.join(" "));
+    ok("...so no spin_rate / spin_start_ms an author can write reaches the solve",
+      SP.every((k) => {
+        const cam = (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k) as string];
+        // three unrelated authored spins, three unrelated pins: same picture.
+        return [0.15, 0.55, 3.7].every((rate) => [12400, 18500, 99000].every((pin) => {
+          const a = rate * (pin - 10400) / 1000;
+          return Math.abs(discGap(cam, k, shipAx(k), a) - discGap(cam, k, shipAx(k), 0)) < 1e-9;
+        }));
+      }));
+    for (const k of ["CCl4", "NH3", "NF3", "BF3"]) {
+      const cam = (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k) as string];
+      const nw = spinSweep(cam, k, shipAx(k)), oy = spinSweep(cam, k, [0, 1, 0]);
+      console.log(`    ${k.padEnd(5)} +y: worst ${(oy.worst * PX).toFixed(1)}px neg ${oy.pctNeg.toFixed(1)}% of the turn` +
+        `  ->  view: worst ${(nw.worst * PX).toFixed(1)}px neg ${nw.pctNeg.toFixed(1)}%`);
+    }
+    // CCl4's -0.4 px is a HOME-POSE property of the general solve, not of the
+    // spin: its fourth chlorine is tangent to the carbon at az 35 el 47 before
+    // anything turns. It cannot be fixed here — general.az is tied down to
+    // MG_BEND_AZ (35) and the only relief at that azimuth is el 48..49, a camera
+    // re-solve. Asserted as a RATCHET so it cannot quietly get worse.
+    {
+      const cam = E.BS_UNIT_CAMERAS.general;
+      ok("CCl4's residual is the home pose, identical about EITHER axis (not the spin)",
+        Math.abs(discGap(cam, "CCl4", [0, 1, 0], 0) - spinSweep(cam, "CCl4", shipAx("CCl4")).worst) < 1e-12 &&
+        discGap(cam, "CCl4", shipAx("CCl4"), 0) * PX >= PX_FLOOR,
+        `${(discGap(cam, "CCl4", shipAx("CCl4"), 0) * PX).toFixed(2)} px at every phase ` +
+        `(el 48 would clear it at +1.3 px; el 47 is the E1c-A measured constant)`);
+    }
+    // NEGATIVE CONTROL: the axis this replaced, on the same repaired metric.
+    {
+      const nh3 = spinSweep(E.BS_UNIT_CAMERAS.pyramidal, "NH3", [0, 1, 0]);
+      const ccl4 = spinSweep(E.BS_UNIT_CAMERAS.general, "CCl4", [0, 1, 0]);
+      const bf3 = spinSweep(E.BS_UNIT_CAMERAS.trigonal, "BF3", [0, 1, 0]);
+      ok("NEGATIVE CONTROL: world +y bites all three shapes on the SAME metric",
+        nh3.worst * PX < -40 && ccl4.worst * PX < -10 && bf3.worst * PX < -25,
+        `NH3 ${(nh3.worst * PX).toFixed(1)}px (${nh3.pctNeg.toFixed(1)}% of the turn), ` +
+        `CCl4 ${(ccl4.worst * PX).toFixed(1)}px (${ccl4.pctNeg.toFixed(1)}%), BF3 ${(bf3.worst * PX).toFixed(1)}px`);
+      // and the E1c-E defect it also brings back, on the state that argues LENGTH.
+      const h2o = spinSweep(E.BS_UNIT_CAMERAS.general, "H2O", [0, 1, 0]);
+      ok("...and foreshortens H2O's resultant, the quantity E1c-E exists to protect",
+        h2o.resWorst < RES && spinSweep(E.BS_UNIT_CAMERAS.general, "H2O", shipAx("H2O")).resWorst >= RES,
+        `+y draws it at ${h2o.resWorst.toFixed(3)}x true (floor ${RES}) -> view axis holds ${spinSweep(E.BS_UNIT_CAMERAS.general, "H2O", shipAx("H2O")).resWorst.toFixed(3)}x`);
+      // the OLD metric's verdict on the same frames — why this section is repaired.
+      const oldOcc = (ang: number) => {
+        const P = proj(E.BS_UNIT_CAMERAS.general), D: any = E.bscDipole("CCl4", null);
+        const atoms = [{ p: P([0, 0, 0]), r: E.MG_ELEMENTS.C.radius }].concat(
+          D.arrows.map((a: any, i: number) =>
+            ({ p: P(scl(E.bscSpinRot(a.dir, [0, 1, 0], ang), E.BS_BOND_LEN)), r: E.MG_ELEMENTS[D.ligands[i]].radius })));
+        let o = 9;
+        for (let i = 0; i < atoms.length; i++) for (let j = 0; j < atoms.length; j++) {
+          if (i === j) continue;
+          const n = atoms[i].p.z <= atoms[j].p.z ? atoms[i] : atoms[j], f = n === atoms[i] ? atoms[j] : atoms[i];
+          o = Math.min(o, Math.hypot(n.p.x - f.p.x, n.p.y - f.p.y) - n.r / (n.p.z * TAN));
+        }
+        return o;
+      };
+      let oldWorst = 9;
+      for (let i = 0; i < 720; i++) oldWorst = Math.min(oldWorst, oldOcc(i * 2 * Math.PI / 720));
+      ok("THE REPAIR ITSELF: the metric this section shipped with PASSED the bite",
+        oldWorst > 0 && ccl4.worst < 0,
+        `near-radius-only occ stays +${oldWorst.toFixed(4)} across the very turn the ` +
+        `repaired disc gap reads ${ccl4.worst.toFixed(4)} (${(ccl4.worst * PX).toFixed(1)}px)`);
+    }
+    // the source contract: a revert cannot leave this section green.
+    {
+      const frame = grabFn("updateBondingSceneFrame");
+      ok("the shipped frame rotates about the published axis, never about +y",
+        !/mgRotY\([^)]*\bsp(in|2)\b/.test(frame) && /bscSpinRot\([^)]*spinAx/.test(frame) &&
+        /window\.PM_bscSpinAx \|\| bscSpinAxis\(/.test(frame));
+      ok("apply and the re-frame both publish the axis of the camera they set",
+        /window\.PM_bscSpinAx = bscSpinAxis\(/.test(app) &&
+        /window\.PM_bscSpinAx = bscSpinAxis\(cam\);/.test(grabFn("bscReframeForSpecies")));
+      ok("bscSpinAxis is a pure, unit, dist-independent function of the camera (D-1)",
+        !/\bms\b|Date\.now|performance\.now|\+=/.test(grabFn("bscSpinAxis")) &&
+        [E.BS_UNIT_CAMERAS.general, E.BS_UNIT_CAMERAS.pyramidal, E.BS_UNIT_CAMERAS.trigonal,
+         E.BS_UNIT_CAMERAS.diatomic].every((c: any) =>
+          Math.abs(E.bscMag(E.bscSpinAxis(c)) - 1) < 1e-12 &&
+          E.bscSpinAxis(c).every((v: number, i: number) =>
+            Math.abs(v - E.bscSpinAxis({ az: c.az, el: c.el, dist: 42 })[i]) < 1e-15)) &&
+        E.bscSpinRot([0.3, 0.4, 0.5], [0, 1, 0], 0).join() === [0.3, 0.4, 0.5].join());
+      ok("an authored camera_position drives the axis too (no scene rolls off-view)",
+        E.bscSpinAxis([0, 0, 9]).join(",") === [0, -0, -1].join(",") &&
+        /stateDef\.camera_position\) \? stateDef\.camera_position : cam\)/.test(app));
+    }
   }
 }
 

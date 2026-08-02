@@ -977,6 +977,30 @@ export interface Field3DConfig {
                 mu_s?: number;                     // omit/0 = frictionless for this body
                 mu_k?: number;
                 applied_force_N?: number;          // signed, along the body's own positive axis
+                // SEAM N (work_done_by_constant_force / positive_negative_zero_work,
+                // 2026-08-01). The applied force at an AUTHORED ANGLE — the chapter's
+                // textbook opening picture (a case pulled by a handle at an angle),
+                // and the only apparatus on which W = F·d·cos θ is a fact on screen
+                // rather than an assertion in the narration.
+                //   ONE vector, resolved in the body's own frame:
+                //       F⃗ = N · ( cos(angle_deg) · axis  +  sin(angle_deg) · perp )
+                //   axis = the body's own +s direction (up-slope), perp = the OUTWARD
+                //   surface normal. So a POSITIVE angle_deg lifts (reduces N), a
+                //   NEGATIVE one presses into the surface (increases N), and a
+                //   negative N flips the whole vector — handle and all.
+                //   • the ALONG component drives the integrator and every ledger, so
+                //     W_applied = ∫F·cos(angle)·ds = F·d·cos(angle) falls out of SEAM
+                //     M's existing accumulator with no new path;
+                //   • the PERP component feeds N (and therefore μN), clamped at N ≥ 0
+                //     — see nlbNormal.
+                //   LEGACY IS SEALED: omit this key (or author angle_deg 0 / a bare
+                //   number) and every expression below takes the identical prior code
+                //   path, bit for bit. `applied_force` WINS over `applied_force_N`
+                //   when both are present.
+                applied_force?: number | {
+                    N: number;                     // signed magnitude along the handle
+                    angle_deg?: number;            // from the surface; default 0 = legacy
+                };
                 ghost?: boolean;                   // FBD decorative context body: dimmed, NEVER integrated
                 // The wall / the Earth: infinite effective mass. SKIPPED by the
                 // integrator entirely (v and s never change), but — unlike `ghost` —
@@ -1232,10 +1256,61 @@ export interface Field3DConfig {
             //     picture stops explaining the arrows. The carts then coast for the
             //     rest of the state, which is the whole point: the RESULT of the
             //     interaction stays on screen long after the interaction ended.
+            // ── SEAM K — GENUINE spring physics (founder ruling 2026-08-01) ──
+            // docs/loop_runs/ch6/conservation_of_mechanical_energy/skeleton.md
+            // spec note 8. `k_N_per_m` is the GATE: present (> 0) => the coil is a
+            // real Hooke spring inside the integrator (F = -kx while the block
+            // overlaps its free end) and the slow-motion look is a PLAYBACK
+            // modifier over that real physics; absent => the pre-2026-08-01
+            // scripted `spring_action` path runs bit for bit (spec note 8c, the
+            // `newton_third_law` apparatus).
+            //   The two paths are mutually exclusive by construction: if a state
+            // authors BOTH, `k_N_per_m` wins (the genuine force gate runs after
+            // the scripted one and overwrites the slow window it published).
+            //   COMPRESSION x = max(0, natural_length_m - face-to-face gap), in
+            // METRES, exposed as PM_nlbSpringX for the energy layer's Uₛ = ½kx².
+            // The wall end is whichever body carries `fixed` (nlbSpringAnchorId) —
+            // it is skipped by the integrator, so the whole exchange lands on the
+            // free body, which is exactly a wall-mounted spring.
             spring?: {
                 between: [string, string];   // the two body ids
                 compressed?: boolean;        // render state; the ENGINE drives it from the push_off phase
                 coils?: number;              // default 8
+                // SEAM K. Spring constant in N/m. PRESENCE (> 0, finite) gates the
+                // genuine-physics path. Omit for the legacy scripted behaviour.
+                k_N_per_m?: number;
+                // SEAM K. Free (uncompressed) length in METRES. Default 1.6 (the
+                // apparatus constant NLB_SPRING_NATURAL_W / NLB_WORLD_PER_M, i.e.
+                // the length every pre-SEAM-K state already drew). It sets BOTH the
+                // physics rest length and the drawn coil length, so the picture can
+                // never disagree with the force.
+                natural_length_m?: number;
+                // SEAM K. Playback slowdown WHILE THE SPRING IS TOUCHING, default 6
+                // (1 = real time). A dt multiplier on the integrator only
+                // (dtPhysics = dt / slow_factor) with the mandatory `slow motion ×N`
+                // badge; the HUD, the bars and every published number stay the TRUE
+                // physical values. The window is CONTACT-DETECTED (x > 0, latched
+                // against chatter) — it is NOT the `push_off` phase machine and it
+                // reads no *_at_ms constant. Never opens in a `mode: 'sandbox'`
+                // state, and a trusted drag / slider cancels it (Rule 37).
+                slow_factor?: number;
+                // SEAM L. The SANDBOX slow factor, default 1 = spec 8d verbatim
+                // (a sandbox runs real time and opens no slow window). It exists
+                // because spec 8d's real-time rule turns out to have a NUMERICAL
+                // cost SEAM K measured and handed forward: at dt = 1/60 s the block
+                // enters the coil having already buried itself up to v·dt into it,
+                // and picks up ½k(v·dt)² of Uₛ that no work paid for — ≈0.46 J at
+                // k = 370 N/m, v ≈ 3 m/s. On a ~39 J total that is a visible step in
+                // the very sandbox whose authored claim is "the total stays flat".
+                // The error falls as dt², so 4 divides it by 16 (≈0.03 J, inside the
+                // 0.05 J acceptance bar) while the teacher still never feels lag:
+                // the window is CONTACT-GATED (it is shut for the whole free slide)
+                // and any trusted drag or slider cancels it, exactly as 8d requires.
+                //   Left at 1 by default so no founder-approved line is silently
+                // overridden. A sandbox that leaves it at 1 AND shows an E_total bar
+                // is not silently wrong either: the drift guard warns under
+                // NLB_ENERGY_DRIFT_WARN_PREFIX and THE EYE's console audit fails it.
+                sandbox_slow_factor?: number;
             };
 
             arrows?: Array<{
@@ -1250,9 +1325,237 @@ export interface Field3DConfig {
             // per-SEGMENT of a train and render as one shared block at the foot of
             // the HUD, not once per body — a segment tension belongs to the string,
             // not to either cart it joins.
-            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2'>;
-            controls_visible?: Array<'m' | 'm2' | 'F' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
+            // SEAM M (spec note 14) adds the two POWER rows. 'P' is instantaneous
+            // F·v — the power the APPLIED force delivers to this body (the quantity
+            // "how fast is the engine/pull doing work" actually means); it is exactly
+            // 0, and therefore honest, on a body with no applied force. 'P_avg' is
+            // W/Δt over the state's own clock and needs at least one
+            // `work_accumulators` entry: it reports the FIRST accumulator's running W
+            // divided by the elapsed state-local seconds. Union-only (concepts #11 and
+            // #12) — this chapter's conservation concept authors neither.
+            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2' | 'P' | 'P_avg'>;
+            // 'F_ang' (SEAM N) is the applied force's ANGLE off the surface, in
+            // degrees — the one control that sweeps W = F·d·cos θ through positive →
+            // zero → negative without touching anything else.
+            controls_visible?: Array<'m' | 'm2' | 'F' | 'F_ang' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
             trusted_drag_seizes?: boolean;         // sandbox state only
+            // ── SEAM L — the ENERGY DISPLAY LAYER (spec notes 1-5, 12, 13) ───
+            // docs/loop_runs/ch6/conservation_of_mechanical_energy/skeleton.md.
+            // The layer that SHOWS what SEAM K computes. Presence of this block
+            // is the GATE: absent => not one pixel of it exists and every
+            // pre-2026-08-01 state is bit-for-bit unchanged (the same additive
+            // contract k_N_per_m carries). It renders NOTHING new about the
+            // physics — every number below is a state function of (v, s, x) that
+            // nlbPublishEnergy already derives, so the bars inherit SEAM K's
+            // frame-rate independence by construction (spec note 2).
+            //   The panel DOM is built ONCE at scene build and only shown/hidden
+            // per state (Rule 31/32d — a bar NEVER moves between states), anchors
+            // at the LEFT screen edge (spec note 1 / finding F12: the right edge
+            // already carries the HUD, the formula surface and the slider panel),
+            // and lays itself out with a MEASURED reflow ladder, never a fixed
+            // CSS offset.
+            energy_layer?: {
+                // The bars this state shows, as a SUBSET of the FIXED panel order
+                // ['K','U_grav','U_spring','E_total','E_dissipated'] — the authored
+                // array order is IGNORED, so a bar can never change screen position
+                // between states (Rule 32d). 'E_total' renders as the STACKED
+                // column of its own components (K on U on Uₛ), which is the whole
+                // point: constancy reads as a constant column HEIGHT while the
+                // internal split shifts (spec note 5).
+                bars: Array<'K' | 'U_grav' | 'U_spring' | 'E_total' | 'E_dissipated'>;
+                // The COMMON linear joule scale — the value at the top of every
+                // track, shared by every bar in the state so two bars can be
+                // compared by eye (spec note 4). Author it ABOVE the state's real
+                // maximum total: an overflowing bar clamps at 100% and warns under
+                // NLB_ENERGY_SCALE_WARN_PREFIX, which THE EYE's console audit
+                // asserts zero of.
+                bar_max_J: number;
+                // 1 or 2 tracked bodies (spec note 12, max 2 compact groups). One
+                // group per id, each captioned with that body's label.
+                //   OMITTED (the default, and what every single-body state wants):
+                // ONE group showing the WHOLE RIG's totals — the aggregate K, U
+                // and Uₛ nlbPublishEnergy already sums, including the spring term
+                // and the ripple correction. With body_ids the groups are PER
+                // BODY (b.K_J / b.U_grav_J), and Uₛ is attributed to the spring's
+                // free body alone.
+                body_ids?: string[];
+                // The U_grav ZERO REFERENCE, in metres of HEIGHT above the surface
+                // origin (where the incline meets the ground). Default 0 — exactly
+                // SEAM K's shipped reference, so omitting it changes nothing. It is
+                // the same height the authored dashed h = 0 line is drawn at
+                // (SEAM M), so the number and the line can never disagree.
+                //   The stack is UNSIGNED: author the reference at or BELOW the
+                // lowest point the tracked body reaches, or U_grav goes negative,
+                // the drawn column stops equalling its own numeric, and the engine
+                // warns under NLB_ENERGY_SCALE_WARN_PREFIX.
+                h_ref_m?: number;
+                // Decimal places on every joule numeric. Default 1 (0.1 J).
+                precision?: 0 | 1 | 2;
+                // ── SEAM M (spec note 6) — the one-shot `sum_merge` reveal ──────
+                // PRESENCE gates it: absent, the bars render exactly as SEAM L drew
+                // them. With it, the separate K / U / Uₛ bars SLIDE sideways into the
+                // E column and fade as the column fades up, so the stack is SEEN
+                // being assembled from its parts instead of appearing whole.
+                //   It is a pure CLOSED FORM of the state-local clock, not a latch:
+                // p = clamp((t − trigger)/duration_ms, 0, 1). So it rewinds exactly
+                // (RESET_TRAJECTORY → t = 0 → p = 0, spec note 18c), it HOLDS its end
+                // pose forever at p = 1 (no fall-to-zero one-shot), and a
+                // SET_TIME_FREEZE pin reproduces the same pose byte for byte.
+                //   The trigger is the `sum_merge` SCENARIO CUE, never a hardcoded
+                // stamp: cueTriggerMs('sum_merge', at_ms). `at_ms` is the FALLBACK
+                // THE EYE uses (it posts no cue times); the live teacher path takes
+                // the narration-bound time, so a pacing trim can never desync it.
+                //   Requires 'E_total' in `bars` (there is nothing to merge INTO
+                // otherwise) plus at least one of K / U_grav / U_spring to slide.
+                sum_merge?: {
+                    at_ms?: number;         // fallback trigger, default 0
+                    duration_ms?: number;   // slide time, default 900, min 1
+                };
+            };
+            // ══ SEAM M — THE TEACHING INSTRUMENTS (spec notes 6, 7, 10, 11, 14) ══
+            //   SEAM K made the energy real, SEAM L made it visible; this makes it
+            //   TEACHABLE — a reference line to measure heights from, a computed
+            //   prediction to test, signed work ledgers, and checkpoints that stamp
+            //   the numbers at named places. Every block below is ADDITIVE and gated
+            //   on its own presence: a state authoring none of them renders exactly
+            //   the pixels SEAM L rendered.
+            //
+            // ── Note 7 — the zero-reference line + the predicted-stop markers ────
+            //   The dashed line is drawn at EXACTLY `energy_layer.h_ref_m` (default
+            // 0, the surface origin), read from the same resolved engine field the
+            // U_grav numeric uses — so the line and the number cannot disagree, by
+            // construction rather than by authoring care.
+            //   The bright marker's position is COMPUTED, never authored: the engine
+            // evaluates s = v₀²/(2·g·sin θ) from the tracked body's own launch
+            // conditions and the state's incline, measured ALONG the track from the
+            // body's home position in the direction it was launched. Change θ or v₀
+            // with a slider and the marker moves with the physics.
+            //   The ghost marker is a MISCONCEPTION PROP and is never integrated into
+            // anything: it stands at an authored FRACTION of that same computed
+            // distance ("it will not come all the way back"), permanently dim through
+            // the existing ghost channel, and no physics reads it.
+            height_markers?: {
+                // Whose launch conditions drive the computation. Default: the
+                // spring's free body if there is one, else the first integrated body.
+                body_id?: string;
+                // The dashed horizontal reference line + its label. Default true.
+                show_h_ref_line?: boolean;
+                h_ref_label?: string;              // default 'h = 0'
+                // The BRIGHT computed marker. Omit it and only the line is drawn.
+                predicted_stop?: {
+                    label?: string;                // default 'highest point'
+                    show_height?: boolean;         // append the computed h, e.g. ' h = 1.8 m'
+                };
+                // The DIM misconception marker, at `fraction` of the computed
+                // distance. fraction > 0 is REQUIRED; 1 would sit on top of the true
+                // marker and is rejected (the block is then ignored).
+                ghost_marker?: {
+                    fraction: number;
+                    label?: string;                // default 'expected stop'
+                };
+            };
+            // ── Note 10 — the SIGNED work ledgers, N concurrent ──────────────────
+            //   1..4 named forces, each accumulating ∫F·ds for ONE body as F·Δs per
+            // fixed step (linear in dt, so it is exactly step-count invariant while F
+            // is position-independent). Rendered as SIGNED bars in the same left-edge
+            // panel: a mid-height zero baseline, growing UP for W > 0 and DOWN for
+            // W < 0, sign-coloured, with a signed numeric (W = −18.0 J). Deliberately
+            // a different shape from SEAM L's unsigned stack, because a work ledger
+            // and an energy account are different kinds of quantity.
+            //   HONESTY (finding F4): per-step accumulation is fold-exact ONLY while
+            // F does not depend on position — which is true of every member of the
+            // enum below. The SPRING is deliberately ABSENT from the enum: for a
+            // position-dependent force the honest quantity is the state function Uₛ
+            // that SEAM L already draws, so the wrong choice is not merely discouraged
+            // here, it is UNREPRESENTABLE.
+            //   'normal' is included precisely BECAUSE it is always exactly zero: a
+            // bar that visibly stays at the zero line while the body travels is the
+            // clearest possible statement that a perpendicular force does no work.
+            work_accumulators?: Array<{
+                force: 'gravity' | 'friction' | 'applied' | 'normal' | 'net';
+                label?: string;        // plain-English name under the bar (Rule 41)
+                body_id?: string;      // default: the first integrated body
+            }>;
+            // ± full deflection of every work bar, in joules. Defaults to
+            // energy_layer.bar_max_J when that exists, else 10. An overflowing bar
+            // clamps at the top/bottom of its half-track and warns under
+            // NLB_ENERGY_SCALE_WARN_PREFIX (the same prefix THE EYE asserts zero of).
+            work_scale_J?: number;
+            // ── Note 11 — checkpoint flags with capture-on-pass ──────────────────
+            //   1..3 authored positions along the track. A flag stands at each; when
+            // the tracked body's s CROSSES it, that instant's values stamp into the
+            // state's ONE formula surface (Rule 34b — never a second text overlay)
+            // and the flag brightens. Stamps LATCH and hold to the end of the state
+            // (the end-pose rule) and re-arm on RESET_TRAJECTORY (note 18b).
+            //   The crossing detector is general on purpose: with capture_mode
+            // 'every' a body that comes BACK through the same flag re-stamps and the
+            // stamp carries its pass number, which is exactly what a round-trip work
+            // test needs to show ("W by gravity is back to 0 J on pass 2").
+            checkpoints?: Array<{
+                s_m: number;                   // REQUIRED — position along the track, metres
+                label?: string;                // default 'point 1' / 'point 2' / …
+                body_id?: string;              // default: the first integrated body
+                // What stamps. 'W' stamps EVERY authored work accumulator's current
+                // signed value. Default ['K','U_grav'].
+                capture?: Array<'K' | 'U_grav' | 'U_spring' | 'E_total' | 'v' | 's' | 'W'>;
+                capture_mode?: 'first' | 'every';   // default 'first' (latch on pass 1)
+            }>;
+            // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ══════════════════
+            //   The two measuring instruments that turn `applied_force {N, angle_deg}`
+            //   into the chapter's opening picture. Both are ADDITIVE and gated on
+            //   their own presence: a state authoring neither renders exactly the
+            //   pixels SEAM M rendered.
+            //
+            // ── Note 19a — the displacement vector d ─────────────────────────────
+            //   A solid arrow lying ALONG the surface, from the body's RELEASE POINT
+            // (its authored initial_position_m — the same seed RESET_TRAJECTORY
+            // rewinds to) to wherever the body is right now. Its length is LIVE, so
+            // it grows as the body travels and it is the `d` in W = F·d·cos θ rather
+            // than a caption claiming one. Hidden while the body has not moved (a
+            // real zero is hidden, never drawn as a stub — the engine's own rule).
+            displacement_vector?: {
+                body_id?: string;              // default: the first integrated body
+                label?: string;                // default 'd'
+                show_value?: boolean;          // append ' = 2.35 m'; default TRUE —
+                                               // the number IS the lesson (the SEAM H
+                                               // segment-label precedent)
+            };
+            // ── Note 19b — the angle arc ─────────────────────────────────────────
+            //   An arc drawn at the body, between any TWO addressable directions,
+            // with a LIVE degree readout. `from`/`to` are a CLOSED enum of directions
+            // the engine already owns — the five force arrows, the displacement
+            // vector, and the surface's own +s axis (the natural reference when the
+            // question is "how far off the surface is this pull?"). An unknown member
+            // is DROPPED and the arc hides, never silently drawn from a default.
+            angle_arc?: {
+                from: 'applied' | 'weight' | 'normal' | 'friction' | 'tension' | 'net' | 'displacement' | 'surface';
+                to: 'applied' | 'weight' | 'normal' | 'friction' | 'tension' | 'net' | 'displacement' | 'surface';
+                body_id?: string;              // default: the first integrated body
+                label?: string;                // default 'θ'
+                show_value?: boolean;          // append ' = 30°'; default TRUE
+                radius?: number;               // world units from the body centre; default 0.85
+            };
+            // ── SEAM K — loop_reset_ms (spec note 9) ─────────────────────────
+            // Deterministic clock-based restart of the state's KINEMATICS to its
+            // authored home pose, every R ms of the state-local clock. It exists
+            // because a genuine integrator has no phase to wrap: a slide that ends
+            // is over, and a guided state then shows 80% dead frames (the
+            // no-frozen-tail scar). With it the motion repeats forever, the way a
+            // teacher repeats a demo.
+            //     cycle = floor(t_ms / R)   — on every cycle boundary the engine
+            //     calls its ONE rewind path (nlbResetTrajectory) and keeps t_ms
+            //     MONOTONIC, exactly as push_off.repeat_every_ms already does.
+            // So a SET_TIME_FREEZE pin holds one cycle/phase forever and THE EYE's
+            // dense frames stay deterministic (Rule 36).
+            //   IGNORED when the state authors `push_off` (that block's own
+            // repeat_every_ms is the older, sealed cycle and owns the rewind), in a
+            // `mode: 'sandbox'` state (the teacher owns the clock; SEAM J's wrap is
+            // the sandbox's loop), and once a trusted slider/drag has SEIZED the
+            // state (Rule 37).
+            //   AUTHORING INVARIANT (spec note 9): in a state where the spring is
+            // untaught, choose R so the reset fires BEFORE the block reaches the
+            // spring's free end — the engine cannot check this for you.
+            loop_reset_ms?: number;
             idle_auto_sweep?: { param: 'F' | 'theta' | 'm'; range: [number, number] };
             // ── §7.1 pre-approved fix (docs/CHAPTER_LOOP.md, block_on_incline) ──
             // ONE-SHOT monotonic parameter reveal across a GUIDED state's window —
@@ -39241,7 +39544,49 @@ export const FIELD_3D_RENDERER_CODE = `
     //                     component decomposition + right-angle marker).
     //     SEAM D        : pulley post + wheel + rope segments.
     //     SEAM E        : the #nlb_sliders ROWS + PARAM_UPDATE emitters + drag.
-    var NLB_G = 9.8;                      // m/s^2 (a constant, NOT a clock — Rule 36)
+    //     SEAM K        : GENUINE spring physics (spring.k_N_per_m) — the Hooke
+    //                     force inside the integrator, the CONTACT-DETECTED slow
+    //                     window, the shadow-Hamiltonian ripple correction, the
+    //                     derived energy read points for the energy layer,
+    //                     loop_reset_ms, and the clamp/wrap honesty guards.
+    //                     Additive: with no k_N_per_m every line below is inert
+    //                     and the scripted spring_action path is bit-identical.
+    //     SEAM L        : the ENERGY DISPLAY LAYER (energy_layer) — the left-edge
+    //                     bar panel built ONCE and shown/hidden per state, the
+    //                     STACKED E column, the common joule scale, the authored
+    //                     U_grav reference, the DOM glow channel, and the two
+    //                     authoring guards (scale/reference + total drift). It
+    //                     shows what SEAM K computes and computes nothing itself.
+    //                     Additive: with no energy_layer block not one pixel of it
+    //                     exists. NOT here: the sum_merge cue, the h = 0 line and
+    //                     the height/ghost markers, the W accumulators, the
+    //                     checkpoint stamps and the P readout — those are SEAM M.
+    //     SEAM M        : the TEACHING INSTRUMENTS over that display — the
+    //                     cue-driven sum_merge one-shot, the dashed h = 0
+    //                     reference line drawn at energy_layer.h_ref_m, the
+    //                     COMPUTED predicted-stop marker + its dim ghost, the
+    //                     N concurrent SIGNED W accumulators (and the internal
+    //                     W_applied term that completes E_dissipated), the
+    //                     checkpoint flags that stamp K/U into the ONE formula
+    //                     surface, and the P / Pₐᵥ readouts. Additive: each
+    //                     block is gated on its own presence, so a state
+    //                     authoring none of them is bit-for-bit SEAM L.
+    //                     NOT here: off-axis force geometry — that is SEAM N.
+    //     SEAM N        : OFF-AXIS FORCE GEOMETRY (spec note 19) — the applied
+    //                     force at an authored angle (applied_force {N, angle_deg}),
+    //                     the along/perp resolution that feeds the integrator and
+    //                     the shared N, the N >= 0 LIFT-OFF CLAMP, the live
+    //                     displacement vector d, the angle arc with its degree
+    //                     readout, and the F_ang teacher control. It went LAST and
+    //                     ALONE because it is the only seam that touches the shared
+    //                     N that ~10 shipped concepts already read.
+    //                     Additive by CONSTRUCTION, not by care: every angle-aware
+    //                     expression opens with "if (!angle) return the exact prior
+    //                     expression", so with no angle authored the legacy path is
+    //                     the identical statement, not a numerically-close rewrite.
+    //                     See nlbResolveApplied / nlbFAng / nlbForceAlong /
+    //                     nlbForcePerp / nlbNormal / nlbAppliedDir.
+    var NLB_G = 9.8;                   // m/s^2 (a constant, NOT a clock — Rule 36)
     var NLB_STOP_EPS_V = 0.01;            // m/s — static/kinetic changeover band (spec section 2)
     var NLB_WORLD_PER_M = 0.5;            // world units per physical metre (scene scale)
     var NLB_BODY_SIZE = 0.55;             // world units — MASS-INDEPENDENT (Rule 29: size is never a magnitude cue here)
@@ -39487,6 +39832,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // feeds the integrator and never moves a cart, and it is clamped to the live
     // gap so it can never overlap either body. ~4.5 cycles decaying to ~3% of
     // amplitude over 450 ms of WALL time ("a few tenths of a second", the spec).
+    // ── SEAM K — GENUINE spring physics constants ──────────────────────────
+    //   Hysteresis on the CONTACT latch. The window arms the first frame the block
+    //   overlaps the coil's free end (x > 0) and only disarms once it has cleared
+    //   it by this much, so a body sitting a micron off the face cannot chatter the
+    //   slow window (and therefore the dt) on and off frame after frame. 1 mm of
+    //   physical clearance — far below anything visible, far above float noise.
+    var NLB_SPRING_CONTACT_EPS_M = 0.001;
+    // The console prefix the clamp/wrap honesty guards emit under (spec note 17b).
+    // UNIQUE on purpose: THE EYE's console audit asserts ZERO occurrences, which is
+    // what turns "no energy-layer state may reach the track bound" from an authoring
+    // hope into a check that fails loudly.
+    var NLB_ENERGY_WARN_PREFIX = "[PM_NLB_ENERGY_CLAMP]";
     var NLB_SPRING_RING_MS = 450;         // wall ms of coast the ring occupies
     var NLB_SPRING_RING_AMP_W = 0.08;     // initial amplitude (world) = 0.16 m on a 1.6 m coil
     var NLB_SPRING_RING_TAU_MS = 130;     // exponential decay constant
@@ -39737,11 +40094,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //   top:52px (Rule 34d). Per-frame writers use nlbSetReadout().
     var NLB_READOUT_LABELS = {
         N: "N", f: "f", a: "a", v: "v", T: "T", F_net: "ΣF", F_applied: "F",
-        T1: "T₁", T2: "T₂"                     // SEAM H — per-SEGMENT, Rule 34c Unicode subscripts
+        T1: "T₁", T2: "T₂",                    // SEAM H — per-SEGMENT, Rule 34c Unicode subscripts
+        // SEAM M (spec note 14). Rule 34c: real Unicode subscripts, never "P_avg" —
+        // ₐ is U+2090 and ᵥ is U+1D65, and the label span carries the math-serif
+        // stack (nlbWriteReadouts) because monospace faces have neither glyph.
+        P: "P", P_avg: "Pₐᵥ"
     };
     var NLB_READOUT_UNITS = {
         N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N",
-        T1: " N", T2: " N"
+        T1: " N", T2: " N",
+        P: " W", P_avg: " W"                   // SEAM M — watts
     };
     // SEAM H — the two segment keys, and the pseudo-body-id their HUD rows hang off
     // so nlbSetReadout/nlbReadoutRowId work on them completely unchanged.
@@ -40055,7 +40417,10 @@ export const FIELD_3D_RENDERER_CODE = `
     //   and the rects are constant, so the same offset is recomputed every frame and the
     //   frame is byte-stable. Nothing here writes physics.
     function nlbPanelRects() {
-        var out = [], ids = ["nlb_readout", "nlb_sliders", "nlb_formula", "nlb_slowmo"];
+        // SEAM L: the energy panel is a left-edge DOM overlay a body label can land
+        // under exactly as it can land under the right-edge ones, so it joins the
+        // same dodge list rather than getting a second mechanism.
+        var out = [], ids = ["nlb_readout", "nlb_sliders", "nlb_formula", "nlb_slowmo", "nlb_energy"];
         for (var i = 0; i < ids.length; i++) {
             var el = document.getElementById(ids[i]);
             if (!el || el.style.display === "none") continue;
@@ -40248,6 +40613,20 @@ export const FIELD_3D_RENDERER_CODE = `
         var d = axisUnit.clone();
         if (signedValue < 0) d.negate();
         return d;
+    }
+    // SEAM N — the applied force's DRAWN direction. Its magnitude is the authored
+    // |F| (the whole pull, not one component): the arrow is the handle the case is
+    // pulled by, and the arc/HUD are what resolve it. With no angle authored this
+    // returns nlbSignedDir(axisUnit, F) itself — the same object the legacy call
+    // produced — so no existing arrow moves by a pixel.
+    function nlbAppliedDir(b, axisUnit, perpUnit) {
+        var a = nlbFAng(b);
+        if (!a) return nlbSignedDir(axisUnit, b.F_applied);
+        var r = a * Math.PI / 180;
+        var v = axisUnit.clone().multiplyScalar(Math.cos(r)).addScaledVector(perpUnit, Math.sin(r));
+        if ((b.F_applied || 0) < 0) v.negate();
+        if (v.lengthSq() < 1e-12) return nlbSignedDir(axisUnit, b.F_applied);
+        return v.normalize();
     }
     function nlbArrowOrigin(bodyId, kind, hanging, thDeg) {
         var p = nlbBodyWorldPos(bodyId);
@@ -40465,7 +40844,7 @@ export const FIELD_3D_RENDERER_CODE = `
         else nlbHideArrowKind(b.id, "friction");
 
         // applied — along the body's own axis, direction from the sign of F_applied.
-        if (show.applied) nlbUpdateArrow(b.id, "applied", nlbArrowOrigin(b.id, "applied", b.hanging, th), nlbSignedDir(axis, b.F_applied), b.F_applied, lab.applied || "F");
+        if (show.applied) nlbUpdateArrow(b.id, "applied", nlbArrowOrigin(b.id, "applied", b.hanging, th), nlbAppliedDir(b, axis, perp), b.F_applied, lab.applied || "F");
         else nlbHideArrowKind(b.id, "applied");
 
         // tension — along the string TOWARD the pulley. Seam B's signed T is in
@@ -40772,6 +41151,24 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!sp || !sp.between || sp.between.length < 2 || !sp.between[0] || !sp.between[1]) return null;
         return sp;
     }
+    // ── SEAM K — the genuine-physics gate, in ONE place ────────────────────
+    //   Returns the authored spring constant in N/m, or 0 for every pre-SEAM-K
+    //   state. 0 is the whole additivity contract: every SEAM K branch tests this
+    //   and takes the legacy path when it is 0, so a state that omits k_N_per_m
+    //   cannot reach one line of new behaviour.
+    function nlbSpringPhysK(sp) {
+        if (!sp) return 0;
+        var k = sp.k_N_per_m;
+        return (typeof k === "number" && isFinite(k) && k > 0) ? k : 0;
+    }
+    // The coil's free length in WORLD units. Authored in METRES (natural_length_m)
+    // so it is the same number the physics uses; absent => the apparatus constant
+    // every pre-SEAM-K state already drew, so no existing pixel moves.
+    function nlbSpringNaturalW(sp) {
+        var L = sp && sp.natural_length_m;
+        if (typeof L === "number" && isFinite(L) && L > 0) return L * NLB_WORLD_PER_M;
+        return NLB_SPRING_NATURAL_W;
+    }
     // Compressed or free RIGHT NOW. Engine-driven from the push_off contact phase
     // whenever the state has one — with EXACTLY the carve-out nlbRunPushOff itself
     // makes (inert in a sandbox state, where the teacher's F slider owns the force
@@ -40868,22 +41265,37 @@ export const FIELD_3D_RENDERER_CODE = `
         // hides rather than stretching — a spring that kept spanning the widening
         // gap would draw a pull that the physics does not apply. The two
         // choreography phases named above are the only exemptions.
-        if (!(phc === "approach" || ringOn) && gap > NLB_SPRING_NATURAL_W + NLB_SPRING_HIDE_EPS) {
+        // SEAM K: a spring with a real k is a BOLTED-DOWN OBJECT, not a transient
+        // interaction — it stays on screen at its free length while nothing touches
+        // it (the concept's permanent home pose: "a fixed wall at the base with the
+        // spring mounted against it, coil at natural length, inert"). The hide rule
+        // below exists so a SCRIPTED push-off does not draw a pull it never applies;
+        // with genuine physics the force IS zero past natural length, so there is
+        // nothing to disagree with and hiding the coil would delete the apparatus.
+        var kPhysW = nlbSpringPhysK(sp);
+        var natW = nlbSpringNaturalW(sp);
+        if (!(phc === "approach" || ringOn || kPhysW > 0) && gap > natW + NLB_SPRING_HIDE_EPS) {
             obj.visible = false; nlbPublishSpring(false, 0, gap); return;
         }
         var target;
-        if (phc) {
+        if (kPhysW > 0) {
+            // The drawn length IS the physical length: free when nothing touches it,
+            // compressed by exactly the overlap the integrator is reading (the
+            // min() against the gap below does the compressing). One quantity, so
+            // the picture can never disagree with Uₛ = ½kx².
+            target = natW;
+        } else if (phc) {
             // approach: min() below leaves NATURAL (the gap is wider).
             // compress / hold / release: the gap is the compression, so the coil
             //   tightens to 0.45x natural as the carts close and springs back OUT
             //   with them through the slowed release, hiding at natural.
             // coast: the ring, or the plain cap (a short authored release can leave
             //   the coil still inside the gap here).
-            target = ringOn ? ringLen : NLB_SPRING_NATURAL_W;
+            target = ringOn ? ringLen : natW;
         } else {
             target = nlbSpringCompressedNow(sp)
-                ? NLB_SPRING_NATURAL_W * NLB_SPRING_COMPRESS_FRAC
-                : NLB_SPRING_NATURAL_W;
+                ? natW * NLB_SPRING_COMPRESS_FRAC
+                : natW;
         }
         var drawn = (gap < target) ? gap : target;         // never longer than the gap it sits in
         if (!(drawn > NLB_ROPE_MIN_LEN)) { obj.visible = false; nlbPublishSpring(false, 0, gap); return; }
@@ -41344,6 +41756,26 @@ export const FIELD_3D_RENDERER_CODE = `
         document.body.appendChild(sp);
         nlbBuildSliderRows(sp);            // SEAM E: the rows, ONCE (see nlbBuildSliderRows)
 
+        // 6b. SEAM L — the energy bar panel, LEFT edge, built ONCE at its maximum
+        //     shape (2 groups x 5 slots) and only shown/hidden per state, exactly
+        //     as the slider rows above are. Hidden until a state authors an
+        //     energy_layer, so a concept without one is bit-for-bit unchanged.
+        nlbBuildEnergyPanel();
+
+        // 6c. SEAM M — the 3D teaching instruments, also built ONCE and hidden by
+        //     default: the dashed h = 0 LEVEL line (in the un-rotated world group,
+        //     because a gravitational reference is horizontal at every incline
+        //     angle), the bright computed marker + its dim ghost, and the three
+        //     checkpoint flags (in the surface group, so the one theta rotation
+        //     stands them on the track with no branch anywhere).
+        nlbBuildMarkers(surf, world);
+
+        // 6d. SEAM N — the off-axis measuring instruments, same contract: built ONCE
+        //     and hidden, the displacement arrow in the SURFACE group (so it lies
+        //     along the track at every theta) and the angle arc in the world group
+        //     (its two directions are already world vectors).
+        nlbBuildOffAxis(surf, world);
+
         // 7. Home pose: seed the surface from the FIRST state so the very first
         //    frame is already correct (applyNewtonsLawsBodyState re-seeds on entry).
         nlbApplySurface(nlbSurfaceThetaDeg(nlb0), nlbSurfaceLenM(nlb0));
@@ -41410,6 +41842,10 @@ export const FIELD_3D_RENDERER_CODE = `
                                   ud.elementType === "nlb_spring");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
+        // SEAM L — the same ONE focal, carried to the DOM overlay applyGlowEmphasis
+        // structurally cannot reach. Churn-guarded inside, so this costs a string
+        // compare per frame and cannot move a frozen pixel.
+        nlbEnergyApplyGlow(focal);
     }
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
     // two seams cannot disagree about the function name.
@@ -41438,11 +41874,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // ASCII transcription (no "theta", "mu_s", "m2", "m/s2", "deg"). The label span
     // carries the math-serif stack because U+2081/U+2082/U+209B/U+2096/U+2080 are
     // missing from most monospace faces (the merged-blob / tofu subscript scar).
-    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "theta", "mu_s", "mu_k", "v0"];
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0"];
     var NLB_SLIDER_SPEC = {
         m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
         m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
         F:     { param: "applied_force",    slider: "nlb_f_slider",     row: "nlb_f_row",     val: "nlb_f_val",     lbl: "nlb_f_lbl",     glyph: "F",  unit: " N",   dp: 1, min: -20, max: 20, step: 0.5, def: 0 },
+        // SEAM N — the applied force's ANGLE off the surface. Default glyph is θ
+        // because that IS the symbol in W = F·d·cos θ and it must agree with the
+        // angle arc's own default label. A state exposing BOTH this and "theta"
+        // (the incline) would show two θ rows — override one through
+        // slider_controls.label. Range spans press-down (−90°) through zero-work
+        // (90°) to negative work (>90°), which is the whole of concept #2.
+        F_ang: { param: "applied_force_angle", slider: "nlb_fang_slider",  row: "nlb_fang_row",  val: "nlb_fang_val",  lbl: "nlb_fang_lbl",  glyph: "θ",  unit: "°",   dp: 0, min: -90, max: 180, step: 5, def: 0 },
         theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
         mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
@@ -41589,6 +42032,23 @@ export const FIELD_3D_RENDERER_CODE = `
                 var tg = nlbForceTargetBody(); if (tg) tg.F_applied = value;
             }
         }
+        else if (token === "F_ang") {
+            // SEAM N. Written on the SAME target the F slider writes (and the same
+            // shared-push rule), so a teacher dragging F and θ sees one coherent
+            // pull. Everything downstream — the drive, N, μN, the arrows, the arc,
+            // the work ledgers — picks it up on the next tick with no extra wiring.
+            var ar1 = eng.action_reaction;
+            var arOn1 = !!(ar1 && ar1.engaged && ar1.driver_body_id);
+            if (eng.shared_applied_force && !arOn1) {
+                for (var gi = 0; gi < eng.order.length; gi++) {
+                    var gb = eng.bodies[eng.order[gi]];
+                    if (!gb || gb.ghost || gb.hanging) continue;
+                    gb.F_angle_deg = value;
+                }
+            } else {
+                var tg2 = nlbForceTargetBody(); if (tg2) tg2.F_angle_deg = value;
+            }
+        }
         else if (token === "theta") {
             eng.theta_deg = value;
             nlbApplySurface(value, eng.length_m);
@@ -41633,6 +42093,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (token === "m") return bA ? bA.m : null;
         if (token === "m2") return bB ? bB.m : null;
         if (token === "F") { var tg = nlbForceTargetBody(); return tg ? tg.F_applied : null; }
+        if (token === "F_ang") { var tg3 = nlbForceTargetBody(); return tg3 ? nlbFAng(tg3) : null; }   // SEAM N
         if (token === "theta") return eng.theta_deg;
         if (token === "mu_s") { var s1 = nlbSurfaceBody(); return s1 ? s1.mu_s : null; }
         if (token === "mu_k") { var s2 = nlbSurfaceBody(); return s2 ? s2.mu_k : null; }
@@ -42205,6 +42666,1868 @@ export const FIELD_3D_RENDERER_CODE = `
         if (el.textContent !== txt) el.textContent = txt;
     }
 
+    // ══ SEAM K — GENUINE SPRING PHYSICS ═══════════════════════════════════════
+    //   Founder ruling 2026-08-01 (skeleton spec note 8): build a REAL spring —
+    //   authored k, F = -kx inside the integrator, the compression x exposed to
+    //   the energy layer — and get the teachable slow-motion LOOK by slowing
+    //   PLAYBACK over that real physics, never by scripting the stroke. The
+    //   2026-07-30 choreography directive's intent survives in full (a real spring
+    //   bounces far too fast to teach from); only its MECHANISM changes, and its
+    //   Rule-36/24/34/37 constraints are reused verbatim (the dt multiplier, the
+    //   slow-motion badge, the sandbox carve-out).
+    //   ADDITIVE, and provably so on two levels:
+    //     • no k_N_per_m  -> every function below early-returns and the scripted
+    //       spring_action path (newton_third_law) is bit-for-bit unchanged;
+    //     • WITH k_N_per_m -> the position step still reduces EXACTLY to the legacy
+    //       trapezoid whenever the coil is not touching (the extra term carries a
+    //       factor x, which is 0), so even a spring state differs from today only
+    //       while the spring is genuinely in contact.
+
+    // The spring pair, resolved to ENGINE body records plus the geometry the force
+    // needs, or null. Everything is in the bodies' OWN axis, in METRES — the same
+    // 1-D coordinate the integrator uses — so there is no theta test anywhere here
+    // and an incline runs the identical code path as flat ground. (A fixed body
+    // in the state pins every body to one z lane, see nlbBodyLaneZ, so the axial
+    // separation IS the physical separation.)
+    function nlbSpringPair(eng) {
+        if (!eng) return null;
+        var sp = nlbSpringCfg();
+        var k = nlbSpringPhysK(sp);
+        if (!k) return null;
+        var bA = eng.bodies[sp.between[0]], bB = eng.bodies[sp.between[1]];
+        if (!bA || !bB || bA.ghost || bB.ghost) return null;
+        // Half-extents from the MESHES (a fixed body is a wall SLAB, not a cart),
+        // world units converted to metres so the gap is in the integrator's units.
+        var halfM = (nlbSpringHalfExtent(bA.id) + nlbSpringHalfExtent(bB.id)) / NLB_WORLD_PER_M;
+        // Which body stands on the HIGH-s side, read LIVE and never assumed from
+        // the authored order: the separation coordinate must GROW with that body's
+        // s or every sign below flips.
+        var hi = (bA.s >= bB.s) ? bA : bB;
+        var lo = (hi === bA) ? bB : bA;
+        var L0 = nlbSpringNaturalW(sp) / NLB_WORLD_PER_M;
+        var xRaw = L0 - ((hi.s - lo.s) - halfM);   // signed penetration
+        return {
+            k: k, L0: L0, hi: hi, lo: lo,
+            xRaw: xRaw,
+            x: (xRaw > 0) ? xRaw : 0,             // COMPRESSION, the layer's Uₛ input
+            // Separation RATE along the spring's own axis (d gap / dt); > 0 = moving
+            // apart. Taken from the two live velocities, so a free-free pair is as
+            // correct as the wall-mounted one, and a fixed end contributes 0.
+            vSep: (hi.fixed ? 0 : hi.v) - (lo.fixed ? 0 : lo.v),
+            freeId: hi.fixed ? lo.id : hi.id,
+            slow: sp.slow_factor,
+            sandboxSlow: sp.sandbox_slow_factor    // SEAM L; absent => spec 8d verbatim
+        };
+    }
+    // The Hooke force, the CONTACT latch and the slow window. INPUT STAGE: called
+    // from updateNewtonsLawsBodyFrame alongside the other input hooks (push_off,
+    // idle sweep, param ramp) and BEFORE both integrator branches, so the step, the
+    // arrows, the readouts and the coil are all consistent inside ONE frame. The
+    // force is evaluated at the position the frame STARTED at — which is exactly
+    // what makes the velocity update a semi-implicit (symplectic) Euler kick.
+    function nlbRunSpringForce(nlb, eng, hFull) {
+        // Cleared every frame on every body: the drive sums F_spring unconditionally
+        // below, so a stale value could never be allowed to survive a state change.
+        for (var i0 = 0; i0 < eng.order.length; i0++) {
+            var b0 = eng.bodies[eng.order[i0]];
+            if (b0) b0.F_spring = 0;
+        }
+        var pr = nlbSpringPair(eng);
+        if (!pr) {
+            // SEAM L widened the gate: the layer is live whenever the STATE
+            // authors an energy_layer, spring or no spring (a gravity-only state
+            // still has a K and a U to show). With neither, false — so every
+            // pre-SEAM-L concept publishes exactly the null it published before.
+            // SEAM M widened it once more: the read points also feed the work
+            // ledgers and the checkpoint stamps, so a state that authors those with
+            // no energy_layer at all (union concept #1 teaches W before K) is live
+            // too. With none of the three blocks this is false — so every
+            // pre-SEAM-L concept publishes exactly the null it published before.
+            eng.spring_phys = false;
+            eng.energy_active = !!(eng.energy_layer || eng.work_state || eng.checkpoint_state);
+            eng.spring_x_m = 0; eng.spring_x_raw_m = 0; eng.spring_v_sep = 0;
+            eng.spring_force_N = 0; eng.spring_contact = false; eng.spring_free_id = "";
+            eng.spring_k = 0; eng.spring_L0_m = 0;
+            nlbPublishSpringPhys(eng);
+            return;
+        }
+        eng.spring_phys = true;
+        eng.energy_active = true;                 // SEAM L widens this to energy_layer
+        eng.spring_k = pr.k;
+        eng.spring_L0_m = pr.L0;
+        eng.spring_free_id = pr.freeId;
+        // CONTACT LATCH (spec note 8b: "x > 0, latched against chatter"). It arms
+        // the instant the overlap opens and only releases once the block has
+        // cleared the face by NLB_SPRING_CONTACT_EPS_M, so the dt scale can never
+        // flicker on and off around x = 0. Decided from the PRE-step geometry,
+        // because the dt this frame will take has to be known before the step.
+        eng.spring_contact = eng.spring_contact
+            ? (pr.xRaw > -NLB_SPRING_CONTACT_EPS_M)
+            : (pr.xRaw > 0);
+        eng.spring_x_raw_m = pr.xRaw;
+        eng.spring_x_m = pr.x;
+        eng.spring_v_sep = pr.vSep;
+        // F = -kx, written as the equal-and-opposite PUSH it physically is: ONE
+        // expression drives the pair, so an unequal pair is unrepresentable. A
+        // fixed end is skipped by the integrator, which is precisely a spring
+        // bolted to a wall — the whole exchange lands on the free body.
+        eng.spring_force_N = pr.k * pr.x;
+        pr.hi.F_spring = eng.spring_force_N;      // pushed toward +s
+        pr.lo.F_spring = -eng.spring_force_N;     // pushed toward -s
+        // ── 8b — slow motion as a PLAYBACK modifier over the real physics ──
+        //   CONTACT-DETECTED, deliberately NOT the push_off phase machine and not
+        //   any *_at_ms constant: the window IS the contact, so a pacing trim, a k
+        //   slider or a different release height can never desync it. Rule 37: no
+        //   slow window in a sandbox state (the teacher's rig runs real time), and
+        //   a trusted drag or slider CANCELS an in-progress window through the same
+        //   two latches every other Rule-37 carve-out honours.
+        var S = (typeof pr.slow === "number" && isFinite(pr.slow) && pr.slow >= 1)
+            ? pr.slow : NLB_SPRING_SLOW_DEFAULT;
+        // SEAM L — the sandbox carve-out is no longer all-or-nothing. Spec 8d
+        // (real time in a sandbox) is still the DEFAULT and is unchanged for every
+        // state that authors nothing here; a state may now buy back a mild window
+        // to pay for the contact-entry energy step dt = 1/60 s costs (see the
+        // sandbox_slow_factor config note). Still contact-gated, still cancelled
+        // by any trusted drag or slider.
+        if (eng.mode === "sandbox") {
+            var sbS = pr.sandboxSlow;
+            S = (typeof sbS === "number" && isFinite(sbS) && sbS >= 1) ? sbS : 1;
+        }
+        var seized = !!(window.PM_nlbSweepSeized || window.PM_nlbBodyDragged);
+        // ONE-STEP LOOKAHEAD. The window arms while the block is still one FULL
+        // frame away from the coil face, not on the frame it has already overlapped
+        // it. Without this the very first contact frame is taken at the unslowed dt
+        // (the force was still 0 when it started), so the block buries itself up to
+        // v·dt into the spring and gains that whole Uₛ with no work done for it —
+        // an O(dt) hole punched in the sum this layer exists to show constant, and
+        // visually a snap into the coil rather than a settle. The lookahead is
+        // self-sustaining: once armed, the step shrinks by S, so the block cannot
+        // close the remaining distance in one frame either. It costs at most a few
+        // slowed frames before touch, which is exactly the beat a teacher wants.
+        var lookM = Math.abs(eng.spring_v_sep) * ((typeof hFull === "number" && hFull > 0) ? hFull : 0);
+        var nearContact = pr.xRaw > -(lookM + NLB_SPRING_CONTACT_EPS_M);
+        eng.slow_active = (!!eng.spring_contact || nearContact) && S > 1 && !seized;
+        eng.spring_slow_factor = eng.slow_active ? S : 1;
+        nlbPublishSpringPhys(eng);
+    }
+    // The PM_nlb* mirror convention: DERIVED reads only. SEAM L (and any probe)
+    // consumes these; nothing in the engine reads them back, so they can never
+    // become a second source of truth, and they touch no pixels.
+    function nlbPublishSpringPhys(eng) {
+        window.PM_nlbSpringK = eng.spring_k || 0;               // N/m
+        window.PM_nlbSpringNaturalM = eng.spring_L0_m || 0;     // m
+        window.PM_nlbSpringX = eng.spring_x_m || 0;             // COMPRESSION, m (>= 0)
+        window.PM_nlbSpringXRaw = eng.spring_x_raw_m || 0;      // signed penetration, m
+        window.PM_nlbSpringVSep = eng.spring_v_sep || 0;        // d(gap)/dt, m/s
+        window.PM_nlbSpringForceN = eng.spring_force_N || 0;    // |F| = k·x
+        window.PM_nlbSpringContact = !!eng.spring_contact;      // the latched window
+        window.PM_nlbSpringFreeId = eng.spring_free_id || "";
+    }
+    // Height above the state's energy reference, in metres. SEAM K's reference was
+    // s = 0 — the surface origin, where the incline meets the ground. SEAM L widens
+    // it to the AUTHORED energy_layer.h_ref_m (metres of HEIGHT above that origin),
+    // which is the same height the authored dashed h = 0 line is drawn at, so the
+    // number and the line cannot disagree. Default 0 => byte-identical to SEAM K.
+    // Still a pure function of the body's own coordinate: no clock, no history.
+    function nlbHeightM(eng, b) {
+        var ref = (eng && typeof eng.energy_h_ref_m === "number") ? eng.energy_h_ref_m : 0;
+        if (b.hanging) return -b.s - ref;         // a hanging body's s runs DOWNWARD
+        return b.s * Math.sin((eng.theta_deg || 0) * Math.PI / 180) - ref;
+    }
+    // ── The energy read points (SEAM L's entire input surface) ───────────────
+    //   Every quantity is DERIVED from the integrator state this frame — nothing
+    //   accumulates, so there is no history to rewind and the three bars are
+    //   frame-rate independent by construction (spec note 2).
+    //   THE RIPPLE CORRECTION (Checkpoint-A cycle-2 must-fix, spec note 8b). A
+    //   symplectic step does not conserve the energy itself; it conserves a SHADOW
+    //   Hamiltonian that differs from it by one term. For the kick-drift spring
+    //   step used below that term is exactly (h/2)·k·x·(d gap/dt), so
+    //       E_display = K + U_grav + U_spring + (dtPhysics/2)·k·x·v_sep
+    //   is conserved to the integrator's own precision while the MOTION is
+    //   untouched (this is a display correction, never a force). It vanishes
+    //   identically at both ends of the contact window (x = 0), which is what
+    //   keeps it continuous across the dt change the slow window makes.
+    //   slow_factor is a LEGIBILITY choice and never the numerical remedy: the raw
+    //   ripple is linear in ω·dt, so no realistic slow factor removes it.
+    function nlbPublishEnergy(eng, hPhys) {
+        if (!eng || !eng.energy_active) { window.PM_nlbEnergy = null; return; }
+        // Spec note 17b — the geometric clamp fired: HOLD the last honest values
+        // rather than render a track artifact as an energy change.
+        if (eng.energy_held && eng.energy_snapshot) {
+            window.PM_nlbEnergy = eng.energy_snapshot;
+            return;
+        }
+        // RE-READ the compression from the POST-step positions. The integrator
+        // deliberately used the pre-step x (that is what makes the kick
+        // semi-implicit), but every quantity below is a STATE function and must be
+        // evaluated at ONE consistent instant — the same instant the coil is drawn
+        // at and the same instant v was just written for. Pairing a pre-step x with
+        // a post-step v would put an O(dt) hole in the very sum this layer exists
+        // to show constant.
+        var prE = nlbSpringPair(eng);
+        if (prE) {
+            eng.spring_x_m = prE.x;
+            eng.spring_x_raw_m = prE.xRaw;
+            eng.spring_v_sep = prE.vSep;
+            nlbPublishSpringPhys(eng);
+        }
+        var K = 0, Ug = 0, tracked = null;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost || b.fixed) continue;
+            // Per-body, so SEAM L's two compact side-by-side bar groups need no
+            // second derivation path.
+            b.h_m = nlbHeightM(eng, b);
+            b.K_J = 0.5 * b.m * b.v * b.v;
+            b.U_grav_J = b.m * NLB_G * b.h_m;
+            K += b.K_J; Ug += b.U_grav_J;
+            // The spring's FREE body is the tracked one when there is a spring;
+            // otherwise the first integrated body. (SEAM L addresses bodies by id.)
+            if (!tracked || b.id === eng.spring_free_id) tracked = b;
+        }
+        var x = eng.spring_x_m || 0;
+        var k = eng.spring_k || 0;
+        var Us = 0.5 * k * x * x;
+        var ripple = 0.5 * (hPhys || 0) * k * x * (eng.spring_v_sep || 0);
+        var snap = {
+            body_id: tracked ? tracked.id : "",
+            v: tracked ? tracked.v : 0,
+            s: tracked ? tracked.s : 0,
+            h_m: tracked ? tracked.h_m : 0,
+            x_m: x, k: k, dt_physics: hPhys || 0,
+            K: K, U_grav: Ug, U_spring: Us,
+            E_raw: K + Ug + Us,
+            E_ripple: ripple,
+            E_display: K + Ug + Us + ripple,
+            E_t0: 0, held: false
+        };
+        // The baseline (spec note 3) is captured on the FIRST published frame of
+        // the state and re-captured by RESET_TRAJECTORY and by a sandbox wrap —
+        // never mid-flight, so E_dissipated stays a state function.
+        if (eng.E_t0 == null) eng.E_t0 = snap.E_display;
+        snap.E_t0 = eng.E_t0;
+        eng.energy_snapshot = snap;
+        window.PM_nlbEnergy = snap;
+    }
+    // Spec note 17b — the ENGINE GUARD. nlbBoundsM() zeroing v at a track bound is
+    // a GEOMETRIC clamp, not physics, so it must never be presented as an energy
+    // change. When it fires while the energy layer is live the bars FREEZE at their
+    // last pre-clamp values and a warning goes to the console under a unique
+    // prefix, so a mis-authored state fails loudly at THE EYE's console audit
+    // instead of silently collapsing the E column. Warned ONCE per state entry:
+    // the audit only needs the occurrence, and a per-frame log would drown it.
+    function nlbEnergyClampGuard(eng, b) {
+        if (!eng || !eng.energy_active || eng.energy_held) return;
+        eng.energy_held = true;
+        if (eng._clamp_warned) return;
+        eng._clamp_warned = true;
+        if (typeof console !== "undefined" && console && console.warn) {
+            console.warn(NLB_ENERGY_WARN_PREFIX + " body '" + (b ? b.id : "?") +
+                "' reached a track bound while the energy layer was active — bars " +
+                "HELD at their last pre-clamp values. The state must be re-authored " +
+                "so the spring turnaround or loop_reset_ms fires first (spec note 17a).");
+        }
+    }
+    // Spec note 17c — the SANDBOX WRAP is not physics either. nlbSandboxWrap()
+    // teleports s across the track and re-seeds v, so the layer treats it as a
+    // state RE-ENTRY: the baseline is re-captured, every latch re-arms and the bar
+    // baseline resets in the SAME frame. A wrap can therefore never render as an
+    // energy change, and it can never leave a stale hold behind either.
+    function nlbEnergyOnWrap(eng) {
+        if (!eng || !eng.energy_active) return;
+        nlbSpringPhysReset(eng);
+    }
+    // Spec note 18e/18f — everything SEAM K owns that carries state across frames.
+    // Called on state entry, on RESET_TRAJECTORY and on a sandbox wrap, so THE
+    // EYE's RESET -> pin -> RESET -> dense -> RESET -> frozen drive can never carry
+    // a compression, a latched slow window, a held bar or a loop cycle across.
+    function nlbSpringPhysReset(eng) {
+        if (!eng) return;
+        eng.spring_contact = false;          // 18e — the contact latch re-arms
+        eng.spring_x_m = 0;
+        eng.spring_x_raw_m = 0;
+        eng.spring_v_sep = 0;
+        eng.spring_force_N = 0;
+        eng.slow_active = false;             // 18e — and the slow window / badge
+        eng.spring_slow_factor = 1;
+        eng.E_t0 = null;                     // 18d — re-captured on the next frame
+        eng.energy_held = false;
+        eng.energy_snapshot = null;
+        eng._clamp_warned = false;
+        // SEAM L — the two authoring-guard latches ride the same reset path, so
+        // THE EYE's RESET -> pin -> RESET -> dense -> RESET -> frozen drive cannot
+        // carry a warning (or a suppressed one) across a capture.
+        eng._en_scale_warned = false;
+        eng._wk_scale_warned = false;        // SEAM M — the work ledgers' own scale latch
+        eng._en_drift_warned = false;
+        eng._loop_cycle = null;              // 18f — the loop clock, back to adopt
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b) b.F_spring = 0;
+        }
+        // ── SEAM M — the FULL note-18 coverage. This is the only place in the seam
+        //    that carries history, so this is the only place that has to forget it.
+        //    THE EYE drives RESET -> pin -> RESET -> dense -> RESET -> frozen, so a
+        //    single surviving joule here is a determinism failure, not a cosmetic
+        //    one — the pinned frame and the dense frame would disagree about the
+        //    same instant.
+        //      (a) every W ledger, ALL N instances, plus the internal W_applied term
+        //          E_dissipated now reads;
+        //      (b) every checkpoint latch re-arms (_side back to ADOPT so the first
+        //          frame after the rewind cannot manufacture a crossing) and every
+        //          stamped value clears — including from the formula surface;
+        //      (c) the sum_merge one-shot needs nothing here: it is a closed form of
+        //          eng.t_ms, which the rewind sets to 0, so it re-arms by
+        //          construction. The panel's merge TRANSFORM is cleared anyway, so a
+        //          rewind cannot leave a slid bar behind for one frame;
+        //      (d)(e)(f) the energy baseline, the spring/slow window and the loop
+        //          clock are SEAM K's, above, and are unchanged.
+        //    The per-body Δs anchor is dropped too: after a rewind b.s has jumped to
+        //    b.s0, and a stale anchor would bill that jump as work on the next frame.
+        eng.W_applied_J = 0;
+        for (var wq = 0; eng.work_state && wq < eng.work_state.length; wq++) eng.work_state[wq].W = 0;
+        for (var cq = 0; eng.checkpoint_state && cq < eng.checkpoint_state.length; cq++) {
+            eng.checkpoint_state[cq]._side = null;
+            eng.checkpoint_state[cq]._count = 0;
+            eng.checkpoint_state[cq].text = "";
+        }
+        for (var pi = 0; pi < eng.order.length; pi++) {
+            var pb = eng.bodies[eng.order[pi]];
+            // note 11b: the step segment — and SEAM J's displacement origin, which
+            // is re-anchored by a wrap and must fall back to the authored seed on
+            // entry and on every rewind (nlbDispOrigin). Set AFTER this call at the
+            // one wrap site, so the wrap's own re-anchor survives.
+            if (pb) { pb._s_pre = null; pb._cpValid = false; pb._dsp0 = null; }
+        }
+        window.PM_nlbWork = null;
+        window.PM_nlbWorkApplied = 0;
+        var smP = document.getElementById("nlb_energy");
+        if (smP) { smP._smP = null; nlbEnSumMergeWrite(0, null); }
+        nlbRenderStamps(eng);
+    }
+    // ── Spec note 9 — loop_reset_ms ──────────────────────────────────────────
+    //   A genuine integrator has no phase to wrap: a slide that ends is over. This
+    //   restarts the state's kinematics on a fixed cycle of the state-local clock
+    //   through the ONE rewind path, keeping t_ms MONOTONIC exactly as push_off's
+    //   repeat does — so a SET_TIME_FREEZE pin holds one cycle forever and THE
+    //   EYE's dense frames stay deterministic (Rule 36), while a teacher watching
+    //   live sees the demo repeat instead of a frozen tail.
+    //   Inert when the state authors push_off (that sealed cycle owns the rewind),
+    //   in a sandbox (SEAM J's wrap is the sandbox's loop, Rule 37) and once a
+    //   trusted slider or drag has seized.
+    function nlbRunLoopReset(nlb, eng) {
+        var R = nlb.loop_reset_ms;
+        if (!(typeof R === "number" && isFinite(R) && R > 0)) return;
+        if (eng.push_off || eng.mode === "sandbox") return;
+        if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) return;
+        var cycle = Math.floor((eng.t_ms || 0) / R);
+        if (eng._loop_cycle == null) { eng._loop_cycle = cycle; return; }  // adopt, never fire
+        if (cycle === eng._loop_cycle) return;
+        var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+        nlbResetTrajectory();                 // the ONE rewind path
+        eng.t_ms = tKeep;                     // the master clock stays monotonic
+        window.PM_nlbTimeMs = tKeepPub;
+        eng._loop_cycle = cycle;              // AFTER the rewind (which nulls it)
+    }
+
+    // ══ SEAM L — THE ENERGY DISPLAY LAYER ═════════════════════════════════════
+    //   (skeleton spec notes 1-5, 12, 13, 16.) SEAM K made the numbers real; this
+    //   makes them visible. It computes NOTHING: every value it draws is read from
+    //   the snapshot nlbPublishEnergy already published this frame, so the bars
+    //   inherit SEAM K's frame-rate independence by construction and there is
+    //   nothing here to rewind (Rule 36).
+    //   ADDITIVE: with no energy_layer block on a state the panel never shows and
+    //   not one pixel changes. No shipped concept authors one.
+    //   Design decisions worth stating once, because they are the ones a later
+    //   seam is most likely to undo:
+    //     • LEFT screen edge (spec note 1 / finding F12). The right edge already
+    //       carries #nlb_readout, #nlb_formula and #nlb_sliders. The panel is
+    //       MEASURED into place under whatever the top-left already holds (the
+    //       slow-motion badge), never given a fixed offset, and it registers in
+    //       nlbPanelRects so a body label dodges out from under it.
+    //     • The DOM is built ONCE, at the maximum shape (2 groups x 5 slots), and
+    //       states only show/hide slots — so a bar keeps the same screen position
+    //       for the whole concept (Rule 31/32d) and there is no per-state rebuild
+    //       to flash a frozen pin.
+    //     • E_total is a STACKED column, not a fourth independent bar (spec note
+    //       5): constancy has to read as a constant column HEIGHT while the split
+    //       inside it shifts. That is the layer's signature visual.
+    //     • The total drawn is E_display (SEAM K's ripple-corrected total), never
+    //       E_raw. E_raw visibly breathes the column top, which is the one thing
+    //       this concept's showcase state must not do.
+
+    var NLB_EN_ORDER = ["K", "U_grav", "U_spring", "E_total", "E_dissipated"];
+    // Rule 34c: Unicode subscripts on every text path, never ASCII. Uₛ is U+209B;
+    // "lost" spells out in U+2097/2092/209B/209C. There is no Unicode subscript
+    // "d", which is exactly why E_dissipated does NOT render as "E_d".
+    var NLB_EN_SYM = {
+        K: "K", U_grav: "U", U_spring: "Uₛ",
+        E_total: "E", E_dissipated: "Eₗₒₛₜ"
+    };
+    var NLB_EN_COL = {
+        K: "#FFCA28", U_grav: "#4FC3F7", U_spring: "#81C784",
+        E_total: "#FFF176", E_dissipated: "#B0BEC5"
+    };
+    // The glow id each slot answers to (spec note 13). An id names a QUANTITY, not
+    // a body, so with two compact groups one focal lights the same bar in BOTH —
+    // which is what a mass-independence compare state actually wants to say.
+    var NLB_EN_GLOW = {
+        K: "energy_bar_K", U_grav: "energy_bar_U_grav", U_spring: "energy_bar_U_spring",
+        E_total: "energy_col_E", E_dissipated: "energy_bar_E_dissipated"
+    };
+    var NLB_EN_SEG_GLOW = { K: "energy_seg_K", U_grav: "energy_seg_U_grav", U_spring: "energy_seg_U_spring" };
+    var NLB_EN_PANEL_GLOW = "energy_panel";
+    // The measure-and-reflow ladder (spec note 1). Same three-step shape
+    // nlbFitReadoutPanel uses, and the same contract: step 0 is the authored look,
+    // and the fit stops at the first step whose measured box clears the floor.
+    // Layout only — no clock, no physics, recomputed identically every entry.
+    var NLB_EN_STEPS = [
+        { trk: 186, w: 46, gap: 12, sym: 13, val: 12, cap: 12, pad: "10px 13px" },
+        { trk: 138, w: 40, gap: 9,  sym: 12, val: 11, cap: 11, pad: "8px 11px" },
+        { trk: 98,  w: 34, gap: 7,  sym: 11, val: 10, cap: 10, pad: "6px 9px" }
+    ];
+    var NLB_EN_TOP_MIN_PX = 52;      // clears the review chrome, like every other panel
+    var NLB_EN_CLEAR_PX = 8;         // breathing room under the slow-motion badge
+    // Authoring guards. Both prefixes are UNIQUE so THE EYE's console audit can
+    // assert ZERO occurrences of each — that is what turns "author the scale above
+    // the real maximum" and "keep the sandbox honest" from hopes into checks.
+    var NLB_ENERGY_SCALE_WARN_PREFIX = "[PM_NLB_ENERGY_SCALE]";
+    var NLB_ENERGY_DRIFT_WARN_PREFIX = "[PM_NLB_ENERGY_DRIFT]";
+    // The acceptance bar spec note 8b sets on the displayed total, reused here as
+    // the drift guard's threshold: a state that claims a flat total may not move it
+    // by more than this while nothing external is doing work on it.
+    var NLB_EN_DRIFT_BAR_J = 0.05;
+
+    function nlbEnCfg(nlb) {
+        var c = nlb && nlb.energy_layer;
+        if (!c || !c.bars || !c.bars.length) return null;
+        return c;
+    }
+    // The state's bars, re-ordered into the FIXED panel order. The authored array
+    // order is deliberately discarded (Rule 32d): a bar must not change screen
+    // position between states.
+    function nlbEnBars(cfg) {
+        var out = [];
+        for (var i = 0; i < NLB_EN_ORDER.length; i++) {
+            var k = NLB_EN_ORDER[i];
+            if (cfg.bars.indexOf(k) >= 0) out.push(k);
+        }
+        return out;
+    }
+    // Joules -> text, with the negative-zero clamp every value-only readout in this
+    // file carries: -0.000 must never render.
+    function nlbEnFx(v, p) {
+        var d = (p === 0 || p === 1 || p === 2) ? p : 1;
+        var x = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(x) < 0.5 * Math.pow(10, -d)) x = 0;
+        return x.toFixed(d) + " J";
+    }
+    function nlbEnPct(v, maxJ) {
+        if (!(maxJ > 0)) return 0;
+        var f = v / maxJ;
+        if (!(f > 0)) return 0;
+        // SEAM M scar row 3, discharged (SEAM N). The return value is written
+        // straight into a style.height string, so an unrounded full-precision float
+        // makes frozen-frame byte-identity a property of the CSSOM's number
+        // normalisation rather than of this code. SEAM M already rounded its own
+        // derived style values to 3 dp for exactly this reason and correctly
+        // declined to reach into a sealed sibling seam; this closes the gap before
+        // the first ch6 concept authors an energy_layer and makes it live.
+        // 3 dp of a percentage is ~0.001% of a bar's track — far below one pixel,
+        // so nothing visible changes and no baseline can move.
+        var pct = f > 1 ? 100 : f * 100;
+        return Math.round(pct * 1000) / 1000;
+    }
+    function nlbEnWarnOnce(eng, flag, prefix, msg) {
+        if (!eng || eng[flag]) return;
+        eng[flag] = true;
+        if (typeof console !== "undefined" && console && console.warn) console.warn(prefix + " " + msg);
+    }
+
+    // ── The panel DOM, built ONCE at the maximum shape ───────────────────────
+    function nlbBuildEnergyPanel() {
+        var p = document.createElement("div");
+        p.id = "nlb_energy";
+        // Rule 39g: a dynamically created inline position:fixed panel, which is the
+        // convention the generic widget engine DISCOVERS — so the teacher's gear
+        // toggle and clean mode pick this up with zero per-scenario code and zero
+        // curation. pointer-events:none: it is an instrument, never a control.
+        p.style.cssText = "position:fixed;left:12px;top:52px;background:rgba(0,0,0,0.82);" +
+            "color:#ECEFF1;padding:10px 13px;border-radius:8px;font:12px/1.3 monospace;" +
+            "z-index:10;display:none;pointer-events:none;";
+        var html = "";
+        for (var g = 0; g < 2; g++) {
+            var gp = "nlb_en_g" + g;
+            html += '<div class="nlb_en_grp" id="' + gp + '" style="display:none;">';
+            html += '<div class="nlb_en_cap" id="' + gp + '_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;"></div>';
+            html += '<div class="nlb_en_bars" id="' + gp + '_bars" style="display:flex;align-items:flex-end;">';
+            for (var i = 0; i < NLB_EN_ORDER.length; i++) {
+                var k = NLB_EN_ORDER[i];
+                var sid = gp + "_" + k;
+                html += '<div class="nlb_en_slot" id="' + sid + '" data-en="' + NLB_EN_GLOW[k] + '" style="display:none;text-align:center;">';
+                html += '<div class="nlb_en_trk" id="' + sid + '_t" style="position:relative;overflow:hidden;background:rgba(255,255,255,0.10);border-radius:3px;">';
+                if (k === "E_total") {
+                    // The STACK (spec note 5): K on the floor, U_grav on it, Uₛ on
+                    // top. Three absolutely-positioned segments in ONE track, so the
+                    // column's HEIGHT is the total by construction and the split
+                    // inside it is the only thing that can move.
+                    var segs = ["K", "U_grav", "U_spring"];
+                    for (var s = 0; s < segs.length; s++) {
+                        html += '<div class="nlb_en_seg" id="' + sid + "_s" + s + '" data-en="' + NLB_EN_SEG_GLOW[segs[s]] +
+                            '" style="position:absolute;left:0;right:0;bottom:0;height:0;background:' + NLB_EN_COL[segs[s]] + ';"></div>';
+                    }
+                } else {
+                    html += '<div class="nlb_en_fill" id="' + sid + '_f" style="position:absolute;left:0;right:0;bottom:0;height:0;background:' + NLB_EN_COL[k] + ';border-radius:3px;"></div>';
+                }
+                html += '</div>';
+                // Unquoted font family list: valid CSS (a family name may be a
+                // sequence of identifiers) and it keeps the whole builder free of
+                // nested quotes inside this file's one template literal (Rule 14).
+                html += '<div class="nlb_en_sym" id="' + sid + '_y" style="margin-top:4px;color:' + NLB_EN_COL[k] + ';font-family:Cambria Math,Times New Roman,serif;">' + NLB_EN_SYM[k] + '</div>';
+                html += '<div class="nlb_en_val" id="' + sid + '_v" style="color:#ECEFF1;white-space:nowrap;">0.0 J</div>';
+                html += '</div>';
+            }
+            html += '</div></div>';
+        }
+        // ── SEAM M (spec note 10) — the SIGNED work section, in the SAME panel ──
+        //   One left-edge instrument, not two: a second measured overlay would need
+        //   its own fit ladder and could collide with this one. Every element below
+        //   deliberately carries SEAM L's class names (nlb_en_bars / nlb_en_slot /
+        //   nlb_en_trk / nlb_en_cap), so the existing measure-and-reflow ladder
+        //   sizes it and the existing DOM glow pass addresses it with no new code —
+        //   the work bars just answer to work_bar_* ids through the same data-en.
+        //   Built ONCE at the maximum shape (4 slots) and shown/hidden per state,
+        //   exactly like the bars above (Rule 31/32d).
+        html += '<div id="nlb_wk" style="display:none;margin-top:10px;">';
+        html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">Work done</div>';
+        html += '<div class="nlb_en_bars" id="nlb_wk_bars" style="display:flex;align-items:flex-end;">';
+        for (var w = 0; w < NLB_WK_MAX; w++) {
+            var wid = "nlb_wk_" + w;
+            html += '<div class="nlb_en_slot" id="' + wid + '" data-en="" style="display:none;text-align:center;">';
+            html += '<div class="nlb_en_trk" id="' + wid + '_t" style="position:relative;overflow:hidden;background:rgba(255,255,255,0.10);border-radius:3px;">';
+            // The ZERO baseline at mid-height — the thing that makes a signed bar
+            // readable at a glance (finding F6). Drawn under the fill so a bar at
+            // full deflection does not erase its own reference.
+            html += '<div style="position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,0.5);"></div>';
+            html += '<div id="' + wid + '_f" style="position:absolute;left:0;right:0;bottom:50%;height:0;background:' + NLB_WK_POS_COLOR + ';"></div>';
+            html += '</div>';
+            // WRAPS on purpose (the energy symbols above do not): a work bar is
+            // captioned with the force's plain-English NAME, and "applied force"
+            // cannot fit one 46 px slot on one line at any step of the ladder.
+            html += '<div class="nlb_en_sym" id="' + wid + '_y" style="margin-top:4px;color:#B0BEC5;font-family:Cambria Math,Times New Roman,serif;line-height:1.15;"></div>';
+            html += '<div class="nlb_en_val" id="' + wid + '_v" style="color:#ECEFF1;white-space:nowrap;">0.0 J</div>';
+            html += '</div>';
+        }
+        html += '</div></div>';
+        p.innerHTML = html;
+        document.body.appendChild(p);
+    }
+
+    // ── Per-state display pass ──────────────────────────────────────────────
+    //   Shows exactly this state's bars and groups, writes the scale, then fits.
+    //   Called from applyNewtonsLawsBodyState AND from the widget-vis path, so it
+    //   must be idempotent and must not touch physics.
+    function nlbApplyEnergyLayer(nlb, eng) {
+        var p = document.getElementById("nlb_energy");
+        if (!p) return;
+        var cfg = nlbEnCfg(nlb);
+        // SEAM M widened the gate: the SAME left-edge panel also carries the signed
+        // work ledgers, and a state may author those with no energy bars at all
+        // (union concept #1 teaches W before it teaches K). With NEITHER block the
+        // panel hides exactly as it did under SEAM L.
+        var hasWk = !!(eng && eng.work_state && eng.work_state.length);
+        // A state entry that leaves a merge transform behind would slide the next
+        // state's bars sideways from its very first frame — the frame a frozen pin
+        // can catch. Cleared unconditionally here; the per-frame pass re-applies it
+        // when THIS state authors the one-shot.
+        p._smP = null;
+        nlbEnSumMergeWrite(0, null);
+        if (!cfg && !hasWk) { p.style.display = "none"; return; }
+        var bars = cfg ? nlbEnBars(cfg) : [];
+        var ids = (cfg && cfg.body_ids && cfg.body_ids.length) ? cfg.body_ids.slice(0, 2) : [];
+        var groups = cfg ? (ids.length ? ids.length : 1) : 0;
+        var bodies = (nlb && nlb.bodies) || [];
+        for (var g = 0; g < 2; g++) {
+            var gEl = document.getElementById("nlb_en_g" + g);
+            if (!gEl) continue;
+            gEl.style.display = (g < groups) ? "block" : "none";
+            gEl.style.marginTop = (g > 0) ? "9px" : "0";
+            var cap = document.getElementById("nlb_en_g" + g + "_cap");
+            if (cap) {
+                var capTxt = "";
+                if (ids.length) {
+                    for (var bi = 0; bi < bodies.length; bi++) {
+                        if (bodies[bi] && bodies[bi].id === ids[g]) { capTxt = bodies[bi].label || bodies[bi].id; break; }
+                    }
+                    if (!capTxt) capTxt = ids[g] || "";
+                }
+                cap.textContent = capTxt;
+                cap.style.display = capTxt ? "block" : "none";
+            }
+            for (var i = 0; i < NLB_EN_ORDER.length; i++) {
+                var sl = document.getElementById("nlb_en_g" + g + "_" + NLB_EN_ORDER[i]);
+                if (sl) sl.style.display = (g < groups && bars.indexOf(NLB_EN_ORDER[i]) >= 0) ? "block" : "none";
+            }
+        }
+        // SEAM M — the work section's own slots, BEFORE the fit: the ladder measures
+        // the panel's final height and a section shown afterwards would be measured
+        // out of the box it has to fit inside.
+        nlbApplyWorkSection(eng);
+        p.style.display = "block";
+        nlbFitEnergyPanel();
+        // Seed the first rendered frame from the values already on the engine
+        // record, so a frozen pin that catches state entry never photographs the
+        // previous state's numbers (the same discipline the HUD and the arrows
+        // follow on entry).
+        nlbUpdateEnergyPanel(eng);
+    }
+    // The measure-and-reflow ladder (spec note 1) — MEASURED, never a fixed offset.
+    // The ceiling is whatever the top-left already holds (the slow-motion badge);
+    // the floor is the viewport. Stops at the first step that fits, so a state that
+    // fits at step 0 renders the authored look.
+    //   The CEILING half of the ladder, split out because it has to be re-measured
+    //   every frame and the size ladder does not. The slow-motion badge is the one
+    //   other top-left overlay, and it is BLANKED on state entry and only shown
+    //   later, when the spring actually makes contact — so a top measured once at
+    //   entry is measured against a hidden badge and the panel sits straight on top
+    //   of it the moment the window opens (observed on the first headless drive:
+    //   the badge rendered underneath the K bar). This is the measure-and-reflow
+    //   contract taken literally: measure the CURRENT rects, every frame.
+    //   Memoryless — a pure function of what is on screen right now, so it cannot
+    //   move a frozen pixel between two identical frames.
+    function nlbEnergyTopPx() {
+        var top = NLB_EN_TOP_MIN_PX;
+        var sm = document.getElementById("nlb_slowmo");
+        if (sm && sm.style.display !== "none") {
+            var sr = sm.getBoundingClientRect();
+            if (sr.height > 0) top = Math.max(top, sr.bottom + NLB_EN_CLEAR_PX);
+        }
+        // ROUNDED to a whole pixel on purpose: a measured rect is fractional, and a
+        // fractional top re-rounds differently under sub-pixel layout, which would
+        // let two otherwise identical frames differ by one row of pixels — the one
+        // thing a frozen H2 baseline cannot tolerate.
+        return Math.round(top);
+    }
+    function nlbFitEnergyPanel() {
+        var p = document.getElementById("nlb_energy");
+        if (!p || p.style.display === "none") return;
+        p.style.top = nlbEnergyTopPx() + "px";
+        var limit = window.innerHeight - 12;
+        for (var st = 0; st < NLB_EN_STEPS.length; st++) {
+            var S = NLB_EN_STEPS[st];
+            p.style.padding = S.pad;
+            var rows = p.getElementsByClassName("nlb_en_bars");
+            for (var r = 0; r < rows.length; r++) rows[r].style.gap = S.gap + "px";
+            var slots = p.getElementsByClassName("nlb_en_slot");
+            for (var i = 0; i < slots.length; i++) slots[i].style.width = S.w + "px";
+            var trks = p.getElementsByClassName("nlb_en_trk");
+            for (var t = 0; t < trks.length; t++) trks[t].style.height = S.trk + "px";
+            var syms = p.getElementsByClassName("nlb_en_sym");
+            for (var y = 0; y < syms.length; y++) syms[y].style.fontSize = S.sym + "px";
+            var vals = p.getElementsByClassName("nlb_en_val");
+            for (var v = 0; v < vals.length; v++) vals[v].style.fontSize = S.val + "px";
+            var caps = p.getElementsByClassName("nlb_en_cap");
+            for (var c = 0; c < caps.length; c++) caps[c].style.fontSize = S.cap + "px";
+            if (p.getBoundingClientRect().bottom <= limit) return;
+        }
+    }
+    // ── Per-frame value write ───────────────────────────────────────────────
+    //   Pure presentation over the snapshot SEAM K published this same frame.
+    function nlbUpdateEnergyPanel(eng) {
+        var p = document.getElementById("nlb_energy");
+        if (!p || p.style.display === "none" || !eng) return;
+        var cfg = eng.energy_layer;
+        var snap = eng.energy_snapshot;
+        // SEAM M — the work ledgers share this panel and are drawn even in a state
+        // that authors no energy bars, so they are written BEFORE the bar gate below
+        // and do not depend on the snapshot.
+        nlbUpdateWorkPanel(eng);
+        // Re-measure the ceiling (see nlbEnergyTopPx): the slow-motion badge opens
+        // and closes DURING a state, long after the entry fit ran. Churn-guarded to
+        // one number compare per frame, so a still scene writes no style at all.
+        // SEAM M moved this ABOVE the bar gate: a work-only state shares this panel
+        // and its badge moves for exactly the same reason.
+        var topPx = nlbEnergyTopPx();
+        if (p._enTop !== topPx) { p._enTop = topPx; p.style.top = topPx + "px"; }
+        if (!cfg) { nlbEnApplySumMerge(eng, 0); return; }
+        if (!snap) return;
+        var maxJ = eng.energy_bar_max_J;
+        var prec = cfg.precision;
+        var ids = (cfg.body_ids && cfg.body_ids.length) ? cfg.body_ids.slice(0, 2) : [];
+        var groups = ids.length ? ids.length : 1;
+        for (var g = 0; g < groups; g++) {
+            var K, Ug, Us;
+            if (ids.length) {
+                // PER-BODY group (spec note 12). b.K_J / b.U_grav_J are written
+                // every frame by nlbPublishEnergy, so there is no second derivation
+                // path here. Uₛ belongs to the spring, so it is attributed to the
+                // spring's free body alone and is 0 for every other body.
+                var b = eng.bodies[ids[g]];
+                K = (b && b.K_J) || 0;
+                Ug = (b && b.U_grav_J) || 0;
+                Us = (b && b.id === eng.spring_free_id) ? snap.U_spring : 0;
+            } else {
+                // The default single group: the WHOLE RIG's totals, which is what
+                // nlbPublishEnergy already sums.
+                K = snap.K; Ug = snap.U_grav; Us = snap.U_spring;
+            }
+            // The total. For the aggregate group this is E_display — the
+            // ripple-corrected total, never E_raw (spec note 8b): E_raw breathes
+            // the column top by the integrator's symplectic ripple, which is
+            // precisely the wobble the flat-top claim cannot survive. For a
+            // per-body group the ripple term is identically 0 (no spring), so the
+            // straight sum IS the corrected value.
+            var tot = ids.length ? (K + Ug + Us) : snap.E_display;
+            // Spec note 3 — E_dissipated is a STATE FUNCTION, not a path integral:
+            //     E_dissipated = E_total(t₀) + W_applied − (K + U_grav + U_spring)
+            // SEAM M completes it. The scope clause's W_applied term is now WIRED to
+            // the internal always-on ledger nlbRunWorkAccum keeps (eng.W_applied_J),
+            // so a state with an applied force no longer reads its own drive as
+            // dissipation and SEAM L's "must not show this bar" restriction is
+            // LIFTED. It is identically 0 whenever no applied force acts, which is
+            // why every state that was already correct is bit-for-bit unchanged.
+            //   The term is the one PATH-dependent input to an otherwise
+            // state-function quantity, so it is fold-exact only while F_applied is
+            // position-independent (true of every drive this engine has) and it is
+            // rewound with everything else by nlbSpringPhysReset (note 18a).
+            //   A PER-BODY group cannot be given a share of a rig-wide applied-work
+            // total without inventing an attribution rule, so the term is applied to
+            // the aggregate group only — which is the group every dissipation state
+            // actually uses.
+            var Ed = snap.E_t0 + (ids.length ? 0 : (eng.W_applied_J || 0)) - tot;
+            if (!(Ed > 0)) Ed = 0;
+            var vals = { K: K, U_grav: Ug, U_spring: Us, E_total: tot, E_dissipated: Ed };
+            // Guard: the UNSIGNED stack cannot draw a negative component, so a
+            // reference authored above the body's lowest point would silently make
+            // the drawn column disagree with its own numeric. Warn loudly instead.
+            if (Ug < -1e-9) {
+                nlbEnWarnOnce(eng, "_en_scale_warned", NLB_ENERGY_SCALE_WARN_PREFIX,
+                    "U_grav went negative (" + Ug.toFixed(3) + " J): energy_layer.h_ref_m is " +
+                    "ABOVE the tracked body's lowest point, and the unsigned stack cannot " +
+                    "draw it. Lower h_ref_m to the h = 0 line the state actually shows.");
+            }
+            for (var i = 0; i < NLB_EN_ORDER.length; i++) {
+                var k = NLB_EN_ORDER[i];
+                var sid = "nlb_en_g" + g + "_" + k;
+                var slot = document.getElementById(sid);
+                if (!slot || slot.style.display === "none") continue;
+                var vEl = document.getElementById(sid + "_v");
+                if (vEl) {
+                    var txt = nlbEnFx(vals[k], prec);
+                    if (vEl.textContent !== txt) vEl.textContent = txt;   // churn guard
+                }
+                if (vals[k] > maxJ + 1e-9) {
+                    nlbEnWarnOnce(eng, "_en_scale_warned", NLB_ENERGY_SCALE_WARN_PREFIX,
+                        k + " reached " + vals[k].toFixed(2) + " J, over the authored " +
+                        "energy_layer.bar_max_J of " + maxJ + " J. The bar clamps at full " +
+                        "height and stops being readable as a magnitude — raise bar_max_J.");
+                }
+                if (k === "E_total") {
+                    // Stack from the floor up: K, then U_grav on it, then Uₛ. Each
+                    // segment is clamped at >= 0 so the picture stays drawable; the
+                    // numeric above stays the TRUE value, and the guard above is
+                    // what makes a disagreement impossible to ship.
+                    var comps = [K, Ug, Us], acc = 0;
+                    for (var s = 0; s < 3; s++) {
+                        var hPct = nlbEnPct(comps[s], maxJ);
+                        var seg = document.getElementById(sid + "_s" + s);
+                        if (seg) { seg.style.bottom = acc + "%"; seg.style.height = hPct + "%"; }
+                        acc += hPct;
+                        if (acc > 100) acc = 100;
+                    }
+                } else {
+                    var fl = document.getElementById(sid + "_f");
+                    if (fl) fl.style.height = nlbEnPct(vals[k], maxJ) + "%";
+                }
+            }
+        }
+        // SEAM M (spec note 6) — the one-shot's slide, LAST so it composes over the
+        // heights this pass just wrote rather than fighting them.
+        nlbEnApplySumMerge(eng, groups);
+        nlbEnergyDriftGuard(eng, snap);
+    }
+    // ── The drift guard (the honest half of the sandbox ripple resolution) ──
+    //   A state that shows an E_total bar, has NO dissipation bar, no friction and
+    //   no applied force is a state whose whole authored claim is "this total does
+    //   not change". If the displayed total then moves by more than the spec's own
+    //   0.05 J acceptance bar, the claim is false ON SCREEN and the concept must
+    //   not ship: warn once, under a unique prefix THE EYE's console audit asserts
+    //   zero of. The known cause is the contact-entry step dt = 1/60 s costs in a
+    //   real-time sandbox (spring.sandbox_slow_factor is the fix); the guard is
+    //   deliberately blind to the cause and only checks the claim.
+    //   Memoryless except for the one warn latch, which nlbSpringPhysReset clears
+    //   on state entry / RESET_TRAJECTORY / sandbox wrap — so it can neither carry
+    //   across THE EYE's RESET drive nor move a pixel.
+    function nlbEnergyDriftGuard(eng, snap) {
+        if (!eng || eng._en_drift_warned) return;
+        var cfg = eng.energy_layer;
+        if (!cfg || cfg.bars.indexOf("E_total") < 0) return;
+        if (cfg.bars.indexOf("E_dissipated") >= 0) return;     // the state is ABOUT the loss
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost || b.fixed) continue;
+            if (Math.abs(b.F_applied || 0) > 1e-9) return;      // external work is doing it
+            if ((b.mu_k || 0) * (b.N || 0) > 1e-6) return;      // friction is doing it
+        }
+        if (Math.abs(snap.E_display - snap.E_t0) <= NLB_EN_DRIFT_BAR_J) return;
+        eng._en_drift_warned = true;
+        if (typeof console !== "undefined" && console && console.warn) {
+            console.warn(NLB_ENERGY_DRIFT_WARN_PREFIX + " the displayed total moved " +
+                (snap.E_display - snap.E_t0).toFixed(3) + " J from its state-entry baseline " +
+                "with no friction and no applied force acting — the state shows an E_total " +
+                "bar and therefore claims a constant total. Over the 0.05 J acceptance bar. " +
+                "In a real-time sandbox the cause is the contact-entry step: author " +
+                "spring.sandbox_slow_factor (4 divides the error by 16).");
+        }
+    }
+    // ── The DOM glow channel (spec note 13) ─────────────────────────────────
+    //   applyGlowEmphasis is a MESH pass and cannot reach a DOM overlay, so the
+    //   energy ids get the same SEMANTICS through the one channel a DOM element
+    //   has: the focal at full strength with a bright ring, its peers at the same
+    //   GLOW_DIM_OPACITY the mesh dim branch uses. Brightness only, never size
+    //   (Rule 29) — no slot ever changes its box. Exactly one focal (Rule 32e).
+    //   Finding F14 the other way round: when the focal is a MESH the panel is left
+    //   entirely alone, because a value readout is not a peer to be dimmed.
+    function nlbEnergyApplyGlow(focal) {
+        var p = document.getElementById("nlb_energy");
+        if (!p || p.style.display === "none") return;
+        var isEn = !!focal && (focal === NLB_EN_PANEL_GLOW ||
+            focal.indexOf("energy_bar_") === 0 || focal.indexOf("energy_seg_") === 0 ||
+            focal === "energy_col_E");
+        if (p._enFocal === focal && p._enWasEn === isEn) return;    // churn guard
+        p._enFocal = focal; p._enWasEn = isEn;
+        var mark = function (el, on, active) {
+            if (!el) return;
+            el.style.opacity = (!active || on) ? "1" : String(GLOW_DIM_OPACITY);
+            el.style.boxShadow = (active && on) ? "0 0 9px 2px rgba(255,255,255,0.55)" : "none";
+        };
+        var slots = p.getElementsByClassName("nlb_en_slot");
+        for (var i = 0; i < slots.length; i++) {
+            var slotOn = isEn && (focal === NLB_EN_PANEL_GLOW || slots[i].getAttribute("data-en") === focal);
+            mark(slots[i], slotOn, isEn);
+        }
+        var segs = p.getElementsByClassName("nlb_en_seg");
+        for (var s = 0; s < segs.length; s++) {
+            // A segment focal is addressed INSIDE the stack, so the stack slot must
+            // not simultaneously dim it: the segment's own opacity wins locally.
+            var segOn = isEn && segs[s].getAttribute("data-en") === focal;
+            segs[s].style.opacity = (!isEn || segOn || focal === NLB_EN_PANEL_GLOW ||
+                focal === "energy_col_E") ? "1" : String(GLOW_DIM_OPACITY);
+        }
+    }
+
+    // ══ SEAM M — THE TEACHING INSTRUMENTS ═════════════════════════════════════
+    //   (skeleton spec notes 6, 7, 10, 11, 14, 18-full, 15-iii.) SEAM K made the
+    //   energy real; SEAM L made it visible; this makes it TEACHABLE. Five
+    //   instruments, each gated on its OWN authored block, each additive:
+    //     6  — the cue-driven sum_merge one-shot (K and U slide into the E column)
+    //     7  — the dashed h = 0 line at energy_layer.h_ref_m + the COMPUTED
+    //          predicted-stop marker and its dim misconception ghost
+    //     10 — N concurrent SIGNED work ledgers (and the internal W_applied term
+    //          that finally completes SEAM L's E_dissipated)
+    //     11 — checkpoint flags that stamp K/U into the ONE formula surface
+    //     14 — the P and Pₐᵥ readouts (built for the union, unused by this concept)
+    //   Rule 36 discipline, stated once: the ONLY things here that carry history
+    //   across frames are the work accumulators and the checkpoint latches — both
+    //   are explicitly rewound by nlbSpringPhysReset (note 18), which state entry,
+    //   RESET_TRAJECTORY and the sandbox wrap all already funnel through.
+    //   Everything else (the merge progress, both marker positions, every panel
+    //   write) is a CLOSED FORM of the state-local clock or of the current
+    //   integrator state, so a SET_TIME_FREEZE pin reproduces it byte for byte and
+    //   THE EYE's RESET -> pin -> RESET -> dense -> RESET -> frozen drive cannot
+    //   carry anything across a capture.
+
+    var NLB_MK_H = 1.05;                   // world units — marker post height
+    var NLB_MK_TICK_W = 0.34;              // the cross-tick at its top
+    var NLB_MK_R = 0.045;                  // post/tick half-thickness
+    var NLB_MK_TRUE_COLOR = "#FFD54F";
+    var NLB_MK_GHOST_COLOR = "#90A4AE";
+    var NLB_MK_HREF_COLOR = "#4FC3F7";
+    var NLB_CP_COLOR = "#CE93D8";
+    var NLB_CP_MAX = 3;                    // checkpoint flags built once
+    var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
+    var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
+    var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
+    // Plain-English defaults (Rule 41) — the bar caption is the force's ordinary
+    // name, never an impossible subscript. Unicode has no subscript g / f / d, so
+    // "W_g" cannot be written honestly at all; the symbol line stays a clean W and
+    // the NAME carries the meaning. An authored label overrides any of them.
+    var NLB_WK_LABEL = {
+        gravity: "gravity", friction: "friction", applied: "applied force",
+        normal: "normal force", net: "net force"
+    };
+    var NLB_WK_GLOW = {
+        gravity: "work_bar_gravity", friction: "work_bar_friction",
+        applied: "work_bar_applied", normal: "work_bar_normal", net: "work_bar_net"
+    };
+    var NLB_WK_POS_COLOR = "#66BB6A";      // W > 0
+    var NLB_WK_NEG_COLOR = "#EF5350";      // W < 0
+    var NLB_SUM_MERGE_MS = 900;            // default slide duration
+
+    // ── Config readers. Each returns null unless the state genuinely authors the
+    //    block, which is what makes every instrument additive.
+    function nlbMkCfg(nlb) {
+        var c = nlb && nlb.height_markers;
+        return c ? c : null;
+    }
+    function nlbWkCfg(nlb) {
+        var a = nlb && nlb.work_accumulators;
+        if (!a || !a.length) return null;
+        var out = [];
+        for (var i = 0; i < a.length && out.length < NLB_WK_MAX; i++) {
+            var e = a[i];
+            // The enum is CLOSED and an unknown member is DROPPED rather than
+            // silently creating a bar that accumulates nothing (the same discipline
+            // SEAM C's arrow-kind reader follows). 'spring' is deliberately not a
+            // member: see the config note.
+            if (!e || !NLB_WK_LABEL[e.force]) continue;
+            out.push(e);
+        }
+        return out.length ? out : null;
+    }
+    function nlbCpCfg(nlb) {
+        var a = nlb && nlb.checkpoints;
+        if (!a || !a.length) return null;
+        var out = [];
+        for (var i = 0; i < a.length && out.length < NLB_CP_MAX; i++) {
+            var e = a[i];
+            if (!e || typeof e.s_m !== "number" || !isFinite(e.s_m)) continue;
+            out.push(e);
+        }
+        return out.length ? out : null;
+    }
+    // The body an instrument tracks. Default = the spring's free body when there is
+    // one (it is the body the whole energy story is about), else the first
+    // integrated body — the SAME rule nlbPublishEnergy's tracked already follows,
+    // so an instrument and the bars can never disagree about whose numbers they show.
+    function nlbTrackedBody(eng, id) {
+        if (id && eng.bodies[id]) return eng.bodies[id];
+        var first = null;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b || b.ghost || b.fixed) continue;
+            if (!first) first = b;
+            if (b.id === eng.spring_free_id) return b;
+        }
+        return first;
+    }
+
+    // ── Note 7 — the COMPUTED stop position ─────────────────────────────────
+    //   s = v₀²/(2·g·sin θ), the spec's own closed form, measured ALONG the track
+    //   from the body's HOME position in the direction it was launched. Returns the
+    //   track coordinate, or null when the geometry cannot produce a turning point
+    //   (a flat surface, or a body that was never launched) — in which case the
+    //   marker HIDES rather than standing at a made-up place.
+    //   Pure function of (s0, v0, theta): no clock, no accumulator, so it rewinds
+    //   for free and a slider that changes θ or v₀ moves the prediction with the
+    //   physics instead of leaving a hand-placed flag behind.
+    function nlbPredictedStopM(eng, b) {
+        if (!b || b.hanging) return null;
+        var sn = Math.sin((eng.theta_deg || 0) * Math.PI / 180);
+        var v0 = (b.v0 != null) ? b.v0 : 0;
+        if (!(Math.abs(sn) > 1e-6) || !(Math.abs(v0) > 1e-9)) return null;
+        var d = (v0 * v0) / (2 * NLB_G * Math.abs(sn));
+        return { s: (b.s0 || 0) + (v0 > 0 ? d : -d), d: d, dir: (v0 > 0 ? 1 : -1) };
+    }
+
+    // ── Note 7 — the marker apparatus, built ONCE ───────────────────────────
+    //   The h = 0 line lives in the UN-rotated world group because a gravitational
+    //   reference is a HORIZONTAL level, not a line along the track: it must stay
+    //   level at every incline angle. The two markers live in the SURFACE group so
+    //   the one theta rotation stands them upright on the track with no branch
+    //   anywhere — the same trick the pulley bracket uses.
+    function nlbMkMakeMarker(id, colorHex, isGhost) {
+        var grp = new THREE.Group();
+        var mat = function () {
+            return new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(colorHex), transparent: true,
+                opacity: isGhost ? 0.45 : 0.95, depthTest: false
+            });
+        };
+        var post = new THREE.Mesh(new THREE.BoxGeometry(NLB_MK_R * 2, NLB_MK_H, NLB_MK_R * 2), mat());
+        post.position.set(0, NLB_MK_H / 2, 0);
+        post.renderOrder = NLB_MK_RENDER_ORDER;
+        grp.add(post);
+        var tick = new THREE.Mesh(new THREE.BoxGeometry(NLB_MK_TICK_W, NLB_MK_R * 2, NLB_MK_R * 2), mat());
+        tick.position.set(0, NLB_MK_H, 0);
+        tick.renderOrder = NLB_MK_RENDER_ORDER;
+        grp.add(tick);
+        // elementType is the FAMILY, id is the GLOW TARGET: nlbApplyGlow matches
+        // ud.id === focal, so a state focals a marker by writing marker_true,
+        // marker_ghost or checkpoint_1 — never a mesh name.
+        grp.userData = { elementType: "nlb_marker", id: id, ghost: !!isGhost };
+        grp.visible = false;
+        return grp;
+    }
+    function nlbBuildMarkers(surf, world) {
+        // The dashed LEVEL line. Built as explicit dash segments rather than a
+        // LineDashedMaterial: a dashed material needs computeLineDistances() re-run
+        // on every rescale, and this line is rescaled on every state (the track
+        // length is per-state), which is exactly the kind of hidden per-frame
+        // recompute a frozen baseline cannot tolerate. Unit span [-1, +1] in x,
+        // scaled to the state's half-length; scale.x carries the dashes with it.
+        var pts = [];
+        for (var i = 0; i < NLB_HREF_DASHES; i++) {
+            var x0 = -1 + (2 * i) / NLB_HREF_DASHES;
+            pts.push(new THREE.Vector3(x0, 0, 0));
+            pts.push(new THREE.Vector3(x0 + (2 / NLB_HREF_DASHES) * 0.58, 0, 0));
+        }
+        var hl = new THREE.LineSegments(
+            new THREE.BufferGeometry().setFromPoints(pts),
+            new THREE.LineBasicMaterial({
+                color: hexToThreeColor(NLB_MK_HREF_COLOR), transparent: true,
+                opacity: 0.85, depthTest: false
+            }));
+        hl.renderOrder = NLB_MK_RENDER_ORDER;
+        hl.userData = { elementType: "nlb_marker", id: "marker_h_ref" };
+        hl.visible = false;
+        world.add(hl); nlbRegister(hl);
+
+        var hlL = pmCreateAutoLabel("h = 0", NLB_MK_HREF_COLOR, 0.34);
+        hlL.userData = { elementType: "nlb_marker_label", id: "marker_h_ref_label", bodyId: "marker_h_ref" };
+        hlL.visible = false;
+        world.add(hlL); nlbRegister(hlL);
+
+        var mkT = nlbMkMakeMarker("marker_true", NLB_MK_TRUE_COLOR, false);
+        surf.add(mkT); nlbRegister(mkT);
+        var mkTL = pmCreateAutoLabel("highest point", NLB_MK_TRUE_COLOR, 0.34);
+        mkTL.userData = { elementType: "nlb_marker_label", id: "marker_true_label", bodyId: "marker_true" };
+        mkTL.visible = false;
+        surf.add(mkTL); nlbRegister(mkTL);
+
+        // The ghost carries ud.ghost, which nlbApplyGlow's FIRST branch forces into
+        // the dim-peer channel unconditionally — so it can never become the focal,
+        // it stays visibly a prediction rather than an object, and it uses the
+        // existing dimming primitive instead of a second one (spec section 3).
+        var mkG = nlbMkMakeMarker("marker_ghost", NLB_MK_GHOST_COLOR, true);
+        surf.add(mkG); nlbRegister(mkG);
+        var mkGL = pmCreateAutoLabel("expected stop", NLB_MK_GHOST_COLOR, 0.30);
+        mkGL.userData = { elementType: "nlb_marker_label", id: "marker_ghost_label", bodyId: "marker_ghost", ghost: true };
+        mkGL.visible = false;
+        surf.add(mkGL); nlbRegister(mkGL);
+
+        for (var c = 0; c < NLB_CP_MAX; c++) {
+            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false);
+            surf.add(cp); nlbRegister(cp);
+            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, 0.30);
+            cpL.userData = {
+                elementType: "nlb_marker_label", id: "checkpoint_" + (c + 1) + "_label",
+                bodyId: "checkpoint_" + (c + 1)
+            };
+            cpL.visible = false;
+            surf.add(cpL); nlbRegister(cpL);
+        }
+    }
+    // Place a marker group + its label at a track coordinate, in SURFACE-local
+    // units. One funnel, so a marker and its caption can never separate.
+    function nlbMkPlace(id, s_m) {
+        var g = nlbFindById(id), l = nlbFindById(id + "_label");
+        var x = s_m * NLB_WORLD_PER_M;
+        if (g) g.position.set(x, 0, 0);
+        if (l) l.position.set(x, NLB_MK_H + 0.30, 0);
+    }
+    function nlbMkShow(id, on) {
+        var g = nlbFindById(id), l = nlbFindById(id + "_label");
+        if (g) g.visible = !!on;
+        if (l) l.visible = !!on;
+    }
+    function nlbMkLabel(id, txt) {
+        var l = nlbFindById(id + "_label");
+        if (l) nlbSetBodyLabelText(l, txt);      // the same churn-guarded setter the body billboards use
+    }
+
+    // ── Note 7 — per-state display, and the per-frame follow ────────────────
+    //   The markers are recomputed EVERY frame (churn-guarded), not only on entry,
+    //   because θ and v₀ are live teacher controls: a hand-placed flag would be a
+    //   second source of truth for a number the physics already owns.
+    function nlbApplyMarkers(nlb, eng) {
+        var cfg = eng.markers_cfg;
+        if (!cfg) {
+            nlbMkShow("marker_h_ref", false);
+            nlbMkShow("marker_true", false);
+            nlbMkShow("marker_ghost", false);
+        }
+        var cps = eng.checkpoints_cfg;
+        for (var c = 0; c < NLB_CP_MAX; c++) {
+            var id = "checkpoint_" + (c + 1);
+            var e = cps ? cps[c] : null;
+            if (!e) { nlbMkShow(id, false); continue; }
+            nlbMkPlace(id, e.s_m);
+            nlbMkLabel(id, e.label || ("point " + (c + 1)));
+            nlbMkShow(id, true);
+        }
+        nlbUpdateMarkers(eng);
+    }
+    // The PM_nlb* mirror for the instruments (the file's own convention: DERIVED
+    // reads only, nothing in the engine reads them back, no pixels touched). It is
+    // what makes a marker's COMPUTED position and a checkpoint's latch state
+    // verifiable at all — both live on Three objects and inside closures that no
+    // driver can reach, so without this the one part of the seam that is pure
+    // geometry would be the one part nothing could check.
+    function nlbPublishMarkers(eng, pred) {
+        var cps = eng.checkpoint_state || [];
+        var cpOut = [];
+        for (var i = 0; i < cps.length; i++) {
+            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count, text: cps[i].text });
+        }
+        window.PM_nlbMarkers = {
+            h_ref_m: eng.energy_h_ref_m || 0,
+            predicted_stop_m: pred ? pred.s : null,
+            predicted_distance_m: pred ? pred.d : null,
+            ghost_stop_m: (pred && eng.markers_cfg && eng.markers_cfg.ghost_marker &&
+                eng.markers_cfg.ghost_marker.fraction > 0 && eng.markers_cfg.ghost_marker.fraction < 1)
+                ? ((nlbTrackedBody(eng, eng.markers_cfg.body_id) || {}).s0 || 0) +
+                  pred.dir * pred.d * eng.markers_cfg.ghost_marker.fraction
+                : null,
+            checkpoints: cpOut,
+            // The RENDERED state of each instrument, read straight off the Three
+            // object. The computed number above and the drawn object below are two
+            // different claims and both have to be checkable — a marker at the right
+            // metre that never became visible is the presence-is-not-correctness
+            // scar (a token and a glow alias both "pass" while zero meshes exist).
+            meshes: nlbMkMeshProbe()
+        };
+    }
+    function nlbMkMeshProbe() {
+        var ids = ["marker_h_ref", "marker_true", "marker_ghost",
+                   "checkpoint_1", "checkpoint_2", "checkpoint_3"];
+        var out = {};
+        for (var i = 0; i < ids.length; i++) {
+            var o = nlbFindById(ids[i]), l = nlbFindById(ids[i] + "_label");
+            out[ids[i]] = o
+                ? { visible: !!o.visible, x: o.position.x, y: o.position.y, sx: o.scale.x,
+                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null }
+                : null;
+        }
+        return out;
+    }
+    function nlbUpdateMarkers(eng) {
+        var cfg = eng.markers_cfg;
+        if (!cfg) { nlbPublishMarkers(eng, null); return; }
+        // The LEVEL line sits at exactly the resolved energy reference — the same
+        // eng.energy_h_ref_m the U_grav numeric is measured from (spec note 7: the
+        // number and the line cannot be allowed to disagree, so they read the ONE
+        // field rather than two authored values).
+        var showLine = (cfg.show_h_ref_line !== false);
+        var hl = nlbFindById("marker_h_ref"), hlL = nlbFindById("marker_h_ref_label");
+        if (hl) {
+            var half = Math.max(0.2, (eng.length_m || 0) * NLB_WORLD_PER_M);
+            var y = (eng.energy_h_ref_m || 0) * NLB_WORLD_PER_M;
+            hl.scale.set(half, 1, 1);
+            hl.position.set(0, y, 0);
+            hl.visible = showLine;
+            if (hlL) {
+                hlL.position.set(half + 0.42, y, 0);
+                hlL.visible = showLine;
+                nlbSetBodyLabelText(hlL, cfg.h_ref_label || "h = 0");
+            }
+        }
+        var b = nlbTrackedBody(eng, cfg.body_id);
+        var pred = b ? nlbPredictedStopM(eng, b) : null;
+        var ps = cfg.predicted_stop;
+        if (ps && pred) {
+            nlbMkPlace("marker_true", pred.s);
+            var txt = ps.label || "highest point";
+            if (ps.show_height) {
+                var hM = pred.s * Math.sin((eng.theta_deg || 0) * Math.PI / 180) - (eng.energy_h_ref_m || 0);
+                txt += "  h = " + nlbFx(hM, 2) + " m";
+            }
+            nlbMkLabel("marker_true", txt);
+            nlbMkShow("marker_true", true);
+        } else {
+            nlbMkShow("marker_true", false);
+        }
+        // The ghost is a PROP: it is placed off the same computed distance and read
+        // by nothing. fraction <= 0 or >= 1 would put it on top of (or past) the
+        // true marker, which cannot express "it will not come all the way back", so
+        // it is rejected and the prop simply does not appear.
+        var gm = cfg.ghost_marker;
+        if (gm && pred && typeof gm.fraction === "number" && gm.fraction > 0 && gm.fraction < 1) {
+            nlbMkPlace("marker_ghost", (b.s0 || 0) + pred.dir * pred.d * gm.fraction);
+            nlbMkLabel("marker_ghost", gm.label || "expected stop");
+            nlbMkShow("marker_ghost", true);
+        } else {
+            nlbMkShow("marker_ghost", false);
+        }
+        nlbPublishMarkers(eng, pred);
+    }
+
+    // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ═══════════════════════
+    //   The two measuring instruments that make W = F·d·cos θ a picture instead of a
+    //   caption: the live displacement vector d, and an angle arc between any two
+    //   directions the engine already owns. Both are built ONCE, hidden by default,
+    //   and gated on their own config block — a state authoring neither renders
+    //   exactly the pixels SEAM M rendered.
+    //   NO clock code lives here (Rule 36): every number below is a pure function of
+    //   already-stepped state (s, s0, the live force values, theta), so dt = 0 under
+    //   a SET_TIME_FREEZE pin reproduces the identical geometry and the identical
+    //   label strings.
+    var NLB_DISP_COLOR = "#FF8A65";        // deep orange — clear of all six arrow hues
+    var NLB_DISP_LANE = -1.15;             // surface-local y: BELOW the slab (top face y = 0,
+                                           // thickness 0.18), so d reads as the ground distance
+                                           // travelled. The value CLEARS EVERY ARROW LANE: the
+                                           // lowest is net at NLB_ARROW_LANE -0.96 off a body
+                                           // centre at +0.275, i.e. y = -0.685, with its label
+                                           // nudged to about -0.845. -1.15 leaves >0.30 of
+                                           // clearance under the deepest label. (Caught in
+                                           // pixels at -0.46: the ΣF arrow and d shared a lane
+                                           // and their heads met under the block.)
+    var NLB_DISP_MIN_M = 0.02;             // metres. Below this the body has NOT moved and
+                                           // the arrow HIDES — never a stub (the engine's rule)
+    var NLB_DISP_HEAD = 0.22;
+    var NLB_FANG_COLOR = "#FFE082";        // amber 200 — deliberately the SAME family as the
+                                           // incline arc (NLB_ARC_COLOR): an angle is an angle
+    var NLB_FANG_R = 0.85;                 // default arc radius from the body centre
+    var NLB_FANG_MIN_DEG = 1.5;            // below this there is no angle to draw
+    var NLB_FANG_QUANT = 2;                // arc endpoints QUANTIZED to 1/2 degree before the
+                                           // geometry is rebuilt. This is a determinism
+                                           // requirement, not an optimisation: a plain
+                                           // "rebuild when it changed by more than x" guard
+                                           // makes the drawn geometry a function of HISTORY,
+                                           // so the same pinned instant reached by rewinding
+                                           // and by playing forward could differ. Quantizing
+                                           // the INPUT keeps it a pure function of the angle.
+    var NLB_FANG_DIRS = ["applied", "weight", "normal", "friction", "tension", "net", "displacement", "surface"];
+
+    function nlbBuildOffAxis(surf, world) {
+        // d lives in the SURFACE group so the ONE theta rotation lays it along the
+        // track at every incline angle, with no branch (the marker contract).
+        var da = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            1, hexToThreeColor(NLB_DISP_COLOR), NLB_DISP_HEAD, NLB_DISP_HEAD * 0.8);
+        da.userData = { elementType: "nlb_disp", id: "displacement_vector" };
+        da.visible = false;
+        surf.add(da); nlbRegister(da);
+
+        var dl = pmCreateAutoLabel("d", NLB_DISP_COLOR, 0.34);
+        dl._nlbText = "d";
+        dl.userData = { elementType: "nlb_disp_label", id: "displacement_vector_label", bodyId: "displacement_vector" };
+        dl.visible = false;
+        surf.add(dl); nlbRegister(dl);
+
+        // The arc lives in the UN-rotated world group: its two directions are already
+        // world vectors (SEAM C's frame convention), so no second rotation is needed
+        // and a hanging body's arc works through the same path.
+        var arc = new THREE.Line(
+            new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0)]),
+            new THREE.LineBasicMaterial({
+                color: hexToThreeColor(NLB_FANG_COLOR), transparent: true,
+                opacity: 0.95, depthTest: false
+            }));
+        arc.renderOrder = NLB_MK_RENDER_ORDER;
+        arc.userData = { elementType: "nlb_fang", id: "angle_arc" };
+        arc.visible = false;
+        world.add(arc); nlbRegister(arc);
+
+        var al = pmCreateAutoLabel("θ", NLB_FANG_COLOR, 0.34);
+        al._nlbText = "θ";
+        al.userData = { elementType: "nlb_fang_label", id: "angle_arc_label", bodyId: "angle_arc" };
+        al.visible = false;
+        world.add(al); nlbRegister(al);
+    }
+
+    // Resolve the state's two blocks ONCE on entry (same contract as the SEAM M
+    // instruments): an unknown from/to member DROPS the whole arc rather than
+    // silently substituting a direction the narration never named.
+    function nlbApplyOffAxis(nlb, eng) {
+        var dv = nlb.displacement_vector;
+        eng.disp_cfg = null;
+        if (dv) {
+            var dBody = nlbTrackedBody(eng, dv.body_id);
+            if (dBody) {
+                eng.disp_cfg = {
+                    body_id: dBody.id,
+                    label: (typeof dv.label === "string" && dv.label) ? dv.label : "d",
+                    show_value: (dv.show_value !== false)
+                };
+            }
+        }
+        var aa = nlb.angle_arc;
+        eng.fang_cfg = null;
+        if (aa && NLB_FANG_DIRS.indexOf(aa.from) >= 0 && NLB_FANG_DIRS.indexOf(aa.to) >= 0) {
+            var aBody = nlbTrackedBody(eng, aa.body_id);
+            if (aBody) {
+                var rr = Number(aa.radius);
+                eng.fang_cfg = {
+                    body_id: aBody.id,
+                    from: aa.from, to: aa.to,
+                    label: (typeof aa.label === "string" && aa.label) ? aa.label : "θ",
+                    show_value: (aa.show_value !== false),
+                    radius: (isFinite(rr) && rr > 0.2) ? rr : NLB_FANG_R
+                };
+            }
+        }
+        nlbUpdateOffAxis(eng);
+    }
+
+    // One addressable direction, as a UNIT world vector. Returns null when the
+    // quantity is a real zero (no friction, no tension, an unmoved body) — the arc
+    // then hides, because an angle to a vector that does not exist is not a fact.
+    function nlbFangDir(eng, b, token) {
+        var th = eng.theta_deg || 0;
+        var axis = nlbAxisUnit(b.hanging, th);
+        var perp = nlbPerpUnit(b.hanging, th);
+        if (token === "surface") return axis.clone();
+        if (token === "weight") return NLB_DOWN.clone();
+        if (token === "normal") return (b.hanging ? null : perp.clone());
+        if (token === "applied") {
+            if (Math.abs(b.F_applied || 0) <= NLB_ARROW_EPS) return null;
+            return nlbAppliedDir(b, axis, perp);
+        }
+        if (token === "friction") {
+            if (Math.abs(b.f || 0) <= NLB_ARROW_EPS) return null;
+            return nlbSignedDir(axis, b.f);
+        }
+        if (token === "tension") {
+            if (Math.abs(b.T || 0) <= NLB_ARROW_EPS) return null;
+            return nlbSignedDir(axis, b.T);
+        }
+        if (token === "net") {
+            if (Math.abs(b.F_net || 0) <= NLB_ARROW_EPS) return null;
+            return nlbSignedDir(axis, b.F_net);
+        }
+        if (token === "displacement") {
+            var dsd = (b.s || 0) - nlbDispOrigin(b);
+            if (Math.abs(dsd) < NLB_DISP_MIN_M) return null;
+            return nlbSignedDir(axis, dsd);
+        }
+        return null;
+    }
+
+    // ── SEAM J/M — the DISPLACEMENT ORIGIN ──────────────────────────────────
+    //   d is the ONE quantity on screen the work ledger is read against: a
+    //   teacher verifies W = F·d·cos θ by reading the arrow's label and the
+    //   meter in the same glance, so the two MUST measure from the same origin
+    //   or the sandbox disproves the formula it exists to prove.
+    //   b.s0 is NOT that origin. It is the kinematic SEED — RESET_TRAJECTORY
+    //   restores b.s to it, push_off poses the carts about it and
+    //   nlbPredictedStopM measures the launch from it — so it is deliberately
+    //   immutable for the life of a state and must stay so (moving it would
+    //   make a rewind land somewhere other than the authored home pose, which
+    //   is a determinism failure THE EYE's RESET -> pin -> RESET drive would
+    //   surface directly).
+    //   The sandbox wrap (SEAM J) teleports b.s across the track and funnels
+    //   through nlbSpringPhysReset, which RE-ZEROES every W ledger — the wrap
+    //   is a state re-entry as far as the numbers are concerned (spec note
+    //   17c). The displacement origin therefore has to re-anchor at the wrap
+    //   too, and it needs its own slot to do that without touching the seed.
+    //   Null (the only value outside a sandbox, and the value on entry and on
+    //   every rewind) means "no wrap has happened" and falls back to the seed,
+    //   so every guided state is bit-for-bit unchanged.
+    function nlbDispOrigin(b) {
+        if (!b) return 0;
+        return (b._dsp0 != null) ? b._dsp0 : (b.s0 || 0);
+    }
+
+    //   The per-frame follow. Both instruments are recomputed every frame — d
+    //   because its whole point is a LIVE length, the arc because the angle it
+    //   measures moves with a slider. Everything here is a pure function of the
+    //   values SEAM B has already written this frame.
+    function nlbUpdateOffAxis(eng) {
+        if (!eng) return;
+        var da = nlbFindById("displacement_vector"), dl = nlbFindById("displacement_vector_label");
+        var cfg = eng.disp_cfg;
+        var b = cfg ? eng.bodies[cfg.body_id] : null;
+        if (!cfg || !b || b.ghost) {
+            if (da) da.visible = false;
+            if (dl) dl.visible = false;
+        } else {
+            var ds2 = (b.s || 0) - nlbDispOrigin(b);
+            var vis = (Math.abs(ds2) >= NLB_DISP_MIN_M) && !b.hanging;
+            if (da) da.visible = vis;
+            if (dl) dl.visible = vis;
+            if (vis) {
+                var x0 = nlbDispOrigin(b) * NLB_WORLD_PER_M;
+                var lenW = Math.abs(ds2) * NLB_WORLD_PER_M;
+                var sgn = (ds2 < 0) ? -1 : 1;
+                var hd = Math.min(NLB_DISP_HEAD, lenW * 0.4);
+                if (da) {
+                    da.position.set(x0, NLB_DISP_LANE, 0);
+                    da.setDirection(new THREE.Vector3(sgn, 0, 0));
+                    da.setLength(lenW, hd, hd * 0.8);
+                }
+                if (dl) {
+                    // Mid-span, below the shaft: a growing arrow whose label sat at
+                    // the tip would walk off the track on a long run.
+                    dl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - 0.30, 0);
+                    nlbSetArrowLabelText(dl, cfg.label + (cfg.show_value ? (" = " + nlbFx(Math.abs(ds2), 2) + " m") : ""));
+                }
+            }
+        }
+
+        var arc = nlbFindById("angle_arc"), al = nlbFindById("angle_arc_label");
+        var fc = eng.fang_cfg;
+        var fb = fc ? eng.bodies[fc.body_id] : null;
+        var d1 = (fc && fb && !fb.ghost) ? nlbFangDir(eng, fb, fc.from) : null;
+        var d2 = (fc && fb && !fb.ghost) ? nlbFangDir(eng, fb, fc.to) : null;
+        if (!d1 || !d2) {
+            if (arc) arc.visible = false;
+            if (al) al.visible = false;
+            window.PM_nlbOffAxis = nlbOffAxisMirror(eng, cfg, b, null, fc);
+            return;
+        }
+        // Quantized endpoints (see NLB_FANG_QUANT) — the drawn arc is a pure
+        // function of these two numbers and of nothing else.
+        var a1 = Math.round(Math.atan2(d1.y, d1.x) * 180 / Math.PI * NLB_FANG_QUANT) / NLB_FANG_QUANT;
+        var a2 = Math.round(Math.atan2(d2.y, d2.x) * 180 / Math.PI * NLB_FANG_QUANT) / NLB_FANG_QUANT;
+        var sweep = a2 - a1;
+        while (sweep > 180) sweep -= 360;
+        while (sweep < -180) sweep += 360;
+        var mag = Math.abs(sweep);
+        if (mag < NLB_FANG_MIN_DEG) {
+            if (arc) arc.visible = false;
+            if (al) al.visible = false;
+            window.PM_nlbOffAxis = nlbOffAxisMirror(eng, cfg, b, mag, fc);
+            return;
+        }
+        var org = nlbBodyWorldPos(fb.id);
+        var R = fc.radius;
+        if (arc) {
+            // Rebuilt only when the QUANTIZED angle pair or the radius changes, so a
+            // held frame does zero geometry churn and a rewound frame rebuilds to the
+            // identical points.
+            var key = a1 + "|" + sweep + "|" + R;
+            if (arc.userData._key !== key) {
+                arc.userData._key = key;
+                var steps = Math.max(4, Math.round(mag / 3));
+                var pts = [];
+                for (var i = 0; i <= steps; i++) {
+                    var tA = (a1 + sweep * (i / steps)) * Math.PI / 180;
+                    pts.push(new THREE.Vector3(R * Math.cos(tA), R * Math.sin(tA), 0));
+                }
+                if (arc.geometry) arc.geometry.dispose();
+                arc.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+            }
+            arc.position.copy(org);
+            arc.visible = true;
+        }
+        if (al) {
+            var mid = (a1 + sweep * 0.5) * Math.PI / 180;
+            al.position.copy(org).add(new THREE.Vector3((R + 0.34) * Math.cos(mid), (R + 0.34) * Math.sin(mid), 0));
+            nlbSetArrowLabelText(al, fc.label + (fc.show_value ? (" = " + Math.round(mag) + "°") : ""));
+            al.visible = true;
+        }
+        window.PM_nlbOffAxis = nlbOffAxisMirror(eng, cfg, b, mag, fc);
+    }
+    // DERIVED mirror only — nothing in the engine reads it back and no pixel depends
+    // on it. It is what makes the one part of this seam that is pure geometry
+    // verifiable at all (the SEAM M nlbPublishMarkers contract), and it carries the
+    // resolved along/perp components so a probe can check the F·d·cos θ identity
+    // against the values the integrator actually used.
+    function nlbOffAxisMirror(eng, dcfg, dbody, angDeg, fcfg) {
+        var tb = nlbTrackedBody(eng, null);
+        // The DRAWN state too, for the same reason nlbPublishMarkers publishes marker
+        // positions: these objects live on Three meshes inside a closure that no
+        // driver can reach, so without this the geometry half of the seam would be
+        // the half nothing could check.
+        var dAr = nlbFindById("displacement_vector"), dLb = nlbFindById("displacement_vector_label");
+        var aAr = nlbFindById("angle_arc"), aLb = nlbFindById("angle_arc_label");
+        var aPos = (aAr && aAr.geometry && aAr.geometry.attributes) ? aAr.geometry.attributes.position : null;
+        return {
+            drawn: {
+                d_visible: !!(dAr && dAr.visible),
+                d_shaft_scale_y: (dAr && dAr.line) ? dAr.line.scale.y : null,
+                d_label: (dLb && dLb.visible) ? (dLb._nlbText || null) : null,
+                arc_visible: !!(aAr && aAr.visible),
+                arc_point_count: aPos ? aPos.count : 0,
+                arc_key: (aAr && aAr.userData) ? (aAr.userData._key || null) : null,
+                arc_label: (aLb && aLb.visible) ? (aLb._nlbText || null) : null
+            },
+            d_m: (dcfg && dbody) ? ((dbody.s || 0) - nlbDispOrigin(dbody)) : null,
+            angle_deg: (angDeg == null) ? null : angDeg,
+            from: fcfg ? fcfg.from : null,
+            to: fcfg ? fcfg.to : null,
+            F_N: tb ? (tb.F_applied || 0) : null,
+            F_angle_deg: tb ? nlbFAng(tb) : null,
+            F_along_N: tb ? nlbForceAlong(tb) : null,
+            F_perp_N: tb ? nlbForcePerp(tb) : null,
+            N_N: tb ? (tb.N || 0) : null
+        };
+    }
+
+    // ── Note 10 — the SIGNED work ledgers ───────────────────────────────────
+    //   The force each ledger integrates, resolved along the BODY'S OWN axis — the
+    //   same axis Δs is measured on, so F·Δs is a genuine scalar product and not a
+    //   sign coincidence. 'normal' returns a hard 0 because a normal force is
+    //   perpendicular to every displacement this engine can produce; that zero is
+    //   the whole teaching point, so it is stated once here rather than left to
+    //   emerge from a geometry that has no perpendicular axis to emerge from.
+    function nlbWorkForceAlong(eng, b, force) {
+        if (force === "gravity") return nlbGravAlong(b, b.hanging ? 90 : (eng.theta_deg || 0));
+        if (force === "friction") return b.f || 0;
+        // SEAM N: the ALONG-surface component — the only part of an angled pull that
+        // does work. Identically b.F_applied when no angle is authored.
+        if (force === "applied") return nlbForceAlong(b);
+        if (force === "net") return b.F_net || 0;
+        return 0;                                  // 'normal' — exactly zero work, always
+    }
+    //   Accumulates F·Δs once per fixed step, where Δs is the displacement the
+    //   INTEGRATOR just produced (b._s_pre is stamped after every input hook and
+    //   before the branches, so a teacher's drag between frames is not counted as
+    //   work done BY one of these forces).
+    //   Rule 36: linear in dt through Δs, hence exactly step-count invariant while F
+    //   is position-independent — which every member of the closed enum is. Under a
+    //   SET_TIME_FREEZE pin Δs is identically 0, so W is held with no special case.
+    //   A TELEPORT (the sandbox wrap, a loop reset, a bound clamp remap) is not a
+    //   displacement and must never be paid for: any Δs larger than half the track
+    //   span is discarded. The wrap ALSO funnels through nlbSpringPhysReset, so the
+    //   ledger restarts from 0 at the same instant the energy baseline does.
+    function nlbRunWorkAccum(eng) {
+        if (!eng.energy_active) return;
+        var span = Math.max(1e-6, (eng.length_m || 0) * 2);
+        var wk = eng.work_state;
+        var wApplied = 0;
+        // SEAM M (note 11b) — the PRE-step endpoints a crossing stamp needs.
+        // nlbPublishEnergy has not run yet this frame, so eng.energy_snapshot
+        // still holds LAST frame's values: exactly the state at s0. They are
+        // captured HERE and nowhere else because this function is the last place
+        // b._s_pre still means "before the step" — it is overwritten below.
+        // Pure bookkeeping: no clock, no integration, nothing a rewind can carry.
+        var sn0 = eng.energy_snapshot;
+        eng._cpHas0 = !!sn0;
+        eng._cpX0 = sn0 ? (sn0.x_m || 0) : 0;
+        eng._cpE0 = sn0 ? (sn0.E_display || 0) : 0;
+        for (var wz = 0; wk && wz < wk.length; wz++) wk[wz]._dW = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (!b) continue;
+            if (b.ghost || b.fixed || b._s_pre == null) { b._cpValid = false; continue; }
+            var ds = b.s - b._s_pre;
+            if (!isFinite(ds) || Math.abs(ds) > span * 0.5) { b._s_pre = b.s; b._cpValid = false; continue; }
+            // The INTERNAL, always-on applied-work term. It exists whether or not the
+            // state authors a display ledger, because spec note 3's scope clause
+            // (E_dissipated = E(t₀) + W_applied − (K + U + Uₛ)) is a property of the
+            // PHYSICS, not of what the author chose to draw. Exactly 0 in every state
+            // with no applied force, which is why SEAM L's E_dissipated is unchanged
+            // wherever it was already correct.
+            // SEAM N: F·cos α · Δs summed over the run IS F·d·cos α — the identity
+            // union concepts #1/#2 teach, produced by the accumulator that already
+            // existed rather than by a new path. Legacy states are unchanged.
+            eng.W_applied_J += nlbForceAlong(b) * ds;
+            if (wk) {
+                for (var w = 0; w < wk.length; w++) {
+                    if (wk[w].body_id !== b.id) continue;
+                    var dWrow = nlbWorkForceAlong(eng, b, wk[w].force) * ds;
+                    wk[w].W += dWrow;
+                    wk[w]._dW += dWrow;      // note 11b: this step's share, for the crossing rewind
+                }
+            }
+            // note 11b: the step segment, kept intact for the checkpoint pass that
+            // runs two calls later — by then b._s_pre has already advanced.
+            b._cpS0 = b._s_pre; b._cpS1 = b.s; b._cpValid = true;
+            b._s_pre = b.s;
+        }
+        wApplied = eng.W_applied_J;
+        window.PM_nlbWorkApplied = wApplied;
+        if (wk) {
+            var mirror = {};
+            for (var m = 0; m < wk.length; m++) mirror[wk[m].force] = wk[m].W;
+            window.PM_nlbWork = mirror;             // DERIVED mirror only; nothing reads it back
+        } else {
+            window.PM_nlbWork = null;
+        }
+    }
+
+    // ── Note 11 — the crossing detector + capture-on-pass ───────────────────
+    //   Deliberately GENERAL (the spec calls for a round-trip work test to reuse
+    //   it): a checkpoint remembers which SIDE of itself the body was on last frame
+    //   and fires on a sign change. _side == null ADOPTS the current side instead
+    //   of firing — the same "adopt, never fire" pattern the loop clock and the
+    //   push-off cycle memo already use — so state entry, a rewind and a sandbox
+    //   wrap can never manufacture a phantom crossing on their first frame.
+    //   capture_mode 'first' LATCHES (the end-pose rule: a stamp, once made, holds
+    //   for the rest of the state); 'every' re-stamps and carries the pass number,
+    //   which is what makes "W by gravity is back to 0 on the return pass" showable.
+    function nlbRunCheckpoints(eng) {
+        var cps = eng.checkpoint_state;
+        if (!cps || !cps.length) return;
+        var snap = eng.energy_snapshot;
+        var changed = false;
+        for (var i = 0; i < cps.length; i++) {
+            var cp = cps[i];
+            var b = eng.bodies[cp.body_id];
+            if (!b) continue;
+            var side = (b.s >= cp.s_m) ? 1 : -1;
+            if (cp._side == null) { cp._side = side; continue; }
+            if (side === cp._side) continue;
+            cp._side = side;
+            cp._count++;
+            if (cp.mode === "first" && cp._count > 1) continue;
+            cp.text = nlbCpStampText(eng, cp, b, snap);
+            changed = true;
+            var g = nlbFindById("checkpoint_" + (i + 1));
+            if (g) g.userData._nlbFired = true;
+        }
+        if (changed) nlbRenderStamps(eng);
+    }
+    // ── Note 11b — the CROSSING-INSTANT capture ──────────────────────────────
+    //   engine_bug_queue: nlb_checkpoint_capture_overshoots_exact_crossing_value.
+    //   The detector above can only NOTICE a crossing after the step that made
+    //   it, so every quantity read at that moment belongs to a body already PAST
+    //   the flag by up to one step of travel. The overshoot is F_along·(s1-s_m),
+    //   bounded by F_along·v·h: on concept #1's STATE_4 that is +0.6 J on a
+    //   40.0 J claim whose entire delta cue is "The numbers agree". The relative
+    //   error is h·sqrt(2a/d) — INDEPENDENT of F — so no authored force, distance
+    //   or precision can dodge it; it has to be fixed here.
+    //   THE FIX: every stamped quantity is evaluated AT s = cp.s_m, using the
+    //   step segment [s0, s1] nlbRunWorkAccum recorded two calls earlier, with
+    //   f = (s_m - s0)/(s1 - s0) clamped to [0,1]. Per quantity, and NOT a blind
+    //   lerp of all of them — a lerp is only correct where the quantity is
+    //   affine in the step:
+    //     s        = cp.s_m exactly           the crossing coordinate IS the value.
+    //     W        = W1 - (1-f)·ΔW            the accumulator holds F_along fixed
+    //                                         across a step, so the work it bills
+    //                                         is exactly linear in displacement.
+    //                                         EXACT, and rewound from the SAME
+    //                                         increment that was billed.
+    //     v        = sgn·√(v1² - 2a(s1-s_m))  NOT affine in f. The integrator's
+    //                                         trapezoid is the exact solution for
+    //                                         a constant a, so this identity is
+    //                                         exact — and it is the one that keeps
+    //                                         K in step with W, because it IS the
+    //                                         work-energy theorem. Lerping v would
+    //                                         leave a state that stamps both K and
+    //                                         W showing a theorem that fails by
+    //                                         O(h²). (With a spring the step adds
+    //                                         ½·a_spring·h², so the identity is
+    //                                         first-order there, not exact — still
+    //                                         one order better than the overshoot.)
+    //     K        = ½·m·v*²                  quadratic in v: rebuilt from v*,
+    //                                         never lerped.
+    //     U_grav   = m·g·h(s_m)               nlbHeightM is AFFINE in s, so the
+    //                                         height is shifted exactly, off this
+    //                                         frame's own h_m — no stale snapshot.
+    //     U_spring = ½·k·x*², x* = lerp(x)    x is affine in the body positions and
+    //                                         every body advances over the same
+    //                                         step, so x lerps; Uₛ is quadratic and
+    //                                         so is rebuilt from x*.
+    //     E_total  = lerp(E0, E1)             E_display is the ripple-corrected
+    //                                         CONSERVED total: its change across
+    //                                         one step is drift-level, far below
+    //                                         the displayed precision. The lerp
+    //                                         also stays right for a multi-body
+    //                                         state, where recomposing E from the
+    //                                         crossing body's K + U would not.
+    //   f is the checkpoint body's DISPLACEMENT fraction, which is also the step's
+    //   time fraction to O(h) — exactly so for a coupled train, where every body
+    //   shares one scalar advance. Any frame the segment is unusable (a teleport,
+    //   the sandbox wrap, a ghost, the first frame after a rewind) falls back to
+    //   the post-step read: the old behaviour, never worse.
+    //   Rule 36: pure algebra over values this frame already wrote. Under a
+    //   SET_TIME_FREEZE pin the segment is empty, no crossing can fire, and a
+    //   latched stamp re-renders its own text — so no frozen baseline can move.
+    function nlbCpFrac(cp, b) {
+        if (!b || b._cpValid !== true || b._cpS0 == null || b._cpS1 == null) return null;
+        var ds = b._cpS1 - b._cpS0;
+        if (!isFinite(ds) || ds === 0) return null;
+        var f = (cp.s_m - b._cpS0) / ds;
+        if (!isFinite(f)) return null;
+        return f < 0 ? 0 : (f > 1 ? 1 : f);
+    }
+    function nlbCpStampText(eng, cp, b, snap) {
+        var prec = (eng.energy_layer && eng.energy_layer.precision != null)
+            ? eng.energy_layer.precision : 1;
+        var f = nlbCpFrac(cp, b);
+        // Post-step reads are the fallback for every quantity; each is replaced
+        // below only when the step segment makes the crossing instant recoverable.
+        var vX = b.v, kX = b.K_J || 0, ugX = b.U_grav_J || 0, sX = b.s;
+        var usX = snap ? snap.U_spring : 0;
+        var eX = snap ? snap.E_display : 0;
+        if (f != null) {
+            sX = cp.s_m;
+            var back = b._cpS1 - cp.s_m;               // how far past the flag the step ran
+            var vsq = b.v * b.v - 2 * (b.a || 0) * back;
+            vX = ((b._cpS1 - b._cpS0) >= 0 ? 1 : -1) * Math.sqrt(vsq > 0 ? vsq : 0);
+            kX = 0.5 * b.m * vX * vX;
+            var dh = (cp.s_m - b.s) *
+                (b.hanging ? -1 : Math.sin((eng.theta_deg || 0) * Math.PI / 180));
+            ugX = b.m * NLB_G * ((b.h_m || 0) + dh);
+            if (eng._cpHas0 && snap) {
+                var xX = eng._cpX0 + f * ((snap.x_m || 0) - eng._cpX0);
+                usX = 0.5 * (snap.k || 0) * xX * xX;
+                eX = eng._cpE0 + f * ((snap.E_display || 0) - eng._cpE0);
+            }
+        }
+        var parts = [];
+        for (var i = 0; i < cp.capture.length; i++) {
+            var k = cp.capture[i];
+            if (k === "K") parts.push("K = " + nlbEnFx(kX, prec));
+            else if (k === "U_grav") parts.push("U = " + nlbEnFx(ugX, prec));
+            else if (k === "U_spring") parts.push("Uₛ = " + nlbEnFx(usX, prec));
+            else if (k === "E_total") parts.push("E = " + nlbEnFx(eX, prec));
+            else if (k === "v") parts.push("v = " + nlbFx(vX, 2) + " m/s");
+            else if (k === "s") parts.push("s = " + nlbFx(sX, 2) + " m");
+            else if (k === "W") {
+                var wk = eng.work_state || [];
+                for (var w = 0; w < wk.length; w++) {
+                    var wv = wk[w].W;
+                    if (f != null && typeof wk[w]._dW === "number") wv -= (1 - f) * wk[w]._dW;
+                    parts.push("W " + wk[w].label + " = " + nlbEnFx(wv, prec));
+                }
+            }
+        }
+        var head = cp.label + (cp.mode === "every" && cp._count > 1 ? (" (pass " + cp._count + ")") : "");
+        return head + ":  " + parts.join("  ·  ");
+    }
+    //   Stamps land on the state's ONE formula surface (Rule 34b) — never a second
+    //   text overlay to collide with it. The authored formula is kept verbatim as
+    //   the base and the stamps are appended under it in checkpoint order, so a
+    //   later crossing can never reorder an earlier line.
+    function nlbRenderStamps(eng) {
+        var ff = document.getElementById("nlb_formula");
+        if (!ff) return;
+        var txt = eng.formula_base || "";
+        var cps = eng.checkpoint_state || [];
+        for (var i = 0; i < cps.length; i++) {
+            if (!cps[i].text) continue;
+            // Rule 14: this whole body is ONE template literal, so a newline escape
+            // must be doubled or the outer literal eats it and emits a raw break.
+            txt += (txt ? "\\n" : "") + cps[i].text;
+        }
+        if (ff.textContent !== txt) ff.textContent = txt;
+        var want = txt ? "block" : "none";
+        if (ff.style.display !== want) ff.style.display = want;
+    }
+
+    // ── Note 6 — the sum_merge one-shot ───────────────────────────────────
+    //   Writes ONLY the slot's CHILDREN (track / symbol / value), never the slot
+    //   itself: nlbEnergyApplyGlow owns the slot's opacity, and two writers on one
+    //   property is how a churn-guarded glow pass silently loses to a per-frame
+    //   animation. The slide itself is a CSS transform, which the glow pass never
+    //   touches, and it is rounded to a whole pixel so two identical frames cannot
+    //   differ by a sub-pixel re-layout (the same reason nlbEnergyTopPx rounds).
+    function nlbEnSlotFade(sid, op) {
+        var ids = ["_t", "_y", "_v"];
+        for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(sid + ids[i]);
+            if (!el) continue;
+            var s = (op == null) ? "" : String(op);
+            if (el.style.opacity !== s) el.style.opacity = s;
+        }
+    }
+    function nlbEnSumMergeWrite(groups, p01) {
+        var srcs = ["K", "U_grav", "U_spring"];
+        for (var g = 0; g < 2; g++) {
+            var live = (p01 != null) && (g < groups);
+            var eSlot = document.getElementById("nlb_en_g" + g + "_E_total");
+            for (var i = 0; i < srcs.length; i++) {
+                var sid = "nlb_en_g" + g + "_" + srcs[i];
+                var sl = document.getElementById(sid);
+                if (!sl) continue;
+                if (!live || !eSlot) { sl.style.transform = ""; nlbEnSlotFade(sid, null); continue; }
+                var dx = Math.round((eSlot.offsetLeft - sl.offsetLeft) * p01);
+                var tf = dx ? ("translateX(" + dx + "px)") : "";
+                if (sl.style.transform !== tf) sl.style.transform = tf;
+                // Fades to 0.15, never to 0: a bar that vanishes entirely reads as
+                // deleted rather than absorbed, and the beat is an absorption.
+                nlbEnSlotFade(sid, 1 - 0.85 * p01);
+            }
+            nlbEnSlotFade("nlb_en_g" + g + "_E_total", live ? p01 : null);
+        }
+    }
+    function nlbEnApplySumMerge(eng, groups) {
+        var p = document.getElementById("nlb_energy");
+        if (!p) return;
+        var cfg = eng.energy_layer;
+        var sm = cfg ? cfg.sum_merge : null;
+        // Nothing to merge INTO without the stacked column, so the one-shot is
+        // ignored rather than half-played.
+        if (!sm || !cfg || cfg.bars.indexOf("E_total") < 0) {
+            if (p._smP !== null) { p._smP = null; nlbEnSumMergeWrite(0, null); }
+            return;
+        }
+        var dur = (typeof sm.duration_ms === "number" && isFinite(sm.duration_ms) && sm.duration_ms > 0)
+            ? sm.duration_ms : NLB_SUM_MERGE_MS;
+        // The SCENARIO CUE, never a bare authored stamp (spec note 6 / the
+        // unbound_one_shot scar): cueTriggerMs returns the live SET_CUE_TIME value
+        // on the teacher path and falls through to at_ms for THE EYE, which posts
+        // no cue times at all.
+        var trig = cueTriggerMs("sum_merge",
+            (typeof sm.at_ms === "number" && isFinite(sm.at_ms)) ? sm.at_ms : 0);
+        var pr = ((eng.t_ms || 0) - trig) / dur;
+        if (!(pr > 0)) pr = 0; else if (pr > 1) pr = 1;
+        // Quantised to 1/200 so the churn guard actually catches a still frame, and
+        // so the rounded pixel offset is a step function of a quantised input rather
+        // than of a float that can differ in its last bit between two captures.
+        pr = Math.round(pr * 200) / 200;
+        if (p._smP === pr) return;
+        p._smP = pr;
+        nlbEnSumMergeWrite(groups, pr);
+    }
+
+    // ── Note 10 — the work section's per-state display + per-frame write ────
+    function nlbApplyWorkSection(eng) {
+        var wk = eng.work_state;
+        var sec = document.getElementById("nlb_wk");
+        if (!sec) return;
+        sec.style.display = (wk && wk.length) ? "block" : "none";
+        for (var i = 0; i < NLB_WK_MAX; i++) {
+            var sl = document.getElementById("nlb_wk_" + i);
+            if (!sl) continue;
+            var e = wk ? wk[i] : null;
+            sl.style.display = e ? "block" : "none";
+            if (!e) continue;
+            sl.setAttribute("data-en", NLB_WK_GLOW[e.force] || "");
+            var y = document.getElementById("nlb_wk_" + i + "_y");
+            if (y) y.textContent = e.label;
+        }
+        // The glow pass caches its focal on the panel; a state change rewrites the
+        // data-en attributes above, so that cache has to be dropped or the new
+        // slots keep the previous state's dim/bright assignment.
+        var p = document.getElementById("nlb_energy");
+        if (p) { p._enFocal = undefined; p._enWasEn = undefined; }
+    }
+    function nlbUpdateWorkPanel(eng) {
+        var wk = eng.work_state;
+        if (!wk || !wk.length) return;
+        var scale = eng.work_scale_J;
+        var prec = (eng.energy_layer && eng.energy_layer.precision != null)
+            ? eng.energy_layer.precision : 1;
+        for (var i = 0; i < wk.length; i++) {
+            var W = wk[i].W;
+            var vEl = document.getElementById("nlb_wk_" + i + "_v");
+            if (vEl) {
+                // nlbEnFx carries the -0.0 clamp, so a ledger sitting exactly at zero
+                // (the normal force, always) never renders "-0.0 J".
+                var txt = nlbEnFx(W, prec);
+                if (vEl.textContent !== txt) vEl.textContent = txt;
+            }
+            var f = document.getElementById("nlb_wk_" + i + "_f");
+            if (!f) continue;
+            var frac = scale > 0 ? Math.abs(W) / scale : 0;
+            if (frac > 1) {
+                frac = 1;
+                // Its OWN latch, deliberately not SEAM L's: two DIFFERENT authoring
+                // faults (a bar scale and a ledger scale) sharing one warn-once flag
+                // means whichever fires first silences the other, and the author
+                // fixes one and ships the second. Same prefix, so THE EYE's
+                // zero-occurrence assertion is unchanged.
+                nlbEnWarnOnce(eng, "_wk_scale_warned", NLB_ENERGY_SCALE_WARN_PREFIX,
+                    "work ledger '" + wk[i].label + "' reached " + W.toFixed(2) +
+                    " J, over the authored work_scale_J of " + scale + " J. The signed " +
+                    "bar clamps at full deflection and stops being readable as a " +
+                    "magnitude — raise work_scale_J.");
+            }
+            // SIGNED rendering (finding F6): ONE expression drives both directions
+            // off the sign of W, so an up-bar showing a negative number is
+            // unrepresentable. Half the track is one unit of scale, so +scale fills
+            // the top half and -scale the bottom half.
+            // ROUNDED to 3 dp on purpose. A pinned rewind (3000 -> 9000 -> 3000 ms)
+            // reproduces the same VIRTUAL instant but the crawl to the pin can take
+            // one frame more or less, so the integrator's own float accumulation
+            // lands ~1e-13 J apart — measured, not assumed. That is far below any
+            // rounded numeric, but an unrounded percentage would carry it straight
+            // into a style string. Rounding makes the frozen-frame byte-identity a
+            // property of the code rather than of the CSSOM's normalisation.
+            var pct = Math.round(frac * 50 * 1000) / 1000;
+            var up = W >= 0;
+            f.style.height = pct + "%";
+            f.style.bottom = up ? "50%" : "auto";
+            f.style.top = up ? "auto" : "50%";
+            var col = up ? NLB_WK_POS_COLOR : NLB_WK_NEG_COLOR;
+            if (f.style.background !== col) f.style.background = col;
+        }
+    }
+
     // ── Per-state seed (SEAM A part of site 8) ────────────────────────────
     //   Seeds masses / theta / mu / F / initial position+velocity into the
     //   engine state object every seam reads, sets glow_focal, resets the
@@ -42259,12 +44582,89 @@ export const FIELD_3D_RENDERER_CODE = `
             t_ms: 0,              // state-local sim clock, rebased to 0 on every entry
             _ramp_last: null,     // §7.1 param_ramp churn guard, rebased on every entry
             _po_cycle: null,      // push_off repeat_every_ms edge memo; null = adopt, never fire
+            // ── SEAM K — genuine spring physics + the energy read points ──
+            //   Every field is DERIVED and rewritten by nlbRunSpringForce /
+            //   nlbPublishEnergy each frame; seeded here so a state with no
+            //   k_N_per_m can never read a stale compression, contact latch or
+            //   slow window, and is bit-identical to the pre-SEAM-K engine.
+            spring_phys: false,   // this state runs the genuine Hooke path
+            energy_active: false, // the energy layer's read points are live
+            spring_k: 0,          // N/m (authored)
+            spring_L0_m: 0,       // free length, metres
+            spring_x_m: 0,        // COMPRESSION (>= 0), metres — the layer's Uₛ input
+            spring_x_raw_m: 0,    // signed penetration (negative = clear of the coil)
+            spring_v_sep: 0,      // d(gap)/dt, m/s — the ripple term's velocity
+            spring_force_N: 0,    // |F| = k·x
+            spring_contact: false,// the latched contact window (= the slow window)
+            spring_free_id: "",   // the non-fixed end: the tracked body
+            E_t0: null,           // baseline total, captured on the first frame
+            energy_held: false,   // note 17b: a geometric clamp froze the bars
+            energy_snapshot: null,
+            _clamp_warned: false,
+            // ── SEAM L — the display layer's authored surface, resolved ONCE per
+            //    state entry so the per-frame pass reads no JSON and every default
+            //    lives in exactly one place. null => the layer does not exist.
+            energy_layer: nlbEnCfg(nlb),
+            energy_bar_max_J: (nlb.energy_layer && nlb.energy_layer.bar_max_J > 0)
+                ? nlb.energy_layer.bar_max_J : 1,
+            energy_h_ref_m: (nlb.energy_layer && typeof nlb.energy_layer.h_ref_m === "number"
+                && isFinite(nlb.energy_layer.h_ref_m)) ? nlb.energy_layer.h_ref_m : 0,
+            _en_scale_warned: false,
+            _en_drift_warned: false,
+            _loop_cycle: null,    // loop_reset_ms edge memo; null = adopt, never fire
+            // ── SEAM M — the teaching instruments' authored surface, resolved ONCE
+            //    per entry (the per-frame passes read no JSON, and every default
+            //    lives in exactly one place). null => that instrument does not exist.
+            markers_cfg: nlbMkCfg(nlb),
+            checkpoints_cfg: nlbCpCfg(nlb),
+            // The two RUNTIME records. These are the ONLY fields in the whole seam
+            // that carry history across frames, which is exactly why note 18 names
+            // them: both are rebuilt here on entry and re-zeroed by
+            // nlbSpringPhysReset on every rewind.
+            work_state: null,
+            checkpoint_state: null,
+            work_scale_J: 10,
+            W_applied_J: 0,       // the internal ledger that completes E_dissipated
+            formula_base: "",     // the authored formula surface, kept clean of stamps
             phase_fired: {}       // one-shot phase flags, reset on every state entry
         };
+        // The work ledgers, materialised from the closed enum. body_id defaults are
+        // resolved HERE (not per frame) so the accumulator loop is a straight id
+        // compare and can never silently retarget mid-state.
+        var wkSpec = nlbWkCfg(nlb);
+        if (wkSpec) {
+            eng.work_state = [];
+            for (var wi = 0; wi < wkSpec.length; wi++) {
+                eng.work_state.push({
+                    force: wkSpec[wi].force,
+                    label: wkSpec[wi].label || NLB_WK_LABEL[wkSpec[wi].force],
+                    body_id: wkSpec[wi].body_id || "",
+                    W: 0
+                });
+            }
+        }
+        eng.work_scale_J = (typeof nlb.work_scale_J === "number" && nlb.work_scale_J > 0)
+            ? nlb.work_scale_J
+            : ((nlb.energy_layer && nlb.energy_layer.bar_max_J > 0) ? nlb.energy_layer.bar_max_J : 10);
+        if (eng.checkpoints_cfg) {
+            eng.checkpoint_state = [];
+            for (var ci2 = 0; ci2 < eng.checkpoints_cfg.length; ci2++) {
+                var ce = eng.checkpoints_cfg[ci2];
+                eng.checkpoint_state.push({
+                    s_m: ce.s_m,
+                    label: ce.label || ("point " + (ci2 + 1)),
+                    body_id: ce.body_id || "",
+                    capture: (ce.capture && ce.capture.length) ? ce.capture : ["K", "U_grav"],
+                    mode: (ce.capture_mode === "every") ? "every" : "first",
+                    _side: null, _count: 0, text: ""
+                });
+            }
+        }
         for (var i = 0; i < bodies.length; i++) {
             var d = bodies[i];
             if (!d || !d.id) continue;
             eng.order.push(d.id);
+            var af0 = nlbResolveApplied(d);            // SEAM N — see nlbResolveApplied
             eng.bodies[d.id] = {
                 id: d.id,
                 m: (typeof d.mass_kg === "number" && d.mass_kg > 0) ? d.mass_kg : 1,
@@ -42284,7 +44684,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 v0: d.initial_velocity_mps || 0,
                 mu_s: frictionless ? 0 : (d.mu_s || 0),
                 mu_k: frictionless ? 0 : (d.mu_k || 0),
-                F_applied: d.applied_force_N || 0,
+                // SEAM N — ONE resolver for both authoring forms. With no
+                // "applied_force" key it returns { N: d.applied_force_N || 0, ang: 0 },
+                // i.e. literally the prior expression with a zero angle, and every
+                // angle gate downstream then takes its legacy branch.
+                F_applied: af0.N,
+                F_angle_deg: af0.ang,
                 N: 0, f: 0, T: 0, F_net: 0,
                 _boundArrestedSliding: false   // Branch A bound-halt readout latch — see SEAM B
             };
@@ -42318,6 +44723,24 @@ export const FIELD_3D_RENDERER_CODE = `
         // coupled tick. No-op for an uncoupled state beyond the v_string/a_string
         // zeroing the engine literal already did.
         nlbSeedKinematics();
+        // SEAM K — the same rewind the trajectory reset performs, on entry: a state
+        // must never inherit the previous one's compression, contact latch, slow
+        // window, energy baseline or loop cycle (spec note 18e/18f).
+        nlbSpringPhysReset(eng);
+        // SEAM M — resolve every instrument's default body id ONCE, now that
+        // eng.bodies exists. Doing it here (rather than per frame) means the
+        // accumulator and crossing loops are straight id compares that cannot
+        // silently retarget mid-state, and an authored id naming a body this state
+        // does not contain simply falls back to the tracked body instead of
+        // accumulating nothing in silence.
+        var mDefault = nlbTrackedBody(eng, null);
+        var mDefId = mDefault ? mDefault.id : "";
+        for (var wr = 0; eng.work_state && wr < eng.work_state.length; wr++) {
+            if (!eng.bodies[eng.work_state[wr].body_id]) eng.work_state[wr].body_id = mDefId;
+        }
+        for (var cr = 0; eng.checkpoint_state && cr < eng.checkpoint_state.length; cr++) {
+            if (!eng.bodies[eng.checkpoint_state[cr].body_id]) eng.checkpoint_state[cr].body_id = mDefId;
+        }
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
@@ -42370,12 +44793,13 @@ export const FIELD_3D_RENDERER_CODE = `
         });
 
         // The SINGLE formula surface for this state (Rule 34b).
-        var ff = document.getElementById("nlb_formula");
-        if (ff) {
-            var ftext = stateDef.formula_overlay || "";
-            ff.textContent = ftext;
-            ff.style.display = ftext ? "block" : "none";
-        }
+        //   SEAM M: the authored text is kept VERBATIM as eng.formula_base and the
+        //   checkpoint stamps are appended under it by nlbRenderStamps — one surface,
+        //   never a second text overlay to collide with this one (Rule 34b/34d), and
+        //   the base can never be eaten by a stamp because the two are stored apart.
+        //   Every entry starts with zero stamps (nlbSpringPhysReset cleared them).
+        eng.formula_base = stateDef.formula_overlay || "";
+        nlbRenderStamps(eng);
 
         // Value-only HUD rows for this state's bodies x readouts.
         nlbRebuildReadout(nlb);
@@ -42445,6 +44869,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // rebuild above ran before the toggle and could only measure the previous
         // state's panel (Rule 34d — the floor the HUD must clear moves per state).
         nlbFitReadoutPanel();
+        // SEAM L — the energy panel's display pass. LAST of the overlay passes so
+        // its measured fit sees the slow-motion badge in this state's final state
+        // (the badge is blanked on entry above), and so its first written values
+        // come from the engine record this same entry just seeded — a frozen pin
+        // catching the entry frame photographs THIS state's numbers, never the
+        // previous state's. Hides itself outright when the state authors no layer.
+        nlbApplyEnergyLayer(nlb, eng);
+        // SEAM M — the 3D instruments: the dashed h = 0 level line at the SAME
+        // reference the bars measure U_grav from, the computed predicted-stop marker
+        // and its dim ghost, and this state's checkpoint flags. Hides every one of
+        // them when the state authors no block, so a marker can never survive into a
+        // state that did not ask for it (the frame a frozen pin catches on entry).
+        nlbApplyMarkers(nlb, eng);
+        nlbApplyOffAxis(nlb, eng);          // SEAM N — the off-axis instruments, same entry contract
         // Read the flag off THIS stateDef, not via nlbStateIsDraggable()'s
         // PM_currentState lookup, so the proxies can never be armed one state late
         // if applyState ever runs before PM_currentState is committed.
@@ -42599,6 +45037,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // genuine RESET_TRAJECTORY (t_ms -> 0) starts clean. nlbRunPushOff's own
         // re-arm re-assigns it immediately AFTER calling this function.
         eng._po_cycle = null;
+        // SEAM K (spec note 18e/18f) — the spring compression, the contact latch,
+        // the slow window + badge, the energy baseline, any held bar values and the
+        // loop clock all rewind with the kinematics. Without this a rewind carried
+        // a latched slow window (and therefore a scaled dt) into a state that was
+        // supposed to start clean, which is a determinism failure THE EYE's
+        // RESET -> pin -> RESET -> dense drive would surface as a moving baseline.
+        nlbSpringPhysReset(eng);
         nlbLastEmitS = null;
         nlbFitRopes();
         nlbFitSpring();                     // the coil rewinds with the carts it sits between
@@ -42649,9 +45094,73 @@ export const FIELD_3D_RENDERER_CODE = `
         if (b.hanging) return b.m * NLB_G;
         return -b.m * NLB_G * Math.sin(thetaDeg * Math.PI / 180);
     }
+    // ── SEAM N — the applied force resolved in the body's OWN frame ─────────
+    //   ONE vector, authored as {N, angle_deg}:
+    //       F⃗ = F · ( cos α · axis  +  sin α · perp )
+    //   axis = the body's own +s direction, perp = the OUTWARD surface normal. So
+    //   α > 0 lifts, α < 0 presses, and a negative F flips the whole vector.
+    //
+    //   EVERY function below opens with the SAME gate — "if (!a) return the exact
+    //   prior expression".  That is deliberate and is the whole regression story:
+    //   with no angle authored the legacy code path is not merely numerically close,
+    //   it is the identical expression evaluated by the identical statement, so the
+    //   ten shipped concepts that read N cannot move by one ulp. Nothing here relies
+    //   on cos(0) === 1 or on x*1 === x; the multiply is never reached at all.
+    //   The ONE authoring resolver. Three accepted forms, one output shape:
+    //     applied_force: { N: 12, angle_deg: 30 }   → { N: 12,  ang: 30 }
+    //     applied_force: 12                          → { N: 12,  ang: 0  }
+    //     applied_force_N: 12   (LEGACY, sealed)     → { N: 12,  ang: 0  }
+    //   With NO "applied_force" key the return is literally
+    //   { N: d.applied_force_N || 0, ang: 0 } — the expression the seed used before
+    //   this seam existed. Every numeric is coerced with a finite fallback: an
+    //   authoring typo must never throw out of the seed (the createTubeLine scar).
+    function nlbResolveApplied(d) {
+        if (!d) return { N: 0, ang: 0 };
+        var af = d.applied_force;
+        if (af && typeof af === "object") {
+            var n = Number(af.N), a = Number(af.angle_deg);
+            return { N: isFinite(n) ? n : 0, ang: isFinite(a) ? a : 0 };
+        }
+        if (typeof af === "number" && isFinite(af)) return { N: af, ang: 0 };
+        return { N: d.applied_force_N || 0, ang: 0 };
+    }
+    function nlbFAng(b) {
+        // A hanging body has NO surface, so its "perp" is an arbitrary world axis
+        // (see nlbPerpUnit) and an angle against it would be meaningless. Forced to
+        // the legacy path, exactly as its N is forced to 0.
+        if (!b || b.hanging) return 0;
+        var a = b.F_angle_deg;
+        return (typeof a === "number" && isFinite(a)) ? a : 0;
+    }
+    // The component that DRIVES: what the integrator, every work ledger and the
+    // power readout all see. W_applied = ∫F·cos α·ds = F·d·cos α therefore falls out
+    // of SEAM M's existing accumulator with no second code path — which is precisely
+    // the identity union concepts #1/#2 exist to teach.
+    function nlbForceAlong(b) {
+        var a = nlbFAng(b);
+        if (!a) return b.F_applied || 0;
+        return (b.F_applied || 0) * Math.cos(a * Math.PI / 180);
+    }
+    // The component that presses on (or lifts off) the surface. Positive = OUTWARD,
+    // i.e. away from the surface, i.e. it REDUCES N.
+    function nlbForcePerp(b) {
+        var a = nlbFAng(b);
+        if (!a) return 0;
+        return (b.F_applied || 0) * Math.sin(a * Math.PI / 180);
+    }
     function nlbNormal(b, thetaDeg) {
         if (b.hanging) return 0;   // spec section 1: a hanging body has N forced to 0
-        return b.m * NLB_G * Math.cos(thetaDeg * Math.PI / 180);
+        var Nn = b.m * NLB_G * Math.cos(thetaDeg * Math.PI / 180);
+        if (!nlbFAng(b)) return Nn;            // ── LEGACY PATH, bit for bit ──
+        // N = mg·cos θ − F·sin α.
+        //   THE LIFT-OFF CLAMP. Without it a pull steep enough to lift the body off
+        // the surface drives N negative, and friction — computed everywhere as μN
+        // against the direction of travel — silently REVERSES: a body being lifted
+        // would be dragged BACKWARDS by a friction force pointing the wrong way,
+        // with a negative normal arrow drawn pointing into the table. A surface can
+        // only PUSH, so once contact is lost N is 0 and friction is 0 with it.
+        Nn -= nlbForcePerp(b);
+        return Nn > 0 ? Nn : 0;
     }
     // Surface-bound clamp band for a body, in metres along its own axis.
     function nlbBoundsM(b, lenM) {
@@ -42754,6 +45263,24 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (key === "T") nlbSetReadout(b.id, key, nlbFx(Math.abs(b.T), 2));
             else if (key === "F_net") nlbSetReadout(b.id, key, nlbFx(b.F_net, 2));
             else if (key === "F_applied") nlbSetReadout(b.id, key, nlbFx(b.F_applied, 2));
+            // SEAM M (spec note 14) — the two POWER rows. Both are DERIVED from
+            // values this same frame already wrote (no accumulator of their own, so
+            // nothing here to rewind), and both carry nlbFx's negative-zero clamp.
+            //   P  = F_applied · v     the power the applied force delivers, in W.
+            //   Pₐᵥ = W / Δt           the FIRST work accumulator's running signed
+            //                          total over the state's own elapsed seconds.
+            // Δt = 0 on the entry frame, so Pₐᵥ reads 0 there rather than dividing.
+            // SEAM N: the ALONG component again — power is delivered by the part of
+            // the pull that moves the body. Identical with no angle authored.
+            else if (key === "P") nlbSetReadout(b.id, key, nlbFx(nlbForceAlong(b) * (b.v || 0), 2));
+            else if (key === "P_avg") {
+                var engP = window.PM_nlbEngine;
+                var wk0 = (engP && engP.work_state && engP.work_state.length) ? engP.work_state[0] : null;
+                var dtS = (engP && engP.t_ms > 0) ? (engP.t_ms / 1000) : 0;
+                nlbSetReadout(b.id, key, nlbFx((wk0 && dtS > 0) ? (wk0.W / dtS) : 0, 2));
+                var pl = document.getElementById(nlbReadoutRowId(b.id, key) + "_lbl");
+                if (pl && !pl.style.fontFamily) pl.style.fontFamily = "'Cambria Math','Times New Roman',serif";
+            }
         }
     }
     // phases[] one-shots. Fired off the engine's own accumulated state-local sim
@@ -42793,6 +45320,9 @@ export const FIELD_3D_RENDERER_CODE = `
         if (eng.t_ms == null) eng.t_ms = 0;
         eng.t_ms += h * 1000;
         window.PM_nlbTimeMs = eng.t_ms;
+        // SEAM K (spec note 9) — the deterministic loop restart, BEFORE the phase
+        // one-shots so a re-armed cycle's phases fire from this state's own t = 0.
+        nlbRunLoopReset(nlb, eng);
         nlbRunPhases(nlb, eng, eng.t_ms);
 
         // push_off — the contact-then-release phase gate. Hooked at the INPUT
@@ -42816,6 +45346,11 @@ export const FIELD_3D_RENDERER_CODE = `
                     var ob = eng.bodies[eng.order[oi]];
                     if (!ob || ob.ghost || ob.id === drv.id) continue;
                     ob.F_applied = -drv.F_applied;
+                    // SEAM N: equal and opposite means the WHOLE vector, handle angle
+                    // included — both bodies stand on the same surface, so they share
+                    // one axis/perp frame and F⃗_B = −F⃗_A is the negated magnitude at
+                    // the SAME angle. Writes 0 = 0 in every state with no angle.
+                    ob.F_angle_deg = nlbFAng(drv);
                 }
             }
         }
@@ -42837,6 +45372,23 @@ export const FIELD_3D_RENDERER_CODE = `
         // for the same reason: a theta ramp must not leave the arrows/rope one
         // frame behind the incline they are drawn on.
         nlbRunParamRamp(nlb, eng);
+        // SEAM K — the GENUINE Hooke force. Same input-stage placement, and
+        // deliberately LAST of the input hooks: when a state authors both a real k
+        // and the legacy scripted block, the genuine path wins by overwriting the
+        // slow window nlbRunPushOff just published (documented in the config
+        // surface). Inert — and it clears F_spring on every body — when the state
+        // authors no k_N_per_m.
+        nlbRunSpringForce(nlb, eng, h);
+        // SEAM M — the displacement ANCHOR for this frame's work ledgers. Stamped
+        // after every input hook and BEFORE the integrator branches, so Δs is
+        // exactly what the step produces: a teacher's drag or a slider write that
+        // moved the body between frames happened before this line and is therefore
+        // never billed as work done by gravity, friction or the drive. Costs one
+        // number per body per frame and reads no clock.
+        for (var sp = 0; sp < eng.order.length; sp++) {
+            var sb0 = eng.bodies[eng.order[sp]];
+            if (sb0) sb0._s_pre = sb0.s;
+        }
 
         // ── spring_action slow motion — a dt MULTIPLIER on the INTEGRATOR ONLY ──
         //   docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md. Physics cannot give a
@@ -42862,6 +45414,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //   eng.slow_active is false in every state with no spring_action, in a
         //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
         var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        // SEAM K read point: the dt the integrator actually took this frame, in
+        // SECONDS. The energy layer needs it for the ripple correction, and a probe
+        // needs it to tell a slowed frame from a real-time one.
+        window.PM_nlbDtPhysics = hPhys;
         nlbUpdateSlowBadge(eng);
         // Mass text (HUD header + on-block number) tracks a live slider drag. One call
         // for both integrator branches, churn-guarded, clock-free.
@@ -42892,7 +45448,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     var thF = b.hanging ? 90 : thetaSurf;
                     b.N = nlbNormal(b, thF);
                     b.a = 0; b.v = 0;
-                    b.f = -(b.F_applied + nlbGravAlong(b, thF));
+                    b.f = -(nlbForceAlong(b) + nlbGravAlong(b, thF));   // SEAM N: === b.F_applied with no angle
                     b.T = 0; b.F_net = 0;
                     b._stuck = true;
                     b._boundArrestedSliding = false;
@@ -42902,7 +45458,16 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 var th = b.hanging ? 90 : thetaSurf;
                 var N = nlbNormal(b, th);
-                var drive = b.F_applied + nlbGravAlong(b, th);
+                // SEAM K: the Hooke force joins the drive as one more real force
+                // along the body's own axis, so the static-friction test, the
+                // kinetic branch, ΣF, the net arrow and every readout pick it up
+                // with no second code path. It is exactly 0 in every state that
+                // authors no k_N_per_m and in every frame the coil is not touching.
+                var Fspr = b.F_spring || 0;
+                // SEAM N: nlbForceAlong is the along-surface component of the applied
+                // force. It RETURNS b.F_applied unchanged in every state that authors
+                // no angle, so this line is the identical expression it always was.
+                var drive = nlbForceAlong(b) + nlbGravAlong(b, th) + Fspr;
                 var maxStat = b.mu_s * N;
                 var bd = nlbBoundsM(b, lenM);
                 // A body already ARRESTED AT ITS SURFACE BOUND while still sliding must
@@ -42944,7 +45509,28 @@ export const FIELD_3D_RENDERER_CODE = `
                 // position step taken at h while the velocity step took hPhys would
                 // desynchronize s from v. hPhys === h in every state with no open
                 // slow window, so no existing baseline moves.
-                var s1 = b.s + 0.5 * (v0 + v1) * hPhys;
+                // ── SEAM K — the SEMI-IMPLICIT (symplectic) half-step ──────────
+                //   The trapezoid above is EXACT for a constant acceleration, which
+                //   is why it was chosen (see this seam's header) and why it must
+                //   stay: gravity is constant, so a free slide accumulates ZERO
+                //   energy error and the flat-topped E column reads true.
+                //   A spring force is NOT constant, and for the position-dependent
+                //   part the step that behaves is the semi-implicit (kick-drift)
+                //   Euler the spec names: kick with F(s0), then drift with the NEW
+                //   velocity, i.e. s += v1*h. That differs from the trapezoid by
+                //   exactly +0.5*a_spring*h², which is the term added here — so
+                //   this update IS  v += (F/m)*dt; s += v*dt  for the spring while
+                //   remaining the exact solution for the constant part.
+                //   Rule 36 holds on every count: strictly affine in dt with no
+                //   internal sub-stepping, no literal 0.016, no second clock; and
+                //   with dt = 0 under SET_TIME_FREEZE the whole expression collapses
+                //   to s1 === b.s identically, with no special-case branch.
+                //   BIT-IDENTICAL to the legacy path whenever Fspr === 0 — which is
+                //   every pre-SEAM-K state, and every non-contact frame of a spring
+                //   state (the added term carries a factor x).
+                var aSpr = Fspr / b.m;
+                if (stuck) aSpr = 0;               // held: the step writes no motion
+                var s1 = b.s + 0.5 * (v0 + v1) * hPhys + 0.5 * aSpr * hPhys * hPhys;
                 // SEAM J — the SANDBOX wrap (founder-approved 2026-07-30).
                 //   Rule 37 says the explore state must keep MOVING, and names the
                 // mechanism for every other scenario: "the bead/motion phase wraps
@@ -42969,11 +45555,21 @@ export const FIELD_3D_RENDERER_CODE = `
                 // is modelled on: a phase wrap restarts the cycle, it does not
                 // accumulate. Rule 36 is unaffected — a position remap plus a constant,
                 // no dt and no new accumulator.
+                //   The wrap RE-ZEROES every work ledger (nlbEnergyOnWrap ->
+                // nlbSpringPhysReset, spec note 17c), so the displacement origin
+                // re-anchors at the wrap in the SAME statement — otherwise d keeps
+                // measuring from the pre-wrap seed while the meter measures from the
+                // wrap, and the sandbox built to prove W = F·d·cos θ renders two
+                // numbers that do not satisfy it (measured: d = 3.98 m against a
+                // 45.3 J meter at 10.00 J/m, a 12% contradiction, plus ~0.6 m of a
+                // BACKWARD-pointing arrow whose label counted DOWN under a forward
+                // push). b.s0 is the kinematic seed and stays untouched — see
+                // nlbDispOrigin. Rule 36: a position remap, no dt, no accumulator.
                 if (nlbSandboxWrap()) {
                     var span = bd.hi - bd.lo;
                     if (span > 0) {
-                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; }
-                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; }
+                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; }
+                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; }
                     }
                     b.a = a; b.v = v1; b.s = s1;
                     b._boundArrestedSliding = false;
@@ -42993,6 +45589,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     // before the wall, never silently upgraded to static.
                     v1 = 0; a = 0;
                     b._boundArrestedSliding = !stuck;
+                    // SEAM K (spec note 17b): that v = 0 is a TRACK artifact. If the
+                    // energy layer is live it must not be read as an energy change —
+                    // hold the bars and warn loudly (see nlbEnergyClampGuard).
+                    if (eng.energy_active) nlbEnergyClampGuard(eng, b);
                 } else {
                     b._boundArrestedSliding = false;
                 }
@@ -43004,6 +45604,25 @@ export const FIELD_3D_RENDERER_CODE = `
                 nlbWriteReadouts(nlb, b, stuck);
             }
             eng.v_string = 0; eng.a_string = 0;
+            // SEAM K — the derived energy read points, AFTER the writeback that
+            // gives them their inputs (v, s, x) and before the presentation passes.
+            // Pure algebra over already-stepped values: nothing integrated, nothing
+            // accumulated, nothing to rewind (Rule 36).
+            // SEAM M — the work ledgers, BEFORE the publish: E_dissipated's
+            // W_applied term is one of this frame's energy read points, so it has to
+            // exist by the time the snapshot is taken.
+            nlbRunWorkAccum(eng);
+            nlbPublishEnergy(eng, hPhys);
+            // SEAM M — the crossing detector, AFTER the publish (a stamp quotes the
+            // snapshot) and the marker follow, which is a pure function of the
+            // authored launch conditions and the live theta.
+            nlbRunCheckpoints(eng);
+            nlbUpdateMarkers(eng);
+            nlbUpdateOffAxis(eng);          // SEAM N — d + the angle arc (pure presentation)
+            // SEAM L - the display layer, immediately after its own input.
+            // Presentation only: it reads the snapshot just published and writes
+            // DOM, never physics and never a clock (Rule 36).
+            nlbUpdateEnergyPanel(eng);
             // SEAM C — presentation only, AFTER the physics writeback. One pass over
             // every body (a ghost or an unlisted body gets its arrows hidden here),
             // so there is no second animate() branch and no clock code (Rule 36).
@@ -43058,7 +45677,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var thj = bj.hanging ? 90 : thetaSurf;
             var Nj = nlbNormal(bj, thj);
             bj.N = Nj;
-            bj._drive = bj.F_applied + nlbGravAlong(bj, thj);
+            // SEAM K: identically 0 with no k_N_per_m, so every coupled state is
+            // bit-for-bit unchanged. Carried here anyway so a spring authored on a
+            // coupled rig cannot be silently dropped (the c_i weighting below is
+            // already the right one for a force along the body's own axis).
+            bj._drive = nlbForceAlong(bj) + nlbGravAlong(bj, thj) + (bj.F_spring || 0);   // SEAM N (see branch A)
             bj._c = cj;
             act.push(bj);
             D += cj * bj._drive;
@@ -43183,6 +45806,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // SEAM H — per-segment tensions, after the writeback that gives them their
         // inputs (each cart's f) and before the presentation passes that draw them.
         nlbTrainTensions(eng, aStr);
+        // SEAM K — the derived energy read points (see branch A).
+        nlbRunWorkAccum(eng);               // SEAM M — same order/contract as branch A
+        nlbPublishEnergy(eng, hPhys);
+        nlbRunCheckpoints(eng);             // SEAM M
+        nlbUpdateMarkers(eng);              // SEAM M
+        nlbUpdateOffAxis(eng);              // SEAM N — same order/contract as branch A
+        nlbUpdateEnergyPanel(eng);          // SEAM L - same contract as branch A
         // SEAM C — presentation only, AFTER the physics writeback (see branch A).
         nlbDriveArrows(eng);
         // SEAM D — re-fit both rope segments to the live body positions, so the
@@ -49225,12 +51855,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //   hang it on, is invisible to check:bonding-scene (which reads the renderer,
     //   not a concept), and leaves the solve deriving a camera for a pose the JSON
     //   has silently rotated. A shape-keyed defect belongs in the shape key.
-    //   Cost of the move: under a FULL SPIN the pyramid-s occlusion runs -0.0624
-    //   (a ligand passes behind the centre once per 120 deg) where el 62 held
-    //   +0.0934. No shipped state spins a pyramid — S7 authors no spin_rate and
-    //   NH3/NF3 are not in any explore_species list — and a spin does not restore
-    //   an ON-AXIS length at el 62 anyway, so the trade is measured, deliberate,
-    //   and asserted by check:bonding-scene rather than left to be rediscovered.
+    //   Cost of the move, AS IT WAS PRICED (E1c-E) AND WHY THAT PRICE WAS WRONG:
+    //   under a full spin about world +y the pyramid-s occlusion ran negative (a
+    //   ligand passes behind the centre once per 120 deg) where el 62 held clear,
+    //   and the move was taken on the premise that "no shipped state spins a
+    //   pyramid". The premise was an AUTHORING fact stated in a comment, and one
+    //   review round later the JSON authored spin_rate on exactly that state. A
+    //   comment cannot fail. E1c-J removed the premise instead of restating it:
+    //   the spin axis is now the state-s VIEW axis, about which occlusion is
+    //   invariant by construction (see bscSpinAxis), so this solve no longer
+    //   trades anything against a spin and no JSON edit can reach it.
     //   GENERAL-S AZIMUTH DOES NOT MOVE: MG_BEND_AZ is asserted equal to
     //   BS_UNIT_CAMERAS.general.az by check:bonding-scene so the authored bend
     //   cannot silently go edge-on. That tie-down is on the GENERAL key; the
@@ -49378,9 +52012,74 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscCamKey = k;
         var cam = BS_UNIT_CAMERAS[k];
         if (!cam) return;
+        // E1c-J: the spin axis rides WITH the camera it is the view axis of, so a
+        // pick that re-frames also re-anchors the roll. Same purity as the camera
+        // itself: same species, same axis, however the teacher reached it.
+        window.PM_bscSpinAx = bscSpinAxis(cam);
         var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
         var dd = cam.dist || 7;
         animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
+    }
+
+    // ── E1c-J: THE DEFAULT SPIN AXIS IS THE STATE-S VIEW AXIS, NEVER WORLD +y.
+    //   E1c-E moved the pyramid to az 120 el 15 and PRICED the move in a comment:
+    //   under a full spin about +y the pyramid-s occlusion runs negative, but "no
+    //   shipped state spins a pyramid". One round later the JSON authored
+    //   spin_rate on that very state, and the premise was false — silently,
+    //   because check:bonding-scene reads the RENDERER, not the concept, so no
+    //   gate could ever have caught it. A COMMENT CANNOT FAIL. The fix is not a
+    //   better comment: it is to make the premise MOOT, so that no authoring
+    //   change can reach it.
+    //     THE GEOMETRY. Rotate the molecule about the axis that points from the
+    //   camera at the origin. Every atom-s depth along that axis is EXACTLY
+    //   preserved (a rotation about an axis fixes the component along it), so the
+    //   perspective scale H/(2 z tan) of every atom is unchanged and its
+    //   camera-plane position rotates rigidly. The projected picture is therefore
+    //   a RIGID ROLL in pixels: every disc keeps its radius, every centre-to-
+    //   centre distance is unchanged, every drawn vector keeps its length, and
+    //   the drawn angle between any two bonds is unchanged. A spin about the view
+    //   axis CANNOT rotate a solved camera out of its countable view — not as a
+    //   measured tuning, as an identity. Measured over 720 phases of a full turn:
+    //   every disc gap equal to its home-pose value to 1e-15.
+    //     WHAT IT COSTS, MEASURED AND HANDED BACK RATHER THAN HIDDEN. A rigid
+    //   roll shows no NEW side: over a full turn the ligand depth ordering never
+    //   changes (1 ordering, depth travel 3.6e-15 world units) where a +y spin
+    //   visits 6 orderings over 2.6 units of depth. So a state whose narration
+    //   promises "from every side" is not served by the roll.
+    //     AND NO AXIS SERVES IT EITHER, which is why this is not a trade. Swept
+    //   over 1500 axes on the sphere x 360 phases at the general solve, CCl4 has
+    //   NO axis that both changes the depth ordering and keeps its four chlorine
+    //   discs disjoint; the best-revealing axis on the whole sphere IS +y, at
+    //   -0.0340 NDC (-12.2 px at 720p), and widening the search over el 0..70 at
+    //   the tied-down azimuth only reaches -0.0347. The reason is size, not
+    //   framing: two chlorine discs span 1.04 world units against a 2.0 bond, so
+    //   any rotation that moves a chlorine in depth eventually lines two of them
+    //   up. NH3 is the same story and worse — its best safe revealing axis draws
+    //   the resultant at 0.158x its true length, which is the E1c-E defect back
+    //   again on the state whose whole argument is that length.
+    //   Hence: ONE axis, no authored override, nothing for a JSON edit to reach.
+    function bscSpinAxis(cam) {
+        if (!cam) return [0, 1, 0];
+        if (cam.length === 3) {
+            var L = Math.sqrt(cam[0] * cam[0] + cam[1] * cam[1] + cam[2] * cam[2]);
+            if (!(L > 1e-9)) return [0, 1, 0];
+            return [-cam[0] / L, -cam[1] / L, -cam[2] / L];
+        }
+        var a = (cam.az || 0) * Math.PI / 180, e = (cam.el || 0) * Math.PI / 180;
+        // unit by construction, and INDEPENDENT of dist — so the E3a auto-fit
+        // (which only moves the camera along this same line) never moves it.
+        return [-Math.cos(e) * Math.cos(a), -Math.sin(e), -Math.cos(e) * Math.sin(a)];
+    }
+    // Rodrigues about a unit axis. Closed form, no state, no clock: the whole
+    // spin layer stays a pure function of state-local ms (D-1), so a
+    // SET_TIME_FREEZE rewind photographs the same pixels.
+    function bscSpinRot(v, ax, a) {
+        if (!a || !ax) return v;
+        var c = Math.cos(a), s = Math.sin(a);
+        var kd = (ax[0] * v[0] + ax[1] * v[1] + ax[2] * v[2]) * (1 - c);
+        return [v[0] * c + (ax[1] * v[2] - ax[2] * v[1]) * s + ax[0] * kd,
+                v[1] * c + (ax[2] * v[0] - ax[0] * v[2]) * s + ax[1] * kd,
+                v[2] * c + (ax[0] * v[1] - ax[1] * v[0]) * s + ax[2] * kd];
     }
 
     // ── pure helpers (all closed-form; nothing below reads live scene state) ──
@@ -50592,6 +53291,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // explore sandbox that left its camera to the solve — a guided state, an
         // authored bs.camera and an authored camera_position each publish null, so
         // the picker path cannot move a camera those three own.
+        // E1c-J: the spin axis is the view axis of the camera THIS state is
+        // actually framed by — the solved one, an authored bs.camera, or an
+        // authored camera_position — so the roll can never be about an axis the
+        // scene is not being looked down. Published here (the event half, E1c-G)
+        // because camera_position lives on the state, not on the scene block.
+        window.PM_bscSpinAx = bscSpinAxis(
+            (!bs.camera && stateDef.camera_position) ? stateDef.camera_position : cam);
         window.PM_bscCamKey = (bs.camera || stateDef.camera_position) ? null : bscSolvedShapeKey(bs, null);
         window.PM_bscCamBs = ((bs.mode || "dipole_sum") === "explore" && !bs.camera && !stateDef.camera_position)
             ? bs : null;
@@ -50811,6 +53517,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
+        // E1c-J: the axis apply published for the camera this state is framed by.
+        // The fallback re-derives the SAME value from the state alone, for the
+        // frames that can run before the first apply — never world +y, which is
+        // the axis this whole family exists to stop using.
+        var spinAx = window.PM_bscSpinAx || bscSpinAxis(bs.camera || bscSolvedCamera(bs, molKey));
 
         // ── E1c-C: THE THREE DIPOLE-LAYER REVEAL CUES.
         //   arrows_at_ms / resultant_at_ms / charges_at_ms were registered as
@@ -50951,7 +53662,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (dip.show_resultant && D.mag > 1e-9) {
             var rv0 = D.vec.slice(0);
             if (fRot0) rv0 = fRot0(rv0);
-            rv0 = mgRotY(rv0, spin);
+            rv0 = bscSpinRot(rv0, spinAx, spin);
             var rd0 = bscNorm(rv0), rl0 = D.mag * aScale0;
             fVecAvoid.push({ a: fOrg0, b: [fOrg0[0] + rd0[0] * rl0, fOrg0[1] + rd0[1] * rl0, fOrg0[2] + rd0[2] * rl0] });
         }
@@ -50959,7 +53670,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var lz = 0; lz < D.lone.length; lz++) {
                 var ldv0 = D.lone[lz].dir;
                 if (fRot0) ldv0 = fRot0(ldv0);
-                ldv0 = mgRotY(ldv0, spin);
+                ldv0 = bscSpinRot(ldv0, spinAx, spin);
                 var lTip0 = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[lz].D) * aScale0;
                 fVecAvoid.push({ a: fOrg0,
                     b: [fOrg0[0] + ldv0[0] * lTip0, fOrg0[1] + ldv0[1] * lTip0, fOrg0[2] + ldv0[2] * lTip0] });
@@ -51029,7 +53740,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (i > 0) {
                     var d0 = uFrame.bonds[i - 1];
                     var d1 = rot ? rot(d0) : d0;
-                    d1 = mgRotY(d1, spin);
+                    d1 = bscSpinRot(d1, spinAx, spin);
                     pos = [org[0] + d1[0] * BS_BOND_LEN, org[1] + d1[1] * BS_BOND_LEN, org[2] + d1[2] * BS_BOND_LEN];
                     if (stick) {
                         mgOrientStick(stick, d1, BS_BOND_LEN, 1);
@@ -51196,7 +53907,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < siteList.length; i++) {
             var SI = siteList[i];
             var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
-            sitePos.push((spin !== 0) ? mgRotY(SI.at, spin) : SI.at);
+            sitePos.push((spin !== 0) ? bscSpinRot(SI.at, spinAx, spin) : SI.at);
             siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
             siteRpm.push(TS.r_pm);
             if (i < nShown) qSum += TS.q;
@@ -51361,7 +54072,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // NEGATIVE entry draws the arrow pointing back at the central atom.
             var av = [D.arrows[i].dir[0] * m, D.arrows[i].dir[1] * m, D.arrows[i].dir[2] * m];
             if (fRot) av = fRot(av);
-            av = mgRotY(av, spin);
+            av = bscSpinRot(av, spinAx, spin);
             var aLen = Math.abs(m) * aScale;
             var aDir = bscNorm(av);
             var aP = bscArrowParts(aLen, BS_ARROW_HEAD_LEN);
@@ -51378,7 +54089,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // same table the HUD reads (Rule 29 / D-3).
             var bd0 = D.arrows[i].dir;
             var bd1 = fRot ? fRot(bd0) : bd0;
-            bd1 = mgRotY(bd1, spin);
+            bd1 = bscSpinRot(bd1, spinAx, spin);
             var aMid = BS_BOND_LEN * 0.5;
             var tail = [fOrg[0] + bd1[0] * aMid - aDir[0] * aLen * 0.5,
                         fOrg[1] + bd1[1] * aMid - aDir[1] * aLen * 0.5,
@@ -51411,7 +54122,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (resOn && !isZero) {
             var rv = D.vec.slice(0);
             if (fRot) rv = fRot(rv);
-            rv = mgRotY(rv, spin);
+            rv = bscSpinRot(rv, spinAx, spin);
             var rdir = bscNorm(rv), rlen = D.mag * aScale;
             // same magnitude-scaled head (E1c-A). The resultant is the arrow this
             // matters MOST for: S7 contrasts NH3-s 1.47 D against NF3-s 0.23 D, a
@@ -51475,7 +54186,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (dip.show_lone_pair && D.lone && D.lone.length) {
                     var rlDir = D.lone[0].dir;
                     if (fRot) rlDir = fRot(rlDir);
-                    rlDir = mgRotY(rlDir, spin);
+                    rlDir = bscSpinRot(rlDir, spinAx, spin);
                     var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[0].D) * aScale;
                     rAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]],
                         b: [fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt] });
@@ -51546,7 +54257,7 @@ export const FIELD_3D_RENDERER_CODE = `
             loneDrawn++;
             var ld0 = lEnt.dir;
             var ld1 = fRot ? fRot(ld0) : ld0;
-            ld1 = mgRotY(ld1, spin);
+            ld1 = bscSpinRot(ld1, spinAx, spin);
             var lAt = BS_BOND_LEN * 0.52;
             if (lob) {
                 lob.position.set(fOrg[0] + ld1[0] * lAt, fOrg[1] + ld1[1] * lAt, fOrg[2] + ld1[2] * lAt);
@@ -51585,7 +54296,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lLab.visible) {
                 var lld = D.lone[0].dir;
                 var lld1 = fRot ? fRot(lld) : lld;
-                lld1 = mgRotY(lld1, spin);
+                lld1 = bscSpinRot(lld1, spinAx, spin);
                 var llAt = BS_BOND_LEN * 0.52;
                 var lAnch = [fOrg[0] + lld1[0] * llAt, fOrg[1] + lld1[1] * llAt, fOrg[2] + lld1[2] * llAt];
                 // FRAMES FINDING (E1c runtime smoke): anchored straight along the
@@ -51646,7 +54357,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!pOn) continue;
             var pd0 = D.arrows[bi].dir;
             var pd1 = fRot ? fRot(pd0) : pd0;
-            pd1 = mgRotY(pd1, spin);
+            pd1 = bscSpinRot(pd1, spinAx, spin);
             // sign of the bond moment says which end is delta-: a POSITIVE entry
             // means the ligand is delta-, so the pair slides OUTWARD.
             var sgn2 = (D.arrows[bi].D >= 0) ? 1 : -1;
@@ -51713,7 +54424,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 for (u = 0; u < nUnits; u++) {
                     var og = orgAt(u, mms), row = [];
                     for (i = 0; i < offs[u].length; i++) {
-                        var ov = (sp2 !== 0) ? mgRotY(offs[u][i], sp2) : offs[u][i];
+                        var ov = (sp2 !== 0) ? bscSpinRot(offs[u][i], spinAx, sp2) : offs[u][i];
                         row.push([og[0] + ov[0], og[1] + ov[1], og[2] + ov[2]]);
                     }
                     fpts.push(row);

@@ -260,6 +260,22 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // or banked road (circular_motion_banking), non-uniform vertical circular
     // motion, or centrifugal force as a rotating-frame tool.
     'uniform_circular_motion',
+    // Work, Energy and Power #1 (Class 11 Ch.6.3 — the chapter's opener, on
+    // the newtons_laws_body field_3d engine extended with the SEAM K/L/M/N
+    // energy layer, docs/loop_runs/ch6_state.md). Work done by a CONSTANT
+    // force is W = F·d·cos θ: force acting through a displacement, and only
+    // the component of the force ALONG that displacement — a steady pull
+    // moving a crate from rest (the joule, live), the same pull against a
+    // rough floor that never lets it move (the PRIMARY aha: exactly zero
+    // work, however hard the push), the same pull tilted upward (half the
+    // joules per metre, cos θ), a live numeric prediction stamped against
+    // the meter's own reading, and the general vector form W = F⃗·d⃗ at a
+    // third angle. Covers θ from 0° up to (not including) 90° ONLY —
+    // zero/negative work and the full sign taxonomy across all three angle
+    // regimes are deliberately deferred to the sibling
+    // positive_negative_zero_work (concept #2). Does NOT cover kinetic
+    // energy, the work-energy theorem, or power. Alex pipeline, 2026-08-01.
+    'work_done_by_constant_force',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -1217,6 +1233,9 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   equilibrium_of_particles ← a particle held by several CONCURRENT forces (a force-table ring pulled by 3–4 strings): equilibrium is ΣF = 0, and that is TWO independent statements, ΣFₓ = 0 AND ΣF_y = 0; three UNEQUAL pulls (29.4, 39.2, 49.0 N) can sum to nothing while every arrow stays full length — "not moving" never means "no forces"; the hanging weight sets each tension exactly (T = m g), independent of the pulley's angle; balance is a live condition (move a pulley, the balance point moves and the ring follows); and a symmetric two-cable support gives 2 T sin θ = W, so a FLATTER cable pulls HARDER, without limit as θ → 0 — a loaded rope can never be pulled perfectly straight. NO friction (that is friction_force), NO incline (block_on_incline), NO shared acceleration or Atwood (connected_bodies), NO torque / rotational equilibrium, NO Lami's theorem
   uniform_circular_motion ← a body circling at CONSTANT SPEED still needs a net INWARD force, because its velocity's direction keeps changing (a whirled ball on a string): T = m ω² r, growing with the SQUARE of the spin rate; cut the string and it departs STRAIGHT along the tangent at unchanged speed — no outward force is ever drawn or ever existed ("flung outward" is the exact misconception this confronts); once gravity joins (conical pendulum) the SAME tension splits into a vertical part balancing weight and a horizontal part that is the net inward force, T cos θ = m g so T > m g always; the cone angle is SOLVED, never chosen, cos θ = g/(ω²L), so the string approaches horizontal but never reaches it at any finite spin rate; and below ω = √(g/L) no cone exists — the bob simply hangs. NO a = v²/r kinematic derivation (centripetal_acceleration_kinematic, not shipped), NO car on a road (circular_motion_banking), NO vertical circular motion, NO centrifugal / rotating-frame force
 
+  ── Work, Energy and Power (Class 11 Ch.6) ──
+  work_done_by_constant_force ← work done by a CONSTANT force, W = F·d·cos θ: force acting through a displacement, and only the component of the force ALONG that displacement counts; NO displacement means ZERO work, however large the force (pushing a stalled car, holding a heavy bag still); a tilted pull does LESS work per metre, set by cos θ; a live numeric prediction stamps against the meter's own live reading; work is the SCALAR (dot) product of two vectors, W = F⃗·d⃗ = F d cos θ, NOT the cross product; work done by a force is INDEPENDENT of the mass being moved. Covers θ from 0° up to (not including) 90° ONLY — zero/negative work and the full sign taxonomy across all three angle regimes belong to the sibling positive_negative_zero_work. Does NOT cover kinetic energy, the work-energy theorem, or power.
+
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
   electric_field_point_charge     ← electric field of a point charge E = kQ/r², radial direction (out for +Q, in for −Q), field lines, line density = field strength, E = F/q
@@ -1470,6 +1489,9 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "Newton's first law" / "law of inertia" / "why does a moving object keep moving" / "does something need to keep pushing it" / "why don't things move at rest if forces act" / "is a resting object force-free" → newton_first_law (NOT newton_second_law_direction — that concept is about F=ma's direction/magnitude once a net force exists; this one is about whether ANY net force is needed at all, and the v=0 balanced-forces case)
 - "Newton's second law" / "F = ma" / "why does force cause acceleration not speed" / "does mass affect acceleration" / "same push heavier object" / "double the force what happens" → newton_second_law (NOT newton_second_law_direction — that concept is about the DIRECTION of a relative to F once a net force exists; this one is about the a = F/m proportionality itself, force sets a rate not a speed)
 - "Newton's third law" / "action and reaction" / "for every action there is an equal and opposite reaction" / "why don't equal and opposite forces cancel" / "does the heavier one push harder" / "does a wall push back" / "why can I still move if the reaction pushes back equally" → newton_third_law (NOT newton_second_law — that concept is about ONE body's a = F/m; this one is about the PAIR of forces on TWO different bodies and why they never cancel)
+
+CRITICAL DISAMBIGUATION (work-energy, Ch.6):
+- "what is work in physics" / "work done by a force" / "W = F d cos theta" / "why is work zero if nothing moves" / "I pushed hard so did I do work" / "does holding something up count as work" / "why does a tilted pull do less work" / "why cos theta and not sin theta in work" / "work as a dot product" / "F dot d" / "is work a vector or a scalar" / "does mass affect the work done" / "work done by a constant force" (force between 0 degrees and just under 90 degrees ONLY — some positive component along the motion) → work_done_by_constant_force (does NOT cover work at exactly 90 degrees, negative work, or the full positive/negative/zero sign taxonomy — that is the sibling positive_negative_zero_work, not yet shipped; does NOT cover kinetic energy or the work-energy theorem)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
