@@ -19,18 +19,41 @@
  */
 import '@/lib/loadEnvLocal';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-const FIELD3D = [
-  'gauss_law', 'gauss_law_sphere', 'gauss_law_solid_sphere', 'electric_flux', 'charge_distribution',
-  'electric_dipole_in_field', 'electric_field_dipole', 'magnetic_field_concept_B',
-  'magnetic_field_wire', 'magnetic_field_solenoid', 'magnetic_force_moving_charge',
-  'magnetic_force_direction_right_hand_rule', 'magnetic_force_perpendicular_no_work',
-  'torque_on_current_loop_in_field', 'circular_motion_charge_in_uniform_B',
-  'helical_motion_charge_in_uniform_B',
-  'cyclotron_period_independent_of_speed',
-  // Ch.6 Electromagnetic Induction (field_3d)
-  'faraday_law_induction', 'motional_emf', 'eddy_currents', 'inductance', 'ac_generator',
-];
+// The field_3d fleet, DERIVED at runtime rather than hand-listed.
+//
+// A hand-maintained literal rotted silently: until 2026-08-02 it named only the
+// electrostatics/magnetism/EMI concepts and contained no `newtons_laws_body`,
+// `force_rig`, `momentum_bench` or `kinematics_1d_track` concept at all — so
+// `--field3d --open` hid every Ch.5 Laws-of-Motion and Ch.6 Work-Energy scar from
+// anyone querying that way, with no warning that the list was partial.
+//
+// A concept renders on field_3d iff its JSON carries a top-level `field_3d_config`
+// block (that is the exact condition `aiSimulationGenerator`'s strict-engines bypass
+// tests before calling `assembleField3DHtml`), so read it from the files and the
+// list cannot go stale again.
+const CONCEPTS_DIR = join(process.cwd(), 'src', 'data', 'concepts');
+
+function field3dConcepts(): string[] {
+  const ids: string[] = [];
+  for (const file of readdirSync(CONCEPTS_DIR)) {
+    if (!file.endsWith('.json')) continue;
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(readFileSync(join(CONCEPTS_DIR, file), 'utf8'));
+    } catch {
+      continue; // a malformed JSON is validate:concepts' problem, not this reader's
+    }
+    // Most files are one concept; the legacy Ch.3 bundle is an array of them.
+    for (const c of Array.isArray(parsed) ? parsed : [parsed]) {
+      const concept = c as { concept_id?: string; field_3d_config?: unknown };
+      if (concept?.field_3d_config && concept.concept_id) ids.push(concept.concept_id);
+    }
+  }
+  return ids.sort();
+}
 
 // PCPL / parametric_renderer.ts fleet (the Class-11 Vectors track + the legacy
 // forces/vectors concepts on the parametric engine). Mirror of PCPL_CONCEPTS in
@@ -69,7 +92,7 @@ async function main(): Promise<void> {
     .order('severity', { ascending: true });
 
   if (concept) q = q.contains('concepts_affected', [concept]);
-  else if (field3d) q = q.overlaps('concepts_affected', FIELD3D);
+  else if (field3d) q = q.overlaps('concepts_affected', field3dConcepts());
   else if (pcpl) q = q.overlaps('concepts_affected', PCPL);
   if (owner) q = q.eq('owner_cluster', owner);
   if (rowType) q = q.eq('row_type', rowType);
