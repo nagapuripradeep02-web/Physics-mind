@@ -10,27 +10,62 @@
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id>
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner peter_parker:renderer_primitives
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --field3d        # all field_3d concepts
+ *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --scenario newtons_laws_body
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --pcpl           # all PCPL/parametric concepts
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --row-type directive
  *   add --open to show only OPEN/DEFERRED rows (the unresolved scars to watch).
  *
  * Prints bug_class · severity · status · owner · concepts + the prevention_rule
  * (what to do BEFORE authoring) and probe_logic (what the gate runs).
+ *
+ * SCAR (2026-08-02, rotmech Phase 0): --field3d used to read a hand-maintained
+ * 22-id array. The fleet had grown to 74 field_3d concepts, so the flag was blind
+ * to 52 of them — including all ELEVEN newtons_laws_body concepts, the single
+ * most-used scenario in the codebase and the family Ch.7's rolling concepts
+ * extend. Five separate agents in one session had to hand-roll
+ * `grep -rl "<scenario>" src/data/concepts/*.json` to reach rows the tool could
+ * not surface, and two Checkpoint A reviews recorded that a clean --field3d sweep
+ * is NOT coverage. The list is now DERIVED from the concept files at run time and
+ * cannot drift again; --scenario is the query those agents actually wanted.
  */
+import { readdirSync, readFileSync } from 'node:fs';
+import { basename, join } from 'node:path';
 import '@/lib/loadEnvLocal';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
-const FIELD3D = [
-  'gauss_law', 'gauss_law_sphere', 'gauss_law_solid_sphere', 'electric_flux', 'charge_distribution',
-  'electric_dipole_in_field', 'electric_field_dipole', 'magnetic_field_concept_B',
-  'magnetic_field_wire', 'magnetic_field_solenoid', 'magnetic_force_moving_charge',
-  'magnetic_force_direction_right_hand_rule', 'magnetic_force_perpendicular_no_work',
-  'torque_on_current_loop_in_field', 'circular_motion_charge_in_uniform_B',
-  'helical_motion_charge_in_uniform_B',
-  'cyclotron_period_independent_of_speed',
-  // Ch.6 Electromagnetic Induction (field_3d)
-  'faraday_law_induction', 'motional_emf', 'eddy_currents', 'inductance', 'ac_generator',
-];
+const CONCEPTS_DIR = join(process.cwd(), 'src', 'data', 'concepts');
+
+interface ConceptIndexEntry {
+  id: string;
+  isField3d: boolean;
+  scenarios: string[];
+}
+
+/**
+ * Derive the field_3d fleet (and each concept's scenario_type set) from the
+ * concept JSONs themselves. Never hand-maintain this — see the SCAR note above.
+ */
+function loadConceptIndex(): ConceptIndexEntry[] {
+  let files: string[];
+  try {
+    files = readdirSync(CONCEPTS_DIR).filter((f) => f.endsWith('.json'));
+  } catch {
+    console.error(`could not read ${CONCEPTS_DIR} — run from the repo root.`);
+    process.exit(1);
+  }
+  return files.map((file) => {
+    const raw = readFileSync(join(CONCEPTS_DIR, file), 'utf8');
+    let id = basename(file, '.json');
+    try {
+      const parsed = JSON.parse(raw) as { concept_id?: string; id?: string };
+      id = parsed.concept_id ?? parsed.id ?? id;
+    } catch {
+      // Malformed JSON: fall back to the filename rather than dropping the concept.
+    }
+    const scenarios = [...raw.matchAll(/"scenario_type"\s*:\s*"([a-z0-9_]+)"/g)].map((m) => m[1]);
+    return { id, isField3d: raw.includes('"field_3d_config"'), scenarios: [...new Set(scenarios)] };
+  });
+}
 
 // PCPL / parametric_renderer.ts fleet (the Class-11 Vectors track + the legacy
 // forces/vectors concepts on the parametric engine). Mirror of PCPL_CONCEPTS in
@@ -59,9 +94,24 @@ async function main(): Promise<void> {
   const openOnly = argv.includes('--open');
   const owner = arg('--owner');
   const rowType = arg('--row-type');
-  const concept = argv.find((a) => !a.startsWith('--') && a !== owner && a !== rowType);
+  const scenario = arg('--scenario');
+  const concept = argv.find((a) => !a.startsWith('--') && a !== owner && a !== rowType && a !== scenario);
   const field3d = argv.includes('--field3d');
   const pcpl = argv.includes('--pcpl');
+
+  let field3dIds: string[] = [];
+  let scenarioIds: string[] = [];
+  if (field3d || scenario) {
+    const index = loadConceptIndex();
+    field3dIds = index.filter((c) => c.isField3d).map((c) => c.id);
+    if (scenario) {
+      scenarioIds = index.filter((c) => c.scenarios.includes(scenario)).map((c) => c.id);
+      if (scenarioIds.length === 0) {
+        console.error(`no concept declares scenario_type "${scenario}" — check the name.`);
+        process.exit(1);
+      }
+    }
+  }
 
   let q = supabaseAdmin
     .from('engine_bug_queue')
@@ -69,7 +119,8 @@ async function main(): Promise<void> {
     .order('severity', { ascending: true });
 
   if (concept) q = q.contains('concepts_affected', [concept]);
-  else if (field3d) q = q.overlaps('concepts_affected', FIELD3D);
+  else if (scenario) q = q.overlaps('concepts_affected', scenarioIds);
+  else if (field3d) q = q.overlaps('concepts_affected', field3dIds);
   else if (pcpl) q = q.overlaps('concepts_affected', PCPL);
   if (owner) q = q.eq('owner_cluster', owner);
   if (rowType) q = q.eq('row_type', rowType);
@@ -80,7 +131,11 @@ async function main(): Promise<void> {
   const rows = (data ?? []) as Row[];
   if (rows.length === 0) { console.log('No matching engine_bug_queue rows.'); return; }
 
-  const scope = concept ?? (field3d ? 'all field_3d concepts' : pcpl ? 'all PCPL/parametric concepts' : owner ?? rowType ?? 'all');
+  const scope = concept
+    ?? (scenario ? `scenario "${scenario}" (${scenarioIds.length} concept(s): ${scenarioIds.join(', ')})`
+      : field3d ? `all field_3d concepts (${field3dIds.length}, derived from src/data/concepts)`
+        : pcpl ? 'all PCPL/parametric concepts'
+          : owner ?? rowType ?? 'all');
   console.log(`\nengine_bug_queue — ${rows.length} row(s) for: ${scope}${openOnly ? ' (OPEN/DEFERRED only)' : ''}\n`);
   for (const r of rows) {
     const tag = r.row_type === 'directive' ? 'DIRECTIVE' : r.severity;
