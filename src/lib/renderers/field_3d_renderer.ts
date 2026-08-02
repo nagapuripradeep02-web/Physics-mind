@@ -48564,6 +48564,20 @@ export const FIELD_3D_RENDERER_CODE = `
     // two margins (text-vs-text 0.1033 NDC, counted-ligand-vs-text 0.1016 NDC),
     // where 0.45 favours the text pair and 0.55 the ligands.
     var BS_RES_LABEL_OFF = 0.50;
+    // E1c-I: the screen-plane displacement (now a TRUE displacement — the
+    // candidate directions are unit vectors) from an atom's rim to its element
+    // symbol, and the gap between that symbol and the partial-charge glyph that
+    // stacks under it. The delta glyph's own former offset (0.72, on the raw
+    // diagonals, i.e. 1.02 units of real displacement) is gone: it is no longer
+    // placed independently at all.
+    var BSC_ATOM_LABEL_OFF = 0.34;
+    var BSC_PAIR_GAP = 0.14;
+    // The offset the ZERO badge is placed at. It is the state's ANSWER in a
+    // symmetric molecule ("Four arrows, still zero"), it is as wide as the
+    // resultant's value label, and it has no arrow tip to hang off — so it is
+    // anchored on the centre and pushed out past the bond midpoints, where the
+    // eight-way search has somewhere clear to put it.
+    var BSC_ZERO_LABEL_OFF = 1.45;
     function bscArrowParts(len, built) {
         var h = (len * 0.5 < built) ? len * 0.5 : built;
         var k = h / built;
@@ -48575,6 +48589,235 @@ export const FIELD_3D_RENDERER_CODE = `
     // bond — the extra girth IS the taught physics, not a Rule-29 bulge).
     var BS_LONE_LOBE_W = 0.42;
     var BS_LONE_LOBE_LEN = 0.66;
+
+    // ── E1c-I: THE SCENE PLACES TEXT AGAINST WHAT THE STATE COUNTS ───────────
+    //   Every state this serves is a COUNTING state: "four arrows, still zero",
+    //   "one swap breaks symmetry", "same shape, smaller sum". A label lying
+    //   across a ligand under a caption that says to count the ligands is the
+    //   same defect as an occluded ligand — the student cannot count what the
+    //   caption names. E1c-D built the mechanism and pointed it at ligand
+    //   CENTRES; the frames then found four more instances, all of them the same
+    //   root cause: the avoid set was an incomplete picture of what is on screen.
+    //
+    //   mgPlaceLabelClear (molecular_geometry's, left untouched — a sealed
+    //   sibling) scores a candidate as a POINT against a list of POINTS. Both
+    //   halves of that model are wrong here, and the frames said so:
+    //     - a label is a BOX. "mu = 2.33 D" is nine glyphs wide, and a point
+    //       metric let its right edge finish 23 px from a ligand-s delta glyph,
+    //       so the two read as one string (bent_BF3_95.png).
+    //     - a bond is a SEGMENT. A candidate that clears both of its ENDPOINTS
+    //       can still lie straight across its middle — which is exactly what the
+    //       resultant-s value label did on every diatomic and on CHCl3
+    //       (after_HI.png, G_s6_chcl3.png).
+    //   So an avoid entry is one of four things, and all four are measured in the
+    //   SAME isotropic screen units (NDC x times the camera aspect, so a length
+    //   means the same thing on both axes and a text box is a box):
+    //     [x,y,z]            a bare point
+    //     {p:[x,y,z], r:w}   a DISC of world radius w — a counted atom
+    //     {a:[..], b:[..]}   a SEGMENT — a bond shaft, an arrow, a lone lobe
+    //     {s: sprite}        a text surface ALREADY PLACED this frame
+    //
+    //   DETERMINISM (D-1). The score is a pure function of the camera and of the
+    //   avoid geometry; ties break by candidate order; nothing reads a value it
+    //   wrote on an earlier frame. The ordering ACROSS labels is acyclic by
+    //   construction: a label may avoid a label placed BEFORE it, and a label
+    //   placed AFTER it is represented by its closed-form geometric anchor (the
+    //   lobe, the arrow tip) instead of by its settled position. A
+    //   SET_TIME_FREEZE rewind therefore reproduces the identical layout.
+    //
+    //   THE OFFSET NOW MEANS WHAT IT SAYS. E1c-D-s four candidates were the raw
+    //   diagonals (+-1, +-1), so an authored offset of 0.72 actually displaced
+    //   0.72 * sqrt(2) = 1.02 units — half a bond length — and the delta glyphs
+    //   drifted so far from their atoms that a frame showed one floating in empty
+    //   space with no atom near it. The candidates are UNIT screen directions
+    //   here, eight of them (four diagonals plus four axes), so the offset is the
+    //   true screen-plane displacement in world units and a wider search has a
+    //   genuinely clear slot to find.
+    //   THE CANDIDATE SET. Sixteen unit screen directions on TWO rings. Eight
+    //   directions were not enough on the pyramid: NF3-s resultant is 0.23 D, so
+    //   its tip sits almost on the central atom and its value label is 1.3 units
+    //   of ink wide — every one of the eight lay on a fluorine (worst -0.0533
+    //   NDC). Sixteen finds the gap BETWEEN two ligands, and the outer ring gives
+    //   a crowded frame somewhere to put a label that fits nowhere inside it.
+    //   The score is CAPPED at BSC_CLEAR_CAP so "clear enough" ties: among slots
+    //   that all clear the cap the INNER ring and the earlier direction win, and
+    //   a label never wanders outward for a margin no reader can see.
+    var BSC_LABEL_DIRS = (function () {
+        var d = [], i, a;
+        for (i = 0; i < 16; i++) {
+            a = i * Math.PI / 8;               // 0 = screen up, then clockwise
+            d.push([Math.sin(a), Math.cos(a)]);
+        }
+        return d;
+    })();
+    // Three rings. On the pyramid at some spin phases NF3-s 0.23 D resultant has
+    // no clear slot on either inner ring (best of 32 candidates was -0.0011 NDC,
+    // i.e. a fluorine under the value label) — the third ring is where a crowded
+    // frame puts a label that fits nowhere inside it. The cap keeps it unused
+    // whenever anything closer is clear enough to read.
+    var BSC_LABEL_RINGS = [0, 0.62, 1.30];
+    var BSC_CLEAR_CAP = 0.055;
+    // THE SAFE SCREEN BOX, in the same isotropic units (x spans +-aspect, y +-1).
+    // FRAMES FINDING (E1c-I re-shoot): with an outer ring available, a blocked
+    // atom label went STRAIGHT UP and finished half cut off behind the review
+    // chrome's caption chip. A label off the edge is worse than a near miss, so
+    // a candidate is scored by its clearance from this box as well — the search
+    // then prefers a tighter slot on screen to a clear one outside it. The band
+    // above y = 0.82 is the caption chip's, which no renderer avoid set can see.
+    var BSC_SAFE_X = 1.55;
+    var BSC_SAFE_Y = 0.82;
+    var bscPrjV = new THREE.Vector3();
+    var bscCamR = new THREE.Vector3(), bscCamU = new THREE.Vector3(), bscCamF = new THREE.Vector3();
+    /** project to ISOTROPIC screen units: y is NDC y, x is NDC x times the aspect. */
+    function bscProj(x, y, z) {
+        bscPrjV.set(x, y, z).project(camera);
+        var asp = (camera && camera.aspect) ? camera.aspect : 1;
+        return [bscPrjV.x * asp, bscPrjV.y];
+    }
+    /** screen units per WORLD unit at a point: exact, from the view-space depth. */
+    function bscScreenK(x, y, z) {
+        var vz = (x - camera.position.x) * -bscCamF.x +
+                 (y - camera.position.y) * -bscCamF.y +
+                 (z - camera.position.z) * -bscCamF.z;
+        if (vz < 0.05) vz = 0.05;
+        return 1 / (vz * Math.tan((camera.fov || 60) * Math.PI / 360));
+    }
+    /** signed Chebyshev separation of an axis-aligned box from a point. */
+    function bscBoxPt(c, h, p) {
+        var ax = Math.abs(c[0] - p[0]) - h[0], ay = Math.abs(c[1] - p[1]) - h[1];
+        return (ax > ay) ? ax : ay;
+    }
+    function bscBoxBox(c, h, c2, h2) {
+        var ax = Math.abs(c[0] - c2[0]) - (h[0] + h2[0]);
+        var ay = Math.abs(c[1] - c2[1]) - (h[1] + h2[1]);
+        return (ax > ay) ? ax : ay;
+    }
+    // Box vs 2D SEGMENT, exactly. A perspective projection maps a straight line to
+    // a straight line, so the projected shaft IS the segment between the projected
+    // endpoints. Along it, f(t) = max(|cx - x(t)| - hw, |cy - y(t)| - hh) is the
+    // max of two V-shaped functions of t, hence convex and piecewise linear — its
+    // minimum over [0,1] is attained at an endpoint, at one of the two kinks, or
+    // where the two branches cross. Eight candidate t values, evaluated: no
+    // sampling, no search, no tolerance to tune, and no way for a thin box to slip
+    // between two samples of a long shaft.
+    function bscBoxSeg(c, h, a, b) {
+        var dx = b[0] - a[0], dy = b[1] - a[1];
+        var ex = a[0] - c[0], ey = a[1] - c[1];
+        var ts = [0, 1], s1, s2, den, i, t, qx, qy, f;
+        if (Math.abs(dx) > 1e-12) ts.push(-ex / dx);
+        if (Math.abs(dy) > 1e-12) ts.push(-ey / dy);
+        for (s1 = -1; s1 <= 1; s1 += 2) {
+            for (s2 = -1; s2 <= 1; s2 += 2) {
+                den = s1 * dx - s2 * dy;
+                if (Math.abs(den) < 1e-12) continue;
+                ts.push((s2 * ey - s1 * ex + h[0] - h[1]) / den);
+            }
+        }
+        var best = 9;
+        for (i = 0; i < ts.length; i++) {
+            t = ts[i];
+            if (t < 0) t = 0; else if (t > 1) t = 1;
+            qx = Math.abs(ex + t * dx) - h[0];
+            qy = Math.abs(ey + t * dy) - h[1];
+            f = (qx > qy) ? qx : qy;
+            if (f < best) best = f;
+        }
+        return best;
+    }
+    /** the INK half-extents of a sprite in screen units (the quad is mostly pad). */
+    function bscInkHalf(sp, k, padW, padH) {
+        if (!sp) return [0, 0];
+        var f = (sp._pmInkFrac != null) ? sp._pmInkFrac : 1;
+        return [(sp.scale.x * f * 0.5 + (padW || 0)) * k, (sp.scale.y * 0.5 + (padH || 0)) * k];
+    }
+    // Resolve an avoid list into screen space ONCE — never once per candidate.
+    function bscAvoidScreen(avoid) {
+        var out = [], i, e, k;
+        for (i = 0; i < avoid.length; i++) {
+            e = avoid[i];
+            if (!e) continue;
+            if (e.length === 3) { out.push({ k: 0, p: bscProj(e[0], e[1], e[2]), r: 0 }); }
+            else if (e.a && e.b) { out.push({ k: 1, a: bscProj(e.a[0], e.a[1], e.a[2]), b: bscProj(e.b[0], e.b[1], e.b[2]) }); }
+            else if (e.s) {
+                if (!e.s.visible) continue;
+                k = bscScreenK(e.s.position.x, e.s.position.y, e.s.position.z);
+                out.push({ k: 2, p: bscProj(e.s.position.x, e.s.position.y, e.s.position.z), h: bscInkHalf(e.s, k, 0, 0) });
+            } else if (e.p) {
+                out.push({ k: 0, p: bscProj(e.p[0], e.p[1], e.p[2]),
+                    r: (e.r || 0) * bscScreenK(e.p[0], e.p[1], e.p[2]) });
+            }
+        }
+        return out;
+    }
+    /** the min separation a sprite's ink box would have at a given world position. */
+    function bscScoreBox(sprite, pos, avoid) {
+        camera.matrixWorld.extractBasis(bscCamR, bscCamU, bscCamF);
+        var ent = bscAvoidScreen(avoid || []);
+        var k = bscScreenK(pos[0], pos[1], pos[2]);
+        var c = bscProj(pos[0], pos[1], pos[2]), h = bscInkHalf(sprite, k, 0, 0);
+        var worst = 9, j, s;
+        for (j = 0; j < ent.length; j++) {
+            if (ent[j].k === 1) s = bscBoxSeg(c, h, ent[j].a, ent[j].b);
+            else if (ent[j].k === 2) s = bscBoxBox(c, h, ent[j].p, ent[j].h);
+            else s = bscBoxPt(c, h, ent[j].p) - ent[j].r;
+            if (s < worst) worst = s;
+        }
+        var e1 = BSC_SAFE_X - (Math.abs(c[0]) + h[0]), e2 = BSC_SAFE_Y - (Math.abs(c[1]) + h[1]);
+        if (e1 < worst) worst = e1;
+        if (e2 < worst) worst = e2;
+        return worst;
+    }
+    /**
+     * Place a billboard label beside its anchor on the clearest of eight unit
+     * screen directions, scoring the label-s INK BOX against the resolved avoid
+     * set. Returns the index of the direction it settled on, so a paired label
+     * (an atom-s partial-charge glyph) can stack on the SAME side and read as one
+     * cluster instead of as a second, unattached string.
+     */
+    function bscPlaceLabel(sprite, anchor, offset, avoid, padW, padH) {
+        if (!sprite) return 0;
+        camera.matrixWorld.extractBasis(bscCamR, bscCamU, bscCamF);
+        var ent = bscAvoidScreen(avoid || []);
+        // THE OFFSET IS A CLEARANCE, NOT A CENTRE DISTANCE. "mu = 1.83 D" is 1.30
+        // world units of ink; hung 0.50 from its anchor by the CENTRE, its own box
+        // still covered the anchor and every candidate lay across the bond the
+        // arrow starts on (HF, -0.0394 NDC). So each candidate is pushed out by
+        // the box's own support in that direction — |ux| * halfW + |uy| * halfH,
+        // the Chebyshev support of an axis-aligned box — and the offset then means
+        // what a reader sees: the gap from the anchor to the NEAREST EDGE of the
+        // text. A wide label moves further sideways and not one bit further up.
+        var hwW = sprite.scale.x * ((sprite._pmInkFrac != null) ? sprite._pmInkFrac : 1) * 0.5 + (padW || 0);
+        var hhW = sprite.scale.y * 0.5 + (padH || 0);
+        var bestIdx = 0, bestScore = -9, bestPos = null, i, j, g, s;
+        for (g = 0; g < BSC_LABEL_RINGS.length; g++) {
+            for (i = 0; i < BSC_LABEL_DIRS.length; i++) {
+                var ux = BSC_LABEL_DIRS[i][0], uy = BSC_LABEL_DIRS[i][1];
+                var off2 = offset + BSC_LABEL_RINGS[g] + Math.abs(ux) * hwW + Math.abs(uy) * hhW;
+                var px = anchor[0] + (bscCamR.x * ux + bscCamU.x * uy) * off2;
+                var py = anchor[1] + (bscCamR.y * ux + bscCamU.y * uy) * off2;
+                var pz = anchor[2] + (bscCamR.z * ux + bscCamU.z * uy) * off2;
+                var k = bscScreenK(px, py, pz);
+                var c = bscProj(px, py, pz), h = bscInkHalf(sprite, k, padW, padH);
+                var worst = 9;
+                for (j = 0; j < ent.length; j++) {
+                    if (ent[j].k === 1) s = bscBoxSeg(c, h, ent[j].a, ent[j].b);
+                    else if (ent[j].k === 2) s = bscBoxBox(c, h, ent[j].p, ent[j].h);
+                    else s = bscBoxPt(c, h, ent[j].p) - ent[j].r;
+                    if (s < worst) worst = s;
+                }
+                var edge = BSC_SAFE_X - (Math.abs(c[0]) + h[0]);
+                var edgeY = BSC_SAFE_Y - (Math.abs(c[1]) + h[1]);
+                if (edgeY < edge) edge = edgeY;
+                if (edge < worst) worst = edge;
+                if (worst > BSC_CLEAR_CAP) worst = BSC_CLEAR_CAP;
+                // ties break by candidate order (inner ring first), so the choice
+                // is stable frame to frame and a rewind photographs the same layout
+                if (worst > bestScore + 1e-6) { bestScore = worst; bestIdx = i; bestPos = [px, py, pz]; }
+            }
+        }
+        if (bestPos) sprite.position.set(bestPos[0], bestPos[1], bestPos[2]);
+        return bestIdx;
+    }
 
     // ── E2 (intermolecular link layer) constants ─────────────────────────────
     //   THE SCALE. Distances in the link contract are PICOMETRES (form_pm /
@@ -50694,7 +50937,34 @@ export const FIELD_3D_RENDERER_CODE = `
         // label's clear placement below. Collected here because the atom loop is
         // the only pass that knows each ligand's world position and the screen
         // diagonal each atom label actually settled on.
-        var fCenLabPos = null, fLigWorld = [];
+        var fCenLabPos = null, fLigWorld = [], fCenRad = 0, fLigRad = [], fTextAvoid = [];
+        // E1c-I: the focal unit's VECTOR furniture, closed-form and resolved HERE
+        // because the atom-label pass runs before the arrow pass and still has to
+        // place text against it. The per-bond moment arrows are deliberately
+        // absent: each is CENTRED on its own bond midpoint (E1c-A) and is never
+        // longer than the bond, so the bond SEGMENT already covers it exactly.
+        var fUnit0 = (bs.units && bs.units[focalIdx]) ? bs.units[focalIdx] : null;
+        var fRot0 = fUnit0 ? bscOrientRot(fUnit0.orient) : null;
+        var fOrg0 = (fUnit0 && fUnit0.at) ? fUnit0.at.slice(0) : [0, 0, 0];
+        var aScale0 = (dip.arrow_scale != null) ? dip.arrow_scale : BS_ARROW_D_PER_UNIT;
+        var fVecAvoid = [];
+        if (dip.show_resultant && D.mag > 1e-9) {
+            var rv0 = D.vec.slice(0);
+            if (fRot0) rv0 = fRot0(rv0);
+            rv0 = mgRotY(rv0, spin);
+            var rd0 = bscNorm(rv0), rl0 = D.mag * aScale0;
+            fVecAvoid.push({ a: fOrg0, b: [fOrg0[0] + rd0[0] * rl0, fOrg0[1] + rd0[1] * rl0, fOrg0[2] + rd0[2] * rl0] });
+        }
+        if (dip.show_lone_pair && D.lone && D.lone.length) {
+            for (var lz = 0; lz < D.lone.length; lz++) {
+                var ldv0 = D.lone[lz].dir;
+                if (fRot0) ldv0 = fRot0(ldv0);
+                ldv0 = mgRotY(ldv0, spin);
+                var lTip0 = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[lz].D) * aScale0;
+                fVecAvoid.push({ a: fOrg0,
+                    b: [fOrg0[0] + ldv0[0] * lTip0, fOrg0[1] + ldv0[1] * lTip0, fOrg0[2] + ldv0[2] * lTip0] });
+            }
+        }
         for (u = 0; u < pool; u++) {
             var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
             // E3a: a unit whose species is an ATOM or an ION is drawn by the SITE
@@ -50719,17 +50989,21 @@ export const FIELD_3D_RENDERER_CODE = `
             // E1c-C: charges_at_ms gates the glyph layer ON TOP OF show_charges.
             var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges && chargesF > 0;
 
+            // E1c-I: the unit is settled in TWO passes. Pass 1 places every atom
+            // and stick; pass 2 then places this unit's TEXT against the whole
+            // picture — discs at their live (mid-swap) radii and bonds as
+            // SEGMENTS — instead of against whichever atoms happened to come
+            // earlier in a single interleaved loop.
+            var uPos = [], uRad = [], uHave = [], uEl = [];
             for (i = 0; i < BS_MAX_ATOMS; i++) {
                 var atom = bscFindById("bsc_u" + u + "_atom" + i);
                 var lab = bscFindById("bsc_u" + u + "_lab" + i);
                 var dlab = bscFindById("bsc_u" + u + "_delta" + i);
                 var stick = (i > 0) ? bscFindById("bsc_u" + u + "_bond" + i) : null;
                 var have = on && (i === 0 || i <= uFrame.bonds.length);
+                uHave.push(have); uPos.push(null); uRad.push(0); uEl.push(null);
                 if (atom) atom.visible = have;
-                if (lab) {
-                    lab.visible = have && showLabels && (u < labelUnits || u === focalIdx) && atomLabelBudget > 0;
-                    if (lab.visible) atomLabelBudget--;
-                }
+                if (lab) lab.visible = false;
                 if (dlab) dlab.visible = false;
                 if (stick) stick.visible = have && i > 0;
                 if (!have) continue;
@@ -50763,30 +51037,124 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                 }
                 if (atom) { atom.position.set(pos[0], pos[1], pos[2]); atom.scale.setScalar(rad); mgSetColor(atom, col); }
-                if (lab && lab.visible) {
-                    mgPlaceLabelClear(lab, pos, rad + 0.34, [org]);
-                    updateLabelSpriteText(lab, el);
+                uPos[i] = pos; uRad[i] = rad; uEl[i] = el;
+                if (u === focalIdx) {
+                    if (i > 0) { fLigWorld.push([pos[0], pos[1], pos[2]]); fLigRad.push(rad); }
+                    else fCenRad = rad;
+                }
+            }
+
+            // ── pass 2: THE TEXT. The avoid set is what this state COUNTS —
+            //   every atom as a DISC at its live radius, every bond as a SEGMENT,
+            //   the focal unit's resultant and lone-pair vectors, and every text
+            //   surface already placed this frame. Acyclic: a label sees only
+            //   what was placed BEFORE it.
+            var uAvoid = [], uText = [], z;
+            for (i = 0; i < BS_MAX_ATOMS; i++) {
+                if (uHave[i] && uPos[i]) uAvoid.push({ p: uPos[i], r: uRad[i] });
+            }
+            for (i = 1; i < BS_MAX_ATOMS; i++) {
+                if (uHave[i] && uPos[i] && uPos[0]) uAvoid.push({ a: uPos[0], b: uPos[i] });
+            }
+            if (u === focalIdx) {
+                for (z = 0; z < fVecAvoid.length; z++) uAvoid.push(fVecAvoid[z]);
+            }
+            for (i = 0; i < BS_MAX_ATOMS; i++) {
+                var lab2 = bscFindById("bsc_u" + u + "_lab" + i);
+                var dlab2 = bscFindById("bsc_u" + u + "_delta" + i);
+                var labOn = !!lab2 && uHave[i] && showLabels &&
+                    (u < labelUnits || u === focalIdx) && atomLabelBudget > 0;
+                if (labOn) atomLabelBudget--;
+                if (!uHave[i] || !uPos[i]) continue;
+                // D-6: delta labels on the FOCAL unit only, capped on screen.
+                var dOn2 = deltaOn && !!dlab2 && deltaBudget > 0 && Math.abs(uq[i] || 0) > 0.02;
+                if (dOn2) {
+                    // written FIRST: the symbol's search pads for this glyph, and
+                    // a pad measured off the PREVIOUS string is a stale picture.
+                    var sgn = (uq[i] > 0) ? "\\u03B4+" : "\\u03B4\\u2212";
+                    var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
+                    updateLabelSpriteText(dlab2, txt);
+                }
+                var av = [];
+                for (z = 0; z < uAvoid.length; z++) {
+                    // never its OWN disc: the offset already clears it, and letting
+                    // it score would tie every candidate and hand the choice to
+                    // candidate order rather than to the picture.
+                    if (uAvoid[z].p === uPos[i]) continue;
+                    av.push(uAvoid[z]);
+                }
+                for (z = 0; z < uText.length; z++) av.push(uText[z]);
+                var dirIx = 0;
+                if (labOn) {
+                    lab2.visible = true;
+                    updateLabelSpriteText(lab2, uEl[i]);
+                    // The symbol and its partial-charge glyph are ONE cluster, so
+                    // the symbol is placed with the PAIR's combined height — a
+                    // slot only half the cluster fits in is not a clear slot.
+                    // the pair's full vertical extent from the SYMBOL's centre is
+                    // (gap + delta half-height), so a symmetric pad of exactly
+                    // (delta height + gap) covers the cluster whichever way it
+                    // stacks. Under-padding is how a delta glyph landed on a
+                    // ligand on bent BF3 while its symbol read as clear.
+                    var padY = 0, padX = 0;
+                    if (dOn2) {
+                        padY = dlab2.scale.y + BSC_PAIR_GAP;
+                        padX = dlab2.scale.x * ((dlab2._pmInkFrac != null) ? dlab2._pmInkFrac : 1) * 0.5 -
+                               lab2.scale.x * ((lab2._pmInkFrac != null) ? lab2._pmInkFrac : 1) * 0.5;
+                        if (padX < 0) padX = 0;
+                    }
+                    dirIx = bscPlaceLabel(lab2, uPos[i], uRad[i] + BSC_ATOM_LABEL_OFF, av, padX, padY);
                     // E1c-F: the SYMBOL is discrete — it cannot be half H and half
                     // F — so it rides the swap veil and changes in the trough,
                     // under the same cover the vector layer takes. Written only
                     // while a swap is running; state entry restores full ink.
-                    if (uInSwap) setObjOpacity(lab, swapVeil);
+                    if (uInSwap) setObjOpacity(lab2, swapVeil);
+                    if (u === focalIdx && i === 0) {
+                        fCenLabPos = [lab2.position.x, lab2.position.y, lab2.position.z];
+                    }
                 }
-                if (u === focalIdx) {
-                    if (i > 0) fLigWorld.push([pos[0], pos[1], pos[2]]);
-                    else if (lab && lab.visible) fCenLabPos = [lab.position.x, lab.position.y, lab.position.z];
-                }
-                // D-6: delta labels on the FOCAL unit only, capped on screen.
-                if (deltaOn && dlab && deltaBudget > 0 && Math.abs(uq[i] || 0) > 0.02) {
-                    dlab.visible = true;
+                if (dOn2) {
+                    dlab2.visible = true;
                     deltaBudget--;
-                    var sgn = (uq[i] > 0) ? "\\u03B4+" : "\\u03B4\\u2212";
-                    var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
-                    updateLabelSpriteText(dlab, txt);
-                    mgPlaceLabelClear(dlab, pos, rad + 0.72, [org, pos]);
-                    if (chargesInk) setObjOpacity(dlab, chargesF);
+                    if (labOn) {
+                        // FRAMES FINDING (E1c-I, STATE_5__frozen.png / after_BF3.png):
+                        // placed by its OWN independent search at rad + 0.72 on the
+                        // raw diagonals, a delta glyph landed ~1.0 units from its
+                        // atom — half a bond length — and on the OPPOSITE side from
+                        // that atom's element symbol. One frame showed a delta minus
+                        // floating in empty space with no atom near it, and the
+                        // state's caption is "Four arrows, still zero". So the glyph
+                        // STACKS on the symbol's own side, one text height further
+                        // out: the pair reads as one cluster naming one atom.
+                        var gap = (lab2.scale.y + dlab2.scale.y) * 0.5 + BSC_PAIR_GAP;
+                        // ABOVE or BELOW its symbol — whichever is clearer. The
+                        // symbol's own search padded for BOTH (the pad is
+                        // symmetric), so either side is a slot it already
+                        // cleared; picking the better of the two is what keeps a
+                        // delta glyph off an arrow on a 90-degree bent BF3. Two
+                        // closed-form candidates, ties to the side the symbol
+                        // itself leans, so a rewind reproduces the same layout.
+                        var syA = (BSC_LABEL_DIRS[dirIx][1] >= 0) ? 1 : -1;
+                        var pA = [lab2.position.x + bscCamU.x * syA * gap,
+                                  lab2.position.y + bscCamU.y * syA * gap,
+                                  lab2.position.z + bscCamU.z * syA * gap];
+                        var pB = [lab2.position.x - bscCamU.x * syA * gap,
+                                  lab2.position.y - bscCamU.y * syA * gap,
+                                  lab2.position.z - bscCamU.z * syA * gap];
+                        var dp = (bscScoreBox(dlab2, pB, av) >
+                                  bscScoreBox(dlab2, pA, av) + 1e-6) ? pB : pA;
+                        dlab2.position.set(dp[0], dp[1], dp[2]);
+                    } else {
+                        bscPlaceLabel(dlab2, uPos[i], uRad[i] + BSC_ATOM_LABEL_OFF, av, 0, 0);
+                    }
+                    if (chargesInk) setObjOpacity(dlab2, chargesF);
                 }
+                if (labOn) uText.push({ s: lab2 });
+                if (dOn2) uText.push({ s: dlab2 });
             }
+            // handed to the vector layer below, which places its text LAST and so
+            // may read these as boxes without any frame-to-frame loop.
+            if (u === focalIdx) fTextAvoid = uText;
         }
 
         // ── E3a: THE SITE LAYER (lattice placement · growth · coordination ·
@@ -51049,9 +51417,20 @@ export const FIELD_3D_RENDERER_CODE = `
             // matters MOST for: S7 contrasts NH3-s 1.47 D against NF3-s 0.23 D, a
             // ratio of 6.4, and the fixed 0.38 head drew them at a ratio of 2.2.
             var rP = bscArrowParts(rlen, BS_RES_HEAD_LEN);
-            if (rsh) { mgOrientStick(rsh, rdir, rP.shaft, 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
+            // FRAMES FINDING (E1c-I, G_s6_chcl3.png — S6's payoff moment): tailed
+            // at the central atom's CENTRE, CHCl3's 1.04 D resultant draws 0.645
+            // units out of a sphere of radius 0.40, so two thirds of the shaft and
+            // most of the head sat INSIDE the atom and the state's answer read as
+            // a stub. Section 16 gates the BOND arrowheads against that sphere;
+            // the resultant was never covered by it. It launches from the sphere's
+            // SURFACE instead — the same convention the lone-pair vector already
+            // takes off the lobe's outer face — so the whole magnitude is outside
+            // the body it belongs to. The LENGTH is untouched (Rule 29 / D-3): the
+            // offset moves the tail, never |mu| * scale.
+            var rBase = [fOrg[0] + rdir[0] * fCenRad, fOrg[1] + rdir[1] * fCenRad, fOrg[2] + rdir[2] * fCenRad];
+            if (rsh) { mgOrientStick(rsh, rdir, rP.shaft, 1); rsh.position.set(rBase[0], rBase[1], rBase[2]); }
             if (rhd) {
-                var rp = [fOrg[0] + rdir[0] * rP.shaft, fOrg[1] + rdir[1] * rP.shaft, fOrg[2] + rdir[2] * rP.shaft];
+                var rp = [rBase[0] + rdir[0] * rP.shaft, rBase[1] + rdir[1] * rP.shaft, rBase[2] + rdir[2] * rP.shaft];
                 mgOrientStick(rhd, rdir, rP.hy, rP.thick);
                 rhd.position.set(rp[0], rp[1], rp[2]);
             }
@@ -51075,25 +51454,58 @@ export const FIELD_3D_RENDERER_CODE = `
                 //   a SET_TIME_FREEZE rewind could then photograph a different
                 //   layout. Its LOBE TIP is the closed-form proxy, computed the
                 //   same way the lobe itself is, and the ordering stays acyclic.
-                var rAvoid = [[fOrg[0], fOrg[1], fOrg[2]]];
+                //   E1c-I WIDENS THAT AVOID SET to what is actually on screen. The
+                //   ligands enter as DISCS at their live (mid-swap) radii, not as
+                //   centres — a centre-clearing label still covered the left
+                //   fluorine at 75% of S7's swap. Every bond enters as a SEGMENT,
+                //   because the label cleared both endpoints of the apex bond and
+                //   lay across its middle on every diatomic. The resultant's own
+                //   shaft enters too (its own glyph sat on its cyan shaft on NH3),
+                //   and so does every atom-label and delta glyph already placed —
+                //   the point metric let "mu = 2.33 D" finish 23 px from a ligand's
+                //   delta and the two read as one string.
+                var rAvoid = [{ p: [fOrg[0], fOrg[1], fOrg[2]], r: fCenRad }];
                 if (fCenLabPos) rAvoid.push(fCenLabPos);
-                for (var rAi = 0; rAi < fLigWorld.length; rAi++) rAvoid.push(fLigWorld[rAi]);
+                for (var rAi = 0; rAi < fLigWorld.length; rAi++) {
+                    rAvoid.push({ p: fLigWorld[rAi], r: fLigRad[rAi] || 0 });
+                    rAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]], b: fLigWorld[rAi] });
+                }
+                rAvoid.push({ a: rBase, b: [rBase[0] + rdir[0] * rlen, rBase[1] + rdir[1] * rlen, rBase[2] + rdir[2] * rlen] });
+                for (rAi = 0; rAi < fTextAvoid.length; rAi++) rAvoid.push(fTextAvoid[rAi]);
                 if (dip.show_lone_pair && D.lone && D.lone.length) {
                     var rlDir = D.lone[0].dir;
                     if (fRot) rlDir = fRot(rlDir);
                     rlDir = mgRotY(rlDir, spin);
-                    var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN;
-                    rAvoid.push([fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt]);
+                    var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[0].D) * aScale;
+                    rAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]],
+                        b: [fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt] });
                 }
-                mgPlaceLabelClear(rlb,
-                    [fOrg[0] + rdir[0] * rlen, fOrg[1] + rdir[1] * rlen, fOrg[2] + rdir[2] * rlen],
-                    BS_RES_LABEL_OFF, rAvoid);
                 updateLabelSpriteText(rlb, "\\u03BC = " + bscFmtD(D.mag) + " D");
+                bscPlaceLabel(rlb,
+                    [rBase[0] + rdir[0] * rlen, rBase[1] + rdir[1] * rlen, rBase[2] + rdir[2] * rlen],
+                    BS_RES_LABEL_OFF, rAvoid, 0, 0);
             }
         }
         if (resOn && isZero && rzr) {
-            rzr.position.set(fOrg[0], fOrg[1] + 1.15, fOrg[2]);
+            // FRAMES FINDING (E1c-I, STATE_5__frozen.png — the 💎 state's own
+            // frozen baseline, the frame that would have been approved): the ZERO
+            // badge was the one text surface E1c-D never routed through a
+            // placement search at all. A hardcoded +1.15 on world y put "mu = 0 D"
+            // straight across a chlorine in CCl4 and across the apex bond and its
+            // arrowhead in BF3, under a caption that says "Four arrows, still
+            // zero". It is a text surface like any other, so it takes the same
+            // widened avoid set the value label takes — discs, bond segments and
+            // every label already placed — anchored on the centre because a zero
+            // resultant has no tip to hang off.
+            var zAvoid = [{ p: [fOrg[0], fOrg[1], fOrg[2]], r: fCenRad }];
+            if (fCenLabPos) zAvoid.push(fCenLabPos);
+            for (var zAi = 0; zAi < fLigWorld.length; zAi++) {
+                zAvoid.push({ p: fLigWorld[zAi], r: fLigRad[zAi] || 0 });
+                zAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]], b: fLigWorld[zAi] });
+            }
+            for (zAi = 0; zAi < fTextAvoid.length; zAi++) zAvoid.push(fTextAvoid[zAi]);
             updateLabelSpriteText(rzr, "\\u03BC = 0 D");
+            bscPlaceLabel(rzr, [fOrg[0], fOrg[1], fOrg[2]], BSC_ZERO_LABEL_OFF, zAvoid, 0, 0);
         }
 
         // ── E1c item 3: the lone-pair lobe and its own dipole vector.
@@ -51183,11 +51595,29 @@ export const FIELD_3D_RENDERER_CODE = `
                 // fixed offset. Routed through the shared clear-placement helper
                 // (the same one the atom and delta labels use) with the resultant
                 // label, the resultant TIP and the central atom as avoid points.
-                var lAvoid = [fOrg, lAnch];
-                if (rlb && rlb.visible) lAvoid.push([rlb.position.x, rlb.position.y, rlb.position.z]);
+                //   E1c-I: same widening. The lobe is a SEGMENT from the centre to
+                //   its outer face, the counted ligands are DISCS with their bond
+                //   shafts, and the resultant's value label (placed above, so the
+                //   ordering stays acyclic) is a BOX rather than a point.
+                //   The avoid SEGMENT runs the whole lone-pair axis — lobe AND
+                //   the moment vector that launches off its outer face — because
+                //   a segment stopping at the lobe centre let this label sit on
+                //   the vector's shaft (NH3, 0.0032 NDC).
+                var lTipW = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN +
+                    Math.abs(D.lone[0].D) * aScale;
+                var lAvoid = [{ p: [fOrg[0], fOrg[1], fOrg[2]], r: fCenRad },
+                    { a: [fOrg[0], fOrg[1], fOrg[2]],
+                      b: [fOrg[0] + lld1[0] * lTipW, fOrg[1] + lld1[1] * lTipW, fOrg[2] + lld1[2] * lTipW] }];
+                for (var lAi = 0; lAi < fLigWorld.length; lAi++) {
+                    lAvoid.push({ p: fLigWorld[lAi], r: fLigRad[lAi] || 0 });
+                    lAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]], b: fLigWorld[lAi] });
+                }
+                for (lAi = 0; lAi < fTextAvoid.length; lAi++) lAvoid.push(fTextAvoid[lAi]);
+                if (rlb && rlb.visible) lAvoid.push({ s: rlb });
+                if (rzr && rzr.visible) lAvoid.push({ s: rzr });
                 if (rhd && rhd.visible) lAvoid.push([rhd.position.x, rhd.position.y, rhd.position.z]);
-                mgPlaceLabelClear(lLab, lAnch, BS_LONE_LOBE_LEN + 0.52, lAvoid);
                 updateLabelSpriteText(lLab, loneDrawn > 1 ? "lone pairs" : "lone pair");
+                bscPlaceLabel(lLab, lAnch, BS_LONE_LOBE_LEN + 0.52, lAvoid, 0, 0);
             }
         }
         window.PM_bscLoneD = (D.lone && D.lone.length) ? D.lone[0].D : 0;

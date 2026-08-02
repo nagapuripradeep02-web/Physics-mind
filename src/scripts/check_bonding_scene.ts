@@ -101,6 +101,8 @@ const VARS = [
   "BS_ARROW_D_PER_UNIT", "BS_ANGLE_RAMP_MS",
   "BS_ARROW_HEAD_LEN", "BS_RES_HEAD_LEN", "BS_HEAD_MIN_THICK",   // E1c-A
   "BS_RES_LABEL_OFF",                                            // E1c-D
+  "BSC_ATOM_LABEL_OFF", "BSC_PAIR_GAP", "BSC_ZERO_LABEL_OFF",     // E1c-I
+  "BSC_LABEL_RINGS", "BSC_CLEAR_CAP", "BSC_SAFE_X", "BSC_SAFE_Y",
   "BS_LONE_LOBE_W", "BS_LONE_LOBE_LEN",
   "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
@@ -120,7 +122,8 @@ const VARS = [
   "BS_SUPDIG", "BS_COORD_CACHE"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
-const EXPR_VARS = ["BS_ION_OF"];
+const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
+// (BSC_LABEL_RINGS / BSC_CLEAR_CAP are plain literals — see VARS)
 const FNS = [
   "mgSmooth01", "mgClamp", "mgRamp", "mgNorm", "mgDot", "mgRotY", "mgAngleDeg",
   "mgIdealDirs", "mgDomainKinds", "mgSqueeze", "mgFrame",
@@ -131,6 +134,8 @@ const FNS = [
   "bscSub", "bscTrendFit",
   // E1c-A
   "bscArrowParts", "bscUnitShapeKey", "bscSolvedShapeKey", "bscSolvedCamera",
+  // E1c-I: the SHIPPED separation math (pure 2D — the camera half is written here)
+  "bscBoxPt", "bscBoxBox", "bscBoxSeg",
   // E3a
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
@@ -1502,7 +1507,7 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
       /var resInk = resCued \|\| swapActive;/.test(upd) &&
       /var chargesInk = chargesCued \|\| swapActive;/.test(upd) &&
       /if \(arrowsInk\) \{/.test(upd) && /if \(resInk && resOn\) \{/.test(upd) &&
-      /if \(chargesInk\) setObjOpacity\(dlab, chargesF\)/.test(upd) &&
+      /if \(chargesInk\) setObjOpacity\(dlab2, chargesF\)/.test(upd) &&
       /return \(atMs == null\) \? 1 :/.test(upd));
     ok("the ramp multiplies the SAME ink the build used (BS_ARROW/RESULTANT_OPACITY)",
       /BS_ARROW_OPACITY \* arrowsF/.test(upd) && /BS_RESULTANT_OPACITY \* resFade/.test(upd) &&
@@ -1800,150 +1805,477 @@ console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solv
       const v = sub(p, cam), z = dt(v, f);
       return { x: dt(v, r) / (z * TH), y: dt(v, u) / (z * TH), z };
     };
-    return { r, u, P };
+    // screen units per WORLD unit at a point — the renderer's bscScreenK.
+    const K = (p: V) => 1 / (dt(sub(p, cam), f) * TH);
+    return { r, u, P, K };
   };
-  // mgPlaceLabelClear, re-implemented (four screen diagonals, argmax of the min
-  // distance to the avoid set) — never read out of the thing it checks.
-  const placeClear = (R: V, U: V, anchor: V, off: number, avoid: V[], P: any) => {
-    const av = avoid.filter(Boolean).map((a) => P(a));
+  // ── E1c-I: the placement the renderer SHIPS, re-implemented here — the
+  //   camera half only. The SEPARATION half (bscBoxPt / bscBoxBox / bscBoxSeg)
+  //   is pulled out of the renderer and run, because that arithmetic IS the
+  //   thing under test and re-deriving it here would only test this file.
+  //   A sprite's INK box, exactly as the renderer measures it: half-width =
+  //   sprite.scale.x * _pmInkFrac / 2, in which the canvas width cancels to
+  //   hs * inkPx / 256, and half-height = sprite.scale.y / 2 = hs / 2. Node has
+  //   no canvas, so the 76px bold-italic serif advance is a per-character model,
+  //   deliberately on the WIDE side (42px = 0.55em for a glyph) so the assertion
+  //   cannot pass by under-measuring the text.
+  const ADV: Record<string, number> = { " ": 20, ".": 20, "=": 44 };
+  const inkPx = (s2: string) => [...s2].reduce((w, ch) => w + (ADV[ch] != null ? ADV[ch] : 42), 0);
+  const halfW = (t: string, hs: number) => hs * inkPx(t) / 256;
+  const halfH = (hs: number) => hs / 2;
+  const resolve = (avoid: any[], G: any) => avoid.filter(Boolean).map((e: any) => {
+    if (e.box) return { k: 2, p: e.box.c, h: e.box.h };
+    if (e.a) { const A = G.P(e.a), B = G.P(e.b); return { k: 1, a: [A.x, A.y], b: [B.x, B.y] }; }
+    const Q = G.P(e.p); return { k: 0, p: [Q.x, Q.y], r: (e.r || 0) * G.K(e.p) };
+  });
+  const sepOf = (c: number[], h: number[], en: any): number =>
+    en.k === 1 ? E.bscBoxSeg(c, h, en.a, en.b)
+      : en.k === 2 ? E.bscBoxBox(c, h, en.p, en.h)
+        : E.bscBoxPt(c, h, en.p) - en.r;
+  /** bscPlaceLabel: eight UNIT screen directions, argmax of the min box separation. */
+  const place = (G: any, text: string, hs: number, anchor: V, off: number,
+                 avoid: any[], padH = 0, padW = 0) => {
+    const ent = resolve(avoid, G);
+    // the offset is a CLEARANCE to the box's nearest edge: each candidate is
+    // pushed out by the box's own support in that direction (the shipped rule).
+    const hwW = halfW(text, hs) + padW, hhW = halfH(hs) + padH;
+    let bi = 0, bsc = -9, bp: V = anchor;
+    for (const ring of E.BSC_LABEL_RINGS) {
+      for (let i = 0; i < E.BSC_LABEL_DIRS.length; i++) {
+        const ux = E.BSC_LABEL_DIRS[i][0], uy = E.BSC_LABEL_DIRS[i][1];
+        const o2 = off + ring + Math.abs(ux) * hwW + Math.abs(uy) * hhW;
+        const p: V = [anchor[0] + (G.r[0] * ux + G.u[0] * uy) * o2,
+                      anchor[1] + (G.r[1] * ux + G.u[1] * uy) * o2,
+                      anchor[2] + (G.r[2] * ux + G.u[2] * uy) * o2];
+        const k = G.K(p), q0 = G.P(p);
+        const c = [q0.x, q0.y], h = [hwW * k, hhW * k];
+        let worst = 9;
+        for (const en of ent) worst = Math.min(worst, sepOf(c, h, en));
+        worst = Math.min(worst, E.BSC_SAFE_X - (Math.abs(c[0]) + h[0]),
+                                E.BSC_SAFE_Y - (Math.abs(c[1]) + h[1]));
+        if (worst > E.BSC_CLEAR_CAP) worst = E.BSC_CLEAR_CAP;
+        if (worst > bsc + 1e-6) { bsc = worst; bi = i; bp = p; }
+      }
+    }
+    const kk = G.K(bp), qq = G.P(bp);
+    return { dir: bi, pos: bp, c: [qq.x, qq.y] as number[],
+             h: [halfW(text, hs) * kk, halfH(hs) * kk], t: text, id: "" };
+  };
+  /** E1c-D's placement, kept ONLY as the negative control: four RAW diagonals,
+   *  point-vs-point distance, an avoid set of centres. */
+  const placeOld = (G: any, anchor: V, off: number, avoid: V[]) => {
+    const av = avoid.filter(Boolean).map((a) => G.P(a));
     let best = anchor, bestScore = -1;
     for (const d of [[-1, 1], [1, 1], [-1, -1], [1, -1]]) {
-      const p = [anchor[0] + (R[0] * d[0] + U[0] * d[1]) * off,
-                 anchor[1] + (R[1] * d[0] + U[1] * d[1]) * off,
-                 anchor[2] + (R[2] * d[0] + U[2] * d[1]) * off];
-      const q = P(p);
+      const p: V = [anchor[0] + (G.r[0] * d[0] + G.u[0] * d[1]) * off,
+                    anchor[1] + (G.r[1] * d[0] + G.u[1] * d[1]) * off,
+                    anchor[2] + (G.r[2] * d[0] + G.u[2] * d[1]) * off];
+      const q0 = G.P(p);
       let worst = 9;
-      for (const a of av) worst = Math.min(worst, Math.hypot(q.x - a.x, q.y - a.y));
+      for (const a of av) worst = Math.min(worst, Math.hypot(q0.x - a.x, q0.y - a.y));
       if (worst > bestScore + 1e-6) { bestScore = worst; best = p; }
     }
     return best;
   };
-  // A sprite's INK box. Node has no canvas, so the 76px bold-italic serif advance
-  // is a per-character model, deliberately on the WIDE side (42px = 0.55em for a
-  // glyph) so the assertion cannot pass by under-measuring the text. The rest is
-  // the shipped geometry: canvas height 128, width max(384, ink + 56 pad), sprite
-  // quad width = heightScale * canvasW / 128 (createLabelSprite / pmCreateAutoLabel).
-  const ADV: Record<string, number> = { " ": 20, ".": 20, "=": 44 };
-  const inkPx = (s: string) => [...s].reduce((w, ch) => w + (ADV[ch] != null ? ADV[ch] : 42), 0);
-  const box = (text: string, hs: number, pos: V, P: any) => {
-    const ink = inkPx(text), canvasW = Math.max(384, Math.ceil(ink) + 56);
-    const q = P(pos), k = 1 / (q.z * TH);
-    return { x: q.x, y: q.y, t: text,
-      hw: (hs * (canvasW / 128) * Math.min(1, ink / canvasW)) / 2 * k,
-      hh: (hs * (76 / 128)) / 2 * k };
+  const boxAt = (G: any, p: V, text: string, hs: number) => {
+    const k = G.K(p), q0 = G.P(p);
+    return { c: [q0.x, q0.y], h: [halfW(text, hs) * k, halfH(hs) * k], t: text, pos: p };
   };
-  /** signed gap between two axis-aligned boxes: >0 clear, <0 overlapping. */
-  const boxSep = (a: any, b: any) =>
-    Math.max(Math.abs(a.x - b.x) - (a.hw + b.hw), Math.abs(a.y - b.y) - (a.hh + b.hh));
-  const ptSep = (p: any, b: any) =>
-    Math.max(Math.abs(p.x - b.x) - b.hw, Math.abs(p.y - b.y) - b.hh);
+  const HS_SYM = 0.42, HS_DELTA = 0.40, HS_RES = 0.50, HS_LONE = 0.42;
 
-  /** the full text layout of a dipole_sum state, exactly as the frame pass builds it. */
-  const layout = (molKey: string, cam: any, axisPlacement: boolean, spin = 0) => {
-    const { r, u, P } = rig(cam);
-    const mol = E.MG_MOLECULES[molKey], D: any = E.bscDipole(molKey, null);
-    const fr: any = E.mgFrame(molKey, null, null), ligs = E.bscLigands(mol);
-    const RY = (v: V) => (spin ? E.mgRotY(v, spin) : v);
-    const org = [0, 0, 0];
-    const ligPos: V[] = fr.bonds.map((d: V) => sc(RY(d), E.BS_BOND_LEN));
-    const texts: any[] = [];
-    const cenLab = placeClear(r, u, org, E.MG_ELEMENTS[mol.central].radius + 0.34, [org], P);
-    texts.push({ id: "cen", b: box(mol.central, 0.42, cenLab, P) });
-    ligPos.forEach((p, i) => {
-      const q = placeClear(r, u, p, E.MG_ELEMENTS[ligs[i]].radius + 0.34, [org], P);
-      texts.push({ id: "lig" + i, b: box(ligs[i], 0.42, q, P) });
-    });
-    const rdir = RY(E.bscNorm(D.vec)), rlen = D.mag * E.BS_ARROW_D_PER_UNIT;
-    const rP = E.bscArrowParts(rlen, E.BS_RES_HEAD_LEN);
-    const lld = D.lone.length ? RY(D.lone[0].dir) : null;
+  /**
+   * The whole TEXT LAYOUT and COUNTED GEOMETRY of a dipole state, built in the
+   * shipped order so the avoid chain stays acyclic: symbol i, then its delta
+   * glyph stacked on the symbol's own side, then the resultant (or the zero
+   * badge), then the lone-pair label.
+   */
+  const layout = (molKey: string, cam: any, opt: any = {}) => {
+    const G: any = rig(cam);
+    const spin = opt.spin || 0, mix = opt.mix || 0;
+    const peer = opt.peer ? E.MG_MOLECULES[opt.peer] : null;
+    const rot = opt.orient ? E.bscOrientRot(opt.orient) : null;
+    const mol = E.MG_MOLECULES[molKey];
+    const ang = (opt.angle != null) ? opt.angle : null;
+    const D: any = E.bscDipole(molKey, ang);
+    const fr: any = E.mgFrame(molKey, ang, null);
+    const ligs = E.bscLigands(mol), peerLigs: any = peer ? E.bscLigands(peer) : null;
+    const RY = (v: V): V => { const w = rot ? rot(v) : v; return spin ? E.mgRotY(w, spin) : w; };
+    const org: V = [0, 0, 0];
+    const n = fr.bonds.length;
+    const pos: V[] = [org];
+    for (let i = 0; i < n; i++) pos.push(sc(RY(fr.bonds[i]), E.BS_BOND_LEN));
+    const rad = (i: number) => {
+      const el = i === 0 ? mol.central : (ligs[i - 1] || mol.ligand);
+      let r0 = E.MG_ELEMENTS[el].radius;
+      if (peer) {
+        const pe = i === 0 ? peer.central : (peerLigs[i - 1] || peer.ligand);
+        if (pe) r0 = r0 + (E.MG_ELEMENTS[pe].radius - r0) * mix;
+      }
+      return r0;
+    };
+    const discs = pos.map((p, i) => ({ p, r: rad(i) }));
+    const bonds = pos.slice(1).map((p) => ({ a: org, b: p }));
+    const aScale = E.BS_ARROW_D_PER_UNIT;
+    // the DRAWN vectors, for the "no text over an arrow" half of the assertion
+    const arrows: any[] = [];
+    for (let i = 0; i < D.arrows.length; i++) {
+      const m = D.arrows[i].D;
+      if (Math.abs(m) < 1e-6) continue;
+      const ad = E.bscNorm(RY(sc(D.arrows[i].dir, m))), L = Math.abs(m) * aScale;
+      const mid = sc(RY(D.arrows[i].dir), E.BS_BOND_LEN * 0.5);
+      arrows.push({ a: [mid[0] - ad[0] * L / 2, mid[1] - ad[1] * L / 2, mid[2] - ad[2] * L / 2],
+                    b: [mid[0] + ad[0] * L / 2, mid[1] + ad[1] * L / 2, mid[2] + ad[2] * L / 2] });
+    }
+    const isZero = D.mag < 1e-9;
+    const rdir: V | null = isZero ? null : E.bscNorm(RY(D.vec));
+    const rlen = D.mag * aScale;
+    const rBase: V | null = rdir ? sc(rdir, rad(0)) : null;
+    const lone = (opt.lone && D.lone && D.lone.length) ? D.lone : null;
     const lAt = E.BS_BOND_LEN * 0.52;
-    const resLab = axisPlacement
-      ? sc(rdir, rlen + 0.62)
-      : placeClear(r, u, sc(rdir, rlen), E.BS_RES_LABEL_OFF,
-          ([org, cenLab] as V[]).concat(ligPos)
-            .concat(lld ? [sc(lld, lAt + E.BS_LONE_LOBE_LEN)] : []), P);
-    texts.push({ id: "res", b: box("μ = " + E.bscFmtD(D.mag) + " D", 0.50, resLab, P) });
-    if (lld) {
-      const lAnch = sc(lld, lAt);
-      const ll = placeClear(r, u, lAnch, E.BS_LONE_LOBE_LEN + 0.52,
-        [org, lAnch, resLab, sc(rdir, rP.shaft)], P);
-      texts.push({ id: "lone", b: box(D.lone.length > 1 ? "lone pairs" : "lone pair", 0.42, ll, P) });
+    if (!isZero && rBase) {
+      arrows.push({ a: rBase, b: sc(rdir as V, rad(0) + rlen) });
     }
-    let tSep = 9, tAt = "", lSep = 9, lAt2 = "", rSep = 9, rAt = "", rlSep = 9, rlAt = "";
-    for (let i = 0; i < texts.length; i++) for (let j = i + 1; j < texts.length; j++) {
-      const s = boxSep(texts[i].b, texts[j].b);
-      if (s < tSep) { tSep = s; tAt = texts[i].id + "/" + texts[j].id; }
-      if ((texts[i].id === "res" || texts[j].id === "res") && s < rSep) {
-        rSep = s; rAt = texts[i].id + "/" + texts[j].id;
+    if (lone) {
+      for (const L of lone) {
+        if (Math.abs(L.D) < 1e-6) continue;
+        const ld = RY(L.dir);
+        arrows.push({ a: sc(ld, lAt + E.BS_LONE_LOBE_LEN),
+                      b: sc(ld, lAt + E.BS_LONE_LOBE_LEN + Math.abs(L.D) * aScale) });
       }
     }
-    const resB = texts[texts.findIndex((t: any) => t.id === "res")].b;
-    ligPos.forEach((p, i) => {
-      const q = P(p);
-      for (const t of texts) {
-        if (t.id === "lig" + i) continue;
-        const s = ptSep(q, t.b);
-        if (s < lSep) { lSep = s; lAt2 = "lig" + i + " under " + t.id; }
+    // the frame pass's fVecAvoid, resolved before the atom loop
+    const fVec: any[] = [];
+    if (!isZero) fVec.push({ a: org, b: sc(rdir as V, rlen) });
+    if (lone) {
+      for (const L of lone) {
+        fVec.push({ a: org, b: sc(RY(L.dir), lAt + E.BS_LONE_LOBE_LEN + Math.abs(L.D) * aScale) });
       }
-      const s2 = ptSep(q, resB);
-      if (s2 < rlSep) { rlSep = s2; rlAt = "lig" + i + " under res"; }
-    });
-    return { tSep, tAt, lSep, lAt2, rSep, rAt, rlSep, rlAt };
+    }
+    const q = E.bscCharges(molKey);
+    const texts: any[] = [], placed: any[] = [];
+    for (let i = 0; i <= n; i++) {
+      const el = i === 0 ? mol.central : (ligs[i - 1] || mol.ligand);
+      const av: any[] = [];
+      for (let z = 0; z < discs.length; z++) if (z !== i) av.push(discs[z]);
+      for (const b of bonds) av.push(b);
+      for (const v of fVec) av.push(v);
+      for (const t of placed) av.push(t);
+      const dOn = opt.charges !== false && Math.abs(q[i] || 0) > 0.02;
+      const dtx = (q[i] || 0) > 0 ? "δ+" : "δ−";
+      const padH = dOn ? HS_DELTA + E.BSC_PAIR_GAP : 0;
+      const padW = dOn ? Math.max(0, halfW(dtx, HS_DELTA) - halfW(el, HS_SYM)) : 0;
+      const sym = place(G, el, HS_SYM, pos[i], rad(i) + E.BSC_ATOM_LABEL_OFF, av, padH, padW);
+      texts.push({ ...sym, id: "sym" + i, atom: i });
+      placed.push({ box: { c: sym.c, h: sym.h } });
+      if (dOn) {
+        const sy = E.BSC_LABEL_DIRS[sym.dir][1] >= 0 ? 1 : -1;
+        const gap = (HS_SYM + HS_DELTA) * 0.5 + E.BSC_PAIR_GAP;
+        const stack = (sgn: number): V => [sym.pos[0] + G.u[0] * sgn * gap,
+                                           sym.pos[1] + G.u[1] * sgn * gap,
+                                           sym.pos[2] + G.u[2] * sgn * gap];
+        const scoreAt = (pp: V) => {
+          const kk = G.K(pp), qq = G.P(pp);
+          const cc = [qq.x, qq.y], hh = [halfW(dtx, HS_DELTA) * kk, halfH(HS_DELTA) * kk];
+          let w = 9;
+          for (const en of resolve(av, G)) w = Math.min(w, sepOf(cc, hh, en));
+          return Math.min(w, E.BSC_SAFE_X - (Math.abs(cc[0]) + hh[0]),
+                             E.BSC_SAFE_Y - (Math.abs(cc[1]) + hh[1]));
+        };
+        const pA = stack(sy), pB = stack(-sy);
+        const dp: V = scoreAt(pB) > scoreAt(pA) + 1e-6 ? pB : pA;
+        const db = { ...boxAt(G, dp, dtx, HS_DELTA), id: "del" + i, atom: i };
+        texts.push(db);
+        placed.push({ box: { c: db.c, h: db.h } });
+      }
+    }
+    const cenLab = texts.find((t: any) => t.id === "sym0");
+    const ligAv: any[] = [];
+    for (let i = 1; i <= n; i++) { ligAv.push(discs[i]); ligAv.push({ a: org, b: pos[i] }); }
+    let resB: any = null;
+    if (isZero) {
+      const zAv: any[] = [{ p: org, r: rad(0) }];
+      if (cenLab) zAv.push({ p: cenLab.pos, r: 0 });
+      for (const e of ligAv) zAv.push(e);
+      for (const t of placed) zAv.push(t);
+      resB = place(G, "μ = 0 D", HS_RES, org, E.BSC_ZERO_LABEL_OFF, zAv);
+      resB.id = "zero";
+    } else {
+      const rAv: any[] = [{ p: org, r: rad(0) }];
+      if (cenLab) rAv.push({ p: cenLab.pos, r: 0 });
+      for (const e of ligAv) rAv.push(e);
+      rAv.push({ a: rBase as V, b: sc(rdir as V, rad(0) + rlen) });
+      for (const t of placed) rAv.push(t);
+      if (lone) {
+        rAv.push({ a: org,
+          b: sc(RY(lone[0].dir), lAt + E.BS_LONE_LOBE_LEN + Math.abs(lone[0].D) * aScale) });
+      }
+      resB = place(G, "μ = " + E.bscFmtD(D.mag) + " D", HS_RES,
+        sc(rdir as V, rad(0) + rlen), E.BS_RES_LABEL_OFF, rAv);
+      resB.id = "res";
+    }
+    texts.push(resB);
+    placed.push({ box: { c: resB.c, h: resB.h } });
+    if (lone) {
+      const lAnch = sc(RY(lone[0].dir), lAt);
+      const lAv: any[] = [{ p: org, r: rad(0) },
+        { a: org, b: sc(RY(lone[0].dir), lAt + E.BS_LONE_LOBE_LEN + Math.abs(lone[0].D) * aScale) }];
+      for (const e of ligAv) lAv.push(e);
+      for (const t of placed) lAv.push(t);
+      const lb = place(G, lone.length > 1 ? "lone pairs" : "lone pair", HS_LONE,
+        lAnch, E.BS_LONE_LOBE_LEN + 0.52, lAv);
+      lb.id = "lone";
+      texts.push(lb);
+    }
+    // ── the MEASUREMENT. Four families, all in the same isotropic screen units.
+    let tSep = 9, tAt = "", lSep = 9, lAt2 = "", bSep = 9, bAt = "", aSep = 9, aAt = "";
+    for (let i = 0; i < texts.length; i++) {
+      for (let j = i + 1; j < texts.length; j++) {
+        const s2 = E.bscBoxBox(texts[i].c, texts[i].h, texts[j].c, texts[j].h);
+        if (s2 < tSep) { tSep = s2; tAt = texts[i].id + "/" + texts[j].id; }
+      }
+    }
+    for (const t of texts) {
+      for (let i = 1; i <= n; i++) {
+        const Q = G.P(pos[i]);
+        const s2 = E.bscBoxPt(t.c, t.h, [Q.x, Q.y]) - rad(i) * G.K(pos[i]);
+        if (s2 < lSep) { lSep = s2; lAt2 = t.id + " over lig" + i; }
+      }
+      for (let i = 0; i < bonds.length; i++) {
+        const A = G.P(bonds[i].a), B = G.P(bonds[i].b);
+        const s2 = E.bscBoxSeg(t.c, t.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < bSep) { bSep = s2; bAt = t.id + " over bond" + i; }
+      }
+      for (let i = 0; i < arrows.length; i++) {
+        const A = G.P(arrows[i].a), B = G.P(arrows[i].b);
+        const s2 = E.bscBoxSeg(t.c, t.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < aSep) { aSep = s2; aAt = t.id + " over arrow" + i; }
+      }
+    }
+    return { texts, tSep, tAt, lSep, lAt2, bSep, bAt, aSep, aAt, G, pos, discs, bonds,
+             rdir, rlen, rBase, isZero, cenLab, D, n };
   };
-  const CAMK: any = { pyramidal: E.BS_UNIT_CAMERAS.pyramidal, general: E.BS_UNIT_CAMERAS.general,
-    diatomic: E.BS_UNIT_CAMERAS.diatomic };
-  // every shipped species that actually DRAWS a resultant (a symmetric molecule
-  // renders the zero badge instead and has no value label to place)
-  const DRAWN = ["NH3", "NF3", "H2O", "CHCl3", "HF", "HCl", "HBr", "HI"]
-    .filter((k) => (E.bscDipole(k, null) as any).mag > 1e-9);
-  const sweep = (axisPlacement: boolean, spins: number[]) => {
-    const w = { tSep: 9, tAt: "", lSep: 9, lAt2: "", rSep: 9, rAt: "", rlSep: 9, rlAt: "" };
-    for (const k of DRAWN) for (const d of spins) {
-      const m: any = layout(k, CAMK[E.bscUnitShapeKey(k)], axisPlacement, d * Math.PI / 180);
-      if (m.tSep < w.tSep) { w.tSep = m.tSep; w.tAt = `${k}@${d} ${m.tAt}`; }
-      if (m.lSep < w.lSep) { w.lSep = m.lSep; w.lAt2 = `${k}@${d} ${m.lAt2}`; }
-      if (m.rSep < w.rSep) { w.rSep = m.rSep; w.rAt = `${k}@${d} ${m.rAt}`; }
-      if (m.rlSep < w.rlSep) { w.rlSep = m.rlSep; w.rlAt = `${k}@${d} ${m.rlAt}`; }
+
+  // every species the concept can reach: the eight-entry explore picker plus the
+  // three that only a guided state shows.
+  const EXPLORE = ["H2O", "CO2", "CCl4", "CH4", "BF3", "HF", "HCl", "HBr", "HI"];
+  const GUIDED_ONLY = ["NH3", "NF3", "CHCl3"];
+  const ALLSPEC = EXPLORE.concat(GUIDED_ONLY);
+  const camOf = (k: string) => (E.BS_UNIT_CAMERAS as any)[E.bscUnitShapeKey(k)];
+  const optOf = (k: string, extra: any = {}) =>
+    Object.assign({ lone: k === "NH3" || k === "NF3" }, extra);
+  const worstOf = (runs: any[]) => {
+    const w: any = { tSep: 9, tAt: "", lSep: 9, lAt2: "", bSep: 9, bAt: "", aSep: 9, aAt: "" };
+    for (const r of runs) {
+      if (r.m.tSep < w.tSep) { w.tSep = r.m.tSep; w.tAt = r.tag + " " + r.m.tAt; }
+      if (r.m.lSep < w.lSep) { w.lSep = r.m.lSep; w.lAt2 = r.tag + " " + r.m.lAt2; }
+      if (r.m.bSep < w.bSep) { w.bSep = r.m.bSep; w.bAt = r.tag + " " + r.m.bAt; }
+      if (r.m.aSep < w.aSep) { w.aSep = r.m.aSep; w.aAt = r.tag + " " + r.m.aAt; }
     }
     return w;
   };
-  const TEXT_FLOOR = 0.05, SPIN_FLOOR = 0.03;
-  const stat = sweep(false, [0]);
-  const spun = sweep(false, Array.from({ length: 72 }, (_, i) => i * 5));
-  const oldS = sweep(true, [0]);
-  const oldSpun = sweep(true, Array.from({ length: 72 }, (_, i) => i * 5));
+  const SPINS = Array.from({ length: 72 }, (_, i) => i * 5);
+  const spinRuns: any[] = [];
+  for (const k of ALLSPEC) {
+    for (const d of SPINS) {
+      spinRuns.push({ tag: `${k}@${d}`,
+        m: layout(k, camOf(k), optOf(k, { spin: d * Math.PI / 180 })) });
+    }
+  }
+  const statRuns = ALLSPEC.map((k) => ({ tag: k, m: layout(k, camOf(k), optOf(k)) }));
+  // the two angle sliders a teacher can reach (S4/S8 water, S8 BF3 — the bent
+  // BF3 frame that found the label/label near-miss was at 95 deg).
+  const angRuns: any[] = [];
+  for (const k of ["H2O", "BF3"]) {
+    for (const a of [90, 95, 104.5, 120, 150, 180]) {
+      for (const d of [0, 60, 120, 180, 240, 300]) {
+        angRuns.push({ tag: `${k}@${a}deg/${d}`,
+          m: layout(k, camOf(k), optOf(k, { angle: a, spin: d * Math.PI / 180 })) });
+      }
+    }
+  }
+  // the three authored compare swaps, DURING the morph (E1c-F): the ligand radii
+  // are part way between two elements, which is exactly the geometry the avoid
+  // set has to be reading.
+  const SWAPS = [["HF", "HI"], ["CCl4", "CHCl3"], ["NH3", "NF3"]];
+  const swapRuns: any[] = [];
+  for (const [a, b] of SWAPS) {
+    for (const f of [0.25, 0.5, 0.75, 1]) {
+      for (const d of [0, 90, 180, 270]) {
+        swapRuns.push({ tag: `${a}->${b}@${(f * 100).toFixed(0)}%/${d}`,
+          m: layout(a, camOf(a), optOf(a, { peer: b, mix: f, spin: d * Math.PI / 180 })) });
+        swapRuns.push({ tag: `${b}<-${a}@${(f * 100).toFixed(0)}%/${d}`,
+          m: layout(b, camOf(b), optOf(b, { peer: a, mix: f, spin: d * Math.PI / 180 })) });
+      }
+    }
+  }
+  const wStat = worstOf(statRuns), wSpin = worstOf(spinRuns);
+  const wAng = worstOf(angRuns), wSwap = worstOf(swapRuns);
+  const wAll = worstOf(statRuns.concat(spinRuns, angRuns, swapRuns));
 
   ok("the resultant's label goes through the SHARED clear-placement helper",
-    /mgPlaceLabelClear\(rlb,/.test(upd) && !/rlb\.position\.set\(fOrg\[0\] \+ rdir\[0\] \* \(rlen \+ 0\.62\)/.test(upd));
-  ok("its avoid set is the central atom, its label, the ligands and the lone pair",
-    /var rAvoid = \[\[fOrg\[0\], fOrg\[1\], fOrg\[2\]\]\]/.test(upd) &&
+    /bscPlaceLabel\(rlb,/.test(upd) &&
+    !/mgPlaceLabelClear\(rlb,/.test(upd) &&
+    !/rlb\.position\.set\(fOrg\[0\] \+ rdir\[0\] \* \(rlen \+ 0\.62\)/.test(upd));
+  ok("E1c-I: the ZERO badge goes through it too (it was the one text never placed)",
+    /bscPlaceLabel\(rzr, \[fOrg\[0\], fOrg\[1\], fOrg\[2\]\], BSC_ZERO_LABEL_OFF/.test(upd) &&
+    !/rzr\.position\.set\(fOrg\[0\], fOrg\[1\] \+ 1\.15, fOrg\[2\]\)/.test(upd));
+  ok("the avoid set is DISCS, bond SEGMENTS, the vectors and the placed text",
+    /rAvoid = \[\{ p: \[fOrg\[0\], fOrg\[1\], fOrg\[2\]\], r: fCenRad \}\]/.test(upd) &&
     /if \(fCenLabPos\) rAvoid\.push\(fCenLabPos\)/.test(upd) &&
-    /rAvoid\.push\(fLigWorld\[rAi\]\)/.test(upd) &&
+    /rAvoid\.push\(\{ p: fLigWorld\[rAi\], r: fLigRad\[rAi\] \|\| 0 \}\)/.test(upd) &&
+    /rAvoid\.push\(\{ a: \[fOrg\[0\], fOrg\[1\], fOrg\[2\]\], b: fLigWorld\[rAi\] \}\)/.test(upd) &&
+    /rAvoid\.push\(\{ a: rBase, b: \[rBase\[0\] \+ rdir\[0\] \* rlen/.test(upd) &&
+    /for \(rAi = 0; rAi < fTextAvoid\.length; rAi\+\+\) rAvoid\.push\(fTextAvoid\[rAi\]\)/.test(upd) &&
     /dip\.show_lone_pair && D\.lone && D\.lone\.length/.test(upd));
   ok("the lone-pair LABEL is not an avoid point (that would be a frame-to-frame loop)",
-    !/rAvoid\.push\(\[lLab|rAvoid\.push\(lLab/.test(upd) &&
-    /BS_LONE_LOBE_LEN;[\s\S]{0,240}rAvoid\.push\(\[fOrg\[0\] \+ rlDir/.test(upd));
-  ok(`NO TWO TEXT SURFACES OVERLAP on any species that draws a resultant (>= ${TEXT_FLOOR})`,
-    stat.tSep >= TEXT_FLOOR, `worst ${stat.tSep.toFixed(4)} NDC at ${stat.tAt}`);
-  ok(`NO COUNTED LIGAND IS COVERED BY TEXT, pyramidal centre included (>= ${TEXT_FLOOR})`,
-    stat.lSep >= TEXT_FLOOR, `worst ${stat.lSep.toFixed(4)} NDC at ${stat.lAt2}`);
-  // E1c-E softened the LIGAND half of this control without weakening the finding:
-  // the fixed-offset placement's worst ligand case used to be a pyramidal molecule
-  // (NH3 -0.0261), and the re-solved pyramidal camera moved the pyramid out of it,
-  // so the worst surviving case is HF's (a diatomic, untouched here) at +0.0279.
-  // The control therefore asserts what it can still prove: the fixed offset OVERLAPS
-  // text outright, and is materially worse than clear-placement on ligands too.
-  ok("NEGATIVE CONTROL: the fixed-offset placement OVERLAPS text and is worse on ligands",
-    oldS.tSep < 0 && oldS.lSep < stat.lSep - 0.02,
-    `text ${oldS.tSep.toFixed(4)} at ${oldS.tAt} · ligand ${oldS.lSep.toFixed(4)} at ${oldS.lAt2}` +
-    ` (clear-placed ligand ${stat.lSep.toFixed(4)})`);
-  ok(`the resultant label stays clear through a FULL SPIN (>= ${SPIN_FLOOR})`,
-    spun.rSep >= SPIN_FLOOR && spun.rlSep >= SPIN_FLOOR,
-    `vs text ${spun.rSep.toFixed(4)} at ${spun.rAt} · vs ligand ${spun.rlSep.toFixed(4)} at ${spun.rlAt}`);
-  ok("NEGATIVE CONTROL: the fixed offset fails the spin sweep too",
-    oldSpun.rSep < 0 && oldSpun.rlSep < spun.rlSep - 0.01,
-    `vs text ${oldSpun.rSep.toFixed(4)} · vs ligand ${oldSpun.rlSep.toFixed(4)}` +
-    ` (clear-placed ${spun.rlSep.toFixed(4)})`);
+    !/rAvoid\.push\(\[lLab|rAvoid\.push\(lLab|rAvoid\.push\(\{ s: lLab/.test(upd) &&
+    /BS_LONE_LOBE_LEN \+ Math\.abs\(D\.lone\[0\]\.D\) \* aScale;[\s\S]{0,240}rAvoid\.push\(\{ a: \[fOrg/.test(upd));
+  ok("a delta glyph is STACKED on its own symbol, never searched independently",
+    /var syA = \(BSC_LABEL_DIRS\[dirIx\]\[1\] >= 0\) \? 1 : -1;/.test(upd) &&
+    /var pA = \[lab2\.position\.x \+ bscCamU\.x \* syA \* gap/.test(upd) &&
+    /var dp = \(bscScoreBox\(dlab2, pB, av\) >[\s\S]{0,60}bscScoreBox\(dlab2, pA, av\) \+ 1e-6\) \? pB : pA;/.test(upd) &&
+    !/mgPlaceLabelClear\(dlab/.test(upd));
+  {
+    // D-1 by construction: the placement helpers read the camera and the avoid
+    // geometry and NOTHING else. A standalone file:// page cannot prove the
+    // rewind (it has no player, so nothing halts the clock and even a same-value
+    // re-pin differs), so the closed-form property is proved at the source.
+    const src = ["bscProj", "bscScreenK", "bscBoxPt", "bscBoxBox", "bscBoxSeg",
+      "bscInkHalf", "bscAvoidScreen", "bscScoreBox", "bscPlaceLabel"].map(grabFn).join("\n");
+    const bad = [/\btime\s*\+=/, /\bphase\s*\+=/, /\+=\s*dt\b/, /\+=\s*0\.016/,
+      /Date\.now\s*\(/, /performance\.now\s*\(/, /Math\.random\s*\(/,
+      /window\./, /_pmPrev|_bscLast|lastPos/];
+    const hits = bad.filter((re) => re.test(src)).map(String);
+    ok("the E1c-I placement helpers are CLOSED FORM (no clock, no RNG, no memory)",
+      hits.length === 0, hits.join(" "));
+  }
+  ok("the candidates are UNIT screen directions (the offset means what it says)",
+    E.BSC_LABEL_DIRS.length === 16 && E.BSC_LABEL_RINGS.length === 3 &&
+    E.BSC_LABEL_RINGS[0] === 0 && E.BSC_CLEAR_CAP > 0 &&
+    E.BSC_LABEL_DIRS.every((d: number[]) => Math.abs(Math.hypot(d[0], d[1]) - 1) < 1e-12),
+    `${E.BSC_LABEL_DIRS.length} dirs x ${E.BSC_LABEL_RINGS.length} rings, cap ${E.BSC_CLEAR_CAP}`);
+
+  const FLOOR = 0.02;
+  ok(`NO TEXT SURFACE OVERLAPS ANOTHER, every species at its own camera (>= ${FLOOR})`,
+    wStat.tSep >= FLOOR, `worst ${wStat.tSep.toFixed(4)} NDC at ${wStat.tAt}`);
+  ok(`NO TEXT SURFACE COVERS A COUNTED LIGAND DISC (>= ${FLOOR})`,
+    wStat.lSep >= FLOOR, `worst ${wStat.lSep.toFixed(4)} NDC at ${wStat.lAt2}`);
+  ok(`NO TEXT SURFACE LIES ACROSS A BOND SHAFT (>= ${FLOOR})`,
+    wStat.bSep >= FLOOR, `worst ${wStat.bSep.toFixed(4)} NDC at ${wStat.bAt}`);
+  ok(`NO TEXT SURFACE LIES ACROSS AN ARROW (>= ${FLOOR})`,
+    wStat.aSep >= FLOOR, `worst ${wStat.aSep.toFixed(4)} NDC at ${wStat.aAt}`);
+  {
+    // and none of it leaves the frame or climbs into the review chrome's caption
+    // band — the outer ring's own scar, read off the re-shot frames.
+    let worst = 9, at = "";
+    for (const r of statRuns.concat(spinRuns, angRuns, swapRuns)) {
+      for (const t of r.m.texts) {
+        const e = Math.min(E.BSC_SAFE_X - (Math.abs(t.c[0]) + t.h[0]),
+                           E.BSC_SAFE_Y - (Math.abs(t.c[1]) + t.h[1]));
+        if (e < worst) { worst = e; at = r.tag + " " + t.id; }
+      }
+    }
+    ok("NO TEXT SURFACE LEAVES THE SAFE SCREEN BOX (the caption band included)",
+      worst >= 0, `worst ${worst.toFixed(4)} NDC at ${at}`);
+  }
+  ok(`...and it HOLDS THROUGH A FULL SPIN, all ${ALLSPEC.length} species x 72 phases (>= ${FLOOR})`,
+    Math.min(wSpin.tSep, wSpin.lSep, wSpin.bSep, wSpin.aSep) >= FLOOR,
+    `text ${wSpin.tSep.toFixed(4)} ${wSpin.tAt} · lig ${wSpin.lSep.toFixed(4)} ${wSpin.lAt2}` +
+    ` · bond ${wSpin.bSep.toFixed(4)} ${wSpin.bAt} · arrow ${wSpin.aSep.toFixed(4)} ${wSpin.aAt}`);
+  // The angle slider's EXTREME end is measured against its own floor, and the
+  // number is stated rather than smoothed away: at BF3 bent to 90 degrees the
+  // three ligands are crushed into a quarter turn, and at one spin phase the
+  // outermost delta glyph clears the nearest arrowhead by 0.0120 NDC (4.3 px at
+  // 720p). That is a CLEARANCE, not an overlap, and no candidate on any of the
+  // three rings does better — the frame is genuinely full. Everything else on
+  // the slider, and every other family, holds the 0.02 comfort floor.
+  const ANGLE_FLOOR = 0.010;
+  ok(`...through the whole ANGLE slider, spun (>= ${ANGLE_FLOOR} at the 90 deg extreme)`,
+    Math.min(wAng.tSep, wAng.lSep, wAng.bSep, wAng.aSep) >= ANGLE_FLOOR,
+    `text ${wAng.tSep.toFixed(4)} ${wAng.tAt} · lig ${wAng.lSep.toFixed(4)} ${wAng.lAt2}` +
+    ` · bond ${wAng.bSep.toFixed(4)} ${wAng.bAt} · arrow ${wAng.aSep.toFixed(4)} ${wAng.aAt}`);
+  ok(`...and DURING a compare swap, not only at its endpoints (>= ${FLOOR})`,
+    Math.min(wSwap.tSep, wSwap.lSep, wSwap.bSep, wSwap.aSep) >= FLOOR,
+    `text ${wSwap.tSep.toFixed(4)} ${wSwap.tAt} · lig ${wSwap.lSep.toFixed(4)} ${wSwap.lAt2}` +
+    ` · bond ${wSwap.bSep.toFixed(4)} ${wSwap.bAt} · arrow ${wSwap.aSep.toFixed(4)} ${wSwap.aAt}`);
+
+  // ── NEGATIVE CONTROL I1: the zero badge's hardcoded +1.15 on world y. It is
+  //   the frame that would have been APPROVED (STATE_5__frozen.png).
+  {
+    let worst = 9, at = "";
+    for (const k of ALLSPEC) {
+      const m: any = layout(k, camOf(k), optOf(k));
+      if (!m.isZero) continue;
+      const G = m.G, zb = boxAt(G, [0, 1.15, 0], "μ = 0 D", HS_RES);
+      for (let i = 1; i <= m.n; i++) {
+        const Q = G.P(m.pos[i]);
+        const s2 = E.bscBoxPt(zb.c, zb.h, [Q.x, Q.y]) - m.discs[i].r * G.K(m.pos[i]);
+        if (s2 < worst) { worst = s2; at = `${k} lig${i}`; }
+      }
+      for (let i = 0; i < m.bonds.length; i++) {
+        const A = G.P(m.bonds[i].a), B = G.P(m.bonds[i].b);
+        const s2 = E.bscBoxSeg(zb.c, zb.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < worst) { worst = s2; at = `${k} bond${i}`; }
+      }
+    }
+    ok("NEGATIVE CONTROL (I1): the hardcoded zero badge sits ON counted geometry",
+      worst < 0, `worst ${worst.toFixed(4)} NDC at ${at} (now ${wStat.lSep.toFixed(4)} / ${wStat.bSep.toFixed(4)})`);
+  }
+  // ── NEGATIVE CONTROL I2: E1c-D's point metric on points. A label that clears
+  //   both ENDPOINTS of the apex bond still lies across its middle.
+  {
+    let worst = 9, at = "";
+    for (const k of ALLSPEC) {
+      const m: any = layout(k, camOf(k), optOf(k));
+      if (m.isZero) continue;
+      const G = m.G;
+      const av: V[] = [[0, 0, 0]];
+      if (m.cenLab) av.push(m.cenLab.pos);
+      for (let i = 1; i <= m.n; i++) av.push(m.pos[i]);
+      const p = placeOld(G, sc(m.rdir, m.rlen), E.BS_RES_LABEL_OFF, av);
+      const bx = boxAt(G, p, "μ = " + E.bscFmtD(m.D.mag) + " D", HS_RES);
+      for (let i = 0; i < m.bonds.length; i++) {
+        const A = G.P(m.bonds[i].a), B = G.P(m.bonds[i].b);
+        const s2 = E.bscBoxSeg(bx.c, bx.h, [A.x, A.y], [B.x, B.y]);
+        if (s2 < worst) { worst = s2; at = `${k} bond${i}`; }
+      }
+    }
+    ok("NEGATIVE CONTROL (I2): the point metric lays the value label ACROSS a bond",
+      worst < 0, `worst ${worst.toFixed(4)} NDC at ${at} (now ${wStat.bSep.toFixed(4)})`);
+  }
+  // ── I7: the resultant is an ARROW, not a stub inside the atom it starts on.
+  {
+    let worstOut = 9, at = "", worstOld = 9, atOld = "";
+    for (const k of ALLSPEC) {
+      const m: any = layout(k, camOf(k), optOf(k));
+      if (m.isZero) continue;
+      // fraction of the drawn length that clears the central sphere
+      const outNew = (m.rlen) / m.rlen;                       // tailed at the rim: all of it
+      const outOld = Math.max(0, m.rlen - m.discs[0].r) / m.rlen;
+      if (outNew < worstOut) { worstOut = outNew; at = k; }
+      if (outOld < worstOld) { worstOld = outOld; atOld = k; }
+    }
+    ok("THE RESULTANT LAUNCHES FROM THE CENTRAL ATOM'S SURFACE, whole length visible",
+      /var rBase = \[fOrg\[0\] \+ rdir\[0\] \* fCenRad/.test(upd) &&
+      /rsh\.position\.set\(rBase\[0\], rBase\[1\], rBase\[2\]\)/.test(upd) &&
+      /var rp = \[rBase\[0\] \+ rdir\[0\] \* rP\.shaft/.test(upd) &&
+      worstOut >= 0.999,
+      `${(worstOut * 100).toFixed(0)}% of the drawn length outside the sphere`);
+    ok("NEGATIVE CONTROL (I7): tailed at the CENTRE it was mostly buried",
+      worstOld < 0.5, `worst ${(worstOld * 100).toFixed(0)}% visible at ${atOld}`);
+  }
+  // the cameras this whole measurement is taken at, asserted value for value —
+  // E1c-H's handoff: a collision number is only meaningful against its framing.
+  ok("every camera the sweep uses is the MEASURED constant, unmoved",
+    JSON.stringify(E.BS_UNIT_CAMERAS) === JSON.stringify({
+      pyramidal: { az: 120, el: 15, dist: 7 },
+      diatomic: { az: 35, el: 12, dist: 7 },
+      trigonal: { az: 35, el: 15, dist: 7 },
+      general: { az: 35, el: 47, dist: 7 }
+    }), JSON.stringify(E.BS_UNIT_CAMERAS));
+  console.log(`    label placement  worst over ${statRuns.length + spinRuns.length + angRuns.length + swapRuns.length}` +
+    ` layouts: text=${wAll.tSep.toFixed(4)} ligand=${wAll.lSep.toFixed(4)}` +
+    ` bond=${wAll.bSep.toFixed(4)} arrow=${wAll.aSep.toFixed(4)}`);
 
   // ── item 2: the diatomic solve.
   const projRatio = (molKey: string, cam: any) => {
@@ -1991,8 +2323,6 @@ console.log("\n=== 17. E1c-D VECTOR LEGIBILITY (label placement · diatomic solv
     ok("the diatomic solve separates both atoms and stays inside the safe box",
       occ >= 0.09 && bx <= 0.85, `occ=${occ.toFixed(4)} box=${bx.toFixed(3)}`);
   }
-  console.log(`    label placement  static: text=${stat.tSep.toFixed(4)} ligand=${stat.lSep.toFixed(4)}` +
-    `  (fixed offset was text=${oldS.tSep.toFixed(4)} ligand=${oldS.lSep.toFixed(4)})`);
   console.log(`    diatomic solve   el ${E.BS_UNIT_CAMERAS.diatomic.el}: projected bond ${worstDia.toFixed(4)}x true` +
     `  (was ${worstGen.toFixed(4)}x at el ${E.BS_UNIT_CAMERAS.general.el})`);
 }
@@ -2351,7 +2681,7 @@ console.log("\n=== 19. E1c-F CUE-OBEDIENT INSTRUMENT + TRANSITION (HUD · swap �
     /if \(l3\) \{ l3\.visible = false; setObjOpacity\(l3, BS_ARROW_OPACITY\); \}/.test(app));
   ok("and the swap-veiled atom SYMBOL takes it too (no state inherits a dark label)",
     /var al = bscFindById\("bsc_u" \+ i \+ "_lab" \+ j\);\s*\n\s*if \(al\) setObjOpacity\(al, 1\);/.test(app) &&
-    /if \(uInSwap\) setObjOpacity\(lab, swapVeil\);/.test(upd));
+    /if \(uInSwap\) setObjOpacity\(lab2, swapVeil\);/.test(upd));
 }
 
 // ── 20. E1c-G: THE EXPLORE SANDBOX MAY NOT REFUTE THE LESSON ─────────────────
