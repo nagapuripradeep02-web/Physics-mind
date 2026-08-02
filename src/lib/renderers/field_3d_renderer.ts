@@ -51499,6 +51499,29 @@ export const FIELD_3D_RENDERER_CODE = `
     // a SET_TIME_FREEZE rewind reproduces it exactly (the same argument as the
     // FIXED scar hysteretic_state_cannot_be_latched_under_a_time_pin).
     var BS_LINK_FRAMES = 2 * BS_LINK_SAMPLES - 1;
+    // E2c: ...AND THE LOOKBACK CANNOT BE THE WHOLE MEMORY WHEN THE BEAT IS SLOWER
+    // THAN IT. The fold above seeds held = false at the oldest sample of a 640 ms
+    // window, so a pair survives only while some sample still inside that window
+    // meets form_pm: break_pm is UNREACHABLE whenever the scripted traversal from
+    // one threshold to the other is slower than the window. Measured on
+    // hydrogen_bonding S3 (5.75 -> 8.0 units over 11 500 smoothstep ms) the
+    // traversal takes 3675 ms = 5.7x the lookback, and the link died at
+    // H...O ~ 210-223 pm instead of the authored 260 — i.e. the FIXED scar
+    // hysteretic_state_cannot_be_latched_under_a_time_pin regressing on its own
+    // contract, "forming at the inner threshold and SURVIVING TO THE OUTER ONE".
+    // The lookback itself is NOT widened: it is calibrated against the 1.5-3 s
+    // jiggle periods, and the E2b averaged readout is measured on it. Instead a
+    // state that authors a scripted approach SLOWER than the lookback gets a
+    // COARSE history in front of the fine window, spanning back to state entry,
+    // whose only job is to answer "was this pair ever formed?" — every sample is
+    // still a closed-form position, so the seed it produces is a pure function of
+    // t and a SET_TIME_FREEZE rewind reproduces the link set bit for bit. Coarse
+    // is sound here and only here: the criterion is being replayed against a
+    // smooth monotonic ramp, where a threshold crossing cannot hide between two
+    // samples. States authoring no such ramp build no history and are
+    // byte-identical.
+    var BS_LINK_HIST_DT_MS = 640;   // coarse spacing: one whole fine window
+    var BS_LINK_HIST_MAX = 32;      // hard cap (32 x 640 ms = 20.5 s of state)
     // Defaults for the links block. delta_min is on the DERIVED per-atom charge
     // (bscCharges), never on an element whitelist (D-2): in H2O the donor H
     // carries +0.319 and the acceptor O -0.638, in H2S +0.035 and -0.071, so
@@ -51736,7 +51759,16 @@ export const FIELD_3D_RENDERER_CODE = `
     // full spin (the spin sweeps it) and is set to the fleet house angle.
     var BS_CAMERAS = {
         dipole_sum: { az: 35, el: 47, dist: 7.0 },
-        explore:    { az: 35, el: 47, dist: 7.0 },
+        // E2e defect 1: fit:true, for exactly the reason network has it. A SANDBOX
+        // may author whatever scene the guided arc taught — hydrogen_bonding S8 is
+        // S5's thirty-molecule network with sliders on it — and at dist 7 the
+        // visible half-height is 7*tan30 = 4.04 units against a cluster radius of
+        // 12.84: the network ran off all four edges. No authored unit count helps
+        // (the sites are radius-sorted; even the ten innermost span 9.4). dist 7.0
+        // stays the FLOOR, so every single-unit explore state — extent ~2.4, fitted
+        // 4.6 — is byte-identical, and a single-unit sandbox is framed by
+        // BS_UNIT_CAMERAS through bscSolvedShapeKey anyway.
+        explore:    { az: 35, el: 47, dist: 7.0, fit: true },
         assemble:   { az: 35, el: 47, dist: 7.0 },
         // E2 re-solved. A linear hydrogen bond is O-H 2.0 units + H...O 3.75
         // units, so two linked waters span ~7.8 units and a 27-unit box spans
@@ -52300,10 +52332,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // single fold serves the present readout and each earlier window the
     // time-averaged readout needs. Both are optional and default to the whole
     // array, so every pre-E2b call is byte-identical.
-    function bscLinkLatch(qD, qA, samples, L, from, n) {
+    // E2c: seed is what the fold STARTS from — the result of folding an older
+    // stretch of history that this window does not contain. Optional and false by
+    // default, so every pre-E2c call is byte-identical.
+    function bscLinkLatch(qD, qA, samples, L, from, n, seed) {
         var i0 = (from != null) ? from : 0;
         var i1 = (n != null) ? Math.min(samples.length, i0 + n) : samples.length;
-        var held = false, i;
+        var held = !!seed, i;
         for (i = i0; i < i1; i++) {
             var s = samples[i];
             if (!s) continue;
@@ -52622,6 +52657,34 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             var du = bscMag(un.at || [0, 0, 0]) + BS_BOND_LEN + rMax;
             if (du > e) e = du;
+        }
+        return e;
+    }
+    // E2d: the half-extent of the scene AS IT OPENS, at state-local t = 0. It is
+    // not the same number as bscSiteExtent: a state that pulls its leading pair on
+    // a script draws that pair at approach_from, and baseAt puts it on
+    // separation_axis at +-sep/2 — a position units[].at never carries, so the
+    // settled extent can be less than half the opening one (hydrogen_bonding S2
+    // opens at 12.0 units and settles at 5.75). Config only, no clock, so it is
+    // the same number on the first frame and under a freeze pin.
+    function bscOpeningExtent(bs) {
+        var e = bscSiteExtent(bs, null);
+        if (!bs || !bs.separation_axis) return e;
+        var sep0 = (bs.approach_from != null) ? bs.approach_from
+            : ((bs.separation != null) ? bs.separation : 3.0);
+        var uns = bs.units || [], n = Math.min(2, Math.max(1, uns.length)), i, k;
+        for (i = 0; i < n; i++) {
+            var spk = (uns[i] && uns[i].species) || bs.species || null;
+            var msp = spk ? MG_MOLECULES[spk] : null;
+            if (!msp) continue;
+            var rMax = (MG_ELEMENTS[msp.central] || MG_ELEMENTS.C).radius;
+            var ligs = bscLigands(msp);
+            for (k = 0; k < ligs.length; k++) {
+                var rl = (MG_ELEMENTS[ligs[k] || msp.ligand] || MG_ELEMENTS.C).radius;
+                if (rl > rMax) rMax = rl;
+            }
+            var d0 = Math.abs(sep0) * 0.5 + BS_BOND_LEN + rMax;
+            if (d0 > e) e = d0;
         }
         return e;
     }
@@ -53361,6 +53424,32 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (ext > 0) dd = Math.max(dd, ext * BS_FIT_MARGIN);
             }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
+            // ── E2d: IT MOVES, EXCEPT WHERE MOVING WOULD DRAW THE SCENE OFF FRAME.
+            //   animateCameraTo is a fixed-rate lerp, deliberately (E1c-H: a state
+            //   change reads as one caused move, Rule 32d). But the SCENE is at its
+            //   t = 0 pose on frame 1, so when consecutive states differ sharply in
+            //   scale the new, much wider scene is drawn under the old, much closer
+            //   camera for the whole glide: hydrogen_bonding S2 opened with its
+            //   incoming water oversized and its lower hydrogen clipped off the
+            //   bottom edge, resolving only by ~3000 ms. It is not authorable
+            //   around — MEASURED against the shipped projection, every value of
+            //   approach_from clips under S1's camera, down to 6.6 units, which is
+            //   already below the distance at which the state can teach its beat.
+            //   So the glide is kept for every move it survives and the camera CUTS
+            //   only when it does not: the trigger is a measurement, not a
+            //   threshold — the OPENING extent (t = 0, so the scripted pull's own
+            //   start counts) against the same conservative required-distance proxy
+            //   the auto-fit uses. A camera already far enough to hold the new scene
+            //   glides exactly as before, which is every state pair shipped so far
+            //   except the two that overflow.
+            var ext0 = bscOpeningExtent(bs);
+            if (ext0 > 0 && spherical.radius < ext0 * BS_FIT_MARGIN) {
+                spherical.radius = targetSpherical.radius;
+                spherical.phi = targetSpherical.phi;
+                spherical.theta = targetSpherical.theta;
+                animating = false;
+                updateCameraFromSpherical();
+            }
         }
         // E1c-H: publish what the explore re-frame needs, and NOTHING a guided
         // state can act on. PM_bscCamKey records the shape key the camera above was
@@ -53617,7 +53706,22 @@ export const FIELD_3D_RENDERER_CODE = `
             ? window.PM_bscSpin : ((bs.spin_rate != null) ? bs.spin_rate : 0);
         // The sandbox must MOVE on its own (the headless harness never drags), so
         // an explore state with no authored spin still turns — Rule 37 free-run.
-        if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
+        // E2e defect 2: ...UNLESS the state already has its own continuous motion,
+        // which is what Rule 37 actually asks for. The idle turn is applied to the
+        // INTRA-UNIT atom offsets while the unit origins stay fixed, so in a
+        // multi-unit scene every molecule tumbles about its own centre inside a
+        // stationary lattice: the O-H bond vectors stop pointing at their
+        // neighbours and the link geometry collapses. MEASURED on the same thirty
+        // units at the same 298 K and the same jiggle: 3.42 links per molecule
+        // without the forced turn, 1.28 with it — a 2.7x disagreement between two
+        // states of one concept on that concept's headline instrument, with the
+        // teacher free to compare them by clicking. thermal.jiggle_scale > 0 is
+        // already continuous motion (and is what deriveStateMeta reads to declare
+        // this state MOVING), so the fallback stands down and the network is the
+        // one S5 taught. A sandbox with no jiggle and no authored spin is
+        // untouched, which is every explore state shipped before this change.
+        if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged &&
+            !(th.jiggle_scale > 0)) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
         // E1c-J: the axis apply published for the camera this state is framed by.
@@ -54542,6 +54646,50 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 frames.push(fpts);
             }
+            // E2c: the COARSE history, strictly OLDER than every fine sample, built
+            // only when the state authors an approach ramp slower than the fine
+            // window (see BS_LINK_HIST_DT_MS). Same positions, same closed forms,
+            // evenly spaced from state entry to just before the fine window so the
+            // seed it folds is valid for every readout window, not just the newest.
+            var hFrames = [], hI;
+            var apDur = (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400;
+            var histOn = (bs.approach_at_ms != null && bs.approach_from != null &&
+                apDur > BS_LINK_LOOKBACK_MS);
+            if (histOn) {
+                var hSpan = ms - (NF - 1) * dtS;         // ends AT the oldest fine sample
+                if (hSpan > 0) {
+                    var hN = Math.min(BS_LINK_HIST_MAX,
+                        Math.max(1, Math.ceil(hSpan / BS_LINK_HIST_DT_MS)));
+                    var hDt = hSpan / hN;
+                    for (hI = 0; hI < hN; hI++) {
+                        var hms = hI * hDt;
+                        var hsp = spinAng(hms), hpts = [];
+                        for (u = 0; u < nUnits; u++) {
+                            var hog = orgAt(u, hms), hrow = [];
+                            for (i = 0; i < offs[u].length; i++) {
+                                var hov = (hsp !== 0) ? bscSpinRot(offs[u][i], spinAx, hsp) : offs[u][i];
+                                hrow.push([hog[0] + hov[0], hog[1] + hov[1], hog[2] + hov[2]]);
+                            }
+                            hpts.push(hrow);
+                        }
+                        hFrames.push(hpts);
+                    }
+                }
+            }
+            var nH = hFrames.length;
+            // the D-H...A sample a pair reads off ONE position set, shared by the
+            // fine window and the coarse history so the two can never drift.
+            var pairSamp = function (F, a0, b0, hS, pS, aS) {
+                if (!F) return null;
+                var Hp = F[a0][hS], Dp = F[a0][pS], Ap = F[b0][aS];
+                if (!Hp || !Dp || !Ap) return null;
+                var vx = Ap[0] - Hp[0], vy = Ap[1] - Hp[1], vz = Ap[2] - Hp[2];
+                var dU = Math.sqrt(vx * vx + vy * vy + vz * vz);
+                var wx = Dp[0] - Hp[0], wy = Dp[1] - Hp[1], wz = Dp[2] - Hp[2];
+                var wL = Math.sqrt(wx * wx + wy * wy + wz * wz) || 1;
+                var ca = (vx * wx + vy * wy + vz * wz) / ((dU || 1) * wL);
+                return { d: dU * p2u, a: Math.acos(bscClamp(ca, -1, 1)) * 180 / Math.PI };
+            };
             var last = frames[NF - 1];
             for (uA = 0; last && uA < nUnits && nLinks < BS_MAX_LINKS; uA++) {
                 for (uB = 0; uB < nUnits && nLinks < BS_MAX_LINKS; uB++) {
@@ -54555,23 +54703,24 @@ export const FIELD_3D_RENDERER_CODE = `
                             var hS = dn[di].slot, pS = dn[di].partner, aS = ac[aj].slot;
                             if (!last[uA][hS] || !last[uA][pS] || !last[uB][aS]) continue;
                             var samp = [];
-                            for (sI = 0; sI < NF; sI++) {
-                                var F = frames[sI];
-                                if (!F) { samp.push(null); continue; }
-                                var Hp = F[uA][hS], Dp = F[uA][pS], Ap = F[uB][aS];
-                                var vx = Ap[0] - Hp[0], vy = Ap[1] - Hp[1], vz = Ap[2] - Hp[2];
-                                var dU = Math.sqrt(vx * vx + vy * vy + vz * vz);
-                                var wx = Dp[0] - Hp[0], wy = Dp[1] - Hp[1], wz = Dp[2] - Hp[2];
-                                var wL = Math.sqrt(wx * wx + wy * wy + wz * wz) || 1;
-                                var ca = (vx * wx + vy * wy + vz * wz) / ((dU || 1) * wL);
-                                samp.push({ d: dU * p2u, a: Math.acos(bscClamp(ca, -1, 1)) * 180 / Math.PI });
+                            for (sI = 0; sI < NF; sI++) samp.push(pairSamp(frames[sI], uA, uB, hS, pS, aS));
+                            // E2c: fold the coarse history ONCE per pair. It ends
+                            // before every fine sample, so the same seed is correct
+                            // for the newest window and for each earlier one. With
+                            // no history nH is 0 and pre is false, which is the
+                            // pre-E2c fold exactly.
+                            var pre = false;
+                            if (nH > 0) {
+                                var hsamp = [];
+                                for (hI = 0; hI < nH; hI++) hsamp.push(pairSamp(hFrames[hI], uA, uB, hS, pS, aS));
+                                pre = bscLinkLatch(dn[di].q, ac[aj].q, hsamp, linkCfg, 0, nH);
                             }
                             // the SAME fold, once per readout window. The newest
                             // window is the one the dashes are drawn from.
                             for (sI = 0; sI < S; sI++) {
-                                if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg, sI, S)) linkWin[sI]++;
+                                if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg, sI, S, pre)) linkWin[sI]++;
                             }
-                            if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg, S - 1, S)) {
+                            if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg, S - 1, S, pre)) {
                                 linkGeom.push({ h: last[uA][hS], a: last[uB][aS] });
                                 nLinks++;
                             }
@@ -54708,6 +54857,21 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lsel && bscSelCur(lsel) !== ligWant) bscSelValue(lsel, ligWant);
             if (ligWant) window.PM_bscLig = molKey;
         }
+        // E2f, the THIRD picker of the same trio, and the one the E1c-A sweep
+        // missed: molKey is resolved from molecule / ligand / SPECIES, and the
+        // compare swap rewrites it above, but only the first two rows were written
+        // back — so hydrogen_bonding S4 swapped water for sulfide on screen (yellow
+        // S, delta- 0.07, "no link forms") while the Species picker still read H2O.
+        // That is the FIXED scar scripted_change_desyncs_the_dom_control_that_
+        // shares_it recurring on its third control id. Same shape as the two rows
+        // above: a DOM-only write (no dispatched input event, so the isTrusted
+        // drag-seize listeners are untouched), skipped once a trusted drag owns the
+        // picker, and skipped when the live species is not an option of this row.
+        if (bscHasControl(ctrls, "species") && !window.PM_bscSpeciesDragged) {
+            var spl = document.getElementById("bsc_species_select");
+            if (spl && bscOptionOf(spl, molKey) && spl.value !== molKey) spl.value = molKey;
+            if (spl && bscOptionOf(spl, molKey)) window.PM_bscSpecies = molKey;
+        }
         if (bscHasControl(ctrls, "angle") && !window.PM_bscAngleDragged) {
             var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
             if (asl) asl.value = String(angleNow);
@@ -54731,6 +54895,16 @@ export const FIELD_3D_RENDERER_CODE = `
             var csl = document.getElementById("bsc_count_slider"), cvl = document.getElementById("bsc_count_val");
             if (csl) csl.value = String(nUnits);
             if (cvl) cvl.textContent = String(nUnits);
+        }
+        // E2f sweep, the one OTHER row a value the teacher did not set can reach:
+        // an explore state with no authored spin_rate is forced to the Rule-37
+        // idle turn below, and every other state resolves spin_rate at entry. The
+        // row therefore tracks the EFFECTIVE turn rate, so the sandbox slider can
+        // never read 0.00 under a scene that is visibly turning.
+        if (bscHasControl(ctrls, "spin") && !window.PM_bscSpinDragged) {
+            var wsl = document.getElementById("bsc_spin_slider"), wvl = document.getElementById("bsc_spin_val");
+            if (wsl) wsl.value = String(spinRate);
+            if (wvl) wvl.textContent = Number(spinRate).toFixed(2);
         }
         if (bscHasControl(ctrls, "ion_pair") && !window.PM_bscIonPairDragged) {
             var ipl = document.getElementById("bsc_ion_pair_select");
