@@ -49225,12 +49225,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //   hang it on, is invisible to check:bonding-scene (which reads the renderer,
     //   not a concept), and leaves the solve deriving a camera for a pose the JSON
     //   has silently rotated. A shape-keyed defect belongs in the shape key.
-    //   Cost of the move: under a FULL SPIN the pyramid-s occlusion runs -0.0624
-    //   (a ligand passes behind the centre once per 120 deg) where el 62 held
-    //   +0.0934. No shipped state spins a pyramid — S7 authors no spin_rate and
-    //   NH3/NF3 are not in any explore_species list — and a spin does not restore
-    //   an ON-AXIS length at el 62 anyway, so the trade is measured, deliberate,
-    //   and asserted by check:bonding-scene rather than left to be rediscovered.
+    //   Cost of the move, AS IT WAS PRICED (E1c-E) AND WHY THAT PRICE WAS WRONG:
+    //   under a full spin about world +y the pyramid-s occlusion ran negative (a
+    //   ligand passes behind the centre once per 120 deg) where el 62 held clear,
+    //   and the move was taken on the premise that "no shipped state spins a
+    //   pyramid". The premise was an AUTHORING fact stated in a comment, and one
+    //   review round later the JSON authored spin_rate on exactly that state. A
+    //   comment cannot fail. E1c-J removed the premise instead of restating it:
+    //   the spin axis is now the state-s VIEW axis, about which occlusion is
+    //   invariant by construction (see bscSpinAxis), so this solve no longer
+    //   trades anything against a spin and no JSON edit can reach it.
     //   GENERAL-S AZIMUTH DOES NOT MOVE: MG_BEND_AZ is asserted equal to
     //   BS_UNIT_CAMERAS.general.az by check:bonding-scene so the authored bend
     //   cannot silently go edge-on. That tie-down is on the GENERAL key; the
@@ -49378,9 +49382,74 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscCamKey = k;
         var cam = BS_UNIT_CAMERAS[k];
         if (!cam) return;
+        // E1c-J: the spin axis rides WITH the camera it is the view axis of, so a
+        // pick that re-frames also re-anchors the roll. Same purity as the camera
+        // itself: same species, same axis, however the teacher reached it.
+        window.PM_bscSpinAx = bscSpinAxis(cam);
         var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
         var dd = cam.dist || 7;
         animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
+    }
+
+    // ── E1c-J: THE DEFAULT SPIN AXIS IS THE STATE-S VIEW AXIS, NEVER WORLD +y.
+    //   E1c-E moved the pyramid to az 120 el 15 and PRICED the move in a comment:
+    //   under a full spin about +y the pyramid-s occlusion runs negative, but "no
+    //   shipped state spins a pyramid". One round later the JSON authored
+    //   spin_rate on that very state, and the premise was false — silently,
+    //   because check:bonding-scene reads the RENDERER, not the concept, so no
+    //   gate could ever have caught it. A COMMENT CANNOT FAIL. The fix is not a
+    //   better comment: it is to make the premise MOOT, so that no authoring
+    //   change can reach it.
+    //     THE GEOMETRY. Rotate the molecule about the axis that points from the
+    //   camera at the origin. Every atom-s depth along that axis is EXACTLY
+    //   preserved (a rotation about an axis fixes the component along it), so the
+    //   perspective scale H/(2 z tan) of every atom is unchanged and its
+    //   camera-plane position rotates rigidly. The projected picture is therefore
+    //   a RIGID ROLL in pixels: every disc keeps its radius, every centre-to-
+    //   centre distance is unchanged, every drawn vector keeps its length, and
+    //   the drawn angle between any two bonds is unchanged. A spin about the view
+    //   axis CANNOT rotate a solved camera out of its countable view — not as a
+    //   measured tuning, as an identity. Measured over 720 phases of a full turn:
+    //   every disc gap equal to its home-pose value to 1e-15.
+    //     WHAT IT COSTS, MEASURED AND HANDED BACK RATHER THAN HIDDEN. A rigid
+    //   roll shows no NEW side: over a full turn the ligand depth ordering never
+    //   changes (1 ordering, depth travel 3.6e-15 world units) where a +y spin
+    //   visits 6 orderings over 2.6 units of depth. So a state whose narration
+    //   promises "from every side" is not served by the roll.
+    //     AND NO AXIS SERVES IT EITHER, which is why this is not a trade. Swept
+    //   over 1500 axes on the sphere x 360 phases at the general solve, CCl4 has
+    //   NO axis that both changes the depth ordering and keeps its four chlorine
+    //   discs disjoint; the best-revealing axis on the whole sphere IS +y, at
+    //   -0.0340 NDC (-12.2 px at 720p), and widening the search over el 0..70 at
+    //   the tied-down azimuth only reaches -0.0347. The reason is size, not
+    //   framing: two chlorine discs span 1.04 world units against a 2.0 bond, so
+    //   any rotation that moves a chlorine in depth eventually lines two of them
+    //   up. NH3 is the same story and worse — its best safe revealing axis draws
+    //   the resultant at 0.158x its true length, which is the E1c-E defect back
+    //   again on the state whose whole argument is that length.
+    //   Hence: ONE axis, no authored override, nothing for a JSON edit to reach.
+    function bscSpinAxis(cam) {
+        if (!cam) return [0, 1, 0];
+        if (cam.length === 3) {
+            var L = Math.sqrt(cam[0] * cam[0] + cam[1] * cam[1] + cam[2] * cam[2]);
+            if (!(L > 1e-9)) return [0, 1, 0];
+            return [-cam[0] / L, -cam[1] / L, -cam[2] / L];
+        }
+        var a = (cam.az || 0) * Math.PI / 180, e = (cam.el || 0) * Math.PI / 180;
+        // unit by construction, and INDEPENDENT of dist — so the E3a auto-fit
+        // (which only moves the camera along this same line) never moves it.
+        return [-Math.cos(e) * Math.cos(a), -Math.sin(e), -Math.cos(e) * Math.sin(a)];
+    }
+    // Rodrigues about a unit axis. Closed form, no state, no clock: the whole
+    // spin layer stays a pure function of state-local ms (D-1), so a
+    // SET_TIME_FREEZE rewind photographs the same pixels.
+    function bscSpinRot(v, ax, a) {
+        if (!a || !ax) return v;
+        var c = Math.cos(a), s = Math.sin(a);
+        var kd = (ax[0] * v[0] + ax[1] * v[1] + ax[2] * v[2]) * (1 - c);
+        return [v[0] * c + (ax[1] * v[2] - ax[2] * v[1]) * s + ax[0] * kd,
+                v[1] * c + (ax[2] * v[0] - ax[0] * v[2]) * s + ax[1] * kd,
+                v[2] * c + (ax[0] * v[1] - ax[1] * v[0]) * s + ax[2] * kd];
     }
 
     // ── pure helpers (all closed-form; nothing below reads live scene state) ──
@@ -50592,6 +50661,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // explore sandbox that left its camera to the solve — a guided state, an
         // authored bs.camera and an authored camera_position each publish null, so
         // the picker path cannot move a camera those three own.
+        // E1c-J: the spin axis is the view axis of the camera THIS state is
+        // actually framed by — the solved one, an authored bs.camera, or an
+        // authored camera_position — so the roll can never be about an axis the
+        // scene is not being looked down. Published here (the event half, E1c-G)
+        // because camera_position lives on the state, not on the scene block.
+        window.PM_bscSpinAx = bscSpinAxis(
+            (!bs.camera && stateDef.camera_position) ? stateDef.camera_position : cam);
         window.PM_bscCamKey = (bs.camera || stateDef.camera_position) ? null : bscSolvedShapeKey(bs, null);
         window.PM_bscCamBs = ((bs.mode || "dipole_sum") === "explore" && !bs.camera && !stateDef.camera_position)
             ? bs : null;
@@ -50811,6 +50887,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
+        // E1c-J: the axis apply published for the camera this state is framed by.
+        // The fallback re-derives the SAME value from the state alone, for the
+        // frames that can run before the first apply — never world +y, which is
+        // the axis this whole family exists to stop using.
+        var spinAx = window.PM_bscSpinAx || bscSpinAxis(bs.camera || bscSolvedCamera(bs, molKey));
 
         // ── E1c-C: THE THREE DIPOLE-LAYER REVEAL CUES.
         //   arrows_at_ms / resultant_at_ms / charges_at_ms were registered as
@@ -50951,7 +51032,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (dip.show_resultant && D.mag > 1e-9) {
             var rv0 = D.vec.slice(0);
             if (fRot0) rv0 = fRot0(rv0);
-            rv0 = mgRotY(rv0, spin);
+            rv0 = bscSpinRot(rv0, spinAx, spin);
             var rd0 = bscNorm(rv0), rl0 = D.mag * aScale0;
             fVecAvoid.push({ a: fOrg0, b: [fOrg0[0] + rd0[0] * rl0, fOrg0[1] + rd0[1] * rl0, fOrg0[2] + rd0[2] * rl0] });
         }
@@ -50959,7 +51040,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var lz = 0; lz < D.lone.length; lz++) {
                 var ldv0 = D.lone[lz].dir;
                 if (fRot0) ldv0 = fRot0(ldv0);
-                ldv0 = mgRotY(ldv0, spin);
+                ldv0 = bscSpinRot(ldv0, spinAx, spin);
                 var lTip0 = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[lz].D) * aScale0;
                 fVecAvoid.push({ a: fOrg0,
                     b: [fOrg0[0] + ldv0[0] * lTip0, fOrg0[1] + ldv0[1] * lTip0, fOrg0[2] + ldv0[2] * lTip0] });
@@ -51029,7 +51110,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (i > 0) {
                     var d0 = uFrame.bonds[i - 1];
                     var d1 = rot ? rot(d0) : d0;
-                    d1 = mgRotY(d1, spin);
+                    d1 = bscSpinRot(d1, spinAx, spin);
                     pos = [org[0] + d1[0] * BS_BOND_LEN, org[1] + d1[1] * BS_BOND_LEN, org[2] + d1[2] * BS_BOND_LEN];
                     if (stick) {
                         mgOrientStick(stick, d1, BS_BOND_LEN, 1);
@@ -51196,7 +51277,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < siteList.length; i++) {
             var SI = siteList[i];
             var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
-            sitePos.push((spin !== 0) ? mgRotY(SI.at, spin) : SI.at);
+            sitePos.push((spin !== 0) ? bscSpinRot(SI.at, spinAx, spin) : SI.at);
             siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
             siteRpm.push(TS.r_pm);
             if (i < nShown) qSum += TS.q;
@@ -51361,7 +51442,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // NEGATIVE entry draws the arrow pointing back at the central atom.
             var av = [D.arrows[i].dir[0] * m, D.arrows[i].dir[1] * m, D.arrows[i].dir[2] * m];
             if (fRot) av = fRot(av);
-            av = mgRotY(av, spin);
+            av = bscSpinRot(av, spinAx, spin);
             var aLen = Math.abs(m) * aScale;
             var aDir = bscNorm(av);
             var aP = bscArrowParts(aLen, BS_ARROW_HEAD_LEN);
@@ -51378,7 +51459,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // same table the HUD reads (Rule 29 / D-3).
             var bd0 = D.arrows[i].dir;
             var bd1 = fRot ? fRot(bd0) : bd0;
-            bd1 = mgRotY(bd1, spin);
+            bd1 = bscSpinRot(bd1, spinAx, spin);
             var aMid = BS_BOND_LEN * 0.5;
             var tail = [fOrg[0] + bd1[0] * aMid - aDir[0] * aLen * 0.5,
                         fOrg[1] + bd1[1] * aMid - aDir[1] * aLen * 0.5,
@@ -51411,7 +51492,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (resOn && !isZero) {
             var rv = D.vec.slice(0);
             if (fRot) rv = fRot(rv);
-            rv = mgRotY(rv, spin);
+            rv = bscSpinRot(rv, spinAx, spin);
             var rdir = bscNorm(rv), rlen = D.mag * aScale;
             // same magnitude-scaled head (E1c-A). The resultant is the arrow this
             // matters MOST for: S7 contrasts NH3-s 1.47 D against NF3-s 0.23 D, a
@@ -51475,7 +51556,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (dip.show_lone_pair && D.lone && D.lone.length) {
                     var rlDir = D.lone[0].dir;
                     if (fRot) rlDir = fRot(rlDir);
-                    rlDir = mgRotY(rlDir, spin);
+                    rlDir = bscSpinRot(rlDir, spinAx, spin);
                     var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[0].D) * aScale;
                     rAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]],
                         b: [fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt] });
@@ -51546,7 +51627,7 @@ export const FIELD_3D_RENDERER_CODE = `
             loneDrawn++;
             var ld0 = lEnt.dir;
             var ld1 = fRot ? fRot(ld0) : ld0;
-            ld1 = mgRotY(ld1, spin);
+            ld1 = bscSpinRot(ld1, spinAx, spin);
             var lAt = BS_BOND_LEN * 0.52;
             if (lob) {
                 lob.position.set(fOrg[0] + ld1[0] * lAt, fOrg[1] + ld1[1] * lAt, fOrg[2] + ld1[2] * lAt);
@@ -51585,7 +51666,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lLab.visible) {
                 var lld = D.lone[0].dir;
                 var lld1 = fRot ? fRot(lld) : lld;
-                lld1 = mgRotY(lld1, spin);
+                lld1 = bscSpinRot(lld1, spinAx, spin);
                 var llAt = BS_BOND_LEN * 0.52;
                 var lAnch = [fOrg[0] + lld1[0] * llAt, fOrg[1] + lld1[1] * llAt, fOrg[2] + lld1[2] * llAt];
                 // FRAMES FINDING (E1c runtime smoke): anchored straight along the
@@ -51646,7 +51727,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!pOn) continue;
             var pd0 = D.arrows[bi].dir;
             var pd1 = fRot ? fRot(pd0) : pd0;
-            pd1 = mgRotY(pd1, spin);
+            pd1 = bscSpinRot(pd1, spinAx, spin);
             // sign of the bond moment says which end is delta-: a POSITIVE entry
             // means the ligand is delta-, so the pair slides OUTWARD.
             var sgn2 = (D.arrows[bi].D >= 0) ? 1 : -1;
@@ -51713,7 +51794,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 for (u = 0; u < nUnits; u++) {
                     var og = orgAt(u, mms), row = [];
                     for (i = 0; i < offs[u].length; i++) {
-                        var ov = (sp2 !== 0) ? mgRotY(offs[u][i], sp2) : offs[u][i];
+                        var ov = (sp2 !== 0) ? bscSpinRot(offs[u][i], spinAx, sp2) : offs[u][i];
                         row.push([og[0] + ov[0], og[1] + ov[1], og[2] + ov[2]]);
                     }
                     fpts.push(row);
