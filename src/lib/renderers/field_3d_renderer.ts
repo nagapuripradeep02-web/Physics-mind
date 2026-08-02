@@ -43200,11 +43200,29 @@ export const FIELD_3D_RENDERER_CODE = `
         //   exactly like the bars above (Rule 31/32d).
         html += '<div id="nlb_wk" style="display:none;margin-top:10px;">';
         html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">Work done</div>';
-        html += '<div class="nlb_en_bars" id="nlb_wk_bars" style="display:flex;align-items:flex-end;">';
+        //   align-items:STRETCH, and every work slot is itself a COLUMN flex whose
+        //   caption is the only growing child. This is the instrument's alignment
+        //   contract, and it is STRUCTURAL — nothing here measures text.
+        //     A signed bar is read by comparing deflections against ONE zero line, so
+        //     the tracks (and therefore the zero lines drawn at top:50% inside them)
+        //     MUST be collinear. Under the original align-items:flex-end they were
+        //     not: a caption is a force's plain-English NAME and wraps by design, so a
+        //     three-line caption made its slot one line taller and bottom alignment
+        //     pushed THAT slot's track up by exactly one line height (measured 15 px
+        //     at step 0 = 13 px x 1.15). On a 180 J scale that is 28 J of phantom
+        //     deflection, and it landed on the normal-force bar — the one whose whole
+        //     claim is that it sits exactly ON zero.
+        //     With stretch every slot takes the row height, the track is the FIRST
+        //     child at fixed height so every track top is equal by construction, the
+        //     caption takes all the slack, and the value is pinned to the common
+        //     bottom. Any number of wrapped lines — one, three, five — is absorbed by
+        //     the caption alone, so no future authored label can re-break it, and a
+        //     row whose captions all wrap alike lays out pixel-identically to before.
+        html += '<div class="nlb_en_bars" id="nlb_wk_bars" style="display:flex;align-items:stretch;">';
         for (var w = 0; w < NLB_WK_MAX; w++) {
             var wid = "nlb_wk_" + w;
-            html += '<div class="nlb_en_slot" id="' + wid + '" data-en="" style="display:none;text-align:center;">';
-            html += '<div class="nlb_en_trk" id="' + wid + '_t" style="position:relative;overflow:hidden;background:rgba(255,255,255,0.10);border-radius:3px;">';
+            html += '<div class="nlb_en_slot" id="' + wid + '" data-en="" style="display:none;flex-direction:column;text-align:center;">';
+            html += '<div class="nlb_en_trk" id="' + wid + '_t" style="flex:0 0 auto;position:relative;overflow:hidden;background:rgba(255,255,255,0.10);border-radius:3px;">';
             // The ZERO baseline at mid-height — the thing that makes a signed bar
             // readable at a glance (finding F6). Drawn under the fill so a bar at
             // full deflection does not erase its own reference.
@@ -43214,8 +43232,13 @@ export const FIELD_3D_RENDERER_CODE = `
             // WRAPS on purpose (the energy symbols above do not): a work bar is
             // captioned with the force's plain-English NAME, and "applied force"
             // cannot fit one 46 px slot on one line at any step of the ladder.
-            html += '<div class="nlb_en_sym" id="' + wid + '_y" style="margin-top:4px;color:#B0BEC5;font-family:Cambria Math,Times New Roman,serif;line-height:1.15;"></div>';
-            html += '<div class="nlb_en_val" id="' + wid + '_v" style="color:#ECEFF1;white-space:nowrap;">0.0 J</div>';
+            // flex:1 0 auto — the ONE growing child, so a slot whose caption wraps to
+            // fewer lines than its neighbours absorbs the difference HERE instead of
+            // displacing its own track (see the row comment above). grow only, never
+            // shrink: the row is as tall as its tallest slot, so the slack is never
+            // negative and the caption can never be squeezed into clipping its text.
+            html += '<div class="nlb_en_sym" id="' + wid + '_y" style="flex:1 0 auto;margin-top:4px;color:#B0BEC5;font-family:Cambria Math,Times New Roman,serif;line-height:1.15;"></div>';
+            html += '<div class="nlb_en_val" id="' + wid + '_v" style="flex:0 0 auto;color:#ECEFF1;white-space:nowrap;">0.0 J</div>';
             html += '</div>';
         }
         html += '</div></div>';
@@ -44464,7 +44487,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var sl = document.getElementById("nlb_wk_" + i);
             if (!sl) continue;
             var e = wk ? wk[i] : null;
-            sl.style.display = e ? "block" : "none";
+            // "flex", not "block": the slot is a COLUMN flex box (track / caption /
+            // value) so the caption is the only child that grows and every track top
+            // stays collinear no matter how many lines a caption wraps to. The energy
+            // slots above are untouched and stay display:block.
+            sl.style.display = e ? "flex" : "none";
             if (!e) continue;
             sl.setAttribute("data-en", NLB_WK_GLOW[e.force] || "");
             var y = document.getElementById("nlb_wk_" + i + "_y");
