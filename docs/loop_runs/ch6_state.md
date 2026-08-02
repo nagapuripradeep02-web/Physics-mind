@@ -12,7 +12,60 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-## ▶ NEXT SESSION STARTS HERE — concept #2 `positive_negative_zero_work`
+## ▶ NEXT SESSION STARTS HERE — concept #2 IS BUILT, AWAITING FOUNDER REVIEW (2026-08-02)
+
+**`positive_negative_zero_work` is authored, reviewed through Checkpoint B, fixed and re-verified.
+It awaits FOUNDER REVIEW. Nothing is shipped** — `visual:approve`, `tts:*`, `PILOT_CONCEPTS` and
+`deploy:*` are all untouched (Rule 17), so the concept has NO `visual_baselines` entry and no audio.
+
+**Review link:** `http://localhost:8097/positive_negative_zero_work/`
+(port 8097, NOT this file's declared 8093 — **8093 is occupied by another session serving a
+different worktree**, and opening it shows a stale unrelated site. If the server is gone:
+`npx --yes http-server "C:\Tutor\physics-mind-ch6-work-energy-power\review-site" -p 8097 -c-1`.)
+
+Branch `feat/ch6-concept-2` off master. Commits: `a306581` bug-queue tooling · `96738d5` skeleton ·
+`5811a67` Checkpoint A · `a1179b2` Checkpoint A cycle 2 · `51fff09` physics block · `f2b8fd3` the
+concept · `d211a4b` auditor fixes · `a590ee0` Checkpoint B authoring fixes · **`dc783bd` the ENGINE
+fix (Rule 40 — land on master SEPARATELY from all concept work)**.
+
+**The 0d bet held a second time: ZERO renderer edits were needed to AUTHOR the concept.** The one
+renderer commit is a *routed Checkpoint-B engine fix*, not concept work — exactly the concept-#1
+shape.
+
+### What the review chain caught that no gate could (carry to #3)
+- **The four work-bar tracks were not collinear.** `align-items:flex-end` + a 3-line caption
+  ("by the / normal / force") pushed that slot's track up **15 px = 28.1 J** on S4's scale — on the
+  state titled "Four bars, one sum", displacing the *always-zero* bar in the POSITIVE direction.
+  Fixed structurally (stretch + column flex, track as first child) so no future caption can
+  re-break it. **The surgeon then found the SHIPPED concept #1 has the same defect on its S5**
+  ("flat pull" 1 line vs "tilted pull" 2 lines) — its two H2 baselines now encode the OLD
+  misalignment and should be re-approved after founder review.
+- **A state-level `glow_focal` silently voids every `tts_sentences[].glow` in that state.**
+  12 of this concept's 14 bindings were inert. The OPEN ratchet
+  `concept_ships_zero_narration_glow_bindings` asserts a RATIO, so it reads 1.0 while every binding
+  is dead. **Precedence change is a FOUNDER DECISION — do not fix from a chapter branch.**
+- **A focal on a RELATION state dims half the relation.** S1/S5's applied arrow measured 2.49:1 and
+  2.45:1 vs 9.74:1 on S4 (which authors no focal). Rule 32e caps the focal at one; it does not
+  require one.
+- **THE CALCULATOR's SKIPs hid a real defect.** S3 painted `F = 0.00 N` on a state with no applied
+  force while its taught `N` had no readout at all — the m-slider beat had no number to move.
+  *A skip is not a pass.*
+- **`scene_composition` annotations are never painted on field_3d.** S6's two discoverables reached
+  nobody, and `q6` examined one of them. Rule 19's "≥3 primitives" was satisfied entirely by
+  objects that are never drawn.
+
+### Do this FIRST next session
+1. **Apply the scar rows** — `scar_candidates_checkpointA.sql` (3) and
+   `scar_candidates_checkpointB.sql` (6) are SQL TEXT, **NOT APPLIED**. The B1 row was already
+   filed FIXED by the surgeon. Applying belongs in the ship chain beside `visual:approve`.
+2. **Founder call on the `glow_focal` vs `SET_GLOW` precedence** (scar row 3, checkpoint B).
+3. **Re-approve `work_done_by_constant_force`'s STATE_5 baselines** after the founder sees the fix.
+4. Ride-alongs before #3: **E-B** (port the force_rig label legibility floor to `newtons_laws_body`
+   — worst label 1.52:1) and **E-C** (⚙ says "Energy" over a panel headed "Work done").
+
+---
+
+## (historical) concept #2 kickoff notes
 
 **Everything from concept #1 is MERGED TO MASTER 2026-08-02.** PR #14 (the Phase-0 engine, seams
 K–N + two routed fixes) → merge `1695a7a`. PR #15 (concept #1, baselines, audio, the scar-apply
