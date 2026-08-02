@@ -651,7 +651,6 @@
           ],
           "work_scale_J": 180,
           "loop_reset_ms": 3000,
-          "glow_focal": "nlb_arrow_crate_friction",
           "readouts": ["f", "v"],
           "controls_visible": []
         }
@@ -679,7 +678,6 @@
           ],
           "work_scale_J": 180,
           "loop_reset_ms": 2400,
-          "glow_focal": "nlb_arrow_crate_normal",
           "readouts": ["N", "v"],
           "controls_visible": ["m"]
         }
