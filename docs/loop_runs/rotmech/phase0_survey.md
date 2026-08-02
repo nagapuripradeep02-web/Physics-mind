@@ -1,8 +1,12 @@
 # Ch.7 (Class 11) Systems of Particles & Rotational Motion — Phase-0 survey (0a)
 
-> **Concept spine FOUNDER-APPROVED 2026-08-02: all 12 rotational concepts + centre of mass = 14.**
-> Engine strategy still open — see "Per-concept engine mapping" below.
-> 0b/0c do not start until the engine decision is approved (AUTHORING_PIPELINE.md §0).
+> **PHASE 0a COMPLETE — FOUNDER-APPROVED 2026-08-02.**
+> **Spine:** all 12 rotational concepts + centre of mass = **14**.
+> **Engine strategy:** the **two-build** plan — 0c-1 a NEW `rigid_body_rotation` scenario serving
+> 12 concepts, 0c-2 a bounded rotational extension to `newtons_laws_body` serving the 2 rolling
+> concepts. Union table closed by the advanced-ring sweep below.
+> **Next:** 0b skeletons (`conservation_of_angular_momentum`, `rolling_on_incline`) → founder-proxy
+> Checkpoint A on each → 0c builds on desk `feat/rotmech-engine` (AUTHORING_PIPELINE.md §0).
 > Drafted 2026-08-02 in the office (`C:\Tutor\physics-mind`, master `004b534`).
 > Source catalogs: `docs/catalog/pilot-topic-15-rotational-mechanics.md` (13 atomics + 14 nanos,
 > RM-G1…RM-G12 applied 2026-05-25) · `pilot-topic-14-momentum-collisions.md` (centre of mass, MC-G2).
@@ -292,9 +296,38 @@ racket, and a ring whose CoM lies in the empty hole.
 
 ---
 
-## REMAINING OPEN DECISION
+## ENGINE STRATEGY — APPROVED 2026-08-02 (founder)
 
-**The engine strategy (§ "The two families").** Recommended: two bounded builds — one new
-`rigid_body_rotation` scenario serving 12 concepts, plus a named rotational extension to
-`newtons_laws_body` serving the 2 rolling concepts. Alternative: fold rolling into the new
-scenario (avoids touching a shared file, but duplicates the incline/friction/energy apparatus).
+**TWO bounded builds, both planned here, before any concept is authored.**
+
+| Build | Scope | Serves | Desk |
+|---|---|---|---|
+| **0c-1** | NEW `scenario_type` (working name `rigid_body_rotation`) — mass distribution on an axle | concepts 1–10, 13, 14 | `feat/rotmech-engine` |
+| **0c-2** | Bounded ROTATIONAL EXTENSION to `newtons_laws_body` | concepts 11, 12 | `feat/rotmech-engine` |
+
+Rejected alternative: folding rolling into the new scenario. It avoids touching a shared file but
+duplicates the incline, friction, wheel mesh and racing-body apparatus that `newtons_laws_body`
+already carries and 10+ shipped Ch.6/Ch.11 concepts rely on. The regression risk that made the
+extension look expensive was the energy layer — and that was removed above, leaving 0c-2 at a shape
+factor, one acceleration branch, a contact-point velocity picture, a friction label and a
+slip-regime switch.
+
+**Rule 40 — these are PLATFORM changes.** Both builds land on master via their OWN PR from
+`feat/rotmech-engine`, never bundled into a concept branch. The concept desk for 1–14 opens off
+master only AFTER that PR merges. Engine dispatches go to `field3d-surgeon`, ONE `bug_class` each,
+~100-call ceiling (Amendment 4).
+
+**Order of work from here:**
+
+1. **0b** — architect skeleton + physics block for `conservation_of_angular_momentum` (specs 0c-1)
+   and `rolling_on_incline` (specs 0c-2). Docs, authored in the office.
+2. **founder-proxy Checkpoint A** on each skeleton — *before any engine code*. The highest-ROI
+   quality gate; DESIGN_OK / DESIGN_FIX (max 2 cycles) / ESCALATE.
+3. **0c-1 and 0c-2** built on `feat/rotmech-engine`, against the closed union table above — not
+   against the two 0b concepts alone. Verify chain green after every seam
+   (`check:renderer-syntax`, `tsc --noEmit`, `validate:concepts`) + a regression pair.
+4. **Engine PR → master.** Then open the concept desk and author 1–14 as pure JSON.
+
+**SUCCESS TEST restated:** concepts 1–14 require ZERO further renderer edits after 0c lands. A later
+concept forcing an engine change means this survey under-generalized → STOP and re-scope with the
+surgeon; never extend the engine per concept.
