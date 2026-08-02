@@ -116,3 +116,37 @@ VALUES
  ARRAY['work_done_by_constant_force','positive_negative_zero_work','work_energy_theorem','conservative_vs_nonconservative_forces','mechanical_energy_loss_with_friction']::text[],
  ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
  'ch6-0d-engine-field3d_surgeon-work_done_by_constant_force', 'incident');
+
+-- ── ENGINE FIX (field3d_surgeon dispatch, 2026-08-02) — SQL TEXT ONLY, NOT APPLIED ──
+-- Routed BLOCKING finding from founder-proxy Checkpoint B cycle 1.
+-- This is an UPSERT on the bug_class ALREADY filed above (line 35), not a new class:
+-- severity MAJOR -> CRITICAL on live screen evidence, status OPEN -> FIXED, and the
+-- prevention_rule is CORRECTED - the originally-filed remedy is wrong (see below).
+
+INSERT INTO engine_bug_queue (bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files, discovered_in_session, row_type)
+VALUES
+('nlb_sandbox_wrap_remaps_s_but_not_s0_so_the_d_arrow_contradicts_the_rezeroed_work_ledger',
+ 'On a sandbox wrap the displacement vector keeps its pre-wrap origin while the work ledger correctly re-zeroes, so the teacher sandbox built to prove W = F*d*cos(theta) renders two numbers that do not satisfy it',
+ 'CRITICAL', 'peter_parker:field3d_surgeon',
+ 'The sandbox wrap does s1 -= span and calls nlbEnergyOnWrap -> nlbSpringPhysReset, which correctly zeroes every W ledger and drops _s_pre. b.s0 was NOT remapped, and b.s0 was the displacement vector''s origin (ds2 = b.s - b.s0), so after every wrap the drawn arrow measured from the pre-wrap seed while the meter measured from the wrap. SEVERITY UPGRADE (2026-08-02, from MAJOR): this is not a cosmetic origin slip, it is the sandbox disproving its own formula surface on screen with zero teacher input. Measured live on work_done_by_constant_force STATE_6 at the authored defaults (F = 20 N, theta = 60 deg, 10.00 J/m): at t = 2864 ms d = 8.95 m against 89.5 J (exact, pre-wrap); at t = 8896 ms d = 3.98 m against 45.3 J, i.e. F*d*cos(theta) = 39.8 J, a 5.5 J / 12% contradiction. Re-measured across a 15 s 250 ms-sampled drive: the counterfactual pre-fix error peaks at 5.53 J at the defaults and 31.20 J at the founder''s named gesture (F = 60 N, theta = 0). For the ~0.6 m from the receiving bound back past the stale seed the arrow also points BACKWARD (rendered d_pre = -0.34 m at the defaults, -0.32 m at the gesture) with a live positive metre value beside it, and its label counts DOWN under a constant forward push on a frictionless floor. TIMING is why it blocks: the first wrap arrives at 3.38 s at the defaults - inside STATE_6''s own narration window - and at 1.38 s at the founder''s named gesture. Confined to mode:"sandbox": every guided state resets at loop_reset_ms = 2000 ms while the fastest authored acceleration needs 2.36 s to reach the bound, so no guided state ever wraps (verified: all five guided states'' H2/D gates unchanged). Sibling of field3d_path_integral_accumulator_bills_a_teleport_as_displacement: the ledger was hardened against the teleport, the drawn arrow was not.',
+ 'A teleport that is not a displacement must be discarded by every consumer of displacement, DRAWN as well as computed. CORRECTION to the remedy filed on this row at Checkpoint A: do NOT "remap b.s0 by the same span the wrap applies to b.s" - that is wrong twice over. (1) b.s0 is the kinematic SEED, not a displacement origin: RESET_TRAJECTORY restores b.s to it, nlbSpringPushOffPose poses carts about it and nlbPredictedStopM measures the launch from it, so moving it makes a rewind land somewhere other than the authored home pose - a determinism failure THE EYE''s RESET -> pin -> RESET -> dense -> RESET -> frozen drive would surface directly. (2) A span remap does not even fix the arrow: the wrap RE-ZEROES the ledger, so the origin must RE-ANCHOR at the wrap, not translate with it; on the observed geometry (s0 = -5.4, bounds -6..+6, span 12) s0 -= span would have made the arrow read 11.6 m at the instant the meter read 0 J, turning a 0.55 m error into an 11.6 m one. The correct shape is a DEDICATED displacement anchor (b._dsp0, read through nlbDispOrigin, null = fall back to the seed) set to the post-wrap position at the one wrap site and cleared on every rewind inside nlbSpringPhysReset. The authoring mitigation also filed on this row - seeding initial_position_m at the wrap-receiving bound - is WITHDRAWN: it trips nlb_static_state_authored_on_the_track_bound_fires_a_false_clamp_alarm. GENERAL RULE: when a reset path re-zeroes a displayed accumulator, every OTHER surface measuring the same interval must re-anchor in the same statement; grep every reader of the seed before reusing it as an origin.',
+ 'js_eval',
+ 'In a mode:"sandbox" state authoring displacement_vector and work_accumulators, drive the state for 15 s at the authored defaults and again at the slider extremes, sampling every 250 ms. At each sample parse the RENDERED d label (PM_nlbOffAxis.drawn.d_label) and the RENDERED meter (#nlb_wk_0_v) and assert |W_shown - F_along * d_shown| <= 0.5 * 10^-dp_d * F_along, i.e. half the last displayed digit of d (the residual is display quantisation, not physics - the same assertion on the unrounded PM_nlbOffAxis.d_m and work_state[0].W must be exactly 0). Independently assert every decrease of the rendered d and of the rendered meter happens in the SAME sample as the other (a lap boundary re-zeroes both) and never in isolation, and that no sample renders sign(d) != sign(W) while |W| > 0.1 J.',
+ 'FIXED',
+ ARRAY['work_done_by_constant_force','positive_negative_zero_work']::text[],
+ ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+ 'ch6-0d-engine-field3d_surgeon-work_done_by_constant_force-blocking', 'incident')
+ON CONFLICT (bug_class) DO UPDATE SET
+  title = EXCLUDED.title,
+  severity = EXCLUDED.severity,
+  owner_cluster = EXCLUDED.owner_cluster,
+  root_cause = EXCLUDED.root_cause,
+  prevention_rule = EXCLUDED.prevention_rule,
+  probe_type = EXCLUDED.probe_type,
+  probe_logic = EXCLUDED.probe_logic,
+  status = EXCLUDED.status,
+  concepts_affected = EXCLUDED.concepts_affected,
+  fixed_in_files = EXCLUDED.fixed_in_files,
+  discovered_in_session = EXCLUDED.discovered_in_session,
+  row_type = EXCLUDED.row_type;
