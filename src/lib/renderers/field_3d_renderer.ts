@@ -42993,7 +42993,11 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         for (var pi = 0; pi < eng.order.length; pi++) {
             var pb = eng.bodies[eng.order[pi]];
-            if (pb) { pb._s_pre = null; pb._cpValid = false; }   // note 11b: and its step segment
+            // note 11b: the step segment — and SEAM J's displacement origin, which
+            // is re-anchored by a wrap and must fall back to the authored seed on
+            // entry and on every rewind (nlbDispOrigin). Set AFTER this call at the
+            // one wrap site, so the wrap's own re-anchor survives.
+            if (pb) { pb._s_pre = null; pb._cpValid = false; pb._dsp0 = null; }
         }
         window.PM_nlbWork = null;
         window.PM_nlbWorkApplied = 0;
@@ -43982,11 +43986,36 @@ export const FIELD_3D_RENDERER_CODE = `
             return nlbSignedDir(axis, b.F_net);
         }
         if (token === "displacement") {
-            var dsd = (b.s || 0) - (b.s0 || 0);
+            var dsd = (b.s || 0) - nlbDispOrigin(b);
             if (Math.abs(dsd) < NLB_DISP_MIN_M) return null;
             return nlbSignedDir(axis, dsd);
         }
         return null;
+    }
+
+    // ── SEAM J/M — the DISPLACEMENT ORIGIN ──────────────────────────────────
+    //   d is the ONE quantity on screen the work ledger is read against: a
+    //   teacher verifies W = F·d·cos θ by reading the arrow's label and the
+    //   meter in the same glance, so the two MUST measure from the same origin
+    //   or the sandbox disproves the formula it exists to prove.
+    //   b.s0 is NOT that origin. It is the kinematic SEED — RESET_TRAJECTORY
+    //   restores b.s to it, push_off poses the carts about it and
+    //   nlbPredictedStopM measures the launch from it — so it is deliberately
+    //   immutable for the life of a state and must stay so (moving it would
+    //   make a rewind land somewhere other than the authored home pose, which
+    //   is a determinism failure THE EYE's RESET -> pin -> RESET drive would
+    //   surface directly).
+    //   The sandbox wrap (SEAM J) teleports b.s across the track and funnels
+    //   through nlbSpringPhysReset, which RE-ZEROES every W ledger — the wrap
+    //   is a state re-entry as far as the numbers are concerned (spec note
+    //   17c). The displacement origin therefore has to re-anchor at the wrap
+    //   too, and it needs its own slot to do that without touching the seed.
+    //   Null (the only value outside a sandbox, and the value on entry and on
+    //   every rewind) means "no wrap has happened" and falls back to the seed,
+    //   so every guided state is bit-for-bit unchanged.
+    function nlbDispOrigin(b) {
+        if (!b) return 0;
+        return (b._dsp0 != null) ? b._dsp0 : (b.s0 || 0);
     }
 
     //   The per-frame follow. Both instruments are recomputed every frame — d
@@ -44002,12 +44031,12 @@ export const FIELD_3D_RENDERER_CODE = `
             if (da) da.visible = false;
             if (dl) dl.visible = false;
         } else {
-            var ds2 = (b.s || 0) - (b.s0 || 0);
+            var ds2 = (b.s || 0) - nlbDispOrigin(b);
             var vis = (Math.abs(ds2) >= NLB_DISP_MIN_M) && !b.hanging;
             if (da) da.visible = vis;
             if (dl) dl.visible = vis;
             if (vis) {
-                var x0 = (b.s0 || 0) * NLB_WORLD_PER_M;
+                var x0 = nlbDispOrigin(b) * NLB_WORLD_PER_M;
                 var lenW = Math.abs(ds2) * NLB_WORLD_PER_M;
                 var sgn = (ds2 < 0) ? -1 : 1;
                 var hd = Math.min(NLB_DISP_HEAD, lenW * 0.4);
@@ -44103,7 +44132,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 arc_key: (aAr && aAr.userData) ? (aAr.userData._key || null) : null,
                 arc_label: (aLb && aLb.visible) ? (aLb._nlbText || null) : null
             },
-            d_m: (dcfg && dbody) ? ((dbody.s || 0) - (dbody.s0 || 0)) : null,
+            d_m: (dcfg && dbody) ? ((dbody.s || 0) - nlbDispOrigin(dbody)) : null,
             angle_deg: (angDeg == null) ? null : angDeg,
             from: fcfg ? fcfg.from : null,
             to: fcfg ? fcfg.to : null,
@@ -45526,11 +45555,21 @@ export const FIELD_3D_RENDERER_CODE = `
                 // is modelled on: a phase wrap restarts the cycle, it does not
                 // accumulate. Rule 36 is unaffected — a position remap plus a constant,
                 // no dt and no new accumulator.
+                //   The wrap RE-ZEROES every work ledger (nlbEnergyOnWrap ->
+                // nlbSpringPhysReset, spec note 17c), so the displacement origin
+                // re-anchors at the wrap in the SAME statement — otherwise d keeps
+                // measuring from the pre-wrap seed while the meter measures from the
+                // wrap, and the sandbox built to prove W = F·d·cos θ renders two
+                // numbers that do not satisfy it (measured: d = 3.98 m against a
+                // 45.3 J meter at 10.00 J/m, a 12% contradiction, plus ~0.6 m of a
+                // BACKWARD-pointing arrow whose label counted DOWN under a forward
+                // push). b.s0 is the kinematic seed and stays untouched — see
+                // nlbDispOrigin. Rule 36: a position remap, no dt, no accumulator.
                 if (nlbSandboxWrap()) {
                     var span = bd.hi - bd.lo;
                     if (span > 0) {
-                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); }
-                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); }
+                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; }
+                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; }
                     }
                     b.a = a; b.v = v1; b.s = s1;
                     b._boundArrestedSliding = false;
