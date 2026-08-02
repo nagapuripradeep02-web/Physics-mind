@@ -48444,6 +48444,13 @@ export const FIELD_3D_RENDERER_CODE = `
     //       separation, separation_axis, approach_from, approach_at_ms,
     //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
     //       compare_at_ms, compare_duration_ms, compare_species,           // E2
+    //                  // E1c-F: the swap is a TRANSITION over compare_duration_ms
+    //                  // (default BS_SWAP_MS = 1500), not a cut. Atom radius and
+    //                  // colour carry continuously from the outgoing species to
+    //                  // the incoming one; the discrete facts (symbol, charges,
+    //                  // dipole table, geometry) flip ONCE at the midpoint, inside
+    //                  // a trough where the vector layer and the atom symbols are
+    //                  // at zero ink. Closed form in state-local t, no latch.
     //       unit_spacing, count_max, label_units, delta_units,             // E2
     //       lattice: { cell: rock_salt|fcc|bcc|hcp,                        // E3a
     //                  n:[nx,ny,nz],         // GRID STEPS per axis, forced ODD.
@@ -48479,6 +48486,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // untouched. Closed form in state-local t (D-1), no latch.
     //                  // deriveStateMeta already pins cue + 900 as a frozen
     //                  // candidate, i.e. the first SETTLED frame.
+    //                  // E1c-F: arrows_at_ms ALSO gates the lone-pair VECTOR (not
+    //                  // its lobe, which is structure), so a vector sum's four
+    //                  // arrows arrive together; and the HUD line that STATES a
+    //                  // value is gated by the cues of its own evidence —
+    //                  // hud_lines 'mu' rides the later of resultant_at_ms and
+    //                  // arrows_at_ms, 'delta_chi' rides charges_at_ms, each
+    //                  // rendering an em dash in place of the number until then.
+    //                  // Author a cue on a state that must WITHHOLD its answer;
+    //                  // author none where the quantity is genuinely changing on
+    //                  // screen (the scripted bend) and the readout stays live.
     //       dipole: { show_bond_arrows, show_resultant, show_charges, arrow_scale,
     //                 show_lone_pair },             // E1c: lobe + label, plus the
     //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
@@ -48547,6 +48564,20 @@ export const FIELD_3D_RENDERER_CODE = `
     // two margins (text-vs-text 0.1033 NDC, counted-ligand-vs-text 0.1016 NDC),
     // where 0.45 favours the text pair and 0.55 the ligands.
     var BS_RES_LABEL_OFF = 0.50;
+    // E1c-I: the screen-plane displacement (now a TRUE displacement — the
+    // candidate directions are unit vectors) from an atom's rim to its element
+    // symbol, and the gap between that symbol and the partial-charge glyph that
+    // stacks under it. The delta glyph's own former offset (0.72, on the raw
+    // diagonals, i.e. 1.02 units of real displacement) is gone: it is no longer
+    // placed independently at all.
+    var BSC_ATOM_LABEL_OFF = 0.34;
+    var BSC_PAIR_GAP = 0.14;
+    // The offset the ZERO badge is placed at. It is the state's ANSWER in a
+    // symmetric molecule ("Four arrows, still zero"), it is as wide as the
+    // resultant's value label, and it has no arrow tip to hang off — so it is
+    // anchored on the centre and pushed out past the bond midpoints, where the
+    // eight-way search has somewhere clear to put it.
+    var BSC_ZERO_LABEL_OFF = 1.45;
     function bscArrowParts(len, built) {
         var h = (len * 0.5 < built) ? len * 0.5 : built;
         var k = h / built;
@@ -48558,6 +48589,235 @@ export const FIELD_3D_RENDERER_CODE = `
     // bond — the extra girth IS the taught physics, not a Rule-29 bulge).
     var BS_LONE_LOBE_W = 0.42;
     var BS_LONE_LOBE_LEN = 0.66;
+
+    // ── E1c-I: THE SCENE PLACES TEXT AGAINST WHAT THE STATE COUNTS ───────────
+    //   Every state this serves is a COUNTING state: "four arrows, still zero",
+    //   "one swap breaks symmetry", "same shape, smaller sum". A label lying
+    //   across a ligand under a caption that says to count the ligands is the
+    //   same defect as an occluded ligand — the student cannot count what the
+    //   caption names. E1c-D built the mechanism and pointed it at ligand
+    //   CENTRES; the frames then found four more instances, all of them the same
+    //   root cause: the avoid set was an incomplete picture of what is on screen.
+    //
+    //   mgPlaceLabelClear (molecular_geometry's, left untouched — a sealed
+    //   sibling) scores a candidate as a POINT against a list of POINTS. Both
+    //   halves of that model are wrong here, and the frames said so:
+    //     - a label is a BOX. "mu = 2.33 D" is nine glyphs wide, and a point
+    //       metric let its right edge finish 23 px from a ligand-s delta glyph,
+    //       so the two read as one string (bent_BF3_95.png).
+    //     - a bond is a SEGMENT. A candidate that clears both of its ENDPOINTS
+    //       can still lie straight across its middle — which is exactly what the
+    //       resultant-s value label did on every diatomic and on CHCl3
+    //       (after_HI.png, G_s6_chcl3.png).
+    //   So an avoid entry is one of four things, and all four are measured in the
+    //   SAME isotropic screen units (NDC x times the camera aspect, so a length
+    //   means the same thing on both axes and a text box is a box):
+    //     [x,y,z]            a bare point
+    //     {p:[x,y,z], r:w}   a DISC of world radius w — a counted atom
+    //     {a:[..], b:[..]}   a SEGMENT — a bond shaft, an arrow, a lone lobe
+    //     {s: sprite}        a text surface ALREADY PLACED this frame
+    //
+    //   DETERMINISM (D-1). The score is a pure function of the camera and of the
+    //   avoid geometry; ties break by candidate order; nothing reads a value it
+    //   wrote on an earlier frame. The ordering ACROSS labels is acyclic by
+    //   construction: a label may avoid a label placed BEFORE it, and a label
+    //   placed AFTER it is represented by its closed-form geometric anchor (the
+    //   lobe, the arrow tip) instead of by its settled position. A
+    //   SET_TIME_FREEZE rewind therefore reproduces the identical layout.
+    //
+    //   THE OFFSET NOW MEANS WHAT IT SAYS. E1c-D-s four candidates were the raw
+    //   diagonals (+-1, +-1), so an authored offset of 0.72 actually displaced
+    //   0.72 * sqrt(2) = 1.02 units — half a bond length — and the delta glyphs
+    //   drifted so far from their atoms that a frame showed one floating in empty
+    //   space with no atom near it. The candidates are UNIT screen directions
+    //   here, eight of them (four diagonals plus four axes), so the offset is the
+    //   true screen-plane displacement in world units and a wider search has a
+    //   genuinely clear slot to find.
+    //   THE CANDIDATE SET. Sixteen unit screen directions on TWO rings. Eight
+    //   directions were not enough on the pyramid: NF3-s resultant is 0.23 D, so
+    //   its tip sits almost on the central atom and its value label is 1.3 units
+    //   of ink wide — every one of the eight lay on a fluorine (worst -0.0533
+    //   NDC). Sixteen finds the gap BETWEEN two ligands, and the outer ring gives
+    //   a crowded frame somewhere to put a label that fits nowhere inside it.
+    //   The score is CAPPED at BSC_CLEAR_CAP so "clear enough" ties: among slots
+    //   that all clear the cap the INNER ring and the earlier direction win, and
+    //   a label never wanders outward for a margin no reader can see.
+    var BSC_LABEL_DIRS = (function () {
+        var d = [], i, a;
+        for (i = 0; i < 16; i++) {
+            a = i * Math.PI / 8;               // 0 = screen up, then clockwise
+            d.push([Math.sin(a), Math.cos(a)]);
+        }
+        return d;
+    })();
+    // Three rings. On the pyramid at some spin phases NF3-s 0.23 D resultant has
+    // no clear slot on either inner ring (best of 32 candidates was -0.0011 NDC,
+    // i.e. a fluorine under the value label) — the third ring is where a crowded
+    // frame puts a label that fits nowhere inside it. The cap keeps it unused
+    // whenever anything closer is clear enough to read.
+    var BSC_LABEL_RINGS = [0, 0.62, 1.30];
+    var BSC_CLEAR_CAP = 0.055;
+    // THE SAFE SCREEN BOX, in the same isotropic units (x spans +-aspect, y +-1).
+    // FRAMES FINDING (E1c-I re-shoot): with an outer ring available, a blocked
+    // atom label went STRAIGHT UP and finished half cut off behind the review
+    // chrome's caption chip. A label off the edge is worse than a near miss, so
+    // a candidate is scored by its clearance from this box as well — the search
+    // then prefers a tighter slot on screen to a clear one outside it. The band
+    // above y = 0.82 is the caption chip's, which no renderer avoid set can see.
+    var BSC_SAFE_X = 1.55;
+    var BSC_SAFE_Y = 0.82;
+    var bscPrjV = new THREE.Vector3();
+    var bscCamR = new THREE.Vector3(), bscCamU = new THREE.Vector3(), bscCamF = new THREE.Vector3();
+    /** project to ISOTROPIC screen units: y is NDC y, x is NDC x times the aspect. */
+    function bscProj(x, y, z) {
+        bscPrjV.set(x, y, z).project(camera);
+        var asp = (camera && camera.aspect) ? camera.aspect : 1;
+        return [bscPrjV.x * asp, bscPrjV.y];
+    }
+    /** screen units per WORLD unit at a point: exact, from the view-space depth. */
+    function bscScreenK(x, y, z) {
+        var vz = (x - camera.position.x) * -bscCamF.x +
+                 (y - camera.position.y) * -bscCamF.y +
+                 (z - camera.position.z) * -bscCamF.z;
+        if (vz < 0.05) vz = 0.05;
+        return 1 / (vz * Math.tan((camera.fov || 60) * Math.PI / 360));
+    }
+    /** signed Chebyshev separation of an axis-aligned box from a point. */
+    function bscBoxPt(c, h, p) {
+        var ax = Math.abs(c[0] - p[0]) - h[0], ay = Math.abs(c[1] - p[1]) - h[1];
+        return (ax > ay) ? ax : ay;
+    }
+    function bscBoxBox(c, h, c2, h2) {
+        var ax = Math.abs(c[0] - c2[0]) - (h[0] + h2[0]);
+        var ay = Math.abs(c[1] - c2[1]) - (h[1] + h2[1]);
+        return (ax > ay) ? ax : ay;
+    }
+    // Box vs 2D SEGMENT, exactly. A perspective projection maps a straight line to
+    // a straight line, so the projected shaft IS the segment between the projected
+    // endpoints. Along it, f(t) = max(|cx - x(t)| - hw, |cy - y(t)| - hh) is the
+    // max of two V-shaped functions of t, hence convex and piecewise linear — its
+    // minimum over [0,1] is attained at an endpoint, at one of the two kinks, or
+    // where the two branches cross. Eight candidate t values, evaluated: no
+    // sampling, no search, no tolerance to tune, and no way for a thin box to slip
+    // between two samples of a long shaft.
+    function bscBoxSeg(c, h, a, b) {
+        var dx = b[0] - a[0], dy = b[1] - a[1];
+        var ex = a[0] - c[0], ey = a[1] - c[1];
+        var ts = [0, 1], s1, s2, den, i, t, qx, qy, f;
+        if (Math.abs(dx) > 1e-12) ts.push(-ex / dx);
+        if (Math.abs(dy) > 1e-12) ts.push(-ey / dy);
+        for (s1 = -1; s1 <= 1; s1 += 2) {
+            for (s2 = -1; s2 <= 1; s2 += 2) {
+                den = s1 * dx - s2 * dy;
+                if (Math.abs(den) < 1e-12) continue;
+                ts.push((s2 * ey - s1 * ex + h[0] - h[1]) / den);
+            }
+        }
+        var best = 9;
+        for (i = 0; i < ts.length; i++) {
+            t = ts[i];
+            if (t < 0) t = 0; else if (t > 1) t = 1;
+            qx = Math.abs(ex + t * dx) - h[0];
+            qy = Math.abs(ey + t * dy) - h[1];
+            f = (qx > qy) ? qx : qy;
+            if (f < best) best = f;
+        }
+        return best;
+    }
+    /** the INK half-extents of a sprite in screen units (the quad is mostly pad). */
+    function bscInkHalf(sp, k, padW, padH) {
+        if (!sp) return [0, 0];
+        var f = (sp._pmInkFrac != null) ? sp._pmInkFrac : 1;
+        return [(sp.scale.x * f * 0.5 + (padW || 0)) * k, (sp.scale.y * 0.5 + (padH || 0)) * k];
+    }
+    // Resolve an avoid list into screen space ONCE — never once per candidate.
+    function bscAvoidScreen(avoid) {
+        var out = [], i, e, k;
+        for (i = 0; i < avoid.length; i++) {
+            e = avoid[i];
+            if (!e) continue;
+            if (e.length === 3) { out.push({ k: 0, p: bscProj(e[0], e[1], e[2]), r: 0 }); }
+            else if (e.a && e.b) { out.push({ k: 1, a: bscProj(e.a[0], e.a[1], e.a[2]), b: bscProj(e.b[0], e.b[1], e.b[2]) }); }
+            else if (e.s) {
+                if (!e.s.visible) continue;
+                k = bscScreenK(e.s.position.x, e.s.position.y, e.s.position.z);
+                out.push({ k: 2, p: bscProj(e.s.position.x, e.s.position.y, e.s.position.z), h: bscInkHalf(e.s, k, 0, 0) });
+            } else if (e.p) {
+                out.push({ k: 0, p: bscProj(e.p[0], e.p[1], e.p[2]),
+                    r: (e.r || 0) * bscScreenK(e.p[0], e.p[1], e.p[2]) });
+            }
+        }
+        return out;
+    }
+    /** the min separation a sprite's ink box would have at a given world position. */
+    function bscScoreBox(sprite, pos, avoid) {
+        camera.matrixWorld.extractBasis(bscCamR, bscCamU, bscCamF);
+        var ent = bscAvoidScreen(avoid || []);
+        var k = bscScreenK(pos[0], pos[1], pos[2]);
+        var c = bscProj(pos[0], pos[1], pos[2]), h = bscInkHalf(sprite, k, 0, 0);
+        var worst = 9, j, s;
+        for (j = 0; j < ent.length; j++) {
+            if (ent[j].k === 1) s = bscBoxSeg(c, h, ent[j].a, ent[j].b);
+            else if (ent[j].k === 2) s = bscBoxBox(c, h, ent[j].p, ent[j].h);
+            else s = bscBoxPt(c, h, ent[j].p) - ent[j].r;
+            if (s < worst) worst = s;
+        }
+        var e1 = BSC_SAFE_X - (Math.abs(c[0]) + h[0]), e2 = BSC_SAFE_Y - (Math.abs(c[1]) + h[1]);
+        if (e1 < worst) worst = e1;
+        if (e2 < worst) worst = e2;
+        return worst;
+    }
+    /**
+     * Place a billboard label beside its anchor on the clearest of eight unit
+     * screen directions, scoring the label-s INK BOX against the resolved avoid
+     * set. Returns the index of the direction it settled on, so a paired label
+     * (an atom-s partial-charge glyph) can stack on the SAME side and read as one
+     * cluster instead of as a second, unattached string.
+     */
+    function bscPlaceLabel(sprite, anchor, offset, avoid, padW, padH) {
+        if (!sprite) return 0;
+        camera.matrixWorld.extractBasis(bscCamR, bscCamU, bscCamF);
+        var ent = bscAvoidScreen(avoid || []);
+        // THE OFFSET IS A CLEARANCE, NOT A CENTRE DISTANCE. "mu = 1.83 D" is 1.30
+        // world units of ink; hung 0.50 from its anchor by the CENTRE, its own box
+        // still covered the anchor and every candidate lay across the bond the
+        // arrow starts on (HF, -0.0394 NDC). So each candidate is pushed out by
+        // the box's own support in that direction — |ux| * halfW + |uy| * halfH,
+        // the Chebyshev support of an axis-aligned box — and the offset then means
+        // what a reader sees: the gap from the anchor to the NEAREST EDGE of the
+        // text. A wide label moves further sideways and not one bit further up.
+        var hwW = sprite.scale.x * ((sprite._pmInkFrac != null) ? sprite._pmInkFrac : 1) * 0.5 + (padW || 0);
+        var hhW = sprite.scale.y * 0.5 + (padH || 0);
+        var bestIdx = 0, bestScore = -9, bestPos = null, i, j, g, s;
+        for (g = 0; g < BSC_LABEL_RINGS.length; g++) {
+            for (i = 0; i < BSC_LABEL_DIRS.length; i++) {
+                var ux = BSC_LABEL_DIRS[i][0], uy = BSC_LABEL_DIRS[i][1];
+                var off2 = offset + BSC_LABEL_RINGS[g] + Math.abs(ux) * hwW + Math.abs(uy) * hhW;
+                var px = anchor[0] + (bscCamR.x * ux + bscCamU.x * uy) * off2;
+                var py = anchor[1] + (bscCamR.y * ux + bscCamU.y * uy) * off2;
+                var pz = anchor[2] + (bscCamR.z * ux + bscCamU.z * uy) * off2;
+                var k = bscScreenK(px, py, pz);
+                var c = bscProj(px, py, pz), h = bscInkHalf(sprite, k, padW, padH);
+                var worst = 9;
+                for (j = 0; j < ent.length; j++) {
+                    if (ent[j].k === 1) s = bscBoxSeg(c, h, ent[j].a, ent[j].b);
+                    else if (ent[j].k === 2) s = bscBoxBox(c, h, ent[j].p, ent[j].h);
+                    else s = bscBoxPt(c, h, ent[j].p) - ent[j].r;
+                    if (s < worst) worst = s;
+                }
+                var edge = BSC_SAFE_X - (Math.abs(c[0]) + h[0]);
+                var edgeY = BSC_SAFE_Y - (Math.abs(c[1]) + h[1]);
+                if (edgeY < edge) edge = edgeY;
+                if (edge < worst) worst = edge;
+                if (worst > BSC_CLEAR_CAP) worst = BSC_CLEAR_CAP;
+                // ties break by candidate order (inner ring first), so the choice
+                // is stable frame to frame and a rewind photographs the same layout
+                if (worst > bestScore + 1e-6) { bestScore = worst; bestIdx = i; bestPos = [px, py, pz]; }
+            }
+        }
+        if (bestPos) sprite.position.set(bestPos[0], bestPos[1], bestPos[2]);
+        return bestIdx;
+    }
 
     // ── E2 (intermolecular link layer) constants ─────────────────────────────
     //   THE SCALE. Distances in the link contract are PICOMETRES (form_pm /
@@ -48635,6 +48895,19 @@ export const FIELD_3D_RENDERER_CODE = `
     // the cut face itself. Neither is improvised per concept.
     var BS_PEER_FADE_OPACITY = 0.12;
     var BS_REVEAL_MS = 900;         // the reveal is a RAMP, never a pop
+    // E1c-F: the compare swap's default duration when a state authors none.
+    // MATCHES the 1500 ms deriveStateMeta already assumes for exactly that case
+    // (its pin is compare_at_ms + 1500 with no authored duration), so a state that
+    // omits compare_duration_ms is still pinned on its FIRST SETTLED frame.
+    var BS_SWAP_MS = 1500;
+    // E1c-F: the fraction of a swap spent in the DARK TROUGH, where the discrete
+    // facts (element symbol, charges, dipole table) change over. A trough of zero
+    // width would be a single instant — the ink would touch zero and leave in the
+    // same frame — and the HUD withhold across a substitution would be nominal
+    // rather than something a teacher can read. 10% of 7300 ms is 730 ms: long
+    // enough to read as a deliberate hand-over, short enough that the atoms
+    // (which keep morphing right through it) never look stalled.
+    var BS_SWAP_TROUGH = 0.10;
     // Ball-and-stick target for a coordination state. A space-filling block
     // physically ENCLOSES its focal ion — six touching neighbours hide it
     // completely, at every camera — so "every ion is surrounded by six" cannot be
@@ -48906,10 +49179,63 @@ export const FIELD_3D_RENDERER_CODE = `
     //   colours, so a smaller gap is the right thing to spend. A tetrahedral or
     //   linear or bent centre is NOT moved: at el 62 CCl4-s spinning ligands start
     //   crossing each other, which is why the key is the SHAPE and not a new global.
-    //   AZIMUTH STAYS 35 EVERYWHERE, deliberately: MG_BEND_AZ is asserted equal to
-    //   BS_CAMERAS.dipole_sum.az by check:bonding-scene so the authored bend cannot
-    //   silently go edge-on, and az 45-60 measured only ~0.03 NDC better on the
-    //   pyramid — not worth breaking that tie-down.
+    //
+    //   THAT SOLVE THEN FORESHORTENED THE ONE VECTOR IT WAS CHOSEN TO SEPARATE
+    //   (E1c-E). Looking DOWN at 62 is looking nearly along the C3 axis, and on a
+    //   pyramid the resultant AND the lone-pair vector both lie ON that axis. So
+    //   the elevation that separated the ligand discs collapsed the length S7
+    //   argues from: measured at 720p, NH3-s resultant drew at 0.5303 of its true
+    //   length (43.0 px) and NF3-s at 0.4613 (5.8 px — a dot on the nitrogen),
+    //   while S7-s entire argument is the 6.4x magnitude contrast between them.
+    //     AZIMUTH CANNOT FIX A LENGTH, BUT IT IS WHAT OPENS THE BAND. The C3 axis
+    //   is +y, so an axial vector-s projected length depends on ELEVATION ONLY —
+    //   measured identical to 4 dp across az 0..180 at el 62. E1c-A therefore
+    //   searched elevation alone at az 35, and in THAT 1-D slice the joint band is
+    //   genuinely EMPTY: the occlusion floor (0.09 NDC) needs el >= 57, where the
+    //   NF3 resultant still reads 6.7 px. But which ligand hides behind the centre
+    //   is an AZIMUTH question, and the two-dimensional sweep (el 0..25 x az
+    //   35..180, then narrowed under E1c-D-s label floors as well) has an island at
+    //   LOW elevation where the tripod separates and the axis lies across the view.
+    //   The solve is the ROBUST INTERIOR of that island — every neighbour at +-1
+    //   deg in az and el clears every floor too:
+    //     az 120 el 15  occ +0.1006 NDC (floor 0.09), vector gap 0.0336 (was
+    //                   0.0197), box 0.559, label text 0.1023 / ligand 0.0627
+    //                   (floor 0.05), spun res-vs-text 0.0645 / res-vs-ligand
+    //                   0.0406 (floor 0.03) — and NH3-s resultant 0.9995x true
+    //                   (81.0 px), NF3-s 0.9609x (12.1 px), the lone-pair vector
+    //                   0.9824x (39.6 px, was 0.4979x / 20.1 px).
+    //     az  35 el 15  NEGATIVE CONTROL: the same elevation at the OLD azimuth is
+    //                   occ -0.0155 — the tripod re-overlaps. Azimuth is load-
+    //                   bearing; elevation alone is not.
+    //     az 120 el 62  NEGATIVE CONTROL: the new azimuth at the OLD elevation
+    //                   still draws NF3-s resultant at 0.4613x / 5.8 px. Elevation
+    //                   is load-bearing; azimuth alone is not.
+    //   The DRAWN magnitude contrast is what S7 argues from, and it now matches the
+    //   physics: 81.0 px / 12.1 px = 6.69x against the true 6.44x (4.0% error),
+    //   where el 62 drew 43.0 / 5.8 = 7.40x (15.0% — it exaggerated the contrast
+    //   while making the smaller arrow unreadable, the worst of both).
+    //   12.6 px is the CEILING, not a target: NF3-s resultant is 0.2279 D = 0.1413
+    //   world units, so laid fully across the view it is 12.6 px at 720p. The fix
+    //   recovers 2.1x of drawn length (5.8 -> 12.1) and cannot do better without
+    //   lying about the magnitude (Rule 29 / D-3: length IS the measured moment).
+    //   Rejected alternative: authoring units[].orient to tilt the molecule instead
+    //   reaches the same relative geometry (orient [150,15] at el 62 measures occ
+    //   0.0958, NF3 12.6 px) with no engine change — but it lays the C3 axis over
+    //   sideways, needs a units array authored on every future pyramidal state to
+    //   hang it on, is invisible to check:bonding-scene (which reads the renderer,
+    //   not a concept), and leaves the solve deriving a camera for a pose the JSON
+    //   has silently rotated. A shape-keyed defect belongs in the shape key.
+    //   Cost of the move: under a FULL SPIN the pyramid-s occlusion runs -0.0624
+    //   (a ligand passes behind the centre once per 120 deg) where el 62 held
+    //   +0.0934. No shipped state spins a pyramid — S7 authors no spin_rate and
+    //   NH3/NF3 are not in any explore_species list — and a spin does not restore
+    //   an ON-AXIS length at el 62 anyway, so the trade is measured, deliberate,
+    //   and asserted by check:bonding-scene rather than left to be rediscovered.
+    //   GENERAL-S AZIMUTH DOES NOT MOVE: MG_BEND_AZ is asserted equal to
+    //   BS_UNIT_CAMERAS.general.az by check:bonding-scene so the authored bend
+    //   cannot silently go edge-on. That tie-down is on the GENERAL key; the
+    //   pyramid now carries its own azimuth for the same reason it carries its own
+    //   elevation.
     //
     //   AND A DIATOMIC IS THE OPPOSITE PROBLEM (E1c-D). mgIdealDirs puts a single
     //   bond on the APEX (+y), so an HX molecule is drawn straight up the view-up
@@ -48925,36 +49251,136 @@ export const FIELD_3D_RENDERER_CODE = `
     //   at 1.043, 0.3% above 12 — not worth deviating from the measured value.
     //   The diatomic key changes NOTHING else: pyramidal and general keep their
     //   E1c-A values byte for byte, asserted by check:bonding-scene.
+    //
+    //   AND A TRIGONAL PLANAR CENTRE IS A THIRD SHAPE, NOT THE GENERAL ONE (E1c-H).
+    //   BF3 is the only 3-bond zero-lone entry in the table, and mgIdealDirs puts
+    //   its plane on the +y apex plus two domains a quarter turn either side of
+    //   MG_AZ0 — so the PLANE CONTAINS the view-up axis and its normal is
+    //   horizontal at azimuth 57. Looking down at the general solve-s 47 therefore
+    //   tilts that plane 47 deg away from the viewer, and the drawn angle between
+    //   two bonds reads 22.6 deg WRONG (97.4 instead of 120) while the countability
+    //   metric falls to occ 0.0875 NDC — BELOW the 0.09 floor the pyramid solve was
+    //   measured against. A state whose whole content is "symmetric arrangement,
+    //   therefore zero" cannot show its symmetry through a 22.6 deg lie.
+    //     THE SWEEP (same rig as above: shipped perspective, FOV 60, aspect 16:9,
+    //   dist 7, the E3a occlusion metric plus the drawn-vs-true bond ANGLE, over
+    //   az 0..359 x el 0..60 at 1 deg). It is genuinely two-dimensional and in the
+    //   E1c-E sense: the OBJECTIVE (a countable, honestly-angled trigonal plane)
+    //   peaks in AZIMUTH at 55..60 — dead down the plane normal, where the drawn
+    //   angle error is 1.6 deg and occ 0.213 — and that is exactly where the
+    //   CONSTRAINT collapses. The explore angle slider PYRAMIDALISES BF3 (mgSqueeze-s
+    //   degenerate n=3 branch rotates the tripod about the C3 axis, which IS that
+    //   normal), and the resultant the bend creates then points at the camera: at
+    //   az 57 it draws 0.33 of its true length, and at az 57 / el 0 exactly 0.0000.
+    //   A 1-D elevation sweep at any single azimuth reports none of this.
+    //     AZIMUTH IS THEREFORE HELD AT 35, the house value every other unit solve
+    //   and every BS_CAMERAS entry already uses (and the value MG_BEND_AZ is tied
+    //   to). It clears the constraint — the bent resultant keeps 0.546 of its true
+    //   drawn length, 68 px at 720p — and costs 3.6 deg of angle fidelity against
+    //   the unreachable az-57 optimum. Holding it also means a species pick moves
+    //   the camera in ELEVATION ONLY: a tilt, never a swing around the molecule.
+    //   ELEVATION then carries the objective, and the solve is the ROBUST INTERIOR
+    //   of the band where both hold (el 10..20, measured at az 35, dist 7):
+    //     el 15  occ 0.1559 NDC (1.7x the 0.09 floor), drawn bond angle 5.2 deg
+    //            from true (was 22.6), vector gap 0.1225, box 0.516, and the bent
+    //            resultant 0.5457x true (9% above the 0.50 floor).
+    //     el 10  the constraint boundary: resultant 0.5024x — inside, but with no
+    //            margin, which is what "interior" means.
+    //     el 47  NEGATIVE CONTROL, i.e. today: occ 0.0875 (fails), angle 22.6 deg
+    //            wrong, and only 22% of the free-run spin cycle stays countable
+    //            against 50% at el 15.
+    //   WHAT THE CAMERA CANNOT FIX, stated because it is measured and it is the
+    //   residual: the explore sandbox free-runs a spin about +y (Rule 37), and
+    //   BF3-s plane CONTAINS +y, so the plane passes edge-on twice per revolution
+    //   and at that phase the far fluorine sits on the boron. The best camera
+    //   anywhere in the whole (az, el) grid holds spin-worst occ 0.0639 at el 4 —
+    //   still below the floor — so no solve removes it. The trigonal key buys the
+    //   COVERAGE (0.22 -> 0.50 of the cycle countable) and the honest angle, not
+    //   the worst phase; removing the worst phase is a spin-AXIS question, not a
+    //   camera one, and is handed off rather than smuggled in here.
     var BS_UNIT_CAMERAS = {
-        pyramidal: { az: 35, el: 62, dist: 7.0 },
+        pyramidal: { az: 120, el: 15, dist: 7.0 },
         diatomic:  { az: 35, el: 12, dist: 7.0 },
+        trigonal:  { az: 35, el: 15, dist: 7.0 },
         general:   { az: 35, el: 47, dist: 7.0 }
     };
     // The scene-derived shape key: a centre whose bonds all sit on ONE side of it
     // (three bonds plus at least one lone pair) puts a ligand behind the centre at
     // a shallow look-down; a centre with ONE bond lays that bond along the view-up
-    // axis and loses its length to foreshortening. Everything else — tetrahedral,
-    // trigonal planar, bent, linear — surrounds its centre and reads at the
-    // general solve.
+    // axis and loses its length to foreshortening; a centre with three bonds and NO
+    // lone pair is PLANAR, and its plane contains the view-up axis. Everything else
+    // — tetrahedral, bent, linear — surrounds its centre in three dimensions and
+    // reads at the general solve.
     function bscUnitShapeKey(molKey) {
         var m = MG_MOLECULES[molKey];
         if (!m) return "general";
         if (m.bonds === 3 && m.lone >= 1) return "pyramidal";
+        if (m.bonds === 3) return "trigonal";
         if (m.bonds === 1) return "diatomic";
         return "general";
     }
-    // Derived from the state ALONE (never from the live camera or a dragged
-    // picker), so the countable view is identical on the first frame and under a
-    // SET_TIME_FREEZE pin — the D-4 property this whole family exists to keep.
-    function bscSolvedCamera(bs) {
-        var base = BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
-        if (bs.placement === "lattice") return base;
+    // The shape key the SOLVE itself uses, or null when the scene is framed by its
+    // mode's own camera (a lattice, a multi-unit box, a unit parked off-centre) and
+    // no per-species key applies at all. Split out by E1c-H so the explore re-frame
+    // asks the SAME question the state-entry solve asks, rather than a second copy
+    // of its guards that could drift out of step. speciesOverride is the species a
+    // picker has just resolved; omitted, this is byte-for-byte the E1c-A behaviour.
+    function bscSolvedShapeKey(bs, speciesOverride) {
+        if (bs.placement === "lattice") return null;
         var units = (bs.units && bs.units.length) ? bs.units : null;
-        if (units && units.length > 1) return base;
+        if (units && units.length > 1) return null;
         var at = (units && units[0] && units[0].at) ? units[0].at : [0, 0, 0];
-        if (bscMag(at) > 0.5) return base;   // parked off-centre: a wider scene
-        var sp = (units && units[0] && units[0].species) || bs.species || null;
-        return BS_UNIT_CAMERAS[bscUnitShapeKey(sp)];
+        if (bscMag(at) > 0.5) return null;   // parked off-centre: a wider scene
+        var sp = speciesOverride || (units && units[0] && units[0].species) || bs.species || null;
+        return bscUnitShapeKey(sp);
+    }
+    // Derived from the state ALONE (never from the live camera), so the countable
+    // view is identical on the first frame and under a SET_TIME_FREEZE pin — the
+    // D-4 property this whole family exists to keep. In an EXPLORE state the
+    // "species" is whatever the picker has resolved (E1c-H), which is still a pure
+    // function of that species and of nothing else: same species, same camera,
+    // however the teacher reached it.
+    function bscSolvedCamera(bs, speciesOverride) {
+        var k = bscSolvedShapeKey(bs, speciesOverride);
+        if (k) return BS_UNIT_CAMERAS[k];
+        return BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+    }
+    // ── E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES.
+    //   The solve was resolved once per STATE, so every picker species was framed
+    //   by the camera measured for the species the state happens to OPEN on: the
+    //   four halides — the ladder the Halide row exists for, whose whole lesson is
+    //   the arrow's LENGTH (E1c-D) — were drawn at the general solve's el 47, where
+    //   a 1-bond unit loses 20.6% of its projected bond length, and BF3 was drawn
+    //   at a solve that reads its 120 deg as 97 deg (see BS_UNIT_CAMERAS above).
+    //   The shape key already existed; explore simply never consulted it per pick.
+    //   THREE PROPERTIES, and they are the contract:
+    //     PURE. The destination is BS_UNIT_CAMERAS[shape key of the resolved
+    //       species] — no clock, no accumulator, no dependence on the route taken,
+    //       so a frozen replay of the same species is the same pixels (D-1). The
+    //       FRAME pass writes no camera state at all; this is the event half, the
+    //       E1c-G shape.
+    //     IT MOVES, IT DOES NOT CUT. animateCameraTo is the same helper state entry
+    //       uses (a fixed-rate lerp that converges and snaps), so a pick reads as
+    //       one caused move in the one camera vocabulary the scenario already has —
+    //       Rule 32a, and no new duration constant to drift.
+    //     ONLY WHEN THE SHAPE CHANGES. A pick inside one shape key (CO2 -> H2O,
+    //       HF -> HI) moves the camera by exactly nothing, so the four-rung halide
+    //       ladder still holds ONE camera across its rungs (the E1c-A no-teleport
+    //       property, carried to the picker) and a teacher who has orbited by hand
+    //       keeps their view for every same-shape pick.
+    //   Guided states never reach it: PM_bscCamBs is published as null unless the
+    //   state's own mode is explore AND the state left the camera to the solve.
+    function bscReframeForSpecies(sp) {
+        var bs = window.PM_bscCamBs;
+        if (!bs) return;
+        var k = bscSolvedShapeKey(bs, sp);
+        if (!k || k === window.PM_bscCamKey) return;
+        window.PM_bscCamKey = k;
+        var cam = BS_UNIT_CAMERAS[k];
+        if (!cam) return;
+        var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+        var dd = cam.dist || 7;
+        animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
     }
 
     // ── pure helpers (all closed-form; nothing below reads live scene state) ──
@@ -48978,6 +49404,21 @@ export const FIELD_3D_RENDERER_CODE = `
         return MG_ELEMENTS[BS_ION_PARENT[species] || species] || MG_ELEMENTS.C;
     }
     function bscChi(el) { return (BS_CHI[el] != null) ? BS_CHI[el] : 2.20; }
+    // E1c-F: linear sRGB-channel mix of two MG_ELEMENTS hex colours. Used ONLY by
+    // the compare-swap morph, where an atom is genuinely half-way between two
+    // elements and a hard colour cut would re-introduce the very jump the swap
+    // transition exists to remove. Pure function of (a, b, f) — no state, so a
+    // SET_TIME_FREEZE rewind reproduces the same colour.
+    function bscMixHex(a, b, f) {
+        if (!a) return b; if (!b) return a;
+        var pa = parseInt(String(a).replace("#", ""), 16), pb = parseInt(String(b).replace("#", ""), 16);
+        if (!isFinite(pa) || !isFinite(pb)) return a;
+        var g = (f < 0) ? 0 : (f > 1) ? 1 : f;
+        var r = Math.round(((pa >> 16) & 255) + ((((pb >> 16) & 255)) - ((pa >> 16) & 255)) * g);
+        var gr = Math.round(((pa >> 8) & 255) + ((((pb >> 8) & 255)) - ((pa >> 8) & 255)) * g);
+        var bl = Math.round((pa & 255) + ((pb & 255) - (pa & 255)) * g);
+        return "#" + ("000000" + ((r << 16) | (gr << 8) | bl).toString(16)).slice(-6);
+    }
     // Pauling / Hannay-Smyth ionic character: f = 1 - exp(-0.25 * dchi^2). A real
     // published relation, so the per-atom delta the scene draws is DERIVED from
     // electronegativity, never authored (D-2). This is also what E2's link
@@ -49466,6 +49907,34 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
         return false;
     }
+    // E1c-G: does this select actually OFFER v? Both the picker re-seed and the
+    // per-frame widget sync need it, so a select is never handed a value it has no
+    // option for (the blank-halide-row defect) and never told to mirror a species
+    // that is not in its own list.
+    function bscOptionOf(sel, v) {
+        if (!sel || !v || !sel.options) return false;
+        for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === v) return true;
+        return false;
+    }
+    // The value CURRENTLY selected, or null when nothing is (which is a different
+    // thing from the empty-valued placeholder being selected, and .value cannot
+    // tell them apart — both read "").
+    function bscSelCur(sel) {
+        return (sel && sel.options && sel.selectedIndex >= 0) ? sel.options[sel.selectedIndex].value : null;
+    }
+    // MEASURED (E1c-G, on the shipped Chromium): assigning select.value = "" does
+    // NOT select the empty-valued placeholder — it DESELECTS (selectedIndex -1)
+    // and the box renders EMPTY, which is the exact defect the placeholder exists
+    // to prevent. So the placeholder is selected by INDEX, after the normal
+    // assignment, and only when the value asked for is the empty one.
+    function bscSelValue(sel, v) {
+        if (!sel) return;
+        sel.value = v;
+        if (v) return;
+        for (var i = 0; i < (sel.options ? sel.options.length : 0); i++) {
+            if (sel.options[i].value === "") { sel.selectedIndex = i; return; }
+        }
+    }
     // Memoised by id. E1's linear scan was fine for one unit; E2's network state
     // is 30 units x 7 atoms x 4 handles PLUS 360 link dashes per frame against a
     // ~1500-object sceneObjects, i.e. millions of string compares a frame. The
@@ -49812,6 +50281,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // Rule-39f discovery convention exactly: <prefix>_<name>_row.
         var SC = config.slider_controls || {};
         var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : d; };
+        // ── E1c-G (G3): THE AUTHORED BOUNDS ARE HONOURED, NOT DECORATIVE.
+        //   slider_controls.<k>.min / .max / .step were ACCEPTED by the schema and
+        //   then ignored by a hardcoded min="60" max="180" — bond_polarity authors
+        //   angle.min = 90 and the panel silently opened at 60. An accepted-but-
+        //   ignored field is this surface-s twice-recorded scar (a decorative mode
+        //   string; an eye_capture_ms nested one level too deep, so THE EYE-s pin
+        //   override never fired on any state): the author reads their own JSON as
+        //   the contract and cannot see that the engine does not. Every hardcoded
+        //   bound below becomes the DEFAULT of an authored read, so a concept that
+        //   authors none is byte-identical. The seeded default is clamped into the
+        //   honoured range so the thumb, the span and window.PM_bsc* can never
+        //   disagree (a browser clamps the thumb silently, the span would not).
+        //   count.max stays engine-owned: it is the built mesh pool, not taste.
+        var lim = function (k, w, d) { return (SC[k] && SC[k][w] != null) ? Number(SC[k][w]) : d; };
+        var defc = function (k, d, lo, hi) { return bscClamp(Number(def(k, d)), lim(k, "min", lo), lim(k, "max", hi)); };
         var molDef = (SC.molecule && SC.molecule["default"]) ? SC.molecule["default"] : "HCl";
         var molOpts = "", mkeys = (config.explore_species && config.explore_species.length)
             ? config.explore_species : ["HCl", "CO2", "H2O", "CCl4", "CHCl3", "NH3", "NF3"];
@@ -49820,7 +50304,13 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!mv) continue;
             molOpts += '<option value="' + mkeys[i] + '"' + (mkeys[i] === molDef ? " selected" : "") + '>' + mv.formula + "</option>";
         }
-        var ligOpts = "", lkeys = (config.explore_ligands && config.explore_ligands.length)
+        // E1c-G (G2): a LEADING PLACEHOLDER. The halide row is a sub-selector of
+        // the molecule row (every explore_ligands key is also a molecule), so a
+        // species outside the family has no option to show and the select rendered
+        // BLANK — a control that looks broken before it is even touched. The
+        // placeholder is display-only: the change handler ignores an empty value,
+        // so no authored enum grows and nothing can be picked that is not a halide.
+        var ligOpts = '<option value="">\\u2014</option>', lkeys = (config.explore_ligands && config.explore_ligands.length)
             ? config.explore_ligands : ["HF", "HCl", "HBr", "HI"];
         for (i = 0; i < lkeys.length; i++) {
             var lv = MG_MOLECULES[lkeys[i]];
@@ -49840,14 +50330,14 @@ export const FIELD_3D_RENDERER_CODE = `
             '<div id="bsc_molecule_row" style="display:none"><label>Molecule: <select id="bsc_molecule_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + molOpts + '</select></label></div>' +
             '<div id="bsc_ligand_row" style="display:none;margin-top:6px"><label>Halide: <select id="bsc_ligand_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + ligOpts + '</select></label></div>' +
             '<div id="bsc_species_row" style="display:none;margin-top:6px"><label>Species: <select id="bsc_species_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + spOpts + '</select></label></div>' +
-            '<div id="bsc_angle_row" style="display:none;margin-top:6px"><label>Bond angle: <span id="bsc_angle_val">' + Number(def("angle", 104.5)).toFixed(1) + '</span>\\u00B0</label><input type="range" id="bsc_angle_slider" min="60" max="180" step="0.5" value="' + def("angle", 104.5) + '" style="width:100%"></div>' +
-            '<div id="bsc_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="bsc_spin_val">' + Number(def("spin", 0.16)).toFixed(2) + '</span> rad/s</label><input type="range" id="bsc_spin_slider" min="0" max="0.6" step="0.02" value="' + def("spin", 0.16) + '" style="width:100%"></div>' +
-            '<div id="bsc_temperature_row" style="display:none;margin-top:6px"><label>Temperature: <span id="bsc_temperature_val">' + Math.round(def("temperature", 298)) + '</span> K</label><input type="range" id="bsc_temperature_slider" min="100" max="600" step="5" value="' + def("temperature", 298) + '" style="width:100%"></div>' +
-            '<div id="bsc_count_row" style="display:none;margin-top:6px"><label>Molecules: <span id="bsc_count_val">' + Math.round(def("count", 1)) + '</span></label><input type="range" id="bsc_count_slider" min="1" max="' + nUnits + '" step="1" value="' + def("count", 1) + '" style="width:100%"></div>' +
-            '<div id="bsc_separation_row" style="display:none;margin-top:6px"><label>Separation: <span id="bsc_separation_val">' + Number(def("separation", 3.0)).toFixed(1) + '</span></label><input type="range" id="bsc_separation_slider" min="1.5" max="8" step="0.1" value="' + def("separation", 3.0) + '" style="width:100%"></div>' +
-            '<div id="bsc_shift_row" style="display:none;margin-top:6px"><label>Layer shift: <span id="bsc_shift_val">' + Number(def("shift", 0)).toFixed(2) + '</span></label><input type="range" id="bsc_shift_slider" min="0" max="1" step="0.02" value="' + def("shift", 0) + '" style="width:100%"></div>' +
-            '<div id="bsc_field_row" style="display:none;margin-top:6px"><label>Field: <span id="bsc_field_val">' + Number(def("field", 0)).toFixed(2) + '</span></label><input type="range" id="bsc_field_slider" min="0" max="1" step="0.02" value="' + def("field", 0) + '" style="width:100%"></div>' +
-            '<div id="bsc_valence_row" style="display:none;margin-top:6px"><label>Free electrons per atom: <span id="bsc_valence_val">' + Math.round(def("valence", 1)) + '</span></label><input type="range" id="bsc_valence_slider" min="1" max="3" step="1" value="' + def("valence", 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_angle_row" style="display:none;margin-top:6px"><label>Bond angle: <span id="bsc_angle_val">' + defc("angle", 104.5, 60, 180).toFixed(1) + '</span>\\u00B0</label><input type="range" id="bsc_angle_slider" min="' + lim("angle", "min", 60) + '" max="' + lim("angle", "max", 180) + '" step="' + lim("angle", "step", 0.5) + '" value="' + defc("angle", 104.5, 60, 180) + '" style="width:100%"></div>' +
+            '<div id="bsc_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="bsc_spin_val">' + defc("spin", 0.16, 0, 0.6).toFixed(2) + '</span> rad/s</label><input type="range" id="bsc_spin_slider" min="' + lim("spin", "min", 0) + '" max="' + lim("spin", "max", 0.6) + '" step="' + lim("spin", "step", 0.02) + '" value="' + defc("spin", 0.16, 0, 0.6) + '" style="width:100%"></div>' +
+            '<div id="bsc_temperature_row" style="display:none;margin-top:6px"><label>Temperature: <span id="bsc_temperature_val">' + Math.round(defc("temperature", 298, 100, 600)) + '</span> K</label><input type="range" id="bsc_temperature_slider" min="' + lim("temperature", "min", 100) + '" max="' + lim("temperature", "max", 600) + '" step="' + lim("temperature", "step", 5) + '" value="' + defc("temperature", 298, 100, 600) + '" style="width:100%"></div>' +
+            '<div id="bsc_count_row" style="display:none;margin-top:6px"><label>Molecules: <span id="bsc_count_val">' + Math.round(defc("count", 1, 1, nUnits)) + '</span></label><input type="range" id="bsc_count_slider" min="' + lim("count", "min", 1) + '" max="' + nUnits + '" step="' + lim("count", "step", 1) + '" value="' + defc("count", 1, 1, nUnits) + '" style="width:100%"></div>' +
+            '<div id="bsc_separation_row" style="display:none;margin-top:6px"><label>Separation: <span id="bsc_separation_val">' + defc("separation", 3.0, 1.5, 8).toFixed(1) + '</span></label><input type="range" id="bsc_separation_slider" min="' + lim("separation", "min", 1.5) + '" max="' + lim("separation", "max", 8) + '" step="' + lim("separation", "step", 0.1) + '" value="' + defc("separation", 3.0, 1.5, 8) + '" style="width:100%"></div>' +
+            '<div id="bsc_shift_row" style="display:none;margin-top:6px"><label>Layer shift: <span id="bsc_shift_val">' + defc("shift", 0, 0, 1).toFixed(2) + '</span></label><input type="range" id="bsc_shift_slider" min="' + lim("shift", "min", 0) + '" max="' + lim("shift", "max", 1) + '" step="' + lim("shift", "step", 0.02) + '" value="' + defc("shift", 0, 0, 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_field_row" style="display:none;margin-top:6px"><label>Field: <span id="bsc_field_val">' + defc("field", 0, 0, 1).toFixed(2) + '</span></label><input type="range" id="bsc_field_slider" min="' + lim("field", "min", 0) + '" max="' + lim("field", "max", 1) + '" step="' + lim("field", "step", 0.02) + '" value="' + defc("field", 0, 0, 1) + '" style="width:100%"></div>' +
+            '<div id="bsc_valence_row" style="display:none;margin-top:6px"><label>Free electrons per atom: <span id="bsc_valence_val">' + Math.round(defc("valence", 1, 1, 3)) + '</span></label><input type="range" id="bsc_valence_slider" min="' + lim("valence", "min", 1) + '" max="' + lim("valence", "max", 3) + '" step="' + lim("valence", "step", 1) + '" value="' + defc("valence", 1, 1, 3) + '" style="width:100%"></div>' +
             '<div id="bsc_ion_pair_row" style="display:none;margin-top:6px"><label>Ion pair: <select id="bsc_ion_pair_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="NaCl">NaCl</option><option value="KCl">KCl</option><option value="LiF">LiF</option><option value="MgO">MgO</option><option value="CaO">CaO</option></select></label></div>' +
             '<div id="bsc_metal_row" style="display:none;margin-top:6px"><label>Metal: <select id="bsc_metal_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="Na">Na</option><option value="Mg">Mg</option><option value="Al">Al</option></select></label></div>';
         document.body.appendChild(sp);
@@ -49869,13 +50359,95 @@ export const FIELD_3D_RENDERER_CODE = `
                 bscEmit(id, window["PM_bsc" + key]);
             });
         }
+        // ── E1c-G: AN EXPLORE CONTROL MAY NOT KEEP A VALUE THAT BELONGED TO THE
+        //   PREVIOUS SPECIES.
+        //   Measured on the explore state, fresh entry, molecule picker only:
+        //     fresh (H2O) mu 1.85 D at 104.5   ->  pick CO2  mu 2.82 D at 104.5
+        //                                      ->  pick BF3  mu 1.81 D at 104.5
+        //   CO2 stood BENT at water-s angle reading 2.82 D, and BF3 read 1.81 D
+        //   polar. State 3 of this same concept teaches that CO2-s dipole moment is
+        //   ZERO — it is the arc-s first misconception beat — and BF3 was admitted
+        //   to the picker precisely as a second "symmetric arrangement, zero
+        //   resultant" example. The sandbox a teacher explores in after the lesson
+        //   was refuting the lesson, and refuting the concept-s own assessment item.
+        //   ROOT CAUSE: the angle widget is built ONCE from slider_controls.angle
+        //   .default and the frame pass resolves angle_deg, which is the DEFAULT
+        //   species-s equilibrium — neither re-seeds when the species changes. This
+        //   is the shipped E1c item 4 (an authored angle also bends a 2-/3-bond
+        //   centre carrying no lone pair) meeting a picker that can change the
+        //   centre underneath it. There is NO good static default: 104.5 breaks CO2
+        //   and BF3, 180 opens water linear at mu = 0 and destroys the bend beat-s
+        //   aha on the sandbox — the default has to follow the species.
+        //   THE RULE: on an explore-mode species pick, the angle re-seeds to the
+        //   NEWLY PICKED species-s own equilibrium (MG_MOLECULES[key].angle) unless
+        //   the teacher has dragged the angle SINCE that pick. Every species opens
+        //   at its true geometry; a teacher who then drags keeps control, and the
+        //   next pick hands control back to the new species.
+        //   D-1 (no latch): the pick is an EVENT, not an accumulator. It writes the
+        //   widget and clears the angle drag-seize; the FRAME pass stays a pure
+        //   closed form of state-local ms (angleTo takes mol.angle whenever a picker
+        //   has seized the species), so a SET_TIME_FREEZE rewind still photographs
+        //   the same pixels and a frozen replay never depends on interaction
+        //   history. Guided states are untouched: everything here is gated on
+        //   PM_bscMode === "explore", and no guided state carries a picker plus an
+        //   angle control anyway.
+        //   E1c-F handoff honoured: nothing here touches swapP, and no *Dragged flag
+        //   of a picker is CLEARED (only set), so a compare state can never be
+        //   re-seized by this path.
+        function bscExploreSpeciesPicked(id, v) {
+            if (window.PM_bscMode !== "explore") return;
+            var mv = MG_MOLECULES[v];
+            if (!mv) return;
+            // G2: the three pickers NAME ONE QUANTITY — the species on screen — and
+            // the frame pass resolves molecule before ligand before species, so a
+            // halide pick was shadowed by the molecule picker the moment the teacher
+            // had used it: the Halide row was measurably inert (HF -> HCl -> HBr ->
+            // HI all left mu = 1.83 D on HF) while the explore state-s own
+            // annotation and narration tell the teacher to change the halide. A pick
+            // on ANY of the three now writes the same species to all of them, so the
+            // resolution order stops mattering — no history, no most-recent-wins.
+            if (id !== "molecule") {
+                window.PM_bscMol = v; window.PM_bscMolDragged = true;
+                var msel = document.getElementById("bsc_molecule_select");
+                if (bscOptionOf(msel, v)) msel.value = v;
+            }
+            if (id !== "ligand") {
+                // out of the halide family the row shows its placeholder rather
+                // than a stale halide. No *Dragged flag is cleared (the E1c-F
+                // handoff): PM_bscMol has just been seized, and the frame pass
+                // reads the molecule picker first, so PM_bscLig is never consulted.
+                var lsel = document.getElementById("bsc_ligand_select");
+                if (lsel) {
+                    var inFam = bscOptionOf(lsel, v);
+                    bscSelValue(lsel, inFam ? v : "");
+                    if (inFam) window.PM_bscLig = v;
+                }
+            }
+            if (id !== "species") {
+                var ssel = document.getElementById("bsc_species_select");
+                if (bscOptionOf(ssel, v)) { ssel.value = v; window.PM_bscSpecies = v; }
+            }
+            window.PM_bscAngle = mv.angle;
+            window.PM_bscAngleDragged = false;
+            var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
+            if (asl) asl.value = String(mv.angle);
+            if (avl) avl.textContent = Number(mv.angle).toFixed(1);
+            // E1c-H: and the camera follows the species, so the picked molecule is
+            // seen from the solve measured for ITS shape. Last, after the widgets
+            // agree, and a no-op unless the shape key actually changed.
+            bscReframeForSpecies(v);
+        }
         function wireSelect(id, key) {
             var el = document.getElementById("bsc_" + id + "_select");
             if (!el) return;
             el.addEventListener("change", function () {
+                // the halide placeholder is display-only (E1c-G G2): picking it is
+                // not a species choice, so it changes nothing.
+                if (!el.value) return;
                 window["PM_bsc" + key] = el.value;
                 window["PM_bsc" + key + "Dragged"] = true;
                 bscEmit(id, el.value);
+                if (id === "molecule" || id === "ligand" || id === "species") bscExploreSpeciesPicked(id, el.value);
             });
         }
         var f1 = function (v) { return v.toFixed(1); };
@@ -49890,14 +50462,14 @@ export const FIELD_3D_RENDERER_CODE = `
         wireSelect("metal", "Metal");
 
         window.PM_bscMolDef = molDef; window.PM_bscMol = molDef;
-        window.PM_bscSpinDef = def("spin", 0.16); window.PM_bscSpin = window.PM_bscSpinDef;
-        window.PM_bscAngle = def("angle", 104.5);
-        window.PM_bscTemp = def("temperature", 298);
-        window.PM_bscCount = def("count", 1);
-        window.PM_bscSep = def("separation", 3.0);
-        window.PM_bscShift = def("shift", 0);
-        window.PM_bscField = def("field", 0);
-        window.PM_bscValence = def("valence", 1);
+        window.PM_bscSpinDef = defc("spin", 0.16, 0, 0.6); window.PM_bscSpin = window.PM_bscSpinDef;
+        window.PM_bscAngle = defc("angle", 104.5, 60, 180);
+        window.PM_bscTemp = defc("temperature", 298, 100, 600);
+        window.PM_bscCount = defc("count", 1, 1, nUnits);
+        window.PM_bscSep = defc("separation", 3.0, 1.5, 8);
+        window.PM_bscShift = defc("shift", 0, 0, 1);
+        window.PM_bscField = defc("field", 0, 0, 1);
+        window.PM_bscValence = defc("valence", 1, 1, 3);
         window.PM_bscLig = lkeys[0] || "HCl";
         window.PM_bscSpecies = skeys[0] || "H2O";
         window.PM_bscIonPair = "NaCl"; window.PM_bscMetal = "Na";
@@ -49910,6 +50482,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var keys = ["Mol", "Lig", "Species", "Angle", "Spin", "Temp", "Count", "Sep",
             "Shift", "Field", "Valence", "IonPair", "Metal"], i;
         for (i = 0; i < keys.length; i++) window["PM_bsc" + keys[i] + "Dragged"] = false;
+        // E1c-G: the picker re-seed is EXPLORE-ONLY, and the picker listeners are
+        // built once, outside any state — so the state-s mode is published here.
+        window.PM_bscMode = bs.mode || "dipole_sum";
 
         var units = bs.units || [];
         var focal = units.length ? units[0] : null;
@@ -50009,6 +50584,17 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
         }
+        // E1c-H: publish what the explore re-frame needs, and NOTHING a guided
+        // state can act on. PM_bscCamKey records the shape key the camera above was
+        // actually solved for (null when the mode's own camera framed the scene),
+        // so a pick can tell "same shape, do not move" from "new shape, re-frame".
+        // PM_bscCamBs is the state's own block, published ONLY when the state is an
+        // explore sandbox that left its camera to the solve — a guided state, an
+        // authored bs.camera and an authored camera_position each publish null, so
+        // the picker path cannot move a camera those three own.
+        window.PM_bscCamKey = (bs.camera || stateDef.camera_position) ? null : bscSolvedShapeKey(bs, null);
+        window.PM_bscCamBs = ((bs.mode || "dipole_sum") === "explore" && !bs.camera && !stateDef.camera_position)
+            ? bs : null;
         // Seed the ion-pair picker from the state's OWN sublattice species, so a
         // scripted lattice and the widget that shares it agree at state entry
         // (FIXED scar scripted_change_desyncs_the_dom_control_that_shares_it).
@@ -50050,8 +50636,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // PREVIOUS state's lobes or lone-pair vector on a molecule that has none.
         for (i = 0; i < MG_MAX_LONE; i++) {
             var l1 = bscFindById("bsc_lone_lobe_" + i); if (l1) l1.visible = false;
-            var l2 = bscFindById("bsc_lone_shaft_" + i); if (l2) l2.visible = false;
-            var l3 = bscFindById("bsc_lone_head_" + i); if (l3) l3.visible = false;
+            // E1c-F: the lone-pair VECTOR now rides arrows_at_ms, so it is a
+            // cue-driven layer and takes the same RESTORE half every other one has
+            // (the dim-with-no-restore scar): leaving a state mid-ramp must not
+            // strand the next state's lone-pair vector at partial ink.
+            var l2 = bscFindById("bsc_lone_shaft_" + i);
+            if (l2) { l2.visible = false; setObjOpacity(l2, BS_ARROW_OPACITY); }
+            var l3 = bscFindById("bsc_lone_head_" + i);
+            if (l3) { l3.visible = false; setObjOpacity(l3, BS_ARROW_OPACITY); }
         }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
         for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
@@ -50059,6 +50651,11 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var j = 0; j < BS_MAX_ATOMS; j++) {
                 var dl = bscFindById("bsc_u" + i + "_delta" + j);
                 if (dl) { dl.visible = false; setObjOpacity(dl, 1); }   // E1c-C restore half
+                // E1c-F: the atom SYMBOL rides the swap veil, so it takes the same
+                // restore — a teacher who leaves a compare state in its trough must
+                // not strand every element label at zero ink on the next state.
+                var al = bscFindById("bsc_u" + i + "_lab" + j);
+                if (al) setObjOpacity(al, 1);
             }
         }
         for (i = 0; i < BS_MAX_LINKS; i++) {
@@ -50112,11 +50709,62 @@ export const FIELD_3D_RENDERER_CODE = `
         var swapSeized = (bscHasControl(ctrls, "molecule") && window.PM_bscMolDragged) ||
             (bscHasControl(ctrls, "ligand") && window.PM_bscLigDragged) ||
             (bscHasControl(ctrls, "species") && window.PM_bscSpeciesDragged);
-        if (mode === "compare" && bs.compare_species != null && bs.compare_at_ms != null &&
-            ms >= bs.compare_at_ms && MG_MOLECULES[bs.compare_species] && !swapSeized) {
-            molKey = bs.compare_species;
-            mol = MG_MOLECULES[molKey];
+        // ── E1c-F: THE SWAP IS A TRANSITION, NOT A CUT.
+        //   compare_duration_ms was read by the trend panel and by deriveStateMeta
+        //   (which pins compare_at_ms + duration + 600 precisely so the frozen
+        //   frame lands AFTER the transformation) while the swap itself was a
+        //   single-frame reassignment of molKey. The cost was measured on
+        //   bond_polarity S7: its last apparatus motion was the instant cut, so a
+        //   22 000 ms state stood visually frozen for its final 12.0 s — sixteen
+        //   byte-identical frames under the narration that explains the hardest
+        //   idea in the arc, while its own chemistry block had cleared the state by
+        //   COMPUTING against a "deliberately slow, readable transformation".
+        //   The shape, and it is the JSON contract:
+        //     swapP  = mgRamp(ms, compare_at_ms, compare_duration_ms, 0, 1)
+        //     IDENTITY flips once, at the MIDPOINT (swapP >= 0.5) — species,
+        //       charges, dipole table and atom labels are discrete facts and
+        //       cannot be half-way; they change in the trough where the vector
+        //       layer is at zero ink, so nothing discrete changes in plain view.
+        //     swapVeil = the vector layer's ink: 1 -> 0, a flat dark TROUGH of
+        //       BS_SWAP_TROUGH of the duration in which the discrete change
+        //       happens, then 0 -> 1. Bond arrows, the resultant, the lone-pair
+        //       vector and the delta glyphs all ride it, and so does the HUD line
+        //       that states the answer: evidence and claim leave and return
+        //       together, and across the trough the instrument shows no value.
+        //     swapMixF = a triangle 0 -> 0.5 -> 0 that carries every CONTINUOUS
+        //       atom property (radius, colour) all the way from the outgoing
+        //       element to the incoming one; it is continuous THROUGH the midpoint
+        //       flip by construction (below the flip it mixes cur->peer, above it
+        //       mixes back peer->cur, and both read the same average at 0.5). This
+        //       is what keeps the apparatus MOVING for the whole duration: on
+        //       NH3 -> NF3 the three hydrogens swell 0.30 -> 0.38 and go white ->
+        //       green continuously across the beat.
+        //   A MORPH, not a cross-fade: the scene owns exactly one mesh pool per
+        //   unit, so a true cross-fade would need a second molecule's worth of
+        //   meshes built and driven in parallel — and for the pairs this concept
+        //   actually compares (same central atom, same domain count, one ligand
+        //   substituted) the morph is also the HONEST picture: it shows the
+        //   substitution happening to the same molecule, which is the beat.
+        //   Closed form in state-local ms, no latch, no accumulator (D-1) — a
+        //   SET_TIME_FREEZE rewind photographs the same pixels.
+        var swapFrom = molKey;
+        var swapActive = (mode === "compare" && bs.compare_species != null &&
+            bs.compare_at_ms != null && MG_MOLECULES[bs.compare_species] && !swapSeized);
+        var swapTo = swapActive ? bs.compare_species : molKey;
+        var swapDur = Math.max(1, (bs.compare_duration_ms != null) ? bs.compare_duration_ms : BS_SWAP_MS);
+        var swapMid = swapActive ? (bs.compare_at_ms + swapDur * 0.5) : 0;
+        var swapP = swapActive ? mgRamp(ms, bs.compare_at_ms, swapDur, 0, 1) : 0;
+        var swapVeil = 1, swapMixF = 0;
+        if (swapActive) {
+            var swapRamp = swapDur * (0.5 - BS_SWAP_TROUGH * 0.5);
+            var swapT0 = bs.compare_at_ms + swapRamp, swapT1 = bs.compare_at_ms + swapDur - swapRamp;
+            swapVeil = (ms <= swapT0) ? mgRamp(ms, bs.compare_at_ms, swapRamp, 1, 0)
+                : (ms >= swapT1) ? mgRamp(ms, swapT1, swapRamp, 0, 1) : 0;
+            swapMixF = (swapP < 0.5) ? swapP : (1 - swapP);
+            if (swapP >= 0.5) { molKey = swapTo; mol = MG_MOLECULES[molKey]; }
         }
+        window.PM_bscSwapProgress = swapP;
+        window.PM_bscSwapVeil = swapVeil;
         window.PM_bscSwapSeized = !!swapSeized;
         // E1c item 1: THE SCRIPTED BEND. angle_deg alone is a static override, so
         // a state could only ever open at its final shape — and bond_polarity S4's
@@ -50130,6 +50778,18 @@ export const FIELD_3D_RENDERER_CODE = `
         // ramp is authored), exactly as separation is the destination of
         // approach_from.
         var angleTo = (bs.angle_deg != null) ? bs.angle_deg : mol.angle;
+        // ── E1c-G, THE CLOSED-FORM HALF. An authored angle_deg on an EXPLORE state
+        //   describes the species that state OPENS on; once a picker has seized the
+        //   species it is a value belonging to a molecule that is no longer on
+        //   screen, and it was rendering CO2 bent at 104.5 reading 2.82 D against
+        //   the arc-s own "symmetric arrangement, zero resultant" beat. Whenever a
+        //   picker owns the species, the destination is that species-s OWN
+        //   equilibrium. Pure function of the resolved molecule — no latch, no
+        //   accumulator, no dependence on how the pick was reached (D-1), so a
+        //   SET_TIME_FREEZE rewind photographs the same pixels. Gated on
+        //   swapSeized, so an untouched explore state is byte-identical and every
+        //   guided state is untouched by construction.
+        if (mode === "explore" && swapSeized) angleTo = mol.angle;
         var angleAt = function (mms) {
             if (bs.angle_from == null || bs.angle_at_ms == null) return angleTo;
             return mgRamp(mms, bs.angle_at_ms,
@@ -50176,9 +50836,18 @@ export const FIELD_3D_RENDERER_CODE = `
         var bscCueF = function (atMs) {
             return (atMs == null) ? 1 : mgRamp(ms, atMs, BS_REVEAL_MS, 0, 1);
         };
-        var arrowsCued = bscCueOn(bs.arrows_at_ms), arrowsF = bscCueF(bs.arrows_at_ms);
-        var resCued = bscCueOn(bs.resultant_at_ms), resFade = bscCueF(bs.resultant_at_ms);
-        var chargesCued = bscCueOn(bs.charges_at_ms), chargesF = bscCueF(bs.charges_at_ms);
+        //   E1c-F: every one of the three is MULTIPLIED by the swap veil, so a
+        //   compare state's vector layer comes off before the substitution and
+        //   back on after it. swapVeil is a hard 1 whenever no swap is running, so
+        //   a non-compare state is byte-identical to E1c-E by construction; the
+        //   opacity WRITE is still guarded, now on (cue authored OR swap running),
+        //   which keeps a state with neither untouched.
+        var arrowsCued = bscCueOn(bs.arrows_at_ms), arrowsF = bscCueF(bs.arrows_at_ms) * swapVeil;
+        var resCued = bscCueOn(bs.resultant_at_ms), resFade = bscCueF(bs.resultant_at_ms) * swapVeil;
+        var chargesCued = bscCueOn(bs.charges_at_ms), chargesF = bscCueF(bs.charges_at_ms) * swapVeil;
+        var arrowsInk = arrowsCued || swapActive;     // may this pass WRITE opacity?
+        var resInk = resCued || swapActive;
+        var chargesInk = chargesCued || swapActive;
 
         window.PM_bscMolLive = molKey;
         window.PM_bscAngleLive = angleNow;
@@ -50268,7 +50937,34 @@ export const FIELD_3D_RENDERER_CODE = `
         // label's clear placement below. Collected here because the atom loop is
         // the only pass that knows each ligand's world position and the screen
         // diagonal each atom label actually settled on.
-        var fCenLabPos = null, fLigWorld = [];
+        var fCenLabPos = null, fLigWorld = [], fCenRad = 0, fLigRad = [], fTextAvoid = [];
+        // E1c-I: the focal unit's VECTOR furniture, closed-form and resolved HERE
+        // because the atom-label pass runs before the arrow pass and still has to
+        // place text against it. The per-bond moment arrows are deliberately
+        // absent: each is CENTRED on its own bond midpoint (E1c-A) and is never
+        // longer than the bond, so the bond SEGMENT already covers it exactly.
+        var fUnit0 = (bs.units && bs.units[focalIdx]) ? bs.units[focalIdx] : null;
+        var fRot0 = fUnit0 ? bscOrientRot(fUnit0.orient) : null;
+        var fOrg0 = (fUnit0 && fUnit0.at) ? fUnit0.at.slice(0) : [0, 0, 0];
+        var aScale0 = (dip.arrow_scale != null) ? dip.arrow_scale : BS_ARROW_D_PER_UNIT;
+        var fVecAvoid = [];
+        if (dip.show_resultant && D.mag > 1e-9) {
+            var rv0 = D.vec.slice(0);
+            if (fRot0) rv0 = fRot0(rv0);
+            rv0 = mgRotY(rv0, spin);
+            var rd0 = bscNorm(rv0), rl0 = D.mag * aScale0;
+            fVecAvoid.push({ a: fOrg0, b: [fOrg0[0] + rd0[0] * rl0, fOrg0[1] + rd0[1] * rl0, fOrg0[2] + rd0[2] * rl0] });
+        }
+        if (dip.show_lone_pair && D.lone && D.lone.length) {
+            for (var lz = 0; lz < D.lone.length; lz++) {
+                var ldv0 = D.lone[lz].dir;
+                if (fRot0) ldv0 = fRot0(ldv0);
+                ldv0 = mgRotY(ldv0, spin);
+                var lTip0 = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[lz].D) * aScale0;
+                fVecAvoid.push({ a: fOrg0,
+                    b: [fOrg0[0] + ldv0[0] * lTip0, fOrg0[1] + ldv0[1] * lTip0, fOrg0[2] + ldv0[2] * lTip0] });
+            }
+        }
         for (u = 0; u < pool; u++) {
             var udef = (bs.units && bs.units[u]) ? bs.units[u] : null;
             // E3a: a unit whose species is an ATOM or an ION is drawn by the SITE
@@ -50282,20 +50978,32 @@ export const FIELD_3D_RENDERER_CODE = `
             var rot = udef ? bscOrientRot(udef.orient) : null;
             var org = orgAt(u, ms);
             var uq = on ? bscCharges(uSpec) : [0];
+            // E1c-F: does THIS unit take part in the compare swap? Only a unit that
+            // follows the state's base species does — a mixed scene stays mixed,
+            // the same rule uSpecOf already enforces for the identity itself.
+            var uInSwap = swapActive && uSpec === molKey &&
+                !(udef && udef.species && udef.species !== baseSpecies);
+            var uSwaps = uInSwap && swapMixF > 0;
+            var uPeerMol = uSwaps ? MG_MOLECULES[(swapP < 0.5) ? swapTo : swapFrom] : null;
+            var uPeerLigs = uPeerMol ? bscLigands(uPeerMol) : null;
             // E1c-C: charges_at_ms gates the glyph layer ON TOP OF show_charges.
             var deltaOn = on && (u === focalIdx || u < deltaUnits) && !!dip.show_charges && chargesF > 0;
 
+            // E1c-I: the unit is settled in TWO passes. Pass 1 places every atom
+            // and stick; pass 2 then places this unit's TEXT against the whole
+            // picture — discs at their live (mid-swap) radii and bonds as
+            // SEGMENTS — instead of against whichever atoms happened to come
+            // earlier in a single interleaved loop.
+            var uPos = [], uRad = [], uHave = [], uEl = [];
             for (i = 0; i < BS_MAX_ATOMS; i++) {
                 var atom = bscFindById("bsc_u" + u + "_atom" + i);
                 var lab = bscFindById("bsc_u" + u + "_lab" + i);
                 var dlab = bscFindById("bsc_u" + u + "_delta" + i);
                 var stick = (i > 0) ? bscFindById("bsc_u" + u + "_bond" + i) : null;
                 var have = on && (i === 0 || i <= uFrame.bonds.length);
+                uHave.push(have); uPos.push(null); uRad.push(0); uEl.push(null);
                 if (atom) atom.visible = have;
-                if (lab) {
-                    lab.visible = have && showLabels && (u < labelUnits || u === focalIdx) && atomLabelBudget > 0;
-                    if (lab.visible) atomLabelBudget--;
-                }
+                if (lab) lab.visible = false;
                 if (dlab) dlab.visible = false;
                 if (stick) stick.visible = have && i > 0;
                 if (!have) continue;
@@ -50304,7 +51012,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 var em = bscElement(el);
                 // MOLECULE atoms ride the legibility-compressed MG_ELEMENTS scale
                 // (doc §reuse item 4). Ions and lattice sites use BS_RADIUS_PM.
-                var rad = em.radius;
+                var rad = em.radius, col = em.color;
+                // E1c-F: mid-swap this atom is genuinely PART WAY between two
+                // elements, so both of its continuous properties are carried
+                // across on swapMixF while the discrete ones (its symbol, its
+                // partial charge) flip once, in the veiled trough.
+                if (uSwaps && uPeerMol) {
+                    var pel = (i === 0) ? uPeerMol.central : (uPeerLigs[i - 1] || uPeerMol.ligand);
+                    if (pel) {
+                        var pem = bscElement(pel);
+                        rad = rad + (pem.radius - rad) * swapMixF;
+                        col = bscMixHex(col, pem.color, swapMixF);
+                    }
+                }
                 var pos = org.slice(0);
                 if (i > 0) {
                     var d0 = uFrame.bonds[i - 1];
@@ -50316,26 +51036,125 @@ export const FIELD_3D_RENDERER_CODE = `
                         stick.position.set(org[0], org[1], org[2]);
                     }
                 }
-                if (atom) { atom.position.set(pos[0], pos[1], pos[2]); atom.scale.setScalar(rad); mgSetColor(atom, em.color); }
-                if (lab && lab.visible) {
-                    mgPlaceLabelClear(lab, pos, rad + 0.34, [org]);
-                    updateLabelSpriteText(lab, el);
-                }
+                if (atom) { atom.position.set(pos[0], pos[1], pos[2]); atom.scale.setScalar(rad); mgSetColor(atom, col); }
+                uPos[i] = pos; uRad[i] = rad; uEl[i] = el;
                 if (u === focalIdx) {
-                    if (i > 0) fLigWorld.push([pos[0], pos[1], pos[2]]);
-                    else if (lab && lab.visible) fCenLabPos = [lab.position.x, lab.position.y, lab.position.z];
-                }
-                // D-6: delta labels on the FOCAL unit only, capped on screen.
-                if (deltaOn && dlab && deltaBudget > 0 && Math.abs(uq[i] || 0) > 0.02) {
-                    dlab.visible = true;
-                    deltaBudget--;
-                    var sgn = (uq[i] > 0) ? "\\u03B4+" : "\\u03B4\\u2212";
-                    var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
-                    updateLabelSpriteText(dlab, txt);
-                    mgPlaceLabelClear(dlab, pos, rad + 0.72, [org, pos]);
-                    if (chargesCued) setObjOpacity(dlab, chargesF);
+                    if (i > 0) { fLigWorld.push([pos[0], pos[1], pos[2]]); fLigRad.push(rad); }
+                    else fCenRad = rad;
                 }
             }
+
+            // ── pass 2: THE TEXT. The avoid set is what this state COUNTS —
+            //   every atom as a DISC at its live radius, every bond as a SEGMENT,
+            //   the focal unit's resultant and lone-pair vectors, and every text
+            //   surface already placed this frame. Acyclic: a label sees only
+            //   what was placed BEFORE it.
+            var uAvoid = [], uText = [], z;
+            for (i = 0; i < BS_MAX_ATOMS; i++) {
+                if (uHave[i] && uPos[i]) uAvoid.push({ p: uPos[i], r: uRad[i] });
+            }
+            for (i = 1; i < BS_MAX_ATOMS; i++) {
+                if (uHave[i] && uPos[i] && uPos[0]) uAvoid.push({ a: uPos[0], b: uPos[i] });
+            }
+            if (u === focalIdx) {
+                for (z = 0; z < fVecAvoid.length; z++) uAvoid.push(fVecAvoid[z]);
+            }
+            for (i = 0; i < BS_MAX_ATOMS; i++) {
+                var lab2 = bscFindById("bsc_u" + u + "_lab" + i);
+                var dlab2 = bscFindById("bsc_u" + u + "_delta" + i);
+                var labOn = !!lab2 && uHave[i] && showLabels &&
+                    (u < labelUnits || u === focalIdx) && atomLabelBudget > 0;
+                if (labOn) atomLabelBudget--;
+                if (!uHave[i] || !uPos[i]) continue;
+                // D-6: delta labels on the FOCAL unit only, capped on screen.
+                var dOn2 = deltaOn && !!dlab2 && deltaBudget > 0 && Math.abs(uq[i] || 0) > 0.02;
+                if (dOn2) {
+                    // written FIRST: the symbol's search pads for this glyph, and
+                    // a pad measured off the PREVIOUS string is a stale picture.
+                    var sgn = (uq[i] > 0) ? "\\u03B4+" : "\\u03B4\\u2212";
+                    var txt = dip.show_charge_values ? (sgn + " " + Math.abs(uq[i]).toFixed(2)) : sgn;
+                    updateLabelSpriteText(dlab2, txt);
+                }
+                var av = [];
+                for (z = 0; z < uAvoid.length; z++) {
+                    // never its OWN disc: the offset already clears it, and letting
+                    // it score would tie every candidate and hand the choice to
+                    // candidate order rather than to the picture.
+                    if (uAvoid[z].p === uPos[i]) continue;
+                    av.push(uAvoid[z]);
+                }
+                for (z = 0; z < uText.length; z++) av.push(uText[z]);
+                var dirIx = 0;
+                if (labOn) {
+                    lab2.visible = true;
+                    updateLabelSpriteText(lab2, uEl[i]);
+                    // The symbol and its partial-charge glyph are ONE cluster, so
+                    // the symbol is placed with the PAIR's combined height — a
+                    // slot only half the cluster fits in is not a clear slot.
+                    // the pair's full vertical extent from the SYMBOL's centre is
+                    // (gap + delta half-height), so a symmetric pad of exactly
+                    // (delta height + gap) covers the cluster whichever way it
+                    // stacks. Under-padding is how a delta glyph landed on a
+                    // ligand on bent BF3 while its symbol read as clear.
+                    var padY = 0, padX = 0;
+                    if (dOn2) {
+                        padY = dlab2.scale.y + BSC_PAIR_GAP;
+                        padX = dlab2.scale.x * ((dlab2._pmInkFrac != null) ? dlab2._pmInkFrac : 1) * 0.5 -
+                               lab2.scale.x * ((lab2._pmInkFrac != null) ? lab2._pmInkFrac : 1) * 0.5;
+                        if (padX < 0) padX = 0;
+                    }
+                    dirIx = bscPlaceLabel(lab2, uPos[i], uRad[i] + BSC_ATOM_LABEL_OFF, av, padX, padY);
+                    // E1c-F: the SYMBOL is discrete — it cannot be half H and half
+                    // F — so it rides the swap veil and changes in the trough,
+                    // under the same cover the vector layer takes. Written only
+                    // while a swap is running; state entry restores full ink.
+                    if (uInSwap) setObjOpacity(lab2, swapVeil);
+                    if (u === focalIdx && i === 0) {
+                        fCenLabPos = [lab2.position.x, lab2.position.y, lab2.position.z];
+                    }
+                }
+                if (dOn2) {
+                    dlab2.visible = true;
+                    deltaBudget--;
+                    if (labOn) {
+                        // FRAMES FINDING (E1c-I, STATE_5__frozen.png / after_BF3.png):
+                        // placed by its OWN independent search at rad + 0.72 on the
+                        // raw diagonals, a delta glyph landed ~1.0 units from its
+                        // atom — half a bond length — and on the OPPOSITE side from
+                        // that atom's element symbol. One frame showed a delta minus
+                        // floating in empty space with no atom near it, and the
+                        // state's caption is "Four arrows, still zero". So the glyph
+                        // STACKS on the symbol's own side, one text height further
+                        // out: the pair reads as one cluster naming one atom.
+                        var gap = (lab2.scale.y + dlab2.scale.y) * 0.5 + BSC_PAIR_GAP;
+                        // ABOVE or BELOW its symbol — whichever is clearer. The
+                        // symbol's own search padded for BOTH (the pad is
+                        // symmetric), so either side is a slot it already
+                        // cleared; picking the better of the two is what keeps a
+                        // delta glyph off an arrow on a 90-degree bent BF3. Two
+                        // closed-form candidates, ties to the side the symbol
+                        // itself leans, so a rewind reproduces the same layout.
+                        var syA = (BSC_LABEL_DIRS[dirIx][1] >= 0) ? 1 : -1;
+                        var pA = [lab2.position.x + bscCamU.x * syA * gap,
+                                  lab2.position.y + bscCamU.y * syA * gap,
+                                  lab2.position.z + bscCamU.z * syA * gap];
+                        var pB = [lab2.position.x - bscCamU.x * syA * gap,
+                                  lab2.position.y - bscCamU.y * syA * gap,
+                                  lab2.position.z - bscCamU.z * syA * gap];
+                        var dp = (bscScoreBox(dlab2, pB, av) >
+                                  bscScoreBox(dlab2, pA, av) + 1e-6) ? pB : pA;
+                        dlab2.position.set(dp[0], dp[1], dp[2]);
+                    } else {
+                        bscPlaceLabel(dlab2, uPos[i], uRad[i] + BSC_ATOM_LABEL_OFF, av, 0, 0);
+                    }
+                    if (chargesInk) setObjOpacity(dlab2, chargesF);
+                }
+                if (labOn) uText.push({ s: lab2 });
+                if (dOn2) uText.push({ s: dlab2 });
+            }
+            // handed to the vector layer below, which places its text LAST and so
+            // may read these as boxes without any frame-to-frame loop.
+            if (u === focalIdx) fTextAvoid = uText;
         }
 
         // ── E3a: THE SITE LAYER (lattice placement · growth · coordination ·
@@ -50533,7 +51352,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (sh) sh.visible = aOn;
             if (hd) hd.visible = aOn;
             if (!aOn) continue;
-            if (arrowsCued) {
+            if (arrowsInk) {
                 setObjOpacity(sh, BS_ARROW_OPACITY * arrowsF);
                 setObjOpacity(hd, BS_ARROW_OPACITY * arrowsF);
             }
@@ -50583,7 +51402,7 @@ export const FIELD_3D_RENDERER_CODE = `
         if (rhd) rhd.visible = resOn && !isZero;
         if (rlb) rlb.visible = resOn && !isZero;
         if (rzr) rzr.visible = resOn && isZero;
-        if (resCued && resOn) {
+        if (resInk && resOn) {
             setObjOpacity(rsh, BS_RESULTANT_OPACITY * resFade);
             setObjOpacity(rhd, BS_RESULTANT_OPACITY * resFade);
             setObjOpacity(rlb, resFade);
@@ -50598,9 +51417,20 @@ export const FIELD_3D_RENDERER_CODE = `
             // matters MOST for: S7 contrasts NH3-s 1.47 D against NF3-s 0.23 D, a
             // ratio of 6.4, and the fixed 0.38 head drew them at a ratio of 2.2.
             var rP = bscArrowParts(rlen, BS_RES_HEAD_LEN);
-            if (rsh) { mgOrientStick(rsh, rdir, rP.shaft, 1); rsh.position.set(fOrg[0], fOrg[1], fOrg[2]); }
+            // FRAMES FINDING (E1c-I, G_s6_chcl3.png — S6's payoff moment): tailed
+            // at the central atom's CENTRE, CHCl3's 1.04 D resultant draws 0.645
+            // units out of a sphere of radius 0.40, so two thirds of the shaft and
+            // most of the head sat INSIDE the atom and the state's answer read as
+            // a stub. Section 16 gates the BOND arrowheads against that sphere;
+            // the resultant was never covered by it. It launches from the sphere's
+            // SURFACE instead — the same convention the lone-pair vector already
+            // takes off the lobe's outer face — so the whole magnitude is outside
+            // the body it belongs to. The LENGTH is untouched (Rule 29 / D-3): the
+            // offset moves the tail, never |mu| * scale.
+            var rBase = [fOrg[0] + rdir[0] * fCenRad, fOrg[1] + rdir[1] * fCenRad, fOrg[2] + rdir[2] * fCenRad];
+            if (rsh) { mgOrientStick(rsh, rdir, rP.shaft, 1); rsh.position.set(rBase[0], rBase[1], rBase[2]); }
             if (rhd) {
-                var rp = [fOrg[0] + rdir[0] * rP.shaft, fOrg[1] + rdir[1] * rP.shaft, fOrg[2] + rdir[2] * rP.shaft];
+                var rp = [rBase[0] + rdir[0] * rP.shaft, rBase[1] + rdir[1] * rP.shaft, rBase[2] + rdir[2] * rP.shaft];
                 mgOrientStick(rhd, rdir, rP.hy, rP.thick);
                 rhd.position.set(rp[0], rp[1], rp[2]);
             }
@@ -50624,25 +51454,58 @@ export const FIELD_3D_RENDERER_CODE = `
                 //   a SET_TIME_FREEZE rewind could then photograph a different
                 //   layout. Its LOBE TIP is the closed-form proxy, computed the
                 //   same way the lobe itself is, and the ordering stays acyclic.
-                var rAvoid = [[fOrg[0], fOrg[1], fOrg[2]]];
+                //   E1c-I WIDENS THAT AVOID SET to what is actually on screen. The
+                //   ligands enter as DISCS at their live (mid-swap) radii, not as
+                //   centres — a centre-clearing label still covered the left
+                //   fluorine at 75% of S7's swap. Every bond enters as a SEGMENT,
+                //   because the label cleared both endpoints of the apex bond and
+                //   lay across its middle on every diatomic. The resultant's own
+                //   shaft enters too (its own glyph sat on its cyan shaft on NH3),
+                //   and so does every atom-label and delta glyph already placed —
+                //   the point metric let "mu = 2.33 D" finish 23 px from a ligand's
+                //   delta and the two read as one string.
+                var rAvoid = [{ p: [fOrg[0], fOrg[1], fOrg[2]], r: fCenRad }];
                 if (fCenLabPos) rAvoid.push(fCenLabPos);
-                for (var rAi = 0; rAi < fLigWorld.length; rAi++) rAvoid.push(fLigWorld[rAi]);
+                for (var rAi = 0; rAi < fLigWorld.length; rAi++) {
+                    rAvoid.push({ p: fLigWorld[rAi], r: fLigRad[rAi] || 0 });
+                    rAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]], b: fLigWorld[rAi] });
+                }
+                rAvoid.push({ a: rBase, b: [rBase[0] + rdir[0] * rlen, rBase[1] + rdir[1] * rlen, rBase[2] + rdir[2] * rlen] });
+                for (rAi = 0; rAi < fTextAvoid.length; rAi++) rAvoid.push(fTextAvoid[rAi]);
                 if (dip.show_lone_pair && D.lone && D.lone.length) {
                     var rlDir = D.lone[0].dir;
                     if (fRot) rlDir = fRot(rlDir);
                     rlDir = mgRotY(rlDir, spin);
-                    var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN;
-                    rAvoid.push([fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt]);
+                    var rlAt = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN + Math.abs(D.lone[0].D) * aScale;
+                    rAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]],
+                        b: [fOrg[0] + rlDir[0] * rlAt, fOrg[1] + rlDir[1] * rlAt, fOrg[2] + rlDir[2] * rlAt] });
                 }
-                mgPlaceLabelClear(rlb,
-                    [fOrg[0] + rdir[0] * rlen, fOrg[1] + rdir[1] * rlen, fOrg[2] + rdir[2] * rlen],
-                    BS_RES_LABEL_OFF, rAvoid);
                 updateLabelSpriteText(rlb, "\\u03BC = " + bscFmtD(D.mag) + " D");
+                bscPlaceLabel(rlb,
+                    [rBase[0] + rdir[0] * rlen, rBase[1] + rdir[1] * rlen, rBase[2] + rdir[2] * rlen],
+                    BS_RES_LABEL_OFF, rAvoid, 0, 0);
             }
         }
         if (resOn && isZero && rzr) {
-            rzr.position.set(fOrg[0], fOrg[1] + 1.15, fOrg[2]);
+            // FRAMES FINDING (E1c-I, STATE_5__frozen.png — the 💎 state's own
+            // frozen baseline, the frame that would have been approved): the ZERO
+            // badge was the one text surface E1c-D never routed through a
+            // placement search at all. A hardcoded +1.15 on world y put "mu = 0 D"
+            // straight across a chlorine in CCl4 and across the apex bond and its
+            // arrowhead in BF3, under a caption that says "Four arrows, still
+            // zero". It is a text surface like any other, so it takes the same
+            // widened avoid set the value label takes — discs, bond segments and
+            // every label already placed — anchored on the centre because a zero
+            // resultant has no tip to hang off.
+            var zAvoid = [{ p: [fOrg[0], fOrg[1], fOrg[2]], r: fCenRad }];
+            if (fCenLabPos) zAvoid.push(fCenLabPos);
+            for (var zAi = 0; zAi < fLigWorld.length; zAi++) {
+                zAvoid.push({ p: fLigWorld[zAi], r: fLigRad[zAi] || 0 });
+                zAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]], b: fLigWorld[zAi] });
+            }
+            for (zAi = 0; zAi < fTextAvoid.length; zAi++) zAvoid.push(fTextAvoid[zAi]);
             updateLabelSpriteText(rzr, "\\u03BC = 0 D");
+            bscPlaceLabel(rzr, [fOrg[0], fOrg[1], fOrg[2]], BSC_ZERO_LABEL_OFF, zAvoid, 0, 0);
         }
 
         // ── E1c item 3: the lone-pair lobe and its own dipole vector.
@@ -50662,9 +51525,23 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lob) lob.visible = lOn;
             // the ARROW half is data-gated: zero lone-pair moment draws nothing,
             // so every fitted-convention central atom keeps its current picture.
-            var lvOn = lOn && Math.abs(lEnt.D) > 1e-6;
+            // E1c-F: it is ALSO cue-gated, on arrows_at_ms — the SAME cue as the
+            // bond-dipole arrows. E1c-C deliberately left it out (show_lone_pair
+            // was then the only gate anything had), but the eye-walker read it
+            // standing on screen at t~1000 ms of a state whose bond arrows are
+            // authored at 3200: the state's FOURTH vector arrived before the three
+            // it is summed against, which is the wrong reading order for a vector
+            // sum. The LOBE is deliberately NOT swept in — it is a VSEPR domain,
+            // structure rather than a claim about the dipole, and the state's home
+            // pose should already show where the lone pair sits. Same for its
+            // "lone pair" label, which names the lobe.
+            var lvOn = lOn && Math.abs(lEnt.D) > 1e-6 && arrowsF > 0;
             if (lsh2) lsh2.visible = lvOn;
             if (lhd2) lhd2.visible = lvOn;
+            if (lvOn && arrowsInk) {
+                setObjOpacity(lsh2, BS_ARROW_OPACITY * arrowsF);
+                setObjOpacity(lhd2, BS_ARROW_OPACITY * arrowsF);
+            }
             if (!lOn) continue;
             loneDrawn++;
             var ld0 = lEnt.dir;
@@ -50718,11 +51595,29 @@ export const FIELD_3D_RENDERER_CODE = `
                 // fixed offset. Routed through the shared clear-placement helper
                 // (the same one the atom and delta labels use) with the resultant
                 // label, the resultant TIP and the central atom as avoid points.
-                var lAvoid = [fOrg, lAnch];
-                if (rlb && rlb.visible) lAvoid.push([rlb.position.x, rlb.position.y, rlb.position.z]);
+                //   E1c-I: same widening. The lobe is a SEGMENT from the centre to
+                //   its outer face, the counted ligands are DISCS with their bond
+                //   shafts, and the resultant's value label (placed above, so the
+                //   ordering stays acyclic) is a BOX rather than a point.
+                //   The avoid SEGMENT runs the whole lone-pair axis — lobe AND
+                //   the moment vector that launches off its outer face — because
+                //   a segment stopping at the lobe centre let this label sit on
+                //   the vector's shaft (NH3, 0.0032 NDC).
+                var lTipW = BS_BOND_LEN * 0.52 + BS_LONE_LOBE_LEN +
+                    Math.abs(D.lone[0].D) * aScale;
+                var lAvoid = [{ p: [fOrg[0], fOrg[1], fOrg[2]], r: fCenRad },
+                    { a: [fOrg[0], fOrg[1], fOrg[2]],
+                      b: [fOrg[0] + lld1[0] * lTipW, fOrg[1] + lld1[1] * lTipW, fOrg[2] + lld1[2] * lTipW] }];
+                for (var lAi = 0; lAi < fLigWorld.length; lAi++) {
+                    lAvoid.push({ p: fLigWorld[lAi], r: fLigRad[lAi] || 0 });
+                    lAvoid.push({ a: [fOrg[0], fOrg[1], fOrg[2]], b: fLigWorld[lAi] });
+                }
+                for (lAi = 0; lAi < fTextAvoid.length; lAi++) lAvoid.push(fTextAvoid[lAi]);
+                if (rlb && rlb.visible) lAvoid.push({ s: rlb });
+                if (rzr && rzr.visible) lAvoid.push({ s: rzr });
                 if (rhd && rhd.visible) lAvoid.push([rhd.position.x, rhd.position.y, rhd.position.z]);
-                mgPlaceLabelClear(lLab, lAnch, BS_LONE_LOBE_LEN + 0.52, lAvoid);
                 updateLabelSpriteText(lLab, loneDrawn > 1 ? "lone pairs" : "lone pair");
+                bscPlaceLabel(lLab, lAnch, BS_LONE_LOBE_LEN + 0.52, lAvoid, 0, 0);
             }
         }
         window.PM_bscLoneD = (D.lone && D.lone.length) ? D.lone[0].D : 0;
@@ -50888,11 +51783,36 @@ export const FIELD_3D_RENDERER_CODE = `
         // ── value-only HUD (Rule 34b: numbers, never a restated equation).
         var hud = document.getElementById("bsc_hud");
         if (hud && hud.style.display !== "none") {
+            // ── E1c-F: THE INSTRUMENT OBEYS THE SAME CUES AS THE PICTURE.
+            //   E1c-C gated the arrow, charge and resultant MESHES on their cues
+            //   and left the readout that STATES THE ANSWER ungated, so on a bare
+            //   CO2 at t=0 — no arrows drawn, no resultant, nothing yet said — the
+            //   HUD already read "mu = 0.00 D": the misconception beat's conclusion
+            //   on screen before its own setup, on all three of this concept's
+            //   misconception states. The rule is NOT "hide the HUD": a state whose
+            //   quantity genuinely changes (the water bend, 0.00 -> 0.98 -> 1.85 D
+            //   live with the geometry) authors no cue and is untouched. The rule
+            //   is that a line stating a value may not precede the reveal of the
+            //   evidence for that value.
+            //   Contract: a gated line rides the LATEST cue among the layers that
+            //   are its evidence (min of their ramps, so it appears no earlier than
+            //   the last of them) times the swap veil (so across a substitution the
+            //   number leaves and returns WITH the vectors it describes). Withheld,
+            //   it renders an em dash in place of the number — the instrument stays
+            //   on screen at a fixed size, so nothing reflows when it fills in, and
+            //   the em dash is this scenario's own existing "no value yet" glyph
+            //   (the radius row already uses it). NO cue authored on either
+            //   evidence layer = today's live readout, byte for byte.
+            var muInk = Math.min(resFade, arrowsF);
+            var muHeld = (resCued || arrowsCued) && !(muInk > 0);
+            var chiHeld = chargesCued && !(chargesF > 0);
             var lines = [], want = bs.hud_lines || ["mu"];
             for (i = 0; i < want.length; i++) {
                 var w = want[i];
-                if (w === "mu") lines.push("\\u03BC = " + bscFmtD(D.mag) + " D");
-                else if (w === "delta_chi") lines.push("\\u0394\\u03C7 = " + dchi.toFixed(2));
+                if (w === "mu") lines.push(muHeld ? "\\u03BC = \\u2014 D"
+                    : "\\u03BC = " + bscFmtD(D.mag) + " D");
+                else if (w === "delta_chi") lines.push(chiHeld ? "\\u0394\\u03C7 = \\u2014"
+                    : "\\u0394\\u03C7 = " + dchi.toFixed(2));
                 else if (w === "radius_pm") {
                     // E3a: when a SITE layer is on screen the radius readout is
                     // the thing that is actually changing size — ionic S2's whole
@@ -50932,10 +51852,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // scripted swap every frame until a trusted drag seizes it, exactly as the
         // molecule picker and the separation slider already do. Without it S2-s
         // scripted HF->HI swap moved the molecule while the widget still read HF.
+        // E1c-G (G2): ...and when the species on screen is OUTSIDE the halide
+        // family the row shows its placeholder instead of being handed a value it
+        // has no option for, which is what rendered the select BLANK on the explore
+        // state (default species H2O, halide options HF/HCl/HBr/HI).
         if (bscHasControl(ctrls, "ligand") && !window.PM_bscLigDragged) {
             var lsel = document.getElementById("bsc_ligand_select");
-            if (lsel && lsel.value !== molKey && MG_MOLECULES[molKey]) lsel.value = molKey;
-            window.PM_bscLig = molKey;
+            var ligWant = (bscOptionOf(lsel, molKey) && MG_MOLECULES[molKey]) ? molKey : "";
+            if (lsel && bscSelCur(lsel) !== ligWant) bscSelValue(lsel, ligWant);
+            if (ligWant) window.PM_bscLig = molKey;
         }
         if (bscHasControl(ctrls, "angle") && !window.PM_bscAngleDragged) {
             var asl = document.getElementById("bsc_angle_slider"), avl = document.getElementById("bsc_angle_val");
