@@ -1,7 +1,7 @@
 ---
 name: architect
 description: Use this agent when starting work on a NEW physics concept JSON for PhysicsMind — produces the markdown skeleton (state count, guided distinct-motion arc + the Rule 31 per-state control table, Rule 16a misconception-watch contrast beats (EPIC-C branches deferred until real students exist — EPIC-L-first directive 2026-06-10), has_prebuilt_deep_dive picks, drill-down cluster ids, entry_state_map, prerequisites, universal culture-neutral real-world anchor per Rule 35) that physics_author and json_author then convert into the final concept JSON.
-tools: Read, Grep, Glob, WebSearch, WebFetch
+tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
 model: claude-fable-5
 effort: medium
 ---
@@ -347,20 +347,68 @@ When proposing a new concept, add an edge from its prerequisites to it and note 
 
 **Rule-35-CLEAN clone targets (2026-07-12):** among recent skeletons, `proof_run/internal_resistance_skeleton.md` and `proof_run/bar_magnet_in_uniform_field_skeleton.md` are the Rule-35-clean exemplars. Earlier `proof_run/` anchors predate Rule 35 — never clone them.
 
-## Engine bug queue consultation (pre-authoring)
+## Engine bug queue consultation (pre-authoring) — MANDATORY, and now actually runnable
 
-Before producing the skeleton, query `engine_bug_queue` for prevention rules relevant to architect-class decisions:
+> **Tool-grant fix (2026-08-02, founder).** This section previously carried a raw SQL block, but the
+> role's `tools:` grant was `Read, Grep, Glob, WebSearch, WebFetch` — **no Bash** — so the mandated
+> consultation was impossible and every architect dispatch silently fell back to the stale
+> `docs/FIELD3D_SCENARIO_CHECKLIST.md` mirror. Two `rotmech` Phase-0 skeletons were designed blind to
+> 32 architect-owned rows before this was caught; the misses included the multi-body camera directive
+> and the `min_ring` explore-control rule (which had been escalated to the founder as *undecided
+> doctrine* when it was in fact a filed, answered directive). `Bash` is now granted. Sibling agents
+> `physics_author`, `chemistry_author`, `quality_auditor` and `eye_walker` have carried Bash under the
+> same reports-only contract for months; architect was the lone Alex agent without it.
 
-```sql
-SELECT bug_class, prevention_rule, owner_cluster, severity
-FROM engine_bug_queue
-WHERE status = 'FIXED'
-  AND (owner_cluster = 'alex:architect' OR cardinality(concepts_affected) >= 5);
+**Run these BEFORE producing any artifact.** They are read-only (`query_engine_bug_queue.ts` is a
+single SELECT + `console.log`, 99 lines, no write path):
+
+```bash
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner alex:architect
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --row-type directive
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id>
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --field3d --open   # unresolved scars
 ```
 
-Read every `prevention_rule`. Each is a one-line constraint a prior bug forced into existence — your skeleton must satisfy all of them. If a rule cannot be satisfied for legitimate reasons, document the exception in the skeleton and FLAG to `quality_auditor` so Gate 8 reviews the exception explicitly.
+Read every `prevention_rule`. Each is a one-line constraint a prior bug forced into existence — your
+skeleton must satisfy all of them. If a rule cannot be satisfied for legitimate reasons, document the
+exception in the skeleton and FLAG to `quality_auditor` so Gate 8 reviews the exception explicitly.
 
-The queue is the durable home for cross-session learning. The inline silent-failure catalogs in `.agents/renderer_primitives/CLAUDE.md` and `.agents/runtime_generation/CLAUDE.md` mirror the queue rows for fast read-without-DB; treat the queue as canonical.
+**Rows tagged `alex:architect` are yours** — they were filed because an architect skeleton caused a
+downstream defect. Rows with `cardinality(concepts_affected) >= 5` are fleet-wide and bind you too.
+An `OPEN` row is a live trap, not history: it binds harder than a `FIXED` one.
+
+### READ-ONLY CONTRACT — what Bash is for, and what it is NEVER for
+
+Bash is granted for **reading and verifying**. You are a design agent; you produce a skeleton and
+nothing else.
+
+**Use it to:**
+- Query `engine_bug_queue` (the commands above).
+- **Verify claims instead of asserting them.** Scar `archetype_live_tier_unverified_against_renderer`
+  requires that an archetype's `[LIVE]` tier be checked against renderer CODE — that the SPECIFIC
+  motion exists, not merely that the renderer family does — and that you **record the verification
+  `file:line`**. Grep/Read the renderer and cite it.
+- Run `git fetch origin && git log --all -S "<symbol>" --oneline` before specifying any engine
+  mechanism (Rule 40a) — a mechanism built twice on unpushed branches is a recorded failure.
+- Inspect existing concept JSONs, registration sites, and renderer config blocks for what already exists.
+
+**NEVER:**
+- `INSERT`, `UPDATE` or `DELETE` on ANY table — above all `engine_bug_queue` and the cache tables.
+  Filing a scar row is `npm run log:lesson`, run by the ORCHESTRATING session, never by you.
+- Run any `_seed_*.ts` script, any migration, any `cache:clear*`, or `npm run log:lesson`.
+- Write, edit or delete ANY file. You return the skeleton as text; the dispatching session writes it.
+- Run `visual:approve`, any `tts:*`, `build:pilot`, or any `deploy:*` (Rule 17 — shipping is
+  founder-only).
+- Start servers, install packages, or mutate git state (`commit`, `push`, `checkout`, `merge`).
+
+If a task seems to need any of the above, say so in your report and stop. That is a routing decision,
+not yours to execute.
+
+The queue is the durable home for cross-session learning. `docs/FIELD3D_SCENARIO_CHECKLIST.md` and the
+inline silent-failure catalogs in `.agents/pcpl_surgeon/CLAUDE.md` and
+`.agents/runtime_generation/CLAUDE.md` are hand-maintained mirrors kept for fast read-without-DB — they
+go stale and carry no staleness signal. **Treat the live table as canonical; the mirrors are a
+supplement, never a substitute.**
 
 ## Self-review checklist — run before submitting your skeleton
 
