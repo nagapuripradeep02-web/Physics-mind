@@ -1800,6 +1800,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #2 — same newtons_laws_body engine
+    // + SEAM K/L/M/N energy layer, opening the F_ang regime #1 ceded
+    // (0…180° vs #1's 0…85°). Positive, negative and zero work; net work as
+    // a signed sum. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-02.
+    positive_negative_zero_work: {
+        concept_id: 'positive_negative_zero_work',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'positive_negative_zero_work',
+            label: 'Positive, Negative and Zero Work — the Sign of W = F·d·cos θ (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

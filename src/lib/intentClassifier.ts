@@ -276,6 +276,21 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // positive_negative_zero_work (concept #2). Does NOT cover kinetic
     // energy, the work-energy theorem, or power. Alex pipeline, 2026-08-01.
     'work_done_by_constant_force',
+    // Work, Energy and Power #2 (Class 11 Ch.6.3 — same newtons_laws_body
+    // field_3d engine + SEAM K/L/M/N energy layer as #1, opening the F_ang
+    // regime #1 ceded, 0…180° instead of #1's 0…85°). The work done by a
+    // force carries a SIGN, set by the angle between the force and the
+    // displacement: positive along the motion (a forward pull), zero at 90°
+    // (the normal force, acting the whole way and doing nothing), negative
+    // against the motion (kinetic friction on a launched crate, decelerating
+    // it to a permanent stop), and net work is the signed sum over every
+    // force acting (four bars: pull, friction, normal, net). Covers the full
+    // sign taxonomy across all three angle regimes AND the sole obtuse-angle
+    // sign-flip state. Does NOT cover kinetic energy, the work-energy
+    // theorem, or power, and assumes work_done_by_constant_force's
+    // definition/joule/cos θ for 0°≤θ<90° as prerequisite. Alex pipeline,
+    // 2026-08-02.
+    'positive_negative_zero_work',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -1235,6 +1250,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
 
   ── Work, Energy and Power (Class 11 Ch.6) ──
   work_done_by_constant_force ← work done by a CONSTANT force, W = F·d·cos θ: force acting through a displacement, and only the component of the force ALONG that displacement counts; NO displacement means ZERO work, however large the force (pushing a stalled car, holding a heavy bag still); a tilted pull does LESS work per metre, set by cos θ; a live numeric prediction stamps against the meter's own live reading; work is the SCALAR (dot) product of two vectors, W = F⃗·d⃗ = F d cos θ, NOT the cross product; work done by a force is INDEPENDENT of the mass being moved. Covers θ from 0° up to (not including) 90° ONLY — zero/negative work and the full sign taxonomy across all three angle regimes belong to the sibling positive_negative_zero_work. Does NOT cover kinetic energy, the work-energy theorem, or power.
+  positive_negative_zero_work ← the SIGN of work: the angle between a force and the displacement decides it — θ<90° positive (a forward pull, the bar climbs above zero), θ=90° ZERO however long the force acts (the normal force pushing up while the crate coasts; the carried-bag case), θ>90° negative (kinetic friction on a launched, still-moving crate, decelerating it to a permanent stop; the friction arrow VANISHES at rest but the bar holds its negative reading); NET work is the signed SUM of every force's work (four bars at once: the pull, friction, the normal force, and their net); the SAME formula W = F·d·cos θ spans all three sign regimes, and the sign lives in cos θ, never in the force's own magnitude (a 25 N pull at 120° still reads +25 N on the HUD while its work bar goes negative). Opens the F_ang regime (0°…180°) that the sibling work_done_by_constant_force deliberately ceded. Does NOT cover kinetic energy, the work-energy theorem, or power.
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -1491,7 +1507,8 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "Newton's third law" / "action and reaction" / "for every action there is an equal and opposite reaction" / "why don't equal and opposite forces cancel" / "does the heavier one push harder" / "does a wall push back" / "why can I still move if the reaction pushes back equally" → newton_third_law (NOT newton_second_law — that concept is about ONE body's a = F/m; this one is about the PAIR of forces on TWO different bodies and why they never cancel)
 
 CRITICAL DISAMBIGUATION (work-energy, Ch.6):
-- "what is work in physics" / "work done by a force" / "W = F d cos theta" / "why is work zero if nothing moves" / "I pushed hard so did I do work" / "does holding something up count as work" / "why does a tilted pull do less work" / "why cos theta and not sin theta in work" / "work as a dot product" / "F dot d" / "is work a vector or a scalar" / "does mass affect the work done" / "work done by a constant force" (force between 0 degrees and just under 90 degrees ONLY — some positive component along the motion) → work_done_by_constant_force (does NOT cover work at exactly 90 degrees, negative work, or the full positive/negative/zero sign taxonomy — that is the sibling positive_negative_zero_work, not yet shipped; does NOT cover kinetic energy or the work-energy theorem)
+- "what is work in physics" / "work done by a force" / "W = F d cos theta" / "why is work zero if nothing moves" / "I pushed hard so did I do work" / "does holding something up count as work" / "why does a tilted pull do less work" / "why cos theta and not sin theta in work" / "work as a dot product" / "F dot d" / "is work a vector or a scalar" / "does mass affect the work done" / "work done by a constant force" (force between 0 degrees and just under 90 degrees ONLY — some positive component along the motion) → work_done_by_constant_force (does NOT cover work at exactly 90 degrees, negative work, or the full positive/negative/zero sign taxonomy — that is the sibling positive_negative_zero_work; does NOT cover kinetic energy or the work-energy theorem)
+- "can work be negative" / "how can work be negative" / "why is friction's work negative" / "does friction do work" / "is work zero if the force is at 90 degrees" / "why does a perpendicular force do no work" / "does carrying a bag count as work" / "is holding a bag up zero work" / "what is net work" / "how do you add up work from different forces" / "why does the same force do different work at different angles" / "is negative work the same as a negative force" / "work at an obtuse angle" / "sign of work" / "positive negative or zero work" → positive_negative_zero_work (covers the FULL sign taxonomy across all three angle regimes — θ<90° positive, θ=90° zero, θ>90° negative — plus net work as a signed sum; does NOT cover the θ<90° definition/joule/cos θ basics, which are work_done_by_constant_force's prerequisite scope, and does NOT cover kinetic energy or the work-energy theorem)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
