@@ -51564,7 +51564,13 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
     //                  // is non-zero (N only, per the ratified convention)
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
-    //       thermal: { T_K, jiggle_scale },
+    //       thermal: { T_K, jiggle_scale,
+    //                  T_from, T_at_ms, T_ramp_ms },  // E2b: the SCRIPTED heat
+    //                  // beat. T_K is the DESTINATION (and the static value when
+    //                  // no ramp is authored, so a pre-E2b state is
+    //                  // byte-identical); T_from is where the state OPENS, and
+    //                  // the ramp runs over T_ramp_ms from T_at_ms, closed form
+    //                  // in state-local t exactly as angle_from/angle_at_ms does.
     //       spin_start_ms, spin_rate,               // rad/s about +y, 0 = hold
     //       camera: { az, el, dist },               // overrides the SOLVED camera
     //       show_hud, hud_lines: [...],             // CLOSED enum, BS_HUD_LINES
@@ -51596,6 +51602,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_T0_K = 298;              // jiggle reference temperature (amp goes as sqrt(T/T0))
     var BS_ARROW_D_PER_UNIT = 0.62; // scene units of arrow length per debye (Rule 29)
     var BS_ANGLE_RAMP_MS = 1600;    // E1c: default angle_ramp_ms (pair_shift's default)
+    // E2b: default thermal.T_ramp_ms. The scripted TEMPERATURE ramp is the exact
+    // twin of the angle ramp above and shares its whole discipline; the default
+    // is 2000 ms because that is the value deriveStateMeta already assumes when a
+    // state authors T_at_ms with no duration, and the two files must agree or the
+    // frozen pin lands mid-ramp.
+    var BS_T_RAMP_MS = 2000;
     // E1c-C: the BUILT ink of the two arrow families, named because the reveal
     // ramp has to multiply the SAME number the build used — a reveal that
     // settles at a different opacity than the un-cued layer would make the cue
@@ -51903,6 +51915,23 @@ export const FIELD_3D_RENDERER_CODE = `
     // function of t — it flickers, and it flickers identically on every replay.
     var BS_LINK_LOOKBACK_MS = 640;
     var BS_LINK_SAMPLES = 9;        // 80 ms apart; jiggle periods are 1.5-3 s
+    // E2b: THE READOUT IS A TIME AVERAGE, THE DASHES ARE THE INSTANT. Measured on
+    // the 30-unit network, the instantaneous links-per-molecule swings +-0.33
+    // about its mean at a FIXED temperature, which is wider than the entire
+    // 298 -> 600 K delta (0.56): the 298 K and 600 K live ranges OVERLAP
+    // (3.00-3.73 against 2.27-3.33), so no single frame — and no teacher glance —
+    // could tell the heated network from a random instant of the unheated one.
+    // The flicker is right in the PIXELS (it is what a hydrogen-bond network
+    // does) and wrong in an INSTRUMENT, so the readout publishes the mean of the
+    // instantaneous count over the same 640 ms lookback: 3.19-3.59 against
+    // 2.59-3.16, separated. Each of the BS_LINK_SAMPLES readout samples carries
+    // its OWN full lookback, so the position layer is replayed over
+    // BS_LINK_FRAMES = 2S-1 sample times spanning twice the lookback, and the
+    // NEWEST window is the shipped instantaneous set, bit for bit. Every sample
+    // is still a closed-form position, so the average is a pure function of t and
+    // a SET_TIME_FREEZE rewind reproduces it exactly (the same argument as the
+    // FIXED scar hysteretic_state_cannot_be_latched_under_a_time_pin).
+    var BS_LINK_FRAMES = 2 * BS_LINK_SAMPLES - 1;
     // Defaults for the links block. delta_min is on the DERIVED per-atom charge
     // (bscCharges), never on an element whitelist (D-2): in H2O the donor H
     // carries +0.319 and the acceptor O -0.638, in H2S +0.035 and -0.071, so
@@ -52148,7 +52177,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // holds the pair side-on (el 16) so the D-H...A angle is READABLE, which
         // is half of what S2-S4 teach.
         approach_link: { az: 35, el: 16, dist: 11.0 },
-        network:    { az: 35, el: 22, dist: 17.0 },
+        // E2b: fit:true, and the distance above is now a FLOOR rather than the
+        // answer. dist 17 was solved against "a 27-unit box spans ~11.5" — a loose
+        // cubic arrangement the contract records at ~1.07 links/molecule, i.e. a
+        // layout no lesson can use. An honest tetrahedral water network cannot be
+        // smaller: liquid water occupies ~270 unit-cubed per molecule, so thirty
+        // of them need a cluster radius of at least 12.5 whatever the arrangement.
+        // MEASURED on the solved 30-unit network (FOV 60, aspect 16:9, jiggle at
+        // 600 K included, every drawn atom with its own radius): extent 15.14 ->
+        // BS_FIT_MARGIN 1.90 -> dist 28.8, worst |NDC| 0.878 vertical / 0.472
+        // horizontal, i.e. the whole cluster on frame with a ~12% border. At the
+        // shipped dist 17 the same set reads 1.79 vertical — nearly half the
+        // network off-screen. The 1.90 default is therefore kept as measured, NOT
+        // overridden per camera: a per-camera margin would be a knob invented
+        // ahead of a frame that asks for it.
+        network:    { az: 35, el: 22, dist: 17.0, fit: true },
         // MULTI-UNIT compare only (hydrogen_bonding-s side-by-side box). A compare
         // state that swaps ONE molecule in place is the dipole_sum SCENE and is
         // framed by the single-unit solve below — see bscSolvedCamera.
@@ -52686,9 +52729,15 @@ export const FIELD_3D_RENDERER_CODE = `
     // started and is skipped. This is the whole of the no-accumulator hysteresis:
     // the latch is recomputed from closed-form positions every frame instead of
     // being carried, so a SET_TIME_FREEZE rewind reproduces the link SET exactly.
-    function bscLinkLatch(qD, qA, samples, L) {
+    // E2b: from/n bound the fold to ONE window of the sample array, so the same
+    // single fold serves the present readout and each earlier window the
+    // time-averaged readout needs. Both are optional and default to the whole
+    // array, so every pre-E2b call is byte-identical.
+    function bscLinkLatch(qD, qA, samples, L, from, n) {
+        var i0 = (from != null) ? from : 0;
+        var i1 = (n != null) ? Math.min(samples.length, i0 + n) : samples.length;
         var held = false, i;
-        for (i = 0; i < samples.length; i++) {
+        for (i = i0; i < i1; i++) {
             var s = samples[i];
             if (!s) continue;
             held = bscLinkOk(qD, qA, s.d, s.a, L, held);
@@ -52984,6 +53033,28 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < S.length; i++) {
             var d = bscMag(S[i].at) + S[i].rPm / p2u;
             if (d > e) e = d;
+        }
+        // E2b: ...and the MOLECULAR units, which bscSiteList deliberately does not
+        // return (it feeds the site MESH pool, and a molecule is drawn by the unit
+        // layer instead). Leaving them out made the auto-fit a silent no-op on
+        // exactly the scene that needs it most — a thirty-molecule network is the
+        // widest thing this scenario draws. A unit reaches BS_BOND_LEN from its
+        // own origin in every direction, and its outermost atom carries its own
+        // radius, so |at| + BS_BOND_LEN + r bounds it whatever the orient (a
+        // rotation cannot change a magnitude). Pure config, so the fit is still
+        // identical on the first frame and under a freeze pin.
+        var uns = (bs && bs.units) || [];
+        for (i = 0; i < uns.length; i++) {
+            var un = uns[i], msp = un && un.species ? MG_MOLECULES[un.species] : null;
+            if (!msp) continue;
+            var rMax = (MG_ELEMENTS[msp.central] || MG_ELEMENTS.C).radius, k;
+            var ligs = bscLigands(msp);
+            for (k = 0; k < ligs.length; k++) {
+                var rl = (MG_ELEMENTS[ligs[k] || msp.ligand] || MG_ELEMENTS.C).radius;
+                if (rl > rMax) rMax = rl;
+            }
+            var du = bscMag(un.at || [0, 0, 0]) + BS_BOND_LEN + rMax;
+            if (du > e) e = du;
         }
         return e;
     }
@@ -53623,7 +53694,15 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscMol = (focal && focal.species) || bs.species || window.PM_bscMolDef || "HCl";
         window.PM_bscSpin = (bs.spin_rate != null) ? bs.spin_rate : 0;
         var th = bs.thermal || {};
-        window.PM_bscTemp = (th.T_K != null) ? th.T_K : BS_T0_K;
+        // E2b, the ENTRY half of the same rule the angle and the separation
+        // already obey (FIXED scar scripted_change_desyncs_the_dom_control_that
+        // _shares_it): a state that SCRIPTS the heat opens its temperature widget
+        // at the ramp's OWN starting value, never at the destination — otherwise
+        // the slider reads 600 K while the network is still drawn at 298 K. The
+        // frame pass then tracks the scripted value every frame until a trusted
+        // drag seizes it, so the two are joined in both directions.
+        window.PM_bscTemp = (th.T_from != null && th.T_at_ms != null) ? th.T_from
+            : ((th.T_K != null) ? th.T_K : BS_T0_K);
         window.PM_bscCount = Math.max(1, units.length || 1);
         // A scripted beat and the slider that shares its quantity must agree at
         // state entry (FIXED scar scripted_change_desyncs_the_dom_control_that
@@ -53937,8 +54016,32 @@ export const FIELD_3D_RENDERER_CODE = `
         };
         var angleNow = (bscHasControl(ctrls, "angle") && window.PM_bscAngleDragged)
             ? window.PM_bscAngle : angleAt(ms);
-        var T_K = (bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged)
-            ? window.PM_bscTemp : ((th.T_K != null) ? th.T_K : BS_T0_K);
+        // E2b item 1: THE SCRIPTED HEAT. thermal.T_K alone is a static override,
+        // so a state could only ever OPEN hot and stay hot — nothing causes
+        // anything (Rule 32a) and the heating beat that a caption names does not
+        // exist on screen. Named and ramped exactly like the scripted bend above:
+        // T_K stays the DESTINATION (and the static value when no ramp is
+        // authored, so every pre-E2b state is byte-identical by construction),
+        // T_from is where the state opens, and tempAt is a CLOSED FORM of
+        // state-local t with no accumulator (D-1). bscJiggle is already a pure
+        // function of (idx, tSec, T_K, scale), so feeding it a ramped T_K keeps
+        // the whole position pass pure and a SET_TIME_FREEZE rewind photographs
+        // the same pixels. Yields to a trusted drag exactly as sepAt does.
+        //   tempAt is written as a function of mms rather than read once, because
+        //   the link pass REPLAYS the position layer at earlier times to resolve
+        //   the hysteresis: a replay has to reproduce what was actually DRAWN at
+        //   that instant, so a sample from mid-ramp must carry mid-ramp heat.
+        //   This is exactly why sepAt is a function of mms too.
+        var T_to = (th.T_K != null) ? th.T_K : BS_T0_K;
+        var tempDragged = bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged;
+        var tempAt = function (mms) {
+            if (tempDragged) return window.PM_bscTemp;
+            if (th.T_from == null || th.T_at_ms == null) return T_to;
+            return mgRamp(mms, th.T_at_ms,
+                (th.T_ramp_ms != null) ? th.T_ramp_ms : BS_T_RAMP_MS,
+                th.T_from, T_to);
+        };
+        var T_K = tempAt(ms);
         var nWant = (bscHasControl(ctrls, "count") && window.PM_bscCountDragged)
             ? Math.round(window.PM_bscCount) : Math.max(1, (bs.units || []).length || 1);
         var sepNow = (bscHasControl(ctrls, "separation") && window.PM_bscSepDragged)
@@ -54055,7 +54158,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var orgAt = function (uu, mms) {
             var b = baseAt(uu, mms);
             if (!(jScale > 0)) return b;
-            var jg = bscJiggle(uu, mms / 1000, T_K, jScale);
+            // E2b: the temperature at THAT instant, not the present one — see
+            // tempAt. With no authored ramp tempAt is constant, so this is the
+            // pre-E2b expression byte-for-byte.
+            var jg = bscJiggle(uu, mms / 1000, tempAt(mms), jScale);
             return [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
         };
         var spinAng = function (mms) {
@@ -54829,9 +54935,14 @@ export const FIELD_3D_RENDERER_CODE = `
         //   replayed over the bounded lookback rather than latched (D-1). So the
         //   network flickers, and flickers IDENTICALLY on every replay: a
         //   SET_TIME_FREEZE pin reproduces the same link set byte for byte.
-        var nLinks = 0, linkGeom = [];
+        var nLinks = 0, linkGeom = [], linkWin = [], linkWinN = 0;
         if (bs.links && linkCfg.enabled && nUnits > 1) {
-            var S = BS_LINK_SAMPLES, dtS = BS_LINK_LOOKBACK_MS / (S - 1);
+            var S = BS_LINK_SAMPLES, NF = BS_LINK_FRAMES, dtS = BS_LINK_LOOKBACK_MS / (S - 1);
+            // E2b: one tally per READOUT window. Window w spans samples
+            // [w .. w+S-1], so every window is a full BS_LINK_LOOKBACK_MS of
+            // history and window S-1 (the newest) is the shipped instantaneous
+            // set that draws the dashes.
+            for (i = 0; i < S; i++) linkWin.push(0);
             var p2u = linkCfg.pm_per_unit;
             var reachU = linkCfg.break_pm / p2u + 2 * BS_BOND_LEN + 1.0;   // coarse cull
             var offs = [], sites = [], sI, uA, uB;
@@ -54850,8 +54961,8 @@ export const FIELD_3D_RENDERER_CODE = `
             // world atom positions at every lookback sample, OLDEST FIRST. A
             // sample before the state started is null and simply does not vote.
             var frames = [];
-            for (sI = 0; sI < S; sI++) {
-                var mms = ms - (S - 1 - sI) * dtS;
+            for (sI = 0; sI < NF; sI++) {
+                var mms = ms - (NF - 1 - sI) * dtS;
                 if (mms < 0) { frames.push(null); continue; }
                 var sp2 = spinAng(mms), fpts = [];
                 for (u = 0; u < nUnits; u++) {
@@ -54864,7 +54975,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 frames.push(fpts);
             }
-            var last = frames[S - 1];
+            var last = frames[NF - 1];
             for (uA = 0; last && uA < nUnits && nLinks < BS_MAX_LINKS; uA++) {
                 for (uB = 0; uB < nUnits && nLinks < BS_MAX_LINKS; uB++) {
                     if (uA === uB) continue;
@@ -54877,7 +54988,7 @@ export const FIELD_3D_RENDERER_CODE = `
                             var hS = dn[di].slot, pS = dn[di].partner, aS = ac[aj].slot;
                             if (!last[uA][hS] || !last[uA][pS] || !last[uB][aS]) continue;
                             var samp = [];
-                            for (sI = 0; sI < S; sI++) {
+                            for (sI = 0; sI < NF; sI++) {
                                 var F = frames[sI];
                                 if (!F) { samp.push(null); continue; }
                                 var Hp = F[uA][hS], Dp = F[uA][pS], Ap = F[uB][aS];
@@ -54888,7 +54999,12 @@ export const FIELD_3D_RENDERER_CODE = `
                                 var ca = (vx * wx + vy * wy + vz * wz) / ((dU || 1) * wL);
                                 samp.push({ d: dU * p2u, a: Math.acos(bscClamp(ca, -1, 1)) * 180 / Math.PI });
                             }
-                            if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg)) {
+                            // the SAME fold, once per readout window. The newest
+                            // window is the one the dashes are drawn from.
+                            for (sI = 0; sI < S; sI++) {
+                                if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg, sI, S)) linkWin[sI]++;
+                            }
+                            if (bscLinkLatch(dn[di].q, ac[aj].q, samp, linkCfg, S - 1, S)) {
                                 linkGeom.push({ h: last[uA][hS], a: last[uB][aS] });
                                 nLinks++;
                             }
@@ -54896,12 +55012,25 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                 }
             }
+            // A window whose NEWEST sample predates the state start describes a
+            // time that never played, and does not vote. Nulls are a prefix, so
+            // such a window tallied zero anyway and only the divisor moves.
+            for (sI = 0; sI < S; sI++) if (frames[sI + S - 1]) linkWinN++;
         }
         window.PM_bscLinks = nLinks;
         // The readout the doc names: links PER MOLECULE, not a raw count — each
         // link is shared by two units, so the mean degree is 2L/N. It is the
         // number that explains the boiling-point anomaly in S7.
         window.PM_bscLinksPerUnit = (nUnits > 0) ? (2 * nLinks / nUnits) : 0;
+        // E2b: the SMOOTHED twin of the two lines above — the mean of the same
+        // instantaneous count over the lookback (see BS_LINK_FRAMES). Falls back
+        // to the instant when no window voted, so a state with links disabled or
+        // a first frame publishes the pre-E2b value.
+        var linkSum = 0;
+        for (i = 0; i < linkWin.length; i++) linkSum += linkWin[i];
+        window.PM_bscLinksAvg = (linkWinN > 0) ? (linkSum / linkWinN) : nLinks;
+        window.PM_bscLinksPerUnitAvg = (nUnits > 0)
+            ? (2 * window.PM_bscLinksAvg / nUnits) : 0;
         for (i = 0; i < BS_MAX_LINKS; i++) {
             var lk = (i < linkGeom.length) ? linkGeom[i] : null;
             for (j = 0; j < BS_LINK_DASHES; j++) {
@@ -54975,8 +55104,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 else if (w === "coordination") lines.push("neighbours = " + nbIdx.length);
                 else if (w === "lattice_a") lines.push("a = " + Math.round(window.PM_bscLatticeA) + " pm");
                 else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                // E2b: 'links' stays the INSTANT (S2/S3 count one link forming and
+                // breaking, and an average would smear the exact beat those
+                // states teach); 'links_per_unit' is the time-averaged mean
+                // degree, because at thirty units its instantaneous swing is
+                // wider than the whole taught delta. Two quantities, two lines,
+                // labelled as different things — D-3 intact.
                 else if (w === "links") lines.push("links = " + nLinks);
-                else if (w === "links_per_unit") lines.push("links per molecule = " + window.PM_bscLinksPerUnit.toFixed(2));
+                else if (w === "links_per_unit") lines.push("links per molecule = " + window.PM_bscLinksPerUnitAvg.toFixed(2));
                 else if (w === "bp") {
                     // derived from the state's OWN trend data, so the HUD and the
                     // trend panel can never disagree (D-3: one instrument).

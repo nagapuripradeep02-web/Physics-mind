@@ -112,7 +112,8 @@ const VARS = [
   "BS_BOND_MOMENT_D", "BS_LONE_PAIR_D", "BS_MU_FALLBACK_D_PER_CHI",
   "BS_CAMERAS", "BS_CAMERA_DEFAULT", "BS_UNIT_CAMERAS", "BS_GLOW_ELS",
   "BS_MAX_ATOM_LABELS", "BS_PM_PER_UNIT", "BS_MAX_LINKS", "BS_LINK_DASHES",
-  "BS_LINK_LOOKBACK_MS", "BS_LINK_SAMPLES", "BS_LINK_DEFAULTS", "BS_SUBDIG",
+  "BS_LINK_LOOKBACK_MS", "BS_LINK_SAMPLES", "BS_LINK_FRAMES", "BS_LINK_DEFAULTS",
+  "BS_T_RAMP_MS", "BS_SUBDIG",
   // E3a (lattice placement layer)
   "BS_HUD_LINES_E3A", "BS_CELLS", "BS_LATTICE_REVEALS",
   "BS_MAX_SITES", "BS_MAX_SITE_LABELS", "BS_MAX_NEIGHBOURS", "BS_HCP_C_OVER_A",
@@ -871,7 +872,8 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
     const block = META_SRC.slice(a0, end);
     // receiver -> the authored JSON path prefix it stands for
     const RECV: Record<string, string> = {
-      bscState: "", bscTr: "transfer.", bscSh: "shift.", bscLat: "lattice."
+      bscState: "", bscTr: "transfer.", bscSh: "shift.", bscLat: "lattice.",
+      bscTh2: "thermal."          // E2b: the scripted temperature ramp
     };
     const registered = new Map<string, string>();   // authored path -> leaf key
     for (const m of block.matchAll(/\b(\w+)\.([A-Za-z_][A-Za-z0-9_]*_ms)\b/g)) {
@@ -3339,7 +3341,329 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
   }
 }
 
+console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · network fit) ===");
+// The three asks hydrogen_bonding S6 could not be authored against: a temperature
+// that RAMPS on the state clock, a links-per-molecule readout whose fixed-condition
+// flicker does not swamp the taught delta, and a camera that actually frames a
+// thirty-molecule network. Every assertion runs the SHIPPED bodies, and the two
+// halves that matter most — "a state authoring no ramp is byte-identical" and "the
+// dashes are still the instant" — are asserted as equalities, not argued.
+{
+  const updSrc = grabFn("updateBondingSceneFrame");
+  const appSrc = grabFn("applyBondingSceneState");
+
+  // ── EQ-1(a): the SHIPPED tempAt closure, lifted out of the frame pass and run
+  //    here. Not a re-implementation — the exact source, with its four free
+  //    variables injected.
+  const lift = (decl: string, src: string) => {
+    const a = src.indexOf(decl);
+    if (a < 0) throw new Error("closure not found: " + decl);
+    const i = src.indexOf("{", a);
+    let d = 0;
+    for (let j = i; j < src.length; j++) {
+      if (src[j] === "{") d++;
+      else if (src[j] === "}") { d--; if (d === 0) return src.slice(a, j + 1) + ";"; }
+    }
+    throw new Error("unbalanced closure " + decl);
+  };
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const makeTempAt = new Function("th", "T_to", "tempDragged", "window", "mgRamp", "BS_T_RAMP_MS",
+    lift("var tempAt = function (mms)", updSrc) + "\nreturn tempAt;") as
+    (th: any, T_to: number, dragged: boolean, w: any, ramp: any, dflt: number) => (m: number) => number;
+  const tempAt = (th: any, dragged = false, w: any = {}) =>
+    makeTempAt(th, th.T_K != null ? th.T_K : E.BS_T0_K, dragged, w, E.mgRamp, E.BS_T_RAMP_MS);
+
+  const S6 = { T_K: 600, T_from: 298, T_at_ms: 2200, T_ramp_ms: 5000, jiggle_scale: 0.9 };
+  const heat = tempAt(S6);
+  ok("the heat ramp HOLDS T_from before T_at_ms",
+    heat(0) === 298 && heat(2199) === 298, `t=0 -> ${heat(0)}  t=2199 -> ${heat(2199)}`);
+  ok("the heat ramp reaches T_K at T_at_ms + T_ramp_ms and then holds",
+    Math.abs(heat(7200) - 600) < 1e-9 && Math.abs(heat(30000) - 600) < 1e-9,
+    `t=7200 -> ${heat(7200).toFixed(4)}`);
+  ok("the ramp is strictly monotonic through the beat (no overshoot, no latch)",
+    [2200, 3200, 4200, 5200, 6200, 7200].every((t, i, a) =>
+      i === 0 || (heat(t) > heat(a[i - 1]) && heat(t) <= 600 + 1e-9)));
+  {
+    // THE REWIND, sampled MID-RAMP, on the POSE it produces — not just the number.
+    const T1 = heat(4700), j1 = E.bscJiggle(7, 4.7, T1, 0.9) as number[];
+    heat(30000); E.bscJiggle(7, 30.0, heat(30000), 0.9);
+    const T2 = heat(4700), j2 = E.bscJiggle(7, 4.7, T2, 0.9) as number[];
+    ok("rewind t=4700 -> 30000 -> 4700 reproduces the MID-RAMP jiggle byte-for-byte",
+      Object.is(T1, T2) && j1.every((v, i) => Object.is(v, j2[i])), `T=${T1.toFixed(4)} K`);
+  }
+  // ── EQ-1(b): BYTE-IDENTICAL when no ramp is authored. This is the whole
+  //    backward-compatibility claim, and it is an equality against the pre-E2b
+  //    expression ((th.T_K != null) ? th.T_K : BS_T0_K) at every t.
+  {
+    const TS = [0, 1, 250, 1499, 2200, 5000, 12345, 60000];
+    const same = (th: any) => {
+      const f = tempAt(th), want = (th.T_K != null) ? th.T_K : E.BS_T0_K;
+      return TS.every((t) => Object.is(f(t), want));
+    };
+    ok("a state authoring no ramp is byte-identical to the pre-E2b static resolve",
+      same({ T_K: 350, jiggle_scale: 0.12 }) && same({ T_K: 298 }) && same({}) &&
+      same({ T_from: 298, jiggle_scale: 0.9 }) &&        // T_from with no T_at_ms
+      same({ T_K: 600, T_at_ms: 2200 }),                 // T_at_ms with no T_from
+      "T_K only / bare / half-authored ramps all resolve static");
+    ok("a trusted drag seizes the temperature at EVERY t (both keys ignored)",
+      [0, 3000, 9000].every((t) => tempAt(S6, true, { PM_bscTemp: 412 })(t) === 412));
+  }
+  // ── EQ-1(c): the shipped frame pass and apply really wire it, both directions.
+  ok("the frame pass reads T_from / T_at_ms / T_ramp_ms",
+    /th\.T_from/.test(updSrc) && /th\.T_at_ms/.test(updSrc) && /th\.T_ramp_ms/.test(updSrc));
+  ok("T_K is the ramp evaluated at state-local ms, and the widget tracks it",
+    /var T_K = tempAt\(ms\);/.test(updSrc) &&
+    /bscHasControl\(ctrls, "temperature"\) && !window\.PM_bscTempDragged/.test(updSrc));
+  ok("state entry seeds the temperature widget at T_from, not at the destination",
+    /PM_bscTemp\s*=\s*\(th\.T_from != null && th\.T_at_ms != null\) \? th\.T_from/.test(appSrc));
+  ok("the lookback REPLAY carries the temperature of that instant, not the present one",
+    /bscJiggle\(uu, mms \/ 1000, tempAt\(mms\), jScale\)/.test(updSrc));
+  ok("no accumulator joined the thermal path (mgRamp only)",
+    /mgRamp\(mms, th\.T_at_ms/.test(updSrc) && !/T_K\s*\+=/.test(updSrc));
+  ok("BS_T_RAMP_MS matches deriveStateMeta's frozen-pin default",
+    E.BS_T_RAMP_MS === 2000 && /asNum\(bscTh2\.T_ramp_ms, 2000\)/.test(META_SRC),
+    `${E.BS_T_RAMP_MS} ms`);
+  ok("deriveStateMeta pins PAST the settled temperature (T_at + T_ramp + 600)",
+    /candidates\.push\(asNum\(bscTh2\.T_at_ms, 0\) \+ asNum\(bscTh2\.T_ramp_ms, 2000\) \+ 600\)/.test(META_SRC));
+
+  // ── EQ-2: THE SOLVED 30-UNIT NETWORK, replayed through the SHIPPED link pass.
+  //    A diamond (ice-Ic) arrangement at O...O = 5.75 units; per-unit orient aims
+  //    two O-H bonds at two of the four neighbours. This is the fixture the
+  //    measurement was taken on, so the gate measures what the concept will ship.
+  const NET: { at: number[]; orient: number[] }[] = [
+    { at: [0.44, 0, 0], orient: [125, -37] }, { at: [-2.88, -3.32, 3.32], orient: [232, -36] },
+    { at: [-2.88, 3.32, -3.32], orient: [232, -36] }, { at: [3.76, -3.32, -3.32], orient: [232, -36] },
+    { at: [3.76, 3.32, 3.32], orient: [232, -36] }, { at: [-6.2, -6.64, 0], orient: [125, -37] },
+    { at: [-6.2, 0, -6.64], orient: [125, -37] }, { at: [-6.2, 0, 6.64], orient: [125, -37] },
+    { at: [-6.2, 6.64, 0], orient: [125, -37] }, { at: [0.44, -6.64, -6.64], orient: [338, -39] },
+    { at: [0.44, -6.64, 6.64], orient: [125, -37] }, { at: [0.44, 6.64, -6.64], orient: [125, -37] },
+    { at: [0.44, 6.64, 6.64], orient: [53, 35] }, { at: [7.08, -6.64, 0], orient: [338, -39] },
+    { at: [7.08, 0, -6.64], orient: [338, -39] }, { at: [7.08, 0, 6.64], orient: [53, 35] },
+    { at: [7.08, 6.64, 0], orient: [53, 35] }, { at: [-9.52, -3.32, -3.32], orient: [232, -36] },
+    { at: [-9.52, 3.32, 3.32], orient: [83, -29] }, { at: [-2.88, -9.96, -3.32], orient: [232, -36] },
+    { at: [-2.88, 9.96, 3.32], orient: [301, 17] }, { at: [-2.88, -3.32, -9.96], orient: [301, 28] },
+    { at: [-2.88, 3.32, 9.96], orient: [83, -29] }, { at: [3.76, -9.96, 3.32], orient: [232, -36] },
+    { at: [3.76, 9.96, -3.32], orient: [301, 17] }, { at: [3.76, -3.32, 9.96], orient: [83, -29] },
+    { at: [3.76, 3.32, -9.96], orient: [301, 28] }, { at: [10.4, -3.32, 3.32], orient: [20, -33] },
+    { at: [10.4, 3.32, -3.32], orient: [20, -33] }, { at: [-12.84, 0, 0], orient: [125, -37] }
+  ];
+  const NBS = {
+    placement: "free", mode: "network", links: {}, show_hud: true,
+    hud_lines: ["links_per_unit"], thermal: { jiggle_scale: 0.9 },
+    units: NET.map((u, i) => ({ id: "hb_w" + i, species: "H2O", at: u.at, orient: u.orient }))
+  };
+  const LC = E.bscLinkCfg(NBS);
+  const SS = E.BS_LINK_SAMPLES as number, NFR = E.BS_LINK_FRAMES as number;
+  const dtSm = (E.BS_LINK_LOOKBACK_MS as number) / (SS - 1);
+  const BLn = E.BS_BOND_LEN as number;
+  const netFr = E.mgFrame("H2O", null, null) as any;
+  const netSites = E.bscLinkSites("H2O") as any;
+  const netOffs = NET.map((u) => {
+    const rot = E.bscOrientRot(u.orient);
+    const oo: number[][] = [[0, 0, 0]];
+    for (const d of netFr.bonds as number[][]) {
+      const dv = rot ? rot(d) : d;
+      oo.push([dv[0] * BLn, dv[1] * BLn, dv[2] * BLn]);
+    }
+    return oo;
+  });
+  const NU = NET.length, reachU = LC.break_pm / LC.pm_per_unit + 2 * BLn + 1.0;
+  /** the SHIPPED pass, transcribed: window SS-1 is the drawn set, the mean is the readout */
+  const netPass = (ms: number, T: (m: number) => number) => {
+    const frames: (number[][][] | null)[] = [];
+    for (let sI = 0; sI < NFR; sI++) {
+      const mms = ms - (NFR - 1 - sI) * dtSm;
+      if (mms < 0) { frames.push(null); continue; }
+      const fpts: number[][][] = [];
+      for (let u = 0; u < NU; u++) {
+        const jg = E.bscJiggle(u, mms / 1000, T(mms), 0.9) as number[];
+        const og = [NET[u].at[0] + jg[0], NET[u].at[1] + jg[1], NET[u].at[2] + jg[2]];
+        const row: number[][] = [];
+        for (const ov of netOffs[u]) row.push([og[0] + ov[0], og[1] + ov[1], og[2] + ov[2]]);
+        fpts.push(row);
+      }
+      frames.push(fpts);
+    }
+    const last = frames[NFR - 1]!;
+    const win = new Array(SS).fill(0);
+    let nL = 0;
+    for (let uA = 0; uA < NU && nL < E.BS_MAX_LINKS; uA++) {
+      for (let uB = 0; uB < NU && nL < E.BS_MAX_LINKS; uB++) {
+        if (uA === uB) continue;
+        const cA = last[uA][0], cB = last[uB][0];
+        const cx = cA[0] - cB[0], cy = cA[1] - cB[1], cz = cA[2] - cB[2];
+        if (cx * cx + cy * cy + cz * cz > reachU * reachU) continue;
+        for (const dn of netSites.donors) {
+          for (const ac of netSites.acceptors) {
+            if (nL >= E.BS_MAX_LINKS) break;
+            const samp: any[] = [];
+            for (let sI = 0; sI < NFR; sI++) {
+              const F = frames[sI];
+              if (!F) { samp.push(null); continue; }
+              const Hp = F[uA][dn.slot], Dp = F[uA][dn.partner], Ap = F[uB][ac.slot];
+              const vx = Ap[0] - Hp[0], vy = Ap[1] - Hp[1], vz = Ap[2] - Hp[2];
+              const dU = Math.hypot(vx, vy, vz);
+              const wx = Dp[0] - Hp[0], wy = Dp[1] - Hp[1], wz = Dp[2] - Hp[2];
+              const wL = Math.hypot(wx, wy, wz) || 1;
+              const ca = (vx * wx + vy * wy + vz * wz) / ((dU || 1) * wL);
+              samp.push({ d: dU * LC.pm_per_unit, a: Math.acos(E.bscClamp(ca, -1, 1)) * 180 / Math.PI });
+            }
+            for (let w = 0; w < SS; w++) {
+              if (E.bscLinkLatch(dn.q, ac.q, samp, LC, w, SS)) win[w]++;
+            }
+            if (E.bscLinkLatch(dn.q, ac.q, samp, LC, SS - 1, SS)) nL++;
+          }
+        }
+      }
+    }
+    let vs = 0, vn = 0;
+    for (let w = 0; w < SS; w++) { if (!frames[w + SS - 1]) continue; vs += win[w]; vn++; }
+    return { inst: 2 * nL / NU, avg: vn > 0 ? 2 * (vs / vn) / NU : 2 * nL / NU, newest: win[SS - 1], raw: nL };
+  };
+  const flat = (K: number) => () => K;
+  const band = (T: number) => {
+    const inst: number[] = [], avg: number[] = [];
+    for (let m = 800; m <= 18000; m += 40) { const r = netPass(m, flat(T)); inst.push(r.inst); avg.push(r.avg); }
+    return {
+      i0: Math.min(...inst), i1: Math.max(...inst), a0: Math.min(...avg), a1: Math.max(...avg),
+      im: inst.reduce((x, y) => x + y, 0) / inst.length, am: avg.reduce((x, y) => x + y, 0) / avg.length
+    };
+  };
+  const cold = band(298), hot = band(600);
+  const r2 = (v: number) => v.toFixed(2);
+  ok("THE DEFECT, still measurable: the INSTANTANEOUS ranges overlap at 298 / 600 K",
+    hot.i1 > cold.i0,
+    `298 K ${r2(cold.i0)}-${r2(cold.i1)}  600 K ${r2(hot.i0)}-${r2(hot.i1)}`);
+  ok("THE FIX: the AVERAGED ranges SEPARATE (the readout stops being noise)",
+    hot.a1 < cold.a0,
+    `298 K ${r2(cold.a0)}-${r2(cold.a1)}  600 K ${r2(hot.a0)}-${r2(hot.a1)}  gap ${r2(cold.a0 - hot.a1)}`);
+  ok("the average does not BIAS the reading (it agrees with the dashes on the mean)",
+    Math.abs(cold.am - cold.im) < 0.02 && Math.abs(hot.am - hot.im) < 0.02,
+    `298 K mean inst ${r2(cold.im)} avg ${r2(cold.am)} | 600 K inst ${r2(hot.im)} avg ${r2(hot.am)}`);
+  ok("the smoothing is real: each averaged band is NARROWER than its instantaneous one",
+    (cold.a1 - cold.a0) < (cold.i1 - cold.i0) && (hot.a1 - hot.a0) < (hot.i1 - hot.i0),
+    `298 K ${r2(cold.i1 - cold.i0)} -> ${r2(cold.a1 - cold.a0)}  600 K ${r2(hot.i1 - hot.i0)} -> ${r2(hot.a1 - hot.a0)}`);
+  {
+    // THE DASHES ARE STILL THE INSTANT: the newest window IS the drawn set, and
+    // hud_lines 'links' still prints that raw count while 'links_per_unit' prints
+    // the mean. One instrument per quantity (D-3), two quantities.
+    const p = netPass(8200, flat(298));
+    ok("the newest lookback window IS the drawn link set (the dashes are unchanged)",
+      p.newest === p.raw, `${p.raw} links drawn, window ${p.newest}`);
+    ok("hud_lines 'links' prints the INSTANT and 'links_per_unit' prints the MEAN",
+      /w === "links"\) lines\.push\("links = " \+ nLinks\)/.test(updSrc) &&
+      /w === "links_per_unit"\) lines\.push\([^;]*PM_bscLinksPerUnitAvg\.toFixed\(2\)/.test(updSrc));
+    ok("both readouts are published as window values for the professor pack",
+      /window\.PM_bscLinksAvg =/.test(updSrc) && /window\.PM_bscLinksPerUnitAvg =/.test(updSrc));
+    // ...and the SHIPPED pass really has the shape the replay above transcribes:
+    // BS_LINK_FRAMES position samples, BS_LINK_SAMPLES folds of BS_LINK_SAMPLES,
+    // the newest window drawing the dashes, and only VOTING windows in the
+    // divisor. A transcription that drifted from the shipped body would make
+    // every number above a measurement of the gate instead of the engine.
+    ok("the shipped pass builds BS_LINK_FRAMES samples and folds BS_LINK_SAMPLES windows",
+      E.BS_LINK_FRAMES === 2 * E.BS_LINK_SAMPLES - 1 &&
+      /\bNF = BS_LINK_FRAMES\b/.test(updSrc) &&
+      /for \(sI = 0; sI < NF; sI\+\+\) \{\s*var mms = ms - \(NF - 1 - sI\) \* dtS;/.test(updSrc) &&
+      /var last = frames\[NF - 1\];/.test(updSrc) &&
+      /bscLinkLatch\(dn\[di\]\.q, ac\[aj\]\.q, samp, linkCfg, sI, S\)\) linkWin\[sI\]\+\+/.test(updSrc) &&
+      /bscLinkLatch\(dn\[di\]\.q, ac\[aj\]\.q, samp, linkCfg, S - 1, S\)\) \{/.test(updSrc) &&
+      /for \(sI = 0; sI < S; sI\+\+\) if \(frames\[sI \+ S - 1\]\) linkWinN\+\+;/.test(updSrc) &&
+      /linkSum \/ linkWinN/.test(updSrc),
+      `${E.BS_LINK_FRAMES} frames -> ${E.BS_LINK_SAMPLES} windows`);
+  }
+  {
+    // D-1 on the AVERAGE: a pin rewind reproduces it bit-for-bit. The averaged
+    // readout is memory over a bounded lookback, which is exactly the shape the
+    // FIXED scar hysteretic_state_cannot_be_latched_under_a_time_pin forbids
+    // latching — so it is asserted, not assumed.
+    const a = [4000, 6000, 8000, 10000].map((m) => netPass(m, flat(298)).avg);
+    netPass(30000, flat(298));
+    const b = [4000, 6000, 8000, 10000].map((m) => netPass(m, flat(298)).avg);
+    ok("REWIND: the averaged readout replays byte-for-byte after a jump to 30 s",
+      a.every((v, i) => Object.is(v, b[i])), a.map(r2).join(" "));
+  }
+  {
+    // the ramp and the readout, joined: across S6's own beat the averaged reading
+    // must FALL, and it must not read its final value before the ramp starts.
+    const ramp = tempAt(S6);
+    const at = (m: number) => netPass(m, ramp).avg;
+    const open = at(1500), mid = at(4700), done = at(9000);
+    ok("across the scripted 298 -> 600 K beat the averaged readout FALLS",
+      open > mid && mid > done && open - done > 0.3,
+      `t=1500 ${r2(open)}  t=4700 ${r2(mid)}  t=9000 ${r2(done)}`);
+    ok("the pre-ramp reading matches the unheated network (S6 opens COLD)",
+      open >= cold.a0 - 1e-9 && open <= cold.a1 + 1e-9, `${r2(open)} inside ${r2(cold.a0)}-${r2(cold.a1)}`);
+  }
+  ok("bscLinkLatch with no window arguments is the whole-array fold (pre-E2b calls intact)",
+    (() => {
+      const q = E.bscCharges("H2O") as number[];
+      const s = [{ d: 205, a: 176 }, { d: 232, a: 171 }, { d: 255, a: 168 }];
+      return E.bscLinkLatch(q[1], q[0], s, LC) === E.bscLinkLatch(q[1], q[0], s, LC, 0, s.length) &&
+        E.bscLinkLatch(q[1], q[0], s, LC) === true &&
+        E.bscLinkLatch(q[1], q[0], s, LC, 2, 1) === false;   // the LAST sample alone cannot form
+    })());
+
+  // ── EQ-3: the auto-fit finally sees a molecular scene.
+  {
+    const ext = E.bscSiteExtent(NBS, null) as number;
+    ok("bscSiteExtent now measures MOLECULAR units (it used to report 0 here)",
+      ext > 15 && ext < 15.3, `${ext.toFixed(2)} units`);
+    ok("...and it is |at| + BS_BOND_LEN + the outermost atom radius, orient-invariant",
+      Math.abs(ext - (12.84 + E.BS_BOND_LEN + E.MG_ELEMENTS.O.radius)) < 1e-9,
+      `12.84 + ${E.BS_BOND_LEN} + ${E.MG_ELEMENTS.O.radius}`);
+    // REGRESSION: a lattice scene's extent must be untouched by the new branch.
+    const latExt = E.bscSiteExtent(LATTICE_BS, null) as number;
+    const latWant = (E.bscSiteList(LATTICE_BS, null) as any[]).reduce((m, s) =>
+      Math.max(m, E.bscMag(s.at) + s.rPm / E.bscLinkCfg(LATTICE_BS).pm_per_unit), 0);
+    ok("a LATTICE scene's extent is byte-identical (the ion path is untouched)",
+      Object.is(latExt, latWant), `${latExt.toFixed(6)}`);
+    ok("a single-unit dipole scene still reports a molecule-sized extent, not zero",
+      (E.bscSiteExtent({ units: [{ species: "CCl4", at: [0, 0, 0] }] }, null) as number) > 2,
+      `${(E.bscSiteExtent({ units: [{ species: "CCl4", at: [0, 0, 0] }] }, null) as number).toFixed(2)}`);
+    // the camera, and the framing it produces, measured with the section-11 projector
+    ok("the network camera opts into the auto-fit and keeps dist 17 as a FLOOR",
+      E.BS_CAMERAS.network.fit === true && E.BS_CAMERAS.network.dist === 17.0);
+    const fitted = Math.max(E.BS_CAMERAS.network.dist, ext * E.BS_FIT_MARGIN);
+    const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, tn = Math.tan(FOV / 2);
+    const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+    const cr3 = (a: number[], b: number[]) =>
+      [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    const dt3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    // every DRAWN atom, at the worst 600 K jiggle excursion, with its own radius
+    const jAmp = 0.9 * Math.sqrt(600 / E.BS_T0_K);
+    const atoms: { p: number[]; r: number }[] = [];
+    for (let u = 0; u < NU; u++) for (let k = 0; k < netOffs[u].length; k++) {
+      const o = netOffs[u][k];
+      atoms.push({
+        p: [NET[u].at[0] + o[0], NET[u].at[1] + o[1], NET[u].at[2] + o[2]],
+        r: (k === 0 ? E.MG_ELEMENTS.O.radius : E.MG_ELEMENTS.H.radius) + jAmp
+      });
+    }
+    const worstNdc = (dist: number) => {
+      const c = E.BS_CAMERAS.network;
+      const a = (c.az || 0) * Math.PI / 180, e = (c.el || 0) * Math.PI / 180;
+      const cam = [dist * Math.cos(e) * Math.cos(a), dist * Math.sin(e), dist * Math.cos(e) * Math.sin(a)];
+      const f = E.bscNorm(sub3([0, 0, 0], cam)), r = E.bscNorm(cr3(f, [0, 1, 0])), u = cr3(r, f);
+      let wx = 0, wy = 0;
+      for (const at2 of atoms) {
+        const d = sub3(at2.p, cam), z = dt3(d, f);
+        if (z <= 0.01) return 9;
+        wx = Math.max(wx, (Math.abs(dt3(d, r)) + at2.r) / (z * tn * ASPECT));
+        wy = Math.max(wy, (Math.abs(dt3(d, u)) + at2.r) / (z * tn));
+      }
+      return Math.max(wx, wy);
+    };
+    ok("at the FITTED distance the whole 30-unit network is on frame (|NDC| <= 1)",
+      worstNdc(fitted) <= 1, `dist ${fitted.toFixed(2)} -> worst |NDC| ${worstNdc(fitted).toFixed(3)}`);
+    ok("NEGATIVE CONTROL: at the unfitted dist 17 the same network CLIPS",
+      worstNdc(17) > 1, `worst |NDC| ${worstNdc(17).toFixed(3)} — nearly half the cluster off-screen`);
+    ok("the shipped BS_FIT_MARGIN is kept (no per-camera knob was invented)",
+      E.BS_FIT_MARGIN === 1.90 && !/fit_margin/.test(SRC),
+      `margin ${E.BS_FIT_MARGIN} -> dist ${fitted.toFixed(2)}, border ${((1 - worstNdc(fitted)) * 100).toFixed(0)}%`);
+  }
+}
+
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
