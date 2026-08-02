@@ -483,7 +483,7 @@
       },
       "STATE_5": {
         "title": "Four arrows, still zero — CCl₄",
-        "label": "Carbon tetrachloride: four polar C-Cl arrows sum to exactly zero, read under a full spin",
+        "label": "Carbon tetrachloride: four polar C-Cl arrows sum to exactly zero",
         "duration": 22,
         "depth_ring": "core",
         "focal_primitive_id": "s5_zero_label",
@@ -532,7 +532,7 @@
             },
             {
               "id": "s5_2",
-              "text_en": "Turn the molecule: from every side the four arrows balance.",
+              "text_en": "Turn the molecule and the four arrows keep pointing at those same four corners.",
               "glow": "arrows"
             },
             {
@@ -542,12 +542,12 @@
             },
             {
               "id": "s5_4",
-              "text_en": "Carbon tetrachloride has no dipole moment.",
+              "text_en": "Carbon tetrachloride has no dipole moment at all.",
               "glow": "resultant"
             },
             {
               "id": "s5_5",
-              "text_en": "The symmetric shape makes the four arrows cancel.",
+              "text_en": "The symmetric shape cancels them.",
               "glow": "resultant"
             }
           ]
@@ -555,7 +555,7 @@
         "misconception_watch": [
           {
             "belief": "Four polar bonds must add up to something — a board cannot show them cancelling, so surely they do not.",
-            "visual_counter": "Four polar C-Cl arrows are shown pointing at the four corners of a tetrahedron while the live HUD holds with no value shown yet; turning the molecule through a full rotation shows every side balances, and only then does the 'μ = 0 D' badge appear with the HUD reading 0.00 D.",
+            "visual_counter": "Four polar C-Cl arrows are shown pointing at the four corners of a tetrahedron while the live HUD holds with no value shown yet; only then does the 'μ = 0 D' badge appear with the HUD reading 0.00 D, and the molecule turns so the tetrahedral arrangement reads as a solid shape rather than a flat sketch.",
             "one_line_fix": "In three dimensions, four identical bonds pointing at the corners of a tetrahedron still cancel to zero, exactly like two opposite arrows do in a line."
           }
         ],
