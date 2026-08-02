@@ -292,7 +292,7 @@
             },
             "text": "F → I: shorter arrow",
             "color": "#4FC3F7",
-            "at_ms": 13600
+            "at_ms": 12500
           }
         ],
         "teacher_script": {
@@ -893,7 +893,7 @@
           "mode": "compare",
           "species": "HF",
           "compare_species": "HI",
-          "compare_at_ms": 13600,
+          "compare_at_ms": 12500,
           "compare_duration_ms": 1800,
           "dipole": {
             "show_bond_arrows": true,
@@ -939,8 +939,15 @@
             {
               "id": "bsc_co2_u0",
               "species": "CO2",
-              "at": [0, 0, 0],
-              "orient": [-55, 0]
+              "at": [
+                0,
+                0,
+                0
+              ],
+              "orient": [
+                -55,
+                0
+              ]
             }
           ],
           "dipole": {
