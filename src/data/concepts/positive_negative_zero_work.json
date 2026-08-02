@@ -319,7 +319,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s5_1", "text_en": "A twenty-five newton pull leans back at a hundred and twenty degrees.", "glow": "angle_arc" },
-            { "id": "s5_2", "text_en": "The bar dives below zero while the HUD reads a positive twenty-five newtons; the sign lives in the angle.", "glow": "nlb_arrow_crate_applied" },
+            { "id": "s5_2", "text_en": "The bar dives below zero while the HUD reads a positive twenty-five newtons; the angle decides the sign.", "glow": "nlb_arrow_crate_applied" },
             { "id": "s5_3", "text_en": "The rough floor's friction also does negative work here (we count only the pull's), and the crate comes to rest and stays there.", "glow": "nlb_arrow_crate_friction" }
           ]
         },
@@ -366,7 +366,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Change the force, the angle, or the mass, and drag the crate freely." }
+            { "id": "s6_1", "text_en": "Change the force, the angle, or the mass, and drag the crate freely." },
+            { "id": "s6_2", "text_en": "Set the force below the maximum static friction and the crate holds still, so every bar parks at zero, because nothing moved.", "glow": "nlb_body_crate" },
+            { "id": "s6_3", "text_en": "At ninety degrees the pull's bar freezes while the friction bar keeps diving, because friction still slows a moving crate.", "glow": "nlb_arrow_crate_friction" }
           ]
         }
       }
@@ -622,7 +624,6 @@
           ],
           "work_scale_J": 180,
           "loop_reset_ms": 2000,
-          "glow_focal": "displacement_vector",
           "readouts": ["F_applied", "v"],
           "controls_visible": []
         }
@@ -651,7 +652,7 @@
           "work_scale_J": 180,
           "loop_reset_ms": 3000,
           "glow_focal": "nlb_arrow_crate_friction",
-          "readouts": ["F_applied", "f", "v"],
+          "readouts": ["f", "v"],
           "controls_visible": []
         }
       },
@@ -735,7 +736,6 @@
           ],
           "work_scale_J": 315,
           "loop_reset_ms": 2600,
-          "glow_focal": "angle_arc",
           "readouts": ["F_applied", "f", "v"],
           "controls_visible": ["F_ang"]
         }
@@ -765,8 +765,7 @@
             { "force": "net", "label": "net — the sum", "body_id": "crate" }
           ],
           "work_scale_J": 792,
-          "glow_focal": "nlb_body_crate",
-          "readouts": ["F_applied"],
+          "readouts": ["F_applied", "N", "f", "v"],
           "controls_visible": ["F", "F_ang", "m"],
           "trusted_drag_seizes": true
         }
