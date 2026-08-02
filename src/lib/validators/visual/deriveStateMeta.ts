@@ -2021,6 +2021,18 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (typeof bscState.angle_at_ms === 'number') {
             candidates.push(asNum(bscState.angle_at_ms, 0) + asNum(bscState.angle_ramp_ms, 1600) + 600);
         }
+        // E2b: the SCRIPTED HEAT (thermal.T_from -> thermal.T_K over T_ramp_ms
+        // from T_at_ms), the exact twin of the scripted bend above and registered
+        // in the same change as the renderer cue for the same reason — a state
+        // that ramps the temperature with no later reveal cue would otherwise pin
+        // at DEFAULT_REVEAL_MS = 1500 ms, i.e. mid-ramp, and mint a
+        // self-contradictory baseline (a caption about a heated network over a
+        // frame of a half-heated one). The 2000 ms default is BS_T_RAMP_MS in the
+        // renderer; the two must stay equal.
+        const bscTh2 = asObj(bscState.thermal);
+        if (bscTh2 && typeof bscTh2.T_at_ms === 'number') {
+            candidates.push(asNum(bscTh2.T_at_ms, 0) + asNum(bscTh2.T_ramp_ms, 2000) + 600);
+        }
         // assemble_at_ms / assemble_duration_ms were REMOVED here by E1c-A, and the
         // removal is the decision, not an oversight. E1c-C's cue audit found them
         // registered as pin candidates with NO bonding_scene code reading them (the
