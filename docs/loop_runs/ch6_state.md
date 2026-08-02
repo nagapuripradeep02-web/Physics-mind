@@ -12,11 +12,82 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-next: **0d — concepts 1..N as pure JSON** through the ①–④ pipeline. Start with #1
-  `work_done_by_constant_force` (architect → Checkpoint A → physics-author → json-author →
-  quality-auditor + eye-walker → Checkpoint B). Both pre-0d obligations are DISCHARGED:
-  `NLB_SPRING_CHOREOGRAPHY_SPEC.md` amended (`5d11ff2`) and the platform change is up as **PR #14**
-  (below) — awaiting founder merge, which is not a blocker for starting 0d on this branch.
+## ⭐ CONCEPT #1 SHIPPED 2026-08-02 — `work_done_by_constant_force`
+
+Founder-approved ("perfect ship it. and tts generate."). Release chain run by `shipper`:
+`visual:approve` → **6 H2 baselines minted** (12 PNGs, first lock) → `tts:generate --langs=en` →
+**18 EN clips, 0 stale, 0 skipped** → `build:review` → verify. Committed `927f7dd`
+(both `visual_baselines/` and `tts_audio/` are tracked — the audio dir IS the only cache, since
+`tts:generate` re-synthesizes from Sarvam every run with no free restore).
+
+**Two things recorded honestly:**
+1. **founder-proxy's last Checkpoint B verdict was `FIX`, not `APPROVE`.** Its blocker (F11) was
+   fixed and frame-verified by the dispatching session, but the gate was NOT re-run. This shipped
+   on the founder's own authority, which supersedes the proxy. Rule 17 intact — the human gate is
+   the one that was held. Do not later cite this as a proxy APPROVE.
+2. **NOT deployable to the pilot yet.** The SEAM K/L/M/N engine + its two routed fixes live on
+   PR #14 and `feat/ch6-concepts`, not master. Baselines/audio/local review are unaffected;
+   `PILOT_CONCEPTS` and deploy must wait for both merges.
+
+### The build in one line
+3 Checkpoint-B cycles. **Every deterministic gate passed on the first build** — validator, tsc,
+27/27 EYE — and the concept still shipped a state contradicting its own claim on screen. Every
+defect that mattered was found by reading pixels or driving the sim.
+
+### What the review chain actually caught (worth carrying to #2)
+- **S4 stamped 40.6 J under a formula predicting 40.0** — SEAM M's checkpoint captured post-step
+  with no interpolation. Engine fix; no authoring fix existed (`ΔW/W = h·√(2a/d)`, independent of F).
+- **S5 declared `reveal-build` with no time-varying mechanism** — a third undeclared pure-translate.
+  Rebuilt as the two-body race, which **proved the SEAM M multi-body contract** (two accumulators
+  sharing `force` with distinct `body_id`) for the first time.
+- **S5's crates drew on top of each other** — lane separation is along **z**, so a head-on camera
+  projects it to nothing. Camera-alone needs azimuth > 61°, which halves the along-track race.
+- **S6's sandbox numbers stopped satisfying its own formula** — the wrap re-zeroed the ledger but
+  not the arrow origin. Found only by a 9-second drive; a frame count had read it as cosmetic.
+- **The body label `crate` overprinted S4's own glow focal.** This was the only `newtons_laws_body`
+  concept in either chapter using a WORD for a body label; the engine's dodge is tuned for symbols.
+
+### Agents refusing wrong instructions — the pattern that saved this build
+- `field3d-surgeon` **rejected the dispatching session's `b._s_pre` fraction** (consumed by
+  `nlbRunWorkAccum` before checkpoints run → 0/0) and built the segment-record instead.
+- `field3d-surgeon` **rejected the scar row's `b.s0 -= span` remedy** — verified independently: it
+  would render `d = 11.61 m` beside a `0 J` meter, **21× worse**. That remedy had been filed TWICE
+  and is now corrected in the row, so #2 inherits the right answer.
+- `architect` **rejected founder-proxy's θ-slider fix** (relocates the Rule-31 defect) and its
+  camera-only premise (refuted by projection arithmetic), and killed `param_ramp` on θ on physics
+  grounds (`∫F cos θ ds ≠ F·d·cos θ` would contradict the SEAM-N invariant).
+- `physics-author` **killed a delta cue it was told to leave alone** — a delta cue is a PERSISTENT
+  caption (Rule 34a), so it must hold at every frame, not just at the crossing.
+- founder-proxy filed **five corrections to its own record**, including a scar directive against its
+  own upstream agent, and did not lower its bar to close the loop.
+
+**Standing lesson: the failure mode to avoid is not an agent being wrong — it is an agent being
+wrong AND deferential. Dispatch prompts should name the diagnosed cause but invite refutation.**
+
+### Open, not blocking
+Narration glow bindings 0/18 (invisible sound-off, the default) · engine ride-alongs E2 (no
+component overlay for the applied force — the picture a teacher draws for `W = F·d·cos θ`; **#2
+will want it**), E3 (label dodge ignores arc/checkpoint/arrow rects), E4 (body labels brighten-only),
+E5 (per-body work probes), E6/E7 (occlusion warning; latent multi-body wrap re-anchor) · **the S5
+head start** (at the frozen pin 43% of the visible gap is motion, 57% is the 2 m stagger — the
+durable fix is a per-body `d` arrow, filed as E-class) · **7 scar rows are SQL text only, UNAPPLIED**
+· the bug-queue script's `FIELD3D` constant contains no `newtons_laws_body` concept, so
+`--field3d --open` has been **silently hiding every Ch.5/Ch.6 scar**.
+
+---
+
+next: **0d concept #1 `work_done_by_constant_force` → physics-author.** Checkpoint A CLOSED
+  (DESIGN_FIX cycle 1 → DESIGN_OK + 12 verbatim patches cycle 2, all applied; reviewer directed
+  "proceed to physics-author, no re-review needed"). Then json-author → quality-auditor +
+  eye-walker → Checkpoint B. Both pre-0d obligations DISCHARGED: `NLB_SPRING_CHOREOGRAPHY_SPEC.md`
+  amended (`5d11ff2`) and the platform change is up as **PR #14** — awaiting founder merge, not a
+  blocker.
+
+branch: **concept work is on `feat/ch6-concepts`**, stacked on the engine work. `feat/ch6-work-energy-power`
+  is FROZEN at `24f967f` because PR #14 tracks it — adding concept commits there would make the
+  engine reach master bundled with concept JSON, the exact Rule-40 bundling the separate PR exists
+  to prevent. When PR #14 merges: `npm run desk:close -- feat/ch6-work-energy-power`, and this
+  branch's diff collapses to concept-only on its next sync.
 done: **PHASE 0 COMPLETE — 0a survey · 0b skeleton + Checkpoint A · 0c engine (4 seams)**
 parked: (none)
 in_flight: conservation_of_mechanical_energy  stage=0c-CLOSED  checkpointA=CLOSED
