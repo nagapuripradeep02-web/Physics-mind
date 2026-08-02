@@ -39882,23 +39882,95 @@ export const FIELD_3D_RENDERER_CODE = `
     //   0.0036 and every other surface is ink); the bodies are deliberately NOT
     //   in the target list, because a body MOVES under a static arrow and would
     //   make the class flicker as it passed.
+    //   THE SIGN OF THE HIT (founder-proxy routing 2026-08-02). "Does the ray
+    //   camera -> p hit the slab" is NOT the question. An unbounded ray answers
+    //   YES in two physically OPPOSITE situations, and the first release of this
+    //   seam conflated them:
+    //     (a) the slab is BEHIND p  -> the slab really is p's backdrop -> deepen;
+    //     (b) the slab is IN FRONT of p -> p is HIDDEN behind the slab, it is not
+    //         drawn at all, and it has no backdrop to be legible against.
+    //   MEASURED (kinetic_energy_definition STATE_3, the mg weight arrow, which
+    //   points DOWN from a cart standing ON the slab): the shaft midpoint sits at
+    //   10.25 from the camera and the slab is hit at 9.72 — case (b), 0.53 units
+    //   IN FRONT. Every one of that arrow's 160-205 DRAWN pixels is on the page
+    //   below the slab's front edge, and all of them were being deepened to the
+    //   slab ink: rendered luminance 0.0071 against a 0.0036 page, i.e. 1.07:1,
+    //   against a 3:1 stroke floor. It self-corrected at t = 2400 ms only because
+    //   the mass ramp grew the arrow until its midpoint cleared the silhouette,
+    //   so the arrow FLICKERED dark -> bright once per loop.
+    //   So a sample is classified by comparing the hit distance to its OWN
+    //   distance, and an occluded sample is DISCARDED rather than counted: it
+    //   contributes no ink to be legible.
+    //
+    //   AND THE CLASS IS RESOLVED OVER THE WHOLE SPAN, NOT ONE ANCHOR. A single
+    //   anchor gives one regime to an element whose ink lies on both backdrops,
+    //   and the two regimes are DISJOINT by construction (the note above), so
+    //   whichever side loses the vote falls below the floor. A majority vote is
+    //   therefore not a fix — it only chooses which half stays invisible.
+    //   MEASURED across the three newtons_laws_body concepts, 9 samples per
+    //   element, every 250 ms: 19 frames carry an element with visible ink on
+    //   BOTH backdrops at once (positive_negative_zero_work S2/S4/S5/S6 and
+    //   kinetic_energy_definition S5 — always the FRICTION arrow, which rides a
+    //   lane near the surface and hangs off the slab's edge as its body reaches
+    //   the end). Those get the page ink plus the dark CASING — the same
+    //   construction the angle arc already uses for exactly this reason, and the
+    //   same one every label sprite in this file uses: over the page the casing
+    //   is invisible against 0.0036, over the slab it is a 6.7:1 outline that
+    //   carries the lifted core.
+    //   THE OTHER OCCLUDER IS THE ARROW'S OWN BODY. An arrow is drawn FROM the
+    //   body centre outward, so its inner samples are always inside the cart and
+    //   never drawn. Ignoring that put S5's friction ink at 1.07:1 over the page
+    //   even though most of its SPAN was over the slab — the part over the slab
+    //   was inside the cart. Only the arrow's OWN body is used, never a passing
+    //   one: an arrow is rigidly attached to its body, so this occlusion is
+    //   static by construction and cannot make the class flicker (which is the
+    //   reason bodies stay out of the BACKDROP list in the note above).
     var NLB_INK_RAY = null;
     var NLB_INK_P = null;
-    function nlbInkOverSlab(p) {
-        if (!p || typeof camera === "undefined" || !camera) return false;
-        var slab = nlbFindById("nlb_surface");
-        if (!slab || !slab.visible) return false;
+    var NLB_INK_SLAB_REF = null;     // resolved once per ink pass, not per sample
+    var NLB_INK_EPS = 1e-3;
+    var NLB_INK_PAGE = 0, NLB_INK_SLAB = 1, NLB_INK_BOTH = 2;
+    var NLB_INK_SPAN_N = 24;         // 25 samples per stroke — see nlbInkSpanClass
+    //   -1 = occluded (draws nothing), 0 = over the page, 1 = over the slab.
+    //
+    //   overlay=true FLIPS THE MEANING OF AN OCCLUDER (SEAM R). For an element
+    //   that draws in front of the apparatus, a solid on the ray no longer hides
+    //   the sample — it BACKS it, and both possible backdrops here are light (the
+    //   slab's lit top measures 0.309, its shaded edge 0.211, a cart body 0.35,
+    //   against a 0.0036 page). So an occluded sample is not discarded, it is a
+    //   SLAB-class (light-backdrop) sample. The whole mg shaft is therefore
+    //   correctly seen as crossing both backdrops, which is what makes the span
+    //   test return BOTH and turn the casing on: lifted core over the page, dark
+    //   outline over the block and the plank. NOTE the historical joke this
+    //   settles — for overlay ink the test degenerates to "is the slab anywhere
+    //   along this ray", i.e. exactly the unbounded raycast whose missing SIGN was
+    //   the SEAM Q bug. It was never the wrong question; it was the right question
+    //   asked of the wrong geometry.
+    function nlbInkSampleClass(p, own, overlay) {
+        if (!p || typeof camera === "undefined" || !camera) return NLB_INK_PAGE;
         if (!NLB_INK_RAY) NLB_INK_RAY = new THREE.Raycaster();
         if (!NLB_INK_P) NLB_INK_P = new THREE.Vector3();
         NLB_INK_P.copy(p).sub(camera.position);
         var L = NLB_INK_P.length();
-        if (!(L > 1e-6)) return false;
+        if (!(L > 1e-6)) return NLB_INK_PAGE;
         NLB_INK_RAY.set(camera.position, NLB_INK_P.multiplyScalar(1 / L));
-        return nlbRayHits(NLB_INK_RAY, slab);
-    }
-    function nlbRayHits(ray, obj) {
-        var hits = ray.intersectObject(obj, false);
-        return !!(hits && hits.length);
+        if (own && own.visible) {
+            var hb = NLB_INK_RAY.intersectObject(own, false);
+            if (hb && hb.length && hb[0].distance < L - NLB_INK_EPS) return overlay ? NLB_INK_SLAB : -1;
+        }
+        var slab = NLB_INK_SLAB_REF;
+        if (slab && slab.visible) {
+            var hs = NLB_INK_RAY.intersectObject(slab, false);
+            // intersectObject sorts by distance. The slab is a convex box, so a
+            // NEAREST hit closer than the sample means the sample is inside it or
+            // past it — either way behind it, either way not drawn (unless this
+            // element draws in front of it, see above).
+            if (hs && hs.length) {
+                if (hs[0].distance >= L - NLB_INK_EPS) return NLB_INK_SLAB;
+                return overlay ? NLB_INK_SLAB : -1;
+            }
+        }
+        return NLB_INK_PAGE;
     }
     // ── The mesh shaft (spec: the 1 px hairline is half the defect) ────────
     //   WebGL ignores LineBasicMaterial linewidth on essentially every desktop
@@ -39917,6 +39989,36 @@ export const FIELD_3D_RENDERER_CODE = `
     //   MeshBasicMaterial, so an unlit shaft renders at EXACTLY the ink the
     //   lens computed and cannot be pulled off the floor by a light.
     var NLB_ARROW_SHAFT_R = 0.030;   // world units — about 4 px at the authored framing
+    //   THE STRADDLE CASING. Same construction and the same absolute margin as the
+    //   angle arc's (0.022 tube -> 0.052 casing): a dark outline that lets ONE
+    //   lifted ink read over the slab as well as over the page. It is built for
+    //   every arrow but carried HIDDEN, and nlbInkWriteStroke shows it only on the
+    //   frames the span test calls NLB_INK_BOTH — so an arrow whose ink was
+    //   already correctly classified renders exactly the pixels it rendered
+    //   before, and this fix cannot move a baseline it has no business moving.
+    //   BackSide + depthWrite:false is what makes it an OUTLINE rather than a
+    //   blob: the enlarged hull's back faces sit BEHIND the core's front faces,
+    //   so only the rim outside the core's silhouette survives, and the core
+    //   still wins every pixel it covers.
+    //   THE RIM HAS TO BE TWO REAL PIXELS WIDE, and that is a MEASURED size, not
+    //   a taste one. At the first sizing (shaft 0.060, head x1.32) the rim came
+    //   out one pixel of pure casing plus one of blend, and a blended rim measures
+    //   3.74:1 against the lit top face but only 2.72:1 against the SHADED FRONT
+    //   EDGE — under the 3:1 stroke floor on the face that binds (the same front
+    //   edge that set NLB_INK_LUM_MAX above). Widened until the rim carries two
+    //   pixels of the casing colour itself, which is what the arc's 0.022 -> 0.052
+    //   already buys it at the same framing.
+    var NLB_ARROW_CASE_R = 0.070;
+    var NLB_ARROW_CASE_K = 1.46;     // head casing, as a multiple of the cone
+    var NLB_ARROW_CASE_TIP = 0.22;   // and how far past the tip it reaches (cone-local)
+    function nlbCaseMaterial() {
+        var m = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(NLB_INK_CASE_COLOR), transparent: true, opacity: 0.95,
+            side: THREE.BackSide, depthWrite: false
+        });
+        m.userData = { _nlbCase: true };
+        return m;
+    }
     function nlbAddShaft(arrow, hex) {
         if (!arrow) return arrow;
         var sh = new THREE.Mesh(
@@ -39927,6 +40029,32 @@ export const FIELD_3D_RENDERER_CODE = `
         sh.position.set(0, L0 / 2, 0);
         arrow._nlbShaft = sh;
         arrow.add(sh);
+        // A CHILD of the shaft, so nlbFitShaft keeps sizing both with no second
+        // call site: the shaft is scaled (1, L, 1), so a child inherits the length
+        // exactly and only the child's own geometry sets the radius.
+        var shCase = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_ARROW_CASE_R, NLB_ARROW_CASE_R, 1, 12), nlbCaseMaterial());
+        shCase.renderOrder = -1;
+        shCase.visible = false;
+        shCase.userData = { elementType: "nlb_arrow_case", _nlbCase: true, _nlbOptCase: true };
+        sh.add(shCase);
+        arrow._nlbShaftCase = shCase;
+        // The head is the only part of a vector whose weight we control, so it
+        // needs the outline more than the shaft does. ArrowHelper's cone geometry
+        // has its APEX at the local origin and runs to y = -1, and setLength
+        // scales it (headWidth, headLength, headWidth) — so a uniform child scale
+        // stays a cone, and a small +y offset carries the casing past the tip.
+        if (arrow.cone) {
+            var cnCase = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.5, 1, 5), nlbCaseMaterial());
+            cnCase.geometry.translate(0, -0.5, 0);
+            cnCase.scale.set(NLB_ARROW_CASE_K, NLB_ARROW_CASE_K, NLB_ARROW_CASE_K);
+            cnCase.position.set(0, NLB_ARROW_CASE_TIP, 0);
+            cnCase.renderOrder = -1;
+            cnCase.visible = false;
+            cnCase.userData = { elementType: "nlb_arrow_case", _nlbCase: true, _nlbOptCase: true };
+            arrow.cone.add(cnCase);
+            arrow._nlbConeCase = cnCase;
+        }
         return arrow;
     }
     // Spans tail -> base of the cone, exactly the span ArrowHelper gives its own
@@ -39937,6 +40065,88 @@ export const FIELD_3D_RENDERER_CODE = `
         var L = Math.max(1e-4, len - headLen);
         sh.scale.set(1, L, 1);
         sh.position.set(0, L / 2, 0);
+    }
+
+    // ══ SEAM R — a FORCE ARROW IS FBD OVERLAY INK, DRAWN IN FRONT ══════════
+    //   THE DEFECT (measured, kinetic_energy_definition STATE_3, the mg arrow of
+    //   a cart standing ON the slab; camera [0, 2, 10], 1280x720):
+    //     m        len (world)   drawn tip-to-tail   ACTUALLY VISIBLE
+    //     2.00 kg     0.943         56.2 px             17.5 px
+    //     2.48        1.167         69.1               30.5
+    //     2.96        1.392         82.2               43.6
+    //     3.44        1.618         95.1               56.5
+    //     3.92        1.844        107.9               69.3
+    //   visible = 27.06*m - 36.66, r^2 = 1.000. The SLOPE is right and the
+    //   INTERCEPT is the whole bug: a CONSTANT 0.645 world units of every such
+    //   arrow — 36.7 px — is buried and never reaches the eye. So a state whose
+    //   entire teaching point is "mass doubles, K doubles" drew its one physical
+    //   cause growing 4.1x for a 2x mass, i.e. the sim rendered the exact
+    //   quadrupling its own assessment files as the distractor.
+    //
+    //   WHY 0.645 AND NOT 0.455. The solid on the ray is only the body's own half
+    //   height (0.275) plus the slab (0.18). The remaining 0.19 is the slab's
+    //   SCREEN SILHOUETTE: seen from an elevated camera a solid hides a band of
+    //   space BELOW itself as well as the space inside it. That is why no static
+    //   origin offset can fix this — the buried depth is a function of the CAMERA,
+    //   and this scenario ships drag-to-rotate. It was measured constant to
+    //   +/-0.001 across the ramp only because this camera and this slab are fixed.
+    //
+    //   WHY NOT MOVE THE ORIGIN. Three candidates were considered and rejected on
+    //   the arithmetic above: (a) start at the body's own surface — removes 0.275
+    //   of 0.645 and leaves an intercept, i.e. relocates the defect; (b) start
+    //   below the support by a per-frame raycast — zero intercept but the origin
+    //   then JUMPS by 0.645 the instant the body clears the slab's silhouette, and
+    //   creeps while the camera eases at state entry; (c) start below the support
+    //   by a constant — wrong for every other camera, and detaches mg from the
+    //   centre of mass, which is where weight acts.
+    //
+    //   THE FIX IS TO STOP PRETENDING FORCE INK IS IN THE SCENE. It is not: a
+    //   force vector is a diagram drawn ON the picture, which is exactly what the
+    //   SEAM Q pass already says in prose — "it owns the drawn colour of the
+    //   OVERLAY only ... it never touches the apparatus: those are the thing being
+    //   looked at, not ink drawn on top of it". Making the depth buffer agree with
+    //   that sentence gives visible length == drawn length for EVERY camera, every
+    //   mass and every state, with zero intercept BY CONSTRUCTION and no moving
+    //   origin: mg keeps acting at the centre of mass and crosses the block and
+    //   the plank, which is how every textbook free-body diagram draws it.
+    //
+    //   THE ONE THING GIVEN UP is depth ordering between force ink and apparatus.
+    //   That is a real loss and it is bounded on purpose: only the two families
+    //   whose LENGTH carries a magnitude are lifted (nlb_arrow and its component
+    //   pair). The displacement vector, the angle arcs and the right-angle marker
+    //   stay depth-tested — they are drawn along the surface, they are not
+    //   anchored inside a body, and an angle is not a length. Label sprites stay
+    //   depth-tested too: a label sits PAST the tip, in free space.
+    //
+    //   ORDER: the casing draws first so it stays an OUTLINE under its own core.
+    //   depthWrite is off as well — this ink draws last and must not stamp depth
+    //   that a later transparent pass would then test against.
+    //   AND EVERY MATERIAL IS FORCED TRANSPARENT, which is not cosmetic. Once
+    //   depthTest is off, DRAW ORDER is the only thing deciding who wins a pixel —
+    //   and renderOrder sorts only WITHIN a list, while three.js draws the whole
+    //   opaque list before the whole transparent one. ArrowHelper's cone is opaque
+    //   and its casing (transparent, renderOrder 5) therefore drew AFTER it and
+    //   painted the arrowhead out: measured, the first build of this seam lost the
+    //   head entirely (ink extent 38 px against a 56 px arrow — exactly the shaft
+    //   span len - headLen). Putting the whole family in one list restores the
+    //   casing's own contract: it is an outline only because its core draws over it.
+    var NLB_OVERLAY_ORDER = 6;
+    var NLB_OVERLAY_ORDER_CASE = 5;
+    function nlbAsOverlayInk(root) {
+        if (!root) return root;
+        root.traverse(function (n) {
+            if (!n.material) return;
+            var isCase = !!(n.userData && n.userData._nlbCase);
+            n.renderOrder = isCase ? NLB_OVERLAY_ORDER_CASE : NLB_OVERLAY_ORDER;
+            var ms = Array.isArray(n.material) ? n.material : [n.material];
+            for (var i = 0; i < ms.length; i++) {
+                ms[i].depthTest = false;
+                ms[i].depthWrite = false;
+                ms[i].transparent = true;
+                ms[i].needsUpdate = true;
+            }
+        });
+        return root;
     }
 
     // ── SEAM D — pulley bracket + the two rope segments ────────────────────
@@ -41125,6 +41335,7 @@ export const FIELD_3D_RENDERER_CODE = `
             };
             ar.visible = false;
             nlbAddShaft(ar, col);          // SEAM Q: the 1 px hairline is half the defect
+            nlbAsOverlayInk(ar);           // SEAM R: length must not be eaten by the apparatus
             parent.add(ar); nlbRegister(ar);
 
             var lb = pmCreateAutoLabel(NLB_ARROW_DEFAULT_LABELS[kind], col, NLB_ARROW_LABEL_H);
@@ -41158,6 +41369,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 bodyId: bodyId, kind: "component_" + which, _shaft: shaft, _head: head
             };
             grp.visible = false;
+            nlbAsOverlayInk(grp);          // SEAM R: mg·sin θ / mg·cos θ are lengths too
             parent.add(grp); nlbRegister(grp);
 
             var cl = pmCreateAutoLabel(which === "sin" ? "mg·sin θ" : "mg·cos θ", NLB_COMP_COLOR, NLB_ARROW_LABEL_H);
@@ -42091,34 +42303,71 @@ export const FIELD_3D_RENDERER_CODE = `
         if (t === "nlb_seg_label") return NLB_SEG_LABEL_COLOR;
         return null;
     }
-    //   Where an element's ink actually SITS. An arrow is anchored at its shaft
-    //   MIDPOINT rather than its tail, because the tail sits on the body and the
-    //   tip can be a body-length away: the midpoint is the majority of the ink.
+    //   Where an element's ink actually SITS — the whole SPAN of it, sampled from
+    //   tail to tip along the element's own axis, because one point cannot speak
+    //   for ink that lies on two backdrops (see the note at nlbInkSampleClass).
+    //   25 samples, and the count is MEASURED, not guessed. A 9-sample comb found
+    //   the two obvious straddles but MISSED a real one: at
+    //   kinetic_energy_definition STATE_5 t = 17000 ms the friction arrow shows a
+    //   48-pixel sliver of slab-backed ink in the gap between the slab's left
+    //   edge and the cart that hides the rest of the shaft — narrower than one
+    //   ninth of the span, so no sample landed in it and the element was called
+    //   PAGE, leaving that sliver at 1.67:1. A visible sliver can be as thin as
+    //   the gap between two occluders, so the comb is sized to the SMALLEST
+    //   feature worth protecting rather than to the stroke. A point-like element
+    //   (a label sprite, the right-angle marker) has no _inkLen and degenerates
+    //   to its origin, which is the single sample it always was.
     var NLB_INK_A = null;
-    function nlbInkAnchor(o, ud) {
+    function nlbInkSpanClass(o, ud) {
         if (!NLB_INK_A) NLB_INK_A = new THREE.Vector3();
         o.updateWorldMatrix(true, false);
         var t = ud.elementType;
-        if (t === "nlb_arrow" || t === "nlb_disp") {
-            // ArrowHelper's local +y IS the arrow direction (setDirection rotates it).
-            return NLB_INK_A.set(0, ((o.userData && o.userData._inkLen) || 0) * 0.5, 0).applyMatrix4(o.matrixWorld);
+        // ArrowHelper's local +y IS the arrow direction (setDirection rotates it);
+        // a component group's own direction is its local +x.
+        var alongY = (t === "nlb_arrow" || t === "nlb_disp");
+        var alongX = (t === "nlb_comp");
+        var len = (alongY || alongX) ? ((o.userData && o.userData._inkLen) || 0) : 0;
+        var own = ud.bodyId ? nlbFindById("nlb_body_" + ud.bodyId) : null;
+        // SEAM R lifts exactly these two families in front of the apparatus, so
+        // exactly these two read an occluder as a BACKDROP. Every other ink type
+        // is still depth-tested and keeps the discard semantics byte-for-byte.
+        var ovl = (t === "nlb_arrow" || t === "nlb_comp");
+        if (!(len > 1e-6)) {
+            var c0 = nlbInkSampleClass(NLB_INK_A.setFromMatrixPosition(o.matrixWorld), own, ovl);
+            return (c0 === NLB_INK_SLAB) ? NLB_INK_SLAB : NLB_INK_PAGE;
         }
-        if (t === "nlb_comp") {
-            return NLB_INK_A.set(((o.userData && o.userData._inkLen) || 0) * 0.5, 0, 0).applyMatrix4(o.matrixWorld);
+        var nPage = 0, nSlab = 0;
+        for (var i = 0; i <= NLB_INK_SPAN_N; i++) {
+            var f = len * (i / NLB_INK_SPAN_N);
+            if (alongY) NLB_INK_A.set(0, f, 0); else NLB_INK_A.set(f, 0, 0);
+            NLB_INK_A.applyMatrix4(o.matrixWorld);
+            var c = nlbInkSampleClass(NLB_INK_A, own, ovl);
+            if (c === NLB_INK_SLAB) nSlab++; else if (c === NLB_INK_PAGE) nPage++;
         }
-        return NLB_INK_A.setFromMatrixPosition(o.matrixWorld);
+        // Every sample occluded: the element draws nothing this frame, so no ink
+        // needs protecting and the page class is the harmless answer.
+        if (nSlab > 0 && nPage > 0) return NLB_INK_BOTH;
+        return (nSlab > 0) ? NLB_INK_SLAB : NLB_INK_PAGE;
     }
     function nlbInkOverLight(o, ud) {
         // The arc carries its own casing and is the one stroke that crosses both
         // backdrops mid-sweep, so it is PINNED to the page class rather than
-        // flipping half way round (see the note in nlbBuildOffAxis).
-        if (ud.elementType === "nlb_fang") return false;
-        return nlbInkOverSlab(nlbInkAnchor(o, ud));
+        // flipping half way round (see the note in nlbBuildOffAxis). It is the
+        // ORIGINAL instance of the straddle case, hand-pinned before the span
+        // test existed; leaving it pinned keeps its pixels byte-identical.
+        if (ud.elementType === "nlb_fang") return NLB_INK_PAGE;
+        return nlbInkSpanClass(o, ud);
     }
-    function nlbInkWriteStroke(o, hex, op, writeOp) {
+    function nlbInkWriteStroke(o, hex, op, writeOp, wantCase) {
         var col = hexToThreeColor(hex), cse = hexToThreeColor(NLB_INK_CASE_COLOR);
         o.traverse(function (n) {
             if (!n.material) return;
+            // An OPTIONAL casing (the arrow family) is carried hidden and shown only
+            // for the frames whose span test says the element really does cross both
+            // backdrops. Every other frame is byte-identical to having no casing at
+            // all, which is what keeps this fix off the baselines of the states
+            // whose ink was already right.
+            if (n.userData && n.userData._nlbOptCase) n.visible = !!wantCase;
             var ms = Array.isArray(n.material) ? n.material : [n.material];
             for (var i = 0; i < ms.length; i++) {
                 var m = ms[i];
@@ -42151,13 +42400,20 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function nlbInkPass(focal, glowActive, glowP) {
         var colT = 0.10 + 0.18 * glowP;   // the same pulse applyGlowEmphasis uses
+        // Resolved ONCE per pass, not once per raycast sample: the classifier now
+        // casts up to 9 rays per element and nlbFindById is a linear scan.
+        NLB_INK_SLAB_REF = nlbFindById("nlb_surface");
         nlbEach(function (o, ud) {
             var cls = NLB_INK_TYPES[ud.elementType];
             if (!cls || !o.visible) return;
             var base = nlbInkBase(ud);
             if (!base) return;
             var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
-            var overLight = nlbInkOverLight(o, ud);
+            var kls = nlbInkOverLight(o, ud);
+            // A straddling element takes the PAGE ink and leans on its casing to
+            // carry it over the slab — never a majority vote, which would only
+            // choose which half of the element stays invisible.
+            var overLight = (kls === NLB_INK_SLAB);
             var hex = nlbInkLens(base, overLight);
             // A LABEL is a name tag, not a peer competing for attention (force_rig's
             // finding): its focal signal is opacity, never a per-frame re-inking —
@@ -42171,7 +42427,7 @@ export const FIELD_3D_RENDERER_CODE = `
                                      : (overLight ? NLB_INK_DIM_OPACITY : NLB_ARROW_DIM_OPACITY);
                 }
             }
-            if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp);
+            if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp, kls === NLB_INK_BOTH);
             else nlbInkWriteSprite(o, hex, op, writeOp);
         });
     }
