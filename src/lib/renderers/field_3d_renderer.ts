@@ -43473,6 +43473,25 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     // ── The panel DOM, built ONCE at the maximum shape ───────────────────────
+    // The teacher-facing name of the left-edge panel, read from what the CONCEPT
+    // authors rather than from the element id. Union over every state (same scan the
+    // slider-token union already uses), so the name covers everything the panel can
+    // ever show in this concept and never depends on which state opened first.
+    function nlbEnergyPanelLabel() {
+        var keys = (config && config.states) ? Object.keys(config.states) : [];
+        var hasEn = false, hasWk = false, i;
+        for (i = 0; i < keys.length; i++) {
+            var nb = (config.states[keys[i]] || {}).newtons_laws_body;
+            if (!nb) continue;
+            if (nb.energy_layer && nb.energy_layer.bars && nb.energy_layer.bars.length) hasEn = true;
+            if (nb.work_accumulators && nb.work_accumulators.length) hasWk = true;
+        }
+        if (hasEn && hasWk) return "Energy and work bars";
+        // Matches the section header the panel actually renders, so the ⚙ row and the
+        // thing it toggles read as the same object.
+        if (hasWk) return "Work done";
+        return "Energy bars";
+    }
     function nlbBuildEnergyPanel() {
         var p = document.createElement("div");
         p.id = "nlb_energy";
@@ -43480,6 +43499,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // convention the generic widget engine DISCOVERS — so the teacher's gear
         // toggle and clean mode pick this up with zero per-scenario code and zero
         // curation. pointer-events:none: it is an instrument, never a control.
+        //   ...but the id is SEAM L's and SEAM M reused the panel to carry the signed
+        // work ledgers, so the id-derived ⚙ label read "Energy" over a header reading
+        // "Work done" — on a concept that bans the word energy from every
+        // reader-facing string. The panel names ITSELF instead (data-wg-label), from
+        // what this concept actually authors. Concept-wide, not per state: the
+        // generic engine captures the label once at declaration and a teacher may
+        // open the states in any order (Rule 25d), so a label read off the state that
+        // happens to be applied first would not be stable.
+        p.setAttribute("data-wg-label", nlbEnergyPanelLabel());
         p.style.cssText = "position:fixed;left:12px;top:52px;background:rgba(0,0,0,0.82);" +
             "color:#ECEFF1;padding:10px 13px;border-radius:8px;font:12px/1.3 monospace;" +
             "z-index:10;display:none;pointer-events:none;";
@@ -66902,7 +66930,28 @@ export const FIELD_3D_RENDERER_CODE = `
         return !!(el && el.isConnected && el.getClientRects().length > 0);
     }
     function pmWgIsRowId(id) { return id.slice(-4) === "_row"; }
+    // An element id is written for CODE; a ⚙ row is read by a TEACHER. Ids abbreviate
+    // ("annots", "slowmo") and an abbreviation printed verbatim is not English
+    // (Rule 41), so the id-derived fallback expands the stems it knows before it
+    // capitalises. Whole-token match only — never a substring, or "sep" inside
+    // "separator" would rewrite a word that was already correct. This is the LAST
+    // resort: a widget that knows its own name declares it with data-wg-label.
+    var PM_WG_WORDS = {
+        annot: "annotations", annots: "annotations", slowmo: "slow motion",
+        eqn: "equation", eqns: "equations", calc: "calculation",
+        coef: "coefficient", coeff: "coefficient", accel: "acceleration",
+        vel: "velocity", temp: "temperature", freq: "frequency",
+        dist: "distance", sep: "separation", ctrls: "controls",
+        params: "parameters", diag: "diagram"
+    };
+    function pmWgWord(tok) {
+        var t = String(tok || "");
+        return PM_WG_WORDS[t.toLowerCase()] || t;
+    }
     function pmWgRowLabel(el) {
+        // A row may name itself (same contract as a panel) — the authoritative path.
+        var dlr = el.getAttribute("data-wg-label");
+        if (dlr) return dlr;
         var lab = el.querySelector("label");
         if (lab) {
             // Cut at the value separator ("I = 5 A", "Turns N: 100") — the
@@ -66918,7 +66967,9 @@ export const FIELD_3D_RENDERER_CODE = `
             if (t && t.length <= 24) return t + " slider";
         }
         var stem = el.id.slice(0, el.id.length - 4).split("_");
-        var word = stem.length > 1 ? stem.slice(1).join(" ") : stem[0];
+        var sTok = stem.length > 1 ? stem.slice(1) : [stem[0]], sOut = [], si;
+        for (si = 0; si < sTok.length; si++) sOut.push(pmWgWord(sTok[si]));
+        var word = sOut.join(" ");
         word = word.length <= 2 ? word.toUpperCase() : word.charAt(0).toUpperCase() + word.slice(1);
         return word + " slider";
     }
@@ -66932,13 +66983,19 @@ export const FIELD_3D_RENDERER_CODE = `
         for (pi = 0; pi < parts.length; pi++) {
             var p = parts[pi];
             if (p === "panel" || p === "box" || p === "overlay" || p === "hud" || p === "canvas") continue;
-            out.push(p);
+            out.push(pmWgWord(p));
         }
         if (!out.length) out = parts;
         var words = out.join(" ").trim();
         return words ? words.charAt(0).toUpperCase() + words.slice(1) : id;
     }
     function pmWgPanelLabel(el) {
+        // SELF-DECLARATION, and the only guaranteed-correct source. An id-derived
+        // label describes what the panel was NAMED, not what it now SHOWS, so it
+        // rots silently the moment a panel is reused for new content (nlb_energy
+        // carrying the signed work ledgers under a header reading "Work done").
+        // Any panel that knows its own teacher-facing name writes it here — no
+        // curated 39a list, no per-concept authoring.
         var dl = el.getAttribute("data-wg-label");
         if (dl) return dl;
         var id = el.id;
