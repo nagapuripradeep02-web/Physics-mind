@@ -12,6 +12,40 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
+## ▶ NEXT SESSION STARTS HERE — concept #2 `positive_negative_zero_work`
+
+**Everything from concept #1 is MERGED TO MASTER 2026-08-02.** PR #14 (the Phase-0 engine, seams
+K–N + two routed fixes) → merge `1695a7a`. PR #15 (concept #1, baselines, audio, the scar-apply
+script) → merge `908ddd2`. Desk `C:\Tutor\physics-mind-ch6-work-energy-power` is on
+`feat/ch6-concepts`, **level with master, tree clean, nothing unpushed**. `desk:audit`:
+`commits existing ONLY on this machine: 0`.
+
+**Start concept #2 on a NEW branch off master** (`feat/ch6-concept-2` or similar) — do not keep
+authoring on `feat/ch6-concepts`, whose job merged. `feat/ch6-work-energy-power` is merged and
+deskless; it can be deleted on GitHub whenever convenient.
+
+**Do this FIRST, before the architect dispatch:**
+1. `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts positive_negative_zero_work`
+   — **it now returns 11 inherited rows** (it returned none before 2026-08-02). Those 11 are the
+   compounding from concept #1 and every one of them cost a review cycle to learn. Read them.
+2. Fix the bug-queue script's stale `FIELD3D` constant — it contains **no `newtons_laws_body`
+   concept**, so `--field3d --open` silently hides every Ch.5/Ch.6 scar from anyone querying that way.
+3. Consider landing engine **E2** (`show_components` resolves mg only and hard-hides on flat ground)
+   BEFORE authoring #2. Concept #1 could never draw F's projection onto the direction of motion —
+   the one picture a teacher draws for `W = F·d·cos θ` — and taught cos θ by consequence instead.
+   #2's whole arc is sign taxonomy; it will want that projection even more.
+
+**Why #2 should be cheap:** the #1/#2 boundary was drawn deliberately so #2 owns θ = 90° and
+beyond. SEAM N's negative-work case (120° → −20 N) and the always-zero `'normal'` work bar are
+already built and verified, sitting unused specifically for this concept.
+
+**Process change worth making before #2** (this session's biggest miss — see the scar-apply note
+below): agents must write scar rows to a FILE immediately rather than only into a report, and the
+**apply step belongs in the ship chain**, beside `visual:approve`. Nine rows this session existed
+only in agent report text and would have been lost.
+
+---
+
 ## ⭐ CONCEPT #1 SHIPPED 2026-08-02 — `work_done_by_constant_force`
 
 Founder-approved ("perfect ship it. and tts generate."). Release chain run by `shipper`:
