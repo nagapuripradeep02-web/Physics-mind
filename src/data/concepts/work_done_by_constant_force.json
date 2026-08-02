@@ -594,7 +594,7 @@
           "mode": "accelerate_applied_force",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } }
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "crate", "show": ["applied"] }
@@ -621,7 +621,7 @@
           "mode": "accelerate_applied_force",
           "surface": { "theta_deg": 0, "length_m": 6 },
           "bodies": [
-            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.9, "applied_force": { "N": 0, "angle_deg": 0 } }
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.9, "applied_force": { "N": 0, "angle_deg": 0 } }
           ],
           "param_ramp": { "param": "F", "from": 0, "to": 36, "start_ms": 0, "end_ms": 3000 },
           "arrows": [
@@ -648,7 +648,7 @@
           "mode": "accelerate_applied_force",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
           ],
           "arrows": [
             { "body_id": "crate", "show": ["applied"] }
@@ -676,7 +676,7 @@
           "mode": "accelerate_applied_force",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 40, "angle_deg": 60 } }
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 40, "angle_deg": 60 } }
           ],
           "arrows": [
             { "body_id": "crate", "show": ["applied"] }
@@ -738,7 +738,7 @@
           "mode": "sandbox",
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "crate", "label": "crate", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 60 } }
           ],
           "arrows": [
             { "body_id": "crate", "show": ["applied"] }
