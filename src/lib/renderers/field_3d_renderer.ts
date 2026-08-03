@@ -52036,10 +52036,52 @@ export const FIELD_3D_RENDERER_CODE = `
     // radius RATIO is preserved and the linear-in-pm reading survives intact —
     // this is a render convention, not a Rule-29 emphasis knob.
     var BS_COORD_RADIUS_SCALE = 0.35;
-    // Camera auto-fit. The renderer camera is PerspectiveCamera(60, ...), so the
-    // half-height visible at distance d is d*tan(30 deg) = 0.5774*d. Fitting an
-    // extent e therefore needs d >= e/0.5774 = 1.732*e; 1.90 is that with margin.
-    var BS_FIT_MARGIN = 1.90;
+    // ── Camera auto-fit. THE MARGIN WAS DERIVED FROM THE WRONG CONDITION ──────
+    //   The renderer camera is PerspectiveCamera(60, ...), so the half-height
+    //   visible at distance d is d*tan(30 deg) = 0.5774*d, and the ORIGINAL
+    //   derivation read: fitting an extent e needs d >= e/0.5774 = 1.732*e, so
+    //   1.90 is that with margin. That is the FLAT-PLANE condition — it is only
+    //   correct for an object lying in the plane through the origin perpendicular
+    //   to the view axis.
+    //   WHAT bscSiteExtent ACTUALLY RETURNS IS A BOUNDING-SPHERE RADIUS
+    //   (max |at| + that site's own radius), and a SPHERE of radius e is framed
+    //   only when the view cone is TANGENT to it: sin(fov/2) >= e/d, i.e.
+    //   d >= e/sin(30 deg) = 2.000*e. The worst point is not the one straight out
+    //   to the side but the one on the tangent circle, which sits NEARER the
+    //   camera and therefore projects LARGER:
+    //       worst |NDC| = e / (0.5774 * sqrt(d^2 - e^2))
+    //   At the old 1.90 that is 1/(0.5774*1.6155) = 1.071 — i.e. an extent-sized
+    //   object was OFF FRAME by 7% at the corner, by construction, and the
+    //   flat-plane number could never have caught it.
+    //   MEASURED (chromium 1024x640, the shipped projection): a 27-site
+    //   space-filling rock-salt block under BS_CAMERAS.lattice_grow rendered with
+    //   its ink bounding box running to y = 638 of 640 — the corner ions CUT by
+    //   the frame edge (.e3b_drive/ab_RSGROW.png). The same block under
+    //   BS_CAMERAS.explore sat at 0.89 NDC half-height with no thermal jiggle and
+    //   goes over the edge as soon as one is authored.
+    //   WHY IT SURFACED ON A LATTICE AND NOT ON A MOLECULE: for a molecular scene
+    //   the bounding sphere is LOOSE — |at| + BS_BOND_LEN + r bounds a unit whose
+    //   atoms do not actually reach that radius in every direction, so the slack
+    //   absorbed the error. A space-filling lattice's outermost ion sits AT the
+    //   bounding radius, in the corner, in every octant. The margin was measured
+    //   on the loose case and applied to the tight one.
+    //   2.20 = the 2.000 tangency condition plus a 10% border, which reads back as
+    //   a worst |NDC| of 0.884 on that same block. It is a general fix to a general
+    //   derivation error and no concept is special-cased. It moves every fit:true
+    //   camera ~16% further out; NO shipped concept authors bonding_scene today
+    //   (grep -rl bonding_scene src/data -> 0 files), so no baseline moves.
+    var BS_FIT_MARGIN = 2.20;
+    //   ...and the CUT trigger is the tangency condition ITSELF, without the
+    //   border. The two jobs were one number and it was wrong for both: the fit
+    //   asks "where should the camera stand", which wants a border, and the E2d
+    //   cut asks "would the scene actually leave the frame from here", which is
+    //   exactly d < 2*e and nothing more. Sharing the bordered number would cut
+    //   the glide on every state that merely sits INSIDE the comfort border —
+    //   hydrogen_bonding S3 opens at extent 5.31 on a dist-11 camera, i.e. 4%
+    //   clear of clipping at 10.62 and 6% inside the bordered 11.68, and would
+    //   have started snapping instead of gliding for no visible reason (Rule 32d
+    //   says a state change reads as ONE caused move).
+    var BS_FIT_CLIP = 2.00;
     // The five rock-salt pairs ionic_bonding's explore picker offers — ONE cell
     // covers all of them, which is why that explore state needs no second cell
     // type. a_pm is the conventional cubic edge (X-ray values).
@@ -55099,7 +55141,7 @@ export const FIELD_3D_RENDERER_CODE = `
             //   glides exactly as before, which is every state pair shipped so far
             //   except the two that overflow.
             var ext0 = bscOpeningExtent(bs);
-            if (ext0 > 0 && spherical.radius < ext0 * BS_FIT_MARGIN) {
+            if (ext0 > 0 && spherical.radius < ext0 * BS_FIT_CLIP) {
                 spherical.radius = targetSpherical.radius;
                 spherical.phi = targetSpherical.phi;
                 spherical.theta = targetSpherical.theta;

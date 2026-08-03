@@ -148,7 +148,7 @@ const VARS = [
   "BS_MAX_SITES", "BS_MAX_SITE_LABELS", "BS_MAX_NEIGHBOURS", "BS_HCP_C_OVER_A",
   "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_SWAP_MS", "BS_SWAP_TROUGH",
   "BS_COORD_RADIUS_SCALE",
-  "BS_FIT_MARGIN", "BS_ION_PAIRS",
+  "BS_FIT_MARGIN", "BS_FIT_CLIP", "BS_ION_PAIRS",
   "BS_SUPDIG", "BS_COORD_CACHE",
   // E3 (thermal expansion layer)
   "BS_R_J", "BS_VAPOUR",
@@ -4877,8 +4877,35 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       worstNdc(fitted) <= 1, `dist ${fitted.toFixed(2)} -> worst |NDC| ${worstNdc(fitted).toFixed(3)}`);
     ok("NEGATIVE CONTROL: at the unfitted dist 17 the same network CLIPS",
       worstNdc(17) > 1, `worst |NDC| ${worstNdc(17).toFixed(3)} — nearly half the cluster off-screen`);
-    ok("the shipped BS_FIT_MARGIN is kept (no per-camera knob was invented)",
-      E.BS_FIT_MARGIN === 1.90 && !/fit_margin/.test(SRC),
+    // E3b add-on (2026-08-03): the margin was derived from the FLAT-PLANE
+    // condition (e/tan(fov/2) = 1.732e) while bscSiteExtent returns a bounding
+    // SPHERE radius, which needs the TANGENCY condition (e/sin(fov/2) = 2.000e).
+    // At the old 1.90 an extent-sized object projected to |NDC| 1.071 — off frame
+    // by 7% at the corner, by construction. Asserted as the DERIVATION, not as a
+    // transcribed constant, so the next edit has to justify itself.
+    const HALF_FOV = Math.PI / 6;                 // PerspectiveCamera(60, ...)
+    ok("BS_FIT_MARGIN satisfies the TANGENCY condition for a bounding sphere",
+      (E.BS_FIT_MARGIN as number) >= 1 / Math.sin(HALF_FOV) &&
+      Math.abs((E.BS_FIT_CLIP as number) - 1 / Math.sin(HALF_FOV)) < 1e-9 &&
+      !/fit_margin/.test(SRC),
+      `margin ${E.BS_FIT_MARGIN} >= tangency ${(1 / Math.sin(HALF_FOV)).toFixed(3)} ` +
+      `(the old 1.90 was the flat-plane ${(1 / Math.tan(HALF_FOV)).toFixed(3)} plus slack)`);
+    // worst |NDC| for a bounding SPHERE of radius e at distance d = m*e: the
+    // tangent point subtends asin(1/m), so |NDC| = tan(asin(1/m)) / tan(fov/2)
+    //                                           = 1 / (tan(fov/2) * sqrt(m^2 - 1)).
+    const ndcAt = (m: number) => 1 / (Math.tan(HALF_FOV) * Math.sqrt(m * m - 1));
+    ok("NEGATIVE CONTROL: the OLD margin puts an extent-sized corner OFF frame",
+      ndcAt(1.90) > 1 && ndcAt(E.BS_FIT_MARGIN as number) < 1 &&
+      Math.abs(ndcAt(1 / Math.sin(HALF_FOV)) - 1) < 1e-9,
+      `worst |NDC| at the old 1.90 = ${ndcAt(1.90).toFixed(3)}, at ${E.BS_FIT_MARGIN} = ` +
+      `${ndcAt(E.BS_FIT_MARGIN as number).toFixed(3)}, at the bare tangency 2.000 = ` +
+      `${ndcAt(2).toFixed(3)} (exactly on the edge, which is why 2.000 is the CUT and not the FIT)`);
+    ok("the fit and the CUT are two different questions and two different numbers",
+      (E.BS_FIT_CLIP as number) < (E.BS_FIT_MARGIN as number) &&
+      /if \(ext0 > 0 && spherical\.radius < ext0 \* BS_FIT_CLIP\) \{/.test(SRC),
+      `fit ${E.BS_FIT_MARGIN} (tangency + border), cut ${E.BS_FIT_CLIP} (tangency exactly)`);
+    ok("no per-camera knob was invented and the border is real",
+      !/fit_margin/.test(SRC),
       `margin ${E.BS_FIT_MARGIN} -> dist ${fitted.toFixed(2)}, border ${((1 - worstNdc(fitted)) * 100).toFixed(0)}%`);
   }
 
@@ -5082,14 +5109,14 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       ext0 > (E.bscSiteExtent(S2BS, null) as number),
       `opening ${ext0.toFixed(2)} vs settled ${(E.bscSiteExtent(S2BS, null) as number).toFixed(2)}`);
     ok("the snap FIRES for S2 under S1's camera and would not for its own",
-      S1CAM.dist < ext0 * E.BS_FIT_MARGIN && S2CAM.dist * 1.0 < ext0 * E.BS_FIT_MARGIN,
-      `needs ${(ext0 * E.BS_FIT_MARGIN).toFixed(1)}, has ${S1CAM.dist}`);
+      S1CAM.dist < ext0 * E.BS_FIT_CLIP && S2CAM.dist * 1.0 < ext0 * E.BS_FIT_CLIP,
+      `needs ${(ext0 * E.BS_FIT_CLIP).toFixed(1)}, has ${S1CAM.dist}`);
     ok("the glide is KEPT wherever it survives (E1c-H: it moves, it does not cut)",
       (E.bscOpeningExtent({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) *
-        E.BS_FIT_MARGIN < E.BS_UNIT_CAMERAS.general.dist &&
-      (E.bscOpeningExtent(S3BS) as number) * E.BS_FIT_MARGIN < E.BS_CAMERAS.approach_link.dist,
-      `single unit ${((E.bscOpeningExtent({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) * E.BS_FIT_MARGIN).toFixed(2)} < 7  |  ` +
-      `S3 ${((E.bscOpeningExtent(S3BS) as number) * E.BS_FIT_MARGIN).toFixed(2)} < 11`);
+        E.BS_FIT_CLIP < E.BS_UNIT_CAMERAS.general.dist &&
+      (E.bscOpeningExtent(S3BS) as number) * E.BS_FIT_CLIP < E.BS_CAMERAS.approach_link.dist,
+      `single unit ${((E.bscOpeningExtent({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) * E.BS_FIT_CLIP).toFixed(2)} < 7  |  ` +
+      `S3 ${((E.bscOpeningExtent(S3BS) as number) * E.BS_FIT_CLIP).toFixed(2)} < 11`);
     ok("bscOpeningExtent is config-only (no clock, no live camera — pin-stable)",
       !/\bms\b|time|Date\.now|spherical/.test(grabFn("bscOpeningExtent")));
     ok("a scene with no separation_axis reports exactly bscSiteExtent (byte-identical)",
@@ -5097,7 +5124,7 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       Object.is(E.bscOpeningExtent(LATTICE_BS), E.bscSiteExtent(LATTICE_BS, null)));
     ok("the shipped apply snaps the WHOLE pose and only on the measured overflow",
       /var ext0 = bscOpeningExtent\(bs\);/.test(appSrc) &&
-      /if \(ext0 > 0 && spherical\.radius < ext0 \* BS_FIT_MARGIN\) \{/.test(appSrc) &&
+      /if \(ext0 > 0 && spherical\.radius < ext0 \* BS_FIT_CLIP\) \{/.test(appSrc) &&
       /spherical\.radius = targetSpherical\.radius;/.test(appSrc) &&
       /animating = false;/.test(appSrc) && /updateCameraFromSpherical\(\);/.test(appSrc));
   }
