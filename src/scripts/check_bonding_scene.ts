@@ -6917,13 +6917,18 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     //    exposing the slider has no such defence — measured here so the number is
     //    on the record and a future state that authors one is not a surprise.
     {
+      const WHY: Record<string, string> = {
+        layer_shift: "the shipped state exposes the shift slider, so it measures 1.00x",
+        drift: "the shipped state exposes the field slider, so it measures 1.00x",
+        melt: "the shipped states measure 1.05x (S7) / 1.04x (S9) — below the border, not a ramp"
+      };
       for (const key of ["layer_shift", "drift", "melt"]) {
         const cam = (E.BS_CAMERAS as any)[key], bs = SCENES[key].bs;
         const dEntry = Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number);
         const op = openingOf(bs);
         const dOpen = Math.max(cam.dist, E.bscFitDist(op, cam, 1, null) as number);
         console.log(`        scripted-only ${key}: entry ${dEntry.toFixed(2)} vs opening ${dOpen.toFixed(2)} ` +
-          `= ${(dEntry / dOpen).toFixed(2)}x  (the shipped state exposes the slider, so it measures 1.00x)`);
+          `= ${(dEntry / dOpen).toFixed(2)}x  (${WHY[key]})`);
       }
       // the shipped states themselves: reachable pose == opening pose == 1.00x
       const shipped = [
