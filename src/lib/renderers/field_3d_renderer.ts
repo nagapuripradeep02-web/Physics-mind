@@ -39607,6 +39607,17 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_WALL_T = NLB_BODY_SIZE * 0.5;   // thickness along the body's own axis
     var NLB_WALL_H = NLB_BODY_SIZE * 3.2;   // height
     var NLB_WALL_D = NLB_BODY_SIZE * 2.6;   // depth across the track
+    // ── The label GLYPH-HEIGHT REFERENCE (founder 2026-08-02, measured) ──────
+    //   Every camera-facing label sprite in this rig is a 128px-tall canvas, so a
+    //   sprite's world scale.y IS its glyph size: one number, one screen height.
+    //   The body billboard ("m₁ = 4 kg") is the REFERENCE — it is the label the
+    //   founder reads as legible, so every other label in the rig is stated as a
+    //   fraction OF IT and can never drift below it by accident again. Before this
+    //   constant existed the billboard's 0.4 was a bare literal at its build site
+    //   and the arrow labels carried an independent 0.26, which is exactly how the
+    //   force labels ended up at 43% of the billboard's ink height with nothing in
+    //   the file relating the two.
+    var NLB_BODY_LABEL_H = 0.40;
     var NLB_LANE_GAP = 0.85;              // world units of z between two INDEPENDENT side-by-side bodies.
                                           //   Engine spec §1 promises "two bodies with NO pulley = independent,
                                           //   side-by-side", but every body was pinned to z = 0, so the intended
@@ -39663,7 +39674,39 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_ARROW_MAX_LEN = 2.80;         // and never longer than the visible surface
     var NLB_ARROW_EPS = 0.05;             // newtons. At or below this the force IS zero:
                                           // the arrow HIDES. Never a stub (spec section 3).
-    var NLB_ARROW_LABEL_H = 0.26;         // label sprite glyph height (< every lane gap below)
+    // Arrow-label glyph height. PARITY with the body billboard, not a smaller
+    // "annotation" size (founder 2026-08-02, measured on kinetic_energy_definition
+    // STATE_3 frozen at 1280x720: the mg label's ink box was 13 x 7 px against the
+    // cart billboard's 72 x 14 — 50% of the height of the label right beside it, on
+    // the state whose whole job is to introduce mg). This is a SIZE defect and is
+    // independent of the SEAM Q ink floor: those same labels measure 7.29:1 and
+    // 8.42:1 against their backdrop, well clear of the 4.5:1 text floor. They are
+    // not dim, they are small.
+    //   A force label is the TAUGHT OBJECT here (the same argument that sized the
+    //   arrows themselves at NLB_ARROW_SCALE), so there is no reading of Rule 24/34
+    //   on which it may render smaller than the label naming the block it acts on.
+    //   Rule 29 is untouched: this is ONE constant for EVERY arrow kind, so size
+    //   still carries no magnitude and no emphasis — length and brightness do.
+    //   HELD AT 0.26 — the size fix is CORRECT and is deliberately NOT taken yet.
+    //   Raising this to NLB_BODY_LABEL_H was built and measured (ink ratio 0.43 ->
+    //   0.714, collision re-verified on the 8-label normal_force S4) and it REGRESSES
+    //   a SHIPPED instrument: work_done_by_constant_force STATE_5's nlb_wk work-bar
+    //   tracks lose their zero-line collinearity, the exact structural contract
+    //   concept #2 repaired (a 15 px track offset = 28 J of phantom deflection on the
+    //   bar whose whole claim is that it reads zero). Established causally through the
+    //   EYE path with a cache re-seed each way: 0.26 => byte-identical, 0.40 => 4445
+    //   differing px including regions at x = 25..70, OUTSIDE the 3D viewport entirely.
+    //   A 3D sprite scale has no legitimate path into a DOM flex layout, so the path
+    //   itself is an undiagnosed defect — filed as bug_class
+    //   nlb_work_bar_track_tops_lose_collinearity_when_a_3d_label_size_changes.
+    //   A probe against the review-site/ build showed ZERO panel movement and would
+    //   have exonerated the change wrongly; only the EYE path reproduces it, so the
+    //   two paths disagree and neither has been shown correct.
+    //   Restore parity (one line: = NLB_BODY_LABEL_H) once that row is closed. The
+    //   constants above are now RELATED rather than two independent literals, which is
+    //   what let this drift to 65% unnoticed in the first place.
+    var NLB_ARROW_LABEL_H = 0.26;         // glyph height; parity with the billboard is
+                                          // the target, blocked by the row named above
     var NLB_ARROW_LABEL_GAP = 0.24;       // world units past the arrow tip
     var NLB_ARROW_KINDS = ["weight", "normal", "friction", "applied", "tension", "net"];
     var NLB_ARROW_COLORS = {
@@ -39685,8 +39728,12 @@ export const FIELD_3D_RENDERER_CODE = `
     // would superimpose both the shafts AND the labels. Each therefore gets its
     // own perpendicular LANE, measured from the body centre along the outward
     // surface normal, and its label an extra perpendicular nudge — every
-    // resulting label-to-label gap is >= 0.34 world units against a 0.26 glyph
-    // height, so no two can ever touch. Lanes are chosen to miss the slab too
+    // resulting label-to-label gap is >= 0.34 world units. NLB_ARROW_LABEL_H is
+    // the sprite QUAD height, and the quad is mostly transparent padding: the
+    // canvas is 128px tall carrying a 76px font, so the tallest ink a label can
+    // draw (a full ascender-to-descender string like "mg·sin θ") is
+    // 0.594 x NLB_ARROW_LABEL_H = 0.238 world units, still inside the 0.34 lane
+    // gap after the 2026-08-02 parity raise. Lanes are chosen to miss the slab too
     // (the slab occupies surface-local y in [-0.18, 0], i.e. body-relative
     // perpendicular [-0.455, -0.275]): friction sits just ABOVE the contact face
     // and tension/net just BELOW the slab, so no arrow is ever buried in geometry.
@@ -39710,7 +39757,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // exhaustive theta -60..60 x sign x mass sweep finds gaps as small as 0.016).
     // So a final deterministic pass pushes any label that lands too close to an
     // already-placed one further out ALONG ITS OWN arrow. See nlbDeCollideLabels.
-    var NLB_LABEL_MIN_SEP = 0.30;         // > NLB_ARROW_LABEL_H (0.26 glyph height)
+    //   The sweep validated a RATIO, not an absolute: 0.30 was chosen as 1.154 x the
+    //   then-0.26 glyph height, so the separation floor is written that way and
+    //   TRACKS the glyph height instead of being silently invalidated by it. At the
+    //   historical 0.26 this evaluates to exactly 0.30 — the swept value, unchanged.
+    var NLB_LABEL_MIN_SEP = NLB_ARROW_LABEL_H * (0.30 / 0.26);
     var NLB_LABEL_PUSH = 0.20;
     // Clearance for the MEASURED-INK separation tests (the body billboard now
     // carries its mass, so its width is a live quantity — nlbInkHalfW/nlbInkHalfH
@@ -42117,7 +42168,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // the slider row — one normalizer, all three surfaces. It is applied to the
             // authored LABEL only, never to the id FALLBACK: an unlabelled body (a ghost)
             // must keep rendering exactly the pixels it rendered before.
-            var lbl = pmCreateAutoLabel(nlbBodyLabelText(d, defs), col, 0.4);
+            var lbl = pmCreateAutoLabel(nlbBodyLabelText(d, defs), col, NLB_BODY_LABEL_H);
             lbl._nlbLblTxt = lbl._pmText;          // seeds nlbSetBodyLabelText's churn guard
             // Clear the TOP of whichever solid this body is — the wall slab is
             // ~3x a cart's height, so the cart offset would bury its label inside it.
