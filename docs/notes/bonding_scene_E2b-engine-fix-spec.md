@@ -191,3 +191,164 @@ two things that are unambiguously visible and engine-guaranteed (the ×1.42 jigg
 invariant O–H sticks), with the count change stated as *fewer links*, never as a countdown.
 Everything else — including the full 30-unit solved geometry — is in
 `docs/skeletons/hydrogen_bonding_skeleton.md` Appendix A and needs no rework.
+
+---
+
+# FOLLOW-UP — E2c · the link latch cannot reach `break_pm` on a scripted ramp
+
+**Found by `quality_auditor` on `hydrogen_bonding` fix cycle 1 (2026-08-02), confirmed on frames.
+NOT fixed by E2b. Needs a `field3d-surgeon` dispatch and an `engine_bug_queue` row.**
+
+**Severity: MAJOR — it is a regression of a FIXED row.**
+`hysteretic_state_cannot_be_latched_under_a_time_pin` [DIRECTIVE/FIXED,
+`peter_parker:field3d_surgeon`] states the contract as *"forming at the inner threshold and
+**surviving to the outer one**."* The shipped implementation only honours that when the pair's
+form→break traversal fits inside the 640 ms lookback.
+
+**Mechanism.** `bscLinkLatch` (`field_3d_renderer.ts:52303–52313`) seeds `held = false` at the
+OLDEST sample of a `BS_LINK_LOOKBACK_MS` = 640 ms window (`BS_LINK_SAMPLES` = 9) and replays
+forward. A link therefore survives only while some sample still inside that window meets `form_pm`.
+It never persists across windows, so `break_pm` is unreachable whenever the ramp is slower than
+~640 ms across the two thresholds.
+
+**Measured on `hydrogen_bonding` S3** (`approach_from 5.75 → separation 8.0`, `approach_at_ms 1000`,
+`approach_duration_ms 11500`; `mgRamp` is smoothstep-eased, not linear):
+
+| t (ms) | separation (units) | H···O (pm) | HUD `links` |
+|---|---|---|---|
+| 5000 | 6.377 | 210.1 | **1** |
+| 6000 | 6.656 | 223.5 | **0** |
+| 9518 | 7.625 | 270.0 | 0 |
+
+`form_pm` 210 is crossed at t ≈ 4992 ms and `break_pm` 260 at t ≈ 8667 ms — a traversal of
+**3675 ms = 5.7 × the lookback**. The link visibly dies at **H···O ≈ 210–223 pm**, not 260 pm.
+Frame proof: `.visual_runs/hydrogen_bonding/20260802-154012/STATE_3__dense_t05000.png` (`links = 1`)
+vs `…_t06000.png` (`links = 0`).
+
+**Why the concept cannot author around it.** Even the skeleton's original faster 3500 ms pull
+traverses form→break in ~1.6 s, still 2.5× the lookback. Any pull slow enough for a teacher to
+narrate is slow enough to break this. S3's whole misconception beat is *"the weak link fails while
+the covalent sticks never do"* — the beat survives, but **every quoted 260 pm figure was false** and
+has been removed from the narration, the annotation and `misconception_watch` in fix cycle 1.
+
+**Two candidate fixes (surgeon's call):**
+1. Extend the lookback so it spans the authored ramp — i.e. derive the window from the ramp
+   duration rather than a fixed 640 ms constant; or
+2. make the latch persist across windows without reintroducing an accumulator — e.g. resolve the
+   latch from the last time the pair was inside `form_pm`, computed closed-form from the ramp,
+   which keeps the `SET_TIME_FREEZE` rewind property E2b's own averaging fix relies on.
+
+Either way the acceptance test is: on S3's shipped cue times, the link must survive to
+H···O ≈ 260 pm (t ≈ 8667 ms) and the on-screen break must match a narratable number.
+
+**Until it lands, no concept on this surface may quote `break_pm` as an observed distance.**
+
+---
+
+# FOLLOW-UP — E2d · the state-entry camera lerp draws the new scene under the old camera
+
+**Found by `eye-walker` on `hydrogen_bonding` (2026-08-02), root cause corrected by measurement in
+the dispatching session. Owner: `peter_parker:field3d_surgeon` — NOT `alex:json_author`.**
+
+**Severity: MODERATE.** Not blocking; cosmetic but ugly, and it survives a fix cycle because it is
+not authorable.
+
+**Symptom.** `hydrogen_bonding` S2 opens with its incoming water molecule oversized and its lower
+hydrogen sphere clipped off the bottom edge of the canvas. It resolves to correct framing by
+~3000 ms. Frame: `.visual_runs/hydrogen_bonding/20260802-161813/STATE_2__dense_t00000.png`.
+
+**The obvious diagnosis is wrong.** eye-walker attributed it to `approach_from: 12.0` being too wide
+for the `approach_link` camera (`dist: 11`) and proposed an authoring rule ("validate the start
+separation against the camera frustum at author time"). Measured against the shipped projection
+(FOV 60, aspect 16:9, every drawn atom with its own radius), worst |NDC.y| for the near unit:
+
+| `approach_from` | at S1's camera (el 47 / dist 7) — **what is on screen at t=0** | at S2's own camera (el 16 / dist 11) |
+|---|---|---|
+| 12.0 | **3.036 CLIPPED** | 0.729 ok |
+| 9.0 | **1.882 CLIPPED** | 0.537 ok |
+| 8.0 | **1.616 CLIPPED** | 0.486 ok |
+| 7.0 | **1.387 CLIPPED** | 0.441 ok |
+| 6.6 | **1.304 CLIPPED** | 0.424 ok |
+
+**Every authorable value clips**, and 6.6 is already below the 6.375-unit link-form threshold, i.e.
+a separation at which the state cannot teach its own beat. So the proposed authoring rule would have
+passed 12.0 and shipped the defect anyway.
+
+**Actual root cause.** `applyBondingSceneState` calls `animateCameraTo`, a fixed-rate lerp
+(deliberate — E1c-H: *"IT MOVES, IT DOES NOT CUT"*, for Rule-32d continuity). But the SCENE is
+already at its t=0 pose on frame 1. When consecutive states differ sharply in scene scale — here
+S1's single molecule at the origin under a close el 47 / dist 7 solve, then S2's pair spanning
+12 units under a wide el 16 / dist 11 solve — the new, much wider scene is drawn under the old,
+much closer camera for the whole glide.
+
+**Candidate fixes (surgeon's call):**
+1. **Snap instead of lerp when the solved camera changes by more than a threshold** (distance ratio
+   or elevation delta), keeping the lerp for small, continuous moves — preserves E1c-H's intent
+   where it matters and avoids the overflow where it does not.
+2. **Apply the solved camera before the first rendered frame of a state**, and lerp only the
+   *residual* if the previous state left the camera hand-orbited.
+3. Fold it into EQ-3's auto-fit: if `fit` is on, evaluate the fit against the scene at `t=0` as well
+   as at its settled pose, and take the wider of the two.
+
+**Acceptance test:** on `hydrogen_bonding` S2, no drawn atom may exceed |NDC| = 1 at t = 0, with the
+authored `approach_from: 12.0` unchanged.
+
+**Until it lands:** this is not authorable around. Do not ask a concept to shrink `approach_from`
+to compensate — the measurement above shows it cannot work.
+
+---
+
+# FOLLOW-UP — E2e · the explore sandbox cannot hold a multi-unit network
+
+**Found on `hydrogen_bonding` fix cycle 3 (2026-08-02). Owner: `peter_parker:field3d_surgeon`.
+Two independent defects, both surfacing the moment an explore state authors more than one unit.**
+
+**Severity: MAJOR** — defect 2 is a two-instrument disagreement (the σ/π scar class).
+
+Context: `hydrogen_bonding` S8 originally authored no `units`, so count fell back to 1 and the
+sandbox of a *hydrogen bonding* concept showed a single molecule with **zero** hydrogen bonds
+(quality-auditor D2). Copying S5's 30-unit array in fixed that and immediately exposed both of these.
+
+### Defect 1 — `BS_CAMERAS.explore` has no `fit`
+```
+explore:    { az: 35, el: 47, dist: 7.0 }            // no fit
+network:    { az: 35, el: 22, dist: 17.0, fit: true } // EQ-3 added fit HERE only
+```
+Visible half-height at dist 7 is `7·tan30 = 4.04` units; the authored cluster radius is **12.84**.
+The network runs off all four edges (`.visual_runs/hydrogen_bonding/20260802-164228/STATE_8__dense_t05000.png`).
+No authored unit count helps: the sites are radius-sorted, and even the 10 innermost span radius 9.4.
+**Fix:** give `explore` the same `fit: true` EQ-3 gave `network`, now that `bscSiteExtent` can see
+molecular units.
+
+### Defect 2 — the forced idle spin tumbles each unit in place and destroys the link geometry
+`field_3d_renderer.ts:53620`:
+```js
+if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged) spinRate = 0.14;
+```
+That fallback exists so a sandbox is never a frozen tail (Rule 37). But the spin is applied to the
+**intra-unit atom offsets** while the unit **origins stay fixed** — so every molecule rotates about
+its own centre inside a stationary lattice, the O–H bond vectors stop pointing at their neighbours,
+and links stop forming.
+
+**Measured, same 30 units / same 298 K / same `jiggle_scale` 0.9:**
+
+| state | mode | spin | `links per molecule` |
+|---|---|---|---|
+| S5 | `network` | none | **3.40** |
+| S8 | `explore` | engine-forced 0.14 | **1.28** |
+
+A **2.7× disagreement between two states of the same concept**, on the concept's headline
+instrument, with the teacher free to compare them by clicking.
+
+**Fix (either):**
+1. Make the idle spin **orbit the camera** rather than rotate unit offsets — correct for a
+   multi-unit scene and identical in appearance for the single-unit case it was written for; or
+2. Skip the fallback spin when the state already has its own continuous motion
+   (`thermal.jiggle_scale > 0`), which is what Rule 37 actually asks for.
+
+**Do NOT expect authoring to work around it.** The only JSON lever is authoring a tiny positive
+`spin_rate` to dodge the `!(spinRate > 0)` guard — a workaround-shaped number that would itself
+become a scar, and it fixes nothing about defect 1.
+
+**Acceptance test:** `hydrogen_bonding` S8, authored with S5's 30-unit array, must render the whole
+network on frame and read `links per molecule` within ±0.2 of S5's 3.40 at the same temperature.

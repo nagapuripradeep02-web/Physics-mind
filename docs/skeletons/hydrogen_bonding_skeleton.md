@@ -211,9 +211,17 @@ never read (the σ/π decorative-string scar). No `dipole.show_bond_arrows` anyw
 charge story is δ labels only; the arrow layer belongs to the prerequisite.
 
 **S1 — "Bare positive hydrogen"** · `mode: 'assemble'` · `species: 'H2O'` · one unit at origin · `focal_unit: 0`
-- `electrons: { show: 'pair_glyph', pair_shift: 0 }` at entry; `pair_shift_at_ms: 4000`,
-  `pair_shift_duration_ms: 2500` ramping the glyph toward oxygen (row N — a rigid two-dot glyph
-  translating along the bond axis, no deforming cloud).
+- ⛔ **CORRECTED after fix cycle 1 — the original wording here shipped a static state.** It read
+  "`electrons: { show:'pair_glyph', pair_shift: 0 }` at entry … ramping the glyph toward oxygen",
+  which json_author implemented literally. **`pair_shift` is the DESTINATION of a ramp that starts
+  at 0** (`field_3d_renderer.ts:54447`), so `pair_shift: 0` makes `mgRamp(ms, at, dur, 0, 0) ≡ 0`
+  and the pair never moves — under narration that says "Watch the pair slide toward oxygen."
+  Measured: 13 of 17 STATE_1 dense frames byte-identical (STATE_5, correctly, is 17/17 distinct).
+  **Author `electrons: { show: 'pair_glyph', pair_shift: 1 }`** — exactly what the sibling
+  `bond_polarity_dipole_moment` STATE_1 authors, this state's declared cross-concept repeat — plus
+  `pair_shift_at_ms` / `pair_shift_duration_ms` (row N: a rigid two-dot glyph translating along the
+  bond axis, no deforming cloud). **General rule: on this surface every `*_from`-less scalar cue key
+  names the DESTINATION, never the entry value.**
 - `dipole: { show_charges: true, show_charge_values: false }`, `charges_at_ms: 7500` (effect after
   cause; the cue withholds the layer until the evidence lands). Values stay OFF here (Rule 34
   minimum; the numbers earn their place at S4).
@@ -338,9 +346,20 @@ charge story is δ labels only; the arrow layer belongs to the prerequisite.
   **`points[].label` = plain-ASCII species keys** (`H2S`, never `H₂S`) — the engine composes the
   subscripts AND the `bp` HUD line resolves by matching the live species key (contract trap 1).
 - **The gap is DERIVED, not authored** — the engine least-squares the three family points and draws
-  the extrapolation ("180 K on the line") and the gap ("+193 K") itself. Least-squares check on
-  (3, 213) (4, 232) (5, 271): slope 29.1, intercept 122.2, value at x = 2 → **180.4 K**; water at
-  373 → gap **+193 K**. Nothing about the anomaly is asserted.
+  the extrapolation and the gap itself. Nothing about the anomaly is asserted.
+  ⛔ **CORRECTED after fix cycle 1 — the arithmetic below was wrong and it shipped a defect.** The
+  original read "(3, 213) (4, 232) (5, 271): slope 29.1, intercept 122.2, value at x = 2 → 180.4 K
+  … gap +193 K". Those intermediates came from H₂S's *true* 212.8 K, but the points authored into
+  the JSON were the *rounded* integers — and the engine fits whatever is authored. On the rounded
+  set the exact fit is **slope 29, intercept 122.667, value at x = 2 = 180.67 → the panel prints
+  "181 K on the line", gap 192.33 → "+192 K"** — so the canvas contradicted the narration and the
+  caption beside it, on the PRIMARY aha state.
+  **Author the precise published boiling points instead:** `H2O 373.15 · H2S 212.85 · H2Se 231.90 ·
+  H2Te 270.95`. Exact fit: slope 29.05, intercept 122.367, value at x = 2 = **180.47 → "180 K on
+  the line"**, gap **192.68 → "+193 K"** — matching the narration, while the panel's own point
+  labels still `Math.round` to 213 / 232 / 271 / 373 so nothing else on screen changes.
+  **General rule: never hand-round an input the engine will fit; and never hand-compute a digit the
+  engine derives and prints on the same canvas.**
 - `hud_lines: ['bp']` — resolves 373 for the live species H₂O. NO glow authored (F-F). Formula
   surface HIDDEN this state (Rule 34d). No controls. `thermal.jiggle_scale: 0.9` (the backdrop keeps
   living and self-sustains the state past the reveal); declare `reveal_hold`.
