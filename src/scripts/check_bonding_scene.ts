@@ -128,7 +128,9 @@ const VARS = [
   "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_SWAP_MS", "BS_SWAP_TROUGH",
   "BS_COORD_RADIUS_SCALE",
   "BS_FIT_MARGIN", "BS_ION_PAIRS",
-  "BS_SUPDIG", "BS_COORD_CACHE"
+  "BS_SUPDIG", "BS_COORD_CACHE",
+  // E3 (thermal expansion layer)
+  "BS_R_J", "BS_VAPOUR"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
 const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
@@ -156,7 +158,9 @@ const FNS = [
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
   "bscOpeningExtent",                                            // E2d
-  "bscGrowShown", "bscTransferProg", "bscTransferSite"
+  "bscGrowShown", "bscTransferProg", "bscTransferSite",
+  // E3
+  "bscBrokenFraction", "bscNetworkStretch", "bscThermalScale", "bscPeakThermalScale"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -4271,7 +4275,357 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
   }
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 30. E4 THE TWO-UNIT CAMERA MAY NOT FORESHORTEN THE COMPARED AXIS ===");
+// A RECURRENCE of the OPEN scar
+// camera_metric_scored_foreshortening_not_pairwise_screen_separation: section 11
+// scores pairwise SEPARATION and never the projected LENGTH of the axis a state
+// teaches the length of, so it passed a camera whose forward vector lay 78.8%
+// along hydrogen_bonding S2/S3's separation axis. Every number below is measured
+// with a projector written HERE (same discipline as section 11), and the SHIPPED
+// pre-fix camera is carried as an explicit negative control.
+{
+  const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TN = Math.tan(FOV / 2), PXH = 456;
+  const sb = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cr = (a: number[], b: number[]) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dt = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const rig = (c: any) => {
+    const a = (c.az || 0) * Math.PI / 180, e = (c.el || 0) * Math.PI / 180, d = c.dist || 7;
+    const p = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sb([0, 0, 0], p)), r = E.bscNorm(cr(f, [0, 1, 0]));
+    return { p, f, r, u: cr(r, f) };
+  };
+  const px = (R: any, q: number[]) => {
+    const v = sb(q, R.p), z = dt(v, R.f);
+    return { x: dt(v, R.r) / (z * TN * ASPECT) * (PXH * ASPECT / 2), y: dt(v, R.u) / (z * TN) * (PXH / 2), z };
+  };
+  const len = (a: any, b: any) => Math.hypot(a.x - b.x, a.y - b.y);
+  // the SHIPPED hydrogen_bonding S2/S3/S4 pair: units[0] is the donor at -sep/2.
+  const ORI = [[190, 69], [180, 0]];
+  const BL = E.BS_BOND_LEN as number;
+  const hFrame = E.mgFrame("H2O", null, null) as any;
+  const offs = ORI.map((o) => {
+    const rot = E.bscOrientRot(o);
+    const oo: number[][] = [[0, 0, 0]];
+    for (const d of hFrame.bonds as number[][]) {
+      const dv = rot ? rot(d) : d;
+      oo.push([dv[0] * BL, dv[1] * BL, dv[2] * BL]);
+    }
+    return oo;
+  });
+  const hSites = E.bscLinkSites("H2O") as any;
+  const rOx = E.MG_ELEMENTS.O.radius as number;
+  const pose = (sep: number) => [[-0.5 * sep, 0, 0], [0.5 * sep, 0, 0]]
+    .map((b, u) => offs[u].map((o) => [b[0] + o[0], b[1] + o[1], b[2] + o[2]]));
+  /** the donating H of unit 0 (the one nearest unit 1's O) — that IS the drawn link */
+  const donor = (() => {
+    const p = pose(5.75);
+    let best: any = null;
+    for (const dn of hSites.donors) {
+      const d = Math.hypot(...(sb(p[1][0], p[0][dn.slot]) as [number, number, number]));
+      if (!best || d < best.d) best = { d, slot: dn.slot, partner: dn.partner };
+    }
+    return best;
+  })();
+  const shot = (cam: any, sep: number) => {
+    const R = rig(cam), W = pose(sep), P = W.map((row) => row.map((q) => px(R, q)));
+    const rad = (z: number) => rOx / (z * TN) * (PXH / 2);
+    const r0 = rad(P[0][0].z), r1 = rad(P[1][0].z);
+    const link = len(P[0][donor.slot], P[1][0]);
+    const four = [len(P[0][0], P[0][1]), len(P[0][0], P[0][2]),
+                  len(P[1][0], P[1][1]), len(P[1][0], P[1][2])];
+    const don = len(P[0][donor.partner], P[0][donor.slot]);
+    const ang = (() => {
+      const h = P[0][donor.slot], a = P[0][donor.partner], b = P[1][0];
+      const u1 = [a.x - h.x, a.y - h.y], u2 = [b.x - h.x, b.y - h.y];
+      return Math.acos(Math.max(-1, Math.min(1, (u1[0] * u2[0] + u1[1] * u2[1]) /
+        (Math.hypot(u1[0], u1[1]) * Math.hypot(u2[0], u2[1]))))) * 180 / Math.PI;
+    })();
+    // the PHYSICAL ratio at this separation: H...A over the O-H bond, in pm
+    const p2u = E.bscLinkCfg({}).pm_per_unit as number;
+    const phys = (Math.hypot(...(sb(W[1][0], W[0][donor.slot]) as [number, number, number])) * p2u) /
+      (BL * p2u);
+    let box = 0;
+    for (const row of P) for (const q of row) box = Math.max(box, Math.abs(q.x) / (PXH * ASPECT / 2), Math.abs(q.y) / (PXH / 2));
+    let sep2 = 1e9;
+    for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++)
+      sep2 = Math.min(sep2, len(P[(i / 3) | 0][i % 3], P[(j / 3) | 0][j % 3]));
+    return {
+      disp: Math.max(r0, r1) / Math.min(r0, r1), r0, r1, link, four, don, ang, phys, box, sep2,
+      ratio: link / don, spread: Math.max(...four) / Math.min(...four),
+      allRatios: four.map((b) => link / b)
+    };
+  };
+  const PRE_AL = { az: 35, el: 16, dist: 11.0 };     // the SHIPPED pre-E4 camera
+  const PRE_CMP = { az: 35, el: 20, dist: 12.0 };
+  const AL = E.BS_CAMERAS.approach_link, CMP = E.BS_CAMERAS.compare;
+  const f2 = (v: number) => v.toFixed(2), f1 = (v: number) => v.toFixed(1);
+
+  // NEGATIVE CONTROL — the metric must fail on the shipped pre-fix cameras.
+  {
+    const a = shot(PRE_AL, 5.75), b = shot(PRE_AL, 8.0), c = shot(PRE_CMP, 5.75);
+    ok("NEGATIVE CONTROL: the pre-E4 approach_link camera FAILS the disparity floor",
+      a.disp > 1.15 && b.disp > 1.15,
+      `S2 ${f2(a.disp)}x  S3 ${f2(b.disp)}x  (O radii ${f1(a.r0)}/${f1(a.r1)} px)`);
+    ok("NEGATIVE CONTROL: ...and drew the 180/96 claim at the wrong ratio",
+      Math.abs(a.ratio - a.phys) / a.phys > 0.15,
+      `drew ${f2(a.ratio)}x where the physics is ${f2(a.phys)}x (${((a.ratio / a.phys - 1) * 100).toFixed(0)}% off)`);
+    ok("NEGATIVE CONTROL: ...and the four identical 96 pm bonds spread 2.5x",
+      a.spread > 2.0, `${f1(Math.min(...a.four))}..${f1(Math.max(...a.four))} px, spread ${f2(a.spread)}x`);
+    ok("NEGATIVE CONTROL: the pre-E4 compare camera FAILS the same disparity floor",
+      c.disp > 1.15, `${f2(c.disp)}x  (O radii ${f1(c.r0)}/${f1(c.r1)} px)`);
+  }
+  // THE FIX — measured on the shipped cameras, at every separation S2/S3 traverse.
+  const SEPS = [{ n: "S2 opening 12.00", s: 12.0 }, { n: "S2/S3 linked 5.75", s: 5.75 },
+                { n: "S3 settled 8.00", s: 8.0 }];
+  ok("ACCEPTANCE: the separation axis is EXACTLY in the screen plane (cos el * cos az = 0)",
+    Math.abs(Math.cos(AL.el * Math.PI / 180) * Math.cos(AL.az * Math.PI / 180)) < 1e-12 &&
+    Math.abs(Math.cos(CMP.el * Math.PI / 180) * Math.cos(CMP.az * Math.PI / 180)) < 1e-12,
+    `approach_link az ${AL.az} el ${AL.el}, compare az ${CMP.az} el ${CMP.el}`);
+  for (const S of SEPS) {
+    const m = shot(AL, S.s);
+    ok(`ACCEPTANCE (${S.n}): the two units' projected O radii agree within 15%`,
+      m.disp <= 1.15, `${f1(m.r0)} / ${f1(m.r1)} px, disparity ${m.disp.toFixed(4)}x`);
+    ok(`ACCEPTANCE (${S.n}): the drawn link/bond ratio IS the physical ratio`,
+      Math.abs(m.ratio - m.phys) / m.phys <= 0.15,
+      `drew ${f2(m.ratio)}x, physics ${f2(m.phys)}x`);
+  }
+  {
+    const m = shot(AL, 5.75);
+    ok("ACCEPTANCE: at the LINKED pose every one of the four O-H bonds reads 1.875 +-15%",
+      m.allRatios.every((r) => Math.abs(r - 1.875) / 1.875 <= 0.15),
+      `link/O-H = ${m.allRatios.map(f2).join(" / ")}  (band 1.59..2.16)`);
+    ok("...and the four identically-long 96 pm bonds now project within 20% of each other",
+      m.spread <= 1.20, `${f1(Math.min(...m.four))}..${f1(Math.max(...m.four))} px, spread ${f2(m.spread)}x`);
+    ok("the el-16 property is KEPT: the projected D-H...A angle still reads straight",
+      m.ang >= 179.5, `${m.ang.toFixed(1)} deg`);
+    ok("countability improves in the same move (section-11 discipline, in px)",
+      m.sep2 > shot(PRE_AL, 5.75).sep2 && m.box <= 0.85,
+      `min pairwise ${f1(shot(PRE_AL, 5.75).sep2)} -> ${f1(m.sep2)} px, |ndc| ${m.box.toFixed(3)}`);
+    const c = shot(CMP, 5.75);
+    ok("ACCEPTANCE (compare, S4): same two properties on the side-by-side box",
+      c.disp <= 1.15 && Math.abs(c.ratio - c.phys) / c.phys <= 0.15,
+      `disparity ${c.disp.toFixed(4)}x, ratio ${f2(c.ratio)}x vs ${f2(c.phys)}x`);
+  }
+  ok("el and dist are UNCHANGED — only the azimuth moved (nothing else was traded)",
+    AL.el === 16 && AL.dist === 11.0 && CMP.el === 20 && CMP.dist === 12.0);
+  ok("every OTHER solved camera is byte-identical (no fleet-wide camera edit)",
+    E.BS_CAMERAS.dipole_sum.az === 35 && E.BS_CAMERAS.explore.az === 35 &&
+    E.BS_CAMERAS.assemble.az === 35 && E.BS_CAMERAS.network.az === 35 &&
+    E.BS_CAMERAS.network.el === 22 && E.BS_CAMERAS.coordination.el === 45 &&
+    E.BS_CAMERAS.transfer.az === 90 && E.BS_CAMERAS.lattice_grow.el === 26);
+  ok("a single-unit compare scene never reaches this row (bond_polarity S2/S6/S7)",
+    (E.bscSolvedCamera({ mode: "compare", units: [{ species: "H2O", at: [0, 0, 0] }] }, null) as any) !==
+    E.BS_CAMERAS.compare);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 31. E3 THE THERMAL RESPONSE IS STEEPEST THROUGH THE BOILING REGION ===");
+// The shipped model was a fixed lattice with a sqrt(T) jiggle: the link count fell
+// 4% at water's ACTUAL boiling point and needed 600 K — 227 K past boiling — to
+// move at all, while the very next state teaches that boiling costs 193 K BECAUSE
+// the hydrogen bonds must break. This section replays the SHIPPED link pass over
+// the SHIPPED 30-unit network at seven temperatures, and carries the pre-fix curve
+// as an explicit negative control (the law is switched off by passing stretch 0,
+// which is exactly the pre-E3 code path).
+{
+  const NET3: { at: number[]; orient: number[] }[] = [
+    { at: [0.44, 0, 0], orient: [125, -37] }, { at: [-2.88, -3.32, 3.32], orient: [232, -36] },
+    { at: [-2.88, 3.32, -3.32], orient: [232, -36] }, { at: [3.76, -3.32, -3.32], orient: [232, -36] },
+    { at: [3.76, 3.32, 3.32], orient: [232, -36] }, { at: [-6.2, -6.64, 0], orient: [125, -37] },
+    { at: [-6.2, 0, -6.64], orient: [125, -37] }, { at: [-6.2, 0, 6.64], orient: [125, -37] },
+    { at: [-6.2, 6.64, 0], orient: [125, -37] }, { at: [0.44, -6.64, -6.64], orient: [338, -39] },
+    { at: [0.44, -6.64, 6.64], orient: [125, -37] }, { at: [0.44, 6.64, -6.64], orient: [125, -37] },
+    { at: [0.44, 6.64, 6.64], orient: [53, 35] }, { at: [7.08, -6.64, 0], orient: [338, -39] },
+    { at: [7.08, 0, -6.64], orient: [338, -39] }, { at: [7.08, 0, 6.64], orient: [53, 35] },
+    { at: [7.08, 6.64, 0], orient: [53, 35] }, { at: [-9.52, -3.32, -3.32], orient: [232, -36] },
+    { at: [-9.52, 3.32, 3.32], orient: [83, -29] }, { at: [-2.88, -9.96, -3.32], orient: [232, -36] },
+    { at: [-2.88, 9.96, 3.32], orient: [301, 17] }, { at: [-2.88, -3.32, -9.96], orient: [301, 28] },
+    { at: [-2.88, 3.32, 9.96], orient: [83, -29] }, { at: [3.76, -9.96, 3.32], orient: [232, -36] },
+    { at: [3.76, 9.96, -3.32], orient: [301, 17] }, { at: [3.76, -3.32, 9.96], orient: [83, -29] },
+    { at: [3.76, 3.32, -9.96], orient: [301, 28] }, { at: [10.4, -3.32, 3.32], orient: [20, -33] },
+    { at: [10.4, 3.32, -3.32], orient: [20, -33] }, { at: [-12.84, 0, 0], orient: [125, -37] }
+  ];
+  const BS3 = {
+    placement: "free", mode: "network", links: { enabled: true }, thermal: { jiggle_scale: 0.9 },
+    units: NET3.map((u, i) => ({ id: "hb_w" + i, species: "H2O", at: u.at, orient: u.orient }))
+  };
+  const L3 = E.bscLinkCfg(BS3), S3n = E.BS_LINK_SAMPLES as number, F3 = E.BS_LINK_FRAMES as number;
+  const dt3 = (E.BS_LINK_LOOKBACK_MS as number) / (S3n - 1), B3 = E.BS_BOND_LEN as number;
+  const fr3 = E.mgFrame("H2O", null, null) as any, si3 = E.bscLinkSites("H2O") as any;
+  const off3 = NET3.map((u) => {
+    const rot = E.bscOrientRot(u.orient);
+    const oo: number[][] = [[0, 0, 0]];
+    for (const d of fr3.bonds as number[][]) {
+      const dv = rot ? rot(d) : d;
+      oo.push([dv[0] * B3, dv[1] * B3, dv[2] * B3]);
+    }
+    return oo;
+  });
+  const NU3 = NET3.length;
+  const STRETCH = E.bscNetworkStretch(BS3) as number;
+  // the SHIPPED orgAt, transcribed: base * bscThermalScale, then the jiggle.
+  const pass = (ms: number, T: number, stretch: number) => {
+    const sc = E.bscThermalScale("H2O", T, stretch) as number;
+    const reach = L3.break_pm / L3.pm_per_unit * sc + 2 * B3 + 1.0 + 6;
+    const frames: (number[][][] | null)[] = [];
+    for (let s = 0; s < F3; s++) {
+      const mms = ms - (F3 - 1 - s) * dt3;
+      if (mms < 0) { frames.push(null); continue; }
+      const rows: number[][][] = [];
+      for (let u = 0; u < NU3; u++) {
+        const jg = E.bscJiggle(u, mms / 1000, T, 0.9) as number[];
+        const o = [NET3[u].at[0] * sc + jg[0], NET3[u].at[1] * sc + jg[1], NET3[u].at[2] * sc + jg[2]];
+        rows.push(off3[u].map((v) => [o[0] + v[0], o[1] + v[1], o[2] + v[2]]));
+      }
+      frames.push(rows);
+    }
+    const last = frames[F3 - 1]!;
+    const win = new Array(S3n).fill(0);
+    let nL = 0;
+    for (let a = 0; a < NU3 && nL < E.BS_MAX_LINKS; a++) {
+      for (let b = 0; b < NU3 && nL < E.BS_MAX_LINKS; b++) {
+        if (a === b) continue;
+        const dx = last[a][0][0] - last[b][0][0], dy = last[a][0][1] - last[b][0][1], dz = last[a][0][2] - last[b][0][2];
+        if (dx * dx + dy * dy + dz * dz > reach * reach) continue;
+        for (const dn of si3.donors) for (const ac of si3.acceptors) {
+          if (nL >= E.BS_MAX_LINKS) break;
+          const samp: any[] = [];
+          for (let s = 0; s < F3; s++) {
+            const F = frames[s];
+            if (!F) { samp.push(null); continue; }
+            const H = F[a][dn.slot], D = F[a][dn.partner], A = F[b][ac.slot];
+            const vx = A[0] - H[0], vy = A[1] - H[1], vz = A[2] - H[2];
+            const dU = Math.hypot(vx, vy, vz);
+            const wx = D[0] - H[0], wy = D[1] - H[1], wz = D[2] - H[2];
+            const wl = Math.hypot(wx, wy, wz) || 1;
+            samp.push({ d: dU * L3.pm_per_unit, a: Math.acos(E.bscClamp((vx * wx + vy * wy + vz * wz) / ((dU || 1) * wl), -1, 1)) * 180 / Math.PI });
+          }
+          for (let w = 0; w < S3n; w++) if (E.bscLinkLatch(dn.q, ac.q, samp, L3, w, S3n)) win[w]++;
+          if (E.bscLinkLatch(dn.q, ac.q, samp, L3, S3n - 1, S3n)) nL++;
+        }
+      }
+    }
+    let vs = 0, vn = 0;
+    for (let w = 0; w < S3n; w++) { if (!frames[w + S3n - 1]) continue; vs += win[w]; vn++; }
+    return vn > 0 ? 2 * (vs / vn) / NU3 : 2 * nL / NU3;
+  };
+  const curve = (stretch: number, T: number) => {
+    const a: number[] = [];
+    for (let m = 1600; m <= 12000; m += 800) a.push(pass(m, T, stretch));
+    return a.reduce((x, y) => x + y, 0) / a.length;
+  };
+  const TS3 = [100, 200, 273, 298, 373, 450, 600];
+  const pre: Record<number, number> = {}, post: Record<number, number> = {};
+  for (const T of TS3) { pre[T] = curve(0, T); post[T] = curve(STRETCH, T); }
+  const r2 = (v: number) => v.toFixed(2);
+  console.log("        T_K    " + TS3.map((T) => String(T).padStart(6)).join(""));
+  console.log("        pre    " + TS3.map((T) => pre[T].toFixed(2).padStart(6)).join(""));
+  console.log("        post   " + TS3.map((T) => post[T].toFixed(2).padStart(6)).join(""));
+  {
+    // the coupling is DERIVED from the scene: mean nearest-neighbour spacing, the
+    // drawn bond length and the criterion's own break distance. Recomputed here
+    // from the fixture rather than read out of the function it checks.
+    let sum = 0;
+    for (let i = 0; i < NU3; i++) {
+      let best = Infinity;
+      for (let j = 0; j < NU3; j++) {
+        if (i === j) continue;
+        best = Math.min(best, Math.hypot(NET3[i].at[0] - NET3[j].at[0],
+          NET3[i].at[1] - NET3[j].at[1], NET3[i].at[2] - NET3[j].at[2]));
+      }
+      sum += best;
+    }
+    const dOO = (sum / NU3) * L3.pm_per_unit;
+    const want = (L3.break_pm - (dOO - E.BS_BOND_LEN * L3.pm_per_unit)) / dOO;
+    ok("the coupling is DERIVED from the scene, not authored (break_pm, spacing, bond)",
+      Math.abs(STRETCH - want) < 1e-12,
+      `stretch ${STRETCH.toFixed(6)} = (${L3.break_pm} - ${(dOO - E.BS_BOND_LEN * L3.pm_per_unit).toFixed(1)}) / ${dOO.toFixed(1)} pm`);
+    ok("...so raising break_pm raises it, and there is nothing free to tune",
+      (E.bscNetworkStretch(Object.assign({}, BS3, { links: { enabled: true, break_pm: 300 } })) as number) > STRETCH);
+  }
+  ok("NEGATIVE CONTROL: the pre-E3 curve is steepest LATE (the defect, still measurable)",
+    (pre[298] - pre[373]) < (pre[373] - pre[600]),
+    `298->373 ${r2(pre[298] - pre[373])}  <  373->600 ${r2(pre[373] - pre[600])}`);
+  ok("NEGATIVE CONTROL: ...and moved only 4% at water's ACTUAL boiling point",
+    (pre[298] - pre[373]) / pre[298] < 0.06,
+    `${(100 * (pre[298] - pre[373]) / pre[298]).toFixed(1)}% from 298 to 373 K`);
+  ok("ACCEPTANCE: the 298 -> 373 K change now EXCEEDS the 373 -> 600 K change",
+    (post[298] - post[373]) > (post[373] - post[600]),
+    `298->373 ${r2(post[298] - post[373])}  >  373->600 ${r2(post[373] - post[600])}`);
+  ok("ACCEPTANCE: the 298 K reading is BYTE-IDENTICAL (S5 / S7 / S8 cannot move)",
+    Object.is(post[298], pre[298]), `${post[298].toFixed(6)} links per molecule, both`);
+  ok("...because the law is referenced to BS_T0_K: scale(T0) is exactly 1",
+    (E.bscThermalScale("H2O", E.BS_T0_K, STRETCH) as number) === 1);
+  ok("the drop through the boiling region is legible, not a rounding change",
+    (post[298] - post[373]) > 1.0,
+    `${r2(post[298])} -> ${r2(post[373])} links per molecule across 298 -> 373 K`);
+  ok("the curve is monotonic falling over the whole 100..600 K slider range",
+    TS3.every((T, i) => i === 0 || post[T] <= post[TS3[i - 1]] + 1e-9),
+    TS3.map((T) => r2(post[T])).join(" "));
+  // D-1: the whole layer is a pure function of T, so a pin rewind reproduces it.
+  ok("REWIND: the heated readout replays byte-for-byte after a jump to 30 s",
+    (() => {
+      const a = [4000, 6000, 8000].map((m) => pass(m, 420, STRETCH));
+      pass(30000, 420, STRETCH);
+      return [4000, 6000, 8000].map((m) => pass(m, 420, STRETCH)).every((v, i) => Object.is(v, a[i]));
+    })());
+  ok("no clock, no accumulator, no RNG anywhere in the new layer",
+    !/\bms\b|Date\.now|performance\.now|Math\.random|\+=/.test(
+      grabFn("bscBrokenFraction") + grabFn("bscThermalScale") + grabFn("bscPeakThermalScale")));
+  // the population itself: forced at T_b by definition, nothing chosen.
+  ok("the broken fraction is exactly 1/2 at the PUBLISHED normal boiling point",
+    Math.abs((E.bscBrokenFraction("H2O", E.BS_VAPOUR.H2O.tb_K) as number) - 0.5) < 1e-12 &&
+    Math.abs((E.bscBrokenFraction("H2S", E.BS_VAPOUR.H2S.tb_K) as number) - 0.5) < 1e-12,
+    "dG = 0 at T_b, so f = 1/2 is forced");
+  ok("an untabulated species switches the whole layer off (scale exactly 1)",
+    (E.bscThermalScale("CCl4", 600, 0.29) as number) === 1 &&
+    (E.bscBrokenFraction("CCl4", 600) as number) === 0);
+  ok("a scene that is not a PLACED multi-unit scene has stretch 0 (layer off)",
+    (E.bscNetworkStretch({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) === 0 &&
+    // the separation_axis pair: both units author at [0,0,0], baseAt places them,
+    // so there is no authored spacing to expand and the layer never arms
+    (E.bscNetworkStretch({ separation_axis: [1, 0, 0], units: [
+      { species: "H2O", at: [0, 0, 0] }, { species: "H2O", at: [0, 0, 0] }] }) as number) === 0 &&
+    (E.bscNetworkStretch(LATTICE_BS) as number) === 0,
+    `single ${E.bscNetworkStretch({ units: [{ species: "H2O", at: [0, 0, 0] }] })}  ` +
+    `sep-axis ${E.bscNetworkStretch({ separation_axis: [1, 0, 0], units: [{ species: "H2O", at: [0, 0, 0] }, { species: "H2O", at: [0, 0, 0] }] })}  ` +
+    `lattice ${E.bscNetworkStretch(LATTICE_BS)}`);
+  ok("an ION scene DOES measure a spacing but expands by exactly nothing (no vapour row)",
+    (E.bscNetworkStretch(TRANSFER_BS) as number) > 0 &&
+    (E.bscThermalScale("Na", 600, E.bscNetworkStretch(TRANSFER_BS)) as number) === 1 &&
+    (E.bscThermalScale("Cl", 600, E.bscNetworkStretch(TRANSFER_BS)) as number) === 1,
+    `stretch ${(E.bscNetworkStretch(TRANSFER_BS) as number).toFixed(4)}, scale 1 at every T`);
+  // the camera half: the fit frames the hottest SCRIPTED pose, and only that.
+  {
+    const cold = Object.assign({}, BS3, { thermal: { T_K: 298, jiggle_scale: 0.9 } });
+    const hot = Object.assign({}, BS3, {
+      thermal: { T_from: 298, T_K: 600, T_at_ms: 900, T_ramp_ms: 11000, jiggle_scale: 0.9 } });
+    const eC = E.bscSiteExtent(cold, null) as number, eH = E.bscSiteExtent(hot, null) as number;
+    ok("a 298 K network's fitted extent is UNCHANGED (S5 / S7 / S8 keep their camera)",
+      Math.abs(eC - (12.84 + E.BS_BOND_LEN + E.MG_ELEMENTS.O.radius)) < 1e-9, `${eC.toFixed(3)} units`);
+    ok("a state that RAMPS is framed for its hottest pose, so the swell stays on frame",
+      eH > eC * 1.2 && Math.abs(eH / eC - (E.bscPeakThermalScale(hot, "H2O") as number)) < 1e-9,
+      `${eC.toFixed(2)} -> ${eH.toFixed(2)} units (peak scale ${(E.bscPeakThermalScale(hot, "H2O") as number).toFixed(4)}x)`);
+    ok("the teacher's temperature SLIDER is deliberately not counted (S8 cannot move)",
+      (E.bscPeakThermalScale(Object.assign({}, BS3, {
+        mode: "explore", thermal: { T_K: 298, jiggle_scale: 0.9 },
+        controls: [{ id: "temperature" }] }), "H2O") as number) === 1);
+  }
+  const upd3 = grabFn("updateBondingSceneFrame");
+  ok("the frame pass really multiplies the base position by the scale (shipped body)",
+    /var esc = bscThermalScale\(molKey, tempAt\(mms\), netStretch\);/.test(upd3) &&
+    /if \(esc !== 1\) b = \[b\[0\] \* esc, b\[1\] \* esc, b\[2\] \* esc\];/.test(upd3) &&
+    /var netStretch = bscNetworkStretch\(bs\);/.test(upd3));
+  ok("...and publishes the live scale for the professor pack",
+    /window\.PM_bscNetScale = bscThermalScale\(molKey, T_K, netStretch\);/.test(upd3));
+  ok("no new cue key was introduced, so deriveStateMeta needs no new pin",
+    !/bscTh(2)?\.(expand|collapse|boil)/.test(META_SRC) &&
+    /candidates\.push\(asNum\(bscTh2\.T_at_ms, 0\) \+ asNum\(bscTh2\.T_ramp_ms, 2000\) \+ 600\)/.test(META_SRC));
+}
+
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
