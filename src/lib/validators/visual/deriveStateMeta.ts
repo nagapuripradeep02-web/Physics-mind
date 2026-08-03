@@ -310,6 +310,22 @@ export function deriveMotionExpectations(
                     if (gTh && typeof gTh.jiggle_scale === 'number' && gTh.jiggle_scale > 0) bscGrpMoves = true;
                 }
                 if (bscGrpMoves) { out[stateId] = true; continue; }
+                //   E3b Q-1 / row G (2026-08-03): the two CARRIER layers move on
+                //   their own clocks. A drawn electron sea is in permanent motion
+                //   whether or not a field acts on it, and a field acting on ions
+                //   that its own temperature has freed makes them migrate. Both are
+                //   declared here in the SAME change as the renderer read, because
+                //   the alternative is the S-2 defect verbatim — an authored field
+                //   the deriver treats as real over a screen that never moves, or
+                //   (as here) real motion this file cannot see.
+                //   DELIBERATELY NOT DECLARED: a field over a SOLID sample. Those
+                //   ions jiggle and never translate, so the field alone is not a
+                //   motion signal — the jiggle branch above is what covers that
+                //   state, and it is the honest classification of ionic S8's
+                //   negative-control half.
+                if (asObj(bscMotion.sea)?.show === true) { out[stateId] = true; continue; }
+                const bscFieldOn = typeof bscMotion.field === 'number' && bscMotion.field > 0;
+                if (bscFieldOn && asObj(bscMotion.ions)?.mobile === true) { out[stateId] = true; continue; }
                 // still beat: fall through to the reveal_hold classification.
             }
             const osMotion = state ? asObj(state.orbital_shapes) : null;
@@ -2096,6 +2112,22 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (bscSh && typeof bscSh.at_ms === 'number') {
             candidates.push(asNum(bscSh.at_ms, 0) + asNum(bscSh.duration_ms, 2000)
                 + 1000 + 5000 + 600);
+        }
+        // E3b Q-2 (2026-08-03): THE FIELD CUE. Registered in the SAME change as the
+        // renderer read, which is the standing rule on this surface and the lesson
+        // dispatch 3 paid for in the other direction (a pin offset registered AHEAD
+        // of its implementation was wrong by construction — it pinned just past the
+        // slide, which is only the cause). field_at_ms is DESTINATION-valued: the
+        // field ramps 0 -> field over field_duration_ms, is HELD for a readable
+        // beat, and only then do the carriers migrate, saturating over the drift
+        // window. The settled picture is the END of that migration, so the pin is
+        // the sum of all four. The four constants below are BS_FIELD_MS /
+        // BS_FIELD_HOLD_MS / BS_DRIFT_MS in field_3d_renderer.ts and the two files
+        // must stay equal (check:bonding-scene section 13 asserts exactly that,
+        // reading both sources).
+        if (typeof bscState.field_at_ms === 'number') {
+            candidates.push(asNum(bscState.field_at_ms, 0)
+                + asNum(bscState.field_duration_ms, 1200) + 1000 + 5000 + 600);
         }
         const bscLat = asObj(bscState.lattice);
         if (bscLat) {

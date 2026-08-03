@@ -25,7 +25,12 @@
  * (the layer slip, its derived outcome and the D-7 like_contacts metric — every
  * claim in it paired with the cation-only DISAGREEMENT case, because a gate that
  * only checked "the ionic block reads 6" would pass a naive implementation).
- * 13 (row Q drift) stays a declared SKIP owned by dispatch 4 — never silently absent. E1c
+ * and section 13 is now the REAL assertion set for dispatch 4 (the field, the two
+ * carriers and the three carrier readouts — its load-bearing claim, that an
+ * immobile ion never translates, is asserted as a NEGATIVE CONTROL against the
+ * mobile case in the SAME frame, because a gate that only checked "the melt
+ * drifts" would pass an engine that moved everything). NO section of this gate is
+ * a declared stub any more. E1c
  * adds section 15 (the two authoring capabilities bond_polarity S4/S7 could not be
  * authored without, plus the bit-for-bit mgFrame regression half those three
  * shipped concepts ride).
@@ -156,7 +161,12 @@ const VARS = [
   "BS_MELT_W", "BS_MELT_W_SPREAD", "BS_MAX_GROUPS",
   // E3b L-1 / L-2 (the layer slip + the D-7 contact metric)
   "BS_SHIFT_PLANES", "BS_SHIFT_MS", "BS_SHIFT_HOLD_MS", "BS_CLEAVE_MS",
-  "BS_CLEAVE_NN", "BS_LIKE_CUT", "BS_LIKE_EPS"
+  "BS_CLEAVE_NN", "BS_LIKE_CUT", "BS_LIKE_EPS",
+  // E3b Q-1..Q-5 / row G (the field, the two carriers, the two tables)
+  "BS_FIELD_AXES", "BS_FIELD_MS", "BS_FIELD_HOLD_MS", "BS_DRIFT_MS",
+  "BS_ION_DRIFT_NN", "BS_MAX_SEA", "BS_SEA_R_FRAC", "BS_SEA_SPREAD_NN",
+  "BS_SEA_W", "BS_SEA_W_SPREAD", "BS_SEA_DRIFT_NN", "BS_FIELD_ARROWS",
+  "BS_MOLTEN_S_CM", "BS_MOLTEN_REF_K", "BS_DRIFT_V0_MS", "BS_METALS"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
 const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
@@ -202,7 +212,12 @@ const FNS = [
   "bscShiftCfg", "bscShiftAt", "bscShiftStepU", "bscShiftHalf", "bscShiftPos",
   "bscNnOf", "bscLikeCountAt", "bscSeaScreens", "bscLikeContacts",
   "bscLikeFocalAt", "bscLikeFocal", "bscCrossContacts", "bscShiftSolve",
-  "bscCleaveProg", "bscCleaveU", "bscShiftOffsetOf", "bscShiftExtent"
+  "bscCleaveProg", "bscCleaveU", "bscShiftOffsetOf", "bscShiftExtent",
+  // E3b Q-1..Q-5 / row G. Section 13 calls these SHIPPED bodies — the negative
+  // control is only worth anything if it runs the code the frame runs.
+  "bscFieldCfg", "bscFieldAt", "bscFieldDir", "bscDriftProg", "bscIonMobile",
+  "bscIonDriftOf", "bscFieldExtent", "bscMetalKey", "bscSeaCfg", "bscSeaAt",
+  "bscDriftVms", "bscFmtMant"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -1161,8 +1176,11 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   // (row O's chart) that no key could reach, so a narration sentence about the
   // trend line was unbindable by construction. Section 29 asserts the invariant
   // that replaces the frozen count — every element type on screen has a key.
+  // E3b Q-2 grew this from eleven keys to twelve: the field arrows are a live
+  // scene element type a state puts on screen, and a narration sentence about the
+  // field had nothing to bind to. Same reasoning as E5's trend key.
   const DOC_GLOW = ["units", "central", "links", "arrows", "resultant", "charges",
-    "electrons", "lattice", "layer", "neighbours", "trend"];
+    "electrons", "lattice", "layer", "neighbours", "trend", "field"];
 
   ok("mode enum matches the frozen contract (13 members)", sameSet(E.BS_MODES, DOC_MODES),
     `${E.BS_MODES.length} members`);
@@ -1182,12 +1200,22 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   // absent — the same anti-decorative-string discipline as before.
   // E3b dispatch 3 (L-1) implements the SECOND of the four deferred DYNAMICS
   // modes; the remaining two stay declared-deferred to dispatch 4.
-  ok("E3b owns melt + layer_shift (both IMPLEMENTED, neither deferred)",
-    sameSet(E.BS_MODES_E3B, ["melt", "layer_shift"]) &&
-    ["melt", "layer_shift"].every((m) =>
+  // E3b dispatch 4 (Q-1) implements the LAST TWO. The deferred list is now EMPTY,
+  // which is the end state this discipline was always aiming at: every member of
+  // the closed mode enum is read by shipped code and none of them is decorative.
+  ok("E3b owns all four DYNAMICS modes (melt / layer_shift / drift / electron_sea)",
+    sameSet(E.BS_MODES_E3B, ["melt", "layer_shift", "drift", "electron_sea"]) &&
+    ["melt", "layer_shift", "drift", "electron_sea"].every((m) =>
       E.BS_MODES_IMPL.indexOf(m) >= 0 && E.BS_MODES_DEFERRED.indexOf(m) < 0));
-  ok("the remaining DYNAMICS modes stay deferred (dispatch 4), untouched",
-    sameSet(E.BS_MODES_DEFERRED, ["electron_sea", "drift"]));
+  ok("NOTHING is deferred any more — every mode string is read by shipped code",
+    E.BS_MODES_DEFERRED.length === 0 && sameSet(E.BS_MODES, E.BS_MODES_IMPL));
+  ok("drift + electron_sea carry their own solved cameras (D-4)",
+    E.BS_CAMERAS.drift != null && E.BS_CAMERAS.drift.az === 90 &&
+    E.BS_CAMERAS.drift.fit === true && E.BS_CAMERAS.electron_sea != null &&
+    E.BS_CAMERAS.electron_sea.fit === true,
+    JSON.stringify(E.BS_CAMERAS.drift) + " " + JSON.stringify(E.BS_CAMERAS.electron_sea));
+  ok("field_axis is the closed enum x|y|z (nothing authors a vector)",
+    sameSet(E.BS_FIELD_AXES, ["x", "y", "z"]));
   ok("layer_shift carries its own solved camera (D-4 / the E4 no-foreshorten rule)",
     E.BS_CAMERAS.layer_shift != null && E.BS_CAMERAS.layer_shift.az === 90 &&
     E.BS_CAMERAS.layer_shift.fit === true,
@@ -1682,8 +1710,363 @@ console.log("\n=== 12. MG_MOLECULES / MG_ELEMENTS REGRESSION ===");
     missA.length === 0, missA.join(" "));
 }
 
-console.log("\n=== 13. ROW Q NEGATIVE CONTROL (solid sample must not drift) ===");
-skip("under a field, the SOLID sample's ions do not move", "E3 (lattice layer)");
+console.log("\n=== 13. E3b Q-1..Q-5 ROW Q drift + ROW G sea + THE CARRIER READOUTS ===");
+// E3b dispatch 4 (2026-08-03). Was a declared stub owned by this dispatch; it is
+// now the REAL assertion set for the field, the two carriers and the three
+// readouts. Same discipline as sections 8/14/32: every body called below is
+// EXTRACTED from the shipped renderer and run, never transcribed, and the load-
+// bearing claim (an immobile ion does not translate) is asserted as a NEGATIVE
+// CONTROL against the mobile case in the SAME frame — a gate that only checked
+// "the melt drifts" would pass an engine that moved everything.
+{
+  const updSrc13 = grabFn("updateBondingSceneFrame");
+  const P2U13 = E.bscLinkCfg({}).pm_per_unit as number;
+  const RS13 = (a: number) => ({ cell: "rock_salt", n: [3, 3, 3], a_pm: a });
+  const NACL_MP = (E.BS_ION_PAIRS as any).NaCl.mp_K as number;   // 1074
+  // ionic_bonding S8's shape: TWO samples of the SAME salt, ONE field authored at
+  // scene level (so both read the same object — row R inheritance), one group
+  // below its melting point and one above it.
+  const S8 = {
+    placement: "lattice", mode: "drift",
+    units: [{ species: "Na+" }, { species: "Cl-" }], lattice: RS13(564),
+    field: 1, field_axis: "x", field_at_ms: 6000,
+    thermal: { T_K: 300, jiggle_scale: 0.35 },
+    groups: [
+      { id: "solid", label: "solid", at: [-6, 0, 0] },
+      { id: "molten", label: "molten", at: [6, 0, 0], thermal: { T_K: 1150, jiggle_scale: 0.35 } }
+    ]
+  };
+  const sitesOf13 = (bs: any) => E.bscSiteList(bs, null) as any[];
+  const poseOf = (bs: any, ms: number) =>
+    sitesOf13(bs).map((si: any, i: number) =>
+      E.bscSiteAt(bs, si, i, ms, null, null, null, null) as number[]);
+  const eqOf = (bs: any, ms: number) =>
+    sitesOf13(bs).map((si: any) => E.bscSiteBaseAt(bs, si, ms, null) as number[]);
+  const SL13 = sitesOf13(S8);
+  const gIdx = (g: number) => SL13.map((s: any, i: number) => [s, i] as [any, number])
+    .filter(([s]) => s.grp === g).map(([, i]) => i);
+  const SOLID = gIdx(0), MOLTEN = gIdx(1);
+  const NN13 = E.bscSiteNnU(S8, SL13[0]) as number;              // a/2 in scene units
+  const TSAMP = [0, 3000, 6000, 7200, 8200, 11000, 13200, 20000];
+
+  ok("the S8 fixture really is two groups of the same salt, one each side of mp_K",
+    SOLID.length > 0 && MOLTEN.length > 0 && SL13.every((s: any) => s.pair === "NaCl") &&
+    (E.bscMeltFrac(300, (E.BS_ION_PAIRS as any).NaCl) as number) === 0 &&
+    (E.bscMeltFrac(1150, (E.BS_ION_PAIRS as any).NaCl) as number) === 1,
+    `${SOLID.length} solid sites + ${MOLTEN.length} molten, mp ${NACL_MP} K, nn ${(NN13 * P2U13).toFixed(0)} pm`);
+
+  // ── THE NEGATIVE CONTROL, IN ITS SHARPEST FORM ──────────────────────────────
+  //   Not "the solid moves less" — turning the field on changes the solid half by
+  //   EXACTLY NOTHING, bit for bit, at every sampled instant. The same field, the
+  //   same frame, the same code path; only the temperature differs.
+  const S8_NOFIELD = Object.assign({}, S8, { field: 0 });
+  {
+    const same = TSAMP.every((t) => {
+      const a = poseOf(S8, t), b = poseOf(S8_NOFIELD, t);
+      return SOLID.every((i) => a[i].every((v, k) => Object.is(v, b[i][k])));
+    });
+    ok("NEGATIVE CONTROL: under a field the SOLID sample's ions are bit-identical",
+      same, `${SOLID.length} sites x ${TSAMP.length} instants, field 1 vs field 0`);
+    // ...and they do move, so this is not a gate over a dead layer (the S-2 scar).
+    const jig = Math.max(...TSAMP.map((t) => {
+      const p = poseOf(S8, t), q = eqOf(S8, t);
+      return Math.max(...SOLID.map((i) => E.bscMag([p[i][0] - q[i][0], p[i][1] - q[i][1],
+        p[i][2] - q[i][2]]) as number));
+    }));
+    ok("...but they DO jiggle, so the control is over a live layer and not a dead one",
+      jig > 1e-6, `worst jiggle excursion ${(jig * P2U13).toFixed(1)} pm`);
+    ok("...and that jiggle stays WELL under half a lattice spacing (in place, never away)",
+      jig < 0.5 * NN13, `${(jig / NN13).toFixed(3)} nn (floor 0.5)`);
+    // the same claim measured along the FIELD AXIS alone, which is the direction
+    // the state's caption is about.
+    const drift0 = Math.max(...TSAMP.map((t) => {
+      const p = poseOf(S8, t), q = eqOf(S8, t);
+      return Math.max(...SOLID.map((i) => Math.abs(p[i][0] - q[i][0])));
+    }));
+    ok("...with ZERO net travel along the field axis beyond that same jiggle",
+      drift0 < 0.5 * NN13, `${(drift0 / NN13).toFixed(3)} nn along +x`);
+  }
+
+  // ── THE POSITIVE HALF, IN THE SAME FRAME ────────────────────────────────────
+  {
+    const t = 13200;                       // the settled instant (see the pin below)
+    const p = poseOf(S8, t), q = eqOf(S8, t);
+    const cat = MOLTEN.filter((i) => SL13[i].q > 0), ani = MOLTEN.filter((i) => SL13[i].q < 0);
+    const mean = (ix: number[]) => ix.reduce((s, i) => s + (p[i][0] - q[i][0]), 0) / ix.length;
+    const mc = mean(cat), ma = mean(ani);
+    ok("the MOLTEN sample's ions have travelled along the field, cations and anions apart",
+      mc > 0.5 * NN13 && ma < -0.5 * NN13,
+      `cations ${(mc / NN13).toFixed(2)} nn, anions ${(ma / NN13).toFixed(2)} nn (opposite signs)`);
+    ok("...and the two directions are opposite because of the CHARGE, not an authored key",
+      Math.sign(mc) === Math.sign(E.bscSpeciesCharge("Na+") as number) &&
+      Math.sign(ma) === Math.sign(E.bscSpeciesCharge("Cl-") as number) &&
+      !/ions\.direction|drift_dir|bs\.drift\b/.test(updSrc13));
+    // MEASURED ON THE DRIFT TERM ITSELF, which is what the camera fit carries.
+    // The molten pose ALSO carries the melt wander and the jiggle, and conflating
+    // the three would have made this assertion fail against a correct engine (it
+    // did, at -1.73 nn against a 1.60 nn migration cap) — the drift is bounded by
+    // BS_ION_DRIFT_NN and the WHOLE excursion by the declared sum of all three.
+    const dOf = (i: number, t: number) =>
+      (E.bscIonDriftOf(S8, SL13[i], i, t, null,
+        E.bscTempAt(E.bscSiteBlock(S8, SL13[i]), t, null)) as number[]) || [0, 0, 0];
+    const wholeCap = ((E.BS_ION_DRIFT_NN as number) + (E.BS_MELT_WANDER as number) *
+      Math.sqrt(3)) * NN13 + 0.5 * NN13;
+    ok("...and the migration is BOUNDED, so the camera fit stays a config-only solve",
+      MOLTEN.every((i) => TSAMP.every((tt) =>
+        Math.abs(dOf(i, tt)[0]) <= (E.BS_ION_DRIFT_NN as number) * NN13 + 1e-9)) &&
+      MOLTEN.every((i) => TSAMP.every((tt) => {
+        const pp = poseOf(S8, tt), qq = eqOf(S8, tt);
+        return (E.bscMag([pp[i][0] - qq[i][0], pp[i][1] - qq[i][1],
+          pp[i][2] - qq[i][2]]) as number) <= wholeCap;
+      })) && (E.bscFieldExtent(S8, SL13) as number) > 0,
+      `drift cap ${E.BS_ION_DRIFT_NN} nn, whole-excursion cap ${(wholeCap / NN13).toFixed(2)} nn, fit adds ${(E.bscFieldExtent(S8, SL13) as number).toFixed(2)} units`);
+    ok("...and the SOLID half contributes exactly 0 to that fit (no camera moves for it)",
+      (E.bscFieldExtent(Object.assign({}, S8, {
+        groups: [{ id: "solid", label: "solid", at: [-6, 0, 0] }]
+      }), sitesOf13(Object.assign({}, S8, {
+        groups: [{ id: "solid", label: "solid", at: [-6, 0, 0] }]
+      }))) as number) === 0);
+    // A cation-only METAL under the same field: the cores stay put, because a
+    // cation-only lattice resolves no ion pair and therefore has no melting point.
+    // This is the metallic_bonding contract asserted from the engine side.
+    const METAL = {
+      placement: "lattice", mode: "drift",
+      units: [{ species: "Na+" }, { species: "Na+" }], lattice: { cell: "bcc", n: [3, 3, 3], a_pm: 429 },
+      field: 1, field_axis: "x", thermal: { T_K: 3000, jiggle_scale: 0.35 }
+    };
+    const ML = sitesOf13(METAL);
+    const mp2 = poseOf(METAL, 20000), mq2 = eqOf(METAL, 20000);
+    ok("a cation-only METAL's cores never migrate, at any temperature or field",
+      ML.every((s: any) => s.pair == null) &&
+      ML.every((_: any, i: number) => Math.abs(mp2[i][0] - mq2[i][0]) < 0.5 *
+        (E.bscSiteNnU(METAL, ML[0]) as number)) &&
+      (E.bscSeaScreens(ML.map((s: any) => s.q), ML.length) as boolean) === true,
+      "no pair -> no mp_K -> f_melt 0 at 3000 K; the sea screens, so the block also holds under a slip");
+  }
+
+  // ── Q-2: THE CUE IS DESTINATION-VALUED AND THE CAUSE PRECEDES THE EFFECT ────
+  {
+    const fc = E.bscFieldCfg(S8) as any;
+    ok("field_at_ms is DESTINATION-valued: the state OPENS at zero field",
+      (E.bscFieldAt(S8, 0, null) as number) === 0 &&
+      (E.bscFieldAt(S8, 5999, null) as number) === 0 &&
+      (E.bscFieldAt(S8, 6000 + fc.dur, null) as number) === 1 &&
+      (E.bscFieldAt(S8, 30000, null) as number) === 1,
+      `0 -> ${S8.field} over ${fc.dur} ms from ${S8.field_at_ms}`);
+    ok("a state with NO field_at_ms holds its authored field from frame 0 (byte-identical)",
+      (E.bscFieldAt({ field: 0.4 }, 0, null) as number) === 0.4 &&
+      (E.bscFieldAt({}, 0, null) as number) === 0);
+    // Rule 32a: nothing drifts until the arrows have arrived AND been held.
+    const tArrive = 6000 + fc.dur, tGo = tArrive + (E.BS_FIELD_HOLD_MS as number);
+    ok("CAUSE BEFORE EFFECT: the field is fully up before ANY carrier has moved",
+      (E.bscDriftProg(S8, tArrive, null) as number) === 0 &&
+      (E.bscDriftProg(S8, tGo, null) as number) === 0 &&
+      (E.bscDriftProg(S8, tGo + 1, null) as number) > 0 &&
+      (E.bscDriftProg(S8, tGo + (E.BS_DRIFT_MS as number), null) as number) === 1,
+      `arrows up at ${tArrive} ms, carriers start at ${tGo} ms, settled at ${tGo + (E.BS_DRIFT_MS as number)} ms`);
+    ok("...and the effect is monotone in t, so a carrier can never drift backwards",
+      Array.from({ length: 200 }, (_, k) => E.bscDriftProg(S8, k * 120, null) as number)
+        .every((v, k, a) => k === 0 || v >= a[k - 1] - 1e-15));
+    ok("a trusted DRAG seizes the field and the response tracks it from state entry",
+      (E.bscFieldAt(S8, 0, 0.62) as number) === 0.62 &&
+      (E.bscDriftProg(S8, (E.BS_DRIFT_MS as number), 0.62) as number) === 1,
+      "drag-seize: a live value in, no script to hold");
+    // D-1: a rewind photographs the same pixels, by construction.
+    const walk = [0, 7000, 13200, 20000, 7000, 0].map((t) => JSON.stringify(poseOf(S8, t)));
+    ok("D-1: the whole carrier layer is a closed form of state-local t (rewind-safe)",
+      walk[4] === walk[1] && walk[5] === walk[0] && walk[3] !== walk[2] &&
+      !/Date\.now|Math\.random/.test(grabFn("bscIonDriftOf") + grabFn("bscSeaAt") +
+        grabFn("bscDriftProg") + grabFn("bscFieldAt")));
+  }
+
+  // ── Q-2: THE PIN. The two files must agree, and they are read here, not assumed.
+  {
+    const m = /if \(typeof bscState\.field_at_ms === 'number'\) \{[\s\S]*?\}/.exec(META_SRC);
+    const body = m ? m[0] : "";
+    const nums = (body.match(/\d+/g) || []).map(Number);
+    ok("deriveStateMeta registers field_at_ms as a frozen-pin candidate at all",
+      body.length > 0 && /candidates\.push/.test(body));
+    ok("...and its offset is BUILT FROM the renderer's own constants, not a guess",
+      nums.indexOf(E.BS_FIELD_MS as number) >= 0 &&
+      nums.indexOf(E.BS_FIELD_HOLD_MS as number) >= 0 &&
+      nums.indexOf(E.BS_DRIFT_MS as number) >= 0,
+      `meta [${nums.join(",")}] vs renderer ${E.BS_FIELD_MS}/${E.BS_FIELD_HOLD_MS}/${E.BS_DRIFT_MS}`);
+    // ...and the instant it names is genuinely SETTLED: the carriers have stopped.
+    const pinned = 6000 + (E.BS_FIELD_MS as number) + (E.BS_FIELD_HOLD_MS as number) +
+      (E.BS_DRIFT_MS as number) + 600;
+    const done = 6000 + (E.BS_FIELD_MS as number) + (E.BS_FIELD_HOLD_MS as number) +
+      (E.BS_DRIFT_MS as number);
+    ok("ACCEPTANCE: the pinned instant is past the END of the migration, never inside it",
+      (E.bscDriftProg(S8, pinned, null) as number) === 1 &&
+      (E.bscDriftProg(S8, done, null) as number) === 1 &&
+      (E.bscDriftProg(S8, done - 1, null) as number) < 1 && pinned - done === 600,
+      `pin ${pinned} ms = migration complete at ${done} ms + a 600 ms settle margin`);
+    ok("the DECLARED motion of a drift/sea state is not a green gate over a dead screen",
+      /asObj\(bscMotion\.sea\)\?\.show === true/.test(META_SRC) &&
+      /asObj\(bscMotion\.ions\)\?\.mobile === true/.test(META_SRC));
+  }
+
+  // ── Q-3: THE CONDUCTIVITY ROW SWITCHES ON THE DERIVED MELT STATE ────────────
+  {
+    const cond = /else if \(w === "conductivity"\) \{[\s\S]*?\n                \}/.exec(updSrc13);
+    const cbody = cond ? cond[0] : "";
+    ok("the conductivity row exists and reads each group's DERIVED melt state",
+      cbody.length > 0 && /grpRows\[j\]\.melt > 0/.test(cbody),
+      "one row per group, in the authored groups[] order");
+    ok("...and switches on NO authored key (no conduct* / molten / solid flag anywhere)",
+      !/bs\.conduct|\.conducts\b|is_molten|bs\.molten|bs\.solid/.test(updSrc13) &&
+      /grpRows\[j\]\.melt/.test(cbody) && !/thermal\.T_K/.test(cbody));
+    ok("the molten value and its reference temperature come from the named constants",
+      /BS_MOLTEN_S_CM/.test(cbody) && /BS_MOLTEN_REF_K/.test(cbody) &&
+      (E.BS_MOLTEN_S_CM as number) === 3.5 && (E.BS_MOLTEN_REF_K as number) === 1100,
+      `${E.BS_MOLTEN_S_CM} S/cm at ${E.BS_MOLTEN_REF_K} K  (RATIFIED: Janz-tradition molten-salt compilation, lit 3.4-3.6)`);
+    ok("the reference temperature is a CITATION, deliberately not the live T_K",
+      /\(" \+ BS_MOLTEN_REF_K \+ " K\)/.test(cbody) &&
+      !/BS_MOLTEN_REF_K\s*[*/-]/.test(cbody) &&
+      !/grpRows\[j\]\.T_K|tempDragV|bscTempAt/.test(cbody),
+      "S8's molten group is authored at 1150 K and the row still cites 1100 K");
+    // THE NUMBER chemistry_author DECLINED. There is no solid-side S/cm digit in
+    // the shipped source at all, so the engine cannot print one.
+    const codeOnly13 = grabRegion("bscClamp", "applyBondingSceneGlow")
+      .split("\n").filter((l) => !/^\s*\/\//.test(l)).join("\n");
+    ok("NO solid-side S/cm digit, and no molten:solid RATIO, exists anywhere in the code",
+      !/S\\u00B7cm[^"]*10\\u00B9|10\^13|1e13|1e-13|\bratio\b[^\n]*cm/.test(codeOnly13) &&
+      (codeOnly13.match(/S\\u00B7cm/g) || []).length === 1,
+      "exactly one S/cm string in the source, and it is the ratified molten one");
+    ok("the solid row states the MECHANISM instead of a number it cannot defend",
+      /conductivity: none \\u2014 ions fixed/.test(cbody));
+  }
+
+  // ── Q-4 / Q-5: THE TWO UNRATIFIED TABLES — PRINTED, ASSERTED NOTHING ────────
+  //   The E1 dipole-table pattern: unratified data ships VISIBLE AND INERT. This
+  //   flag is the single edit that turns the assertions on once Session B's
+  //   chemistry_author has ratified the convention and the digits.
+  const METALS_RATIFIED = false;   // Session B's chemistry_author owns this line
+  const DRIFT_RATIFIED = false;    // ditto, for the coefficient and the scaling
+  {
+    console.log(`    BS_METALS (Q-5)   ratify state: ${METALS_RATIFIED ? "RATIFIED" : "NOT RATIFIED — printed, asserted nothing"}`);
+    const MLIT: Record<string, { ve: number; kj: number; note: string }> = {
+      Na: { ve: 1, kj: 107, note: "Phase-0; convention to ratify: std enthalpy of atomisation, M(s) -> M(g), 298 K" },
+      Mg: { ve: 2, kj: 146, note: "Phase-0" },
+      Al: { ve: 3, kj: 326, note: "Phase-0" }
+    };
+    for (const k of Object.keys(MLIT)) {
+      const r = (E.BS_METALS as any)[k];
+      console.log(`      ${k.padEnd(3)}valence_e ${r?.valence_e}   dH_at ${String(r?.atomisation_kJ).padStart(4)} kJ/mol` +
+        `   (Phase-0 ${MLIT[k].kj})   NOT RATIFIED`);
+    }
+    console.log(`    BS_DRIFT_V0_MS (Q-4)  ${E.BS_DRIFT_V0_MS} m/s at field 1` +
+      `   (Phase-0 ~1e-4 m/s, cross-links the shipped concept drift_velocity)   NOT RATIFIED`);
+    if (METALS_RATIFIED) {
+      ok("every ratified atomisation digit is transcribed exactly",
+        Object.keys(MLIT).every((k) => (E.BS_METALS as any)[k].atomisation_kJ === MLIT[k].kj));
+      ok("dH_at rises monotonically with the free electrons per atom",
+        (E.BS_METALS as any).Na.atomisation_kJ < (E.BS_METALS as any).Mg.atomisation_kJ &&
+        (E.BS_METALS as any).Mg.atomisation_kJ < (E.BS_METALS as any).Al.atomisation_kJ);
+    } else {
+      console.log("      (ratify flag OFF: no digit above is asserted by this gate)");
+    }
+    if (DRIFT_RATIFIED) {
+      ok("the drift coefficient is the ratified value", (E.BS_DRIFT_V0_MS as number) === 1e-4);
+    }
+    // ENGINE HYGIENE is asserted either way — these are not chemistry claims.
+    ok("ENGINE: the atomisation row is engine-printed from BS_METALS, never hand-typed",
+      /BS_METALS\[metalLive\]\.atomisation_kJ/.test(updSrc13) &&
+      !/\b(107|146|326)\b/.test(grabRegion("bscClamp", "applyBondingSceneGlow")
+        .split("\n").filter((l) => !/^\s*\/\//.test(l)).join("\n")
+        .replace(/var BS_METALS = \{[\s\S]*?\};/, "")),
+      "the three digits exist in exactly one place: the table");
+    ok("ENGINE: the Metal picker changes it (the live metal is resolved, not fixed)",
+      E.bscMetalKey({}, [{ species: "Al3+" }]) === "Al" &&
+      E.bscMetalKey({}, [{ species: "Na+" }]) === "Na" &&
+      E.bscMetalKey({}, [{ species: "Cl-" }]) === null);
+    ok("ENGINE: the drift readout is LINEAR in the live field and exactly 0 at 0",
+      (E.bscDriftVms(0) as number) === 0 &&
+      Math.abs((E.bscDriftVms(0.5) as number) * 2 - (E.bscDriftVms(1) as number)) < 1e-18 &&
+      (E.bscDriftVms(1) as number) === (E.BS_DRIFT_V0_MS as number));
+    ok("ENGINE: its mantissa formats to the Phase-0 string at full field",
+      E.bscFmtMant(1) === "1" && E.bscFmtMant(0.5) === "0.5" && E.bscFmtMant(0.02) === "0.02");
+    // Rule 34c across the DOM text path: real Unicode, and no ASCII underscore
+    // reaches the screen (the subscripts with no Unicode codepoint are true HTML
+    // subscripts, which is what the DOM path can honestly do).
+    const hudRegion = updSrc13.slice(updSrc13.indexOf('var lines = [], want = bs.hud_lines'));
+    // the RENDERED strings of the three new rows only. The enum keys around them
+    // legitimately carry underscores (delta_chi, like_contacts, hud_lines); what
+    // may never carry one is a literal that reaches the screen.
+    const pushed = (hudRegion.match(/lines\.push\([^;]*\);/g) || []).join("\n");
+    const shown = (pushed.match(/"(?:[^"\\]|\\.)*"/g) || []);
+    ok("Rule 34c: every new readout is real Unicode, with NO ASCII underscore on screen",
+      /\\u2248/.test(hudRegion) && /\\u00D7/.test(hudRegion) && /\\u207B\\u2074/.test(hudRegion) &&
+      /\\u0394H<sub>at<\/sub>/.test(hudRegion) && /v<sub>d<\/sub>/.test(hudRegion) &&
+      shown.length > 0 && shown.every((lit) => !/[A-Za-z]_[A-Za-z]/.test(lit)),
+      `${shown.length} rendered literals, none with an ASCII underscore; d has no Unicode subscript codepoint at all`);
+  }
+
+  // ── ROW G: THE SEA IS DERIVED, AND IT IS A PICTURE OF THE DERIVATION ────────
+  {
+    const METAL2 = {
+      placement: "lattice", mode: "electron_sea",
+      units: [{ species: "Mg2+" }, { species: "Mg2+" }],
+      lattice: { cell: "bcc", n: [3, 3, 3], a_pm: 320 },
+      sea: { show: true }, field: 1, field_axis: "x"
+    };
+    const ML2 = sitesOf13(METAL2), n2 = ML2.length;
+    const cfg = E.bscSeaCfg(METAL2, ML2, n2, null, null) as any;
+    ok("the electron COUNT is derived: valence_e per cation core, off BS_METALS",
+      cfg && cfg.metal === "Mg" && cfg.valence_e === 2 &&
+      cfg.n === Math.min(E.BS_MAX_SEA as number, 2 * cfg.cores),
+      `${cfg && cfg.cores} cores x ${cfg && cfg.valence_e} = ${cfg && cfg.n} electrons (cap ${E.BS_MAX_SEA})`);
+    ok("the Valence slider and the Metal picker both change it (drag-seize path)",
+      (E.bscSeaCfg(METAL2, ML2, n2, 3, null) as any).n === Math.min(E.BS_MAX_SEA as number, 3 * cfg.cores) &&
+      (E.bscSeaCfg(METAL2, ML2, n2, null, "Al") as any).valence_e === 3);
+    ok("a state that authors no sea draws NONE (every shipped concept is untouched)",
+      E.bscSeaCfg({ sea: { show: false } }, ML2, n2, null, null) === null &&
+      E.bscSeaCfg({}, ML2, n2, null, null) === null &&
+      /if \(sb\.sea && sb\.sea\.show\) needSea = BS_MAX_SEA;/.test(grabFn("buildBondingScene")),
+      "the mesh pool is sized from config and is 0 unless a state asks for one");
+    // the electrons drift AGAINST the field, and it is the fast/slow contrast
+    // drift_velocity teaches — not a slow crawl with nothing else happening.
+    const eAt = (k: number, t: number) => E.bscSeaAt(METAL2, k, ML2, n2, t, null) as number[];
+    const nn2 = E.bscSiteNnU(METAL2, ML2[0]) as number;
+    const settled = (E.BS_DRIFT_MS as number) + 1000;
+    const meanX = (t: number) => {
+      let s = 0; for (let k = 0; k < cfg.n; k++) s += eAt(k, t)[0];
+      return s / cfg.n;
+    };
+    ok("the sea drifts AGAINST the field, because an electron is negative (derived)",
+      meanX(settled) < -0.5 * nn2, `mean electron displacement ${(meanX(settled) / nn2).toFixed(2)} nn along +x`);
+    ok("...while its OWN motion stays fast and directionless (the drift_velocity picture)",
+      Math.abs(eAt(0, settled)[1] - eAt(0, settled + 200)[1]) > 1e-3 &&
+      (E.BS_SEA_W as number[]).every((w) => w > 3),
+      `jitter rates ${(E.BS_SEA_W as number[]).join("/")} rad/s vs a ${E.BS_DRIFT_MS} ms drift window`);
+    ok("...and every electron stays bounded, so the block never empties out",
+      Array.from({ length: cfg.n }, (_, k) => k).every((k) =>
+        [0, 2000, settled, 40000].every((t) =>
+          (E.bscMag(eAt(k, t)) as number) <=
+          ((E.BS_SEA_SPREAD_NN as number) * Math.sqrt(3) + (E.BS_SEA_DRIFT_NN as number)) * nn2 + 1e-9)));
+    ok("the sea is a PICTURE of bscSeaScreens, never an input to it (no outcome moves)",
+      !/\bsea\b/.test(grabFn("bscSeaScreens") + grabFn("bscLikeContacts") +
+        grabFn("bscShiftSolve") + grabFn("bscMeltFrac")),
+      "drawing the electrons changes no slip outcome, no contact count and no melt");
+  }
+
+  // ── Q-2: THE ARROWS ARE REAL MESHES AND A SENTENCE CAN BIND TO THEM ─────────
+  {
+    const b13 = grabFn("buildBondingScene");
+    ok("the field ARROWS exist as meshes (presence-is-not-correctness, the scar)",
+      /elementType: "bsc_field", id: "bsc_field" \+ u \+ "_shaft"/.test(b13) &&
+      /elementType: "bsc_field", id: "bsc_field" \+ u \+ "_head"/.test(b13) &&
+      /id: "bsc_field_label"/.test(b13) &&
+      (E.BS_GLOW_ELS as any).field.length === 1 &&
+      (E.BS_GLOW_ELS as any).field[0] === "bsc_field");
+    ok("the sea ELECTRONS exist as meshes, on the existing electrons focal",
+      /elementType: "bsc_electron", id: "bsc_sea" \+ u/.test(b13) &&
+      (E.BS_GLOW_ELS as any).electrons.indexOf("bsc_electron") >= 0);
+    ok("both are TRANSIENTS, so a capture can never photograph a previous state's field",
+      /transient\.push\("bsc_field" \+ i \+ "_shaft"\)/.test(grabFn("applyBondingSceneState")) &&
+      /transient\.push\("bsc_sea" \+ i\)/.test(grabFn("applyBondingSceneState")));
+  }
+}
 
 console.log("\n=== 14. E3b T-1..T-4 THE PROPERTY TABLE + melt + ROW R groups ===");
 // E3b dispatch 2 (2026-08-03). Was a declared stub; it is now the real assertion
@@ -2178,7 +2561,7 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
     ok("the lone-pair vector rides elementType bsc_arrow (closed glow enum intact)",
       /elementType: "bsc_arrow", id: "bsc_lone_shaft_/.test(build) &&
       sameSet(Object.keys(E.BS_GLOW_ELS), ["units", "central", "links", "arrows", "resultant",
-        "charges", "electrons", "lattice", "layer", "neighbours", "trend"]));
+        "charges", "electrons", "lattice", "layer", "neighbours", "trend", "field"]));
     ok("the lobe rides the electrons focal", E.BS_GLOW_ELS.electrons.indexOf("bsc_lone") >= 0,
       E.BS_GLOW_ELS.electrons.join(","));
     ok("the frame pass gates the layer on dipole.show_lone_pair", /dip\.show_lone_pair/.test(upd));
@@ -2420,8 +2803,12 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
       const p = parts(L, E.BS_ARROW_HEAD_LEN);
       return p.head <= L * 0.5 + 1e-12 && p.head <= E.BS_ARROW_HEAD_LEN + 1e-12 && p.shaft > 0;
     }));
-  ok("the frame pass routes bond / lone-pair / resultant heads through bscArrowParts",
-    (upd.match(/bscArrowParts\(/g) || []).length === 3 &&
+  // E3b Q-2 adds a FOURTH call site — the field arrows — for exactly the reason
+  // this assertion exists: an arrow whose head is added on top of its shaft draws
+  // a constant minimum length at every magnitude, so every arrow family on this
+  // surface goes through the one solver.
+  ok("the frame pass routes bond / lone-pair / resultant / field heads through bscArrowParts",
+    (upd.match(/bscArrowParts\(/g) || []).length === 4 &&
     !/Math\.max\(0\.02, aLen - 0\.30\)/.test(upd) && !/rlen - 0\.38/.test(upd));
   // THE NEGATIVE-SIGN CASE (E1c-B's handoff): a negative moment points its head
   // back at the central atom. Centred on the bond midpoint, the head TIP must
@@ -4810,17 +5197,32 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       ["separation", "PM_bscSepDragged"], ["spin", "PM_bscSpinDragged"],
       ["ion_pair", "PM_bscIonPairDragged"],
       // E3b L-1: the third quantity a script and a slider share on this surface.
-      ["shift", "PM_bscShiftDragged"]
+      ["shift", "PM_bscShiftDragged"],
+      // E3b Q-2: the fourth. ionic_bonding S10 exposes the Field slider on a state
+      // that also SCRIPTS the field on (field_at_ms).
+      ["field", "PM_bscFieldDragged"],
+      // E3b Q-5: the Metal picker and the lattice's own cation species name ONE
+      // quantity, so state entry seeds it and the frame pass tracks it.
+      ["metal", "PM_bscMetalDragged"]
     ];
     for (const [id, flag] of DRIVEN) {
       ok(`the ${id} row tracks its scripted value until a trusted drag seizes it`,
         new RegExp(`bscHasControl\\(ctrls, "${id}"\\) && !window\\.${flag}`).test(updSrc));
     }
-    const NO_DRIVER = ["field", "valence", "metal"];
+    // 'valence' stays declared-without-a-driver: it is a pure sandbox knob (how
+    // many free electrons per atom the sea draws) with no scripted counterpart on
+    // any state, so there is nothing for it to desync FROM.
+    const NO_DRIVER = ["valence"];
     for (const id of NO_DRIVER) {
+      // E3b row G moved this row from "unread" to "read but SANDBOX-ONLY": the
+      // Valence slider drives how many free electrons the sea draws, so the frame
+      // pass consults it — but no state authors a scripted counterpart, so there
+      // is nothing for the widget to desync FROM. Both halves are asserted, so a
+      // future scripted `bs.valence` cannot land without a tracking branch.
+      ok(`the ${id} row is read by the frame pass (a live sandbox knob, not decoration)`,
+        new RegExp(`bscHasControl\\(ctrls, "${id}"\\)`).test(updSrc));
       ok(`the ${id} row has NO scripted driver to desync from (E3b, declared)`,
-        !new RegExp(`bs\\.${id}\\b`).test(updSrc) &&
-        !new RegExp(`bscHasControl\\(ctrls, "${id}"\\)`).test(updSrc));
+        !new RegExp(`bs\\.${id}\\b`).test(updSrc));
     }
     ok("the sweep covers the whole closed control enum, with nothing unaccounted for",
       DRIVEN.length + NO_DRIVER.length === (E.BS_CONTROL_IDS as string[]).length &&
@@ -5958,6 +6360,6 @@ console.log("\n=== 32. E3b S-8 LAYER PARITY (a mechanism live on one layer is li
 }
 
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity, T-1..T-4 property table + melt + groups, L-1/L-2 layer slip + the D-7 like_contacts metric) sections pass (13 is the last declared E3b stub, owned by dispatch 4).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity, T-1..T-4 property table + melt + groups, L-1/L-2 layer slip + the D-7 like_contacts metric, Q-1..Q-5 row Q drift + row G sea + the carrier readouts) sections pass — NO declared stubs remain.\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
