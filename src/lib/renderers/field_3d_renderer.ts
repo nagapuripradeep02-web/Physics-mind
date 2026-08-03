@@ -51072,6 +51072,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //       trend: { show, x_label, y_label, points:[{label,x,y}],
     //                extrapolate_from:[label] },                           // E2
     //       separation, separation_axis, approach_from, approach_at_ms,
+    //                  // E3b S-1: these four drive the leading pair of SITES
+    //                  // (ions / bare atoms / the two leading lattice sites)
+    //                  // exactly as they drive the leading pair of molecular
+    //                  // units — same closed-form mgRamp, same drag-seize on the
+    //                  // separation slider, same engine-owned camera fit for the
+    //                  // OPENING pose. Before E3b they were inert on every ion.
     //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
     //       compare_at_ms, compare_duration_ms, compare_species,           // E2
     //                  // E1c-F: the swap is a TRANSITION over compare_duration_ms
@@ -51131,6 +51137,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
     //                  // is non-zero (N only, per the ratified convention)
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
+    //                  // E3b S-3: show 'shells' draws ONE RING PER COUNTED SITE
+    //                  // whenever the site layer is on screen, each ring's dot
+    //                  // count derived from that site's own species and formal
+    //                  // charge (Na 1, Cl 7, Na+ 0, Cl- 8 — the octet is the
+    //                  // OUTCOME of the transfer, never authored). Budget:
+    //                  // BS_MAX_SHELL_SITES rings of BS_MAX_SHELL_DOTS.
     //       thermal: { T_K, jiggle_scale,
     //                  T_from, T_at_ms, T_ramp_ms },  // E2b: the SCRIPTED heat
     //                  // beat. T_K is the DESTINATION (and the static value when
@@ -51141,6 +51153,13 @@ export const FIELD_3D_RENDERER_CODE = `
     //       spin_start_ms, spin_rate,               // rad/s about +y, 0 = hold
     //       camera: { az, el, dist },               // overrides the SOLVED camera
     //       show_hud, hud_lines: [...],             // CLOSED enum, BS_HUD_LINES
+    //                  // E3b S-4/S-5: 'separation_pm' prints the LIVE
+    //                  // centre-to-centre distance of the two leading sites
+    //                  // (d = 282 pm) — author it instead of typing a distance
+    //                  // into any caption. 'coordination' prints the derived
+    //                  // pair (coordination = 6 : 6) on a two-sublattice cell
+    //                  // and a single count on a one-sublattice cell.
+    //                  // 'valence' names BOTH participants of a site scene.
     //       show_formula, formula,                  // ONE surface, Rule 34b
     //       controls: [{ id, min_ring }] or [id],   // RING-GATED, BS_CONTROL_IDS
     //       static_readouts: [...]                  // same rows, disabled, same pos
@@ -51631,12 +51650,21 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
     var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
         "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
+    // E3b S-4 GROWS this enum by ONE member, separation_pm — the only addition
+    // since E1 froze it, and it is an instrument rather than a fact: ionic S3's
+    // whole taught quantity is a centre-to-centre distance that ramps in and
+    // stops, and with no readout for it the skeleton was forced to hand-type the
+    // settled 282 into an on-canvas delta cue. Rule 33d: an instrument shows the
+    // live numeric reading and tracks the physical change. With this line live,
+    // no authored string in either ionic concept types a separation digit.
     var BS_HUD_LINES = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
         "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
-        "valence", "atomisation", "bp", "like_contacts", "conductivity"];
+        "valence", "atomisation", "bp", "like_contacts", "conductivity",
+        "separation_pm"];
     var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
     var BS_HUD_LINES_E2 = ["links", "links_per_unit", "bp"];
     var BS_HUD_LINES_E3A = ["coordination", "lattice_a"];
+    var BS_HUD_LINES_E3B = ["separation_pm"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
     // ── E3a (lattice PLACEMENT layer) constants ──────────────────────────────
@@ -51645,6 +51673,18 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MAX_SITES = 125;         // rock_salt n=[5,5,5]; a 3x3x3 block is 27
     var BS_MAX_SITE_LABELS = 8;     // D-6: a 27-site lattice never labels 27 sites
     var BS_MAX_NEIGHBOURS = 12;     // hcp/fcc coordination is the pool ceiling
+    // E3b S-3, the D-6 budget for the valence SHELL DOTS, declared rather than
+    // assumed: a ring carries at most eight dots (a full octet, which is the most
+    // any species in BS_VALENCE can reach once its formal charge is applied) and
+    // at most four rings are drawn at once, so a 27-site block asks for 32
+    // spheres and never 216. The molecular one-ring path uses ring 0 only and is
+    // byte-identical to the pre-E3b pool.
+    var BS_MAX_SHELL_DOTS = 8;
+    var BS_MAX_SHELL_SITES = 4;
+    var BS_SHELL_POOL = BS_MAX_SHELL_DOTS * BS_MAX_SHELL_SITES;
+    // the gap between a body's drawn surface and its shell ring, in scene units.
+    // Named because the molecular path and the per-site path must not drift apart.
+    var BS_SHELL_RING_GAP = 0.42;
     var BS_HCP_C_OVER_A = Math.sqrt(8 / 3);   // the IDEAL hcp axial ratio
     // D-5, DECIDED ONCE and authored per state via lattice.reveal. Glow is
     // brightness (Rule 29) and brightness cannot defeat occlusion: a rock-salt
@@ -52716,6 +52756,47 @@ export const FIELD_3D_RENDERER_CODE = `
         BS_COORD_CACHE[cell] = n;
         return n;
     }
+    // E3b S-5: the coordination PAIR — rock salt's 6 : 6, the chemistry notation.
+    // BOTH numbers are DERIVED, independently, by the same geometry pass: the
+    // neighbour count of a sublattice-0 site and of a sublattice-1 site, each
+    // counted at the minimum distance from its own centre. Never hard-coded, and
+    // never produced by doubling one count — so MgO / CaO / LiF / KCl read
+    // correctly off this same code and a cell that is genuinely not n:n reads
+    // honestly.
+    //   The pass runs over a block big enough that the site being counted owns
+    //   its WHOLE first shell, which the block a state DRAWS need not be: in a
+    //   3x3x3 rock-salt cube the centre ion has all six neighbours but the
+    //   neighbour itself has five, and printing 6 : 5 would report the crop
+    //   rather than the crystal. Section 32 asserts the drawn focal count against
+    //   the first of these two numbers, so a state whose focal site is NOT
+    //   interior is caught rather than papered over.
+    //   A cell with ONE sublattice (fcc / bcc / hcp — every metal) has no second
+    //   number: it returns null and the readout prints a single count.
+    var BS_COORD_PAIR_CACHE = {};
+    function bscCoordAround(S, c) {
+        var best = 1e9, i, n = 0, d;
+        for (i = 0; i < S.length; i++) {
+            if (S[i] === c) continue;
+            d = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (d < best - 1e-9) best = d;
+        }
+        for (i = 0; i < S.length; i++) {
+            if (S[i] === c) continue;
+            d = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (Math.abs(d - best) < 1e-6) n++;
+        }
+        return n;
+    }
+    function bscCoordinationPair(cell) {
+        if (BS_COORD_PAIR_CACHE[cell]) return BS_COORD_PAIR_CACHE[cell];
+        var S = bscCellSites(cell, 5, 5, 5), i, other = null;
+        // shell-ordered, so S[0] is the centre and the first sublattice-1 entry is
+        // one of its own nearest neighbours — fully interior in a 5-step block.
+        for (i = 0; i < S.length; i++) if (S[i].sub === 1) { other = S[i]; break; }
+        var out = [bscCoordAround(S, S[0]), other ? bscCoordAround(S, other) : null];
+        BS_COORD_PAIR_CACHE[cell] = out;
+        return out;
+    }
     // Formal charge parsed from the species STRING, so a new ion never needs a
     // table row: Na+ -> +1, Mg2+ -> +2, O2- -> -2, Cl- -> -1, a neutral atom 0.
     // Charge conservation across the transfer beat is asserted on this.
@@ -52730,12 +52811,30 @@ export const FIELD_3D_RENDERER_CODE = `
     // charge NEVER renders as an ASCII trailing plus.
     var BS_SUPDIG = ["\\u2070", "\\u00B9", "\\u00B2", "\\u00B3", "\\u2074",
         "\\u2075", "\\u2076", "\\u2077", "\\u2078", "\\u2079"];
+    // The PARENT ELEMENT symbol of a species: Na+ -> Na, O2- -> O, Na -> Na. ONE
+    // definition, so the label, the colour and the shell-dot count can never
+    // disagree about which element a site actually is.
+    function bscParentEl(sp) {
+        return BS_ION_PARENT[sp] || String(sp == null ? "" : sp).replace(/[0-9+-]+$/, "");
+    }
     function bscSpeciesLabel(sp) {
         var q = bscSpeciesCharge(sp);
         if (q === 0) return String(sp || "");
-        var el = BS_ION_PARENT[sp] || String(sp).replace(/[0-9+-]+$/, "");
+        var el = bscParentEl(sp);
         var mag = Math.abs(q);
         return el + (mag > 1 ? BS_SUPDIG[mag] : "") + (q > 0 ? "\\u207A" : "\\u207B");
+    }
+    // E3b S-3: the OUTER-SHELL ELECTRON COUNT of a species, DERIVED and never a
+    // second table — the neutral atom's count from BS_VALENCE minus the formal
+    // charge parsed off the species string. Na 1 -> Na(+) 0 and Cl 7 -> Cl(-) 8
+    // therefore fall out of the transfer beat itself: the octet is the OUTCOME of
+    // the electron moving, not an authored claim (D-2). Clamped to the eight dots
+    // one ring can carry, which no species in the table reaches from below.
+    function bscValenceOf(sp) {
+        var n = BS_VALENCE[bscParentEl(sp)];
+        if (n == null) return 0;
+        n -= bscSpeciesCharge(sp);
+        return (n < 0) ? 0 : ((n > BS_MAX_SHELL_DOTS) ? BS_MAX_SHELL_DOTS : n);
     }
     // The LINEAR-IN-PM radius (doc row K / §reuse item 4). Ions and lattice sites
     // read this; molecule atoms stay on the legibility-compressed MG_ELEMENTS
@@ -52857,6 +52956,133 @@ export const FIELD_3D_RENDERER_CODE = `
             r_pm: SI.rPm + (bscRadiusPm(ionSp) - SI.rPm) * p
         };
     }
+    // ── E3b S-1 / S-2: THE SITE LAYER'S POSITION CHAIN ───────────────────────
+    //   P-1 and P-2 (founder_proxy Checkpoint A on ionic_bonding, 2026-08-03,
+    //   re-verified in source by the dispatching session): every scripted
+    //   position mechanism on this surface lived on the UNIT layer alone. sitePos
+    //   was the raw authored SI.at plus the spin and never touched the
+    //   sepAt/baseAt/orgAt chain, and bscJiggle had exactly ONE call site — inside
+    //   orgAt. Since bscIsSite switches the unit layer OFF for every ion and bare
+    //   atom, nothing picked up the slack: separation, separation_axis,
+    //   approach_from, approach_at_ms, approach_duration_ms and
+    //   thermal.jiggle_scale were ALL inert on ions and on every lattice. A state
+    //   authoring mode approach_link on two ions was byte-static while
+    //   deriveStateMeta, reading the same authored fields, declared it MOVING —
+    //   a green gate over a dead state.
+    //   The three functions below are the ONE definition of that chain. The frame
+    //   pass calls them for the site layer AND routes its own unit-layer sepAt /
+    //   tempAt closures through them, so the two layers cannot drift apart again;
+    //   check:bonding-scene section 32 calls the SHIPPED bodies rather than a
+    //   transcription of them.
+    //   Closed form in state-local ms, no accumulator, no latch, no replayed
+    //   history (D-1) — so a SET_TIME_FREEZE rewind photographs the same pixels
+    //   BY CONSTRUCTION, not by testing afterwards (Rule 36).
+    //   drag-seize: a trusted drag passes its live value in (null = follow the
+    //   script), which is exactly the discipline the unit layer already obeys for
+    //   the separation and temperature widgets.
+    function bscSepAt(bs, mms, sepDrag) {
+        if (sepDrag != null) return sepDrag;
+        var to = (bs && bs.separation != null) ? bs.separation : 3.0;
+        if (!bs || bs.approach_at_ms == null || bs.approach_from == null) return to;
+        return mgRamp(mms, bs.approach_at_ms,
+            (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400,
+            bs.approach_from, to);
+    }
+    function bscTempAt(bs, mms, tempDrag) {
+        if (tempDrag != null) return tempDrag;
+        var th = (bs && bs.thermal) || {};
+        var to = (th.T_K != null) ? th.T_K : BS_T0_K;
+        if (th.T_from == null || th.T_at_ms == null) return to;
+        return mgRamp(mms, th.T_at_ms,
+            (th.T_ramp_ms != null) ? th.T_ramp_ms : BS_T_RAMP_MS, th.T_from, to);
+    }
+    // A site's world position BEFORE the spin — the spin is a rotation about the
+    // view axis and is applied by the caller, exactly as the unit layer does it.
+    //   ix is the site's index in the shell-ordered list; a FREE-placement site
+    //   also carries the units[] index it came from (uidx). So the jiggle phase is
+    //   derived from an INDEX in both cases and never from a running counter, and
+    //   a growth beat or a count change never re-seeds a site already on screen.
+    //   TWO parts of the unit chain are deliberately NOT taken, and the reasons
+    //   are the point rather than an omission:
+    //     - bscUnitSlot (baseAt's fallback for a unit past units[]) is the COUNT
+    //       slider's row placement. A lattice has no count slider and its sites
+    //       are placed by the cell, so a site with no authored at stays at its
+    //       authored origin.
+    //     - bscThermalScale is the MOLECULAR network's expansion law, keyed on
+    //       BS_VAPOUR. No ion and no bare atom has a row there, so the factor is
+    //       identically 1 for every species this layer draws; routing sites
+    //       through orgAt would instead have applied HCl's expansion to them,
+    //       because molKey falls back to "HCl" whenever no unit is a molecule.
+    //   Split in two on purpose: the EQUILIBRIUM position (where the script puts
+    //   the site) and the DRAWN position (equilibrium plus thermal noise). The
+    //   separation instrument reads the first — see bscSepPmAt.
+    function bscSiteBaseAt(bs, SI, mms, sepDrag) {
+        if (bs && bs.separation_axis && SI && SI.uidx != null && SI.uidx < 2) {
+            // the authored separation_axis puts the leading PAIR on that axis and
+            // drives it from the (scripted or dragged) separation — the unit
+            // layer's baseAt rule, now true of ions too.
+            var sa = bscNorm(bs.separation_axis);
+            var sv = bscSepAt(bs, mms, sepDrag) * ((SI.uidx === 0) ? -0.5 : 0.5);
+            return [sa[0] * sv, sa[1] * sv, sa[2] * sv];
+        }
+        return [SI.at[0], SI.at[1], SI.at[2]];
+    }
+    function bscSiteAt(bs, SI, ix, mms, sepDrag, tempDrag) {
+        var b = bscSiteBaseAt(bs, SI, mms, sepDrag);
+        var th = (bs && bs.thermal) || {};
+        var js = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
+        if (!(js > 0)) return b;
+        // the same deterministic per-index seeded sines and the same sqrt(T/T0)
+        // amplitude law the unit layer uses, at the temperature of THAT instant.
+        var jg = bscJiggle((SI && SI.uidx != null) ? SI.uidx : ix,
+            mms / 1000, bscTempAt(bs, mms, tempDrag), js);
+        return [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
+    }
+    // E3b S-4: the LIVE centre-to-centre distance between the two leading sites,
+    // in picometres on the scene's own linear scale. In a free pair those two are
+    // the pair the approach ramp drives; in a lattice the shell-ordered list puts
+    // the centre site first and one of its nearest neighbours second, so the SAME
+    // function reads the nearest-neighbour distance (a/2 = 282 pm for NaCl). ONE
+    // instrument (D-3): the HUD line and the gate read this and nothing else
+    // recomputes it.
+    //   It reads the EQUILIBRIUM positions, not the jiggled ones. MEASURED in the
+    //   browser on a 27-site rock-salt sandbox at jiggle_scale 0.35: the drawn
+    //   distance wanders 282 -> 294 -> 298 pm frame to frame, i.e. the readout
+    //   flickers by 6% of its own value while nothing physical is changing. Rule
+    //   33d asks for an instrument that TRACKS the physical change; a number
+    //   re-rolling every frame is noise, not a needle, and a teacher cannot read
+    //   it aloud. The taught quantity is the spacing the ions settle at — the
+    //   jiggle is thermal noise ABOUT that spacing, and the lattice itself is
+    //   what the line names. On every state without a jiggle the two are the same
+    //   number, so ionic S3's approach ramp is unaffected either way.
+    function bscSepPmAt(bs, siteList, mms, sepDrag) {
+        if (!siteList || siteList.length < 2) return null;
+        var A = bscSiteBaseAt(bs, siteList[0], mms, sepDrag);
+        var B = bscSiteBaseAt(bs, siteList[1], mms, sepDrag);
+        return bscMag([B[0] - A[0], B[1] - A[1], B[2] - A[2]]) * bscLinkCfg(bs).pm_per_unit;
+    }
+    // E3b S-1, second order: the half-extent a separation_axis pair of SITES
+    // reaches at centre-to-centre distance sepVal. bscSiteList returns the
+    // AUTHORED at for a free site, and a separation_axis pair authors both units
+    // at the origin because baseAt places them — so without this term an ion pair
+    // measures as two touching spheres and both the auto-fit and the opening-pose
+    // cut are solved for a scene that is never drawn: the pair would open at
+    // approach_from, off frame, on a surface whose standing authoring rule is
+    // never author camera. The MOLECULAR half of the same case is padded by the
+    // BS_BOND_LEN term the two existing loops carry; the ION half had nothing.
+    // Returns 0 for every scene without a separation_axis SITE pair, so no
+    // molecular scene moves by a pixel.
+    function bscSepSiteExtent(bs, sepVal) {
+        if (!bs || !bs.separation_axis) return 0;
+        var uns = bs.units || [], p2u = bscLinkCfg(bs).pm_per_unit, e = 0, i;
+        for (i = 0; i < uns.length && i < 2; i++) {
+            var spk = uns[i] && uns[i].species;
+            if (!spk || !bscIsSite(spk)) continue;
+            var d = Math.abs(sepVal) * 0.5 + bscRadiusPm(spk) / p2u;
+            if (d > e) e = d;
+        }
+        return e;
+    }
     // Half-extent of the site block in scene units, radii included — what the
     // camera auto-fit measures against.
     function bscSiteExtent(bs, pairOverride) {
@@ -52898,6 +53124,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // (conservative on purpose: the molecules themselves do not grow, only the
         // spacing does, so scaling the whole half-extent over-frames slightly
         // rather than under-framing.)
+        // E3b S-1: ...and the SETTLED pose of a separation_axis pair of SITES,
+        // which the loops above cannot see (bscSiteList returns the authored at,
+        // and such a pair authors both units at the origin). Exactly 0 for every
+        // scene that is not one, so every molecular fit is bit-for-bit unchanged.
+        var eSep = bscSepSiteExtent(bs, (bs && bs.separation != null) ? bs.separation : 3.0);
+        if (eSep > e) e = eSep;
         var fIdx = (bs && bs.focal_unit != null) ? bs.focal_unit : 0;
         var fSp = (bs && bs.units && bs.units[fIdx] && bs.units[fIdx].species) ||
             (bs && bs.units && bs.units[0] && bs.units[0].species) || (bs && bs.species) || null;
@@ -52930,6 +53162,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var d0 = Math.abs(sep0) * 0.5 + BS_BOND_LEN + rMax;
             if (d0 > e) e = d0;
         }
+        // E3b S-1, the ION half of the same solve. The loop above carries
+        // "if (!msp) continue;" — it skips every species that is not in
+        // MG_MOLECULES, i.e. every ion — so an ion pair opening at approach_from
+        // was framed for its SETTLED pose and opened off frame. Never author
+        // camera is a standing authoring rule on this surface precisely because
+        // the fit is engine-owned, and that promise has to hold for ions too.
+        var eSep0 = bscSepSiteExtent(bs, sep0);
+        if (eSep0 > e) e = eSep0;
         return e;
     }
 
@@ -53241,7 +53481,10 @@ export const FIELD_3D_RENDERER_CODE = `
             pd.visible = false;
             addToScene(pd);
         }
-        for (i = 0; i < 8; i++) {
+        // E3b S-3: BS_SHELL_POOL = BS_MAX_SHELL_SITES rings of BS_MAX_SHELL_DOTS,
+        // ring r owning dots [r*BS_MAX_SHELL_DOTS ..). The molecular one-ring path
+        // is ring 0, so the eight dots E1 built keep their ids and their meaning.
+        for (i = 0; i < BS_SHELL_POOL; i++) {
             var sd = new THREE.Mesh(dotGeo.clone(), new THREE.MeshBasicMaterial({
                 color: hexToThreeColor(elecColor), transparent: true, opacity: 0.95,
                 depthTest: false, depthWrite: false
@@ -53764,7 +54007,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (l3) { l3.visible = false; setObjOpacity(l3, BS_ARROW_OPACITY); }
         }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
-        for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
+        for (i = 0; i < BS_SHELL_POOL; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
         for (i = 0; i < (window.PM_bscUnitPool || 1); i++) {
             for (var j = 0; j < BS_MAX_ATOMS; j++) {
                 var dl = bscFindById("bsc_u" + i + "_delta" + j);
@@ -53932,15 +54175,13 @@ export const FIELD_3D_RENDERER_CODE = `
         //   the hysteresis: a replay has to reproduce what was actually DRAWN at
         //   that instant, so a sample from mid-ramp must carry mid-ramp heat.
         //   This is exactly why sepAt is a function of mms too.
-        var T_to = (th.T_K != null) ? th.T_K : BS_T0_K;
+        //   E3b S-1: the RAMP itself now lives in the top-level pure bscTempAt, so
+        //   the site layer reads the identical value from the identical body and
+        //   the parity gate can call it. This closure is the drag-seize binding
+        //   and nothing else.
         var tempDragged = bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged;
-        var tempAt = function (mms) {
-            if (tempDragged) return window.PM_bscTemp;
-            if (th.T_from == null || th.T_at_ms == null) return T_to;
-            return mgRamp(mms, th.T_at_ms,
-                (th.T_ramp_ms != null) ? th.T_ramp_ms : BS_T_RAMP_MS,
-                th.T_from, T_to);
-        };
+        var tempDragV = tempDragged ? window.PM_bscTemp : null;
+        var tempAt = function (mms) { return bscTempAt(bs, mms, tempDragV); };
         var T_K = tempAt(ms);
         var nWant = (bscHasControl(ctrls, "count") && window.PM_bscCountDragged)
             ? Math.round(window.PM_bscCount) : Math.max(1, (bs.units || []).length || 1);
@@ -53964,8 +54205,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // this state MOVING), so the fallback stands down and the network is the
         // one S5 taught. A sandbox with no jiggle and no authored spin is
         // untouched, which is every explore state shipped before this change.
+        // ── E3b S-6: THE FALLBACK MAY ONLY STAND DOWN ON A SIGNAL THAT IS LIVE
+        //   FOR THE LAYER ACTUALLY DRAWING THIS STATE.
+        //   thermal.jiggle_scale used to be a UNIT-layer-only signal (P-2:
+        //   bscJiggle had one call site, inside orgAt), so a lattice explore state
+        //   that authored it under the fleet's own no-static-state discipline got
+        //   no jiggle AND no spin — a byte-frozen sandbox that deriveStateMeta,
+        //   reading the same field, reports as MOVING. A Rule-37 breach with a
+        //   green gate over it. E3b S-2 makes the jiggle live on the SITE layer
+        //   too, so the term is now true of both layers; it is NAMED rather than
+        //   inlined so section 32 can assert exactly that property instead of
+        //   re-reading a boolean expression.
+        var jiggleMoves = (th.jiggle_scale > 0);   // LIVE on BOTH layers since S-2
         if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged &&
-            !(th.jiggle_scale > 0)) spinRate = 0.14;
+            !jiggleMoves) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
         // E1c-J: the axis apply published for the camera this state is framed by.
@@ -54058,15 +54311,12 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscBrokenFrac = bscBrokenFraction(molKey, T_K);
         var unitSpacing = (bs.unit_spacing != null) ? bs.unit_spacing
             : (BS_BOND_LEN + linkCfg.form_pm / linkCfg.pm_per_unit);
+        // E3b S-1: the RAMP lives in the top-level pure bscSepAt so the site layer
+        // reads the identical value from the identical body (and section 32 can
+        // call it). This closure is the drag-seize binding and nothing else.
         var sepDragged = bscHasControl(ctrls, "separation") && window.PM_bscSepDragged;
-        var sepAt = function (mms) {
-            if (sepDragged) return window.PM_bscSep;
-            var to = (bs.separation != null) ? bs.separation : 3.0;
-            if (bs.approach_at_ms == null || bs.approach_from == null) return to;
-            return mgRamp(mms, bs.approach_at_ms,
-                (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400,
-                bs.approach_from, to);
-        };
+        var sepDragV = sepDragged ? window.PM_bscSep : null;
+        var sepAt = function (mms) { return bscSepAt(bs, mms, sepDragV); };
         var baseAt = function (uu, mms) {
             var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
             // an authored separation_axis puts the leading PAIR on that axis and
@@ -54377,7 +54627,13 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < siteList.length; i++) {
             var SI = siteList[i];
             var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
-            sitePos.push((spin !== 0) ? bscSpinRot(SI.at, spinAx, spin) : SI.at);
+            // E3b S-1 / S-2: the scripted position chain, at last. bscSiteAt gives
+            // this site the SAME separation_axis placement, the SAME scripted (or
+            // dragged) separation ramp and the SAME deterministic thermal jiggle
+            // the unit layer has always had; the spin is then applied here exactly
+            // as before. Closed form in ms, so a freeze pin is byte-identical.
+            var sAt = bscSiteAt(bs, SI, i, ms, sepDragV, tempDragV);
+            sitePos.push((spin !== 0) ? bscSpinRot(sAt, spinAx, spin) : sAt);
             siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
             siteRpm.push(TS.r_pm);
             if (i < nShown) qSum += TS.q;
@@ -54512,6 +54768,12 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscSiteCount = nShown;
         window.PM_bscChargeSum = qSum;
         window.PM_bscCoordination = nbIdx.length;
+        // E3b S-4 / S-5: the two derived readouts, published for the professor
+        // pack and for a headless probe, off the SAME bodies the HUD prints from
+        // (D-3: one instrument per quantity, never a second computation).
+        window.PM_bscSepPm = bscSepPmAt(bs, siteList, ms, sepDragV);
+        window.PM_bscCoordPair = (siteList.length && siteList[0].cell)
+            ? bscCoordinationPair(siteList[0].cell) : null;
         window.PM_bscLatticeA = siteList.length ? siteList[0].a_pm : 0;
         window.PM_bscTransfer = trProg;
         window.PM_bscCell = (siteList.length && siteList[0].cell) ? siteList[0].cell : null;
@@ -54840,23 +55102,54 @@ export const FIELD_3D_RENDERER_CODE = `
                 pd1[2] * BS_BOND_LEN * f + perp[2] * off + fOrg[2]
             );
         }
+        // ── row N, second half: THE VALENCE SHELL DOTS.
+        //   E3b S-3 (P-3): the count was BS_VALENCE[mol.central] — one ring, at
+        //   the focal MOLECULAR unit's origin, sized off MG_ELEMENTS — and molKey
+        //   falls back to "HCl" whenever no unit species is a molecule. So a scene
+        //   of bare Na and Cl atoms drew ONE dot (BS_VALENCE.H) buried inside the
+        //   sodium sphere while the readout printed "outer electrons = 1". The
+        //   ring belonged to a table the scene was not made of.
+        //   Whenever the SITE layer is on screen the rings belong to the SITES:
+        //   one ring per counted site, its count derived from that site's own
+        //   species and formal charge (bscValenceOf — Na 1, Cl 7, Na(+) 0,
+        //   Cl(-) 8, so the octet is the OUTCOME of the transfer rather than a
+        //   claim), its radius from that site's own DRAWN radius. D-6 budget:
+        //   at most BS_MAX_SHELL_SITES rings of at most BS_MAX_SHELL_DOTS dots.
+        //   D-4 countability is unchanged and now holds per site: every ring is
+        //   still drawn in the CAMERA plane, so every dot is countable from the
+        //   solved view and stays countable across the whole spin window.
+        //   The molecular one-ring path is ring 0 with the same angles, the same
+        //   centre and the same radius it has always had — byte-identical.
         var showShells = (elc.show === "shells");
-        var nval = showShells ? (BS_VALENCE[mol.central] || 0) : 0;
-        for (i = 0; i < 8; i++) {
+        var shellN = [], shellC = [], shellR = [], sIx;
+        if (showShells) {
+            if (nShown > 0) {
+                for (sIx = 0; sIx < nShown && shellN.length < BS_MAX_SHELL_SITES; sIx++) {
+                    shellN.push(bscValenceOf(siteSp[sIx]));
+                    shellC.push(sitePos[sIx]);
+                    shellR.push(siteRU[sIx] * rsNow + BS_SHELL_RING_GAP);
+                }
+            } else {
+                shellN.push(BS_VALENCE[mol.central] || 0);
+                shellC.push(fOrg);
+                shellR.push((MG_ELEMENTS[mol.central] || MG_ELEMENTS.C).radius + BS_SHELL_RING_GAP);
+            }
+            // the camera has settled by capture time, so this is stable under a pin.
+            camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
+        }
+        for (i = 0; i < BS_SHELL_POOL; i++) {
             var sd2 = bscFindById("bsc_shell_" + i);
             if (!sd2) continue;
-            sd2.visible = showShells && i < nval;
+            var sRing = Math.floor(i / BS_MAX_SHELL_DOTS), sSlot = i % BS_MAX_SHELL_DOTS;
+            var nval = (sRing < shellN.length) ? shellN[sRing] : 0;
+            sd2.visible = showShells && sSlot < nval;
             if (!sd2.visible) continue;
-            // the valence ring is drawn in the CAMERA plane so every dot is
-            // countable from the solved view (D-4); the camera has settled by
-            // capture time, so this is stable under a pin.
-            camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
-            var ang2 = (i / Math.max(1, nval)) * Math.PI * 2 + Math.PI / 2;
-            var rr = (MG_ELEMENTS[mol.central] || MG_ELEMENTS.C).radius + 0.42;
+            var ang2 = (sSlot / Math.max(1, nval)) * Math.PI * 2 + Math.PI / 2;
+            var cOrg = shellC[sRing], rr = shellR[sRing];
             sd2.position.set(
-                fOrg[0] + (mgCamR.x * Math.cos(ang2) + mgCamU.x * Math.sin(ang2)) * rr,
-                fOrg[1] + (mgCamR.y * Math.cos(ang2) + mgCamU.y * Math.sin(ang2)) * rr,
-                fOrg[2] + (mgCamR.z * Math.cos(ang2) + mgCamU.z * Math.sin(ang2)) * rr
+                cOrg[0] + (mgCamR.x * Math.cos(ang2) + mgCamU.x * Math.sin(ang2)) * rr,
+                cOrg[1] + (mgCamR.y * Math.cos(ang2) + mgCamU.y * Math.sin(ang2)) * rr,
+                cOrg[2] + (mgCamR.z * Math.cos(ang2) + mgCamU.z * Math.sin(ang2)) * rr
             );
         }
 
@@ -55077,9 +55370,56 @@ export const FIELD_3D_RENDERER_CODE = `
                         lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
                     }
                 }
-                else if (w === "coordination") lines.push("neighbours = " + nbIdx.length);
+                else if (w === "coordination") {
+                    // E3b S-5: the chemistry notation, 6 : 6, and BOTH numbers are
+                    // DERIVED — the neighbour count of a cation site and of an
+                    // anion site, counted independently by the same geometry pass
+                    // (bscCoordinationPair). Never hard-coded, never one count
+                    // doubled. The cation is printed first, which is the
+                    // convention; a cell with one sublattice, or a block whose two
+                    // sublattices carry the same species, prints one number; a
+                    // free-placement scene falls back to the DRAWN neighbour set.
+                    var cPair = (siteList.length && siteList[0].cell)
+                        ? bscCoordinationPair(siteList[0].cell) : null;
+                    var spA0 = (nShown > 0) ? siteSp[0] : null, spB0 = null;
+                    for (j = 1; j < nShown; j++) if (siteSp[j] !== spA0) { spB0 = siteSp[j]; break; }
+                    if (cPair && cPair[1] != null && spB0) {
+                        lines.push("coordination = " + ((bscSpeciesCharge(spA0) >= 0)
+                            ? (cPair[0] + " : " + cPair[1]) : (cPair[1] + " : " + cPair[0])));
+                    } else if (cPair) lines.push("coordination = " + cPair[0]);
+                    else lines.push("coordination = " + nbIdx.length);
+                }
                 else if (w === "lattice_a") lines.push("a = " + Math.round(window.PM_bscLatticeA) + " pm");
-                else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                else if (w === "separation_pm") {
+                    // E3b S-4: the LIVE centre-to-centre distance of the two
+                    // leading sites, off the same bscSepPmAt the gate calls (D-3).
+                    // The em dash is this surface's existing "no value yet" glyph.
+                    var dPm = bscSepPmAt(bs, siteList, ms, sepDragV);
+                    lines.push("d = " + ((dPm == null) ? "\\u2014" : Math.round(dPm)) + " pm");
+                }
+                else if (w === "valence") {
+                    // E3b S-3: SITE-AWARE, on the pattern the radius_pm branch
+                    // above already established — when a site layer is on screen
+                    // the outer-electron count is a property of the SITES, not of
+                    // a molecule table the scene is not made of (which resolved to
+                    // HCl and printed "outer electrons = 1" over a sodium atom).
+                    // Both participants are named, because the whole teaching is
+                    // the pair: 1 and 7 before the transfer, 0 and 8 after it.
+                    if (nShown > 0) {
+                        var vIx = [];
+                        if (trFrom >= 0 && trTo >= 0) { vIx.push(trFrom); vIx.push(trTo); }
+                        else {
+                            vIx.push(focalSite);
+                            for (j = 0; j < nShown && vIx.length < 2; j++) {
+                                if (j !== focalSite && siteSp[j] !== siteSp[focalSite]) vIx.push(j);
+                            }
+                        }
+                        for (j = 0; j < vIx.length; j++) {
+                            lines.push(bscSpeciesLabel(siteSp[vIx[j]]) + ": outer electrons = " +
+                                bscValenceOf(siteSp[vIx[j]]));
+                        }
+                    } else lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                }
                 // E2b: 'links' stays the INSTANT (S2/S3 count one link forming and
                 // breaking, and an average would smear the exact beat those
                 // states teach); 'links_per_unit' is the time-averaged mean

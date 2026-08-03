@@ -279,6 +279,16 @@ export function deriveMotionExpectations(
             // standing still. The explore sandbox is user-driven → declare static
             // and let the interactive hold classification relax its tail (the
             // renderer's idle auto-sweep keeps it moving regardless, Rule 37).
+            //   E3b S-2 (2026-08-03, site-layer parity): the jiggle_scale branch
+            //   below was TRUE-BY-DECLARATION and FALSE-ON-SCREEN for every ion
+            //   and every lattice state, because bscJiggle had exactly one call
+            //   site in the renderer — inside the unit layer's orgAt — and
+            //   bscIsSite switches the unit layer off for those species. So this
+            //   file declared a byte-static state MOVING: a green D5/D6 gate over
+            //   a dead beat. The renderer now applies the same deterministic
+            //   jiggle on the SITE layer (bscSiteAt), so the declaration below is
+            //   true of both layers and needs no change here — recorded because
+            //   the next reader must not "fix" it back.
             const bscMotion = state ? asObj(state.bonding_scene) : null;
             if (bscMotion) {
                 if (bscMotion.mode === 'explore') { out[stateId] = false; continue; }

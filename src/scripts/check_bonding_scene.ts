@@ -24,6 +24,15 @@
  * capabilities bond_polarity S4/S7 could not be authored without, plus the bit-for-
  * bit mgFrame regression half those three shipped concepts ride).
  *
+ * Section 32 is the E3b SITE-LAYER PARITY dispatch (2026-08-03, S-1..S-8): the
+ * three mechanisms that were live on the unit (molecule) layer and inert on the
+ * site (ion / lattice) layer, plus the PERMANENT half — an assertion that every
+ * scripted position mechanism is present in BOTH position chains, so the next
+ * one-sided addition fails here without anyone having to notice. It also carries
+ * the S-7 authoring rule: a scripted destination that shares an id with an
+ * EXPOSED slider must lie inside that slider's range, checked over every shipped
+ * bonding_scene concept as well as over fixtures.
+ *
  * Sections 27/28/29 are the E1/E2/E5 dispatch (2026-08-03): the annotation layer's
  * reserve of the readout rectangle (a RECURRENCE of the FIXED class
  * field3d_hud_label_clipped_by_readout_box that check-layout-overlap structurally
@@ -33,7 +42,7 @@
  *
  *   npm run check:bonding-scene
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
 
@@ -114,6 +123,7 @@ const VARS = [
   "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
   "BS_CONTROL_IDS", "BS_HUD_LINES", "BS_HUD_LINES_E1", "BS_HUD_LINES_E2",
+  "BS_HUD_LINES_E3B",                                            // E3b S-4
   "BS_PLACEMENTS",
   "BS_ELECTRON_SHOW", "BS_RADIUS_PM", "BS_ION_PARENT", "BS_CHI", "BS_VALENCE",
   "BS_BOND_MOMENT_D", "BS_LONE_PAIR_D", "BS_MU_FALLBACK_D_PER_CHI",
@@ -130,7 +140,11 @@ const VARS = [
   "BS_FIT_MARGIN", "BS_ION_PAIRS",
   "BS_SUPDIG", "BS_COORD_CACHE",
   // E3 (thermal expansion layer)
-  "BS_R_J", "BS_VAPOUR"
+  "BS_R_J", "BS_VAPOUR",
+  // E3b S-3 / S-5 (the site-layer parity dispatch). Order is EXECUTION order:
+  // BS_SHELL_POOL is a product of the two budgets above it.
+  "BS_MAX_SHELL_DOTS", "BS_MAX_SHELL_SITES", "BS_SHELL_POOL", "BS_SHELL_RING_GAP",
+  "BS_COORD_PAIR_CACHE"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
 const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
@@ -160,7 +174,12 @@ const FNS = [
   "bscOpeningExtent",                                            // E2d
   "bscGrowShown", "bscTransferProg", "bscTransferSite",
   // E3
-  "bscBrokenFraction", "bscNetworkStretch", "bscThermalScale", "bscPeakThermalScale"
+  "bscBrokenFraction", "bscNetworkStretch", "bscThermalScale", "bscPeakThermalScale",
+  // E3b (the SITE-LAYER PARITY dispatch — section 32 calls these SHIPPED bodies
+  // rather than transcribing them, which is the whole point of extracting them)
+  "bscParentEl", "bscValenceOf", "bscCoordAround", "bscCoordinationPair",
+  "bscSepAt", "bscTempAt", "bscSiteBaseAt", "bscSiteAt", "bscSepPmAt",
+  "bscSepSiteExtent"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -809,9 +828,12 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
     "drift", "melt", "explore"];
   const DOC_CONTROLS = ["species", "molecule", "ligand", "angle", "temperature",
     "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
+  // E3b S-4 grew this by ONE member — separation_pm, the live centre-to-centre
+  // distance instrument — which is the only addition since E1 froze the enum.
   const DOC_HUD = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
     "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
-    "valence", "atomisation", "bp", "like_contacts", "conductivity"];
+    "valence", "atomisation", "bp", "like_contacts", "conductivity",
+    "separation_pm"];
   // E5 grew this from ten keys to eleven: bsc_trend is a live scene element type
   // (row O's chart) that no key could reach, so a narration sentence about the
   // trend line was unbindable by construction. Section 29 asserts the invariant
@@ -835,7 +857,7 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   ok("lattice.cell is the closed enum rock_salt|fcc|bcc|hcp",
     sameSet(E.BS_CELLS, ["rock_salt", "fcc", "bcc", "hcp"]));
   ok("controls enum matches the frozen contract (13 ids)", sameSet(E.BS_CONTROL_IDS, DOC_CONTROLS));
-  ok("hud_lines enum matches the frozen contract (15 ids)", sameSet(E.BS_HUD_LINES, DOC_HUD));
+  ok("hud_lines enum matches the frozen contract (16 ids)", sameSet(E.BS_HUD_LINES, DOC_HUD));
   ok("glow enum matches the frozen contract (11 keys)", sameSet(Object.keys(E.BS_GLOW_ELS), DOC_GLOW));
   ok("placement enum is free|lattice", sameSet(E.BS_PLACEMENTS, ["free", "lattice"]));
   ok("electrons.show enum is none|shells|pair_glyph",
@@ -962,13 +984,14 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   }
 
   // Every implemented hud line is actually rendered; all are in the closed enum.
-  const hudImpl = [...E.BS_HUD_LINES_E1, ...E.BS_HUD_LINES_E2, ...E.BS_HUD_LINES_E3A];
+  const hudImpl = [...E.BS_HUD_LINES_E1, ...E.BS_HUD_LINES_E2, ...E.BS_HUD_LINES_E3A,
+    ...E.BS_HUD_LINES_E3B];
   const unreadHud = hudImpl.filter((h: string) => !upd.includes('"' + h + '"'));
   ok("every implemented hud_line is rendered by the HUD pass", unreadHud.length === 0, unreadHud.join(" "));
   ok("the implemented hud_lines are a subset of the closed enum, with no overlap",
     hudImpl.every((h: string) => E.BS_HUD_LINES.includes(h)) &&
     new Set(hudImpl).size === hudImpl.length,
-    `E1=[${E.BS_HUD_LINES_E1.join(",")}] E2=[${E.BS_HUD_LINES_E2.join(",")}] E3a=[${E.BS_HUD_LINES_E3A.join(",")}]`);
+    `E1=[${E.BS_HUD_LINES_E1.join(",")}] E2=[${E.BS_HUD_LINES_E2.join(",")}] E3a=[${E.BS_HUD_LINES_E3A.join(",")}] E3b=[${E.BS_HUD_LINES_E3B.join(",")}]`);
 
   // Row O: the trend surface is a real DOM canvas, discovered by the Rule-39f
   // widget engine (inline position:fixed) and clearing both chrome edges.
@@ -3388,12 +3411,16 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
     }
     throw new Error("unbalanced closure " + decl);
   };
+  // E3b S-1 moved the RAMP itself into the top-level pure bscTempAt (so the site
+  // layer reads the identical body — section 32), leaving this closure as the
+  // drag-seize binding. The lift therefore injects the two free variables it has
+  // now, and the ramp assertions below run through the SHIPPED bscTempAt.
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
-  const makeTempAt = new Function("th", "T_to", "tempDragged", "window", "mgRamp", "BS_T_RAMP_MS",
+  const makeTempAt = new Function("bs", "tempDragV", "bscTempAt",
     lift("var tempAt = function (mms)", updSrc) + "\nreturn tempAt;") as
-    (th: any, T_to: number, dragged: boolean, w: any, ramp: any, dflt: number) => (m: number) => number;
+    (bs: any, drag: number | null, f: any) => (m: number) => number;
   const tempAt = (th: any, dragged = false, w: any = {}) =>
-    makeTempAt(th, th.T_K != null ? th.T_K : E.BS_T0_K, dragged, w, E.mgRamp, E.BS_T_RAMP_MS);
+    makeTempAt({ thermal: th }, dragged ? w.PM_bscTemp : null, E.bscTempAt);
 
   const S6 = { T_K: 600, T_from: 298, T_at_ms: 2200, T_ramp_ms: 5000, jiggle_scale: 0.9 };
   const heat = tempAt(S6);
@@ -3431,8 +3458,16 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       [0, 3000, 9000].every((t) => tempAt(S6, true, { PM_bscTemp: 412 })(t) === 412));
   }
   // ── EQ-1(c): the shipped frame pass and apply really wire it, both directions.
-  ok("the frame pass reads T_from / T_at_ms / T_ramp_ms",
-    /th\.T_from/.test(updSrc) && /th\.T_at_ms/.test(updSrc) && /th\.T_ramp_ms/.test(updSrc));
+  // E3b S-1: the ramp lives in bscTempAt now, and the frame pass DELEGATES to it
+  // — both halves asserted, so neither the body nor the delegation can be lost.
+  {
+    const tSrc = grabFn("bscTempAt");
+    ok("the shipped ramp body reads T_from / T_at_ms / T_ramp_ms",
+      /th\.T_from/.test(tSrc) && /th\.T_at_ms/.test(tSrc) && /th\.T_ramp_ms/.test(tSrc));
+    ok("...and the frame pass delegates to it (ONE body for both layers)",
+      /var tempAt = function \(mms\) \{ return bscTempAt\(bs, mms, tempDragV\); \};/.test(updSrc) &&
+      /var tempDragV = tempDragged \? window\.PM_bscTemp : null;/.test(updSrc));
+  }
   ok("T_K is the ramp evaluated at state-local ms, and the widget tracks it",
     /var T_K = tempAt\(ms\);/.test(updSrc) &&
     /bscHasControl\(ctrls, "temperature"\) && !window\.PM_bscTempDragged/.test(updSrc));
@@ -3441,7 +3476,7 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
   ok("the lookback REPLAY carries the temperature of that instant, not the present one",
     /bscJiggle\(uu, mms \/ 1000, tempAt\(mms\), jScale\)/.test(updSrc));
   ok("no accumulator joined the thermal path (mgRamp only)",
-    /mgRamp\(mms, th\.T_at_ms/.test(updSrc) && !/T_K\s*\+=/.test(updSrc));
+    /mgRamp\(mms, th\.T_at_ms/.test(grabFn("bscTempAt")) && !/T_K\s*\+=/.test(updSrc));
   ok("BS_T_RAMP_MS matches deriveStateMeta's frozen-pin default",
     E.BS_T_RAMP_MS === 2000 && /asNum\(bscTh2\.T_ramp_ms, 2000\)/.test(META_SRC),
     `${E.BS_T_RAMP_MS} ms`);
@@ -3973,8 +4008,13 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
     ok("ACCEPTANCE: the sandbox reads within +-0.2 of the network at the same T",
       TS.every((m, i) => Math.abs(still[i] - netPass(m, flat(298)).inst) < 0.2),
       TS.map((m, i) => `t=${m} S8 ${r2(still[i])} / S5 ${r2(netPass(m, flat(298)).inst)}`).join("  "));
+    // E3b S-6 NAMED the motion signal rather than inlining it, so the guard can
+    // be asserted on the predicate instead of on a boolean expression. Section 32
+    // then asserts the property that predicate has to have: the signal must be
+    // LIVE for the layer that actually draws the state.
     ok("the shipped guard stands the idle turn down only when jiggle already moves",
-      /mode === "explore" && !\(spinRate > 0\) && !window\.PM_bscSpinDragged &&\s*!\(th\.jiggle_scale > 0\)\) spinRate = 0\.14;/
+      /var jiggleMoves = \(th\.jiggle_scale > 0\);/.test(updSrc) &&
+      /mode === "explore" && !\(spinRate > 0\) && !window\.PM_bscSpinDragged &&\s*!jiggleMoves\) spinRate = 0\.14;/
         .test(updSrc),
       "a sandbox with no jiggle and no authored spin still turns (Rule 37 intact)");
     ok("...and deriveStateMeta still declares such a state MOVING (jiggle is the motion)",
@@ -4625,7 +4665,505 @@ console.log("\n=== 31. E3 THE THERMAL RESPONSE IS STEEPEST THROUGH THE BOILING R
     /candidates\.push\(asNum\(bscTh2\.T_at_ms, 0\) \+ asNum\(bscTh2\.T_ramp_ms, 2000\) \+ 600\)/.test(META_SRC));
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 32. E3b S-8 LAYER PARITY (a mechanism live on one layer is live on both) ===");
+// THE PERMANENT HALF of the E3b site-layer parity dispatch. founder_proxy
+// Checkpoint A on ionic_bonding (2026-08-03) found three motion/decoration
+// mechanisms that existed ONLY on the unit (molecule) layer:
+//   P-1  sitePos was the raw authored SI.at plus spin — it never touched the
+//        sepAt/baseAt/orgAt chain, so separation / separation_axis /
+//        approach_from / approach_at_ms / approach_duration_ms were INERT on ions.
+//   P-2  bscJiggle had exactly ONE call site, inside the unit layer's orgAt, so
+//        thermal.jiggle_scale was a no-op on every lattice and every ion scene.
+//   P-3  electrons.show 'shells' counted BS_VALENCE[mol.central], and molKey
+//        falls back to "HCl" when no unit is a molecule — so a scene of bare Na
+//        and Cl atoms drew ONE dot and the readout printed "outer electrons = 1".
+// Each is a state that renders, passes tsc, passes validate:concepts, and is
+// declared MOVING by deriveStateMeta while being byte-static on screen: a green
+// gate over a dead state. The pattern behind all three is the thing this section
+// exists to stop — a mechanism added to one of the two draw layers and not the
+// other, with nothing asserting parity. So the assertions below are written
+// against the SHIPPED bodies (bscSepAt / bscTempAt / bscSiteAt / bscSepPmAt /
+// bscValenceOf / bscCoordinationPair are extracted and called, never transcribed)
+// and every one carries its own pre-fix NEGATIVE CONTROL, because an assertion
+// that only says "the fixed code passes" would also pass a naive implementation.
+{
+  const updSrc = grabFn("updateBondingSceneFrame");
+  const appSrc = grabFn("applyBondingSceneState");
+  const buildSrc = grabFn("buildBondingScene");
+  const P2U = E.bscLinkCfg({}).pm_per_unit as number;
+
+  // ── the ionic_bonding S3 fixture: two ions on a scripted approach. The
+  //    destination is the touching distance the concept teaches — r(Na+) 102 +
+  //    r(Cl-) 181 = 283 pm — expressed in scene units on the shared linear scale,
+  //    rounded so the readout lands on the 282 pm the rock-salt cell also gives.
+  const SEP_U = 282 / P2U;
+  const ION_APPROACH_BS = {
+    placement: "free", mode: "approach_link",
+    separation_axis: [1, 0, 0], separation: SEP_U,
+    approach_from: 12.0, approach_at_ms: 1200, approach_duration_ms: 3600,
+    units: [{ id: "na", species: "Na+", at: [0, 0, 0] },
+            { id: "cl", species: "Cl-", at: [0, 0, 0] }],
+    controls: [{ id: "separation" }], hud_lines: ["separation_pm"]
+  };
+  const T_END = 1200 + 3600 + 600;          // the pin deriveStateMeta already sets
+  const sitesOf = (bs: any) => E.bscSiteList(bs, null) as any[];
+  const poseAt = (bs: any, ms: number, sepDrag: number | null = null) =>
+    sitesOf(bs).map((si: any, i: number) => E.bscSiteAt(bs, si, i, ms, sepDrag, null) as number[]);
+  const poseStr = (bs: any, ms: number) => JSON.stringify(poseAt(bs, ms));
+
+  // ── ASSERTION 1: the scripted position chain reaches the SITE layer.
+  {
+    const S = sitesOf(ION_APPROACH_BS);
+    ok("a two-ion approach state resolves both ions as SITES (the unit layer is off)",
+      S.length === 2 && E.bscIsSite(S[0].species) && E.bscIsSite(S[1].species) &&
+      S[0].uidx === 0 && S[1].uidx === 1, S.map((s: any) => s.species).join(" "));
+    const p0 = poseAt(ION_APPROACH_BS, 0), pE = poseAt(ION_APPROACH_BS, T_END);
+    ok("t=0 and t=state_end are DIFFERENT positions (P-1: this used to be byte-static)",
+      JSON.stringify(p0) !== JSON.stringify(pE),
+      `t=0 ${p0[0][0].toFixed(3)}/${p0[1][0].toFixed(3)}  ` +
+      `t=${T_END} ${pE[0][0].toFixed(3)}/${pE[1][0].toFixed(3)} (scene units on x)`);
+    ok("the state OPENS at approach_from, split about the separation_axis",
+      Math.abs(p0[0][0] + 6.0) < 1e-12 && Math.abs(p0[1][0] - 6.0) < 1e-12 &&
+      Math.abs(p0[0][1]) < 1e-12 && Math.abs(p0[0][2]) < 1e-12);
+    const dEnd = Math.hypot(pE[1][0] - pE[0][0], pE[1][1] - pE[0][1], pE[1][2] - pE[0][2]);
+    ok("...and SETTLES at exactly the authored separation, on the authored axis",
+      Math.abs(dEnd - SEP_U) < 1e-12, `${dEnd.toFixed(9)} vs authored ${SEP_U.toFixed(9)}`);
+    ok("the ramp is monotonic in between (mgRamp, no overshoot, no latch)",
+      [1200, 2000, 3000, 4000, 4800].every((m, i, a) => i === 0 ||
+        poseAt(ION_APPROACH_BS, m)[1][0] < poseAt(ION_APPROACH_BS, a[i - 1])[1][0] + 1e-12));
+    // D-1 / Rule 36: the rewind, on the POSE, not on a scalar.
+    const r1 = poseStr(ION_APPROACH_BS, 2400); poseStr(ION_APPROACH_BS, 90000);
+    ok("REWIND: t=2400 -> 90000 -> 2400 reproduces the site pose byte-for-byte",
+      r1 === poseStr(ION_APPROACH_BS, 2400));
+    // drag-seize: the separation slider takes the quantity and the script never
+    // writes it again (scripted_change_desyncs_the_dom_control_that_shares_it).
+    const drag = poseAt(ION_APPROACH_BS, 1500, 7.25);
+    ok("a trusted separation drag seizes the SITE pair at every t, script ignored",
+      [0, 1500, 3000, 9000].every((m) => {
+        const p = poseAt(ION_APPROACH_BS, m, 7.25);
+        return Math.abs(p[1][0] - 3.625) < 1e-12 && Math.abs(p[0][0] + 3.625) < 1e-12;
+      }), `x = +-${drag[1][0].toFixed(4)} at every t`);
+    ok("state entry seeds the separation widget at approach_from (the entry half)",
+      /PM_bscSep = \(bs\.approach_from != null\) \? bs\.approach_from/.test(appSrc));
+    // NEGATIVE CONTROL: the pre-fix expression, transcribed. sitePos was the raw
+    // authored SI.at, and a separation_axis pair authors both units at the origin
+    // — so the two ions sat on top of each other and NOTHING moved, ever.
+    const preFix = sitesOf(ION_APPROACH_BS).map((s: any) => s.at);
+    ok("NEGATIVE CONTROL: the pre-fix pass (raw SI.at) stacks both ions at the origin",
+      JSON.stringify(preFix[0]) === JSON.stringify(preFix[1]) &&
+      preFix[0].every((v: number) => v === 0), JSON.stringify(preFix[0]));
+    // and the SHIPPED frame pass really routes through it.
+    ok("the shipped site pass calls bscSiteAt, and the spin is still applied after it",
+      /var sAt = bscSiteAt\(bs, SI, i, ms, sepDragV, tempDragV\);/.test(updSrc) &&
+      /sitePos\.push\(\(spin !== 0\) \? bscSpinRot\(sAt, spinAx, spin\) : sAt\);/.test(updSrc));
+  }
+
+  // ── ASSERTION 1b (second order): the OPENING camera frames the ion pair.
+  {
+    const eOpen = E.bscOpeningExtent(ION_APPROACH_BS) as number;
+    const rMax = E.bscRadiusPm("Cl-") / P2U;
+    ok("the opening-extent solve now covers a separation_axis pair of SITES",
+      Math.abs(eOpen - (6.0 + rMax)) < 1e-9, `${eOpen.toFixed(3)} units (approach_from/2 + r)`);
+    // NEGATIVE CONTROL: the pre-fix loop carried "if (!msp) continue;" — it
+    // skipped every species not in MG_MOLECULES, i.e. every ion — so the fit was
+    // solved for the settled pose and the pair opened off frame.
+    const preOpen = Math.max(...sitesOf(ION_APPROACH_BS).map((s: any) =>
+      E.bscMag(s.at) + s.rPm / P2U));
+    ok("NEGATIVE CONTROL: the pre-fix fit measured the ions as two touching spheres",
+      preOpen < eOpen * 0.45,
+      `pre ${preOpen.toFixed(2)} vs ${eOpen.toFixed(2)} units — the pair would open off frame`);
+    ok("the SETTLED fit covers the separation too (no state authors a camera)",
+      (E.bscSiteExtent(ION_APPROACH_BS, null) as number) >= SEP_U * 0.5 + rMax - 1e-9);
+    ok("a MOLECULAR separation_axis scene is bit-for-bit unframed by the new term",
+      (E.bscSepSiteExtent({ separation_axis: [1, 0, 0],
+        units: [{ species: "H2O" }, { species: "H2O" }] }, 12) as number) === 0 &&
+      (E.bscSepSiteExtent({ units: [{ species: "Na+" }, { species: "Cl-" }] }, 12) as number) === 0);
+  }
+
+  // ── ASSERTION 2: thermal jiggle on the SITE layer (P-2).
+  {
+    const latJ = (js: number) => Object.assign({}, LATTICE_BS, {
+      lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: 564 },
+      thermal: { T_K: 298, jiggle_scale: js }
+    });
+    ok("jiggle_scale 1: two frames 200 ms apart are NOT byte-identical",
+      poseStr(latJ(1), 3000) !== poseStr(latJ(1), 3200));
+    ok("jiggle_scale 0 (the default): those same two frames ARE byte-identical",
+      poseStr(latJ(0), 3000) === poseStr(latJ(0), 3200));
+    ok("...and jiggle_scale keeps its default of 0 — authoring stays explicit",
+      poseStr(latJ(0), 3000) === poseStr(Object.assign({}, LATTICE_BS,
+        { lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: 564 } }), 3200));
+    // it is a jiggle IN PLACE, not a drift: every site stays within its own
+    // amplitude of its lattice point, which is ionic_bonding S8's negative
+    // control ("the solid's ions jiggle in place and never translate").
+    {
+      const bs1 = latJ(1), S = sitesOf(bs1);
+      const worstTo = (endMs: number) => {
+        let w = 0;
+        for (let m = 0; m <= endMs; m += 250) {
+          const p = poseAt(bs1, m);
+          for (let i = 0; i < S.length; i++) {
+            w = Math.max(w, E.bscMag([p[i][0] - S[i].at[0], p[i][1] - S[i].at[1],
+              p[i][2] - S[i].at[2]]) as number);
+          }
+        }
+        return w;
+      };
+      // the nearest-neighbour distance of this very block: an ion that jiggles IN
+      // PLACE never travels half of it, or it would be swapping sites.
+      const nn = E.bscMag([S[1].at[0] - S[0].at[0], S[1].at[1] - S[0].at[1],
+        S[1].at[2] - S[0].at[2]]) as number;
+      const w20 = worstTo(20000), w200 = worstTo(200000);
+      ok("the site jiggles IN PLACE — it never travels half a lattice spacing",
+        w20 < nn * 0.5, `worst excursion ${w20.toFixed(4)} vs nn/2 = ${(nn * 0.5).toFixed(4)} units`);
+      ok("...and the excursion is BOUNDED, not growing with t (an accumulator would)",
+        w200 <= w20 * 1.05 + 1e-9 && w200 <= Math.sqrt(3) + 1e-9,
+        `20 s ${w20.toFixed(4)}  ->  200 s ${w200.toFixed(4)} (closed-form bound sqrt(3) at scale 1)`);
+    }
+    // the amplitude law and the index-derived phase are the unit layer's, verbatim.
+    {
+      const hot = poseAt(Object.assign({}, latJ(1), { thermal: { T_K: 4 * E.BS_T0_K, jiggle_scale: 1 } }), 3000);
+      const cold = poseAt(latJ(1), 3000), S = sitesOf(latJ(1));
+      const amp = (p: number[][], i: number) => E.bscMag([p[i][0] - S[i].at[0],
+        p[i][1] - S[i].at[1], p[i][2] - S[i].at[2]]) as number;
+      near("site amplitude at 4T is exactly 2x that at T (sqrt(T/T0), the unit law)",
+        amp(hot, 5) / amp(cold, 5), 2, 1e-12);
+    }
+    const r2s = poseStr(latJ(1), 4400); poseStr(latJ(1), 120000);
+    ok("REWIND: a jiggling lattice replays byte-for-byte after a jump to 120 s",
+      r2s === poseStr(latJ(1), 4400));
+    // NEGATIVE CONTROL: bscJiggle used to have ONE call site in the whole file.
+    ok("NEGATIVE CONTROL / PARITY: bscJiggle is now reached from BOTH position chains",
+      /bscJiggle\(uu, mms \/ 1000, tempAt\(mms\), jScale\)/.test(updSrc) &&
+      /bscJiggle\(/.test(grabFn("bscSiteAt")),
+      "unit chain: orgAt   site chain: bscSiteAt");
+  }
+
+  // ── ASSERTION 3: per-site shell dots + the site-aware valence readout (P-3).
+  {
+    const SHELL_BS = {
+      placement: "free", mode: "transfer",
+      units: [{ id: "na", species: "Na", at: [-3, 0, 0] },
+              { id: "cl", species: "Cl", at: [3, 0, 0] }],
+      electrons: { show: "shells" }, hud_lines: ["valence"]
+    };
+    const S = sitesOf(SHELL_BS);
+    const dots = S.map((s: any) => E.bscValenceOf(s.species) as number);
+    ok("Na + Cl with electrons.show 'shells' draws EIGHT dots — 1 on Na, 7 on Cl",
+      dots[0] === 1 && dots[1] === 7 && dots[0] + dots[1] === 8, `[${dots.join(", ")}]`);
+    ok("the ION counts are DERIVED from the same rule (Na+ 0, Cl- 8 — the octet)",
+      E.bscValenceOf("Na+") === 0 && E.bscValenceOf("Cl-") === 8 &&
+      E.bscValenceOf("Mg2+") === 0 && E.bscValenceOf("O2-") === 8 &&
+      E.bscValenceOf("Al3+") === 0 && E.bscValenceOf("F-") === 8,
+      "outer count = BS_VALENCE[parent] - formal charge, no second table");
+    ok("bscParentEl resolves every ion in the closed enum to its element",
+      ["Li+", "Na+", "K+", "Mg2+", "Ca2+", "Al3+", "F-", "Cl-", "O2-"]
+        .every((k) => E.BS_VALENCE[E.bscParentEl(k)] != null) &&
+      E.bscParentEl("Na") === "Na" && E.bscParentEl("O2-") === "O");
+    // NEGATIVE CONTROL: the pre-fix expression, transcribed. molKey falls back to
+    // "HCl" whenever no unit species is a molecule (the shipped line is
+    // `if (!MG_MOLECULES[molKey]) molKey = "HCl";`), so the ring counted
+    // BS_VALENCE.H = 1 and drew a single dot inside the sodium sphere.
+    ok("NEGATIVE CONTROL: the pre-fix count on this very scene was ONE dot",
+      !E.MG_MOLECULES.Na && (E.BS_VALENCE[E.MG_MOLECULES.HCl.central] as number) === 1,
+      "BS_VALENCE[mol.central] with molKey forced to HCl -> 1");
+    ok("...and the HCl fallback that caused it is still there (so the fix is the fix)",
+      /if \(!MG_MOLECULES\[molKey\]\) molKey = "HCl";/.test(updSrc));
+    // the D-6 budget, declared rather than assumed.
+    ok("the dot pool is a DECLARED budget: 4 rings x 8 dots, never 27 rings",
+      E.BS_MAX_SHELL_DOTS === 8 && E.BS_MAX_SHELL_SITES === 4 &&
+      E.BS_SHELL_POOL === 32 && new RegExp("for \\(i = 0; i < BS_SHELL_POOL; i\\+\\+\\)").test(buildSrc),
+      `${E.BS_SHELL_POOL} dots built`);
+    ok("no species can overflow one ring (every count is <= BS_MAX_SHELL_DOTS)",
+      Object.keys(E.BS_VALENCE).concat(Object.keys(E.BS_ION_PARENT))
+        .every((k) => (E.bscValenceOf(k) as number) <= E.BS_MAX_SHELL_DOTS));
+    // the shipped frame pass: per-site count, per-site radius, camera plane (D-4).
+    ok("the shipped shell pass counts per SITE and sizes off that site's own radius",
+      /shellN\.push\(bscValenceOf\(siteSp\[sIx\]\)\);/.test(updSrc) &&
+      /shellR\.push\(siteRU\[sIx\] \* rsNow \+ BS_SHELL_RING_GAP\);/.test(updSrc) &&
+      /shellC\.push\(sitePos\[sIx\]\);/.test(updSrc));
+    ok("D-4 holds per ring: every ring is still drawn in the CAMERA plane",
+      /camera\.matrixWorld\.extractBasis\(mgCamR, mgCamU, mgCamF\);/.test(updSrc) &&
+      /mgCamR\.x \* Math\.cos\(ang2\) \+ mgCamU\.x \* Math\.sin\(ang2\)/.test(updSrc));
+    ok("the MOLECULAR one-ring path is unchanged (ring 0, same centre, same gap)",
+      /shellN\.push\(BS_VALENCE\[mol\.central\] \|\| 0\);/.test(updSrc) &&
+      /shellC\.push\(fOrg\);/.test(updSrc) && (E.BS_SHELL_RING_GAP as number) === 0.42);
+    // the HUD half: the radius_pm branch's own pattern, applied to valence.
+    ok("the valence HUD line is SITE-AWARE (the radius_pm reference implementation)",
+      /else if \(w === "valence"\) \{/.test(updSrc) &&
+      /if \(nShown > 0\) \{[\s\S]{0,1200}bscValenceOf\(siteSp\[vIx\[j\]\]\)/.test(updSrc) &&
+      /bscSpeciesLabel\(siteSp\[vIx\[j\]\]\) \+ ": outer electrons = "/.test(updSrc));
+    ok("...and it names BOTH participants, never a single untrue count",
+      /vIx\.push\(trFrom\); vIx\.push\(trTo\);/.test(updSrc) &&
+      /siteSp\[j\] !== siteSp\[focalSite\]/.test(updSrc));
+    ok("the species label reaching the HUD is real Unicode (Rule 34c, all paths)",
+      E.bscSpeciesLabel("Na+") === "Na⁺" && E.bscSpeciesLabel("Cl-") === "Cl⁻" &&
+      E.bscSpeciesLabel("O2-") === "O²⁻");
+  }
+
+  // ── ASSERTION 4: a lattice explore sandbox with jiggle actually moves.
+  {
+    const SANDBOX = {
+      placement: "lattice", mode: "explore",
+      units: [{ species: "Na+" }, { species: "Cl-" }],
+      lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: 564 },
+      thermal: { T_K: 298, jiggle_scale: 0.35 },
+      controls: [{ id: "temperature" }, { id: "ion_pair" }]
+    };
+    ok("mode explore + lattice + jiggle, no spin_rate: two frames 400 ms apart differ",
+      poseStr(SANDBOX, 5000) !== poseStr(SANDBOX, 5400));
+    ok("...and it is still a pure function of ms (Rule 37 free-run, D-1 rewind)",
+      poseStr(SANDBOX, 5000) === (() => { poseStr(SANDBOX, 400000); return poseStr(SANDBOX, 5000); })());
+    // THE GUARD, S-6: the fallback may only stand down on a signal that is LIVE
+    // for the layer actually drawing the state. Before S-2 this exact state got
+    // no jiggle (site layer) AND no spin (the guard stood down on jiggle_scale)
+    // — byte-frozen, while deriveStateMeta declared it MOVING.
+    ok("the idle-spin guard's signal is LIVE for the SITE layer (S-6 / S-2)",
+      /var jiggleMoves = \(th\.jiggle_scale > 0\);/.test(updSrc) &&
+      /bscJiggle\(/.test(grabFn("bscSiteAt")));
+    ok("deriveStateMeta declares such a state MOVING — and now that is TRUE",
+      /bscTh && typeof bscTh\.jiggle_scale === 'number' && bscTh\.jiggle_scale > 0/.test(META_SRC) &&
+      poseStr(SANDBOX, 5000) !== poseStr(SANDBOX, 5400));
+    // NEGATIVE CONTROL: the same sandbox with the jiggle switched off stands
+    // still on the site layer, which is exactly why the idle turn must NOT have
+    // stood down for it (and does not: the guard reads jiggle_scale > 0).
+    const STILL = Object.assign({}, SANDBOX, { thermal: { T_K: 298, jiggle_scale: 0 } });
+    ok("NEGATIVE CONTROL: with no jiggle the site layer is static, so the turn stays",
+      poseStr(STILL, 5000) === poseStr(STILL, 5400) &&
+      /!jiggleMoves\) spinRate = 0\.14;/.test(updSrc));
+  }
+
+  // ── ASSERTION 5: separation_pm is a live instrument (S-4).
+  {
+    const dAt = (m: number) => E.bscSepPmAt(ION_APPROACH_BS, sitesOf(ION_APPROACH_BS), m, null) as number;
+    ok("separation_pm reads the OPENING distance before the ramp",
+      Math.abs(dAt(0) - 12.0 * P2U) < 1e-9, `${Math.round(dAt(0))} pm`);
+    ok("...changes across the ramp, monotonically",
+      [1200, 2400, 3600, 4800].every((m, i, a) => i === 0 || dAt(m) < dAt(a[i - 1])),
+      [0, 1200, 2400, 3600, 4800].map((m) => Math.round(dAt(m))).join(" -> ") + " pm");
+    ok("...and SETTLES at the authored destination, printing the taught 282 pm",
+      Math.round(dAt(T_END)) === 282 && Math.abs(dAt(T_END) - SEP_U * P2U) < 1e-9,
+      `d = ${Math.round(dAt(T_END))} pm`);
+    // the same instrument on a LATTICE: shell-ordered, so sites 0/1 are the centre
+    // and one nearest neighbour — a/2, which is the same 282 pm for NaCl.
+    const dLat = E.bscSepPmAt(LATTICE_BS, sitesOf(LATTICE_BS), 0, null) as number;
+    ok("on a rock-salt lattice the same line reads the nearest-neighbour distance",
+      Math.abs(dLat - 564 / 2) < 1e-9, `${Math.round(dLat)} pm = a/2`);
+    ok("r(Na+) + r(Cl-) = that distance, so the ions TOUCH on the shared scale",
+      Math.abs((E.bscRadiusPm("Na+") + E.bscRadiusPm("Cl-")) - 283) < 1e-9,
+      "102 + 181 = 283 pm against a/2 = 282 pm");
+    // ── found by the headless drive, not by this gate: at jiggle_scale 0.35 the
+    //    DRAWN distance wandered 282 -> 294 -> 298 pm frame to frame, a 6%
+    //    flicker on a number a teacher is meant to read aloud. Rule 33d wants an
+    //    instrument that TRACKS the physical change, not one that re-rolls. The
+    //    line reads the EQUILIBRIUM positions; the jiggle is noise about them.
+    {
+      const latJig = Object.assign({}, LATTICE_BS, {
+        lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: 564 },
+        thermal: { T_K: 300, jiggle_scale: 0.35 }
+      });
+      const reads = [0, 250, 500, 750, 1000, 4000].map((m) =>
+        E.bscSepPmAt(latJig, sitesOf(latJig), m, null) as number);
+      ok("the readout does NOT flicker under a thermal jiggle (Rule 33d)",
+        reads.every((v) => Math.abs(v - 282) < 1e-9), `[${reads.map((v) => v.toFixed(3)).join(", ")}] pm`);
+      // NEGATIVE CONTROL: the DRAWN distance genuinely does wander — the fix is
+      // reading the equilibrium, not the jiggle having quietly gone away.
+      const drawn = [0, 250, 500].map((m) => {
+        const S = sitesOf(latJig);
+        const A = E.bscSiteAt(latJig, S[0], 0, m, null, null) as number[];
+        const B = E.bscSiteAt(latJig, S[1], 1, m, null, null) as number[];
+        return Math.hypot(B[0] - A[0], B[1] - A[1], B[2] - A[2]) * P2U;
+      });
+      ok("NEGATIVE CONTROL: the DRAWN distance really does wander (the jiggle is live)",
+        new Set(drawn.map((v) => v.toFixed(6))).size === drawn.length &&
+        Math.max(...drawn) - Math.min(...drawn) > 1,
+        `drawn ${drawn.map((v) => v.toFixed(1)).join(" / ")} pm vs a steady 282 read out`);
+    }
+    ok("fewer than two sites prints the em dash, never a fabricated number",
+      E.bscSepPmAt(ION_APPROACH_BS, [], 0, null) === null &&
+      E.bscSepPmAt(ION_APPROACH_BS, null, 0, null) === null &&
+      /\(dPm == null\) \? "/.test(updSrc) && /u2014" : Math\.round\(dPm\)\) \+ " pm"/.test(updSrc));
+    ok("the HUD reads the SHIPPED bscSepPmAt (one instrument, D-3)",
+      /var dPm = bscSepPmAt\(bs, siteList, ms, sepDragV\);/.test(updSrc) &&
+      /window\.PM_bscSepPm = bscSepPmAt\(bs, siteList, ms, sepDragV\);/.test(updSrc));
+    ok("the ionic concepts need never type a separation digit again (Rule 33d)",
+      (E.BS_HUD_LINES as string[]).includes("separation_pm") &&
+      (E.BS_HUD_LINES_E3B as string[]).includes("separation_pm"));
+  }
+
+  // ── S-5: coordination prints 6 : 6, and BOTH numbers are derived.
+  {
+    const rs = E.bscCoordinationPair("rock_salt") as (number | null)[];
+    ok("rock salt reads 6 : 6, both counted independently by the same pass",
+      rs[0] === 6 && rs[1] === 6, `${rs[0]} : ${rs[1]}`);
+    ok("a one-sublattice cell has no second number (fcc 12, bcc 8, hcp 12)",
+      (E.bscCoordinationPair("fcc") as any[])[0] === 12 &&
+      (E.bscCoordinationPair("fcc") as any[])[1] === null &&
+      (E.bscCoordinationPair("bcc") as any[])[0] === 8 &&
+      (E.bscCoordinationPair("hcp") as any[])[0] === 12,
+      "every metal lattice prints ONE count, honestly");
+    ok("the pair agrees with the independent E3a coordination derivation",
+      (E.bscCoordinationPair("rock_salt") as any[])[0] === E.bscCoordination("rock_salt") &&
+      (E.bscCoordinationPair("bcc") as any[])[0] === E.bscCoordination("bcc"));
+    // NEGATIVE CONTROL: counting the ANION inside the block a state actually
+    // draws gives 5, not 6 — an artefact of the crop. That is exactly why the
+    // second number comes from a complete-shell block and not from the render.
+    {
+      const LS = sitesOf(LATTICE_BS);
+      const anion = LS.find((s: any) => s.sub === 1);
+      ok("NEGATIVE CONTROL: the drawn 3x3x3 block gives the anion FIVE neighbours",
+        (E.bscCoordAround(LS, anion) as number) === 5,
+        "printing 6 : 5 would report the crop, not the crystal");
+      ok("...while the focal CATION's drawn count does match the derived 6 (rods agree)",
+        (E.bscCoordAround(LS, LS[0]) as number) === 6);
+    }
+    ok("the HUD prints the cation first and never doubles one count",
+      /coordination = " \+ \(\(bscSpeciesCharge\(spA0\) >= 0\)/.test(updSrc) &&
+      /cPair\[0\] \+ " : " \+ cPair\[1\]/.test(updSrc) &&
+      /cPair\[1\] \+ " : " \+ cPair\[0\]/.test(updSrc));
+    ok("a free-placement scene still falls back to the DRAWN neighbour set",
+      /else lines\.push\("coordination = " \+ nbIdx\.length\);/.test(updSrc));
+    ok("nothing hard-codes a coordination pair as a string literal anywhere",
+      !/"\s*\d+\s*:\s*\d+\s*"/.test(grabRegion("bscClamp", "applyBondingSceneGlow")),
+      "both numbers can only come from bscCoordinationPair");
+  }
+
+  // ── S-7: a scripted destination outside its own slider's range is an
+  //    AUTHORING ERROR, not a silent clamp.
+  {
+    // The engine writes the raw value into the widget; the BROWSER then pins the
+    // thumb at max while the span and the scene read the scripted value. That is
+    // the clamping form of scripted_change_desyncs_the_dom_control_that_shares_it
+    // and no engine change can fix it — the range is concept-level config, so the
+    // only correct answer is to refuse the authoring.
+    ok("the widget re-seed writes the RAW scripted value (the DOM pins it silently)",
+      /if \(e\) e\.value = String\(v\);/.test(appSrc) &&
+      /if \(tsl\) tsl\.value = String\(T_K\);/.test(updSrc));
+    ok("only the panel DEFAULT is clamped into the authored range (defc), not the script",
+      /var defc = function \(k, d, lo, hi\) \{ return bscClamp\(Number\(def\(k, d\)\), lim\(k, "min", lo\), lim\(k, "max", hi\)\); \};/.test(buildSrc));
+    // the engine's own default bounds, transcribed from the panel it emits.
+    const DEFAULT_RANGE: Record<string, [number, number]> = {
+      angle: [60, 180], spin: [0, 0.6], temperature: [100, 600],
+      separation: [1.5, 8], shift: [0, 1], field: [0, 1], valence: [1, 3]
+    };
+    for (const k of Object.keys(DEFAULT_RANGE)) {
+      const [lo, hi] = DEFAULT_RANGE[k];
+      if (!new RegExp('id="bsc_' + k + '_slider" min="\' \\+ lim\\("' + k + '", "min", ' + lo + '\\)').test(buildSrc)) {
+        ok(`the transcribed default range for '${k}' matches the emitted panel`, false, `${lo}..${hi}`);
+      }
+    }
+    // the RULE: a scripted destination that shares an id with an EXPOSED control
+    // must lie inside that control's resolved range.
+    const SCRIPTED: Record<string, (bs: any) => number[]> = {
+      temperature: (bs) => [bs.thermal?.T_K, bs.thermal?.T_from],
+      separation: (bs) => [bs.separation, bs.approach_from],
+      angle: (bs) => [bs.angle_deg, bs.angle_from],
+      spin: (bs) => [bs.spin_rate]
+    };
+    const violations = (sc: any, states: any[]) => {
+      const out: string[] = [];
+      for (const bs of states) {
+        const ids = (E.bscControlList(bs.controls) as any[]).map((c) => c.id)
+          .concat((E.bscControlList(bs.static_readouts) as any[]).map((c) => c.id));
+        for (const id of Object.keys(SCRIPTED)) {
+          if (ids.indexOf(id) < 0) continue;
+          const [lo, hi] = DEFAULT_RANGE[id];
+          const min = sc?.[id]?.min != null ? Number(sc[id].min) : lo;
+          const max = sc?.[id]?.max != null ? Number(sc[id].max) : hi;
+          for (const v of SCRIPTED[id](bs)) {
+            if (typeof v === "number" && (v < min || v > max)) {
+              out.push(`${id}=${v} outside ${min}..${max}`);
+            }
+          }
+        }
+      }
+      return out;
+    };
+    const S7_BAD = { thermal: { T_from: 300, T_K: 1200, T_at_ms: 2000 }, controls: ["temperature"] };
+    const S7_OK_RANGE = { temperature: { min: 300, max: 3400, step: 25 } };
+    ok("a 1200 K ramp against the DEFAULT 100..600 K slider is a HARD ERROR",
+      violations(null, [S7_BAD]).length === 1, violations(null, [S7_BAD]).join(" "));
+    ok("...and the same state with the architect's {min:300,max:3400} range passes",
+      violations(S7_OK_RANGE, [S7_BAD]).length === 0);
+    ok("ionic S10 must reach 3400 K so MgO (mp 3125) and CaO (2886) can melt at all",
+      violations(S7_OK_RANGE, [{ thermal: { T_K: 3400 }, controls: ["temperature"] }]).length === 0 &&
+      violations(S7_OK_RANGE, [{ thermal: { T_K: 3500 }, controls: ["temperature"] }]).length === 1);
+    ok("a state that does NOT expose the slider is not constrained by it",
+      violations(null, [{ thermal: { T_K: 1200 }, controls: [] }]).length === 0,
+      "no widget, no desync — the rule is about the shared quantity");
+    ok("the rule also covers separation / angle / spin, not temperature alone",
+      violations(null, [{ approach_from: 12.0, separation: 5.9, controls: ["separation"] }]).length === 1 &&
+      violations(null, [{ angle_from: 40, controls: ["angle"] }]).length === 1 &&
+      violations(null, [{ spin_rate: 0.9, controls: ["spin"] }]).length === 1);
+    // and it runs over every SHIPPED bonding_scene concept, so it arms itself the
+    // moment one lands rather than waiting for someone to remember this section.
+    {
+      const walk = (dir: string): string[] => {
+        let out: string[] = [];
+        for (const e of readdirSync(dir, { withFileTypes: true })) {
+          const p = join(dir, e.name);
+          if (e.isDirectory()) out = out.concat(walk(p));
+          else if (e.name.endsWith(".json")) out.push(p);
+        }
+        return out;
+      };
+      const root = join(process.cwd(), "src/data/concepts");
+      let scanned = 0;
+      const bad: string[] = [];
+      for (const f of walk(root)) {
+        const raw = readFileSync(f, "utf8");
+        if (!raw.includes("bonding_scene")) continue;
+        const j = JSON.parse(raw);
+        const states = Object.values(j.states || {})
+          .map((s: any) => s?.bonding_scene).filter(Boolean);
+        if (!states.length) continue;
+        scanned++;
+        const v = violations(j.slider_controls, states);
+        if (v.length) bad.push(f.split("/").pop() + ": " + v.join(", "));
+      }
+      ok("every SHIPPED bonding_scene concept keeps its scripts inside its slider ranges",
+        bad.length === 0, bad.length ? bad.join(" | ") : `${scanned} bonding_scene concept(s) scanned`);
+    }
+  }
+
+  // ── THE PERMANENT HALF: a mechanism live on one layer is live on the other.
+  //    This is the assertion that closes the HOLE rather than the three
+  //    instances — the next mechanism added to one chain and not the other fails
+  //    here, without anyone having to notice.
+  {
+    const siteChain = grabFn("bscSiteBaseAt") + grabFn("bscSiteAt") +
+      grabFn("bscSepAt") + grabFn("bscTempAt");
+    const unitChain = updSrc.slice(updSrc.indexOf("var sepAt = function"),
+      updSrc.indexOf("var spinAng = function"));
+    const MECHANISMS: [string, RegExp][] = [
+      ["separation_axis placement", /separation_axis/],
+      ["the scripted separation ramp", /bscSepAt\(|sepAt\(/],
+      ["the scripted temperature ramp", /bscTempAt\(|tempAt\(/],
+      ["the deterministic thermal jiggle", /bscJiggle\(/]
+    ];
+    const oneSided = MECHANISMS.filter(([, re]) => re.test(unitChain) !== re.test(siteChain));
+    ok("EVERY scripted position mechanism is present in BOTH position chains",
+      oneSided.length === 0,
+      oneSided.length ? "ONE-SIDED: " + oneSided.map(([n]) => n).join(", ")
+        : MECHANISMS.map(([n]) => n).join(" · "));
+    // the site chain must be PURE (D-1) — the whole freeze-pin guarantee, and the
+    // reason the assertions above can call it at all.
+    ok("the site position chain is closed-form: no clock, no accumulator, no RNG",
+      !/Date\.now|performance\.now|Math\.random|\+=/.test(siteChain));
+    // and the two layers must not be able to disagree about the SAME ramp: the
+    // unit layer's closures delegate to the shared bodies rather than repeating
+    // them, which is what makes a future edit reach both by construction.
+    ok("the unit layer DELEGATES to the shared ramps (one body, not two copies)",
+      /var sepAt = function \(mms\) \{ return bscSepAt\(bs, mms, sepDragV\); \};/.test(updSrc) &&
+      /var tempAt = function \(mms\) \{ return bscTempAt\(bs, mms, tempDragV\); \};/.test(updSrc));
+    ok("no NEW cue key was introduced, so deriveStateMeta needs no new pin",
+      /candidates\.push\(asNum\(bscState\.approach_at_ms, 0\) \+ asNum\(bscState\.approach_duration_ms, 2400\) \+ 600\)/
+        .test(META_SRC));
+  }
+}
+
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity) sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
