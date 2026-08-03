@@ -52049,9 +52049,43 @@ export const FIELD_3D_RENDERER_CODE = `
     // "species" is whatever the picker has resolved (E1c-H), which is still a pure
     // function of that species and of nothing else: same species, same camera,
     // however the teacher reached it.
+    // ── E2: A SANDBOX IS NOT A SCENE TYPE, AND "explore" IS NOT A CAMERA. ─────
+    //   BS_CAMERAS.explore is az 35 / el 47 / dist 7 — the SAME triple as
+    //   dipole_sum and assemble, i.e. the single-molecule solve wearing a third
+    //   mode name. It has never been solved over a multi-unit scene, and a
+    //   sandbox is by construction the scene the guided arc just taught handed to
+    //   the teacher: hydrogen_bonding S7 and S8 carry BYTE-IDENTICAL units[] (the
+    //   same thirty molecules at the same positions, both at 298 K) and differ
+    //   only in the mode string. Pinned at the same clock they framed the same
+    //   water two different ways — S7 one coherent cross-linked network at el 22,
+    //   S8 a main body plus a detached lower clump at el 47, with the caption
+    //   printing on the clump. The water appeared to break in half at exactly the
+    //   click where the teacher hands the sim to the class (Rule 32d).
+    //     THE FIX IS SCENE-DERIVED, NOT HISTORICAL. "Inherit the previous state's
+    //   framing" would make the camera depend on the route taken and break the D-4
+    //   property this whole family exists to keep (identical on the first frame and
+    //   under a freeze pin). So the solve reads the SCENE, exactly as E1c-A made it
+    //   read the scene for a single unit: a free-placement scene of more than two
+    //   units IS the network scene, whatever mode string the state used, and
+    //   network is the only measured multi-unit solve in the table. Distance is
+    //   unchanged either way (both cameras carry fit:true and the same units give
+    //   the same extent), so this moves ELEVATION 47 -> 22 and nothing else.
+    //     WHAT IT DELIBERATELY DOES NOT DO. A TWO-unit explore scene is left
+    //   alone: approach_link (el 16, the D-H...A angle readable) and compare
+    //   (el 20, side by side) are both two-unit solves with different measured
+    //   purposes, and the scene alone cannot say which a sandbox wants. Guessing
+    //   there would be a camera invented ahead of a frame that asks for it. One-
+    //   unit explore states are untouched (they are framed by BS_UNIT_CAMERAS
+    //   through bscSolvedShapeKey), so bond_polarity's sandbox is byte-identical.
+    function bscNetworkScene(bs) {
+        if ((bs.mode || "dipole_sum") !== "explore") return false;
+        if (bs.placement === "lattice") return false;
+        return !!(bs.units && bs.units.length > 2);
+    }
     function bscSolvedCamera(bs, speciesOverride) {
         var k = bscSolvedShapeKey(bs, speciesOverride);
         if (k) return BS_UNIT_CAMERAS[k];
+        if (bscNetworkScene(bs)) return BS_CAMERAS.network;
         return BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
     }
     // ── E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES.
@@ -55049,7 +55083,14 @@ export const FIELD_3D_RENDERER_CODE = `
         electrons: ["bsc_electron", "bsc_lone"],
         lattice: ["bsc_lattice"],
         layer: ["bsc_layer"],
-        neighbours: ["bsc_neighbour"]
+        neighbours: ["bsc_neighbour"],
+        // ── E5: THE CHART IS A SCENE ELEMENT AND HAD NO KEY. The enum was closed
+        //   at ten keys, all of them meshes, while bsc_trend — a live element type
+        //   a state can put on screen (row O) — was reachable from none of them.
+        //   A narration sentence about the trend line was therefore unbindable BY
+        //   CONSTRUCTION, on this concept and on every future one: two of
+        //   hydrogen_bonding S7's sentences had nothing to glow. Eleventh key.
+        trend: ["bsc_trend"]
     };
     function applyBondingSceneGlow(stateDef) {
         var focalTypes = {}, g, k, i;
@@ -55059,12 +55100,26 @@ export const FIELD_3D_RENDERER_CODE = `
             for (k = 0; k < keys.length; k++) focalTypes[keys[k]] = true;
         }
         var anyScene = false;
-        for (k in focalTypes) if (focalTypes[k]) anyScene = true;
+        // bsc_trend is a DOM canvas, not a mesh, so it must NOT arm the mesh pass:
+        // arming it would put every molecule through the peer branch on a frame
+        // where the focal is not in the 3D scene at all.
+        for (k in focalTypes) if (focalTypes[k] && k !== "bsc_trend") anyScene = true;
         for (i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.elementType || ud.elementType.indexOf("bsc_") !== 0) continue;
             if (o.visible === false) continue;
             applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
+        }
+        // ...and the trend panel takes the SAME emphasis in its own medium:
+        // brightness, never size (Rule 29), and always written both ways so the
+        // focal is released again when the sentence that named it ends (the
+        // one-way-dim scar). A key that resolved to nothing would be the
+        // glow_focal_..._becomes_total_noop scar, so it resolves to something.
+        var tcv = document.getElementById("bsc_trend");
+        if (tcv) {
+            var trFocal = !!focalTypes["bsc_trend"];
+            tcv.style.filter = trFocal ? "brightness(1.22)" : "";
+            tcv.style.boxShadow = trFocal ? "0 0 0 2px rgba(255,241,118,0.85)" : "";
         }
     }
 
@@ -59216,6 +59271,12 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lp < 6) lp = 6; if (lp > 94) lp = 94;
             var d = document.createElement("div");
             d.id = a.id || ("f3d_annot_" + ai);
+            // E1: the AUTHORED left, kept as data so the per-frame reserve pass can
+            // re-derive the position from the author's number every frame instead of
+            // nudging the live one. That is what makes the clamp closed-form rather
+            // than an accumulator: same viewport + same HUD box = same left, however
+            // many frames have run and whichever direction the clock last moved.
+            d.setAttribute("data-lp", lp.toFixed(2));
             d.style.cssText = "position:absolute;left:" + lp.toFixed(2) + "%;top:" + tp.toFixed(2) +
                 "%;transform:translate(-50%,-50%);color:" + (a.color || "#D4D4D8") +
                 ";font:600 15px/1.25 system-ui,-apple-system,sans-serif;" +
@@ -59235,6 +59296,78 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         box.style.display = list.length > 0 ? "block" : "none";
     }
+    // ── E1: THE ANNOTATION LAYER RESERVES THE READOUT RECTANGLE. ──────────────
+    //   RECURRENCE of the FIXED class field3d_hud_label_clipped_by_readout_box,
+    //   and the recurrence is instructive: the authoring side cannot fix it and a
+    //   green layout gate said there was nothing to fix.
+    //     THE MEASUREMENT. bsc_hud is right-anchored with a MIN-WIDTH, so it is a
+    //   fixed ~220 px box at EVERY viewport width — its left edge tracks the
+    //   viewport 1:1 (simW - 232). An annotation's x is authored in the 760-wide
+    //   design space and mapped to a PERCENTAGE, so its right edge tracks the
+    //   viewport at ~0.66:1. Two lines of different slope always meet: measured on
+    //   hydrogen_bonding, hud.left - max(annotation.right) runs
+    //   +125 px at sim width 1280 down through 0 at ~875 to -103 px at 614, i.e.
+    //   8/8 states overlap on the narrow end. An author reasoning about HUD TEXT
+    //   length gets it wrong every time, because "links = 0" and
+    //   "links per molecule = 3.30" occupy the SAME rectangle.
+    //     SO THE ENGINE OWNS IT, because only the engine can measure the box. The
+    //   required x is not authorable: it depends on a runtime-measured rect.
+    //   Closed form per frame from those rects — no accumulator, no latch — so a
+    //   SET_TIME_FREEZE rewind reproduces the same layout (D-1), and an annotation
+    //   that already clears, or a state with no HUD on screen, is never written to
+    //   at all (byte-identical, asserted in check:bonding-scene section 27).
+    var PM_ANNOT_GAP = 16;      // the clearance the acceptance test names
+    var PM_ANNOT_MIN_X = 8;     // ...and the left edge it may never be pushed past
+    /**
+     * Pure: the centre x to draw an annotation at, given its authored centre, its
+     * half width, its own vertical band, and the reserved rect. Returns cx
+     * UNCHANGED whenever the two cannot collide. The reserved band is inflated by
+     * the gap on all sides, so "clears by 3 px vertically" counts as a collision —
+     * a caption tucked under the readout's bottom edge is the same defect.
+     */
+    function pmAnnotClampX(cx, halfW, top, bot, res, gap, minX) {
+        if (!res || !(res.width > 0) || !(halfW > 0)) return cx;
+        if (!(bot > res.top - gap) || !(top < res.bottom + gap)) return cx;
+        var maxC = res.left - gap - halfW;
+        if (cx <= maxC) return cx;
+        var minC = halfW + minX;
+        return (maxC > minC) ? maxC : minC;
+    }
+    /**
+     * The closed list of renderer-drawn panels the annotation layer must not be
+     * drawn under. ONE entry: bonding_scene's readout, the only measured case.
+     * A scenario whose HUD is not on screen returns null and the whole pass is a
+     * no-op, which is every other concept in the fleet.
+     */
+    function pmAnnotReserved() {
+        var el = document.getElementById("bsc_hud");
+        if (!el || el.style.display === "none") return null;
+        var r = el.getBoundingClientRect();
+        return (r.width > 0 && r.height > 0) ? r : null;
+    }
+    function pmClampAnnotations() {
+        var box = document.getElementById("f3d_annots");
+        if (!box) return;
+        var res = pmAnnotReserved();
+        var W = window.innerWidth || document.documentElement.clientWidth || 0;
+        var kids = box.children;
+        for (var ci = 0; ci < kids.length; ci++) {
+            var el2 = kids[ci];
+            var lp = el2.getAttribute("data-lp");
+            if (lp == null) continue;
+            var want = lp + "%";
+            if (res && el2.style.display !== "none") {
+                var r2 = el2.getBoundingClientRect();
+                var cx = Number(lp) / 100 * W;
+                var cc = pmAnnotClampX(cx, r2.width / 2, r2.top, r2.bottom, res,
+                    PM_ANNOT_GAP, PM_ANNOT_MIN_X);
+                if (cc !== cx) want = cc.toFixed(2) + "px";
+            }
+            // written only when it CHANGES: an annotation that clears keeps the
+            // authored percentage string it was painted with, byte for byte.
+            if (el2.style.left !== want) el2.style.left = want;
+        }
+    }
     // per-frame reveal pass for timed annotations (pure fn of state-local t)
     function pmStepAnnotations() {
         var box = document.getElementById("f3d_annots");
@@ -59249,6 +59382,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var onB = (un == null) || (ams < Number(un));
             kids[ki].style.display = (onA && onB) ? "block" : "none";
         }
+        // ...and only now, with this frame's visibility settled, reserve the
+        // readout rectangle. Reveal first, clamp second: a label that is hidden
+        // this frame is never measured, and one that has just appeared is placed
+        // on the frame it appears.
+        pmClampAnnotations();
     }
 
     function applyState(stateId) {
