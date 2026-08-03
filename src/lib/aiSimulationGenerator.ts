@@ -2862,7 +2862,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     moment_of_inertia_shapes:       "mechanics_2d",
     combined_rotation_translation:  "mechanics_2d",
     torque_and_couple:              "mechanics_2d",
-    rolling_on_incline:             "mechanics_2d",
+    // rolling_on_incline was here as a RETIRED mechanics_2d entry — no concept
+    // JSON, absent from VALID_CONCEPT_IDS and CONCEPT_PANEL_MAP, i.e. never a
+    // live product concept. Removed 2026-08-04 because the Class 11 Ch.7
+    // rotmech build claims the id for a real field_3d concept, and a duplicate
+    // key in this literal is a TS1117 error. The vestigial
+    // MECHANICS_SCENARIO_MAP entry is a DIFFERENT object and is left alone.
     rolling_without_slipping:       "mechanics_2d",
     // Energy
     conservation_of_energy:         "mechanics_2d",
@@ -3025,6 +3030,21 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // the along-motion component. Pure configuration, zero renderer edits
     // (0d). Alex pipeline, 2026-08-01.
     work_done_by_constant_force:    "field_3d",
+    // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
+    // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave so the
+    // five parallel desks never edit this file (docs/loop_runs/rotmech/).
+    // First six ride the rigid_body_rotation scenario (0c-1); the two rolling
+    // concepts ride the newtons_laws_body SEAM R extension (0c-2). Both landed
+    // in PR #28. Pure configuration at 0d, zero renderer edits.
+    // NOT in PCPL_CONCEPTS (that set is 2D parametric_renderer only).
+    rigid_body_rotation:            "field_3d",
+    rotational_kinematics:          "field_3d",
+    tau_eq_i_alpha:                 "field_3d",
+    rotational_work_energy:         "field_3d",
+    angular_momentum:               "field_3d",
+    conservation_of_angular_momentum: "field_3d",
+    pure_rolling:                   "field_3d",
+    rolling_on_incline:             "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────

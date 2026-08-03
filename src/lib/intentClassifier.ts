@@ -276,6 +276,36 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // positive_negative_zero_work (concept #2). Does NOT cover kinetic
     // energy, the work-energy theorem, or power. Alex pipeline, 2026-08-01.
     'work_done_by_constant_force',
+    // ── Class 11 Ch.7 — Systems of Particles & Rotational Motion (rotmech) ──
+    // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave, so the
+    // five parallel desks never touch this file (docs/loop_runs/rotmech/).
+    // Registration with no concept JSON is inert: checkRegistrations() in
+    // src/scripts/validate-concepts.ts iterates the JSONs found on disk, so an
+    // id registered here is never checked until its file lands. PCPL_CONCEPTS
+    // is the ONE reverse orphan check and is correctly skipped — all eight are
+    // field_3d.
+    //
+    // Engine: the rigid_body_rotation scenario (0c-1) serves the first six;
+    // pure_rolling + rolling_on_incline ride the newtons_laws_body SEAM R
+    // rolling extension (0c-2). Both landed in PR #28.
+    //
+    // Rigid body spinning on a fixed axle — the turntable apparatus itself.
+    'rigid_body_rotation',
+    // Angular kinematics: θ, ω, α over time; a point's v = ωr at radius r.
+    'rotational_kinematics',
+    // The rotational second law, α = τ_net / I.
+    'tau_eq_i_alpha',
+    // Rotational work and energy: KE_rot = ½Iω², W = τ·θ.
+    'rotational_work_energy',
+    // Angular momentum L = Iω, drawn as a vector along the axis.
+    'angular_momentum',
+    // Conservation of L: masses slide inward, I falls, ω rises, L holds. The
+    // 0c-1 spec driver — the hardest single requirement in the chapter.
+    'conservation_of_angular_momentum',
+    // Rolling without slipping: the contact point at rest, v = ωR.
+    'pure_rolling',
+    // Rolling down an incline: a = g sin θ/(1+k); sphere beats disc beats ring.
+    'rolling_on_incline',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -1236,6 +1266,16 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   ── Work, Energy and Power (Class 11 Ch.6) ──
   work_done_by_constant_force ← work done by a CONSTANT force, W = F·d·cos θ: force acting through a displacement, and only the component of the force ALONG that displacement counts; NO displacement means ZERO work, however large the force (pushing a stalled car, holding a heavy bag still); a tilted pull does LESS work per metre, set by cos θ; a live numeric prediction stamps against the meter's own live reading; work is the SCALAR (dot) product of two vectors, W = F⃗·d⃗ = F d cos θ, NOT the cross product; work done by a force is INDEPENDENT of the mass being moved. Covers θ from 0° up to (not including) 90° ONLY — zero/negative work and the full sign taxonomy across all three angle regimes belong to the sibling positive_negative_zero_work. Does NOT cover kinetic energy, the work-energy theorem, or power.
 
+  ── Systems of Particles and Rotational Motion (Class 11 Ch.7) ──
+  rigid_body_rotation ← a rigid body turning about a FIXED AXLE: every point sweeps the same angle in the same time, so every point shares one ω, but a point far from the axis travels a longer circle and therefore moves faster (v = ωr). The body's shape and the axle it turns on are the picture; the turntable, its rod and its two masses are one machine seen across the chapter. Does NOT cover how ω changes with time (that is rotational_kinematics) or what makes it change (tau_eq_i_alpha).
+  rotational_kinematics ← the angular equations of motion: θ, ω and α over time, ω = ω₀ + αt and θ = ω₀t + ½αt², the exact mirrors of the straight-line equations; a point on the body has v = ωr, so the same ω gives a bigger v further out. Does NOT cover torque, moment of inertia, or WHY α has the value it has.
+  tau_eq_i_alpha ← the rotational second law, α = τ_net / I: torque is what changes a spin, and the SAME torque produces a smaller α on a body with a bigger moment of inertia. The rotational twin of a = F/m. Does NOT cover how I itself is computed from the mass distribution (moment_of_inertia) or the definition of torque as r × F (torque).
+  rotational_work_energy ← work and energy for a turning body: KE_rot = ½Iω², work done by a torque W = τ·θ, and the work-energy theorem in rotational form. Does NOT cover the rolling KE split between translation and rotation (pure_rolling / rolling_on_incline).
+  angular_momentum ← L = Iω, the rotational counterpart of momentum p = mv, drawn as a VECTOR along the rotation axis with its direction set by the right-hand rule. Does NOT cover what happens when L is conserved (conservation_of_angular_momentum).
+  conservation_of_angular_momentum ← with no external torque, L = Iω stays CONSTANT: pull the masses inward, I falls, and ω must rise to keep the product fixed — the spinning-stool result. Kinetic energy does NOT stay constant (the pull does work), which is the usual confusion. A brake supplies a real external torque and L then falls. Does NOT cover rolling.
+  pure_rolling ← rolling without slipping: v = ωR ties the turning to the travel, and the CONTACT POINT is instantaneously at rest, which is why static friction acts there and does no work. One turn of the wheel advances it exactly one circumference. Does NOT cover the race down a slope (rolling_on_incline).
+  rolling_on_incline ← a body rolling down a slope: a = g sin θ/(1+k), where the shape factor k (solid sphere 0.4, disc 0.5, hollow sphere 2/3, ring 1.0) decides the winner — a sphere beats a disc beats a ring, every time, regardless of mass or radius. The kinetic energy splits between translation and rotation. Does NOT cover the slipping/skidding regime boundary in depth.
+
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
   electric_field_point_charge     ← electric field of a point charge E = kQ/r², radial direction (out for +Q, in for −Q), field lines, line density = field strength, E = F/q
@@ -1492,6 +1532,14 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 
 CRITICAL DISAMBIGUATION (work-energy, Ch.6):
 - "what is work in physics" / "work done by a force" / "W = F d cos theta" / "why is work zero if nothing moves" / "I pushed hard so did I do work" / "does holding something up count as work" / "why does a tilted pull do less work" / "why cos theta and not sin theta in work" / "work as a dot product" / "F dot d" / "is work a vector or a scalar" / "does mass affect the work done" / "work done by a constant force" (force between 0 degrees and just under 90 degrees ONLY — some positive component along the motion) → work_done_by_constant_force (does NOT cover work at exactly 90 degrees, negative work, or the full positive/negative/zero sign taxonomy — that is the sibling positive_negative_zero_work, not yet shipped; does NOT cover kinetic energy or the work-energy theorem)
+- "rigid body rotation" / "body turning on an axle" / "why do all points have the same omega" / "why does the outer point move faster" / "v = omega r" (the SPINNING BODY itself, fixed axis) → rigid_body_rotation (does NOT cover how omega changes with time — rotational_kinematics; or what changes it — tau_eq_i_alpha)
+- "rotational kinematics" / "angular equations of motion" / "omega = omega0 + alpha t" / "theta = omega0 t + half alpha t squared" / "angular acceleration formula" → rotational_kinematics (does NOT cover torque or moment of inertia)
+- "tau = I alpha" / "rotational second law" / "torque and angular acceleration" / "why does the same torque spin one wheel faster" / "rotational F = ma" → tau_eq_i_alpha (does NOT cover how I is computed from the mass distribution — moment_of_inertia, not yet shipped; or the r x F definition of torque — torque, not yet shipped)
+- "rotational kinetic energy" / "half I omega squared" / "work done by a torque" / "W = tau theta" / "energy of a spinning body" → rotational_work_energy (does NOT cover the rolling KE split — pure_rolling / rolling_on_incline)
+- "angular momentum" / "L = I omega" / "rotational momentum" / "right hand rule for angular momentum" / "which way does L point" → angular_momentum (does NOT cover the conservation result — conservation_of_angular_momentum)
+- "conservation of angular momentum" / "why does a skater spin faster when she pulls her arms in" / "spinning stool" / "L stays constant" / "why does omega go up when I goes down" / "is kinetic energy conserved when the skater pulls in" → conservation_of_angular_momentum (kinetic energy is NOT conserved — the pull does work; does NOT cover rolling)
+- "rolling without slipping" / "pure rolling" / "v = omega R" / "why is the contact point at rest" / "why does friction do no work in rolling" / "one turn one circumference" → pure_rolling (does NOT cover the race down a slope — rolling_on_incline)
+- "rolling down an incline" / "which rolls down faster sphere or ring" / "why does the sphere win" / "a = g sin theta over 1 plus k" / "does mass affect which body wins the roll" / "rolling race" → rolling_on_incline (the winner does NOT depend on mass or radius, only on the shape factor k; does NOT cover the slipping regime in depth)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
