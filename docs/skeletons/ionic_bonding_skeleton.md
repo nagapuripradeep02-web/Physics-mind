@@ -63,13 +63,13 @@ Word counts are targets inside the 25–55 budget. **Duration is derived from th
 |---|---|---|---|---|---|---|---|---|---|
 | S1 | core | Na has one spare outer electron; Cl has one gap | `shell-reveal` | "One spare, one gap" | — | 40 | ~20 s | 21 | `electrons` |
 | S2 | core | Transfer; both radii change on the linear-pm scale | `transfer-and-resize` | "Electron moves, sizes change" | — | 45 | ~23 s | 24 | `electrons` |
-| S3 | core | Attraction in, shell repulsion out, balance at a fixed spacing (HUD-read) | `pull-to-balance` | "Pull in, then stop" | — | 42 | ~21.5 s | 22 | `units` |
+| S3 | core | Attraction in, shell repulsion out, balance at a fixed spacing (HUD-read) | `pull-to-balance` | "Pull in, then stop" | — | 37 | ~19 s | 20 | `lattice` |
 | S4 | core | The pair does not stay a pair; the lattice grows | `lattice-grow` | "More ions keep joining" | — | 48 | ~24.5 s | 25 | `lattice` |
 | S5 | core | 6:6 coordination, read from inside the block | `neighbour-cutaway` | "Six neighbours, every ion" | `{spin, core}` | 40 | ~20.5 s | 21 | `neighbours` |
-| S6 | core | One-site shift → like charges meet → split (derived) | `layer-shift-snap` ⇄ | "One shift, it splits" | `{shift, core}` | 45 | ~23 s | 24 | `layer` |
+| S6 | core | One-site shift → like charges meet → split (derived) | `layer-shift-snap` ⇄ | "One shift, it splits" | `{shift, core}` | 45 | ~23 s | 24 | `lattice` (see glow note) |
 | S7 | core | Heat frees the ions; the whole lattice fails at once | `melt-the-lattice` | "Heat frees the ions" | `{temperature, core}` | 45 | ~23 s | 24 | `lattice` |
-| S8 | core | One field, two samples: only the melt conducts | `field-on-both` | "Free ions carry charge" | `{field, core}` | 50 | ~25.5 s | 26 | `units` |
-| S9 | **adv** | Charge and size set lattice strength (NaCl vs MgO race) | `melt-race` | "Double charge, far stronger" | — | 46 | ~23.5 s | 24 | `lattice` |
+| S8 | core | One field, two samples: only the melt conducts | `field-on-both` | "Free ions carry charge" | `{field, core}` | 50 | ~25.5 s | 26 | `field` → `lattice` |
+| S9 | **adv** | Charge and size set lattice strength (NaCl vs MgO race) | `melt-race` | "Double charge, far stronger" | — | 49 | ~25 s | 25 | `lattice` |
 | S10 | core | Explore | `interaction_complete` | — | `{ion_pair}` `{spin}` `{temperature}` `{shift}` `{field}` all core | 0/open | free-run | 30 | — |
 
 No two guided states share an archetype except the declared cross-concept pair.
@@ -122,6 +122,22 @@ for metallic). `links.show_count` is parsed-and-never-read — **never author it
 
 ### 5.1 Row R — `groups: [{id, label, at, units?, lattice, thermal, field}]` — what S8 and S9 each require
 
+**Two-sample geometry (F1 fix — binding on json-author; supersedes every earlier `at` value).**
+The Checkpoint-B audit proved the cycle-2 centres (±9) left the two blocks INTERPENETRATING
+(edge gap −1.29 u at S8, +1.05 u ≈ touching at S9): **the fit-solve frames a scene, it cannot
+separate overlapping blocks** — separation is authored geometry. Post-melt-fix (E3b dispatch 5:
+a molten group's excursion is bounded to its own lattice envelope × `BS_MELT_EXPAND` 1.08, and
+E3b dispatch 6 bounds field-driven ion migration to the same envelope), the clearance budget at
+48 pm/u is:
+
+- 3×3×3 NaCl block half-width incl. Cl⁻ radius: 5.875 + 3.771 = **9.646 u**; molten envelope ≈ **10.6 u**; solid-jiggle allowance +0.40 u (300 K) / +0.90 u (1500 K).
+- 3×3×3 MgO block half-width incl. O²⁻ radius: 4.3875 + 2.917 = **7.304 u**.
+- **Centres: `at: [±13.5, 0, 0]` in BOTH states** (separation 27.0 u). Edge gaps: S8 = 27.0 − 10.05 − 10.61 = **+6.34 u** (1.08 nn spacings — a visual gap, not a graze; still +5.37 u even if the expansion allowance were 20%); S9 worst case = 27.0 − 10.61 − 8.20 = **+8.19 u**.
+- Scene x-extent ≈ 47.7 u (S8) / 45.8 u (S9) — the fit-solve input is predictable. Estimated scale at 1024 px ≈ 17–19 px/u: Cl⁻ ≈ 135 px, Na⁺ ≈ 76 px, O²⁻ ≈ 104 px, Mg²⁺ ≈ 54 px apparent diameter — legible for these contrast beats (the D-4 counting duties live at S1/S5, not here). Per the `orthographic_solve` scar these are design ESTIMATES; **json-author confirms legibility on the built frame at 1024 px.**
+- Block size stays **`n:[3,3,3]`** — the same apparatus S5–S7 established (Rule 32d); a 2×2×2 block (8 ions, one cell) reads as a cluster, not a crystal. The ~2.5× apparent shrink is the declared, quantified price.
+- Separation axis is **x**; dispatch 2 forces `az 90` for an x-separated multi-group scene, so both blocks sit at equal depth with zero mutual occlusion (y would read as gravity and collide with the labels + the top-anchored HUD; z would stack one behind the other).
+- **Group labels (`pmCreateAutoLabel`): anchored at each GROUP centre** — never the scene centroid — offset below the block to y ≈ −12.5 u, same y for both (one baseline). Vertical clearance from the fixed 220 px top-anchored HUD (`top: 52 px`+) is a MEASURE-at-1024 duty on the built state, like the S9 four-line HUD duty.
+
 **S8 is *one field, two samples*.**
 - Two groups, each with its OWN `lattice` (same cell, same `a_pm`, same species) and its OWN `thermal` (`g_solid` T_K 300; **`g_melt` T_K 1150** — see the melt-law knee, §5.3: the knee sits at `mp_K + 25` = 1099 K, so 1100 would sit at the knee with no margin; 1150 opens at `f_melt = 1` with 51 K of margin).
 - **A group must be able to OPEN already-molten**: `g_melt` authors no melt ramp — its `thermal.T_K` sits above the knee from t=0, and the molten arrangement is a closed-form function of (T_K, site index, state-local t) via `f_melt` (D2·T-2). No latch, no replayed history (D-1).
@@ -166,7 +182,8 @@ Operationally for the surgeon:
 - **32b one variable moves:** each guided state's only changing quantity is its taught one (S5's spin is the D-4 countability convention; jiggle is ambient texture at authored amplitude). Explore exempt.
 - **32c:** the delta-cue column IS each state's on-canvas caption opener; prose lives in the subtitle strip (Rule 34a).
 - **32d home pose:** one apparatus throughout — S1's two atoms become S2's ions become S3's pair become S4's seed; S5 opens on S4's grown block (the `BS_COORD_RADIUS_SCALE` opening-up IS S5's beat); S6/S7 reopen on the packed block; S8/S9 are the declared two-sample frames (the one deliberate re-framing, fit-solved, never authored).
-- **32e:** exactly one glow focal per state; the glow enum is the closed 11-key set (10 mesh keys + `trend`).
+- **32e:** exactly one glow focal per state; the glow enum is the closed 12-key set (10 mesh keys + `trend` + `field`, the last added by E3b dispatch 4).
+- ⚠ **GLOW-KEY NOTE (Checkpoint B finding — two declared focals light NOTHING on this concept).** Verified independently by json-author and quality-auditor: **(1)** `units` resolves to `["bsc_atom","bsc_bond","bsc_atom_label"]`, but `field_3d_renderer.ts:55658` hides every molecular-pool mesh whose species is an atom or ion (`bscIsSite` is true for all six species this concept uses), so `units` lights nothing here — every ion is drawn by the SITE layer. **(2)** `bsc_layer` has **no mesh anywhere in the renderer** — `check_bonding_scene.ts:5508` carries it as a declared, accepted orphan ("no mesh yet, and no state can reach it"). Authoring either would dim the whole scene with nothing lit, i.e. Rule 32e failing in the ZERO-focal direction. **S3, S6 and S8 therefore author `lattice`** (and S8's cause beat authors the live `field`). The wave's DECLARED `layer-shift-snap ⇄ layer-shift-hold` contrast pair has no interface-highlight mesh built for either sibling — recorded for the metallic desk and routed to `peter_parker:field3d_surgeon` as a standing gap, not a blocker.
 
 ---
 
@@ -215,10 +232,10 @@ config:
 - `mode:'approach_link'`, `links:{enabled:false}`. `approach_at_ms:4000`, duration ~7000, **destination separation authored explicitly as a_pm/2 of `BS_ION_PAIRS.NaCl` = 282.0 pm** (5.875 scene units at 48 pm/unit). Motion = the leading site pair on the closed-form `mgRamp` position chain (D1·S-1); the opening-extent fit must include ion sites (D1·S-1 second-order item) so the approach opens in frame.
 - **Instrument (F-4 closed): HUD `['separation_pm','radius_pm']`** — `separation_pm` (D1·S-4) prints the live centre-to-centre distance, `d = 282 pm` at settle, ramping through the approach. The taught quantity now has a live readout (Rule 33d). **No authored string in this concept types a separation digit — including the delta cue** ("Pull in, then stop").
 - ⚠ **The 282-vs-283 note (kept for json-author):** the Shannon radii on screen sum to 102 + 181 = **283 pm**; the authored destination is 282.0 by the a/2 convention (564.0/2). With `separation_pm` live the tension is invisible in text — the HUD prints the engine's own settle value and nothing else asserts one.
-- **Convention placement (F-9 closed by deletion):** the a/2 convention is NOT named on canvas — an annotation saying "half the cell edge" would use a term S4 has not yet taught (Rule 25). It lives in the narration (spoken, forward-referencing) and closes visually at S4, where the `lattice_a` HUD shows `a = 564 pm` beside the lattice. The previous "named on canvas" claim is withdrawn.
+- **Convention placement (F-9, re-closed at Checkpoint B / N7):** the a/2 convention is named **NOWHERE the student hears or reads** — not on canvas (Rule 25: "cell edge" is untaught before S4) and **not in the narration either** (Rule 25 governs spoken lines too; the cycle-2 "spoken forward-reference" compromise is WITHDRAWN — it smuggled the untaught term in through the ear instead of the eye). It survives only as json-author provenance for the authored destination 282.0 pm (= `a_pm/2` of `BS_ION_PAIRS.NaCl`), and closes visually at S4 where the `lattice_a` HUD prints `a = 564 pm`.
 - No formula surface. Annotation 11500 (x 380) "Full shells cannot overlap — they stop here".
-- Narration (≈42 w): opposite charges pull the ions together. The closer they get, the harder their full inner shells push back. Pull in, push out, balance: the ions settle at a fixed spacing. The distance readout shows it live — half of the crystal's measured cell edge.
-- `eye_capture_ms: 12500`. Duration 22.
+- Narration (37 w): opposite charges pull the ions together. The closer they get, the harder their full inner shells push back. Pull in, push out, balance: the ions settle at a fixed spacing. The distance readout shows the spacing live.
+- `eye_capture_ms: 12500`. Duration 20.
 
 ### S4 — "More ions keep joining" · core · `lattice-grow` · LIVE (growth via `bscGrowShown`; jiggle texture pending D1·S-2) · **PRIMARY AHA + misconception pivot**
 - `mode:'lattice_grow'` (E3a), `placement:'lattice'`. `lattice:{cell:'rock_salt', n:[5,5,5], a_pm:564.0, grow_at_ms:5000, grow_duration_ms:9000, grow_from: the S3 pair}` — 125 sites = `BS_MAX_SITES`; D-6 caps site labels at 8 automatically.
@@ -239,7 +256,7 @@ config:
 - `mode:'layer_shift'`. Packed home pose. `shift:{at_ms:6000, duration_ms:3000, offset_sites:1, plane: horizontal mid-plane}`. Choreography: upper half slides one full site (cause), holds ~700 ms with the interface's like-charge pairs as glow focal (`layer`), then the derived split — halves separate on a closed-form ramp (10000 → 15000; D-2 outcome falls out of the charges; D-1 no accumulator).
 - HUD `['like_contacts']` (E3b; derived 0 → 6 — no annotation types the digit). No formula surface.
 - `{id:'shift', min_ring:'core'}` — scripted beat sharing a quantity with a live slider ⇒ **drag-seize required**.
-- Annotations: 9200 (x 380) "A one-site slide lines up like charges" (mechanism wording — true wherever the teacher drags); 15500 (x 380) "Like charges push the halves apart".
+- Annotations: 9200 (x 380) "A one-site slide lines up like charges" (mechanism wording — true wherever the teacher drags); 15500 (x 380) **"If like charges line up, they push the halves apart"** (explicitly conditional, the S7 discipline — true at `shift` = 0, where nothing lines up and the annotation therefore claims nothing, and true at every position through the split. The old "Like charges push the halves apart" was falsifiable by its own slider — N9).
 - **Declared contrast pair** with `metallic_bonding` S5 (0 → 6 vs 0 → 0).
 - Narration (≈45 w): this is why a salt grain splits into flat faces instead of denting. Slide the top half of the crystal by one position. Every plus now sits over a plus, every minus over a minus. The counter shows the new like-charge contacts — and the crystal splits along that plane.
 - `eye_capture_ms: 16000`. Duration 24.
@@ -253,20 +270,21 @@ config:
 - `eye_capture_ms: 16000`. Duration 24.
 
 ### S8 — "Free ions carry charge" · core · `field-on-both` · **E3b-BLOCKED (Dispatches 1 + 2 + 4)**
-- `mode:'drift'`. `groups`: `g_solid {label:'solid', at:[-4.5,0,0], lattice: rock_salt [3,3,3] a 564.0, thermal:{T_K:300, jiggle_scale:0.6}}` · `g_melt {label:'molten', at:[4.5,0,0], same lattice spec, thermal:{T_K:1150, jiggle_scale:1}}` — **1150, not 1100: the melt-law knee is `mp_K + 25` = 1099 K (§5.3); 1150 opens at `f_melt = 1` with 51 K margin.** `g_melt` opens already molten (§5.1; closed-form, no latch). **Scene-level** `ions:{mobile:true, field: 1, field_at_ms:6000}` inherited by BOTH groups (D4·Q-2 — destination-valued, frozen-pin registered).
-- Choreography: field arrows fade in at 6000 (cause), beat, the melt's ions begin a slow biased drift ~6800; the solid's jiggle in place (D1·S-2 — load-bearing) and never translate (the gate-13 negative control IS the 16a contrast beat).
+- `mode:'drift'`. `groups` (geometry per §5.1 — F1 fix): `g_solid {label:'solid', at:[-13.5,0,0], lattice: rock_salt [3,3,3] a 564.0, thermal:{T_K:300, jiggle_scale:0.6}}` · `g_melt {label:'molten', at:[13.5,0,0], same lattice spec, thermal:{T_K:1150, jiggle_scale:1}}` — **1150, not 1100: the melt-law knee is `mp_K + 25` = 1099 K (§5.3); 1150 opens at `f_melt = 1` with 51 K margin.** `g_melt` opens already molten (§5.1; closed-form, no latch) and stays CONTAINED to its own envelope under the melt + drift bounds — clearance: 27.0 u separation − 10.05 (solid + jiggle) − 10.61 (melt envelope) = **+6.34 u edge gap**; **json-author re-runs this line if any radius, `n`, `a_pm` or `at` changes** (the S1 spacing-rule discipline). **Scene-level** `ions:{mobile:true, field: 1, field_at_ms:6000}` inherited by BOTH groups (D4·Q-2 — destination-valued, frozen-pin registered).
+- Group labels: `pmCreateAutoLabel` at each GROUP centre, offset below the block (y ≈ −12.5 u, §5.1) — two labels on two blocks, never one label pair on a fused cluster; vertical clearance from the top-anchored HUD measured at 1024 px.
+- Choreography: field arrows fade in at 6000 (cause), beat, the melt's ions begin a slow biased drift ~6800 **inside the sample envelope** (E3b dispatch 6 — ions accumulate at the sample faces, which is where electrolysis actually carries them); the solid's jiggle in place (D1·S-2 — load-bearing) and never translate (the gate-13 negative control IS the 16a contrast beat).
 - `misconception_watch` (pivot #2): belief "solid salt conducts — it is full of charges"; visual_counter "the same field on both samples: the solid's ions are held at their sites and do not move; only the melt's free ions drift"; one_line_fix "charge must be free to MOVE to carry current — molten or dissolved, not solid."
 - **HUD `['conductivity']` (decided, D4·Q-3):** state-dependent, engine-printed — `g_solid` ⇒ `conductivity: none — ions fixed`; `g_melt` ⇒ `conductivity ≈ 3.5 S·cm⁻¹ (1100 K)`. The side-by-side gap IS the contrast. **Never a ratio, never a solid-side digit, in any string of this state.**
-- `{id:'field', min_ring:'core'}` (drag-seize). No formula surface. Annotations: 8000 over g_solid (x 160) "Held in place — no current"; 10500 over g_melt (x 500) "Free ions drift — current flows".
+- `{id:'field', min_ring:'core'}` (drag-seize). No formula surface. Annotations: 8000 over g_solid (x 160) "Held in place — no current"; 10500 over g_melt (x 500) **"Free ions can move and carry current"** (dispositional wording — true at EVERY `field` slider position including 0; the old "Free ions drift — current flows" was false the moment a teacher dragged `field` to 0 — N9).
 - Narration (≈50 w): both samples are pure salt, and the same push acts on both. In the solid, every ion is held at its site — it is pulled slightly, and stays in place. In the molten sample the ions are free, and they drift: plus one way, minus the other. Moving charge is a current.
 - `eye_capture_ms: 13000`. Duration 26.
 
 ### S9 — "Double charge, far stronger" · **advanced** · `melt-race` · **E3b-BLOCKED (Dispatch 2)**
-- `mode:'melt'` with `groups`: `g_nacl {label:'NaCl', at:[-4.5,0,0], lattice: rock_salt [3,3,3] a 564.0}` · `g_mgo {label:'MgO', at:[4.5,0,0], lattice: rock_salt [3,3,3] a 421.2}` (Mg²⁺ 72 pm · O²⁻ 140 pm — smaller AND doubly charged). **Scene-level** `thermal:{T_from:300, T_at_ms:4000, T_ramp_ms:10000, T_K:1500}` — one temperature, no per-group override. NaCl fails mid-ramp (derived, 1074 K); MgO holds at 1500 K, jiggling (derived, 3125 K).
+- `mode:'melt'` with `groups` (geometry per §5.1 — F1 fix): `g_nacl {label:'NaCl', at:[-13.5,0,0], lattice: rock_salt [3,3,3] a 564.0}` · `g_mgo {label:'MgO', at:[13.5,0,0], lattice: rock_salt [3,3,3] a 421.2}` (Mg²⁺ 72 pm · O²⁻ 140 pm — smaller AND doubly charged). Same centres as S8 (frame continuity between the two two-sample states). Worst-case clearance at ramp end: 27.0 − 10.61 (molten NaCl envelope) − 8.20 (MgO + hot jiggle) = **+8.19 u edge gap**; the molten NaCl stays a contained disordered block under the melt bound. Group labels at each group centre, below-block (y ≈ −12.5 u, §5.1), clear of the four-line HUD — MEASURE at 1024 px. **Scene-level** `thermal:{T_from:300, T_at_ms:4000, T_ramp_ms:10000, T_K:1500}` — one temperature, no per-group override. NaCl fails mid-ramp (derived, 1074 K); MgO holds at 1500 K, jiggling (derived, 3125 K).
 - HUD: per-group `['melting_point','lattice_enthalpy']`, engine-printed with the decided group-prefix format (D2·T-3): `NaCl m.p. = 1074 K` · `NaCl ΔH = 788 kJ·mol⁻¹` · `MgO m.p. = 3125 K` · `MgO ΔH = 3791 kJ·mol⁻¹` — **four lines in the fixed 220 px HUD beside two group labels: a MEASURE-at-1024 duty (E3b T-3 first, json-author re-verifies on the built state), never a reasoned assumption.** Formula surface (advanced, algebra-only, 38c) `E ∝ q₁q₂ ⁄ r` — never Born–Landé.
 - Annotations: 12000 over g_nacl (x 160) "Single charges — already molten"; 14000 over g_mgo (x 500) "Double charges, closer — still solid".
-- Narration (≈46 w): same heater, two crystals. Salt's ions carry single charges; magnesium oxide's carry double charges, and they sit closer together. Double charge on both ions, at a smaller spacing, gives a far stronger attraction. Salt melts on the way up; magnesium oxide stays solid far past that point.
-- `eye_capture_ms: 15000`. Duration 24. No controls (watch-this beat).
+- Narration (49 w — now carries the §12 secondary anchor inside the budget, closing N6): same heater, two crystals. Salt's ions carry single charges; magnesium oxide's carry double charges and sit closer together. Double the charge at a smaller spacing gives a far stronger attraction. Salt melts as the temperature rises; magnesium oxide stays solid — this is why furnace walls are lined with it.
+- `eye_capture_ms: 15000`. Duration 25. No controls (watch-this beat). *(N6 closed by giving the anchor a real spoken home rather than striking §12's claim: the furnace lining costs 9 words and replaces "far past that point", which only restated "stays solid".)*
 
 ### S10 — "Explore the lattice" · core · `interaction_complete` · **E3b-BLOCKED (Dispatches 1 + 2 + 3 + 4)**
 - `mode:'explore'`, `fit: true`. **`placement:'lattice'` + `lattice:{cell:'rock_salt', n:[3,3,3], a_pm:564.0}` — MANDATORY:** `bscSiteList` (`:52794`) requires `placement === 'lattice' && lat` or the state falls through to free placement and renders NO lattice. The `ion_pair` picker's `pairOverride` then substitutes species and `a_pm` per pair (`:52794–:52801`), so the authored NaCl values are the opening pose, not a lock. Rock-salt only — one cell covers all five `BS_ION_PAIRS`.
@@ -362,7 +380,7 @@ Default `foundational`. **Foundational-coverage rule satisfied** — the PRIMARY
 | magnesium ion / oxide ion | `Mg²⁺` / `O²⁻` | live |
 | the transferred electron | `e⁻` | live |
 | electron shells (S1 formula surface) | `Na 2,8,1 · Cl 2,8,7` | authored (shell-count notation — F-7) |
-| outer-electron count (HUD `valence`, S1) | `outer e⁻: Na 1 · Cl 7` | **E3b D1·S-3** (string proposed here for the surgeon; today the engine prints `outer electrons = 1` — dead) |
+| outer-electron count (HUD `valence`, S1) | `Na: outer electrons = 1` / `Cl: outer electrons = 7` (**two lines — the SHIPPED format**) | **E3b D1·S-3, landed.** The cycle-2 proposal was the single line `outer e⁻: Na 1 · Cl 7`; the surgeon shipped two site-aware lines instead. Honest and correct, so adopted rather than re-opened — this row now records what the engine actually prints (N5). |
 | radius (HUD) | `r = 102 pm` | live |
 | ion separation (HUD, S3) | `d = 282 pm` | **E3b D1·S-4** (decided format) |
 | cell edge (HUD) | `a = 564 pm` | live |
