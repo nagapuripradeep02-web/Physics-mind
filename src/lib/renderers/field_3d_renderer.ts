@@ -58,6 +58,18 @@ export interface Field3DConfig {
         // motion: track/runner/displacement-arrow/ghost-odometer; first
         // kinematics scenario, 2026-07-25).
         'kinematics_1d_track' |
+        // rigid_body_rotation (Class-11 Ch.7 Systems of Particles & Rotational
+        // Motion — build 0c-1, 2026-08-03). ONE configurable scenario for the
+        // chapter's fixed-axis family: a turntable on a vertical axle carrying a
+        // rod with two symmetric sliding masses, a live-recomputed
+        // I = I_frame + 2mr(t)^2, a SINGLE angular-momentum integrator
+        // (L(t+h) = L(t) + tau_ext*h, omega = L/I derived, never stored), a
+        // visible brake actuator acting at a drawn drum radius, an axial L
+        // vector, radial pull arrows, a value-only HUD and generic
+        // reference_marks[]. Spec: docs/loop_runs/rotmech/phase0_survey.md +
+        // phase0_survey_amendment.md Part 1 (addenda A/B/C/D) +
+        // conservation_of_angular_momentum/{skeleton,physics_block}.md.
+        'rigid_body_rotation' |
         // molecular_geometry (VSEPR — CHEMISTRY, 2026-07-28): a central atom's
         // electron domains (bonds + lone pairs) repel into the arrangement of
         // maximum separation, which IS the molecular shape. The P3 slice of the
@@ -918,6 +930,131 @@ export interface Field3DConfig {
                 id: string; at_ms?: number; until_ms?: number | null; action?: string;
                 glow_focal?: string; scenario_cue?: string;
                 duration_ms_formula?: string; at_ms_formula?: string; duration_ms?: number;
+            }>;
+        };
+        // ── rigid_body_rotation per-state config (rotmech 0c-1; NEW 2026-08-03) ─
+        // ONE scenario_type for the whole Class-11 Ch.7 fixed-axis family
+        // (concepts 1-10, 13, 14 of docs/loop_runs/rotmech/phase0_survey.md).
+        //
+        // THE FROZEN 0c-1 CONTRACT (skeleton REV 4, "Enum-closure contract").
+        // The enum below is CLOSED and complete; it is split into what this build
+        // IMPLEMENTS and what it DECLARES for a later concept's own row, so the
+        // enum never has to reopen (scar
+        // deferred_enum_members_must_be_declared_not_merely_unimplemented):
+        //   IMPLEMENTED — r, m, omega0 (signed via spin_sign), spin_sign,
+        //     external_torque.source 'brake' (+ brake_drum_radius_m + the drawn
+        //     drum reference line + the visible pad actuator), reference_marks[]
+        //     in BOTH surface forms (chip + tick), the radial pull arrow, the
+        //     re-pin cue, applied_torque_Nm (a constant tau_ext, which is #7's
+        //     alpha = tau/I with no extra code path).
+        //   DECLARED, NOT IMPLEMENTED (each is built under its OWN concept's
+        //     engine row; reading one today is an inert no-op, never a throw):
+        //     particles[], parts[], bodies[]/cm_marker/cm_path_trace/
+        //     fragment_trigger, axis_select, axis_pair/d_draw, theta0_rad,
+        //     cross_product_construction, body_shape variants beyond
+        //     'turntable_rod', external_torque.source 'torsion_spring' |
+        //     'applied_force_at_point'.
+        //
+        // PHYSICS (physics_block.md §1, one integrator, no mode flag):
+        //     I(t)      = I_frame + 2*m*r(t)^2                 (recomputed live)
+        //     L(t+h)    = L(t) + tau_ext*h                     (rest clamp ON L)
+        //     omega(t)  = L(t) / I(t)                          (DERIVED, never stored)
+        //     theta(t+h)= theta(t) + omega*h                   (fixed 16 ms grid)
+        //     KE        = L^2 / (2I) = 0.5*I*omega^2
+        //     F_pull    = m*omega^2*r                          (each -r-hat arrow)
+        // tau_ext = 0 therefore makes L EXACTLY constant with zero accumulation
+        // error, and r dragged WHILE braking is correct by construction (the
+        // alpha = (tau - omega*dI/dt)/I coupling falls out of the definition).
+        //
+        // RULE 36 / TIME-PIN: this scenario is ACCUMULATOR-FREE. eng.t_ms is
+        // DERIVED from (time - stateStartTime), never accumulated, and every
+        // quantity above is a closed form of it (theta included — see
+        // rbrThetaAt, which sums a FIXED 16 ms grid, so it is step-count
+        // invariant by construction and a dt = h vs dt = 2h fold is bit-equal).
+        // That is why rigid_body_rotation joins the accumulator-free snap set in
+        // animate(): a SET_TIME_FREEZE pin re-evaluates rather than crawls, and a
+        // rewind to an earlier t reproduces the earlier frame exactly.
+        rigid_body_rotation?: {
+            // 'sandbox' = the Rule-37 explore state (free-runs, all controls live,
+            // idle sweep until first trusted input). Anything else = a guided beat.
+            mode?: 'fixed_axis' | 'sandbox';
+            apparatus?: {
+                body_shape?: 'turntable_rod' | 'disc' | 'ring' | 'rod' | 'sphere';
+                i_frame_kgm2?: number;          // default 0.50
+                rod_half_length_m?: number;     // default 1.00
+                brake_drum_radius_m?: number;   // default 0.55 (Addendum B)
+                rod_height_above_pad_m?: number;// default 0.25 (pad never fouls a mass)
+                r_min_m?: number;               // default 0.15
+                r_max_m?: number;               // default 0.90
+                // DECLARED, not implemented (concepts 1/2/3/6).
+                particles?: Array<{ id?: string; mass_kg?: number; position_m?: number[] }>;
+                parts?: Array<{ id?: string; mass_kg?: number; centroid_m?: number[] }>;
+                axis_select?: string;
+                axis_pair?: { a?: string; b?: string; d_draw?: boolean };
+            };
+            masses?: { count?: number; mass_kg?: number; r_m?: number };
+            omega0_rad_s?: number;              // seed magnitude; sets L at t=0 / at a RESTART only
+            spin_sign?: number;                 // +1 or -1; a discrete restart, never eased through zero
+            theta0_rad?: number;                // DECLARED (concept 4)
+            external_torque?: {
+                source?: 'brake' | 'applied_force_at_point' | 'torsion_spring';
+                tau_brake_Nm?: number;          // magnitude; frictional, opposes omega
+                engage_at_ms?: number;          // pad contact instant (state-local)
+                release_at_ms?: number;         // pad release instant; omit = never releases
+                engage_cue?: string;            // scenario_cue name -> cueTriggerMs
+                release_cue?: string;
+                pad_travel_ms?: number;         // how long the pad takes to translate in
+                applied_torque_Nm?: number;     // a CONSTANT tau_ext (concept 7's alpha = tau/I)
+                torsion_k_Nm_per_rad?: number;  // DECLARED (concept 14)
+            };
+            // ONE-SHOT monotonic ramp, HOLDS at `to` for the rest of the state.
+            // The authored entry value of the ramped param MUST equal `from`
+            // (scar field3d_param_ramp_authoring_contract).
+            param_ramp?: { param?: string; from?: number; to?: number; start_ms?: number; end_ms?: number };
+            // Repeating triangle (explore only), until the first trusted input.
+            idle_auto_sweep?: { param?: string; range?: number[] };
+            // Addendum A — reference_marks[] in TWO DECLARED SURFACE FORMS.
+            // A value-only readout has no scale of its own, so a tick cannot sit
+            // on it: 'chip' is a static labelled value chip printed BESIDE the
+            // live readout (with a match cue that co-hold-glows both once the
+            // live value arrives), 'tick' is a labelled tick on a BAR scale.
+            reference_marks?: Array<{
+                id?: string;
+                surface?: 'omega' | 'L' | 'I' | 'KE' | 'F_pull';
+                form?: 'chip' | 'tick';
+                value?: number;
+                label?: string;
+                at_ms?: number;
+                cue?: string;
+                match_tolerance?: number;       // default 0.01; chip form only
+            }>;
+            // S6's run-cut: a RESTART, not a reversal. Re-seeds L from
+            // I(r)*omega0*spin_sign and fires the re-pin cue.
+            restart?: { at_ms?: number; every_ms?: number; flip_spin?: boolean; cue?: string };
+            // Addendum C — the re-pin cue. Readouts BLANK for blank_ms across any
+            // restart that re-initialises L, so a discontinuity reads as a restart
+            // and never as an uncaused torque.
+            repin_cue?: { blank_ms?: number };
+            show_pull_arrows?: boolean;
+            show_l_arrow?: boolean;
+            show_r_line?: boolean;
+            show_drum_line?: boolean;
+            show_grip_hand?: boolean;
+            readouts?: string[];                // 'I'|'omega'|'L'|'KE'|'dLdt'|'F_pull'
+            // Per-row reveal instant (Rule 25 / the term-introduction ledger: a
+            // quantity is PRINTED only after the sentence that defines it).
+            // Absent = the row is present from t = 0.
+            readout_at_ms?: { [key: string]: number };
+            hold_glow?: string[];               // HUD rows held bright (instrument channel)
+            ke_bar?: { max_j?: number };
+            formula?: string;                   // the ONE Cambria-Math surface (Rule 34b)
+            controls_visible?: string[];        // 'r'|'m'|'omega0'|'tau_brake'|'spin_dir'
+            trusted_drag_seizes?: boolean;
+            glow_focal?: string;                // exactly ONE scene focal (Rule 32e)
+            visible_elements?: string[];        // EXACT-token rbr element gate
+            phases?: Array<{
+                id: string; at_ms?: number; until_ms?: number | null;
+                glow_focal?: string; scenario_cue?: string;
             }>;
         };
         // ── newtons_laws_body per-state config (Laws of Motion; NEW 2026-07-25) ──
@@ -48277,6 +48414,1105 @@ export const FIELD_3D_RENDERER_CODE = `
         frApplyGlow();
     }
 
+    // ================================================================
+    // rigid_body_rotation (prefix "rbr") — Class-11 Ch.7 Systems of
+    // Particles & Rotational Motion. Build 0c-1, 2026-08-03.
+    //
+    // ONE configurable scenario for the chapter's fixed-axis family. The
+    // apparatus is a turntable (a brake DRUM) on a vertical axle carrying a
+    // horizontal rod with two equal masses that slide symmetrically. Spec:
+    //   docs/loop_runs/rotmech/phase0_survey.md              (the 12-concept union)
+    //   docs/loop_runs/rotmech/phase0_survey_amendment.md    (Part 1, addenda A-D)
+    //   .../conservation_of_angular_momentum/skeleton.md     (REV 4, DESIGN_OK)
+    //   .../conservation_of_angular_momentum/physics_block.md
+    //
+    // WHY THIS IS ACCUMULATOR-FREE, AND WHY THAT MATTERS (Rule 36 + scar
+    // field3d_dt_accumulated_motion_invisible_to_eye_timepin). Nothing here
+    // integrates per frame. eng.t_ms is DERIVED from the master clock
+    // (time - stateStartTime), and every physical quantity is a closed form of
+    // it:
+    //   r(t)      one-shot ramp / repeating triangle / the dragged value
+    //   L(t)      |L0| - tau * (engaged seconds since the anchor), clamped at 0
+    //   I(t)      I_frame + n*m*r(t)^2
+    //   omega(t)  L(t)/I(t)              DERIVED, never stored, never clamped
+    //   theta(t)  a sum over a FIXED 16 ms grid of omega(k*16ms)
+    // theta is the one quantity that is genuinely an integral, and it is
+    // evaluated on a grid that does not depend on the frame dt at all — so a
+    // 20-step dt = h run and a 10-step dt = 2h run produce the SAME number to
+    // the last bit (the E2 fold probe), a rewind reproduces an earlier frame
+    // exactly, and dt = 0 under a pin is a no-op. The grid sum is cached
+    // forward and rebuilt from 0 whenever t goes backwards, so it is a pure
+    // function of t with no hidden history.
+    //   That is also why rigid_body_rotation joins the accumulator-free SNAP
+    // set in animate(): a SET_TIME_FREEZE pin can jump straight to its target
+    // instead of crawling, which is what keeps a late pin (S2 pins at 7.8 s)
+    // reproducible in the headless tray.
+    //
+    // THE SINGLE INTEGRATOR HAS NO MODE FLAG. tau_ext = 0 makes L exactly
+    // constant by construction (there is no accumulation to drift), I constant
+    // makes domega/dt = tau/I identically, and r dragged WHILE braking is
+    // correct with no special case — the alpha = (tau - omega*dI/dt)/I coupling
+    // falls out of omega = L/I. The rest clamp acts ON L (never on the derived
+    // omega), so a brake can bring the platform to rest and hold it but can
+    // never reverse the spin at any reachable slider value.
+    // ================================================================
+    var RBR_WORLD_PER_M = 1.8;            // world units per metre of apparatus
+    var RBR_GRID_MS = 16;                 // the FIXED theta-integration grid (Rule 36)
+    var RBR_GRID_MAX = 20000;             // hard cap on grid steps per evaluation
+    var RBR_DEF_I_FRAME = 0.50;           // kg m^2 — turntable + rod, excluding the masses
+    var RBR_DEF_ROD_HALF = 1.00;          // m
+    var RBR_DEF_DRUM_R = 0.55;            // m  (Addendum B — the BRAKED radius)
+    var RBR_DEF_ROD_H = 0.25;             // m  rod plane above the pad plane
+    var RBR_DEF_R_MIN = 0.15, RBR_DEF_R_MAX = 0.90;
+    var RBR_DEF_MASS = 2.0, RBR_DEF_OMEGA0 = 1.5;
+    var RBR_DEF_BLANK_MS = 500;           // Addendum C — the re-pin blank, >= 0.5 s
+    var RBR_SWEEP_MS = 4000;              // explore idle triangle, one there-and-back
+    var RBR_MATH_FONT = "'Cambria Math','Times New Roman',serif";
+    // Sign colours (physics_block callout 5): a teacher reads the sign from
+    // colour before reading the number, and the pair is identical across S6's
+    // two runs and S8's toggle. Red is deliberately avoided (warnings).
+    var RBR_POS_COLOR = "#42A5F5";        // cool blue  — spin_sign +1
+    var RBR_NEG_COLOR = "#FFB74D";        // warm amber — spin_sign -1
+    var RBR_AXLE_COLOR = "#90A4AE";
+    var RBR_DRUM_COLOR = "#546E7A";
+    var RBR_MARK_COLOR = "#FFF176";       // the drum's rotation marker stripe
+    var RBR_ROD_COLOR = "#B0BEC5";
+    var RBR_MASS_COLOR = "#FFCA28";
+    var RBR_PULL_COLOR = "#4DD0E1";
+    var RBR_RLINE_COLOR = "#81C784";      // r reference line
+    var RBR_DRUMLINE_COLOR = "#CE93D8";   // R_drum reference line — DISTINCT from r
+    var RBR_PAD_COLOR = "#EF5350";
+    // ── Addendum D — the BOUNDED / ASYMPTOTIC pull-arrow map ───────────────
+    //   founder ruling 2026-08-02. F_pull = m*omega^2*r spans 3.60 N (r = 0.80)
+    //   to 19.35 N (r = 0.20) across the GUIDED states, but the explore state's
+    //   slider corners (m 5.0, r 0.90, omega0 3.0 -> then pulled to r 0.15)
+    //   reach hundreds of newtons. A fixed linear scale sized for the guided
+    //   band clips there; a scale sized for the corners collapses the guided
+    //   band onto the minimum-length floor (the OPEN row
+    //   field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_
+    //   and_ratio, in its other direction).
+    //
+    //   The map is therefore LINEAR up to a knee placed ABOVE the whole guided
+    //   band and asymptotic above it, joined with a continuous first derivative:
+    //       F <= KNEE_N :  len = SCALE * F
+    //       F >  KNEE_N :  len = KNEE_LEN + (MAX_LEN - KNEE_LEN)
+    //                            * (1 - exp(-(F - KNEE_N) / SOFT_N))
+    //       SOFT_N      =  (MAX_LEN - KNEE_LEN) / SCALE       (so d(len)/dF is
+    //                                                          SCALE on both
+    //                                                          sides of the knee)
+    //   Consequences, all checked numerically:
+    //     • every guided-state length is EXACTLY proportional to its newtons
+    //       (3.60 N -> 0.252, 19.35 N -> 1.354: the drawn ratio is 5.375, the
+    //       true ratio is 5.375), so "length means magnitude" is intact where
+    //       the teaching happens;
+    //     • the smaller guided force clears the floor with 1.58x margin
+    //       (0.252 vs MIN_LEN 0.16), so it is a readable arrow and not a stub;
+    //     • the corner cases degrade gracefully instead of clipping — 40.5 N
+    //       draws 2.22 and 950 N draws 2.30, the asymptote, so the arrow
+    //       always fits its own scene and still reads "much bigger".
+    var RBR_ARROW_SCALE = 0.070;          // world units PER NEWTON, below the knee
+    var RBR_ARROW_KNEE_N = 25.0;          // ABOVE the 19.35 N guided maximum
+    var RBR_ARROW_KNEE_LEN = RBR_ARROW_SCALE * RBR_ARROW_KNEE_N;   // 1.75
+    var RBR_ARROW_MAX_LEN = 2.30;         // the asymptote — never exceeded
+    var RBR_ARROW_SOFT_N = (RBR_ARROW_MAX_LEN - RBR_ARROW_KNEE_LEN) / RBR_ARROW_SCALE;
+    var RBR_ARROW_MIN_LEN = 0.16;         // visibility floor (mass sphere radius)
+    var RBR_L_ARROW_SCALE = 0.20;         // world units per kg m^2/s
+    var RBR_L_ARROW_MIN = 0.22, RBR_L_ARROW_MAX = 1.80;
+    var RBR_MASS_R = 0.16;                // drawn mass sphere radius, world
+
+    var rbrIndex = [];
+    function rbrRegister(o) { rbrIndex.push(o); return o; }
+    function rbrFindById(id) {
+        for (var i = 0; i < rbrIndex.length; i++) {
+            var o = rbrIndex[i];
+            if (o && o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+    function rbrEach(fn) {
+        for (var i = 0; i < rbrIndex.length; i++) { if (rbrIndex[i]) fn(rbrIndex[i], rbrIndex[i].userData || {}); }
+    }
+    // Kills "-0.00" (the negative-zero-at-quadrature scar) AND ships a real
+    // U+2212 MINUS SIGN rather than the ASCII hyphen toFixed emits — omega and L
+    // are genuinely negative whenever spin_sign is -1, so this scenario is the
+    // first in its chapter to print one (Rule 34c, the FIXED row
+    // ascii_minus_in_oncanvas_math_from_tofixed).
+    function rbrFx(v, dp) {
+        var d = (dp == null) ? 2 : dp;
+        var n = (typeof v === "number" && isFinite(v)) ? v : 0;
+        if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
+        var s = n.toFixed(d);
+        return (s.charAt(0) === "-") ? "−" + s.slice(1) : s;
+    }
+    function rbrCfg() {
+        var sd = (config.states && PM_currentState) ? config.states[PM_currentState] : null;
+        return (sd && sd.rigid_body_rotation) ? sd.rigid_body_rotation : {};
+    }
+    function rbrNum(a, b) { return (typeof a === "number" && isFinite(a)) ? a : b; }
+    function rbrArrowLen(fN) {
+        var F = (typeof fN === "number" && isFinite(fN)) ? Math.abs(fN) : 0;
+        var L;
+        if (F <= RBR_ARROW_KNEE_N) L = RBR_ARROW_SCALE * F;
+        else L = RBR_ARROW_KNEE_LEN + (RBR_ARROW_MAX_LEN - RBR_ARROW_KNEE_LEN)
+            * (1 - Math.exp(-(F - RBR_ARROW_KNEE_N) / RBR_ARROW_SOFT_N));
+        if (L < RBR_ARROW_MIN_LEN) L = RBR_ARROW_MIN_LEN;
+        if (L > RBR_ARROW_MAX_LEN) L = RBR_ARROW_MAX_LEN;
+        return L;
+    }
+    function rbrMakeLabel(text, hex, h) {
+        var lbl = pmCreateAutoLabel(text, hex, h == null ? 0.30 : h);
+        lbl._rbrText = text;
+        return lbl;
+    }
+
+    // ── Physics — every function below is a CLOSED FORM of state-local ms ──
+    function rbrRAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return RBR_DEF_R_MAX;
+        // A trusted drag (or a body seize) owns r for the rest of the state.
+        if (window.PM_rbrSeized) return eng.r;
+        var pr = eng.ramp;
+        if (pr && pr.param === "r") {
+            if (tMs <= pr.start_ms) return pr.from;
+            if (tMs >= pr.end_ms) return pr.to;                  // HOLDS at "to"
+            return pr.from + (pr.to - pr.from) * ((pr.end_ms > pr.start_ms) ? (tMs - pr.start_ms) / (pr.end_ms - pr.start_ms) : 1);
+        }
+        var sw = eng.sweep;
+        if (sw && sw.param === "r") {
+            var u = (tMs % RBR_SWEEP_MS) / RBR_SWEEP_MS;
+            var tri = (u < 0.5) ? (u * 2) : (2 - u * 2);
+            return sw.lo + (sw.hi - sw.lo) * tri;
+        }
+        return eng.r;
+    }
+    function rbrIOf(rM, mKg) {
+        var eng = window.PM_rbrEngine;
+        var n = eng ? eng.massCount : 2;
+        var iF = eng ? eng.iFrame : RBR_DEF_I_FRAME;
+        return iF + n * mKg * rM * rM;
+    }
+    function rbrIAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return RBR_DEF_I_FRAME;
+        return rbrIOf(rbrRAt(tMs), eng.m);
+    }
+    // Restart bookkeeping. A restart is the ONLY way spin direction changes —
+    // nothing is ever eased through zero (skeleton F4, deleted deliberately).
+    // cut time = when the readouts BLANK; effective time = cut + blank, when the
+    // new L takes effect. So no frame ever shows a live +4.59 -> -4.59 sweep.
+    function rbrCutTime(k) {
+        var eng = window.PM_rbrEngine;
+        if (!eng || !eng.restart) return Infinity;
+        return eng.restart.at_ms + (k - 1) * eng.restart.every_ms;
+    }
+    function rbrEffTime(k) {
+        var eng = window.PM_rbrEngine;
+        return rbrCutTime(k) + (eng ? eng.blankMs : RBR_DEF_BLANK_MS);
+    }
+    function rbrRestartCount(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng || !eng.restart) return 0;
+        if (tMs < rbrEffTime(1)) return 0;
+        if (!isFinite(eng.restart.every_ms) || eng.restart.every_ms <= 0) return 1;
+        return 1 + Math.floor((tMs - rbrEffTime(1)) / eng.restart.every_ms);
+    }
+    function rbrBlanked(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return false;
+        if (eng.evRepinT != null && tMs >= eng.evRepinT && tMs < eng.evRepinT + eng.blankMs) return true;
+        if (!eng.restart) return false;
+        var k = rbrRestartCount(tMs) + 1;
+        return (tMs >= rbrCutTime(k) && tMs < rbrEffTime(k));
+    }
+    function rbrSignAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return 1;
+        var s = eng.evSign != null ? eng.evSign : eng.spinSign;
+        if (!eng.restart || eng.restart.flip_spin === false) return s;
+        return ((rbrRestartCount(tMs) % 2) === 0) ? s : -s;
+    }
+    // The (anchor time, anchor L) baseline the closed-form decay hangs off. A
+    // guided state derives it from the authored restart script; the sandbox
+    // moves it on a real event (m / omega0 / direction / brake change), which is
+    // the trusted-drag re-anchor pattern, never a hidden accumulator.
+    function rbrAnchor(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return { t0: 0, L0: 0 };
+        var k = rbrRestartCount(tMs);
+        var evT = (eng.evAnchorT != null) ? eng.evAnchorT : -1;
+        if (k > 0 && rbrEffTime(k) >= evT) {
+            var t0 = rbrEffTime(k);
+            return { t0: t0, L0: rbrIOf(rbrRAt(t0), eng.m) * eng.omega0 * rbrSignAt(t0) };
+        }
+        if (evT >= 0) return { t0: evT, L0: eng.evAnchorL };
+        return { t0: 0, L0: eng.L0 };
+    }
+    function rbrBrakedSeconds(t0, t1) {
+        var eng = window.PM_rbrEngine;
+        if (!eng || eng.brakeOnMs == null || !(eng.tau > 0)) return 0;
+        var lo = Math.max(t0, eng.brakeOnMs), hi = Math.min(t1, eng.brakeOffMs);
+        return (hi > lo) ? (hi - lo) / 1000 : 0;
+    }
+    // THE single angular-momentum integrator, in closed form.
+    //   L(t) = sign(L0) * max(0, |L0| - tau_brake * engaged_seconds)
+    // The rest clamp acts ON L (never on the derived omega), so the pad can stop
+    // the platform and hold it at rest but can NEVER reverse the spin.
+    function rbrLAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return 0;
+        var a = rbrAnchor(tMs);
+        var mag = Math.abs(a.L0) - eng.tau * rbrBrakedSeconds(a.t0, tMs);
+        if (!(mag > 0)) mag = 0;
+        return (a.L0 < 0 ? -1 : 1) * mag;
+    }
+    function rbrOmegaAt(tMs) {
+        var I = rbrIAt(tMs);
+        return (I > 0) ? rbrLAt(tMs) / I : 0;
+    }
+    // theta on the FIXED grid. Cached forward; rebuilt from 0 the moment t goes
+    // backwards, so the returned angle is a pure function of tMs (byte-stable
+    // frozen frames, exact rewinds) with no per-frame accumulator anywhere.
+    function rbrThetaAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return 0;
+        var t = (tMs > 0) ? tMs : 0;
+        var n = Math.floor(t / RBR_GRID_MS);
+        if (n > RBR_GRID_MAX) n = RBR_GRID_MAX;
+        if (eng._thN > n) { eng._thN = 0; eng._th = eng.theta0; }
+        var h = RBR_GRID_MS / 1000;
+        while (eng._thN < n) {
+            eng._th += rbrOmegaAt(eng._thN * RBR_GRID_MS) * h;
+            eng._thN++;
+        }
+        var rem = (t - n * RBR_GRID_MS) / 1000;
+        return eng._th + rbrOmegaAt(n * RBR_GRID_MS) * rem;
+    }
+    function rbrThetaReset() {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return;
+        eng._thN = 0; eng._th = eng.theta0;
+    }
+    // dL/dt as the per-step finite difference of the engine's OWN integrated L
+    // (S7). HONEST FRAMING: under a single L-integrator this equals tau_ext by
+    // construction, so it illustrates the law being simulated and is never sold
+    // as an independent measurement.
+    function rbrDLdtAt(tMs) {
+        var t0 = (tMs > RBR_GRID_MS) ? tMs - RBR_GRID_MS : 0;
+        if (!(tMs > t0)) return 0;
+        return (rbrLAt(tMs) - rbrLAt(t0)) / ((tMs - t0) / 1000);
+    }
+    function rbrFPull(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return 0;
+        var w = rbrOmegaAt(tMs), r = rbrRAt(tMs);
+        return eng.m * w * w * r;
+    }
+
+    // ── Sliders (Rule 31 contextual controls; Rule 39f discovery) ──────────
+    //   Rows are built ONCE into #rbr_sliders and only shown/hidden per state,
+    //   so a shared slider keeps the same screen position (Rule 32d): a hidden
+    //   row keeps its RESERVED SLOT (visibility:hidden), never display:none.
+    //   Row ids are <prefix>_<name>_row and the panel is an inline
+    //   position:fixed dynamic panel, so the generic widget engine discovers
+    //   both with zero per-scenario widget code.
+    var RBR_SLIDER_TOKENS = ["r", "m", "omega0", "tau_brake", "spin_dir"];
+    var RBR_SLIDER_SPEC = {
+        r:         { row: "rbr_r_row",        slider: "rbr_r_slider",        val: "rbr_r_val",        lbl: "rbr_r_lbl",        glyph: "r",  unit: " m",     dp: 2, min: 0.15, max: 0.90, step: 0.01, def: 0.80 },
+        m:         { row: "rbr_m_row",        slider: "rbr_m_slider",        val: "rbr_m_val",        lbl: "rbr_m_lbl",        glyph: "m",  unit: " kg",    dp: 1, min: 0.5,  max: 5.0,  step: 0.1,  def: 2.0 },
+        omega0:    { row: "rbr_omega0_row",   slider: "rbr_omega0_slider",   val: "rbr_omega0_val",   lbl: "rbr_omega0_lbl",   glyph: "ω₀", unit: " rad/s", dp: 1, min: 0.5, max: 3.0, step: 0.1, def: 1.5 },
+        tau_brake: { row: "rbr_tau_brake_row", slider: "rbr_tau_brake_slider", val: "rbr_tau_brake_val", lbl: "rbr_tau_brake_lbl", glyph: "τ", unit: " N·m", dp: 2, min: 0, max: 2.0, step: 0.05, def: 0.92 },
+        // A discrete RESTART, never a continuous control: it is a BUTTON, so no
+        // teacher can ever ease the spin through zero with it.
+        spin_dir:  { row: "rbr_spin_dir_row", button: "rbr_spin_dir_btn", kind: "button", glyph: "Spin direction" }
+    };
+    function rbrSc(token) {
+        var sp = RBR_SLIDER_SPEC[token] || {};
+        var o = (config.slider_controls || {})[token] || {};
+        var dp = rbrNum(o.dp, sp.dp);
+        return {
+            min: rbrNum(o.min, sp.min), max: rbrNum(o.max, sp.max), step: rbrNum(o.step, sp.step),
+            def: rbrNum(o.default, sp.def), dp: dp,
+            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph
+        };
+    }
+    function rbrSliderTokensUsed() {
+        var want = {}, keys = Object.keys(config.states || {});
+        for (var i = 0; i < keys.length; i++) {
+            var rb = (config.states[keys[i]] || {}).rigid_body_rotation;
+            var cv = (rb && rb.controls_visible) || [];
+            for (var c = 0; c < cv.length; c++) { if (RBR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        }
+        var out = [];
+        for (var t = 0; t < RBR_SLIDER_TOKENS.length; t++) { if (want[RBR_SLIDER_TOKENS[t]]) out.push(RBR_SLIDER_TOKENS[t]); }
+        return out;
+    }
+    var rbrRowsBuilt = [];
+    function rbrBuildSliderRows(panel) {
+        rbrRowsBuilt = rbrSliderTokensUsed();
+        if (!panel || !rbrRowsBuilt.length) return;
+        var html = "";
+        for (var i = 0; i < rbrRowsBuilt.length; i++) {
+            var tok = rbrRowsBuilt[i], sp = RBR_SLIDER_SPEC[tok], sc = rbrSc(tok);
+            html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">';
+            if (sp.kind === "button") {
+                html += '<button id="' + sp.button + '" style="width:100%;padding:4px 6px;border-radius:5px;border:1px solid #607D8B;background:#263238;color:inherit;font:inherit;cursor:pointer" disabled>Reverse spin</button>';
+            } else {
+                html += '<label><span id="' + sp.lbl + '" style="font-family:' + RBR_MATH_FONT + '">' + sc.label + '</span> = ' +
+                    '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
+                    '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
+                    '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled>';
+            }
+            html += '</div>';
+        }
+        panel.innerHTML = html;
+        for (var w = 0; w < rbrRowsBuilt.length; w++) rbrWireSlider(rbrRowsBuilt[w]);
+    }
+    function rbrEmit(param, value) {
+        try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "rigid_body_rotation_explorer"), param: param, value: value }, "*"); } catch (e) {}
+    }
+    // ONE re-anchor point. Every event that RE-INITIALISES L (a mass change, a
+    // seed-speed change, a direction flip) lands here, so the re-pin cue can
+    // never be forgotten on one path and fired on another (Addendum C).
+    function rbrRestartNow(newSign) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return;
+        var t = eng.t_ms;
+        if (newSign != null) eng.evSign = newSign;
+        eng.evRepinT = t;
+        eng.evAnchorT = t + eng.blankMs;
+        eng.evAnchorL = rbrIOf(rbrRAt(t), eng.m) * eng.omega0 * (eng.evSign != null ? eng.evSign : eng.spinSign);
+        eng.brakeOnMs = (eng.tau > 0) ? eng.evAnchorT : null;
+        eng.brakeOffMs = Infinity;
+        rbrThetaReset();
+    }
+    function rbrApplyParam(token, value) {
+        var eng = window.PM_rbrEngine;
+        if (!eng || !isFinite(value)) return;
+        if (token === "r") {
+            var lo = eng.rMin, hi = eng.rMax;
+            eng.r = (value < lo) ? lo : (value > hi ? hi : value);
+        } else if (token === "m") {
+            if (!(value > 0)) return;
+            eng.m = value;
+            rbrRestartNow(null);                       // m re-pins L -> a RESTART
+        } else if (token === "omega0") {
+            if (!(value > 0)) return;
+            eng.omega0 = value;
+            rbrRestartNow(null);                       // omega0 re-pins L -> a RESTART
+        } else if (token === "tau_brake") {
+            // A live brake change re-anchors L at its CURRENT value, so the
+            // decay already applied is kept and the new torque takes over from
+            // here. No accumulator: the segment is still a closed form.
+            var Lnow = rbrLAt(eng.t_ms);
+            eng.evAnchorT = eng.t_ms; eng.evAnchorL = Lnow;
+            eng.tau = (value < 0) ? 0 : value;
+            eng.brakeOnMs = (eng.tau > 0) ? eng.t_ms : null;
+            eng.brakeOffMs = Infinity;
+        }
+    }
+    function rbrSyncSliderRow(token, value) {
+        var sp = RBR_SLIDER_SPEC[token];
+        if (!sp || sp.kind === "button" || value == null || !isFinite(value)) return;
+        var el = document.getElementById(sp.slider);
+        if (el) el.value = String(value);
+        var vv = document.getElementById(sp.val);
+        if (vv) vv.textContent = rbrFx(value, rbrSc(token).dp);
+    }
+    function rbrWireSlider(token) {
+        var sp = RBR_SLIDER_SPEC[token];
+        if (sp.kind === "button") {
+            var btn = document.getElementById(sp.button);
+            if (!btn) return;
+            btn.addEventListener("click", function (ev) {
+                var eng = window.PM_rbrEngine;
+                if (!eng) return;
+                if (ev && ev.isTrusted) window.PM_rbrSeized = true;
+                var cur = rbrSignAt(eng.t_ms);
+                rbrRestartNow(-cur);
+                rbrEmit("spin_sign", -cur);
+            });
+            return;
+        }
+        var el = document.getElementById(sp.slider);
+        if (!el) return;
+        el.addEventListener("input", function (ev) {
+            var v = parseFloat(el.value);
+            if (!isFinite(v)) return;
+            // A TRUSTED input seizes the state for the rest of the state (Rule
+            // 37). A SYNTHETIC input (the ramp's own sync, THE EYE driver) is
+            // deliberately NOT a seizure, so frozen baselines see the script.
+            if (ev && ev.isTrusted) window.PM_rbrSeized = true;
+            rbrApplyParam(token, v);
+            var eff = (token === "r") ? window.PM_rbrEngine.r : v;
+            rbrSyncSliderRow(token, eff);
+            rbrEmit(token, eff);
+        });
+    }
+    function rbrToggleSliderRows(rb) {
+        var panel = document.getElementById("rbr_sliders");
+        var cv = rb.controls_visible || [], want = {}, shown = 0;
+        for (var c = 0; c < cv.length; c++) { if (RBR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        for (var i = 0; i < rbrRowsBuilt.length; i++) {
+            var tok = rbrRowsBuilt[i], sp = RBR_SLIDER_SPEC[tok];
+            var on = !!want[tok];
+            var row = document.getElementById(sp.row);
+            var el = document.getElementById(sp.kind === "button" ? sp.button : sp.slider);
+            if (row) row.style.visibility = on ? "visible" : "hidden";
+            if (el) el.disabled = !on;
+            if (on) shown++;
+        }
+        if (panel) panel.style.display = shown ? "block" : "none";
+    }
+
+    // ── Value-only HUD + Addendum A's two mark surfaces ────────────────────
+    //   Rule 34b: the HUD carries LIVE NUMBERS ONLY; the symbolic equation lives
+    //   on the single #rbr_formula surface and is never duplicated here.
+    var RBR_RO_META = {
+        I:      { label: "I",     unit: " kg·m²",   dp: 2 },
+        omega:  { label: "ω",     unit: " rad/s",   dp: 2 },
+        L:      { label: "L",     unit: " kg·m²/s", dp: 2 },
+        KE:     { label: "KE",    unit: " J",       dp: 2 },
+        dLdt:   { label: "dL/dt", unit: " N·m",     dp: 2 },
+        F_pull: { label: "F",     unit: " N",       dp: 2 }
+    };
+    function rbrRebuildReadout(rb) {
+        var el = document.getElementById("rbr_readout");
+        if (!el) return;
+        var keys = rb.readouts || [];
+        var marks = rb.reference_marks || [];
+        var h = "";
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i], meta = RBR_RO_META[k];
+            if (!meta) continue;
+            var chip = "";
+            for (var mi = 0; mi < marks.length; mi++) {
+                var mk = marks[mi] || {};
+                if (mk.surface === k && (mk.form || "chip") === "chip") {
+                    // CHIP FORM (Addendum A-i): a value-only readout has no scale
+                    // of its own, so the mark is a STATIC LABELLED VALUE CHIP
+                    // printed beside the live number, not a tick.
+                    chip += '<span id="rbr_mark_' + (mk.id || ("m" + mi)) + '" style="display:none;margin-left:9px;padding:1px 6px;border:1px solid #8D6E63;border-radius:4px;color:#FFE0B2;font-family:' + RBR_MATH_FONT + '">' +
+                        ((typeof mk.label === "string" && mk.label.length) ? mk.label : (meta.label + " = " + rbrFx(rbrNum(mk.value, 0), meta.dp))) + '</span>';
+                }
+            }
+            h += '<div id="rbr_ro_' + k + '"><span style="font-family:' + RBR_MATH_FONT + '">' + meta.label + '</span> = ' +
+                '<span id="rbr_ro_' + k + '_val">--</span>' + meta.unit + chip + '</div>';
+        }
+        el.innerHTML = h;
+        el.style.display = h ? "block" : "none";
+    }
+    function rbrRebuildKeBar(rb) {
+        var el = document.getElementById("rbr_kebar");
+        if (!el) return;
+        var marks = rb.reference_marks || [];
+        var barCfg = rb.ke_bar || {};
+        var max = rbrNum(barCfg.max_j, 0);
+        if (!(max > 0)) { el.style.display = "none"; el.innerHTML = ""; return; }
+        var ticks = "", wantTick = false;
+        for (var t = 0; t < marks.length; t++) {
+            var mk2 = marks[t] || {};
+            if (mk2.form !== "tick" || (mk2.surface || "KE") !== "KE") continue;
+            wantTick = true;
+            // TICK FORM (Addendum A-ii): a labelled tick ON THE BAR SCALE. The
+            // bar HAS a scale, so a tick is meaningful here and a chip is not.
+            var pct = Math.max(0, Math.min(100, (rbrNum(mk2.value, 0) / max) * 100));
+            ticks += '<div id="rbr_mark_' + (mk2.id || ("t" + t)) + '" style="display:none;position:absolute;left:' + pct.toFixed(2) + '%;top:-4px;width:2px;height:26px;background:#FFE0B2"></div>' +
+                '<div id="rbr_mark_' + (mk2.id || ("t" + t)) + '_lbl" style="display:none;position:absolute;left:' + pct.toFixed(2) + '%;top:26px;transform:translateX(-50%);white-space:nowrap;color:#FFE0B2;font-size:11px">' +
+                ((typeof mk2.label === "string" && mk2.label.length) ? mk2.label : rbrFx(rbrNum(mk2.value, 0), 2)) + '</div>';
+        }
+        el.innerHTML = '<div style="margin-bottom:5px"><span style="font-family:' + RBR_MATH_FONT + '">KE</span> = <span id="rbr_kebar_val">--</span> J</div>' +
+            '<div style="position:relative;width:210px;height:18px;background:rgba(255,255,255,0.10);border-radius:3px">' +
+            '<div id="rbr_kebar_fill" style="width:0%;height:100%;background:#4DD0E1;border-radius:3px"></div>' + ticks + '</div>' +
+            (wantTick ? '<div style="height:18px"></div>' : "");
+        el.style.display = "block";
+    }
+    // Hold-glow is the INSTRUMENT channel, deliberately separate from the scene
+    // focal (Rule 32e counts scene elements; a pinned readout is an instrument
+    // state marker, not a second thing competing for the eye).
+    //   AUTHORING CAUTION carried from physics_block callout 3: on S5 the L
+    // readout sweeps through 3.06 at ~1.66 s into the decay, momentarily equal
+    // to the CONSTANT I readout. Different instruments, different units, no
+    // defect — but hold_glow must never name I and L together on that beat, and
+    // no narration may stage a side-by-side glance there.
+    function rbrSetHold(id, on) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.style.textShadow = on ? "0 0 9px rgba(255,241,118,0.95)" : "none";
+        el.style.color = on ? "#FFF176" : "";
+    }
+    function rbrWriteReadouts(rb, tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return;
+        var blank = rbrBlanked(tMs);
+        var I = rbrIAt(tMs), L = rbrLAt(tMs);
+        var w = (I > 0) ? L / I : 0;
+        var KE = (I > 0) ? (L * L) / (2 * I) : 0;
+        // ONE post-step snapshot (skeleton E8): I, omega, L, KE and dL/dt are
+        // all published from the SAME evaluation of tMs, so a pre-step value can
+        // never sit beside a post-step one.
+        var snap = { I: I, omega: w, L: L, KE: KE, dLdt: rbrDLdtAt(tMs), F_pull: eng.m * w * w * rbrRAt(tMs) };
+        window.PM_rbrI = I; window.PM_rbrOmega = w; window.PM_rbrL = L;
+        window.PM_rbrKE = KE; window.PM_rbrR = rbrRAt(tMs); window.PM_rbrTheta = rbrThetaAt(tMs);
+        var keys = rb.readouts || [];
+        var revealAt = rb.readout_at_ms || {};
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i], meta = RBR_RO_META[k];
+            if (!meta) continue;
+            // A quantity is PRINTED only after the sentence that defines it
+            // (Rule 25, the term-introduction ledger). Absent key = from t = 0.
+            var rowEl = document.getElementById("rbr_ro_" + k);
+            if (rowEl) rowEl.style.display = (tMs >= rbrNum(revealAt[k], 0)) ? "block" : "none";
+            var vEl = document.getElementById("rbr_ro_" + k + "_val");
+            if (vEl) vEl.textContent = blank ? "—" : rbrFx(snap[k], meta.dp);
+        }
+        var hold = rb.hold_glow || [];
+        for (var hk in RBR_RO_META) {
+            rbrSetHold("rbr_ro_" + hk, !blank && hold.indexOf(hk) >= 0);
+        }
+        // KE bar + its tick.
+        var maxJ = rbrNum((rb.ke_bar || {}).max_j, 0);
+        if (maxJ > 0) {
+            var fill = document.getElementById("rbr_kebar_fill");
+            if (fill) fill.style.width = Math.max(0, Math.min(100, (KE / maxJ) * 100)).toFixed(2) + "%";
+            var kv = document.getElementById("rbr_kebar_val");
+            if (kv) kv.textContent = blank ? "—" : rbrFx(KE, 2);
+        }
+        // Reference marks: reveal on their own cue, then (chip form only) fire
+        // the MATCH CUE once the live value arrives. The match is LATCHED, not
+        // edge-detected: the predicate window is under one frame at 60 Hz, so an
+        // edge detector would miss it on most runs.
+        var marks = rb.reference_marks || [];
+        for (var mi2 = 0; mi2 < marks.length; mi2++) {
+            var mk3 = marks[mi2] || {};
+            var mid = "rbr_mark_" + (mk3.id || (((mk3.form === "tick") ? "t" : "m") + mi2));
+            var at = cueTriggerMs(mk3.cue || "", rbrNum(mk3.at_ms, 0));
+            var on = tMs >= at;
+            var mEl = document.getElementById(mid);
+            if (mEl) mEl.style.display = on ? ((mk3.form === "tick") ? "block" : "inline") : "none";
+            var mLbl = document.getElementById(mid + "_lbl");
+            if (mLbl) mLbl.style.display = on ? "block" : "none";
+            if ((mk3.form || "chip") !== "chip") continue;
+            var live = snap[mk3.surface];
+            if (typeof live !== "number") continue;
+            var tol = rbrNum(mk3.match_tolerance, 0.01);
+            if (on && !blank && Math.abs(live - rbrNum(mk3.value, 0)) < tol) eng.matched[mid] = true;
+            var matched = !!eng.matched[mid];
+            rbrSetHold(mid, on && matched);
+            if (matched && on) rbrSetHold("rbr_ro_" + mk3.surface, true);
+        }
+        // The re-pin cue itself (Addendum C): a visible RESTART badge across the
+        // blank, so a discontinuity reads as a restart and never as an uncaused
+        // external torque.
+        var badge = document.getElementById("rbr_repin");
+        if (badge) badge.style.display = blank ? "block" : "none";
+    }
+
+    // ── Scene ─────────────────────────────────────────────────────────────
+    function buildRigidBodyRotation() {
+        rbrIndex = [];
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var W = RBR_WORLD_PER_M;
+
+        var root = new THREE.Group();
+        root.userData = { elementType: "rbr_root", id: "rbr_root" };
+        addToScene(root);
+        rbrRegister(root);
+
+        // The SPIN group carries everything rigidly attached to the body, so one
+        // theta write turns the whole apparatus and no per-mesh angle can drift.
+        var spin = new THREE.Group();
+        spin.userData = { elementType: "rbr_spin", id: "rbr_spin" };
+        root.add(spin); rbrRegister(spin);
+
+        var axle = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.07, 0.07, 3.4, 20),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_AXLE_COLOR), emissive: hexToThreeColor(RBR_AXLE_COLOR), emissiveIntensity: 0.14, shininess: 40 }));
+        axle.position.set(0, 0.6, 0);
+        axle.userData = { elementType: "rbr_axle", id: "rbr_axle" };
+        root.add(axle); rbrRegister(axle);
+
+        // The turntable IS the brake drum (skeleton P2-6): the pad meets it at
+        // brake_drum_radius_m, and the rod rides clear above the pad plane, so
+        // the pad never fouls a mass at any r — including r < R_drum.
+        var drum = new THREE.Mesh(
+            new THREE.CylinderGeometry(RBR_DEF_DRUM_R * W, RBR_DEF_DRUM_R * W, 0.20, 48),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRUM_COLOR), emissive: hexToThreeColor(RBR_DRUM_COLOR), emissiveIntensity: 0.12, shininess: 30 }));
+        drum.userData = { elementType: "rbr_drum", id: "rbr_drum" };
+        spin.add(drum); rbrRegister(drum);
+
+        // A rotation MARKER on the drum. Without it a circular platform spinning
+        // about its own axis is visually identical to a still one.
+        var stripe = new THREE.Mesh(
+            new THREE.BoxGeometry(RBR_DEF_DRUM_R * W * 0.92, 0.03, 0.09),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_MARK_COLOR), emissive: hexToThreeColor(RBR_MARK_COLOR), emissiveIntensity: 0.42, shininess: 60 }));
+        stripe.position.set(RBR_DEF_DRUM_R * W * 0.46, 0.11, 0);
+        stripe.userData = { elementType: "rbr_drum_marker", id: "rbr_drum_marker" };
+        spin.add(stripe); rbrRegister(stripe);
+
+        // Addendum B — the DRAWN drum reference line, styled and labelled so it
+        // can never be confused with the r line (scar
+        // teach_distinct_reference_lines_for_two_radii): a purple ring in the
+        // pad plane vs a green radial spoke up in the rod plane.
+        var drumLine = new THREE.Mesh(
+            new THREE.TorusGeometry(RBR_DEF_DRUM_R * W, 0.022, 8, 64),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRUMLINE_COLOR), emissive: hexToThreeColor(RBR_DRUMLINE_COLOR), emissiveIntensity: 0.40, shininess: 50, transparent: true, opacity: 1 }));
+        drumLine.rotation.x = -Math.PI / 2;
+        drumLine.position.set(0, 0.115, 0);
+        drumLine.userData = { elementType: "rbr_drum_line", id: "rbr_drum_line" };
+        root.add(drumLine); rbrRegister(drumLine);
+        var drumLbl = rbrMakeLabel("R_drum", RBR_DRUMLINE_COLOR, 0.30);
+        drumLbl.position.set(0, 0.42, RBR_DEF_DRUM_R * W + 0.34);
+        drumLbl.userData = { elementType: "rbr_drum_line_label", id: "rbr_drum_line_label" };
+        root.add(drumLbl); rbrRegister(drumLbl);
+
+        var rod = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.05, 0.05, 2 * RBR_DEF_ROD_HALF * W, 16),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_ROD_COLOR), emissive: hexToThreeColor(RBR_ROD_COLOR), emissiveIntensity: 0.12, shininess: 40 }));
+        rod.rotation.z = Math.PI / 2;
+        rod.position.set(0, RBR_DEF_ROD_H * W, 0);
+        rod.userData = { elementType: "rbr_rod", id: "rbr_rod" };
+        spin.add(rod); rbrRegister(rod);
+
+        // Two masses, one r line, one pull arrow each — built ONCE from the
+        // union of every state and only shown/hidden + re-posed (Rule 32d).
+        var sides = [1, -1], sideId = ["a", "b"];
+        for (var s = 0; s < 2; s++) {
+            var mass = new THREE.Mesh(
+                new THREE.SphereGeometry(RBR_MASS_R, 20, 16),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_MASS_COLOR), emissive: hexToThreeColor(RBR_MASS_COLOR), emissiveIntensity: 0.24, shininess: 60 }));
+            mass.userData = { elementType: "rbr_mass", id: "rbr_mass_" + sideId[s], side: sides[s] };
+            spin.add(mass); rbrRegister(mass);
+
+            var pull = new THREE.ArrowHelper(new THREE.Vector3(-sides[s], 0, 0), new THREE.Vector3(0, 0, 0),
+                RBR_ARROW_MIN_LEN, hexToThreeColor(RBR_PULL_COLOR), 0.20, 0.15);
+            pull.userData = { elementType: "rbr_pull_arrow", id: "rbr_pull_" + sideId[s], side: sides[s] };
+            pull.visible = false;
+            spin.add(pull); rbrRegister(pull);
+        }
+        var pullLbl = rbrMakeLabel("pull", RBR_PULL_COLOR, 0.28);
+        pullLbl.userData = { elementType: "rbr_pull_label", id: "rbr_pull_label" };
+        pullLbl.visible = false;
+        spin.add(pullLbl); rbrRegister(pullLbl);
+
+        var rLine = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.028, 0.028, 1, 10),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_RLINE_COLOR), emissive: hexToThreeColor(RBR_RLINE_COLOR), emissiveIntensity: 0.34, shininess: 40 }));
+        rLine.rotation.z = Math.PI / 2;
+        rLine.userData = { elementType: "rbr_r_line", id: "rbr_r_line" };
+        spin.add(rLine); rbrRegister(rLine);
+        var rLbl = rbrMakeLabel("r", RBR_RLINE_COLOR, 0.30);
+        rLbl.userData = { elementType: "rbr_r_label", id: "rbr_r_label" };
+        spin.add(rLbl); rbrRegister(rLbl);
+
+        // The L vector, on the axle. S1 uses it as a MAGNITUDE indicator only;
+        // its DIRECTION semantics are taught at S6 and nowhere earlier.
+        var lArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0.22, 0),
+            RBR_L_ARROW_MIN, hexToThreeColor(RBR_POS_COLOR), 0.24, 0.16);
+        lArrow.userData = { elementType: "rbr_l_arrow", id: "rbr_l_arrow" };
+        root.add(lArrow); rbrRegister(lArrow);
+        var lLbl = rbrMakeLabel("L", RBR_POS_COLOR, 0.34);
+        lLbl.userData = { elementType: "rbr_l_label", id: "rbr_l_label" };
+        root.add(lLbl); rbrRegister(lLbl);
+
+        // Addendum B — the brake actuator is a REAL RENDERED OBJECT, never an
+        // implied torque: an arm carrying a pad that translates in along +z, in
+        // the drum's own plane, and physically touches the drum at R_drum.
+        var arm = new THREE.Mesh(
+            new THREE.BoxGeometry(0.10, 0.10, 1.5),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C"), emissive: hexToThreeColor("#78909C"), emissiveIntensity: 0.10, shininess: 30 }));
+        arm.userData = { elementType: "rbr_brake_arm", id: "rbr_brake_arm" };
+        arm.visible = false;
+        root.add(arm); rbrRegister(arm);
+        var pad = new THREE.Mesh(
+            new THREE.BoxGeometry(0.34, 0.24, 0.16),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_PAD_COLOR), emissive: hexToThreeColor(RBR_PAD_COLOR), emissiveIntensity: 0.30, shininess: 50 }));
+        pad.userData = { elementType: "rbr_brake_pad", id: "rbr_brake_pad" };
+        pad.visible = false;
+        root.add(pad); rbrRegister(pad);
+        var padLbl = rbrMakeLabel("brake", RBR_PAD_COLOR, 0.28);
+        padLbl.userData = { elementType: "rbr_brake_label", id: "rbr_brake_label" };
+        padLbl.visible = false;
+        root.add(padLbl); rbrRegister(padLbl);
+
+        // Grip-rule hand. The SAME articulated model + per-frame FK curl the
+        // solenoid / wire hands use (buildArticulatedHandParts + rhrFingerJoints)
+        // — but this one must TRACK the spin sign, which the existing hands
+        // cannot (each is orientation-FIXED at build). The flip is a 180-degree
+        // rotation about world X: an orientation-PRESERVING transform, so the
+        // right hand stays a right hand (a mirror would silently make it a left
+        // hand and teach the wrong rule).
+        var handSc = 0.62 * HAND_SIZE_FACTOR;
+        var handParts = buildArticulatedHandParts(handSc, 1);
+        var hand = new THREE.Group();
+        hand.add(handParts.group);
+        hand.position.set(-0.95, 0.30, 0);
+        hand.userData = {
+            elementType: "rbr_grip_hand", id: "rbr_grip_hand",
+            finger_meshes: handParts.fingerTubes, finger_knuckles: handParts.fingerKnuckles,
+            finger_nails: handParts.fingerNails, sc: handSc, curlSign: 1,
+            seg_tube_r: handParts.segR, curlT: -1
+        };
+        hand.visible = false;
+        root.add(hand); rbrRegister(hand);
+
+        // ── DOM. Rule 39f discovery conventions: dynamic panels are inline
+        //   position:fixed, slider rows are <prefix>_<name>_row — so the gear
+        //   teacher widget engine picks all of this up with no widget code.
+        //   Rule 34d zones: HUD top-right (top:52px clears the review chrome's
+        //   Full screen button), formula mid-left, KE bar lower-left, sliders
+        //   bottom-right, caption top-centre (the generic #caption).
+        var ro = document.createElement("div");
+        ro.id = "rbr_readout";
+        ro.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:180px;display:none;";
+        document.body.appendChild(ro);
+
+        var ff = document.createElement("div");
+        ff.id = "rbr_formula";
+        ff.style.cssText = "position:fixed;top:40%;left:22px;transform:translateY(-50%);color:#FFF176;font:600 23px/1.45 " + RBR_MATH_FONT + ";text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:330px;white-space:pre-line;";
+        document.body.appendChild(ff);
+
+        var kb = document.createElement("div");
+        kb.id = "rbr_kebar";
+        kb.style.cssText = "position:fixed;left:22px;bottom:96px;background:rgba(0,0,0,0.80);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.5 monospace;z-index:10;display:none;";
+        document.body.appendChild(kb);
+
+        // Addendum C — the re-pin badge. Rule 41: literal wording, no metaphor.
+        var rp = document.createElement("div");
+        rp.id = "rbr_repin";
+        rp.style.cssText = "position:fixed;top:52px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.86);color:#FFE0B2;padding:6px 13px;border:1px solid #8D6E63;border-radius:7px;font:13px/1.4 monospace;z-index:11;display:none;";
+        rp.textContent = "restarting";
+        document.body.appendChild(rp);
+
+        var sp2 = document.createElement("div");
+        sp2.id = "rbr_sliders";
+        sp2.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:210px;display:none;";
+        document.body.appendChild(sp2);
+        rbrBuildSliderRows(sp2);
+
+        window.PM_rbrSeized = false;
+        // Default framing. The widest thing on screen is a pull arrow at
+        // r = 0.90 (mass at 1.62 world, arrow tail up to +2.30), so the camera
+        // has to clear ~4.0 units of half-width; the solve sweeps radius AND
+        // elevation rather than one axis (scar camera_solve_searched_in_one_
+        // axis_hides_the_feasible_region_in_the_axis_held_fixed).
+        spherical.radius = 9.6; targetSpherical.radius = 9.6;
+        spherical.phi = 1.16; targetSpherical.phi = 1.16;
+        spherical.theta = Math.PI / 4; targetSpherical.theta = Math.PI / 4;
+    }
+
+    // ── Per-state seed. NO clock code and NO integration here (Rule 36). ────
+    function applyRigidBodyRotationState(stateDef) {
+        var rb = (stateDef && stateDef.rigid_body_rotation) ? stateDef.rigid_body_rotation : {};
+        var ap = rb.apparatus || {};
+        var ms = rb.masses || {};
+        var et = rb.external_torque || {};
+        var eng = {
+            mode: rb.mode || "fixed_axis",
+            iFrame: rbrNum(ap.i_frame_kgm2, RBR_DEF_I_FRAME),
+            rodHalf: rbrNum(ap.rod_half_length_m, RBR_DEF_ROD_HALF),
+            drumR: rbrNum(ap.brake_drum_radius_m, RBR_DEF_DRUM_R),
+            rodH: rbrNum(ap.rod_height_above_pad_m, RBR_DEF_ROD_H),
+            rMin: rbrNum(ap.r_min_m, RBR_DEF_R_MIN),
+            rMax: rbrNum(ap.r_max_m, RBR_DEF_R_MAX),
+            massCount: rbrNum(ms.count, 2),
+            m: rbrNum(ms.mass_kg, RBR_DEF_MASS),
+            r: rbrNum(ms.r_m, RBR_DEF_R_MAX),
+            omega0: Math.abs(rbrNum(rb.omega0_rad_s, RBR_DEF_OMEGA0)),
+            spinSign: (rbrNum(rb.spin_sign, 1) < 0) ? -1 : 1,
+            theta0: rbrNum(rb.theta0_rad, 0),
+            tau: 0,
+            brakeOnMs: null, brakeOffMs: Infinity,
+            padTravelMs: rbrNum(et.pad_travel_ms, 1200),
+            padEngageMs: null, padReleaseMs: Infinity,
+            restart: null,
+            blankMs: rbrNum((rb.repin_cue || {}).blank_ms, RBR_DEF_BLANK_MS),
+            ramp: null, sweep: null,
+            glow_focal: rb.glow_focal || "",
+            base_glow_focal: rb.glow_focal || "",
+            t_ms: 0, _th: 0, _thN: 0,
+            evSign: null, evAnchorT: null, evAnchorL: 0, evRepinT: null,
+            matched: {}, L0: 0
+        };
+        if (eng.r < eng.rMin) eng.r = eng.rMin;
+        if (eng.r > eng.rMax) eng.r = eng.rMax;
+        // The torque source. 'brake' is the member this build implements; the
+        // other two DECLARED members are inert no-ops here and are built under
+        // their own concepts' rows, so reading one can never throw.
+        var src = et.source || ((typeof et.applied_torque_Nm === "number") ? "applied_torque" : "brake");
+        if (src === "brake") {
+            eng.tau = Math.abs(rbrNum(et.tau_brake_Nm, 0));
+            if (eng.tau > 0) {
+                eng.padEngageMs = cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0));
+                eng.padReleaseMs = (typeof et.release_at_ms === "number" || et.release_cue)
+                    ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
+                eng.brakeOnMs = eng.padEngageMs;
+                eng.brakeOffMs = eng.padReleaseMs;
+            }
+        } else if (src === "applied_torque") {
+            // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I, on the
+            // same single integrator and the same closed form. The rest clamp
+            // still holds on L, so it can never drive the spin through zero.
+            eng.tau = Math.abs(rbrNum(et.applied_torque_Nm, 0));
+            if (eng.tau > 0) { eng.brakeOnMs = rbrNum(et.engage_at_ms, 0); eng.brakeOffMs = rbrNum(et.release_at_ms, Infinity); }
+        }
+        var pr = rb.param_ramp;
+        if (pr && pr.param && isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms) && eng.mode !== "sandbox") {
+            eng.ramp = { param: pr.param, from: pr.from, to: pr.to, start_ms: rbrNum(pr.start_ms, 0), end_ms: pr.end_ms };
+            if (pr.param === "r") eng.r = pr.from;      // authored entry r == ramp.from
+        }
+        var sw = rb.idle_auto_sweep;
+        if (sw && sw.param && sw.range && sw.range.length >= 2 && isFinite(sw.range[0]) && isFinite(sw.range[1])) {
+            eng.sweep = { param: sw.param, lo: sw.range[0], hi: sw.range[1] };
+        }
+        if (rb.restart && isFinite(rb.restart.at_ms)) {
+            eng.restart = {
+                at_ms: rb.restart.at_ms,
+                every_ms: rbrNum(rb.restart.every_ms, Infinity),
+                flip_spin: rb.restart.flip_spin !== false
+            };
+        }
+        window.PM_rbrEngine = eng;
+        window.PM_rbrSeized = false;
+        window.PM_rbrTimeMs = 0;
+        // Seed L from I(r_entry) * omega0 * spin_sign. This is the ONLY place a
+        // guided state's L is initialised; everything after is the closed form.
+        eng.L0 = rbrIOf(rbrRAt(0), eng.m) * eng.omega0 * eng.spinSign;
+        rbrThetaReset();
+
+        rbrApplyVisibility(rb);
+        rbrToggleSliderRows(rb);
+        for (var i = 0; i < rbrRowsBuilt.length; i++) {
+            var tok = rbrRowsBuilt[i];
+            if (tok === "r") rbrSyncSliderRow("r", eng.r);
+            else if (tok === "m") rbrSyncSliderRow("m", eng.m);
+            else if (tok === "omega0") rbrSyncSliderRow("omega0", eng.omega0);
+            else if (tok === "tau_brake") rbrSyncSliderRow("tau_brake", eng.tau);
+        }
+        rbrRebuildReadout(rb);
+        rbrRebuildKeBar(rb);
+        var ff = document.getElementById("rbr_formula");
+        if (ff) {
+            ff.textContent = (typeof rb.formula === "string") ? rb.formula : "";
+            ff.style.display = (typeof rb.formula === "string" && rb.formula.length) ? "block" : "none";
+        }
+        var rp = document.getElementById("rbr_repin");
+        if (rp) rp.style.display = "none";
+        // Pose the very first rendered frame from the SAME path every later
+        // frame uses — no parallel seed geometry that could disagree.
+        updateRigidBodyRotationFrame();
+    }
+    // EXACT-token visibility (the greedy-substring scar): rbr children live in
+    // rbrIndex, not sceneObjects, so the generic matcher never sees them and
+    // every rbr elementType is registered HERE. Absent visible_elements (or
+    // "all") = the whole apparatus, so nothing is ever silently blanked.
+    var RBR_ALWAYS_ON = { rbr_root: 1, rbr_spin: 1, rbr_axle: 1, rbr_drum: 1, rbr_drum_marker: 1, rbr_rod: 1, rbr_mass: 1 };
+    var RBR_ELEMENT_TYPES = [
+        "rbr_root", "rbr_spin", "rbr_axle", "rbr_drum", "rbr_drum_marker",
+        "rbr_drum_line", "rbr_drum_line_label", "rbr_rod", "rbr_mass",
+        "rbr_pull_arrow", "rbr_pull_label", "rbr_r_line", "rbr_r_label",
+        "rbr_l_arrow", "rbr_l_label", "rbr_brake_arm", "rbr_brake_pad",
+        "rbr_brake_label", "rbr_grip_hand"
+    ];
+    function rbrApplyVisibility(rb) {
+        var vis = rb.visible_elements || [];
+        var showAll = vis.length === 0 || vis.indexOf("all") >= 0;
+        // OVERLAYS DEFAULT OFF — they appear only when the state ASKS for them,
+        // by its own show_* flag or by naming the token in visible_elements.
+        // "all" deliberately does NOT reach them. Caught in bring-up on the real
+        // pixels: with overlays falling through to "all", a brake state that had
+        // never mentioned the pull force or the grip hand rendered both — a
+        // "pull" label floating beside a mass with no pull being taught, and a
+        // hand tangled in the rod. A stray overlay is worse than a missing one
+        // (a missing overlay is obvious in review; a stray one silently teaches
+        // a second thing and breaks Rule 32b/32e), so the ask has to be
+        // explicit. The APPARATUS (axle, drum, marker, rod, masses) is always
+        // on — it is the one machine the whole concept lives on (Rule 32d).
+        var flags = {
+            rbr_pull_arrow: rb.show_pull_arrows, rbr_pull_label: rb.show_pull_arrows,
+            rbr_l_arrow: rb.show_l_arrow, rbr_l_label: rb.show_l_arrow,
+            rbr_r_line: rb.show_r_line, rbr_r_label: rb.show_r_line,
+            rbr_drum_line: rb.show_drum_line, rbr_drum_line_label: rb.show_drum_line,
+            rbr_grip_hand: rb.show_grip_hand
+        };
+        rbrEach(function (o, ud) {
+            var et = ud.elementType;
+            if (!et) return;
+            if (RBR_ALWAYS_ON[et]) { o.visible = true; return; }
+            var named = (vis.indexOf(et) >= 0 || (ud.id && vis.indexOf(ud.id) >= 0));
+            if (et in flags) { o.visible = (flags[et] === true) || named; return; }
+            if (showAll) { o.visible = true; return; }
+            o.visible = named;
+        });
+        // The brake apparatus follows the torque SOURCE, never a token: a pad
+        // standing there doing nothing is apparatus that teaches a torque which
+        // is not acting.
+        var et2 = rb.external_torque || {};
+        var padOn = (et2.source || "brake") === "brake" && Math.abs(rbrNum(et2.tau_brake_Nm, 0)) > 0;
+        var pd = rbrFindById("rbr_brake_pad"), ar = rbrFindById("rbr_brake_arm"), pl = rbrFindById("rbr_brake_label");
+        if (pd) pd.visible = padOn;
+        if (ar) ar.visible = padOn;
+        if (pl) pl.visible = padOn;
+    }
+
+    // ── Per-frame. Reads the clock, writes the pose. Nothing accumulates. ──
+    function updateRigidBodyRotationFrame() {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return;
+        var rb = rbrCfg();
+        var W = RBR_WORLD_PER_M;
+        // The state-local clock, DERIVED (Rule 36: never accumulated, so a pin
+        // holds it, a rewind reproduces it and a 120 Hz tablet runs it right).
+        var tMs = (time - stateStartTime) * 1000;
+        if (!(tMs > 0)) tMs = 0;
+        eng.t_ms = tMs;
+        window.PM_rbrTimeMs = tMs;
+
+        // phases[] rewrite ONLY the glow focal (one focal at a time, Rule 32e).
+        var focal = eng.base_glow_focal;
+        var phs = rb.phases || [];
+        for (var p = 0; p < phs.length; p++) {
+            var ph = phs[p] || {};
+            if (!ph.id) continue;
+            var at = cueTriggerMs(ph.scenario_cue || "", rbrNum(ph.at_ms, 0));
+            var until = (typeof ph.until_ms === "number" && isFinite(ph.until_ms)) ? ph.until_ms : Infinity;
+            if (tMs >= at && tMs < until && ph.glow_focal) focal = ph.glow_focal;
+        }
+        eng.glow_focal = focal;
+
+        // r first (a ramp is exactly a slider write), so the pose, the arrows
+        // and the readouts are all consistent within the SAME frame.
+        var r = rbrRAt(tMs);
+        if (Math.abs(r - eng.r) > 1e-6 && !window.PM_rbrSeized) {
+            eng.r = r;
+            rbrSyncSliderRow("r", r);
+        }
+        var theta = rbrThetaAt(tMs);
+        var L = rbrLAt(tMs), I = rbrIAt(tMs);
+        var w = (I > 0) ? L / I : 0;
+        var sign = (L < 0) ? -1 : 1;
+
+        var spin = rbrFindById("rbr_spin");
+        if (spin) spin.rotation.y = theta;
+
+        var rodY = eng.rodH * W;
+        rbrEach(function (o, ud) {
+            if (ud.elementType === "rbr_mass") o.position.set(ud.side * r * W, rodY, 0);
+        });
+        var rLine = rbrFindById("rbr_r_line");
+        if (rLine) {
+            rLine.scale.set(1, Math.max(1e-3, r * W), 1);
+            rLine.position.set(r * W / 2, rodY, 0);
+        }
+        var rLbl = rbrFindById("rbr_r_label");
+        if (rLbl) rLbl.position.set(r * W / 2, rodY + 0.30, 0);
+
+        // Pull arrows (F5). ALWAYS along -r-hat: they lengthen pulling in and
+        // SHORTEN easing out, and never reverse to point outward — an outward
+        // slide means the centripetal hold is LESS than m*omega^2*r, not that
+        // something pushed. Head AT the mass, tail outward, so a long arrow
+        // grows into free space instead of crossing the axis.
+        var F = eng.m * w * w * r;
+        var aLen = rbrArrowLen(F);
+        rbrEach(function (o, ud) {
+            if (ud.elementType !== "rbr_pull_arrow") return;
+            o.position.set(ud.side * (r * W + aLen), rodY, 0);
+            o.setDirection(new THREE.Vector3(-ud.side, 0, 0));
+            o.setLength(aLen, Math.min(0.24, aLen * 0.34), Math.min(0.17, aLen * 0.24));
+        });
+        var pLbl = rbrFindById("rbr_pull_label");
+        if (pLbl) pLbl.position.set(r * W + aLen * 0.5, rodY + 0.34, 0);
+
+        // The L vector: length proportional to |L|, direction and COLOUR from
+        // its sign, so a teacher reads the sign before reading the number.
+        var lArrow = rbrFindById("rbr_l_arrow");
+        var lLen = Math.abs(L) * RBR_L_ARROW_SCALE;
+        if (lLen < RBR_L_ARROW_MIN) lLen = RBR_L_ARROW_MIN;
+        if (lLen > RBR_L_ARROW_MAX) lLen = RBR_L_ARROW_MAX;
+        var lCol = (sign < 0) ? RBR_NEG_COLOR : RBR_POS_COLOR;
+        if (lArrow) {
+            lArrow.position.set(0, sign * 0.22, 0);
+            lArrow.setDirection(new THREE.Vector3(0, sign, 0));
+            lArrow.setLength(lLen, 0.24, 0.16);
+            if (lArrow._rbrCol !== lCol) {
+                lArrow._rbrCol = lCol;
+                if (lArrow.setColor) lArrow.setColor(hexToThreeColor(lCol));
+                lArrow.traverse(function (n) { if (n.material && n.material.userData) n.material.userData._glowBaseCol = null; });
+            }
+        }
+        var lLbl = rbrFindById("rbr_l_label");
+        if (lLbl) lLbl.position.set(0.34, sign * (0.22 + lLen + 0.20), 0);
+
+        // The brake actuator (Addendum B). It TRAVELS in, touches the drum at
+        // R_drum, and retracts on the release cue — the torque has a visible
+        // agent at every instant it is acting.
+        var pad = rbrFindById("rbr_brake_pad");
+        var arm = rbrFindById("rbr_brake_arm");
+        var padLbl = rbrFindById("rbr_brake_label");
+        if (pad && pad.visible) {
+            var contactZ = eng.drumR * W + 0.09;
+            var parkZ = contactZ + 1.05;
+            var z = parkZ;
+            var eMs = (eng.padEngageMs == null) ? Infinity : eng.padEngageMs;
+            var relMs = eng.padReleaseMs;
+            if (tMs >= eMs && tMs < relMs) z = contactZ;
+            else if (tMs < eMs && tMs > eMs - eng.padTravelMs && eng.padTravelMs > 0) {
+                z = parkZ + (contactZ - parkZ) * ((tMs - (eMs - eng.padTravelMs)) / eng.padTravelMs);
+            } else if (tMs >= relMs && isFinite(relMs) && eng.padTravelMs > 0) {
+                var u2 = Math.min(1, (tMs - relMs) / eng.padTravelMs);
+                z = contactZ + (parkZ - contactZ) * u2;
+            }
+            pad.position.set(0, 0, z);
+            if (arm) arm.position.set(0, 0, z + 0.83);
+            if (padLbl) padLbl.position.set(0, 0.40, z + 0.20);
+        }
+
+        // Grip-rule hand: thumb along +L. The flip is a 180-degree rotation
+        // about world X (orientation-preserving — still a RIGHT hand).
+        var hand = rbrFindById("rbr_grip_hand");
+        if (hand && hand.visible) {
+            hand.rotation.set((sign < 0) ? Math.PI : 0, 0, 0);
+            var curlT = 1 - Math.abs(1 - 2 * ((tMs % 2600) / 2600));   // 0 -> 1 -> 0 triangle
+            if (Math.abs(curlT - hand.userData.curlT) > 0.02) {
+                hand.userData.curlT = curlT;
+                var fm = hand.userData.finger_meshes || [], kn = hand.userData.finger_knuckles || [], nl = hand.userData.finger_nails || [];
+                for (var fi = 0; fi < fm.length; fi++) {
+                    var fj = rhrFingerJoints(fi, hand.userData.sc, curlT, hand.userData.curlSign);
+                    fm[fi].geometry.dispose();
+                    fm[fi].geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fj), 24, hand.userData.seg_tube_r, 12, false);
+                    var kk = kn[fi] || [];
+                    for (var q = 0; q < kk.length; q++) { if (kk[q]) kk[q].position.copy(fj[q]); }
+                    if (nl[fi]) nl[fi].position.copy(fj[3]);
+                }
+            }
+        }
+
+        rbrWriteReadouts(rb, tMs);
+    }
+
+    function applyRigidBodyRotationGlow() {
+        var rb = rbrCfg();
+        var eng = window.PM_rbrEngine;
+        var focal = (eng && eng.glow_focal) || rb.glow_focal || "";
+        var glowActive = !!focal;
+        var glowP = glowEmphT(time);
+        rbrEach(function (o, ud) {
+            if (ud.elementType === "rbr_root" || ud.elementType === "rbr_spin") return;
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal);
+            // BRIGHTEN-ONLY for the solid apparatus (the nlb / fr carve-out): the
+            // dim branch drops opacity to 0.40, right for an OVERLAY and wrong
+            // for a physical OBJECT (a 40% turntable renders as glass). The
+            // articulated hand is a NAMED mesh and never dims (Rule 29).
+            var solid = (ud.elementType === "rbr_axle" || ud.elementType === "rbr_drum" ||
+                         ud.elementType === "rbr_drum_marker" || ud.elementType === "rbr_rod" ||
+                         ud.elementType === "rbr_mass" || ud.elementType === "rbr_brake_pad" ||
+                         ud.elementType === "rbr_brake_arm" || ud.elementType === "rbr_grip_hand" ||
+                         ud.elementType === "rbr_drum_line_label" || ud.elementType === "rbr_r_label" ||
+                         ud.elementType === "rbr_l_label" || ud.elementType === "rbr_brake_label" ||
+                         ud.elementType === "rbr_pull_label");
+            applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
+        });
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     // ================================================================
     // displacement_current (Ch.8 §8.2 — I_d = ε₀ dΦ_E/dt, the
@@ -59102,6 +60338,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildKinematics1dTrack();
                 break;
 
+            case "rigid_body_rotation":
+                buildRigidBodyRotation();
+                break;
+
             default:
                 // Fallback: show a single positive charge. Hardening fix
                 // (engine_bug_queue field3d_unknown_scenario_field_lines_crash,
@@ -59670,6 +60910,18 @@ export const FIELD_3D_RENDERER_CODE = `
             applyForceRigState(stateDef);
         }
 
+        // rigid_body_rotation — per-state seed of the fixed-axis rotation
+        // engine (I_frame / masses / r / omega0 / spin_sign / the tau_ext
+        // source), the value-only HUD rows, the KE bar, the reference marks in
+        // both surface forms, the single Cambria-Math formula surface, the
+        // contextual control rows and the Rule-32e glow focal. Everything after
+        // this is a closed form of state-local t read by
+        // updateRigidBodyRotationFrame off the SAME engine record
+        // (window.PM_rbrEngine) seeded here.
+        if (config.scenario_type === "rigid_body_rotation") {
+            applyRigidBodyRotationState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -60070,6 +61322,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // "#sliders exclusion chain" — every dedicated panel adds itself to this
         // NOT-list, same as isNlb/isMfl/isCap/... above).
         var isFrig = config.scenario_type === "force_rig";
+        // rigid_body_rotation owns its OWN #rbr_sliders panel (r/m/ω₀/τ/spin
+        // direction) -- must be excluded here or the generic #sliders panel
+        // bleeds through with its straight-wire-current defaults (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to this
+        // NOT-list, same as isNlb/isFrig/isKt/... above).
+        var isRbr = config.scenario_type === "rigid_body_rotation";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -60134,7 +61392,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isOrbShapes && !isBondScene && !isKt) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isKt) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -60321,7 +61579,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -63373,7 +64631,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -63885,6 +65143,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "force_rig") {
             updateForceRigFrame(heldAtPin ? 0 : dtStep);
             applyForceRigGlow();
+        }
+
+        // rigid_body_rotation — the Class-11 Ch.7 fixed-axis engine. NO dt is
+        // handed in and none is needed: the frame reads (time - stateStartTime)
+        // and every quantity is a closed form of it (theta included, summed on a
+        // FIXED 16 ms grid), so 60 Hz and 120 Hz produce the same pose per
+        // SECOND, a pin re-evaluates instead of drifting, and a rewind to an
+        // earlier t reproduces the earlier frame bit for bit (Rule 36).
+        if (config.scenario_type === "rigid_body_rotation") {
+            updateRigidBodyRotationFrame();
+            applyRigidBodyRotationGlow();
         }
 
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
