@@ -431,7 +431,7 @@
       "STATE_3": {
         "title": "The ions pull in and stop",
         "label": "Attraction pulls the two ions together; their full inner shells stop them at a fixed spacing",
-        "duration": 22,
+        "duration": 20,
         "depth_ring": "core",
         "focal_primitive_id": "s3_full_shells_label",
         "advance_mode": "manual_click",
@@ -492,7 +492,7 @@
             },
             {
               "id": "s3_4",
-              "text_en": "The distance readout shows it live — half of the crystal's measured cell edge.",
+              "text_en": "The distance readout shows the spacing live.",
               "glow": "lattice"
             }
           ]
@@ -692,7 +692,7 @@
               "x": 380,
               "y": 430
             },
-            "text": "Like charges push the halves apart",
+            "text": "If like charges line up, they push the halves apart",
             "color": "#EF5350",
             "at_ms": 15500,
             "until_ms": 25000
@@ -846,7 +846,7 @@
               "x": 500,
               "y": 60
             },
-            "text": "Free ions drift — current flows",
+            "text": "Free ions can move and carry current",
             "color": "#4FC3F7",
             "at_ms": 10500,
             "until_ms": 27000
@@ -887,7 +887,7 @@
       "STATE_9": {
         "title": "Higher charge, stronger lattice",
         "label": "One shared heater, two crystals — salt melts on the way up while magnesium oxide holds",
-        "duration": 30,
+        "duration": 25,
         "depth_ring": "advanced",
         "teaching_method": "compare_contrast",
         "focal_primitive_id": "s9_mgo_label",
@@ -939,17 +939,17 @@
             },
             {
               "id": "s9_2",
-              "text_en": "Salt's ions carry single charges; magnesium oxide's carry double charges, at a smaller spacing.",
+              "text_en": "Salt's ions carry single charges; magnesium oxide's carry double charges and sit closer together.",
               "glow": "lattice"
             },
             {
               "id": "s9_3",
-              "text_en": "Both its melting point and its lattice-dissociation energy are far higher — different measurements of the same stronger attraction, not the same quantity.",
+              "text_en": "Double the charge at a smaller spacing gives a far stronger attraction.",
               "glow": "lattice"
             },
             {
               "id": "s9_4",
-              "text_en": "Salt melts on the way up; magnesium oxide stays solid far past that point.",
+              "text_en": "Salt melts as the temperature rises; magnesium oxide stays solid — this is why furnace walls are lined with it.",
               "glow": "lattice"
             }
           ]
@@ -1421,7 +1421,7 @@
               "id": "g_solid",
               "label": "solid",
               "at": [
-                -9,
+                -13.5,
                 0,
                 0
               ],
@@ -1453,7 +1453,7 @@
               "id": "g_melt",
               "label": "molten",
               "at": [
-                9,
+                13.5,
                 0,
                 0
               ],
@@ -1516,7 +1516,7 @@
               "id": "g_nacl",
               "label": "NaCl",
               "at": [
-                -9,
+                -13.5,
                 0,
                 0
               ],
@@ -1544,7 +1544,7 @@
               "id": "g_mgo",
               "label": "MgO",
               "at": [
-                9,
+                13.5,
                 0,
                 0
               ],
