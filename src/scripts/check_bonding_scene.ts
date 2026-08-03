@@ -151,6 +151,8 @@ const VARS = [
   "BS_FIT_MARGIN", "BS_FIT_CLIP", "BS_ION_PAIRS",
   // E3b F2/F3 (the measured framing solve) + F1 (the melt envelope) + F4 (the
   // migration's own containment — the space-charge pile at the sample face)
+  // E3b F5 (the growth beat's own camera ramp)
+  "BS_GROW_CAM_LEAD_MS",
   "BS_FIT_FOV_DEG", "BS_FIT_ASPECT", "BS_FIT_BORDER", "BS_MELT_EXPAND",
   "BS_MELT_ENV_CACHE", "BS_PILE_NN",
   "BS_SUPDIG", "BS_COORD_CACHE",
@@ -200,7 +202,8 @@ const FNS = [
   "bscSceneSpins", "bscFitPoints", "bscFitDist",                  // E3b F2
   "bscMeltFold", "bscIonPile", "bscCellHalfSpan", "bscMeltEnv",   // E3b F1 / F4
   "bscOpeningExtent",                                            // E2d
-  "bscGrowShown", "bscTransferProg", "bscTransferSite",
+  "bscGrowNf", "bscGrowShown", "bscGrowCamW", "bscGrowCamWeight",   // E3b F5
+  "bscTransferProg", "bscTransferSite",
   // E3
   "bscBrokenFraction", "bscNetworkStretch", "bscThermalScale", "bscPeakThermalScale",
   // E3b (the SITE-LAYER PARITY dispatch — section 32 calls these SHIPPED bodies
@@ -4351,13 +4354,24 @@ console.log("\n=== 21. E1c-H EXPLORE CAMERA PER PICKED SPECIES (whole-picker cam
     ok("the frame pass never re-solves or re-aims the camera (the event half owns that)",
       !/animateCameraTo/.test(frameSrc) &&
       !/spherical\.theta\s*=|spherical\.phi\s*=/.test(frameSrc));
-    ok("...and the ONE camera quantity it writes is the F3 reveal ramp, gated on PM_bscCamRamp",
+    // E3b F5 UPDATE: there are now TWO ramps and still exactly ONE write. Both
+    // are gated on PM_bscCamRamp.on, so a row that declared no fit_ramp reaches
+    // neither branch, and the single write site is shared.
+    ok("...and the ONE camera quantity it writes is the fit_ramp DISTANCE, gated on PM_bscCamRamp",
       /var camRamp = window\.PM_bscCamRamp;/.test(frameSrc) &&
-      /if \(camRamp && revMode !== "none"\)/.test(frameSrc) &&
+      /if \(camRamp && camRamp\.on === "reveal" && revMode !== "none"\)/.test(frameSrc) &&
+      /else if \(camRamp && camRamp\.on === "grow"\)/.test(frameSrc) &&
       (frameSrc.match(/targetSpherical\.radius/g) || []).length === 1 &&
       (frameSrc.match(/[^t]spherical\.radius/g) || []).length === 1);
-    ok("the ramp is closed-form in the reveal (no clock read, no accumulator) — a pin sees the same distance",
+    ok("the reveal ramp is closed-form in the reveal (no clock read, no accumulator) — a pin sees the same distance",
       /dRamp = camRamp\.d0 \+ \(camRamp\.dist - camRamp\.d0\) \* bscClamp\(revF, 0, 1\)/.test(frameSrc));
+    // ...and the growth ramp is closed-form in ms through bscGrowCamW ALONE: it
+    // may not read a drag value (a teacher touching a control may not move the
+    // camera, Rule 32d) and may not read the live camera (the countable view has
+    // to be identical on the first frame and under a pin).
+    ok("the growth ramp reads ms + config only — no drag value, no live camera",
+      /var gwF = bscGrowCamW\(bs, ms, siteList\.length\);/.test(frameSrc) &&
+      /dRamp = bscClamp\(bscFitDist\(bs, camRamp, 1, null, gwF\), camRamp\.d0, camRamp\.dist\);/.test(frameSrc));
   }
   ok("it MOVES, it does not cut: the same helper state entry uses",
     /animateCameraTo\(\[dd \* Math\.cos\(elr\) \* Math\.cos\(azr\)/.test(grabFn("bscReframeForSpecies")));
@@ -6631,7 +6645,16 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
           .map((at, i) => ({ id: "hb_w" + i, species: "H2O", at: at }))
       }
     },
-    lattice_grow: { bs: LAT({ mode: "lattice_grow", lattice: { cell: "rock_salt", n: [5, 5, 5], a_pm: 564 } }) },
+    // E3b F5: the fixture now carries the GROWTH the shipped state authors, so
+    // the row is measured at the pose it OPENS in (the grow_from seed pair) as
+    // well as the block it ends on. Without the growth keys the fixture WAS the
+    // settled block, which is precisely how the opening pose went unmeasured.
+    lattice_grow: {
+      bs: LAT({
+        mode: "lattice_grow",
+        lattice: { cell: "rock_salt", n: [5, 5, 5], a_pm: 564, grow_at_ms: 5000, grow_duration_ms: 9000, grow_from: 2 }
+      })
+    },
     coordination: {
       bs: LAT({
         mode: "coordination", spin_rate: 0.16, controls: ["spin"],
@@ -6694,6 +6717,237 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
         w <= 0.95, `worst |NDC| ${w.toFixed(3)}`);
     }
   }
+  // ═════════════════════════════════════════════════════════════════════════
+  // E3b F5 — THE SECOND OMISSION CLASS: A ROW FRAMED FOR ITS DESTINATION.
+  // Everything above measures CONTAINMENT: does the frame hold what is drawn.
+  // Containment is one-sided and a camera parked far away passes it trivially,
+  // which is how lattice_grow shipped the ionic S4 opening at 7% of frame width
+  // while every assertion in this file passed. So the same sweep now also asks
+  // the other half — IS THE FRAME MOSTLY EMPTY — and it asks it at the pose each
+  // row OPENS in, not only at the pose it settles into.
+  {
+    // the FILL floor. Measured over every row at its own opening pose (the table
+    // printed below): the tightest legitimate row is the one whose solved
+    // distance floor is far outside its own fit, and no shipped row measures
+    // under 0.42. 0.35 therefore passes every row that is framed for its own
+    // scene and fails a row framed for a scene it does not yet contain.
+    const FILL_MIN = 0.35;
+    /** the scene AS IT OPENS: config only, exactly what is drawn at t = 0. */
+    const openingOf = (bs: any) => {
+      const o = JSON.parse(JSON.stringify(bs));
+      const strip = (b: any) => {
+        // a scripted heat ramp opens at its own T_from
+        if (b.thermal && b.thermal.T_from != null) {
+          b.thermal = Object.assign({}, b.thermal, { T_K: b.thermal.T_from, T_from: undefined, T_at_ms: undefined });
+        }
+        // a scripted slip / a scripted field open at zero — but ONLY when the
+        // state does not also hand the teacher the slider, because a reachable
+        // pose is reachable on the first frame and the camera has to hold it.
+        const ctl = (b.controls || []).map((c: any) => (typeof c === "string" ? c : c.id));
+        if (b.shift && b.shift.at_ms != null && ctl.indexOf("shift") < 0) b.shift = undefined;
+        if (b.field != null && b.field_at_ms != null && ctl.indexOf("field") < 0) b.field = 0;
+        if (b.approach_from != null) b.separation = b.approach_from;
+      };
+      strip(o);
+      if (o.groups) for (const g of o.groups) strip(g);
+      // ...and a growth beat opens on its grow_from sites alone.
+      if (o.lattice && o.lattice.grow_at_ms != null) {
+        o.__growOpen = true;
+      }
+      return o;
+    };
+    /** the distance the SHIPPED apply puts this row at on its first frame. */
+    const openingDist = (bs: any, cam: any, dEntry: number) => {
+      if (cam.fit_ramp !== "grow") return dEntry;
+      const total = (E.bscSiteList(bs, null) as any[]).length;
+      const gw0 = E.bscGrowCamW(bs, 0, total);
+      if (!gw0) return dEntry;
+      return Math.min(dEntry, Math.max(E.BS_CAMERAS.approach_link.dist,
+        E.bscFitDist(bs, cam, 1, null, gw0) as number));
+    };
+    /** worst |NDC| over the discs on screen at t = 0. */
+    const framedOpening = (bs: any, cam: any, dist: number) => {
+      const op = openingOf(bs);
+      let D = discsOf(op, 1);
+      if (op.__growOpen) {
+        const n0 = (op.lattice.grow_from != null) ? op.lattice.grow_from : 2;
+        const S = E.bscSiteList(op, null) as any[];
+        D = D.slice(0, Math.min(n0, S.length)).concat(D.slice(S.length));
+      }
+      const C = camOf3(cam, dist), ax = E.bscSpinAxis({ az: cam.az, el: cam.el, dist }) as number[];
+      let w = worstNdc(C, D);
+      if (spins(op)) {
+        for (let a = 0; a < 360; a += 5) {
+          w = Math.max(w, worstNdc(C, D.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r }))));
+        }
+      }
+      return w;
+    };
+    const rows: string[] = [];
+    let tightest = 9, tightestKey = "";
+    for (const key of Object.keys(SCENES)) {
+      const cam = (E.BS_CAMERAS as any)[key];
+      if (!cam) continue;
+      const bs = SCENES[key].bs;
+      const dEntry = cam.fit ? Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number) : cam.dist;
+      const d0 = openingDist(bs, cam, dEntry);
+      const w0 = framedOpening(bs, cam, d0);
+      rows.push(`${key} d0 ${d0.toFixed(1)} fill ${w0.toFixed(2)}`);
+      if (w0 < tightest) { tightest = w0; tightestKey = key; }
+      ok(`${key}: the OPENING pose is inside the frame`, w0 <= 1.0,
+        `worst |NDC| ${w0.toFixed(3)} at the opening distance ${d0.toFixed(2)}`);
+      ok(`${key}: ...and the opening frame is not mostly EMPTY (fill >= ${FILL_MIN})`,
+        w0 >= FILL_MIN, `fill ${w0.toFixed(3)} at ${d0.toFixed(2)}`);
+    }
+    console.log("        opening poses: " + rows.join(" · "));
+    ok("the FILL floor is below every legitimately-framed row (it measures a defect, not a style)",
+      tightest >= FILL_MIN, `tightest legitimate row ${tightestKey} at ${tightest.toFixed(3)} vs floor ${FILL_MIN}`);
+
+    // ── THE NEGATIVE CONTROL THE DISPATCH NAMES: the SHIPPED PRE-F5 row (fit:true,
+    //    no fit_ramp) is framed for the block it ends on, so it FAILS at the pose
+    //    it opens in and PASSES at the pose it settles into — which is exactly why
+    //    nothing caught it, twice, across two framing dispatches.
+    {
+      const bsG = SCENES.lattice_grow.bs;
+      const preG = { az: 35, el: 26, dist: 20.0, fit: true };       // as shipped pre-F5
+      const dPre = Math.max(preG.dist, E.bscFitDist(bsG, preG, 1, null) as number);
+      const wOpenPre = framedOpening(bsG, preG, dPre);
+      const wSettledPre = framed(bsG, preG, dPre, 1);
+      ok("NEGATIVE CONTROL: the pre-F5 lattice_grow camera FAILS the fill floor at its OPENING pose",
+        wOpenPre < FILL_MIN,
+        `fill ${wOpenPre.toFixed(3)} at dist ${dPre.toFixed(2)} — the seed pair on an otherwise empty canvas`);
+      ok("...and PASSES at the settled pose it was solved for — which is why nothing caught it",
+        wSettledPre <= 1.0 && wSettledPre >= FILL_MIN,
+        `settled worst |NDC| ${wSettledPre.toFixed(3)} at the same distance`);
+      // AND THE FIX AS THE REVIEWER MEASURED IT: the DRAWN WIDTH IN PIXELS of the
+      // same Cl- across the S3 -> S4 click. Measured honestly, which matters here:
+      // the drawn width of a sphere is its SILHOUETTE (r / sqrt(z^2 - r^2), not
+      // r / z — 6.5% wider at these radii) and z is the ion's own depth, which is
+      // the camera distance only when the camera is broadside. S3 is az 90, so its
+      // ions sit at depth = dist exactly; S4 is az 35, so its seed Cl- sits 4.3
+      // units FURTHER than the target. A naive r/dist reads both as equal and
+      // would have certified a continuity the frames do not show.
+      const cG = (E.BS_CAMERAS as any).lattice_grow;
+      const dEntryG = Math.max(cG.dist, E.bscFitDist(bsG, cG, 1, null) as number);
+      const d0G = openingDist(bsG, cG, dEntryG);
+      const rCl = (E.bscRadiusPm("Cl-") as number) / E.BS_PM_PER_UNIT;
+      /** px width of a sphere of radius r whose centre is at depth z, at 1280x720. */
+      const drawnPx = (r: number, z: number) => 2 * (r / Math.sqrt(z * z - r * r)) / TAN * 360;
+      /** the depth of the FIRST Cl- site of a scene under a camera at dist. */
+      const clDepth = (bs: any, cam: any, dist: number) => {
+        const C = camOf3(cam, dist), f = E.bscNorm(sub3([0, 0, 0], C)) as number[];
+        const S = (E.bscSiteList(bs, null) as any[]).filter((s) => s.species === "Cl-");
+        return dt3(sub3(S[0].at, C), f);
+      };
+      const s3bs = SCENES.approach_link.bs, s3cam = E.BS_CAMERAS.approach_link;
+      const dS3 = Math.max(s3cam.dist, E.bscFitDist(s3bs, s3cam, 1, null) as number);
+      // S3 settles its pair on separation_axis at +- separation/2, which is where
+      // bscSiteAt draws it; units[].at is [0,0,0] for both, so the depth is
+      // computed from the settled pose the state ends on.
+      const s3Settled = JSON.parse(JSON.stringify(s3bs));
+      s3Settled.units[0].at = [-s3bs.separation / 2, 0, 0];
+      s3Settled.units[1].at = [s3bs.separation / 2, 0, 0];
+      const pxS3 = drawnPx(rCl, clDepth(s3Settled, s3cam, dS3));
+      const pxS4 = drawnPx(rCl, clDepth(bsG, cG, d0G));
+      const pxPre = drawnPx(rCl, clDepth(bsG, preG, dPre));
+      ok("S3 -> S4 is one readable move, not a scale collapse (the ion the beat is about)",
+        pxS3 / pxS4 < 1.6 && pxS4 / pxS3 < 1.6,
+        `Cl- ${pxS3.toFixed(0)} px at the S3 exit -> ${pxS4.toFixed(0)} px at the S4 opening ` +
+        `(${(pxS3 / pxS4).toFixed(2)}x), where the pre-F5 row opened it at ` +
+        `${pxPre.toFixed(0)} px (${(pxS3 / pxPre).toFixed(2)}x)`);
+      ok("NEGATIVE CONTROL: the pre-F5 click was a 5x cut by the same measurement",
+        pxS3 / pxPre > 4, `${(pxS3 / pxPre).toFixed(2)}x — the number the review frames read off the shipped build`);
+    }
+
+    // ── THE RAMP ITSELF, over the SHIPPED bodies. Four properties, each of which
+    //    a hand-written ramp gets wrong in a different way.
+    {
+      const bsG = SCENES.lattice_grow.bs, cG = (E.BS_CAMERAS as any).lattice_grow;
+      const total = (E.bscSiteList(bsG, null) as any[]).length;
+      const dT = Math.max(cG.dist, E.bscFitDist(bsG, cG, 1, null) as number);
+      const d0 = openingDist(bsG, cG, dT);
+      const dAt = (ms: number) => {
+        const gw = E.bscGrowCamW(bsG, ms, total);
+        return Math.max(d0, Math.min(dT, E.bscFitDist(bsG, cG, 1, null, gw) as number));
+      };
+      // the honest fit over the sites actually SHOWN at ms — no fade at all
+      const hardAt = (ms: number) => E.bscFitDist(bsG, cG, 1, null,
+        { n: (E.bscGrowShown(bsG, ms, total) as number) - 0.5, l: -1e9, w: 1 }) as number;
+      let nonMono = 0, under = 0, maxStep = 0, atStep = 0;
+      let prev = dAt(0);
+      for (let ms = 0; ms <= 22000; ms += 16) {
+        const d = dAt(ms);
+        if (d < prev - 1e-9) nonMono++;
+        if (Math.abs(d - prev) > maxStep) { maxStep = Math.abs(d - prev); atStep = ms; }
+        if (d < hardAt(ms) - 1e-9) under++;
+        prev = d;
+      }
+      ok("the grow ramp NEVER under-frames the block that is on screen",
+        under === 0, `${under} frames closer than the honest fit over the shown sites, across 0..22000 ms`);
+      ok("...and only ever pulls OUT (a growing block never brings the camera in)",
+        nonMono === 0, `${nonMono} non-monotone frames`);
+      ok("...and lands no shell as a SNAP (the per-frame step stays small)",
+        maxStep < 2.0, `worst single-frame move ${maxStep.toFixed(3)} u at ${atStep} ms, over a ${(dT - d0).toFixed(1)} u travel`);
+      ok("...and does not move before its own beat (cause first, Rule 32a)",
+        dAt(4000) === d0 && dAt(2000) === d0,
+        `still at the opening distance ${d0.toFixed(2)} at 4000 ms of a beat whose growth starts at 5000`);
+      ok("...and is closed form in ms: a rewind photographs the same distance",
+        (() => { const a = dAt(3000); dAt(9000); const b = dAt(3000); const c = dAt(11500); dAt(1000); return Object.is(a, b) && Object.is(c, dAt(11500)); })(),
+        `d(3000) ${dAt(3000).toFixed(4)} · d(9000) ${dAt(9000).toFixed(4)} · d(13800) ${dAt(13800).toFixed(4)} · d(end) ${dT.toFixed(2)}`);
+      // the NEGATIVE CONTROL for the fade window itself: sizing it in SITES at the
+      // average rate (rather than as the look-ahead count minus the current one)
+      // re-snaps an eased ramp, which is the defect the window shape exists for.
+      {
+        const W = (total - 2) * (E.BS_GROW_CAM_LEAD_MS as number) / 9000;
+        const dFixed = (ms: number) => {
+          const gw = E.bscGrowCamW(bsG, ms, total) as any;
+          return Math.max(d0, Math.min(dT, E.bscFitDist(bsG, cG, 1, null, { n: gw.n, l: gw.l, w: W }) as number));
+        };
+        let mx = 0;
+        for (let ms = 0; ms <= 22000; ms += 16) mx = Math.max(mx, Math.abs(dFixed(ms) - dFixed(ms - 16)));
+        ok("NEGATIVE CONTROL: a fade window sized in SITES snaps the eased ramp",
+          mx > 2 * maxStep, `fixed-window worst step ${mx.toFixed(3)} u vs ${maxStep.toFixed(3)} u shipped`);
+      }
+    }
+
+    // ── AND THE LATENT HALF, DECLARED RATHER THAN LEFT TO THE NEXT FRAMES. Both
+    //    shipped slip / drift states hand the teacher the matching slider, so
+    //    their wide pose is reachable on frame 1 and their camera must NOT ramp
+    //    (it would move under a drag). A state that SCRIPTS the same beat without
+    //    exposing the slider has no such defence — measured here so the number is
+    //    on the record and a future state that authors one is not a surprise.
+    {
+      const WHY: Record<string, string> = {
+        layer_shift: "the shipped state exposes the shift slider, so it measures 1.00x",
+        drift: "the shipped state exposes the field slider, so it measures 1.00x",
+        melt: "the shipped states measure 1.05x (S7) / 1.04x (S9) — below the border, not a ramp"
+      };
+      for (const key of ["layer_shift", "drift", "melt"]) {
+        const cam = (E.BS_CAMERAS as any)[key], bs = SCENES[key].bs;
+        const dEntry = Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number);
+        const op = openingOf(bs);
+        const dOpen = Math.max(cam.dist, E.bscFitDist(op, cam, 1, null) as number);
+        console.log(`        scripted-only ${key}: entry ${dEntry.toFixed(2)} vs opening ${dOpen.toFixed(2)} ` +
+          `= ${(dEntry / dOpen).toFixed(2)}x  (${WHY[key]})`);
+      }
+      // the shipped states themselves: reachable pose == opening pose == 1.00x
+      const shipped = [
+        { k: "layer_shift", c: ["shift"] },
+        { k: "drift", c: ["field"] }
+      ];
+      const bad = shipped.filter(({ k, c }) => {
+        const cam = (E.BS_CAMERAS as any)[k];
+        const bs = Object.assign({}, SCENES[k].bs, { controls: c });
+        const dEntry = Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number);
+        const dOpen = Math.max(cam.dist, E.bscFitDist(openingOf(bs), cam, 1, null) as number);
+        return Math.abs(dEntry / dOpen - 1) > 1e-9;
+      }).map(({ k }) => k);
+      ok("a row whose wide pose is TEACHER-REACHABLE is framed for it from frame 1 (no ramp, by design)",
+        bad.length === 0, bad.length ? "RAMP NEEDED: " + bad.join(", ")
+          : "layer_shift + drift measure 1.00x once their own slider is exposed, which is what both shipped states author");
+    }
+  }
+
   // NEGATIVE CONTROLS — the metric must FAIL on the two frames that were shipped.
   {
     const pre = { az: 35, el: 47, dist: 7.0 };                     // assemble, as shipped

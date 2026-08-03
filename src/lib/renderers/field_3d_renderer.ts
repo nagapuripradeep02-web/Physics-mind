@@ -52291,6 +52291,35 @@ export const FIELD_3D_RENDERER_CODE = `
     //    ANY row to omit it. coordination is the one row whose solved distance is
     //    correct only AFTER its own reveal, and it carries fit_ramp instead of an
     //    exemption (F3).
+    // ── E3b F5 (2026-08-03): THE SWEEP IS THE LESSON, FOR THE THIRD TIME. The
+    //    same table was swept for a missing fit (F2) and then for a missing
+    //    fit_ramp on the one row that was found broken (F3) — and the row whose
+    //    block GROWS during its own beat was left framed for its destination.
+    //    So every row is swept HERE for the general question, and each answer is
+    //    written down: DOES THIS ROW-S SCENE CHANGE SCALE DURING ITS OWN BEAT,
+    //    and if it does, is the shipped distance the OPENING pose or the LAST one?
+    //    Measured (entry distance vs the distance the opening pose needs, over the
+    //    scenes each row exists to frame):
+    //      dipole_sum 1.00 · explore 1.00 · assemble 1.00 · approach_link 1.00 ·
+    //      compare 1.00 · network 1.00 · electron_sea 1.00 — STATIC SCENES. A
+    //        scene whose reach is the same at t = 0 and at the end has no ramp to
+    //        carry (approach_link-s pull is a SEPARATION and is already carried by
+    //        bscOpeningExtent + the E2d cut, not by a distance ramp).
+    //      transfer 1.00 — the beat changes RADII, not reach, and the floor wins
+    //        at both poses.
+    //      melt 1.05 (ionic S7) / 1.04 (S9) — a 5% drift across the whole beat,
+    //        inside the fit-s own 10% border, i.e. below the threshold at which a
+    //        ramp would be a visible move rather than a fix.
+    //      layer_shift / drift — EXEMPT BECAUSE THE WIDE POSE IS REACHABLE AT
+    //        t = 0: both shipped states expose the matching slider (shift / field),
+    //        so bscShiftExtent / bscFieldExtent measure a pose a teacher can reach
+    //        on the FIRST frame, and a camera that ramped to it would have to move
+    //        when the teacher dragged (the Rule 32d failure those two extents were
+    //        added to prevent). Measured 1.00 on both shipped states; the same two
+    //        rows measure 1.65 / 1.72 on a SCRIPTED-only fixture with no slider,
+    //        which is a latent case, so section 33 measures and declares it rather
+    //        than leaving it to the next set of frames.
+    //      coordination — fit_ramp "reveal" (F3).  lattice_grow — fit_ramp "grow".
     var BS_CAMERAS = {
         dipole_sum: { az: 35, el: 47, dist: 7.0, fit: true },
         // E2e defect 1: fit:true, for exactly the reason network has it. A SANDBOX
@@ -52454,7 +52483,26 @@ export const FIELD_3D_RENDERER_CODE = `
         //    spin and az 90 lays it across the 16:9 width, so the measured fit is
         //    9.4 and the floor wins) — the well-framed state does not move.
         transfer:      { az: 90, el: 12, dist: 15.0, fit: true },
-        lattice_grow:  { az: 35, el: 26, dist: 20.0, fit: true },
+        //    E3b F5 exemption: the transfer beat changes the two ions- RADII (Na
+        //    186 -> 102 pm, Cl 99 -> 181 pm) and not the scene-s reach, and the
+        //    row is a floor-wins row anyway (measured entry 15.00 = the floor at
+        //    both poses), so there is no scale to ramp.
+        // ── E3b F5. THE SIBLING OF THE COORDINATION RAMP, AND THE SECOND
+        //    OMISSION CLASS OF THE SAME SWEEP. F3 fixed the row whose block OPENS
+        //    during its own beat and left the row whose block GROWS during its
+        //    own beat solved for its destination. Measured on ionic S4, the same
+        //    two ions across one click: S3 leaves the pair at camera distance
+        //    11.0 (Cl- 428 px at 1280x720) and S4 opened the SAME pair at the
+        //    fully-grown 5x5x5 solve, 47.78 (Cl- 98 px) — a 4.3x scale collapse
+        //    at the click, held for the 5 s before the growth starts, on the
+        //    state the whole Rule-16a contrast beat rests on (the pair most
+        //    people picture as a molecule of salt). Rule 32d (home pose) and
+        //    Rule 24/34 (the canvas shows the machine) both fail there.
+        //    fit_ramp "grow" frames the OPENING pose (the grow_from seed sites)
+        //    and carries the camera to the grown-block solve across the growth
+        //    window itself — closed form in state-local ms, so a freeze pin
+        //    photographs the same distance (see bscGrowCamW).
+        lattice_grow:  { az: 35, el: 26, dist: 20.0, fit: true, fit_ramp: "grow" },
         //    dist 16, not 14: the runtime smoke showed the two counted neighbours
         //    nearest the camera CLIPPED by the viewport edge at 14 — a counted
         //    element half off-screen is the same defect as one hidden behind
@@ -53527,12 +53575,67 @@ export const FIELD_3D_RENDERER_CODE = `
     // ROUNDED RAMP, so presence is a closed-form function of t and a rewind
     // reproduces the same block. A latch remembering which sites already exist is
     // exactly the accumulator D-1 forbids.
-    function bscGrowShown(bs, ms, total) {
+    function bscGrowNf(bs, ms, total) {
         var L = (bs && bs.lattice) || {};
         if (L.grow_at_ms == null) return total;
         var from = (L.grow_from != null) ? L.grow_from : Math.min(2, total);
-        return Math.round(mgRamp(ms, L.grow_at_ms,
-            (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000, from, total));
+        return mgRamp(ms, L.grow_at_ms,
+            (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000, from, total);
+    }
+    function bscGrowShown(bs, ms, total) {
+        return Math.round(bscGrowNf(bs, ms, total));
+    }
+    // ── E3b F5: THE CAMERA OF A GROWTH BEAT, AS A WEIGHT PER SITE ─────────────
+    //   A growth state has as many poses as it has sites, and its solved distance
+    //   is the LAST one. The camera therefore tracks the block that is actually on
+    //   screen — but the shown count is an INTEGER, so tracking it exactly would
+    //   snap the camera every time a shell landed (measured on the shipped 5x5x5
+    //   block: a single site step demands up to 9.04 units of distance, i.e. a
+    //   35% scale change inside one frame). So each site's framing DEMAND fades in
+    //   over the BS_GROW_CAM_LEAD_MS that precede its own arrival, and the camera
+    //   distance is the max of the faded demands: continuous in t, monotone, and
+    //   never behind the block.
+    //   Two properties are load-bearing and each is asserted by check:bonding-scene:
+    //     (1) IT NEVER UNDER-FRAMES. A site that already exists carries weight
+    //         EXACTLY 1 (the hard term below), so the ramp is never closer than the
+    //         honest fit for the shown set at any instant.
+    //     (2) IT DOES NOT MOVE BEFORE ITS OWN BEAT. The look-ahead is a ramp of
+    //         (ms + lead), so before grow_at_ms - lead it reads the opening count
+    //         and the faded term is far below the seed pose the state opens on —
+    //         the camera holds its opening distance and moves only once the block
+    //         is about to arrive (measured: still at the opening distance at
+    //         4500 ms of a beat whose growth starts at 5000).
+    //   THE WINDOW IS THE LOOK-AHEAD ITSELF, NOT A SITE COUNT, and that is the
+    //   whole of why (1) holds. The growth ramp is EASED (mgRamp is a smoothstep),
+    //   so the number of sites landing per second is far below the average at both
+    //   ends of the beat; a fade window sized in sites at the AVERAGE rate is
+    //   therefore too WIDE near the ends, and a site arrived while its faded weight
+    //   was still 0.22 — a measured 6.53-unit camera jump inside one frame, the
+    //   snap this fade exists to prevent, reintroduced by an eased ramp. Sizing the
+    //   window as (look-ahead count - current count) makes the weight of an
+    //   arriving site exactly (w + 1) / w > 1 at every rate, by construction.
+    //   The look-ahead ramp is also deliberately NOT clamped at the top: clamping
+    //   it collapses the window to nothing over the last lead-window and snaps the
+    //   final corner shell for the same reason.
+    var BS_GROW_CAM_LEAD_MS = 1000;
+    function bscGrowCamW(bs, ms, total) {
+        var L = (bs && bs.lattice) || {};
+        if (L.grow_at_ms == null) return null;
+        var from = (L.grow_from != null) ? L.grow_from : Math.min(2, total);
+        var dur = (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000;
+        if (!(dur > 0) || !(total > from)) return null;
+        var uL = (ms + BS_GROW_CAM_LEAD_MS - L.grow_at_ms) / dur;
+        var sL = (uL <= 0) ? 0 : ((uL >= 1) ? 1 + (uL - 1) : mgSmooth01(uL));
+        var nNow = bscGrowNf(bs, ms, total);
+        var lAhead = from + (total - from) * sL;
+        return { n: nNow, l: lAhead, w: Math.max(1, lAhead - nNow) };
+    }
+    // site i-s weight in the framing solve at that instant: 1 once it exists, and
+    // a linear fade-in across the look-ahead window before that.
+    function bscGrowCamWeight(gw, si) {
+        if (!gw || !(si >= 0)) return 1;
+        if (si <= gw.n - 0.5) return 1;
+        return bscClamp((gw.l + 0.5 - si) / gw.w, 0, 1);
     }
     // Transfer progress: a closed-form ramp of state-local ms (D-1).
     function bscTransferProg(bs, ms) {
@@ -54473,8 +54576,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // function of config and the site list, and the D-1 scan reads this body.
         var exc = Math.max(0, bscMeltExtent(bs, S)) + Math.max(0, bscShiftExtent(bs, S)) +
             Math.max(0, bscFieldExtent(bs, S));
+        // si carries the SITE INDEX (E3b F5), so a growth beat can weight a point
+        // by whether the site it belongs to is on screen yet. -1 below marks every
+        // point that is not a site and therefore never fades.
         for (i = 0; i < S.length; i++) {
-            out.push({ at: S[i].at, r: S[i].rPm / p2u * rSc + exc });
+            out.push({ at: S[i].at, r: S[i].rPm / p2u * rSc + exc, si: i });
         }
         // E2b: ...and the MOLECULAR units, which bscSiteList deliberately does not
         // return (it feeds the site MESH pool, and a molecule is drawn by the unit
@@ -54504,7 +54610,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 var rl = (MG_ELEMENTS[ligs[k] || msp.ligand] || MG_ELEMENTS.C).radius;
                 if (rl > rMax) rMax = rl;
             }
-            out.push({ at: un.at || [0, 0, 0], r: BS_BOND_LEN + rMax });
+            out.push({ at: un.at || [0, 0, 0], r: BS_BOND_LEN + rMax, si: -1 });
         }
         // E3b S-1: ...and the settled pose of a separation_axis pair of SITES,
         // which the site loop cannot see (bscSiteList returns the authored at, and
@@ -54516,7 +54622,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 var sg2 = (i === 0) ? -0.5 : 0.5;
                 out.push({
                     at: [sepAx[0] * sepV * sg2, sepAx[1] * sepV * sg2, sepAx[2] * sepV * sg2],
-                    r: bscRadiusPm(spk) / p2u * rSc + exc
+                    r: bscRadiusPm(spk) / p2u * rSc + exc, si: -1
                 });
             }
         }
@@ -54538,7 +54644,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (i = 0; i < out.length; i++) {
                 out[i] = {
                     at: [out[i].at[0] * pk, out[i].at[1] * pk, out[i].at[2] * pk],
-                    r: out[i].r * pk
+                    r: out[i].r * pk, si: out[i].si
                 };
             }
         }
@@ -54550,7 +54656,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // (|screen offset| + r) <= z * tan(fov/2) * BORDER inverts to a single number
     // per point. The largest of them is the answer; the caller keeps the mode's own
     // solved distance as a floor.
-    function bscFitDist(bs, cam, rs, sepU) {
+    //   gw   — the growth weighting (bscGrowCamW) when the row carries fit_ramp
+    //          "grow"; null everywhere else, which is byte-for-byte the pre-F5
+    //          body. It scales each SITE point-s required distance by that site-s
+    //          fade-in weight, so the answer is "where must the camera stand for
+    //          the block that is on screen at ms", not "for the block this state
+    //          ends on".
+    function bscFitDist(bs, cam, rs, sepU, gw) {
         var P = bscFitPoints(bs, null, rs, sepU);
         if (!P.length) return 0;
         var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
@@ -54569,6 +54681,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var needH = (sx + r) / (tan * BS_FIT_ASPECT);
             if (needH > need) need = needH;
             need -= zb;
+            if (gw) need *= bscGrowCamWeight(gw, P[i].si);
             if (need > d) d = need;
         }
         return d;
@@ -55467,8 +55580,28 @@ export const FIELD_3D_RENDERER_CODE = `
             // the shipped frames measured worst |NDC| 1.653 at t = 0 (one sphere
             // filling the frame under a caption that counts six neighbours) and a
             // 68.9% pixel jump when the reveal finally started.
-            window.PM_bscCamRamp = (!bs.camera && !stateDef.camera_position &&
-                cam.fit && cam.fit_ramp === "reveal") ? { dist: cam.dist || 7, d0: dd } : null;
+            var rampOk = (!bs.camera && !stateDef.camera_position && cam.fit);
+            window.PM_bscCamRamp = (rampOk && cam.fit_ramp === "reveal")
+                ? { on: "reveal", dist: cam.dist || 7, d0: dd } : null;
+            // E3b F5: ...and the growth half of the same rule. The entry distance
+            // becomes the OPENING pose-s own fit (the grow_from seed sites), with
+            // the ion-pair close-up distance as its floor — BS_CAMERAS
+            // .approach_link.dist, deliberately read from that row rather than
+            // copied, because a growth beat opens on exactly the scene that row is
+            // solved for (one ion pair at the nearest-neighbour separation) and the
+            // two numbers may not be allowed to drift apart. That floor is what
+            // makes ionic S3 -> S4 one continuous pose instead of a 4.3x cut.
+            if (rampOk && cam.fit_ramp === "grow") {
+                var gwN = bscSiteList(bs, null).length;
+                var gw0 = bscGrowCamW(bs, 0, gwN);
+                if (gw0) {
+                    var d0g = Math.max(BS_CAMERAS.approach_link.dist,
+                        bscFitDist(bs, cam, 1, null, gw0));
+                    if (d0g > dd) d0g = dd;
+                    window.PM_bscCamRamp = { on: "grow", dist: dd, d0: d0g, az: cam.az, el: cam.el };
+                    dd = d0g;
+                }
+            }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
             // ── E2d: IT MOVES, EXCEPT WHERE MOVING WOULD DRAW THE SCENE OFF FRAME.
             //   animateCameraTo is a fixed-rate lerp, deliberately (E1c-H: a state
@@ -56330,8 +56463,23 @@ export const FIELD_3D_RENDERER_CODE = `
         //   same distance by construction, and the whole thing is exactly 0 work on
         //   every state whose camera declared no fit_ramp.
         var camRamp = window.PM_bscCamRamp;
-        if (camRamp && revMode !== "none") {
-            var dRamp = camRamp.d0 + (camRamp.dist - camRamp.d0) * bscClamp(revF, 0, 1);
+        var dRamp = null;
+        if (camRamp && camRamp.on === "reveal" && revMode !== "none") {
+            dRamp = camRamp.d0 + (camRamp.dist - camRamp.d0) * bscClamp(revF, 0, 1);
+        } else if (camRamp && camRamp.on === "grow") {
+            // E3b F5: the same rule for the block that GROWS rather than opens.
+            // Re-measured every frame against the site set that is on screen at
+            // ms, faded per site so no shell landing snaps the camera, and clamped
+            // between the opening pose and the solved distance the entry computed.
+            // Reads config and ms ONLY — never a drag value and never the live
+            // camera — so a teacher touching a control cannot move it, and a
+            // SET_TIME_FREEZE pin photographs the same distance by construction.
+            var gwF = bscGrowCamW(bs, ms, siteList.length);
+            if (gwF) {
+                dRamp = bscClamp(bscFitDist(bs, camRamp, 1, null, gwF), camRamp.d0, camRamp.dist);
+            }
+        }
+        if (dRamp != null) {
             spherical.radius = dRamp;
             targetSpherical.radius = dRamp;
             updateCameraFromSpherical();
