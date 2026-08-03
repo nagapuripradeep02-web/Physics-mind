@@ -27,6 +27,14 @@
  * not surface, and two Checkpoint A reviews recorded that a clean --field3d sweep
  * is NOT coverage. The list is now DERIVED from the concept files at run time and
  * cannot drift again; --scenario is the query those agents actually wanted.
+ *
+ * SCAR, SECOND FORM (2026-08-03, E3b F-gate): the 2026-08-02 fix derived the list
+ * from files but left the WALK non-recursive, so every concept under
+ * src/data/concepts/chemistry/ was invisible: `--scenario bonding_scene` hard-exited
+ * with "no concept declares scenario_type" while a chemistry concept was authoring
+ * against that very scenario, and --field3d was blind to the whole chemistry
+ * subject. The walk below recurses, and the loader FAILS LOUDLY if it finds no
+ * concept files at all rather than reporting a clean sweep over an empty set.
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
@@ -45,16 +53,30 @@ interface ConceptIndexEntry {
  * Derive the field_3d fleet (and each concept's scenario_type set) from the
  * concept JSONs themselves. Never hand-maintain this — see the SCAR note above.
  */
+function walkJson(dir: string): string[] {
+  let out: string[] = [];
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) out = out.concat(walkJson(p));
+    else if (e.name.endsWith('.json')) out.push(p);
+  }
+  return out;
+}
+
 function loadConceptIndex(): ConceptIndexEntry[] {
   let files: string[];
   try {
-    files = readdirSync(CONCEPTS_DIR).filter((f) => f.endsWith('.json'));
+    files = walkJson(CONCEPTS_DIR);
   } catch {
     console.error(`could not read ${CONCEPTS_DIR} — run from the repo root.`);
     process.exit(1);
   }
+  if (files.length === 0) {
+    console.error(`no concept JSON found under ${CONCEPTS_DIR} — refusing to report a clean sweep over an empty set.`);
+    process.exit(1);
+  }
   return files.map((file) => {
-    const raw = readFileSync(join(CONCEPTS_DIR, file), 'utf8');
+    const raw = readFileSync(file, 'utf8');
     let id = basename(file, '.json');
     try {
       const parsed = JSON.parse(raw) as { concept_id?: string; id?: string };
