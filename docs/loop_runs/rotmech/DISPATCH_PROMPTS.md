@@ -4,8 +4,25 @@
 `C:\Tutor\physics-mind-rotmech-engine` (the desk, branch `feat/rotmech-engine`).
 **Not** `C:\Tutor\physics-mind` — that is master, and Rule 40 says engine work lands via a PR.
 
-**Order:** Prompt 1 first (or in its own session alongside). Prompts 2 and 3 are independent
-of each other; either order, or in parallel sessions.
+**Order:** Prompts 2 and 3 are independent of each other and of Prompt 1 — run them in either
+order, or in two parallel sessions. Prompt 1 is a short VERIFICATION, not a build, and no longer
+blocks anything (see the correction note below); run it whenever convenient.
+
+**Correction applied 2026-08-03 (pre-dispatch code audit).** Three claims in the first draft of
+this file were checked against `field_3d_renderer.ts` and did not survive:
+1. E1 was described as a missing clock owned by `pcpl-surgeon`. The state-local clock **already
+   exists** — `applyState()` rebases `stateStartTime` on every state apply (`:59254`), the
+   published `PM_simTimeMs` is already state-local (`:63402`), and `newtons_laws_body` carries its
+   own `eng.t_ms` rewound through one documented path (`nlbResetTrajectory`, `:45011`). The work
+   is a verification, and it belongs to **field3d-surgeon** — `pcpl-surgeon` owns the 2D renderers,
+   which contain no `stateStartTime` at all and would have refused on scope.
+2. U1 and U3 collide with SEAM G (`rolling_friction`, 2026-07-30), which already ships a rolling
+   wheel whose spin is a PURE FUNCTION of position. Prompt 3 now opens with a reconciliation step
+   instead of presenting those two items as plain additions.
+3. The U4 readout tokens were written in Unicode (`Rω`, `ω`). The codebase's enum tokens are ASCII
+   identifiers, and `'omega'` already exists in a sibling enum at `:1700`. Prompt 3 now separates
+   token spelling from display spelling.
+`docs/loop_runs/rotmech/phase0_survey_amendment.md` carries the matching correction at U9/Part 3.
 
 **These are chapter-opening Phase-0 builds** — the one case where the surgeons are dispatched
 directly rather than by a FAIL routing (`docs/AUTHORING_PIPELINE.md` §0). Each prompt says so,
@@ -13,57 +30,63 @@ so the receiving session does not refuse on the "never call these directly" rule
 
 ---
 
-## PROMPT 1 — E1, the state-local physics clock (pcpl-surgeon)
+## PROMPT 1 — E1, the state-local clock: VERIFY, do not build (field3d-surgeon)
 
-> Copy everything between the lines.
+> Copy everything between the lines. **This is a verification, not a build.** Expect a report,
+> and quite possibly a report that says "nothing to do."
 
 ---
 
-Dispatch the **pcpl-surgeon** agent for a planned Phase-0 chapter-opening build. This is the
-authorised direct-dispatch path in `docs/AUTHORING_PIPELINE.md` §0, not a cold call.
+Dispatch the **field3d-surgeon** agent for a planned Phase-0 chapter-opening verification. This
+is the authorised direct-dispatch path in `docs/AUTHORING_PIPELINE.md` §0, not a cold call.
 
-**Bug class:** `E1` — state-local physics clock rebase.
-**Owner tag:** `peter_parker:renderer_primitives`.
+**Bug class:** `E1` — state-local physics clock, **verification only**.
+**Owner tag:** `peter_parker:field3d_surgeon`.
 **Branch:** you are already on `feat/rotmech-engine` in the desk. Work here. Never touch master.
 
-**Read first, in this order:**
-1. `docs/loop_runs/rotmech/phase0_survey.md`
-2. `docs/loop_runs/rotmech/phase0_survey_amendment.md` — Part 2 item **U9**, and Part 3
-3. `docs/loop_runs/rotmech/rolling_on_incline/physics_block.md` — every per-state t-window
-4. `docs/loop_runs/rotmech/pure_rolling/physics_block.md` — same
+**Do not write code until you have reported.** This dispatch exists because an earlier draft of
+the build sheet claimed the state-local clock did not exist. A pre-dispatch audit found that it
+does. Your job is to confirm that finding, or refute it, and to name any residual gap — NOT to
+build a clock.
 
-**The job.** Every timing row in both rolling concepts is written relative to the moment its
-own state begins. Today the physics clock does not rebase on a state change, so an authored
-`at_ms` means "since the sim loaded", which is wrong for every state after the first and
-drifts further the longer a teacher stays on a state. `activate_at_ms` (U10) and
-`formula_overlay[].at_ms` (U16) are both meaningless without this, which is why E1 blocks
-both 0c builds.
+**The evidence to check first:**
+- `field_3d_renderer.ts:59254` — `applyState()` sets `stateStartTime = time` on every state apply.
+- `field_3d_renderer.ts:63402` — `window.PM_simTimeMs = (time - stateStartTime) * 1000`, commented
+  in-place as "(state-local ms)".
+- `field_3d_renderer.ts:45011` — `nlbResetTrajectory()`, described in the file as "the ONE rewind
+  path", sets `eng.t_ms = 0` and `window.PM_nlbTimeMs = 0`, and re-arms `phase_fired`/`phase_active`.
+- `field_3d_renderer.ts:66518` — the comment noting that `newtons_laws_body` **integrates** rather
+  than posing from a closed form of `(time - stateStartTime)`, so a clock rebase alone does not
+  rewind it; its accumulators are rewound explicitly.
 
-Rebase the physics clock per state apply. Preserve, do not break:
+**The question to answer, in writing:**
+Do `eng.t_ms` / `PM_simTimeMs` already provide everything that `bodies[].activate_at_ms` (U10) and
+`formula_overlay[].at_ms` (U16) need — a zero point that is the moment the state was entered, that
+survives a `SET_TIME_FREEZE` pin byte-identically, and that a teacher lingering on a state cannot
+drift? If yes, say so and stop. If there is a residual gap, describe it precisely and propose the
+smallest change that closes it — then STOP and wait, do not implement it in this dispatch.
+
+The `newtons_laws_body` integration note at `:66518` is the most likely place for a real gap. Give
+it your attention specifically: does entering a state rewind the accumulators, or only
+`RESET_TRAJECTORY`?
+
+**Read for context:**
+1. `docs/loop_runs/rotmech/phase0_survey_amendment.md` — Part 2 item **U9**, and Part 3
+2. `docs/loop_runs/rotmech/rolling_on_incline/physics_block.md` — every per-state t-window
+3. `docs/loop_runs/rotmech/pure_rolling/physics_block.md` — same
+
+Read the physics blocks' timing rows as the *consumer* of the clock: your report should state
+whether those rows can be authored as written against the clock that exists today.
+
+**Invariants any eventual change would have to preserve** (context for your recommendation, not a
+licence to start):
 - Rule 36 — fixed 1/60 s stepping, 0–3 steps per frame, forced to 1 step under `SET_TIME_FREEZE`.
-  Every integrator stays linear in dt. Never hardcode a per-frame delta.
 - Rule 37 — the explore state (`interaction_complete`) free-runs and is never auto-frozen.
-- THE EYE's frozen-frame capture path must stay byte-reproducible.
+- THE EYE's frozen-frame capture path stays byte-reproducible.
 
-**Before you build:** run `git fetch origin && git log --all -S "<symbol>" --oneline` for the
-clock symbols you plan to add (Rule 40a). The parametric player clock has already been built
-twice independently. Confirm this does not exist somewhere already.
-
-**Verify chain, all must pass before you report:**
-```
-npm run check:renderer-syntax
-npx tsc --noEmit
-npm run validate:concepts
-```
-
-**Back-compat acceptance.** Same-session A/B THE EYE on two existing concepts that use the
-timing path — pick from the baseline-locked fleet, and say which you picked and why.
-Criterion: H2 passes its tolerance, and any non-zero diff percentage either reproduces on the
-pre-change renderer or has a max channel delta ≤ 3.
-
-**Do not:** edit any concept JSON, run `visual:approve`, run any `tts:*`, touch
-`PILOT_CONCEPTS`, run any `deploy:*`, or commit to master. Report what you changed and what
-the verify chain returned.
+**Do not:** write or edit any renderer code in this dispatch, edit any concept JSON, run
+`visual:approve`, run any `tts:*`, touch `PILOT_CONCEPTS`, run any `deploy:*`, or commit to
+master. Report findings only.
 
 ---
 
@@ -103,8 +126,20 @@ Build it against the union in the survey plus the four amendment addenda:
   reach hundreds of newtons. A fixed linear scale clips there. Keep guided-state arrow lengths
   comparable and degrade gracefully at the corners.
 
-The S5 brake numbers are in the physics block: τ = 0.92 N·m, L 4.59 → 2.29, ω 0.75, KE 0.86,
-drum R 0.55. The engine computes these; the physics block is the prediction you check against.
+The S5 brake numbers are in the physics block: τ = 0.92 N·m, **L 4.59 → 2.29 kg·m²/s**, ω 0.75,
+KE 0.86, drum R 0.55. The engine computes these; the physics block is the prediction you check
+against.
+
+**Two cautions the physics block carries — read them before you build S5's choreography:**
+- **"2.29" is two different quantities in these documents.** The L value above is 2.29 kg·m²/s at
+  t = 4.0 s. Separately, the skeleton's max-τ *stop time* cell reads "2.29 s" and is a rounding
+  slip — the correct value is **2.30 s** (carry-forward 1 in the physics block). Do not reconcile
+  the wrong pair, and do not propagate the slip.
+- **Carry-forward 2 — the 3.06 coincidence.** At t ≈ 3160 ms absolute (1.66 s into the decay), L
+  momentarily equals 3.06, the same number as the constant `I_readout`. Different instruments,
+  different units, no defect. **Do not co-glow those two readouts or stage any comparison at that
+  instant** — a viewer would read a numeric coincidence as a physical identity. This constrains
+  the glow choreography you write, which is why it is here and not left to be discovered.
 
 **Rules that bind this build:** 29 (emphasis is brightness, never size), 32e (exactly one glow
 focal at any instant), 33d (instruments show a live numeric reading and a needle that tracks),
@@ -114,7 +149,8 @@ DOM, `ctx.fillText`, and `createLabelSprite`), 36 (fixed-step clock), 37 (explor
 build: `git log --all -S "<symbol>"`).
 
 **Also required:** register every new element type in the visible-elements matcher, and register
-every new `*_at_ms` field in `deriveStateMeta.ts` — an unregistered one makes THE EYE false-fail.
+every new `*_at_ms` field in `src/lib/validators/visual/deriveStateMeta.ts` — an unregistered one
+makes THE EYE false-fail.
 
 **Verify chain, all must pass before you report:**
 ```
@@ -147,8 +183,45 @@ extension of one existing scenario, signed as a single unit.
 `field_3d_renderer.ts`, with the mandatory `deriveStateMeta.ts` co-edit.
 **Owner tag:** `peter_parker:field3d_surgeon`.
 **Branch:** you are already on `feat/rotmech-engine` in the desk. Work here. Never touch master.
-**Precondition:** E1 (the state-local clock) must be landed on this branch first. If it is not
-there, stop and say so — U10 and U16 are meaningless without it.
+**No E1 precondition.** An earlier draft blocked this build on E1 landing first. A pre-dispatch
+audit found the state-local clock already exists (`eng.t_ms`, rewound by `nlbResetTrajectory` at
+`:45011`; `PM_simTimeMs` state-local at `:63402`), so U10 and U16 build against what is there.
+Prompt 1 is now a parallel verification and does not gate you.
+
+---
+
+### STEP ZERO — reconcile with SEAM G before you build anything
+
+**Report first, build second.** Two of the sixteen items collide with code that already exists,
+and the collision is with a documented invariant, not with an accident. Work this out on paper and
+state your position **before** you write a line:
+
+- **SEAM G** (`rolling_friction`, 2026-07-30) already ships a rolling wheel — `bodies[].shape ===
+  'wheel'`, constants at `:39628`, spin drive at `:40033`. Its spin is a **pure function of
+  position**: "Rolling without slipping is s = r·θ, so the wheel's angle is a pure FUNCTION of
+  where the body currently is — read, never accumulated." The file states two guarantees that hang
+  off that choice: Rule 36 holds *by construction* (no dt in the expression), and `SET_TIME_FREEZE`
+  is byte-stable for free, so THE EYE's frozen baselines cannot drift.
+- **U1 requires an independent ω integrator** (`omega0_rad_s`, slip in both directions). Slipping
+  means s ≠ rθ. That severs the pure-function link, and with it the two guarantees above. **How do
+  you preserve Rule 36 and frozen-baseline byte-stability once ω is integrated independently?**
+  Answer that before building. A plausible shape is to keep the pure-function path for the
+  rolling branch and enter the integrator only on the slip branch, but decide it deliberately and
+  write down what you decided.
+- **U3 requires per-body `radius_m`.** `NLB_WHEEL_R = NLB_BODY_SIZE / 2` is marked `do NOT decouple
+  from NLB_BODY_SIZE` (`:39639`), for two stated reasons: `nlbSetBodyPosition` already lifts a body
+  to `NLB_BODY_SIZE / 2`, so a wheel of that radius touches y = 0 **with no positioning branch**;
+  and equal footprint is what makes the side-by-side race honest. **A present `radius_m` reinstates
+  the positioning branch and reopens the race-honesty question.** Say how you handle both.
+- **U4 is partly built already.** SEAM G's wheel carries a hub disc + crossed spokes precisely so
+  rotation is visible on a rotation-invariant silhouette ("load-bearing pedagogy, not decoration").
+  U4's "rotation marker" is an **extension of that**, not new construction. Do not build a second
+  marker system.
+
+Post your reconciliation as a short written position, then proceed. If any of the three has no
+clean answer, that is an escalation, not something to improvise past.
+
+---
 
 **Read first, in this order:**
 1. `docs/loop_runs/rotmech/phase0_survey_amendment.md` — **Part 2**, the U1–U16 build sheet.
@@ -178,9 +251,17 @@ there, stop and say so — U10 and U16 are meaningless without it.
    `phases[].glow_focal`. **If you find yourself needing a third timed class, STOP and report
    it — that is the Phase-0 alarm rule, not a thing to build.**
 
-**Scope note on U4:** the `readouts` enum extension covers **three** tokens — `contact`, `Rω`,
-and bare `ω` — declaration, reader, and validator co-edit for each. The earlier draft named only
-bare `ω`; that gap was closed in the amendment. Build all three.
+**Scope note on U4:** the `readouts` enum extension covers **three** readouts — contact-point
+speed, Rω, and bare ω — declaration, reader, and validator co-edit for each. The earlier draft
+named only bare ω; that gap was closed in the amendment. Build all three.
+
+**Token spelling vs display spelling — do not conflate them.** The enum members are ASCII
+identifiers, matching every existing enum in this file; the Unicode belongs on screen only.
+`'omega'` **already exists** as a token in the sibling circular-motion enum at `:1700`
+(`'theta' | 'v' | 'omega' | 'r' | 'a_c'`) — follow that precedent exactly. The
+`newtons_laws_body` enum you are extending is at `:1336`. So: tokens `'contact'`, `'r_omega'`,
+`'omega'`; rendered labels `Rω` and `ω` in real Unicode per Rule 34c, which governs on-canvas
+text and **not** TypeScript identifiers.
 
 **Every field you add is OPTIONAL. Absent must mean today's behaviour, byte-identically.**
 
