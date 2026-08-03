@@ -54048,6 +54048,89 @@ export const FIELD_3D_RENDERER_CODE = `
         angle_window_deg: 40, show_count: false
     };
 
+    // ── E3 (2026-08-03): THE NETWORK COMES APART BY SEPARATING, NOT BY RATTLING ─
+    //   THE DEFECT. The shipped thermal model is a FIXED lattice with a sqrt(T)
+    //   jiggle and nothing else, so the network can never come apart at any
+    //   temperature: the link count falls only because an excursion occasionally
+    //   trips the distance criterion. MEASURED on hydrogen_bonding S5's thirty-unit
+    //   network (jiggle_scale 0.9, shipped link defaults), links per molecule:
+    //     100 K 3.64 | 200 K 3.52 | 273 K 3.42 | 298 K 3.39
+    //     373 K 3.26 | 450 K 3.11 | 600 K 2.82
+    //   i.e. -4% at water-s ACTUAL boiling point and -17% at 600 K. S6 therefore
+    //   had to ramp to 600 K to show ANY drop, while S7 - the very next state -
+    //   teaches that boiling at 373 K costs 193 K BECAUSE the hydrogen bonds must
+    //   break first. The two states contradicted each other on screen.
+    //
+    //   WHAT IS AND IS NOT BUILT HERE. Not a phase model: no diffusion, no
+    //   per-unit random walk, no coexistence, no pressure, no latent-heat
+    //   accounting, no molecule ever leaves the scene. ONE scalar closed-form
+    //   scale factor multiplies the authored units[].at, and it is a pure function
+    //   of the temperature at that instant - hence of state-local t (D-1), so a
+    //   SET_TIME_FREEZE rewind reproduces it exactly.
+    //
+    //   THE DERIVATION, in three steps, none of them a knob a concept can set.
+    //   (1) THE POPULATION. Van-t-Hoff two-state equilibrium between the bonded
+    //       network and the free molecules:
+    //           K(T) = exp( -(dH_vap/R) * (1/T - 1/T_b) )
+    //           f_broken(T) = 1 / (1 + exp( (dH_vap/R) * (1/T - 1/T_b) ))
+    //       At T = T_b the normal boiling point, dG = 0 BY DEFINITION, so
+    //       f = 1/2 is forced, not chosen; the width is the van-t-Hoff slope
+    //       dH_vap/R, also forced. Both inputs are PUBLISHED per-species
+    //       measurements, carried in the same status as BS_CHI (Pauling
+    //       electronegativities), BS_RADIUS_PM and BS_BOND_MOMENT_D - engine
+    //       constants of the SUBSTANCE that no concept JSON can reach.
+    //   (2) THE COUPLING. A broken hydrogen bond is not a new idea in this file:
+    //       it is a pair stretched past links.break_pm, which is the criterion-s
+    //       OWN definition. So the mean spacing interpolates between the fully
+    //       bonded network (the authored geometry) and the fully broken one (every
+    //       pair at break_pm):
+    //           stretch = (break_pm - link_at_rest_pm) / neighbour_spacing_pm
+    //       every term measured off the state-s own units[].at and its own link
+    //       block - 80/276 = 0.2899 for the shipped water network. Change
+    //       break_pm and the coupling follows; there is nothing to tune.
+    //   (3) THE REFERENCE. The authored at[] IS the geometry at BS_T0_K, so the
+    //       law is referenced there: scale = 1 + (f(T) - f(T0)) * stretch. At
+    //       T = T0 that is 1 + 0 * stretch = 1 EXACTLY, so every state sitting at
+    //       298 K (S5 / S7 / S8) is byte-identical, by construction rather than by
+    //       tolerance.
+    //
+    //   MEASURED RESULT on the same network: 100 K 3.65 | 200 K 3.55 | 273 K 3.45
+    //   | 298 K 3.39 (unchanged) | 373 K 1.86 | 450 K 0.70 | 600 K 0.64. The
+    //   response is now steepest THROUGH the boiling region: -1.52 links from
+    //   298 to 373 K against -1.23 from 373 to 600 K, where the shipped model read
+    //   -0.12 against -0.44.
+    //
+    //   TWO REJECTED ALTERNATIVES, both measured before this one was written.
+    //     * Amplitude alone (the cage-stiffness law, mean-square displacement
+    //       kT/(m w^2) with the cage stiffness proportional to the number of
+    //       INTACT bonds, amp = sqrt(T/T0) * sqrt(n0/n)): the transition lands
+    //       ABOVE the boiling point - 3.39 / 2.60 / 0.10 at 298 / 373 / 600 K,
+    //       i.e. -0.79 then -2.50, still steepest late - and it demands a 16.7x
+    //       jiggle amplitude at 600 K, which draws molecules 15 scene units from
+    //       their sites.
+    //     * The volume route (mean molar volume (1-f)V_liquid + f V_gas, linear
+    //       scale = cube root): honest and unusable - steam really is ~1700x the
+    //       liquid volume, so the scale factor reaches 9.5x at the boiling point
+    //       and the network leaves the frame long before the links do.
+    //   The link count is never written: it stays the OUTPUT of the unchanged
+    //   derived criterion, with the temperature the only input.
+    var BS_R_J = 8.314;                 // gas constant, J mol^-1 K^-1
+    // Published normal boiling points (K) and enthalpies of vaporisation (kJ/mol).
+    // A species ABSENT from this table gets no expansion at all (scale 1), so every
+    // scenario that is not a molecular network is byte-identical by construction.
+    var BS_VAPOUR = {
+        H2O:  { tb_K: 373.15, dh_vap_kj: 40.65 },
+        H2S:  { tb_K: 212.85, dh_vap_kj: 18.67 },
+        H2Se: { tb_K: 231.90, dh_vap_kj: 19.70 },
+        H2Te: { tb_K: 271.00, dh_vap_kj: 19.20 },
+        NH3:  { tb_K: 239.82, dh_vap_kj: 23.35 },
+        HF:   { tb_K: 292.70, dh_vap_kj: 25.18 },
+        HCl:  { tb_K: 188.15, dh_vap_kj: 16.15 },
+        HBr:  { tb_K: 206.45, dh_vap_kj: 17.61 },
+        HI:   { tb_K: 237.55, dh_vap_kj: 19.76 },
+        CH4:  { tb_K: 111.66, dh_vap_kj:  8.19 }
+    };
+
     // CLOSED enums. A member absent from these is a CONFIG ERROR, not a silent
     // no-op (the sigma-pi scar: nine decorative mode strings nothing ever read).
     // BS_MODES_E1 are IMPLEMENTED here; BS_MODES_DEFERRED are parsed, accepted and
@@ -54288,7 +54371,41 @@ export const FIELD_3D_RENDERER_CODE = `
         // ~11.5: the E1 placeholder distances framed neither. approach_link
         // holds the pair side-on (el 16) so the D-H...A angle is READABLE, which
         // is half of what S2-S4 teach.
-        approach_link: { az: 35, el: 16, dist: 11.0 },
+        //
+        // ── E4 (2026-08-03): AZ 35 -> 90. THE CAMERA FORESHORTENED THE ONE AXIS
+        //    THE STATE TEACHES THE LENGTH OF. A recurrence of the OPEN scar
+        //    camera_metric_scored_foreshortening_not_pairwise_screen_separation:
+        //    the solve above maximised pairwise SEPARATION and never scored the
+        //    projected LENGTH of the compared axis, so it certified a view whose
+        //    forward vector lies 78.8% along the separation axis
+        //    (cos el * cos az = cos16 * cos35 = 0.7875).
+        //    Two consequences, both measured on hydrogen_bonding S2/S3:
+        //      (1) the two units sat at different DEPTHS, so the same 96 pm O-H
+        //          bond drew 34.6 px on one molecule and 86.6 px on the other and
+        //          the two O radii differed by 1.52x (S2) / 1.80x (S3) - which
+        //          reads as a rendering error, not as perspective;
+        //      (2) S2 narrates "180 picometres - almost twice the 96-picometre
+        //          O-H bond", and the DRAWN ratio of the H...O link to the
+        //          donating O-H bond was 2.845, i.e. 52% wrong. The state's whole
+        //          quantitative claim was unverifiable by eye.
+        //    THE SOLVE. cos(el) * cos(az) = 0 puts the separation axis exactly in
+        //    the screen plane, at ANY elevation, so az 90 is forced and el is
+        //    free - which is why el 16 is KEPT and nothing is traded: the camera
+        //    right vector becomes exactly +x, both units sit at depth = dist
+        //    EXACTLY (apparent-scale disparity 1.000x, not 1.15x), and every
+        //    length along the separation axis projects at full scale, so the
+        //    drawn link / drawn donating-bond ratio equals the PHYSICAL ratio at
+        //    every separation (1.875 at 5.75 units, 3.000 at 8.0, 5.000 at 12.0 -
+        //    exactly, where the shipped camera read 2.845 / 5.404 / 12.521).
+        //    D, H and A stay collinear IN the screen plane, so the projected
+        //    D-H...A angle is 180.0 deg - the el-16 property is not merely kept,
+        //    it is now exact instead of incidental. Countability improves in the
+        //    same move (min pairwise 34.6 -> 64.3 px, occlusion margin
+        //    24.4 -> 51.9 px, |ndc| 0.425 -> 0.364), and the spread of the four
+        //    identically-long O-H bond projections collapses from 2.51x to 1.16x.
+        //    az 90 rather than 270 so the donor (units[0], at -x) reads LEFT and
+        //    the link points right.
+        approach_link: { az: 90, el: 16, dist: 11.0 },
         // E2b: fit:true, and the distance above is now a FLOOR rather than the
         // answer. dist 17 was solved against "a 27-unit box spans ~11.5" — a loose
         // cubic arrangement the contract records at ~1.07 links/molecule, i.e. a
@@ -54306,8 +54423,17 @@ export const FIELD_3D_RENDERER_CODE = `
         network:    { az: 35, el: 22, dist: 17.0, fit: true },
         // MULTI-UNIT compare only (hydrogen_bonding-s side-by-side box). A compare
         // state that swaps ONE molecule in place is the dipole_sum SCENE and is
-        // framed by the single-unit solve below — see bscSolvedCamera.
-        compare:    { az: 35, el: 20, dist: 12.0 },
+        // framed by the single-unit solve below — see bscSolvedCamera, so
+        // bond_polarity S2/S6/S7 never reach this row and are byte-identical.
+        // E4: az 35 -> 90 for the same reason as approach_link above — a two-unit
+        // compare box IS a pair on the separation axis (hydrogen_bonding S4 swaps
+        // H2O for H2S at the SAME 5.75 separation and asks the teacher to compare
+        // the two units), so the axis may not be foreshortened and the two units
+        // may not differ in apparent scale. Measured at az 90 / el 20 / dist 12:
+        // O radii 13.8 px both (was 11.7 / 16.9, a 1.45x disparity), link /
+        // donating-bond 1.875 exactly (was 2.721), min pairwise 59.7 px (was
+        // 33.6), |ndc| 0.327 (was 0.418). el 20 and dist 12 are UNCHANGED.
+        compare:    { az: 90, el: 20, dist: 12.0 },
         // ── E3a solved cameras (D-4). fit:true adds the auto-fit above, so a
         //    state that authors a bigger block than the canonical 3x3x3 cannot
         //    silently overflow the frame.
@@ -54562,9 +54688,43 @@ export const FIELD_3D_RENDERER_CODE = `
     // "species" is whatever the picker has resolved (E1c-H), which is still a pure
     // function of that species and of nothing else: same species, same camera,
     // however the teacher reached it.
+    // ── E2: A SANDBOX IS NOT A SCENE TYPE, AND "explore" IS NOT A CAMERA. ─────
+    //   BS_CAMERAS.explore is az 35 / el 47 / dist 7 — the SAME triple as
+    //   dipole_sum and assemble, i.e. the single-molecule solve wearing a third
+    //   mode name. It has never been solved over a multi-unit scene, and a
+    //   sandbox is by construction the scene the guided arc just taught handed to
+    //   the teacher: hydrogen_bonding S7 and S8 carry BYTE-IDENTICAL units[] (the
+    //   same thirty molecules at the same positions, both at 298 K) and differ
+    //   only in the mode string. Pinned at the same clock they framed the same
+    //   water two different ways — S7 one coherent cross-linked network at el 22,
+    //   S8 a main body plus a detached lower clump at el 47, with the caption
+    //   printing on the clump. The water appeared to break in half at exactly the
+    //   click where the teacher hands the sim to the class (Rule 32d).
+    //     THE FIX IS SCENE-DERIVED, NOT HISTORICAL. "Inherit the previous state's
+    //   framing" would make the camera depend on the route taken and break the D-4
+    //   property this whole family exists to keep (identical on the first frame and
+    //   under a freeze pin). So the solve reads the SCENE, exactly as E1c-A made it
+    //   read the scene for a single unit: a free-placement scene of more than two
+    //   units IS the network scene, whatever mode string the state used, and
+    //   network is the only measured multi-unit solve in the table. Distance is
+    //   unchanged either way (both cameras carry fit:true and the same units give
+    //   the same extent), so this moves ELEVATION 47 -> 22 and nothing else.
+    //     WHAT IT DELIBERATELY DOES NOT DO. A TWO-unit explore scene is left
+    //   alone: approach_link (el 16, the D-H...A angle readable) and compare
+    //   (el 20, side by side) are both two-unit solves with different measured
+    //   purposes, and the scene alone cannot say which a sandbox wants. Guessing
+    //   there would be a camera invented ahead of a frame that asks for it. One-
+    //   unit explore states are untouched (they are framed by BS_UNIT_CAMERAS
+    //   through bscSolvedShapeKey), so bond_polarity's sandbox is byte-identical.
+    function bscNetworkScene(bs) {
+        if ((bs.mode || "dipole_sum") !== "explore") return false;
+        if (bs.placement === "lattice") return false;
+        return !!(bs.units && bs.units.length > 2);
+    }
     function bscSolvedCamera(bs, speciesOverride) {
         var k = bscSolvedShapeKey(bs, speciesOverride);
         if (k) return BS_UNIT_CAMERAS[k];
+        if (bscNetworkScene(bs)) return BS_CAMERAS.network;
         return BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
     }
     // ── E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES.
@@ -54803,6 +54963,75 @@ export const FIELD_3D_RENDERER_CODE = `
             amp * (0.62 * Math.sin(1.90 * tSec + 1.7 * p) + 0.38 * Math.sin(4.10 * tSec + 0.6 * p)),
             amp * (0.62 * Math.sin(2.30 * tSec + 2.9 * p) + 0.38 * Math.sin(3.30 * tSec + 1.3 * p))
         ];
+    }
+    // ── E3: THE THERMAL EXPANSION LAYER (see the BS_VAPOUR block for the whole
+    //    derivation). Three pure functions, no clock, no accumulator, no latch.
+    //
+    //    (1) the van-t-Hoff broken fraction. 1/(1+exp(s)) is safe at every T:
+    //        s -> +inf (cold) gives 0, s -> -inf (hot) gives 1, and T <= 0 or an
+    //        untabulated species returns 0, i.e. the shipped no-expansion path.
+    function bscBrokenFraction(molKey, T_K) {
+        var V = BS_VAPOUR[molKey];
+        if (!V) return 0;
+        var T = (T_K != null) ? T_K : BS_T0_K;
+        if (!(T > 0)) return 0;
+        return 1 / (1 + Math.exp((V.dh_vap_kj * 1000 / BS_R_J) * (1 / T - 1 / V.tb_K)));
+    }
+    //    (2) the coupling, measured off the STATE-s own scene: the mean
+    //        nearest-neighbour separation of the authored units, the drawn bond
+    //        length, and the criterion-s break distance. A scene with fewer than
+    //        two placed units (every single-molecule state, every separation_axis
+    //        pair - whose units both author at [0,0,0] and are placed by baseAt -
+    //        and every lattice scene, which carries sites rather than units)
+    //        returns 0, which switches the whole layer off.
+    function bscNetworkStretch(bs) {
+        var uns = (bs && bs.units) || [];
+        if (uns.length < 2) return 0;
+        var L = bscLinkCfg(bs), sum = 0, n = 0, i, j;
+        for (i = 0; i < uns.length; i++) {
+            if (!uns[i] || !uns[i].at) continue;
+            var best = -1;
+            for (j = 0; j < uns.length; j++) {
+                if (i === j || !uns[j] || !uns[j].at) continue;
+                var dx = uns[i].at[0] - uns[j].at[0];
+                var dy = uns[i].at[1] - uns[j].at[1];
+                var dz = uns[i].at[2] - uns[j].at[2];
+                var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                if (best < 0 || d < best) best = d;
+            }
+            if (best > 0) { sum += best; n++; }
+        }
+        if (!(n > 0)) return 0;
+        var dOO = (sum / n) * L.pm_per_unit;                    // neighbour spacing, pm
+        var link0 = dOO - BS_BOND_LEN * L.pm_per_unit;          // the H...A at rest, pm
+        if (!(link0 > 0)) return 0;
+        var s = (L.break_pm - link0) / dOO;
+        return (s > 0) ? s : 0;
+    }
+    //    (3) the scale itself, referenced to BS_T0_K so the authored geometry IS
+    //        the 298 K geometry: at T0 this returns exactly 1 and every position
+    //        is bit-for-bit the shipped one. The 0.5 floor is a guard, never
+    //        reached by any tabulated species (the coldest value is 0.99).
+    function bscThermalScale(molKey, T_K, stretch) {
+        if (!(stretch > 0)) return 1;
+        var s = 1 + (bscBrokenFraction(molKey, T_K) - bscBrokenFraction(molKey, BS_T0_K)) * stretch;
+        return (s > 0.5) ? s : 0.5;
+    }
+    //    (4) the HOTTEST pose the state-s own SCRIPT reaches, which is what the
+    //        camera auto-fit has to frame: a network that swells 28% while it is
+    //        heated would otherwise run off all four edges halfway through the
+    //        ramp. The teacher-s temperature slider is deliberately NOT counted -
+    //        counting it would move hydrogen_bonding S8-s explore camera, and S8
+    //        sits at 298 K where this whole layer is a no-op. A state with no
+    //        scripted ramp returns exactly 1, so S5 / S7 / S8 keep their camera.
+    function bscPeakThermalScale(bs, molKey) {
+        var stretch = bscNetworkStretch(bs);
+        if (!(stretch > 0)) return 1;
+        var th = (bs && bs.thermal) || {};
+        var hi = (th.T_K != null) ? th.T_K : BS_T0_K;
+        var lo = (th.T_from != null) ? th.T_from : hi;
+        var mx = Math.max(bscThermalScale(molKey, lo, stretch), bscThermalScale(molKey, hi, stretch));
+        return (mx > 1) ? mx : 1;
     }
     // ── E2: THE DERIVED LINK CRITERION (D-2) ─────────────────────────────────
     //   There is NO element whitelist. A link needs, at BOTH ends, a charge the
@@ -55171,7 +55400,22 @@ export const FIELD_3D_RENDERER_CODE = `
             var du = bscMag(un.at || [0, 0, 0]) + BS_BOND_LEN + rMax;
             if (du > e) e = du;
         }
-        return e;
+        // E3: ...at the HOTTEST pose the state's own script reaches. A heated
+        // network swells (see BS_VAPOUR): hydrogen_bonding S6 ramps to 600 K,
+        // where the shipped 30-unit cluster is 1.278x its authored size, and the
+        // fit measured against the cold pose would let the outer shell run off all
+        // four edges partway through the beat (worst |NDC| 0.878 -> 1.12). A state
+        // with no scripted ramp scales by exactly 1, so S5 / S7 / S8 and every
+        // pre-E3 scene keep their distance bit-for-bit. Still config-only: the
+        // peak is read off thermal.T_from / thermal.T_K, never off the clock.
+        // (conservative on purpose: the molecules themselves do not grow, only the
+        // spacing does, so scaling the whole half-extent over-frames slightly
+        // rather than under-framing.)
+        var fIdx = (bs && bs.focal_unit != null) ? bs.focal_unit : 0;
+        var fSp = (bs && bs.units && bs.units[fIdx] && bs.units[fIdx].species) ||
+            (bs && bs.units && bs.units[0] && bs.units[0].species) || (bs && bs.species) || null;
+        var pk = bscPeakThermalScale(bs, fSp);
+        return (pk > 1) ? e * pk : e;
     }
     // E2d: the half-extent of the scene AS IT OPENS, at state-local t = 0. It is
     // not the same number as bscSiteExtent: a state that pulls its leading pair on
@@ -56317,6 +56561,14 @@ export const FIELD_3D_RENDERER_CODE = `
         //    pure functions of state-local ms and NOTHING else, because the link
         //    pass REPLAYS them at earlier times to resolve the hysteresis (D-1).
         var linkCfg = bscLinkCfg(bs);
+        // E3: the state's own thermal-expansion coupling, config-only and resolved
+        // once per apply (it reads units[].at, which no clock moves). Both the
+        // coupling and the live scale are published for the professor pack, so a
+        // spoken "the molecules are pulling apart" has a number behind it.
+        var netStretch = bscNetworkStretch(bs);
+        window.PM_bscNetStretch = netStretch;
+        window.PM_bscNetScale = bscThermalScale(molKey, T_K, netStretch);
+        window.PM_bscBrokenFrac = bscBrokenFraction(molKey, T_K);
         var unitSpacing = (bs.unit_spacing != null) ? bs.unit_spacing
             : (BS_BOND_LEN + linkCfg.form_pm / linkCfg.pm_per_unit);
         var sepDragged = bscHasControl(ctrls, "separation") && window.PM_bscSepDragged;
@@ -56341,6 +56593,14 @@ export const FIELD_3D_RENDERER_CODE = `
         };
         var orgAt = function (uu, mms) {
             var b = baseAt(uu, mms);
+            // E3: the network's mean spacing at THAT instant. netStretch is 0 for
+            // every scene that is not a placed multi-unit network, and the scale
+            // is exactly 1 at BS_T0_K, so both the old scenes and the 298 K
+            // network states are byte-identical. Pure fn of mms (D-1).
+            if (netStretch > 0) {
+                var esc = bscThermalScale(molKey, tempAt(mms), netStretch);
+                if (esc !== 1) b = [b[0] * esc, b[1] * esc, b[2] * esc];
+            }
             if (!(jScale > 0)) return b;
             // E2b: the temperature at THAT instant, not the present one — see
             // tempAt. With no authored ramp tempAt is constant, so this is the
@@ -57562,7 +57822,14 @@ export const FIELD_3D_RENDERER_CODE = `
         electrons: ["bsc_electron", "bsc_lone"],
         lattice: ["bsc_lattice"],
         layer: ["bsc_layer"],
-        neighbours: ["bsc_neighbour"]
+        neighbours: ["bsc_neighbour"],
+        // ── E5: THE CHART IS A SCENE ELEMENT AND HAD NO KEY. The enum was closed
+        //   at ten keys, all of them meshes, while bsc_trend — a live element type
+        //   a state can put on screen (row O) — was reachable from none of them.
+        //   A narration sentence about the trend line was therefore unbindable BY
+        //   CONSTRUCTION, on this concept and on every future one: two of
+        //   hydrogen_bonding S7's sentences had nothing to glow. Eleventh key.
+        trend: ["bsc_trend"]
     };
     function applyBondingSceneGlow(stateDef) {
         var focalTypes = {}, g, k, i;
@@ -57572,12 +57839,26 @@ export const FIELD_3D_RENDERER_CODE = `
             for (k = 0; k < keys.length; k++) focalTypes[keys[k]] = true;
         }
         var anyScene = false;
-        for (k in focalTypes) if (focalTypes[k]) anyScene = true;
+        // bsc_trend is a DOM canvas, not a mesh, so it must NOT arm the mesh pass:
+        // arming it would put every molecule through the peer branch on a frame
+        // where the focal is not in the 3D scene at all.
+        for (k in focalTypes) if (focalTypes[k] && k !== "bsc_trend") anyScene = true;
         for (i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.elementType || ud.elementType.indexOf("bsc_") !== 0) continue;
             if (o.visible === false) continue;
             applyGlowEmphasis(o, !!focalTypes[ud.elementType], anyScene, 0.6, true);
+        }
+        // ...and the trend panel takes the SAME emphasis in its own medium:
+        // brightness, never size (Rule 29), and always written both ways so the
+        // focal is released again when the sentence that named it ends (the
+        // one-way-dim scar). A key that resolved to nothing would be the
+        // glow_focal_..._becomes_total_noop scar, so it resolves to something.
+        var tcv = document.getElementById("bsc_trend");
+        if (tcv) {
+            var trFocal = !!focalTypes["bsc_trend"];
+            tcv.style.filter = trFocal ? "brightness(1.22)" : "";
+            tcv.style.boxShadow = trFocal ? "0 0 0 2px rgba(255,241,118,0.85)" : "";
         }
     }
 
@@ -61733,6 +62014,12 @@ export const FIELD_3D_RENDERER_CODE = `
             if (lp < 6) lp = 6; if (lp > 94) lp = 94;
             var d = document.createElement("div");
             d.id = a.id || ("f3d_annot_" + ai);
+            // E1: the AUTHORED left, kept as data so the per-frame reserve pass can
+            // re-derive the position from the author's number every frame instead of
+            // nudging the live one. That is what makes the clamp closed-form rather
+            // than an accumulator: same viewport + same HUD box = same left, however
+            // many frames have run and whichever direction the clock last moved.
+            d.setAttribute("data-lp", lp.toFixed(2));
             d.style.cssText = "position:absolute;left:" + lp.toFixed(2) + "%;top:" + tp.toFixed(2) +
                 "%;transform:translate(-50%,-50%);color:" + (a.color || "#D4D4D8") +
                 ";font:600 15px/1.25 system-ui,-apple-system,sans-serif;" +
@@ -61752,6 +62039,78 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         box.style.display = list.length > 0 ? "block" : "none";
     }
+    // ── E1: THE ANNOTATION LAYER RESERVES THE READOUT RECTANGLE. ──────────────
+    //   RECURRENCE of the FIXED class field3d_hud_label_clipped_by_readout_box,
+    //   and the recurrence is instructive: the authoring side cannot fix it and a
+    //   green layout gate said there was nothing to fix.
+    //     THE MEASUREMENT. bsc_hud is right-anchored with a MIN-WIDTH, so it is a
+    //   fixed ~220 px box at EVERY viewport width — its left edge tracks the
+    //   viewport 1:1 (simW - 232). An annotation's x is authored in the 760-wide
+    //   design space and mapped to a PERCENTAGE, so its right edge tracks the
+    //   viewport at ~0.66:1. Two lines of different slope always meet: measured on
+    //   hydrogen_bonding, hud.left - max(annotation.right) runs
+    //   +125 px at sim width 1280 down through 0 at ~875 to -103 px at 614, i.e.
+    //   8/8 states overlap on the narrow end. An author reasoning about HUD TEXT
+    //   length gets it wrong every time, because "links = 0" and
+    //   "links per molecule = 3.30" occupy the SAME rectangle.
+    //     SO THE ENGINE OWNS IT, because only the engine can measure the box. The
+    //   required x is not authorable: it depends on a runtime-measured rect.
+    //   Closed form per frame from those rects — no accumulator, no latch — so a
+    //   SET_TIME_FREEZE rewind reproduces the same layout (D-1), and an annotation
+    //   that already clears, or a state with no HUD on screen, is never written to
+    //   at all (byte-identical, asserted in check:bonding-scene section 27).
+    var PM_ANNOT_GAP = 16;      // the clearance the acceptance test names
+    var PM_ANNOT_MIN_X = 8;     // ...and the left edge it may never be pushed past
+    /**
+     * Pure: the centre x to draw an annotation at, given its authored centre, its
+     * half width, its own vertical band, and the reserved rect. Returns cx
+     * UNCHANGED whenever the two cannot collide. The reserved band is inflated by
+     * the gap on all sides, so "clears by 3 px vertically" counts as a collision —
+     * a caption tucked under the readout's bottom edge is the same defect.
+     */
+    function pmAnnotClampX(cx, halfW, top, bot, res, gap, minX) {
+        if (!res || !(res.width > 0) || !(halfW > 0)) return cx;
+        if (!(bot > res.top - gap) || !(top < res.bottom + gap)) return cx;
+        var maxC = res.left - gap - halfW;
+        if (cx <= maxC) return cx;
+        var minC = halfW + minX;
+        return (maxC > minC) ? maxC : minC;
+    }
+    /**
+     * The closed list of renderer-drawn panels the annotation layer must not be
+     * drawn under. ONE entry: bonding_scene's readout, the only measured case.
+     * A scenario whose HUD is not on screen returns null and the whole pass is a
+     * no-op, which is every other concept in the fleet.
+     */
+    function pmAnnotReserved() {
+        var el = document.getElementById("bsc_hud");
+        if (!el || el.style.display === "none") return null;
+        var r = el.getBoundingClientRect();
+        return (r.width > 0 && r.height > 0) ? r : null;
+    }
+    function pmClampAnnotations() {
+        var box = document.getElementById("f3d_annots");
+        if (!box) return;
+        var res = pmAnnotReserved();
+        var W = window.innerWidth || document.documentElement.clientWidth || 0;
+        var kids = box.children;
+        for (var ci = 0; ci < kids.length; ci++) {
+            var el2 = kids[ci];
+            var lp = el2.getAttribute("data-lp");
+            if (lp == null) continue;
+            var want = lp + "%";
+            if (res && el2.style.display !== "none") {
+                var r2 = el2.getBoundingClientRect();
+                var cx = Number(lp) / 100 * W;
+                var cc = pmAnnotClampX(cx, r2.width / 2, r2.top, r2.bottom, res,
+                    PM_ANNOT_GAP, PM_ANNOT_MIN_X);
+                if (cc !== cx) want = cc.toFixed(2) + "px";
+            }
+            // written only when it CHANGES: an annotation that clears keeps the
+            // authored percentage string it was painted with, byte for byte.
+            if (el2.style.left !== want) el2.style.left = want;
+        }
+    }
     // per-frame reveal pass for timed annotations (pure fn of state-local t)
     function pmStepAnnotations() {
         var box = document.getElementById("f3d_annots");
@@ -61766,6 +62125,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var onB = (un == null) || (ams < Number(un));
             kids[ki].style.display = (onA && onB) ? "block" : "none";
         }
+        // ...and only now, with this frame's visibility settled, reserve the
+        // readout rectangle. Reveal first, clamp second: a label that is hidden
+        // this frame is never measured, and one that has just appeared is placed
+        // on the frame it appears.
+        pmClampAnnotations();
     }
 
     function applyState(stateId) {

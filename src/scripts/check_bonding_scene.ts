@@ -24,6 +24,13 @@
  * capabilities bond_polarity S4/S7 could not be authored without, plus the bit-for-
  * bit mgFrame regression half those three shipped concepts ride).
  *
+ * Sections 27/28/29 are the E1/E2/E5 dispatch (2026-08-03): the annotation layer's
+ * reserve of the readout rectangle (a RECURRENCE of the FIXED class
+ * field3d_hud_label_clipped_by_readout_box that check-layout-overlap structurally
+ * cannot see, because it models the authored annotation rects and not the
+ * renderer-drawn HUD panel), the explore camera's scene-derived solve, and the
+ * glow-key coverage invariant that replaces the frozen ten-key count.
+ *
  *   npm run check:bonding-scene
  */
 import { readFileSync } from "node:fs";
@@ -121,7 +128,9 @@ const VARS = [
   "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_SWAP_MS", "BS_SWAP_TROUGH",
   "BS_COORD_RADIUS_SCALE",
   "BS_FIT_MARGIN", "BS_ION_PAIRS",
-  "BS_SUPDIG", "BS_COORD_CACHE"
+  "BS_SUPDIG", "BS_COORD_CACHE",
+  // E3 (thermal expansion layer)
+  "BS_R_J", "BS_VAPOUR"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
 const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
@@ -136,6 +145,11 @@ const FNS = [
   "bscSub", "bscTrendFit",
   // E1c-A
   "bscArrowParts", "bscUnitShapeKey", "bscSolvedShapeKey", "bscSolvedCamera",
+  // E2: the scene predicate behind the explore re-frame
+  "bscNetworkScene",
+  // E1: the pure half of the annotation/HUD reserve (section 27). Not a bsc_*
+  // function — the annotation layer is shared — but it is the thing the fix is.
+  "pmAnnotClampX",
   // E1c-J: the SHIPPED spin axis and the SHIPPED rotation it feeds
   "bscSpinAxis", "bscSpinRot",
   // E1c-I: the SHIPPED separation math (pure 2D — the camera half is written here)
@@ -144,7 +158,9 @@ const FNS = [
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
   "bscOpeningExtent",                                            // E2d
-  "bscGrowShown", "bscTransferProg", "bscTransferSite"
+  "bscGrowShown", "bscTransferProg", "bscTransferSite",
+  // E3
+  "bscBrokenFraction", "bscNetworkStretch", "bscThermalScale", "bscPeakThermalScale"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -796,8 +812,12 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   const DOC_HUD = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
     "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
     "valence", "atomisation", "bp", "like_contacts", "conductivity"];
+  // E5 grew this from ten keys to eleven: bsc_trend is a live scene element type
+  // (row O's chart) that no key could reach, so a narration sentence about the
+  // trend line was unbindable by construction. Section 29 asserts the invariant
+  // that replaces the frozen count — every element type on screen has a key.
   const DOC_GLOW = ["units", "central", "links", "arrows", "resultant", "charges",
-    "electrons", "lattice", "layer", "neighbours"];
+    "electrons", "lattice", "layer", "neighbours", "trend"];
 
   ok("mode enum matches the frozen contract (13 members)", sameSet(E.BS_MODES, DOC_MODES),
     `${E.BS_MODES.length} members`);
@@ -816,7 +836,7 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
     sameSet(E.BS_CELLS, ["rock_salt", "fcc", "bcc", "hcp"]));
   ok("controls enum matches the frozen contract (13 ids)", sameSet(E.BS_CONTROL_IDS, DOC_CONTROLS));
   ok("hud_lines enum matches the frozen contract (15 ids)", sameSet(E.BS_HUD_LINES, DOC_HUD));
-  ok("glow enum matches the frozen contract (10 keys)", sameSet(Object.keys(E.BS_GLOW_ELS), DOC_GLOW));
+  ok("glow enum matches the frozen contract (11 keys)", sameSet(Object.keys(E.BS_GLOW_ELS), DOC_GLOW));
   ok("placement enum is free|lattice", sameSet(E.BS_PLACEMENTS, ["free", "lattice"]));
   ok("electrons.show enum is none|shells|pair_glyph",
     sameSet(E.BS_ELECTRON_SHOW, ["none", "shells", "pair_glyph"]));
@@ -1360,7 +1380,7 @@ console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair ·
     ok("the lone-pair vector rides elementType bsc_arrow (closed glow enum intact)",
       /elementType: "bsc_arrow", id: "bsc_lone_shaft_/.test(build) &&
       sameSet(Object.keys(E.BS_GLOW_ELS), ["units", "central", "links", "arrows", "resultant",
-        "charges", "electrons", "lattice", "layer", "neighbours"]));
+        "charges", "electrons", "lattice", "layer", "neighbours", "trend"]));
     ok("the lobe rides the electrons focal", E.BS_GLOW_ELS.electrons.indexOf("bsc_lone") >= 0,
       E.BS_GLOW_ELS.electrons.join(","));
     ok("the frame pass gates the layer on dipole.show_lone_pair", /dip\.show_lone_pair/.test(upd));
@@ -3999,9 +4019,613 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
     ok("...and the frame pass rewrites molKey at the swap midpoint, which is what it mirrors",
       /if \(swapP >= 0\.5\) \{ molKey = swapTo; mol = MG_MOLECULES\[molKey\]; \}/.test(updSrc));
   }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 27. E1 HUD RESERVE (no annotation is ever drawn under the readout) ===");
+  // A RECURRENCE of the FIXED class field3d_hud_label_clipped_by_readout_box, and
+  // the reason it recurred is the whole content of this section: the two rectangles
+  // scale at DIFFERENT RATES, so no authored x can hold at every width, and
+  // check-layout-overlap models only the authored annotation rects — never the
+  // renderer-drawn HUD panel — so it reported zero collisions on eight of them.
+  //   The layout model below is not read out of the renderer: hud.left is
+  // (simW - 12 - hudWidth) from the shipped right:12px inline style, and the
+  // annotation centre is (x/760)*simW from the shipped design-space mapping. It
+  // reproduces the BROWSER to <=1 px on all forty measured cells, so the numbers
+  // here are the same numbers a screenshot gives.
+  {
+    const paintSrc = grabFn("pmPaintAnnotations");
+    const stepSrc = grabFn("pmStepAnnotations");
+    const clampSrc = grabFn("pmClampAnnotations");
+    const resSrc = grabFn("pmAnnotReserved");
+    const GAP = 16, MINX = 8;
+    /**
+     * hydrogen_bonding's eight states, MEASURED in headless Chromium at the
+     * shipped 600 15px system-ui: the half width of the rightmost top-row
+     * annotation (all eight authored at design x = 500) and the width the HUD
+     * box actually renders at for that state's hud_lines. Text width does not
+     * change with the viewport, which is exactly why the collision is a slope
+     * problem and not a text-length problem.
+     */
+    const STATES: { id: string; halfW: number; hudW: number }[] = [
+      { id: "S1", halfW: 50.5, hudW: 220 }, { id: "S2", halfW: 41.0, hudW: 220 },
+      { id: "S3", halfW: 80.5, hudW: 220 }, { id: "S4", halfW: 67.0, hudW: 220 },
+      { id: "S5", halfW: 75.0, hudW: 225 }, { id: "S6", halfW: 86.5, hudW: 225 },
+      { id: "S7", halfW: 74.5, hudW: 220 }, { id: "S8", halfW: 77.0, hudW: 225 }
+    ];
+    // sim-iframe widths. The player letterboxes the sim inside a 16:9 stage, so
+    // browser 1024/1152/1280/1366/1440 give the sim 614/713/810/875/932.
+    const SIMW = [614, 713, 810, 875, 932, 1024, 1280];
+    const resOf = (simW: number, hudW: number) =>
+      ({ left: simW - 12 - hudW, right: simW - 12, top: 52, bottom: 96, width: hudW });
+    const annC = (simW: number) => Math.min(Math.max(500 / 760, 0.06), 0.94) * simW;
+    // the top row sits at the 12% floor of a 9/16 viewport, so its own band is
+    // (0.12*H - 10 .. +10) — measured 32..51 at simW 614, 77..96 at 1280.
+    const bandOf = (simW: number) => {
+      const c = 0.12 * (simW * 9 / 16);
+      return { top: c - 9.5, bot: c + 9.5 };
+    };
+    const gapBefore = (simW: number, s: { halfW: number; hudW: number }) =>
+      resOf(simW, s.hudW).left - (annC(simW) + s.halfW);
+    const gapAfter = (simW: number, s: { halfW: number; hudW: number }) => {
+      const b = bandOf(simW);
+      const cc = E.pmAnnotClampX(annC(simW), s.halfW, b.top, b.bot,
+        resOf(simW, s.hudW), GAP, MINX) as number;
+      return resOf(simW, s.hudW).left - (cc + s.halfW);
+    };
+    // ── THE DEFECT, as the table founder-proxy raised it.
+    {
+      const rows = SIMW.map((w) =>
+        `${String(w).padStart(4)}: ` + STATES.map((s) => Math.round(gapBefore(w, s))).join(" "));
+      const collide = (w: number) => STATES.filter((s) => gapBefore(w, s) < GAP).length;
+      ok("THE DEFECT, measurable: 8/8 states overlap the readout at sim width 614",
+        collide(614) === 8 && STATES.every((s) => gapBefore(614, s) < 0),
+        rows[0]);
+      ok("...and it closes monotonically as the screen narrows (two different slopes)",
+        SIMW.every((w, i) => i === 0 || STATES.every((s) => gapBefore(w, s) > gapBefore(SIMW[i - 1], s))),
+        `S3: ${SIMW.map((w) => Math.round(gapBefore(w, STATES[2]))).join(" -> ")}`);
+      ok("...and it is NOT authorable: the required x depends on a measured box",
+        Math.abs((resOf(1280, 220).left - resOf(614, 220).left) - (1280 - 614)) < 1e-9 &&
+        Math.abs((annC(1280) - annC(614)) - (1280 - 614) * (500 / 760)) < 1e-9,
+        "hud.left tracks the viewport 1:1, the annotation centre at 0.658:1");
+    }
+    // ── THE FIX, on the same eight states at the same seven widths.
+    {
+      const worst = Math.min(...SIMW.flatMap((w) => STATES.map((s) => gapAfter(w, s))));
+      ok("ACCEPTANCE: every state clears the readout by >= 16 px at EVERY width",
+        SIMW.every((w) => STATES.every((s) => gapAfter(w, s) >= GAP - 1e-9)),
+        `worst gap over 7 widths x 8 states: ${worst.toFixed(1)} px`);
+      ok("...and it never pushes a label off the left edge either",
+        SIMW.every((w) => STATES.every((s) => {
+          const b = bandOf(w);
+          const cc = E.pmAnnotClampX(annC(w), s.halfW, b.top, b.bot, resOf(w, s.hudW), GAP, MINX) as number;
+          return cc - s.halfW >= MINX - 1e-9;
+        })));
+    }
+    // ── BYTE-IDENTITY, the half that protects every other concept in the fleet.
+    {
+      const res1280 = resOf(1280, 220);
+      const b = bandOf(1280);
+      ok("an annotation that already clears is returned UNCHANGED (identity, not a nudge)",
+        STATES.every((s) => Object.is(
+          E.pmAnnotClampX(annC(1280), s.halfW, b.top, b.bot, res1280, GAP, MINX), annC(1280))),
+        `gap at 1280 = ${Math.round(gapBefore(1280, STATES[2]))} px, cx untouched`);
+      ok("a state with NO readout on screen is returned unchanged (res null)",
+        Object.is(E.pmAnnotClampX(600, 80, 32, 51, null, GAP, MINX), 600) &&
+        Object.is(E.pmAnnotClampX(600, 80, 32, 51, { left: 382, right: 602, top: 52, bottom: 96, width: 0 }, GAP, MINX), 600));
+      ok("an annotation in a DIFFERENT vertical band is returned unchanged",
+        Object.is(E.pmAnnotClampX(annC(614), 80.5, 287, 306, resOf(614, 220), GAP, MINX), annC(614)),
+        "the bottom row (design y 430) never moves, at any width");
+      ok("...but a near-miss inside the 16 px clearance DOES count as a collision",
+        E.pmAnnotClampX(annC(614), 80.5, 32, 51, resOf(614, 220), GAP, MINX) !== annC(614),
+        "band 32..51 vs HUD 52..96: 1 px apart is a collision, not a clearance");
+      ok("D-1: the clamp is IDEMPOTENT — applying it to its own output is a fixed point",
+        SIMW.every((w) => STATES.every((s) => {
+          const bb = bandOf(w), rr = resOf(w, s.hudW);
+          const a1 = E.pmAnnotClampX(annC(w), s.halfW, bb.top, bb.bot, rr, GAP, MINX) as number;
+          const a2 = E.pmAnnotClampX(a1, s.halfW, bb.top, bb.bot, rr, GAP, MINX) as number;
+          return Object.is(a1, a2);
+        })), "no drift under repeated frames, so a freeze pin rewinds to the same layout");
+    }
+    // ── THE WIRING, on the shipped bodies.
+    ok("the painter records the AUTHORED left as data (the clamp re-derives, never nudges)",
+      /d\.setAttribute\("data-lp", lp\.toFixed\(2\)\);/.test(paintSrc));
+    ok("the reserve pass runs AFTER the reveal pass, every frame",
+      /pmClampAnnotations\(\);/.test(stepSrc) &&
+      stepSrc.indexOf("pmClampAnnotations()") > stepSrc.indexOf("data-until"));
+    ok("the reserved rect is the HUD's LIVE measured box (no hardcoded 220)",
+      /getElementById\("bsc_hud"\)/.test(resSrc) && /getBoundingClientRect\(\)/.test(resSrc) &&
+      !/220|190/.test(resSrc) && /style\.display === "none"/.test(resSrc));
+    ok("the pass writes style.left ONLY when it changes (byte-identical otherwise)",
+      /if \(el2\.style\.left !== want\) el2\.style\.left = want;/.test(clampSrc) &&
+      /var want = lp \+ "%";/.test(clampSrc));
+    ok("the pass skips hidden labels and reads the authored percentage, not the live one",
+      /el2\.style\.display !== "none"/.test(clampSrc) && /getAttribute\("data-lp"\)/.test(clampSrc));
+    ok("no clock, no accumulator, no history anywhere in the reserve pass",
+      !/\+=|time|Date\.now|stateStartTime/.test(clampSrc) &&
+      !/\+=|time|Date\.now/.test(grabFn("pmAnnotClampX")));
+  }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 28. E2 EXPLORE FRAMING (a sandbox keeps the framing it was taught in) ===");
+  // hydrogen_bonding S7 (network) and S8 (explore) carry BYTE-IDENTICAL units[],
+  // the same 30 molecules at the same positions and the same 298 K. They were
+  // framed by two different cameras because "explore" was treated as a scene type
+  // — BS_CAMERAS.explore is the same az 35 / el 47 / dist 7 triple as dipole_sum,
+  // i.e. the SINGLE-MOLECULE solve wearing a mode name.
+  {
+    const S8BS: any = Object.assign({}, NBS, { mode: "explore" });
+    const S7BS: any = NBS;
+    ok("the scene predicate fires on a free multi-unit explore scene, and ONLY there",
+      E.bscNetworkScene(S8BS) === true &&
+      E.bscNetworkScene(S7BS) === false &&                                    // guided network
+      E.bscNetworkScene({ mode: "explore", placement: "lattice", units: (NBS as any).units }) === false &&
+      E.bscNetworkScene({ mode: "explore", units: [{ species: "H2O", at: [0, 0, 0] }] }) === false &&
+      E.bscNetworkScene({ mode: "explore" }) === false);
+    const c7 = E.bscSolvedCamera(S7BS, null) as any, c8 = E.bscSolvedCamera(S8BS, null) as any;
+    ok("ACCEPTANCE: the two states now solve to the SAME camera, angle for angle",
+      c7.az === c8.az && c7.el === c8.el && c7.dist === c8.dist && c7.fit === c8.fit,
+      `S7 el ${c7.el} dist ${c7.dist}  ==  S8 el ${c8.el} dist ${c8.dist}`);
+    const ext = E.bscSiteExtent(NBS, null) as number;
+    const fit = Math.max(c7.dist, ext * E.BS_FIT_MARGIN);
+    ok("...at the same fitted distance too (same units[] -> same extent -> same fit)",
+      Object.is(Math.max(c7.dist, ext * E.BS_FIT_MARGIN), Math.max(c8.dist, ext * E.BS_FIT_MARGIN)),
+      `dist ${fit.toFixed(2)}`);
+    // THE DEFECT, measured as pixels: project every molecule centre under both
+    // cameras and compare. The projector is written here, not read out of the
+    // renderer (same discipline as section 11).
+    {
+      const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, tn = Math.tan(FOV / 2), PXH = 456;
+      const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+      const cr3 = (a: number[], b: number[]) =>
+        [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+      const dt3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+      const project = (cam: any) => {
+        const a = (cam.az || 0) * Math.PI / 180, e = (cam.el || 0) * Math.PI / 180;
+        const d = Math.max(cam.dist, ext * E.BS_FIT_MARGIN);
+        const c = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+        const f = E.bscNorm(sub3([0, 0, 0], c)), r = E.bscNorm(cr3(f, [0, 1, 0])), up = cr3(r, f);
+        return NET.map((u) => {
+          const v = sub3(u.at, c), z = dt3(v, f);
+          return [dt3(v, r) / (z * tn * ASPECT) * (PXH * ASPECT / 2), dt3(v, up) / (z * tn) * (PXH / 2)];
+        });
+      };
+      const pN = project(E.BS_CAMERAS.network), pE = project(E.BS_CAMERAS.explore), pS8 = project(c8);
+      const cen = (p: number[][]) => [p.reduce((s, q) => s + q[0], 0) / p.length, p.reduce((s, q) => s + q[1], 0) / p.length];
+      const worst = (a: number[][], b: number[][]) =>
+        Math.max(...a.map((q, i) => Math.hypot(q[0] - b[i][0], q[1] - b[i][1])));
+      const cN = cen(pN), cE = cen(pE);
+      ok("THE DEFECT, measurable: the pre-fix explore camera moved every molecule",
+        worst(pN, pE) > 40,
+        `worst molecule displacement ${worst(pN, pE).toFixed(1)} px, centroid ` +
+        `${Math.hypot(cN[0] - cE[0], cN[1] - cE[1]).toFixed(1)} px (el ` +
+        `${E.BS_CAMERAS.network.el} vs ${E.BS_CAMERAS.explore.el})`);
+      ok("ACCEPTANCE: projected molecule centres now agree EXACTLY (0 px, not a few)",
+        worst(pN, pS8) === 0, `worst ${worst(pN, pS8).toFixed(6)} px over 30 molecules`);
+    }
+    ok("the spin axis follows the same camera, so a sandbox roll is about the view axis",
+      (E.bscSpinAxis(c8) as number[]).every((v, i) => Object.is(v, (E.bscSpinAxis(c7) as number[])[i])));
+    // BYTE-IDENTITY for every explore scene that is NOT a network.
+    ok("a ONE-unit sandbox is untouched (it is framed by the single-unit solve)",
+      (E.bscSolvedCamera({ mode: "explore", units: [{ species: "CCl4", at: [0, 0, 0] }] }, null) as any) ===
+      E.BS_UNIT_CAMERAS[E.bscUnitShapeKey("CCl4") as string]);
+    ok("a TWO-unit sandbox is DELIBERATELY untouched (approach_link vs compare is undecidable)",
+      (E.bscSolvedCamera({
+        mode: "explore", placement: "free",
+        units: [{ species: "H2O", at: [-3, 0, 0] }, { species: "H2O", at: [3, 0, 0] }]
+      }, null) as any) === E.BS_CAMERAS.explore);
+    ok("a LATTICE sandbox is untouched (the ion path never reaches the new branch)",
+      (E.bscSolvedCamera(Object.assign({}, LATTICE_BS, { mode: "explore" }), null) as any) ===
+      E.BS_CAMERAS.explore);
+    ok("every GUIDED mode still resolves to its own measured camera, unchanged",
+      (E.BS_MODES_IMPL as string[]).filter((m) => m !== "explore").every((m) =>
+        (E.bscSolvedCamera({ mode: m, placement: "free", units: (NBS as any).units }, null) as any) ===
+        (E.BS_CAMERAS as any)[m]));
+    ok("the solve is still config-only — no clock, no live camera, no history",
+      !/\bms\b|Date\.now|spherical|PM_bscCam/.test(grabFn("bscSolvedCamera") + grabFn("bscNetworkScene")));
+  }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  console.log("\n=== 29. E5 GLOW COVERAGE (every element type on screen has a focal key) ===");
+  // bsc_trend — row O's chart — was a live scene element type with no glow key, so
+  // no narration sentence about the chart could ever be bound, on this concept or
+  // any future one. The frozen KEY COUNT is replaced by the invariant that should
+  // have been asserted in the first place: a new element type cannot be added
+  // without a key, because this section reads the element types out of the source.
+  {
+    const KEYS = E.BS_GLOW_ELS as Record<string, string[]>;
+    const reachable = new Set<string>();
+    for (const k of Object.keys(KEYS)) for (const t of KEYS[k]) reachable.add(t);
+    // every elementType expression the bonding_scene builder assigns, ternaries included
+    const declared = new Set<string>();
+    const re = /elementType:\s*([^,]+),\s*id:/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(SRC)) !== null) {
+      const lits = m[1].match(/"bsc_[a-z_]+"/g);
+      if (lits) for (const l of lits) declared.add(l.replace(/"/g, ""));
+    }
+    ok("the source really was scanned (the ternary-declared types are in the set)",
+      declared.has("bsc_central") && declared.has("bsc_atom") && declared.size >= 11,
+      `${declared.size} element types declared: ${[...declared].sort().join(" ")}`);
+    ok("ACCEPTANCE: every declared bsc_* element type is reachable from some key",
+      [...declared].every((t) => reachable.has(t)),
+      [...declared].filter((t) => !reachable.has(t)).join(",") || "none unreachable");
+    ok("the trend surface has a key, and it resolves to the panel that exists",
+      KEYS.trend && KEYS.trend.length === 1 && KEYS.trend[0] === "bsc_trend" &&
+      /var tc = document\.createElement\("canvas"\); tc\.id = "bsc_trend";/.test(SRC));
+    // the reverse direction: a key with nothing behind it is the E1 "declared but
+    // never built" scar. TWO exceptions, both declared HERE so the list cannot
+    // quietly grow: bsc_layer is E3b's deferred layer-shift half (no mesh yet, and
+    // no state can reach it), and bsc_trend is a DOM canvas rather than a mesh —
+    // its existence is asserted above, and its emphasis two assertions below.
+    const orphan = [...reachable].filter((t) => !declared.has(t)).sort();
+    ok("the only keys with no mesh behind them are the two declared exceptions",
+      orphan.length === 2 && orphan[0] === "bsc_layer" && orphan[1] === "bsc_trend",
+      `orphan keys: ${orphan.join(",") || "none"} (E3b stub + the DOM chart)`);
+    const glowSrc = grabFn("applyBondingSceneGlow");
+    ok("the trend focal is NOT a no-op: the panel takes the emphasis in its own medium",
+      /var trFocal = !!focalTypes\["bsc_trend"\];/.test(glowSrc) &&
+      /tcv\.style\.filter = trFocal \? "brightness\(1\.22\)" : "";/.test(glowSrc));
+    ok("...as BRIGHTNESS, never size (Rule 29), and released again when it is not focal",
+      !/width|height|transform|scale/.test(glowSrc) &&
+      /tcv\.style\.boxShadow = trFocal \? [^:]+: "";/.test(glowSrc));
+    ok("a DOM-only focal never arms the MESH pass (the molecules are not peers of a chart)",
+      /if \(focalTypes\[k\] && k !== "bsc_trend"\) anyScene = true;/.test(glowSrc));
+    ok("the mesh pass itself is untouched (still brightenOnly, still one call per object)",
+      /applyGlowEmphasis\(o, !!focalTypes\[ud\.elementType\], anyScene, 0\.6, true\);/.test(glowSrc));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 30. E4 THE TWO-UNIT CAMERA MAY NOT FORESHORTEN THE COMPARED AXIS ===");
+// A RECURRENCE of the OPEN scar
+// camera_metric_scored_foreshortening_not_pairwise_screen_separation: section 11
+// scores pairwise SEPARATION and never the projected LENGTH of the axis a state
+// teaches the length of, so it passed a camera whose forward vector lay 78.8%
+// along hydrogen_bonding S2/S3's separation axis. Every number below is measured
+// with a projector written HERE (same discipline as section 11), and the SHIPPED
+// pre-fix camera is carried as an explicit negative control.
+{
+  const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TN = Math.tan(FOV / 2), PXH = 456;
+  const sb = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cr = (a: number[], b: number[]) =>
+    [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dt = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const rig = (c: any) => {
+    const a = (c.az || 0) * Math.PI / 180, e = (c.el || 0) * Math.PI / 180, d = c.dist || 7;
+    const p = [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
+    const f = E.bscNorm(sb([0, 0, 0], p)), r = E.bscNorm(cr(f, [0, 1, 0]));
+    return { p, f, r, u: cr(r, f) };
+  };
+  const px = (R: any, q: number[]) => {
+    const v = sb(q, R.p), z = dt(v, R.f);
+    return { x: dt(v, R.r) / (z * TN * ASPECT) * (PXH * ASPECT / 2), y: dt(v, R.u) / (z * TN) * (PXH / 2), z };
+  };
+  const len = (a: any, b: any) => Math.hypot(a.x - b.x, a.y - b.y);
+  // the SHIPPED hydrogen_bonding S2/S3/S4 pair: units[0] is the donor at -sep/2.
+  const ORI = [[190, 69], [180, 0]];
+  const BL = E.BS_BOND_LEN as number;
+  const hFrame = E.mgFrame("H2O", null, null) as any;
+  const offs = ORI.map((o) => {
+    const rot = E.bscOrientRot(o);
+    const oo: number[][] = [[0, 0, 0]];
+    for (const d of hFrame.bonds as number[][]) {
+      const dv = rot ? rot(d) : d;
+      oo.push([dv[0] * BL, dv[1] * BL, dv[2] * BL]);
+    }
+    return oo;
+  });
+  const hSites = E.bscLinkSites("H2O") as any;
+  const rOx = E.MG_ELEMENTS.O.radius as number;
+  const pose = (sep: number) => [[-0.5 * sep, 0, 0], [0.5 * sep, 0, 0]]
+    .map((b, u) => offs[u].map((o) => [b[0] + o[0], b[1] + o[1], b[2] + o[2]]));
+  /** the donating H of unit 0 (the one nearest unit 1's O) — that IS the drawn link */
+  const donor = (() => {
+    const p = pose(5.75);
+    let best: any = null;
+    for (const dn of hSites.donors) {
+      const d = Math.hypot(...(sb(p[1][0], p[0][dn.slot]) as [number, number, number]));
+      if (!best || d < best.d) best = { d, slot: dn.slot, partner: dn.partner };
+    }
+    return best;
+  })();
+  const shot = (cam: any, sep: number) => {
+    const R = rig(cam), W = pose(sep), P = W.map((row) => row.map((q) => px(R, q)));
+    const rad = (z: number) => rOx / (z * TN) * (PXH / 2);
+    const r0 = rad(P[0][0].z), r1 = rad(P[1][0].z);
+    const link = len(P[0][donor.slot], P[1][0]);
+    const four = [len(P[0][0], P[0][1]), len(P[0][0], P[0][2]),
+                  len(P[1][0], P[1][1]), len(P[1][0], P[1][2])];
+    const don = len(P[0][donor.partner], P[0][donor.slot]);
+    const ang = (() => {
+      const h = P[0][donor.slot], a = P[0][donor.partner], b = P[1][0];
+      const u1 = [a.x - h.x, a.y - h.y], u2 = [b.x - h.x, b.y - h.y];
+      return Math.acos(Math.max(-1, Math.min(1, (u1[0] * u2[0] + u1[1] * u2[1]) /
+        (Math.hypot(u1[0], u1[1]) * Math.hypot(u2[0], u2[1]))))) * 180 / Math.PI;
+    })();
+    // the PHYSICAL ratio at this separation: H...A over the O-H bond, in pm
+    const p2u = E.bscLinkCfg({}).pm_per_unit as number;
+    const phys = (Math.hypot(...(sb(W[1][0], W[0][donor.slot]) as [number, number, number])) * p2u) /
+      (BL * p2u);
+    let box = 0;
+    for (const row of P) for (const q of row) box = Math.max(box, Math.abs(q.x) / (PXH * ASPECT / 2), Math.abs(q.y) / (PXH / 2));
+    let sep2 = 1e9;
+    for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++)
+      sep2 = Math.min(sep2, len(P[(i / 3) | 0][i % 3], P[(j / 3) | 0][j % 3]));
+    return {
+      disp: Math.max(r0, r1) / Math.min(r0, r1), r0, r1, link, four, don, ang, phys, box, sep2,
+      ratio: link / don, spread: Math.max(...four) / Math.min(...four),
+      allRatios: four.map((b) => link / b)
+    };
+  };
+  const PRE_AL = { az: 35, el: 16, dist: 11.0 };     // the SHIPPED pre-E4 camera
+  const PRE_CMP = { az: 35, el: 20, dist: 12.0 };
+  const AL = E.BS_CAMERAS.approach_link, CMP = E.BS_CAMERAS.compare;
+  const f2 = (v: number) => v.toFixed(2), f1 = (v: number) => v.toFixed(1);
+
+  // NEGATIVE CONTROL — the metric must fail on the shipped pre-fix cameras.
+  {
+    const a = shot(PRE_AL, 5.75), b = shot(PRE_AL, 8.0), c = shot(PRE_CMP, 5.75);
+    ok("NEGATIVE CONTROL: the pre-E4 approach_link camera FAILS the disparity floor",
+      a.disp > 1.15 && b.disp > 1.15,
+      `S2 ${f2(a.disp)}x  S3 ${f2(b.disp)}x  (O radii ${f1(a.r0)}/${f1(a.r1)} px)`);
+    ok("NEGATIVE CONTROL: ...and drew the 180/96 claim at the wrong ratio",
+      Math.abs(a.ratio - a.phys) / a.phys > 0.15,
+      `drew ${f2(a.ratio)}x where the physics is ${f2(a.phys)}x (${((a.ratio / a.phys - 1) * 100).toFixed(0)}% off)`);
+    ok("NEGATIVE CONTROL: ...and the four identical 96 pm bonds spread 2.5x",
+      a.spread > 2.0, `${f1(Math.min(...a.four))}..${f1(Math.max(...a.four))} px, spread ${f2(a.spread)}x`);
+    ok("NEGATIVE CONTROL: the pre-E4 compare camera FAILS the same disparity floor",
+      c.disp > 1.15, `${f2(c.disp)}x  (O radii ${f1(c.r0)}/${f1(c.r1)} px)`);
+  }
+  // THE FIX — measured on the shipped cameras, at every separation S2/S3 traverse.
+  const SEPS = [{ n: "S2 opening 12.00", s: 12.0 }, { n: "S2/S3 linked 5.75", s: 5.75 },
+                { n: "S3 settled 8.00", s: 8.0 }];
+  ok("ACCEPTANCE: the separation axis is EXACTLY in the screen plane (cos el * cos az = 0)",
+    Math.abs(Math.cos(AL.el * Math.PI / 180) * Math.cos(AL.az * Math.PI / 180)) < 1e-12 &&
+    Math.abs(Math.cos(CMP.el * Math.PI / 180) * Math.cos(CMP.az * Math.PI / 180)) < 1e-12,
+    `approach_link az ${AL.az} el ${AL.el}, compare az ${CMP.az} el ${CMP.el}`);
+  for (const S of SEPS) {
+    const m = shot(AL, S.s);
+    ok(`ACCEPTANCE (${S.n}): the two units' projected O radii agree within 15%`,
+      m.disp <= 1.15, `${f1(m.r0)} / ${f1(m.r1)} px, disparity ${m.disp.toFixed(4)}x`);
+    ok(`ACCEPTANCE (${S.n}): the drawn link/bond ratio IS the physical ratio`,
+      Math.abs(m.ratio - m.phys) / m.phys <= 0.15,
+      `drew ${f2(m.ratio)}x, physics ${f2(m.phys)}x`);
+  }
+  {
+    const m = shot(AL, 5.75);
+    ok("ACCEPTANCE: at the LINKED pose every one of the four O-H bonds reads 1.875 +-15%",
+      m.allRatios.every((r) => Math.abs(r - 1.875) / 1.875 <= 0.15),
+      `link/O-H = ${m.allRatios.map(f2).join(" / ")}  (band 1.59..2.16)`);
+    ok("...and the four identically-long 96 pm bonds now project within 20% of each other",
+      m.spread <= 1.20, `${f1(Math.min(...m.four))}..${f1(Math.max(...m.four))} px, spread ${f2(m.spread)}x`);
+    ok("the el-16 property is KEPT: the projected D-H...A angle still reads straight",
+      m.ang >= 179.5, `${m.ang.toFixed(1)} deg`);
+    ok("countability improves in the same move (section-11 discipline, in px)",
+      m.sep2 > shot(PRE_AL, 5.75).sep2 && m.box <= 0.85,
+      `min pairwise ${f1(shot(PRE_AL, 5.75).sep2)} -> ${f1(m.sep2)} px, |ndc| ${m.box.toFixed(3)}`);
+    const c = shot(CMP, 5.75);
+    ok("ACCEPTANCE (compare, S4): same two properties on the side-by-side box",
+      c.disp <= 1.15 && Math.abs(c.ratio - c.phys) / c.phys <= 0.15,
+      `disparity ${c.disp.toFixed(4)}x, ratio ${f2(c.ratio)}x vs ${f2(c.phys)}x`);
+  }
+  ok("el and dist are UNCHANGED — only the azimuth moved (nothing else was traded)",
+    AL.el === 16 && AL.dist === 11.0 && CMP.el === 20 && CMP.dist === 12.0);
+  ok("every OTHER solved camera is byte-identical (no fleet-wide camera edit)",
+    E.BS_CAMERAS.dipole_sum.az === 35 && E.BS_CAMERAS.explore.az === 35 &&
+    E.BS_CAMERAS.assemble.az === 35 && E.BS_CAMERAS.network.az === 35 &&
+    E.BS_CAMERAS.network.el === 22 && E.BS_CAMERAS.coordination.el === 45 &&
+    E.BS_CAMERAS.transfer.az === 90 && E.BS_CAMERAS.lattice_grow.el === 26);
+  ok("a single-unit compare scene never reaches this row (bond_polarity S2/S6/S7)",
+    (E.bscSolvedCamera({ mode: "compare", units: [{ species: "H2O", at: [0, 0, 0] }] }, null) as any) !==
+    E.BS_CAMERAS.compare);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 31. E3 THE THERMAL RESPONSE IS STEEPEST THROUGH THE BOILING REGION ===");
+// The shipped model was a fixed lattice with a sqrt(T) jiggle: the link count fell
+// 4% at water's ACTUAL boiling point and needed 600 K — 227 K past boiling — to
+// move at all, while the very next state teaches that boiling costs 193 K BECAUSE
+// the hydrogen bonds must break. This section replays the SHIPPED link pass over
+// the SHIPPED 30-unit network at seven temperatures, and carries the pre-fix curve
+// as an explicit negative control (the law is switched off by passing stretch 0,
+// which is exactly the pre-E3 code path).
+{
+  const NET3: { at: number[]; orient: number[] }[] = [
+    { at: [0.44, 0, 0], orient: [125, -37] }, { at: [-2.88, -3.32, 3.32], orient: [232, -36] },
+    { at: [-2.88, 3.32, -3.32], orient: [232, -36] }, { at: [3.76, -3.32, -3.32], orient: [232, -36] },
+    { at: [3.76, 3.32, 3.32], orient: [232, -36] }, { at: [-6.2, -6.64, 0], orient: [125, -37] },
+    { at: [-6.2, 0, -6.64], orient: [125, -37] }, { at: [-6.2, 0, 6.64], orient: [125, -37] },
+    { at: [-6.2, 6.64, 0], orient: [125, -37] }, { at: [0.44, -6.64, -6.64], orient: [338, -39] },
+    { at: [0.44, -6.64, 6.64], orient: [125, -37] }, { at: [0.44, 6.64, -6.64], orient: [125, -37] },
+    { at: [0.44, 6.64, 6.64], orient: [53, 35] }, { at: [7.08, -6.64, 0], orient: [338, -39] },
+    { at: [7.08, 0, -6.64], orient: [338, -39] }, { at: [7.08, 0, 6.64], orient: [53, 35] },
+    { at: [7.08, 6.64, 0], orient: [53, 35] }, { at: [-9.52, -3.32, -3.32], orient: [232, -36] },
+    { at: [-9.52, 3.32, 3.32], orient: [83, -29] }, { at: [-2.88, -9.96, -3.32], orient: [232, -36] },
+    { at: [-2.88, 9.96, 3.32], orient: [301, 17] }, { at: [-2.88, -3.32, -9.96], orient: [301, 28] },
+    { at: [-2.88, 3.32, 9.96], orient: [83, -29] }, { at: [3.76, -9.96, 3.32], orient: [232, -36] },
+    { at: [3.76, 9.96, -3.32], orient: [301, 17] }, { at: [3.76, -3.32, 9.96], orient: [83, -29] },
+    { at: [3.76, 3.32, -9.96], orient: [301, 28] }, { at: [10.4, -3.32, 3.32], orient: [20, -33] },
+    { at: [10.4, 3.32, -3.32], orient: [20, -33] }, { at: [-12.84, 0, 0], orient: [125, -37] }
+  ];
+  const BS3 = {
+    placement: "free", mode: "network", links: { enabled: true }, thermal: { jiggle_scale: 0.9 },
+    units: NET3.map((u, i) => ({ id: "hb_w" + i, species: "H2O", at: u.at, orient: u.orient }))
+  };
+  const L3 = E.bscLinkCfg(BS3), S3n = E.BS_LINK_SAMPLES as number, F3 = E.BS_LINK_FRAMES as number;
+  const dt3 = (E.BS_LINK_LOOKBACK_MS as number) / (S3n - 1), B3 = E.BS_BOND_LEN as number;
+  const fr3 = E.mgFrame("H2O", null, null) as any, si3 = E.bscLinkSites("H2O") as any;
+  const off3 = NET3.map((u) => {
+    const rot = E.bscOrientRot(u.orient);
+    const oo: number[][] = [[0, 0, 0]];
+    for (const d of fr3.bonds as number[][]) {
+      const dv = rot ? rot(d) : d;
+      oo.push([dv[0] * B3, dv[1] * B3, dv[2] * B3]);
+    }
+    return oo;
+  });
+  const NU3 = NET3.length;
+  const STRETCH = E.bscNetworkStretch(BS3) as number;
+  // the SHIPPED orgAt, transcribed: base * bscThermalScale, then the jiggle.
+  const pass = (ms: number, T: number, stretch: number) => {
+    const sc = E.bscThermalScale("H2O", T, stretch) as number;
+    const reach = L3.break_pm / L3.pm_per_unit * sc + 2 * B3 + 1.0 + 6;
+    const frames: (number[][][] | null)[] = [];
+    for (let s = 0; s < F3; s++) {
+      const mms = ms - (F3 - 1 - s) * dt3;
+      if (mms < 0) { frames.push(null); continue; }
+      const rows: number[][][] = [];
+      for (let u = 0; u < NU3; u++) {
+        const jg = E.bscJiggle(u, mms / 1000, T, 0.9) as number[];
+        const o = [NET3[u].at[0] * sc + jg[0], NET3[u].at[1] * sc + jg[1], NET3[u].at[2] * sc + jg[2]];
+        rows.push(off3[u].map((v) => [o[0] + v[0], o[1] + v[1], o[2] + v[2]]));
+      }
+      frames.push(rows);
+    }
+    const last = frames[F3 - 1]!;
+    const win = new Array(S3n).fill(0);
+    let nL = 0;
+    for (let a = 0; a < NU3 && nL < E.BS_MAX_LINKS; a++) {
+      for (let b = 0; b < NU3 && nL < E.BS_MAX_LINKS; b++) {
+        if (a === b) continue;
+        const dx = last[a][0][0] - last[b][0][0], dy = last[a][0][1] - last[b][0][1], dz = last[a][0][2] - last[b][0][2];
+        if (dx * dx + dy * dy + dz * dz > reach * reach) continue;
+        for (const dn of si3.donors) for (const ac of si3.acceptors) {
+          if (nL >= E.BS_MAX_LINKS) break;
+          const samp: any[] = [];
+          for (let s = 0; s < F3; s++) {
+            const F = frames[s];
+            if (!F) { samp.push(null); continue; }
+            const H = F[a][dn.slot], D = F[a][dn.partner], A = F[b][ac.slot];
+            const vx = A[0] - H[0], vy = A[1] - H[1], vz = A[2] - H[2];
+            const dU = Math.hypot(vx, vy, vz);
+            const wx = D[0] - H[0], wy = D[1] - H[1], wz = D[2] - H[2];
+            const wl = Math.hypot(wx, wy, wz) || 1;
+            samp.push({ d: dU * L3.pm_per_unit, a: Math.acos(E.bscClamp((vx * wx + vy * wy + vz * wz) / ((dU || 1) * wl), -1, 1)) * 180 / Math.PI });
+          }
+          for (let w = 0; w < S3n; w++) if (E.bscLinkLatch(dn.q, ac.q, samp, L3, w, S3n)) win[w]++;
+          if (E.bscLinkLatch(dn.q, ac.q, samp, L3, S3n - 1, S3n)) nL++;
+        }
+      }
+    }
+    let vs = 0, vn = 0;
+    for (let w = 0; w < S3n; w++) { if (!frames[w + S3n - 1]) continue; vs += win[w]; vn++; }
+    return vn > 0 ? 2 * (vs / vn) / NU3 : 2 * nL / NU3;
+  };
+  const curve = (stretch: number, T: number) => {
+    const a: number[] = [];
+    for (let m = 1600; m <= 12000; m += 800) a.push(pass(m, T, stretch));
+    return a.reduce((x, y) => x + y, 0) / a.length;
+  };
+  const TS3 = [100, 200, 273, 298, 373, 450, 600];
+  const pre: Record<number, number> = {}, post: Record<number, number> = {};
+  for (const T of TS3) { pre[T] = curve(0, T); post[T] = curve(STRETCH, T); }
+  const r2 = (v: number) => v.toFixed(2);
+  console.log("        T_K    " + TS3.map((T) => String(T).padStart(6)).join(""));
+  console.log("        pre    " + TS3.map((T) => pre[T].toFixed(2).padStart(6)).join(""));
+  console.log("        post   " + TS3.map((T) => post[T].toFixed(2).padStart(6)).join(""));
+  {
+    // the coupling is DERIVED from the scene: mean nearest-neighbour spacing, the
+    // drawn bond length and the criterion's own break distance. Recomputed here
+    // from the fixture rather than read out of the function it checks.
+    let sum = 0;
+    for (let i = 0; i < NU3; i++) {
+      let best = Infinity;
+      for (let j = 0; j < NU3; j++) {
+        if (i === j) continue;
+        best = Math.min(best, Math.hypot(NET3[i].at[0] - NET3[j].at[0],
+          NET3[i].at[1] - NET3[j].at[1], NET3[i].at[2] - NET3[j].at[2]));
+      }
+      sum += best;
+    }
+    const dOO = (sum / NU3) * L3.pm_per_unit;
+    const want = (L3.break_pm - (dOO - E.BS_BOND_LEN * L3.pm_per_unit)) / dOO;
+    ok("the coupling is DERIVED from the scene, not authored (break_pm, spacing, bond)",
+      Math.abs(STRETCH - want) < 1e-12,
+      `stretch ${STRETCH.toFixed(6)} = (${L3.break_pm} - ${(dOO - E.BS_BOND_LEN * L3.pm_per_unit).toFixed(1)}) / ${dOO.toFixed(1)} pm`);
+    ok("...so raising break_pm raises it, and there is nothing free to tune",
+      (E.bscNetworkStretch(Object.assign({}, BS3, { links: { enabled: true, break_pm: 300 } })) as number) > STRETCH);
+  }
+  ok("NEGATIVE CONTROL: the pre-E3 curve is steepest LATE (the defect, still measurable)",
+    (pre[298] - pre[373]) < (pre[373] - pre[600]),
+    `298->373 ${r2(pre[298] - pre[373])}  <  373->600 ${r2(pre[373] - pre[600])}`);
+  ok("NEGATIVE CONTROL: ...and moved only 4% at water's ACTUAL boiling point",
+    (pre[298] - pre[373]) / pre[298] < 0.06,
+    `${(100 * (pre[298] - pre[373]) / pre[298]).toFixed(1)}% from 298 to 373 K`);
+  ok("ACCEPTANCE: the 298 -> 373 K change now EXCEEDS the 373 -> 600 K change",
+    (post[298] - post[373]) > (post[373] - post[600]),
+    `298->373 ${r2(post[298] - post[373])}  >  373->600 ${r2(post[373] - post[600])}`);
+  ok("ACCEPTANCE: the 298 K reading is BYTE-IDENTICAL (S5 / S7 / S8 cannot move)",
+    Object.is(post[298], pre[298]), `${post[298].toFixed(6)} links per molecule, both`);
+  ok("...because the law is referenced to BS_T0_K: scale(T0) is exactly 1",
+    (E.bscThermalScale("H2O", E.BS_T0_K, STRETCH) as number) === 1);
+  ok("the drop through the boiling region is legible, not a rounding change",
+    (post[298] - post[373]) > 1.0,
+    `${r2(post[298])} -> ${r2(post[373])} links per molecule across 298 -> 373 K`);
+  ok("the curve is monotonic falling over the whole 100..600 K slider range",
+    TS3.every((T, i) => i === 0 || post[T] <= post[TS3[i - 1]] + 1e-9),
+    TS3.map((T) => r2(post[T])).join(" "));
+  // D-1: the whole layer is a pure function of T, so a pin rewind reproduces it.
+  ok("REWIND: the heated readout replays byte-for-byte after a jump to 30 s",
+    (() => {
+      const a = [4000, 6000, 8000].map((m) => pass(m, 420, STRETCH));
+      pass(30000, 420, STRETCH);
+      return [4000, 6000, 8000].map((m) => pass(m, 420, STRETCH)).every((v, i) => Object.is(v, a[i]));
+    })());
+  ok("no clock, no accumulator, no RNG anywhere in the new layer",
+    !/\bms\b|Date\.now|performance\.now|Math\.random|\+=/.test(
+      grabFn("bscBrokenFraction") + grabFn("bscThermalScale") + grabFn("bscPeakThermalScale")));
+  // the population itself: forced at T_b by definition, nothing chosen.
+  ok("the broken fraction is exactly 1/2 at the PUBLISHED normal boiling point",
+    Math.abs((E.bscBrokenFraction("H2O", E.BS_VAPOUR.H2O.tb_K) as number) - 0.5) < 1e-12 &&
+    Math.abs((E.bscBrokenFraction("H2S", E.BS_VAPOUR.H2S.tb_K) as number) - 0.5) < 1e-12,
+    "dG = 0 at T_b, so f = 1/2 is forced");
+  ok("an untabulated species switches the whole layer off (scale exactly 1)",
+    (E.bscThermalScale("CCl4", 600, 0.29) as number) === 1 &&
+    (E.bscBrokenFraction("CCl4", 600) as number) === 0);
+  ok("a scene that is not a PLACED multi-unit scene has stretch 0 (layer off)",
+    (E.bscNetworkStretch({ units: [{ species: "H2O", at: [0, 0, 0] }] }) as number) === 0 &&
+    // the separation_axis pair: both units author at [0,0,0], baseAt places them,
+    // so there is no authored spacing to expand and the layer never arms
+    (E.bscNetworkStretch({ separation_axis: [1, 0, 0], units: [
+      { species: "H2O", at: [0, 0, 0] }, { species: "H2O", at: [0, 0, 0] }] }) as number) === 0 &&
+    (E.bscNetworkStretch(LATTICE_BS) as number) === 0,
+    `single ${E.bscNetworkStretch({ units: [{ species: "H2O", at: [0, 0, 0] }] })}  ` +
+    `sep-axis ${E.bscNetworkStretch({ separation_axis: [1, 0, 0], units: [{ species: "H2O", at: [0, 0, 0] }, { species: "H2O", at: [0, 0, 0] }] })}  ` +
+    `lattice ${E.bscNetworkStretch(LATTICE_BS)}`);
+  ok("an ION scene DOES measure a spacing but expands by exactly nothing (no vapour row)",
+    (E.bscNetworkStretch(TRANSFER_BS) as number) > 0 &&
+    (E.bscThermalScale("Na", 600, E.bscNetworkStretch(TRANSFER_BS)) as number) === 1 &&
+    (E.bscThermalScale("Cl", 600, E.bscNetworkStretch(TRANSFER_BS)) as number) === 1,
+    `stretch ${(E.bscNetworkStretch(TRANSFER_BS) as number).toFixed(4)}, scale 1 at every T`);
+  // the camera half: the fit frames the hottest SCRIPTED pose, and only that.
+  {
+    const cold = Object.assign({}, BS3, { thermal: { T_K: 298, jiggle_scale: 0.9 } });
+    const hot = Object.assign({}, BS3, {
+      thermal: { T_from: 298, T_K: 600, T_at_ms: 900, T_ramp_ms: 11000, jiggle_scale: 0.9 } });
+    const eC = E.bscSiteExtent(cold, null) as number, eH = E.bscSiteExtent(hot, null) as number;
+    ok("a 298 K network's fitted extent is UNCHANGED (S5 / S7 / S8 keep their camera)",
+      Math.abs(eC - (12.84 + E.BS_BOND_LEN + E.MG_ELEMENTS.O.radius)) < 1e-9, `${eC.toFixed(3)} units`);
+    ok("a state that RAMPS is framed for its hottest pose, so the swell stays on frame",
+      eH > eC * 1.2 && Math.abs(eH / eC - (E.bscPeakThermalScale(hot, "H2O") as number)) < 1e-9,
+      `${eC.toFixed(2)} -> ${eH.toFixed(2)} units (peak scale ${(E.bscPeakThermalScale(hot, "H2O") as number).toFixed(4)}x)`);
+    ok("the teacher's temperature SLIDER is deliberately not counted (S8 cannot move)",
+      (E.bscPeakThermalScale(Object.assign({}, BS3, {
+        mode: "explore", thermal: { T_K: 298, jiggle_scale: 0.9 },
+        controls: [{ id: "temperature" }] }), "H2O") as number) === 1);
+  }
+  const upd3 = grabFn("updateBondingSceneFrame");
+  ok("the frame pass really multiplies the base position by the scale (shipped body)",
+    /var esc = bscThermalScale\(molKey, tempAt\(mms\), netStretch\);/.test(upd3) &&
+    /if \(esc !== 1\) b = \[b\[0\] \* esc, b\[1\] \* esc, b\[2\] \* esc\];/.test(upd3) &&
+    /var netStretch = bscNetworkStretch\(bs\);/.test(upd3));
+  ok("...and publishes the live scale for the professor pack",
+    /window\.PM_bscNetScale = bscThermalScale\(molKey, T_K, netStretch\);/.test(upd3));
+  ok("no new cue key was introduced, so deriveStateMeta needs no new pin",
+    !/bscTh(2)?\.(expand|collapse|boil)/.test(META_SRC) &&
+    /candidates\.push\(asNum\(bscTh2\.T_at_ms, 0\) \+ asNum\(bscTh2\.T_ramp_ms, 2000\) \+ 600\)/.test(META_SRC));
 }
 
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-f + E3a + E1c sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 sections pass (8/13/14 are declared E3b stubs).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);
