@@ -51100,8 +51100,33 @@ export const FIELD_3D_RENDERER_CODE = `
     //       transfer: { at_ms, duration_ms, from, to },                    // E3a
     //                  // from/to are units[].id; both species change size on
     //                  // the LINEAR-pm scale and charge ramps with the radius
-    //       groups / sea / ions / shift,          // PARSED + PASSED THROUGH by
+    //       groups: [{ id, label, at, units?, lattice?, thermal?, field? }],
+    //                  // E3b T-4 (row R): TWO OR MORE independently-placed
+    //                  // sub-scenes in ONE state. A key a group does NOT author
+    //                  // is INHERITED from scene level — the same object, not a
+    //                  // copy — so "the SAME field acts on both" and "one
+    //                  // temperature, two crystals" are true by construction and
+    //                  // a per-group override is possible but never required for
+    //                  // a shared quantity. at places the group; the camera
+    //                  // auto-fit spans the UNION of the groups (never author
+    //                  // camera), and an x-separated pair is framed at az 90 so
+    //                  // the compared axis is not foreshortened (the E4 rule).
+    //                  // ONE label sprite per group, sized to the largest block.
+    //                  // Budget BS_MAX_GROUPS; the site pool is shared.
+    //                  // A grouped state need author NO scene-level units.
+    //       sea / ions / shift,                    // PARSED + PASSED THROUGH by
     //                                             // E1/E2/E3a, owned by E3b
+    //                                             // dispatches 3 and 4
+    //       // E3b T-2: there is NO melt key and there never will be. Melting is
+    //       // DERIVED (D-2) from thermal.T_K against the pair's own mp_K:
+    //       //   f_melt = clamp((T_K - mp_K) / 25, 0, 1)
+    //       // f = 0 holds every ion on its site (jiggle only); f = 1 makes every
+    //       // ion mobile; between, the mobile FRACTION ramps, chosen by SITE
+    //       // INDEX and never randomly. Closed form in (T_K, index, state-local
+    //       // t) with no latch, so a group may OPEN already molten. The knee is
+    //       // at mp_K + 25, so author clear of it (1150 K for NaCl, not 1100).
+    //       // mode 'melt' names the FRAMING; the law is not gated on it, so an
+    //       // explore sandbox melts when the teacher drags T past mp_K.
     //       angle_deg,                              // static bond-angle override
     //       angle_from, angle_at_ms, angle_ramp_ms, // E1c: the SCRIPTED bend.
     //                  // angle_deg is the DESTINATION; the ramp runs angle_from
@@ -51160,6 +51185,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // pair (coordination = 6 : 6) on a two-sublattice cell
     //                  // and a single count on a one-sublattice cell.
     //                  // 'valence' names BOTH participants of a site scene.
+    //                  // E3b T-3: 'melting_point' prints m.p. = 1074 K and
+    //                  // 'lattice_enthalpy' prints ΔH = 788 kJ·mol⁻¹, both
+    //                  // engine-printed from BS_ION_PAIRS for the LIVE pair (so
+    //                  // the explore ion_pair picker changes them) — NEVER typed
+    //                  // into any JSON. Under groups each prints once per group,
+    //                  // prefixed by the group label, in the authored order:
+    //                  // "<label> m.p. = <n> K" / "<label> ΔH = <n> kJ·mol⁻¹".
+    //                  // MEASURED budget (chromium, 1024 px): the panel is a
+    //                  // fixed 220 px box (190 px of content at 7.87 px per
+    //                  // character), so a group label may be at most FIVE
+    //                  // characters beside these two lines.
     //       show_formula, formula,                  // ONE surface, Rule 34b
     //       controls: [{ id, min_ring }] or [id],   // RING-GATED, BS_CONTROL_IDS
     //       static_readouts: [...]                  // same rows, disabled, same pos
@@ -51391,13 +51427,33 @@ export const FIELD_3D_RENDERER_CODE = `
         var f = (sp._pmInkFrac != null) ? sp._pmInkFrac : 1;
         return [(sp.scale.x * f * 0.5 + (padW || 0)) * k, (sp.scale.y * 0.5 + (padH || 0)) * k];
     }
+    // E3b T-4: the screen-space box a FIXED DOM overlay occupies, in exactly the
+    // units bscProj returns (NDC x scaled by aspect, y in [-1,1]). A 3D sprite can
+    // then be scored against the readout panel, which is not a scene object and
+    // which no world-space avoid entry can express. Rule 34d: overlays never
+    // collide — and the HUD is a FIXED box at every viewport width, so this is a
+    // MEASUREMENT of the live element and never an assumption about text length.
+    function bscDomBox(el) {
+        if (!el || el.style.display === "none") return null;
+        if (typeof renderer === "undefined" || !renderer || !renderer.domElement) return null;
+        var r = el.getBoundingClientRect(), c = renderer.domElement.getBoundingClientRect();
+        if (!(c.width > 0) || !(c.height > 0) || !(r.width > 0)) return null;
+        var asp = (camera && camera.aspect) ? camera.aspect : 1;
+        var x0 = ((r.left - c.left) / c.width * 2 - 1) * asp;
+        var x1 = ((r.right - c.left) / c.width * 2 - 1) * asp;
+        var y0 = 1 - (r.top - c.top) / c.height * 2;
+        var y1 = 1 - (r.bottom - c.top) / c.height * 2;
+        return { sp: [(x0 + x1) * 0.5, (y0 + y1) * 0.5],
+                 sh: [Math.abs(x1 - x0) * 0.5, Math.abs(y1 - y0) * 0.5] };
+    }
     // Resolve an avoid list into screen space ONCE — never once per candidate.
     function bscAvoidScreen(avoid) {
         var out = [], i, e, k;
         for (i = 0; i < avoid.length; i++) {
             e = avoid[i];
             if (!e) continue;
-            if (e.length === 3) { out.push({ k: 0, p: bscProj(e[0], e[1], e[2]), r: 0 }); }
+            if (e.sp && e.sh) { out.push({ k: 2, p: e.sp, h: e.sh }); }
+            else if (e.length === 3) { out.push({ k: 0, p: bscProj(e[0], e[1], e[2]), r: 0 }); }
             else if (e.a && e.b) { out.push({ k: 1, a: bscProj(e.a[0], e.a[1], e.a[2]), b: bscProj(e.b[0], e.b[1], e.b[2]) }); }
             else if (e.s) {
                 if (!e.s.visible) continue;
@@ -51645,8 +51701,17 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MODES_E1 = ["dipole_sum", "explore"];
     var BS_MODES_E2 = ["assemble", "approach_link", "network", "compare"];
     var BS_MODES_E3A = ["transfer", "lattice_grow", "coordination"];
-    var BS_MODES_DEFERRED = ["layer_shift", "electron_sea", "drift", "melt"];
-    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A);
+    // E3b T-2 implements ONE of the four deferred modes. The melt LAW itself is
+    // deliberately NOT gated on the mode string (see bscMeltFrac): melting is
+    // DERIVED from T_K against the pair's own mp_K (D-2), so an explore sandbox
+    // whose teacher drags the temperature past 3125 K melts MgO without authoring
+    // a mode. What 'melt' names is the state's ARCHETYPE and its solved camera —
+    // a melting block needs room for the ions to leave their sites, which a
+    // coordination close-up does not have.
+    var BS_MODES_E3B = ["melt"];
+    var BS_MODES_DEFERRED = ["layer_shift", "electron_sea", "drift"];
+    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A)
+        .concat(BS_MODES_E3B);
     var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
     var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
         "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
@@ -51664,7 +51729,11 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
     var BS_HUD_LINES_E2 = ["links", "links_per_unit", "bp"];
     var BS_HUD_LINES_E3A = ["coordination", "lattice_a"];
-    var BS_HUD_LINES_E3B = ["separation_pm"];
+    // E3b T-3 adds the two PROPERTY readouts, engine-printed from BS_ION_PAIRS for
+    // the LIVE pair (so the explore ion_pair picker changes them) and never
+    // hand-typed into any JSON. Under row R they print once per group, prefixed by
+    // the group label, in the authored groups[] order.
+    var BS_HUD_LINES_E3B = ["separation_pm", "melting_point", "lattice_enthalpy"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
     // ── E3a (lattice PLACEMENT layer) constants ──────────────────────────────
@@ -51686,6 +51755,49 @@ export const FIELD_3D_RENDERER_CODE = `
     // Named because the molecular path and the per-site path must not drift apart.
     var BS_SHELL_RING_GAP = 0.42;
     var BS_HCP_C_OVER_A = Math.sqrt(8 / 3);   // the IDEAL hcp axial ratio
+    // ── E3b T-2: THE MELT LAW, stated so it cannot be invented per state ──────
+    //   f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / BS_MELT_WIDTH_K, 0, 1)
+    //   SHARP BY DESIGN. Melting is a first-order transition; the 25 K width
+    //   exists only so the beat is legible rather than a one-frame snap. 25 K
+    //   against NaCl's 1074 K is 2.3% — visually smooth, chemically sharp. The
+    //   knee therefore sits at mp_K + 25, and an authored T_K must clear it with
+    //   margin (ionic_bonding S8's molten group is authored at 1150 K, not 1100).
+    //   NEVER widen or narrow this to make an authored number work.
+    var BS_MELT_WIDTH_K = 25;
+    // Between f = 0 and f = 1 the MOBILE FRACTION ramps, and WHICH sites go first
+    // is chosen deterministically by SITE INDEX — never randomly, or a rewind
+    // would photograph a different melt. bscMeltHash is the golden-ratio
+    // low-discrepancy sequence, so the mobile count tracks f closely at every
+    // block size instead of clumping. Each site then eases out of its own site
+    // over BS_MELT_SITE_RAMP of the ramp rather than popping loose in one frame,
+    // and the onsets are compressed into [0, 1 - BS_MELT_SITE_RAMP] so f = 1 means
+    // EVERY ion is fully mobile — the endpoints of the law are exact.
+    var BS_MELT_SITE_RAMP = 0.25;
+    var BS_MELT_PHI = 0.6180339887498949;
+    // The excursion of a fully mobile ion, as a fraction of the lattice's own
+    // nearest-neighbour spacing. 0.85 per axis (so up to 1.47 nn in magnitude) is
+    // enough that ions visibly leave their rows and cross into neighbouring cells
+    // — the lattice ORDER is what has to be seen to go — while staying bounded,
+    // so the camera fit is still a closed-form config solve.
+    var BS_MELT_WANDER = 0.85;
+    // The wander's base angular rates (rad/s). Three mutually incommensurate
+    // rates on the three axes give a bounded, non-repeating-looking path from a
+    // pure closed form; the per-site frequency spread keeps the block from
+    // pulsing in unison.
+    var BS_MELT_W = [0.83, 0.61, 0.97];
+    var BS_MELT_W_SPREAD = 0.37;
+    // Row R (T-4). Two or more independently-placed sub-scenes in ONE state; the
+    // shared BS_MAX_SITES pool is split across them, so the budget is declared
+    // rather than assumed. Four is ionic S9's two crystals with headroom.
+    var BS_MAX_GROUPS = 4;
+    // The group label's glyph height, as a fraction of the block it names, with a
+    // floor and a ceiling so a two-ion group is not labelled in 6 pt and a
+    // 54-site double block is not labelled across the whole frame. MEASURED in the
+    // browser at 1024x640: at the fixed 0.60 a site label uses, a 3x3x3 group
+    // label rendered as a ~2 px speck at the fitted distance.
+    var BS_GROUP_LABEL_FRAC = 0.18;
+    var BS_GROUP_LABEL_MIN = 0.50;
+    var BS_GROUP_LABEL_MAX = 3.00;
     // D-5, DECIDED ONCE and authored per state via lattice.reveal. Glow is
     // brightness (Rule 29) and brightness cannot defeat occlusion: a rock-salt
     // block is a wall of identical spheres and
@@ -51730,12 +51842,38 @@ export const FIELD_3D_RENDERER_CODE = `
     // The five rock-salt pairs ionic_bonding's explore picker offers — ONE cell
     // covers all of them, which is why that explore state needs no second cell
     // type. a_pm is the conventional cubic edge (X-ray values).
+    // ── E3b T-1: THE ION PROPERTY TABLE (mp_K + lattice_kJ).
+    //   RATIFIED by chemistry_author, 2026-08-03 — all five rows, BOTH columns.
+    //   The two conventions, verbatim from the dispatch spec, because a number
+    //   whose convention is not written beside it is a number nobody can check:
+    //
+    //     mp_K — melting point at standard pressure, congruent melt (solid →
+    //     liquid, same composition, no decomposition). CRC-Handbook-class table;
+    //     every value is a clean whole-°C→K conversion (801/770/845/2852/2613 °C).
+    //     MgO and CaO carry a measurement-precision flag (refractory oxides above
+    //     2800 °C; older sources spread wider) — the values shipped are the modern
+    //     commonly-cited ones. Never narrate them to more significant figures than
+    //     the whole-Kelvin HUD readout.
+    //
+    //     lattice_kJ — lattice DISSOCIATION enthalpy, MX(s) → M⁺(g) + X⁻(g),
+    //     positive, kJ·mol⁻¹, 298 K, Born–Haber-derived (experimental cycle) —
+    //     never Born–Landé/Kapustinskii-calculated. chemistry_author confirmed all
+    //     five rows are internally consistent with a single Born–Haber tradition;
+    //     no calculated value is mixed in. KCl (literature band 701–717) and LiF
+    //     (1030–1036) carry a normal cross-compilation spread flag; the shipped
+    //     digits sit inside both bands.
+    //
+    //   Ratify state: all five rows RATIFIED, both columns. check:bonding-scene
+    //   PRINTS table-vs-literature with the ratify flag (the E1 dipole-table
+    //   pattern) and asserts nothing unratified.
+    //   D-2: mp_K is the ONLY input to the melt outcome (see bscMeltFrac). Nothing
+    //   in any JSON says "this one melts" — the temperature and this column decide.
     var BS_ION_PAIRS = {
-        NaCl: { cation: "Na+", anion: "Cl-", a_pm: 564.0 },
-        KCl:  { cation: "K+",  anion: "Cl-", a_pm: 629.3 },
-        LiF:  { cation: "Li+", anion: "F-",  a_pm: 402.6 },
-        MgO:  { cation: "Mg2+", anion: "O2-", a_pm: 421.2 },
-        CaO:  { cation: "Ca2+", anion: "O2-", a_pm: 481.1 }
+        NaCl: { cation: "Na+", anion: "Cl-", a_pm: 564.0, mp_K: 1074, lattice_kJ: 788 },
+        KCl:  { cation: "K+",  anion: "Cl-", a_pm: 629.3, mp_K: 1043, lattice_kJ: 715 },
+        LiF:  { cation: "Li+", anion: "F-",  a_pm: 402.6, mp_K: 1118, lattice_kJ: 1030 },
+        MgO:  { cation: "Mg2+", anion: "O2-", a_pm: 421.2, mp_K: 3125, lattice_kJ: 3791 },
+        CaO:  { cation: "Ca2+", anion: "O2-", a_pm: 481.1, mp_K: 2886, lattice_kJ: 3401 }
     };
 
     // Per-species radius on a LINEAR-IN-PICOMETRE scale (doc row K / §reuse item 4).
@@ -52010,7 +52148,18 @@ export const FIELD_3D_RENDERER_CODE = `
         //    another, and only frames caught it. 16 is the joint solution:
         //    occlusion margin +0.057 NDC, counted-set box 0.80 (floor 0.85),
         //    min pairwise centre separation 0.250.
-        coordination:  { az: 35, el: 45, dist: 16.0 }
+        coordination:  { az: 35, el: 45, dist: 16.0 },
+        // ── E3b T-2. What mode 'melt' names is the FRAMING, not the law: the law
+        //    is derived from T_K against the pair's own mp_K and runs whatever the
+        //    mode string says (D-2). A melting block is the widest thing the site
+        //    layer draws — every ion reaches up to 1.47 nearest-neighbour spacings
+        //    off its lattice point — and it is also the one state whose teaching
+        //    is the loss of ROWS, which a near-axial view flattens. So: the
+        //    lattice_grow elevation (26 deg reads the rows as rows) at the
+        //    lattice_grow distance as a FLOOR, with fit:true doing the actual
+        //    work, because bscSiteExtent now carries the melt excursion and a
+        //    two-group melt (ionic S9) is twice as wide again.
+        melt:          { az: 35, el: 26, dist: 20.0, fit: true }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
 
@@ -52252,7 +52401,32 @@ export const FIELD_3D_RENDERER_CODE = `
         var k = bscSolvedShapeKey(bs, speciesOverride);
         if (k) return BS_UNIT_CAMERAS[k];
         if (bscNetworkScene(bs)) return BS_CAMERAS.network;
-        return BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        var cam = BS_CAMERAS[bs && bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        // ── E3b T-4: A ROW-R STATE COMPARES ITS GROUPS, SO THE AXIS IT SEPARATES
+        //    THEM ON MAY NOT BE FORESHORTENED.
+        //    This is the E4 finding (OPEN scar camera_metric_scored_foreshortening_
+        //    not_pairwise_screen_separation) one row out: with the mode's own az 35
+        //    a pair of groups offset on x sits at two DIFFERENT DEPTHS, so the same
+        //    lattice constant draws larger on the near crystal than on the far one
+        //    and a teacher comparing two blocks is comparing perspective. E4 solved
+        //    it once and the solve is general: cos(el) * cos(az) = 0 puts the
+        //    separation axis exactly in the screen plane at ANY elevation, so az 90
+        //    is forced and the mode's own el / dist / fit are all KEPT — nothing is
+        //    traded. Only for a genuinely x-separated multi-group scene, so every
+        //    single-scene state and every mode camera is bit-for-bit unchanged.
+        var G = bscGroupBlocks(bs);
+        if (G && G.length > 1) {
+            var sx = 0, sy = 0, sz = 0, gi;
+            for (gi = 1; gi < G.length; gi++) {
+                sx = Math.max(sx, Math.abs(G[gi].at[0] - G[0].at[0]));
+                sy = Math.max(sy, Math.abs(G[gi].at[1] - G[0].at[1]));
+                sz = Math.max(sz, Math.abs(G[gi].at[2] - G[0].at[2]));
+            }
+            if (sx > 1e-9 && sx >= sy && sx >= sz) {
+                return { az: 90, el: cam.el, dist: cam.dist, fit: true };
+            }
+        }
+        return cam;
     }
     // ── E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES.
     //   The solve was resolved once per STATE, so every picker species was framed
@@ -52885,8 +53059,80 @@ export const FIELD_3D_RENDERER_CODE = `
     // neighbours 282 pm apart, and r(Na+) + r(Cl-) = 102 + 181 = 283 pm, so on a
     // shared linear scale the ions TOUCH — which is the whole of ionic S3's
     // "attraction stops at 282". Two scales and that reading is gone.
+    // E3b T-1/T-2: WHICH of the five rock-salt pairs a sublattice pair IS. Matched
+    // on BOTH species, because an anion is shared by two rows (Cl- by NaCl and
+    // KCl, O2- by MgO and CaO) and a match on one would silently give the wrong
+    // melting point. null for every scene that is not one of the five — a bare
+    // Na/Cl transfer close-up has no lattice and therefore no melting point.
+    function bscPairKeyFor(cat, ani) {
+        var k;
+        for (k in BS_ION_PAIRS) {
+            if (!BS_ION_PAIRS.hasOwnProperty(k)) continue;
+            if (BS_ION_PAIRS[k].cation === cat && BS_ION_PAIRS[k].anion === ani) return k;
+        }
+        return null;
+    }
+    // ── E3b T-4: ROW R — TWO OR MORE INDEPENDENTLY-PLACED SUB-SCENES ─────────
+    //   groups: [{ id, label, at, units?, lattice, thermal, field }]
+    //   INHERITANCE IS THE TEACHING, and it is inheritance BY CONSTRUCTION rather
+    //   than by copy-paste: the merged block below starts as the SCENE-level block
+    //   and the group's own keys are written over it, so a key the group does not
+    //   author is the scene's key — the SAME object, not a duplicate of it.
+    //   That is what makes ionic_bonding S8's "the SAME field acts on both" and
+    //   S9's "one temperature, two crystals" true structurally: the field / the
+    //   thermal block is authored ONCE at scene level and both groups read it.
+    //   Per-group override exists (S8 needs one group hot and one cold) but is
+    //   never REQUIRED for a shared quantity, so a copy-paste drift between two
+    //   groups that are meant to share is not expressible.
+    //   id / label / at are the group's own placement metadata and are NOT merged
+    //   into the block; groups itself is dropped, so the merged block is a plain
+    //   single-scene block and every downstream body reads it unchanged.
+    function bscGroupBlocks(bs) {
+        var gs = (bs && bs.groups) || null;
+        if (!gs || !gs.length) return null;
+        var out = [], i, k;
+        for (i = 0; i < gs.length && i < BS_MAX_GROUPS; i++) {
+            var g = gs[i] || {}, m = {};
+            for (k in bs) {
+                if (!bs.hasOwnProperty(k) || k === "groups") continue;
+                m[k] = bs[k];
+            }
+            for (k in g) {
+                if (!g.hasOwnProperty(k) || k === "at" || k === "id" || k === "label") continue;
+                m[k] = g[k];
+            }
+            out.push({
+                id: g.id || ("g" + i), label: g.label || "",
+                at: g.at ? [g.at[0], g.at[1], g.at[2]] : [0, 0, 0], block: m
+            });
+        }
+        return out;
+    }
     function bscSiteList(bs, pairOverride) {
         var out = [], i;
+        // E3b T-4: a grouped state is the concatenation of its groups' OWN site
+        // lists, each built from that group's merged block and translated to that
+        // group's at. Every site carries the block it came from (gbs), so the
+        // position chain below applies THAT group's thermal / separation script
+        // and nothing has to thread a group index through six call sites. The
+        // group offset is baked into at, so the camera fit (bscSiteExtent, which
+        // reads at) spans the UNION of the groups' bounding boxes for free —
+        // never author camera is a fleet-wide rule, so that promise has to hold.
+        var G = bscGroupBlocks(bs);
+        if (G) {
+            var gi, sub, s;
+            for (gi = 0; gi < G.length; gi++) {
+                sub = bscSiteList(G[gi].block, pairOverride);
+                for (i = 0; i < sub.length && out.length < BS_MAX_SITES; i++) {
+                    s = sub[i];
+                    s.at = [s.at[0] + G[gi].at[0], s.at[1] + G[gi].at[1], s.at[2] + G[gi].at[2]];
+                    s.gbs = G[gi].block; s.gat = G[gi].at;
+                    s.grp = gi; s.glabel = G[gi].label; s.gid = G[gi].id;
+                    out.push(s);
+                }
+            }
+            return out;
+        }
         var p2u = bscLinkCfg(bs).pm_per_unit;
         var units = (bs && bs.units) || [];
         var lat = (bs && bs.lattice) || null;
@@ -52900,11 +53146,18 @@ export const FIELD_3D_RENDERER_CODE = `
             var aU = aPm / p2u;
             var n = lat.n || [3, 3, 3];
             var S = bscCellSites(cell, n[0], n[1], n[2]);
+            // E3b T-1/T-2: the pair identity travels WITH the site, resolved from
+            // the two sublattice species — so the explore ion_pair picker (which
+            // rewrites exactly those two) changes the melting point, the lattice
+            // enthalpy and the melt outcome together, with no second lookup that
+            // could disagree with the spheres on screen.
+            var pKey = bscPairKeyFor(spA, spB);
             for (i = 0; i < S.length && out.length < BS_MAX_SITES; i++) {
                 var sp = (S[i].sub === 1) ? spB : spA;
                 out.push({
                     key: S[i].key, sub: S[i].sub, cell: cell, a_pm: aPm, species: sp,
                     q: bscSpeciesCharge(sp), rPm: bscRadiusPm(sp), unit: null,
+                    pair: pKey,
                     at: [S[i].at[0] * aU, S[i].at[1] * aU, S[i].at[2] * aU]
                 });
             }
@@ -52912,13 +53165,18 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // free placement: any unit whose species is an ATOM or an ION (rather
         // than a molecule) is a site. mode transfer is exactly this case.
+        // A free ION PAIR (ionic S3's two ions on a scripted approach) resolves its
+        // row the same way a lattice does; a pair of neutral atoms resolves none,
+        // so a transfer close-up has no melting point and cannot melt.
+        var fKey = bscPairKeyFor((units[0] && units[0].species) || null,
+            (units[1] && units[1].species) || null);
         for (i = 0; i < units.length && out.length < BS_MAX_SITES; i++) {
             var u = units[i];
             if (!u || !bscIsSite(u.species)) continue;
             out.push({
                 key: [i, 0, 0], sub: 0, cell: null, a_pm: 0, species: u.species,
                 q: bscSpeciesCharge(u.species), rPm: bscRadiusPm(u.species),
-                unit: u.id || ("u" + i), uidx: i,
+                unit: u.id || ("u" + i), uidx: i, pair: fKey,
                 at: u.at ? [u.at[0], u.at[1], u.at[2]] : [0, 0, 0]
             });
         }
@@ -53016,27 +53274,124 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Split in two on purpose: the EQUILIBRIUM position (where the script puts
     //   the site) and the DRAWN position (equilibrium plus thermal noise). The
     //   separation instrument reads the first — see bscSepPmAt.
+    // E3b T-4: a site drawn under row R belongs to a GROUP, and its whole script
+    // is that group's merged block (thermal, separation, lattice, field), not the
+    // scene's. One accessor, so the two bodies below cannot disagree about which
+    // block a site obeys — and for every un-grouped scene it returns bs, so those
+    // scenes are byte-identical by construction.
+    function bscSiteBlock(bs, SI) {
+        return (SI && SI.gbs) ? SI.gbs : bs;
+    }
     function bscSiteBaseAt(bs, SI, mms, sepDrag) {
-        if (bs && bs.separation_axis && SI && SI.uidx != null && SI.uidx < 2) {
+        var gb = bscSiteBlock(bs, SI);
+        if (gb && gb.separation_axis && SI && SI.uidx != null && SI.uidx < 2) {
             // the authored separation_axis puts the leading PAIR on that axis and
             // drives it from the (scripted or dragged) separation — the unit
-            // layer's baseAt rule, now true of ions too.
-            var sa = bscNorm(bs.separation_axis);
-            var sv = bscSepAt(bs, mms, sepDrag) * ((SI.uidx === 0) ? -0.5 : 0.5);
-            return [sa[0] * sv, sa[1] * sv, sa[2] * sv];
+            // layer's baseAt rule, now true of ions too. Under row R the pair is
+            // placed about its OWN group's origin, not the scene's.
+            var sa = bscNorm(gb.separation_axis);
+            var sv = bscSepAt(gb, mms, sepDrag) * ((SI.uidx === 0) ? -0.5 : 0.5);
+            var go = (SI && SI.gat) ? SI.gat : [0, 0, 0];
+            return [sa[0] * sv + go[0], sa[1] * sv + go[1], sa[2] * sv + go[2]];
         }
         return [SI.at[0], SI.at[1], SI.at[2]];
     }
+    // ── E3b T-2: THE MELT LAW ─────────────────────────────────────────────────
+    //   f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / 25, 0, 1). DERIVED, never
+    //   authored (D-2): nothing in any JSON says "this one melts" — the outcome
+    //   falls out of the state's own temperature against the pair's own mp_K, so
+    //   the SAME authored 1150 K melts NaCl (1074) and leaves MgO (3125) solid,
+    //   which is ionic_bonding S9's entire lesson.
+    function bscMeltFrac(T_K, pair) {
+        if (!pair || pair.mp_K == null || T_K == null) return 0;
+        return bscClamp((T_K - pair.mp_K) / BS_MELT_WIDTH_K, 0, 1);
+    }
+    // WHICH sites go first: the golden-ratio low-discrepancy sequence on the site
+    // INDEX. Deterministic, so a rewind photographs the same melt; low-discrepancy,
+    // so the mobile count tracks f at every block size instead of clumping.
+    function bscMeltHash(ix) {
+        var v = (ix + 1) * BS_MELT_PHI;
+        return v - Math.floor(v);
+    }
+    // How far THIS site has left its own lattice point, in [0,1]. Its onset sits
+    // at hash*(1 - ramp) and it eases out over the ramp, so:
+    //   f = 0  ->  0 for every site (nothing has moved: the solid is a solid)
+    //   f = 1  ->  1 for every site (the block is fully molten)
+    // and it is monotone in f in between, so a rising temperature can only ever
+    // free more ions and never re-freeze one. Closed form in (index, f) — no
+    // latch, no accumulator, no replayed history (D-1), which is exactly what lets
+    // a group OPEN already molten with no memory of having melted.
+    function bscSiteMelt(ix, f) {
+        if (!(f > 0)) return 0;
+        if (f >= 1) return 1;
+        var onset = bscMeltHash(ix) * (1 - BS_MELT_SITE_RAMP);
+        return bscClamp((f - onset) / BS_MELT_SITE_RAMP, 0, 1);
+    }
+    // The mobile ion's path: a bounded three-axis closed form with a per-index
+    // phase AND a per-index frequency spread, so the molten block mixes rather
+    // than pulsing in unison. Bounded by amp on every axis, so the camera fit
+    // stays a config-only solve (see bscMeltExtent).
+    //   SIMPLIFICATION, named rather than hidden: ions pass through one another.
+    //   This is a schematic liquid — the teaching is that the ORDER is gone and
+    //   the carriers are free to move, not a hard-sphere molecular-dynamics run.
+    function bscMeltWander(ix, tSec, amp) {
+        var h = bscMeltHash(ix), h2 = bscMeltHash(ix + 7), h3 = bscMeltHash(ix + 19);
+        var s = 1 + BS_MELT_W_SPREAD * (h - 0.5);
+        return [
+            amp * Math.sin(BS_MELT_W[0] * s * tSec + h * 6.283185307179586),
+            amp * Math.sin(BS_MELT_W[1] * s * tSec + h2 * 6.283185307179586),
+            amp * Math.sin(BS_MELT_W[2] * s * tSec + h3 * 6.283185307179586)
+        ];
+    }
+    // The nearest-neighbour spacing this site's own cell defines, in scene units —
+    // the length scale the melt excursion is measured in. A free ion pair has no
+    // cell, so its own diameter stands in.
+    function bscSiteNnU(bs, SI) {
+        var p2u = bscLinkCfg(bscSiteBlock(bs, SI)).pm_per_unit;
+        if (SI && SI.a_pm > 0) return SI.a_pm * 0.5 / p2u;
+        return (SI ? SI.rPm : 100) * 2 / p2u;
+    }
     function bscSiteAt(bs, SI, ix, mms, sepDrag, tempDrag) {
         var b = bscSiteBaseAt(bs, SI, mms, sepDrag);
-        var th = (bs && bs.thermal) || {};
+        var gb = bscSiteBlock(bs, SI);
+        var th = (gb && gb.thermal) || {};
         var js = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
-        if (!(js > 0)) return b;
-        // the same deterministic per-index seeded sines and the same sqrt(T/T0)
-        // amplitude law the unit layer uses, at the temperature of THAT instant.
-        var jg = bscJiggle((SI && SI.uidx != null) ? SI.uidx : ix,
-            mms / 1000, bscTempAt(bs, mms, tempDrag), js);
-        return [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
+        var pr = (SI && SI.pair) ? BS_ION_PAIRS[SI.pair] : null;
+        if (!(js > 0) && !pr) return b;
+        var T_K = bscTempAt(gb, mms, tempDrag);
+        if (js > 0) {
+            // the same deterministic per-index seeded sines and the same sqrt(T/T0)
+            // amplitude law the unit layer uses, at the temperature of THAT instant.
+            var jg = bscJiggle((SI && SI.uidx != null) ? SI.uidx : ix,
+                mms / 1000, T_K, js);
+            b = [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
+        }
+        // E3b T-2: ...and above the pair's own melting point the ion LEAVES its
+        // site. Below mp_K this term is exactly 0, so every state that does not
+        // heat past a real melting point is byte-identical to E3b S-2.
+        var mi = pr ? bscSiteMelt(ix, bscMeltFrac(T_K, pr)) : 0;
+        if (!(mi > 0)) return b;
+        var wd = bscMeltWander(ix, mms / 1000, mi * BS_MELT_WANDER * bscSiteNnU(bs, SI));
+        return [b[0] + wd[0], b[1] + wd[1], b[2] + wd[2]];
+    }
+    // The half-extent the melt adds, for the camera fit. Config-only: it reads the
+    // PEAK temperature the state's own script reaches (T_from / T_K), never the
+    // clock, so the fit is the same number on the first frame and under a freeze
+    // pin — the same discipline bscPeakThermalScale already follows.
+    function bscMeltExtent(bs, siteList) {
+        var e = 0, i;
+        for (i = 0; i < siteList.length; i++) {
+            var SI = siteList[i], pr = SI.pair ? BS_ION_PAIRS[SI.pair] : null;
+            if (!pr) continue;
+            var gb = bscSiteBlock(bs, SI), th = (gb && gb.thermal) || {};
+            var tPk = (th.T_K != null) ? th.T_K : BS_T0_K;
+            if (th.T_from != null && th.T_from > tPk) tPk = th.T_from;
+            var f = bscMeltFrac(tPk, pr);
+            if (!(f > 0)) continue;
+            var d = f * BS_MELT_WANDER * bscSiteNnU(bs, SI) * Math.sqrt(3);
+            if (d > e) e = d;
+        }
+        return e;
     }
     // E3b S-4: the LIVE centre-to-centre distance between the two leading sites,
     // in picometres on the scene's own linear scale. In a free pair those two are
@@ -53091,6 +53446,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var d = bscMag(S[i].at) + S[i].rPm / p2u;
             if (d > e) e = d;
         }
+        // E3b T-4: the loop above already spans the UNION of every group's bounding
+        // box, because bscSiteList bakes each group's own at into its sites. So a
+        // two-group state is framed for both crystals with no new solve and no
+        // authored camera — which is the standing rule this surface is built on.
+        // E3b T-2: ...and a block that MELTS reaches further than its own lattice
+        // points. Exactly 0 below every melting point, so nothing else moves.
+        var eMelt = bscMeltExtent(bs, S);
+        if (eMelt > 0) e += eMelt;
         // E2b: ...and the MOLECULAR units, which bscSiteList deliberately does not
         // return (it feeds the site MESH pool, and a molecule is drawn by the unit
         // layer instead). Leaving them out made the auto-fit a silent no-op on
@@ -53542,6 +53905,18 @@ export const FIELD_3D_RENDERER_CODE = `
             sl.userData = { elementType: "bsc_lattice", id: "bsc_site" + u + "_lab", site: u };
             sl.visible = false;
             addToScene(sl);
+        }
+        // E3b T-4: ONE label per group (row R). pmCreateAutoLabel because a group
+        // label is live text whose width changes with the picked pair (NaCl -> MgO)
+        // and createLabelSprite would clip the wider string. elementType
+        // bsc_lattice, so the closed glow enum does not grow: a group IS its
+        // lattice, and the 'lattice' focal is what a narration sentence about
+        // either crystal already binds to.
+        for (u = 0; u < BS_MAX_GROUPS; u++) {
+            var gl = pmCreateAutoLabel("NaCl", textColor, 0.60);
+            gl.userData = { elementType: "bsc_lattice", id: "bsc_grp" + u + "_lab", group: u };
+            gl.visible = false;
+            addToScene(gl);
         }
         // The coordination rods: the counted set of ionic S5 is the highlighted
         // ion PLUS its six neighbours, and a rod per neighbour is a countable
@@ -54029,6 +54404,12 @@ export const FIELD_3D_RENDERER_CODE = `
             var smL = bscFindById("bsc_site" + i + "_lab"); if (smL) smL.visible = false;
         }
         for (i = 0; i < BS_MAX_NEIGHBOURS; i++) { var nbm = bscFindById("bsc_nb" + i); if (nbm) nbm.visible = false; }
+        // E3b T-4: the group labels are transients the frame updater owns, so a
+        // capture landing between this apply and the first animate frame can never
+        // photograph the PREVIOUS state's group names over a single-scene state.
+        for (i = 0; i < BS_MAX_GROUPS; i++) {
+            var gml = bscFindById("bsc_grp" + i + "_lab"); if (gml) gml.visible = false;
+        }
         var tem = bscFindById("bsc_transfer_e"); if (tem) tem.visible = false;
     }
 
@@ -54284,6 +54665,15 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var pool = window.PM_bscUnitPool || 1;
         var nUnits = Math.min(pool, nWant);
+        // ── E3b T-4, FOUND IN FRAMES and by no assertion: a ROW-R state's units
+        //    live in its GROUPS, so its scene block authors none — and the
+        //    molecular pool's floor of one unit then drew a stand-in HCl (molKey
+        //    falls back to "HCl" whenever no unit species is a molecule, the same
+        //    fallback behind P-3) as a phantom green-and-white diatomic hanging
+        //    between the two crystals. A grouped state that authors no scene-level
+        //    units draws no scene-level unit. One that DOES author them keeps them,
+        //    so a group scene may still carry a shared molecular prop.
+        if (bs.groups && bs.groups.length && !(bs.units && bs.units.length)) nUnits = 0;
         var jScale = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
         var showLabels = (bs.show_atom_labels !== false);
         var deltaBudget = BS_MAX_DELTA_LABELS;      // D-6
@@ -54596,9 +54986,17 @@ export const FIELD_3D_RENDERER_CODE = `
         //    remembered — a growth beat that latched which sites already exist is
         //    exactly the accumulator D-1 forbids, and a SET_TIME_FREEZE rewind
         //    would then photograph an arbitrary block.
-        var pairLive = (bscHasControl(ctrls, "ion_pair") && window.PM_bscIonPairDragged)
+        // E3b T-4: the ion_pair picker owns the pair of a SINGLE-scene state. Under
+        // row R it stands down, because a grouped state's whole point is that its
+        // groups are DIFFERENT crystals (ionic S9 is NaCl beside MgO) and one
+        // picker rewriting both would delete the contrast the state exists to
+        // teach. No shipped state does both — the picker is an explore control and
+        // an explore sandbox is one scene — but the guard makes that structural.
+        var pairLive = (bscHasControl(ctrls, "ion_pair") && window.PM_bscIonPairDragged &&
+            !(bs.groups && bs.groups.length))
             ? (BS_ION_PAIRS[window.PM_bscIonPair] || null) : null;
         var siteList = bscSiteList(bs, pairLive);
+        var grpBlocks = bscGroupBlocks(bs);
         var sitePool = window.PM_bscSitePool || 0;
         var lat = bs.lattice || {};
         var p2uS = linkCfg.pm_per_unit;
@@ -54777,6 +55175,110 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscLatticeA = siteList.length ? siteList[0].a_pm : 0;
         window.PM_bscTransfer = trProg;
         window.PM_bscCell = (siteList.length && siteList[0].cell) ? siteList[0].cell : null;
+
+        // ── E3b T-3 / T-4: THE LIVE PROPERTY ROWS, one per group in the AUTHORED
+        //    groups[] order (a single-scene state is exactly one row with no
+        //    label). Everything below is DERIVED from the drawn sites: the pair
+        //    identity travels with the site, so the explore picker and the melt
+        //    outcome and these two readouts can never disagree about which crystal
+        //    is on screen (D-3, one instrument per quantity).
+        var grpRows = [], seenGrp = {};
+        for (i = 0; i < nShown; i++) {
+            var gk = (siteList[i].grp != null) ? siteList[i].grp : 0;
+            if (seenGrp[gk]) continue;
+            seenGrp[gk] = 1;
+            var gTh = (bscSiteBlock(bs, siteList[i]) || {}).thermal || {};
+            var gPair = siteList[i].pair ? BS_ION_PAIRS[siteList[i].pair] : null;
+            var gT = bscTempAt(bscSiteBlock(bs, siteList[i]), ms, tempDragV);
+            grpRows.push({
+                grp: gk, label: siteList[i].glabel || "", pairKey: siteList[i].pair || null,
+                pair: gPair, T_K: gT, melt: bscMeltFrac(gT, gPair),
+                jiggle: (gTh.jiggle_scale != null) ? gTh.jiggle_scale : 0,
+                c: [0, 0, 0], n: 0, r: 0
+            });
+        }
+        // each group's drawn centroid + radius, for the label anchor.
+        for (i = 0; i < nShown; i++) {
+            var gr0 = null, gq = (siteList[i].grp != null) ? siteList[i].grp : 0;
+            for (j = 0; j < grpRows.length; j++) if (grpRows[j].grp === gq) gr0 = grpRows[j];
+            if (!gr0) continue;
+            gr0.c[0] += sitePos[i][0]; gr0.c[1] += sitePos[i][1]; gr0.c[2] += sitePos[i][2];
+            gr0.n++;
+        }
+        for (j = 0; j < grpRows.length; j++) {
+            var gR = grpRows[j];
+            if (gR.n > 0) { gR.c[0] /= gR.n; gR.c[1] /= gR.n; gR.c[2] /= gR.n; }
+        }
+        for (i = 0; i < nShown; i++) {
+            var gr1 = null, gq1 = (siteList[i].grp != null) ? siteList[i].grp : 0;
+            for (j = 0; j < grpRows.length; j++) if (grpRows[j].grp === gq1) gr1 = grpRows[j];
+            if (!gr1) continue;
+            var dR = bscMag([sitePos[i][0] - gr1.c[0], sitePos[i][1] - gr1.c[1],
+                sitePos[i][2] - gr1.c[2]]) + siteRU[i] * rsNow;
+            if (dR > gr1.r) gr1.r = dR;
+        }
+        // the mobile FRACTION actually on screen, published for the professor pack
+        // and for a headless probe — the same bodies the picture uses, never a
+        // second computation.
+        var meltMobile = 0, meltFmax = 0;
+        for (i = 0; i < nShown; i++) {
+            var mPair = siteList[i].pair ? BS_ION_PAIRS[siteList[i].pair] : null;
+            if (!mPair) continue;
+            var mF = bscMeltFrac(bscTempAt(bscSiteBlock(bs, siteList[i]), ms, tempDragV), mPair);
+            if (mF > meltFmax) meltFmax = mF;
+            if (bscSiteMelt(i, mF) > 0) meltMobile++;
+        }
+        window.PM_bscMeltFrac = meltFmax;
+        window.PM_bscMeltMobile = meltMobile;
+        window.PM_bscGroups = grpRows.map(function (g) {
+            return { id: g.grp, label: g.label, pair: g.pairKey, T_K: g.T_K, melt: g.melt };
+        });
+        // ── T-4: ONE label per group, placed on the clearest screen direction
+        //    around its own block and scored against the fixed right-anchored HUD
+        //    (bscDomBox measures the live panel, Rule 34d). A single-scene state
+        //    draws none, so nothing on a shipped concept moves by a pixel.
+        var hudBox = bscDomBox(document.getElementById("bsc_hud"));
+        // ONE type size for every group label in a state, solved from the LARGEST
+        // block. FOUND IN FRAMES: sized per block, a molten NaCl group (whose
+        // radius the melt excursion inflates) was labelled in visibly bigger type
+        // than the MgO group beside it — which reads as emphasis in a state whose
+        // whole job is an even-handed comparison, and Rule 29 is explicit that
+        // emphasis is brightness and never size.
+        var gRmax = 0;
+        for (j = 0; j < grpRows.length; j++) if (grpRows[j].r > gRmax) gRmax = grpRows[j].r;
+        var gHs = bscClamp(gRmax * BS_GROUP_LABEL_FRAC, BS_GROUP_LABEL_MIN, BS_GROUP_LABEL_MAX);
+        for (i = 0; i < BS_MAX_GROUPS; i++) {
+            var glm = bscFindById("bsc_grp" + i + "_lab");
+            if (!glm) continue;
+            var gRow = null;
+            for (j = 0; j < grpRows.length; j++) if (grpRows[j].grp === i) gRow = grpRows[j];
+            var gOn = !!grpBlocks && !!gRow && !!gRow.label && gRow.n > 0;
+            glm.visible = gOn;
+            if (!gOn) continue;
+            // MEASURED, not assumed (the E3a site-label finding, one layer out): a
+            // group label built at the site-label height renders as a ~2 px speck,
+            // because a lattice block is framed from tens of scene units away. A
+            // group label is a TITLE for a whole crystal, so it is sized to the
+            // scene's largest block — it therefore reads at whatever distance the
+            // auto-fit solves for, on a two-site pair and on a 54-site double block
+            // alike, and every group in one state is titled at the same size.
+            glm._pmHeightScale = gHs;
+            updateLabelSpriteText(glm, gRow.label);
+            // updateLabelSpriteText only re-derives the scale when the CANVAS width
+            // changes, so the height is applied here as well — otherwise a label
+            // whose text never changes would keep its build-time size forever.
+            glm.scale.set(gHs * (glm._pmCanvas.width / glm._pmCanvas.height), gHs, 1);
+            var gAvoid = [];
+            if (hudBox) gAvoid.push(hudBox);
+            // the OTHER groups only: this label's own offset already clears its own
+            // block, and scoring it against itself would push it a second radius out.
+            for (j = 0; j < grpRows.length; j++) {
+                if (grpRows[j] !== gRow && grpRows[j].n > 0) {
+                    gAvoid.push({ p: grpRows[j].c, r: grpRows[j].r });
+                }
+            }
+            bscPlaceLabel(glm, gRow.c, gRow.r + 0.30, gAvoid, 0, 0);
+        }
 
         // ── bond-dipole arrows + the derived resultant (row F).
         //    Arrow length = |bond moment| in debye off the SAME table the readout
@@ -55390,6 +55892,25 @@ export const FIELD_3D_RENDERER_CODE = `
                     else lines.push("coordination = " + nbIdx.length);
                 }
                 else if (w === "lattice_a") lines.push("a = " + Math.round(window.PM_bscLatticeA) + " pm");
+                else if (w === "melting_point" || w === "lattice_enthalpy") {
+                    // E3b T-3: engine-printed from BS_ION_PAIRS for the LIVE pair,
+                    // so the S10 ion_pair picker changes them — never hand-typed
+                    // into any JSON. Under row R one line PER GROUP, prefixed by
+                    // the group label, in the authored groups[] order, so ionic S9
+                    // reads NaCl m.p. = 1074 K beside MgO m.p. = 3125 K and the
+                    // contrast is the instrument's own output rather than a claim.
+                    // Rule 34c: real Unicode Delta and middle dot and superscript
+                    // minus-one, on the DOM text path (the sprite and canvas paths
+                    // carry no property numbers at all).
+                    for (j = 0; j < grpRows.length; j++) {
+                        var gp = grpRows[j].pair;
+                        if (!gp) continue;
+                        var pre = grpRows[j].label ? (grpRows[j].label + " ") : "";
+                        if (w === "melting_point") lines.push(pre + "m.p. = " + gp.mp_K + " K");
+                        else lines.push(pre + "\\u0394H = " + gp.lattice_kJ +
+                            " kJ\\u00B7mol\\u207B\\u00B9");
+                    }
+                }
                 else if (w === "separation_pm") {
                     // E3b S-4: the LIVE centre-to-centre distance of the two
                     // leading sites, off the same bscSepPmAt the gate calls (D-3).

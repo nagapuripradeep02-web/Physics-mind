@@ -18,11 +18,14 @@
  * SECTION OWNERSHIP (doc §gate). E1 owns 1, 4, 5, 10, 11, 12; E2 owns 6 and 9
  * (and extends 10 with the mode/hud split and the row-O trend surface); E3a owns
  * 2, 3 and 7 (and extends 10 with the E3a mode/hud/cell split, and 11 with the
- * lattice OCCLUSION metric). 8/13/14 belong to E3b (the lattice DYNAMICS half —
- * layer shift, electron sea, drift, melt, groups) and print as declared SKIPs
- * with their owner — never silently absent. E1c adds section 15 (the two authoring
- * capabilities bond_polarity S4/S7 could not be authored without, plus the bit-for-
- * bit mgFrame regression half those three shipped concepts ride).
+ * lattice OCCLUSION metric). 8/13/14 belonged to E3b (the lattice DYNAMICS half —
+ * layer shift, electron sea, drift, melt, groups): section 14 is now the REAL
+ * assertion set for E3b dispatch 2 (the ratified ion property table, the melt law
+ * and row R groups), while 8 (layer_shift + like_contacts) and 13 (row Q drift)
+ * stay declared SKIPs owned by dispatches 3 and 4 — never silently absent. E1c
+ * adds section 15 (the two authoring capabilities bond_polarity S4/S7 could not be
+ * authored without, plus the bit-for-bit mgFrame regression half those three
+ * shipped concepts ride).
  *
  * Section 32 is the E3b SITE-LAYER PARITY dispatch (2026-08-03, S-1..S-8): the
  * three mechanisms that were live on the unit (molecule) layer and inert on the
@@ -120,7 +123,7 @@ const VARS = [
   "BSC_ATOM_LABEL_OFF", "BSC_PAIR_GAP", "BSC_ZERO_LABEL_OFF",     // E1c-I
   "BSC_LABEL_RINGS", "BSC_CLEAR_CAP", "BSC_SAFE_X", "BSC_SAFE_Y",
   "BS_LONE_LOBE_W", "BS_LONE_LOBE_LEN",
-  "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A",
+  "BS_MODES_E1", "BS_MODES_E2", "BS_MODES_E3A", "BS_MODES_E3B",
   "BS_MODES_DEFERRED", "BS_MODES_IMPL", "BS_MODES",
   "BS_CONTROL_IDS", "BS_HUD_LINES", "BS_HUD_LINES_E1", "BS_HUD_LINES_E2",
   "BS_HUD_LINES_E3B",                                            // E3b S-4
@@ -144,7 +147,10 @@ const VARS = [
   // E3b S-3 / S-5 (the site-layer parity dispatch). Order is EXECUTION order:
   // BS_SHELL_POOL is a product of the two budgets above it.
   "BS_MAX_SHELL_DOTS", "BS_MAX_SHELL_SITES", "BS_SHELL_POOL", "BS_SHELL_RING_GAP",
-  "BS_COORD_PAIR_CACHE"
+  "BS_COORD_PAIR_CACHE",
+  // E3b T-2 / T-4 (the melt law + row R)
+  "BS_MELT_WIDTH_K", "BS_MELT_SITE_RAMP", "BS_MELT_PHI", "BS_MELT_WANDER",
+  "BS_MELT_W", "BS_MELT_W_SPREAD", "BS_MAX_GROUPS"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
 const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
@@ -178,8 +184,12 @@ const FNS = [
   // E3b (the SITE-LAYER PARITY dispatch — section 32 calls these SHIPPED bodies
   // rather than transcribing them, which is the whole point of extracting them)
   "bscParentEl", "bscValenceOf", "bscCoordAround", "bscCoordinationPair",
-  "bscSepAt", "bscTempAt", "bscSiteBaseAt", "bscSiteAt", "bscSepPmAt",
-  "bscSepSiteExtent"
+  "bscSepAt", "bscTempAt", "bscSiteBlock", "bscSiteBaseAt", "bscSiteAt", "bscSepPmAt",
+  "bscSepSiteExtent",
+  // E3b T-1..T-4 (the property table, the melt law, row R). Same discipline: the
+  // SHIPPED bodies are extracted and called, never transcribed into this file.
+  "bscPairKeyFor", "bscGroupBlocks", "bscMeltFrac", "bscMeltHash", "bscSiteMelt",
+  "bscMeltWander", "bscSiteNnU", "bscMeltExtent"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -843,17 +853,25 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
 
   ok("mode enum matches the frozen contract (13 members)", sameSet(E.BS_MODES, DOC_MODES),
     `${E.BS_MODES.length} members`);
-  const allSplit = [...E.BS_MODES_E1, ...E.BS_MODES_E2, ...E.BS_MODES_E3A, ...E.BS_MODES_DEFERRED];
-  ok("BS_MODES = E1 + E2 + E3a + deferred, with no overlap and no gap",
+  const allSplit = [...E.BS_MODES_E1, ...E.BS_MODES_E2, ...E.BS_MODES_E3A,
+    ...E.BS_MODES_E3B, ...E.BS_MODES_DEFERRED];
+  ok("BS_MODES = E1 + E2 + E3a + E3b + deferred, with no overlap and no gap",
     sameSet(E.BS_MODES, allSplit) && new Set(allSplit).size === allSplit.length &&
-    sameSet(E.BS_MODES_IMPL, [...E.BS_MODES_E1, ...E.BS_MODES_E2, ...E.BS_MODES_E3A]),
-    `E1=[${E.BS_MODES_E1.join(",")}]  E2=[${E.BS_MODES_E2.join(",")}]  E3a=[${E.BS_MODES_E3A.join(",")}]  deferred=${E.BS_MODES_DEFERRED.length}`);
+    sameSet(E.BS_MODES_IMPL, [...E.BS_MODES_E1, ...E.BS_MODES_E2, ...E.BS_MODES_E3A,
+      ...E.BS_MODES_E3B]),
+    `E1=[${E.BS_MODES_E1.join(",")}]  E2=[${E.BS_MODES_E2.join(",")}]  E3a=[${E.BS_MODES_E3A.join(",")}]  E3b=[${E.BS_MODES_E3B.join(",")}]  deferred=${E.BS_MODES_DEFERRED.length}`);
   ok("the four modes E2 owns are exactly the ones hydrogen_bonding needs",
     sameSet(E.BS_MODES_E2, ["assemble", "approach_link", "network", "compare"]));
   ok("E3a owns exactly the placement half (transfer / lattice_grow / coordination)",
     sameSet(E.BS_MODES_E3A, ["transfer", "lattice_grow", "coordination"]));
-  ok("the DYNAMICS half stays deferred to E3b, untouched",
-    sameSet(E.BS_MODES_DEFERRED, ["layer_shift", "electron_sea", "drift", "melt"]));
+  // E3b dispatch 2 (T-2) implements ONE of the four deferred DYNAMICS modes; the
+  // other three stay declared-deferred to dispatches 3 and 4, never silently
+  // absent — the same anti-decorative-string discipline as before.
+  ok("E3b owns the melt half (mode melt is IMPLEMENTED, not deferred)",
+    sameSet(E.BS_MODES_E3B, ["melt"]) &&
+    E.BS_MODES_IMPL.indexOf("melt") >= 0 && E.BS_MODES_DEFERRED.indexOf("melt") < 0);
+  ok("the remaining DYNAMICS modes stay deferred (dispatches 3 and 4), untouched",
+    sameSet(E.BS_MODES_DEFERRED, ["layer_shift", "electron_sea", "drift"]));
   ok("lattice.cell is the closed enum rock_salt|fcc|bcc|hcp",
     sameSet(E.BS_CELLS, ["rock_salt", "fcc", "bcc", "hcp"]));
   ok("controls enum matches the frozen contract (13 ids)", sameSet(E.BS_CONTROL_IDS, DOC_CONTROLS));
@@ -1344,8 +1362,442 @@ console.log("\n=== 12. MG_MOLECULES / MG_ELEMENTS REGRESSION ===");
 console.log("\n=== 13. ROW Q NEGATIVE CONTROL (solid sample must not drift) ===");
 skip("under a field, the SOLID sample's ions do not move", "E3 (lattice layer)");
 
-console.log("\n=== 14. ROW R (two independent groups in one frame) ===");
-skip("heating group A leaves group B bit-for-bit unchanged", "E3 (lattice layer)");
+console.log("\n=== 14. E3b T-1..T-4 THE PROPERTY TABLE + melt + ROW R groups ===");
+// E3b dispatch 2 (2026-08-03). Was a declared stub; it is now the real assertion
+// set for the ion property table, the melt law and row R. Same discipline as
+// section 32: every body called below is EXTRACTED from the shipped renderer and
+// run, never transcribed, and every claim carries its own negative control.
+{
+  const updSrc = grabFn("updateBondingSceneFrame");
+  const buildSrc = grabFn("buildBondingScene");
+  const P2U = E.bscLinkCfg({}).pm_per_unit as number;
+  const RS = (a: number) => ({ cell: "rock_salt", n: [3, 3, 3], a_pm: a });
+  const sitesOf = (bs: any) => E.bscSiteList(bs, null) as any[];
+  const poseAt = (bs: any, ms: number) =>
+    sitesOf(bs).map((si: any, i: number) => E.bscSiteAt(bs, si, i, ms, null, null) as number[]);
+  const poseStr = (bs: any, ms: number) => JSON.stringify(poseAt(bs, ms));
+
+  // ── T-1: THE ION PROPERTY TABLE, PRINTED AGAINST LITERATURE WITH ITS RATIFY
+  //    FLAG (the E1 dipole-table pattern). All five rows are RATIFIED by
+  //    chemistry_author for BOTH columns, so the digits below are asserted; an
+  //    unratified row would be PRINTED and asserted nothing.
+  console.log("    ion property table  (chemistry_author 2026-08-03: RATIFIED, all five rows, both columns)");
+  const LIT: Record<string, { degC: number; mp: number; lat: number; band: string; flag: string }> = {
+    NaCl: { degC: 801, mp: 1074, lat: 788, band: "786-790", flag: "" },
+    KCl: { degC: 770, mp: 1043, lat: 715, band: "701-717", flag: "cross-compilation spread" },
+    LiF: { degC: 845, mp: 1118, lat: 1030, band: "1030-1036", flag: "cross-compilation spread" },
+    MgO: { degC: 2852, mp: 3125, lat: 3791, band: "3785-3795", flag: "measurement precision >2800 degC" },
+    CaO: { degC: 2613, mp: 2886, lat: 3401, band: "3395-3414", flag: "measurement precision >2800 degC" }
+  };
+  for (const k of Object.keys(LIT)) {
+    const row = (E.BS_ION_PAIRS as any)[k];
+    console.log(`      ${k.padEnd(5)}mp ${String(row?.mp_K).padStart(5)} K (lit ${LIT[k].degC} degC)` +
+      `   dH ${String(row?.lattice_kJ).padStart(5)} kJ/mol (lit ${LIT[k].band})` +
+      `   RATIFIED${LIT[k].flag ? "  [" + LIT[k].flag + "]" : ""}`);
+  }
+  {
+    const rows = Object.keys(LIT);
+    ok("every pair carries mp_K and lattice_kJ (no row ships half the table)",
+      rows.every((k) => typeof (E.BS_ION_PAIRS as any)[k].mp_K === "number" &&
+        typeof (E.BS_ION_PAIRS as any)[k].lattice_kJ === "number"));
+    ok("every ratified digit is transcribed exactly, no row altered",
+      rows.every((k) => (E.BS_ION_PAIRS as any)[k].mp_K === LIT[k].mp &&
+        (E.BS_ION_PAIRS as any)[k].lattice_kJ === LIT[k].lat),
+      rows.map((k) => `${k} ${(E.BS_ION_PAIRS as any)[k].mp_K}/${(E.BS_ION_PAIRS as any)[k].lattice_kJ}`).join(" "));
+    // the CONVENTION, checked INDEPENDENTLY of the shipped column: every mp_K is a
+    // clean whole-degC -> K conversion of the handbook value. This is the half a
+    // transcription error cannot survive — a wrong digit stops being a Kelvin
+    // conversion of anything.
+    ok("every mp_K is exactly floor(degC + 273.15) — the stated convention holds",
+      rows.every((k) => Math.floor(LIT[k].degC + 273.15) === (E.BS_ION_PAIRS as any)[k].mp_K),
+      rows.map((k) => `${LIT[k].degC}+273.15 -> ${Math.floor(LIT[k].degC + 273.15)}`).join("  "));
+    ok("every lattice_kJ sits inside its own published band",
+      rows.every((k) => {
+        const [lo, hi] = LIT[k].band.split("-").map(Number);
+        const v = (E.BS_ION_PAIRS as any)[k].lattice_kJ as number;
+        return v >= lo && v <= hi;
+      }));
+    // Born-Lande structure, derived rather than asserted: the 2+/2- pairs must sit
+    // far above every 1+/1- pair (q1*q2 is four times as large), and within a
+    // charge class the smaller cell must bind harder. A transposed row breaks this.
+    const div = rows.filter((k) => Math.abs(E.bscSpeciesCharge((E.BS_ION_PAIRS as any)[k].cation) as number) === 2);
+    const mono = rows.filter((k) => Math.abs(E.bscSpeciesCharge((E.BS_ION_PAIRS as any)[k].cation) as number) === 1);
+    ok("the 2+/2- pairs bind far harder than every 1+/1- pair (q1q2 is 4x)",
+      Math.min(...div.map((k) => (E.BS_ION_PAIRS as any)[k].lattice_kJ)) >
+      3 * Math.max(...mono.map((k) => (E.BS_ION_PAIRS as any)[k].lattice_kJ)),
+      `divalent min ${Math.min(...div.map((k) => (E.BS_ION_PAIRS as any)[k].lattice_kJ))} vs monovalent max ${Math.max(...mono.map((k) => (E.BS_ION_PAIRS as any)[k].lattice_kJ))}`);
+    ok("within a charge class the smaller cell binds harder (LiF>NaCl>KCl, MgO>CaO)",
+      (E.BS_ION_PAIRS as any).LiF.lattice_kJ > (E.BS_ION_PAIRS as any).NaCl.lattice_kJ &&
+      (E.BS_ION_PAIRS as any).NaCl.lattice_kJ > (E.BS_ION_PAIRS as any).KCl.lattice_kJ &&
+      (E.BS_ION_PAIRS as any).MgO.lattice_kJ > (E.BS_ION_PAIRS as any).CaO.lattice_kJ &&
+      (E.BS_ION_PAIRS as any).LiF.a_pm < (E.BS_ION_PAIRS as any).NaCl.a_pm &&
+      (E.BS_ION_PAIRS as any).NaCl.a_pm < (E.BS_ION_PAIRS as any).KCl.a_pm);
+    // the pair identity travels WITH the site, matched on BOTH species — an anion
+    // is shared by two rows, and a match on one alone gives the wrong mp_K.
+    ok("bscPairKeyFor matches on BOTH species (Cl- belongs to NaCl AND KCl)",
+      E.bscPairKeyFor("Na+", "Cl-") === "NaCl" && E.bscPairKeyFor("K+", "Cl-") === "KCl" &&
+      E.bscPairKeyFor("Mg2+", "O2-") === "MgO" && E.bscPairKeyFor("Ca2+", "O2-") === "CaO" &&
+      E.bscPairKeyFor("Na+", "F-") === null && E.bscPairKeyFor("Na", "Cl") === null);
+    ok("a bare-atom transfer close-up resolves NO pair, so it has no melting point",
+      sitesOf(TRANSFER_BS).every((s: any) => s.pair == null) &&
+      sitesOf(LATTICE_BS).every((s: any) => s.pair === "NaCl"));
+    // CODE only — the doc comments name the numbers on purpose (a convention that
+    // is not written beside its data is a convention nobody can check).
+    const codeOnly = grabRegion("bscClamp", "applyBondingSceneGlow")
+      .split("\n").filter((l) => !/^\s*\/\//.test(l)).join("\n");
+    ok("nothing hard-codes a melting point or a lattice enthalpy outside the table",
+      !/\b(1074|1043|1118|3125|2886|788|715|1030|3791|3401)\b/.test(codeOnly),
+      "both HUD lines can only read BS_ION_PAIRS");
+  }
+
+  // ── T-2: THE MELT LAW.
+  {
+    const NACL = (T: number) => ({
+      placement: "lattice", mode: "melt",
+      units: [{ species: "Na+" }, { species: "Cl-" }], lattice: RS(564),
+      thermal: { T_K: T, jiggle_scale: 0 }
+    });
+    const mp = (E.BS_ION_PAIRS as any).NaCl.mp_K as number;      // 1074
+    const W = E.BS_MELT_WIDTH_K as number;                       // 25
+    const pr = (E.BS_ION_PAIRS as any).NaCl;
+    ok("f_melt is clamp((T - mp_K)/25, 0, 1) — the stated law, at both knees",
+      E.bscMeltFrac(mp - 1, pr) === 0 && E.bscMeltFrac(mp, pr) === 0 &&
+      E.bscMeltFrac(mp + W, pr) === 1 && E.bscMeltFrac(mp + 500, pr) === 1 &&
+      Math.abs((E.bscMeltFrac(mp + W / 2, pr) as number) - 0.5) < 1e-12 && W === 25,
+      `mp ${mp} K, knee at ${mp + W} K, width ${W} K = ${(100 * W / mp).toFixed(1)}% of mp`);
+    ok("f_melt is monotone non-decreasing in T (heating can never re-freeze)",
+      Array.from({ length: 200 }, (_, i) => E.bscMeltFrac(mp - 40 + i, pr) as number)
+        .every((v, i, a) => i === 0 || v >= a[i - 1] - 1e-15));
+    ok("a pair with no row melts at NO temperature (null pair, null T)",
+      E.bscMeltFrac(5000, null) === 0 && E.bscMeltFrac(null, pr) === 0);
+
+    // THE TWO GATE PROBES THE DISPATCH NAMES, on the DRAWN pose.
+    const base = sitesOf(NACL(300)).map((s: any) => s.at);
+    const moved = (bs: any, ms: number) => {
+      const p = poseAt(bs, ms);
+      return p.filter((v, i) => E.bscMag([v[0] - base[i][0], v[1] - base[i][1],
+        v[2] - base[i][2]]) > 1e-12).length;
+    };
+    const N = base.length;
+    ok("at T = mp_K - 1 K, ZERO ions have left their sites",
+      [0, 1000, 4000, 25000].every((m) => moved(NACL(mp - 1), m) === 0), `${N} sites, none moved`);
+    ok("at T = mp_K + 25 K, EVERY ion is mobile",
+      [1, 1000, 4000, 25000].every((m) => moved(NACL(mp + W), m) === N),
+      `${N}/${N} sites mobile at ${mp + W} K`);
+    ok("...and every site's own melt term is exactly 1 at f = 1 (the endpoint is exact)",
+      Array.from({ length: 125 }, (_, i) => E.bscSiteMelt(i, 1) as number).every((v) => v === 1) &&
+      Array.from({ length: 125 }, (_, i) => E.bscSiteMelt(i, 0) as number).every((v) => v === 0));
+    // BETWEEN the knees the mobile FRACTION ramps, chosen by INDEX, never random.
+    {
+      const frac = (f: number) =>
+        Array.from({ length: 125 }, (_, i) => E.bscSiteMelt(i, f) as number).filter((v) => v > 0).length / 125;
+      const pts = [0, 0.25, 0.5, 0.75, 1].map(frac);
+      ok("the mobile fraction ramps monotonically between the knees",
+        pts.every((v, i, a) => i === 0 || v >= a[i - 1]) && pts[0] === 0 && pts[4] === 1 &&
+        frac(0.5) > 0.3 && frac(0.5) < 0.8,
+        pts.map((v, i) => `f=${[0, 0.25, 0.5, 0.75, 1][i]} -> ${(v * 100).toFixed(0)}%`).join("  "));
+      ok("the choice is DETERMINISTIC by site index (same call, same answer, always)",
+        Object.is(E.bscMeltHash(37), E.bscMeltHash(37)) &&
+        new Set(Array.from({ length: 125 }, (_, i) => (E.bscMeltHash(i) as number).toFixed(12))).size === 125,
+        "125 distinct low-discrepancy onsets, no clumping");
+      ok("no RNG and no wall clock anywhere in the melt bodies (D-1)",
+        !/Math\.random|Date\.now|performance\.now|\+=/.test(
+          grabFn("bscMeltFrac") + grabFn("bscMeltHash") + grabFn("bscSiteMelt") +
+          grabFn("bscMeltWander") + grabFn("bscSiteAt")));
+    }
+    // CLOSED FORM: a group may OPEN already molten with no memory of having melted.
+    {
+      const hot = NACL(1200);
+      ok("a block authored ABOVE its melting point is molten at t = 0 (no history)",
+        moved(hot, 0) === N && poseStr(hot, 0) !== JSON.stringify(base),
+        "opens molten — nothing has to have watched it melt");
+      const r1 = poseStr(hot, 4400); poseStr(hot, 900000);
+      ok("REWIND: t=4400 -> 900000 -> 4400 reproduces the molten pose byte-for-byte",
+        r1 === poseStr(hot, 4400));
+      // the excursion is BOUNDED — a molten ion wanders, it does not fly away.
+      let worst = 0;
+      for (let m = 0; m <= 400000; m += 613) {
+        const p = poseAt(hot, m);
+        for (let i = 0; i < N; i++) {
+          worst = Math.max(worst, E.bscMag([p[i][0] - base[i][0], p[i][1] - base[i][1],
+            p[i][2] - base[i][2]]) as number);
+        }
+      }
+      const nnU = 564 / 2 / P2U;
+      ok("the molten excursion is BOUNDED over 400 s (an accumulator would not be)",
+        worst <= (E.BS_MELT_WANDER as number) * nnU * Math.sqrt(3) + 1e-9,
+        `worst ${worst.toFixed(3)} vs closed-form bound ${((E.BS_MELT_WANDER as number) * nnU * Math.sqrt(3)).toFixed(3)} scene units`);
+      ok("...and it is LARGE ENOUGH to read as lost order (past one nn spacing)",
+        worst > nnU, `${worst.toFixed(2)} units vs nn ${nnU.toFixed(2)}`);
+      // the camera fit follows it, config-only.
+      ok("the auto-fit widens for a molten block, from config alone (no clock)",
+        (E.bscSiteExtent(hot, null) as number) > (E.bscSiteExtent(NACL(300), null) as number) &&
+        (E.bscMeltExtent(NACL(300), sitesOf(NACL(300))) as number) === 0,
+        `${(E.bscSiteExtent(NACL(300), null) as number).toFixed(2)} -> ${(E.bscSiteExtent(hot, null) as number).toFixed(2)} units`);
+    }
+    // DERIVED, NEVER AUTHORED (D-2): the SAME authored temperature melts one pair
+    // and leaves another solid, because the pair's own mp_K is the only input.
+    {
+      const at1150 = (cat: string, ani: string, a: number) => ({
+        placement: "lattice", mode: "melt",
+        units: [{ species: cat }, { species: ani }], lattice: RS(a),
+        thermal: { T_K: 1150, jiggle_scale: 0 }
+      });
+      const na = at1150("Na+", "Cl-", 564), mg = at1150("Mg2+", "O2-", 421.2);
+      const naBase = sitesOf(na).map((s: any) => s.at), mgBase = sitesOf(mg).map((s: any) => s.at);
+      ok("ONE authored 1150 K melts NaCl (mp 1074) and leaves MgO (mp 3125) solid",
+        poseStr(na, 3000) !== JSON.stringify(naBase) &&
+        poseStr(mg, 3000) === JSON.stringify(mgBase),
+        "nothing in the config says which one melts");
+      ok("no config key anywhere says 'melts' — the outcome reads mp_K and nothing else",
+        !/\bmolten\b|\.melt\b|melt_at_ms|is_melted/.test(grabFn("bscSiteAt") + grabFn("bscMeltFrac")) &&
+        /pair\.mp_K/.test(grabFn("bscMeltFrac")));
+      // the explore picker therefore changes the outcome as well as the readout.
+      const S = E.bscSiteList({ placement: "lattice", units: [{ species: "Na+" }, { species: "Cl-" }],
+        lattice: RS(564) }, (E.BS_ION_PAIRS as any).MgO) as any[];
+      ok("the ion_pair picker swaps the pair, so it swaps the melting point too",
+        S.every((s: any) => s.pair === "MgO"),
+        "picking MgO on a 1150 K sandbox re-freezes the block, from the table alone");
+    }
+    // mode 'melt' is IMPLEMENTED: it carries its own solved camera, and the law is
+    // deliberately NOT gated on it (a sandbox melts when the teacher drags T past
+    // mp_K, which no mode string can know in advance).
+    ok("mode 'melt' carries its own solved camera and is no longer deferred",
+      (E.BS_CAMERAS as any).melt != null && (E.BS_CAMERAS as any).melt.fit === true &&
+      E.BS_MODES_IMPL.indexOf("melt") >= 0);
+    ok("an EXPLORE sandbox melts too — the law reads T vs mp_K, never the mode",
+      poseStr(Object.assign({}, NACL(1200), { mode: "explore" }), 3000) !==
+      JSON.stringify(sitesOf(NACL(300)).map((s: any) => s.at)));
+  }
+
+  // ── T-3: THE TWO PROPERTY HUD LINES.
+  {
+    ok("melting_point and lattice_enthalpy are in the closed enum and IMPLEMENTED",
+      (E.BS_HUD_LINES as string[]).includes("melting_point") &&
+      (E.BS_HUD_LINES as string[]).includes("lattice_enthalpy") &&
+      (E.BS_HUD_LINES_E3B as string[]).includes("melting_point") &&
+      (E.BS_HUD_LINES_E3B as string[]).includes("lattice_enthalpy"));
+    ok("both are engine-printed from BS_ION_PAIRS for the LIVE pair, per group",
+      /w === "melting_point" \|\| w === "lattice_enthalpy"/.test(updSrc) &&
+      /gp\.mp_K \+ " K"/.test(updSrc) && /gp\.lattice_kJ/.test(updSrc) &&
+      /grpRows\[j\]\.label \? \(grpRows\[j\]\.label \+ " "\) : ""/.test(updSrc));
+    // Rule 34c on the DOM text path: real Unicode Delta, middle dot, superscript -1.
+    ok("the enthalpy line is real Unicode (Delta, middle dot, superscript minus one)",
+      /\\u0394H = /.test(updSrc) && /kJ\\u00B7mol\\u207B\\u00B9/.test(updSrc) &&
+      !/kJ\.mol|kJ\/mol|delta ?H|dH =/.test(updSrc),
+      "ΔH = 788 kJ·mol⁻¹");
+    // ── THE BUDGET, MEASURED IN CHROMIUM AT 1024x640 (2026-08-03, the E3b
+    //    dispatch-2 headless drive) AND NOT REASONED ABOUT. The HUD is a FIXED box
+    //    at every viewport width, which is precisely the assumption Desk 1 lost
+    //    three audit rounds to.
+    //      panel        220.0 px wide (min-width 190 + 15 px padding each side)
+    //      content       190.0 px
+    //      advance         7.87 px per character (13px monospace, and the Unicode
+    //                      glyphs measure at exactly one advance each)
+    //      4 lines       110.4 px tall at top:52px -> bottom edge 162 px, clear of
+    //                      the 640 px viewport and of the bottom-right slider panel
+    const HUD_CONTENT_PX = 190, HUD_CHAR_PX = 7.87;
+    const MEASURED = { "NaCl m.p. = 1074 K": 140.4, "MgO ΔH = 3791 kJ·mol⁻¹": 173.2 };
+    ok("the measured advance reproduces the measured line widths (the model is real)",
+      Object.entries(MEASURED).every(([s, px]) => Math.abs(s.length * HUD_CHAR_PX - px) < 4),
+      Object.entries(MEASURED).map(([s, px]) => `${s.length}ch -> ${px}px`).join("  "));
+    const lineOf = (label: string, k: string, kind: "mp" | "dh") => {
+      const row = (E.BS_ION_PAIRS as any)[k];
+      const pre = label ? label + " " : "";
+      return kind === "mp" ? pre + "m.p. = " + row.mp_K + " K"
+        : pre + "ΔH = " + row.lattice_kJ + " kJ·mol⁻¹";
+    };
+    // ionic_bonding S9: FOUR of these lines, two groups, in the fixed panel.
+    const S9 = [lineOf("NaCl", "NaCl", "mp"), lineOf("MgO", "MgO", "mp"),
+                lineOf("NaCl", "NaCl", "dh"), lineOf("MgO", "MgO", "dh")];
+    const widest = Math.max(...S9.map((s) => s.length * HUD_CHAR_PX));
+    ok("ionic S9's FOUR grouped lines fit the fixed 220 px panel at 1024 px",
+      widest <= HUD_CONTENT_PX, `widest ${widest.toFixed(1)} px of ${HUD_CONTENT_PX} px content  [${S9.join(" | ")}]`);
+    // and the ARCHITECT'S budget, derived rather than guessed: how long a group
+    // label may be before the longest line in the whole table overflows.
+    {
+      const worstBare = Math.max(...Object.keys(E.BS_ION_PAIRS as any)
+        .flatMap((k) => [lineOf("", k, "mp").length, lineOf("", k, "dh").length]));
+      const maxLabel = Math.floor(HUD_CONTENT_PX / HUD_CHAR_PX) - worstBare - 1;
+      console.log(`    group-label budget  <= ${maxLabel} characters ` +
+        `(longest bare line ${worstBare} ch; ${HUD_CONTENT_PX} px / ${HUD_CHAR_PX} px per ch)`);
+      ok("the labels the wave actually uses are inside that budget",
+        ["NaCl", "KCl", "LiF", "MgO", "CaO", "solid", "melt"].every((l) => l.length <= maxLabel),
+        `budget ${maxLabel} ch, longest used 'solid' = 5 ch`);
+      ok("a label PAST the budget really would overflow (the budget is not slack)",
+        ("A".repeat(maxLabel + 1) + " " + lineOf("", "MgO", "dh")).length * HUD_CHAR_PX > HUD_CONTENT_PX);
+    }
+    ok("the panel this budget is measured against is the one the renderer emits",
+      /hud\.id = "bsc_hud";/.test(buildSrc) && /min-width:190px/.test(buildSrc) &&
+      /padding:11px 15px/.test(buildSrc) && /font:13px\/1\.7 monospace/.test(buildSrc) &&
+      /top:52px;right:12px/.test(buildSrc));
+  }
+
+  // ── T-4: ROW R.
+  {
+    const SCENE_TH = { T_K: 1150, jiggle_scale: 0.3 };
+    const TWO: any = {
+      placement: "lattice", mode: "melt", lattice: RS(564),
+      thermal: SCENE_TH,
+      groups: [
+        { id: "nacl", label: "NaCl", at: [-17, 0, 0],
+          units: [{ species: "Na+" }, { species: "Cl-" }], lattice: RS(564) },
+        { id: "mgo", label: "MgO", at: [17, 0, 0],
+          units: [{ species: "Mg2+" }, { species: "O2-" }], lattice: RS(421.2) }
+      ]
+    };
+    const G = E.bscGroupBlocks(TWO) as any[];
+    ok("groups resolve to one merged block each, in the AUTHORED array order",
+      G.length === 2 && G[0].id === "nacl" && G[1].id === "mgo" &&
+      G[0].label === "NaCl" && G[1].label === "MgO",
+      G.map((g: any) => g.id + "@" + g.at[0]).join(" "));
+    // INHERITANCE BY CONSTRUCTION: a key the group does not author is the SCENE's
+    // key — the same object, so a copy-paste drift between two groups meant to
+    // share a quantity is not expressible.
+    ok("a group with NO thermal reads the scene-level one — the SAME object",
+      G[0].block.thermal === SCENE_TH && G[1].block.thermal === SCENE_TH,
+      "one temperature, two crystals — true structurally, not by copy-paste");
+    ok("...and the same holds for a field authored once at scene level (S8's shape)",
+      (() => {
+        const F = { strength: 1, axis: [1, 0, 0] };
+        const B = E.bscGroupBlocks(Object.assign({}, TWO, { field: F })) as any[];
+        return B[0].block.field === F && B[1].block.field === F;
+      })(), "the SAME field acts on both");
+    ok("a per-group override still exists and wins (S8 needs one hot, one cold)",
+      (() => {
+        const OV = JSON.parse(JSON.stringify(TWO));
+        OV.groups[1].thermal = { T_K: 300, jiggle_scale: 0.3 };
+        const B = E.bscGroupBlocks(OV) as any[];
+        return B[0].block.thermal.T_K === 1150 && B[1].block.thermal.T_K === 300;
+      })());
+    ok("the merged block never carries groups (no recursion, it IS a scene block)",
+      G.every((g: any) => g.block.groups === undefined) &&
+      G[0].block.lattice.a_pm === 564 && G[1].block.lattice.a_pm === 421.2);
+    ok("id / label / at are placement metadata and are NOT merged into the block",
+      G.every((g: any) => g.block.id === undefined && g.block.label === undefined &&
+        g.block.at === undefined));
+
+    const S = sitesOf(TWO);
+    const naIdx = S.map((s: any, i: number) => [s, i]).filter(([s]: any) => s.grp === 0).map(([, i]: any) => i);
+    const mgIdx = S.map((s: any, i: number) => [s, i]).filter(([s]: any) => s.grp === 1).map(([, i]: any) => i);
+    ok("both groups' sites are drawn, each tagged with its own group and label",
+      naIdx.length === 27 && mgIdx.length === 27 &&
+      S[naIdx[0]].pair === "NaCl" && S[mgIdx[0]].pair === "MgO" &&
+      S[mgIdx[0]].glabel === "MgO", `${S.length} sites (27 + 27)`);
+    ok("each group's sites are translated to its own at (the union, not a pile)",
+      S[naIdx[0]].at[0] < -16 && S[mgIdx[0]].at[0] > 16);
+
+    // ── THE §14 ASSERTION THE DISPATCH NAMES: heating a two-group scene past
+    //    NaCl's mp_K leaves the MgO group's lattice bit-for-bit unchanged apart
+    //    from jiggle. "Apart from jiggle" is made exact by running the pair of
+    //    temperatures with the jiggle OFF, so the only thing that can differ is
+    //    the melt.
+    {
+      const still = (T: number) => {
+        const c = JSON.parse(JSON.stringify(TWO));
+        c.thermal = { T_K: T, jiggle_scale: 0 };
+        return c;
+      };
+      const cold = still(300), hot = still(1150);
+      const sub = (bs: any, ix: number[], ms: number) =>
+        JSON.stringify(ix.map((i) => E.bscSiteAt(bs, sitesOf(bs)[i], i, ms, null, null)));
+      ok("heating past NaCl's mp_K leaves the MgO group BIT-FOR-BIT unchanged",
+        [0, 2000, 9000, 60000].every((m) => sub(hot, mgIdx, m) === sub(cold, mgIdx, m)));
+      ok("...while the NaCl group in the SAME frame has left its sites entirely",
+        [2000, 9000, 60000].every((m) => sub(hot, naIdx, m) !== sub(cold, naIdx, m)),
+        "one temperature, two outcomes — derived from two mp_K values");
+      // NEGATIVE CONTROL: raise the scene past MgO's melting point too and the
+      // MgO group DOES move — so the assertion above is about the physics and not
+      // about the group being inert.
+      const veryHot = still(3200);
+      ok("NEGATIVE CONTROL: past 3125 K the MgO group melts too (it is not inert)",
+        sub(veryHot, mgIdx, 9000) !== sub(cold, mgIdx, 9000));
+      // and with the jiggle ON, the solid group jiggles IN PLACE and never
+      // translates — ionic S8's negative control, per group.
+      const jig = JSON.parse(JSON.stringify(TWO));
+      const nnMgO = 421.2 / 2 / P2U;
+      let worstMg = 0;
+      for (let m = 0; m <= 30000; m += 250) {
+        for (const i of mgIdx) {
+          const p = E.bscSiteAt(jig, sitesOf(jig)[i], i, m, null, null) as number[];
+          const b = sitesOf(jig)[i].at;
+          worstMg = Math.max(worstMg, E.bscMag([p[0] - b[0], p[1] - b[1], p[2] - b[2]]) as number);
+        }
+      }
+      ok("the solid group JIGGLES IN PLACE — never half a lattice spacing (S8's control)",
+        worstMg > 0 && worstMg < nnMgO * 0.5,
+        `worst ${worstMg.toFixed(4)} vs nn/2 = ${(nnMgO * 0.5).toFixed(4)} units`);
+    }
+    // CAMERA: the fit spans the UNION, and the separation axis is not foreshortened.
+    {
+      const ext = E.bscSiteExtent(TWO, null) as number;
+      const half = 17 + (E.bscMag(S[mgIdx[0]].at) as number) * 0;   // at least the offset itself
+      ok("the auto-fit spans the UNION of both groups' bounding boxes",
+        ext >= 17 && ext >= Math.max(...S.map((s: any) => E.bscMag(s.at) as number)) - 1e-9,
+        `extent ${ext.toFixed(2)} units vs group offset ${half}`);
+      const cam = E.bscSolvedCamera(TWO, null) as any;
+      const fwd = Math.cos(cam.el * Math.PI / 180) * Math.cos(cam.az * Math.PI / 180);
+      ok("an x-separated multi-group scene is framed with az 90 — zero foreshortening",
+        cam.az === 90 && Math.abs(fwd) < 1e-9 && cam.fit === true,
+        `cos(el)cos(az) = ${fwd.toExponential(1)} — both groups at EXACTLY the same depth`);
+      // NEGATIVE CONTROL: the mode's own camera would have put them at two depths.
+      const pre = (E.BS_CAMERAS as any).melt;
+      ok("NEGATIVE CONTROL: the mode camera alone foreshortens that axis by 18%",
+        Math.abs(Math.cos(pre.el * Math.PI / 180) * Math.cos(pre.az * Math.PI / 180)) > 0.7,
+        `az ${pre.az} el ${pre.el} -> ${(Math.cos(pre.el * Math.PI / 180) * Math.cos(pre.az * Math.PI / 180)).toFixed(3)} along the compared axis`);
+      ok("a SINGLE-scene state keeps its mode camera bit-for-bit",
+        (E.bscSolvedCamera({ mode: "melt", placement: "lattice",
+          units: [{ species: "Na+" }, { species: "Cl-" }], lattice: RS(564) }, null) as any) === pre);
+    }
+    // the pool budget, declared rather than assumed.
+    ok("BS_MAX_GROUPS is a declared budget and the site pool is still capped",
+      E.BS_MAX_GROUPS === 4 && sitesOf(TWO).length <= E.BS_MAX_SITES &&
+      (E.bscGroupBlocks(Object.assign({}, TWO, {
+        groups: Array.from({ length: 9 }, (_, i) => ({ id: "g" + i, lattice: RS(564) }))
+      })) as any[]).length === 4);
+    // a state with NO groups is byte-identical: bscGroupBlocks returns null and
+    // every downstream body takes the pre-E3b path.
+    ok("no groups authored -> null, and the un-grouped site pose is unchanged",
+      E.bscGroupBlocks(LATTICE_BS) === null && E.bscGroupBlocks({}) === null &&
+      E.bscSiteBlock(LATTICE_BS, sitesOf(LATTICE_BS)[0]) === LATTICE_BS);
+    // FOUND IN FRAMES, not by any assertion above: a grouped state authors its
+    // units inside its groups, and the molecular pool's floor of one unit drew a
+    // stand-in HCl between the two crystals.
+    ok("a grouped state with no scene-level units draws NO stand-in molecule",
+      /if \(bs\.groups && bs\.groups\.length && !\(bs\.units && bs\.units\.length\)\) nUnits = 0;/
+        .test(updSrc),
+      "found in frames — the HCl fallback rendered a phantom diatomic");
+    // the group label: ONE size for the whole state, and scored against the HUD.
+    ok("group labels are pmCreateAutoLabel, sized to the LARGEST block, one size each",
+      /pmCreateAutoLabel\("NaCl", textColor, 0\.60\)/.test(buildSrc) &&
+      /var gHs = bscClamp\(gRmax \* BS_GROUP_LABEL_FRAC/.test(updSrc) &&
+      /if \(grpRows\[j\]\.r > gRmax\) gRmax = grpRows\[j\]\.r;/.test(updSrc));
+    ok("...and they are scored against the LIVE readout panel, measured not assumed",
+      /var hudBox = bscDomBox\(document\.getElementById\("bsc_hud"\)\);/.test(updSrc) &&
+      /if \(hudBox\) gAvoid\.push\(hudBox\);/.test(updSrc) &&
+      /getBoundingClientRect/.test(grabFn("bscDomBox")));
+    ok("the group label rides the existing 'lattice' glow key (the enum does not grow)",
+      /elementType: "bsc_lattice", id: "bsc_grp"/.test(buildSrc) &&
+      (E.BS_GLOW_ELS as any).lattice.indexOf("bsc_lattice") >= 0);
+    ok("the ion_pair picker stands down under row R (it would delete the contrast)",
+      /!\(bs\.groups && bs\.groups\.length\)\)\s*\n\s*\? \(BS_ION_PAIRS\[window\.PM_bscIonPair\] \|\| null\) : null;/
+        .test(updSrc));
+
+    // deriveStateMeta: the group cue paths and the group motion declaration are
+    // registered in the SAME change as the renderer read (the standing rule).
+    ok("deriveStateMeta pins a GROUP's own thermal ramp (groups[].thermal.T_at_ms)",
+      /const bscGroups = Array\.isArray\(bscState\.groups\)/.test(META_SRC) &&
+      /candidates\.push\(asNum\(gTh\.T_at_ms, 0\) \+ asNum\(gTh\.T_ramp_ms, 2000\) \+ 600\)/.test(META_SRC));
+    ok("...and a GROUP's own lattice beats (grow / reveal)",
+      /asNum\(gLat\.grow_at_ms, 0\) \+ asNum\(gLat\.grow_duration_ms, 3000\) \+ 600/.test(META_SRC) &&
+      /asNum\(gLat\.reveal_at_ms, 0\) \+ 1200/.test(META_SRC));
+    ok("...and a state whose jiggle lives ONLY in its groups is declared MOVING",
+      /const bscGrps = Array\.isArray\(bscMotion\.groups\)/.test(META_SRC) &&
+      /if \(bscGrpMoves\) \{ out\[stateId\] = true; continue; \}/.test(META_SRC));
+    ok("the group ramp default matches the renderer's BS_T_RAMP_MS (they must agree)",
+      E.BS_T_RAMP_MS === 2000);
+  }
+}
 
 console.log("\n=== 15. E1c AUTHORING CAPABILITIES (scripted bend · lone pair · AB2 bend) ===");
 // The two states bond_polarity could not author at all against the shipped engine
@@ -4822,13 +5274,27 @@ console.log("\n=== 32. E3b S-8 LAYER PARITY (a mechanism live on one layer is li
         `20 s ${w20.toFixed(4)}  ->  200 s ${w200.toFixed(4)} (closed-form bound sqrt(3) at scale 1)`);
     }
     // the amplitude law and the index-derived phase are the unit layer's, verbatim.
+    //   E3b T-2 moved this fixture's two temperatures BELOW NaCl's melting point
+    //   (1074 K), and the move is the point rather than an accommodation: the
+    //   original pair was T0 = 298 K and 4T0 = 1192 K, and 1192 K is 118 K PAST
+    //   the melting point of the very lattice this fixture is made of. The jiggle
+    //   amplitude law is a property of a SOLID; asking for it on a molten block is
+    //   asking the wrong question, and the melt term correctly answered 6.00x
+    //   instead of 2x. 200 K and 800 K are the same exact 4x ratio, both solid.
     {
-      const hot = poseAt(Object.assign({}, latJ(1), { thermal: { T_K: 4 * E.BS_T0_K, jiggle_scale: 1 } }), 3000);
-      const cold = poseAt(latJ(1), 3000), S = sitesOf(latJ(1));
+      const latT = (T: number) => Object.assign({}, latJ(1), { thermal: { T_K: T, jiggle_scale: 1 } });
+      const hot = poseAt(latT(800), 3000);
+      const cold = poseAt(latT(200), 3000), S = sitesOf(latJ(1));
       const amp = (p: number[][], i: number) => E.bscMag([p[i][0] - S[i].at[0],
         p[i][1] - S[i].at[1], p[i][2] - S[i].at[2]]) as number;
       near("site amplitude at 4T is exactly 2x that at T (sqrt(T/T0), the unit law)",
         amp(hot, 5) / amp(cold, 5), 2, 1e-12);
+      // and the reason the old fixture had to move: at 1192 K this NaCl block is
+      // MOLTEN, so its ions carry the melt excursion on top of the jiggle. A gate
+      // that still read 2x there would mean the melt was not live.
+      ok("...and past the melting point the same block is NOT merely jiggling",
+        amp(poseAt(latT(4 * (E.BS_T0_K as number)), 3000), 5) > amp(hot, 5) * 1.5,
+        `1192 K is ${(1192 - 1074)} K past NaCl's mp — the block has melted`);
     }
     const r2s = poseStr(latJ(1), 4400); poseStr(latJ(1), 120000);
     ok("REWIND: a jiggling lattice replays byte-for-byte after a jump to 120 s",
@@ -5164,6 +5630,6 @@ console.log("\n=== 32. E3b S-8 LAYER PARITY (a mechanism live on one layer is li
 }
 
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity) sections pass (8/13/14 are declared E3b stubs).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity, T-1..T-4 property table + melt + groups) sections pass (8 and 13 are declared E3b stubs, owned by dispatches 3 and 4).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);

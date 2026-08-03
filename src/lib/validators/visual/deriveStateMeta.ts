@@ -295,6 +295,21 @@ export function deriveMotionExpectations(
                 if (typeof bscMotion.spin_rate === 'number' && bscMotion.spin_rate > 0) { out[stateId] = true; continue; }
                 const bscTh = asObj(bscMotion.thermal);
                 if (bscTh && typeof bscTh.jiggle_scale === 'number' && bscTh.jiggle_scale > 0) { out[stateId] = true; continue; }
+                //   E3b T-4 (row R, 2026-08-03): a GROUPED state may author its
+                //   jiggle per group and nothing at scene level, so reading the
+                //   scene block alone would call a permanently-moving two-crystal
+                //   state STILL and hand it to the reveal_hold classifier — the
+                //   mirror of the S-2 defect (there the declaration was true and
+                //   the screen was static; here the screen moves and the
+                //   declaration would miss it). A group inherits the scene block
+                //   when it authors none, so scanning both is the whole rule.
+                const bscGrps = Array.isArray(bscMotion.groups) ? bscMotion.groups : [];
+                let bscGrpMoves = false;
+                for (const g of bscGrps) {
+                    const gTh = asObj(asObj(g)?.thermal);
+                    if (gTh && typeof gTh.jiggle_scale === 'number' && gTh.jiggle_scale > 0) bscGrpMoves = true;
+                }
+                if (bscGrpMoves) { out[stateId] = true; continue; }
                 // still beat: fall through to the reveal_hold classification.
             }
             const osMotion = state ? asObj(state.orbital_shapes) : null;
@@ -2074,6 +2089,31 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(asNum(bscLat.grow_at_ms, 0) + asNum(bscLat.grow_duration_ms, 3000) + 600);
             }
             if (typeof bscLat.reveal_at_ms === 'number') candidates.push(asNum(bscLat.reveal_at_ms, 0) + 1200);
+        }
+        // E3b T-4 (row R, 2026-08-03): a GROUP may carry its own thermal ramp and
+        // its own lattice beat — ionic_bonding S8 heats ONE of its two crystals —
+        // and those cue times live at groups[].thermal.T_at_ms, a path this block
+        // could not see. A cue the pin deriver does not know about photographs the
+        // wrong instant (the polarity E1c-8 lesson), and here it would pin the
+        // frozen frame mid-melt on the group whose melting IS the state. Registered
+        // in the SAME change as the renderer read, which is the standing rule.
+        // The group's cue keys are the SCENE's keys — no new key name is
+        // introduced, only a second place they can be authored.
+        const bscGroups = Array.isArray(bscState.groups) ? bscState.groups : [];
+        for (const g of bscGroups) {
+            const gg = asObj(g);
+            if (!gg) continue;
+            const gTh = asObj(gg.thermal);
+            if (gTh && typeof gTh.T_at_ms === 'number') {
+                candidates.push(asNum(gTh.T_at_ms, 0) + asNum(gTh.T_ramp_ms, 2000) + 600);
+            }
+            const gLat = asObj(gg.lattice);
+            if (gLat) {
+                if (typeof gLat.grow_at_ms === 'number') {
+                    candidates.push(asNum(gLat.grow_at_ms, 0) + asNum(gLat.grow_duration_ms, 3000) + 600);
+                }
+                if (typeof gLat.reveal_at_ms === 'number') candidates.push(asNum(gLat.reveal_at_ms, 0) + 1200);
+            }
         }
     }
     // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY, 2026-07-28 engine ask): every
