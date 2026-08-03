@@ -53,11 +53,24 @@ holds a third time. Checkpoint A took the founder's 2-cycle cap exactly; Checkpo
 - **#4 inherits the `W` collision this concept was built to avoid.** `mg` held the line here
   (`NLB_ARROW_DEFAULT_LABELS.weight = "mg"`). #4 authors *both* work bars and weight arrows — that
   is where it actually bites.
-- **Apply the scar rows.** Four files under `docs/loop_runs/ch6/kinetic_energy_definition/`, all
-  committed, **none applied** (an MCP 502 blocked it). **Apply `scar_candidates_checkpointA.sql`
-  FIRST** — `scar_candidates_checkpointB.sql` ends with an UPDATE targeting a row it inserts.
-  Hazard: every upsert does `ON CONFLICT DO UPDATE SET status = EXCLUDED.status`, so verify no target
-  row is already FIXED before applying (checked 2026-08-02: only the friction row existed, OPEN).
+- **Scar rows are APPLIED** (2026-08-03, after an MCP 502 blocked the first attempt). **18 rows live
+  for this concept: 2 FIXED, 16 OPEN.** The two CRITICALs (`seam_q_backdrop_raycast_ignores_hit_SIGN…`
+  and `nlb_force_arrow_anchored_at_body_centre…`) were applied as **FIXED with `fixed_at`**, not OPEN
+  as the surgeon's file had them — they were genuinely fixed and regression-verified in `8bd84a2`, and
+  filing a closed bug as open sends the next session re-investigating. The existing friction row was
+  **widened** (it was filed as a first-frame transient; it is a recurring phase-locked case).
+- **The arrow-label size fix (E3) is BUILT and HELD, not abandoned.** Its structural half landed
+  byte-identical: `NLB_BODY_LABEL_H` is extracted and consumed at the build site and
+  `NLB_LABEL_MIN_SEP` derives from `NLB_ARROW_LABEL_H` (reproducing 0.30 exactly), so the two
+  constants are now RELATED — the drift to 65% happened because nothing in the file connected them.
+  **Restoring parity is ONE line** (`= NLB_BODY_LABEL_H`) once
+  `nlb_work_bar_track_tops_lose_collinearity_when_a_3d_label_size_changes` closes. Do NOT take it
+  before then: at parity, `work_done_by_constant_force` STATE_5's work-bar tracks lose zero-line
+  collinearity — the contract concept #2 repaired — and the two rendering paths **disagree** about it
+  (THE EYE reproduces 4445 differing px including regions outside the 3D viewport; a review-site probe
+  shows zero panel movement and would have exonerated it wrongly). Also recorded: the "ink ≥ 0.7 ×
+  body label" target cannot be read literally — two body labels at the *identical* 0.40 scale already
+  measure a 0.71 ink ratio, so state the invariant in GLYPH height, not ink height.
 - **Do NOT add a normal arrow to S3** if concept #4 clones it. Post-SEAM-R both arrows would be
   full-length and both would double (N = mg), making the mass cue *more* ambiguous while importing an
   untaught `N`. In S3 the arrow is a mass GAUGE, not a free-body diagram.
