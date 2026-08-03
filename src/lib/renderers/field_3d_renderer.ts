@@ -1107,10 +1107,66 @@ export interface Field3DConfig {
                 // per-ID property, NOT per-state: the mesh is built once from the union
                 // of every state's bodies, so a given id is a block in every state or a
                 // wheel in every state.
-                shape?: 'block' | 'wheel';
+                //   SEAM R (rotmech 0c-2, 2026-08-03) adds the four ROLLING shapes.
+                //   They are the same carrier + child-group construction the wheel
+                //   uses (see the build), each with its OWN rotation marker so the
+                //   spin is readable on a rotation-invariant silhouette — SEAM G's
+                //   hub-and-spokes rule, applied to four more meshes rather than a
+                //   second marker system.
+                shape?: 'block' | 'wheel' | 'solid_sphere' | 'hollow_sphere' | 'disc' | 'ring';
                 hanging?: boolean;                 // hangs vertically off the pulley; ignores theta, N forced 0
                 initial_position_m?: number;       // signed, along the body's OWN axis
                 initial_velocity_mps?: number;
+                // ── SEAM R — the ROLLING extension (rotmech 0c-2) ────────────────
+                //   EVERY field below is OPTIONAL and ABSENT ⇒ today's behaviour
+                //   BYTE-IDENTICALLY. Presence is resolved by `typeof`/`in`, NEVER by
+                //   truthiness: `activate_at_ms: 0`, `rotation_locked: false` and
+                //   `visible_before_activation: false` are all legal authored values,
+                //   and `x || DEFAULT` would silently restore the constant the field
+                //   was bought to replace.
+                //
+                // U3 — the body's PHYSICAL radius, in metres. Rendered TO SCALE
+                //   (world radius = radius_m x NLB_WORLD_PER_M), so s = R.theta is
+                //   literally true on screen and the revolution marks land where the
+                //   physics says. Absent ⇒ NLB_WHEEL_R / NLB_WORLD_PER_M = 0.55 m,
+                //   i.e. exactly today's drawn wheel — see the amended SEAM G note.
+                radius_m?: number;
+                // U1 — the dimensionless shape factor k = I_cm/(m R²). Absent ⇒
+                //   derived from `shape` (solid_sphere 0.4, disc/wheel 0.5,
+                //   hollow_sphere 2/3, ring 1); a block has none and never rolls.
+                shape_factor_k?: number;
+                // U1 — ROLLING is opt-in per body. With it, Branch A's kinetic path
+                //   is SUPERSEDED while mu_s >= mu_min = (k/(1+k))·|tan θ|:
+                //   a = g sin θ/(1+k) and f_s = k·m·a (mu_s NEVER enters the
+                //   magnitude, only the gate). Below mu_min the contact slips and the
+                //   body falls back to the kinetic branch with an INDEPENDENT angular
+                //   state. Absent ⇒ the body is a slider, exactly as today.
+                rolling?: boolean;
+                // U1 — starting spin, decoupled from v. Absent ⇒ v0/radius_m (the
+                //   rolling seed). Authoring it is what makes a v-omega MISMATCH
+                //   (pure_rolling's spin-in-place and slide-to-roll capture)
+                //   expressible at all.
+                omega0_rad_s?: number;
+                // U14 — the body translates with omega forced to 0: the mesh never
+                //   spins and its rotation marker holds pose, while it integrates
+                //   normally on the kinetic branch. A per-ID constant, never a
+                //   per-state build branch (the skidding block / locked wheel).
+                rotation_locked?: boolean;
+                // U10 — the activation instant, on the STATE-LOCAL clock. Before it
+                //   the body is NOT integrated and entirely absent from the frame:
+                //   mesh, force arrows (their own draw path, nlbDriveArrowsForBody),
+                //   label, trail/trace geometry and HUD readout rows are ALL hidden.
+                //   AT it the body is seeded at its authored s0/v0/omega0 and
+                //   integrates. A pure function of t, so a pin/rewind is byte-stable.
+                //   Absent ⇒ active from state entry; authored 0 ≡ absent BY
+                //   DEFINITION (the documented coincide-by-definition case).
+                activate_at_ms?: number;
+                // U10 — the HELD case: the body renders at its seed pose with v = 0
+                //   and s frozen until its activation, but is STILL SOLVED by seam B
+                //   every frame, so its arrows and readouts carry the LIVE STATICS
+                //   values. "Not integrated" means s and v do not advance; it does
+                //   NOT mean the forces are not solved.
+                visible_before_activation?: boolean;
                 mu_s?: number;                     // omit/0 = frictionless for this body
                 mu_k?: number;
                 applied_force_N?: number;          // signed, along the body's own positive axis
@@ -1470,11 +1526,122 @@ export interface Field3DConfig {
             // `work_accumulators` entry: it reports the FIRST accumulator's running W
             // divided by the elapsed state-local seconds. Union-only (concepts #11 and
             // #12) — this chapter's conservation concept authors neither.
-            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2' | 'P' | 'P_avg'>;
+            // SEAM R (rotmech 0c-2) widens this CLOSED union by five rolling rows,
+            // all value-only (Rule 33d/34b — the number, never the relation):
+            //   'contact'  |v − ω·R|, the contact-point speed. 0.00 IS the claim.
+            //   'Romega'   R·ω, the rolling-condition partner of v. RENDERS as "Rω".
+            //   'omega'    the body's own angular speed. RENDERS as "ω".
+            //   'KE_trans' ½mv²   ·  'KE_rot' ½k·mv²  (the energy split; SEAM-M
+            //              style value rows, never an energy BAR — no SEAM-L change).
+            // TOKENS ARE ASCII IDENTIFIERS, matching every other member of this enum
+            // and the sibling circular-motion enum's own 'omega'; the Unicode lives
+            // on screen only (NLB_READOUT_LABELS), per Rule 34c, which governs
+            // on-canvas text and not TypeScript identifiers.
+            readouts?: Array<'N' | 'f' | 'a' | 'v' | 'T' | 'F_net' | 'F_applied' | 'T1' | 'T2' | 'P' | 'P_avg'
+                | 'contact' | 'Romega' | 'omega' | 'KE_trans' | 'KE_rot'>;
             // 'F_ang' (SEAM N) is the applied force's ANGLE off the surface, in
             // degrees — the one control that sweeps W = F·d·cos θ through positive →
             // zero → negative without touching anything else.
-            controls_visible?: Array<'m' | 'm2' | 'F' | 'F_ang' | 'theta' | 'mu_s' | 'mu_k' | 'v0'>;  // Rule 31 contextual controls
+            // SEAM R adds 'R' / 'R2' (the two radius dials) and 'omega0' (starting
+            // spin — the control that makes a v-omega mismatch teacher-drivable).
+            controls_visible?: Array<'m' | 'm2' | 'F' | 'F_ang' | 'theta' | 'mu_s' | 'mu_k' | 'v0'
+                | 'R' | 'R2' | 'omega0'>;  // Rule 31 contextual controls
+            // ══ SEAM R — the state-level rolling surface (rotmech 0c-2) ══════════
+            //   Every block is ADDITIVE and gated on its OWN presence; a state
+            //   authoring none of them renders exactly the pixels it rendered before.
+            //
+            // U8 — lane geometry. `lane_gap_m` overrides NLB_LANE_GAP for this state;
+            //   0 IS LEGAL and means "both bodies on the centre line" (presence by
+            //   typeof, so 0 does not fall back to 0.85). `single_lane` is a SEPARATE
+            //   explicit flag and is what fires RETIREMENT — it is never inferred
+            //   from lane_gap_m === 0. In a single_lane state a body is live from its
+            //   own activate_at_ms until the NEXT body's, at which instant it retires:
+            //   hidden, no longer integrated, its trail cleared. The cut is HARD (this
+            //   buy has no dissolve animation). A state authoring lane_gap_m = 0
+            //   WITHOUT single_lane keeps all its bodies co-visible.
+            lane_gap_m?: number;
+            single_lane?: boolean;
+            // U8 — the camera's look-at point, in track metres. Absent ⇒ the world
+            //   origin, exactly as today. Lets a close camera frame the RUN MIDPOINT
+            //   instead of the track centre.
+            camera_target_m?: number;
+            // U7 — the TWO-CHANNEL authorable vector map. Force and velocity are
+            //   independent channels, each defaulting to today's constants
+            //   (NLB_ARROW_SCALE 0.048 / NLB_ARROW_MIN_LEN 0.55). Presence by typeof.
+            //   A vector that is EXACTLY zero renders as a labelled dot + its value
+            //   (the zero MARKER), never a stub and never a floored arrow.
+            vector_map?: {
+                force_scale?: number;      // world units per newton
+                force_min_len?: number;    // world units
+                velocity_scale?: number;   // world units per m/s
+                velocity_min_len?: number; // world units
+            };
+            // U5 — the FINISH LINE. When a listed body's CoM track coordinate crosses
+            //   `s_m` (crossing-INTERPOLATED, the same machinery the checkpoint
+            //   crossing detector uses) that body HALTS at the line (position pinned,
+            //   v → 0, a → 0) and its readouts, chips and labels LATCH at their
+            //   crossing-instant values to state end. The halt is a FINISH, not a
+            //   wall: the friction TYPE latches as-at-crossing and is never
+            //   re-derived at rest. Deliberately NOT `checkpoints`: a finish stamps a
+            //   per-body CHIP, not the formula surface, and carries no energy capture.
+            finish_line?: {
+                s_m: number;               // REQUIRED
+                bodies?: string[];         // default: every integrated body
+                halt?: boolean;            // default TRUE
+                stamp?: 'order' | 'tie' | 'none';   // default 'order' (1-2-3-4 chips)
+                label?: string;
+            };
+            // U6 — the SYNCHRONISED race restart. With 'synchronized', the lap ends
+            //   at the LAST body's crossing; after a short hold ALL bodies re-anchor
+            //   together — position, displacement origin, v0 AND omega re-seeded to
+            //   the authored seeds — and the chips re-stamp. (SEAM J's per-body wrap
+            //   re-seeds v alone and desynchronises a race.) Rule 37 is preserved:
+            //   the clock free-runs, only the geometry re-anchors.
+            race_restart?: 'synchronized';
+            restart_hold_ms?: number;      // hold at the finished lineup; default 900
+            // U11 — REVOLUTION MARKS + the circumference bracket, as their OWN
+            //   primitive (never `checkpoints`: no closed capture enum, no formula
+            //   stamp, no energy_active side effect, no NLB_CP_MAX cap). A ground
+            //   tick stamps at each COMPLETED turn, at s_n = s0 − n·2πR, and the
+            //   labelled bracket spans mark 0 → mark 1. Marks and bracket respace
+            //   LIVE under a radius drag.
+            revolution_marks?: {
+                body_id?: string;
+                show_bracket?: boolean;    // default TRUE
+                bracket_label?: string;    // default '2πR = <value> m'
+                max_marks?: number;        // default 8
+            };
+            // U15 — CENTRE MARKERS: an axle dot + a vertical tick per listed body,
+            //   plus a centre-height cue at the finish line. This is the metric the
+            //   finish/TIE stamps are DEFINED on (the CoM track coordinate), made
+            //   visible so "exactly abreast" is a thing the eye can check.
+            centre_markers?: { body_ids?: string[] };
+            // U2 — the CONTACT-POINT PICTURE. Each element is independently gated.
+            //   Point-speed arrows are computed from the body's LIVE (v, ω) through
+            //   the VELOCITY channel — never authored constants — and an exact zero
+            //   becomes the labelled marker. The cycloid trace and the skid trail are
+            //   replayable pure functions of state-local t and BREAK at every wrap,
+            //   halt, reset and retirement.
+            contact_layer?: {
+                body_id?: string;
+                rim_dot?: boolean;         // the marked rim point
+                cycloid_trace?: boolean;   // its path (cusps at each ground touch)
+                skid_trail?: boolean;      // drawn only while |v − ωR| > 0
+                point_arrows?: Array<'top' | 'centre' | 'bottom'>;
+                friction_callout?: boolean;   // the static/kinetic label at the contact
+            };
+            // U16 — PER-LINE FORMULA REVEAL, on the ONE existing formula surface
+            //   (#nlb_formula; Rule 34b — still one surface). Each line renders from
+            //   its own `at_ms` as a pure function of state-local t, so a pin/rewind
+            //   is byte-stable. `at_ms` absent on a line ⇒ visible from state entry
+            //   (authored 0 ≡ absent; presence is still resolved by typeof so the
+            //   code path is uniform). ABSENT ENTIRELY ⇒ the legacy
+            //   `stateDef.formula_overlay` string, byte-identically. The checkpoint
+            //   stamper appends AFTER the last revealed line.
+            //   This plus `bodies[].activate_at_ms` are the WHOLE timed surface of
+            //   0c-2 — there is no per-arrow reveal, no per-label reveal and no
+            //   choreography DSL, by design.
+            formula_lines?: Array<{ text: string; at_ms?: number }>;
             trusted_drag_seizes?: boolean;         // sandbox state only
             // ── SEAM L — the ENERGY DISPLAY LAYER (spec notes 1-5, 12, 13) ───
             // docs/loop_runs/ch6/conservation_of_mechanical_energy/skeleton.md.
@@ -39773,10 +39940,275 @@ export const FIELD_3D_RENDERER_CODE = `
     //   NLB_BODY_SIZE / 2, so a wheel of that radius touches the surface at
     //   y = 0 with no positioning branch, and a wheel and a block of equal mass
     //   occupy the same footprint — the side-by-side race is honest.
-    var NLB_WHEEL_R = NLB_BODY_SIZE / 2;  // world units — see above; do NOT decouple from NLB_BODY_SIZE
+    //   AMENDED by SEAM R (rotmech 0c-2, 2026-08-03). "do NOT decouple" still holds
+    //   for every body that authors NO radius_m: that body keeps this exact radius,
+    //   this exact lift and this exact footprint, so every existing baseline is
+    //   untouched and the equal-footprint race stays honest by default. It is lifted
+    //   ONLY where a concept authors radius_m, because there radius is the TAUGHT
+    //   variable — rolling_on_incline's "mass and radius cancel" beat races a 0.30 m
+    //   body against a 0.10 m one, and equal footprint would make the claim
+    //   unrenderable. See NLB_DEFAULT_RADIUS_M: the default radius_m is defined so
+    //   that radius_m x NLB_WORLD_PER_M reproduces NLB_WHEEL_R exactly.
+    var NLB_WHEEL_R = NLB_BODY_SIZE / 2;  // world units — the DEFAULT radius (see above)
     var NLB_WHEEL_W = NLB_BODY_SIZE;      // tread width (z), matches the block's depth
     var NLB_WHEEL_HUB_COLOR = "#FFF176";  // hub disc — reads against every NLB_BODY_COLORS entry
     var NLB_WHEEL_SPOKE_COLOR = "#ECEFF1";
+
+    // ══ SEAM R — the ROLLING extension (rotmech 0c-2, 2026-08-03) ═══════════════
+    //   Serves pure_rolling (#11) and rolling_on_incline (#12) as a bounded
+    //   extension of newtons_laws_body — no new scenario_type. Every field it adds
+    //   is OPTIONAL and ABSENT ⇒ today's behaviour BYTE-IDENTICALLY; presence is
+    //   resolved by typeof/"in", never truthiness.
+    //
+    //   THE ONE INVARIANT THIS SEAM INHERITS AND MUST NOT BREAK (SEAM G):
+    //   a wheel's spin is a pure FUNCTION, never an accumulator. SEAM G reads it
+    //   from the body's POSITION (s = R.theta, rolling), which makes Rule 36 hold by
+    //   construction and SET_TIME_FREEZE byte-stable for free. Slipping severs
+    //   s = R.theta, so an independent angular state is genuinely required — but it
+    //   is implemented as a CLOSED FORM OF STATE-LOCAL t, evaluated fresh every
+    //   frame, NOT as "omega += alpha*dt; theta += omega*dt". Both guarantees
+    //   therefore survive intact:
+    //     * no dt appears in the expression, so 60 Hz and 120 Hz agree (Rule 36);
+    //     * a pinned t reproduces the identical angle bit for bit (frozen EYE
+    //       baselines cannot drift);
+    //     * a rewind to t = 0 unwinds the spin exactly, which a += accumulator
+    //       could never do (engine_bug_queue
+    //       field3d_dt_accumulated_motion_invisible_to_eye_timepin).
+    //   Which path a body takes is decided ONCE at state apply from its config
+    //   (nlbSpinIndependent), never mid-frame, so it is deterministic.
+
+    // The radius a body has when it authors none: exactly the radius SEAM G draws.
+    var NLB_DEFAULT_RADIUS_M = NLB_WHEEL_R / NLB_WORLD_PER_M;   // 0.55 m
+    // k = I_cm/(m R²) per shape. A block is absent from the map and never rolls.
+    var NLB_SHAPE_K = {
+        solid_sphere: 0.4, disc: 0.5, wheel: 0.5, hollow_sphere: 2 / 3, ring: 1.0
+    };
+    var NLB_ROLL_SHAPES = ["wheel", "solid_sphere", "hollow_sphere", "disc", "ring"];
+    var NLB_MARK_COLOR = "#FFE082";
+    var NLB_TRACE_COLOR = "#4FC3F7";
+    var NLB_SKID_COLOR = "#FF8A65";
+    var NLB_CENTRE_COLOR = "#FFFFFF";
+    var NLB_FINISH_COLOR = "#FFD54F";
+    var NLB_CHIP_COLOR = "#FFF176";
+    var NLB_TRACE_MAX_PTS = 480;          // cycloid/skid polyline budget (one arch ≈ 60)
+    var NLB_MARK_MAX = 8;                 // revolution-mark ceiling (its OWN cap, not NLB_CP_MAX)
+    var NLB_RESTART_HOLD_MS = 900;        // U6 default hold at the finished lineup
+
+    // ── SEAM R helpers — every one a pure function of already-resolved state ────
+    // The body's physical radius in metres. ONE resolver, typeof-guarded, so an
+    // authored 0 cannot fall through to the default (a zero radius is rejected as
+    // unphysical, which is a different thing from absent).
+    function nlbRadiusM(b) {
+        return (b && typeof b.radius_m === "number" && isFinite(b.radius_m) && b.radius_m > 0)
+            ? b.radius_m : NLB_DEFAULT_RADIUS_M;
+    }
+    // ... and in world units. TO SCALE, so s = R.theta is literally true on screen
+    // and the revolution marks land where the physics puts them.
+    function nlbRadiusW(b) { return nlbRadiusM(b) * NLB_WORLD_PER_M; }
+    // The shape factor. Authored wins; else the shape's own constant; else 0.5
+    // (a body asked to roll with no shape is a disc, the chapter's default wheel).
+    function nlbShapeK(b) {
+        if (b && typeof b.shape_factor_k === "number" && isFinite(b.shape_factor_k) && b.shape_factor_k >= 0) return b.shape_factor_k;
+        var k = b ? NLB_SHAPE_K[b.shape] : undefined;
+        return (typeof k === "number") ? k : 0.5;
+    }
+    // mu_min = (k/(1+k))·|tan θ| — the LEAST static friction that keeps rolling.
+    // This is the ONLY place mu_s enters the rolling branch: it gates WHETHER
+    // rolling holds and never appears in the friction MAGNITUDE (f_s = k·m·a).
+    function nlbMuMin(k, thetaDeg) {
+        var t = Math.abs(Math.tan((thetaDeg || 0) * Math.PI / 180));
+        return (k / (1 + k)) * t;
+    }
+    // Does this body carry an INDEPENDENT angular state this state? Config-derived,
+    // resolved once at apply. A body answering false keeps SEAM G's position-driven
+    // spin, byte for byte.
+    function nlbSpinIndependent(b) {
+        if (!b) return false;
+        if (b.rotation_locked) return true;
+        if (typeof b.omega0_rad_s === "number" && isFinite(b.omega0_rad_s)) return true;
+        return false;
+    }
+    // The contact-point speed |v − ω·R|. Exactly 0 whenever the rolling condition
+    // holds, and it is that exact zero — not a small residual — that the primary
+    // aha of pure_rolling is built on.
+    function nlbContactSpeed(b) {
+        if (!b) return 0;
+        return Math.abs((b.v || 0) - (b.omega || 0) * nlbRadiusM(b));
+    }
+    // A body's live angular speed. A rolling body reads it FROM v (the constraint),
+    // so the two can never disagree; only an independent-spin body carries its own.
+    function nlbOmegaOf(b) {
+        if (!b) return 0;
+        if (b._spinIndep) return b.omega || 0;
+        return (b.v || 0) / nlbRadiusM(b);
+    }
+    // ── U10 — the ACTIVATION gate ──────────────────────────────────────────────
+    //   Three states, and only three: ABSENT (live from entry), PENDING (before its
+    //   instant) and LIVE. Retirement is derived from the SAME authored instants in
+    //   a single_lane state — never a third timed field.
+    //   Presence by typeof: activate_at_ms = 0 is legal and, by definition,
+    //   identical to absent.
+    function nlbActivateMs(b) {
+        return (b && typeof b.activate_at_ms === "number" && isFinite(b.activate_at_ms) && b.activate_at_ms > 0)
+            ? b.activate_at_ms : 0;
+    }
+    // The instant this body RETIRES: the next authored activation after its own, in
+    // a single_lane state. Infinity everywhere else (a body never retires).
+    function nlbRetireMs(eng, b) {
+        if (!eng || !eng.single_lane || !b) return Infinity;
+        var mine = nlbActivateMs(b), best = Infinity;
+        for (var i = 0; i < eng.order.length; i++) {
+            var o = eng.bodies[eng.order[i]];
+            if (!o || o.id === b.id) continue;
+            var oa = nlbActivateMs(o);
+            if (oa > mine && oa < best) best = oa;
+        }
+        return best;
+    }
+    // Is the body LIVE (integrated and drawn) at this state-local instant?
+    function nlbBodyLive(eng, b, tMs) {
+        if (!eng || !b) return false;
+        var t = (typeof tMs === "number" && isFinite(tMs)) ? tMs : 0;
+        return t >= nlbActivateMs(b) && t < nlbRetireMs(eng, b);
+    }
+    // Is it HELD — present, posed and SOLVED, but with s and v not advancing?
+    // "Not integrated" means s and v do not advance; it does NOT mean the forces
+    // are not solved. Skipping the seam-B pass would render a stale zero, which is
+    // not the authored picture either.
+    function nlbBodyHeld(eng, b, tMs) {
+        if (!eng || !b || !b.visible_before_activation) return false;
+        var t = (typeof tMs === "number" && isFinite(tMs)) ? tMs : 0;
+        return t < nlbActivateMs(b);
+    }
+    // Drawn at all? LIVE, or HELD-visible. A pending body with no
+    // visible_before_activation is entirely absent from the frame — mesh, arrows,
+    // label, trail and HUD rows alike.
+    function nlbBodyShown(eng, b, tMs) {
+        return nlbBodyLive(eng, b, tMs) || nlbBodyHeld(eng, b, tMs);
+    }
+
+    // ── SEAM R (U1) — the ANGULAR SEGMENT ──────────────────────────────────────
+    //   THE one mechanism that keeps an independent omega compatible with SEAM G's
+    //   two guarantees. A segment records (t0, theta0, omega0, alpha) at the instant
+    //   a branch opens; from then on
+    //       omega(t) = omega0 + alpha·tau        theta(t) = theta0 + omega0·tau + ½·alpha·tau²
+    //   with tau = (t − t0)/1000 seconds. That is a CLOSED FORM of state-local t:
+    //   no dt appears, so 60 Hz and 120 Hz agree (Rule 36); a pinned t reproduces
+    //   the identical angle bit for bit; and a rewind to t = 0 unwinds it exactly.
+    //   An accumulator would fail all three (engine_bug_queue
+    //   field3d_dt_accumulated_motion_invisible_to_eye_timepin).
+    //   The segment RE-ANCHORS whenever the physics changes under it — branch flip,
+    //   capture, sandbox wrap, or a live control moving alpha — which is the same
+    //   trusted-drag re-baseline pattern the fleet already uses.
+    function nlbRollSeg(eng, b, w0, alpha) {
+        if (!b) return;
+        var t0 = 0;
+        if (eng) t0 = (typeof eng._tPrevMs === "number") ? eng._tPrevMs : (eng.t_ms || 0);
+        b._slip0 = {
+            t0: t0,
+            th0: b.theta_rad || 0,
+            w0: (typeof w0 === "number" && isFinite(w0)) ? w0 : 0,
+            alpha: (typeof alpha === "number" && isFinite(alpha)) ? alpha : 0
+        };
+    }
+    // Evaluate the pose. A body WITHOUT an independent angular state is left to
+    // SEAM G's position-driven expression entirely — this only refreshes the omega
+    // the readouts quote, and writes not one transform.
+    function nlbRollSpin(eng, b) {
+        if (!b || !eng) return;
+        if (b.rotation_locked) {
+            b.omega = 0; b.theta_rad = 0;
+            nlbApplySpin(b.id, 0);
+            return;
+        }
+        if (!b._spinIndep) { b.omega = (b.v || 0) / nlbRadiusM(b); return; }
+        if (!b._slip0) nlbRollSeg(eng, b, b.omega0 || 0, 0);
+        var seg = b._slip0;
+        var tau = ((eng.t_ms || 0) - seg.t0) / 1000;
+        if (!(tau > 0)) tau = 0;
+        b.omega = seg.w0 + seg.alpha * tau;
+        b.theta_rad = seg.th0 + seg.w0 * tau + 0.5 * seg.alpha * tau * tau;
+        nlbApplySpin(b.id, b.theta_rad);
+    }
+    // U12 — the sandbox wrap re-seeds omega alongside v, and re-anchors the segment
+    // so the new lap is identical to the last one (SEAM J's own argument for
+    // re-seeding v, applied to the quantity it forgot).
+    function nlbRollWrapSeed(eng, b) {
+        if (!b) return;
+        b.omega = (typeof b.omega0 === "number" && isFinite(b.omega0)) ? b.omega0 : 0;
+        b.theta_rad = 0;
+        b._slipping = false;
+        nlbRollSeg(eng, b, b.omega, 0);
+        if (eng && eng._traceState) eng._traceState.breaks[b.id] = true;
+    }
+    // ── SEAM R (U5) — the FINISH LINE ──────────────────────────────────────────
+    //   Deliberately NOT "checkpoints": a finish stamps a per-body CHIP rather than
+    //   the one formula surface, carries no closed energy-capture enum, has no
+    //   NLB_CP_MAX cap and no energy_active side effect. What it DOES reuse is the
+    //   crossing INTERPOLATION — the fix that stopped a capture overshooting its own
+    //   crossing value — so a latched readout is the value AT the line.
+    //   The halt is a FINISH, not a wall: friction TYPE and every label latch
+    //   as-at-crossing and are never re-derived at rest.
+    function nlbFinishCheck(eng, b, sPre, sPost, v1, a, N, f, stuck) {
+        var cfg = eng && eng.finish_cfg;
+        if (!cfg || !b || b._finished) return null;
+        if (cfg.bodies && cfg.bodies.length && cfg.bodies.indexOf(b.id) < 0) return null;
+        var line = cfg.s_m;
+        var d0 = sPre - line, d1 = sPost - line;
+        var crossed = (d0 > 0 && d1 <= 0) || (d0 < 0 && d1 >= 0);
+        if (!crossed) return null;
+        if (!eng.finish_state) eng.finish_state = { count: 0, order: [], last_ms: 0 };
+        // Crossing-interpolated instant, for a latch that quotes the line's own values.
+        var frac = (d0 - d1 !== 0) ? (d0 / (d0 - d1)) : 0;
+        eng.finish_state.count++;
+        eng.finish_state.order.push(b.id);
+        eng.finish_state.last_ms = eng.t_ms || 0;
+        b._finished = (cfg.halt !== false);
+        b._finishRank = eng.finish_state.count;
+        b._finishStuck = !!stuck;
+        b._finishSnap = {
+            v: (b.v || 0) + ((v1 - (b.v || 0)) * frac),
+            a: a, N: N, f: f, omega: nlbOmegaOf(b), s: line
+        };
+        if (eng._traceState) eng._traceState.breaks[b.id] = true;
+        return (cfg.halt !== false) ? { s: line } : null;
+    }
+    // ── SEAM R (U6) — the SYNCHRONISED race restart ────────────────────────────
+    //   A race is one event, so it restarts as one: the lap ends at the LAST body's
+    //   crossing, holds the finished lineup for a readable beat, then re-anchors
+    //   EVERY body together — position, displacement origin, v0 and omega — and the
+    //   chips re-stamp. SEAM J's per-body wrap re-seeds one body at a time and would
+    //   desynchronise the field within a lap, which is exactly what a race must not
+    //   do. Rule 37 is preserved: the clock free-runs, only the geometry re-anchors.
+    function nlbRunRaceRestart(eng) {
+        if (!eng || eng.race_restart !== "synchronized" || !eng.finish_cfg) return;
+        var fs = eng.finish_state;
+        if (!fs || !fs.count) return;
+        var racers = 0;
+        for (var i = 0; i < eng.order.length; i++) {
+            var bb = eng.bodies[eng.order[i]];
+            if (!bb || bb.ghost) continue;
+            if (eng.finish_cfg.bodies && eng.finish_cfg.bodies.length
+                && eng.finish_cfg.bodies.indexOf(bb.id) < 0) continue;
+            racers++;
+        }
+        if (fs.count < racers) return;                       // the lap is not over yet
+        if ((eng.t_ms || 0) - fs.last_ms < eng.restart_hold_ms) return;
+        for (var j = 0; j < eng.order.length; j++) {
+            var b = eng.bodies[eng.order[j]];
+            if (!b || b.ghost) continue;
+            b.s = (b.s0 != null) ? b.s0 : 0;
+            b.v = (b.v0 != null) ? b.v0 : 0;
+            b.a = 0; b.F_net = 0;
+            b._dsp0 = b.s;
+            b._finished = false; b._finishRank = 0; b._finishSnap = null; b._finishStuck = false;
+            b._boundArrestedSliding = false;
+            nlbRollWrapSeed(eng, b);
+            nlbSetBodyPosition(b.id, b.s);
+        }
+        eng.finish_state = { count: 0, order: [], last_ms: 0 };
+        if (eng.marks_state) eng.marks_state = null;
+    }
 
     // ── SEAM H — train segment tension labels ───────────────────────────────
     var NLB_SEG_LABEL_COLOR = "#FFD54F";  // same amber family as the theta arc label
@@ -40135,7 +40567,13 @@ export const FIELD_3D_RENDERER_CODE = `
         if (lanes.length < 2) return 0;
         var k = lanes.indexOf(bodyId);
         if (k < 0) return 0;                       // ghost / hanging / unknown -> centre line
-        return (k - (lanes.length - 1) / 2) * NLB_LANE_GAP;
+        // SEAM R (U8): the per-state lane gap. Presence by typeof, so an authored 0
+        // is HONOURED (both bodies on the centre line — what a sequential two-phase
+        // contrast beat needs) instead of falling back to the constant through a
+        // truthiness test. Absent ⇒ NLB_LANE_GAP, bit for bit.
+        var gap = (eng && typeof eng.lane_gap_m === "number" && isFinite(eng.lane_gap_m))
+            ? (eng.lane_gap_m * NLB_WORLD_PER_M) : NLB_LANE_GAP;
+        return (k - (lanes.length - 1) / 2) * gap;
     }
 
     function nlbSetBodyPosition(bodyId, s_m) {
@@ -40149,7 +40587,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // z is the lane, NOT a physics axis: the integrator is strictly 1-D along s,
             // so a lane offset changes nothing numerical. nlbBodyWorldPos passes z through
             // unrotated, so arrows and labels follow the body into its lane for free.
-            mesh.position.set(s * NLB_WORLD_PER_M, NLB_BODY_SIZE / 2, nlbBodyLaneZ(bodyId));
+            // SEAM R (U3): the LIFT is per-body. mesh.userData._liftY is written once
+            // at build from the body's own radius_m and defaults to NLB_BODY_SIZE / 2
+            // — literally the constant this line always carried — so a body that
+            // authors no radius_m moves through here byte for byte. This is the ONE
+            // positioning branch SEAM G's note said a decoupled radius would cost,
+            // and it lives in the ONE placement funnel rather than spreading.
+            var lift = (typeof mesh.userData._liftY === "number") ? mesh.userData._liftY : (NLB_BODY_SIZE / 2);
+            mesh.position.set(s * NLB_WORLD_PER_M, lift, nlbBodyLaneZ(bodyId));
         }
         // SEAM E: the invisible pointer-pick proxy shares the body's PARENT (so the
         // surface rotation applies to both identically) and is carried here, in the
@@ -40183,11 +40628,56 @@ export const FIELD_3D_RENDERER_CODE = `
         //     correctly with no extra code, because they all move s through here.
         // Negative because +x travel is a CLOCKWISE turn seen from +z, and
         // rotation.z is counter-clockwise-positive.
+        //   SEAM R amends this in exactly two ways, both of which PRESERVE the three
+        //   consequences above:
+        //     • the divisor is the body's OWN world radius (mesh.userData._spinR,
+        //       written once at build and defaulting to NLB_WHEEL_R), so a per-body
+        //       radius spins at the rate its own circumference demands — and a body
+        //       authoring no radius_m divides by exactly NLB_WHEEL_R, as before;
+        //     • a body carrying an INDEPENDENT angular state (slipping, spinning in
+        //       place, or rotation_locked) is skipped here and posed by
+        //       nlbApplySpin instead — from a CLOSED FORM of state-local t, never an
+        //       accumulator, so it keeps every one of the three properties.
+        //       mesh.userData._spinIndep is likewise config-derived and resolved at
+        //       state apply, never mid-frame.
         var wgrp2 = null;
         for (var ci = 0; ci < mesh.children.length; ci++) {
-            if (mesh.children[ci].userData && mesh.children[ci].userData.elementType === "nlb_wheel") { wgrp2 = mesh.children[ci]; break; }
+            var cud = mesh.children[ci].userData;
+            if (cud && (cud.elementType === "nlb_wheel" || cud.elementType === "nlb_roller")) { wgrp2 = mesh.children[ci]; break; }
         }
-        if (wgrp2) wgrp2.rotation.z = -(s * NLB_WORLD_PER_M) / NLB_WHEEL_R;
+        //   Both facts are read from the LIVE engine record when one exists and fall
+        //   back to the build-time userData otherwise (this funnel also runs during
+        //   scene build, before any state is seeded). Reading them live is what lets
+        //   a body that STARTS rolling and later slips hand its pose over to
+        //   nlbApplySpin at the onset instant with no jump, and what lets a radius
+        //   slider re-scale the spin rate in the same frame it re-scales the mesh.
+        var engS = window.PM_nlbEngine;
+        var bS = (engS && engS.bodies) ? engS.bodies[bodyId] : null;
+        var indepS = bS ? !!bS._spinIndep : !!mesh.userData._spinIndep;
+        if (wgrp2 && !indepS) {
+            var spinR = bS ? nlbRadiusW(bS)
+                : ((typeof mesh.userData._spinR === "number" && mesh.userData._spinR > 0)
+                    ? mesh.userData._spinR : NLB_WHEEL_R);
+            if (!(spinR > 0)) spinR = NLB_WHEEL_R;
+            wgrp2.rotation.z = -(s * NLB_WORLD_PER_M) / spinR;
+        }
+    }
+
+    // SEAM R — pose a body whose spin is NOT the position's function. theta is
+    // handed in already computed (radians, physical convention: positive = forward
+    // roll), and the sign flip is the same one SEAM G applies: +x travel is a
+    // CLOCKWISE turn seen from +z, and rotation.z is counter-clockwise-positive.
+    // No clock, no dt, no accumulator here — the caller owns the closed form.
+    function nlbApplySpin(bodyId, thetaRad) {
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!mesh) return;
+        for (var ci = 0; ci < mesh.children.length; ci++) {
+            var cud = mesh.children[ci].userData;
+            if (cud && (cud.elementType === "nlb_wheel" || cud.elementType === "nlb_roller")) {
+                mesh.children[ci].rotation.z = -thetaRad;
+                return;
+            }
+        }
     }
 
     // Rotate the ONE surface group + rescale it to the state's length, and
@@ -40201,6 +40691,25 @@ export const FIELD_3D_RENDERER_CODE = `
             grp.userData.theta_deg = thetaDeg;
             grp.userData.length_m = lenM;
         }
+        // ── SEAM R (U8) — the CAMERA TARGET, as a rig offset ──────────────────
+        //   The shared camera always looks at the world origin, and moving that is a
+        //   fleet-wide change. So a state that wants a close camera on the RUN
+        //   MIDPOINT instead of the track centre slides the RIG under the camera by
+        //   the same amount, which is optically identical and touches nothing
+        //   outside this scenario. BOTH groups take the SAME world-space offset —
+        //   the surface group carries the slab and the bodies, the world group
+        //   carries every force arrow — so they can never separate.
+        //   Absent ⇒ offset 0 ⇒ every existing state is untouched to the pixel.
+        var engT = window.PM_nlbEngine;
+        var tgt = (engT && typeof engT.camera_target_m === "number" && isFinite(engT.camera_target_m))
+            ? engT.camera_target_m : 0;
+        var thR = thetaDeg * Math.PI / 180;
+        var offX = -tgt * NLB_WORLD_PER_M * Math.cos(thR);
+        var offY = -tgt * NLB_WORLD_PER_M * Math.sin(thR);
+        var sgrp = nlbFindById("nlb_surface_group");
+        if (sgrp) sgrp.position.set(offX, offY, 0);
+        var wgrpT = nlbFindById("nlb_world_group");
+        if (wgrpT) wgrpT.position.set(offX, offY, 0);
         var slab = nlbFindById("nlb_surface");
         if (slab) slab.scale.set(halfWorld * 2, 1, 1);
         var ref = nlbFindById("nlb_horizontal_ref");
@@ -40235,12 +40744,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // SEAM M (spec note 14). Rule 34c: real Unicode subscripts, never "P_avg" —
         // ₐ is U+2090 and ᵥ is U+1D65, and the label span carries the math-serif
         // stack (nlbWriteReadouts) because monospace faces have neither glyph.
-        P: "P", P_avg: "Pₐᵥ"
+        P: "P", P_avg: "Pₐᵥ",
+        // SEAM R (rotmech 0c-2). Rule 34c again: the TOKEN is an ASCII identifier
+        // (matching every other member of the enum and the sibling circular-motion
+        // enum's own 'omega'), the rendered LABEL is real Unicode — ω is U+03C9 and
+        // the subscripts below are U+209C/U+2092/U+1D63/U+209C. Rule 34c governs
+        // on-canvas text, not TypeScript identifiers.
+        contact: "contact", Romega: "Rω", omega: "ω",
+        KE_trans: "KEₜ", KE_rot: "KEᵣ"
     };
     var NLB_READOUT_UNITS = {
         N: " N", f: " N", a: " m/s²", v: " m/s", T: " N", F_net: " N", F_applied: " N",
         T1: " N", T2: " N",
-        P: " W", P_avg: " W"                   // SEAM M — watts
+        P: " W", P_avg: " W",                  // SEAM M — watts
+        contact: " m/s", Romega: " m/s", omega: " rad/s", KE_trans: " J", KE_rot: " J"
     };
     // SEAM H — the two segment keys, and the pseudo-body-id their HUD rows hang off
     // so nlbSetReadout/nlbReadoutRowId work on them completely unchanged.
@@ -40736,11 +41253,43 @@ export const FIELD_3D_RENDERER_CODE = `
                 mesh.position.z);
         return out;
     }
-    function nlbArrowLen(magN) {
-        var L = (typeof magN === "number" && isFinite(magN)) ? Math.abs(magN) * NLB_ARROW_SCALE : 0;
-        if (L < NLB_ARROW_MIN_LEN) L = NLB_ARROW_MIN_LEN;
+    // ── SEAM R (U7) — the TWO-CHANNEL authorable vector map ────────────────────
+    //   FORCE and VELOCITY are independent channels. Each defaults to today's two
+    //   constants, and presence is resolved by typeof, so a state authoring no
+    //   vector_map (i.e. every state before rotmech) computes literally the prior
+    //   expression. The channels are separate because a concept that draws BOTH
+    //   would otherwise have to pick one scale for newtons and metres per second —
+    //   and whichever it picked, the other family would clamp at the floor and stop
+    //   rendering true RATIOS, which is the one thing a compared arrow is for.
+    function nlbVecMap() {
+        var eng = window.PM_nlbEngine;
+        return (eng && eng.vector_map) ? eng.vector_map : null;
+    }
+    function nlbChanLen(mag, scale, minLen) {
+        var L = (typeof mag === "number" && isFinite(mag)) ? Math.abs(mag) * scale : 0;
+        if (L < minLen) L = minLen;
         if (L > NLB_ARROW_MAX_LEN) L = NLB_ARROW_MAX_LEN;
         return L;
+    }
+    function nlbArrowLen(magN) {
+        var vm = nlbVecMap();
+        var sc = (vm && typeof vm.force_scale === "number" && isFinite(vm.force_scale) && vm.force_scale > 0)
+            ? vm.force_scale : NLB_ARROW_SCALE;
+        var mn = (vm && typeof vm.force_min_len === "number" && isFinite(vm.force_min_len) && vm.force_min_len >= 0)
+            ? vm.force_min_len : NLB_ARROW_MIN_LEN;
+        return nlbChanLen(magN, sc, mn);
+    }
+    // The VELOCITY channel — point-speed arrows, computed from the body's LIVE
+    // (v, omega) and never from an authored constant. An EXACTLY zero vector is not
+    // routed through here at all: it renders as a labelled dot plus its value (the
+    // zero MARKER), never a stub and never a floored arrow.
+    function nlbVelArrowLen(magV) {
+        var vm = nlbVecMap();
+        var sc = (vm && typeof vm.velocity_scale === "number" && isFinite(vm.velocity_scale) && vm.velocity_scale > 0)
+            ? vm.velocity_scale : NLB_ARROW_SCALE;
+        var mn = (vm && typeof vm.velocity_min_len === "number" && isFinite(vm.velocity_min_len) && vm.velocity_min_len >= 0)
+            ? vm.velocity_min_len : NLB_ARROW_MIN_LEN;
+        return nlbChanLen(magV, sc, mn);
     }
     // Direction of a SIGNED quantity along the body's own axis. Seam B stores f,
     // T, F_net and F_applied signed in that axis (a negative T pulls opposite +s,
@@ -41733,6 +42282,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 elementType: "nlb_body", id: "nlb_body_" + d.id, bodyId: d.id,
                 hanging: !!d.hanging, ghost: !!d.ghost, fixed: !!d.fixed, baseColor: col
             };
+            // SEAM R — the three per-body geometry facts nlbSetBodyPosition needs,
+            // resolved ONCE here from the union body def (like "hanging" and "shape",
+            // these are per-ID properties, not per-state). A body authoring no
+            // radius_m gets _liftY === NLB_BODY_SIZE / 2 and _spinR === NLB_WHEEL_R,
+            // i.e. literally the two constants those lines always carried.
+            mesh.userData._liftY = (NLB_ROLL_SHAPES.indexOf(d.shape) >= 0)
+                ? nlbRadiusW(d) : (NLB_BODY_SIZE / 2);
+            mesh.userData._spinR = nlbRadiusW(d);
+            mesh.userData._spinIndep = nlbSpinIndependent(d);
             if (d.hanging) { world.add(mesh); } else { surf.add(mesh); }
             nlbRegister(mesh);
 
@@ -41794,6 +42352,71 @@ export const FIELD_3D_RENDERER_CODE = `
                         }));
                     spoke.rotation.z = sp2 * Math.PI / 2;
                     wgrp.add(spoke);
+                }
+            }
+
+            // ── SEAM R — the four ROLLING bodies (rotmech 0c-2) ────────────────
+            //   Same construction contract SEAM G established and for the same
+            //   reasons: the box mesh stays as an INVISIBLE CARRIER (every other
+            //   system keys off "nlb_body_<id>" and its position and none of them
+            //   change), the spinning parts live in a CHILD group so the body's
+            //   Unicode label never tumbles, and the group is deliberately NOT
+            //   nlbRegister()'d so it inherits the carrier's own emphasis pass
+            //   (Rule 32e) instead of getting a second, later one.
+            //   EVERY shape carries a ROTATION MARKER, because all four silhouettes
+            //   are rotation-invariant and without one the whole point of the shape
+            //   is invisible on screen and in every frozen EYE frame. That is SEAM
+            //   G's hub-and-spokes rule applied to four more meshes — not a second
+            //   marker system, and the wheel's own hub and spokes are untouched.
+            //   Radius is the body's OWN, to scale (nlbRadiusW).
+            else if (NLB_ROLL_SHAPES.indexOf(d.shape) >= 0) {
+                mat.visible = false;
+                var rW = nlbRadiusW(d);
+                var rgrp = new THREE.Group();
+                rgrp.userData = { elementType: "nlb_roller", id: "nlb_roller_" + d.id, bodyId: d.id };
+                mesh.add(rgrp);
+                var rollMat = function (c, emi) {
+                    return new THREE.MeshPhongMaterial({
+                        color: hexToThreeColor(c), emissive: hexToThreeColor(c),
+                        emissiveIntensity: emi, shininess: 60, transparent: true, opacity: 1.0
+                    });
+                };
+                var markCol = NLB_WHEEL_HUB_COLOR;
+                if (d.shape === "solid_sphere" || d.shape === "hollow_sphere") {
+                    // A ball. The hollow one is drawn as a THIN shell — open at the
+                    // poles so the wall thickness is visible from the side, which is
+                    // the only cue that distinguishes it from the solid ball beside
+                    // it in the race (and k = 2/3 vs 0.4 is exactly that difference).
+                    var ballGeo = (d.shape === "solid_sphere")
+                        ? new THREE.SphereGeometry(rW, 28, 20)
+                        : new THREE.SphereGeometry(rW, 28, 20, 0, Math.PI * 2, 0.30, Math.PI - 0.60);
+                    var ball = new THREE.Mesh(ballGeo, rollMat(col, 0.18));
+                    if (d.shape === "hollow_sphere") ball.material.side = THREE.DoubleSide;
+                    rgrp.add(ball);
+                    // Rotation marker: a contrasting MERIDIAN stripe — a thin band
+                    // through both poles, so any spin about the axle sweeps it
+                    // visibly across the silhouette.
+                    var merGeo = new THREE.TorusGeometry(rW * 1.005, rW * 0.055, 8, 40);
+                    var mer = new THREE.Mesh(merGeo, rollMat(markCol, 0.30));
+                    rgrp.add(mer);
+                } else if (d.shape === "disc") {
+                    // A solid disc, axle on +z like the wheel's tyre.
+                    var dGeo = new THREE.CylinderGeometry(rW, rW, rW * 0.42, 30);
+                    dGeo.rotateX(Math.PI / 2);
+                    rgrp.add(new THREE.Mesh(dGeo, rollMat(col, 0.18)));
+                    // Rotation marker: a RADIAL face-stripe from hub to rim, proud of
+                    // both faces so the tyre can never z-fight it.
+                    var fs = new THREE.Mesh(
+                        new THREE.BoxGeometry(rW * 1.90, rW * 0.14, rW * 0.46),
+                        rollMat(markCol, 0.30));
+                    rgrp.add(fs);
+                } else {
+                    // A ring / hoop: a thin annulus, all its mass at the rim (k = 1).
+                    var ringGeo = new THREE.TorusGeometry(rW * 0.90, rW * 0.10, 10, 40);
+                    rgrp.add(new THREE.Mesh(ringGeo, rollMat(col, 0.18)));
+                    // Rotation marker: ONE contrasting ARC SEGMENT of the rim.
+                    var segGeo = new THREE.TorusGeometry(rW * 0.90, rW * 0.125, 10, 14, Math.PI / 3);
+                    rgrp.add(new THREE.Mesh(segGeo, rollMat(markCol, 0.32)));
                 }
             }
 
@@ -44512,7 +45135,35 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbRenderStamps(eng) {
         var ff = document.getElementById("nlb_formula");
         if (!ff) return;
+        // ── SEAM R (U16) — PER-LINE FORMULA REVEAL ────────────────────────────
+        //   The ONE formula surface still (Rule 34b): what changes is that its
+        //   content may be an ORDERED LIST of lines, each with its own at_ms, so a
+        //   derivation BUILDS instead of arriving whole — the final line, which IS
+        //   the answer the state derives, is genuinely absent until its instant.
+        //   A line renders from its at_ms as a pure function of state-local t, so a
+        //   pin/rewind is byte-stable; at_ms absent on a line means visible from
+        //   entry (authored 0 is identical to absent, and presence is still resolved
+        //   by typeof so the code path is uniform).
+        //   ABSENT ENTIRELY ⇒ the legacy single string, BYTE-IDENTICALLY: eng.
+        //   formula_lines is null and the next line is the expression this function
+        //   always had.
+        //   This and bodies[].activate_at_ms are the WHOLE timed surface here. There
+        //   is deliberately no per-arrow reveal and no per-label reveal: three
+        //   visible force arrows from t = 0 is honest physics, and their teaching
+        //   sequence rides phases[].glow_focal, which already exists.
         var txt = eng.formula_base || "";
+        if (eng.formula_lines) {
+            var shown = [];
+            for (var li = 0; li < eng.formula_lines.length; li++) {
+                var ln = eng.formula_lines[li];
+                if (!ln || typeof ln.text !== "string" || !ln.text) continue;
+                var lAt = (typeof ln.at_ms === "number" && isFinite(ln.at_ms)) ? ln.at_ms : 0;
+                if ((eng.t_ms || 0) >= lAt) shown.push(ln.text);
+            }
+            // Rule 14: this whole body is ONE template literal, so a newline escape
+            // must be doubled or the outer literal eats it and emits a raw break.
+            txt = shown.join("\\n");
+        }
         var cps = eng.checkpoint_state || [];
         for (var i = 0; i < cps.length; i++) {
             if (!cps[i].text) continue;
@@ -44763,7 +45414,34 @@ export const FIELD_3D_RENDERER_CODE = `
             work_scale_J: 10,
             W_applied_J: 0,       // the internal ledger that completes E_dissipated
             formula_base: "",     // the authored formula surface, kept clean of stamps
-            phase_fired: {}       // one-shot phase flags, reset on every state entry
+            phase_fired: {},      // one-shot phase flags, reset on every state entry
+            // ── SEAM R (rotmech 0c-2) — the state-level rolling surface, resolved
+            //    ONCE per entry. Every one of these is "undefined"/false/null in a
+            //    state that authors nothing, and every reader below is gated on that,
+            //    so a pre-2026-08-03 state takes the identical code path.
+            //    lane_gap_m keeps "undefined" rather than a default precisely so
+            //    nlbBodyLaneZ can tell "authored 0" from "absent" by typeof.
+            lane_gap_m: (typeof nlb.lane_gap_m === "number" && isFinite(nlb.lane_gap_m))
+                ? nlb.lane_gap_m : undefined,
+            single_lane: !!nlb.single_lane,
+            camera_target_m: (typeof nlb.camera_target_m === "number" && isFinite(nlb.camera_target_m))
+                ? nlb.camera_target_m : 0,
+            vector_map: nlb.vector_map || null,
+            finish_cfg: (nlb.finish_line && typeof nlb.finish_line.s_m === "number"
+                && isFinite(nlb.finish_line.s_m)) ? nlb.finish_line : null,
+            finish_state: null,
+            race_restart: (nlb.race_restart === "synchronized") ? "synchronized" : null,
+            restart_hold_ms: (typeof nlb.restart_hold_ms === "number" && nlb.restart_hold_ms > 0)
+                ? nlb.restart_hold_ms : NLB_RESTART_HOLD_MS,
+            marks_cfg: nlb.revolution_marks || null,
+            marks_state: null,
+            centre_cfg: nlb.centre_markers || null,
+            contact_cfg: nlb.contact_layer || null,
+            // U16 — the ordered formula LINES. Absent ⇒ null, and nlbRenderStamps
+            // falls straight through to the legacy formula_base string, byte for byte.
+            formula_lines: (Array.isArray(nlb.formula_lines) && nlb.formula_lines.length)
+                ? nlb.formula_lines : null,
+            _traceState: null
         };
         // The work ledgers, materialised from the closed enum. body_id defaults are
         // resolved HERE (not per frame) so the accumulator loop is a straight id
@@ -44828,7 +45506,47 @@ export const FIELD_3D_RENDERER_CODE = `
                 F_applied: af0.N,
                 F_angle_deg: af0.ang,
                 N: 0, f: 0, T: 0, F_net: 0,
-                _boundArrestedSliding: false   // Branch A bound-halt readout latch — see SEAM B
+                _boundArrestedSliding: false,  // Branch A bound-halt readout latch — see SEAM B
+                // ── SEAM R (rotmech 0c-2) — the rolling record ─────────────────
+                //   Resolved ONCE per entry from the authored body, so the per-frame
+                //   pass reads no JSON and every default lives in exactly one place.
+                //   A body authoring none of these is a slider with k = 0.5 that
+                //   never takes the rolling branch — i.e. every pre-2026-08-03 body,
+                //   unchanged.
+                shape: d.shape || "block",
+                radius_m: (typeof d.radius_m === "number" && isFinite(d.radius_m) && d.radius_m > 0)
+                    ? d.radius_m : NLB_DEFAULT_RADIUS_M,
+                shape_factor_k: nlbShapeK(d),
+                rolling: !!d.rolling,
+                rotation_locked: !!d.rotation_locked,
+                // Presence by typeof: an authored 0 is a legal instant and, by
+                // definition, identical to absent (both mean "live from entry").
+                activate_at_ms: (typeof d.activate_at_ms === "number" && isFinite(d.activate_at_ms))
+                    ? d.activate_at_ms : undefined,
+                visible_before_activation: !!d.visible_before_activation,
+                // Angular seed. Absent ⇒ the ROLLING seed v0/R, so a body released
+                // from rest starts with omega = 0 and a body launched rolling starts
+                // already satisfying v = R.omega.
+                omega0: (typeof d.omega0_rad_s === "number" && isFinite(d.omega0_rad_s))
+                    ? d.omega0_rad_s
+                    : ((d.initial_velocity_mps || 0) / ((typeof d.radius_m === "number" && d.radius_m > 0) ? d.radius_m : NLB_DEFAULT_RADIUS_M)),
+                omega: 0,
+                // The angular POSE, in radians. Written every frame from a CLOSED
+                // FORM of state-local t (never accumulated) whenever _spinIndep;
+                // otherwise SEAM G's s-driven expression owns the pose and this is
+                // ignored. See the SEAM R header for why that distinction is the
+                // whole of Rule 36 + frozen-baseline stability here.
+                theta_rad: 0,
+                _spinIndep: nlbSpinIndependent(d),
+                _slipping: false,
+                // U1 — the slip SEGMENT baseline: (t0, s0, v0, omega0) captured at the
+                // instant the body left the rolling branch, so every post-onset
+                // quantity is a closed form of (t − t0) and rewinds exactly.
+                _slip0: null,
+                // U5 — the finish latch. Once a body's CoM crosses the line its
+                // readouts, chips and labels LATCH at the crossing-instant values and
+                // are never re-derived at rest.
+                _finished: false, _finishRank: 0, _finishSnap: null, _finishSide: null
             };
         }
         // SEAM C — the force-arrow contract for this state, per body: which of the
@@ -45155,8 +45873,24 @@ export const FIELD_3D_RENDERER_CODE = `
             b.v = (b.v0 != null) ? b.v0 : 0;
             b.a = 0; b.F_net = 0; b._stuck = false;
             b._boundArrestedSliding = false;   // Branch A bound-halt readout latch — see SEAM B
+            // SEAM R: the rolling state rewinds with the kinematics it belongs to.
+            // The angular pose goes back to its seed and the segment re-anchors at
+            // t = 0, so theta(t) reproduces the same closed form it did on the first
+            // pass; the finish latch and the skid trail re-arm exactly as the phase
+            // one-shots below do. Without this a replayed state would open with a
+            // wheel already spun, a chip already stamped and a skid mark already on
+            // the road — the previous capture's history, narrated as this one's.
+            b._slipping = false;
+            b.theta_rad = 0;
+            b.omega = (typeof b.omega0 === "number" && isFinite(b.omega0)) ? b.omega0 : 0;
+            b._slip0 = null;
+            b._finished = false; b._finishRank = 0; b._finishSnap = null; b._finishStuck = false;
+            b._skidFrom = null; b._skidTo = null;
             nlbSetBodyPosition(b.id, b.s);
+            nlbApplySpin(b.id, 0);
         }
+        eng.finish_state = null;
+        eng._tPrevMs = 0;
         // The shared string speed rewinds to the SAME seed state entry uses (the
         // authored v0, or the teacher's v0-slider value, which nlbApplyParam wrote
         // into b.v0) — a hard zero here left a replayed coupled glide dead still.
@@ -45382,8 +46116,43 @@ export const FIELD_3D_RENDERER_CODE = `
     // Live per-frame HUD write for one body (only the keys this state readouts).
     function nlbWriteReadouts(nlb, b, stuck) {
         var keys = nlb.readouts || [];
+        // SEAM R (U5): a FINISHED body quotes its crossing-instant snapshot, so its
+        // rows are the values AT the line and can never be re-derived at rest.
+        var snap = b._finishSnap || null;
         for (var k = 0; k < keys.length; k++) {
             var key = keys[k];
+            // ── SEAM R (U4) — the five rolling rows ───────────────────────────
+            //   All value-only (Rule 33d/34b): the number, never the relation.
+            //   Every one is DERIVED from values this same frame already wrote, so
+            //   there is no accumulator here and nothing to rewind.
+            if (key === "contact" || key === "Romega" || key === "omega"
+                || key === "KE_trans" || key === "KE_rot") {
+                var wR = snap ? snap.omega : nlbOmegaOf(b);
+                var vR = snap ? snap.v : (b.v || 0);
+                var Rm = nlbRadiusM(b), kR = nlbShapeK(b);
+                var valR;
+                if (key === "contact") valR = Math.abs(vR - wR * Rm);
+                else if (key === "Romega") valR = Math.abs(wR * Rm);
+                else if (key === "omega") valR = Math.abs(wR);
+                else if (key === "KE_trans") valR = 0.5 * b.m * vR * vR;
+                else valR = 0.5 * kR * b.m * vR * vR;
+                nlbSetReadout(b.id, key, nlbFx(valR, 2));
+                // U+209C / U+2092 / U+1D63 / U+03C9 are missing from most monospace
+                // faces (the merged-blob subscript scar), so these label spans get
+                // the math-serif stack — written ONCE per rebuilt row, not per frame.
+                var rl = document.getElementById(nlbReadoutRowId(b.id, key) + "_lbl");
+                if (rl && !rl.style.fontFamily) rl.style.fontFamily = "'Cambria Math','Times New Roman',serif";
+                continue;
+            }
+            if (snap && (key === "v" || key === "a" || key === "N" || key === "f")) {
+                if (key === "v") { nlbSetReadout(b.id, key, nlbFx(snap.v, 2)); continue; }
+                if (key === "a") { nlbSetReadout(b.id, key, nlbFx(snap.a, 2)); continue; }
+                if (key === "N") { nlbSetReadout(b.id, key, nlbFx(snap.N, 2)); continue; }
+                nlbSetReadout(b.id, key, nlbFx(Math.abs(snap.f), 2), stuck ? "fₛ" : "fₖ");
+                var fl2 = document.getElementById(nlbReadoutRowId(b.id, key) + "_lbl");
+                if (fl2 && !fl2.style.fontFamily) fl2.style.fontFamily = "'Cambria Math','Times New Roman',serif";
+                continue;
+            }
             if (key === "N") nlbSetReadout(b.id, key, nlbFx(b.N, 2));
             else if (key === "f") {
                 // fₛ while statically stuck, fₖ while sliding (seam A ships a plain
@@ -45446,6 +46215,380 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
     }
+    // ══ SEAM R — THE ROLLING APPARATUS + DISPLAY PASS (rotmech 0c-2) ═══════════
+    //   Presentation ONLY. It runs after the physics writeback, reads already-
+    //   stepped values, writes no physics and owns no clock of its own (Rule 36).
+    //   Every element is gated on its own authored block, so a state authoring none
+    //   of them renders exactly the pixels it rendered before — and the whole group
+    //   is absent from the scene until a state first asks for it.
+    //
+    //   THE TRACES ARE CLOSED FORMS OF POSITION, NOT ACCUMULATED POLYLINES.
+    //   A rim point's path depends only on WHERE the body is, never on how it got
+    //   there: rolling gives alpha(s) = -(s - s0)/R, so the marker sits at
+    //       track  = s + R·sin(alpha)      height = R·(1 - cos(alpha))
+    //   and the whole cycloid back to the release point is regenerated analytically
+    //   every frame. So it rewinds exactly, holds byte-identically under a time pin,
+    //   and cannot drift with frame rate — the properties an appended trail loses
+    //   (engine_bug_queue field3d_dt_accumulated_motion_invisible_to_eye_timepin).
+    //   The skid trail is the same idea one dimension simpler: the ground segment
+    //   from where slipping began to the contact point now.
+    var NLB_ROLL_GROUP_ID = "nlb_roll_group";
+    function nlbRollGroup() {
+        var g = nlbFindById(NLB_ROLL_GROUP_ID);
+        if (g) return g;
+        var surf = nlbFindById("nlb_surface_group");
+        if (!surf) return null;
+        g = new THREE.Group();
+        g.userData = { elementType: "nlb_roll_group", id: NLB_ROLL_GROUP_ID };
+        surf.add(g);
+        nlbRegister(g);
+        return g;
+    }
+    // One pooled child per id, created on first use and reused for the life of the
+    // scene (never rebuilt per state — Rule 32d: an element must not move because a
+    // state changed). Deliberately NOT nlbRegister()'d beyond the group itself, so
+    // the whole layer inherits ONE emphasis pass (Rule 32e) instead of N later ones.
+    function nlbRollObj(id, make) {
+        var g = nlbRollGroup();
+        if (!g) return null;
+        for (var i = 0; i < g.children.length; i++) {
+            if (g.children[i].userData && g.children[i].userData.id === id) return g.children[i];
+        }
+        var o = make();
+        if (!o) return null;
+        o.userData = o.userData || {};
+        o.userData.id = id;
+        o.visible = false;
+        g.add(o);
+        return o;
+    }
+    function nlbRollLine(id, color, width) {
+        return nlbRollObj(id, function () {
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(NLB_TRACE_MAX_PTS * 3), 3));
+            geo.setDrawRange(0, 0);
+            var m = new THREE.Line(geo, new THREE.LineBasicMaterial({
+                color: hexToThreeColor(color), transparent: true, opacity: 0.95, linewidth: width || 1
+            }));
+            m.userData = { elementType: "nlb_roll_trace" };
+            return m;
+        });
+    }
+    function nlbRollSetLine(line, pts) {
+        if (!line) return;
+        var arr = line.geometry.attributes.position.array;
+        var n = Math.min(pts.length, NLB_TRACE_MAX_PTS);
+        for (var i = 0; i < n; i++) {
+            arr[i * 3] = pts[i][0]; arr[i * 3 + 1] = pts[i][1]; arr[i * 3 + 2] = pts[i][2];
+        }
+        line.geometry.setDrawRange(0, n);
+        line.geometry.attributes.position.needsUpdate = true;
+        line.geometry.computeBoundingSphere();
+        line.visible = n >= 2;
+    }
+    // Hide every pooled element whose owner is not drawn this frame. Called first,
+    // so nothing can survive from the previous state or the previous instant —
+    // the same discipline nlbHideAllArrows enforces for SEAM C.
+    function nlbRollHideAll() {
+        var g = nlbFindById(NLB_ROLL_GROUP_ID);
+        if (!g) return;
+        for (var i = 0; i < g.children.length; i++) g.children[i].visible = false;
+    }
+    // Surface-local position of a track coordinate at a given height, both metres.
+    function nlbTrackPt(s_m, h_m, z) {
+        return [s_m * NLB_WORLD_PER_M, h_m * NLB_WORLD_PER_M, z || 0];
+    }
+    function nlbUpdateRolling(eng) {
+        if (!eng) return;
+        var nlb = nlbStateCfg();
+        var anyRoll = eng.finish_cfg || eng.marks_cfg || eng.centre_cfg || eng.contact_cfg;
+        // U16: the formula surface is re-rendered every frame ONLY while a state
+        // authors timed lines; otherwise the entry-time render still owns it and
+        // this costs nothing.
+        if (eng.formula_lines) nlbRenderStamps(eng);
+        // U10: the whole-body hide. A pending body is absent from the frame — mesh,
+        // arrows, label, trail and HUD rows alike — because "hidden" that leaves the
+        // arrows on screen is the defect the field was bought to prevent.
+        nlbApplyActivationVisibility(eng);
+        // Blanked on EVERY frame before anything is re-shown — including in a state
+        // that authors no rolling apparatus at all, so a previous state's marks,
+        // chips or trail can never survive into it (the discipline nlbHideAllArrows
+        // enforces for SEAM C, and the one frame a frozen pin can otherwise catch).
+        nlbRollHideAll();
+        if (!anyRoll) return;
+        var lenM = eng.length_m;
+        // ── U5 — the FINISH LINE and its per-body CHIPS ────────────────────────
+        if (eng.finish_cfg) {
+            var fl = nlbRollObj("nlb_finish_line", function () {
+                var geo = new THREE.BoxGeometry(0.03, 0.02, NLB_SURFACE_DEPTH);
+                var m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(NLB_FINISH_COLOR), transparent: true, opacity: 0.95
+                }));
+                m.userData = { elementType: "nlb_finish_line" };
+                return m;
+            });
+            if (fl) {
+                fl.position.set(eng.finish_cfg.s_m * NLB_WORLD_PER_M, 0.011, 0);
+                fl.visible = true;
+            }
+            var stampMode = eng.finish_cfg.stamp || "order";
+            if (stampMode !== "none") {
+                for (var fi = 0; fi < eng.order.length; fi++) {
+                    var fb = eng.bodies[eng.order[fi]];
+                    if (!fb || !fb._finishRank) continue;
+                    var chip = nlbRollObj("nlb_finish_chip_" + fb.id, function () {
+                        return pmCreateAutoLabel("1", NLB_CHIP_COLOR, 0.34);
+                    });
+                    if (!chip) continue;
+                    // A TIE stamp is not a rank: when two bodies cross in the same
+                    // frame the honest chip on BOTH is "TIE", and rendering 1 and 2
+                    // on a dead heat would be the sim contradicting its own claim.
+                    var tied = false;
+                    for (var fj = 0; fj < eng.order.length; fj++) {
+                        var ob = eng.bodies[eng.order[fj]];
+                        if (!ob || ob.id === fb.id || !ob._finishRank) continue;
+                        if (ob._finishSnap && fb._finishSnap
+                            && Math.abs((ob._finishRank - fb._finishRank)) === 1
+                            && Math.abs(ob.s - fb.s) < 1e-9) tied = true;
+                    }
+                    var chipTxt = (stampMode === "tie" || tied) ? "TIE" : String(fb._finishRank);
+                    nlbSetBodyLabelText(chip, chipTxt);
+                    chip.position.set(fb.s * NLB_WORLD_PER_M,
+                        (nlbRadiusW(fb) * 2) + 0.30, nlbBodyLaneZ(fb.id));
+                    chip.visible = true;
+                }
+            }
+        }
+        // ── U15 — CENTRE MARKERS: the CoM metric the finish stamps are DEFINED on,
+        //   made visible so "exactly abreast" is a thing the eye can check rather
+        //   than a claim the narration makes.
+        if (eng.centre_cfg) {
+            var cids = (eng.centre_cfg.body_ids && eng.centre_cfg.body_ids.length)
+                ? eng.centre_cfg.body_ids : eng.order;
+            for (var ci3 = 0; ci3 < cids.length; ci3++) {
+                var cb = eng.bodies[cids[ci3]];
+                if (!cb || cb.ghost || !nlbBodyShown(eng, cb, eng.t_ms)) continue;
+                var tick = nlbRollObj("nlb_centre_" + cb.id, function () {
+                    var gg = new THREE.Group();
+                    var dot = new THREE.Mesh(new THREE.SphereGeometry(0.045, 12, 10),
+                        new THREE.MeshBasicMaterial({ color: hexToThreeColor(NLB_CENTRE_COLOR) }));
+                    gg.add(dot);
+                    var bar = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.34, 0.02),
+                        new THREE.MeshBasicMaterial({
+                            color: hexToThreeColor(NLB_CENTRE_COLOR), transparent: true, opacity: 0.75
+                        }));
+                    bar.position.y = -0.17;
+                    gg.add(bar);
+                    gg.userData = { elementType: "nlb_centre_marker" };
+                    return gg;
+                });
+                if (!tick) continue;
+                tick.position.set(cb.s * NLB_WORLD_PER_M, nlbRadiusW(cb), nlbBodyLaneZ(cb.id));
+                tick.visible = true;
+            }
+        }
+        // ── U11 — REVOLUTION MARKS + the circumference BRACKET, their OWN primitive.
+        //   Own mesh, own turn-count trigger, own cap. Never "checkpoints": that
+        //   machinery has a CLOSED capture enum, stamps the one formula surface,
+        //   carries an energy_active side effect and caps at NLB_CP_MAX = 3 — four
+        //   collisions with what a revolution mark is.
+        //   Mark n stands at s_n = s0 - n·2piR, so the marks and the bracket RESPACE
+        //   live under a radius drag with no extra path: the expression is read, not
+        //   remembered.
+        if (eng.marks_cfg) {
+            var mb = eng.bodies[eng.marks_cfg.body_id] || eng.bodies[eng.order[0]];
+            if (mb && nlbBodyShown(eng, mb, eng.t_ms)) {
+                var circ = 2 * Math.PI * nlbRadiusM(mb);
+                var s0m = (mb.s0 != null) ? mb.s0 : 0;
+                var dir = (mb.s <= s0m) ? -1 : 1;
+                var travelled = Math.abs(mb.s - s0m);
+                var turns = (circ > 0) ? Math.floor(travelled / circ) : 0;
+                var cap = (typeof eng.marks_cfg.max_marks === "number" && eng.marks_cfg.max_marks > 0)
+                    ? eng.marks_cfg.max_marks : NLB_MARK_MAX;
+                var nMarks = Math.min(turns + 1, cap);
+                for (var mi = 0; mi < nMarks; mi++) {
+                    var sM = s0m + dir * mi * circ;
+                    if (sM < -lenM || sM > lenM) continue;
+                    var mk = nlbRollObj("nlb_mark_" + mi, function () {
+                        var gg = new THREE.Group();
+                        var t2 = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.015, 0.30),
+                            new THREE.MeshBasicMaterial({ color: hexToThreeColor(NLB_MARK_COLOR) }));
+                        gg.add(t2);
+                        gg.userData = { elementType: "nlb_revolution_mark" };
+                        return gg;
+                    });
+                    if (!mk) continue;
+                    mk.position.set(sM * NLB_WORLD_PER_M, 0.012, 0);
+                    mk.visible = true;
+                    var mlab = nlbRollObj("nlb_mark_lbl_" + mi, function () {
+                        return pmCreateAutoLabel("0", NLB_MARK_COLOR, 0.22);
+                    });
+                    if (mlab) {
+                        nlbSetBodyLabelText(mlab, String(mi));
+                        mlab.position.set(sM * NLB_WORLD_PER_M, 0.20, 0.34);
+                        mlab.visible = true;
+                    }
+                }
+                if (eng.marks_cfg.show_bracket !== false && turns >= 1) {
+                    var sA = s0m, sB = s0m + dir * circ;
+                    var br = nlbRollLine("nlb_bracket", NLB_MARK_COLOR, 2);
+                    nlbRollSetLine(br, [
+                        nlbTrackPt(sA, 0.30, 0.36), nlbTrackPt(sA, 0.46, 0.36),
+                        nlbTrackPt(sB, 0.46, 0.36), nlbTrackPt(sB, 0.30, 0.36)
+                    ]);
+                    var brl = nlbRollObj("nlb_bracket_lbl", function () {
+                        return pmCreateAutoLabel("2πR", NLB_MARK_COLOR, 0.26);
+                    });
+                    if (brl) {
+                        // Rule 34c: real Unicode pi, and the VALUE beside it — the
+                        // number is the lesson (Rule 33d), and it re-reads live off
+                        // the radius so the label and the bracket can never disagree.
+                        var brTxt = eng.marks_cfg.bracket_label
+                            || ("2πR = " + nlbFx(circ, 2) + " m");
+                        nlbSetBodyLabelText(brl, brTxt);
+                        brl.position.set(((sA + sB) / 2) * NLB_WORLD_PER_M, 0.30, 0.36);
+                        brl.visible = true;
+                    }
+                }
+            }
+        }
+        // ── U2 — the CONTACT-POINT PICTURE ────────────────────────────────────
+        if (eng.contact_cfg) {
+            var cb2 = eng.bodies[eng.contact_cfg.body_id] || eng.bodies[eng.order[0]];
+            if (cb2 && nlbBodyShown(eng, cb2, eng.t_ms)) {
+                var R2m = nlbRadiusM(cb2);
+                var s02 = (cb2._dsp0 != null) ? cb2._dsp0 : ((cb2.s0 != null) ? cb2.s0 : 0);
+                var laneZ = nlbBodyLaneZ(cb2.id);
+                // alpha(s): the marker leaves the contact at the release point and
+                // its angle is a pure function of how far the body has rolled.
+                var alphaAt = function (s) { return -(s - s02) / R2m; };
+                var markerAt = function (s) {
+                    var al = alphaAt(s);
+                    return [s + R2m * Math.sin(al), R2m * (1 - Math.cos(al))];
+                };
+                if (eng.contact_cfg.cycloid_trace) {
+                    var pts = [], N2 = 160;
+                    for (var pi = 0; pi <= N2; pi++) {
+                        var sS = s02 + (cb2.s - s02) * (pi / N2);
+                        var mp = markerAt(sS);
+                        pts.push(nlbTrackPt(mp[0], mp[1], laneZ + 0.02));
+                    }
+                    nlbRollSetLine(nlbRollLine("nlb_cycloid_" + cb2.id, NLB_TRACE_COLOR, 2), pts);
+                }
+                if (eng.contact_cfg.rim_dot) {
+                    var rd = nlbRollObj("nlb_rimdot_" + cb2.id, function () {
+                        var m = new THREE.Mesh(new THREE.SphereGeometry(0.055, 12, 10),
+                            new THREE.MeshBasicMaterial({ color: hexToThreeColor(NLB_TRACE_COLOR) }));
+                        m.userData = { elementType: "nlb_rim_dot" };
+                        return m;
+                    });
+                    if (rd) {
+                        var mnow = markerAt(cb2.s);
+                        rd.position.set(mnow[0] * NLB_WORLD_PER_M, mnow[1] * NLB_WORLD_PER_M, laneZ + 0.03);
+                        rd.visible = true;
+                    }
+                }
+                // The SKID TRAIL exists only while the contact is genuinely sliding,
+                // which is the whole teaching point: no sliding, no mark on the road.
+                if (eng.contact_cfg.skid_trail) {
+                    var sliding = nlbContactSpeed(cb2) > NLB_STOP_EPS_V;
+                    if (sliding || cb2._skidFrom != null) {
+                        if (cb2._skidFrom == null) cb2._skidFrom = cb2.s;
+                        if (!sliding && cb2._skidTo == null) cb2._skidTo = cb2.s;
+                        var sEnd = sliding ? cb2.s : cb2._skidTo;
+                        nlbRollSetLine(nlbRollLine("nlb_skid_" + cb2.id, NLB_SKID_COLOR, 3), [
+                            nlbTrackPt(cb2._skidFrom, 0.012, laneZ), nlbTrackPt(sEnd, 0.012, laneZ)
+                        ]);
+                    }
+                }
+                // POINT-SPEED ARROWS — computed from the body's LIVE (v, omega)
+                // through the VELOCITY channel, never from an authored constant. An
+                // EXACTLY zero point speed is not routed through the arrow channel at
+                // all: it renders as a labelled dot plus its value, so a real zero is
+                // stated rather than floored into a stub that claims motion.
+                var pa = eng.contact_cfg.point_arrows || [];
+                for (var qi = 0; qi < pa.length; qi++) {
+                    var which = pa[qi];
+                    var wOm = nlbOmegaOf(cb2) * R2m;
+                    var pv = (which === "top") ? (cb2.v + wOm)
+                        : (which === "bottom") ? (cb2.v - wOm) : cb2.v;
+                    var hY = (which === "top") ? (2 * R2m) : (which === "bottom") ? 0 : R2m;
+                    var isZero = Math.abs(pv) < 1e-6;
+                    var pid = "nlb_pt_" + cb2.id + "_" + which;
+                    if (isZero) {
+                        var zm = nlbRollObj(pid + "_zero", function () {
+                            var m = new THREE.Mesh(new THREE.SphereGeometry(0.05, 12, 10),
+                                new THREE.MeshBasicMaterial({ color: hexToThreeColor(NLB_CENTRE_COLOR) }));
+                            m.userData = { elementType: "nlb_zero_marker" };
+                            return m;
+                        });
+                        if (zm) {
+                            zm.position.set(cb2.s * NLB_WORLD_PER_M, hY * NLB_WORLD_PER_M, laneZ + 0.05);
+                            zm.visible = true;
+                        }
+                    } else {
+                        var L = nlbVelArrowLen(pv);
+                        var ar = nlbRollLine(pid, NLB_TRACE_COLOR, 3);
+                        var sgn = (pv < 0) ? -1 : 1;
+                        var tipS = cb2.s + sgn * (L / NLB_WORLD_PER_M);
+                        nlbRollSetLine(ar, [
+                            nlbTrackPt(cb2.s, hY, laneZ + 0.05), nlbTrackPt(tipS, hY, laneZ + 0.05)
+                        ]);
+                    }
+                    var plb = nlbRollObj(pid + "_lbl", function () {
+                        return pmCreateAutoLabel("0.00 m/s", NLB_TRACE_COLOR, 0.24);
+                    });
+                    if (plb) {
+                        nlbSetBodyLabelText(plb, nlbFx(Math.abs(pv), 2) + " m/s");
+                        plb.position.set(cb2.s * NLB_WORLD_PER_M,
+                            hY * NLB_WORLD_PER_M + 0.20, laneZ + 0.06);
+                        plb.visible = true;
+                    }
+                }
+            }
+        }
+    }
+    // U10 — the whole-body visibility gate, in ONE pass. A pending body is absent
+    // from the frame: mesh, force arrows (their own draw path), label, trail/trace
+    // geometry and HUD readout rows. A HELD body is fully present.
+    //   This pass is also where every SEAM R element type is re-asserted over the
+    //   generic visible_elements matcher, for the same reason the apparatus pass on
+    //   state entry is authoritative: the matcher blanks any object whose token the
+    //   state does not happen to name, and a new apparatus type that is not
+    //   re-asserted here renders nothing at all (engine_bug_queue
+    //   field3d_generic_visible_elements_matcher_blanks_new_scenario_apparatus).
+    function nlbApplyActivationVisibility(eng) {
+        if (!eng) return;
+        var gated = false;
+        for (var i = 0; i < eng.order.length; i++) {
+            var b = eng.bodies[eng.order[i]];
+            if (b && (nlbActivateMs(b) > 0 || nlbRetireMs(eng, b) < Infinity)) { gated = true; break; }
+        }
+        if (!gated) return;                    // no activation authored: today's path
+        nlbEach(function (o, ud) {
+            if (!ud || !ud.bodyId) return;
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label"
+                && ud.elementType !== "nlb_arrow" && ud.elementType !== "nlb_arrow_label"
+                && ud.elementType !== "nlb_comp" && ud.elementType !== "nlb_comp_label"
+                && ud.elementType !== "nlb_right_angle") return;
+            var bb = eng.bodies[ud.bodyId];
+            if (!bb) return;
+            if (!nlbBodyShown(eng, bb, eng.t_ms)) o.visible = false;
+        });
+        // The HUD rows follow the body, or a retired phase leaves its readouts on
+        // screen making a claim about a body that is no longer there.
+        for (var j = 0; j < eng.order.length; j++) {
+            var b2 = eng.bodies[eng.order[j]];
+            if (!b2) continue;
+            var shown = nlbBodyShown(eng, b2, eng.t_ms);
+            var grp = document.getElementById("nlb_ro_grp_" + b2.id);
+            if (grp) {
+                var wantD = shown ? "" : "none";
+                if (grp.style.display !== wantD) grp.style.display = wantD;
+            }
+            if (!shown) { b2._skidFrom = null; b2._skidTo = null; }   // the trail clears at retirement
+        }
+    }
     function updateNewtonsLawsBodyFrame(dt) {
         var eng = window.PM_nlbEngine;
         if (!eng) return;                                  // build ran, no state seeded yet
@@ -45455,6 +46598,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var thetaSurf = eng.theta_deg;
 
         if (eng.t_ms == null) eng.t_ms = 0;
+        // SEAM R: the instant this frame STARTED. An angular segment anchors here,
+        // not at the post-increment time, so a branch that opens on the very first
+        // integrated frame anchors at exactly t = 0 and its closed form reproduces
+        // the analytic solution rather than one frame's worth of offset.
+        eng._tPrevMs = eng.t_ms;
         eng.t_ms += h * 1000;
         window.PM_nlbTimeMs = eng.t_ms;
         // SEAM K (spec note 9) — the deterministic loop restart, BEFORE the phase
@@ -45565,6 +46713,25 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var i = 0; i < eng.order.length; i++) {
                 var b = eng.bodies[eng.order[i]];
                 if (!b || b.ghost) continue;               // spec section 3: a ghost is NEVER integrated
+                // ── SEAM R (U10) — the ACTIVATION gate ────────────────────────
+                //   A body outside its live window is not integrated AT ALL: s and v
+                //   do not advance and nlbApplyRollingDisplay hides its mesh, arrows,
+                //   label, trail and HUD rows for the same instants. A HELD body
+                //   (visible_before_activation) falls through to the solve below with
+                //   its motion suppressed — "not integrated" means s and v do not
+                //   advance, it does NOT mean the forces are not solved, and skipping
+                //   the pass here would render b.f as a stale zero, which is not the
+                //   authored picture either. Both tests are pure functions of
+                //   state-local t, so a pin or a rewind reproduces them exactly.
+                if (!nlbBodyLive(eng, b, eng.t_ms) && !nlbBodyHeld(eng, b, eng.t_ms)) continue;
+                var nlbHeldNow = nlbBodyHeld(eng, b, eng.t_ms);
+                // ── SEAM R (U5) — a FINISHED body is done ─────────────────────
+                //   It halts AT the line with its readouts, chips and labels latched
+                //   at their crossing-instant values, and they are never re-derived
+                //   at rest: re-solving here would flip a latched fₖ to fₛ the moment
+                //   v hit zero (the Branch A bound-halt scar, in a new dress). This
+                //   is a FINISH, not a wall.
+                if (b._finished) { nlbSetBodyPosition(b.id, b.s); nlbWriteReadouts(nlb, b, !!b._finishStuck); continue; }
                 // A spring_action LATCH takes this same branch (nlbLatchedNow):
                 // a body held by a latch and a body anchored to the Earth are the
                 // same physics — force in, no acceleration, the holder supplying the
@@ -45627,14 +46794,103 @@ export const FIELD_3D_RENDERER_CODE = `
                     (b.s <= bd.lo + 1e-9 || b.s >= bd.hi - 1e-9);
                 var stuck = !boundPin && (Math.abs(b.v) < NLB_STOP_EPS_V) && (Math.abs(drive) <= maxStat);
                 var a, f;
-                if (stuck) {
+                // ── SEAM R (U1) — the ROLLING branch, and its PRIORITY ────────
+                //   Gated on the body's own "rolling" flag, so every pre-2026-08-03
+                //   body takes the identical two-branch path below and cannot move a
+                //   pixel. For a rolling body the branch order is:
+                //
+                //     rolling  >  static-stuck  >  kinetic
+                //
+                //   The rolling branch SUPERSEDES Branch A's kinetic path while the
+                //   contact holds, which is the whole physical point: a rolling
+                //   contact is not sliding, so f = -sign(v)*mu_k*N is simply the
+                //   wrong law there, and a rolling body would otherwise be dragged by
+                //   a kinetic friction that does not exist.
+                //
+                //   Derivation, along the body's own +s axis, contact one radius
+                //   BELOW the centre so a forward force at the contact turns the body
+                //   BACKWARD (this sign is the whole result):
+                //       m·a = drive + f          f·R = -I_cm·alpha,  alpha = a/R
+                //       I_cm = k·m·R²   =>   f = -k·m·a
+                //   =>  a = drive / (m·(1+k))    and    f = -k·m·a
+                //   which is a = g·sin(theta)/(1+k) and f_s = (k/(1+k))·m·g·sin(theta)
+                //   with drive = m·g·sin(theta). MASS AND RADIUS CANCEL — that is the
+                //   claim, computed rather than asserted.
+                //
+                //   ROLLING HOLDS iff the friction it demands is available:
+                //   |f| <= mu_s·N, which for a bare incline reduces exactly to
+                //   mu_s >= mu_min = (k/(1+k))·|tan theta| (see nlbMuMin, which the
+                //   mu_s slider's tick reads). mu_s gates WHETHER rolling holds and
+                //   NEVER enters the friction magnitude — f_s = k·m·a is
+                //   mu_s-independent, so raising mu_s above mu_min changes no number.
+                //   Below mu_min the contact SLIPS, in either direction, and the body
+                //   falls to the kinetic branch with an independent angular state.
+                var kRoll = nlbShapeK(b), rollHeld = false;
+                if (b.rolling && !b.rotation_locked && !nlbHeldNow) {
+                    var aRoll = drive / (b.m * (1 + kRoll));
+                    var fRoll = -kRoll * b.m * aRoll;
+                    // The static test at v ~ 0 is the ordinary one: a body at rest on
+                    // a slope too gentle to start it does not roll, it stays stuck.
+                    var canRoll = (Math.abs(fRoll) <= maxStat + 1e-12) && !boundPin;
+                    if (canRoll && !(stuck && Math.abs(b.v) < NLB_STOP_EPS_V && Math.abs(aRoll) < 1e-12)) {
+                        rollHeld = true;
+                        stuck = false;
+                        a = aRoll; f = fRoll;
+                    }
+                }
+                if (rollHeld) {
+                    // Rolling: the constraint owns omega, so v and R.omega can never
+                    // disagree and the contact speed is EXACTLY zero, not a residual.
+                    if (b._slipping) {
+                        // CAPTURE — the contact stopped sliding. Re-anchor the angular
+                        // segment at this instant so the pose is continuous through
+                        // the transition (a hand-back to the s-driven expression would
+                        // jump the marker by whatever the slip accumulated).
+                        b._slipping = false;
+                        nlbRollSeg(eng, b, nlbOmegaOf(b), a / nlbRadiusM(b));
+                    }
+                    if (!b._spinIndep) b.omega = b.v / nlbRadiusM(b);
+                } else if (stuck) {
                     a = 0; b.v = 0;
                     f = -drive;                            // static friction: reported, never integrated
                 } else {
-                    var vSign = (Math.abs(b.v) > NLB_STOP_EPS_V) ? nlbSgn(b.v) : nlbSgn(drive);
+                    // The kinetic branch. For a body that can roll, "kinetic" means
+                    // the contact is SLIDING, so the friction opposes the CONTACT
+                    // point's velocity (v - omega·R), not the centre's — which is what
+                    // makes a wheel launched with no spin get spun UP by a friction
+                    // that is simultaneously slowing it down.
+                    var vRef = b.v;
+                    if (b.rolling || b._spinIndep) vRef = (b.v || 0) - nlbOmegaOf(b) * nlbRadiusM(b);
+                    var vSign = (Math.abs(vRef) > NLB_STOP_EPS_V) ? nlbSgn(vRef) : nlbSgn(drive);
                     f = -vSign * b.mu_k * N;
                     a = (drive + f) / b.m;
+                    if (b.rolling && !b.rotation_locked) {
+                        // alpha = -f·R / I_cm = -f / (k·m·R). Opening a SLIP SEGMENT
+                        // re-anchors (t0, omega0, alpha) at this instant, and every
+                        // angular quantity from here is a closed form of (t - t0) —
+                        // never an accumulator, so a pin holds it and a rewind unwinds
+                        // it exactly (SEAM R header).
+                        var alphaSlip = -f / (kRoll * b.m * nlbRadiusM(b));
+                        if (!b._slipping) {
+                            b._slipping = true;
+                            b._spinIndep = true;
+                            nlbRollSeg(eng, b, nlbOmegaOf(b), alphaSlip);
+                        } else if (b._slip0 && Math.abs(b._slip0.alpha - alphaSlip) > 1e-9) {
+                            // A live control changed the segment's constants: re-anchor
+                            // rather than let the closed form drift from the physics.
+                            nlbRollSeg(eng, b, b.omega, alphaSlip);
+                        }
+                    }
                 }
+                if (b.rotation_locked) { b.omega = 0; b.theta_rad = 0; }
+                // ── SEAM R (U10) — the HELD body's motion suppression ─────────
+                //   Everything above this line has ALREADY run for a held body, so
+                //   its arrows and readouts carry the live statics values seam B just
+                //   solved. What is suppressed is the MOTION and only the motion:
+                //   s and v do not advance until the activation instant. This is the
+                //   same shape nlbLatchedNow uses for a spring latch, applied on the
+                //   bought instant instead of a spring window.
+                if (nlbHeldNow) { b.v = 0; a = 0; }
                 var v0 = b.v;
                 var v1 = v0 + a * hPhys;      // hPhys === h unless the slow window is open
                 // Kinetic friction must not jitter the body back and forth across
@@ -45705,14 +46961,22 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (nlbSandboxWrap()) {
                     var span = bd.hi - bd.lo;
                     if (span > 0) {
-                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; }
-                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; }
+                        // SEAM R (U12): the wrap re-seeds v ALONE today, which
+                        // desynchronises any body whose spin is independent of its
+                        // speed — a sandbox wheel launched with a v/omega mismatch
+                        // would restart each lap already captured, so the very
+                        // demonstration the sandbox exists for survives exactly one
+                        // lap. omega is therefore re-seeded to the SAME authored seed
+                        // in the SAME statement, and the angular segment re-anchors.
+                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b); }
+                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b); }
                     }
                     b.a = a; b.v = v1; b.s = s1;
                     b._boundArrestedSliding = false;
                     b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
                     b._stuck = stuck;
                     nlbSetBodyPosition(b.id, b.s);
+                    nlbRollSpin(eng, b);   // SEAM R — omega/theta, closed form of t
                     nlbWriteReadouts(nlb, b, stuck);
                     continue;
                 }
@@ -45733,11 +46997,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 } else {
                     b._boundArrestedSliding = false;
                 }
+                // ── SEAM R (U5) — the FINISH crossing, tested on the CoM track
+                //   coordinate and CROSSING-INTERPOLATED, so the latched values are
+                //   the ones AT the line and never one step past it. Run BEFORE the
+                //   writeback because it may pin s to the line itself.
+                var fin = nlbFinishCheck(eng, b, b.s, s1, v1, a, N, f, stuck);
+                if (fin) { s1 = fin.s; v1 = 0; a = 0; }
                 b.a = a; b.v = v1; b.s = s1;
                 b.N = N; b.f = f; b.T = 0; b.F_net = b.m * a;
                 b._stuck = stuck;          // SEAM C reads this so the friction ARROW's
                                            // fₛ/fₖ glyph can never disagree with the HUD row
                 nlbSetBodyPosition(b.id, b.s);
+                nlbRollSpin(eng, b);       // SEAM R — omega/theta, closed form of t
                 nlbWriteReadouts(nlb, b, stuck);
             }
             eng.v_string = 0; eng.a_string = 0;
@@ -45755,6 +47026,12 @@ export const FIELD_3D_RENDERER_CODE = `
             // authored launch conditions and the live theta.
             nlbRunCheckpoints(eng);
             nlbUpdateMarkers(eng);
+            // SEAM R — the race restart, AFTER the crossing detector that fills the
+            // finish record it reads, and the rolling apparatus/display pass. Both
+            // are presentation over already-stepped values: no physics, no clock of
+            // their own, nothing integrated (Rule 36).
+            nlbRunRaceRestart(eng);
+            nlbUpdateRolling(eng);
             nlbUpdateOffAxis(eng);          // SEAM N — d + the angle arc (pure presentation)
             // SEAM L - the display layer, immediately after its own input.
             // Presentation only: it reads the snapshot just published and writes

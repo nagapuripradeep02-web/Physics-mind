@@ -2804,6 +2804,44 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             phaseFound = true;   // a ramp IS a scripted reveal; skip the mode floor below
             candidates.push(pr.end_ms + nlbCushion);
         }
+        // ── SEAM R (rotmech 0c-2) — the TWO bought timed field classes ─────────
+        //   Both are scripted reveals on the state's own clock, so both must join
+        //   the max-reveal computation or the frozen pin defaults to a time that
+        //   PREDATES them and THE EYE mints a self-contradictory baseline —
+        //   field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_
+        //   predates_scripted_reveal, in a new dress.
+        //
+        //   (1) bodies[].activate_at_ms — the instant a body starts being
+        //       integrated (and, in a single_lane state, the instant the previous
+        //       body retires). Presence is resolved by typeof, never truthiness:
+        //       an authored 0 is a legal instant and, by definition, means the same
+        //       as absent (live from entry), so it contributes no candidate.
+        const nlbBodies = Array.isArray(nlb.bodies) ? nlb.bodies : [];
+        for (const bRaw of nlbBodies) {
+            const bd = asObj(bRaw);
+            if (!bd) continue;
+            const at = bd.activate_at_ms;
+            if (typeof at === 'number' && Number.isFinite(at) && at > 0) {
+                phaseFound = true;
+                candidates.push(at + nlbCushion);
+            }
+        }
+        //   (2) formula_lines[].at_ms — the per-line formula reveal. The LAST line
+        //       is the one that matters: it is the answer the derivation state
+        //       exists to produce, so the pin must land after it or the frozen frame
+        //       photographs a half-built formula and claims it is the lesson.
+        const nlbFml = Array.isArray(nlb.formula_lines) ? nlb.formula_lines : [];
+        let lastLineMs = -1;
+        for (const lnRaw of nlbFml) {
+            const ln = asObj(lnRaw);
+            if (!ln || typeof ln.text !== 'string' || ln.text.length === 0) continue;   // mirrors nlbRenderStamps' skip
+            const at = typeof ln.at_ms === 'number' && Number.isFinite(ln.at_ms) ? ln.at_ms : 0;
+            if (at > lastLineMs) lastLineMs = at;
+        }
+        if (lastLineMs > 0) {
+            phaseFound = true;
+            candidates.push(lastLineMs + nlbCushion);
+        }
         // push_off (docs/NLB_PUSH_OFF_SPEC.md) — the contact-then-release phase.
         // The TAUGHT beat is not the contact, it is the SEPARATION the contact
         // leaves behind: both applied forces go to 0 at release_at_ms and the
