@@ -2079,9 +2079,23 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (bscTr && typeof bscTr.at_ms === 'number') {
             candidates.push(asNum(bscTr.at_ms, 0) + asNum(bscTr.duration_ms, 2000) + 600);
         }
+        // E3b L-1 (2026-08-03): the LAYER SLIP. The key was registered here before
+        // the renderer read it (declared-deferred to this dispatch), with a flat
+        // +700 that pinned the frozen frame just past the SLIDE. That is now the
+        // wrong instant by construction: the slide is only the CAUSE, and the
+        // state's settled picture is the halves having come apart afterwards —
+        // Rule 32a says the effect follows the cause after a readable beat, and
+        // the engine holds the new registry for BS_SHIFT_HOLD_MS (1000) and then
+        // opens the cleave over BS_CLEAVE_MS (5000). Pinning at +700 would
+        // photograph a slipped-but-intact crystal under a caption about a crystal
+        // that has split — the self-contradictory baseline this whole block
+        // exists to prevent. The three constants below are BS_SHIFT_MS /
+        // BS_SHIFT_HOLD_MS / BS_CLEAVE_MS in field_3d_renderer.ts and the two
+        // files must stay equal (the same pairing BS_T_RAMP_MS already has).
         const bscSh = asObj(bscState.shift);
         if (bscSh && typeof bscSh.at_ms === 'number') {
-            candidates.push(asNum(bscSh.at_ms, 0) + asNum(bscSh.duration_ms, 2000) + 700);
+            candidates.push(asNum(bscSh.at_ms, 0) + asNum(bscSh.duration_ms, 2000)
+                + 1000 + 5000 + 600);
         }
         const bscLat = asObj(bscState.lattice);
         if (bscLat) {

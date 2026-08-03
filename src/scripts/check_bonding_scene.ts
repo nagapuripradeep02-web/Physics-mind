@@ -19,10 +19,13 @@
  * (and extends 10 with the mode/hud split and the row-O trend surface); E3a owns
  * 2, 3 and 7 (and extends 10 with the E3a mode/hud/cell split, and 11 with the
  * lattice OCCLUSION metric). 8/13/14 belonged to E3b (the lattice DYNAMICS half —
- * layer shift, electron sea, drift, melt, groups): section 14 is now the REAL
+ * layer shift, electron sea, drift, melt, groups): section 14 is the REAL
  * assertion set for E3b dispatch 2 (the ratified ion property table, the melt law
- * and row R groups), while 8 (layer_shift + like_contacts) and 13 (row Q drift)
- * stay declared SKIPs owned by dispatches 3 and 4 — never silently absent. E1c
+ * and row R groups) and section 8 is now the REAL assertion set for dispatch 3
+ * (the layer slip, its derived outcome and the D-7 like_contacts metric — every
+ * claim in it paired with the cation-only DISAGREEMENT case, because a gate that
+ * only checked "the ionic block reads 6" would pass a naive implementation).
+ * 13 (row Q drift) stays a declared SKIP owned by dispatch 4 — never silently absent. E1c
  * adds section 15 (the two authoring capabilities bond_polarity S4/S7 could not be
  * authored without, plus the bit-for-bit mgFrame regression half those three
  * shipped concepts ride).
@@ -150,7 +153,10 @@ const VARS = [
   "BS_COORD_PAIR_CACHE",
   // E3b T-2 / T-4 (the melt law + row R)
   "BS_MELT_WIDTH_K", "BS_MELT_SITE_RAMP", "BS_MELT_PHI", "BS_MELT_WANDER",
-  "BS_MELT_W", "BS_MELT_W_SPREAD", "BS_MAX_GROUPS"
+  "BS_MELT_W", "BS_MELT_W_SPREAD", "BS_MAX_GROUPS",
+  // E3b L-1 / L-2 (the layer slip + the D-7 contact metric)
+  "BS_SHIFT_PLANES", "BS_SHIFT_MS", "BS_SHIFT_HOLD_MS", "BS_CLEAVE_MS",
+  "BS_CLEAVE_NN", "BS_LIKE_CUT", "BS_LIKE_EPS"
 ];
 /** vars whose initialiser contains a top-level-invisible `;` (an IIFE). */
 const EXPR_VARS = ["BS_ION_OF", "BSC_LABEL_DIRS"];
@@ -189,7 +195,14 @@ const FNS = [
   // E3b T-1..T-4 (the property table, the melt law, row R). Same discipline: the
   // SHIPPED bodies are extracted and called, never transcribed into this file.
   "bscPairKeyFor", "bscGroupBlocks", "bscMeltFrac", "bscMeltHash", "bscSiteMelt",
-  "bscMeltWander", "bscSiteNnU", "bscMeltExtent"
+  "bscMeltWander", "bscSiteNnU", "bscMeltExtent",
+  // E3b L-1 / L-2. Section 8 calls these SHIPPED bodies — the whole value of the
+  // D-7 assertion is that it runs the metric the HUD prints, not a transcription
+  // of it that could quietly agree with a naive implementation.
+  "bscShiftCfg", "bscShiftAt", "bscShiftStepU", "bscShiftHalf", "bscShiftPos",
+  "bscNnOf", "bscLikeCountAt", "bscSeaScreens", "bscLikeContacts",
+  "bscLikeFocalAt", "bscLikeFocal", "bscCrossContacts", "bscShiftSolve",
+  "bscCleaveProg", "bscCleaveU", "bscShiftOffsetOf", "bscShiftExtent"
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -779,7 +792,307 @@ console.log("\n=== 7. LATTICE COORDINATION NUMBERS + THE GROWTH BEAT (E3a) ===")
 }
 
 console.log("\n=== 8. LAYER-SHIFT OUTCOME + THE like_contacts METRIC (D-7) ===");
-skip("flipping the charge pattern flips split <-> hold; metric is change-based", "E3 (lattice layer)");
+// E3b dispatch 3 (L-1 / L-2). This section was a declared SKIP through four
+// dispatches; it is now the real assertion set, and it is written against the
+// SHIPPED bodies (bscShiftSolve / bscLikeContacts / bscCleaveU are extracted and
+// called, never transcribed).
+//
+// WHY THE DISAGREEMENT CASE IS THE POINT. The naive metric — count same-sign
+// nearest neighbours — reads 0 on unshifted rock salt, which looks right, and a
+// gate that only asserted "the ionic block reads 6 after the slide" would pass
+// it. On a cation-only metal the same naive metric reads 8 before anything moves
+// and 6 after, so a naive instrument announces that slipping a metal REMOVES two
+// like-charge contacts. Every assertion below therefore comes in a PAIR: the
+// ionic case AND the cation-only case that separates the definition from its
+// naive lookalike.
+{
+  const P2U = E.bscLinkCfg({}).pm_per_unit as number;
+  // The two fixtures differ ONLY in cell / a_pm / species. The shift block is
+  // BYTE-IDENTICAL between them, which is the structural proof that neither
+  // concept authors its own outcome (D-2): same motion, same cue times, same
+  // offset, opposite result.
+  const SHIFT_BLOCK = { at_ms: 6000, duration_ms: 3000, offset_sites: 1, plane: "y" };
+  const IONIC_SHIFT_BS: any = {
+    placement: "lattice", mode: "layer_shift",
+    lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: 564.0 },
+    units: [{ id: "na", species: "Na+" }, { id: "cl", species: "Cl-" }],
+    shift: { ...SHIFT_BLOCK },
+    controls: [{ id: "shift" }], hud_lines: ["like_contacts"]
+  };
+  // a_pm here is FIXTURE GEOMETRY, not a shipped table value: BS_METALS and its
+  // ratification belong to dispatch 4, and nothing in this section asserts a
+  // metal datum. What is asserted is the CHARGE PATTERN — a lattice of cation
+  // cores with no anion sublattice, which is what a metal is.
+  const METAL_SHIFT_BS: any = {
+    placement: "lattice", mode: "layer_shift",
+    lattice: { cell: "bcc", n: [3, 3, 3], a_pm: 429.1 },
+    units: [{ id: "na", species: "Na+" }],
+    shift: { ...SHIFT_BLOCK },
+    controls: [{ id: "shift" }], hud_lines: ["like_contacts"]
+  };
+  const T_SLIDE_END = 9000;                      // at_ms + duration_ms
+  const T_HELD = T_SLIDE_END + (E.BS_SHIFT_HOLD_MS as number);          // 10000
+  const T_SETTLED = T_HELD + (E.BS_CLEAVE_MS as number) + 600;          // 15600
+
+  const sitesOf = (bs: any) => E.bscSiteList(bs, null) as any[];
+  const chargesOf = (S: any[]) => S.map((s) => s.q as number);
+  /** the frame pass's own sequence: solve once, then place every site. */
+  const slip = (bs: any, ms: number, drag: number | null = null) => {
+    const S = sitesOf(bs), n = S.length, Q = chargesOf(S);
+    const sVal = E.bscShiftAt(bs, ms, drag) as number;
+    const sol = E.bscShiftSolve(bs, S, n, Q);
+    const pos = S.map((si: any, i: number) =>
+      E.bscSiteAt(bs, si, i, ms, null, null,
+        E.bscShiftOffsetOf(bs, si, sol, ms, drag, sVal)) as number[]);
+    const Pref = E.bscShiftPos(bs, S, n, ms, null, 0) as number[][];
+    const Pnow = E.bscShiftPos(bs, S, n, ms, null, sVal) as number[][];
+    const cut = (E.BS_LIKE_CUT as number) * (E.bscNnOf(Pref, n) as number);
+    return {
+      S, n, Q, sVal, sol, pos,
+      like: E.bscLikeContacts(Pnow, Pref, Q, n) as number,
+      naive: E.bscLikeCountAt(Pnow, Q, n, cut) as number,
+      naiveRef: E.bscLikeCountAt(Pref, Q, n, cut) as number,
+      focal: E.bscLikeFocal(Pnow, Pref, Q, n, 0) as number,
+      gap: E.bscCleaveU(bs, sol, ms, drag) as number
+    };
+  };
+
+  // ── (a) THE SLIDE ITSELF: one half moves exactly one site, the other does not.
+  {
+    const a0 = slip(IONIC_SHIFT_BS, 0), a1 = slip(IONIC_SHIFT_BS, T_SLIDE_END);
+    const step = (564.0 * 0.5) / P2U;
+    let moved = 0, still = 0, worstMoved = 0, worstStill = 0;
+    for (let i = 0; i < a0.n; i++) {
+      const up = E.bscShiftHalf(a0.S[i], 1) as number;
+      const dx = a1.pos[i][0] - a0.pos[i][0];
+      if (up) { moved++; worstMoved = Math.max(worstMoved, Math.abs(dx - step)); }
+      else { still++; worstStill = Math.max(worstStill, Math.abs(dx)); }
+    }
+    ok("the plane splits the block into a moving half and a held half",
+      moved === 9 && still === 18, `${moved} move, ${still} hold, of ${a0.n}`);
+    ok("the moving half slides EXACTLY offset_sites * one grid step, on the derived axis",
+      worstMoved < 1e-12, `worst residual ${worstMoved.toExponential(2)} scene units`);
+    ok("the held half does not move by a float (P-1 would have moved neither)",
+      worstStill === 0, `worst |dx| ${worstStill}`);
+    ok("plane 'y' derives the slide onto x; plane 'x' derives it onto y",
+      (E.bscShiftCfg({ shift: { plane: "y" } }) as any).dAx === 0 &&
+      (E.bscShiftCfg({ shift: { plane: "x" } }) as any).dAx === 1 &&
+      (E.bscShiftCfg({ shift: { plane: "z" } }) as any).dAx === 0);
+    // D-1 / Rule 36: the rewind, on the whole pose including the cleave.
+    const r1 = JSON.stringify(slip(IONIC_SHIFT_BS, T_SETTLED).pos);
+    slip(IONIC_SHIFT_BS, 90000);
+    ok("REWIND: t=15600 -> 90000 -> 15600 reproduces the slipped pose byte-for-byte",
+      r1 === JSON.stringify(slip(IONIC_SHIFT_BS, T_SETTLED).pos));
+  }
+
+  // ── (b) THE METRIC ON ROCK SALT: 0 -> 6, derived, never tuned.
+  {
+    const seq = [0, 3000, 6000, 7500, T_SLIDE_END, T_SETTLED]
+      .map((m) => ({ m, r: slip(IONIC_SHIFT_BS, m) }));
+    const at0 = seq[0].r, atEnd = seq[seq.length - 1].r;
+    ok("unshifted rock salt has ZERO like-charge nearest neighbours (naive agrees here)",
+      at0.like === 0 && at0.naiveRef === 0, `like=${at0.like} naive_ref=${at0.naiveRef}`);
+    ok("a completed one-site slide CREATES 6 unscreened like-charge contacts",
+      atEnd.like === 6,
+      seq.map((s) => `${s.m}ms:${s.r.like}`).join("  "));
+    ok("the count is monotone through the slide (0 while the unlike pairs still face)",
+      seq.every((s, i) => i === 0 || s.r.like >= seq[i - 1].r.like));
+    // block-size independence of the OUTCOME (the count itself is a count of the
+    // drawn block, exactly as 'links' is): a 5-step block creates 20 of its 25
+    // cross-plane contacts, the same physical situation at a bigger crop.
+    const big = slip({ ...IONIC_SHIFT_BS, lattice: { cell: "rock_salt", n: [5, 5, 5], a_pm: 564.0 } }, T_SETTLED);
+    ok("a 5-step block creates 20 like contacts of its 20 surviving interface ones",
+      big.like === 20 && big.sol.cross === 20 && big.sol.cross0 === 25 &&
+      big.sol.frac === 1, `made=${big.like} cross ${big.sol.cross0} -> ${big.sol.cross} frac=${big.sol.frac}`);
+    ok("the 3-step block reads the SAME fraction (1.00) off 6 of 6 — crop-independent",
+      atEnd.sol.made === 6 && atEnd.sol.cross === 6 && atEnd.sol.cross0 === 9 &&
+      atEnd.sol.frac === 1,
+      `made=${atEnd.sol.made} cross ${atEnd.sol.cross0} -> ${atEnd.sol.cross} frac=${atEnd.sol.frac}`);
+    // the doubly-charged pairs the S10 picker offers must derive identically
+    for (const [cat, ani, a] of [["Mg2+", "O2-", 421.2], ["Ca2+", "O2-", 481.1],
+      ["K+", "Cl-", 629.3], ["Li+", "F-", 402.6]] as [string, string, number][]) {
+      const r = slip({ ...IONIC_SHIFT_BS, units: [{ species: cat }, { species: ani }],
+        lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: a } }, T_SETTLED);
+      ok(`${cat}/${ani} (a=${a} pm) derives the same 6 — charge MAGNITUDE is not the criterion`,
+        r.like === 6, `like=${r.like}`);
+    }
+  }
+
+  // ── (c) THE DISAGREEMENT CASE. This is the assertion the dispatch calls the
+  //    most important thing in it: on a cation-only lattice the NAIVE count is
+  //    non-zero before anything moves, while the shipped metric reads 0.
+  {
+    const m0 = slip(METAL_SHIFT_BS, 0), mE = slip(METAL_SHIFT_BS, T_SETTLED);
+    ok("DISAGREEMENT: the cation-only lattice's NAIVE count is non-zero PRE-SHIFT",
+      m0.naiveRef === 8, `naive_ref=${m0.naiveRef} (the 9-site bcc block: 8 core-corner contacts)`);
+    ok("...while the SHIPPED metric reads 0 pre-shift", m0.like === 0, `like=${m0.like}`);
+    ok("...and still 0 after the full slide, where the naive count has CHANGED",
+      mE.like === 0 && mE.naive !== mE.naiveRef,
+      `like=${mE.like}  naive ${mE.naiveRef} -> ${mE.naive}`);
+    ok("NEGATIVE CONTROL: a screening-BLIND delta would print a non-zero number here",
+      mE.naive - mE.naiveRef !== 0,
+      `a naive delta implementation would print ${mE.naive - mE.naiveRef}`);
+    // and at a bigger crop, where the naive numbers are bigger still
+    const m5 = slip({ ...METAL_SHIFT_BS, lattice: { cell: "bcc", n: [5, 5, 5], a_pm: 429.1 } }, T_SETTLED);
+    ok("...at a 5-step metal block too (naive 64 -> 56, shipped metric 0)",
+      m5.like === 0 && m5.naiveRef === 64 && m5.naive === 56,
+      `naive ${m5.naiveRef} -> ${m5.naive}, like=${m5.like}`);
+    // the screening predicate itself, on charge patterns rather than on scenes
+    ok("bscSeaScreens: all-one-sign screens, mixed sign does not, all-neutral does not",
+      E.bscSeaScreens([1, 1, 1], 3) === true &&
+      E.bscSeaScreens([-1, -1], 2) === true &&
+      E.bscSeaScreens([1, -1, 1, -1], 4) === false &&
+      E.bscSeaScreens([0, 0, 0], 3) === false);
+    ok("the sea is DERIVED from the charges — no mode string, no sea:{} flag consulted",
+      !/\bsea\b/.test(grabFn("bscSeaScreens")) &&
+      !/mode/.test(grabFn("bscLikeContacts") + grabFn("bscShiftSolve")));
+  }
+
+  // ── (d) THE DERIVED OUTCOME: the ionic block comes apart, the metal does not,
+  //    and the two JSONs differ in no key that says so.
+  {
+    const iE = slip(IONIC_SHIFT_BS, T_SETTLED), mE = slip(METAL_SHIFT_BS, T_SETTLED);
+    ok("the two fixtures author the IDENTICAL shift block (nothing declares the outcome)",
+      JSON.stringify(IONIC_SHIFT_BS.shift) === JSON.stringify(METAL_SHIFT_BS.shift) &&
+      JSON.stringify(IONIC_SHIFT_BS.shift) === JSON.stringify(SHIFT_BLOCK));
+    ok("SPLIT: the ionic halves end up apart, by a gap derived from the contacts",
+      iE.gap > 0 && Math.abs(iE.gap - (E.BS_CLEAVE_NN as number) * iE.sol.nn * iE.sol.frac) < 1e-12,
+      `gap=${iE.gap.toFixed(4)} scene units (${(iE.gap * P2U).toFixed(0)} pm)`);
+    ok("HOLD: the metal slides the same distance and never opens, at ANY t",
+      [0, 6000, T_SLIDE_END, T_HELD, T_SETTLED, 90000]
+        .every((m) => slip(METAL_SHIFT_BS, m).gap === 0) && mE.sol.frac === 0,
+      `frac=${mE.sol.frac}`);
+    // Rule 32a: the CAUSE finishes and is HELD before the effect starts.
+    ok("32a: at the instant the slide completes the halves have NOT yet opened",
+      slip(IONIC_SHIFT_BS, T_SLIDE_END).gap === 0 &&
+      slip(IONIC_SHIFT_BS, T_HELD).gap === 0 &&
+      slip(IONIC_SHIFT_BS, T_HELD + 1200).gap > 0,
+      `hold window ${T_SLIDE_END}..${T_HELD} ms`);
+    ok("...and the slide itself moved BEFORE that (the cause is visible first)",
+      JSON.stringify(slip(IONIC_SHIFT_BS, 6000).pos) !==
+      JSON.stringify(slip(IONIC_SHIFT_BS, 7800).pos));
+    // The two halves open symmetrically ABOUT THE PLANE — each moves the same
+    // distance from it — so the block's bounding box stays centred and the
+    // camera fit (which measures a half-extent about the origin) stays a
+    // symmetric solve. Its MASS centroid does move, and that is not a defect: a
+    // 3-step block is split 9 sites against 18, and moving the smaller half
+    // further to hold the centroid still would open one face of the crystal
+    // twice as far as the other for no physical reason.
+    {
+      const s1 = slip(IONIC_SHIFT_BS, T_SETTLED);
+      const ys = s1.pos.map((p) => p[1]);
+      ok("the cleave opens symmetrically about the plane (the fit stays centred)",
+        Math.abs(Math.max(...ys) + Math.min(...ys)) < 1e-12,
+        `y span ${Math.min(...ys).toFixed(4)} .. ${Math.max(...ys).toFixed(4)}`);
+    }
+    ok("the camera fit carries the slide and half the gap (config-only, no clock)",
+      (E.bscShiftExtent(IONIC_SHIFT_BS, sitesOf(IONIC_SHIFT_BS)) as number) > 0 &&
+      (E.bscShiftExtent(METAL_SHIFT_BS, sitesOf(METAL_SHIFT_BS)) as number) ===
+        Math.abs(1) * (E.bscShiftStepU(METAL_SHIFT_BS, sitesOf(METAL_SHIFT_BS)[0]) as number),
+      `ionic ${(E.bscShiftExtent(IONIC_SHIFT_BS, sitesOf(IONIC_SHIFT_BS)) as number).toFixed(3)}  ` +
+      `metal ${(E.bscShiftExtent(METAL_SHIFT_BS, sitesOf(METAL_SHIFT_BS)) as number).toFixed(3)}`);
+  }
+
+  // ── (e) THE EXPLORE SANDBOX: the slider drives the same derived outcome, with
+  //    no script anywhere, and seizes the quantity from the script when dragged.
+  {
+    const noScript = { ...IONIC_SHIFT_BS, shift: undefined, mode: "explore" };
+    ok("a dragged shift on a state that scripts NOTHING still splits the crystal",
+      slip(noScript, 0, 1.0).like === 6 && slip(noScript, 0, 1.0).gap > 0 &&
+      slip(noScript, 0, 0).like === 0 && slip(noScript, 0, 0).gap === 0,
+      `drag 1.00 -> like ${slip(noScript, 0, 1.0).like}, drag 0 -> like ${slip(noScript, 0, 0).like}`);
+    ok("...and the same drag on the metal sandbox still holds it together",
+      slip({ ...METAL_SHIFT_BS, shift: undefined, mode: "explore" }, 0, 1.0).gap === 0);
+    ok("a trusted drag SEIZES the quantity — the script never writes it again",
+      [0, 6000, T_SLIDE_END, T_SETTLED].every((m) =>
+        (E.bscShiftAt(IONIC_SHIFT_BS, m, 0.35) as number) === 0.35));
+    ok("the drag's effect follows its cause continuously (no jump at the knee)",
+      (E.bscCleaveProg(IONIC_SHIFT_BS, 0, 0.5) as number) === 0 &&
+      (E.bscCleaveProg(IONIC_SHIFT_BS, 0, 1.0) as number) === 1 &&
+      [0.55, 0.65, 0.75, 0.85, 0.95].every((u, i, a) => i === 0 ||
+        (E.bscCleaveProg(IONIC_SHIFT_BS, 0, u) as number) >
+        (E.bscCleaveProg(IONIC_SHIFT_BS, 0, a[i - 1]) as number)));
+  }
+
+  // ── (f) NEGATIVE CONTROL FOR THE WHOLE MECHANISM: a scene that authors no
+  //    shift and touches no shift slider is untouched by every line of it.
+  {
+    const NO_SHIFT: any = {
+      placement: "lattice", mode: "coordination",
+      lattice: { cell: "rock_salt", n: [3, 3, 3], a_pm: 564.0 },
+      units: [{ species: "Na+" }, { species: "Cl-" }]
+    };
+    const S = sitesOf(NO_SHIFT);
+    const withArg = S.map((si: any, i: number) =>
+      E.bscSiteAt(NO_SHIFT, si, i, 4200, null, null, null) as number[]);
+    const without = S.map((si: any, i: number) =>
+      E.bscSiteAt(NO_SHIFT, si, i, 4200, null, null) as number[]);
+    ok("bscSiteAt with no shift argument is byte-identical to the pre-L1 chain",
+      JSON.stringify(withArg) === JSON.stringify(without));
+    ok("bscShiftExtent is exactly 0 for a scene with no authored shift and no shift control",
+      (E.bscShiftExtent(NO_SHIFT, S) as number) === 0);
+    // ...but NOT zero when the teacher can reach the slip anyway. FOUND IN
+    // FRAMES: an explore sandbox exposing the shift row authors no shift block,
+    // so the fit framed the packed block and a drag to 1.00 pushed the cleaved
+    // half off the edge. The slider's full travel is one site by definition, so
+    // the reachable pose is a config fact the fit can carry.
+    {
+      const REACHABLE = { ...NO_SHIFT, mode: "explore", controls: [{ id: "shift" }] };
+      const eR = E.bscShiftExtent(REACHABLE, sitesOf(REACHABLE)) as number;
+      ok("...but it DOES cover a slip an exposed shift slider can reach with no script",
+        eR > 0 && Math.abs(eR - (E.bscShiftExtent(IONIC_SHIFT_BS, sitesOf(IONIC_SHIFT_BS)) as number)) < 1e-9,
+        `reachable ${eR.toFixed(3)} == authored ${(E.bscShiftExtent(IONIC_SHIFT_BS, sitesOf(IONIC_SHIFT_BS)) as number).toFixed(3)}`);
+      const METAL_REACH = { ...METAL_SHIFT_BS, mode: "explore", shift: undefined,
+        controls: [{ id: "shift" }] };
+      ok("...and covers only the SLIDE on a metal sandbox, which never opens a gap",
+        Math.abs((E.bscShiftExtent(METAL_REACH, sitesOf(METAL_REACH)) as number) -
+          (E.bscShiftStepU(METAL_REACH, sitesOf(METAL_REACH)[0]) as number)) < 1e-12);
+    }
+    ok("bscShiftAt is exactly 0 with no cue and no drag",
+      (E.bscShiftAt(NO_SHIFT, 99999, null) as number) === 0);
+  }
+
+  // ── (g) THE READOUT + THE FROZEN PIN.
+  {
+    const upd8 = grabFn("updateBondingSceneFrame");
+    ok("the HUD prints the D-7 metric in the fixed format 'like contacts: <n>'",
+      upd8.includes('"like contacts: " +') &&
+      /likeNow == null\) \? "\\u2014" : likeNow/.test(upd8) &&
+      !/like contacts: *[0-9]/.test(upd8));
+    ok("...and nothing else in the frame path recomputes it (D-3, one instrument)",
+      (upd8.match(/bscLikeContacts\(/g) || []).length === 1);
+    ok("like_contacts is declared IMPLEMENTED by E3b, not left in the deferred set",
+      (E.BS_HUD_LINES_E3B as string[]).indexOf("like_contacts") >= 0);
+    // deriveStateMeta must pin PAST the settled picture — the cleave, not the
+    // slide. The three constants live in the renderer and are read here off the
+    // extracted vars, so a change to either file that breaks the pairing fails.
+    const pinBlock = META_SRC.slice(META_SRC.indexOf("const bscSh = asObj(bscState.shift);"),
+      META_SRC.indexOf("const bscLat = asObj(bscState.lattice);"));
+    const nums = [...pinBlock.matchAll(/\+\s*(\d+)/g)].map((m) => Number(m[1]));
+    ok("deriveStateMeta pins the shift cue past the CLEAVE, not past the slide",
+      nums.indexOf(E.BS_SHIFT_HOLD_MS as number) >= 0 &&
+      nums.indexOf(E.BS_CLEAVE_MS as number) >= 0 &&
+      pinBlock.includes("asNum(bscSh.duration_ms, " + E.BS_SHIFT_MS + ")"),
+      `pin offsets [${nums.join(", ")}] vs hold ${E.BS_SHIFT_HOLD_MS} + cleave ${E.BS_CLEAVE_MS}`);
+    const pinAt = 6000 + 3000 + (E.BS_SHIFT_HOLD_MS as number) + (E.BS_CLEAVE_MS as number) + 600;
+    ok("...so the pinned frame photographs a SPLIT crystal, not a slipped-intact one",
+      slip(IONIC_SHIFT_BS, pinAt).gap > 0 && slip(IONIC_SHIFT_BS, pinAt).like === 6,
+      `pin at ${pinAt} ms: gap ${(slip(IONIC_SHIFT_BS, pinAt).gap * P2U).toFixed(0)} pm, like ${slip(IONIC_SHIFT_BS, pinAt).like}`);
+  }
+
+  // ── (h) THE SPEC DISCREPANCY, RECORDED RATHER THAN SMOOTHED OVER. Phase-0 D-7
+  //    describes the readout two ways — "contacts created by the shift" and "the
+  //    count for the focal interface ion" — and they are different numbers. The
+  //    HUD prints the block-wide count (6, which is also the Phase-0 expectation
+  //    "0 -> 6"); the focal ion at that interface gains exactly 1. Both are
+  //    published; neither was tuned to match the other.
+  {
+    const iE = slip(IONIC_SHIFT_BS, T_SETTLED);
+    ok("block-wide 6 and focal-ion 1 are BOTH derived and both exposed",
+      iE.like === 6 && iE.focal === 1,
+      `block-wide ${iE.like}, focal ion ${iE.focal} — the HUD prints the block-wide count`);
+  }
+}
 
 console.log("\n=== 9. JIGGLE AMPLITUDE vs TEMPERATURE (E2) ===");
 {
@@ -867,11 +1180,20 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
   // E3b dispatch 2 (T-2) implements ONE of the four deferred DYNAMICS modes; the
   // other three stay declared-deferred to dispatches 3 and 4, never silently
   // absent — the same anti-decorative-string discipline as before.
-  ok("E3b owns the melt half (mode melt is IMPLEMENTED, not deferred)",
-    sameSet(E.BS_MODES_E3B, ["melt"]) &&
-    E.BS_MODES_IMPL.indexOf("melt") >= 0 && E.BS_MODES_DEFERRED.indexOf("melt") < 0);
-  ok("the remaining DYNAMICS modes stay deferred (dispatches 3 and 4), untouched",
-    sameSet(E.BS_MODES_DEFERRED, ["layer_shift", "electron_sea", "drift"]));
+  // E3b dispatch 3 (L-1) implements the SECOND of the four deferred DYNAMICS
+  // modes; the remaining two stay declared-deferred to dispatch 4.
+  ok("E3b owns melt + layer_shift (both IMPLEMENTED, neither deferred)",
+    sameSet(E.BS_MODES_E3B, ["melt", "layer_shift"]) &&
+    ["melt", "layer_shift"].every((m) =>
+      E.BS_MODES_IMPL.indexOf(m) >= 0 && E.BS_MODES_DEFERRED.indexOf(m) < 0));
+  ok("the remaining DYNAMICS modes stay deferred (dispatch 4), untouched",
+    sameSet(E.BS_MODES_DEFERRED, ["electron_sea", "drift"]));
+  ok("layer_shift carries its own solved camera (D-4 / the E4 no-foreshorten rule)",
+    E.BS_CAMERAS.layer_shift != null && E.BS_CAMERAS.layer_shift.az === 90 &&
+    E.BS_CAMERAS.layer_shift.fit === true,
+    JSON.stringify(E.BS_CAMERAS.layer_shift));
+  ok("shift.plane is the closed enum x|y|z (the slide direction is DERIVED)",
+    sameSet(E.BS_SHIFT_PLANES, ["x", "y", "z"]));
   ok("lattice.cell is the closed enum rock_salt|fcc|bcc|hcp",
     sameSet(E.BS_CELLS, ["rock_salt", "fcc", "bcc", "hcp"]));
   ok("controls enum matches the frozen contract (13 ids)", sameSet(E.BS_CONTROL_IDS, DOC_CONTROLS));
@@ -973,10 +1295,11 @@ console.log("\n=== 10. CLOSED-ENUM COVERAGE (no decorative strings) ===");
     // REGISTRATION was deleted from deriveStateMeta rather than a ramp invented to
     // justify it. They are therefore no longer registered and no longer deferred —
     // the sweep below proves that by finding them in neither list.
-    const CUE_DEFERRED: Record<string, string> = {
-      "shift.at_ms": "E3b (the lattice DYNAMICS half: layer_shift)",
-      "shift.duration_ms": "E3b (the lattice DYNAMICS half: layer_shift)"
-    };
+    // E3b L-1 EMPTIES this list: shift.at_ms / shift.duration_ms were its only
+    // two entries and the frame path now reads both (bscShiftCfg / bscShiftAt).
+    // The anti-rot half below is what forced the deletion — a declared-deferred
+    // key that has been implemented FAILS until it leaves the list.
+    const CUE_DEFERRED: Record<string, string> = {};
     ok("the unowned 'assemble' pin candidates are GONE from deriveStateMeta (E1c-A)",
       !registered.has("assemble_at_ms") && !registered.has("assemble_duration_ms"),
       [...registered.keys()].join(" "));
@@ -4485,13 +4808,15 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       ["species", "PM_bscSpeciesDragged"], ["angle", "PM_bscAngleDragged"],
       ["temperature", "PM_bscTempDragged"], ["count", "PM_bscCountDragged"],
       ["separation", "PM_bscSepDragged"], ["spin", "PM_bscSpinDragged"],
-      ["ion_pair", "PM_bscIonPairDragged"]
+      ["ion_pair", "PM_bscIonPairDragged"],
+      // E3b L-1: the third quantity a script and a slider share on this surface.
+      ["shift", "PM_bscShiftDragged"]
     ];
     for (const [id, flag] of DRIVEN) {
       ok(`the ${id} row tracks its scripted value until a trusted drag seizes it`,
         new RegExp(`bscHasControl\\(ctrls, "${id}"\\) && !window\\.${flag}`).test(updSrc));
     }
-    const NO_DRIVER = ["shift", "field", "valence", "metal"];
+    const NO_DRIVER = ["field", "valence", "metal"];
     for (const id of NO_DRIVER) {
       ok(`the ${id} row has NO scripted driver to desync from (E3b, declared)`,
         !new RegExp(`bs\\.${id}\\b`).test(updSrc) &&
@@ -5206,8 +5531,11 @@ console.log("\n=== 32. E3b S-8 LAYER PARITY (a mechanism live on one layer is li
       JSON.stringify(preFix[0]) === JSON.stringify(preFix[1]) &&
       preFix[0].every((v: number) => v === 0), JSON.stringify(preFix[0]));
     // and the SHIPPED frame pass really routes through it.
+    // (E3b L-1 added the seventh argument, the per-site slip displacement — the
+    // shape of the call is asserted, not its exact former arity, so the next
+    // mechanism to join the chain does not have to edit this line.)
     ok("the shipped site pass calls bscSiteAt, and the spin is still applied after it",
-      /var sAt = bscSiteAt\(bs, SI, i, ms, sepDragV, tempDragV\);/.test(updSrc) &&
+      /var sAt = bscSiteAt\(bs, SI, i, ms, sepDragV, tempDragV(, [^)]*)?\);/.test(updSrc) &&
       /sitePos\.push\(\(spin !== 0\) \? bscSpinRot\(sAt, spinAx, spin\) : sAt\);/.test(updSrc));
   }
 
@@ -5630,6 +5958,6 @@ console.log("\n=== 32. E3b S-8 LAYER PARITY (a mechanism live on one layer is li
 }
 
 console.log(failures === 0
-  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity, T-1..T-4 property table + melt + groups) sections pass (8 and 13 are declared E3b stubs, owned by dispatches 3 and 4).\n"
+  ? "\n✅ check:bonding-scene — all E1 + E2 + E2b + E2c-g + E3a + E1c + E5 + E3/E4 + E3b(S-1..S-8 layer parity, T-1..T-4 property table + melt + groups, L-1/L-2 layer slip + the D-7 like_contacts metric) sections pass (13 is the last declared E3b stub, owned by dispatch 4).\n"
   : `\n❌ check:bonding-scene — ${failures} failure(s).\n`);
 process.exit(failures === 0 ? 0 : 1);

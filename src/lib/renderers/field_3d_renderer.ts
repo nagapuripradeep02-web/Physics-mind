@@ -51114,9 +51114,27 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // ONE label sprite per group, sized to the largest block.
     //                  // Budget BS_MAX_GROUPS; the site pool is shared.
     //                  // A grouped state need author NO scene-level units.
-    //       sea / ions / shift,                    // PARSED + PASSED THROUGH by
+    //       shift: { at_ms, duration_ms, offset_sites, plane },  // E3b L-1
+    //                  // ONE HALF of the lattice slides offset_sites lattice
+    //                  // positions over duration_ms from at_ms. plane is the
+    //                  // CLOSED enum x|y|z naming the split plane's NORMAL axis
+    //                  // (default y, the horizontal mid-plane); the slide
+    //                  // direction is DERIVED as the first axis that is not the
+    //                  // normal, so nothing authors a vector that could point out
+    //                  // of its own plane. The half with a positive coordinate
+    //                  // along the normal is the one that moves. Closed-form
+    //                  // mgRamp of state-local t (D-1); the shift slider shares
+    //                  // the quantity, opens at 0 and tracks the script until a
+    //                  // trusted drag seizes it. offset_sites is measured in the
+    //                  // cell's OWN grid step (a/2 for the cubic cells), so 1.0 is
+    //                  // one full site whatever a_pm is.
+    //                  // THE OUTCOME IS DERIVED (D-2), never authored: the halves
+    //                  // separate only in so far as the slide has put UNSCREENED
+    //                  // like charges face to face. See bscLikeContacts — an ionic
+    //                  // lattice cleaves, a metal holds, and neither JSON says so.
+    //       sea / ions,                            // PARSED + PASSED THROUGH by
     //                                             // E1/E2/E3a, owned by E3b
-    //                                             // dispatches 3 and 4
+    //                                             // dispatch 4
     //       // E3b T-2: there is NO melt key and there never will be. Melting is
     //       // DERIVED (D-2) from thermal.T_K against the pair's own mp_K:
     //       //   f_melt = clamp((T_K - mp_K) / 25, 0, 1)
@@ -51185,6 +51203,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // pair (coordination = 6 : 6) on a two-sublattice cell
     //                  // and a single count on a one-sublattice cell.
     //                  // 'valence' names BOTH participants of a site scene.
+    //                  // E3b L-2: 'like_contacts' prints like contacts: 6 — the
+    //                  // count of like-charge nearest-neighbour contacts the
+    //                  // slide has CREATED and left UNSCREENED. A delta against
+    //                  // the unshifted reference lattice at the same instant, so
+    //                  // a cation-only metal (whose every contact is like-charge
+    //                  // before anything moves) reads 0 and not 8.
     //                  // E3b T-3: 'melting_point' prints m.p. = 1074 K and
     //                  // 'lattice_enthalpy' prints ΔH = 788 kJ·mol⁻¹, both
     //                  // engine-printed from BS_ION_PAIRS for the LIVE pair (so
@@ -51708,8 +51732,15 @@ export const FIELD_3D_RENDERER_CODE = `
     // a mode. What 'melt' names is the state's ARCHETYPE and its solved camera —
     // a melting block needs room for the ions to leave their sites, which a
     // coordination close-up does not have.
-    var BS_MODES_E3B = ["melt"];
-    var BS_MODES_DEFERRED = ["layer_shift", "electron_sea", "drift"];
+    // E3b L-1 implements a SECOND of the four, on the identical discipline: the
+    // slip law and its outcome are not gated on the mode string either (see
+    // bscShiftAt / bscLikeContacts), so an explore sandbox whose teacher drags the
+    // shift slider shatters a salt crystal and does not shatter a metal without
+    // authoring a mode. What 'layer_shift' names is the state's ARCHETYPE and its
+    // solved camera — the slip direction and the opening direction both have to
+    // sit in the screen plane, which a coordination close-up does not do.
+    var BS_MODES_E3B = ["melt", "layer_shift"];
+    var BS_MODES_DEFERRED = ["electron_sea", "drift"];
     var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A)
         .concat(BS_MODES_E3B);
     var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
@@ -51733,7 +51764,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // the LIVE pair (so the explore ion_pair picker changes them) and never
     // hand-typed into any JSON. Under row R they print once per group, prefixed by
     // the group label, in the authored groups[] order.
-    var BS_HUD_LINES_E3B = ["separation_pm", "melting_point", "lattice_enthalpy"];
+    // E3b L-2 adds the D-7 metric. It is an INSTRUMENT over the drawn block, in
+    // the same status as 'links' (which has always counted the links actually on
+    // screen), not a constant of the crystal.
+    var BS_HUD_LINES_E3B = ["separation_pm", "melting_point", "lattice_enthalpy",
+        "like_contacts"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
     // ── E3a (lattice PLACEMENT layer) constants ──────────────────────────────
@@ -51786,6 +51821,38 @@ export const FIELD_3D_RENDERER_CODE = `
     // pulsing in unison.
     var BS_MELT_W = [0.83, 0.61, 0.97];
     var BS_MELT_W_SPREAD = 0.37;
+    // ── E3b L-1 / L-2: THE LAYER SLIP AND THE D-7 CONTACT METRIC ─────────────
+    //   plane names the split plane's NORMAL AXIS and is a CLOSED enum. The slide
+    //   DIRECTION is derived (the first axis that is not the normal), so a config
+    //   cannot author a slide that points out of its own plane — the one way this
+    //   mechanism could be authored into nonsense.
+    var BS_SHIFT_PLANES = ["x", "y", "z"];
+    // The default duration_ms. It is 2000 because deriveStateMeta already assumes
+    // 2000 when a state authors shift.at_ms with no duration, and the two files
+    // must agree or the frozen pin lands mid-slide (the E2b/BS_T_RAMP_MS lesson,
+    // same trap, second occurrence).
+    var BS_SHIFT_MS = 2000;
+    // Rule 32a, and the skeleton's own choreography: the slide is the CAUSE and
+    // the halves coming apart is the EFFECT, so the cleave does not begin until
+    // the slide has finished AND been held long enough to read. ionic_bonding S6
+    // authors at_ms 6000 / duration_ms 3000, which puts the slide at 9000, the
+    // hold to 10000 and the halves fully apart at 15000 — the arc the skeleton
+    // describes, produced by the engine rather than authored beat by beat.
+    var BS_SHIFT_HOLD_MS = 1000;
+    var BS_CLEAVE_MS = 5000;
+    // How far the two halves end up apart, as a fraction of the lattice's own
+    // nearest-neighbour spacing, at a fully like-charge interface. A LEGIBILITY
+    // constant, named as such: this engine does not model fracture energy, and
+    // 0.9 nn is simply the gap at which the split reads as a clean cleavage plane
+    // rather than as a rendering glitch (at 0.3 nn the block still looks packed;
+    // past ~1.5 nn the two halves read as two separate crystals). The DECISION it
+    // encodes — whether there is a gap at all — is derived, never authored.
+    var BS_CLEAVE_NN = 0.9;
+    // A nearest-neighbour CONTACT: a pair no further apart than this multiple of
+    // the reference lattice's own nearest-neighbour distance. 1.1 is the D-7
+    // definition verbatim. The yardstick is measured on the UNSHIFTED reference,
+    // so the slide cannot redefine what counts as touching.
+    var BS_LIKE_CUT = 1.1;
     // Row R (T-4). Two or more independently-placed sub-scenes in ONE state; the
     // shared BS_MAX_SITES pool is split across them, so the budget is declared
     // rather than assumed. Four is ionic S9's two crystals with headroom.
@@ -52159,7 +52226,19 @@ export const FIELD_3D_RENDERER_CODE = `
         //    lattice_grow distance as a FLOOR, with fit:true doing the actual
         //    work, because bscSiteExtent now carries the melt excursion and a
         //    two-group melt (ionic S9) is twice as wide again.
-        melt:          { az: 35, el: 26, dist: 20.0, fit: true }
+        melt:          { az: 35, el: 26, dist: 20.0, fit: true },
+        // ── E3b L-1. A slip state teaches TWO directions and may foreshorten
+        //    neither: the slide (the derived in-plane axis, +x for the default
+        //    y-normal plane) and the opening (the plane normal, +y). That is the
+        //    E4 rule applied to a lattice — cos(el) * cos(az) = 0 puts the slide
+        //    axis exactly in the screen plane at ANY elevation, so az 90 is
+        //    forced, and el is then spent on the OTHER axis: at el 20 the opening
+        //    direction still projects at cos 20 = 0.94 of its true length, so a
+        //    gap of 0.9 nearest-neighbour spacings reads as 0.85 on screen
+        //    instead of being flattened away. dist 20 is the lattice_grow floor
+        //    with fit:true doing the real work, because bscSiteExtent now carries
+        //    both the slide overhang and the cleave gap (bscShiftExtent).
+        layer_shift:   { az: 90, el: 20, dist: 20.0, fit: true }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
 
@@ -53296,6 +53375,272 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         return [SI.at[0], SI.at[1], SI.at[2]];
     }
+    // ── E3b L-1: THE LAYER SLIP ───────────────────────────────────────────────
+    //   shift: { at_ms, duration_ms, offset_sites, plane }. One half of the
+    //   lattice slides offset_sites lattice positions along its own plane.
+    //   THE AUTHORING SURFACE IS DELIBERATELY NARROW. plane names the split
+    //   plane's NORMAL AXIS out of a closed three-member enum, and the slide
+    //   DIRECTION is derived from it (the first axis that is not the normal), so
+    //   there is no way to author a slide that points out of the plane it is
+    //   supposed to lie in — the one nonsense this mechanism could otherwise be
+    //   configured into. The half that MOVES is the half at a positive coordinate
+    //   along that normal, measured about the block's own centre (about the
+    //   GROUP's centre under row R, so two groups each slip about their own
+    //   mid-plane and never about the scene origin).
+    function bscShiftCfg(bs) {
+        var sh = (bs && bs.shift) || {};
+        var pl = (BS_SHIFT_PLANES.indexOf(sh.plane) >= 0) ? sh.plane : "y";
+        var nAx = BS_SHIFT_PLANES.indexOf(pl);
+        return {
+            at_ms: (sh.at_ms != null) ? sh.at_ms : null,
+            dur: (sh.duration_ms != null) ? sh.duration_ms : BS_SHIFT_MS,
+            off: (sh.offset_sites != null) ? sh.offset_sites : 1,
+            nAx: nAx, dAx: (nAx === 0) ? 1 : 0
+        };
+    }
+    // The live slide, in units of ONE SITE. Closed form in state-local ms (D-1),
+    // and a trusted drag passes its value in exactly as the separation and the
+    // temperature already do — the slider's 0..1 IS this quantity, so 1.00 on the
+    // widget is one full site whatever a_pm the crystal has.
+    function bscShiftAt(bs, mms, shiftDrag) {
+        if (shiftDrag != null) return shiftDrag;
+        var sc = bscShiftCfg(bs);
+        if (sc.at_ms == null) return 0;
+        return mgRamp(mms, sc.at_ms, sc.dur, 0, sc.off);
+    }
+    // One site step in scene units, off the site's OWN cell: the cubic cells are
+    // generated on a grid of a/2 (bscCellSites), hcp on a grid of a. A free
+    // placement has no cell and therefore nothing to slip, which is why a state
+    // that authors shift on two loose ions is a no-op rather than a guess.
+    function bscShiftStepU(bs, SI) {
+        if (!SI || !(SI.a_pm > 0)) return 0;
+        var p2u = bscLinkCfg(bscSiteBlock(bs, SI)).pm_per_unit;
+        return SI.a_pm * ((SI.cell === "hcp") ? 1 : 0.5) / p2u;
+    }
+    function bscShiftHalf(SI, nAx) {
+        if (!SI) return 0;
+        var go = (SI.gat) ? SI.gat[nAx] : 0;
+        return (SI.at[nAx] - go > 1e-9) ? 1 : 0;
+    }
+    // The EQUILIBRIUM positions of the drawn sites at slide value sVal — the
+    // placement chain plus the slide, and deliberately WITHOUT the jiggle, the
+    // melt excursion and the cleave. The metric below reads these and nothing
+    // else, for three separate reasons:
+    //   - a readout computed off jiggled positions re-rolls every frame (the E3b
+    //     T-4 finding on the separation instrument: 282 -> 294 -> 298 pm while
+    //     nothing physical changed). A contact count would flicker the same way.
+    //   - the cleave is the CONSEQUENCE of the count, so counting the cleaved
+    //     geometry would make the instrument erase its own reading the moment it
+    //     acted: 6 contacts, halves separate, 0 contacts, halves close.
+    //   - it keeps the whole metric a pure function of (config, ms) with no
+    //     feedback loop, which is what lets a freeze pin reproduce it (D-1).
+    function bscShiftPos(bs, siteList, n, mms, sepDrag, sVal) {
+        var sc = bscShiftCfg(bs), P = [], i;
+        for (i = 0; i < n; i++) {
+            var SI = siteList[i], b = bscSiteBaseAt(bs, SI, mms, sepDrag);
+            var o = [b[0], b[1], b[2]];
+            if (sVal !== 0 && bscShiftHalf(SI, sc.nAx)) {
+                o[sc.dAx] += sVal * bscShiftStepU(bs, SI);
+            }
+            P.push(o);
+        }
+        return P;
+    }
+    // ── E3b L-2: THE D-7 like_contacts METRIC, BUILT TO THE DEFINITION ────────
+    //   like_contacts(t) = like-charge nearest-neighbour contacts CREATED BY THE
+    //   SHIFT (a DELTA against the unshifted reference lattice at the same t) and
+    //   left UNSCREENED (a contact is screened when electron-sea density lies
+    //   between the pair, so in a metal every contact, before and after, is
+    //   screened).
+    //   THE NAIVE VERSION — count same-sign nearest neighbours — is what this is
+    //   defined against, and it is wrong in a way a careless gate cannot see: on
+    //   unshifted rock salt it reads 0, which looks right, but on a cation-only
+    //   bcc metal it reads 8 before anything has moved, and after a slide it
+    //   reads 6, so a naive instrument would announce that slipping a metal
+    //   REMOVES two like-charge contacts. Section 8 asserts exactly that
+    //   disagreement case, because a gate that only checks "the ionic block reads
+    //   6" passes the naive implementation and is worthless.
+    var BS_LIKE_EPS = 1e-9;
+    function bscNnOf(P, n) {
+        var b = 1e9, i, j, d;
+        for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+            d = bscMag([P[j][0] - P[i][0], P[j][1] - P[i][1], P[j][2] - P[i][2]]);
+            if (d < b) b = d;
+        }
+        return (b < 1e9) ? b : 0;
+    }
+    // The NAIVE count, kept as a named body rather than inlined: it is half of
+    // the definition (the metric is a difference of two of these) AND it is the
+    // thing the gate needs in order to prove the disagreement case.
+    function bscLikeCountAt(P, Q, n, cut) {
+        var c = 0, i, j, d;
+        for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+            if (!(Q[i] * Q[j] > 0)) continue;
+            d = bscMag([P[j][0] - P[i][0], P[j][1] - P[i][1], P[j][2] - P[i][2]]);
+            if (d <= cut + BS_LIKE_EPS) c++;
+        }
+        return c;
+    }
+    // IS THERE AN ELECTRON SEA BETWEEN THESE IONS? DERIVED FROM THE CHARGES, and
+    // that is the whole point (D-2). A lattice whose ions are ALL of one sign is
+    // not neutral by itself; the compensating negative charge has to be somewhere,
+    // and in a metal it is the delocalised sea spread between the cores — so every
+    // contact in such a lattice has electron density between the pair and none of
+    // them is unscreened. A lattice carrying both signs is neutral on its own
+    // ions, has no such background, and screens nothing.
+    //   Nothing authored can flip this. There is no mode string here, no sea:{}
+    //   flag consulted, no per-state override: metallic_bonding holds together
+    //   because its lattice is cation-only, and ionic_bonding cleaves because its
+    //   lattice is not, and neither JSON contains a claim about either outcome.
+    //   (Row G's sea LAYER — dispatch 4 — draws the electrons this derivation has
+    //   already concluded are there. It is a picture of this, not an input to it.)
+    function bscSeaScreens(Q, n) {
+        var pos = 0, neg = 0, i;
+        for (i = 0; i < n; i++) {
+            if (Q[i] > 0) pos++; else if (Q[i] < 0) neg++;
+        }
+        return (pos > 0 && neg === 0) || (neg > 0 && pos === 0);
+    }
+    function bscLikeContacts(P, Pref, Q, n) {
+        if (!(n > 1)) return 0;
+        if (bscSeaScreens(Q, n)) return 0;
+        var cut = BS_LIKE_CUT * bscNnOf(Pref, n);
+        if (!(cut > 0)) return 0;
+        // NOT clamped at zero, deliberately. On any lattice that carries both
+        // signs the reference count is 0 (a rock-salt ion has none but unlike
+        // neighbours), so the delta cannot go negative there; leaving it unclamped
+        // means a lattice that somehow lost contacts would say so instead of
+        // silently reading 0.
+        return bscLikeCountAt(P, Q, n, cut) - bscLikeCountAt(Pref, Q, n, cut);
+    }
+    // The same delta restricted to ONE site's own contacts. Published beside the
+    // block-wide number because the Phase-0 note describes the readout two ways
+    // ("contacts created by the shift" and "the count for the focal interface
+    // ion") and they are not the same number: on the shipped 3x3x3 rock-salt block
+    // the interface creates 6 and the focal ion at that interface gains 1. The HUD
+    // prints the block-wide count — the instrument reads the drawn scene, which is
+    // the status 'links' has always had on this surface — and this one is exposed
+    // for the professor pack and the gate.
+    function bscLikeFocalAt(P, Q, n, cut, s) {
+        var c = 0, j, d;
+        for (j = 0; j < n; j++) {
+            if (j === s || !(Q[s] * Q[j] > 0)) continue;
+            d = bscMag([P[j][0] - P[s][0], P[j][1] - P[s][1], P[j][2] - P[s][2]]);
+            if (d <= cut + BS_LIKE_EPS) c++;
+        }
+        return c;
+    }
+    function bscLikeFocal(P, Pref, Q, n, s) {
+        if (!(n > 1) || s < 0 || s >= n) return 0;
+        if (bscSeaScreens(Q, n)) return 0;
+        var cut = BS_LIKE_CUT * bscNnOf(Pref, n);
+        if (!(cut > 0)) return 0;
+        return bscLikeFocalAt(P, Q, n, cut, s) - bscLikeFocalAt(Pref, Q, n, cut, s);
+    }
+    // Contacts that CROSS the split plane — the size of the interface, so the
+    // outcome below is a FRACTION of the plane and not a raw count that grows
+    // with the block (a 5-step block creates 20 like contacts where a 3-step one
+    // creates 6, and both are the same physical situation).
+    //   P is the geometry to count on and cut the yardstick measured on the
+    //   REFERENCE, because the reference lattice is what defines "touching".
+    //   MEASURED, and it changed the answer: normalising against the interface
+    //   BEFORE the slide reads 6/9 on a 3-step block and 20/25 on a 5-step one,
+    //   i.e. the same physics gives 0.67 and 0.80 — the missing contacts are the
+    //   edge column that slid out of the crop, which is a CROP artefact and not a
+    //   property of the crystal. Normalising against the interface AFTER the
+    //   slide asks the question the physics asks — of the contacts still made
+    //   across this plane, how many are now like-charge — and reads 1.00 at every
+    //   block size. On screen that is the difference between a cleavage gap of
+    //   0.6 and 0.9 nearest-neighbour spacings.
+    function bscCrossContacts(P, Pref, siteList, n, nAx) {
+        var cut = BS_LIKE_CUT * bscNnOf(Pref, n), c = 0, i, j, d;
+        for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+            if (bscShiftHalf(siteList[i], nAx) === bscShiftHalf(siteList[j], nAx)) continue;
+            d = bscMag([P[j][0] - P[i][0], P[j][1] - P[i][1], P[j][2] - P[i][2]]);
+            if (d <= cut + BS_LIKE_EPS) c++;
+        }
+        return c;
+    }
+    // THE OUTCOME SOLVE (D-2). Config-only — it asks what the COMPLETED slide
+    // does, at state-local 0, never at the clock — so the camera fit can read it
+    // and a freeze pin cannot change it. frac is the fraction of the interface the
+    // slide turns like-charge and leaves unscreened: 1 would be an interface that
+    // is entirely like-charge afterwards, 0 a metal (or any scene the slide leaves
+    // screened or neutral). It is the ONLY thing that decides whether the halves
+    // come apart.
+    function bscShiftSolve(bs, siteList, n, Q, offOverride) {
+        var sc = bscShiftCfg(bs);
+        var off = (offOverride != null) ? offOverride : sc.off;
+        var Pref = bscShiftPos(bs, siteList, n, 0, null, 0);
+        var Pfull = bscShiftPos(bs, siteList, n, 0, null, off);
+        var nn = bscNnOf(Pref, n);
+        var made = bscLikeContacts(Pfull, Pref, Q, n);
+        var cross = bscCrossContacts(Pfull, Pref, siteList, n, sc.nAx);
+        var cross0 = bscCrossContacts(Pref, Pref, siteList, n, sc.nAx);
+        var frac = (made > 0) ? bscClamp(made / ((cross > 0) ? cross : made), 0, 1) : 0;
+        return { nn: nn, made: made, cross: cross, cross0: cross0, frac: frac };
+    }
+    // WHEN the halves come apart. Rule 32a: the slide is the cause and the split
+    // is the effect, so a scripted slip holds its new registry for BS_SHIFT_HOLD_MS
+    // before anything opens. Under a live drag there is no script to hold, so the
+    // effect tracks the cause continuously — and it starts at HALF a site, which
+    // is where the like ions actually come into registry (below half a site the
+    // original unlike neighbours are still the nearest thing across the plane).
+    function bscCleaveProg(bs, mms, shiftDrag) {
+        var sc = bscShiftCfg(bs);
+        if (shiftDrag != null) {
+            var u = (sc.off > 0) ? (shiftDrag / sc.off) : shiftDrag;
+            return mgSmooth01(bscClamp(u * 2 - 1, 0, 1));
+        }
+        if (sc.at_ms == null) return 0;
+        return mgRamp(mms, sc.at_ms + sc.dur + BS_SHIFT_HOLD_MS, BS_CLEAVE_MS, 0, 1);
+    }
+    // The gap between the two halves, in scene units. Zero at every instant of
+    // every scene whose slide creates no unscreened like contact — which is what
+    // makes metallic_bonding S5 and ionic_bonding S6 the SAME motion with opposite
+    // outcomes and no authored difference between them.
+    function bscCleaveU(bs, sol, mms, shiftDrag) {
+        if (!sol || !(sol.frac > 0) || !(sol.nn > 0)) return 0;
+        var p = bscCleaveProg(bs, mms, shiftDrag);
+        return (p > 0) ? BS_CLEAVE_NN * sol.nn * sol.frac * p : 0;
+    }
+    // A site's total displacement from the slip: the slide (moving half only) plus
+    // half the cleave gap, the two halves opening symmetrically about the plane so
+    // the block keeps its centre and the camera fit stays a symmetric solve.
+    function bscShiftOffsetOf(bs, SI, sol, mms, shiftDrag, sVal) {
+        var sc = bscShiftCfg(bs), o = [0, 0, 0];
+        if (!SI || !(SI.a_pm > 0)) return o;
+        var half = bscShiftHalf(SI, sc.nAx);
+        if (sVal !== 0 && half) o[sc.dAx] += sVal * bscShiftStepU(bs, SI);
+        var g = bscCleaveU(bs, sol, mms, shiftDrag);
+        if (g > 0) o[sc.nAx] += half ? g * 0.5 : -g * 0.5;
+        return o;
+    }
+    // The half-extent the slip adds, for the camera fit. Config-only, exactly as
+    // bscMeltExtent is: it reads the AUTHORED offset and the derived outcome, never
+    // the clock, so the fit is the same number on the first frame and under a pin.
+    //   IT ALSO COVERS A SLIP THE TEACHER CAN REACH BUT NO SCRIPT AUTHORS.
+    //   FOUND IN FRAMES, not by any closed-form assertion: an explore sandbox
+    //   exposing the shift slider authors no shift block, so the fit was solved
+    //   for the packed block — and a teacher dragging the slider to 1.00 slid one
+    //   half a whole site and opened a cleavage gap that ran off the frame,
+    //   because the camera is solved once at state entry from config alone (it
+    //   has to be: a fit that chased the live geometry would move the camera
+    //   whenever the teacher touched a control, Rule 32d). The slider's full
+    //   travel IS one site by definition, so the reachable pose is a config fact
+    //   and the fit can carry it with no clock and no drag history.
+    function bscShiftExtent(bs, siteList) {
+        if (!bs || !siteList || siteList.length < 2) return 0;
+        var reach = bscHasControl(bscControlList(bs.controls), "shift");
+        if (!bs.shift && !reach) return 0;
+        var n = siteList.length, Q = [], i;
+        for (i = 0; i < n; i++) Q.push(siteList[i].q);
+        var sc = bscShiftCfg(bs);
+        var off = bs.shift ? Math.abs(sc.off) : 1;
+        var sol = bscShiftSolve(bs, siteList, n, Q, off);
+        return off * bscShiftStepU(bs, siteList[0]) +
+            BS_CLEAVE_NN * sol.nn * sol.frac * 0.5;
+    }
     // ── E3b T-2: THE MELT LAW ─────────────────────────────────────────────────
     //   f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / 25, 0, 1). DERIVED, never
     //   authored (D-2): nothing in any JSON says "this one melts" — the outcome
@@ -53351,8 +53696,14 @@ export const FIELD_3D_RENDERER_CODE = `
         if (SI && SI.a_pm > 0) return SI.a_pm * 0.5 / p2u;
         return (SI ? SI.rPm : 100) * 2 / p2u;
     }
-    function bscSiteAt(bs, SI, ix, mms, sepDrag, tempDrag) {
+    function bscSiteAt(bs, SI, ix, mms, sepDrag, tempDrag, shiftOff) {
         var b = bscSiteBaseAt(bs, SI, mms, sepDrag);
+        // E3b L-1: the slip. Handed IN as a per-site displacement rather than
+        // solved here, because the outcome that decides it is a property of the
+        // WHOLE block (see bscShiftSolve) and re-solving it once per site would
+        // make an O(n^2) pass an O(n^3) one. Absent on every scene that authors no
+        // shift and touches no shift slider, so those are byte-identical.
+        if (shiftOff) b = [b[0] + shiftOff[0], b[1] + shiftOff[1], b[2] + shiftOff[2]];
         var gb = bscSiteBlock(bs, SI);
         var th = (gb && gb.thermal) || {};
         var js = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
@@ -53454,6 +53805,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // points. Exactly 0 below every melting point, so nothing else moves.
         var eMelt = bscMeltExtent(bs, S);
         if (eMelt > 0) e += eMelt;
+        // E3b L-1: ...and a block that SLIPS reaches further than its own lattice
+        // points too — by the slide along the plane and by half the derived cleave
+        // gap across it. Exactly 0 for every scene that authors no shift, and 0
+        // for a scene whose slide creates no unscreened like contact (a metal
+        // slides without opening), so nothing else moves by a pixel.
+        var eShift = bscShiftExtent(bs, S);
+        if (eShift > 0) e += eShift;
         // E2b: ...and the MOLECULAR units, which bscSiteList deliberately does not
         // return (it feeds the site MESH pool, and a molecule is drawn by the unit
         // layer instead). Leaving them out made the auto-fit a silent no-op on
@@ -54203,6 +54561,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // starting value, not at the panel default.
         window.PM_bscSep = (bs.approach_from != null) ? bs.approach_from
             : ((bs.separation != null) ? bs.separation : 3.0);
+        // E3b L-1, same rule again: a state that SCRIPTS the slip opens its shift
+        // widget at the ramp's OWN starting value. A slip always begins from
+        // registry, so that value is 0 and it is written literally rather than
+        // read from a *_from key that does not exist — the shift cue is
+        // DESTINATION-valued (offset_sites names where the slide ENDS), which is
+        // the standing rule for every scalar cue on this surface.
+        window.PM_bscShift = (bs.shift != null) ? 0 : window.PM_bscShift;
         var molNow = MG_MOLECULES[window.PM_bscMol];
         // Same rule as separation above (FIXED scar scripted_change_desyncs_the_
         // dom_control_that_shares_it): a state that SCRIPTS the bend opens its
@@ -54706,6 +55071,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // call it). This closure is the drag-seize binding and nothing else.
         var sepDragged = bscHasControl(ctrls, "separation") && window.PM_bscSepDragged;
         var sepDragV = sepDragged ? window.PM_bscSep : null;
+        // E3b L-1: the slip's drag-seize binding, the third quantity on this
+        // surface a script and a slider share (after separation and temperature)
+        // and therefore the third instance of the FIXED scar
+        // scripted_change_desyncs_the_dom_control_that_shares_it. Same discipline
+        // both ways: the widget opens at the ramp's own starting value (0 — a slip
+        // always begins from registry), the frame pass writes the scripted value
+        // back every frame, and a trusted drag takes the quantity over.
+        var shiftDragged = bscHasControl(ctrls, "shift") && window.PM_bscShiftDragged;
+        var shiftDragV = shiftDragged ? window.PM_bscShift : null;
         var sepAt = function (mms) { return bscSepAt(bs, mms, sepDragV); };
         var baseAt = function (uu, mms) {
             var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
@@ -55021,20 +55395,53 @@ export const FIELD_3D_RENDERER_CODE = `
             if (trc.from != null && siteList[i].unit === trc.from) trFrom = i;
             if (trc.to != null && siteList[i].unit === trc.to) trTo = i;
         }
+        // E3b L-2: the per-site SPECIES / CHARGE / RADIUS pass runs first and the
+        // POSITION pass second, because the slip's outcome is a property of the
+        // whole block's charge pattern (bscShiftSolve) and has to be solved with
+        // every charge in hand before a single site is placed. Splitting the old
+        // single loop is the whole of the change: neither half's arithmetic moved.
         var sitePos = [], siteQ = [], siteRU = [], siteSp = [], siteRpm = [], qSum = 0;
         for (i = 0; i < siteList.length; i++) {
+            var TS = bscTransferSite(siteList[i], (i === trFrom || i === trTo) ? trProg : 0);
+            siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
+            siteRpm.push(TS.r_pm);
+            if (i < nShown) qSum += TS.q;
+        }
+        // ── E3b L-1 / L-2: THE LAYER SLIP AND ITS DERIVED OUTCOME ────────────
+        //   Skipped entirely — not merely zero — on every scene that neither
+        //   authors a shift nor exposes a shift the teacher has touched, so every
+        //   shipped bonding_scene concept keeps its exact previous cost and its
+        //   exact previous pixels.
+        var shiftLive = (bs.shift != null) || shiftDragged;
+        var shiftVal = shiftLive ? bscShiftAt(bs, ms, shiftDragV) : 0;
+        var shiftSol = null, likeNow = null, likeNaive = null, likeFocalN = null;
+        if (shiftLive && nShown > 1) {
+            shiftSol = bscShiftSolve(bs, siteList, nShown, siteQ);
+            // the reference lattice AT THE SAME INSTANT (D-7's delta is against a
+            // reference at t, not against a remembered opening frame — a latch
+            // would be exactly the replayed history D-1 forbids).
+            var shPref = bscShiftPos(bs, siteList, nShown, ms, sepDragV, 0);
+            var shPnow = bscShiftPos(bs, siteList, nShown, ms, sepDragV, shiftVal);
+            var shCut = BS_LIKE_CUT * bscNnOf(shPref, nShown);
+            likeNow = bscLikeContacts(shPnow, shPref, siteQ, nShown);
+            // the SCREENING-BLIND count, published so the disagreement case is
+            // observable from outside the engine (section 8 asserts on it).
+            likeNaive = bscLikeCountAt(shPnow, siteQ, nShown, shCut);
+            likeFocalN = bscLikeFocal(shPnow, shPref, siteQ, nShown,
+                (lat.focal_site != null) ? lat.focal_site : 0);
+        }
+        for (i = 0; i < siteList.length; i++) {
             var SI = siteList[i];
-            var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
             // E3b S-1 / S-2: the scripted position chain, at last. bscSiteAt gives
             // this site the SAME separation_axis placement, the SAME scripted (or
             // dragged) separation ramp and the SAME deterministic thermal jiggle
             // the unit layer has always had; the spin is then applied here exactly
             // as before. Closed form in ms, so a freeze pin is byte-identical.
-            var sAt = bscSiteAt(bs, SI, i, ms, sepDragV, tempDragV);
+            // E3b L-1 adds the slip displacement, solved above.
+            var sOff = shiftLive
+                ? bscShiftOffsetOf(bs, SI, shiftSol, ms, shiftDragV, shiftVal) : null;
+            var sAt = bscSiteAt(bs, SI, i, ms, sepDragV, tempDragV, sOff);
             sitePos.push((spin !== 0) ? bscSpinRot(sAt, spinAx, spin) : sAt);
-            siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
-            siteRpm.push(TS.r_pm);
-            if (i < nShown) qSum += TS.q;
         }
 
         // COORDINATION. The neighbour set is DERIVED from the geometry — the
@@ -55175,6 +55582,18 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscLatticeA = siteList.length ? siteList[0].a_pm : 0;
         window.PM_bscTransfer = trProg;
         window.PM_bscCell = (siteList.length && siteList[0].cell) ? siteList[0].cell : null;
+        // E3b L-1 / L-2: the slip and the D-7 metric, published off the SAME
+        // bodies the picture and the HUD use (D-3). PM_bscLikeNaive is the
+        // screening-blind count the metric is DEFINED AGAINST — it is here so the
+        // disagreement (a cation-only metal reads 8 naive and 0 derived) is
+        // observable from a headless probe and from the gate, not only in prose.
+        window.PM_bscShiftVal = shiftVal;
+        window.PM_bscLikeContacts = likeNow;
+        window.PM_bscLikeNaive = likeNaive;
+        window.PM_bscLikeFocal = likeFocalN;
+        window.PM_bscCleaveU = shiftLive ? bscCleaveU(bs, shiftSol, ms, shiftDragV) : 0;
+        window.PM_bscCleaveFrac = shiftSol ? shiftSol.frac : 0;
+        window.PM_bscSeaScreens = (nShown > 1) ? bscSeaScreens(siteQ, nShown) : false;
 
         // ── E3b T-3 / T-4: THE LIVE PROPERTY ROWS, one per group in the AUTHORED
         //    groups[] order (a single-scene state is exactly one row with no
@@ -55911,6 +56330,16 @@ export const FIELD_3D_RENDERER_CODE = `
                             " kJ\\u00B7mol\\u207B\\u00B9");
                     }
                 }
+                else if (w === "like_contacts") {
+                    // E3b L-2: the D-7 metric — like-charge nearest-neighbour
+                    // contacts the slide CREATED and left UNSCREENED, a delta
+                    // against the unshifted reference lattice at this same
+                    // instant. The em dash is this surface's existing "no value
+                    // yet" glyph and is what a scene with no slip context shows,
+                    // so the row never claims a count it has not measured.
+                    lines.push("like contacts: " +
+                        ((likeNow == null) ? "\\u2014" : likeNow));
+                }
                 else if (w === "separation_pm") {
                     // E3b S-4: the LIVE centre-to-centre distance of the two
                     // leading sites, off the same bscSepPmAt the gate calls (D-3).
@@ -56006,6 +56435,16 @@ export const FIELD_3D_RENDERER_CODE = `
             var ssl = document.getElementById("bsc_separation_slider"), svl = document.getElementById("bsc_separation_val");
             if (ssl) ssl.value = String(sepNow);
             if (svl) svl.textContent = Number(sepNow).toFixed(1);
+        }
+        // E3b L-1: the slip's half of the same rule. ionic_bonding S6 slides the
+        // layer on a SCRIPT while exposing the shift slider, which is the third
+        // instance of the FIXED scar scripted_change_desyncs_the_dom_control_that_
+        // shares_it on this surface — the widget would otherwise read 0.00 over a
+        // crystal that has visibly slipped a whole site.
+        if (bscHasControl(ctrls, "shift") && !window.PM_bscShiftDragged) {
+            var hsl = document.getElementById("bsc_shift_slider"), hvl = document.getElementById("bsc_shift_val");
+            if (hsl) hsl.value = String(shiftVal);
+            if (hvl) hvl.textContent = Number(shiftVal).toFixed(2);
         }
         if (bscHasControl(ctrls, "temperature") && !window.PM_bscTempDragged) {
             var tsl = document.getElementById("bsc_temperature_slider"), tvl = document.getElementById("bsc_temperature_val");
