@@ -1,0 +1,866 @@
+{
+  "concept_id": "metallic_bonding",
+  "concept_name": "Metallic Bonding — A Lattice of Cores in a Shared Electron Sea",
+  "chapter": 4,
+  "section": "Class 11 Chemistry Ch.4 'Chemical Bonding and Molecular Structure', §4.3 — Metallic Bond",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.4 'Chemical Bonding and Molecular Structure' — chapter-index scope reference only (metallic bonding: brief qualitative mention; the Solid State unit that would carry lattice/electron-sea depth is removed from the rationalised syllabus, so this concept's depth exceeds the current CBSE floor by design). Teaching, sequence, examples and phrasing authored from first principles. NCERT Exemplar consulted for misconception beliefs only (the per-atom electron-ownership belief; the fast-electron conduction belief). No problem text, figure or prose imported. Desk 3, concept 2 of 2 in the Phase-0 bonding wave, on the bonding_scene scenario (field_3d), same scenario as Desk 2's ionic_bonding. Only STATE_1 (lattice_grow) is LIVE today on E3a; STATE_2-STATE_7 are authored COMPLETE against the sealed Checkpoint-A design (docs/skeletons/metallic_bonding_skeleton.md, cycle 2 of 2, founder-proxy DESIGN_OK) and become live the moment the E3b field3d-surgeon dispatch (docs/notes/metallic_bonding_E3b_request.md) merges -- see the top-level _e3b_pending block below for the exact per-state capability map and the contract items (five original plus a coined shift.plane value and a declared STATE_6 retiming) this file authors against before they are formally decided. Advisory cross-reference (no pill wiring, Gate 8b all-or-nothing forbids linking chemistry concepts into the physics registration sites): STATE_4's slow-drift beat is the same two-speed picture (fast random motion vs a very slow net drift) taught by the shipped physics concept drift_velocity (STATE_3/STATE_4) on a copper wire.",
+  "concept_tier_note": "Tier: diamond (💎), capabilities 1 + 3 + 4. A whiteboard draws one atom losing an electron and stops there. It cannot show a shared swarm roaming a whole 3D lattice with no electron attached to any atom (capability 1), a drift bias appearing under a field while the fast random motion carries no current (capability 3), or a layer slide that HOLDS -- visibly re-seating into the same pattern one row over -- exactly where the salt crystal split (capability 4).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "bonding_scene"
+    ]
+  },
+  "prerequisites": [
+    "ionic_bonding",
+    "bohr_model_energy_levels",
+    "drift_velocity"
+  ],
+  "real_world_anchor": {
+    "primary": "A metal spoon bends without breaking, while a grain of table salt always shatters — because the same one-layer slide that splits the ionic crystal leaves the metal's shared electron sea sitting between the layers, holding the metal whole.",
+    "secondary": "The copper wire inside any charger cable carries current as a slow drift in the same kind of delocalised electron sea described here — the wire's free electrons also carry the heat you feel in a warm cable."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_3"
+    },
+    "conduction": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "strength_and_shaping": {
+      "start": "STATE_5",
+      "end": "STATE_6"
+    }
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 30,
+    "max_labels_per_state": 14,
+    "max_words_per_tts_sentence": 34
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "No electron in a metal belongs to one atom; one shared sea holds it together.",
+    "visual_confirmation": "One tagged electron crosses the whole block, passing many cores, and never returns to the atom it left."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "a_pm_Na": { "name": "sodium bcc cell edge", "unit": "pm", "constant": 429.0, "role": "engine_constant" },
+      "a_pm_Mg": { "name": "magnesium hcp basal cell edge", "unit": "pm", "constant": 320.9, "role": "engine_constant" },
+      "a_pm_Al": { "name": "aluminium fcc cell edge", "unit": "pm", "constant": 404.9, "role": "engine_constant" },
+      "valence_Na": { "name": "free electrons per Na atom", "unit": "dimensionless", "constant": 1, "role": "engine_constant" },
+      "valence_Mg": { "name": "free electrons per Mg atom", "unit": "dimensionless", "constant": 2, "role": "engine_constant" },
+      "valence_Al": { "name": "free electrons per Al atom", "unit": "dimensionless", "constant": 3, "role": "engine_constant" },
+      "dH_at_Na": { "name": "enthalpy of atomisation, Na(s) -> Na(g)", "unit": "kJ per mole of atoms", "constant": 107, "role": "engine_constant" },
+      "dH_at_Mg": { "name": "enthalpy of atomisation, Mg(s) -> Mg(g)", "unit": "kJ per mole of atoms", "constant": 146, "role": "engine_constant" },
+      "dH_at_Al": { "name": "enthalpy of atomisation, Al(s) -> Al(g)", "unit": "kJ per mole of atoms", "constant": 326, "role": "engine_constant" },
+      "mp_Na": { "name": "melting point, sodium", "unit": "K", "constant": 371, "role": "engine_constant" },
+      "mp_Mg": { "name": "melting point, magnesium", "unit": "K", "constant": 923, "role": "engine_constant" },
+      "mp_Al": { "name": "melting point, aluminium", "unit": "K", "constant": 933, "role": "engine_constant" },
+      "n_e": {
+        "name": "free-electron number density, sodium",
+        "unit": "m^-3",
+        "constant": 2.5e28,
+        "role": "narrated_constant",
+        "note": "derived n = rho*N_A*z/M at 298 K, rho=0.968 g/cm3, M=22.99 g/mol, z=1 (chemistry block Duty 2)"
+      },
+      "mu_Na": {
+        "name": "electron mobility, sodium (derived, not measured directly)",
+        "unit": "m^2 V^-1 s^-1",
+        "constant": 5.3e-3,
+        "role": "engine_constant",
+        "note": "mu = sigma/(n e), sigma_Na ~2.1e7 S/m, n=2.5e28 m^-3 (chemistry block Duty 3)"
+      },
+      "field": {
+        "name": "applied field control (dimensionless slider)",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "role": "taught_variable",
+        "note": "STATE_4 core; maps LINEARLY to E = 0 to 0.04 V/m"
+      },
+      "E_field": {
+        "name": "electric field inside the block",
+        "unit": "V/m",
+        "min": 0,
+        "max": 0.04,
+        "role": "derived",
+        "derived": "field * 0.04"
+      },
+      "v_d": {
+        "name": "electron drift speed",
+        "unit": "m/s",
+        "min": 0,
+        "max": 2.12e-4,
+        "role": "computed_output",
+        "derived": "mu_Na * E_field",
+        "note": "CORRECTED full-scale value 2.1e-4 m/s (the dispatch brief's 1e-4 was an arithmetic slip, chemistry block Duty 3). Live v_d = 0 m/s exactly at field = 0, never a dash or a stale value."
+      },
+      "shift": {
+        "name": "layer-shift offset control (dimensionless slider)",
+        "unit": "dimensionless (fraction of one site)",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "role": "taught_variable",
+        "note": "STATE_5 core"
+      },
+      "like_contacts": {
+        "name": "like-charge nearest-neighbour contacts left unscreened (D-7 definition)",
+        "unit": "count (dimensionless integer)",
+        "min": 0,
+        "max": 0,
+        "role": "computed_output",
+        "note": "reads 0 at EVERY offset on the metal (the sea screens every contact, before and after) -- design expectation; any nonzero reading is a build defect (D-7), never a tuning target"
+      },
+      "valence": {
+        "name": "free electrons per atom control (STATE_6 stepped slider)",
+        "unit": "dimensionless (integer)",
+        "min": 1,
+        "max": 3,
+        "default": 1,
+        "role": "taught_variable",
+        "note": "stepped 1 -> 2 -> 3, never fractional; sea count = 35 x valence dots; core charge label steps +1 -> +2 -> +3"
+      }
+    },
+    "computed_outputs": {
+      "E_field": { "formula": "field * 0.04" },
+      "v_d": { "formula": "mu_Na * E_field" },
+      "like_contacts": { "formula": "screened like-charge nearest-neighbour contacts (D-7 definition) -- reads 0 at every offset on this cation-only, sea-screened lattice" },
+      "atomisation_trend": { "formula": "y = dH_at (Na 107, Mg 146, Al 326) plotted against x = valence (1, 2, 3) -- points only, no fit line authored" }
+    },
+    "formulas": {
+      "E_field": "field * 0.04",
+      "v_d": "mu_Na * E_field",
+      "charge_balance_S2": "sum(q_site) + sum(q_released_dot) = 0 at every instant of the release ramp",
+      "charge_balance_S6": "sum(q_core) = 35 x valence ; sum(q_sea) = -(35 x valence) ; net 0 at every step"
+    },
+    "constraints": [
+      "atoms and charge both balance in the S2 half-equation Na -> Na+ + e- (no state symbols -- the electron leaves one core to join the shared sea entirely inside the solid, no phase change)",
+      "total charge: sum(q_sites) + sum(q_released_dots) = 0 at every instant of S2's ionisation ramp, and sum(q_core) + sum(q_sea) = 0 at every S6 valence step",
+      "n(free electrons released per site) = BS_VALENCE[species] exactly -- never a fractional electron",
+      "v_d = mu_Na * E_field holds at every field-slider position, including exactly v_d = 0 m/s (live) at field = 0",
+      "like_contacts reads 0 at every shift offset on this cation-only, sea-screened lattice -- any nonzero reading is a build defect (D-7), never a tuning target",
+      "dH_at is monotonic in valence (Na < Mg < Al) on the S6 trend axis, with each step well above the +-5 kJ/mol source-spread noise band -- non-monotonicity or a collapsed step is a ratification failure, never a display choice",
+      "neutral-metal and ionic radii on this scenario share ONE linear-in-pm scale (BS_RADIUS_PM), never the legibility-compressed MG_ELEMENTS scale"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Atoms pack in a regular lattice",
+        "label": "Sodium atoms pack into a repeating bcc lattice — the same spacing continues through the whole block",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_repeat_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_context_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "One solid block of metal",
+            "color": "#90CAF9",
+            "at_ms": 0,
+            "until_ms": 19469
+          },
+          {
+            "type": "annotation",
+            "id": "s1_repeat_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "The same spacing repeats everywhere",
+            "color": "#4FC3F7",
+            "at_ms": 6500,
+            "until_ms": 19469
+          },
+          {
+            "type": "annotation",
+            "id": "s1_corner_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "This block is a tiny corner of the metal",
+            "color": "#FFCA28",
+            "at_ms": 15500,
+            "until_ms": 19469
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Every solid metal is atoms packed in a repeating pattern.", "glow": "lattice" },
+            { "id": "s1_2", "text_en": "Watch sodium atoms settle into rows — each new atom sits at the same spacing as the last.", "glow": "lattice" },
+            { "id": "s1_3", "text_en": "The block keeps this exact pattern in every direction, through the whole piece of metal.", "glow": "lattice" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Outer electrons come free",
+        "label": "Every atom's outer electron leaves at once; the cores become smaller positive ions",
+        "duration": 21,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_release_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_context_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "The same block as before",
+            "color": "#90CAF9",
+            "at_ms": 0,
+            "until_ms": 20719
+          },
+          {
+            "type": "annotation",
+            "id": "s2_release_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "Each atom releases one electron",
+            "color": "#FFCA28",
+            "at_ms": 8000,
+            "until_ms": 20719
+          },
+          {
+            "type": "annotation",
+            "id": "s2_cores_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "The cores are now positive ions",
+            "color": "#4FC3F7",
+            "at_ms": 15000,
+            "until_ms": 20719
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Sodium holds its outer electron weakly.", "glow": "lattice" },
+            { "id": "s2_2", "text_en": "Watch: every atom in the block releases that one electron at once.", "glow": "electrons" },
+            { "id": "s2_3", "text_en": "The freed electrons stay inside the metal — for now each sits beside the ion it left.", "glow": "electrons" },
+            { "id": "s2_4", "text_en": "Every core is now a positive ion, smaller than its atom.", "glow": "lattice" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "One shared sea holds all the cores",
+        "label": "The freed electrons roam the whole crystal — no electron belongs to any one atom, and the shared sea is the metallic bond",
+        "duration": 23,
+        "depth_ring": "core",
+        "teaching_method": "misconception_confrontation",
+        "focal_primitive_id": "s3_notattached_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_context_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "The same block, now with free electrons",
+            "color": "#90CAF9",
+            "at_ms": 0,
+            "until_ms": 22901
+          },
+          {
+            "type": "annotation",
+            "id": "s3_notattached_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "This electron is not attached to any atom",
+            "color": "#EF5350",
+            "at_ms": 7000,
+            "until_ms": 22901
+          },
+          {
+            "type": "annotation",
+            "id": "s3_sea_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "The sea of electrons holds the cores together",
+            "color": "#4FC3F7",
+            "at_ms": 15000,
+            "until_ms": 22901
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Now watch one electron.", "glow": "electron_tag" },
+            { "id": "s3_2", "text_en": "It moves right across the block, past core after core, and it never goes back to the atom it left.", "glow": "electron_tag" },
+            { "id": "s3_3", "text_en": "Every free electron does this — one shared sea through the whole crystal.", "glow": "electrons" },
+            { "id": "s3_4", "text_en": "The pull between the positive cores and this negative sea is the metallic bond.", "glow": "lattice" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "In a metal each electron still belongs to its own atom",
+            "visual_counter": "one tagged electron crosses the whole block, passing core after core, and never returns to the atom it left",
+            "one_line_fix": "The outer electrons are shared by the whole crystal — no electron is attached to any one atom."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "who_shares_the_electrons",
+          "sea_vs_covalent_sharing",
+          "why_sharing_lowers_energy"
+        ]
+      },
+      "STATE_4": {
+        "title": "Field on: a slow drift carries current",
+        "label": "An electric field adds a slow net drift on top of the sea's random motion — that drift is the current, and the same sea carries heat",
+        "duration": 26,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_stronger_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_context_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "The same block, sea established",
+            "color": "#90CAF9",
+            "at_ms": 0,
+            "until_ms": 25406
+          },
+          {
+            "type": "annotation",
+            "id": "s4_random_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "The same random motion as before",
+            "color": "#4FC3F7",
+            "at_ms": 3000,
+            "until_ms": 9000
+          },
+          {
+            "type": "annotation",
+            "id": "s4_stronger_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "The stronger the field, the faster the drift",
+            "color": "#4FC3F7",
+            "at_ms": 10000,
+            "until_ms": 25406
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Connect this metal in a circuit and an electric field appears through the block at once.", "glow": "arrows" },
+            { "id": "s4_2", "text_en": "Watch the sea: the same random motion, plus a very slow net drift along the field — the counter shows how slow.", "glow": "electrons" },
+            { "id": "s4_3", "text_en": "That slow shared drift is the electric current.", "glow": "electrons" },
+            { "id": "s4_4", "text_en": "The same free electrons also carry heat through the metal.", "glow": "electrons" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Conduction is fast because the electrons move fast",
+            "visual_counter": "the field appears everywhere at once while the drift counter shows a very slow live value — the fast random motion carries no current; the slow shared drift is the current",
+            "one_line_fix": "The field acts on every electron at once; each electron itself only drifts very slowly — that slow shared drift is the current."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "drift_vs_random_speed",
+          "why_the_field_acts_everywhere",
+          "metal_vs_molten_salt_conduction"
+        ]
+      },
+      "STATE_5": {
+        "title": "Layers slide and the metal holds",
+        "label": "The same one-site layer slide that split salt leaves the metal whole, because the sea screens every position — metals bend and draw instead of shattering",
+        "duration": 24,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_reseat_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_between_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "The sea sits between every pair of cores",
+            "color": "#4FC3F7",
+            "at_ms": 7200,
+            "until_ms": 11000
+          },
+          {
+            "type": "annotation",
+            "id": "s5_recall_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "Salt split at this step — the metal holds.",
+            "color": "#FFCA28",
+            "at_ms": 12500,
+            "until_ms": 23385
+          },
+          {
+            "type": "annotation",
+            "id": "s5_reseat_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "The pattern after the slide is the same pattern as before.",
+            "color": "#4FC3F7",
+            "at_ms": 18300,
+            "until_ms": 23385
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "In salt, this same one-site slide lined up like charges and the crystal split.", "glow": "layer" },
+            { "id": "s5_2", "text_en": "Slide the metal's top layer.", "glow": "layer" },
+            { "id": "s5_3", "text_en": "The counter stays at zero: the sea sits between the cores at every position.", "glow": "electrons" },
+            { "id": "s5_4", "text_en": "The layer settles into the same pattern one row over, so metals can be bent and drawn into wires.", "glow": "layer" }
+          ]
+        },
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "bend_vs_shatter",
+          "why_layers_slide_easily",
+          "why_alloys_are_harder"
+        ]
+      },
+      "STATE_6": {
+        "title": "More electrons per atom, stronger metal",
+        "label": "Keeping the same lattice, more free electrons per atom and higher core charge raise the enthalpy of atomisation from sodium to magnesium to aluminium",
+        "duration": 25,
+        "depth_ring": "extended",
+        "teaching_method": "compare_contrast",
+        "focal_primitive_id": "s6_hold_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_context_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "The same block and cell throughout",
+            "color": "#90CAF9",
+            "at_ms": 0,
+            "until_ms": 24070
+          },
+          {
+            "type": "annotation",
+            "id": "s6_step_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "Each step: one more electron, one more charge",
+            "color": "#4FC3F7",
+            "at_ms": 6000,
+            "until_ms": 24070
+          },
+          {
+            "type": "annotation",
+            "id": "s6_hold_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "More charge, more sea: a stronger hold",
+            "color": "#B39DDB",
+            "at_ms": 11500,
+            "until_ms": 24070
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Keep the same lattice and change one thing: how many electrons each atom gives to the sea.", "glow": "lattice" },
+            { "id": "s6_2", "text_en": "One, then two, then three.", "glow": "lattice" },
+            { "id": "s6_3", "text_en": "Each step also raises the charge on every core.", "glow": "lattice" },
+            { "id": "s6_4", "text_en": "The chart shows the energy needed to pull one mole of atoms out: it climbs steeply.", "glow": "trend" },
+            { "id": "s6_5", "text_en": "More shared electrons, stronger metal.", "glow": "electrons" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Explore the metal",
+        "label": "Pick a metal, and drag field or layer shift to see the lattice and its sea respond",
+        "duration": 30,
+        "depth_ring": "core",
+        "teaching_method": "exploration_sliders",
+        "focal_primitive_id": "s7_readouts_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_pick_label",
+            "position": { "x": 160, "y": 60 },
+            "text": "Pick a metal",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_drag_label",
+            "position": { "x": 500, "y": 60 },
+            "text": "Drag field or layer shift",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_readouts_label",
+            "position": { "x": 380, "y": 100 },
+            "text": "Watch the readouts respond",
+            "color": "#B39DDB"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Explore the metal. Pick a metal, and drag field or layer shift to see the lattice and its sea respond.", "glow": "lattice" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "bonding_scene",
+    "explorer_id": "metallic_bonding_explorer",
+    "render_annotations": true,
+    "field_lines": {
+      "opacity": {}
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Sodium atoms pack into a repeating bcc lattice — the same spacing continues through the whole block",
+        "caption": "Atoms pack in rows",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "lattice_grow",
+          "units": [
+            { "id": "na", "species": "Na" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0,
+            "grow_at_ms": 3000,
+            "grow_duration_ms": 14000,
+            "reveal": "peer_fade",
+            "reveal_at_ms": 17600,
+            "radius_scale": 0.6
+          },
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "show_hud": true,
+          "hud_lines": ["lattice_a"]
+        },
+        "eye_capture_ms": 18700
+      },
+      "STATE_2": {
+        "label": "Every atom's outer electron leaves at once; the cores become smaller positive ions",
+        "caption": "Outer electrons come free",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "electron_sea",
+          "units": [
+            { "id": "na", "species": "Na" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0,
+            "reveal": "peer_fade",
+            "reveal_at_ms": 3000,
+            "focal_site": 0
+          },
+          "sea": {
+            "count": 35,
+            "release_at_ms": 4000,
+            "release_duration_ms": 15000
+          },
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "show_hud": true,
+          "hud_lines": ["valence"],
+          "show_formula": true,
+          "formula": "Na → Na⁺ + e⁻"
+        },
+        "eye_capture_ms": 19600
+      },
+      "STATE_3": {
+        "label": "The freed electrons roam the whole crystal — no electron belongs to any one atom, and the shared sea is the metallic bond",
+        "caption": "Electrons move everywhere",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "electron_sea",
+          "units": [
+            { "id": "na", "species": "Na+" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0,
+            "reveal": "none"
+          },
+          "sea": {
+            "count": 40,
+            "speed": 0.5
+          },
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "show_hud": false,
+          "show_formula": true,
+          "formula": "n(e⁻) ≈ 2.5 × 10²⁸ per m³"
+        },
+        "eye_capture_ms": 15600
+      },
+      "STATE_4": {
+        "label": "An electric field adds a slow net drift on top of the sea's random motion — that drift is the current, and the same sea carries heat",
+        "caption": "Field adds slow drift",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "drift",
+          "units": [
+            { "id": "na", "species": "Na+" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0,
+            "reveal": "none"
+          },
+          "sea": {
+            "count": 40,
+            "speed": 0.5,
+            "field": 1.0,
+            "show_drift": true
+          },
+          "field_at_ms": 5000,
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "controls": [
+            { "id": "field", "min_ring": "core" }
+          ],
+          "show_hud": true,
+          "hud_lines": ["drift"]
+        },
+        "eye_capture_ms": 13000
+      },
+      "STATE_5": {
+        "label": "The same one-site layer slide that split salt leaves the metal whole, because the sea screens every position — metals bend and draw instead of shattering",
+        "caption": "Same shift, no split",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "layer_shift",
+          "units": [
+            { "id": "na", "species": "Na+" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0,
+            "reveal": "none"
+          },
+          "sea": {
+            "count": 40,
+            "speed": 0.5
+          },
+          "shift": {
+            "at_ms": 6000,
+            "duration_ms": 3000,
+            "offset_sites": 1,
+            "plane": "y",
+            "settle_at_ms": 15800,
+            "settle_duration_ms": 2500
+          },
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "controls": [
+            { "id": "shift", "min_ring": "core" }
+          ],
+          "show_hud": true,
+          "hud_lines": ["like_contacts"]
+        },
+        "eye_capture_ms": 19000
+      },
+      "STATE_6": {
+        "label": "Keeping the same lattice, more free electrons per atom and higher core charge raise the enthalpy of atomisation from sodium to magnesium to aluminium",
+        "caption": "More electrons, stronger hold",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "electron_sea",
+          "units": [
+            { "id": "m", "species": "Na+" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0,
+            "reveal": "none"
+          },
+          "sea": {
+            "valence_from": 1,
+            "valence_at_ms": 7600,
+            "valence_step_ms": 1800,
+            "speed": 0.5
+          },
+          "trend": {
+            "show": true,
+            "x_label": "Free electrons per atom",
+            "y_label": "ΔH of atomisation / kJ·mol⁻¹",
+            "points": [
+              { "label": "Na", "x": 1, "y": 107 },
+              { "label": "Mg", "x": 2, "y": 146 },
+              { "label": "Al", "x": 3, "y": 326 }
+            ]
+          },
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "controls": [
+            { "id": "valence", "min_ring": "ext" }
+          ],
+          "show_hud": false
+        },
+        "eye_capture_ms": 12500
+      },
+      "STATE_7": {
+        "label": "Pick a metal, and drag field or layer shift to see the lattice and its sea respond",
+        "caption": "Explore the metal",
+        "bonding_scene": {
+          "placement": "lattice",
+          "mode": "explore",
+          "units": [
+            { "id": "na", "species": "Na+" }
+          ],
+          "lattice": {
+            "cell": "bcc",
+            "n": [5, 5, 5],
+            "a_pm": 429.0
+          },
+          "sea": {
+            "count": 35,
+            "speed": 0.5
+          },
+          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "spin_rate": 0.14,
+          "spin_start_ms": 0,
+          "controls": [
+            { "id": "metal", "min_ring": "core" },
+            { "id": "field", "min_ring": "core" },
+            { "id": "shift", "min_ring": "core" },
+            { "id": "valence", "min_ring": "ext" }
+          ],
+          "show_hud": true,
+          "hud_lines": [
+            "lattice_a",
+            "drift",
+            "melting_point",
+            { "id": "atomisation", "min_ring": "ext" }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same lattice-and-sea reasoning, potassium instead of sodium",
+      "physical_world": "Potassium's single outer electron forms the same delocalised sea in a bcc lattice of potassium cations — the same pack, release, roam, drift and layer-slide story, with a lower melting point and a larger cell edge.",
+      "same_physics": "Identical single-electron delocalisation mechanism, identical bcc lattice, identical slow-drift conduction and identical layer-slide malleability; only the specific metal's cell edge, atomisation enthalpy and melting point change."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "partial",
+        "syllabus_unit": "Class 11 Chemistry, Ch.4 'Chemical Bonding and Molecular Structure' — metallic bonding is mentioned only briefly and qualitatively; the Solid State unit that would carry lattice/electron-sea depth is removed from the rationalised syllabus, so this concept's depth exceeds the current CBSE floor by design",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE/NEET",
+        "coverage": "partial",
+        "syllabus_unit": "Chemical bonding — metallic bonding as a qualitative comparison point against ionic and covalent bonds; not examined at the quantitative depth of this concept's STATE_6 trend",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Metallic bonding — structure and properties of metals (delocalised electrons, electrical and thermal conductivity, malleability and ductility)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Chemistry (UK)",
+        "coverage": "full",
+        "syllabus_unit": "Bonding and structure — metallic bonding, giant metallic lattices, and the physical properties of metals",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Structure 2.3 — the metallic model, alloys, and the physical properties of metals",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Unit 2 — Molecular and Ionic Compound Structure and Properties: metallic bonding and the electron-sea model",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ],
+    "notes": "Rule 38g: every non-CBSE cell is a CLAIM. Only CBSE/NCERT is author-verified against the live syllabus (with the NCERT Solid-State-removal caveat carried in its syllabus_unit text); no preset goes teacher-visible until a teacher of that curriculum confirms its row."
+  },
+  "_e3b_pending": {
+    "purpose": "DOCUMENTATION ONLY -- not consumed by any validator or by the renderer. Lists every authored key, glow-enum member, and mode string in this concept that has no engine consumer yet, mapped to the field3d-surgeon E3b dispatch capability that will build it. Source: docs/skeletons/metallic_bonding_skeleton.md §4 and docs/notes/metallic_bonding_E3b_request.md. Only STATE_1 (mode: lattice_grow) is LIVE today on E3a; every other authored bonding_scene block below is accepted and passed through by the renderer (parsed, never silently dropped) but has no visible behaviour until E3b lands.",
+    "live_today": ["STATE_1 -- mode: lattice_grow (E3a)"],
+    "contract_amendments_authored_against": [
+      {
+        "item": "sea cue keys (new sea.* fields, parsed-and-passed-through today)",
+        "keys": ["sea.release_at_ms", "sea.release_duration_ms", "sea.valence_from", "sea.valence_at_ms", "sea.valence_step_ms"],
+        "states": ["STATE_2", "STATE_6"],
+        "capability": "C-10 (STATE_2 whole-lattice ionisation ramp, Na -> Na+ per site) and C-4 (STATE_6 scripted valence STEP cue)",
+        "source": "E3b request Part A, item A-1"
+      },
+      {
+        "item": "ring-gated hud_lines object form, mirroring the existing `controls: [{id, min_ring}]` shape",
+        "keys": ["hud_lines: [ ..., { id: 'atomisation', min_ring: 'ext' } ]"],
+        "states": ["STATE_7"],
+        "capability": "C-6 (Rule 38b ring-gating of the atomisation HUD line). DESCOPE FALLBACK if C-6 is not built: remove `atomisation` from STATE_7.hud_lines entirely -- Rule 38b then holds by removal instead of gating, exactly as the skeleton specifies (§4 C-6, §13 i-1).",
+        "source": "E3b request Part A, item A-2"
+      },
+      {
+        "item": "twelfth glow-enum key `electron_tag` (elementType bsc_electron_tag), beyond the shipped eleven-key enum (units, central, links, arrows, resultant, charges, electrons, lattice, layer, neighbours, trend)",
+        "keys": ["teacher_script.tts_sentences[].glow = \"electron_tag\""],
+        "states": ["STATE_3"],
+        "capability": "C-9 (tagged-electron focal) -- without it, glow:'electrons' would light all 40 dots on STATE_3 at once, a Rule 32e violation; the 'watch one electron' beat would have no glow mechanism",
+        "source": "E3b request Part A, item A-3"
+      },
+      {
+        "item": "S5 re-seat settle timing keys -- CHOSEN here by json_author (not previously decided in the contract); named to parallel the existing grow_at_ms/grow_duration_ms and release_at_ms/release_duration_ms convention",
+        "keys": ["shift.settle_at_ms = 15800", "shift.settle_duration_ms = 2500"],
+        "states": ["STATE_5"],
+        "capability": "the re-seat settle beat (skeleton §6 S5; F-1 retiming fix applied here so the settle opens under sentence 4, 'The layer settles into the same pattern one row over...', instead of finishing 3s before that sentence begins as the sealed skeleton's raw numbers would have)",
+        "source": "E3b request Part A, item A-4"
+      },
+      {
+        "item": "shift.plane coined here as the literal string 'y' -- NOT declared anywhere in the contract; the skeleton left this as prose ('horizontal mid-plane'), not an enum",
+        "keys": ["shift.plane = \"y\""],
+        "states": ["STATE_5"],
+        "capability": "the layer_shift split plane -- 'y' denotes a horizontal mid-plane cutting the bcc lattice, offsetting every site above the plane from every site below it by one site width (offset_sites: 1) along that plane; coined by json_author for readability (mirrors ionic_bonding's own STATE_6 usage of plane: 'y' for the same kind of split), not ratified against any declared enum. The E3b dispatch should confirm this string or replace it with whatever axis/plane convention C-2's layer-shift implementation actually adopts.",
+        "source": "flagged in the fix-round review, item 4 (not previously listed against A-1..A-5)"
+      },
+      {
+        "item": "sea.speed authored as a NUMBER (0.5), substituting the skeleton's undeclared enum draft 'moderate'",
+        "keys": ["sea.speed = 0.5"],
+        "states": ["STATE_3", "STATE_4", "STATE_5", "STATE_7"],
+        "capability": "C-2 (the electron sea roam/drift/screening substrate). Per the renderer's own comment (field_3d_renderer.ts:51617-51621) an unenumerated string member is a CONFIG ERROR, not a silent no-op, so the literal string 'moderate' could not ship. 0.5 is a NOT-YET-RATIFIED placeholder mid-range value on an assumed 0-1 dimensionless roam-speed coefficient (by analogy to spin_rate's authored 0-0.6 range) -- the E3b dispatch should confirm or replace it once C-2 defines the real unit.",
+        "source": "E3b request Part A, item A-5"
+      }
+    ],
+    "capability_map_by_state": {
+      "STATE_1": "none -- LIVE today (E3a, lattice_grow)",
+      "STATE_2": "C-10 (whole-lattice ionisation ramp, Na -> Na+ per site, radius 186 -> 102 pm) + C-2 (sea dot substrate, terminal parked pose from release end to state end) + C-5 (valence HUD generalised from the molecule-path read to the live lattice site species)",
+      "STATE_3": "C-2 (deterministic index-seeded sea roam) + C-9 (tagged-electron focal / electron_tag glow key)",
+      "STATE_4": "C-2 (drift) + C-3 (drift HUD line, v_d = mu_Na * E_field, live v_d = 0 m/s exactly at field = 0) + field_at_ms cue (shared request with ionic_bonding) + drag-seize on the field row",
+      "STATE_5": "C-2 (screening -- the sea visible through both halves throughout) + shift.settle_at_ms/settle_duration_ms (the re-seat beat, chosen above) + the D-7 like_contacts metric/HUD (shared request with ionic_bonding) + drag-seize on the shift row",
+      "STATE_6": "C-4 (scripted valence step cue + drag-seize) + C-8 (trend-panel live highlight following PM_bscValence) + the sum(q) balance invariant across the valence ladder (35 x valence cores against -(35 x valence) sea, net 0 at every step)",
+      "STATE_7": "C-1 (BS_METALS property table + the engine-owned Na/Mg/Al picker option coupling -- the three <option> values are hardcoded in the DOM string, so BS_METALS keys must match exactly) + C-3 (drift, atomisation HUD lines) + C-6 (ring-gated hud_lines, descope fallback noted above) + C-7 (valence-drag detach semantics -- unlabelled 'model metal', element-tied data lines melting_point/atomisation blank to an em-dash while drift keeps printing its live value)"
+    },
+    "gate_assertions_to_add_to_check_bonding_scene": [
+      "charge conservation across STATE_2's release ramp: sum(q_sites) + sum(q_released_dots) = 0 at EVERY instant, not only endpoints",
+      "sum(q) balance across STATE_6's valence ladder at each step 1/2/3 (35, 70, 105 both signs)",
+      "ionic_bonding STATE_2 (mode: transfer, trFrom/trTo) renders BYTE-IDENTICAL before and after C-10 -- regression guard, since C-10 generalises the same transfer arithmetic to whole-lattice sites",
+      "D-7 disagreement case: a naive like-neighbour count on this cation-only bcc lattice is non-zero (8 per interior site) before any shift, while the shipped screened metric must read exactly 0 at every offset -- the assertion that proves the screened metric is the real one, not a raw count that happens to look right",
+      "determinism (D-1): the sea is a closed-form function of state-local t -- byte-identical under SET_TIME_FREEZE, and unchanged by a count/valence slider move for dots already on screen"
+    ],
+    "known_open_risk_flagged_by_chemistry_author": "STATE_7's drift HUD reuses sodium's ratified mu(Na) for the Mg/Al picker positions unless C-1 is extended with a per-metal mu column (Mg ~1.6e-3, Al ~1.2e-3 m^2 V^-1 s^-1, both offered but not independently cross-checked to the standard of the three core ratification duties). If reused as-is, Mg/Al drift readings will be physically low by roughly 3-4x -- still the correct order of magnitude (1e-4 m/s), so the qualitative lesson survives; not a blocker for STATE_4, which is sodium-only and fully ratified (chemistry block Duty 3, supplementary finding).",
+    "sealed_value_deviations": [
+      {
+        "state": "STATE_6",
+        "keys": ["sea.valence_at_ms", "sea.valence_step_ms"],
+        "sealed_values": { "valence_at_ms": 5000, "valence_step_ms": 4500 },
+        "authored_values": { "valence_at_ms": 7600, "valence_step_ms": 1800 },
+        "reason": "F-2 fix (fix-round review, item 6): the sealed 5000ms fired the first valence step (1 -> 2) about 2.5s BEFORE sentence 2 ('One, then two, then three.') begins at 7553ms -- narrating a step that had already silently happened, breaking Rule 32a cause-then-effect-under-narration. Retimed so BOTH steps (7600ms and 9400ms) land inside sentence 2's speech window (7553-9654ms), which is the sentence that actually names the count. This is a deliberate, reviewed deviation from the ratified/sealed 5000/4500 in both the skeleton (§6 S6) and the chemistry block (§6 S6) -- flagged here explicitly so it is not read as an accidental mismatch once E3b implements sea.valence_at_ms/valence_step_ms literally; the new numbers, not the sealed ones, are correct and should be kept."
+      }
+    ],
+    "engine_bug_queue_note": "query_engine_bug_queue.ts could not be run from this worktree (no .env.local; the script is also a known false-all-clear on chemistry concepts, hardcoded physics concept list). Flagged to quality_auditor per the skeleton (§14) and the chemistry block (header) -- run the live Gate-8 query from a credentialed session before Checkpoint B."
+  }
+}

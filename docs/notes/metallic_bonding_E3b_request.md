@@ -82,9 +82,113 @@ Full per-state map with line numbers: **skeleton §4**. Summary of what is NEW b
 | C-8 | Trend-panel live highlight following `PM_bscValence` | S6 |
 | C-9 | Tagged-electron focal (= A-3) | S3 |
 | C-10 | **Whole-lattice ionisation ramp + per-site outer-electron dots** | S2 |
+| **C-11** | **Points-only trend chart** (NEW — found by THE EYE walk, 2026-08-03; see §2.1) | S6 |
+| **C-12** | **Solved cameras for the four deferred modes + `fit` on the default** — ⚠ BLOCKING (§2.2) | S2–S6 |
+| **C-13** | **`BS_FIT_MARGIN` is the orthographic bound, not the perspective one** — ⚠ BLOCKING (§2.2) | S1, all lattice states |
+| **C-14** | **`thermal.jiggle_scale` never reaches lattice sites** (§2.2) | S1–S6 |
+| **C-15** | **`lattice.radius_scale` no-ops unless a reveal mode is authored** (§2.2) | S1 |
 
 **Shared with `ionic_bonding` — dispatch ONCE for both:** the `field_at_ms` cue; drag-seize on the
 `shift` and `field` rows; the D-7 `like_contacts` metric + HUD line per ionic skeleton §5.2.
+
+### 2.1 · C-11 — the trend panel cannot draw a points-only chart (found by THE EYE, 2026-08-03)
+
+**Symptom.** S6's row-O trend panel renders correct axes, correct tick values and correct Unicode
+labels — with a y-range (76–357) visibly derived from the real ΔH data — and **zero data-point
+markers**, across all 25 dense frames and the frozen pin. The state's ONE instrument (D-3) is
+pedagogically empty.
+
+**Root cause, from source — this is NOT a missing draw call.** `bscDrawTrend` splits `tr.points` into
+`fam` (labels listed in `tr.extrapolate_from`) and `odd` (everything else). The marker loop is
+`for (i = 0; i < fam.length; i++)` (`field_3d_renderer.ts:55268`), so **only `extrapolate_from`
+members ever get a marker**. `odd` markers are drawn solely inside
+`if (fit && odd.length && rev > 0.55)` (`:55278`), and `bscTrendFit` returns `null` for a family of
+fewer than two points (`:52958`). With no `extrapolate_from`: `fam = []` → no markers → `fit = null`
+→ the `odd` branch never fires either. Axes still draw, because they are computed from `pts`.
+
+**Why the obvious workaround is wrong.** Authoring `extrapolate_from: ["Na","Mg","Al"]` would populate
+`fam` and produce markers — but it also draws a least-squares line through the three points. ΔH_at is
+107 / 146 / 326 kJ mol⁻¹, which is emphatically **not** linear: the fit predicts Mg at ≈207 and misses
+the real 146 by ~61 kJ mol⁻¹, drawing a straight line that visibly bypasses its own middle data point.
+S6's claim is "it climbs steeply", never "it is linear". So the workaround would trade an empty chart
+for a chart that teaches something false. **Not taken.**
+
+**The ask.** `trend` must support a points-only chart: render a marker + label for every entry in
+`tr.points` regardless of `extrapolate_from` membership, with the fitted line drawn only when
+`extrapolate_from` is authored. Gate on **marker draw-call count == `points.length`**, not on axis
+presence — the axes drawing correctly is exactly what made this invisible to a 31/31 green EYE run.
+
+**Scope note:** no `ionic_bonding` state uses `trend`, so this gap is not in Session A's dispatch and
+will not be found by it. It is `metallic_bonding`-only and must be added explicitly.
+
+### 2.2 · C-12…C-15 — four camera/motion defects found at Checkpoint B (2026-08-03)
+
+All four are in LIVE machinery, all four survive E3b unless fixed with it, and **none was in this
+document before Checkpoint B measured them.** C-12 and C-13 are BLOCKING for the post-E3b picture.
+
+**C-12 · Five states are rendered from INSIDE the lattice block. ⚠ BLOCKING.**
+`BS_CAMERAS` (`:51843–51975`) holds exactly nine keys — `dipole_sum, explore, assemble, approach_link,
+network, compare, transfer, lattice_grow, coordination`. The four deferred modes `electron_sea`,
+`drift`, `layer_shift` and `melt` have **no entry**, so `bscSolvedCamera` (`:52215`) falls through to
+`BS_CAMERA_DEFAULT = {az:35, el:28, dist:7.0}` (`:51975`) — which carries **no `fit`**, so the E3a
+auto-fit (gated on `cam.fit`, `:53666`) never runs. The block's bounding radius is 17.6–19.4 units
+against a camera distance of 7.0: **the camera is 10.6–12.4 units inside the block.** Measured by
+replicating the shipped projection: a sphere at the origin draws a predicted 199 px radius against
+~195 px measured in `STATE_3__frozen.png`, and a predicted 414 px on S2 against a sphere that
+overflows the 720 px canvas.
+**This is independent of the deferred physics.** When E3b implements the sea, the drift and the layer
+shift, every one of them will be rendered from inside the block unless a camera is added in the same
+change. *Fixed* = solved camera entries for all four deferred modes, **plus `fit: true` on
+`BS_CAMERA_DEFAULT`** so no future mode can silently inherit an unfitted 7.0. Probe: assert
+`BS_CAMERAS` covers every member of the mode enum, and that the resolved distance ≥ `bscSiteExtent` × 2.0.
+**Invisible to Session A:** `ionic_bonding`'s `transfer` and `lattice_grow` modes both HAVE cameras, so
+that dispatch will not surface this — the same blind spot as C-11.
+
+**C-13 · `BS_FIT_MARGIN = 1.90` is the orthographic bound under a perspective camera. ⚠ BLOCKING.**
+`:51686–51689` reasons: "half-height visible at distance d is d·tan(30°) … fitting an extent e
+therefore needs d ≥ e/0.5774 = 1.732·e; 1.90 is that with margin." That is correct for a **planar**
+extent in the origin plane. But `bscSiteExtent` (`:52862`) returns a **bounding-sphere radius**, whose
+perspective bound is `d ≥ e/sin(30°) = 2.0·e`. At 1.90 the fit is 5% short: S1 lands at worst
+`|NDC.y| = 1.000` — exactly tangent — and clips at the bottom canvas edge (`STATE_1__frozen.png`,
+`STATE_1__dense_t20000.png`). Same reasoning error as the OPEN scar
+`orthographic_separation_metric_underpredicts_perspective_overlap`, whose own prevention rule notes
+such a metric "can only be OPTIMISTIC". **Affects every lattice state on this scenario, `ionic_bonding`
+included.** *Fixed* = `BS_FIT_MARGIN ≥ 2.0`, gated by an assertion that worst `|NDC|` < 1.0 over all sites.
+
+**C-14 · `thermal.jiggle_scale` is a silent no-op on `placement: 'lattice'`.**
+`bscJiggle` is defined at `:52444` and called at **exactly one site** — `:54095`, inside the molecular
+**unit** loop. Lattice sites never receive it. `metallic_bonding` authors `jiggle_scale: 0.5` on all six
+guided states and it does nothing: S1's tail is byte-identical (`t18000 ≡ t19000`), and S3/S4/S5 are
+byte-identical to one another across the entire 3D region (0 of 361,900 px).
+Load-bearing twice: the skeleton's whole "no static state" guarantee (§3) rests on this key, and
+`deriveStateMeta:284–287` reads it to **declare motion = true** — so the validator declares motion on
+the strength of a key with no consumer. *Fixed* = apply jiggle on the site pass, or reject the key as a
+config error on lattice placement. A silent no-op is the one unacceptable outcome.
+
+**C-15 · `lattice.radius_scale` no-ops unless a reveal mode is authored.**
+`:54416` computes `rsNow = 1 + (rsTarget - 1) * revF`, and `revF` is hard 0 when `revMode === "none"`
+(`:54412`). So `radius_scale` — used and documented as an independent knob — does nothing on any state
+authoring `reveal: 'none'`, with no warning. This is exactly the lever identified to fix S1's
+legibility, and pulled alone it would have failed silently. *Fixed* = apply `radius_scale`
+independently of `revF`, or reject the combination as a config error.
+
+### 2.3 · A separate, non-`field_3d` dispatch — the visual gate itself
+
+Not `field3d-surgeon`'s: owner `peter_parker:visual_validator`, on **master**, separate from E3b.
+THE EYE returned **31/31 over four byte-static states and a chart plotting nothing**. Three holes:
+1. **D5 reduces adjacent-pair diffs with `Math.max`** (`pixelGate.ts:273`), so ONE pair anywhere in the
+   state clearing the 0.1% canvas floor certifies the whole state. A DOM annotation appearing is
+   ~4,300 px of 921,600 = **0.47%, five times the floor**. Measured here: S3/S4/S5/S6 changed zero
+   scene pixels across 24–27 dense frames each, and every change instant landed exactly on an
+   annotation `at_ms`/`until_ms` boundary. Four false passes. Renderer-agnostic and fleet-wide, because
+   annotations are shared machinery. *Fixed* = diff the canvas region only, excluding overlay bands,
+   and report the fraction of pairs that moved rather than the max.
+2. **A skipped check is pushed as `passed = true`** (`pixelGate.ts:302–305`), and every scenario branch
+   in `deriveStateMeta` declares its explore state static — so **D5 can never catch a frozen explore
+   state on any concept on any renderer.** That is the Rule-37 defect class, and it is exactly the
+   defect this desk found by hand. *Fixed* = report skipped as SKIPPED, never as a pass, and give
+   Rule 37 its own probe (byte-compare two late frames on any `interaction_complete` state).
+3. The motion **declaration input** is itself a no-op (C-14 above).
 
 ### Two couplings that will otherwise be discovered mid-build
 
@@ -180,9 +284,34 @@ Sections 8/13/14 are already declared E3b stubs. These are the metallic-specific
   happened". This is the state's whole payoff: `like_contacts` reads 0 at *every* position of the only
   slider the state exposes, so it is a needle that never tracks (Rule 33d) and cannot be the payoff by
   itself.
-- **`query_engine_bug_queue.ts` has never been run for this concept** — no `.env.local` on this
-  worktree, plus the known chemistry false-all-clear (hardcoded physics concept list). Gate 8 must run
-  from a credentialed session before Checkpoint B. It is the only unticked box in the skeleton's §15.
+- **`query_engine_bug_queue.ts` — RESOLVED 2026-08-03.** A gitignored `.env.local` was placed on this
+  worktree and the query ran: **6 OPEN rows** naming `metallic_bonding`, all `row_type=directive`,
+  all addressed by the build (one — `explore_controls_not_ring_gated_survive_the_ring_cut` — caught a
+  real blocking defect, since fixed). The chemistry false-all-clear was also root-caused rather than
+  merely restated: `loadConceptIndex()` does a **non-recursive** `readdirSync` on
+  `src/data/concepts/` (`query_engine_bug_queue.ts:52`), so `src/data/concepts/chemistry/` is invisible
+  to it. Consequence, precisely: the `--field3d` / `--scenario` **fleet flags are blind to every
+  chemistry concept** and a clean sweep from them is worthless; the positional `<concept_id>` path is
+  sound (a pure DB `contains` predicate with no dependence on the local index). Residual blind spot:
+  wildcard rows whose `concepts_affected` is empty or names only physics siblings. Seven named scars
+  were therefore hand-checked — all clear, or unverifiable only because the engine is absent.
+
+### 5.1 · One engine premise confirmed false (already inside Session A's scope — do not double-build)
+
+`field_3d_renderer.ts:53967–53968` stands the Rule-37 forced idle spin down whenever
+`thermal.jiggle_scale > 0`, on the stated premise that "jiggle_scale > 0 is already continuous
+motion". **That premise does not hold for `placement: 'lattice'`** — `bscJiggle` is called only on
+the free-unit path (`:54095`); there is no jiggle call anywhere in the lattice-site draw path. A
+lattice explore state authoring `jiggle_scale > 0` therefore gets neither spin nor jiggle and freezes
+completely. Confirmed empirically: `metallic_bonding` S7 was byte-identical across a full 30 s dense
+capture (max pixel delta 0, all five keyframes identical).
+
+Session A's `ionic_bonding` S10 spec already scopes the fix ("authored `jiggle_scale` is REAL post
+D1·S-2, and the idle-spin fallback stands down only on a live motion signal, D1·S-6"), so **no
+separate engine bug is filed here** — this is the concrete manifestation and the empirical evidence
+for that work. `metallic_bonding` S7 carries an explicit `spin_rate` in the meantime, which remains
+correct after the fix lands. **Note for Session A: `ionic_bonding` S10 is `placement:'lattice'` +
+explore and will hit exactly this today if it authors `jiggle_scale` without a `spin_rate`.**
 
 ---
 
