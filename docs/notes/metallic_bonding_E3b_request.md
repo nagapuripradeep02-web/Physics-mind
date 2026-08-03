@@ -87,6 +87,7 @@ Full per-state map with line numbers: **skeleton §4**. Summary of what is NEW b
 | **C-13** | **`BS_FIT_MARGIN` is the orthographic bound, not the perspective one** — ⚠ BLOCKING (§2.2) | S1, all lattice states |
 | **C-14** | **`thermal.jiggle_scale` never reaches lattice sites** (§2.2) | S1–S6 |
 | **C-15** | **`lattice.radius_scale` no-ops unless a reveal mode is authored** (§2.2) | S1 |
+| **C-16** | **A near-orthographic, axis-aligned camera for lattice states** — ⚠ the S1 blocker (§2.4) | S1, all lattice states |
 
 **Shared with `ionic_bonding` — dispatch ONCE for both:** the `field_at_ms` cue; drag-seize on the
 `shift` and `field` rows; the D-7 `like_contacts` metric + HUD line per ionic skeleton §5.2.
@@ -171,6 +172,47 @@ config error on lattice placement. A silent no-op is the one unacceptable outcom
 authoring `reveal: 'none'`, with no warning. This is exactly the lever identified to fix S1's
 legibility, and pulled alone it would have failed silently. *Fixed* = apply `radius_scale`
 independently of `revF`, or reject the combination as a config error.
+
+### 2.4 · C-16 — the S1 blocker: a lattice cannot read as a lattice under this camera
+
+**This is the single finding that stopped the desk.** S1 is the concept's opening state and one of only
+two that fully render today, and it does not teach its claim: the captions say "Atoms pack in rows" and
+"The same spacing repeats everywhere", and neither is visible in the picture.
+
+**The chemistry is not in question and must not be changed to fix this.** Touching spheres at S1's home
+pose are correct by definition — the metallic radius *is* half the nearest-neighbour distance, so
+Na 186 pm in a bcc cell of a = 429 pm gives 2r = 372 pm against nn = 371.5 pm. Note the consequence
+though: **in a space-filling bcc block the body-centre atom touches all eight corners and is therefore
+completely buried.** A packed bcc block physically cannot show its own structure, which is why every
+textbook — NCERT, IGCSE, A-level, IB — draws bcc/fcc/hcp ball-and-stick, as small spheres at lattice
+points. Shrinking the *drawn* radius changes no chemistry whatsoever: `a` stays 429 pm, every
+nearest-neighbour distance stays 371.5 pm, every radius ratio is preserved. The engine says as much in
+its own `BS_COORD_RADIUS_SCALE` comment — "a UNIFORM factor, so every radius RATIO is preserved and the
+linear-in-pm reading survives intact — this is a render convention, not an emphasis knob."
+
+**The root cause is the projection, not the geometry.** Two independent effects, both measured:
+1. The camera is `PerspectiveCamera(60, ...)` (`:3341`) — a wide-angle lens. At fit distance, near sites
+   draw **2.40× the radius** of far sites (46.6 px vs 111.9 px), so physically equal spacings project
+   unequally and the eye cannot read a regular grid.
+2. `lattice_grow` views from az 35 / el 26 (`:51966`), which is off every crystallographic axis of a
+   cubic cell, so **no row of sites ever lines up on screen.**
+
+**Confirmed unauthorable — this was tested, not assumed.** Rendered and read: `peer_fade` and `cutaway`
+reveals; `radius_scale` 1.0 / 0.6 / 0.45; block sizes 35, 16 and 9 sites (note `bscOddN` at `:52640`
+silently coerces `n` to odd, so `[4,4,4]` becomes `[5,5,5]` — an even block cannot be authored). None
+produces a lattice reading, because every one of them changes the geometry while the distortion lives in
+the projection. The 9-site unit cell is worse still: too sparse to show repetition at all.
+
+**The ask.** For `placement: 'lattice'` states, a near-orthographic projection (a narrow FOV at long
+distance, or an `OrthographicCamera`) with the camera aligned to a crystallographic axis. A wide FOV is
+right for a single molecule with depth and wrong for a regular array. Probe: assert the largest/smallest
+drawn site-radius ratio is under ~1.3 and that at least one lattice row projects to a straight line of
+near-equal screen spacings — and fail the *camera*, not the config.
+
+**Authoring already applied and worth keeping** (it removes the sphere-fusion and the bottom-edge clip,
+and is correct under any camera): S1 opens on the true touching pose, then a `cutaway` reveal at
+17600 ms ramps `radius_scale` to 0.45 — the textbook ball-and-stick convention, stated on canvas by a
+new annotation, "Atoms drawn smaller to show the pattern", so the model convention is never silent.
 
 ### 2.3 · A separate, non-`field_3d` dispatch — the visual gate itself
 

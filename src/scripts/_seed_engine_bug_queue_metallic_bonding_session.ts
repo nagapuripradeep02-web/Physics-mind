@@ -217,6 +217,38 @@ const ROWS: BugRow[] = [
         fixed_in_files: [],
         subject: 'subject_neutral',
     },
+    {
+        bug_class: 'field3d_60deg_fov_offaxis_camera_cannot_render_a_crystal_lattice_as_a_lattice',
+        title: 'A regular lattice cannot read as regular under a 60-degree perspective FOV viewed off-axis',
+        severity: 'MAJOR',
+        owner_cluster: 'peter_parker:field3d_surgeon',
+        root_cause:
+            'The renderer camera is PerspectiveCamera(60, ...) (field_3d_renderer.ts:3341) — a wide-angle lens — and the ' +
+            'lattice_grow camera views from az 35 / el 26 (:51966). Two independent consequences, both measured on ' +
+            'metallic_bonding STATE_1: (1) at 60 degrees FOV and fit distance, near sites draw 2.40x the radius of far sites ' +
+            '(46.6px vs 111.9px), so equal spacings project unequally and the eye cannot read a regular grid; (2) az 35 / ' +
+            'el 26 is off every crystallographic axis of a cubic cell, so no row of sites ever lines up on screen. The state ' +
+            'claims "Atoms pack in rows" and "The same spacing repeats everywhere" and neither is visible. Confirmed ' +
+            'unauthorable: three reveal mechanisms (peer_fade, cutaway), three radius_scale values (0.45/0.6/1.0) and three ' +
+            'block sizes were rendered and read; none produces a lattice reading, because the distortion is in the ' +
+            'projection, not the geometry. Every textbook draws bcc/fcc/hcp orthographic or near-orthographic for exactly ' +
+            'this reason.',
+        prevention_rule:
+            'A scenario whose subject is a REGULAR ARRAY needs a near-orthographic projection (a narrow FOV at a long ' +
+            'distance, or an OrthographicCamera) and a camera aligned to a crystallographic axis, or the regularity it ' +
+            'exists to teach is destroyed by the projection. A wide FOV is right for a single molecule with depth and wrong ' +
+            'for a lattice. This cannot be compensated from JSON: reveal mode, radius_scale and block size all leave the ' +
+            'projection unchanged.',
+        probe_type: 'js_eval',
+        probe_logic:
+            'For any state with placement:lattice, project all sites and assert the ratio of largest to smallest drawn site ' +
+            'radius is under ~1.3, and that at least one lattice row projects to a straight line of near-equal screen ' +
+            'spacings; fail the camera, not the config.',
+        status: 'OPEN',
+        concepts_affected: ['metallic_bonding', 'ionic_bonding'],
+        fixed_in_files: [],
+        subject: 'subject_neutral',
+    },
 ];
 
 async function main(): Promise<void> {
