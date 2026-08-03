@@ -53974,6 +53974,16 @@ export const FIELD_3D_RENDERER_CODE = `
     //   i.e. 1.05-1.08 linear, so 1.08 is the generous end of the real range.
     //   Closed form in (index, t, config) — no clamp history, no latch, no
     //   accumulator (D-1) — so a rewind photographs the same molten pose.
+    //   E3b F4 (2026-08-03) EXTENDS THE SAME LAW TO THE FIELD MIGRATION. F1 bounded
+    //   the melt and explicitly left the drift alone, and the drift then had the
+    //   identical defect: at full field a mobile ion translated BS_ION_DRIFT_NN =
+    //   1.6 nearest-neighbour spacings, 9.4 units for NaCl against a sample whose
+    //   own half-span is 5.875, so ionic S8's molten Cl- sublattice was drawn
+    //   INSIDE the solid negative control it exists to be compared with
+    //   (.e3b_drive/F1_after_S8_t13000.png). Electrolysis moves ions TO THE
+    //   ELECTRODES — for a bounded sample, to its own surfaces — so the fix is not
+    //   a cosmetic clamp: piling up at the faces IS the physical outcome, and the
+    //   charge separation it draws is exactly what a conducting melt does.
     var BS_MELT_EXPAND = 1.08;
     // Fold x back into [-h, h] by reflection. fold(x) === x for every |x| <= h, so
     // a solid block and the whole ramp-in of the melt are bit-for-bit untouched.
@@ -53983,6 +53993,33 @@ export const FIELD_3D_RENDERER_CODE = `
         if (m < 0) m += p;
         if (m > 2 * h) m = p - m;
         return m - h;
+    }
+    // E3b F4: and the MIGRATION crowds against the same wall instead of reflecting
+    // off it. A drifting ion is not bouncing about — it is being driven one way, so
+    // when it reaches the sample's surface it STOPS THERE and the ions behind it
+    // pile up on it. That is the space-charge layer electrolysis builds, and it is
+    // the picture ionic S8 teaches: excess cations at one face, excess anions at
+    // the other.
+    //   The last BS_PILE_NN spacings before the face are a SOFT wall rather than a
+    // hard clamp, for two reasons that are both about the teaching. A hard clamp
+    // would collapse every driven plane onto exactly one coordinate — a flat sheet
+    // where a crowd belongs — and it would stop the ion moving in the field
+    // direction at all, so a molten sample would read as frozen the moment its ions
+    // arrived. The saturating map keeps the planes ORDERED and keeps every ion
+    // moving, just compressed: the crowd is dense at the face and thins inward,
+    // which is what a space-charge layer looks like.
+    //   Algebraic (no transcendental), odd, monotone, C1 at the knee, and the
+    // identity for |x| <= h - s, so nothing inside the sample is touched. Its range
+    // is strictly inside (-h, h), so containment is by construction, not by tuning.
+    var BS_PILE_NN = 0.5;
+    function bscIonPile(x, h, s) {
+        if (!(h > 0)) return 0;
+        if (!(s > 0)) return bscClamp(x, -h, h);
+        if (s > h) s = h;
+        var k = h - s, a = Math.abs(x);
+        if (a <= k) return x;
+        var y = (a - k) / s;
+        return (x < 0 ? -1 : 1) * (k + s * y / (1 + y));
     }
     // The half-span of a cell's own generated block, in CELL units, cached on the
     // (cell, n) key — the generator is the ONE definition of where sites sit, so
@@ -54075,27 +54112,48 @@ export const FIELD_3D_RENDERER_CODE = `
         // tested for afterwards but the negative control ionic_bonding S8 teaches
         // FROM: the solid's ions jiggle in place and never translate.
         var dr = bscIonDriftOf(bs, SI, ix, mms, fieldDrag, T_K);
-        if (dr) b = [b[0] + dr[0], b[1] + dr[1], b[2] + dr[2]];
         // E3b T-2: ...and above the pair's own melting point the ion LEAVES its
         // site. Below mp_K this term is exactly 0, so every state that does not
         // heat past a real melting point is byte-identical to E3b S-2.
         var mi = pr ? bscSiteMelt(ix, bscMeltFrac(T_K, pr)) : 0;
-        if (!(mi > 0)) return b;
-        var wd = bscMeltWander(ix, mms / 1000, mi * BS_MELT_WANDER * bscSiteNnU(bs, SI));
-        // E3b F1: ...and it stays INSIDE ITS OWN SAMPLE while it does. The wander
-        // is applied to the site's own LATTICE point and folded back into the
-        // group's envelope, and only the NET displacement is handed to b — so the
-        // jiggle, the field drift and the slip computed above are untouched (an
-        // ion migrating to an electrode is a different mechanism with its own
-        // bound, and confining it here would delete ionic S8's whole beat).
+        if (!dr && !(mi > 0)) return b;
+        var wd = (mi > 0)
+            ? bscMeltWander(ix, mms / 1000, mi * BS_MELT_WANDER * bscSiteNnU(bs, SI)) : null;
+        // E3b F1 + F4: ...and BOTH of those stay INSIDE THIS SAMPLE. One envelope,
+        // one containment law, applied ONCE to the site's own LATTICE point, with
+        // only the NET displacement handed to b — so the jiggle, the separation and
+        // the slip computed above are untouched and never folded twice.
+        //   THE DISORDER FOLDS AND THE MIGRATION PILES, and the difference between
+        // the two is the physics. Thermal disorder has no direction, so it reflects
+        // off the sample wall (bscMeltFold) — the F1 law, unchanged. The field DOES
+        // have a direction, so an ion driven against a face crowds there instead of
+        // bouncing back (bscIonPile) — the space-charge layer, applied AFTER the
+        // disorder because it is the surface the moving ion arrives at.
+        //   Each axis is folded ONCE and piled ONCE, off the site's own LATTICE
+        // point, and only the NET displacement is handed to b — so the jiggle, the
+        // separation and the slip computed above are neither folded nor cancelled.
         var env = bscMeltEnv(bs, SI);
         var o0 = (SI && SI.at) ? SI.at : [0, 0, 0];
-        var q0 = o0[0] - env.c[0], q1 = o0[1] - env.c[1], q2 = o0[2] - env.c[2];
-        return [
-            b[0] + bscMeltFold(q0 + wd[0], env.h[0]) - q0,
-            b[1] + bscMeltFold(q1 + wd[1], env.h[1]) - q1,
-            b[2] + bscMeltFold(q2 + wd[2], env.h[2]) - q2
-        ];
+        //   THE CROWD IS ONLY AS DEEP AS THE DRIVE THAT MADE IT. The softened band
+        // is the smaller of BS_PILE_NN spacings and the migration's own size on
+        // that axis, which makes the whole term vanish continuously as the field
+        // ramps up (and on the two axes the field does not point along, where the
+        // migration is exactly 0 and the pile is therefore exactly the identity).
+        // Without it the softening would arrive at full depth the instant the field
+        // began, popping the outer ions inward by 1.5 units before a single one had
+        // migrated — a discontinuity in a scene whose whole subject is the motion.
+        var pileU = dr ? BS_PILE_NN * bscSiteNnU(bs, SI) : 0;
+        var out = [b[0], b[1], b[2]], ax, q, p;
+        for (ax = 0; ax < 3; ax++) {
+            q = o0[ax] - env.c[ax];
+            p = wd ? bscMeltFold(q + wd[ax], env.h[ax]) : q;
+            if (dr) {
+                p = bscIonPile(p + dr[ax], env.h[ax],
+                    Math.min(pileU, Math.abs(dr[ax])));
+            }
+            out[ax] = b[ax] + p - q;
+        }
+        return out;
     }
     // The half-extent the melt adds, for the camera fit. Config-only: it reads the
     // PEAK temperature the state's own script reaches (T_from / T_K), never the
@@ -54199,6 +54257,17 @@ export const FIELD_3D_RENDERER_CODE = `
     // it, the bscShiftExtent lesson (a pose the teacher can reach but no script
     // authors is still a config fact) — never the clock. So the fit is the same
     // number on the first frame and under a freeze pin.
+    // E3b F4 LEAVES THIS TERM ALONE, DELIBERATELY, and says why. Since F4 the
+    // migration cannot reach past the sample envelope, so the honest reach is the
+    // fusion allowance bscMeltExtent already reports and this term is now a
+    // CONSERVATIVE CAMERA RESERVE — about 9 units of headroom on a NaCl block for
+    // an excursion the engine no longer makes. Measuring it honestly was tried and
+    // reverted in the same dispatch: it pulls the camera in far enough to expose
+    // two defects that belong to the framing owner and not to the containment law
+    // — the FIELD ARROW ROW is not in bscFitPoints at all (its shafts are cut by
+    // the border at the tighter distance), and bscPlaceLabel scores a group label
+    // against the HUD and the other groups but not against that row, so the labels
+    // land on the arrows once the row moves. Both are measured in section 34(e5).
     function bscFieldExtent(bs, siteList) {
         if (!bs || !siteList || !siteList.length) return 0;
         var reach = bscHasControl(bscControlList(bs.controls), "field");
@@ -56587,6 +56656,26 @@ export const FIELD_3D_RENDERER_CODE = `
             glm.scale.set(gHs * (glm._pmCanvas.width / glm._pmCanvas.height), gHs, 1);
             var gAvoid = [];
             if (hudBox) gAvoid.push(hudBox);
+            // E3b F4: ...and the FIELD ARROW ROW, which this solver could not see.
+            // It scored a group label against the readout panel and against the
+            // other blocks and against nothing else, so once F4 stopped the molten
+            // ions sprawling across the scene the freed space above the block
+            // scored best and both labels landed ON the arrows (ionic S8). The row
+            // is three segments, and the solver already takes segments.
+            if (fOn) {
+                for (j = 0; j < BS_FIELD_ARROWS; j++) {
+                    var gaA = [0, 0, 0], gaB = [0, 0, 0];
+                    var fLenA = 2 * fHalf * 0.9;
+                    gaA[fAx] = -fLenA * 0.5; gaB[fAx] = fLenA * 0.5;
+                    gaA[offAx] = fTop + 0.55 + 0.10 * fHalf;
+                    gaB[offAx] = gaA[offAx];
+                    gaA[sprAx] = (BS_FIELD_ARROWS > 1)
+                        ? (j - (BS_FIELD_ARROWS - 1) * 0.5) * (2 * fSpr / (BS_FIELD_ARROWS - 1)) : 0;
+                    gaB[sprAx] = gaA[sprAx];
+                    gAvoid.push({ a: (spin !== 0) ? bscSpinRot(gaA, spinAx, spin) : gaA,
+                        b: (spin !== 0) ? bscSpinRot(gaB, spinAx, spin) : gaB });
+                }
+            }
             // the OTHER groups only: this label's own offset already clears its own
             // block, and scoring it against itself would push it a second radius out.
             for (j = 0; j < grpRows.length; j++) {
