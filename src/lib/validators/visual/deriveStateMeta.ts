@@ -493,6 +493,28 @@ export function deriveMotionExpectations(
                 // to the shared epic_l_path pass exactly like acl_element 'integrated'
                 // does, so no other scenario's control flow is touched.
             }
+            // rigid_body_rotation (Class-11 Ch.7, prefix `rbr`). What this engine
+            // PROVABLY repaints between the dense capture's pinned instants
+            // (t = 1 ms, then every 1000 ms — captureDenseSeries) is the SPIN:
+            // the turntable carries a rotation-marker stripe ~0.99 world units
+            // from the axle, and the whole apparatus turns through omega radians
+            // every second. At the authored seed omega = L/I = omega0, so the
+            // stripe sweeps omega0 radians between the first two dense frames —
+            // hundreds of pixels at any classroom-plausible seed.
+            //   Declared ONLY above a floor, and only when the seed actually
+            // spins: a state seeded at rest genuinely does not move, and
+            // over-declaring is worse than skipping — a D5 that fails on correct
+            // work is a gate people learn to ignore. Everything else is left
+            // undefined (D5 skips), never `false`.
+            const rbrMot = state ? asObj(state.rigid_body_rotation) : null;
+            if (rbrMot) {
+                const w0 = Math.abs(asNum(rbrMot.omega0_rad_s, 1.5));
+                // 0.05 rad/s -> the marker stripe travels ~0.05 world units per
+                // dense-frame gap, about three pixels at the default framing.
+                if (w0 >= 0.05) { out[stateId] = true; continue; }
+                // Seeded at rest: fall through undefined, exactly like the
+                // not-provable force_rig paths above.
+            }
             // bar_magnet_as_dipole: STATE_2's loop trace + STATE_3's break
             // genuinely CYCLE (the payoff is the repetition — "cut it
             // again, still two dipoles"), so they declare ongoing motion. Every
@@ -753,6 +775,16 @@ const F3D_REVEAL_KEYS = [
     // must still be recognised as field_3d rather than falling through to the PCPL
     // branch (which would derive a wall-clock reveal pin and a PCPL hold class).
     'force_rig',
+    // Class-11 Ch.7 rotational mechanics (rigid_body_rotation): the per-state
+    // `rigid_body_rotation` block — the fixed-axis turntable's `param_ramp`
+    // radial slide, its `external_torque` brake engage/release window, its
+    // `restart` run-cut, its `reference_marks[]` reveals, its per-row
+    // `readout_at_ms` ledger and its `phases[]` glow script. Registered here for
+    // the same reason newtons_laws_body and force_rig are: a cached
+    // physics_config that flattened field_3d_config.states to the top level must
+    // still be recognised as field_3d rather than falling through to the PCPL
+    // branch (which would derive a wall-clock reveal pin and a PCPL hold class).
+    'rigid_body_rotation',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -2772,6 +2804,44 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             phaseFound = true;   // a ramp IS a scripted reveal; skip the mode floor below
             candidates.push(pr.end_ms + nlbCushion);
         }
+        // ── SEAM R (rotmech 0c-2) — the TWO bought timed field classes ─────────
+        //   Both are scripted reveals on the state's own clock, so both must join
+        //   the max-reveal computation or the frozen pin defaults to a time that
+        //   PREDATES them and THE EYE mints a self-contradictory baseline —
+        //   field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_
+        //   predates_scripted_reveal, in a new dress.
+        //
+        //   (1) bodies[].activate_at_ms — the instant a body starts being
+        //       integrated (and, in a single_lane state, the instant the previous
+        //       body retires). Presence is resolved by typeof, never truthiness:
+        //       an authored 0 is a legal instant and, by definition, means the same
+        //       as absent (live from entry), so it contributes no candidate.
+        const nlbBodies = Array.isArray(nlb.bodies) ? nlb.bodies : [];
+        for (const bRaw of nlbBodies) {
+            const bd = asObj(bRaw);
+            if (!bd) continue;
+            const at = bd.activate_at_ms;
+            if (typeof at === 'number' && Number.isFinite(at) && at > 0) {
+                phaseFound = true;
+                candidates.push(at + nlbCushion);
+            }
+        }
+        //   (2) formula_lines[].at_ms — the per-line formula reveal. The LAST line
+        //       is the one that matters: it is the answer the derivation state
+        //       exists to produce, so the pin must land after it or the frozen frame
+        //       photographs a half-built formula and claims it is the lesson.
+        const nlbFml = Array.isArray(nlb.formula_lines) ? nlb.formula_lines : [];
+        let lastLineMs = -1;
+        for (const lnRaw of nlbFml) {
+            const ln = asObj(lnRaw);
+            if (!ln || typeof ln.text !== 'string' || ln.text.length === 0) continue;   // mirrors nlbRenderStamps' skip
+            const at = typeof ln.at_ms === 'number' && Number.isFinite(ln.at_ms) ? ln.at_ms : 0;
+            if (at > lastLineMs) lastLineMs = at;
+        }
+        if (lastLineMs > 0) {
+            phaseFound = true;
+            candidates.push(lastLineMs + nlbCushion);
+        }
         // push_off (docs/NLB_PUSH_OFF_SPEC.md) — the contact-then-release phase.
         // The TAUGHT beat is not the contact, it is the SEPARATION the contact
         // leaves behind: both applied forces go to 0 at release_at_ms and the
@@ -3052,6 +3122,94 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(frRelease.at_ms + 3000);   // past the cut, into the straight departure
         }
         if (!frFound) candidates.push(FR_SETTLE_MS);   // no script: still let the rig settle
+    }
+
+    // rigid_body_rotation (Class-11 Ch.7, prefix `rbr`). Every beat runs on the
+    // state's OWN clock — eng.t_ms is DERIVED from (time - stateStartTime), so
+    // it freezes exactly with the SET_TIME_FREEZE pin. Six scripted reveals can
+    // push the pin, and the pin must land past the LAST one (a scenario with no
+    // block here pins at DEFAULT_REVEAL_MS = 1500 mid-choreography and mints a
+    // self-contradictory H2 baseline — field3d_scenario_missing_maxreveal_block_
+    // frozen_pin_defaults_1500ms_predates_scripted_reveal).
+    const rbr = asObj(state.rigid_body_rotation);
+    if (rbr) {
+        const RBR_CUSHION = 900;      // past a ramp's hold, into the settled claim
+        const RBR_BLANK_DEFAULT = 500;
+        let rbrFound = false;
+        //   (1) param_ramp — ONE-SHOT monotonic, HOLDS at `to` from end_ms. The
+        //       payoff (S2 spin-up, S3 the readout meeting its chip, S4 the KE
+        //       gap standing open) IS the held tail, so the pin clears end_ms.
+        const rbrRamp = asObj(rbr.param_ramp);
+        if (rbrRamp && typeof rbrRamp.end_ms === 'number' && Number.isFinite(rbrRamp.end_ms)) {
+            rbrFound = true;
+            candidates.push(rbrRamp.end_ms + RBR_CUSHION);
+        }
+        //   (2) external_torque — the brake beat. The claim is the HELD post-
+        //       release reading (L, omega and KE all changed and stayed changed),
+        //       so the pin lands past the release, never inside the decay.
+        const rbrTau = asObj(rbr.external_torque);
+        if (rbrTau) {
+            const tau = Math.abs(asNum(rbrTau.tau_brake_Nm, 0)) || Math.abs(asNum(rbrTau.applied_torque_Nm, 0));
+            if (tau > 0) {
+                if (typeof rbrTau.release_at_ms === 'number' && Number.isFinite(rbrTau.release_at_ms)) {
+                    rbrFound = true;
+                    candidates.push(rbrTau.release_at_ms + 2000);
+                } else if (typeof rbrTau.engage_at_ms === 'number' && Number.isFinite(rbrTau.engage_at_ms)) {
+                    rbrFound = true;
+                    candidates.push(rbrTau.engage_at_ms + 3000);   // well into the decay
+                }
+            }
+        }
+        //   (3) restart — the run-cut. THE PIN MUST NOT LAND IN THE BLANK
+        //       WINDOW: across a re-pin the readouts are deliberately blanked
+        //       (Addendum C), so a pin there photographs an instrument panel
+        //       reading "—" and loses coverage of the payoff entirely
+        //       (eye_frozen_candidate_offset_falls_outside_engine_display_band).
+        //       Land 1.5 s INTO the run that follows the cut, which is where the
+        //       flipped L arrow and the flipped grip hand actually read.
+        const rbrRestart = asObj(rbr.restart);
+        if (rbrRestart && typeof rbrRestart.at_ms === 'number' && Number.isFinite(rbrRestart.at_ms)) {
+            const rbrRepin = asObj(rbr.repin_cue);
+            const blank = rbrRepin ? asNum(rbrRepin.blank_ms, RBR_BLANK_DEFAULT) : RBR_BLANK_DEFAULT;
+            rbrFound = true;
+            candidates.push(rbrRestart.at_ms + blank + 1500);
+        }
+        //   (4) reference_marks[] — the chip/tick reveals. A chip's own payoff is
+        //       the MATCH, which happens when the ramp holds (covered by (1)), so
+        //       this only guarantees the mark itself is on screen.
+        const rbrMarks = Array.isArray(rbr.reference_marks) ? rbr.reference_marks : [];
+        for (const mkRaw of rbrMarks) {
+            const mk = asObj(mkRaw);
+            if (!mk) continue;
+            rbrFound = true;
+            candidates.push(asNum(mk.at_ms, 0) + RBR_CUSHION);
+        }
+        //   (5) readout_at_ms — the term-introduction ledger (a quantity is
+        //       printed only after the sentence defining it). S1 is nothing BUT
+        //       this, so without it S1 would pin at 1500 ms with two of its three
+        //       instruments still unbuilt.
+        const rbrRo = asObj(rbr.readout_at_ms);
+        if (rbrRo) {
+            for (const k of Object.keys(rbrRo)) {
+                const at = asNum(rbrRo[k], NaN);
+                if (Number.isFinite(at)) { rbrFound = true; candidates.push(at + 1200); }
+            }
+        }
+        //   (6) phases[] — same [at_ms, until_ms) window semantics as force_rig:
+        //       land INSIDE an open window, past a bare fire instant otherwise.
+        const rbrPhases = Array.isArray(rbr.phases) ? rbr.phases : [];
+        for (const phRaw of rbrPhases) {
+            const ph = asObj(phRaw);
+            if (!ph || typeof ph.id !== 'string' || ph.id.length === 0) continue;
+            rbrFound = true;
+            const at = asNum(ph.at_ms, 0);
+            const until = typeof ph.until_ms === 'number' && Number.isFinite(ph.until_ms) ? ph.until_ms : null;
+            if (until != null && until > at) candidates.push(Math.max(at, Math.min(at + 500, until - 200)));
+            else candidates.push(at + 500);
+        }
+        //   A sandbox (Rule 37 free-run) has no script at all — it is classified
+        //   'interactive' in deriveHoldExpectations and needs no reveal pin.
+        if (!rbrFound && rbr.mode !== 'sandbox') candidates.push(RBR_CUSHION);
     }
 
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
@@ -3764,6 +3922,25 @@ export function deriveHoldExpectations(
             const frigHold = asObj(state.force_rig);
             if (frigHold) {
                 out[stateId] = frigHold.trusted_drag_seizes === true ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // rigid_body_rotation (Class-11 Ch.7): every state exposes its own
+            // contextual control row(s) (Rule 31 `controls_visible`), so the
+            // generic show_sliders catch must never decide these. The explore
+            // sandbox (mode 'sandbox' / trusted_drag_seizes, Rule 37 free-run) is
+            // user-driven -> interactive; every other state is a guided beat
+            // whose ramp / brake / restart payoff HOLDS for the rest of the state
+            // (the one-shot-hold contract) -> reveal_hold, so D7 (stuck tail) and
+            // D1p (frozen) permit the held tail instead of false-failing it.
+            //   Both branches are pure RELAXATIONS in pixelGate — neither asserts
+            // stillness — which is what makes reveal_hold the right call even for
+            // the LOOPING run-cut state (S6): a looping beat can never false-fail
+            // on moving pixels, whereas the strict `undefined` gate would ASSERT
+            // motion and a state braked to rest legitimately has none.
+            const rbrHold = asObj(state.rigid_body_rotation);
+            if (rbrHold) {
+                out[stateId] = (rbrHold.mode === 'sandbox' || rbrHold.trusted_drag_seizes === true)
+                    ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

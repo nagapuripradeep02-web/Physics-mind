@@ -41,7 +41,7 @@ The survey's 0c-2 row reads: *"per-body shape factor · the acceleration branch 
 | U6 | Synchronised all-body race restart (+ ω re-seed) | #12 | E4 | blocking |
 | U7 | **Two-channel** authorable vector map (force + velocity) + zero-vector marker | both | E11 | blocking |
 | U8 | Lane geometry incl. **`lane_gap_m = 0` legal**; occlusion warning; camera target authoring | both | E2 + E10 | blocking |
-| U9 | State-local physics clock rebase | both | **E1** | blocking |
+| U9 | ~~State-local physics clock rebase~~ → **VERIFY ONLY, already exists** (see the correction below) | both | **E1** | ~~blocking~~ non-blocking |
 | U10 | Per-body **`activate_at_ms`** + `single_lane: true` retirement + `visible_before_activation` | both | E9 | blocking |
 | U11 | Revolution marks + circumference bracket as their OWN primitive (never `checkpoints`) | #11 | E12 | blocking |
 | U12 | ω re-seed on the sandbox wrap | both | E13 | ride-along |
@@ -60,9 +60,22 @@ The survey's 0c-2 row reads: *"per-body shape factor · the acceleration branch 
 
 ## Part 3 — dispatch order
 
-**E1 (the state-local clock) is a precondition of both builds** — every timing row, every `activate_at_ms` and every `formula_overlay[].at_ms` depends on it. It is owned by `peter_parker:renderer_primitives`, which dispatches **pcpl-surgeon**, *not* field3d-surgeon. Run it first or alongside; do not run either 0c build to completion without it.
+**CORRECTED 2026-08-03 by a pre-dispatch code audit. The original text is preserved at the foot of this section for the record; it was wrong on both the premise and the owner.**
 
-Then 0c-1 and 0c-2 are independent of each other and may run in either order or in parallel.
+**E1 is a VERIFICATION, not a build, and it blocks nothing.** The state-local clock already exists in `field_3d_renderer.ts`:
+- `:59254` — `applyState()` sets `stateStartTime = time` on **every** state apply;
+- `:63402` — `window.PM_simTimeMs = (time - stateStartTime) * 1000`, commented in-place as "(state-local ms)";
+- `:45011` — `nlbResetTrajectory()`, the file's self-described "ONE rewind path", zeroes `eng.t_ms` and `window.PM_nlbTimeMs` and re-arms the phase one-shots.
+
+`activate_at_ms` (U10) and `formula_overlay[].at_ms` (U16) therefore build against `eng.t_ms` as it stands. The one place a residual gap could hide is the note at `:66518` — `newtons_laws_body` **integrates** rather than posing from a closed form, so a clock rebase alone does not rewind it. Prompt 1 is scoped to answer exactly that question and to STOP before implementing anything.
+
+**E1 is owned by `peter_parker:field3d_surgeon`, not `peter_parker:renderer_primitives`.** The consumers are field_3d concepts and the clock lives in `field_3d_renderer.ts`. `pcpl-surgeon` owns `parametric_renderer.ts` and `particle_field_renderer.ts` — **neither file contains `stateStartTime` at all** — and its spec fences it out of field_3d root causes explicitly. Under the original routing it would have refused on scope, or edited the wrong clocks and reported success.
+
+**Order:** 0c-1 and 0c-2 are independent of each other and of E1. Run the two builds in either order or in parallel; run the E1 verification whenever convenient.
+
+**Two further audit findings, carried into Prompt 3 rather than changing the union:** U1 (independent ω integrator) and U3 (per-body `radius_m`) both collide with **SEAM G** (`rolling_friction`, 2026-07-30), which already ships a rolling wheel whose spin is a pure function of position — a choice the file says is what makes Rule 36 hold by construction and frozen EYE baselines byte-stable. Neither item is withdrawn; both now require a written reconciliation before code. U4's "rotation marker" is likewise an extension of SEAM G's existing hub-and-spokes, not new construction.
+
+> **Superseded original text, kept for the record:** *"E1 (the state-local clock) is a precondition of both builds — every timing row, every `activate_at_ms` and every `formula_overlay[].at_ms` depends on it. It is owned by `peter_parker:renderer_primitives`, which dispatches **pcpl-surgeon**, not field3d-surgeon. Run it first or alongside; do not run either 0c build to completion without it. Then 0c-1 and 0c-2 are independent of each other and may run in either order or in parallel."*
 
 ---
 
@@ -72,6 +85,14 @@ By approving this document the founder signs:
 - the four **0c-1 addenda** (Part 1), including ruling **D** (bounded arrow mapping);
 - the **16-item 0c-2 union** (Part 2), including the two founder rulings already given (formula-line reveal bought, per-arrow reveal refused) and the U4 token widening;
 - the **two-timed-class fence** and the declaration that a third class stops the build;
-- the dispatch order in Part 3.
+- the dispatch order in Part 3 **as corrected 2026-08-03** — E1 downgraded from blocking build to
+  non-blocking verification, re-owned to `peter_parker:field3d_surgeon`, and the U1/U3/U4 SEAM G
+  reconciliation required before code.
+
+**Note on the correction.** The 15 remaining blocking items and the fence are unchanged; only U9
+moved. The audit that produced it read the renderer rather than the build sheet, which is the
+check the Rule-40a instruction inside each prompt was meant to force and could not, because the
+prompt asserted the gap as fact. Worth repeating at the next chapter opening: **verify the
+premise against code before writing the work order, not inside it.**
 
 *Everything here was found before a line of engine code was written. Finding it after 0c had landed is what cost Class-12 Ch.7 ~1,296M tokens for six concepts.*
