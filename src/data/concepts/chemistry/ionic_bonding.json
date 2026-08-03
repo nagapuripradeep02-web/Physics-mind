@@ -25,10 +25,22 @@
     "secondary": "Magnesium oxide is used to line furnaces that run past 3000 kelvin, because its ions carry double the charge of salt's ions at a smaller spacing, giving it a far stronger lattice and a far higher melting point."
   },
   "entry_state_map": {
-    "foundational": { "start": "STATE_1", "end": "STATE_4" },
-    "lattice_structure": { "start": "STATE_4", "end": "STATE_6" },
-    "physical_properties": { "start": "STATE_7", "end": "STATE_9" },
-    "exploration": { "start": "STATE_10", "end": "STATE_10" }
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_4"
+    },
+    "lattice_structure": {
+      "start": "STATE_4",
+      "end": "STATE_6"
+    },
+    "physical_properties": {
+      "start": "STATE_7",
+      "end": "STATE_9"
+    },
+    "exploration": {
+      "start": "STATE_10",
+      "end": "STATE_10"
+    }
   },
   "concept_tier_note": "Tier: diamond, capabilities 3 + 4. A whiteboard draws one Na atom and one Cl atom exchanging an electron and stopping there. It cannot show the pair failing to stay a pair — a lattice that keeps growing past the frame in every direction (capability 3) — and it cannot make a crystal actually split along a plane, actually melt at a derived temperature, or actually conduct only once molten, each one a real motion driven by the same underlying charges rather than an asserted outcome (capability 4).",
   "cognitive_limits": {
@@ -43,45 +55,223 @@
   },
   "physics_engine_config": {
     "variables": {
-      "a_pm_NaCl": { "name": "NaCl cell edge", "unit": "picometres (pm)", "constant": 564.0, "role": "engine_constant" },
-      "mp_K_NaCl": { "name": "NaCl melting point", "unit": "kelvin (K)", "constant": 1074, "role": "engine_constant" },
-      "lattice_kJ_NaCl": { "name": "NaCl lattice dissociation enthalpy, MX(s) -> M+(g) + X-(g), Born-Haber", "unit": "kJ.mol-1", "constant": 788, "role": "engine_constant" },
-      "a_pm_KCl": { "name": "KCl cell edge", "unit": "picometres (pm)", "constant": 629.3, "role": "engine_constant" },
-      "mp_K_KCl": { "name": "KCl melting point", "unit": "kelvin (K)", "constant": 1043, "role": "engine_constant" },
-      "lattice_kJ_KCl": { "name": "KCl lattice dissociation enthalpy", "unit": "kJ.mol-1", "constant": 715, "role": "engine_constant" },
-      "a_pm_LiF": { "name": "LiF cell edge", "unit": "picometres (pm)", "constant": 402.6, "role": "engine_constant" },
-      "mp_K_LiF": { "name": "LiF melting point", "unit": "kelvin (K)", "constant": 1118, "role": "engine_constant" },
-      "lattice_kJ_LiF": { "name": "LiF lattice dissociation enthalpy", "unit": "kJ.mol-1", "constant": 1030, "role": "engine_constant" },
-      "a_pm_MgO": { "name": "MgO cell edge", "unit": "picometres (pm)", "constant": 421.2, "role": "engine_constant" },
-      "mp_K_MgO": { "name": "MgO melting point", "unit": "kelvin (K)", "constant": 3125, "role": "engine_constant" },
-      "lattice_kJ_MgO": { "name": "MgO lattice dissociation enthalpy", "unit": "kJ.mol-1", "constant": 3791, "role": "engine_constant" },
-      "a_pm_CaO": { "name": "CaO cell edge", "unit": "picometres (pm)", "constant": 481.1, "role": "engine_constant" },
-      "mp_K_CaO": { "name": "CaO melting point", "unit": "kelvin (K)", "constant": 2886, "role": "engine_constant" },
-      "lattice_kJ_CaO": { "name": "CaO lattice dissociation enthalpy", "unit": "kJ.mol-1", "constant": 3401, "role": "engine_constant" },
-      "radius_Na_atom_pm": { "name": "sodium atom radius", "unit": "picometres (pm)", "constant": 186, "role": "engine_constant" },
-      "radius_Na_ion_pm": { "name": "Na+ ion radius (Shannon CN6)", "unit": "picometres (pm)", "constant": 102, "role": "engine_constant" },
-      "radius_Cl_atom_pm": { "name": "chlorine atom radius", "unit": "picometres (pm)", "constant": 99, "role": "engine_constant" },
-      "radius_Cl_ion_pm": { "name": "Cl- ion radius (Shannon CN6)", "unit": "picometres (pm)", "constant": 181, "role": "engine_constant" },
-      "radius_Mg_ion_pm": { "name": "Mg2+ ion radius (Shannon CN6)", "unit": "picometres (pm)", "constant": 72, "role": "engine_constant" },
-      "radius_O_ion_pm": { "name": "O2- ion radius (Shannon CN6)", "unit": "picometres (pm)", "constant": 140, "role": "engine_constant" },
-      "conductivity_molten_S_cm": { "name": "molten NaCl conductivity (Janz-tradition compilation)", "unit": "S.cm-1", "constant": 3.5, "role": "narrated_constant", "note": "reference temperature 1100 K; no solid-NaCl endpoint is ratified or shown anywhere in this concept" },
-      "T_K": { "name": "temperature", "unit": "kelvin (K)", "min": 300, "max": 3400, "default": 300, "step": 25, "role": "taught_variable", "note": "live scripted ramp on STATE_7 (dest 1200 K) and STATE_9 (shared dest 1500 K); all core on STATE_10 (must clear MgO 3125 K and CaO 2886 K)" },
-      "shift": { "name": "layer shift", "unit": "site widths (1.0 = one full site)", "min": 0, "max": 1, "default": 0, "step": 0.02, "role": "taught_variable", "note": "live on STATE_6 (scripted dest 1.0, drag-seized) and STATE_10" },
-      "field": { "name": "applied field", "unit": "normalised bias (0-1)", "min": 0, "max": 1, "default": 0, "step": 0.02, "role": "taught_variable", "note": "live on STATE_8 (scripted dest 1, drag-seized) and STATE_10" },
-      "separation_pm": { "name": "live centre-to-centre ion separation (STATE_3)", "unit": "picometres (pm)", "role": "computed_output", "note": "ramps through the STATE_3 approach and settles at 282 pm; no authored string in this concept types this digit" },
-      "coordination": { "name": "nearest-neighbour count of the opposite charge (STATE_5)", "unit": "neighbours (dimensionless)", "role": "computed_output", "note": "rock-salt is 6:6 for every interior site, both counts independently derived" },
-      "like_contacts": { "name": "like-charge nearest-neighbour contacts created by the layer shift (STATE_6)", "unit": "contacts (dimensionless)", "role": "computed_output", "note": "a delta against the unshifted reference lattice at the same instant, never a raw count; 0 pre-shift, derived count post-shift" },
-      "melting_point": { "name": "live melting point of the displayed ion pair", "unit": "kelvin (K)", "role": "computed_output" },
-      "lattice_enthalpy": { "name": "live lattice dissociation enthalpy of the displayed ion pair", "unit": "kJ.mol-1", "role": "computed_output" },
-      "conductivity": { "name": "state-dependent conductivity readout (STATE_8)", "unit": "S.cm-1 or categorical", "role": "computed_output", "note": "derived from f_melt(T_K, pair) against each sample's own temperature; never a solid-side digit" }
+      "a_pm_NaCl": {
+        "name": "NaCl cell edge",
+        "unit": "picometres (pm)",
+        "constant": 564.0,
+        "role": "engine_constant"
+      },
+      "mp_K_NaCl": {
+        "name": "NaCl melting point",
+        "unit": "kelvin (K)",
+        "constant": 1074,
+        "role": "engine_constant"
+      },
+      "lattice_kJ_NaCl": {
+        "name": "NaCl lattice dissociation enthalpy, MX(s) -> M+(g) + X-(g), Born-Haber",
+        "unit": "kJ.mol-1",
+        "constant": 788,
+        "role": "engine_constant"
+      },
+      "a_pm_KCl": {
+        "name": "KCl cell edge",
+        "unit": "picometres (pm)",
+        "constant": 629.3,
+        "role": "engine_constant"
+      },
+      "mp_K_KCl": {
+        "name": "KCl melting point",
+        "unit": "kelvin (K)",
+        "constant": 1043,
+        "role": "engine_constant"
+      },
+      "lattice_kJ_KCl": {
+        "name": "KCl lattice dissociation enthalpy",
+        "unit": "kJ.mol-1",
+        "constant": 715,
+        "role": "engine_constant"
+      },
+      "a_pm_LiF": {
+        "name": "LiF cell edge",
+        "unit": "picometres (pm)",
+        "constant": 402.6,
+        "role": "engine_constant"
+      },
+      "mp_K_LiF": {
+        "name": "LiF melting point",
+        "unit": "kelvin (K)",
+        "constant": 1118,
+        "role": "engine_constant"
+      },
+      "lattice_kJ_LiF": {
+        "name": "LiF lattice dissociation enthalpy",
+        "unit": "kJ.mol-1",
+        "constant": 1030,
+        "role": "engine_constant"
+      },
+      "a_pm_MgO": {
+        "name": "MgO cell edge",
+        "unit": "picometres (pm)",
+        "constant": 421.2,
+        "role": "engine_constant"
+      },
+      "mp_K_MgO": {
+        "name": "MgO melting point",
+        "unit": "kelvin (K)",
+        "constant": 3125,
+        "role": "engine_constant"
+      },
+      "lattice_kJ_MgO": {
+        "name": "MgO lattice dissociation enthalpy",
+        "unit": "kJ.mol-1",
+        "constant": 3791,
+        "role": "engine_constant"
+      },
+      "a_pm_CaO": {
+        "name": "CaO cell edge",
+        "unit": "picometres (pm)",
+        "constant": 481.1,
+        "role": "engine_constant"
+      },
+      "mp_K_CaO": {
+        "name": "CaO melting point",
+        "unit": "kelvin (K)",
+        "constant": 2886,
+        "role": "engine_constant"
+      },
+      "lattice_kJ_CaO": {
+        "name": "CaO lattice dissociation enthalpy",
+        "unit": "kJ.mol-1",
+        "constant": 3401,
+        "role": "engine_constant"
+      },
+      "radius_Na_atom_pm": {
+        "name": "sodium atom radius",
+        "unit": "picometres (pm)",
+        "constant": 186,
+        "role": "engine_constant"
+      },
+      "radius_Na_ion_pm": {
+        "name": "Na+ ion radius (Shannon CN6)",
+        "unit": "picometres (pm)",
+        "constant": 102,
+        "role": "engine_constant"
+      },
+      "radius_Cl_atom_pm": {
+        "name": "chlorine atom radius",
+        "unit": "picometres (pm)",
+        "constant": 99,
+        "role": "engine_constant"
+      },
+      "radius_Cl_ion_pm": {
+        "name": "Cl- ion radius (Shannon CN6)",
+        "unit": "picometres (pm)",
+        "constant": 181,
+        "role": "engine_constant"
+      },
+      "radius_Mg_ion_pm": {
+        "name": "Mg2+ ion radius (Shannon CN6)",
+        "unit": "picometres (pm)",
+        "constant": 72,
+        "role": "engine_constant"
+      },
+      "radius_O_ion_pm": {
+        "name": "O2- ion radius (Shannon CN6)",
+        "unit": "picometres (pm)",
+        "constant": 140,
+        "role": "engine_constant"
+      },
+      "conductivity_molten_S_cm": {
+        "name": "molten NaCl conductivity (Janz-tradition compilation)",
+        "unit": "S.cm-1",
+        "constant": 3.5,
+        "role": "narrated_constant",
+        "note": "reference temperature 1100 K; no solid-NaCl endpoint is ratified or shown anywhere in this concept"
+      },
+      "T_K": {
+        "name": "temperature",
+        "unit": "kelvin (K)",
+        "min": 300,
+        "max": 3400,
+        "default": 300,
+        "step": 25,
+        "role": "taught_variable",
+        "note": "live scripted ramp on STATE_7 (dest 1200 K) and STATE_9 (shared dest 1500 K); all core on STATE_10 (must clear MgO 3125 K and CaO 2886 K)"
+      },
+      "shift": {
+        "name": "layer shift",
+        "unit": "site widths (1.0 = one full site)",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "step": 0.02,
+        "role": "taught_variable",
+        "note": "live on STATE_6 (scripted dest 1.0, drag-seized) and STATE_10"
+      },
+      "field": {
+        "name": "applied field",
+        "unit": "normalised bias (0-1)",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "step": 0.02,
+        "role": "taught_variable",
+        "note": "live on STATE_8 (scripted dest 1, drag-seized) and STATE_10"
+      },
+      "separation_pm": {
+        "name": "live centre-to-centre ion separation (STATE_3)",
+        "unit": "picometres (pm)",
+        "role": "computed_output",
+        "note": "ramps through the STATE_3 approach and settles at 282 pm; no authored string in this concept types this digit"
+      },
+      "coordination": {
+        "name": "nearest-neighbour count of the opposite charge (STATE_5)",
+        "unit": "neighbours (dimensionless)",
+        "role": "computed_output",
+        "note": "rock-salt is 6:6 for every interior site, both counts independently derived"
+      },
+      "like_contacts": {
+        "name": "like-charge nearest-neighbour contacts created by the layer shift (STATE_6)",
+        "unit": "contacts (dimensionless)",
+        "role": "computed_output",
+        "note": "a delta against the unshifted reference lattice at the same instant, never a raw count; 0 pre-shift, derived count post-shift"
+      },
+      "melting_point": {
+        "name": "live melting point of the displayed ion pair",
+        "unit": "kelvin (K)",
+        "role": "computed_output"
+      },
+      "lattice_enthalpy": {
+        "name": "live lattice dissociation enthalpy of the displayed ion pair",
+        "unit": "kJ.mol-1",
+        "role": "computed_output"
+      },
+      "conductivity": {
+        "name": "state-dependent conductivity readout (STATE_8)",
+        "unit": "S.cm-1 or categorical",
+        "role": "computed_output",
+        "note": "derived from f_melt(T_K, pair) against each sample's own temperature; never a solid-side digit"
+      }
     },
     "computed_outputs": {
-      "separation_pm": { "formula": "live centre-to-centre distance of the two leading sites, engine-derived from the approach ramp, converted through pm_per_unit" },
-      "coordination": { "formula": "count of nearest-neighbour sites of the opposite charge, and independently of the same charge's own sublattice, at the minimum interior-site distance" },
-      "like_contacts": { "formula": "unscreened same-charge nearest-neighbour contacts at the shifted lattice, minus the same count at the unshifted reference lattice, at the same instant" },
-      "melting_point": { "formula": "BS_ION_PAIRS[pair].mp_K for the live ion pair" },
-      "lattice_enthalpy": { "formula": "BS_ION_PAIRS[pair].lattice_kJ for the live ion pair" },
-      "conductivity": { "formula": "f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / 25, 0, 1); f_melt > 0 prints the molten reading, f_melt = 0 prints 'ions fixed'" }
+      "separation_pm": {
+        "formula": "live centre-to-centre distance of the two leading sites, engine-derived from the approach ramp, converted through pm_per_unit"
+      },
+      "coordination": {
+        "formula": "count of nearest-neighbour sites of the opposite charge, and independently of the same charge's own sublattice, at the minimum interior-site distance"
+      },
+      "like_contacts": {
+        "formula": "unscreened same-charge nearest-neighbour contacts at the shifted lattice, minus the same count at the unshifted reference lattice, at the same instant"
+      },
+      "melting_point": {
+        "formula": "BS_ION_PAIRS[pair].mp_K for the live ion pair"
+      },
+      "lattice_enthalpy": {
+        "formula": "BS_ION_PAIRS[pair].lattice_kJ for the live ion pair"
+      },
+      "conductivity": {
+        "formula": "f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / 25, 0, 1); f_melt > 0 prints the molten reading, f_melt = 0 prints 'ions fixed'"
+      }
     },
     "constraints": [
       "charge is conserved at every instant: Σq = 0 before, during, and after the S2 transfer ramp (charge and radius ramp in lockstep, never independently)",
@@ -108,7 +298,10 @@
           {
             "type": "annotation",
             "id": "s1_context_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Two neutral atoms",
             "color": "#90CAF9",
             "at_ms": 0,
@@ -117,7 +310,10 @@
           {
             "type": "annotation",
             "id": "s1_spare_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "One spare outer electron",
             "color": "#FFCA28",
             "at_ms": 3000,
@@ -126,7 +322,10 @@
           {
             "type": "annotation",
             "id": "s1_gap_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "One space for one more",
             "color": "#4FC3F7",
             "at_ms": 9000,
@@ -135,10 +334,26 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "The dots are the outer electrons.", "glow": "electrons" },
-            { "id": "s1_2", "text_en": "Sodium's outer shell holds one electron more than a full shell; chlorine's holds one fewer.", "glow": "electrons" },
-            { "id": "s1_3", "text_en": "Count the dots as the atoms turn: one spare, one gap.", "glow": "electrons" },
-            { "id": "s1_4", "text_en": "This mismatch is why sodium and chlorine react.", "glow": "electrons" }
+            {
+              "id": "s1_1",
+              "text_en": "The dots are the outer electrons.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Sodium's outer shell holds one electron more than a full shell; chlorine's holds one fewer.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Count the dots as the atoms turn: one spare, one gap.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s1_4",
+              "text_en": "This mismatch is why sodium and chlorine react.",
+              "glow": "electrons"
+            }
           ]
         }
       },
@@ -153,7 +368,10 @@
           {
             "type": "annotation",
             "id": "s2_watch_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Watch the electron cross",
             "color": "#FFCA28",
             "at_ms": 0,
@@ -162,7 +380,10 @@
           {
             "type": "annotation",
             "id": "s2_smaller_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Smaller: it lost a shell",
             "color": "#4FC3F7",
             "at_ms": 14000,
@@ -171,7 +392,10 @@
           {
             "type": "annotation",
             "id": "s2_larger_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Larger: one extra electron",
             "color": "#4FC3F7",
             "at_ms": 14000,
@@ -180,9 +404,21 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Chlorine pulls electrons far harder than sodium holds them, so the spare electron moves across — watch it.", "glow": "electrons" },
-            { "id": "s2_2", "text_en": "Sodium loses its whole outer shell and gets smaller; chlorine gains one electron and gets larger.", "glow": "electrons" },
-            { "id": "s2_3", "text_en": "Two charged ions now, and the readout shows both new sizes.", "glow": "electrons" }
+            {
+              "id": "s2_1",
+              "text_en": "Chlorine pulls electrons far harder than sodium holds them, so the spare electron moves across — watch it.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Sodium loses its whole outer shell and gets smaller; chlorine gains one electron and gets larger.",
+              "glow": "electrons"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Two charged ions now, and the readout shows both new sizes.",
+              "glow": "electrons"
+            }
           ]
         },
         "has_prebuilt_deep_dive": true,
@@ -203,7 +439,10 @@
           {
             "type": "annotation",
             "id": "s3_context_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Opposite charges attract",
             "color": "#FFCA28",
             "at_ms": 0,
@@ -212,7 +451,10 @@
           {
             "type": "annotation",
             "id": "s3_settle_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Distance settles",
             "color": "#4FC3F7",
             "at_ms": 11000,
@@ -221,7 +463,10 @@
           {
             "type": "annotation",
             "id": "s3_full_shells_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Full shells cannot overlap — they stop here",
             "color": "#90CAF9",
             "at_ms": 11500,
@@ -230,10 +475,26 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Opposite charges pull the ions together.", "glow": "lattice" },
-            { "id": "s3_2", "text_en": "The closer they get, the harder their full inner shells push back.", "glow": "lattice" },
-            { "id": "s3_3", "text_en": "Pull in, push out, balance: the ions settle at a fixed spacing.", "glow": "lattice" },
-            { "id": "s3_4", "text_en": "The distance readout shows it live — half of the crystal's measured cell edge.", "glow": "lattice" }
+            {
+              "id": "s3_1",
+              "text_en": "Opposite charges pull the ions together.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The closer they get, the harder their full inner shells push back.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Pull in, push out, balance: the ions settle at a fixed spacing.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The distance readout shows it live — half of the crystal's measured cell edge.",
+              "glow": "lattice"
+            }
           ]
         }
       },
@@ -249,7 +510,10 @@
           {
             "type": "annotation",
             "id": "s4_grow_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Ions keep joining",
             "color": "#FFCA28",
             "at_ms": 5000,
@@ -258,7 +522,10 @@
           {
             "type": "annotation",
             "id": "s4_repeat_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "The pattern repeats in every direction",
             "color": "#4FC3F7",
             "at_ms": 15000,
@@ -267,7 +534,10 @@
           {
             "type": "annotation",
             "id": "s4_corner_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "This block is a tiny corner of one grain",
             "color": "#90CAF9",
             "at_ms": 17000,
@@ -276,10 +546,26 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Here is the pair most people picture as 'a molecule of salt.'", "glow": "lattice" },
-            { "id": "s4_2", "text_en": "But a chloride ion pulls every sodium ion near it, not just one — watch.", "glow": "lattice" },
-            { "id": "s4_3", "text_en": "Ions keep joining, in a strict alternating pattern, and nothing stops the growth.", "glow": "lattice" },
-            { "id": "s4_4", "text_en": "Salt is not molecules. It is one endless repeating lattice.", "glow": "lattice" }
+            {
+              "id": "s4_1",
+              "text_en": "Here is the pair most people picture as 'a molecule of salt.'",
+              "glow": "lattice"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "But a chloride ion pulls every sodium ion near it, not just one — watch.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Ions keep joining, in a strict alternating pattern, and nothing stops the growth.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Salt is not molecules. It is one endless repeating lattice.",
+              "glow": "lattice"
+            }
           ]
         },
         "misconception_watch": [
@@ -307,7 +593,10 @@
           {
             "type": "annotation",
             "id": "s5_fade_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Fade the other ions",
             "color": "#FFCA28",
             "at_ms": 0,
@@ -316,7 +605,10 @@
           {
             "type": "annotation",
             "id": "s5_rods_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Count the six rods",
             "color": "#4FC3F7",
             "at_ms": 8000,
@@ -325,7 +617,10 @@
           {
             "type": "annotation",
             "id": "s5_same_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Same count for every ion",
             "color": "#90CAF9",
             "at_ms": 12000,
@@ -334,13 +629,28 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Fade the other ions and look inside the solid.", "glow": "neighbours" },
-            { "id": "s5_2", "text_en": "Six rods, six neighbours of the opposite charge — above, below, left, right, front, back.", "glow": "neighbours" },
-            { "id": "s5_3", "text_en": "Pick any ion in the whole crystal and the count is the same: six and six.", "glow": "neighbours" }
+            {
+              "id": "s5_1",
+              "text_en": "Fade the other ions and look inside the solid.",
+              "glow": "neighbours"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Six rods, six neighbours of the opposite charge — above, below, left, right, front, back.",
+              "glow": "neighbours"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Pick any ion in the whole crystal and the count is the same: six and six.",
+              "glow": "neighbours"
+            }
           ]
         },
         "controls": [
-          { "id": "spin", "min_ring": "core" }
+          {
+            "id": "spin",
+            "min_ring": "core"
+          }
         ]
       },
       "STATE_6": {
@@ -354,7 +664,10 @@
           {
             "type": "annotation",
             "id": "s6_counter_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Watch the like-charge counter",
             "color": "#FFCA28",
             "at_ms": 6000,
@@ -363,7 +676,10 @@
           {
             "type": "annotation",
             "id": "s6_slide_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "A one-site slide lines up like charges",
             "color": "#4FC3F7",
             "at_ms": 9200,
@@ -372,7 +688,10 @@
           {
             "type": "annotation",
             "id": "s6_push_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Like charges push the halves apart",
             "color": "#EF5350",
             "at_ms": 15500,
@@ -381,14 +700,33 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "This is why a salt grain splits into flat faces instead of denting.", "glow": "lattice" },
-            { "id": "s6_2", "text_en": "Slide the top half of the crystal by one position.", "glow": "lattice" },
-            { "id": "s6_3", "text_en": "Every plus now sits over a plus, every minus over a minus.", "glow": "lattice" },
-            { "id": "s6_4", "text_en": "The counter shows the new like-charge contacts — and the crystal splits along that plane.", "glow": "lattice" }
+            {
+              "id": "s6_1",
+              "text_en": "This is why a salt grain splits into flat faces instead of denting.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Slide the top half of the crystal by one position.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Every plus now sits over a plus, every minus over a minus.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s6_4",
+              "text_en": "The counter shows the new like-charge contacts — and the crystal splits along that plane.",
+              "glow": "lattice"
+            }
           ]
         },
         "controls": [
-          { "id": "shift", "min_ring": "core" }
+          {
+            "id": "shift",
+            "min_ring": "core"
+          }
         ],
         "has_prebuilt_deep_dive": true,
         "drill_downs": [
@@ -408,7 +746,10 @@
           {
             "type": "annotation",
             "id": "s7_watch_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Watch the temperature climb",
             "color": "#FFCA28",
             "at_ms": 4000,
@@ -417,7 +758,10 @@
           {
             "type": "annotation",
             "id": "s7_free_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Ions become free at the melting point",
             "color": "#4FC3F7",
             "at_ms": 13000,
@@ -426,7 +770,10 @@
           {
             "type": "annotation",
             "id": "s7_bond_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "No single bond breaks alone",
             "color": "#90CAF9",
             "at_ms": 15500,
@@ -435,13 +782,28 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Heat the crystal and every ion shakes harder, but each is held by six neighbours, and those by six more — no single weak bond breaks first.", "glow": "lattice" },
-            { "id": "s7_2", "text_en": "An ion is freed only once that whole surrounding pull is overcome.", "glow": "lattice" },
-            { "id": "s7_3", "text_en": "That is why the melting point is so high — the HUD shows the temperature and energy needed.", "glow": "lattice" }
+            {
+              "id": "s7_1",
+              "text_en": "Heat the crystal and every ion shakes harder, but each is held by six neighbours, and those by six more — no single weak bond breaks first.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "An ion is freed only once that whole surrounding pull is overcome.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "That is why the melting point is so high — the HUD shows the temperature and energy needed.",
+              "glow": "lattice"
+            }
           ]
         },
         "controls": [
-          { "id": "temperature", "min_ring": "core" }
+          {
+            "id": "temperature",
+            "min_ring": "core"
+          }
         ]
       },
       "STATE_8": {
@@ -456,7 +818,10 @@
           {
             "type": "annotation",
             "id": "s8_field_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "The same field acts on both",
             "color": "#FFCA28",
             "at_ms": 6000,
@@ -465,7 +830,10 @@
           {
             "type": "annotation",
             "id": "s8_solid_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Held in place — no current",
             "color": "#90CAF9",
             "at_ms": 8000,
@@ -474,7 +842,10 @@
           {
             "type": "annotation",
             "id": "s8_melt_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Free ions drift — current flows",
             "color": "#4FC3F7",
             "at_ms": 10500,
@@ -483,10 +854,26 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Both samples are pure salt, and the same push acts on both.", "glow": "field" },
-            { "id": "s8_2", "text_en": "In the solid, every ion is held at its site — it is pulled slightly, and stays in place.", "glow": "lattice" },
-            { "id": "s8_3", "text_en": "In the molten sample the ions are free, and they drift: plus one way, minus the other.", "glow": "lattice" },
-            { "id": "s8_4", "text_en": "Moving charge is a current.", "glow": "lattice" }
+            {
+              "id": "s8_1",
+              "text_en": "Both samples are pure salt, and the same push acts on both.",
+              "glow": "field"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "In the solid, every ion is held at its site — it is pulled slightly, and stays in place.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s8_3",
+              "text_en": "In the molten sample the ions are free, and they drift: plus one way, minus the other.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s8_4",
+              "text_en": "Moving charge is a current.",
+              "glow": "lattice"
+            }
           ]
         },
         "misconception_watch": [
@@ -500,7 +887,7 @@
       "STATE_9": {
         "title": "Higher charge, stronger lattice",
         "label": "One shared heater, two crystals — salt melts on the way up while magnesium oxide holds",
-        "duration": 28,
+        "duration": 30,
         "depth_ring": "advanced",
         "teaching_method": "compare_contrast",
         "focal_primitive_id": "s9_mgo_label",
@@ -509,7 +896,10 @@
           {
             "type": "annotation",
             "id": "s9_heater_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Same heater, two crystals",
             "color": "#B39DDB",
             "at_ms": 4000,
@@ -518,7 +908,10 @@
           {
             "type": "annotation",
             "id": "s9_nacl_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Single charges — already molten",
             "color": "#4FC3F7",
             "at_ms": 12000,
@@ -527,7 +920,10 @@
           {
             "type": "annotation",
             "id": "s9_mgo_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Double charges, closer — still solid",
             "color": "#90CAF9",
             "at_ms": 14000,
@@ -536,10 +932,26 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Same heater, two crystals.", "glow": "lattice" },
-            { "id": "s9_2", "text_en": "Salt's ions carry single charges; magnesium oxide's carry double charges, at a smaller spacing.", "glow": "lattice" },
-            { "id": "s9_3", "text_en": "Both its melting point and its lattice-dissociation energy are far higher — different measurements of the same stronger attraction, not the same quantity.", "glow": "lattice" },
-            { "id": "s9_4", "text_en": "Salt melts on the way up; magnesium oxide stays solid far past that point.", "glow": "lattice" }
+            {
+              "id": "s9_1",
+              "text_en": "Same heater, two crystals.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Salt's ions carry single charges; magnesium oxide's carry double charges, at a smaller spacing.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s9_3",
+              "text_en": "Both its melting point and its lattice-dissociation energy are far higher — different measurements of the same stronger attraction, not the same quantity.",
+              "glow": "lattice"
+            },
+            {
+              "id": "s9_4",
+              "text_en": "Salt melts on the way up; magnesium oxide stays solid far past that point.",
+              "glow": "lattice"
+            }
           ]
         }
       },
@@ -555,28 +967,41 @@
           {
             "type": "annotation",
             "id": "s10_pick_label",
-            "position": { "x": 160, "y": 60 },
+            "position": {
+              "x": 160,
+              "y": 60
+            },
             "text": "Pick an ion pair",
             "color": "#FFCA28"
           },
           {
             "type": "annotation",
             "id": "s10_drag_label",
-            "position": { "x": 500, "y": 60 },
+            "position": {
+              "x": 500,
+              "y": 60
+            },
             "text": "Drag temperature, shift or field",
             "color": "#4FC3F7"
           },
           {
             "type": "annotation",
             "id": "s10_readouts_label",
-            "position": { "x": 380, "y": 430 },
+            "position": {
+              "x": 380,
+              "y": 430
+            },
             "text": "Watch the readouts respond",
             "color": "#B39DDB"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s10_1", "text_en": "Explore for yourself. Pick an ion pair, and drag temperature, layer shift or field to see how the lattice responds.", "glow": "lattice" }
+            {
+              "id": "s10_1",
+              "text_en": "Explore for yourself. Pick an ion pair, and drag temperature, layer shift or field to see how the lattice responds.",
+              "glow": "lattice"
+            }
           ]
         }
       }
@@ -602,20 +1027,51 @@
       "STATE_1": {
         "label": "Sodium has one spare outer electron; chlorine has one gap in its outer shell",
         "caption": "One spare, one gap",
-        "visible_elements": ["bsc_lattice", "bsc_electron", "bsc_formula", "s1_context_label", "s1_spare_label", "s1_gap_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_electron",
+          "bsc_formula",
+          "s1_context_label",
+          "s1_spare_label",
+          "s1_gap_label"
+        ],
         "bonding_scene": {
+          "thermal": {
+            "T_K": 300,
+            "jiggle_scale": 0.5
+          },
           "placement": "free",
           "mode": "assemble",
           "units": [
-            { "id": "na", "species": "Na", "at": [-4.5, 0, 0] },
-            { "id": "cl", "species": "Cl", "at": [4.5, 0, 0] }
+            {
+              "id": "na",
+              "species": "Na",
+              "at": [
+                -4.5,
+                0,
+                0
+              ]
+            },
+            {
+              "id": "cl",
+              "species": "Cl",
+              "at": [
+                4.5,
+                0,
+                0
+              ]
+            }
           ],
-          "electrons": { "show": "shells" },
+          "electrons": {
+            "show": "shells"
+          },
           "spin_start_ms": 1500,
           "spin_rate": 0.15,
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["valence"],
+          "hud_lines": [
+            "valence"
+          ],
           "show_formula": true,
           "formula": "Na 2,8,1 · Cl 2,8,7"
         },
@@ -624,19 +1080,55 @@
       "STATE_2": {
         "label": "The electron transfers from sodium to chlorine, and both atoms change size",
         "caption": "Electron moves, sizes change",
-        "visible_elements": ["bsc_lattice", "bsc_electron", "bsc_formula", "s2_watch_label", "s2_smaller_label", "s2_larger_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_electron",
+          "bsc_formula",
+          "s2_watch_label",
+          "s2_smaller_label",
+          "s2_larger_label"
+        ],
         "bonding_scene": {
+          "thermal": {
+            "T_K": 300,
+            "jiggle_scale": 0.5
+          },
           "placement": "free",
           "mode": "transfer",
           "units": [
-            { "id": "na", "species": "Na", "at": [-4.5, 0, 0] },
-            { "id": "cl", "species": "Cl", "at": [4.5, 0, 0] }
+            {
+              "id": "na",
+              "species": "Na",
+              "at": [
+                -4.5,
+                0,
+                0
+              ]
+            },
+            {
+              "id": "cl",
+              "species": "Cl",
+              "at": [
+                4.5,
+                0,
+                0
+              ]
+            }
           ],
-          "electrons": { "show": "shells" },
-          "transfer": { "at_ms": 5000, "duration_ms": 8000, "from": "na", "to": "cl" },
+          "electrons": {
+            "show": "shells"
+          },
+          "transfer": {
+            "at_ms": 5000,
+            "duration_ms": 8000,
+            "from": "na",
+            "to": "cl"
+          },
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["radius_pm"],
+          "hud_lines": [
+            "radius_pm"
+          ],
           "show_formula": true,
           "formula": "Na(g) + Cl(g) → Na⁺(g) + Cl⁻(g)"
         },
@@ -645,49 +1137,104 @@
       "STATE_3": {
         "label": "Attraction pulls the two ions together; their full inner shells stop them at a fixed spacing",
         "caption": "Pull in, then stop",
-        "visible_elements": ["bsc_lattice", "s3_context_label", "s3_settle_label", "s3_full_shells_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "s3_context_label",
+          "s3_settle_label",
+          "s3_full_shells_label"
+        ],
         "bonding_scene": {
+          "thermal": {
+            "T_K": 300,
+            "jiggle_scale": 0.5
+          },
           "placement": "free",
           "mode": "approach_link",
-          "links": { "enabled": false },
+          "links": {
+            "enabled": false
+          },
           "units": [
-            { "id": "ion_na", "species": "Na+", "at": [0, 0, 0] },
-            { "id": "ion_cl", "species": "Cl-", "at": [0, 0, 0] }
+            {
+              "id": "ion_na",
+              "species": "Na+",
+              "at": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "id": "ion_cl",
+              "species": "Cl-",
+              "at": [
+                0,
+                0,
+                0
+              ]
+            }
           ],
-          "separation_axis": [1, 0, 0],
+          "separation_axis": [
+            1,
+            0,
+            0
+          ],
           "approach_from": 9.0,
           "separation": 5.875,
           "approach_at_ms": 4000,
           "approach_duration_ms": 7000,
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["separation_pm", "radius_pm"]
+          "hud_lines": [
+            "separation_pm",
+            "radius_pm"
+          ]
         },
         "eye_capture_ms": 12500
       },
       "STATE_4": {
         "label": "The pair does not stay a pair — ions keep joining until the lattice runs past the frame",
         "caption": "More ions keep joining",
-        "visible_elements": ["bsc_lattice", "bsc_formula", "s4_grow_label", "s4_repeat_label", "s4_corner_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_formula",
+          "s4_grow_label",
+          "s4_repeat_label",
+          "s4_corner_label"
+        ],
         "bonding_scene": {
           "placement": "lattice",
           "mode": "lattice_grow",
           "units": [
-            { "id": "na", "species": "Na+" },
-            { "id": "cl", "species": "Cl-" }
+            {
+              "id": "na",
+              "species": "Na+"
+            },
+            {
+              "id": "cl",
+              "species": "Cl-"
+            }
           ],
           "lattice": {
             "cell": "rock_salt",
-            "n": [5, 5, 5],
+            "n": [
+              5,
+              5,
+              5
+            ],
             "a_pm": 564.0,
             "grow_at_ms": 5000,
             "grow_duration_ms": 9000,
             "grow_from": 2
           },
-          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
+          "thermal": {
+            "T_K": 298,
+            "jiggle_scale": 0.5
+          },
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["lattice_a"],
+          "hud_lines": [
+            "lattice_a"
+          ],
           "show_formula": true,
           "formula": "NaCl(s) — Na⁺ : Cl⁻ = 1 : 1"
         },
@@ -696,17 +1243,33 @@
       "STATE_5": {
         "label": "Every ion in the lattice is surrounded by six of the other kind",
         "caption": "Six neighbours, every ion",
-        "visible_elements": ["bsc_lattice", "bsc_neighbour", "s5_fade_label", "s5_rods_label", "s5_same_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_neighbour",
+          "s5_fade_label",
+          "s5_rods_label",
+          "s5_same_label"
+        ],
         "bonding_scene": {
           "placement": "lattice",
           "mode": "coordination",
           "units": [
-            { "id": "na", "species": "Na+" },
-            { "id": "cl", "species": "Cl-" }
+            {
+              "id": "na",
+              "species": "Na+"
+            },
+            {
+              "id": "cl",
+              "species": "Cl-"
+            }
           ],
           "lattice": {
             "cell": "rock_salt",
-            "n": [3, 3, 3],
+            "n": [
+              3,
+              3,
+              3
+            ],
             "a_pm": 564.0,
             "reveal": "peer_fade",
             "reveal_at_ms": 3500,
@@ -716,55 +1279,104 @@
           "spin_start_ms": 0,
           "spin_rate": 0.16,
           "controls": [
-            { "id": "spin", "min_ring": "core" }
+            {
+              "id": "spin",
+              "min_ring": "core"
+            }
           ],
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["coordination"]
+          "hud_lines": [
+            "coordination"
+          ]
         },
         "eye_capture_ms": 9000
       },
       "STATE_6": {
         "label": "A one-site layer shift lines up ions of the same charge, and the crystal splits",
         "caption": "One shift, it splits",
-        "visible_elements": ["bsc_lattice", "s6_counter_label", "s6_slide_label", "s6_push_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "s6_counter_label",
+          "s6_slide_label",
+          "s6_push_label"
+        ],
         "bonding_scene": {
           "placement": "lattice",
           "mode": "layer_shift",
           "units": [
-            { "id": "na", "species": "Na+" },
-            { "id": "cl", "species": "Cl-" }
+            {
+              "id": "na",
+              "species": "Na+"
+            },
+            {
+              "id": "cl",
+              "species": "Cl-"
+            }
           ],
           "lattice": {
             "cell": "rock_salt",
-            "n": [3, 3, 3],
+            "n": [
+              3,
+              3,
+              3
+            ],
             "a_pm": 564.0
           },
-          "thermal": { "T_K": 298, "jiggle_scale": 0.5 },
-          "shift": { "at_ms": 6000, "duration_ms": 3000, "offset_sites": 1, "plane": "y" },
+          "thermal": {
+            "T_K": 298,
+            "jiggle_scale": 0.5
+          },
+          "shift": {
+            "at_ms": 6000,
+            "duration_ms": 3000,
+            "offset_sites": 1,
+            "plane": "y"
+          },
           "controls": [
-            { "id": "shift", "min_ring": "core" }
+            {
+              "id": "shift",
+              "min_ring": "core"
+            }
           ],
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["like_contacts"]
+          "hud_lines": [
+            "like_contacts"
+          ]
         },
         "eye_capture_ms": 16000
       },
       "STATE_7": {
         "label": "Heat frees the ions at the melting point — no single bond breaks alone",
         "caption": "Heat frees the ions",
-        "visible_elements": ["bsc_lattice", "bsc_formula", "s7_watch_label", "s7_free_label", "s7_bond_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_formula",
+          "s7_watch_label",
+          "s7_free_label",
+          "s7_bond_label"
+        ],
         "bonding_scene": {
           "placement": "lattice",
           "mode": "melt",
           "units": [
-            { "id": "na", "species": "Na+" },
-            { "id": "cl", "species": "Cl-" }
+            {
+              "id": "na",
+              "species": "Na+"
+            },
+            {
+              "id": "cl",
+              "species": "Cl-"
+            }
           ],
           "lattice": {
             "cell": "rock_salt",
-            "n": [3, 3, 3],
+            "n": [
+              3,
+              3,
+              3
+            ],
             "a_pm": 564.0
           },
           "thermal": {
@@ -775,11 +1387,17 @@
             "jiggle_scale": 1
           },
           "controls": [
-            { "id": "temperature", "min_ring": "core" }
+            {
+              "id": "temperature",
+              "min_ring": "core"
+            }
           ],
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["melting_point", "lattice_enthalpy"],
+          "hud_lines": [
+            "melting_point",
+            "lattice_enthalpy"
+          ],
           "show_formula": true,
           "formula": "NaCl(s) → NaCl(l)"
         },
@@ -788,7 +1406,13 @@
       "STATE_8": {
         "label": "The same field acts on a solid and a molten sample — only the free ions carry charge",
         "caption": "Free ions carry charge",
-        "visible_elements": ["bsc_lattice", "bsc_field", "s8_field_label", "s8_solid_label", "s8_melt_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_field",
+          "s8_field_label",
+          "s8_solid_label",
+          "s8_melt_label"
+        ],
         "bonding_scene": {
           "placement": "lattice",
           "mode": "drift",
@@ -796,41 +1420,94 @@
             {
               "id": "g_solid",
               "label": "solid",
-              "at": [-9, 0, 0],
-              "units": [
-                { "id": "na", "species": "Na+" },
-                { "id": "cl", "species": "Cl-" }
+              "at": [
+                -9,
+                0,
+                0
               ],
-              "lattice": { "cell": "rock_salt", "n": [3, 3, 3], "a_pm": 564.0 },
-              "thermal": { "T_K": 300, "jiggle_scale": 0.6 }
+              "units": [
+                {
+                  "id": "na",
+                  "species": "Na+"
+                },
+                {
+                  "id": "cl",
+                  "species": "Cl-"
+                }
+              ],
+              "lattice": {
+                "cell": "rock_salt",
+                "n": [
+                  3,
+                  3,
+                  3
+                ],
+                "a_pm": 564.0
+              },
+              "thermal": {
+                "T_K": 300,
+                "jiggle_scale": 0.6
+              }
             },
             {
               "id": "g_melt",
               "label": "molten",
-              "at": [9, 0, 0],
-              "units": [
-                { "id": "na", "species": "Na+" },
-                { "id": "cl", "species": "Cl-" }
+              "at": [
+                9,
+                0,
+                0
               ],
-              "lattice": { "cell": "rock_salt", "n": [3, 3, 3], "a_pm": 564.0 },
-              "thermal": { "T_K": 1150, "jiggle_scale": 1 }
+              "units": [
+                {
+                  "id": "na",
+                  "species": "Na+"
+                },
+                {
+                  "id": "cl",
+                  "species": "Cl-"
+                }
+              ],
+              "lattice": {
+                "cell": "rock_salt",
+                "n": [
+                  3,
+                  3,
+                  3
+                ],
+                "a_pm": 564.0
+              },
+              "thermal": {
+                "T_K": 1150,
+                "jiggle_scale": 1
+              }
             }
           ],
           "field": 1,
           "field_at_ms": 6000,
           "controls": [
-            { "id": "field", "min_ring": "core" }
+            {
+              "id": "field",
+              "min_ring": "core"
+            }
           ],
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["conductivity"]
+          "hud_lines": [
+            "conductivity"
+          ]
         },
         "eye_capture_ms": 13000
       },
       "STATE_9": {
         "label": "One shared heater, two crystals — salt melts on the way up while magnesium oxide holds",
         "caption": "Double charge, far stronger",
-        "visible_elements": ["bsc_lattice", "bsc_formula", "s9_heater_label", "s9_nacl_label", "s9_mgo_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "bsc_formula",
+          "s9_heater_label",
+          "s9_nacl_label",
+          "s9_mgo_label"
+        ],
         "bonding_scene": {
           "placement": "lattice",
           "mode": "melt",
@@ -838,22 +1515,58 @@
             {
               "id": "g_nacl",
               "label": "NaCl",
-              "at": [-9, 0, 0],
-              "units": [
-                { "id": "na", "species": "Na+" },
-                { "id": "cl", "species": "Cl-" }
+              "at": [
+                -9,
+                0,
+                0
               ],
-              "lattice": { "cell": "rock_salt", "n": [3, 3, 3], "a_pm": 564.0 }
+              "units": [
+                {
+                  "id": "na",
+                  "species": "Na+"
+                },
+                {
+                  "id": "cl",
+                  "species": "Cl-"
+                }
+              ],
+              "lattice": {
+                "cell": "rock_salt",
+                "n": [
+                  3,
+                  3,
+                  3
+                ],
+                "a_pm": 564.0
+              }
             },
             {
               "id": "g_mgo",
               "label": "MgO",
-              "at": [9, 0, 0],
-              "units": [
-                { "id": "mg", "species": "Mg2+" },
-                { "id": "o", "species": "O2-" }
+              "at": [
+                9,
+                0,
+                0
               ],
-              "lattice": { "cell": "rock_salt", "n": [3, 3, 3], "a_pm": 421.2 }
+              "units": [
+                {
+                  "id": "mg",
+                  "species": "Mg2+"
+                },
+                {
+                  "id": "o",
+                  "species": "O2-"
+                }
+              ],
+              "lattice": {
+                "cell": "rock_salt",
+                "n": [
+                  3,
+                  3,
+                  3
+                ],
+                "a_pm": 421.2
+              }
             }
           ],
           "thermal": {
@@ -865,7 +1578,10 @@
           },
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["melting_point", "lattice_enthalpy"],
+          "hud_lines": [
+            "melting_point",
+            "lattice_enthalpy"
+          ],
           "show_formula": true,
           "formula": "E ∝ q₁q₂ ⁄ r"
         },
@@ -874,30 +1590,68 @@
       "STATE_10": {
         "label": "Pick an ion pair, and drag temperature, layer shift or field to see the lattice respond",
         "caption": "Explore the lattice",
-        "visible_elements": ["bsc_lattice", "s10_pick_label", "s10_drag_label", "s10_readouts_label"],
+        "visible_elements": [
+          "bsc_lattice",
+          "s10_pick_label",
+          "s10_drag_label",
+          "s10_readouts_label"
+        ],
         "bonding_scene": {
+          "thermal": {
+            "T_K": 300,
+            "jiggle_scale": 0.6
+          },
           "placement": "lattice",
           "mode": "explore",
           "fit": true,
           "units": [
-            { "id": "na", "species": "Na+" },
-            { "id": "cl", "species": "Cl-" }
+            {
+              "id": "na",
+              "species": "Na+"
+            },
+            {
+              "id": "cl",
+              "species": "Cl-"
+            }
           ],
           "lattice": {
             "cell": "rock_salt",
-            "n": [3, 3, 3],
+            "n": [
+              3,
+              3,
+              3
+            ],
             "a_pm": 564.0
           },
           "controls": [
-            { "id": "ion_pair", "min_ring": "core" },
-            { "id": "spin", "min_ring": "core" },
-            { "id": "temperature", "min_ring": "core" },
-            { "id": "shift", "min_ring": "core" },
-            { "id": "field", "min_ring": "core" }
+            {
+              "id": "ion_pair",
+              "min_ring": "core"
+            },
+            {
+              "id": "spin",
+              "min_ring": "core"
+            },
+            {
+              "id": "temperature",
+              "min_ring": "core"
+            },
+            {
+              "id": "shift",
+              "min_ring": "core"
+            },
+            {
+              "id": "field",
+              "min_ring": "core"
+            }
           ],
           "show_atom_labels": true,
           "show_hud": true,
-          "hud_lines": ["lattice_a", "melting_point", "lattice_enthalpy"]
+          "hud_lines": [
+            "lattice_a",
+            "melting_point",
+            "lattice_enthalpy"
+          ]
         }
       }
     }
