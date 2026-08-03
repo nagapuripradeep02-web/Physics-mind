@@ -446,7 +446,7 @@
             "text": "Opposite charges attract",
             "color": "#FFCA28",
             "at_ms": 0,
-            "until_ms": 22000
+            "until_ms": 20000
           },
           {
             "type": "annotation",
@@ -458,7 +458,7 @@
             "text": "Distance settles",
             "color": "#4FC3F7",
             "at_ms": 11000,
-            "until_ms": 22000
+            "until_ms": 20000
           },
           {
             "type": "annotation",
@@ -470,7 +470,7 @@
             "text": "Full shells cannot overlap — they stop here",
             "color": "#90CAF9",
             "at_ms": 11500,
-            "until_ms": 22000
+            "until_ms": 20000
           }
         ],
         "teacher_script": {
@@ -738,7 +738,7 @@
       "STATE_7": {
         "title": "Melting takes the whole lattice",
         "label": "Heat frees the ions at the melting point — no single bond breaks alone",
-        "duration": 28,
+        "duration": 25,
         "depth_ring": "core",
         "focal_primitive_id": "s7_free_label",
         "advance_mode": "manual_click",
@@ -765,7 +765,7 @@
             "text": "Ions become free at the melting point",
             "color": "#4FC3F7",
             "at_ms": 13000,
-            "until_ms": 28000
+            "until_ms": 25000
           },
           {
             "type": "annotation",
@@ -777,7 +777,7 @@
             "text": "No single bond breaks alone",
             "color": "#90CAF9",
             "at_ms": 15500,
-            "until_ms": 28000
+            "until_ms": 25000
           }
         ],
         "teacher_script": {
@@ -794,7 +794,7 @@
             },
             {
               "id": "s7_3",
-              "text_en": "That is why the melting point is so high — the HUD shows the temperature and energy needed.",
+              "text_en": "That is why the melting point is so high — the readout shows the temperature and energy needed.",
               "glow": "lattice"
             }
           ]
@@ -887,7 +887,7 @@
       "STATE_9": {
         "title": "Higher charge, stronger lattice",
         "label": "One shared heater, two crystals — salt melts on the way up while magnesium oxide holds",
-        "duration": 25,
+        "duration": 29,
         "depth_ring": "advanced",
         "teaching_method": "compare_contrast",
         "focal_primitive_id": "s9_mgo_label",
@@ -903,7 +903,7 @@
             "text": "Same heater, two crystals",
             "color": "#B39DDB",
             "at_ms": 4000,
-            "until_ms": 28000
+            "until_ms": 23000
           },
           {
             "type": "annotation",
@@ -915,7 +915,7 @@
             "text": "Single charges — already molten",
             "color": "#4FC3F7",
             "at_ms": 12000,
-            "until_ms": 28000
+            "until_ms": 29000
           },
           {
             "type": "annotation",
@@ -927,7 +927,19 @@
             "text": "Double charges, closer — still solid",
             "color": "#90CAF9",
             "at_ms": 14000,
-            "until_ms": 28000
+            "until_ms": 29000
+          },
+          {
+            "type": "annotation",
+            "id": "s9_furnace_label",
+            "position": {
+              "x": 380,
+              "y": 430
+            },
+            "text": "Furnace walls are lined with magnesium oxide",
+            "color": "#B39DDB",
+            "at_ms": 23000,
+            "until_ms": 29000
           }
         ],
         "teacher_script": {
@@ -944,12 +956,12 @@
             },
             {
               "id": "s9_3",
-              "text_en": "Double the charge at a smaller spacing gives a far stronger attraction.",
+              "text_en": "Both its melting point and its lattice-dissociation energy are far higher — different measurements of the same stronger attraction, not the same quantity.",
               "glow": "lattice"
             },
             {
               "id": "s9_4",
-              "text_en": "Salt melts as the temperature rises; magnesium oxide stays solid — this is why furnace walls are lined with it.",
+              "text_en": "Salt melts as the temperature rises; magnesium oxide stays solid.",
               "glow": "lattice"
             }
           ]
@@ -1065,8 +1077,8 @@
           "electrons": {
             "show": "shells"
           },
-          "spin_start_ms": 1500,
-          "spin_rate": 0.15,
+          "spin_start_ms": 10000,
+          "spin_rate": 0.05,
           "show_atom_labels": true,
           "show_hud": true,
           "hud_lines": [
