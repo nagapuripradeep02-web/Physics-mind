@@ -294,7 +294,7 @@ function loadConcept(conceptId: string): ConceptJson {
     // to reading CONCEPTS_DIR directly — then src/data/concepts/chemistry/, which
     // is the only place chemistry concepts may live (isolation contract,
     // docs/CHEMISTRY_ARCHITECTURE.md §7). Same resolver already used by
-    // generate_tts_audio, _seed_chemistry_cache, buildParametricConfig and
+    // generate_tts_audio, _seed_subject_cache, buildParametricConfig and
     // loadCachedSim, so every script layer agrees on where a concept lives.
     const resolved = resolveConceptJsonPath(conceptId);
     if (!resolved) {
