@@ -305,7 +305,7 @@
             "text": "Two neutral atoms",
             "color": "#90CAF9",
             "at_ms": 0,
-            "until_ms": 21000
+            "until_ms": 22500
           },
           {
             "type": "annotation",
@@ -317,7 +317,7 @@
             "text": "One spare outer electron",
             "color": "#FFCA28",
             "at_ms": 3000,
-            "until_ms": 21000
+            "until_ms": 22500
           },
           {
             "type": "annotation",
@@ -329,7 +329,7 @@
             "text": "One space for one more",
             "color": "#4FC3F7",
             "at_ms": 9000,
-            "until_ms": 21000
+            "until_ms": 22500
           }
         ],
         "teacher_script": {
@@ -387,7 +387,7 @@
             "text": "Smaller: it lost a shell",
             "color": "#4FC3F7",
             "at_ms": 14000,
-            "until_ms": 23000
+            "until_ms": 24500
           },
           {
             "type": "annotation",
@@ -399,7 +399,7 @@
             "text": "Larger: one extra electron",
             "color": "#4FC3F7",
             "at_ms": 14000,
-            "until_ms": 23000
+            "until_ms": 24500
           }
         ],
         "teacher_script": {
@@ -446,7 +446,7 @@
             "text": "Opposite charges attract",
             "color": "#FFCA28",
             "at_ms": 0,
-            "until_ms": 20000
+            "until_ms": 21500
           },
           {
             "type": "annotation",
@@ -458,7 +458,7 @@
             "text": "Distance settles",
             "color": "#4FC3F7",
             "at_ms": 11000,
-            "until_ms": 20000
+            "until_ms": 21500
           },
           {
             "type": "annotation",
@@ -470,7 +470,7 @@
             "text": "Full shells cannot overlap — they stop here",
             "color": "#90CAF9",
             "at_ms": 11500,
-            "until_ms": 20000
+            "until_ms": 21500
           }
         ],
         "teacher_script": {
@@ -517,7 +517,7 @@
             "text": "Ions keep joining",
             "color": "#FFCA28",
             "at_ms": 5000,
-            "until_ms": 25000
+            "until_ms": 26500
           },
           {
             "type": "annotation",
@@ -529,7 +529,7 @@
             "text": "The pattern repeats in every direction",
             "color": "#4FC3F7",
             "at_ms": 15000,
-            "until_ms": 25000
+            "until_ms": 26500
           },
           {
             "type": "annotation",
@@ -541,7 +541,7 @@
             "text": "This block is a tiny corner of one grain",
             "color": "#90CAF9",
             "at_ms": 17000,
-            "until_ms": 25000
+            "until_ms": 26500
           }
         ],
         "teacher_script": {
@@ -600,7 +600,7 @@
             "text": "Fade the other ions",
             "color": "#FFCA28",
             "at_ms": 0,
-            "until_ms": 20000
+            "until_ms": 21500
           },
           {
             "type": "annotation",
@@ -612,7 +612,7 @@
             "text": "Count the six rods",
             "color": "#4FC3F7",
             "at_ms": 8000,
-            "until_ms": 20000
+            "until_ms": 21500
           },
           {
             "type": "annotation",
@@ -624,7 +624,7 @@
             "text": "Same count for every ion",
             "color": "#90CAF9",
             "at_ms": 12000,
-            "until_ms": 20000
+            "until_ms": 21500
           }
         ],
         "teacher_script": {
@@ -671,7 +671,7 @@
             "text": "Watch the like-charge counter",
             "color": "#FFCA28",
             "at_ms": 6000,
-            "until_ms": 25000
+            "until_ms": 26500
           },
           {
             "type": "annotation",
@@ -695,7 +695,7 @@
             "text": "If like charges line up, they push the halves apart",
             "color": "#EF5350",
             "at_ms": 15500,
-            "until_ms": 25000
+            "until_ms": 26500
           }
         ],
         "teacher_script": {
@@ -765,7 +765,7 @@
             "text": "Ions become free at the melting point",
             "color": "#4FC3F7",
             "at_ms": 13000,
-            "until_ms": 25000
+            "until_ms": 26500
           },
           {
             "type": "annotation",
@@ -777,7 +777,7 @@
             "text": "No single bond breaks alone",
             "color": "#90CAF9",
             "at_ms": 15500,
-            "until_ms": 25000
+            "until_ms": 26500
           }
         ],
         "teacher_script": {
@@ -825,7 +825,7 @@
             "text": "The same field acts on both",
             "color": "#FFCA28",
             "at_ms": 6000,
-            "until_ms": 27000
+            "until_ms": 28500
           },
           {
             "type": "annotation",
@@ -837,7 +837,7 @@
             "text": "Held in place — no current",
             "color": "#90CAF9",
             "at_ms": 8000,
-            "until_ms": 27000
+            "until_ms": 28500
           },
           {
             "type": "annotation",
@@ -849,7 +849,7 @@
             "text": "Free ions can move and carry current",
             "color": "#4FC3F7",
             "at_ms": 10500,
-            "until_ms": 27000
+            "until_ms": 28500
           }
         ],
         "teacher_script": {
@@ -915,7 +915,7 @@
             "text": "Single charges — already molten",
             "color": "#4FC3F7",
             "at_ms": 12000,
-            "until_ms": 29000
+            "until_ms": 30500
           },
           {
             "type": "annotation",
@@ -927,7 +927,7 @@
             "text": "Double charges, closer — still solid",
             "color": "#90CAF9",
             "at_ms": 14000,
-            "until_ms": 29000
+            "until_ms": 30500
           },
           {
             "type": "annotation",
@@ -939,7 +939,7 @@
             "text": "Furnace walls are lined with magnesium oxide",
             "color": "#B39DDB",
             "at_ms": 23000,
-            "until_ms": 29000
+            "until_ms": 30500
           }
         ],
         "teacher_script": {
