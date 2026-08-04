@@ -11,7 +11,7 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 
 | Wave | Concept | Status |
 |---|---|---|
-| 2 | `rotational_kinematics` | **BLOCKED on 0c-3.** Needs θ and α readouts and `theta0_rad` (declared but inert). |
+| 2 | `rotational_kinematics` | **BLOCKED on 0c-3.** Needs an **α** readout and the **v = ωr arrow**. (Corrected 2026-08-04 — see below. θ and `theta0_rad` are already BUILT.) |
 | 2 | `tau_eq_i_alpha` | **BLOCKED on 0c-3.** Needs an α readout row; `applied_torque_Nm` exists but α has nowhere to print. |
 
 ## This desk has NO wave-1 authoring, and that is deliberate
@@ -39,8 +39,25 @@ The payoff: when 0c-3 merges, this desk starts at `json-author` for both concept
 ## Why the wait is not optional
 
 `RBR_RO_META` (`field_3d_renderer.ts:50147`) implements exactly six readout rows:
-`I · ω · L · KE · dL/dt · F`. **There is no θ and no α** — the two quantities these concepts
-exist to teach. `rbrRebuildReadout` (`:50162`) does `if (!meta) continue`, so an unknown token
+`I · ω · L · KE · dL/dt · F`. **There is no α row** — the quantity `tau_eq_i_alpha` exists to
+teach.
+
+> **CORRECTION 2026-08-04.** An earlier version of this file said θ and `theta0_rad` were also
+> missing. **They are not**, and the mistake came from trusting the contract comment at
+> `field_3d_renderer.ts:953` instead of grepping. Verified against the code:
+> `rbrThetaAt` (`:49952`) is a complete, grid-cached, rewind-safe angle integrator, live at
+> `:50232` (published as `window.PM_rbrTheta`) and `:50666` (it drives the visible rotation);
+> `rbrThetaReset` (`:49967`) reseeds it; and `theta0_rad` IS read, at `:50499` into
+> `eng.theta0`, which seeds `_th` at `:49958`/`:49970`.
+>
+> **The contract comments at `:953` and `:998` are WRONG** — they list `theta0_rad` under
+> "DECLARED, NOT IMPLEMENTED" while `:962`/`:971-973` in the same block correctly document θ as
+> implemented. Desk E has queued the comment fix.
+>
+> **What this changes for you:** θ needs only a **row in `RBR_RO_META`**, not an accumulator.
+> `rotational_kinematics` is blocked on the **α readout** and the **v = ωr arrow** only. Design
+> your θ beats against the integrator that already exists — read `rbrThetaAt` before you
+> specify anything about angle behaviour, because it already defines the semantics. `rbrRebuildReadout` (`:50162`) does `if (!meta) continue`, so an unknown token
 is skipped in **silence**: no throw, no gate failure. A `tau_eq_i_alpha` JSON authored today
 would pass Zod, pass `validate:concepts`, seed, render, get EYE'd, and could be sealed — with α
 simply never appearing on screen. Only a human reading the sim against the physics block would
