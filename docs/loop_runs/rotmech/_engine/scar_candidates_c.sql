@@ -1,0 +1,148 @@
+-- ═══════════════════════════════════════════════════════════════════════════
+-- rotmech DESK C — scar candidate MANIFEST (angular_momentum · rigid_body_rotation)
+--
+-- STATUS: NOTHING HERE HAS BEEN APPLIED. Desk C guardrail 9 forbids
+-- engine_bug_queue DB writes, and the live table has been unreachable all
+-- session (three Cloudflare 522s: 12:52, 13:16, 13:40:14 UTC 2026-08-04).
+--
+-- WHY THIS IS A MANIFEST AND NOT SQL. Every candidate's full INSERT text
+-- already exists, authored and schema-checked, inside the founder-proxy report
+-- it came from. Copying it here would create a second copy that drifts from the
+-- first the moment either is edited. This file is the INDEX and the APPLY
+-- INSTRUCTIONS; the report files are the authoritative text.
+--
+-- Sibling convention: docs/loop_runs/rotmech/_progress/README.md — one
+-- scar_candidates_<desk>.sql per writer, because five desks appending to one
+-- file is a guaranteed conflict. Do NOT append Desk C rows to the shared
+-- `scar_candidates.sql`, which is the APPLIED record of the 2026-08-03 SEAM R
+-- filing and must stay a historical record.
+-- ═══════════════════════════════════════════════════════════════════════════
+
+
+-- ── READ FIRST — two ways to get this wrong ────────────────────────────────
+--
+-- 1. `bug_class` IS THE UPSERT KEY. A recurrence is an UPDATE, never a second
+--    row. See the AMENDMENT block below — one candidate in this manifest is a
+--    recurrence and MUST NOT be minted as a new class.
+--
+-- 2. `subject` IS NOT AUTHORED BY THESE ROWS and must not be left to default.
+--    engine_bug_queue has 22 columns; these rows author 13-14. `subject` is
+--    NOT NULL with DEFAULT 'physics'. Every Desk C candidate is an
+--    authoring-process or engine-mechanism defect in shared machinery, NOT a
+--    physics-content defect, so all of them file as:
+--        subject = 'subject_neutral'
+--    This mirrors the correction recorded in the shared scar_candidates.sql
+--    header, which was made for exactly the same reason.
+
+
+-- ── AMENDMENT (do this BEFORE any INSERT below) ────────────────────────────
+--
+--   bug_class: skeleton_pin_table_uses_a_pin_formula_the_target_renderer_does_not_use
+--   Drafted:   docs/loop_runs/rotmech/angular_momentum/founder_proxy_A.md §6 (finding A6)
+--
+-- This class RECURRED inside the same chapter run, on the same desk, in a
+-- second skeleton whose pin table was re-derived from scratch AFTER the first
+-- filing (rigid_body_rotation cycle-2 finding F2). That recurrence is the
+-- evidence that the prevention rule has to be machine-checkable rather than
+-- remembered, and it belongs in the row.
+--
+-- Required edit to the drafted row — NOT a second INSERT:
+--   * concepts_affected: add 'rigid_body_rotation'
+--     → ARRAY['angular_momentum','rigid_body_rotation']::text[]
+--   * root_cause: append that it recurred in the same run, on the same desk,
+--     in a table re-derived from scratch after the first filing.
+--
+-- The real rule, for the record:
+--   pin = clampReveal(maxRevealForField3dState(...))
+--       = clamp(max(registered reveal candidates), 1500 ms, 60000 ms)
+--   deriveStateMeta.ts:3445 / :3423 / :3215 — NO duration or loop-period term.
+--   The rbr block (:3128-3213) accepts exactly six reveal sources.
+
+
+-- ── CANDIDATES · angular_momentum ──────────────────────────────────────────
+-- Authoritative SQL: docs/loop_runs/rotmech/angular_momentum/founder_proxy_A.md §6
+--
+--  A1  skeleton_reveal_schedule_incompatible_with_its_own_authored_word_budget   CRITICAL  alex:architect
+--  A2  glow_focal_names_a_container_the_glow_pass_skips_so_the_whole_scene_dims  CRITICAL  alex:architect
+--  A3  contrast_state_chips_the_constant_and_leaves_the_changed_quantity_to_memory  MAJOR   alex:architect
+--  A4  explore_slider_range_drives_the_taught_vector_past_its_own_arrow_clamp    MAJOR     peter_parker:field3d_surgeon
+--  A5  repin_blank_fires_on_input_so_a_slider_drag_hides_the_readouts_it_teaches MAJOR     peter_parker:field3d_surgeon
+--  A6  skeleton_pin_table_uses_a_pin_formula_the_target_renderer_does_not_use    MODERATE  alex:architect   ← SEE AMENDMENT
+--
+-- Authoritative SQL: docs/loop_runs/rotmech/angular_momentum/founder_proxy_A_cycle2.md §6
+--
+--  B1  retimed_narration_leaves_the_choreography_windows_on_the_old_clock        CRITICAL  alex:architect
+--  B2  static_state_focal_dims_the_overlay_the_state_exists_to_introduce         MAJOR     alex:architect
+--  B3  walk_labels_a_field_inert_from_its_declaration_comment_while_the_reader_implements_it  MAJOR  alex:architect
+--  B4  scenario_glow_pass_has_no_glowtargets_fallback_so_narration_glow_is_inert MAJOR     peter_parker:field3d_surgeon
+--
+-- B4 is the SQL form of engine finding F-C5 (findings_c.md PASS 6). File the row
+-- OR the finding, not both as separate defects — they are one thing.
+
+
+-- ── CANDIDATES · rigid_body_rotation ───────────────────────────────────────
+-- Authoritative SQL: docs/loop_runs/rotmech/rigid_body_rotation/founder_proxy_A.md §C
+-- (five cycle-1 candidates; all remain valid and unfiled)
+--
+--  C-B  skeleton_claims_a_relation_the_approved_spine_assigns_to_a_different_concept
+--       ↑ FOUNDER-CONFIRMED by commit 2443a74, which corrected the master
+--         pre-registration line for #3 that wrongly carried "(v = ωr)".
+--         founder-proxy calls this the strongest of the five.
+--
+-- Authoritative SQL: docs/loop_runs/rotmech/rigid_body_rotation/founder_proxy_A_cycle2.md §4
+--
+--  F  skeleton_registers_a_new_element_family_for_visibility_but_not_for_the_glow_pass  MAJOR  alex:architect
+--  G  skeleton_asserts_a_coincidence_between_annotations_without_authoring_the_placement_that_makes_it_true  MAJOR  alex:architect
+--
+-- Both were checked for bug_class collision against: the two APPLIED rows in
+-- scar_candidates.sql, the seven drafted for angular_momentum, and the five
+-- cycle-1 rigid_body_rotation candidates. No collisions.
+
+
+-- ── APPLY CHECKLIST ────────────────────────────────────────────────────────
+--
+--   [ ] Live engine_bug_queue reachable (it was NOT, all session).
+--   [ ] For each bug_class above: SELECT before INSERT. An existing row is an
+--       UPDATE (add the concept to concepts_affected, extend root_cause), never
+--       a duplicate.
+--   [ ] Apply the AMENDMENT to A6 rather than minting a second class.
+--   [ ] Set subject = 'subject_neutral' on every row.
+--   [ ] Copy each row's text from its authoritative report file, not from
+--       memory and not from a paraphrase in a summary.
+--
+-- Desk C made no DB write. Whoever applies these owns the SELECT-before-INSERT.
+
+
+-- ── ADDENDUM · rigid_body_rotation Checkpoint A FINAL (2026-08-04) ─────────
+-- Authoritative SQL: docs/loop_runs/rotmech/rigid_body_rotation/founder_proxy_A_cycle2_final.md §3
+--
+--  H  fix_cycle_corrects_a_number_in_the_live_section_and_leaves_it_standing_in_the_same_documents_response_table
+--     MODERATE · alex:architect · OPTIONAL — the dispatcher's call.
+--     founder-proxy's own recommendation: file it, because the fix cycle that
+--     produced the correction is when the sweep is cheapest.
+--
+-- ── ADDENDUM · angular_momentum Checkpoint A FINAL (2026-08-04) ────────────
+-- Authoritative SQL: docs/loop_runs/rotmech/angular_momentum/founder_proxy_A_cycle2_final.md §5
+--
+--  I  screen_legibility_solve_derived_in_the_wrong_rotation_convention   MAJOR  alex:architect
+--     A screen-legibility claim is a MEASUREMENT, never a derivation from
+--     remembered conventions — and the rule binds the REVIEWER as much as the
+--     author: this defect propagated THROUGH a review, because the cycle-2
+--     report asserted a geometric direction it had not projected.
+--
+-- ── SECOND AMENDMENT (alongside the A6 one above) ─────────────────────────
+--
+--   bug_class: walk_labels_a_field_inert_from_its_declaration_comment_while_the_reader_implements_it
+--   Drafted:   angular_momentum/founder_proxy_A_cycle2.md §6 (finding B3)
+--
+-- WIDEN, do not mint. The stale claim reached the SHARED chapter artifact:
+-- APPARATUS_CONTRACT.md:70 lists theta0_rad as "declared but inert", so all
+-- four rotmech desks are told a live lever does not exist. Correcting only the
+-- per-concept walk leaves the propagation source intact.
+--   * concepts_affected → ARRAY['angular_momentum','conservation_of_angular_momentum',
+--                               'rigid_body_rotation','rotational_kinematics']::text[]
+--   * root_cause    += the contract-level propagation (exact wording in the report)
+--   * prevention_rule += "correct every SHARED contract carrying the same claim
+--                        in the same pass, and re-run the both-directions check
+--                        over the contract's whole declared-inert list."
+-- Filed as findings_c.md PASS 7 for the contract owner.

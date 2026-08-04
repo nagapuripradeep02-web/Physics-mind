@@ -11,17 +11,51 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 
 | Wave | Concept | Status |
 |---|---|---|
-| 1 | `angular_momentum` | **AUTHOR NOW — but from scratch.** No 0b artifacts exist. Start at `architect`, then founder-proxy Checkpoint A, then physics-author, then json-author. |
-| 2 | `rigid_body_rotation` | **BLOCKED on 0c-3.** Needs `body_shape` variants (inert today) and per-point circular traces at different radii — its primary aha. Do NOT start until 0c-3 merges and this desk syncs. Run its 0b design pass during wave 1. |
+| 1 | `angular_momentum` | **Checkpoint A `DESIGN_OK` + physics block DONE.** Design at `skeleton_rev4.md`, physics at `physics_block.md`. Next stage is `json-author` — nothing blocks it. |
+| 2 | `rigid_body_rotation` | **DESIGN COMPLETE, still BLOCKED on 0c-3.** Checkpoint A `DESIGN_OK` (`skeleton_rev3.md`) + physics block done. Do NOT start json-author until 0c-3 merges AND the re-verification list in `founder_proxy_A_cycle2_final.md` §5.1 is re-run. Correction to the old premise below. |
 
 ## next
-1. `architect` skeleton for `angular_momentum` → Checkpoint A → physics block → JSON.
-2. In parallel gaps: the 0b design pass for `rigid_body_rotation` (skeleton + physics block +
-   Checkpoint A only — pure docs, zero engine dependency). Front-loading the design gate is the
-   highest-ROI quality slot, and it means wave 2 starts at `json-author`.
+1. **`json-author` for `angular_momentum`** — JSON + SQL migration only; the 8 registration
+   sites are pre-registered on master in `4b289d4` and are read-only here. **C1 travels as
+   BINDING**: `theta0_rad = 1.739` on S3, every re-solve verified by projection, never derived.
+   If C1 does not land, Checkpoint B fails the concept on it.
+2. Then quality-auditor ∥ eye-walker → founder-proxy Checkpoint B.
+3. `rigid_body_rotation` waits. Its design is finished and sealed; wave 2 starts at `json-author`
+   as intended, once 0c-3 lands.
 
 ## done
-(none)
+- **`angular_momentum`** — architect → Checkpoint A (`DESIGN_FIX`, 13) → REV 2 → ruling delta
+  REV 3 → cycle 2 (`DESIGN_FIX`, 5) → REV 4 → **`DESIGN_OK`** → physics block.
+- **`rigid_body_rotation`** — REV 1 → Checkpoint A (`DESIGN_FIX`, 5 P1) → REV 2 → cycle 2
+  (`DESIGN_FIX`, 3 P1) → REV 3 → **`DESIGN_OK`** → physics block. Engine ask for 0c-3:
+  8 active + C7 defer-recommended + C2 withdrawn to Desk D.
+- Engine findings F-C1…F-C5 + C10 + PASS 7/8 filed to `_engine/findings_c.md`.
+- 12 scar candidates + 2 amendments indexed in `_engine/scar_candidates_c.sql`; none applied.
+
+## Corrections to this file's own premises (verified in code this session)
+1. **`rigid_body_rotation` does NOT need `body_shape` variants.** The brake drum's face IS the
+   disc and its rim dot-ring IS the ring picture. The variants stay inert unless concept #1 buys
+   them. The blocker is the marker/trace/gauge family (C1/C3/C4/C5) plus the camera (C8), not
+   shape variants.
+2. **`theta0_rad` is NOT inert.** `APPARATUS_CONTRACT.md:70` lists it as a silent no-op; the
+   engine reads it at `:50499`, seeds it at `:50557`/`:49970` and returns it at `:49958`. It is
+   the only lever controlling rod azimuth, and azimuth swings screen legibility by 1.85×. Filed
+   as PASS 7 for the contract owner — **not corrected locally**, per `APPARATUS_CONTRACT.md` §4.
+3. The blocked-concept trap this file records (silent skip of unknown readout tokens) is real and
+   was hit in a second form: **`param_ramp` and `idle_auto_sweep` are consumed only for
+   `param: "r"`** (`:49852`/`:49858`). Any other param is an equally silent no-op.
+
+## Open items needing a founder ruling
+1. **The two-timed-class fence.** 0c-2 is signed with the timed surface at exactly two field
+   classes, a third being the Phase-0 alarm rule. Does that bind **0c-1**, and does it count
+   **cumulatively**? #3's ask adds 2 to an existing 6. Under the cumulative reading there is no
+   design fallback and the concept **re-scopes**. Raised in `findings_c.md` PASS 5.
+2. **One machine, two poses.** F-C4 asks for per-state camera because #3 needs near-top-down and
+   #9 needs oblique. Whether a teacher moving between two Ch.7 sims should see the same apparatus
+   from two poses is a chapter-level taste call this desk cannot take.
+3. ~~`torque`/`moment_of_inertia` prerequisites~~ — **RULED 2026-08-04**: name JSON-less ids where
+   the dependency is real. `angular_momentum` names all four; #3 correctly names none of those two
+   (it precedes them in the approved order).
 
 ## What `angular_momentum` CAN use today
 
