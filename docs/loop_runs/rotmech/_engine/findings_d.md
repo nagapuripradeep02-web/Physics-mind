@@ -163,6 +163,15 @@ Drawing v as ωr at two different radii on the same rigid body — same ω, diff
 picture concept #3 (`rigid_body_rotation`, "outer points travel further in the same time") needs,
 so this is shared value across at least two concepts, not a Desk-D-only cost.
 
+**The same gap in its force form, needed by `tau_eq_i_alpha`.** The pull arrows are hard-radial —
+`:50693`'s in-place comment states they are "ALWAYS along -r-hat" by design, and that is correct
+for the concept they were built for. But a torque applied at a rim is a **tangential** force, and
+concept #7's advanced state builds τ = Σ(r·F) by showing the per-particle tangential forces that
+sum to it. So the tangential vector is needed twice over, for two different quantities:
+**v = ωr at a marked point** (§4, kinematics) and **F at a rim/particle** (dynamics). Desk E should
+price one tangential-vector mechanism with two consumers, not two mechanisms — but note the
+magnitude-to-length maps differ (m/s vs N) and must not be shared.
+
 **What 0c-3 must provide:** a tangential velocity arrow attachable at an authored radius, length
 ∝ ωr, with a live value label; and (cheap, same machinery) an optional circular trace at that
 radius. Note the arrow-length scaling caution already on record for this scenario — the guided
@@ -204,9 +213,20 @@ lives in the viewer's memory instead of on the screen, and Rule 32d's "at every 
 visible change IS the new thing" is doing more work than it should.
 
 **Not filed as blocking.** Changing r on the single rod already changes I (that is 0c-1's live-I
-build, and it works), so a sequential contrast is authorable. Filing it as a **known design
-compromise** so Desk E can price a second body and the office can decide. Whether Desk D's
-skeleton takes the sequential route or asks for the second body is PASS 2's answer.
+build, and it works), so a sequential contrast is authorable.
+
+**The `tau_eq_i_alpha` skeleton took the sequential route — and that route needs a small build of
+its own.** Its S5 runs an A→cut→B compare at the same τ with I 3.06 vs 0.66. The `restart` block
+(`:1032`, seeded at `:50545`) carries only `at_ms` / `every_ms` / `flip_spin`: a restart re-seeds L
+from the *current* `r` and `omega0`, and there is no way to author **different `r_m` / `omega0` per
+run**. So the two runs of a sequential comparison cannot differ in the one variable the comparison
+is about.
+
+**What 0c-3 must provide:** per-run overrides on the restart — the shape the skeleton proposes is
+`runs: [{ at_ms, r_m, omega0 }]`. This is the cheaper half of the §6 trade: it buys the
+same-τ/different-I comparison without a second body. **Desk E can treat "per-run overrides" and "a
+second body" as alternatives and build only the first** — the office decides whether the stronger
+side-by-side picture is worth revisiting later.
 
 ---
 
@@ -244,6 +264,51 @@ for any field_3d scenario change — this is one more site in it, alongside the 
 
 ---
 
+## 6c · CROSS-DESK ALERT — the formula surface is static, and a SEALED sibling's physics block assumes it is not
+
+**Severity: HIGH, and it is NOT a Desk-D-only finding. Desk E: please read this one first.**
+Surfaced by Desk D's `tau_eq_i_alpha` architect pass; verified in code before filing.
+
+The single Rule-34b formula surface is set **once per state, as a plain string**
+(`applyRigidBodyRotationState`, `:50570-50573`):
+
+```js
+var ff = document.getElementById("rbr_formula");
+ff.textContent = (typeof rb.formula === "string") ? rb.formula : "";
+ff.style.display = (... rb.formula.length) ? "block" : "none";
+```
+
+`formula` is typed `string` (`:1046`). There is **no timing, no term list, no reveal schedule** —
+the whole equation appears at state entry, complete.
+
+**But `conservation_of_angular_momentum`'s Phase-0b design — `DESIGN_OK`, physics block signed,
+the 0c-1 spec driver — is authored against term-by-term assembly.** Its S7 archetype is literally
+named `equation-build`, defined in its skeleton §3 as *"the equation assembles term-by-term on the
+single formula surface, synced to narration"*, and its physics block times the assembly in two
+states: S7 `0–4000 ms: formula_surface assembles term-by-term: τ_ext = dL/dt`, and S3
+`0–3200 ms: formula_surface assembles I₁ω₁ = I₂ω₂`.
+
+That capability does not exist. And the degradation is **silent in the now-familiar way**: an
+authored `formula` string renders fine, the state looks correct, THE EYE sees a formula on screen,
+and nothing anywhere reports that a beat specified as an assembly played as a single flash at
+t = 0. S7's declared archetype — the thing that makes it a distinct state under Rule 31 — would
+simply not happen.
+
+**Timing makes this urgent.** No rotmech Ch.7 concept JSON exists on master yet, and
+`conservation_of_angular_momentum` is a Phase-0d authoring target on a sibling desk. If it is
+authored before this is resolved, it ships with a silently dead archetype in two states.
+
+**What 0c-3 should provide:** a timed reveal on the formula surface — the minimal shape is
+`formula_at_ms`, or a term list with per-term reveal instants. Desk D's `tau_eq_i_alpha` needs the
+same thing for its own S7 (`equation-build`), so this is at least two concepts, probably more
+across the six turntable concepts.
+
+**Whoever owns the reconciliation should also check the other sealed skeletons' archetype lists for
+capabilities assumed rather than verified** — `equation-build` was caught only because a second
+concept happened to need the same surface. That is luck, not process.
+
+---
+
 ## 7 · LOW / informational
 
 - **No graph or plot surface exists in the rbr config.** The advanced-ring sweep in
@@ -273,11 +338,21 @@ for any field_3d scenario change — this is one more site in it, alongside the 
 | 4 | §4 — tangential v arrow at radius r (`v = ωr`) | **BLOCKING** `rotational_kinematics` | visual; shared with concept #3 |
 | 5 | §5 — θ/α in `reference_marks[].surface` + an applied-torque control | **BLOCKING** (Rule 31 explore state) | enum widening; reuses existing machinery |
 | 6 | §6b — declare motion from the TORQUE, not the seed alone | **HIGH — must ship WITH §1** | `deriveStateMeta.ts` co-edit; cheap |
-| 7 | §6 — second body for a simultaneous I comparison | design compromise | office decision, not a blocker |
+| 7 | §6c — timed reveal on the formula surface (`formula_at_ms`) | **HIGH — cross-desk** | display; small. A SEALED sibling's design already assumes it |
+| 8 | §6 — per-run `{at_ms, r_m, omega0}` overrides on `restart` | **BLOCKING** `tau_eq_i_alpha` S5 | small; the cheap alternative to a second body |
+| 9 | §6 — second body for a simultaneous I comparison | design compromise | office decision, not a blocker |
 
-**§1 and §2 together are the minimum that makes either concept authorable at all.** Items 3–5 are
-what make them worth authoring. **Item 6 (§6b) is not optional if §1 ships** — without it THE EYE
-stops covering the states §1 exists to enable. Item 7 is a quality ceiling, not a gate.
+**§1 and §2 together are the minimum that makes either concept authorable at all.** Items 3–5 and
+8 are what make them worth authoring. **Item 6 (§6b) is not optional if §1 ships** — without it THE
+EYE stops covering the states §1 exists to enable. **Item 7 (§6c) is the one item on this list that
+is not about Desk D** — it is filed here only because this is the file you drain. Item 9 is a
+quality ceiling, not a gate.
+
+**One documentation fix while you are in the file.** The 0c-1 contract comment at `:947-949` lists
+`applied_torque_Nm` as "a constant tau_ext, which is #7's alpha = tau/I with no extra code path".
+Per §1 that is true only for the decelerating half; it is false for the driving half, which is the
+half concept #7 is about. That comment is what a later desk will read to decide whether it is
+blocked, so it is worth correcting in the same change.
 
 **Two things Desk E should NOT build**, because they already exist and were nearly re-specified
 from this desk:
