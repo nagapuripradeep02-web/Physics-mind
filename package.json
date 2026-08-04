@@ -15,6 +15,7 @@
     "dev:full": "concurrently \"npm run dev\" \"npm run mineru\"",
     "validate:concepts": "npx tsx src/scripts/validate-concepts.ts",
     "validate:chemistry": "npx tsx src/scripts/validate-chemistry.ts",
+    "validate:mathematics": "npx tsx src/scripts/validate-mathematics.ts",
     "tts:translate": "npx tsx --env-file=.env.local src/scripts/translate_concept_tts.ts",
     "tts:generate": "npx tsx --env-file=.env.local src/scripts/generate_tts_audio.ts",
     "tts:rollout": "npx tsx --env-file=.env.local src/scripts/tts_rollout.ts",

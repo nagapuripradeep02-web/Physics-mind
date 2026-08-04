@@ -41,6 +41,15 @@ at position #2: architect ──► chemistry_author ──► json_author ─�
 quality_auditor. Same handoffs, same FAIL routing. Physics concepts are
 unchanged. (CHEMISTRY_BUILD_PLAN.md Phase 2.)
 
+Added 2026-08-04: mathematics_author (Alex) — MATHEMATICS concepts substitute
+it at position #2: architect ──► mathematics_author ──► json_author ──►
+quality_auditor. Same handoffs, same FAIL routing. Physics and chemistry are
+unchanged. Two mathematics-only gates ride on top: nothing is authored off the
+ranked list (docs/MATHEMATICS_DISCUSSIONS.md §6 — the whiteboard test bites
+hardest in this subject), and only [LIVE] archetypes in
+docs/patterns/mathematics.md may be specified until the cartesian_plane
+scenario lands on master. (MATHEMATICS_BUILD_PLAN.md Phase 2.)
+
 Graduated 2026-07-31 (from the ch7/ch8 chapter-loop trial): founder_proxy
 (Review cluster — the founder's taste gate at Checkpoints A/B/C; reject-biased,
 report-only, APPROVE = authoring sign-off never shipping) · field3d_surgeon
