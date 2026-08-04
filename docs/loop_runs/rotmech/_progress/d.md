@@ -130,9 +130,34 @@ one honest gap: the cycle-2 scar pass could not reach the live `engine_bug_queue
 
 **Desk E: nothing further is owed from this desk before the freeze.**
 
+### Physics blocks — BOTH WRITTEN. Wave 1 (the 0b design pass) is COMPLETE.
+
+`rotational_kinematics/physics_block.md` (473 lines) · `tau_eq_i_alpha/physics_block.md` (565 lines).
+Both authors re-derived every number from first principles rather than inheriting it, and both
+report zero disagreement with their skeleton's ground truth (the 4.64 ratio was checked by three
+independent routes).
+
+- **`rotational_kinematics`** — Rule 25 verified holding: "torque" and "moment of inertia" appear
+  nowhere in the narration section; τ and I exist only as internal numbers (`τ_internal = 3.06·α`).
+  F-8 applied at S1: the narration states the PATTERN ("each full turn adds two pi radians to the
+  running count") rather than a value the ≈9.00 rad pin would contradict. `r` and `m` declared FIXED
+  constants, never sliders — this concept has no radial slide anywhere.
+- **`tau_eq_i_alpha`** — P1-A landed at both sites Checkpoint C must diff (§1 variable + formula +
+  ground-truth table; §3 readout metrics + timelines). **It explicitly SUPERSEDES a sentence in
+  skeleton REV 2** that still describes τ as "the signed authored schedule value" — wrong wherever
+  the rest clamp or S8's static hold is active. The skeleton is `DESIGN_OK` and frozen, so the
+  supersession is recorded in the physics block rather than edited into the skeleton;
+  **Checkpoint C must not reconcile them the wrong way round.** P2-A pin budgets recomputed with
+  park instants (S4 14 s, S5 14 s, S7 15 s, margins 0.47–0.77 s), and S5's pin still photographs
+  chip 1.25 beside live 5.80. P3-4 taken: the formula surface reads `τ = Iα`, never `τ_net = Iα`,
+  since only S8's tug gives "net" an on-screen referent.
+
+Neither author found a new engine need: everything required is already covered by `findings_d.md`
+PASS 2. **No PASS 3 is owed.**
+
 ### Next
 
-1. `physics-author` block for each concept, on its `DESIGN_OK` skeleton. Carry-forwards on record:
+1. ~~`physics-author` block for each concept~~ — DONE. Carry-forwards on record:
    `tau_eq_i_alpha` P1-A (the τ-row semantic, to be diffed at Checkpoint C), P2-A (pin budgets stop
    at actuator release but retraction is animated over `padTravelMs` — S4/S5/S7 need ~14/14/15 s),
    P2-B (the fallback puts signed τ on a core-ring control while negative τ is extended-ring — a
