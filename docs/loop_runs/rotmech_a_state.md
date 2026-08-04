@@ -19,7 +19,43 @@ Author `conservation_of_angular_momentum` through the Alex pipeline (physics blo
 start at `json-author`), then quality-auditor + eye-walker, then founder-proxy Checkpoint B.
 
 ## done
-(none)
+- **2026-08-04 — `conservation_of_angular_momentum` JSON authored** (`1d5b693`). tsc 0 ·
+  validate 150 PASS / 0 FAIL. JSON + cache seed script + cluster migration. Registration sites
+  untouched (pre-registered on master). **NOT sealed.** THE EYE run once; no Checkpoint B.
+- **10 engine findings** A-1…A-10 filed to `_engine/findings_a.md`, routed to Desk E.
+
+## ⚠ BLOCKER FOUND BY DESK D AFTER YOU AUTHORED — S3 and S7 have a DEAD archetype
+
+**Do not seal this concept. Two states declare a motion that cannot happen.**
+
+Desk D's `_engine/findings_d.md` **§6c** (filed as a cross-desk alert, verified in code) proves
+the Rule-34b formula surface is set **once per state, as a plain string** —
+`applyRigidBodyRotationState` `:50570-50573`, typed `string` at `:1046`:
+
+```js
+ff.textContent = (typeof rb.formula === "string") ? rb.formula : "";
+```
+
+**There is no timing, no term list, no reveal schedule.** The whole equation appears at state
+entry, complete.
+
+But this concept's approved design is authored against term-by-term assembly, and the JSON you
+committed declares `"motion_archetype": "equation-build"`. Its physics block times two
+assemblies — S7 `0–4000 ms: formula_surface assembles term-by-term: τ_ext = dL/dt`, and S3
+`0–3200 ms: formula_surface assembles I₁ω₁ = I₂ω₂`.
+
+**The degradation is silent, in the now-familiar way.** The authored string renders fine, the
+state looks correct, THE EYE sees a formula on screen, and nothing reports that a beat specified
+as an assembly played as a single flash at t = 0. S7's declared archetype — the thing that makes
+it a distinct state under Rule 31 — simply does not happen.
+
+**Your ten findings did not catch this**; Desk D's architect did, from the other side. The ask
+is `formula_at_ms` (a timed reveal on the formula surface), ranked **#7, HIGH, cross-desk** on
+Desk D's 0c-3 priority list. It is the one item on that list that is not about Desk D.
+
+**Action:** mark S3 and S7 blocked in `_progress/a.md`, add the dependency to
+`_engine/findings_a.md` as A-11 cross-referencing findings_d §6c, and do NOT run Checkpoint B
+until `formula_at_ms` lands.
 
 ## The blocked-concept trap — read before wave 2
 
