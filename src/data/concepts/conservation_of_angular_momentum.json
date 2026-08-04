@@ -1,0 +1,1026 @@
+{
+  "concept_id": "conservation_of_angular_momentum",
+  "concept_name": "Conservation of Angular Momentum",
+  "chapter": 9,
+  "section": "9.9",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 11 Physics Ch.7 System of Particles and Rotational Motion §7.9 (Conservation of angular momentum) — table-of-contents scope only, teaching authored from first principles; no example, derivation order or figure imported from any textbook (DC Pandey check: chapter table of contents only). The atomic concept: when the net external torque on a system is zero, its angular momentum L = Iω stays exactly constant, so if the mass distribution changes and the moment of inertia I falls, the angular speed ω must rise to keep the product fixed — kinetic energy is NOT conserved while this happens, because the visible inward pull does real work. Does NOT cover what angular momentum is or its formula (angular_momentum), how I is computed (moment_of_inertia), or how a nonzero torque produces angular acceleration (tau_eq_i_alpha). Kepler's second law is deferred to Gravitation. Built on the rigid_body_rotation field_3d engine (0c-1, docs/loop_runs/rotmech/), pure configuration, zero renderer edits.",
+  "prerequisites": [
+    "angular_momentum",
+    "moment_of_inertia",
+    "tau_eq_i_alpha",
+    "rotational_work_energy"
+  ],
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["rigid_body_rotation"]
+  },
+  "real_world_anchor": {
+    "primary": "A person sitting on a rotating stool, holding a mass in each hand with arms stretched out — pulling the arms in makes the spin visibly faster, even though nothing outside the system touches it.",
+    "secondary": "A diver stretching the body out to slow a somersault before entering the water, then pulling in again to speed up a later turn."
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 20
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Pull your arms in with no outside torque acting, and you spin faster.",
+    "visual_confirmation": "Masses slide inward under the visible pull arrows while angular speed climbs and angular momentum L stays flat."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "r": {
+        "name": "Radius of each sliding mass from the axle",
+        "unit": "m",
+        "min": 0.15,
+        "max": 0.90,
+        "default": 0.80,
+        "step": 0.01
+      },
+      "m": {
+        "name": "Mass of each sliding mass (two, symmetric about the axle)",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 5.0,
+        "default": 2.0,
+        "step": 0.1
+      },
+      "omega0": {
+        "name": "Seed angular speed magnitude — sets L only at t=0 (STATE_1) and at an explicit restart (STATE_6 run-cut, STATE_8 live m/omega0/direction change); not applied continuously mid-run",
+        "unit": "rad/s",
+        "min": 0.5,
+        "max": 3.0,
+        "default": 1.5,
+        "step": 0.1
+      },
+      "omega": {
+        "name": "Live angular speed — the derived quantity omega = L / I, recomputed every step; never itself an independent variable or slider",
+        "unit": "rad/s",
+        "derived": "omega = L / I"
+      },
+      "spin_sign": {
+        "name": "Spin direction — a discrete restart control (grip-rule +1 vs -1), never eased through zero",
+        "unit": "dimensionless (+1 or -1 only)",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      },
+      "tau_brake": {
+        "name": "Brake torque magnitude while the pad is engaged against the turntable's rim",
+        "unit": "N·m",
+        "min": 0,
+        "max": 2.0,
+        "default": 0.92,
+        "step": 0.05
+      },
+      "I_frame": {
+        "name": "Fixed inertia of the turntable + rod, excluding the two sliding masses",
+        "unit": "kg·m^2",
+        "constant": 0.50
+      },
+      "R_drum": {
+        "name": "Braked radius — where the pad contacts the turntable's rim",
+        "unit": "m",
+        "constant": 0.55
+      },
+      "rod_half_length": {
+        "name": "Rod half-length — apparatus geometry only, not a formula input",
+        "unit": "m",
+        "constant": 1.0
+      },
+      "rod_height_above_pad": {
+        "name": "Vertical clearance of the rod plane above the drum's pad plane — apparatus geometry only, guarantees no fouling between the pad and the masses at any r (including r=0.20 < R_drum)",
+        "unit": "m",
+        "constant": 0.25
+      }
+    },
+    "computed_outputs": {
+      "I": { "formula": "I_frame + 2*m*r^2" }
+    },
+    "formulas": {
+      "angular_momentum_definition": "L = I·omega — the defining relation. omega is ALWAYS the derived quantity (omega = L/I); it is never itself integrated.",
+      "newtons_second_law_rotational": "tau_ext = dL/dt — the general law this concept teaches. The engine integrates L directly in step-count-invariant form: L(t+h) = L(t) + tau_ext*h  (rest clamp ON L: if tau_ext*h would carry L through zero, set L = 0 — the clamp acts on L, never on the derived omega); omega(t) = L(t)/I(t), recomputed every step; theta(t+h) = theta(t) + omega*h.",
+      "conservation_condition": "tau_ext = 0 => dL/dt = 0 => L is EXACTLY constant, with zero accumulation error by construction (STATE_1-STATE_4, STATE_6, STATE_7, STATE_8-without-brake).",
+      "moment_of_inertia": "I(t) = I_frame + 2*m*r(t)^2 — two symmetric sliding masses; recomputed live every step as r(t) changes, NEVER an authored constant.",
+      "kinetic_energy": "KE = L^2/(2*I) = 0.5*I*omega^2 — the two forms are numerically identical (checked to 5 dp at STATE_5's held values: 0.85688 both routes). KE is NOT conserved when I changes, even though L is exactly constant.",
+      "brake_torque_source": "tau_ext = -sign(omega) * tau_brake while the pad is engaged (frictional — opposes the EXISTING spin, never reverses it); tau_ext = 0 otherwise.",
+      "pull_force_magnitude": "F_pull = m * omega^2 * r — the live magnitude of each -r-hat arrow (the centripetal hold needed to keep a mass on its instantaneous circular path at radius r and speed omega). SHRINKS as the masses move out (19.35 N at r=0.20 -> 3.60 N at r=0.80, a 5.4x drop — the agent eases its hold) and GROWS by the same factor on every inward slide; never reverses sign or points outward.",
+      "dLdt_finite_difference": "dL/dt (STATE_7 only) = (L_k - L_k_minus_1)/h, a per-step measurement of the engine's OWN integrated L. Because the single L-integrator constructs dL/dt = tau_ext BY DEFINITION, this readout is an ILLUSTRATION of the law being simulated, never sold as an independent confirmation.",
+      "top_spin_rate": "n = |omega|/(2*PI) rev/s — at r=0.20, omega=6.9545: n = 1.1063 -> 1.11 rev/s."
+    },
+    "constraints": [
+      "L = I·ω at every instant; ω is always DERIVED from L and I, never independently stored or integrated.",
+      "τ_ext = dL/dt (Newton's second law for rotation). When τ_ext = 0, L is EXACTLY constant.",
+      "KE = L²/2I = ½Iω² is NOT conserved when I changes, even while L is exactly constant.",
+      "I(t) = I_frame + 2mr(t)² rises with r²; I_frame = 0.50 kg·m² is a fixed apparatus constant, never adjustable.",
+      "The −r̂ pull force on each mass points directly AT the rotation axis — zero moment arm, hence zero torque about that axis; this is WHY the radial pull changes I and ω while leaving L untouched.",
+      "Rest clamp acts on L only: if τ_ext·h would carry L through zero, L is set to exactly 0. ω is never independently clamped.",
+      "τ_brake ∈ [0, 2.0] N·m is frictional — opposes the existing sign of ω, can only decelerate toward rest, never reverses spin at any reachable value.",
+      "r ∈ [0.15, 0.90] m is a hard mechanical range; both taught poses (0.20, 0.80) sit strictly inside it.",
+      "m and ω₀ are RESTART/seed parameters — they set L fresh at t = 0 or at an explicit restart event, never applied as a continuous per-frame force during an ordinary state."
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "ice_skater_spin",
+      "type": "B",
+      "label": "Ice skater pulling her arms in mid-spin",
+      "physical_world": "An ice skater spinning on the spot pulls her arms and one leg inward mid-spin, with no outside torque acting.",
+      "same_physics": "Same I falls / ω rises trade with L = Iω held constant by zero net external torque about the spin axis.",
+      "scene_hint": "Same turntable rig — only the labeled sliding masses become a human figure's arms in the narrated anchor, physics unchanged."
+    },
+    {
+      "variant_id": "merry_go_round_riders",
+      "type": "B",
+      "label": "Playground merry-go-round riders shifting position",
+      "physical_world": "Riders on a spinning playground merry-go-round crawl from the rim toward the centre while it keeps turning.",
+      "same_physics": "Reducing each rider's radius reduces the system's moment of inertia, and the spin speeds up while L stays fixed — identical trade, different labeled world.",
+      "scene_hint": "Same rig, same physics — the sliding masses are relabeled as riders moving along the rod."
+    }
+  ],
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_5" },
+    "external_torque": { "start": "STATE_5", "end": "STATE_5" },
+    "vector_nature": { "start": "STATE_6", "end": "STATE_6" },
+    "derivation": { "start": "STATE_7", "end": "STATE_7" }
+  },
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Physics Ch.7 System of Particles and Rotational Motion §7.9",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Mechanics — Rotational Motion — Conservation of Angular Momentum",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "partial",
+        "syllabus_unit": "Physics — Rotational Motion — Angular Momentum",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "IB DP Physics — Angular momentum conservation",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Physics",
+        "coverage": "partial",
+        "syllabus_unit": "A-level Physics — Angular momentum and its conservation",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Mechanics",
+        "coverage": "partial",
+        "syllabus_unit": "AP Physics C: Mechanics — Rotational Motion — Angular Momentum",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "assessment": {
+    "mastery_definition": "A student masters this concept if they can state that angular momentum stays constant with no external torque, predict how angular speed changes when the mass distribution changes, recognize that kinetic energy is not simultaneously conserved, identify when an external torque breaks the conservation, and read the direction of angular momentum from the right-hand grip rule.",
+    "questions": [
+      {
+        "q_id": "coam_q1",
+        "stem": "A turntable spins with no external torque acting on it at all. What happens to its angular momentum L over time?",
+        "options": {
+          "A": "L stays exactly constant",
+          "B": "L slowly decreases because of friction inside the system",
+          "C": "L increases the longer the spin continues",
+          "D": "L becomes zero once the spin settles into a steady rate"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes an unmodeled internal friction must always be present, when the concept explicitly has zero external torque.",
+          "C": "Treats continuing motion as growing motion — confuses steady spin with accumulating angular momentum.",
+          "D": "Confuses a steady, unchanging spin rate with a spin that has died out to zero."
+        },
+        "tested_idea": "conservation_definition",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A spinning wheel on a frictionless axle has no external torque acting on it. What happens to its angular momentum L as it keeps spinning?"
+      },
+      {
+        "q_id": "coam_q2",
+        "stem": "Two masses on a spinning turntable are pulled toward the axle, and no external torque acts on the system. What happens to the angular speed ω?",
+        "options": {
+          "A": "ω increases, because the moment of inertia I falls while L stays constant",
+          "B": "ω stays the same, because nothing pushed the turntable itself",
+          "C": "ω decreases, because pulling the masses inward slows the spin",
+          "D": "ω cannot be found without knowing the size of the applied force"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes a spin rate cannot change unless something external pushes or a motor acts, missing that L = Iω can redistribute internally.",
+          "C": "Reverses the actual direction of the effect, expecting pulling in to slow rather than speed up the spin.",
+          "D": "Assumes an applied force is needed, when the radial pull is internal and exerts zero torque about the axis."
+        },
+        "tested_idea": "inverse_relationship",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A figure skater pulls her arms in while spinning freely, with no external torque acting on her. What happens to her angular speed ω?"
+      },
+      {
+        "q_id": "coam_q3",
+        "stem": "At radius r = 0.80 m, the turntable has I = 3.06 kg·m² and ω = 1.50 rad/s. The masses are then pulled in to r = 0.20 m, giving I = 0.66 kg·m². What is the new angular speed?",
+        "options": {
+          "A": "6.95 rad/s",
+          "B": "1.50 rad/s",
+          "C": "0.32 rad/s",
+          "D": "4.64 rad/s"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes ω cannot change because nothing external pushed the system, ignoring I₁ω₁ = I₂ω₂.",
+          "C": "Inverts the inertia ratio (multiplies ω₁ by I₂/I₁ instead of I₁/I₂).",
+          "D": "Confuses the inertia ratio I₁/I₂ itself with the new angular speed, forgetting to multiply by ω₁."
+        },
+        "tested_idea": "quantitative_prediction",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A system has I₁ = 4.0 kg·m² and ω₁ = 2.0 rad/s. If I falls to I₂ = 1.0 kg·m² with no external torque, what is ω₂?"
+      },
+      {
+        "q_id": "coam_q4",
+        "stem": "As the masses are pulled in and angular momentum L stays exactly constant, what happens to kinetic energy KE?",
+        "options": {
+          "A": "KE rises, because the visible inward pull does real work on the masses",
+          "B": "KE stays the same, since L is conserved",
+          "C": "KE falls, since a rise in angular speed means less energy",
+          "D": "KE cannot change, because no external torque acts on the system"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes that if one quantity (L) is conserved, every quantity in the system must also be conserved.",
+          "C": "Assumes a rise in speed must mean a fall in energy, the opposite of the real relationship.",
+          "D": "Conflates torque-free (which conserves L) with work-free (which would conserve KE) — the two are different conditions."
+        },
+        "tested_idea": "energy_not_conserved",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A spinning system's mass distribution shrinks inward with no external torque acting. Angular momentum L stays exactly constant throughout. What happens to the system's kinetic energy?"
+      },
+      {
+        "q_id": "coam_q5",
+        "stem": "A brake pad presses onto the turntable's rim while it spins freely otherwise. What happens to angular momentum L from this point on?",
+        "options": {
+          "A": "L decreases, because the brake applies an external torque",
+          "B": "L stays constant, because angular momentum is always conserved",
+          "C": "L increases, because the brake adds energy to the system",
+          "D": "L stays constant as long as the sliding masses do not move"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Over-generalizes the conservation law, ignoring that it only holds when net external torque is zero.",
+          "C": "Confuses a braking (energy-removing) torque with an energy-adding one.",
+          "D": "Confuses the condition for I to stay fixed (masses not moving) with the actual condition for L to stay fixed (zero external torque)."
+        },
+        "tested_idea": "torque_condition",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A spinning wheel has a brake pad pressed against its rim, while its mass distribution stays fixed. What happens to its angular momentum L?"
+      },
+      {
+        "q_id": "coam_q6",
+        "stem": "The turntable spins one way, stops, and restarts spinning the opposite way. How does the angular momentum vector L behave?",
+        "options": {
+          "A": "L reverses direction along the same axis, following the right-hand grip rule",
+          "B": "L has no direction — it is only a size, not a vector",
+          "C": "L points radially outward from the axle, not along the axis",
+          "D": "L stays pointing the same way no matter which direction the turntable spins"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treats angular momentum as a bare number rather than a vector with a direction set by the grip rule.",
+          "C": "Places the vector along the wrong axis — radially instead of along the rotation axis.",
+          "D": "Assumes the direction of L is independent of the spin direction, when it is set entirely by it."
+        },
+        "tested_idea": "vector_direction",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A wheel spins clockwise when viewed from one side, then is restarted spinning counter-clockwise. How does its angular momentum vector L change?"
+      },
+      {
+        "q_id": "coam_q7",
+        "stem": "For this turntable, external torque τ_ext equals the rate of change of angular momentum, dL/dt. When τ_ext = 0, what follows?",
+        "options": {
+          "A": "dL/dt = 0, so L is exactly constant",
+          "B": "dL/dt = 0, so the angular speed ω must also stay constant",
+          "C": "τ_ext = 0 only means the turntable is not accelerating",
+          "D": "dL/dt = 0 only while the masses stay at a fixed radius"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses L staying constant with ω staying constant — the exact confusion STATE_2 and STATE_3 confront.",
+          "C": "Vaguely conflates a rotational statement about torque and angular momentum with a translational one about acceleration.",
+          "D": "Adds an unstated condition — the law τ_ext = dL/dt holds regardless of whether the radius is changing."
+        },
+        "tested_idea": "torque_equals_dLdt",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "For a spinning system, τ_ext = dL/dt at every instant. If τ_ext = 0 throughout an interval, what can you conclude about L?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["coam_q1"],
+      "STATE_2": ["coam_q2"],
+      "STATE_3": ["coam_q3"],
+      "STATE_4": ["coam_q4"],
+      "STATE_5": ["coam_q5"],
+      "STATE_6": ["coam_q6"],
+      "STATE_7": ["coam_q7"]
+    },
+    "non_assessed_states": ["STATE_8"]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "No torque: L constant",
+        "duration": 8,
+        "focal_primitive_id": "rbr_s1_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "No torque: L constant",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Turntable spins steadily — nothing external acts on it",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s1_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "L = I times omega builds in — I = 3.06, omega = 1.50, L = 4.59, and holds steady",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "with no external torque, angular momentum L does not change",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This turntable spins steadily." },
+            { "id": "s1_2", "text_en": "Two equal masses sit out near the rod's ends." },
+            { "id": "s1_3", "text_en": "Spread of mass is moment of inertia I." },
+            { "id": "s1_4", "text_en": "Spin rate is angular speed omega." },
+            { "id": "s1_5", "text_en": "Their product is angular momentum L." },
+            { "id": "s1_6", "text_en": "With no external torque, L stays the same." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Masses in: spin faster",
+        "duration": 13,
+        "focal_primitive_id": "rbr_s2_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "radial-slide (declared contrast pair with STATE_3)",
+        "delta_cue": "Masses in: spin faster",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_omega_rises",
+          "L_vs_omega_confusion",
+          "internal_forces_no_torque"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "An inward pull force acts on each mass — nothing else touches the system",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s2_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Masses slide in from r=0.80 to r=0.20 — omega climbs 1.50 to 6.95 while L holds at 4.59",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s2_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a person on a spinning stool, pulling their arms in",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "An inward pull force acts on each mass." },
+            { "id": "s2_2", "text_en": "The masses slide in toward the axle." },
+            { "id": "s2_3", "text_en": "No external torque acts, so angular momentum L cannot change." },
+            { "id": "s2_4", "text_en": "Moment of inertia I falls, so angular speed omega rises: the spin speeds up four point six four times." },
+            { "id": "s2_5", "text_en": "Like a person on a spinning stool, pulling their arms in." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A spin rate cannot change unless something pushes it or a motor acts on it.",
+            "visual_counter": "Nothing new touches the turntable, yet the masses slide in under the visible inward-pull arrows and the spin speeds up four point six four times, while angular momentum L never moves.",
+            "one_line_fix": "No external torque keeps angular momentum L fixed, not angular speed omega — change the moment of inertia I and omega must change with it, because the inward pull points straight at the axle and exerts no torque about it."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Equation predicts the slow-down",
+        "duration": 10,
+        "focal_primitive_id": "rbr_s3_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "radial-slide (declared contrast pair with STATE_2)",
+        "delta_cue": "Equation predicts the slow-down",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "I1 omega1 = I2 omega2 predicts the new speed before the slide begins",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s3_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Masses slide back out — the live omega readout meets the predicted chip at 1.50",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s3_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a diver stretching to slow a somersault",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The equation predicts angular speed omega: one point five oh radians per second, before the slide begins." },
+            { "id": "s3_2", "text_en": "Now the masses slide back out." },
+            { "id": "s3_3", "text_en": "The pull arrows shorten as the masses move out: the force never reverses to push." },
+            { "id": "s3_4", "text_en": "Angular speed omega slows and meets the prediction exactly." },
+            { "id": "s3_5", "text_en": "Like a diver stretching to slow a somersault." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Kinetic energy goes up",
+        "duration": 10,
+        "focal_primitive_id": "rbr_s4_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "diverge-from-mark",
+        "delta_cue": "Kinetic energy goes up",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "ke_not_conserved",
+          "who_does_the_work",
+          "ke_ratio_formula"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "If energy stayed constant, KE would hold at 3.44 J — the tick marks that claim",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s4_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "The pull runs once more — KE climbs past the tick to 15.96 J while L stays flat, and the gap holds open",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s4_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "the visible pull does real work — that work becomes the extra kinetic energy",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "If energy were conserved, kinetic energy would stay three point four four joules." },
+            { "id": "s4_2", "text_en": "The masses pull in once more, and energy climbs past the mark to fifteen point nine six joules." },
+            { "id": "s4_3", "text_en": "Angular momentum L stays exactly flat the whole time." },
+            { "id": "s4_4", "text_en": "The visible pull does real work — that work becomes the extra kinetic energy." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "If angular momentum is conserved, then kinetic energy should be conserved too.",
+            "visual_counter": "The static tick appears first, alone, at three point four four joules. Then the kinetic energy bar climbs past it to fifteen point nine six joules while L stays flat, and the gap stays open.",
+            "one_line_fix": "The visible inward pull does real work on the masses, and that work becomes extra kinetic energy — KE = L squared over two I rises as I falls, even while L itself never changes."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "External torque changes L",
+        "duration": 10,
+        "focal_primitive_id": "rbr_s5_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "External torque changes L",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s5_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "A brake pad presses onto the turntable's rim at 0.55 m",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s5_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "An external torque now acts — L falls from 4.59 to 2.29, omega falls to 0.75",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s5_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "the masses stay outside this braked radius the whole time",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "A brake pad presses onto the turntable's rim at zero point five five metres." },
+            { "id": "s5_2", "text_en": "The masses stay outside this braked radius." },
+            { "id": "s5_3", "text_en": "An external torque now acts: L falls from four point five nine to two point two nine." },
+            { "id": "s5_4", "text_en": "Angular speed falls to zero point seven five as the pad releases." }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "L points along axis",
+        "duration": 10,
+        "focal_primitive_id": "rbr_s6_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "L points along axis",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s6_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Angular momentum L is a vector — it points along the rotation axis",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s6_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Curl the right hand with the spin — the thumb gives the direction of L, up then down on restart",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s6_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "spinning the other way, L points down",
+            "color": "#FFB74D"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Angular momentum L is a vector — it points along the rotation axis." },
+            { "id": "s6_2", "text_en": "Curl the right hand's fingers with the spin; the thumb points along L." },
+            { "id": "s6_3", "text_en": "Spinning this way, L points up." },
+            { "id": "s6_4", "text_en": "Now the turntable restarts spinning the other way — L points down." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Angular momentum is just a number — it has size but no direction.",
+            "visual_counter": "Two restarted runs show the difference: spinning one way, the arrow points up; spinning the other way, the arrow points down — never easing through zero.",
+            "one_line_fix": "Angular momentum L points along the rotation axis, in the direction given by the right-hand grip rule."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Torque equals dL/dt",
+        "duration": 11,
+        "focal_primitive_id": "rbr_s7_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "equation-build",
+        "delta_cue": "Torque equals dL/dt",
+        "depth_ring": "advanced",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s7_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "External torque equals the rate of change of angular momentum: torque = dL over dt",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s7_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "dL/dt reads 0.00 the whole time the masses slide in again — L cannot change with zero external torque",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s7_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "this is exactly what conservation means",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "External torque equals the rate of change of angular momentum: torque equals dL over dt." },
+            { "id": "s7_2", "text_en": "When no external torque acts, dL over dt is zero." },
+            { "id": "s7_3", "text_en": "So angular momentum L cannot change — this is exactly what conservation means." },
+            { "id": "s7_4", "text_en": "Watch the readout stay at zero point zero zero as the masses slide in again." }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Try it yourself",
+        "focal_primitive_id": "rbr_s8_focal",
+        "advance_mode": "interaction_complete",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Try it yourself",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s8_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Every control is live — the masses, the seed speed, the brake, the spin direction",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s8_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Drag the radius and watch angular momentum L, angular speed omega and energy respond live",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s8_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "a restart re-pins L visibly, never silently",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "rigid_body_rotation",
+    "explorer_id": "rigid_body_rotation_explorer",
+    "slider_controls": {
+      "r": { "min": 0.15, "max": 0.90, "step": 0.01, "default": 0.80, "label": "r" },
+      "m": { "min": 0.5, "max": 5.0, "step": 0.1, "default": 2.0, "label": "m" },
+      "omega0": { "min": 0.5, "max": 3.0, "step": 0.1, "default": 1.5, "label": "ω₀" },
+      "tau_brake": { "min": 0, "max": 2.0, "step": 0.05, "default": 0.92, "label": "τ" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Steady spin, constant L",
+        "caption": "No torque: L constant",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "readouts": ["I", "omega", "L"],
+          "readout_at_ms": { "I": 2000, "omega": 2800, "L": 3600 },
+          "hold_glow": ["L"],
+          "formula": "L = Iω",
+          "glow_focal": "rbr_l_arrow",
+          "phases": [
+            { "id": "masses_established", "at_ms": 1200, "until_ms": 2000, "glow_focal": "rbr_r_line" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Masses pulled in — spin speeds up",
+        "caption": "Masses in: spin faster",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "show_pull_arrows": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "show_pull_arrows": true,
+          "param_ramp": { "param": "r", "from": 0.80, "to": 0.20, "start_ms": 4890, "end_ms": 6890 },
+          "readouts": ["I", "omega", "L"],
+          "hold_glow": ["L"],
+          "formula": "ω = L / I",
+          "glow_focal": "rbr_drum",
+          "phases": [
+            { "id": "cause", "at_ms": 4190, "until_ms": 4890, "glow_focal": "rbr_pull_arrow" },
+            { "id": "effect", "at_ms": 4890, "until_ms": 6890, "glow_focal": "rbr_mass" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Predicting the new speed",
+        "caption": "Equation predicts the slow-down",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "show_pull_arrows": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.20 },
+          "omega0_rad_s": 6.954545454545454,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "show_pull_arrows": true,
+          "param_ramp": { "param": "r", "from": 0.20, "to": 0.80, "start_ms": 3200, "end_ms": 5200 },
+          "readouts": ["I", "omega", "L"],
+          "reference_marks": [
+            { "id": "predicted_omega", "surface": "omega", "form": "chip", "value": 1.50, "label": "predicted ω = 1.50", "at_ms": 0, "match_tolerance": 0.01 }
+          ],
+          "hold_glow": ["L"],
+          "formula": "I₁ω₁ = I₂ω₂",
+          "phases": [
+            { "id": "arrows_track", "at_ms": 3200, "until_ms": 5200, "glow_focal": "rbr_pull_arrow" },
+            { "id": "anchor", "at_ms": 5200, "until_ms": 10000, "glow_focal": "rbr_drum" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Kinetic energy is not conserved",
+        "caption": "Kinetic energy goes up",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "show_pull_arrows": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "show_pull_arrows": true,
+          "param_ramp": { "param": "r", "from": 0.80, "to": 0.20, "start_ms": 3200, "end_ms": 5200 },
+          "readouts": ["I", "omega", "L", "KE"],
+          "reference_marks": [
+            { "id": "ke_tick", "surface": "KE", "form": "tick", "value": 3.44, "label": "if energy stayed constant", "at_ms": 0 }
+          ],
+          "ke_bar": { "max_j": 17.6 },
+          "hold_glow": ["L"],
+          "formula": "KE = ½Iω²",
+          "phases": [
+            { "id": "cause", "at_ms": 2500, "until_ms": 3200, "glow_focal": "rbr_pull_arrow" },
+            { "id": "effect", "at_ms": 3200, "until_ms": 5200, "glow_focal": "rbr_mass" },
+            { "id": "gap_hold", "at_ms": 5200, "until_ms": 10000, "glow_focal": "rbr_pull_arrow" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "Brake pad on the turntable rim",
+        "caption": "External torque changes L",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "show_drum_line": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "show_drum_line": true,
+          "external_torque": {
+            "source": "brake",
+            "tau_brake_Nm": 0.92,
+            "engage_at_ms": 1500,
+            "release_at_ms": 4000,
+            "pad_travel_ms": 1500
+          },
+          "readouts": ["I", "omega", "L", "KE"],
+          "hold_glow": ["L"],
+          "formula": "τₑₓₜ ≠ 0 ⇒ L changes",
+          "controls_visible": ["tau_brake"],
+          "phases": [
+            { "id": "pad_in", "at_ms": 0, "until_ms": 1500, "glow_focal": "rbr_brake_pad" },
+            { "id": "masses_outside", "at_ms": 1500, "until_ms": 1700, "glow_focal": "rbr_r_line" },
+            { "id": "decay", "at_ms": 1700, "until_ms": 4000, "glow_focal": "rbr_brake_pad" },
+            { "id": "release", "at_ms": 4000, "until_ms": 5000, "glow_focal": "rbr_brake_pad" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "L is a vector along the axis",
+        "caption": "L points along axis",
+        "camera_position": [0.22, 0.80, 5.85],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_grip_hand": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_grip_hand": true,
+          "restart": { "at_ms": 4000, "every_ms": 6500, "flip_spin": true },
+          "repin_cue": { "blank_ms": 500 },
+          "readouts": ["I", "omega", "L", "KE"],
+          "controls_visible": ["spin_dir"],
+          "phases": [
+            { "id": "l_start", "at_ms": 0, "until_ms": 1200, "glow_focal": "rbr_l_arrow" },
+            { "id": "hand_curl_a", "at_ms": 1200, "until_ms": 4000, "glow_focal": "rbr_grip_hand" },
+            { "id": "l_up_confirm", "at_ms": 3500, "until_ms": 4000, "glow_focal": "rbr_l_arrow" },
+            { "id": "hand_curl_b", "at_ms": 4500, "until_ms": 7500, "glow_focal": "rbr_grip_hand" },
+            { "id": "l_down_confirm", "at_ms": 7500, "until_ms": 10500, "glow_focal": "rbr_l_arrow" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "label": "Why L stays constant",
+        "caption": "Torque equals dL/dt",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "param_ramp": { "param": "r", "from": 0.80, "to": 0.20, "start_ms": 4000, "end_ms": 6000 },
+          "readouts": ["I", "omega", "L", "KE", "dLdt"],
+          "readout_at_ms": { "dLdt": 4000 },
+          "hold_glow": ["L", "dLdt"],
+          "formula": "τₑₓₜ = dL/dt",
+          "phases": [
+            { "id": "replay", "at_ms": 4000, "until_ms": 6000, "glow_focal": "rbr_mass" },
+            { "id": "held", "at_ms": 6000, "until_ms": 11000, "glow_focal": "rbr_drum" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "label": "Full turntable, every control live",
+        "caption": "Try it yourself",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": true,
+        "show_r_line": true,
+        "show_pull_arrows": true,
+        "show_drum_line": true,
+        "rigid_body_rotation": {
+          "mode": "sandbox",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": true,
+          "show_r_line": true,
+          "show_pull_arrows": true,
+          "show_drum_line": true,
+          "idle_auto_sweep": { "param": "r", "range": [0.80, 0.20] },
+          "trusted_drag_seizes": true,
+          "readouts": ["I", "omega", "L", "KE"],
+          "formula": "L = Iω",
+          "controls_visible": ["r", "m", "omega0", "tau_brake", "spin_dir"]
+        }
+      }
+    }
+  }
+}
