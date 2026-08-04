@@ -665,7 +665,7 @@
             "type": "annotation",
             "id": "s6_counter_label",
             "position": {
-              "x": 160,
+              "x": 500,
               "y": 60
             },
             "text": "Watch the like-charge counter",
@@ -736,7 +736,7 @@
         ]
       },
       "STATE_7": {
-        "title": "Melting takes the whole lattice",
+        "title": "Why the melting point is high",
         "label": "Heat frees the ions at the melting point — no single bond breaks alone",
         "duration": 25,
         "depth_ring": "core",
@@ -1663,7 +1663,9 @@
             "lattice_a",
             "melting_point",
             "lattice_enthalpy"
-          ]
+          ],
+          "spin_start_ms": 0,
+          "spin_rate": 0.16
         }
       }
     }

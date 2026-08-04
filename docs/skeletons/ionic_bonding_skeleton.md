@@ -44,7 +44,7 @@ the rail truncates) is authored here and is BINDING on json-author:
 | S4 | `STATE_4` | Not a molecule — a lattice | **The pair does not stay a pair** — the lattice grows (PRIMARY aha; misconception pivot) | misconception_confrontation (16a contrast beat) |
 | S5 | `STATE_5` | Six neighbours for every ion | Every ion is surrounded by six of the other kind | — |
 | S6 | `STATE_6` | One layer shift splits it | One-site layer shift lines up like charges — the crystal splits | — |
-| S7 | `STATE_7` | Melting takes the whole lattice | Melting frees the ions; the whole lattice must fail at once | — |
+| S7 | `STATE_7` | Why the melting point is high | Melting frees the ions; no single weak bond breaks first | — |
 | S8 | `STATE_8` | Only molten salt conducts | Same field on solid and melt: only free ions carry charge | — (16a contrast beat #2) |
 | S9 | `STATE_9` | Higher charge, stronger lattice | **advanced** — double the charge, far stronger lattice (NaCl melts, MgO holds) | compare_contrast |
 | S10 | `STATE_10` | Explore the lattice | Explore sandbox — all core controls | exploration_sliders |
@@ -67,7 +67,7 @@ Word counts are targets inside the 25–55 budget. **Duration is derived from th
 | S4 | core | The pair does not stay a pair; the lattice grows | `lattice-grow` | "More ions keep joining" | — | 48 | ~24.5 s | 25 | `lattice` |
 | S5 | core | 6:6 coordination, read from inside the block | `neighbour-cutaway` | "Six neighbours, every ion" | `{spin, core}` | 40 | ~20.5 s | 21 | `neighbours` |
 | S6 | core | One-site shift → like charges meet → split (derived) | `layer-shift-snap` ⇄ | "One shift, it splits" | `{shift, core}` | 45 | ~23 s | 24 | `lattice` (see glow note) |
-| S7 | core | Heat frees the ions; the whole lattice fails at once | `melt-the-lattice` | "Heat frees the ions" | `{temperature, core}` | 45 | ~23 s | 24 | `lattice` |
+| S7 | core | Heat frees the ions; no single weak bond breaks first | `melt-the-lattice` | "Heat frees the ions" | `{temperature, core}` | 55 | ~24.8 s | 25 | `lattice` |
 | S8 | core | One field, two samples: only the melt conducts | `field-on-both` | "Free ions carry charge" | `{field, core}` | 50 | ~25.5 s | 26 | `field` → `lattice` |
 | S9 | **adv** | Charge and size set lattice strength (NaCl vs MgO race) | `melt-race` | "Double charge, far stronger" | — | 49 | ~25 s | 25 | `lattice` |
 | S10 | core | Explore | `interaction_complete` | — | `{ion_pair}` `{spin}` `{temperature}` `{shift}` `{field}` all core | 0/open | free-run | 30 | — |
@@ -266,7 +266,9 @@ config:
 - HUD `['melting_point','lattice_enthalpy']` (engine prints 1074 K · 788 kJ·mol⁻¹ from the ratified table). Formula surface `NaCl(s) → NaCl(l)`.
 - `{id:'temperature', min_ring:'core'}` — **drag-seize required**.
 - Annotations: 13000 (x 380) "Ions become free at the melting point" (conditional wording — true at any slider position); 15500 (x 160) "Every bond in the block must fail, not one".
-- Narration (≈45 w): heat the crystal and every ion shakes harder, but each is still held by six neighbours — and those by six more. Nothing moves until the whole network fails at once. That is why the melting point is so high: the HUD shows the temperature and the energy it takes.
+- Narration (55 w — the SHIPPED text; the pre-§8b version survived in this doc until Checkpoint B swept it): heat the crystal and every ion shakes harder, but each is held by six neighbours, and those by six more — no single weak bond breaks first. An ion is freed only once that whole surrounding pull is overcome. That is why the melting point is so high — the readout shows the temperature and energy needed. *(Rule 41/C2: "HUD" → "readout", the word S2/S3 already use.)*
+- **⚠ SURFACE-SWEEP NOTE (Checkpoint B, F-A — a defect class three review cycles could not see).** chemistry_author §8b rejected the CLAIM *"the whole network fails at once"* as literally false (melting is a threshold phenomenon, and the engine's own `f_melt` mobilises sites progressively across a 25 K window). The correction was applied to the two surfaces §8b **named** — the narration and the secondary annotation — and to nothing else. The claim survived in the **state title** (`Melting takes the whole lattice`, which the review-site rail renders at `build_review_site.ts:397`), in §2's Purpose column, and in this narration bullet. THE EYE, eye-walker and `check-layout-overlap` are all structurally blind to the rail. **Rule, now standing: when a rigor document rejects a CLAIM, enumerate every reader-facing surface that can carry it — title, label, caption, delta cue, annotation, narration — and sweep them all, not only the ones the document happened to name.**
+- **Duration 25** (55 w on the player's char model, 24.8 s). Title is **"Why the melting point is high"** — literal, first words carry the meaning (Rule 41d), and deliberately not reusing S5's "six neighbours" wording.
 - `eye_capture_ms: 16000`. Duration 24.
 
 ### S8 — "Free ions carry charge" · core · `field-on-both` · **E3b-BLOCKED (Dispatches 1 + 2 + 4)**
