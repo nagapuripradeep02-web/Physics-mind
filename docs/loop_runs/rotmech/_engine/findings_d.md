@@ -85,10 +85,18 @@ single scalar `eng.tau` and a single engage window (`eng.brakeOnMs` / `eng.brake
 `:50520-50534`); the `src` branch picks *either* `brake` *or* `applied_torque` and writes both
 fields once. So **a drive torque and a brake torque cannot act at the same time** — the τ_net tug
 that both Desk-D concepts want in their explore state (drive vs brake, net τ decides) is not a
-generalisation of the closed form, it is a second source. Desk E should price this deliberately:
-either a `sources[]` list summing to τ_net, or an explicit decision that simultaneity is out of
-scope and both explore states are re-designed around a single signed control. **Do not let this be
-discovered mid-build** — it is the difference between widening a number and widening a structure.
+generalisation of the closed form, it is a second source. **Do not let this be discovered
+mid-build** — it is the difference between widening a number and widening a structure.
+
+> **DESK-D RULING (fix cycle 1, 2026-08-04): the tug is KEPT, so `sources[]` is IN SCOPE.**
+> `tau_eq_i_alpha`'s explore state retains the live drive-vs-brake tug as its named teacher demo,
+> priced structurally: a `sources[]` list summing to τ_net, a split of `rbrBrakedSeconds` into
+> per-source engaged windows, and widened guards. **ω = 0 with both sources engaged is defined as a
+> static hold plus a breakaway condition, and `sign(L)` is never consulted at L = 0** — that was the
+> undefined corner. A designed single-signed-control fallback is documented in that skeleton's D-row
+> if the office declines the structural buy. **Desk E: this is the one item on this list where a
+> Desk-D design decision ADDS scope rather than confirming it — price it explicitly, and say so if
+> you want the fallback instead.**
 
 **The α metric must be defined ONCE, in the engine, for both concepts.** Desk D's two skeletons
 independently specified it two different ways — a per-step finite difference of ω, and τ_signed/I.
