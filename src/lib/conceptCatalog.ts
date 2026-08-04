@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { CONCEPT_PANEL_MAP } from '@/config/panelConfig';
 import type { ClassLevel, Subject } from '@/types/student';
 import { CHEMISTRY_CHAPTER_NAMES, CHEMISTRY_SECTION_NAMES, CHEMISTRY_GHOSTS } from './chemistryCatalog';
+import { MATHEMATICS_CHAPTER_NAMES, MATHEMATICS_SECTION_NAMES, MATHEMATICS_GHOSTS } from './mathematicsCatalog';
 
 export type ConceptStatus = 'live' | 'ghost';
 export type CardType = 'atomic' | 'nano';
@@ -162,8 +163,24 @@ function sectionKey(section: string): string {
     return parts.length >= 2 ? `${parts[0]}.${parts[1]}` : section;
 }
 
-function sectionName(section: string, names: Record<string, string> = SECTION_NAMES): string | undefined {
-    return names[sectionKey(section)];
+// `byLevel`, when supplied, is consulted FIRST with a `${class_level}.${sectionKey}` key.
+// It exists because mathematics is the first subject whose catalog spans TWO class levels
+// with colliding chapter/section numbers (Cl.11 §10.1 is Conic Sections; Cl.12 §10.1 is
+// Vector Algebra), and a bare-key map would silently merge them. Physics and chemistry pass
+// nothing, so `byLevel?.[…]` is `undefined` and the historical lookup below runs unchanged —
+// their output is byte-identical by construction (MATHEMATICS_BUILD_PLAN.md Phase 1).
+function sectionName(
+    section: string,
+    names: Record<string, string> = SECTION_NAMES,
+    level?: ClassLevel,
+    byLevel?: Record<string, string>,
+): string | undefined {
+    const key = sectionKey(section);
+    if (byLevel && level !== undefined) {
+        const qualified = byLevel[`${level}.${key}`];
+        if (qualified !== undefined) return qualified;
+    }
+    return names[key];
 }
 
 export interface GhostSeed {
@@ -423,6 +440,22 @@ interface SubjectCatalogSources {
     ghosts: GhostSeed[];
     chapterNames: Record<number, string>;
     sectionNames: Record<string, string>;
+    // Optional level-qualified overrides, consulted BEFORE the bare-key maps above.
+    // Only mathematics sets these — see the comment on `sectionName`.
+    chapterNamesByLevel?: Record<string, string>;
+    sectionNamesByLevel?: Record<string, string>;
+    // Is a chapter NUMBER scoped to its class level, or global to the subject?
+    //
+    // Physics numbering is a single DC Pandey sequence (Vol 1 Ch.1-10 + Vol 2 Ch.11+), so
+    // "Chapter 5" means Vectors regardless of class level, and chapters 1, 2, 5, 6, 7 and 8
+    // legitimately carry BOTH Class-11 and Class-12 concepts. Grouping them together is
+    // correct, and this flag stays false/undefined for physics and chemistry so that
+    // behaviour is bit-for-bit preserved.
+    //
+    // NCERT mathematics numbering RESTARTS each class: Cl.11 Ch.10 is Conic Sections and
+    // Cl.12 Ch.10 is Vector Algebra. Merging those is a data-corruption bug, so mathematics
+    // sets this true and its chapters group by (class_level, chapter).
+    chaptersAreLevelScoped?: boolean;
 }
 
 function sourcesFor(subject: Subject): SubjectCatalogSources {
@@ -434,6 +467,21 @@ function sourcesFor(subject: Subject): SubjectCatalogSources {
             ghosts: CHEMISTRY_GHOSTS,
             chapterNames: CHEMISTRY_CHAPTER_NAMES,
             sectionNames: CHEMISTRY_SECTION_NAMES,
+        };
+    }
+    if (subject === 'mathematics') {
+        return {
+            // Isolation contract: mathematics JSONs live ONLY here, never the flat dir
+            // (docs/MATHEMATICS_ARCHITECTURE.md §5).
+            conceptsDir: ['src', 'data', 'concepts', 'mathematics'],
+            ghosts: MATHEMATICS_GHOSTS,
+            // Bare-key maps stay empty: mathematics spans Class 11 AND 12, whose chapter
+            // and section numbers collide, so its names are level-qualified below.
+            chapterNames: {},
+            sectionNames: {},
+            chapterNamesByLevel: MATHEMATICS_CHAPTER_NAMES,
+            sectionNamesByLevel: MATHEMATICS_SECTION_NAMES,
+            chaptersAreLevelScoped: true,
         };
     }
     // Physics — the historical sources, unchanged.
@@ -491,7 +539,7 @@ async function loadLiveConceptsFromJsons(subject: Subject = 'physics'): Promise<
                     ? { why_learn: parsed.why_learn.trim() }
                     : {}),
             };
-            const name = sectionName(section, sources.sectionNames);
+            const name = sectionName(section, sources.sectionNames, classLevel, sources.sectionNamesByLevel);
             if (name) result.section_name = name;
             return result;
         } catch {
@@ -502,10 +550,18 @@ async function loadLiveConceptsFromJsons(subject: Subject = 'physics'): Promise<
     return entries.filter((e): e is Omit<CatalogConcept, 'status'> => e !== null);
 }
 
-function createChapter(num: number, level: ClassLevel, chapterNames: Record<number, string> = CHAPTER_NAMES): CatalogChapter {
+// `chapterNamesByLevel` mirrors `sectionName`'s `byLevel`: consulted first with a
+// `${class_level}.${num}` key, for subjects whose chapter numbers collide across class
+// levels (mathematics). Physics and chemistry pass nothing and keep the historical lookup.
+function createChapter(
+    num: number,
+    level: ClassLevel,
+    chapterNames: Record<number, string> = CHAPTER_NAMES,
+    chapterNamesByLevel?: Record<string, string>,
+): CatalogChapter {
     return {
         chapter_number: num,
-        chapter_name: chapterNames[num] ?? `Chapter ${num}`,
+        chapter_name: chapterNamesByLevel?.[`${level}.${num}`] ?? chapterNames[num] ?? `Chapter ${num}`,
         class_level: level,
         concepts: [],
         live_count: 0,
@@ -548,10 +604,23 @@ export async function getCatalogTree(classLevels: ClassLevel[], subject: Subject
     const ghostById = new Map(sources.ghosts.map(g => [g.concept_id, g]));
 
     const liveIds = new Set(filteredLive.map(c => c.concept_id));
-    const byChapter = new Map<number, CatalogChapter>();
+    // Grouping key: the bare chapter number for physics/chemistry, `${class_level}:${chapter}`
+    // for mathematics. See `chaptersAreLevelScoped` on SubjectCatalogSources for why the two
+    // subjects genuinely differ rather than one being a bug.
+    //
+    // The bug this fixes: NCERT Cl.11 Ch.10 is Conic Sections and Cl.12 Ch.10 is Vector
+    // Algebra. Under a bare-number key the second to arrive found the first's CatalogChapter
+    // and silently appended to it — Conic Sections concepts surfaced under a chapter titled
+    // "Vector Algebra", with no error anywhere. Caught 2026-08-04 by walking the mathematics
+    // tree, not by any gate. The first attempt at the fix keyed EVERY subject by
+    // (level, chapter) and moved physics output, which is how the physics-global-numbering
+    // invariant above got discovered — it is load-bearing, not incidental.
+    const byChapter = new Map<string, CatalogChapter>();
+    const chapterKey = (level: ClassLevel, chapter: number) =>
+        sources.chaptersAreLevelScoped ? `${level}:${chapter}` : `${chapter}`;
 
     for (const c of filteredLive) {
-        const chapter = byChapter.get(c.chapter) ?? createChapter(c.chapter, c.class_level, sources.chapterNames);
+        const chapter = byChapter.get(chapterKey(c.class_level, c.chapter)) ?? createChapter(c.chapter, c.class_level, sources.chapterNames, sources.chapterNamesByLevel);
         const seed = ghostById.get(c.concept_id);
         const merged: CatalogConcept = {
             ...c,
@@ -577,20 +646,20 @@ export async function getCatalogTree(classLevels: ClassLevel[], subject: Subject
         chapter.concepts.push(merged);
         chapter.live_count += 1;
         chapter.total_count += 1;
-        byChapter.set(c.chapter, chapter);
+        byChapter.set(chapterKey(c.class_level, c.chapter), chapter);
     }
 
     for (const g of filteredGhosts) {
         if (liveIds.has(g.concept_id)) continue;
-        const chapter = byChapter.get(g.chapter) ?? createChapter(g.chapter, g.class_level, sources.chapterNames);
+        const chapter = byChapter.get(chapterKey(g.class_level, g.chapter)) ?? createChapter(g.chapter, g.class_level, sources.chapterNames, sources.chapterNamesByLevel);
         chapter.concepts.push({
             ...g,
-            section_name: sectionName(g.section, sources.sectionNames),
+            section_name: sectionName(g.section, sources.sectionNames, g.class_level, sources.sectionNamesByLevel),
             status: 'ghost',
             card_type: g.card_type ?? 'atomic',
         });
         chapter.total_count += 1;
-        byChapter.set(g.chapter, chapter);
+        byChapter.set(chapterKey(g.class_level, g.chapter), chapter);
     }
 
     for (const ch of byChapter.values()) {
@@ -628,7 +697,7 @@ export async function getCatalogConcept(conceptId: string, subject: Subject = 'p
     if (ghostHit) {
         return {
             ...ghostHit,
-            section_name: sectionName(ghostHit.section, sources.sectionNames),
+            section_name: sectionName(ghostHit.section, sources.sectionNames, ghostHit.class_level, sources.sectionNamesByLevel),
             status: 'ghost',
             card_type: ghostHit.card_type ?? 'atomic',
         };
