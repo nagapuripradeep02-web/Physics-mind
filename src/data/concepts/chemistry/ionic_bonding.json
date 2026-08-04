@@ -1685,8 +1685,8 @@
         "curriculum": "CBSE/NCERT",
         "coverage": "full",
         "syllabus_unit": "Class 11 Chemistry, Ch.4 'Chemical Bonding and Molecular Structure', §4.2 — ionic (electrovalent) bond, lattice enthalpy §4.2.1",
-        "verified": true,
-        "needs_teacher_verification": false
+        "verified": false,
+        "needs_teacher_verification": true
       },
       {
         "curriculum": "JEE/NEET",
