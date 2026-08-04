@@ -119,21 +119,33 @@ the fixed 16 ms grid, is published as `window.PM_rbrTheta` (`:50232`), and drive
 - no fixed reference line on the ground/base frame;
 - no mark on the rotating body to measure from.
 
-An angle needs two rays. The scenario currently renders neither. A `theta` HUD row alone would
-print a number a teacher cannot point at.
+- no `theta` readout row (§2);
+- no angle arc, no swept-sector fill;
+- **no fixed reference on the base frame** — this is the actual gap.
+
+**Correction to this section, made after a second pass — the body mark ALREADY EXISTS.** An
+earlier draft of this file said there was no mark on the rotating body. There is:
+`rbr_drum_marker`, a stripe at `RBR_DEF_DRUM_R·W·0.46` on the +x side of the drum, built at
+`:50322-50327`, coloured `RBR_MARK_COLOR` (`:49755`), and a member of `RBR_ALWAYS_ON` (`:50585`) so
+it renders in every state unconditionally. It is added to the `spin` group, so it turns with the
+body. **Desk E: do not build a second one.** `deriveStateMeta.ts:496-508` already reasons about
+this stripe as the thing THE EYE watches move.
+
+That shrinks §3's scope to **one missing ray, not two**: an angle needs two, and only the fixed
+base reference is absent.
 
 **A correction to the desk state file, for the record.** It lists `theta0_rad` as "declared but
 inert". That is imprecise in a way that matters to scoping. `theta0_rad` **is wired**: read at
 `:50499` into `eng.theta0`, and seeded into the θ integrator by `rbrThetaReset` (`:49967`). It is
-not inert — it is **unobservable**. Two reasons, both needing a fix:
-1. with no angular reference on screen, a different start angle produces no readable difference;
-2. the apparatus is a **symmetric two-mass rod**, so it has π-symmetry — θ₀ and θ₀ + π are
-   pixel-identical. Even with a reference line, θ₀ is only half-observable until the body carries
-   an asymmetric mark.
+not inert — it is **unmeasurable**. With the stripe present, a different θ₀ does produce a
+different *pose*, and the stripe breaks the rod's π-symmetry, so θ₀ and θ₀ + π are in fact
+distinguishable. (An earlier draft claimed they were pixel-identical; that was wrong, and it was
+wrong because it assumed the symmetric rod was the only mark.) What θ₀ lacks is something to be
+measured *against*.
 
-**What 0c-3 must provide:** a fixed angular reference on the base + a mark on the rotating body +
-a drawn swept angle between them. The mark also resolves the π-symmetry. This is small, purely
-visual work, and it is what turns an already-correct number into a teachable one.
+**What 0c-3 must provide:** a fixed angular reference on the base + a drawn swept angle between it
+and the existing stripe. Small, purely visual, and it turns an already-correct number and an
+already-built marker into a teachable angle.
 
 ---
 
@@ -198,6 +210,40 @@ skeleton takes the sequential route or asks for the second body is PASS 2's answ
 
 ---
 
+## 6b · HIGH — THE EYE's motion gate goes SILENT on exactly the states §1 unblocks
+
+**Severity: HIGH, and it only bites AFTER §1 is fixed — which is why it must be fixed in the same
+build.** Found while checking a claim from Desk D's architect pass; the claim as posed ("rbr may
+not be declared in `deriveMotionExpectations` at all, leaving EYE motion gates hollow chapter-wide")
+does **not** hold — rbr *is* declared, at `deriveStateMeta.ts:496-508`. But the branch underneath
+carries a real problem for Desk D:
+
+```ts
+const w0 = Math.abs(asNum(rbrMot.omega0_rad_s, 1.5));
+if (w0 >= 0.05) { out[stateId] = true; continue; }
+// Seeded at rest: fall through undefined
+```
+
+Motion is declared **from the seed alone**. A state seeded at rest falls through `undefined` and
+THE EYE's D5 motion gate **skips**. That is correct today: with the decay-only integrator of §1, a
+state at rest genuinely never moves, and the in-file comment is right that over-declaring is worse
+than skipping.
+
+**It stops being correct the moment §1 lands.** Both Desk-D concepts want states that start at rest
+and are spun up by a torque — `ω = ω₀ + αt` from ω₀ = 0 is the canonical picture for both. After a
+signed-torque fix those states move a great deal, but `omega0_rad_s` is still 0, so
+`deriveMotionExpectations` still returns `undefined` and D5 still skips. **THE EYE would go silent
+on precisely the states whose entire content is "it starts moving"** — the same silent-pass shape
+as §2, one layer further out.
+
+**What 0c-3 must provide:** the declaration must read the torque as well as the seed — roughly
+"declare motion when `|ω₀| ≥ 0.05` **or** a signed applied torque is engaged during the state".
+Cheap, but it is a `deriveStateMeta.ts` co-edit and it must ship in the SAME change as §1, or the
+gate silently under-covers the new capability. (`deriveStateMeta.ts` is already a mandatory co-edit
+for any field_3d scenario change — this is one more site in it, alongside the three at `:3134+`.)
+
+---
+
 ## 7 · LOW / informational
 
 - **No graph or plot surface exists in the rbr config.** The advanced-ring sweep in
@@ -226,10 +272,18 @@ skeleton takes the sequential route or asks for the second body is PASS 2's answ
 | 3 | §3 — angular reference: base line + body mark + swept arc | **BLOCKING** `rotational_kinematics` | visual; small |
 | 4 | §4 — tangential v arrow at radius r (`v = ωr`) | **BLOCKING** `rotational_kinematics` | visual; shared with concept #3 |
 | 5 | §5 — θ/α in `reference_marks[].surface` + an applied-torque control | **BLOCKING** (Rule 31 explore state) | enum widening; reuses existing machinery |
-| 6 | §6 — second body for a simultaneous I comparison | design compromise | office decision, not a blocker |
+| 6 | §6b — declare motion from the TORQUE, not the seed alone | **HIGH — must ship WITH §1** | `deriveStateMeta.ts` co-edit; cheap |
+| 7 | §6 — second body for a simultaneous I comparison | design compromise | office decision, not a blocker |
 
 **§1 and §2 together are the minimum that makes either concept authorable at all.** Items 3–5 are
-what make them worth authoring. Item 6 is a quality ceiling, not a gate.
+what make them worth authoring. **Item 6 (§6b) is not optional if §1 ships** — without it THE EYE
+stops covering the states §1 exists to enable. Item 7 is a quality ceiling, not a gate.
+
+**Two things Desk E should NOT build**, because they already exist and were nearly re-specified
+from this desk:
+- the rotating body's angular marker — `rbr_drum_marker` (`:50322`, always-on) — see §3;
+- an rbr branch in `deriveMotionExpectations` — it is there at `deriveStateMeta.ts:496`; §6b
+  amends that branch rather than adding one.
 
 ---
 

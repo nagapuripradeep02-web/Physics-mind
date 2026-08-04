@@ -59,6 +59,6 @@ at Checkpoint A per the desk contract, not deferred to seal.
 
 ### Notes for whoever picks this desk up
 
-- Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed on
-  `feat/rotmech-d` **but not pushed** — until it is, Desk E must read it by absolute path from
-  this worktree.
+- Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND
+  pushed to `origin/feat/rotmech-d` (the post-commit auto-push hook is live in this worktree), so
+  Desk E can reach it with `git fetch origin feat/rotmech-d` — no absolute-path read needed.
