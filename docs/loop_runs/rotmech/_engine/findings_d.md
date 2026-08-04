@@ -2,11 +2,12 @@
 
 **Desk:** `feat/rotmech-d` · `C:\Tutor\physics-mind-rotmech-d`
 **Owner of the fix:** Desk E (`peter_parker:field3d_surgeon`). Desk D never edits `src/`.
-**Status: PASS 1 — engine audit, filed EARLY and deliberately.**
-Wave-1 design (architect skeletons + Checkpoint A + physics blocks) is in flight. **This file
-will gain a PASS 2 once both skeletons are `DESIGN_OK`.** Everything below PASS 1 is verified
-against renderer code this session and does not depend on the skeletons landing — it is filed
-now so 0c-3's scope cannot freeze without it.
+**Status: PASS 2 LANDED — this file is the freeze source for 0c-3. Both skeletons are `DESIGN_OK`.**
+Every finding below was verified against renderer code by the orchestrating session, not lifted from
+a skeleton. Both Desk-D skeletons declare themselves non-canonical and consume shared engine
+semantics from here, so **where this file and a skeleton disagree, this file wins.** See the PASS 2
+section at the end for what was settled, the four cross-document items the merge must close, and one
+known gap in the evidence base.
 
 Surface under audit: `rigid_body_rotation` (`rbr`), the 0c-1 frozen contract at
 `src/lib/renderers/field_3d_renderer.ts:939`. Implementation `:49737–50700`.
@@ -98,14 +99,26 @@ mid-build** — it is the difference between widening a number and widening a st
 > Desk-D design decision ADDS scope rather than confirming it — price it explicitly, and say so if
 > you want the fallback instead.**
 
-**The α metric must be defined ONCE, in the engine, for both concepts.** Desk D's two skeletons
-independently specified it two different ways — a per-step finite difference of ω, and τ_signed/I.
-Those agree in steady drive and disagree during an r-drag (where I changes under a constant τ) and
-at every engage/release edge. They are a single bought row; Desk E must ship one definition.
-Recommendation, from the shape of the rest of the surface: **derive α from the same post-step
-snapshot as everything else** (`rbrWriteReadouts`, `:50219`) so it can never be a pre-step value
-beside a post-step one, and blank it across re-pins exactly as the other rows are. Which formula
-wins is a physics call for the office; that it is ONE formula is not negotiable.
+### The α metric — RULED. This is the canonical statement; both skeletons consume it from here.
+
+Desk D's two skeletons originally specified α two different ways (a per-step finite difference of ω,
+and τ_signed/I). They agree in steady drive and disagree during an r-drag, at the rest clamp, and at
+every engage/release edge. **Checkpoint A cycle 1 ruled, and cycle 2 verified both skeletons now
+agree. The ruling:**
+
+> **α is the per-step finite difference of ω, published from the SAME post-step snapshot as I, ω, L
+> and KE (`rbrWriteReadouts`, `:50219`), and blanked across re-pins exactly as the other rows are.**
+
+Rationale, on the record: the finite difference stays true at the rest clamp, under a live dI/dt, and
+at every engage edge, where the analytic form silently disagrees. It also keeps τ out of
+`rotational_kinematics` entirely, which is what protects that concept's Rule-25 answer (it is taught
+before `torque` and `moment_of_inertia` exist).
+
+**This paragraph is the canonical location.** Both skeletons declare themselves non-canonical and
+consume the semantics from this file, so an earlier draft of this section — which said "which formula
+wins is a physics call for the office" and presented both candidates — left the reconciled ruling
+existing in *no* canonical location while §8 invited an early freeze. Caught at Checkpoint A cycle 2
+(`rotational_kinematics/founder_proxy_A_cycle2.md`, F-1) and closed here.
 
 **Invariants any fix must preserve** (these are why the current form is shaped as it is, and they
 are not negotiable):
@@ -445,16 +458,46 @@ from this desk:
 
 ---
 
-## PASS 2 — pending
+## PASS 2 — LANDED. Both skeletons are `DESIGN_OK`; this file is the freeze source.
 
-To be appended when both skeletons reach `DESIGN_OK` at Checkpoint A:
+**Status, 2026-08-04.** `rotational_kinematics` REV 2 and `tau_eq_i_alpha` REV 2 both cleared
+Checkpoint A cycle 2. Both gates verified, by direct comparison of the two documents, that the
+cross-skeleton fork found at cycle 1 is closed on all four shared items, and that no fifth fork
+exists. **Both skeletons declare themselves non-canonical and consume shared engine semantics from
+THIS file** — so where §1's ruled paragraphs and a skeleton disagree, this file wins.
 
-- exact readout token list, units and dp per state;
-- exact `reference_marks` consumed (surface + form + value), per state;
-- the per-state control table's demands on `controls_visible`;
-- any `APPARATUS_CONTRACT.md` deviation the design needs (a start from rest at ω₀ = 0 is the
-  likely one for both concepts — an office decision, never a local one);
-- the §6 ruling: sequential contrast, or a second body.
+**Desk E: freeze from §8. It is complete.** Nothing further is owed from this desk before the
+freeze.
 
-**Desk E: if 0c-3's scope must freeze before PASS 2 lands, freeze it around §8 items 1–5 and ping
-this desk.** Items 1 and 2 are certain and will not change. Nothing in PASS 2 can shrink them.
+### What PASS 2 settled since PASS 1
+
+| Question PASS 1 left open | Ruling |
+|---|---|
+| Which α formula | **Per-step finite difference**, from the post-step snapshot, blanked across re-pins — see §1's ruled paragraph, the canonical location |
+| Whether a contract deviation is needed for a start from rest | **No.** An authored `omega0_rad_s: 0` already works (`:50497` → `rbrNum` `:49828`). Only the explore SLIDER is blocked, at two sites (§1) |
+| Sequential contrast, or a second body (§6) | **Sequential**, via per-run `{at_ms, r_m, omega0}` overrides on `restart` (§8 item 8). The second body is not bought |
+| Whether the drive/brake tug survives | **Kept**, so `sources[]` is in scope (§1). Fallback documented if the office declines |
+| The new `tau` row's semantics | **Net resolved torque, never the authored value** (§2) — binding, zero extra cost, invisible if got wrong |
+
+### Cross-document items the 0c-3 merge must settle
+
+Raised at Checkpoint A cycle 2 and not owned by either skeleton alone:
+
+1. **The shared drive wheel carries TWO visibility rules** — one per skeleton. One mesh cannot obey
+   both; pick one at build time and tell both concepts which.
+2. **Unicode-minus discipline on the α row is carried by only ONE skeleton** — and the concept that
+   prints a negative α (`rotational_kinematics`, α = −0.50) is not the one carrying it. Rule 34c
+   covers all three text paths; the α row is a new one. Apply it to `theta`, `alpha` and `tau`.
+3. **`sources[]` vs the singular `external_torque` back-compat clause is unwritten on both sides.**
+   Whatever shape §1's structural buy takes, the absent case must reproduce today's behaviour
+   byte-identically — and `conservation_of_angular_momentum` is the consumer that proves it.
+4. **K5's rim ticks must be base-frame, not members of the `spin` group** — neither document says so,
+   and a tick parented to `spin` rotates with the body and measures nothing. The existing
+   `rbr_drum_marker` IS in the spin group (`:50327`), so the mistake is one line away.
+
+### Known gap in this file's evidence base
+
+`rotational_kinematics`'s cycle-2 scar pass could not reach the live `engine_bug_queue`
+(Cloudflare 525/522) and ran against cycle 1's verbatim 157-row union instead. That union is one
+cycle old. **Anyone re-querying before the build should diff it forward** — if rows landed in the
+interval, neither skeleton has seen them.

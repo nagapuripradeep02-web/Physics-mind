@@ -86,13 +86,60 @@ Desk state after cleanup:
 **`findings_d.md` is unaffected and remains valid** — every entry in it was verified against
 renderer code by this session, not taken from a skeleton. Desk E can freeze scope from it today.
 
+### Fix cycle 1 re-run + Checkpoint A cycle 2 — BOTH `DESIGN_OK`
+
+API access was restored; both fix cycles re-ran successfully. **Write protocol changed after the
+abort:** each architect wrote to a NEW `skeleton_rev2.md` and was forbidden to touch `skeleton.md`,
+which the orchestrating session promoted only after verifying completeness itself (section list,
+header claims vs body, 157/157 scar rows, and for `tau_eq_i_alpha` that the P1-4 physics fix was
+genuinely present). The live document can no longer be left half-rewritten by an abort.
+
+Both skeletons are now REV 2 at `skeleton.md`; REV 1 at `skeleton_rev1.md`; the aborted partials are
+deleted and survive in history at `4aa2059`.
+
+**Both cycle-2 gates confirmed the cross-skeleton fork is CLOSED** — all four reconciled items agree
+by direct comparison, no fifth fork, the phantom-arrow beat gone from every state that carried it,
+and no second actuator anywhere.
+
+Notable outcomes:
+- **`tau_eq_i_alpha` P1-4 (physics) fixed properly.** S6's brake contract restores the
+  `frictional — opposes ω` qualifier; never-reversing is scoped to friction; driven reversal is named
+  real but out of scope; §4's claim to "kill" that belief is deleted with a tombstone, because for a
+  sustained driven opposing torque the belief is correct physics.
+- **Carried P1 with an engine half → filed in findings_d §2:** `τ` must display the NET resolved
+  torque, never the authored value, or S6's frozen pin archives `τ = −1.53` beside `α = 0.00` and
+  `I = 3.06` — τ = Iα contradicted in the concept whose atomic claim it is.
+- **Empty advanced ring RULED COMPLIANT** under Rule 38a (an empty set is trivially contiguous; the
+  fleet already ships `friction_force` and `equilibrium_of_particles` with zero advanced states).
+  Rider: if K6 is descoped, drop the advanced curriculum-tag claims in (i-3) and record it
+  revisit-when-K6-lands.
+- **The kinematics gate caught a defect in `findings_d.md` itself** — §1 still presented both α
+  candidates and called the choice "a physics call for the office" after the ruling had been made.
+  Since both skeletons declare themselves non-canonical, the ruling existed in no canonical
+  location while §8 invited an early freeze. Closed: §1 now carries the canonical ruled paragraph.
+
+### `findings_d.md` PASS 2 — LANDED
+
+The file is now the freeze source and says so. It records what PASS 2 settled (α formula; no
+contract deviation needed for a start from rest; sequential contrast over a second body; the tug
+kept so `sources[]` is in scope; the `tau`-row semantic), the four cross-document items the merge
+must close (two visibility rules for one wheel · Unicode-minus on the α row carried by the wrong
+concept · the `sources[]` back-compat clause · rim ticks must be base-frame, not `spin`-group), and
+one honest gap: the cycle-2 scar pass could not reach the live `engine_bug_queue` (Cloudflare
+525/522) and ran against a one-cycle-old 157-row union.
+
+**Desk E: nothing further is owed from this desk before the freeze.**
+
 ### Next
 
-1. **Restore API access, then re-run fix cycle 1 from REV 1 for both concepts** — the shared
-   contract text is in this log above and in the two gate reports; the partials are reference
-   material for the re-run, never its input.
-2. founder-proxy Checkpoint A cycle 2 on each revised skeleton.
-3. `physics-author` block for each, on the `DESIGN_OK` skeleton.
+1. `physics-author` block for each concept, on its `DESIGN_OK` skeleton. Carry-forwards on record:
+   `tau_eq_i_alpha` P1-A (the τ-row semantic, to be diffed at Checkpoint C), P2-A (pin budgets stop
+   at actuator release but retraction is animated over `padTravelMs` — S4/S5/S7 need ~14/14/15 s),
+   P2-B (the fallback puts signed τ on a core-ring control while negative τ is extended-ring — a
+   Rule 38b breach that exists only in the fallback branch); `rotational_kinematics` F-8 (S1's
+   "6.28 rad" is transient — the 0.60R pin photographs ≈9.00 rad, so word the held claim as the
+   picture, not the number) and F-9a (S3→S4 thinness, accepted, lesson frozen).
+2. **No concept JSON until the 0c-3 PR merges and this desk syncs.** Unchanged.
 3. **`findings_d.md` PASS 2** — exact readout tokens/units/dp, reference marks, control-table
    demands, any `APPARATUS_CONTRACT` deviation (a start from rest at ω₀ = 0 is the likely ask for
    both, and is an office decision, never a local one), and the ruling on a second body for the
