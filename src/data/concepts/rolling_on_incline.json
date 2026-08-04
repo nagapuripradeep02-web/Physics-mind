@@ -1,0 +1,787 @@
+{
+  "concept_id": "rolling_on_incline",
+  "concept_name": "Rolling on an Incline — Shape Factor k Decides the Race",
+  "chapter": 7,
+  "section": "7.14",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 11 Physics Ch.7 §7.14 (System of Particles and Rotational Motion — rolling motion) — table-of-contents scope only, teaching authored from first principles. The atomic idea: a body rolling without slipping down an incline accelerates at a rate set only by the dimensionless shape factor k = I/mR^2, so four shapes released together always finish in the fixed order solid sphere, disc, hollow sphere, ring, regardless of mass or radius. Does NOT re-teach the rolling constraint or contact-point kinematics (pure_rolling #11, which precedes it; here one compact recap), and does NOT teach rotational kinetic energy as its own topic; the energy split appears only as the extended-ring explanation of the race. DC Pandey chapter table of contents consulted for scope only — no teaching method, example or figure imported; derivation rebuilt from Newton's second law + the rotational analogue + the rolling constraint. Built on the newtons_laws_body field_3d engine, SEAM R (the bounded rotational extension), zero renderer edits.",
+
+  "prerequisites": [
+    "pure_rolling",
+    "moment_of_inertia",
+    "tau_eq_i_alpha",
+    "friction_force",
+    "rotational_work_energy"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "Try it at home: a food can beats a roll of tape.",
+    "secondary": "A bicycle wheel on a sloped path — the same wheel that rolls flat in Pure Rolling, now on a ramp."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta": { "name": "incline angle", "unit": "deg", "min": 20, "max": 40, "step": 1, "default": 25 },
+      "m":  { "name": "mass of the primary/racing body", "unit": "kg", "min": 0.1, "max": 8, "step": 0.1, "default": 1 },
+      "R":  { "name": "radius of the primary/racing body", "unit": "m", "min": 0.05, "max": 0.35, "step": 0.01, "default": 0.15 },
+      "m2": { "name": "mass of the comparison body (S4's small sphere / S8's second lane)", "unit": "kg", "min": 0.1, "max": 8, "step": 0.1, "default": 0.5 },
+      "R2": { "name": "radius of the comparison body", "unit": "m", "min": 0.05, "max": 0.35, "step": 0.01, "default": 0.10 },
+      "mu_s": { "name": "static friction coefficient — S7's live control (and the S7 param_ramp's parameter) and S8's", "unit": "", "min": 0.05, "max": 1.00, "step": 0.05, "default": 0.50 },
+      "mu_s_S6": { "name": "static friction, S6's held disc ONLY — authored above the concept default so the hold survives the full 20-40 deg theta slider", "unit": "", "constant": 0.90 },
+      "mu_k_S3_block": { "name": "kinetic friction, S3's locked (rotation_locked) skidding block", "unit": "", "constant": 0.15 },
+      "mu_s_S3_disc": { "name": "static friction, S3's rolling disc — the concept default 0.50", "unit": "", "constant": 0.50 },
+      "mu_k_S7_ring": { "name": "kinetic friction, S7's ring once it slips", "unit": "", "constant": 0.05 },
+      "k_solid_sphere": { "name": "shape factor k = I_cm/(m R squared), solid sphere", "unit": "", "constant": 0.4 },
+      "k_disc":          { "name": "shape factor k, disc (uniform solid cylinder)", "unit": "", "constant": 0.5 },
+      "k_hollow_sphere": { "name": "shape factor k, thin spherical shell", "unit": "", "constant": 0.6667 },
+      "k_ring":          { "name": "shape factor k, ring / hoop / thin cylindrical shell", "unit": "", "constant": 1.0 },
+      "N":     { "name": "normal force", "unit": "N", "derived": "m * g * cos(radians(theta))" },
+      "drive": { "name": "gravity's component down the slope, mg sin(theta)", "unit": "N", "derived": "m * g * sin(radians(theta))" }
+    },
+
+    "formulas": {
+      "N":                  "m * g * cos(radians(theta))",
+      "drive":              "m * g * sin(radians(theta))",
+      "a_rolling":          "g * sin(radians(theta)) / (1 + k)",
+      "f_s_rolling":        "k * m * a_rolling",
+      "mu_min":             "(k / (1 + k)) * tan(radians(theta))",
+      "one_plus_k_over_k":  "(1 + k) / k",
+      "a_S3_block_sliding": "g * (sin(radians(theta)) - mu_k_S3_block * cos(radians(theta)))",
+      "f_k_S3_block":       "mu_k_S3_block * m * g * cos(radians(theta))",
+      "f_s_S7_preslip":     "k_ring * m * g * sin(radians(theta)) / (1 + k_ring)",
+      "a_S7_postslip":      "g * (sin(radians(theta)) - mu_k_S7_ring * cos(radians(theta)))",
+      "f_k_S7_postslip":    "mu_k_S7_ring * m * g * cos(radians(theta))",
+      "KE_trans":           "m * g * h / (1 + k)",
+      "KE_rot":             "k * m * g * h / (1 + k)"
+    },
+
+    "computed_outputs": {
+      "a_current":        { "formula": "the active body's live acceleration reading - 0 while stuck, a_rolling once released/rolling, a_S3_block_sliding / a_S7_postslip on their kinetic branches" },
+      "f_current":        { "formula": "the active body's live friction reading - |drive| while stuck (never exceeds mu_s*N); f_s_rolling while rolling; f_k_S3_block / f_k_S7_postslip while sliding" },
+      "mu_min_current":   { "formula": "mu_min at the body's live k and theta - drives the S7/S8 tick on the mu_s row" },
+      "shrink_factor_S6": { "formula": "one_plus_k_over_k for the active shape - the S6 release payoff number, 3.00 for a disc" },
+      "KE_split":         { "formula": "KE_trans, KE_rot for S5's two held bodies - both from the same mgh, split only by k" }
+    },
+
+    "constraints": [
+      "a = g*sin(theta)/(1+k) - the rolling acceleration depends ONLY on theta and the shape factor k = I_cm/(m R^2); mass and radius cancel algebraically for every one of the four shapes.",
+      "f_s = k*m*a while rolling holds. This is a direct function of m, theta and k - it does NOT depend on mu_s or mu_k. mu_s only gates WHETHER rolling holds (mu_s >= mu_min); once it holds, mu_s never enters the magnitude.",
+      "Rolling requires mu_s >= mu_min = (k/(1+k))*tan(theta); below mu_min the contact slips and the branch falls to kinetic friction: f_k = mu_k*N, a = g*(sin(theta) - mu_k*cos(theta)).",
+      "N = m*g*cos(theta) at every instant on this incline - normal force never depends on velocity, spin, or shape.",
+      "KE_trans + KE_rot = m*g*h always, for a body released from rest and rolling without slipping through a vertical drop h; the SPLIT (ratio 1:k) depends on shape, the TOTAL never does.",
+      "S6's disc is authored mu_s = 0.90, not the concept default 0.50, so the hold test tan(theta) <= mu_s clears the slider's worst case, theta = 40 deg (tan 40 = 0.8391). This changes NO post-release number: mu_min for a disc at 40 deg is only 0.2797, and f_s = k*m*a in the rolling branch never references mu_s.",
+      "S3's disc (mu_s = 0.50) and S7's pre-slip ring (mu_s = 0.50) each need only mu_s >= mu_min at 25 deg (0.1554 and 0.2332) - both authored well above.",
+      "The rolling branch supersedes the kinetic-friction branch whenever mu_s >= mu_min holds; theta = 0 is the trivial test case and is never authored as a state here.",
+      "Every body in every guided state (S1-S7) is released from rest: v0 = 0 and omega0 = 0. No state in this concept launches a body with a v/omega mismatch."
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 6,
+    "max_words_per_tts_sentence": 40
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Mass and radius cancel - only the shape factor decides who wins.",
+    "visual_confirmation": "A 5 kg sphere and a 0.5 kg sphere, released together, stay exactly abreast and halt together, stamped TIE."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_4" },
+    "energy":       { "start": "STATE_5", "end": "STATE_5" },
+    "derivation":   { "start": "STATE_6", "end": "STATE_7" }
+  },
+
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "Four shapes, one finish order",
+        "duration": 4.0,
+        "focal_primitive_id": "roi_s1_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Four shapes, one ramp",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s1_head", "position": { "x": 380, "y": 60 }, "text": "Four different shapes start together on the same ramp", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s1_main", "position": { "x": 200, "y": 250 }, "text": "every time, they finish in the same order: solid sphere, disc, hollow sphere, ring", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s1_anchor", "position": { "x": 560, "y": 400 }, "text": "try it at home: a food can beats a roll of tape", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Four different shapes start together on the same ramp." },
+            { "id": "s1_2", "text_en": "Every time, they finish in the same order: solid sphere, disc, hollow sphere, ring." },
+            { "id": "s1_3", "text_en": "The order never changes, no matter how many times we run it." },
+            { "id": "s1_4", "text_en": "Try it at home: a food can beats a roll of tape." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Rolling links v and omega",
+        "duration": 3.0,
+        "focal_primitive_id": "roi_s2_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "flow-along-path",
+        "delta_cue": "v equals R omega",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s2_head", "position": { "x": 380, "y": 60 }, "text": "This disc rolls exactly as before, now on the slope", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s2_main", "position": { "x": 200, "y": 250 }, "text": "the marked rim point stops dead at every ground touch, while the centre keeps moving", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s2_anchor", "position": { "x": 560, "y": 400 }, "text": "v and R times omega read the same number", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "This disc rolls exactly as before: its centre speed v and turn rate omega, set by radius R, move together." },
+            { "id": "s2_2", "text_en": "Watch the marked point on the rim: it stops dead each time it touches the ground." },
+            { "id": "s2_3", "text_en": "v and R times omega read the same number." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "The friction is static",
+        "duration": 3.2,
+        "focal_primitive_id": "roi_s3_main",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "Contact point speed: zero",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s3_head", "position": { "x": 380, "y": 60 }, "text": "Watch this block slide down with its brakes locked", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s3_main", "position": { "x": 200, "y": 250 }, "text": "now the same slope, a rolling disc: no sliding at the contact, so no mark", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s3_anchor", "position": { "x": 560, "y": 400 }, "text": "the contact point stays still for an instant, so this friction is static, not kinetic", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Watch this block slide down with its brakes locked: it drags and slows." },
+            { "id": "s3_2", "text_en": "That drag is kinetic friction, and it leaves a mark." },
+            { "id": "s3_3", "text_en": "Now the same slope, a rolling disc: no sliding at the contact, so no mark." },
+            { "id": "s3_4", "text_en": "The contact point stays still for an instant, so this friction is static, not kinetic." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Rolling friction is kinetic friction, the same as a sliding block's.",
+            "visual_counter": "The locked block skids first and alone, dragging a mark; the rolling disc starts at the same position the instant the block retires, and its contact point reads 0.00, never sliding.",
+            "one_line_fix": "The contact point of a rolling body is instantaneously at rest, so its friction is static; kinetic friction appears only once the body actually slips."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Mass and radius cancel",
+        "duration": 3.5,
+        "focal_primitive_id": "roi_s4_main",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through (declared contrast pair with STATE_1)",
+        "delta_cue": "Mass and radius cancel",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_mass_cancels",
+          "shape_factor_table",
+          "same_shape_always_ties"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s4_head", "position": { "x": 380, "y": 60 }, "text": "One sphere is five times heavier and three times wider", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s4_main", "position": { "x": 200, "y": 250 }, "text": "released together, they stay side by side down the slope: a tie", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s4_anchor", "position": { "x": 560, "y": 400 }, "text": "a bigger mass and a bigger radius both cancel, so only the shape factor survives", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "One sphere is five times heavier and three times wider." },
+            { "id": "s4_2", "text_en": "Released together, they stay side by side down the slope: a tie." },
+            { "id": "s4_3", "text_en": "A bigger mass is pulled down harder but resists speeding up just as much, and a bigger radius adds equal turning push and turning resistance, so both cancel." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A heavier or bigger body rolls down the incline faster.",
+            "visual_counter": "A sphere five times heavier and three times wider than a smaller sphere is released alongside it; their centres stay exactly abreast the whole way down, and both halt at the line in the same instant, stamped TIE.",
+            "one_line_fix": "A bigger mass increases the pull down the slope and the resistance to speeding up by the same factor, and a bigger radius increases the turning push and the turning resistance by the same factor; only the shape factor k, not mass or radius, decides the acceleration."
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "The same energy, split two ways",
+        "duration": 4.5,
+        "focal_primitive_id": "roi_s5_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "Same energy, different split",
+        "depth_ring": "extended",
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s5_head", "position": { "x": 380, "y": 60 }, "text": "A sphere and a ring drop the same height", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s5_main", "position": { "x": 200, "y": 250 }, "text": "both end with equal total kinetic energy, but the ring puts more into spinning", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s5_anchor", "position": { "x": 560, "y": 400 }, "text": "more spin means less speed, so the sphere reaches the line first", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "A sphere and a ring drop the same height and end with equal total kinetic energy." },
+            { "id": "s5_2", "text_en": "The sphere sends most into forward motion: seven joules moving, two point eight spinning." },
+            { "id": "s5_3", "text_en": "The ring splits it evenly, four point nine joules each way." },
+            { "id": "s5_4", "text_en": "More spin means less speed, so the sphere reaches the line first." }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "One formula ranks all four",
+        "duration": 4.6,
+        "focal_primitive_id": "roi_s6_main",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "One formula ranks all",
+        "depth_ring": "advanced",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "torque_about_contact_point",
+          "why_one_plus_k",
+          "rolling_vs_frictionless_slider"
+        ],
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s6_head", "position": { "x": 380, "y": 60 }, "text": "This disc is held: gravity and friction balance exactly", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s6_main", "position": { "x": 200, "y": 250 }, "text": "the turning equation and Newton's second law combine into one formula for acceleration", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s6_anchor", "position": { "x": 560, "y": 400 }, "text": "a = g sin theta over (1 + k)", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "This disc is held: gravity's pull down the slope and the friction holding it balance exactly, so acceleration reads zero." },
+            { "id": "s6_2", "text_en": "The turning equation and Newton's second law combine into one formula for acceleration." },
+            { "id": "s6_3", "text_en": "Release it: the friction arrow shrinks to a third, and the acceleration jumps to the value the formula just predicted." }
+          ]
+        }
+      },
+
+      "STATE_7": {
+        "title": "Low friction: rolling becomes slipping",
+        "duration": 4.0,
+        "focal_primitive_id": "roi_s7_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "regime-switch",
+        "delta_cue": "Too little friction: slipping",
+        "depth_ring": "advanced",
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s7_head", "position": { "x": 380, "y": 60 }, "text": "This ring rolls normally while friction falls", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s7_main", "position": { "x": 200, "y": 250 }, "text": "once friction drops below what rolling needs, the contact point starts to slide", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s7_anchor", "position": { "x": 560, "y": 400 }, "text": "the label switches from static to kinetic, and a skid trail appears", "color": "#4DD0E1" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "This ring rolls normally while we lower the available friction." },
+            { "id": "s7_2", "text_en": "Once friction drops below what rolling needs, the contact point starts to slide." },
+            { "id": "s7_3", "text_en": "The label switches from static to kinetic, and a skid trail appears." },
+            { "id": "s7_4", "text_en": "The spin now lags behind, and kinetic friction settles at zero point four four newtons." }
+          ]
+        }
+      },
+
+      "STATE_8": {
+        "title": "Try every variable",
+        "duration": 0,
+        "focal_primitive_id": "roi_s8_main",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All controls live",
+        "depth_ring": "core",
+        "scene_composition": [
+          { "type": "annotation", "id": "roi_s8_head", "position": { "x": 380, "y": 60 }, "text": "Change the values yourself and watch the race", "color": "#FFF176" },
+          { "type": "annotation", "id": "roi_s8_main", "position": { "x": 380, "y": 250 }, "text": "drag mass, incline angle and friction - watch who wins", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s8_anchor", "position": { "x": 380, "y": 440 }, "text": "a = g sin theta over (1 + k)", "color": "#D4D4D8" }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Now change the mass, the incline angle and the friction yourself, and watch the race." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "canned_goods_on_a_ramp",
+      "type": "B",
+      "label": "Canned Goods on a Store Ramp",
+      "physical_world": "Different cans and tins released together on a delivery ramp still finish in the same fixed order, set only by their shape.",
+      "same_physics": "Identical rolling condition and the same shape-factor result - only the labelled world changes from raced shapes to canned goods.",
+      "scene_hint": "Same four-shape rig on the same incline - only the labelled objects change from solid sphere/disc/hollow sphere/ring to their canned-goods equivalents."
+    },
+    {
+      "variant_id": "playground_slide_race",
+      "type": "B",
+      "label": "Toy Shapes Down a Playground Slide",
+      "physical_world": "Toy balls, discs and rings released together on a playground slide finish in the same order every time.",
+      "same_physics": "Same rolling condition and the same shape-factor result - only the labelled world changes from a lab incline to a playground slide.",
+      "scene_hint": "Same apparatus, same four shapes - only the labelled setting changes."
+    }
+  ],
+
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "No external syllabus web-search verification was run during this authoring pass. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.14 content) - every other row carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 11 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.14 - rolling motion on an incline, shape factor k = I/mR^2, a = g sin(theta)/(1+k)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE / CAIE A-level Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational dynamics - rolling on an incline believed present at A-level only, not IGCSE",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Mechanics - rotational dynamics (HL only, believed a minor treatment of rolling on an incline)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1",
+        "coverage": "partial",
+        "syllabus_unit": "Unit 7 - Torque and Rotational Motion (rolling on an incline believed a qualitative/derivation mention)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "UK A-level Physics (Edexcel/AQA/OCR)",
+        "coverage": "partial",
+        "syllabus_unit": "Circular and rotational motion - rolling on an incline believed a minor derivation topic",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state that four shapes released together on the same incline always finish in the same fixed order (solid sphere, disc, hollow sphere, ring), explain that the order depends only on the shape factor k = I/mR^2 and not on mass or radius, identify that the friction at a rolling contact is static, derive a = g sin(theta)/(1+k) from Newton's second law and the rotational analogue, and predict when a rolling body will lose contact-static friction and begin to slip.",
+    "questions": [
+      {
+        "q_id": "roi_q1",
+        "stem": "Four shapes - solid sphere, disc, hollow sphere, ring - are released together from rest at the top of the same incline. In what order do they reach the bottom?",
+        "options": {
+          "A": "Solid sphere, disc, hollow sphere, ring - every time, regardless of their mass or radius",
+          "B": "Whichever is heaviest arrives first",
+          "C": "Whichever is largest arrives first",
+          "D": "They always arrive together, in a tie"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes mass decides the race, as it would for objects falling without rotating.",
+          "C": "Believes size alone decides the race, ignoring how mass distribution changes the shape factor.",
+          "D": "Assumes rolling erases every difference between shapes, when only mass and radius (not shape) cancel."
+        },
+        "tested_idea": "shape factor decides a fixed finish order",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A solid ball, a disc, a hollow ball, and a ring are let go together down the same slope. What decides which reaches the bottom first?"
+      },
+      {
+        "q_id": "roi_q2",
+        "stem": "A disc rolls without slipping down the incline. Its centre speed reads v and its turn rate reads omega. What is true of R times omega?",
+        "options": {
+          "A": "R times omega equals v, at every instant",
+          "B": "R times omega is always twice v",
+          "C": "R times omega is unrelated to v",
+          "D": "R times omega equals v only at the very top of the incline"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the rolling condition with the top-point speed, which is 2v.",
+          "C": "Believes rolling motion decouples translation and rotation.",
+          "D": "Assumes the rolling condition only holds momentarily instead of throughout the motion."
+        },
+        "tested_idea": "v = R omega holds throughout rolling motion",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A wheel rolls without slipping down a ramp. How does its centre speed compare with R times its turn rate at a random instant partway down?"
+      },
+      {
+        "q_id": "roi_q3",
+        "stem": "A disc rolls without slipping down the incline. What type of friction acts at its contact point?",
+        "options": {
+          "A": "Static friction - the contact point is not sliding",
+          "B": "Kinetic friction, opposing the motion",
+          "C": "Kinetic friction, helping the motion",
+          "D": "No friction acts at all"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes a rolling contact slides like a locked, skidding wheel.",
+          "C": "Invents a friction force pushing the body forward with no physical cause.",
+          "D": "Forgets that static friction is exactly what supplies the torque that keeps the body rolling."
+        },
+        "tested_idea": "rolling contact is static friction, not kinetic",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball rolls without slipping down a slope. What friction acts where it touches the surface?"
+      },
+      {
+        "q_id": "roi_q4",
+        "stem": "A sphere of mass 5 kg and radius 0.30 m is released alongside a sphere of mass 0.5 kg and radius 0.10 m, both solid spheres, on the same incline. What happens?",
+        "options": {
+          "A": "They stay exactly side by side and reach the bottom together",
+          "B": "The 5 kg sphere reaches the bottom first",
+          "C": "The 0.5 kg sphere reaches the bottom first",
+          "D": "The larger sphere reaches the bottom first because it has more turning inertia"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes a heavier body always accelerates faster downhill, ignoring that its rotational resistance grows in the same proportion.",
+          "C": "Assumes a lighter body always accelerates faster, the opposite error with the same missing cancellation.",
+          "D": "Believes a larger radius alone slows a rolling body, without checking that its rotational resistance also grows with radius in the same way."
+        },
+        "tested_idea": "mass and radius cancel for a fixed shape",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A large heavy disc and a small light disc, both uniform discs, are released together on the same slope. Which one wins the race?"
+      },
+      {
+        "q_id": "roi_q5",
+        "stem": "A solid sphere and a ring, released from rest, roll the same height down the incline. How do their total kinetic energies compare at the bottom, and how does each split between moving and spinning?",
+        "options": {
+          "A": "Both have equal total kinetic energy, but the ring puts a larger share into spinning",
+          "B": "The sphere has more total kinetic energy because it arrives first",
+          "C": "The ring has more total kinetic energy because it spins more",
+          "D": "Both have equal total kinetic energy and equal splits between moving and spinning"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses arriving first with having more energy; total energy is set only by the drop height.",
+          "C": "Assumes more spinning energy means more total energy, ignoring that the sphere gets more translational energy in exchange.",
+          "D": "Ignores that the shape factor k sets a different split for each shape even though the total is identical."
+        },
+        "tested_idea": "same total energy, shape-dependent split between translation and rotation",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A hollow sphere and a disc roll down from the same height. Compare their total kinetic energies and how each splits between moving and spinning."
+      },
+      {
+        "q_id": "roi_q6",
+        "stem": "A body of shape factor k rolls without slipping down an incline of angle theta. What is its acceleration?",
+        "options": {
+          "A": "a = g sin(theta) / (1 + k)",
+          "B": "a = g sin(theta) times (1 + k)",
+          "C": "a = g sin(theta) / k",
+          "D": "a = g sin(theta), independent of k"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Multiplies by (1+k) instead of dividing, reversing how rotational inertia reduces acceleration.",
+          "C": "Drops the 1 that represents the translational share of the resistance to accelerating.",
+          "D": "Ignores rotational inertia entirely, treating the body as if it were sliding, not rolling."
+        },
+        "tested_idea": "a = g sin(theta)/(1+k) derived from the CoM and rotational equations",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A rolling body with shape factor k = 0.5 is released on a slope at angle theta. Write its acceleration in terms of g, theta and k."
+      },
+      {
+        "q_id": "roi_q7",
+        "stem": "A ring rolls without slipping down an incline while the available static friction is gradually reduced. What happens once the friction drops below the minimum the rolling motion needs?",
+        "options": {
+          "A": "The contact point starts to slide, and the friction switches from static to kinetic",
+          "B": "The ring speeds up but keeps rolling without slipping",
+          "C": "The ring stops completely",
+          "D": "Nothing changes, because friction does no work while rolling"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes rolling can continue no matter how little friction is available.",
+          "C": "Confuses losing the rolling condition with losing all motion.",
+          "D": "Correctly notes rolling friction does no work, but wrongly concludes friction is irrelevant to whether rolling continues at all."
+        },
+        "tested_idea": "rolling requires mu_s >= mu_min; below it the contact slips",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A disc rolling down a slope experiences a steadily falling coefficient of static friction. What happens once that coefficient falls below the value rolling requires?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["roi_q1"],
+      "STATE_2": ["roi_q2"],
+      "STATE_3": ["roi_q3"],
+      "STATE_4": ["roi_q4"],
+      "STATE_5": ["roi_q5"],
+      "STATE_6": ["roi_q6"],
+      "STATE_7": ["roi_q7"]
+    },
+    "non_assessed_states": ["STATE_8"]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "slider_controls": {
+      "theta": { "min": 20, "max": 40, "step": 1, "default": 25, "label": "θ" },
+      "m":     { "min": 0.1, "max": 8, "step": 0.1, "default": 1, "label": "m" },
+      "m2":    { "min": 0.1, "max": 8, "step": 0.1, "default": 0.5, "label": "m₂" },
+      "mu_s":  { "min": 0.05, "max": 1.00, "step": 0.05, "default": 0.50, "label": "μₛ", "dp": 2 }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Four shapes at theta = 25 deg: solid sphere, disc, hollow sphere and ring, released together, halt at the line in that order (1744/1805/1903/2085 ms) and stamp 1-2-3-4",
+        "visible_elements": [],
+        "camera_position": [3.0, 4.4, 12.5],
+        "caption": "Four shapes, one ramp",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "lane_gap_m": 0.8,
+          "bodies": [
+            { "id": "sphere_solid", "label": "solid sphere", "shape": "solid_sphere", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 },
+            { "id": "disc", "label": "disc", "shape": "disc", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 },
+            { "id": "sphere_hollow", "label": "hollow sphere", "shape": "hollow_sphere", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 },
+            { "id": "ring", "label": "ring", "shape": "ring", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 }
+          ],
+          "readouts": [],
+          "controls_visible": [],
+          "finish_line": { "s_m": -2.1, "bodies": ["sphere_solid", "disc", "sphere_hollow", "ring"], "halt": true, "stamp": "order" },
+          "phases": [
+            { "id": "chip1", "at_ms": 1744, "until_ms": 1805, "glow_focal": "nlb_finish_chip_sphere_solid" },
+            { "id": "chip2", "at_ms": 1805, "until_ms": 1903, "glow_focal": "nlb_finish_chip_disc" },
+            { "id": "chip3", "at_ms": 1903, "until_ms": 2085, "glow_focal": "nlb_finish_chip_sphere_hollow" },
+            { "id": "chip4", "at_ms": 2085, "until_ms": 2400, "glow_focal": "nlb_finish_chip_ring" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Recap disc at R = 0.25 m (pure_rolling's own wheel radius): rolls +2.4 to +0.4, rim dot cusps at 754 ms, halt-latches at 1204 ms with v = Rω = 3.32",
+        "visible_elements": [],
+        "camera_position": [1.2, 2.6, 6.5],
+        "caption": "v equals R omega",
+        "show_sliders": true,
+        "formula_overlay": "v = Rω",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "bodies": [
+            { "id": "disc_recap", "label": "disc", "shape": "disc", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 }
+          ],
+          "readouts": ["v", "Romega", "contact"],
+          "controls_visible": [],
+          "camera_target_m": 1.4,
+          "contact_layer": { "body_id": "disc_recap", "rim_dot": true, "cycloid_trace": true },
+          "finish_line": { "s_m": 0.4, "bodies": ["disc_recap"], "halt": true, "stamp": "none" },
+          "phases": [
+            { "id": "rim_glow", "at_ms": 0, "until_ms": 754, "glow_focal": "nlb_rimdot_disc_recap" },
+            { "id": "readout_glow", "at_ms": 754, "until_ms": 1204, "glow_focal": "nlb_ro_grp_disc_recap" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "0-1500 ms: a locked block skids alone (mu_k = 0.15, a = 2.809, +2.4 to -0.76). At 1500 ms the block retires and a rolling disc activates at +2.4, contact 0.00, no trail",
+        "visible_elements": [],
+        "camera_position": [3.0, 4.2, 11.5],
+        "caption": "Contact point speed: zero",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "single_lane": true,
+          "lane_gap_m": 0,
+          "bodies": [
+            { "id": "block_locked", "label": "locked block", "shape": "block", "mass_kg": 1, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rotation_locked": true, "mu_s": 0, "mu_k": 0.15 },
+            { "id": "disc_s3", "label": "rolling disc", "shape": "disc", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5, "activate_at_ms": 1500 }
+          ],
+          "readouts": ["f", "contact"],
+          "controls_visible": [],
+          "vector_map": { "force_scale": 0.30, "force_min_len": 0.25 },
+          "arrows": [
+            { "body_id": "block_locked", "show": ["friction"], "labels": { "friction": "f_k" } },
+            { "body_id": "disc_s3", "show": ["friction"], "labels": { "friction": "f_s" } }
+          ],
+          "contact_layer": { "body_id": "block_locked", "skid_trail": true },
+          "phases": [
+            { "id": "skid_glow", "at_ms": 0, "until_ms": 1500, "glow_focal": "nlb_ro_block_locked_f" },
+            { "id": "roll_glow", "at_ms": 1500, "until_ms": 3200, "glow_focal": "nlb_ro_disc_s3_contact" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "A 5 kg / 0.30 m solid sphere races a 0.5 kg / 0.10 m solid sphere; centres stay exactly abreast and both halt at the line together at 1745 ms, stamped TIE; both k chips read 0.40",
+        "visible_elements": [],
+        "camera_position": [1.2, 3.4, 9.5],
+        "caption": "Mass and radius cancel",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "lane_gap_m": 1.2,
+          "bodies": [
+            { "id": "sphere_solid", "label": "solid sphere · k = 0.40 · 5.0 kg", "shape": "solid_sphere", "mass_kg": 5, "radius_m": 0.30, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 },
+            { "id": "sphere_small", "label": "solid sphere · k = 0.40", "shape": "solid_sphere", "mass_kg": 0.5, "radius_m": 0.10, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 }
+          ],
+          "readouts": [],
+          "controls_visible": ["m2", "R2"],
+          "centre_markers": { "body_ids": ["sphere_solid", "sphere_small"] },
+          "finish_line": { "s_m": -2.1, "bodies": ["sphere_solid", "sphere_small"], "halt": true, "stamp": "tie" },
+          "phases": [
+            { "id": "chipA_glow", "at_ms": 300, "until_ms": 700, "glow_focal": "nlb_body_sphere_solid_label" },
+            { "id": "chipB_glow", "at_ms": 700, "until_ms": 1100, "glow_focal": "nlb_body_sphere_small_label" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "A sphere and a ring drop 2.366 m (h = 1.000 m). Sphere halt-latches at 1265 ms: KE_trans 7.0 J, KE_rot 2.8 J. Ring at 1512 ms: 4.9 J, 4.9 J. Held side by side from 1512 ms",
+        "visible_elements": [],
+        "camera_position": [1.2, 3.4, 9.5],
+        "caption": "Same energy, different split",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "lane_gap_m": 1.2,
+          "bodies": [
+            { "id": "sphere_s5", "label": "solid sphere", "shape": "solid_sphere", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 },
+            { "id": "ring_s5", "label": "ring", "shape": "ring", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5 }
+          ],
+          "readouts": ["KE_trans", "KE_rot"],
+          "controls_visible": [],
+          "finish_line": { "s_m": 0.034, "bodies": ["sphere_s5", "ring_s5"], "halt": true, "stamp": "order" },
+          "phases": [
+            { "id": "sphere_ke_glow", "at_ms": 1512, "until_ms": 1850, "glow_focal": "nlb_ro_grp_sphere_s5" },
+            { "id": "ring_ke_glow", "at_ms": 1850, "until_ms": 2200, "glow_focal": "nlb_ro_grp_ring_s5" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Disc held from t = 0 (mu_s = 0.90): f_s = 4.14 N balances mg sinθ, a reads 0.00. Formula builds f·R = I_cm·α (1600), f = k·m·a (1900), a = g sinθ/(1+k) (2200). Released at 2500: f_s 1.243 to 0.414 wu, a jumps to 2.76. Halt 4305",
+        "visible_elements": [],
+        "camera_position": [1.2, 3.0, 8.0],
+        "caption": "One formula ranks all",
+        "show_sliders": true,
+        "formula_overlay": "a = g sinθ/(1+k)",
+        "newtons_laws_body": {
+          "mode": "incline_decompose",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "bodies": [
+            { "id": "disc_s6", "label": "disc", "shape": "disc", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.90, "activate_at_ms": 2500, "visible_before_activation": true }
+          ],
+          "readouts": ["a", "f", "N"],
+          "controls_visible": ["theta"],
+          "camera_target_m": 0.15,
+          "vector_map": { "force_scale": 0.30, "force_min_len": 0.25 },
+          "arrows": [
+            { "body_id": "disc_s6", "show": ["weight", "normal", "friction"], "show_components": true, "labels": { "friction": "f_s" } }
+          ],
+          "formula_lines": [
+            { "text": "f·R = I_cm·α", "at_ms": 1600 },
+            { "text": "f = k·m·a", "at_ms": 1900 },
+            { "text": "a = g sinθ/(1+k)", "at_ms": 2200 }
+          ],
+          "finish_line": { "s_m": -2.1, "bodies": ["disc_s6"], "halt": true, "stamp": "none" },
+          "phases": [
+            { "id": "weight_glow", "at_ms": 400, "until_ms": 800, "glow_focal": "nlb_comp_disc_s6_sin" },
+            { "id": "normal_glow", "at_ms": 800, "until_ms": 1200, "glow_focal": "nlb_arrow_disc_s6_normal" },
+            { "id": "friction_glow", "at_ms": 1200, "until_ms": 1600, "glow_focal": "nlb_arrow_disc_s6_friction" },
+            { "id": "line1_glow", "at_ms": 1600, "until_ms": 1900, "glow_focal": "nlb_formula" },
+            { "id": "line2_glow", "at_ms": 1900, "until_ms": 2200, "glow_focal": "nlb_formula" },
+            { "id": "line3_glow", "at_ms": 2200, "until_ms": 2500, "glow_focal": "nlb_formula" },
+            { "id": "release_glow", "at_ms": 2500, "until_ms": 3200, "glow_focal": "nlb_ro_disc_s6_a" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "label": "Ring rolls at mu_s = 0.50, ramping to 0.05 over 600-1600 ms. Crosses mu_min = 0.233 at 1193 ms: contact leaves 0.00, label flips f_s to f_k, skid trail appears. Halt-latches at 1968 ms with f_k = 0.44 N latched",
+        "visible_elements": [],
+        "camera_position": [1.0, 3.2, 9.5],
+        "caption": "Too little friction: slipping",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "bodies": [
+            { "id": "ring_s7", "label": "ring", "shape": "ring", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.50, "mu_k": 0.05 }
+          ],
+          "readouts": ["contact", "f", "a"],
+          "controls_visible": ["mu_s"],
+          "camera_target_m": 0.15,
+          "vector_map": { "force_scale": 0.30, "force_min_len": 0.25 },
+          "arrows": [
+            { "body_id": "ring_s7", "show": ["friction"] }
+          ],
+          "contact_layer": { "body_id": "ring_s7", "skid_trail": true },
+          "param_ramp": { "param": "mu_s", "from": 0.50, "to": 0.05, "start_ms": 600, "end_ms": 1600 },
+          "finish_line": { "s_m": -2.1, "bodies": ["ring_s7"], "halt": true, "stamp": "none" },
+          "phases": [
+            { "id": "contact_glow", "at_ms": 0, "until_ms": 1193, "glow_focal": "nlb_ro_ring_s7_contact" },
+            { "id": "slip_glow", "at_ms": 1193, "until_ms": 1968, "glow_focal": "nlb_ro_ring_s7_f" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "label": "Explore: change mass, incline angle and friction - the four-body race re-runs live and re-synchronises at each restart",
+        "visible_elements": [],
+        "camera_position": [3.0, 4.4, 12.5],
+        "caption": "All controls live",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 25, "length_m": 3.0, "frictionless": false },
+          "lane_gap_m": 0.8,
+          "bodies": [
+            { "id": "sphere_solid", "label": "solid sphere · k = 0.40", "shape": "solid_sphere", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5, "mu_k": 0.3 },
+            { "id": "disc", "label": "disc · k = 0.50", "shape": "disc", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5, "mu_k": 0.3 },
+            { "id": "sphere_hollow", "label": "hollow sphere · k = 0.67 · 1.0 kg", "shape": "hollow_sphere", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5, "mu_k": 0.3 },
+            { "id": "ring", "label": "ring · k = 1.00 · 1.0 kg", "shape": "ring", "mass_kg": 1, "radius_m": 0.15, "initial_position_m": 2.4, "initial_velocity_mps": 0, "rolling": true, "mu_s": 0.5, "mu_k": 0.3 }
+          ],
+          "readouts": ["v", "omega", "Romega", "contact"],
+          "controls_visible": ["m", "m2", "R", "R2", "theta", "mu_s"],
+          "centre_markers": { "body_ids": ["sphere_solid", "disc", "sphere_hollow", "ring"] },
+          "finish_line": { "s_m": -2.1, "bodies": ["sphere_solid", "disc", "sphere_hollow", "ring"], "halt": true, "stamp": "order" },
+          "race_restart": "synchronized",
+          "restart_hold_ms": 900,
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}

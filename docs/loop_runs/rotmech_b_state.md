@@ -11,8 +11,8 @@ engine_surface: `newtons_laws_body` **SEAM R** (the 0c-2 rolling extension)
 
 | Wave | Concept | Status |
 |---|---|---|
-| 1 | `pure_rolling` | **AUTHOR NOW.** 0b DONE — `skeleton.md` (REV 3) + `physics_block.md`, Checkpoint A `DESIGN_OK`. |
-| 1 | `rolling_on_incline` | **AUTHOR NOW.** 0b DONE — `skeleton.md` (REV 6) + `physics_block.md`, Checkpoint A `DESIGN_OK`. |
+| 1 | `pure_rolling` | **JSON AUTHORED** (2026-08-04). tsc 0 · validate PASS. **NOT sealed** — S7 blocked on finding B-1, S1/S8 radius blocked on B-2, THE EYE not run. |
+| 1 | `rolling_on_incline` | **JSON AUTHORED** (2026-08-04). tsc 0 · validate PASS. **NOT sealed** — S4 radius blocked on B-2, S8 "marble vs ring" unachievable, THE EYE not run. |
 
 **This desk is the only one with two ready concepts, and it carries both rolling concepts
 deliberately.** They are the joint consumers whose union defined SEAM R — the amendment's
@@ -28,11 +28,24 @@ both in the same session and restate the source revision. "The sibling quotes th
 is a claim to be diffed, never asserted.
 
 ## next
-Author `pure_rolling` first (simpler contract), then `rolling_on_incline` reusing every
-apparatus decision. Both start at `json-author` — the physics blocks exist.
+Seed the scoped caches (this desk's four permitted keys only) and run THE EYE on both
+concepts + the regression pair, on port 8111. Expect B-1 to surface loudly as a frozen
+`pure_rolling` S7. Full log: `docs/loop_runs/rotmech/_progress/b.md`.
 
 ## done
-(none)
+- **2026-08-04 — both JSONs authored** (json_author stage). `src/data/concepts/pure_rolling.json`
+  + `src/data/concepts/rolling_on_incline.json`. tsc 0 errors · `validate:concepts` 151 PASS /
+  0 FAIL. Registration sites verified pre-registered and left untouched; no platform file
+  touched. **Phase-0 alarm rule did NOT fire** — no third timed field class needed or found.
+- **ACTIVATION SEMANTICS diffed, not asserted:** every normative clause of the canonical
+  (`rolling_on_incline` REV 6.1) and the import (`pure_rolling` REV 3.1) is identical
+  word-for-word; the import drops only four cross-reference tags, one explanatory sentence, and
+  the FORMULA-LINE paragraph — none normative. **No paired edit was required.**
+- **2 engine findings filed** → `docs/loop_runs/rotmech/_engine/findings_b.md`: **B-1** rolling
+  branch has no kinematic gate (flat-track capture inexpressible; blocks union (c)-3;
+  `rolling_on_incline` unaffected) · **B-2** union (b)-8 half-landed (`R`/`R2`/`omega0` declared
+  but unwired, dropped in silence). Both `peter_parker:field3d_surgeon`, routed to Desk E.
+  **No engine fix dispatched from here.**
 
 ## SEAM R facts already paid for — do not re-derive
 

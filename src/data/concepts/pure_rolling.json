@@ -1,0 +1,887 @@
+{
+  "concept_id": "pure_rolling",
+  "concept_name": "Pure Rolling — v = Rω and the Contact Point at Rest",
+  "chapter": 7,
+  "section": "7.14",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.7 §7.14 (System of Particles and Rotational Motion — rolling motion) — table-of-contents scope only, teaching authored from first principles. The atomic idea: a rolling-without-slipping body ties its centre speed v to its turn rate omega through v = Rω, and the direct consequence is that the contact point is, at that instant, at rest — so the friction acting at a rolling contact is static, never kinetic. Does NOT cover the incline race or the shape factor I/mR² (deferred to rolling_on_incline), and does NOT cover rotational kinetic energy (deferred to rotational_work_energy). DC Pandey chapter table of contents consulted for scope only — no teaching method, example or figure imported; NCERT §7.14's slide-plus-spin decomposition is re-derived from first principles as STATE_4–STATE_6, not copied. Built on the newtons_laws_body field_3d engine, SEAM R (the bounded rotational extension), zero renderer edits.",
+
+  "prerequisites": [
+    "rotational_kinematics",
+    "friction_force",
+    "tau_eq_i_alpha",
+    "moment_of_inertia"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A bicycle wheel crosses the road exactly this way.",
+    "secondary": "A braked, locked wheel leaves a skid mark; a rolling wheel leaves none."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "translational speed v", "unit": "m/s", "min": 0.5, "max": 2.5, "default": 0.9 },
+      "R": { "name": "wheel radius", "unit": "m", "min": 0.15, "max": 0.35, "default": 0.25 },
+      "omega0": { "name": "starting spin omega0, decoupled from v", "unit": "rad/s", "min": 0, "max": 12, "default": 3.6, "derived": "v0 / R, recomputed live in STATE_8 whenever v0 or R changes and omega0 itself is not being dragged" },
+      "mu_k": { "name": "kinetic friction coefficient", "unit": "", "min": 0.02, "max": 0.30, "default": 0.05 },
+      "m": { "name": "mass", "unit": "kg", "constant": 1 },
+      "k": { "name": "moment-of-inertia coefficient, I = k m R squared, uniform disc", "unit": "", "constant": 0.5 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta_deg": { "name": "incline angle, this concept is flat", "unit": "deg", "constant": 0 },
+      "x0": { "name": "home-pose position", "unit": "m", "constant": 2.4 },
+      "L_half": { "name": "track half-length", "unit": "m", "constant": 3.0 }
+    },
+    "computed_outputs": {
+      "circumference_m": { "formula": "2 * PI * R" },
+      "capture_time_ms": { "formula": "1000 * (v0 * k) / (mu_k * g * (1 + k))" },
+      "capture_speed_m_s": { "formula": "v0 / (1 + k)" },
+      "capture_position_m": { "formula": "x0 - (v0*v0*k*(2+k)) / (2*mu_k*g*(1+k)*(1+k))" },
+      "slide_envelope_coefficient": { "formula": "k*(2+k) / (2*mu_k*g*(1+k)*(1+k))" }
+    },
+    "formulas": {
+      "rolling_condition_rhs": "R * omega",
+      "contact_speed": "abs(v - R * omega)",
+      "circumference": "2 * PI * R",
+      "mark_position_n": "x0 - n * 2 * PI * R",
+      "skid_deceleration": "mu_k * g",
+      "skid_stop_time_s": "v0_skid / (mu_k * g)",
+      "skid_stop_position": "x0 - (v0_skid * v0_skid) / (2 * mu_k * g)",
+      "capture_time_s": "(v0 * k) / (mu_k * g * (1 + k))",
+      "capture_speed": "v0 / (1 + k)",
+      "capture_slide_distance": "(v0 * v0 * k * (2 + k)) / (2 * mu_k * g * (1 + k) * (1 + k))",
+      "capture_position": "x0 - capture_slide_distance"
+    },
+    "constraints": [
+      "v = R*omega holds identically for a rolling body (STATE_1, STATE_2, STATE_6, STATE_3 phase B) — it is NOT true by construction in STATE_4 (pure slide, omega held 0) or STATE_5 (pure spin, v held 0); those two are the ingredients whose sum, in STATE_6, satisfies v = R*omega.",
+      "Contact-point speed |v - omega*R| = 0 exactly whenever v = R*omega holds; nonzero only during a genuinely sliding contact (STATE_3 phase A, rotation locked; STATE_7 pre-capture).",
+      "k = I/(m R^2) = 0.5 for every wheel body in this concept — the wheel is modelled as a uniform disc. k is never rendered on canvas anywhere (do-not-prespoil — k is rolling_on_incline's authored reveal).",
+      "Kinetic friction f_k = mu_k*m*g acts only while the contact point is genuinely sliding; never on a body already satisfying v = R*omega.",
+      "theta = 0 (flat track) throughout — no incline forms anywhere in this concept, contrast with rolling_on_incline.",
+      "The revolution-marks primitive is a pure function of turn count (s_n = x0 - n*2*PI*R), never of authored milliseconds — a mark stamp fires when one more completed turn is satisfied.",
+      "capture_time_s and capture_speed are closed-form results of Newton's second law plus the torque-angular-acceleration relation for a uniform disc, never a per-frame latch."
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 6,
+    "max_words_per_tts_sentence": 40
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "The point where a rolling wheel touches the road is, at that instant, not moving.",
+    "visual_confirmation": "The rim dot's path comes to a cusp at each ground touch while the centre arrow keeps reading 0.55 m/s and the contact marker holds 0.00 m/s."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "point_speeds": { "start": "STATE_4", "end": "STATE_6" },
+    "slipping": { "start": "STATE_7", "end": "STATE_7" }
+  },
+
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "One turn, one circumference",
+        "duration": 5,
+        "focal_primitive_id": "pr_s1_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build (declared contrast pair of STATE_6 — reads v = Rω from the ground)",
+        "delta_cue": "One turn, one circumference",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The wheel rolls forward: its centre speed and its turn rate are locked together",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s1_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "each completed turn puts exactly one circumference, 2 pi R, of road behind the wheel",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "a bicycle wheel crosses the road exactly this way",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "The wheel's centre moves along the road at speed v." },
+            { "id": "s1_2", "text_en": "Its turn rate, omega, angular velocity, counts the angle turned each second." },
+            { "id": "s1_3", "text_en": "Each completed turn puts exactly one circumference, 2πR, of road behind it." },
+            { "id": "s1_4", "text_en": "So the two are locked: speed v equals R times omega." },
+            { "id": "s1_5", "text_en": "A bicycle wheel crosses the road exactly this way." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "The contact point is at rest",
+        "duration": 5,
+        "focal_primitive_id": "pr_s2_main",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "flow-along-path",
+        "delta_cue": "Contact point speed: zero",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_the_contact_point_is_at_rest",
+          "cycloid_path_of_a_rim_point",
+          "backward_turn_speed_cancels_forward_speed"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Watch the point where the wheel touches the road",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s2_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "the marked rim point comes to a stop at every ground touch, while the centre keeps moving",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s2_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "the contact reading stays at 0.00 metres per second",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Watch the point where the wheel touches the road — the centre above it moves forward at speed v." },
+            { "id": "s2_2", "text_en": "But the bottom point comes to rest at every touch, not moving forward at all." },
+            { "id": "s2_3", "text_en": "Its speed reads zero exactly there, while the centre keeps moving." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Every point of the wheel moves at the wheel's speed — the bottom slides along the road.",
+            "visual_counter": "The rim dot's path comes to a cusp and stops at each ground touch while the centre arrow keeps reading 0.55 m/s and the contact marker reads 0.00 m/s.",
+            "one_line_fix": "The turn carries the bottom point backward at exactly the speed the wheel moves forward, so at the ground the two cancel to zero."
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "No sliding, no kinetic friction",
+        "duration": 4,
+        "focal_primitive_id": "pr_s3_main",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "cycle-compare (two-phase 16a contrast, one state)",
+        "delta_cue": "Skid slows; roll does not",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "A locked wheel skids in, slows and stops, leaving a mark",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s3_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "that skidding wheel is gone; the same wheel now rolls instead, crossing at a steady speed with no mark",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s3_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "a braked, locked wheel leaves a skid mark; a rolling wheel leaves none",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "A locked wheel skids in, slows, and stops, leaving a skid mark." },
+            { "id": "s3_2", "text_en": "That skidding wheel is gone; the same wheel now rolls instead." },
+            { "id": "s3_3", "text_en": "It crosses at a steady speed, leaving no mark: the contact point is not sliding, so friction is zero." },
+            { "id": "s3_4", "text_en": "A braked, locked wheel leaves a skid mark; a rolling wheel leaves none." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A rolling wheel slides against the road, so its friction is kinetic and always slows it down.",
+            "visual_counter": "The locked wheel skids by itself first, slowing down and leaving a mark, then stops. The same wheel then rolls across at a steady speed with no mark and a friction reading of 0.00 newtons.",
+            "one_line_fix": "Kinetic friction needs a sliding contact; a rolling contact point is at rest, so only static friction can ever act there — and here even that reads zero."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Sliding only: one speed everywhere",
+        "duration": 4,
+        "focal_primitive_id": "pr_s4_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Sliding: one speed everywhere",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "This wheel slides without turning at all",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s4_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "the top, the centre and the bottom all move at the same speed",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s4_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "no turning means every point of the wheel moves the same way",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "This wheel slides without turning at all." },
+            { "id": "s4_2", "text_en": "The top of the wheel moves at speed v." },
+            { "id": "s4_3", "text_en": "So does the centre." },
+            { "id": "s4_4", "text_en": "So does the bottom — every point, the same speed." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "Spin in place: centre at rest",
+        "duration": 4,
+        "focal_primitive_id": "pr_s5_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "rotate/flip",
+        "delta_cue": "Rim turns, centre stays",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s5_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "This wheel spins on the spot, its centre fixed",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s5_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "the top of the rim moves forward, the bottom moves backward, equally fast",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s5_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "only the centre stays still",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "This wheel spins on the spot." },
+            { "id": "s5_2", "text_en": "The top of the rim moves forward." },
+            { "id": "s5_3", "text_en": "The bottom of the rim moves backward, equally fast." },
+            { "id": "s5_4", "text_en": "Only the centre stays still." }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "Slide plus spin makes rolling",
+        "duration": 4.8,
+        "focal_primitive_id": "pr_s6_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build (declared contrast pair of STATE_1 — reads v = Rω from the points)",
+        "delta_cue": "Slide plus spin: roll",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s6_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "This wheel is truly rolling: sliding and spinning add together",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s6_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "at the top the two add to two v, at the centre only sliding remains, at the contact they cancel to zero",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s6_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "v + R omega = 2v,  v − R omega = 0",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "This wheel is truly rolling: sliding and spinning add together." },
+            { "id": "s6_2", "text_en": "At the top, the two add: speed v plus R omega makes two v." },
+            { "id": "s6_3", "text_en": "At the centre, only sliding remains: speed v alone." },
+            { "id": "s6_4", "text_en": "At the contact point, the two cancel: speed v minus R omega equals zero." }
+          ]
+        }
+      },
+
+      "STATE_7": {
+        "title": "Sliding becomes rolling",
+        "duration": 3.4,
+        "focal_primitive_id": "pr_s7_main",
+        "advance_mode": "manual_click",
+        "motion_archetype": "regime-switch (convergence → capture → steady rolling)",
+        "delta_cue": "Sliding becomes rolling",
+        "depth_ring": "advanced",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "time_for_sliding_to_become_rolling",
+          "friction_direction_during_slipping",
+          "final_speed_after_rolling_begins"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s7_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "This wheel starts moving but not spinning",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s7_main",
+            "position": { "x": 200, "y": 250 },
+            "text": "friction's turning effect on the rim speeds the spin up while it slows the slide",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s7_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "speed v and R omega converge, and the moment they meet, it rolls",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "This wheel starts moving but not spinning; it slides at first." },
+            { "id": "s7_2", "text_en": "Friction's turning effect on the rim speeds the spin up — a torque doing to turn rate omega what a force does to speed v." },
+            { "id": "s7_3", "text_en": "Speed v and R omega converge, and the moment they meet, it rolls." }
+          ]
+        }
+      },
+
+      "STATE_8": {
+        "title": "Roll it yourself",
+        "duration": 0,
+        "focal_primitive_id": "pr_s8_main",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "All controls live",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pr_s8_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change every value yourself",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s8_main",
+            "position": { "x": 380, "y": 250 },
+            "text": "drag speed, radius, starting spin and friction — watch the wheel respond",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "pr_s8_anchor",
+            "position": { "x": 380, "y": 440 },
+            "text": "v = R omega",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Now change the wheel's speed, radius, starting spin, and friction yourself, and watch it roll." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "car_tyre_on_the_highway",
+      "type": "B",
+      "label": "A Car Tyre on the Highway",
+      "physical_world": "A car tyre rolling along a highway shows the same locked relation between how fast the car travels and how fast the tyre turns.",
+      "same_physics": "Identical rolling condition: v = Rω, and the same contact-point-at-rest result — only the labelled world changes from a bicycle wheel to a car tyre.",
+      "scene_hint": "Same single-wheel rig on the same flat track — only the labelled object changes from a bicycle wheel to a car tyre."
+    },
+    {
+      "variant_id": "shopping_cart_wheel",
+      "type": "B",
+      "label": "A Shopping Cart Wheel Crossing a Floor",
+      "physical_world": "A shopping cart's wheel rolling across a flat floor ties its travel speed to its turn rate the same way any rolling wheel does.",
+      "same_physics": "Same rolling condition and the same contact-at-rest result — only the labelled object changes from a bicycle wheel to a cart wheel.",
+      "scene_hint": "Same single-wheel rig, same flat floor — only the labelled object changes."
+    }
+  ],
+
+  "curriculum_tags": {
+    "web_search_verified": false,
+    "verification_note": "No external syllabus web-search verification was run during this authoring pass. Only the CBSE/NCERT row is confidently verified (this concept IS that syllabus's own Ch.7 §7.14 content) — every other row carries verified:false + needs_teacher_verification:true rather than a guess.",
+    "entries": [
+      {
+        "curriculum": "CBSE / NCERT Class 11 (+ JEE/NEET)",
+        "coverage": "full",
+        "syllabus_unit": "Ch.7 §7.14 — rolling motion, v = Rω, rolling contact at rest",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE / CAIE A-level Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Rotational dynamics — rolling without slipping believed present at A-level only, not IGCSE",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "Mechanics — rotational dynamics (HL only, believed a minor treatment of rolling)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1",
+        "coverage": "partial",
+        "syllabus_unit": "Unit 7 — Torque and Rotational Motion (rolling without slipping believed a qualitative mention)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "UK A-level Physics (Edexcel/AQA/OCR)",
+        "coverage": "partial",
+        "syllabus_unit": "Circular and rotational motion — rolling without slipping believed a minor qualitative topic",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state v = Rω for a rolling wheel, explain why a rolling contact point is instantaneously at rest, identify that a rolling contact never involves kinetic friction, decompose a rolling wheel's point speeds into 0/v/2v, and predict how a wheel launched without spin evolves into rolling under kinetic friction.",
+    "questions": [
+      {
+        "q_id": "pr_q1",
+        "stem": "A wheel of radius R rolls without slipping and its centre moves at speed v. What is the wheel's angular speed, omega?",
+        "options": {
+          "A": "omega = v / R",
+          "B": "omega = v times R",
+          "C": "omega = R / v",
+          "D": "omega is unrelated to v"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes multiplying converts linear speed to angular speed instead of dividing by radius.",
+          "C": "Inverts the rolling relation, swapping which quantity is divided by which.",
+          "D": "Does not know rolling ties translation and rotation together at all."
+        },
+        "tested_idea": "v = Rω rolling condition",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball of radius r rolls without slipping and its centre moves at speed v0. Which expression gives its angular speed?"
+      },
+      {
+        "q_id": "pr_q2",
+        "stem": "A wheel rolls without slipping along a road. What is the speed of the point of the wheel touching the road, at that instant?",
+        "options": {
+          "A": "Zero",
+          "B": "Equal to v, the same as the centre",
+          "C": "Equal to 2v, twice the centre",
+          "D": "Depends on the wheel's mass"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes every point of a rigid wheel must move at the same speed as the centre.",
+          "C": "Confuses the ground contact point with the top point, which does move at 2v.",
+          "D": "Believes mass affects a purely kinematic velocity relation."
+        },
+        "tested_idea": "contact point instantaneously at rest",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball rolls without slipping across a floor. At the instant a marked point on its surface touches the floor, how fast is that point moving?"
+      },
+      {
+        "q_id": "pr_q3",
+        "stem": "A wheel rolls without slipping at constant speed on a level road. What type of friction, if any, acts at the contact point?",
+        "options": {
+          "A": "None — the contact point is not sliding, so kinetic friction is zero",
+          "B": "Kinetic friction, opposing the motion",
+          "C": "Kinetic friction, helping the motion",
+          "D": "Static friction equal to the wheel's full weight"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes rolling contact behaves like sliding contact and always loses energy to kinetic friction.",
+          "C": "Invents a friction force in the direction of motion with no physical cause.",
+          "D": "Confuses the normal force, which does equal the weight here, with friction."
+        },
+        "tested_idea": "rolling contact means no kinetic friction",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball rolls without slipping at a steady speed across a level floor. What friction acts where it touches the floor?"
+      },
+      {
+        "q_id": "pr_q4",
+        "stem": "A wheel slides along a road with its rotation completely locked — it does not spin at all. How does the speed of its top point compare with its bottom point?",
+        "options": {
+          "A": "They are equal — every point moves at the same speed as the centre",
+          "B": "The top point moves faster than the bottom point",
+          "C": "The bottom point moves faster than the top point",
+          "D": "The bottom point is stationary"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes rotation causes the usual top-faster-than-bottom pattern even though rotation is locked here.",
+          "C": "Reverses the usual rolling pattern without checking that there is no rotation in this case.",
+          "D": "Imports the rolling wheel's zero-contact-speed result into a case where the wheel is not rolling at all."
+        },
+        "tested_idea": "pure translation gives every point the same speed",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A crate slides across an icy floor without tipping or turning. How does the speed of its top edge compare with its bottom edge?"
+      },
+      {
+        "q_id": "pr_q5",
+        "stem": "A wheel spins in place with its centre fixed — it does not translate at all. How does the speed of its top point compare with its bottom point?",
+        "options": {
+          "A": "Equal in speed, opposite in direction",
+          "B": "Equal in speed and direction",
+          "C": "The top point is stationary",
+          "D": "The bottom point moves faster because it is closer to the ground"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Ignores that opposite sides of a spinning wheel move in opposite directions.",
+          "C": "Confuses this case with the rolling wheel's contact point, which is at rest only when the wheel also translates.",
+          "D": "Invents a dependence on distance to the ground that pure rotation does not have."
+        },
+        "tested_idea": "pure rotation gives equal and opposite rim speeds, centre at rest",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A fan blade tip spins about a fixed centre. How do the speeds of two points on opposite sides of the centre compare?"
+      },
+      {
+        "q_id": "pr_q6",
+        "stem": "For a wheel rolling without slipping at centre speed v, what is the speed of the point at the very top of the wheel?",
+        "options": {
+          "A": "2v",
+          "B": "v",
+          "C": "Zero",
+          "D": "v / 2"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Stops at the centre's speed, missing that the spin adds to it at the top.",
+          "C": "Confuses the top point with the contact point at the bottom, which is the one that reads zero.",
+          "D": "Guesses the spin halves the speed instead of adding an equal amount."
+        },
+        "tested_idea": "rolling = slide plus spin; top point speed is v + Rω = 2v",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A ball rolls without slipping at centre speed v0. How fast is the point at the very top of the ball moving?"
+      },
+      {
+        "q_id": "pr_q7",
+        "stem": "A wheel is launched moving forward with no spin at all on a rough level floor. What happens as kinetic friction acts?",
+        "options": {
+          "A": "Its forward speed decreases and its spin speed increases, until the two match and it starts rolling",
+          "B": "It keeps sliding forever at its launch speed, since friction cannot start a spin",
+          "C": "It stops completely and never rolls",
+          "D": "It speeds up because friction pushes it forward"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes friction can only oppose translation and cannot also apply a spinning torque.",
+          "C": "Assumes friction always brings a slipping body fully to rest rather than to a nonzero rolling speed.",
+          "D": "Reverses the direction kinetic friction acts on a forward-sliding contact."
+        },
+        "tested_idea": "slipping converges to rolling under kinetic friction",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A ball is launched moving forward with no spin on a rough floor. What eventually happens to its motion?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["pr_q1"],
+      "STATE_2": ["pr_q2"],
+      "STATE_3": ["pr_q3"],
+      "STATE_4": ["pr_q4"],
+      "STATE_5": ["pr_q5"],
+      "STATE_6": ["pr_q6"],
+      "STATE_7": ["pr_q7"]
+    },
+    "non_assessed_states": ["STATE_8"]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "slider_controls": {
+      "v0": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 0.9, "label": "v₀" },
+      "R": { "min": 0.15, "max": 0.35, "step": 0.01, "default": 0.25, "label": "R" },
+      "omega0": { "min": 0, "max": 12, "step": 0.5, "default": 3.6, "label": "ω₀" },
+      "mu_k": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "μ_k", "dp": 3 }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The wheel rolls at v = 0.90 m/s; each completed turn advances it exactly one circumference, 2πR = 1.57 m; v and Rω sit equal",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.4, 10.5],
+        "caption": "One turn, one circumference",
+        "show_sliders": true,
+        "formula_overlay": "v = Rω",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0.9, "rolling": true }
+          ],
+          "readouts": ["v", "omega", "Romega"],
+          "controls_visible": ["R"],
+          "revolution_marks": { "body_id": "wheel", "show_bracket": true },
+          "formula_lines": [
+            { "text": "one turn → 2πR", "at_ms": 2300 },
+            { "text": "v = Rω", "at_ms": 2600 }
+          ],
+          "phases": [
+            { "id": "bracket_reveal", "at_ms": 1745, "until_ms": 2050, "glow_focal": "nlb_bracket" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Slow roll at 0.60 m/s: the marked rim point's path comes to a cusp at each ground touch while the centre arrow reads 0.55 m/s and the contact marker holds 0.00 m/s",
+        "visible_elements": [],
+        "camera_position": [1.5, 2.6, 6.5],
+        "caption": "Contact point speed: zero",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0.6, "rolling": true }
+          ],
+          "readouts": ["v", "contact"],
+          "controls_visible": [],
+          "camera_target_m": 0.9,
+          "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
+          "contact_layer": { "body_id": "wheel", "rim_dot": true, "cycloid_trace": true, "point_arrows": ["centre", "bottom"] },
+          "phases": [
+            { "id": "centre_glow", "at_ms": 0, "until_ms": 873, "glow_focal": "nlb_pt_wheel_centre" },
+            { "id": "rim_glow", "at_ms": 873, "until_ms": 1746, "glow_focal": "nlb_rimdot_wheel" },
+            { "id": "contact_glow", "at_ms": 1746, "until_ms": 2618, "glow_focal": "nlb_pt_wheel_bottom_zero" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "A locked wheel skids in at 2.0 m/s, slows at 1.96 m/s squared and stops, leaving a mark; the same wheel then rolls across at a steady 2.0 m/s with no mark and f = 0.00 N",
+        "visible_elements": [],
+        "camera_position": [3.0, 3.6, 10.0],
+        "caption": "Skid slows; roll does not",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": false },
+          "single_lane": true,
+          "lane_gap_m": 0,
+          "bodies": [
+            { "id": "nlb_wheel_locked", "label": "locked wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 2.0, "rotation_locked": true, "mu_s": 0.2, "mu_k": 0.2 },
+            { "id": "nlb_wheel_roll", "label": "rolling wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 2.0, "rolling": true, "activate_at_ms": 1500 }
+          ],
+          "readouts": ["f", "contact"],
+          "controls_visible": [],
+          "contact_layer": { "body_id": "nlb_wheel_locked", "skid_trail": true },
+          "phases": [
+            { "id": "skid_glow", "at_ms": 0, "until_ms": 1020, "glow_focal": "nlb_skid_nlb_wheel_locked" },
+            { "id": "roll_glow", "at_ms": 1500, "until_ms": 1800, "glow_focal": "nlb_body_nlb_wheel_roll" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "The wheel slides at 1.0 m/s with its spokes visibly not turning: the top, centre and bottom all read exactly the same speed",
+        "visible_elements": [],
+        "camera_position": [1.0, 3.0, 8.5],
+        "caption": "Sliding: one speed everywhere",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 1.0, "rotation_locked": true }
+          ],
+          "readouts": ["v"],
+          "controls_visible": [],
+          "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
+          "contact_layer": { "body_id": "wheel", "point_arrows": ["top", "centre", "bottom"] },
+          "phases": [
+            { "id": "top_glow", "at_ms": 300, "until_ms": 600, "glow_focal": "nlb_pt_wheel_top" },
+            { "id": "centre_glow", "at_ms": 600, "until_ms": 900, "glow_focal": "nlb_pt_wheel_centre" },
+            { "id": "bottom_glow", "at_ms": 900, "until_ms": 1200, "glow_focal": "nlb_pt_wheel_bottom" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "The wheel spins on the spot at omega = 4.0 rad/s: the top of the rim moves forward, the bottom moves backward equally fast, and the centre stays at rest",
+        "visible_elements": [],
+        "camera_position": [2.4, 3.0, 8.0],
+        "caption": "Rim turns, centre stays",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0, "omega0_rad_s": 4.0, "mu_s": 0 }
+          ],
+          "controls_visible": [],
+          "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
+          "contact_layer": { "body_id": "wheel", "point_arrows": ["top", "bottom", "centre"] },
+          "phases": [
+            { "id": "top_glow", "at_ms": 300, "until_ms": 600, "glow_focal": "nlb_pt_wheel_top" },
+            { "id": "bottom_glow", "at_ms": 600, "until_ms": 900, "glow_focal": "nlb_pt_wheel_bottom" },
+            { "id": "centre_glow", "at_ms": 900, "until_ms": 1200, "glow_focal": "nlb_pt_wheel_centre_zero" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "The wheel truly rolls, v = 1.0, omega = 4.0, v = Rω: the top reads 1.84 m/s (2v), the centre 0.92 m/s (v), the contact 0.00 m/s (v − Rω)",
+        "visible_elements": [],
+        "camera_position": [1.5, 3.2, 9.0],
+        "caption": "Slide plus spin: roll",
+        "show_sliders": true,
+        "formula_overlay": "v + Rω = 2v,  v − Rω = 0",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 1.0, "rolling": true }
+          ],
+          "readouts": ["v", "omega", "Romega"],
+          "controls_visible": [],
+          "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
+          "contact_layer": { "body_id": "wheel", "point_arrows": ["top", "centre", "bottom"] },
+          "formula_lines": [
+            { "text": "v + Rω = 2v", "at_ms": 1800 },
+            { "text": "v − Rω = 0", "at_ms": 2400 }
+          ],
+          "phases": [
+            { "id": "top_glow", "at_ms": 300, "until_ms": 600, "glow_focal": "nlb_pt_wheel_top" },
+            { "id": "centre_glow", "at_ms": 600, "until_ms": 1000, "glow_focal": "nlb_pt_wheel_centre" },
+            { "id": "contact_glow", "at_ms": 1000, "until_ms": 1400, "glow_focal": "nlb_pt_wheel_bottom_zero" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "label": "The wheel launches at v0 with no spin: kinetic friction slows v and spins omega up until they meet at capture, then it rolls with f = 0.00 N",
+        "visible_elements": [],
+        "camera_position": [1.0, 3.4, 10.0],
+        "caption": "Sliding becomes rolling",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": false },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 2.0, "omega0_rad_s": 0, "rolling": true, "mu_s": 0.05, "mu_k": 0.05 }
+          ],
+          "readouts": ["v", "Romega", "contact", "f"],
+          "controls_visible": ["v0"],
+          "contact_layer": { "body_id": "wheel", "skid_trail": true },
+          "phases": [
+            { "id": "contact_glow", "at_ms": 800, "until_ms": 1361, "glow_focal": "nlb_body_wheel" }
+          ]
+        }
+      },
+      "STATE_8": {
+        "label": "Explore: change speed, radius, starting spin and friction — the wheel rolls or slides as the numbers dictate",
+        "visible_elements": [],
+        "camera_position": [2.0, 3.4, 10.0],
+        "caption": "All controls live",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": false },
+          "bodies": [
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0.9, "omega0_rad_s": 3.6, "rolling": true, "mu_s": 0.05, "mu_k": 0.05 }
+          ],
+          "readouts": ["v", "omega", "Romega", "contact"],
+          "controls_visible": ["v0", "R", "omega0", "mu_k"],
+          "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
+          "revolution_marks": { "body_id": "wheel", "show_bracket": true },
+          "contact_layer": { "body_id": "wheel", "rim_dot": true, "cycloid_trace": true, "point_arrows": ["centre", "bottom"] },
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}
