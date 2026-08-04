@@ -177,6 +177,15 @@ whether `range` should be order-sensitive at all, or whether `masses.r_m` should
 "drum" is an internal identifier and every reader-facing string says "turntable".
 **Owner:** `peter_parker:field3d_surgeon` (the legend half was concept-side and is fixed).
 
+> **ID-collision note (2026-08-05).** `rotmech_a_state.md`'s Desk-D blocker section and
+> `findings_d.md` §6c both instruct this desk to file the timed-formula-surface dependency
+> "as **A-11**". **A-11 was already taken** by the row immediately below — the CRITICAL L-arrow
+> occlusion defect, which founder-proxy Checkpoint B carries as blocking **E-1**. Re-using the id
+> would have merged a blocking engine defect with a separate cross-desk ask in the queue Desk E
+> reads. The formula-surface dependency is therefore filed at the next free id, **A-18**, at the
+> foot of this file. Anyone arriving here from the state doc looking for "A-11 = formula surface"
+> wants **A-18**.
+
 ## A-11 · The L arrow is visually indistinguishable from the static axle pole
 
 **Severity: CRITICAL. Raised by `eye-walker` from cross-state pixel comparison, 2026-08-04.**
@@ -353,3 +362,78 @@ Neither the skeleton nor the physics block states an internal chapter number. js
 the fleet (internal chapters 1–8 already occupied) and authored `chapter: 9`, `section: "9.9"`
 (approximating NCERT §7.9). **All eight Ch.7 concepts across five desks must agree**, so this
 needs one office ruling rather than five independent guesses.
+
+---
+
+## A-18 · `rbr.formula` has no timed reveal — S3 and S7's authored assemblies play as a single flash at t = 0
+
+**Filed 2026-08-05 as the Desk-A-side record of a CROSS-DESK dependency.** Raised by **Desk D's
+architect**, `findings_d.md` **§6c**; the state doc and §6c both name it "A-11", which was already
+taken — see the ID-collision note above. Desk D ranks the ask (`formula_at_ms`) **#7, HIGH,
+cross-desk** on its 0c-3 priority list, and it is the one item on that list that is not about
+Desk D. **Blocks Checkpoint B on `conservation_of_angular_momentum`.**
+
+**Surface:** `rigid_body_rotation` — `rb.formula`, the single Rule-34b Cambria-Math surface.
+
+**What the contract does (re-verified in source on this desk, not taken on report):**
+
+```js
+// applyRigidBodyRotationState, field_3d_renderer.ts:50570-50573
+var ff = document.getElementById("rbr_formula");
+if (ff) {
+    ff.textContent = (typeof rb.formula === "string") ? rb.formula : "";
+    ff.style.display = (typeof rb.formula === "string" && rb.formula.length) ? "block" : "none";
+}
+```
+
+Typed `formula?: string` at `:1050`. `#rbr_formula` is created once at `:50447` and — confirmed by
+grep — has **exactly three references in the whole renderer** (`:50146` comment, `:50447` create,
+`:50570` this write). `updateRigidBodyRotationFrame` never touches it. So the string is written
+once, complete, at state entry. **There is no `at_ms`, no term list, no per-line schedule, and no
+per-frame update path.** Compare `cap_formula`, which at least re-writes per frame (`:7264`) —
+rbr does not even do that.
+
+**What this concept authored against it:**
+
+| State | JSON declares | physics_block §3 times |
+|---|---|---|
+| S3 | `formula: "I₁ω₁ = I₂ω₂"` (`:829`) | `0–3200 ms: formula_surface assembles I₁ω₁ = I₂ω₂` |
+| S7 | `formula: "τₑₓₜ = dL/dt"` (`:983`), **`motion_archetype: "equation-build"`** (`:643`) | `0–4000 ms: formula_surface assembles term-by-term: τ_ext = dL/dt` |
+
+S7 is the sharper case twice over. Its narration-sync table splits the surface across **two**
+windows — `1 → 0–2000 → formula_surface (τ_ext term)` and `2 → 2000–4000 → formula_surface
+(= dL/dt term)` — so sentence 2 glows a term that has been on screen since t = 0 alongside
+sentence 1's. And `equation-build` is S7's **declared Rule-31 archetype**: the assembly is not
+decoration on that state, it is the entire reason S7 counts as a distinct state rather than a
+restatement of S5. With the assembly dead, S7's archetype claim is unearned.
+
+**The failure is silent, in this engine's now-familiar shape** (cf. A-1 HUD glow, A-7 pull-arrow
+reveal, A-8 `min_ring`, and the `RBR_RO_META` unknown-token skip the desk was warned about): the
+authored string renders correctly, the state looks right, THE EYE sees a formula on screen, `tsc`
+and `validate:concepts` pass, and **nothing anywhere reports that a beat specified as an assembly
+played as a flash**. Desk A's own ten findings did not catch it; it took Desk D's architect
+reading the contract from the other side.
+
+**The ask: `formula_at_ms`** — a timed reveal on the one existing formula surface. **Rule 40a —
+do not build this from scratch; two implementations already exist in this same file:**
+
+- `pef.formula_at_ms` (`:9149`, `:9200`) — a whole-surface reveal instant via `userData._revealAt`,
+  defaulting to 0 when absent. This is the minimum viable port and matches S3's need exactly.
+- `nlb.formula_lines?: Array<{ text: string; at_ms?: number }>` (typed `:1644`, implemented
+  `:45148–45158`, `:45442`, `:46308`) — **per-line staged reveal on the ONE surface**, with the
+  typedef's own comment noting it stays Rule-34b-compliant because it is still a single surface.
+  This is the shape S7's term-by-term assembly needs.
+
+Porting `formula_lines`-style staging to rbr covers both states; `formula_at_ms` alone covers S3
+but leaves S7's declared archetype only half-served. Desk E's call, but the precedent is the
+argument for the richer one.
+
+**Backwards compatibility:** every existing rbr state authors a bare `formula` string and must keep
+rendering at t = 0 with no edit — absent timing ⇒ present from t = 0, exactly as `readout_at_ms`
+(`:1046–1048`) and `pef.formula_at_ms` already behave in this file.
+
+**Probe:** capture S7 at t = 500 and t = 3500 under `SET_TIME_FREEZE`; assert `#rbr_formula`'s
+rendered text differs between the two. Today it is byte-identical.
+
+**Owner:** `peter_parker:field3d_surgeon` (Desk E, `feat/rotmech-0c3`).
+**Blocks:** Desk A Checkpoint B on `conservation_of_angular_momentum` (S3 + S7).

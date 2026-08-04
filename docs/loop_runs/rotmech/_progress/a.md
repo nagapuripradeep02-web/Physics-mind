@@ -214,7 +214,51 @@ after the audit narrowed their scope.
 - Cache work used `npm run cache:clear:scoped` exclusively; the global 4-table wipe was never run.
 - Narration audio is absent by design (Rule 30h, and `tts:*` is forbidden here). Not a defect.
 
+---
+
+## 2026-08-05 · S3 and S7 BLOCKED — dead formula-assembly archetype (found by Desk D)
+
+**Checkpoint B is NOT to be run on this concept until `formula_at_ms` lands.** This arrived after
+the JSON was committed (`1d5b693`) and is independent of the two engine defects already blocking
+(A-11/E-1, A-12/E-2).
+
+| State | Status | Why |
+|---|---|---|
+| **STATE_3** | **BLOCKED** | physics_block §3 times `formula_surface` assembling `I₁ω₁ = I₂ω₂` over 0–3200 ms. The surface has no timing — the whole equation appears complete at t = 0. |
+| **STATE_7** | **BLOCKED** | Same, worse. `motion_archetype: "equation-build"` is S7's **declared Rule-31 archetype**, and its narration-sync table stages the surface across two windows (`τ_ext` term 0–2000, `= dL/dt` term 2000–4000). Neither the staging nor the archetype happens. |
+
+**Source of the finding:** Desk D's `findings_d.md` **§6c**, filed as a cross-desk alert. Desk A's
+own ten engine findings did not catch it — Desk D's architect read the contract from the other
+side. Re-verified independently on this desk before recording: `rb.formula` is typed `string`
+(`field_3d_renderer.ts:1050`) and written once per state apply at `:50570-50573`; `#rbr_formula`
+has exactly three references in the entire renderer and `updateRigidBodyRotationFrame` is not one
+of them, so there is no per-frame update path either.
+
+**Filed as `A-18`, not `A-11`.** `rotmech_a_state.md` and `findings_d.md` §6c both say to file it
+as A-11 — but **A-11 was already assigned** on this desk to the CRITICAL L-arrow occlusion defect
+that founder-proxy carries as blocking **E-1**. Re-using the id would have collided two unrelated
+blockers in the queue Desk E reads. A-18 is the next free id; an ID-collision note now sits at the
+head of A-11 in `findings_a.md` redirecting anyone who arrives looking for "A-11 = formula
+surface". **Desk D and the office should be told the id moved.**
+
+**Not fixable here, and not worth routing around.** Guardrails 5 + 6 — the renderer is untouchable
+on this desk and Desk E is the sole engine owner. There is also no honest concept-side workaround:
+authoring the assembly away would delete S7's declared archetype, and Rule 31 is what makes S7 a
+distinct state rather than a restatement of S5.
+
+**One thing Desk E should not have to rediscover** (recorded in A-18): the mechanism already
+exists twice in the same file — `pef.formula_at_ms` (`:9149`) for a whole-surface reveal instant,
+and `nlb.formula_lines[].at_ms` (`:1644`, `:45148–45158`) for **per-line staged reveal on the ONE
+Rule-34b surface**. This is a port, not a new build (Rule 40a). The `formula_lines` shape covers
+S7; `formula_at_ms` alone covers S3 only.
+
+**Sealing status unchanged and now doubly blocked:** A-11/E-1 (S6's arrow), A-12/E-2 (S2's cause
+beat), and now A-18 (S3 + S7). Five of eight states have a blocking engine dependency.
+
 ### Next
+
+**STOP. No Checkpoint B on `conservation_of_angular_momentum`** until `formula_at_ms` lands and
+this desk syncs — then re-verify S3/S7 and hand back to founder-proxy along with E-1/E-2.
 
 Wave 2 (`rotational_work_energy`) stays **BLOCKED on 0c-3** — it needs a `W = τ·θ` accumulator
 and a `θ` readout, and `RBR_RO_META` implements neither. Do not start it until 0c-3 merges and
