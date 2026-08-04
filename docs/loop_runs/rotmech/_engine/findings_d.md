@@ -58,6 +58,47 @@ whose canonical picture is *a torque applied to a stationary wheel, which then a
 τ may add to L as well as subtract from it. The rest clamp must survive as a *brake-only*
 behaviour, not as a property of the integrator.
 
+**Good news that changes how this should be scoped: `applied_torque_Nm` has ZERO consumers.**
+`git log --all -S "applied_torque_Nm"` returns only the 0c-1 build commit (`d928f01`) and this
+desk's docs commits, and no file under `src/data/` references it. `conservation_of_angular_momentum`
+— the only sealed design targeting this scenario — uses `source: 'brake'`, a different branch. So making
+`applied_torque_Nm` signed is a **redefinition of a field nothing consumes, not an addition
+alongside a live one.** Back-compat risk is nil provided the change is confined to the
+`applied_torque` branch and the `brake` branch is left byte-identical. That is a materially cheaper
+job than the "every field is optional, absent must mean today's behaviour byte-identically"
+discipline usually implies — and it means the semantics can be chosen for what the concepts need
+rather than for what an existing consumer expects.
+
+**A precise distinction on starting from rest, because it splits the work in two.** An **authored**
+`omega0_rad_s: 0` already works: `:50497` resolves it through `rbrNum` (`:49828`), which is a
+`typeof`/`isFinite` check, so a literal 0 is honoured rather than falling back to the 1.5 default.
+Guided states seeded at rest are therefore authorable **today**, and only §1's signed torque is
+needed to make them move. The **slider** is a separate matter and is blocked at two independent
+sites: `RBR_SLIDER_SPEC.omega0.min = 0.5` (`:49999`) and the live-write guard
+`if (!(value > 0)) return;` (`:50075`, which rejects a written 0 even if the slider min were
+lowered). **Both sites must change together, or the floor moves and nothing happens.** Desk D's two
+concepts sent contradictory floor requests at Checkpoint A; the reconciled ask is a single one —
+lower the floor to 0 at both sites — and it affects the explore state only.
+
+**One torque source at a time is a STRUCTURAL limit, not a closed-form detail.** The engine holds a
+single scalar `eng.tau` and a single engage window (`eng.brakeOnMs` / `eng.brakeOffMs`, set at
+`:50520-50534`); the `src` branch picks *either* `brake` *or* `applied_torque` and writes both
+fields once. So **a drive torque and a brake torque cannot act at the same time** — the τ_net tug
+that both Desk-D concepts want in their explore state (drive vs brake, net τ decides) is not a
+generalisation of the closed form, it is a second source. Desk E should price this deliberately:
+either a `sources[]` list summing to τ_net, or an explicit decision that simultaneity is out of
+scope and both explore states are re-designed around a single signed control. **Do not let this be
+discovered mid-build** — it is the difference between widening a number and widening a structure.
+
+**The α metric must be defined ONCE, in the engine, for both concepts.** Desk D's two skeletons
+independently specified it two different ways — a per-step finite difference of ω, and τ_signed/I.
+Those agree in steady drive and disagree during an r-drag (where I changes under a constant τ) and
+at every engage/release edge. They are a single bought row; Desk E must ship one definition.
+Recommendation, from the shape of the rest of the surface: **derive α from the same post-step
+snapshot as everything else** (`rbrWriteReadouts`, `:50219`) so it can never be a pre-step value
+beside a post-step one, and blank it across re-pins exactly as the other rows are. Which formula
+wins is a physics call for the office; that it is ONE formula is not negotiable.
+
 **Invariants any fix must preserve** (these are why the current form is shaped as it is, and they
 are not negotiable):
 - The scenario is **accumulator-free**. `L(t)`, `ω(t)`, `θ(t)` are closed forms of
@@ -177,6 +218,26 @@ magnitude-to-length maps differ (m/s vs N) and must not be shared.
 radius. Note the arrow-length scaling caution already on record for this scenario — the guided
 range and the explore-slider corners differ by more than a fixed linear map tolerates (see
 `conservation_of_angular_momentum`'s physics block, callout 4).
+
+---
+
+## 4b · MEDIUM — the actuator-travel animation is wired to the BRAKE PAD only
+
+Both Desk-D concepts render the torque's agent as a visible actuator that moves in and makes
+contact (§1 needs a rendered cause; Rule 32a needs it to move *before* the effect). The brake pad
+does exactly this today — `pad_travel_ms`, park pose → contact pose, at `:50729-50744`.
+
+**None of it reaches the applied-torque source.** The travel block is gated on the
+`rbr_brake_pad` mesh and driven by `eng.padEngageMs`, which is assigned **only inside the `brake`
+branch** (`:50521-50526`). The `applied_torque` branch sets `brakeOnMs`/`brakeOffMs` and leaves
+`padEngageMs` null (`:50533`), so `eMs` falls to `Infinity` and the actuator never travels. There
+is also no drive-wheel mesh of any kind.
+
+**What 0c-3 must provide:** a drive actuator that travels and makes contact on the same timing
+contract the pad already uses — ideally by lifting the travel logic off the brake-pad mesh onto
+whichever actuator the state's torque source names, rather than duplicating it. **Desk D's two
+skeletons forked here** (one specified a floating tangential arrow, the other a motor wheel that
+translates in); the reconciled ask is ONE actuator mesh, with the rim force arrow layered on it.
 
 ---
 
