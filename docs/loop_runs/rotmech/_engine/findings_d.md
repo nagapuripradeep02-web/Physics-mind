@@ -146,11 +146,25 @@ spins), and can reach a founder seal with α never once appearing on screen.** O
 the sim against the physics block catches it. That is the whole reason this desk did no wave-1
 authoring.
 
-**What 0c-3 must provide:** `theta` and `alpha` rows in `RBR_RO_META`, with units and dp settled
-(see §5). **Please also make the skip loud** — an unknown readout token should at minimum
+**What 0c-3 must provide:** `theta`, `alpha` and `tau` rows in `RBR_RO_META`, with units and dp
+settled (see §5). **Please also make the skip loud** — an unknown readout token should at minimum
 `console.warn` once per state so the next desk to hit this fails visibly rather than silently.
 That warning is worth more than the rows themselves: it converts an invisible authoring class of
 error into a visible one for every future rbr concept, not just these two.
+
+> **BINDING SEMANTIC on the new `tau` row — decided at Checkpoint A cycle 2, and it costs nothing
+> to honour if it is honoured from the start.** **`τ` must display the NET torque the integrator
+> actually resolved, never the authored schedule value.** The two diverge wherever the rest clamp
+> is active: at `tau_eq_i_alpha`'s S6 rest clamp the authored value would print **τ = −1.53 beside
+> α = 0.00 and I = 3.06** — τ = Iα visibly contradicted, in the archived frozen frame, in the
+> concept whose atomic claim *is* τ = Iα. The same defect is live at its explore state's static
+> hold, which is that concept's named teacher demo. It also recurs for any future concept using the
+> clamp.
+>
+> This is zero extra engine work — the integrator already knows the resolved value; it is a choice
+> about which number reaches the row. **Made wrong it is not visible until a human reads a frozen
+> frame against the physics**, which is this desk's founding lesson (§0). Desk E: wire the row to
+> the resolved torque from the same post-step snapshot as the rest (`:50219`).
 
 ---
 
