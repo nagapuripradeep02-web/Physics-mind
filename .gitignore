@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+env.local*
+# secrets stay out even when encrypted — a passphrase is one leak away from plaintext
+*.gpg
+*.asc
 
 # vercel
 .vercel

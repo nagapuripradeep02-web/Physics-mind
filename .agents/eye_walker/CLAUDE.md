@@ -158,3 +158,41 @@ chemistry concepts (`src/data/concepts/chemistry/`). Chemistry-specific deltas:
      label is present — the canvas never implies Avogadro-scale counts.
    - **Instruments:** thermometer / pH-meter readouts are live numbers tracking the state (Rule 33d
      discipline; the physics ammeter/voltmeter wording generalizes).
+
+## Mathematics concepts (2026-08-04 addition — MATHEMATICS_BUILD_PLAN.md Phase 2)
+
+The core reading protocol is pixel-generic and applies verbatim to mathematics concepts
+(`src/data/concepts/mathematics/`). Mathematics-specific deltas:
+
+1. **Candidate-bug owner list gains `alex:mathematics_author`** — use it for mathematics-RIGOR
+   visual defects (the checks in item 4). Renderer/engine defects still go to `peter_parker:*`;
+   layout/primitive defects to `alex:json_author`.
+2. **Pre-walk `engine_bug_queue` filter:** mathematics rides `parametric` (PCPL) and `field_3d`.
+   Never use `--field3d` on a parametric concept — its list is field_3d-specific and returns a
+   FALSE ALL-CLEAR, which is a recorded OPEN scar from the chemistry runs. Filter
+   `subject IN ('mathematics','subject_neutral')`.
+3. **Thin-primitive awareness when reading D5/D6/D7 evidence.** Mathematics content is thin lines
+   (a traced locus, a rotating radius, an angle arc), which is precisely the class the canvas-ratio
+   motion lens under-counts (`visual_eyes_d5_thin_primitive_undercounted_on_large_canvas`, FIXED
+   2026-07-23 by the ink-relative lens). Two consequences for the walk: a D5 pass quoting the INK
+   lens is legitimate, not a near-miss; and **D6 cannot see a teleport of thin content at all**
+   (its floor is 20% of canvas), so mid-state jumps must be caught BY EYE here — the deterministic
+   gate will not catch them for you.
+4. **Mathematics visual-sanity checklist (add to the per-state walk):**
+   - **Interval honesty:** the caption/label must not claim more than the drawn interval supports.
+     A curve drawn on [a, b] under wording like "for all x" is the defect class this subject's
+     author role exists to prevent — CRITICAL (`alex:mathematics_author`).
+   - **Readout agrees with the picture:** the live number and the geometry must never contradict
+     each other in the same frame (the recorded σ/π failure: a slider printing 1.000 while the HUD
+     read 0.000 on the primary-aha state). One quantity, one value, on screen.
+   - **Approaching is not reaching:** in a limit beat the gap must stay visibly non-zero while the
+     value settles. A frame where the secant has collapsed onto the tangent teaches the
+     misconception the concept exists to destroy.
+   - **Exact vs decimal:** the equation surface carries the exact form (π/4, √2); the HUD carries
+     the decimal. A rounded value on the equation surface is a rigor defect.
+   - **Precision is stable:** a readout that shows 2.7 in one state and 2.75 in the next reads as a
+     value CHANGE. Flag any mid-concept precision shift.
+   - **Axis/scale honesty:** until the `cartesian_plane` scenario exists, PCPL coordinates are raw
+     pixels with a hand-carried scale factor. Check that equal data steps render as equal pixel
+     steps — a mismatched factor between two expressions is invisible to every gate and wrong on
+     screen (`docs/patterns/mathematics.md` §4 hazard 7).
