@@ -35,6 +35,23 @@
 --       list will invalidate live rows.
 --   SELECT DISTINCT subject FROM engine_bug_queue;
 --     → must be a subset of ('physics','chemistry','subject_neutral').
+--
+-- ⚠ RUN THE PRE-FLIGHT. IT ALREADY CAUGHT A REAL BUG IN THIS FILE.
+-- The first draft of the owner_cluster list below OMITTED
+-- `peter_parker:runtime_generation`, which 27 live rows use. Because Step 1 does
+-- DROP CONSTRAINT and then ADD CONSTRAINT, the DROP would have SUCCEEDED and the
+-- ADD would have failed on those rows — leaving engine_bug_queue with NO
+-- owner_cluster constraint at all. A restated CHECK is only ever as good as the
+-- census taken immediately before it; never hand-copy the list from a previous
+-- migration without re-running the census (that is exactly how the omission
+-- happened here).
+--
+-- Census taken 2026-08-04 against dev (681 rows):
+--   peter_parker:renderer_primitives 278 · peter_parker:field3d_surgeon 126 ·
+--   alex:json_author 98 · alex:architect 67 · peter_parker:visual_validator 50 ·
+--   peter_parker:runtime_generation 27 · ambiguous 15 · alex:physics_author 10 ·
+--   alex:chemistry_author 10
+--   subject: physics 497 · chemistry 106 · subject_neutral 78
 -- ═══════════════════════════════════════════════════════════════════════════
 
 -- ── Step 1: allow the mathematics author as an owner cluster ─────────────────
@@ -57,8 +74,9 @@ ALTER TABLE engine_bug_queue
             'alex:mathematics_author',       -- added 2026-08-04 (third subject; shipped WITH the role)
             'alex:json_author',
             'peter_parker:renderer_primitives',
-            'peter_parker:visual_validator',  -- 39 rows depend on this; the UI array dropped it
-            'peter_parker:field3d_surgeon',   -- added 2026-07-27 (active on master)
+            'peter_parker:runtime_generation', -- 27 live rows (was OMITTED in this file's first draft)
+            'peter_parker:visual_validator',   -- 50 live rows; the admin UI array dropped it
+            'peter_parker:field3d_surgeon',    -- added 2026-07-27 (active on master)
             'ambiguous'
         ));
 
