@@ -22,12 +22,93 @@
 | 2.6 | THE EYE made subject-correct (`2d4cb06`) | ✅ 2026-08-05 |
 | — | DB migration authored + pre-flighted (`84e85bc`) | ✅ **APPLIED 2026-08-05** by the founder to dev `dxwpkjfypzxrzgbevfnx`, verbatim. Verified after: 681 rows intact, 9 owners, both CHECKs carry the mathematics values. `alex:mathematics_author` + `subject='mathematics'` are now writable. |
 | P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | ☐ **BLOCKS ranked P1 #1–#3** |
-| 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | 🟡 **AUTHORING-COMPLETE, AWAITING FOUNDER** on desk `feat/mathematics-unit-circle`. Skeleton + mathematics block + TS engine + JSON committed. Gate chain run in full: THE EYE ×4 · `quality_auditor` (FAIL → fixed) · `eye_walker` ×3 · founder_proxy Checkpoint B (**FIX**, on 2 platform blockers only). 14 scar rows filed. NOT approved — `visual:approve` is founder-only. |
+| 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | ✅ **BASELINE-LOCKED 2026-08-06**, zero known defects encoded. Was 🟡 AWAITING FOUNDER; on desk `feat/mathematics-unit-circle`. Skeleton + mathematics block + TS engine + JSON committed. Gate chain run in full: THE EYE ×4 · `quality_auditor` (FAIL → fixed) · `eye_walker` ×3 · founder_proxy Checkpoint B (**FIX**, on 2 platform blockers only). 18 scar rows filed, 15 closed. Both Rule-40 platform blockers fixed on master (`084f06c`, `e0734a9`). |
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
 The first concept is in flight; nothing is authored off-list.**
+
+---
+
+## 🔧 SESSION — fix all: the two platform blockers land on master, and the concept re-baselines clean (2026-08-05/06, master + desk `feat/mathematics-unit-circle`)
+
+> Founder directive: **fix all.** Both Rule-40 platform blockers, the shared tooling defect, every
+> remaining cosmetic, and the scar-list hygiene. `unit_circle_to_sine_wave` is re-approved on a build
+> with **zero known defects encoded** — the previous baseline knowingly carried three.
+
+### Two platform commits on master, separately (Rule 40)
+
+**`084f06c` — the three missing primitive brackets in `parametric_renderer.ts`.** All three were found
+by walking THE EYE's frames on the first mathematics concept; all three bind shipped physics concepts.
+
+| Fix | What it repairs |
+|---|---|
+| `drawCanvasSlider` reads the live choreographed value before a drag seizes | the caption and knob no longer print the untouched seed while the HUD tracks live — **two readouts of one quantity disagreeing in one frame.** Repairs `scalar_vs_vector` and `resultant_direction` too |
+| `drawVector` + `drawAngleArc` consume `PM_animationGate` | `appear_at_ms` is no longer silently inert on a vector or an arc, so a reveal chain stops half-firing |
+| `drawVector` consumes `PM_focalEmphasis`, and offsets a near-vertical label ACROSS its segment | a vector can finally brighten as focal / dim as a peer (Rule 29); the `y` on a height segment stops being bisected by its own stroke and read as a stray arrowhead |
+
+The slider fix is the one the scar row said had no alternative: `visible_controls`, the remedy its own
+DO clause prescribed, **does not exist on this renderer** (zero hits), and `drawCanvasSlider` has no
+animation gate, so a PCPL slider cannot be time-gated at all. The engine fix was the only path.
+
+**`e0734a9` — `check-layout-overlap.mjs`.** It measured the **raw template**: a HUD row authored as
+`"θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)"` is 45 source characters and renders as 19, so boxes
+came out up to 5× too wide. Measured before/after on this concept: `hud_2` was **x = −19..319**, a
+338 px box running off the left edge of a 760 px canvas; it is now **x = 73..227**. Ten reported
+collisions become zero and **all ten were false** — worse than reporting nothing, because it trains
+authors to ignore the output. It also could not open a mathematics concept at all (ENOENT against the
+flat dir): the same blindness that left chemistry with no CI for five sessions, so the namespaces are
+now enumerated in one list rather than added one incident at a time.
+
+### THE LESSON: the fix that introduced the defect, at the pose nobody samples
+
+The re-approval walk returned **APPROVE-READY: NO** on exactly one frame class — and the defect was
+created by the previous commit's own fix. Moving `π − θ` off the arc's midpoint label to a **fixed**
+position cleared the frozen pin at 62° and was swallowed by the mirror point at 45°. That is the
+ping-pong's lower turning point, where velocity is zero and the eye rests, and it is the pose the
+symbol is *introduced* in — the entire 2400→4000 ms mirror build happens there. It rendered as `– θ`.
+
+**A fixed label annotating a moving body must clear that body's entire authored range, not its pose at
+the pin — and a ping-pong DWELLS at its endpoints, so those are the most-seen poses, not the least.**
+The symbol went back onto the arc it names, at radius 116 so its midpoint label rides outside the rim,
+verified by computation across the whole 45–80° range against both the mirror point and the point's
+own height segment.
+
+### Scar hygiene — 15 closed, 5 left open on purpose
+
+A row that is fixed but left OPEN is the defect this session had already reported once:
+`parametric_from_expr_to_expr_never_consumed` sat OPEN long after `drawVector` began consuming both
+fields, and would have steered an author away from the very fields this concept is built on. Closures
+set status + `fixed_in_files` only — `root_cause` and `probe_logic` are the incident's evidence and
+must survive its closure so a recurrence stays recognisable.
+
+**Left open deliberately, each with its reason in `_close_engine_bug_queue_unit_circle_fixes.ts`:**
+`glow_focus` still cannot resolve an expression-driven vector or a trace, and still ignores its
+target's gate (both worked around in authoring, engine untouched) · `drawAngleArc` still places its
+label at mid-angle blind to what is drawn there · the superseded-run-dir row is process, not code ·
+and **`eye_pixel_gates_pass_over_a_body_frozen_at_the_renderer_default_coordinate`** — THE EYE is
+unchanged and still cannot see a body that fails to move. That is the row that most deserves its gate.
+
+### Verification
+
+`tsc` **0** · `validate:concepts` **149/149** · `validate:chemistry` **10/10** ·
+`validate:mathematics` **1/1** · `npm test` **327/327** · `check:agents` **15/15** ·
+`check:renderer-syntax` + `check:renderer-backticks` clean · `check-layout-overlap` **0 collisions
+across 8 states** · THE EYE **50/50** (35 pixel + 15 H2 regression).
+
+An eye_walker read all 203 frames of the pre-fix build and confirmed every platform fix in pixels —
+including that the new focal-dimming **broke nothing**: apparatus recedes, the taught element carries
+the eye, and nothing load-bearing became too faint. Baselines re-approved on run `20260806-000750`.
+
+### ⏭ NEXT — two founder actions
+
+1. **Nothing is pushed.** master carries two platform commits; the desk has diverged and needs
+   `--force-with-lease`.
+2. **The fleet re-baseline.** `drawVector`'s focal channel dims non-focal vectors on every PCPL
+   concept declaring a `focal_primitive_id`, and the slider fix changes every choreographed caption.
+   Those H2 diffs are **expected and correct, not regressions** — but resolving them ends in
+   `visual:approve` across the fleet, which is founder-only (Rule 17).
 
 ---
 
