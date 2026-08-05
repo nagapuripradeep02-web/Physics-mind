@@ -501,3 +501,134 @@ Raised at Checkpoint A cycle 2 and not owned by either skeleton alone:
 (Cloudflare 525/522) and ran against cycle 1's verbatim 157-row union instead. That union is one
 cycle old. **Anyone re-querying before the build should diff it forward** — if rows landed in the
 interval, neither skeleton has seen them.
+
+---
+
+## PASS 3 — E4 LANDING CHECK. Verification of landed code, plus ONE escape from the freeze.
+
+**Filed 2026-08-05.** PASS 2 said "no PASS 3 is owed" and that was true of *design*. This is not a
+scope reopen: `ENGINE_LANDING_NOTICE.md` §5 asks each desk to report back on the dispatches it
+verifies, and E4 — this desk's own §1 — has landed. Everything below was read against the code, not
+against the notice.
+
+**All `file:line` refs in this section are against `origin/feat/rotmech-0c3` @ `6c5ed6d`.** They do
+**not** match PASS 1/2's refs, which were taken pre-E1; E1–E4 shifted the implementation down ~1.1k
+lines (`rbrLAt` `:49937` → the breakpoint walk; `RBR_RO_META` `:50147` → `:50663`).
+
+**Landing state.** E4 = `bf7dac1`, on `feat/rotmech-0c3`, in PR #29 — **OPEN, not merged**.
+**E5 confirmed NOT landed:** `RBR_RO_META` (`:50663`) is still exactly the six rows
+`I · ω · L · KE · dL/dt · F`, `reference_marks[].surface` (`:1060`) is still the five-member union,
+and `rbrApplyParam` (`:50576`) still has no applied-torque token. Both concepts stay blocked; no
+JSON authored, nothing seeded.
+
+### A · Both physics blocks CONFORM to the landed E4 shape. No edits owed to either.
+
+| Physics-block claim | Landed E4 | |
+|---|---|---|
+| a drive raises \|L\| from rest; α reachable at a positive authored value | signed `torque_Nm` / `applied_torque_Nm`; `rbrLAt` is a breakpoint walk over per-source engaged windows | ✓ |
+| the brake is a **magnitude**, opposes the existing spin, never reverses it (`τ_brake = −sign(ω)·τ`) | `var tv = (kind === "brake") ? Math.abs(traw) : traw;` (`:51103`) | ✓ exact |
+| ω = 0 with both engaged = **static hold with breakaway**, `sign(L)` never consulted at zero | same semantic, same words, in E4's commit body | ✓ |
+| `ω₀ = 0` entry seeds — `rotational_kinematics` S3/S7/S8, `tau_eq_i_alpha` S4/S5/S7 — **and** an explore slider reaching 0 | floor lowered to 0 at both sites (`rbrApplyParam` guard is now `value >= 0`, `:50594`) | ✓ |
+| at most 2 concurrent sources anywhere in either concept | `RBR_MAX_SOURCES = 8` (`:50148`) | ✓ |
+| contact **is** the engage instant, bound to a `scenario_cue` | `engage_cue` / `release_cue` per `sources[]` entry (`:51105–51107`) | ✓ |
+| θ and `theta0_rad` are BUILT; design θ beats against the existing integrator | unchanged by E4; the three wrong contract comments are corrected in it | ✓ |
+
+Every number in both blocks re-derived clean against the landed integrator — I = 0.50 + 2(2.0)(0.80²)
+= 3.06 · τ = 1.84 / 1.53 N·m · `rotational_kinematics` S7 tick spacing 0.30 / 1.20 / 2.70 rad = 1 : 3 : 5 ·
+`tau_eq_i_alpha` S2 end 5.56 rad/s · S4 F = 0.60 / 0.55 = 1.09 N. **E4 changes no authored value in
+either concept.**
+
+Two open items close as a result:
+
+- **The P1-8 declared fallback is DEAD.** `sources[]` shipped, so `tau_eq_i_alpha`'s drive-vs-brake
+  tug stands as designed and the signed-single-control fallback is not taken. **P2-B goes with it** —
+  the Rule-38b breach it carried (signed τ on a core-ring control while the negative half is
+  extended-ring) existed *only* in the fallback branch. Strike both from the Checkpoint C carry list.
+- **PASS 2 cross-document item 3 (the `sources[]` back-compat clause) is SETTLED.** Absent
+  `sources[]` leaves the scalar path byte-identical — 125,280 L samples + 125,280 θ samples, all
+  `Object.is`-equal. Desk A still owes the desk-verification on `conservation_of_angular_momentum`;
+  E4 is LANDED, not yet VERIFIED.
+
+### B · THE ESCAPE — §4b never reached the frozen scope, and it blocks 11 of 17 states
+
+**§4b (the actuator-travel animation is wired to the BRAKE PAD only, and there is no drive-wheel
+mesh of any kind) is in NO dispatch, NO §C row, and NO §D row of `FROZEN_SCOPE_0c3.md`.**
+
+**The omission is this desk's, not Desk E's.** §8's priority table has nine rows and §4b is not one
+of them; PASS 2 then told Desk E *"freeze from §8. It is complete."* Desk E did exactly that. §4b was
+written as MEDIUM on 2026-08-04 *before* Checkpoint A cycle 2 reconciled the two skeletons onto ONE
+motor drive wheel — the reconciliation is what made it structural, and its severity was never
+re-rated in §8.
+
+Verified against the landed E4 code, not inferred:
+
+- `grep -n "rbr_drive|driveWheel|drive_wheel|rbr_motor|motorWheel"` over
+  `origin/feat/rotmech-0c3:src/lib/renderers/field_3d_renderer.ts` → **zero hits.** There is still no
+  drive mesh.
+- `padEngageMs` is assigned in exactly two config paths, both brake: the **first** `brake` entry of
+  `sources[]` (`:51114–51117`) and the scalar `tau_brake_Nm` branch (`:51123`). A `drive` entry sets
+  nothing visual at all.
+- The `applied_torque` branch's own comment reads *"A CONSTANT tau_ext **with no pad**"* (`:51131`).
+- `sources[]` entries carry **no travel field**. `pad_travel_ms` is singular and top-level (`:1021`,
+  read at `:51057`), and the code comment concedes the pad actuator and the `tau_brake` slider *"have
+  no notion of a list"* (`:51112`).
+- `grep -i "drive wheel|motor|actuator|pad_travel|rendered agent"` over `FROZEN_SCOPE_0c3.md` →
+  **zero hits.**
+
+**Cost if E1–E9 ship without it.** Every drive state loses its Rule-32a cause beat —
+`rotational_kinematics` S3/S4/S7/S8/S9 and `tau_eq_i_alpha` S2/S3/S4/S5/S7/S8, **11 of the 17
+guided + explore states across both concepts**. Both physics blocks open every one of those states
+the same way ("`drive_wheel` translates in … contact = engage"), 700–900 ms of authored cause each.
+`tau_eq_i_alpha` S2 additionally binds P1-1 ("no frame before this draws a force while τ reads 0.00")
+to the contact instant, and it is unenforceable with no actuator to draw. It also strands **PASS 2
+cross-document item 1** — the merge cannot "pick one visibility rule at build time" for a mesh that
+is not in scope.
+
+And it fails exactly as §0 warns: with no drive actuator the states still validate, still seed, still
+render, still pass THE EYE, and read as finished.
+
+**The ask, unchanged in shape from §4b, re-rated in severity:**
+
+> **`rbr_drive_torque_has_no_rendered_actuator` — BLOCKING both Desk-D concepts** (was MEDIUM).
+> ONE actuator mesh, travelling on the same timing contract the pad already uses, with the rim force
+> arrow layered on it — ideally by lifting the travel logic off the `rbr_brake_pad` mesh onto whichever
+> actuator the state's source names, rather than duplicating it. **New, from E4's landed shape:** it
+> needs a **per-entry** travel field on `sources[]`, since the singular `pad_travel_ms` cannot address
+> a list. Desk D takes the drive wheel's single visibility rule as the reconciled one (Checkpoint A
+> cycle 2, item 2): in contact whenever the state's drive torque is non-zero, parked otherwise.
+
+This desk raises it, does not re-scope 0c-3. If it cannot be bought in this build, say so and both
+concepts get re-designed around a driveless cause beat — that is a Checkpoint-A reopen on two
+`DESIGN_OK` skeletons, and it is cheaper to know now than after E5.
+
+### C · Two precision asks on E5, cheap before it dispatches and expensive after
+
+1. **`rotational_kinematics`'s explore control is α, not τ.** E5's frozen text buys *"the
+   applied-torque control token."* With I fixed at 3.06 for that whole concept, α = τ/3.06 exactly, so
+   an α-labelled row is a relabel + rescale of that same token, not a second control. But Rule 31
+   requires the explore state to expose **the taught variable**, and this concept's taught variable is
+   α — Rule 25 holds only because "torque" and "moment of inertia" appear nowhere in its narration. A
+   τ-labelled slider in its sandbox introduces an untaught term at the last state. Confirm the token
+   carries an authored label + scale, or add the α form explicitly. (§5 left this as "whatever drives
+   α"; E5 resolved it to the torque token alone.)
+2. **`tau_eq_i_alpha` S8 is a second consumer of E8**, which currently names only Desk A's S8.
+   Verified: S8 authors entry `tau_app = 0, tau_brake = 0`, so the `Math.abs(tv) > 0` guard (`:51104`)
+   drops both entries and `eng.sources` starts empty. `rbrSetBrakeSource` (`:50564`) *does* create the
+   brake entry on a live drag, so the **physics** of the tug is live — but `rbrApplyVisibility` still
+   never re-runs, so the pad is invisible while it brakes. Same defect, one more consumer; no new row
+   needed, just the second name on E8. (This also re-confirms the drive half is E5's: `rbrApplyParam`
+   has no applied-torque token, so S8's *primary* taught-variable drag does not exist yet.)
+
+### D · Landing-notice items absorbed by this desk
+
+- **§1 (re-seed + re-EYE every sealed concept, diff against your OWN frames) is a no-op here.** This
+  desk has sealed nothing, has authored no JSON, and has no seed script. Recorded so the next session
+  does not go looking for drift that cannot exist.
+- **§4 trap 2, pre-loaded for `json_author`:** this desk's seed scripts must write `field_3d_config`,
+  not `physics_config: { epic_l_path }` alone, or `[D5]` abstains on exactly the rest-seeded states
+  E4 exists to enable. `rigid_body_rotation` **has** a motion branch, so a `?` on the `Motion map:`
+  line would be a real defect here, never by design.
+- **§4 trap 1:** `md5sum` the dense frames on every EYE run until
+  `eye_dense_motion_gates_all_pass_by_construction_on_a_totally_static_scene` is fixed. One hash
+  across the series = a dead scene whatever the headline says.
+- **Verifier duties accepted:** E6, E8, E9 on this desk's two concepts, once E4/E5 clear it.

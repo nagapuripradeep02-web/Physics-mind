@@ -1,6 +1,6 @@
 # rotmech desk D — loop state
 
-updated: 2026-08-04
+updated: 2026-08-05
 desk: `feat/rotmech-d` · `C:\Tutor\physics-mind-rotmech-d`
 cut from: `4b289d4` (the Phase-0d pre-registration commit)
 review_port: **8113**
@@ -11,8 +11,31 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 
 | Wave | Concept | Status |
 |---|---|---|
-| 2 | `rotational_kinematics` | **BLOCKED on 0c-3.** Needs an **α** readout and the **v = ωr arrow**. (Corrected 2026-08-04 — see below. θ and `theta0_rad` are already BUILT.) |
-| 2 | `tau_eq_i_alpha` | **BLOCKED on 0c-3.** Needs an α readout row; `applied_torque_Nm` exists but α has nowhere to print. |
+| 2 | `rotational_kinematics` | **BLOCKED on E5.** Needs an **α** readout and the **v = ωr arrow**. (Corrected 2026-08-04 — see below. θ and `theta0_rad` are already BUILT.) |
+| 2 | `tau_eq_i_alpha` | **BLOCKED on E5.** Needs an α readout row; α is now *producible* (E4) but still has nowhere to print. |
+
+## HALF-UNBLOCKED — E4 landed, E5 did not (2026-08-05)
+
+`ENGINE_LANDING_NOTICE.md` §3/§7 + PR #29 (`bf7dac1`, **OPEN, not merged**). E4 = this desk's
+findings_d §1: **signed torque, so α is physically producible for the first time.** Newly
+authorable: signed `applied_torque_Nm` · `external_torque.sources[]` with `kind: drive|brake` ·
+`omega0_rad_s: 0` with a slider that reaches 0 · `formula_lines: [{text, at_ms?}]` (E1).
+
+**E5 has NOT landed and it is the hard gate.** Verified on `origin/feat/rotmech-0c3` @ `6c5ed6d`:
+`RBR_RO_META` (`:50663`) is still exactly six rows, `reference_marks[].surface` (`:1060`) is still
+the five-member union, `rbrApplyParam` (`:50576`) still has no applied-torque token. Both loops
+still `if (!meta) continue`, so **an unknown readout token is skipped in silence** — a
+`tau_eq_i_alpha` JSON authored today would pass Zod, pass `validate:concepts`, seed, render, get
+EYE'd and could be sealed **with α simply never appearing.**
+
+**Do not start `json-author` on either concept until E5 merges.** Not "prefer not to" — the failure
+is invisible to every automated gate this desk has.
+
+**PASS 3 filed** (`_engine/findings_d.md`): both physics blocks conform to E4's landed shape, no
+edits owed; the P1-8 fallback and P2-B are dead; PASS-2 cross-doc item 3 is settled. **One escape
+found** — findings_d §4b (no drive-wheel actuator mesh) is in no dispatch, no §C row and no §D row
+of the frozen scope, because §8 omitted it and PASS 2 called §8 complete. It blocks the Rule-32a
+cause beat on **11 of 17 states** across both concepts. Raised to Desk E, re-rated BLOCKING.
 
 ## This desk has NO wave-1 authoring, and that is deliberate
 
@@ -25,16 +48,25 @@ The payoff: when 0c-3 merges, this desk starts at `json-author` for both concept
 `architect`, so it catches up with the others in one step rather than three.
 
 ## next
-1. `architect` skeleton for `tau_eq_i_alpha` → Checkpoint A → physics block.
-2. `architect` skeleton for `rotational_kinematics` → Checkpoint A → physics block.
-3. **Feed both into Desk E's 0c-3 scope.** These two skeletons are the authoritative statement
-   of what α, θ and `theta0_rad` must actually do on screen. Write anything the engine must
-   provide to `docs/loop_runs/rotmech/_engine/findings_d.md` **early** — Desk E freezes its
-   scope before its first dispatch, and this desk is the main source of that scope.
-4. Do NOT write a concept JSON for either until 0c-3 merges and this desk syncs.
+1. **Wait for E5.** Nothing in `json-author` is safe before it.
+2. On E5 merge: `npm run desk:sync` → verify chain → **start at `json-author`** for both concepts
+   (not at `architect` — that is the payoff for the 0b-first decision) → `quality-auditor` ∥
+   `eye-walker` → founder-proxy Checkpoint B.
+3. `json-author` must write **`field_3d_config`** into this desk's seed scripts, not
+   `physics_config: { epic_l_path }` alone — the cloned exemplar starves
+   `deriveMotionExpectations` and `[D5]` abstains on exactly the rest-seeded states E4 enables
+   (`ENGINE_LANDING_NOTICE.md` §4 trap 2). `rigid_body_rotation` HAS a motion branch, so a `?` on
+   the `Motion map:` line is a real defect here, never by design.
+4. `md5sum` the dense frames on every EYE run until the static-scene gate defect is fixed
+   (§4 trap 1) — the three dense-motion gates all pass on a scene that never moved.
+5. This desk is the named verifier for **E6, E8 and E9** once E4/E5 clear it.
 
 ## done
-(none)
+- **Wave 1 — the 0b design pass, COMPLETE** (2026-08-04). Both concepts `DESIGN_OK` at Checkpoint A
+  cycle 2, both physics blocks written, `findings_d.md` PASS 2 landed as Desk E's freeze source.
+- **PASS 3 — E4 landing check** (2026-08-05). Conformance verified against landed code; one escape
+  from the freeze raised (§4b, the drive actuator); two precision asks filed on E5 before it
+  dispatches. No `src/` file touched, nothing seeded.
 
 ## Why the wait is not optional
 

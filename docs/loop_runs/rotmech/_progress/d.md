@@ -177,6 +177,46 @@ PASS 2. **No PASS 3 is owed.**
 and are not in this wave, so its `prerequisites` array will name ids with no concept JSON. Raised
 at Checkpoint A per the desk contract, not deferred to seal.
 
+---
+
+## 2026-08-05 — E4 landing check (still docs-only; no `src/`, nothing seeded)
+
+**Half-unblocked.** E4 landed on `feat/rotmech-0c3` (`bf7dac1`, PR #29 **OPEN, not merged**) — this
+desk's own findings_d §1. Signed torque means **α is physically producible for the first time**.
+**E5 did not land**, verified rather than assumed: `RBR_RO_META` (`:50663`) is still exactly six
+rows, `reference_marks[].surface` (`:1060`) still five members, `rbrApplyParam` (`:50576`) still has
+no applied-torque token, and both readout loops still `if (!meta) continue`. **`json-author` stays
+shut on both concepts** — an unknown token is skipped in silence, so a JSON written today passes
+Zod, `validate:concepts`, the seed, the render and THE EYE with α simply never on screen.
+
+The unpushed master-merge commit (`d904fca`) is pushed.
+
+### `findings_d.md` PASS 3 filed
+
+- **Both physics blocks conform to E4's landed shape — no edits owed to either.** Checked
+  claim-by-claim against the code, including the brake-is-a-magnitude rule (`:51103`), static hold
+  with breakaway at ω = 0, the ω₀ = 0 floor at both sites, and per-source `engage_cue`. Every number
+  re-derived clean (I = 3.06 · τ = 1.84/1.53 · S7 ticks 1:3:5 · S2 end 5.56 · S4 F = 1.09 N). E4
+  changes no authored value.
+- **Two carry-forwards die:** the P1-8 fallback (`sources[]` shipped, so `tau_eq_i_alpha`'s tug
+  stands) and **P2-B with it** — its Rule-38b breach existed only in the fallback branch. Strike both
+  from the Checkpoint C list. PASS-2 cross-doc item 3 (back-compat) is settled by E4's byte-identity
+  proof; Desk A still owes the desk-verification.
+- **ONE ESCAPE FROM THE FREEZE — §4b.** The drive torque has **no rendered actuator of any kind**,
+  and §4b appears in no dispatch, no §C row and no §D row of `FROZEN_SCOPE_0c3.md`. Cause: §8's
+  priority table omitted it and PASS 2 told Desk E *"freeze from §8. It is complete."* **The omission
+  is this desk's, not Desk E's** — §4b was rated MEDIUM the day before Checkpoint A reconciled both
+  skeletons onto ONE drive wheel, and was never re-rated. Cost: the Rule-32a cause beat on **11 of
+  17 states** across both concepts, plus P1-1 becomes unenforceable and PASS-2 cross-doc item 1 is
+  stranded. Re-rated **BLOCKING**; the ask now also needs a **per-entry travel field on `sources[]`**,
+  since `pad_travel_ms` is singular and top-level and cannot address a list.
+- **Two precision asks on E5**, cheap now: (1) `rotational_kinematics`'s explore control is **α, not
+  τ** — E5 buys "the applied-torque control token", and a τ-labelled slider puts an untaught term in
+  the sandbox of a concept whose Rule-25 compliance depends on never naming torque; (2)
+  `tau_eq_i_alpha` S8 is a **second consumer of E8**, which names only Desk A's S8 — its entry
+  `tau_app = 0, tau_brake = 0` is dropped by the `Math.abs(tv) > 0` guard, and while
+  `rbrSetBrakeSource` revives the physics on a live drag, `rbrApplyVisibility` never re-runs.
+
 ### Notes for whoever picks this desk up
 
 - Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND
