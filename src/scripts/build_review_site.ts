@@ -92,6 +92,13 @@ type ConceptJson = {
                 scene_composition?: unknown[];
                 focal_primitive_id?: string;
                 focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
+                // This local shape omitted variable_choreography, so the field the
+                // renderer needs could not even be REFERENCED here — the omission
+                // in buildParametricConfig below was invisible to the type checker
+                // as well as to every runtime gate. A hand-maintained structural
+                // type that is narrower than the data it describes hides exactly
+                // the bug it looks like it would catch.
+                variable_choreography?: unknown[];
             }
         >;
     };
@@ -330,6 +337,28 @@ function buildParametricConfig(conceptId: string, json: ConceptJson): Parametric
             scene_composition: st.scene_composition ?? [],
             ...(st.focal_primitive_id ? { focal_primitive_id: st.focal_primitive_id } : {}),
             ...(st.focal_sequence ? { focal_sequence: st.focal_sequence } : {}),
+            // WP-R5 variable_choreography — MUST be carried. Without it
+            // PM_applyChoreography() (parametric_renderer.ts:3530) returns on its
+            // first guard every frame, PM_choreoValues stays empty, and every
+            // choreographed variable is pinned at its default for the life of the
+            // state: the marker never moves, the pen never travels, the readout
+            // never counts. The clock still runs and the player's own subtitle
+            // timeline still advances, so the page looks alive while the physics
+            // is dead — which is exactly how this survived.
+            //
+            // THE EYE never saw it. The cache path assembles through the SHARED
+            // src/scripts/lib/buildParametricConfig.ts, which passes whole state
+            // objects through (`states: states as ...`) and therefore carries the
+            // field; this file kept a private duplicate that hand-picks fields, so
+            // the two assemblers disagreed and only the teacher-facing one was
+            // wrong. Found by the founder pressing Play, not by any gate.
+            //
+            // The renderer reads exactly four per-state fields — scene_composition,
+            // focal_primitive_id, focal_sequence, variable_choreography. Keep this
+            // projection equal to that set, or delete it in favour of the shared
+            // assembler (engine_bug_queue:
+            // review_site_private_config_assembler_drops_variable_choreography).
+            ...(st.variable_choreography ? { variable_choreography: st.variable_choreography } : {}),
         };
     }
     const firstStateId = stateIds[0];

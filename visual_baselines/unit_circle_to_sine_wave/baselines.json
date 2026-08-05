@@ -1,0 +1,39 @@
+{
+  "approved_at": "2026-08-05T22:08:19.774Z",
+  "source_run": "/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-mathematics-unit-circle/.visual_runs/unit_circle_to_sine_wave/20260806-000750",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": false,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}
