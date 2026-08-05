@@ -11,17 +11,22 @@ engine_surface: `newtons_laws_body` **SEAM R** (the 0c-2 rolling extension)
 
 | Wave | Concept | Status |
 |---|---|---|
-| 1 | `pure_rolling` | **6 of 8 STATES WORKING** (2026-08-05, after the B-8 s0 fix). tsc 0 · validate PASS. **BLOCKED on S3 (B-5, zero bodies render) + S7 (B-1, capture never occurs)**, plus B-2 slider rows on S1/S8. |
-| 1 | `rolling_on_incline` | **NON-FUNCTIONAL** (2026-08-05). tsc 0 · validate PASS. **BLOCKED — all 8 states dead (B-3)**; S8 sandbox byte-identical over 10.5 s across two runs. Also B-2 (S4/S8 radius), S8 "marble vs ring" unachievable. |
+| 1 | `pure_rolling` | **7 of 8 STATES WORKING** (2026-08-06, post-merge). tsc 0 · validate PASS. S7 captures (B-1 fixed), S1 has its R dial (B-2 fixed). **BLOCKED on S3 (B-5, zero bodies render — no owner) + B-10 (radius write breaks the marks).** NOT sealed. |
+| 1 | `rolling_on_incline` | **NON-FUNCTIONAL** (2026-08-06, post-merge). tsc 0 · validate PASS. **BLOCKED — all 8 states dead (B-3), byte-identical across THREE runs spanning the engine merge.** Sliders now render (B-2 fixed) but nothing moves. |
 
-> **⚠ B-3 as first filed was HALF WRONG, and the wrong half was ours.** `pure_rolling` looked
-> dead because of **B-8**, a Desk B authoring defect: `surface.length_m` is a HALF-length, so
-> bodies authored `s0 = 2.4` on the FLAT states had 0.6 m of runway and hit the wall at ~300 ms.
-> Fixed to −2.4; **`pure_rolling` now works on 6 of 8 states**. `rolling_on_incline` was already
-> correct, was not changed, and is byte-identical + still dead — that is the real B-3.
+> **POST-MERGE 2026-08-06 (PR #29 = `bd89d433`, containment confirmed by
+> `merge-base --is-ancestor deb764b origin/master` → ON_MASTER, not by `desk:sync` output —
+> it skips this desk; the merge was done by hand from 46 behind).**
 >
-> **E2/E3 have NOT landed** (verified: 0 behind origin/master; `NLB_SLIDER_TOKENS` still the
-> eight pre-SEAM-R tokens; `canRoll` still has no kinematic precondition). B-1 and B-2 are OPEN.
+> - **B-1 → FIXED by E2.** `pure_rolling` S7 now captures: `v = Rω = 1.33 = v₀/(1+k)`, contact 0.
+> - **B-2 → FIXED by E3.** S1 renders `R = 0.25 m` (previously no control at all); incline S8
+>   renders all six rows. Both initialise from the authored `radius_m`.
+> - **B-10 NEW (MAJOR)** — the radius WRITE re-scales and re-lifts but **destroys the revolution
+>   marks and the 2πR bracket** instead of re-spacing them. E3 is two-thirds landed.
+> - **B-3 STILL OPEN, STILL CRITICAL, NOW ISOLATED.** E2 did not touch the incline —
+>   `rolling_on_incline` is **byte-identical to its pre-merge frames**. It needs its own dispatch
+>   and has **no engine owner**.
+> - **B-5 (S3 renders zero bodies) still open**, maps to none of E1–E5, no owner.
 
 **This desk is the only one with two ready concepts, and it carries both rolling concepts
 deliberately.** They are the joint consumers whose union defined SEAM R — the amendment's
@@ -37,6 +42,12 @@ both in the same session and restate the source revision. "The sibling quotes th
 is a claim to be diffed, never asserted.
 
 ## next
+**Two engine findings need a Desk E dispatch, neither has an owner:** **B-3** (incline motion
+dead — the gating one for `rolling_on_incline`) and **B-5** (`pure_rolling` S3 renders zero
+bodies). **B-10** (radius write destroys the marks) is the third. `pure_rolling` is one B-5 fix
++ one B-10 fix away from a Checkpoint B. Checkpoint B deliberately HELD this session.
+
+## previous (superseded — kept for the audit trail)
 **BLOCKED — PR #29 is OPEN, not merged.** E2 and E3 exist on `feat/rotmech-0c3` (verified by
 read-only inspection: `NLB_SLIDER_TOKENS` now carries `R`/`R2`/`omega0`; `canRoll` now carries a
 `contactRest` term), but `desk:sync` merges `origin/master` only and can never pull an unmerged

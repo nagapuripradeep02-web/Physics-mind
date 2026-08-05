@@ -282,6 +282,8 @@ pin 1500 after last window closes at 1200/1200/1400/1204/1100). Measured and rec
 **deliberately not blind-fixed**: unlike S7 there is no capture being missed, and an unemphasised
 settled end pose can be legitimate under Rule 32d. Re-assess when they can actually be seen.
 
+### (this entry superseded by the 2026-08-06 post-merge entry at the end of the file)
+
 ### md5 discipline (task 4) — one methodological caveat worth keeping
 
 `Motion map:` read all `?` — per notice §4, `[D5]` did not run, so B-4's blind spot is live and
@@ -290,3 +292,109 @@ run-to-run.** `pure_rolling` S8 produced entirely different dense hashes across 
 S8 edit, while its `__frozen.png` stayed byte-identical (`7974ff8c94`) — the Rule 37 sandbox
 free-runs on wall-clock; only the time-pinned frozen frame is deterministic. Guided states ARE
 deterministic (S1 byte-identical across the same two runs).
+
+---
+
+## 2026-08-06 — POST-MERGE. E2 verified, E3 two-thirds verified, B-3 isolated.
+
+PR #29 merged (`bd89d433`). **Containment confirmed independently of `desk:sync`**, which again
+did not list this desk: `git merge-base --is-ancestor deb764b origin/master` → **ON_MASTER**,
+`gh pr view 29` → MERGED, and the code on origin/master (`NLB_SLIDER_TOKENS` carries
+`R`/`R2`/`omega0`; `contactRest` ×4). Merged origin/master into this desk by hand from **46
+behind**. Triad after merge: renderer-syntax OK · tsc 0 · validate 151 PASS / 0 FAIL. Both Desk B
+fixes survived (9 bodies at `s0 = −2.4`, S7 `until_ms: 2000`).
+
+Re-seeded before every EYE run. Staleness proof: `sim_html` grew 4183986 → 4255010 (incline) and
+4181111 → 4252135 (flat), so the new renderer really is under test.
+
+### E2 — VERIFIED. B-1 FIXED.
+`pure_rolling` S7 pre-merge `v 2.00 / Rω 0.00 / contact 2.00`; post-merge **`v 1.33 / Rω 1.33 /
+contact 0.00 / f_k 0.00`**. That is capture at exactly `v₀/(1+k) = 2.0/1.5 = 1.333` for a wheel.
+
+### E2 — DOES NOT FIX B-3, and that isolates it cleanly.
+`rolling_on_incline` post-merge is **byte-identical to its own pre-merge frames** — S1
+`f9a8b277`, S2 `e8987880`/`e72f7764`, S5 `8604265d`/`5e0bcce9`, S8 one hash `272d2ccb` across the
+full 10 s sandbox. The same engine change that fixed flat-track capture left the incline
+bit-for-bit unchanged. **B-3 is independent, CRITICAL, and has no engine owner.** (S8's hash did
+move, `4ff923ec` → `272d2ccb` — that is E3's new slider rows rendering, not motion.)
+
+### E3 — PARTIAL. B-2 FIXED; B-10 FILED.
+Presence + initialisation verified on pixels: `pure_rolling` S1 renders `R = 0.25 m` (previously
+NO control at all); incline S8 renders all six rows incl. `R`/`R₂` at 0.15 m, matching the
+authored `radius_m`.
+
+The **write** was driven directly (`src/scripts/_probe_e3_radius.ts` — sets `#nlb_r_slider`, fires
+the DOM `input` event `nlbWireSlider` binds, clock pinned so before/after differ only by the
+write; requested 0.50 clamps to 0.35). Result: engine `radius_m` 0.25 → 0.35 ✅, rolling
+constraint preserved (ω 3.60 → 2.5714 so `Rω` holds 0.90) ✅, **re-scale ✅, re-lift ✅,
+re-space ❌** — the marks and the `2πR` bracket are DESTROYED, leaving one stray tick and a
+collapsed label artefact. Filed **B-10 (MAJOR)**. This is exactly what B-2's own suggested fix
+warned about; two of its three parts landed.
+
+### B-9 — reasoning replaced with the one that survives review
+Not "the instruction said don't fix it." Notice §4 tells desks to enrich the seed, but its own
+caveat says that restores `[D5]` only for scenarios WITH a motion branch — §4 names
+`rigid_body_rotation` as one that has one and **`newtons_laws_body` as one that does not**. Desk
+E's canaries are rbr; both of this desk's concepts are nlb. So enriching would buy **zero** `[D5]`
+coverage while silently moving all 16 pins off the flat 1500, mid-verification. Confirmed
+empirically: `Motion map:` read all `?` on both concepts even post-merge. B-9 stays fleet-wide and
+unfixed here; it hits the approved `rolling_friction` / `work_done_by_constant_force` baselines too.
+
+### Still deliberately unfixed
+The five states sharing S7's pin mismatch (`pure_rolling` S4/S5/S6, `rolling_on_incline` S2/S4) —
+no capture is being missed and a settled end pose can be legitimate under Rule 32d.
+
+### State
+**Checkpoint B deliberately HELD** (as instructed) — `pure_rolling` is 7/8 but S3 is still empty
+(B-5) and the radius dial breaks the marks (B-10). Nothing sealed, no `visual:approve`, no
+platform file touched, scoped cache clears only.
+
+### Post-merge re-walk results (both concepts, full, every state)
+
+**`pure_rolling` — 7 of 8 states read clean.** S7's capture is legible end to end:
+`t0 v1.99/Rω0.02/f_k 0.49` → `t1000 v1.51/Rω0.99` → `t2000 v=Rω=1.33, contact 0, f 0`. Friction
+is now actually acting during the slip (0.49 N) — pre-merge it read a dishonest 0.00. S1's
+revolution marks + 2πR bracket + both formula lines render; the B-8 s0 fix is confirmed effective.
+S2's cycloid cusp trace matches the authored aha. Only **S3 fails (B-5)**.
+
+**`rolling_on_incline` — 1 of 8 moves.** Only S7's ring, and only AFTER its μ_s ramp drives it out
+of the rolling branch.
+
+### Two of my own records were wrong; both corrected in `findings_b.md`
+
+1. **B-3's "S7's mesh is pixel-identical throughout" was WRONG.** It came from the first eye-walk
+   and I filed it without checking. S7's dense hashes are five distinct values pre-merge
+   (`17904384 e2af4a82 508469b5 1188eb23 1188eb23`) and five post-merge. **It sharpens the
+   diagnosis:** S7 is the one body that LEAVES the rolling branch, and it moves the moment it does.
+2. **B-9's framing was incomplete.** The pin genuinely is 1500 (`SET_TIME_FREEZE` rewinds the clock
+   exactly — measured 3344 → 1500). But the frozen frame still showed formula lines authored at
+   2300/2600. Cause: **the clock rewinds, the DOM reveals do not retract.** Filed as **B-11**.
+
+### B-3's boundary, now sharp enough to dispatch
+Not "incline rolling bodies never move" — **the `rollHeld`/`contactRest` branch's output never
+reaches persistent state; the kinetic branch's always does.** Two bodies prove it by moving
+(S3's `rotation_locked` block from entry; S7's ring after live branch transition) against twelve
+that never do. And `contactRest` is NOT blocking them: S3's rolling disc reads `f = 1.38 N =
+k·m·a`, the ROLLING closed form — so they are admitted to the branch and its formulas evaluate
+correctly. **The defect is a write-back on one branch.** That is the dispatch.
+
+### New findings
+**B-10** (radius write destroys the marks — MAJOR, field3d_surgeon) · **B-11** (frozen frame is a
+hybrid — MAJOR, platform) · **B-12** (friction subscript from held-state not branch — MINOR,
+field3d_surgeon) · **B-13** (point_arrow labels overlap on S4/S5/S6 — MODERATE, **mine**) ·
+**B-14** (μ_k glyph — MINOR, **mine**, low confidence, confirm before editing).
+
+B-13/B-14 are Desk B's own and deliberately NOT fixed this session: the frames cannot be
+re-verified until B-5/B-10/B-11 land, and fixing camera framing blind is the speculative retune
+this desk has refused throughout. They belong in the pre-seal pass, together with authoring
+`eye_capture_ms` per state (the sanctioned, non-diverging remedy for B-9 — see B-11).
+
+### Regression pair post-merge — clean, and the deltas are proven vintage
+`rolling_friction` 0.22–0.38% · `work_done_by_constant_force` 0.00–0.07%, all baselines,
+tolerance 2.0% — **identical percentages to the pre-merge run**, which by notice §1's own two-run
+method proves they are pre-existing baseline vintage, not engine drift. The engine merge caused
+zero regression on approved work.
+
+### Probes left in the tree (delete after the gate)
+`_probe_e3_radius.ts` (reproduces B-10), `_probe_e3_crop.ts` (its evidence crops),
+`_probe_pin.ts` (reproduces B-11).

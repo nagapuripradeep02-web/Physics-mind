@@ -13,7 +13,13 @@ correction applied.
 
 ---
 
-## Finding B-1 — the rolling branch has no KINEMATIC gate, so a flat-track slip-to-roll capture cannot be expressed
+## ✅ Finding B-1 — **FIXED by E2, verified on pixels 2026-08-06.** Close it.
+> Post-merge `pure_rolling` S7 reads `v = 1.33 · Rω = 1.33 · contact = 0.00 · f_k = 0.00` —
+> capture, at exactly `v₀/(1+k) = 2.0/1.5`. The original code-read analysis below was correct.
+> **Note its "blast radius" claim was NOT** — see the refutation box under B-3; E2 fixed the flat
+> track and left `rolling_on_incline` byte-identical. Kept below as the diagnostic record.
+
+## Finding B-1 (original, as filed) — the rolling branch has no KINEMATIC gate, so a flat-track slip-to-roll capture cannot be expressed
 
 **Status:** OPEN · **Severity:** MAJOR (blocks union item **(c)-3**, the item its own skeleton
 calls "the (c) centerpiece") · **Owner:** `peter_parker:field3d_surgeon` · **Filed:** 2026-08-04
@@ -172,7 +178,14 @@ because it is cheap to check and would otherwise survive the kinematic-gate fix.
 
 ---
 
-## Finding B-2 — union item (b)-8 half-landed: `controls_visible` tokens `R`, `R2`, `omega0` are DECLARED but never wired, and are dropped in silence
+## ✅ Finding B-2 — **FIXED by E3, verified on pixels 2026-08-06.** Close it — but read B-10.
+> `pure_rolling` S1 now renders `R = 0.25 m` (it previously had NO control at all);
+> `rolling_on_incline` S8 renders all six rows including `R` and `R₂`. Both initialise from the
+> body's authored `radius_m`. **However this finding's own suggested fix warned that the write
+> must ALSO re-space the revolution marks "or S1 gets a dial that moves nothing" — that half did
+> not land, and the result is worse than nothing: see B-10.**
+
+## Finding B-2 (original, as filed) — union item (b)-8 half-landed: `controls_visible` tokens `R`, `R2`, `omega0` are DECLARED but never wired, and are dropped in silence
 
 **Status:** OPEN · **Severity:** MAJOR (kills the only live control on `pure_rolling` STATE_1,
 half of its STATE_8 sandbox, and a physics-block-mandated control on `rolling_on_incline`
@@ -299,7 +312,15 @@ this is not "trust the pixels less" — it is to always ask what ELSE produces t
 
 ---
 
-## Finding B-3 (revised) — a `rolling: true` body's computed motion never reaches its persistent state, so it never moves on the incline
+## 🔴 Finding B-3 (revised) — a `rolling: true` body's computed motion never reaches its persistent state, so it never moves on the incline
+
+> **POST-MERGE STATUS 2026-08-06: STILL OPEN, STILL CRITICAL, AND NOW ISOLATED.** E2 did not
+> touch it. `rolling_on_incline` is **byte-identical to its pre-merge frames** (S1 `f9a8b277`,
+> S2 `e8987880`/`e72f7764`, S5 `8604265d`/`5e0bcce9`, S8 one hash `272d2ccb` across the whole
+> 10 s sandbox) while the same engine change made flat-track capture work on the sibling. That
+> is the cleanest separation of B-1 from B-3 obtainable, and it means **B-3 needs its own
+> dispatch — it has no engine owner.** This is the single biggest thing standing between Ch.7
+> and a sealed rolling concept.
 
 **Status:** OPEN · **Severity:** **CRITICAL** (both of this desk's concepts are non-functional;
 every rolling state in the chapter is affected) · **Owner:** `peter_parker:field3d_surgeon` ·
@@ -369,7 +390,21 @@ into the body's persistent `v`/`ω`/position state.**
   schedule with the correct magnitudes — and the mesh is pixel-identical before and after.**
 - **S7 (μ_s `param_ramp` 0.50 → 0.05)** — the slider visibly interpolates, and the readouts cross
   correctly at μ_min: `f_k` drops to 0.44 N ≈ `μ_k·N = 0.05 × 9.8 × cos 25°`. **The branch
-  switch fires correctly — and the mesh is pixel-identical throughout.**
+  switch fires correctly — ~~and the mesh is pixel-identical throughout~~ SEE CORRECTION.**
+
+> **⚠ CORRECTION 2026-08-06, Desk B against its own record.** *"S7's mesh is pixel-identical
+> throughout"* **was WRONG.** It came from the first eye-walk and this desk filed it without
+> independently checking. Re-measured: S7's dense hashes are five DISTINCT values **pre**-merge
+> (`17904384 e2af4a82 508469b5 1188eb23 1188eb23`) and five post-merge
+> (`48e1c0bd 393e86f1 e98942c6 98515330 98515330`). **S7's ring moves — before E2 and after it.**
+> Its skid trail lengthens frame to frame and `contact` climbs 0.03 → 2.65 → 2.97 m/s before
+> halt-latching at the scripted 1968 ms.
+>
+> **This SHARPENS the diagnosis rather than weakening it.** S7 is the one state whose body
+> *leaves* the rolling branch (its μ_s ramp drives it into kinetic slip) — and the moment it
+> does, it integrates correctly. Combined with S3's `rotation_locked` block, that gives **two
+> independent bodies that move the instant they are NOT on the `rollHeld` branch**, on the same
+> track, in the same frames as bodies that never move.
 
 **The positive control, in the same frame, at the same instant:**
 
@@ -386,6 +421,29 @@ on every incline body — S2's `v`/`Rω` at 0.00 despite its label asserting 3.3
 Meanwhile `a`/`f`/slip-`contact` in S6/S7 — which appear to come from closed-form expressions
 rather than from `b.v` — move correctly. **The split falls exactly along "reads from persistent
 state" vs "computed from a formula."**
+
+### THE BOUNDARY, as sharp as this desk can make it (post-merge, 2026-08-06)
+
+**It is NOT "incline rolling bodies never move." It is: the `rollHeld` / `contactRest` branch's
+output never reaches persistent state. The kinetic-sliding branch's does — always, on the same
+track, in the same frame.**
+
+Three bodies establish it, two of them moving:
+
+| body | branch | integrates? |
+|---|---|---|
+| S3 `block_locked` (`rotation_locked`, never rolling) | kinetic from entry | ✅ `contact` 0.09 → 4.18, tracks `a = g(sinθ − μ_k cosθ) = 2.809` |
+| S7 `ring_s7` **after** its μ_s ramp drives it out of the rolling branch | kinetic, reached live | ✅ skid trail lengthens, `contact` 0.03 → 2.97, halt-latches at 1968 ms |
+| every other body (S1 ×4, S2, S3 disc, S4 ×2, S5 ×2, S6, S8 ×4) | `rollHeld` for its whole life | ❌ `v`/`ω`/`Rω`/`contact`/`KE` pinned at 0.00 forever |
+
+**E2's `contactRest` gate is being satisfied, not blocking them.** Confirmed by the force value:
+S3's rolling disc reads `f = 1.38 N = k·m·a = 0.5 × 1 × 2.7607` — the **rolling** closed form, not
+`μ_k·N = 1.33 N` (which is the *other* body's number in the same frame; the two are close enough
+to conflate, and were checked apart). So the bodies ARE admitted to the rolling branch and its
+formulas evaluate correctly. **Whatever writes `a`/`f` back into `b.v` / `b.omega` / position is
+missing or short-circuited inside the `rollHeld === true` path specifically.**
+
+That is the dispatch. It is a write-back defect on one branch, not a force-model or gate defect.
 
 ### A hypothesis that was TESTED AND REFUTED — do not re-derive it
 
@@ -472,6 +530,35 @@ entire teaching visual is absent.
 
 Note this is **the same gate blind spot as B-4** from the other direction: live HUD text was
 sufficient to pass the motion checks on a canvas containing no bodies at all.
+
+### MECHANISM NARROWED (post-merge re-walk, 2026-08-06) — this is the dispatch
+
+**Unaffected by E1–E5.** Still zero bodies at every timestamp including the frozen pin.
+
+**The load-bearing observation: `nlb_wheel_locked` carries NO `activate_at_ms` at all** and must
+be visible from state entry — and it is absent at t=0 too. That **rules out activation gating**
+as the explanation. (`nlb_wheel_roll` does carry `activate_at_ms: 1500`, so on its own it would
+have been the obvious suspect.)
+
+**What DOES work in this state, precisely:**
+- **Physics integrates correctly.** `locked wheel` reads `f_k = 1.96 N` / `contact = 1.97 m/s` at
+  t0, decaying to 0.02 by t1000 and pinned at 0.00 after — exactly `μ_k·g = 0.2 × 9.8 = 1.96
+  m/s²`, and matching the authored `skid_glow` window closing at 1020 ms.
+- **A position-derived overlay renders.** The skid-trail line appears on the bare plank from
+  ~t1000 and lengthens — it is keyed to `nlb_wheel_locked`'s position and draws correctly **even
+  though that body's own mesh never does.**
+- The plank/track renders normally (single lane, consistent with `single_lane: true`,
+  `lane_gap_m: 0`).
+
+**So: integration ✅, position ✅, position-derived overlays ✅, body MESH ❌.** The failure is
+isolated to whatever instantiates or shows the wheel mesh — not to physics, not to gating.
+
+**The one structural feature unique to S3 in this concept:** it is the only state with **two
+bodies**, and the only one whose bodies carry **custom ids** (`nlb_wheel_locked` /
+`nlb_wheel_roll`) rather than the plain `"wheel"` that S1/S2/S4/S5/S6/S8 all use — and it runs
+them under `single_lane: true`. Every single-body `id: "wheel"` state renders its mesh fine.
+**Multi-body + custom ids + single_lane is the untested combination.** Offered as the narrowing,
+not as an asserted root cause — this desk read pixels, not the mesh factory.
 
 Possibly the concrete manifestation of existing OPEN architect rows on this concept
 (`…no_per_body_activation_time`, `nlb_lane_offsets_apply_to_declared_bodies_not_co_present_ones`)
@@ -583,9 +670,113 @@ authored runway is shorter than the distance implied by its own authored timings
 
 ---
 
-## E2 / E3 VERIFICATION (Desk B is the named verifier) — 2026-08-05
+## ✅ E2 / E3 VERIFICATION — BEHAVIOURAL, POST-MERGE (2026-08-06)
 
-### Status: CODE CONFIRMED PRESENT, BEHAVIOUR **NOT VERIFIED — BLOCKED**
+**PR #29 merged** (`bd89d433`). Containment confirmed independently, not from `desk:sync` output:
+`git merge-base --is-ancestor deb764b origin/master` → **ON_MASTER**; `gh pr view 29` →
+`state: MERGED`; and the code itself on `origin/master` — `NLB_SLIDER_TOKENS` now carries
+`R`/`R2`/`omega0`, `contactRest` appears 4×. **`desk:sync` again did not list this desk** (it
+skips the current worktree); the merge into `feat/rotmech-b` was done by hand, 46 commits behind.
+Triad after merge: `check:renderer-syntax` OK · `tsc` 0 · `validate:concepts` 151 PASS / 0 FAIL.
+Both Desk B fixes survived the merge (9 bodies at `s0 = −2.4`, S7 `until_ms: 2000`).
+
+Re-seeded before every run per notice §1. Staleness proof: assembled `sim_html` grew
+4183986 → 4255010 chars (incline) and 4181111 → 4252135 (flat), so the new renderer is genuinely
+under test.
+
+### E2 — **VERIFIED WORKING** on the flat track. B-1 is FIXED.
+
+`pure_rolling` STATE_7, frozen pin, post-merge:
+
+| | v | Rω | contact | f_k |
+|---|---|---|---|---|
+| pre-merge | 2.00 | **0.00** | 2.00 | 0.00 N |
+| **post-merge** | **1.33** | **1.33** | **0.00** | 0.00 N |
+
+That is capture, and the number is exactly right: `v_capture = v₀/(1+k) = 2.0/1.5 = 1.333` for a
+wheel (k = 0.5). v decayed, ω spun up, they met, the contact went to rest and friction dropped to
+zero. **B-1 → FIXED.** Close it.
+
+### E2 — **DOES NOT FIX B-3.** `rolling_on_incline` is unchanged and still dead.
+
+md5, post-merge, against the desk's OWN pre-merge frames (notice §1 — not a fresh baseline):
+
+```
+S1  f9a8b277 f9a8b277 6557f678 f9a8b277 f9a8b277   <- byte-identical to PRE-merge
+S2  e8987880 e8987880 e72f7764 e72f7764            <- byte-identical to PRE-merge
+S5  8604265d 8604265d 5e0bcce9 8604265d 8604265d   <- byte-identical to PRE-merge
+S8  272d2ccb x10                                    <- ONE hash across the whole 10 s sandbox
+```
+
+**This is the cleanest possible separation of B-1 from B-3.** The same engine change that made
+flat-track capture work left the incline bit-for-bit identical. B-3 is a genuinely independent
+defect, exactly as the corrected finding claimed, and it remains OPEN and CRITICAL with **no
+engine owner**.
+
+(S8's hash *did* move, `4ff923ec` → `272d2ccb` — that is E3's new slider rows rendering, not
+motion. Sliders appeared; nothing moved.)
+
+### E3 — **PARTIALLY VERIFIED.** Presence and initialisation work; the RE-SPACE does not.
+
+Presence, on pixels (not the enum):
+- `pure_rolling` S1 now renders an `R = 0.25 m` row — it previously had **no control at all**.
+- `rolling_on_incline` S8 now renders all six rows including `R = 0.15 m` and `R₂ = 0.15 m`.
+- Both initialise from the body's authored `radius_m` (0.25 and 0.15 respectively; 0.55 is only
+  the default when absent). **B-2 → FIXED.** Close it.
+
+The **write** path was driven directly — `src/scripts/_probe_e3_radius.ts` sets `#nlb_r_slider`
+and dispatches the DOM `input` event `nlbWireSlider` binds, i.e. exactly what a teacher drag
+fires, with the clock pinned (`SET_TIME_FREEZE 1200`) so before/after differ ONLY by the write.
+Requested R = 0.50 clamps to **0.35** (the row's own max), so the measured step is 0.25 → 0.35.
+
+| requirement | result |
+|---|---|
+| engine `radius_m` updated | ✅ 0.25 → 0.35 |
+| rolling constraint preserved | ✅ ω 3.60 → 2.5714, so `Rω` holds 0.90 (0.25×3.6 = 0.35×2.5714) |
+| slider row restates the value | ✅ `R = 0.25 m` → `R = 0.35 m` |
+| **re-SCALE** | ✅ wheel visibly larger |
+| **re-LIFT** | ✅ still sits ON the track, not sunk through it |
+| **re-SPACE** | ❌ **marks and bracket DESTROYED** — see B-10 |
+
+---
+
+## Finding B-10 — a radius write DESTROYS the revolution marks and the 2πR bracket instead of re-spacing them
+
+**Status:** OPEN · **Severity:** MAJOR (E3 is the fix that was supposed to make `pure_rolling`
+S1's live-radius beat work; the beat is the state's whole point) · **Owner:**
+`peter_parker:field3d_surgeon` · **Filed:** 2026-08-06 by Desk B · **Verified by RUNTIME**
+(driven write + before/after frames), reproducible via `src/scripts/_probe_e3_radius.ts`.
+
+`pure_rolling` STATE_1 authors `revolution_marks` with a `2πR` bracket — the ground ticks that
+carry the "one turn advances exactly one circumference" payoff, and the reason `R` is the state's
+only control. E3 wired the radius write; `nlbApplyBodyRadius` re-scales and re-lifts the mesh.
+**Nothing re-spaces the marks.**
+
+Before (R = 0.25): the bracket line renders with its label `2πR = 1.57 m` and a numbered tick
+series along the track. After (R = 0.35): the bracket and its label are **gone**, one stray tick
+remains, and a collapsed label artefact sits at the far-left edge of the track.
+
+Evidence frames (cropped + upscaled 4× over the track region):
+`.visual_runs/_e3_probe/crop_before.png` · `.visual_runs/_e3_probe/crop_after.png`
+(full frames alongside them as `S1_before_R0.25.png` / `S1_after_R0.5.png`.)
+
+**Expected:** spacing should become `2πR = 2.199 m` and the bracket label should restate it.
+
+Note this is precisely the risk B-2's own suggested fix flagged — *"a radius write must also
+re-lift and re-scale the mesh and re-space the revolution marks, which is (c)-1's live-respace
+requirement; the two items land together or S1 gets a dial that moves nothing."* Two of the three
+landed. S1 now has a dial that moves the wheel but breaks the marks, which is worse than a dial
+that does nothing, because the broken state is what a teacher would show.
+
+**Second-order, same beat:** S1's narration hard-codes *"2πR = 1.57 m"*. Once R is live that
+sentence is stale for every value except the default. Authoring-side and Desk B's to fix, but
+**not fixable until the marks re-space** — deferred deliberately, not overlooked.
+
+---
+
+## E2 / E3 VERIFICATION (first pass) — 2026-08-05
+
+### Status: CODE CONFIRMED PRESENT, BEHAVIOUR **NOT VERIFIED — BLOCKED** *(superseded by the post-merge block above)*
 
 **PR #29 is OPEN, not merged** (`mergedAt: null`, head `feat/rotmech-0c3`). `npm run desk:sync`
 merges `origin/master` only, so it can never pull an unmerged PR — it reported "master already
@@ -640,11 +831,24 @@ chemistry"*, which evidently did not cover this `physics_config` shape. **It als
 APPROVED baselines** — `rolling_friction` and `work_done_by_constant_force` use the identical
 seed shape, so their baselines were captured at a default pin too.
 
-**This desk deliberately did NOT "fix" it by enriching its own seed scripts.** That would move
-this desk's pins to authored values while the fleet stayed on the default — a divergence
-introduced mid-verification — and the landing notice is explicit that moving the nlb pin is a
-fleet-wide decision deliberately not taken. Authored to the gate's REAL behaviour instead.
-Flagged for a fleet-level call.
+### Why this desk does NOT enrich its own seeds (the primary justification)
+
+Notice §4 item 2 tells desks to add `field_3d_config` to their seed, and Desk E fixed both its
+canaries that way. **That advice does not transfer to this desk, and the notice's own caveat is
+why:** enriching the seed restores `[D5]` only for scenarios that HAVE a motion branch in
+`deriveMotionExpectations`. §4 names `rigid_body_rotation` as one that does — and
+**`newtons_laws_body` as one that does NOT**, where the `?` is by design. Desk E's canaries are
+rbr; both of this desk's concepts are nlb.
+
+So for `pure_rolling` and `rolling_on_incline`, enriching the seed would buy **zero** `[D5]`
+coverage while silently moving all 16 pins off the flat 1500 — changing where every frozen frame
+is photographed, mid-verification, for no gate benefit. Confirmed empirically this session:
+`Motion map:` read `STATE_1=? … STATE_8=?` on both concepts even post-merge, exactly as §4
+predicts for nlb.
+
+That is the reason to leave it alone; "the instruction said not to" is not. B-9 stays fleet-wide
+and unfixed here — it hits the approved `rolling_friction` and `work_done_by_constant_force`
+baselines too, which use the identical seed shape. Flagged for a fleet-level call.
 
 ### Consequence handled: `pure_rolling` STATE_7 phase window — FIXED
 
@@ -687,6 +891,84 @@ runs). Do not read a changed S8 dense hash as a regression.
 
 **`Motion map:` on this run read `STATE_1=? … STATE_8=?`** — per notice §4, `[D5]` did not run.
 B-4's blind spot is live on this concept, so the hash remains the real check.
+
+---
+
+## Finding B-11 — the frozen H2 frame is a HYBRID, not a photograph of the pin: the clock rewinds, the reveals do not
+
+**Status:** OPEN · **Severity:** MAJOR (fleet-wide; it makes every H2 baseline's overlay content
+depend on how long the clock ran before the freeze was posted) · **Owner:** routing decision —
+`validators/visual/*` + the renderer's `SET_TIME_FREEZE` handler are Rule-40 PLATFORM ·
+**Filed:** 2026-08-06 by Desk B · **Verified by RUNTIME** (`src/scripts/_probe_pin.ts`).
+
+This reconciles two accounts that looked contradictory: B-9 measured the pin at a flat 1500 ms,
+while the post-merge eye-walk reported `pure_rolling` S1's frozen frame showing formula lines
+authored at **2300 and 2600 ms**. Both were right.
+
+**Measured:** let S1 run to `PM_simTimeMs = 3344`, then post `SET_TIME_FREEZE {ms: 1500}`.
+
+```
+PM_simTimeMs before : 3344
+PM_simTimeMs after  : 1500        <- the clock DOES rewind, exactly
+formula text visible at that rewound frame:
+   ["One turn, one circumference", "one turn → 2πR\nv = Rω"]
+   (authored at_ms: 2300 and 2600 — both AFTER the pin)
+```
+
+**The physics rewinds; the DOM reveals do not retract.** So the frozen frame photographs
+t = 1500 physics with up-to-3344 ms of reveals overlaid. Its overlay content is a function of how
+far the clock happened to run before the freeze arrived — not of the pin.
+
+**Why it has not bitten yet:** in practice the pre-freeze runtime is consistent, so the approved
+baselines are stable (this desk re-verified the regression pair post-merge at
+`rolling_friction` 0.22–0.38% and `work_done_by_constant_force` 0.00–0.07% — *identical
+percentages to the pre-merge run*, which by notice §1's own two-run method proves those deltas
+are pre-existing baseline vintage, not engine drift). But it is stable by luck of timing, not by
+construction.
+
+**Suggested fix (not built here):** `SET_TIME_FREEZE` should re-run the reveal pass for the
+target time — hiding anything whose `at_ms` exceeds it — so the frozen frame is what the pin
+claims it is.
+
+### Consequence for B-9: the remedy is authorable, and it is NOT enriching the seed
+
+`visual_eyes.ts` supports a per-state opt-in override, **`eye_capture_ms`** (added 2026-07-29 for
+exactly this class of problem — its own comment says *"a scenario whose content EMERGES from the
+physics has [no discrete cues], so the derived target is null and the renderer's 1500 ms default
+is used… A baseline photographed before the concept happens cannot catch a regression in the
+concept"*). `newtons_laws_body` is precisely such a scenario.
+
+**Neither of this desk's concepts authors a single `eye_capture_ms`.** That is the sanctioned,
+per-state, non-diverging way to place the frozen frame where each state's claim is actually on
+screen — no platform file, no seed change, no fleet divergence. **Not authored this session
+deliberately:** doing it while B-11 is open would bake in frames whose overlays are still hybrid,
+and `pure_rolling` cannot be sealed until B-5 and B-10 land anyway. **Author `eye_capture_ms`
+per state as part of the pre-seal pass, after B-11.** Recorded so it is not lost.
+
+---
+
+## Minor findings from the post-merge re-walk (2026-08-06)
+
+- **B-12 (MINOR, `peter_parker:field3d_surgeon`)** — *friction readout subscript is derived from
+  held-state, not from the active branch.* `rolling_on_incline` S6 shows `f_s = 4.14 N` while held
+  (correct) then flips to **`f_k`** `= 1.38 N` after release — but 1.38 = `k·m·a` is the
+  **rolling** closed form, not a kinetic one, and the state authors no `mu_k` at all. S3's rolling
+  disc shows `f_k` from t = 0 despite never leaving the rolling branch. **Every numeric value
+  checked was correct; only the printed subscript is wrong.** Fix: pick the subscript from the
+  same branch flag that already selects the formula.
+- **B-13 (MODERATE, `alex:json_author` — DESK B's own)** — *`point_arrows` labels overlap
+  illegibly on `pure_rolling` S4/S5/S6.* At the authored `camera_position` the wheel occupies a
+  small screen area, so the top/centre/bottom velocity labels land within ~15 px and merge into an
+  unreadable stack (S6 t04000: "2.00 m/s", "1.00 m/s", "0.00 m/s" overlapping). This defeats the
+  exact comparison those three states exist to teach — S6 in particular needs the student to read
+  three *different* on-canvas numbers. **Not fixed this session:** the cheapest lever is pulling
+  the camera closer, but the states cannot be re-verified until B-5/B-10/B-11 are resolved and
+  the frames are re-walked; fixing camera framing blind is the speculative retune this desk has
+  refused throughout. Fix it in the pre-seal pass.
+- **B-14 (MINOR, `alex:json_author` — DESK B's own, LOW CONFIDENCE)** — `pure_rolling` S8's
+  `μ_k` slider label may use an ASCII underscore where Unicode ₖ (U+2096) exists. Unlike B-6's
+  `I_cm` there IS a correct glyph here, so this one is fixable. Read from a screenshot, not the
+  DOM — **confirm against the JSON before editing.**
 
 ---
 
