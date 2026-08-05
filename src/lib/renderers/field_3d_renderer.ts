@@ -40060,6 +40060,27 @@ export const FIELD_3D_RENDERER_CODE = `
         if (b._spinIndep) return b.omega || 0;
         return (b.v || 0) / nlbRadiusM(b);
     }
+    // The angular speed the ROLLING GATE must read. Identical to nlbOmegaOf once a
+    // single frame has run, but SEED-SAFE before it: applyNewtonsLawsBodyState seeds
+    // b.omega = 0 while b.omega0 carries the authored seed, and nlbRollSpin only
+    // heals b.omega lazily at the END of the first frame. A gate reading b.omega
+    // alone therefore mis-branches on frame 1 for a body whose authored omega0 is
+    // nonzero — it would see a contact speed of |v0| where the body is in fact
+    // launched already rolling, open a slip segment anchored at omega = 0 and lose
+    // the authored spin for the rest of the state (measured: pure_rolling STATE_8,
+    // omega0 3.6 rad/s, settled at R.omega 0.61 instead of 0.90). Production sends
+    // RESET_TRAJECTORY on every state entry, which does seed b.omega — this makes
+    // the gate correct whether or not that message arrived.
+    // NOT a replacement for nlbOmegaOf at the slip-open site: there _spinIndep has
+    // just been forced true on a body that carried a LIVE b.omega, and preferring
+    // b.omega0 would discard it (verified: rolling_on_incline STATE_7 anchored its
+    // slip at 0 instead of -7.18 rad/s).
+    function nlbOmegaSeeded(b) {
+        if (!b) return 0;
+        if (!b._spinIndep) return (b.v || 0) / nlbRadiusM(b);
+        if (b._slip0) return b.omega || 0;
+        return (typeof b.omega0 === "number" && isFinite(b.omega0)) ? b.omega0 : (b.omega || 0);
+    }
     // ── U10 — the ACTIVATION gate ──────────────────────────────────────────────
     //   Three states, and only three: ABSENT (live from entry), PENDING (before its
     //   instant) and LIVE. Retirement is derived from the SAME authored instants in
@@ -46843,6 +46864,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 //   mu_s-independent, so raising mu_s above mu_min changes no number.
                 //   Below mu_min the contact SLIPS, in either direction, and the body
                 //   falls to the kinetic branch with an independent angular state.
+                //
+                //   ROLLING ALSO NEEDS ITS KINEMATICS. The availability test above is
+                //   the whole gate on an INCLINE, where drive = m.g.sin(theta) is
+                //   nonzero and |f| <= mu_s.N reduces to mu_s >= mu_min. On FLAT
+                //   ground drive is identically 0, so aRoll and fRoll are 0 on every
+                //   frame REGARDLESS of the body's (v, omega) and the test degenerates
+                //   to 0 <= mu_s.N — true for any mu_s >= 0. A wheel launched sliding
+                //   (v = 2 m/s, omega = 0) therefore adopted the rolling branch on
+                //   frame 1: a = 0 so v never decelerated, f read a dishonest 0.00 N
+                //   beside a contact speed of 2.00 m/s, the omega = v/R line is skipped
+                //   for an independent-spin body so omega stayed frozen at its seed
+                //   forever, and _slipping was never set so the capture re-anchor below
+                //   could not fire (engine_bug_queue
+                //   nlb_rolling_branch_has_no_kinematic_gate).
+                //   Rolling is a KINEMATIC constraint, so it also requires the contact
+                //   to be at rest: |v - omega.R| ~ 0. A genuine mismatch now falls
+                //   through to the kinetic branch, which spins the wheel up while
+                //   slowing it down and hands back here at capture.
                 var kRoll = nlbShapeK(b), rollHeld = false;
                 if (b.rolling && !b.rotation_locked && !nlbHeldNow) {
                     var aRoll = drive / (b.m * (1 + kRoll));
@@ -46850,7 +46889,36 @@ export const FIELD_3D_RENDERER_CODE = `
                     // The static test at v ~ 0 is the ordinary one: a body at rest on
                     // a slope too gentle to start it does not roll, it stays stuck.
                     var canRoll = (Math.abs(fRoll) <= maxStat + 1e-12) && !boundPin;
-                    if (canRoll && !(stuck && Math.abs(b.v) < NLB_STOP_EPS_V && Math.abs(aRoll) < 1e-12)) {
+                    var rollR = nlbRadiusM(b);
+                    // Seed-safe by construction: for a body with NO independent angular
+                    // state nlbOmegaSeeded returns v/R, so cRel is identically 0 and
+                    // this whole test is inert — which is every pre-SEAM-R body and
+                    // every rolling body that has not yet slipped.
+                    var cRel = (b.v || 0) - nlbOmegaSeeded(b) * rollR;
+                    var contactRest = Math.abs(cRel) < NLB_STOP_EPS_V;
+                    if (!contactRest && kRoll > 1e-9) {
+                        // CAPTURE, one step early rather than one step missed. The
+                        // contact closes at cDot = drive/m + f.(1+k)/(k.m) under the
+                        // kinetic branch, and |cDot|.dt is routinely LARGER than the
+                        // 0.01 m/s band (pure_rolling STATE_7: 0.0245 m/s at a single
+                        // 1/60 s step, 0.0706 m/s at the 3-step dtStep the master clock
+                        // hands over on a slow frame), so a band test alone steps
+                        // straight over the crossing and the contact chatters about
+                        // zero forever, never rolling. Measured on the STATE_8 slider
+                        // grid: 76 of 126 (omega0, mu_k, step-size) combinations NEVER
+                        // captured without this line. Adopting rolling on the step that
+                        // would carry the contact THROUGH zero is the same idiom the
+                        // translational rest test below already uses (v0/v1 sign flip),
+                        // is affine in dt (Rule 36), and is a pure function of the
+                        // current state — no latch, so a rewind reproduces it and a
+                        // dt = 0 pin leaves it alone (dt = 0 makes the predicted
+                        // contact equal the current one, so the product is cRel^2 > 0
+                        // and the frame decides nothing new).
+                        var fSlip = -nlbSgn(cRel) * (b.mu_k || 0) * N;
+                        var cDot = drive / b.m + fSlip * (1 + kRoll) / (kRoll * b.m);
+                        if (cRel * (cRel + cDot * hPhys) <= 0) contactRest = true;
+                    }
+                    if (canRoll && contactRest && !(stuck && Math.abs(b.v) < NLB_STOP_EPS_V && Math.abs(aRoll) < 1e-12)) {
                         rollHeld = true;
                         stuck = false;
                         a = aRoll; f = fRoll;
@@ -46859,15 +46927,42 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (rollHeld) {
                     // Rolling: the constraint owns omega, so v and R.omega can never
                     // disagree and the contact speed is EXACTLY zero, not a residual.
-                    if (b._slipping) {
-                        // CAPTURE — the contact stopped sliding. Re-anchor the angular
-                        // segment at this instant so the pose is continuous through
-                        // the transition (a hand-back to the s-driven expression would
-                        // jump the marker by whatever the slip accumulated).
+                    if (!b._spinIndep) {
+                        // The ordinary case, byte for byte as it always was: omega is
+                        // read straight off the constraint every frame. _slipping can
+                        // never be true here (it is only ever set together with
+                        // _spinIndep), so the capture block below is unreachable for
+                        // such a body and this line is the whole of its behaviour.
+                        b.omega = b.v / nlbRadiusM(b);
+                    } else {
+                        // An INDEPENDENT angular state handing back to the constraint.
+                        // The segment re-anchors so the POSE is continuous through the
+                        // transition (a hand-back to the s-driven expression would jump
+                        // the marker by whatever the slip accumulated) — but it anchors
+                        // omega at v/R, the value the constraint demands, not at the
+                        // pre-capture omega. Anchoring at the pre-capture value leaves a
+                        // permanent residual: alpha = a/R and dv/dt = a keep v and
+                        // omega.R exactly parallel, so whatever gap exists at the anchor
+                        // never closes (measured on pure_rolling STATE_7: contact stuck
+                        // at 0.0087 m/s, i.e. a HUD reading 0.01 under a caption
+                        // claiming the contact is at rest, with v 1.33 against R.omega
+                        // 1.34). Snapping makes the contact speed exactly 0 from the
+                        // capture frame on, which is the claim the concept is built on.
+                        // Sub-frame precision is deliberately NOT chased: capture lands
+                        // on a frame boundary, at most one step (<= 6 ms of a 1361 ms
+                        // run) past the analytic instant.
+                        //   Re-anchoring is CONDITIONAL — at capture, at first use, and
+                        // whenever a live control moves alpha — for the same reason the
+                        // slip branch re-anchors conditionally: re-anchoring every frame
+                        // would walk t0 forward each tick, which is an accumulator in
+                        // disguise and would break the rewind (Rule 36 / SEAM R header).
+                        // Between anchors omega and theta stay closed forms of t.
+                        var capR = nlbRadiusM(b), capAlpha = a / capR;
+                        if (b._slipping || !b._slip0 || Math.abs(b._slip0.alpha - capAlpha) > 1e-9) {
+                            nlbRollSeg(eng, b, b.v / capR, capAlpha);
+                        }
                         b._slipping = false;
-                        nlbRollSeg(eng, b, nlbOmegaOf(b), a / nlbRadiusM(b));
                     }
-                    if (!b._spinIndep) b.omega = b.v / nlbRadiusM(b);
                 } else if (stuck) {
                     a = 0; b.v = 0;
                     f = -drive;                            // static friction: reported, never integrated
@@ -46882,7 +46977,21 @@ export const FIELD_3D_RENDERER_CODE = `
                     var vSign = (Math.abs(vRef) > NLB_STOP_EPS_V) ? nlbSgn(vRef) : nlbSgn(drive);
                     f = -vSign * b.mu_k * N;
                     a = (drive + f) / b.m;
-                    if (b.rolling && !b.rotation_locked) {
+                    // Gated on (rolling OR _spinIndep) to MATCH the vRef line above:
+                    // the two halves of one slip must agree about what counts as a
+                    // slipping body, or the translational half decelerates honestly
+                    // against a contact-relative reference while the angular half never
+                    // integrates at all and omega sits frozen at its seed. That
+                    // disagreement is the second half of
+                    // nlb_rolling_branch_has_no_kinematic_gate: it is what made the
+                    // alternative authoring (omega0_rad_s with no rolling flag) an
+                    // equally dead end rather than a workaround.
+                    // kRoll > 0 because alphaSlip divides by it. nlbShapeK ACCEPTS an
+                    // authored 0 (it only rejects negatives), and a zero there would
+                    // send omega to Infinity and blank the scene — the createTubeLine
+                    // scar's shape, one seam over. Inert for every real body: the
+                    // smallest shape constant in the map is 0.4.
+                    if ((b.rolling || b._spinIndep) && !b.rotation_locked && kRoll > 1e-9) {
                         // alpha = -f·R / I_cm = -f / (k·m·R). Opening a SLIP SEGMENT
                         // re-anchors (t0, omega0, alpha) at this instant, and every
                         // angular quantity from here is a closed form of (t - t0) —
