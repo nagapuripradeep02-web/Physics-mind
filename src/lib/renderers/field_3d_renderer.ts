@@ -945,15 +945,28 @@ export interface Field3DConfig {
         //     external_torque.source 'brake' (+ brake_drum_radius_m + the drawn
         //     drum reference line + the visible pad actuator), reference_marks[]
         //     in BOTH surface forms (chip + tick), the radial pull arrow, the
-        //     re-pin cue, applied_torque_Nm (a constant tau_ext, which is #7's
-        //     alpha = tau/I with no extra code path).
+        //     re-pin cue, theta0_rad (seeds rbrThetaAt through rbrThetaReset
+        //     and drives the mesh at rbr_spin.rotation.y), external_torque
+        //     .source 'applied_torque' + applied_torque_Nm (a constant SIGNED
+        //     tau_ext -> #7's alpha = tau/I in BOTH directions), and
+        //     external_torque.sources[] (the drive-vs-brake tug, tau_net).
         //   DECLARED, NOT IMPLEMENTED (each is built under its OWN concept's
         //     engine row; reading one today is an inert no-op, never a throw):
         //     particles[], parts[], bodies[]/cm_marker/cm_path_trace/
-        //     fragment_trigger, axis_select, axis_pair/d_draw, theta0_rad,
+        //     fragment_trigger, axis_select, axis_pair/d_draw,
         //     cross_product_construction, body_shape variants beyond
         //     'turntable_rod', external_torque.source 'torsion_spring' |
         //     'applied_force_at_point'.
+        //
+        // E4 (rotmech 0c-3) CORRECTION. The pre-E4 text called
+        // applied_torque_Nm "#7's alpha = tau/I with no extra code path". That
+        // was true only for the DECELERATING half: the integrator subtracted
+        // unconditionally, so no torque source could raise |L|, alpha > 0 was
+        // unreachable at every authored value, and a body seeded at rest was
+        // clamped dead forever. E4 makes the torque SIGNED (sign authored, not
+        // derived from |L|), keeps the rest clamp as a property of the 'brake'
+        // KIND only, and adds sources[] so a drive and a brake can act at the
+        // same instant. Still one closed form; still no accumulator.
         //
         // PHYSICS (physics_block.md §1, one integrator, no mode flag):
         //     I(t)      = I_frame + 2*m*r(t)^2                 (recomputed live)
@@ -995,16 +1008,40 @@ export interface Field3DConfig {
             masses?: { count?: number; mass_kg?: number; r_m?: number };
             omega0_rad_s?: number;              // seed magnitude; sets L at t=0 / at a RESTART only
             spin_sign?: number;                 // +1 or -1; a discrete restart, never eased through zero
-            theta0_rad?: number;                // DECLARED (concept 4)
+            theta0_rad?: number;                // IMPLEMENTED — seeds theta (concept 4)
             external_torque?: {
-                source?: 'brake' | 'applied_force_at_point' | 'torsion_spring';
+                // 'applied_torque' was a LIVE branch from 0c-1 but was missing
+                // from its own declared union until E4 closed the gap.
+                source?: 'brake' | 'applied_torque' | 'applied_force_at_point' | 'torsion_spring';
                 tau_brake_Nm?: number;          // magnitude; frictional, opposes omega
                 engage_at_ms?: number;          // pad contact instant (state-local)
                 release_at_ms?: number;         // pad release instant; omit = never releases
                 engage_cue?: string;            // scenario_cue name -> cueTriggerMs
                 release_cue?: string;
                 pad_travel_ms?: number;         // how long the pad takes to translate in
-                applied_torque_Nm?: number;     // a CONSTANT tau_ext (concept 7's alpha = tau/I)
+                // A CONSTANT tau_ext (concept 7's alpha = tau/I). SIGNED as of
+                // E4: positive spins the body up, negative spins it up the
+                // other way, and it may carry L through zero. Zero authored
+                // consumers when the sign was introduced, so this is a
+                // redefinition of a dormant field, not a second meaning.
+                applied_torque_Nm?: number;
+                // E4 — SEVERAL torques at once (the drive-vs-brake tug). When
+                // present this REPLACES the scalar form above; absent leaves
+                // the scalar path byte-identical. A 'drive' entry carries an
+                // AUTHORED SIGN; a 'brake' entry is a magnitude that always
+                // opposes the current spin and can never reverse it. At omega
+                // = 0 with both engaged the body STATICALLY HOLDS until
+                // |tau_drive| exceeds the brake, and sign(L) is never consulted
+                // there. At most 8 entries (RBR_MAX_SOURCES).
+                sources?: Array<{
+                    id?: string;
+                    kind?: 'drive' | 'brake';   // default 'drive'
+                    torque_Nm?: number;         // drive: SIGNED. brake: magnitude.
+                    engage_at_ms?: number;      // default 0
+                    release_at_ms?: number;     // omit = never releases
+                    engage_cue?: string;        // scenario_cue name -> cueTriggerMs
+                    release_cue?: string;
+                }>;
                 torsion_k_Nm_per_rad?: number;  // DECLARED (concept 14)
             };
             // ONE-SHOT monotonic ramp, HOLDS at `to` for the rest of the state.
@@ -50093,17 +50130,22 @@ export const FIELD_3D_RENDERER_CODE = `
     // instead of crawling, which is what keeps a late pin (S2 pins at 7.8 s)
     // reproducible in the headless tray.
     //
-    // THE SINGLE INTEGRATOR HAS NO MODE FLAG. tau_ext = 0 makes L exactly
-    // constant by construction (there is no accumulation to drift), I constant
-    // makes domega/dt = tau/I identically, and r dragged WHILE braking is
-    // correct with no special case — the alpha = (tau - omega*dI/dt)/I coupling
-    // falls out of omega = L/I. The rest clamp acts ON L (never on the derived
-    // omega), so a brake can bring the platform to rest and hold it but can
-    // never reverse the spin at any reachable slider value.
+    // THE SINGLE INTEGRATOR HAS NO MODE FLAG. An empty source list makes L
+    // exactly constant by construction (there is no accumulation to drift), I
+    // constant makes domega/dt = tau/I identically, and r dragged WHILE braking
+    // is correct with no special case — the alpha = (tau - omega*dI/dt)/I
+    // coupling falls out of omega = L/I.
+    //   E4 (rotmech 0c-3): the rest clamp is a property of the 'brake' SOURCE
+    // KIND, not of the integrator. A brake still brings the platform to rest
+    // and holds it there and can never reverse it; a signed 'drive' source
+    // spins a body up from rest, carries L through zero, and delivers
+    // alpha = tau/I in BOTH directions — none of which the pre-E4
+    // unconditional subtraction could reach at any authored value.
     // ================================================================
     var RBR_WORLD_PER_M = 1.8;            // world units per metre of apparatus
     var RBR_GRID_MS = 16;                 // the FIXED theta-integration grid (Rule 36)
     var RBR_GRID_MAX = 20000;             // hard cap on grid steps per evaluation
+    var RBR_MAX_SOURCES = 8;              // bounds the E4 breakpoint walk in rbrLAt
     var RBR_DEF_I_FRAME = 0.50;           // kg m^2 — turntable + rod, excluding the masses
     var RBR_DEF_ROD_HALF = 1.00;          // m
     var RBR_DEF_DRUM_R = 0.55;            // m  (Addendum B — the BRAKED radius)
@@ -50292,23 +50334,99 @@ export const FIELD_3D_RENDERER_CODE = `
         if (evT >= 0) return { t0: evT, L0: eng.evAnchorL };
         return { t0: 0, L0: eng.L0 };
     }
-    function rbrBrakedSeconds(t0, t1) {
-        var eng = window.PM_rbrEngine;
-        if (!eng || eng.brakeOnMs == null || !(eng.tau > 0)) return 0;
-        var lo = Math.max(t0, eng.brakeOnMs), hi = Math.min(t1, eng.brakeOffMs);
-        return (hi > lo) ? (hi - lo) / 1000 : 0;
-    }
-    // THE single angular-momentum integrator, in closed form.
-    //   L(t) = sign(L0) * max(0, |L0| - tau_brake * engaged_seconds)
-    // The rest clamp acts ON L (never on the derived omega), so the pad can stop
-    // the platform and hold it at rest but can NEVER reverse the spin.
+    // ── E4 (rotmech 0c-3) — THE SIGNED-TORQUE SOURCE LIST ──────────────────
+    // Before E4 the integrator subtracted UNCONDITIONALLY, so no torque source
+    // could ever RAISE |L|: alpha > 0 was unreachable at every authored value
+    // and a body seeded at rest stayed dead forever (L0 = 0 clamped to 0 on
+    // every frame). eng.sources is now the ONE list the integrator reads, and
+    // each entry is {id, kind, tau, onMs, offMs}:
+    //   kind 'drive' — tau is SIGNED, and the sign is AUTHORED, never derived
+    //     from |L|. It adds to L, so it spins a body up from rest, and it can
+    //     carry L through zero and out the far side (a real reversal).
+    //   kind 'brake' — tau is a MAGNITUDE that always opposes the CURRENT spin
+    //     and can never reverse it. THE REST CLAMP SURVIVES AS A PROPERTY OF
+    //     THIS KIND, not as a property of the integrator.
+    //
+    //   L(t) = L0 + integral over (t0, t] of ( tau_drive_net - sign(L)*tau_brake )
+    //
+    // evaluated as a PIECEWISE-LINEAR WALK over a bounded sorted breakpoint
+    // list (every source's engage/release instant, plus at most one L = 0
+    // crossing per segment). NOTHING IS CARRIED BETWEEN CALLS — the walk
+    // restarts from the anchor every time, so rbrLAt(t) is still a pure
+    // function of t: a rewind reproduces the earlier value exactly, a
+    // SET_TIME_FREEZE pin re-evaluates instead of crawling, and Rule 36's
+    // dt = h vs dt = 2h fold is bit-equal because the walk never sees dt at
+    // all. The accumulator-free contract at the top of this file is intact.
+    //
+    // AT L = 0 THE SIGN OF L IS NEVER CONSULTED (it is meaningless there, and
+    // -0 vs 0 would silently decide the physics). Instead, per the Desk-D
+    // ruling on the drive-vs-brake tug:
+    //   |tau_drive| <= tau_brake  ->  STATIC HOLD (L stays exactly where it is)
+    //   |tau_drive| >  tau_brake  ->  BREAKAWAY at (|tau_drive| - tau_brake) in
+    //                                 the DRIVE's own direction
     function rbrLAt(tMs) {
         var eng = window.PM_rbrEngine;
         if (!eng) return 0;
         var a = rbrAnchor(tMs);
-        var mag = Math.abs(a.L0) - eng.tau * rbrBrakedSeconds(a.t0, tMs);
-        if (!(mag > 0)) mag = 0;
-        return (a.L0 < 0 ? -1 : 1) * mag;
+        var src = eng.sources;
+        // NEGATIVE-ZERO NORMALISATION. The pre-E4 form ended in
+        // (a.L0 < 0 ? -1 : 1) * Math.abs(...), which maps a -0 anchor (omega0 = 0
+        // with spin_sign -1) to +0 and leaves every other finite value bit-exact.
+        // Adding 0 reproduces that in one operation, so an untouched anchor comes
+        // back byte-identical to the pre-E4 build. It matters beyond cosmetics:
+        // -0 vs +0 is exactly the sign(L)-at-rest ambiguity the tug rules out.
+        if (!src || !src.length || !(tMs > a.t0)) return a.L0 + 0;
+        var bps = [], i, s;
+        for (i = 0; i < src.length; i++) {
+            s = src[i];
+            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+            if (s.onMs > a.t0 && s.onMs < tMs) bps.push(s.onMs);
+            if (s.offMs > a.t0 && s.offMs < tMs) bps.push(s.offMs);
+        }
+        bps.sort(function (x, y) { return x - y; });
+        var L = a.L0 + 0, lo = a.t0, b, hi, mid, drive, brake;
+        for (b = 0; b <= bps.length; b++) {
+            hi = (b < bps.length) ? bps[b] : tMs;
+            if (!(hi > lo)) continue;
+            mid = lo + (hi - lo) / 2;
+            drive = 0; brake = 0;
+            for (i = 0; i < src.length; i++) {
+                s = src[i];
+                if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+                if (!(mid >= s.onMs && mid < s.offMs)) continue;
+                if (s.kind === "brake") brake += Math.abs(s.tau);
+                else drive += s.tau;
+            }
+            L = rbrLStep(L, drive, brake, (hi - lo) / 1000);
+            lo = hi;
+        }
+        return L;
+    }
+    // ONE interval over which the engaged set is CONSTANT. At most one L = 0
+    // crossing can happen inside it: the walk lands EXACTLY on zero and
+    // re-decides there, so recursion depth is at most 2 and terminates.
+    function rbrLStep(L, drive, brake, dt) {
+        if (!(dt > 0)) return L;
+        if (L === 0) {
+            // AT REST. sign(L) is never read here.
+            if (!(Math.abs(drive) > brake)) return L;                     // static hold
+            return L + (drive - (drive < 0 ? -1 : 1) * brake) * dt;       // breakaway
+        }
+        var sgn = (L < 0) ? -1 : 1;
+        if (drive === 0) {
+            // Pure brake (or pure coast) on a spinning body — the pre-E4
+            // arithmetic operand for operand, which is what keeps the legacy
+            // 'brake' branch byte-identical.
+            if (!(brake > 0)) return L;
+            var mag = Math.abs(L) - brake * dt;
+            if (!(mag > 0)) mag = 0;
+            return sgn * mag;
+        }
+        var rate = drive - sgn * brake;
+        if (rate === 0) return L;
+        var tz = -L / rate;                                               // seconds to L = 0
+        if (tz > 0 && tz < dt) return rbrLStep(sgn * 0, drive, brake, dt - tz);
+        return L + rate * dt;
     }
     function rbrOmegaAt(tMs) {
         var I = rbrIAt(tMs);
@@ -50364,7 +50482,10 @@ export const FIELD_3D_RENDERER_CODE = `
     var RBR_SLIDER_SPEC = {
         r:         { row: "rbr_r_row",        slider: "rbr_r_slider",        val: "rbr_r_val",        lbl: "rbr_r_lbl",        glyph: "r",  unit: " m",     dp: 2, min: 0.15, max: 0.90, step: 0.01, def: 0.80 },
         m:         { row: "rbr_m_row",        slider: "rbr_m_slider",        val: "rbr_m_val",        lbl: "rbr_m_lbl",        glyph: "m",  unit: " kg",    dp: 1, min: 0.5,  max: 5.0,  step: 0.1,  def: 2.0 },
-        omega0:    { row: "rbr_omega0_row",   slider: "rbr_omega0_slider",   val: "rbr_omega0_val",   lbl: "rbr_omega0_lbl",   glyph: "ω₀", unit: " rad/s", dp: 1, min: 0.5, max: 3.0, step: 0.1, def: 1.5 },
+        // min 0 (E4): rest is a legitimate seed now that a signed drive torque
+        // can spin the body up from it. Paired with the >= 0 guard in
+        // rbrApplyParam — both sites or the floor moves with nothing happening.
+        omega0:    { row: "rbr_omega0_row",   slider: "rbr_omega0_slider",   val: "rbr_omega0_val",   lbl: "rbr_omega0_lbl",   glyph: "ω₀", unit: " rad/s", dp: 1, min: 0,   max: 3.0, step: 0.1, def: 1.5 },
         tau_brake: { row: "rbr_tau_brake_row", slider: "rbr_tau_brake_slider", val: "rbr_tau_brake_val", lbl: "rbr_tau_brake_lbl", glyph: "τ", unit: " N·m", dp: 2, min: 0, max: 2.0, step: 0.05, def: 0.92 },
         // A discrete RESTART, never a continuous control: it is a BUTTON, so no
         // teacher can ever ease the spin through zero with it.
@@ -50426,9 +50547,31 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.evRepinT = t;
         eng.evAnchorT = t + eng.blankMs;
         eng.evAnchorL = rbrIOf(rbrRAt(t), eng.m) * eng.omega0 * (eng.evSign != null ? eng.evSign : eng.spinSign);
+        // Re-engage EVERY torque source at the new anchor — the sandbox restart
+        // semantics the single brake always had, now applied per source (E4).
+        // For a lone authored brake this is exactly the old two lines.
+        var ss = eng.sources || [];
+        for (var si = 0; si < ss.length; si++) {
+            ss[si].onMs = (Math.abs(ss[si].tau) > 0) ? eng.evAnchorT : null;
+            ss[si].offMs = Infinity;
+        }
         eng.brakeOnMs = (eng.tau > 0) ? eng.evAnchorT : null;
         eng.brakeOffMs = Infinity;
         rbrThetaReset();
+    }
+    // The tau_brake slider owns the FIRST brake source (creating one if the
+    // state authored none), and never touches a drive.
+    function rbrSetBrakeSource(eng) {
+        var ss = eng.sources || (eng.sources = []);
+        for (var i = 0; i < ss.length; i++) {
+            if (ss[i].kind === "brake") {
+                ss[i].tau = eng.tau; ss[i].onMs = eng.brakeOnMs; ss[i].offMs = eng.brakeOffMs;
+                return;
+            }
+        }
+        if (eng.tau > 0 && ss.length < RBR_MAX_SOURCES) {
+            ss.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
+        }
     }
     function rbrApplyParam(token, value) {
         var eng = window.PM_rbrEngine;
@@ -50441,7 +50584,11 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.m = value;
             rbrRestartNow(null);                       // m re-pins L -> a RESTART
         } else if (token === "omega0") {
-            if (!(value > 0)) return;
+            // E4: the floor is ZERO, not 0.5. A body at rest is a legitimate
+            // seed now that a signed drive torque can spin it up, so >= 0 here
+            // AND min 0 on the slider row — change one and the floor moves
+            // while nothing happens.
+            if (!(value >= 0)) return;
             eng.omega0 = value;
             rbrRestartNow(null);                       // omega0 re-pins L -> a RESTART
         } else if (token === "tau_brake") {
@@ -50453,6 +50600,7 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.tau = (value < 0) ? 0 : value;
             eng.brakeOnMs = (eng.tau > 0) ? eng.t_ms : null;
             eng.brakeOffMs = Infinity;
+            rbrSetBrakeSource(eng);                    // mirror -> the source list (E4)
         }
     }
     function rbrSyncSliderRow(token, value) {
@@ -50928,11 +51076,48 @@ export const FIELD_3D_RENDERER_CODE = `
         };
         if (eng.r < eng.rMin) eng.r = eng.rMin;
         if (eng.r > eng.rMax) eng.r = eng.rMax;
-        // The torque source. 'brake' is the member this build implements; the
-        // other two DECLARED members are inert no-ops here and are built under
-        // their own concepts' rows, so reading one can never throw.
+        // ── The torque sources (E4, rotmech 0c-3) ──────────────────────────
+        // eng.sources is the ONE list rbrLAt reads. TWO authoring surfaces feed
+        // it and BOTH are optional; absent means the pre-E4 behaviour byte for
+        // byte (an empty list makes L exactly constant, with no accumulation):
+        //   (a) the LEGACY SCALAR form — external_torque.source plus
+        //       tau_brake_Nm / applied_torque_Nm. 'brake' is UNCHANGED and
+        //       lowers to exactly one 'brake' entry, which is what keeps
+        //       conservation_of_angular_momentum byte-identical.
+        //   (b) external_torque.sources[] — the drive-vs-brake tug: several
+        //       torques over their OWN engage windows, summing to tau_net.
+        // Presence is tested with Array.isArray / typeof, never truthiness.
+        // 'applied_force_at_point' and 'torsion_spring' stay DECLARED-only and
+        // fall through to an empty list, so reading one is still an inert
+        // no-op and never a throw.
+        eng.sources = [];
         var src = et.source || ((typeof et.applied_torque_Nm === "number") ? "applied_torque" : "brake");
-        if (src === "brake") {
+        var etSrcs = Array.isArray(et.sources) ? et.sources : null;
+        if (etSrcs) {
+            for (var si = 0; si < etSrcs.length && eng.sources.length < RBR_MAX_SOURCES; si++) {
+                var so = etSrcs[si] || {};
+                var kind = (so.kind === "brake") ? "brake" : "drive";
+                var traw = rbrNum(so.torque_Nm, 0);
+                // A DRIVE KEEPS ITS AUTHORED SIGN. A brake is a magnitude by
+                // definition (it opposes whatever the body is doing).
+                var tv = (kind === "brake") ? Math.abs(traw) : traw;
+                if (!(Math.abs(tv) > 0)) continue;
+                var onS = cueTriggerMs(so.engage_cue || "", rbrNum(so.engage_at_ms, 0));
+                var offS = (typeof so.release_at_ms === "number" || so.release_cue)
+                    ? cueTriggerMs(so.release_cue || "", rbrNum(so.release_at_ms, Infinity)) : Infinity;
+                eng.sources.push({
+                    id: (typeof so.id === "string" && so.id.length) ? so.id : (kind + "_" + si),
+                    kind: kind, tau: tv, onMs: onS, offMs: offS
+                });
+                // The FIRST brake entry also drives the pad actuator and the
+                // tau_brake slider, which have no notion of a list.
+                if (kind === "brake" && !(eng.tau > 0)) {
+                    eng.tau = Math.abs(tv);
+                    eng.padEngageMs = onS; eng.padReleaseMs = offS;
+                    eng.brakeOnMs = onS; eng.brakeOffMs = offS;
+                }
+            }
+        } else if (src === "brake") {
             eng.tau = Math.abs(rbrNum(et.tau_brake_Nm, 0));
             if (eng.tau > 0) {
                 eng.padEngageMs = cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0));
@@ -50940,13 +51125,26 @@ export const FIELD_3D_RENDERER_CODE = `
                     ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
                 eng.brakeOnMs = eng.padEngageMs;
                 eng.brakeOffMs = eng.padReleaseMs;
+                eng.sources.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
             }
         } else if (src === "applied_torque") {
-            // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I, on the
-            // same single integrator and the same closed form. The rest clamp
-            // still holds on L, so it can never drive the spin through zero.
-            eng.tau = Math.abs(rbrNum(et.applied_torque_Nm, 0));
-            if (eng.tau > 0) { eng.brakeOnMs = rbrNum(et.engage_at_ms, 0); eng.brakeOffMs = rbrNum(et.release_at_ms, Infinity); }
+            // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I on the
+            // same single integrator and the same closed form. SIGNED as of E4
+            // — a NEGATIVE applied_torque_Nm spins the body up the other way
+            // and a positive one spins it up from rest, which is the half of
+            // concept 7 the pre-E4 build could not reach at any value. It is a
+            // 'drive', so it leaves the brake mirror (eng.tau / brakeOnMs /
+            // brakeOffMs) alone: there is no pad here and the tau_brake slider
+            // must not show a drive's magnitude.
+            var atq = rbrNum(et.applied_torque_Nm, 0);
+            if (Math.abs(atq) > 0) {
+                eng.sources.push({
+                    id: "applied_torque", kind: "drive", tau: atq,
+                    onMs: cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0)),
+                    offMs: (typeof et.release_at_ms === "number" || et.release_cue)
+                        ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity
+                });
+            }
         }
         var pr = rb.param_ramp;
         if (pr && pr.param && isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms) && eng.mode !== "sandbox") {
