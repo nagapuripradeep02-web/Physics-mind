@@ -50206,10 +50206,29 @@ export const FIELD_3D_RENDERER_CODE = `
     // two runs and S8's toggle. Red is deliberately avoided (warnings).
     var RBR_POS_COLOR = "#42A5F5";        // cool blue  — spin_sign +1
     var RBR_NEG_COLOR = "#FFB74D";        // warm amber — spin_sign -1
-    var RBR_AXLE_COLOR = "#90A4AE";
+    // E7 — the axle and the rod are the two APPARATUS LINES the two vectors run
+    // along, so they are deliberately the DARK end of the blue-grey ladder
+    // (800 / 700, against the drum's 600). This is the "dimmer BY CONSTRUCTION"
+    // half of the separability rule below: at the old #90A4AE the axle's WCAG
+    // relative luminance (0.355) was within 2% of the L arrow's #42A5F5 (0.347)
+    // — a 1.02:1 contrast ratio, i.e. NO tonal separation at all, which is why
+    // "make the shaft thicker" alone would not have been enough. At #37474F the
+    // ratio is 3.65:1 (and 5.58:1 against the negative-sign amber); the rod at
+    // #455A64 is 3.93:1 against the cyan pull arrow. Floor: 3:1.
+    //
+    // The values below are the MEASURED ones, not the paper ones. On the real
+    // frames the L vector's shaft renders at RGB ~(137,255,255) — its green and
+    // blue channels are clipped, so the arrow cannot be made any brighter and
+    // the only lever left is the apparatus. At blue-grey 800 the lit axle still
+    // peaked at ~(79,103,115), which is a 2.2:1 stroke contrast, so the base
+    // tones were taken down until the MEASURED contrast cleared 3:1 with margin.
+    // The ladder axle < rod < drum (#546E7A) is preserved, so the three
+    // apparatus cylinders stay distinguishable from each other.
+    var RBR_AXLE_COLOR = "#1F2A30";       // was #90A4AE — see RBR_SEP_* below
+
     var RBR_DRUM_COLOR = "#546E7A";
     var RBR_MARK_COLOR = "#FFF176";       // the drum's rotation marker stripe
-    var RBR_ROD_COLOR = "#B0BEC5";
+    var RBR_ROD_COLOR = "#26333A";        // was #B0BEC5 — see RBR_SEP_* below
     var RBR_MASS_COLOR = "#FFCA28";
     var RBR_PULL_COLOR = "#4DD0E1";
     var RBR_RLINE_COLOR = "#81C784";      // r reference line
@@ -50249,9 +50268,76 @@ export const FIELD_3D_RENDERER_CODE = `
     var RBR_ARROW_MAX_LEN = 2.30;         // the asymptote — never exceeded
     var RBR_ARROW_SOFT_N = (RBR_ARROW_MAX_LEN - RBR_ARROW_KNEE_LEN) / RBR_ARROW_SCALE;
     var RBR_ARROW_MIN_LEN = 0.16;         // visibility floor (mass sphere radius)
-    var RBR_L_ARROW_SCALE = 0.20;         // world units per kg m^2/s
-    var RBR_L_ARROW_MIN = 0.22, RBR_L_ARROW_MAX = 1.80;
+    var RBR_ARROW_EPS_N = 0.02;           // BELOW this the pull arrow draws NOTHING
     var RBR_MASS_R = 0.16;                // drawn mass sphere radius, world
+
+    // ── E7 · SEPARABILITY — a vector must be readable APART from the apparatus
+    //   line it runs along (bug_class rbr_arrowhelper_shafts_not_separable_
+    //   from_the_apparatus_they_run_along; amends the FIXED row
+    //   field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line).
+    //
+    //   Both rbr vectors are COLLINEAR with an opaque cylinder — L runs up the
+    //   axle, the pull force runs along the rod — and THREE.ArrowHelper builds
+    //   its shaft as a zero-width THREE.Line. Both shafts therefore lived
+    //   INSIDE the very apparatus they measure. Measured on the frozen frames:
+    //   15 px of ink for the L arrow in S1 (an 11x6 bbox), a 5.7x change in |L|
+    //   moving a 7-pixel smear, the material colour never appearing on screen at
+    //   all, and in the flipped state the arrow entirely absent.
+    //
+    //   The fix is BY CONSTRUCTION and has THREE halves that only work together
+    //   — a z-offset is explicitly NOT one of them (clause (d) of that row: a
+    //   geometric nudge hides the defect at one camera angle and restores it at
+    //   the next):
+    //     (1) the shafts are real CylinderGeometry meshes (rbrMakeThickVector);
+    //     (2) the apparatus cylinder is THINNER than the shaft by the radius
+    //         ratio declared here — not tuned by eye;
+    //     (3) the apparatus is DIMMER than the shaft by the emissive ratio
+    //         declared here, and darker in base colour (see RBR_AXLE_COLOR).
+    //   At RBR_WORLD_PER_M the drawn widths are ~6 px of apparatus against
+    //   ~12 px of shaft, so the two are separable at a glance and stay
+    //   separable at every |L| the sliders can reach.
+    var RBR_SEP_RADIUS_RATIO = 2.0;       // shaft radius / apparatus radius
+    var RBR_SEP_EMISSIVE_RATIO = 6.0;     // arrow emissiveIntensity / apparatus's
+    var RBR_SEP_HEAD_RATIO = 3.1;         // head radius / shaft radius (sibling value)
+    var RBR_AXLE_R = 0.045;               // was 0.07 — thinner than the L shaft
+    var RBR_ROD_R = 0.040;                // was 0.05 — thinner than the pull shaft
+    var RBR_APPARATUS_EMI = 0.14;         // axle + rod emissiveIntensity
+    var RBR_ARROW_EMI = RBR_APPARATUS_EMI * RBR_SEP_EMISSIVE_RATIO;   // 0.84
+    var RBR_L_SHAFT_R = RBR_AXLE_R * RBR_SEP_RADIUS_RATIO;            // 0.090
+    var RBR_PULL_SHAFT_R = RBR_ROD_R * RBR_SEP_RADIUS_RATIO;          // 0.080
+    var RBR_L_HEAD_LEN = 0.24, RBR_PULL_HEAD_LEN = 0.20;
+
+    // ── E7 · the BOUNDED / ASYMPTOTIC **L** map — separate from the pull map ──
+    //   The two magnitude->length maps stay SEPARATE on purpose: one eats
+    //   newtons, the other kg m^2/s. Separability of a vector from its
+    //   apparatus is shared; the scale that turns a magnitude into a length is
+    //   not, and a single shared map would silently claim the two quantities
+    //   are commensurable.
+    //   What was wrong with the old pair (RBR_L_ARROW_MIN 0.22 / _MAX 1.80):
+    //     • the MIN drew a 0.22-long arrow at L = 0 — a rendered lie standing
+    //       beside a readout saying "L = 0.00";
+    //     • the MAX clipped every |L| above 9.00, so L 9.18 -> 20.7 moved
+    //       nothing at all, i.e. length stopped meaning magnitude exactly where
+    //       the explore sliders live.
+    //   The replacement is the shape rbrArrowLen already uses: TRUE ZERO below
+    //   an epsilon, exactly linear (slope RBR_L_ARROW_SCALE, unchanged) through
+    //   a knee placed ABOVE the whole reachable band, asymptotic above it with a
+    //   continuous first derivative. Consequences, all checked numerically:
+    //     • len(0) = 0 — nothing is drawn;
+    //     • len(1.14) = 0.228 and len(6.51) = 1.302 — ratio 5.711 against a true
+    //       ratio of 5.711, with a ZERO intercept, so a pixel measurement of the
+    //       drawn length is a measurement of |L|;
+    //     • the guided band (|L| = 4.59 / 2.29) and the whole slider reach
+    //       (|L| <= 8.68) sit strictly below the knee, so every state a teacher
+    //       can drive is on the exactly-proportional branch;
+    //     • beyond the knee it still MOVES — L 10 -> 2.000, L 20.7 -> 2.398 —
+    //       instead of freezing at a clip.
+    var RBR_L_ARROW_SCALE = 0.20;         // world units per kg m^2/s (UNCHANGED)
+    var RBR_L_EPS = 0.02;                 // |L| below this draws NOTHING
+    var RBR_L_KNEE = 10.0;                // above the 8.68 slider maximum
+    var RBR_L_KNEE_LEN = RBR_L_ARROW_SCALE * RBR_L_KNEE;              // 2.00
+    var RBR_L_MAX_LEN = 2.40;             // the asymptote — approached, never clipped
+    var RBR_L_SOFT = (RBR_L_MAX_LEN - RBR_L_KNEE_LEN) / RBR_L_ARROW_SCALE;
 
     var rbrIndex = [];
     function rbrRegister(o) { rbrIndex.push(o); return o; }
@@ -50284,6 +50370,14 @@ export const FIELD_3D_RENDERER_CODE = `
     function rbrNum(a, b) { return (typeof a === "number" && isFinite(a)) ? a : b; }
     function rbrArrowLen(fN) {
         var F = (typeof fN === "number" && isFinite(fN)) ? Math.abs(fN) : 0;
+        // E7 — TRUE ZERO below epsilon. The min-length floor below is a
+        // VISIBILITY floor for a force that is genuinely acting; it must never
+        // manufacture an arrow for a force that is not (the same rendered lie
+        // the old RBR_L_ARROW_MIN told at L = 0). RBR_ARROW_MIN_LEN itself is
+        // UNCHANGED: at the guided minimum F = 3.60 N the map already returns
+        // 0.252, clearing the floor 1.58x, so the floor is not what made the
+        // pull arrow unreadable — collinear camouflage against the rod was.
+        if (F < RBR_ARROW_EPS_N) return 0;
         var L;
         if (F <= RBR_ARROW_KNEE_N) L = RBR_ARROW_SCALE * F;
         else L = RBR_ARROW_KNEE_LEN + (RBR_ARROW_MAX_LEN - RBR_ARROW_KNEE_LEN)
@@ -50292,10 +50386,124 @@ export const FIELD_3D_RENDERER_CODE = `
         if (L > RBR_ARROW_MAX_LEN) L = RBR_ARROW_MAX_LEN;
         return L;
     }
+    // E7 — the L map. SEPARATE from rbrArrowLen by construction (see the
+    // RBR_L_* block): newtons and kg m^2/s are not commensurable, so they do
+    // not share a scale. Same SHAPE: true zero, then exactly linear, then
+    // asymptotic with a continuous first derivative at the knee.
+    function rbrLArrowLen(lVal) {
+        var A = (typeof lVal === "number" && isFinite(lVal)) ? Math.abs(lVal) : 0;
+        if (A < RBR_L_EPS) return 0;
+        if (A <= RBR_L_KNEE) return RBR_L_ARROW_SCALE * A;
+        return RBR_L_KNEE_LEN + (RBR_L_MAX_LEN - RBR_L_KNEE_LEN)
+            * (1 - Math.exp(-(A - RBR_L_KNEE) / RBR_L_SOFT));
+    }
     function rbrMakeLabel(text, hex, h) {
         var lbl = pmCreateAutoLabel(text, hex, h == null ? 0.30 : h);
         lbl._rbrText = text;
         return lbl;
+    }
+    // Recolour a retained rbr label in place (the sign channel — see
+    // rbrSetVectorColor). pmCreateAutoLabel keeps its canvas + ctx and
+    // updateLabelSpriteText redraws from sprite._pmColor, so the colour is one
+    // assignment plus a redraw of the SAME string.
+    function rbrSetLabelColor(lbl, hex) {
+        if (!lbl || lbl._pmColor === hex) return;
+        lbl._pmColor = hex;
+        updateLabelSpriteText(lbl, lbl._pmText != null ? lbl._pmText : (lbl._rbrText || ""));
+    }
+
+    // ── E7 · rbrMakeThickVector — a vector with a REAL shaft ───────────────
+    //   LIFTED from the three existing near-identical thick-vector builders,
+    //   gsphMakeThickVector / glnMakeThickVector / gssMakeThickVector. That the
+    //   mechanism already exists three times IS the Rule-40a signal: it is not
+    //   invented here a fourth time, it is copied. Those three are SEALED (other
+    //   scenarios, other bug_class) and are deliberately NOT refactored to share
+    //   this one — fleet promotion is a founder decision.
+    //   Same skeleton: a CylinderGeometry shaft (never a THREE.Line, which is
+    //   what ArrowHelper uses and what made both rbr vectors invisible) plus a
+    //   ConeGeometry head, one MeshPhongMaterial with a bright emissive.
+    //   DIFFERENCES from the siblings, each forced by this scenario:
+    //     • headLen is a PARAMETER, and the head SHRINKS on a short vector. The
+    //       siblings draw one long position vector on a static scene with a
+    //       hardcoded 0.34 head; the rbr pull arrow is 0.252 long at the beat
+    //       that matters, and a fixed 0.34 head would be longer than the whole
+    //       arrow. Tip-to-tail stays EXACTLY the requested length either way.
+    //     • TRUE ZERO: length 0 hides the meshes instead of drawing a stub.
+    //     • a setColor that re-seeds the glow baseline, because rbr recolours
+    //       the L vector by SIGN on any frame the sign flips.
+    //     • depthTest stays ON (the siblings switch it off). rbr SPINS: an
+    //       always-on-top pull arrow riding a mass on the far side would draw
+    //       over the near half of the apparatus, inverting depth every half
+    //       turn. It is not needed here — the shaft radius is twice the
+    //       apparatus radius by construction, so the shaft OCCLUDES the axle /
+    //       rod it runs along rather than the other way round.
+    function rbrMakeThickVector(dirArr, hex, len, shaftR, headLen) {
+        var grp = new THREE.Group();
+        var sr = (shaftR != null) ? shaftR : RBR_L_SHAFT_R;
+        var hl = (headLen != null) ? headLen : RBR_L_HEAD_LEN;
+        var col = hexToThreeColor(hex);
+        var mat = new THREE.MeshPhongMaterial({
+            color: col, emissive: col, emissiveIntensity: RBR_ARROW_EMI,
+            shininess: 70, transparent: true, opacity: 1.0
+        });
+        var shaftGeo = new THREE.CylinderGeometry(sr, sr, 1, 16);
+        shaftGeo.translate(0, 0.5, 0);               // base at origin, grows +Y
+        var shaft = new THREE.Mesh(shaftGeo, mat);
+        shaft.userData = { part: "shaft" };
+        grp.add(shaft);
+        var headGeo = new THREE.ConeGeometry(1, 1, 20);
+        headGeo.translate(0, 0.5, 0);                // base at origin, apex at +1
+        var head = new THREE.Mesh(headGeo, mat);
+        head.userData = { part: "head" };
+        grp.add(head);
+        grp.userData = {
+            _shaft: shaft, _head: head, _mat: mat, _hex: hex,
+            _shaftR: sr, _headLen: hl, _headR: sr * RBR_SEP_HEAD_RATIO
+        };
+        rbrSetVectorLength(grp, len);
+        rbrSetVectorDir(grp, dirArr);
+        return grp;
+    }
+    function rbrSetVectorLength(grp, len) {
+        if (!grp || !grp.userData) return;
+        var ud = grp.userData, sh = ud._shaft, hd = ud._head;
+        if (!sh || !hd) return;
+        var L = (typeof len === "number" && isFinite(len) && len > 0) ? len : 0;
+        // TRUE ZERO draws NOTHING. Only the CHILD meshes are touched — the
+        // group's own .visible belongs to rbrApplyVisibility, so a zero-length
+        // frame can never resurrect a vector the state has switched off, and a
+        // non-zero frame can never resurrect one either.
+        if (L <= 0) { sh.visible = false; hd.visible = false; return; }
+        sh.visible = true; hd.visible = true;
+        // The head shrinks with a short vector so a 0.25-long arrow still reads
+        // as an arrow and not a disc, but its radius never drops below 1.45x the
+        // shaft or the head would vanish into the shaft it sits on.
+        var hl = Math.min(ud._headLen, L * 0.40);
+        var hr = Math.max(ud._shaftR * 1.45, ud._headR * (hl / ud._headLen));
+        var shaftLen = Math.max(1e-4, L - hl);
+        sh.scale.set(1, shaftLen, 1);
+        hd.scale.set(hr, hl, hr);
+        hd.position.set(0, shaftLen, 0);
+    }
+    function rbrSetVectorDir(grp, dirArr) {
+        if (!grp || !dirArr) return;
+        var v = new THREE.Vector3(dirArr[0], dirArr[1], dirArr[2]);
+        if (v.lengthSq() < 1e-12) return;
+        v.normalize();
+        grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), v);
+    }
+    function rbrSetVectorColor(grp, hex) {
+        if (!grp || !grp.userData || grp.userData._hex === hex) return;
+        grp.userData._hex = hex;
+        var m = grp.userData._mat;
+        if (!m) return;
+        var c = hexToThreeColor(hex);
+        if (m.color) m.color.copy(c);
+        if (m.emissive) m.emissive.copy(c);
+        // The glow pass caches a baseline colour the first time it sees a
+        // material and restores it on every idle frame; without this null the
+        // next idle frame would repaint the vector in the PREVIOUS sign colour.
+        if (m.userData) m.userData._glowBaseCol = null;
     }
 
     // ── Physics — every function below is a CLOSED FORM of state-local ms ──
@@ -51160,9 +51368,13 @@ export const FIELD_3D_RENDERER_CODE = `
         spin.userData = { elementType: "rbr_spin", id: "rbr_spin" };
         root.add(spin); rbrRegister(spin);
 
+        // E7 — RBR_AXLE_R (0.045, was 0.07) is HALF the L vector's shaft radius
+        // by construction (RBR_SEP_RADIUS_RATIO). The old axle was not merely
+        // thicker than the shaft, it was thicker than the arrow's CONE (headR
+        // 0.08), which is why even the head was invisible in the flipped state.
         var axle = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.07, 0.07, 3.4, 20),
-            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_AXLE_COLOR), emissive: hexToThreeColor(RBR_AXLE_COLOR), emissiveIntensity: 0.14, shininess: 40 }));
+            new THREE.CylinderGeometry(RBR_AXLE_R, RBR_AXLE_R, 3.4, 20),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_AXLE_COLOR), emissive: hexToThreeColor(RBR_AXLE_COLOR), emissiveIntensity: RBR_APPARATUS_EMI, shininess: 40 }));
         axle.position.set(0, 0.6, 0);
         axle.userData = { elementType: "rbr_axle", id: "rbr_axle" };
         root.add(axle); rbrRegister(axle);
@@ -51201,9 +51413,15 @@ export const FIELD_3D_RENDERER_CODE = `
         drumLbl.userData = { elementType: "rbr_drum_line_label", id: "rbr_drum_line_label" };
         root.add(drumLbl); rbrRegister(drumLbl);
 
+        // E7 — RBR_ROD_R (0.040, was 0.05) is HALF the pull vector's shaft
+        // radius, the same separability ratio the axle carries. The pull arrow
+        // is RADIAL, i.e. collinear with this rod, and at the beat that matters
+        // (F = m*omega^2*r = 3.60 N with the masses still out at r = 0.80) it is
+        // 0.252 long — almost exactly the rod's own tip overhang. Thin + dark
+        // rod against a thick + bright shaft is what separates them.
         var rod = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.05, 0.05, 2 * RBR_DEF_ROD_HALF * W, 16),
-            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_ROD_COLOR), emissive: hexToThreeColor(RBR_ROD_COLOR), emissiveIntensity: 0.12, shininess: 40 }));
+            new THREE.CylinderGeometry(RBR_ROD_R, RBR_ROD_R, 2 * RBR_DEF_ROD_HALF * W, 16),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_ROD_COLOR), emissive: hexToThreeColor(RBR_ROD_COLOR), emissiveIntensity: RBR_APPARATUS_EMI, shininess: 40 }));
         rod.rotation.z = Math.PI / 2;
         rod.position.set(0, RBR_DEF_ROD_H * W, 0);
         rod.userData = { elementType: "rbr_rod", id: "rbr_rod" };
@@ -51219,9 +51437,18 @@ export const FIELD_3D_RENDERER_CODE = `
             mass.userData = { elementType: "rbr_mass", id: "rbr_mass_" + sideId[s], side: sides[s] };
             spin.add(mass); rbrRegister(mass);
 
-            var pull = new THREE.ArrowHelper(new THREE.Vector3(-sides[s], 0, 0), new THREE.Vector3(0, 0, 0),
-                RBR_ARROW_MIN_LEN, hexToThreeColor(RBR_PULL_COLOR), 0.20, 0.15);
-            pull.userData = { elementType: "rbr_pull_arrow", id: "rbr_pull_" + sideId[s], side: sides[s] };
+            // E7 — a THICK vector, not an ArrowHelper. The userData is written
+            // on the GROUP, unchanged, so the test "ud.id === focal ||
+            // ud.elementType === focal" in applyRigidBodyRotationGlow still
+            // matches, rbrEach still finds it, rbrApplyVisibility's
+            // rbr_pull_arrow flag still toggles it, and RBR_ELEMENT_TYPES needs
+            // no edit. Identity is on the object the index holds, and that
+            // object is still one object.
+            var pull = rbrMakeThickVector([-sides[s], 0, 0], RBR_PULL_COLOR,
+                RBR_ARROW_MIN_LEN, RBR_PULL_SHAFT_R, RBR_PULL_HEAD_LEN);
+            pull.userData.elementType = "rbr_pull_arrow";
+            pull.userData.id = "rbr_pull_" + sideId[s];
+            pull.userData.side = sides[s];
             pull.visible = false;
             spin.add(pull); rbrRegister(pull);
         }
@@ -51242,9 +51469,14 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // The L vector, on the axle. S1 uses it as a MAGNITUDE indicator only;
         // its DIRECTION semantics are taught at S6 and nowhere earlier.
-        var lArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0.22, 0),
-            RBR_L_ARROW_MIN, hexToThreeColor(RBR_POS_COLOR), 0.24, 0.16);
-        lArrow.userData = { elementType: "rbr_l_arrow", id: "rbr_l_arrow" };
+        // E7 — a THICK vector, not an ArrowHelper (see the pull arrow above for
+        // why the identity survives). Built at zero length: the very first
+        // frame, one line below, writes the real |L|.
+        var lArrow = rbrMakeThickVector([0, 1, 0], RBR_POS_COLOR, 0,
+            RBR_L_SHAFT_R, RBR_L_HEAD_LEN);
+        lArrow.position.set(0, 0.22, 0);
+        lArrow.userData.elementType = "rbr_l_arrow";
+        lArrow.userData.id = "rbr_l_arrow";
         root.add(lArrow); rbrRegister(lArrow);
         var lLbl = rbrMakeLabel("L", RBR_POS_COLOR, 0.34);
         lLbl.userData = { elementType: "rbr_l_label", id: "rbr_l_label" };
@@ -51564,6 +51796,10 @@ export const FIELD_3D_RENDERER_CODE = `
         if (pd) pd.visible = padOn;
         if (ar) ar.visible = padOn;
         if (pl) pl.visible = padOn;
+        // E7 — freeze the STATE's answer. The per-frame pass may AND a label off
+        // when its vector has zero length, and must never be able to turn one
+        // back ON that the state hid. Recorded last, after every branch above.
+        rbrEach(function (o, ud) { ud._visWant = (o.visible !== false); });
     }
 
     // ── Per-frame. Reads the clock, writes the pose. Nothing accumulates. ──
@@ -51628,31 +51864,41 @@ export const FIELD_3D_RENDERER_CODE = `
         rbrEach(function (o, ud) {
             if (ud.elementType !== "rbr_pull_arrow") return;
             o.position.set(ud.side * (r * W + aLen), rodY, 0);
-            o.setDirection(new THREE.Vector3(-ud.side, 0, 0));
-            o.setLength(aLen, Math.min(0.24, aLen * 0.34), Math.min(0.17, aLen * 0.24));
+            rbrSetVectorDir(o, [-ud.side, 0, 0]);
+            rbrSetVectorLength(o, aLen);
         });
         var pLbl = rbrFindById("rbr_pull_label");
-        if (pLbl) pLbl.position.set(r * W + aLen * 0.5, rodY + 0.34, 0);
+        if (pLbl) {
+            pLbl.position.set(r * W + aLen * 0.5, rodY + 0.34, 0);
+            // A "pull" caption with no arrow under it is the same rendered lie
+            // the arrow stub was. _visWant is the state's OWN answer, recorded
+            // by rbrApplyVisibility, so this AND-gate can only ever hide.
+            pLbl.visible = (pLbl.userData._visWant !== false) && aLen > 0;
+        }
 
         // The L vector: length proportional to |L|, direction and COLOUR from
         // its sign, so a teacher reads the sign before reading the number.
         var lArrow = rbrFindById("rbr_l_arrow");
-        var lLen = Math.abs(L) * RBR_L_ARROW_SCALE;
-        if (lLen < RBR_L_ARROW_MIN) lLen = RBR_L_ARROW_MIN;
-        if (lLen > RBR_L_ARROW_MAX) lLen = RBR_L_ARROW_MAX;
+        var lLen = rbrLArrowLen(L);
         var lCol = (sign < 0) ? RBR_NEG_COLOR : RBR_POS_COLOR;
         if (lArrow) {
             lArrow.position.set(0, sign * 0.22, 0);
-            lArrow.setDirection(new THREE.Vector3(0, sign, 0));
-            lArrow.setLength(lLen, 0.24, 0.16);
-            if (lArrow._rbrCol !== lCol) {
-                lArrow._rbrCol = lCol;
-                if (lArrow.setColor) lArrow.setColor(hexToThreeColor(lCol));
-                lArrow.traverse(function (n) { if (n.material && n.material.userData) n.material.userData._glowBaseCol = null; });
-            }
+            rbrSetVectorDir(lArrow, [0, sign, 0]);
+            rbrSetVectorLength(lArrow, lLen);
+            rbrSetVectorColor(lArrow, lCol);
         }
         var lLbl = rbrFindById("rbr_l_label");
-        if (lLbl) lLbl.position.set(0.34, sign * (0.22 + lLen + 0.20), 0);
+        if (lLbl) {
+            lLbl.position.set(0.34, sign * (0.22 + lLen + 0.20), 0);
+            // E7 — the sign COLOUR channel, now with a second consumer. It had
+            // exactly one before (lArrow.setColor), and that one recoloured a
+            // shaft nothing could see, so the amber/blue pair a teacher is meant
+            // to read the sign from never appeared anywhere on screen. The label
+            // was built RBR_POS_COLOR and its update wrote only .position, so it
+            // stayed blue through every negative-L frame.
+            rbrSetLabelColor(lLbl, lCol);
+            lLbl.visible = (lLbl.userData._visWant !== false) && lLen > 0;
+        }
 
         // The brake actuator (Addendum B). It TRAVELS in, touches the drum at
         // R_drum, and retracts on the release cue — the torque has a visible
