@@ -25,7 +25,30 @@
 -- ─────────────────────────────────────────────────────────────────────────────
 
 -- ═══════════════════════════════════════════════════════════════════════════
--- NOT YET APPLIED. Applying is a founder action (Rule 17).
+-- APPLIED 2026-08-05 to project dxwpkjfypzxrzgbevfnx (dev) via the Supabase MCP,
+-- as migration `engine_bug_queue_mathematics_subject_and_owner_cluster`.
+-- Applied VERBATIM — no deviation from the list below (contrast the 2026-07-24
+-- chemistry file, which needed a field3d_surgeon addition at apply time).
+--
+-- Pre-flight re-run immediately before applying: PASS. Census matched the
+-- 2026-08-04 census below exactly — 681 rows, 9 distinct owner_cluster values,
+-- all present in the restated list; subjects physics/chemistry/subject_neutral.
+--
+-- Verified AFTER applying: both CHECK constraints present with the new values;
+-- 681 rows intact (physics 497 · chemistry 106 · subject_neutral 78 ·
+-- mathematics 0); 9 distinct owners — zero rows lost, zero retagged.
+--
+-- NOT applied to physicsmind-pilot (production) — engine_bug_queue is dev-only.
+--
+-- Historical note: this file was authored 2026-08-04 and could not be applied
+-- from the mathematics session's laptop (its Supabase MCP connector authorizes
+-- against a different org). That is BY DESIGN and stays that way — DDL is a
+-- founder action (Rule 17). Authoring sessions read the scar list headlessly via
+-- src/scripts/query_engine_bug_queue.ts (service-role) and file scar rows as
+-- data INSERTs through seed scripts; neither path needs dashboard access.
+-- ═══════════════════════════════════════════════════════════════════════════
+
+-- ── ORIGINAL PRE-APPLY HEADER (retained verbatim for the record) ─────────────
 -- Target: project dxwpkjfypzxrzgbevfnx (dev). engine_bug_queue is dev-only —
 -- do NOT apply to physicsmind-pilot (production).
 --
