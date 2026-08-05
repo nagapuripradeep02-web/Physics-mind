@@ -60,7 +60,7 @@ export function assembleSimFromSource(conceptId: string): AssembledSim | null {
         //
         // Why this mattered: `build_review_site.ts` DOES pass it, so annotations
         // render in the teacher-facing product — but this helper feeds
-        // `_seed_chemistry_cache.ts`, which is what THE EYE drives. So the gate
+        // `_seed_subject_cache.ts`, which is what THE EYE drives. So the gate
         // was photographing a DIFFERENT picture from the one that ships: every
         // frozen baseline was approved on frames missing all annotation text, and
         // eye_walker could not verify annotation content at all. Two concepts

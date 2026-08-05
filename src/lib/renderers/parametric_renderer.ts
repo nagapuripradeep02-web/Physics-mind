@@ -603,6 +603,53 @@ function computePhysics_law_of_conservation_of_mass(vars) {
   };
 }
 
+// unit_circle_to_sine_wave — MATHEMATICS namespace (src/data/concepts/mathematics/),
+// the first mathematics concept. Iframe-side twin of the TS engine
+// (unitCircleToSineWaveEngine in physicsEngine/concepts/) — both implement the
+// SAME formula contract, per the scar
+// parametric_computephysics_missing_silent_template_leak: standing up a new
+// parametric-family concept is never data-only, and without a non-null return
+// here PM_physics stays null, PM_liveExprVars()/PM_liveVarsWithDerived() fall
+// back to the STATIC default_variables, and every body, vector, arc and label
+// freezes at its authoring default while the {interpolations} leak as literal
+// braces.
+//
+// UNITS: theta/phi/phi_r are DEGREES (the fleet convention for angle-driven PCPL
+// concepts — cf. computePhysics_newton_second_law_direction's theta_F, and
+// resultant_direction's theta). Degrees are what drawCanvasSlider's caption
+// formatter prints verbatim (it has no unit-conversion field, so a radian value
+// would drag-caption as "3.9" instead of "210°") and what drawAngleArc consumes
+// natively. Every trig call converts inline.
+//
+// phi / phi_r are choreography-only sweep parameters and MUST NEVER be authored
+// as sliders: PM_choreoVarsAtTime merges a live slider value into every
+// historical sample of a locus_trace, so a trace parameterised on a slider
+// variable collapses to a point on first drag (engine_bug_queue:
+// pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve).
+function computePhysics_unit_circle_to_sine_wave(vars) {
+  var theta = (vars && typeof vars.theta === 'number' && isFinite(vars.theta)) ? vars.theta : 0;
+  var phi   = (vars && typeof vars.phi   === 'number' && isFinite(vars.phi))   ? vars.phi   : 0;
+  var phi_r = (vars && typeof vars.phi_r === 'number' && isFinite(vars.phi_r)) ? vars.phi_r : 0;
+
+  var theta_rad = theta * Math.PI / 180;
+  var sin_theta = Math.sin(theta_rad);
+  var cos_theta = Math.cos(theta_rad);
+  // s does DOUBLE DUTY: the radian measure of theta AND the arc length in
+  // radius-lengths. r === 1 always in this concept (nothing in PCPL draws a
+  // circle at a live radius — body size is number-only), so arc length
+  // = theta_rad * r = theta_rad exactly. That identity is what STATE_2 teaches,
+  // and it is why the dual-unit HUD reads "theta = {s} rad ({theta} deg)":
+  // the radian slot is s, never the raw theta variable.
+  var s = theta_rad;
+
+  return {
+    concept_id: 'unit_circle_to_sine_wave',
+    variables: { theta: theta, phi: phi, phi_r: phi_r },
+    derived: { sin_theta: sin_theta, cos_theta: cos_theta, s: s },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -626,6 +673,10 @@ function computePhysics(conceptId, vars) {
   // only for this id; the physics dispatch above is byte-unchanged.
   else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
   else if (conceptId === 'law_of_conservation_of_mass') result = computePhysics_law_of_conservation_of_mass(vars);
+  // Mathematics namespace (src/data/concepts/mathematics/) — same concept-gated
+  // pattern as the chemistry pair above; fires only for this id, so the physics
+  // dispatch remains byte-unchanged.
+  else if (conceptId === 'unit_circle_to_sine_wave') result = computePhysics_unit_circle_to_sine_wave(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
