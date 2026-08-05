@@ -836,7 +836,8 @@
               "y": 352
             },
             "font_size": 12,
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "appear_at_ms": 800
           },
           {
             "type": "animated_path",
@@ -865,7 +866,8 @@
               "y": 352
             },
             "font_size": 12,
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "appear_at_ms": 800
           },
           {
             "type": "animated_path",
@@ -894,7 +896,8 @@
               "y": 352
             },
             "font_size": 12,
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "appear_at_ms": 800
           },
           {
             "type": "animated_path",
@@ -923,7 +926,8 @@
               "y": 352
             },
             "font_size": 12,
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "appear_at_ms": 800
           },
           {
             "type": "animated_path",
@@ -952,7 +956,8 @@
               "y": 352
             },
             "font_size": 12,
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "appear_at_ms": 800
           },
           {
             "type": "label",
@@ -963,7 +968,8 @@
               "y": 384
             },
             "font_size": 12,
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "appear_at_ms": 800
           },
           {
             "type": "locus_trace",
@@ -1644,8 +1650,7 @@
             "from_deg": 0,
             "angle_value_expr": "min(theta, 360)",
             "radius": 34,
-            "color": "#A78BFA",
-            "label": "θ"
+            "color": "#A78BFA"
           },
           {
             "type": "vector",
@@ -2102,7 +2107,9 @@
             "from_expr": "{x:150,y:230}",
             "to_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230 - 110*sin((180-theta)*PI/180)}",
             "style": "line",
-            "color": "#4ADE80"
+            "color": "#4ADE80",
+            "appear_at_ms": 2400,
+            "animate_in_ms": 1600
           },
           {
             "type": "body",
@@ -2117,7 +2124,9 @@
               "y": "230 - 110*sin((180-theta)*PI/180)"
             },
             "size": 16,
-            "fill_color": "#4ADE80"
+            "fill_color": "#4ADE80",
+            "appear_at_ms": 2400,
+            "animate_in_ms": 1600
           },
           {
             "type": "vector",
@@ -2126,7 +2135,9 @@
             "to_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230}",
             "style": "line",
             "color": "#4ADE80",
-            "label": "y"
+            "label": "y",
+            "appear_at_ms": 2400,
+            "animate_in_ms": 1600
           },
           {
             "type": "angle_arc",
@@ -2139,7 +2150,19 @@
             "angle_value_expr": "180 - theta",
             "radius": 78,
             "color": "#4ADE80",
-            "label": "π − θ"
+            "appear_at_ms": 2400
+          },
+          {
+            "type": "label",
+            "id": "mirror_arc_label",
+            "text": "π − θ",
+            "position": {
+              "x": 86,
+              "y": 159
+            },
+            "font_size": 12,
+            "color": "#4ADE80",
+            "appear_at_ms": 2400
           },
           {
             "type": "vector",
@@ -2332,7 +2355,8 @@
               "y": 392
             },
             "font_size": 14,
-            "color": "#4ADE80"
+            "color": "#4ADE80",
+            "appear_at_ms": 2400
           },
           {
             "type": "label",
@@ -2363,7 +2387,8 @@
             "primitive_id": "mirror_point",
             "halo_radius_px": 42,
             "color": "#4ADE80",
-            "intensity": 0.45
+            "intensity": 0.45,
+            "appear_at_ms": 4000
           },
           {
             "type": "slider",
@@ -2383,7 +2408,7 @@
             "variable": "theta",
             "mode": "ping_pong",
             "from": 45,
-            "to": 90,
+            "to": 80,
             "start_ms": 4000,
             "duration_ms": 4000
           },
