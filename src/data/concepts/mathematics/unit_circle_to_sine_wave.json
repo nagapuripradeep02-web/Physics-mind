@@ -164,7 +164,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -324,7 +331,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -423,9 +437,9 @@
           },
           {
             "type": "glow_focus",
-            "id": "glow_rim_trace",
-            "primitive_id": "rim_trace",
-            "halo_radius_px": 0,
+            "id": "glow_point",
+            "primitive_id": "point",
+            "halo_radius_px": 42,
             "color": "#A78BFA",
             "intensity": 0.45
           }
@@ -474,7 +488,7 @@
         "duration": 21,
         "depth_ring": "core",
         "advance_mode": "manual_click",
-        "focal_primitive_id": "height_seg",
+        "focal_primitive_id": "point",
         "scene_composition": [
           {
             "type": "annotation",
@@ -538,7 +552,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -568,7 +589,14 @@
             "type": "body",
             "id": "foot",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230"
+            },
             "size": 7,
             "fill_color": "#38BDF8"
           },
@@ -606,8 +634,8 @@
           },
           {
             "type": "glow_focus",
-            "id": "glow_height_seg",
-            "primitive_id": "height_seg",
+            "id": "glow_point",
+            "primitive_id": "point",
             "halo_radius_px": 42,
             "color": "#38BDF8",
             "intensity": 0.45
@@ -734,7 +762,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -937,7 +972,14 @@
             "type": "body",
             "id": "sine_pen",
             "shape": "circle",
-            "position_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*sin(phi*PI/180)}",
+            "position": {
+              "x": 300,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "300 + 46*phi*PI/180",
+              "y": "230 - 110*sin(phi*PI/180)"
+            },
             "size": 12,
             "fill_color": "#38BDF8"
           },
@@ -1115,7 +1157,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -1328,7 +1377,14 @@
             "type": "body",
             "id": "cosine_pen",
             "shape": "circle",
-            "position_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*cos(phi*PI/180)}",
+            "position": {
+              "x": 300,
+              "y": 120
+            },
+            "position_expr": {
+              "x": "300 + 46*phi*PI/180",
+              "y": "230 - 110*cos(phi*PI/180)"
+            },
             "size": 12,
             "fill_color": "#F472B6",
             "appear_at_ms": 4000
@@ -1532,7 +1588,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -1770,7 +1833,14 @@
             "type": "body",
             "id": "continuation_pen",
             "shape": "circle",
-            "position_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*sin(phi*PI/180)}",
+            "position": {
+              "x": 589,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "300 + 46*phi*PI/180",
+              "y": "230 - 110*sin(phi*PI/180)"
+            },
             "size": 12,
             "fill_color": "#38BDF8",
             "appear_at_ms": 3000
@@ -1864,7 +1934,7 @@
         "duration": 21,
         "depth_ring": "advanced",
         "advance_mode": "manual_click",
-        "focal_primitive_id": "mirror_height_seg",
+        "focal_primitive_id": "mirror_point",
         "eye_capture_ms": 18500,
         "scene_composition": [
           {
@@ -1929,7 +1999,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -1969,7 +2046,14 @@
             "type": "body",
             "id": "mirror_point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230 - 110*sin((180-theta)*PI/180)}",
+            "position": {
+              "x": 40,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos((180-theta)*PI/180)",
+              "y": "230 - 110*sin((180-theta)*PI/180)"
+            },
             "size": 16,
             "fill_color": "#4ADE80",
             "appear_at_ms": 2400,
@@ -2207,17 +2291,8 @@
           },
           {
             "type": "glow_focus",
-            "id": "glow_height_seg",
-            "primitive_id": "height_seg",
-            "halo_radius_px": 42,
-            "color": "#38BDF8",
-            "intensity": 0.45,
-            "appear_at_ms": 4000
-          },
-          {
-            "type": "glow_focus",
-            "id": "glow_mirror_height_seg",
-            "primitive_id": "mirror_height_seg",
+            "id": "glow_mirror_point",
+            "primitive_id": "mirror_point",
             "halo_radius_px": 42,
             "color": "#4ADE80",
             "intensity": 0.45,
@@ -2340,7 +2415,14 @@
             "type": "body",
             "id": "point",
             "shape": "circle",
-            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 260,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "150 + 110*cos(theta*PI/180)",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 16,
             "fill_color": "#FBBF24"
           },
@@ -2551,7 +2633,14 @@
             "type": "body",
             "id": "sine_dot",
             "shape": "circle",
-            "position_expr": "{x: 300 + 46*theta*PI/180, y: 230 - 110*sin(theta*PI/180)}",
+            "position": {
+              "x": 300,
+              "y": 230
+            },
+            "position_expr": {
+              "x": "300 + 46*theta*PI/180",
+              "y": "230 - 110*sin(theta*PI/180)"
+            },
             "size": 12,
             "fill_color": "#38BDF8",
             "appear_at_ms": 3000
@@ -2560,7 +2649,14 @@
             "type": "body",
             "id": "cosine_dot",
             "shape": "circle",
-            "position_expr": "{x: 300 + 46*theta*PI/180, y: 230 - 110*cos(theta*PI/180)}",
+            "position": {
+              "x": 300,
+              "y": 120
+            },
+            "position_expr": {
+              "x": "300 + 46*theta*PI/180",
+              "y": "230 - 110*cos(theta*PI/180)"
+            },
             "size": 12,
             "fill_color": "#F472B6",
             "appear_at_ms": 3000
