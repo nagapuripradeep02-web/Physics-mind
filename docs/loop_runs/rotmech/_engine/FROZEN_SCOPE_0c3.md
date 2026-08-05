@@ -450,6 +450,73 @@ Build notes, decided:
   agent" family. Sequence E10 and E8 adjacently; keep them separate `bug_class`es (different
   branch, different mesh, different trigger) unless the surgeon finds one mechanism serves both.
 
+### E11 · `nlb_rest_guard_pins_any_body_released_from_rest_that_can_roll` — **CRITICAL · BLOCKS DESK B ENTIRELY · NEXT DISPATCH**
+**Added 2026-08-06 from Desk B's `findings_b.md` B-3 (revised), verified by RUNTIME — the opposite
+provenance to B-1/B-2, which is exactly why it outranks them.**
+
+**`rolling_on_incline` is entirely non-functional — not one of its 8 states renders its physics.**
+`STATE_8` (the Rule-37 sandbox, guaranteed to run continuously) is **one MD5 across 10.5 s**:
+`t=0`, `t=5000`, `t=10000` and the frozen pin are **byte-identical**. Negative control passes:
+STATE_7's `param_ramp` produces a different hash at every timestamp, so the harness sees change
+when there is any.
+
+#### ⚠ This supersedes E2's blast-radius claim, and E2's evidence was measuring a corpse
+E2 (`1a889bc`, shipped) reported *"`rolling_on_incline` 17/17 identical"* as proof of nil blast
+radius. **Those 17 states were identical because they were dead before AND after.** A
+byte-identical A/B against a broken baseline proves non-regression, not correctness — and nothing
+in E2's probe could have distinguished the two, because it drove the branch logic and never asked
+whether `b.v` advanced. Desk B states it plainly: **"B-1 must not be closed by a fix that only
+adds the kinematic precondition. That fix, alone, would leave every incline rolling state exactly
+as dead as it is now."** E2 is **necessary but not sufficient**; it is not wrong, and it is not
+the whole story.
+
+#### Desk B's isolation of the defect — force model CORRECT, transport BROKEN
+- **S6** (held → released at `activate_at_ms: 2500`): before, `a = 0.00, f_s = 4.14 N` — exactly
+  `mg sin 25°`. After, `a = −2.76, f = 1.38 N` — exactly `g sin θ/(1+k)` for a disc and `k·m·a`.
+  **The release fires on schedule with correct magnitudes, and the mesh is pixel-identical either
+  side of it.**
+- **S3 positive control, same frame, same instant:** a `rotation_locked` block beside a `rolling`
+  disc. The **block** integrates correctly (`contact` 0.09 → 2.88 → 4.18, tracking
+  `a = g(sinθ − μ_k cosθ) = 2.809`). Only the `rolling` disc stays frozen at `contact = 0.00`.
+- **The split falls exactly along "reads from persistent state" (`v`, `ω`, `Rω`, `contact`,
+  `KE_*` — all frozen at seed) vs "computed from a formula" (`a`, `f` — all correct).**
+- **REFUTED, do not re-derive:** excess static friction holding the bodies `stuck`. S6's release
+  and S7's μ_s ramp both drive the body out of the static regime with correct post-slip numbers,
+  and neither moves.
+
+#### 🔬 Desk E's root-cause HYPOTHESIS — arithmetic-backed, and it names its own falsifier
+**This is a hypothesis, not a conclusion. Verify or refute it FIRST; do not build to it.**
+
+The rest guard immediately after the branch selection (`field_3d_renderer.ts:47337`):
+```js
+var v0 = b.v;
+var v1 = v0 + a * hPhys;
+if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+```
+`nlbSgn(0) === 0` (`:46293`). For **any body released from rest**, `v0 = 0` ⇒ `nlbSgn(v0) = 0`
+while `nlbSgn(v1) = ±1`, so **the sign test is ALWAYS true on the first step**. The guard then
+fires whenever `|drive| ≤ maxStat` — and for a body that *can roll*, having enough static friction
+is precisely what `canRoll` asserts. So the guard pins it at `v = 0`, `a = 0` **every frame,
+forever**, and `v0` stays 0 so the condition never stops holding.
+
+Reproduced against Desk B's own measured state (m = 1, θ = 25°, k = 0.5, disc):
+`drive = mg sin 25° = 4.142 N` (Desk B measured `f_s = 4.14`) · `aRoll = 2.76` (Desk B measured
+`a = −2.76`) · at **μ_s = 0.5**, `maxStat = 4.44` ⇒ `drive ≤ maxStat` ⇒ **guard fires** ⇒ dead.
+
+It also explains the flat/incline split with no second defect: `pure_rolling`'s working states are
+**launched with v₀ ≠ 0**, so `nlbSgn(v0) = ±1 = nlbSgn(v1)` and the guard never fires.
+
+**Its own falsifier — test this before anything else.** At S7's ramp end (μ_s = 0.05) `maxStat`
+falls to 0.44 < drive 4.142, so the guard should **stop** firing and the body should move. **Desk B
+reports S7 does not move.** So either a second mechanism pins S7, or this hypothesis is incomplete.
+That discriminator is the cheapest first experiment in the dispatch.
+
+**Fix shape (surgeon's call):** the guard is for *kinetic jitter across v = 0*, so it must not
+treat "at rest and about to start" as "has come to rest" — e.g. require `v0 ≠ 0` before it can
+arrest, or test the post-step contact rather than the sign flip. **Whatever the shape, the
+acceptance is RUNTIME, not a probe:** Desk B must see distinct frame hashes across `STATE_8`'s
+10.5 s. A byte-identical A/B is exactly what failed to catch this.
+
 ---
 
 ## §C — IN SCOPE but NOT dispatched yet (ranked, un-started)
