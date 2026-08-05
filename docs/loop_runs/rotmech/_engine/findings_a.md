@@ -226,6 +226,15 @@ above "Reverse spin". S8 (five rows) fills it correctly.
 that is exactly what preserves the height. The surgeon must satisfy both.
 **Owner:** `peter_parker:field3d_surgeon`.
 
+### Scope note (eye-walker, 2026-08-05) — the same class on a SECOND panel
+
+Not a new row; widen this one. The **readout panel** has the same defect: on S1 and S2 at
+t = 0–1000, before the first `readout_at_ms`-staged row lands, it renders as a small **empty black
+bar**. Same root shape as the slider panel — a container sized independently of its live content.
+Whatever fix satisfies the E8 tension above should be applied to both panels, or the empty-container
+class simply moves house. (Measured on the current run: S5 ~165 px of empty slider panel, S6 ~205 px;
+S8's five rows fill correctly.)
+
 ## A-6 · S3's match cue is latched, not a closed form of t — already fired in every rewound frame
 
 **Severity: the most consequential engine finding on this concept.** Regresses OPEN scar
@@ -506,6 +515,35 @@ copy-paste into the next seven rotmech concepts.
 
 **Suggested affordance:** allow `tts_sentences: []` when `advance_mode === 'interaction_complete'`.
 **Owner:** office, on master, per Rule 40 — never a chapter-branch edit.
+
+## A-22 · S6's frozen pin lands on a camera-degenerate rod phase — the held frame CONTRADICTS its own HUD
+
+**Raised by `eye-walker` on the post-PR#29 walk (`20260805-163752`), 2026-08-05. NEW. Severity
+MODERATE.** `bug_class: frozen_pin_lands_on_a_camera_degenerate_body_phase_that_contradicts_the_hud`
+
+S6's camera `[0.22, 0.80, 5.85]` sits essentially **in the rod's plane of rotation** — a deliberate
+side-on reframe, chosen so the L arrow's direction flip reads. Consequence: twice per revolution the
+rod goes edge-on and both masses project onto the axle. **The frozen pin lands on exactly such a
+phase.** `STATE_6__frozen.png` shows the two masses collapsed against the axle at (620,320) and
+(650,300) with almost no rod visible — **while the HUD reads `I = 3.06 kg·m²`**, the value that means
+the masses are out at r = 0.80. The number says "arms extended"; the picture says "arms at the
+centre". The state's other dense frames (t = 1000/3000/8000/9000) show the rod broadside and read
+correctly, so this bites **only at the held final picture** — which is also the H2 baseline and the
+frame a teacher pauses on.
+
+**Two candidate fixes, and a reason to take NEITHER yet:**
+- *Concept-side* (`alex:json_author`, cheapest): offset the camera azimuth out of the rotation plane.
+- *Engine-side* (`peter_parker:field3d_surgeon`): pin at a non-degenerate phase.
+
+**Do not fix this before E7 lands.** S6's side-on camera exists to make the L arrow's flip legible —
+and under **A-11/E7 that arrow is currently invisible**, so the framing is presently optimising for
+something that does not render. Choosing the azimuth now would tune the camera against a picture
+nobody can see, and would have to be redone once the arrow appears. **Sequence: E7 first, then
+re-judge S6's framing against the visible arrow, then fix this.** Recorded now so it is not lost.
+
+**Prevention rule (adopt regardless):** a state whose camera lies within a rotating body's plane of
+motion must have its reveal-complete pin verified at a **non-degenerate phase** — the apparatus
+geometry that the HUD's numbers describe must be visible in the frozen frame.
 
 ## A-20 · rbr's ⚙ teacher-widget labels fall back to internal ids — "Kebar", "Repin", "Spin dir slider"
 
