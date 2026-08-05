@@ -30,7 +30,30 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
    ≥ 3:1; S4 flip ≥ 300 px). Also drop `STATE_3.restart.every_ms: 99000` when F-C6 lands.
    Three authoring findings ride the same cycle (P2-1 S4 `phases[]`, P2-2 the Rule-38g CBSE
    cell, P3 the `s2_4` idiom).
-3. `rigid_body_rotation` stays parked — design sealed, waiting on 0c-3.
+3. `rigid_body_rotation` stays parked — design sealed, waiting on 0c-3. **The §5.1 re-verification
+   list is now PREPARED and partly pre-resolved** at
+   `docs/loop_runs/rotmech/rigid_body_rotation/reverification_5_1.md` — run it the moment 0c-3
+   merges, before json_author. Four of six items are settled; item 3 (the two-timed-class fence)
+   is the one that can still invalidate the sealed design.
+
+## 2026-08-05 session — no authoring, three outcomes
+
+1. **The master-merge commit is PUSHED** (`6364e77` → `origin/feat/rotmech-c`). Verified before
+   pushing: `tsc` 0 errors · `validate:concepts` **150 PASS / 0 FAIL** (unchanged from the
+   `angular_momentum` seal). The merge brings mathematics-subject files + `parametric_renderer.ts`
+   / `build_review_site.ts` platform changes down from master — none edited here.
+2. **The bug-queue outage is over and the §5.1 item-1 re-run is DONE.** Three of the four REV 1
+   queries are unchanged (`--row-type directive` 83 · `--field3d --open` 85 ·
+   `--concept rigid_body_rotation` 1); only `--owner alex:architect` drifted, 63 → **67**, and the
+   +4 has **not grown** since PASS 9 flagged it. The four rows are identified by name and carry
+   proposed verdicts — one BINDS hard (`skeleton_discharges_a_ring_cut_with_a_field_no_renderer_reads`,
+   the queue-backed twin of `FROZEN_SCOPE_0c3.md` §C row C-8). All four entered with
+   `unit_circle_to_sine_wave`. **The manifest is still unapplied — that half is a DB write.**
+3. **`findings_c.md` PASS 16 filed:** `FROZEN_SCOPE_0c3.md` §C row C-3's *"no concept JSON
+   consuming rbr exists on any branch"* is **stale** — `angular_momentum.json:588` has been on
+   `origin/feat/rotmech-c` since 01:31, ~12½ h before that file was last written. **E7 has a real
+   back-compat surface** (5 authored `show_l_arrow` sites + 3 `rbr_l_arrow` focal handoffs, named
+   in PASS 16). Reported as E7's named verifier; no dispatch made.
 
 ## gate results (wave 1) — `angular_momentum`
 

@@ -75,3 +75,21 @@
   to #3 in error — those precede #3 in the approved order and naming them would invert the graph.
   The architect correctly refused; #3 names `centre_of_mass`, `motion_of_centre_of_mass` and
   `uniform_circular_motion` instead. `angular_momentum` names all four, where they genuinely apply.
+
+- 2026-08-05 · **No authoring — both concepts still blocked on Desk E.** Pushed the master-merge
+  commit `6364e77` after verifying it (`tsc` 0 · validator 150 PASS / 0 FAIL, unchanged).
+- 2026-08-05 · **§5.1 re-verification list PREPARED** →
+  `docs/loop_runs/rotmech/rigid_body_rotation/reverification_5_1.md`. Four of six items settled
+  read-only: item 1 (queries re-run, delta = exactly 4 named rows), item 2 (**C8 is dispatched as
+  E9, not declined** — the `declined ⇒ re-scope` branch is closed), item 5 (F-C5 confirmed still a
+  no-op, deferred as C-3), item 6 (**premise now false** — a precedent rbr JSON exists, which
+  turns that item from a cost into an asset). Items 3 and 4 need office rulings; **item 3, the
+  two-timed-class fence, is the only one that can still invalidate the sealed design.**
+- 2026-08-05 · **Bug queue is reachable again.** `--owner alex:architect` 63 → 67; the other three
+  REV 1 queries byte-stable. The +4 are all `unit_circle_to_sine_wave` rows that arrived with the
+  mathematics subject. One BINDS hard on #3's ring cut, one BINDS on the S1/S3 equality claims,
+  two are N/A-with-reason (one of which generalises into a caution for the C-1 trace design).
+  Verdicts are *proposed for the 0d session*, not taken. Manifest still unapplied (DB write).
+- 2026-08-05 · **PASS 16 filed** — E7's back-compat surface. Desk C is E7's named verifier, and
+  the E7 acceptance floors are confirmed identical across `founder_proxy_B.md` §6 and
+  `FROZEN_SCOPE_0c3.md` §B. No engine fix dispatched (guardrail 6); no DB write.

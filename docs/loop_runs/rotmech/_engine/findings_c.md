@@ -940,3 +940,65 @@ driving the sim. Recorded plainly because the next invisible-overlay finding wil
 
 Owner: `peter_parker:field3d_surgeon` via Desk E. **BLOCKING — `angular_momentum` holds for this
 fix.** No DB write made from this desk.
+
+---
+## PASS 16 — **E7 has a back-compat surface. `FROZEN_SCOPE_0c3.md` §C row C-3 says it does not.**
+
+Filed 2026-08-05 by Desk C as **E7's named verifier** (`ENGINE_LANDING_NOTICE.md` §5). This is a
+correction to a frozen-scope premise, not a new defect and not an engine dispatch.
+
+### The premise
+
+`FROZEN_SCOPE_0c3.md` §C row **C-3** reads: *"**No back-compat constraint: no concept JSON
+consuming rbr exists on any branch** (Desk C verified and withdrew its earlier contrary claim)."*
+
+### What this desk actually withdrew was narrower
+
+The withdrawal (cycle-2 report §5.3 item 4) was about **`conservation_of_angular_momentum`'s
+"already-approved states"** — Desk A's concept, which has no JSON on any branch. That was correct
+and stands. It was then generalised to *no rbr JSON anywhere*, and the generalisation is false.
+
+```
+git show origin/feat/rotmech-c:src/data/concepts/angular_momentum.json | grep -n scenario_type
+  588:    "scenario_type": "rigid_body_rotation",
+```
+
+`angular_momentum.json` — commit `7877393`, **2026-08-05 01:31:12 +0200**, on `origin/feat/rotmech-c`
+— consumes the rbr scenario. `FROZEN_SCOPE_0c3.md` was last written at `6c5ed6d`, **14:06:26 +0200**
+the same day: the JSON preceded it on origin by ~12½ hours. Not a race — a stale premise.
+
+### Why it lands on E7 rather than on C-3's deferral
+
+C-3 is deferred, so its own back-compat clause costs nothing today. **E7 is dispatched**, and it
+rebuilds the primitive this JSON consumes: mesh-cylinder shaft replacing the zero-width `Line`,
+two-sided clearance with `RBR_AXLE` geometry in scope, and a bounded magnitude→length map
+replacing the raw `RBR_L_ARROW_SCALE` clamp. The §C registration rider's **"absent = byte-identical"**
+clause can no longer be discharged against an empty consumer set.
+
+Committed authoring E7 must not regress:
+
+| `angular_momentum.json` | Field | Surface |
+|---|---|---|
+| `:628` `:671` `:759` `:790` | `show_l_arrow: true` (4 states) | arrow renders wherever asked |
+| `:718` | `show_l_arrow: false` | S3 stays clean |
+| `:641` | `phases[]` → `glow_focal: rbr_l_arrow` @ 15200 ms | S1 focal handoff |
+| `:684` | `phases[]` → `glow_focal: rbr_l_arrow` @ 12600 ms | S2 focal handoff |
+| `:766` | state-level `glow_focal: rbr_l_arrow` | **S4 — where the ≥ 300 px flip criterion is measured** |
+
+This is a *strengthening* of E7's verification, not new scope: the four PASS 15 acceptance floors
+already measure this concept's frames. It means an rbr A/B can now be run against real authored
+states rather than asserted vacuously — which is what Desk E's own §F verification standard asks
+for, and what Desk E correctly said it could not do itself (§5: *"this desk will never seed an rbr
+concept"*).
+
+### Confirmed while here — the E7 acceptance criteria are consistent across both documents
+
+`founder_proxy_B.md` §6 and `FROZEN_SCOPE_0c3.md` §B E7's "secondary acceptance floors" agree
+verbatim: S1 ink **≥ 400 px** · `len(6.51)/len(1.14)` = **5.71 ± 0.10** fitted in pixels with
+intercept **< 1 px** · arrow-vs-axle contrast **≥ 3:1** · S4 flip **≥ 300 px**. The contract
+correction's primacy rule — **assert drawn geometry, not pixel luminance**, with these floors
+secondary — is recorded and will be verified in that order. A confirmation, per §5's ask.
+
+Owner: `peter_parker:field3d_surgeon` via Desk E, **as an amendment to the E7 dispatch's
+back-compat framing** — not a new row and not a new `bug_class`. No engine fix dispatched from
+this desk (guardrail 6). No DB write made from this desk.
