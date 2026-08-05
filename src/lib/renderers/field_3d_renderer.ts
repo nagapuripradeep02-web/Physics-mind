@@ -1057,7 +1057,12 @@ export interface Field3DConfig {
             // live value arrives), 'tick' is a labelled tick on a BAR scale.
             reference_marks?: Array<{
                 id?: string;
-                surface?: 'omega' | 'L' | 'I' | 'KE' | 'F_pull';
+                // The surface union is kept EXACTLY equal to the RBR_RO_META key
+                // set. A type that is narrower than the runtime table is how
+                // rbr_authored_token_silently_skipped_when_the_engine_lacks_the_row
+                // reappears from the other side, so the four E5 rows are added
+                // here in full and not only the two the dispatch named.
+                surface?: 'omega' | 'L' | 'I' | 'KE' | 'F_pull' | 'theta' | 'alpha' | 'tau' | 'W';
                 form?: 'chip' | 'tick';
                 value?: number;
                 label?: string;
@@ -1077,7 +1082,24 @@ export interface Field3DConfig {
             show_r_line?: boolean;
             show_drum_line?: boolean;
             show_grip_hand?: boolean;
-            readouts?: string[];                // 'I'|'omega'|'L'|'KE'|'dLdt'|'F_pull'
+            // 'I'|'omega'|'L'|'KE'|'dLdt'|'F_pull'|'theta'|'alpha'|'tau'|'W'
+            //   theta / alpha / tau / W added by E5 (rotmech 0c-3). Units are
+            //   RULED and fleet-wide: theta in rad, alpha in rad/s², tau in N·m,
+            //   W in J (tau = I*alpha only holds in radians, so a degrees theta
+            //   beside a rad/s² alpha would be incoherent on one HUD). There is
+            //   deliberately NO per-concept unit override — see RBR_THETA_DISPLAY.
+            //   `tau` prints the NET RESOLVED torque the integrator is actually
+            //   running at, never the authored schedule value: at a rest clamp
+            //   the authored value would print tau = −1.53 beside alpha = 0.00.
+            //   `alpha` is the per-step finite difference of omega, not tau/I, so
+            //   it stays true at the rest clamp, under a live dI/dt and at every
+            //   engage edge — and so a kinematics concept can print it without
+            //   torque existing yet (Rule 25).
+            //   `W` is the SIGNED work integral of tau dtheta over the current
+            //   run (see rbrGridWalk); for constant I it equals the change in KE.
+            // An unknown token is no longer silent: it warns once per state
+            // ([PM_RBR_TOKEN]) instead of vanishing through `if (!meta) continue`.
+            readouts?: string[];
             // Per-row reveal instant (Rule 25 / the term-introduction ledger: a
             // quantity is PRINTED only after the sentence that defines it).
             // Absent = the row is present from t = 0.
@@ -1103,7 +1125,18 @@ export interface Field3DConfig {
             //   is uniform). ABSENT ENTIRELY => the legacy `formula` string,
             //   BYTE-IDENTICALLY.
             formula_lines?: Array<{ text: string; at_ms?: number }>;
-            controls_visible?: string[];        // 'r'|'m'|'omega0'|'tau_brake'|'spin_dir'
+            // 'r'|'m'|'omega0'|'tau_brake'|'tau_applied'|'spin_dir'
+            //   RING-GATED, exactly the bonding_scene shape (bscControlList): a
+            //   member is either a bare id — which normalises to min_ring 'core',
+            //   so every existing authored array is byte-identical — or
+            //   { id, min_ring }. min_ring is recorded for the Rule-38h preset
+            //   builder (hiding a ring must not leave a surviving state exposing
+            //   a hidden-ring control); the renderer itself shows the row
+            //   whenever the state names the id.
+            //   `tau_applied` (E5) is the SIGNED drive-torque dial. Rule 31
+            //   requires the explore state to expose the taught variable, and
+            //   before E5 there was no control for an applied torque at all.
+            controls_visible?: Array<string | { id: string; min_ring?: 'core' | 'extended' | 'advanced' }>;
             trusted_drag_seizes?: boolean;
             glow_focal?: string;                // exactly ONE scene focal (Rule 32e)
             visible_elements?: string[];        // EXACT-token rbr element gate
@@ -50155,6 +50188,19 @@ export const FIELD_3D_RENDERER_CODE = `
     var RBR_DEF_BLANK_MS = 500;           // Addendum C — the re-pin blank, >= 0.5 s
     var RBR_SWEEP_MS = 4000;              // explore idle triangle, one there-and-back
     var RBR_MATH_FONT = "'Cambria Math','Times New Roman',serif";
+    // ── THE ONE θ UNIT KNOB (E5, rotmech 0c-3) ─────────────────────────────
+    //   theta is STORED and AUTHORED in radians everywhere — theta0_rad, the
+    //   grid integrator, every reference_marks value — and only CONVERTED here,
+    //   at format time, by rbrRoFx. Radians is the ruling: alpha in rad/s² is
+    //   standard, and tau = I*alpha only holds in radians, so a degrees theta
+    //   sitting beside a rad/s² alpha would be internally incoherent on the same
+    //   HUD in the very concept whose claim is tau = I*alpha.
+    //   IF THE OFFICE LATER RULES FOR DEGREES, FLIP THIS ONE CONSTANT — nothing
+    //   else in the file converts and no concept JSON changes:
+    //       var RBR_THETA_DISPLAY = { unit: " °", dp: 1, per_rad: 180 / Math.PI };
+    //   It is DELIBERATELY not a per-concept override: six turntable concepts
+    //   disagreeing on the unit is what APPARATUS_CONTRACT.md §3 forbids.
+    var RBR_THETA_DISPLAY = { unit: " rad", dp: 2, per_rad: 1 };
     // Sign colours (physics_block callout 5): a teacher reads the sign from
     // colour before reading the number, and the pair is identical across S6's
     // two runs and S8's toggle. Red is deliberately avoided (warnings).
@@ -50432,28 +50478,118 @@ export const FIELD_3D_RENDERER_CODE = `
         var I = rbrIAt(tMs);
         return (I > 0) ? rbrLAt(tMs) / I : 0;
     }
-    // theta on the FIXED grid. Cached forward; rebuilt from 0 the moment t goes
-    // backwards, so the returned angle is a pure function of tMs (byte-stable
-    // frozen frames, exact rewinds) with no per-frame accumulator anywhere.
-    function rbrThetaAt(tMs) {
+    // THE NET RESOLVED TORQUE at tMs (E5, rotmech 0c-3), given the L the same
+    // instant publishes. It mirrors rbrLStep's rate decision operand for operand
+    // — the same drive/brake sum over the same half-open engaged windows, the
+    // same drive-vs-brake tug at rest, the same never-consult-sign(L)-at-zero
+    // rule — so the printed tau can NEVER contradict the L beside it.
+    //   THIS IS WHY tau IS NOT THE AUTHORED SCHEDULE VALUE. At a rest clamp the
+    // authored number would print tau = −1.53 beside alpha = 0.00 and I = 3.06:
+    // tau = I*alpha visibly contradicted, in a frozen frame, in the concept whose
+    // atomic claim it is. Resolved, it prints 0 there, because 0 is the torque
+    // the integrator is actually running at.
+    //   HONEST LIMIT: tau is dL/dt, and Iα = dL/dt − ω·dI/dt. While a param_ramp
+    // moves r, I varies and tau ≠ I*alpha BY PHYSICS, not by defect. A state that
+    // teaches tau = I*alpha must therefore hold I constant — the same authoring
+    // caution the dL/dt row already carries.
+    function rbrTauOf(L, tMs) {
         var eng = window.PM_rbrEngine;
         if (!eng) return 0;
+        var src = eng.sources || [], drive = 0, brake = 0, i, s;
+        for (i = 0; i < src.length; i++) {
+            s = src[i];
+            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+            if (!(tMs >= s.onMs && tMs < s.offMs)) continue;
+            if (s.kind === "brake") brake += Math.abs(s.tau);
+            else drive += s.tau;
+        }
+        if (L === 0) {
+            if (!(Math.abs(drive) > brake)) return 0;                  // static hold
+            return drive - (drive < 0 ? -1 : 1) * brake;               // breakaway
+        }
+        var sgn = (L < 0) ? -1 : 1;
+        if (drive === 0) return (brake > 0) ? -sgn * brake : 0;
+        return drive - sgn * brake;
+    }
+    function rbrTauNetAt(tMs) { return rbrTauOf(rbrLAt(tMs), tMs); }
+    // alpha as the per-step FINITE DIFFERENCE of the engine's OWN omega, on the
+    // SAME 16 ms grid rbrDLdtAt uses. DELIBERATELY NOT the analytic tau/I: the
+    // finite difference stays true at the rest clamp (both samples 0 -> alpha 0),
+    // under a live dI/dt (it carries the −(omega/I)·dI/dt term the analytic form
+    // drops) and at every engage edge, where tau/I silently disagrees. It also
+    // keeps tau OUT of rotational_kinematics entirely — that concept is taught
+    // before torque and moment of inertia exist (Rule 25).
+    //   The lookback is CLAMPED TO THE CURRENT RUN'S ANCHOR, so the first frame
+    // after a re-pin's blank ends cannot difference across the re-seed and print
+    // a spike that would read as an uncaused external torque.
+    function rbrAlphaAt(tMs) {
+        var t0 = (tMs > RBR_GRID_MS) ? tMs - RBR_GRID_MS : 0;
+        var a0 = rbrAnchor(tMs).t0;
+        if (t0 < a0) t0 = a0;
+        if (!(tMs > t0)) return 0;
+        return (rbrOmegaAt(tMs) - rbrOmegaAt(t0)) / ((tMs - t0) / 1000);
+    }
+    // theta on the FIXED grid, and W composed over the SAME grid increments.
+    // Cached forward; rebuilt from 0 the moment t goes backwards, so BOTH are
+    // pure functions of tMs (byte-stable frozen frames, exact rewinds) with no
+    // per-frame accumulator anywhere.
+    //   W IS NOT A SECOND INTEGRATOR (E5, and the explicit Rule-40a finding that
+    // no work accumulator exists anywhere in this file). Work is the integral of
+    // tau dtheta, and dtheta is EXACTLY this walk's own step, omega*h — so W
+    // rides theta's cache: same grid, same omega samples, same rewind rule, one
+    // walk.
+    //   IT IS THE SIGNED INTEGRAL, and that is the whole point across a sign
+    // change: a brake contributes NEGATIVE work while it slows the body, and a
+    // drive that carries the body through omega = 0 contributes negative work
+    // while it slows the body and positive work once it drives it the other way.
+    // W is therefore deliberately NOT monotonic, and for constant I it equals the
+    // change in KE (the work-energy theorem, which is what makes it checkable on
+    // screen). |tau|·|theta| would have been monotonic and WRONG in exactly the
+    // states rotational_work_energy exists to teach.
+    //   W RE-ZEROES AT THE RUN ANCHOR (a restart, or a sandbox event that re-pins
+    // L). theta does not, and should not: the body really does keep turning
+    // through a restart, but work done before L is re-seeded is not work done on
+    // the new run.
+    function rbrGridWalk(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return null;
         var t = (tMs > 0) ? tMs : 0;
         var n = Math.floor(t / RBR_GRID_MS);
         if (n > RBR_GRID_MAX) n = RBR_GRID_MAX;
-        if (eng._thN > n) { eng._thN = 0; eng._th = eng.theta0; }
+        if (eng._thN > n) { eng._thN = 0; eng._th = eng.theta0; eng._w = 0; eng._wT0 = null; }
         var h = RBR_GRID_MS / 1000;
+        var tk, Lk, Ik, wk, aT;
         while (eng._thN < n) {
-            eng._th += rbrOmegaAt(eng._thN * RBR_GRID_MS) * h;
+            tk = eng._thN * RBR_GRID_MS;
+            aT = rbrAnchor(tk).t0;
+            if (eng._wT0 !== aT) { eng._wT0 = aT; eng._w = 0; }
+            // Ik BEFORE Lk, and the same single division: this is rbrOmegaAt
+            // inlined operand for operand, so theta is bit-identical to the
+            // pre-E5 walk while L is now evaluated ONCE per step instead of
+            // twice (tau reads the same Lk rather than re-walking for it).
+            Ik = rbrIAt(tk); Lk = rbrLAt(tk);
+            wk = (Ik > 0) ? Lk / Ik : 0;
+            eng._th += wk * h;
+            eng._w += rbrTauOf(Lk, tk) * wk * h;
             eng._thN++;
         }
-        var rem = (t - n * RBR_GRID_MS) / 1000;
-        return eng._th + rbrOmegaAt(n * RBR_GRID_MS) * rem;
+        tk = n * RBR_GRID_MS;
+        Ik = rbrIAt(tk); Lk = rbrLAt(tk);
+        wk = (Ik > 0) ? Lk / Ik : 0;
+        return { rem: (t - tk) / 1000, omega: wk, tau: rbrTauOf(Lk, tk), th: eng._th, W: eng._w };
+    }
+    function rbrThetaAt(tMs) {
+        var g = rbrGridWalk(tMs);
+        return g ? (g.th + g.omega * g.rem) : 0;
+    }
+    function rbrWorkAt(tMs) {
+        var g = rbrGridWalk(tMs);
+        return g ? (g.W + g.tau * g.omega * g.rem) : 0;
     }
     function rbrThetaReset() {
         var eng = window.PM_rbrEngine;
         if (!eng) return;
-        eng._thN = 0; eng._th = eng.theta0;
+        eng._thN = 0; eng._th = eng.theta0; eng._w = 0; eng._wT0 = null;
     }
     // dL/dt as the per-step finite difference of the engine's OWN integrated L
     // (S7). HONEST FRAMING: under a single L-integrator this equals tau_ext by
@@ -50478,7 +50614,7 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Row ids are <prefix>_<name>_row and the panel is an inline
     //   position:fixed dynamic panel, so the generic widget engine discovers
     //   both with zero per-scenario widget code.
-    var RBR_SLIDER_TOKENS = ["r", "m", "omega0", "tau_brake", "spin_dir"];
+    var RBR_SLIDER_TOKENS = ["r", "m", "omega0", "tau_brake", "tau_applied", "spin_dir"];
     var RBR_SLIDER_SPEC = {
         r:         { row: "rbr_r_row",        slider: "rbr_r_slider",        val: "rbr_r_val",        lbl: "rbr_r_lbl",        glyph: "r",  unit: " m",     dp: 2, min: 0.15, max: 0.90, step: 0.01, def: 0.80 },
         m:         { row: "rbr_m_row",        slider: "rbr_m_slider",        val: "rbr_m_val",        lbl: "rbr_m_lbl",        glyph: "m",  unit: " kg",    dp: 1, min: 0.5,  max: 5.0,  step: 0.1,  def: 2.0 },
@@ -50487,6 +50623,18 @@ export const FIELD_3D_RENDERER_CODE = `
         // rbrApplyParam — both sites or the floor moves with nothing happening.
         omega0:    { row: "rbr_omega0_row",   slider: "rbr_omega0_slider",   val: "rbr_omega0_val",   lbl: "rbr_omega0_lbl",   glyph: "ω₀", unit: " rad/s", dp: 1, min: 0,   max: 3.0, step: 0.1, def: 1.5 },
         tau_brake: { row: "rbr_tau_brake_row", slider: "rbr_tau_brake_slider", val: "rbr_tau_brake_val", lbl: "rbr_tau_brake_lbl", glyph: "τ", unit: " N·m", dp: 2, min: 0, max: 2.0, step: 0.05, def: 0.92 },
+        // E5 — THE APPLIED (drive) TORQUE, the taught variable of tau_eq_i_alpha.
+        // Rule 31 requires the explore state to expose the taught variable, and
+        // before this there was no control for an applied torque at ALL, so
+        // neither rotational_kinematics nor tau_eq_i_alpha could author a legal
+        // explore state. SIGNED and symmetric about zero, because a drive's sign
+        // is authored (E4) and a teacher must be able to reverse it; the brake
+        // row stays a magnitude, exactly as its physics demands.
+        //   Its own glyph, never the bare τ the brake row already owns — two
+        // rows both reading 'τ' would be unreadable, and renaming the brake row
+        // would change pixels on an already-authored concept. A concept that
+        // wants both spelled out overrides BOTH labels through slider_controls.
+        tau_applied: { row: "rbr_tau_applied_row", slider: "rbr_tau_applied_slider", val: "rbr_tau_applied_val", lbl: "rbr_tau_applied_lbl", glyph: "τ applied", unit: " N·m", dp: 2, min: -2.0, max: 2.0, step: 0.05, def: 0 },
         // A discrete RESTART, never a continuous control: it is a BUTTON, so no
         // teacher can ever ease the spin through zero with it.
         spin_dir:  { row: "rbr_spin_dir_row", button: "rbr_spin_dir_btn", kind: "button", glyph: "Spin direction" }
@@ -50501,12 +50649,35 @@ export const FIELD_3D_RENDERER_CODE = `
             label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph
         };
     }
+    // RING-GATED controls (E5), the bonding_scene shape reused verbatim
+    // (bscControlList): a member is either a bare id or { id, min_ring }. A bare
+    // string is the pre-E5 form and normalises to min_ring 'core', so every array
+    // already authored produces exactly the same token list it did before.
+    // min_ring is recorded for the Rule-38h preset builder — hiding a ring must
+    // not leave a surviving state exposing a hidden-ring control.
+    function rbrControlList(raw) {
+        var out = [], i;
+        for (i = 0; i < (raw || []).length; i++) {
+            var c = raw[i];
+            if (typeof c === "string") out.push({ id: c, min_ring: "core" });
+            else if (c && c.id) out.push({ id: c.id, min_ring: c.min_ring || "core" });
+        }
+        return out;
+    }
+    // The union over EVERY state, so the row ORDER on screen is authoring-order
+    // independent. This is also the ONE place an unknown controls_visible token
+    // used to disappear in silence, so it is the one place that warns.
+    // rbrToggleSliderRows filters the same tokens per state and stays quiet on
+    // purpose: this scan already covered every state's array.
     function rbrSliderTokensUsed() {
         var want = {}, keys = Object.keys(config.states || {});
         for (var i = 0; i < keys.length; i++) {
             var rb = (config.states[keys[i]] || {}).rigid_body_rotation;
-            var cv = (rb && rb.controls_visible) || [];
-            for (var c = 0; c < cv.length; c++) { if (RBR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+            var cv = rbrControlList(rb && rb.controls_visible);
+            for (var c = 0; c < cv.length; c++) {
+                if (RBR_SLIDER_SPEC[cv[c].id]) want[cv[c].id] = true;
+                else rbrWarnUnknownControl(String(cv[c].id));
+            }
         }
         var out = [];
         for (var t = 0; t < RBR_SLIDER_TOKENS.length; t++) { if (want[RBR_SLIDER_TOKENS[t]]) out.push(RBR_SLIDER_TOKENS[t]); }
@@ -50524,7 +50695,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 html += '<button id="' + sp.button + '" style="width:100%;padding:4px 6px;border-radius:5px;border:1px solid #607D8B;background:#263238;color:inherit;font:inherit;cursor:pointer" disabled>Reverse spin</button>';
             } else {
                 html += '<label><span id="' + sp.lbl + '" style="font-family:' + RBR_MATH_FONT + '">' + sc.label + '</span> = ' +
-                    '<span id="' + sp.val + '">' + sc.def.toFixed(sc.dp) + '</span>' + sp.unit + '</label>' +
+                    // rbrFx, not toFixed (E5): tau_applied is the first SIGNED
+                    // rbr dial, and toFixed would stamp an ASCII hyphen into the
+                    // built row for a negative default (Rule 34c). Every pre-E5
+                    // default is non-negative, where the two agree character for
+                    // character, so no built row changes.
+                    '<span id="' + sp.val + '">' + rbrFx(sc.def, sc.dp) + '</span>' + sp.unit + '</label>' +
                     '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                     '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled>';
             }
@@ -50557,6 +50733,9 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         eng.brakeOnMs = (eng.tau > 0) ? eng.evAnchorT : null;
         eng.brakeOffMs = Infinity;
+        // The drive mirror moves with the brake mirror or the tau_applied slider
+        // would re-engage its source at a stale instant after a restart (E5).
+        eng.driveOnMs = (Math.abs(eng.tauApplied) > 0) ? eng.evAnchorT : null;
         rbrThetaReset();
     }
     // The tau_brake slider owns the FIRST brake source (creating one if the
@@ -50571,6 +50750,20 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         if (eng.tau > 0 && ss.length < RBR_MAX_SOURCES) {
             ss.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
+        }
+    }
+    // The mirror image (E5): the tau_applied slider owns the FIRST drive source
+    // (creating one if the state authored none) and never touches a brake.
+    function rbrSetDriveSource(eng) {
+        var ss = eng.sources || (eng.sources = []);
+        for (var i = 0; i < ss.length; i++) {
+            if (ss[i].kind !== "brake") {
+                ss[i].tau = eng.tauApplied; ss[i].onMs = eng.driveOnMs; ss[i].offMs = Infinity;
+                return;
+            }
+        }
+        if (Math.abs(eng.tauApplied) > 0 && ss.length < RBR_MAX_SOURCES) {
+            ss.push({ id: "applied_torque", kind: "drive", tau: eng.tauApplied, onMs: eng.driveOnMs, offMs: Infinity });
         }
     }
     function rbrApplyParam(token, value) {
@@ -50601,6 +50794,17 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.brakeOnMs = (eng.tau > 0) ? eng.t_ms : null;
             eng.brakeOffMs = Infinity;
             rbrSetBrakeSource(eng);                    // mirror -> the source list (E4)
+        } else if (token === "tau_applied") {
+            // The SAME re-anchor discipline as tau_brake, and for the same
+            // reason: L is re-anchored at its CURRENT value, so everything
+            // already integrated is KEPT and the new drive takes over from here.
+            // The segment stays a closed form and no accumulator appears.
+            // A drive is SIGNED (E4), so no clamp to zero here.
+            var Ldrv = rbrLAt(eng.t_ms);
+            eng.evAnchorT = eng.t_ms; eng.evAnchorL = Ldrv;
+            eng.tauApplied = value;
+            eng.driveOnMs = (Math.abs(value) > 0) ? eng.t_ms : null;
+            rbrSetDriveSource(eng);                    // mirror -> the source list
         }
     }
     function rbrSyncSliderRow(token, value) {
@@ -50643,8 +50847,8 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function rbrToggleSliderRows(rb) {
         var panel = document.getElementById("rbr_sliders");
-        var cv = rb.controls_visible || [], want = {}, shown = 0;
-        for (var c = 0; c < cv.length; c++) { if (RBR_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+        var cv = rbrControlList(rb.controls_visible), want = {}, shown = 0;
+        for (var c = 0; c < cv.length; c++) { if (RBR_SLIDER_SPEC[cv[c].id]) want[cv[c].id] = true; }
         for (var i = 0; i < rbrRowsBuilt.length; i++) {
             var tok = rbrRowsBuilt[i], sp = RBR_SLIDER_SPEC[tok];
             var on = !!want[tok];
@@ -50666,17 +50870,96 @@ export const FIELD_3D_RENDERER_CODE = `
         L:      { label: "L",     unit: " kg·m²/s", dp: 2 },
         KE:     { label: "KE",    unit: " J",       dp: 2 },
         dLdt:   { label: "dL/dt", unit: " N·m",     dp: 2 },
-        F_pull: { label: "F",     unit: " N",       dp: 2 }
+        F_pull: { label: "F",     unit: " N",       dp: 2 },
+        // ── E5 (rotmech 0c-3) — the four rows the chapter authored and this
+        //    table silently skipped. Rule 34c: every glyph and unit here is real
+        //    Unicode (θ α τ, the middle dot, the superscript two), and rbrFx
+        //    already emits U+2212 for a negative, so rotational_kinematics'
+        //    alpha = −0.50 prints a TRUE minus and not an ASCII hyphen.
+        //    theta carries a 'scale' because it is stored in SI (radians) and
+        //    only converted at format time — see RBR_THETA_DISPLAY.
+        theta:  { label: "θ",     unit: RBR_THETA_DISPLAY.unit, dp: RBR_THETA_DISPLAY.dp, scale: RBR_THETA_DISPLAY.per_rad },
+        alpha:  { label: "α",     unit: " rad/s²",  dp: 2 },
+        tau:    { label: "τ",     unit: " N·m",     dp: 2 },
+        W:      { label: "W",     unit: " J",       dp: 2 }
     };
+    // ── AN AUTHORED TOKEN THE ENGINE HAS NO ROW FOR IS NOW LOUD ────────────
+    //   THE DEFECT THIS CLOSES (rbr_authored_token_silently_skipped_when_the_
+    //   engine_lacks_the_row): every surface below dropped an unknown token with
+    //   a bare 'continue' — no row, no throw, no console message, no gate
+    //   failure. field_3d_config is not modelled in Zod at ANY depth, so there
+    //   was no enum for such a token to fail against either: readouts:
+    //   ["theta","alpha"] validated, seeded, rendered, passed THE EYE (the
+    //   turntable really does spin) and could reach a founder seal with the
+    //   TAUGHT QUANTITY simply absent from the screen. Only a human reading the
+    //   sim against the physics block ever caught it.
+    //   Warned ONCE per distinct token PER STATE — never per frame — and a
+    //   warning rather than a throw: the createTubeLine scar says an authoring
+    //   typo must never take the scene down. Same idiom and same shape as E3's
+    //   nlbTokenWarnOnce; deliberately NOT a second logging channel.
+    var rbrTokenWarned = {};
+    var RBR_TOKEN_WARN_PREFIX = "[PM_RBR_TOKEN]";
+    function rbrTokenWarnOnce(key, msg) {
+        var st = PM_currentState || "?";
+        if (rbrTokenWarned[st + "|" + key]) return;
+        rbrTokenWarned[st + "|" + key] = true;
+        if (typeof console !== "undefined" && console && console.warn) {
+            console.warn(RBR_TOKEN_WARN_PREFIX + " [" + st + "] " + msg);
+        }
+    }
+    function rbrKnownRows() {
+        var out = [];
+        for (var k in RBR_RO_META) out.push(k);
+        return out.join(", ");
+    }
+    function rbrWarnUnknownReadout(tok) {
+        rbrTokenWarnOnce("ro:" + tok, "readouts names '" + tok +
+            "', which has no RBR_RO_META row — the quantity is NOT printed anywhere on screen. " +
+            "Known rows: " + rbrKnownRows() + ".");
+    }
+    function rbrWarnUnknownSurface(tok) {
+        rbrTokenWarnOnce("mk:" + tok, "a reference_marks entry names surface '" + tok +
+            "', which has no RBR_RO_META row — the mark is never drawn and never matches. " +
+            "Known surfaces: " + rbrKnownRows() + ".");
+    }
+    function rbrWarnTickSurface(tok) {
+        rbrTokenWarnOnce("tick:" + tok, "a reference_marks entry with form 'tick' names surface '" + tok +
+            "' — a tick can only sit on the KE bar, which is the one rbr surface with a scale. " +
+            "Use form 'chip' for a value-only readout.");
+    }
+    function rbrWarnTickNoBar() {
+        rbrTokenWarnOnce("tick:nobar", "a reference_marks entry with form 'tick' is authored, " +
+            "but this state has no ke_bar.max_j — the bar is never built, so the tick is never drawn.");
+    }
+    function rbrWarnUnknownControl(tok) {
+        rbrTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
+            "', which has no RBR_SLIDER_SPEC row — no slider is built for it, in ANY state. " +
+            "Known tokens: " + RBR_SLIDER_TOKENS.join(", ") + ".");
+    }
+    // ONE formatter for every HUD row. The snapshot is always SI; meta.scale is
+    // the DISPLAY conversion and is applied HERE and nowhere else, so flipping
+    // RBR_THETA_DISPLAY changes what is printed without changing what any
+    // concept authored. Absent scale multiplies by 1, which is bit-exact for
+    // every finite double, so the six pre-E5 rows are byte-identical.
+    function rbrRoFx(meta, v) {
+        return rbrFx(v * ((meta && meta.scale != null) ? meta.scale : 1), meta ? meta.dp : 2);
+    }
     function rbrRebuildReadout(rb) {
         var el = document.getElementById("rbr_readout");
         if (!el) return;
         var keys = rb.readouts || [];
         var marks = rb.reference_marks || [];
+        // Surfaces FIRST, so a mark naming a quantity with no row is loud even in
+        // a state that authored no readouts at all (the mark loop below only ever
+        // visits marks whose surface already matched a known row).
+        for (var s0 = 0; s0 < marks.length; s0++) {
+            var sf = (marks[s0] || {}).surface;
+            if (typeof sf === "string" && sf.length && !RBR_RO_META[sf]) rbrWarnUnknownSurface(sf);
+        }
         var h = "";
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i], meta = RBR_RO_META[k];
-            if (!meta) continue;
+            if (!meta) { rbrWarnUnknownReadout(String(k)); continue; }
             var chip = "";
             for (var mi = 0; mi < marks.length; mi++) {
                 var mk = marks[mi] || {};
@@ -50685,7 +50968,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // of its own, so the mark is a STATIC LABELLED VALUE CHIP
                     // printed beside the live number, not a tick.
                     chip += '<span id="rbr_mark_' + (mk.id || ("m" + mi)) + '" style="display:none;margin-left:9px;padding:1px 6px;border:1px solid #8D6E63;border-radius:4px;color:#FFE0B2;font-family:' + RBR_MATH_FONT + '">' +
-                        ((typeof mk.label === "string" && mk.label.length) ? mk.label : (meta.label + " = " + rbrFx(rbrNum(mk.value, 0), meta.dp))) + '</span>';
+                        ((typeof mk.label === "string" && mk.label.length) ? mk.label : (meta.label + " = " + rbrRoFx(meta, rbrNum(mk.value, 0)))) + '</span>';
                 }
             }
             h += '<div id="rbr_ro_' + k + '"><span style="font-family:' + RBR_MATH_FONT + '">' + meta.label + '</span> = ' +
@@ -50700,6 +50983,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var marks = rb.reference_marks || [];
         var barCfg = rb.ke_bar || {};
         var max = rbrNum(barCfg.max_j, 0);
+        // A TICK IS ONLY EVER DRAWN ON THE KE BAR, and both ways of losing one
+        // were silent before E5: a tick on any other surface (there is no scale
+        // to hang it on) and a tick with no ke_bar.max_j (the bar itself is never
+        // built). Same bug_class, same warn channel.
+        for (var q = 0; q < marks.length; q++) {
+            var mq = marks[q] || {};
+            if (mq.form !== "tick") continue;
+            if ((mq.surface || "KE") !== "KE") rbrWarnTickSurface(String(mq.surface));
+            else if (!(max > 0)) rbrWarnTickNoBar();
+        }
         if (!(max > 0)) { el.style.display = "none"; el.innerHTML = ""; return; }
         var ticks = "", wantTick = false;
         for (var t = 0; t < marks.length; t++) {
@@ -50782,20 +51075,31 @@ export const FIELD_3D_RENDERER_CODE = `
         // ONE post-step snapshot (skeleton E8): I, omega, L, KE and dL/dt are
         // all published from the SAME evaluation of tMs, so a pre-step value can
         // never sit beside a post-step one.
-        var snap = { I: I, omega: w, L: L, KE: KE, dLdt: rbrDLdtAt(tMs), F_pull: eng.m * w * w * rbrRAt(tMs) };
+        //   E5 adds theta / alpha / tau / W to the SAME snapshot, from the SAME
+        // evaluation of tMs — tau reads the L already computed above rather than
+        // re-walking for its own, so the printed tau can never belong to a
+        // different instant than the L beside it.
+        var snap = { I: I, omega: w, L: L, KE: KE, dLdt: rbrDLdtAt(tMs), F_pull: eng.m * w * w * rbrRAt(tMs),
+            theta: rbrThetaAt(tMs), alpha: rbrAlphaAt(tMs), tau: rbrTauOf(L, tMs), W: rbrWorkAt(tMs) };
         window.PM_rbrI = I; window.PM_rbrOmega = w; window.PM_rbrL = L;
-        window.PM_rbrKE = KE; window.PM_rbrR = rbrRAt(tMs); window.PM_rbrTheta = rbrThetaAt(tMs);
+        window.PM_rbrKE = KE; window.PM_rbrR = rbrRAt(tMs); window.PM_rbrTheta = snap.theta;
+        // Live values under the window.PM_<pfx>* convention, so a probe (and the
+        // voice-professor control surface) can read every published quantity.
+        window.PM_rbrAlpha = snap.alpha; window.PM_rbrTau = snap.tau; window.PM_rbrW = snap.W;
         var keys = rb.readouts || [];
         var revealAt = rb.readout_at_ms || {};
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i], meta = RBR_RO_META[k];
+            // Silent here on purpose: rbrRebuildReadout walks this SAME list at
+            // apply time and has already warned for every unknown token in it,
+            // so warning again would be once per frame.
             if (!meta) continue;
             // A quantity is PRINTED only after the sentence that defines it
             // (Rule 25, the term-introduction ledger). Absent key = from t = 0.
             var rowEl = document.getElementById("rbr_ro_" + k);
             if (rowEl) rowEl.style.display = (tMs >= rbrNum(revealAt[k], 0)) ? "block" : "none";
             var vEl = document.getElementById("rbr_ro_" + k + "_val");
-            if (vEl) vEl.textContent = blank ? "—" : rbrFx(snap[k], meta.dp);
+            if (vEl) vEl.textContent = blank ? "—" : rbrRoFx(meta, snap[k]);
         }
         var hold = rb.hold_glow || [];
         for (var hk in RBR_RO_META) {
@@ -51061,7 +51365,12 @@ export const FIELD_3D_RENDERER_CODE = `
             ramp: null, sweep: null,
             glow_focal: rb.glow_focal || "",
             base_glow_focal: rb.glow_focal || "",
-            t_ms: 0, _th: 0, _thN: 0,
+            // tauApplied / driveOnMs are the tau_applied slider's mirror of the
+            // FIRST drive source, exactly as eng.tau / brakeOnMs mirror the first
+            // brake (a slider has no notion of a source list). _w / _wT0 are the
+            // work half of the theta grid walk, never a second accumulator.
+            tauApplied: 0, driveOnMs: null,
+            t_ms: 0, _th: 0, _thN: 0, _w: 0, _wT0: null,
             evSign: null, evAnchorT: null, evAnchorL: 0, evRepinT: null,
             matched: {}, L0: 0,
             // The ONE formula surface, resolved ONCE here. formula_base is the
@@ -51146,6 +51455,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 });
             }
         }
+        // Mirror the FIRST drive into the tau_applied slider's own fields, the
+        // same way the first brake mirrors into eng.tau above. Absent any drive
+        // this leaves tauApplied at 0 / driveOnMs null, so no source is created
+        // and the state is byte-identical to the pre-E5 build.
+        for (var di = 0; di < eng.sources.length; di++) {
+            if (eng.sources[di].kind !== "brake") {
+                eng.tauApplied = eng.sources[di].tau;
+                eng.driveOnMs = eng.sources[di].onMs;
+                break;
+            }
+        }
         var pr = rb.param_ramp;
         if (pr && pr.param && isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms) && eng.mode !== "sandbox") {
             eng.ramp = { param: pr.param, from: pr.from, to: pr.to, start_ms: rbrNum(pr.start_ms, 0), end_ms: pr.end_ms };
@@ -51178,6 +51498,7 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (tok === "m") rbrSyncSliderRow("m", eng.m);
             else if (tok === "omega0") rbrSyncSliderRow("omega0", eng.omega0);
             else if (tok === "tau_brake") rbrSyncSliderRow("tau_brake", eng.tau);
+            else if (tok === "tau_applied") rbrSyncSliderRow("tau_applied", eng.tauApplied);
         }
         rbrRebuildReadout(rb);
         rbrRebuildKeBar(rb);
