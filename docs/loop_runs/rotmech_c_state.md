@@ -14,14 +14,39 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 | 1 | `angular_momentum` | **Checkpoint A `DESIGN_OK` + physics block DONE.** Design at `skeleton_rev4.md`, physics at `physics_block.md`. Next stage is `json-author` — nothing blocks it. |
 | 2 | `rigid_body_rotation` | **DESIGN COMPLETE, still BLOCKED on 0c-3.** Checkpoint A `DESIGN_OK` (`skeleton_rev3.md`) + physics block done. Do NOT start json-author until 0c-3 merges AND the re-verification list in `founder_proxy_A_cycle2_final.md` §5.1 is re-run. Correction to the old premise below. |
 
-## next
-1. **`json-author` for `angular_momentum`** — JSON + SQL migration only; the 8 registration
-   sites are pre-registered on master in `4b289d4` and are read-only here. **C1 travels as
-   BINDING**: `theta0_rad = 1.739` on S3, every re-solve verified by projection, never derived.
-   If C1 does not land, Checkpoint B fails the concept on it.
-2. Then quality-auditor ∥ eye-walker → founder-proxy Checkpoint B.
-3. `rigid_body_rotation` waits. Its design is finished and sealed; wave 2 starts at `json-author`
-   as intended, once 0c-3 lands.
+## next — BOTH CONCEPTS ARE NOW BLOCKED ON DESK E. No authoring work remains here.
+
+1. **`angular_momentum` — Checkpoint B returned `FIX(engine)`, BLOCKING** (2026-08-04,
+   `founder_proxy_B.md`). The concept is authoring-complete and correct; it holds for
+   **F-C8**, filed in `_engine/findings_c.md` PASS 15. Nothing on this desk can advance it —
+   guardrail 6 forbids dispatching the engine fix from here.
+   **C1 HELD**: `theta0_rad = 1.739` is in the committed JSON at line 707, independently
+   re-derived twice by projection (physics-author's own camera projection; quality-auditor's
+   re-solve to 1.7389). Checkpoint B confirmed it visually — the rod sits broadside and the
+   slide reads as motion along the rod.
+2. **On the engine fix landing**, in this order: re-seed → `visual:eyes` → re-walk → return to
+   founder-proxy against the **objective acceptance criteria** in `founder_proxy_B.md` §6
+   (arrow ink ≥ 400 px; pixel-measured length ratio 5.71 ± 0.10 with intercept < 1 px; contrast
+   ≥ 3:1; S4 flip ≥ 300 px). Also drop `STATE_3.restart.every_ms: 99000` when F-C6 lands.
+   Three authoring findings ride the same cycle (P2-1 S4 `phases[]`, P2-2 the Rule-38g CBSE
+   cell, P3 the `s2_4` idiom).
+3. `rigid_body_rotation` stays parked — design sealed, waiting on 0c-3.
+
+## gate results (wave 1) — `angular_momentum`
+
+| gate | result |
+|---|---|
+| `tsc` · `validate:concepts` | 0 errors · **150 PASS / 0 FAIL** (baseline 149), zero warnings on this concept |
+| THE EYE (`20260804-181916`) | **23/23**, and D5 now ARMED on 5/5 states after the PASS 14 seed fix |
+| eye-walker | **CLEAN** — the primary aha lands (`L = 0.99` beside `before: 4.59`, `ω = 1.50` beside `same speed: 1.50`) |
+| quality-auditor | **PASS** (after an earlier FAIL on 5 findings, all closed) |
+| founder-proxy Checkpoint B | **`FIX(engine)` — blocking on F-C8** |
+
+**The build history is not a straight line and the record should say so:** the first build
+passed Zod, the validator and all 23 EYE checks with its **primary aha completely dead** (F-C6),
+five on-canvas labels containing authoring notes and a foreign-concept artifact (F4), and a ring
+cut discharged by a field that does not exist (F5). Each was caught by a *different* gate, and
+none by the one before it.
 
 ## done
 - **`angular_momentum`** — architect → Checkpoint A (`DESIGN_FIX`, 13) → REV 2 → ruling delta
