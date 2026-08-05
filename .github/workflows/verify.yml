@@ -98,6 +98,17 @@ jobs:
       - name: Chemistry concept schema + gates
         run: npm run validate:chemistry
 
+      # Same rationale as the chemistry step above: validate:concepts cannot see a
+      # subject subfolder, so mathematics needs its own gate or it has NO CI at all.
+      # Added 2026-08-04 in the SAME commit as the validator and before the first
+      # mathematics concept exists — chemistry ran four concepts deep across five
+      # sessions before its step was added, and a broken concept passed this whole
+      # workflow green the entire time. An empty namespace is a PASS, so this is
+      # green from day one. Reads only tracked local files: no .env.local, no
+      # browser, no network.
+      - name: Mathematics concept schema + gates
+        run: npm run validate:mathematics
+
       - name: Unit tests
         run: npm test
 

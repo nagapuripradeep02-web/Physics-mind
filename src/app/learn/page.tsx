@@ -11,7 +11,7 @@ import type { CatalogChapter } from "@/lib/conceptCatalog";
 // for now — the subject TOGGLE lands in Phase 3, gated on ≥1 live chemistry concept
 // existing (nothing user-visible changes until then). Un-hardcoding the label + wiring
 // the API param here makes the page subject-ready with byte-identical physics output.
-const SUBJECT_LABEL: Record<Subject, string> = { physics: "Physics", chemistry: "Chemistry" };
+const SUBJECT_LABEL: Record<Subject, string> = { physics: "Physics", chemistry: "Chemistry", mathematics: "Mathematics" };
 import TopNav from "@/components/TopNav";
 import CatalogTree from "@/components/CatalogTree";
 import GuidedPath from "@/components/GuidedPath";

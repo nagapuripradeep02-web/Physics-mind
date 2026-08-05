@@ -4,10 +4,18 @@ import type { ClassLevel, Subject } from "@/types/student";
 
 const VALID_LEVELS = new Set<ClassLevel>([10, 11, 12]);
 
-// Optional `subject` filter (CHEMISTRY_BUILD_PLAN.md Phase 1). Defaults to physics,
-// so existing callers (no subject param) get the identical physics catalog.
+// Optional `subject` filter (CHEMISTRY_BUILD_PLAN.md Phase 1; mathematics added
+// 2026-08-04, MATHEMATICS_BUILD_PLAN.md Phase 1). Defaults to physics, so existing
+// callers (no subject param) get the identical physics catalog.
+//
+// Driven off a Set rather than a chain of `===` so adding a subject to the `Subject`
+// union cannot silently leave this route behind. The previous two-branch form was
+// exactly that trap: `?subject=mathematics` would have returned the PHYSICS catalog
+// with a 200, which reads as "mathematics has no concepts" rather than as an error.
+const VALID_SUBJECTS = new Set<Subject>(["physics", "chemistry", "mathematics"]);
+
 function parseSubject(raw: string | null): Subject {
-    return raw === "chemistry" ? "chemistry" : "physics";
+    return raw !== null && VALID_SUBJECTS.has(raw as Subject) ? (raw as Subject) : "physics";
 }
 
 function parseLevels(raw: string | null): ClassLevel[] {

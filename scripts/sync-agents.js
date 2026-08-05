@@ -62,6 +62,9 @@ const ROLES = [
   // added 2026-08-01 — repo hygiene: sync/land a desk, verify chain, PR. Stops at Rule-40
   // platform files and routes to the owning surgeon; never merges to master (Rule 17 intact).
   { canonical: 'git_steward',         emission: 'git-steward'         },
+  // added 2026-08-04 — mathematics_author (Alex, mathematics pipeline — MATHEMATICS_BUILD_PLAN.md
+  // Phase 2). Third subject; substitutes at pipeline position #2 for mathematics concepts.
+  { canonical: 'mathematics_author',  emission: 'mathematics-author'  },
 ];
 
 const H1 = /^#\s/; // a markdown H1 line ("# ...")

@@ -208,6 +208,90 @@ export const NCERT_CHEMISTRY_BOUNDARIES = {
     ],
 };
 
+// ── Mathematics scope (2026-08-04, MATHEMATICS_BUILD_PLAN.md Phase 1) ────────
+// Sibling of NCERT_CHEMISTRY_BOUNDARIES; the physics NCERT_BOUNDARIES above is
+// untouched. Currently unconsumed — it exists so the LLM board/competitive scope
+// prompts have a mathematics source the day a mathematics serving path lands.
+//
+// ⚠ SCOPE NOTE, and it is the whole reason this block is short.
+// This lists the syllabus BOUNDARY (what a Class 11/12 answer may draw on), which
+// is deliberately NOT the same thing as what we BUILD. Most of what is listed here
+// is demo tier: a good teacher with a whiteboard and 60 seconds produces the same
+// understanding, so a simulation would be waste (docs/MATHEMATICS_DISCUSSIONS.md
+// §1, §5). What gets built is the ranked list in that document's §6 — a much
+// smaller set. Never read this constant as a build backlog.
+export const NCERT_MATHEMATICS_BOUNDARIES = {
+    class_11: {
+        sets_relations_functions: [
+            "Sets and operations", "Relations", "Functions", "Domain and range",
+            "Graphs of standard functions", "Composition of functions",
+        ],
+        trigonometric_functions: [
+            "Angles and radian measure", "The unit circle",
+            "Trigonometric functions and their graphs", "Trigonometric identities",
+            "General solutions of trigonometric equations",
+        ],
+        complex_numbers: [
+            "Complex number algebra", "The Argand plane", "Modulus and argument",
+            "Polar form", "Quadratic equations with complex roots",
+        ],
+        algebra: [
+            "Linear inequalities", "Permutations and combinations",
+            "Binomial theorem", "Sequences and series", "Arithmetic and geometric progressions",
+        ],
+        coordinate_geometry: [
+            "Straight lines", "Conic sections", "Circle", "Parabola", "Ellipse",
+            "Hyperbola", "Introduction to three-dimensional geometry",
+        ],
+        calculus: [
+            "Limits", "Continuity at a point", "Derivative from first principles",
+            "Derivatives of standard functions",
+        ],
+        statistics_probability: [
+            "Measures of dispersion", "Random experiments and sample space",
+            "Events", "Axiomatic probability",
+        ],
+    },
+    class_12: {
+        relations_and_functions: [
+            "Types of relations", "One-one and onto functions",
+            "Inverse trigonometric functions and their principal values",
+        ],
+        algebra: [
+            "Matrices and operations", "Determinants", "Adjoint and inverse",
+            "Solution of linear systems",
+        ],
+        calculus: [
+            "Continuity and differentiability", "Chain rule",
+            "Derivatives of implicit, inverse and parametric functions",
+            "Applications of derivatives", "Rate of change", "Increasing and decreasing functions",
+            "Maxima and minima", "Integrals", "Methods of integration",
+            "Definite integrals as a limit of a sum", "Area under simple curves",
+            "Differential equations", "Order and degree", "Variables separable",
+            "Linear differential equations",
+        ],
+        vectors_and_3d: [
+            "Vector algebra", "Scalar (dot) product", "Vector (cross) product",
+            "Direction cosines and ratios", "Equation of a line in space",
+            "Equation of a plane", "Angle between lines and planes",
+            "Shortest distance between skew lines",
+        ],
+        probability: [
+            "Conditional probability", "Multiplication theorem",
+            "Independent events", "Bayes' theorem", "Random variables",
+            "Probability distributions",
+        ],
+        linear_programming: [
+            "Formulation", "Graphical solution", "Feasible region",
+        ],
+    },
+    NOT_IN_SCHOOL_MATHEMATICS: [
+        "Real analysis and epsilon-delta proofs", "Multivariable calculus",
+        "Linear algebra beyond 3x3 matrices", "Abstract algebra",
+        "Complex analysis", "Formal measure-theoretic probability",
+    ],
+};
+
 export function getBoundaryPrompt(classLevel: string, mode: string): string {
     if (mode === "board") {
         return `CONCEPT BOUNDARY — MANDATORY:
