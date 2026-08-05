@@ -37,10 +37,17 @@ both in the same session and restate the source revision. "The sibling quotes th
 is a claim to be diffed, never asserted.
 
 ## next
-**Blocked on Desk E.** B-3 is the gating fix — B-1 and B-2 are secondary and a B-1-only fix
-will not revive either concept. Nothing further to build here until it lands; then re-walk
-BOTH concepts in full (not just the S7/radius beats). Full log:
-`docs/loop_runs/rotmech/_progress/b.md`.
+**BLOCKED — PR #29 is OPEN, not merged.** E2 and E3 exist on `feat/rotmech-0c3` (verified by
+read-only inspection: `NLB_SLIDER_TOKENS` now carries `R`/`R2`/`omega0`; `canRoll` now carries a
+`contactRest` term), but `desk:sync` merges `origin/master` only and can never pull an unmerged
+PR. **Nothing behavioural is verified.** This desk did NOT merge the PR branch into its worktree
+— unreviewed work, Rule 40 forbids engine changes inside a chapter branch, and the auto-push
+hook would publish it.
+
+**On merge:** re-seed → re-walk BOTH concepts in full → confirm E2/E3 in
+`_engine/findings_b.md` → re-assess the five deferred phase-window states (B-9). Per notice §1,
+compare H2 against this desk's OWN earlier frames, and re-seed before every run.
+Full log: `docs/loop_runs/rotmech/_progress/b.md`.
 
 ## done
 - **2026-08-05 — THE EYE run on all four permitted keys** (scoped clear → seed → `visual:eyes`,

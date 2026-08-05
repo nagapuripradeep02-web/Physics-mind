@@ -583,6 +583,113 @@ authored runway is shorter than the distance implied by its own authored timings
 
 ---
 
+## E2 / E3 VERIFICATION (Desk B is the named verifier) — 2026-08-05
+
+### Status: CODE CONFIRMED PRESENT, BEHAVIOUR **NOT VERIFIED — BLOCKED**
+
+**PR #29 is OPEN, not merged** (`mergedAt: null`, head `feat/rotmech-0c3`). `npm run desk:sync`
+merges `origin/master` only, so it can never pull an unmerged PR — it reported "master already
+current" and did not list this desk at all. The 2 commits this desk was behind master are the
+unrelated mathematics ones.
+
+**Read-only inspection of `origin/feat/rotmech-0c3` confirms both changes exist:**
+
+| item | evidence on the PR branch |
+|---|---|
+| **E3** | `NLB_SLIDER_TOKENS = ["m","m2","F","F_ang","theta","mu_s","mu_k","v0","R","R2","omega0"]` — the three SEAM R tokens present |
+| **E2** | `if (canRoll && contactRest && !(stuck && …))` — a new `contactRest` term now gates the rolling branch, i.e. the kinematic precondition B-1 asked for |
+
+**What this desk has NOT done and cannot do yet:** run either concept against that code. Nothing
+about revival, capture, radius re-lift/re-scale/re-space, or B-3 is verified. **Verification
+requires the PR merged to master** — this desk did not merge the PR branch into its own worktree,
+because (a) it is unreviewed work, (b) Rule 40 forbids landing engine changes inside a chapter
+branch, and (c) the `.githooks/` auto-push hook would immediately publish the result.
+
+**On merge, this desk owes:** a full re-walk of both concepts, an E2/E3 verdict here, and per
+notice §1 a re-seed before every run plus an H2 comparison against its OWN earlier frames.
+
+---
+
+## Finding B-9 — THE EYE's entire nlb timed-reveal derivation is DEAD for hand-seeded concepts; every state pins at the 1500 ms default
+
+**Status:** OPEN · **Severity:** MAJOR (tooling/seed contract; the sibling of B-4) ·
+**Owner:** routing decision — the seed convention is desk-local, but `deriveStateMeta` /
+`validators/visual/*` is a Rule-40 PLATFORM surface · **Filed:** 2026-08-05 by Desk B.
+
+Measured, not inferred — `deriveMaxRevealTimeMs` called directly on both concepts returns
+**exactly 1500 for all 16 states**, including states whose authored phases run to 2618 ms:
+
+```
+pure_rolling        S1..S8  pin=1500   (last phase until_ms: 2050, 2618, 1800, 1200, 1200, 1400, 1361, —)
+rolling_on_incline  S1..S8  pin=1500   (last phase until_ms: 2400, 1204, 3200, 1100, 2200, 3200, 1968, —)
+```
+
+**Cause:** `resolveField3dStates` looks for `config.field_3d_config` or a top-level
+`config.states`. The `_seed_<id>_cache.ts` convention writes
+`physics_config: { epic_l_path: json.epic_l_path }` — and `epic_l_path.states` carries **no
+`newtons_laws_body` block** (verified: its state keys are title / duration / focal_primitive_id /
+advance_mode / motion_archetype / delta_cue / depth_ring / scene_composition / teacher_script).
+So the resolver returns null, the whole nlb branch — `phases[]`, `param_ramp`, `activate_at_ms`,
+`formula_lines[].at_ms` — never executes, and every state falls through to `DEFAULT_REVEAL_MS`.
+
+**Consequence:** for every hand-seeded field_3d concept, THE EYE's frozen frame is photographed
+at a flat 1500 ms regardless of what the author scripted, and the ~100 lines of nlb pin logic in
+`deriveStateMeta.ts` (with its own scar citations) are unreachable on this path. Same family as
+commit `2d4cb06` *"fix(eye): make the visual gate correct for every hand-seeded subject, not just
+chemistry"*, which evidently did not cover this `physics_config` shape. **It also affects the
+APPROVED baselines** — `rolling_friction` and `work_done_by_constant_force` use the identical
+seed shape, so their baselines were captured at a default pin too.
+
+**This desk deliberately did NOT "fix" it by enriching its own seed scripts.** That would move
+this desk's pins to authored values while the fleet stayed on the default — a divergence
+introduced mid-verification — and the landing notice is explicit that moving the nlb pin is a
+fleet-wide decision deliberately not taken. Authored to the gate's REAL behaviour instead.
+Flagged for a fleet-level call.
+
+### Consequence handled: `pure_rolling` STATE_7 phase window — FIXED
+
+Notice §6 (second half) is closed. S7's only phase window closed at `until_ms: 1361` while the
+frozen frame pins at 1500, so the focal was handed back before the reviewer screenshot.
+**Fixed by extending the window to `until_ms: 2000`** — notice-sanctioned option 1, the minimal
+one-field diff, inventing no new choreography. Verified on pixels: S7's frozen frame now shows
+the wheel lit, and its t0/t1000/t2000/frozen hashes all changed while t3000 (outside the window
+either way) stayed byte-identical. `tsc` 0 · validate 151 PASS / 0 FAIL.
+
+### FIVE more states have the same mismatch — MEASURED, deliberately NOT blind-fixed
+
+The notice named only S7. Checking every state (the lesson from the B-8 round) found five more
+where the 1500 pin lands after the last phase window closes:
+
+| concept | state | last phase closes |
+|---|---|---|
+| `pure_rolling` | S4 | 1200 |
+| `pure_rolling` | S5 | 1200 |
+| `pure_rolling` | S6 | 1400 |
+| `rolling_on_incline` | S2 | 1204 |
+| `rolling_on_incline` | S4 | 1100 |
+
+**Not fixed, on purpose.** Unlike S7 — where the pin lands after a *capture* the state exists to
+show — "no focal at the pin" is not automatically wrong: a state whose choreography completes and
+then holds a settled end pose may legitimately want an unemphasised frozen frame (Rule 32d).
+Deciding that for five states requires seeing them, and `rolling_on_incline` is still dead while
+`pure_rolling` S4/S5/S6 have not been re-walked against E2/E3. Re-choreographing them blind is
+the speculative retune this desk refused on the camera values. **Re-assess at the post-merge
+re-walk.**
+
+### Method note for the md5 discipline
+
+Comparing runs by hash works, with one exception worth recording: **the explore state's dense
+frames are NOT comparable run-to-run.** `pure_rolling` S8 produced entirely different dense
+hashes across two runs with no S8 edit, while its `__frozen.png` stayed byte-identical
+(`7974ff8c94`) — the Rule 37 sandbox free-runs on wall-clock, so only the time-pinned frozen
+frame is deterministic. Guided states ARE deterministic (S1 byte-identical across the same two
+runs). Do not read a changed S8 dense hash as a regression.
+
+**`Motion map:` on this run read `STATE_1=? … STATE_8=?`** — per notice §4, `[D5]` did not run.
+B-4's blind spot is live on this concept, so the hash remains the real check.
+
+---
+
 ## Naming reconciliations — design doc vs. what shipped (not defects; recorded so no desk re-derives them)
 
 | Design doc says | Engine shipped | Where |

@@ -236,3 +236,57 @@ tolerance 2.0%. Still not evidence of engine health on the rolling path (both ha
 Nothing sealed, nothing approved, no baseline written. `pure_rolling` needs B-1 + B-5 (+ B-2 for
 its slider rows); `rolling_on_incline` needs B-3. **All four engine findings are Desk E's, and
 none of them has landed yet.**
+
+---
+
+## 2026-08-05 (third round) — E2/E3 verification BLOCKED; STATE_7 phase window fixed; B-9 filed
+
+**Committed and pushed** the B-8 s0 fix + docs as `a700f62` (surgical `git add` of the four named
+files; the master-merge went up with it). The `.githooks/` auto-push hook had already pushed the
+ref, so the explicit push was rejected as "already at a700f62" — local and remote verified
+identical.
+
+### E2/E3 — code confirmed, behaviour NOT verified
+
+**PR #29 is OPEN, not merged** (`mergedAt: null`, head `feat/rotmech-0c3`). `desk:sync` merges
+`origin/master` only and reported "master already current"; it did not list this desk at all.
+Read-only inspection of the PR branch confirms **both changes exist** — `NLB_SLIDER_TOKENS` now
+carries `R`/`R2`/`omega0` (E3) and `canRoll` now carries a `contactRest` term (E2). **Nothing
+behavioural is verified**: not revival, not capture, not radius re-lift/re-scale/re-space, not
+B-3. The PR branch was deliberately NOT merged into this worktree (unreviewed work; Rule 40; the
+auto-push hook would publish it). Full verdict block in `_engine/findings_b.md`.
+
+### Notice §6 — both halves now closed
+
+The s0 half was already fixed and committed before reading the notice (B-8). The second half —
+S7 pins at 1500 ms while its only phase window closed at `until_ms: 1361`, so the focal was
+handed back before the reviewer screenshot — is **now fixed**: window extended to `until_ms:
+2000` (the notice's option 1, minimal one-field diff). Verified on pixels — S7's frozen frame
+now shows the wheel lit, t0/t1000/t2000/frozen hashes all changed, t3000 (outside the window
+either way) byte-identical. `tsc` 0 · validate 151 PASS / 0 FAIL.
+
+### B-9 filed — the pin is a flat 1500 for EVERY state, and the nlb reveal logic never runs
+
+Measured `deriveMaxRevealTimeMs` directly: **1500 on all 16 states of both concepts**, including
+states whose phases run to 2618 ms. Cause: `resolveField3dStates` wants `config.field_3d_config`
+or top-level `config.states`, but the `_seed_<id>_cache.ts` convention writes
+`physics_config: { epic_l_path }`, and `epic_l_path.states` carries no `newtons_laws_body` block.
+So the entire nlb branch of `deriveStateMeta` is unreachable for every hand-seeded field_3d
+concept — **including the approved `rolling_friction` / `work_done_by_constant_force` baselines**,
+which use the identical seed shape. Same family as `2d4cb06`. **Not "fixed" by enriching this
+desk's seeds** — that would diverge this desk's pins from the fleet mid-verification, and the
+notice is explicit that moving the nlb pin is a fleet-wide call deliberately not taken.
+
+**Five more states share S7's mismatch** (`pure_rolling` S4/S5/S6, `rolling_on_incline` S2/S4 —
+pin 1500 after last window closes at 1200/1200/1400/1204/1100). Measured and recorded,
+**deliberately not blind-fixed**: unlike S7 there is no capture being missed, and an unemphasised
+settled end pose can be legitimate under Rule 32d. Re-assess when they can actually be seen.
+
+### md5 discipline (task 4) — one methodological caveat worth keeping
+
+`Motion map:` read all `?` — per notice §4, `[D5]` did not run, so B-4's blind spot is live and
+the hash is the real check. Caveat found: **the explore state's dense frames are NOT comparable
+run-to-run.** `pure_rolling` S8 produced entirely different dense hashes across two runs with no
+S8 edit, while its `__frozen.png` stayed byte-identical (`7974ff8c94`) — the Rule 37 sandbox
+free-runs on wall-clock; only the time-pinned frozen frame is deterministic. Guided states ARE
+deterministic (S1 byte-identical across the same two runs).

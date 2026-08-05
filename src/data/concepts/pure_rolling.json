@@ -858,7 +858,7 @@
           "controls_visible": ["v0"],
           "contact_layer": { "body_id": "wheel", "skid_trail": true },
           "phases": [
-            { "id": "contact_glow", "at_ms": 800, "until_ms": 1361, "glow_focal": "nlb_body_wheel" }
+            { "id": "contact_glow", "at_ms": 800, "until_ms": 2000, "glow_focal": "nlb_body_wheel" }
           ]
         }
       },
