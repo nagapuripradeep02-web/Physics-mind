@@ -191,3 +191,30 @@ UPDATE engine_bug_queue SET
     discovered_in_session = 'lom-g Phase 0 force_rig bring-up 2026-07-30; RECURRED and re-fixed rotmech Phase 0c-3 — Desk E dispatch E7 2026-08-06',
     row_type = 'incident'
 WHERE bug_class = 'field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line';
+
+
+-- ═══════════════════════════════════════════════════════════════════════════
+-- Candidate 7 — CRITICAL, row_type directive.
+-- THE METHODOLOGY ROW. Bigger than any single dispatch: it is the primary
+-- evidence standard used by every dispatch in PR #29, and it cannot distinguish
+-- a healthy baseline from a dead one.
+-- ═══════════════════════════════════════════════════════════════════════════
+INSERT INTO engine_bug_queue (
+    bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+    probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+    discovered_in_session, row_type
+) VALUES (
+    'byte_identical_ab_against_a_dead_baseline_reads_as_proof_of_correctness',
+    'A byte-identical A/B proves non-regression against previous behaviour, never correctness -- when the baseline is dead, "0 differing" is the EXPECTED output of a broken state and the method cannot tell it from a healthy one',
+    'CRITICAL',
+    'peter_parker:field3d_surgeon',
+    'The standard back-compat evidence for an engine dispatch is an A/B: extract the pre-change and post-change emitted code, drive both over a matrix of states and instants, and assert the outputs are identical wherever the change is not meant to apply. That is a sound test of NON-REGRESSION and it is silently unsound as a test of HEALTH, because a state that was already broken produces identical output on both legs. The two readings are indistinguishable in the result: "17/17 identical" is what a healthy untouched state looks like AND what a corpse looks like. Concretely, dispatch E2 (nlb_rolling_branch_has_no_kinematic_gate, commit 1a889bc) reported "rolling_on_incline 17/17 identical" as proof its blast radius was nil, and shipped. Desk B then established by RUNTIME -- MD5 over dumped frames -- that rolling_on_incline is entirely non-functional: STATE_8, the Rule-37 sandbox guaranteed to run continuously, is ONE hash across t=0, t=5000, t=10000 and the frozen pin. Those 17 states were identical because they were dead before AND after. The A/B could not have caught it: it drove the branch-selection logic and never asked whether b.v advanced. The same shape applies to every headline number in that PR -- E3''s "11 concepts, 58 states, 94 bodies, 0 differing" and E4''s "125,280 L samples all Object.is-equal" are equally real and equally silent about whether the states they cover were alive. This is the same family as the gate defects the chapter has now hit repeatedly (an unknown readout token skipped in silence; THE EYE''s three dense-motion gates all passing on a totally static scene): a check that cannot fail is being read as a check that passed.',
+    'EVERY A/B MUST ASSERT LIVENESS ON THE QUANTITY UNDER TEST BEFORE THE COMPARISON MEANS ANYTHING. Concretely, three additions, and the first is load-bearing. (a) LIVENESS PRECONDITION: before comparing legs, assert on the PRE-CHANGE leg that the quantity the dispatch is about actually changes over the window -- if b.v is the subject, assert b.v takes more than one distinct value across the frames being compared. If it does not, the baseline is dead and "identical" carries no information; say so in the report instead of quoting it as evidence. (b) NEGATIVE CONTROL, the shape Desk B used and the reason it caught this: include in the same run a case that MUST differ, and show that it does. Desk B''s STATE_7 param_ramp produced a different hash at every timestamp while STATE_8 produced one, which is what made "one hash" a finding rather than a suspicion. An A/B with no negative control cannot distinguish "nothing changed" from "nothing is running". (c) NAME THE CLAIM PRECISELY IN THE REPORT: an A/B licenses "this change did not alter behaviour X", never "behaviour X is correct". A dispatch whose acceptance depends on correctness needs a RUNTIME observation -- frames, hashes, or a verifier desk on a real concept -- and an emitted-code probe is a smoke test, never the gate. Add the liveness assertion to the standing verify chain alongside renderer-syntax / tsc / validate.',
+    'js_eval',
+    'Reproduce the failure of the method, then the fix. FAILURE LEG: take any A/B harness that reports "N states identical" for a scenario, and for each covered state also record whether the quantity under test took more than one distinct value across the compared window on the PRE-change leg. Assert that at least one covered state reports a single distinct value -- i.e. the corpus being compared contains dead states that the identity result did not distinguish. On rolling_on_incline before E11 this is all 8 states. FIX LEG: assert the harness now refuses to report identity as evidence for any state that failed the liveness precondition, and that a negative control state (one that must differ) is present and does differ in the same run. End-to-end cross-check: md5sum over the dense PNG series of the state in question -- one hash across the series is proof of death regardless of what any A/B reports.',
+    'OPEN',
+    ARRAY['rolling_on_incline', 'pure_rolling']::text[],
+    ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+    'rotmech Phase 0c-3 — Desk E, from Desk B''s B-3 runtime correction of E2, 2026-08-06',
+    'directive'
+);

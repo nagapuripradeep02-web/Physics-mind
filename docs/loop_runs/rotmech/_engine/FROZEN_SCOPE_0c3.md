@@ -306,10 +306,42 @@ is never recoloured; HUD digits take no sign colour).
 > and its drawn length tracks |L|. Keep the pixel measurements below only as a **secondary
 > absolute floor**, never as the primary assertion.
 
-Secondary acceptance floors (findings_c PASS 15) — absolute, not deltas: S1 ink ≥ 400 px;
-`len(6.51)/len(1.14) = 5.71 ± 0.10` fitted in pixels with intercept < 1 px; arrow-vs-axle
-contrast ≥ 3:1; S4 flip changes ≥ 300 px. **Confirmed identical across `founder_proxy_B.md` §6 and
-this document** (Desk C, PASS 16) — no reconciliation needed.
+> ### ✅ E7 ACCEPTED — founder ruling 2026-08-06. The FOURTH FLOOR IS AMENDED; the other three stand.
+>
+> **The implementation is correct. The fourth acceptance floor was mis-specified.**
+>
+> **AMENDED — floor 4 is measured on WORLD length, intercept < 1 px:**
+> `len(L=6.51)/len(L=1.14) = 5.71 ± 0.10` **in world units**. **Already proven and passing:**
+> 0.228 / 0.918 / 1.302 world units for L = 1.14 / 4.59 / 6.51 → **5.7105 against a true 5.7105,
+> intercept 0.**
+>
+> **Why the pixel form was unsatisfiable, not merely inconvenient:** a pixel-length ratio cannot
+> equal a world-length ratio under a perspective camera unless both vectors sit **equidistant from
+> the camera and parallel to the image plane** — which these do not, since the arrow points along
+> the camera-up axis so the longer arrow's tip sits nearer the camera (gain up to 1.157× across its
+> span). The 6.13 reading is **foreshortening behaving correctly, not an arrow defect.** A cone also
+> projects width as well as length, so a bbox reading carries a head-radius intercept unrelated to
+> magnitude.
+>
+> **The other three floors REMAIN PIXEL MEASUREMENTS and are not amended** — ink, contrast and flip
+> magnitude are genuinely screen properties, and all three passed with room:
+> **ink 15 px → 1579 px** (floor 400) · **contrast 4.36:1** (floor 3:1) · **S4 flip 5341 px**
+> (floor 300).
+>
+> **Desk C: the amendment request is CLOSED — stop carrying it.** The generalisable lesson now has
+> two instances: the contract correction demoted pixel *luminance* (F-C7's probe would have passed
+> on an invisible arrow), and this demotes pixel *length*. **Assert the physical quantity; use
+> pixels only for properties that are genuinely of the screen.**
+>
+> Still open and separate from acceptance: the **negative-L branch is occluded by the drum disc**
+> it passes through (a different object from the collinear line E7's `bug_class` covers). Strictly
+> better than before — it was entirely absent — and it clears the S4 floor at 5341 px. Desk C to
+> measure the negative branch's own absolute ink and route separately.
+
+Original floors, for the record (findings_c PASS 15; confirmed identical across `founder_proxy_B.md`
+§6 and this document at PASS 16 — no reconciliation was needed): S1 ink ≥ 400 px; `5.71 ± 0.10`
+fitted **in pixels** with intercept < 1 px; arrow-vs-axle contrast ≥ 3:1; S4 flip ≥ 300 px.
+**Floor 4's pixel basis is superseded by the ruling above.**
 
 > ### ⚠ CORRECTION 2026-08-06 — **E7 HAS a back-compat surface. My own §C C-3 premise was wrong.**
 > Filed by Desk C (PASS 16) as E7's named verifier; **I re-verified it in this checkout before
@@ -484,8 +516,46 @@ the whole story.
   and S7's μ_s ramp both drive the body out of the static regime with correct post-slip numbers,
   and neither moves.
 
-#### 🔬 Desk E's root-cause HYPOTHESIS — arithmetic-backed, and it names its own falsifier
-**This is a hypothesis, not a conclusion. Verify or refute it FIRST; do not build to it.**
+> ### ⚠ RE-SCOPE 2026-08-06, BEFORE DISPATCH — **E11 SPLITS INTO TWO CLASSES. The falsifier fired.**
+>
+> The founder's decision tree said: if the guard genuinely releases and the body still does not
+> move, a second mechanism exists — an Amendment 4 re-scope signal, to be taken **before** the
+> dispatch rather than 80 calls into it. **I resolved the falsifier from code + arithmetic rather
+> than waiting on Desk B, and it fired.**
+>
+> **The resolution.** `nlbRunParamRamp` (`:43416`) calls `nlbApplyParam(tok, v)`, and the
+> `mu_s` branch (`:43088–43098`) writes `b.mu_s` on **every non-ghost, non-hanging body**. So at
+> S7's ramp end μ_s genuinely reaches 0.05 — the ramp is not stale, not scoped away, not
+> churn-guarded out. Therefore:
+>
+> | quantity at S7 ramp end | value |
+> |---|---|
+> | `maxStat = μ_s·N` | **0.444 N** |
+> | `drive = mg sin 25°` | **4.142 N** |
+> | `a` (kinetic branch, `canRoll` now false) | **3.70** — Desk B independently measured **−3.70** |
+> | `|drive| ≤ maxStat` | **FALSE** |
+> | **rest guard fires?** | **NO** |
+> | `v1` | **0.0616** → the body **should move** |
+>
+> **Desk B's runtime says it does not move.** So the rest guard is *not* what pins S7, and a
+> **second, independent mechanism** prevents computed motion from reaching persistent state.
+>
+> **Split, and the order matters:**
+> - **E11a · `nlb_computed_motion_never_reaches_persistent_body_state` — TRANSPORT. TAKE THIS
+>   FIRST.** S7 is the clean instance: the guard released, `a` is correct to the decimal, and the
+>   body is still frozen. Desk B's positive control isolates it further — a `rotation_locked` block
+>   integrates correctly beside a frozen `rolling` disc in the same state at the same instant, and
+>   the readout split falls exactly along *reads persistent state* (frozen) vs *computed from a
+>   formula* (correct).
+> - **E11b · `nlb_rest_guard_pins_a_body_released_from_rest_that_can_roll` — the guard.** Real,
+>   arithmetic-confirmed for the μ_s = 0.5 guided states (S6 and friends), but **secondary**: if
+>   transport is broken, fixing the guard alone changes nothing on screen. **That is E2's lesson
+>   repeating, and taking the guard first would repeat it a second time.**
+>
+> Both retain the same acceptance: **RUNTIME, never a probe.**
+
+#### 🔬 The E11b hypothesis — arithmetic-backed. Kept for the record; **it is now the SECOND class, not the first.**
+**Still a hypothesis for the guided states. Do not build to it before transport is understood.**
 
 The rest guard immediately after the branch selection (`field_3d_renderer.ts:47337`):
 ```js
