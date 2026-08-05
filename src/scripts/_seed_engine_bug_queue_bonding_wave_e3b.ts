@@ -381,6 +381,23 @@ const ROWS: BugRow[] = [
         subject: 'subject_neutral',
     },
 
+    {
+        bug_class: 'field3d_60deg_fov_offaxis_camera_cannot_render_a_crystal_lattice_as_a_lattice',
+        title: 'The lattice path rendered through the fleet 60-degree camera, so six identical ions drew at a 1.75x size spread',
+        severity: 'MAJOR',
+        owner_cluster: 'peter_parker:field3d_surgeon',
+        root_cause:
+            'The bonding_scene lattice path rendered through the fleet PerspectiveCamera(60). At az 35 / el 45 / d 16.2 the six nearest neighbours of ionic_bonding S5 span z in [12.05, 20.35]; a perspective projection draws 1/z, so six physically identical Cl- at six identical distances drew at 1.746x (segmented off the shipped PNGs) under a caption reading "Six neighbours, every ion" and a narration saying "the count is the same". Intrinsic to the projection: reveal mode, radius_scale and block size all leave the ratio unchanged.',
+        prevention_rule:
+            'A camera that renders a repeating lattice must be near-orthographic: narrow FOV at long distance, with the solved distance scaled by tan(30)/tan(fov/2) so framing is unchanged and only the divergence shrinks. Any state claiming its units are equivalent must be able to prove it in drawn pixels. A camera ELEVATION solved under one FOV is not valid under another - re-solve it when the projection changes.',
+        probe_type: 'js_eval',
+        probe_logic:
+            'For every camera row whose fixture is placement:lattice, at every pose, project all sites at the shipped distance and FOV, group BY SPECIES (Na+ 102 pm beside Cl- 181 pm is physics, not a defect), measure silhouette width r/sqrt(z^2-r^2), assert largest:smallest < 1.30. Negative controls: the shipped 60-degree pose reads 1.708 and must FAIL; the same camera at 15 degrees reads 1.126.',
+        status: 'FIXED',
+        concepts_affected: BOTH,
+        fixed_in_files: [R, GATE],
+        subject: 'subject_neutral',
+    },
     // ─────────────────────────────────────────────────────────────────────
     // STILL OPEN — recorded, deliberately not fixed this wave
     // ─────────────────────────────────────────────────────────────────────
