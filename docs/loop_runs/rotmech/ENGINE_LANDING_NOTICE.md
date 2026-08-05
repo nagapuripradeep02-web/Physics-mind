@@ -1,10 +1,17 @@
-# ⚠ ENGINE LANDING NOTICE — 0c-3 group 1 (E1–E4)
+# ⚠ ENGINE LANDING NOTICE — 0c-3 group 1 (E1–E5, E7)
 
 **From:** Desk E (`feat/rotmech-0c3`), sole engine owner for the Phase-0d run
-**Status:** PR [#29](https://github.com/nagapuripradeep02-web/Physics-mind/pull/29) — OPEN, MERGEABLE, CLEAN, CI green, **awaiting founder merge**
-**Head:** `bf7dac1` · **Read this the moment `desk:audit` shows you behind master.**
+**Status:** PR [#29](https://github.com/nagapuripradeep02-web/Physics-mind/pull/29) — **still OPEN,
+MERGEABLE, CLEAN, CI green, awaiting founder merge as of 2026-08-06.**
+**Read this the moment `desk:audit` shows you behind master.**
 
-Four engine dispatches land together. **Shared rbr and nlb code has changed underneath work some
+> ⚠ **NOTHING BELOW HAS REACHED MASTER YET.** Verified 2026-08-06: `origin/master` is at `914124b`
+> and contains **neither E1 (`7022169`) nor E5 (`df87b6d`)** — `git merge-base --is-ancestor`
+> returns false for both. Every dispatch is stacked on `feat/rotmech-0c3` behind one unmerged PR.
+> **Until #29 merges, no desk can sync, and no verifier can run its acceptance.** Sections §1–§7
+> describe what lands *when it lands*.
+
+Six engine dispatches land together (E1–E5 and E7). **Shared rbr and nlb code has changed underneath work some
 desks have already sealed.** This notice is the containment: what moved, what you must re-verify,
 and what is newly authorable.
 
@@ -198,6 +205,70 @@ authoring time, before a gate cycle was spent on them. **Read the console.**
 
 ---
 
+## §6c — APPENDED 2026-08-06: **E7 has landed** (`14b2943`) — ⚠ **it changes how every rbr concept LOOKS**
+
+**E7 `rbr_arrowhelper_shafts_not_separable_from_the_apparatus_they_run_along`.** Both rbr arrows
+were `ArrowHelper`s whose shaft is a **zero-width `THREE.Line`** running collinear with an opaque
+cylinder — the L arrow inside the axle, the pull arrow along the rod. Before: **15 px of ink** in S1,
+a 5.7× change in L moving a **7-pixel smear**, and in S6 the arrow **entirely absent**.
+
+**Rule 40a paid off:** the mechanism already existed **three times** (`gsphMakeThickVector`,
+`glnMakeThickVector`, `gssMakeThickVector`). The eldest was lifted; no fourth was written.
+
+### 🎨 Desk A, C, D — YOUR BASELINES WILL MOVE, and this is expected
+Separability had to be bought in **colour as well as geometry**: the old axle `#90A4AE` and the L
+arrow `#42A5F5` measured **1.02:1** relative luminance — *no tonal separation at all* — and
+geometry alone left it at 2.2:1. So **`RBR_AXLE_COLOR` → `#1F2A30` and `RBR_ROD_COLOR` → `#26333A`**,
+and both arrows are now thick emissive meshes. **Every rbr frame changes.** Treat H2 diffs on rbr
+concepts as **expected re-baseline material** (the Rule-34e shape), not as a fix cycle — but read
+them, and confirm the *only* changes are the apparatus tone and the arrows.
+
+Ratios are now declared, not eyeballed: `RBR_SEP_RADIUS_RATIO 2.0` · `RBR_SEP_EMISSIVE_RATIO 6.0` ·
+`RBR_SEP_HEAD_RATIO 3.1`. Axle 0.07 → **0.045**, rod 0.05 → **0.040**, shafts 0.090 / 0.080.
+
+### What else changed on the L arrow
+The raw clamp is replaced by a bounded map: **true zero below ε** (the old `RBR_L_ARROW_MIN` drew a
+visible stub beside `L = 0.00` — a rendered lie), **exact 0.20 proportionality across the entire
+reachable slider band**, asymptotic above a knee at 10.0 instead of the old hard clip at 1.80 that
+froze L 9.18 → 20.7. **Sign colour now reaches the screen** — `RBR_NEG_COLOR` had exactly one
+consumer and it was the invisible shaft; the shaft and the `L` label both recolour now.
+**F-C7 closes as a side effect** (`MeshPhongMaterial` has `.emissive`, so the focal brighten is no
+longer a silent no-op). **Desk C: your `rbr_l_arrow` focal handoffs were authored correctly all
+along and now become legible for free — do not "fix" the JSON.**
+
+### 🔔 Desk C — one acceptance floor FAILED as literally written, and I believe the floor is wrong
+
+| Floor | Result |
+|---|---|
+| S1 arrow ink ≥ 400 px | **1579 px** ✅ (was 15) |
+| arrow-vs-axle contrast ≥ 3:1 | **4.36:1** ✅ |
+| S4 spin flip ≥ 300 px | **5341 px** ✅ |
+| pixel length ratio 5.71 ± 0.10, intercept < 1 px | **6.13, intercept −1.44 px** ❌ |
+
+**The build's drawn WORLD length is exactly proportional** — 0.228 / 0.918 / 1.302 world units for
+L = 1.14 / 4.59 / 6.51, a ratio of **5.7105 against a true 5.7105, intercept 0**. I re-derived this
+independently. The pixel deviation is **perspective foreshortening**: the arrow points along the
+camera-up axis, so a longer arrow's tip sits nearer the camera (gain up to **1.157×** over its
+span), and a cone projects width as well as length so a bbox reading carries a head-radius
+intercept that has nothing to do with magnitude. **No build can pass the pixel form of this
+criterion under a perspective camera.**
+
+**Ask:** amend the floor to measure **world length** (or treat the pixel ratio as monotonicity
+evidence only). This is the same lesson as the contract correction that demoted pixel *luminance* —
+now extended to pixel *length*. **Please confirm or overrule in your acceptance run.**
+
+### 🔎 Desk C — one thing E7 did NOT fix, reported not absorbed
+**The negative-L arrow is substantially occluded by the DRUM DISC.** At `spin_sign −1` the arrow
+points down, under a radius-0.99 disc, with the camera looking down — so only the cone head clears
+the drum silhouette (the sign is still readable from the head plus the now-amber `L` label). This is
+**strictly better than before** (it was *entirely* absent) and it clears the S4 floor at 5341 px,
+but it is occlusion by a **disc the vector passes through**, not by the collinear line this
+`bug_class` covers. `depthTest:false` would mask it and was **rejected** — rbr spins, so an
+always-on-top arrow would invert depth every half turn. **Measure the negative branch's own absolute
+ink in your acceptance run and route it separately if it falls short.**
+
+---
+
 ## §7 — Still blocked after this merge
 
 > ### ⛔ CORRECTION 2026-08-06 — the paragraph below was WRONG. **Desk D is NOT unblocked.**
@@ -233,12 +304,11 @@ authoring time, before a gate cycle was spent on them. **Read the console.**
   E7 acceptance in `FROZEN_SCOPE_0c3.md` §B. Thank you — that correction is exactly what a named
   verifier is for, and it caught a stale generalisation of mine.
 
-`rigid_body_rotation` (Desk C) remains blocked. Outstanding: **E6** (a one-shot `restart` with no
-`every_ms` still computes `NaN` and zeroes L for the whole state), **E7** (the L arrow is still
-15 px of ink inside the axle — **now widened to cover the pull arrow too**, since both are
-`ArrowHelper`s whose zero-width shaft runs collinear with an opaque cylinder), **E8** (live
-`tau_brake` drag has no rendered agent), **E9** (camera pose not authorable).
-See `_engine/FROZEN_SCOPE_0c3.md` §B.
+`rigid_body_rotation` (Desk C) remains blocked. **E7 has now landed** (§6c). Outstanding:
+**E6** (a one-shot `restart` with no `every_ms` still computes `NaN` and zeroes L for the whole
+state), **E8** (live `tau_brake` drag has no rendered agent), **E9** (camera pose not authorable),
+and **E10** (the drive torque has no rendered actuator — new, founder ruling 3, and it is what now
+blocks Desk D). See `_engine/FROZEN_SCOPE_0c3.md` §B.
 
 **Desk C:** `angular_momentum`'s `every_ms: 99000` workaround must stay until **E6** lands, and its
 authored `rbr_l_arrow` focal handoff stays correct-but-illegible until **E7**. Do not "fix" either
