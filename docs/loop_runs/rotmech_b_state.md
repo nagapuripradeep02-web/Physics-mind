@@ -11,8 +11,14 @@ engine_surface: `newtons_laws_body` **SEAM R** (the 0c-2 rolling extension)
 
 | Wave | Concept | Status |
 |---|---|---|
-| 1 | `pure_rolling` | **JSON AUTHORED** (2026-08-04). tsc 0 · validate PASS. **NOT sealed** — S7 blocked on finding B-1, S1/S8 radius blocked on B-2, THE EYE not run. |
-| 1 | `rolling_on_incline` | **JSON AUTHORED** (2026-08-04). tsc 0 · validate PASS. **NOT sealed** — S4 radius blocked on B-2, S8 "marble vs ring" unachievable, THE EYE not run. |
+| 1 | `pure_rolling` | **JSON AUTHORED + EYE-WALKED** (2026-08-05). tsc 0 · validate PASS. **BLOCKED — non-functional.** All 6 `rolling` bodies fail to integrate (B-3). S3 renders zero bodies (B-5). Also B-1 (S7), B-2 (S1/S8 radius). |
+| 1 | `rolling_on_incline` | **JSON AUTHORED + EYE-WALKED** (2026-08-05). tsc 0 · validate PASS. **BLOCKED — non-functional.** All 16 `rolling` bodies fail to integrate (B-3); S8 sandbox byte-identical over 10.5 s. Also B-2 (S4/S8 radius), S8 "marble vs ring" unachievable. |
+
+> **THE EYE has run. Both concepts are NON-FUNCTIONAL, not partially blocked** — finding **B-3**
+> (CRITICAL): a `rolling: true` body never integrates, on any mode, flat or inclined. This
+> **refutes B-1's claim that `rolling_on_incline` is unaffected**. Nothing here can be sealed,
+> baselined or re-walked until Desk E lands B-3. The regression pair passed clean, but both its
+> concepts have ZERO `rolling` bodies — that is not evidence of engine health.
 
 **This desk is the only one with two ready concepts, and it carries both rolling concepts
 deliberately.** They are the joint consumers whose union defined SEAM R — the amendment's
@@ -28,11 +34,19 @@ both in the same session and restate the source revision. "The sibling quotes th
 is a claim to be diffed, never asserted.
 
 ## next
-Seed the scoped caches (this desk's four permitted keys only) and run THE EYE on both
-concepts + the regression pair, on port 8111. Expect B-1 to surface loudly as a frozen
-`pure_rolling` S7. Full log: `docs/loop_runs/rotmech/_progress/b.md`.
+**Blocked on Desk E.** B-3 is the gating fix — B-1 and B-2 are secondary and a B-1-only fix
+will not revive either concept. Nothing further to build here until it lands; then re-walk
+BOTH concepts in full (not just the S7/radius beats). Full log:
+`docs/loop_runs/rotmech/_progress/b.md`.
 
 ## done
+- **2026-08-05 — THE EYE run on all four permitted keys** (scoped clear → seed → `visual:eyes`,
+  re-seeded before each). **5 new findings filed** (B-3 CRITICAL · B-4 · B-5 · B-6 · B-7) →
+  `_engine/findings_b.md`. Regression pair CLEAN (`work_done_by_constant_force` H2 0.00%,
+  `rolling_friction` 0.22–0.38%). THE EYE itself reported **35/35 PASS on both dead concepts**
+  (filed B-4 — a gate blind spot, `D5` skipped fleet-wide on this scenario). Two temp seed
+  scripts created (`_seed_pure_rolling_cache.ts`, `_seed_rolling_on_incline_cache.ts`) — delete
+  after the gate. No approve, no seal, no engine dispatch, no platform file touched.
 - **2026-08-04 — both JSONs authored** (json_author stage). `src/data/concepts/pure_rolling.json`
   + `src/data/concepts/rolling_on_incline.json`. tsc 0 errors · `validate:concepts` 151 PASS /
   0 FAIL. Registration sites verified pre-registered and left untouched; no platform file

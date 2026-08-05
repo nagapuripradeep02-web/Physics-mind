@@ -84,3 +84,70 @@ re-authoring once the fixes land.
 Seed the scoped caches (`npm run cache:clear:scoped -- <id>`, this desk's four permitted keys
 only) and run THE EYE on both concepts + the `rolling_friction` / `work_done_by_constant_force`
 regression pair, on port **8111**. Expect B-1 to surface loudly as a frozen `pure_rolling` S7.
+
+---
+
+## 2026-08-05 — THE EYE run on all four keys. The rolling extension is DEAD, not partially blocked.
+
+**Ran:** scoped clear → seed → `visual:eyes` on `pure_rolling`, `rolling_on_incline`,
+`rolling_friction`, `work_done_by_constant_force`, re-seeding immediately before each run.
+Guardrail 1 honoured — `cache:clear:scoped` only, never the global 4-table wipe. Guardrail 2
+honoured — only this desk's four permitted keys were touched. Two eye-walkers dispatched (one
+per new concept). No `visual:approve`, no seal, no engine dispatch, no platform file touched.
+
+**Two temp seed scripts created** (the convention's per-concept files did not exist yet):
+`src/scripts/_seed_pure_rolling_cache.ts`, `src/scripts/_seed_rolling_on_incline_cache.ts` —
+verbatim clones of `_seed_rolling_friction_cache.ts` with the id swapped. Delete after the gate.
+
+### Headline: B-1's scoping was wrong, and the concepts are worse off than recorded
+
+**Every `rolling: true` body in both concepts fails to integrate — on every mode, on flat
+ground and on the incline alike.** Filed as **B-3 (CRITICAL)**. This SUPERSEDES the earlier
+"S7 blocked on B-1, S4 radius blocked on B-2" assessment, which understated the damage:
+`pure_rolling` S1/S2/S4/S6/S7 and `rolling_on_incline` S1/S2/S4/S5/S8 all fail to render their
+physics. **Neither concept is partially blocked. Both are non-functional.**
+
+Verified mechanically in the main session, not taken on the eye-walkers' word: `rolling_on_incline`
+STATE_8 (the Rule-37 continuous-run sandbox) yields **one MD5 across t=0/5000/10000/frozen** —
+byte-identical over 10.5 s. STATE_1's race hashes `t0 = t1000 = t3000 = t4000`. STATE_7
+(`param_ramp`) differs at every timestamp — the negative control that proves the harness sees
+change when there is any.
+
+The discriminator (`rolling: true` count per concept: `rolling_friction` 0 · `work_done` 0 ·
+`pure_rolling` 6/9 · `rolling_on_incline` 16/17) correlates perfectly with dead-vs-alive.
+**No approved concept in the fleet sets the flag**, so the H2 baselines were structurally
+incapable of catching this.
+
+### Regression pair: CLEAN — and that is not evidence of engine health
+
+- `work_done_by_constant_force` — H2 **0.00%** on all 12 baselines.
+- `rolling_friction` — H2 0.22–0.38% vs 2.0% tolerance, all 10 baselines.
+
+SEAM R caused no drift on the approved fleet. But both concepts have **zero** `rolling: true`
+bodies, so a clean regression says nothing about the rolling path. Recorded explicitly so no
+desk cites this pair as reassurance about B-3.
+
+### THE EYE reported 35/35 PASS on both dead concepts
+
+Filed as **B-4 (MAJOR, tooling — Rule-40 platform surface, lands on master separately)**. `D5`
+was skipped on every state ("motion expectation unknown" — also skipped on the APPROVED
+`rolling_friction`, so it is pre-existing to the scenario, not SEAM R's doing), and `D6`/`D7`
+were satisfied by caption, `glow_focal` and live-HUD pixels. D7 only fires on a frozen tail
+*after earlier motion*, so a scene that never moved passes by construction. The machine's
+verdict was actively misleading; the eye-walkers caught it on both concepts.
+
+### Also filed
+
+- **B-5 (MAJOR)** — `pure_rolling` STATE_3 renders **zero bodies** on an empty track while its
+  HUD prints readouts for two. Verified by direct frame read in the main session.
+- **B-6 (MINOR, doctrine not engine)** — `I_cm` in a rendered formula surface is ASCII, but
+  **Unicode has no subscript 'c'**, so Rule 34c cannot be literally satisfied. **Deliberately
+  NOT "fixed"** — inventing a glyph would be fabrication. Needs a doctrine call.
+- **B-7 (ambiguous, unrouted)** — negative `a` on release may be a camera-axis convention, not a
+  bug. Currently unfalsifiable: under B-3 nothing moves, so there is no direction to compare
+  against. Re-check after B-3 lands.
+
+### Still NOT done — unchanged, and now for a bigger reason
+Nothing sealed. Nothing approved. No baseline written for either concept (H2 correctly reported
+"no approved baseline" on both). A re-walk of BOTH concepts is required once B-3 lands — not
+just the S7/radius beats named in the 2026-08-04 entry.
