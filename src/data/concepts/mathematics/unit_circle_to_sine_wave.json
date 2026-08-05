@@ -1,0 +1,2895 @@
+{
+  "concept_id": "unit_circle_to_sine_wave",
+  "concept_name": "The Unit Circle Unrolled into Sine and Cosine",
+  "chapter": 3,
+  "section": "3.1 — Trigonometric Functions (the unit circle, radian measure, sine and cosine graphs)",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Mathematics Class 11, Chapter 3 'Trigonometric Functions' — chapter-index scope reference only; teaching, examples and phrasing authored from first principles. NCERT Exemplar consulted for misconception beliefs only. IB DP AA, AP Precalculus, Cambridge 0606/0580 and A-level Pure specifications consulted for COVERAGE SCOPE only (curriculum_tags). HC Verma and DC Pandey are physics-only sources and were not consulted. First mathematics concept through the pipeline.",
+  "renderer_pair": {
+    "panel_a": "parametric",
+    "panel_b": "none"
+  },
+  "available_renderer_scenarios": {
+    "parametric": [
+      "unit_circle_unroll"
+    ]
+  },
+  "prerequisites": [],
+  "concept_tier": "complex",
+  "cognitive_limits": {
+    "max_primitives_per_state": 40,
+    "max_labels_per_state": 20,
+    "max_words_per_tts_sentence": 30
+  },
+  "real_world_anchor": {
+    "primary": "The tip of a clock's second hand. A classroom wall clock anywhere in the world carries a genuinely rotating radius of fixed length — the exact apparatus of this sim. It turns an object a student has stared at their whole life into the answer to 'where does the wavy graph actually come from'. Delivered verbatim in STATE_1's narration, inside its word budget."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "periodicity": [
+      "STATE_6"
+    ],
+    "symmetry": [
+      "STATE_7"
+    ],
+    "exploration": [
+      "STATE_8"
+    ]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "theta": {
+        "name": "angle of the point from the positive horizontal axis, DEGREES, anticlockwise",
+        "unit": "deg",
+        "min": 0,
+        "max": 515.662015617741,
+        "default": 0
+      },
+      "phi": {
+        "name": "sweep parameter for the bright drawn curve, DEGREES — choreography-only, NEVER a slider (the phi law, F1)",
+        "unit": "deg",
+        "min": 0,
+        "max": 515.662015617741,
+        "default": 0
+      },
+      "phi_r": {
+        "name": "sweep parameter for the dim recap curve, DEGREES — choreography-only, NEVER a slider (the phi law, F1)",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 0
+      }
+    },
+    "formulas": {
+      "sin_theta": "sin(theta * PI / 180)",
+      "cos_theta": "cos(theta * PI / 180)",
+      "s": "theta * PI / 180"
+    },
+    "computed_outputs": {
+      "sin_theta": {
+        "formula": "sin(theta * PI / 180)"
+      },
+      "cos_theta": {
+        "formula": "cos(theta * PI / 180)"
+      },
+      "s": {
+        "formula": "theta * PI / 180"
+      }
+    },
+    "constraints": [
+      "domain: sin θ and cos θ are defined for EVERY real θ, no excluded points, no asymptotes (this concept deliberately never introduces tan θ, which would add excluded points at θ = π/2 + kπ)",
+      "r ≡ 1 in every state, always — no primitive in this concept draws a circle or arc at a live radius (body.size and angle_arc.radius are both number-only in this renderer; the amplitude state was cut for exactly this reason)",
+      "the two scale factors are declared ONCE and reused verbatim in every expression: S_v = 110 px/unit (circle radius AND both wave ordinates), S_h = 46 px/rad (wave horizontal axis) — applied to the RADIAN conversion of theta/phi (e.g. 46*phi*PI/180), never to the raw degree number; circle centre (150,230), wave origin x0=300, baseline y=230",
+      "phi and phi_r are choreography-only in every state — NEVER authored as a slider variable (the phi law, F1); every locus_trace x_expr/y_expr references ONLY phi or phi_r, never theta",
+      "wherever a pen or carrier is on screen, theta and that trace's own sweep parameter are numerically EQUAL at every instant (the equality invariant, F18) — enforced by giving theta and phi the SAME from/to/start_ms/duration_ms in every state where both are choreographed together",
+      "theta, phi and phi_r are DEGREES everywhere — native to the slider caption and to drawAngleArc; every trig-consuming expression converts inline via *PI/180; the derived key s is the honest radian value (and, since r≡1, simultaneously the taught arc length) — never confuse the engine variable theta (degrees) with the mathematical symbol θ in a formula surface (radians, i.e. s)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "A Point Moves Round a Circle",
+        "duration": 17,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "point",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "One point, one angle",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 150,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 384
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "r = 1",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_point",
+            "primitive_id": "point",
+            "halo_radius_px": 42,
+            "color": "#FBBF24",
+            "intensity": 0.45
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "loop",
+            "from": 0,
+            "to": 360,
+            "start_ms": 0,
+            "duration_ms": 12000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A point travels round a circle of radius one, starting at the rightmost point and turning anticlockwise."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "This circle is like the tip of a clock's second hand, turning steadily round a fixed centre."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "The angle theta measures how far it has turned."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Arc Length Measures the Angle",
+        "duration": 21,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "rim_trace",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "radian_vs_degree",
+          "arc_length_equals_angle",
+          "why_pi_appears_on_the_axis"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Rim distance is the angle",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 150,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "locus_trace",
+            "id": "rim_trace",
+            "x_expr": "150 + 110*cos(phi*PI/180)",
+            "y_expr": "230 - 110*sin(phi*PI/180)",
+            "start_ms": 0,
+            "end_ms": 19800,
+            "sample_ms": 85,
+            "color": "#A78BFA",
+            "stroke_weight": 4
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "label",
+            "id": "rim_pi_2",
+            "text": "π/2",
+            "position": {
+              "x": 150,
+              "y": 102
+            },
+            "font_size": 12,
+            "color": "#A78BFA",
+            "appear_at_ms": 4950
+          },
+          {
+            "type": "label",
+            "id": "rim_pi",
+            "text": "π",
+            "position": {
+              "x": 22,
+              "y": 230
+            },
+            "font_size": 12,
+            "color": "#A78BFA",
+            "appear_at_ms": 9900
+          },
+          {
+            "type": "label",
+            "id": "rim_3pi_2",
+            "text": "3π/2",
+            "position": {
+              "x": 150,
+              "y": 358
+            },
+            "font_size": 12,
+            "color": "#A78BFA",
+            "appear_at_ms": 14850
+          },
+          {
+            "type": "label",
+            "id": "rim_2pi",
+            "text": "2π",
+            "position": {
+              "x": 282,
+              "y": 214
+            },
+            "font_size": 12,
+            "color": "#A78BFA",
+            "appear_at_ms": 19800
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "s = {s.toFixed(2)}",
+            "position": {
+              "x": 150,
+              "y": 370
+            },
+            "font_size": 14,
+            "color": "#A78BFA"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 404
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "s = θ   (r = 1)",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_rim_trace",
+            "primitive_id": "rim_trace",
+            "halo_radius_px": 0,
+            "color": "#A78BFA",
+            "intensity": 0.45
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 0,
+            "duration_ms": 19800
+          },
+          {
+            "variable": "phi",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 0,
+            "duration_ms": 19800
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "As the point turns, it sweeps out a distance along the rim."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Because the radius is one, that rim distance and the angle are the same number."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "That number is the angle in radians, and a full turn is two pi."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Watch the counter: the arc length s and the angle theta stay equal."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Sine Is the Height of the Point",
+        "duration": 21,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "height_seg",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Height of the point",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 40,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "vector",
+            "id": "height_seg",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#38BDF8",
+            "label": "y"
+          },
+          {
+            "type": "body",
+            "id": "foot",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "size": 7,
+            "fill_color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 370
+            },
+            "font_size": 14,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 404
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "sin θ = y   (r = 1)",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_height_seg",
+            "primitive_id": "height_seg",
+            "halo_radius_px": 42,
+            "color": "#38BDF8",
+            "intensity": 0.45
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider",
+            "variable": "theta",
+            "min": 0,
+            "max": 360,
+            "step": 1,
+            "default": 0,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 1000,
+            "duration_ms": 19000
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "sine belongs to right triangles: it is undefined past 90° and never negative",
+            "visual_counter": "the height segment continues through 90° and 180°; below the horizontal line it hangs downward and the readout shows −0.50 at θ = 210°",
+            "one_line_fix": "sin θ is the point's signed height — any angle, any sign."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Sine of theta is the height of the point above the horizontal line."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "For angles up to ninety degrees this is the same sine you know from right triangles; the circle just keeps going where the triangle stops."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Past one hundred and eighty degrees the point sits below the line, so the height reads negative."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Height Carried Sideways Makes the Wave",
+        "duration": 21,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "sine_pen",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "wave_is_not_the_path",
+          "x_axis_is_angle",
+          "height_to_graph_mapping"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Height carried sideways",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 40,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "vector",
+            "id": "height_seg",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#38BDF8",
+            "label": "y"
+          },
+          {
+            "type": "animated_path",
+            "id": "wave_axis",
+            "from": {
+              "x": 300,
+              "y": 230
+            },
+            "to": {
+              "x": 596.0,
+              "y": 230
+            },
+            "color": "#94A3B8",
+            "line_weight": 2,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 0,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "vector",
+            "id": "tick_0",
+            "from": {
+              "x": 300,
+              "y": 226
+            },
+            "to": {
+              "x": 300,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_0",
+            "text": "0",
+            "position": {
+              "x": 300,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π/2",
+            "from": {
+              "x": 372.3,
+              "y": 226
+            },
+            "to": {
+              "x": 372.3,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π/2",
+            "text": "π/2",
+            "position": {
+              "x": 372.3,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π",
+            "from": {
+              "x": 444.5,
+              "y": 226
+            },
+            "to": {
+              "x": 444.5,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π",
+            "text": "π",
+            "position": {
+              "x": 444.5,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_3π/2",
+            "from": {
+              "x": 516.8,
+              "y": 226
+            },
+            "to": {
+              "x": 516.8,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_3π/2",
+            "text": "3π/2",
+            "position": {
+              "x": 516.8,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_2π",
+            "from": {
+              "x": 589.0,
+              "y": 226
+            },
+            "to": {
+              "x": 589.0,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_2π",
+            "text": "2π",
+            "position": {
+              "x": 589.0,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "axis_meaning",
+            "text": "angle θ (radians)",
+            "position": {
+              "x": 450,
+              "y": 384
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "locus_trace",
+            "id": "sine_curve",
+            "x_expr": "300 + 46*phi*PI/180",
+            "y_expr": "230 - 110*sin(phi*PI/180)",
+            "start_ms": 800,
+            "end_ms": 20000,
+            "sample_ms": 85,
+            "color": "#38BDF8",
+            "stroke_weight": 3
+          },
+          {
+            "type": "vector",
+            "id": "carrier",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*sin(phi*PI/180)}",
+            "style": "dashed",
+            "color": "#38BDF8"
+          },
+          {
+            "type": "body",
+            "id": "sine_pen",
+            "shape": "circle",
+            "position_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*sin(phi*PI/180)}",
+            "size": 12,
+            "fill_color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "sine_curve_name",
+            "text": "sin θ",
+            "position": {
+              "x": 614,
+              "y": 248
+            },
+            "font_size": 13,
+            "color": "#38BDF8",
+            "appear_at_ms": 19000
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 370
+            },
+            "font_size": 14,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 404
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "y = sin θ",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_sine_pen",
+            "primitive_id": "sine_pen",
+            "halo_radius_px": 42,
+            "color": "#38BDF8",
+            "intensity": 0.45
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 800,
+            "duration_ms": 19200
+          },
+          {
+            "variable": "phi",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 800,
+            "duration_ms": 19200
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "the wave is a picture of the path the point travels",
+            "visual_counter": "the closed circle and the wave stay two distinct objects in two zones; the dashed carrier shows the wave's horizontal position is the ANGLE, not a place the point visits",
+            "one_line_fix": "the wave plots height against angle — the path stays a circle."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now carry that height sideways as the angle grows."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The horizontal axis is the angle, and the height at each angle is plotted above it."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The curve that draws itself is the sine wave."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "The point still travels in a circle; the wave plots its height against the angle."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Cosine Is the Horizontal Distance",
+        "duration": 21,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "cosine_pen",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "cosine_phase_shift",
+          "cosine_starts_at_one",
+          "sin_cos_same_circle"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Now the horizontal distance",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 40,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "vector",
+            "id": "height_seg",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#38BDF8",
+            "label": "y"
+          },
+          {
+            "type": "vector",
+            "id": "horiz_seg",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#F472B6",
+            "label": "x",
+            "appear_at_ms": 0,
+            "animate_in_ms": 2000
+          },
+          {
+            "type": "vector",
+            "id": "wave_axis",
+            "from": {
+              "x": 300,
+              "y": 230
+            },
+            "to": {
+              "x": 596.0,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_0",
+            "from": {
+              "x": 300,
+              "y": 226
+            },
+            "to": {
+              "x": 300,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_0",
+            "text": "0",
+            "position": {
+              "x": 300,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π/2",
+            "from": {
+              "x": 372.3,
+              "y": 226
+            },
+            "to": {
+              "x": 372.3,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π/2",
+            "text": "π/2",
+            "position": {
+              "x": 372.3,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π",
+            "from": {
+              "x": 444.5,
+              "y": 226
+            },
+            "to": {
+              "x": 444.5,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π",
+            "text": "π",
+            "position": {
+              "x": 444.5,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_3π/2",
+            "from": {
+              "x": 516.8,
+              "y": 226
+            },
+            "to": {
+              "x": 516.8,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_3π/2",
+            "text": "3π/2",
+            "position": {
+              "x": 516.8,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_2π",
+            "from": {
+              "x": 589.0,
+              "y": 226
+            },
+            "to": {
+              "x": 589.0,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_2π",
+            "text": "2π",
+            "position": {
+              "x": 589.0,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "axis_meaning",
+            "text": "angle θ (radians)",
+            "position": {
+              "x": 450,
+              "y": 384
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "locus_trace",
+            "id": "sine_recap",
+            "x_expr": "300 + 46*phi_r*PI/180",
+            "y_expr": "230 - 110*sin(phi_r*PI/180)",
+            "start_ms": 2000,
+            "end_ms": 4400,
+            "sample_ms": 25,
+            "color": "#0E7490",
+            "stroke_weight": 2
+          },
+          {
+            "type": "locus_trace",
+            "id": "cosine_curve",
+            "x_expr": "300 + 46*phi*PI/180",
+            "y_expr": "230 - 110*cos(phi*PI/180)",
+            "start_ms": 4000,
+            "end_ms": 19800,
+            "sample_ms": 80,
+            "color": "#F472B6",
+            "stroke_weight": 3
+          },
+          {
+            "type": "body",
+            "id": "cosine_pen",
+            "shape": "circle",
+            "position_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*cos(phi*PI/180)}",
+            "size": 12,
+            "fill_color": "#F472B6",
+            "appear_at_ms": 4000
+          },
+          {
+            "type": "label",
+            "id": "cosine_curve_name",
+            "text": "cos θ",
+            "position": {
+              "x": 614,
+              "y": 118
+            },
+            "font_size": 13,
+            "color": "#F472B6",
+            "appear_at_ms": 19000
+          },
+          {
+            "type": "label",
+            "id": "sine_curve_name",
+            "text": "sin θ",
+            "position": {
+              "x": 614,
+              "y": 248
+            },
+            "font_size": 13,
+            "color": "#0E7490",
+            "appear_at_ms": 4400
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "cos θ = {cos_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 358
+            },
+            "font_size": 14,
+            "color": "#F472B6"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 392
+            },
+            "font_size": 14,
+            "color": "#0E7490"
+          },
+          {
+            "type": "label",
+            "id": "hud_2",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 426
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "x = cos θ   (r = 1)",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_cosine_pen",
+            "primitive_id": "cosine_pen",
+            "halo_radius_px": 42,
+            "color": "#F472B6",
+            "intensity": 0.45
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 4000,
+            "duration_ms": 15800
+          },
+          {
+            "variable": "phi",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 4000,
+            "duration_ms": 15800
+          },
+          {
+            "variable": "phi_r",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 2000,
+            "duration_ms": 2400
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "cos 0 = 0, by false analogy with sin 0 = 0 — both waves must start at zero",
+            "visual_counter": "the state opens at θ = 0 with the horizontal segment at full length under cos θ = 1.00 while the height segment is visibly zero — the believed value and the true value in one frame",
+            "one_line_fix": "at θ = 0 the point is farthest right, so cos 0 = 1."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "At the start the point is farthest right, so the horizontal distance is one, not zero."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "That horizontal distance is cosine of theta."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Carry it sideways the same way and a second wave draws itself."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "It is the same shape as the sine wave, a quarter turn ahead."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "After 2π the Wave Repeats",
+        "duration": 19,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "continuation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Past 2π, same values",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 40,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "min(theta, 360)",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "vector",
+            "id": "wave_axis",
+            "from": {
+              "x": 300,
+              "y": 230
+            },
+            "to": {
+              "x": 596.0,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_0",
+            "from": {
+              "x": 300,
+              "y": 226
+            },
+            "to": {
+              "x": 300,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_0",
+            "text": "0",
+            "position": {
+              "x": 300,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π/2",
+            "from": {
+              "x": 372.3,
+              "y": 226
+            },
+            "to": {
+              "x": 372.3,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π/2",
+            "text": "π/2",
+            "position": {
+              "x": 372.3,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π",
+            "from": {
+              "x": 444.5,
+              "y": 226
+            },
+            "to": {
+              "x": 444.5,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π",
+            "text": "π",
+            "position": {
+              "x": 444.5,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_3π/2",
+            "from": {
+              "x": 516.8,
+              "y": 226
+            },
+            "to": {
+              "x": 516.8,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_3π/2",
+            "text": "3π/2",
+            "position": {
+              "x": 516.8,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_2π",
+            "from": {
+              "x": 589.0,
+              "y": 226
+            },
+            "to": {
+              "x": 589.0,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_2π",
+            "text": "2π",
+            "position": {
+              "x": 589.0,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "axis_meaning",
+            "text": "angle θ (radians)",
+            "position": {
+              "x": 450,
+              "y": 384
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "animated_path",
+            "id": "wave_axis_ext",
+            "from": {
+              "x": 596.0,
+              "y": 230
+            },
+            "to": {
+              "x": 714.0,
+              "y": 230
+            },
+            "color": "#94A3B8",
+            "line_weight": 2,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 3000,
+            "animate_in_ms": 15000
+          },
+          {
+            "type": "vector",
+            "id": "tick_5pi_2",
+            "from": {
+              "x": 661.3,
+              "y": 226
+            },
+            "to": {
+              "x": 661.3,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8",
+            "appear_at_ms": 12000
+          },
+          {
+            "type": "label",
+            "id": "mark_5pi_2",
+            "text": "5π/2",
+            "position": {
+              "x": 661.3,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8",
+            "appear_at_ms": 12000
+          },
+          {
+            "type": "locus_trace",
+            "id": "pass_one_recap",
+            "x_expr": "300 + 46*phi_r*PI/180",
+            "y_expr": "230 - 110*sin(phi_r*PI/180)",
+            "start_ms": 0,
+            "end_ms": 3000,
+            "sample_ms": 25,
+            "color": "#0E7490",
+            "stroke_weight": 2
+          },
+          {
+            "type": "locus_trace",
+            "id": "continuation",
+            "x_expr": "300 + 46*phi*PI/180",
+            "y_expr": "230 - 110*sin(phi*PI/180)",
+            "start_ms": 3000,
+            "end_ms": 18000,
+            "sample_ms": 70,
+            "color": "#38BDF8",
+            "stroke_weight": 3
+          },
+          {
+            "type": "body",
+            "id": "continuation_pen",
+            "shape": "circle",
+            "position_expr": "{x: 300 + 46*phi*PI/180, y: 230 - 110*sin(phi*PI/180)}",
+            "size": 12,
+            "fill_color": "#38BDF8",
+            "appear_at_ms": 3000
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 370
+            },
+            "font_size": 14,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 404
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "sin(θ + 2π) = sin θ",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_continuation_pen",
+            "primitive_id": "continuation_pen",
+            "halo_radius_px": 42,
+            "color": "#38BDF8",
+            "intensity": 0.45
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "once",
+            "from": 360,
+            "to": 515.662015617741,
+            "start_ms": 3000,
+            "duration_ms": 15000
+          },
+          {
+            "variable": "phi",
+            "mode": "once",
+            "from": 360,
+            "to": 515.662015617741,
+            "start_ms": 3000,
+            "duration_ms": 15000
+          },
+          {
+            "variable": "phi_r",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 0,
+            "duration_ms": 3000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "One full turn is finished, and the point starts round again."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "The angle keeps counting past two pi, and the curve keeps going to the right."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The same heights come back in the same order, so the wave repeats."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Two Angles, One Height",
+        "duration": 21,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "mirror_height_seg",
+        "eye_capture_ms": 18500,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Two angles, one height",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 40,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "vector",
+            "id": "height_seg",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#38BDF8",
+            "label": "y"
+          },
+          {
+            "type": "vector",
+            "id": "mirror_radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230 - 110*sin((180-theta)*PI/180)}",
+            "style": "line",
+            "color": "#4ADE80",
+            "appear_at_ms": 2400,
+            "animate_in_ms": 1600
+          },
+          {
+            "type": "body",
+            "id": "mirror_point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230 - 110*sin((180-theta)*PI/180)}",
+            "size": 16,
+            "fill_color": "#4ADE80",
+            "appear_at_ms": 2400,
+            "animate_in_ms": 1600
+          },
+          {
+            "type": "vector",
+            "id": "mirror_height_seg",
+            "from_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230 - 110*sin((180-theta)*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230}",
+            "style": "line",
+            "color": "#4ADE80",
+            "label": "y",
+            "appear_at_ms": 2400,
+            "animate_in_ms": 1600
+          },
+          {
+            "type": "angle_arc",
+            "id": "mirror_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "180 - theta",
+            "radius": 54,
+            "color": "#4ADE80",
+            "label": "π − θ"
+          },
+          {
+            "type": "vector",
+            "id": "wave_axis",
+            "from": {
+              "x": 300,
+              "y": 230
+            },
+            "to": {
+              "x": 596.0,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_0",
+            "from": {
+              "x": 300,
+              "y": 226
+            },
+            "to": {
+              "x": 300,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_0",
+            "text": "0",
+            "position": {
+              "x": 300,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π/2",
+            "from": {
+              "x": 372.3,
+              "y": 226
+            },
+            "to": {
+              "x": 372.3,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π/2",
+            "text": "π/2",
+            "position": {
+              "x": 372.3,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π",
+            "from": {
+              "x": 444.5,
+              "y": 226
+            },
+            "to": {
+              "x": 444.5,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π",
+            "text": "π",
+            "position": {
+              "x": 444.5,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_3π/2",
+            "from": {
+              "x": 516.8,
+              "y": 226
+            },
+            "to": {
+              "x": 516.8,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_3π/2",
+            "text": "3π/2",
+            "position": {
+              "x": 516.8,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_2π",
+            "from": {
+              "x": 589.0,
+              "y": 226
+            },
+            "to": {
+              "x": 589.0,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_2π",
+            "text": "2π",
+            "position": {
+              "x": 589.0,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "axis_meaning",
+            "text": "angle θ (radians)",
+            "position": {
+              "x": 450,
+              "y": 384
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "locus_trace",
+            "id": "sine_recap",
+            "x_expr": "300 + 46*phi_r*PI/180",
+            "y_expr": "230 - 110*sin(phi_r*PI/180)",
+            "start_ms": 0,
+            "end_ms": 2400,
+            "sample_ms": 25,
+            "color": "#0E7490",
+            "stroke_weight": 2
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "point height  y = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 358
+            },
+            "font_size": 14,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "mirror height  y = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 392
+            },
+            "font_size": 14,
+            "color": "#4ADE80"
+          },
+          {
+            "type": "label",
+            "id": "hud_2",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 426
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "sin(π − θ) = sin θ",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6",
+            "appear_at_ms": 16500,
+            "animate_in_ms": 500
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_height_seg",
+            "primitive_id": "height_seg",
+            "halo_radius_px": 42,
+            "color": "#38BDF8",
+            "intensity": 0.45,
+            "appear_at_ms": 4000
+          },
+          {
+            "type": "glow_focus",
+            "id": "glow_mirror_height_seg",
+            "primitive_id": "mirror_height_seg",
+            "halo_radius_px": 42,
+            "color": "#4ADE80",
+            "intensity": 0.45,
+            "appear_at_ms": 4000
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider",
+            "variable": "theta",
+            "min": 0,
+            "max": 90,
+            "step": 1,
+            "default": 45,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "ping_pong",
+            "from": 0,
+            "to": 90,
+            "start_ms": 4000,
+            "duration_ms": 4000
+          },
+          {
+            "variable": "phi_r",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 0,
+            "duration_ms": 2400
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Take one angle, then take the angle you get by reflecting it across the vertical line."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Both points sit at exactly the same height above the horizontal line."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "So sine of pi minus theta equals sine of theta, at every angle you choose."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Explore: Drag the Angle",
+        "duration": 24,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "point",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Drag the angle yourself",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "body",
+            "id": "unit_circle",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 220,
+            "fill_color": "#64748B",
+            "opacity": 0,
+            "border_color": "#64748B",
+            "border_width": 2
+          },
+          {
+            "type": "body",
+            "id": "centre",
+            "shape": "circle",
+            "position": {
+              "x": 150,
+              "y": 230
+            },
+            "size": 7,
+            "fill_color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "h_reference",
+            "from": {
+              "x": 40,
+              "y": 230
+            },
+            "to": {
+              "x": 260,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
+            "id": "radius",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "body",
+            "id": "point",
+            "shape": "circle",
+            "position_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "size": 16,
+            "fill_color": "#FBBF24"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc",
+            "center": {
+              "x": 150,
+              "y": 230
+            },
+            "from_deg": 0,
+            "angle_value_expr": "theta",
+            "radius": 34,
+            "color": "#A78BFA",
+            "label": "θ"
+          },
+          {
+            "type": "vector",
+            "id": "height_seg",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#38BDF8",
+            "label": "y"
+          },
+          {
+            "type": "vector",
+            "id": "horiz_seg",
+            "from_expr": "{x:150,y:230}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#F472B6",
+            "label": "x"
+          },
+          {
+            "type": "vector",
+            "id": "wave_axis",
+            "from": {
+              "x": 300,
+              "y": 230
+            },
+            "to": {
+              "x": 596.0,
+              "y": 230
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_0",
+            "from": {
+              "x": 300,
+              "y": 226
+            },
+            "to": {
+              "x": 300,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_0",
+            "text": "0",
+            "position": {
+              "x": 300,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π/2",
+            "from": {
+              "x": 372.3,
+              "y": 226
+            },
+            "to": {
+              "x": 372.3,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π/2",
+            "text": "π/2",
+            "position": {
+              "x": 372.3,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_π",
+            "from": {
+              "x": 444.5,
+              "y": 226
+            },
+            "to": {
+              "x": 444.5,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_π",
+            "text": "π",
+            "position": {
+              "x": 444.5,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_3π/2",
+            "from": {
+              "x": 516.8,
+              "y": 226
+            },
+            "to": {
+              "x": 516.8,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_3π/2",
+            "text": "3π/2",
+            "position": {
+              "x": 516.8,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "vector",
+            "id": "tick_2π",
+            "from": {
+              "x": 589.0,
+              "y": 226
+            },
+            "to": {
+              "x": 589.0,
+              "y": 234
+            },
+            "style": "line",
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "mark_2π",
+            "text": "2π",
+            "position": {
+              "x": 589.0,
+              "y": 352
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "axis_meaning",
+            "text": "angle θ (radians)",
+            "position": {
+              "x": 450,
+              "y": 384
+            },
+            "font_size": 12,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "locus_trace",
+            "id": "sine_curve",
+            "x_expr": "300 + 46*phi*PI/180",
+            "y_expr": "230 - 110*sin(phi*PI/180)",
+            "start_ms": 0,
+            "end_ms": 3000,
+            "sample_ms": 25,
+            "color": "#38BDF8",
+            "stroke_weight": 3
+          },
+          {
+            "type": "locus_trace",
+            "id": "cosine_curve",
+            "x_expr": "300 + 46*phi*PI/180",
+            "y_expr": "230 - 110*cos(phi*PI/180)",
+            "start_ms": 0,
+            "end_ms": 3000,
+            "sample_ms": 25,
+            "color": "#F472B6",
+            "stroke_weight": 3
+          },
+          {
+            "type": "body",
+            "id": "sine_dot",
+            "shape": "circle",
+            "position_expr": "{x: 300 + 46*theta*PI/180, y: 230 - 110*sin(theta*PI/180)}",
+            "size": 12,
+            "fill_color": "#38BDF8",
+            "appear_at_ms": 3000
+          },
+          {
+            "type": "body",
+            "id": "cosine_dot",
+            "shape": "circle",
+            "position_expr": "{x: 300 + 46*theta*PI/180, y: 230 - 110*cos(theta*PI/180)}",
+            "size": 12,
+            "fill_color": "#F472B6",
+            "appear_at_ms": 3000
+          },
+          {
+            "type": "label",
+            "id": "sine_curve_name",
+            "text": "sin θ",
+            "position": {
+              "x": 614,
+              "y": 248
+            },
+            "font_size": 13,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "cosine_curve_name",
+            "text": "cos θ",
+            "position": {
+              "x": 614,
+              "y": 118
+            },
+            "font_size": 13,
+            "color": "#F472B6"
+          },
+          {
+            "type": "label",
+            "id": "hud_0",
+            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 358
+            },
+            "font_size": 14,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "hud_1",
+            "text_expr": "cos θ = {cos_theta.toFixed(2).replace('-','−')}",
+            "position": {
+              "x": 150,
+              "y": 392
+            },
+            "font_size": 14,
+            "color": "#F472B6"
+          },
+          {
+            "type": "label",
+            "id": "hud_2",
+            "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
+            "position": {
+              "x": 150,
+              "y": 426
+            },
+            "font_size": 14,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_surface",
+            "equation": "y = sin θ",
+            "position": {
+              "x": 560,
+              "y": 80
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider",
+            "variable": "theta",
+            "min": 0,
+            "max": 360,
+            "step": 1,
+            "default": 0,
+            "label": "angle θ",
+            "unit": "deg",
+            "position": "bottom"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "theta",
+            "mode": "loop",
+            "from": 0,
+            "to": 360,
+            "start_ms": 3000,
+            "duration_ms": 8000
+          },
+          {
+            "variable": "phi",
+            "mode": "once",
+            "from": 0,
+            "to": 360,
+            "start_ms": 0,
+            "duration_ms": 3000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Drag the angle slider."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "The point on the circle and the dots on both curves move together."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "The sine wave is the circling point's height, laid out along the angle.",
+    "visual_confirmation": "the dashed carrier holds point and pen at equal height while the curve unrolls"
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can state the sign of sin θ in any quadrant, read an arc length off a radius-1 circle as the angle in radians, give cos 0 without reasoning from sin 0, say what each axis of the sine graph measures, name the period, and justify sin(π − θ) = sin θ from the picture rather than from a memorised table.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "stem": "A point moves round the unit circle. What is the sign of sin θ at θ = 210°?",
+        "options": {
+          "A": "Negative",
+          "B": "Positive",
+          "C": "Zero",
+          "D": "sin θ is not defined past 180°"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "reads the height as a plain length, so it can never be negative",
+          "C": "confuses 210° with 180°, the angle where the height really is zero",
+          "D": "M1 — believes sine belongs to right triangles and stops existing past 90°"
+        },
+        "tested_idea": "sin θ is the SIGNED height of the point, negative below the horizontal line",
+        "parallel_form_stem": "A point moves round the unit circle. What is the sign of sin θ at θ = 300°?"
+      },
+      {
+        "q_id": "q2",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "stem": "A point moves along a circle of radius 1 from θ = 0 to θ = π. What distance does it travel along the rim?",
+        "options": {
+          "A": "π",
+          "B": "180",
+          "C": "2π",
+          "D": "1"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "reads the angle in degrees and calls that number a length",
+          "C": "gives the whole circumference instead of the half turn",
+          "D": "uses the radius in place of the arc length"
+        },
+        "tested_idea": "on a radius-1 circle the arc length travelled equals the angle in radians",
+        "parallel_form_stem": "A point moves along a circle of radius 1 from θ = 0 to θ = π/2. What distance does it travel along the rim?"
+      },
+      {
+        "q_id": "q3",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "stem": "On the unit circle, what is the value of cos θ at θ = 0?",
+        "options": {
+          "A": "1",
+          "B": "0",
+          "C": "−1",
+          "D": "It is undefined"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "M3 — expects cosine to start at zero because sine does",
+          "C": "reads the leftmost point of the circle instead of the rightmost",
+          "D": "treats θ = 0 as a special case with no horizontal distance to measure"
+        },
+        "tested_idea": "cos θ is the signed horizontal distance, which is largest at θ = 0",
+        "parallel_form_stem": "On the unit circle, what is the value of sin θ at θ = π/2?"
+      },
+      {
+        "q_id": "q4",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "stem": "For any angle θ, what is sin(π − θ) in terms of sin θ?",
+        "options": {
+          "A": "sin θ",
+          "B": "−sin θ",
+          "C": "cos θ",
+          "D": "1 − sin θ"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes reflecting the angle must flip the sign of the height",
+          "C": "swaps the two coordinates of the reflected point",
+          "D": "subtracts inside the function as if sine were linear"
+        },
+        "tested_idea": "mirror points about the vertical axis share one height, so sin(π−θ) = sin θ",
+        "parallel_form_stem": "For any angle θ, what is cos(−θ) in terms of cos θ?"
+      },
+      {
+        "q_id": "q5",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "stem": "On the graph built by carrying the point's height sideways, what does the horizontal axis measure?",
+        "options": {
+          "A": "The angle θ",
+          "B": "The horizontal distance of the point from the centre",
+          "C": "The time the point has been moving",
+          "D": "The distance of the point from the graph"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "M2 — reads the wave as a picture of where the point actually goes",
+          "C": "assumes the axis must be time because something is moving",
+          "D": "treats the wave as a map of positions rather than a plot of height against angle"
+        },
+        "tested_idea": "the wave plots height against ANGLE; the path itself stays a circle",
+        "parallel_form_stem": "On the graph built by carrying the point's height sideways, what does the vertical axis measure?"
+      },
+      {
+        "q_id": "q6",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "stem": "The curve y = sin θ is continued to the right past θ = 2π. After what increase in θ do its values repeat?",
+        "options": {
+          "A": "2π",
+          "B": "π",
+          "C": "π/2",
+          "D": "They never repeat"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "a half turn puts the point on the opposite side of the circle, not back where it started",
+          "C": "uses the quarter turn that separates the sine and cosine waves",
+          "D": "assumes each new turn round the circle produces new heights"
+        },
+        "tested_idea": "one full turn returns the point to the same place, so the heights repeat every 2π",
+        "parallel_form_stem": "The curve y = cos θ is continued to the right past θ = 2π. After what increase in θ do its values repeat?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "q2"
+      ],
+      "STATE_3": [
+        "q1"
+      ],
+      "STATE_4": [
+        "q5"
+      ],
+      "STATE_5": [
+        "q3"
+      ],
+      "STATE_6": [
+        "q6"
+      ],
+      "STATE_7": [
+        "q4"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_8"
+    ]
+  },
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Mathematics, Chapter 3 — Trigonometric Functions",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "ICSE/ISC",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Mathematics — Trigonometry (circular measure, trigonometric functions)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE (Main + Advanced)",
+        "coverage": "partial",
+        "syllabus_unit": "Trigonometry — trigonometric functions and their graphs (foundation for identities and equations)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Mathematics: Analysis and Approaches",
+        "coverage": "full",
+        "syllabus_unit": "Topic 3 — Geometry and trigonometry (the unit circle, radian measure, circular functions)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Precalculus",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 — Trigonometric and Polar Functions (the unit circle, sine and cosine graphs)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Additional Mathematics (0606)",
+        "coverage": "full",
+        "syllabus_unit": "Trigonometry — the unit circle, radian measure, graphs of trigonometric functions",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Mathematics (0580)",
+        "coverage": "partial",
+        "syllabus_unit": "Trigonometry — sine and cosine graphs (degrees only; radian measure is out of scope)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Pure Mathematics",
+        "coverage": "full",
+        "syllabus_unit": "Trigonometry — radian measure, the unit circle, graphs and symmetries of sine and cosine",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  }
+}

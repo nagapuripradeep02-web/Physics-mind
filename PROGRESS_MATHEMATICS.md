@@ -22,12 +22,157 @@
 | 2.6 | THE EYE made subject-correct (`2d4cb06`) | ✅ 2026-08-05 |
 | — | DB migration authored + pre-flighted (`84e85bc`) | ◐ **AUTHORED, NOT APPLIED** — blocked on Supabase org access |
 | P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | ☐ **BLOCKS ranked P1 #1–#3** |
-| 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | 🟡 IN FLIGHT on desk `feat/mathematics-unit-circle`. Platform hunk merged to master (`5e26843`); skeleton + mathematics block + TS engine authored, uncommitted. |
+| 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | 🟡 IN FLIGHT on desk `feat/mathematics-unit-circle`. Platform hunk merged to master (`5e26843`); skeleton + mathematics block + TS engine + **the concept JSON** authored, all uncommitted. Next stage: `quality_auditor`, then seed → THE EYE. |
 | 4 | Mathematics-specific gates | ☐ (grow from scars) |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
 The first concept is in flight; nothing is authored off-list.**
+
+---
+
+## 📄 SESSION — the concept JSON authored: seven places the design met the renderer and one of them had to give (2026-08-05, desk `feat/mathematics-unit-circle`)
+
+> Session opened on a stale "⏭ NEXT". The previous log said *"commit the skeleton + mathematics block
+> + TS engine, seed the cache, then `visual:eyes`"* — but `src/data/concepts/mathematics/` held only
+> its README. **The `json_author` stage had never run**, so there was nothing for the cache seed to
+> seed. Corrected before any work started; the seed/EYE steps are still ahead, not behind.
+
+### Bottom line
+
+`src/data/concepts/mathematics/unit_circle_to_sine_wave.json` now exists — 8 states, 192 primitives,
+83 KB — and the whole verification chain is green. **Seven places the authored design met the actual
+renderer needed a decision; six were mechanical, one (J2) changes how object-anchored text is authored
+on this engine for every future mathematics concept.** All seven are written down below rather than
+absorbed silently, which is the only reason they are cheap.
+
+### Verification (evidence, not assertion)
+
+`npx tsc --noEmit` **0** · `validate:mathematics` **1/1 PASS** · `validate:concepts` **149/149 PASS,
+0 FAIL** (byte-unchanged — the flat scan still cannot see the subject subfolder, isolation intact) ·
+`validate:chemistry` **10/10 PASS** · `npm test` **28 files / 327 tests** · `check:renderer-syntax`
+clean on all three engines · `check:agents` **15/15**.
+
+**A geometry pass was written and RUN, not eyeballed.** It models `PM_choreoValue`,
+`PM_choreoVarsAtTime` and `PM_interpolate` exactly as the renderer implements them, then sweeps every
+state at 100 ms and every trace at 40 sample points:
+
+| Check | Result |
+|---|---|
+| **the φ law** — slider vars ∩ trace identifiers per state | **∅ in all 8** ✅ |
+| **the equality invariant** — θ ≡ φ at every instant a pen or carrier is on screen | holds to 1e-6 across every state ✅ |
+| locus sample budgets ≤ 240 | max 233 (S2) ✅ |
+| **template leak** — any literal `{` surviving interpolation | **zero**, over every state × every 100 ms ✅ |
+| safe box x∈[40,720] y∈[40,460] | every evaluated point inside ✅ |
+| slider-band clearance (nothing below y≈445 on S3/S7/S8) | lowest authored text y = 426 ✅ |
+
+**Every pin frame the skeleton §12 asserts reproduces exactly**, which is the real test that the
+degrees-native revision survived transcription into pixels:
+
+| Pin | Skeleton says | Measured |
+|---|---|---|
+| S2 @12600 | `s = 4.00` over `θ = 4.00 rad (229°)` | `s = 4.00`, `θ = 4.00 rad (229°)` — the formula surface `s = θ (r = 1)` reads TRUE against its own HUD (F19) ✅ |
+| S4 @12600 | θ = φ ≈ 3.86 rad, sin θ ≈ −0.66 | 3.86 rad (221°), −0.66 ✅ |
+| S5 @12600 | θ = φ ≈ 3.42 rad, cos θ ≈ −0.96 | 3.42 rad (196°), −0.96 ✅ |
+| S6 @11400 | θ ≈ 7.80 rad, curve head x ≈ 659 | 7.80 rad, x = 659 ✅ |
+
+The ASCII-minus scar (`ascii_minus_in_oncanvas_math_from_tofixed`) is discharged **inside the authored
+string**, not left to a downstream sweep: every signed readout is
+`{sin_theta.toFixed(2).replace('-','−')}`, which reaches `PM_interpolate`'s complex-expression branch
+(`new Function`, no sanitisation — verified at `:1041-1050`). 19 U+2212 in the file, 9 guards. `theta`
+and `s` are never negative here and carry no guard, exactly as callout 4 specifies.
+
+### The seven findings — where the design met the renderer
+
+**J2 is the load-bearing one.** `drawLabel` reads **only** `spec.position` / `_solverPosition`
+(`parametric_renderer.ts:1676-1684`) — it has no `position_expr` and no anchor resolution. The
+skeleton §10(b) types three symbols as object-anchored `label` primitives (`θ` on the arc, `y` beside
+the height segment, `s` riding the rim); **none of the three can track as a `label`.** Object-anchored
+text on this engine must ride the OWNING primitive's own label field instead: `angle_arc.label`
+(drawn at the arc's mid-angle at `radius + 14`, `:2695-2703`) and `vector.label` (drawn at the segment
+midpoint, `:2308-2313`) — both genuinely track. `locus_trace` has no label field at all, so `s` is
+delivered by the HUD row + the formula surface, which §10(b) already required anyway. **This is a
+pattern-library fact, not a one-concept workaround** — it belongs in `docs/patterns/mathematics.md`
+beside the F1 φ-law erratum the skeleton already filed.
+
+1. **J1 — assessment count.** Skeleton §10(f) specifies **4** items; the shared Zod schema requires
+   **≥6** whenever `assessment` is present (`assessmentSchema.questions.min(6)`), and Gate 19d then
+   forces every uncovered state into `non_assessed_states`. With only 4, that list would have had to
+   contain **STATE_4 — the PRIMARY AHA** — and STATE_6. Declaring the aha state "teaches no testable
+   claim" is not true, and the auditor sanity-checks that list for truthfulness. Authored **6**: the
+   skeleton's four verbatim in intent, plus two on ideas its OWN Block-1 exam-backwards trace already
+   names (reading what the graph's horizontal axis measures → S4; the period → S6). No scope invented.
+2. **J3 — `renderer_pair.panel_b`.** Required as a string by the schema; the skeleton specifies no
+   panel B. Authored **`"none"`**, not `"graph_interactive"` — writing the latter would have made this
+   the 49th concept claiming a panel the review builder never paints (open item 3). "none" is the
+   honest encoding and costs nothing to change if a panel-B branch ever lands.
+3. **J4 — S6's angle arc past one full turn.** θ runs to 515.66°, which `drawAngleArc` hands to p5's
+   `arc()` as a span > 2π — undefined rendering. Authored `angle_value_expr: "min(theta, 360)"` so the
+   arc **saturates at one whole turn** while the HUD counts on past 360°. Truthful ("at least one full
+   turn done"), deterministic, and `min` is already injected by `PM_buildEvalScope`.
+4. **J5 — the two-entry θ choreography in S7.** `PM_applyChoreography` keeps the **last** entry per
+   variable (`:3477-3488`), so the skeleton's separate "hold" entry would have been dead code; and
+   `PM_choreoValue` already returns `from` before `start_ms` (`:1160`), so **the 0–4000 ms hold is
+   automatic** from the single ping-pong entry. Authored as one entry. The same reading collapses the
+   written holds in S5 (θ at 0 through 0–4000) and S6 (θ at 2π through 0–3000) — both are now
+   structural rather than authored, which is strictly safer.
+5. **J6 — HUD row spacing is 34 px, not the ≥40 px §11 states.** Three rows at 40 px would put the
+   bottom row at y = 456, **inside the renderer-owned slider band** (y≈445–470, callout 9). 34 px is
+   more than twice the 14 px line height, so collision is impossible; the ≥40 px figure is a
+   de-overlap margin for scattered text, not a deliberate stacked column. Lowest row: 426.
+6. **J7 — the unit circle is drawn as an outline via `opacity: 0` + `border_color`.** `drawBody`
+   applies `spec.opacity` to `fill()` only, while `stroke()` takes `border_color` at full alpha
+   (`:1504-1512`). **No shipped concept uses this shape** — it is verified by code read, not by
+   precedent, and is the first thing to re-check if the rim ever renders filled.
+
+### What the JSON encodes
+
+8 states (core ×5, extended ×1, advanced ×1, explore core), 2 distinct `advance_mode` values
+(Rule 15), **sliders on exactly S3/S7/S8** — the F13 decision, unchanged. Word budgets land at
+43/54/55/49/48/39/43/17 EN words, every guided state inside its authored band. `misconception_watch`
+on S3/S4/S5 only. `curriculum_tags` carries 8 entries — CBSE verified, **all seven others
+`needs_teacher_verification: true`** (38g), including Cambridge split into 0606 (full) and 0580
+(partial, degrees-only) rather than one blurred cell.
+
+### Open items
+
+1. **The JSON has not been through `quality_auditor`, and nothing has been committed.** Commits happen
+   on founder go. The whole desk (`docs/patterns/mathematics.md`, `src/lib/physicsEngine/index.ts`,
+   the skeleton, the mathematics block, the TS engine, the checkpoint-A seed script, and now the JSON)
+   is uncommitted.
+2. **THE EYE has not run on this concept.** Next after the audit: seed via `_seed_subject_cache.ts` →
+   `visual:eyes` → eye_walker (the mathematics addendum) → founder approval → `visual:approve`.
+   Nothing about the JSON has been seen as pixels yet — every claim above is code-level, not visual.
+3. **J2 belongs in `docs/patterns/mathematics.md`**, together with the two errata the skeleton's own
+   FLAGS section already raised (archetype C's `animated_path` carrier; archetype B's slider-drag
+   caveat superseded by the φ law). Three pattern-library edits, none applied yet.
+4. **The DB migration is APPLIED** (`914124b`, founder, 2026-08-05) and the org-access question is
+   **settled doctrine, not an open item** — see below.
+5. Items 2–5 of the previous session (D6 thin-content blind spot, `graph_interactive` on 48 physics
+   concepts, `cartesian_plane` gating ranked P1 #1–#3, `feat/mathematics-foundation` safe to delete)
+   are all unchanged.
+
+### Database access — SETTLED, and this section exists so it is never re-raised
+
+The migration was **APPLIED by the founder on 2026-08-05** (`914124b`) to dev
+`dxwpkjfypzxrzgbevfnx`, verbatim. Verified after: both CHECKs carry the mathematics values, 681 rows
+intact (physics 497 · chemistry 106 · subject_neutral 78 · mathematics 0), 9 distinct owners.
+`alex:mathematics_author` and `subject='mathematics'` are writable.
+
+**The org-access question is answered NO, permanently and by design** — DDL rights on that org would
+also cover `student_confusion_log`, `ncert_content` and `pyq_questions`, three NEVER DELETE tables.
+DDL is a founder action on the founder's machine (Rule 17), roughly once per subject lifetime.
+**An authoring session needs no dashboard access at all:** scar READS run headless through
+`src/scripts/query_engine_bug_queue.ts` on the service-role key, scar WRITES are plain data INSERTs
+via `_seed_engine_bug_queue_*.ts`. Both were exercised this session from this desk. An earlier draft
+of this very log carried a re-diagnosis of the connector and a recommendation to re-authorize it;
+that text was **wrong to still be here** and has been deleted rather than annotated — which is the
+whole point of the lesson `914124b` records.
+
+### ⏭ NEXT
+
+`quality_auditor` + `eye_walker` on the JSON, the three `docs/patterns/mathematics.md` edits (J2 + the
+skeleton's two FLAGS errata), and the S3/S7/S8 slider question (see the next session's log).
 
 ---
 
