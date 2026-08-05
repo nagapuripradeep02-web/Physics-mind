@@ -20,7 +20,7 @@
 | 1 | Curriculum plumbing (subject first-class) | ✅ 2026-08-04 |
 | 2.5 | `validate:mathematics` + shared-gate extraction + CI | ✅ 2026-08-04 |
 | 2.6 | THE EYE made subject-correct (`2d4cb06`) | ✅ 2026-08-05 |
-| — | DB migration authored + pre-flighted (`84e85bc`) | ◐ **AUTHORED, NOT APPLIED** — blocked on Supabase org access |
+| — | DB migration authored + pre-flighted (`84e85bc`) | ✅ **APPLIED 2026-08-05** by the founder to dev `dxwpkjfypzxrzgbevfnx`, verbatim. Verified after: 681 rows intact, 9 owners, both CHECKs carry the mathematics values. `alex:mathematics_author` + `subject='mathematics'` are now writable. |
 | P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | ☐ **BLOCKS ranked P1 #1–#3** |
 | 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | 🟡 IN FLIGHT on desk `feat/mathematics-unit-circle`. Platform hunk merged to master (`5e26843`); skeleton + mathematics block + TS engine + **the concept JSON** authored, all uncommitted. Next stage: `quality_auditor`, then seed → THE EYE. |
 | 4 | Mathematics-specific gates | ☐ (grow from scars) |
@@ -295,17 +295,19 @@ migration pre-flight **PASS** against 681 live rows.
 
 ### Open items
 
-1. **The DB migration is authored, pre-flighted and NOT APPLIED.** Blocked on Supabase access: the
-   dev project `dxwpkjfypzxrzgbevfnx` sits under the owner's org, and the Supabase MCP connector was
-   authorized against a different org, so no `mcp__supabase__*` tools load in this session. There is
-   no other DDL path — no `psql`, no `DATABASE_URL`, and the JS client is data-operations only
-   (`PROGRESS_CHEMISTRY.md:1350`). **It blocks nothing today**: it only matters when something writes
-   a row with `owner_cluster = 'alex:mathematics_author'`, which is the scar-filing stage after the
-   concept is authored and walked.
-   ⚠ Worth a deliberate decision before granting it: an MCP connector with DDL rights on that org
-   also has them over `student_confusion_log`, `ncert_content` and `pyq_questions` — three tables
-   `CLAUDE.md` marks NEVER DELETE. A read-only or project-scoped grant is the safer shape, with
-   schema changes staying manual through the SQL editor as every migration so far has been.
+1. ~~**The DB migration is authored, pre-flighted and NOT APPLIED.**~~ **CLOSED 2026-08-05 — APPLIED**
+   by the founder from the master checkout via the Supabase MCP, verbatim (no apply-time deviation).
+   Verified after: both CHECKs carry the mathematics values, 681 rows intact (physics 497 · chemistry
+   106 · subject_neutral 78 · mathematics 0), 9 distinct owners — zero rows lost or retagged.
+   `alex:mathematics_author` and `subject='mathematics'` are writable as of now.
+   **⚠ DOCTRINE SETTLED — do not re-raise this as a blocker.** The org-access question is answered
+   NO, permanently, and by design rather than by accident: an MCP connector with DDL rights on that
+   org would also hold them over `student_confusion_log`, `ncert_content` and `pyq_questions` —
+   three tables `CLAUDE.md` marks NEVER DELETE. DDL stays a founder action on the founder's machine
+   (Rule 17), roughly once per subject lifetime. **Authoring sessions need no dashboard access ever:**
+   scar READS run headless through `src/scripts/query_engine_bug_queue.ts` (service-role), and scar
+   WRITES are plain data INSERTs via `_seed_engine_bug_queue_*.ts` seed scripts — both already work
+   from any clone holding `.env.local`. This is exactly how chemistry has run since 2026-07-27.
 2. **D6 cannot see a teleport of thin content** (above). Recorded in the eye_walker addendum; a real
    fix would need an ink-relative lens for D6 the way D5 got one. Scar-row candidate.
 3. **`graph_interactive` renders nowhere on 48 shipped physics concepts** — surfaced by the Session
