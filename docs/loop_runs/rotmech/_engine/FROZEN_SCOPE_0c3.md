@@ -95,6 +95,50 @@ Two independent changes, neither sufficient alone: add the kinematic preconditio
 `_spinIndep` rather than `rolling` (`:46867`) to match the convention already chosen at `:46863`.
 Blast radius verified nil: inert on inclines, and every pre-SEAM-R body has `rolling` falsy.
 
+> **✅ E2 LANDED AND VERIFIED — 2026-08-05, commit `1a889bc`.** Routed a genuine v–ω mismatch
+> into the **existing** `_slipping` / `nlbRollSeg` closed-form capture rather than writing new
+> capture code. Three measured prerequisites landed with it, each reported rather than buried:
+> a crossing prediction (the 0.01 m/s band is narrower than one step of contact closure — **76 of
+> 126** grid cells never captured on a band test alone), a capture that snaps ω to `v/R` (anchoring
+> at the pre-capture ω leaves a **permanent 0.0087 m/s** residual, since `α = a/R` keeps `v` and
+> `ωR` parallel), and a seed-safe ω read (`b.omega` is 0 at apply while `b.omega0` holds the seed).
+> Measured: capture at **1366.7 ms** vs analytic `t_c` **1360.5 ms** (one step); post-capture
+> `max|contact|` and `max|f|` both exactly 0; holds across four dt schedules; rewind bit-for-bit.
+> Back-compat by explicit A/B over **26 body-states × 300 frames on both clocks: 25 identical, 1
+> differing — `pure_rolling` STATE_7, the target.** `rolling_on_incline` **17 of 17 identical**,
+> including its μ_s `param_ramp` slip state.
+> Verified by this desk: renderer-syntax OK, tsc 0, validate 149 PASS / 0 FAIL,
+> `newton_second_law` 26/26 with H2 **identical to the digit**, `coulombs_law` 50/50 at H2 0.00%.
+
+> **✅ E3 LANDED AND VERIFIED — 2026-08-05, commit `c2b9aeb`.** See the E3 section below for the
+> defect. Back-compat by explicit A/B against the pre-change **emitted** code: **11 concepts, 58
+> states, 94 bodies, 0 differing**. Verified by this desk: renderer-syntax OK, tsc 0, validate
+> 149 PASS / 0 FAIL, `newton_second_law` 26/26, `coulombs_law` 50/50 — H2 identical to the digit
+> on both canaries across all three dispatches.
+> **Two build-time geometry defects were fixed as prerequisites** (not separately): a SEAM-G
+> `wheel` was DRAWN at the constant `NLB_WHEEL_R` while its `_liftY`/`_spinR` already used
+> `radius_m` — so a wheel authoring `radius_m: 0.25` stood on a 0.25 m axle while drawn at 0.55 m,
+> **sunk through the track before any slider existed**; and state apply never re-resolved drawn
+> radius. Without the first, the initial `R` touch would snap the wheel; without the second, a
+> drag would leak size into the next state. Both are no-ops on master (no committed concept
+> authors `radius_m` — grepped, not assumed).
+
+> ### ⚠ DESK B — ENGINE UNBLOCKED, BUT ONE AUTHORING DEFECT REMAINS. Read before re-walking.
+> E2 + E3 close both engine blockers. **`pure_rolling` STATE_7 will still read as broken**, and
+> the cause is authoring, not engine: it authors `initial_position_m: 2.4` on a
+> `surface.length_m: 3` track (bounds ±3) while travelling in **+s**, leaving **0.6 m** of track.
+> The wheel hits the bound at **~309 ms**, long before the capture at `t_c` = 1361 ms — probed
+> with the authored numbers: `t=500 roll=0 v=0.0000 Rw=0.1307`, dead at the wall with spin barely
+> started. Every state of both concepts authors `s0 = 2.4`, which is correct on the **incline**
+> (gravity drives −s, so 2.4 is the top) but backwards on the **flat** states, where motion is +s.
+> `pure_rolling` S1/S2/S3/S6/S7/S8 all launch forward from 2.4.
+> **Fix is `s0 = −2.4` or a longer `length_m`. Owner: `alex:json_author` on Desk B — not Desk E.**
+> Related, same desk: STATE_7 pins at 1500 ms while its only phase window closes at
+> `until_ms: 1361`, so the frozen frame is taken after the focal is handed back
+> (`eye_frozen_candidate_offset_falls_outside_engine_display_band`). Authoring-side — extend the
+> window past capture or add a second phase ≥ 1500 ms. A `deriveStateMeta` change would move the
+> pin for the whole nlb fleet and is deliberately NOT taken.
+
 ### E3 · `nlb_seam_r_slider_tokens_declared_but_unwired` — **BLOCKS DESK B**
 Source: findings_b B-2.
 
