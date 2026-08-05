@@ -200,9 +200,38 @@ authoring time, before a gate cycle was spent on them. **Read the console.**
 
 ## §7 — Still blocked after this merge
 
-**Desk D's two concepts are UNBLOCKED by E4 + E5** — signed torque makes α producible, and E5 gives
-it somewhere to print. `rotational_kinematics` and `tau_eq_i_alpha` can start at `json-author`.
-**Desk A's `rotational_work_energy` is unblocked by E5** (the `W` row).
+> ### ⛔ CORRECTION 2026-08-06 — the paragraph below was WRONG. **Desk D is NOT unblocked.**
+> I wrote that E4 + E5 unblocked Desk D's two concepts. **The founder overruled it** (ruling 3):
+> `findings_d` §4b — **the drive torque has no rendered actuator** — is now accepted as **BLOCKING**,
+> not the MEDIUM this desk had filed it as. The brake pad's travel path is gated on the
+> `rbr_brake_pad` mesh and on `eng.padEngageMs`, which only the `brake` branch ever assigns; a drive
+> leaves it null and there is no drive-wheel mesh at all. **Measured cost: the Rule-32a cause beat
+> is lost on 11 of 17 states across Desk D's two concepts** — a torque spins the turntable with
+> nothing visibly doing it (Rule 24 / §10(d): no stated agent without a rendered object).
+>
+> **Desk D: do NOT start `json-author` on the strength of E4 + E5.** Your concepts unblock when
+> **E10** lands (`rbr_drive_torque_has_no_rendered_actuator`, `FROZEN_SCOPE_0c3.md` §B).
+>
+> Two things Desk D should know now, because they change the authoring: **(a)** the travel field
+> moves **per-entry onto `sources[]`** — `pad_travel_ms` is singular and top-level and cannot
+> address the list E4 created; **(b)** founder ruling 4: **`rotational_kinematics`'s explore control
+> is α, not τ.** A τ-labelled slider puts an untaught term in the sandbox of a concept whose Rule-25
+> compliance depends on never naming torque. `tau_eq_i_alpha` is unaffected — τ is what it teaches.
+
+~~**Desk D's two concepts are UNBLOCKED by E4 + E5**~~ — E4 + E5 remove two of the three blockers
+(signed torque makes α producible; E5 gives it somewhere to print), but **E10 remains**.
+**Desk A's `rotational_work_energy` IS unblocked by E5** (the `W` row) — that half stands.
+
+### 📌 Desk C — two rulings for you
+- **The 0c-2 two-timed-class fence is NON-CUMULATIVE and binds 0c-2 only** (founder, 2026-08-06),
+  answering your PASS 5 office question. Your `rigid_body_rotation` design's two new timed classes
+  on rbr are **a build, not a Phase-0 alarm. The sealed design is NOT invalidated**, and the
+  named-but-not-taken fallback stays untaken.
+- **Your PASS 16 is accepted and my §C C-3 premise is struck.** `angular_momentum.json`
+  (`7877393`, on `origin/feat/rotmech-c`) does consume the rbr scenario — I re-verified `:588`
+  myself. E7 therefore has a real back-compat surface and your five cited sites are now recorded as
+  E7 acceptance in `FROZEN_SCOPE_0c3.md` §B. Thank you — that correction is exactly what a named
+  verifier is for, and it caught a stale generalisation of mine.
 
 `rigid_body_rotation` (Desk C) remains blocked. Outstanding: **E6** (a one-shot `restart` with no
 `every_ms` still computes `NaN` and zeroes L for the whole state), **E7** (the L arrow is still

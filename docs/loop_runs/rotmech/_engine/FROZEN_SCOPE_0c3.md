@@ -12,6 +12,49 @@ recorded in §D. Nothing here is copied on trust.
 
 ---
 
+## §0 — FOUNDER RULINGS, 2026-08-06. These bind every remaining dispatch.
+
+**1 · Units CONFIRMED — Desk E's ruling stands.** θ **rad** · α **rad/s²** · τ **N·m** · W **J**,
+all **dp 2**, and every `reference_marks.value` authored in **SI** (θ in radians), never in display
+units. Rationale upheld: **τ = Iα holds only in radians**, so a degrees θ beside a rad/s² α would
+be internally incoherent on the same HUD in the concept whose atomic claim *is* τ = Iα.
+`RBR_THETA_DISPLAY` stays a single flip point, but the flip is **not** taken. Fleet-wide, no
+per-concept override (`APPARATUS_CONTRACT.md` §3).
+
+**2 · The two-timed-class fence is NON-CUMULATIVE and binds 0c-2 ONLY.** Desk C raised (PASS 5)
+whether the 0c-2 founder-signed fence — *the timed surface is exactly two field classes, and needing
+a third is the Phase-0 alarm* — also bound 0c-1/rbr, which would have made `rigid_body_rotation`'s
+two new timed classes (C1 marker label cues, the C4 compare family) an alarm rather than a build.
+**It does not. The fence is per-build, not cumulative across builds.**
+**`rigid_body_rotation`'s sealed design is NOT invalidated** and its named-but-not-taken fallback
+stays untaken. → **Told to Desk C in `ENGINE_LANDING_NOTICE.md`.**
+
+**3 · findings_d §4b ACCEPTED INTO SCOPE as BLOCKING — the drive torque has no rendered actuator.**
+The brake pad travels (park → contact) on `pad_travel_ms`, but that whole path is gated on the
+`rbr_brake_pad` mesh and on `eng.padEngageMs`, which is assigned **only inside the `brake` branch**.
+A drive sets its windows and leaves `padEngageMs` null, so the actuator never travels — **and there
+is no drive-wheel mesh at all.** Cost measured by the founder: the **Rule-32a cause beat on 11 of 17
+states** across Desk D's two concepts. Rule 24 / §10(d) — *no stated agent without a rendered
+object* — so a torque that spins the turntable with nothing visibly doing it is a rendered lie.
+**The ask includes a PER-ENTRY travel field on `sources[]`**: `pad_travel_ms` is **singular and
+top-level** and therefore cannot address a list, which E4 made `sources[]` into. One actuator mesh
+with the rim force arrow layered on it — Desk D's two skeletons forked here (floating tangential
+arrow vs motor wheel that translates in) and the reconciled ask is ONE mesh.
+**Filed as E10** (§B). **This is the SEVENTH capability and it is being ADDED, not absorbed** — it
+is recorded here as a scope growth with a founder decision behind it, per the desk contract's
+re-scope rule.
+
+**4 · `rotational_kinematics`'s explore control is α, NOT τ.** A τ-labelled slider would put an
+**untaught term** in the sandbox of a concept whose **Rule-25 compliance depends on never naming
+torque** — it is taught before `torque` and `moment_of_inertia` exist. E5 already protects the
+readout half (α is the finite difference of ω and needs no torque authoring); this ruling extends
+the same discipline to the **control** half. **E10 must therefore expose the drive control to that
+concept as α, not as `tau_applied`** — either an α-labelled control that resolves to τ = Iα
+internally, or `tau_applied` suppressed for that concept with an α control in its place.
+`tau_eq_i_alpha` is unaffected — τ is exactly what it teaches.
+
+---
+
 ## §A — The headline numbers, stated plainly
 
 | | |
@@ -265,7 +308,40 @@ is never recoloured; HUD digits take no sign colour).
 
 Secondary acceptance floors (findings_c PASS 15) — absolute, not deltas: S1 ink ≥ 400 px;
 `len(6.51)/len(1.14) = 5.71 ± 0.10` fitted in pixels with intercept < 1 px; arrow-vs-axle
-contrast ≥ 3:1; S4 flip changes ≥ 300 px.
+contrast ≥ 3:1; S4 flip changes ≥ 300 px. **Confirmed identical across `founder_proxy_B.md` §6 and
+this document** (Desk C, PASS 16) — no reconciliation needed.
+
+> ### ⚠ CORRECTION 2026-08-06 — **E7 HAS a back-compat surface. My own §C C-3 premise was wrong.**
+> Filed by Desk C (PASS 16) as E7's named verifier; **I re-verified it in this checkout before
+> recording it.**
+>
+> §C C-3 claimed *"no concept JSON consuming rbr exists on any branch."* **False.**
+> `src/data/concepts/angular_momentum.json` on `origin/feat/rotmech-c` (commit `7877393`,
+> **2026-08-05 01:31:12 +0200**) carries `"scenario_type": "rigid_body_rotation"` at `:588`. This
+> document was last written at `6c5ed6d`, 14:06 the same day — **the JSON preceded it by ~12½
+> hours. Not a race; a stale premise, and mine.**
+>
+> What Desk C actually withdrew earlier was narrower — it concerned
+> `conservation_of_angular_momentum`'s "already-approved states" (Desk A's concept, which genuinely
+> has no JSON anywhere). I generalised that to *no rbr JSON anywhere*, and the generalisation was
+> false.
+>
+> **E7 rebuilds the exact primitive this JSON consumes**, so the registration rider's
+> **"absent = byte-identical"** clause can no longer be discharged against an empty consumer set.
+> Committed authoring E7 must not regress:
+>
+> | `angular_momentum.json` | Field | Surface |
+> |---|---|---|
+> | `:628` `:671` `:759` `:790` | `show_l_arrow: true` (4 states) | the arrow renders wherever asked |
+> | `:718` | `show_l_arrow: false` | S3 stays clean |
+> | `:641` | `phases[]` → `glow_focal: rbr_l_arrow` @ 15200 ms | S1 focal handoff |
+> | `:684` | `phases[]` → `glow_focal: rbr_l_arrow` @ 12600 ms | S2 focal handoff |
+> | `:766` | state-level `glow_focal: rbr_l_arrow` | **S4 — where the ≥ 300 px flip criterion is measured** |
+>
+> **This strengthens E7's verification rather than adding scope.** It is the first time an rbr A/B
+> can be run against *real authored states* instead of asserted vacuously — which is exactly what
+> §F asks for and what this desk correctly said it could not do itself (it will never seed an rbr
+> concept). Desk C is the verifier and has the seed key.
 
 > ### 🔨 RULING 2026-08-05 — **C-6 MERGES INTO E7.** E7 now has TWO consumers, one mechanism.
 >
@@ -339,6 +415,41 @@ state-local t, or settled before the pin), Rule 29 (a pose change is not emphasi
 **Per the founder ruling both Desk C skeletons are designed ASSUMING this lands.** If it is
 declined, `rigid_body_rotation` is not authorable as designed.
 
+### E10 · `rbr_drive_torque_has_no_rendered_actuator` — **BLOCKS DESK D (both concepts)**
+**ADDED 2026-08-06 by founder ruling 3 (§0). Source: findings_d §4b, previously ranked MEDIUM and
+NOT filed as blocking by this desk. The founder overruled that and accepted it as BLOCKING.**
+
+**This is the SEVENTH capability. It is reported as scope growth, not absorbed** — per the desk
+contract, a seventh capability appearing mid-build is a re-scope signal. The signal is recorded and
+the founder took the decision; the count is now **ten dispatches, not nine.**
+
+The brake pad travels park-pose → contact-pose on `pad_travel_ms`, but the whole travel block is
+gated on the `rbr_brake_pad` mesh and driven by `eng.padEngageMs`, which is assigned **only inside
+the `brake` branch**. A drive sets its engage/release windows and leaves `padEngageMs` null, so the
+actuator never travels — **and no drive-wheel mesh exists at all.**
+
+**Cost, measured by the founder: the Rule-32a cause beat is lost on 11 of 17 states across Desk D's
+two concepts.** Rule 24 / §10(d) — *no stated agent without a rendered object*. A torque that spins
+the turntable with nothing visibly doing it is a rendered lie, and Rule 32a requires the cause to
+move **before** the effect.
+
+Build notes, decided:
+- **A PER-ENTRY travel field on `sources[]`.** `pad_travel_ms` is **singular and top-level** and
+  therefore cannot address a list — E4 turned the single torque source into `sources[]`, so the
+  travel timing must move onto the entry. This is the concrete reason E10 could not simply reuse
+  the pad path.
+- **ONE actuator mesh, with the rim force arrow layered on it.** Desk D's two skeletons forked here
+  (a floating tangential arrow vs a motor wheel that translates in); the reconciled ask is one mesh.
+- **Lift the travel logic off the `rbr_brake_pad` mesh** onto whichever actuator the state's torque
+  source names, rather than duplicating it.
+- **Ruling 4 binds this row:** `rotational_kinematics` must get its drive control as **α, not τ** —
+  either an α-labelled control resolving to τ = Iα internally, or `tau_applied` suppressed for that
+  concept with an α control in its place. Naming torque in that sandbox breaks its Rule-25
+  compliance. `tau_eq_i_alpha` is unaffected.
+- E8 (`rbr_live_param_drag_has_no_rendered_agent`) is the **brake** half of the same "no rendered
+  agent" family. Sequence E10 and E8 adjacently; keep them separate `bug_class`es (different
+  branch, different mesh, different trigger) unless the surgeon finds one mechanism serves both.
+
 ---
 
 ## §C — IN SCOPE but NOT dispatched yet (ranked, un-started)
@@ -350,7 +461,7 @@ rediscovered, and they are **not** silently dropped.
 |---|---|---|
 | **C-1 · `point_markers[]` + traces + swept arc + chord gauge + `r_point`** (C1/C3/C4/C5/C6 + D§3 + D§4) | c, d | The single largest family in the merge — markers, per-marker tangential `v = ωr` arrows with a dedicated true-zero linear map, progressive circular traces, a fixed base-frame ray, a chord gauge that is **not** `show_r_line`, and a new `r_point` control with ramp/sweep plumbing. **This is 2–3 dispatches on its own**, not one. It blocks Desk C's #3 and Desk D's #4. It is the honest reason the count cannot be five. |
 | **C-2 · `phases[].hold_glow`** (A-1, amended) | a | Scope it to exactly the unreachable list — `KE_bar`, `KE_tick`, `predicted_omega_chip`, `formula_surface`, per-sentence readout rows. `phases[]` already reaches every scene mesh. Do not over-build a general channel. |
-| **C-3 · `glowTargets[0]` fallback in the rbr glow pass** (F-C5) | c | Parity with `force_rig` (`:49002–49003`). `tts_sentences[].glow` is a silent no-op on every rbr state. Tagged ride-along by Desk C — `phases[]` is a working substitute. **No back-compat constraint: no concept JSON consuming rbr exists on any branch** (Desk C verified and withdrew its earlier contrary claim). |
+| **C-3 · `glowTargets[0]` fallback in the rbr glow pass** (F-C5) | c | Parity with `force_rig` (`:49002–49003`). `tts_sentences[].glow` is a silent no-op on every rbr state. Tagged ride-along by Desk C — `phases[]` is a working substitute. ⚠ **The old "no back-compat constraint" clause here was WRONG and is struck — see the correction under §B E7.** |
 | **C-4 · `masses.r_m` dead at t = 0 in ramped/swept states** (A-3 + A-9) | a | `rbrRAt(0)` returns `ramp.from` (`:50538`) / `sweep.lo` (`:49859`), never `masses.r_m`. Engine question for Desk E: should `range` be order-sensitive at all, or should `masses.r_m` win at t = 0? Cost Desk A a wrong-L explore state. |
 | **C-5 · latched match cue under a time pin** (A-6) | a | `eng.matched[mid]` (`:50276`) clears only at state apply (`:50512`), so a rewind never clears it — the co-glow reads "landed" at t = 0. Regresses OPEN scar `hysteretic_state_cannot_be_latched_under_a_time_pin`. THE EYE **structurally cannot verify** the beat S3 exists to deliver. |
 | ~~**C-6 · pull-arrow camouflage at the cause beat**~~ (A-12) | a | **RULED 2026-08-05 — MERGED INTO E7. No longer a separate row.** See the ruling below. |
