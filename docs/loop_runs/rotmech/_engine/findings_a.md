@@ -23,24 +23,61 @@ Desk A as "landed" while it existed only on `feat/rotmech-0c3`. **Desk A obtaine
 believing any landed signal:
 `git fetch origin && git merge-base --is-ancestor <sha> origin/master && echo ON_MASTER || echo NOT_ON_MASTER`
 
-**(b) §1's "diff against your OWN earlier frames" is NOT executable on this concept.** Measured, by
-running THE EYE twice with **no change whatsoever** between the runs and comparing all 119 frames:
+**(b) §1's "diff against your OWN earlier frames" works — but ONLY with an amplitude-aware
+instrument. Byte-identity and naive thresholds both give false alarms.**
 
-| | byte-identical? | worst perceptual delta (pixels >8/255) |
-|---|---|---|
-| **Control** — two runs, nothing changed | **79 of 119 frames DIFFER** | STATE_2 **28,524 px (3.095%)**, STATE_7 27,421 px, STATE_3 28,921 px |
-| Real — pre-#29 vs post-#29 | frames differ | STATE_2 28,823 px (3.127%), STATE_7 28,996 px, STATE_3 29,188 px |
+> ### ⚠ CORRECTION — this section originally claimed §1 was "NOT executable" on an rbr concept,
+> because the turntable spins and capture is not phase-locked. **The AREA figures below are real and
+> reproduce exactly, but that MECHANISM WAS WRONG and the conclusion was overstated.**
+> `quality-auditor` challenged it and was right; the geometry IS phase-locked. Corrected below,
+> with the measurements that settle it. Desk A published the wrong version first — anyone who read
+> it should re-read this.
 
-**The noise floor and the "signal" are the same size.** The turntable spins continuously and the
-capture is not phase-locked, so each run catches the apparatus at a different angle. Cross-run frame
-comparison — byte OR perceptual — **cannot detect collateral change on a continuously-rotating
-apparatus**, and any desk following §1 literally on an rbr concept will either see phantom failures
-or learn nothing. (STATE_1 and STATE_8 are the exceptions, with a genuine zero noise floor; STATE_1's
-residual 16 px sits in one 17×8 px box at x[633..649] y[276..283] — the L-arrow head's antialiased
-edge, max channel delta 13/255, i.e. sub-perceptual.)
-**Recommended amendment to §1:** for rbr concepts, verify by NUMBERS (below), not frames. The
-notice's own "run twice with no change and compare" method is what exposed this — it works, and it
-should be run BEFORE trusting any cross-run diff, not only when a diff looks suspicious.
+Measured across two runs with **no change whatsoever** between them, and across the merge:
+
+| Frame | pair | pixels differing at all | pixels differing by >8/255 | **max channel delta** |
+|---|---|---|---|---|
+| `STATE_2__dense_t07000` | control | 29,038 (3.15%) | 28,524 (3.10%) | **16** |
+| `STATE_2__frozen` | control | 27,417 (2.98%) | 26,420 (2.87%) | **11** |
+| `STATE_2__frozen` | pre→post merge | 27,407 (2.97%) | **0** | **4** |
+| `STATE_7__frozen` | control | 26,879 (2.92%) | **0** | **1** |
+| `STATE_7__frozen` | pre→post merge | 27,108 (2.94%) | 26,725 (2.90%) | **32** |
+| **`STATE_8__frozen`** | **both pairs** | **0** | **0** | **0** |
+
+**The differences are large in AREA and tiny in AMPLITUDE** — up to 3% of canvas, but a maximum
+channel delta of 1–32 out of 255. Nothing has moved; something has changed brightness slightly over
+a big object.
+
+**The real mechanism, traced by `quality-auditor` in source:** `applyRigidBodyRotationGlow()`
+(`:51391`) calls `glowEmphT(time)` on the **absolute** renderer clock (`glowEmphT(t) = 0.5 +
+0.5·sin(t·3.5)`, `:3422`). `SET_TIME_FREEZE` pins *state-local* time — geometry, readouts, ramps and
+the formula surface are all deterministic — but the **glow pulse phase reads absolute time and
+jitters between runs**. The affected area is exactly the glow-focal body, which on this concept is
+often `rbr_drum`, a large solid disc. The comment at `:3525` claims the pin covers "glow phase"; it
+does not. **This is the already-filed scar
+`field3d_focal_glow_pulse_phase_reads_absolute_time_so_frozen_h2_jitters` (MODERATE/OPEN,
+`peter_parker:field3d_surgeon`) — not a new row.**
+
+**The decisive control, and it is beautiful:** `STATE_8` is the ONLY state authoring **no**
+`glow_focal`, and its frozen frame is **exactly 0 px different — max channel delta 0 — in both
+pairs.** Capture is perfectly deterministic where the glow is not involved. That single fact kills
+the spin-phase theory and confirms the glow-phase one.
+
+**So the corrected method:**
+- ✅ Cross-run comparison IS valid, with an amplitude-aware measure (pixelmatch, or a max-channel-
+  delta threshold well above the glow jitter). The auditor's positive result stands: **7 of 8 frozen
+  frames are unchanged across the merge**, which is the strongest available evidence that E1/E4
+  disturbed nothing.
+- ❌ **Byte-identity / md5 is the WRONG instrument here** — and this cuts against §4.1's advice too
+  (see the correction to Desk A's md5 claim in §3 below).
+- ⚠ **The existing scar's amplitude bound is ~10× too low.** Its prevention rule says no delta
+  "below about 0.3 percent" may be attributed to a code change without a negative control. Measured
+  here: the same jitter reaches **2.9–3.1%**, because the focal is a solid body. Anyone applying the
+  rule as written would treat 2.9% as real signal and blame the code — which is exactly what Desk A
+  did. **Recommend amending that row:** add `conservation_of_angular_momentum`, and restate the
+  bound as *"any delta on a state whose glow focal is a solid body, regardless of magnitude."*
+- The notice's own "run twice with no change and compare" method is what exposed all of this. It
+  works. **Run it before trusting any cross-run diff — and read the AMPLITUDE, not just the area.**
 
 ## §1 — E1 `rbr_formula_surface_has_no_timed_reveal` — CONFIRMED WORKING
 
@@ -95,7 +132,23 @@ caveat holds: `rigid_body_rotation` HAS a motion branch, so this genuinely re-ar
 - `Motion map: STATE_1=true … STATE_8=true`
 - `[D5]` reports real measured motion, 1.36 % – 3.96 % max adjacent diff
 - **md5 of every dense series: all-unique** — 9/9, 14/14, 11/11, 11/11, 11/11, 11/11, 12/12, 11/11.
-  No dead scene (§4.1 satisfied).
+
+> ### ⚠ CORRECTION — md5 is NOT a sound dead-scene instrument, so the line above does not prove
+> what §4.1 says it proves.
+> `quality-auditor` demonstrated the flaw: on this concept, `STATE_1/2/4/6` frozen frames have
+> **different md5s while being perceptually identical**, and md5 flags 6 of 8 frozen frames as
+> "DIFFERS" that an amplitude-aware comparison scores at **0 px**. The glow-phase jitter above
+> (plus PNG encoder noise) produces hash uniqueness **on a scene that never moved** — which is the
+> precise trap `eye_dense_frames_are_never_hashed_so_a_frozen_state_passes_31_of_31` exists to
+> catch. *"All hashes unique ⇒ the scene moved"* **does not follow.**
+>
+> **The conclusion is still correct — no dead scene — but it needed the sound instrument.**
+> Per-state adjacent-frame PIXEL deltas: S1 1.21–1.36% · S2 0.85–3.96% · S3 1.07–3.79% ·
+> S4 1.11–1.67% · S5 1.06–2.03% · S6 0.37–0.96% · S7 0.72–3.56% · S8 1.21–1.44%. Every state moves.
+> S6 is the quietest at 0.96% — the one to watch on a side-on camera.
+>
+> **Recommend amending that scar row** to specify PIXEL comparison, not hashing. Owner
+> `peter_parker:visual_validator` / office.
 
 **The headline stayed `35 checks · 35 passed` before and after.** The count is identical because a
 skipped `[D5]` still emits a passing result — which is exactly why the number carries no
