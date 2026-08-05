@@ -436,14 +436,6 @@
               "y": 64
             },
             "border_color": "#3B82F6"
-          },
-          {
-            "type": "glow_focus",
-            "id": "glow_point",
-            "primitive_id": "point",
-            "halo_radius_px": 42,
-            "color": "#A78BFA",
-            "intensity": 0.45
           }
         ],
         "variable_choreography": [
@@ -818,7 +810,7 @@
             "animate_in_ms": 800
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_0",
             "from": {
               "x": 300,
@@ -828,8 +820,12 @@
               "x": 300,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 800,
+            "animate_in_ms": 200
           },
           {
             "type": "label",
@@ -843,7 +839,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π/2",
             "from": {
               "x": 372.3,
@@ -853,8 +849,12 @@
               "x": 372.3,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 800,
+            "animate_in_ms": 200
           },
           {
             "type": "label",
@@ -868,7 +868,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π",
             "from": {
               "x": 444.5,
@@ -878,8 +878,12 @@
               "x": 444.5,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 800,
+            "animate_in_ms": 200
           },
           {
             "type": "label",
@@ -893,7 +897,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_3π/2",
             "from": {
               "x": 516.8,
@@ -903,8 +907,12 @@
               "x": 516.8,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 800,
+            "animate_in_ms": 200
           },
           {
             "type": "label",
@@ -918,7 +926,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_2π",
             "from": {
               "x": 589.0,
@@ -928,8 +936,12 @@
               "x": 589.0,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 800,
+            "animate_in_ms": 200
           },
           {
             "type": "label",
@@ -1073,11 +1085,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "The horizontal axis is the angle, and the height at each angle is plotted above it."
+              "text_en": "The horizontal axis is the angle, and the height at each angle is plotted above or below the line."
             },
             {
               "id": "s4_3",
-              "text_en": "The curve that draws itself is the sine wave."
+              "text_en": "The curve this traces out is the sine wave."
             },
             {
               "id": "s4_4",
@@ -1183,8 +1195,7 @@
             "from_deg": 0,
             "angle_value_expr": "theta",
             "radius": 34,
-            "color": "#A78BFA",
-            "label": "θ"
+            "color": "#A78BFA"
           },
           {
             "type": "vector",
@@ -1202,9 +1213,7 @@
             "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
             "style": "line",
             "color": "#F472B6",
-            "label": "x",
-            "appear_at_ms": 0,
-            "animate_in_ms": 2000
+            "label": "x"
           },
           {
             "type": "vector",
@@ -1221,7 +1230,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_0",
             "from": {
               "x": 300,
@@ -1231,8 +1240,10 @@
               "x": 300,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1246,7 +1257,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π/2",
             "from": {
               "x": 372.3,
@@ -1256,8 +1267,10 @@
               "x": 372.3,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1271,7 +1284,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π",
             "from": {
               "x": 444.5,
@@ -1281,8 +1294,10 @@
               "x": 444.5,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1296,7 +1311,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_3π/2",
             "from": {
               "x": 516.8,
@@ -1306,8 +1321,10 @@
               "x": 516.8,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1321,7 +1338,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_2π",
             "from": {
               "x": 589.0,
@@ -1331,8 +1348,10 @@
               "x": 589.0,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1516,7 +1535,7 @@
             },
             {
               "id": "s5_3",
-              "text_en": "Carry it sideways the same way and a second wave draws itself."
+              "text_en": "Carry it sideways the same way and a second wave appears."
             },
             {
               "id": "s5_4",
@@ -1607,6 +1626,15 @@
             "fill_color": "#FBBF24"
           },
           {
+            "type": "vector",
+            "id": "height_seg",
+            "from_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
+            "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230}",
+            "style": "line",
+            "color": "#38BDF8",
+            "label": "y"
+          },
+          {
             "type": "angle_arc",
             "id": "theta_arc",
             "center": {
@@ -1634,7 +1662,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_0",
             "from": {
               "x": 300,
@@ -1644,8 +1672,10 @@
               "x": 300,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1659,7 +1689,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π/2",
             "from": {
               "x": 372.3,
@@ -1669,8 +1699,10 @@
               "x": 372.3,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1684,7 +1716,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π",
             "from": {
               "x": 444.5,
@@ -1694,8 +1726,10 @@
               "x": 444.5,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1709,7 +1743,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_3π/2",
             "from": {
               "x": 516.8,
@@ -1719,8 +1753,10 @@
               "x": 516.8,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1734,7 +1770,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_2π",
             "from": {
               "x": 589.0,
@@ -1744,8 +1780,10 @@
               "x": 589.0,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -1788,7 +1826,7 @@
             "animate_in_ms": 15000
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_5pi_2",
             "from": {
               "x": 661.3,
@@ -1798,9 +1836,12 @@
               "x": 661.3,
               "y": 234
             },
-            "style": "line",
             "color": "#94A3B8",
-            "appear_at_ms": 12000
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false,
+            "appear_at_ms": 12000,
+            "animate_in_ms": 200
           },
           {
             "type": "label",
@@ -1998,6 +2039,20 @@
           },
           {
             "type": "vector",
+            "id": "v_reference",
+            "from": {
+              "x": 150,
+              "y": 115
+            },
+            "to": {
+              "x": 150,
+              "y": 345
+            },
+            "style": "dashed",
+            "color": "#475569"
+          },
+          {
+            "type": "vector",
             "id": "radius",
             "from_expr": "{x:150,y:230}",
             "to_expr": "{x: 150 + 110*cos(theta*PI/180), y: 230 - 110*sin(theta*PI/180)}",
@@ -2047,9 +2102,7 @@
             "from_expr": "{x:150,y:230}",
             "to_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230 - 110*sin((180-theta)*PI/180)}",
             "style": "line",
-            "color": "#4ADE80",
-            "appear_at_ms": 2400,
-            "animate_in_ms": 1600
+            "color": "#4ADE80"
           },
           {
             "type": "body",
@@ -2064,9 +2117,7 @@
               "y": "230 - 110*sin((180-theta)*PI/180)"
             },
             "size": 16,
-            "fill_color": "#4ADE80",
-            "appear_at_ms": 2400,
-            "animate_in_ms": 1600
+            "fill_color": "#4ADE80"
           },
           {
             "type": "vector",
@@ -2075,9 +2126,7 @@
             "to_expr": "{x: 150 + 110*cos((180-theta)*PI/180), y: 230}",
             "style": "line",
             "color": "#4ADE80",
-            "label": "y",
-            "appear_at_ms": 2400,
-            "animate_in_ms": 1600
+            "label": "y"
           },
           {
             "type": "angle_arc",
@@ -2088,7 +2137,7 @@
             },
             "from_deg": 0,
             "angle_value_expr": "180 - theta",
-            "radius": 54,
+            "radius": 78,
             "color": "#4ADE80",
             "label": "π − θ"
           },
@@ -2107,7 +2156,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_0",
             "from": {
               "x": 300,
@@ -2117,8 +2166,10 @@
               "x": 300,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2132,7 +2183,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π/2",
             "from": {
               "x": 372.3,
@@ -2142,8 +2193,10 @@
               "x": 372.3,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2157,7 +2210,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π",
             "from": {
               "x": 444.5,
@@ -2167,8 +2220,10 @@
               "x": 444.5,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2182,7 +2237,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_3π/2",
             "from": {
               "x": 516.8,
@@ -2192,8 +2247,10 @@
               "x": 516.8,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2207,7 +2264,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_2π",
             "from": {
               "x": 589.0,
@@ -2217,8 +2274,10 @@
               "x": 589.0,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2267,7 +2326,7 @@
           {
             "type": "label",
             "id": "hud_1",
-            "text_expr": "mirror height  y = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
+            "text_expr": "mirror height  y = {(abs(sin((180-theta)*PI/180))<0.005?0:sin((180-theta)*PI/180)).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 392
@@ -2304,8 +2363,7 @@
             "primitive_id": "mirror_point",
             "halo_radius_px": 42,
             "color": "#4ADE80",
-            "intensity": 0.45,
-            "appear_at_ms": 4000
+            "intensity": 0.45
           },
           {
             "type": "slider",
@@ -2324,7 +2382,7 @@
           {
             "variable": "theta",
             "mode": "ping_pong",
-            "from": 0,
+            "from": 45,
             "to": 90,
             "start_ms": 4000,
             "duration_ms": 4000
@@ -2446,8 +2504,7 @@
             "from_deg": 0,
             "angle_value_expr": "theta",
             "radius": 34,
-            "color": "#A78BFA",
-            "label": "θ"
+            "color": "#A78BFA"
           },
           {
             "type": "vector",
@@ -2482,7 +2539,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_0",
             "from": {
               "x": 300,
@@ -2492,8 +2549,10 @@
               "x": 300,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2507,7 +2566,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π/2",
             "from": {
               "x": 372.3,
@@ -2517,8 +2576,10 @@
               "x": 372.3,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2532,7 +2593,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_π",
             "from": {
               "x": 444.5,
@@ -2542,8 +2603,10 @@
               "x": 444.5,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2557,7 +2620,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_3π/2",
             "from": {
               "x": 516.8,
@@ -2567,8 +2630,10 @@
               "x": 516.8,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2582,7 +2647,7 @@
             "color": "#94A3B8"
           },
           {
-            "type": "vector",
+            "type": "animated_path",
             "id": "tick_2π",
             "from": {
               "x": 589.0,
@@ -2592,8 +2657,10 @@
               "x": 589.0,
               "y": 234
             },
-            "style": "line",
-            "color": "#94A3B8"
+            "color": "#94A3B8",
+            "line_weight": 1.5,
+            "easing": "linear",
+            "arrow_head": false
           },
           {
             "type": "label",
@@ -2680,7 +2747,8 @@
               "y": 248
             },
             "font_size": 13,
-            "color": "#38BDF8"
+            "color": "#38BDF8",
+            "appear_at_ms": 3000
           },
           {
             "type": "label",
@@ -2691,7 +2759,8 @@
               "y": 150
             },
             "font_size": 13,
-            "color": "#F472B6"
+            "color": "#F472B6",
+            "appear_at_ms": 3000
           },
           {
             "type": "label",
