@@ -97,6 +97,7 @@
     "states": {
       "STATE_1": {
         "title": "A Point Moves Round a Circle",
+        "eye_capture_ms": 10200,
         "duration": 17,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -205,7 +206,7 @@
             "equation": "r = 1",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -247,6 +248,7 @@
       },
       "STATE_2": {
         "title": "Arc Length Measures the Angle",
+        "eye_capture_ms": 12600,
         "duration": 21,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -372,8 +374,8 @@
             "id": "rim_pi",
             "text": "π",
             "position": {
-              "x": 22,
-              "y": 230
+              "x": 60,
+              "y": 208
             },
             "font_size": 12,
             "color": "#A78BFA",
@@ -384,8 +386,8 @@
             "id": "rim_3pi_2",
             "text": "3π/2",
             "position": {
-              "x": 150,
-              "y": 358
+              "x": 116,
+              "y": 362
             },
             "font_size": 12,
             "color": "#A78BFA",
@@ -409,7 +411,7 @@
             "text_expr": "s = {s.toFixed(2)}",
             "position": {
               "x": 150,
-              "y": 370
+              "y": 386
             },
             "font_size": 14,
             "color": "#A78BFA"
@@ -420,7 +422,7 @@
             "text_expr": "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)",
             "position": {
               "x": 150,
-              "y": 404
+              "y": 420
             },
             "font_size": 14,
             "color": "#CBD5E1"
@@ -431,7 +433,7 @@
             "equation": "s = θ   (r = 1)",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -485,6 +487,7 @@
       },
       "STATE_3": {
         "title": "Sine Is the Height of the Point",
+        "eye_capture_ms": 12600,
         "duration": 21,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -603,7 +606,7 @@
           {
             "type": "label",
             "id": "hud_0",
-            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "sin θ = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 370
@@ -628,7 +631,7 @@
             "equation": "sin θ = y   (r = 1)",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -678,17 +681,18 @@
             },
             {
               "id": "s3_2",
-              "text_en": "For angles up to ninety degrees this is the same sine you know from right triangles; the circle just keeps going where the triangle stops."
+              "text_en": "For angles up to ninety degrees this height over the radius is the same sine you know from right triangles; the circle just keeps going where the triangle stops."
             },
             {
               "id": "s3_3",
-              "text_en": "Past one hundred and eighty degrees the point sits below the line, so the height reads negative."
+              "text_en": "Below that line the height reads negative — any angle, any sign."
             }
           ]
         }
       },
       "STATE_4": {
         "title": "Height Carried Sideways Makes the Wave",
+        "eye_capture_ms": 12600,
         "duration": 21,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -998,7 +1002,7 @@
           {
             "type": "label",
             "id": "hud_0",
-            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "sin θ = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 370
@@ -1023,7 +1027,7 @@
             "equation": "y = sin θ",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -1084,6 +1088,7 @@
       },
       "STATE_5": {
         "title": "Cosine Is the Horizontal Distance",
+        "eye_capture_ms": 12600,
         "duration": 21,
         "depth_ring": "core",
         "advance_mode": "manual_click",
@@ -1358,7 +1363,7 @@
             "y_expr": "230 - 110*sin(phi_r*PI/180)",
             "start_ms": 2000,
             "end_ms": 4400,
-            "sample_ms": 25,
+            "sample_ms": 11,
             "color": "#0E7490",
             "stroke_weight": 2
           },
@@ -1394,8 +1399,8 @@
             "id": "cosine_curve_name",
             "text": "cos θ",
             "position": {
-              "x": 614,
-              "y": 118
+              "x": 622,
+              "y": 150
             },
             "font_size": 13,
             "color": "#F472B6",
@@ -1416,7 +1421,7 @@
           {
             "type": "label",
             "id": "hud_0",
-            "text_expr": "cos θ = {cos_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "cos θ = {(abs(cos_theta)<0.005?0:cos_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 358
@@ -1427,7 +1432,7 @@
           {
             "type": "label",
             "id": "hud_1",
-            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "sin θ = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 392
@@ -1452,7 +1457,7 @@
             "equation": "x = cos θ   (r = 1)",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -1462,7 +1467,8 @@
             "primitive_id": "cosine_pen",
             "halo_radius_px": 42,
             "color": "#F472B6",
-            "intensity": 0.45
+            "intensity": 0.45,
+            "appear_at_ms": 4000
           }
         ],
         "variable_choreography": [
@@ -1521,6 +1527,7 @@
       },
       "STATE_6": {
         "title": "After 2π the Wave Repeats",
+        "eye_capture_ms": 11400,
         "duration": 19,
         "depth_ring": "extended",
         "advance_mode": "manual_click",
@@ -1814,7 +1821,7 @@
             "y_expr": "230 - 110*sin(phi_r*PI/180)",
             "start_ms": 0,
             "end_ms": 3000,
-            "sample_ms": 25,
+            "sample_ms": 13,
             "color": "#0E7490",
             "stroke_weight": 2
           },
@@ -1848,7 +1855,7 @@
           {
             "type": "label",
             "id": "hud_0",
-            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "sin θ = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 370
@@ -1873,7 +1880,7 @@
             "equation": "sin(θ + 2π) = sin θ",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -1883,7 +1890,8 @@
             "primitive_id": "continuation_pen",
             "halo_radius_px": 42,
             "color": "#38BDF8",
-            "intensity": 0.45
+            "intensity": 0.45,
+            "appear_at_ms": 3000
           }
         ],
         "variable_choreography": [
@@ -1916,15 +1924,15 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "One full turn is finished, and the point starts round again."
+              "text_en": "One full turn brings the point back to exactly the same place on the circle."
             },
             {
               "id": "s6_2",
-              "text_en": "The angle keeps counting past two pi, and the curve keeps going to the right."
+              "text_en": "Its height must therefore be exactly the same, and that holds for every starting angle."
             },
             {
               "id": "s6_3",
-              "text_en": "The same heights come back in the same order, so the wave repeats."
+              "text_en": "So sine of theta plus two pi equals sine of theta, for every theta."
             }
           ]
         }
@@ -1933,6 +1941,7 @@
         "title": "Two Angles, One Height",
         "duration": 21,
         "depth_ring": "advanced",
+        "teaching_method": "derivation_first_principles",
         "advance_mode": "manual_click",
         "focal_primitive_id": "mirror_point",
         "eye_capture_ms": 18500,
@@ -2240,14 +2249,14 @@
             "y_expr": "230 - 110*sin(phi_r*PI/180)",
             "start_ms": 0,
             "end_ms": 2400,
-            "sample_ms": 25,
+            "sample_ms": 11,
             "color": "#0E7490",
             "stroke_weight": 2
           },
           {
             "type": "label",
             "id": "hud_0",
-            "text_expr": "point height  y = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "point height  y = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 358
@@ -2258,7 +2267,7 @@
           {
             "type": "label",
             "id": "hud_1",
-            "text_expr": "mirror height  y = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "mirror height  y = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 392
@@ -2283,7 +2292,7 @@
             "equation": "sin(π − θ) = sin θ",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6",
             "appear_at_ms": 16500,
@@ -2350,6 +2359,7 @@
         "title": "Explore: Drag the Angle",
         "duration": 24,
         "depth_ring": "core",
+        "teaching_method": "exploration_sliders",
         "advance_mode": "interaction_complete",
         "focal_primitive_id": "point",
         "scene_composition": [
@@ -2614,7 +2624,7 @@
             "y_expr": "230 - 110*sin(phi*PI/180)",
             "start_ms": 0,
             "end_ms": 3000,
-            "sample_ms": 25,
+            "sample_ms": 13,
             "color": "#38BDF8",
             "stroke_weight": 3
           },
@@ -2625,7 +2635,7 @@
             "y_expr": "230 - 110*cos(phi*PI/180)",
             "start_ms": 0,
             "end_ms": 3000,
-            "sample_ms": 25,
+            "sample_ms": 13,
             "color": "#F472B6",
             "stroke_weight": 3
           },
@@ -2677,8 +2687,8 @@
             "id": "cosine_curve_name",
             "text": "cos θ",
             "position": {
-              "x": 614,
-              "y": 118
+              "x": 622,
+              "y": 150
             },
             "font_size": 13,
             "color": "#F472B6"
@@ -2686,7 +2696,7 @@
           {
             "type": "label",
             "id": "hud_0",
-            "text_expr": "sin θ = {sin_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "sin θ = {(abs(sin_theta)<0.005?0:sin_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 358
@@ -2697,7 +2707,7 @@
           {
             "type": "label",
             "id": "hud_1",
-            "text_expr": "cos θ = {cos_theta.toFixed(2).replace('-','−')}",
+            "text_expr": "cos θ = {(abs(cos_theta)<0.005?0:cos_theta).toFixed(2).replace('-','−')}",
             "position": {
               "x": 150,
               "y": 392
@@ -2722,7 +2732,7 @@
             "equation": "y = sin θ",
             "position": {
               "x": 560,
-              "y": 80
+              "y": 64
             },
             "border_color": "#3B82F6"
           },
@@ -2786,14 +2796,14 @@
         "difficulty": "core",
         "stem": "A point moves round the unit circle. What is the sign of sin θ at θ = 210°?",
         "options": {
-          "A": "Negative",
-          "B": "Positive",
+          "A": "Positive",
+          "B": "Negative",
           "C": "Zero",
           "D": "sin θ is not defined past 180°"
         },
-        "correct": "A",
+        "correct": "B",
         "distractor_misconceptions": {
-          "B": "reads the height as a plain length, so it can never be negative",
+          "A": "reads the height as a plain length, so it can never be negative",
           "C": "confuses 210° with 180°, the angle where the height really is zero",
           "D": "M1 — believes sine belongs to right triangles and stops existing past 90°"
         },
@@ -2806,16 +2816,16 @@
         "difficulty": "core",
         "stem": "A point moves along a circle of radius 1 from θ = 0 to θ = π. What distance does it travel along the rim?",
         "options": {
-          "A": "π",
-          "B": "180",
-          "C": "2π",
-          "D": "1"
+          "A": "180",
+          "B": "1",
+          "C": "π",
+          "D": "2π"
         },
-        "correct": "A",
+        "correct": "C",
         "distractor_misconceptions": {
-          "B": "reads the angle in degrees and calls that number a length",
-          "C": "gives the whole circumference instead of the half turn",
-          "D": "uses the radius in place of the arc length"
+          "A": "reads the angle in degrees and calls that number a length",
+          "B": "uses the radius in place of the arc length",
+          "D": "gives the whole circumference instead of the half turn"
         },
         "tested_idea": "on a radius-1 circle the arc length travelled equals the angle in radians",
         "parallel_form_stem": "A point moves along a circle of radius 1 from θ = 0 to θ = π/2. What distance does it travel along the rim?"
@@ -2826,16 +2836,16 @@
         "difficulty": "core",
         "stem": "On the unit circle, what is the value of cos θ at θ = 0?",
         "options": {
-          "A": "1",
-          "B": "0",
-          "C": "−1",
-          "D": "It is undefined"
+          "A": "0",
+          "B": "−1",
+          "C": "It is undefined",
+          "D": "1"
         },
-        "correct": "A",
+        "correct": "D",
         "distractor_misconceptions": {
-          "B": "M3 — expects cosine to start at zero because sine does",
-          "C": "reads the leftmost point of the circle instead of the rightmost",
-          "D": "treats θ = 0 as a special case with no horizontal distance to measure"
+          "A": "M3 — expects cosine to start at zero because sine does",
+          "B": "reads the leftmost point of the circle instead of the rightmost",
+          "C": "treats θ = 0 as a special case with no horizontal distance to measure"
         },
         "tested_idea": "cos θ is the signed horizontal distance, which is largest at θ = 0",
         "parallel_form_stem": "On the unit circle, what is the value of sin θ at θ = π/2?"
@@ -2846,19 +2856,19 @@
         "difficulty": "stretch",
         "stem": "For any angle θ, what is sin(π − θ) in terms of sin θ?",
         "options": {
-          "A": "sin θ",
-          "B": "−sin θ",
+          "A": "−sin θ",
+          "B": "sin θ",
           "C": "cos θ",
           "D": "1 − sin θ"
         },
-        "correct": "A",
+        "correct": "B",
         "distractor_misconceptions": {
-          "B": "assumes reflecting the angle must flip the sign of the height",
+          "A": "assumes reflecting the angle must flip the sign of the height",
           "C": "swaps the two coordinates of the reflected point",
           "D": "subtracts inside the function as if sine were linear"
         },
         "tested_idea": "mirror points about the vertical axis share one height, so sin(π−θ) = sin θ",
-        "parallel_form_stem": "For any angle θ, what is cos(−θ) in terms of cos θ?"
+        "parallel_form_stem": "Two points on the unit circle sit at the angles θ and π − θ. How do their heights above the horizontal line compare?"
       },
       {
         "q_id": "q5",
@@ -2866,15 +2876,15 @@
         "difficulty": "core",
         "stem": "On the graph built by carrying the point's height sideways, what does the horizontal axis measure?",
         "options": {
-          "A": "The angle θ",
-          "B": "The horizontal distance of the point from the centre",
-          "C": "The time the point has been moving",
+          "A": "The horizontal distance of the point from the centre",
+          "B": "The time the point has been moving",
+          "C": "The angle θ",
           "D": "The distance of the point from the graph"
         },
-        "correct": "A",
+        "correct": "C",
         "distractor_misconceptions": {
-          "B": "M2 — reads the wave as a picture of where the point actually goes",
-          "C": "assumes the axis must be time because something is moving",
+          "A": "M2 — reads the wave as a picture of where the point actually goes",
+          "B": "assumes the axis must be time because something is moving",
           "D": "treats the wave as a map of positions rather than a plot of height against angle"
         },
         "tested_idea": "the wave plots height against ANGLE; the path itself stays a circle",
