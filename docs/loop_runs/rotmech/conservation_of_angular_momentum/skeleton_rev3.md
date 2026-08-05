@@ -133,8 +133,8 @@ Default `foundational`. PRIMARY aha (S2) inside the foundational range ✓. S4's
 | Angular momentum | `L` (axle arrow + HUD `4.59 kg·m²/s`) | S1 sentence 1–2 | S1, after it | ✓ |
 | Moment of inertia | `I` (HUD `3.06 kg·m²`) | S1, same sentence | S1 | ✓ |
 | Angular speed | `ω` (HUD `1.50 rad/s`) | S1, same sentence | S1 | ✓ |
-| Each sliding mass | `m` | S1 ("two equal masses, m each") | S1 tag | ✓ |
-| Mass radius | `r` (line from axle) | S2, first "radius" sentence | S2 | ✓ |
+| Each sliding mass | `m` | S1 ("two equal masses, m each") | ~~S1 tag~~ → **NEVER PRINTED** (see ✎1) | ✓* |
+| Mass radius | `r` (line from axle) | S2, first "radius" sentence | ~~S2~~ → **S1** (see ✎2) | ✓ |
 | Inward pull force | −r̂ arrows (label "pull") | S2, the sentence naming the pull (F-4) | S2 | ✓ |
 | Before/after subscripts | `I₁ω₁ = I₂ω₂` | S3, one clause | S3 | ✓ |
 | Predicted speed mark | tick "predicted 1.50" | S3, the prediction sentence | S3 | ✓ |
@@ -142,6 +142,35 @@ Default `foundational`. PRIMARY aha (S2) inside the foundational range ✓. S4's
 | External torque | `τ_ext` (at the pad) | S5 | S5 | ✓ |
 | Rim radius | `R_rim` reference line (distinct style + label from `r`) | S5, "at the rim" | S5 | ✓ (F-7b) |
 | Rate of change of L | `dL/dt` | S7 | S7 only | ✓ |
+
+> **✎ LEDGER CORRECTIONS — appended 2026-08-05 by `alex:json_author` after the built concept was
+> measured against this table. The rows above are the APPROVED design; these are what the shipped
+> JSON + renderer actually do.** Raised as LOW findings by `quality-auditor`'s re-audit; recorded
+> here rather than silently rewritten, because Checkpoint A approved the original.
+> **None of these changes what a student sees — nothing untaught reaches the screen. The ledger
+> simply overstated, and a ledger that overstates cannot be used as evidence at Checkpoint C.**
+>
+> **✎1 — `m` is never printed anywhere.** The claim "first PRINTED at S1 tag" is false. The
+> renderer's complete sprite-label set for this scenario is `L`, `r`, `pull`, `brake`, `R_drum`
+> (all hardcoded in `field_3d_renderer.ts`), and `RBR_RO_META` implements exactly six HUD rows —
+> `I · ω · L · KE · dL/dt · F` — with **no `m` row**. So `m` is DEFINED in S1's narration and never
+> appears on canvas in any state. Harmless under Rule 25 (defining a symbol you never print is not
+> "using an untaught term"), which is why the ✓ stands — but the "First PRINTED" cell was fiction.
+> Marked ✓* to flag that the tick refers to the definition order only.
+>
+> **✎2 — `r` first prints at S1, not S2.** STATE_1 authors `show_r_line: true` and glows
+> `rbr_r_line` over 1200–2000 ms; `STATE_1__frozen.png` shows the green `r` label at (730, 286).
+> Pedagogically defensible — the radius line is visible while S1's narration is still on I and ω,
+> and Rule 25's bar is "no untaught TERM", not "no unlabelled line". But the JSON and the ledger
+> disagreed, and the JSON is the truth.
+>
+> **✎3 — the rim label is `R_drum` on screen, not `R_rim`** (row "Rim radius" above). The string is
+> hardcoded at `field_3d_renderer.ts:50397` — `rbrMakeLabel("R_drum", …)` — and is visible on S5
+> and S8. It is an ASCII code identifier reaching the canvas, so it violates Rule 34c (the
+> `createLabelSprite` text path a DOM-only Unicode sweep skips) and Rule 41 (`R_drum` is not a word
+> a student reads). **Not fixable on this desk** — it is renderer-side, filed as **A-10**, routed to
+> `peter_parker:field3d_surgeon` as work-order unit **W-7**. Until it lands, this ledger row
+> describes an intent, not the screen.
 
 json_author note: every teacher_script glow target must name a primitive the state builds — glow-target set ⊆ built object ids.
 
