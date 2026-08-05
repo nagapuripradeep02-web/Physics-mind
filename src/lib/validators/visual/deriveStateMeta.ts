@@ -512,8 +512,51 @@ export function deriveMotionExpectations(
                 // 0.05 rad/s -> the marker stripe travels ~0.05 world units per
                 // dense-frame gap, about three pixels at the default framing.
                 if (w0 >= 0.05) { out[stateId] = true; continue; }
-                // Seeded at rest: fall through undefined, exactly like the
-                // not-provable force_rig paths above.
+                //   E4 (rotmech 0c-3) — MOTION MUST READ THE TORQUE, NOT ONLY
+                // THE SEED. Before signed torque landed, a state seeded at rest
+                // genuinely never moved (the integrator subtracted
+                // unconditionally, so L = 0 clamped to 0 forever) and falling
+                // through to `undefined` was correct. Now a signed DRIVE torque
+                // spins a rest-seeded body up — which is exactly the state
+                // class E4 exists to enable — so leaving this on the seed alone
+                // would go silent on precisely those states.
+                //   Calibrated the SAME way as the w0 floor: over one dense-
+                // frame gap (1000 ms) a constant drive reaches omega = tau/I,
+                // so it is declared only when tau/I clears the same 0.05 rad/s
+                // floor. A 'brake' source is NOT a motion signal on a body at
+                // rest — it holds it there.
+                const rbrTq = asObj(rbrMot.external_torque);
+                if (rbrTq) {
+                    let driveTau = 0, brakeTau = 0;
+                    const rbrSrcs = Array.isArray(rbrTq.sources) ? rbrTq.sources : null;
+                    if (rbrSrcs) {
+                        for (const sRaw of rbrSrcs) {
+                            const s = asObj(sRaw);
+                            if (!s) continue;
+                            if (s.kind === 'brake') brakeTau += Math.abs(asNum(s.torque_Nm, 0));
+                            else driveTau += asNum(s.torque_Nm, 0);
+                        }
+                    } else if (rbrTq.source === 'applied_torque' || typeof rbrTq.applied_torque_Nm === 'number') {
+                        driveTau = asNum(rbrTq.applied_torque_Nm, 0);
+                    }
+                    // THE BREAKAWAY CONDITION, mirrored from rbrLStep: a drive
+                    // that a co-engaged brake outweighs leaves the body in a
+                    // STATIC HOLD, which repaints nothing. Pricing the drive
+                    // alone would over-declare exactly that state.
+                    driveTau = (Math.abs(driveTau) > brakeTau) ? (Math.abs(driveTau) - brakeTau) : 0;
+                    if (driveTau > 0) {
+                        const rbrAp = asObj(rbrMot.apparatus);
+                        const rbrMs = asObj(rbrMot.masses);
+                        const iFrame = rbrAp ? asNum(rbrAp.i_frame_kgm2, 0.5) : 0.5;
+                        const nMass = rbrMs ? asNum(rbrMs.count, 2) : 2;
+                        const mKg = rbrMs ? asNum(rbrMs.mass_kg, 2.0) : 2.0;
+                        const rM = rbrMs ? asNum(rbrMs.r_m, 0.9) : 0.9;
+                        const iTot = iFrame + nMass * mKg * rM * rM;
+                        if (iTot > 0 && driveTau / iTot >= 0.05) { out[stateId] = true; continue; }
+                    }
+                }
+                // Seeded at rest with no drive: fall through undefined, exactly
+                // like the not-provable force_rig paths above.
             }
             // bar_magnet_as_dipole: STATE_2's loop trace + STATE_3's break
             // genuinely CYCLE (the payoff is the repetition — "cut it
@@ -3149,14 +3192,30 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         //       so the pin lands past the release, never inside the decay.
         const rbrTau = asObj(rbr.external_torque);
         if (rbrTau) {
-            const tau = Math.abs(asNum(rbrTau.tau_brake_Nm, 0)) || Math.abs(asNum(rbrTau.applied_torque_Nm, 0));
-            if (tau > 0) {
-                if (typeof rbrTau.release_at_ms === 'number' && Number.isFinite(rbrTau.release_at_ms)) {
+            //   E4 (rotmech 0c-3): external_torque.sources[] carries its OWN
+            // engage/release instants, and an unregistered *_at_ms pins the
+            // frozen frame at DEFAULT_REVEAL_MS mid-choreography. Each engaged
+            // source contributes the same two candidates the scalar form does,
+            // so the pin lands past the LAST torque event of the state whether
+            // the state authored one torque or the drive-vs-brake tug.
+            const rbrSrcList = Array.isArray(rbrTau.sources) ? rbrTau.sources : null;
+            const rbrTqWindows: Array<Record<string, unknown>> = rbrSrcList
+                ? rbrSrcList.map((s) => asObj(s)).filter((s): s is Record<string, unknown> =>
+                    !!s && Math.abs(asNum(s.torque_Nm, 0)) > 0)
+                : (Math.abs(asNum(rbrTau.tau_brake_Nm, 0)) || Math.abs(asNum(rbrTau.applied_torque_Nm, 0))
+                    ? [rbrTau] : []);
+            for (const w of rbrTqWindows) {
+                if (typeof w.release_at_ms === 'number' && Number.isFinite(w.release_at_ms)) {
                     rbrFound = true;
-                    candidates.push(rbrTau.release_at_ms + 2000);
-                } else if (typeof rbrTau.engage_at_ms === 'number' && Number.isFinite(rbrTau.engage_at_ms)) {
+                    candidates.push(w.release_at_ms + 2000);
+                } else if (typeof w.engage_at_ms === 'number' && Number.isFinite(w.engage_at_ms)) {
                     rbrFound = true;
-                    candidates.push(rbrTau.engage_at_ms + 3000);   // well into the decay
+                    candidates.push(w.engage_at_ms + 3000);   // well into the decay / spin-up
+                } else if (rbrSrcList) {
+                    // A sources[] entry with no authored window engages at 0 and
+                    // never releases, so the settled claim is the held tail.
+                    rbrFound = true;
+                    candidates.push(3000);
                 }
             }
         }
@@ -3206,6 +3265,29 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             const until = typeof ph.until_ms === 'number' && Number.isFinite(ph.until_ms) ? ph.until_ms : null;
             if (until != null && until > at) candidates.push(Math.max(at, Math.min(at + 500, until - 200)));
             else candidates.push(at + 500);
+        }
+        //   (7) formula_lines[].at_ms — the per-line reveal on the ONE formula
+        //       surface (#rbr_formula), ported from newtons_laws_body under the
+        //       same field name and read the same way here (deriveStateMeta.ts
+        //       ~:2829 is the nlb twin). The LAST line is the one that matters: it
+        //       is the equation the state exists to assemble, so the pin must land
+        //       past it or the frozen frame photographs a half-built formula and
+        //       mints it as the baseline — field3d_scenario_missing_maxreveal_
+        //       block_frozen_pin_defaults_1500ms_predates_scripted_reveal, again.
+        //       Presence is resolved exactly as the renderer resolves it: an empty
+        //       or unusable line is SKIPPED (mirrors rbrRenderFormula's skip), and
+        //       an authored at_ms of 0 means "from entry" so it pushes no candidate.
+        const rbrFml = Array.isArray(rbr.formula_lines) ? rbr.formula_lines : [];
+        let rbrLastLineMs = -1;
+        for (const lnRaw of rbrFml) {
+            const ln = asObj(lnRaw);
+            if (!ln || typeof ln.text !== 'string' || ln.text.length === 0) continue;
+            const at = typeof ln.at_ms === 'number' && Number.isFinite(ln.at_ms) ? ln.at_ms : 0;
+            if (at > rbrLastLineMs) rbrLastLineMs = at;
+        }
+        if (rbrLastLineMs > 0) {
+            rbrFound = true;
+            candidates.push(rbrLastLineMs + RBR_CUSHION);
         }
         //   A sandbox (Rule 37 free-run) has no script at all — it is classified
         //   'interactive' in deriveHoldExpectations and needs no reveal pin.
