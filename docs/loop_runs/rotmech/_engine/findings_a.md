@@ -365,7 +365,18 @@ needs one office ruling rather than five independent guesses.
 
 ---
 
-## A-18 · `rbr.formula` has no timed reveal — S3 and S7's authored assemblies play as a single flash at t = 0
+## A-18 · ✅ **RESOLVED 2026-08-05 by Desk E's D1 (`7022169`) + concept-side authoring** — `rbr.formula` had no timed reveal
+
+> **Resolution summary.** Desk E landed `formula_lines` on the rbr scenario — the `nlb` per-line
+> shape, ported under the same field name rather than minting `formula_at_ms` (that name already
+> means "whole overlay at one instant" on `pef`). **D1 alone changed nothing for this concept:**
+> absent `formula_lines` is byte-identical to the legacy string by design, so the two dead beats
+> stayed dead until the JSON was re-authored to use it. S3 and S7 now author `formula_lines`;
+> both assemblies verified playing on two independent channels (details in `_progress/a.md`,
+> 2026-08-05). **No longer blocks Checkpoint B.** E-1 (A-11) and E-2 (A-12) still do.
+> Original finding preserved below.
+
+## A-18 (original) · `rbr.formula` has no timed reveal — S3 and S7's authored assemblies play as a single flash at t = 0
 
 **Filed 2026-08-05 as the Desk-A-side record of a CROSS-DESK dependency.** Raised by **Desk D's
 architect**, `findings_d.md` **§6c**; the state doc and §6c both name it "A-11", which was already

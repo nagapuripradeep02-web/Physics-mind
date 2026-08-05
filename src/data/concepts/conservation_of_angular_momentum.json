@@ -827,6 +827,10 @@
           ],
           "hold_glow": ["L"],
           "formula": "I₁ω₁ = I₂ω₂",
+          "formula_lines": [
+            { "text": "I₁ω₁", "at_ms": 0 },
+            { "text": "= I₂ω₂", "at_ms": 1600 }
+          ],
           "phases": [
             { "id": "arrows_track", "at_ms": 3200, "until_ms": 5200, "glow_focal": "rbr_pull_arrow" },
             { "id": "anchor", "at_ms": 5200, "until_ms": 10000, "glow_focal": "rbr_drum" }
@@ -981,6 +985,10 @@
           "readout_at_ms": { "dLdt": 4000 },
           "hold_glow": ["L", "dLdt"],
           "formula": "τₑₓₜ = dL/dt",
+          "formula_lines": [
+            { "text": "τₑₓₜ", "at_ms": 0 },
+            { "text": "= dL/dt", "at_ms": 2000 }
+          ],
           "phases": [
             { "id": "replay", "at_ms": 4000, "until_ms": 6000, "glow_focal": "rbr_mass" },
             { "id": "held", "at_ms": 6000, "until_ms": 11000, "glow_focal": "rbr_drum" }
