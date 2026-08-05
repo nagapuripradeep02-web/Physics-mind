@@ -3764,7 +3764,16 @@ export const FIELD_3D_RENDERER_CODE = `
     });
     renderer.domElement.addEventListener("mouseleave", function() { isDragging = false; objectDragging = false; });
     renderer.domElement.addEventListener("wheel", function(e) {
-        spherical.radius = Math.max(3, Math.min(20, spherical.radius + e.deltaY * 0.01));
+        // E3b F6: the [3, 20] band is the fleet's, and it is EXACTLY preserved for
+        // every camera inside it. A scene framed from outside it (a lattice at the
+        // narrow FOV stands 70-180 units off) had its first wheel tick teleport the
+        // camera to 20 — the block filling the frame, the framing solve discarded —
+        // so the band opens to hold the pose the state is actually framed at, and
+        // the step scales with it so one tick still moves the same fraction.
+        var rHi = Math.max(20, spherical.radius);
+        var rLo = (spherical.radius > 20) ? spherical.radius * 0.25 : 3;
+        var rStep = e.deltaY * 0.01 * Math.max(1, spherical.radius / 20);
+        spherical.radius = Math.max(rLo, Math.min(rHi, spherical.radius + rStep));
         targetSpherical.radius = spherical.radius;
         updateCameraFromSpherical();
         e.preventDefault();
@@ -52081,7 +52090,48 @@ export const FIELD_3D_RENDERER_CODE = `
     //   clear of clipping at 10.62 and 6% inside the bordered 11.68, and would
     //   have started snapping instead of gliding for no visible reason (Rule 32d
     //   says a state change reads as ONE caused move).
+    //   E3b F6: ...and it is the tangency condition AT THE FOV ACTUALLY IN USE,
+    //   so it is now DERIVED (bscCutClip) rather than frozen at the 60 deg value.
+    //   bscCutClip(60) === 2.00 exactly, so every molecular scene is unchanged.
     var BS_FIT_CLIP = 2.00;
+    // ── E3b F6: THE 60 deg FOV CANNOT RENDER A CRYSTAL LATTICE AS A LATTICE ───
+    //   MEASURED on ionic_bonding's shipped frames (bug_class field3d_60deg_fov_
+    //   offaxis_camera_cannot_render_a_crystal_lattice_as_a_lattice): S5 teaches
+    //   EQUIVALENCE — "Six neighbours, every ion", "the count is the same: six and
+    //   six" — and its six physically identical Cl- at six identical distances
+    //   segmented out of the shipped PNGs at radii
+    //     [41.0, 42.5, 45.2, 62.8, 67.2, 71.2] px  ->  1.738x  (t = 8000 ms)
+    //   i.e. the picture asserted, at 1.74x, that the six neighbours are not the
+    //   same. It is not a config defect and no authored key can reach it: at
+    //   az 35 / el 45 / d 16.2 the six neighbours span z in [12.05, 20.35], and a
+    //   perspective projection draws 1/z. Reveal mode, radius_scale and block size
+    //   all leave that ratio exactly where it is.
+    //   THE FIX IS THE PROJECTION: a lattice is drawn at a NARROW FOV FROM FAR
+    //   AWAY. Apparent size is preserved exactly — every solved distance on this
+    //   path is multiplied by tan(30)/tan(fov/2) (bscCamDistK), so the picture is
+    //   the same size and only the DIVERGENCE shrinks — and the drawn-radius
+    //   spread falls as (d + h)/(d - h) with h the depth half-spread.
+    //   WHY 15 AND NOT 20 OR 30. The widest shipped lattice is ionic S4's 5x5x5
+    //   rock-salt block (h = 19.9 u). Two independent conditions have to hold on
+    //   it and 15 deg is where they MEET: the containment fit puts the camera at
+    //   177.2 u, and the equivalence floor below (ratio <= 1.25) demands 178.9 u.
+    //   A wider FOV frames the block from closer than the equivalence it teaches
+    //   can survive (20 deg -> 1.35x, past the 1.3 the probe asks for); a narrower
+    //   one buys ratio nobody can see and costs depth precision. So the constant
+    //   is the value at which the widest shipped block is BOTH fully framed and
+    //   read as a lattice, not a taste setting.
+    //   SCOPE: lattice placement only, and only where the bonding apply owns the
+    //   camera. Every molecular scene, every free-placement scene and every other
+    //   scenario in the fleet keeps PerspectiveCamera(60, ...) untouched.
+    var BS_LATTICE_FOV_DEG = 15;
+    //   The equivalence a lattice state claims, as a number: the largest : smallest
+    //   drawn radius of one species across the block. 1.25 is the authored target
+    //   and the gate asserts 1.30 — the probe the bug row names — so a state that
+    //   drifts by a fifth of the allowance still fails the gate before a reviewer
+    //   sees it. Enforced as a DISTANCE FLOOR (bscRatioFloorDist), so a future
+    //   block wider than anything shipped today satisfies it by construction
+    //   instead of quietly re-opening this row.
+    var BS_LATTICE_RATIO_MAX = 1.25;
     // The five rock-salt pairs ionic_bonding's explore picker offers — ONE cell
     // covers all of them, which is why that explore state needs no second cell
     // type. a_pm is the conventional cubic edge (X-ray values).
@@ -52508,8 +52558,30 @@ export const FIELD_3D_RENDERER_CODE = `
         //    element half off-screen is the same defect as one hidden behind
         //    another, and only frames caught it. 16 is the joint solution:
         //    occlusion margin +0.057 NDC, counted-set box 0.80 (floor 0.85),
-        //    min pairwise centre separation 0.250.
-        coordination:  { az: 35, el: 45, dist: 16.0, fit: true, fit_ramp: "reveal" },
+        //    min pairwise centre separation 0.250. (dist 16 is KEPT below and is
+        //    now read in 60 deg units — bscCamDistK carries it to 70.2 at the
+        //    lattice FOV, which is the SAME PICTURE from further away.)
+        //
+        // ── E3b F6: EL 45 -> EL 26, BECAUSE THE PROJECTION CHANGED UNDER IT.
+        //    Finding (2) above is the reason this row has to move, not a reason to
+        //    keep it: el 45 was solved for the 60 deg projection and its whole
+        //    advantage — "the two sit at different depths and separate cleanly" —
+        //    IS the depth divergence F6 removes. The same metric, run at the
+        //    lattice FOV over a full turn of the block (the teacher can orbit),
+        //    inverts exactly as that comment predicted it would:
+        //      60 deg, d 16.0  — el 45 +0.0574  ·  el 26 -0.2220   (el 45 wins)
+        //      15 deg, d 70.2  — el 45 -0.0984  ·  el 26 +0.0954   (el 26 wins)
+        //    So el 45 does not merely lose its edge at the narrow FOV, it FAILS:
+        //    at some orbit angles a counted neighbour hides behind another, which
+        //    is the scar this row exists to prevent. el 26 measures +0.0954 —
+        //    1.66x the margin the shipped 60 deg build had — and at the shipped
+        //    azimuth it reads occlusion +0.260, min pairwise 0.405 (was 0.250),
+        //    counted-set box 0.742 (floor 0.85), drawn-radius ratio 1.131.
+        //    It is also the lattice family's own elevation (lattice_grow, melt,
+        //    drift and the metal rows are all el 26), so S4 -> S5 -> S6 is now ONE
+        //    elevation across the whole lattice arc and the click changes only the
+        //    thing the state is about (Rule 32d).
+        coordination:  { az: 35, el: 26, dist: 16.0, fit: true, fit_ramp: "reveal" },
         // ── E3b T-2. What mode 'melt' names is the FRAMING, not the law: the law
         //    is derived from T_K against the pair's own mp_K and runs whatever the
         //    mode string says (D-2). A melting block is the widest thing the site
@@ -54535,6 +54607,52 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_FIT_FOV_DEG = 60;        // the shipped PerspectiveCamera(60, ...)
     var BS_FIT_ASPECT = 16 / 9;     // the review player canvas (1280x720)
     var BS_FIT_BORDER = 0.90;       // a 10% border, the same border BS_FIT_MARGIN carried
+    // ── E3b F6: the FOV a scene is actually drawn at, and what that costs in
+    //   distance. ONE rule, read off the SCENE (placement) rather than off the
+    //   camera row, so the fit, the cut trigger, the ramps and the projection
+    //   itself cannot disagree about which projection is in use.
+    function bscSceneFov(bs) {
+        return (bs && bs.placement === "lattice") ? BS_LATTICE_FOV_DEG : BS_FIT_FOV_DEG;
+    }
+    // The distance multiplier that keeps APPARENT SIZE identical when the FOV
+    // narrows: a solved distance is solved for readability at 60 deg, and the same
+    // picture at fov subtends the same angle from d * tan(30) / tan(fov/2).
+    // Exactly 1 for every non-lattice scene, so nothing else moves by a pixel.
+    function bscCamDistK(bs) {
+        return Math.tan(BS_FIT_FOV_DEG * Math.PI / 360) /
+            Math.tan(bscSceneFov(bs) * Math.PI / 360);
+    }
+    // The E2d cut condition at the FOV in use: a bounding sphere of radius e is
+    // framed only when the view cone is tangent to it, d >= e / sin(fov/2).
+    // bscCutClip(60) === BS_FIT_CLIP === 2.00, so every molecular scene keeps the
+    // exact trigger it had.
+    function bscCutClip(fov) {
+        return 1 / Math.sin((fov || BS_FIT_FOV_DEG) * Math.PI / 360);
+    }
+    // ── E3b F6: THE EQUIVALENCE FLOOR. A lattice state's claim is that its ions
+    //   are the SAME, and a perspective projection draws 1/z, so the claim is only
+    //   as true as the depth spread the camera stands off. h is the depth
+    //   half-spread of the drawn discs under this camera, and the drawn-radius
+    //   ratio of one species across the block is (d + h) / (d - h) — invert it at
+    //   BS_LATTICE_RATIO_MAX and the required distance is a closed form.
+    //   Config-only and clock-free, exactly like the fit it sits beside, so it is
+    //   the same number on the first frame and under a freeze pin.
+    //   0 for every non-lattice scene: a molecule is one unit deep and the claim
+    //   it makes is not equivalence.
+    function bscRatioFloorDist(bs, cam, rs, sepU) {
+        if (!bs || bs.placement !== "lattice") return 0;
+        var P = bscFitPoints(bs, null, rs, sepU);
+        if (!P.length) return 0;
+        var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+        var f = [-Math.cos(elr) * Math.cos(azr), -Math.sin(elr), -Math.cos(elr) * Math.sin(azr)];
+        var h = 0, i;
+        for (i = 0; i < P.length; i++) {
+            var zb = Math.abs(P[i].at[0] * f[0] + P[i].at[1] * f[1] + P[i].at[2] * f[2]);
+            if (zb > h) h = zb;
+        }
+        var R = BS_LATTICE_RATIO_MAX;
+        return h * (R + 1) / (R - 1);
+    }
     // A scene that turns about the view axis can rotate ANY drawn point into the
     // vertical, so its bound is the screen-plane RADIUS and not the box. Read from
     // config the same way the frame updater resolves the turn — an explore sandbox
@@ -54669,7 +54787,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var f = [-Math.cos(elr) * Math.cos(azr), -Math.sin(elr), -Math.cos(elr) * Math.sin(azr)];
         var rt = bscNorm([f[1] * 0 - f[2] * 1, f[2] * 0 - f[0] * 0, f[0] * 1 - f[1] * 0]);
         var up = [rt[1] * f[2] - rt[2] * f[1], rt[2] * f[0] - rt[0] * f[2], rt[0] * f[1] - rt[1] * f[0]];
-        var tan = Math.tan(BS_FIT_FOV_DEG * Math.PI / 360) * BS_FIT_BORDER;
+        // E3b F6: the FOV the scene is DRAWN at, not the fleet default — a lattice
+        // is drawn at BS_LATTICE_FOV_DEG, and a fit measured at 60 deg would put it
+        // at a fraction of the distance its own projection needs.
+        var tan = Math.tan(bscSceneFov(bs) * Math.PI / 360) * BS_FIT_BORDER;
         var spin = bscSceneSpins(bs), d = 0, i;
         for (i = 0; i < P.length; i++) {
             var p = P[i].at, r = P[i].r;
@@ -55556,9 +55677,22 @@ export const FIELD_3D_RENDERER_CODE = `
         // cleared HERE, unconditionally, so a state that authors its own
         // camera_position can never inherit the previous state's ramp.
         window.PM_bscCamRamp = null;
+        // ── E3b F6: THE PROJECTION THIS STATE IS DRAWN WITH. Set HERE, once, for
+        //   every bonding_scene state — including back to 60 deg — so a lattice
+        //   state followed by a molecular one cannot inherit the narrow FOV, and
+        //   so the value the fit assumed is the value the renderer uses. Only the
+        //   branch below owns the camera; a state that authors its own
+        //   camera_position is framed by the generic path with a distance in
+        //   60 deg units, so it keeps the 60 deg projection.
+        var bsFov = (bs.camera || !stateDef.camera_position) ? bscSceneFov(bs) : BS_FIT_FOV_DEG;
+        var kFov = (bsFov === BS_FIT_FOV_DEG) ? 1 :
+            Math.tan(BS_FIT_FOV_DEG * Math.PI / 360) / Math.tan(bsFov * Math.PI / 360);
         if (bs.camera || !stateDef.camera_position) {
             var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
-            var dd = cam.dist || 7;
+            // E3b F6: every solved distance on the narrow-FOV path is scaled by
+            // kFov, so the framing is the SAME PICTURE from further away and only
+            // the perspective divergence changes.
+            var dd = (cam.dist || 7) * kFov;
             // E3a auto-fit: a solved camera is solved for the CANONICAL block, and
             // a state that authors a bigger one would otherwise overflow the frame
             // silently. Derived from config, so it is still identical on the first
@@ -55572,6 +55706,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 var dFit = bscFitDist(bs, cam, 1, null);
                 if (dFit > dd) dd = dFit;
             }
+            // E3b F6: ...and a lattice stands off far enough that its ions read as
+            // the SAME ions. Inactive on every scene whose containment fit already
+            // satisfies it (measured: every shipped state except ionic S4, which it
+            // moves by 1%), and the guarantee for the block nobody has authored yet.
+            var dEq = bscRatioFloorDist(bs, cam, 1, null);
+            if (dEq > dd) dd = dEq;
             // E3b F3: ...and a state whose block OPENS during the beat is framed
             // for the pose it opens IN, then pulls to its solved distance across
             // that same reveal (see PM_bscCamRamp in the frame updater). The
@@ -55582,7 +55722,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // 68.9% pixel jump when the reveal finally started.
             var rampOk = (!bs.camera && !stateDef.camera_position && cam.fit);
             window.PM_bscCamRamp = (rampOk && cam.fit_ramp === "reveal")
-                ? { on: "reveal", dist: cam.dist || 7, d0: dd } : null;
+                ? { on: "reveal", dist: (cam.dist || 7) * kFov, d0: dd } : null;
             // E3b F5: ...and the growth half of the same rule. The entry distance
             // becomes the OPENING pose-s own fit (the grow_from seed sites), with
             // the ion-pair close-up distance as its floor — BS_CAMERAS
@@ -55595,7 +55735,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 var gwN = bscSiteList(bs, null).length;
                 var gw0 = bscGrowCamW(bs, 0, gwN);
                 if (gw0) {
-                    var d0g = Math.max(BS_CAMERAS.approach_link.dist,
+                    // E3b F6: the ion-pair close-up floor is a 60 deg distance, so
+                    // it is scaled onto this state's projection like every other
+                    // floor here — S3 -> S4 stays one continuous pose in APPARENT
+                    // size, which is the only thing that floor was ever about.
+                    var d0g = Math.max(BS_CAMERAS.approach_link.dist * kFov,
                         bscFitDist(bs, cam, 1, null, gw0));
                     if (d0g > dd) d0g = dd;
                     window.PM_bscCamRamp = { on: "grow", dist: dd, d0: d0g, az: cam.az, el: cam.el };
@@ -55622,12 +55766,38 @@ export const FIELD_3D_RENDERER_CODE = `
             //   glides exactly as before, which is every state pair shipped so far
             //   except the two that overflow.
             var ext0 = bscOpeningExtent(bs);
-            if (ext0 > 0 && spherical.radius < ext0 * BS_FIT_CLIP) {
+            if (ext0 > 0 && spherical.radius < ext0 * bscCutClip(bsFov)) {
                 spherical.radius = targetSpherical.radius;
                 spherical.phi = targetSpherical.phi;
                 spherical.theta = targetSpherical.theta;
                 animating = false;
                 updateCameraFromSpherical();
+            }
+            // ── E3b F6: AND THE PROJECTION ITSELF. Written after the distances so
+            //   the near/far pair is derived from the range this state actually
+            //   travels (entry, ramp start, ramp end) rather than from a guess.
+            //   The 60 deg branch restores the exact values the camera was BUILT
+            //   with (0.1 / 100), so every molecular scene and every other scenario
+            //   in the fleet is byte-identical.
+            if (camera && camera.isPerspectiveCamera) {
+                var rmp6 = window.PM_bscCamRamp;
+                var dLo6 = dd, dHi6 = dd, i6, dv6;
+                if (rmp6) {
+                    for (i6 = 0; i6 < 2; i6++) {
+                        dv6 = i6 ? rmp6.d0 : rmp6.dist;
+                        if (dv6 < dLo6) dLo6 = dv6;
+                        if (dv6 > dHi6) dHi6 = dv6;
+                    }
+                }
+                camera.fov = bsFov;
+                // A narrow FOV puts the scene 3-12x further out, past the far plane
+                // the camera was built with (100) — which renders NOTHING at all.
+                // near is lifted with it for depth precision: the whole scene sits
+                // within its own extent of the target, and dLo * 0.15 is far inside
+                // that on any fitted camera.
+                camera.near = (bsFov === BS_FIT_FOV_DEG) ? 0.1 : Math.max(0.1, dLo6 * 0.15);
+                camera.far = (bsFov === BS_FIT_FOV_DEG) ? 100 : Math.max(100, dHi6 * 2.2);
+                camera.updateProjectionMatrix();
             }
         }
         // E1c-H: publish what the explore re-frame needs, and NOTHING a guided

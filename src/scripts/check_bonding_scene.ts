@@ -149,6 +149,8 @@ const VARS = [
   "BS_PEER_FADE_OPACITY", "BS_REVEAL_MS", "BS_SWAP_MS", "BS_SWAP_TROUGH",
   "BS_COORD_RADIUS_SCALE",
   "BS_FIT_MARGIN", "BS_FIT_CLIP", "BS_ION_PAIRS",
+  // E3b F6 (the lattice projection: a narrow FOV from far away)
+  "BS_LATTICE_FOV_DEG", "BS_LATTICE_RATIO_MAX",
   // E3b F2/F3 (the measured framing solve) + F1 (the melt envelope) + F4 (the
   // migration's own containment — the space-charge pile at the sample face)
   // E3b F5 (the growth beat's own camera ramp)
@@ -200,6 +202,7 @@ const FNS = [
   "bscOddN", "bscCellSites", "bscCoordination", "bscSpeciesCharge",
   "bscSpeciesLabel", "bscRadiusPm", "bscIsSite", "bscSiteList", "bscSiteExtent",
   "bscSceneSpins", "bscFitPoints", "bscFitDist",                  // E3b F2
+  "bscSceneFov", "bscCamDistK", "bscCutClip", "bscRatioFloorDist", // E3b F6
   "bscMeltFold", "bscIonPile", "bscCellHalfSpan", "bscMeltEnv",   // E3b F1 / F4
   "bscOpeningExtent",                                            // E2d
   "bscGrowNf", "bscGrowShown", "bscGrowCamW", "bscGrowCamWeight",   // E3b F5
@@ -1426,16 +1429,22 @@ console.log("\n=== 11. COUNTABILITY UNDER PERSPECTIVE, ACROSS THE SPIN (D-4) ===
   const cross = (a: number[], b: number[]) =>
     [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
   const dot3 = (a: number[], b: number[]) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-  const project = (cam: number[], p: number[]) => {
+  // E3b F6: the projection is now a PARAMETER, because it is no longer one
+  // number. A lattice scene is drawn at BS_LATTICE_FOV_DEG from bscCamDistK times
+  // the solved distance (the same picture, from further away), and a gate that
+  // kept measuring every scene at 60 deg would be measuring a projection the
+  // renderer does not use. Every molecular call below passes nothing and is
+  // therefore byte-identical.
+  const project = (cam: number[], p: number[], fovR: number = FOV) => {
     const f = E.bscNorm(sub([0, 0, 0], cam));
     const r = E.bscNorm(cross(f, [0, 1, 0]));
     const u = cross(r, f);
     const d = sub(p, cam), z = dot3(d, f);
     if (z <= 0.01) return null;
-    return [dot3(d, r) / (z * Math.tan(FOV / 2) * ASPECT), dot3(d, u) / (z * Math.tan(FOV / 2))];
+    return [dot3(d, r) / (z * Math.tan(fovR / 2) * ASPECT), dot3(d, u) / (z * Math.tan(fovR / 2))];
   };
-  const camOf = (c: any) => {
-    const a = (c.az || 0) * Math.PI / 180, e = (c.el || 0) * Math.PI / 180, d = c.dist || 7;
+  const camOf = (c: any, k = 1) => {
+    const a = (c.az || 0) * Math.PI / 180, e = (c.el || 0) * Math.PI / 180, d = (c.dist || 7) * k;
     return [d * Math.cos(e) * Math.cos(a), d * Math.sin(e), d * Math.cos(e) * Math.sin(a)];
   };
   const FLOOR = 0.12, BOX = 0.85;
@@ -1521,11 +1530,11 @@ console.log("\n=== 11. COUNTABILITY UNDER PERSPECTIVE, ACROSS THE SPIN (D-4) ===
     const p2u11 = (E.bscLinkCfg(LATTICE_BS) as any).pm_per_unit as number;
     const camF = (cam: number[]) => E.bscNorm(sub([0, 0, 0], cam)) as number[];
     // (a) centre separation, as E1 measures it for molecules.
-    const sweepSites = (cam: number[], label: string, floor: number) => {
+    const sweepSites = (cam: number[], label: string, floor: number, fovR: number = FOV) => {
       let worst = 9, worstAt = 0;
       for (let s = 0; s < 360; s++) {
         const ang = s * Math.PI / 180;
-        const pts = counted.map((c: any) => project(cam, E.mgRotY(c.at, ang)));
+        const pts = counted.map((c: any) => project(cam, E.mgRotY(c.at, ang), fovR));
         if (pts.some((p: number[] | null) => !p)) { worst = -1; break; }
         for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
           const dd = Math.hypot(pts[i]![0] - pts[j]![0], pts[i]![1] - pts[j]![1]);
@@ -1535,9 +1544,14 @@ console.log("\n=== 11. COUNTABILITY UNDER PERSPECTIVE, ACROSS THE SPIN (D-4) ===
       ok(label, worst >= floor, `min=${worst.toFixed(4)} at ${worstAt} deg (floor ${floor})`);
       return worst;
     };
-    const camCoord = camOf(E.BS_CAMERAS.coordination);
+    // E3b F6: the SHIPPED lattice projection — BS_LATTICE_FOV_DEG at bscCamDistK
+    // times the solved distance. Both come out of the engine, so a wrong constant
+    // there is measured here rather than assumed away.
+    const FOV_LAT = (E.BS_LATTICE_FOV_DEG as number) * Math.PI / 180;
+    const K_LAT = E.bscCamDistK(LATTICE_BS) as number;
+    const camCoord = camOf(E.BS_CAMERAS.coordination, K_LAT);
     sweepSites(camCoord,
-      "coordination camera: all 7 counted centres separable across the FULL spin", FLOOR);
+      "coordination camera: all 7 counted centres separable across the FULL spin", FLOOR, FOV_LAT);
     // (b) THE metric a lattice actually needs — OCCLUSION. On a close-packed
     //     crystal the spheres touch by construction, so their projections always
     //     overlap and a centre-separation floor happily certifies a view in
@@ -1545,43 +1559,64 @@ console.log("\n=== 11. COUNTABILITY UNDER PERSPECTIVE, ACROSS THE SPIN (D-4) ===
     //     element's projected centre minus the NEARER counted sphere's projected
     //     radius, measured in the vertical NDC scale so the 16:9 squeeze cannot
     //     flatter a horizontal pair.
-    const occlusionMargin = (cam: number[], rs: number) => {
+    const occlusionMargin = (cam: number[], rs: number, fovR: number = FOV) => {
       const f = camF(cam);
       const rad = counted.map((c: any) => (c.rPm / p2u11) * rs);
       let worst = 9, at = 0;
       for (let s = 0; s < 360; s++) {
         const ang = s * Math.PI / 180;
         const w = counted.map((c: any) => E.mgRotY(c.at, ang) as number[]);
-        const pr = w.map((p) => project(cam, p)!);
+        const pr = w.map((p) => project(cam, p, fovR)!);
         const z = w.map((p) => dot3(sub(p, cam), f));
         for (let i = 0; i < counted.length; i++) for (let j = 0; j < counted.length; j++) {
           if (i === j || z[j] >= z[i]) continue;                  // j must be NEARER
           const dx = (pr[i][0] - pr[j][0]) * ASPECT, dy = pr[i][1] - pr[j][1];
-          const m = Math.hypot(dx, dy) - rad[j] / (z[j] * Math.tan(FOV / 2));
+          const m = Math.hypot(dx, dy) - rad[j] / (z[j] * Math.tan(fovR / 2));
           if (m < worst) { worst = m; at = s; }
         }
       }
       return { m: worst, at };
     };
     {
-      const settled = occlusionMargin(camCoord, E.BS_COORD_RADIUS_SCALE);
+      const settled = occlusionMargin(camCoord, E.BS_COORD_RADIUS_SCALE, FOV_LAT);
       ok("coordination, SETTLED: no counted ion is hidden behind a nearer one",
         settled.m > 0, `margin=${settled.m.toFixed(4)} NDC at ${settled.at} deg`);
       // NEGATIVE CONTROL 1 — space filling. This is not a camera problem: six
       // touching neighbours physically ENCLOSE the focal ion, so no camera
       // solves it, which is the whole reason lattice.radius_scale exists.
-      const packed = occlusionMargin(camCoord, 1);
+      const packed = occlusionMargin(camCoord, 1, FOV_LAT);
       ok("NEGATIVE CONTROL: the packed home pose FAILS (a real crystal encloses its ion)",
         packed.m < 0, `margin=${packed.m.toFixed(4)} — no camera fixes this, only the reveal does`);
       // NEGATIVE CONTROL 2 — the elevation genuinely matters, and the metric
       // rejects the near-miss elevations the orthographic solve would have
       // picked (el 26 is the orthographic optimum and it FAILS).
-      const bad26 = occlusionMargin(camOf({ az: 35, el: 26, dist: 14 }), E.BS_COORD_RADIUS_SCALE);
-      ok("NEGATIVE CONTROL: el 26 (the ORTHOGRAPHIC optimum) fails under perspective",
-        bad26.m < settled.m, `el26 margin=${bad26.m.toFixed(4)} vs shipped ${settled.m.toFixed(4)}`);
-      const bad35 = occlusionMargin(camOf({ az: 35, el: 35, dist: 14 }), E.BS_COORD_RADIUS_SCALE);
+      // ── E3b F6: THE SOLVE INVERTED WHEN THE PROJECTION UNDER IT CHANGED, and
+      //    both halves are asserted here so neither can be taken on trust.
+      //    At 60 deg the depth divergence separated the el-45 ring and the
+      //    orthographic optimum (el 26) failed; at the lattice FOV that
+      //    divergence is gone — which is the whole point of F6 — so el 45 is the
+      //    one that fails and el 26 is the shipped solve. Measured, both ways.
+      const bad45 = occlusionMargin(camOf({ az: 35, el: 45, dist: 16 }, K_LAT),
+        E.BS_COORD_RADIUS_SCALE, FOV_LAT);
+      ok("NEGATIVE CONTROL: el 45 (the 60 deg optimum) FAILS at the lattice FOV",
+        bad45.m < 0 && bad45.m < settled.m,
+        `el45 margin=${bad45.m.toFixed(4)} vs shipped el${E.BS_CAMERAS.coordination.el} ${settled.m.toFixed(4)}`);
+      const bad35 = occlusionMargin(camOf({ az: 35, el: 35, dist: 14 }, K_LAT),
+        E.BS_COORD_RADIUS_SCALE, FOV_LAT);
       ok("NEGATIVE CONTROL: el 35 also fails — the shipped elevation is not arbitrary",
         bad35.m < 0, `el35 margin=${bad35.m.toFixed(4)}`);
+      // ...and the HISTORICAL half: at the 60 deg projection the shipped
+      // elevation would fail and el 45 would win. The two solves are each correct
+      // for their own projection, which is why this row moved rather than being
+      // patched.
+      {
+        const at60 = occlusionMargin(camOf(E.BS_CAMERAS.coordination), E.BS_COORD_RADIUS_SCALE);
+        const el45at60 = occlusionMargin(camOf({ az: 35, el: 45, dist: 16 }), E.BS_COORD_RADIUS_SCALE);
+        ok("the E3a el-45 solve was CORRECT for the 60 deg projection it was solved in",
+          el45at60.m > 0 && el45at60.m > at60.m,
+          `at 60 deg: el 45 ${el45at60.m.toFixed(4)} vs el ${E.BS_CAMERAS.coordination.el} ${at60.m.toFixed(4)} — ` +
+          `at ${E.BS_LATTICE_FOV_DEG} deg: el 45 ${bad45.m.toFixed(4)} vs el ${E.BS_CAMERAS.coordination.el} ${settled.m.toFixed(4)}`);
+      }
       // the shrink is UNIFORM, so every radius ratio survives it (section 3's
       // linear-in-pm reading is not quietly broken by the ball-and-stick beat).
       // SAFE BOX on the COUNTED SET. The wall may bleed off frame (the state
@@ -1594,9 +1629,9 @@ console.log("\n=== 11. COUNTABILITY UNDER PERSPECTIVE, ACROSS THE SPIN (D-4) ===
         for (let s = 0; s < 360; s++) {
           const w = counted.map((c: any) => E.mgRotY(c.at, s * Math.PI / 180) as number[]);
           for (let i = 0; i < w.length; i++) {
-            const pr = project(camCoord, w[i])!;
+            const pr = project(camCoord, w[i], FOV_LAT)!;
             const z = dot3(sub(w[i], camCoord), f);
-            const rn = (counted[i].rPm / p2u11) * rs / (z * Math.tan(FOV / 2));
+            const rn = (counted[i].rPm / p2u11) * rs / (z * Math.tan(FOV_LAT / 2));
             box = Math.max(box, Math.abs(pr[1]) + rn, Math.abs(pr[0]) + rn / ASPECT);
           }
         }
@@ -2863,7 +2898,8 @@ console.log("\n=== 16. E1c-A DIPOLE FIDELITY (ratified data · camera · arrow �
     solve({ mode: "compare", units: [{ species: "H2O", at: [0, 0, 0] }, { species: "H2S", at: [4, 0, 0] }] }).el === 20,
     JSON.stringify(solve({ mode: "compare", units: [{ species: "H2O" }, { species: "H2S" }] })));
   ok("a lattice scene is never re-solved as a single unit",
-    solve({ mode: "coordination", placement: "lattice", units: [{ species: "Na+", at: [0, 0, 0] }] }).el === 45);
+    solve({ mode: "coordination", placement: "lattice", units: [{ species: "Na+", at: [0, 0, 0] }] }).el ===
+      E.BS_CAMERAS.coordination.el);
   ok("a single unit parked off-centre keeps the mode's wider camera",
     solve({ mode: "network", units: [{ species: "H2O", at: [6, 0, 0] }] }).el === 22);
   // E1c-H: the TRIGONAL PLANAR centre is now a shape of its own too (section 21
@@ -4938,8 +4974,14 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       `${ndcAt(2).toFixed(3)} (exactly on the edge, which is why 2.000 is the CUT and not the FIT)`);
     ok("the fit and the CUT are two different questions and two different numbers",
       (E.BS_FIT_CLIP as number) < (E.BS_FIT_MARGIN as number) &&
-      /if \(ext0 > 0 && spherical\.radius < ext0 \* BS_FIT_CLIP\) \{/.test(SRC),
-      `fit ${E.BS_FIT_MARGIN} (tangency + border), cut ${E.BS_FIT_CLIP} (tangency exactly)`);
+      // E3b F6: the cut is now the tangency condition AT THE FOV IN USE, so the
+      // shipped line reads bscCutClip(bsFov) — and bscCutClip(60) is BS_FIT_CLIP
+      // exactly, so no molecular scene's trigger moved.
+      /if \(ext0 > 0 && spherical\.radius < ext0 \* bscCutClip\(bsFov\)\) \{/.test(SRC) &&
+      Math.abs((E.bscCutClip(60) as number) - (E.BS_FIT_CLIP as number)) < 1e-12,
+      `fit ${E.BS_FIT_MARGIN} (tangency + border), cut ${E.BS_FIT_CLIP} (tangency exactly) ` +
+      `= bscCutClip(60) ${(E.bscCutClip(60) as number).toFixed(4)}; at the lattice FOV ` +
+      `${E.BS_LATTICE_FOV_DEG} deg the same condition is ${(E.bscCutClip(E.BS_LATTICE_FOV_DEG) as number).toFixed(3)}`);
     ok("no per-camera knob was invented and the border is real",
       !/fit_margin/.test(SRC),
       `margin ${E.BS_FIT_MARGIN} -> dist ${fitted.toFixed(2)}, border ${((1 - worstNdc(fitted)) * 100).toFixed(0)}%`);
@@ -5160,7 +5202,7 @@ console.log("\n=== 22. E2b THERMAL LAYER (scripted heat · averaged readout · n
       Object.is(E.bscOpeningExtent(LATTICE_BS), E.bscSiteExtent(LATTICE_BS, null)));
     ok("the shipped apply snaps the WHOLE pose and only on the measured overflow",
       /var ext0 = bscOpeningExtent\(bs\);/.test(appSrc) &&
-      /if \(ext0 > 0 && spherical\.radius < ext0 \* BS_FIT_CLIP\) \{/.test(appSrc) &&
+      /if \(ext0 > 0 && spherical\.radius < ext0 \* bscCutClip\(bsFov\)\) \{/.test(appSrc) &&
       /spherical\.radius = targetSpherical\.radius;/.test(appSrc) &&
       /animating = false;/.test(appSrc) && /updateCameraFromSpherical\(\);/.test(appSrc));
   }
@@ -5701,8 +5743,17 @@ console.log("\n=== 30. E4 THE TWO-UNIT CAMERA MAY NOT FORESHORTEN THE COMPARED A
   ok("every OTHER solved camera keeps the house azimuth (no fleet-wide camera edit)",
     E.BS_CAMERAS.dipole_sum.az === 35 && E.BS_CAMERAS.explore.az === 35 &&
     E.BS_CAMERAS.network.az === 35 && E.BS_CAMERAS.electron_sea.az === 35 &&
-    E.BS_CAMERAS.network.el === 22 && E.BS_CAMERAS.coordination.el === 45 &&
+    E.BS_CAMERAS.network.el === 22 && E.BS_CAMERAS.coordination.el === 26 &&
     E.BS_CAMERAS.lattice_grow.el === 26 && E.BS_CAMERAS.lattice_grow.az === 35);
+  // E3b F6: ...and the lattice arc is now ONE elevation. coordination moved 45 ->
+  // 26 because the projection under it changed (a narrow FOV removes the depth
+  // divergence el 45 was solved for), which also makes S4 -> S5 -> S6 a single
+  // elevation — at the click the only visible change is the state's own beat.
+  ok("every lattice camera shares the lattice elevation (S4 -> S5 -> S6 is one pose)",
+    E.BS_CAMERAS.lattice_grow.el === 26 && E.BS_CAMERAS.coordination.el === 26 &&
+    E.BS_CAMERAS.melt.el === 26 && E.BS_CAMERAS.drift.el === 26,
+    `grow ${E.BS_CAMERAS.lattice_grow.el} · coordination ${E.BS_CAMERAS.coordination.el} · ` +
+    `melt ${E.BS_CAMERAS.melt.el} · drift ${E.BS_CAMERAS.drift.el}`);
   ok("assemble now carries transfer's E4 solve EXACTLY (S1 -> S2 is one camera)",
     E.BS_CAMERAS.assemble.az === E.BS_CAMERAS.transfer.az &&
     E.BS_CAMERAS.assemble.el === E.BS_CAMERAS.transfer.el &&
@@ -6482,6 +6533,19 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
 // framing gate that measured with the engine's own fit could not catch a wrong fit.
 {
   const FOV = 60 * Math.PI / 180, ASPECT = 16 / 9, TAN = Math.tan(FOV / 2);
+  // ── E3b F6: the projection is a property of the SCENE, not a constant. A
+  //   lattice is drawn at BS_LATTICE_FOV_DEG from bscCamDistK times the solved
+  //   distance — the same picture from further away — so every measurement below
+  //   takes the scene's own tan(fov/2) and its own distance scale. Both come out
+  //   of the engine; a wrong value there is measured here, not assumed away.
+  //   tanOf(a molecular scene) === TAN exactly, so no molecular row moves.
+  const tanOf = (bs: any) => Math.tan((E.bscSceneFov(bs) as number) * Math.PI / 360);
+  const kOf = (bs: any) => E.bscCamDistK(bs) as number;
+  /** the distance the shipped apply solves for this row: floor, fit, equivalence. */
+  const solvedDist = (bs: any, cam: any) => Math.max(
+    (cam.dist || 7) * kOf(bs),
+    cam.fit ? (E.bscFitDist(bs, cam, 1, null) as number) : 0,
+    E.bscRatioFloorDist(bs, cam, 1, null) as number);
   const sub3 = (a: number[], b: number[]) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
   const cr3 = (a: number[], b: number[]) =>
     [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
@@ -6491,7 +6555,7 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     return [dist * Math.cos(e) * Math.cos(a), dist * Math.sin(e), dist * Math.cos(e) * Math.sin(a)];
   };
   /** worst |NDC| of a set of drawn discs, x measured against the 16:9 width. */
-  const worstNdc = (cam: number[], pts: { at: number[]; r: number }[]) => {
+  const worstNdc = (cam: number[], pts: { at: number[]; r: number }[], tn: number = TAN) => {
     const f = E.bscNorm(sub3([0, 0, 0], cam)) as number[];
     const rt = E.bscNorm(cr3(f, [0, 1, 0])) as number[];
     const up = cr3(rt, f);
@@ -6499,9 +6563,9 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     for (const p of pts) {
       const d = sub3(p.at, cam), z = dt3(d, f);
       if (z <= 0.01) return 99;
-      const rn = p.r / (z * TAN);
-      w = Math.max(w, Math.abs(dt3(d, up)) / (z * TAN) + rn,
-        (Math.abs(dt3(d, rt)) / (z * TAN) + rn) / ASPECT);
+      const rn = p.r / (z * tn);
+      w = Math.max(w, Math.abs(dt3(d, up)) / (z * tn) + rn,
+        (Math.abs(dt3(d, rt)) / (z * tn) + rn) / ASPECT);
     }
     return w;
   };
@@ -6555,19 +6619,19 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     (bs.controls || []).some((c: any) => (typeof c === "string" ? c : c.id) === "spin") ||
     (bs.mode || "dipole_sum") === "explore";
   /** the worst |NDC| any pose of this scene reaches at this distance. */
-  const framed = (bs: any, cam: any, dist: number, rs: number) => {
+  const framed = (bs: any, cam: any, dist: number, rs: number, tnIn?: number) => {
     const C = camOf3(cam, dist), ax = E.bscSpinAxis({ az: cam.az, el: cam.el, dist }) as number[];
-    const D = discsOf(bs, rs);
-    let w = worstNdc(C, D);
+    const D = discsOf(bs, rs), tn = (tnIn != null) ? tnIn : tanOf(bs);
+    let w = worstNdc(C, D, tn);
     if (spins(bs)) {
       for (let a = 0; a < 360; a += 5) {
-        w = Math.max(w, worstNdc(C, D.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r }))));
+        w = Math.max(w, worstNdc(C, D.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r })), tn));
       }
     }
     return w;
   };
   /** the same measurement over the COUNTED set alone (focal ion + its shell). */
-  const framedCounted = (bs: any, cam: any, dist: number, rs: number) => {
+  const framedCounted = (bs: any, cam: any, dist: number, rs: number, tnIn?: number) => {
     const S = E.bscSiteList(bs, null) as any[];
     const p2u = (E.bscLinkCfg(bs) as any).pm_per_unit as number;
     const fAt = S[(bs.lattice && bs.lattice.focal_site) || 0].at as number[];
@@ -6581,9 +6645,10 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
       return d0 < 1e-9 || Math.abs(d0 - nn) < 1e-4;
     }).map((si: any) => ({ at: si.at, r: si.rPm / p2u * rs }));
     const C = camOf3(cam, dist), ax = E.bscSpinAxis({ az: cam.az, el: cam.el, dist }) as number[];
-    let w = worstNdc(C, set);
+    const tn = (tnIn != null) ? tnIn : tanOf(bs);
+    let w = worstNdc(C, set, tn);
     for (let a = 0; a < 360; a += 5) {
-      w = Math.max(w, worstNdc(C, set.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r }))));
+      w = Math.max(w, worstNdc(C, set.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r })), tn));
     }
     return w;
   };
@@ -6697,11 +6762,11 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     if (!cam) continue;
     const bs = SCENES[key].bs, poses = SCENES[key].rs || [1];
     // the ENTRY distance, exactly as the shipped apply computes it
-    const dEntry = cam.fit ? Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number) : cam.dist;
+    const dEntry = cam.fit ? solvedDist(bs, cam) : cam.dist * kOf(bs);
     for (const rs of poses) {
       // a fit_ramp row is drawn at its OPENING distance while rs is 1 and arrives
       // at its solved distance exactly as rs arrives at the reveal target.
-      const d = (cam.fit_ramp === "reveal" && rs !== 1) ? cam.dist : dEntry;
+      const d = (cam.fit_ramp === "reveal" && rs !== 1) ? cam.dist * kOf(bs) : dEntry;
       // ...and once a peer_fade reveal has run, the framed set is the COUNTED set:
       // the state teaches from INSIDE a block, the faded wall is allowed to bleed
       // past the edge, and what may NOT be clipped is the ion the caption is about
@@ -6762,7 +6827,7 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
       const total = (E.bscSiteList(bs, null) as any[]).length;
       const gw0 = E.bscGrowCamW(bs, 0, total);
       if (!gw0) return dEntry;
-      return Math.min(dEntry, Math.max(E.BS_CAMERAS.approach_link.dist,
+      return Math.min(dEntry, Math.max(E.BS_CAMERAS.approach_link.dist * kOf(bs),
         E.bscFitDist(bs, cam, 1, null, gw0) as number));
     };
     /** worst |NDC| over the discs on screen at t = 0. */
@@ -6775,10 +6840,11 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
         D = D.slice(0, Math.min(n0, S.length)).concat(D.slice(S.length));
       }
       const C = camOf3(cam, dist), ax = E.bscSpinAxis({ az: cam.az, el: cam.el, dist }) as number[];
-      let w = worstNdc(C, D);
+      const tn = tanOf(bs);
+      let w = worstNdc(C, D, tn);
       if (spins(op)) {
         for (let a = 0; a < 360; a += 5) {
-          w = Math.max(w, worstNdc(C, D.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r }))));
+          w = Math.max(w, worstNdc(C, D.map((q) => ({ at: E.bscSpinRot(q.at, ax, a * Math.PI / 180) as number[], r: q.r })), tn));
         }
       }
       return w;
@@ -6789,7 +6855,7 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
       const cam = (E.BS_CAMERAS as any)[key];
       if (!cam) continue;
       const bs = SCENES[key].bs;
-      const dEntry = cam.fit ? Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number) : cam.dist;
+      const dEntry = cam.fit ? solvedDist(bs, cam) : cam.dist * kOf(bs);
       const d0 = openingDist(bs, cam, dEntry);
       const w0 = framedOpening(bs, cam, d0);
       rows.push(`${key} d0 ${d0.toFixed(1)} fill ${w0.toFixed(2)}`);
@@ -6810,7 +6876,7 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     {
       const bsG = SCENES.lattice_grow.bs;
       const preG = { az: 35, el: 26, dist: 20.0, fit: true };       // as shipped pre-F5
-      const dPre = Math.max(preG.dist, E.bscFitDist(bsG, preG, 1, null) as number);
+      const dPre = solvedDist(bsG, preG);
       const wOpenPre = framedOpening(bsG, preG, dPre);
       const wSettledPre = framed(bsG, preG, dPre, 1);
       ok("NEGATIVE CONTROL: the pre-F5 lattice_grow camera FAILS the fill floor at its OPENING pose",
@@ -6828,11 +6894,12 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
       // units FURTHER than the target. A naive r/dist reads both as equal and
       // would have certified a continuity the frames do not show.
       const cG = (E.BS_CAMERAS as any).lattice_grow;
-      const dEntryG = Math.max(cG.dist, E.bscFitDist(bsG, cG, 1, null) as number);
+      const dEntryG = solvedDist(bsG, cG);
       const d0G = openingDist(bsG, cG, dEntryG);
       const rCl = (E.bscRadiusPm("Cl-") as number) / E.BS_PM_PER_UNIT;
       /** px width of a sphere of radius r whose centre is at depth z, at 1280x720. */
-      const drawnPx = (r: number, z: number) => 2 * (r / Math.sqrt(z * z - r * r)) / TAN * 360;
+      const drawnPx = (r: number, z: number, tn: number = TAN) =>
+        2 * (r / Math.sqrt(z * z - r * r)) / tn * 360;
       /** the depth of the FIRST Cl- site of a scene under a camera at dist. */
       const clDepth = (bs: any, cam: any, dist: number) => {
         const C = camOf3(cam, dist), f = E.bscNorm(sub3([0, 0, 0], C)) as number[];
@@ -6840,16 +6907,16 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
         return dt3(sub3(S[0].at, C), f);
       };
       const s3bs = SCENES.approach_link.bs, s3cam = E.BS_CAMERAS.approach_link;
-      const dS3 = Math.max(s3cam.dist, E.bscFitDist(s3bs, s3cam, 1, null) as number);
+      const dS3 = solvedDist(s3bs, s3cam);
       // S3 settles its pair on separation_axis at +- separation/2, which is where
       // bscSiteAt draws it; units[].at is [0,0,0] for both, so the depth is
       // computed from the settled pose the state ends on.
       const s3Settled = JSON.parse(JSON.stringify(s3bs));
       s3Settled.units[0].at = [-s3bs.separation / 2, 0, 0];
       s3Settled.units[1].at = [s3bs.separation / 2, 0, 0];
-      const pxS3 = drawnPx(rCl, clDepth(s3Settled, s3cam, dS3));
-      const pxS4 = drawnPx(rCl, clDepth(bsG, cG, d0G));
-      const pxPre = drawnPx(rCl, clDepth(bsG, preG, dPre));
+      const pxS3 = drawnPx(rCl, clDepth(s3Settled, s3cam, dS3), tanOf(s3bs));
+      const pxS4 = drawnPx(rCl, clDepth(bsG, cG, d0G), tanOf(bsG));
+      const pxPre = drawnPx(rCl, clDepth(bsG, preG, dPre), tanOf(bsG));
       ok("S3 -> S4 is one readable move, not a scale collapse (the ion the beat is about)",
         pxS3 / pxS4 < 1.6 && pxS4 / pxS3 < 1.6,
         `Cl- ${pxS3.toFixed(0)} px at the S3 exit -> ${pxS4.toFixed(0)} px at the S4 opening ` +
@@ -6864,7 +6931,7 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     {
       const bsG = SCENES.lattice_grow.bs, cG = (E.BS_CAMERAS as any).lattice_grow;
       const total = (E.bscSiteList(bsG, null) as any[]).length;
-      const dT = Math.max(cG.dist, E.bscFitDist(bsG, cG, 1, null) as number);
+      const dT = solvedDist(bsG, cG);
       const d0 = openingDist(bsG, cG, dT);
       const dAt = (ms: number) => {
         const gw = E.bscGrowCamW(bsG, ms, total);
@@ -6886,8 +6953,15 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
         under === 0, `${under} frames closer than the honest fit over the shown sites, across 0..22000 ms`);
       ok("...and only ever pulls OUT (a growing block never brings the camera in)",
         nonMono === 0, `${nonMono} non-monotone frames`);
+      // E3b F6: measured as a FRACTION of the distance, because that is what the
+      // eye reads — a one-frame move of dd/d changes apparent size by dd/d, at any
+      // FOV. The absolute 2.0 u it replaces was that same 2% bound written in the
+      // units of a 60 deg camera, and it silently became a 1% bound (i.e. a
+      // stricter one nobody chose) the moment the lattice moved 4.4x further out.
       ok("...and lands no shell as a SNAP (the per-frame step stays small)",
-        maxStep < 2.0, `worst single-frame move ${maxStep.toFixed(3)} u at ${atStep} ms, over a ${(dT - d0).toFixed(1)} u travel`);
+        maxStep / dT < 0.025,
+        `worst single-frame move ${maxStep.toFixed(3)} u = ${(100 * maxStep / dT).toFixed(2)}% of the ` +
+        `distance, at ${atStep} ms, over a ${(dT - d0).toFixed(1)} u travel`);
       ok("...and does not move before its own beat (cause first, Rule 32a)",
         dAt(4000) === d0 && dAt(2000) === d0,
         `still at the opening distance ${d0.toFixed(2)} at 4000 ms of a beat whose growth starts at 5000`);
@@ -6924,9 +6998,9 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
       };
       for (const key of ["layer_shift", "drift", "melt"]) {
         const cam = (E.BS_CAMERAS as any)[key], bs = SCENES[key].bs;
-        const dEntry = Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number);
+        const dEntry = solvedDist(bs, cam);
         const op = openingOf(bs);
-        const dOpen = Math.max(cam.dist, E.bscFitDist(op, cam, 1, null) as number);
+        const dOpen = solvedDist(op, cam);
         console.log(`        scripted-only ${key}: entry ${dEntry.toFixed(2)} vs opening ${dOpen.toFixed(2)} ` +
           `= ${(dEntry / dOpen).toFixed(2)}x  (${WHY[key]})`);
       }
@@ -6938,13 +7012,138 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
       const bad = shipped.filter(({ k, c }) => {
         const cam = (E.BS_CAMERAS as any)[k];
         const bs = Object.assign({}, SCENES[k].bs, { controls: c });
-        const dEntry = Math.max(cam.dist, E.bscFitDist(bs, cam, 1, null) as number);
-        const dOpen = Math.max(cam.dist, E.bscFitDist(openingOf(bs), cam, 1, null) as number);
+        const dEntry = solvedDist(bs, cam);
+        const dOpen = solvedDist(openingOf(bs), cam);
         return Math.abs(dEntry / dOpen - 1) > 1e-9;
       }).map(({ k }) => k);
       ok("a row whose wide pose is TEACHER-REACHABLE is framed for it from frame 1 (no ramp, by design)",
         bad.length === 0, bad.length ? "RAMP NEEDED: " + bad.join(", ")
           : "layer_shift + drift measure 1.00x once their own slider is exposed, which is what both shipped states author");
+    }
+  }
+
+  // ═════════════════════════════════════════════════════════════════════════
+  // E3b F6 — A LATTICE MUST READ AS A LATTICE (the bug row's own probe).
+  //   bug_class field3d_60deg_fov_offaxis_camera_cannot_render_a_crystal_lattice
+  //   _as_a_lattice, MAJOR: ionic S5's caption is "Six neighbours, every ion" and
+  //   its narration is "the count is the same: six and six", and the six
+  //   physically identical Cl- segmented out of the shipped PNGs at
+  //     [41.0, 42.5, 45.2, 62.8, 67.2, 71.2] px -> 1.738x
+  //   The probe the row names, verbatim: for any state with placement lattice,
+  //   project all sites and assert the ratio of largest to smallest drawn site
+  //   radius is under ~1.3 — and FAIL THE CAMERA, not the config.
+  //   Two details the naive form of that probe gets wrong, both measured:
+  //     - it is PER SPECIES. A rock-salt block draws Na+ (102 pm) beside Cl-
+  //       (181 pm); a ratio over all sites at once reads 1.77x on a perfect
+  //       orthographic projection, which is the physics, not a defect.
+  //     - the drawn width of a sphere is its SILHOUETTE, r / sqrt(z^2 - r^2),
+  //       not r / z (6.5% wider at these radii) — the same honest form the S3 ->
+  //       S4 continuity measurement above uses.
+  {
+    const RATIO_MAX = 1.30;                    // the row's probe
+    /** largest : smallest drawn radius, worst over species, at this pose. */
+    const spreadOf = (bs: any, cam: any, dist: number, rs: number, tn: number,
+                      countedOnly = false) => {
+      const S = E.bscSiteList(bs, null) as any[];
+      const p2u = (E.bscLinkCfg(bs) as any).pm_per_unit as number;
+      let set = S;
+      if (countedOnly) {
+        const fAt = S[(bs.lattice && bs.lattice.focal_site) || 0].at as number[];
+        let nn = 1e9;
+        for (let i = 0; i < S.length; i++) {
+          const d0 = E.bscMag(sub3(S[i].at, fAt)) as number;
+          if (d0 > 1e-9 && d0 < nn) nn = d0;
+        }
+        set = S.filter((si: any) => {
+          const d0 = E.bscMag(sub3(si.at, fAt)) as number;
+          return d0 < 1e-9 || Math.abs(d0 - nn) < 1e-4;
+        });
+      }
+      const C = camOf3(cam, dist), f = E.bscNorm(sub3([0, 0, 0], C)) as number[];
+      const by: Record<string, number[]> = {};
+      for (const si of set) {
+        const r = si.rPm / p2u * rs, z = dt3(sub3(si.at, C), f);
+        if (z <= r) return { ratio: 99, n: set.length, species: "z<=r" };
+        (by[si.species] = by[si.species] || []).push(2 * (r / Math.sqrt(z * z - r * r)) / tn * 360);
+      }
+      let worst = 1, sp = "";
+      for (const k of Object.keys(by)) {
+        const v = by[k], q = Math.max(...v) / Math.min(...v);
+        if (q > worst) { worst = q; sp = k + " x" + v.length; }
+      }
+      return { ratio: worst, n: set.length, species: sp };
+    };
+    for (const key of Object.keys(SCENES)) {
+      const cam = (E.BS_CAMERAS as any)[key], bs = SCENES[key].bs;
+      if (!cam || bs.placement !== "lattice") continue;
+      const dEntry = cam.fit ? solvedDist(bs, cam) : cam.dist * kOf(bs);
+      for (const rs of (SCENES[key].rs || [1])) {
+        const d = (cam.fit_ramp === "reveal" && rs !== 1) ? cam.dist * kOf(bs) : dEntry;
+        // the same per-pose exemption the containment sweep grants: once a
+        // peer_fade reveal has run, the wall is gone and what the caption counts
+        // — and what the claim of equivalence is ABOUT — is the counted set.
+        const counted = !!(bs.lattice && bs.lattice.reveal === "peer_fade" && rs !== 1);
+        const q = spreadOf(bs, cam, d, rs, tanOf(bs), counted);
+        ok(`${key}${(SCENES[key].rs || [1]).length > 1 ? " (rs " + rs + ")" : ""}: ` +
+           `identical ions DRAW identical (ratio < ${RATIO_MAX})`,
+          q.ratio < RATIO_MAX,
+          `largest : smallest ${q.ratio.toFixed(3)} over ${q.n} ${counted ? "counted " : ""}sites ` +
+          `(worst species ${q.species}) at dist ${d.toFixed(1)}, fov ${E.bscSceneFov(bs)}`);
+      }
+    }
+    // ── THE NEGATIVE CONTROL THE DISPATCH NAMES: the SHIPPED 60 deg pose, which
+    //    is where the 1.74x on the review frames came from. If this ever passes,
+    //    the probe has stopped measuring the thing the row is about.
+    {
+      const bsC = SCENES.coordination.bs, preC = { az: 35, el: 45, dist: 16.0 };
+      const q60 = spreadOf(bsC, preC, preC.dist, E.BS_COORD_RADIUS_SCALE, TAN, true);
+      ok("NEGATIVE CONTROL: the shipped 60 deg coordination pose FAILS this probe",
+        q60.ratio > 1.7,
+        `largest : smallest ${q60.ratio.toFixed(3)} over the counted set at az 35 / el 45 / d 16 ` +
+        `— the review frames segmented 1.738x off the shipped PNGs`);
+      // ...and the same block at the same elevation, at the LATTICE FOV: the fix
+      // is the projection, so the defect follows the FOV and not the elevation.
+      const q15 = spreadOf(bsC, preC, preC.dist * kOf(bsC), E.BS_COORD_RADIUS_SCALE,
+        tanOf(bsC), true);
+      ok("...and the SAME camera at the lattice FOV passes — the fix is the projection",
+        q15.ratio < RATIO_MAX, `${q60.ratio.toFixed(3)} at 60 deg -> ${q15.ratio.toFixed(3)} at ` +
+        `${E.BS_LATTICE_FOV_DEG} deg, same az / el, same picture size`);
+    }
+    // ── AND THE GUARANTEE, not just the measurement. Every shipped block is
+    //    inside the probe on the containment fit alone; the equivalence FLOOR is
+    //    what holds for a block nobody has authored yet, so it is asserted on one
+    //    that nobody has: a 7x7x7 rock salt, where the fit alone FAILS.
+    {
+      // A COLUMN, not a bigger cube: BS_MAX_SITES is 125, which is exactly the
+      // 5x5x5 the shipped states author, so no cubic block can be wider than one
+      // already measured above. A block that is long along ONE axis is the shape
+      // the containment fit cannot defend — it buys screen width cheaply while
+      // the depth spread keeps growing — and it is authorable today.
+      const big = JSON.parse(JSON.stringify(SCENES.lattice_grow.bs));
+      big.lattice = { cell: "rock_salt", n: [3, 3, 13], a_pm: 564 };
+      const cam = (E.BS_CAMERAS as any).lattice_grow;
+      const dFitOnly = Math.max(cam.dist * kOf(big), E.bscFitDist(big, cam, 1, null) as number);
+      const dShipped = solvedDist(big, cam);
+      const qFit = spreadOf(big, cam, dFitOnly, 1, tanOf(big));
+      const qShip = spreadOf(big, cam, dShipped, 1, tanOf(big));
+      ok("NEGATIVE CONTROL: containment alone does NOT hold the probe on a 3x3x13 column",
+        qFit.ratio > RATIO_MAX,
+        `fit-only dist ${dFitOnly.toFixed(1)} -> ratio ${qFit.ratio.toFixed(3)}`);
+      ok("...and the equivalence floor holds it (the guarantee, not a measurement)",
+        qShip.ratio < RATIO_MAX && dShipped > dFitOnly,
+        `floor pushes ${dFitOnly.toFixed(1)} -> ${dShipped.toFixed(1)} u, ratio ` +
+        `${qFit.ratio.toFixed(3)} -> ${qShip.ratio.toFixed(3)} (target ${E.BS_LATTICE_RATIO_MAX})`);
+      // the floor is inactive wherever containment already satisfies it, so no
+      // shipped state is framed further out than its own picture needs.
+      const active = Object.keys(SCENES).filter((k) => {
+        const c = (E.BS_CAMERAS as any)[k], b = SCENES[k].bs;
+        if (!c || b.placement !== "lattice") return false;
+        const dF = Math.max(c.dist * kOf(b), c.fit ? (E.bscFitDist(b, c, 1, null) as number) : 0);
+        return (E.bscRatioFloorDist(b, c, 1, null) as number) > dF * 1.02;
+      });
+      ok("the equivalence floor moves no shipped state by more than 2% (15 deg is the meeting point)",
+        active.length === 0, active.length ? "MOVED: " + active.join(", ")
+          : "every shipped lattice row is framed by its own containment fit");
     }
   }
 
@@ -6954,11 +7153,15 @@ console.log("\n=== 33. E3b F2/F3 FRAMING SANITY (the frame contains what is draw
     const w = framed(SCENES.assemble.bs, pre, pre.dist, 1);
     ok("NEGATIVE CONTROL: the pre-F2 assemble camera FAILS this metric",
       w > 1, `worst |NDC| ${w.toFixed(3)} at az 35 / el 47 / dist 7 (both atoms cut by the edge)`);
-    const preC = { az: 35, el: 45, dist: 16.0 };                   // coordination, as shipped
-    const wc = framed(SCENES.coordination.bs, preC, preC.dist, 1);
+    // E3b F6: this control is a 60 deg camera at a 60 deg distance — the pose that
+    // actually shipped — so it is measured in ITS OWN projection (TAN), not in the
+    // lattice projection that replaced it. Measuring a historical camera under the
+    // new FOV would report a defect nobody ever saw.
+    const preC = { az: 35, el: 45, dist: 16.0 };                   // coordination, as E3a shipped it
+    const wc = framed(SCENES.coordination.bs, preC, preC.dist, 1, TAN);
     ok("NEGATIVE CONTROL: the pre-F3 coordination camera FAILS at its OPENING pose",
       wc > 1, `worst |NDC| ${wc.toFixed(3)} at the packed rs = 1 pose the state opens in`);
-    const wcSettled = framedCounted(SCENES.coordination.bs, preC, preC.dist, E.BS_COORD_RADIUS_SCALE);
+    const wcSettled = framedCounted(SCENES.coordination.bs, preC, preC.dist, E.BS_COORD_RADIUS_SCALE, TAN);
     ok("...and PASSED at the settled pose it was solved for — which is why nothing caught it",
       wcSettled <= 1, `counted-set worst |NDC| ${wcSettled.toFixed(3)} at rs ${E.BS_COORD_RADIUS_SCALE}`);
   }
