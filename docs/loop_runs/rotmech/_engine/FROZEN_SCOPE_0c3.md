@@ -267,6 +267,46 @@ Secondary acceptance floors (findings_c PASS 15) — absolute, not deltas: S1 in
 `len(6.51)/len(1.14) = 5.71 ± 0.10` fitted in pixels with intercept < 1 px; arrow-vs-axle
 contrast ≥ 3:1; S4 flip changes ≥ 300 px.
 
+> ### 🔨 RULING 2026-08-05 — **C-6 MERGES INTO E7.** E7 now has TWO consumers, one mechanism.
+>
+> Asked to rule on C-6 (pull-arrow camouflage, A-12), I checked the geometry in this checkout
+> rather than reasoning from the findings text. **C-6 is not merely the same *class* as E7 — it is
+> the same *scar*, on a second consumer:**
+>
+> - The pull arrow is **also a `THREE.ArrowHelper`** (`:50918`), so its shaft is also a zero-width
+>   `THREE.Line`, exactly like the L arrow.
+> - It is built with direction `(−side, 0, 0)` — **radial, i.e. collinear with the rod** — and the
+>   rod is an opaque `CylinderGeometry(0.05, 0.05, 2·rod_half·W)` (`:50901`).
+> - So both rbr arrows are `ArrowHelper`s whose zero-width shaft runs **collinear with an opaque
+>   cylinder**: the L arrow inside the axle (r = 0.07), the pull arrow along the rod (r = 0.05).
+>   That is verbatim the FIXED scar `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line`.
+>
+> **A-12 called it "camouflage" — that is the SYMPTOM.** The mechanism is the shaft. Confirmed
+> A-12's own correction while I was there: `RBR_ARROW_SCALE = 0.070`/N (`:50200`) gives
+> `rbrArrowLen(3.60) = 0.252`, comfortably above `RBR_ARROW_MIN_LEN = 0.16` (`:50205`) — **so
+> tuning the floor is the wrong fix**, exactly as A-12 says.
+>
+> **Consequence for the E7 dispatch:**
+> 1. Widen the `bug_class` to `rbr_arrowhelper_shafts_not_separable_from_the_apparatus_they_run_along`,
+>    naming **both** consumers. Still ONE `bug_class`, so Amendment 4 holds — this is one mechanism
+>    at the right altitude, not two rows smuggled into one dispatch.
+> 2. **One mesh-cylinder shaft mechanism, two consumers.** Same argument findings_d §4 made for the
+>    tangential vector: price one mechanism with two consumers, never two mechanisms.
+> 3. **The two magnitude→length maps must NOT be shared** — F in newtons (`rbrArrowLen`, knee +
+>    asymptote, `:50239`) versus L in kg·m²/s (`RBR_L_ARROW_SCALE`, currently a raw clamp). Same
+>    caution findings_d §4 raised for m/s vs N. Separability is shared; scaling is not.
+> 4. Separability ratios go **in the constants** for both, and the **drawn-geometry** probe runs on
+>    both. The pull arrow's absolute floor is measured at its **worst** instant — the S2 cause beat,
+>    r = 0.80, F ≈ 3.60 N — because `F = mω²r` with `ω ∝ 1/I` makes the arrow **smallest exactly
+>    when it must be seen**, and largest after the slide is over.
+>
+> **Cost of the ruling, stated:** E7 grows. If it approaches the ~100-call ceiling the surgeon
+> **splits and hands off, L arrow first** — it is the one blocking Desk C (`angular_momentum`
+> holds for it), whereas the pull arrow degrades a beat on Desk A's already-authored concept.
+> **Rejected alternative:** a separate C-6 dispatch would mean a second ~100-call entry into the
+> same code region to apply the same prevention rule to the same primitive — the cost here is
+> entering the region, not the lines changed.
+
 ### E8 · `rbr_live_param_drag_has_no_rendered_agent` — **BLOCKS DESK A's S8**
 Source: findings_c F-C1 (confirmed on all four links by founder-proxy) = findings_a A-2.
 **Same defect, filed independently by two desks — one row.**
@@ -313,7 +353,7 @@ rediscovered, and they are **not** silently dropped.
 | **C-3 · `glowTargets[0]` fallback in the rbr glow pass** (F-C5) | c | Parity with `force_rig` (`:49002–49003`). `tts_sentences[].glow` is a silent no-op on every rbr state. Tagged ride-along by Desk C — `phases[]` is a working substitute. **No back-compat constraint: no concept JSON consuming rbr exists on any branch** (Desk C verified and withdrew its earlier contrary claim). |
 | **C-4 · `masses.r_m` dead at t = 0 in ramped/swept states** (A-3 + A-9) | a | `rbrRAt(0)` returns `ramp.from` (`:50538`) / `sweep.lo` (`:49859`), never `masses.r_m`. Engine question for Desk E: should `range` be order-sensitive at all, or should `masses.r_m` win at t = 0? Cost Desk A a wrong-L explore state. |
 | **C-5 · latched match cue under a time pin** (A-6) | a | `eng.matched[mid]` (`:50276`) clears only at state apply (`:50512`), so a rewind never clears it — the co-glow reads "landed" at t = 0. Regresses OPEN scar `hysteretic_state_cannot_be_latched_under_a_time_pin`. THE EYE **structurally cannot verify** the beat S3 exists to deliver. |
-| **C-6 · pull-arrow camouflage at the cause beat** (A-12, mechanism corrected) | a | **Not the min-length floor** — `rbrArrowLen(3.60) = 0.252` is above the 0.16 floor. It is colour+depth camouflage against the rod's own 0.20 tip overhang, and `F = mω²r` makes the arrow smallest exactly when it must be seen. |
+| ~~**C-6 · pull-arrow camouflage at the cause beat**~~ (A-12) | a | **RULED 2026-08-05 — MERGED INTO E7. No longer a separate row.** See the ruling below. |
 | **C-7 · no `at_ms` reveal for pull arrows** (A-7) | a | `rbr_pull_arrow: rb.show_pull_arrows` (`:50609`) is boolean-only; S2's "arrows *appear*" beat is not expressible. |
 | **C-8 · `min_ring` on rbr `controls_visible`** (A-8) | a | `bonding_scene` already implements `{ id, min_ring }` (`:55484–55492`); rbr's token is a bare string union (`:1051`). The pattern exists — cheap. Nothing breaks today, but the ring-gated explore claim must not be sealed as satisfied at Checkpoint C. |
 | **C-9 · sparse slider panel renders full height** (A-5) | a | Confirmed regression of an OPEN scar. Carries a **tension**, not just a fix: skeleton E8 mandates `visibility:hidden` for row-position stability, which is exactly what preserves the height. The surgeon must satisfy both. |
