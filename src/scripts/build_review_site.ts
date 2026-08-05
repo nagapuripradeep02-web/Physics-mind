@@ -92,6 +92,13 @@ type ConceptJson = {
                 scene_composition?: unknown[];
                 focal_primitive_id?: string;
                 focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
+                // This local shape omitted variable_choreography, so the field the
+                // renderer needs could not even be REFERENCED here — the omission
+                // in buildParametricConfig below was invisible to the type checker
+                // as well as to every runtime gate. A hand-maintained structural
+                // type that is narrower than the data it describes hides exactly
+                // the bug it looks like it would catch.
+                variable_choreography?: unknown[];
             }
         >;
     };
