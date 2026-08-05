@@ -40037,6 +40037,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var t = Math.abs(Math.tan((thetaDeg || 0) * Math.PI / 180));
         return (k / (1 + k)) * t;
     }
+    // SEAM R (0c-3) — does this body have an angular state AT ALL? True for exactly
+    // the shapes that draw a rim (NLB_ROLL_SHAPES); a block and the wall slab have
+    // no radius on screen and no spin, so the radius and spin DIALS refuse them
+    // rather than writing a record nothing can render (and, for omega0, rather than
+    // flipping the kinetic branch's friction reference to a contact point that does
+    // not exist). Shape is a per-ID build-time property, so this answer is stable
+    // for the whole concept.
+    function nlbSpinnable(b) {
+        return !!(b && NLB_ROLL_SHAPES.indexOf(b.shape) >= 0);
+    }
     // Does this body carry an INDEPENDENT angular state this state? Config-derived,
     // resolved once at apply. A body answering false keeps SEAM G's position-driven
     // spin, byte for byte.
@@ -40700,6 +40710,67 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!(spinR > 0)) spinR = NLB_WHEEL_R;
             wgrp2.rotation.z = -(s * NLB_WORLD_PER_M) / spinR;
         }
+    }
+
+    // ── SEAM R (rotmech 0c-3) — the DRAWN radius ────────────────────────────
+    //   The spinning parts of a wheel/roller are built ONCE, at a fixed geometry:
+    //   SEAM G's wheel is always a tyre of NLB_WHEEL_R and SEAM R's four rollers are
+    //   built at the union def's own nlbRadiusW. Radius is now a LIVE control
+    //   (controls_visible 'R'/'R2'), so the drawn size has to follow the record, and
+    //   the ONE way to do that without rebuilding geometry mid-drag is a uniform
+    //   scale on the child group. The group carries only the spin rotation, so a
+    //   uniform scale composes with it exactly and the marker geometry (hub, spokes,
+    //   meridian, face-stripe, arc segment) scales with the body it marks.
+    //   THREE things move together, and they must move together or the fix is the
+    //   same defect one layer in:
+    //     • the drawn size          (this scale),
+    //     • the LIFT — mesh.userData._liftY, the height nlbSetBodyPosition stands
+    //       the centre at, or a bigger wheel sinks into the track and a smaller one
+    //       floats above it,
+    //     • the SPIN divisor _spinR, so s = R·θ stays literally true on screen.
+    //   The revolution marks, the circumference bracket, the centre markers and the
+    //   contact layer need nothing here: every one of them already RE-READS
+    //   nlbRadiusM/nlbRadiusW off the live record each frame, so they respace by
+    //   construction (see the U11 comment: "read, not remembered").
+    //   Churn-guarded: an unchanged radius writes no transform, so a frozen frame is
+    //   byte-stable and a body whose radius never moves is untouched. No clock, no
+    //   dt, no accumulator (Rule 36) — this is a pure function of the record.
+    function nlbRollerGroup(mesh) {
+        if (!mesh || !mesh.children) return null;
+        for (var ci = 0; ci < mesh.children.length; ci++) {
+            var cud = mesh.children[ci].userData;
+            if (cud && (cud.elementType === "nlb_wheel" || cud.elementType === "nlb_roller")) return mesh.children[ci];
+        }
+        return null;
+    }
+    // rW is the radius this body should DRAW at, in world units. _buildRw is the
+    // radius its child geometry was actually built at, stamped at build — so a body
+    // whose live radius equals its build radius gets scale exactly 1 and is
+    // bit-identical to the un-scaled mesh it always was.
+    function nlbScaleRoller(mesh, rW) {
+        var grp = nlbRollerGroup(mesh);
+        if (!grp || !(rW > 0) || !isFinite(rW)) return;
+        var built = (typeof mesh.userData._buildRw === "number" && mesh.userData._buildRw > 0)
+            ? mesh.userData._buildRw : NLB_WHEEL_R;
+        var k = rW / built;
+        if (!(k > 0) || !isFinite(k)) return;
+        if (Math.abs(grp.scale.x - k) > 1e-9) grp.scale.set(k, k, k);
+        mesh.userData._liftY = rW;
+        mesh.userData._spinR = rW;
+    }
+    // The write path: re-scale, re-lift (through the ONE placement funnel, so the
+    // pick proxy, the spring and the spin all follow for free) and leave every
+    // radius-derived overlay to its own live re-read. A body with no drawn wheel —
+    // a block, the wall — has no radius on screen and is deliberately untouched.
+    function nlbApplyBodyRadius(bodyId) {
+        var eng = window.PM_nlbEngine;
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!eng || !mesh) return;
+        var b = eng.bodies[bodyId];
+        if (!b) return;
+        if (!nlbRollerGroup(mesh)) return;
+        nlbScaleRoller(mesh, nlbRadiusW(b));
+        nlbSetBodyPosition(bodyId, b.s);
     }
 
     // SEAM R — pose a body whose spin is NOT the position's function. theta is
@@ -42354,6 +42425,10 @@ export const FIELD_3D_RENDERER_CODE = `
             //   Rule 32e break.
             if (d.shape === "wheel") {
                 mat.visible = false;
+                // SEAM R (0c-3): the tyre/hub/spokes below are built at the CONSTANT
+                // NLB_WHEEL_R, so that — not the body's own radius — is what a live
+                // radius scales relative to.
+                mesh.userData._buildRw = NLB_WHEEL_R;
                 var wgrp = new THREE.Group();
                 wgrp.userData = { elementType: "nlb_wheel", id: "nlb_wheel_" + d.id, bodyId: d.id };
                 mesh.add(wgrp);
@@ -42411,6 +42486,9 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (NLB_ROLL_SHAPES.indexOf(d.shape) >= 0) {
                 mat.visible = false;
                 var rW = nlbRadiusW(d);
+                // SEAM R (0c-3): a roller's parts ARE built at its own radius, so a
+                // live radius scales relative to that and the build scale is 1.
+                mesh.userData._buildRw = rW;
                 var rgrp = new THREE.Group();
                 rgrp.userData = { elementType: "nlb_roller", id: "nlb_roller_" + d.id, bodyId: d.id };
                 mesh.add(rgrp);
@@ -42458,6 +42536,18 @@ export const FIELD_3D_RENDERER_CODE = `
                     rgrp.add(new THREE.Mesh(segGeo, rollMat(markCol, 0.32)));
                 }
             }
+
+            // SEAM R (0c-3) — the DRAWN radius, from the very first frame. A wheel's
+            // parts are built at the constant NLB_WHEEL_R while its LIFT and its spin
+            // divisor were already the body's own radius, so a wheel authoring
+            // radius_m 0.25 was drawn at 0.55 m and stood on a 0.25 m axle height —
+            // it sank through the track before any slider existed. This is one call
+            // rather than a second geometry branch, and it is EXACTLY the call the
+            // live radius dial makes, so the build pose and the first drag pose can
+            // never disagree (without it the first touch of R would snap the wheel
+            // from its build size to its physical size). A body authoring no radius_m
+            // scales by exactly 1 and is untouched.
+            nlbScaleRoller(mesh, nlbRadiusW(d));
 
             // SEAM E — invisible, forgiving pointer-pick proxy (the pp_drag_hit /
             // gsph_field_point_hit pattern: the raycaster skips visible:false, so
@@ -42673,7 +42763,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // ASCII transcription (no "theta", "mu_s", "m2", "m/s2", "deg"). The label span
     // carries the math-serif stack because U+2081/U+2082/U+209B/U+2096/U+2080 are
     // missing from most monospace faces (the merged-blob / tofu subscript scar).
-    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0"];
+    // SEAM R's three dials are APPENDED, never interleaved: this array is also the
+    // on-screen ROW ORDER (nlbSliderTokensUsed walks it), so inserting R beside m
+    // would move every existing concept's rows and break Rule 32d's "a row never
+    // moves between states" the moment two concepts disagreed.
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0", "R", "R2", "omega0"];
     var NLB_SLIDER_SPEC = {
         m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
         m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
@@ -42688,7 +42782,31 @@ export const FIELD_3D_RENDERER_CODE = `
         theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
         mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
-        v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 }
+        v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 },
+        // ── SEAM R (rotmech 0c-3) — the two RADIUS dials and the SPIN dial ──────
+        //   The token enum at the top of this file was widened for these three in
+        //   0c-2 but the spec rows never landed, and a token absent from THIS map is
+        //   dropped in silence by nlbSliderTokensUsed — no row, no disabled row, no
+        //   warning (engine_bug_queue nlb_seam_r_slider_tokens_declared_but_unwired).
+        //   R / R2 target the SAME two bodies m / m2 do (nlbSliderBodies: the first
+        //   two non-ghost, non-fixed bodies), so a teacher dragging m₂ and R₂ is
+        //   always dialling one object.
+        //   The MINIMUM is deliberately > 0: nlbRadiusM rejects a non-positive
+        //   radius as unphysical and falls back to NLB_DEFAULT_RADIUS_M, so a slider
+        //   that could reach 0 would make the wheel JUMP to 0.55 m at the bottom of
+        //   its travel. nlbApplyParam refuses a non-positive write for the same
+        //   reason the mass dials refuse one.
+        //   Glyphs: bare "R" for the single-body case (it must read the same as the
+        //   2πR bracket label standing under the wheel) and "R₂" for the second
+        //   dial (the physics block's own name for it); either is overridable per
+        //   concept through slider_controls.label, exactly like every other row.
+        R:     { param: "radius_a",         slider: "nlb_r_slider",     row: "nlb_r_row",     val: "nlb_r_val",     lbl: "nlb_r_lbl",     glyph: "R",  unit: " m",   dp: 2, min: 0.05, max: 0.8, step: 0.05, def: 0.25 },
+        R2:    { param: "radius_b",         slider: "nlb_r2_slider",    row: "nlb_r2_row",    val: "nlb_r2_val",    lbl: "nlb_r2_lbl",    glyph: "R₂", unit: " m",   dp: 2, min: 0.05, max: 0.8, step: 0.05, def: 0.25 },
+        // The STARTING SPIN, decoupled from v — the one control that makes a v−ωR
+        // mismatch teacher-drivable (spin-in-place at v = 0, or a wheel launched
+        // sliding). Signed: a negative value is backspin, which is a real and
+        // teachable case, so the range straddles zero.
+        omega0: { param: "initial_omega",   slider: "nlb_omega0_slider", row: "nlb_omega0_row", val: "nlb_omega0_val", lbl: "nlb_omega0_lbl", glyph: "ω₀", unit: " rad/s", dp: 1, min: -12, max: 12, step: 0.2, def: 0 }
     };
     // Per-concept min/max/step/default/label override, keyed by the SAME token the
     // per-state controls_visible[] uses. Mirrors the acgSc / gauss_law_sphere idiom.
@@ -42719,12 +42837,57 @@ export const FIELD_3D_RENDERER_CODE = `
     // Which tokens this CONCEPT ever exposes (union over every state's
     // controls_visible, in the canonical token order so the row ORDER on screen is
     // identical no matter what order the states were authored in).
+    //   AN UNKNOWN TOKEN IS NOW LOUD. The filter below is the ONE place a
+    //   controls_visible entry with no NLB_SLIDER_SPEC row disappears, and it used
+    //   to do it in perfect silence: no row, no disabled row, no console message
+    //   and no gate failure, so a state whose ONLY authored control was such a
+    //   token shipped with no live control at all and read as an authoring choice.
+    //   That is exactly how the three SEAM R dials stayed unwired for a whole
+    //   phase after their enum landed (nlb_seam_r_slider_tokens_declared_but_
+    //   unwired) — the defect was invisible for exactly as long as it was silent.
+    //   Warned ONCE per distinct token (the nlbEnWarnOnce idiom, keyed on the token
+    //   rather than an engine flag because this runs at BUILD, before any engine
+    //   record exists), and it stays a warning rather than a throw: the
+    //   createTubeLine scar says an authoring typo must never take the scene down.
+    var nlbUnknownTokenWarned = {};
+    var NLB_TOKEN_WARN_PREFIX = "[PM_NLB_SLIDER_TOKEN]";
+    function nlbTokenWarnOnce(key, msg) {
+        if (nlbUnknownTokenWarned[key]) return;
+        nlbUnknownTokenWarned[key] = true;
+        if (typeof console !== "undefined" && console && console.warn) {
+            console.warn(NLB_TOKEN_WARN_PREFIX + " " + msg);
+        }
+    }
+    function nlbWarnUnknownToken(tok) {
+        nlbTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
+            "', which has no NLB_SLIDER_SPEC row — no slider is built for it. " +
+            "Known tokens: " + NLB_SLIDER_TOKENS.join(", ") + ".");
+    }
+    // The same discipline one layer in: a dial that is BUILT but whose write the
+    // engine refuses is exactly as silent as a token that was never built, so both
+    // refusals say so once. (A radius or a spin on a block is an authoring mistake,
+    // not a scene-breaking one — a warning, never a throw.)
+    function nlbWarnInertRadius(tok, b) {
+        nlbTokenWarnOnce("radius:" + tok + ":" + (b ? b.id : "?"),
+            "the '" + tok + "' radius dial targets body '" + (b ? b.id : "?") +
+            "', whose shape '" + (b ? b.shape : "?") + "' draws no rim — the write is refused. " +
+            "Radius is a control only on " + NLB_ROLL_SHAPES.join("/") + ".");
+    }
+    function nlbWarnInertSpin(b) {
+        nlbTokenWarnOnce("omega0:" + (b ? b.id : "?"),
+            "the 'omega0' spin dial targets body '" + (b ? b.id : "?") +
+            "', which carries no angular state (shape '" + (b ? b.shape : "?") +
+            "'" + (b && b.rotation_locked ? ", rotation_locked" : "") + ") — the write is refused.");
+    }
     function nlbSliderTokensUsed() {
         var want = {}, keys = Object.keys(config.states || {});
         for (var i = 0; i < keys.length; i++) {
             var nlb = (config.states[keys[i]] || {}).newtons_laws_body;
             var cv = (nlb && nlb.controls_visible) || [];
-            for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+            for (var c = 0; c < cv.length; c++) {
+                if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true;
+                else nlbWarnUnknownToken(String(cv[c]));
+            }
         }
         var out = [];
         for (var t = 0; t < NLB_SLIDER_TOKENS.length; t++) { if (want[NLB_SLIDER_TOKENS[t]]) out.push(NLB_SLIDER_TOKENS[t]); }
@@ -42871,6 +43034,61 @@ export const FIELD_3D_RENDERER_CODE = `
             if (bA) { bA.v = value; bA.v0 = value; }
             if (eng.coupled) eng.v_string = value;   // keep the string constraint consistent
         }
+        // ── SEAM R (0c-3) — the two RADIUS dials ────────────────────────────
+        //   radius_m is a live control exactly as m and mu are: the integrator, the
+        //   rolling gate, the contact readout, the revolution marks, the bracket
+        //   label and the centre markers ALL re-read nlbRadiusM/nlbRadiusW off this
+        //   record every frame, so this one write is the whole physics change. The
+        //   only thing that does NOT re-read itself is the built mesh, which is what
+        //   nlbApplyBodyRadius exists for (re-scale + re-lift, in that order).
+        //   Non-positive is REFUSED, exactly as the mass dials refuse it: nlbRadiusM
+        //   treats radius <= 0 as unphysical and returns the 0.55 m default, so
+        //   writing a 0 would silently JUMP the wheel to the default rather than
+        //   shrink it.
+        else if (token === "R" || token === "R2") {
+            var rb = (token === "R") ? bA : bB;
+            if (!rb || !(value > 0)) return;
+            if (!nlbSpinnable(rb)) { nlbWarnInertRadius(token, rb); return; }
+            rb.radius_m = value;
+            nlbApplyBodyRadius(rb.id);
+        }
+        // ── SEAM R (0c-3) — the STARTING SPIN dial ──────────────────────────
+        //   omega0 is an INITIAL CONDITION with a live consequence, so it writes the
+        //   same two places v0 does — the live quantity AND the replay seed — and for
+        //   the same reason: RESET_TRAJECTORY re-seeds omega from b.omega0, so a
+        //   teacher's spin would otherwise vanish on the next replay.
+        //   THREE further writes are what keep it coherent with the rolling gate:
+        //     • _spinIndep is forced TRUE, because that is precisely what authoring
+        //       omega0_rad_s means (nlbSpinIndependent) — without it the constraint
+        //       omega = v/R owns the spin and the dial is a decoration;
+        //     • the segment RE-ANCHORS at this instant (nlbRollSeg with alpha 0), the
+        //       same trusted-drag re-baseline the capture and slip sites use, so
+        //       theta stays a closed form of state-local t and a rewind is exact
+        //       (Rule 36). The next physics frame re-anchors again if the branch it
+        //       lands in wants a different alpha — its own alpha-churn test does that
+        //       already, and it preserves b.omega when it does;
+        //     • b.omega is written alongside b.omega0 so E2's gate read
+        //       (nlbOmegaSeeded) sees the NEW spin down BOTH of its branches: with a
+        //       segment open it reads b.omega, with none it reads b.omega0. A write
+        //       to only one of the two would leave the gate branching on the old
+        //       spin for as long as the other branch happened to be live.
+        //   Refused on a body with no angular state (a block, the wall): there
+        //   _spinIndep would silently make the KINETIC branch measure friction
+        //   against a contact-relative reference for an object that has no contact
+        //   point to speak of.
+        else if (token === "omega0") {
+            if (!bA) return;
+            if (!nlbSpinnable(bA) || bA.rotation_locked) { nlbWarnInertSpin(bA); return; }
+            bA._spinIndep = true;
+            bA.omega0 = value;
+            bA.omega = value;
+            nlbRollSeg(eng, bA, value, 0);
+            // Deliberately NOT written onto mesh.userData: nlbSetBodyPosition
+            // prefers the LIVE engine record whenever one exists and falls back to
+            // userData only during scene build, so mirroring it there would buy
+            // nothing and would leave a stale independent-spin flag on the mesh for
+            // the next state to inherit.
+        }
         else return;
         // Re-pose from the LIVE positions: a theta write moves the incline (and with
         // it every hanging body's anchor), so the bodies and the string must not be
@@ -42897,6 +43115,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (token === "mu_s") { var s1 = nlbSurfaceBody(); return s1 ? s1.mu_s : null; }
         if (token === "mu_k") { var s2 = nlbSurfaceBody(); return s2 ? s2.mu_k : null; }
         if (token === "v0") return bA ? bA.v : null;
+        // SEAM R (0c-3). Radius reads through nlbRadiusM, not the raw field, so a
+        // body that authors none shows the 0.55 m the engine is actually using
+        // rather than an empty row. omega0 reads through nlbOmegaSeeded — the
+        // seed-safe read E2 built for the rolling gate — because this runs on state
+        // ENTRY, where b.omega is still 0 and b.omega0 carries the seed; reading
+        // b.omega here would open every state with a spin dial parked at zero.
+        if (token === "R") return bA ? nlbRadiusM(bA) : null;
+        if (token === "R2") return bB ? nlbRadiusM(bB) : null;
+        if (token === "omega0") return bA ? nlbOmegaSeeded(bA) : null;
         return null;
     }
     // Thumb + numeric readout, kept in step with the engine. Called on state entry,
@@ -42945,6 +43172,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var cv = nlb.controls_visible || [], want = {}, shown = 0;
         for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
         if (want.m2 && !nlbSliderBodies()[1]) want.m2 = false;
+        // SEAM R (0c-3): R2 is the SECOND body's dial and needs a second body for
+        // the identical reason m2 does — a one-body state can never expose it.
+        if (want.R2 && !nlbSliderBodies()[1]) want.R2 = false;
         var built = nlbRowsBuilt();
         for (var i = 0; i < built.length; i++) {
             var tok = built[i], sp = NLB_SLIDER_SPEC[tok];
@@ -45674,6 +45904,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 // and re-placing the mesh at the raw authored value would put it
                 // back out of bounds for the state's first rendered frame.
                 var seededB = eng.bodies[bd.id];
+                // SEAM R (0c-3): the DRAWN radius is re-resolved from the record this
+                // entry just seeded, BEFORE the placement below — the lift depends on
+                // it. Two things need that. (1) The radius is now a live dial, and a
+                // state entry re-seeds radius_m from the authored JSON, so without
+                // this the mesh would keep the size a teacher dragged it to in the
+                // previous state while the physics used the authored value. (2) A
+                // per-state radius (the "mass and radius cancel" race) is honoured on
+                // the first rendered frame instead of the union def's build size.
+                // Churn-guarded and no-op for any body whose radius equals its build
+                // radius, which is every body of every pre-SEAM-R concept.
+                nlbApplyBodyRadius(bd.id);
                 nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
             } else if (ud.elementType === "nlb_body_label") {
                 // Identifier AND mass, on the ONE camera-facing billboard. Composed
