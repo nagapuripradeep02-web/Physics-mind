@@ -1,10 +1,17 @@
 export type StudentClass = 'Class 10' | 'Class 11' | 'Class 12';
 export type ClassLevel = 10 | 11 | 12;
 // Subject is the second curriculum dimension alongside ClassLevel (added 2026-07-23,
-// CHEMISTRY_BUILD_PLAN.md Phase 1). Defined here — the client-safe types module — so both
-// server (conceptCatalog) and client ("use client" pages) can import it without pulling in
-// the `server-only` catalog module. Catalog routing defaults to 'physics' everywhere.
-export type Subject = 'physics' | 'chemistry';
+// CHEMISTRY_BUILD_PLAN.md Phase 1; 'mathematics' added 2026-08-04, MATHEMATICS_BUILD_PLAN.md
+// Phase 1). Defined here — the client-safe types module — so both server (conceptCatalog) and
+// client ("use client" pages) can import it without pulling in the `server-only` catalog module.
+// Catalog routing defaults to 'physics' everywhere.
+//
+// The value is the full word 'mathematics', not 'math' — it matches the shipped
+// pyq_questions.subject CHECK constraint and src/lib/pyqSearch.ts, and this repo already
+// carries enough naming traps (renderer_pair.panel_a "mechanics_2d" not meaning
+// mechanics_2d_renderer.ts; the renderer_primitives -> pcpl_surgeon rename that left its DB
+// tag behind) without adding a math/mathematics split.
+export type Subject = 'physics' | 'chemistry' | 'mathematics';
 export type StudentBoard = 'CBSE' | 'Telangana Board' | 'AP Board' | 'Maharashtra Board' | 'Other State Board';
 export type StudentGoal = 'Board Exam' | 'JEE' | 'NEET' | 'Just Learning';
 export type AppMode = 'learn' | 'practice';

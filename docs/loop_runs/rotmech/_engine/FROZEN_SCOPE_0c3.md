@@ -35,7 +35,13 @@ is reported, not absorbed.
 Sequence follows who is blocked, per the office directive. **One `bug_class` per dispatch,
 ~100-call ceiling, full verify chain after each.**
 
-### D1 · `rbr_formula_surface_has_no_timed_reveal` — **BLOCKS DESK A** (already authored)
+> **NAMING COLLISION — fixed here, read once.** Desk E's dispatch ids and THE EYE's gate ids both
+> ran `D1…D7`/`D9` and they are **not the same thing** (Desk E's `D5` = the readout table; THE
+> EYE's `[D5]` = "Dense motion present"). Dispatches are now **`E1…E9`**; THE EYE's gates keep
+> their bracket form `[D5]` / `[D6]` / `[D7]`. **E1 landed in commit `7022169`, where it is still
+> called D1.** Nothing else changed.
+
+### E1 · `rbr_formula_surface_has_no_timed_reveal` — **BLOCKS DESK A** (already authored)
 Source: findings_d §6c (ranked #7 HIGH, flagged cross-desk "read this one first").
 
 `rbr.formula` is a plain `string` (`:1050`) written once per state entry as `textContent`
@@ -53,7 +59,7 @@ authored and committed with S7 `motion_archetype: "equation-build"` and a timed 
 > pattern.** Building `formula_at_ms` here would mint a third meaning for a name that already
 > carries two — the exact Rule-40a failure this desk exists to prevent.
 
-> **✅ D1 LANDED AND VERIFIED — 2026-08-05.** Built as a port of `nlb.formula_lines`, not as
+> **✅ E1 LANDED AND VERIFIED — 2026-08-05.** Built as a port of `nlb.formula_lines`, not as
 > `formula_at_ms`. Two files: `field_3d_renderer.ts` (+76/−5 — decl `:1051-1068`, new
 > `rbrRenderFormula(tMs)` `:50238-50276`, `eng` seed `:50568-50577`, apply `:50636-50640`, frame
 > `:50833-50835`) and `deriveStateMeta.ts` (+23 — item (7) in the rbr block of
@@ -72,13 +78,13 @@ authored and committed with S7 `motion_archetype: "equation-build"` and a timed 
 > pre-existing baseline vintage. No re-baseline taken.
 > **For `json_author`:** a state authoring both `formula` and `formula_lines` renders **only** the
 > lines — drop the string when adding lines rather than leaving a misleading no-op.
-> **Deferred, noticed during D1 (not this bug_class):** `#rbr_formula` is `top:40%` +
+> **Deferred, noticed during E1 (not this bug_class):** `#rbr_formula` is `top:40%` +
 > `translateY(-50%)`, so a growing assembly walks the first line upward. Inherited verbatim from
 > nlb (`#nlb_formula`, shipped through 0c-2); top-anchoring rbr alone would move pixels on every
 > existing single-line rbr state. If Checkpoint B dislikes the jog it is one `bug_class` covering
 > both scenarios, not an rbr-only fix.
 
-### D2 · `nlb_rolling_branch_has_no_kinematic_gate` — **BLOCKS DESK B**
+### E2 · `nlb_rolling_branch_has_no_kinematic_gate` — **BLOCKS DESK B**
 Source: findings_b B-1. Subsystem: `newtons_laws_body` / SEAM R, **not** rbr.
 
 `rollHeld`'s `canRoll` (`:46828–46840`) is a *dynamic availability* test. On flat ground
@@ -89,7 +95,51 @@ Two independent changes, neither sufficient alone: add the kinematic preconditio
 `_spinIndep` rather than `rolling` (`:46867`) to match the convention already chosen at `:46863`.
 Blast radius verified nil: inert on inclines, and every pre-SEAM-R body has `rolling` falsy.
 
-### D3 · `nlb_seam_r_slider_tokens_declared_but_unwired` — **BLOCKS DESK B**
+> **✅ E2 LANDED AND VERIFIED — 2026-08-05, commit `1a889bc`.** Routed a genuine v–ω mismatch
+> into the **existing** `_slipping` / `nlbRollSeg` closed-form capture rather than writing new
+> capture code. Three measured prerequisites landed with it, each reported rather than buried:
+> a crossing prediction (the 0.01 m/s band is narrower than one step of contact closure — **76 of
+> 126** grid cells never captured on a band test alone), a capture that snaps ω to `v/R` (anchoring
+> at the pre-capture ω leaves a **permanent 0.0087 m/s** residual, since `α = a/R` keeps `v` and
+> `ωR` parallel), and a seed-safe ω read (`b.omega` is 0 at apply while `b.omega0` holds the seed).
+> Measured: capture at **1366.7 ms** vs analytic `t_c` **1360.5 ms** (one step); post-capture
+> `max|contact|` and `max|f|` both exactly 0; holds across four dt schedules; rewind bit-for-bit.
+> Back-compat by explicit A/B over **26 body-states × 300 frames on both clocks: 25 identical, 1
+> differing — `pure_rolling` STATE_7, the target.** `rolling_on_incline` **17 of 17 identical**,
+> including its μ_s `param_ramp` slip state.
+> Verified by this desk: renderer-syntax OK, tsc 0, validate 149 PASS / 0 FAIL,
+> `newton_second_law` 26/26 with H2 **identical to the digit**, `coulombs_law` 50/50 at H2 0.00%.
+
+> **✅ E3 LANDED AND VERIFIED — 2026-08-05, commit `c2b9aeb`.** See the E3 section below for the
+> defect. Back-compat by explicit A/B against the pre-change **emitted** code: **11 concepts, 58
+> states, 94 bodies, 0 differing**. Verified by this desk: renderer-syntax OK, tsc 0, validate
+> 149 PASS / 0 FAIL, `newton_second_law` 26/26, `coulombs_law` 50/50 — H2 identical to the digit
+> on both canaries across all three dispatches.
+> **Two build-time geometry defects were fixed as prerequisites** (not separately): a SEAM-G
+> `wheel` was DRAWN at the constant `NLB_WHEEL_R` while its `_liftY`/`_spinR` already used
+> `radius_m` — so a wheel authoring `radius_m: 0.25` stood on a 0.25 m axle while drawn at 0.55 m,
+> **sunk through the track before any slider existed**; and state apply never re-resolved drawn
+> radius. Without the first, the initial `R` touch would snap the wheel; without the second, a
+> drag would leak size into the next state. Both are no-ops on master (no committed concept
+> authors `radius_m` — grepped, not assumed).
+
+> ### ⚠ DESK B — ENGINE UNBLOCKED, BUT ONE AUTHORING DEFECT REMAINS. Read before re-walking.
+> E2 + E3 close both engine blockers. **`pure_rolling` STATE_7 will still read as broken**, and
+> the cause is authoring, not engine: it authors `initial_position_m: 2.4` on a
+> `surface.length_m: 3` track (bounds ±3) while travelling in **+s**, leaving **0.6 m** of track.
+> The wheel hits the bound at **~309 ms**, long before the capture at `t_c` = 1361 ms — probed
+> with the authored numbers: `t=500 roll=0 v=0.0000 Rw=0.1307`, dead at the wall with spin barely
+> started. Every state of both concepts authors `s0 = 2.4`, which is correct on the **incline**
+> (gravity drives −s, so 2.4 is the top) but backwards on the **flat** states, where motion is +s.
+> `pure_rolling` S1/S2/S3/S6/S7/S8 all launch forward from 2.4.
+> **Fix is `s0 = −2.4` or a longer `length_m`. Owner: `alex:json_author` on Desk B — not Desk E.**
+> Related, same desk: STATE_7 pins at 1500 ms while its only phase window closes at
+> `until_ms: 1361`, so the frozen frame is taken after the focal is handed back
+> (`eye_frozen_candidate_offset_falls_outside_engine_display_band`). Authoring-side — extend the
+> window past capture or add a second phase ≥ 1500 ms. A `deriveStateMeta` change would move the
+> pin for the whole nlb fleet and is deliberately NOT taken.
+
+### E3 · `nlb_seam_r_slider_tokens_declared_but_unwired` — **BLOCKS DESK B**
 Source: findings_b B-2.
 
 `R`, `R2`, `omega0` are in the interface enum (`:1545–1548`) but absent from
@@ -100,7 +150,7 @@ A radius write must also re-lift/re-scale the mesh and re-space the revolution m
 union item (c)-1 and lands in the same dispatch or S1 gets a dial that moves nothing.
 **Harden the silent skip to a warn** in the same pass.
 
-### D4 · `rbr_torque_cannot_spin_a_body_up` — **BLOCKS DESK D (both concepts)**
+### E4 · `rbr_torque_cannot_spin_a_body_up` — **BLOCKS DESK D (both concepts)**
 Source: findings_d §1 (CRITICAL) + §6b + §7 + the doc fixes.
 
 `rbrLAt` (`:49937`) subtracts unconditionally and `eng.tau` is `Math.abs()` at both assignment
@@ -128,7 +178,7 @@ Ships together, because they are one change or they are a trap:
   `applied_torque_Nm` gives #7's α "with no extra code path" — true only for the decelerating
   half) and `:953` / `:998` (both call `theta0_rad` unimplemented; it is fully wired — see §D).
 
-### D5 · `rbr_readout_table_is_closed_and_skips_in_silence` — **BLOCKS DESK D (both concepts)**
+### E5 · `rbr_readout_table_is_closed_and_skips_in_silence` — **BLOCKS DESK D (both concepts)**
 Source: findings_d §2 + §5, endorsed by findings_c §2.2.
 
 `RBR_RO_META` (`:50147–50154`) is exactly six rows; `rbrRebuildReadout` (`:50163`) and
@@ -148,7 +198,7 @@ applied-torque control token.
   (`rotational_kinematics` prints α = −0.50), θ/α/τ glyphs across all three text paths.
 - **Units/dp is an OFFICE decision, not a build decision** (§C-3).
 
-### D6 · `rbr_restart_arithmetic_and_repin_blank` — **BLOCKS DESK C + DESK A**
+### E6 · `rbr_restart_arithmetic_and_repin_blank` — **BLOCKS DESK C + DESK A**
 Source: findings_c F-C6 (CRITICAL) + F-C3 + C10 + findings_d §6 item 8.
 
 - **F-C6, CRITICAL:** a one-shot `restart` (no `every_ms`) computes `at_ms + (1−1)×Infinity` =
@@ -166,7 +216,7 @@ Source: findings_c F-C6 (CRITICAL) + F-C3 + C10 + findings_d §6 item 8.
 - **Per-run `{at_ms, r_m, omega0}` overrides on `restart`** (findings_d §6 item 8) — the cheap
   alternative to a second body, needed by `tau_eq_i_alpha` S5's same-τ/different-I compare.
 
-### D7 · `rbr_l_arrow_occluded_and_magnitude_unreadable` — **BLOCKS DESK C**
+### E7 · `rbr_l_arrow_occluded_and_magnitude_unreadable` — **BLOCKS DESK C**
 Source: findings_c F-C8 (supersedes F-C7) + F-C2 + findings_a A-11 (mechanism corrected) + A-16.
 
 `ArrowHelper`'s shaft is a zero-width `THREE.Line` on the axle centreline (`:50386`) inside an
@@ -182,14 +232,82 @@ Rides along, same primitive: **F-C2** (`RBR_L_ARROW_MIN = 0.22` draws a visible 
 adopt the bounded/asymptotic map the pull arrow already has (`:49762–49794`). And **A-16** (the
 sign-colour channel is dead: `RBR_NEG_COLOR`'s only consumer is the invisible shaft; `rbr_l_label`
 is never recoloured; HUD digits take no sign colour).
-**F-C7 is SUPERSEDED — do not fix it alone.** A mesh-cylinder shaft with `MeshPhongMaterial`
-closes the material and the thickness together.
-Acceptance is objective (findings_c PASS 15): S1 ink ≥ 400 px; `len(6.51)/len(1.14) = 5.71 ±
-0.10` fitted in pixels with intercept < 1 px; arrow-vs-axle contrast ≥ 3:1; S4 flip changes
-≥ 300 px. **Pair every delta assertion with an absolute floor** — F-C7's probe would have passed
-on a still-invisible build.
+> **CONTRACT CORRECTION — office directive 2026-08-05, from Desk C's Checkpoint B
+> (`founder_proxy_B.md` §1). This supersedes any earlier reading of F-C7 and is BINDING on the
+> E7 dispatch.**
+>
+> **F-C7's diagnosis is right about the SYMPTOM and wrong about the ROOT CAUSE.** The arrow is
+> not merely pale-because-`MeshBasicMaterial`/`LineBasicMaterial`-have-no-`.emissive`; it is
+> **occluded** — a zero-width `THREE.Line` shaft drawn inside an opaque axle. Fixing the material
+> alone leaves an invisible arrow that is now invisible *and* brighter.
+>
+> **Worse, F-C7's own probe would PASS on a build where the arrow is still invisible.** Its probe
+> asserts "sample rendered pixel luminance before and after the focal instant; assert a
+> measurable increase" — and **fifteen occluded pixels getting brighter satisfies that**. A probe
+> asserting a *delta* cannot detect a defect of *absence*. Do not carry that probe forward.
+>
+> **Build to the EXISTING prevention rule on the FIXED scar row
+> `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line`** — amend that row,
+> never mint a new one:
+> 1. A **real mesh cylinder shaft parented to the `ArrowHelper` group** (not a `Line`), carrying
+>    `MeshPhongMaterial` — which gains the emissive channel and the thickness in one move, so
+>    F-C7 is closed as a side effect rather than as a separate fix.
+> 2. The **apparatus line made thinner AND dimmer than the shaft BY CONSTRUCTION**, with the
+>    **ratio written into the constants** — not tuned by eye, not left implicit. Here the axle
+>    (0.07) is currently *thicker than the arrow's cone* (0.08 radius), so the clearance clause is
+>    **two-sided**: `RBR_AXLE` geometry is in scope, not just the arrow.
+> 3. **A z-offset is explicitly NOT a fix for this class** — clause (d) of the existing row.
+>
+> **The probe must assert DRAWN GEOMETRY, not pixel luminance.** Assert the shaft mesh exists, is
+> a cylinder (not a `Line`), its radius exceeds the axle radius by the constant-declared ratio,
+> and its drawn length tracks |L|. Keep the pixel measurements below only as a **secondary
+> absolute floor**, never as the primary assertion.
 
-### D8 · `rbr_live_param_drag_has_no_rendered_agent` — **BLOCKS DESK A's S8**
+Secondary acceptance floors (findings_c PASS 15) — absolute, not deltas: S1 ink ≥ 400 px;
+`len(6.51)/len(1.14) = 5.71 ± 0.10` fitted in pixels with intercept < 1 px; arrow-vs-axle
+contrast ≥ 3:1; S4 flip changes ≥ 300 px.
+
+> ### 🔨 RULING 2026-08-05 — **C-6 MERGES INTO E7.** E7 now has TWO consumers, one mechanism.
+>
+> Asked to rule on C-6 (pull-arrow camouflage, A-12), I checked the geometry in this checkout
+> rather than reasoning from the findings text. **C-6 is not merely the same *class* as E7 — it is
+> the same *scar*, on a second consumer:**
+>
+> - The pull arrow is **also a `THREE.ArrowHelper`** (`:50918`), so its shaft is also a zero-width
+>   `THREE.Line`, exactly like the L arrow.
+> - It is built with direction `(−side, 0, 0)` — **radial, i.e. collinear with the rod** — and the
+>   rod is an opaque `CylinderGeometry(0.05, 0.05, 2·rod_half·W)` (`:50901`).
+> - So both rbr arrows are `ArrowHelper`s whose zero-width shaft runs **collinear with an opaque
+>   cylinder**: the L arrow inside the axle (r = 0.07), the pull arrow along the rod (r = 0.05).
+>   That is verbatim the FIXED scar `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line`.
+>
+> **A-12 called it "camouflage" — that is the SYMPTOM.** The mechanism is the shaft. Confirmed
+> A-12's own correction while I was there: `RBR_ARROW_SCALE = 0.070`/N (`:50200`) gives
+> `rbrArrowLen(3.60) = 0.252`, comfortably above `RBR_ARROW_MIN_LEN = 0.16` (`:50205`) — **so
+> tuning the floor is the wrong fix**, exactly as A-12 says.
+>
+> **Consequence for the E7 dispatch:**
+> 1. Widen the `bug_class` to `rbr_arrowhelper_shafts_not_separable_from_the_apparatus_they_run_along`,
+>    naming **both** consumers. Still ONE `bug_class`, so Amendment 4 holds — this is one mechanism
+>    at the right altitude, not two rows smuggled into one dispatch.
+> 2. **One mesh-cylinder shaft mechanism, two consumers.** Same argument findings_d §4 made for the
+>    tangential vector: price one mechanism with two consumers, never two mechanisms.
+> 3. **The two magnitude→length maps must NOT be shared** — F in newtons (`rbrArrowLen`, knee +
+>    asymptote, `:50239`) versus L in kg·m²/s (`RBR_L_ARROW_SCALE`, currently a raw clamp). Same
+>    caution findings_d §4 raised for m/s vs N. Separability is shared; scaling is not.
+> 4. Separability ratios go **in the constants** for both, and the **drawn-geometry** probe runs on
+>    both. The pull arrow's absolute floor is measured at its **worst** instant — the S2 cause beat,
+>    r = 0.80, F ≈ 3.60 N — because `F = mω²r` with `ω ∝ 1/I` makes the arrow **smallest exactly
+>    when it must be seen**, and largest after the slide is over.
+>
+> **Cost of the ruling, stated:** E7 grows. If it approaches the ~100-call ceiling the surgeon
+> **splits and hands off, L arrow first** — it is the one blocking Desk C (`angular_momentum`
+> holds for it), whereas the pull arrow degrades a beat on Desk A's already-authored concept.
+> **Rejected alternative:** a separate C-6 dispatch would mean a second ~100-call entry into the
+> same code region to apply the same prevention rule to the same primitive — the cost here is
+> entering the region, not the lines changed.
+
+### E8 · `rbr_live_param_drag_has_no_rendered_agent` — **BLOCKS DESK A's S8**
 Source: findings_c F-C1 (confirmed on all four links by founder-proxy) = findings_a A-2.
 **Same defect, filed independently by two desks — one row.**
 
@@ -201,7 +319,7 @@ entry `tau_brake = 0` — the natural authoring, and exactly what
 `conservation_of_angular_momentum` S8 does — applies real external torque with **no rendered
 agent**. Recompute `padOn` from live `eng.tau`; engage/release on the 0-crossing with travel.
 
-### D9 · `rbr_camera_pose_is_not_authorable` — **BLOCKS DESK C's #3**
+### E9 · `rbr_camera_pose_is_not_authorable` — **BLOCKS DESK C's #3**
 Source: findings_c F-C4 (P1, on a **founder ruling**) + C8.
 
 `spherical.phi = 1.16` is hardcoded in the scene builder (`:50476`); there is no camera field
@@ -235,7 +353,7 @@ rediscovered, and they are **not** silently dropped.
 | **C-3 · `glowTargets[0]` fallback in the rbr glow pass** (F-C5) | c | Parity with `force_rig` (`:49002–49003`). `tts_sentences[].glow` is a silent no-op on every rbr state. Tagged ride-along by Desk C — `phases[]` is a working substitute. **No back-compat constraint: no concept JSON consuming rbr exists on any branch** (Desk C verified and withdrew its earlier contrary claim). |
 | **C-4 · `masses.r_m` dead at t = 0 in ramped/swept states** (A-3 + A-9) | a | `rbrRAt(0)` returns `ramp.from` (`:50538`) / `sweep.lo` (`:49859`), never `masses.r_m`. Engine question for Desk E: should `range` be order-sensitive at all, or should `masses.r_m` win at t = 0? Cost Desk A a wrong-L explore state. |
 | **C-5 · latched match cue under a time pin** (A-6) | a | `eng.matched[mid]` (`:50276`) clears only at state apply (`:50512`), so a rewind never clears it — the co-glow reads "landed" at t = 0. Regresses OPEN scar `hysteretic_state_cannot_be_latched_under_a_time_pin`. THE EYE **structurally cannot verify** the beat S3 exists to deliver. |
-| **C-6 · pull-arrow camouflage at the cause beat** (A-12, mechanism corrected) | a | **Not the min-length floor** — `rbrArrowLen(3.60) = 0.252` is above the 0.16 floor. It is colour+depth camouflage against the rod's own 0.20 tip overhang, and `F = mω²r` makes the arrow smallest exactly when it must be seen. |
+| ~~**C-6 · pull-arrow camouflage at the cause beat**~~ (A-12) | a | **RULED 2026-08-05 — MERGED INTO E7. No longer a separate row.** See the ruling below. |
 | **C-7 · no `at_ms` reveal for pull arrows** (A-7) | a | `rbr_pull_arrow: rb.show_pull_arrows` (`:50609`) is boolean-only; S2's "arrows *appear*" beat is not expressible. |
 | **C-8 · `min_ring` on rbr `controls_visible`** (A-8) | a | `bonding_scene` already implements `{ id, min_ring }` (`:55484–55492`); rbr's token is a bare string union (`:1051`). The pattern exists — cheap. Nothing breaks today, but the ring-gated explore claim must not be sealed as satisfied at Checkpoint C. |
 | **C-9 · sparse slider panel renders full height** (A-5) | a | Confirmed regression of an OPEN scar. Carries a **tension**, not just a fix: skeleton E8 mandates `visibility:hidden` for row-position stability, which is exactly what preserves the height. The surgeon must satisfy both. |
@@ -255,7 +373,7 @@ presence by `typeof`/`in`, never truthiness.**
 **Verified-already-exists — do not build (Rule 40a):**
 1. **`rbr_drum_marker`** (`:50322–50327`, `RBR_ALWAYS_ON` `:50585`) — the rotating body's angular
    mark. Both Desk D §3 and Desk C C4 nearly re-specified it. `deriveStateMeta.ts:496–508`
-   already reasons about it as the thing THE EYE watches move. **§B-D9/C-1 need only the FIXED
+   already reasons about it as the thing THE EYE watches move. **§B-E9/C-1 need only the FIXED
    base-frame ray — one ray, not two.**
 2. **The `deriveMotionExpectations` rbr branch** — `deriveStateMeta.ts:496`. D4 **amends** it.
 3. **`formula_lines`** (`:1644`) — port it; do not invent `formula_at_ms` (§B-D1).
@@ -290,12 +408,12 @@ presence by `typeof`/`in`, never truthiness.**
 
 Stated so the trade is the office's to make, not mine:
 
-- **D1 + D2 + D3 + D4 + D5** is five, and it unblocks Desk A's Checkpoint B, Desk B's two JSONs,
+- **E1 + E2 + E3 + E4 + E5** is five, and it unblocks Desk A's Checkpoint B, Desk B's two JSONs,
   and Desk D's two concepts.
-- It leaves **Desk C entirely blocked** — `angular_momentum` holds on D7 (F-C8, CRITICAL) and D6
-  (F-C6, CRITICAL); `rigid_body_rotation` holds on D9 (camera, founder-ruled) and the whole C-1
+- It leaves **Desk C entirely blocked** — `angular_momentum` holds on E7 (F-C8, CRITICAL) and E6
+  (F-C6, CRITICAL); `rigid_body_rotation` holds on E9 (camera, founder-ruled) and the whole C-1
   marker family.
-- **D6 and D7 are the two the office sequence omitted**, and both are CRITICAL against a concept
+- **E6 and E7 are the two the office sequence omitted**, and both are CRITICAL against a concept
   that is *already authored and validating*. They are not deferrable without telling Desk C its
   concept is parked.
 
@@ -316,6 +434,37 @@ npm run validate:concepts
 then re-seed + `visual:eyes` on **both** canaries (`newton_second_law`, `coulombs_law`).
 **An H2 diff I cannot explain is a FAIL, not a re-baseline.**
 
+> ### ⛳ MERGE STRATEGY — office ruling 2026-08-05. This is what closes the rbr verification hole.
+>
+> **Land each dispatch, or each tight group, to master as its OWN PR via `git-steward` — never
+> one PR at the end.** Rule 40 asks for exactly this ("engine is platform and lands separately
+> and immediately"), and it dissolves the hole rather than working around it: once a fix is on
+> master, **each authoring desk syncs and verifies it on its own concept with its own seed key.**
+> The cache one-owner rule is never bent and this desk never seeds an rbr concept.
+>
+> **Two options were considered and REJECTED by the office, both for good reasons worth keeping:**
+> 1. **Granting this desk an rbr seed key — rejected.** This checkout holds unmerged, unreviewed
+>    engine code; seeding an rbr concept here is *the most dangerous form* of the one-owner
+>    violation, because the desk that later EYEs that concept would be silently testing code that
+>    exists on no reviewed branch.
+> 2. **Relying on emitted-code probes as the gate — rejected.** That is precisely the F-C7 failure
+>    Desk C caught: a probe that passes on a broken build. F-C7's luminance-delta probe would have
+>    gone green with the L arrow still invisible.
+>
+> **Emitted-code probes stay as this desk's LOCAL SMOKE TEST — never as the gate.** They are
+> necessary (they caught real defects in E2 and E3) and they are not sufficient.
+>
+> **rbr verification partners, assigned by the office:**
+>
+> | Dispatch | Verifying desk | Why |
+> |---|---|---|
+> | E4, E5 | **Desk A** | its turntable exercises the same rbr integrator, and **Desk D cannot verify its own blockers while blocked on them** |
+> | E7 | **Desk C** | `angular_momentum` is authored, validating, and holds for this fix |
+> | E6, E8, E9 | **Desk D** once its blockers clear (E4/E5), else Desk A/C by surface |
+>
+> **Consequence for this desk's own reporting: a dispatch is LANDED, not VERIFIED, until its
+> partner desk confirms it on a real concept.** Say which of the two a result is, every time.
+
 > **Verification-integrity pass, run before the first dispatch (from findings_c PASS 14).** Both
 > canary seed scripts wrote `physics_config: { epic_l_path }` with `field_3d_config` **absent**,
 > starving `deriveMotionExpectations`. Fixed in `_seed_newton_second_law_cache.ts` and
@@ -335,7 +484,7 @@ then re-seed + `visual:eyes` on **both** canaries (`newton_second_law`, `coulomb
 >    other 26 (nsl) / 50 (coulombs_law) deterministic checks. Read the `Motion map:` line every
 >    run; `?` means D5 abstained, not that motion was verified.
 > 2. **Neither canary exercises `rbr` at all** (`newtons_laws_body` and `coulombs_law_force`).
->    So for the six rbr dispatches (D4–D9) the canaries prove only **no collateral damage outside
+>    So for the six rbr dispatches (E4–E9) the canaries prove only **no collateral damage outside
 >    rbr** — they cannot prove the rbr change is correct.
 > 3. **No rbr concept JSON exists on master or on this desk**, and guardrail 3 forbids seeding
 >    another desk's concept. **There is therefore no way for this desk to EYE an rbr change.**

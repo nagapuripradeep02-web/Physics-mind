@@ -945,15 +945,28 @@ export interface Field3DConfig {
         //     external_torque.source 'brake' (+ brake_drum_radius_m + the drawn
         //     drum reference line + the visible pad actuator), reference_marks[]
         //     in BOTH surface forms (chip + tick), the radial pull arrow, the
-        //     re-pin cue, applied_torque_Nm (a constant tau_ext, which is #7's
-        //     alpha = tau/I with no extra code path).
+        //     re-pin cue, theta0_rad (seeds rbrThetaAt through rbrThetaReset
+        //     and drives the mesh at rbr_spin.rotation.y), external_torque
+        //     .source 'applied_torque' + applied_torque_Nm (a constant SIGNED
+        //     tau_ext -> #7's alpha = tau/I in BOTH directions), and
+        //     external_torque.sources[] (the drive-vs-brake tug, tau_net).
         //   DECLARED, NOT IMPLEMENTED (each is built under its OWN concept's
         //     engine row; reading one today is an inert no-op, never a throw):
         //     particles[], parts[], bodies[]/cm_marker/cm_path_trace/
-        //     fragment_trigger, axis_select, axis_pair/d_draw, theta0_rad,
+        //     fragment_trigger, axis_select, axis_pair/d_draw,
         //     cross_product_construction, body_shape variants beyond
         //     'turntable_rod', external_torque.source 'torsion_spring' |
         //     'applied_force_at_point'.
+        //
+        // E4 (rotmech 0c-3) CORRECTION. The pre-E4 text called
+        // applied_torque_Nm "#7's alpha = tau/I with no extra code path". That
+        // was true only for the DECELERATING half: the integrator subtracted
+        // unconditionally, so no torque source could raise |L|, alpha > 0 was
+        // unreachable at every authored value, and a body seeded at rest was
+        // clamped dead forever. E4 makes the torque SIGNED (sign authored, not
+        // derived from |L|), keeps the rest clamp as a property of the 'brake'
+        // KIND only, and adds sources[] so a drive and a brake can act at the
+        // same instant. Still one closed form; still no accumulator.
         //
         // PHYSICS (physics_block.md §1, one integrator, no mode flag):
         //     I(t)      = I_frame + 2*m*r(t)^2                 (recomputed live)
@@ -995,16 +1008,40 @@ export interface Field3DConfig {
             masses?: { count?: number; mass_kg?: number; r_m?: number };
             omega0_rad_s?: number;              // seed magnitude; sets L at t=0 / at a RESTART only
             spin_sign?: number;                 // +1 or -1; a discrete restart, never eased through zero
-            theta0_rad?: number;                // DECLARED (concept 4)
+            theta0_rad?: number;                // IMPLEMENTED — seeds theta (concept 4)
             external_torque?: {
-                source?: 'brake' | 'applied_force_at_point' | 'torsion_spring';
+                // 'applied_torque' was a LIVE branch from 0c-1 but was missing
+                // from its own declared union until E4 closed the gap.
+                source?: 'brake' | 'applied_torque' | 'applied_force_at_point' | 'torsion_spring';
                 tau_brake_Nm?: number;          // magnitude; frictional, opposes omega
                 engage_at_ms?: number;          // pad contact instant (state-local)
                 release_at_ms?: number;         // pad release instant; omit = never releases
                 engage_cue?: string;            // scenario_cue name -> cueTriggerMs
                 release_cue?: string;
                 pad_travel_ms?: number;         // how long the pad takes to translate in
-                applied_torque_Nm?: number;     // a CONSTANT tau_ext (concept 7's alpha = tau/I)
+                // A CONSTANT tau_ext (concept 7's alpha = tau/I). SIGNED as of
+                // E4: positive spins the body up, negative spins it up the
+                // other way, and it may carry L through zero. Zero authored
+                // consumers when the sign was introduced, so this is a
+                // redefinition of a dormant field, not a second meaning.
+                applied_torque_Nm?: number;
+                // E4 — SEVERAL torques at once (the drive-vs-brake tug). When
+                // present this REPLACES the scalar form above; absent leaves
+                // the scalar path byte-identical. A 'drive' entry carries an
+                // AUTHORED SIGN; a 'brake' entry is a magnitude that always
+                // opposes the current spin and can never reverse it. At omega
+                // = 0 with both engaged the body STATICALLY HOLDS until
+                // |tau_drive| exceeds the brake, and sign(L) is never consulted
+                // there. At most 8 entries (RBR_MAX_SOURCES).
+                sources?: Array<{
+                    id?: string;
+                    kind?: 'drive' | 'brake';   // default 'drive'
+                    torque_Nm?: number;         // drive: SIGNED. brake: magnitude.
+                    engage_at_ms?: number;      // default 0
+                    release_at_ms?: number;     // omit = never releases
+                    engage_cue?: string;        // scenario_cue name -> cueTriggerMs
+                    release_cue?: string;
+                }>;
                 torsion_k_Nm_per_rad?: number;  // DECLARED (concept 14)
             };
             // ONE-SHOT monotonic ramp, HOLDS at `to` for the rest of the state.
@@ -40037,6 +40074,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var t = Math.abs(Math.tan((thetaDeg || 0) * Math.PI / 180));
         return (k / (1 + k)) * t;
     }
+    // SEAM R (0c-3) — does this body have an angular state AT ALL? True for exactly
+    // the shapes that draw a rim (NLB_ROLL_SHAPES); a block and the wall slab have
+    // no radius on screen and no spin, so the radius and spin DIALS refuse them
+    // rather than writing a record nothing can render (and, for omega0, rather than
+    // flipping the kinetic branch's friction reference to a contact point that does
+    // not exist). Shape is a per-ID build-time property, so this answer is stable
+    // for the whole concept.
+    function nlbSpinnable(b) {
+        return !!(b && NLB_ROLL_SHAPES.indexOf(b.shape) >= 0);
+    }
     // Does this body carry an INDEPENDENT angular state this state? Config-derived,
     // resolved once at apply. A body answering false keeps SEAM G's position-driven
     // spin, byte for byte.
@@ -40059,6 +40106,27 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!b) return 0;
         if (b._spinIndep) return b.omega || 0;
         return (b.v || 0) / nlbRadiusM(b);
+    }
+    // The angular speed the ROLLING GATE must read. Identical to nlbOmegaOf once a
+    // single frame has run, but SEED-SAFE before it: applyNewtonsLawsBodyState seeds
+    // b.omega = 0 while b.omega0 carries the authored seed, and nlbRollSpin only
+    // heals b.omega lazily at the END of the first frame. A gate reading b.omega
+    // alone therefore mis-branches on frame 1 for a body whose authored omega0 is
+    // nonzero — it would see a contact speed of |v0| where the body is in fact
+    // launched already rolling, open a slip segment anchored at omega = 0 and lose
+    // the authored spin for the rest of the state (measured: pure_rolling STATE_8,
+    // omega0 3.6 rad/s, settled at R.omega 0.61 instead of 0.90). Production sends
+    // RESET_TRAJECTORY on every state entry, which does seed b.omega — this makes
+    // the gate correct whether or not that message arrived.
+    // NOT a replacement for nlbOmegaOf at the slip-open site: there _spinIndep has
+    // just been forced true on a body that carried a LIVE b.omega, and preferring
+    // b.omega0 would discard it (verified: rolling_on_incline STATE_7 anchored its
+    // slip at 0 instead of -7.18 rad/s).
+    function nlbOmegaSeeded(b) {
+        if (!b) return 0;
+        if (!b._spinIndep) return (b.v || 0) / nlbRadiusM(b);
+        if (b._slip0) return b.omega || 0;
+        return (typeof b.omega0 === "number" && isFinite(b.omega0)) ? b.omega0 : (b.omega || 0);
     }
     // ── U10 — the ACTIVATION gate ──────────────────────────────────────────────
     //   Three states, and only three: ABSENT (live from entry), PENDING (before its
@@ -40679,6 +40747,67 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!(spinR > 0)) spinR = NLB_WHEEL_R;
             wgrp2.rotation.z = -(s * NLB_WORLD_PER_M) / spinR;
         }
+    }
+
+    // ── SEAM R (rotmech 0c-3) — the DRAWN radius ────────────────────────────
+    //   The spinning parts of a wheel/roller are built ONCE, at a fixed geometry:
+    //   SEAM G's wheel is always a tyre of NLB_WHEEL_R and SEAM R's four rollers are
+    //   built at the union def's own nlbRadiusW. Radius is now a LIVE control
+    //   (controls_visible 'R'/'R2'), so the drawn size has to follow the record, and
+    //   the ONE way to do that without rebuilding geometry mid-drag is a uniform
+    //   scale on the child group. The group carries only the spin rotation, so a
+    //   uniform scale composes with it exactly and the marker geometry (hub, spokes,
+    //   meridian, face-stripe, arc segment) scales with the body it marks.
+    //   THREE things move together, and they must move together or the fix is the
+    //   same defect one layer in:
+    //     • the drawn size          (this scale),
+    //     • the LIFT — mesh.userData._liftY, the height nlbSetBodyPosition stands
+    //       the centre at, or a bigger wheel sinks into the track and a smaller one
+    //       floats above it,
+    //     • the SPIN divisor _spinR, so s = R·θ stays literally true on screen.
+    //   The revolution marks, the circumference bracket, the centre markers and the
+    //   contact layer need nothing here: every one of them already RE-READS
+    //   nlbRadiusM/nlbRadiusW off the live record each frame, so they respace by
+    //   construction (see the U11 comment: "read, not remembered").
+    //   Churn-guarded: an unchanged radius writes no transform, so a frozen frame is
+    //   byte-stable and a body whose radius never moves is untouched. No clock, no
+    //   dt, no accumulator (Rule 36) — this is a pure function of the record.
+    function nlbRollerGroup(mesh) {
+        if (!mesh || !mesh.children) return null;
+        for (var ci = 0; ci < mesh.children.length; ci++) {
+            var cud = mesh.children[ci].userData;
+            if (cud && (cud.elementType === "nlb_wheel" || cud.elementType === "nlb_roller")) return mesh.children[ci];
+        }
+        return null;
+    }
+    // rW is the radius this body should DRAW at, in world units. _buildRw is the
+    // radius its child geometry was actually built at, stamped at build — so a body
+    // whose live radius equals its build radius gets scale exactly 1 and is
+    // bit-identical to the un-scaled mesh it always was.
+    function nlbScaleRoller(mesh, rW) {
+        var grp = nlbRollerGroup(mesh);
+        if (!grp || !(rW > 0) || !isFinite(rW)) return;
+        var built = (typeof mesh.userData._buildRw === "number" && mesh.userData._buildRw > 0)
+            ? mesh.userData._buildRw : NLB_WHEEL_R;
+        var k = rW / built;
+        if (!(k > 0) || !isFinite(k)) return;
+        if (Math.abs(grp.scale.x - k) > 1e-9) grp.scale.set(k, k, k);
+        mesh.userData._liftY = rW;
+        mesh.userData._spinR = rW;
+    }
+    // The write path: re-scale, re-lift (through the ONE placement funnel, so the
+    // pick proxy, the spring and the spin all follow for free) and leave every
+    // radius-derived overlay to its own live re-read. A body with no drawn wheel —
+    // a block, the wall — has no radius on screen and is deliberately untouched.
+    function nlbApplyBodyRadius(bodyId) {
+        var eng = window.PM_nlbEngine;
+        var mesh = nlbFindById("nlb_body_" + bodyId);
+        if (!eng || !mesh) return;
+        var b = eng.bodies[bodyId];
+        if (!b) return;
+        if (!nlbRollerGroup(mesh)) return;
+        nlbScaleRoller(mesh, nlbRadiusW(b));
+        nlbSetBodyPosition(bodyId, b.s);
     }
 
     // SEAM R — pose a body whose spin is NOT the position's function. theta is
@@ -42333,6 +42462,10 @@ export const FIELD_3D_RENDERER_CODE = `
             //   Rule 32e break.
             if (d.shape === "wheel") {
                 mat.visible = false;
+                // SEAM R (0c-3): the tyre/hub/spokes below are built at the CONSTANT
+                // NLB_WHEEL_R, so that — not the body's own radius — is what a live
+                // radius scales relative to.
+                mesh.userData._buildRw = NLB_WHEEL_R;
                 var wgrp = new THREE.Group();
                 wgrp.userData = { elementType: "nlb_wheel", id: "nlb_wheel_" + d.id, bodyId: d.id };
                 mesh.add(wgrp);
@@ -42390,6 +42523,9 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (NLB_ROLL_SHAPES.indexOf(d.shape) >= 0) {
                 mat.visible = false;
                 var rW = nlbRadiusW(d);
+                // SEAM R (0c-3): a roller's parts ARE built at its own radius, so a
+                // live radius scales relative to that and the build scale is 1.
+                mesh.userData._buildRw = rW;
                 var rgrp = new THREE.Group();
                 rgrp.userData = { elementType: "nlb_roller", id: "nlb_roller_" + d.id, bodyId: d.id };
                 mesh.add(rgrp);
@@ -42437,6 +42573,18 @@ export const FIELD_3D_RENDERER_CODE = `
                     rgrp.add(new THREE.Mesh(segGeo, rollMat(markCol, 0.32)));
                 }
             }
+
+            // SEAM R (0c-3) — the DRAWN radius, from the very first frame. A wheel's
+            // parts are built at the constant NLB_WHEEL_R while its LIFT and its spin
+            // divisor were already the body's own radius, so a wheel authoring
+            // radius_m 0.25 was drawn at 0.55 m and stood on a 0.25 m axle height —
+            // it sank through the track before any slider existed. This is one call
+            // rather than a second geometry branch, and it is EXACTLY the call the
+            // live radius dial makes, so the build pose and the first drag pose can
+            // never disagree (without it the first touch of R would snap the wheel
+            // from its build size to its physical size). A body authoring no radius_m
+            // scales by exactly 1 and is untouched.
+            nlbScaleRoller(mesh, nlbRadiusW(d));
 
             // SEAM E — invisible, forgiving pointer-pick proxy (the pp_drag_hit /
             // gsph_field_point_hit pattern: the raycaster skips visible:false, so
@@ -42652,7 +42800,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // ASCII transcription (no "theta", "mu_s", "m2", "m/s2", "deg"). The label span
     // carries the math-serif stack because U+2081/U+2082/U+209B/U+2096/U+2080 are
     // missing from most monospace faces (the merged-blob / tofu subscript scar).
-    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0"];
+    // SEAM R's three dials are APPENDED, never interleaved: this array is also the
+    // on-screen ROW ORDER (nlbSliderTokensUsed walks it), so inserting R beside m
+    // would move every existing concept's rows and break Rule 32d's "a row never
+    // moves between states" the moment two concepts disagreed.
+    var NLB_SLIDER_TOKENS = ["m", "m2", "F", "F_ang", "theta", "mu_s", "mu_k", "v0", "R", "R2", "omega0"];
     var NLB_SLIDER_SPEC = {
         m:     { param: "mass_a",           slider: "nlb_m_slider",     row: "nlb_m_row",     val: "nlb_m_val",     lbl: "nlb_m_lbl",     glyph: "m₁", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 2 },
         m2:    { param: "mass_b",           slider: "nlb_m2_slider",    row: "nlb_m2_row",    val: "nlb_m2_val",    lbl: "nlb_m2_lbl",    glyph: "m₂", unit: " kg",  dp: 1, mass: true, min: 0.5, max: 10, step: 0.5, def: 4 },
@@ -42667,7 +42819,31 @@ export const FIELD_3D_RENDERER_CODE = `
         theta: { param: "theta_deg",        slider: "nlb_theta_slider", row: "nlb_theta_row", val: "nlb_theta_val", lbl: "nlb_theta_lbl", glyph: "θ",  unit: "°",    dp: 0, min: 0,   max: 60, step: 1,   def: 0 },
         mu_s:  { param: "mu_s",             slider: "nlb_mus_slider",   row: "nlb_mus_row",   val: "nlb_mus_val",   lbl: "nlb_mus_lbl",   glyph: "μₛ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
         mu_k:  { param: "mu_k",             slider: "nlb_muk_slider",   row: "nlb_muk_row",   val: "nlb_muk_val",   lbl: "nlb_muk_lbl",   glyph: "μₖ", unit: "",     dp: 2, min: 0,   max: 1,  step: 0.05, def: 0 },
-        v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 }
+        v0:    { param: "initial_velocity", slider: "nlb_v0_slider",    row: "nlb_v0_row",    val: "nlb_v0_val",    lbl: "nlb_v0_lbl",    glyph: "v₀", unit: " m/s", dp: 1, min: -5,  max: 5,  step: 0.5, def: 0 },
+        // ── SEAM R (rotmech 0c-3) — the two RADIUS dials and the SPIN dial ──────
+        //   The token enum at the top of this file was widened for these three in
+        //   0c-2 but the spec rows never landed, and a token absent from THIS map is
+        //   dropped in silence by nlbSliderTokensUsed — no row, no disabled row, no
+        //   warning (engine_bug_queue nlb_seam_r_slider_tokens_declared_but_unwired).
+        //   R / R2 target the SAME two bodies m / m2 do (nlbSliderBodies: the first
+        //   two non-ghost, non-fixed bodies), so a teacher dragging m₂ and R₂ is
+        //   always dialling one object.
+        //   The MINIMUM is deliberately > 0: nlbRadiusM rejects a non-positive
+        //   radius as unphysical and falls back to NLB_DEFAULT_RADIUS_M, so a slider
+        //   that could reach 0 would make the wheel JUMP to 0.55 m at the bottom of
+        //   its travel. nlbApplyParam refuses a non-positive write for the same
+        //   reason the mass dials refuse one.
+        //   Glyphs: bare "R" for the single-body case (it must read the same as the
+        //   2πR bracket label standing under the wheel) and "R₂" for the second
+        //   dial (the physics block's own name for it); either is overridable per
+        //   concept through slider_controls.label, exactly like every other row.
+        R:     { param: "radius_a",         slider: "nlb_r_slider",     row: "nlb_r_row",     val: "nlb_r_val",     lbl: "nlb_r_lbl",     glyph: "R",  unit: " m",   dp: 2, min: 0.05, max: 0.8, step: 0.05, def: 0.25 },
+        R2:    { param: "radius_b",         slider: "nlb_r2_slider",    row: "nlb_r2_row",    val: "nlb_r2_val",    lbl: "nlb_r2_lbl",    glyph: "R₂", unit: " m",   dp: 2, min: 0.05, max: 0.8, step: 0.05, def: 0.25 },
+        // The STARTING SPIN, decoupled from v — the one control that makes a v−ωR
+        // mismatch teacher-drivable (spin-in-place at v = 0, or a wheel launched
+        // sliding). Signed: a negative value is backspin, which is a real and
+        // teachable case, so the range straddles zero.
+        omega0: { param: "initial_omega",   slider: "nlb_omega0_slider", row: "nlb_omega0_row", val: "nlb_omega0_val", lbl: "nlb_omega0_lbl", glyph: "ω₀", unit: " rad/s", dp: 1, min: -12, max: 12, step: 0.2, def: 0 }
     };
     // Per-concept min/max/step/default/label override, keyed by the SAME token the
     // per-state controls_visible[] uses. Mirrors the acgSc / gauss_law_sphere idiom.
@@ -42698,12 +42874,57 @@ export const FIELD_3D_RENDERER_CODE = `
     // Which tokens this CONCEPT ever exposes (union over every state's
     // controls_visible, in the canonical token order so the row ORDER on screen is
     // identical no matter what order the states were authored in).
+    //   AN UNKNOWN TOKEN IS NOW LOUD. The filter below is the ONE place a
+    //   controls_visible entry with no NLB_SLIDER_SPEC row disappears, and it used
+    //   to do it in perfect silence: no row, no disabled row, no console message
+    //   and no gate failure, so a state whose ONLY authored control was such a
+    //   token shipped with no live control at all and read as an authoring choice.
+    //   That is exactly how the three SEAM R dials stayed unwired for a whole
+    //   phase after their enum landed (nlb_seam_r_slider_tokens_declared_but_
+    //   unwired) — the defect was invisible for exactly as long as it was silent.
+    //   Warned ONCE per distinct token (the nlbEnWarnOnce idiom, keyed on the token
+    //   rather than an engine flag because this runs at BUILD, before any engine
+    //   record exists), and it stays a warning rather than a throw: the
+    //   createTubeLine scar says an authoring typo must never take the scene down.
+    var nlbUnknownTokenWarned = {};
+    var NLB_TOKEN_WARN_PREFIX = "[PM_NLB_SLIDER_TOKEN]";
+    function nlbTokenWarnOnce(key, msg) {
+        if (nlbUnknownTokenWarned[key]) return;
+        nlbUnknownTokenWarned[key] = true;
+        if (typeof console !== "undefined" && console && console.warn) {
+            console.warn(NLB_TOKEN_WARN_PREFIX + " " + msg);
+        }
+    }
+    function nlbWarnUnknownToken(tok) {
+        nlbTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
+            "', which has no NLB_SLIDER_SPEC row — no slider is built for it. " +
+            "Known tokens: " + NLB_SLIDER_TOKENS.join(", ") + ".");
+    }
+    // The same discipline one layer in: a dial that is BUILT but whose write the
+    // engine refuses is exactly as silent as a token that was never built, so both
+    // refusals say so once. (A radius or a spin on a block is an authoring mistake,
+    // not a scene-breaking one — a warning, never a throw.)
+    function nlbWarnInertRadius(tok, b) {
+        nlbTokenWarnOnce("radius:" + tok + ":" + (b ? b.id : "?"),
+            "the '" + tok + "' radius dial targets body '" + (b ? b.id : "?") +
+            "', whose shape '" + (b ? b.shape : "?") + "' draws no rim — the write is refused. " +
+            "Radius is a control only on " + NLB_ROLL_SHAPES.join("/") + ".");
+    }
+    function nlbWarnInertSpin(b) {
+        nlbTokenWarnOnce("omega0:" + (b ? b.id : "?"),
+            "the 'omega0' spin dial targets body '" + (b ? b.id : "?") +
+            "', which carries no angular state (shape '" + (b ? b.shape : "?") +
+            "'" + (b && b.rotation_locked ? ", rotation_locked" : "") + ") — the write is refused.");
+    }
     function nlbSliderTokensUsed() {
         var want = {}, keys = Object.keys(config.states || {});
         for (var i = 0; i < keys.length; i++) {
             var nlb = (config.states[keys[i]] || {}).newtons_laws_body;
             var cv = (nlb && nlb.controls_visible) || [];
-            for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
+            for (var c = 0; c < cv.length; c++) {
+                if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true;
+                else nlbWarnUnknownToken(String(cv[c]));
+            }
         }
         var out = [];
         for (var t = 0; t < NLB_SLIDER_TOKENS.length; t++) { if (want[NLB_SLIDER_TOKENS[t]]) out.push(NLB_SLIDER_TOKENS[t]); }
@@ -42850,6 +43071,61 @@ export const FIELD_3D_RENDERER_CODE = `
             if (bA) { bA.v = value; bA.v0 = value; }
             if (eng.coupled) eng.v_string = value;   // keep the string constraint consistent
         }
+        // ── SEAM R (0c-3) — the two RADIUS dials ────────────────────────────
+        //   radius_m is a live control exactly as m and mu are: the integrator, the
+        //   rolling gate, the contact readout, the revolution marks, the bracket
+        //   label and the centre markers ALL re-read nlbRadiusM/nlbRadiusW off this
+        //   record every frame, so this one write is the whole physics change. The
+        //   only thing that does NOT re-read itself is the built mesh, which is what
+        //   nlbApplyBodyRadius exists for (re-scale + re-lift, in that order).
+        //   Non-positive is REFUSED, exactly as the mass dials refuse it: nlbRadiusM
+        //   treats radius <= 0 as unphysical and returns the 0.55 m default, so
+        //   writing a 0 would silently JUMP the wheel to the default rather than
+        //   shrink it.
+        else if (token === "R" || token === "R2") {
+            var rb = (token === "R") ? bA : bB;
+            if (!rb || !(value > 0)) return;
+            if (!nlbSpinnable(rb)) { nlbWarnInertRadius(token, rb); return; }
+            rb.radius_m = value;
+            nlbApplyBodyRadius(rb.id);
+        }
+        // ── SEAM R (0c-3) — the STARTING SPIN dial ──────────────────────────
+        //   omega0 is an INITIAL CONDITION with a live consequence, so it writes the
+        //   same two places v0 does — the live quantity AND the replay seed — and for
+        //   the same reason: RESET_TRAJECTORY re-seeds omega from b.omega0, so a
+        //   teacher's spin would otherwise vanish on the next replay.
+        //   THREE further writes are what keep it coherent with the rolling gate:
+        //     • _spinIndep is forced TRUE, because that is precisely what authoring
+        //       omega0_rad_s means (nlbSpinIndependent) — without it the constraint
+        //       omega = v/R owns the spin and the dial is a decoration;
+        //     • the segment RE-ANCHORS at this instant (nlbRollSeg with alpha 0), the
+        //       same trusted-drag re-baseline the capture and slip sites use, so
+        //       theta stays a closed form of state-local t and a rewind is exact
+        //       (Rule 36). The next physics frame re-anchors again if the branch it
+        //       lands in wants a different alpha — its own alpha-churn test does that
+        //       already, and it preserves b.omega when it does;
+        //     • b.omega is written alongside b.omega0 so E2's gate read
+        //       (nlbOmegaSeeded) sees the NEW spin down BOTH of its branches: with a
+        //       segment open it reads b.omega, with none it reads b.omega0. A write
+        //       to only one of the two would leave the gate branching on the old
+        //       spin for as long as the other branch happened to be live.
+        //   Refused on a body with no angular state (a block, the wall): there
+        //   _spinIndep would silently make the KINETIC branch measure friction
+        //   against a contact-relative reference for an object that has no contact
+        //   point to speak of.
+        else if (token === "omega0") {
+            if (!bA) return;
+            if (!nlbSpinnable(bA) || bA.rotation_locked) { nlbWarnInertSpin(bA); return; }
+            bA._spinIndep = true;
+            bA.omega0 = value;
+            bA.omega = value;
+            nlbRollSeg(eng, bA, value, 0);
+            // Deliberately NOT written onto mesh.userData: nlbSetBodyPosition
+            // prefers the LIVE engine record whenever one exists and falls back to
+            // userData only during scene build, so mirroring it there would buy
+            // nothing and would leave a stale independent-spin flag on the mesh for
+            // the next state to inherit.
+        }
         else return;
         // Re-pose from the LIVE positions: a theta write moves the incline (and with
         // it every hanging body's anchor), so the bodies and the string must not be
@@ -42876,6 +43152,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (token === "mu_s") { var s1 = nlbSurfaceBody(); return s1 ? s1.mu_s : null; }
         if (token === "mu_k") { var s2 = nlbSurfaceBody(); return s2 ? s2.mu_k : null; }
         if (token === "v0") return bA ? bA.v : null;
+        // SEAM R (0c-3). Radius reads through nlbRadiusM, not the raw field, so a
+        // body that authors none shows the 0.55 m the engine is actually using
+        // rather than an empty row. omega0 reads through nlbOmegaSeeded — the
+        // seed-safe read E2 built for the rolling gate — because this runs on state
+        // ENTRY, where b.omega is still 0 and b.omega0 carries the seed; reading
+        // b.omega here would open every state with a spin dial parked at zero.
+        if (token === "R") return bA ? nlbRadiusM(bA) : null;
+        if (token === "R2") return bB ? nlbRadiusM(bB) : null;
+        if (token === "omega0") return bA ? nlbOmegaSeeded(bA) : null;
         return null;
     }
     // Thumb + numeric readout, kept in step with the engine. Called on state entry,
@@ -42924,6 +43209,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var cv = nlb.controls_visible || [], want = {}, shown = 0;
         for (var c = 0; c < cv.length; c++) { if (NLB_SLIDER_SPEC[cv[c]]) want[cv[c]] = true; }
         if (want.m2 && !nlbSliderBodies()[1]) want.m2 = false;
+        // SEAM R (0c-3): R2 is the SECOND body's dial and needs a second body for
+        // the identical reason m2 does — a one-body state can never expose it.
+        if (want.R2 && !nlbSliderBodies()[1]) want.R2 = false;
         var built = nlbRowsBuilt();
         for (var i = 0; i < built.length; i++) {
             var tok = built[i], sp = NLB_SLIDER_SPEC[tok];
@@ -45653,6 +45941,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 // and re-placing the mesh at the raw authored value would put it
                 // back out of bounds for the state's first rendered frame.
                 var seededB = eng.bodies[bd.id];
+                // SEAM R (0c-3): the DRAWN radius is re-resolved from the record this
+                // entry just seeded, BEFORE the placement below — the lift depends on
+                // it. Two things need that. (1) The radius is now a live dial, and a
+                // state entry re-seeds radius_m from the authored JSON, so without
+                // this the mesh would keep the size a teacher dragged it to in the
+                // previous state while the physics used the authored value. (2) A
+                // per-state radius (the "mass and radius cancel" race) is honoured on
+                // the first rendered frame instead of the union def's build size.
+                // Churn-guarded and no-op for any body whose radius equals its build
+                // radius, which is every body of every pre-SEAM-R concept.
+                nlbApplyBodyRadius(bd.id);
                 nlbSetBodyPosition(bd.id, seededB ? seededB.s : (bd.initial_position_m || 0));
             } else if (ud.elementType === "nlb_body_label") {
                 // Identifier AND mass, on the ONE camera-facing billboard. Composed
@@ -46843,6 +47142,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 //   mu_s-independent, so raising mu_s above mu_min changes no number.
                 //   Below mu_min the contact SLIPS, in either direction, and the body
                 //   falls to the kinetic branch with an independent angular state.
+                //
+                //   ROLLING ALSO NEEDS ITS KINEMATICS. The availability test above is
+                //   the whole gate on an INCLINE, where drive = m.g.sin(theta) is
+                //   nonzero and |f| <= mu_s.N reduces to mu_s >= mu_min. On FLAT
+                //   ground drive is identically 0, so aRoll and fRoll are 0 on every
+                //   frame REGARDLESS of the body's (v, omega) and the test degenerates
+                //   to 0 <= mu_s.N — true for any mu_s >= 0. A wheel launched sliding
+                //   (v = 2 m/s, omega = 0) therefore adopted the rolling branch on
+                //   frame 1: a = 0 so v never decelerated, f read a dishonest 0.00 N
+                //   beside a contact speed of 2.00 m/s, the omega = v/R line is skipped
+                //   for an independent-spin body so omega stayed frozen at its seed
+                //   forever, and _slipping was never set so the capture re-anchor below
+                //   could not fire (engine_bug_queue
+                //   nlb_rolling_branch_has_no_kinematic_gate).
+                //   Rolling is a KINEMATIC constraint, so it also requires the contact
+                //   to be at rest: |v - omega.R| ~ 0. A genuine mismatch now falls
+                //   through to the kinetic branch, which spins the wheel up while
+                //   slowing it down and hands back here at capture.
                 var kRoll = nlbShapeK(b), rollHeld = false;
                 if (b.rolling && !b.rotation_locked && !nlbHeldNow) {
                     var aRoll = drive / (b.m * (1 + kRoll));
@@ -46850,7 +47167,36 @@ export const FIELD_3D_RENDERER_CODE = `
                     // The static test at v ~ 0 is the ordinary one: a body at rest on
                     // a slope too gentle to start it does not roll, it stays stuck.
                     var canRoll = (Math.abs(fRoll) <= maxStat + 1e-12) && !boundPin;
-                    if (canRoll && !(stuck && Math.abs(b.v) < NLB_STOP_EPS_V && Math.abs(aRoll) < 1e-12)) {
+                    var rollR = nlbRadiusM(b);
+                    // Seed-safe by construction: for a body with NO independent angular
+                    // state nlbOmegaSeeded returns v/R, so cRel is identically 0 and
+                    // this whole test is inert — which is every pre-SEAM-R body and
+                    // every rolling body that has not yet slipped.
+                    var cRel = (b.v || 0) - nlbOmegaSeeded(b) * rollR;
+                    var contactRest = Math.abs(cRel) < NLB_STOP_EPS_V;
+                    if (!contactRest && kRoll > 1e-9) {
+                        // CAPTURE, one step early rather than one step missed. The
+                        // contact closes at cDot = drive/m + f.(1+k)/(k.m) under the
+                        // kinetic branch, and |cDot|.dt is routinely LARGER than the
+                        // 0.01 m/s band (pure_rolling STATE_7: 0.0245 m/s at a single
+                        // 1/60 s step, 0.0706 m/s at the 3-step dtStep the master clock
+                        // hands over on a slow frame), so a band test alone steps
+                        // straight over the crossing and the contact chatters about
+                        // zero forever, never rolling. Measured on the STATE_8 slider
+                        // grid: 76 of 126 (omega0, mu_k, step-size) combinations NEVER
+                        // captured without this line. Adopting rolling on the step that
+                        // would carry the contact THROUGH zero is the same idiom the
+                        // translational rest test below already uses (v0/v1 sign flip),
+                        // is affine in dt (Rule 36), and is a pure function of the
+                        // current state — no latch, so a rewind reproduces it and a
+                        // dt = 0 pin leaves it alone (dt = 0 makes the predicted
+                        // contact equal the current one, so the product is cRel^2 > 0
+                        // and the frame decides nothing new).
+                        var fSlip = -nlbSgn(cRel) * (b.mu_k || 0) * N;
+                        var cDot = drive / b.m + fSlip * (1 + kRoll) / (kRoll * b.m);
+                        if (cRel * (cRel + cDot * hPhys) <= 0) contactRest = true;
+                    }
+                    if (canRoll && contactRest && !(stuck && Math.abs(b.v) < NLB_STOP_EPS_V && Math.abs(aRoll) < 1e-12)) {
                         rollHeld = true;
                         stuck = false;
                         a = aRoll; f = fRoll;
@@ -46859,15 +47205,42 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (rollHeld) {
                     // Rolling: the constraint owns omega, so v and R.omega can never
                     // disagree and the contact speed is EXACTLY zero, not a residual.
-                    if (b._slipping) {
-                        // CAPTURE — the contact stopped sliding. Re-anchor the angular
-                        // segment at this instant so the pose is continuous through
-                        // the transition (a hand-back to the s-driven expression would
-                        // jump the marker by whatever the slip accumulated).
+                    if (!b._spinIndep) {
+                        // The ordinary case, byte for byte as it always was: omega is
+                        // read straight off the constraint every frame. _slipping can
+                        // never be true here (it is only ever set together with
+                        // _spinIndep), so the capture block below is unreachable for
+                        // such a body and this line is the whole of its behaviour.
+                        b.omega = b.v / nlbRadiusM(b);
+                    } else {
+                        // An INDEPENDENT angular state handing back to the constraint.
+                        // The segment re-anchors so the POSE is continuous through the
+                        // transition (a hand-back to the s-driven expression would jump
+                        // the marker by whatever the slip accumulated) — but it anchors
+                        // omega at v/R, the value the constraint demands, not at the
+                        // pre-capture omega. Anchoring at the pre-capture value leaves a
+                        // permanent residual: alpha = a/R and dv/dt = a keep v and
+                        // omega.R exactly parallel, so whatever gap exists at the anchor
+                        // never closes (measured on pure_rolling STATE_7: contact stuck
+                        // at 0.0087 m/s, i.e. a HUD reading 0.01 under a caption
+                        // claiming the contact is at rest, with v 1.33 against R.omega
+                        // 1.34). Snapping makes the contact speed exactly 0 from the
+                        // capture frame on, which is the claim the concept is built on.
+                        // Sub-frame precision is deliberately NOT chased: capture lands
+                        // on a frame boundary, at most one step (<= 6 ms of a 1361 ms
+                        // run) past the analytic instant.
+                        //   Re-anchoring is CONDITIONAL — at capture, at first use, and
+                        // whenever a live control moves alpha — for the same reason the
+                        // slip branch re-anchors conditionally: re-anchoring every frame
+                        // would walk t0 forward each tick, which is an accumulator in
+                        // disguise and would break the rewind (Rule 36 / SEAM R header).
+                        // Between anchors omega and theta stay closed forms of t.
+                        var capR = nlbRadiusM(b), capAlpha = a / capR;
+                        if (b._slipping || !b._slip0 || Math.abs(b._slip0.alpha - capAlpha) > 1e-9) {
+                            nlbRollSeg(eng, b, b.v / capR, capAlpha);
+                        }
                         b._slipping = false;
-                        nlbRollSeg(eng, b, nlbOmegaOf(b), a / nlbRadiusM(b));
                     }
-                    if (!b._spinIndep) b.omega = b.v / nlbRadiusM(b);
                 } else if (stuck) {
                     a = 0; b.v = 0;
                     f = -drive;                            // static friction: reported, never integrated
@@ -46882,7 +47255,21 @@ export const FIELD_3D_RENDERER_CODE = `
                     var vSign = (Math.abs(vRef) > NLB_STOP_EPS_V) ? nlbSgn(vRef) : nlbSgn(drive);
                     f = -vSign * b.mu_k * N;
                     a = (drive + f) / b.m;
-                    if (b.rolling && !b.rotation_locked) {
+                    // Gated on (rolling OR _spinIndep) to MATCH the vRef line above:
+                    // the two halves of one slip must agree about what counts as a
+                    // slipping body, or the translational half decelerates honestly
+                    // against a contact-relative reference while the angular half never
+                    // integrates at all and omega sits frozen at its seed. That
+                    // disagreement is the second half of
+                    // nlb_rolling_branch_has_no_kinematic_gate: it is what made the
+                    // alternative authoring (omega0_rad_s with no rolling flag) an
+                    // equally dead end rather than a workaround.
+                    // kRoll > 0 because alphaSlip divides by it. nlbShapeK ACCEPTS an
+                    // authored 0 (it only rejects negatives), and a zero there would
+                    // send omega to Infinity and blank the scene — the createTubeLine
+                    // scar's shape, one seam over. Inert for every real body: the
+                    // smallest shape constant in the map is 0.4.
+                    if ((b.rolling || b._spinIndep) && !b.rotation_locked && kRoll > 1e-9) {
                         // alpha = -f·R / I_cm = -f / (k·m·R). Opening a SLIP SEGMENT
                         // re-anchors (t0, omega0, alpha) at this instant, and every
                         // angular quantity from here is a closed form of (t - t0) —
@@ -49743,17 +50130,22 @@ export const FIELD_3D_RENDERER_CODE = `
     // instead of crawling, which is what keeps a late pin (S2 pins at 7.8 s)
     // reproducible in the headless tray.
     //
-    // THE SINGLE INTEGRATOR HAS NO MODE FLAG. tau_ext = 0 makes L exactly
-    // constant by construction (there is no accumulation to drift), I constant
-    // makes domega/dt = tau/I identically, and r dragged WHILE braking is
-    // correct with no special case — the alpha = (tau - omega*dI/dt)/I coupling
-    // falls out of omega = L/I. The rest clamp acts ON L (never on the derived
-    // omega), so a brake can bring the platform to rest and hold it but can
-    // never reverse the spin at any reachable slider value.
+    // THE SINGLE INTEGRATOR HAS NO MODE FLAG. An empty source list makes L
+    // exactly constant by construction (there is no accumulation to drift), I
+    // constant makes domega/dt = tau/I identically, and r dragged WHILE braking
+    // is correct with no special case — the alpha = (tau - omega*dI/dt)/I
+    // coupling falls out of omega = L/I.
+    //   E4 (rotmech 0c-3): the rest clamp is a property of the 'brake' SOURCE
+    // KIND, not of the integrator. A brake still brings the platform to rest
+    // and holds it there and can never reverse it; a signed 'drive' source
+    // spins a body up from rest, carries L through zero, and delivers
+    // alpha = tau/I in BOTH directions — none of which the pre-E4
+    // unconditional subtraction could reach at any authored value.
     // ================================================================
     var RBR_WORLD_PER_M = 1.8;            // world units per metre of apparatus
     var RBR_GRID_MS = 16;                 // the FIXED theta-integration grid (Rule 36)
     var RBR_GRID_MAX = 20000;             // hard cap on grid steps per evaluation
+    var RBR_MAX_SOURCES = 8;              // bounds the E4 breakpoint walk in rbrLAt
     var RBR_DEF_I_FRAME = 0.50;           // kg m^2 — turntable + rod, excluding the masses
     var RBR_DEF_ROD_HALF = 1.00;          // m
     var RBR_DEF_DRUM_R = 0.55;            // m  (Addendum B — the BRAKED radius)
@@ -49942,23 +50334,99 @@ export const FIELD_3D_RENDERER_CODE = `
         if (evT >= 0) return { t0: evT, L0: eng.evAnchorL };
         return { t0: 0, L0: eng.L0 };
     }
-    function rbrBrakedSeconds(t0, t1) {
-        var eng = window.PM_rbrEngine;
-        if (!eng || eng.brakeOnMs == null || !(eng.tau > 0)) return 0;
-        var lo = Math.max(t0, eng.brakeOnMs), hi = Math.min(t1, eng.brakeOffMs);
-        return (hi > lo) ? (hi - lo) / 1000 : 0;
-    }
-    // THE single angular-momentum integrator, in closed form.
-    //   L(t) = sign(L0) * max(0, |L0| - tau_brake * engaged_seconds)
-    // The rest clamp acts ON L (never on the derived omega), so the pad can stop
-    // the platform and hold it at rest but can NEVER reverse the spin.
+    // ── E4 (rotmech 0c-3) — THE SIGNED-TORQUE SOURCE LIST ──────────────────
+    // Before E4 the integrator subtracted UNCONDITIONALLY, so no torque source
+    // could ever RAISE |L|: alpha > 0 was unreachable at every authored value
+    // and a body seeded at rest stayed dead forever (L0 = 0 clamped to 0 on
+    // every frame). eng.sources is now the ONE list the integrator reads, and
+    // each entry is {id, kind, tau, onMs, offMs}:
+    //   kind 'drive' — tau is SIGNED, and the sign is AUTHORED, never derived
+    //     from |L|. It adds to L, so it spins a body up from rest, and it can
+    //     carry L through zero and out the far side (a real reversal).
+    //   kind 'brake' — tau is a MAGNITUDE that always opposes the CURRENT spin
+    //     and can never reverse it. THE REST CLAMP SURVIVES AS A PROPERTY OF
+    //     THIS KIND, not as a property of the integrator.
+    //
+    //   L(t) = L0 + integral over (t0, t] of ( tau_drive_net - sign(L)*tau_brake )
+    //
+    // evaluated as a PIECEWISE-LINEAR WALK over a bounded sorted breakpoint
+    // list (every source's engage/release instant, plus at most one L = 0
+    // crossing per segment). NOTHING IS CARRIED BETWEEN CALLS — the walk
+    // restarts from the anchor every time, so rbrLAt(t) is still a pure
+    // function of t: a rewind reproduces the earlier value exactly, a
+    // SET_TIME_FREEZE pin re-evaluates instead of crawling, and Rule 36's
+    // dt = h vs dt = 2h fold is bit-equal because the walk never sees dt at
+    // all. The accumulator-free contract at the top of this file is intact.
+    //
+    // AT L = 0 THE SIGN OF L IS NEVER CONSULTED (it is meaningless there, and
+    // -0 vs 0 would silently decide the physics). Instead, per the Desk-D
+    // ruling on the drive-vs-brake tug:
+    //   |tau_drive| <= tau_brake  ->  STATIC HOLD (L stays exactly where it is)
+    //   |tau_drive| >  tau_brake  ->  BREAKAWAY at (|tau_drive| - tau_brake) in
+    //                                 the DRIVE's own direction
     function rbrLAt(tMs) {
         var eng = window.PM_rbrEngine;
         if (!eng) return 0;
         var a = rbrAnchor(tMs);
-        var mag = Math.abs(a.L0) - eng.tau * rbrBrakedSeconds(a.t0, tMs);
-        if (!(mag > 0)) mag = 0;
-        return (a.L0 < 0 ? -1 : 1) * mag;
+        var src = eng.sources;
+        // NEGATIVE-ZERO NORMALISATION. The pre-E4 form ended in
+        // (a.L0 < 0 ? -1 : 1) * Math.abs(...), which maps a -0 anchor (omega0 = 0
+        // with spin_sign -1) to +0 and leaves every other finite value bit-exact.
+        // Adding 0 reproduces that in one operation, so an untouched anchor comes
+        // back byte-identical to the pre-E4 build. It matters beyond cosmetics:
+        // -0 vs +0 is exactly the sign(L)-at-rest ambiguity the tug rules out.
+        if (!src || !src.length || !(tMs > a.t0)) return a.L0 + 0;
+        var bps = [], i, s;
+        for (i = 0; i < src.length; i++) {
+            s = src[i];
+            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+            if (s.onMs > a.t0 && s.onMs < tMs) bps.push(s.onMs);
+            if (s.offMs > a.t0 && s.offMs < tMs) bps.push(s.offMs);
+        }
+        bps.sort(function (x, y) { return x - y; });
+        var L = a.L0 + 0, lo = a.t0, b, hi, mid, drive, brake;
+        for (b = 0; b <= bps.length; b++) {
+            hi = (b < bps.length) ? bps[b] : tMs;
+            if (!(hi > lo)) continue;
+            mid = lo + (hi - lo) / 2;
+            drive = 0; brake = 0;
+            for (i = 0; i < src.length; i++) {
+                s = src[i];
+                if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+                if (!(mid >= s.onMs && mid < s.offMs)) continue;
+                if (s.kind === "brake") brake += Math.abs(s.tau);
+                else drive += s.tau;
+            }
+            L = rbrLStep(L, drive, brake, (hi - lo) / 1000);
+            lo = hi;
+        }
+        return L;
+    }
+    // ONE interval over which the engaged set is CONSTANT. At most one L = 0
+    // crossing can happen inside it: the walk lands EXACTLY on zero and
+    // re-decides there, so recursion depth is at most 2 and terminates.
+    function rbrLStep(L, drive, brake, dt) {
+        if (!(dt > 0)) return L;
+        if (L === 0) {
+            // AT REST. sign(L) is never read here.
+            if (!(Math.abs(drive) > brake)) return L;                     // static hold
+            return L + (drive - (drive < 0 ? -1 : 1) * brake) * dt;       // breakaway
+        }
+        var sgn = (L < 0) ? -1 : 1;
+        if (drive === 0) {
+            // Pure brake (or pure coast) on a spinning body — the pre-E4
+            // arithmetic operand for operand, which is what keeps the legacy
+            // 'brake' branch byte-identical.
+            if (!(brake > 0)) return L;
+            var mag = Math.abs(L) - brake * dt;
+            if (!(mag > 0)) mag = 0;
+            return sgn * mag;
+        }
+        var rate = drive - sgn * brake;
+        if (rate === 0) return L;
+        var tz = -L / rate;                                               // seconds to L = 0
+        if (tz > 0 && tz < dt) return rbrLStep(sgn * 0, drive, brake, dt - tz);
+        return L + rate * dt;
     }
     function rbrOmegaAt(tMs) {
         var I = rbrIAt(tMs);
@@ -50014,7 +50482,10 @@ export const FIELD_3D_RENDERER_CODE = `
     var RBR_SLIDER_SPEC = {
         r:         { row: "rbr_r_row",        slider: "rbr_r_slider",        val: "rbr_r_val",        lbl: "rbr_r_lbl",        glyph: "r",  unit: " m",     dp: 2, min: 0.15, max: 0.90, step: 0.01, def: 0.80 },
         m:         { row: "rbr_m_row",        slider: "rbr_m_slider",        val: "rbr_m_val",        lbl: "rbr_m_lbl",        glyph: "m",  unit: " kg",    dp: 1, min: 0.5,  max: 5.0,  step: 0.1,  def: 2.0 },
-        omega0:    { row: "rbr_omega0_row",   slider: "rbr_omega0_slider",   val: "rbr_omega0_val",   lbl: "rbr_omega0_lbl",   glyph: "ω₀", unit: " rad/s", dp: 1, min: 0.5, max: 3.0, step: 0.1, def: 1.5 },
+        // min 0 (E4): rest is a legitimate seed now that a signed drive torque
+        // can spin the body up from it. Paired with the >= 0 guard in
+        // rbrApplyParam — both sites or the floor moves with nothing happening.
+        omega0:    { row: "rbr_omega0_row",   slider: "rbr_omega0_slider",   val: "rbr_omega0_val",   lbl: "rbr_omega0_lbl",   glyph: "ω₀", unit: " rad/s", dp: 1, min: 0,   max: 3.0, step: 0.1, def: 1.5 },
         tau_brake: { row: "rbr_tau_brake_row", slider: "rbr_tau_brake_slider", val: "rbr_tau_brake_val", lbl: "rbr_tau_brake_lbl", glyph: "τ", unit: " N·m", dp: 2, min: 0, max: 2.0, step: 0.05, def: 0.92 },
         // A discrete RESTART, never a continuous control: it is a BUTTON, so no
         // teacher can ever ease the spin through zero with it.
@@ -50076,9 +50547,31 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.evRepinT = t;
         eng.evAnchorT = t + eng.blankMs;
         eng.evAnchorL = rbrIOf(rbrRAt(t), eng.m) * eng.omega0 * (eng.evSign != null ? eng.evSign : eng.spinSign);
+        // Re-engage EVERY torque source at the new anchor — the sandbox restart
+        // semantics the single brake always had, now applied per source (E4).
+        // For a lone authored brake this is exactly the old two lines.
+        var ss = eng.sources || [];
+        for (var si = 0; si < ss.length; si++) {
+            ss[si].onMs = (Math.abs(ss[si].tau) > 0) ? eng.evAnchorT : null;
+            ss[si].offMs = Infinity;
+        }
         eng.brakeOnMs = (eng.tau > 0) ? eng.evAnchorT : null;
         eng.brakeOffMs = Infinity;
         rbrThetaReset();
+    }
+    // The tau_brake slider owns the FIRST brake source (creating one if the
+    // state authored none), and never touches a drive.
+    function rbrSetBrakeSource(eng) {
+        var ss = eng.sources || (eng.sources = []);
+        for (var i = 0; i < ss.length; i++) {
+            if (ss[i].kind === "brake") {
+                ss[i].tau = eng.tau; ss[i].onMs = eng.brakeOnMs; ss[i].offMs = eng.brakeOffMs;
+                return;
+            }
+        }
+        if (eng.tau > 0 && ss.length < RBR_MAX_SOURCES) {
+            ss.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
+        }
     }
     function rbrApplyParam(token, value) {
         var eng = window.PM_rbrEngine;
@@ -50091,7 +50584,11 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.m = value;
             rbrRestartNow(null);                       // m re-pins L -> a RESTART
         } else if (token === "omega0") {
-            if (!(value > 0)) return;
+            // E4: the floor is ZERO, not 0.5. A body at rest is a legitimate
+            // seed now that a signed drive torque can spin it up, so >= 0 here
+            // AND min 0 on the slider row — change one and the floor moves
+            // while nothing happens.
+            if (!(value >= 0)) return;
             eng.omega0 = value;
             rbrRestartNow(null);                       // omega0 re-pins L -> a RESTART
         } else if (token === "tau_brake") {
@@ -50103,6 +50600,7 @@ export const FIELD_3D_RENDERER_CODE = `
             eng.tau = (value < 0) ? 0 : value;
             eng.brakeOnMs = (eng.tau > 0) ? eng.t_ms : null;
             eng.brakeOffMs = Infinity;
+            rbrSetBrakeSource(eng);                    // mirror -> the source list (E4)
         }
     }
     function rbrSyncSliderRow(token, value) {
@@ -50578,11 +51076,48 @@ export const FIELD_3D_RENDERER_CODE = `
         };
         if (eng.r < eng.rMin) eng.r = eng.rMin;
         if (eng.r > eng.rMax) eng.r = eng.rMax;
-        // The torque source. 'brake' is the member this build implements; the
-        // other two DECLARED members are inert no-ops here and are built under
-        // their own concepts' rows, so reading one can never throw.
+        // ── The torque sources (E4, rotmech 0c-3) ──────────────────────────
+        // eng.sources is the ONE list rbrLAt reads. TWO authoring surfaces feed
+        // it and BOTH are optional; absent means the pre-E4 behaviour byte for
+        // byte (an empty list makes L exactly constant, with no accumulation):
+        //   (a) the LEGACY SCALAR form — external_torque.source plus
+        //       tau_brake_Nm / applied_torque_Nm. 'brake' is UNCHANGED and
+        //       lowers to exactly one 'brake' entry, which is what keeps
+        //       conservation_of_angular_momentum byte-identical.
+        //   (b) external_torque.sources[] — the drive-vs-brake tug: several
+        //       torques over their OWN engage windows, summing to tau_net.
+        // Presence is tested with Array.isArray / typeof, never truthiness.
+        // 'applied_force_at_point' and 'torsion_spring' stay DECLARED-only and
+        // fall through to an empty list, so reading one is still an inert
+        // no-op and never a throw.
+        eng.sources = [];
         var src = et.source || ((typeof et.applied_torque_Nm === "number") ? "applied_torque" : "brake");
-        if (src === "brake") {
+        var etSrcs = Array.isArray(et.sources) ? et.sources : null;
+        if (etSrcs) {
+            for (var si = 0; si < etSrcs.length && eng.sources.length < RBR_MAX_SOURCES; si++) {
+                var so = etSrcs[si] || {};
+                var kind = (so.kind === "brake") ? "brake" : "drive";
+                var traw = rbrNum(so.torque_Nm, 0);
+                // A DRIVE KEEPS ITS AUTHORED SIGN. A brake is a magnitude by
+                // definition (it opposes whatever the body is doing).
+                var tv = (kind === "brake") ? Math.abs(traw) : traw;
+                if (!(Math.abs(tv) > 0)) continue;
+                var onS = cueTriggerMs(so.engage_cue || "", rbrNum(so.engage_at_ms, 0));
+                var offS = (typeof so.release_at_ms === "number" || so.release_cue)
+                    ? cueTriggerMs(so.release_cue || "", rbrNum(so.release_at_ms, Infinity)) : Infinity;
+                eng.sources.push({
+                    id: (typeof so.id === "string" && so.id.length) ? so.id : (kind + "_" + si),
+                    kind: kind, tau: tv, onMs: onS, offMs: offS
+                });
+                // The FIRST brake entry also drives the pad actuator and the
+                // tau_brake slider, which have no notion of a list.
+                if (kind === "brake" && !(eng.tau > 0)) {
+                    eng.tau = Math.abs(tv);
+                    eng.padEngageMs = onS; eng.padReleaseMs = offS;
+                    eng.brakeOnMs = onS; eng.brakeOffMs = offS;
+                }
+            }
+        } else if (src === "brake") {
             eng.tau = Math.abs(rbrNum(et.tau_brake_Nm, 0));
             if (eng.tau > 0) {
                 eng.padEngageMs = cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0));
@@ -50590,13 +51125,26 @@ export const FIELD_3D_RENDERER_CODE = `
                     ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
                 eng.brakeOnMs = eng.padEngageMs;
                 eng.brakeOffMs = eng.padReleaseMs;
+                eng.sources.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
             }
         } else if (src === "applied_torque") {
-            // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I, on the
-            // same single integrator and the same closed form. The rest clamp
-            // still holds on L, so it can never drive the spin through zero.
-            eng.tau = Math.abs(rbrNum(et.applied_torque_Nm, 0));
-            if (eng.tau > 0) { eng.brakeOnMs = rbrNum(et.engage_at_ms, 0); eng.brakeOffMs = rbrNum(et.release_at_ms, Infinity); }
+            // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I on the
+            // same single integrator and the same closed form. SIGNED as of E4
+            // — a NEGATIVE applied_torque_Nm spins the body up the other way
+            // and a positive one spins it up from rest, which is the half of
+            // concept 7 the pre-E4 build could not reach at any value. It is a
+            // 'drive', so it leaves the brake mirror (eng.tau / brakeOnMs /
+            // brakeOffMs) alone: there is no pad here and the tau_brake slider
+            // must not show a drive's magnitude.
+            var atq = rbrNum(et.applied_torque_Nm, 0);
+            if (Math.abs(atq) > 0) {
+                eng.sources.push({
+                    id: "applied_torque", kind: "drive", tau: atq,
+                    onMs: cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0)),
+                    offMs: (typeof et.release_at_ms === "number" || et.release_cue)
+                        ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity
+                });
+            }
         }
         var pr = rb.param_ramp;
         if (pr && pr.param && isFinite(pr.from) && isFinite(pr.to) && isFinite(pr.end_ms) && eng.mode !== "sandbox") {
