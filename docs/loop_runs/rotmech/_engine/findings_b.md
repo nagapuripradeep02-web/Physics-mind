@@ -137,6 +137,41 @@ sealed at Checkpoint B until this row is fixed and the states are re-walked.
 
 ---
 
+## B-1 — RUNTIME CONFIRMATION (2026-08-05, second EYE run), plus a sharper lead
+
+The first EYE run's "confirmation" of B-1 was **confounded by B-8** — the wheel was hitting the
+wall at ~300 ms, so nothing could be concluded about a capture authored at 1361 ms. With s0
+corrected the wheel has 5.4 m of runway, and **B-1 is now cleanly confirmed on the pixels:**
+
+| t (ms) | v | Rω | contact | f_k |
+|---|---|---|---|---|
+| 0 | 2.00 | 0.00 | 2.00 | **0.00 N** |
+| 1000 | 2.00 | 0.00 | 2.00 | **0.00 N** |
+| 2000 | 2.00 | 0.00 | 2.00 | **0.00 N** |
+| frozen (H2 pin) | 2.00 | 0.00 | 2.00 | **0.00 N** |
+| 3000 | 0.00 | 0.00 | 0.00 | 0.00 N |
+
+`f_k` never leaves 0.00 N despite `mu_k: 0.05` being authored, so ω never rises, v never decays,
+and the capture at 1361 ms cannot occur. This is exactly the code-read prediction. The `v` drop
+at ~2700 ms is the wheel reaching the far wall after 5.4 m at 2.0 m/s — **an artefact, and one a
+reader could easily mistake for "capture worked."** It did not.
+
+### New lead — a legal authored ZERO, resolved by truthiness
+
+STATE_7 authors **`omega0_rad_s: 0`** — a legal falsy value. The eye-walker flagged this as
+matching an already-OPEN scar row, `optional_config_field_with_a_legal_zero_value_is_resolved_by_truthiness`
+(`peter_parker:field3d_surgeon`). **This desk's own state file records the same hazard class as
+SEAM R fact #2: *"Presence is `typeof`, never truthiness — `lane_gap_m = 0`, `activate_at_ms = 0`
+and `visible_before_activation: false` are all legal falsy values."***
+
+If `omega0_rad_s: 0` is being swallowed by a falsy check, `_spinIndep` would not be set, which
+would change which branch the body takes — a different mechanism from the missing kinematic gate
+B-1 describes by code read. **These may be two defects or one; this desk cannot tell from pixels.**
+Offered as a lead, not a diagnosis. Whoever fixes B-1 should check the zero-handling first,
+because it is cheap to check and would otherwise survive the kinematic-gate fix.
+
+---
+
 ## Finding B-2 — union item (b)-8 half-landed: `controls_visible` tokens `R`, `R2`, `omega0` are DECLARED but never wired, and are dropped in silence
 
 **Status:** OPEN · **Severity:** MAJOR (kills the only live control on `pure_rolling` STATE_1,
@@ -234,7 +269,37 @@ choice.** That needs a chapter-level decision, not a desk workaround.
 
 ---
 
-## Finding B-3 — a `rolling: true` body NEVER INTEGRATES, on any mode, on any track. The whole SEAM R rolling extension is unexercised and dead.
+## ⚠ B-3 CORRECTED 2026-08-05 (second EYE run) — READ THIS BOX BEFORE THE FINDING BELOW
+
+**As originally filed, B-3 was HALF WRONG, and the wrong half was Desk B's own fault.**
+
+B-3 claimed a `rolling: true` body never integrates *on any mode, on any track*, citing both
+concepts. The flat-track half of that evidence was an **authoring defect in `pure_rolling`, not
+an engine defect** — see **B-8**. `surface.length_m` is the track's HALF-length, so bounds are
+±3 m; every body authored `initial_position_m: 2.4` while travelling in **+s**, leaving 0.6 m of
+runway. The bodies were hitting the wall and being bound-arrested within ~1 s. That is precisely
+the "velocity collapses to 0.00 within one second" signature B-3 reported as engine behaviour.
+
+**After fixing s0 to −2.4, `pure_rolling` moves correctly on 6 of its 8 states** (S1, S2, S4, S5,
+S6, S8 — distinct frame hash at every timestamp, including all 11 frames of the S8 sandbox over
+10 s). The velocity collapse is gone. The aha state now reads `contact = 0.00` matching its own
+caption, and STATE_1's revolution marks fire.
+
+**`rolling_on_incline` was NOT changed** (its s0 was already correct — gravity drives −s, giving
+5.4 m of runway) **and is byte-identical to the previous run: still completely dead.**
+
+**So B-3 is REAL but its scope is much narrower than filed**, and its discriminator is NOT the
+`rolling` flag alone — `pure_rolling` S1/S2/S4/S6/S8 are all `rolling: true` and now work.
+The corrected statement of the defect, with sharpened evidence, is in **B-3 (revised)** below.
+
+**Method note, recorded deliberately:** the original B-3 was built on a real, reproducible,
+MD5-verified observation and was still wrong about the cause, because two different failures
+produced the same signature and the desk had no negative control separating them. The fix for
+this is not "trust the pixels less" — it is to always ask what ELSE produces this signature.
+
+---
+
+## Finding B-3 (revised) — a `rolling: true` body's computed motion never reaches its persistent state, so it never moves on the incline
 
 **Status:** OPEN · **Severity:** **CRITICAL** (both of this desk's concepts are non-functional;
 every rolling state in the chapter is affected) · **Owner:** `peter_parker:field3d_surgeon` ·
@@ -274,12 +339,62 @@ at every timestamp. The capture harness sees change perfectly well when there is
 |---|---|---|---|
 | `rolling_friction` (approved) | 10 | **0** | moves; H2 matches approved baselines 0.22–0.38% |
 | `work_done_by_constant_force` (approved) | 7 | **0** | moves; H2 **0.00%** on all 12 |
-| `pure_rolling` (this desk) | 9 | **6** | dead |
+| `pure_rolling` (this desk) | 9 | **6** | **ALIVE after the B-8 s0 fix** — 6/8 states move correctly |
 | `rolling_on_incline` (this desk) | 17 | **16** | dead |
 
-Perfect correlation with the flag. **No approved concept in the fleet sets `rolling: true`** —
-so the H2 regression baselines were structurally incapable of catching this, and the regression
-pair passing clean (verified this run) is not evidence of engine health on this path.
+**⚠ This table is retained as filed, but its conclusion is CORRECTED.** The original reading —
+"perfect correlation with the flag" — was an artefact of B-8: `pure_rolling` looked dead for an
+unrelated authoring reason. The flag alone is NOT the discriminator; `pure_rolling` S1/S2/S4/S6/S8
+are all `rolling: true` and now work. What still holds, and matters: **no approved concept in the
+fleet sets `rolling: true`**, so the H2 regression baselines were structurally incapable of
+catching anything on this path, and the regression pair passing clean (re-verified this run:
+`rolling_friction` 0.22–0.38%, `work_done_by_constant_force` 0.00–0.07%) is **not** evidence of
+engine health for rolling bodies.
+
+**The live discriminator is now: flat + launched with v₀ > 0 works; incline + released from rest
+does not.** Whether that is about θ, about the `incline_slide` mode, or about a body whose
+motion must START from zero, this desk cannot say from pixels.
+
+### SHARPENED EVIDENCE (2026-08-05 second run) — what the surgeon should actually chase
+
+The second eye-walk gathered discriminating evidence. **The force model and the branch-switch
+logic are CORRECT. The defect is downstream of them, in the step that carries computed motion
+into the body's persistent `v`/`ω`/position state.**
+
+**The forces and transitions are right, to the decimal:**
+
+- **S6 (held → released at `activate_at_ms: 2500`)** — before: `a = 0.00, f_s = 4.14 N`, and
+  4.14 N is exactly `mg sin 25° = 1 × 9.8 × 0.4226`. After: `a = −2.76, f = 1.38 N`, and 2.76 is
+  exactly `g sin θ/(1+k)` for a disc (k = 0.5), 1.38 exactly `k·m·a`. **The release fires on
+  schedule with the correct magnitudes — and the mesh is pixel-identical before and after.**
+- **S7 (μ_s `param_ramp` 0.50 → 0.05)** — the slider visibly interpolates, and the readouts cross
+  correctly at μ_min: `f_k` drops to 0.44 N ≈ `μ_k·N = 0.05 × 9.8 × cos 25°`. **The branch
+  switch fires correctly — and the mesh is pixel-identical throughout.**
+
+**The positive control, in the same frame, at the same instant:**
+
+- **S3 carries a `rotation_locked` (NOT `rolling`) block beside a `rolling` disc.** The block's
+  `contact` readout climbs 0.09 → 2.88 → 4.18 m/s, tracking `a = g(sin θ − μ_k cos θ) = 2.809`
+  almost exactly. **The pre-existing non-rolling kinetic path integrates position and velocity
+  correctly on the same track, in the same state, at the same time.** Only the `rolling` disc
+  beside it stays frozen at `contact = 0.00`.
+
+**The corroborating signature:** readout tokens that read from integrated body state
+(`v`, `ω`, `Rω`, `contact`, `KE_trans`, `KE_rot`) are frozen at their seed for the entire state
+on every incline body — S2's `v`/`Rω` at 0.00 despite its label asserting 3.32, S5's KE pair at
+0.00 J despite labels asserting 7.0/2.8 and 4.9/4.9 J, all four S8 bodies at 0.00 over 10.5 s.
+Meanwhile `a`/`f`/slip-`contact` in S6/S7 — which appear to come from closed-form expressions
+rather than from `b.v` — move correctly. **The split falls exactly along "reads from persistent
+state" vs "computed from a formula."**
+
+### A hypothesis that was TESTED AND REFUTED — do not re-derive it
+
+Desk B proposed that the bodies are held STUCK by static friction (all incline bodies are
+released from rest, and on S3 `maxStat ≈ 7.99 N` exceeds the drive of `4.14 N`, so the `stuck`
+test at `:46795` looked like a plausible culprit). **The frames refute it:** S6's release fires
+correctly on schedule and S7's μ_s ramp drives the body *out* of the static regime with correct
+post-slip numbers — and neither moves. Excess static friction is not what is holding them.
+Recorded so no desk spends the same hour on it.
 
 ### Why this SUPERSEDES B-1's blast radius
 
@@ -303,12 +418,14 @@ correct authored launch value to a dead `0.00` within ~1 s, while `rolling_on_in
 never leave `0.00` at all — consistent with a single defect in how the rolling branch's `a`
 reaches position integration, rather than two separate ones. **Do not build to that guess.**
 
-### Consequence for this desk
+### Consequence for this desk (CORRECTED 2026-08-05)
 
-**Both concepts are non-functional, not merely partially blocked.** The earlier assessment —
-"S7 blocked on B-1, S4 radius blocked on B-2" — understated it. `pure_rolling` STATE_1/2/4/6/7
-and `rolling_on_incline` STATE_1/2/4/5/8 all fail to render their physics. Neither concept can
-be sealed, re-walked, or baselined until B-3 lands.
+- **`rolling_on_incline`: entirely non-functional.** Not one of its 8 states renders its physics.
+  Nothing to seal, nothing to baseline, until B-3 lands.
+- **`pure_rolling`: 6 of 8 states now work** after the B-8 fix (S1, S2, S4, S5, S6, S8). It is
+  blocked on **S3 (B-5, zero bodies render)** and **S7 (B-1, capture never occurs)**, plus the
+  B-2 slider rows on S1/S8. Still not sealable — but it is a working sim with two broken states,
+  not a dead one.
 
 ---
 
@@ -398,7 +515,56 @@ there is no observable direction to compare the sign against. **Re-check after B
 
 ---
 
-## Pre-flagged gaps — confirmed absent, not blocking
+## Finding B-8 — DESK B's OWN DEFECT: `surface.length_m` is a HALF-length, and `pure_rolling` authored every body 0.6 m from the wall
+
+**Status:** FIXED 2026-08-05 · **Severity:** was CRITICAL (it made a working concept look like a
+dead engine) · **Owner:** `alex:json_author` — **this desk, not the engine** · **Filed and fixed
+in the same session.**
+
+### What was wrong
+
+`surface.length_m` is the track's **visible HALF-length** — engine:
+`NLB_DEFAULT_LEN_M = 6 // surface.length_m default (visible half-length, metres)`, and
+`nlbBoundsM` returns `{ lo: -lenM, hi: lenM }`. Both concepts author `length_m: 3`, so the track
+runs **±3 m**, not 0–3 m.
+
+`nlbGravAlong` returns **`-m·g·sin(θ)`**, so on an incline gravity drives **−s**.
+
+Every body in both concepts authored `initial_position_m: 2.4`:
+
+- **On the incline (θ = 25°, v₀ = 0): CORRECT.** Runs +2.4 → −3, i.e. 5.4 m of runway.
+- **On the flat (θ = 0, v₀ > 0): BACKWARDS.** Motion is +s, so the runway is 3 − 2.4 = **0.6 m**.
+  STATE_7 launches at 2.0 m/s and hits the wall at ~300 ms; its capture is authored at 1361 ms.
+
+8 of `pure_rolling`'s 9 bodies were affected. Only STATE_5 escaped — because `v₀ = 0`, which is
+exactly why the first eye-walk independently named S5 "the only clean state." All 17
+`rolling_on_incline` bodies were already correct and were not touched.
+
+### Fix
+
+`initial_position_m: -2.4` on all 9 `pure_rolling` bodies (5.4 m of runway, deliberately
+matching the incline's), plus the doc-only `x0` constant. STATE_5 moved too — not because it was
+broken, but for **Rule 32d** pose continuity: 8 siblings starting at −2.4 and S5 alone at +2.4
+would teleport the wheel 4.8 m when a teacher opens that state from the rail.
+
+Verified: `tsc` 0 · `validate:concepts` 151 PASS / 0 FAIL · `rolling_on_incline` untouched.
+Fallout checked and clean: `revolution_marks` and `skid_trail` both derive from live body
+position, not authored constants; no narration states a position. Two camera values were flagged
+as possibly stale (`STATE_2.camera_target_m: 0.9`, `STATE_5.camera_position[0] = 2.4`, the latter
+numerically equal to the OLD start) — **both since eye-walked and found to frame correctly**; the
+camera-x match is a coincidence, not a derived value.
+
+### Prevention rule — the reason this is filed rather than quietly fixed
+
+**`length_m` is a HALF-length. A body's runway is `length_m − s0` in +s and `length_m + s0` in
+−s, and gravity drives −s.** An authored `initial_position_m` must be checked against the
+DIRECTION of travel, which on a flat track comes from `initial_velocity_mps`, not from gravity.
+
+This passed Zod, passed `validate:concepts`, passed all 35 deterministic EYE checks, and
+produced a physically plausible-looking wall-arrest that two eye-walkers and this desk all read
+as an engine integration failure. **Nothing in the pipeline catches it.** A cheap gate would be:
+assert `0 < (bounds − s0) in the direction of travel` for every body, and warn when a body's
+authored runway is shorter than the distance implied by its own authored timings.
 
 1. **No `'turns'` readout token, no turn-counter primitive.** `readouts` (`:1540-1541`) has no
    such member; `revolution_marks` (`:1608-1613`) exposes only `body_id` / `show_bracket` /

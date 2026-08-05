@@ -151,3 +151,88 @@ verdict was actively misleading; the eye-walkers caught it on both concepts.
 Nothing sealed. Nothing approved. No baseline written for either concept (H2 correctly reported
 "no approved baseline" on both). A re-walk of BOTH concepts is required once B-3 lands — not
 just the S7/radius beats named in the 2026-08-04 entry.
+
+---
+
+## 2026-08-05 (second run) — B-3 was half wrong, and the wrong half was OURS. `pure_rolling` is alive.
+
+### E2/E3 have NOT landed — the premise of this round was false
+
+The round was opened on "Desk E's E2 (kinematic gate) and E3 (R/R2/omega0 wired) are landed —
+both your engine blockers are closed." **Neither is on `origin/master`.** Verified three ways:
+`git fetch` + `git rev-list` shows this desk **0 behind** origin/master; origin/master's log
+carries no E2/E3 commit; and the engine source in this worktree still reads
+`NLB_SLIDER_TOKENS = ["m","m2","F","F_ang","theta","mu_s","mu_k","v0"]` (no `R`/`R2`/`omega0`)
+with `canRoll` still the bare dynamic-availability test, no kinematic precondition.
+**B-1 and B-2 remain OPEN and untouched.** `desk:sync` did not list this desk at all.
+
+### B-8 — our own defect, and it was masquerading as B-3
+
+`surface.length_m` is the track's **HALF-length** (bounds ±3), and `nlbGravAlong` returns
+`−m·g·sinθ` so gravity drives −s. Every body authored `s0 = 2.4`: correct on the incline (5.4 m
+of runway), **backwards on the flat states** (0.6 m of runway, wall-arrest at ~300 ms).
+8 of `pure_rolling`'s 9 bodies affected; only S5 escaped, because `v₀ = 0` — which is exactly
+why the first eye-walk had independently called S5 "the only clean state." All 17
+`rolling_on_incline` bodies were already correct and were NOT touched.
+
+Fixed to `s0 = −2.4` via `alex:json_author` (9 bodies + the doc-only `x0`). S5 moved too, for
+Rule 32d pose continuity rather than because it was broken. `tsc` 0 · validate 151 PASS / 0 FAIL.
+
+**This invalidated half of B-3, which this desk filed yesterday as a CRITICAL engine defect.**
+The correction is boxed at the top of B-3 in `findings_b.md`. The observation was real,
+reproducible and MD5-verified — and still wrong about the cause, because two different failures
+share one signature and the desk had no negative control separating them.
+
+### After the fix: `pure_rolling` is a working sim with two broken states
+
+MD5-verified: distinct hash at every timestamp on S1, S7 and S8, including all 11 frames of the
+S8 sandbox across 10 s. Eye-walked: **6 of 8 states now correct** (S1, S2, S4, S5, S6, S8). The
+velocity collapse is gone; S2's aha state now reads `contact = 0.00` matching its own caption
+(it previously read the exact inverse); STATE_1's revolution marks and the 2πR payoff now fire.
+Both flagged camera values were eye-walked and frame correctly — the `camera_position[0] = 2.4`
+match to the old start position is a coincidence, not a derived value.
+
+Still broken: **S3 (B-5** — zero bodies render, confirmed still) and **S7 (B-1** — capture never
+occurs, now cleanly confirmed with the confound removed: `f_k` sits at 0.00 N for the whole
+state despite `mu_k: 0.05`, so ω never rises. The v-drop at ~2700 ms is the far wall at 5.4 m,
+**not** capture — a reader could easily mistake it for success).
+
+**New lead on B-1:** STATE_7 authors `omega0_rad_s: 0`, a legal falsy value, and the eye-walker
+matched this to an already-OPEN scar row about legal zeros resolved by truthiness. This desk's
+own SEAM R fact #2 records the identical hazard class. Cheap to check, and it would survive a
+kinematic-gate-only fix.
+
+### `rolling_on_incline`: unchanged, still dead, and now sharply diagnosed
+
+Byte-identical to the previous run (S8 still one hash across t=0/3000/5000/10000/frozen). Since
+its s0 was correct and untouched, this is the genuine engine defect. The second eye-walk narrowed
+it hard:
+
+- **The forces and branch-switches are CORRECT to the decimal.** S6's held→release fires on
+  schedule (`f_s = 4.14 N = mg sin25°` → `a = −2.76 = g sinθ/(1+k)`, `f = 1.38 = k·m·a`); S7's
+  μ_s ramp crosses μ_min correctly (`f_k → 0.44 N ≈ μ_k·N`). **The meshes are pixel-identical
+  before and after both transitions.**
+- **Positive control in the same frame:** S3's `rotation_locked` (non-rolling) block integrates
+  correctly beside the frozen rolling disc — `contact` 0.09 → 2.88 → 4.18 m/s, tracking
+  `a = g(sinθ − μ_k cosθ) = 2.809`.
+- **Signature:** readouts that read from integrated state (`v`, `ω`, `Rω`, `contact`, KE) are
+  frozen at seed everywhere; `a`/`f` (computed from formulas) move correctly.
+
+Conclusion handed to Desk E: the force model and branch logic work; **the step that carries
+computed motion into the body's persistent v/ω/position never executes for `rolling: true`
+bodies.** Offered as evidence, not an asserted root cause.
+
+**A hypothesis this desk raised and the frames REFUTED:** that the bodies are held stuck by
+static friction (released from rest, `maxStat ≈ 7.99 N` vs drive `4.14 N`). S6 releases on
+schedule and S7's ramp drives the body out of the static regime — and neither moves. Recorded so
+no desk spends the same hour on it.
+
+### Regression pair — clean, re-verified after the s0 edit
+`rolling_friction` H2 0.22–0.38% · `work_done_by_constant_force` H2 0.00–0.07%, all baselines,
+tolerance 2.0%. Still not evidence of engine health on the rolling path (both have zero
+`rolling: true` bodies).
+
+### State
+Nothing sealed, nothing approved, no baseline written. `pure_rolling` needs B-1 + B-5 (+ B-2 for
+its slider rows); `rolling_on_incline` needs B-3. **All four engine findings are Desk E's, and
+none of them has landed yet.**

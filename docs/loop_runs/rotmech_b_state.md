@@ -11,14 +11,17 @@ engine_surface: `newtons_laws_body` **SEAM R** (the 0c-2 rolling extension)
 
 | Wave | Concept | Status |
 |---|---|---|
-| 1 | `pure_rolling` | **JSON AUTHORED + EYE-WALKED** (2026-08-05). tsc 0 · validate PASS. **BLOCKED — non-functional.** All 6 `rolling` bodies fail to integrate (B-3). S3 renders zero bodies (B-5). Also B-1 (S7), B-2 (S1/S8 radius). |
-| 1 | `rolling_on_incline` | **JSON AUTHORED + EYE-WALKED** (2026-08-05). tsc 0 · validate PASS. **BLOCKED — non-functional.** All 16 `rolling` bodies fail to integrate (B-3); S8 sandbox byte-identical over 10.5 s. Also B-2 (S4/S8 radius), S8 "marble vs ring" unachievable. |
+| 1 | `pure_rolling` | **6 of 8 STATES WORKING** (2026-08-05, after the B-8 s0 fix). tsc 0 · validate PASS. **BLOCKED on S3 (B-5, zero bodies render) + S7 (B-1, capture never occurs)**, plus B-2 slider rows on S1/S8. |
+| 1 | `rolling_on_incline` | **NON-FUNCTIONAL** (2026-08-05). tsc 0 · validate PASS. **BLOCKED — all 8 states dead (B-3)**; S8 sandbox byte-identical over 10.5 s across two runs. Also B-2 (S4/S8 radius), S8 "marble vs ring" unachievable. |
 
-> **THE EYE has run. Both concepts are NON-FUNCTIONAL, not partially blocked** — finding **B-3**
-> (CRITICAL): a `rolling: true` body never integrates, on any mode, flat or inclined. This
-> **refutes B-1's claim that `rolling_on_incline` is unaffected**. Nothing here can be sealed,
-> baselined or re-walked until Desk E lands B-3. The regression pair passed clean, but both its
-> concepts have ZERO `rolling` bodies — that is not evidence of engine health.
+> **⚠ B-3 as first filed was HALF WRONG, and the wrong half was ours.** `pure_rolling` looked
+> dead because of **B-8**, a Desk B authoring defect: `surface.length_m` is a HALF-length, so
+> bodies authored `s0 = 2.4` on the FLAT states had 0.6 m of runway and hit the wall at ~300 ms.
+> Fixed to −2.4; **`pure_rolling` now works on 6 of 8 states**. `rolling_on_incline` was already
+> correct, was not changed, and is byte-identical + still dead — that is the real B-3.
+>
+> **E2/E3 have NOT landed** (verified: 0 behind origin/master; `NLB_SLIDER_TOKENS` still the
+> eight pre-SEAM-R tokens; `canRoll` still has no kinematic precondition). B-1 and B-2 are OPEN.
 
 **This desk is the only one with two ready concepts, and it carries both rolling concepts
 deliberately.** They are the joint consumers whose union defined SEAM R — the amendment's

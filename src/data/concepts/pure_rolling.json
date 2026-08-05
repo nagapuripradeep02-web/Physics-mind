@@ -41,7 +41,7 @@
       "k": { "name": "moment-of-inertia coefficient, I = k m R squared, uniform disc", "unit": "", "constant": 0.5 },
       "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
       "theta_deg": { "name": "incline angle, this concept is flat", "unit": "deg", "constant": 0 },
-      "x0": { "name": "home-pose position", "unit": "m", "constant": 2.4 },
+      "x0": { "name": "home-pose position", "unit": "m", "constant": -2.4 },
       "L_half": { "name": "track half-length", "unit": "m", "constant": 3.0 }
     },
     "computed_outputs": {
@@ -707,7 +707,7 @@
           "mode": "coast_no_force",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0.9, "rolling": true }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 0.9, "rolling": true }
           ],
           "readouts": ["v", "omega", "Romega"],
           "controls_visible": ["R"],
@@ -731,7 +731,7 @@
           "mode": "coast_no_force",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0.6, "rolling": true }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 0.6, "rolling": true }
           ],
           "readouts": ["v", "contact"],
           "controls_visible": [],
@@ -757,8 +757,8 @@
           "single_lane": true,
           "lane_gap_m": 0,
           "bodies": [
-            { "id": "nlb_wheel_locked", "label": "locked wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 2.0, "rotation_locked": true, "mu_s": 0.2, "mu_k": 0.2 },
-            { "id": "nlb_wheel_roll", "label": "rolling wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 2.0, "rolling": true, "activate_at_ms": 1500 }
+            { "id": "nlb_wheel_locked", "label": "locked wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 2.0, "rotation_locked": true, "mu_s": 0.2, "mu_k": 0.2 },
+            { "id": "nlb_wheel_roll", "label": "rolling wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 2.0, "rolling": true, "activate_at_ms": 1500 }
           ],
           "readouts": ["f", "contact"],
           "controls_visible": [],
@@ -779,7 +779,7 @@
           "mode": "coast_no_force",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 1.0, "rotation_locked": true }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 1.0, "rotation_locked": true }
           ],
           "readouts": ["v"],
           "controls_visible": [],
@@ -802,7 +802,7 @@
           "mode": "coast_no_force",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0, "omega0_rad_s": 4.0, "mu_s": 0 }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 0, "omega0_rad_s": 4.0, "mu_s": 0 }
           ],
           "controls_visible": [],
           "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
@@ -825,7 +825,7 @@
           "mode": "coast_no_force",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": true },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 1.0, "rolling": true }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 1.0, "rolling": true }
           ],
           "readouts": ["v", "omega", "Romega"],
           "controls_visible": [],
@@ -852,7 +852,7 @@
           "mode": "coast_with_friction",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": false },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 2.0, "omega0_rad_s": 0, "rolling": true, "mu_s": 0.05, "mu_k": 0.05 }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 2.0, "omega0_rad_s": 0, "rolling": true, "mu_s": 0.05, "mu_k": 0.05 }
           ],
           "readouts": ["v", "Romega", "contact", "f"],
           "controls_visible": ["v0"],
@@ -872,7 +872,7 @@
           "mode": "sandbox",
           "surface": { "theta_deg": 0, "length_m": 3.0, "frictionless": false },
           "bodies": [
-            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": 2.4, "initial_velocity_mps": 0.9, "omega0_rad_s": 3.6, "rolling": true, "mu_s": 0.05, "mu_k": 0.05 }
+            { "id": "wheel", "label": "wheel", "shape": "wheel", "mass_kg": 1, "radius_m": 0.25, "initial_position_m": -2.4, "initial_velocity_mps": 0.9, "omega0_rad_s": 3.6, "rolling": true, "mu_s": 0.05, "mu_k": 0.05 }
           ],
           "readouts": ["v", "omega", "Romega", "contact"],
           "controls_visible": ["v0", "R", "omega0", "mu_k"],
