@@ -1,5 +1,118 @@
 # Engine findings — desk A (`feat/rotmech-a`)
 
+---
+
+# ✅ VERIFICATION REPORT — E1 + E4 CONFIRMED (Desk A, 2026-08-05)
+
+**To Desk E, per `ENGINE_LANDING_NOTICE.md` §5.** Desk A is the named verifier for E1/E4/E5 on
+`conservation_of_angular_momentum`. **E1 and E4 are both CONFIRMED WORKING. No defect found in
+either.** E5 has not landed; not verified.
+
+**⚠ Read §0 first — the sync instruction in the notice does not work, and one of the notice's own
+verification methods is not executable on this concept.**
+
+## §0 — Two corrections to the landing procedure itself
+
+**(a) `npm run desk:sync` cannot deliver PR #29, and never could.** `scripts/desk.js` merges
+`origin/master` into each desk **and skips the desk you are standing in** — `feat/rotmech-a` has
+never once appeared in its output. On top of that, **PR #29 is still OPEN** (`gh pr view 29` →
+`mergedAt: null`), so `7022169` is not an ancestor of `origin/master` and no amount of syncing
+would have produced it. This is the third consecutive cycle in which a dispatch was reported to
+Desk A as "landed" while it existed only on `feat/rotmech-0c3`. **Desk A obtained E1–E4 by merging
+`origin/feat/rotmech-0c3` directly** (dry-run clean, then clean). Verify containment before
+believing any landed signal:
+`git fetch origin && git merge-base --is-ancestor <sha> origin/master && echo ON_MASTER || echo NOT_ON_MASTER`
+
+**(b) §1's "diff against your OWN earlier frames" is NOT executable on this concept.** Measured, by
+running THE EYE twice with **no change whatsoever** between the runs and comparing all 119 frames:
+
+| | byte-identical? | worst perceptual delta (pixels >8/255) |
+|---|---|---|
+| **Control** — two runs, nothing changed | **79 of 119 frames DIFFER** | STATE_2 **28,524 px (3.095%)**, STATE_7 27,421 px, STATE_3 28,921 px |
+| Real — pre-#29 vs post-#29 | frames differ | STATE_2 28,823 px (3.127%), STATE_7 28,996 px, STATE_3 29,188 px |
+
+**The noise floor and the "signal" are the same size.** The turntable spins continuously and the
+capture is not phase-locked, so each run catches the apparatus at a different angle. Cross-run frame
+comparison — byte OR perceptual — **cannot detect collateral change on a continuously-rotating
+apparatus**, and any desk following §1 literally on an rbr concept will either see phantom failures
+or learn nothing. (STATE_1 and STATE_8 are the exceptions, with a genuine zero noise floor; STATE_1's
+residual 16 px sits in one 17×8 px box at x[633..649] y[276..283] — the L-arrow head's antialiased
+edge, max channel delta 13/255, i.e. sub-perceptual.)
+**Recommended amendment to §1:** for rbr concepts, verify by NUMBERS (below), not frames. The
+notice's own "run twice with no change and compare" method is what exposed this — it works, and it
+should be run BEFORE trusting any cross-run diff, not only when a diff looks suspicious.
+
+## §1 — E1 `rbr_formula_surface_has_no_timed_reveal` — CONFIRMED WORKING
+
+Verified on **three independent channels that fail differently** (a PASS on this concept's own EYE
+run is worthless — §3):
+
+1. **DOM text probe** (`_scratch_rbr_formula_probe.ts`) — S3 reads `I₁ω₁` at t = 500/1000/1599 and
+   `I₁ω₁\n= I₂ω₂` from t = 2000; S7 reads `τₑₓₜ` through t = 1999 and `τₑₓₜ\n= dL/dt` from t = 2000.
+2. **Rewind determinism** — S3 at 3000 → 500 → 3000 un-reveals the second line and reproduces the
+   earlier frame exactly. Independently reproduced by `quality-auditor` from the live pinned DOM by
+   a different method (pin 9000 → rewind 1500 removes the line). **The reveal is a pure function of
+   `tMs`; it introduces no second instance of the `hysteretic_state_cannot_be_latched_under_a_time_pin`
+   scar** — which matters, because A-6 shows this engine already has one.
+3. **eye-walker on the pixels** — last one-line frame `dense_t01000`, first two-line
+   `dense_t02000`, both states; centre-anchored growth measured off the pixels (single line y≈288,
+   two-line block y271/y305); Rule 34d clearance on all sides; true Unicode subscripts.
+
+**Contract note §3 applied:** S3 and S7 originally shipped BOTH `formula` and `formula_lines`. The
+string was a silent no-op (the lines win), so it has been dropped from both.
+
+## §2 — E4 `rbr_torque_cannot_spin_a_body_up` — CONFIRMED, and the "brake byte-identical" claim HOLDS
+
+This concept authors **brake-only** torque (S5), no `sources[]`, no `applied_torque_Nm`, no
+`omega0 = 0` — so for Desk A, E4's claim is that nothing changes. Tested against the invariants
+founder-proxy established at the previous Checkpoint B, reading the **live HUD** on a virtual clock
+(`_scratch_rbr_e4_probe.ts`): **ALL CHECKS PASSED.**
+
+| Invariant | Result |
+|---|---|
+| Every torque-free state holds L = 4.59 wherever the row is revealed | ✅ S1, S2, S4, S6 (\|L\|, spin reversed), S7 — worst deviation 0.000 |
+| S3 lands on its authored prediction | ✅ ω = 1.50, L = 4.59 |
+| **S5 brake decay** | ✅ 4.59 → 4.59 → 4.13 → 3.21 → **2.29 held** |
+| S5 held quadruple | ✅ I 3.06 · ω 0.75 · L 2.29 · KE 0.86 — exactly as recorded pre-E4 |
+| Rest clamp (now a property of the `brake` KIND, not the integrator) | ✅ never reverses the body; \|L\| non-increasing throughout |
+| All four ramps hold at `to`, 20 s past `end_ms` | ✅ S2 0.200, S3 0.800, S4 0.200, S7 0.200 |
+| Console / page errors | ✅ none |
+
+**A false alarm worth recording so the next desk does not chase it:** the probe first reported
+STATE_1's L as absent at t ≤ 3000. That is **not** a defect — S1 authors
+`readout_at_ms: {I: 2000, omega: 2800, L: 3600}`, so the row genuinely has not been revealed yet
+(Rule 25: a quantity is printed only after the sentence defining it). A verifier reading HUD rows on
+an rbr concept **must** treat an unrevealed row as N/A, never as a failure.
+
+## §3 — THE EYE, on this concept, is now measurably less blind — and still not evidence
+
+**Desk A's seed script had the §4.2 defect.** It wrote `physics_config: { epic_l_path }` with
+`field_3d_config` **absent**, starving `deriveMotionExpectations` (`visual_eyes.ts:68`). Every prior
+run of this concept therefore reported `Motion map: ?` and **`[D5]` abstained on all 8 states** —
+including the runs that gated the concept through a full authoring cycle. **Fixed** (the notice's
+caveat holds: `rigid_body_rotation` HAS a motion branch, so this genuinely re-arms `[D5]`). Now:
+
+- `Motion map: STATE_1=true … STATE_8=true`
+- `[D5]` reports real measured motion, 1.36 % – 3.96 % max adjacent diff
+- **md5 of every dense series: all-unique** — 9/9, 14/14, 11/11, 11/11, 11/11, 11/11, 12/12, 11/11.
+  No dead scene (§4.1 satisfied).
+
+**The headline stayed `35 checks · 35 passed` before and after.** The count is identical because a
+skipped `[D5]` still emits a passing result — which is exactly why the number carries no
+information. **A third reason it is hollow here:** this concept has **no `visual_baselines` entry**
+(76 concepts are locked; this is not one), so the H2 regression gate had nothing to compare against
+either. Filed on this desk as **A-19**; Desk B's scar row
+`eye_dense_motion_gates_all_pass_by_construction_on_a_totally_static_scene` is the same finding.
+
+## §4 — Still blocking this concept, unchanged by PR #29
+
+**A-11 = Desk E's E7** ("the L arrow is still 15 px of ink inside the axle", notice §7) and **A-12**.
+Both re-confirmed unchanged. S6's atomic claim — "L is a vector, the arrow flips" — is still carried
+by a text label teleporting across the authored 500 ms re-pin blank. **This concept cannot seal
+until E7 lands**, and Desk A remains its verifier.
+
+---
+
 Desk E (`feat/rotmech-0c3`) is the sole engine owner. This file is a queue, never a fix list for
 this desk. Every row names the surface, what the design asked for, what the frozen contract does,
 and who it blocks.

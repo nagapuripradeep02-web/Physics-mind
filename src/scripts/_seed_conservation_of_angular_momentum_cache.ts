@@ -40,7 +40,15 @@ async function main(): Promise<void> {
         concept_key: CONCEPT_ID,
         concept_id: CONCEPT_ID,
         sim_html: simHtml,
-        physics_config: { epic_l_path: json.epic_l_path },
+        // field_3d_config is REQUIRED here, not optional decoration: THE EYE's
+        // deriveMotionExpectations reads it off the CACHED physics_config
+        // (visual_eyes.ts:68). The cloned exemplar omitted it, so every state
+        // reported `?` on the Motion map and [D5] — the one dense-motion gate
+        // that does not pass by construction on a static scene — abstained on
+        // all 8 states. ENGINE_LANDING_NOTICE §4.2; rigid_body_rotation HAS a
+        // motion branch, so this genuinely re-arms [D5] (for nlb / coulombs_law
+        // the `?` is by design and adding this changes nothing).
+        physics_config: { epic_l_path: json.epic_l_path, field_3d_config: json.field_3d_config },
         teacher_script: null,
         sim_type: 'single',
         renderer_type: 'field_3d',
