@@ -2148,20 +2148,9 @@
             },
             "from_deg": 0,
             "angle_value_expr": "180 - theta",
-            "radius": 78,
+            "radius": 116,
             "color": "#4ADE80",
-            "appear_at_ms": 2400
-          },
-          {
-            "type": "label",
-            "id": "mirror_arc_label",
-            "text": "π − θ",
-            "position": {
-              "x": 86,
-              "y": 159
-            },
-            "font_size": 12,
-            "color": "#4ADE80",
+            "label": "π − θ",
             "appear_at_ms": 2400
           },
           {
