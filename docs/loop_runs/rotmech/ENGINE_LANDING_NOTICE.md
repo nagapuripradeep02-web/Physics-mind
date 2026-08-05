@@ -143,13 +143,73 @@ the whole nlb fleet and is deliberately **not** taken.
 
 ---
 
+## §6b — APPENDED 2026-08-05: **E5 has landed too** (`df87b6d`)
+
+**E5 `rbr_authored_token_silently_skipped_when_the_engine_lacks_the_row`** — the highest-leverage
+row in the scope. **It unblocks both of Desk D's concepts AND Desk A's `rotational_work_energy`.**
+
+This is Desk E's **E5** and Desk A's **W-5** reconciled into one `bug_class` — they were the same
+row stated from two sides. Four deltas, so nobody re-derives them:
+- **`W` is IN.** Desk E's row list had dropped it; `rotational_work_energy` needs it.
+- **`v` is OUT.** `findings_c` §2.2 declines a `v` HUD row (v is per-point, carried by per-marker
+  labels), and the founder ruled `v = ωr` belongs to concept #4 (master `2443a74`).
+- **`min_ring` folded in** — same `controls_visible` surface, and re-entering it later costs a
+  whole dispatch.
+- **The loud-warn ask is the point**, per Desk A's own tally.
+
+### What you can author now
+
+`readouts` gains **`theta` · `alpha` · `tau` · `W`**, and `reference_marks[].surface` gains all
+four. `controls_visible` gains `tau_applied` and the ring-gated `{ id, min_ring }` form.
+
+**Three semantics you must author against — getting these wrong is silent:**
+1. **`tau` prints the RESOLVED net torque, never your authored value.** At a static hold it prints
+   `0.00`. It equals `I·α` **only while I is constant** — so *a state teaching τ = Iα must not run
+   a `param_ramp` on `r`.*
+2. **`alpha` needs no torque authoring at all** — it is the finite difference of ω, so
+   `rotational_kinematics` can print it with `external_torque` absent entirely. That is deliberate:
+   it keeps torque out of a concept taught *before* `torque` and `moment_of_inertia` exist (Rule 25).
+3. **`W` is SIGNED and re-zeroes at a restart / sandbox re-pin.** It is the integral of τ dθ, so it
+   is deliberately non-monotonic — which is exactly why it equals ΔKE at constant I and can be
+   checked on screen. Author it in states without a `restart` block for a clean cumulative reading.
+
+**Units are fixed and fleet-wide: θ rad · α rad/s² · τ N·m · W J, all dp 2.** Author every
+`reference_marks.value` in **SI (θ in radians)**, never in display units. Ruled by Desk E because
+the office had not and three concepts were blocked: τ = Iα holds only in radians, so a degrees θ
+beside a rad/s² α would be incoherent on the same HUD. Reversible in **one constant**
+(`RBR_THETA_DISPLAY`) with **no concept-JSON change** if the office prefers degrees.
+
+### 🔔 The console is now a real gate — check it once per new concept
+
+Every closed surface (`readouts`, `reference_marks[].surface`, `controls_visible`) now emits
+`[PM_RBR_TOKEN] [STATE_N] …` **once per distinct unknown token per state**. Desk A's analysis is
+that **six separate defects in this chapter are one class** — something authored, accepted by every
+gate, that silently does nothing — and that one warn per class would have caught five of six at
+authoring time, before a gate cycle was spent on them. **Read the console.**
+
+### Known, deliberately not fixed in E5 (reported so you do not chase them)
+- **`rbrDLdtAt` has no anchor clamp**, so a state authoring `dLdt` across a `restart` shows **one**
+  spiked frame after the blank. Left alone to preserve E4's byte-identity guarantee for
+  `conservation_of_angular_momentum`. Its own dispatch.
+- **`rbrThetaAt` is forward Euler on a 16 ms grid**, so θ lags the closed form by ½αht (0.8 % at
+  t = 2 s). Pre-existing; W inherits it exactly, which is *why* W reads as τ·θ on screen.
+- **`readout_at_ms` keys are still unvalidated** — an `at_ms` for a token absent from `readouts[]`
+  is inert and silent. Same class, one line, not in the named scope.
+
+---
+
 ## §7 — Still blocked after this merge
 
-`rigid_body_rotation` (Desk C) and Desk D's two concepts remain blocked. Outstanding: **E5**
-(θ/α/τ readout rows — the table is still the closed six and both loops still skip unknown tokens
-in silence), **E6** (a one-shot `restart` with no `every_ms` still computes `NaN` and zeroes L for
-the whole state), **E7** (the L arrow is still 15 px of ink inside the axle), **E8**, **E9**
-(camera). See `_engine/FROZEN_SCOPE_0c3.md` §B.
+**Desk D's two concepts are UNBLOCKED by E4 + E5** — signed torque makes α producible, and E5 gives
+it somewhere to print. `rotational_kinematics` and `tau_eq_i_alpha` can start at `json-author`.
+**Desk A's `rotational_work_energy` is unblocked by E5** (the `W` row).
+
+`rigid_body_rotation` (Desk C) remains blocked. Outstanding: **E6** (a one-shot `restart` with no
+`every_ms` still computes `NaN` and zeroes L for the whole state), **E7** (the L arrow is still
+15 px of ink inside the axle — **now widened to cover the pull arrow too**, since both are
+`ArrowHelper`s whose zero-width shaft runs collinear with an opaque cylinder), **E8** (live
+`tau_brake` drag has no rendered agent), **E9** (camera pose not authorable).
+See `_engine/FROZEN_SCOPE_0c3.md` §B.
 
 **Desk C:** `angular_momentum`'s `every_ms: 99000` workaround must stay until **E6** lands, and its
 authored `rbr_l_arrow` focal handoff stays correct-but-illegible until **E7**. Do not "fix" either
