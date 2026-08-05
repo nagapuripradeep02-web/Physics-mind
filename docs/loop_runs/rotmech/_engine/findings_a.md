@@ -353,6 +353,45 @@ copy-paste into the next seven rotmech concepts.
 **Suggested affordance:** allow `tts_sentences: []` when `advance_mode === 'interaction_complete'`.
 **Owner:** office, on master, per Rule 40 — never a chapter-branch edit.
 
+## A-19 · THE EYE's D7 passes a wholly static scene BY CONSTRUCTION — OFFICE/platform item, not Desk E
+
+**Raised by Desk B (2026-08-05), verified in source on this desk. Recorded here so Desk A's own
+EYE-trust posture is written down — NOT re-filed as new. Desk B owns the finding.**
+
+**Surface:** `src/lib/validators/visual/pixelGate.ts` — a **Rule 40 platform file**. Lands on
+master by the office, never on a chapter branch, and never by Desk E.
+
+`:318–320`:
+
+```ts
+const tailFrozen = tail.length >= tailPairs && tail.every(d => d < DENSE_MOTION_EPSILON);
+const earlierMoved = earlier.some(d => d >= DENSE_MOTION_EPSILON);
+const stuck = tailFrozen && earlierMoved;
+```
+
+D7 is "no stuck tail **after earlier motion**". A scene that never moved at all has
+`earlierMoved === false`, so `stuck` is false and D7 reports **`OK — no frozen tail`**. The gate
+that exists to catch a dead render loop cannot fire on the deadest possible case. Desk B reports
+35/35 on a scene that never moved.
+
+**The other lens, and why this concept is not in that hole.** D5 (`:281`) does catch it — but only
+when `expectsMotion === true`; otherwise it reports `Skipped — motion expectation unknown`
+(`:304`). For `rigid_body_rotation`, `deriveStateMeta:509–515` declares `expectsMotion = true`
+whenever `|omega0_rad_s| ≥ 0.05`, and **all 8 states of this concept qualify** (ω₀ = 1.50 on seven,
+6.95 on S3) — so a wholly static capture WOULD fail D5 here. Verified state by state, not assumed.
+
+**What this does NOT rescue.** D5 proves the turntable *spun*. It says nothing about whether any
+*authored beat* played — a formula assembly, a reveal, a glow onset. A concept can spin merrily
+while every scripted beat is dead, and THE EYE will report 35/35. That is exactly how A-18 (S3/S7's
+dead assemblies) survived a clean 35/35 through an entire authoring cycle, and it is why the A-18
+verification used two channels that fail differently (a DOM-text probe + eye-walker's pixels)
+rather than a re-run of the gate.
+
+**Standing consequence for this desk:** a THE EYE PASS is a smoke test, never evidence that a
+specific authored beat happened. Any beat whose claim is "X changes at t = N" needs either a
+frame-to-frame read or a direct probe of the thing that changes.
+**Owner:** office, on master, per Rule 40.
+
 ## A-4 · `chapter` / `section` numbering for the rotmech set is unpinned
 
 **Surface:** concept JSON metadata, not the engine.

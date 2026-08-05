@@ -372,6 +372,46 @@ Review site rebuilt: `review-site/conservation_of_angular_momentum/`
 The `build:review` warning "states with no narration: STATE_8" is **expected** — the sanctioned
 `text_en: ""` interim encoding (A-15), not a defect.
 
+---
+
+## STANDING ASSIGNMENT — Desk A is Desk E's rbr verification partner for E4/E5
+
+**Assigned 2026-08-05.** E4 and E5 are **signed torque** and **the θ / α readout rows**.
+
+**Trigger: when E4/E5 land ON MASTER** (not merely on `feat/rotmech-0c3` — see the sync trap
+below). Then: `npm run desk:sync` → re-seed scoped → sanity EYE on the turntable → **report to
+Desk E**.
+
+Three things this desk already knows that make it the right partner, and that the report should
+carry:
+
+1. **`RBR_RO_META` (`field_3d_renderer.ts:50147`) implements exactly six readout rows —
+   `I · ω · L · KE · dL/dt · F`. There is no θ, α, W or v row.** `rbrRebuildReadout` (`:50162`)
+   does `if (!meta) continue`, so an unknown token is skipped in **silence**: a concept authored
+   against a missing row passes Zod, passes `validate:concepts`, seeds, renders, and can be sealed
+   with the taught quantity simply absent. **E5 is exactly the fix for this**, so the sanity run
+   must confirm the new tokens actually PRINT, not merely that nothing errored.
+2. **A THE EYE PASS proves nothing about a specific beat** (A-19). Verify θ/α by reading the row's
+   rendered text, not by a green verdict.
+3. **`rotational_work_energy` (wave 2) is blocked on precisely this work** — it needs a `W = τ·θ`
+   accumulator and a θ readout. E4/E5 landing is its unblock signal too.
+
+**The sync trap, learned the hard way on E1 (2026-08-05):** `npm run desk:sync` merges
+`origin/master` into desks and **skips the current desk entirely** (that is why `feat/rotmech-a`
+never appears in its output). E1 was reported as "landed" while it existed only on
+`feat/rotmech-0c3`, so `desk:sync` could never deliver it and reported nothing amiss. Before
+trusting any "E-N landed" signal, check containment directly:
+
+```bash
+git fetch origin && git merge-base --is-ancestor <sha> origin/master && echo ON_MASTER || echo NOT_ON_MASTER
+```
+
+**Naming collision to keep straight in any report to Desk E:** Desk E's dispatch ids (`E1, E2, E3,
+E4, E5…`) collide with founder-proxy's blocker ids (`E-1` = A-11 the invisible L arrow, `E-2` =
+A-12 the camouflaged pull arrows, `E-3` = A-16, `E-4` = A-17). **Desk E's `E4` is signed torque;
+founder-proxy's `E-4` is the S4 tick-caption overflow. They are unrelated.** Always qualify:
+"Desk E dispatch E4" vs "blocker E-4/A-17".
+
 ### Next
 
 **STOP. Still no Checkpoint B on `conservation_of_angular_momentum`.** A-18 is cleared, but
