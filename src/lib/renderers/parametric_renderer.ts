@@ -2234,6 +2234,19 @@ function drawForceComponents(spec, physics) {
 // comparison_panel nested dispatch.
 function drawVector(spec, ox, oy) {
   ox = ox || 0; oy = oy || 0;
+  // peter_parker:renderer_primitives, 2026-08-05 — drawVector was the last
+  // visible-mark primitive with NEITHER standard bracket. Every sibling
+  // (drawBody :1217, drawLabel :1678, drawAnnotation :1718, drawSurface :1783,
+  // drawForceArrow :1882, drawLocusTrace :2409, drawFormulaBox :2774) gates on
+  // PM_animationGate and consumes PM_focalEmphasis; this one did neither, so
+  // appear_at_ms/animate_in_ms authored on a vector were SILENTLY INERT and a
+  // vector could be neither brightened as the state's focal nor dimmed as a
+  // peer. Both halves fixed together — same omission, same file.
+  // Scars: pcpl_vector_and_angle_arc_ignore_appear_at_ms_so_authored_reveal_chains_no_op,
+  //        pcpl_drawvector_has_no_focal_glow_channel.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
   var rgb = PM_hexToRgb(spec.color || '#8B5CF6');
   // Endpoints: either a literal {x,y} OR a string anchor like "mass_1.top" /
   // "pulley.bottom" that resolves against the (animated) body registry so
@@ -2280,9 +2293,14 @@ function drawVector(spec, ox, oy) {
   var tx = to.x + ox, ty = to.y + oy;
 
   push();
-  stroke(rgb[0], rgb[1], rgb[2]);
+  var vAlpha = 255 * gate.alpha * emph.alphaMul;
+  stroke(rgb[0], rgb[1], rgb[2], vAlpha);
   strokeWeight(2);
-  fill(rgb[0], rgb[1], rgb[2]);
+  fill(rgb[0], rgb[1], rgb[2], vAlpha);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#8B5CF6';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
 
   // style: 'dashed' = dashed line, no arrowhead.
   // style: 'line' OR hide_arrowhead: true = plain line (for ropes, strings).
@@ -2305,8 +2323,28 @@ function drawVector(spec, ox, oy) {
   if (spec.label) {
     noStroke();
     textSize(11);
-    textAlign(CENTER, BOTTOM);
-    text(spec.label, (fx + tx) / 2, (fy + ty) / 2 - 4);
+    // peter_parker:renderer_primitives, 2026-08-05 —
+    // pcpl_vector_label_at_segment_midpoint_is_bisected_by_a_vertical_segment.
+    // The label sat at the exact midpoint, 4px up. That clears a HORIZONTAL
+    // segment (which is why it survived so long — nearly every labelled vector
+    // in the fleet is horizontal or diagonal) but on a VERTICAL segment the
+    // stroke runs straight through the glyph: the "y" on a height segment read
+    // as a downward chevron, i.e. as a stray arrowhead, at 100% zoom.
+    // Near-vertical segments now offset ACROSS the segment instead. Deliberately
+    // scoped to the near-vertical case so every existing horizontal/diagonal
+    // label keeps its authored position and the fleet re-baseline stays small.
+    var lmx = (fx + tx) / 2, lmy = (fy + ty) / 2;
+    if (Math.abs(ty - fy) > Math.abs(tx - fx)) {
+      textAlign(LEFT, CENTER);
+      text(spec.label, lmx + 7, lmy);
+    } else {
+      textAlign(CENTER, BOTTOM);
+      text(spec.label, lmx, lmy - 4);
+    }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -2609,6 +2647,13 @@ function PM_drawSubScene(prims, ox, oy) {
 // to_deg_expr for dynamic angles that track a slider variable. Used by
 // vector_resolution to visualize α and by normal_reaction for θ indicators.
 function drawAngleArc(spec) {
+  // peter_parker:renderer_primitives, 2026-08-05 — same missing bracket as
+  // drawVector: drawAngleArc consumed PM_focalEmphasis but never
+  // PM_animationGate, so appear_at_ms on an arc was silently inert and a timed
+  // reveal that gated its body correctly still drew its arc from frame 0
+  // (pcpl_vector_and_angle_arc_ignore_appear_at_ms_so_authored_reveal_chains_no_op).
+  var arcGate = PM_animationGate(spec);
+  if (!arcGate.visible) return;
   // Vertex resolution priority:
   //   0. spec.anchor_to (WP-R5, D5) → PM_endpointRegistry lookup. Wins over
   //      everything below when the target primitive has already been
@@ -3097,7 +3142,21 @@ function drawCanvasSlider(spec, idx, total) {
   if (PM_sliderValues[spec.variable] === undefined) {
     PM_sliderValues[spec.variable] = defV;
   }
-  var val = PM_sliderValues[spec.variable];
+  // peter_parker:renderer_primitives, 2026-08-05 —
+  // pcpl_slider_label_stale_under_choreography. The knob and caption read
+  // PM_sliderValues only, which PM_applyChoreography never writes (it writes
+  // PM_choreoValues, :3485). So on any state whose variable_choreography drives
+  // a slider-bound variable, the caption printed the untouched seed while the
+  // HUD beside it tracked the live angle — two on-canvas readouts of the SAME
+  // quantity, disagreeing, in one frame. DISPLAY-ONLY fix: before a real drag
+  // seizes the variable the choreography owns it, so show the choreographed
+  // value; once seized, PM_sliderValues is authoritative again. The physics
+  // already read the choreographed value, so nothing about behaviour changes.
+  // Mirrors the pf_slider_label_ignores_oneshot_lerp precedent on particle_field.
+  var val = (!PM_userTouched[spec.variable]
+             && typeof PM_choreoValues[spec.variable] === 'number')
+    ? PM_choreoValues[spec.variable]
+    : PM_sliderValues[spec.variable];
   var frac = (val - minV) / (maxV - minV);
   if (!isFinite(frac)) frac = 0;
   frac = Math.max(0, Math.min(1, frac));
