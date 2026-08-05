@@ -681,6 +681,7 @@
         "advance_mode": "interaction_complete",
         "motion_archetype": "drag-sandbox",
         "delta_cue": "Try it yourself",
+        "depth_ring": "core",
         "scene_composition": [
           {
             "type": "annotation",

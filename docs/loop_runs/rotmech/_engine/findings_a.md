@@ -231,6 +231,18 @@ S1's draw-in.
 **Probe:** capture at L = 4.59 and L = 2.29 with the axle masked out; assert the arrow's own drawn
 pixel extent differs by ≥ 1.8×.
 
+### Aggravating factor found on the 2026-08-05 walk — S6's flip happens ACROSS a blank
+
+Not a new defect and not a reason to change the fix, but the surgeon should know the worst case is
+worse than filed. S6 authors a `repin_cue: {blank_ms: 500}` — a deliberate 500 ms blank with the
+engine's own `rbr_repin` "restarting" badge (`:50337–50341`, Addendum C: a discontinuity must read
+as a restart, never as an uncaused external torque). Correct by design. **But it lands exactly on
+S6's L-flip beat.** With the arrow occluded, the entire reversal S6 exists to teach is carried by
+the blue `L` glyph jumping from y ≈ 214 (above the disc) to y ≈ 494 (below it) **across that
+blank** — nothing visibly rotates through zero. So S6 currently teaches its atomic claim with a
+label teleport over a gap. Once the arrow is visible the blank stops being load-bearing; until
+then, S6's aha is the casualty of the two interacting.
+
 ## A-12 · Pull-arrow minimum-length floor collapses low-force visibility (pre-flagged scar, now CONFIRMED)
 
 **Scar:** `field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio` — named
@@ -309,6 +321,35 @@ Scar `field3d_label_sprite_overlap`. E5's hysteretic decollision machinery — a
 concept — needs the **brake-pad label as a decollision participant**, not just r / R_drum / pull / L.
 **Severity:** MODERATE. **Owner:** `peter_parker:field3d_surgeon`.
 
+### ⚠ SCOPE WIDENED — eye-walker, fresh capture `20260805-124934`, 2026-08-05
+
+A-13 was filed as a **brake-vs-R_drum, S5-only, pad-engaged-window** collision. The second walk
+found the same class in four more places across three more states, so the fix must be general, not
+a two-label special case:
+
+| Where | Collision |
+|---|---|
+| S3 `dense_t03000` | `pull` overprints `L` — renders as an unreadable `pulL` |
+| S3 / S4 / S8 frozen | `pull` sits on top of the yellow mass it labels |
+| S5 frozen | `brake` overprints the red pad (the original A-13 case) |
+| S5 / S8 | `R_drum` overprints the drum ring |
+
+The real class is **world-anchored sprite labels have no de-collision at any orbit angle** — a
+label can overprint both its OWN geometry and a peer label. eye-walker proposed it as a new row
+(`world_anchored_sprite_labels_overlap_their_own_geometry_and_each_other`); it is **not filed
+separately** — it is this row, widened. Suggested prevention rule, adopted from that proposal: a
+world-anchored label carries a screen-space offset resolved against the sprite it names AND against
+peer labels; anything that would overprint at any orbit angle is nudged, not drawn.
+
+### ⚠ A-10 INDEPENDENTLY CORROBORATED — same walk
+
+eye-walker re-derived the `R_drum` ASCII sprite from the pixels without being told it was filed
+(`:50397  rbrMakeLabel("R_drum", …)`, visible on S5 and S8) and reached A-10's conclusion by the
+same route: it is the **third text path** (`createLabelSprite`) that a DOM-only Rule-34c sweep
+silently skips, and `R_drum` also fails Rule 41 as a non-word. **Not re-filed — this is A-10.**
+Two independent derivations raise confidence that the sprite path needs a standing sweep rule, not
+a one-off string fix.
+
 ## A-14 · Two OPEN scars give contradictory instructions on narration glow
 
 `concept_ships_zero_narration_glow_bindings` (MAJOR/OPEN, `alex:physics_author`) wants
@@ -352,6 +393,72 @@ copy-paste into the next seven rotmech concepts.
 
 **Suggested affordance:** allow `tts_sentences: []` when `advance_mode === 'interaction_complete'`.
 **Owner:** office, on master, per Rule 40 — never a chapter-branch edit.
+
+## A-20 · rbr's ⚙ teacher-widget labels fall back to internal ids — "Kebar", "Repin", "Spin dir slider"
+
+**Raised by `quality-auditor` at the 2026-08-05 re-audit (its N-1). Rule 39g spot-check, which
+applies because `rigid_body_rotation` is a NEW scenario.** Severity MEDIUM.
+
+The ⚙ panel itself works — present, `avail` ✓, hover-ping ✓, Defaults/Save ✓, and auto-discovery
+finds every rbr widget (Rule 39f delivers it for free). What fails is that three rows read as code
+identifiers to a teacher:
+
+| Shown | Should read | Why it falls back |
+|---|---|---|
+| **"Kebar"** | "Energy bar" | `pmWgPanelLabel` (`:69824`) has no keyword match for `rbr_kebar`, so `pmWgPanelWords` strips the `rbr` prefix and title-cases the stem |
+| **"Repin"** | "Restart badge" | same fallback on `rbr_repin` |
+| **"Spin dir slider"** | "Reverse spin" (a BUTTON) | `pmWgRowLabel` (`:69789`) looks for a `<label>` child; `rbr_spin_dir_row` holds a `<button>`, so it uses the id stem and appends `" slider"` |
+
+This is precisely the case Rule 39f carves out: auto-derived labels are the default, and the
+curated path is "worth taking only when the auto-derived labels read poorly". Here they read
+poorly. The sanctioned fix is the escape hatch already in the engine — a `data-wg-label` attribute
+on each of the three elements, which both labelers honour first (`:69825`).
+
+("Annots" comes from the generic `f3d_annots` element and is fleet-wide pre-existing — **not**
+attributable to this scenario, this concept or this desk. Do not fix it under this row.)
+**Owner:** `peter_parker:field3d_surgeon`.
+
+## A-21 · The review player's narration timeline runs 2.0–2.7× the authored `duration` — and `physics_block`'s sync tables describe a model the player does not implement
+
+**Raised by `quality-auditor` at the 2026-08-05 re-audit (its N-2). Severity MEDIUM, ADVISORY —
+explicitly NOT raised to blocking.** Owner `alex:physics_author`; the mechanism sits in
+`build_review_site.ts`, a **Rule 40 platform file**, so any code change is an office matter.
+
+`estSentenceMs` (`build_review_site.ts:1142`) estimates each sentence from CHARACTER COUNT at
+150 WPM × 0.9; `computeTimeline` (`:1156`) sums those plus a 280 ms inter-sentence gap and
+**ignores the authored `duration` entirely whenever sentences exist**. Measured on this concept:
+
+| state | authored `duration` | player narration total | last authored motion event |
+|---|---|---|---|
+| S1 | 8 000 | 19 501 | 2 000 |
+| S2 | 13 000 | 24 958 | 6 890 |
+| S3 | 10 000 | 26 978 | 5 200 |
+| S4 | 10 000 | 25 567 | 5 200 |
+| S5 | 10 000 | 22 578 | 5 000 |
+| S6 | 10 000 | 19 749 | 10 500 |
+| S7 | 11 000 | 24 355 | 11 000 |
+
+With subtitles on, `s3_2` ("Now the masses slide back out") plays at **8 765 ms** — 3.6 s after the
+slide finished; `s7_4` plays at **18 214 ms**, 12.2 s after its slide ended and while the scene has
+been frozen for twelve seconds.
+
+**⚠ This corrects a claim Desk A made in writing.** The A-18 authoring note recorded that S7's
+`formula_lines` at_ms values "match physics_block §3's narration sync **exactly** — sentence 1 →
+0–2000, sentence 2 → 2000–4000". Against the real player that sync **does not exist**: `s7_1`
+occupies `[0, 7111)` and `s7_2` starts at **7391 ms**, so the `= dL/dt` line at 2000 ms lands 5.4 s
+before the sentence it was supposedly synced to. The values were chosen against a timing model
+`physics_block.md:258` describes and the player does not implement.
+
+**The authored values still stand, on a different justification.** The second line lands *inside*
+`s7_1`, which itself recites the whole relation, and motion outrunning narration is the permitted
+direction under Rule 31 (never the reverse). So the beat is defensible — but as "motion leads
+narration", NOT as "synced to sentence 2". Any future desk copying this pattern should know which
+claim is true.
+
+**Scope:** systemic and pre-existing, across all 7 guided states and certainly beyond this concept.
+Every `readout_at_ms`, `param_ramp` and `formula_lines.at_ms` value in this concept was chosen
+against the physics_block model. **Founder decision needed:** re-time the narration to the player,
+or accept the hold. Not a Desk E item; not fixable on a chapter branch.
 
 ## A-19 · THE EYE's D7 passes a wholly static scene BY CONSTRUCTION — OFFICE/platform item, not Desk E
 

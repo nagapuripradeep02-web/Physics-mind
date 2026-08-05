@@ -278,7 +278,7 @@ were **still dead**. Authored on this desk:
 | State | `formula_lines` | Sourced from |
 |---|---|---|
 | S3 | `I₁ω₁` @ 0 · `= I₂ω₂` @ **1600** | physics_block §3 times the assembly over 0–3200 with one narration sentence; 1600 = its midpoint. Completes well before the 3200 ms slide. |
-| S7 | `τₑₓₜ` @ 0 · `= dL/dt` @ **2000** | physics_block §3 narration sync **exactly**: sentence 1 → 0–2000 (`τₑₓₜ` term), sentence 2 → 2000–4000 (`= dL/dt` term). No invention. |
+| S7 | `τₑₓₜ` @ 0 · `= dL/dt` @ **2000** | physics_block §3's narration-sync rows (sentence 1 → 0–2000 `τₑₓₜ` term, sentence 2 → 2000–4000 `= dL/dt` term). **⚠ This justification was WRONG — see the correction below. The values stand; the reason given for them did not.** |
 
 The legacy `formula` string is retained on both as the documented complete equation; D1 resolves
 precedence deterministically (`Array.isArray` + length, never truthiness).
@@ -371,6 +371,84 @@ Review site rebuilt: `review-site/conservation_of_angular_momentum/`
 (serve with `npx --yes http-server review-site -p 8110 -c-1` → `http://localhost:8110/conservation_of_angular_momentum/`).
 The `build:review` warning "states with no narration: STATE_8" is **expected** — the sanctioned
 `text_en: ""` interim encoding (A-15), not a defect.
+
+---
+
+## 2026-08-05 (later) · Gate cycle re-run — quality-auditor **FAIL**, held entirely on E-1/E-2
+
+`quality-auditor` ∥ `eye-walker` ran in parallel on a freshly re-seeded cache and a fresh EYE dump
+(`20260805-124934`). Both agree, from independent evidence.
+
+**Verdict: FAIL — and no concept-JSON defect is responsible.** The auditor's own summary: *"If E-1
+and E-2 were fixed today, this concept would PASS."* The FAIL routes to
+`[owner: peter_parker:field3d_surgeon] [reason: bug-class]` on the OPEN scar
+`teach_visual_must_match_narration`, instances **E-1** (A-11) and **E-2** (A-12).
+
+**Gate 15 failures on S1 and S6 collapse into E-1** — the auditor was explicit that these must NOT
+be routed separately to `alex:json_author`, because there is nothing for a json author to fix: the
+arrow simply has no visible geometry. S6's atomic claim ("L is a vector — the arrow flips") is
+carried by a text label teleporting across the authored 500 ms re-pin blank.
+
+### The `formula_lines` change itself: CLEAN on every dimension checked
+
+| Re-check | Result |
+|---|---|
+| Rule 34b — still ONE surface | ✓ exactly one `#rbr_formula` on all 8 states; legacy string never rendered alongside |
+| Rule 34c — Unicode, all three text paths | ✓ DOM + sprites; no `ctx.fillText` path in this scenario; only `R_drum` is ASCII = A-10, already filed |
+| Rule 34d — the taller block | ✓ zero pairwise overlaps, live bounding boxes on all 8 states; nearest neighbour 318 px away |
+| Rule 25 — bare first line | ✓ reads incomplete-but-not-wrong; no `=`, no RHS, and the caption carries the complete idea in words |
+| Rule 31 — S7's archetype renders | ✓ discharged |
+| No new latch (the A-6 scar class) | ✓ **independently reproduced from the live DOM**: pin 9000 → rewind 1500 REMOVES the second line, both states |
+
+That last row matters: the auditor reproduced the rewind determinism by a different method than
+this desk's probe (live pinned DOM walk vs. virtual-clock harness) and got the same answer. Three
+independent channels now agree the reveal is a pure function of `tMs`.
+
+Physics was recomputed from scratch and matches exactly — I = 3.06, L = 4.59, ω(0.20) = 6.9545
+("4.64 times"), S5's braked L = 2.29 / ω = 0.75 read off the frozen HUD, and both q3 distractors'
+arithmetic verified against their stated misconception.
+
+### ⚠ A claim this desk made in writing was WRONG — corrected
+
+The A-18 note above justified S7's `at_ms` values as matching physics_block §3's narration sync
+"exactly". **Against the real player that sync does not exist.** `build_review_site.ts:1142`
+estimates sentence length from character count and ignores the authored `duration`, so `s7_1`
+occupies `[0, 7111)` and `s7_2` starts at **7391 ms** — the `= dL/dt` line at 2000 ms lands 5.4 s
+before the sentence it was said to be synced to. The values were chosen against a timing model
+`physics_block.md` describes and the player does not implement.
+
+**The values still stand, on a different and honest justification:** the second line lands inside
+`s7_1`, which recites the whole relation, and motion outrunning narration is the permitted
+direction under Rule 31. Filed as **A-21** (advisory, systemic, founder decision) — the same
+mismatch runs 2.0–2.7× across all seven guided states, and every `readout_at_ms` / `param_ramp` /
+`formula_lines.at_ms` in this concept was chosen against that model.
+
+### New findings filed
+
+- **A-20** (MEDIUM, Desk E) — rbr's ⚙ widget labels fall back to internal ids: "Kebar", "Repin",
+  "Spin dir slider" (which is a button, not a slider). Rule 39g spot-check on a NEW scenario;
+  sanctioned fix is the `data-wg-label` escape hatch.
+- **A-21** (MEDIUM, advisory, office/founder) — the narration-timeline mismatch above.
+
+### Closed on this desk
+
+- **S8 was missing `depth_ring`** (auditor LOW). Now `"depth_ring": "core"`, matching the
+  `capacitance` proof-run, whose `interaction_complete` state is likewise tagged `core` — and
+  matching Rule 38b (the explore state surfaces CORE-ring content only). Verified: tsc 0,
+  validate 150 PASS / 0 FAIL.
+- Two DoD-ledger overstatements (`m` never printed on any guided state; `r` first prints on S1,
+  not S2) are recorded as LOW for `alex:architect`. Cosmetic — nothing untaught reaches the
+  screen; the ledger simply overstates. **Not fixed here** (skeleton/DoD is architect's file, and
+  the concept is not sealed).
+
+### Checkpoint B was NOT run — its precondition is unmet
+
+founder-proxy Checkpoint B is defined as running **after a quality-auditor PASS** + eye-walker.
+The auditor returned **FAIL**. Running Checkpoint B now would ask it to re-derive a verdict it has
+already given: at the previous Checkpoint B it returned `FIX(engine)` blocking on exactly A-11,
+and **nothing about A-11 or A-12 has changed since** — both re-confirmed unchanged by two agents
+on this run. The concept's status is already the documented degrade path: parked for Desk E, and
+founder-proxy re-reviews once E-1 lands.
 
 ---
 
