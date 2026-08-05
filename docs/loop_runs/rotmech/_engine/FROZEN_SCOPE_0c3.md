@@ -394,6 +394,37 @@ npm run validate:concepts
 then re-seed + `visual:eyes` on **both** canaries (`newton_second_law`, `coulombs_law`).
 **An H2 diff I cannot explain is a FAIL, not a re-baseline.**
 
+> ### ⛳ MERGE STRATEGY — office ruling 2026-08-05. This is what closes the rbr verification hole.
+>
+> **Land each dispatch, or each tight group, to master as its OWN PR via `git-steward` — never
+> one PR at the end.** Rule 40 asks for exactly this ("engine is platform and lands separately
+> and immediately"), and it dissolves the hole rather than working around it: once a fix is on
+> master, **each authoring desk syncs and verifies it on its own concept with its own seed key.**
+> The cache one-owner rule is never bent and this desk never seeds an rbr concept.
+>
+> **Two options were considered and REJECTED by the office, both for good reasons worth keeping:**
+> 1. **Granting this desk an rbr seed key — rejected.** This checkout holds unmerged, unreviewed
+>    engine code; seeding an rbr concept here is *the most dangerous form* of the one-owner
+>    violation, because the desk that later EYEs that concept would be silently testing code that
+>    exists on no reviewed branch.
+> 2. **Relying on emitted-code probes as the gate — rejected.** That is precisely the F-C7 failure
+>    Desk C caught: a probe that passes on a broken build. F-C7's luminance-delta probe would have
+>    gone green with the L arrow still invisible.
+>
+> **Emitted-code probes stay as this desk's LOCAL SMOKE TEST — never as the gate.** They are
+> necessary (they caught real defects in E2 and E3) and they are not sufficient.
+>
+> **rbr verification partners, assigned by the office:**
+>
+> | Dispatch | Verifying desk | Why |
+> |---|---|---|
+> | E4, E5 | **Desk A** | its turntable exercises the same rbr integrator, and **Desk D cannot verify its own blockers while blocked on them** |
+> | E7 | **Desk C** | `angular_momentum` is authored, validating, and holds for this fix |
+> | E6, E8, E9 | **Desk D** once its blockers clear (E4/E5), else Desk A/C by surface |
+>
+> **Consequence for this desk's own reporting: a dispatch is LANDED, not VERIFIED, until its
+> partner desk confirms it on a real concept.** Say which of the two a result is, every time.
+
 > **Verification-integrity pass, run before the first dispatch (from findings_c PASS 14).** Both
 > canary seed scripts wrote `physics_config: { epic_l_path }` with `field_3d_config` **absent**,
 > starving `deriveMotionExpectations`. Fixed in `_seed_newton_second_law_cache.ts` and
