@@ -1048,6 +1048,24 @@ export interface Field3DConfig {
             hold_glow?: string[];               // HUD rows held bright (instrument channel)
             ke_bar?: { max_j?: number };
             formula?: string;                   // the ONE Cambria-Math surface (Rule 34b)
+            // PER-LINE FORMULA REVEAL on that SAME ONE surface (#rbr_formula —
+            //   still Rule 34b: one surface, never a second overlay). Ported from
+            //   newtons_laws_body's `formula_lines` (declared :1644, rendered in
+            //   nlbRenderStamps) DELIBERATELY under the SAME field name and the
+            //   SAME shape — Rule 40a: `formula_at_ms` was NOT minted, because that
+            //   name is already taken by the pef scenario, where it means "the whole
+            //   overlay appears at one instant".
+            //   Semantics, identical to nlb: the revealed text is every line whose
+            //   `at_ms <= state-local t`, joined in AUTHORED order, so a derivation
+            //   BUILDS term by term instead of flashing whole. Each line renders as
+            //   a pure function of eng.t_ms (Rule 36 / the accumulator-free snap
+            //   set), so a SET_TIME_FREEZE pin re-evaluates and a rewind reproduces
+            //   the earlier frame exactly — nothing is latched.
+            //   `at_ms` absent on a line = visible from state entry (authored 0 is
+            //   identical to absent; presence is resolved by typeof so the code path
+            //   is uniform). ABSENT ENTIRELY => the legacy `formula` string,
+            //   BYTE-IDENTICALLY.
+            formula_lines?: Array<{ text: string; at_ms?: number }>;
             controls_visible?: string[];        // 'r'|'m'|'omega0'|'tau_brake'|'spin_dir'
             trusted_drag_seizes?: boolean;
             glow_focal?: string;                // exactly ONE scene focal (Rule 32e)
@@ -50217,6 +50235,45 @@ export const FIELD_3D_RENDERER_CODE = `
         el.style.textShadow = on ? "0 0 9px rgba(255,241,118,0.95)" : "none";
         el.style.color = on ? "#FFF176" : "";
     }
+    // ── The ONE formula surface (Rule 34b), now TIMED ─────────────────────
+    //   Ported from nlbRenderStamps' per-line reveal, same field name and same
+    //   shape (Rule 40a: formula_at_ms already means something else on pef).
+    //   The surface content is a PURE FUNCTION of state-local tMs: every line
+    //   whose at_ms <= tMs, joined in AUTHORED order. Nothing is latched and
+    //   nothing accumulates, so a SET_TIME_FREEZE pin re-evaluates at the pinned
+    //   instant and a rewind to an earlier t reproduces that earlier frame
+    //   exactly (Rule 36 — rbr is in animate()'s accumulator-free snap set, and
+    //   the open scar hysteretic_state_cannot_be_latched_under_a_time_pin must
+    //   not gain a second instance here).
+    //   ABSENT formula_lines => the legacy single formula string, byte for
+    //   byte: eng.formula_lines is null (resolved ONCE at apply by Array.isArray,
+    //   never by truthiness) and the two writes below reduce to exactly the
+    //   textContent/display pair applyRigidBodyRotationState always did. Both
+    //   writes are equality-guarded, so re-running this every frame mutates the
+    //   DOM only when the revealed text genuinely changes.
+    function rbrRenderFormula(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng) return;
+        var ff = document.getElementById("rbr_formula");
+        if (!ff) return;
+        var txt = eng.formula_base || "";
+        if (eng.formula_lines) {
+            var shown = [];
+            for (var li = 0; li < eng.formula_lines.length; li++) {
+                var ln = eng.formula_lines[li];
+                if (!ln || typeof ln.text !== "string" || !ln.text) continue;
+                var lAt = (typeof ln.at_ms === "number" && isFinite(ln.at_ms)) ? ln.at_ms : 0;
+                if ((tMs || 0) >= lAt) shown.push(ln.text);
+            }
+            // Rule 14: this whole body is ONE template literal, so a newline
+            // escape must be doubled or the outer literal eats it. The surface
+            // itself carries white-space:pre-line, so the join renders as lines.
+            txt = shown.join("\\n");
+        }
+        if (ff.textContent !== txt) ff.textContent = txt;
+        var want = txt ? "block" : "none";
+        if (ff.style.display !== want) ff.style.display = want;
+    }
     function rbrWriteReadouts(rb, tMs) {
         var eng = window.PM_rbrEngine;
         if (!eng) return;
@@ -50508,7 +50565,16 @@ export const FIELD_3D_RENDERER_CODE = `
             base_glow_focal: rb.glow_focal || "",
             t_ms: 0, _th: 0, _thN: 0,
             evSign: null, evAnchorT: null, evAnchorL: 0, evRepinT: null,
-            matched: {}, L0: 0
+            matched: {}, L0: 0,
+            // The ONE formula surface, resolved ONCE here. formula_base is the
+            // legacy string verbatim; formula_lines is the ordered timed list or
+            // NULL. Presence is Array.isArray + length, never truthiness — absent
+            // (or an empty array, which reveals nothing and would blank a state
+            // that authored a plain formula string) falls straight through to the
+            // legacy string in rbrRenderFormula, byte for byte.
+            formula_base: (typeof rb.formula === "string") ? rb.formula : "",
+            formula_lines: (Array.isArray(rb.formula_lines) && rb.formula_lines.length)
+                ? rb.formula_lines : null
         };
         if (eng.r < eng.rMin) eng.r = eng.rMin;
         if (eng.r > eng.rMax) eng.r = eng.rMax;
@@ -50567,11 +50633,11 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         rbrRebuildReadout(rb);
         rbrRebuildKeBar(rb);
-        var ff = document.getElementById("rbr_formula");
-        if (ff) {
-            ff.textContent = (typeof rb.formula === "string") ? rb.formula : "";
-            ff.style.display = (typeof rb.formula === "string" && rb.formula.length) ? "block" : "none";
-        }
+        // The formula surface seeds through the SAME function every later frame
+        // uses (no parallel seed text that could disagree). With no
+        // formula_lines this is exactly the old textContent/display pair; with
+        // formula_lines it is the t = 0 slice of the same pure function.
+        rbrRenderFormula(0);
         var rp = document.getElementById("rbr_repin");
         if (rp) rp.style.display = "none";
         // Pose the very first rendered frame from the SAME path every later
@@ -50764,6 +50830,9 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         rbrWriteReadouts(rb, tMs);
+        // The timed formula surface rides the SAME derived tMs as the readouts,
+        // so a line can never appear on a beat the instruments disagree with.
+        rbrRenderFormula(tMs);
     }
 
     function applyRigidBodyRotationGlow() {

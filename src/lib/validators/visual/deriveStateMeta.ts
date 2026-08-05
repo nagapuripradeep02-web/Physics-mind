@@ -3207,6 +3207,29 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             if (until != null && until > at) candidates.push(Math.max(at, Math.min(at + 500, until - 200)));
             else candidates.push(at + 500);
         }
+        //   (7) formula_lines[].at_ms — the per-line reveal on the ONE formula
+        //       surface (#rbr_formula), ported from newtons_laws_body under the
+        //       same field name and read the same way here (deriveStateMeta.ts
+        //       ~:2829 is the nlb twin). The LAST line is the one that matters: it
+        //       is the equation the state exists to assemble, so the pin must land
+        //       past it or the frozen frame photographs a half-built formula and
+        //       mints it as the baseline — field3d_scenario_missing_maxreveal_
+        //       block_frozen_pin_defaults_1500ms_predates_scripted_reveal, again.
+        //       Presence is resolved exactly as the renderer resolves it: an empty
+        //       or unusable line is SKIPPED (mirrors rbrRenderFormula's skip), and
+        //       an authored at_ms of 0 means "from entry" so it pushes no candidate.
+        const rbrFml = Array.isArray(rbr.formula_lines) ? rbr.formula_lines : [];
+        let rbrLastLineMs = -1;
+        for (const lnRaw of rbrFml) {
+            const ln = asObj(lnRaw);
+            if (!ln || typeof ln.text !== 'string' || ln.text.length === 0) continue;
+            const at = typeof ln.at_ms === 'number' && Number.isFinite(ln.at_ms) ? ln.at_ms : 0;
+            if (at > rbrLastLineMs) rbrLastLineMs = at;
+        }
+        if (rbrLastLineMs > 0) {
+            rbrFound = true;
+            candidates.push(rbrLastLineMs + RBR_CUSHION);
+        }
         //   A sandbox (Rule 37 free-run) has no script at all — it is classified
         //   'interactive' in deriveHoldExpectations and needs no reveal pin.
         if (!rbrFound && rbr.mode !== 'sandbox') candidates.push(RBR_CUSHION);
