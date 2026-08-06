@@ -59152,9 +59152,52 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                        // byte-identically (Rule 26/36).
     //       show_axes, show_surface, show_dots, show_node_plane,
     //       show_node_shell, show_probe, show_orbit, show_labels,
+    //       overlay: {                       // row E — ONE panel, two marks,
+    //                                        // driven by the LIVE element
+    //         table: bool,                   // the periodic strip (groups 1,2,
+    //                                        // 13-18 x periods 1-4), current
+    //                                        // element lit with its period and
+    //                                        // group banded. Needs 'element'.
+    //         curve: 'radius_vs_z' | 'ie_vs_z' | 'ie_successive' | null,
+    //                                        // radius/ie_vs_z plot the current
+    //                                        // element's OWN PERIOD against Z;
+    //                                        // ie_successive plots ITS successive
+    //                                        // IEs, k = 1.. (count derived from
+    //                                        // the valence count, so the cliff
+    //                                        // stays on screen and MOVES with the
+    //                                        // element). No group form by design:
+    //                                        // a group trend against Z is four
+    //                                        // scattered points, and the strip
+    //                                        // carries "down a group" better.
+    //         mark: 'line' | 'step',         // 'step' is a STAIRCASE (columns +
+    //                                        // stepped top), never a polyline —
+    //                                        // the IE1->IE2 cliff is a wall, not
+    //                                        // a ramp. Defaults to 'step' on
+    //                                        // ie_successive, 'line' otherwise.
+    //         model_series: bool             // ALSO draw the Slater-model
+    //                                        // prediction, in its own colour AND
+    //                                        // its own dash AND its own square
+    //                                        // mark. Meaningful on the two IE
+    //                                        // curves (where the model is
+    //                                        // measurably WRONG at boron and at
+    //                                        // oxygen, which is the lesson);
+    //                                        // ignored on radius_vs_z, whose one
+    //                                        // series already IS the model.
+    //       },
     //       show_hud, show_formula,
     //       hud_lines: ['occupancy','psi2','slice_dots','energy','nodes',
-    //                   'radius','label','element','config'],
+    //                   'radius','label','element','config','ie_measured'],
+    //                                        // 'energy' is E = -13.6 Z_eff^2/n^2
+    //                                        // eV, evaluated at FRAME time from
+    //                                        // the live charge the picture is
+    //                                        // scaled by (row K), so it can no
+    //                                        // longer print hydrogen's energy
+    //                                        // beside a contracted atom.
+    //                                        // 'ie_measured' prints IE_(q+1) for
+    //                                        // the current species in kJ/mol,
+    //                                        // CITED (OS_IE) and stamped
+    //                                        // "(measured)" — the engine never
+    //                                        // computes an ionisation energy.
     //       formula,                                  // ONE Cambria surface
     //       camera: {az, el, dist},                   // SOLVED (skeleton E-9)
     //       controls: ['orbital','dots','spin','probe','schar','twist'],
@@ -59726,6 +59769,455 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
     })();
+    // ── MEASURED IONISATION ENERGIES (row M) ────────────────────────────────
+    //   SOURCE: CRC Handbook of Chemistry and Physics, 97th ed. (2016), table
+    //   "Ionization Energies of Gas-Phase Atoms and Ions" — the same set NIST
+    //   Atomic Spectra Database carries, converted from eV at 1 eV =
+    //   96.485 kJ/mol. Successive energies IE_k are for the (k-1)+ ion, i.e.
+    //   IE_2 is the energy to take Na(+) to Na(2+). Values are quoted to the
+    //   precision the source gives them and NOTHING here is rounded up or
+    //   interpolated; where the source has no entry this table has no entry, and
+    //   the HUD prints an em dash rather than a number.
+    //
+    //   WHY THIS IS DATA AND NOT ARITHMETIC. Everything else about an element in
+    //   this scenario is DERIVED (Slater screening, the valence subshell, the
+    //   contraction) — a lookup table would be an animation of a claim. An
+    //   ionisation energy is the one quantity where that reverses: the
+    //   Slater-hydrogenic energy 13.6 Z_eff^2/n^2 misses the measurement by a
+    //   factor running from ~1.07x at lithium (554 predicted / 520.2 measured) to
+    //   ~5.4x at neon (11226 / 2080.7), NON-UNIFORMLY, so a computed IE would be
+    //   worse than no IE at all. It also gets the two facts a periodicity concept
+    //   exists to teach exactly BACKWARDS: the model says beryllium < boron and
+    //   nitrogen < oxygen, and the measurements say the opposite (899.5 > 800.6,
+    //   1402.3 > 1313.9). That failure is the lesson (overlay.model_series draws
+    //   both series on one axis), which it can only be if the measured series is
+    //   a citation and never a computation.
+    //
+    //   DEPTH. Every element carries IE_1. Successive values run deep enough for
+    //   the drawn staircase to clear its own valence cliff on every element the
+    //   scenario can name (see osIeDrawCount): the cliff is at k = (valence
+    //   electron count) + 1, and this table always holds at least one rung past
+    //   it.
+    var OS_IE = {
+        "H":  [1312.0],
+        "He": [2372.3, 5250.5],
+        "Li": [520.2, 7298.1, 11815.0],
+        "Be": [899.5, 1757.1, 14848.7, 21006.6],
+        "B":  [800.6, 2427.1, 3659.7, 25025.8, 32826.7],
+        "C":  [1086.5, 2352.6, 4620.5, 6222.7, 37831, 47277],
+        "N":  [1402.3, 2856, 4578.1, 7475.0, 9444.9, 53266.6, 64360],
+        "O":  [1313.9, 3388.3, 5300.5, 7469.2, 10989.5, 13326.5, 71330, 84078],
+        "F":  [1681.0, 3374.2, 6050.4, 8407.7, 11022.7, 15164.1, 17868, 92038.1],
+        "Ne": [2080.7, 3952.3, 6122, 9371, 12177, 15238, 19999.0, 23069.5],
+        "Na": [495.8, 4562, 6910.3, 9543, 13354, 16613, 20117, 25496],
+        "Mg": [737.7, 1450.7, 7732.7, 10542.5, 13630, 18020, 21711, 25661],
+        "Al": [577.5, 1816.7, 2744.8, 11577, 14842, 18379, 23326, 27465],
+        "Si": [786.5, 1577.1, 3231.6, 4355.5, 16091, 19805, 23780, 29287],
+        "P":  [1011.8, 1907, 2914.1, 4963.6, 6273.9, 21267, 25431],
+        "S":  [999.6, 2252, 3357, 4556, 7004.3, 8495.8, 27107, 31719],
+        "Cl": [1251.2, 2298, 3822, 5158.6, 6542, 9362, 11018, 33604],
+        "Ar": [1520.6, 2665.8, 3931, 5771, 7238, 8781, 11995, 13842],
+        "K":  [418.8, 3052, 4420, 5877, 7975, 9590, 11343],
+        "Ca": [589.8, 1145.4, 4912.4, 6491, 8153, 10496, 12270]
+    };
+    // The ionisation energy OF THE SPECIES ON SCREEN. A neutral atom shows IE_1;
+    // an ion of charge q shows IE_(q+1), because that is the energy it would cost
+    // to remove the NEXT electron from the thing being drawn. So charge_steps —
+    // which already exists — walks the successive staircase without a second
+    // schedule key, and the number in the HUD is always the number the picture is
+    // about. An anion (q < 0) has no ionisation energy in this table's sense, and
+    // an index past the cited data has none either: both return null and print an
+    // em dash, never an extrapolation.
+    function osIeIndex(q) { return (typeof q === "number") ? q + 1 : 1; }
+    function osIeAt(sym, k) {
+        var arr = sym ? OS_IE[sym] : null;
+        if (!arr || !(k >= 1) || k > arr.length) return null;
+        return arr[k - 1];
+    }
+    // Prints the digits the source has and no others: 899.5 stays 899.5, 4562
+    // stays 4562. Rounding 899.5 to "900" would invent a precision the citation
+    // does not carry, and rounding it to "899" would misquote it.
+    function osIeFmt(v) {
+        if (v == null) return "\\u2014";
+        return String(Math.round(v * 10) / 10);
+    }
+    // How many rungs of the successive staircase to draw. NOT authored, and not
+    // "all of them": sodium's cited series runs to 25496 kJ/mol, so a staircase
+    // drawn to the end buries the 496 -> 4562 cliff that IS the lesson under a
+    // rung nine times taller (the fixed-range scar). The count is DERIVED from
+    // the configuration the engine already computes — the valence-shell electron
+    // count plus two — so the cliff always lands one rung in from the right and
+    // MOVES when the element changes, which is exactly the reading the "count the
+    // valence electrons from the jump" beat asks a student to make.
+    //   It is keyed on the NEUTRAL atom, never on the ion currently drawn: the
+    // staircase belongs to the ELEMENT and charge_steps walks a marker along it,
+    // so a count that shrank as the charge rose would rescale the axis under the
+    // marker mid-state (Rule 32b — only the taught variable moves).
+    function osValenceCount(ion) {
+        if (!ion) return 1;
+        var occ = osFillConfig(ion.nE), c = 0, i;
+        for (i = 0; i < OS_SUBSHELLS.length; i++) {
+            if (occ[i] > 0 && OS_SUBSHELLS[i].n === ion.valenceN) c += occ[i];
+        }
+        return c > 0 ? c : 1;
+    }
+    function osIeDrawCount(sym) {
+        var arr = sym ? OS_IE[sym] : null;
+        if (!arr) return 0;
+        return Math.max(1, Math.min(arr.length, osValenceCount(OS_IONS[sym + "|0"]) + 2));
+    }
+
+    // ── THE ELEMENT OVERLAY (row E) ─────────────────────────────────────────
+    //   ONE DOM panel, driven entirely by the element the state is showing RIGHT
+    //   NOW, carrying two marks: a periodic-table strip and a trend curve.
+    //   It exists for a narrow, concrete reason and not as decoration: four
+    //   core-ring delta cues say "across a period" and "down a group", and those
+    //   words have NO on-screen referent otherwise (Rule 25 — no untaught term),
+    //   in states that must read with the sound off (Rule 24). A contracting
+    //   sphere cannot say "period 3".
+    //
+    //   LAYOUT. Groups 1, 2 and 13-18 — the s and p block, which is exactly the
+    //   set OS_ELEMENTS covers — over periods 1 to 4. Twenty cells, not the
+    //   sixteen of periods 2-3 alone: the "down a group" beat walks Li -> Na -> K,
+    //   so a strip that stopped at argon would leave that state's own third step
+    //   with no lit cell, and hydrogen/helium are the elements the first
+    //   ionisation beat opens on. The d block is absent because no element in
+    //   OS_ELEMENTS occupies it (a d-block element re-opens the scenario's own
+    //   deferral ledger), and the visible gap between group 2 and group 13 is
+    //   what says so.
+    var OS_TABLE_GROUPS = [1, 2, 13, 14, 15, 16, 17, 18];
+    var OS_TABLE_ROWS = [
+        ["H", "", "", "", "", "", "", "He"],
+        ["Li", "Be", "B", "C", "N", "O", "F", "Ne"],
+        ["Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar"],
+        ["K", "Ca", "", "", "", "", "", ""]
+    ];
+    // 1 eV in kJ/mol — the ONE conversion between this engine's orbital energies
+    // and the cited ionisation table's units.
+    var OS_EV_KJ = 96.485;
+    // The MODEL's prediction for IE_k: the Slater-hydrogenic energy of the
+    // outermost electron of the species that electron is being removed FROM
+    // (charge k-1), which is the same arithmetic osZEffAt already uses for the
+    // picture. It is drawn ONLY beside the measurement and ONLY in the model's
+    // own colour and dash, never alone and never unlabelled — the whole point of
+    // putting it on screen is that it is WRONG at boron and at oxygen, in a way a
+    // student can read off the two traces.
+    function osIeModel(sym, k) {
+        var ion = OS_IONS[sym + "|" + (k - 1)];
+        if (!ion || !ion.valenceN) return null;
+        return 13.6 * ion.zEff * ion.zEff / (ion.valenceN * ion.valenceN) * OS_EV_KJ;
+    }
+    // The DERIVED outer reach of a neutral element's valence orbital, in pm —
+    // r90 of the Z = 1 orbital divided by that element's own Slater Z_eff. It is
+    // the SAME expression the primary radius readout uses (osOuterPm x osZUnit),
+    // so the point the marker sits on and the number in the HUD can never
+    // disagree: one law, read twice.
+    function osElemRadiusPm(sym, encKey) {
+        var ion = OS_IONS[sym + "|0"];
+        if (!ion || !ion.valenceKey) return null;
+        var orb = OS_ORBITALS[ion.valenceKey];
+        if (!orb || !orb.rByLev) return null;
+        return osOuterPm(orb, encKey) * osZUnit(orb, ion.zEff);
+    }
+    function osPeriodOf(Z) { return (Z <= 2) ? 1 : (Z <= 10 ? 2 : (Z <= 18 ? 3 : 4)); }
+    function osPeriodMembers(p) {
+        var out = [], i;
+        for (i = 0; i < OS_ELEMENTS.length; i++) {
+            if (osPeriodOf(i + 1) === p) out.push(OS_ELEMENTS[i]);
+        }
+        return out;
+    }
+    // Where the lit element sits in the strip, or null for an element the strip
+    // does not carry (there is none today — the assertion is the guard).
+    function osTableCell(sym) {
+        var r, c;
+        for (r = 0; r < OS_TABLE_ROWS.length; r++) {
+            for (c = 0; c < OS_TABLE_ROWS[r].length; c++) {
+                if (OS_TABLE_ROWS[r][c] === sym) return { row: r, col: c, period: r + 1, group: OS_TABLE_GROUPS[c] };
+            }
+        }
+        return null;
+    }
+    var OS_OVL_MEASURED = "#FFCA28";     // provenance = colour. Amber is ALWAYS a
+    var OS_OVL_MODEL = "#4DD0E1";        // citation; cyan is ALWAYS this engine's
+    //   own arithmetic — on every curve, so a viewer never has to remember which
+    //   trace is which. The model also gets its own DASH and its own square mark,
+    //   because a colour difference alone survives neither a projector nor a
+    //   colour-blind reader, and mistaking the model for the measurement is the
+    //   one misreading these two states cannot afford.
+    var OS_OVL_DIM = "#37474F", OS_OVL_INK = "#B0BEC5", OS_OVL_FAINT = "#78909C";
+
+    //   THE STRIP. Pure function of the element resolved for this frame — no
+    //   state, no accumulator, redrawn every frame like every other beat in this
+    //   scenario, so a SET_TIME_FREEZE pin reproduces it byte-identically.
+    function osDrawStrip(sym) {
+        var cv = document.getElementById("os_strip");
+        if (!cv || cv.style.display === "none" || !cv.getContext) return;
+        var g = cv.getContext("2d");
+        if (!g) return;
+        var W = cv.width, H = cv.height, r, c;
+        g.clearRect(0, 0, W, H);
+        var cell = sym ? osTableCell(sym) : null;
+        // the gutter is wide enough for the rotated "period" word AND the period
+        // numbers side by side — at 40px they overlapped (measured on the frame).
+        var gx = 56, gy = 34, gw = (W - gx - 10) / OS_TABLE_GROUPS.length, gh = (H - gy - 8) / OS_TABLE_ROWS.length;
+        // the lit element's ROW and COLUMN, banded — this is what makes "period"
+        // and "group" readable without a sentence.
+        if (cell) {
+            g.fillStyle = "rgba(255,202,40,0.12)";
+            g.fillRect(gx, gy + cell.row * gh, gw * OS_TABLE_GROUPS.length, gh);
+            g.fillRect(gx + cell.col * gw, gy, gw, gh * OS_TABLE_ROWS.length);
+        }
+        g.textAlign = "center"; g.textBaseline = "middle";
+        for (c = 0; c < OS_TABLE_GROUPS.length; c++) {
+            g.fillStyle = (cell && cell.col === c) ? OS_OVL_MEASURED : OS_OVL_FAINT;
+            g.font = (cell && cell.col === c) ? "bold 21px monospace" : "19px monospace";
+            g.fillText(String(OS_TABLE_GROUPS[c]), gx + (c + 0.5) * gw, gy - 15);
+        }
+        for (r = 0; r < OS_TABLE_ROWS.length; r++) {
+            g.fillStyle = (cell && cell.row === r) ? OS_OVL_MEASURED : OS_OVL_FAINT;
+            g.font = (cell && cell.row === r) ? "bold 21px monospace" : "19px monospace";
+            g.fillText(String(r + 1), gx - 14, gy + (r + 0.5) * gh);
+            for (c = 0; c < OS_TABLE_ROWS[r].length; c++) {
+                var s = OS_TABLE_ROWS[r][c];
+                if (!s) continue;
+                var lit = (s === sym);
+                var x = gx + c * gw + 3, y = gy + r * gh + 3, w = gw - 6, h = gh - 6;
+                g.fillStyle = lit ? OS_OVL_MEASURED : "#22323A";
+                g.fillRect(x, y, w, h);
+                g.strokeStyle = lit ? "#FFF176" : OS_OVL_DIM;
+                g.lineWidth = lit ? 3 : 1.5;
+                g.strokeRect(x, y, w, h);
+                g.fillStyle = lit ? "#12232B" : OS_OVL_INK;
+                g.font = (lit ? "bold " : "") + "24px \\u0027Cambria Math\\u0027,serif";
+                g.fillText(s, x + w / 2, y + h / 2 + 1);
+            }
+        }
+        // the two axis words — "1 2 13 ..." is only obviously a group axis once
+        // it is named. "period" runs UP THE GUTTER rather than sitting in the
+        // top-right corner, where it landed on the group-18 header (a
+        // canvas-internal text collision no DOM probe can see — the
+        // canvas_graph_label_collides scar).
+        g.textAlign = "left"; g.fillStyle = OS_OVL_FAINT; g.font = "16px monospace";
+        g.fillText("group", 6, 16);
+        g.save(); g.translate(14, (gy + H - 8) / 2); g.rotate(-Math.PI / 2);
+        g.textAlign = "center"; g.fillText("period", 0, 0); g.restore();
+    }
+
+    //   THE TREND CURVE. Three closed forms, two marks, and a series that is
+    //   always labelled with where its numbers came from.
+    //     radius_vs_z / ie_vs_z  = the current element's OWN PERIOD against Z
+    //     ie_successive          = the current element's successive IEs, k = 1..
+    //   There is deliberately no group form: a group trend against Z is four
+    //   scattered points, not a readable curve, and the strip above carries "down
+    //   a group" better than any axis would.
+    function osDrawCurve(os, ion, encKey) {
+        var cv = document.getElementById("os_curve");
+        if (!cv || cv.style.display === "none" || !cv.getContext) return;
+        var g = cv.getContext("2d");
+        if (!g) return;
+        var W = cv.width, H = cv.height, i;
+        g.clearRect(0, 0, W, H);
+        var ovl = os.overlay || {}, kind = ovl.curve || null;
+        if (!kind || !ion) return;
+        var modelOn = !!ovl.model_series;
+        var mark = (ovl.mark === "step") ? "step"
+            : (ovl.mark === "line" ? "line" : (kind === "ie_successive" ? "step" : "line"));
+        var meas = [], model = [], xLab = "", yLab = "", markX = null, sym = ion.sym;
+
+        if (kind === "ie_successive") {
+            var nK = osIeDrawCount(sym);
+            for (i = 1; i <= nK; i++) {
+                var vv = osIeAt(sym, i);
+                if (vv != null) meas.push({ x: i, y: vv, label: String(i) });
+                if (modelOn) { var mv = osIeModel(sym, i); if (mv != null) model.push({ x: i, y: mv }); }
+            }
+            xLab = "electron removed (k)"; yLab = "IE\\u2096 (kJ/mol)";
+            markX = osClamp(osIeIndex(ion.charge), 1, nK);
+        } else {
+            var mem = osPeriodMembers(osPeriodOf(ion.Z));
+            for (i = 0; i < mem.length; i++) {
+                var mi = OS_IONS[mem[i] + "|0"]; if (!mi) continue;
+                if (kind === "radius_vs_z") {
+                    var rv = osElemRadiusPm(mem[i], encKey);
+                    if (rv != null) meas.push({ x: mi.Z, y: rv, label: mem[i] });
+                } else {
+                    var iv = osIeAt(mem[i], 1);
+                    if (iv != null) meas.push({ x: mi.Z, y: iv, label: mem[i] });
+                    if (modelOn) { var im = osIeModel(mem[i], 1); if (im != null) model.push({ x: mi.Z, y: im }); }
+                }
+            }
+            xLab = "atomic number Z";
+            yLab = (kind === "radius_vs_z") ? "r\\u2089\\u2080 (pm)" : "IE\\u2081 (kJ/mol)";
+            markX = ion.Z;
+        }
+        if (!meas.length) return;
+        // radius_vs_z has ONE series and it is the engine's own derivation, so it
+        // is drawn in the model colour and labelled as a model. There is no
+        // measured covalent-radius table in this file and there must not be one
+        // beside a derived radius unlabelled (a measured and a derived length on
+        // one axis, in one colour, is the defect this convention exists to
+        // prevent) — so model_series has nothing to add here and is ignored.
+        var measIsModel = (kind === "radius_vs_z");
+
+        // T0 clears a two-row legend on EVERY curve, not only the two-series one:
+        // a band sized per state would put the top gridline under the legend
+        // swatch on the single-series forms (Rule 34d, measured on the frame).
+        //   B0 leaves TWO text rows under the axis — the tick names and the axis
+        // title — with clear air between them; at one row's worth the element
+        // ticks printed straight through "atomic number Z".
+        var L0 = 96, R0 = W - 22, T0 = 66, B0 = H - 72;
+        var xs = [], ys = [];
+        for (i = 0; i < meas.length; i++) { xs.push(meas[i].x); ys.push(meas[i].y); }
+        for (i = 0; i < model.length; i++) { xs.push(model[i].x); ys.push(model[i].y); }
+        var xlo = Math.min.apply(null, xs), xhi = Math.max.apply(null, xs);
+        var ylo = Math.min.apply(null, ys), yhi = Math.max.apply(null, ys);
+        // LOG only when the two series together span more than a decade. The
+        // model/measurement comparison is a RATIO claim (the screening model runs
+        // ~1.07x too high at lithium and ~5.4x too high at neon), and a ratio
+        // reads on a log axis; on a linear one sized for 11226 the 99 kJ/mol
+        // beryllium-to-boron DIP — the entire content of that state — is three
+        // pixels tall (the buried-lobe scar). A single series is a magnitude
+        // claim and keeps its own fitted linear range.
+        var useLog = (model.length > 0) && (yhi / Math.max(1e-9, ylo) > 10);
+        var T = function (v) { return useLog ? Math.log(Math.max(1e-9, v)) : v; };
+        var tlo = T(ylo), thi = T(yhi), tpad = Math.max(1e-6, (thi - tlo) * 0.14);
+        tlo -= tpad; thi += tpad;
+        // A radius and an ionisation energy are both strictly positive, so a
+        // LINEAR axis whose padding pushed the floor below zero would print a
+        // negative tick under a bar chart and make every bar height a lie about
+        // its own ratio (measured: sodium's staircase opened its axis at
+        // -402 kJ/mol). The log branch cannot reach zero and needs no clamp.
+        if (!useLog && tlo < 0) tlo = 0;
+        if (xhi - xlo < 1e-9) { xlo -= 1; xhi += 1; }
+        // A step draw needs HALF A SPACING of margin at each end or the outermost
+        // column is cut off by the plot edge (measured: sodium's IE3 bar ran 12px
+        // past R0). A line draw only needs its end markers inside.
+        var xstep = (meas.length > 1) ? (xhi - xlo) / (meas.length - 1) : (xhi - xlo);
+        var xp = (mark === "step") ? xstep * 0.45 : (xhi - xlo) * 0.14;
+        var X = function (v) { return L0 + (v - (xlo - xp)) / ((xhi + xp) - (xlo - xp)) * (R0 - L0); };
+        var Y = function (v) { return B0 - (T(v) - tlo) / (thi - tlo) * (B0 - T0); };
+
+        g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(L0, T0 - 10); g.lineTo(L0, B0); g.lineTo(R0, B0); g.stroke();
+        g.fillStyle = OS_OVL_INK; g.font = "21px \\u0027Cambria Math\\u0027,serif";
+        g.textAlign = "center"; g.textBaseline = "alphabetic";
+        g.fillText(xLab, (L0 + R0) / 2, H - 14);
+        g.save(); g.translate(24, (T0 + B0) / 2); g.rotate(-Math.PI / 2);
+        g.fillText(yLab, 0, 0); g.restore();
+        g.textAlign = "right"; g.font = "18px monospace"; g.fillStyle = OS_OVL_FAINT;
+        for (i = 0; i <= 3; i++) {
+            var tv = tlo + (thi - tlo) * i / 3;
+            var av = useLog ? Math.exp(tv) : tv;
+            var yy = B0 - (tv - tlo) / (thi - tlo) * (B0 - T0);
+            g.fillStyle = OS_OVL_FAINT;
+            g.fillText(String(av >= 100 ? Math.round(av) : Math.round(av * 10) / 10), L0 - 8, yy + 6);
+            g.strokeStyle = "rgba(120,144,156,0.18)"; g.lineWidth = 1;
+            g.beginPath(); g.moveTo(L0, yy); g.lineTo(R0, yy); g.stroke();
+        }
+        // x ticks. The vs_Z forms name their ELEMENTS (an axis reading
+        // "atomic number Z" with no numbers on it asks a student to count
+        // sideways from the strip); the successive form names the electron index.
+        g.textAlign = "center"; g.font = "18px monospace"; g.fillStyle = OS_OVL_FAINT;
+        for (i = 0; i < meas.length; i++) g.fillText(meas[i].label, X(meas[i].x), B0 + 24);
+
+        // ── the series. 'step' is a STAIRCASE (a filled column per rung plus the
+        //    stepped top), not a polyline: the cliff between IE1 and IE2 is the
+        //    whole reading, and a straight segment joining them draws a ramp
+        //    where the physics has a wall.
+        function drawSeries(pts, colr, dashed, isStep) {
+            if (!pts.length) return;
+            var j;
+            if (isStep) {
+                var bw = (pts.length > 1) ? (X(pts[1].x) - X(pts[0].x)) * 0.66 : (R0 - L0) * 0.3;
+                for (j = 0; j < pts.length; j++) {
+                    var bx = X(pts[j].x) - bw / 2, by = Y(pts[j].y);
+                    g.fillStyle = colr; g.globalAlpha = dashed ? 0.28 : 0.5;
+                    g.fillRect(bx, by, bw, B0 - by);
+                    g.globalAlpha = 1;
+                    g.strokeStyle = colr; g.lineWidth = 4;
+                    if (dashed) g.setLineDash([9, 7]);
+                    g.beginPath(); g.moveTo(bx, by); g.lineTo(bx + bw, by); g.stroke();
+                    if (j > 0) {
+                        g.beginPath(); g.moveTo(bx, Y(pts[j - 1].y)); g.lineTo(bx, by); g.stroke();
+                    }
+                    g.setLineDash([]);
+                }
+            } else {
+                g.strokeStyle = colr; g.lineWidth = 4;
+                if (dashed) g.setLineDash([9, 7]);
+                g.beginPath();
+                for (j = 0; j < pts.length; j++) {
+                    if (j === 0) g.moveTo(X(pts[j].x), Y(pts[j].y)); else g.lineTo(X(pts[j].x), Y(pts[j].y));
+                }
+                g.stroke(); g.setLineDash([]);
+                for (j = 0; j < pts.length; j++) {
+                    g.fillStyle = colr;
+                    if (dashed) {
+                        g.fillRect(X(pts[j].x) - 6, Y(pts[j].y) - 6, 12, 12);
+                    } else {
+                        g.beginPath(); g.arc(X(pts[j].x), Y(pts[j].y), 6.5, 0, Math.PI * 2); g.fill();
+                    }
+                }
+            }
+        }
+        drawSeries(model, OS_OVL_MODEL, true, mark === "step");
+        drawSeries(meas, measIsModel ? OS_OVL_MODEL : OS_OVL_MEASURED, measIsModel, mark === "step");
+
+        // the tracking marker: the point the picture on stage IS.
+        var markPt = null;
+        for (i = 0; i < meas.length; i++) if (Math.abs(meas[i].x - markX) < 1e-9) markPt = meas[i];
+        if (markPt) {
+            g.strokeStyle = "#FFF176"; g.lineWidth = 2.5;
+            g.beginPath(); g.moveTo(X(markPt.x), T0 - 10); g.lineTo(X(markPt.x), B0); g.stroke();
+            g.fillStyle = "#FFF176";
+            g.beginPath(); g.arc(X(markPt.x), Y(markPt.y), 10, 0, Math.PI * 2); g.fill();
+            // The marker's own value, on an OPAQUE PLATE. It is drawn last, over
+            // a trace it necessarily sits beside, and unplated text over a
+            // 4px polyline is unreadable at panel scale — a collision founder
+            // _drive's DOM probe is structurally blind to (it is inside a
+            // canvas), so it is settled here rather than left to a screenshot.
+            g.font = "20px monospace"; g.textAlign = "left"; g.textBaseline = "middle";
+            var mtxt = markPt.label + "  " + (kind === "radius_vs_z"
+                ? (Math.round(markPt.y) + " pm") : osIeFmt(markPt.y));
+            var mw = g.measureText(mtxt).width;
+            var mx = Math.min(X(markPt.x) + 16, R0 - mw - 8);
+            var my = Math.max(T0 + 20, Y(markPt.y) - 22);
+            g.fillStyle = "rgba(0,0,0,0.85)";
+            g.fillRect(mx - 7, my - 15, mw + 14, 30);
+            g.fillStyle = "#FFF9C4";
+            g.fillText(mtxt, mx, my);
+            g.textBaseline = "alphabetic";
+        }
+
+        // ── the legend. Every series says where its numbers came from, in the
+        //    same words the HUD uses, because a derived number and a cited number
+        //    on one axis with no labels is exactly the surface this scenario's
+        //    provenance discipline exists for.
+        g.textAlign = "left"; g.font = "19px monospace"; g.textBaseline = "middle";
+        var ly = 20;
+        function legend(colr, dashed, txt) {
+            g.strokeStyle = colr; g.lineWidth = 4;
+            if (dashed) g.setLineDash([9, 7]);
+            g.beginPath(); g.moveTo(L0, ly); g.lineTo(L0 + 40, ly); g.stroke(); g.setLineDash([]);
+            g.fillStyle = colr;
+            if (dashed) g.fillRect(L0 + 14, ly - 6, 12, 12);
+            else { g.beginPath(); g.arc(L0 + 20, ly, 6.5, 0, Math.PI * 2); g.fill(); }
+            g.fillStyle = OS_OVL_INK;
+            g.fillText(txt, L0 + 50, ly);
+            ly += 26;
+        }
+        if (measIsModel) legend(OS_OVL_MODEL, true, "Slater model");
+        else {
+            legend(OS_OVL_MEASURED, false, "measured");
+            if (model.length) legend(OS_OVL_MODEL, true, "Slater model");
+        }
+        if (useLog) {
+            g.fillStyle = OS_OVL_FAINT; g.font = "16px monospace"; g.textAlign = "right";
+            g.fillText("log scale", R0, 20);
+        }
+    }
+
     // element_steps / charge_steps: within-state parameter scheduling, shaped
     // exactly like gallery_steps and closed-form on the state clock. They exist
     // because 'element' and 'charge' are static scalars with no motion source and
@@ -61705,6 +62197,26 @@ export const FIELD_3D_RENDERER_CODE = `
         ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
         document.body.appendChild(ff);
 
+        // 9b. THE ELEMENT OVERLAY (row E) — ONE panel carrying two marks, built
+        //     once and shown per state. BOTTOM-LEFT, which is the only quadrant
+        //     this scenario leaves free (Rule 34d): os_hud owns the top-right at
+        //     top:52px, os_sliders the bottom-right, and the ONE formula surface
+        //     is re-anchored from mid-left to the top-left whenever this panel is
+        //     up — 44% of a 720px viewport lands inside a panel this tall (the
+        //     bsc_trend precedent, same reason).
+        //     Inline position:fixed on a dynamically-created body child is
+        //     exactly what the generic widget engine auto-discovers (Rule 39f),
+        //     so the teacher toggle costs no wiring; data-wg-label names it,
+        //     because the derived label for a canvas-bearing panel would read
+        //     "Graph" and this panel is not only a graph.
+        var ovp = document.createElement("div"); ovp.id = "os_overlay";
+        ovp.setAttribute("data-wg-label", "Element panel");
+        ovp.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.82);border-radius:8px;padding:8px;z-index:10;display:none;";
+        ovp.innerHTML =
+            '<canvas id="os_strip" width="720" height="280" style="display:none;width:360px;height:140px"></canvas>' +
+            '<canvas id="os_curve" width="720" height="440" style="display:none;width:360px;height:220px;margin-top:6px"></canvas>';
+        document.body.appendChild(ovp);
+
         // 10. Per-state contextual control rows (Rule 31) — built ONCE, shown/
         //     hidden per state, each row keeping the SAME screen position.
         //     Every id is MULTI-LETTER: single-letter slider ids are a shared
@@ -61946,10 +62458,31 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var hud = document.getElementById("os_hud");
         if (hud) hud.style.display = os.show_hud ? "block" : "none";
+        // ── row E: the element overlay. Each mark is independent, and the panel
+        //   is up only when at least one of them is — a state that asks for the
+        //   strip alone must not show an empty half (the empty-band scar).
+        //   The strip is refused when the state names no element at all: a
+        //   periodic strip with nothing lit would be a decoration, and this
+        //   scenario's rule is that an empty stage prints no identity.
+        var ovl = os.overlay || {};
+        var ovStrip = !!ovl.table && !!os.element;
+        var ovCurve = !!ovl.curve && !!os.element;
+        var ovOn = ovStrip || ovCurve;
+        var ovp = document.getElementById("os_overlay");
+        var ovS = document.getElementById("os_strip");
+        var ovC = document.getElementById("os_curve");
+        if (ovS) ovS.style.display = ovStrip ? "block" : "none";
+        if (ovC) ovC.style.display = ovCurve ? "block" : "none";
+        if (ovp) ovp.style.display = ovOn ? "block" : "none";
         var ff = document.getElementById("os_formula");
         if (ff) {
             if (os.show_formula && os.formula) { ff.innerHTML = os.formula; ff.style.display = "block"; }
             else { ff.style.display = "none"; }
+            // Rule 34d: the element panel owns the bottom-left, so the ONE
+            // formula surface moves to the top-left beside it rather than
+            // overlapping it (mid-left at 44% lands inside a 382px-tall panel).
+            if (ovOn) { ff.style.top = "52px"; ff.style.transform = "none"; }
+            else { ff.style.top = "44%"; ff.style.transform = "translateY(-50%)"; }
         }
         // The generic visible_elements matcher has just switched these on, and a
         // capture landing between this apply and the first animate frame would
@@ -62071,9 +62604,36 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osCharge = osIon ? osIon.charge : null;
         window.PM_osConfig = osIon ? osIon.config : null;
         window.PM_osSlaterS = osIon ? osIon.S : null;
+        // ── row E: the element overlay is redrawn from the LIVE identity every
+        //   frame, never seeded at apply — that is the whole reason element_steps
+        //   and charge_steps can move it. Both marks are pure functions of the
+        //   resolved element/charge (no accumulator, no RNG), so they hold the
+        //   SET_TIME_FREEZE byte-identity the rest of this scenario holds.
+        osDrawStrip(osIon ? osIon.sym : null);
+        osDrawCurve(os, osIon, encKey);
         var primR = osOuterPm(primary, encKey) * zuPrim;
         window.PM_osPrimPm = primR;
         window.PM_osActive = active.slice();
+        // ── row K: THE ORBITAL ENERGY IS READ AT FRAME TIME FROM THE SAME LIVE
+        //    CHARGE THE PICTURE IS SCALED BY. orb.E (built once, at page load) is
+        //    the HYDROGENIC -13.6/n^2, and the HUD printed it verbatim — so from
+        //    the moment row A made the picture contract with Z_eff, a state
+        //    authoring z_eff (or element + z_eff: 'slater') rendered a visibly
+        //    contracted atom beside HYDROGEN's energy: two claims about one atom,
+        //    on one screen, disagreeing. E_n = -13.6 Z^2 / n^2 is the hydrogenic
+        //    law the whole picture already obeys, so the fix is to evaluate it
+        //    here, per frame, and NOT to re-bake orb.E — a baked Z would pin the
+        //    energy at page load exactly the way it would pin the scale (the
+        //    build-vs-frame trap row A exists to avoid).
+        //      eZ is DERIVED FROM zuPrim, not recomputed from zEff, so the number
+        //    printed and the metres drawn can never come from two different
+        //    charges: zuPrim is 1/Z on the one-centre s/p/d family the similarity
+        //    is exact for, and exactly 1 on a hybrid or a molecular orbital (both
+        //    excluded by osZUnit). eZ therefore collapses to 1 on those two paths
+        //    and reproduces the shipped -13.6/n^2 for them, bit for bit.
+        var eZ = (zuPrim > 0) ? 1 / zuPrim : 1;
+        var primE = -13.6 * eZ * eZ / (primary.n * primary.n);
+        window.PM_osE = primE;
 
         // ── the slow spin: angle = rate * (t - spin_start), a PURE function of
         //    the state clock (never an accumulator). spin_axis lets a state turn
@@ -63119,7 +63679,9 @@ export const FIELD_3D_RENDERER_CODE = `
                     // into a real Unicode minus — a sweep of static strings
                     // misses runtime-generated numbers, which is exactly how
                     // ascii_minus_in_oncanvas_math_from_tofixed shipped before.
-                    lines.push("E = " + primary.E.toFixed(2).replace("-", "\\u2212") + " eV");
+                    //   ...and primE, not primary.E: the LIVE charge, not the
+                    // Z = 1 value baked at page load (row K).
+                    lines.push("E = " + primE.toFixed(2).replace("-", "\\u2212") + " eV");
                 } else if (want[i] === "nodes") {
                     lines.push("nodes: " + primary.nodesRadial + " radial \\u00B7 " + primary.nodesAngular + " angular");
                 } else if (want[i] === "radius") {
@@ -63221,6 +63783,25 @@ export const FIELD_3D_RENDERER_CODE = `
                     // WHICH atom without also showing what it is made of.
                     lines.push((osIon == null) ? "\\u2014"
                         : (osIon.label + " \\u00B7 Z = " + osIon.Z + " \\u00B7 " + osIon.nE + " e"));
+                } else if (want[i] === "ie_measured") {
+                    // row M. The engine NEVER computes an ionisation energy, so
+                    // this line prints a citation and says so — the same terms as
+                    // the "(Slater)" stamp above, which the engine earns only
+                    // where it did the screening arithmetic itself. Here it did
+                    // none: the number came out of OS_IE, whose source is named at
+                    // the table. The subscript is a real DOM <sub> (the label line
+                    // beside it takes the same position — "IE1" is a notation lie).
+                    //   The index is the SPECIES': a neutral atom shows IE_1, an
+                    // ion of charge q shows IE_(q+1). Nothing outside the cited
+                    // data is ever printed.
+                    //   An ANION has no k: q + 1 is zero or negative, and
+                    // "IE_0" is not notation — it is a subscript printed because
+                    // a formula produced one. The UNINDEXED symbol is the honest
+                    // surface there, beside the em dash.
+                    var ieK = osIeIndex(osIon ? osIon.charge : 0);
+                    var ieV = (osIon && ieK >= 1) ? osIeAt(osIon.sym, ieK) : null;
+                    lines.push("IE" + (ieK >= 1 ? "<sub>" + ieK + "</sub>" : "")
+                        + " = " + osIeFmt(ieV) + (ieV == null ? "" : " kJ/mol (measured)"));
                 } else if (want[i] === "config") {
                     lines.push((osIon == null) ? "\\u2014" : osIon.config);
                 } else if (want[i] === "parts") {
@@ -63316,9 +63897,38 @@ export const FIELD_3D_RENDERER_CODE = `
             config: window.PM_osConfig, slaterS: window.PM_osSlaterS,
             orbital: (window.PM_osActive && window.PM_osActive.length) ? window.PM_osActive[window.PM_osActive.length - 1] : null,
             nodesRadial: pr ? pr.nodesRadial : null, shells: shells,
+            // row K: the energy the HUD is printing THIS frame, beside the charge
+            // it was computed from — the pair a build-time fold cannot produce.
+            E: window.PM_osE,
             hud: hudEl ? hudEl.textContent : null
         };
     };
+    // ── headless overlay probe (rows E + M): what the element panel is showing,
+    //   without a screenshot. Reports the lit cell, the drawn series and the
+    //   marker, so "the cell, the marker and the HUD all move together" is an
+    //   assertion rather than a look.
+    window.__PM_osOverlayProbe = function () {
+        var sym = window.PM_osElement, q = window.PM_osCharge;
+        var cell = sym ? osTableCell(sym) : null;
+        var ieK = osIeIndex(q);
+        var pnl = document.getElementById("os_overlay");
+        var st = document.getElementById("os_strip"), cu = document.getElementById("os_curve");
+        return {
+            panel: !!(pnl && pnl.style.display !== "none"),
+            strip: !!(st && st.style.display !== "none"),
+            curve: !!(cu && cu.style.display !== "none"),
+            element: sym, charge: q,
+            cell: cell, ieIndex: ieK,
+            ie: sym ? osIeAt(sym, ieK) : null,
+            ieModel: sym ? osIeModel(sym, ieK) : null,
+            ieSeries: sym ? (OS_IE[sym] || null) : null,
+            ieDrawCount: sym ? osIeDrawCount(sym) : 0,
+            radiusPm: sym ? osElemRadiusPm(sym, "90") : null
+        };
+    };
+    // ── headless IE-table probe (row M): the citation itself, so the anchor
+    //   values can be asserted against the source without reading pixels.
+    window.__PM_osIeTable = function () { return OS_IE; };
     // ── headless library probe (row L): the per-orbital derivation, straight out
     //   of the built tables. It is the ONE reading that distinguishes a correct
     //   radial branch from the silent 3d fallback — a wrong branch still renders,
