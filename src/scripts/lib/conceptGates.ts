@@ -278,12 +278,20 @@ export function duplicateKeyErrors(raw: string, file: string): string[] {
 // (c) variable_choreography[].seizable:true needs a type:'slider' primitive for
 //     the SAME variable somewhere in the state's scene_composition — otherwise
 //     a teacher can never actually take the sweep over. WARN, not fatal.
-// (d) a locus_trace's sweep parameter must never be a slider variable in the
-//     same state (engine_bug_queue:
+// (d) a locus_trace's sweep parameter must never be a SEIZABLE variable in
+//     the same state (engine_bug_queue:
 //     pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve,
 //     CRITICAL) — PM_choreoVarsAtTime skips teacher-seized variables when it
 //     evaluates a trace's historical samples, so the first drag collapses the
 //     curve to zero-length segments, invisibly to every pixel gate. FATAL.
+//     THE phi LAW, restated 2026-08-06 (CP-B, docs/skeletons/
+//     definite_integral_as_accumulated_area_skeleton.md): the mechanism is
+//     SEIZURE (PM_choreoVarsAtTime / PM_userTouched), not sliders specifically
+//     — a type:'plot_point' primitive's drag.bind_variable seizes exactly the
+//     same way a type:'slider' primitive's variable does (parametric_renderer.ts
+//     drawPlotPoint's genuine-drag branch, F5 clause), so it is a SECOND
+//     seizure door this check must also see. Both are unioned into
+//     seizableVars below before the trace-identifier intersection.
 
 export interface ChoreoWarning { path: string; message: string; fatal: boolean }
 
@@ -311,14 +319,26 @@ function checkStateChoreography(
 
     // (a) anchor_to — walk scene_composition in authored array order, exactly
     // matching PM_endpointRegistry's runtime fill order. Also collects the
-    // state's slider variables in the same pass for checks (c) and (d) below.
+    // state's slider variables (check (c)) and its plot_point drag-bound
+    // variables (check (d), CP-B) in the same pass.
     const sliderVars = new Set<string>();
+    // CP-B (F5/phi doctrine) — a type:'plot_point' primitive's
+    // drag.bind_variable is a SECOND seizure door, distinct from sliderVars,
+    // so check (c)'s "no type:'slider' primitive exists" wording stays exact
+    // for the slider-only case above while check (d) below unions both sets.
+    const dragBoundVars = new Set<string>();
     if (Array.isArray(scene)) {
         const allIds = new Set<string>();
         for (const prim of scene) {
-            const p = prim as { id?: unknown; type?: unknown; variable?: unknown } | null;
+            const p = prim as { id?: unknown; type?: unknown; variable?: unknown; drag?: unknown } | null;
             if (typeof p?.id === 'string') allIds.add(p.id);
             if (p && p.type === 'slider' && typeof p.variable === 'string') sliderVars.add(p.variable);
+            if (p && p.type === 'plot_point') {
+                const drag = (p as { drag?: { bind_variable?: unknown } }).drag;
+                if (drag && typeof drag === 'object' && typeof drag.bind_variable === 'string') {
+                    dragBoundVars.add(drag.bind_variable);
+                }
+            }
         }
         const seenIds = new Set<string>();
         scene.forEach((prim, idx) => {
@@ -373,10 +393,14 @@ function checkStateChoreography(
         });
     }
 
-    // (d) locus_trace sweep-parameter collision. Slider variables cannot
-    // collide with expression function names (sin, cos, PI …), so token
-    // intersection is exact here.
-    if (Array.isArray(scene) && sliderVars.size > 0) {
+    // (d) locus_trace sweep-parameter collision. THE phi LAW, restated 2026-
+    // 08-06 (CP-B): a trace's sweep parameter is never a SEIZABLE variable —
+    // slider OR drag-bound (see the doctrine box above check (a)'s
+    // dragBoundVars declaration). seizableVars unions both seizure doors
+    // before the intersection; neither set can collide with expression
+    // function names (sin, cos, PI …), so token intersection stays exact.
+    const seizableVars = new Set<string>([...sliderVars, ...dragBoundVars]);
+    if (Array.isArray(scene) && seizableVars.size > 0) {
         scene.forEach((prim, idx) => {
             if (!prim || typeof prim !== 'object') return;
             const p = prim as Record<string, unknown>;
@@ -388,13 +412,26 @@ function checkStateChoreography(
                 const expr = p[exprKey];
                 if (typeof expr !== 'string') continue;
                 for (const ident of expr.match(/[A-Za-z_]\w*/g) ?? []) {
-                    if (sliderVars.has(ident) && !flagged.has(ident)) {
+                    if (seizableVars.has(ident) && !flagged.has(ident)) {
                         flagged.add(ident);
-                        out.push({
-                            path: where,
-                            fatal: true,
-                            message: `locus_trace_sweep_parameter_is_a_slider variable='${ident}' parameterises this trace AND is a type:'slider' primitive in the same state — the first teacher drag collapses the curve to a point. Parameterise the trace on a dedicated clock-choreographed sweep variable instead.`,
-                        });
+                        const viaSlider = sliderVars.has(ident);
+                        const viaDrag = dragBoundVars.has(ident);
+                        if (viaSlider) {
+                            // Existing message id preserved verbatim — tested
+                            // by conceptGates.choreo.test.ts.
+                            out.push({
+                                path: where,
+                                fatal: true,
+                                message: `locus_trace_sweep_parameter_is_a_slider variable='${ident}' parameterises this trace AND is a type:'slider' primitive in the same state — the first teacher drag collapses the curve to a point. Parameterise the trace on a dedicated clock-choreographed sweep variable instead.`,
+                            });
+                        }
+                        if (viaDrag) {
+                            out.push({
+                                path: where,
+                                fatal: true,
+                                message: `locus_trace_sweep_parameter_is_drag_bound variable='${ident}' parameterises this trace AND is a plot_point.drag.bind_variable in the same state — the first teacher drag collapses the curve to a point, exactly as a colliding slider would. Parameterise the trace on a dedicated clock-choreographed sweep variable instead.`,
+                            });
+                        }
                     }
                 }
             }
