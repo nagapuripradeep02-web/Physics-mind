@@ -2284,7 +2284,14 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(asNum(osSticks.at_ms, 0) + asNum(osSticks.fade_in_ms, 900) + 600);
             }
         }
-        for (const key of ['populate_steps', 'gallery_steps']) {
+        // element_steps / charge_steps (ELEMENT IDENTITY + ION CHARGE): the same
+        // stepped shape as gallery_steps, and the same failure if unpinned. Each
+        // step swaps the atom (or its charge), and BOTH the geometry and every
+        // derived readout — the Slater Z_eff, the pm radius, the configuration —
+        // move with it, so a pin before the last step photographs one element
+        // beside another element's numbers. No shipped concept authors either key,
+        // so adding them moves no baseline.
+        for (const key of ['populate_steps', 'gallery_steps', 'element_steps', 'charge_steps']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
             for (const rawStep of steps) {
                 const step = asObj(rawStep);

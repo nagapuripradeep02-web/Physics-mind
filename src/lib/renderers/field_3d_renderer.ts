@@ -59103,14 +59103,28 @@ export const FIELD_3D_RENDERER_CODE = `
     //     state.orbital_shapes = {
     //       mode: 'orbit_dissolve'|'boundary'|'p_build'|'node_probe'|'p_set'|
     //             'd_clover'|'radial_node'|'node_count'|'explore',
-    //       orbital: '1s'|'2s'|'2p_x'|'2p_y'|'2p_z'|'3d_xy',
+    //       orbital: '1s'|'2s'|'2p_x'|'2p_y'|'2p_z'|'3s'|'3p_x'|'3p_y'|'3p_z'|
+    //                '4s'|'3d_xy'|'valence',
+    //                                        // 'valence' = the OUTERMOST occupied
+    //                                        // subshell of element+charge, derived
+    //                                        // (Na 3s, Na+ 2p) — see osIonOf below
+    //       element: 'H'|'He'|...|'Ar'|'K'|'Ca',   // periods 1-4, s/p block ONLY.
+    //                                        // Z, the ground-state configuration
+    //                                        // and the Slater screening S are all
+    //                                        // DERIVED from it (osIonOf)
+    //       charge: -3..+3,                  // ion formation. The contraction /
+    //                                        // expansion is DERIVED from the
+    //                                        // RECOMPUTED Slater Z_eff, never
+    //                                        // authored and never a lookup
     //       enclosure: 0.9|0.7|0.5,          // which contour the surface draws
     //                                        // (default 0.9; the HUD occupancy
     //                                        // line MEASURES what it encloses)
     //       z_eff,                           // effective nuclear charge (default
-    //                                        // 1 = hydrogen). The WHOLE atomic
-    //                                        // picture contracts to 1/Z of the
-    //                                        // Z=1 one — see osZEffAt below
+    //                                        // 1 = hydrogen), OR the string
+    //                                        // 'slater' = Z - S for the outermost
+    //                                        // electron of element+charge. The
+    //                                        // WHOLE atomic picture contracts to
+    //                                        // 1/Z of the Z=1 one — see osZEffAt
     //       z_ramp: {from,to,at_ms,duration_ms},   // ...swept during the state
     //       surface_opacity,                 // override the per-shell ink
     //       spin_start_ms, spin_rate, spin_axis,      // rad/s about spin_axis
@@ -59123,11 +59137,24 @@ export const FIELD_3D_RENDERER_CODE = `
     //       bloom_at_ms, bloom_duration_ms, ghost_at_ms, ghost_orbitals, // S6
     //       grow_at_ms, cutaway_at_ms, cutaway_duration_ms,   // S7
     //       gallery_steps: [{at_ms, orbital}],                // S8
+    //       element_steps: [{at_ms, element}],   // WITHIN-STATE SCHEDULING. The
+    //       charge_steps:  [{at_ms, charge}],    // shape of gallery_steps, and the
+    //                                        // reason it exists: 'element' and
+    //                                        // 'charge' are static scalars with no
+    //                                        // motion source, and 'mode' cannot
+    //                                        // supply one (it is a CAMERA-table
+    //                                        // key and deliberately nothing else),
+    //                                        // so a period sweep / group step /
+    //                                        // ion-charge sweep authored without
+    //                                        // these renders as a STILL PICTURE.
+    //                                        // Closed-form on the state clock, so
+    //                                        // a SET_TIME_FREEZE pin reproduces
+    //                                        // byte-identically (Rule 26/36).
     //       show_axes, show_surface, show_dots, show_node_plane,
     //       show_node_shell, show_probe, show_orbit, show_labels,
     //       show_hud, show_formula,
     //       hud_lines: ['occupancy','psi2','slice_dots','energy','nodes',
-    //                   'radius','label'],
+    //                   'radius','label','element','config'],
     //       formula,                                  // ONE Cambria surface
     //       camera: {az, el, dist},                   // SOLVED (skeleton E-9)
     //       controls: ['orbital','dots','spin','probe','schar','twist'],
@@ -59204,6 +59231,7 @@ export const FIELD_3D_RENDERER_CODE = `
     var OS_MAX_LOBES = 10;          // S6 = 4 clover lobes + 2 ghost p pairs
     var OS_MAX_SETS = 3;              // S5 = three 2p clouds at once
     var OS_MAX_PLANES = 2;            // 3d_xy has two angular node planes
+    var OS_MAX_NODE_SHELLS = 3;       // 4s has three radial nodes (n - l - 1)
     var OS_FLASH_POOL = 5;            // S1 measurement flashes in flight
 
     // Per-axis tints. The axes triad matches the three p tints (skeleton E-7)
@@ -59239,10 +59267,43 @@ export const FIELD_3D_RENDERER_CODE = `
         "2p_x": { n: 2, l: 1, kind: "lobes",  main: "2p", sub: "x",  color: "#FF7043", levels: { "50": 9.9670e-4, "70": 4.3444e-4, "90": 9.0768e-5 }, rhoMax: 26, seed: 0x51ED3, axis: [1, 0, 0] },
         "2p_y": { n: 2, l: 1, kind: "lobes",  main: "2p", sub: "y",  color: "#66BB6A", levels: { "50": 9.9670e-4, "70": 4.3444e-4, "90": 9.0768e-5 }, rhoMax: 26, seed: 0x51ED4, axis: [0, 1, 0] },
         "2p_z": { n: 2, l: 1, kind: "lobes",  main: "2p", sub: "z",  color: "#42A5F5", levels: { "50": 9.9670e-4, "70": 4.3444e-4, "90": 9.0768e-5 }, rhoMax: 26, seed: 0x51ED5, axis: [0, 0, 1] },
-        "3d_xy": { n: 3, l: 2, kind: "lobes", main: "3d", sub: "xy", color: "#FFCA28", levels: { "50": 1.3596e-4, "70": 6.4064e-5, "90": 1.4274e-5 }, rhoMax: 40, seed: 0x51ED6, axis: [0.70710678, 0.70710678, 0] }
+        "3d_xy": { n: 3, l: 2, kind: "lobes", main: "3d", sub: "xy", color: "#FFCA28", levels: { "50": 1.3596e-4, "70": 6.4064e-5, "90": 1.4274e-5 }, rhoMax: 40, seed: 0x51ED6, axis: [0.70710678, 0.70710678, 0] },
+        // ── PERIOD-3 / PERIOD-4 s and p (row L). Every constant below is SOLVED,
+        //    not copied, by the same offline bisection on the same functions:
+        //      levels  = the iso-density c whose enclosed probability is 0.50 /
+        //                0.70 / 0.90, integrated against this orbital's OWN
+        //                radial CDF and angular factor (re-verified live by the
+        //                occupancy HUD, which counts the actual dot sample);
+        //      rhoMax  = the smallest integer whose engine-grid radial CDF total
+        //                reaches the quality of the worst shipped entry
+        //                (3d at 40 -> 0.9999983). It is PER ENTRY because it sets
+        //                the radial table extent, the cutaway slab's hStart and
+        //                the osRhoOuter clamp: a value copied from a smaller
+        //                orbital pins the outer contour at the grid edge and
+        //                renders a plausibly WRONG shape that passes every gate.
+        //                3s 44 (r90 = 1029 pm), 3p 43 (tip = 1092 pm),
+        //                4s 68 (r90 = 1779 pm).
+        //    The three p tints are the AXIS tints again (skeleton E-7), so "the
+        //    blue dumbbell lies on the blue axis" still needs no sentence; the s
+        //    family darkens with n (1s -> 2s -> 3s -> 4s) so a gallery reads as
+        //    one ladder. Radial NODES are not authored here at all — osBuildTables
+        //    solves them from R_nl and asserts the count against n-l-1.
+        "3s":   { n: 3, l: 0, kind: "sphere", main: "3s", sub: "",   color: "#00ACC1", levels: { "50": 4.3024e-5, "70": 2.5088e-5, "90": 7.1326e-6 }, rhoMax: 44, seed: 0x51EDC },
+        "3p_x": { n: 3, l: 1, kind: "lobes",  main: "3p", sub: "x",  color: "#FF7043", levels: { "50": 7.0075e-5, "70": 3.6127e-5, "90": 9.3420e-6 }, rhoMax: 43, seed: 0x51EDD, axis: [1, 0, 0] },
+        "3p_y": { n: 3, l: 1, kind: "lobes",  main: "3p", sub: "y",  color: "#66BB6A", levels: { "50": 7.0075e-5, "70": 3.6127e-5, "90": 9.3420e-6 }, rhoMax: 43, seed: 0x51EDE, axis: [0, 1, 0] },
+        "3p_z": { n: 3, l: 1, kind: "lobes",  main: "3p", sub: "z",  color: "#42A5F5", levels: { "50": 7.0075e-5, "70": 3.6127e-5, "90": 9.3420e-6 }, rhoMax: 43, seed: 0x51EDF, axis: [0, 0, 1] },
+        "4s":   { n: 4, l: 0, kind: "sphere", main: "4s", sub: "",   color: "#00838F", levels: { "50": 8.2529e-6, "70": 5.2288e-6, "90": 1.6269e-6 }, rhoMax: 68, seed: 0x51EE0 }
     };
     // Rule 38b: the explore picker offers CORE-ring orbitals only. 2s and 3d_xy
     // live inside the extended states that teach them.
+    //   DELIBERATELY UNCHANGED by row L. 3s / 3p / 4s exist to carry a PERIODICITY
+    // concept's element identity (they are what a period-3 or period-4 atom's
+    // outermost electron actually occupies), and that concept reaches them through
+    // element + orbital: 'valence', not by hand-picking an orbital name. Adding
+    // five more names to atomic_orbitals_s_p_d's sandbox would put extended-ring
+    // objects in a CORE-ring picker for no teaching gain. A concept that wants them
+    // in its own sandbox authors config.explore_orbitals, which already overrides
+    // this list.
     var OS_EXPLORE_ORBITALS = ["1s", "2p_x", "2p_y", "2p_z"];
 
     // ── HYBRID ORBITALS (#13 hybridisation) ─────────────────────────────────
@@ -59385,11 +59446,26 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     // Exact hydrogenic radial functions R_nl(rho), Z = 1, in a0^(-3/2).
     // Normalised: integral |R|^2 rho^2 drho = 1 (verified 1.000000 for all four).
+    //   EVERY (n, l) THIS FUNCTION SERVES IS DISPATCHED EXPLICITLY, AND AN
+    //   UNMATCHED PAIR THROWS. It used to fall through to the 3d form unguarded,
+    //   which is a SILENT-FAILURE trap of the worst kind: an entry added as
+    //   "3s": {n:3,l:0} evaluated 3d instead, built tables, solved a contour,
+    //   rendered a plausible shape, printed a plausible pm radius and passed
+    //   every gate — a wrong orbital that looks right. A throw turns that into a
+    //   blank scene on the first frame, which is a defect anyone can see.
+    //   (osBuildTables adds the second half of the guard: it counts the radial
+    //   nodes of whatever branch answered and asserts them against n-l-1, so a
+    //   branch that matches by accident is caught too.)
     function osR(orb, p) {
-        if (orb.n === 1) return 2 * Math.exp(-p);
-        if (orb.n === 2 && orb.l === 0) return (1 / (2 * Math.SQRT2)) * (2 - p) * Math.exp(-p / 2);
-        if (orb.n === 2 && orb.l === 1) return (1 / (2 * Math.sqrt(6))) * p * Math.exp(-p / 2);
-        return (4 / (81 * Math.sqrt(30))) * p * p * Math.exp(-p / 3);      // 3d
+        var n = orb.n, l = orb.l;
+        if (n === 1 && l === 0) return 2 * Math.exp(-p);
+        if (n === 2 && l === 0) return (1 / (2 * Math.SQRT2)) * (2 - p) * Math.exp(-p / 2);
+        if (n === 2 && l === 1) return (1 / (2 * Math.sqrt(6))) * p * Math.exp(-p / 2);
+        if (n === 3 && l === 0) return (2 / (81 * Math.sqrt(3))) * (27 - 18 * p + 2 * p * p) * Math.exp(-p / 3);
+        if (n === 3 && l === 1) return (4 / (81 * Math.sqrt(6))) * (6 * p - p * p) * Math.exp(-p / 3);
+        if (n === 3 && l === 2) return (4 / (81 * Math.sqrt(30))) * p * p * Math.exp(-p / 3);
+        if (n === 4 && l === 0) return (1 / 768) * (192 - 144 * p + 24 * p * p - p * p * p) * Math.exp(-p / 4);
+        throw new Error("osR: no radial form for n=" + n + " l=" + l);
     }
     // Exact angular factors |Y|^2 (normalised: integral over the sphere = 1),
     // written directly in WORLD coordinates for a unit direction d.
@@ -59438,6 +59514,52 @@ export const FIELD_3D_RENDERER_CODE = `
         orb.E = -13.6 / (orb.n * orb.n);
         orb.nodesRadial = orb.n - orb.l - 1;
         orb.nodesAngular = orb.l;
+        // ── the RADIAL NODES, solved from R_nl itself and asserted ──────────
+        //   The node representation is a LIST, not a scalar. It was a scalar
+        //   because 2s was the only orbital that had one; 3s has TWO and 4s has
+        //   THREE, so a scalar silently draws one of them and leaves the rest of
+        //   the state's own claim ("three node shells") unrendered. The list is
+        //   sized by the physics (n - l - 1) and FILLED by finding the interior
+        //   sign changes of R on this orbital's own grid, then bisecting each to
+        //   double precision — no node radius is typed in anywhere.
+        //   The count assertion is the second half of the osR guard above: an
+        //   entry whose radial branch does not match its own n and l lands on the
+        //   wrong node count and throws here, on the first build, instead of
+        //   rendering a wrong orbital that looks right.
+        var rv = new Float64Array(N + 1);
+        for (i = 0; i <= N; i++) rv[i] = osR(orb, i * h);
+        var roots = [];
+        for (i = 2; i <= N; i++) {
+            var va = rv[i - 1], vb = rv[i];
+            if (!(va * vb < 0 || (vb === 0 && i < N))) continue;
+            var lo = (i - 1) * h, hi2 = i * h, flo = va, it, mid, fm;
+            for (it = 0; it < 80; it++) {
+                mid = 0.5 * (lo + hi2); fm = osR(orb, mid);
+                if (fm === 0) { lo = mid; hi2 = mid; break; }
+                if (flo * fm < 0) hi2 = mid; else { lo = mid; flo = fm; }
+            }
+            roots.push(0.5 * (lo + hi2));
+        }
+        if (roots.length !== orb.nodesRadial) {
+            throw new Error("osBuildTables: " + orb.main + orb.sub + " (n=" + orb.n + ",l=" + orb.l
+                + ") has " + roots.length + " radial nodes on its own grid but n-l-1 = " + orb.nodesRadial);
+        }
+        orb.shellRhos = roots;
+        orb.shellPms = [];
+        for (i = 0; i < roots.length; i++) orb.shellPms.push(roots[i] * OS_A0);
+        // A legacy entry may still carry the EXACT analytic node radius it shipped
+        // with (2s: rho = 2). The derivation above is checked against it and the
+        // shipped value is then used verbatim, so the node ring that is already
+        // baseline-locked keeps its exact pixel and the derivation still has to
+        // agree with it to survive the build.
+        if (orb.shellRho != null) {
+            if (roots.length < 1 || Math.abs(roots[0] - orb.shellRho) > 1e-6) {
+                throw new Error("osBuildTables: " + orb.main + " authored shellRho " + orb.shellRho
+                    + " disagrees with the solved node radius " + (roots.length ? roots[0] : "none"));
+            }
+            orb.shellPms[0] = orb.shellRho * OS_A0;
+        }
+        orb.shellPm = orb.shellPms.length ? orb.shellPms[0] : null;
     }
     // The outermost rho where |R|^2 == target, or 0 if the ray never reaches
     // the contour (that is what pinches a p lobe shut at its nodal plane).
@@ -59467,6 +59589,173 @@ export const FIELD_3D_RENDERER_CODE = `
     // expressed in terms of it, so a state that asks for a slimmer contour gets
     // a consistently smaller picture rather than a mismatched one.
     function osOuterPm(orb, key) { return orb.rByLev[key]; }
+    // ── ELEMENT IDENTITY, and the screening constant DERIVED from it ─────────
+    //   A state names an element ('Na') and, optionally, an ion charge (+1). Z,
+    //   the ground-state configuration, the Slater screening constant S, the
+    //   outermost electron's subshell and therefore Z_eff = Z - S all follow from
+    //   those two numbers. NOTHING about an element or an ion is authored: there
+    //   is no radius table, no "a cation is 40% smaller" lookup and no per-element
+    //   constant anywhere below. That is the whole point — the contraction across
+    //   a period and the collapse on ionisation have to FALL OUT of the screening
+    //   arithmetic, or the sim is an animation of a claim rather than a picture of
+    //   the physics.
+    //   Scope is periods 1-4, s and p block (H..Ca, Z = 1..20): every element the
+    //   periodicity states teach, and the exact set whose outermost electron this
+    //   renderer has a real orbital for.
+    var OS_ELEMENTS = ["H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
+                       "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca"];
+    //   Aufbau filling order, each subshell tagged with its SLATER GROUP. The
+    //   groups are (1s) (2s,2p) (3s,3p) (3d) (4s,4p) — s and p of the same n share
+    //   a group, d and f each get their own, and that grouping is what makes the
+    //   rules below reproduce the textbook numbers.
+    var OS_SUBSHELLS = [
+        { n: 1, l: 0, cap: 2,  grp: 0 },
+        { n: 2, l: 0, cap: 2,  grp: 1 }, { n: 2, l: 1, cap: 6,  grp: 1 },
+        { n: 3, l: 0, cap: 2,  grp: 2 }, { n: 3, l: 1, cap: 6,  grp: 2 },
+        { n: 4, l: 0, cap: 2,  grp: 4 }, { n: 3, l: 2, cap: 10, grp: 3 },
+        { n: 4, l: 1, cap: 6,  grp: 4 }
+    ];
+    // The orbital this renderer draws for an outermost electron in each subshell.
+    // A p valence takes the z member by convention (the axes triad already tints
+    // z blue, so "the outermost electron sits on the blue axis" needs no sentence);
+    // a state that wants another axis names the orbital explicitly instead of
+    // asking for 'valence'.
+    var OS_VALENCE_ORBITAL = { "1,0": "1s", "2,0": "2s", "2,1": "2p_z", "3,0": "3s",
+                               "3,1": "3p_z", "4,0": "4s", "3,2": "3d_xy", "4,1": null };
+    function osFillConfig(nE) {
+        var occ = [], left = nE, i;
+        for (i = 0; i < OS_SUBSHELLS.length; i++) {
+            var take = Math.min(Math.max(0, left), OS_SUBSHELLS[i].cap);
+            occ.push(take); left -= take;
+        }
+        return occ;
+    }
+    // The outermost electron = the occupied subshell of highest n, and within that
+    // n the highest l. This is the one that decides both the drawn orbital and the
+    // screening sum, and it is why removing the LAST electron of a shell must drop
+    // the picture a shell inwards: Na is a 3s atom, Na+ is [Ne] and its outermost
+    // electron is a 2p one.
+    function osOutermostIndex(occ) {
+        var best = -1, bestN = -1, bestL = -1, i;
+        for (i = 0; i < OS_SUBSHELLS.length; i++) {
+            if (occ[i] <= 0) continue;
+            var s = OS_SUBSHELLS[i];
+            if (s.n > bestN || (s.n === bestN && s.l > bestL)) { best = i; bestN = s.n; bestL = s.l; }
+        }
+        return best;
+    }
+    //   SLATER'S RULES, implemented as rules rather than as a table of answers.
+    //   For an electron in ns or np:
+    //     - each OTHER electron in the same group screens 0.35  (0.30 in 1s)
+    //     - each electron in the shell n-1                 0.85
+    //     - each electron in shell n-2 or lower            1.00
+    //   For an electron in nd or nf:
+    //     - each other electron in the same group          0.35
+    //     - every electron in any group to its LEFT        1.00
+    //   Verification that the grouping is right: carbon's 2p electron gives
+    //   S = 3(0.35) + 2(0.85) = 2.75 and Z_eff = 3.25, which is exactly the value
+    //   OS_MO_ZEFF_C hardcodes for the same electron further down this file. That
+    //   constant was the ONLY Slater arithmetic this renderer had; it is now one
+    //   output of a general rule, and it still has to agree.
+    function osSlaterS(occ, si) {
+        var me = OS_SUBSHELLS[si], S = 0, i;
+        var dOrF = (me.l >= 2);
+        for (i = 0; i < OS_SUBSHELLS.length; i++) {
+            var c = occ[i]; if (c <= 0) continue;
+            var s = OS_SUBSHELLS[i];
+            if (s.grp === me.grp) {
+                S += ((i === si) ? c - 1 : c) * ((me.n === 1 && me.l === 0) ? 0.30 : 0.35);
+            } else if (dOrF) {
+                if (s.grp < me.grp) S += c * 1.00;
+            } else if (s.n === me.n - 1) {
+                S += c * 0.85;
+            } else if (s.n <= me.n - 2) {
+                S += c * 1.00;
+            }
+        }
+        return S;
+    }
+    var OS_SUP = { "0": "\\u2070", "1": "\\u00B9", "2": "\\u00B2", "3": "\\u00B3", "4": "\\u2074",
+                   "5": "\\u2075", "6": "\\u2076", "7": "\\u2077", "8": "\\u2078", "9": "\\u2079" };
+    function osSup(v) {
+        var s = String(v), out = "", i;
+        for (i = 0; i < s.length; i++) out += (OS_SUP[s.charAt(i)] || s.charAt(i));
+        return out;
+    }
+    // THE TABLE IS BUILT ONCE, HERE, AT LOAD. It is static data (20 elements x the
+    // six authorable charges), so this is the right place for it — but nothing
+    // RESOLVES an element here: applyOrbitalShapesState and the frame pass look a
+    // row up per frame, which is what lets element_steps / charge_steps move the
+    // identity during a state instead of pinning it at page load (the same
+    // discipline the Z scale itself follows).
+    var OS_IONS = {};
+    (function () {
+        var zi, q;
+        // Charge range -3..+3. The design contract said -2..+3; -3 is added
+        // deliberately, because the standard isoelectronic series a periodicity
+        // concept teaches OPENS on the nitride ion N(3-), and a closed enum that
+        // cannot name a substance the design teaches is a defect, not a guard
+        // (closed_enum_cannot_name_a_substance_the_design_teaches). +3 already
+        // covers Al(3+) at the other end, so the range is now symmetric.
+        for (zi = 1; zi <= OS_ELEMENTS.length; zi++) {
+            for (q = -3; q <= 3; q++) {
+                // A charge that would strip the last electron leaves no orbital to
+                // draw at all, so the table simply has no row: the caller falls
+                // back to hydrogen rather than dividing by an empty configuration.
+                var nE = zi - q;
+                if (nE < 1) continue;
+                var occ = osFillConfig(nE);
+                var si = osOutermostIndex(occ);
+                if (si < 0) continue;
+                var sub = OS_SUBSHELLS[si];
+                var S = osSlaterS(occ, si);
+                var cfg = "", ci;
+                for (ci = 0; ci < OS_SUBSHELLS.length; ci++) {
+                    if (occ[ci] <= 0) continue;
+                    cfg += (cfg ? " " : "") + OS_SUBSHELLS[ci].n + "spdf".charAt(OS_SUBSHELLS[ci].l) + osSup(occ[ci]);
+                }
+                var chLbl = (q === 0) ? "" : ((Math.abs(q) === 1 ? "" : osSup(Math.abs(q)))
+                    + (q > 0 ? "\\u207A" : "\\u207B"));
+                OS_IONS[OS_ELEMENTS[zi - 1] + "|" + q] = {
+                    sym: OS_ELEMENTS[zi - 1], Z: zi, charge: q, nE: nE, config: cfg,
+                    label: OS_ELEMENTS[zi - 1] + chLbl,
+                    valenceN: sub.n, valenceL: sub.l,
+                    valenceKey: OS_VALENCE_ORBITAL[sub.n + "," + sub.l] || null,
+                    S: S, zEff: zi - S
+                };
+            }
+        }
+    })();
+    // element_steps / charge_steps: within-state parameter scheduling, shaped
+    // exactly like gallery_steps and closed-form on the state clock. They exist
+    // because 'element' and 'charge' are static scalars with no motion source and
+    // 'mode' cannot supply one (it is a CAMERA-table key and deliberately nothing
+    // else, stated twice in this file) — so a state whose declared archetype IS a
+    // parameter changing (a period sweep, a group step, an ion-charge sweep) has
+    // nowhere else to get its motion, and renders as a still picture without them.
+    function osElementAt(os, ms) {
+        var cur = os.element || null, steps = os.element_steps || [], i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            if (ms >= cueTriggerMs("element_" + i, (st.at_ms != null) ? st.at_ms : 0) && st.element) cur = st.element;
+        }
+        return cur;
+    }
+    function osChargeAt(os, ms) {
+        var cur = (typeof os.charge === "number") ? os.charge : 0, steps = os.charge_steps || [], i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            if (ms >= cueTriggerMs("charge_" + i, (st.at_ms != null) ? st.at_ms : 0) && typeof st.charge === "number") cur = st.charge;
+        }
+        return Math.round(osClamp(cur, -3, 3));
+    }
+    // The resolved atom/ion for this state at this instant, or null when the state
+    // names no element (every shipped concept).
+    function osIonAt(os, ms) {
+        var sym = osElementAt(os, ms);
+        if (!sym) return null;
+        return OS_IONS[sym + "|" + osChargeAt(os, ms)] || null;
+    }
     // ── Z_eff: the effective nuclear charge the electron actually feels ──────
     //   Hydrogenic scaling is an EXACT similarity: psi_Z(r) = Z^(3/2) psi_1(Z r),
     //   so the Z picture IS the Z=1 picture at 1/Z — same shape, same contours,
@@ -59491,6 +59780,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //   nothing else), which is why this is its own explicit timing field.
     function osZEffAt(os, ms) {
         var z = (typeof os.z_eff === "number") ? os.z_eff : 1;
+        // z_eff: 'slater' DERIVES the charge from the element and its ion charge
+        // at this instant — Z minus the screening its own configuration produces.
+        // This is the whole of rows D and I: the contraction across a period and
+        // the collapse on ionisation are consequences of the electron count, not
+        // authored numbers, so element_steps / charge_steps move the picture by
+        // moving the physics. A 'slater' with no element resolves to hydrogen
+        // rather than to an invented charge.
+        if (os.z_eff === "slater") {
+            var ion = osIonAt(os, ms);
+            z = ion ? ion.zEff : 1;
+        }
         var zr = os.z_ramp;
         if (zr) {
             z = osRamp(ms, cueTriggerMs("z_ramp", (zr.at_ms != null) ? zr.at_ms : 0),
@@ -59511,6 +59811,21 @@ export const FIELD_3D_RENDERER_CODE = `
     function osZUnit(orb, z) {
         if (!orb || !(z > 0)) return 1;
         return (orb.kind === "sphere" || orb.kind === "lobes") ? 1 / z : 1;
+    }
+    // The orbital a state actually draws. 'valence' (or an element state that
+    // names no orbital at all) resolves to the OUTERMOST occupied subshell of the
+    // element+charge at this instant, which is what makes ionisation a change of
+    // SHELL and not just a change of scale: Na draws 3s, Na+ draws 2p, and the
+    // whole isoelectronic series draws the same 2p at six different charges. A
+    // concrete orbital name is always honoured as authored.
+    function osBaseOrbitalId(os, ms) {
+        var id = os.orbital || null;
+        if (id === "valence" || (!id && os.element)) {
+            var ion = osIonAt(os, ms);
+            if (ion && ion.valenceKey && OS_ORBITALS[ion.valenceKey]) return ion.valenceKey;
+            return null;
+        }
+        return id;
     }
     // Inverse radial CDF (rho at cumulative fraction u).
     function osRhoAt(orb, u) {
@@ -61087,15 +61402,32 @@ export const FIELD_3D_RENDERER_CODE = `
                 var lk = OS_ENCLOSURES[li];
                 ob.rByLev[lk] = osROutPm(ob, (ob.l === 0) ? [0, 0, 1] : (ob.axis || [0, 0, 1]), ob.levels[lk]);
             }
-            if (ob.shellRho != null) ob.shellPm = ob.shellRho * OS_A0;
+            // (shellPm / shellPms are set by osBuildTables, which SOLVES the node
+            //  radii from R_nl rather than reading an authored scalar.)
         }
-        // shared lobe geometries, one per lobed orbital family (canonical +y).
-        var lobeGeo = { p: {}, d: {}, h: {} };
-        for (var gi = 0; gi < OS_ENCLOSURES.length; gi++) {
-            var gk = OS_ENCLOSURES[gi];
-            lobeGeo.p[gk] = osLobeGeometry(OS_ORBITALS["2p_z"], OS_ORBITALS["2p_z"].levels[gk]);
-            lobeGeo.d[gk] = osLobeGeometry(OS_ORBITALS["3d_xy"], OS_ORBITALS["3d_xy"].levels[gk]);
+        // Shared lobe geometries, one per lobed orbital FAMILY (canonical +y).
+        //   Keyed by the family name (2p / 3p / 3d), not by l. Keying on l was
+        // correct while 2p was the only l=1 family and became a silent defect the
+        // moment 3p existed: a 3p lobe would have been drawn with the 2p mesh —
+        // the same dumbbell at a quarter of the size — while its HUD printed the
+        // real 3p tip radius beside it. The representative is the family's own
+        // _z member where there is one (so 2p resolves to exactly the 2p_z mesh
+        // it has always used, byte for byte).
+        var lobeGeo = { p: {}, d: {}, h: {}, fam: {} };
+        var famRep = {};
+        for (k in OS_ORBITALS) {
+            var fo = OS_ORBITALS[k];
+            if (fo.kind !== "lobes") continue;
+            if (!famRep[fo.main] || fo.sub === "z") famRep[fo.main] = fo;
         }
+        for (var fk in famRep) {
+            lobeGeo.fam[fk] = {};
+            for (var fi = 0; fi < OS_ENCLOSURES.length; fi++) {
+                var fkey = OS_ENCLOSURES[fi];
+                lobeGeo.fam[fk][fkey] = osLobeGeometry(famRep[fk], famRep[fk].levels[fkey]);
+            }
+        }
+        lobeGeo.p = lobeGeo.fam["2p"]; lobeGeo.d = lobeGeo.fam["3d"];
         lobeGeo.hf = {};
         for (var hj in OS_HYBRIDS) {
             lobeGeo.h[hj] = {}; lobeGeo.hf[hj] = {};
@@ -61295,6 +61627,10 @@ export const FIELD_3D_RENDERER_CODE = `
         shell.visible = false;
         addToScene(shell);
         var shellLab = pmCreateAutoLabel("node shell", "#FFD54F", 0.40);
+        // record the drawn string so the frame pass can tell whether it needs to
+        // repaint at all: a 3s/4s state wants the plural, a 2s state must NOT be
+        // repainted (its label is already baseline-locked, ink for ink).
+        shellLab._pmText = "node shell";
         shellLab.userData = { elementType: "os_node_shell", id: "os_node_shell_label" };
         shellLab.visible = false;
         addToScene(shellLab);
@@ -61479,6 +61815,27 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osOrbitalDef = orbDef; window.PM_osOrbital = orbDef;
         window.PM_osProbe = 0;
         window.PM_osSCharDef = scharDef; window.PM_osSChar = scharDef;
+
+        // ── the EXTRA radial-node shells (row L). 2s has one node shell, which is
+        //    why the pool was exactly one ring; 3s has two and 4s has THREE, and a
+        //    single-ring pool would draw one of them while the state's own claim
+        //    ("three node shells") counted three.
+        //    Appended at the very END of the build ON PURPOSE: every other pooled
+        //    object keeps its existing position in sceneObjects, so no shipped
+        //    concept's draw order moves by a single entry. Slot 0 keeps the id
+        //    "os_node_shell" for exactly the same reason (the headless Z probe and
+        //    the transient-hide list both address it by name).
+        var extraShellGeo = new THREE.TorusGeometry(1, 0.008, 8, 120);
+        for (var nsI = 1; nsI < OS_MAX_NODE_SHELLS; nsI++) {
+            var nsM = new THREE.Mesh(extraShellGeo, new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFD54F"), transparent: true, opacity: 0.9,
+                depthTest: false, depthWrite: false
+            }));
+            nsM.renderOrder = 996;
+            nsM.userData = { elementType: "os_node_shell", id: "os_node_shell_" + nsI, slot: nsI };
+            nsM.visible = false;
+            addToScene(nsM);
+        }
     }
 
     // Authoritative per-state visibility + seeding. Runs AFTER the generic
@@ -61489,7 +61846,7 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osOrbitalDragged = false; window.PM_osDotsDragged = false;
         window.PM_osSpinDragged = false; window.PM_osProbeDragged = false;
         window.PM_osSCharDragged = false; window.PM_osTwistDragged = false;
-        window.PM_osOrbital = os.orbital || window.PM_osOrbitalDef || "1s";
+        window.PM_osOrbital = osBaseOrbitalId(os, 0) || window.PM_osOrbitalDef || "1s";
         // #17: the twist dial opens at the state\\u0027s own preset (its static
         // angle, or the START of its scripted ramp — never the end, or the frame
         // before the ramp fires would already show the payoff).
@@ -61600,7 +61957,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // text. Hide every transient here so the frame updater is the only
         // thing that can reveal them (the mg transient-hide discipline).
         var trans = ["os_lobe_", "os_dots_", "os_flash_", "os_orb_label_", "os_node_plane_", "os_node_rim_",
-                     "os_mo_surface_", "os_mo_lobe_", "os_mo_overlap_", "os_bond_stick_"];
+                     "os_mo_surface_", "os_mo_lobe_", "os_mo_overlap_", "os_bond_stick_", "os_node_shell_"];
         for (var ti = 0; ti < sceneObjects.length; ti++) {
             var so = sceneObjects[ti], sid = so.userData && so.userData.id;
             if (!sid) continue;
@@ -61636,7 +61993,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var moTwistIdx = osMoTwistIndex(moSt, moIds, moList);
 
         // ── which orbital(s) are on screen right now
-        var baseId = os.orbital || "1s";
+        var baseId = osBaseOrbitalId(os, ms) || "1s";
         if (ctrls.indexOf("orbital") >= 0 && window.PM_osOrbitalDragged && OS_ORBITALS[window.PM_osOrbital]) {
             baseId = window.PM_osOrbital;
         }
@@ -61706,6 +62063,14 @@ export const FIELD_3D_RENDERER_CODE = `
         var zEff = osZEffAt(os, ms);
         var zuPrim = osZUnit(primary, zEff);
         window.PM_osZEff = zEff;
+        // the atom/ion this state is showing RIGHT NOW (null on every concept that
+        // names no element). Resolved per frame, never at page load, so
+        // element_steps / charge_steps actually move it.
+        var osIon = osIonAt(os, ms);
+        window.PM_osElement = osIon ? osIon.sym : null;
+        window.PM_osCharge = osIon ? osIon.charge : null;
+        window.PM_osConfig = osIon ? osIon.config : null;
+        window.PM_osSlaterS = osIon ? osIon.S : null;
         var primR = osOuterPm(primary, encKey) * zuPrim;
         window.PM_osPrimPm = primR;
         window.PM_osActive = active.slice();
@@ -61982,7 +62347,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var hPool = os.front_only ? lobeGeo.hf : lobeGeo.h;
                 var geo = (orb.kind === "hybrid")
                     ? (hybMorphing ? lobeGeo.morph : (hPool[orbId] && hPool[orbId][encKey]))
-                    : (orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey];
+                    // by FAMILY (2p / 3p / 3d), never by l: 3p is l=1 and is a
+                    // completely different size and profile from 2p.
+                    : ((lobeGeo.fam && lobeGeo.fam[orb.main]) ? lobeGeo.fam[orb.main][encKey]
+                        : ((orb.l === 2) ? lobeGeo.d[encKey] : lobeGeo.p[encKey]));
                 if (geo && lb.geometry !== geo) lb.geometry = geo;
                 // bloom_from: members BELOW this index are already on stage and
                 // hold full pose from t=0; only members at or above it grow in.
@@ -62538,18 +62906,32 @@ export const FIELD_3D_RENDERER_CODE = `
         // carry Z.
         var shOn = !!os.show_node_shell && primary.shellPm != null
             && cutF > 0.02 && slabHalf <= 0.45 * (primary.shellPm / OS_PM_PER_UNIT);
-        if (shell) {
-            shell.visible = shOn;
-            if (shOn) {
-                osAimZ(shell, cutNw);
-                shell.scale.setScalar(primary.shellPm * zuPrim / OS_PM_PER_UNIT);
+        // ONE RING PER RADIAL NODE. The gate above still tests the INNERMOST node
+        // (primary.shellPm), because that is the tightest band the slice has to be
+        // thin enough to expose — if the innermost gap reads empty, every wider one
+        // does. 2s has exactly one node, so its picture is unchanged.
+        var shellPms = primary.shellPms || (primary.shellPm != null ? [primary.shellPm] : []);
+        var shOuter = shellPms.length ? shellPms[shellPms.length - 1] : 0;
+        for (var nsJ = 0; nsJ < OS_MAX_NODE_SHELLS; nsJ++) {
+            var nsMesh = (nsJ === 0) ? shell : osFindById("os_node_shell_" + nsJ);
+            if (!nsMesh) continue;
+            var nsVis = shOn && nsJ < shellPms.length;
+            nsMesh.visible = nsVis;
+            if (nsVis) {
+                osAimZ(nsMesh, cutNw);
+                nsMesh.scale.setScalar(shellPms[nsJ] * zuPrim / OS_PM_PER_UNIT);
             }
         }
         if (shellLab) {
             shellLab.visible = shOn && (os.show_labels !== false);
             if (shellLab.visible) {
                 var sb = osBasis(cutNw);
-                var sr = primary.shellPm * zuPrim / OS_PM_PER_UNIT;
+                // ONE label for the set, parked outside the OUTERMOST ring (for 2s
+                // that is the only ring, so nothing moves). Naming every ring would
+                // stack three identical words across the very gaps they name.
+                var nsWant = (shellPms.length > 1) ? "node shells" : "node shell";
+                if (shellLab._pmText !== nsWant) updateLabelSpriteText(shellLab, nsWant);
+                var sr = shOuter * zuPrim / OS_PM_PER_UNIT;
                 // parked OUTSIDE the ring it names: centred on the rim it hid
                 // the very gap the state exists to show (first frame read).
                 osPlaceLabelClear(shellLab, [sb[0][0] * sr, sb[0][1] * sr, sb[0][2] * sr], 0.52, osAvoid);
@@ -62827,8 +63209,20 @@ export const FIELD_3D_RENDERER_CODE = `
                     // where it came from, and stamping "(Slater)" on an authored
                     // number would be the engine asserting a provenance only the
                     // author can vouch for.
+                    //   ...and when the state asks for z_eff: 'slater', the engine
+                    // DID compute the screening itself, from this element's own
+                    // configuration — so it vouches for the provenance again, on
+                    // exactly the same terms as the MO constant beside it.
                     lines.push("Z_eff = " + ((moPrim != null) ? (moPrim.zEff.toFixed(2) + " (Slater)")
-                        : zEff.toFixed(2)));
+                        : (zEff.toFixed(2) + ((os.z_eff === "slater" && osIon) ? " (Slater)" : ""))));
+                } else if (want[i] === "element") {
+                    // element identity: the symbol with its ion charge, and Z. Not
+                    // the configuration — that is its own line, so a state can show
+                    // WHICH atom without also showing what it is made of.
+                    lines.push((osIon == null) ? "\\u2014"
+                        : (osIon.label + " \\u00B7 Z = " + osIon.Z + " \\u00B7 " + osIon.nE + " e"));
+                } else if (want[i] === "config") {
+                    lines.push((osIon == null) ? "\\u2014" : osIon.config);
                 } else if (want[i] === "parts") {
                     // with two MOs on stage this is the countability claim itself
                     // ("one sigma, one pi"), so it reports EACH of them.
@@ -62902,14 +63296,53 @@ export const FIELD_3D_RENDERER_CODE = `
     window.__PM_osZProbe = function () {
         function sc(id, ax) { var o = osFindById(id); return o ? Number(o.scale[ax || "x"].toFixed(6)) : null; }
         var hudEl = document.getElementById("os_hud");
+        var shells = [], si2;
+        for (si2 = 0; si2 < OS_MAX_NODE_SHELLS; si2++) {
+            var so2 = osFindById(si2 === 0 ? "os_node_shell" : ("os_node_shell_" + si2));
+            if (so2 && so2.visible) shells.push(Number(so2.scale.x.toFixed(6)));
+        }
+        var pr = (window.PM_osActive && window.PM_osActive.length)
+            ? OS_ORBITALS[window.PM_osActive[window.PM_osActive.length - 1]] : null;
         return {
             z: window.PM_osZEff, primPm: window.PM_osPrimPm,
             dots: sc("os_dots_0"), sphere: sc("os_sphere"),
             lobe: sc("os_lobe_0", "y"), shell: sc("os_node_shell"),
             slabPm: window.PM_osSlabPm, psi2: window.PM_osPsi2,
             sliceDots: window.PM_osSliceDots, probePm: window.PM_osProbePm,
+            // rows D / I / L: the identity the charge came from, and the node
+            // shells actually on screen (a scalar-node implementation reports one
+            // where the physics says three).
+            element: window.PM_osElement, charge: window.PM_osCharge,
+            config: window.PM_osConfig, slaterS: window.PM_osSlaterS,
+            orbital: (window.PM_osActive && window.PM_osActive.length) ? window.PM_osActive[window.PM_osActive.length - 1] : null,
+            nodesRadial: pr ? pr.nodesRadial : null, shells: shells,
             hud: hudEl ? hudEl.textContent : null
         };
+    };
+    // ── headless library probe (row L): the per-orbital derivation, straight out
+    //   of the built tables. It is the ONE reading that distinguishes a correct
+    //   radial branch from the silent 3d fallback — a wrong branch still renders,
+    //   still reports a pm radius and still passes every gate, but it cannot
+    //   produce this orbital's own node count and r90 at the same time.
+    window.__PM_osLibProbe = function () {
+        var out = {}, k;
+        for (k in OS_ORBITALS) {
+            var o = OS_ORBITALS[k];
+            if (o.kind !== "sphere" && o.kind !== "lobes") continue;
+            out[k] = {
+                n: o.n, l: o.l, rhoMax: o.rhoMax, nodesRadial: o.nodesRadial,
+                shellRhos: (o.shellRhos || []).slice(),
+                r50: o.rByLev["50"], r70: o.rByLev["70"], r90: o.rByLev["90"],
+                cdfTot: o._cdfTot, dMax: o._dMax
+            };
+        }
+        return out;
+    };
+    // ── headless element/ion probe (rows D + I): the Slater arithmetic itself,
+    //   so the isoelectronic derivation can be asserted without a screenshot.
+    window.__PM_osIonProbe = function (sym, q) {
+        if (sym == null) return OS_IONS;
+        return OS_IONS[sym + "|" + (q || 0)] || null;
     };
     // Angular node planes, as NORMALS: a p orbital's single plane is
     // perpendicular to its axis; d_xy's two are the xz and yz planes (normals
