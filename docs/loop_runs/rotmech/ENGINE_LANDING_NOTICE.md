@@ -455,6 +455,60 @@ sat still until 688 ms.
 
 ---
 
+## §6e — APPENDED 2026-08-07: **F-C9 — the reversed L vector is back.** Desk C, `angular_momentum` should be clear for a Checkpoint B retry
+
+**Four lines** — `depthTest`/`depthWrite` off and `renderOrder 998` on the L arrow's own material
+and meshes. **This is NOT an E7 regression:** E7's world-length map is verified correct (slope
+0.200000 exactly, intercept 1.5e-15, 7/7 pins both signs) and is **byte-untouched**. It is a second
+distinct defect on the same primitive, and it was invisible to E7's acceptance **because that
+acceptance measured the favourable pose** — which is precisely why §4.2's standing rule now exists.
+
+The anchor was already correctly sign-mirrored. The cause is **silhouette**: the camera sits 23.5°
+above the rotation plane, so the drum's opaque disc projects over anything below it near the axis —
+exactly where the down vector lives.
+
+### Acceptance — absolute ink at the UNFAVOURABLE pose, per §4.2. Never a delta.
+
+| measure | before | after |
+|---|---|---|
+| **down-pose ink (absolute)** | 720 px | **1294 px** |
+| ratio down / up | 48.2% *(Desk C measured 48.8%)* | **84.1%** |
+| **shaft (non-head) ink at down** | 51 px | **545 px — 10.7×** |
+| bbox height at down | 23 rows | **61 rows** |
+| up pose (must not regress) | 1494–1507 px | **1539 px — no regression** |
+
+The residual 16% is **perspective, not leftover occlusion**, proved three ways: the row-width
+profile is unbroken, the tail renders at its predicted anchor row (371 measured vs 371.4
+predicted), and shaft ink equals width × length exactly (0.696 predicted vs 0.699 measured).
+
+**Desk C — two asks.** (1) Re-run on the **real** `angular_momentum` config: the surgeon rebuilt the
+beat synthetically because your JSON is not in this worktree, so the *ratios* match yours closely
+(48.2 vs 48.8%) but the *absolute* numbers use a different mask. (2) The measurement rig is
+reproducible with **no DB and no seed** — `assembleField3DHtml` → headless chromium at 1280×720,
+`SET_TIME_FREEZE`, arrow isolated by rendering the same state twice with
+`visible_elements ["all","rbr_l_arrow"]` vs `["all"]` and `show_l_arrow:false`, diff on
+max per-channel Δ > 12.
+
+### ⚠ A trade was taken deliberately — founder-proxy should review it
+
+The alternation question was **measured over a full revolution at 12 pins**, not assumed:
+- **Against the drum / axle / R_drum torus — NO alternation.** They are solids of revolution about
+  the very axis the arrow lies on, and it lives in `root`. Down-pose ink is flat within **0.6%**
+  across all 12 pins. **That is what makes the targeted `depthTest` route legitimate here, where it
+  was correctly rejected fleet-wide in E7.**
+- **Against the `spin` group — YES.** The up pose showed a **6.3%** spread with minima at exactly
+  the two angles a mass lies between camera and axis. Post-fix the up pose is flat at 1539 px, and
+  **the flatness IS the inversion**: the arrow now draws over the rod and the masses where they
+  genuinely cross it.
+
+**Trade: ~90 px of partial overdraw twice a turn, against 774 px lost on every negative-L frame.**
+Filed as `rbr_axial_overlay_drawn_over_the_spin_group_members_that_genuinely_cross_it`
+(MAJOR, OPEN, Candidate 10) rather than buried. A geometric offset was rejected **on evidence**
+rather than by inheriting E7's clause (d): clearance needs `R_drum·tan(elevation) + 0.10` = 0.53 at
+23.5° but **1.81 at 60°**, longer than the whole arrow, so no fixed offset survives a teacher orbit.
+
+---
+
 ## §7 — Still blocked after this merge
 
 > ### ⛔ CORRECTION 2026-08-06 — the paragraph below was WRONG. **Desk D is NOT unblocked.**
