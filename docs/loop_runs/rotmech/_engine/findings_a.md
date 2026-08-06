@@ -2,6 +2,87 @@
 
 ---
 
+# ✅ VERIFICATION REPORT #2 — E5 + E7 CONFIRMED (Desk A, 2026-08-06)
+
+**To Desk E.** Containment verified directly, not from a report: `bd89d43` (PR #29), `14b2943`
+(E7), `deb764b` (E5 notice) and `7022169` (E1) are **all ancestors of `origin/master`**. E1's
+earlier direct-branch merge has become a plain master ancestor exactly as predicted.
+
+## E7 `rbr_arrows_have_no_real_shaft` — **CONFIRMED on a real concept.** Desk E's numbers hold.
+
+Desk E could not seed an rbr concept, so its ink/contrast figures were unconfirmed on anything that
+actually exercises rbr. Measured here, pre-E7 (`20260805-163752`) vs post-E7 (`20260806-021612`),
+counting pixels within the axle band x ∈ [628, 652] matching the arrow colours:
+
+| Frame | axle-band ink | **longest contiguous vertical run** (the shaft) |
+|---|---|---|
+| `STATE_1__frozen` | 26 → **1101 px** | **8 px → 167 px** |
+| `STATE_7__frozen` | 14 → **1113 px** | **4 px → 167 px** |
+| `STATE_6__frozen` | 372 → **1464 px** | **61 px → 233 px** |
+| `STATE_6__dense_t09000` | 91 → **1312 px** | **61 px → 246 px** |
+
+The pre-E7 "longest run" of **4–8 px** is the whole of A-11 in one number: that was the cone tick
+alone, with the shaft entirely inside the axle. Desk E's "15 px of ink" is the same measurement to
+within the noise of where you draw the band.
+
+**E7 also darkened the apparatus, which is the half that was not in the dispatch title** — axle
+`#90A4AE` → `#1F2A30`, rod `#B0BEC5` → `#26333A`. That matters more than the geometry:
+
+| Pair | pre-E7 | post-E7 |
+|---|---|---|
+| L arrow `#42A5F5` vs axle | **1.02 : 1** | **5.54 : 1** |
+| pull arrow `#4DD0E1` vs rod | **1.04 : 1** | **7.07 : 1** |
+
+**1.02 : 1 is the real explanation of A-11.** The arrow and the axle had essentially identical
+luminance, so even where the arrow *was* drawn it could not be seen. No amount of shaft thickness
+would have fixed that alone. (These are WCAG ratios on the DECLARED colours — an upper bound. Desk
+E's 4.36 : 1 is presumably measured on rendered pixels including Phong shading and emissive, which
+is the tighter and more honest number. Not a conflict; different bases. Where they disagree, trust
+Desk E's.)
+
+## E5 `rbr_authored_token_silently_skipped_when_the_engine_lacks_the_row` — **CONFIRMED, both halves**
+
+Probe: `src/scripts/_scratch_rbr_e5_probe.ts`. This concept authors none of the new tokens
+(`I/omega/L/KE/dLdt` only), so they are exercised on a scratch config — **the approved concept was
+not mutated to make a verification pass.**
+
+**(a) The rows print, with the ruled units.** HUD at t = 3000 under a 0.92 N·m brake:
+`θ = 4.17 rad | α = −0.30 rad/s² | τ = −0.92 N·m | W = −1.76 J` — dp 2, SI, real Unicode
+(θ U+03B8, α U+03B1, τ U+03C4, · U+00B7, ² U+00B2), and a true U+2212 minus, not an ASCII hyphen.
+`RBR_THETA_DISPLAY = { unit: " rad", dp: 2, per_rad: 1 }` matches the founder ruling exactly.
+
+**(b) Liveness, not just presence** — the values are real, not zero-filled placeholders: θ has
+accumulated, α is negative under a brake, τ is the resolved (not authored) torque, W is negative
+because a brake removes energy.
+
+**(c) THE CONSOLE GATE IS LIVE — proved by negative control, which is the check usually skipped.**
+A silent console proves nothing unless the warning is known to fire. Authoring a deliberately bogus
+token produces, **once per token per state, not per frame**:
+
+```
+[PM_RBR_TOKEN] [STATE_B] readouts names 'definitely_not_a_real_token', which has no RBR_RO_META
+row — the quantity is NOT printed anywhere on screen. Known rows: I, omega, L, KE, dLdt, F_pull,
+theta, alpha, tau, W.
+```
+
+It names the token, carries the state id, lists the known rows, and the *known* token beside it
+still renders. **Only because the gate is proved live does the real concept's silence mean
+anything** — and it is silent across all 8 states, with zero console errors.
+
+**This closes the largest defect class in the chapter.** Six findings on this desk were one shape —
+an authored field the engine silently ignores (A-1 HUD glow targets, A-7 pull-arrow reveal, A-8
+`min_ring`, A-9 `masses.r_m` at t = 0, the `RBR_RO_META` skip, A-18 the dead formula assembly). One
+warning would have caught five of them at authoring time instead of costing a gate cycle each.
+
+## E1 + E4 — re-confirmed post-E7
+
+E1's timed assembly and E4's brake physics were confirmed pre-E7; both re-checked on this run so
+that E7 cannot have silently undone them. Details in Verification Report #1 below.
+
+---
+
+---
+
 # ✅ VERIFICATION REPORT — E1 + E4 CONFIRMED (Desk A, 2026-08-05)
 
 **To Desk E, per `ENGINE_LANDING_NOTICE.md` §5.** Desk A is the named verifier for E1/E4/E5 on
