@@ -59107,6 +59107,11 @@ export const FIELD_3D_RENDERER_CODE = `
     //       enclosure: 0.9|0.7|0.5,          // which contour the surface draws
     //                                        // (default 0.9; the HUD occupancy
     //                                        // line MEASURES what it encloses)
+    //       z_eff,                           // effective nuclear charge (default
+    //                                        // 1 = hydrogen). The WHOLE atomic
+    //                                        // picture contracts to 1/Z of the
+    //                                        // Z=1 one — see osZEffAt below
+    //       z_ramp: {from,to,at_ms,duration_ms},   // ...swept during the state
     //       surface_opacity,                 // override the per-shell ink
     //       spin_start_ms, spin_rate, spin_axis,      // rad/s about spin_axis
     //       orbit_ms, dissolve_at_ms, dissolve_duration_ms,   // S1 Bohr prop
@@ -59462,6 +59467,51 @@ export const FIELD_3D_RENDERER_CODE = `
     // expressed in terms of it, so a state that asks for a slimmer contour gets
     // a consistently smaller picture rather than a mismatched one.
     function osOuterPm(orb, key) { return orb.rByLev[key]; }
+    // ── Z_eff: the effective nuclear charge the electron actually feels ──────
+    //   Hydrogenic scaling is an EXACT similarity: psi_Z(r) = Z^(3/2) psi_1(Z r),
+    //   so the Z picture IS the Z=1 picture at 1/Z — same shape, same contours,
+    //   same node fractions. Two consequences, and the implementation depends on
+    //   both:
+    //     1. NOTHING SOLVED CHANGES. Every iso-density level in OS_ORBITALS, every
+    //        r90, every lobe tip and every node radius was solved against the Z=1
+    //        functions and stays exactly valid. A change that re-solves them is
+    //        wrong by construction.
+    //     2. Z IS APPLIED HERE, AT APPLY/FRAME TIME — never inside
+    //        buildOrbitalShapes. That build runs ONCE at page load (radial tables,
+    //        the seeded sample pool, rByLev, the lobe meshes), so a Z folded into
+    //        it would pin the entire concept to ONE charge fixed at load: every
+    //        later state, every ramp and every drag would be dead. So the rho-space
+    //        tables stay at Z=1 and each frame applies a uniform 1/Z scale to the
+    //        meshes that carry them plus a division on every pm number read out of
+    //        rByLev / shellPm / the cutaway slab.
+    //   z_eff is the static per-state value; z_ramp sweeps it, closed-form in
+    //   state-local t like every other beat in this scenario (Rule 26/36) — no
+    //   accumulator, so a SET_TIME_FREEZE pin reproduces it byte-identically.
+    //   'mode' is NOT a motion source (it is a camera-table key and deliberately
+    //   nothing else), which is why this is its own explicit timing field.
+    function osZEffAt(os, ms) {
+        var z = (typeof os.z_eff === "number") ? os.z_eff : 1;
+        var zr = os.z_ramp;
+        if (zr) {
+            z = osRamp(ms, cueTriggerMs("z_ramp", (zr.at_ms != null) ? zr.at_ms : 0),
+                (zr.duration_ms != null) ? zr.duration_ms : 2600,
+                (zr.from != null) ? zr.from : z, (zr.to != null) ? zr.to : z);
+        }
+        // A Z at or below zero has no picture at all (the similarity inverts, then
+        // blows up), so a mis-authored value falls back to hydrogen rather than
+        // rendering an infinity.
+        return (z > 0.05) ? Math.min(z, 100) : 1;
+    }
+    // The uniform 1/Z factor, resolved PER ORBITAL — and only on the one-centre
+    // s/p/d family the similarity above is exact for. A HYBRID mixes an s part and
+    // a p part that do not share one screening constant, so scaling it uniformly
+    // would be a claim this engine has not earned; a MOLECULAR orbital already
+    // carries its own build-time zEff (osMoPmPerRho). Both are excluded HERE, by
+    // construction, instead of by an authoring convention nothing can enforce.
+    function osZUnit(orb, z) {
+        if (!orb || !(z > 0)) return 1;
+        return (orb.kind === "sphere" || orb.kind === "lobes") ? 1 / z : 1;
+    }
     // Inverse radial CDF (rho at cumulative fraction u).
     function osRhoAt(orb, u) {
         var cdf = orb._cdf, N = orb._N, target = u * orb._cdfTot;
@@ -60956,7 +61006,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // value (|psi|^2 = z^2 e^(-r/a0) on that plane is maximised at r = |z|), so
     // "0.00 at the node" is a statement about the WHOLE plane, not one point.
     // Sampled on a polar grid for the general case.
-    function osPlaneMaxDensity(orb, sUnits) {
+    //   zEff (default 1) is the SAME effective charge the geometry is scaled by:
+    // the probe plane sits at sUnits in the drawn, contracted picture, and the
+    // radial functions below are evaluated at Z=1, so the plane's offset in rho is
+    // Z times further in. Declared as a parameter rather than left implicit,
+    // because this is the one atomic reader of OS_A0 that a psi^2 / probe state
+    // would otherwise read at hydrogen's scale while the picture drew another's.
+    function osPlaneMaxDensity(orb, sUnits, zEff) {
         // hybrids are non-separable and have no angular node plane, so the probe
         // (a node-hunting instrument) does not apply to them. Returning 0 rather
         // than falling through would print a confident "0.00" where the honest
@@ -60968,7 +61024,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // the same guard covers it: an MO state resolves "primary" to the MO
         // itself (#17 E1), and osR would read an undefined CDF.
         if (orb.kind === "hybrid" || orb.kind === "mo") return 0;
-        var s = sUnits * OS_PM_PER_UNIT / OS_A0;     // in rho
+        var s = sUnits * OS_PM_PER_UNIT * ((zEff > 0) ? zEff : 1) / OS_A0;     // in rho
         var axis = orb.axis || [0, 0, 1];
         var b = osBasis(axis), e1 = b[0], e2 = b[1];
         var best = 0, i, j;
@@ -61447,6 +61503,12 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osTwist = (moSt && moSt.twist_ramp && moSt.twist_ramp.from != null) ? moSt.twist_ramp.from
             : ((moSt && moSt.twist_deg != null) ? moSt.twist_deg
                 : (window.PM_osTwistDef != null ? window.PM_osTwistDef : 0));
+        // Z_eff opens at the state's OWN preset — its static value, or the START
+        // of its scripted ramp, never the end (the frame before the ramp fires
+        // would otherwise already show the contracted atom). Seeded here as well
+        // as per-frame so the first captured frame of a state can never carry the
+        // previous state's charge.
+        window.PM_osZEff = osZEffAt(os, 0);
         window.PM_osDots = (os.dot_target != null) ? os.dot_target : (window.PM_osDotsDef != null ? window.PM_osDotsDef : 1200);
         window.PM_osSpin = (os.spin_rate != null) ? os.spin_rate : 0;
         window.PM_osProbe = (os.probe_auto && os.probe_auto.from != null) ? os.probe_auto.from : 0;
@@ -61635,7 +61697,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var primary = OS_ORBITALS[active[active.length - 1]] || moPrim
             || OS_ORBITALS[baseId] || OS_ORBITALS["1s"];
         var encKey = osEnclKey(os.enclosure);
-        var primR = osOuterPm(primary, encKey);
+        // ── the effective nuclear charge, closed-form on the state clock. zuPrim
+        //    is the primary orbital's 1/Z similarity factor: every REAL length
+        //    below (primR, the axes, the node-plane disc, the probe travel, the
+        //    label radius, the node shell) carries it, while everything expressed
+        //    in the BAKED Z=1 frame (the seeded sample table, the cutaway slab
+        //    that is tested against it) deliberately does not.
+        var zEff = osZEffAt(os, ms);
+        var zuPrim = osZUnit(primary, zEff);
+        window.PM_osZEff = zEff;
+        var primR = osOuterPm(primary, encKey) * zuPrim;
+        window.PM_osPrimPm = primR;
         window.PM_osActive = active.slice();
 
         // ── the slow spin: angle = rate * (t - spin_start), a PURE function of
@@ -61692,6 +61764,11 @@ export const FIELD_3D_RENDERER_CODE = `
             //   h^2), so the empty band around a node of radius R survives only
             //   while h is small against R. 0.20 R keeps the 2s gap clean; a
             //   nodeless cloud has no band to protect and keeps the old 0.18.
+            //   The slab lives in the orbital's BAKED Z=1 frame, because that is
+            //   the frame the seeded sample table it filters is written in (the
+            //   dot cloud carries Z as an object scale instead). Z is a uniform
+            //   similarity, so the slice is the same FRACTION of the cloud at any
+            //   charge; only the reported pm number below is converted.
             var hStart = primary.rhoMax * OS_A0 / OS_PM_PER_UNIT;
             slabEnd = (primary.shellPm != null) ? 0.20 * (primary.shellPm / OS_PM_PER_UNIT) : 0.18;
             slabHalf = hStart * Math.pow(slabEnd / hStart, cutF);
@@ -61739,8 +61816,16 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             pts.geometry.attributes.position.needsUpdate = true;
             pts.geometry.setDrawRange(0, wrote);
-            if (i === 0) { window.PM_osVisDots = wrote; window.PM_osSlabPm = slabHalf * OS_PM_PER_UNIT; }
+            if (i === 0) { window.PM_osVisDots = wrote; window.PM_osSlabPm = slabHalf * OS_PM_PER_UNIT * osZUnit(orb, zEff); }
             pts.quaternion.copy(osSpinQ);
+            // Z_eff contracts the whole cloud uniformly. Applied as an OBJECT
+            // scale, not by rewriting the table: the positions are the baked Z=1
+            // sample (a pure lookup, Rule 26/36) and a per-frame rewrite would
+            // both cost 3N multiplies and put a live charge inside a table the
+            // rest of this scenario treats as immutable. PointsMaterial.size is
+            // untouched by the scale, so the measurement MARK keeps its ~7 px
+            // on-screen size while the cloud it belongs to shrinks.
+            pts.scale.setScalar(osZUnit(orb, zEff));
             osSetColor(pts, orb.color);
             if (pts.material) {
                 // The dot is a MEASUREMENT MARK, not a physical object, so its
@@ -61837,7 +61922,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var sOn = !!sphOrb && surfF > 0.002;
             sph.visible = sOn;
             if (sOn) {
-                sph.scale.setScalar(osOuterPm(sphOrb, encKey) / OS_PM_PER_UNIT);
+                sph.scale.setScalar(osOuterPm(sphOrb, encKey) * osZUnit(sphOrb, zEff) / OS_PM_PER_UNIT);
                 osSetColor(sph, sphOrb.color);
                 // During a hybrid morph the s orbital is being CONSUMED by the
                 // mix, so it fades on the morph's own progress rather than on a
@@ -61925,7 +62010,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 // the extrude beat grows the lobe OUT along its own axis (+y in
                 // the canonical mesh) while it fattens sideways — the declared
                 // "axis-extrude" archetype, and a real magnitude, not emphasis.
-                lb.scale.set(0.55 + 0.45 * gEff, gEff, 0.55 + 0.45 * gEff);
+                //   ...times the Z_eff contraction, which is uniform: the shared
+                // lobe mesh is baked once at Z=1 and every charge is that same
+                // mesh at 1/Z, so a heavier nucleus pulls the dumbbell in without
+                // any geometry being rebuilt. A hybrid returns 1 here (declared
+                // non-goal, osZUnit).
+                var lz = osZUnit(orb, zEff);
+                lb.scale.set((0.55 + 0.45 * gEff) * lz, gEff * lz, (0.55 + 0.45 * gEff) * lz);
                 osSetColor(lb, isGhost ? "#546E7A" : orb.color);
                 if (lb.material) lb.material.opacity = opacity;
             }
@@ -62441,20 +62532,24 @@ export const FIELD_3D_RENDERER_CODE = `
         // of pm thick and the ring labelled "node shell" had dots running
         // straight through it — the state's central claim contradicted by its
         // own picture. 0.45 R is the thickness at which the band reads empty.
+        //   The THICKNESS test stays in the baked Z=1 frame, where slabHalf lives:
+        // Z is a similarity, so "the slice is thin against the node radius" is the
+        // same statement at any charge. The drawn ring, being a real length, does
+        // carry Z.
         var shOn = !!os.show_node_shell && primary.shellPm != null
             && cutF > 0.02 && slabHalf <= 0.45 * (primary.shellPm / OS_PM_PER_UNIT);
         if (shell) {
             shell.visible = shOn;
             if (shOn) {
                 osAimZ(shell, cutNw);
-                shell.scale.setScalar(primary.shellPm / OS_PM_PER_UNIT);
+                shell.scale.setScalar(primary.shellPm * zuPrim / OS_PM_PER_UNIT);
             }
         }
         if (shellLab) {
             shellLab.visible = shOn && (os.show_labels !== false);
             if (shellLab.visible) {
                 var sb = osBasis(cutNw);
-                var sr = primary.shellPm / OS_PM_PER_UNIT;
+                var sr = primary.shellPm * zuPrim / OS_PM_PER_UNIT;
                 // parked OUTSIDE the ring it names: centred on the rim it hid
                 // the very gap the state exists to show (first frame read).
                 osPlaceLabelClear(shellLab, [sb[0][0] * sr, sb[0][1] * sr, sb[0][2] * sr], 0.52, osAvoid);
@@ -62491,7 +62586,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // live readouts, computed from the SAME functions the picture is drawn
         // from: the plane's peak |psi|^2 (normalised), and the dots inside a
         // thin slab about the plane, counted from the sample table.
-        var psi2 = osPlaneMaxDensity(primary, probeU);
+        var psi2 = osPlaneMaxDensity(primary, probeU, zEff);
         var sliceDots = 0;
         if (primary._pos) {
             // The slab is PROPORTIONAL to the orbital (2.2% of its own r90) and
@@ -62500,9 +62595,15 @@ export const FIELD_3D_RENDERER_CODE = `
             // state makes is that NOTHING is found there. Thin also keeps the
             // count honest away from the node (tens of dots at a lobe peak).
             var slabP = 0.022 * (primR / OS_PM_PER_UNIT);
+            // _pos is the BAKED Z=1 sample, so the plane and its slab are carried
+            // back into that frame (divide by the 1/Z factor the drawn picture was
+            // scaled by) rather than the table being rewritten. Both sides scale
+            // together, so the count is unchanged at Z=1 and stays the honest one
+            // at any other charge.
+            var probeUL = probeU / zuPrim, slabPL = slabP / zuPrim;
             for (j = 0; j < count; j++) {
                 var sp2 = primary._pos[j * 3] * probeAxis[0] + primary._pos[j * 3 + 1] * probeAxis[1] + primary._pos[j * 3 + 2] * probeAxis[2];
-                if (sp2 >= probeU - slabP && sp2 <= probeU + slabP) sliceDots++;
+                if (sp2 >= probeUL - slabPL && sp2 <= probeUL + slabPL) sliceDots++;
             }
         }
         window.PM_osPsi2 = psi2; window.PM_osSliceDots = sliceDots;
@@ -62556,7 +62657,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // cannot be parked on top of each other.
                 var ldir = osSpun((lorb.kind === "lobes" || lorb.kind === "mo")
                     ? (lorb.axis || [0, 0, 1]) : [0, 1, 0]);
-                var lrad = (osOuterPm(lorb, encKey) / OS_PM_PER_UNIT) * 0.92;
+                var lrad = (osOuterPm(lorb, encKey) * osZUnit(lorb, zEff) / OS_PM_PER_UNIT) * 0.92;
                 osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42, osAvoid);
                 osAvoid.push([olb.position.x, olb.position.y, olb.position.z]);
             }
@@ -62603,7 +62704,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 var lead = tDot - ms;
                 if (lead > 0 && lead <= lead0) {
                     vis = true;
-                    fl2.position.set(primary._pos[idx * 3], primary._pos[idx * 3 + 1], primary._pos[idx * 3 + 2]);
+                    // the flash lands exactly where its dot will, so it takes the
+                    // same Z contraction the cloud does — reading the baked Z=1
+                    // table straight into a world position would park the spark
+                    // outside a contracted atom.
+                    fl2.position.set(primary._pos[idx * 3] * zuPrim, primary._pos[idx * 3 + 1] * zuPrim, primary._pos[idx * 3 + 2] * zuPrim);
                     // a spark just larger than the mark it becomes, held at a
                     // constant on-screen size like the dots themselves.
                     var camR2 = (typeof spherical !== "undefined" && spherical.radius) ? spherical.radius : 8;
@@ -62716,7 +62821,14 @@ export const FIELD_3D_RENDERER_CODE = `
                     // Skeleton limit 3: Slater 3.25 is an APPROXIMATION (SCF is
                     // nearer 3.14), so the HUD declares its provenance and prints
                     // no digit it does not have.
-                    lines.push("Z_eff = " + ((moPrim == null) ? "\\u2014" : (moPrim.zEff.toFixed(2) + " (Slater)")));
+                    //   On the ATOMIC path the charge is the state's own authored
+                    // z_eff (or the live value of its ramp), so the number is
+                    // printed bare: the engine knows what the value IS but not
+                    // where it came from, and stamping "(Slater)" on an authored
+                    // number would be the engine asserting a provenance only the
+                    // author can vouch for.
+                    lines.push("Z_eff = " + ((moPrim != null) ? (moPrim.zEff.toFixed(2) + " (Slater)")
+                        : zEff.toFixed(2)));
                 } else if (want[i] === "parts") {
                     // with two MOs on stage this is the countability claim itself
                     // ("one sigma, one pi"), so it reports EACH of them.
@@ -62780,6 +62892,25 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
     }
+    // ── headless Z probe (the phs/slcr probe pattern) ───────────────────────
+    //   window.__PM_osZProbe() -> the ONE reading a build-time Z fold cannot
+    //   fake: the LIVE object scales of the three surfaces that carry the
+    //   contraction, beside the charge and the pm radius that produced them.
+    //   If Z were baked at page load these would all be pinned across a state
+    //   change or a ramp, which is exactly what this returns evidence about.
+    //   Read-only, and it allocates nothing per frame.
+    window.__PM_osZProbe = function () {
+        function sc(id, ax) { var o = osFindById(id); return o ? Number(o.scale[ax || "x"].toFixed(6)) : null; }
+        var hudEl = document.getElementById("os_hud");
+        return {
+            z: window.PM_osZEff, primPm: window.PM_osPrimPm,
+            dots: sc("os_dots_0"), sphere: sc("os_sphere"),
+            lobe: sc("os_lobe_0", "y"), shell: sc("os_node_shell"),
+            slabPm: window.PM_osSlabPm, psi2: window.PM_osPsi2,
+            sliceDots: window.PM_osSliceDots, probePm: window.PM_osProbePm,
+            hud: hudEl ? hudEl.textContent : null
+        };
+    };
     // Angular node planes, as NORMALS: a p orbital's single plane is
     // perpendicular to its axis; d_xy's two are the xz and yz planes (normals
     // y and x), which is where dx^2 dy^2 vanishes.
