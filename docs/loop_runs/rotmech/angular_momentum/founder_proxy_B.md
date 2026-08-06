@@ -125,9 +125,56 @@ Recurrence of `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus
 
 **Acceptance criteria for re-review** (objective — no second taste pass needed):
 1. S1 frozen: hue-gated `rbr_l_arrow` ink **≥ 400 px** (15 today).
-2. Drawn-length fidelity: `len(L=6.51)/len(L=1.14) = 5.71 ± 0.10` measured **in pixels**, fitted intercept **< 1 px**.
+2. ~~Drawn-length fidelity: `len(L=6.51)/len(L=1.14) = 5.71 ± 0.10` measured **in pixels**, fitted intercept **< 1 px**.~~
+   **AMENDED — founder ruling 2026-08-06.** Measure the ratio on **drawn WORLD length**, intercept **< 1 px**.
+   The pixel-space ratio reads **6.13**, not 5.71, and that gap is **perspective foreshortening, not a
+   defect**: the L vector extends along the axle, so its far end sits at a different camera depth and its
+   projected length is not proportional to its world length. Asserting proportionality in pixels asserts
+   an orthographic camera the sim does not have. World length is exactly proportional — **5.7105 drawn vs
+   5.7105 true, intercept 0**. Criteria 1, 3 and 4 stay **pixel** measurements; only this one moves to world units.
 3. Arrow stroke contrast **≥ 3:1** against the axle behind it.
 4. S4: flipping the spin changes **≥ 300 px** in the axle column.
+
+**RE-REVIEW RESULT — 2026-08-06, Desk C as E7's named verifier (E7 = `14b2943`, confirmed on `origin/master`).**
+All four met, each with headroom. Primary assertion first, per E7's own contract (*assert drawn geometry,
+not pixel luminance* — F-C7's luminance-delta probe is **not** carried forward, since it passes on a build
+where the arrow is invisible):
+
+| # | criterion | floor | measured | margin |
+|---|---|---|---|---|
+| — | shaft is a **mesh cylinder**, not a `Line` | — | `Mesh` · `CylinderGeometry` · `MeshPhongMaterial` | ✓ |
+| — | shaft radius ÷ apparatus radius = declared ratio | 2.0 | L shaft **0.090** ÷ axle **0.045** = **2.0 exact**; pull shaft **0.080** ÷ rod **0.040** = **2.0 exact** | ✓ both consumers |
+| — | emissive ratio = declared | 6.0 | apparatus **0.14** vs arrow base **0.84** | ✓ |
+| 1 | S1 ink | ≥ 400 px | **1247 px**, bbox **45×68** (was 15 px in an 11×6 box) | **3.1×** |
+| 2 | drawn **world** length ∝ \|L\| | intercept < 1 px | slope **0.200000** = `RBR_L_ARROW_SCALE` exactly; **intercept 1.5e-15**; `len/\|L\| = 0.20000` at **7/7** pins spanning L = 1.53…6.12 **and both signs** | exact |
+| 3 | arrow vs apparatus-behind contrast | ≥ 3:1 | **8.79 : 1** | **2.9×** |
+| 4 | S4 flip | ≥ 300 px | **5518 px** changed | **18×** |
+
+> ⚠ **Criterion 4 was met and is NOT SUFFICIENT — see fix cycle 1's P1-A.** It is a bare delta, and
+> a delta between *arrow present* and *arrow absent* is as large as one between *arrow up* and
+> *arrow down*. The 5518 px passed **because the reversed vector largely vanishes.** Re-measured
+> absolutely by hide-and-diff at identical |L| = 4.59: **S1 up 1206 px / 45×68** vs **S4 post-flip
+> 589 px / 40×21**, non-head ink **681 → 73 px**, ratio **48.8 %**. This violates the desk's own
+> PASS-15 rule (*pair every delta assertion with an absolute floor*). Criterion 4 is **superseded**
+> by the absolute floors in P1-A. Full record: `findings_c.md` **PASS 18**.
+
+Method: ink and contrast by **difference** (hide only the L-arrow group, re-shoot, diff) so no colour is
+assumed — the raw-hex hue gate is invalid now that the shaft is emissive-lit rather than a flat
+`LineBasicMaterial`. Length read from drawn scale as `shaft.scale.y + head.scale.y`; note `rbrSetVectorLength`
+**shrinks the head** for short vectors (`hl = min(_headLen, L×0.40)`), so adding the constant `_headLen`
+fabricates a false floor at low \|L\| — an artifact of the measurement, not of the engine.
+
+**F-C2 also closes here**, as the E7 dispatch intended: true zero (length 0 hides the meshes instead of
+drawing the old 0.22 stub) and a knee-then-asymptote map whose knee (10.0) sits above the slider maximum,
+so every reachable \|L\| is on the exactly-linear segment.
+
+**P1-2 (F-C3) — DOWNGRADE to ride-along, on evidence.** Its own routing note set the condition: *"if P1-1
+lands and the arrow carries L continuously through a drag, this degrades from fatal to annoying."* Measured
+over a 10-sample real `input`-event drag of `rbr_omega0_slider`: the numeric row **still blanks on all 10
+samples** (`I = — · ω = — · L = —`, restored after release) — E6 has not landed and F-C3 is untouched — but
+the **L arrow is drawn at all 10**, length exactly 0.20·\|L\|, sweeping 0.612 → 1.224 world as L goes
+3.06 → 6.12. The teacher now sees the vector grow smoothly while the digits are blank. Blocking → ride-along;
+stays OPEN until E6.
 
 ### P1-2 · **BLOCKING (conditionally)** · engine · every readout blanks for the whole explore drag
 `FIX(engine)` → **`peter_parker:field3d_surgeon`** — already filed as **F-C3** (PASS 3) / candidate **A5**.

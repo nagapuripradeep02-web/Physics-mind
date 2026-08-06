@@ -21,7 +21,7 @@ this desk and are stated as the precise thing to go get.
 |---|---|---|---|
 | 1 | Bug-queue re-run | ✅ **queries re-run, delta identified: exactly 4 rows** (below) | No — but the 4 rows need verdicts |
 | 2 | C8's fate (F-C4 / camera) | ✅ **SCOPED AND DISPATCHED as E9** — not declined | Yes, until E9 lands |
-| 3 | Two-timed-class fence | ⏳ **still unanswered** — office ruling | Yes, if cumulative |
+| 3 | Two-timed-class fence | ✅ **RULED 2026-08-06 — NON-CUMULATIVE, binds 0c-2 only. Design NOT invalidated.** | **No — closed** |
 | 4 | C7 / concept #2 wave membership | ⏳ **unanswered**; C7 deferred as `C-11`, lowest priority | No — clean trim either way |
 | 5 | F-C5 ride-along (`tts_sentences[].glow`) | ✅ **CONFIRMED still a no-op** — deferred as `C-3`, not in the nine | No — authoring constraint only |
 | 6 | "No precedent JSON exists" | ⚠️ **PREMISE IS NOW FALSE** — a precedent exists (below) | No — this *unblocks* work |
@@ -162,18 +162,20 @@ git log --all -S "rbr_camera_pose_is_not_authorable" --oneline
 **Verify, do not assume:** dispatched ≠ landed. Re-read `FROZEN_SCOPE_0c3.md` §B E9 for scope
 drift before json_author consumes the [CAM] tags.
 
-## 3 · The two-timed-class fence — ⏳ **STILL THE BLOCKER. Unanswered.**
+## 3 · The two-timed-class fence — ✅ **CLOSED. RULED 2026-08-06 (founder).**
 
-Unchanged and unanswerable from any desk. Both readings still live:
+> **The fence is NON-CUMULATIVE and binds 0c-2 only.**
 
-- **Non-cumulative / binds only 0c-2** ⇒ the six-state design stands as sealed.
-- **Cumulative** ⇒ **RE-SCOPE, not trim.** §5.2's arithmetic is on the record: existing surface
-  six classes, this ask adds two, the only named reduction takes 8 → 7. There is no design
-  fallback.
+**`rigid_body_rotation`'s sealed design is NOT invalidated.** The six-state arc, both ring cuts and
+the [CAM]-tagged states all stand exactly as sealed at `skeleton_rev3.md`.
 
-Raised in `findings_c.md` PASS 5 and in §5.3 item 2 of the cycle-2 report ("an office question in
-two skeletons now; answer it once, chapter-wide"). **Get this ruling before json_author starts,
-not at seal** — it is the one item on this list that can invalidate the sealed design.
+The **RE-SCOPE branch is dead.** §5.2's arithmetic (existing surface six classes + this ask's two =
+8, only named reduction 8 → 7, therefore no design fallback) was the consequence of the *cumulative*
+reading, and that reading is now ruled out. Nothing in it needs re-taking.
+
+This was the last item on this list that could have forced a re-scope. Raised in `findings_c.md`
+PASS 5 and §5.3 item 2 of the cycle-2 report; **answered chapter-wide, so neither this skeleton nor
+`conservation_of_angular_momentum`'s needs to carry the office question forward.**
 
 ## 4 · C7 / concept #2's wave membership — ⏳ unanswered, and cheap either way
 

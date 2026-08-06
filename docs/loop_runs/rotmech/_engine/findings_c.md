@@ -1002,3 +1002,162 @@ secondary — is recorded and will be verified in that order. A confirmation, pe
 Owner: `peter_parker:field3d_surgeon` via Desk E, **as an amendment to the E7 dispatch's
 back-compat framing** — not a new row and not a new `bug_class`. No engine fix dispatched from
 this desk (guardrail 6). No DB write made from this desk.
+
+---
+## PASS 17 — **E7 VERIFIED on `angular_momentum`. Plus two harness findings, one of which makes a recommended check unsound.**
+
+Filed 2026-08-06 by Desk C as **E7's named verifier** (`ENGINE_LANDING_NOTICE.md` §5 — Desk E's
+canaries do not exercise rbr, so E7 was LANDED but not VERIFIED until now). E7 = `14b2943`,
+confirmed an ancestor of `origin/master`. Full measurement table in
+`angular_momentum/founder_proxy_B.md` §6.
+
+### 1 · E7 is correct. F-C8 is closed, and F-C2 and F-C7 close with it.
+
+Primary assertion is **drawn geometry**, per E7's own contract correction — F-C7's luminance-delta
+probe is deliberately NOT carried forward, because it passes on a build where the arrow is invisible.
+
+- L shaft: `Mesh` · `CylinderGeometry` · `MeshPhongMaterial` — no longer a zero-width `THREE.Line`.
+- Separability **by construction, both consumers**: L shaft `0.090` ÷ axle `0.045` = **2.0 exact**;
+  pull shaft `0.080` ÷ rod `0.040` = **2.0 exact**. The C-6 merge-into-E7 ruling was honoured — one
+  mechanism, two consumers — and the clearance is genuinely two-sided (`RBR_AXLE_R` 0.07 → 0.045).
+- Emissive ratio 6.0 as declared (apparatus 0.14, arrow base 0.84).
+- **S1 ink 1247 px** in a **45×68** bbox, against the pre-fix **15 px / 11×6**. Floor 400 → 3.1× margin.
+- **Contrast 8.79 : 1** vs floor 3:1.
+- **S4 flip 5518 px** changed vs floor 300.
+- **Drawn world length exactly proportional**: slope **0.200000** = `RBR_L_ARROW_SCALE`, intercept
+  **1.5e-15**, `len/|L| = 0.20000` at **7/7** pins across L = 1.53…6.12 and both signs.
+
+**F-C2 closes as intended**: true zero (length 0 hides the meshes, no 0.22 stub beside a readout
+saying 0.00) and a knee-then-asymptote map whose knee (10.0) sits above the slider maximum, so every
+reachable |L| is on the exactly-linear segment.
+
+**One measurement trap, recorded because it nearly became a false finding.** `rbrSetVectorLength`
+shrinks the head for short vectors (`hl = min(_headLen, L × 0.40)`) so tip-to-tail is exactly the
+requested length. Computing drawn length as `shaft.scale.y + _headLen` (the CONSTANT) instead of
+`+ head.scale.y` (the actual) fabricates a length floor at low |L| — it reported `len/|L|` rising
+0.200 → 0.277 and a fitted slope of 0.162, which reads exactly like a min-length clamp regression.
+It is an artifact of the probe. Read the setter before filing a proportionality defect against it.
+
+### 2 · P1-2 / F-C3 — downgrade to ride-along, on measured evidence
+
+P1-2's routing note set the condition itself: *"if P1-1 lands and the arrow carries L continuously
+through a drag, this degrades from fatal to annoying."* Over a 10-sample real `input`-event drag of
+`rbr_omega0_slider`: the numeric row **still blanks on 10/10** (`I = — · ω = — · L = —`, restored
+after release) — E6 has not landed, F-C3 is untouched — but the **arrow is drawn on 10/10**, length
+exactly 0.20·|L|, sweeping 0.612 → 1.224 world as L goes 3.06 → 6.12. The magnitude is now legible
+throughout the drag even though the digits are not. **Blocking → ride-along. Still OPEN until E6.**
+
+### 3 · E5's loud token channel — a clean confirmation
+
+Zero `[PM_RBR_TOKEN]` warnings and zero console errors across every state of this concept. Every
+`readouts` token it authors is a known row. Before E5 this was unfalsifiable — an unknown token was
+skipped in silence — so this is the first run in which a clean readout table is actually *evidence*.
+
+### 4 · ⚠ HARNESS — the §4 trap-1 remedy is UNSOUND in this harness. It cannot detect a dead scene.
+
+`ENGINE_LANDING_NOTICE.md` §4 says: *"Until this is fixed, `md5sum` your dense frames. One hash
+across the series = a dead scene."* **On this harness that check can only ever return all-clear.**
+
+The capture path's **PNG IDAT compression is nondeterministic while the pixels are not.** Demonstrated
+on two consecutive `visual:eyes` runs of the identical build with zero changes between them
+(`20260806-021608` vs `20260806-022052`): 10 frozen/panel_a pairs are **byte-different** — differing
+IDAT chunk lengths, e.g. 3448 vs 3468 — and **pixel-identical**, 0 of 921600 differing under
+pixelmatch on every pair.
+
+So a totally static scene would still emit N distinct md5s and the operator would read "it moved."
+I ran the md5 check first and it reported 106/106 distinct hashes — which proved **nothing**.
+Desk B's observation that its two dead concepts were MD5-*identical* is therefore not general;
+whatever made the encoder deterministic there does not hold here, and the check silently inverts.
+
+**The sound test is pixel-level adjacent-frame comparison.** Run on all 5 states: **zero identical
+adjacent pairs**, adjacent diffs 0.078 %…0.948 %, first-vs-last 0.334 %…0.965 %. `angular_momentum`
+is genuinely not a dead scene — but that is established by pixels, not by hashes.
+
+Recommend amending the scar row
+`eye_dense_motion_gates_all_pass_by_construction_on_a_totally_static_scene`
+so its prevention rule names a **pixel** comparison; an md5-based remedy encodes a check that cannot
+fail. Not filed as a DB row from this desk (guardrail 9) — flagged for Desk E's manifest.
+
+### 5 · B-11 on this concept — the frozen frame WAS deterministic, but nothing is checking it
+
+The same two-run comparison answers B-11 for `angular_momentum` directly: all five `__frozen` frames
+are **pixel-identical** across runs. The "deterministic by luck, not construction" caveat did not
+bite here, so frozen-frame judgments in this cycle are sound.
+
+**The gap is elsewhere and it is worth stating plainly:** `[H2]` reported *Skipped — no approved
+baseline*. This concept has never been baseline-locked (correctly — `visual:approve` is founder-only
+and it was never approved), so **there is no A/B regression signal on it at all.** Every verdict in
+this cycle rests on the frames' own merits plus the geometry probe. Third blind spot carried into
+the verdict: byte-identical A/B would only have proven non-regression anyway, and here there is not
+even that.
+
+No engine fix dispatched from this desk (guardrail 6). No DB write. No `visual:approve`.
+
+---
+## PASS 18 — **F-C9 · P1-A CONFIRMED independently. And the acceptance criterion I verified against could not have caught it.**
+
+Filed 2026-08-06 by Desk C. founder-proxy returned `FIX(engine)` **blocking** at Checkpoint B fix
+cycle 1 on a NEW finding (P1-A): STATE_4's reversed L vector is swallowed by the drum's projected
+silhouette. **Verified here by a second, independent method before relaying it.**
+
+### The measurement
+
+founder-proxy measured with a hue gate. This desk re-measured with **hide-and-diff** (hide only the
+`rbr_l_arrow` group, re-shoot, diff — assumes no colour at all). Two methods, same conclusion:
+
+| pin | L | ink | bbox | non-head ink |
+|---|---|---|---|---|
+| S1 up | +4.59 | 1206 px | 45×**68** | **681 px** |
+| S4 **pre**-flip @9500 | +4.59 | 1243 px | 44×68 | 754 px |
+| S4 **post**-flip @13000 | −4.59 | **589 px** | 40×**21** | **73 px** |
+| S4 post-flip @16000 | −4.59 | 610 px | 40×21 | 77 px |
+| S5 up | +4.59 | 1160 px | 44×69 | 607 px |
+
+**down/up = 48.8 %** at identical |L|. Bbox height collapses **68 → 21 px**; non-head ("shaft-ish")
+ink collapses **681 → 73 px**. What survives is essentially the cone. Reproducible at two instants,
+so not a frozen-pin artifact; and **pre-flip is healthy (1243 px)**, so the state is fine when the
+vector points up — it is the reversed direction specifically. founder-proxy read 640 px / 40×20;
+this desk reads 589 px / 40×21 — **within 8 % across two independent methods.**
+
+The anchor is already sign-mirrored (`lArrow.position.set(0, sign * 0.22, 0)`, `:51885`), so this is
+**not** an anchor bug. The camera looks down on the apparatus, so the drum's *projected silhouette*
+extends further below the axis origin than 0.22 world. Clearing a body's **surface** is not clearing
+its **silhouette from the authored camera**.
+
+### The part that matters more than the defect: my verification could not have caught it
+
+Acceptance criterion 4 read *"S4: flipping the spin changes ≥ 300 px."* I measured **5518 px** and
+recorded a PASS at 18× margin. That number is large **precisely because the arrow vanishes** — a
+delta between "arrow present" and "arrow absent" is exactly as big as a delta between "arrow up" and
+"arrow down", and bigger than one between two legible poses. **The criterion cannot distinguish
+flipped from disappeared, and I did not ask whether it could.**
+
+This is a live recurrence of the desk's own scar — PASS 15's standing lesson, *"pair every delta
+assertion in a probe with an absolute floor, or the probe cannot tell 'it changed' from 'there is
+nothing there to change.'"* That row was filed from this desk after F-C7's luminance-delta probe was
+caught. It was then violated by an acceptance criterion written at cycle 0 and satisfied by a
+measurement taken here at cycle 1. founder-proxy owns writing it; **this desk owns verifying against
+it without checking its shape.** Three of the four criteria were absolute floors; the one that was a
+bare delta is the one that hid a blocking defect.
+
+**Standing correction for every future arrow/vector verification on this chapter:** measure the
+**absolute** ink at the sign or pose pointing **away from the camera**, and pair it with a ratio
+against the same magnitude in the favourable pose. Never accept a bare change-count.
+
+### Routing
+
+Owner `peter_parker:field3d_surgeon` **via Desk E** — a NEW `bug_class`, not a fold-in to the
+arrowhelper class (different root cause: solid-body silhouette occlusion, not collinearity with a
+thin line). Blocking. **No engine fix dispatched from this desk (guardrail 6).**
+
+Constraint recorded so it is not rediscovered: E7 deliberately declined `depthTest = false` for rbr
+(`:50434`) because a spinning apparatus with an always-on-top arrow riding a mass inverts depth every
+half turn. That reason is strong for the **pull** arrow and weak for the **axial L** arrow, which
+never leaves the rotation axis. A per-state camera change is **not** an option — Rule 32d home-pose
+continuity forbids S4 framing differently from S1–S3.
+
+Also confirmed as still-true and unblocked by this: E7 itself is correct. F-C8, F-C2 and F-C7 remain
+closed; the up-pointing vector is a real, legible object at 1206–1243 px in all four states that
+author it. **F-C9 is a second, distinct defect on the same primitive, not a regression of E7.**
+
+No DB write made from this desk.

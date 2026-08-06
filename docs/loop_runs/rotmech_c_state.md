@@ -14,6 +14,28 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 | 1 | `angular_momentum` | **Checkpoint A `DESIGN_OK` + physics block DONE.** Design at `skeleton_rev4.md`, physics at `physics_block.md`. Next stage is `json-author` — nothing blocks it. |
 | 2 | `rigid_body_rotation` | **DESIGN COMPLETE, still BLOCKED on 0c-3.** Checkpoint A `DESIGN_OK` (`skeleton_rev3.md`) + physics block done. Do NOT start json-author until 0c-3 merges AND the re-verification list in `founder_proxy_A_cycle2_final.md` §5.1 is re-run. Correction to the old premise below. |
 
+## 2026-08-06 — E7 landed and is VERIFIED. Checkpoint B fix cycle 1 = `FIX(engine)`, still blocked.
+
+**`angular_momentum` is NOT approved.** E7 (`14b2943`, confirmed on `origin/master`) fixed what it
+was dispatched for — **F-C8, F-C2 and F-C7 are all closed** and every one of the four acceptance
+floors was met with headroom (S1 ink 1247 px vs 400; contrast 8.79:1 vs 3; drawn **world** length
+slope 0.200000 exactly, intercept 1.5e-15, at 7/7 pins both signs). But Checkpoint B found a
+**second, distinct defect on the same primitive**: **P1-A / F-C9** — STATE_4's *reversed* L vector is
+swallowed by the drum's projected silhouette (589 px / 40×21 against 1206 px / 45×68 for the same
+|L| pointing up; non-head ink 681 → 73). Confirmed here independently by hide-and-diff. Routed
+`peter_parker:field3d_surgeon` via Desk E; **not dispatched from this desk** (guardrail 6).
+
+**The blocking lesson, recorded because it is this desk's to own:** acceptance criterion 4 was a bare
+delta ("S4 flip changes ≥ 300 px"). It passed at 5518 px *because the arrow vanishes* — a delta
+cannot tell "flipped" from "disappeared". That is a live recurrence of this desk's own PASS-15 rule.
+**Every future vector verification in this chapter measures ABSOLUTE ink at the pose pointing away
+from the camera**, plus a ratio against the favourable pose. `findings_c.md` PASS 18.
+
+Also settled 2026-08-06: **the two-timed-class fence is NON-CUMULATIVE (binds 0c-2 only)** — §5.1
+item 3 is CLOSED and `rigid_body_rotation`'s sealed design stands. **P1-2/F-C3 downgraded to
+ride-along** on measured evidence. **E5 confirmed** — zero `[PM_RBR_TOKEN]`, and that silence is
+evidence for the first time. Wave 2 still parked; json-author not started.
+
 ## next — BOTH CONCEPTS ARE NOW BLOCKED ON DESK E. No authoring work remains here.
 
 1. **`angular_momentum` — Checkpoint B returned `FIX(engine)`, BLOCKING** (2026-08-04,

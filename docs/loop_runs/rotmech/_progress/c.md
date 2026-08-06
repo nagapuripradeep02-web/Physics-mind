@@ -93,3 +93,57 @@
 - 2026-08-05 · **PASS 16 filed** — E7's back-compat surface. Desk C is E7's named verifier, and
   the E7 acceptance floors are confirmed identical across `founder_proxy_B.md` §6 and
   `FROZEN_SCOPE_0c3.md` §B. No engine fix dispatched (guardrail 6); no DB write.
+
+- 2026-08-06 · **E7 landed (`14b2943`) and is VERIFIED on `angular_momentum`.** Desk C is E7's named
+  verifier — Desk E's canaries do not exercise rbr, so it was LANDED but not VERIFIED until now.
+  Containment confirmed independently of `desk:sync` (which skips the current desk): `14b2943` is an
+  ancestor of `origin/master`. Merged master in (46 commits), verify chain green — `tsc` 0 ·
+  `check:renderer-syntax` OK · `validate:concepts` 150 PASS / 0 FAIL.
+- 2026-08-06 · **F-C8 closed, and F-C2 + F-C7 close with it.** All four acceptance floors met with
+  headroom: S1 ink **1247 px** in a 45×68 bbox (was **15 px / 11×6**, floor 400 → 3.1×) · contrast
+  **8.79:1** (floor 3) · S4 flip **5518 px** (floor 300 → 18×) · drawn **world** length slope
+  **0.200000** exactly with intercept **1.5e-15**, `len/|L|` = 0.20000 at 7/7 pins across L =
+  1.53…6.12 and both signs. Separability is by construction on BOTH consumers (L shaft 0.090 ÷ axle
+  0.045 = 2.0; pull shaft 0.080 ÷ rod 0.040 = 2.0) — the C-6-merges-into-E7 ruling was honoured.
+- 2026-08-06 · **Founder ruling applied — acceptance criterion #2 amended.** The pixel ratio reads
+  6.13, not 5.71: perspective foreshortening, not a defect. Accept on world length. `founder_proxy_B.md`
+  §6 amended; criteria 1/3/4 stay pixel measurements.
+- 2026-08-06 · **Founder ruling applied — the two-timed-class fence is NON-CUMULATIVE, binds 0c-2
+  only.** `rigid_body_rotation`'s sealed design is NOT invalidated; the RE-SCOPE branch is dead.
+  §5.1 item 3 — the last item that could have forced a re-scope — is CLOSED. Wave 2 stays parked on
+  the remaining engine rows; json-author not started.
+- 2026-08-06 · **P1-2 / F-C3 recommended DOWNGRADE to ride-along, on measured evidence.** Over a
+  10-sample real `input`-event drag: readouts still blank 10/10 (E6 hasn't landed) but the arrow is
+  drawn 10/10 at exactly 0.20·|L|, 0.612 → 1.224 world. Its own routing note set that condition.
+- 2026-08-06 · **⚠ The `ENGINE_LANDING_NOTICE` §4 md5 remedy is UNSOUND here.** PNG IDAT compression
+  is nondeterministic while pixels are not — two identical-build runs gave byte-different,
+  pixel-identical frames (0/921600). A dead scene would still emit all-distinct hashes, so the check
+  can only return all-clear. Re-ran at pixel level: zero identical adjacent pairs across all 5 states.
+  Filed as `findings_c.md` **PASS 17** with a recommendation to amend the scar row's prevention rule.
+- 2026-08-06 · **B-11 tested directly:** all five `__frozen` frames pixel-identical across two runs,
+  so frozen judgments this cycle are sound. But `[H2]` was **Skipped — no approved baseline**, so
+  this concept carries **no A/B regression signal at all**; verdicts rest on the frames plus geometry.
+- 2026-08-06 · E5 confirmation: **zero `[PM_RBR_TOKEN]` warnings, zero console errors** — every
+  `readouts` token this concept authors is a known row. Unfalsifiable before E5.
+- 2026-08-06 · **Checkpoint B fix cycle 1 → `FIX(engine)`, blocking. NOT approved.** New finding
+  **P1-A / F-C9**: STATE_4's reversed L vector is swallowed by the drum's projected silhouette.
+  **Independently confirmed here by hide-and-diff** (founder-proxy used a hue gate; 589 px vs its
+  640 px — within 8 %, two methods): at identical |L| = 4.59, UP reads 1206 px / 45×68 with 681 px of
+  non-head ink, DOWN reads **589 px / 40×21 with 73 px** — ratio **48.8 %**, the shaft gone and only
+  the cone surviving. Reproducible at t=13000 and t=16000; **pre-flip is healthy (1243 px)**, so it
+  is the reversed direction specifically, and the anchor is already sign-mirrored (`:51885`) — the
+  cause is silhouette, not anchor. Routed `peter_parker:field3d_surgeon` via Desk E as a NEW
+  `bug_class`; **not dispatched from here** (guardrail 6).
+- 2026-08-06 · **Lesson owned: acceptance criterion 4 could not have caught it, and I verified
+  against it without checking its shape.** "S4 flip changes ≥ 300 px" is a bare delta; my 5518 px
+  passed *because* the arrow vanishes. That is a live recurrence of this desk's own PASS-15 rule
+  (pair every delta with an absolute floor) — filed here after the F-C7 probe was caught, then
+  violated by a criterion written at cycle 0 and satisfied by a measurement taken here at cycle 1.
+  **Standing correction for every future vector verification in this chapter: measure ABSOLUTE ink
+  at the pose pointing away from the camera, plus a ratio against the favourable pose. Never accept
+  a bare change-count.** Filed as `findings_c.md` PASS 18; §6 criterion 4 marked superseded.
+- 2026-08-06 · E7 itself stands: F-C8/F-C2/F-C7 remain closed, the up-pointing vector is 1206–1243 px
+  in all four states that author it. **F-C9 is a second, distinct defect on the same primitive, not a
+  regression of E7.** P1-2/F-C3 downgrade to ride-along accepted by founder-proxy. Three authoring
+  findings (P2-1, P2-2, P3) remain open and ride the next cycle, plus a new P2-A (the vector is as
+  wide as it is long at small |L|). Two fix cycles remain before ESCALATE.
