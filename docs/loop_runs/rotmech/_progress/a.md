@@ -534,6 +534,97 @@ before it scored the dimension. That is the single most useful structural note o
 
 ---
 
+## 2026-08-06 (later) · A-8 resolved · narration audit · A-26 measured
+
+### ⚠ SESSION-START ORDER — SYNC → REBUILD → RE-SEED → EYE. Every session. No exceptions.
+
+Established by this desk's own failure: last session I rebuilt the review site and *then* merged
+master, so the bundle served to quality-auditor **and** founder-proxy was pre-E7 (82 × `#90A4AE`,
+**zero** `rbrMakeThickVector`). founder-proxy burned five probes on a phantom regression that was
+the old renderer faithfully reproducing the very defects it was convened to verify as fixed. A
+stale bundle makes one defect read as both fixed and unfixed.
+**Check provenance, don't assume it:**
+`grep -c rbrMakeThickVector review-site/<id>/sim.html` — 0 means the bundle predates E7.
+*(This session: `origin/master` was already an ancestor of HEAD — the "26 behind" predated last
+session's merge — so sync was a no-op, verified with `merge-base --is-ancestor` rather than trusted.)*
+
+### 1 · A-8 RESOLVED — by authoring, not by contradiction
+
+The contradiction dissolved on inspection: **E5 gave rbr the ring-gated control form.**
+`controls_visible?: Array<string | { id, min_ring }>` now sits at `field_3d_renderer.ts:1139`,
+inside `rigid_body_rotation` (opens at `:990`), with a live normaliser `rbrControlList` (`:50898`)
+consumed at two call sites — the bonding_scene shape reused verbatim, bare strings normalising to
+`core` so every previously authored array stays byte-identical.
+
+**So founder-proxy's Checkpoint A sign-off was not wrong — it approved a design the engine could not
+yet express, and E5 closed the gap.** A-8's own text ("rbr's token is a bare string union at
+`:1051`") was true when filed and is now false. Authored per skeleton §3:
+S8 → `r/m/omega0/tau_brake` **core** + `spin_dir` **extended**; S6 → `spin_dir` **extended**.
+`min_ring` now occurs **6 times** where it occurred zero. **This item no longer travels to
+Checkpoint C as a carry.**
+
+### 2 · Narration audit — two unsupported numbers, both PROPAGATED, both fixed
+
+Audited every rendered string against the pixels by dumping **every on-canvas surface** from the
+live engine at five pinned instants per state (HUD, formula, KE bar, sliders, caption, repin badge,
+and the 3D sprite path) and diffing it against every number each sentence asserts.
+
+| # | Sentence | Claimed | On canvas at that instant | Fix |
+|---|---|---|---|---|
+| N-1 | `s5_1` "…the rim at **zero point five five** metres" | 0.55 m | **nothing** — S5 shows only I/ω/L/KE, the formula and `τ = 0.92 N·m`; the rim label is the valueless sprite `R_drum` | number removed from narration |
+| N-2 | `s2_4` "the spin speeds up **four point six four** times" | 4.64 | **nothing** — a derived ratio, no instrument | reworded to the two values that ARE displayed |
+
+**Both had propagated, exactly like Desk B's N2.** "four point six four" also sat in
+`misconception_watch[0].visual_counter`; "0.55 m" also sat in the S5 `scene_composition`
+annotation. **Fixing only the narration would have left the wrong instrument-free claim in the
+metadata** — which is precisely how Desk B's defect survived.
+
+- `s2_4` → *"Moment of inertia I falls, so angular speed omega rises: one point five oh to six point
+  nine five."* Both endpoints are the live ω readout (1.50 at entry, 6.95 at the hold), so the
+  claim is now fully instrumented — and it is **19 words, identical to the original**, so STATE_2
+  stays at exactly 55, the Rule-32 ceiling.
+- `s5_1` → *"A brake pad presses onto the turntable's rim."* The teaching that carried the number —
+  `s5_2` "the masses stay outside this braked radius" — is retained and is geometrically visible.
+- `visual_counter` → now quotes "the angular speed readout climbs from 1.50 to 6.95 rad/s".
+- The engine gap is filed as **A-27**: the rim line renders without its value, so the number can
+  return once an instrument exists.
+
+**Clean on every other axis:** no internal units anywhere (no `wu`, no world units), no ms timings,
+no engine verbs (`ramp`/`sweep`/`phase`/`glow`/`focal`/`at_ms`) in any rendered string; every other
+asserted number verified present on canvas at its instant — 3.44 J and 15.96 J on the KE bar, 1.50
+on S3's prediction chip, 4.59→2.29 and 0.75 on S5's HUD, 0.00 on S7's `dL/dt` row (revealed at
+4000). Rule 41 clean: the two similes (`spinning stool`, `diver`) are the Rule-35 universal anchors,
+not idiom; forces are never personified. Word budgets after the edits: 41/55/55/54/44/44/53/0 — all
+inside 25–55, explore at 0.
+
+**A phantom I nearly filed:** the probe's `innerText` read S3's HUD as `ω = 6.95 rad/spredicted ω =
+1.50`, which looks like a jammed overlay. Source says otherwise — the chip is a `<span>` with
+`margin-left:9px` *inside* the row (`:51209`), so it renders spaced. The concatenation is a
+text-extraction artifact. **Checked the source before filing.**
+
+### 3 · A-26 filed on measured evidence — deliberately not the instrument that produced A-23
+
+Re-measured on the real engine at **100 ms (42 samples/revolution)** rather than inheriting
+founder-proxy's numbers, because A-23 died of 1 Hz sampling on a 4.19 s rotation. Through the
+500 ms blank the rod keeps turning forward at the unchanged old ω (Δθ = +0.144/100 ms across
+4000–4400 while the badge shows and the HUD reads em-dashes), then the sign flips at 4500 =
+cut + blank. Position continuous, derivative step-reversed. Full table and source basis in
+`findings_a.md` A-26.
+
+### Verification
+
+tsc 0 · validate **150 PASS / 0 FAIL** · `check-layout-overlap` 0 collisions across 8 states ·
+re-seeded scoped · THE EYE **35/35**, Motion map `true` ×8 · review site rebuilt AFTER the merge
+(`rbrMakeThickVector` ×5 in the served bundle) · zero console errors, zero `[PM_RBR_TOKEN]` warnings.
+
+### Still blocking the seal
+
+**B-1** only — S4's KE tick caption clipping at canvas x=0, a recurrence of the FIXED scar
+`graph_marker_label_clipped`, routed to `peter_parker:field3d_surgeon`. Everything else from
+Checkpoint B is fixed or ride-along.
+
+---
+
 ## STANDING ASSIGNMENT — Desk A is Desk E's rbr verification partner for E4/E5
 
 **Assigned 2026-08-05.** E4 and E5 are **signed torque** and **the θ / α readout rows**.

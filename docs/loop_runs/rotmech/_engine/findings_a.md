@@ -673,6 +673,32 @@ copy-paste into the next seven rotmech concepts.
 **Suggested affordance:** allow `tts_sentences: []` when `advance_mode === 'interaction_complete'`.
 **Owner:** office, on master, per Rule 40 — never a chapter-branch edit.
 
+## A-27 · The rim reference line renders no VALUE — narration had to drop a correct number
+
+**Found by Desk A's narration audit, 2026-08-06.** Extends **A-10** (which covers the same sprite
+being ASCII); this is the *other* half. Owner `peter_parker:field3d_surgeon`.
+
+skeleton_rev3 §S5 specifies "the rim radius is drawn as **its own labelled reference line**,
+visually distinct from the r line". The line is drawn (`show_drum_line: true`) — but its label is
+the sprite `rbrMakeLabel("R_drum", …)` (`:50397`), which carries **no number**. Every on-canvas
+string in STATE_5, dumped from the live engine at five pinned instants, is:
+
+```
+HUD[I = 3.06 kg·m² | ω = 1.50 rad/s | L = 4.59 kg·m²/s | KE = 3.44 J]
+FORMULA[τₑₓₜ ≠ 0 ⇒ L changes]   SLIDERS[τ = 0.92 N·m]
+```
+
+**0.55 appears nowhere.** So narration asserting "…the rim at zero point five five metres" quoted a
+number no instrument shows — Rule 33d, and the same *class* as Desk B's N2 (a spoken number the
+canvas cannot confirm), though here the value was *correct* rather than wrong.
+
+**Concept-side action taken:** the number was removed from narration and from the S5 annotation, so
+nothing is asserted that a teacher cannot point at. The geometric claim that carries the teaching —
+"the masses stay outside this braked radius" — is retained and IS visible (pad at 0.55 inside masses
+at 0.80).
+**Engine action wanted:** give the rim label its value (`R = 0.55 m`, and per A-10 a reader-facing
+word rather than `R_drum`). Then the number can return to narration with an instrument behind it.
+
 ## A-25 · The L arrowhead is wider than it is long — it reads as a lampshade, not an arrow
 
 **Both gates found this independently on the post-E7 walk (2026-08-06) and RATED IT DIFFERENTLY —
@@ -761,14 +787,31 @@ buy arrow separation by lowering saturation, not luminance headroom.
 ## A-26 · The restart is marked only in chrome while the body glides continuously through it
 
 **founder-proxy's B-4, 2026-08-06. P2, ride-along. Owner `peter_parker:field3d_surgeon`.**
-Source-verified, so it is build-independent (unlike anything read off the stale review bundle):
+**Re-measured independently by Desk A** (`src/scripts/_scratch_rbr_theta_probe.ts`) rather than
+carried over from the report — and deliberately on a **100 ms grid (42 samples per revolution)**,
+because the withdrawn A-23 was produced by 1 Hz sampling on a 4.19 s rotation (4.2 samples/rev,
+86° per frame on a 2-fold-symmetric rod), which aliases a steady spin into stillness. Same subject,
+sound instrument.
 
-`rbrSignAt` flips only at `rbrEffTime(1)` = cut + blank = 4500 ms, and **nothing resets θ** —
-`rbrGridWalk` integrates straight through:
+**Source basis first** (read, not inferred, so it is build-independent — unlike anything read off
+the stale review bundle): `rbrThetaAt(tMs) = g.th + g.omega·g.rem` off `rbrGridWalk`, a continuous
+integration (`:50821`); `rbrThetaReset` — which would seed `_th = theta0` — is called at **state
+apply, never at a restart cut** (`:50829`); `rbrSignAt` flips on `rbrRestartCount` parity
+(`:50600`) and `rbrEffTime(k) = rbrCutTime(k) + blankMs` (`:50581`).
 
-```
-θ(4400) = 6.600    θ(4500) = 6.750    θ(4600) = 6.636
-```
+**Measured on the real engine, STATE_6:**
+
+| t (ms) | θ (rad) | Δθ per 100 ms | "restarting" badge | HUD |
+|---|---|---|---|---|
+| 3800 → 3900 | 5.688 → 5.832 | **+0.144** | — | ω = 1.50 |
+| **4000 → 4400** | 6.000 → 6.576 | **+0.144 — unchanged** | **VISIBLE** | **`I = —  ω = —  L = —  KE = —`** |
+| 4500 | 6.744 | +0.168 | — | ω = −1.50 |
+| 4600 → 5400 | 6.648 → 5.448 | **−0.144** | — | ω = −1.50 |
+
+**The blank window is t = 4000–4400 and the rod turns forward through all of it at the unchanged
+old ω.** The sign flips at 4500 = cut(4000) + blank(500), exactly as `rbrEffTime` predicts.
+(founder-proxy independently measured 6.600 / 6.750 / 6.636 at 4400/4500/4600; Desk A gets
+6.576 / 6.744 / 6.648 — grid-quantisation difference, identical conclusion.)
 
 θ is **continuous**; only its derivative step-reverses. So **during the 500 ms "restarting" blank the
 rod keeps spinning forward at the old ω, then instantaneously reverses.** The apparatus never stops,

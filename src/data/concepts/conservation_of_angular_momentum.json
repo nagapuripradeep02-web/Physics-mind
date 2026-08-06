@@ -442,14 +442,14 @@
             { "id": "s2_1", "text_en": "An inward pull force acts on each mass." },
             { "id": "s2_2", "text_en": "The masses slide in toward the axle." },
             { "id": "s2_3", "text_en": "No external torque acts, so angular momentum L cannot change." },
-            { "id": "s2_4", "text_en": "Moment of inertia I falls, so angular speed omega rises: the spin speeds up four point six four times." },
+            { "id": "s2_4", "text_en": "Moment of inertia I falls, so angular speed omega rises: one point five oh to six point nine five." },
             { "id": "s2_5", "text_en": "Like a person on a spinning stool, pulling their arms in." }
           ]
         },
         "misconception_watch": [
           {
             "belief": "A spin rate cannot change unless something pushes it or a motor acts on it.",
-            "visual_counter": "Nothing new touches the turntable, yet the masses slide in under the visible inward-pull arrows and the spin speeds up four point six four times, while angular momentum L never moves.",
+            "visual_counter": "Nothing new touches the turntable, yet the masses slide in under the visible inward-pull arrows and the angular speed readout climbs from 1.50 to 6.95 rad/s, while angular momentum L never moves.",
             "one_line_fix": "No external torque keeps angular momentum L fixed, not angular speed omega — change the moment of inertia I and omega must change with it, because the inward pull points straight at the axle and exerts no torque about it."
           }
         ]
@@ -561,7 +561,7 @@
             "type": "annotation",
             "id": "rbr_s5_head",
             "position": { "x": 380, "y": 60 },
-            "text": "A brake pad presses onto the turntable's rim at 0.55 m",
+            "text": "A brake pad presses onto the turntable's rim",
             "color": "#FFF176"
           },
           {
@@ -581,7 +581,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "A brake pad presses onto the turntable's rim at zero point five five metres." },
+            { "id": "s5_1", "text_en": "A brake pad presses onto the turntable's rim." },
             { "id": "s5_2", "text_en": "The masses stay outside this braked radius." },
             { "id": "s5_3", "text_en": "An external torque now acts: L falls from four point five nine to two point two nine." },
             { "id": "s5_4", "text_en": "Angular speed falls to zero point seven five as the pad releases." }
@@ -947,7 +947,7 @@
           "restart": { "at_ms": 4000, "every_ms": 6500, "flip_spin": true },
           "repin_cue": { "blank_ms": 500 },
           "readouts": ["I", "omega", "L", "KE"],
-          "controls_visible": ["spin_dir"],
+          "controls_visible": [{ "id": "spin_dir", "min_ring": "extended" }],
           "phases": [
             { "id": "l_start", "at_ms": 0, "until_ms": 1200, "glow_focal": "rbr_l_arrow" },
             { "id": "hand_curl_a", "at_ms": 1200, "until_ms": 3500, "glow_focal": "rbr_grip_hand" },
@@ -1025,7 +1025,13 @@
           "trusted_drag_seizes": true,
           "readouts": ["I", "omega", "L", "KE"],
           "formula": "L = Iω",
-          "controls_visible": ["r", "m", "omega0", "tau_brake", "spin_dir"]
+          "controls_visible": [
+            { "id": "r", "min_ring": "core" },
+            { "id": "m", "min_ring": "core" },
+            { "id": "omega0", "min_ring": "core" },
+            { "id": "tau_brake", "min_ring": "core" },
+            { "id": "spin_dir", "min_ring": "extended" }
+          ]
         }
       }
     }
