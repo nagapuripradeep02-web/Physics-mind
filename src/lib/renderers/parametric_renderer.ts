@@ -1029,6 +1029,19 @@ function PM_resolveArrowPoint(literal, exprStr, vars) {
 // a derived field directly instead of only raw slider variables. Without this merge,
 // PM_safeEval silently returns NaN for any expr naming a derived-only field and the
 // caller's isFinite() guard falls back to 0 (an invisible zero-length arrow).
+//
+// D11 (AMENDMENT 2 / F6 supersession, CP-C2) — ALSO merges PM_riemannPublish,
+// deliberately kept in lockstep with PM_liveExprVars' own merge (same map,
+// same last-wins order, same hasOwnProperty guard). This function and
+// PM_liveExprVars are otherwise byte-for-byte identical, and PM_liveExprVars'
+// own header (immediately below) states why that duplication is dangerous
+// rather than incidental: "TEXT bindings and POSITION bindings read one
+// scope instead of two copies that merely happen to agree — a state can't
+// render a number and place its glyph from different values." A
+// vector/force_arrow/angle_arc positioned by magnitude_expr off a published
+// sum_var must resolve the SAME value a label's text_expr prints — letting
+// this function's copy of the merge drop out of sync would be exactly the
+// failure that comment already exists to prevent, recreated one call away.
 function PM_liveVarsWithDerived() {
   var baseVars = (PM_physics && PM_physics.variables)
     || (PM_config && PM_config.default_variables)
@@ -1037,6 +1050,7 @@ function PM_liveVarsWithDerived() {
   var vars = {};
   for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
   for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  for (var pk in PM_riemannPublish) if (Object.prototype.hasOwnProperty.call(PM_riemannPublish, pk)) vars[pk] = PM_riemannPublish[pk];
   return vars;
 }
 
@@ -1059,6 +1073,12 @@ function PM_liveExprVars() {
   var vars = {};
   for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
   for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  // D11 (AMENDMENT 2 / F6 supersession, CP-C2) — merge the frame-scoped
+  // riemann_bars publish map LAST (see PM_riemannPublish's own declaration).
+  // It lives outside PM_physics specifically so a mid-frame PM_physics
+  // reassignment (drawPlotPoint's drag branch, PM_applyChoreography) can
+  // never erase a value riemann_bars already published this frame.
+  for (var pk in PM_riemannPublish) if (Object.prototype.hasOwnProperty.call(PM_riemannPublish, pk)) vars[pk] = PM_riemannPublish[pk];
   return vars;
 }
 
@@ -3221,10 +3241,25 @@ function drawPlotPoint(spec) {
 // integral, a genuinely different — and wrong — quantity for this family).
 //
 // Colour (color_positive/color_negative), opacity and the declared
-// composition order against riemann_bars are CP-C2 scope
-// (MATHEMATICS_PHASE0_CARTESIAN_PLANE.md 0c split, gate section 14) — this
-// function returns per-segment SIGN but makes no colour decision at all;
-// the drawing wrapper below fills every segment in ONE authored colour.
+// composition order against riemann_bars are CP-C2 (below); this function
+// still makes no colour decision — it returns per-segment SIGN and the
+// drawing wrapper below reads it to pick color_positive/color_negative.
+//
+// CP-C2 reconciliation (a) — NON-FINITE SAMPLE RULE, unified with
+// riemann_bars. CP-C1 had this function clamp a non-finite sample to
+// 'base' (silently fabricating a y=0 point the function never produced
+// there) while riemann_bars dropped a non-finite bar entirely — two
+// primitives in the SAME family answering "what do we do with a
+// singularity" two different ways. Resolved toward function_plot's OWN D4
+// rule (PM_functionPlotSample: "ends the current polyline and starts a new
+// one... never drawn, never clamped") rather than riemann_bars', because D4
+// is the family's pre-existing, doc-cited mathematics-correctness
+// requirement — clamping to baseline is exactly the fabrication D4 forbids,
+// so region_fill's old behaviour was the outlier, not riemann_bars'. A
+// non-finite sample now BREAKS the current run (never joined across it,
+// never assigned a fake y) and integration/sign-splitting resumes fresh at
+// the next finite sample — riemann_bars is unchanged (it already dropped
+// the bar outright, draws and sums nothing for it).
 function PM_regionFillCompute(yExpr, domainMin, domainMax, baseline, vars, signed) {
   var out = { segments: [], totalSignedArea: 0, positiveArea: 0, negativeArea: 0 };
   if (!isFinite(domainMin) || !isFinite(domainMax) || !(domainMax > domainMin)) return out;
@@ -3233,16 +3268,22 @@ function PM_regionFillCompute(yExpr, domainMin, domainMax, baseline, vars, signe
   var scopeVars = {};
   for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) scopeVars[k] = vars[k];
 
-  var pts = [];
+  // D4 parity — build RUNS of consecutive finite samples; a non-finite
+  // sample ends the current run (if it has >1 point) and starts a new one.
+  var runs = [];
+  var curRun = [];
   for (var i = 0; i <= n; i++) {
     var x = domainMin + (domainMax - domainMin) * (i / n);
     scopeVars.x = x;
     var y = PM_safeEval(yExpr, scopeVars);
-    // A non-finite sample contributes zero HEIGHT (not zero area — trapArea
-    // still integrates it against 'base') rather than poisoning the whole
-    // integral with a NaN that would propagate through every downstream sum.
-    pts.push({ x: x, y: isFinite(y) ? y : base });
+    if (!isFinite(y)) {
+      if (curRun.length > 1) runs.push(curRun);
+      curRun = [];
+      continue;
+    }
+    curRun.push({ x: x, y: y });
   }
+  if (curRun.length > 1) runs.push(curRun);
 
   function trapArea(seg) {
     var a = 0;
@@ -3252,35 +3293,40 @@ function PM_regionFillCompute(yExpr, domainMin, domainMax, baseline, vars, signe
     return a;
   }
 
-  if (!signed) {
-    var wholeArea = trapArea(pts);
-    out.segments.push({ points: pts, sign: 0, area: wholeArea });
-    out.totalSignedArea = wholeArea;
-    return out;
-  }
-
-  var cur = [pts[0]];
-  var curSign = (pts[0].y >= base) ? 1 : -1;
-  for (var qi = 1; qi < pts.length; qi++) {
-    var prev = pts[qi - 1], next = pts[qi];
-    var nextSign = (next.y >= base) ? 1 : -1;
-    if (nextSign !== curSign) {
-      var t = (base - prev.y) / (next.y - prev.y);
-      var xCross = prev.x + t * (next.x - prev.x);
-      var crossPt = { x: xCross, y: base };
-      cur.push(crossPt);
-      var segA = trapArea(cur);
-      out.segments.push({ points: cur, sign: curSign, area: segA });
-      if (curSign > 0) out.positiveArea += segA; else out.negativeArea += segA;
-      cur = [crossPt];
-      curSign = nextSign;
+  for (var ri = 0; ri < runs.length; ri++) {
+    var pts = runs[ri];
+    if (!signed) {
+      var wholeArea = trapArea(pts);
+      out.segments.push({ points: pts, sign: 0, area: wholeArea });
+      out.totalSignedArea += wholeArea;
+      continue;
     }
-    cur.push(next);
+    var cur = [pts[0]];
+    var curSign = (pts[0].y >= base) ? 1 : -1;
+    for (var qi = 1; qi < pts.length; qi++) {
+      var prev = pts[qi - 1], next = pts[qi];
+      var nextSign = (next.y >= base) ? 1 : -1;
+      if (nextSign !== curSign) {
+        var t = (base - prev.y) / (next.y - prev.y);
+        var xCross = prev.x + t * (next.x - prev.x);
+        var crossPt = { x: xCross, y: base };
+        cur.push(crossPt);
+        var segA = trapArea(cur);
+        out.segments.push({ points: cur, sign: curSign, area: segA });
+        if (curSign > 0) out.positiveArea += segA; else out.negativeArea += segA;
+        cur = [crossPt];
+        curSign = nextSign;
+      }
+      cur.push(next);
+    }
+    var lastA = trapArea(cur);
+    out.segments.push({ points: cur, sign: curSign, area: lastA });
+    if (curSign > 0) out.positiveArea += lastA; else out.negativeArea += lastA;
   }
-  var lastA = trapArea(cur);
-  out.segments.push({ points: cur, sign: curSign, area: lastA });
-  if (curSign > 0) out.positiveArea += lastA; else out.negativeArea += lastA;
-  out.totalSignedArea = out.positiveArea + out.negativeArea;
+  // Only the SIGNED path accumulates via positiveArea/negativeArea; the
+  // unsigned path already summed totalSignedArea inline above and must not
+  // be overwritten by two variables it never touched.
+  if (signed) out.totalSignedArea = out.positiveArea + out.negativeArea;
   return out;
 }
 
@@ -3304,20 +3350,31 @@ function drawRegionFill(spec) {
   var computed = PM_regionFillCompute(spec.y_expr, domainFrom, domainTo, baseline, vars, signed);
   if (computed.segments.length === 0) return;
 
-  // ONE authored colour, fixed translucency — signed colour bands, opacity
-  // and draw-order-vs-riemann_bars composition are CP-C2 scope (see header).
-  var rgb = PM_hexToRgb(spec.color || '#22D3EE');
-  var alpha255 = 255 * gate.alpha * emph.alphaMul * 0.28;
+  // CP-C2 — real colour + opacity semantics, replacing CP-C1's provisional
+  // one-colour / hardcoded-0.28-alpha stub (its contract carried no plain
+  // 'color' field at all for the unsigned case). 'color' is the UNSIGNED
+  // colour (also the fallback if signed but color_positive/negative are
+  // omitted); color_positive/color_negative — field NAMES copied VERBATIM
+  // from the doc's own contract (Delta 8's "one concept, one name" point) —
+  // colour each SIGNED segment by its own computed .sign. opacity defaults
+  // to 0.28 (unchanged visual default from CP-C1's hardcoded constant).
+  var baseColor = spec.color || '#22D3EE';
+  var posColor = spec.color_positive || baseColor;
+  var negColor = spec.color_negative || '#F87171';
+  var opacity = (typeof spec.opacity === 'number') ? spec.opacity : 0.28;
   push();
   if (emph.glowPx > 0) {
-    drawingContext.shadowColor = spec.color || '#22D3EE';
+    drawingContext.shadowColor = baseColor;
     drawingContext.shadowBlur = emph.glowPx;
   }
-  noStroke();
-  fill(rgb[0], rgb[1], rgb[2], alpha255);
   for (var si = 0; si < computed.segments.length; si++) {
-    var poly = computed.segments[si].points;
+    var seg = computed.segments[si];
+    var poly = seg.points;
     if (poly.length < 2) continue;
+    var rgb = PM_hexToRgb(signed ? (seg.sign < 0 ? negColor : posColor) : baseColor);
+    var alpha255 = 255 * gate.alpha * emph.alphaMul * opacity;
+    noStroke();
+    fill(rgb[0], rgb[1], rgb[2], alpha255);
     var pxStart = PM_planeResolve(spec, poly[0].x, baseline);
     var pxEnd = PM_planeResolve(spec, poly[poly.length - 1].x, baseline);
     beginShape();
@@ -3336,8 +3393,9 @@ function drawRegionFill(spec) {
   pop();
 }
 
-// ── riemann_bars (CP-C1, F16 geometry — bug_class:
-// pcpl_cannot_shade_or_partition_the_region_under_a_curve) ─────────────────
+// ── riemann_bars (CP-C1 geometry + CP-C2 composition — bug_class:
+// pcpl_cannot_shade_or_partition_the_region_under_a_curve /
+// pcpl_riemann_bars_composition_and_draw_order_undeclared) ─────────────────
 // mode is a CLOSED four-value enum: 'left' | 'right' | 'midpoint' |
 // 'trapezoid'. AMENDMENT 1 to MATHEMATICS_PHASE0_CARTESIAN_PLANE.md keeps
 // 'trapezoid' (0b proposed dropping it; the gate table asserts
@@ -3354,14 +3412,18 @@ function drawRegionFill(spec) {
 //
 // D11 — the primitive computes the sum ONCE, inside THIS loop, and
 // PUBLISHES it (drawRiemannBars below writes sum_var/bars_drawn_var into
-// PM_physics.derived); it draws no text itself. See the scope-map + pass-
-// order note on drawRiemannBars.
+// PM_riemannPublish, AMENDMENT 2 / F6 supersession — see that map's own
+// declaration for why the target moved off PM_physics.derived); it draws no
+// text itself. See the pass-order note on drawRiemannBars.
 //
-// Colour, signed colour, render ('filled'|'outline'), opacity, the declared
-// draw order against region_fill, show_partition and reveal_stagger_ms are
-// CP-C2 scope (0c split, gate sections 13-14) — this function reads NONE of
-// those fields; every bar is a plain rectangle (or, in 'trapezoid' mode, a
-// 4-vertex trapezoid) in one authored colour, fully opaque.
+// CP-C2 reads (but this function still makes no colour/render decision —
+// see drawRiemannBars): colour incl. signed colour, render
+// ('filled'|'outline'), opacity, the declared draw order against
+// region_fill, show_partition, reveal_stagger_ms. Every bar carries its own
+// TRUE original index 'i' (added for CP-C2) so reveal_stagger_ms — and
+// show_partition's line-per-bar gating — stay correct even if an earlier
+// bar was dropped for being non-finite (the array position among SURVIVING
+// bars is not always the same as the bar's true index among all n).
 function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsDrawn, vars) {
   var out = { bars: [], sum: 0, n: 0, barsDrawn: 0 };
   if (!isFinite(domainFrom) || !isFinite(domainTo) || !(domainTo > domainFrom)) return out;
@@ -3396,18 +3458,38 @@ function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsD
     }
     // A non-finite sample (e.g. a singularity inside this bar) contributes
     // NOTHING to the sum and draws NOTHING for this one bar, rather than
-    // poisoning the whole published sum with a NaN. D7 leaves this case
-    // undefined; documented judgment call (see dispatch report).
+    // poisoning the whole published sum with a NaN. CP-C2 reconciliation
+    // (b) — this is the rule region_fill was made to MATCH (see
+    // PM_regionFillCompute's own header); unchanged here.
     var ok = isFinite(area) && isFinite(yTopLeft) && isFinite(yTopRight);
     if (ok) sum += area;
     if (ok && i < barsDrawnCount) {
-      out.bars.push({ xL: xL, xR: xR, yTopLeft: yTopLeft, yTopRight: yTopRight, area: area });
+      out.bars.push({ i: i, xL: xL, xR: xR, yTopLeft: yTopLeft, yTopRight: yTopRight, area: area });
     }
   }
   out.sum = sum;
   out.n = n;
   out.barsDrawn = barsDrawnCount;
   return out;
+}
+
+// D7 — PURE function of the clock: bar index barIndex's own reveal gate opens
+// at appearAtMs + barIndex*staggerMs (never a frame counter, never
+// accumulated across draw() calls), so a SET_TIME_FREEZE re-pin to the SAME
+// nowMs reproduces byte-identical bar visibility every time (H2 baselines).
+// animateInMs (when authored) ramps that ONE bar's alpha 0->1 over the same
+// window PM_animationGate uses for a whole primitive; omitted (falsy) means
+// each bar snaps straight to fully visible the instant its own gate opens.
+function PM_riemannBarReveal(barIndex, appearAtMs, staggerMs, animateInMs, nowMs) {
+  var appear = (typeof appearAtMs === 'number' ? appearAtMs : 0)
+    + barIndex * (typeof staggerMs === 'number' ? staggerMs : 0);
+  if (nowMs < appear) return { visible: false, alpha: 0 };
+  var animMs = (typeof animateInMs === 'number') ? animateInMs : 0;
+  if (animMs <= 0) return { visible: true, alpha: 1 };
+  var progress = (nowMs - appear) / animMs;
+  if (progress < 0) progress = 0;
+  if (progress > 1) progress = 1;
+  return { visible: true, alpha: progress };
 }
 
 function drawRiemannBars(spec) {
@@ -3428,35 +3510,58 @@ function drawRiemannBars(spec) {
   var nRaw = PM_safeEval(spec.n_expr, vars);
   var computed = PM_riemannBarsCompute(spec.y_expr, domainFrom, domainTo, nRaw, spec.mode, spec.max_bars_drawn, vars);
 
-  // D11 — PUBLISH into PM_physics.derived, the ONLY map PM_liveExprVars() /
-  // PM_interpolate() read that survives a frame (PM_applyChoreography's own
-  // reassignment above, and the computePhysics() echo net far above, both
-  // only ever touch keys THEY produced — a value published anywhere else is
-  // erased before any label can read it, @1065/@1054/@732-741). Runs
-  // UNCONDITIONALLY, even when there is nothing to draw this frame, so a
-  // label's {sum_var} is never one frame stale relative to the geometry.
+  // D11 (AMENDMENT 2 / F6 supersession, CP-C2) — PUBLISH into
+  // PM_riemannPublish, a frame-scoped map OUTSIDE PM_physics that survives
+  // ANY mid-frame PM_physics reassignment (see that map's own declaration).
+  // Runs UNCONDITIONALLY, even when there is nothing to draw this frame, so
+  // a label's {sum_var} is never one frame stale relative to the geometry.
   // PASS-ORDER GUARANTEE (asserted in the dispatch report): this function
   // runs inside Pass 0.3, which completes in full before Pass 3 (labels)
-  // starts — publisher-before-consumer holds by pass order, every frame.
-  if (PM_physics) {
-    if (!PM_physics.derived) PM_physics.derived = {};
-    if (typeof spec.sum_var === 'string') PM_physics.derived[spec.sum_var] = computed.sum;
-    if (typeof spec.bars_drawn_var === 'string') PM_physics.derived[spec.bars_drawn_var] = computed.barsDrawn;
-  }
+  // starts — publisher-before-consumer holds by pass order, every frame,
+  // REGARDLESS of where plot_point sits in Pass 0.3 (D12's restored order
+  // runs riemann_bars BEFORE plot_point; the publish target no longer cares
+  // either way — see the Pass 0.3 header comment in draw()).
+  if (typeof spec.sum_var === 'string') PM_riemannPublish[spec.sum_var] = computed.sum;
+  if (typeof spec.bars_drawn_var === 'string') PM_riemannPublish[spec.bars_drawn_var] = computed.barsDrawn;
 
   if (computed.bars.length === 0) return;
 
-  var rgb = PM_hexToRgb(spec.color || '#22D3EE');
-  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  // CP-C2 — colour (incl. signed), render mode, opacity, reveal_stagger_ms,
+  // show_partition. 'color' is the UNSIGNED colour (also the signed
+  // fallback if color_positive/negative are omitted); color_positive/
+  // color_negative — field NAMES copied VERBATIM from region_fill (Delta
+  // 8) — colour each rectangle by the SIGN of its own computed .area (which
+  // equals sign(yTopLeft)=sign(yTopRight) for left/right/midpoint, and
+  // gives a single well-defined colour for a 'trapezoid' bar whose two
+  // edge-heights straddle the baseline — a judgment call, see dispatch
+  // report). riemann_bars has NO authored 'baseline' (unchanged, F16) —
+  // the sign test is against the SAME fixed data y=0 the rectangles already
+  // sit on. opacity defaults to 1.0 (D12/D9's "opaque over region_fill" by
+  // construction — see the Pass 0.3 draw-order restoration in draw()).
+  var baseColor = spec.color || '#22D3EE';
+  var posColor = spec.color_positive || baseColor;
+  var negColor = spec.color_negative || '#F87171';
+  var signed = !!spec.signed;
+  var renderMode = (spec.render === 'outline') ? 'outline' : 'filled';
+  var opacity = (typeof spec.opacity === 'number') ? spec.opacity : 1.0;
+  var appearAtMs = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
+  var staggerMs = (typeof spec.reveal_stagger_ms === 'number') ? spec.reveal_stagger_ms : 0;
+  var animateInMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
+  var nowMs = PM_simClockMs;
+
   push();
   if (emph.glowPx > 0) {
-    drawingContext.shadowColor = spec.color || '#22D3EE';
+    drawingContext.shadowColor = baseColor;
     drawingContext.shadowBlur = emph.glowPx;
   }
-  noStroke();
-  fill(rgb[0], rgb[1], rgb[2], alpha255);
   for (var i = 0; i < computed.bars.length; i++) {
     var bar = computed.bars[i];
+    // reveal_stagger_ms — bar bar.i's (its TRUE original index, not its
+    // position among surviving bars) own gate; D7-pure, driven only by the
+    // clock (PM_simClockMs), never a frame counter.
+    var reveal = PM_riemannBarReveal(bar.i, appearAtMs, staggerMs, animateInMs, nowMs);
+    if (!reveal.visible) continue;
+
     // riemann_bars has no authored 'baseline' — rectangles always sit on
     // data y=0 (the contract's F16 field list carries no baseline key).
     var p1 = PM_planeResolve(spec, bar.xL, 0);
@@ -3464,9 +3569,40 @@ function drawRiemannBars(spec) {
     var p3 = PM_planeResolve(spec, bar.xR, bar.yTopRight);
     var p4 = PM_planeResolve(spec, bar.xR, 0);
     if (!p1 || !p2 || !p3 || !p4) continue;
+
+    var rgb = PM_hexToRgb(signed ? (bar.area < 0 ? negColor : posColor) : baseColor);
+    var barAlpha255 = 255 * gate.alpha * emph.alphaMul * opacity * reveal.alpha;
+    if (renderMode === 'outline') {
+      noFill();
+      stroke(rgb[0], rgb[1], rgb[2], barAlpha255);
+      strokeWeight(1.5);
+    } else {
+      noStroke();
+      fill(rgb[0], rgb[1], rgb[2], barAlpha255);
+    }
     beginShape();
     vertex(p1.x, p1.y); vertex(p2.x, p2.y); vertex(p3.x, p3.y); vertex(p4.x, p4.y);
     endShape(CLOSE);
+
+    // show_partition (A4) — the interior division line at bar i's LEFT
+    // edge (== the PREVIOUS drawn bar's right edge), gated by THIS bar's
+    // own reveal so the line arrives together with the rectangle it
+    // bounds. i=0's left edge is the domain start, not an interior
+    // boundary — skipped. Spans the plane's FULL y_range (a ruled line,
+    // not the rectangle's own height) specifically so it stays visible
+    // when the ADJACENT rectangle has zero height (the left-rule-on-x^2-
+    // at-n=4 case the field exists for) — a height-dependent tick would be
+    // invisible in exactly the case show_partition exists to fix.
+    if (spec.show_partition && i > 0) {
+      var pTop = PM_planeResolve(spec, bar.xL, ranges.yRange.max);
+      var pBot = PM_planeResolve(spec, bar.xL, ranges.yRange.min);
+      if (pTop && pBot) {
+        noFill();
+        stroke(148, 163, 184, 90 * reveal.alpha * gate.alpha * emph.alphaMul);
+        strokeWeight(1);
+        line(pTop.x, pTop.y, pBot.x, pBot.y);
+      }
+    }
   }
   if (emph.glowPx > 0) {
     drawingContext.shadowColor = 'transparent';
@@ -4267,6 +4403,20 @@ var PM_surfaceRegistry = {};
 // segment. Every plane_id-carrying primitive resolves through PM_planeResolve
 // against THIS object, never re-deriving its own transform.
 var PM_planeRegistry = {};
+// D11 (AMENDMENT 2 / F6 supersession, CP-C2, bug_class
+// pcpl_riemann_bars_composition_and_draw_order_undeclared) — { [var_name]:
+// number }, riemann_bars' publish target. Deliberately OUTSIDE PM_physics:
+// drawPlotPoint's genuine-drag branch (and PM_applyChoreography, WP-R5)
+// reassign PM_physics = computePhysics(...) WHOLESALE mid-frame, and D12's
+// declared draw order runs plot_point AFTER riemann_bars — so a value
+// published into PM_physics.derived (CP-C1's original target, per the F6
+// scope map) would be WIPED before Pass 3 (labels) reads it whenever a drag
+// fires the SAME frame riemann_bars published. Cleared at the START of
+// every Pass 0.3 (see draw()) and merged by PM_liveExprVars() below, so
+// PM_interpolate resolves {sum_var}/{bars_drawn_var} exactly as it did under
+// the old target, but survives ANY PM_physics reassignment for the rest of
+// the frame. See the Pass 0.3 header comment for the full argument.
+var PM_riemannPublish = {};
 // WP-R5 (D5 anchor_to) — { [primitive_id]: { origin: {x,y}, tip: {x,y} } },
 // refilled every draw() frame by drawForceArrow/drawAngleArc (array order =
 // PM_resolveAnchorTo's "must precede" contract). Cleared on true SET_STATE.
@@ -4762,45 +4912,66 @@ function draw() {
   // choreographed angle_expr today.
   PM_applyChoreography();
 
-  // Pass 0.3 (CP-B, F8-F12; CP-C1, F15-F16 geometry; D12 draw order) —
-  // function_plot, then plot_point, then region_fill, then riemann_bars.
-  // Runs AFTER PM_applyChoreography() (immediately above) so a choreographed
-  // x_domain bound (e.g. xdraw/beta/b) is reflected the same frame it steps
-  // (D3 — function_plot reads PM_liveExprVars(), which PM_applyChoreography()
+  // D11 (AMENDMENT 2 / F6 supersession, CP-C2) — clear the frame-scoped
+  // riemann_bars publish map at the START of Pass 0.3, before either
+  // publisher below runs. A key from a PRIOR frame (or a state that no
+  // longer authors the publishing primitive) must never survive into THIS
+  // frame's PM_liveExprVars() merge — see PM_riemannPublish's declaration.
+  PM_riemannPublish = {};
+
+  // Pass 0.3 (CP-B, F8-F12; CP-C1, F15-F16 geometry; CP-C2, D12 draw order
+  // RESTORED) — region_fill, then riemann_bars, then function_plot, then
+  // plot_point (secant_line/tangent_line — CP-D, not yet built — slot in
+  // here too), then Pass 3 labels. Runs AFTER PM_applyChoreography()
+  // (immediately above) so a choreographed x_domain bound (e.g.
+  // xdraw/beta/b) is reflected the same frame it steps (D3 — every
+  // primitive below reads PM_liveExprVars(), which PM_applyChoreography()
   // is what refreshes).
   //
-  // CP-C1 DEVIATION FROM D12's LITERAL ORDER — reported, not an oversight.
-  // D12's declared chain is cartesian_plane -> region_fill -> riemann_bars
-  // -> function_plot -> secant_line/tangent_line -> plot_point -> labels
-  // (MATHEMATICS_PHASE0_CARTESIAN_PLANE.md). This pass instead runs
-  // region_fill/riemann_bars LAST, AFTER plot_point, for one reason:
-  // drawPlotPoint's genuine-drag branch (above) REASSIGNS PM_physics
-  // wholesale (PM_physics = computePhysics(...)). computePhysics_<id> never
-  // authors sum_var/bars_drawn_var (D11 forbids it — those keys exist ONLY
-  // because riemann_bars publishes them), so if riemann_bars had already
-  // published for this frame and plot_point's drag-reassignment ran
-  // afterward, the publication would be WIPED for the rest of THIS frame's
-  // Pass 3 — a one-frame provenance split of exactly the sigma/pi shape D11
-  // exists to prevent ("a slider reading 1.000 beside a HUD reading 0.000 in
-  // one frame"). Running region_fill/riemann_bars after plot_point instead
-  // guarantees the publish always reads the POST-drag scope and can never be
-  // clobbered before Pass 3 reads it, with zero touch to CP-B's drawPlotPoint.
-  // CONSEQUENCE CP-C2 inherits: region_fill/riemann_bars currently paint
-  // OVER the curve and the point marker (drawn LAST), not under them —
-  // D12's opacity/composition discipline (gate 14) is C2's to build, and
-  // whichever final ordering C2 lands on for VISUAL composition must
-  // preserve this publish-after-plot_point safety property (or replace it
-  // with an equivalent one). region_fill draws before riemann_bars, so the
-  // ONE ordering constraint gate 14 (C2) itself tests — "region_fill before
-  // riemann_bars" — already holds. Flagged explicitly in the CP-C1 report.
-  for (var fp = 0; fp < scene.length; fp++) {
-    var fpPrim = scene[fp];
-    if (fpPrim && fpPrim.type === 'function_plot') drawFunctionPlot(fpPrim);
-  }
-  for (var pp = 0; pp < scene.length; pp++) {
-    var ppPrim = scene[pp];
-    if (ppPrim && ppPrim.type === 'plot_point') drawPlotPoint(ppPrim);
-  }
+  // D12's LITERAL ORDER, RESTORED (bug_class
+  // pcpl_riemann_bars_composition_and_draw_order_undeclared; supersedes
+  // CP-C1's inversion). CP-C1 ran region_fill/riemann_bars LAST, AFTER
+  // plot_point, to dodge a publication clobber: drawPlotPoint's
+  // genuine-drag branch (below) reassigns PM_physics wholesale mid-pass,
+  // and CP-C1's D11 publish target was PM_physics.derived — so if
+  // riemann_bars had already published this frame and the drag-reassign ran
+  // afterward, the publish would be WIPED before Pass 3 (labels) read it.
+  // But that inversion made rectangles/fill paint OVER the curve and point
+  // marker (drawn LAST), the opposite of D12, and — decisively for CP-C2's
+  // own delta 9 — an opaque (opacity:1.0) rectangle drawn last fully
+  // occludes the curve it is meant to sit beneath, destroying the "missed
+  // sliver above each rectangle" reading a first-partition state depends
+  // on. The ROOT CAUSE was never the draw order — it was that a
+  // RENDER-PASS OUTPUT (the published sum) lived inside PM_physics, an
+  // object a DIFFERENT concern (drag input handling) reassigns wholesale.
+  // CP-C2 fixed that directly: the publish target moved to
+  // PM_riemannPublish (declared above global scope), a map no PM_physics
+  // reassignment can touch, at any pass position, ever. D12's order is
+  // restored with NO publication hazard.
+  //
+  // SAME-FRAME CONSEQUENCE, measured (not assumed) — see the CP-C2 dispatch
+  // report for the full argument: because region_fill/riemann_bars/
+  // function_plot ALL read PM_liveExprVars() and now all run BEFORE
+  // plot_point in this pass, during a drag frame they draw with the
+  // PRE-drag scope (this frame's value as of the end of the PREVIOUS
+  // frame), while plot_point (below) recomputes AND re-renders itself with
+  // the POST-drag value in the SAME frame it is grabbed (its own D8
+  // same-frame self-correction, unchanged by this dispatch). The dragged
+  // point therefore leads the curve/fill/bars by one frame (~16 ms at 60
+  // Hz) during an active drag — imperceptible, and NOT a new class of lag:
+  // drawCanvasSlider's own knob is drawn with the PRE-drag value on every
+  // drag frame too (it updates PM_sliderValues/PM_physics only AFTER
+  // painting itself), so "everything except the actively-dragged element
+  // reads last frame's value" is this renderer's existing, shipped
+  // convention, not a new one. What this restoration actually FIXES: under
+  // CP-C1's inverted order, region_fill/riemann_bars ran AFTER plot_point
+  // and so were AHEAD of function_plot (which ran BEFORE plot_point) on
+  // every drag frame — curve and fill/bars read two DIFFERENT b values in
+  // the SAME frame, a same-frame mismatch between the shaded region and the
+  // curve it is shaded under. Restoring D12's order makes region_fill,
+  // riemann_bars AND function_plot all read the SAME (pre-drag) scope every
+  // frame — internally consistent with each other by construction, with
+  // only the dragged point ever ahead.
   for (var rf = 0; rf < scene.length; rf++) {
     var rfPrim = scene[rf];
     if (rfPrim && rfPrim.type === 'region_fill') drawRegionFill(rfPrim);
@@ -4808,6 +4979,14 @@ function draw() {
   for (var rb = 0; rb < scene.length; rb++) {
     var rbPrim = scene[rb];
     if (rbPrim && rbPrim.type === 'riemann_bars') drawRiemannBars(rbPrim);
+  }
+  for (var fp = 0; fp < scene.length; fp++) {
+    var fpPrim = scene[fp];
+    if (fpPrim && fpPrim.type === 'function_plot') drawFunctionPlot(fpPrim);
+  }
+  for (var pp = 0; pp < scene.length; pp++) {
+    var ppPrim = scene[pp];
+    if (ppPrim && ppPrim.type === 'plot_point') drawPlotPoint(ppPrim);
   }
 
   // Pass 0.5 — resolve attach_to_surface for bodies (non-mutating: store on a clone).

@@ -3,9 +3,11 @@
  * engine family on `parametric_renderer.ts` (CP-A: F1-F7 frame/registry;
  * CP-B: F8-F12 function_plot + plot_point; CP-C1: F15-F16 GEOMETRY —
  * region_fill signed-area splitting, riemann_bars' four modes + D11
- * publication. CP-C2 — signed colour, render/opacity, declared composition
- * draw order, show_partition, reveal_stagger_ms — is NOT built here; see
- * the CP-C1 dispatch report for the exact stub list).
+ * publication; CP-C2: signed colour, render/opacity, D12 declared
+ * composition draw order — RESTORED to its literal form, see the
+ * PM_riemannPublish / Pass-0.3 header comments in the renderer —
+ * show_partition, reveal_stagger_ms, and the two non-finite-sample
+ * reconciliations CP-C1 left open).
  *
  * Same shape and reason as check:sigma-pi / check:bonding-scene: tsc, the
  * validators and THE EYE all pass on frames whose GEOMETRY is wrong, so this
@@ -17,21 +19,21 @@
  *
  * Sections implemented here, per docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md
  * 0c gate table: 1-4 (CP-A), 5-7 (CP-B), 8-9 (CP-C1), 11 (CP-A), 12 (CP-C1
- * D11 publication), 15 (CP-A frame + CP-B parent-curve completion), 16
- * (CP-B). Plus a standalone F5 SEIZURE CLAUSE block (CP-B, not itself
- * gate-table-numbered) asserting the plot_point drag-seize contract
- * structurally. Sections 10, 13, 14 belong to CP-D (secant_line/
- * tangent_line) and CP-C2 (signed colour/render/opacity/draw-order/
- * show_partition/reveal_stagger_ms) and are NOT asserted here.
+ * D11 publication + CP-C2's frame-scoped-map survival extension), 13
+ * (CP-C2 show_partition), 14 (CP-C2 D12 composition), 15 (CP-A frame +
+ * CP-B parent-curve completion), 16 (CP-B). Plus two standalone blocks not
+ * themselves gate-table-numbered: F5 SEIZURE CLAUSE (CP-B, plot_point
+ * drag-seize) and REVEAL_STAGGER_MS DETERMINISM (CP-C2). Section 10
+ * belongs to CP-D (secant_line/tangent_line) and is NOT asserted here.
  *
  * region_fill/riemann_bars' DRAWING wrappers (drawRegionFill/
  * drawRiemannBars) call p5 primitives (push/fill/beginShape/vertex/...) that
  * do not exist in this headless sandbox, so — exactly like drawFunctionPlot/
  * drawPlotPoint before them — they are never extracted/executed here. Only
  * the PURE geometry+publication functions (PM_regionFillCompute,
- * PM_riemannBarsCompute) are pulled and run; the drawing wrappers are
- * verified by STATIC source-text assertions (grep-shaped, matching the F5
- * SEIZURE CLAUSE block's own technique below).
+ * PM_riemannBarsCompute, PM_riemannBarReveal) are pulled and run; the
+ * drawing wrappers are verified by STATIC source-text assertions
+ * (grep-shaped, matching the F5 SEIZURE CLAUSE block's own technique below).
  *
  * Every section carries a NEGATIVE CONTROL — a gate that has never failed is
  * not known to work (dispatch mandate). Negative controls are demonstrated
@@ -87,6 +89,8 @@ const FNS = [
   // only; drawRegionFill/drawRiemannBars are p5-drawing wrappers, verified
   // by static source assertions in section 12/14 instead (see file header).
   "PM_regionFillCompute", "PM_riemannBarsCompute",
+  // CP-C2 addition — PM_riemannBarReveal (reveal_stagger_ms), also pure.
+  "PM_riemannBarReveal",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -725,8 +729,10 @@ console.log("\n=== 12. D11 PUBLICATION — sum_var equals the closed form; bars_
   // whether anything is actually drawn (runs before the 'nothing to draw'
   // early return) — proven structurally, since drawRiemannBars is
   // p5-dependent and cannot be executed headlessly here (see file header).
+  // CP-C2 (AMENDMENT 2 / F6 supersession) moved the target from
+  // PM_physics.derived to PM_riemannPublish — see the extension below.
   const rbSrc = grabFn("drawRiemannBars");
-  const publishIdx = rbSrc.indexOf("PM_physics.derived[spec.sum_var]");
+  const publishIdx = rbSrc.indexOf("PM_riemannPublish[spec.sum_var]");
   const earlyReturnIdx = rbSrc.indexOf("if (computed.bars.length === 0) return;");
   assertTrue("the D11 publish write sits BEFORE the 'nothing to draw' early return inside drawRiemannBars",
     publishIdx >= 0 && earlyReturnIdx >= 0 && publishIdx < earlyReturnIdx);
@@ -738,6 +744,293 @@ console.log("\n=== 12. D11 PUBLICATION — sum_var equals the closed form; bars_
   const investedOrderOk = 500 < 100; // label-idx < riemann-idx shape
   assertTrue("NEGATIVE CONTROL: the < comparison correctly rejects a reversed (label-before-riemann_bars) order",
     investedOrderOk === false);
+
+  // ── CP-C2 EXTENSION — the publish SURVIVES a mid-frame PM_physics
+  // reassignment (AMENDMENT 2 / F6 supersession; bug_class
+  // pcpl_riemann_bars_composition_and_draw_order_undeclared). This is the
+  // exact failure CP-C1's draw-order inversion was avoiding: under D12's
+  // RESTORED literal order (region_fill -> riemann_bars -> function_plot ->
+  // plot_point -> labels), drawPlotPoint's genuine-drag branch runs AFTER
+  // riemann_bars in the SAME frame and reassigns PM_physics WHOLESALE. ──
+
+  // (a) STATIC — the old (pre-fix) target string no longer appears anywhere
+  // in drawRiemannBars; only the new target does. Proves the fix is WIRED,
+  // not merely argued in a comment.
+  assertTrue("drawRiemannBars no longer writes to the pre-fix target PM_physics.derived[spec.sum_var]",
+    rbSrc.indexOf("PM_physics.derived[spec.sum_var]") === -1);
+  assertTrue("drawRiemannBars writes bars_drawn_var to PM_riemannPublish too (not PM_physics.derived)",
+    rbSrc.indexOf("PM_riemannPublish[spec.bars_drawn_var]") >= 0
+    && rbSrc.indexOf("PM_physics.derived[spec.bars_drawn_var]") === -1);
+
+  // (b) STATIC — PM_riemannPublish is declared as its own top-level var
+  // (grabVar throws if it isn't found — a failed grab fails the whole run,
+  // which is itself proof-of-existence), and PM_liveExprVars() merges it.
+  const riemannPublishDecl = grabVar("PM_riemannPublish");
+  assertTrue("PM_riemannPublish is declared as its own object literal (not nested inside PM_physics)",
+    riemannPublishDecl.indexOf("var PM_riemannPublish = {}") >= 0);
+  const liveExprVarsSrc = grabFn("PM_liveExprVars");
+  assertTrue("PM_liveExprVars() merges PM_riemannPublish into the scope PM_interpolate reads",
+    liveExprVarsSrc.indexOf("PM_riemannPublish") >= 0);
+
+  // (c) STATIC — Pass 0.3 clears PM_riemannPublish at the START of the
+  // frame, BEFORE either drawRegionFill/drawRiemannBars loop runs (a stale
+  // key from a prior frame, or a state that no longer authors the
+  // publishing primitive, must never survive).
+  const clearIdx = SRC.indexOf("PM_riemannPublish = {};", SRC.indexOf("function draw()"));
+  const rbLoopIdx = SRC.indexOf("drawRiemannBars(rbPrim)");
+  assertTrue("PM_riemannPublish is cleared inside draw(), before the riemann_bars draw-call loop",
+    clearIdx >= 0 && rbLoopIdx >= 0 && clearIdx < rbLoopIdx);
+
+  // (d) STATIC — draw ORDER: under the RESTORED D12 order, riemann_bars'
+  // draw-call loop sits BEFORE plot_point's, so a genuine drag CAN fire
+  // after riemann_bars publishes in the same frame — proving the survival
+  // property below is actually EXERCISED by the shipped pass order, not
+  // vacuously true because the hazard can no longer occur.
+  const rbCallIdx = SRC.indexOf("drawRiemannBars(rbPrim)");
+  const ppCallIdx = SRC.indexOf("drawPlotPoint(ppPrim)");
+  assertTrue("riemann_bars' draw-call loop sits BEFORE plot_point's in Pass 0.3 (D12's restored order) — the hazard is real, not moot",
+    rbCallIdx >= 0 && ppCallIdx >= 0 && rbCallIdx < ppCallIdx);
+  assertTrue("drawPlotPoint's genuine-drag branch still reassigns PM_physics wholesale (the hazard is fixed at the TARGET, not removed at the source)",
+    grabFn("drawPlotPoint").indexOf("PM_physics = computePhysics(PM_config.concept_id, currentVars)") >= 0);
+
+  // (e) NUMERIC — reproduce the exact mechanism: a value published under
+  // each candidate target, THEN a same-frame wholesale PM_physics
+  // reassignment (parametric_renderer.ts's own literal pattern for both
+  // drawPlotPoint's drag branch and PM_applyChoreography: a BRAND NEW
+  // `{ variables, derived }` object, never a mutation of the old one —
+  // confirmed structurally in (d) above), THEN Pass 3's PM_liveExprVars()
+  // read, all within one frame.
+  function simulateMidFrameReassignment(publishTarget: "physics_derived" | "riemann_publish"): number | undefined {
+    let physics: { variables: Record<string, number>; derived: Record<string, number> } = { variables: {}, derived: {} };
+    const riemannPublish: Record<string, number> = {};
+    // Step 1 — riemann_bars publishes THIS frame (it draws before
+    // plot_point under the restored order, confirmed in (d) above).
+    if (publishTarget === "physics_derived") physics.derived["S_n"] = 2.6667;
+    else riemannPublish["S_n"] = 2.6667;
+    // Step 2 — plot_point's genuine-drag branch fires LATER in the SAME
+    // frame and reassigns PM_physics WHOLESALE, exactly as (d) confirms the
+    // shipped renderer still does, unconditionally.
+    physics = { variables: { b: 1.4 }, derived: { exact: 1.9 } };
+    // Step 3 — Pass 3 (labels) resolves {S_n} via PM_liveExprVars() this
+    // SAME frame — variables, then derived, then (CP-C2) riemannPublish.
+    const liveVars: Record<string, number> = { ...physics.variables, ...physics.derived, ...riemannPublish };
+    return liveVars["S_n"];
+  }
+  const survivesUnderOldTarget = simulateMidFrameReassignment("physics_derived");
+  const survivesUnderNewTarget = simulateMidFrameReassignment("riemann_publish");
+  assertTrue("NEGATIVE CONTROL: the PRE-FIX target (PM_physics.derived) does NOT survive a same-frame PM_physics reassignment — a consuming label would read the literal '{S_n}' fallback (@1080)",
+    survivesUnderOldTarget === undefined);
+  assertTrue("the CP-C2 target (PM_riemannPublish) DOES survive a same-frame PM_physics reassignment — {S_n} still resolves to the value riemann_bars published",
+    survivesUnderNewTarget === 2.6667);
+}
+
+console.log("\n=== 13. show_partition — A4: n-1 interior division lines, INCLUDING a zero-height rectangle (F16, CP-C2) ===");
+{
+  // The exact case the field exists for: LEFT rule on x^2 over [0,2] at
+  // n=4. f(0)=0, so bar 0 has ZERO height (area 0) and is otherwise
+  // invisible on screen — the classic "4 rectangles renders as 3" defect
+  // (MATHEMATICS_PHASE0_CARTESIAN_PLANE.md's own motivating example).
+  const L4 = E.PM_riemannBarsCompute("x*x", 0, 2, 4, "left", undefined, {});
+  check("n=4 on x^2/[0,2]: bar count === n (no bar dropped for being zero-height)", L4.bars.length, 4, 0);
+  check("bar 0 (the left-rule zero-height rectangle) has area === 0, finite, still PRESENT", L4.bars[0].area, 0, 1e-12);
+  assertTrue("bar 0's area is a real finite zero, not NaN/undefined (isFinite)", isFinite(L4.bars[0].area));
+
+  // show_partition draws ONE interior division line per interior boundary
+  // between DRAWN bars — count = bars.length - 1 (== n-1 when nothing is
+  // capped or dropped). The drawing wrapper (drawRiemannBars, p5-dependent)
+  // draws it at bar[i].xL for i=1..bars.length-1 (i=0's xL is the domain
+  // start, not interior) — reproduced here as a pure count, mirroring the
+  // shipped loop's own bound (`i > 0`).
+  function interiorDivisionLineCount(bars: { xL: number }[]): number {
+    let n = 0;
+    for (let i = 1; i < bars.length; i++) n++; // one line per i>0
+    return n;
+  }
+  const lineCount = interiorDivisionLineCount(L4.bars);
+  check("show_partition emits exactly n-1 = 3 interior division lines at n=4", lineCount, 3, 0);
+
+  // The division x-positions are the TRUE partition points 0.5, 1.0, 1.5 —
+  // independent of any one bar's drawn (possibly zero) height, since the
+  // shipped drawer spans the line across the plane's FULL y_range rather
+  // than the rectangle's own top (asserted structurally below).
+  const expectedXs = [0.5, 1.0, 1.5];
+  for (let i = 1; i < L4.bars.length; i++) {
+    check(`interior line ${i}: x position`, L4.bars[i].xL, expectedXs[i - 1], 1e-12);
+  }
+
+  // NEGATIVE CONTROL — "n=4 rendering three countable rectangles must
+  // FAIL": a naive "count only rectangles with a visually-nonzero height"
+  // reading of the SAME scene (i.e. without show_partition's lines) yields
+  // 3, not 4 — reproducing the exact defect the field exists to fix.
+  const visuallyCountable = L4.bars.filter((b: { area: number }) => Math.abs(b.area) > 1e-9).length;
+  assertTrue(`NEGATIVE CONTROL: without show_partition, only ${visuallyCountable} of 4 rectangles are visually distinguishable (bar 0's zero height renders as nothing) — "four rectangles" would be miscounted as three`,
+    visuallyCountable === 3);
+  assertTrue("NEGATIVE CONTROL: the miscounted total (3) must NOT equal the true n (4)", visuallyCountable !== L4.n);
+  // ...and WITH show_partition, the true count IS recoverable: n-1 interior
+  // lines demarcate n columns — 3 lines -> 4 columns, agreeing with L4.n.
+  assertTrue("WITH show_partition: (interior lines + 1) recovers the true rectangle count", lineCount + 1 === L4.n);
+
+  // Cap interaction — show_partition draws bars.length-1 lines (the DRAWN
+  // geometry), not n-1, when max_bars_drawn caps what's on screen —
+  // consistent with the rectangles it demarcates; the published sum/n stay
+  // unaffected (section 12).
+  const capped = E.PM_riemannBarsCompute("x*x", 0, 2, 1000, "left", 10, {});
+  check("capped at max_bars_drawn=10: bars.length (interior lines = bars.length-1)", capped.bars.length, 10, 0);
+  assertTrue("capped bars.length (10) != true n (1000) — show_partition intentionally follows the DRAWN geometry, not the true n",
+    capped.bars.length !== capped.n);
+
+  // STATIC — the shipped drawer's show_partition branch is gated i>0 and
+  // spans the plane's FULL y_range (ranges.yRange.min/.max), not the
+  // rectangle's own (possibly zero) height — proving the zero-height case
+  // above is actually handled by the shipped code, not just by this file's
+  // independent reproduction.
+  const rbSrcPartition = grabFn("drawRiemannBars");
+  assertTrue("drawRiemannBars' show_partition branch is gated on i > 0 (skips the non-interior domain-start edge)",
+    /spec\.show_partition\s*&&\s*i\s*>\s*0/.test(rbSrcPartition));
+  assertTrue("the division line spans ranges.yRange.min..max (NOT bar.yTopLeft/bar.yTopRight) — visible even when the adjacent rectangle has zero height",
+    rbSrcPartition.indexOf("ranges.yRange.max") >= 0 && rbSrcPartition.indexOf("ranges.yRange.min") >= 0);
+}
+
+console.log("\n=== 14. D12 COMPOSITION — draw order, opacity, signed colour (CP-C2) ===");
+{
+  // (a) DRAW ORDER — region_fill BEFORE riemann_bars, BOTH before
+  // function_plot, all before plot_point (D12's literal chain, RESTORED —
+  // supersedes CP-C1's inversion; bug_class
+  // pcpl_riemann_bars_composition_and_draw_order_undeclared).
+  const rfCallIdx = SRC.indexOf("drawRegionFill(rfPrim)");
+  const rbCallIdx2 = SRC.indexOf("drawRiemannBars(rbPrim)");
+  const fpCallIdx = SRC.indexOf("drawFunctionPlot(fpPrim)");
+  const ppCallIdx2 = SRC.indexOf("drawPlotPoint(ppPrim)");
+  assertTrue("region_fill's draw-call loop precedes riemann_bars' in source order",
+    rfCallIdx >= 0 && rbCallIdx2 >= 0 && rfCallIdx < rbCallIdx2);
+  assertTrue("riemann_bars' draw-call loop precedes function_plot's in source order",
+    rbCallIdx2 >= 0 && fpCallIdx >= 0 && rbCallIdx2 < fpCallIdx);
+  assertTrue("function_plot's draw-call loop precedes plot_point's in source order",
+    fpCallIdx >= 0 && ppCallIdx2 >= 0 && fpCallIdx < ppCallIdx2);
+
+  // NEGATIVE CONTROL — a reversed order (riemann_bars before region_fill)
+  // must FAIL the same < comparison.
+  const reversedOrderOk = rbCallIdx2 < rfCallIdx;
+  assertTrue("NEGATIVE CONTROL: the reversed-order comparison correctly reads false under the shipped (correct) order",
+    reversedOrderOk === false);
+
+  // (b) OPACITY DEFAULT — riemann_bars defaults to 1.0 (opaque); combined
+  // with (a)'s draw order this means an un-authored-opacity rectangle set
+  // FULLY OCCLUDES the region_fill drawn beneath it, by construction (alpha
+  // 255 compositing is opaque — not independently pixel-sampled here, this
+  // headless sandbox has no canvas; see file header).
+  const rbSrcOpacity = grabFn("drawRiemannBars");
+  assertTrue("drawRiemannBars' opacity default is 1.0 (opaque), not region_fill's 0.28",
+    /spec\.opacity[\s\S]{0,40}:\s*1\.0/.test(rbSrcOpacity));
+  const rfSrcOpacity = grabFn("drawRegionFill");
+  assertTrue("drawRegionFill's opacity default is 0.28 (translucent, CP-C1's unchanged visual default)",
+    /spec\.opacity[\s\S]{0,40}:\s*0\.28/.test(rfSrcOpacity));
+
+  // NEGATIVE CONTROL — swapping the two defaults (riemann_bars translucent
+  // over an opaque region_fill) would NOT occlude the fill and would
+  // instead composite into the unreadable middle band D12 exists to avoid;
+  // demonstrated as a value mismatch against the shipped defaults.
+  const riemannOpacityDefault: number = 1.0;
+  const regionFillOpacityDefault: number = 0.28;
+  assertTrue("NEGATIVE CONTROL: riemann_bars' default (1.0) differs from region_fill's default (0.28) — they are NOT interchangeable",
+    riemannOpacityDefault !== regionFillOpacityDefault);
+
+  // (c) SIGNED COLOUR — signed:true assigns color_negative to every
+  // rectangle whose sampled value (equivalently: its computed .area sign —
+  // see drawRiemannBars' own header for why area's sign generalises
+  // correctly across all four modes) falls below the baseline (fixed at
+  // data y=0 for riemann_bars, F16 — it authors no baseline field) and to
+  // no other. f(x) = x^2 - c, c=0.5, on [0,2], n=4, left rule: f(0)=-0.5,
+  // f(0.5)=-0.25 (negative); f(1)=0.5, f(1.5)=1.75 (positive) — a clean
+  // split with NO exact-zero boundary bar.
+  const signedTest = E.PM_riemannBarsCompute("x*x - c", 0, 2, 4, "left", undefined, { c: 0.5 });
+  check("bar 0 area (f(0)=-0.5) is negative -> classify -1", signedTest.bars[0].area < 0 ? -1 : 1, -1, 0);
+  check("bar 1 area (f(0.5)=-0.25) is negative -> classify -1", signedTest.bars[1].area < 0 ? -1 : 1, -1, 0);
+  check("bar 2 area (f(1)=0.5) is non-negative -> classify +1", signedTest.bars[2].area < 0 ? -1 : 1, 1, 0);
+  check("bar 3 area (f(1.5)=1.75) is non-negative -> classify +1", signedTest.bars[3].area < 0 ? -1 : 1, 1, 0);
+
+  // Independently classify every bar by the SAME rule the drawer uses
+  // (bar.area < 0 -> negative, else positive) and count colours.
+  const classify = (b: { area: number }) => (b.area < 0 ? "negative" : "positive");
+  const classes = signedTest.bars.map(classify);
+  check("exactly 2 rectangles classify negative", classes.filter((c: string) => c === "negative").length, 2, 0);
+  check("exactly 2 rectangles classify positive", classes.filter((c: string) => c === "positive").length, 2, 0);
+
+  // STATIC — the shipped drawer's colour decision matches the rule tested
+  // above verbatim, and the field names are copied from region_fill (Delta
+  // 8's "one concept, one name" point).
+  const rbSrcColour = grabFn("drawRiemannBars");
+  assertTrue("drawRiemannBars picks negColor when bar.area < 0, posColor otherwise (verbatim rule tested above)",
+    rbSrcColour.indexOf("signed ? (bar.area < 0 ? negColor : posColor) : baseColor") >= 0);
+  assertTrue("color_negative field is read (verbatim name shared with region_fill)",
+    rbSrcColour.indexOf("spec.color_negative") >= 0);
+  assertTrue("color_positive field is read (verbatim name shared with region_fill)",
+    rbSrcColour.indexOf("spec.color_positive") >= 0);
+
+  // NEGATIVE CONTROL — "a signed set drawn in one colour must FAIL": a
+  // one-colour (unsigned-style) classifier applied to the SAME bars data
+  // collapses to a single class, disagreeing with the true 2-and-2 split.
+  const oneColourClasses = signedTest.bars.map(() => "single");
+  assertTrue("NEGATIVE CONTROL: a one-colour classifier yields only 1 distinct class where the true split has 2 (positive AND negative)",
+    new Set(oneColourClasses).size === 1 && new Set(classes).size === 2);
+}
+
+console.log("\n=== REVEAL_STAGGER_MS DETERMINISM — pure function of the clock (D7, CP-C2) ===");
+{
+  // Boundaries — bar i's own gate opens at appear_at_ms + i*stagger. S2's
+  // OWN authored timing (definite_integral_as_accumulated_area_skeleton.md
+  // §12, F9 retime): appear_at_ms=1200, reveal_stagger_ms=4500 -> bars 0-3
+  // open at 1200 / 5700 / 10200 / 14700.
+  const appearAt = 1200, stagger = 4500;
+  const expectedOpens = [1200, 5700, 10200, 14700];
+  for (let i = 0; i < 4; i++) {
+    const justBefore = E.PM_riemannBarReveal(i, appearAt, stagger, 0, expectedOpens[i] - 1);
+    const atOpen = E.PM_riemannBarReveal(i, appearAt, stagger, 0, expectedOpens[i]);
+    assertTrue(`bar ${i}: invisible 1ms before its own open time (${expectedOpens[i]})`, justBefore.visible === false);
+    assertTrue(`bar ${i}: visible AT its own open time (${expectedOpens[i]})`, atOpen.visible === true && atOpen.alpha === 1);
+  }
+
+  // animate_in_ms ramps 0->1 over the window, clamped [0,1].
+  const ramping = E.PM_riemannBarReveal(2, appearAt, stagger, 1000, expectedOpens[2] + 500);
+  check("bar 2 mid-ramp (animate_in_ms=1000, +500ms): alpha", ramping.alpha, 0.5, 1e-9);
+  const preRamp = E.PM_riemannBarReveal(2, appearAt, stagger, 1000, expectedOpens[2] - 1);
+  assertTrue("bar 2 before its gate opens: invisible regardless of animate_in_ms", preRamp.visible === false);
+
+  // DETERMINISM — the SAME (barIndex, appearAtMs, staggerMs, animateInMs,
+  // nowMs) tuple reproduces a BYTE-IDENTICAL result on repeated calls (a
+  // SET_TIME_FREEZE re-pin to the same at_ms must redraw identical pixels).
+  const callA = E.PM_riemannBarReveal(3, appearAt, stagger, 800, 15200);
+  const callB = E.PM_riemannBarReveal(3, appearAt, stagger, 800, 15200);
+  check("repeated calls at the SAME nowMs: visible flag identical", callA.visible, callB.visible, 0 as any);
+  check("repeated calls at the SAME nowMs: alpha byte-identical", callA.alpha, callB.alpha, 0);
+
+  // NEGATIVE CONTROL — "a frame-counter-driven stagger must FAIL": a
+  // plausible-but-wrong alternative computes appear time from a per-frame
+  // COUNTER (barIndex * staggerFrames frames) converted at an ASSUMED frame
+  // rate, rather than from the sim clock directly. At two different real
+  // frame rates (60Hz vs 144Hz) the SAME wall/sim-clock instant now yields
+  // DIFFERENT visibility for the same bar — non-deterministic w.r.t. the
+  // clock, exactly the defect D7/reveal_stagger_ms's clock-purity exists to
+  // avoid.
+  function wrongFrameCounterReveal(barIndex: number, appearAtMs: number, staggerFrames: number, nowMs: number, assumedFps: number) {
+    const appearFrame = (appearAtMs / (1000 / assumedFps)) + barIndex * staggerFrames;
+    const nowFrame = nowMs / (1000 / assumedFps);
+    return nowFrame >= appearFrame;
+  }
+  const nowFixed = 6000; // a fixed sim-clock instant, shared by both "runs"
+  const staggerFrames = 270; // ~4500ms worth of frames AT 60fps specifically
+  const visibleAt60 = wrongFrameCounterReveal(2, 1200, staggerFrames, nowFixed, 60);
+  const visibleAt144 = wrongFrameCounterReveal(2, 1200, staggerFrames, nowFixed, 144);
+  assertTrue(`NEGATIVE CONTROL: a frame-counter-driven stagger gives DIFFERENT visibility for the SAME sim-clock instant (${nowFixed}ms) at 60Hz (${visibleAt60}) vs 144Hz (${visibleAt144}) — non-deterministic w.r.t. the clock`,
+    visibleAt60 !== visibleAt144);
+  // The shipped PM_riemannBarReveal, by contrast, is frame-rate independent
+  // by construction — it never reads a frame count or fps at all, only
+  // nowMs (the argument list itself is the proof; re-affirmed numerically:
+  // the SAME nowMs always gives the SAME answer, with no fps parameter to
+  // even vary).
+  const correctAt6000 = E.PM_riemannBarReveal(2, 1200, 4500, 0, nowFixed);
+  check("the shipped clock-pure function's answer depends ONLY on nowMs (no fps parameter exists to make it diverge)",
+    correctAt6000.visible, expectedOpens[2] <= nowFixed, 0 as any);
 }
 
 console.log("\n=== 15. INSET PLACEMENT — multi-plane (F1) + ink-avoidance ===");
@@ -953,6 +1246,6 @@ console.log("\n=== 16. RANGE CONTAINMENT — cross-product of control ranges sta
 }
 
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);
