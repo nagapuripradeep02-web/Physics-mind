@@ -32,7 +32,7 @@
 | 2 | Authoring layer (`mathematics_author` + pattern library + DB migration) | low | ✅ 2026-08-04 |
 | 1 | Curriculum plumbing (subject first-class) | low-med | ✅ 2026-08-04 |
 | 2.5 | `validate:mathematics` + shared-gate extraction + CI | low-med | ✅ 2026-08-04 |
-| P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | medium | ☐ **BLOCKS P1 concepts** |
+| P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | medium | ◐ **0a COMPLETE + 0b COMPLETE 2026-08-06** → `docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md` (survey + contract, AMENDMENT 1) · `docs/skeletons/definite_integral_as_accumulated_area_skeleton.md` (spec driver, round 1). Checkpoint A cycle 0 = `DESIGN_FIX`, 19 findings applied; **cycle 1 pending**. 0c/0d open. **BLOCKS P1 concepts** |
 | 3 | First concept — vertical slice | medium | ☐ recommendation: **the unit circle** (`parametric`, [LIVE], zero engine spend) |
 | 4 | Mathematics-specific gates (interval honesty, notation ladder) | medium | ☐ (grows from scars) |
 | 5 | Further scenarios (3D solids, sampling box) | high | ☐ founder-gated |
@@ -172,6 +172,9 @@ derivative, the definite integral) are all blocked on it; #4 (the unit circle) i
 1. **Phase-0 survey first**, on the `docs/CHEMISTRY_PHASE0_BONDING.md` model — the union check
    (every engine feature exercised by at least one designed state; no designed state needing a
    feature outside the set) made checkable *before* a line of renderer code.
+   **✅ DONE 2026-08-06 → `docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md`** (0a: survey, union table,
+   union walk, config contract, nine engine decisions, the four-dispatch plan and the gate spec).
+   0b — the deepest-concept skeleton (#3, the definite integral) + Checkpoint A — is the next step.
 2. **A new CASE on `parametric_renderer.ts`, not a new file.** The recorded §5c lesson.
 3. **Lands on master separately and immediately**, one `bug_class` per dispatch, dispatched to the
    owning surgeon — never bundled into a concept branch.

@@ -37,6 +37,7 @@
     "smoke:visual-validator": "npx tsx --env-file=.env.local src/scripts/smoke_visual_validator.ts",
     "numeric:calc": "npx tsx src/scripts/numeric_calc.ts",
     "visual:eyes": "npx tsx --env-file=.env.local src/scripts/visual_eyes.ts",
+    "visual:playcheck": "npx tsx src/scripts/visual_playcheck.ts",
     "founder:drive": "npx tsx src/scripts/founder_drive.ts",
     "cache:clear:scoped": "node src/scripts/_scratch_cache_clear_scoped.mjs",
     "visual:approve": "npx tsx --env-file=.env.local src/scripts/visual_approve.ts",
@@ -55,7 +56,8 @@
     "check:gas-reaction": "npx tsx src/scripts/check_gas_reaction_physics.ts",
     "check:hybrid-orbitals": "npx tsx src/scripts/check_hybrid_orbitals.ts",
     "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts",
-    "check:bonding-scene": "npx tsx src/scripts/check_bonding_scene.ts"
+    "check:bonding-scene": "npx tsx src/scripts/check_bonding_scene.ts",
+    "check:cartesian-plane": "npx tsx src/scripts/check_cartesian_plane.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",

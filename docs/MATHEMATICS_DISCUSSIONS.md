@@ -285,6 +285,12 @@ same `parametric` renderer. Then dispatch `cartesian_plane` and take #1–#3 in 
    mathematics regression — a pre-existing gap this survey surfaced. It is a scar-row candidate and a
    founder call: either wire a `panel_b` branch into `build_review_site.ts`, or drop the field from
    those concepts so the JSON stops claiming a panel that never paints.
-4. **`cartesian_plane` needs its own Phase-0 survey before dispatch**, on the
+4. ~~**`cartesian_plane` needs its own Phase-0 survey before dispatch**, on the
    `docs/CHEMISTRY_PHASE0_BONDING.md` model: which of #1/#2/#3/#11/#12's states each engine feature
-   serves, so the union check is made checkable before a line of renderer code.
+   serves, so the union check is made checkable before a line of renderer code.~~
+   **CLOSED 2026-08-06 → `docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md` (0a).** Result: ONE primitive
+   family on `parametric_renderer.ts` (a frame + four marks + `plane_id` opt-in for four existing
+   primitives), four sequenced `pcpl-surgeon` dispatches, 17 of 18 union features consumed by a
+   sketched state. #12's slope-field grid is the one union need **deliberately excluded** and
+   ledgered, so #12 is NOT unblocked by P0 — #1/#2/#3/#11 are. 0b (the #3 skeleton + Checkpoint A)
+   is the next step and is a founder call against dispatching CP-A directly.

@@ -150,6 +150,18 @@ Blast radius verified nil: inert on inclines, and every pre-SEAM-R body has `rol
 > Back-compat by explicit A/B over **26 body-states × 300 frames on both clocks: 25 identical, 1
 > differing — `pure_rolling` STATE_7, the target.** `rolling_on_incline` **17 of 17 identical**,
 > including its μ_s `param_ramp` slip state.
+>
+> > ### ⚠ CORRECTION 2026-08-06 — **do not read "17/17 identical" as evidence of health.**
+> > Those 17 states were identical because `rolling_on_incline` was **entirely non-functional both
+> > before and after E2** — a separate defect (E11) pinned every rolling body at v = 0. **E2 is
+> > necessary but not sufficient: adding the kinematic precondition alone left every incline rolling
+> > state exactly as dead as before**, and E2's own A/B could not have detected that, because it
+> > drove the branch-selection logic and never asked whether `b.v` advanced.
+> > E2 is **not wrong** — the kinematic gate is real and still required for the flat-track capture —
+> > but its blast-radius claim licensed only *"this change did not alter those states"*, never
+> > *"those states work"*. Fixed by **E11** (`!rollHeld` on the rest clamp); all 8 states now live.
+> > General class filed as `byte_identical_ab_against_a_dead_baseline_reads_as_proof_of_correctness`
+> > (CRITICAL, directive) — see §F for the standing verify-chain change.
 > Verified by this desk: renderer-syntax OK, tsc 0, validate 149 PASS / 0 FAIL,
 > `newton_second_law` 26/26 with H2 **identical to the digit**, `coulombs_law` 50/50 at H2 0.00%.
 
@@ -306,10 +318,42 @@ is never recoloured; HUD digits take no sign colour).
 > and its drawn length tracks |L|. Keep the pixel measurements below only as a **secondary
 > absolute floor**, never as the primary assertion.
 
-Secondary acceptance floors (findings_c PASS 15) — absolute, not deltas: S1 ink ≥ 400 px;
-`len(6.51)/len(1.14) = 5.71 ± 0.10` fitted in pixels with intercept < 1 px; arrow-vs-axle
-contrast ≥ 3:1; S4 flip changes ≥ 300 px. **Confirmed identical across `founder_proxy_B.md` §6 and
-this document** (Desk C, PASS 16) — no reconciliation needed.
+> ### ✅ E7 ACCEPTED — founder ruling 2026-08-06. The FOURTH FLOOR IS AMENDED; the other three stand.
+>
+> **The implementation is correct. The fourth acceptance floor was mis-specified.**
+>
+> **AMENDED — floor 4 is measured on WORLD length, intercept < 1 px:**
+> `len(L=6.51)/len(L=1.14) = 5.71 ± 0.10` **in world units**. **Already proven and passing:**
+> 0.228 / 0.918 / 1.302 world units for L = 1.14 / 4.59 / 6.51 → **5.7105 against a true 5.7105,
+> intercept 0.**
+>
+> **Why the pixel form was unsatisfiable, not merely inconvenient:** a pixel-length ratio cannot
+> equal a world-length ratio under a perspective camera unless both vectors sit **equidistant from
+> the camera and parallel to the image plane** — which these do not, since the arrow points along
+> the camera-up axis so the longer arrow's tip sits nearer the camera (gain up to 1.157× across its
+> span). The 6.13 reading is **foreshortening behaving correctly, not an arrow defect.** A cone also
+> projects width as well as length, so a bbox reading carries a head-radius intercept unrelated to
+> magnitude.
+>
+> **The other three floors REMAIN PIXEL MEASUREMENTS and are not amended** — ink, contrast and flip
+> magnitude are genuinely screen properties, and all three passed with room:
+> **ink 15 px → 1579 px** (floor 400) · **contrast 4.36:1** (floor 3:1) · **S4 flip 5341 px**
+> (floor 300).
+>
+> **Desk C: the amendment request is CLOSED — stop carrying it.** The generalisable lesson now has
+> two instances: the contract correction demoted pixel *luminance* (F-C7's probe would have passed
+> on an invisible arrow), and this demotes pixel *length*. **Assert the physical quantity; use
+> pixels only for properties that are genuinely of the screen.**
+>
+> Still open and separate from acceptance: the **negative-L branch is occluded by the drum disc**
+> it passes through (a different object from the collinear line E7's `bug_class` covers). Strictly
+> better than before — it was entirely absent — and it clears the S4 floor at 5341 px. Desk C to
+> measure the negative branch's own absolute ink and route separately.
+
+Original floors, for the record (findings_c PASS 15; confirmed identical across `founder_proxy_B.md`
+§6 and this document at PASS 16 — no reconciliation was needed): S1 ink ≥ 400 px; `5.71 ± 0.10`
+fitted **in pixels** with intercept < 1 px; arrow-vs-axle contrast ≥ 3:1; S4 flip ≥ 300 px.
+**Floor 4's pixel basis is superseded by the ruling above.**
 
 > ### ⚠ CORRECTION 2026-08-06 — **E7 HAS a back-compat surface. My own §C C-3 premise was wrong.**
 > Filed by Desk C (PASS 16) as E7's named verifier; **I re-verified it in this checkout before
@@ -449,6 +493,150 @@ Build notes, decided:
 - E8 (`rbr_live_param_drag_has_no_rendered_agent`) is the **brake** half of the same "no rendered
   agent" family. Sequence E10 and E8 adjacently; keep them separate `bug_class`es (different
   branch, different mesh, different trigger) unless the surgeon finds one mechanism serves both.
+
+### E11 · `nlb_rest_guard_pins_any_body_released_from_rest_that_can_roll` — **CRITICAL · BLOCKS DESK B ENTIRELY · NEXT DISPATCH**
+**Added 2026-08-06 from Desk B's `findings_b.md` B-3 (revised), verified by RUNTIME — the opposite
+provenance to B-1/B-2, which is exactly why it outranks them.**
+
+**`rolling_on_incline` is entirely non-functional — not one of its 8 states renders its physics.**
+`STATE_8` (the Rule-37 sandbox, guaranteed to run continuously) is **one MD5 across 10.5 s**:
+`t=0`, `t=5000`, `t=10000` and the frozen pin are **byte-identical**. Negative control passes:
+STATE_7's `param_ramp` produces a different hash at every timestamp, so the harness sees change
+when there is any.
+
+#### ⚠ This supersedes E2's blast-radius claim, and E2's evidence was measuring a corpse
+E2 (`1a889bc`, shipped) reported *"`rolling_on_incline` 17/17 identical"* as proof of nil blast
+radius. **Those 17 states were identical because they were dead before AND after.** A
+byte-identical A/B against a broken baseline proves non-regression, not correctness — and nothing
+in E2's probe could have distinguished the two, because it drove the branch logic and never asked
+whether `b.v` advanced. Desk B states it plainly: **"B-1 must not be closed by a fix that only
+adds the kinematic precondition. That fix, alone, would leave every incline rolling state exactly
+as dead as it is now."** E2 is **necessary but not sufficient**; it is not wrong, and it is not
+the whole story.
+
+#### Desk B's isolation of the defect — force model CORRECT, transport BROKEN
+- **S6** (held → released at `activate_at_ms: 2500`): before, `a = 0.00, f_s = 4.14 N` — exactly
+  `mg sin 25°`. After, `a = −2.76, f = 1.38 N` — exactly `g sin θ/(1+k)` for a disc and `k·m·a`.
+  **The release fires on schedule with correct magnitudes, and the mesh is pixel-identical either
+  side of it.**
+- **S3 positive control, same frame, same instant:** a `rotation_locked` block beside a `rolling`
+  disc. The **block** integrates correctly (`contact` 0.09 → 2.88 → 4.18, tracking
+  `a = g(sinθ − μ_k cosθ) = 2.809`). Only the `rolling` disc stays frozen at `contact = 0.00`.
+- **The split falls exactly along "reads from persistent state" (`v`, `ω`, `Rω`, `contact`,
+  `KE_*` — all frozen at seed) vs "computed from a formula" (`a`, `f` — all correct).**
+- **REFUTED, do not re-derive:** excess static friction holding the bodies `stuck`. S6's release
+  and S7's μ_s ramp both drive the body out of the static regime with correct post-slip numbers,
+  and neither moves.
+
+> ### ✅ E11 RESOLVED 2026-08-06 — ONE LINE. **The re-scope below was WRONG; I am striking it.**
+>
+> **`if (!rollHeld && nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }`**
+> — one added term at `:47369`. **All 8 `rolling_on_incline` states are live.**
+>
+> **The original hypothesis was right and my refutation of it was wrong.** The re-scope below rests
+> on Desk B's claim that S7 does not move. **S7 does move — from t = 688 ms.** The surgeon drove the
+> real emitted renderer over the real authored config and caught it.
+>
+> **The signature is conclusive.** S7 releases on the exact frame `maxStat` crosses below `drive`:
+> `maxStat = μ_s·N` and `drive = mg sin θ`, so the crossing is `μ_s = tan θ` = **0.466308**, and the
+> measured release is at **μ_s = 0.466308**. `|drive| ≤ maxStat` is the only expression in the file
+> with that threshold. It releases with `a = −2.0708 = g sinθ/(1+k)` for a ring — the **rolling**
+> value, not the kinetic −3.6976 — so the rolling branch was computing correctly the whole time and
+> only the clamp suppressed it. Every other state authors μ_s 0.50 or 0.90, both above tan 25°, so
+> the guard was permanently armed; S7 escaped only because its `param_ramp` walks μ_s under tan θ.
+>
+> **Why the guard is wrong here, physically:** it asks the *sliding* question `μ_s ≥ tan θ` — right
+> for a block. A rolling body's static gate is the strictly weaker `μ_s ≥ (k/(1+k))·tan θ`, which
+> the rolling branch had **already evaluated and passed** (`canRoll`). The clamp asked the block
+> question a second time and overruled the rolling branch's own answer. There is no rolling case it
+> can be right about: a body released from rest on any θ > 0 either rolls or slips, never stays put.
+>
+> **My error, recorded because it is the more useful half.** I verified the *arithmetic* of my
+> hypothesis and then accepted the *observation* that appeared to refute it without testing it —
+> from a findings file whose own negative control contradicted it in the same section (Desk B
+> reported S7's hashes differ at every timestamp **and** "the mesh is pixel-identical throughout";
+> both cannot be true). **A sibling desk's runtime claim needs the same scepticism as an agent's.**
+> Desk B's prose reading was wrong; its MD5 data was right.
+>
+> **E11a and E11b therefore collapse into one line, and E11b as a general class remains open but is
+> no longer blocking:** a **non-rolling** body launched from rest with `|drive| ≤ μ_s·N` is still
+> clamped, and whether `nlbSgn(0) = 0` should make that fire on frame 1 is a genuinely separate,
+> fleet-wide question about blocks and carts. Nothing needs it to make S6 move — S6 moves at
+> t = 2512 ms.
+>
+> <details><summary>Struck — the two-class re-scope, kept for the record</summary>
+>
+> ### ~~RE-SCOPE 2026-08-06, BEFORE DISPATCH — E11 SPLITS INTO TWO CLASSES. The falsifier fired.~~
+>
+> The founder's decision tree said: if the guard genuinely releases and the body still does not
+> move, a second mechanism exists — an Amendment 4 re-scope signal, to be taken **before** the
+> dispatch rather than 80 calls into it. **I resolved the falsifier from code + arithmetic rather
+> than waiting on Desk B, and it fired.**
+>
+> **The resolution.** `nlbRunParamRamp` (`:43416`) calls `nlbApplyParam(tok, v)`, and the
+> `mu_s` branch (`:43088–43098`) writes `b.mu_s` on **every non-ghost, non-hanging body**. So at
+> S7's ramp end μ_s genuinely reaches 0.05 — the ramp is not stale, not scoped away, not
+> churn-guarded out. Therefore:
+>
+> | quantity at S7 ramp end | value |
+> |---|---|
+> | `maxStat = μ_s·N` | **0.444 N** |
+> | `drive = mg sin 25°` | **4.142 N** |
+> | `a` (kinetic branch, `canRoll` now false) | **3.70** — Desk B independently measured **−3.70** |
+> | `|drive| ≤ maxStat` | **FALSE** |
+> | **rest guard fires?** | **NO** |
+> | `v1` | **0.0616** → the body **should move** |
+>
+> **Desk B's runtime says it does not move.** So the rest guard is *not* what pins S7, and a
+> **second, independent mechanism** prevents computed motion from reaching persistent state.
+>
+> **Split, and the order matters:**
+> - **E11a · `nlb_computed_motion_never_reaches_persistent_body_state` — TRANSPORT. TAKE THIS
+>   FIRST.** S7 is the clean instance: the guard released, `a` is correct to the decimal, and the
+>   body is still frozen. Desk B's positive control isolates it further — a `rotation_locked` block
+>   integrates correctly beside a frozen `rolling` disc in the same state at the same instant, and
+>   the readout split falls exactly along *reads persistent state* (frozen) vs *computed from a
+>   formula* (correct).
+> - **E11b · `nlb_rest_guard_pins_a_body_released_from_rest_that_can_roll` — the guard.** Real,
+>   arithmetic-confirmed for the μ_s = 0.5 guided states (S6 and friends), but **secondary**: if
+>   transport is broken, fixing the guard alone changes nothing on screen. **That is E2's lesson
+>   repeating, and taking the guard first would repeat it a second time.**
+>
+> Both retain the same acceptance: **RUNTIME, never a probe.**
+
+</details>
+
+#### 🔬 The hypothesis — CONFIRMED as the whole defect, not a partial one.
+
+The rest guard immediately after the branch selection (`field_3d_renderer.ts:47337`):
+```js
+var v0 = b.v;
+var v1 = v0 + a * hPhys;
+if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+```
+`nlbSgn(0) === 0` (`:46293`). For **any body released from rest**, `v0 = 0` ⇒ `nlbSgn(v0) = 0`
+while `nlbSgn(v1) = ±1`, so **the sign test is ALWAYS true on the first step**. The guard then
+fires whenever `|drive| ≤ maxStat` — and for a body that *can roll*, having enough static friction
+is precisely what `canRoll` asserts. So the guard pins it at `v = 0`, `a = 0` **every frame,
+forever**, and `v0` stays 0 so the condition never stops holding.
+
+Reproduced against Desk B's own measured state (m = 1, θ = 25°, k = 0.5, disc):
+`drive = mg sin 25° = 4.142 N` (Desk B measured `f_s = 4.14`) · `aRoll = 2.76` (Desk B measured
+`a = −2.76`) · at **μ_s = 0.5**, `maxStat = 4.44` ⇒ `drive ≤ maxStat` ⇒ **guard fires** ⇒ dead.
+
+It also explains the flat/incline split with no second defect: `pure_rolling`'s working states are
+**launched with v₀ ≠ 0**, so `nlbSgn(v0) = ±1 = nlbSgn(v1)` and the guard never fires.
+
+**Its own falsifier — test this before anything else.** At S7's ramp end (μ_s = 0.05) `maxStat`
+falls to 0.44 < drive 4.142, so the guard should **stop** firing and the body should move. **Desk B
+reports S7 does not move.** So either a second mechanism pins S7, or this hypothesis is incomplete.
+That discriminator is the cheapest first experiment in the dispatch.
+
+**Fix shape (surgeon's call):** the guard is for *kinetic jitter across v = 0*, so it must not
+treat "at rest and about to start" as "has come to rest" — e.g. require `v0 ≠ 0` before it can
+arrest, or test the post-step contact rather than the sign flip. **Whatever the shape, the
+acceptance is RUNTIME, not a probe:** Desk B must see distinct frame hashes across `STATE_8`'s
+10.5 s. A byte-identical A/B is exactly what failed to catch this.
 
 ---
 

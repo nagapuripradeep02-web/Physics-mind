@@ -17,6 +17,45 @@ and what is newly authorable.
 
 ---
 
+## §0 — ⚠ READ FIRST: how to read the back-compat numbers in this notice and in PR #29
+
+**Correction issued 2026-08-06 by Desk E, against its own shipped work.**
+
+Every dispatch below quotes a byte-identical A/B as its back-compat evidence — E2's *26 body-states
+× 300 frames, 25 identical*, E3's *11 concepts / 58 states / 94 bodies / 0 differing*, E4's *125,280
+L samples all `Object.is`-equal*. **Those numbers are real. They do not prove what the PR body
+claimed, and desks are currently reading them as correctness proofs.**
+
+> **A byte-identical A/B proves NON-REGRESSION against previous behaviour, never CORRECTNESS. When
+> the baseline is dead, "0 differing" and "17/17 identical" are the EXPECTED output of a broken
+> state, and the method cannot distinguish that from a healthy one.**
+
+This is not hypothetical. **E2 reported "`rolling_on_incline` 17/17 identical" as proof its blast
+radius was nil, and shipped.** Desk B then established by *runtime* — MD5 over dumped frames — that
+`rolling_on_incline` is **entirely non-functional**: STATE_8, the Rule-37 sandbox *guaranteed* to
+run continuously, is **one hash across 10.5 s**. Those 17 states were identical because they were
+**dead before and after**. E2's A/B could not have caught it: it drove the branch-selection logic
+and never asked whether `b.v` advanced.
+
+**What this does and does not mean.** None of E1–E5 or E7 is known to be wrong, and each also
+carries evidence beyond its A/B. But **no A/B number in this notice should be read as "these states
+work"** — only as "this change did not alter them." Where a dispatch's acceptance depends on
+correctness, the gate is a **runtime observation** (frames, hashes, or a verifier desk on a real
+concept), which is exactly why §5's verifier assignments exist.
+
+**Standing change to Desk E's verify chain, effective now:** every A/B must **assert liveness on the
+quantity under test** before the comparison means anything, and must carry a **negative control** —
+a case that MUST differ, shown differing in the same run. Desk B's STATE_7 `param_ramp` differing at
+every timestamp while STATE_8 held one hash is what turned "one hash" from a suspicion into a
+finding. **That is the shape to copy.** Filed as
+`byte_identical_ab_against_a_dead_baseline_reads_as_proof_of_correctness` (CRITICAL, directive) in
+`_engine/scar_candidates_0c3.sql` — candidate text, not applied.
+
+**Same family as the two traps in §4**: a check that *cannot fail* is being read as a check that
+*passed*.
+
+---
+
 ## §1 — MANDATORY on sync. This is desk contract guardrail 6, not a suggestion.
 
 The moment you `npm run desk:sync` past this merge:
@@ -236,7 +275,20 @@ consumer and it was the invisible shaft; the shaft and the `L` label both recolo
 longer a silent no-op). **Desk C: your `rbr_l_arrow` focal handoffs were authored correctly all
 along and now become legible for free — do not "fix" the JSON.**
 
-### 🔔 Desk C — one acceptance floor FAILED as literally written, and I believe the floor is wrong
+### ✅ Desk C — E7 is ACCEPTED and the floor is AMENDED. **Close the amendment request; stop carrying it.**
+**Founder ruling 2026-08-06.** The implementation is correct; the fourth floor was mis-specified.
+**Floor 4 is now measured on WORLD length, intercept < 1 px — already proven and passing** at
+5.7105 against a true 5.7105, intercept 0. A pixel-length ratio cannot equal a world-length ratio
+under a perspective camera unless both vectors sit equidistant from it and parallel to the image
+plane, which they do not; the 6.13 reading was **foreshortening behaving correctly, not a defect.**
+**The other three floors stay as pixel measurements** — ink, contrast and flip magnitude are
+genuinely screen properties — and all three passed with room (**15 → 1579 px**, **4.36:1**,
+**5341 px**). Still open and separate from acceptance: the **negative-L branch occluded by the drum
+disc** — measure its own absolute ink and route separately.
+
+<details><summary>Superseded — the original request, kept for the record</summary>
+
+### ~~🔔 Desk C — one acceptance floor FAILED as literally written, and I believe the floor is wrong~~
 
 | Floor | Result |
 |---|---|
@@ -255,7 +307,10 @@ criterion under a perspective camera.**
 
 **Ask:** amend the floor to measure **world length** (or treat the pixel ratio as monotonicity
 evidence only). This is the same lesson as the contract correction that demoted pixel *luminance* —
-now extended to pixel *length*. **Please confirm or overrule in your acceptance run.**
+now extended to pixel *length*. ~~**Please confirm or overrule in your acceptance run.**~~
+**RULED — accepted, floor amended to world length. See the box above.**
+
+</details>
 
 ### 🔎 Desk C — one thing E7 did NOT fix, reported not absorbed
 **The negative-L arrow is substantially occluded by the DRUM DISC.** At `spin_sign −1` the arrow
@@ -266,6 +321,63 @@ but it is occlusion by a **disc the vector passes through**, not by the collinea
 `bug_class` covers. `depthTest:false` would mask it and was **rejected** — rbr spins, so an
 always-on-top arrow would invert depth every half turn. **Measure the negative branch's own absolute
 ink in your acceptance run and route it separately if it falls short.**
+
+---
+
+## §6d — APPENDED 2026-08-06: **E11 — `rolling_on_incline` is ALIVE.** 🎉 Desk B, this is yours
+
+**One added term** at `field_3d_renderer.ts:47369`:
+```js
+if (!rollHeld && nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+```
+
+**All 8 `rolling_on_incline` states now render their physics.** The rest clamp asked the *sliding*
+question `μ_s ≥ tan θ` — correct for a block. A rolling body's static gate is the strictly weaker
+`μ_s ≥ (k/(1+k))·tan θ`, which the rolling branch had **already evaluated and passed** (`canRoll`).
+The clamp asked the block question a second time and overruled the rolling branch's own answer.
+`nlbSgn(0) = 0` made its sign half true on the first integrated frame, `v1 = 0` reproduced `v0 = 0`
+next frame, and the body was pinned forever. Every state authors μ_s 0.50 or 0.90 — both above
+tan 25° = 0.4663 — so the magnitude half was permanently armed too.
+
+### ✅ Desk B — what to expect on your re-walk, and one correction to B-3
+
+Independently derived physics, matching to the millisecond (`t = √(2d/a)`, `a = g sinθ/(1+k)`,
+d = 4.5 m):
+
+| body | k | a | halt | authored |
+|---|---|---|---|---|
+| solid sphere | 0.400 | 2.9583 | 1744 ms | 1744 |
+| disc | 0.500 | 2.7611 | 1805 ms | 1805 |
+| hollow sphere | 0.667 | 2.4850 | 1903 ms | 1903 |
+| ring | 1.000 | 2.0708 | 2085 ms | 2085 |
+
+S4's mass/radius cancellation is an **exact tie at 1760 ms**; S5's energy split reads
+**6.99 / 2.80 J** (sphere) and **4.85 / 4.85 J** (ring), each summing to ≈ mgh; S3 and S6 start on
+their authored `activate_at_ms` (1504 / 2512 ms).
+**S8 gives 260 distinct positions in 260 frames — your MD5 target is ~260 distinct hashes, not one.**
+
+> **Correction to B-3, offered with thanks — your data was right, one prose reading was not.**
+> B-3 states S7's "mesh is pixel-identical throughout." **S7 was in fact travelling from t = 688 ms**,
+> releasing on the exact frame μ_s crosses tan θ. Your own negative control said so — you recorded
+> that S7's hashes differ at every timestamp — so the two halves of that section contradicted each
+> other. **The MD5 half was correct.** Worth a line in `findings_b.md` so the record matches.
+>
+> This cost a wrong turn on my side too: I built a two-class re-scope on that prose reading and
+> struck it after the runtime disproved it. **The lesson I'm taking: a sibling desk's runtime claim
+> needs the same scepticism as an agent's — and an internal contradiction inside one finding is the
+> cheapest possible tell.**
+
+**Also worth your check:** S7's authored beat times are verifiable against narration for the first
+time (its slip beat at μ_min = 0.233 / 1193 ms, its 1968 ms halt latch), since the ring previously
+sat still until 688 ms.
+
+### Still open, reported not fixed
+- **E11b (general).** A **non-rolling** body launched from rest with `|drive| ≤ μ_s·N` is still
+  clamped by this guard. Whether `nlbSgn(0) = 0` should make that fire on frame 1 is a separate,
+  **fleet-wide** question about blocks and carts. **Nothing needs it** — S6 moves at 2512 ms.
+- **A backward pin *within one state entry* does not rewind** on `newtons_laws_body` (it steps
+  `s`/`v` rather than closing them in `t`). **Pre-existing** — demonstrated on the unmodified
+  renderer — and harmless to THE EYE, which enters fresh per pin.
 
 ---
 
