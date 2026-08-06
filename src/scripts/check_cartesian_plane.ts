@@ -1,6 +1,7 @@
 /**
- * check:cartesian-plane — headless verification of the CP-A engine
- * (`cartesian_plane`, F1-F7 on `parametric_renderer.ts`).
+ * check:cartesian-plane — headless verification of the cartesian_plane
+ * engine family on `parametric_renderer.ts` (CP-A: F1-F7 frame/registry;
+ * CP-B: F8-F12 function_plot + plot_point).
  *
  * Same shape and reason as check:sigma-pi / check:bonding-scene: tsc, the
  * validators and THE EYE all pass on frames whose GEOMETRY is wrong, so this
@@ -10,11 +11,14 @@
  * (either hand-derived closed forms or a second, differently-written
  * implementation in this file).
  *
- * Sections implemented here (this dispatch's scope, per
- * docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md 0c gate table): 1-4, 11, 15.
- * Sections 5-10, 12-14, 16 belong to CP-B/CP-C/CP-D and are NOT asserted
- * here — they exercise primitives (function_plot, plot_point, region_fill,
- * riemann_bars, secant_line, tangent_line) this dispatch does not build.
+ * Sections implemented here, per docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md
+ * 0c gate table: 1-4 (CP-A), 5-7 (CP-B), 11 (CP-A), 15 (CP-A frame +
+ * CP-B parent-curve completion), 16 (CP-B). Plus a standalone F5 SEIZURE
+ * CLAUSE block (CP-B, not itself gate-table-numbered) asserting the
+ * plot_point drag-seize contract structurally. Sections 8-10 and 12-14
+ * belong to CP-C/CP-D and are NOT asserted here — they exercise primitives
+ * (region_fill, riemann_bars, secant_line, tangent_line) this file does not
+ * build.
  *
  * Every section carries a NEGATIVE CONTROL — a gate that has never failed is
  * not known to work (dispatch mandate). Negative controls are demonstrated
@@ -62,6 +66,10 @@ const VARS = ["PM_planeRegistry"];
 const FNS = [
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
+  // CP-B additions (F8-F12).
+  "PM_planeRangesOf", "PM_planeResolveInverse",
+  "PM_buildEvalScope", "PM_safeEval",
+  "PM_functionPlotSample", "PM_plotPointResolve", "PM_stateLiveControlVars",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -244,6 +252,173 @@ console.log("\n=== 4. equal_scale (D2) — shrinks, never grows ===");
   // (scaleX != scaleY).
   assertTrue("NEGATIVE CONTROL: equal_scale FALSE gives scaleX != scaleY for a non-square range",
     Math.abs(planeOff.scaleX - planeOff.scaleY) > 1);
+}
+
+console.log("\n=== 5. function_plot — DOMAIN sampling (F8-F10, CP-B) ===");
+{
+  const yRange = { min: -1.5, max: 1.5 };
+  const polylines = E.PM_functionPlotSample("sin(x)", 0, 2 * Math.PI, 240, {}, yRange);
+  assertTrue("sin(x) over one clean domain -> exactly one unbroken polyline", polylines.length === 1);
+  const pts = polylines[0] ?? [];
+  check("240 samples -> 240 points", pts.length, 240, 0);
+  let maxErr = 0;
+  for (const pt of pts) maxErr = Math.max(maxErr, Math.abs(pt.y - Math.sin(pt.x)));
+  check("max |sampled - Math.sin| across 240 points", maxErr, 0, 1e-12);
+  check("first sample x === domainMin (endpoint included)", pts[0].x, 0, 1e-12);
+  check("last sample x === domainMax (endpoint included)", pts[pts.length - 1].x, 2 * Math.PI, 1e-12);
+
+  // samples is clamped to the authored contract's closed range [40, 480].
+  const under = E.PM_functionPlotSample("sin(x)", 0, 2 * Math.PI, 5, {}, null);
+  check("samples below 40 clamps to 40", under[0]?.length, 40, 0);
+  const over = E.PM_functionPlotSample("sin(x)", 0, 2 * Math.PI, 9000, {}, null);
+  check("samples above 480 clamps to 480", over[0]?.length, 480, 0);
+
+  // A live variable reaches the sampler through vars, but 'x' itself is
+  // ALWAYS the sampler's own binding, never read from vars (D3) — a vars.x
+  // present in the scope must not leak into the sample.
+  const withStrayX = E.PM_functionPlotSample("x + a", 0, 1, 40, { x: 999, a: 10 }, null);
+  check("sampler's own x wins over a same-named vars.x (D3)", withStrayX[0][5].y, withStrayX[0][5].x + 10, 1e-9);
+
+  // NEGATIVE CONTROL — an off-by-one sampler that never reaches x_max
+  // (i/n instead of i/(n-1)). Written here, never shipped.
+  function brokenSampler(domainMin: number, domainMax: number, n: number) {
+    const out: { x: number; y: number }[] = [];
+    for (let i = 0; i < n; i++) {
+      const x = domainMin + (domainMax - domainMin) * (i / n); // BUG: /n, not /(n-1)
+      out.push({ x, y: Math.sin(x) });
+    }
+    return out;
+  }
+  const brokenPts = brokenSampler(0, 2 * Math.PI, 240);
+  assertTrue("NEGATIVE CONTROL: off-by-one sampler (i/n) misses x_max",
+    Math.abs(brokenPts[brokenPts.length - 1].x - 2 * Math.PI) > 1e-6);
+  assertTrue("the shipped sampler (i/(n-1)) does NOT share that defect",
+    Math.abs(pts[pts.length - 1].x - 2 * Math.PI) < 1e-9);
+}
+
+console.log("\n=== 6. function_plot — D4 discontinuities break the line; never clamped (CP-B) ===");
+{
+  // tan(x) over [0, pi] on a typical unit-scale y_range.
+  const yRange = { min: -4, max: 4 };
+  const tanPolylines = E.PM_functionPlotSample("tan(x)", 0, Math.PI, 240, {}, yRange);
+  assertTrue("tan(x) over [0,pi] yields >= 2 polylines (breaks at the pi/2 asymptote)", tanPolylines.length >= 2);
+  let anyOutOfRange = false;
+  for (const poly of tanPolylines) for (const pt of poly) {
+    if (pt.y < yRange.min - 1e-9 || pt.y > yRange.max + 1e-9) anyOutOfRange = true;
+  }
+  assertTrue("no drawn tan(x) point ever leaves y_range (never clamped, never drawn)", !anyOutOfRange);
+
+  // 1/x breaks exactly at x=0. n=41 over [-1,1] lands a sample exactly on 0
+  // at i=20: x = -1 + 2*(20/40) = 0.
+  const invPolylines = E.PM_functionPlotSample("1/x", -1, 1, 41, {}, { min: -50, max: 50 });
+  assertTrue("1/x over [-1,1] yields >= 2 polylines (breaks at x=0)", invPolylines.length >= 2);
+  assertTrue("no 1/x polyline contains a sample at x=0",
+    invPolylines.every((poly: { x: number; y: number }[]) => poly.every((pt) => Math.abs(pt.x) > 1e-9)));
+
+  // NEGATIVE CONTROL — a CLAMPING sampler (flattens y into yRange instead of
+  // breaking the line). Written here, never shipped.
+  function clampingTan(domainMin: number, domainMax: number, n: number, yr: { min: number; max: number }) {
+    const out: { x: number; y: number }[] = [];
+    for (let i = 0; i < n; i++) {
+      const x = domainMin + (domainMax - domainMin) * (i / (n - 1));
+      let y = Math.tan(x);
+      if (!isFinite(y)) y = y > 0 ? yr.max : yr.min; // BUG: silently clamps instead of breaking
+      else y = Math.max(yr.min, Math.min(yr.max, y));
+      out.push({ x, y });
+    }
+    return [out]; // a single, wrongly-unbroken polyline
+  }
+  const clampedTan = clampingTan(0, Math.PI, 240, yRange);
+  assertTrue("NEGATIVE CONTROL: a clamping sampler produces exactly ONE (wrongly unbroken) polyline for tan(x)",
+    clampedTan.length === 1);
+  assertTrue("the shipped D4 sampler does NOT share that defect (>= 2 polylines)", tanPolylines.length >= 2);
+}
+
+console.log("\n=== 7. plot_point — readout AND pixel position derive from ONE evaluation (D8, CP-B) ===");
+{
+  const pointSpec = { x_expr: "x0", y_expr: "x0*x0", readout: { format: "P = ({x}, {y})", decimals: 2 } };
+  const vars = { x0: 1.5 };
+  const resolved = E.PM_plotPointResolve(pointSpec, vars);
+  check("resolved.x", resolved.x, 1.5, 1e-12);
+  check("resolved.y", resolved.y, 2.25, 1e-12);
+  check("resolved.readoutText", resolved.readoutText, "P = (1.50, 2.25)", 0 as any);
+
+  // The picture and the text must be traceable to the SAME (x, y) — re-parse
+  // the numbers OUT of the readout text and confirm they match resolved.x/y.
+  const m = /P = \(([-\d.]+), ([-\d.]+)\)/.exec(resolved.readoutText);
+  assertTrue("readout text parses back to two numbers", !!m);
+  check("readout's printed x matches resolved.x", parseFloat(m![1]), resolved.x, 1e-9);
+  check("readout's printed y matches resolved.y", parseFloat(m![2]), resolved.y, 1e-9);
+
+  // The pixel position derives from the SAME resolved.x/y through the ONE
+  // plane funnel (PM_planeResolve) — register a plane and confirm.
+  const planeSpec = { id: "pp", viewport: { x: 0, y: 0, w: 400, h: 200 }, x_range: { min: 0, max: 4 }, y_range: { min: 0, max: 4 } };
+  for (const k of Object.keys(E.PM_planeRegistry)) delete E.PM_planeRegistry[k];
+  E.PM_planeRegistry["pp"] = E.PM_planeBuildTransform(planeSpec);
+  const px = E.PM_planeResolve({ plane_id: "pp" }, resolved.x, resolved.y);
+  const pxDirect = E.PM_planeRegistry["pp"].toPx(1.5, 2.25);
+  check("plot_point pixel position matches the plane transform at resolved.x/y, x", px.x, pxDirect.x, 1e-9);
+  check("plot_point pixel position matches the plane transform at resolved.x/y, y", px.y, pxDirect.y, 1e-9);
+
+  // NEGATIVE CONTROL — a TWO-SCOPE implementation: the pixel position is
+  // computed from a FRESH vars snapshot (the teacher has since dragged x0),
+  // while the readout text stays formatted from the OLD snapshot. This is
+  // exactly what "read the SAME scope" (D8) prevents by construction.
+  const varsAtDrag = { x0: 1.5 };
+  const staleResolved = E.PM_plotPointResolve(pointSpec, varsAtDrag); // readout text frozen at x0=1.5
+  const varsAfterDrag = { x0: 3.0 };
+  const freshX = E.PM_safeEval(pointSpec.x_expr, varsAfterDrag);
+  assertTrue("NEGATIVE CONTROL: a two-scope implementation disagrees — position moved, text did not",
+    Math.abs(freshX - staleResolved.x) > 1e-6 && staleResolved.readoutText === "P = (1.50, 2.25)");
+  const correctFresh = E.PM_plotPointResolve(pointSpec, varsAfterDrag);
+  assertTrue("the shipped single-evaluation call does NOT share that defect (text tracks position)",
+    correctFresh.readoutText === "P = (3.00, 9.00)");
+}
+
+console.log("\n=== F5 SEIZURE CLAUSE — plot_point drag seizes bind_variable exactly like a slider drag (CP-B) ===");
+{
+  // PM_stateLiveControlVars unions BOTH live-control sources.
+  const scene = [
+    { type: "slider", id: "s1", variable: "theta" },
+    { type: "plot_point", id: "P", plane_id: "plane", x_expr: "x0", y_expr: "x0*x0", drag: { bind_variable: "x0", axis: "x" } },
+    { type: "plot_point", id: "Q", plane_id: "plane", x_expr: "1", y_expr: "1" }, // no drag — must NOT contribute
+  ];
+  const live = E.PM_stateLiveControlVars(scene);
+  assertTrue("PM_stateLiveControlVars includes the slider's variable", live["theta"] === true);
+  assertTrue("PM_stateLiveControlVars includes the plot_point's drag.bind_variable", live["x0"] === true);
+  check("PM_stateLiveControlVars sees exactly 2 live-control variables", Object.keys(live).length, 2, 0);
+
+  // NEGATIVE CONTROL — a scanner that only looks at type:'slider' (the
+  // PRE-FIX shape of the four call sites this dispatch unified) would miss
+  // the drag-bound variable entirely.
+  function preFixScan(sc: { type?: string; variable?: string }[]) {
+    const out: Record<string, boolean> = {};
+    for (const p of sc) if (p && p.type === "slider" && p.variable) out[p.variable] = true;
+    return out;
+  }
+  const preFix = preFixScan(scene as { type?: string; variable?: string }[]);
+  assertTrue("NEGATIVE CONTROL: the pre-fix slider-only scan misses the drag-bound variable", !("x0" in preFix));
+
+  // STATIC REACHABILITY — drawPlotPoint's source contains the SAME seizure
+  // write drawCanvasSlider's genuine-drag branch uses (PM_userTouched[...] =
+  // true), inside a mouseIsPressed-gated branch, proving the F5 clause is
+  // actually WIRED — not merely documented. Mirrors gate section 11's own
+  // static-scan technique, since a real mouse drag cannot be simulated
+  // headlessly here.
+  const plotPointSrc = grabFn("drawPlotPoint");
+  assertTrue("drawPlotPoint contains a PM_userTouched seizure write for drag.bind_variable",
+    plotPointSrc.indexOf("PM_userTouched[spec.drag.bind_variable] = true") >= 0);
+  assertTrue("the seizure write sits inside a mouseIsPressed-gated branch (a genuine drag, not synthetic postMessage traffic)",
+    /mouseIsPressed[\s\S]*PM_userTouched\[spec\.drag\.bind_variable\] = true/.test(plotPointSrc));
+  assertTrue("drawPlotPoint shares PM_activeSliderId with drawCanvasSlider (single-touch: a point-drag and a slider-drag can never both fire from one press)",
+    plotPointSrc.indexOf("PM_activeSliderId") >= 0);
+
+  // Per-state clearing: PM_userTouched is cleared WHOLESALE on SET_STATE
+  // (already proven for sliders) — confirm the same statement exists
+  // verbatim. It clears BY VARIABLE NAME, so it clears a drag-bound seizure
+  // exactly as it clears a slider seizure — no separate code path to go stale.
+  assertTrue("SET_STATE clears PM_userTouched wholesale (drag-bound seizures clear exactly like slider seizures)",
+    SRC.indexOf("PM_userTouched = {};") >= 0);
 }
 
 console.log("\n=== 11. FLEET SAFETY — inert when plane_id is absent (F7) ===");
@@ -441,14 +616,104 @@ console.log("\n=== 15. INSET PLACEMENT — multi-plane (F1) + ink-avoidance ==="
     buriedOut < 20);
 
   // The plane frame itself never depends on a live variable (the ledger
-  // explicitly excludes teacher-draggable pan/zoom of the plane), so this
-  // ink-avoidance result holds for "the full range of every control the
-  // state exposes" by construction — a single evaluation covers it. A future
-  // curve (CP-B/C) would need re-evaluation across the control's range; that
-  // extension is out of CP-A's scope (see the dispatch report).
+  // explicitly excludes teacher-draggable pan/zoom of the plane), so the
+  // axis-ink check above holds by a single evaluation. A drawn CURVE does
+  // depend on live variables, so it needs re-evaluation across the state's
+  // full control range — CP-A left this as a documented handoff (its own
+  // header comment above named it), completed here now that function_plot
+  // exists (CP-B).
+
+  // ── COMPLETING THE CP-A HANDOFF (CP-B) ──────────────────────────────────
+  // Extend the SAME ink-avoidance check to the PARENT CURVE's drawn ink,
+  // swept across the full range of every control the spec driver's S4 state
+  // exposes for b and c (docs/skeletons/definite_integral_as_accumulated_
+  // area_skeleton.md §10c: b in [0.2, 2.0], c in [0, 1]) — not just one
+  // static entry value.
+  {
+    const bGrid = [0.2, 0.6, 1.0, 1.4, 1.8, 2.0];
+    const cGrid = [0, 0.25, 0.5, 0.75, 1.0];
+
+    function curveHitsRect(rx: number, ry: number, rw: number, rh: number): boolean {
+      for (const b of bGrid) {
+        for (const c of cGrid) {
+          const polylines = E.PM_functionPlotSample("x*x - c", 0, b, 240, { c }, mainSpec.y_range);
+          for (const poly of polylines) {
+            for (let i = 1; i < poly.length; i++) {
+              const p0 = mainPlane.toPx(poly[i - 1].x, poly[i - 1].y);
+              const p1 = mainPlane.toPx(poly[i].x, poly[i].y);
+              if (segIntersectsRect(p0.x, p0.y, p1.x, p1.y, rx, ry, rw, rh)) return true;
+            }
+          }
+        }
+      }
+      return false;
+    }
+
+    assertTrue("the PARENT CURVE's drawn ink never crosses the inset viewport, across the full b x c control product",
+      !curveHitsRect(iv.x, iv.y, iv.w, iv.h));
+
+    // NEGATIVE CONTROL — shift the inset DOWN so it now sits directly over
+    // the curve's own tail in that x-window (an inset overlapping the
+    // parent's CURVE, not just its axis, must FAIL).
+    const badIv = { x: iv.x, y: iv.y + 60, w: iv.w, h: iv.h }; // now spans px y 148-293
+    assertTrue("NEGATIVE CONTROL: a downward-shifted inset overlapping the parent curve IS detected",
+      curveHitsRect(badIv.x, badIv.y, badIv.w, badIv.h));
+  }
+}
+
+console.log("\n=== 16. RANGE CONTAINMENT — cross-product of control ranges stays inside y_range (D4/F9, CP-B) ===");
+{
+  // The spec driver's own worked scenario (docs/skeletons/
+  // definite_integral_as_accumulated_area_skeleton.md §11/§3): f(x) = x^2 - c
+  // on x_domain [0, b], b in [0.2, 2.0], c in [0, 1], main plane y_range
+  // [-1.5, 4.5].
+  const yRange = { min: -1.5, max: 4.5 };
+  const bGrid = [0.2, 0.6, 1.0, 1.4, 1.8, 2.0];
+  const cGrid = [0, 0.25, 0.5, 0.75, 1.0];
+  const headroomFrac = 0.05;
+  const span = yRange.max - yRange.min;
+
+  // (a) RAW closed-form extremal check — independent of the D4 sampler,
+  // the authoring-time reasoning MATHEMATICS_PHASE0_CARTESIAN_PLANE.md's
+  // §11 range-containment callout requires BEFORE a state is authored.
+  let rawMax = -Infinity, rawMin = Infinity;
+  for (const b of bGrid) for (const c of cGrid) {
+    // f(x)=x^2-c is increasing on [0,b] for b>0, so its extremes on the
+    // domain sit at the two endpoints x=0 and x=b.
+    rawMax = Math.max(rawMax, b * b - c, 0 - c);
+    rawMin = Math.min(rawMin, b * b - c, 0 - c);
+  }
+  check("raw extremal max == closed form f(2.0, c=0) = 4.0", rawMax, 4.0, 1e-9);
+  check("raw extremal min == closed form f(0, c=1) = -1.0", rawMin, -1.0, 1e-9);
+  assertTrue(`raw max (${rawMax.toFixed(4)}) has >= 5% headroom below y_range.max`, rawMax <= yRange.max - headroomFrac * span);
+  assertTrue(`raw min (${rawMin.toFixed(4)}) has >= 5% headroom above y_range.min`, rawMin >= yRange.min + headroomFrac * span);
+
+  // (b) the SAMPLED polyline (the shipped D4 sampler) never exits the frame
+  // for this (correctly-authored) range: every (b,c) pair samples to exactly
+  // ONE continuous, unbroken 240-point polyline.
+  let anyBroken = false;
+  for (const b of bGrid) for (const c of cGrid) {
+    const polylines = E.PM_functionPlotSample("x*x - c", 0, b, 240, { c }, yRange);
+    if (polylines.length !== 1 || polylines[0].length !== 240) anyBroken = true;
+  }
+  assertTrue("the sampled polyline stays unbroken (240/240 points) across the full control product", !anyBroken);
+
+  // NEGATIVE CONTROL — widen b past the authored range (to 2.3; the exact
+  // shape of the round-0 defect MATHEMATICS_PHASE0_CARTESIAN_PLANE.md §0b
+  // records: "a control range wider than the frame's y-range clips the
+  // picture while the number keeps printing"). The RAW check must now FAIL
+  // headroom, and the SAMPLED polyline must break (D4 catching what
+  // mis-authoring missed).
+  const badB = 2.3;
+  const badRawMax = badB * badB - 0; // f(2.3, c=0) = 5.29
+  assertTrue(`NEGATIVE CONTROL: b=2.3 raw max (${badRawMax.toFixed(2)}) FAILS the 5% headroom check`,
+    !(badRawMax <= yRange.max - headroomFrac * span));
+  const badPolylines = E.PM_functionPlotSample("x*x - 0", 0, badB, 240, {}, yRange);
+  assertTrue("NEGATIVE CONTROL: the D4 sampler breaks the b=2.3 curve rather than silently drawing it out of frame",
+    badPolylines.length !== 1 || badPolylines[0].length !== 240);
 }
 
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);

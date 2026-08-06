@@ -2120,6 +2120,31 @@ function PM_planeResolve(spec, dataX, dataY) {
   return plane.toPx(dataX, dataY);
 }
 
+// CP-B (F8-F10) — read-only metadata accessor for a registered plane's own
+// ranges. NOT a transform: it performs no coordinate math and calls neither
+// toPx nor toData — it only reports the xRange/yRange PM_planeBuildTransform
+// already computed and drawCartesianPlane already stored (D1: the transform
+// lives in ONE place). function_plot needs this for two things the point-only
+// PM_planeResolve funnel cannot supply: defaulting x_domain to the plane's
+// own x_range, and D4's break-on-range-exit check against y_range.
+function PM_planeRangesOf(planeId) {
+  var plane = PM_planeRegistry[planeId];
+  return plane ? { xRange: plane.xRange, yRange: plane.yRange } : null;
+}
+
+// CP-B (F12) — the INVERSE of PM_planeResolve: pixel -> DATA. Needed by
+// plot_point's drag path (a mouse position must become a data-space value to
+// drive drag.bind_variable). Same registry, same inert-when-missing contract
+// as PM_planeResolve, calling the SAME plane.toData PM_planeBuildTransform
+// already built (D1) — this is that transform's existing mirror, not a new one.
+function PM_planeResolveInverse(spec, px, py) {
+  if (!spec || !spec.plane_id) return null;
+  var plane = PM_planeRegistry[spec.plane_id];
+  if (!plane) return null;
+  if (!isFinite(px) || !isFinite(py)) return null;
+  return plane.toData(px, py);
+}
+
 function drawCartesianPlane(spec) {
   if (!spec || !spec.id) return;
   // D6 — both standard brackets, before any drawing. Third recurrence of the
@@ -2815,11 +2840,11 @@ function PM_choreoVarsAtTime(tMs) {
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
   var choreo = (stateData && stateData.variable_choreography) || [];
   var scene = (stateData && stateData.scene_composition) || [];
-  var stateSliderVars = {};
-  for (var si = 0; si < scene.length; si++) {
-    var sp = scene[si];
-    if (sp && sp.type === 'slider' && sp.variable) stateSliderVars[sp.variable] = true;
-  }
+  // CP-B (F5/F12) — "slider" here means "live-control": either a
+  // type:'slider' primitive or a type:'plot_point' with a drag.bind_variable.
+  // See PM_stateLiveControlVars's own header for why this must be ONE
+  // function shared by every consumer instead of four separate scans.
+  var stateSliderVars = PM_stateLiveControlVars(scene);
   var vars = PM_resolveStateVars(PM_currentState) || {};
   for (var sk in PM_sliderValues) {
     if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
@@ -2911,6 +2936,260 @@ function drawLocusTrace(spec) {
       line(prevPt.x, prevPt.y, x, y);
     }
     prevPt = { x: x, y: y };
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
+// ── State live-control variables (CP-B, F5/F12) ────────────────────────────
+// A "live-control" variable is one THIS STATE lets a teacher drive directly,
+// right now: a type:'slider' primitive's own 'variable', or a
+// type:'plot_point' primitive's 'drag.bind_variable'. Both write through the
+// SAME PM_sliderValues store and both seize through the SAME PM_userTouched
+// flag (the F5 clause — a plot_point drag must behave EXACTLY like a slider
+// drag: PM_userTouched[bind_variable] = true on a genuine drag, cleared only
+// on a true SET_STATE, same as drawCanvasSlider's own genuine-drag branch
+// below). PM_choreoVarsAtTime, PM_applyChoreography, the SET_STATE handler
+// and the PARAM_UPDATE handler each used to answer "is v a live control of
+// this state" independently and identically (four copies of the same
+// type:'slider' scan) — every one of them needed the SAME widening, because
+// a plot_point drag is a second seizure door none of them could see.
+// Centralised here once so a future live-control primitive (e.g. a CP-D
+// draggable secant endpoint) only widens this ONE function, not four call
+// sites again.
+function PM_stateLiveControlVars(scene) {
+  var out = {};
+  if (!Array.isArray(scene)) return out;
+  for (var i = 0; i < scene.length; i++) {
+    var p = scene[i];
+    if (!p) continue;
+    if (p.type === 'slider' && p.variable) out[p.variable] = true;
+    else if (p.type === 'plot_point' && p.drag && typeof p.drag.bind_variable === 'string') {
+      out[p.drag.bind_variable] = true;
+    }
+  }
+  return out;
+}
+
+// ── function_plot (CP-B, F8-F10) ───────────────────────────────────────────
+// bug_class: pcpl_cannot_plot_y_equals_f_of_x_across_a_domain.
+//
+// D3 — NOT drawLocusTrace, deliberately. drawLocusTrace (above) samples over
+// TIME via PM_choreoVarsAtTime, which merges the LIVE slider value into every
+// historical sample — the recorded CRITICAL scar
+// (pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve):
+// a trace parameterised on a slider variable collapses to a point on the
+// first drag. The mathematics graph-transformation family's a/b/h/k ARE
+// sliders, so a curve of x must never go anywhere near that code path.
+// function_plot instead samples the x-DOMAIN, every frame, against
+// PM_liveExprVars() — the SAME live scope every other *_expr field reads
+// (D8) — with x bound by THIS sampler loop and NEVER read from the variable
+// scope. Time-swept accumulation (F17) stays locus_trace's job; the two
+// primitives answer different questions and must not be merged.
+//
+// Pure sampler (no p5, no drawing) — independently testable
+// (check:cartesian-plane sections 5/6/16). samples is clamped to the
+// authored contract's closed range [40, 480] (MATHEMATICS_PHASE0_
+// CARTESIAN_PLANE.md's function_plot contract), default 240.
+//
+// D4 — a sample that is non-finite, or (when yRange is supplied) whose y
+// leaves yRange, ENDS the current polyline and starts a new one at the next
+// in-range sample: never drawn, never clamped. tan(x) must not sprout a
+// vertical line at pi/2; 1/x must not flatten onto the frame edge. Returns
+// an array of POLYLINES, each an array of {x,y} DATA points (both endpoints
+// included by construction: i/(n-1) reaches exactly 0 and exactly 1, so the
+// first and last samples land exactly on domainMin/domainMax).
+function PM_functionPlotSample(yExpr, domainMin, domainMax, samplesRaw, vars, yRange) {
+  var out = [];
+  if (!isFinite(domainMin) || !isFinite(domainMax) || !(domainMax > domainMin)) return out;
+  var n = PM_clamp(Math.round((typeof samplesRaw === 'number') ? samplesRaw : 240), 40, 480);
+  var scopeVars = {};
+  for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) scopeVars[k] = vars[k];
+  var cur = [];
+  var yEps = 1e-9;
+  for (var i = 0; i < n; i++) {
+    var x = domainMin + (domainMax - domainMin) * (i / (n - 1));
+    scopeVars.x = x; // bound by the sampler — never read from vars (D3)
+    var y = PM_safeEval(yExpr, scopeVars);
+    var inRange = isFinite(y) && (!yRange || (y >= yRange.min - yEps && y <= yRange.max + yEps));
+    if (!inRange) {
+      if (cur.length > 1) out.push(cur);
+      cur = [];
+      continue;
+    }
+    cur.push({ x: x, y: y });
+  }
+  if (cur.length > 1) out.push(cur);
+  return out;
+}
+
+function drawFunctionPlot(spec) {
+  if (!spec || typeof spec.y_expr !== 'string' || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame. Ranges are
+  // metadata only (PM_planeRangesOf performs no coordinate math); the actual
+  // pixel conversion below goes exclusively through PM_planeResolve.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var domainSpec = spec.x_domain || {};
+  var vars = PM_liveExprVars();
+  var domainMin = (typeof domainSpec.min === 'number') ? domainSpec.min
+    : (typeof domainSpec.min_expr === 'string') ? PM_safeEval(domainSpec.min_expr, vars)
+    : ranges.xRange.min;
+  var domainMax = (typeof domainSpec.max === 'number') ? domainSpec.max
+    : (typeof domainSpec.max_expr === 'string') ? PM_safeEval(domainSpec.max_expr, vars)
+    : ranges.xRange.max;
+
+  var polylines = PM_functionPlotSample(spec.y_expr, domainMin, domainMax, spec.samples, vars, ranges.yRange);
+  if (polylines.length === 0) return;
+
+  var rgb = PM_hexToRgb(spec.color || '#38BDF8');
+  var sw = (typeof spec.stroke_weight === 'number') ? spec.stroke_weight : 3;
+  var style = spec.style || 'solid'; // 'solid' | 'dashed' | 'ghost'
+  var styleAlphaMul = (style === 'ghost') ? 0.35 : 1;
+  var alpha255 = 255 * gate.alpha * emph.alphaMul * styleAlphaMul;
+
+  push();
+  noFill();
+  strokeWeight(sw);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#38BDF8';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  if (style === 'dashed' && drawingContext.setLineDash) {
+    drawingContext.setLineDash([sw * 2.5, sw * 2]);
+  }
+  stroke(rgb[0], rgb[1], rgb[2], alpha255);
+  for (var pi = 0; pi < polylines.length; pi++) {
+    var poly = polylines[pi];
+    var prevPx = null;
+    for (var qi = 0; qi < poly.length; qi++) {
+      // F7 — the ONE funnel; no second transform path.
+      var pxPt = PM_planeResolve(spec, poly[qi].x, poly[qi].y);
+      if (!pxPt) { prevPx = null; continue; }
+      if (prevPx) line(prevPx.x, prevPx.y, pxPt.x, pxPt.y);
+      prevPx = pxPt;
+    }
+  }
+  if (style === 'dashed' && drawingContext.setLineDash) {
+    drawingContext.setLineDash([]);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
+// ── plot_point (CP-B, F11-F12) ──────────────────────────────────────────────
+// D8 — the readout and the picture must read the SAME scope in the same
+// frame. Pure (no p5) so the gate can assert one-evaluation discipline
+// directly (check:cartesian-plane section 7): computes x, y AND the
+// formatted readout string from ONE vars snapshot — never two separately
+// evaluated scopes that merely happen to agree. readout.decimals is this
+// primitive's OWN precision (never the slider caption's hardcoded
+// toFixed(step<1?1:0) — labelText, D8's other half).
+function PM_plotPointResolve(spec, vars) {
+  var x = PM_safeEval(spec.x_expr, vars);
+  var y = PM_safeEval(spec.y_expr, vars);
+  var readoutText = '';
+  if (spec.readout && isFinite(x) && isFinite(y)) {
+    var decimals = (typeof spec.readout.decimals === 'number') ? spec.readout.decimals : 2;
+    var fmt = (typeof spec.readout.format === 'string') ? spec.readout.format : '({x}, {y})';
+    readoutText = fmt.split('{x}').join(x.toFixed(decimals)).split('{y}').join(y.toFixed(decimals));
+  }
+  return { x: x, y: y, readoutText: readoutText };
+}
+
+function drawPlotPoint(spec) {
+  if (!spec || !spec.id || typeof spec.x_expr !== 'string' || typeof spec.y_expr !== 'string' || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  var vars = PM_liveExprVars();
+  var resolved = PM_plotPointResolve(spec, vars);
+  // F7 — the ONE funnel; also inert when x/y are non-finite (unresolvable
+  // expression) or the named plane isn't registered this frame.
+  var px = PM_planeResolve(spec, resolved.x, resolved.y);
+  if (!px) return;
+
+  // F12 (the F5 clause) — a genuine drag seizes drag.bind_variable EXACTLY
+  // as drawCanvasSlider's genuine-drag branch seizes a slider variable
+  // (below, ~PM_userTouched[spec.variable] = true): set PM_userTouched (so
+  // choreography stands down — read via PM_stateLiveControlVars above by
+  // every consumer), write through PM_sliderValues (the SAME store a
+  // slider writes), recompute PM_physics and echo PARAM_UPDATE upward.
+  // Hit-tested against THIS frame's already-resolved pixel position, mirror-
+  // ing drawCanvasSlider's own knob hit-test, and sharing the SAME
+  // PM_activeSliderId single-touch claim so a point-drag and a slider-drag
+  // can never both fire from one mouse press.
+  if (spec.drag && typeof spec.drag.bind_variable === 'string') {
+    var hitR = ((typeof spec.size === 'number') ? spec.size : 12) + 8;
+    var hit = mouseIsPressed && Math.hypot(mouseX - px.x, mouseY - px.y) < hitR;
+    if (hit && PM_activeSliderId == null) PM_activeSliderId = spec.id;
+    if (!mouseIsPressed) PM_activeSliderId = null;
+    var isActive = PM_activeSliderId === spec.id;
+    if (hit && isActive) {
+      PM_userTouched[spec.drag.bind_variable] = true;
+      var dataAtMouse = PM_planeResolveInverse(spec, mouseX, mouseY);
+      if (dataAtMouse) {
+        var dragMin = (typeof spec.drag.min === 'number') ? spec.drag.min : -Infinity;
+        var dragMax = (typeof spec.drag.max === 'number') ? spec.drag.max : Infinity;
+        var rawDrag = (spec.drag.axis === 'y') ? dataAtMouse.y : dataAtMouse.x;
+        var snappedDrag = PM_clamp(rawDrag, dragMin, dragMax);
+        if (PM_sliderValues[spec.drag.bind_variable] !== snappedDrag) {
+          PM_sliderValues[spec.drag.bind_variable] = snappedDrag;
+          var currentVars = PM_resolveStateVars(PM_currentState) || {};
+          for (var sk in PM_sliderValues) {
+            if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk)) currentVars[sk] = PM_sliderValues[sk];
+          }
+          try { PM_physics = computePhysics(PM_config.concept_id, currentVars); } catch (err) { /* keep last good PM_physics */ }
+          if (PM_sliderLastEmitted[spec.drag.bind_variable] !== snappedDrag) {
+            PM_sliderLastEmitted[spec.drag.bind_variable] = snappedDrag;
+            try { window.parent.postMessage({ type: 'PARAM_UPDATE', key: spec.drag.bind_variable, value: snappedDrag }, '*'); } catch (e) {}
+          }
+        }
+        // Re-resolve THIS frame against the just-updated scope so the point
+        // visibly tracks the mouse in the same frame it is grabbed (D8: one
+        // scope, not a frame behind).
+        vars = PM_liveExprVars();
+        resolved = PM_plotPointResolve(spec, vars);
+        var pxNow = PM_planeResolve(spec, resolved.x, resolved.y);
+        if (pxNow) px = pxNow;
+      }
+    }
+  }
+
+  var rgb = PM_hexToRgb(spec.color || '#FBBF24');
+  var size = (typeof spec.size === 'number') ? spec.size : 12;
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#FBBF24';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  noStroke();
+  fill(rgb[0], rgb[1], rgb[2], alpha255);
+  ellipse(px.x, px.y, size, size);
+  if (resolved.readoutText) {
+    var off = (spec.readout && spec.readout.offset && typeof spec.readout.offset === 'object') ? spec.readout.offset : {};
+    var offX = (typeof off.x === 'number') ? off.x : 10;
+    var offY = (typeof off.y === 'number') ? off.y : -12;
+    fill(rgb[0], rgb[1], rgb[2], alpha255);
+    noStroke();
+    textSize(12);
+    textAlign(LEFT, CENTER);
+    text(resolved.readoutText, px.x + offX, px.y + offY);
   }
   if (emph.glowPx > 0) {
     drawingContext.shadowColor = 'transparent';
@@ -4001,11 +4280,11 @@ function PM_applyChoreography() {
   if (!changed) return;
 
   var scene = (stateData && stateData.scene_composition) || [];
-  var stateSliderVars = {};
-  for (var si = 0; si < scene.length; si++) {
-    var sp = scene[si];
-    if (sp && sp.type === 'slider' && sp.variable) stateSliderVars[sp.variable] = true;
-  }
+  // CP-B (F5/F12) — "slider" here means "live-control": either a
+  // type:'slider' primitive or a type:'plot_point' with a drag.bind_variable.
+  // See PM_stateLiveControlVars's own header for why this must be ONE
+  // function shared by every consumer instead of four separate scans.
+  var stateSliderVars = PM_stateLiveControlVars(scene);
   var vars = PM_resolveStateVars(PM_currentState) || {};
   for (var sk in PM_sliderValues) {
     if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
@@ -4206,6 +4485,26 @@ function draw() {
   // choreographed angle_expr today.
   PM_applyChoreography();
 
+  // Pass 0.3 (CP-B, F8-F12; D12 draw order) — function_plot then plot_point.
+  // Sits in the D12-declared chain cartesian_plane -> region_fill ->
+  // riemann_bars -> function_plot -> secant_line/tangent_line -> plot_point
+  // -> labels; region_fill/riemann_bars (CP-C) and secant_line/tangent_line
+  // (CP-D) are not built yet, so this pass currently runs function_plot then
+  // plot_point back to back — a later dispatch slots its primitives into
+  // this SAME pass, in the SAME relative position, never a new one. Runs
+  // AFTER PM_applyChoreography() (immediately above) so a choreographed
+  // x_domain bound (e.g. xdraw/beta/b) is reflected the same frame it steps
+  // (D3 — function_plot reads PM_liveExprVars(), which PM_applyChoreography()
+  // is what refreshes).
+  for (var fp = 0; fp < scene.length; fp++) {
+    var fpPrim = scene[fp];
+    if (fpPrim && fpPrim.type === 'function_plot') drawFunctionPlot(fpPrim);
+  }
+  for (var pp = 0; pp < scene.length; pp++) {
+    var ppPrim = scene[pp];
+    if (ppPrim && ppPrim.type === 'plot_point') drawPlotPoint(ppPrim);
+  }
+
   // Pass 0.5 — resolve attach_to_surface for bodies (non-mutating: store on a clone).
   // Must run after surfaces registered but before bodies drawn.
   //
@@ -4395,13 +4694,9 @@ window.addEventListener('message', function(e) {
     // 32° — the old theta value would bleed back and tilt the N arrow.
     var newStateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
     var newScene = (newStateData && newStateData.scene_composition) || [];
-    var stateSliderVars = {};
-    for (var nsi = 0; nsi < newScene.length; nsi++) {
-      var nsp = newScene[nsi];
-      if (nsp && nsp.type === 'slider' && nsp.variable) {
-        stateSliderVars[nsp.variable] = true;
-      }
-    }
+    // CP-B (F5/F12) — "slider" here means "live-control" (type:'slider' OR a
+    // type:'plot_point' drag.bind_variable); see PM_stateLiveControlVars.
+    var stateSliderVars = PM_stateLiveControlVars(newScene);
     for (var svk in PM_sliderValues) {
       if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
         vars[svk] = PM_sliderValues[svk];
@@ -4438,13 +4733,9 @@ window.addEventListener('message', function(e) {
     // surface is horizontal (STATE_2) or at a fixed authored angle (STATE_3/4).
     var curStateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
     var curScene = (curStateData && curStateData.scene_composition) || [];
-    var curSliderVars = {};
-    for (var csi = 0; csi < curScene.length; csi++) {
-      var csp = curScene[csi];
-      if (csp && csp.type === 'slider' && csp.variable) {
-        curSliderVars[csp.variable] = true;
-      }
-    }
+    // CP-B (F5/F12) — "slider" here means "live-control" (type:'slider' OR a
+    // type:'plot_point' drag.bind_variable); see PM_stateLiveControlVars.
+    var curSliderVars = PM_stateLiveControlVars(curScene);
     var updatedVars = PM_resolveStateVars(PM_currentState) || {};
     for (var usk in PM_sliderValues) {
       if (Object.prototype.hasOwnProperty.call(PM_sliderValues, usk) && curSliderVars[usk]) {
