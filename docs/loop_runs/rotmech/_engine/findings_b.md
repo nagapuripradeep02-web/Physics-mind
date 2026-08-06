@@ -1049,6 +1049,103 @@ per state as part of the pre-seal pass, after B-11.** Recorded so it is not lost
 
 ---
 
+## ✅ E11 VERIFICATION (Desk B is the verifier) — 2026-08-06. B-3 CLOSED.
+
+Containment confirmed independently of `desk:sync` (which skipped this desk again, 5 behind):
+`merge-base --is-ancestor ccb2b65 origin/master` → **ON_MASTER**; `ba12073` (PR #30 merge) also
+on master. Merged into this desk by hand. Triad clean; both Desk B fixes survived.
+Staleness proof: `sim_html` 4255010 → 4257634.
+
+**`rolling_on_incline` is ALIVE — verified on the MESHES, not on hashes.** S8 now yields **10
+distinct hashes** where it previously had one; every state moves. Cropped 5× to defeat the
+overlay trap: at t=0 all four bodies sit clustered at the top of the incline; by t=2000 they have
+travelled down and **separated into the authored finish order** — solid sphere leading, then
+disc, then hollow sphere, ring trailing. That is `a = g sinθ/(1+k)` with k = 0.4 < 0.5 < 0.667 <
+1.0. **B-3 CLOSED.**
+
+**`pure_rolling` NON-REGRESSED — but NOT byte-identical, and the hashes were misleading.**
+S1/S3/S7 hashes all changed vs pre-E11. Measured properly instead of trusting them:
+
+| comparison | frozen delta | dense delta | tolerance |
+|---|---|---|---|
+| pre-E11 vs post-E11, S1 / S4 / S7 | 0.000 / 0.000 / **0.021%** | 0.042 / 0.137 / 0.081% | 2.0% |
+
+**E11 caused no visible change.** S7's capture readouts are unchanged (`v = Rω = 1.33`).
+
+### 🔬 B-18 (METHOD, MAJOR) — md5 is OVER-SENSITIVE: a differing hash is not a changed picture
+
+Two `pure_rolling` runs, **no change between them**, re-seeded each time:
+
+```
+S1 dense=DET   frozen=det      S5 dense=NOISY frozen=det
+S2 dense=NOISY frozen=det      S6 dense=NOISY frozen=det
+S3 dense=NOISY frozen=det      S7 dense=NOISY frozen=NOISY
+S4 dense=DET   frozen=det      S8 dense=NOISY frozen=det
+```
+
+**6 of 8 states produce different dense hashes across identical runs**, and S7's *frozen* frame
+does too. But the measured pixel deltas are **0.000–0.021% (frozen)** and **0.013–0.128%
+(dense)** against a 2.0% tolerance — sub-threshold render noise (antialiasing / 1-LSB), not
+content. S7 even oscillates back to its exact pre-E11 hash.
+
+**Consequences for this desk's own method, stated plainly:**
+1. **"Hashes differ" proves nothing.** Only the *dead* direction survives: one hash across a
+   series ⇒ genuinely identical ⇒ dead scene. That heuristic stands and is still the fastest
+   liveness check. The converse does not.
+2. **Any A/B hash comparison needs a determinism check first** — two runs with no change — or a
+   pixel-delta measurement. This desk drew a "pure_rolling changed under E11" conclusion from
+   hashes that was **wrong**; the pixels say ≤0.137%.
+3. **CORRECTS this desk's earlier method note** claiming *"the explore state's dense frames are
+   NOT comparable run-to-run (Rule 37 free-runs on wall-clock); guided states are
+   deterministic."* **Both halves are wrong.** S8 (explore) is as deterministic as anything else
+   here, and 4 of 6 noisy states are GUIDED. The cause is sub-threshold render noise across the
+   board, not Rule 37 free-running. The earlier S8 difference was an engine change (the E2/E3
+   merge sat between those two runs), not nondeterminism.
+4. H2 at 2.0% tolerance is unaffected and safe — which is why the fleet's baselines have been
+   stable. Sealing is **not** blocked by this.
+
+---
+
+## ⛔ B-17 RULING CANNOT BE APPLIED — there is no preset layer to apply it to
+
+**Founder ruling:** *"38b governs formula surfaces, not controls. Keep v₀/ω₀/μ_k and θ/μ_s in the
+explore state; hide those rows in the reduced presets (Rule 38h — presets hide, never reorder)."*
+
+**The first half is applied: nothing was changed, both explore states keep their controls.**
+
+**The second half cannot be, and this desk did NOT fabricate a field to satisfy it.** Verified:
+
+- **No `presets` field exists in `src/schemas/conceptJson.ts`** — the only occurrences of
+  "preset" are comments, which state the shape is *"not yet gate-enforced or preset-consuming;
+  this is the proof-run's data shape pilot."*
+- **Zero concepts in the fleet author any preset-like key** (`grep -ohE '"[a-z_]*preset[a-z_]*"'
+  across `src/data/concepts/*.json` → empty), including the `capacitance` proof-run that piloted
+  curriculum-flex.
+- **No code reads `depth_ring` at all** — the only hits are validator comments and seed scripts.
+
+And an already-filed scar row states this exact hazard verbatim:
+
+> *"A ring cut is discharged by RING ASSIGNMENT, never by a field: every control the explore
+> state exposes must map to a guided state whose depth_ring survives the cut, **with no hiding
+> mechanism assumed anywhere**. If a control cannot satisfy that, the fix is to re-ring or to CUT
+> the control, not to tag it."*
+> — `_seed_engine_bug_queue_unit_circle_checkpoint_a.ts`
+
+Authoring a `presets` block would create a shape nothing consumes — the precise failure that row
+exists to prevent, and the same class as the `'shape'` control token this desk refused to invent
+under B-2.
+
+**The genuine options, for a founder decision (no state redesign is possible without one):**
+1. **Build the preset layer** (schema field + a consumer) — then the ruling applies as written.
+2. **Re-ring the teaching states** so each explore control maps to a surviving ring — but the
+   ruling says "no state redesign", and this is one.
+3. **Accept it as-is** and record that under a reduced preset these dials are untaught — cheapest,
+   and defensible while no preset consumer exists to reduce anything.
+
+**Nothing authored. B-17 stays OPEN pending that decision.**
+
+---
+
 ## PRE-SEAL AUTHORING AUDIT (text only, no frames) — 2026-08-06
 
 Both concepts audited against Rules 41 / 35 / 38 and the prerequisites ruling, on text alone.
@@ -1062,7 +1159,14 @@ pass flagged ~8 ASCII-math violations that were all doc-only. **Audit the render
 every string in the file.** The rendered surfaces are: `caption` (on-canvas delta cue),
 `label` (subtitle strip = narration), `formula_lines[].text`, body labels, slider labels.
 
-### 🔴 B-15 (MAJOR, `alex:json_author` — DESK B's own) — `rolling_on_incline`'s subtitle strip renders AUTHORING DESIGN NOTES, not narration
+### ✅ B-15 — **FIXED 2026-08-06.** All 8 labels rewritten as teaching narration.
+> Rewritten, not tidied: every ms timing, engine verb (*halt-latches / retires / activates /
+> re-synchronises*), raw world coordinate, `wu`, and ASCII variable is gone. All 8 now sit at
+> **39–43 words** (Rule 31 budget 25–55; S8 was previously 18, below the floor). Verified by
+> re-scan: zero residual hits. `tsc` 0 · `rolling_on_incline` PASS · 151/151.
+> **Not yet seen on pixels** — a re-walk is owed once B-5/B-10 land. Original finding below.
+
+### 🔴 B-15 (as filed, MAJOR, `alex:json_author` — DESK B's own) — `rolling_on_incline`'s subtitle strip renders AUTHORING DESIGN NOTES, not narration
 
 **7 of its 8 rendered `label` strings are design notes**, carrying millisecond timings, engine
 verbs, raw world coordinates and ASCII variable names. These render in the strip below the canvas
@@ -1090,7 +1194,10 @@ Rule 24/34 (the strip is for prose narration).
 session, same author. **`rolling_on_incline`'s `label` field was populated with the design table
 instead of the narration.** It needs a rewrite of 7 strings, not a wording tidy.
 
-### B-16 (MINOR, `alex:json_author` — DESK B's own) — one caption breaks Rule 34c
+### ✅ B-16 — **FIXED 2026-08-06.** `"v equals R omega"` → `"v = Rω"`, in BOTH the rendered
+`caption` and its `epic_l_path.delta_cue` mirror (two occurrences, kept consistent).
+
+### B-16 (as filed, MINOR, `alex:json_author` — DESK B's own) — one caption breaks Rule 34c
 
 All 16 captions audited; **exactly one** uses ASCII where the canvas convention is Unicode:
 

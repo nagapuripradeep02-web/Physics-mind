@@ -464,3 +464,52 @@ ids per the founder ruling — 3 each).
 Nothing fixed. B-13/B-14 still deliberately unfixed; no `eye_capture_ms` authored (gated on B-11).
 The dispatch queue is unchanged: **B-3** (incline motion), **B-5** (now a `single_lane` dispatch,
 not an id one), **B-10** (radius write destroys the marks), **B-11** (hybrid frozen frame).
+
+---
+
+## 2026-08-06 (E11 session) — B-3 closed, B-15/B-16 fixed, B-17 blocked, B-18 filed
+
+Containment confirmed independently (`desk:sync` skipped this desk again, 5 behind):
+`merge-base --is-ancestor ccb2b65 origin/master` → ON_MASTER, `ba12073` on master. Merged by
+hand. Triad clean, both Desk B fixes survived, `sim_html` 4255010 → 4257634.
+
+### E11 VERIFIED — B-3 CLOSED
+`rolling_on_incline` is alive on all 8 states. Verified on the **meshes**, not on hashes: cropped
+5× to defeat the overlay trap, at t=0 the four bodies cluster at the top of the incline and by
+t=2000 they have separated into the authored finish order — solid sphere, disc, hollow sphere,
+ring. S8 now yields 10 distinct hashes where it had one.
+
+`pure_rolling` non-regressed — but **not** byte-identical, and the hashes misled me. S1/S3/S7 all
+changed. Measured properly: pre-E11 vs post-E11 deltas are 0.000–0.021% frozen and 0.042–0.137%
+dense against a 2.0% tolerance. **No visible change.** S7's capture readouts unchanged.
+
+### B-18 filed — md5 is over-sensitive, and it corrects my own method note
+Two runs, no change between: **6 of 8 states give different dense hashes**, S7's frozen too. But
+pixel deltas are 0.000–0.021% (frozen) / 0.013–0.128% (dense) — sub-threshold render noise. S7
+even oscillates back to its exact pre-E11 hash. So "hashes differ" proves nothing; only the dead
+direction survives (one hash across a series ⇒ dead scene). **Corrects my earlier note** that
+"explore dense frames aren't comparable run-to-run; guided states are deterministic" — both
+halves wrong: S8 is deterministic and 4 of 6 noisy states are guided. The earlier S8 difference
+was the E2/E3 engine merge sitting between those runs, not nondeterminism. H2 at 2.0% is safe.
+
+### B-15 FIXED — 8 narration rewrites (not 7; S8 was also out of budget at 18 words)
+Every ms timing, engine verb, raw coordinate, `wu` and ASCII variable removed. All 8 labels now
+39–43 words (Rule 31: 25–55). Re-scan shows zero residual hits. Not yet seen on pixels — a
+re-walk is owed once B-5/B-10 land.
+
+### B-16 FIXED — `"v equals R omega"` → `"v = Rω"` in both the caption and its delta_cue mirror.
+
+### B-17 BLOCKED — the ruling assumes a mechanism that does not exist
+First half applied (controls kept). Second half cannot be: **no `presets` field in the schema,
+zero concepts author one, and no code reads `depth_ring` at all.** An existing scar row says it
+verbatim — *"a ring cut is discharged by RING ASSIGNMENT, never by a field… with no hiding
+mechanism assumed anywhere."* Authoring a presets block would fabricate a shape nothing consumes.
+**Nothing authored.** Three real options recorded in findings for a founder decision.
+
+### Task 4 — pure_rolling walked to the gate
+quality-auditor ∥ eye-walker dispatched on the twice-verified post-E11 run
+(`.visual_runs/pure_rolling/20260806-024318/`). No third capture: the concept JSON is unchanged
+since that run (only `rolling_on_incline` was edited). **Checkpoint B HELD** pending B-5.
+
+### Queue
+**B-5 → B-10 → B-11**, plus B-17 awaiting a founder decision. B-3 dropped (closed).
