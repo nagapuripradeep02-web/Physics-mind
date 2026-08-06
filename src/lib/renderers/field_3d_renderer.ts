@@ -5117,6 +5117,28 @@ export const FIELD_3D_RENDERER_CODE = `
         return grp;
     }
 
+    // ── Panel-label edge clamp (bug_class graph_marker_label_clipped) ─────
+    //   THE ONE clamp for the whole idiom "a label anchored to a data-driven
+    //   point on a bounded scale". The idiom had been hand-rolled THREE times
+    //   with three different guard levels — acgMarkerLabel (both edges), the
+    //   orbital-size mark (right edge only), the rbr KE-bar tick (neither) —
+    //   because the 2d606b9 fix was a clamp at ONE CALL SITE, not a shared
+    //   helper, and its prevention rule was phrased in canvas vocabulary
+    //   ("draw-x", padL) that a DOM author had no way to inherit. Anything
+    //   that places a measured label against a box goes through HERE.
+    //
+    //   Pure function of (anchor, measured width, box) — no clock, no state,
+    //   no accumulator (Rule 36): a rewind re-evaluates to the same x.
+    //   Left wins on conflict, so a label WIDER than its box keeps its head
+    //   readable instead of losing the first glyph; callers that can author
+    //   an over-wide string warn on that case rather than clipping silently.
+    function pmClampLabelX(anchorX, textW, boxL, boxR) {
+        var x = anchorX;
+        if (x + textW > boxR) x = boxR - textW;
+        if (x < boxL) x = boxL;
+        return x;
+    }
+
     // ── Text-label sprite (Diamond #2) ────────────────────────────────────
     //   Cheap canvas-texture sprite. Always faces the camera. Used to label
     //   v / F / v cos θ / v sin θ arrows in the Lorentz scenario.
@@ -26121,11 +26143,12 @@ export const FIELD_3D_RENDERER_CODE = `
             // RIGHT edge (a quarter/half period back from the live dot at xPix(t)).
             // Clamp each label's x so the whole string stays inside [padL, W-padR]
             // instead of truncating at the panel clip ("eps p...").
+            //   Now routed through the SHARED pmClampLabelX so this stops being
+            //   a private copy of the clamp (the reason the class reopened on a
+            //   different scenario). Same operands in the same order, so every
+            //   ac_generator frame is bit-identical to the pre-helper build.
             function acgMarkerLabel(text, mx, y) {
-                var lx = mx - 2, tw = ctx.measureText(text).width;
-                if (lx + tw > W - padR) lx = (W - padR) - tw;
-                if (lx < padL) lx = padL;
-                ctx.fillText(text, lx, y);
+                ctx.fillText(text, pmClampLabelX(mx - 2, ctx.measureText(text).width, padL, W - padR), y);
             }
             if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; acgMarkerLabel("\\u03a6 max, \\u03b5 = 0", xPix(tF), padT + 9); }
             if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; acgMarkerLabel("\\u03b5 peak, \\u03a6 = 0", xPix(tE), H - padB - 2); }
@@ -51171,6 +51194,12 @@ export const FIELD_3D_RENDERER_CODE = `
         rbrTokenWarnOnce("tick:nobar", "a reference_marks entry with form 'tick' is authored, " +
             "but this state has no ke_bar.max_j — the bar is never built, so the tick is never drawn.");
     }
+    function rbrWarnTickLabelWider(tok, w, box) {
+        rbrTokenWarnOnce("tick:wide:" + tok, "the tick label '" + tok + "' measures " +
+            Math.round(w) + "px, wider than the whole KE-bar panel (" + Math.round(box) +
+            "px) — it is left-aligned to the panel edge so its head stays readable, but its " +
+            "tail still overflows. Shorten the label; the clamp cannot fix an over-wide string.");
+    }
     function rbrWarnUnknownControl(tok) {
         rbrTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
             "', which has no RBR_SLIDER_SPEC row — no slider is built for it, in ANY state. " +
@@ -51251,6 +51280,57 @@ export const FIELD_3D_RENDERER_CODE = `
             '<div id="rbr_kebar_fill" style="width:0%;height:100%;background:#4DD0E1;border-radius:3px"></div>' + ticks + '</div>' +
             (wantTick ? '<div style="height:18px"></div>' : "");
         el.style.display = "block";
+        if (wantTick) rbrClampTickLabels(el, marks);
+    }
+    // bug_class graph_marker_label_clipped — the DOM leg.
+    //   A tick label is centred on its tick (left:pct% + translateX(-50%)), so a
+    //   tick low on the scale pushes half the string off the LEFT of the panel
+    //   and a tick near full scale pushes it off the RIGHT. Measured on the
+    //   authored S4 case: the 151.2px label "if energy stayed constant" at
+    //   pct 19.59 landed at viewport x 1.52 against a panel box of [22, 260] —
+    //   20.5px outside its own panel, on the bare scene.
+    //
+    //   Same clamp as the canvas leg, same helper, so the two paths can no
+    //   longer drift apart. Run ONCE at apply (never per frame): the result is a
+    //   pure function of the label text, the font and the tick percentage, so a
+    //   SET_TIME_FREEZE pin and a rewind both reproduce it exactly (Rule 36).
+    //
+    //   A label that needs NO move has NOTHING written to it — the zero-delta
+    //   branch returns before touching style — so every already-inside label
+    //   stays byte-identical to the pre-fix build.
+    function rbrClampTickLabels(panel, marks) {
+        var pr = panel.getBoundingClientRect();
+        if (!(pr.width > 0)) return;   // panel not laid out yet — nothing to measure against
+        for (var i = 0; i < marks.length; i++) {
+            var mk = marks[i] || {};
+            if (mk.form !== "tick" || (mk.surface || "KE") !== "KE") continue;
+            var lbl = document.getElementById("rbr_mark_" + (mk.id || ("t" + i)) + "_lbl");
+            if (!lbl) continue;
+            // The label ships display:none (it reveals on its own cue), and a
+            // display:none box has no geometry — so show it just long enough to
+            // measure, with visibility:hidden so the measuring pass can never
+            // flash it on screen at the wrong instant.
+            var prevDisp = lbl.style.display, prevVis = lbl.style.visibility;
+            lbl.style.visibility = "hidden";
+            lbl.style.display = "block";
+            var lr = lbl.getBoundingClientRect();
+            var want = pmClampLabelX(lr.left, lr.width, pr.left, pr.right);
+            lbl.style.display = prevDisp;
+            lbl.style.visibility = prevVis;
+            if (lr.width > pr.width) {
+                rbrWarnTickLabelWider(String(mk.label || ""), lr.width, pr.width);
+            }
+            if (want === lr.left) continue;   // already inside — write nothing
+            // Shift by a margin rather than rewriting left/transform, so the
+            // authored percentage anchor stays visible in the DOM and the move
+            // reads as exactly what it is: a correction, not a new position.
+            //   Round the shift to a WHOLE pixel and always AWAY from the edge
+            // that was hit, so the clamp can never land a fraction of a pixel
+            // proud of the box (a 2dp round left the glyph column straddling
+            // the panel border at 21.99 against a border at 22.00).
+            var d = want - lr.left;
+            lbl.style.marginLeft = (d > 0 ? Math.ceil(d) : Math.floor(d)) + "px";
+        }
     }
     // Hold-glow is the INSTRUMENT channel, deliberately separate from the scene
     // focal (Rule 32e counts scene elements; a pinned readout is an instrument
