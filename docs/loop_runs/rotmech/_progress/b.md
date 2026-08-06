@@ -398,3 +398,69 @@ zero regression on approved work.
 ### Probes left in the tree (delete after the gate)
 `_probe_e3_radius.ts` (reproduces B-10), `_probe_e3_crop.ts` (its evidence crops),
 `_probe_pin.ts` (reproduces B-11).
+
+---
+
+## 2026-08-06 (narrow session) — B-5 hypothesis tested and corrected; pre-seal text audit
+
+No EYE runs, no fixes, Checkpoint B still HELD.
+
+### Task 1 — I tested my own B-5 hypothesis and half of it was wrong
+
+Scanned all **74 `newtons_laws_body` states** in the fleet, read-only.
+
+**REFUTED: "custom ids" is not the discriminator.** EVERY multi-body nlb state in the fleet uses
+custom ids (A/B, P/Q, crate_a/crate_b…); not one uses `wheel`. `rolling_friction` S1–S5 are two
+custom-id bodies, are APPROVED, and pass H2 — and I verified on pixels that its S1 renders both
+meshes. My "every working state is single-body `wheel`" was true only *within* `pure_rolling`;
+I over-scoped it to the fleet. **Had this gone out unchecked it would have sent the surgeon after
+id resolution.**
+
+**CONFIRMED AND SHARPENED: `single_lane: true` is the discriminator.** Only **2 of 74** states set
+it — `pure_rolling` S3 and `rolling_on_incline` S3, both mine, both rendering **zero body meshes**.
+All 35 multi-body states without the flag render fine.
+
+**Second correction against my own record:** I had called `rolling_on_incline` S3 "the sharpest
+positive control — the locked block dragging a skid mark." **Wrong.** Cropped 5×: at t0 and at the
+frozen pin there is a moving pink force arrow and no body mesh. What moves is the position-derived
+arrow, not the block. Both `single_lane` states show the identical signature. The genuine positive
+control is `rolling_friction` S1, in a different concept.
+
+**By id or by lane index? Neither — by authored activation instant.** `nlbRetireMs` returns
+`Infinity` unless `single_lane`, so `nlbBodyLive` collapses to `t >= activateMs` — permanently
+true for any body with no `activate_at_ms`. **`single_lane: true` is the ONLY way retirement can
+become finite, hence the only way a body can stop being live.** That is why the defect is confined
+to those two states, and why lane offsets are a false lead (both author `lane_gap_m: 0`).
+
+**But retirement alone does NOT explain it.** For `pure_rolling` S3 the gate covers every instant
+(locked live on [0,1500), roll live on [1500,∞)), yet the plank is bare at t=0 AND t=2000.
+Something in the `single_lane` path suppresses the mesh even when `nlbBodyLive` is true. One
+coincidence handed over: the frozen pin sits at exactly 1500, the boundary-exact handover instant.
+
+### Task 2 — pre-seal text audit (no frames needed)
+
+**Method note that changed the result:** `epic_l_path.scene_composition` text is NOT rendered for
+field_3d — only `field_3d_config.states` reaches the canvas. A first pass flagged ~8 ASCII-math
+violations that were ALL doc-only (scene_composition says "2 pi R" while the pixels show "2πR"
+from `label`). Audit the rendered fields, not every string.
+
+- **B-15 (MAJOR, mine)** — `rolling_on_incline`'s subtitle strip renders **authoring design notes,
+  not narration**, in 7 of 8 states: millisecond timings, engine verbs (*halt-latches, retires,
+  activates, re-synchronises*), raw world coordinates, and **`wu` (world units)**. Fails Rule 41c
+  outright. `pure_rolling`'s eight labels are by contrast genuine teaching narration — same desk,
+  same session. The `label` field was populated with the design table. Needs 7 rewrites.
+- **B-16 (MINOR, mine)** — exactly one caption breaks Rule 34c: `rolling_on_incline` S2
+  `"v equals R omega"` → `"v = Rω"`. The other 15 are clean.
+- **B-17 (needs a RULING)** — the explore state exposes controls first taught in the advanced ring
+  (`pure_rolling` v0/ω₀/μ_k; `rolling_on_incline` θ/μ_s). Not asserted as a violation — 38b's
+  stated target is advanced *formulas*, and sliders are the explore state's job. Cheap either way.
+
+**PASSES:** Rule 35 (zero culture hits, universal anchors) · Rule 38a (advanced ring contiguous
+and immediately before explore in both; explore tagged core) · Rule 38g (5 curriculum rows each,
+**0** unverified rows missing `needs_teacher_verification`) · prerequisites (both name JSON-less
+ids per the founder ruling — 3 each).
+
+### State
+Nothing fixed. B-13/B-14 still deliberately unfixed; no `eye_capture_ms` authored (gated on B-11).
+The dispatch queue is unchanged: **B-3** (incline motion), **B-5** (now a `single_lane` dispatch,
+not an id one), **B-10** (radius write destroys the marks), **B-11** (hybrid frozen frame).

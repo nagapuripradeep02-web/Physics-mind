@@ -531,7 +531,84 @@ entire teaching visual is absent.
 Note this is **the same gate blind spot as B-4** from the other direction: live HUD text was
 sufficient to pass the motion checks on a canvas containing no bodies at all.
 
-### MECHANISM NARROWED (post-merge re-walk, 2026-08-06) — this is the dispatch
+### ⚠ HYPOTHESIS TESTED AND CORRECTED 2026-08-06 — read this before the section below
+
+The narrowing below named *"two bodies with custom ids under `single_lane`, where every working
+state is a single body with id `wheel`"*. **Tested read-only across all 74 `newtons_laws_body`
+states in the fleet. Half of it was wrong, and the wrong half would have sent the surgeon after
+id resolution.**
+
+**REFUTED — "custom ids" is not the discriminator.** *Every* multi-body nlb state in the fleet
+uses custom ids; not one uses `wheel`:
+
+```
+block_on_incline S4 [A|B] · connected_bodies S1-S7 [A|B|A_ghost|P|Q] · free_body_diagram S1,S3
+[A|G1|G2|G3] · friction_force S4 [A|B] · newton_second_law S2,S3 · newton_third_law S1-S5 [A|B|W]
+· normal_force S4 · rolling_friction S1-S5 [A|B] · tension_force S1-S6 [A|B|P|Q|R] ·
+work_done_by_constant_force S5 [crate_a|crate_b] · rolling_on_incline S1,S4,S5,S8
+```
+
+**`rolling_friction` S1–S5 are two custom-id bodies and are APPROVED with passing H2 baselines.**
+Verified on pixels this session: its S1 renders both meshes (blue block + red wheel), each with
+its own force arrows. My "every working state is single-body `wheel`" was true only *within*
+`pure_rolling` — I over-scoped it to the fleet.
+
+**CONFIRMED AND SHARPENED — `single_lane: true` is the discriminator.** Exactly **2 of 74**
+states in the fleet set it, and both are this desk's:
+
+| state | bodies | renders? |
+|---|---|---|
+| `pure_rolling` S3 | `nlb_wheel_locked` \| `nlb_wheel_roll` | **zero meshes** |
+| `rolling_on_incline` S3 | `block_locked` \| `disc_s3` | **zero meshes** |
+| all 35 other multi-body states (`single_lane` absent) | custom ids | render correctly |
+
+**2 of 2 fail; 35 of 35 without the flag render.**
+
+**A second correction, against my own record.** This file previously called `rolling_on_incline`
+S3 *"the sharpest positive control — the locked block dragging a skid mark"*. **Wrong.** Cropped
+and upscaled 5× this session: at t0 and at the frozen pin the incline carries a moving pink force
+arrow and the θ label, **and no body mesh at all**. What moves is the position-derived arrow, not
+the block. Both `single_lane` states show the identical signature — physics ✅, position ✅,
+position-derived overlays ✅, **mesh ❌**. (The genuine positive control is `rolling_friction` S1,
+a different concept.)
+
+### Does the mesh path resolve by id, or by lane index? **Neither — by authored activation instant.**
+
+```js
+function nlbRetireMs(eng, b) {                 // :40176
+    if (!eng || !eng.single_lane || !b) return Infinity;   // <-- the whole story
+    ... return the next authored activation AFTER this body's own
+}
+function nlbBodyLive(eng, b, tMs) {            // :40188
+    return t >= nlbActivateMs(b) && t < nlbRetireMs(eng, b);
+}
+```
+
+**Without `single_lane`, `retireMs` is `Infinity` for every body**, so `nlbBodyLive` collapses to
+`t >= activateMs` — permanently true for any body with no `activate_at_ms`. **Setting
+`single_lane: true` is the ONLY way `retireMs` can become finite, and therefore the only way a
+body can ever stop being live.** That is exactly why the defect is confined to those two states,
+and it is why id resolution and lane offsets are the wrong places to look.
+
+**But retirement alone does NOT explain it, and the surgeon must not stop there.** Worked for
+`pure_rolling` S3: `nlb_wheel_locked` has no `activate_at_ms` (⇒ 0) and retires at the sibling's
+1500; `nlb_wheel_roll` activates at 1500 and never retires. So the gate says **locked is live on
+`[0, 1500)` and roll is live on `[1500, ∞)`** — every instant is covered by exactly one body.
+Yet the cropped frames show a **bare plank at t=0 and t=2000**, where the gate says locked and
+roll respectively should be drawn. **Something in the `single_lane` path suppresses the mesh even
+when `nlbBodyLive` returns true.**
+
+One coincidence worth handing over: the frozen pin sits at **exactly 1500** (B-9's flat default),
+which is precisely the handover instant — `t < retireMs` is false for locked at exactly 1500 and
+`t >= activateMs` is true for roll at exactly 1500. A boundary-exact handover is worth checking
+for an off-by-one, but it cannot be the whole defect, because t=0 and t=2000 are also empty.
+
+**Dispatch scope:** `single_lane` retirement/visibility, not id resolution, not lane offsets.
+This also means the cross-reference below to `nlb_lane_offsets_apply_to_declared_bodies_not_co_present_ones`
+is probably a **false lead** — lane offsets are not involved in either failing state (both author
+`lane_gap_m: 0`).
+
+### MECHANISM NARROWED (post-merge re-walk, 2026-08-06) — superseded in part by the box above
 
 **Unaffected by E1–E5.** Still zero bodies at every timestamp including the frozen pin.
 
@@ -969,6 +1046,95 @@ per state as part of the pre-seal pass, after B-11.** Recorded so it is not lost
   `μ_k` slider label may use an ASCII underscore where Unicode ₖ (U+2096) exists. Unlike B-6's
   `I_cm` there IS a correct glyph here, so this one is fixable. Read from a screenshot, not the
   DOM — **confirm against the JSON before editing.**
+
+---
+
+## PRE-SEAL AUTHORING AUDIT (text only, no frames) — 2026-08-06
+
+Both concepts audited against Rules 41 / 35 / 38 and the prerequisites ruling, on text alone.
+**Nothing fixed this session** (narrow-session instruction) — this is the bounce-list to clear
+before Checkpoint B.
+
+**Method note that changed the result:** for `field_3d`, `epic_l_path.scene_composition` text is
+**NOT rendered** — only `field_3d_config.states` reaches the canvas. Confirmed here: S1's
+`scene_composition` says *"2 pi R"* while the pixels show *"2πR"* from the `label` field. A first
+pass flagged ~8 ASCII-math violations that were all doc-only. **Audit the rendered fields, not
+every string in the file.** The rendered surfaces are: `caption` (on-canvas delta cue),
+`label` (subtitle strip = narration), `formula_lines[].text`, body labels, slider labels.
+
+### 🔴 B-15 (MAJOR, `alex:json_author` — DESK B's own) — `rolling_on_incline`'s subtitle strip renders AUTHORING DESIGN NOTES, not narration
+
+**7 of its 8 rendered `label` strings are design notes**, carrying millisecond timings, engine
+verbs, raw world coordinates and ASCII variable names. These render in the strip below the canvas
+— confirmed on pixels: S3's frozen frame shows this text verbatim to the reader.
+
+| state | rendered subtitle |
+|---|---|
+| S2 | *"…rolls **+2.4 to +0.4**, rim dot cusps at **754 ms**, **halt-latches at 1204 ms**…"* |
+| S3 | *"**0-1500 ms**: a locked block skids alone (**mu_k** = 0.15, a = 2.809, **+2.4 to -0.76**). At **1500 ms** the block **retires** and a rolling disc **activates** at **+2.4**…"* |
+| S5 | *"Sphere **halt-latches at 1265 ms**: **KE_trans** 7.0 J, **KE_rot** 2.8 J…"* |
+| S6 | *"…f_s **1.243 to 0.414 wu**, a jumps to 2.76. **Halt 4305**"* |
+| S7 | *"…**ramping** to 0.05 over **600-1600 ms**… label **flips** f_s to f_k… **Halt-latches** at 1968 ms with f_k = 0.44 N **latched**"* |
+| S8 | *"…the four-body race **re-runs live and re-synchronises at each restart**"* |
+| S1 | *"Four shapes at **theta = 25 deg**… (**1744/1805/1903/2085 ms**) and stamp 1-2-3-4"* |
+
+**Rule 41c test — "a Class-11 student with textbook English must understand every word without
+asking":** *halt-latches*, *retires*, *activates*, *re-synchronises*, *param ramp*, and **`wu`
+(world units — an internal renderer unit with no physical meaning)** all fail it. Millisecond
+timings and signed track coordinates are authoring metadata, not teaching. This also breaches
+Rule 24/34 (the strip is for prose narration).
+
+**The asymmetry is the diagnosis.** `pure_rolling`'s eight labels are genuine teaching narration
+— *"The wheel rolls at v = 0.90 m/s; each completed turn advances it exactly one circumference,
+2πR = 1.57 m; v and Rω sit equal"* — clean, literal, correct Unicode. Same desk, same authoring
+session, same author. **`rolling_on_incline`'s `label` field was populated with the design table
+instead of the narration.** It needs a rewrite of 7 strings, not a wording tidy.
+
+### B-16 (MINOR, `alex:json_author` — DESK B's own) — one caption breaks Rule 34c
+
+All 16 captions audited; **exactly one** uses ASCII where the canvas convention is Unicode:
+
+- `rolling_on_incline` S2: **`"v equals R omega"`** → should be **`"v = Rω"`**.
+
+The other 15 are clean, and both concepts already use Unicode correctly elsewhere
+(`2πR`, `Rω`, `sinθ`, `f·R = I_cm·α`, slider labels `ω₀ μₛ θ m₂`) — so this is an isolated slip,
+not a systematic gap. (Note the sibling `label`/narration fields spelling out *"omega"*/*"theta"*
+are **NOT** violations — Rule 30 requires bare symbols expanded to spoken names in narration.
+Only the on-canvas caption is governed by 34c.)
+
+### ⚠ B-17 (needs a RULING, not a fix) — the explore state exposes controls first taught in the advanced ring
+
+Rule 38b: *"the explore state surfaces CORE-ring content only… a ring-neutral sandbox inheriting
+advanced content is incoherent under every reduced preset."*
+
+| concept | explore controls | first introduced in |
+|---|---|---|
+| `pure_rolling` | `v0, R, omega0, mu_k` | `v0` first appears in **S7 [advanced]**; `omega0`/`mu_k` appear **nowhere but S8** — they are S7's capture parameters, never taught as controls |
+| `rolling_on_incline` | `m, m2, R, R2, theta, mu_s` | `theta` first appears in **S6 [advanced]**; `mu_s` in **S7 [advanced]** |
+
+Under a core-only preset both advanced states are hidden, so a teacher gets a `μ_s` / `ω₀` dial
+whose physics was never taught. **Not asserted as a violation** — the opposite reading is
+defensible (38b's stated target is advanced *formulas*, and sliders are manipulation, which is
+explicitly the explore state's job). **This needs a founder/doctrine call, and it is cheap to
+honour either way** (drop the dials from the reduced preset rather than from the state).
+
+### PASSES — audited and clean, recorded so they are not re-audited
+
+- **Rule 35 (no country-specific culture):** ✅ both. Zero hits across every rendered string.
+  Anchors are universal — *"a bicycle wheel crosses the road"*, *"a food can beats a roll of
+  tape"*. No region-dependent constant is asserted as THE value.
+- **Rule 38a (ring order + coherent-when-cut):** ✅ both. `pure_rolling` core S1–S3 / extended
+  S4–S6 / **advanced S7** / explore S8; `rolling_on_incline` core S1–S4 / extended S5 /
+  **advanced S6–S7** / explore S8. In both, the advanced ring is a **contiguous block immediately
+  before the explore state**, and the explore state is tagged `core`.
+- **Rule 38g (`curriculum_tags` are claims):** ✅ both. 5 rows each; **0 unverified rows missing
+  `needs_teacher_verification: true`**. Both carry an honest `verification_note` stating no
+  web-search verification was run and that only the CBSE/NCERT row is confidently verified.
+- **Prerequisites (founder ruling — name JSON-less ids where the dependency is real):**
+  ✅ both comply. `pure_rolling` names 3 JSON-less ids (`rotational_kinematics`,
+  `tau_eq_i_alpha`, `moment_of_inertia`) + 1 real (`friction_force`); `rolling_on_incline` names
+  3 JSON-less (`moment_of_inertia`, `tau_eq_i_alpha`, `rotational_work_energy`) + 2 real
+  (`pure_rolling`, `friction_force`). The ruling is honoured, not worked around.
 
 ---
 
