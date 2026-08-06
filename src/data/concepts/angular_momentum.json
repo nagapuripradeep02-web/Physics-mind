@@ -203,14 +203,14 @@
             "id": "am_s2_detail",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "L falls in step with omega onto the pre-printed prediction — I holds fixed the whole time",
+            "text": "L falls in proportion to omega onto the pre-printed prediction — I holds fixed the whole time",
             "color": "#66BB6A"
           },
           {
             "id": "am_s2_anchor",
             "type": "annotation",
             "position": { "x": 560, "y": 400 },
-            "text": "the same product rule the turntable used a moment ago still holds",
+            "text": "the same product L = I omega from the previous state still holds",
             "color": "#4DD0E1"
           }
         ],
@@ -219,7 +219,7 @@
             { "id": "s2_1", "text_en": "Recall L equals I omega — a brake now approaches the rim." },
             { "id": "s2_2", "text_en": "The equation predicts angular momentum will settle at one point five three." },
             { "id": "s2_3", "text_en": "The pad presses onto the rim and slows the spin." },
-            { "id": "s2_4", "text_en": "L falls in step with speed omega — inertia I stays fixed." }
+            { "id": "s2_4", "text_en": "L falls in proportion to speed omega — inertia I stays fixed." }
           ]
         }
       },
@@ -536,8 +536,8 @@
         "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
         "coverage": "full",
         "syllabus_unit": "Ch.7 System of Particles and Rotational Motion — §7.9-7.10 Angular momentum L = Iω, moment of inertia, right-hand rule direction",
-        "verified": true,
-        "needs_teacher_verification": false
+        "verified": false,
+        "needs_teacher_verification": true
       },
       {
         "curriculum": "JEE Main",
@@ -763,7 +763,13 @@
           "show_drum_line": false,
           "readouts": ["I", "omega", "L"],
           "controls_visible": ["spin_dir"],
-          "glow_focal": "rbr_l_arrow"
+          "glow_focal": "rbr_l_arrow",
+          "phases": [
+            { "id": "s4_p1", "at_ms": 0, "glow_focal": "rbr_l_arrow" },
+            { "id": "s4_p2", "at_ms": 4200, "glow_focal": "rbr_grip_hand" },
+            { "id": "s4_p3", "at_ms": 11800, "glow_focal": "rbr_l_arrow" },
+            { "id": "s4_p4", "at_ms": 15500, "glow_focal": "rbr_mass" }
+          ]
         }
       },
 

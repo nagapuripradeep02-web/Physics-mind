@@ -147,3 +147,35 @@
   regression of E7.** P1-2/F-C3 downgrade to ride-along accepted by founder-proxy. Three authoring
   findings (P2-1, P2-2, P3) remain open and ride the next cycle, plus a new P2-A (the vector is as
   wide as it is long at small |L|). Two fix cycles remain before ESCALATE.
+
+- 2026-08-06 (later) · **Synced to master (46 behind, not the 26 in the brief — master moved again).**
+  `desk:sync` does NOT touch the current checkout, so merged by hand; triad green after:
+  `check:renderer-syntax` OK · `tsc` 0 · `validate:concepts` 150 PASS / 0 FAIL. **E11 landed (Desk B's);
+  F-C9 and E6 have NOT** — checked by `git log -S` on the renderer, not assumed.
+- 2026-08-06 · **All three ride-along authoring findings LANDED.** P2-1 — STATE_4 `phases[]`
+  (p1@0 l_arrow · p2@4200 grip_hand · p3@11800 l_arrow · p4@15500 mass), timed around the flip at
+  11000 + 500 ms blank; tokens confirmed against `RBR_ELEMENT_TYPES` before authoring. P2-2 — the CBSE
+  cell now `verified: false` / `needs_teacher_verification: true`. P3 — the `s2_4` idiom "falls in step
+  with" → "in proportion to", plus the same idiom in `am_s2_detail` and the personification in
+  `am_s2_anchor` ("the turntable used" → "L = I omega from the previous state"). tsc 0, validator PASS,
+  EYE **23/23**, Motion map 5/5.
+- 2026-08-06 · **P2-1 verified from SCENE STATE, not pixels** — each token vs its OWN baseline:
+  grip_hand 1.00 → 1.43/1.48 across p2 then back to 1.00; mass 0.24 → 0.94/0.64 across p4. Two
+  near-misses recorded: the hand is a Group with no material (the glow pass traverses it), and
+  comparing emissive ACROSS element types is meaningless (l_arrow's baseline 0.84 beats mass's
+  boosted 0.94).
+- 2026-08-06 · **⚠ STATE_4's frozen pin MOVED 13000 → 16000** as a direct consequence of P2-1
+  (`deriveStateMeta` takes `phases[].at_ms + 500`). Still inside the flipped run, so the reversed
+  vector is still in frame, but the focal is now `rbr_mass` rather than `rbr_l_arrow` — the frame
+  founder-proxy called the most important one for FIX(engine) sign-off. Unavoidable: any phase after
+  ~12500 moves the pin, and s4_3/s4_4 must follow the flip. **Cycle-2 taste call, flagged not fixed.**
+- 2026-08-06 · **N2 narration audit: CLEAN.** All 74 reader-facing strings swept; no arrow world-unit
+  length (0.918/0.792/0.612/0.342/0.306/0.198/1.224) appears anywhere; every asserted value matches the
+  RENDERED readout at its own instant. Two probe gaps recorded that would each have produced a false
+  pass: **a digit regex finds nothing in narration** (Rule 30 spells numbers out — three of five value
+  assertions live there), and `caption`/`label` sit at the f3d STATE level so a first extractor silently
+  missed 10 on-canvas strings. `findings_c.md` PASS 19.
+- 2026-08-06 · **P1-A/F-C9 re-measured at the new pin — STILL OPEN**: 595 px, 40×21, non-head 53 vs 677
+  for the up vector, ratio 48.9 %. Robust across pins (589 @13000, 610 @16000, 595 @16000 post-edit), so
+  Desk E can verify at either instant. Dead-scene re-check redone at PIXEL level per the standing
+  correction — zero identical adjacent pairs across all 5 states.

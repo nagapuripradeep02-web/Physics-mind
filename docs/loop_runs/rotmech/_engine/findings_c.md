@@ -1161,3 +1161,87 @@ closed; the up-pointing vector is a real, legible object at 1206–1243 px in al
 author it. **F-C9 is a second, distinct defect on the same primitive, not a regression of E7.**
 
 No DB write made from this desk.
+
+---
+## PASS 19 — **N2 narration audit: CLEAN on `angular_momentum`. Two probe gaps that would each have produced a false finding.**
+
+Filed 2026-08-06 by Desk C after Desk B's N2 (rendered narration quoting arrow **world-unit lengths**
+as physical speeds). This concept is the obvious second candidate: its L arrow's drawn length is
+`0.20 × |L|` world units, so the same class is expressible here.
+
+### Result — the N2 class is ABSENT, and that is a measured claim
+
+All **74** reader-facing strings extracted structurally (`text_en`, `caption`, `label`, `title`,
+`delta_cue`, `formula`, `statement`, `visual_confirmation`, `visual_counter`, `belief`, `.text`) and
+swept for the arrow's world-unit lengths at every authored |L| — 0.918, 0.792, 0.612, 0.342, 0.306,
+0.198, 1.224. **No world-unit value appears anywhere.** No `wu`/"world units", no engine verbs
+(render/draw/mesh/sprite/canvas/pixel), no authoring tokens (`at_ms`, `glow_focal`, `STATE_n`).
+
+Every asserted value verified against the **rendered** readout row at its own instant, not against
+engine globals alone:
+
+| assertion | source | engine | rendered on canvas |
+|---|---|---|---|
+| L settles at 1.53 | `s2_2` + chip `predicted L = 1.53` | 1.530 | `L = 1.53 kg·m²/s` ✓ |
+| L reads 4.59 | `s3_1` | 4.590 | `L = 4.59 kg·m²/s` ✓ |
+| ω is zero, so is L | `s3_2` | 0.000 / 0.000 | `ω = 0.00 · L = 0.00` ✓ |
+| L reads 0.99, not 4.59 | `s3_5` + scene text + `aha_moment` | 0.990 | `L = 0.99 kg·m²/s` ✓ |
+| ω = 1.50 after restart | chip `same speed: 1.50` | 1.500 @19500 | `ω = 1.50 rad/s` ✓ |
+
+Rule 33d holds: every asserted quantity has a live instrument (`I`, `ω`, `L` rows) showing it in real
+units at that instant.
+
+**Not defects, recorded so a later reader does not re-file them:** `before: 4.59` (@7800) and
+`same speed: 1.50` (@17000) read against a stopped turntable (ω = 0). Both are *reference chips* —
+explicitly labelled baselines that hold a value for comparison, which is this concept's approved aha
+mechanism (`aha_moment.visual_confirmation` is literally "L reads 0.99 beside the 'before: 4.59'
+chip"). `same speed: 1.50` is a forward reference that the live instrument matches 500 ms later at
+the restart. A naive "chip value ≠ live value" probe flags both; both are correct.
+
+### ⚠ Two probe gaps, either of which would have produced a false verdict
+
+1. **A digit regex finds NOTHING in this concept's narration.** Rule 30 requires spoken numbers be
+   spelled out for TTS, so `s2_2` says *"settle at one point five three"*, `s3_1` *"four point five
+   nine"*, `s3_5` *"point nine nine … not four point five nine"*. A digit sweep over `text_en`
+   returns zero matches and reads as **"narration quotes no numbers — clean."** It is the exact
+   opposite: narration is where three of the five value assertions live. **Any N2 audit on this
+   fleet MUST sweep spelled number-words, not just digits.** Desk B's N2 was found in narration; a
+   digit-only sweep would have missed it on a Rule-30-compliant concept.
+2. **First extraction silently missed 10 on-canvas strings.** `caption` and `label` sit at the
+   **state** level of `field_3d_config.states.<S>`, not inside the `rigid_body_rotation` block. An
+   extractor reading `st.rigid_body_rotation.caption` returns undefined and reports clean coverage.
+   Caught only by diffing extracted counts against ground truth (18 tts vs 18 in file, 15 scene
+   texts vs 5 states × 3). **State the coverage count and reconcile it, or a null extractor reports
+   a null result as a pass.**
+
+Same shape as PASS 17 §4 and PASS 18: on this harness the cheap check keeps failing *open*.
+
+### P2-1 verification — and a third near-miss
+
+STATE_4's new `phases[]` was verified from **scene state** (each token's `emissiveIntensity` vs its
+own baseline), not from pixels. All four fire: `grip_hand` 1.00 → **1.43/1.48** across p2 and back to
+1.00 at p3; `mass` 0.24 → **0.94/0.64** across p4; `l_arrow` boosted across p1/p3.
+
+Two ways this nearly read as a defect: (i) the grip hand is a `THREE.Group` with **no material of its
+own** — the glow pass `traverse()`s it, so reading `obj.material` returns nothing and the token looks
+dead; (ii) comparing absolute emissive **across** element types is meaningless — `rbr_l_arrow`'s
+baseline (0.84) exceeds `rbr_mass`'s boosted value (0.94 vs base 0.24), so "brightest object wins"
+reports `l_arrow` focal at every instant. **Compare each token against its own baseline.**
+
+### Consequence of P2-1 that the founder should see: STATE_4's frozen pin MOVED
+
+`deriveStateMeta` takes `phases[].at_ms + 500` as a reveal candidate (`:3283-3292`), so the pin went
+**13000 → 16000 ms** (p4 @15500). Verified in the run: `Reveal map: STATE_4=16000ms`. This is
+unavoidable — any phase after ~12500 moves it, and s4_3/s4_4 must follow the flip at 11000.
+
+16000 is still inside the flipped run (11500–19000), so the frozen frame still shows the reversed
+vector; but its **focal is now `rbr_mass`, not `rbr_l_arrow`**. founder-proxy called the flipped
+L-arrow frame *"the single most important frame for the FIX(engine) sign-off"*. That frame is still
+capturable from the dense series; it is no longer the frozen one. **Flagged for the cycle-2 taste
+call — not a defect, a consequence of the fix that was asked for.**
+
+**P1-A / F-C9 re-measured at the new pin and STILL OPEN:** 595 px, bbox 40×21, non-head ink **53** vs
+**677** for the up vector — ratio **48.9 %**. Consistent with 589 px @13000 and 610 px @16000 before
+the edit, so the finding is robust to the pin move and Desk E can verify at either instant.
+
+No DB write, no engine dispatch (guardrail 6), no `visual:approve`.
