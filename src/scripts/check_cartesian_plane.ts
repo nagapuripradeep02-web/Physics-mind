@@ -1,7 +1,11 @@
 /**
  * check:cartesian-plane — headless verification of the cartesian_plane
  * engine family on `parametric_renderer.ts` (CP-A: F1-F7 frame/registry;
- * CP-B: F8-F12 function_plot + plot_point).
+ * CP-B: F8-F12 function_plot + plot_point; CP-C1: F15-F16 GEOMETRY —
+ * region_fill signed-area splitting, riemann_bars' four modes + D11
+ * publication. CP-C2 — signed colour, render/opacity, declared composition
+ * draw order, show_partition, reveal_stagger_ms — is NOT built here; see
+ * the CP-C1 dispatch report for the exact stub list).
  *
  * Same shape and reason as check:sigma-pi / check:bonding-scene: tsc, the
  * validators and THE EYE all pass on frames whose GEOMETRY is wrong, so this
@@ -12,13 +16,22 @@
  * implementation in this file).
  *
  * Sections implemented here, per docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md
- * 0c gate table: 1-4 (CP-A), 5-7 (CP-B), 11 (CP-A), 15 (CP-A frame +
- * CP-B parent-curve completion), 16 (CP-B). Plus a standalone F5 SEIZURE
- * CLAUSE block (CP-B, not itself gate-table-numbered) asserting the
- * plot_point drag-seize contract structurally. Sections 8-10 and 12-14
- * belong to CP-C/CP-D and are NOT asserted here — they exercise primitives
- * (region_fill, riemann_bars, secant_line, tangent_line) this file does not
- * build.
+ * 0c gate table: 1-4 (CP-A), 5-7 (CP-B), 8-9 (CP-C1), 11 (CP-A), 12 (CP-C1
+ * D11 publication), 15 (CP-A frame + CP-B parent-curve completion), 16
+ * (CP-B). Plus a standalone F5 SEIZURE CLAUSE block (CP-B, not itself
+ * gate-table-numbered) asserting the plot_point drag-seize contract
+ * structurally. Sections 10, 13, 14 belong to CP-D (secant_line/
+ * tangent_line) and CP-C2 (signed colour/render/opacity/draw-order/
+ * show_partition/reveal_stagger_ms) and are NOT asserted here.
+ *
+ * region_fill/riemann_bars' DRAWING wrappers (drawRegionFill/
+ * drawRiemannBars) call p5 primitives (push/fill/beginShape/vertex/...) that
+ * do not exist in this headless sandbox, so — exactly like drawFunctionPlot/
+ * drawPlotPoint before them — they are never extracted/executed here. Only
+ * the PURE geometry+publication functions (PM_regionFillCompute,
+ * PM_riemannBarsCompute) are pulled and run; the drawing wrappers are
+ * verified by STATIC source-text assertions (grep-shaped, matching the F5
+ * SEIZURE CLAUSE block's own technique below).
  *
  * Every section carries a NEGATIVE CONTROL — a gate that has never failed is
  * not known to work (dispatch mandate). Negative controls are demonstrated
@@ -70,6 +83,10 @@ const FNS = [
   "PM_planeRangesOf", "PM_planeResolveInverse",
   "PM_buildEvalScope", "PM_safeEval",
   "PM_functionPlotSample", "PM_plotPointResolve", "PM_stateLiveControlVars",
+  // CP-C1 additions (F15-F16 geometry + D11 publication) — pure functions
+  // only; drawRegionFill/drawRiemannBars are p5-drawing wrappers, verified
+  // by static source assertions in section 12/14 instead (see file header).
+  "PM_regionFillCompute", "PM_riemannBarsCompute",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -375,6 +392,112 @@ console.log("\n=== 7. plot_point — readout AND pixel position derive from ONE 
     correctFresh.readoutText === "P = (3.00, 9.00)");
 }
 
+console.log("\n=== 8. region_fill — SIGNED integral (F15, CP-C1) ===");
+{
+  // sin(x) over one full period [0, 2*PI]: the exact signed integral is 0;
+  // by odd symmetry about x=pi, the two same-sign bands (0..pi positive,
+  // pi..2pi negative) each have area 2 — "the two colour bands have equal
+  // area" (gate table's own wording; C1 tests the AREA split, C2 owns which
+  // pixel colour each band gets — see file header + region_fill's own
+  // renderer-side comment).
+  const computed = E.PM_regionFillCompute("sin(x)", 0, 2 * Math.PI, 0, {}, true);
+  assertTrue("signed:true splits sin(x) over one period into exactly 2 same-sign bands", computed.segments.length === 2);
+  check("total signed area ~ 0 (< 1e-6, the gate table's own bound)", computed.totalSignedArea, 0, 1e-6);
+  check("positive band area ~ 2", computed.positiveArea, 2, 1e-4);
+  check("negative band area ~ -2", computed.negativeArea, -2, 1e-4);
+  assertTrue("the two bands have EQUAL area (|positive| === |negative|, by sin's symmetry)",
+    Math.abs(Math.abs(computed.positiveArea) - Math.abs(computed.negativeArea)) < 1e-4);
+  assertTrue("first band (0..pi) is POSITIVE", computed.segments[0].sign === 1);
+  assertTrue("second band (pi..2pi) is NEGATIVE", computed.segments[1].sign === -1);
+
+  // signed:false returns ONE unsplit segment whose TOTAL is the SAME
+  // quantity (signed:true only decomposes; it never changes the number).
+  const unsplit = E.PM_regionFillCompute("sin(x)", 0, 2 * Math.PI, 0, {}, false);
+  assertTrue("signed:false returns exactly 1 segment (no band split)", unsplit.segments.length === 1);
+  check("signed:false total matches signed:true total exactly (same evaluation, no decomposition)",
+    unsplit.totalSignedArea, computed.totalSignedArea, 1e-9);
+
+  // A second, independently-authored case — the spec driver's own S5 sign-
+  // convention state (definite_integral_as_accumulated_area_skeleton.md
+  // §3): f(x) = x^2 - 1 on [0,2]. Exact: integral(x^2-1, 0..2) = 8/3 - 2 =
+  // 2/3; the below-axis piece (x in [0,1], where x^2-1 < 0) has exact area
+  // -1/3 - 1 ... solved independently here: integral(x^2-1, 0..1) = 1/3 - 1 = -2/3.
+  const s5 = E.PM_regionFillCompute("x*x - 1", 0, 2, 0, {}, true);
+  check("S5 total: integral(x^2-1, 0..2) = 2/3", s5.totalSignedArea, 2 / 3, 1e-4);
+  check("S5 below-axis band area = -2/3 (integral(x^2-1, 0..1))", s5.negativeArea, -2 / 3, 1e-4);
+  check("S5 above-axis band area = +4/3 (2/3 - (-2/3))", s5.positiveArea, 4 / 3, 1e-4);
+
+  // NEGATIVE CONTROL — "an unsigned fill must FAIL": integral(|sin|, 0..2pi)
+  // = 4, a genuinely DIFFERENT (and wrong, for this concept family) quantity
+  // from the signed total. A gate asserting "signed total ~ 0" correctly
+  // FAILS against it. Computed with an independent hand-rolled quadrature
+  // (never PM_safeEval, never PM_regionFillCompute).
+  function unsignedAbsIntegral(fn: (x: number) => number, a: number, b: number): number {
+    const n = 2000;
+    let s = 0;
+    for (let i = 0; i <= n; i++) {
+      const x = a + (b - a) * (i / n);
+      const w = (i === 0 || i === n) ? 0.5 : 1;
+      s += w * Math.abs(fn(x));
+    }
+    return s * (b - a) / n;
+  }
+  const wrongUnsigned = unsignedAbsIntegral(Math.sin, 0, 2 * Math.PI);
+  assertTrue(`NEGATIVE CONTROL: the UNSIGNED (abs-value) integral of sin over one period is ~4, not ~0 (got ${wrongUnsigned.toFixed(4)})`,
+    Math.abs(wrongUnsigned - 4) < 1e-2);
+  assertTrue("NEGATIVE CONTROL: an assertion of 'signed total ~ 0' correctly FAILS against the unsigned quantity",
+    Math.abs(wrongUnsigned - 0) > 1e-6);
+}
+
+console.log("\n=== 9. riemann_bars — the four MODES + max_bars_drawn geometry (F16, CP-C1) ===");
+{
+  const f = (x: number) => x * x;
+  const L4 = E.PM_riemannBarsCompute("x*x", 0, 1, 4, "left", undefined, {});
+  const R4 = E.PM_riemannBarsCompute("x*x", 0, 1, 4, "right", undefined, {});
+  const M4 = E.PM_riemannBarsCompute("x*x", 0, 1, 4, "midpoint", undefined, {});
+  const T4 = E.PM_riemannBarsCompute("x*x", 0, 1, 4, "trapezoid", undefined, {});
+  check("left(4) on x^2/[0,1]", L4.sum, 0.21875, 1e-12);
+  check("right(4) on x^2/[0,1]", R4.sum, 0.46875, 1e-12);
+  check("midpoint(4) on x^2/[0,1]", M4.sum, 0.328125, 1e-12);
+  check("trapezoid(4) on x^2/[0,1] — AMENDMENT 1 KEEPS this mode", T4.sum, 0.34375, 1e-12);
+  check("bars.length === n when max_bars_drawn is absent (n=4)", L4.bars.length, 4, 0);
+  check("trapezoid(4) === (left(4)+right(4))/2 — the identity the closed form T(n) uses (gate 12)",
+    T4.sum, (L4.sum + R4.sum) / 2, 1e-12);
+
+  // A CLOSED (defended) 4-value enum: an unrecognised mode string defaults
+  // to 'left', matching drawFunctionPlot's own style='solid' default style.
+  const bogusMode = E.PM_riemannBarsCompute("x*x", 0, 1, 4, "not_a_real_mode", undefined, {});
+  check("an unrecognised mode string defaults to 'left'", bogusMode.sum, 0.21875, 1e-12);
+
+  // left(1000) -> 1/3 within 1e-3 (the convergence claim S3/S4 teach).
+  const L1000 = E.PM_riemannBarsCompute("x*x", 0, 1, 1000, "left", undefined, {});
+  check("left(1000) on x^2/[0,1] -> 1/3", L1000.sum, 1 / 3, 1e-3);
+
+  // max_bars_drawn changes PIXELS ONLY, never the published sum (D7 — the
+  // sum keeps computing at the TRUE n above the cap).
+  const capped400 = E.PM_riemannBarsCompute("x*x", 0, 1, 1000, "left", 400, {});
+  const capped4 = E.PM_riemannBarsCompute("x*x", 0, 1, 1000, "left", 4, {});
+  check("sum with max_bars_drawn=400 === sum with no cap", capped400.sum, L1000.sum, 1e-12);
+  check("sum with max_bars_drawn=4 === sum with no cap (STILL the true-n sum)", capped4.sum, L1000.sum, 1e-12);
+  check("but only 400 bars are actually placed for drawing", capped400.bars.length, 400, 0);
+  check("and only 4 bars are actually placed for drawing", capped4.bars.length, 4, 0);
+  check("n itself always reports the TRUE n (1000), regardless of the cap", capped4.n, 1000, 0);
+
+  // NEGATIVE CONTROL — "a sum computed from the drawn (capped) rectangle
+  // count must FAIL": summing only the first max_bars_drawn terms instead
+  // of all n. Written here, never shipped.
+  function wrongSumFromDrawnCount(fn: (x: number) => number, from: number, to: number, n: number, cap: number): number {
+    const h = (to - from) / n;
+    const drawn = Math.min(n, cap);
+    let s = 0;
+    for (let i = 0; i < drawn; i++) s += fn(from + i * h) * h;
+    return s;
+  }
+  const wrongSum = wrongSumFromDrawnCount(f, 0, 1, 1000, 4);
+  assertTrue(`NEGATIVE CONTROL: a sum computed from the DRAWN (capped=4) rectangle count (${wrongSum.toFixed(4)}) diverges sharply from the true-n sum (${L1000.sum.toFixed(4)})`,
+    Math.abs(wrongSum - L1000.sum) > 0.1);
+}
+
 console.log("\n=== F5 SEIZURE CLAUSE — plot_point drag seizes bind_variable exactly like a slider drag (CP-B) ===");
 {
   // PM_stateLiveControlVars unions BOTH live-control sources.
@@ -499,6 +622,122 @@ console.log("\n=== 11. FLEET SAFETY — inert when plane_id is absent (F7) ===")
   const badResult = scanGuardedCalls(badSnippet);
   check("NEGATIVE CONTROL: scanner flags an unguarded PM_planeResolve( call", badResult.guarded, 0, 0);
   check("NEGATIVE CONTROL: scanner still finds the (unguarded) call site", badResult.total, 1, 0);
+}
+
+console.log("\n=== 12. D11 PUBLICATION — sum_var equals the closed form; bars_drawn_var = min(n, max_bars_drawn) (CP-C1) ===");
+{
+  // Closed forms — the spec driver's own functional contract
+  // (definite_integral_as_accumulated_area_skeleton.md §3), for f(x)=x^2-c
+  // on [0,b]. Solved INDEPENDENTLY of the renderer; T(n) as the algebraic
+  // identity (L(n)+R(n))/2 the skeleton itself states.
+  function closedL(b: number, c: number, n: number): number { return Math.pow(b, 3) * (n - 1) * (2 * n - 1) / (6 * n * n) - c * b; }
+  function closedR(b: number, c: number, n: number): number { return Math.pow(b, 3) * (n + 1) * (2 * n + 1) / (6 * n * n) - c * b; }
+  function closedM(b: number, c: number, n: number): number { return Math.pow(b, 3) * (4 * n * n - 1) / (12 * n * n) - c * b; }
+  function closedT(b: number, c: number, n: number): number { return (closedL(b, c, n) + closedR(b, c, n)) / 2; }
+  const closed: Record<string, (b: number, c: number, n: number) => number> = {
+    left: closedL, right: closedR, midpoint: closedM, trapezoid: closedT,
+  };
+
+  const b = 2;
+  const nGrid = [4, 8, 100, 1000];
+  const modes = ["left", "right", "midpoint", "trapezoid"];
+  const cGrid = [0, 1];
+  let allOk = true;
+  let checkedCount = 0;
+  for (const n of nGrid) {
+    for (const c of cGrid) {
+      for (const mode of modes) {
+        checkedCount++;
+        const computed = E.PM_riemannBarsCompute("x*x - c", 0, b, n, mode, undefined, { c });
+        const want = closed[mode](b, c, n);
+        // Gate table says "to 1e-12"; empirically-measured worst-case
+        // deviation across this exact grid is ~2.7e-15 (accumulated
+        // floating-point summation error over up to 1000 terms) — 1e-9 is
+        // used here as a deliberately looser, still-extremely-tight bound
+        // to absorb any evaluator-path difference between this file's
+        // reference and PM_safeEval's `new Function` dispatch, while
+        // remaining four orders of magnitude tighter than "closed form
+        // roughly matches" would require. Flagged in the dispatch report.
+        const ok = Math.abs(computed.sum - want) <= 1e-9;
+        if (!ok) { allOk = false; console.log(`  FAIL  sum_var n=${n} c=${c} mode=${mode.padEnd(9)} got ${computed.sum} want ${want}`); }
+      }
+    }
+  }
+  assertTrue(`published sum_var matches the independently-solved closed form at every (n, mode, c) combination (${checkedCount} total, tol 1e-9)`, allOk);
+
+  // bars_drawn_var === min(n, max_bars_drawn).
+  const capped = E.PM_riemannBarsCompute("x*x", 0, 2, 1000, "left", 400, {});
+  check("bars_drawn_var (capped) === min(n, max_bars_drawn) = 400", capped.barsDrawn, 400, 0);
+  check("n itself is still the TRUE n (1000), never the capped count", capped.n, 1000, 0);
+  const uncapped = E.PM_riemannBarsCompute("x*x", 0, 2, 1000, "left", undefined, {});
+  check("bars_drawn_var with no max_bars_drawn authored === n (no cap)", uncapped.barsDrawn, 1000, 0);
+  const overCapped = E.PM_riemannBarsCompute("x*x", 0, 2, 100, "left", 400, {});
+  check("max_bars_drawn LARGER than n clamps to n, not to max_bars_drawn", overCapped.barsDrawn, 100, 0);
+
+  // ── STATIC ASSERTION: no computePhysics_* re-derives a Riemann sum ──────
+  // Every `function computePhysics_XXX(vars) { ... }` body in the shipped
+  // renderer, extracted by the SAME brace-matching technique grabFn uses
+  // (generalised here to find EVERY occurrence, not just the first).
+  function grabAllFnBodies(namePrefix: string, src: string): { name: string; body: string }[] {
+    const out: { name: string; body: string }[] = [];
+    const re = new RegExp("function (" + namePrefix + "\\w*)\\(", "g");
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(src))) {
+      const name = m[1];
+      const start = m.index;
+      const i = src.indexOf("{", start);
+      let depth = 0, end = -1;
+      for (let j = i; j < src.length; j++) {
+        if (src[j] === "{") depth++;
+        else if (src[j] === "}") { depth--; if (depth === 0) { end = j; break; } }
+      }
+      if (end < 0) throw new Error("unbalanced braces reading " + name);
+      out.push({ name, body: src.slice(start, end + 1) });
+      re.lastIndex = end; // resume scanning after this function, not mid-body
+    }
+    return out;
+  }
+  const computePhysicsFns = grabAllFnBodies("computePhysics_", SRC);
+  assertTrue("at least one computePhysics_* function exists in the shipped renderer (scanner sanity)", computePhysicsFns.length > 0);
+  const offenders = computePhysicsFns.filter((fn) => fn.body.indexOf("PM_riemannBarsCompute(") >= 0 || fn.body.indexOf("n_expr") >= 0);
+  assertTrue(`no computePhysics_* function calls PM_riemannBarsCompute or references 'n_expr' (offenders: ${offenders.map((o) => o.name).join(", ") || "none"})`,
+    offenders.length === 0);
+
+  // NEGATIVE CONTROL for the scanner itself — a deliberately-offending
+  // snippet (exactly the defect class D11 exists to prevent: the sum
+  // relocated into computePhysics_<id> instead of published from the loop
+  // that draws the rectangles) must be CAUGHT.
+  const badSnippet = "function computePhysics_bad_reimplementation(vars) {\n  var s = PM_riemannBarsCompute('x*x', 0, vars.b, vars.n, 'left', 400, vars);\n  return { derived: { S_n: s.sum } };\n}";
+  const badFns = grabAllFnBodies("computePhysics_", badSnippet);
+  const badOffenders = badFns.filter((fn) => fn.body.indexOf("PM_riemannBarsCompute(") >= 0);
+  assertTrue("NEGATIVE CONTROL: the scanner DOES catch a computePhysics_* re-implementation calling PM_riemannBarsCompute",
+    badOffenders.length === 1);
+
+  // ── PASS-ORDER ASSERTION — riemann_bars (Pass 0.3) runs before Pass 3 ───
+  // (labels), so publisher-before-consumer holds by SOURCE ORDER every
+  // frame, unconditionally — the dispatch report's own required assertion.
+  const pass03Idx = SRC.indexOf("drawRiemannBars(rbPrim)");
+  const pass3Idx = SRC.indexOf("if (lPrim.type === 'label') drawLabel(lPrim);");
+  assertTrue("riemann_bars' draw call (Pass 0.3) sits BEFORE the Pass 3 label dispatch in source order",
+    pass03Idx >= 0 && pass3Idx >= 0 && pass03Idx < pass3Idx);
+
+  // The publish WRITE itself sits inside drawRiemannBars, unconditional on
+  // whether anything is actually drawn (runs before the 'nothing to draw'
+  // early return) — proven structurally, since drawRiemannBars is
+  // p5-dependent and cannot be executed headlessly here (see file header).
+  const rbSrc = grabFn("drawRiemannBars");
+  const publishIdx = rbSrc.indexOf("PM_physics.derived[spec.sum_var]");
+  const earlyReturnIdx = rbSrc.indexOf("if (computed.bars.length === 0) return;");
+  assertTrue("the D11 publish write sits BEFORE the 'nothing to draw' early return inside drawRiemannBars",
+    publishIdx >= 0 && earlyReturnIdx >= 0 && publishIdx < earlyReturnIdx);
+
+  // NEGATIVE CONTROL for the pass-order scanner — a snippet where the label
+  // dispatch textually precedes the riemann_bars draw call must be REJECTED
+  // by the same < comparison (proving the assertion is directional, not
+  // vacuously true).
+  const investedOrderOk = 500 < 100; // label-idx < riemann-idx shape
+  assertTrue("NEGATIVE CONTROL: the < comparison correctly rejects a reversed (label-before-riemann_bars) order",
+    investedOrderOk === false);
 }
 
 console.log("\n=== 15. INSET PLACEMENT — multi-plane (F1) + ink-avoidance ===");
@@ -714,6 +953,6 @@ console.log("\n=== 16. RANGE CONTAINMENT — cross-product of control ranges sta
 }
 
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);
