@@ -1,6 +1,6 @@
 # rotmech desk D — loop state
 
-updated: 2026-08-06
+updated: 2026-08-07
 desk: `feat/rotmech-d` · `C:\Tutor\physics-mind-rotmech-d`
 cut from: `4b289d4` (the Phase-0d pre-registration commit)
 review_port: **8113**
@@ -13,6 +13,29 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 |---|---|---|
 | 2 | `rotational_kinematics` | **BLOCKED on E10** (+ C-1 for the v = ωr arrow, + K5 unfiled — see below). α and θ now print (E5). |
 | 2 | `tau_eq_i_alpha` | **BLOCKED on E10.** α is producible (E4) and prints (E5); the drive still has no rendered actuator. |
+
+## PASS 5 — exhaustive self-audit of both item lists (2026-08-07)
+
+All 20 items swept (K1–K10, D1–D10) against §8 · §B dispatches · §C/§D. **16 covered, 4 gaps**, all
+filed in `_engine/findings_d.md` PASS 5, none raised as a scope demand:
+
+1. **`rbr_v_arrows` group focal token** (K4·b) — C-1 buys the arrows, not the group token;
+   `glow_focal` is single-token by design (Rule 32e). **S6** (core) needs both arrows lit as ONE
+   focal to show the 2:1 ratio.
+2. **`time_ticks`** (K5) — carried from PASS 4. **S2** (core) + **S7** (extended).
+3. **θ(t)/ω(t) graph panel** (K6) — §7 informational only, never in §8. **The declared consequence
+   has already silently triggered: K6 descoped ⇒ `rotational_kinematics` ships 8 STATES, S8 dropped,
+   advanced ring empty (ruled compliant, Rule 38a), `entry_state_map.calculus_graphs` removed.**
+   `json-author` must be told 8, not 9.
+4. **Per-particle tangential FORCE arrows** (D7) — §4's body priced ONE mechanism with TWO consumers
+   (m/s and N maps, never shared); §8 item 4 dropped the force consumer and C-1 + §D-5 hardened the
+   narrowing. **S7** (advanced) renders nothing without it.
+
+Plus one authoring note: **E5's `tau_applied` step 0.05 cannot reach 1.53** (nor can `tau_brake`) —
+`json-author` must author `slider_controls` overrides for BOTH, step 0.01.
+
+Also resolved: **D8's downgrade clause is VOID** — E1's `formula_lines` is richer than the minimum
+buy, so `tau_eq_i_alpha` S7's term-by-term assembly is authorable as designed.
 
 ## STILL BLOCKED — E4 + E5 landed, E10 does not exist yet (2026-08-06)
 

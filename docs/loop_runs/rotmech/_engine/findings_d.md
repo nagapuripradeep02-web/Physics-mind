@@ -791,3 +791,168 @@ it is a grep, and this is now two for two on Desk D alone.
   no baselines. Recorded so the next session does not go looking.
 - Unchanged from PASS 3 §D: `field_3d_config` in the seed script (§4 trap 2), `md5sum` the dense
   frames (§4 trap 1), verifier duties on **E6, E8, E9** — now plus **E10**, this desk's own row.
+
+---
+
+## PASS 5 — EXHAUSTIVE SELF-AUDIT of both skeletons' item lists. Four gaps, all filed, none demanded.
+
+**Filed 2026-08-07.** §4b and K5 escaped by one mechanism: *a skeleton-local item yields ownership
+to this file, while naming a capability this file's §8 never carried — so it never reached the
+freeze, and Desk E froze from §8 correctly.* **The freeze was not wrong. The input was incomplete,
+and the input was ours.** This pass sweeps every item in both skeletons to exhaustion before the
+cross-desk version runs.
+
+**Method.** All 20 items — `rotational_kinematics` **K1–K10**, `tau_eq_i_alpha` **D1–D10**. For
+each, the capability it names was checked against three places: (a) this file's **§8** priority
+table, (b) a **§B dispatch** in `FROZEN_SCOPE_0c3.md`, (c) a **§C** or **§D** row. Every verdict
+below was read out of the documents and the code, not inferred from the item's rank.
+
+### A · The full audit — 20 items, 16 covered, 4 gaps
+
+| Item | Capability | In §8? | Landed / filed where | |
+|---|---|---|---|---|
+| **K1** / **D1** | signed applied torque | ✓ item 1 (§1) | **E4 — LANDED** | ✓ |
+| **K2** / **D3** | θ/α/τ readout rows + loud warn | ✓ item 2 (§2) | **E5 — LANDED** | ✓ |
+| **K3** | fixed base ray + swept θ arc | ✓ item 3 (§3) | **§C C-1** — named verbatim ("a fixed base-frame ray") | ✓ filed |
+| **K4** | tangential `v = ωr` arrows + `point_markers[]` | ✓ item 4 (§4) | **§C C-1** — named, with its own true-zero map | ✓ filed |
+| **K4·b** | the **`rbr_v_arrows` group focal token** | ✗ | **nowhere** | **GAP 1** |
+| **K5** | `time_ticks` (equal-time ticks, explicit origin) | ✗ | **nowhere** | **GAP 2** |
+| **K6** | θ(t)/ω(t) graph panel | ✗ — §7 *informational* only | **nowhere** | **GAP 3** |
+| **K7** | `alpha` control token + slider row | ~ item 5, as *"whatever drives α"* | **E10** via founder ruling 4 (sharpened by PASS 4 §C) | ✓ |
+| **K8** / **D4** | the motor drive wheel | ✗ (§4b, the original escape) | **E10** via founder ruling 3 | ✓ |
+| **K9** / **D9** | `[LIVE]` inventory | n/a | no build | ✓ |
+| **K10** / **D10** | `deriveStateMeta` motion from the torque | ✓ item 6 (§6b) | **shipped inside E4**; new timed keys ride registration rider **C9** | ✓ |
+| **D2** | start from rest | n/a — office | ruled in PASS 2; E4 lowered the slider floor at both sites | ✓ |
+| **D5** | `tau_app` slider token | ✓ item 5 (§5) | **E5 — LANDED** as `tau_applied` (see §C, one authoring note) | ✓ |
+| **D6** | `restart.runs[]` per-run overrides | ✓ item 8 (§6) | **E6** | ✓ filed |
+| **D7** | per-particle tangential **FORCE** arrows | ✗ — §4's body named it, §8 item 4 dropped it | **nowhere** | **GAP 4** |
+| **D8** | timed formula reveal | ✓ item 7 (§6c) | **E1 — LANDED**, and *better than asked* (see below) | ✓ |
+
+**D8 landed richer than the ask, and that closes a sibling's assumption too.** D8 delegated the
+choice to Desk E — minimum `formula_at_ms` (whole surface at one instant) vs richer
+`formula_steps[]`. E1 built **`formula_lines: [{ text, at_ms? }]`** and deliberately did **not**
+build `formula_at_ms` (that name is taken by the `pef` scenario). So `tau_eq_i_alpha` S7's
+**term-by-term assembly is authorable as designed** — the D8 downgrade clause ("S7's assembly
+downgrades to a sentence-synced whole-formula reveal") is **void, do not apply it** — and the sealed
+`conservation_of_angular_momentum` physics block's "formula_surface assembles" assumption is
+satisfied rather than merely tolerated.
+
+### B · The four gaps, with the state and beat that depends on each
+
+Filed, not raised as scope demands — Desk E is at ten dispatches and this desk is not the office.
+
+**GAP 1 · `rbr_v_arrows` — the group focal token (`rotational_kinematics` K4·b)**
+- **Verified absent.** Zero hits for `rbr_v_arrows` or any grouping concept in `FROZEN_SCOPE_0c3.md`
+  *and* in this file. §C **C-1** buys the arrows themselves ("per-marker tangential `v = ωr` arrows
+  with a dedicated true-zero linear map") but names **no group token**. In code:
+  `glow_focal?: string` (`:1141`) is **"exactly ONE scene focal (Rule 32e)"**, and
+  `RBR_ELEMENT_TYPES` (`:51785`) is 19 individual mesh tokens with **no grouping mechanism at all**.
+- **Depends on it: S6, "One turning rate, many speeds" — core ring.** Its whole claim is *two* points
+  at one ω with tangent arrows in a visible **2 : 1 ratio**. A single-token focal over individual
+  meshes lights **one** arrow — which destroys the comparison the state exists for — or the state
+  authors two focals, which breaches Rule 32e. There is no third option today.
+- Also reaches S9, whose explore beat keeps both arrows live.
+- **Why it escaped:** it is a sub-clause inside K4 (P2-9). §8 item 4 compressed K4 to *"tangential v
+  arrow at radius r"*, and a sub-clause of a compressed row is invisible to the compression.
+
+**GAP 2 · `time_ticks` (K5)** — carried forward from PASS 4 §F, unchanged and still absent.
+- **Depends on it: S2 (core) and S7 (extended).** S2's delta cue *is* equal tick spacing at constant
+  ω (three ticks at 1.50 / 3.00 / 4.50 rad); S7's *is* the 1 : 3 : 5 widening under constant α, with
+  the narration saying the numbers aloud. Neither state has a delta without it.
+- Post-E5 at least the wrong workaround is loud: a `reference_marks` entry with `form: 'tick'` now
+  warns (`rbrWarnTickSurface`) and draws nothing off the KE bar.
+
+**GAP 3 · θ(t)/ω(t) graph panel (K6) — and a declared consequence nobody has recorded**
+- **Verified absent.** This file mentions the graph **only in §7, LOW/informational** (*"no graph or
+  plot surface exists in the rbr config… grep of the rbr region returns zero graph hits"*) — it
+  never entered **§8**. `FROZEN_SCOPE_0c3.md` has zero graph rows; the single "graph" hit is the
+  unrelated scar name `graph_marker_label_clipped` inside C-10.
+- **This one is different from the other three: the skeleton pre-decided the outcome.** K6 is *"the
+  ONE declared descope candidate"*, and P1-8 rules: **if Desk E descopes K6, S8 is DROPPED.**
+- **So the consequence has already silently triggered.** By omission from the freeze, K6 is
+  descoped, therefore **`rotational_kinematics` ships 8 states, not 9**: S8 (*"ω is the slope of the
+  θ graph"*, the whole advanced ring) is dropped, the advanced ring becomes empty, and
+  `entry_state_map.calculus_graphs` is removed. No fallback readout was ever authored — the REV-1
+  Δθ/Δt fallback was deleted rather than priced, deliberately.
+- **Nothing anywhere records that this has happened.** The skeleton still ships 9 states and the
+  Checkpoint-A rider (*"if K6 is descoped, drop the advanced curriculum-tag claims in (i-3) and
+  record it revisit-when-K6-lands"*) is unexecuted. **This is the item most likely to reach seal
+  wrong** — not as a missing capability, but as a state that should not exist. `json-author` must be
+  told 8 states, and the empty advanced ring is already **ruled compliant** under Rule 38a
+  (Checkpoint A cycle 2: an empty set is trivially contiguous; the fleet ships `friction_force` and
+  `equilibrium_of_particles` the same way).
+
+**GAP 4 · per-particle tangential FORCE arrows (`tau_eq_i_alpha` D7)**
+- **Verified absent, and this one escaped through a narrowing rather than an omission.** §4's own
+  body is explicit: *"the tangential vector is needed **twice over**, for two different quantities:
+  **v = ωr** at a marked point (kinematics) and **F** at a rim/particle (dynamics)… price one
+  tangential-vector mechanism with **two consumers**, not two mechanisms — but note the
+  magnitude-to-length maps differ (m/s vs N) and **must not be shared**."*
+- **§8 item 4 then wrote only:** *"§4 — tangential v arrow at radius r (`v = ωr`) · BLOCKING
+  `rotational_kinematics` · visual; **shared with concept #3**."* The force-form consumer vanished at
+  that line. §C **C-1** inherited the narrowed form (velocity arrows + their true-zero map only), and
+  **§D item 5** then hardened it: *"the row is still wanted, **by #4 `rotational_kinematics` alone**."*
+- So the narrowing is ours, propagated twice, and it now reads as a deliberate scoping decision in
+  two places. **It is not one** — it contradicts §4's own text in this file.
+- **Depends on it: S7, "Adding up every particle" — advanced ring.** Its claim is the derivation
+  F = ma per particle ⇒ τ = (Σmr²)α = Iα, *with the ledger summing to 1.53 exactly*. D7 is what draws
+  the per-mass tangential forces that sum. Absent ⇒ nothing renders (D7's own words), and the state
+  is a narrated assertion over a picture that does not contain its cause.
+- **Cheapest correct fix is one clause, not a row:** C-1 already buys the mechanism; it needs *"two
+  consumers, two magnitude→length maps (m/s and N — `rbrArrowLen`), never shared"* restored to it.
+  E7 already reasoned exactly this way for the arrow **shafts** (§B E7: *"One mesh-cylinder shaft
+  mechanism, two consumers… the two magnitude→length maps must NOT be shared… Same caution
+  findings_d §4 raised for m/s vs N"*) — so the argument is already accepted in this build for the
+  neighbouring mechanism. Only the tangential row lost it.
+
+### C · One authoring note on E5, not a gap: `tau_applied`'s default step cannot reach 1.53
+
+E5 landed `tau_applied` with **step 0.05** and min −2.0 (`RBR_SLIDER_SPEC`, `:50877`). D5 asked for
+**step 0.01** because *"1.53 and 0.60 must be reachable"*. Checked arithmetically:
+
+| token | min | step | target | on the grid? |
+|---|---|---|---|---|
+| `tau_applied` | −2.0 | 0.05 | **1.53** | **no** — k = 70.60 |
+| `tau_brake` | 0 | 0.05 | **1.53** | **no** — k = 30.60 |
+| `tau_applied` | −2.0 | 0.05 | 0.60 | yes — k = 52 |
+
+1.53 N·m is `tau_eq_i_alpha`'s own taught value (τ = I·α = 3.06 × 0.50), so the S8 sandbox would
+otherwise be unable to reach the number the whole concept is about, and the drive-vs-brake
+static-hold demo would sit 0.02 N·m off balance.
+
+**Not a defect — the override path is live and proven.** `rbrSc()` reads
+`(config.slider_controls || {})[token]` for `min/max/step/default/dp/label`, so
+`slider_controls.tau_applied = { min: 0, max: 2.0, step: 0.01, default: 1.53 }` fixes it, exactly as
+D5 already noted for `tau_brake`'s S6 override. **`json-author` must author both overrides** — the
+engine defaults are wrong for this concept and silently so (a slider that simply stops at 1.50).
+
+Related, informational only: the declared `slider_controls` TS type (`:2269`) lists 20 keys and
+includes **none** of `tau_brake` / `tau_applied` / `omega0` / `alpha`. **Harmless — verified, not
+assumed:** the shipped fleet already authors undeclared keys through this path (`ac_generator` →
+`omega`, `N`; `ac_voltage_resistor` → `vm`, `f_demo`, `V_dc`), and the read is a runtime string
+index inside the emitted template, which tsc never sees. It is declaration hygiene of the same class
+as E4's `'applied_torque'` living outside its own enum — worth one line whenever that file is next
+open, worth no dispatch.
+
+### D · The pattern, sharpened by four instances instead of two
+
+All four gaps are **§8 compression artefacts**, and they come in two shapes:
+
+1. **Omission** — the item never appears in §8 at all (§4b, K5, K6).
+2. **Narrowing** — the item appears, but §8's one-line summary drops a clause the body carried, and
+   the narrowed form then propagates and hardens downstream (D7: §4 body → §8 item 4 → C-1 → §D-5,
+   losing a consumer at the first step and reading as deliberate by the last).
+
+**Shape 2 is the dangerous one**, because the row *is* in the scope — nothing looks missing — and
+the loss only shows at build time as a capability that serves one consumer where two were priced.
+A cross-desk sweep should therefore diff each item's **body** against its §8 line, not merely check
+that the item is present.
+
+**Recommendation for the cross-desk version (unchanged in kind, sharper in method):** every desk
+greps its own K/A/B/C item list against `FROZEN_SCOPE_0c3.md`, and for any item that *is* present,
+re-reads the source paragraph for clauses the summary dropped — consumers, second maps, group
+tokens, origin fields. On this desk that method found **4 gaps in 20 items**, two of which
+(GAP 1, GAP 4) were sub-clauses of rows that already looked covered.
+
+**Nothing in this pass is a scope demand.** GAP 3 needs no build at all — it needs a decision
+recorded (`rotational_kinematics` ships 8 states) so it is not discovered at seal.

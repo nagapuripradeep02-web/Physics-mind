@@ -263,6 +263,58 @@ dispatches not nine. `json-author` stays shut on both concepts.
   Filed, not raised as a scope demand. **Recommended one grep-sweep across the other desks' K/A/B/C
   item lists** — that is two escapes for two on this desk alone.
 
+---
+
+## 2026-08-07 — exhaustive self-audit for scope escapes (docs-only)
+
+Swept **all 20 items** across both skeletons (`rotational_kinematics` K1–K10, `tau_eq_i_alpha`
+D1–D10) against three places each: `findings_d.md` §8, a `FROZEN_SCOPE_0c3.md` §B dispatch, and a
+§C/§D row. **16 covered, 4 gaps.** Filed as PASS 5, none raised as a scope demand.
+
+### The four gaps
+
+1. **`rbr_v_arrows` group focal token** (K4·b) — zero hits anywhere. §C C-1 buys the tangential
+   arrows themselves but names no group token, and in code `glow_focal?: string` (`:1141`) is
+   *"exactly ONE scene focal (Rule 32e)"* over `RBR_ELEMENT_TYPES` (19 individual meshes, no
+   grouping). **S6** (core) is *"one turning rate, many speeds"* — two arrows in a 2 : 1 ratio.
+   One focal lights one arrow and destroys the comparison; two focals breach 32e. No third option.
+2. **`time_ticks`** (K5) — carried from PASS 4, still absent. **S2** (core, even spacing) and
+   **S7** (extended, 1 : 3 : 5) are each built on the tick geometry.
+3. **θ(t)/ω(t) graph panel** (K6) — in §7 *informational* only, never in §8; zero rows in the frozen
+   scope. **The skeleton pre-decided this one (P1-8): descope K6 ⇒ S8 is DROPPED.** So the
+   consequence has already silently triggered — `rotational_kinematics` ships **8 states, not 9**,
+   the advanced ring is empty (already ruled compliant under Rule 38a at Checkpoint A cycle 2), and
+   `entry_state_map.calculus_graphs` is removed. **Nothing anywhere records that**, and the
+   Checkpoint-A rider on the advanced curriculum tags is unexecuted. This is the item most likely to
+   reach seal wrong — not a missing capability, a state that should not exist.
+4. **Per-particle tangential FORCE arrows** (D7) — §4's body priced *"one tangential-vector
+   mechanism, two consumers… the maps differ (m/s vs N) and must not be shared."* §8 item 4 wrote
+   only the velocity form "shared with concept #3"; C-1 inherited the narrowed form and §D-5
+   hardened it to *"wanted by #4 alone."* **S7** (advanced) is the τ = Σ(r·F) derivation whose ledger
+   sums to 1.53 — absent, nothing renders. Cheapest fix is one restored clause on C-1, not a row;
+   E7 already makes exactly this two-consumers/two-maps argument for the arrow shafts.
+
+### Two things that are not gaps
+
+- **E5's `tau_applied` step 0.05 cannot reach 1.53** (nor can `tau_brake`; 0.60 is fine). That is
+  this concept's own taught value, so `json-author` must author `slider_controls` overrides for BOTH
+  tokens at step 0.01. The override path is live and proven — the shipped fleet already authors
+  undeclared `slider_controls` keys (`ac_generator` → `omega`/`N`), so the missing type declaration
+  is hygiene, not breakage.
+- **D8's downgrade clause is VOID.** E1 landed `formula_lines: [{text, at_ms?}]`, richer than the
+  minimum buy D8 delegated — so `tau_eq_i_alpha` S7's term-by-term assembly is authorable as
+  designed, and the sealed CoAM block's "formula_surface assembles" assumption is satisfied.
+
+### The pattern, sharpened
+
+Four instances instead of two, and they split into **omission** (§4b, K5, K6 — never in §8) and
+**narrowing** (D7 — in §8, but the one-line summary dropped a clause the body carried, and the
+narrowed form then propagated and hardened downstream until it read as deliberate). **Narrowing is
+the dangerous shape**: the row *is* in the scope, nothing looks missing, and the loss only surfaces
+at build time. Recommended method for the cross-desk sweep: for any item that IS present, diff its
+source paragraph against its §8 line for dropped clauses — consumers, second maps, group tokens,
+origin fields. Two of this desk's four gaps were sub-clauses of rows that already looked covered.
+
 ### Notes for whoever picks this desk up
 
 - Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND
