@@ -1125,6 +1125,44 @@ this from a faithful **re-implementation** of the walk and flagged every figure
 between two independently-rounded dp-2 values is arithmetic, not bias — but the standstill frame,
 where a teacher would say "every joule accounted for", is genuinely off by 0.01.
 
+> ### ⚠ "NARROW" WAS WRONG — corrected by founder-proxy at Checkpoint A, 2026-08-07
+> The severity downgrade holds; **the scope claim does not.** Two corrections, both measured:
+>
+> **1. Desk A never measured the concept's OWN authored torque.** The full-stop case was sampled at
+> τ = 0.75 and 1.00 (the only two that reached rest inside the 8 s window). founder-proxy measured
+> **τ = 0.40, the authored guided value**: at t = 11480 ms the HUD prints `W = −3.45 J`,
+> `θ = 8.62 rad` (raw −3.44730 / 8.61825). Excess = 0.00480 J = `0.40 × 0.0120`, to four decimals.
+> **The gap is present at the authored torque too.**
+>
+> **2. It is not narrow — it is nearly the whole slider.** `KE₀ = 3.4425 J` sits only **0.0025 J**
+> below the dp-2 rounding boundary, so the full-stop mismatch appears for **every τ above
+> ≈ 0.21 N·m — 36 of the 40 reachable non-zero slider settings.** "Narrow" described the *frame*
+> (only the stop), and I wrongly let it describe the *range* as well.
+>
+> **3. A better result than either of us had, from source.** `_th` and `_w` are accumulated from the
+> **same `wk`** in the same loop:
+> ```js
+> eng._th += wk * h;
+> eng._w  += rbrTauOf(Lk, tk) * wk * h;
+> ```
+> so for constant τ, **`W ≡ τθ` identically, by construction** — S3's whole teaching identity
+> *cannot* drift, and Desk A's measured 0.008 residual on it was pure display rounding. `rbrLAt` is
+> an exact closed form and `KE = L²/(2I)` is exact, so **the entire error is one shared θ bias:
+> ½·h·Δω = 0.012 rad at the full stop**, which predicts both the 8.62-vs-8.61 stopping angle and
+> `excess |W| = τ × 0.0120`. One bias, two symptoms, one fix.
+>
+> **Why the stop specifically:** everywhere else a teacher subtracting two dp-2 numbers has a
+> rounding alibi. At the stop the alibi is gone — the meter fell from a printed **3.44** to a
+> printed **0.00**, and W prints **3.45**. Nothing to attribute it to.
+>
+> **Elevated to a Checkpoint C sealing condition** (founder-proxy, engine queue **E-B**): the fix is
+> midpoint composition in `rbrGridWalk`'s accumulation loop (`:50801-50806`), which is **exact** for
+> the piecewise-linear ω that `rbrLAt` produces. Blast radius today is θ, W and ≤0.7° of rod phase;
+> `I`, `ω`, `L`, `KE`, `α`, `τ` never go through the walk, and **no rbr concept is baseline-locked
+> yet** (A-19). Free this week, expensive after eight concepts seal. **The contract forbids the
+> content workaround** — `ω₀ = 1.50` and hence `KE₀ = 3.4425` are pinned by `APPARATUS_CONTRACT.md`
+> §1, which a desk may not change unilaterally.
+
 **Design consequence (folded into the skeleton):** S4 **may** ship quantitative; it must simply not
 pin its claim on the full-stop frame. The `W = τθ` identity S3 is built on is unaffected and
 comfortably authorable.
@@ -1198,3 +1236,74 @@ necessary, because **the rod has 2-fold symmetry and without a one-sided marker 
 count turns or see a half revolution** — but its sprite reads `r`, a radius label doing an angle
 job. A `show_angle_marker` / θ-arc would let a θ-teaching concept show its own quantity on the
 apparatus. Not blocking.
+
+---
+
+## A-32 · **CRITICAL, BLOCKING S6** · A live `tau_brake` drag re-zeroes W while θ keeps counting
+
+**Measured on the real engine by `founder-proxy` at Checkpoint A, 2026-08-07** (its engine-queue
+**E-A**) — not deduced. Owner `peter_parker:field3d_surgeon`.
+`bug_class: rbr_live_torque_change_rezeroes_the_work_integral_while_theta_continues`
+
+Sandbox, free-running, one `input` event on `rbr_tau_brake_slider`, 0.40 → 0.75 N·m:
+
+```
+before drag        KE = 1.47 J | W = −1.97 J | θ = 4.93 rad | τ = −0.40 N·m
+immediately after  KE = 1.43 J | W = −0.04 J | θ = 4.99 rad | τ = −0.75 N·m
++4 s after drag    KE = 0.00 J | W = −1.47 J | θ = 6.90 rad | τ = −0.75 N·m
+```
+
+**The work counter is wiped. θ is not. KE is not.** After the drag **both taught rules are false on
+screen** — not by a quantum, by a factor:
+
+- S3's rule `W = τθ`: |W| = 1.47 against |τθ| = 0.75 × 6.90 = **5.17**
+- S4's rule `W = ΔKE`: the wheel has lost 3.44 J; W reads **1.47**
+- and at the drag instant the teacher watches work *un-done*, with nothing physical happening
+
+**Root cause, in source.** `rbrApplyParam('tau_brake')` sets `eng.evAnchorT = eng.t_ms` (`:51031`)
+so L stays continuous — its own comment says *"the decay already applied is KEPT"*. But
+`rbrGridWalk` zeroes `_w` on **any** anchor change (`:50804`), conflating two different kinds:
+
+| Anchor kind | Source | Zeroing W is… |
+|---|---|---|
+| **restart** | `rbrEffTime(k)` — `restart` / `omega0` / `m` | **correct** (L is re-seeded) |
+| **event** | `evAnchorT` — a live torque change | **wrong** (L and θ are deliberately continuous) |
+
+**Fix:** have `rbrAnchor` (`:50611`) report which kind it returned; reset `_w` only on the restart
+kind. **Same function region as A-28's midpoint fix — sequence them as ONE dispatch.**
+**Probe:** free-run with `theta` + `W`; dispatch an `input` on the slider at t = 4000; assert `|W|`
+never decreases across the event and afterwards equals `Σ τᵢ Δθᵢ` within one quantum.
+
+**Why it blocks, and why there is no content workaround:** dropping `W` from S6 leaves a
+work-energy concept whose explore state cannot show work; dropping `tau_brake` violates Rule 31
+(the explore state must expose the taught variable) and leaves only `omega0`, which restarts
+anyway. Both are strictly worse than the fix. **Guided states S1–S5 author no controls, so the
+guided arc is unaffected — this blocks S6 only.**
+
+## A-33 · The KE bar has no timed reveal, so it prints its value before the sentence that defines KE
+
+**founder-proxy's E-C, 2026-08-07. MODERATE.** Owner `peter_parker:field3d_surgeon`.
+`bug_class: rbr_ke_bar_has_no_timed_reveal_so_it_prints_its_value_before_the_defining_sentence`
+
+`readout_at_ms` gates **only** the `rbr_ro_<token>` row elements (`:51341`). `rbrRebuildKeBar` sets
+`rbr_kebar` to `display:block` at state apply (`:51253`), and the frame loop writes
+`rbr_kebar_fill.width` and `rbr_kebar_val` **unconditionally** whenever `ke_bar.max_j > 0`
+(`:51349-51354`). So a design that stages I → ω → KE still shows the bar, carrying KE numerically,
+from frame 0 — **breaking the Rule 25 term-introduction ledger in the very state that authors it.**
+
+This is why the `rotational_work_energy` skeleton's S1 claim "the bar fills to 3.44 J" is
+unbuildable as written (its D-2): S1 authors no torque, so KE is constant and the bar is **static at
+90.5% from entry**. Another instance of the chapter's signature class — an authored field the engine
+silently ignores.
+**Ask:** gate `rbr_kebar` on `readout_at_ms.KE` (or add `ke_bar.reveal_at_ms`), defaulting to 0 so
+every existing state stays byte-identical.
+
+## A-34 · The brake pad stays in contact at τ = 0 — a rendered agent asserting a cause that is not acting
+
+**founder-proxy's E-D, 2026-08-07. MINOR, note only.** Owner `peter_parker:field3d_surgeon`.
+
+The inverse of **A-2**. `rbrApplyVisibility` computes pad visibility at **state entry only**, and the
+travel block parks the pad at `contactZ` for all `tMs ≥ engage_at_ms` (`:51947`). So in a sandbox a
+teacher who drags τ to 0 sees the pad **touching the drum while the wheel does not slow** — Rule 24
+/ §10(d), a stated agent with no acting cause. Same family as A-2 and E8; fold into whichever
+lands first.
