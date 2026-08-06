@@ -115,3 +115,11 @@ nul
 /.scratch_nlb_seams/
 /.scratch_nlb_mass/
 /.scratch_nlb_wall/
+# rbr probe outputs (desk A, rotmech): assembled sim HTML + captures. The
+# PROBES themselves are tracked under src/scripts/_scratch_rbr_*.ts — only
+# their generated artifacts are ignored.
+/.scratch_rbr_formula/
+/.scratch_rbr_e4/
+/.scratch_rbr_e5/
+/.scratch_rbr_narr/
+/.scratch_rbr_theta/
