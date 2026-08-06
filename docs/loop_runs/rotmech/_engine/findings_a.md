@@ -8,22 +8,45 @@
 (E7), `deb764b` (E5 notice) and `7022169` (E1) are **all ancestors of `origin/master`**. E1's
 earlier direct-branch merge has become a plain master ancestor exactly as predicted.
 
-## E7 `rbr_arrows_have_no_real_shaft` — **CONFIRMED on a real concept.** Desk E's numbers hold.
+## E7 `rbr_arrows_have_no_real_shaft` — **PARTIALLY confirmed. A-12 resolved; A-11 NOT resolved.**
 
-Desk E could not seed an rbr concept, so its ink/contrast figures were unconfirmed on anything that
-actually exercises rbr. Measured here, pre-E7 (`20260805-163752`) vs post-E7 (`20260806-021612`),
-counting pixels within the axle band x ∈ [628, 652] matching the arrow colours:
+> ### ⚠ RETRACTION — Desk A's first E7 measurement was WRONG. Do not cite it.
+> The table originally here reported axle-band ink `26 → 1101 px` and a longest contiguous shaft run
+> of `8 px → 167 px` (S1), `4 → 167` (S7), `61 → 233` (S6). **Every one of those numbers is
+> garbage**, from two independent bugs:
+>
+> 1. **int16 overflow.** The mask computed `((band - TARGET)**2).sum(axis=2)` with both operands
+>    `int16`. Any channel delta above 181 overflows (`182² = 33124 > 32767`), wrapping negative and
+>    collapsing the distance — so the near-black axle `rgb(32,44,50)` scored as a *match* for the
+>    blue arrow, and the actual white-hot arrow pixels `rgb(255,255,255)` scored as a *miss*. The
+>    "167 px shaft" was the **axle**. Caught by `eye-walker`, whose independent read put the arrow at
+>    90 px (y 258–348) where mine claimed 167 px at y 93–259 — disjoint ranges, which is what forced
+>    the re-check. A column dump settled it: x=640 is axle `rgb(32,44,50)` from y=100 to y=250, and
+>    arrow only from y≈255 to y≈348.
+> 2. **The method is unsound even in float.** Re-run in `float64`, PRE-E7 shows *more* arrow-coloured
+>    ink than POST-E7 — because pre-E7 the axle itself was light grey `#90A4AE (144,164,174)`, which
+>    passes any "bright cyan-ish" test. **A colour-threshold ink comparison cannot separate arrow
+>    from apparatus across a change that recoloured the apparatus.** There is no threshold that
+>    fixes this; the instrument is wrong for the question.
+>
+> **What survives:** the arrow's own extent POST-E7, where two independent methods agree —
+> `eye-walker` 90 px (y 258–348), Desk A 100 px (y 255–354) on `STATE_1__frozen`. And the contrast
+> figures below, which were computed in float from declared colours and are unaffected.
 
-| Frame | axle-band ink | **longest contiguous vertical run** (the shaft) |
+**The contrast half of E7 is real and large** (WCAG on declared colours; float arithmetic, no
+overflow):
+
+| Pair | pre-E7 | post-E7 |
 |---|---|---|
-| `STATE_1__frozen` | 26 → **1101 px** | **8 px → 167 px** |
-| `STATE_7__frozen` | 14 → **1113 px** | **4 px → 167 px** |
-| `STATE_6__frozen` | 372 → **1464 px** | **61 px → 233 px** |
-| `STATE_6__dense_t09000` | 91 → **1312 px** | **61 px → 246 px** |
+| L arrow `#42A5F5` vs axle | **1.02 : 1** | **5.54 : 1** |
+| pull arrow `#4DD0E1` vs rod | **1.04 : 1** | **7.07 : 1** |
 
-The pre-E7 "longest run" of **4–8 px** is the whole of A-11 in one number: that was the cone tick
-alone, with the shaft entirely inside the axle. Desk E's "15 px of ink" is the same measurement to
-within the noise of where you draw the band.
+**1.02 : 1 is the real explanation of A-11** — the arrow and the axle had essentially identical
+luminance, so even where the arrow *was* drawn it could not be seen. `eye-walker` measured the
+rendered result at **13.3 : 1** (arrow L=0.924 vs axle L=0.023), so the declared-colour figure is if
+anything conservative. Desk E's 4.36 : 1 is a third basis; all three agree the change is real.
+
+**But contrast was only half the defect, and the other half is untouched — see A-11's status below.**
 
 **E7 also darkened the apparatus, which is the half that was not in the dispatch title** — axle
 `#90A4AE` → `#1F2A30`, rod `#B0BEC5` → `#26333A`. That matters more than the geometry:
@@ -649,6 +672,44 @@ copy-paste into the next seven rotmech concepts.
 
 **Suggested affordance:** allow `tts_sentences: []` when `advance_mode === 'interaction_complete'`.
 **Owner:** office, on master, per Rule 40 — never a chapter-branch edit.
+
+## A-23 · **CRITICAL** · S6's flip is a RESTART, not a rotation — the state's whole claim is a step function
+
+**Raised by `eye-walker` on the post-E7 walk (`20260806-021612`), 2026-08-06.**
+`bug_class: sign_reversal_taught_as_a_step_not_a_visible_rotation` · **Owner: `alex:architect`**
+(design-side; not an engine fix). **This blocks the seal, and it survived E7.**
+
+E7 gave the L arrow real geometry, so S6's flip is no longer carried by a floating text label — that
+part of A-11 is genuinely better. **But the flip still does not happen.** eye-walker sampled the
+whole state:
+
+```
+t=0000 … t=3000   I = 3.06   ω =  1.50   L =  4.59   KE = 3.44    arrow straight UP,   bright cyan
+t=4000            I = —      ω = —       L = —       KE = —       + "restarting" chip
+t=5000 … frozen   I = 3.06   ω = −1.50   L = −4.59   KE = 3.44    arrow straight DOWN, olive→cream
+```
+
+**Not one of the 12 sampled frames shows the arrow at any angle other than exactly up or exactly
+down.** No tilt, no rotation through the horizontal, no shrink through zero, no deceleration. The
+state's atomic claim — "L is a vector, the arrow flips" — is delivered as *four seconds of nothing,
+one glitch frame, six seconds of nothing-with-the-sign-changed*.
+
+`STATE_6__dense_t04000.png` is the **only frame in all 111 entries** carrying the "restarting" chip,
+and it is also the only frame where the HUD shows em-dash placeholders. The reversal is implemented
+as a sim restart (the authored `repin_cue`), and the instrument blanks at the exact moment a teacher
+is looking at the thing the state exists to teach.
+
+This is a live recurrence of the OPEN scar `teach_visual_must_match_narration`.
+
+**Prevention rule:** when a state's claim is that a vector flips, the flip must RENDER as a
+continuous change — rotation through, or magnitude through zero — with ≥3 intermediate frames at 1 s
+sampling. Two constant plateaus separated by a discontinuity does not teach a flip, whatever the end
+frames show.
+
+**Note the interaction with A-22 (same state):** A-22 was deferred *pending E7* on the reasoning that
+S6's framing should be re-judged once the arrow was visible. It now is visible — and A-23 says the
+framing is not the binding problem. **Fix A-23 first; A-22's camera choice depends on what the
+corrected flip actually looks like.**
 
 ## A-22 · S6's frozen pin lands on a camera-degenerate rod phase — the held frame CONTRADICTS its own HUD
 
