@@ -2190,6 +2190,17 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (probeAuto && typeof probeAuto.at_ms === 'number') {
             candidates.push(asNum(probeAuto.at_ms, 0) + asNum(probeAuto.duration_ms, 4000) + 600);
         }
+        // z_ramp (EFFECTIVE NUCLEAR CHARGE): Z_eff sweeps and the WHOLE atom
+        // contracts to 1/Z with it — the boundary surface, the dot cloud, the node
+        // shell and the pm radius readout all move together. Same shape as the
+        // ramps above (a one-shot closed-form sweep that then HOLDS) and the same
+        // failure if unpinned: THE EYE would photograph a half-contracted atom
+        // beside a radius its state's caption contradicts. No shipped concept
+        // authors z_ramp, so adding it moves no baseline.
+        const osZRamp = asObj(osState.z_ramp);
+        if (osZRamp && typeof osZRamp.at_ms === 'number') {
+            candidates.push(asNum(osZRamp.at_ms, 0) + asNum(osZRamp.duration_ms, 2600) + 600);
+        }
         // morph (HYBRIDISATION, #13): the s-character ramp. It is a one-shot
         // closed-form ramp that then HOLDS, exactly like extrude/bloom above — the
         // dumbbell becomes a hybrid, or the pair's angle opens 90° → 180° — so the
