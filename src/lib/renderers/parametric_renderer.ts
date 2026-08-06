@@ -1755,6 +1755,36 @@ function drawLabel(spec) {
   if (!resolved) return;
   // Phase 2 solver: prefer solver-resolved position when host wrote one.
   var pos = spec._solverPosition || spec.position;
+
+  // position_expr — live variable-driven position, the label's own version of
+  // drawBody's position_expr (see the block above drawBody's pos resolution).
+  // Until now only a label's TEXT could react to a slider ("theta = {theta}
+  // deg"), while the symbol naming a moving object sat frozen at its authored
+  // coordinate — a unit-circle angle glyph beside a point riding the rim had
+  // no way to ride along with it, so authors were forced to fake the anchor
+  // via the owning primitive's own label field instead of a real label.
+  //
+  // Reads PM_liveExprVars() — the SAME merged variables+derived scope
+  // PM_interpolate and drawBody's position_expr use — so a label's text and
+  // its own position can never disagree about the value they describe.
+  //
+  // Precedence (documented here because it is not obvious): an authored
+  // position_expr WINS over _solverPosition. The de-overlap solver resolves
+  // positions from the state's static layout and cannot see expression-driven
+  // geometry (open scar:
+  // pcpl_solver_cannot_register_expression_driven_vector_primitives_as_obstacles)
+  // — its slot for this label is therefore stale the instant the driving
+  // variable moves, so a label that explicitly asks to track a live value
+  // must beat it. spec.position remains the last-resort fallback exactly like
+  // drawBody: a non-finite eval (malformed expression, or missing vars) keeps
+  // today's static authored position rather than vanishing the label.
+  if (spec.position_expr) {
+    var lblVars = PM_liveExprVars();
+    var lblX = (spec.position_expr.x != null) ? PM_safeEval(String(spec.position_expr.x), lblVars) : pos.x;
+    var lblY = (spec.position_expr.y != null) ? PM_safeEval(String(spec.position_expr.y), lblVars) : pos.y;
+    if (isFinite(lblX) && isFinite(lblY)) pos = { x: lblX, y: lblY };
+  }
+
   var size = spec.font_size || 14;
   var color = spec.color || '#D4D4D8';
   var rgb = PM_hexToRgb(color);
