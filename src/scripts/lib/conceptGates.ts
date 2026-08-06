@@ -258,3 +258,173 @@ export function duplicateKeyErrors(raw: string, file: string): string[] {
     }
     return errors;
 }
+
+// ── Gate 9 — WP-R5 choreography primitives (variable_choreography + anchor_to +
+// locus_trace sweep collision). MOVED here from validate-concepts.ts on
+// 2026-08-06 so validate-mathematics.ts runs them too — they were private to
+// the flat-namespace validator, which meant the subject that most needs the
+// locus_trace gate (mathematics — the concept that DISCOVERED the collision)
+// never ran ANY choreography check. Same move-not-copy rationale as the header.
+//
+// (a) anchor_to.primitive_id must name a primitive that exists AND is authored
+//     EARLIER in the same state's scene_composition array — PM_endpointRegistry
+//     (parametric_renderer.ts) only holds entries the current draw() pass has
+//     already registered, in array order, so a forward reference silently
+//     chains onto a stale/missing endpoint at runtime. FATAL.
+// (b) variable_choreography[].variable must be declared in
+//     physics_engine_config.variables — an undeclared variable still "moves"
+//     inside the renderer's PM_choreoValues cache but computePhysics() never
+//     receives it, so nothing downstream reacts. FATAL.
+// (c) variable_choreography[].seizable:true needs a type:'slider' primitive for
+//     the SAME variable somewhere in the state's scene_composition — otherwise
+//     a teacher can never actually take the sweep over. WARN, not fatal.
+// (d) a locus_trace's sweep parameter must never be a slider variable in the
+//     same state (engine_bug_queue:
+//     pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve,
+//     CRITICAL) — PM_choreoVarsAtTime skips teacher-seized variables when it
+//     evaluates a trace's historical samples, so the first drag collapses the
+//     curve to zero-length segments, invisibly to every pixel gate. FATAL.
+
+export interface ChoreoWarning { path: string; message: string; fatal: boolean }
+
+function declaredPhysicsVariableNames(data: unknown): Set<string> {
+    const out = new Set<string>();
+    if (!data || typeof data !== 'object') return out;
+    const cfg = (data as { physics_engine_config?: unknown }).physics_engine_config;
+    if (!cfg || typeof cfg !== 'object') return out;
+    const vars = (cfg as { variables?: unknown }).variables;
+    if (!vars || typeof vars !== 'object') return out;
+    for (const name of Object.keys(vars as Record<string, unknown>)) out.add(name);
+    return out;
+}
+
+function checkStateChoreography(
+    stateId: string,
+    state: unknown,
+    pathPrefix: string,
+    declaredVars: Set<string>,
+): ChoreoWarning[] {
+    if (!state || typeof state !== 'object') return [];
+    const s = state as Record<string, unknown>;
+    const scene = s.scene_composition;
+    const out: ChoreoWarning[] = [];
+
+    // (a) anchor_to — walk scene_composition in authored array order, exactly
+    // matching PM_endpointRegistry's runtime fill order. Also collects the
+    // state's slider variables in the same pass for checks (c) and (d) below.
+    const sliderVars = new Set<string>();
+    if (Array.isArray(scene)) {
+        const allIds = new Set<string>();
+        for (const prim of scene) {
+            const p = prim as { id?: unknown; type?: unknown; variable?: unknown } | null;
+            if (typeof p?.id === 'string') allIds.add(p.id);
+            if (p && p.type === 'slider' && typeof p.variable === 'string') sliderVars.add(p.variable);
+        }
+        const seenIds = new Set<string>();
+        scene.forEach((prim, idx) => {
+            if (!prim || typeof prim !== 'object') return;
+            const p = prim as Record<string, unknown>;
+            const anchorTo = p.anchor_to as { primitive_id?: unknown } | undefined;
+            if (anchorTo && typeof anchorTo === 'object' && typeof anchorTo.primitive_id === 'string') {
+                const targetId = anchorTo.primitive_id;
+                const label = typeof p.id === 'string' ? p.id : idx;
+                const where = `${pathPrefix}.${stateId}.scene_composition[${label}]`;
+                if (!allIds.has(targetId)) {
+                    out.push({
+                        path: where,
+                        fatal: true,
+                        message: `anchor_to_missing_target primitive_id='${targetId}' not found anywhere in this state's scene_composition`,
+                    });
+                } else if (!seenIds.has(targetId)) {
+                    out.push({
+                        path: where,
+                        fatal: true,
+                        message: `anchor_to_forward_reference primitive_id='${targetId}' is authored AFTER this primitive — PM_endpointRegistry fills in array order, so this arrow/arc will chain onto a stale or missing endpoint. Move '${targetId}' earlier in scene_composition.`,
+                    });
+                }
+            }
+            if (typeof p.id === 'string') seenIds.add(p.id);
+        });
+    }
+
+    // (b) + (c) variable_choreography.
+    const choreo = s.variable_choreography;
+    if (Array.isArray(choreo)) {
+        choreo.forEach((entry, idx) => {
+            if (!entry || typeof entry !== 'object') return;
+            const c = entry as Record<string, unknown>;
+            if (typeof c.variable !== 'string') return; // Zod already requires this; defend anyway
+            const variable = c.variable;
+            const where = `${pathPrefix}.${stateId}.variable_choreography[${idx}]`;
+            if (!declaredVars.has(variable)) {
+                out.push({
+                    path: where,
+                    fatal: true,
+                    message: `choreography_variable_undeclared variable='${variable}' not found in physics_engine_config.variables — computePhysics() will never see this choreographed value`,
+                });
+            }
+            if (c.seizable === true && !sliderVars.has(variable)) {
+                out.push({
+                    path: where,
+                    fatal: false,
+                    message: `choreography_seizable_without_slider variable='${variable}' is seizable but no type:'slider' primitive for it exists in this state — a teacher can never seize it`,
+                });
+            }
+        });
+    }
+
+    // (d) locus_trace sweep-parameter collision. Slider variables cannot
+    // collide with expression function names (sin, cos, PI …), so token
+    // intersection is exact here.
+    if (Array.isArray(scene) && sliderVars.size > 0) {
+        scene.forEach((prim, idx) => {
+            if (!prim || typeof prim !== 'object') return;
+            const p = prim as Record<string, unknown>;
+            if (p.type !== 'locus_trace') return;
+            const label = typeof p.id === 'string' ? p.id : idx;
+            const where = `${pathPrefix}.${stateId}.scene_composition[${label}]`;
+            const flagged = new Set<string>();
+            for (const exprKey of ['x_expr', 'y_expr']) {
+                const expr = p[exprKey];
+                if (typeof expr !== 'string') continue;
+                for (const ident of expr.match(/[A-Za-z_]\w*/g) ?? []) {
+                    if (sliderVars.has(ident) && !flagged.has(ident)) {
+                        flagged.add(ident);
+                        out.push({
+                            path: where,
+                            fatal: true,
+                            message: `locus_trace_sweep_parameter_is_a_slider variable='${ident}' parameterises this trace AND is a type:'slider' primitive in the same state — the first teacher drag collapses the curve to a point. Parameterise the trace on a dedicated clock-choreographed sweep variable instead.`,
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    return out;
+}
+
+export function checkConceptChoreography(data: unknown): ChoreoWarning[] {
+    if (!data || typeof data !== 'object') return [];
+    const obj = data as Record<string, unknown>;
+    const declaredVars = declaredPhysicsVariableNames(data);
+    const out: ChoreoWarning[] = [];
+
+    const walk = (states: Record<string, unknown>, pathPrefix: string): void => {
+        for (const [stateId, state] of Object.entries(states)) {
+            out.push(...checkStateChoreography(stateId, state, pathPrefix, declaredVars));
+        }
+    };
+
+    const epicL = obj.epic_l_path as { states?: Record<string, unknown> } | undefined;
+    if (epicL?.states) walk(epicL.states, 'epic_l_path.states');
+
+    const branches = obj.epic_c_branches;
+    if (Array.isArray(branches)) {
+        branches.forEach((branch, i) => {
+            const b = branch as { states?: Record<string, unknown> } | undefined;
+            if (b?.states) walk(b.states, `epic_c_branches[${i}].states`);
+        });
+    }
+    return out;
+}
