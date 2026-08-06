@@ -150,6 +150,18 @@ Blast radius verified nil: inert on inclines, and every pre-SEAM-R body has `rol
 > Back-compat by explicit A/B over **26 body-states × 300 frames on both clocks: 25 identical, 1
 > differing — `pure_rolling` STATE_7, the target.** `rolling_on_incline` **17 of 17 identical**,
 > including its μ_s `param_ramp` slip state.
+>
+> > ### ⚠ CORRECTION 2026-08-06 — **do not read "17/17 identical" as evidence of health.**
+> > Those 17 states were identical because `rolling_on_incline` was **entirely non-functional both
+> > before and after E2** — a separate defect (E11) pinned every rolling body at v = 0. **E2 is
+> > necessary but not sufficient: adding the kinematic precondition alone left every incline rolling
+> > state exactly as dead as before**, and E2's own A/B could not have detected that, because it
+> > drove the branch-selection logic and never asked whether `b.v` advanced.
+> > E2 is **not wrong** — the kinematic gate is real and still required for the flat-track capture —
+> > but its blast-radius claim licensed only *"this change did not alter those states"*, never
+> > *"those states work"*. Fixed by **E11** (`!rollHeld` on the rest clamp); all 8 states now live.
+> > General class filed as `byte_identical_ab_against_a_dead_baseline_reads_as_proof_of_correctness`
+> > (CRITICAL, directive) — see §F for the standing verify-chain change.
 > Verified by this desk: renderer-syntax OK, tsc 0, validate 149 PASS / 0 FAIL,
 > `newton_second_law` 26/26 with H2 **identical to the digit**, `coulombs_law` 50/50 at H2 0.00%.
 
@@ -516,7 +528,45 @@ the whole story.
   and S7's μ_s ramp both drive the body out of the static regime with correct post-slip numbers,
   and neither moves.
 
-> ### ⚠ RE-SCOPE 2026-08-06, BEFORE DISPATCH — **E11 SPLITS INTO TWO CLASSES. The falsifier fired.**
+> ### ✅ E11 RESOLVED 2026-08-06 — ONE LINE. **The re-scope below was WRONG; I am striking it.**
+>
+> **`if (!rollHeld && nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }`**
+> — one added term at `:47369`. **All 8 `rolling_on_incline` states are live.**
+>
+> **The original hypothesis was right and my refutation of it was wrong.** The re-scope below rests
+> on Desk B's claim that S7 does not move. **S7 does move — from t = 688 ms.** The surgeon drove the
+> real emitted renderer over the real authored config and caught it.
+>
+> **The signature is conclusive.** S7 releases on the exact frame `maxStat` crosses below `drive`:
+> `maxStat = μ_s·N` and `drive = mg sin θ`, so the crossing is `μ_s = tan θ` = **0.466308**, and the
+> measured release is at **μ_s = 0.466308**. `|drive| ≤ maxStat` is the only expression in the file
+> with that threshold. It releases with `a = −2.0708 = g sinθ/(1+k)` for a ring — the **rolling**
+> value, not the kinetic −3.6976 — so the rolling branch was computing correctly the whole time and
+> only the clamp suppressed it. Every other state authors μ_s 0.50 or 0.90, both above tan 25°, so
+> the guard was permanently armed; S7 escaped only because its `param_ramp` walks μ_s under tan θ.
+>
+> **Why the guard is wrong here, physically:** it asks the *sliding* question `μ_s ≥ tan θ` — right
+> for a block. A rolling body's static gate is the strictly weaker `μ_s ≥ (k/(1+k))·tan θ`, which
+> the rolling branch had **already evaluated and passed** (`canRoll`). The clamp asked the block
+> question a second time and overruled the rolling branch's own answer. There is no rolling case it
+> can be right about: a body released from rest on any θ > 0 either rolls or slips, never stays put.
+>
+> **My error, recorded because it is the more useful half.** I verified the *arithmetic* of my
+> hypothesis and then accepted the *observation* that appeared to refute it without testing it —
+> from a findings file whose own negative control contradicted it in the same section (Desk B
+> reported S7's hashes differ at every timestamp **and** "the mesh is pixel-identical throughout";
+> both cannot be true). **A sibling desk's runtime claim needs the same scepticism as an agent's.**
+> Desk B's prose reading was wrong; its MD5 data was right.
+>
+> **E11a and E11b therefore collapse into one line, and E11b as a general class remains open but is
+> no longer blocking:** a **non-rolling** body launched from rest with `|drive| ≤ μ_s·N` is still
+> clamped, and whether `nlbSgn(0) = 0` should make that fire on frame 1 is a genuinely separate,
+> fleet-wide question about blocks and carts. Nothing needs it to make S6 move — S6 moves at
+> t = 2512 ms.
+>
+> <details><summary>Struck — the two-class re-scope, kept for the record</summary>
+>
+> ### ~~RE-SCOPE 2026-08-06, BEFORE DISPATCH — E11 SPLITS INTO TWO CLASSES. The falsifier fired.~~
 >
 > The founder's decision tree said: if the guard genuinely releases and the body still does not
 > move, a second mechanism exists — an Amendment 4 re-scope signal, to be taken **before** the
@@ -554,8 +604,9 @@ the whole story.
 >
 > Both retain the same acceptance: **RUNTIME, never a probe.**
 
-#### 🔬 The E11b hypothesis — arithmetic-backed. Kept for the record; **it is now the SECOND class, not the first.**
-**Still a hypothesis for the guided states. Do not build to it before transport is understood.**
+</details>
+
+#### 🔬 The hypothesis — CONFIRMED as the whole defect, not a partial one.
 
 The rest guard immediately after the branch selection (`field_3d_renderer.ts:47337`):
 ```js
