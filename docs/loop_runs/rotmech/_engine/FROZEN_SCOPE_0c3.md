@@ -44,6 +44,30 @@ arrow vs motor wheel that translates in) and the reconciled ask is ONE mesh.
 is recorded here as a scope growth with a founder decision behind it, per the desk contract's
 re-scope rule.
 
+> ### ⚠ RULING 4 CORRECTED — 2026-08-07. **Desk D found a real flaw in it. A RELABEL IS NOT COMPLIANCE.**
+> Ruling 4 as originally written could be satisfied by relabelling the `tau_applied` slider to "α".
+> **That would print a lie.** Desk D caught it; **I re-verified both halves in this checkout:**
+>
+> 1. **The unit is NOT overridable.** `rbrSc(token)` (`:50882–50891`) returns
+>    `{min, max, step, def, dp, label}` — **there is no `unit` key**, so `sc.unit` is `undefined`.
+>    The row builder reads **`sp.unit`** (`:50943`), i.e. the SPEC's value, pinned at **`" N·m"`**
+>    (`:50877`). `label` *is* overridable (`o.label` → `sp.glyph`); the unit is not.
+> 2. **No scale is applied.** `rbrApplyParam`'s `tau_applied` branch writes `eng.tauApplied = value`
+>    **raw** — nothing converts an α-intent into a torque.
+>
+> **So a label-only fix yields glyph "α", unit "N·m", and the value of τ — printing `α = 1.84 N·m`
+> where the real α is 0.60 rad/s².** That satisfies the ruling's letter and violates Rule 33d
+> (instruments show a live, correct numeric reading) and Rule 41.
+>
+> **CORRECTED FORM, binding on E10:** deliver a **real α control** — its own row with the correct
+> **unit (`rad/s²`) AND scale** (α authored, τ = Iα resolved internally, with I read live so the
+> relationship holds as the apparatus changes) — **or leave the control τ-labelled and honest until
+> E10 can.** A τ-labelled control in that sandbox is a Rule-25 problem to be fixed; a mislabelled
+> one is a Rule-33d problem *and* a Rule-25 problem, which is strictly worse.
+> **`tau_eq_i_alpha` is unaffected** — τ is exactly what it teaches, correctly labelled and scaled.
+> **This also means the unit override gap is itself an engine item** — `rbrSc` returning no `unit`
+> is the mechanism, and E10 must widen it rather than work around it.
+
 **4 · `rotational_kinematics`'s explore control is α, NOT τ.** A τ-labelled slider would put an
 **untaught term** in the sandbox of a concept whose **Rule-25 compliance depends on never naming
 torque** — it is taught before `torque` and `moment_of_inertia` exist. E5 already protects the
@@ -52,6 +76,19 @@ the same discipline to the **control** half. **E10 must therefore expose the dri
 concept as α, not as `tau_applied`** — either an α-labelled control that resolves to τ = Iα
 internally, or `tau_applied` suppressed for that concept with an α control in its place.
 `tau_eq_i_alpha` is unaffected — τ is exactly what it teaches.
+
+---
+
+**5 · Candidate 10 ACCEPTED AS FILED (2026-08-07) — a known TRADE, not a debt.**
+F-C9's `depthTest:false` on the L arrow means it now draws over `spin`-group members that genuinely
+cross it. **774 px recovered on every negative-L frame against ~90 px of partial overdraw twice a
+turn is a good trade**, and it was documented rather than buried.
+`rbr_axial_overlay_drawn_over_the_spin_group_members_that_genuinely_cross_it` **stays OPEN as a
+recorded trade** — it is not scheduled work and no dispatch should "fix" it without a founder
+decision to re-open the trade. The alternation evidence behind it (12 pins over a full revolution:
+0.6% spread against the drum/axle, 6.3% against the `spin` group with minima at exactly the two
+mass angles) is the reason the targeted route was legitimate here and correctly rejected fleet-wide
+in E7.
 
 ---
 
@@ -427,7 +464,12 @@ fitted **in pixels** with intercept < 1 px; arrow-vs-axle contrast ≥ 3:1; S4 f
 > same code region to apply the same prevention rule to the same primitive — the cost here is
 > entering the region, not the lines changed.
 
-### E8 · `rbr_live_param_drag_has_no_rendered_agent` — **BLOCKS DESK A's S8**
+### E8 · `rbr_live_param_drag_has_no_rendered_agent` — **BLOCKS DESK A's S8 AND `tau_eq_i_alpha` S8 (Desk D)**
+> **Second consumer added 2026-08-07 on Desk D's ask, granted.** `tau_eq_i_alpha` **S8** hits the
+> same defect, and its mention previously sat only inside **E10's** notes — where **E8's dispatch
+> would never have seen it**. Recorded here, in E8's own row, so the dispatch scopes for both
+> consumers from the start. (The routing failure is the same shape as §2's escape mechanism: a
+> capability named in one row that the owning row never carried.)
 Source: findings_c F-C1 (confirmed on all four links by founder-proxy) = findings_a A-2.
 **Same defect, filed independently by two desks — one row.**
 
@@ -718,6 +760,62 @@ Stated so the trade is the office's to make, not mine:
 
 **Recommendation: run all nine.** D1 first regardless — it is the smallest, it is a port of an
 existing mechanism rather than a new build, and it unblocks a desk that is otherwise finished.
+
+---
+
+## §G — CROSS-DESK SCOPE SWEEP, 2026-08-07. **13 candidates. NOT absorbed into any dispatch.**
+
+Run after Desk D's second escape (`§4b`, then `time_ticks`/K5) established that two escapes from one
+desk is a **sampling result**, not a one-off. **The escape mechanism:** a skeleton-local K-item
+yields ownership to a desk's findings file while naming a capability that file never carried — so it
+never reaches `findings_d.md` §8, and this desk froze from §8 correctly. **The freeze was not wrong;
+the input was incomplete.** The sweep therefore diffs each item's *source paragraph*, not its mere
+presence.
+
+**It is not Desk-D-specific: candidates found on all four desks.** Desk D also landed its own
+self-audit (`findings_d` PASS 5) mid-sweep, independently confirming four.
+
+| # | Capability | Named at | Owner | Conf. |
+|---|---|---|---|---|
+| **1** | **Family-addressable `glow_focal` group token** — one authored string lighting a *registered set* of meshes, + registering each family in the brighten-only solid carve-out (`:50782-50788`) | `-c` `rigid_body_rotation/skeleton_rev3.md` C1 + C9(b); **independently** `-d` `rotational_kinematics/skeleton.md` K4 P2-9 (`rbr_v_arrows`) | **C *and* D** | **HIGH** |
+| **2** | **`time_ticks`** — equal-time rim ticks with an explicit time origin, base-frame not `spin` | `-d` K5 + physics block | D | **HIGH** |
+| **3** | **θ(t)/ω(t) graph panel** (2-curve, own zone, live dot + tangent slope) | `-d` K6 | D | **HIGH** |
+| **4** | **Per-particle tangential FORCE arrows** (`m·r·α`, FORCE map) — the *second consumer* of the one tangential mechanism | `-d` `tau_eq_i_alpha/skeleton.md` D7 + `findings_d` §4 body | D | **HIGH** |
+| **5** | **Axis↔marker RADIUS gauge form** + per-gauge signed lateral standoff | `-c` C5 + `findings_c` PASS 8 item 2 | C | MEDIUM |
+| **6** | **`crossing_mark_at_ms` crossing flash** + `compare_window`, `arc_labels[]` | `-c` C4 + `findings_c` PASS 8 item 1 | C | MEDIUM |
+| **7** | **Live trace rescale under an `r_point` drag** | `-c` C3 "NEW (S6)" | C | MEDIUM |
+| **8** | **TS-interface declaration of deferred rbr members** (`bodies[]`, `cm_marker`, `cm_path_trace`, `fragment_trigger`) per the deferred-enum scar | `-c` C3 P3-1 + C9 | C | MED-LOW |
+| **9** | **`turns` readout token + turn-counter primitive** — verified absent from the nlb `readouts` union (`:1628-1629`) | `-b` `pure_rolling` (c)-1/(c)-4, `rolling_on_incline` U4 | B | **HIGH** |
+| **10** | **k-chip render path** — `shape_factor_k` is stored (`:45858`) and consumed by physics (`:40099`); **nothing renders it** | `-b` `rolling_on_incline` U4, S4, S8 | B | **HIGH** |
+| **11** | **`data-wg-label` on `rbr_kebar` / `rbr_repin` / `rbr_spin_dir_row`** — they currently render as "Kebar", "Repin", "Spin dir slider" | `-a` `work_order_a_to_e.md` W-7 item 2 (**A-20**) | A | **HIGH** |
+| **12** | **Rim reference line's VALUE on its sprite** (`R = 0.55 m`, not the bare identifier) | `-a` `conservation_of_angular_momentum` F2/S5 (**A-27**) | A | MED-HIGH |
+| **13** | **Two office rows missing from §D** — **A-19** (`pixelGate.ts:318-320`) and **A-21** (`estSentenceMs`, narration runs 2.0–2.7× the authored `duration`), plus the `lom-f-momentum` platform-file conflict and the `desk:sync` false-alarm rows | `-a` `work_order_a_to_e.md` "NOT Desk E" table | office | **HIGH** |
+
+### ⚠ Two consequences that are already live and recorded nowhere else
+
+1. **`rotational_kinematics` now ships 8 states, not 9.** K6's own clause P1-8 rules *"if Desk E
+   descopes K6, S8 is DROPPED"* — and K6 never entered §8, so it was descoped **by omission rather
+   than by decision**, and nothing anywhere records the state count changing. **Needs a founder
+   ruling: build the graph panel, or ratify the 8-state form.**
+2. **Row 4 is a narrowing this document performed, not an omission upstream.** `findings_d` §4 says
+   the tangential vector is *"needed twice over — v = ωr AND F at a rim/particle … one mechanism,
+   two consumers … the maps differ (m/s vs N) and must not be shared."* §8 compressed it to "v arrow
+   at radius r"; §C-1 inherited that; **§D item 5 then hardened it to "wanted by #4 alone."** The
+   mechanism is already bought — **only the force-form consumer was lost.** Cheapest row here.
+
+### The method finding, worth more than any single row
+**Skeleton filenames are inverted from the obvious reading**: `skeleton.md` is the **latest**
+revision and `skeleton_revN.md` are archived priors — **except `rigid_body_rotation`, where
+`skeleton.md` is REV 1 and `skeleton_rev3.md` is current.** Auditing Desk D against REV 1 would have
+filed one false positive (a per-state slider range override Desk D itself withdrew at REV 2) and
+missed one true escape (K4's group token, added at REV 2). **Read the first line of every skeleton
+before trusting its filename.**
+
+**Staleness note:** all four desk branches moved during the sweep (tips 2026-08-07 00:56–01:05);
+`findings_d` grew 793 → 958 lines mid-audit. Rows above are against those tips.
+
+**None of these is scheduled.** They are candidates for founder triage, deliberately not absorbed
+into a dispatch — absorbing an escape is how the freeze stops meaning anything.
 
 ---
 
