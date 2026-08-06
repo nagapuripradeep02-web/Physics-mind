@@ -684,6 +684,49 @@ function computePhysics_unit_circle_to_sine_wave(vars) {
   };
 }
 
+// graph_transformations — MATHEMATICS namespace (src/data/concepts/mathematics/),
+// the SECOND mathematics concept and the FIRST consumer of the cartesian_plane /
+// function_plot / plot_point primitive family (Phase 0, PRs #36-#40). Iframe-side
+// twin of the TS engine (graphTransformationsEngine in physicsEngine/concepts/) —
+// both implement the SAME formula contract, per the scar
+// parametric_computephysics_missing_silent_template_leak, here BINDING (P2-8):
+// without a non-null return here draw() returns before any primitive paints
+// (@5105, the "Unknown concept" blank-canvas branch) with zero console/page
+// errors — THE EYE would photograph the blank frame and report a clean run.
+//
+// UNITLESS: a, b, h, k are the taught parameters (vertical stretch, horizontal
+// stretch/compress, horizontal shift, vertical shift). xdraw/hg are
+// choreography-only sweep drivers (S1's draw-in edge, S3's wrong-guess offset)
+// and are NEVER authored as sliders anywhere in this concept.
+//
+// This function computes nothing the geometry doesn't — every scene_composition
+// primitive (function_plot, plot_point, the S5 bracket) evaluates its own
+// x_expr/y_expr/from_expr/to_expr directly against a/b/h/k. It exists to make
+// PM_physics non-null, carry the echo net (WP-F2, below), and discharge the
+// no-literal-'{' duty (Rule 24) — the derived trio (p_prime_x/p_prime_y/
+// bracket_width) is published for completeness/documentation parity with the
+// JSON's own physics_engine_config.computed_outputs, even though every
+// consuming primitive re-derives the same values inline via its own *_expr.
+function computePhysics_graph_transformations(vars) {
+  var a = (vars && typeof vars.a === 'number' && isFinite(vars.a)) ? vars.a : 1;
+  var b = (vars && typeof vars.b === 'number' && isFinite(vars.b) && vars.b !== 0) ? vars.b : 1;
+  var h = (vars && typeof vars.h === 'number' && isFinite(vars.h)) ? vars.h : 0;
+  var k = (vars && typeof vars.k === 'number' && isFinite(vars.k)) ? vars.k : 0;
+  var xdraw = (vars && typeof vars.xdraw === 'number' && isFinite(vars.xdraw)) ? vars.xdraw : -6.5;
+  var hg = (vars && typeof vars.hg === 'number' && isFinite(vars.hg)) ? vars.hg : 0;
+
+  var p_prime_x = Math.PI / 2 / b + h;
+  var p_prime_y = a * Math.sin(Math.PI / 2) + k;
+  var bracket_width = 2 * Math.PI / b;
+
+  return {
+    concept_id: 'graph_transformations',
+    variables: { a: a, b: b, h: h, k: k, xdraw: xdraw, hg: hg },
+    derived: { p_prime_x: p_prime_x, p_prime_y: p_prime_y, bracket_width: bracket_width },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -711,6 +754,7 @@ function computePhysics(conceptId, vars) {
   // pattern as the chemistry pair above; fires only for this id, so the physics
   // dispatch remains byte-unchanged.
   else if (conceptId === 'unit_circle_to_sine_wave') result = computePhysics_unit_circle_to_sine_wave(vars);
+  else if (conceptId === 'graph_transformations') result = computePhysics_graph_transformations(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
