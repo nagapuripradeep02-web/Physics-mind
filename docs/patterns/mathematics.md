@@ -237,13 +237,29 @@ caught at DESIGN time, before any JSON existed, and each produces a file that pa
    exposed as a slider anywhere; teacher-facing sliders drive markers, segments and readouts through
    the live expression path instead. Scar:
    `pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve` (CRITICAL).
-9. **Nothing in PCPL draws a circle or an arc at a live radius.** `body.size` is number-only
-   (`:1427/:1501/:1514/:1553`, zero `size_expr` hits in the file) and `angle_arc.radius` likewise
-   (`:2588`). The trap is the asymmetry: a body's *position* IS expression-driven, so size looks like
-   it should be. It is not. Tracing the circle under a ramping radius reproduces
-   `field3d_orbit_spiral_on_radius_ramp` — `locus_trace` accumulates history, so you get a spiral.
-   Treat any radius/amplitude-scaling lesson as **[NEEDS-SCENARIO]**, not [LIVE], until
-   `body.size_expr` lands (specced in scar `pcpl_no_primitive_draws_a_circle_or_arc_at_a_live_radius`).
+   *(2026-08-06: the φ LAW is now MACHINE-ENFORCED — Gate 9(d)
+   `locus_trace_sweep_parameter_is_a_slider`, FATAL, runs in both `validate:concepts` and
+   `validate:mathematics`. The law above remains the design rule; the gate catches the violation.)*
+9. **Circles and arcs at a live radius — [LIVE] as of 2026-08-06** (`body.size_expr` +
+   `angle_arc.radius_expr`, commit `cbb31fb`; scar
+   `pcpl_no_primitive_draws_a_circle_or_arc_at_a_live_radius` FIXED). Radius/amplitude-scaling
+   lessons are now buildable: author `size_expr` (string form for a circle's diameter, `{w,h}` form
+   for a rect, mirroring the authored `size`'s own shape) or `radius_expr` on an angle_arc — same
+   `PM_liveExprVars` scope as `position_expr`, opt-in, non-finite/shape-mismatch falls back to the
+   authored literal. Verified live: `src/scripts/_verify_size_expr_probe.ts` (circle 40→90 px under
+   PARAM_UPDATE; malformed expression stays put). The OLD trap still holds for the OLD workaround:
+   NEVER trace a circle under a ramping radius via `locus_trace` (history accumulates → spiral,
+   `field3d_orbit_spiral_on_radius_ramp`) — use `size_expr`, that is what it is for.
+12. **Object-anchored text — a `label` CAN track a moving object as of 2026-08-06**
+    (`label.position_expr`, commit `b99e927`; scar
+    `pcpl_drawlabel_has_no_position_expr_so_object_anchored_text_cannot_track` FIXED). Precedence:
+    a finite `position_expr` beats the de-overlap solver's slot beats the literal `position` (the
+    solver cannot see expression-driven geometry, so its slot is stale the instant the variable
+    moves). Verified: `src/scripts/_verify_label_position_expr_probe.ts`. **`annotation` primitives
+    still CANNOT track** — `drawAnnotation` carries the identical gap, OPEN as
+    `pcpl_drawannotation_has_no_position_expr_so_a_callout_cannot_track`; a callout naming a moving
+    object stays fixed-position text (or rides the owning primitive's own label field) until that
+    row closes.
 10. **Cause-before-effect (Rule 32a) by staggering the drivers of two quantities you claim are EQUAL
     draws the equality false.** `PM_choreoValue` returns `from` before `start_ms` (`:1110`), so a later
     `start_ms` is an *angular head start*, not a reveal delay — the two elements stay permanently
