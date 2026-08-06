@@ -554,3 +554,57 @@ port 8111. Layout 0 collisions. Word budget + delta cues within Rule 31 on all 8
 - **Gate 0**: the DoD's "turns counter" is UNBUILDABLE (no `turns` member in the `readouts` enum)
   and DoD (i-1)'s preset-coherence argument leans on it; S3's HUD prints `f_k` for both bodies, so
   **B-12 manifests on this concept too**, not only on the sibling.
+
+---
+
+## 2026-08-06b — N4/N7 landed; N2 audit extended to the sibling
+
+**Sync: checked, not assumed.** 0 behind `origin/master` (994bb8f is a strict ancestor of HEAD) —
+a master merge had already landed, so nothing to sync; `desk:sync` skipped the desk as usual. The
+"21 behind" figure did not match the repo. Triad on the merged tree: renderer syntax OK · tsc 0 ·
+151 PASS / 0 FAIL.
+
+**B-15/B-16 were already done** (commit `0eed746`, two before the last — which is why the final
+commit message didn't mention them). Verified on disk: all 8 labels 39–43 words and clean; S2
+caption `"v = Rω"`.
+
+### N2 extended to rolling_on_incline — clean of wu, but the register leak was wider than B-15
+Rendered strings carry no world-unit values: the only numbers left are shape factors k and masses,
+all genuine. **But the design-table register had also reached `misconception_watch`, which the
+label rewrite never touched** — S3's `visual_counter` said "the instant the block **retires**", and
+`aha_moment.statement` said "decides who **wins**" (Rule 41a bans personification by name). Both
+fixed. Lesson: B-15 was scoped to `label` because that is where the audit looked; a register
+defect from one authoring habit appears in every field that habit touched. **Audit by defect
+class across all fields, not by the field the finding names.**
+
+The validator then caught my own fix — the first `aha_moment.statement` rewrite killed the
+personification but ran 24 words against a ≤15 gate. Corrected to 13. Second time this session
+that running the gate, rather than trusting the edit, caught the defect.
+
+### N4 FIXED — keys now C A D B A C B (all four letters)
+Was A A A A A A A: an all-A student scored 100% on both pre- and post-test. **Verification method,
+which is the part that matters:** `distractor_misconceptions` is keyed BY LETTER, so the script
+built `option text → misconception text` for every question before the edit, rebuilt it after, and
+asserted identity — any detachment aborts the write. **HELD for all 7.** Diff is 28/28 lines with
+zero changes outside the option/correct keys; q1 spot-check shows each distractor still on its
+intended misconception. Script kept at `src/scripts/_probe_rekey_assessment.mjs`.
+
+### N7 half fixed — the other half is engine-owned
+S5 was the only state with NO `readouts` key (verified against all 8). Added
+`["v","omega","Romega"]`, matching S1/S6, so the HUD now reads v = 0.00 · ω = 4.00 rad/s ·
+Rω = 1.00 m/s — the state's claim made numeric, and Rω = 0.25 × 4.0 = 1.00 explains the 1.00 m/s
+the point labels print. Rule 33d satisfied.
+
+**NOT fixed:** point labels print `nlbFx(Math.abs(pv), 2)`, so S5's top and bottom both read
+1.00 m/s and the opposite directions rest on two arrow stubs. That `Math.abs` is in
+`field_3d_renderer.ts` — a platform file. Filed as the engine half of N7
+(`peter_parker:field3d_surgeon`). It interacts with N3 (the stubs are ~50 px at the authored
+camera) but must NOT be fixed by re-authoring the camera — N3 is architect-owned.
+
+### Untouched by instruction
+N1, N3, B-5, B-10, B-11, B-13, B-19 — all routed. No per-state camera patched.
+
+### State
+Checkpoint B HELD on both concepts. Nothing sealed, no `visual:approve`, no platform file touched.
+No EYE run this session — the four fixes are text/config only and the frames cannot be re-verified
+meaningfully until B-5/B-10/B-11 land; a re-walk is owed then.

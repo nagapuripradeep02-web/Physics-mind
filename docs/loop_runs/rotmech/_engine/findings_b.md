@@ -1146,6 +1146,79 @@ under B-2.
 
 ---
 
+## SESSION 2026-08-06b — N4/N7 landed, N2 audit extended to the sibling
+
+**Sync status, checked rather than assumed:** this desk is **0 behind** `origin/master` (994bb8f),
+which is a strict ancestor of HEAD — a master merge had already landed, so there was nothing to
+sync. (`desk:sync` again reported the desk skipped.) Triad re-run on the merged tree: renderer
+syntax OK · `tsc` 0 · 151 PASS / 0 FAIL.
+
+**B-15 / B-16 were already DONE** — landed in `0eed746`, two commits before the last one, which is
+why the final commit message did not mention them. Verified on disk rather than from memory: all
+8 `rolling_on_incline` labels are 39–43 words and clean of ms timings, engine verbs, world
+coordinates and `wu`; S2's caption is `"v = Rω"`.
+
+### ✅ N2 audit EXTENDED to `rolling_on_incline` — no world-unit leak, but the same register leak in a field I had missed
+
+**Rendered strings are clean.** After the B-15 rewrite the only numbers left in rendered surfaces
+are shape factors (k = 0.40 / 0.50 / 0.67 / 1.00) and masses — all genuine physical values, none
+a `× 0.92` world-unit length. Checked every `label` / `caption` / `formula_lines[].text` / body
+label, plus `aha_moment` and `misconception_watch`.
+
+**But B-15's fix was incomplete in a way the original finding did not capture: the design-table
+register had also leaked into `misconception_watch`, which the label rewrite never touched.**
+
+- `S3.misconception_watch[0].visual_counter` — *"the instant the block **retires**"* (engine verb).
+- `aha_moment.statement` — *"only the shape factor decides who **wins**"* (Rule 41a bans
+  personification by name).
+
+Both fixed. **Lesson worth keeping: B-15 was scoped to `label` because that is where the audit
+looked. A register defect introduced by one authoring habit will appear in every field that habit
+touched — audit by DEFECT CLASS across all fields, not by the field the finding happened to name.**
+
+**And the validator caught my own fix:** the first `aha_moment.statement` rewrite removed the
+personification but ran to 24 words against a ≤15-word gate. Corrected to 13. Recorded because it
+is the second time this session that running the gate — rather than trusting the edit — was what
+caught the defect.
+
+### ✅ N4 — **FIXED.** Assessment re-keyed `C A D B A C B`, all four letters in use
+
+Was `A A A A A A A`: an all-A student scored 100% on both the pre- and post-test, so the
+instrument could not measure the learning it exists for.
+
+**The hazard, and how it was neutralised.** `distractor_misconceptions` is keyed **by letter**, so
+permuting options without permuting the misconception map silently detaches every distractor from
+its misconception — converting a *measurable* defect into an *invisible* one. The re-key therefore
+moved (option TEXT ↔ misconception TEXT) as an inseparable pair, never letters alone.
+
+**Verification method (this is the part that matters, not the result):** the script builds, for
+every question, the map `option text → misconception text` (with the correct option marked
+`<<CORRECT>>`) BEFORE the edit, rebuilds it AFTER, and asserts the two are identical — same size,
+every text still present, every text still bound to the same misconception. Any detachment aborts
+the write. It **HELD for all 7 questions**. Independently confirmed: the diff is 28 insertions /
+28 deletions with **zero** changed lines outside `"A"/"B"/"C"/"D"` and `"correct"`, and a spot-check
+of q1 shows *"omega = v times R"* still carrying the multiply-instead-of-divide misconception,
+*"omega = R / v"* still the inversion, *"omega is unrelated to v"* still the no-relation.
+Script retained at `src/scripts/_probe_rekey_assessment.mjs` so the check is reproducible.
+
+### ✅ N7 — **HALF FIXED, and the other half is not mine to fix**
+
+**Fixed:** S5 was the only state in the concept with **no `readouts` key at all** — verified
+against all 8 (S1 `["v","omega","Romega"]`, S2 `["v","contact"]`, … S5 **null**). Added
+`["v","omega","Romega"]`, matching the trio S1/S6 already use, so the HUD now reads
+**v = 0.00 · ω = 4.00 rad/s · Rω = 1.00 m/s**. That is exactly the state's claim made numeric:
+the centre is at rest while the rim moves, and Rω = 0.25 × 4.0 = 1.00 explains the 1.00 m/s the
+point labels print. Rule 33d satisfied.
+
+**NOT fixed — engine-owned, `peter_parker:field3d_surgeon`:** the second half of N7 is that the
+point labels print `nlbFx(Math.abs(pv), 2)`, so S5's top and bottom both read `1.00 m/s` and the
+*opposite directions* — the whole point of the state — are carried only by two arrow stubs. That
+`Math.abs` is in `field_3d_renderer.ts`, a platform file this desk must not edit. **Filed as the
+engine half of N7.** Note it interacts with N3: at the authored camera the stubs are ~50 px, so
+even the arrow-only signal is weak. Do not fix by re-authoring the camera (N3 is architect-owned).
+
+---
+
 ## PRE-SEAL QUALITY AUDIT — VERDICT **FAIL**, 9 new findings (2026-08-06)
 
 Ran alongside the eye-walk on the twice-verified post-E11 run. Gates 1/2/3a/7/9/10/12/14/16–18

@@ -520,15 +520,15 @@
         "q_id": "pr_q1",
         "stem": "A wheel of radius R rolls without slipping and its centre moves at speed v. What is the wheel's angular speed, omega?",
         "options": {
-          "A": "omega = v / R",
-          "B": "omega = v times R",
-          "C": "omega = R / v",
+          "A": "omega = v times R",
+          "B": "omega = R / v",
+          "C": "omega = v / R",
           "D": "omega is unrelated to v"
         },
-        "correct": "A",
+        "correct": "C",
         "distractor_misconceptions": {
-          "B": "Believes multiplying converts linear speed to angular speed instead of dividing by radius.",
-          "C": "Inverts the rolling relation, swapping which quantity is divided by which.",
+          "A": "Believes multiplying converts linear speed to angular speed instead of dividing by radius.",
+          "B": "Inverts the rolling relation, swapping which quantity is divided by which.",
           "D": "Does not know rolling ties translation and rotation together at all."
         },
         "tested_idea": "v = Rω rolling condition",
@@ -560,16 +560,16 @@
         "q_id": "pr_q3",
         "stem": "A wheel rolls without slipping at constant speed on a level road. What type of friction, if any, acts at the contact point?",
         "options": {
-          "A": "None — the contact point is not sliding, so kinetic friction is zero",
-          "B": "Kinetic friction, opposing the motion",
-          "C": "Kinetic friction, helping the motion",
-          "D": "Static friction equal to the wheel's full weight"
+          "A": "Kinetic friction, opposing the motion",
+          "B": "Kinetic friction, helping the motion",
+          "C": "Static friction equal to the wheel's full weight",
+          "D": "None — the contact point is not sliding, so kinetic friction is zero"
         },
-        "correct": "A",
+        "correct": "D",
         "distractor_misconceptions": {
-          "B": "Assumes rolling contact behaves like sliding contact and always loses energy to kinetic friction.",
-          "C": "Invents a friction force in the direction of motion with no physical cause.",
-          "D": "Confuses the normal force, which does equal the weight here, with friction."
+          "A": "Assumes rolling contact behaves like sliding contact and always loses energy to kinetic friction.",
+          "B": "Invents a friction force in the direction of motion with no physical cause.",
+          "C": "Confuses the normal force, which does equal the weight here, with friction."
         },
         "tested_idea": "rolling contact means no kinetic friction",
         "teaches_state": "STATE_3",
@@ -580,14 +580,14 @@
         "q_id": "pr_q4",
         "stem": "A wheel slides along a road with its rotation completely locked — it does not spin at all. How does the speed of its top point compare with its bottom point?",
         "options": {
-          "A": "They are equal — every point moves at the same speed as the centre",
-          "B": "The top point moves faster than the bottom point",
+          "A": "The top point moves faster than the bottom point",
+          "B": "They are equal — every point moves at the same speed as the centre",
           "C": "The bottom point moves faster than the top point",
           "D": "The bottom point is stationary"
         },
-        "correct": "A",
+        "correct": "B",
         "distractor_misconceptions": {
-          "B": "Assumes rotation causes the usual top-faster-than-bottom pattern even though rotation is locked here.",
+          "A": "Assumes rotation causes the usual top-faster-than-bottom pattern even though rotation is locked here.",
           "C": "Reverses the usual rolling pattern without checking that there is no rotation in this case.",
           "D": "Imports the rolling wheel's zero-contact-speed result into a case where the wheel is not rolling at all."
         },
@@ -620,15 +620,15 @@
         "q_id": "pr_q6",
         "stem": "For a wheel rolling without slipping at centre speed v, what is the speed of the point at the very top of the wheel?",
         "options": {
-          "A": "2v",
-          "B": "v",
-          "C": "Zero",
+          "A": "v",
+          "B": "Zero",
+          "C": "2v",
           "D": "v / 2"
         },
-        "correct": "A",
+        "correct": "C",
         "distractor_misconceptions": {
-          "B": "Stops at the centre's speed, missing that the spin adds to it at the top.",
-          "C": "Confuses the top point with the contact point at the bottom, which is the one that reads zero.",
+          "A": "Stops at the centre's speed, missing that the spin adds to it at the top.",
+          "B": "Confuses the top point with the contact point at the bottom, which is the one that reads zero.",
           "D": "Guesses the spin halves the speed instead of adding an equal amount."
         },
         "tested_idea": "rolling = slide plus spin; top point speed is v + Rω = 2v",
@@ -640,14 +640,14 @@
         "q_id": "pr_q7",
         "stem": "A wheel is launched moving forward with no spin at all on a rough level floor. What happens as kinetic friction acts?",
         "options": {
-          "A": "Its forward speed decreases and its spin speed increases, until the two match and it starts rolling",
-          "B": "It keeps sliding forever at its launch speed, since friction cannot start a spin",
+          "A": "It keeps sliding forever at its launch speed, since friction cannot start a spin",
+          "B": "Its forward speed decreases and its spin speed increases, until the two match and it starts rolling",
           "C": "It stops completely and never rolls",
           "D": "It speeds up because friction pushes it forward"
         },
-        "correct": "A",
+        "correct": "B",
         "distractor_misconceptions": {
-          "B": "Believes friction can only oppose translation and cannot also apply a spinning torque.",
+          "A": "Believes friction can only oppose translation and cannot also apply a spinning torque.",
           "C": "Assumes friction always brings a slipping body fully to rest rather than to a nonzero rolling speed.",
           "D": "Reverses the direction kinetic friction acts on a forward-sliding contact."
         },
@@ -806,6 +806,7 @@
           ],
           "controls_visible": [],
           "vector_map": { "velocity_scale": 0.92, "velocity_min_len": 0.25 },
+          "readouts": ["v", "omega", "Romega"],
           "contact_layer": { "body_id": "wheel", "point_arrows": ["top", "bottom", "centre"] },
           "phases": [
             { "id": "top_glow", "at_ms": 300, "until_ms": 600, "glow_focal": "nlb_pt_wheel_top" },

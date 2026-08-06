@@ -98,7 +98,7 @@
 
   "aha_moment": {
     "state_id": "STATE_4",
-    "statement": "Mass and radius cancel - only the shape factor decides who wins.",
+    "statement": "Mass and radius cancel out; only the shape factor k sets the acceleration.",
     "visual_confirmation": "A 5 kg sphere and a 0.5 kg sphere, released together, stay exactly abreast and halt together, stamped TIE."
   },
 
@@ -181,7 +181,7 @@
         "misconception_watch": [
           {
             "belief": "Rolling friction is kinetic friction, the same as a sliding block's.",
-            "visual_counter": "The locked block skids first and alone, dragging a mark; the rolling disc starts at the same position the instant the block retires, and its contact point reads 0.00, never sliding.",
+            "visual_counter": "The locked block slides down first and alone, dragging a mark behind it. The rolling disc then starts from the same place, and its contact point reads 0.00 the whole way down, so it never slides.",
             "one_line_fix": "The contact point of a rolling body is instantaneously at rest, so its friction is static; kinetic friction appears only once the body actually slips."
           }
         ]
