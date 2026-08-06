@@ -21,16 +21,50 @@ import { computePhysics } from '@/lib/physicsEngine';
 import { solveSubSimLayout } from '@/lib/subSimSolverHost';
 import { PREMIUM_PRIMITIVES_CODE } from '@/lib/renderers/premium_primitives';
 
+// The COMPLETE set of per-state fields the renderer body reads off
+// PM_config.states[...] (bindings named stateData at :837/:2402/:3532 AND
+// `state` inside PM_resolveStateVars — a scan for one binding name misses the
+// other, which is how variable_overrides stayed droppable after the
+// variable_choreography fix). Every config assembler must carry all of these;
+// the parity test asserts this list against the renderer source, and the
+// _assertOracleComplete check below makes adding a field here without
+// extending PARAMETRIC_STATE_FIELDS a compile error.
+export interface ParametricStateKnownFields {
+    scene_composition?: unknown[];
+    focal_primitive_id?: string;
+    focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
+    variable_choreography?: unknown[];
+    variable_overrides?: Record<string, number>;
+}
+
+// Open shape: authored extras (title, advance_mode, teacher_script, depth_ring,
+// …) pass through untouched, so a passthrough assembler is type-safe without an
+// `as` cast — and a hand-picked projection is visibly lossy instead of being
+// rewarded by the checker.
+export interface ParametricStateConfig extends ParametricStateKnownFields {
+    [key: string]: unknown;
+}
+
+export const PARAMETRIC_STATE_FIELDS = [
+    'scene_composition',
+    'focal_primitive_id',
+    'focal_sequence',
+    'variable_choreography',
+    'variable_overrides',
+] as const satisfies readonly (keyof ParametricStateKnownFields)[];
+
+type _MissingFromOracle = Exclude<keyof ParametricStateKnownFields, (typeof PARAMETRIC_STATE_FIELDS)[number]>;
+const _assertOracleComplete: _MissingFromOracle extends never ? true : never = true;
+void _assertOracleComplete;
+
 export interface ParametricConfig {
     concept_id: string;
     scene_composition: unknown[];
-    states?: Record<string, {
-        scene_composition?: unknown[];
-        focal_primitive_id?: string;
-        focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
-    }>;
+    states?: Record<string, ParametricStateConfig>;
     default_variables: Record<string, number>;
     current_state?: string;
+    // Assembly-time only: assembleParametricHtml() recomputes and embeds
+    // PM_PRECOMPUTED_PHYSICS itself; nothing reads this field off the config.
     precomputed_physics?: unknown;
     // Board-mode styling. When 'answer_sheet', the canvas background switches
     // to off-white with faint horizontal rules and a red left margin, and
