@@ -324,6 +324,63 @@ ink in your acceptance run and route it separately if it falls short.**
 
 ---
 
+## §6d — APPENDED 2026-08-06: **E11 — `rolling_on_incline` is ALIVE.** 🎉 Desk B, this is yours
+
+**One added term** at `field_3d_renderer.ts:47369`:
+```js
+if (!rollHeld && nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+```
+
+**All 8 `rolling_on_incline` states now render their physics.** The rest clamp asked the *sliding*
+question `μ_s ≥ tan θ` — correct for a block. A rolling body's static gate is the strictly weaker
+`μ_s ≥ (k/(1+k))·tan θ`, which the rolling branch had **already evaluated and passed** (`canRoll`).
+The clamp asked the block question a second time and overruled the rolling branch's own answer.
+`nlbSgn(0) = 0` made its sign half true on the first integrated frame, `v1 = 0` reproduced `v0 = 0`
+next frame, and the body was pinned forever. Every state authors μ_s 0.50 or 0.90 — both above
+tan 25° = 0.4663 — so the magnitude half was permanently armed too.
+
+### ✅ Desk B — what to expect on your re-walk, and one correction to B-3
+
+Independently derived physics, matching to the millisecond (`t = √(2d/a)`, `a = g sinθ/(1+k)`,
+d = 4.5 m):
+
+| body | k | a | halt | authored |
+|---|---|---|---|---|
+| solid sphere | 0.400 | 2.9583 | 1744 ms | 1744 |
+| disc | 0.500 | 2.7611 | 1805 ms | 1805 |
+| hollow sphere | 0.667 | 2.4850 | 1903 ms | 1903 |
+| ring | 1.000 | 2.0708 | 2085 ms | 2085 |
+
+S4's mass/radius cancellation is an **exact tie at 1760 ms**; S5's energy split reads
+**6.99 / 2.80 J** (sphere) and **4.85 / 4.85 J** (ring), each summing to ≈ mgh; S3 and S6 start on
+their authored `activate_at_ms` (1504 / 2512 ms).
+**S8 gives 260 distinct positions in 260 frames — your MD5 target is ~260 distinct hashes, not one.**
+
+> **Correction to B-3, offered with thanks — your data was right, one prose reading was not.**
+> B-3 states S7's "mesh is pixel-identical throughout." **S7 was in fact travelling from t = 688 ms**,
+> releasing on the exact frame μ_s crosses tan θ. Your own negative control said so — you recorded
+> that S7's hashes differ at every timestamp — so the two halves of that section contradicted each
+> other. **The MD5 half was correct.** Worth a line in `findings_b.md` so the record matches.
+>
+> This cost a wrong turn on my side too: I built a two-class re-scope on that prose reading and
+> struck it after the runtime disproved it. **The lesson I'm taking: a sibling desk's runtime claim
+> needs the same scepticism as an agent's — and an internal contradiction inside one finding is the
+> cheapest possible tell.**
+
+**Also worth your check:** S7's authored beat times are verifiable against narration for the first
+time (its slip beat at μ_min = 0.233 / 1193 ms, its 1968 ms halt latch), since the ring previously
+sat still until 688 ms.
+
+### Still open, reported not fixed
+- **E11b (general).** A **non-rolling** body launched from rest with `|drive| ≤ μ_s·N` is still
+  clamped by this guard. Whether `nlbSgn(0) = 0` should make that fire on frame 1 is a separate,
+  **fleet-wide** question about blocks and carts. **Nothing needs it** — S6 moves at 2512 ms.
+- **A backward pin *within one state entry* does not rewind** on `newtons_laws_body` (it steps
+  `s`/`v` rather than closing them in `t`). **Pre-existing** — demonstrated on the unmodified
+  renderer — and harmless to THE EYE, which enters fresh per pin.
+
+---
+
 ## §7 — Still blocked after this merge
 
 > ### ⛔ CORRECTION 2026-08-06 — the paragraph below was WRONG. **Desk D is NOT unblocked.**
