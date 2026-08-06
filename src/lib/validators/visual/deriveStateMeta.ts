@@ -3470,7 +3470,11 @@ function pcplHasContinuousChoreography(state: Record<string, unknown>): boolean 
 // block slides to rest → the settled tail is a reveal_hold, D7 tolerant, but D5 still
 // enforces the animation visibly PLAYED). A 'projectile' loops iff loop_period_sec>0.
 const PCPL_CONTINUOUS_ANIM = new Set(['rotate_continuous', 'pendulum', 'door_swing']);
-const PCPL_TRANSIENT_ANIM = new Set(['free_fall', 'atwood', 'translate', 'slide_horizontal', 'slide_when_kinetic']);
+// fade_in (found by the mirror-sync test 2026-08-06): an opacity ramp on the
+// state clock that plays once and settles — transient by D5 semantics. No live
+// concept authors it today (53 hits are all dormant old-architecture JSONs),
+// so adding it switches no existing gate ON.
+const PCPL_TRANSIENT_ANIM = new Set(['free_fall', 'atwood', 'translate', 'slide_horizontal', 'slide_when_kinetic', 'fade_in']);
 
 /** Scene-primitive animation blocks with a string type, for the categorizers below. */
 function pcplSceneAnims(state: Record<string, unknown>): Array<Record<string, unknown>> {

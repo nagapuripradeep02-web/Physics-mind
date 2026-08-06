@@ -3196,6 +3196,18 @@ function drawCanvasSlider(spec, idx, total) {
   frac = Math.max(0, Math.min(1, frac));
   var knobX = slot.x + frac * slot.w;
 
+  // Read-only probe registry (THE CALCULATOR's N3 gate). Canvas sliders have no
+  // DOM handle, so a harness scanning input[type=range] finds ZERO sliders on
+  // every parametric sim and its slider-response gate silently no-ops. Geometry
+  // is DESIGN-SPACE (760x500) — a prober maps to page coords via the canvas
+  // bounding box. Stamped with frameCount so stale entries from a previous
+  // state are distinguishable (only sliders drawn this frame re-stamp).
+  window.__PM_sliderGeom = window.__PM_sliderGeom || {};
+  window.__PM_sliderGeom[spec.variable] = {
+    id: spec.id || spec.variable, x: slot.x, y: slot.y, w: slot.w,
+    min: minV, max: maxV, value: val, f: frameCount
+  };
+
   // Draw slot
   push();
   stroke(120, 125, 150);
