@@ -1307,6 +1307,44 @@ function drawBody(spec) {
     if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
   }
 
+  // size_expr — live variable-driven size, the size sibling of position_expr
+  // above. Until now only POSITION could react to a slider: a circle's own
+  // radius stayed frozen at its authored literal even while it rode to a
+  // live coordinate, so a "radius tracks the slider" state had no honest
+  // rendering path (a locus_trace under a ramping radius draws a spiral, not
+  // a circle; scaling only a to_expr vector leaves a shrinking arrow inside a
+  // fixed outline). This binds the body's own SIZE to the same variables so
+  // the shape itself grows/shrinks with the number — e.g. the unit circle's
+  // radius riding a slider, or a conic's semi-axes morphing continuously.
+  //
+  // Reads PM_liveExprVars() — the SAME merged variables+derived scope
+  // PM_interpolate/position_expr use — so a size binding and a text/position
+  // binding in one state can never disagree about the value they show.
+  //
+  // spec.size is authored as either a bare number (circle/stickman/pulley)
+  // or a {w, h} object (rect/tree/door); size_expr mirrors whichever shape
+  // spec.size already has — a single expression string for the scalar
+  // shapes, a {w, h} object of expression strings for the boxed ones.
+  // Resolved ONCE here, before the bw/bh derivation below, so every shape
+  // inherits it without re-deriving the expression at each draw call site.
+  //
+  // Opt-in and last-resort by construction: a non-finite eval (malformed
+  // expression, or a size_expr shape that doesn't match spec.size's own
+  // shape) keeps the static authored spec.size, so a broken expression
+  // degrades to today's layout rather than vanishing.
+  var resolvedSize = spec.size;
+  if (spec.size_expr != null) {
+    var seVars = PM_liveExprVars();
+    if (typeof spec.size_expr === 'string' && typeof spec.size === 'number') {
+      var seVal = PM_safeEval(spec.size_expr, seVars);
+      if (isFinite(seVal)) resolvedSize = seVal;
+    } else if (typeof spec.size_expr === 'object' && spec.size && typeof spec.size === 'object') {
+      var seW = (spec.size_expr.w != null) ? PM_safeEval(String(spec.size_expr.w), seVars) : spec.size.w;
+      var seH = (spec.size_expr.h != null) ? PM_safeEval(String(spec.size_expr.h), seVars) : spec.size.h;
+      if (isFinite(seW) && isFinite(seH)) resolvedSize = { w: seW, h: seH };
+    }
+  }
+
   // Physics-driven animation delta. Engines learn nothing — JSONs declare the
   // animation shape and the renderer applies the equation.
   //   free_fall: y grows as 0.5·g·t²·PPM (true acceleration under gravity).
@@ -1514,12 +1552,12 @@ function drawBody(spec) {
   var isTree = (spec.shape === 'tree' && spec.size && typeof spec.size === 'object');
   var isPulley = (spec.shape === 'pulley' && typeof spec.size === 'number');
   var isDoor = (spec.shape === 'door' && spec.size && typeof spec.size === 'object');
-  if (isRect) { bw = spec.size.w; bh = spec.size.h; }
-  else if (isCircle) { bw = spec.size; bh = spec.size; }
-  else if (isStickman) { bw = spec.size * 0.5; bh = spec.size; }
-  else if (isTree) { bw = spec.size.w; bh = spec.size.h; }
-  else if (isPulley) { bw = spec.size; bh = spec.size; }
-  else if (isDoor) { bw = spec.size.w; bh = spec.size.h; }
+  if (isRect) { bw = resolvedSize.w; bh = resolvedSize.h; }
+  else if (isCircle) { bw = resolvedSize; bh = resolvedSize; }
+  else if (isStickman) { bw = resolvedSize * 0.5; bh = resolvedSize; }
+  else if (isTree) { bw = resolvedSize.w; bh = resolvedSize.h; }
+  else if (isPulley) { bw = resolvedSize; bh = resolvedSize; }
+  else if (isDoor) { bw = resolvedSize.w; bh = resolvedSize.h; }
 
   // Resolve label once: prefer label_expr (interactive scenes like
   // field_forces STATE_5 use "m = {m} kg"), fall back to static label.
@@ -1561,13 +1599,13 @@ function drawBody(spec) {
         text(labelText, 0, -bh / 2);
       }
     } else if (isCircle) {
-      circle(0, -bw / 2, spec.size);
+      circle(0, -bw / 2, bw);
       if (labelText) {
         fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(12);
         text(labelText, 0, -bw / 2);
       }
     } else if (isStickman) {
-      drawStickman(0, 0, spec.size, rgb);
+      drawStickman(0, 0, bh, rgb);
       if (labelText) {
         fill(220); noStroke(); textAlign(CENTER, TOP); textSize(11);
         text(labelText, 0, 6);
@@ -1583,8 +1621,8 @@ function drawBody(spec) {
     translate(cx, cy);
     rotate(rotRad);
     if (isRect) rect(-bw / 2, -bh / 2, bw, bh, 4);
-    else if (isCircle) circle(0, 0, spec.size);
-    else if (isStickman) drawStickman(0, bh / 2, spec.size, rgb);
+    else if (isCircle) circle(0, 0, bw);
+    else if (isStickman) drawStickman(0, bh / 2, bh, rgb);
     if (labelText) {
       fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(12);
       text(labelText, 0, 0);
@@ -1596,8 +1634,8 @@ function drawBody(spec) {
     cx = isBoxed ? (safeX + bw / 2) : safeX;
     cy = isBoxed ? (safeY + bh / 2) : safeY;
     if (isRect) rect(safeX, safeY, bw, bh, 4);
-    else if (isCircle) circle(safeX, safeY, spec.size);
-    else if (isStickman) drawStickman(safeX, safeY, spec.size, rgb);
+    else if (isCircle) circle(safeX, safeY, bw);
+    else if (isStickman) drawStickman(safeX, safeY, bh, rgb);
     else if (isTree) {
       // Trunk: centered brown rect, bottom 30% of bh, width ~25% of bw.
       var trunkW = Math.max(12, bw * 0.22);
@@ -1631,11 +1669,11 @@ function drawBody(spec) {
     }
     else if (isPulley) {
       // Wheel: outer circle filled, hub ring, axle dot.
-      var r = spec.size / 2;
+      var r = bw / 2;
       fill(rgb[0], rgb[1], rgb[2]);
       stroke(30, 41, 59);
       strokeWeight(2);
-      circle(safeX, safeY, spec.size);
+      circle(safeX, safeY, bw);
       noFill();
       stroke(30, 41, 59);
       strokeWeight(1.5);
@@ -1685,8 +1723,8 @@ function drawBody(spec) {
       var labelY;
       if (isStickman) labelY = safeY + 14;
       else if (isTree) labelY = safeY + bh + 10;
-      else if (isPulley) labelY = safeY + spec.size / 2 + 14;
-      else if (spec.label_below && isCircle) labelY = safeY + spec.size / 2 + 12;
+      else if (isPulley) labelY = safeY + bw / 2 + 14;
+      else if (spec.label_below && isCircle) labelY = safeY + bw / 2 + 12;
       else if (spec.label_below && (isRect || isBoxed)) labelY = safeY + bh + 12;
       else if (spec.label_above && (isRect || isBoxed)) labelY = safeY - 10;
       else labelY = cy;
@@ -2716,6 +2754,17 @@ function drawAngleArc(spec) {
   }
   if (!center) center = { x: 250, y: 300 };
   var radius = (typeof spec.radius === 'number') ? spec.radius : 40;
+  // radius_expr — live variable-driven radius, the drawAngleArc sibling of
+  // drawBody's size_expr above (same PM_liveExprVars() scope, same opt-in
+  // non-finite-eval fallback to the authored literal/default). Without this
+  // an arc's sweep could track a slider (to_deg_expr / angle_value_expr) but
+  // its RADIUS stayed frozen — a morphing-radius family (e.g. a conic's
+  // arc growing with its own semi-axis) had no honest rendering path.
+  if (typeof spec.radius_expr === 'string') {
+    var radVars = PM_liveExprVars();
+    var radVal = PM_safeEval(spec.radius_expr, radVars);
+    if (isFinite(radVal)) radius = radVal;
+  }
   var fromDeg = (typeof spec.from_deg === 'number') ? spec.from_deg : 0;
   var toDeg;
   if (typeof spec.to_deg_expr === 'string') {
