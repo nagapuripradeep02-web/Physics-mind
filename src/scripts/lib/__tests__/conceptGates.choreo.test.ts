@@ -93,6 +93,63 @@ describe('Gate 9(d) extension — locus_trace sweep parameter must not be a plot
     });
 });
 
+// Gate 9(c) extension (CP-C1, 2026-08-06) — choreography_seizable_without_slider
+// must inspect BOTH seizure doors (sliderVars UNION dragBoundVars), not
+// sliderVars alone. Before this fix, a `variable_choreography` entry marked
+// `seizable: true` for a variable that a teacher can genuinely seize ONLY
+// via a `plot_point.drag.bind_variable` (no `type:'slider'` primitive at
+// all) still emitted a FALSE warning claiming no teacher could ever seize
+// it — exactly the "a warning that fires on a legitimate design teaches
+// people to ignore warnings" defect class. This is the negative control:
+// reproduces the pre-fix sliderVars-only shape over the SAME passing scene
+// and shows it would have (wrongly) fired.
+describe('Gate 9(c) extension — choreography_seizable_without_slider must also see a plot_point.drag.bind_variable', () => {
+    it('a variable seizable ONLY via plot_point.drag.bind_variable produces NO warning', () => {
+        const findings = checkConceptChoreography({
+            physics_engine_config: { variables: { b: { default: 1 } } },
+            epic_l_path: {
+                states: {
+                    STATE_1: {
+                        scene_composition: [
+                            { type: 'plot_point', id: 'P', plane_id: 'plane', x_expr: 'b', y_expr: 'b*b', drag: { bind_variable: 'b', axis: 'x' } },
+                        ],
+                        variable_choreography: [{ variable: 'b', mode: 'ping_pong', duration_ms: 9000, seizable: true }],
+                    },
+                },
+            },
+        });
+        expect(findings.some((f) => f.message.includes('choreography_seizable_without_slider'))).toBe(false);
+    });
+
+    it('NEGATIVE CONTROL: the pre-fix sliderVars-only scan would have (wrongly) warned on the SAME scene', () => {
+        // Reproduces check (c)'s PRE-FIX shape — sliderVars alone, no
+        // dragBoundVars union — over the same drag-only-seizable design.
+        const preFixSliderVars = new Set<string>(); // no type:'slider' primitive in this scene at all
+        const variable = 'b';
+        const seizable = true;
+        const preFixWouldWarn = seizable && !preFixSliderVars.has(variable);
+        expect(preFixWouldWarn).toBe(true); // the pre-fix gate fires here — a false positive
+        // ...while the shipped (extended) gate above does NOT (first test).
+    });
+
+    it('a variable that is neither a slider nor drag-bound still warns (the check still fires when it should)', () => {
+        const findings = checkConceptChoreography({
+            physics_engine_config: { variables: { ghost: { default: 0 } } },
+            epic_l_path: {
+                states: {
+                    STATE_1: {
+                        scene_composition: [
+                            { type: 'label', id: 'l1', text: 'no controls at all' },
+                        ],
+                        variable_choreography: [{ variable: 'ghost', mode: 'once', duration_ms: 1000, seizable: true }],
+                    },
+                },
+            },
+        });
+        expect(findings.some((f) => f.message.includes('choreography_seizable_without_slider') && f.message.includes("variable='ghost'"))).toBe(true);
+    });
+});
+
 describe('Gate 9(a)/(b) still fire from the shared lib (move regression check)', () => {
     it('flags an anchor_to forward reference and an undeclared choreography variable', () => {
         const findings = checkConceptChoreography({

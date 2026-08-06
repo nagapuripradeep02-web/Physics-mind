@@ -367,6 +367,18 @@ function checkStateChoreography(
         });
     }
 
+    // CP-C1 — union BOTH seizure doors ONCE, right after they are collected,
+    // so check (c) below sees the SAME set check (d) already used. Built
+    // here (not inline where each check reads it) so there is exactly ONE
+    // computation of "what can a teacher seize in this state", shared by
+    // every check that needs the answer — a scan that only looked at
+    // sliderVars would emit a FALSE warning on a variable that is seizable
+    // purely via a plot_point drag (engine_bug_queue:
+    // choreography_seizable_without_slider inspected sliderVars only; a
+    // legitimate drag-only design tripped it, and a warning that fires on a
+    // legitimate design teaches authors to ignore warnings).
+    const seizableVars = new Set<string>([...sliderVars, ...dragBoundVars]);
+
     // (b) + (c) variable_choreography.
     const choreo = s.variable_choreography;
     if (Array.isArray(choreo)) {
@@ -383,11 +395,11 @@ function checkStateChoreography(
                     message: `choreography_variable_undeclared variable='${variable}' not found in physics_engine_config.variables — computePhysics() will never see this choreographed value`,
                 });
             }
-            if (c.seizable === true && !sliderVars.has(variable)) {
+            if (c.seizable === true && !seizableVars.has(variable)) {
                 out.push({
                     path: where,
                     fatal: false,
-                    message: `choreography_seizable_without_slider variable='${variable}' is seizable but no type:'slider' primitive for it exists in this state — a teacher can never seize it`,
+                    message: `choreography_seizable_without_slider variable='${variable}' is seizable but no type:'slider' primitive AND no type:'plot_point'.drag.bind_variable for it exists in this state — a teacher can never seize it`,
                 });
             }
         });
@@ -396,10 +408,9 @@ function checkStateChoreography(
     // (d) locus_trace sweep-parameter collision. THE phi LAW, restated 2026-
     // 08-06 (CP-B): a trace's sweep parameter is never a SEIZABLE variable —
     // slider OR drag-bound (see the doctrine box above check (a)'s
-    // dragBoundVars declaration). seizableVars unions both seizure doors
-    // before the intersection; neither set can collide with expression
-    // function names (sin, cos, PI …), so token intersection stays exact.
-    const seizableVars = new Set<string>([...sliderVars, ...dragBoundVars]);
+    // dragBoundVars declaration; seizableVars is unioned once, above, and
+    // reused here). Neither set can collide with expression function names
+    // (sin, cos, PI …), so token intersection stays exact.
     if (Array.isArray(scene) && seizableVars.size > 0) {
         scene.forEach((prim, idx) => {
             if (!prim || typeof prim !== 'object') return;
