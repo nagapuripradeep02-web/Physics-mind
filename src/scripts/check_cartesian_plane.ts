@@ -7,7 +7,10 @@
  * composition draw order — RESTORED to its literal form, see the
  * PM_riemannPublish / Pass-0.3 header comments in the renderer —
  * show_partition, reveal_stagger_ms, and the two non-finite-sample
- * reconciliations CP-C1 left open).
+ * reconciliations CP-C1 left open; CP-D: F13-F14 secant_line/tangent_line —
+ * data-space-only slope, extend:'segment'|'frame' via a shared Liang-Barsky
+ * clip, slotted into D12's already-declared draw-order position between
+ * function_plot and plot_point).
  *
  * Same shape and reason as check:sigma-pi / check:bonding-scene: tsc, the
  * validators and THE EYE all pass on frames whose GEOMETRY is wrong, so this
@@ -18,22 +21,24 @@
  * implementation in this file).
  *
  * Sections implemented here, per docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md
- * 0c gate table: 1-4 (CP-A), 5-7 (CP-B), 8-9 (CP-C1), 11 (CP-A), 12 (CP-C1
- * D11 publication + CP-C2's frame-scoped-map survival extension), 13
- * (CP-C2 show_partition), 14 (CP-C2 D12 composition), 15 (CP-A frame +
+ * 0c gate table: 1-4 (CP-A), 5-7 (CP-B), 8-9 (CP-C1), 10 (CP-D), 11 (CP-A),
+ * 12 (CP-C1 D11 publication + CP-C2's frame-scoped-map survival extension),
+ * 13 (CP-C2 show_partition), 14 (CP-C2 D12 composition), 15 (CP-A frame +
  * CP-B parent-curve completion), 16 (CP-B). Plus two standalone blocks not
  * themselves gate-table-numbered: F5 SEIZURE CLAUSE (CP-B, plot_point
- * drag-seize) and REVEAL_STAGGER_MS DETERMINISM (CP-C2). Section 10
- * belongs to CP-D (secant_line/tangent_line) and is NOT asserted here.
+ * drag-seize) and REVEAL_STAGGER_MS DETERMINISM (CP-C2).
  *
- * region_fill/riemann_bars' DRAWING wrappers (drawRegionFill/
- * drawRiemannBars) call p5 primitives (push/fill/beginShape/vertex/...) that
- * do not exist in this headless sandbox, so — exactly like drawFunctionPlot/
- * drawPlotPoint before them — they are never extracted/executed here. Only
- * the PURE geometry+publication functions (PM_regionFillCompute,
- * PM_riemannBarsCompute, PM_riemannBarReveal) are pulled and run; the
- * drawing wrappers are verified by STATIC source-text assertions
- * (grep-shaped, matching the F5 SEIZURE CLAUSE block's own technique below).
+ * region_fill/riemann_bars/secant_line/tangent_line's DRAWING wrappers
+ * (drawRegionFill/drawRiemannBars/drawSecantLine/drawTangentLine) call p5
+ * primitives (push/fill/beginShape/vertex/...) that do not exist in this
+ * headless sandbox, so — exactly like drawFunctionPlot/drawPlotPoint before
+ * them — they are never extracted/executed here. Only the PURE
+ * geometry+publication functions (PM_regionFillCompute,
+ * PM_riemannBarsCompute, PM_riemannBarReveal, PM_lineClipToRect,
+ * PM_extendLineToFrame, PM_secantLineCompute, PM_tangentLineCompute) are
+ * pulled and run; the drawing wrappers are verified by STATIC source-text
+ * assertions (grep-shaped, matching the F5 SEIZURE CLAUSE block's own
+ * technique below).
  *
  * Every section carries a NEGATIVE CONTROL — a gate that has never failed is
  * not known to work (dispatch mandate). Negative controls are demonstrated
@@ -77,7 +82,7 @@ function grabVar(name: string, src: string = SRC): string {
   return src.slice(m!.index!, src.indexOf(";", i) + 1);
 }
 
-const VARS = ["PM_planeRegistry"];
+const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC"];
 const FNS = [
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
@@ -91,6 +96,11 @@ const FNS = [
   "PM_regionFillCompute", "PM_riemannBarsCompute",
   // CP-C2 addition — PM_riemannBarReveal (reveal_stagger_ms), also pure.
   "PM_riemannBarReveal",
+  // CP-D additions (F13-F14) — pure functions only; drawSecantLine/
+  // drawTangentLine are p5-drawing wrappers, verified by static source
+  // assertions in section 10 instead (same technique as section 12/14).
+  "PM_lineClipToRect", "PM_extendLineToFrame", "PM_secantTangentReadout",
+  "PM_secantLineCompute", "PM_tangentLineCompute",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -546,6 +556,167 @@ console.log("\n=== F5 SEIZURE CLAUSE — plot_point drag seizes bind_variable ex
   // exactly as it clears a slider seizure — no separate code path to go stale.
   assertTrue("SET_STATE clears PM_userTouched wholesale (drag-bound seizures clear exactly like slider seizures)",
     SRC.indexOf("PM_userTouched = {};") >= 0);
+}
+
+console.log("\n=== 10. secant_line / tangent_line — DATA-space slope, extend:'frame' clipping (F13-F14, CP-D) ===");
+{
+  // The spec driver's own MAIN plane (definite_integral_as_accumulated_area_
+  // skeleton.md §"Main plane"): viewport {x:70,y:78,w:660,h:372},
+  // x_range [-0.5,2.5] (span 3.0 -> 660/3 = 220 px/x-unit), y_range
+  // [-1.5,4.5] (span 6.0 -> 372/6 = 62 px/y-unit). This is the EXACT
+  // aspect-ratio mismatch the dispatch names — reused here, not invented,
+  // so the trap is demonstrated on the real authored layout, not a
+  // convenient toy.
+  const MAIN_PLANE = {
+    id: "main", viewport: { x: 70, y: 78, w: 660, h: 372 },
+    x_range: { min: -0.5, max: 2.5 }, y_range: { min: -1.5, max: 4.5 },
+  };
+  const plane = E.PM_planeBuildTransform(MAIN_PLANE);
+  check("sanity: MAIN_PLANE scaleX == 220 px/x-unit (the dispatch's own number)", plane.scaleX, 220, 1e-9);
+  check("sanity: MAIN_PLANE scaleY == 62 px/y-unit (the dispatch's own number)", plane.scaleY, 62, 1e-9);
+  const ranges = { xRange: plane.xRange, yRange: plane.yRange };
+
+  // ── secant slope: sin(x) at x0=1, h=0.001, against cos(1) within 1e-3 ────
+  const secantSpec = {
+    from_expr: { x: "x0", y: "sin(x0)" }, to_expr: { x: "x0 + h", y: "sin(x0 + h)" },
+    extend: "segment", readout: { format: "slope = {m}", decimals: 3 },
+  };
+  const secantVars = { x0: 1, h: 0.001 };
+  const secantComputed = E.PM_secantLineCompute(secantSpec, secantVars, ranges);
+  assertTrue("secant_line resolves valid (from/to both finite, non-vertical)", secantComputed.valid);
+  check("secant slope for sin at x0=1, h=0.001 vs cos(1)", secantComputed.slope, Math.cos(1), 1e-3);
+  // readoutText is toFixed(3) of the SAME slope value — tolerance is the
+  // rounding half-step (5e-4), not 1e-9, since the text is deliberately
+  // ROUNDED (decimals:3) while secantComputed.slope is the full-precision
+  // float; the point being tested is "one evaluation", not "no rounding".
+  check("secant readoutText carries the SAME slope value (D8: picture and readout, one scope)",
+    parseFloat(secantComputed.readoutText.replace("slope = ", "")), secantComputed.slope, 5e-4);
+
+  // ── tangent slope reproduces slope_expr EXACTLY (never numerically
+  // differentiated — ledger item 5) ────────────────────────────────────────
+  const tangentSpec = { at_expr: { x: "x0", y: "sin(x0)" }, slope_expr: "cos(x0)", extend: "segment" };
+  const tangentVars = { x0: 1 };
+  const tangentComputed = E.PM_tangentLineCompute(tangentSpec, tangentVars, ranges);
+  assertTrue("tangent_line resolves valid", tangentComputed.valid);
+  check("tangent slope reproduces slope_expr EXACTLY (same evaluation as a direct PM_safeEval call, D8)",
+    tangentComputed.slope, E.PM_safeEval("cos(x0)", tangentVars), 0);
+  check("tangent slope also matches the true derivative cos(1) (sanity — slope_expr was authored correctly here)",
+    tangentComputed.slope, Math.cos(1), 1e-9);
+
+  // ── NEGATIVE CONTROL — "a secant using Δx from pixels rather than data
+  // must FAIL." Compute the WRONG slope from the two points' PIXEL
+  // positions on this exact aspect-mismatched plane, and show it diverges
+  // sharply from cos(1) — proving that if PM_secantLineCompute had used
+  // pixels instead of data, this gate would have caught it. ──────────────
+  const fromPx = plane.toPx(1, Math.sin(1));
+  const toPx = plane.toPx(1.001, Math.sin(1.001));
+  const pixelDerivedSlope = (toPx.y - fromPx.y) / (toPx.x - fromPx.x);
+  assertTrue(`NEGATIVE CONTROL: a slope computed from PIXEL deltas (${pixelDerivedSlope.toFixed(4)}) diverges sharply from cos(1) (${Math.cos(1).toFixed(4)}) — the 220/62 px-per-unit mismatch, not a small error`,
+    Math.abs(pixelDerivedSlope - Math.cos(1)) > 0.1);
+  assertTrue("the SHIPPED secant slope (computed from DATA, same plane) does NOT share that defect",
+    Math.abs(secantComputed.slope - Math.cos(1)) <= 1e-3);
+
+  // ── STATIC — the slope computation itself never touches PM_planeResolve
+  // (pixels), and the draw wrappers only resolve pixels AFTER the slope is
+  // already final. Mirrors section 12/14's static-assertion technique. ────
+  const secantComputeSrc = grabFn("PM_secantLineCompute");
+  assertTrue("PM_secantLineCompute never calls PM_planeResolve — the slope is computed purely from data-space from/to, never pixels",
+    secantComputeSrc.indexOf("PM_planeResolve(") === -1);
+  const tangentComputeSrc = grabFn("PM_tangentLineCompute");
+  assertTrue("PM_tangentLineCompute never calls PM_planeResolve — the slope is computed purely from data-space at_expr, never pixels",
+    tangentComputeSrc.indexOf("PM_planeResolve(") === -1);
+
+  const drawSecantSrc = grabFn("drawSecantLine");
+  const secantComputeCallIdx = drawSecantSrc.indexOf("PM_secantLineCompute(");
+  const secantFirstResolveIdx = drawSecantSrc.indexOf("PM_planeResolve(");
+  assertTrue("drawSecantLine calls PM_secantLineCompute (the slope) BEFORE it calls PM_planeResolve (pixels) — pixels are resolved from the already-final data endpoints, never feed the slope",
+    secantComputeCallIdx >= 0 && secantFirstResolveIdx >= 0 && secantComputeCallIdx < secantFirstResolveIdx);
+
+  const drawTangentSrc = grabFn("drawTangentLine");
+  const tangentComputeCallIdx = drawTangentSrc.indexOf("PM_tangentLineCompute(");
+  const tangentFirstResolveIdx = drawTangentSrc.indexOf("PM_planeResolve(");
+  assertTrue("drawTangentLine calls PM_tangentLineCompute (the slope) BEFORE it calls PM_planeResolve (pixels)",
+    tangentComputeCallIdx >= 0 && tangentFirstResolveIdx >= 0 && tangentComputeCallIdx < tangentFirstResolveIdx);
+
+  // NEGATIVE CONTROL for the static scanner itself — a deliberately-
+  // offending snippet (a compute function that DOES derive its result from
+  // PM_planeResolve, exactly the defect class this section exists to catch)
+  // must be caught by the same indexOf check.
+  const badComputeSnippet = "function PM_secantLineCompute_bad(spec, vars) {\n  var p0 = PM_planeResolve(spec, 0, 0);\n  var p1 = PM_planeResolve(spec, 1, 1);\n  return (p1.y - p0.y) / (p1.x - p0.x);\n}";
+  assertTrue("NEGATIVE CONTROL: the PM_planeResolve-absence scanner DOES catch a pixel-derived-slope implementation",
+    badComputeSnippet.indexOf("PM_planeResolve(") >= 0);
+
+  // ── extend:'frame' CLIPPING — the picture is clipped to the viewport, the
+  // SLOPE (already computed in data-space above) must be UNCHANGED by that
+  // clip. Reuses the SAME secant/tangent (x0=1) on the SAME aspect-
+  // mismatched MAIN_PLANE. ─────────────────────────────────────────────────
+  const secantFrameSpec = Object.assign({}, secantSpec, { extend: "frame" });
+  const secantFramed = E.PM_secantLineCompute(secantFrameSpec, secantVars, ranges);
+  assertTrue("extend:'frame' secant resolves valid", secantFramed.valid);
+  const secantFramedSlope = (secantFramed.drawTo.y - secantFramed.drawFrom.y) / (secantFramed.drawTo.x - secantFramed.drawFrom.x);
+  check("extend:'frame' does NOT alter the secant's data-space slope", secantFramedSlope, secantComputed.slope, 1e-9);
+
+  const tangentFrameSpec = Object.assign({}, tangentSpec, { extend: "frame" });
+  const tangentFramed = E.PM_tangentLineCompute(tangentFrameSpec, tangentVars, ranges);
+  assertTrue("extend:'frame' tangent resolves valid", tangentFramed.valid);
+  const tangentFramedSlope = (tangentFramed.drawTo.y - tangentFramed.drawFrom.y) / (tangentFramed.drawTo.x - tangentFramed.drawFrom.x);
+  check("extend:'frame' does NOT alter the tangent's data-space slope", tangentFramedSlope, tangentComputed.slope, 1e-9);
+
+  // The clip actually DID something — the frame-extended endpoints reach
+  // measurably farther from the origin point than the un-extended
+  // 'segment' endpoints (proving extend:'frame' is not silently a no-op).
+  const segSpan = Math.hypot(tangentComputed.drawTo.x - tangentComputed.drawFrom.x, tangentComputed.drawTo.y - tangentComputed.drawFrom.y);
+  const frameSpan = Math.hypot(tangentFramed.drawTo.x - tangentFramed.drawFrom.x, tangentFramed.drawTo.y - tangentFramed.drawFrom.y);
+  assertTrue(`extend:'frame' span (${frameSpan.toFixed(3)}) is measurably larger than extend:'segment' span (${segSpan.toFixed(3)}) — the clip is not a no-op`,
+    frameSpan > segSpan * 2);
+
+  // Clipped endpoints stay inside the plane's data-space rectangle (with a
+  // small float epsilon) — the clip target is respected, not overshot.
+  const EPS = 1e-6;
+  function insideRect(pt: { x: number; y: number }): boolean {
+    return pt.x >= ranges.xRange.min - EPS && pt.x <= ranges.xRange.max + EPS
+      && pt.y >= ranges.yRange.min - EPS && pt.y <= ranges.yRange.max + EPS;
+  }
+  assertTrue("extend:'frame' secant's clipped endpoints stay inside the plane's data rectangle",
+    insideRect(secantFramed.drawFrom) && insideRect(secantFramed.drawTo));
+  assertTrue("extend:'frame' tangent's clipped endpoints stay inside the plane's data rectangle",
+    insideRect(tangentFramed.drawFrom) && insideRect(tangentFramed.drawTo));
+
+  // At least one coordinate of each clipped endpoint sits ON the rectangle
+  // boundary — proving the line was actually EXTENDED TO the frame edge,
+  // not merely left as the short original segment.
+  function onBoundary(pt: { x: number; y: number }): boolean {
+    return Math.abs(pt.x - ranges.xRange.min) < EPS || Math.abs(pt.x - ranges.xRange.max) < EPS
+      || Math.abs(pt.y - ranges.yRange.min) < EPS || Math.abs(pt.y - ranges.yRange.max) < EPS;
+  }
+  assertTrue("extend:'frame' tangent's drawFrom touches the plane's boundary",
+    onBoundary(tangentFramed.drawFrom));
+  assertTrue("extend:'frame' tangent's drawTo touches the plane's boundary",
+    onBoundary(tangentFramed.drawTo));
+
+  // ── NEGATIVE CONTROL — "a clip that alters the slope must FAIL." A
+  // deliberately-broken clip (clamps x and y INDEPENDENTLY, rather than
+  // intersecting the LINE with the rectangle) applied to the SAME
+  // far-extended endpoints PM_extendLineToFrame builds internally. Written
+  // here, never shipped. ────────────────────────────────────────────────
+  function brokenIndependentClampClip(x0: number, y0: number, x1: number, y1: number, xMin: number, xMax: number, yMin: number, yMax: number) {
+    const clamp = (v: number, lo: number, hi: number) => Math.min(Math.max(v, lo), hi);
+    return { x0: clamp(x0, xMin, xMax), y0: clamp(y0, yMin, yMax), x1: clamp(x1, xMin, xMax), y1: clamp(y1, yMin, yMax) };
+  }
+  const originX = 1, originY = Math.sin(1), trueSlope = Math.cos(1);
+  const big = 1000;
+  const farX0 = originX - big, farY0 = originY - big * trueSlope;
+  const farX1 = originX + big, farY1 = originY + big * trueSlope;
+
+  const shippedClip = E.PM_lineClipToRect(farX0, farY0, farX1, farY1, ranges.xRange.min, ranges.xRange.max, ranges.yRange.min, ranges.yRange.max);
+  assertTrue("PM_lineClipToRect (shipped) returns a non-null clip for this line", !!shippedClip);
+  const shippedSlope = (shippedClip.y1 - shippedClip.y0) / (shippedClip.x1 - shippedClip.x0);
+  check("PM_lineClipToRect (shipped) preserves the line's slope after clipping to the frame", shippedSlope, trueSlope, 1e-9);
+
+  const brokenClip = brokenIndependentClampClip(farX0, farY0, farX1, farY1, ranges.xRange.min, ranges.xRange.max, ranges.yRange.min, ranges.yRange.max);
+  const brokenSlope = (brokenClip.y1 - brokenClip.y0) / (brokenClip.x1 - brokenClip.x0);
+  assertTrue(`NEGATIVE CONTROL: an independent per-axis clamp clip (slope ${brokenSlope.toFixed(4)}) alters the line's slope away from the true value (${trueSlope.toFixed(4)}) — exactly the defect a real clip must never have`,
+    Math.abs(brokenSlope - trueSlope) > 0.01);
 }
 
 console.log("\n=== 11. FLEET SAFETY — inert when plane_id is absent (F7) ===");
@@ -1246,6 +1417,6 @@ console.log("\n=== 16. RANGE CONTAINMENT — cross-product of control ranges sta
 }
 
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);
