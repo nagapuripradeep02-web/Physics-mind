@@ -86,9 +86,22 @@ changes.
 
 ### C — Rotation unrolled into a wave **[LIVE]**
 A rotating radius on a circle, its projection carried horizontally to trace a sinusoid.
-- **Maps to:** `parametric` — `body` (the circle, the rotating point), `vector` (the radius),
-  `animated_path` (the projection carrier), `locus_trace` (the unrolling wave), `angle_arc` (θ),
-  canvas `slider` (θ or ω), `formula_box`.
+- **Maps to:** `parametric` — `body` with `position_expr` (the rotating point, the pen), `vector`
+  (the radius), a dashed `vector` with `from_expr`/`to_expr` (the projection carrier),
+  `locus_trace` (the unrolling wave), `angle_arc` (θ), canvas `slider` (θ), `formula_box`.
+- **⚠ ERRATUM, corrected 2026-08-04 during the `unit_circle_to_sine_wave` build.** This row
+  previously named `animated_path` as the projection carrier. It cannot be: `drawAnimatedPath`
+  (`premium_primitives.ts:178`) resolves `from`/`to` ONCE through `PM_resolveEndpoint`, which accepts
+  literals and anchors only — no expressions — so it cannot track a moving point. The live carrier is
+  a dashed `vector` with `from_expr`/`to_expr`, verified consumed at `parametric_renderer.ts:2199-2211`
+  via `PM_safeEvalPoint`. `animated_path` remains right for what it is: a one-shot draw-in between two
+  STATIC endpoints (e.g. revealing the wave's axis).
+- **The moving point is a `body` with `position_expr`,** not an arrowhead: `:1218-1222`, evaluated
+  against `PM_liveExprVars()`, falling back to the authored position on a non-finite eval. It
+  registers in `PM_bodyRegistry`, so `glow_focus` tracks it by id for free. Guard: a body using
+  `position_expr` must declare NO `animation` and NO surface attachment — `:1218` gates on
+  `!attachedPos && !(spec.id && PM_motionState[spec.id])`, and either one silently disables the
+  expression.
 - **Why it is a diamond and not a board sketch:** the *continuity* of the correspondence is the whole
   lesson, and a board can only show two or three frozen positions.
 - **Reference target:** ranked-list P1 #4 — the recommended first mathematics concept.
@@ -210,3 +223,39 @@ Recorded up front because each has already cost a session in physics or chemistr
    concept hand-carries its data↔pixel mapping in every expression. Declare it once in `constraints`
    and never re-derive it inline — a mismatched factor between two expressions is invisible to every
    gate and wrong on screen.
+
+*(Hazards 8–11 added 2026-08-04 from the `unit_circle_to_sine_wave` Checkpoint-A gate — all four were
+caught at DESIGN time, before any JSON existed, and each produces a file that passes the validator,
+`tsc` and THE EYE while being wrong. Scar rows filed; see `engine_bug_queue`.)*
+
+8. **THE φ LAW — a `locus_trace`'s sweep parameter must NEVER be a slider variable in the same state.**
+   `PM_choreoVarsAtTime` merges the live slider value into **every historical sample** of the trace
+   (`parametric_renderer.ts:2321-2325`) and then skips choreography for any seized variable (`:2329`).
+   So the instant a teacher drags that slider, all N samples evaluate at one parameter value and the
+   curve **collapses to a point and disappears**. If the variable is a slider and never choreographed,
+   the curve never draws at all. Author traces on a dedicated sweep variable (`phi`) that is never
+   exposed as a slider anywhere; teacher-facing sliders drive markers, segments and readouts through
+   the live expression path instead. Scar:
+   `pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve` (CRITICAL).
+9. **Nothing in PCPL draws a circle or an arc at a live radius.** `body.size` is number-only
+   (`:1427/:1501/:1514/:1553`, zero `size_expr` hits in the file) and `angle_arc.radius` likewise
+   (`:2588`). The trap is the asymmetry: a body's *position* IS expression-driven, so size looks like
+   it should be. It is not. Tracing the circle under a ramping radius reproduces
+   `field3d_orbit_spiral_on_radius_ramp` — `locus_trace` accumulates history, so you get a spiral.
+   Treat any radius/amplitude-scaling lesson as **[NEEDS-SCENARIO]**, not [LIVE], until
+   `body.size_expr` lands (specced in scar `pcpl_no_primitive_draws_a_circle_or_arc_at_a_live_radius`).
+10. **Cause-before-effect (Rule 32a) by staggering the drivers of two quantities you claim are EQUAL
+    draws the equality false.** `PM_choreoValue` returns `from` before `start_ms` (`:1110`), so a later
+    `start_ms` is an *angular head start*, not a reveal delay — the two elements stay permanently
+    offset and the connector between them joins two different values for the rest of the state. In a
+    correspondence state, satisfy 32a by **reveal order** (the new element appears first, both drivers
+    held), never by staggering. Corollary, and the wider lesson: **a per-state timing table with
+    sub-beat boundaries is a defect detector, not paperwork** — this hazard and hazard 11 were both
+    invisible until one existed.
+11. **A ring cut is discharged by RING ASSIGNMENT, never by a field.** `min_ring` reads well and does
+    nothing: it exists only in `field_3d_renderer.ts:55484-55492` and is inert even there (its own
+    comment defers to a "Rule-38h preset builder" that does not exist anywhere in the product). Before
+    citing ANY authored field as a mechanism in a gate verdict, grep the *target* renderer and the
+    schema for it and quote the reader by file:line — presence in a sibling renderer is not presence
+    in yours. Related: check every formula surface against the HUD metric of the symbols it names —
+    an identity asserted in radians above a degrees-only readout renders itself false by 57.3×.
