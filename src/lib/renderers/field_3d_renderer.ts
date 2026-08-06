@@ -47334,7 +47334,39 @@ export const FIELD_3D_RENDERER_CODE = `
                 // Kinetic friction must not jitter the body back and forth across
                 // v = 0 — if the step reversed the sign and the drive cannot beat
                 // static friction, the body has come to REST.
-                if (nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
+                //   SEAM R (U13) — and it is a KINETIC/STATIC test, so a frame the
+                // ROLLING branch won is exempt. The test asks the SLIDING question,
+                // |drive| <= mu_s.N, i.e. mu_s >= tan(theta): the right question for a
+                // block, and the wrong one for a rolling body, whose static gate is
+                // the DIFFERENT and already-decided |f_roll| <= mu_s.N (canRoll above,
+                // = mu_s >= mu_min = (k/(1+k)).tan(theta), a strictly weaker bar). A
+                // rolling body released from rest on any theta > 0 always starts
+                // moving — it rolls if the contact can supply k/(1+k).mg sin(theta),
+                // and slips if it cannot, but it never stays put — so there is no
+                // rolling case this clamp can be right about. Applying it anyway
+                // asked the block question a SECOND time and zeroed the rolling
+                // branch's own answer: v0 = 0 makes nlbSgn(v0) = 0, which differs from
+                // the sign of any nonzero v1, so the first integrated frame was
+                // clamped back to v = 0, which reproduced v0 = 0 on the next frame,
+                // and the body was pinned at its seed forever with a correct f_s
+                // beside a written a = 0 (engine_bug_queue
+                // nlb_computed_motion_never_reaches_persistent_body_state:
+                // rolling_on_incline, every body of STATE_1/3/5/6/8 at mu_s = 0.50
+                // against tan 25 deg = 0.4663; STATE_7 escaped only when its mu_s ramp
+                // carried maxStat BELOW drive at t = 688 ms, which is why its ring was
+                // the one incline body that ever moved).
+                //   Scope is exactly one term. rollHeld is false on every frame of
+                // every body that is not a SEAM R rolling body — it is re-initialised
+                // false per body per frame and is only ever set inside the
+                // b.rolling && !b.rotation_locked branch — so for a block, a cart, a
+                // hanging mass, a wheel-shaped body with no rolling flag, and every
+                // pre-SEAM-R concept, this expression is bit-for-bit the one that was
+                // here before. nlbSgn itself is untouched: its zero handling is shared
+                // by the coupled branch and the whole fleet, and whether a body that
+                // is genuinely held by static friction should be clamped this way is a
+                // separate question about NON-rolling bodies that this line does not
+                // answer either way.
+                if (!rollHeld && nlbSgn(v0) !== nlbSgn(v1) && Math.abs(drive) <= maxStat) { v1 = 0; a = 0; }
                 // hPhys (not h) for the same reason the v1 step above uses it: the
                 // slow-motion release window scales the PHYSICS step only, and a
                 // position step taken at h while the velocity step took hPhys would
