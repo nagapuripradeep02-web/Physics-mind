@@ -1307,6 +1307,18 @@ function drawBody(spec) {
     if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
   }
 
+  // CP-A (F7) — plane_id: when present (and not overridden by a surface
+  // attach or the Engine 20 motion integrator — same "physics overrides win"
+  // precedence as position_expr above), pos (whether it came from the literal
+  // spec.position or the position_expr resolution above) is DATA and is
+  // transformed through the plane's registered transform. Inert when
+  // plane_id is absent/unregistered (PM_planeResolve returns null) — the
+  // fleet-safety guarantee (gate §11).
+  if (!attachedPos && !(spec.id && PM_motionState[spec.id]) && spec.plane_id) {
+    var bodyPx = PM_planeResolve(spec, pos.x, pos.y);
+    if (bodyPx) pos = bodyPx;
+  }
+
   // size_expr — live variable-driven size, the size sibling of position_expr
   // above. Until now only POSITION could react to a slider: a circle's own
   // radius stayed frozen at its authored literal even while it rode to a
@@ -1785,6 +1797,20 @@ function drawLabel(spec) {
     if (isFinite(lblX) && isFinite(lblY)) pos = { x: lblX, y: lblY };
   }
 
+  // CP-A (F7/F11) — plane_id: pos (the literal spec.position OR the
+  // position_expr result above) is DATA and is transformed through the
+  // plane. This is the tracking-label contract: a label that carries BOTH
+  // plane_id and position_expr evaluates position_expr in DATA coordinates,
+  // never pixels — a pixel-space reading would force hand-carried scale
+  // factors back into authored expressions, exactly what F1 exists to
+  // remove. Runs AFTER position_expr so a live-tracking label (e.g. a curve
+  // label riding a domain-driven x) resolves in one step. Inert when
+  // plane_id is absent/unregistered (gate §11).
+  if (spec.plane_id) {
+    var lblPx = PM_planeResolve(spec, pos.x, pos.y);
+    if (lblPx) pos = lblPx;
+  }
+
   var size = spec.font_size || 14;
   var color = spec.color || '#D4D4D8';
   var rgb = PM_hexToRgb(color);
@@ -1952,6 +1978,270 @@ function drawSurface(spec) {
       friction: spec.friction || { mu_s: 0, mu_k: 0 }
     };
   }
+}
+
+// ── cartesian_plane (CP-A, F1-F7) ─────────────────────────────────────────
+// bug_class: pcpl_has_no_coordinate_frame_so_every_graph_expression_carries_its_own_scale.
+// Registers a data<->pixel transform other primitives resolve through
+// (PM_planeResolve below) — the SAME registry pattern drawSurface uses for
+// PM_surfaceRegistry/attach_to_surface, instanced for a coordinate frame
+// instead of a line segment (D1). Nothing here is a new mechanism.
+//
+// D5 — clamp a value into [lo, hi]. Used for F2's origin resolution: clamping
+// 0 into the axis range gives the origin INSIDE the frame when the range
+// straddles 0, and the nearer EDGE when it does not (a range entirely > 0
+// clamps to its own min; entirely < 0 clamps to its own max).
+function PM_clamp(v, lo, hi) {
+  return Math.min(Math.max(v, lo), hi);
+}
+
+function PM_gcd(a, b) {
+  a = Math.abs(a); b = Math.abs(b);
+  while (b) { var t = b; b = a % b; a = t; }
+  return a || 1;
+}
+
+// F3/D5 — tick label formatter. Ticks are AUTHORED (x_tick/y_tick, a data
+// step) and this ONLY formats the value at each authored tick — it never
+// invents a step ("auto-nice"), so a gate can check it without re-implementing
+// a nicing algorithm. mode is a closed enum: 'number' | 'pi' | 'none'.
+// 'pi' expresses value as a REDUCED fraction of PI: the smallest denominator
+// D in 1..12 such that (value/PI)*D rounds to an integer within 1e-6 — exact
+// for every authored case (PI/2, PI/3, PI/4, PI, ...; every x_tick a math
+// concept would author is a rational multiple of PI). 'number' is a fixed
+// tick_decimals toFixed — deliberately NOT the slider's own
+// toFixed(step<1?1:0) formatter (D8: a coordinate readout owns its own
+// precision, not the slider caption's).
+function PM_formatTickLabel(value, mode, decimals) {
+  if (mode === 'none') return '';
+  if (mode === 'pi') {
+    if (Math.abs(value) < 1e-9) return '0';
+    var ratio = value / Math.PI;
+    var bestN = null, bestD = 1;
+    for (var D = 1; D <= 12; D++) {
+      var n = Math.round(ratio * D);
+      if (Math.abs(ratio * D - n) < 1e-6) { bestN = n; bestD = D; break; }
+    }
+    if (bestN === null) return ratio.toFixed(2) + 'π'; // not a clean rational multiple — approximate, never silently wrong
+    var g = PM_gcd(bestN, bestD);
+    var num = bestN / g, den = bestD / g;
+    var sign = num < 0 ? '-' : '';
+    var absNum = Math.abs(num);
+    var body = (absNum === 1) ? 'π' : (absNum + 'π');
+    return (den === 1) ? (sign + body) : (sign + body + '/' + den);
+  }
+  return value.toFixed((typeof decimals === 'number') ? decimals : 0);
+}
+
+// D5 — pure enumeration of tick DATA values from rangeMin to rangeMax
+// stepping by tick (tick <= 0 → no ticks). Shared by the gridline / tick-mark
+// / tick-label passes below AND independently testable (check:cartesian-plane
+// §3) with no p5 dependency.
+function PM_planeTickValues(rangeMin, rangeMax, tick) {
+  var out = [];
+  if (!(tick > 0)) return out;
+  var EPS = 1e-9;
+  for (var t = rangeMin; t <= rangeMax + EPS; t += tick) {
+    out.push(Math.min(t, rangeMax));
+  }
+  return out;
+}
+
+// D1 — the transform, built ONCE per plane per frame. PURE (no p5, no global
+// registry write) so it is independently testable; drawCartesianPlane below
+// is the only caller that stores the result into PM_planeRegistry.
+// D2 — equal_scale SHRINKS the longer axis's pixel extent to match the
+// shorter one (k = min(w/dx, h/dy)) and CENTRES the smaller effective rect
+// inside the authored viewport; it never grows past the authored rect
+// (growing would silently invade the slider band / caption zone, Rule 34d).
+function PM_planeBuildTransform(spec) {
+  var viewport = (spec && spec.viewport) || { x: 70, y: 78, w: 660, h: 372 };
+  var xRange = (spec && spec.x_range) || { min: -6.5, max: 6.5 };
+  var yRange = (spec && spec.y_range) || { min: -4, max: 4 };
+  var dx = xRange.max - xRange.min;
+  var dy = yRange.max - yRange.min;
+  if (!(dx > 0) || !(dy > 0)) return null; // degenerate range — nothing to register or draw
+
+  var equalScale = !!(spec && spec.equal_scale);
+  var scaleX, scaleY, originPxX, originPxY, effViewport;
+  if (equalScale) {
+    var k = Math.min(viewport.w / dx, viewport.h / dy);
+    var effW = dx * k, effH = dy * k;
+    scaleX = k; scaleY = k;
+    originPxX = viewport.x + (viewport.w - effW) / 2;
+    originPxY = viewport.y + (viewport.h - effH) / 2;
+    effViewport = { x: originPxX, y: originPxY, w: effW, h: effH };
+  } else {
+    scaleX = viewport.w / dx;
+    scaleY = viewport.h / dy;
+    originPxX = viewport.x;
+    originPxY = viewport.y;
+    effViewport = { x: viewport.x, y: viewport.y, w: viewport.w, h: viewport.h };
+  }
+
+  function toPx(x, y) {
+    return {
+      x: originPxX + (x - xRange.min) * scaleX,
+      // canvas y grows DOWN, data y grows UP — this flip is the ONE place it
+      // lives (D1); no authored expression ever carries it (§10c of the spec
+      // driver).
+      y: originPxY + (yRange.max - y) * scaleY
+    };
+  }
+  function toData(px, py) {
+    return {
+      x: xRange.min + (px - originPxX) / scaleX,
+      y: yRange.max - (py - originPxY) / scaleY
+    };
+  }
+
+  return {
+    toPx: toPx, toData: toData,
+    viewport: effViewport, xRange: xRange, yRange: yRange,
+    scaleX: scaleX, scaleY: scaleY
+  };
+}
+
+// F7 — the single resolution funnel every plane_id-carrying primitive uses.
+// spec.plane_id must name a plane registered THIS FRAME by drawCartesianPlane
+// (Pass 0.25 runs before every consumer pass: bodies Pass 1, vectors/labels/
+// locus_trace Pass 3). Returns the pixel-space {x,y} for the DATA-space
+// (dataX, dataY) pair, or null when spec carries no plane_id, the named plane
+// was not drawn this frame/state, or the inputs are non-finite — inert by
+// construction when plane_id is absent (the fleet-safety guarantee, gate §11):
+// every existing call site that gates a plane transform behind spec.plane_id
+// truthiness runs zero new code for the 7 baseline-locked parametric concepts,
+// none of which authors plane_id.
+function PM_planeResolve(spec, dataX, dataY) {
+  if (!spec || !spec.plane_id) return null;
+  var plane = PM_planeRegistry[spec.plane_id];
+  if (!plane) return null;
+  if (!isFinite(dataX) || !isFinite(dataY)) return null;
+  return plane.toPx(dataX, dataY);
+}
+
+function drawCartesianPlane(spec) {
+  if (!spec || !spec.id) return;
+  // D6 — both standard brackets, before any drawing. Third recurrence of the
+  // omission class on this renderer (drawAngleArc/drawLocusTrace missed the
+  // focal channel; drawVector missed both) — see drawVector's header comment.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  var plane = PM_planeBuildTransform(spec);
+  if (!plane) return;
+  PM_planeRegistry[spec.id] = plane;
+
+  var xRange = plane.xRange, yRange = plane.yRange, effViewport = plane.viewport;
+  var toPx = plane.toPx;
+
+  // F2 — origin: inside the frame when the range straddles 0, clamped to the
+  // nearer edge when it does not.
+  var originDataX = PM_clamp(0, xRange.min, xRange.max);
+  var originDataY = PM_clamp(0, yRange.min, yRange.max);
+
+  var lineColor = PM_hexToRgb(spec.color || '#94A3B8');
+  var gridColor = PM_hexToRgb(spec.grid_color || '#1E293B');
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#94A3B8';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+
+  var xTick = (typeof spec.x_tick === 'number') ? spec.x_tick : 0;
+  var yTick = (typeof spec.y_tick === 'number') ? spec.y_tick : 0;
+  var EPS = 1e-9;
+
+  // F4 — gridlines, opt-in, dim, drawn BEHIND everything else: this whole
+  // primitive runs in Pass 0.25, before bodies/vectors/labels (Pass 1/3), so
+  // "behind everything" holds by pass order alone.
+  if (spec.gridlines) {
+    stroke(gridColor[0], gridColor[1], gridColor[2], alpha255 * 0.6);
+    strokeWeight(1);
+    var gxTicks = PM_planeTickValues(xRange.min, xRange.max, xTick);
+    for (var gi = 0; gi < gxTicks.length; gi++) {
+      var gTop = toPx(gxTicks[gi], yRange.max), gBot = toPx(gxTicks[gi], yRange.min);
+      line(gTop.x, gTop.y, gBot.x, gBot.y);
+    }
+    var gyTicks = PM_planeTickValues(yRange.min, yRange.max, yTick);
+    for (var gj = 0; gj < gyTicks.length; gj++) {
+      var gL = toPx(xRange.min, gyTicks[gj]), gR = toPx(xRange.max, gyTicks[gj]);
+      line(gL.x, gL.y, gR.x, gR.y);
+    }
+  }
+
+  // F2 — axis lines.
+  stroke(lineColor[0], lineColor[1], lineColor[2], alpha255);
+  strokeWeight(1.5);
+  var yAxisTop = toPx(originDataX, yRange.max), yAxisBot = toPx(originDataX, yRange.min);
+  line(yAxisTop.x, yAxisTop.y, yAxisBot.x, yAxisBot.y);
+  var xAxisL = toPx(xRange.min, originDataY), xAxisR = toPx(xRange.max, originDataY);
+  line(xAxisL.x, xAxisL.y, xAxisR.x, xAxisR.y);
+
+  // F3 — ticks + tick labels. D5: ticks are AUTHORED (x_tick/y_tick is a
+  // data-space step); x_tick_labels/y_tick_labels select the FORMATTER only.
+  var tickDecimals = (typeof spec.tick_decimals === 'number') ? spec.tick_decimals : 0;
+  var xLabelMode = spec.x_tick_labels || 'number';
+  var yLabelMode = spec.y_tick_labels || 'number';
+  var tickPx = 5;
+  textSize(10);
+  var xTicks = PM_planeTickValues(xRange.min, xRange.max, xTick);
+  for (var xi = 0; xi < xTicks.length; xi++) {
+    var txv = xTicks[xi];
+    if (Math.abs(txv - originDataX) < EPS) continue; // the origin itself carries no separate tick
+    stroke(lineColor[0], lineColor[1], lineColor[2], alpha255);
+    strokeWeight(1);
+    var tpX = toPx(txv, originDataY);
+    line(tpX.x, tpX.y - tickPx, tpX.x, tpX.y + tickPx);
+    if (xLabelMode !== 'none') {
+      noStroke();
+      fill(lineColor[0], lineColor[1], lineColor[2], alpha255);
+      textAlign(CENTER, TOP);
+      text(PM_formatTickLabel(txv, xLabelMode, tickDecimals), tpX.x, tpX.y + tickPx + 2);
+    }
+  }
+  var yTicks = PM_planeTickValues(yRange.min, yRange.max, yTick);
+  for (var yi = 0; yi < yTicks.length; yi++) {
+    var tyv = yTicks[yi];
+    if (Math.abs(tyv - originDataY) < EPS) continue;
+    stroke(lineColor[0], lineColor[1], lineColor[2], alpha255);
+    strokeWeight(1);
+    var tpY = toPx(originDataX, tyv);
+    line(tpY.x - tickPx, tpY.y, tpY.x + tickPx, tpY.y);
+    if (yLabelMode !== 'none') {
+      noStroke();
+      fill(lineColor[0], lineColor[1], lineColor[2], alpha255);
+      textAlign(RIGHT, CENTER);
+      text(PM_formatTickLabel(tyv, yLabelMode, tickDecimals), tpY.x - tickPx - 3, tpY.y);
+    }
+  }
+
+  // F6 — axis titles, quadrant-safe: the x-title never lands in the slider
+  // band (PM_ZONES.CONTROL_ZONE.y = 460), the y-title never rises above the
+  // (possibly equal_scale-shrunk) effective viewport's own top edge.
+  noStroke();
+  fill(lineColor[0], lineColor[1], lineColor[2], alpha255);
+  textSize(12);
+  if (spec.x_label) {
+    var xtEnd = toPx(xRange.max, originDataY);
+    var xLabelY = Math.min(xtEnd.y + 16, PM_ZONES.CONTROL_ZONE.y - 8);
+    textAlign(RIGHT, TOP);
+    text(String(spec.x_label), xtEnd.x, xLabelY);
+  }
+  if (spec.y_label) {
+    var ytEnd = toPx(originDataX, yRange.max);
+    textAlign(LEFT, BOTTOM);
+    text(String(spec.y_label), ytEnd.x + 6, Math.max(ytEnd.y - 4, effViewport.y - 2));
+  }
+
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
 }
 
 function drawForceArrow(spec, physics, origin) {
@@ -2361,17 +2651,31 @@ function drawVector(spec, ox, oy) {
   // to (0,0). Resolve it via PM_safeEvalPoint (literal/anchor paths unchanged).
   var vLive = null;
   var from = spec.from;
+  // CP-A (F7) — an anchor-resolved endpoint ("block.top") is ALREADY absolute
+  // pixel space (read from PM_bodyRegistry/PM_surfaceRegistry, themselves
+  // screen positions) and must never be run through the plane transform a
+  // second time; a magnitude/direction-synthesized endpoint is a pixel delta
+  // off an already-resolved 'from' for the same reason. Only a literal {x,y}
+  // or an *_expr point is authored DATA under plane_id. Tracked per endpoint
+  // so drawVector's existing three-path precedence is untouched.
+  var fromIsPixelResolved = false;
   if (typeof from === 'string') {
     from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+    fromIsPixelResolved = true;
   } else if ((from == null || typeof from.x !== 'number') && typeof spec.from_expr === 'string') {
     vLive = vLive || PM_liveVarsWithDerived();
     from = PM_safeEvalPoint(spec.from_expr, vLive);
   }
   if (!from || typeof from.x !== 'number') from = { x: 0, y: 0 };
+  if (spec.plane_id && !fromIsPixelResolved) {
+    var fromPx = PM_planeResolve(spec, from.x, from.y);
+    if (fromPx) from = fromPx;
+  }
   var to;
+  var toIsPixelResolved = false;
   if (spec.to != null) {
     to = spec.to;
-    if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+    if (typeof to === 'string') { to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry); toIsPixelResolved = true; }
   } else if (typeof spec.to_expr === 'string') {
     vLive = vLive || PM_liveVarsWithDerived();
     to = PM_safeEvalPoint(spec.to_expr, vLive) || { x: from.x, y: from.y };
@@ -2387,9 +2691,17 @@ function drawVector(spec, ox, oy) {
     if (!isFinite(dirDegV)) dirDegV = 0;
     var radV = dirDegV * Math.PI / 180;
     // Physics y-up → canvas y-down: flip y (matches drawForceArrow line 1007).
+    // Deliberately a PIXEL delta off 'from' (which is already plane-resolved
+    // above when plane_id is set) — magnitude_expr/direction_deg are not
+    // plane-scaled by this dispatch (open boundary, see CP-A report).
     to = { x: from.x + magV * Math.cos(radV), y: from.y - magV * Math.sin(radV) };
+    toIsPixelResolved = true;
   } else {
     to = { x: 0, y: 0 };
+  }
+  if (spec.plane_id && !toIsPixelResolved) {
+    var toPx = PM_planeResolve(spec, to.x, to.y);
+    if (toPx) to = toPx;
   }
   var fx = from.x + ox, fy = from.y + oy;
   var tx = to.x + ox, ty = to.y + oy;
@@ -2583,6 +2895,15 @@ function drawLocusTrace(spec) {
     var x = PM_safeEval(spec.x_expr, sampleVars);
     var y = PM_safeEval(spec.y_expr, sampleVars);
     if (!isFinite(x) || !isFinite(y)) { prevPt = null; continue; }
+    // CP-A (F7) — x_expr/y_expr evaluate to a raw (x, y) pair; under
+    // plane_id that pair is DATA and is transformed through the plane before
+    // it becomes a screen point. Inert when plane_id is absent/unregistered
+    // (gate §11) — every existing locus_trace concept authors pixel-space
+    // expressions with no plane_id and is untouched.
+    if (spec.plane_id) {
+      var ltPx = PM_planeResolve(spec, x, y);
+      if (ltPx) { x = ltPx.x; y = ltPx.y; }
+    }
     if (prevPt) {
       var alphaMul = 1;
       if (fadeTail && sampleCount > 1) alphaMul = 0.25 + 0.75 * (i / (sampleCount - 1));
@@ -3383,6 +3704,13 @@ var PM_physics = null;
 var PM_currentState = 'STATE_1';
 var PM_bodyRegistry = {};
 var PM_surfaceRegistry = {};
+// CP-A (F1/D1) — { [plane_id]: { toPx(x,y), toData(px,py), viewport, xRange,
+// yRange } }, populated by drawCartesianPlane in Pass 0.25 (after surfaces,
+// before bodies) — the SAME registry pattern PM_surfaceRegistry uses for
+// attach_to_surface, instanced for a coordinate frame instead of a line
+// segment. Every plane_id-carrying primitive resolves through PM_planeResolve
+// against THIS object, never re-deriving its own transform.
+var PM_planeRegistry = {};
 // WP-R5 (D5 anchor_to) — { [primitive_id]: { origin: {x,y}, tip: {x,y} } },
 // refilled every draw() frame by drawForceArrow/drawAngleArc (array order =
 // PM_resolveAnchorTo's "must precede" contract). Cleared on true SET_STATE.
@@ -3823,6 +4151,16 @@ function draw() {
     if (sPrim && sPrim.type === 'surface') drawSurface(sPrim);
   }
 
+  // Pass 0.25 (CP-A, D1) — draw cartesian_plane frames (populates
+  // PM_planeRegistry). Runs after surfaces (Pass 0) and before bodies
+  // (Pass 1) so every plane_id-carrying primitive resolves through a
+  // transform that is current THIS frame. A state may declare more than one
+  // plane (F1 multi-plane, e.g. an inset) — every one of them registers.
+  for (var pl = 0; pl < scene.length; pl++) {
+    var plPrim = scene[pl];
+    if (plPrim && plPrim.type === 'cartesian_plane') drawCartesianPlane(plPrim);
+  }
+
   // Engine 20 init hook — runs after Pass 0 so PM_surfaceRegistry is current.
   // Triggered by state switch or slider drag; seeds PM_motionState with the
   // correct initial position derived from the (possibly re-oriented) surface.
@@ -4020,6 +4358,7 @@ window.addEventListener('message', function(e) {
     if (isNewState) {
       PM_bodyRegistry = {};
       PM_surfaceRegistry = {};
+      PM_planeRegistry = {};  // CP-A — stale plane transforms don't survive a real state switch
       PM_endpointRegistry = {}; // WP-R5 — stale anchor_to targets don't survive a real state switch
       PM_cueOverrides = {};   // player re-sends SET_CUE_TIME after SET_STATE
       PM_glowOverride = null; // SET_GLOW is per-sentence; a fresh state starts on its authored focal
