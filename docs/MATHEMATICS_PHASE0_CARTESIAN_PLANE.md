@@ -201,7 +201,10 @@ counterintuitive beat `F15`; S7 movable bound b `F12`; S8 A(b) traced as b sweep
 
 **#11 Complex numbers & the Argand plane** — sketched at 7.
 Frame with `equal_scale` `F5`; z as a movable point with a vector from the origin `F11,F12,F7`;
-`arg z` on an `angle_arc` and `|z|` as a label — both existing primitives via F7; multiplication as
+`|z|` as a label via F7; `arg z` on an `angle_arc` — **⚠ NOT via F7 (AMENDMENT 3 — CP-D found this
+claim false):** F7's declared and built scope is `body`/`vector`/`label`/`locus_trace` only;
+`drawAngleArc` carries no `plane_id` support. Wiring it is ledger item 7 below — a scheduled
+decision at #11's build, not an alarm; multiplication as
 rotation + scale = three plot_points bound by expressions `F11`. **Consumes: F1–F7,F11,F12. In the
 set, and it needs no F8 at all** — which is the useful finding: the frame alone carries a whole
 concept.
@@ -484,6 +487,12 @@ declared **now** so that if they are built later it is a scheduled decision, not
    engine out of the business of being a CAS.
 6. **A `panel_b` branch for `graph_interactive`.** Pre-existing, 46 physics concepts, founder call —
    explicitly not smuggled into a mathematics engine build.
+7. **`plane_id` on `angle_arc` (#11, P3 — AMENDMENT 3, found by CP-D).** The 0a sketch of #11
+   claimed `arg z` renders "via F7", but F7's declared and built scope never included `angle_arc`
+   (`drawAngleArc` has no `plane_id` support). Excluded now because no queued concept needs it — #2
+   and #3 use no `angle_arc` inside a plane — and the marginal cost when #11 is scheduled is a small
+   additive wiring into the existing `PM_planeResolve` funnel, same shape as CP-A's four opt-ins.
+   Founder-ruled 2026-08-06: record, do not build.
 
 ---
 
