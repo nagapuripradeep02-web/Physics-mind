@@ -267,7 +267,10 @@ against it. **Nothing new is invented; an existing pattern is instanced.**
   "x_domain": { "min": 0, "max_expr": "b" },  // or {min,max} numbers; defaults to the plane's x_range
   "samples": 240,                      // closed range 40..480; default 240 (§D3)
   "color": "#38BDF8", "stroke_weight": 3, "style": "solid",  // "solid" | "dashed" | "ghost"
-  "appear_at_ms": 0, "animate_in_ms": 0, "focal_id": "parent"
+  "appear_at_ms": 0, "animate_in_ms": 0
+  // (AMENDMENT 3 — CP-B: an earlier draft showed "focal_id" here; no such field
+  // exists anywhere in the renderer. Focal targeting resolves off the
+  // primitive's own "id" matching the state's focal_primitive_id/focal_sequence.)
 }
 
 // F11–F12 — a point, optionally draggable, with a real readout (Rule 33d).
@@ -407,18 +410,25 @@ then asserts a *published* value against independently solved closed forms, whic
 negative-controlled gate is for; it stops reconciling two internal implementations against each
 other.
 
-**D11 scope map (AMENDMENT 2 — Checkpoint A cycle-1 F6; the contract named no target map, which a
-surgeon would otherwise guess at):** the published keys (`sum_var`, `bars_drawn_var`) are written
-into **`PM_physics.derived`** — the ONLY map that survives. Measured against the plumbing
-(@d021338): `PM_interpolate` (@1065) resolves `{S_n}` against `PM_liveExprVars()` (@1054), which
-reads `PM_physics.variables` and `PM_physics.derived` and nothing else; `PM_applyChoreography`
-(@3655) reassigns `PM_physics` every frame; and the dispatcher's echo net (@733–741) re-adds only
-caller-supplied keys — so a value published anywhere else is erased and the label renders the
-literal `{S_n}` (fallback @1080). **Ordering:** within a frame the publisher draws before any
-consumer — `riemann_bars` is a scene-pass primitive, labels are Pass 3 (@3955) — and the CP-C
-dispatch report must assert this pass order. **Fallback:** a `label` reading a published key may
-only be authored in a state whose scene contains the publishing primitive; the no-literal-`{` gate
-catches the authoring defect.
+**D11 scope map (AMENDMENT 3 — CP-C2, 2026-08-06; SUPERSEDES Amendment 2 / Checkpoint A cycle-1
+F6):** the published keys (`sum_var`, `bars_drawn_var`) are written into **`PM_riemannPublish`** —
+a dedicated frame-scoped map declared OUTSIDE `PM_physics`, cleared unconditionally at the top of
+Pass 0.3 every frame, and merged LAST into **both** expression-scope functions (`PM_liveExprVars()`
+AND its byte-identical twin `PM_liveVarsWithDerived()` — both, always: the two exist so text and
+position bindings cannot read two copies that merely happen to agree). **Why F6's ruling did not
+survive:** F6 named `PM_physics.derived`, measured correctly against the plumbing that existed at
+the time — but it predates CP-C1's discovery that the draw pass ITSELF reassigns `PM_physics`
+wholesale mid-frame (`drawPlotPoint`'s genuine-drag branch, `PM_applyChoreography`), which silently
+erases any key published into it earlier that frame and leaves the consuming label rendering the
+literal `{S_n}`. A render-pass output must not live inside an object a different concern owns and
+replaces. Gate section 12 reproduces the erasure mechanically and proves the new target survives it.
+**Ordering:** D12's declared draw order stands (restored by CP-C2 after CP-C1's temporary
+inversion); the publisher (`riemann_bars`, Pass 0.3) runs before any consumer (labels, Pass 3), and
+publication no longer depends on where `plot_point` sits in the pass. **Fallback:** a `label`
+reading a published key may only be authored in a state whose scene contains the publishing
+primitive; the no-literal-`{` gate catches the authoring defect. **The durable rule:** any value a
+primitive publishes for another primitive to read within the same frame goes into a dedicated
+frame-scoped map — never into `PM_physics`.
 
 **D12 · Composition between primitives is declared in the contract, not discovered on screen.**
 (AMENDMENT 1.) Two primitives sharing one interval need three things settled before either is built:
@@ -551,7 +561,7 @@ to work.
 | 11 | **Fleet safety:** every primitive with no `plane_id` produces byte-identical geometry to `HEAD~` | Adding a `plane_id` must change it |
 | **12** | **D11 publication.** The value published to `sum_var` equals the closed form solved independently in this gate, to 1e-12, at n ∈ {4, 8, 100, 1000} × every `mode` × `c` ∈ {0, 1}; `bars_drawn_var` equals `min(n, max_bars_drawn)`. **And a static assertion: no `computePhysics_*` in the renderer re-derives a Riemann sum** | A build where the label reads a recomputed value rather than the published one must fail |
 | **13** | **A4 partition.** `show_partition` emits exactly `n − 1` interior division lines, **including where a rectangle has zero height** — the left rule on `x²` over `[0, 2]` at n = 4 has `f(0) = 0`, so the partition, not the rectangle, is what makes the count readable | n = 4 rendering three countable rectangles must fail |
-| **14** | **D12 composition.** Draw order is `region_fill` before `riemann_bars`; rectangles at `opacity: 1.0` fully occlude the fill beneath them; `signed: true` assigns `color_negative` to every rectangle whose `f(xᵢ) < baseline` and to no other | Reversed order, or a signed set drawn in one colour, must fail |
+| **14** | **D12 composition.** Draw order is `region_fill` before `riemann_bars`; rectangles at `opacity: 1.0` fully occlude the fill beneath them; `signed: true` assigns `color_negative` to every rectangle whose **own net signed contribution (`bar.area`) is negative** and to no other *(AMENDMENT 3 — CP-C2 generalized the draft's `f(xᵢ) < baseline`: identical for `left`/`right`/`midpoint` where area = height × h, and the only well-defined single answer for a `trapezoid` bar whose two edge heights straddle the baseline)* | Reversed order, or a signed set drawn in one colour, must fail |
 | **15** | **A2 inset placement.** For a state declaring two planes: the inset viewport intersects **zero** drawn ink of the parent over the full range of every control the state exposes, and each zoom-link connector has >20 px of visible length outside the inset | An inset overlapping the parent's curve must fail |
 | **16** | **A3 range containment.** For every concept: evaluating the drawn function over the cross-product of all control ranges (bound × offset × parameter) stays inside `y_range` with ≥5 % headroom, and the sampled polyline never exits the frame unless F9 break-on-range-exit is explicitly claimed | A control range driving the curve out of the frame must fail |
 
