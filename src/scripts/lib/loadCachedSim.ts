@@ -69,6 +69,16 @@ export async function loadCachedSim(conceptId: string): Promise<CacheRow> {
  * subject, and the cost of forgetting is not a broken run but a GREEN one: the
  * class above returned "35 checks / 35 passed" over pre-fix pixels twice. Written
  * as a physics-exclusion it is correct for every future subject by construction.
+ *
+ * 2026-08-06: the physics exclusion no longer covers the PARAMETRIC family.
+ * Parametric physics rows are hand-seeded too (_seed_subject_cache /
+ * _seed_pcpl_batch_cache — never the live pipeline), so they were exposed to
+ * the exact stale-cache class this guard exists for, with the exclusion
+ * silently waving them through. The seeder and this gate share
+ * assembleSimFromSource, so a freshly seeded row byte-matches by construction;
+ * a stale row fails loudly with the re-seed instruction below. field_3d /
+ * particle_field physics stay excluded — those CAN carry live-pipeline rows
+ * whose HTML legitimately differs from a bare renderer assembly.
  */
 export function assertCacheMatchesSource(conceptId: string, cachedHtml: string): void {
     let built: ReturnType<typeof assembleSimFromSource>;
@@ -77,7 +87,8 @@ export function assertCacheMatchesSource(conceptId: string, cachedHtml: string):
     } catch {
         return;                       // not assemblable from source — nothing to compare against
     }
-    if (!built || built.subject === 'physics') return;
+    if (!built) return;
+    if (built.subject === 'physics' && built.rendererType !== 'parametric') return;
     if (built.simHtml === cachedHtml) return;
 
     const h = (s: string) => createHash('sha256').update(s).digest('hex').slice(0, 12);
