@@ -673,6 +673,62 @@ copy-paste into the next seven rotmech concepts.
 **Suggested affordance:** allow `tts_sentences: []` when `advance_mode === 'interaction_complete'`.
 **Owner:** office, on master, per Rule 40 — never a chapter-branch edit.
 
+## A-25 · The L arrowhead is wider than it is long — it reads as a lampshade, not an arrow
+
+**Both gates found this independently on the post-E7 walk (2026-08-06) and RATED IT DIFFERENTLY —
+`eye-walker` MAJOR, `quality-auditor` LOW.** Owner `peter_parker:field3d_surgeon`. Referred to
+founder-proxy for the severity call.
+
+The head's radius is 0.279, so it spans **0.558 across against `RBR_L_HEAD_LEN = 0.24` long**. The
+`hl = min(headLen, L*0.40)` shrink only helps *short* vectors; at full length, under the default
+3/4 camera `[2.74, 3.87, 2.74]`, the head projects as a lampshade threaded on a pole rather than as
+an arrowhead. `eye-walker` measured it on `STATE_1__frozen`: **70 px head on a 46 px shaft** — the
+head is wider than the visible shaft is long — with the dark axle continuing ~170 px above the tip,
+so the eye reads a collar rather than an endpoint.
+
+**Why the disagreement is legitimate:** quality-auditor notes S1 uses the arrow as a MAGNITUDE
+indicator by design (direction semantics are taught only at S6), so no taught claim breaks; and the
+same primitive reads correctly under S6's side-on camera. eye-walker notes that "reads as a vector"
+is the whole point of the E7 programme, and that a viewer who cannot see an arrowhead cannot read a
+vector.
+
+**The reference implementation is already in-tree, in this same dump** — S6's arrow renders as
+**60 px head on a 74 px flat-shaded shaft**, a crisp triangle. Same primitive family, one legible
+instance and seven illegible ones. Whoever takes this has a working target to match, not a design
+problem to solve.
+**Suggested prevention rule** (eye-walker's, adopted): any arrow primitive must satisfy
+`head_width ≤ 0.6 × visible_shaft_length` and must not terminate part-way along a longer collinear
+apparatus member.
+
+## A-24 · E7 over-corrected the darkening — the apparatus now sits at 1.37:1 against the background
+
+**Raised by `quality-auditor`, post-E7 audit 2026-08-06. LOW–MEDIUM, NOT blocking (both gates
+agree).** Owner `peter_parker:field3d_surgeon`. **Fleet-wide — inherited by all eight Ch.7
+concepts.**
+
+E7 darkened the apparatus to buy arrow separation. Measured on rendered pixels against the
+`#0A0A1A` background:
+
+| Element | rendered | vs background |
+|---|---|---|
+| axle | `rgb(32,44,50)` | **1.37 : 1** |
+| rod (outboard) | `rgb(44,58,67)` | **1.67 : 1** |
+| drum | `rgb(95,124,137)` | 4.42 : 1 |
+
+Readable on a monitor and in every frame inspected; **thin for a classroom projector**, where a
+lifted black floor will take the axle above the drum and the rod's outboard ends first. The trade
+was over-paid: arrow-vs-axle now measures ~13:1 where separability needs perhaps 6:1, so there is
+ample headroom to lift `RBR_AXLE_COLOR` / `RBR_ROD_COLOR` back up while keeping
+`RBR_SEP_RADIUS_RATIO` / `RBR_SEP_EMISSIVE_RATIO` unchanged.
+**Suggested prevention rule:** structural apparatus must clear 2:1 luminance against the backdrop;
+buy arrow separation by lowering saturation, not luminance headroom.
+
+> **⚠ Numbering note.** `quality-auditor` proposed these two as "A-23" and "A-24". **A-23 was
+> already taken** by eye-walker's CRITICAL S6 finding, filed earlier the same day. They are renumbered
+> here to **A-24** (over-darkening) and **A-25** (arrowhead). This is the second id collision on this
+> desk — see the A-11/A-18 note at the head of A-11. Two agents proposing ids in parallel will keep
+> colliding; ids are assigned HERE, on write, never by the proposer.
+
 ## A-23 · **CRITICAL** · S6's flip is a RESTART, not a rotation — the state's whole claim is a step function
 
 **Raised by `eye-walker` on the post-E7 walk (`20260806-021612`), 2026-08-06.**
