@@ -452,6 +452,88 @@ founder-proxy re-reviews once E-1 lands.
 
 ---
 
+## 2026-08-06 · founder-proxy **Checkpoint B — `FIX`** (cycle 1 of 3). Not sealed.
+
+E1/E4/E5/E7 all verified by this desk (reports in `_engine/findings_a.md`). The gate ran for the
+first time with its precondition met (`quality-auditor` **PASS** + `eye-walker`). The two gates then
+**contradicted each other** on whether S6 teaches its claim, which founder-proxy adjudicated.
+
+### The ruling: A-23 WITHDRAWN — quality-auditor was right
+
+eye-walker read motion off **1 Hz** dense frames on a rotor with a **4.19 s period** — 86° of rod per
+frame on a 2-fold-symmetric rod, which aliases a steady spin into apparent stillness. Its
+prescription ("flip must render as continuous rotation, or L through zero") was also physically
+wrong: for a fixed-axis rotor **L is always ±ẑ**, and L-through-zero needs a torque that Checkpoint
+A's F-2 deliberately removed. **The `bug_class` must not be filed.** What was real in it is refiled,
+narrower and source-verified, as **A-26**.
+
+### THREE P1s — the concept does not seal this cycle
+
+| # | Finding | Owner | Status |
+|---|---|---|---|
+| **B-3** | **The review site served to the gate predated E7 by one engine fix** | *this desk* | ✅ **FIXED** |
+| **B-1** | S4's KE tick caption clips at canvas x=0 — recurrence of the **FIXED** scar `graph_marker_label_clipped`, on the supporting-aha state | `peter_parker:field3d_surgeon` | → Desk E, **blocking** |
+| **B-2** | S6's frozen pin lands on a camera-degenerate rod phase (A-22) | `alex:json_author` | ✅ **FIXED** |
+
+**B-3 was my error and it invalidated the live half of the gate.** I rebuilt the review site
+*before* merging master, so the bundle served to both agents was pre-E7: 82 × `#90A4AE`,
+**zero** `rbrMakeThickVector`. founder-proxy spent five probes chasing what looked like a
+catastrophic regression — "the L arrow is never drawn in live playback" — which was **the pre-E7 sim
+faithfully reproducing the exact A-11/A-16 defects it was convened to verify as fixed.** It caught
+the trap only because the live apparatus was still the old light grey. Rebuilt and verified:
+`rbrMakeThickVector` ×5, `#1F2A30` present, HTTP 200. **Provenance now matters more than any single
+finding — a stale bundle makes the same defect read as both fixed and unfixed.**
+
+### Fixed on this desk this cycle (all verified: tsc 0 · validate 150 PASS / 0 FAIL · 0 collisions)
+
+- **B-2 · S6 camera** `[0.22, 0.80, 5.85]` → `[0.21, 2.02, 5.55]`.
+  **Deliberate deviation from the routing, stated:** founder-proxy said "offset the *azimuth*".
+  Azimuth alone only changes *when* the rod goes edge-on — it dodges the degeneracy at one pin time
+  and returns the moment pacing moves the pin. **Elevation removes it structurally**: 7.78° → 20.0°,
+  so the worst-case end-on mass separation goes **0.217 → 0.547 world units** (drum radius 0.55 for
+  scale). **Distance is preserved exactly** (5.9085, so the apparatus does not shrink — the open
+  scar `authored_camera_leaves_the_apparatus_at_half_the_fleet_linear_scale` is not worsened) and
+  **azimuth is preserved exactly** (x/z 0.03761 → 0.03761, so the side-on character the L arrow
+  needs is intact; the arrow foreshortens only to cos 20° = 0.94 of full length).
+- **B-6 · S4** `gap_hold` focal `rbr_pull_arrow` → `rbr_mass`. The held payoff was glowing the
+  *cause*, and because `F = mω²r` the pull arrows are at MAXIMUM length after the pull-in — two
+  oversized bars dominating the frame whose claim is the KE bar's open gap. (`rbr_ke_bar` is not a
+  valid glow id; `rbr_mass` is the best available.)
+- **B-7 · S7** `held` focal `rbr_drum` → `rbr_l_arrow`. The advanced payoff was glowing inert
+  geometry — the brightest object at the instant the claim is `dL/dt = 0.00` was the drum, which
+  carries no information. The L arrow is the element that visibly does *not* change, which IS the claim.
+- **B-8 · S6** `hand_curl_a.until_ms` 4000 → 3500, removing the only two-focal overlap in the
+  concept (Rule 32e).
+- **B-9 · curriculum_tags** CBSE/NCERT `verified: true` → `false` / `needs_teacher_verification: true`.
+  It was the one cell asserted as fact with **no named verifier** (Rule 38g: tags are claims).
+
+### Ride-along to Desk E (not blocking)
+
+- **A-26 / B-4** — the restart is marked only in chrome while the body glides through it (above).
+- **A-25 / B-5** — the arrowhead is 2.3× wider than long (`_headR = 0.090 × 3.1 = 0.279`, i.e. 0.558
+  across vs `RBR_L_HEAD_LEN = 0.24`). founder-proxy: eye-walker's MAJOR is closer to right than
+  quality-auditor's LOW, and **this is the highest-leverage engine fix in the chapter** — eight
+  rotmech concepts inherit the primitive, and the chapter's subject is vector direction.
+- **A-24** — E7 over-corrected the darkening (axle 1.37:1 vs background).
+
+### ⚠ Carry to Checkpoint C — do NOT seal as satisfied
+
+**A-8 confirmed inexpressible: `min_ring` occurs ZERO times in the shipped JSON.** The ring-gating of
+explore controls that founder-proxy **approved at Checkpoint A** as closing
+`explore_controls_not_ring_gated_survive_the_ring_cut` **is not implemented** — under a `core_only`
+preset the extended-ring "Reverse spin" control survives with S6 hidden. founder-proxy explicitly
+flagged this as contradicting its own Checkpoint A sign-off. Not blocking B (38g keeps presets
+teacher-invisible), but it must reach C marked NOT satisfied.
+
+### Advisory rubric 16/20 (unratified, did not affect the verdict)
+
+Weakest **D3 narration→canvas binding: 33 `tts_sentences` across all 8 states, ZERO carrying any
+glow binding** (exemplars measure 52/52 bound). Emphasis rides authored ms windows instead — which
+founder-proxy identified as the **root cause of B-6, B-7 and B-8**, all three found independently
+before it scored the dimension. That is the single most useful structural note of the cycle.
+
+---
+
 ## STANDING ASSIGNMENT — Desk A is Desk E's rbr verification partner for E4/E5
 
 **Assigned 2026-08-05.** E4 and E5 are **signed torque** and **the θ / α readout rows**.

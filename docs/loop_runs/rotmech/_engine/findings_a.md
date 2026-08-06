@@ -729,7 +729,66 @@ buy arrow separation by lowering saturation, not luminance headroom.
 > desk — see the A-11/A-18 note at the head of A-11. Two agents proposing ids in parallel will keep
 > colliding; ids are assigned HERE, on write, never by the proposer.
 
-## A-23 · **CRITICAL** · S6's flip is a RESTART, not a rotation — the state's whole claim is a step function
+## A-23 · ~~CRITICAL · S6's flip is a RESTART, not a rotation~~ — **WITHDRAWN 2026-08-06 by founder-proxy Checkpoint B**
+
+> ### ⛔ WITHDRAWN. Do NOT file this `bug_class`. Do NOT adopt its prevention rule.
+> `sign_reversal_taught_as_a_step_not_a_visible_rotation` **must not enter the corpus** —
+> founder-proxy: *"Filing it would poison the corpus for every rotation concept in the chapter."*
+>
+> **Why the finding was wrong — the instrument, not the reviewer.** eye-walker read motion off
+> dense frames sampled at **1 Hz** on a rotor with a **4.19 s period** (ω = 1.5 rad/s) — **86° of rod
+> per frame**, on a rod with 2-fold symmetry. At that cadence a steadily spinning rotor is aliased
+> into apparent stillness and its direction is *unrecoverable in principle*. eye-walker's own spec
+> says motion is judged from the drive dump, and **no `.founder_runs` dump existed in this run**, so
+> its instrument could not have returned any other answer. The apparatus does counter-rotate;
+> founder-proxy measured θ on a 100 ms grid: `t=100…4400 θ: 0.15 → 6.60` (+1.5 rad/s), then
+> `t=4500…10000 θ: 6.75 → −1.46` (−1.5 rad/s).
+>
+> **And the prescription was physically wrong.** For a **fixed-axis rotor L is always ±ẑ** — an
+> arrow at an intermediate tilt would be *incorrect*. The rule demanded either L tilting off a fixed
+> axle (unphysical here) or L passing through zero, which **requires an external torque**. The
+> latter is exactly what Checkpoint A's finding **F-2 removed**: a teacher would watch L go
+> 4.59 → 0 → −4.59 two states before the only torque source is introduced, contradicting the
+> concept's atomic claim. **Adopting A-23 would have reintroduced the defect F-2 exists to prevent.**
+>
+> **Lesson for this desk, worth more than the finding:** a 1 Hz sample cannot measure a 0.24 Hz
+> rotation. Before filing a motion defect read off dense frames, check the sampling rate against the
+> period. This is the same class as Desk A's own three retracted colour-mask measurements — *the
+> instrument was wrong for the question*, four times in one day, by three different agents.
+
+### What was REAL in it — filed instead as **A-26** (below), narrower and source-verified
+
+## A-26 · The restart is marked only in chrome while the body glides continuously through it
+
+**founder-proxy's B-4, 2026-08-06. P2, ride-along. Owner `peter_parker:field3d_surgeon`.**
+Source-verified, so it is build-independent (unlike anything read off the stale review bundle):
+
+`rbrSignAt` flips only at `rbrEffTime(1)` = cut + blank = 4500 ms, and **nothing resets θ** —
+`rbrGridWalk` integrates straight through:
+
+```
+θ(4400) = 6.600    θ(4500) = 6.750    θ(4600) = 6.636
+```
+
+θ is **continuous**; only its derivative step-reverses. So **during the 500 ms "restarting" blank the
+rod keeps spinning forward at the old ω, then instantaneously reverses.** The apparatus never stops,
+never re-poses, never blanks. The restart is asserted by a DOM chip, em-dashed digits and narration
+— by text and by the *absence* of numbers — and contradicted by the only thing a student is
+watching. A student sees a wheel reverse with nothing touching it: the uncaused-torque reading,
+delivered as an infinite α instead of a smooth sweep.
+
+**Fixable without touching the physics:** hold θ frozen (or fade the apparatus) across
+`rbrCutTime(k)` → `rbrEffTime(k)`, so the discontinuity is unambiguously a new run. Nothing is
+claimed to happen during the blank, so no torque is implied.
+**Probe:** sample θ across `[cutTime, effTime]`; assert dθ/dt = 0 for the whole blank window.
+
+**founder-proxy's teaching verdict on S6, for the record:** a teacher *would* succeed — but on the
+strength of the grip hand re-curling, the ω sign flipping, and the arrow moving from above the drum
+to below it, with the state looping A→B→A every 6500 ms so they can point back and forth. *"That is
+a real classroom demonstration — it is what you do with a bicycle wheel. It is not 'the simulation
+reset'."*
+
+## ~~A-23 (original text, retained for the record)~~ · S6's flip is a RESTART, not a rotation
 
 **Raised by `eye-walker` on the post-E7 walk (`20260806-021612`), 2026-08-06.**
 `bug_class: sign_reversal_taught_as_a_step_not_a_visible_rotation` · **Owner: `alex:architect`**

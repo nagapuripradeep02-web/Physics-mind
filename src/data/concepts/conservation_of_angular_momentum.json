@@ -158,8 +158,8 @@
         "curriculum": "CBSE/NCERT",
         "coverage": "full",
         "syllabus_unit": "Class 11 Physics Ch.7 System of Particles and Rotational Motion §7.9",
-        "verified": true,
-        "needs_teacher_verification": false
+        "verified": false,
+        "needs_teacher_verification": true
       },
       {
         "curriculum": "JEE Main/Advanced",
@@ -873,7 +873,7 @@
           "phases": [
             { "id": "cause", "at_ms": 2500, "until_ms": 3200, "glow_focal": "rbr_pull_arrow" },
             { "id": "effect", "at_ms": 3200, "until_ms": 5200, "glow_focal": "rbr_mass" },
-            { "id": "gap_hold", "at_ms": 5200, "until_ms": 10000, "glow_focal": "rbr_pull_arrow" }
+            { "id": "gap_hold", "at_ms": 5200, "until_ms": 10000, "glow_focal": "rbr_mass" }
           ]
         }
       },
@@ -924,7 +924,7 @@
       "STATE_6": {
         "label": "L is a vector along the axis",
         "caption": "L points along axis",
-        "camera_position": [0.22, 0.80, 5.85],
+        "camera_position": [0.21, 2.02, 5.55],
         "show_sliders": true,
         "show_l_arrow": true,
         "show_grip_hand": true,
@@ -950,7 +950,7 @@
           "controls_visible": ["spin_dir"],
           "phases": [
             { "id": "l_start", "at_ms": 0, "until_ms": 1200, "glow_focal": "rbr_l_arrow" },
-            { "id": "hand_curl_a", "at_ms": 1200, "until_ms": 4000, "glow_focal": "rbr_grip_hand" },
+            { "id": "hand_curl_a", "at_ms": 1200, "until_ms": 3500, "glow_focal": "rbr_grip_hand" },
             { "id": "l_up_confirm", "at_ms": 3500, "until_ms": 4000, "glow_focal": "rbr_l_arrow" },
             { "id": "hand_curl_b", "at_ms": 4500, "until_ms": 7500, "glow_focal": "rbr_grip_hand" },
             { "id": "l_down_confirm", "at_ms": 7500, "until_ms": 10500, "glow_focal": "rbr_l_arrow" }
@@ -990,7 +990,7 @@
           ],
           "phases": [
             { "id": "replay", "at_ms": 4000, "until_ms": 6000, "glow_focal": "rbr_mass" },
-            { "id": "held", "at_ms": 6000, "until_ms": 11000, "glow_focal": "rbr_drum" }
+            { "id": "held", "at_ms": 6000, "until_ms": 11000, "glow_focal": "rbr_l_arrow" }
           ]
         }
       },
