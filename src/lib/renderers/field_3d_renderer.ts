@@ -51509,6 +51509,68 @@ export const FIELD_3D_RENDERER_CODE = `
         lArrow.position.set(0, 0.22, 0);
         lArrow.userData.elementType = "rbr_l_arrow";
         lArrow.userData.id = "rbr_l_arrow";
+        // ── F-C9 · the L arrow draws THROUGH the drum ──────────────────────
+        //   bug_class rbr_reversed_l_vector_swallowed_by_the_drum_projected_
+        //   silhouette. This is NOT an E7 regression: E7's world-length map is
+        //   exact (slope 0.200000, intercept 1.5e-15 at 7/7 pins across both
+        //   signs) and is untouched. It is a SECOND defect on the same
+        //   primitive, invisible to E7's acceptance because that acceptance
+        //   measured the FAVOURABLE pose. Measured by hide-and-diff at
+        //   |L| = 4.59 on the pre-fix build: sign +1 drew 1494 px of ink in a
+        //   46x69 bbox with 734 px of non-head (shaft) ink; sign -1 drew 720 px
+        //   in a 42x23 bbox with 51 px of shaft ink. 48.2% of the ink and 7% of
+        //   the shaft — at sign -1 only the CONE survived.
+        //
+        //   The cause is the DRUM's projected silhouette, not the anchor (the
+        //   anchor is already sign-mirrored, y = sign*0.22, and is correct).
+        //   The drum is an opaque cylinder of radius RBR_DEF_DRUM_R*W = 0.99
+        //   and half-thickness 0.10; the camera sits at phi 1.16, i.e. 23.5
+        //   degrees ABOVE the rotation plane. A sightline to an on-axis point
+        //   at height y < 0 clears the drum's lower rim only below
+        //   y = -(0.99*tan(23.5 deg) + 0.10) = -0.53, so the upper 0.38 of a
+        //   0.918-long down vector sits inside the disc's silhouette.
+        //
+        //   Why NOT a geometric offset. Ruled out for E7 as clause (d), and
+        //   ruled out again here for a stronger reason: the required clearance
+        //   is a function of the CAMERA ELEVATION, which the teacher orbits. At
+        //   the default 23.5 degrees it is 0.53; at 60 degrees it is 1.81 —
+        //   longer than the whole arrow. No fixed offset survives an orbit.
+        //
+        //   The mechanism is REUSED, not invented (Rule 40a): depthTest off +
+        //   depthWrite off + a high renderOrder is this file's standing answer
+        //   to "an overlay vector disappears into the apparatus it measures"
+        //   (the FIXED row pp_probe_and_sheet_arrows_camouflaged_by_
+        //   translucent_plate_blend, and ~20 call sites — the gauss probe and
+        //   force arrows, the capacitance field-line shafts, the flux cap
+        //   arrows). This arrow's OWN label already renders that way:
+        //   pmCreateAutoLabel -> createLabelSprite sets depthTest:false with
+        //   renderOrder 999. 998 keeps the label above the shaft, exactly as
+        //   every sibling pair in this file is ordered.
+        //
+        //   Why it is safe HERE and still NOT on the pull arrows. E7 kept
+        //   depthTest ON because rbr SPINS, so an always-on-top vector riding a
+        //   mass would invert depth every half turn. That reasoning is intact
+        //   for the PULL arrows and they are UNTOUCHED — they live in the spin
+        //   group and ride the masses. The L arrow is AXIAL and lives in root:
+        //   it never turns, and what swallows it (the drum, plus the axle and
+        //   the R_drum torus) is a solid of revolution about that same axis, so
+        //   its silhouette is invariant under spin. MEASURED over one full
+        //   revolution (12 pins, omega 1.5 rad/s, T = 4188.79 ms) the down-pose
+        //   ink is 716-720 px — a 0.6% spread — and the bbox is 42x23 at every
+        //   pin: the relationship this change touches does NOT alternate. The
+        //   up-pose ink over the same sweep is 1412-1507 (6.3% spread), the rod
+        //   and near mass crossing the shaft twice a turn at theta 2.24 and
+        //   5.39 rad; that ~90 px relationship DOES alternate and this change
+        //   does invert it — a 6% partial overdraw twice a turn traded against
+        //   a 51% loss on every negative-L frame. Recorded, not hidden.
+        //
+        //   Scope: rbrMakeThickVector builds ONE material per call, so the
+        //   material and the two meshes reached here belong to this group
+        //   alone. Nothing else in the scenario is addressable from this site.
+        lArrow.userData._mat.depthTest = false;
+        lArrow.userData._mat.depthWrite = false;
+        lArrow.userData._shaft.renderOrder = 998;
+        lArrow.userData._head.renderOrder = 998;
         root.add(lArrow); rbrRegister(lArrow);
         var lLbl = rbrMakeLabel("L", RBR_POS_COLOR, 0.34);
         lLbl.userData = { elementType: "rbr_l_label", id: "rbr_l_label" };
