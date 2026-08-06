@@ -608,3 +608,52 @@ N1, N3, B-5, B-10, B-11, B-13, B-19 — all routed. No per-state camera patched.
 Checkpoint B HELD on both concepts. Nothing sealed, no `visual:approve`, no platform file touched.
 No EYE run this session — the four fixes are text/config only and the frames cannot be re-verified
 meaningfully until B-5/B-10/B-11 land; a re-walk is owed then.
+
+---
+
+## 2026-08-07 — defect-class sweep at full scope; authoring side CLOSED
+
+Checkpoint B HELD. No EYE run (both concepts blocked on Desk E / architect; frames cannot be
+re-verified meaningfully until B-5/N1/N3 land — a re-walk is owed then).
+
+### The doctrine applied at full scope — and it paid off exactly as predicted
+`src/scripts/_probe_defect_class_sweep.mjs` walks EVERY string field of BOTH concepts against four
+classes at once: world-unit numbers · internal units · engine verbs / ms timings · Rule 41a
+personification. **14 hits → 6, all 6 survivors verified false positives.**
+
+Last session I fixed competitive personification in `aha_moment.statement` only. The same habit was
+alive in **six more fields**: `real_world_anchor.primary`, `epic.S1.scene_composition`, **the SPOKEN
+`tts_sentences[3].text_en`**, `epic.S8.scene_composition`, and TWO `assessment.parallel_form_stem`s
+("are let go together" — 41a bans it by name; "Which one wins the race?"). **Only one was the field
+the original finding named.** Scoped to `label` again, five would have shipped.
+
+Survivors dismissed with reasons so they are not re-chased: "stamp" and "param_ramp" sit in
+`physics_engine_config`, which the renderer **never reads** (grep: no hits); "know" is about a
+student; "like" ×2 is comparison; "lose" is the physical verb in "lose contact".
+
+### N6 RESOLVED on evidence, not preference
+The open disagreement — is `label` narration (Rule 30, expand symbols) or an on-canvas surface
+(Rule 34c, Unicode)? Settled by reading the renderer: `field_3d_renderer.ts:66507` composes
+`stateDef.label` into `legendEl.innerHTML` — the legend overlay **drawn inside the sim** (the
+bottom-left box carrying "Drag to rotate"). The spoken channel is a **separate field**,
+`tts_sentences[].text_en`. **Both rules apply, to different fields; there was never a conflict.**
+Fixed the rendered labels accordingly: `m/s squared`→`m/s²`, `omega`→`ω`, `v0`→`v₀`. ROI S6's label
+restated the formula in words — rewritten to point at the formula surface, which also satisfies
+Rule 34b (one formula surface, never duplicated).
+
+### Ledger written into findings_b.md so the gate reads unambiguously
+**CLOSED (Desk B authoring):** B-8, B-14 (superseded by N5), B-15, B-16, N2, N4, N5, N6, N7
+authoring half, N9, + the sweep.
+**OPEN but blocked on a RULING, not on work:** B-6 (Unicode has no subscript c — recommendation
+recorded: keep `I_cm`, treat 34c as admitting a documented no-glyph exception), B-17 (no preset
+layer exists), and **N8 is subsumed by the B-17 ruling** — a dial you may show is a dial you may
+name, and nothing reduces anything today.
+**ROUTED AWAY:** B-5, N1, N3, B-10, B-11, B-12, B-13, B-19, N7 engine half. **N3 is the architect
+parent of B-13 + B-19 + the open close_camera row — four symptoms, one design rule.** No per-state
+camera patched.
+**B-18 resolved by Desk E** — 88/88 equal hashes on pixel-identical adjacent pairs: within-run
+adjacent comparison sound, never across runs. Dead-scene findings stand, no re-derivation needed.
+
+### Verify
+tsc 0 · validate:concepts 151 PASS / 0 FAIL · both concepts PASS. The gate caught nothing this
+time because the previous session's lesson held: run the gate after every edit, not at the end.

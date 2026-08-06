@@ -1146,6 +1146,127 @@ under B-2.
 
 ---
 
+## 📒 FINDING LEDGER — read this first (2026-08-07)
+
+Every finding this desk has raised, with owner. **Authoring-side is now CLOSED except two doctrine
+questions.** Nothing below is ambiguous about who acts next.
+
+### ✅ CLOSED — Desk B authoring (all fixed and verified)
+
+| # | What | Closed by |
+|---|---|---|
+| B-8 | `s0 = 2.4` backwards on every flat state (0.6 m of runway) | s0 = −2.4, 9 bodies |
+| B-14 | `μ_k` glyph | **superseded by N5** — the engine default was already right; the concept was overriding it. Key deleted |
+| B-15 | design table rendered as narration in 8 states | 8 rewrites, 39–43 words |
+| B-16 | `"v equals R omega"` caption | → `"v = Rω"`, caption + delta_cue |
+| N2 | **narration quoted world-unit lengths as speeds** on the PRIMARY aha state | 4 strings; `0.55→0.60`, `1.84→2.00`, `0.92→1.00` |
+| N4 | all 7 assessment answers keyed "A" | re-keyed `C A D B A C B` with a text↔misconception identity assertion |
+| N5 | `μ_k` label overriding a correct engine glyph | key deleted |
+| N6 | **doctrine: is `label` narration or an on-canvas surface?** | **RESOLVED on evidence — see below** |
+| N7 (authoring half) | S5 was the only state with no `readouts` | `["v","omega","Romega"]` added |
+| N9 | Rule 41a register in rendered strings | "sit equal", "as the numbers dictate" fixed |
+| — | **four-class defect sweep, all fields, both concepts** | **CLEAN** — see below |
+
+### ⏳ OPEN — Desk B, but BLOCKED ON A RULING (cannot be closed by authoring)
+
+- **B-6 — `I_cm` and Rule 34c.** Unicode has **no subscript c** (the subscript block runs
+  ₐ ₑ ₒ ₓ ₕ ₖ ₗ ₘ ₙ ₚ ₛ ₜ — U+1D9C is a *modifier* letter, not a subscript), so 34c cannot be
+  literally satisfied. Options: keep `I_cm` (standard physics ASCII), write `Icm`, or drop to a
+  bare `I`. **Recommendation: keep `I_cm` and record 34c as admitting a documented no-glyph
+  exception** — every alternative is either non-standard or loses the "about the centre of mass"
+  precision that matters for a rolling body. Awaiting a one-line ruling; nothing to build.
+- **B-17 — the preset layer does not exist.** First half applied (controls kept). Second half
+  ("hide the rows in reduced presets") cannot be: no `presets` field in the schema, zero concepts
+  author one, no code reads `depth_ring`. Not fabricating a shape nothing consumes.
+- **N8 — subsumed by the B-17 ruling, not independently open.** S8's narration names "starting
+  spin" and "friction", first taught in S7 [advanced]. But the B-17 ruling keeps those controls in
+  the explore state, and a dial you may show is a dial you may name. **Coherent today**, because no
+  preset layer exists to reduce anything. It becomes live only if/when presets land, at which point
+  the narration must be preset-aware. Tracked as a dependency of B-17.
+
+### 🚚 ROUTED AWAY — not Desk B's to fix, listed so the gate reads unambiguously
+
+| # | What | Owner |
+|---|---|---|
+| **B-5** | `single_lane: true` → zero body meshes (2 of 74 states, both this desk's) | `peter_parker:field3d_surgeon` — 2nd in queue behind B-1 |
+| **N1** | 13 of 15 glow windows unreachable; they DIM the whole overlay layer | `peter_parker:field3d_surgeon` |
+| **N3** | framed extent = run length for a 0.5 m body → wheel 15–30 px | **`alex:architect`** — the PARENT of B-13, B-19 and the open `close_camera_framed_extent` row: **four symptoms, one design rule** |
+| B-10 | radius write destroys the revolution marks + 2πR bracket | `peter_parker:field3d_surgeon` |
+| B-11 | frozen frame is a hybrid (clock rewinds, DOM reveals do not) | platform / visual tooling |
+| B-12 | friction subscript from held-state, not active branch | `peter_parker:field3d_surgeon` |
+| B-13 | `point_arrows` label collision (incl. the PRIMARY aha state) | `peter_parker:field3d_surgeon` — **symptom of N3** |
+| B-19 | S1's 2πR bracket illegible at ~10–14 px | `alex:architect` — **symptom of N3** |
+| N7 (engine half) | point labels print `Math.abs(pv)`, so S5's top and bottom both read 1.00 m/s | `peter_parker:field3d_surgeon` |
+| **B-18** | md5 method | **RESOLVED by Desk E**: 88/88 equal hashes on pixel-identical adjacent pairs — within-run adjacent comparison is sound, **never across runs**. Dead-scene findings need no re-derivation |
+
+**No per-state camera has been patched, and none should be** — that is N3's fix, and doing it
+per-state would paper over the parent rule in four places.
+
+---
+
+## ✅ N6 RESOLVED ON EVIDENCE — `label` is an ON-CANVAS surface, so Rule 34c governs it
+
+The disagreement was: the auditor read `label` as a rendered surface (⇒ Rule 34c Unicode); this
+desk had filed the opposite (⇒ it IS the narration, where Rule 30 *requires* bare symbols expanded
+to spoken names). Two defensible readings giving opposite instructions — settled by reading the
+renderer rather than by preference:
+
+```js
+// field_3d_renderer.ts:66507
+lines.push("<b>" + (stateDef.label || PM_currentState) + "</b>");   // → legendEl.innerHTML
+```
+
+`label` is composed into the **legend overlay drawn inside the sim** (the bottom-left box that also
+carries "Drag to rotate • Scroll to zoom" — visible in every captured frame). It is not the spoken
+channel: `teacher_script.tts_sentences[].text_en` is, and it is a **separate field**.
+
+**So both rules apply, to different fields, and there was never a real conflict:**
+- `label` → on-canvas → **Rule 34c, Unicode math**.
+- `tts_sentences[].text_en` → spoken → **Rule 30, expand bare symbols to spoken names**.
+
+Fixed accordingly in the rendered labels: `1.96 m/s squared` → `1.96 m/s²` · `omega = 4.0 rad/s`
+→ `ω = 4.0 rad/s` · `launches at v0 … spins omega up` → `launches at v₀ … spins ω up`.
+`rolling_on_incline` S6's label restated the formula in words ("g times sine theta, divided by one
+plus k") — rewritten to point at the formula surface instead, which also satisfies **Rule 34b**
+(one formula surface per state, never duplicated).
+
+---
+
+## ✅ DEFECT-CLASS SWEEP — all fields, both concepts, four classes at once (2026-08-07)
+
+The doctrine this desk derived last session, applied at full scope: *a register defect from one
+authoring habit appears in every field that habit touched — audit by DEFECT CLASS across all
+fields, not by the field the finding happens to name.*
+
+`src/scripts/_probe_defect_class_sweep.mjs` walks **every string field** of both concepts against
+world-unit numbers · internal units · engine verbs / ms timings · Rule 41a personification.
+
+**14 hits → 6, and all 6 survivors are verified false positives.**
+
+**The doctrine paid off exactly as predicted.** The habit `pure_rolling` and `rolling_on_incline`
+share is competitive personification, and last session I fixed it in `aha_moment.statement` only:
+
+| the same habit | field |
+|---|---|
+| "a food can **beats** a roll of tape" | `real_world_anchor.primary` |
+| ditto | `epic.STATE_1.scene_composition[2].text` |
+| ditto | **`tts_sentences[3].text_en` — the SPOKEN channel** |
+| "watch who **wins**" | `epic.STATE_8.scene_composition[1].text` |
+| "are **let go** together" (41a bans it by name) | `assessment.questions[0].parallel_form_stem` |
+| "Which one **wins the race**?" | `assessment.questions[3].parallel_form_stem` |
+
+**Six fields, one habit — and only one of them was the field the original finding named.** All
+fixed. Had the sweep been scoped to `label` again, five would have shipped.
+
+**The 6 survivors, checked and dismissed with reasons** (recorded so they are not re-chased):
+`"stamp"` in `physics_engine_config.constraints[5]` and `"param_ramp"` in `variables.mu_s.name` are
+internal physics documentation — and `physics_engine_config` is **never read by the renderer**
+(grep: no hits), so neither is reader-facing. `"know"` is about a *student* ("Does not know rolling
+ties…"), `"like"` ×2 is comparison ("behaves like sliding contact"), and `"lose"` is the physical
+verb in "lose contact-static friction". None is personification.
+
+---
+
 ## SESSION 2026-08-06b — N4/N7 landed, N2 audit extended to the sibling
 
 **Sync status, checked rather than assumed:** this desk is **0 behind** `origin/master` (994bb8f),

@@ -697,7 +697,7 @@
     },
     "states": {
       "STATE_1": {
-        "label": "The wheel rolls at v = 0.90 m/s; each completed turn advances it exactly one circumference, 2πR = 1.57 m; v and Rω sit equal",
+        "label": "The wheel rolls at v = 0.90 m/s; each completed turn advances it exactly one circumference, 2πR = 1.57 m, so v and Rω are equal",
         "visible_elements": [],
         "camera_position": [3.0, 3.4, 10.5],
         "caption": "One turn, one circumference",
@@ -746,7 +746,7 @@
         }
       },
       "STATE_3": {
-        "label": "A locked wheel skids in at 2.0 m/s, slows at 1.96 m/s squared and stops, leaving a mark; the same wheel then rolls across at a steady 2.0 m/s with no mark and f = 0.00 N",
+        "label": "A locked wheel skids in at 2.0 m/s, slows at 1.96 m/s² and stops, leaving a mark; the same wheel then rolls across at a steady 2.0 m/s with no mark and f = 0.00 N",
         "visible_elements": [],
         "camera_position": [3.0, 3.6, 10.0],
         "caption": "Skid slows; roll does not",
@@ -793,7 +793,7 @@
         }
       },
       "STATE_5": {
-        "label": "The wheel spins on the spot at omega = 4.0 rad/s: the top of the rim moves forward, the bottom moves backward equally fast, and the centre stays at rest",
+        "label": "The wheel spins on the spot at ω = 4.0 rad/s: the top of the rim moves forward, the bottom moves backward equally fast, and the centre stays at rest",
         "visible_elements": [],
         "camera_position": [2.4, 3.0, 8.0],
         "caption": "Rim turns, centre stays",
@@ -844,7 +844,7 @@
         }
       },
       "STATE_7": {
-        "label": "The wheel launches at v0 with no spin: kinetic friction slows v and spins omega up until they meet at capture, then it rolls with f = 0.00 N",
+        "label": "The wheel launches at v₀ with no spin: kinetic friction slows v and spins ω up until they meet at capture, then it rolls with f = 0.00 N",
         "visible_elements": [],
         "camera_position": [1.0, 3.4, 10.0],
         "caption": "Sliding becomes rolling",
@@ -864,7 +864,7 @@
         }
       },
       "STATE_8": {
-        "label": "Explore: change speed, radius, starting spin and friction — the wheel rolls or slides as the numbers dictate",
+        "label": "Explore: change speed, radius, starting spin and friction — the wheel rolls or slides according to the values you set",
         "visible_elements": [],
         "camera_position": [2.0, 3.4, 10.0],
         "caption": "All controls live",

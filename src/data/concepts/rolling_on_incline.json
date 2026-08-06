@@ -28,7 +28,7 @@
   },
 
   "real_world_anchor": {
-    "primary": "Try it at home: a food can beats a roll of tape.",
+    "primary": "Try it at home: a food can reaches the bottom before a roll of tape.",
     "secondary": "A bicycle wheel on a sloped path — the same wheel that rolls flat in Pure Rolling, now on a ramp."
   },
 
@@ -122,14 +122,14 @@
         "scene_composition": [
           { "type": "annotation", "id": "roi_s1_head", "position": { "x": 380, "y": 60 }, "text": "Four different shapes start together on the same ramp", "color": "#FFF176" },
           { "type": "annotation", "id": "roi_s1_main", "position": { "x": 200, "y": 250 }, "text": "every time, they finish in the same order: solid sphere, disc, hollow sphere, ring", "color": "#66BB6A" },
-          { "type": "annotation", "id": "roi_s1_anchor", "position": { "x": 560, "y": 400 }, "text": "try it at home: a food can beats a roll of tape", "color": "#4DD0E1" }
+          { "type": "annotation", "id": "roi_s1_anchor", "position": { "x": 560, "y": 400 }, "text": "try it at home: a food can reaches the bottom before a roll of tape", "color": "#4DD0E1" }
         ],
         "teacher_script": {
           "tts_sentences": [
             { "id": "s1_1", "text_en": "Four different shapes start together on the same ramp." },
             { "id": "s1_2", "text_en": "Every time, they finish in the same order: solid sphere, disc, hollow sphere, ring." },
             { "id": "s1_3", "text_en": "The order never changes, no matter how many times we run it." },
-            { "id": "s1_4", "text_en": "Try it at home: a food can beats a roll of tape." }
+            { "id": "s1_4", "text_en": "Try it at home: a food can reaches the bottom before a roll of tape." }
           ]
         }
       },
@@ -309,7 +309,7 @@
         "depth_ring": "core",
         "scene_composition": [
           { "type": "annotation", "id": "roi_s8_head", "position": { "x": 380, "y": 60 }, "text": "Change the values yourself and watch the race", "color": "#FFF176" },
-          { "type": "annotation", "id": "roi_s8_main", "position": { "x": 380, "y": 250 }, "text": "drag mass, incline angle and friction - watch who wins", "color": "#66BB6A" },
+          { "type": "annotation", "id": "roi_s8_main", "position": { "x": 380, "y": 250 }, "text": "drag mass, incline angle and friction - watch the order they finish in", "color": "#66BB6A" },
           { "type": "annotation", "id": "roi_s8_anchor", "position": { "x": 380, "y": 440 }, "text": "a = g sin theta over (1 + k)", "color": "#D4D4D8" }
         ],
         "teacher_script": {
@@ -403,7 +403,7 @@
         "tested_idea": "shape factor decides a fixed finish order",
         "teaches_state": "STATE_1",
         "difficulty": "core",
-        "parallel_form_stem": "A solid ball, a disc, a hollow ball, and a ring are let go together down the same slope. What decides which reaches the bottom first?"
+        "parallel_form_stem": "A solid ball, a disc, a hollow ball, and a ring are released together down the same slope. What determines which reaches the bottom first?"
       },
       {
         "q_id": "roi_q2",
@@ -463,7 +463,7 @@
         "tested_idea": "mass and radius cancel for a fixed shape",
         "teaches_state": "STATE_4",
         "difficulty": "core",
-        "parallel_form_stem": "A large heavy disc and a small light disc, both uniform discs, are released together on the same slope. Which one wins the race?"
+        "parallel_form_stem": "A large heavy disc and a small light disc, both uniform discs, are released together on the same slope. Which one reaches the bottom first?"
       },
       {
         "q_id": "roi_q5",
@@ -693,7 +693,7 @@
         }
       },
       "STATE_6": {
-        "label": "The disc is held still, because friction balances the pull of gravity along the slope. When it is released, the turning equation and Newton's second law combine into a single result: the acceleration is g times sine theta, divided by one plus k.",
+        "label": "The disc is held still, because friction balances the pull of gravity along the slope. When it is released, the turning equation and Newton's second law combine into the single formula for acceleration shown beside it.",
         "visible_elements": [],
         "camera_position": [1.2, 3.0, 8.0],
         "caption": "One formula ranks all",
