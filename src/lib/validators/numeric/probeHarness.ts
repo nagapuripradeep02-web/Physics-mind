@@ -94,6 +94,71 @@ export interface SliderInfo {
     value: number;
 }
 
+/**
+ * Parametric (PCPL) sliders are DRAWN ON THE CANVAS — no DOM handle exists, so
+ * the input[type=range] scan above finds zero sliders on every parametric sim
+ * and N3 silently no-ops. The renderer exports read-only geometry per drawn
+ * slider on window.__PM_sliderGeom (design-space 760x500 coords, stamped with
+ * frameCount so entries left over from a previous state are distinguishable).
+ */
+const CANVAS_SLIDER_SCAN = `(function () {
+  var g = window.__PM_sliderGeom || {};
+  var fc = (typeof frameCount === 'number') ? frameCount : null;
+  var out = [];
+  for (var k in g) {
+    if (!Object.prototype.hasOwnProperty.call(g, k)) continue;
+    var e = g[k];
+    out.push({ variable: k, id: e.id, x: e.x, y: e.y, w: e.w, min: e.min, max: e.max,
+               value: e.value, fresh: fc == null ? true : (fc - e.f) < 3 });
+  }
+  return out;
+})()`;
+
+interface CanvasSliderGeom {
+    variable: string;
+    id: string;
+    x: number;
+    y: number;
+    w: number;
+    min: number;
+    max: number;
+    value: number;
+    fresh: boolean;
+}
+
+async function scanCanvasSliders(page: Page): Promise<CanvasSliderGeom[]> {
+    return (await page.evaluate(CANVAS_SLIDER_SCAN).catch(() => [])) as CanvasSliderGeom[];
+}
+
+/**
+ * Drive a canvas slider with a real (trusted) mouse gesture. The renderer's
+ * drag hit-test accepts a press anywhere on the track (±8px x, ±18px y), so
+ * pressing at the target fraction IS the teacher's gesture. Design-space →
+ * page coords via the canvas bounding box against the fixed 760x500 design
+ * canvas (p5 maps mouse coords back to design space under CSS scaling).
+ */
+async function dragCanvasSlider(
+    page: Page,
+    geom: Pick<CanvasSliderGeom, 'x' | 'y' | 'w'>,
+    targetFrac: number,
+): Promise<void> {
+    const rect = await page.evaluate(() => {
+        const c = document.querySelector('canvas');
+        if (!c) return null;
+        const r = c.getBoundingClientRect();
+        return { left: r.left, top: r.top, width: r.width, height: r.height };
+    });
+    if (!rect) throw new Error('no <canvas> element to drag on');
+    const sx = rect.width / 760;
+    const sy = rect.height / 500;
+    const x = rect.left + (geom.x + targetFrac * geom.w) * sx;
+    const y = rect.top + geom.y * sy;
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x + 2, y); // a real drag gesture, not a bare click
+    await page.mouse.up();
+}
+
 export interface StateHarvest {
     stateId: string;
     reached: boolean;
@@ -356,6 +421,37 @@ export async function probeConcept(opts: ProbeOptions): Promise<ProbeResult> {
                 // Restore the authored default so the next slider is swept from
                 // the state's real pose, not from the previous sweep's endpoint.
                 await page.locator(sliderSelector(s.id)).fill(String(s.value)).catch(() => { });
+            }
+
+            // N3 for parametric: canvas-drawn sliders (no DOM handle). Freshly
+            // drawn geometry only — stale entries belong to a previous state.
+            if (assembled.rendererType === 'parametric') {
+                const canvasSliders = (await scanCanvasSliders(page)).filter((g) => g.fresh);
+                for (const g of canvasSliders) {
+                    if (!isFinite(g.min) || !isFinite(g.max) || g.max <= g.min) continue;
+                    const span = g.max - g.min;
+                    const lowValue = g.min + span * 0.25;
+                    const highValue = g.min + span * 0.75;
+                    const sliderInfo: SliderInfo = {
+                        id: g.id, name: g.variable, label: `${g.variable} (canvas)`,
+                        visible: true, min: g.min, max: g.max, step: NaN, value: g.value,
+                    };
+                    try {
+                        await dragCanvasSlider(page, g, 0.25);
+                        const lowReadings = await harvestStable(page, keep, h.warnings, `canvas-slider ${g.variable}@25%`);
+                        await dragCanvasSlider(page, g, 0.75);
+                        const highReadings = await harvestStable(page, keep, h.warnings, `canvas-slider ${g.variable}@75%`);
+                        sweeps.push({ stateId, slider: sliderInfo, lowValue, highValue, lowReadings, highReadings });
+                    } catch (err: unknown) {
+                        h.warnings.push(`canvas-slider ${g.variable}: ${err instanceof Error ? err.message : String(err)}`);
+                    }
+                    // Restore the authored value through the sim's own supported
+                    // input channel (PARAM_UPDATE), mirroring the DOM restore.
+                    await page.evaluate(
+                        ([k, v]) => { window.postMessage({ type: 'PARAM_UPDATE', key: k, value: v }, '*'); },
+                        [g.variable, g.value] as [string, number],
+                    ).catch(() => { });
+                }
             }
         }
 

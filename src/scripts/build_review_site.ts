@@ -33,8 +33,9 @@ import {
     assembleParticleFieldHtml,
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
-import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { assembleParametricHtml } from '@/lib/renderers/parametric_renderer';
 import { resolveConceptJsonPath } from './lib/resolveConceptJson';
+import { buildParametricConfig, type ParametricSourceJson } from './lib/buildParametricConfig';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -88,17 +89,14 @@ type ConceptJson = {
                 advance_mode?: string;
                 duration?: number;
                 teacher_script?: { tts_sentences?: TtsSentenceJson[] };
-                // PCPL-only fields (ignored by the field_3d/particle_field branches).
-                scene_composition?: unknown[];
-                focal_primitive_id?: string;
-                focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
-                // This local shape omitted variable_choreography, so the field the
-                // renderer needs could not even be REFERENCED here — the omission
-                // in buildParametricConfig below was invisible to the type checker
-                // as well as to every runtime gate. A hand-maintained structural
-                // type that is narrower than the data it describes hides exactly
-                // the bug it looks like it would catch.
-                variable_choreography?: unknown[];
+                // PCPL-only fields (scene_composition, focal_*, variable_choreography,
+                // variable_overrides, …) are deliberately NOT declared here: the sim
+                // config is assembled by the SHARED buildParametricConfig (whole-state
+                // passthrough), so this narration-only type can no longer silently
+                // filter what reaches the renderer. This file once kept a private
+                // assembler whose hand-picked projection shipped dead choreography to
+                // the teacher surface while every gate passed (engine_bug_queue:
+                // review_site_private_config_assembler_drops_variable_choreography).
             }
         >;
     };
@@ -311,64 +309,6 @@ function loadConcept(conceptId: string): ConceptJson {
         );
     }
     return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
-}
-
-// ── PCPL (mechanics_2d) adapter ───────────────────────────────────────────────
-// assembleParametricHtml() takes a ParametricConfig, not the concept JSON's own
-// physics_engine_config/epic_l_path shapes — those are the authored source; this
-// is the runtime shape the renderer template consumes (mirrors the ad-hoc
-// buildConfigForState() in src/app/admin/test-scalar-vs-vector/page.tsx, but
-// assembles EVERY state into ONE config so a single sim.html can switch between
-// them via SET_STATE — same contract as the field_3d/particle_field branches —
-// instead of one throwaway srcDoc iframe per state as that admin scratch page does).
-function buildParametricConfig(conceptId: string, json: ConceptJson): ParametricConfig {
-    const declaredVars = json.physics_engine_config?.variables ?? {};
-    const default_variables: Record<string, number> = {};
-    for (const [name, spec] of Object.entries(declaredVars)) {
-        if (typeof spec.default === 'number') default_variables[name] = spec.default;
-        else if (typeof spec.constant === 'number') default_variables[name] = spec.constant;
-    }
-    const epicStates = json.epic_l_path?.states ?? {};
-    const stateIds = Object.keys(epicStates).sort((a, b) => stateNumber(a) - stateNumber(b));
-    const states: NonNullable<ParametricConfig['states']> = {};
-    for (const id of stateIds) {
-        const st = epicStates[id];
-        states[id] = {
-            scene_composition: st.scene_composition ?? [],
-            ...(st.focal_primitive_id ? { focal_primitive_id: st.focal_primitive_id } : {}),
-            ...(st.focal_sequence ? { focal_sequence: st.focal_sequence } : {}),
-            // WP-R5 variable_choreography — MUST be carried. Without it
-            // PM_applyChoreography() (parametric_renderer.ts:3530) returns on its
-            // first guard every frame, PM_choreoValues stays empty, and every
-            // choreographed variable is pinned at its default for the life of the
-            // state: the marker never moves, the pen never travels, the readout
-            // never counts. The clock still runs and the player's own subtitle
-            // timeline still advances, so the page looks alive while the physics
-            // is dead — which is exactly how this survived.
-            //
-            // THE EYE never saw it. The cache path assembles through the SHARED
-            // src/scripts/lib/buildParametricConfig.ts, which passes whole state
-            // objects through (`states: states as ...`) and therefore carries the
-            // field; this file kept a private duplicate that hand-picks fields, so
-            // the two assemblers disagreed and only the teacher-facing one was
-            // wrong. Found by the founder pressing Play, not by any gate.
-            //
-            // The renderer reads exactly four per-state fields — scene_composition,
-            // focal_primitive_id, focal_sequence, variable_choreography. Keep this
-            // projection equal to that set, or delete it in favour of the shared
-            // assembler (engine_bug_queue:
-            // review_site_private_config_assembler_drops_variable_choreography).
-            ...(st.variable_choreography ? { variable_choreography: st.variable_choreography } : {}),
-        };
-    }
-    const firstStateId = stateIds[0];
-    return {
-        concept_id: conceptId,
-        scene_composition: firstStateId ? epicStates[firstStateId].scene_composition ?? [] : [],
-        states,
-        default_variables,
-        current_state: firstStateId,
-    };
 }
 
 function extractStates(
@@ -3670,7 +3610,7 @@ function buildOne(conceptId: string): void {
             ? assembleField3DHtml(json.field_3d_config, json.epic_l_path as never)
             : json.particle_field_config
                 ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
-                : assembleParametricHtml(buildParametricConfig(conceptId, json)),
+                : assembleParametricHtml(buildParametricConfig(conceptId, json as ParametricSourceJson)),
     );
     writeFileSync(join(conceptDir, 'sim.html'), simHtml, 'utf-8');
 

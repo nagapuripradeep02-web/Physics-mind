@@ -21,6 +21,7 @@ import { spawnSync } from 'child_process';
 import { validateConceptJson } from '../schemas/conceptJson';
 import { validatePCPLSubSimStates } from '../lib/pcplPhysicsValidator';
 import { resolveRendererType } from './lib/rendererLookup';
+import { checkConceptChoreography, type ChoreoWarning } from './lib/conceptGates';
 import {
   ANIMATION_TYPES,
   ANIMATE_IN_KINDS,
@@ -754,139 +755,11 @@ function checkConceptAnimations(data: unknown): AnimWarning[] {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Gate 9 — WP-R5 choreography primitives (variable_choreography + anchor_to).
-// (a) anchor_to.primitive_id must name a primitive that exists AND is
-//     authored EARLIER in the same state's scene_composition array —
-//     PM_endpointRegistry (parametric_renderer.ts) only holds entries the
-//     current draw() pass has already registered, in array order, so a
-//     forward reference silently chains onto a stale/missing endpoint at
-//     runtime. FATAL.
-// (b) variable_choreography[].variable must be declared in
-//     physics_engine_config.variables — an undeclared variable still
-//     "moves" inside the renderer's PM_choreoValues cache but
-//     computePhysics() never receives it, so nothing downstream reacts.
-//     FATAL.
-// (c) variable_choreography[].seizable:true needs a type:'slider' primitive
-//     for the SAME variable somewhere in the state's scene_composition —
-//     otherwise a teacher can never actually take the sweep over (a dead
-//     flag, not a broken render). WARN, not fatal.
-// ─────────────────────────────────────────────────────────────────────────────
-
-interface ChoreoWarning { path: string; message: string; fatal: boolean }
-
-function declaredPhysicsVariableNames(data: unknown): Set<string> {
-  const out = new Set<string>();
-  if (!data || typeof data !== 'object') return out;
-  const cfg = (data as { physics_engine_config?: unknown }).physics_engine_config;
-  if (!cfg || typeof cfg !== 'object') return out;
-  const vars = (cfg as { variables?: unknown }).variables;
-  if (!vars || typeof vars !== 'object') return out;
-  for (const name of Object.keys(vars as Record<string, unknown>)) out.add(name);
-  return out;
-}
-
-function checkStateChoreography(
-  stateId: string,
-  state: unknown,
-  pathPrefix: string,
-  declaredVars: Set<string>,
-): ChoreoWarning[] {
-  if (!state || typeof state !== 'object') return [];
-  const s = state as Record<string, unknown>;
-  const scene = s.scene_composition;
-  const out: ChoreoWarning[] = [];
-
-  // (a) anchor_to — walk scene_composition in authored array order, exactly
-  // matching PM_endpointRegistry's runtime fill order. Also collects the
-  // state's slider variables in the same pass for check (c) below.
-  const sliderVars = new Set<string>();
-  if (Array.isArray(scene)) {
-    const allIds = new Set<string>();
-    for (const prim of scene) {
-      const p = prim as { id?: unknown; type?: unknown; variable?: unknown } | null;
-      if (typeof p?.id === 'string') allIds.add(p.id);
-      if (p && p.type === 'slider' && typeof p.variable === 'string') sliderVars.add(p.variable);
-    }
-    const seenIds = new Set<string>();
-    scene.forEach((prim, idx) => {
-      if (!prim || typeof prim !== 'object') return;
-      const p = prim as Record<string, unknown>;
-      const anchorTo = p.anchor_to as { primitive_id?: unknown } | undefined;
-      if (anchorTo && typeof anchorTo === 'object' && typeof anchorTo.primitive_id === 'string') {
-        const targetId = anchorTo.primitive_id;
-        const label = typeof p.id === 'string' ? p.id : idx;
-        const where = `${pathPrefix}.${stateId}.scene_composition[${label}]`;
-        if (!allIds.has(targetId)) {
-          out.push({
-            path: where,
-            fatal: true,
-            message: `anchor_to_missing_target primitive_id='${targetId}' not found anywhere in this state's scene_composition`,
-          });
-        } else if (!seenIds.has(targetId)) {
-          out.push({
-            path: where,
-            fatal: true,
-            message: `anchor_to_forward_reference primitive_id='${targetId}' is authored AFTER this primitive — PM_endpointRegistry fills in array order, so this arrow/arc will chain onto a stale or missing endpoint. Move '${targetId}' earlier in scene_composition.`,
-          });
-        }
-      }
-      if (typeof p.id === 'string') seenIds.add(p.id);
-    });
-  }
-
-  // (b) + (c) variable_choreography.
-  const choreo = s.variable_choreography;
-  if (Array.isArray(choreo)) {
-    choreo.forEach((entry, idx) => {
-      if (!entry || typeof entry !== 'object') return;
-      const c = entry as Record<string, unknown>;
-      if (typeof c.variable !== 'string') return; // Zod already requires this; defend anyway
-      const variable = c.variable;
-      const where = `${pathPrefix}.${stateId}.variable_choreography[${idx}]`;
-      if (!declaredVars.has(variable)) {
-        out.push({
-          path: where,
-          fatal: true,
-          message: `choreography_variable_undeclared variable='${variable}' not found in physics_engine_config.variables — computePhysics() will never see this choreographed value`,
-        });
-      }
-      if (c.seizable === true && !sliderVars.has(variable)) {
-        out.push({
-          path: where,
-          fatal: false,
-          message: `choreography_seizable_without_slider variable='${variable}' is seizable but no type:'slider' primitive for it exists in this state — a teacher can never seize it`,
-        });
-      }
-    });
-  }
-
-  return out;
-}
-
-function checkConceptChoreography(data: unknown): ChoreoWarning[] {
-  if (!data || typeof data !== 'object') return [];
-  const obj = data as Record<string, unknown>;
-  const declaredVars = declaredPhysicsVariableNames(data);
-  const out: ChoreoWarning[] = [];
-
-  const walk = (states: Record<string, unknown>, pathPrefix: string): void => {
-    for (const [stateId, state] of Object.entries(states)) {
-      out.push(...checkStateChoreography(stateId, state, pathPrefix, declaredVars));
-    }
-  };
-
-  const epicL = obj.epic_l_path as { states?: Record<string, unknown> } | undefined;
-  if (epicL?.states) walk(epicL.states, 'epic_l_path.states');
-
-  const branches = obj.epic_c_branches;
-  if (Array.isArray(branches)) {
-    branches.forEach((branch, i) => {
-      const b = branch as { states?: Record<string, unknown> } | undefined;
-      if (b?.states) walk(b.states, `epic_c_branches[${i}].states`);
-    });
-  }
-  return out;
-}
+// Gate 9 — WP-R5 choreography primitives (variable_choreography + anchor_to +
+// locus_trace sweep collision). MOVED to ./lib/conceptGates.ts on 2026-08-06 so
+// validate-mathematics.ts runs the same checks — they were private to this file,
+// which meant subject-namespace concepts never ran ANY choreography gate
+// (engine_bug_queue: subject_namespace_concepts_are_invisible_to_flat_scanning_tools).
 
 /**
  * Classifies a parsed JSON into one of four tiers.
