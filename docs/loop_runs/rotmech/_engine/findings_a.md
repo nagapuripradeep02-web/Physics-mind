@@ -1098,3 +1098,103 @@ rendered text differs between the two. Today it is byte-identical.
 
 **Owner:** `peter_parker:field3d_surgeon` (Desk E, `feat/rotmech-0c3`).
 **Blocks:** Desk A Checkpoint B on `conservation_of_angular_momentum` (S3 + S7).
+
+---
+
+## A-28 (revised) · `W` and ΔKE disagree by ONE display quantum at the full stop
+
+**Raised by `alex:architect` as CRITICAL/blocking during the `rotational_work_energy` 0b design pass
+(2026-08-07). RE-MEASURED BY DESK A ON THE REAL ENGINE AND DOWNGRADED to MODERATE, narrow.**
+Owner `peter_parker:field3d_surgeon`. Probe: `src/scripts/_scratch_rbr_a28_probe.ts`.
+
+**The original claim:** `rbrGridWalk` composes W as a left-Riemann sum
+(`eng._w += rbrTauOf(Lk, tk) * wk * h`, `:50793-50819`), so the printed ledger `KE₀ + W = KE` closes
+for **at most 40 ms anywhere** and S4's PRIMARY aha cannot ship quantitative. The architect derived
+this from a faithful **re-implementation** of the walk and flagged every figure
+`ASSUMPTION — probe-before-authoring`.
+
+**Measured on the renderer, reading the rendered dp-2 strings, τ ∈ {0.40, 0.50, 0.75, 1.00}:**
+
+| Test | Result |
+|---|---|
+| rendered `ΔKE` vs `ΔW` over consecutive 1 s intervals | **residual ≤ 0.010 J at every sample, 0.000 at many** |
+| `‖W‖ − ‖τ·θ‖` across the whole decay | **≤ 0.008, mostly 0.000** — W and θ ride the same walk, so the bias cancels |
+| `W` vs ΔKE **at the full stop** | **`W = −3.45 J` against `ΔKE = 3.44 J` — one quantum** (τ = 0.75 @ 6000 ms; τ = 1.00 @ 5000 ms) |
+
+**So the pervasive form does not reproduce; the specific form does.** A residual of one quantum
+between two independently-rounded dp-2 values is arithmetic, not bias — but the standstill frame,
+where a teacher would say "every joule accounted for", is genuinely off by 0.01.
+
+**Design consequence (folded into the skeleton):** S4 **may** ship quantitative; it must simply not
+pin its claim on the full-stop frame. The `W = τθ` identity S3 is built on is unaffected and
+comfortably authorable.
+
+**Still worth the one-line fix, for two reasons beyond this concept:** compose W on the midpoint of
+each step (`(ω_k + ω_{k+1})/2`) rather than its left edge. θ must stay on its current composition
+(E5 bought byte-identity for `conservation_of_angular_momentum`), but **W has no back-compat
+consumer** — `rotational_work_energy` would be its first. The same forward-Euler bias also puts the
+rendered stopping angle at **8.62 rad** against the board answer **8.61**, so a teacher working the
+standard exam question and then reading the meter finds them one hundredth apart.
+**Raising the display to dp 3 does NOT fix it** — the bias is several quanta at dp 3.
+
+**Probe for the surgeon:** author a constant brake at constant I; assert rendered `ΔKE` = rendered
+`ΔW` within one quantum over every interval **and** that `|W|` at the rest clamp equals the total
+`ΔKE` exactly at dp 2.
+
+> **⚠ Method note, recorded because it cost a measurement and is the fifth of its class this run.**
+> Desk A's FIRST probe of this claim baselined `KE₀` at t = 200 ms and compared it against `W`
+> accumulated from t = 0. By 200 ms the brake has already done work, so the "residual" came out
+> *exactly* equal to |W(200)| — 0.13 / 0.16 / 0.23 / 0.31 J at the four torques — and read as a
+> spectacular confirmation of a CRITICAL. It was entirely the probe's own offset. **The differential
+> form (does the work done over an interval equal the energy change over that same interval?) needs
+> no baseline and is the sound instrument.** Same class as the int16 overflow, the two colour masks,
+> and eye-walker's 1 Hz sampling of a 4.19 s rotation: *the instrument was wrong for the question.*
+
+## A-29 · A `sources[]`-authored brake brakes with its pad mesh INVISIBLE
+
+**Raised by `alex:architect`, 2026-08-07. MAJOR.** Owner `peter_parker:field3d_surgeon`.
+
+`rbrApplyVisibility` (`:51826`) computes pad visibility from **only the scalar field**:
+
+```js
+var padOn = (et2.source || "brake") === "brake" && Math.abs(rbrNum(et2.tau_brake_Nm, 0)) > 0;
+```
+
+But when `external_torque.sources[]` is present the resolver takes the list branch, never reads
+`tau_brake_Nm`, and sets `eng.padEngageMs` from the first `kind: 'brake'` entry (`:51689`). So a
+`sources[]`-authored brake gets a **fully working pad-travel path attached to a hidden mesh** — real
+physics, real torque, **no rendered agent, no warning**. This is the chapter's signature defect
+shape (something authored, accepted by every gate, silently doing nothing) on a new surface, and a
+Rule-24 violation: a stated agent with no rendered object.
+
+**Interim authoring contract, adopted by the `rotational_work_energy` skeleton so it is never
+mistaken for an accident:** any state needing a `sources[]` brake authors **both** — the scalar
+`tau_brake_Nm` for visibility *and* the list for physics — with the invariant that the scalar equals
+the first brake entry's magnitude.
+
+## A-30 · `reference_marks` chip labels have no width clamp — the same class as A-17
+
+**Raised by `alex:architect`, 2026-08-07. MEDIUM.** Owner `peter_parker:field3d_surgeon`.
+
+`rbrRebuildReadout` (`:51210`) emits the chip inline into the readout `<div>` with no clamp against
+the panel box. **A-17 already establishes that this engine's mark labels can leave their panel** —
+the KE-bar tick caption clips off-canvas at x = 0, a recurrence of the FIXED row
+`graph_marker_label_clipped` whose prevention rule reads *"clamp draw-x into [padL, W−padR]"*. **The
+chip path was never covered by that rule.**
+
+**This is the doctrine case for auditing by defect CLASS rather than by the field a finding names:**
+the tick path and the chip path are one class, and fixing only the path A-17 names leaves the other
+live. Desk A reached the same conclusion independently from the narration audit, where a number
+fixed only in `text_en` would have survived in `misconception_watch[].visual_counter`.
+
+## A-31 · rbr has no angle marker — the concept whose taught variable is θ cannot show it on the apparatus
+
+**Raised by `alex:architect`, 2026-08-07. MINOR / design ask.** Owner `peter_parker:field3d_surgeon`.
+
+There is no θ arc and no angle marker anywhere in the rbr region; `show_theta_arc` exists on three
+*other* scenarios (`:860`, `:900`, `:1922`) and on none of these. θ is HUD-only. The
+`rotational_work_energy` design presses `show_r_line` into service as the angle pointer — genuinely
+necessary, because **the rod has 2-fold symmetry and without a one-sided marker a student cannot
+count turns or see a half revolution** — but its sprite reads `r`, a radius label doing an angle
+job. A `show_angle_marker` / θ-arc would let a θ-teaching concept show its own quantity on the
+apparatus. Not blocking.
