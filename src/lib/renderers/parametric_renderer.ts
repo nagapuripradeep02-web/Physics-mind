@@ -3611,6 +3611,268 @@ function drawRiemannBars(spec) {
   pop();
 }
 
+// ── secant_line / tangent_line (CP-D, F13-F14 — bug_class:
+// pcpl_cannot_draw_a_secant_or_tangent_with_a_live_slope) ─────────────────
+// THE TRAP, stated once, because it is what makes this family dangerous: a
+// plane's x and y pixel scales differ (the spec driver's own main plane —
+// definite_integral_as_accumulated_area_skeleton.md's viewport {w:660,h:372}
+// over x_range width 3.0 / y_range width 6.0 — is 220 px per x-unit against
+// 62 px per y-unit; gate section 10 uses this exact plane), so a slope
+// computed from PIXEL deltas is wrong by the aspect ratio AND looks
+// plausible on screen — nothing about a wrong pixel-derived line looks
+// broken until it is checked against the real number. The slope is
+// therefore computed ONLY from the RESOLVED DATA-space endpoints, in
+// PM_secantLineCompute / PM_tangentLineCompute below, and NEVER from
+// anything PM_planeResolve returns. extend:'frame' is a SEPARATE, LATER
+// step applied to the already-final data-space slope: PM_lineClipToRect
+// clips the (already-correct) data-space line against the plane's
+// data-space rectangle — a pixel-space CONCERN (what shows on screen) but
+// still a purely data-space OPERATION (no pixel value is read). Only
+// drawSecantLine/drawTangentLine below ever call PM_planeResolve, and only
+// on the two already-resolved endpoints (drawFrom/drawTo) — one funnel,
+// one direction, exactly like every other primitive in this family (D1/F7).
+
+// Liang-Barsky line-rectangle clip, DATA-space in, DATA-space out. Pure, so
+// the gate can assert it directly with no p5 dependency. Clips the infinite
+// line PASSING THROUGH (x0,y0)-(x1,y1) — callers pass two points already far
+// enough apart (PM_extendLineToFrame below sizes that distance off the
+// rectangle's own diagonal, never a fixed magic number) that the [0,1]
+// parametric segment already spans well past the rectangle in every
+// direction the line can leave it. Returns the clipped {x0,y0,x1,y1}, or
+// null if the line misses the rectangle entirely (should not occur for an
+// in-range origin point, but never assumed away).
+function PM_lineClipToRect(x0, y0, x1, y1, xMin, xMax, yMin, yMax) {
+  var dx = x1 - x0, dy = y1 - y0;
+  var t0 = 0, t1 = 1;
+  var p = [-dx, dx, -dy, dy];
+  var q = [x0 - xMin, xMax - x0, y0 - yMin, yMax - y0];
+  for (var i = 0; i < 4; i++) {
+    if (p[i] === 0) {
+      if (q[i] < 0) return null; // parallel to this edge and entirely outside it
+    } else {
+      var r = q[i] / p[i];
+      if (p[i] < 0) { if (r > t1) return null; if (r > t0) t0 = r; }
+      else { if (r < t0) return null; if (r < t1) t1 = r; }
+    }
+  }
+  return { x0: x0 + t0 * dx, y0: y0 + t0 * dy, x1: x0 + t1 * dx, y1: y0 + t1 * dy };
+}
+
+// Extends (originX, originY) along dataSlope far enough past the plane's
+// data-space rectangle in BOTH directions (sized off the rectangle's own
+// diagonal, so it is correct at any authored x_range/y_range, never a fixed
+// magic number) and clips to it via PM_lineClipToRect. Shared by
+// secant_line (extend:'frame', using the chord's own computed slope) and
+// tangent_line (extend:'frame', using slope_expr) — one clip implementation,
+// two callers.
+function PM_extendLineToFrame(originX, originY, dataSlope, xRange, yRange) {
+  var norm = Math.sqrt(1 + dataSlope * dataSlope);
+  var diag = Math.sqrt(Math.pow(xRange.max - xRange.min, 2) + Math.pow(yRange.max - yRange.min, 2));
+  var big = (diag * 10) / norm;
+  return PM_lineClipToRect(
+    originX - big, originY - big * dataSlope,
+    originX + big, originY + big * dataSlope,
+    xRange.min, xRange.max, yRange.min, yRange.max
+  );
+}
+
+// D8 — the readout and the picture derive from the SAME evaluation (mirrors
+// PM_plotPointResolve's own header above). '{m}' is the one substitution
+// token; decimals is this primitive's OWN precision, never the slider
+// caption's hardcoded toFixed(step<1?1:0).
+function PM_secantTangentReadout(spec, slope) {
+  if (!spec.readout || !isFinite(slope)) return '';
+  var decimals = (typeof spec.readout.decimals === 'number') ? spec.readout.decimals : 3;
+  var fmt = (typeof spec.readout.format === 'string') ? spec.readout.format : 'slope = {m}';
+  return fmt.split('{m}').join(slope.toFixed(decimals));
+}
+
+// F13 — from_expr/to_expr are OBJECTS ({x: exprString, y: exprString}), one
+// expression per coordinate — deliberately NOT PM_safeEvalPoint's single-
+// expression-returning-an-object shape (that shape belongs to
+// drawVector/drawForceArrow's from_expr/to_expr; this family's contract, per
+// docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md's own example, authors x and y
+// as two separate expressions, e.g. from_expr: {x:"x0", y:"f0"}).
+function PM_secantLineCompute(spec, vars, ranges) {
+  var out = { valid: false, from: null, to: null, slope: NaN, drawFrom: null, drawTo: null, readoutText: '' };
+  if (!spec || !spec.from_expr || !spec.to_expr
+      || typeof spec.from_expr.x !== 'string' || typeof spec.from_expr.y !== 'string'
+      || typeof spec.to_expr.x !== 'string' || typeof spec.to_expr.y !== 'string') return out;
+  var fx = PM_safeEval(spec.from_expr.x, vars), fy = PM_safeEval(spec.from_expr.y, vars);
+  var tx = PM_safeEval(spec.to_expr.x, vars), ty = PM_safeEval(spec.to_expr.y, vars);
+  if (!isFinite(fx) || !isFinite(fy) || !isFinite(tx) || !isFinite(ty)) return out;
+  if (Math.abs(tx - fx) < 1e-12) return out; // vertical chord: undefined slope as dy/dx, nothing to draw
+
+  // THE ONE PLACE the slope is computed — DATA coordinates only, never a
+  // pixel value (see the family header comment above).
+  var slope = (ty - fy) / (tx - fx);
+
+  out.valid = true;
+  out.from = { x: fx, y: fy };
+  out.to = { x: tx, y: ty };
+  out.slope = slope;
+
+  var extend = spec.extend || 'segment';
+  if (extend === 'frame' && ranges) {
+    var clipped = PM_extendLineToFrame(fx, fy, slope, ranges.xRange, ranges.yRange);
+    out.drawFrom = clipped ? { x: clipped.x0, y: clipped.y0 } : out.from;
+    out.drawTo = clipped ? { x: clipped.x1, y: clipped.y1 } : out.to;
+  } else {
+    out.drawFrom = out.from;
+    out.drawTo = out.to;
+  }
+
+  out.readoutText = PM_secantTangentReadout(spec, slope);
+  return out;
+}
+
+// F14 — at_expr is the same {x: exprString, y: exprString} object shape as
+// secant_line's from_expr/to_expr (F13's comment above). slope_expr is
+// AUTHORED, never numerically differentiated — the engine is deliberately
+// not a CAS (ledger item 5: "#2 authors slope_expr explicitly (cos(x0) for
+// sin), which keeps the mathematics in the concept JSON where
+// mathematics_author can put a domain ledger on it").
+//
+// extend:'segment' has no natural from/to for a POINT + slope (unlike
+// secant_line, which always has two authored points), so a fixed data-space
+// half-width, symmetric around at.x along the tangent's own slope, stands
+// in — sized as a FRACTION of the plane's OWN x_range span so it scales
+// with whatever window a state authors, never a fixed px/data magic number.
+// Flagged as a judgment call in the dispatch report: the doc's contract
+// does not specify a segment length for a point-defined line.
+var PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC = 0.12;
+
+function PM_tangentLineCompute(spec, vars, ranges) {
+  var out = { valid: false, at: null, slope: NaN, drawFrom: null, drawTo: null, readoutText: '' };
+  if (!spec || !spec.at_expr || typeof spec.at_expr.x !== 'string' || typeof spec.at_expr.y !== 'string'
+      || typeof spec.slope_expr !== 'string') return out;
+  var ax = PM_safeEval(spec.at_expr.x, vars), ay = PM_safeEval(spec.at_expr.y, vars);
+  var slope = PM_safeEval(spec.slope_expr, vars);
+  if (!isFinite(ax) || !isFinite(ay) || !isFinite(slope)) return out;
+
+  out.valid = true;
+  out.at = { x: ax, y: ay };
+  out.slope = slope;
+
+  var extend = spec.extend || 'segment';
+  if (extend === 'frame' && ranges) {
+    var clipped = PM_extendLineToFrame(ax, ay, slope, ranges.xRange, ranges.yRange);
+    out.drawFrom = clipped ? { x: clipped.x0, y: clipped.y0 } : out.at;
+    out.drawTo = clipped ? { x: clipped.x1, y: clipped.y1 } : out.at;
+  } else {
+    var xSpan = (ranges && ranges.xRange) ? (ranges.xRange.max - ranges.xRange.min) : 1;
+    var halfW = xSpan * PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC;
+    out.drawFrom = { x: ax - halfW, y: ay - halfW * slope };
+    out.drawTo = { x: ax + halfW, y: ay + halfW * slope };
+  }
+
+  out.readoutText = PM_secantTangentReadout(spec, slope);
+  return out;
+}
+
+function drawSecantLine(spec) {
+  if (!spec || !spec.id || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var vars = PM_liveExprVars();
+  var computed = PM_secantLineCompute(spec, vars, ranges);
+  if (!computed.valid) return;
+
+  // F7 — the ONE resolution funnel, called ONLY on the already-final
+  // data-space endpoints (drawFrom/drawTo). No pixel value ever feeds back
+  // into the slope computed above (the family header comment states why).
+  var p0 = PM_planeResolve(spec, computed.drawFrom.x, computed.drawFrom.y);
+  var p1 = PM_planeResolve(spec, computed.drawTo.x, computed.drawTo.y);
+  if (!p0 || !p1) return;
+
+  var rgb = PM_hexToRgb(spec.color || '#F472B6');
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#F472B6';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  stroke(rgb[0], rgb[1], rgb[2], alpha255);
+  strokeWeight(2);
+  line(p0.x, p0.y, p1.x, p1.y);
+  if (computed.readoutText) {
+    // Readout sits near the CHORD's own midpoint (the authored from/to),
+    // never the frame-extended endpoints — the number labels the two
+    // authored points, not wherever the clip happened to land.
+    var rFrom = PM_planeResolve(spec, computed.from.x, computed.from.y);
+    var rTo = PM_planeResolve(spec, computed.to.x, computed.to.y);
+    if (rFrom && rTo) {
+      noStroke();
+      fill(rgb[0], rgb[1], rgb[2], alpha255);
+      textSize(12);
+      textAlign(LEFT, CENTER);
+      text(computed.readoutText, (rFrom.x + rTo.x) / 2 + 10, (rFrom.y + rTo.y) / 2 - 12);
+    }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
+function drawTangentLine(spec) {
+  if (!spec || !spec.id || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var vars = PM_liveExprVars();
+  var computed = PM_tangentLineCompute(spec, vars, ranges);
+  if (!computed.valid) return;
+
+  // F7 — the ONE resolution funnel, called ONLY on the already-final
+  // data-space endpoints.
+  var p0 = PM_planeResolve(spec, computed.drawFrom.x, computed.drawFrom.y);
+  var p1 = PM_planeResolve(spec, computed.drawTo.x, computed.drawTo.y);
+  if (!p0 || !p1) return;
+
+  var rgb = PM_hexToRgb(spec.color || '#A78BFA');
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#A78BFA';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  stroke(rgb[0], rgb[1], rgb[2], alpha255);
+  strokeWeight(2);
+  line(p0.x, p0.y, p1.x, p1.y);
+  if (computed.readoutText) {
+    // Readout sits near the authored tangency point 'at', never the
+    // frame-extended endpoints.
+    var rAt = PM_planeResolve(spec, computed.at.x, computed.at.y);
+    if (rAt) {
+      noStroke();
+      fill(rgb[0], rgb[1], rgb[2], alpha255);
+      textSize(12);
+      textAlign(LEFT, CENTER);
+      text(computed.readoutText, rAt.x + 10, rAt.y - 12);
+    }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
 // drawComparisonPanel — two side-by-side 330x280 panels at (30,80) and (390,80).
 // Ported from pcplRenderer/primitives/comparison_panel.ts with inline sub-scene
 // dispatch via PM_drawSubScene (nested primitives render cosmetically; they do
@@ -4920,11 +5182,11 @@ function draw() {
   PM_riemannPublish = {};
 
   // Pass 0.3 (CP-B, F8-F12; CP-C1, F15-F16 geometry; CP-C2, D12 draw order
-  // RESTORED) — region_fill, then riemann_bars, then function_plot, then
-  // plot_point (secant_line/tangent_line — CP-D, not yet built — slot in
-  // here too), then Pass 3 labels. Runs AFTER PM_applyChoreography()
-  // (immediately above) so a choreographed x_domain bound (e.g.
-  // xdraw/beta/b) is reflected the same frame it steps (D3 — every
+  // RESTORED; CP-D, F13-F14 slotted into the already-declared position) —
+  // region_fill, then riemann_bars, then function_plot, then secant_line /
+  // tangent_line, then plot_point, then Pass 3 labels. Runs AFTER
+  // PM_applyChoreography() (immediately above) so a choreographed x_domain
+  // bound (e.g. xdraw/beta/b) is reflected the same frame it steps (D3 — every
   // primitive below reads PM_liveExprVars(), which PM_applyChoreography()
   // is what refreshes).
   //
@@ -4983,6 +5245,19 @@ function draw() {
   for (var fp = 0; fp < scene.length; fp++) {
     var fpPrim = scene[fp];
     if (fpPrim && fpPrim.type === 'function_plot') drawFunctionPlot(fpPrim);
+  }
+  // CP-D (F13-F14) — secant_line / tangent_line slot into D12's ALREADY
+  // DECLARED position, between function_plot and plot_point (the doc's own
+  // draw-order line and this pass's own header comment both reserved this
+  // slot before CP-D existed) — restored order is NOT changed by this
+  // dispatch, only filled in.
+  for (var sl = 0; sl < scene.length; sl++) {
+    var slPrim = scene[sl];
+    if (slPrim && slPrim.type === 'secant_line') drawSecantLine(slPrim);
+  }
+  for (var tl = 0; tl < scene.length; tl++) {
+    var tlPrim = scene[tl];
+    if (tlPrim && tlPrim.type === 'tangent_line') drawTangentLine(tlPrim);
   }
   for (var pp = 0; pp < scene.length; pp++) {
     var ppPrim = scene[pp];
