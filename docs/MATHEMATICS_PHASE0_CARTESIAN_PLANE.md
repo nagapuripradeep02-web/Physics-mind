@@ -86,17 +86,17 @@ transform in CP-A; do not reuse the code (different template, different renderer
 **Candidate C — PCPL (`parametric_renderer.ts`, 4160 lines). ACCEPTED — it has the marks and lacks
 the frame.** Measured:
 
-- ✅ `locus_trace` (`:2445`) traces an arbitrary parametric curve and re-samples through
-  `PM_choreoVarsAtTime` (`:2400`), which merges live slider values under the drag-seize guard. Drag a
+- ✅ `locus_trace` (`drawLocusTrace` @2547 @d021338) traces an arbitrary parametric curve and re-samples through
+  `PM_choreoVarsAtTime` (@2502 @d021338), which merges live slider values under the drag-seize guard. Drag a
   slider → the curve redraws. Capability 2 is live today.
 - ✅ `body.position_expr`, `vector.from_expr/to_expr`, `angle_arc.angle_value_expr`,
   `label.text_expr` all evaluate through `PM_safeEval` / `PM_interpolate` against
   `PM_liveExprVars()`, so every mark can already be a function of the live variables.
-- ✅ `PM_animationGate` (`:771`) + `PM_focalEmphasis` (`:816`) give reveal timing and Rule-29/32e
+- ✅ `PM_animationGate` (@805 @d021338) + `PM_focalEmphasis` (@850 @d021338) give reveal timing and Rule-29/32e
   emphasis to any primitive that asks.
-- ✅ Deterministic under `SET_TIME_FREEZE` by construction (`draw()` catch-up, `:3717`), which is
+- ✅ Deterministic under `SET_TIME_FREEZE` by construction (`draw()` catch-up, @3759 @d021338), which is
   what makes H2 baselines byte-stable.
-- ❌ **`drawAxes` (`:2764`) is not a graph.** Read in full: two arrows of a fixed pixel `length` with
+- ❌ **`drawAxes` (@2877 @d021338) is not a graph.** Read in full: two arrows of a fixed pixel `length` with
   a label at each tip. No gridlines, no ticks, no numeric scale, **no data↔pixel transform**. It is a
   free-body-diagram orientation indicator inherited from physics.
 
@@ -383,7 +383,7 @@ at 400 beside a number computed at 10 000 is a provenance split, and it is the s
 whether it is caused by the engine or by a teacher's drag.
 
 **D8 · Readouts carry their own precision.** `drawCanvasSlider`'s caption formatter is hardcoded to
-`toFixed(step < 1 ? 1 : 0)` (`:3180`) — acceptable for a slider, wrong for a coordinate pair or a
+`toFixed(step < 1 ? 1 : 0)` (`labelText` @3304 @d021338) — acceptable for a slider, wrong for a coordinate pair or a
 Riemann sum that must show four decimals converging. Every readout in this family declares
 `decimals`. And the readout and the picture must read the **same** scope in the same frame: the
 recorded sigma/pi failure (slider `1.000` beside HUD `0.000` in one frame) and this month's
@@ -407,6 +407,19 @@ then asserts a *published* value against independently solved closed forms, whic
 negative-controlled gate is for; it stops reconciling two internal implementations against each
 other.
 
+**D11 scope map (AMENDMENT 2 — Checkpoint A cycle-1 F6; the contract named no target map, which a
+surgeon would otherwise guess at):** the published keys (`sum_var`, `bars_drawn_var`) are written
+into **`PM_physics.derived`** — the ONLY map that survives. Measured against the plumbing
+(@d021338): `PM_interpolate` (@1065) resolves `{S_n}` against `PM_liveExprVars()` (@1054), which
+reads `PM_physics.variables` and `PM_physics.derived` and nothing else; `PM_applyChoreography`
+(@3655) reassigns `PM_physics` every frame; and the dispatcher's echo net (@733–741) re-adds only
+caller-supplied keys — so a value published anywhere else is erased and the label renders the
+literal `{S_n}` (fallback @1080). **Ordering:** within a frame the publisher draws before any
+consumer — `riemann_bars` is a scene-pass primitive, labels are Pass 3 (@3955) — and the CP-C
+dispatch report must assert this pass order. **Fallback:** a `label` reading a published key may
+only be authored in a state whose scene contains the publishing primitive; the no-literal-`{` gate
+catches the authoring defect.
+
 **D12 · Composition between primitives is declared in the contract, not discovered on screen.**
 (AMENDMENT 1.) Two primitives sharing one interval need three things settled before either is built:
 **draw order** (fixed above, not array position), **opacity** (rectangles opaque by default over a
@@ -427,16 +440,20 @@ carried by both assemblers, so the whole family rides inside it. (The duplicate'
 
 ### <a id="reuse"></a>Reuse contract — what `cartesian_plane` must NOT re-derive
 
+*(Citations re-resolved by symbol and pinned `@line @d021338` — Checkpoint A cycle-1 F1: two engine
+commits landed between the survey and the skeleton and every bare line number went stale. Re-resolve
+by symbol on any future touch.)*
+
 | Do not build | Use | Why |
 |---|---|---|
-| A reveal/opacity timer | `PM_animationGate` `:771` | D6; the authored `appear_at_ms`/`animate_in_ms` contract already exists |
-| A focal glow / peer dim | `PM_focalEmphasis` `:816` | Rule 29 + 32e are one funnel or they are nothing |
-| An expression evaluator | `PM_safeEval` `:954`, `PM_safeEvalPoint` `:968`, `PM_interpolate` `:1031` | The Math whitelist (`sqrt atan2 atan asin acos sin cos tan abs min max pow log exp PI E round floor ceil sign`) is the authored language; a second evaluator forks it |
-| A live variable scope | `PM_liveExprVars()` `:1020` | Picture and readout must read one scope (D8) |
+| A reveal/opacity timer | `PM_animationGate` @805 @d021338 | D6; the authored `appear_at_ms`/`animate_in_ms` contract already exists |
+| A focal glow / peer dim | `PM_focalEmphasis` @850 @d021338 | Rule 29 + 32e are one funnel or they are nothing |
+| An expression evaluator | `PM_safeEval` @988, `PM_safeEvalPoint` @1002, `PM_interpolate` @1065 (all @d021338) | The Math whitelist (`sqrt atan2 atan asin acos sin cos tan abs min max pow log exp PI E round floor ceil sign`) is the authored language; a second evaluator forks it |
+| A live variable scope | `PM_liveExprVars()` @1054 @d021338 | Picture and readout must read one scope (D8) |
 | A time-swept trace | `locus_trace` + `plane_id` | F17; it is already deterministic and already merges choreography |
-| A slider, or slider layout | `type: "slider"` + `PM_resolveSliderSlot` `:3109` | Rule 31 muscle-memory: a shared slider keeps its screen position across states |
+| A slider, or slider layout | `type: "slider"` + `PM_resolveSliderSlot` @3222 @d021338 | Rule 31 muscle-memory: a shared slider keeps its screen position across states |
 | A drag-seize mechanism | `PM_userTouched` + the existing drag path | F12 must yield to and from choreography exactly as sliders do |
-| A canvas fit / density path | `PM_fitCanvas` `:3584` | Byte-identical output at native 760×500 is a baseline guarantee |
+| A canvas fit / density path | `PM_fitCanvas` @3709 @d021338 | Byte-identical output at native 760×500 is a baseline guarantee |
 
 ### <a id="ledger"></a>What this build is deliberately NOT doing (the alarm-rule ledger)
 
@@ -474,14 +491,16 @@ amendment round 1, and ten of them changed this document** (the amendment box at
 
 **What 0b bought that 0a could not have known**, recorded because it is the argument for ever running
 a 0b at all: a linear `n: 4 → 1000` choreography is useless (`holds` are placed by *value* fraction,
-`parametric_renderer.ts:1111`, so the interesting decades flash past in 60 ms) · a left-rule partition
+`parametric_renderer.ts` `frac` @1145 @d021338, so the interesting decades flash past in 60 ms) · a left-rule partition
 has a **zero-height first rectangle**, so "four rectangles" renders as three · an inset placed in the
 free *caption* zone lands on top of the ink it magnifies · a control range wider than the frame's
 y-range clips the picture while the number keeps printing · and the composition rules for two
 primitives sharing one interval did not exist anywhere.
 
-→ **Checkpoint A cycle 1 is pending on the amended skeleton** (budget: one more cycle, then ESCALATE).
-Dispatch of CP-A…CP-D waits on it.
+→ **Checkpoint A cycle 1 RETURNED `DESIGN_FIX` (3 P1 · 8 P2 · 6 P3); amendment round 2 applied all of
+it and the cycle budget (2) is EXHAUSTED — the skeleton is ESCALATED TO THE FOUNDER.** Dispatch of
+CP-A…CP-D waits on the founder's ruling. Round-2 scope additions to the dispatches (F5/F6/F11 + the
+φ seizable-doctrine gate extension) are listed in the skeleton's §13 "Dispatch scope additions".
 
 ## 0c — ENGINE ONCE (planned, NOT dispatched)
 
