@@ -34,10 +34,17 @@ if (!arg) {
 function resolveConceptPath(a) {
   // A real path (has a separator or a .json suffix) is used verbatim.
   if (a.includes('/') || a.includes('\\') || a.endsWith('.json')) return a;
-  // A bare concept id resolves against the flat physics dir first, then chemistry.
+  // A bare concept id resolves against the flat physics dir first, then each
+  // SUBJECT namespace. The mathematics entry was missing, so this script could
+  // not scan a mathematics concept at all — it died on ENOENT against the flat
+  // path. Same blindness class as validate:concepts' non-recursive scan, which
+  // left chemistry with no CI coverage for five sessions: a subject subfolder
+  // that no tool enumerates is a subject with no tooling. Enumerate the
+  // namespaces here rather than adding them one incident at a time.
+  const SUBJECT_DIRS = ['chemistry', 'mathematics'];
   const candidates = [
     path.join('src/data/concepts', `${a}.json`),
-    path.join('src/data/concepts/chemistry', `${a}.json`),
+    ...SUBJECT_DIRS.map((s) => path.join('src/data/concepts', s, `${a}.json`)),
   ];
   for (const c of candidates) if (fs.existsSync(c)) return c;
   return candidates[0]; // let the read fail with a clear ENOENT on the expected path
@@ -53,9 +60,28 @@ const json = JSON.parse(fs.readFileSync(PATH, 'utf8'));
 const CHAR_W_RATIO = 0.55;
 const CHAR_W = 7;   // retained for the force_arrow tip-label estimate below
 
+// engine_bug_queue: formula_surface_footprint_overlaps_an_authored_curve_end_label
+// found this script measuring the RAW TEMPLATE. A HUD row authored as
+//   "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)"
+// is 45 source characters but renders as "θ = 4.00 rad (229°)" — 19. The script
+// therefore computed boxes up to 5x too wide and reported collisions that do not
+// exist: 5 reported on unit_circle_to_sine_wave, 4 of them false, which is worse
+// than reporting none because it trains authors to ignore the output. Collapse
+// every {...} group to the width its VALUE renders at before measuring.
+function renderedText(text) {
+  return String(text ?? '').replace(/\{([^{}]+)\}/g, (_m, body) => {
+    // {x.toFixed(2)} → "-0.00": sign + digit + point + n decimals ≈ n + 3.
+    const fx = /\.toFixed\(\s*(\d)\s*\)/.exec(body);
+    if (fx) return '0'.repeat(Number(fx[1]) + 3);
+    // A bare {identifier} renders as a short number; 4 chars is a fair estimate
+    // and errs slightly wide, which is the safe direction for an overlap check.
+    return '0000';
+  });
+}
+
 function textLines(text) {
   // The renderer splits on a literal "\n" (authored as "\\n" inside JSON strings).
-  return String(text ?? '').split(/\\n|\n/);
+  return renderedText(text).split(/\\n|\n/);
 }
 
 // A text primitive can legitimately carry no literal `position` (anchor-resolved
