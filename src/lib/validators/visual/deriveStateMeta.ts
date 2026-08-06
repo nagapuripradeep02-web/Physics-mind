@@ -289,6 +289,11 @@ export function deriveMotionExpectations(
             }
             const osMotion = state ? asObj(state.orbital_shapes) : null;
             if (osMotion) {
+                // explore stays DECLARED STATIC even though the renderer now turns
+                // an unauthored sandbox at its idle rate (0.14 rad/s, Rule 37 —
+                // the bonding_scene fallback, ported): the state is user-driven,
+                // the idle turn is a floor rather than the state's own beat, and
+                // the interactive hold classification is what relaxes its tail.
                 if (osMotion.mode === 'explore') { out[stateId] = false; continue; }
                 if (typeof osMotion.spin_rate === 'number' && osMotion.spin_rate > 0) { out[stateId] = true; continue; }
                 // no spin: fall through to the reveal_hold classification.
@@ -2303,6 +2308,18 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 const step = asObj(rawStep);
                 if (step) candidates.push(asNum(step.at_ms, 0) + 900);
             }
+        }
+        // camera_steps (THE MID-STATE CAMERA SCHEDULE): each step re-frames the
+        // scene over its own eased window, so a pin landing INSIDE that window
+        // photographs a camera in transit — every pixel in the frame displaced,
+        // on a state whose two phases exist precisely because they need two
+        // framings. Pin past the ease (default 900 ms, authorable per step) plus
+        // the same 300 ms settle the other schedules take. No shipped concept
+        // authors camera_steps, so adding it moves no baseline.
+        const osCamSteps = Array.isArray(osState.camera_steps) ? (osState.camera_steps as unknown[]) : [];
+        for (const rawStep of osCamSteps) {
+            const step = asObj(rawStep);
+            if (step) candidates.push(asNum(step.at_ms, 0) + asNum(step.ease_ms, 900) + 300);
         }
     }
     // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3): the trains
