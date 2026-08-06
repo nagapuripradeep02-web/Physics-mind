@@ -2291,7 +2291,13 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // move with it, so a pin before the last step photographs one element
         // beside another element's numbers. No shipped concept authors either key,
         // so adding them moves no baseline.
-        for (const key of ['populate_steps', 'gallery_steps', 'element_steps', 'charge_steps']) {
+        // ghost_species (THE HELD "BEFORE" PICTURE): each step swaps the species
+        // the GHOST holds, and the held boundary draws at THAT species' own Z_eff
+        // — so a pin before the last step photographs the wrong "before" beside
+        // the right "after", which is the one comparison these states exist to
+        // make. Same stepped shape as the four above, same 900 ms settle. No
+        // shipped concept authors it, so adding it moves no baseline.
+        for (const key of ['populate_steps', 'gallery_steps', 'element_steps', 'charge_steps', 'ghost_species']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
             for (const rawStep of steps) {
                 const step = asObj(rawStep);
