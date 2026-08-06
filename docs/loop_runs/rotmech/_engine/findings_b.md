@@ -1146,6 +1146,61 @@ under B-2.
 
 ---
 
+## 🔴 B-13 SCOPE BROADENED + ESCALATED TO CRITICAL — 2026-08-06 pre-seal walk
+
+**B-13 was filed as "point_arrow labels overlap on S4/S5/S6" (MODERATE, `alex:json_author`,
+camera distance). Both the scope and the severity were wrong.**
+
+**It affects EVERY state using `contact_layer.point_arrows`, including the two-label case** —
+confirmed by the eye-walk on S2 and S8, and **verified independently in the main session** by
+cropping S2's frozen frame 4×.
+
+**The escalation: `pure_rolling` STATE_2 is the concept's designated PRIMARY aha state.** Its
+`aha_moment.visual_confirmation` requires *"the centre arrow keeps reading 0.55 m/s and the
+contact marker holds 0.00 m/s"* — and those are **exactly the two labels that collide**. On the
+frozen frame they render stacked with near-zero vertical separation, the lower one partly
+occluded by the wheel mesh, in low-contrast blue-on-dark; the contact reading is effectively
+unreadable. The clean values exist in the top-right HUD, so the number is *available* — but the
+point-adjacent overlay the aha explicitly leans on is not. **A state cannot ship failing its own
+stated Definition of Done.**
+
+**Compounding, and already OPEN:** the queue row
+`state_glow_focal_dims_one_half_of_the_relation_the_state_exists_to_teach` already names
+`pure_rolling` and is live here — S2/S4/S5/S6 each author sequential single-point `glow_focal`
+phases while the claim is a *relation* between 2–3 simultaneous point speeds. During any one
+phase the non-focal labels are dimmed, on top of the physical collision. **Same overlay code
+path — fix together or the second fix will look like a regression of the first.**
+
+**Owner is genuinely ambiguous and should not be guessed:** the cheapest lever is
+`camera_position` (`alex:json_author`), but pulling the camera closer does not stop labels
+stacking, and the 2-label case proves it is not a "too many labels" problem. A label-layout
+separation rule in the `point_arrows` overlay (`peter_parker:field3d_surgeon`) is the durable
+fix. **Recommend the surgeon, with the camera as a fallback if layout is out of scope.**
+
+**Still deliberately NOT fixed** (standing instruction, and correctly so — the camera cannot be
+re-tuned blind while B-5/B-10/B-11 are open). **But B-13 now blocks the seal on its own merits,
+independently of B-5** — it is no longer a cosmetic tail item.
+
+### Also from the pre-seal walk (not fixed, recorded)
+
+- **B-19 (MODERATE)** — `pure_rolling` S1's revolution-mark bracket and tick numerals are
+  *correct* (`2πR = 1.57 m`, ticks space one per completed turn) but render at roughly 10–14 px
+  in a 1280×720 frame, and that bracket **is** the state's whole stated payoff. Either a closer
+  `camera_position` for S1 or a glyph-size floor independent of camera distance. Owner ambiguous,
+  same pair as B-13.
+- **Observational, for founder taste (not filed):** S7's capture reads as a strong *number*
+  story — v falling, Rω rising, contact falling, `f_k` stepping to 0.00 N exactly at the
+  ~1.36 s closed-form capture instant — but a weak *picture* story: the only on-mesh spin cue is
+  a small rotating cross-marker. The skid trail freezing at the capture point while the wheel
+  runs on past it is the one genuinely legible visual mechanism. Not blocking.
+- **Checked and CLEAN** (two OPEN queue rows whose failure modes did NOT reproduce): no
+  camera-edge clipping of the body in any sampled frame (`close_camera_framed_extent…`), and no
+  zero-arrow collapse — a distinct marker glyph renders at exact-zero points and S6's top/centre
+  arrows show a visibly correct 2:1 length ratio (`velocity_arrows_routed_through_a_force_arrow_map…`).
+  Worth re-checking the second once labels stop obscuring the arrow bases.
+
+---
+
 ## PRE-SEAL AUTHORING AUDIT (text only, no frames) — 2026-08-06
 
 Both concepts audited against Rules 41 / 35 / 38 and the prerequisites ruling, on text alone.
