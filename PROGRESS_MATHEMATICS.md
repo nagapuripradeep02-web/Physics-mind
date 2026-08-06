@@ -21,13 +21,104 @@
 | 2.5 | `validate:mathematics` + shared-gate extraction + CI | ✅ 2026-08-04 |
 | 2.6 | THE EYE made subject-correct (`2d4cb06`) | ✅ 2026-08-05 |
 | — | DB migration authored + pre-flighted (`84e85bc`) | ✅ **APPLIED 2026-08-05** by the founder to dev `dxwpkjfypzxrzgbevfnx`, verbatim. Verified after: 681 rows intact, 9 owners, both CHECKs carry the mathematics values. `alex:mathematics_author` + `subject='mathematics'` are now writable. |
-| P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | ☐ **BLOCKS ranked P1 #1–#3** |
+| P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | ✅ **MERGED 2026-08-06** — CP-A…CP-D (PRs #36–#40) on master; F1–F17 built, gate `check:cartesian-plane` all-negative-controlled. **Compute-layer proven only** — no p5 draw code has executed; the first concept's EYE run is the pixel-layer test. Unblocks ranked P1 #1–#3. |
 | 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | ✅ **BASELINE-LOCKED 2026-08-06**, zero known defects encoded. Was 🟡 AWAITING FOUNDER; on desk `feat/mathematics-unit-circle`. Skeleton + mathematics block + TS engine + JSON committed. Gate chain run in full: THE EYE ×4 · `quality_auditor` (FAIL → fixed) · `eye_walker` ×3 · founder_proxy Checkpoint B (**FIX**, on 2 platform blockers only). 18 scar rows filed, 15 closed. Both Rule-40 platform blockers fixed on master (`084f06c`, `e0734a9`). |
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
 The first concept is in flight; nothing is authored off-list.**
+
+---
+
+## 🏗️ SESSION — the engine round: Checkpoint A closes, CP-A…CP-D land, six PRs merge in stack order (2026-08-06, docs branch + five engine desks → master)
+
+> The session that took `cartesian_plane` from a design document to a merged engine. Checkpoint A's
+> cycle budget was spent, four surgeon dispatches built F1–F17 as a stacked PR chain, every dispatch
+> surfaced a real defect by being told to refute rather than comply, and the whole stack merged to
+> master with the composed tree re-verified. P0 is closed at the compute layer.
+
+### Checkpoint A cycle 1 — the real founder-proxy, Opus-pinned, DESIGN_FIX (3 P1 · 8 P2 · 6 P3)
+- Two founder rulings recorded first so cycle 1 reviewed the settled document: **FLAG 1 ratified**
+  (`∫` on core S4, `lim` denied on core) and **FLAG 6 bought** (9 contract deltas +
+  `show_partition`, `reveal_stagger_ms` named; CP-C enlargement accepted).
+- The proxy's three P1s, each independently re-verified before acting: **every renderer line
+  citation in §⓿ was stale** (two engine commits landed between survey and skeleton; `:1111` — the
+  value-fraction line the n-law rests on — was a closing brace; fix = `symbol @line @SHA`);
+  **S4 taught "the gap is exactly 4/n"** against the document's own closed form `4/n − 4/(3n²)`
+  (0.039867 vs 0.040000 on a 6-dp HUD at the state's own entry value); **the FLAG-1 ruling was
+  applied on 3 of 5 symbol surfaces** (S3's HUD still printed `∫` one state early).
+- The probe-don't-grep mandate (`34c43c4`, same morning) was **not grandfathered**: the one number
+  nobody probed (S4 cap crossing: claimed 3908 ms, measured 6316.5) was the one that was wrong,
+  beside five the probe reproduced exactly. §12 now carries a measured column with pasted probe
+  output; §⓿ an evidence tier per row.
+- **Amendment round 2 applied all 17 findings**; cycle budget (2) exhausted → **ESCALATED TO
+  FOUNDER**, three content rulings still open: the exact two-term gap surface vs `≈ 4/n` · the
+  published per-state `words_max = ⌊2.5 × motion_window⌋` budget · `Σ`/`xᵢ` on S2's core surface.
+  Landed as **PR #35** with the Phase-0 doc's AMENDMENT 3 + the `angle_arc` ledger row (below).
+
+### CP-A…CP-D — four dispatches, five PRs, every one told to refute and every one finding something
+- **CP-A (PR #36)** — the frame: `PM_planeRegistry` + Pass 0.25, `PM_planeResolve` funnel,
+  authored ticks (`number|pi|none`), `equal_scale` (shrink-only), `plane_id` opt-in for
+  body/vector/label/locus_trace, F11 tracking-label contract (position_expr reads DATA under a
+  plane). Gate sections 1–4, 11, 15.
+- **CP-B (PR #37)** — `function_plot` (x-domain sampler, D4 break-on-discontinuity) + `plot_point`
+  (drag + readout). **Found: the draft contract's `focal_id` exists nowhere in the renderer** (doc
+  defect #2). The F5 seizure clause turned out to be four independent slider-scans unified into ONE
+  `PM_stateLiveControlVars`; the φ-law Gate 9(d) extension unions `plot_point.drag.bind_variable`
+  (seizure, not sliders, is the mechanism — concept #2 sketches the exact collision).
+- **CP-C split on measurement** (CP-B burned 95 of ~100 calls; the doc pre-authorised the split).
+  **CP-C1 (PR #38)** — `region_fill` (signed) + `riemann_bars` (4 modes incl. `trapezoid`) + the
+  D11 publication contract (computed once in the placing loop, published, never printed —
+  refusing the sigma/pi relocate-the-duplicate topology). **Found: the publication clobber** —
+  `drawPlotPoint`'s drag branch reassigns `PM_physics` wholesale mid-pass, wiping same-frame
+  publishes; C1 worked around it by inverting D12's draw order and flagged the debt honestly.
+- **CP-C2 (PR #39)** — the real fix: **`PM_riemannPublish`, a frame-scoped map OUTSIDE
+  `PM_physics`** (supersedes Checkpoint A F6's `PM_physics.derived` ruling — correct when measured,
+  pre-dating the reassignment discovery), D12's order **restored**. C2 also found the inversion's
+  hidden defect: fill and curve read two different values of `b` in one drag frame. Orchestrator
+  pushed back once (the two byte-identical scope functions had diverged — 14 call sites blind to
+  published keys); surgeon agreed, unified, nothing moved (214 gate assertions unchanged).
+  Non-finite rule reconciled (drop/break, matching D4); signed colour = sign of `bar.area`.
+- **CP-D (PR #40)** — `secant_line`/`tangent_line`, slope in DATA coordinates (the trap: pixel
+  deltas give −0.1521 where cos(1)=0.5403 on the spec driver's own 220/62 px-per-unit plane —
+  wrong sign AND magnitude, gate-pinned). Liang-Barsky clip data-in/data-out. **Found doc defect
+  #4: #11's sketch claims `arg z` renders "via F7" but `drawAngleArc` has no `plane_id` support.**
+  Closing assessment: F1–F17 all built; zero-renderer-edits holds with high confidence for #3
+  (it drove the engine), **thinner for #2** (survey sketch only, never a 0b pass — and #3's 0b
+  surfaced ten contract changes its sketch missed).
+
+### The doc catches up + the scars are filed
+- **AMENDMENT 3** (PR #35): D11 scope map superseded → `PM_riemannPublish`, merged into BOTH scope
+  functions, with the durable rule stated; phantom `focal_id` removed; Gate-14 signed-colour
+  generalized to net contribution. **Ledger item 7**: `plane_id` on `angle_arc` — founder-ruled
+  record-don't-build (no queued concept needs it; #11 is P3).
+- **Two `engine_bug_queue` rows filed and read-back-verified** (seed script
+  `_seed_engine_bug_queue_pcpl_cartesian_plane_round.ts`, committed):
+  `pcpl_riemann_bars_composition_and_draw_order_undeclared` (FIXED, directive — *a value published
+  for same-frame reading lives in a frame-scoped map, never in `PM_physics`*) and
+  `pcpl_cannot_draw_a_secant_or_tangent_with_a_live_slope` (FIXED, incident).
+
+### The merge — six PRs, stack order, composed tree re-verified
+`#35 → #36 → #37 → #38 → #39 → #40`, each stacked PR retargeted to master only after its
+predecessor merged. Merged master verified directly: renderer syntax ×3 · `tsc` 0 ·
+`check:cartesian-plane` ALL PASS (every negative control) · vitest 354/354 · `validate:concepts`
+149/149. Five desks closed (`desk:close --yes`; branches preserved on GitHub).
+**CI note:** GitHub's hosted runners were degraded all afternoon — the red checks on #37/#39/#40
+were "not acquired by Runner" cancellations with zero steps executed, not test failures; every
+commit passed the local chain twice under two independent agents.
+
+### Open at session end
+1. **Founder: three content rulings** on the escalated skeleton (gap surface · words_max approach ·
+   Σ on core) — `mathematics_author` is blocked on them.
+2. **The pixel-layer test**: no p5 draw code in the new family has ever executed; the first
+   authoring pass through THE EYE is the true close of P0. Plan order: #1 `graph_transformations`
+   ships first; #3 is the spec driver.
+3. **#2 (`derivative`) needs a 0b-level skeleton** before its zero-edits claim is trusted; watch
+   for: the "undefined at h=0" callout (no conditional-visibility on `label`), secant↔tangent
+   fade composition, and ledger item 7.
+4. Legacy validator backfill noise (400 word-budget + 199 tts-id warnings) impersonated a real
+   failure twice today — clear it or silence it, founder call.
 
 ---
 

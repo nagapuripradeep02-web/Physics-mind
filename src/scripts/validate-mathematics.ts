@@ -48,6 +48,7 @@ import {
     indicatorBindingErrors,
     duplicateKeyErrors,
     narrationChoreographyWarnings,
+    checkConceptChoreography,
 } from './lib/conceptGates';
 
 const MATH_DIR = join(process.cwd(), 'src', 'data', 'concepts', 'mathematics');
@@ -83,7 +84,12 @@ function main(): void {
         const result = validateConceptJson(parsed, file);
         const indicatorErrors = indicatorBindingErrors(parsed, file);
         const dupErrors = duplicateKeyErrors(raw, file);
-        const errors = [...(result.passed ? [] : result.errors), ...indicatorErrors, ...dupErrors];
+        // Gate 9 choreography checks (anchor_to ordering, undeclared
+        // choreography variables, locus_trace slider collision) — shared with
+        // validate-concepts; fatal findings fail the file, the rest warn.
+        const choreo = checkConceptChoreography(parsed);
+        const choreoErrors = choreo.filter((c) => c.fatal).map((c) => `${file}: ${c.path}: ${c.message}`);
+        const errors = [...(result.passed ? [] : result.errors), ...indicatorErrors, ...dupErrors, ...choreoErrors];
 
         if (errors.length === 0) {
             passCount += 1;
@@ -95,6 +101,7 @@ function main(): void {
 
         allWarnings.push(...wordBudgetWarnings(parsed, file));
         allWarnings.push(...narrationChoreographyWarnings(parsed, file));
+        allWarnings.push(...choreo.filter((c) => !c.fatal).map((c) => `${file}: ${c.path}: ${c.message}`));
     }
 
     if (allWarnings.length > 0) {

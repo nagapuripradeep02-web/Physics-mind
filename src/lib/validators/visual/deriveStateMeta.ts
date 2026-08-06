@@ -2190,6 +2190,17 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (probeAuto && typeof probeAuto.at_ms === 'number') {
             candidates.push(asNum(probeAuto.at_ms, 0) + asNum(probeAuto.duration_ms, 4000) + 600);
         }
+        // z_ramp (EFFECTIVE NUCLEAR CHARGE): Z_eff sweeps and the WHOLE atom
+        // contracts to 1/Z with it — the boundary surface, the dot cloud, the node
+        // shell and the pm radius readout all move together. Same shape as the
+        // ramps above (a one-shot closed-form sweep that then HOLDS) and the same
+        // failure if unpinned: THE EYE would photograph a half-contracted atom
+        // beside a radius its state's caption contradicts. No shipped concept
+        // authors z_ramp, so adding it moves no baseline.
+        const osZRamp = asObj(osState.z_ramp);
+        if (osZRamp && typeof osZRamp.at_ms === 'number') {
+            candidates.push(asNum(osZRamp.at_ms, 0) + asNum(osZRamp.duration_ms, 2600) + 600);
+        }
         // morph (HYBRIDISATION, #13): the s-character ramp. It is a one-shot
         // closed-form ramp that then HOLDS, exactly like extrude/bloom above — the
         // dumbbell becomes a hybrid, or the pair's angle opens 90° → 180° — so the
@@ -2273,7 +2284,20 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(asNum(osSticks.at_ms, 0) + asNum(osSticks.fade_in_ms, 900) + 600);
             }
         }
-        for (const key of ['populate_steps', 'gallery_steps']) {
+        // element_steps / charge_steps (ELEMENT IDENTITY + ION CHARGE): the same
+        // stepped shape as gallery_steps, and the same failure if unpinned. Each
+        // step swaps the atom (or its charge), and BOTH the geometry and every
+        // derived readout — the Slater Z_eff, the pm radius, the configuration —
+        // move with it, so a pin before the last step photographs one element
+        // beside another element's numbers. No shipped concept authors either key,
+        // so adding them moves no baseline.
+        // ghost_species (THE HELD "BEFORE" PICTURE): each step swaps the species
+        // the GHOST holds, and the held boundary draws at THAT species' own Z_eff
+        // — so a pin before the last step photographs the wrong "before" beside
+        // the right "after", which is the one comparison these states exist to
+        // make. Same stepped shape as the four above, same 900 ms settle. No
+        // shipped concept authors it, so adding it moves no baseline.
+        for (const key of ['populate_steps', 'gallery_steps', 'element_steps', 'charge_steps', 'ghost_species']) {
             const steps = Array.isArray(osState[key]) ? (osState[key] as unknown[]) : [];
             for (const rawStep of steps) {
                 const step = asObj(rawStep);
@@ -3459,7 +3483,11 @@ function pcplHasContinuousChoreography(state: Record<string, unknown>): boolean 
 // block slides to rest → the settled tail is a reveal_hold, D7 tolerant, but D5 still
 // enforces the animation visibly PLAYED). A 'projectile' loops iff loop_period_sec>0.
 const PCPL_CONTINUOUS_ANIM = new Set(['rotate_continuous', 'pendulum', 'door_swing']);
-const PCPL_TRANSIENT_ANIM = new Set(['free_fall', 'atwood', 'translate', 'slide_horizontal', 'slide_when_kinetic']);
+// fade_in (found by the mirror-sync test 2026-08-06): an opacity ramp on the
+// state clock that plays once and settles — transient by D5 semantics. No live
+// concept authors it today (53 hits are all dormant old-architecture JSONs),
+// so adding it switches no existing gate ON.
+const PCPL_TRANSIENT_ANIM = new Set(['free_fall', 'atwood', 'translate', 'slide_horizontal', 'slide_when_kinetic', 'fade_in']);
 
 /** Scene-primitive animation blocks with a string type, for the categorizers below. */
 function pcplSceneAnims(state: Record<string, unknown>): Array<Record<string, unknown>> {

@@ -299,6 +299,22 @@ blocking gate (and to `verify.yml`) is a separate decision, gated on the fleet S
 Its SKIP list is as informative as its failures — it measures how much of a concept's declared
 physics is machine-checkable at all.
 
+**THE PLAYCHECK — the product-surface half of the same gate ($0, ADVISORY — parametric concepts,
+2026-08-06):**
+```bash
+npm run build:review -- <concept_id>       # the artifact under test is the BUILT teacher page
+npm run visual:playcheck -- <concept_id>   # serves review-site/ in-process, clicks the REAL rail
+                                           # card + Play button, free-runs the clock, and asserts
+                                           # every choreographed variable CHANGES inside its own
+                                           # motion window (PM_choreoValues sampled on the sim clock)
+```
+THE EYE and THE CALCULATOR both drive the CACHED sim under a pinned clock; the teacher uses the
+BUILT review page with a free-running one. A defect that lives only in the review-site assembly —
+dead choreography shipped exactly this way — is structurally invisible to every pinned-clock gate
+(engine_bug_queue: `review_site_private_config_assembler_drops_variable_choreography`). Run the
+playcheck after `build:review` on any parametric concept that authors `variable_choreography`; a
+FAIL means the TEACHER surface is broken even if THE EYE is green.
+
 ---
 
 ### Logging a professor lesson (stage ④ → the queue)

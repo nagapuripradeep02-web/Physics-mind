@@ -131,6 +131,16 @@ function rendererStates(json: Record<string, unknown>): Record<string, unknown> 
         const states = cfg?.states;
         if (states && typeof states === 'object') return states as Record<string, unknown>;
     }
+    // Parametric-family concepts carry NO *_config block: their states (and the
+    // authored per-state numeric channel, variable_overrides) live in
+    // epic_l_path.states. Without this fallback every PCPL state resolved {} —
+    // inputs stayed at declared_default provenance, inputsAreTrustworthy stayed
+    // false, and parametric N1 could only ever pass, never accuse. The BFS in
+    // stateOverrides skips arrays, so scene_composition noise is never walked;
+    // variable_overrides is the shallowest (and intended) numeric source.
+    const elp = json.epic_l_path as Record<string, unknown> | undefined;
+    const elpStates = elp?.states;
+    if (elpStates && typeof elpStates === 'object') return elpStates as Record<string, unknown>;
     return null;
 }
 
