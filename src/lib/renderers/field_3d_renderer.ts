@@ -59135,6 +59135,29 @@ export const FIELD_3D_RENDERER_CODE = `
     //       probe_auto: {from,to,at_ms,duration_ms},          // S4 sweep
     //       populate_steps: [{at_ms, orbital}],               // S5
     //       bloom_at_ms, bloom_duration_ms, ghost_at_ms, ghost_orbitals, // S6
+    //       ghost_species: [{at_ms, element, charge}],
+    //                                        // THE GHOST HOLDS A PREVIOUS SPECIES.
+    //                                        // ghost_orbitals (above) means "a
+    //                                        // DIFFERENT orbital at the CURRENT
+    //                                        // charge" — it is scaled by the live
+    //                                        // Z_eff, so it lands coincident with
+    //                                        // the live orbital the moment a
+    //                                        // periodicity state uses it to mean
+    //                                        // "before". This key is the other
+    //                                        // meaning: the ghost draws THAT
+    //                                        // species' own valence orbital at THAT
+    //                                        // species' own Z_eff and HOLDS it while
+    //                                        // the live cloud moves. Works for the
+    //                                        // s family (a held 3s outline around a
+    //                                        // contracted 2p ion) as well as the
+    //                                        // lobed one — the sphere path has its
+    //                                        // own ghost mesh, so the two boundaries
+    //                                        // are two objects and never one.
+    //                                        // Steps resolve exactly like
+    //                                        // element_steps (cue "ghost_species_i",
+    //                                        // latest fired wins); no step fired =
+    //                                        // no ghost. ADDITIVE: ghost_orbitals is
+    //                                        // untouched and both may run at once.
     //       grow_at_ms, cutaway_at_ms, cutaway_duration_ms,   // S7
     //       gallery_steps: [{at_ms, orbital}],                // S8
     //       element_steps: [{at_ms, element}],   // WITHIN-STATE SCHEDULING. The
@@ -59157,7 +59180,13 @@ export const FIELD_3D_RENDERER_CODE = `
     //         table: bool,                   // the periodic strip (groups 1,2,
     //                                        // 13-18 x periods 1-4), current
     //                                        // element lit with its period and
-    //                                        // group banded. Needs 'element'.
+    //                                        // group banded. Needs an ELEMENT
+    //                                        // SOURCE — the static 'element' OR
+    //                                        // 'element_steps'. Gating on the static
+    //                                        // scalar alone painted a state that
+    //                                        // drives elements purely by schedule
+    //                                        // into a permanently hidden div, every
+    //                                        // frame.
     //         curve: 'radius_vs_z' | 'ie_vs_z' | 'ie_successive' | null,
     //                                        // radius/ie_vs_z plot the current
     //                                        // element's OWN PERIOD against Z;
@@ -59186,7 +59215,23 @@ export const FIELD_3D_RENDERER_CODE = `
     //       },
     //       show_hud, show_formula,
     //       hud_lines: ['occupancy','psi2','slice_dots','energy','nodes',
-    //                   'radius','label','element','config','ie_measured'],
+    //                   'radius','label','element','config','ie_measured',
+    //                   'electron_count'],
+    //                                        // 'electron_count' is the electron
+    //                                        // count ON ITS OWN LINE. It was only
+    //                                        // ever the third field of 'element'
+    //                                        // ("N^3- . Z = 7 . 10 e") — a number
+    //                                        // holding STILL inside a string that
+    //                                        // flickers, which is the invariant-with-
+    //                                        // no-silhouette scar: the isoelectronic
+    //                                        // beat's whole argument is that this
+    //                                        // one number does not move while the
+    //                                        // radius falls, and it cannot be read
+    //                                        // as unmoving while the characters
+    //                                        // around it change. It stamps "(held)"
+    //                                        // only when the engine has MEASURED
+    //                                        // that: the species changed since this
+    //                                        // state opened and the count did not.
     //                                        // 'energy' is E = -13.6 Z_eff^2/n^2
     //                                        // eV, evaluated at FRAME time from
     //                                        // the live charge the picture is
@@ -59200,7 +59245,24 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                        // computes an ionisation energy.
     //       formula,                                  // ONE Cambria surface
     //       camera: {az, el, dist},                   // SOLVED (skeleton E-9)
-    //       controls: ['orbital','dots','spin','probe','schar','twist'],
+    //       controls: ['orbital','dots','spin','probe','schar','twist',
+    //                  'element','charge','zeff'],
+    //                                        // The last three are row N's controls,
+    //                                        // and they exist because a capability
+    //                                        // union walks what a state RENDERS and
+    //                                        // therefore cannot see a missing dial:
+    //                                        // element / charge / Z_eff had
+    //                                        // schedules (element_steps /
+    //                                        // charge_steps / z_ramp) and no
+    //                                        // control surface at all, so a
+    //                                        // periodicity explore state had
+    //                                        // nothing to drag. Each SEIZES its
+    //                                        // parameter at the ONE place the
+    //                                        // schedules are read (osElementAt /
+    //                                        // osChargeAt / osZEffAt), so a dragged
+    //                                        // element is bit-for-bit the picture
+    //                                        // element_steps produces at that
+    //                                        // element — one code path, never two.
     //       static_readouts: [...],                   // same rows, disabled
     //       mo: {                                     // #17 sigma/pi bonding
     //         orbital: 'sigma_sp2'|'pi_2p',           // ONE mo (still supported)
@@ -59289,6 +59351,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // because the HUD occupancy MEASURES the fraction actually enclosed from
     // the dot sample and prints it. Solved offline by the same bisection, on
     // the same functions.
+    // The ink a HELD species is drawn in (ghost_species). Slightly stronger than
+    // the 0.10 the ghost LOBES use, because a held sphere is a single closed
+    // outline rather than a pair of lobes and reads fainter at the same alpha —
+    // and it has to stay legible while the LIVE cloud sits inside it.
+    var OS_GHOST_SP_ALPHA = 0.13;
     var OS_ENCLOSURES = ["50", "70", "90"];
     function osEnclKey(v) {
         if (typeof v !== "number") return "90";
@@ -60225,7 +60292,27 @@ export const FIELD_3D_RENDERER_CODE = `
     // else, stated twice in this file) — so a state whose declared archetype IS a
     // parameter changing (a period sweep, a group step, an ion-charge sweep) has
     // nowhere else to get its motion, and renders as a still picture without them.
+    //   ── AND THE TEACHER'S DIAL SEIZES THEM RIGHT HERE. Every consumer of the
+    //   element / charge / Z_eff picture — the ion row, the valence orbital, the
+    //   1/Z scale, the HUD, the strip, the curve — goes through these three
+    //   functions and nothing else, so seizing INSIDE them is what makes a
+    //   dragged element produce exactly the picture element_steps produces at
+    //   that element. A dial that wrote its own parallel branch further down the
+    //   frame would be a second code path, and a second code path is a second
+    //   physics: the drag-seize rows this scenario already ships (orbital / dots
+    //   / spin / probe / schar / twist) each override ONE value at ONE site for
+    //   the same reason.
+    //     The flag is cleared on every state apply, so a scripted schedule takes
+    //   the state back the moment the teacher moves on (no re-apply fights the
+    //   drag inside the state, because the apply pass never writes the seized
+    //   value back).
+    function osCtrlOn(os, key) {
+        var c = os.controls;
+        return !!c && c.indexOf(key) >= 0;
+    }
     function osElementAt(os, ms) {
+        if (osCtrlOn(os, "element") && window.PM_osElementDragged
+            && OS_IONS[window.PM_osElementPick + "|0"]) return window.PM_osElementPick;
         var cur = os.element || null, steps = os.element_steps || [], i;
         for (i = 0; i < steps.length; i++) {
             var st = steps[i] || {};
@@ -60234,6 +60321,10 @@ export const FIELD_3D_RENDERER_CODE = `
         return cur;
     }
     function osChargeAt(os, ms) {
+        if (osCtrlOn(os, "charge") && window.PM_osChargeDragged
+            && typeof window.PM_osChargePick === "number") {
+            return Math.round(osClamp(window.PM_osChargePick, -3, 3));
+        }
         var cur = (typeof os.charge === "number") ? os.charge : 0, steps = os.charge_steps || [], i;
         for (i = 0; i < steps.length; i++) {
             var st = steps[i] || {};
@@ -60247,6 +60338,25 @@ export const FIELD_3D_RENDERER_CODE = `
         var sym = osElementAt(os, ms);
         if (!sym) return null;
         return OS_IONS[sym + "|" + osChargeAt(os, ms)] || null;
+    }
+    // ── THE SPECIES THE GHOST HOLDS (ghost_species) ─────────────────────────
+    //   Same closed-form shape as element_steps, and deliberately NOT routed
+    //   through the drag-seize above: the held picture is a "before" the author
+    //   named, and a teacher dragging the LIVE element must not drag the thing
+    //   they are comparing against with it.
+    //   Returns an OS_IONS row (which carries that species' own Slater Z_eff and
+    //   its own valence orbital) or null while nothing is held.
+    function osGhostSpeciesAt(os, ms) {
+        var steps = os.ghost_species || [], cur = null, i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            if (!st.element) continue;
+            if (ms >= cueTriggerMs("ghost_species_" + i, (st.at_ms != null) ? st.at_ms : 0)) {
+                var q = Math.round(osClamp((typeof st.charge === "number") ? st.charge : 0, -3, 3));
+                cur = OS_IONS[st.element + "|" + q] || cur;
+            }
+        }
+        return cur;
     }
     // ── Z_eff: the effective nuclear charge the electron actually feels ──────
     //   Hydrogenic scaling is an EXACT similarity: psi_Z(r) = Z^(3/2) psi_1(Z r),
@@ -60271,6 +60381,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   'mode' is NOT a motion source (it is a camera-table key and deliberately
     //   nothing else), which is why this is its own explicit timing field.
     function osZEffAt(os, ms) {
+        // The teacher's dial seizes the whole resolution — the static value AND
+        // the ramp — at the ONE site every consumer reads. Returned before the
+        // ramp on purpose: a drag that a still-running z_ramp overwrote two
+        // frames later would be a dial the state fights.
+        if (osCtrlOn(os, "zeff") && window.PM_osZEffDragged
+            && typeof window.PM_osZEffPick === "number" && window.PM_osZEffPick > 0.05) {
+            return Math.min(window.PM_osZEffPick, 100);
+        }
         var z = (typeof os.z_eff === "number") ? os.z_eff : 1;
         // z_eff: 'slater' DERIVES the charge from the element and its ion charge
         // at this instant — Z minus the screening its own configuration produces.
@@ -60312,7 +60430,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // concrete orbital name is always honoured as authored.
     function osBaseOrbitalId(os, ms) {
         var id = os.orbital || null;
-        if (id === "valence" || (!id && os.element)) {
+        // "names an element" now means ANY element source — the static scalar,
+        // the schedule, or the teacher's picker. Testing os.element alone sent a
+        // schedule-driven or dragged state down the "1s" fallback, i.e. drew
+        // hydrogen's orbital under a caption naming another atom, which is the
+        // populate_baseid scar one parameter over.
+        if (id === "valence" || (!id && (os.element
+            || (os.element_steps && os.element_steps.length) || osCtrlOn(os, "element")))) {
             var ion = osIonAt(os, ms);
             if (ion && ion.valenceKey && OS_ORBITALS[ion.valenceKey]) return ion.valenceKey;
             return null;
@@ -62232,6 +62356,9 @@ export const FIELD_3D_RENDERER_CODE = `
         // hybrid sets while an atomic-orbitals concept keeps the CORE-ring s/p
         // list (Rule 38b). Falls back to the shipped list, so no existing
         // concept sees any change.
+        var elemDef = (SC.element && SC.element["default"]) ? SC.element["default"] : OS_ELEMENTS[0];
+        var chgDef = (SC.charge && SC.charge["default"] != null) ? Math.round(osClamp(SC.charge["default"], -3, 3)) : 0;
+        var zeffDef = (SC.zeff && SC.zeff["default"] != null) ? SC.zeff["default"] : 1;
         var pickList = config.explore_orbitals || OS_EXPLORE_ORBITALS;
         var opts = "", oi;
         for (oi = 0; oi < pickList.length; oi++) {
@@ -62243,11 +62370,44 @@ export const FIELD_3D_RENDERER_CODE = `
             opts += '<option value="' + ok + '"' + (ok === orbDef ? ' selected' : '') + '>'
                 + ov.main + (ov.sub ? ' (' + ov.sub + ')' : '') + '</option>';
         }
+        // The element picker offers the WHOLE enum the config accepts (H..Ca),
+        // because "which atom" is not a depth-ring choice the way an orbital name
+        // is — every element in OS_ELEMENTS is core content for the concept that
+        // asks for this row. config.explore_elements narrows it, same escape
+        // hatch as explore_orbitals.
+        var elemList = config.explore_elements || OS_ELEMENTS;
+        var eOpts = "", ei2;
+        for (ei2 = 0; ei2 < elemList.length; ei2++) {
+            var es = elemList[ei2];
+            if (!OS_IONS[es + "|0"]) continue;
+            eOpts += '<option value="' + es + '"' + (es === elemDef ? ' selected' : '') + '>'
+                + es + ' (Z = ' + OS_IONS[es + "|0"].Z + ')</option>';
+        }
         var sp = document.createElement("div"); sp.id = "os_sliders";
         sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:238px;display:none;";
         sp.innerHTML =
             '<div id="os_orbital_row" style="display:none"><label>Orbital: ' +
             '<select id="os_orbital_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + opts + '</select></label></div>' +
+            // ── THE THREE PERIODICITY DIALS (row N's control half). Identity
+            //    first (which atom, how many electrons), then the pull those two
+            //    produce — the same order the physics is derived in, so a teacher
+            //    dragging downwards walks cause to effect.
+            '<div id="os_element_row" style="display:none;margin-top:6px"><label>Element: ' +
+            '<select id="os_element_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace">' + eOpts + '</select></label></div>' +
+            // charge is an INTEGER count of electrons added or removed, so it is a
+            // stepper (step 1) and never a continuous slider — "Na(1.4+)" is not a
+            // substance. The species label beside it is not a second control: it is
+            // what the element and this count RESOLVE to, recomputed live, so the
+            // dial can never name a species the picture is not drawing.
+            '<div id="os_charge_row" style="display:none;margin-top:6px"><label>Charge: <span id="os_charge_val">0</span> \\u2192 <span id="os_charge_sym">\\u2014</span></label>' +
+            '<input type="range" id="os_charge_slider" min="-3" max="3" step="1" value="' + chgDef + '" style="width:100%"></div>' +
+            // Z_eff: the range is DERIVED from the enum, not chosen round. Every
+            // species OS_IONS can name lands in 0.70 (H(-)) .. 9.10 (Ca(3+)), so
+            // the dial spans 0.5..10 and a teacher cannot drag to a charge no atom
+            // in this scenario has. The subscript is a real DOM <sub> — this label
+            // is innerHTML, so "Z_eff" would be an ASCII notation lie (Rule 34c).
+            '<div id="os_zeff_row" style="display:none;margin-top:6px"><label>Effective charge Z<sub>eff</sub>: <span id="os_zeff_val">1.00</span></label>' +
+            '<input type="range" id="os_zeff_slider" min="0.5" max="10" step="0.05" value="' + zeffDef + '" style="width:100%"></div>' +
             '<div id="os_dots_row" style="display:none;margin-top:6px"><label>Measurements: <span id="os_dots_val">' + Math.round(dotsDef) + '</span></label>' +
             '<input type="range" id="os_dots_slider" min="100" max="5000" step="100" value="' + Math.round(dotsDef) + '" style="width:100%"></div>' +
             '<div id="os_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="os_spin_val">' + Number(spinDef).toFixed(2) + '</span> rad/s</label>' +
@@ -62294,6 +62454,47 @@ export const FIELD_3D_RENDERER_CODE = `
             window.PM_osProbe = parseFloat(prbSl.value) / 100;
             window.PM_osProbeDragged = true; osEmit("probe", window.PM_osProbe);
         });
+        // ── the three periodicity dials. Each writes a *Pick global and raises a
+        //    *Dragged flag, and NOTHING ELSE: the seize happens inside
+        //    osElementAt / osChargeAt / osZEffAt, which is the one place the
+        //    schedules are read, so the dragged picture and the scheduled picture
+        //    are the same picture by construction.
+        //    The *Pick names are deliberately NOT PM_osElement / PM_osCharge /
+        //    PM_osZEff — those three are OUTPUT globals (what the frame RESOLVED,
+        //    read by the headless probe), and a dial writing the output it is
+        //    supposed to influence would make the probe unable to tell a working
+        //    seize from a stuck one.
+        var elSel = document.getElementById("os_element_select");
+        var chgSl = document.getElementById("os_charge_slider");
+        var chgV = document.getElementById("os_charge_val"), chgSym = document.getElementById("os_charge_sym");
+        var zefSl = document.getElementById("os_zeff_slider"), zefV = document.getElementById("os_zeff_val");
+        function osSpeciesLabel(sym, q) {
+            var ion = sym ? OS_IONS[sym + "|" + q] : null;
+            return ion ? ion.label : "\\u2014";
+        }
+        function osChargeText(q) {
+            // Rule 34c: a minus sign is U+2212, never the ASCII hyphen String()
+            // hands back — and "0" carries no sign at all.
+            return (q > 0 ? "+" : (q < 0 ? "\\u2212" : "")) + Math.abs(q);
+        }
+        function osSyncChargeRow() {
+            if (chgV) chgV.textContent = osChargeText(window.PM_osChargePick);
+            if (chgSym) chgSym.textContent = osSpeciesLabel(window.PM_osElementPick, window.PM_osChargePick);
+        }
+        if (elSel) elSel.addEventListener("change", function () {
+            window.PM_osElementPick = elSel.value; window.PM_osElementDragged = true;
+            osSyncChargeRow(); osEmit("element", elSel.value);
+        });
+        if (chgSl) chgSl.addEventListener("input", function () {
+            window.PM_osChargePick = Math.round(parseFloat(chgSl.value));
+            window.PM_osChargeDragged = true;
+            osSyncChargeRow(); osEmit("charge", window.PM_osChargePick);
+        });
+        if (zefSl) zefSl.addEventListener("input", function () {
+            window.PM_osZEffPick = parseFloat(zefSl.value);
+            if (zefV) zefV.textContent = window.PM_osZEffPick.toFixed(2);
+            window.PM_osZEffDragged = true; osEmit("zeff", window.PM_osZEffPick);
+        });
         var schSl = document.getElementById("os_schar_slider");
         var schV = document.getElementById("os_schar_val"), schA = document.getElementById("os_schar_ang");
         if (schSl) schSl.addEventListener("input", function () {
@@ -62327,6 +62528,11 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osOrbitalDef = orbDef; window.PM_osOrbital = orbDef;
         window.PM_osProbe = 0;
         window.PM_osSCharDef = scharDef; window.PM_osSChar = scharDef;
+        window.PM_osElementDef = elemDef; window.PM_osElementPick = elemDef;
+        window.PM_osChargeDef = chgDef; window.PM_osChargePick = chgDef;
+        window.PM_osZEffDef = zeffDef; window.PM_osZEffPick = zeffDef;
+        if (zefV) zefV.textContent = Number(zeffDef).toFixed(2);
+        osSyncChargeRow();
 
         // ── the EXTRA radial-node shells (row L). 2s has one node shell, which is
         //    why the pool was exactly one ring; 3s has two and 4s has THREE, and a
@@ -62348,6 +62554,27 @@ export const FIELD_3D_RENDERER_CODE = `
             nsM.visible = false;
             addToScene(nsM);
         }
+
+        // ── THE GHOST BOUNDARY (ghost_species on an s valence). The live sphere
+        //    pool is exactly ONE mesh ("only one s orbital is ever active"), which
+        //    is true of the live stage and false the moment a state holds a
+        //    PREVIOUS species beside it: Na held against Na(+) is two spherical
+        //    boundaries at two different radii, in one frame. Rather than widen
+        //    the live pool (which would also change how many s orbitals a state
+        //    may make ACTIVE — a different claim, and out of this build's scope),
+        //    the held picture gets its own mesh and its own colour.
+        //    Grey #546E7A is the same "this is the ghost" ink the ghost LOBES
+        //    already use, so the two ghost paths read as one thing.
+        //    Appended at the very END of the build for the node-shell reason: no
+        //    shipped concept's sceneObjects order moves by a single entry.
+        var gsp = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#546E7A"), emissive: hexToThreeColor("#546E7A"),
+            emissiveIntensity: 0.18, shininess: 30, transparent: true, opacity: 0.0,
+            side: THREE.DoubleSide, depthWrite: false
+        }));
+        gsp.userData = { elementType: "os_surface", id: "os_ghost_sphere" };
+        gsp.visible = false;
+        addToScene(gsp);
     }
 
     // Authoritative per-state visibility + seeding. Runs AFTER the generic
@@ -62358,6 +62585,8 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osOrbitalDragged = false; window.PM_osDotsDragged = false;
         window.PM_osSpinDragged = false; window.PM_osProbeDragged = false;
         window.PM_osSCharDragged = false; window.PM_osTwistDragged = false;
+        window.PM_osElementDragged = false; window.PM_osChargeDragged = false;
+        window.PM_osZEffDragged = false;
         window.PM_osOrbital = osBaseOrbitalId(os, 0) || window.PM_osOrbitalDef || "1s";
         // #17: the twist dial opens at the state\\u0027s own preset (its static
         // angle, or the START of its scripted ramp — never the end, or the frame
@@ -62404,7 +62633,8 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var ctrls = os.controls || [];
         var statics = os.static_readouts || [];
-        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row", schar: "os_schar_row", twist: "os_twist_row" };
+        var rows = { orbital: "os_orbital_row", dots: "os_dots_row", spin: "os_spin_row", probe: "os_probe_row", schar: "os_schar_row", twist: "os_twist_row",
+                     element: "os_element_row", charge: "os_charge_row", zeff: "os_zeff_row" };
         var panel = document.getElementById("os_sliders");
         var anyRow = false, key;
         for (key in rows) {
@@ -62433,6 +62663,29 @@ export const FIELD_3D_RENDERER_CODE = `
         if (spinV) spinV.textContent = Number(window.PM_osSpin).toFixed(2);
         var prbSl = document.getElementById("os_probe_slider");
         if (prbSl) prbSl.value = String(Math.round(window.PM_osProbe * 100));
+        // The three periodicity dials open at the state's OWN preset, resolved
+        // through the same three functions the frame uses — at t = 0, which is
+        // the START of any schedule and never its end (the frame before the first
+        // step fires would otherwise already show the last species). The Dragged
+        // flags were cleared above, so these calls cannot seize on a stale drag.
+        var elSl2 = document.getElementById("os_element_select");
+        var el0 = osElementAt(os, 0);
+        window.PM_osElementPick = el0 || (window.PM_osElementDef || OS_ELEMENTS[0]);
+        if (elSl2 && OS_IONS[window.PM_osElementPick + "|0"]) elSl2.value = window.PM_osElementPick;
+        window.PM_osChargePick = osChargeAt(os, 0);
+        var chSl2 = document.getElementById("os_charge_slider");
+        var chV2 = document.getElementById("os_charge_val"), chSy2 = document.getElementById("os_charge_sym");
+        if (chSl2) chSl2.value = String(window.PM_osChargePick);
+        if (chV2) chV2.textContent = (window.PM_osChargePick > 0 ? "+" : (window.PM_osChargePick < 0 ? "\\u2212" : ""))
+            + Math.abs(window.PM_osChargePick);
+        if (chSy2) {
+            var ion0 = el0 ? OS_IONS[el0 + "|" + window.PM_osChargePick] : null;
+            chSy2.textContent = ion0 ? ion0.label : "\\u2014";
+        }
+        window.PM_osZEffPick = window.PM_osZEff;
+        var zeSl2 = document.getElementById("os_zeff_slider"), zeV2 = document.getElementById("os_zeff_val");
+        if (zeSl2) zeSl2.value = String(window.PM_osZEffPick);
+        if (zeV2) zeV2.textContent = Number(window.PM_osZEffPick).toFixed(2);
         var schSl2 = document.getElementById("os_schar_slider");
         var schV2 = document.getElementById("os_schar_val"), schA2 = document.getElementById("os_schar_ang");
         if (schSl2) schSl2.value = String(Math.round(window.PM_osSChar * 100));
@@ -62464,9 +62717,17 @@ export const FIELD_3D_RENDERER_CODE = `
         //   The strip is refused when the state names no element at all: a
         //   periodic strip with nothing lit would be a decoration, and this
         //   scenario's rule is that an empty stage prints no identity.
+        //   "The state names an element" means ANY element source, not the static
+        //   scalar: a state driving the identity purely through element_steps —
+        //   which is exactly what a period sweep does — painted the strip and the
+        //   curve into a permanently hidden div, every frame, for the whole state.
+        //   The teacher's picker counts too, since a state that exposes it always
+        //   has an element to light.
         var ovl = os.overlay || {};
-        var ovStrip = !!ovl.table && !!os.element;
-        var ovCurve = !!ovl.curve && !!os.element;
+        var ovHasElem = !!os.element || !!(os.element_steps && os.element_steps.length)
+            || osCtrlOn(os, "element");
+        var ovStrip = !!ovl.table && ovHasElem;
+        var ovCurve = !!ovl.curve && ovHasElem;
         var ovOn = ovStrip || ovCurve;
         var ovp = document.getElementById("os_overlay");
         var ovS = document.getElementById("os_strip");
@@ -62497,7 +62758,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var tj = 0; tj < trans.length; tj++) {
                 if (sid.indexOf(trans[tj]) === 0) { so.visible = false; break; }
             }
-            if (sid === "os_sphere" || sid === "os_probe" || sid === "os_probe_rim" ||
+            if (sid === "os_sphere" || sid === "os_ghost_sphere" || sid === "os_probe" || sid === "os_probe_rim" ||
                 sid === "os_node_shell" || sid === "os_node_shell_label" || sid === "os_node_label" ||
                 sid === "os_orbit_ring" || sid === "os_orbit_bead" || sid === "os_nucleus_b") so.visible = false;
         }
@@ -62604,6 +62865,24 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osCharge = osIon ? osIon.charge : null;
         window.PM_osConfig = osIon ? osIon.config : null;
         window.PM_osSlaterS = osIon ? osIon.S : null;
+        // ── the species the ghost HOLDS, and the geometry that species owns.
+        //   Resolved from ITS OWN OS_IONS row, so the held picture carries the
+        //   held species' valence orbital AND the held species' Slater Z_eff —
+        //   never the live charge, which is what made a ghost land exactly on top
+        //   of the live orbital and show nothing at all.
+        var ghostIon = osGhostSpeciesAt(os, ms);
+        var ghostOrbId = (ghostIon && ghostIon.valenceKey && OS_ORBITALS[ghostIon.valenceKey])
+            ? ghostIon.valenceKey : null;
+        var ghostOrb = ghostOrbId ? OS_ORBITALS[ghostOrbId] : null;
+        var ghostZ = ghostIon ? ghostIon.zEff : null;
+        //   Its outer reach in pm, through the SAME expression the live radius
+        //   readout uses (osOuterPm x osZUnit) — one law, read twice, so the held
+        //   boundary and the live one can never come from two different rules.
+        var ghostPm = (ghostOrb && ghostOrb.rByLev) ? osOuterPm(ghostOrb, encKey) * osZUnit(ghostOrb, ghostZ) : null;
+        window.PM_osGhostSpecies = ghostIon ? ghostIon.label : null;
+        window.PM_osGhostZEff = ghostZ;
+        window.PM_osGhostOrbital = ghostOrbId;
+        window.PM_osGhostPm = ghostPm;
         // ── row E: the element overlay is redrawn from the LIVE identity every
         //   frame, never seeded at apply — that is the whole reason element_steps
         //   and charge_steps can move it. Both marks are pure functions of the
@@ -62856,6 +63135,22 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (sph.material) sph.material.opacity = sphAlpha * surfF * (1 - hybMorphP);
             }
         }
+        // ── the HELD boundary, when the species being held has an s valence.
+        //   Drawn on its OWN mesh at its OWN radius, so Na held against Na(+)
+        //   renders two spheres in one frame instead of one sphere twice. It does
+        //   NOT ride surfF: the held picture is a comparison the state put on
+        //   screen, not the live boundary's reveal beat, and gating it on the
+        //   live surface's timer would make the "before" appear on the "after"'s
+        //   schedule.
+        var gsph = osFindById("os_ghost_sphere");
+        if (gsph) {
+            var gOn = !!ghostOrb && ghostOrb.kind === "sphere" && ghostPm > 0;
+            gsph.visible = gOn;
+            if (gOn) {
+                gsph.scale.setScalar(ghostPm / OS_PM_PER_UNIT);
+                if (gsph.material) gsph.material.opacity = OS_GHOST_SP_ALPHA;
+            }
+        }
         // lobes: pull from the shared pool, aim each along its (spun) direction.
         var extrF = (os.extrude_at_ms != null)
             ? osRamp(ms, cueTriggerMs("extrude", os.extrude_at_ms), (os.extrude_duration_ms != null) ? os.extrude_duration_ms : 2400, 0, 1)
@@ -62896,7 +63191,11 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         var lobeAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity
             : 0.20 / Math.max(1, lobedCount);
-        function osPlaceLobes(orbId, growth, opacity, isGhost) {
+        //   zOv: the charge THIS call's orbital is drawn at, when it is not the
+        //   live one. Only ghost_species passes it (a held species carries its own
+        //   Z_eff); every existing caller passes nothing and gets the live zEff
+        //   exactly as before.
+        function osPlaceLobes(orbId, growth, opacity, isGhost, zOv) {
             var orb = OS_ORBITALS[orbId];
             if (!orb || (orb.kind !== "lobes" && orb.kind !== "hybrid")) return;
             var frames = osLobeFrames(orb);
@@ -62943,12 +63242,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 // mesh at 1/Z, so a heavier nucleus pulls the dumbbell in without
                 // any geometry being rebuilt. A hybrid returns 1 here (declared
                 // non-goal, osZUnit).
-                var lz = osZUnit(orb, zEff);
+                var lz = osZUnit(orb, (zOv != null) ? zOv : zEff);
                 lb.scale.set((0.55 + 0.45 * gEff) * lz, gEff * lz, (0.55 + 0.45 * gEff) * lz);
                 osSetColor(lb, isGhost ? "#546E7A" : orb.color);
                 if (lb.material) lb.material.opacity = opacity;
             }
         }
+        // the HELD species first, so it takes the earliest lobe slots and the live
+        // set is never starved by it.
+        if (ghostOrb && ghostOrb.kind === "lobes") osPlaceLobes(ghostOrbId, 1, OS_GHOST_SP_ALPHA, true, ghostZ);
         for (i = 0; i < ghostIds.length; i++) osPlaceLobes(ghostIds[i], 1, ghostAlpha, true);
         for (i = 0; i < active.length; i++) {
             var aOrb = OS_ORBITALS[active[i]];
@@ -63775,14 +64077,42 @@ export const FIELD_3D_RENDERER_CODE = `
                     // DID compute the screening itself, from this element's own
                     // configuration — so it vouches for the provenance again, on
                     // exactly the same terms as the MO constant beside it.
+                    //   ...and the stamp is DROPPED the moment the teacher's dial
+                    // seizes the charge. os.z_eff still reads "slater" then, but
+                    // the number on screen is the teacher's, not the screening
+                    // arithmetic's — and a provenance stamp on a number the engine
+                    // did not derive is the one failure this stamp exists to
+                    // prevent. Found by sweeping os.z_eff for its CONSUMERS after
+                    // the seize was written, not from reading the seize.
+                    var zProv = (os.z_eff === "slater" && osIon
+                        && !(osCtrlOn(os, "zeff") && window.PM_osZEffDragged));
                     lines.push("Z_eff = " + ((moPrim != null) ? (moPrim.zEff.toFixed(2) + " (Slater)")
-                        : (zEff.toFixed(2) + ((os.z_eff === "slater" && osIon) ? " (Slater)" : ""))));
+                        : (zEff.toFixed(2) + (zProv ? " (Slater)" : ""))));
                 } else if (want[i] === "element") {
                     // element identity: the symbol with its ion charge, and Z. Not
                     // the configuration — that is its own line, so a state can show
                     // WHICH atom without also showing what it is made of.
+                    //   ...and the count is "10 e\\u207B", not "10 e": an electron
+                    // is a negative particle and the superscript minus is its
+                    // notation, not decoration (Rule 34c, the same sweep the
+                    // toFixed minus above belongs to).
                     lines.push((osIon == null) ? "\\u2014"
-                        : (osIon.label + " \\u00B7 Z = " + osIon.Z + " \\u00B7 " + osIon.nE + " e"));
+                        : (osIon.label + " \\u00B7 Z = " + osIon.Z + " \\u00B7 " + osIon.nE + " e\\u207B"));
+                } else if (want[i] === "electron_count") {
+                    // THE PINNED COUNT, on its own line. As the third field of the
+                    // 'element' line above it is a number holding still inside a
+                    // string that flickers — the invariant-with-no-silhouette scar
+                    // — and the isoelectronic beat's entire argument is that this
+                    // one number does NOT move while the radius falls.
+                    //   "(held)" is MEASURED, never asserted: the engine compares
+                    // the species this state opened on with the species on screen
+                    // now, and stamps it only when the identity changed and the
+                    // count did not. A state that never changes species prints the
+                    // bare count, because nothing has been held against anything.
+                    var ion0h = osIonAt(os, 0);
+                    var heldNow = !!(osIon && ion0h && ion0h.label !== osIon.label && ion0h.nE === osIon.nE);
+                    lines.push((osIon == null) ? "\\u2014"
+                        : (osIon.nE + " e\\u207B" + (heldNow ? " (held)" : "")));
                 } else if (want[i] === "ie_measured") {
                     // row M. The engine NEVER computes an ionisation energy, so
                     // this line prints a citation and says so — the same terms as
@@ -63832,6 +64162,30 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ctrls.indexOf("dots") >= 0 && !window.PM_osDotsDragged) {
             var dv2 = document.getElementById("os_dots_val");
             if (dv2) dv2.textContent = String(count);
+        }
+        // ...and the three periodicity dials track the SCRIPTED value whenever the
+        // teacher is not driving them (the gas_box rate-bar scar: a state whose
+        // element_steps walk a period with the picker frozen on the first element
+        // is an instrument contradicting the picture it labels). Every value here
+        // is the one the frame actually resolved, read back — never recomputed.
+        if (ctrls.indexOf("element") >= 0 && !window.PM_osElementDragged && osIon) {
+            var el3 = document.getElementById("os_element_select");
+            if (el3 && el3.value !== osIon.sym) el3.value = osIon.sym;
+            window.PM_osElementPick = osIon.sym;
+        }
+        if (ctrls.indexOf("charge") >= 0 && !window.PM_osChargeDragged && osIon) {
+            var ch3 = document.getElementById("os_charge_slider");
+            var chv3 = document.getElementById("os_charge_val"), chs3 = document.getElementById("os_charge_sym");
+            if (ch3) ch3.value = String(osIon.charge);
+            if (chv3) chv3.textContent = (osIon.charge > 0 ? "+" : (osIon.charge < 0 ? "\\u2212" : "")) + Math.abs(osIon.charge);
+            if (chs3) chs3.textContent = osIon.label;
+            window.PM_osChargePick = osIon.charge;
+        }
+        if (ctrls.indexOf("zeff") >= 0 && !window.PM_osZEffDragged) {
+            var ze3 = document.getElementById("os_zeff_slider"), zev3 = document.getElementById("os_zeff_val");
+            if (ze3) ze3.value = String(zEff);
+            if (zev3) zev3.textContent = zEff.toFixed(2);
+            window.PM_osZEffPick = zEff;
         }
         // A scripted morph must drag its own readout with it, or the state shows
         // a slider frozen at its seed while the picture sweeps past it — an
@@ -63895,6 +64249,30 @@ export const FIELD_3D_RENDERER_CODE = `
             // where the physics says three).
             element: window.PM_osElement, charge: window.PM_osCharge,
             config: window.PM_osConfig, slaterS: window.PM_osSlaterS,
+            // the HELD species (ghost_species): its own charge, its own orbital
+            // and its own radius, beside the live ones above — the ONE reading a
+            // ghost scaled by the LIVE charge cannot fake, because it would report
+            // the live numbers twice.
+            ghost: window.PM_osGhostSpecies, ghostZ: window.PM_osGhostZEff,
+            ghostOrbital: window.PM_osGhostOrbital, ghostPm: window.PM_osGhostPm,
+            // reported only while it is ON SCREEN. Every other scale here is a
+            // live-or-stale object scale, which is the right reading for a mesh
+            // the state always shows; a HELD boundary is absent on most states,
+            // and a stale scale left over from the previous state would read as
+            // "a ghost is up" to any probe that trusts it.
+            ghostSphere: (function () {
+                var g = osFindById("os_ghost_sphere");
+                return (g && g.visible) ? Number(g.scale.x.toFixed(6)) : null;
+            })(),
+            // and the three dials: what the teacher picked vs what the frame
+            // resolved. A seize that never reached the physics shows up here as a
+            // pick that moved beside an element/charge/z that did not.
+            pickElement: window.PM_osElementPick, pickCharge: window.PM_osChargePick,
+            pickZEff: window.PM_osZEffPick,
+            dragged: {
+                element: !!window.PM_osElementDragged, charge: !!window.PM_osChargeDragged,
+                zeff: !!window.PM_osZEffDragged
+            },
             orbital: (window.PM_osActive && window.PM_osActive.length) ? window.PM_osActive[window.PM_osActive.length - 1] : null,
             nodesRadial: pr ? pr.nodesRadial : null, shells: shells,
             // row K: the energy the HUD is printing THIS frame, beside the charge
