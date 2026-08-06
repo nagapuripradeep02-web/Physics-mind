@@ -632,3 +632,162 @@ concepts get re-designed around a driveless cause beat — that is a Checkpoint-
   `eye_dense_motion_gates_all_pass_by_construction_on_a_totally_static_scene` is fixed. One hash
   across the series = a dead scene whatever the headline says.
 - **Verifier duties accepted:** E6, E8, E9 on this desk's two concepts, once E4/E5 clear it.
+
+---
+
+## PASS 4 — E5 LANDING CHECK. Same shape as PASS 3, read against code, not against comments.
+
+**Filed 2026-08-06.** E5 = `df87b6d`, merged to master in PR #29 (`bd89d43`). Also landed since
+PASS 3: **E7** (`14b2943`) and **E11** (`9f944d0`). Desk synced to master `994bb8f`; **verify chain
+green** — `check:renderer-syntax` OK on all three renderers, `tsc --noEmit` 0,
+`validate:concepts` **149 PASS / 0 FAIL**. `git diff origin/master...HEAD -- src/` = **0 files**;
+this desk remains docs-only. **All `file:line` refs below are against master @ `994bb8f`** and do
+not match PASS 1/2/3's.
+
+**Still blocked. E10 remains** (founder ruling 3) — `json-author` stays shut on both concepts.
+
+### A · Both physics blocks CONFORM to E5's readout rows. Zero edits owed.
+
+| Concept | `readouts` it authors | in `RBR_RO_META` (`:51112–51124`) |
+|---|---|---|
+| `rotational_kinematics` | `theta` · `omega` · `alpha` | ✓ all three. **Never surfaces `tau`** — Rule 25 intact |
+| `tau_eq_i_alpha` | `I` · `omega` · `alpha` · `tau` | ✓ all four. Explicitly excludes `KE`/`L`/`dLdt`/`F_pull` |
+
+Neither authors **`W`** — E5's fourth row is Desk A's `rotational_work_energy`, correctly not ours.
+Both semantics this desk filed landed **as filed**: `tau` prints the RESOLVED net torque including
+the rest-clamp `0.00` (P1-A, §2), and `alpha` is the per-step finite difference of ω from the same
+post-step snapshot, blanked across re-pins (the PASS-2 ruling).
+
+E5's three author-against-these-or-it-is-silent semantics (`ENGINE_LANDING_NOTICE.md` §6b), checked:
+
+1. **"τ = Iα only while I is constant, so a τ = Iα state must not `param_ramp` r."** Satisfied
+   **vacuously in both concepts** — neither authors `param_ramp` anywhere (`tau_eq_i_alpha` skeleton
+   §3 + scar 56 N/A-by-design; `rotational_kinematics` skeleton *"No `param_ramp` is authored
+   anywhere in this concept"*). `tau_eq_i_alpha` S5's r change is a **restart re-pose inside a
+   blanked frame between drives**, not a ramp, and no torque is engaged across it.
+2. **"α needs no torque authoring — `rotational_kinematics` can print it with `external_torque`
+   absent entirely."** True of the **readout**, not of the **concept**, and the distinction is a
+   trap. α is the finite difference of ω, so ω must actually change, which requires a real torque:
+   S3/S4/S5/S7/S8 still author `applied_torque_Nm` / `tau_brake_Nm` as **internal-only engine
+   fields** (`τ_internal = 3.06·α`), never a declared variable and never reader-facing. That is how
+   Rule 25 is kept — torque is never *surfaced*, not never *authored*. **Flagged because §6b's
+   wording invites `json_author` to drop the torque config and ship `α = 0.00` on every state**,
+   which passes every gate silently. No edit owed to the block; it already says this.
+3. **"W is signed and re-zeroes at a restart."** No consumer here.
+
+E5's known-not-fixed list also clears us: **`rbrDLdtAt`'s missing anchor clamp** touches neither
+concept, since both exclude `dLdt` — `tau_eq_i_alpha` explicitly (§"KE/L/dLdt/F_pull readouts are
+NEVER shown"), `rotational_kinematics` by never listing it.
+
+### B · Units — both blocks COMPLY with founder ruling 1. Nothing owed.
+
+Landed and verified, not read off the contract comment: `RBR_THETA_DISPLAY = { unit: " rad",
+dp: 2, per_rad: 1 }` (`:50235`, the flip point exists but is **not** taken), `alpha " rad/s²" dp 2`,
+`tau " N·m" dp 2`, `W " J" dp 2` (`:51121–51123`).
+
+- **`rotational_kinematics`** — *"2 dp everywhere (theta, omega, alpha, v)"*; θ authored in radians
+  throughout, including the S7 tick values **0.30 / 1.20 / 2.70 rad** and the S1 ≈ 9.00 rad pin; the
+  narration says *"in radians"* in words. ✓
+- **`tau_eq_i_alpha`** — I 3.06 kg·m², ω rad/s, α rad/s², τ N·m, 2 dp on every readout beat. ✓
+- **`reference_marks.value` in SI:** the only marks either concept authors are ω chips —
+  `predicted_omega_chip` 3.30 (rk), `predicted_omega_chip` 1.20 + `run_A_chip` 1.25 (τ=Iα), all
+  rad/s. **Neither authors a θ mark**, so the "SI, never display units" clause has no consumer here
+  and cannot be got wrong. ✓
+- **Rule 34c / PASS-2 cross-doc item 2 CLOSED.** The Unicode-minus obligation on α = −0.50 is
+  carried in `rotational_kinematics`'s §Rounding, and E5 satisfies it in the engine — `rbrFx` emits
+  U+2212, and the E5 comment calls out this concept's α = −0.50 by name.
+
+**One note, not a defect.** E5 widened `reference_marks[].surface` to `theta|alpha|tau|W` (`:1065`).
+The `rotational_kinematics` skeleton had declared those members explicitly **out of scope** (K2 enum
+hygiene) and PASS 2 **downgraded** findings_d §8 item 5 for the same reason — no consumer in either
+skeleton. Built anyway; optional, absent = byte-identical, harmless. Recorded only so nobody later
+reads it as a Desk-D ask that was silently expanded.
+
+### C · Ruling 4 (α, not τ) — the block already specifies α. **And E10 needs one more site than the label.**
+
+`rotational_kinematics`'s S9 control table reads **ω₀** (core, [0, 3.0] rad/s, step 0.1, def 1.50)
+and **α** (core, [−0.60, +0.60] rad/s², step 0.1). It never lists τ, and the internal resolution is
+already written: *"`τ_internal = 3.06·α` re-anchors ω live via the trusted-drag path."* That matches
+E10's build note (*"an α-labelled control resolving to τ = Iα internally, or `tau_applied`
+suppressed for that concept with an α control in its place"*) exactly. **No edit owed.**
+
+**The trap worth naming before E10 builds.** E5's `tau_applied` row (`:50877`) is a **τ** control:
+`glyph: "τ applied"`, `unit: " N·m"`, min −2.0 / max 2.0, and `rbrApplyParam("tau_applied", v)`
+(`:51037`) writes `v` straight in as a torque with **no scale factor**. `rbrSc()` overrides
+`min / max / step / default / dp / label` — **but not `unit`**: the row builder reads `sp.unit`
+directly, not `sc.unit` (`:50944`).
+
+> So relabelling `tau_applied` to "α" satisfies ruling 4's **letter** and prints **`α = 1.84 N·m`**
+> where α is 0.60 rad/s². **A wrong number under a right name is worse than naming torque.** E10
+> needs an overridable **unit** *and* a **value scale** (or its own `alpha` token) — not a label
+> override. Failure mode if missed: the HUD α row reads 0.60 while the slider beside it reads 1.84,
+> and nothing gates that.
+
+### D · `tau_eq_i_alpha` S8 as a second consumer of E8 — **NOT recorded where E8's dispatch will see it**
+
+- **E8's §B row still reads "BLOCKS DESK A's S8"** and cites only `conservation_of_angular_momentum`.
+- The only mention of Desk D near E8 is inside **E10's** build notes (*"E8 is the brake half of the
+  same 'no rendered agent' family — sequence adjacently"*). That is a family relationship, not a
+  second consumer, and it sits in a different row from the one an E8 surgeon reads.
+- The finding stands, re-verified on landed code: S8 authors entry `tau_app = 0, tau_brake = 0`, so
+  the `Math.abs(tv) > 0` guard drops **both** entries and `eng.sources` starts empty;
+  `rbrSetBrakeSource` **does** create the brake entry on a live drag (so the tug's *physics* is
+  live), but `rbrApplyVisibility` still never re-runs — the pad brakes **invisibly**.
+- **Ask: one line in E8's row.** *"Second consumer: `tau_eq_i_alpha` S8 (Desk D) — same defect via
+  the `sources[]` path rather than the scalar path."* Desk D is E8's named verifier so it would be
+  caught at verification, but a surgeon who A/Bs against one concept will ship a one-concept fix.
+
+### E · §4b IS correctly represented now. Confirmed at every site; nothing owed.
+
+| Site | State |
+|---|---|
+| `FROZEN_SCOPE_0c3.md` §0 ruling 3 | accepted **BLOCKING**, per-entry travel field named, **seventh capability, ten dispatches not nine** — recorded as scope growth, not absorbed ✓ |
+| `FROZEN_SCOPE_0c3.md` §B **E10** | full row, `rbr_drive_torque_has_no_rendered_actuator`, BLOCKS DESK D (both concepts), all three build notes, ruling 4 bound to it, E8 adjacency ✓ |
+| `ENGINE_LANDING_NOTICE.md` §7 | the wrong "Desk D is unblocked" paragraph **struck in place**, correction above it, both authoring consequences given ✓ |
+| §7 residual | Desk A's `rotational_work_energy` correctly still called unblocked — that half was always right ✓ |
+
+Every technical claim in those sites matches the code: no drive mesh (zero grep hits for any
+`rbr_drive`/`driveWheel`/`motorWheel` symbol), `padEngageMs` assigned only on the two brake paths,
+`sources[]` entries carry no travel field, `pad_travel_ms` singular and top-level. The 11-of-17
+figure is carried verbatim. **Nothing owed on §4b.**
+
+### F · A SECOND ESCAPE, same class as §4b — `time_ticks` (K5) is in no dispatch and no §C row
+
+Beyond the four asks, found while checking whether the tick set collides with E5's new
+`rbrWarnTickSurface`. It does not collide — but it has no home either.
+
+- **What it is.** `rotational_kinematics` skeleton **K5**: `time_ticks: { start_ms?, start_cue?,
+  every_ms, count }` — at each `start_ms + k·every_ms` a persistent tick lands on the r_ref circle
+  at the stripe's position, positions closed-form from `rbrThetaAt` so a rewind reproduces the set
+  exactly. Consumed by **S2** (`start_ms: 0`, count 3) and **S7** (`start_ms: 2000`, count 3).
+- **Not expressible with anything E5 landed.** A `reference_marks` entry with `form: 'tick'` now
+  *warns and draws nothing* unless the surface is `KE` with a bar (`rbrWarnTickSurface`,
+  `rbrWarnTickNoBar`) — the one rbr surface with a scale. Authoring the ticks that way is exactly
+  the silent-skip class E5 exists to make loud; post-E5 it is at least loud.
+- **Not in `FROZEN_SCOPE_0c3.md` anywhere.** `time_tick` / `equal-time` / `K5` → zero hits. §C
+  **C-1** covers markers, traces, swept arc, chord gauge and `r_point`; a progressive circular
+  **trace** is not a discrete equal-time **mark set with an authored time origin**.
+- **How it escaped — the same mechanism as §4b.** K5 was a skeleton-local item. The skeleton yielded
+  ownership of its shared paragraphs to findings_d (§1, §2, §3, §4b, §6b) and **K5 was not among
+  them**; findings_d §3 asks only for *"a fixed angular reference on the base + a drawn swept
+  angle"* — no ticks. So K5 never reached §8, and Desk E froze from §8, correctly.
+- **Cost.** S2 and S7 are built **on** the tick pattern: S2's claim is even spacing at constant ω,
+  S7's is the 1 : 3 : 5 widening under constant α. Each state's Rule-32c delta cue **is** the tick
+  geometry, and S7's narration says the numbers aloud (*"zero point three zero, zero point nine
+  zero, one point five zero — one to three to five"*). Without ticks neither state has a delta and
+  the θ = ω₀t + ½αt² beat has nothing to stand on.
+- **Not raised as a scope demand.** Desk E is at ten dispatches and this desk is not the office.
+  Filed so it is not rediscovered at `json-author` time.
+
+**The pattern, worth one sweep before the build closes.** Both escapes have one shape: *a
+skeleton-local K-item that yields ownership to findings_d, while naming a capability findings_d
+never carried, reaches the freeze in nothing.* §4b was caught by the founder; K5 by this check.
+**Recommend the other desks diff their own K/A/B/C-item lists against `FROZEN_SCOPE_0c3.md` once** —
+it is a grep, and this is now two for two on Desk D alone.
+
+### G · Standing items
+
+- **E7 moves rbr baselines** (§6c). No consequence here — this desk has authored no JSON and holds
+  no baselines. Recorded so the next session does not go looking.
+- Unchanged from PASS 3 §D: `field_3d_config` in the seed script (§4 trap 2), `md5sum` the dense
+  frames (§4 trap 1), verifier duties on **E6, E8, E9** — now plus **E10**, this desk's own row.

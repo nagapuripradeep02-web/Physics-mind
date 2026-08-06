@@ -1,6 +1,6 @@
 # rotmech desk D — loop state
 
-updated: 2026-08-05
+updated: 2026-08-06
 desk: `feat/rotmech-d` · `C:\Tutor\physics-mind-rotmech-d`
 cut from: `4b289d4` (the Phase-0d pre-registration commit)
 review_port: **8113**
@@ -11,10 +11,28 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 
 | Wave | Concept | Status |
 |---|---|---|
-| 2 | `rotational_kinematics` | **BLOCKED on E5.** Needs an **α** readout and the **v = ωr arrow**. (Corrected 2026-08-04 — see below. θ and `theta0_rad` are already BUILT.) |
-| 2 | `tau_eq_i_alpha` | **BLOCKED on E5.** Needs an α readout row; α is now *producible* (E4) but still has nowhere to print. |
+| 2 | `rotational_kinematics` | **BLOCKED on E10** (+ C-1 for the v = ωr arrow, + K5 unfiled — see below). α and θ now print (E5). |
+| 2 | `tau_eq_i_alpha` | **BLOCKED on E10.** α is producible (E4) and prints (E5); the drive still has no rendered actuator. |
 
-## HALF-UNBLOCKED — E4 landed, E5 did not (2026-08-05)
+## STILL BLOCKED — E4 + E5 landed, E10 does not exist yet (2026-08-06)
+
+E5 landed (`df87b6d`, in master via PR #29). **This desk is NOT unblocked** — the landing notice
+said it was, and `FROZEN_SCOPE_0c3.md` §0 ruling 3 overruled that: findings_d §4b is **accepted as
+BLOCKING** and filed as **E10** (`rbr_drive_torque_has_no_rendered_actuator`), the seventh
+capability, taking the build to ten dispatches. The notice §7 paragraph is struck and corrected.
+
+**`json-author` stays shut on both concepts until E10 lands.** 11 of 17 states still have no
+rendered agent for their torque — a Rule-32a cause beat that never moves, on a sim that otherwise
+looks finished (Rule 24 / §10(d): no stated agent without a rendered object).
+
+**PASS 4 filed** (`_engine/findings_d.md`): both physics blocks conform to E5's readout rows with
+zero edits owed; units comply with ruling 1 at every site; ruling 4 (α not τ) was already in the
+block. Two asks raised — E10's α control needs an overridable **unit** and a **value scale**, not
+just a label (relabelling `tau_applied` prints `α = 1.84 N·m`), and `tau_eq_i_alpha` S8 needs one
+line in **E8's own row**, where it is currently absent. **One new escape found: `time_ticks` (K5)
+is in no dispatch and no §C row** — S2 and S7 are built on it.
+
+## HISTORY — E4 landed, E5 did not (2026-08-05)
 
 `ENGINE_LANDING_NOTICE.md` §3/§7 + PR #29 (`bf7dac1`, **OPEN, not merged**). E4 = this desk's
 findings_d §1: **signed torque, so α is physically producible for the first time.** Newly
@@ -48,8 +66,10 @@ The payoff: when 0c-3 merges, this desk starts at `json-author` for both concept
 `architect`, so it catches up with the others in one step rather than three.
 
 ## next
-1. **Wait for E5.** Nothing in `json-author` is safe before it.
-2. On E5 merge: `npm run desk:sync` → verify chain → **start at `json-author`** for both concepts
+1. **Wait for E10.** Nothing in `json-author` is safe before it. (E4 + E5 have landed; the desk is
+   synced to master `994bb8f` and the verify chain is green — renderer-syntax OK, tsc 0,
+   validate 149 PASS / 0 FAIL.)
+2. On E10 merge: `npm run desk:sync` → verify chain → **start at `json-author`** for both concepts
    (not at `architect` — that is the payoff for the 0b-first decision) → `quality-auditor` ∥
    `eye-walker` → founder-proxy Checkpoint B.
 3. `json-author` must write **`field_3d_config`** into this desk's seed scripts, not

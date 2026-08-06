@@ -217,6 +217,52 @@ The unpushed master-merge commit (`d904fca`) is pushed.
   `tau_app = 0, tau_brake = 0` is dropped by the `Math.abs(tv) > 0` guard, and while
   `rbrSetBrakeSource` revives the physics on a live drag, `rbrApplyVisibility` never re-runs.
 
+---
+
+## 2026-08-06 — E5 landing check (docs-only; no `src/`, nothing seeded, nothing dispatched)
+
+**Synced 72 commits of master** (now at `994bb8f`) and re-ran the chain: `check:renderer-syntax` OK
+on all three renderers, `tsc --noEmit` **0**, `validate:concepts` **149 PASS / 0 FAIL**.
+`git diff origin/master...HEAD -- src/` = **0 files**. Both physics blocks survive the merge
+unchanged.
+
+**Still blocked, and the notice was wrong about that.** E5 landed (`df87b6d`), as did E7 and E11.
+`ENGINE_LANDING_NOTICE.md` §7 had said E4 + E5 unblocked this desk; **founder ruling 3 overruled it**
+— findings_d §4b is accepted as **BLOCKING** and filed as **E10**, the seventh capability, ten
+dispatches not nine. `json-author` stays shut on both concepts.
+
+### `findings_d.md` PASS 4 filed
+
+- **Both physics blocks conform to E5's readout rows — zero edits owed.** `rotational_kinematics`
+  authors `theta`/`omega`/`alpha` and never surfaces τ (Rule 25 intact); `tau_eq_i_alpha` authors
+  `I`/`omega`/`alpha`/`tau`; neither authors `W` (Desk A's row). Both semantics this desk filed
+  landed as filed — τ = resolved net torque including the rest-clamp 0.00, α = per-step finite
+  difference of ω. E5's "must not `param_ramp` r" constraint is satisfied **vacuously**: neither
+  concept authors a ramp anywhere.
+- **Units comply with ruling 1 at every site.** θ rad · α rad/s² · τ N·m, dp 2 throughout, and the
+  only `reference_marks` either concept authors are ω chips in rad/s — neither authors a θ mark, so
+  the SI clause has no consumer here and cannot be got wrong. **PASS-2 cross-doc item 2 closes**:
+  `rbrFx` emits U+2212, and E5's own comment names this concept's α = −0.50.
+- **Ruling 4 (α, not τ) was already in the block** — S9 exposes ω₀ and **α**, with
+  `τ_internal = 3.06·α` already specified as the internal resolution. **One ask raised:** E5's
+  `tau_applied` row can be relabelled but its **unit is not overridable** (`sp.unit`, not
+  `sc.unit`) and `rbrApplyParam` applies **no scale** — so a label-only fix satisfies ruling 4's
+  letter and prints **`α = 1.84 N·m`** where α is 0.60 rad/s². E10 needs an overridable unit *and* a
+  value scale, or its own token.
+- **`tau_eq_i_alpha` S8 is NOT recorded where E8's surgeon will see it.** E8's row still reads
+  "BLOCKS DESK A's S8"; the only Desk-D mention sits inside **E10's** notes as a family remark.
+  Asked for one line in E8's own row.
+- **§4b is correctly represented** at all four sites (§0 ruling 3, §B E10 with all three build notes
+  and ruling 4 bound to it, §7 struck-and-corrected, Desk A's half left standing). Every technical
+  claim matches the code. Nothing owed.
+- **A SECOND ESCAPE — `time_ticks` (K5) is in no dispatch and no §C row.** Found while checking the
+  tick set against E5's new `rbrWarnTickSurface`. Same mechanism as §4b: a skeleton-local K-item
+  that yielded ownership to findings_d while naming a capability findings_d never carried, so it
+  never reached §8 and Desk E froze from §8 correctly. **S2 and S7 are built on it** — even spacing
+  at constant ω, 1 : 3 : 5 widening under constant α; each state's delta cue *is* the tick geometry.
+  Filed, not raised as a scope demand. **Recommended one grep-sweep across the other desks' K/A/B/C
+  item lists** — that is two escapes for two on this desk alone.
+
 ### Notes for whoever picks this desk up
 
 - Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND
