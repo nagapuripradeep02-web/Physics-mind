@@ -513,3 +513,44 @@ since that run (only `rolling_on_incline` was edited). **Checkpoint B HELD** pen
 
 ### Queue
 **B-5 → B-10 → B-11**, plus B-17 awaiting a founder decision. B-3 dropped (closed).
+
+### Pre-seal gate results — quality-auditor VERDICT: FAIL, 9 new findings
+
+Ran ∥ the eye-walk on the twice-verified post-E11 run. PASS: gates 1/2/3a/7/9/10/12/14/16–18 and
+all 8 registration sites (drift-free; `PCPL_CONCEPTS` correctly absent, `PILOT_CONCEPTS` 0 hits,
+`visual_baselines/` empty — all correct for an unsealed concept). Console clean across 8 states on
+port 8111. Layout 0 collisions. Word budget + delta cues within Rule 31 on all 8.
+
+**FIXED this session (both verified independently before acting):**
+- **N2 — the session's most consequential finding, and mine.** Rendered narration quoted arrow
+  **world-unit lengths as speeds**: S2 said the centre arrow reads "0.55 m/s" when the canvas
+  reads 0.60 (0.60 × 0.92 = 0.552); S6 said "1.84 m/s (2v)" and "0.92 m/s (v)" when v = 1.0, so
+  2v = 2.00 (2.00 × 0.92 = 1.840). S6 self-contradicted. **On the PRIMARY aha state the sim was
+  telling the student a number the screen does not show.** Had propagated into
+  `aha_moment.visual_confirmation` and S2's `misconception_watch.visual_counter` — the aha's own
+  stated visual proof. 4 strings fixed; grep now returns 0.
+- **N5 — supersedes B-14 with the opposite fix.** B-14 guessed the label needed a new glyph. The
+  engine default is already correct (`glyph: "μₖ"`); the concept was OVERRIDING it with ASCII.
+  **Deleted the key.** B-14 CLOSED.
+
+**Filed, NOT fixed:**
+- **N1 (MAJOR, engine)** — 13 of 15 glow windows name unregistered roll-layer children, so they
+  match nothing yet still set `glowActive`, dimming the ENTIRE overlay layer to 40% with nothing
+  lit. The skeleton's whole §3 glow-walk is inert, and the mitigation adopted for the existing
+  scar row is defeated because `phases[].glow_focal` reads the same variable as the state-level one.
+- **N3 (MAJOR, architect)** — framed extent = full run + one body diameter for a 0.5 m body puts
+  the wheel at 15–30 px. **This is the parent of B-13, B-19 and one OPEN queue row** — four
+  symptoms of one design rule. Needs an architect decision, not per-state camera tweaks.
+- **N4 (MODERATE, mine)** — all seven assessment answers keyed "A"; an all-A student scores 100%
+  on pre- and post-test. Deliberately not fixed: `distractor_misconceptions` is keyed BY LETTER,
+  so a careless reshuffle silently detaches every distractor from its misconception. Needs its own
+  pass, not a find-and-replace at the end of a long session.
+- **N7/N8/N9** — S5 has no `readouts` at all; S8's narration references advanced-ring content
+  (breaching 38a independently of the B-17 ruling); Rule 41 register in two S1/S8 strings.
+- **N6 — a DISAGREEMENT, recorded not silently resolved.** The audit treats `label` as a rendered
+  surface (so Rule 30's expand-symbols carve-out would not apply); this desk's filed position
+  (B-16) is that `label` IS the subtitle-strip narration, where Rule 30 requires it. Opposite
+  instructions from two defensible readings — needs a doctrine call.
+- **Gate 0**: the DoD's "turns counter" is UNBUILDABLE (no `turns` member in the `readouts` enum)
+  and DoD (i-1)'s preset-coherence argument leans on it; S3's HUD prints `f_k` for both bodies, so
+  **B-12 manifests on this concept too**, not only on the sibling.

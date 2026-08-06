@@ -1146,6 +1146,141 @@ under B-2.
 
 ---
 
+## PRE-SEAL QUALITY AUDIT — VERDICT **FAIL**, 9 new findings (2026-08-06)
+
+Ran alongside the eye-walk on the twice-verified post-E11 run. Gates 1/2/3a/7/9/10/12/14/16–18
+and all 8 registration sites PASS; Gates 0/3e/3f/3g/3h/4/8/15/20 FAIL. **Seven of the nine are
+authoring-side and fixable with no engine dependency** — which is exactly what the audit was for.
+
+### ✅ N2 — **FIXED.** Rendered narration quoted arrow WORLD-UNIT lengths as speeds
+
+**The most consequential finding of the session, and it is mine.** The skeleton's velocity-arrow
+map tabulates rendered arrow lengths in **wu**; those numbers were carried into the narration as
+**m/s**. Verified independently in the main session — the arithmetic is exact:
+
+| state | narration said | canvas + HUD read | wu identity |
+|---|---|---|---|
+| S2 | centre arrow "**0.55 m/s**" | **0.60** | 0.60 × 0.92 = **0.552** |
+| S6 | top "**1.84 m/s (2v)**", centre "**0.92 m/s (v)**" | **2.00**, **1.00** | 2.00 × 0.92 = **1.840**, 1.00 × 0.92 = **0.920** |
+
+S6 also contradicted itself: it states `v = 1.0` and then calls 1.84 "2v". The canvas was right
+throughout (`nlbFx(Math.abs(pv), 2)`); the narration was wrong. **On S2 — the PRIMARY aha state —
+the sim was telling the student a number the screen does not show.**
+
+The error had propagated into two more places, both now fixed: `aha_moment.visual_confirmation`
+and `STATE_2.misconception_watch[0].visual_counter` (the aha's own stated visual proof).
+Four strings corrected; `grep` for `0.55 m/s|1.84 m/s|0.92 m/s` now returns **0**.
+`tsc` 0 · `pure_rolling` PASS · 151/151.
+
+### ✅ N5 — **FIXED**, and it supersedes B-14 with the right fix
+
+B-14 was filed low-confidence off a screenshot, guessing the label needed a new glyph. The audit
+found the opposite: the engine default is **already correct** (`NLB_SLIDER_SPEC.mu_k … glyph:
+"μₖ"`), and the concept was *overriding* it with ASCII via `label: "μ_k"`. **The fix is to DELETE
+the key**, not author a glyph — the override path is `o.label ? o.label : sp.glyph`. Deleted; its
+three siblings (`v₀`, `ω₀`, `R`) already rendered correctly, so this was an isolated regression
+against a working default. **B-14 CLOSED.**
+
+### 🔴 N1 (MAJOR, `peter_parker:field3d_surgeon`) — 13 of 15 glow windows are unreachable AND they dim the teaching layer instead of lighting it
+
+Every SEAM-R overlay is a pooled child of `nlb_roll_group` and is deliberately never registered
+(`field_3d_renderer.ts:46597-46600`), while `nlbEach` walks only `nlbIndex` and matches on
+`ud.id === focal || ud.elementType === focal || ud.bodyId === focal`. So a `glow_focal` naming a
+roll-layer child **cannot match anything — but still sets `focal` truthy**, which sets
+`glowActive`, which sends every registered object down the *peer* branch to
+`GLOW_DIM_OPACITY = 0.4`. The registered `nlb_roll_group` therefore drags the **entire** overlay
+layer — bracket, marks, rim dot, cycloid, every point arrow and label, skid trail, zero markers —
+to 40%, **with nothing lit**.
+
+Only 2 of 15 authored windows resolve (`nlb_body_nlb_wheel_roll` S3, `nlb_body_wheel` S7 — both
+registered bodies). Pixel confirmation: S4 inside its 900–1200 ms window is visibly *dimmer* than
+outside it, and nothing is brighter in either frame; S7 (a registered body) is the positive
+control and is plainly lit.
+
+**Two consequences worth the founder's attention:** (1) the skeleton's entire §3 "glow walk" — the
+only sequencing mechanism S4/S5/S6 have left after per-arrow reveal was ruled out — is inert;
+(2) **the mitigation adopted for the existing OPEN scar row is defeated by the channel it moved
+to.** That row's remedy was "author no `glow_focal` so `glowActive` stays false"; the skeleton
+moved the focal from state level into `phases[]`, but the renderer reads `eng.glow_focal ||
+nlb.glow_focal` — the same variable. `glowActive` goes true either way, and because the id cannot
+match, **both** halves of every relation dim, which is strictly worse than the one-half dimming
+the row was filed for.
+
+### 🔴 N3 (MAJOR, `alex:architect`) — the framed-extent rule makes the apparatus 1–3% of canvas on EVERY state; B-13 and B-19 are symptoms
+
+Measured off the 1280×720 frames: the 6 m plank spans ≈180 px (S1), ≈287 px (S2 — the *closest*
+camera), ≈223 px (S4), ≈189 px (S8), so the 0.5 m wheel is **15–30 px tall**. Every teaching
+payload in this concept lives at wheel scale — the cusp, the rim dot, mark spacing, the three
+point arrows, the contact marker.
+
+Root cause is upstream of json_author: the skeleton's camera plan sets framed extent = full run +
+one body diameter (4.0–6.4 m) for a 0.5 m body. **This is the parent of B-13 (label collision),
+B-19 (bracket illegible) and the OPEN row `close_camera_framed_extent_is_authored_as_the_run_length_and_omits_the_body_radius`** —
+four symptoms of one design rule. The engine already exposes `camera_target_m` (S2 uses it), so a
+wheel-scale follow camera needs **no engine work** — but it does need an architect decision, not a
+per-state camera tweak, which is why it is not being fixed blind here.
+
+### 🔴 N4 (MODERATE, `alex:json_author` — MINE, NOT fixed) — all seven assessment answers are keyed "A"
+
+Verified: `pr_q1..pr_q7` → `A A A A A A A`, one distinct key. Gates 20a–20d pass mechanically
+(real misconception distractors, physically correct keys, 7 distinct `tested_idea`,
+`parallel_form_stem` on all 7) — but **a student who always answers A scores 100% on both the pre-
+and post-test, so the instrument cannot measure the learning it exists to measure.** No machine
+gate checks key distribution.
+
+**Deliberately NOT fixed in this pass.** Re-keying means reordering options, and
+`distractor_misconceptions` is keyed *by letter* — a careless shuffle silently detaches every
+distractor from its misconception, turning a measurable defect into an invisible one. It needs its
+own careful pass with the distractor map re-mapped in lockstep, not a find-and-replace at the end
+of a long session.
+
+### N6–N9 (MINOR/MODERATE, `alex:json_author` — MINE, filed not fixed)
+
+- **N7 (MODERATE)** — **S5 is the only state with no `readouts` key at all**, confirmed on pixels
+  (no top-right panel, unlike its seven siblings), while its own label asserts "omega = 4.0 rad/s"
+  with no instrument to confirm it (Rule 33d). Compounding: S5 teaches "equal in speed, *opposite*
+  in direction", but point labels print absolute values, so top and bottom both read `1.00 m/s` —
+  the direction contrast rests entirely on two ~50 px arrow stubs at the N3 camera distance.
+- **N8 (MODERATE)** — S8's rendered label ("change speed, radius, **starting spin** and
+  **friction**") names concepts first taught in S7 [advanced], so the hide-advanced cut is
+  incoherent **on the narration alone**, independently of how the B-17 slider ruling lands. Also
+  confirms B-17's blocker from the other side: `min_ring` and `presets` are **not schema fields**,
+  so the skeleton's per-control `min_ring` table and its three DoD presets have no representation
+  in the shipped file.
+- **N6 (MINOR) — DISAGREEMENT, recorded rather than silently resolved.** The audit reads `label`
+  as a rendered surface, so Rule 30's expand-bare-symbols carve-out would not cover it, making
+  S5's "omega = 4.0 rad/s", S6's mixed "omega … Rω", S7's "v0" and S3's "m/s squared" violations.
+  **This desk's filed position (B-16) is the opposite** — `label` renders in the subtitle strip,
+  i.e. it IS the narration, where Rule 30 *requires* bare symbols expanded to spoken names. Both
+  readings are defensible and they give opposite instructions. **Needs a doctrine call; nothing
+  changed either way.**
+- **N9 (MINOR)** — Rule 41 register in rendered strings: S1 "v and Rω **sit equal**" (figurative),
+  S8 "as the numbers **dictate**" (personification, 41a bans it by name), S2 "comes to a **cusp**"
+  (geometry jargon in the subtitle strip — the state's own TTS correctly says "comes to rest").
+  *S2's was fixed incidentally by the N2 rewrite; S1 and S8 remain.*
+
+### Gate 0 — DoD rows now stale (owner `alex:architect`)
+
+- **"Turns counter (S8) `turns 3`" is UNBUILDABLE** — the `readouts` enum has no `turns` member,
+  and DoD (i-1)'s reduced-preset coherence argument leans on that counter. (This desk pre-flagged
+  the absence during authoring; it is now a live DoD contradiction, not just a gap.)
+- Slider labels shipped as bare glyphs vs the DoD's named rows.
+- **"`f 0.00 N` on the roller": S3's HUD prints `f_k` for BOTH bodies — B-12 manifests on this
+  concept too**, not only on the sibling.
+- DoD names `mode` values (`rolling_intro_circumference` …) that do not exist; `mode` is a closed
+  14-member enum and the JSON correctly ships `coast_no_force` / `coast_with_friction` / `sandbox`.
+
+### Recorded PASSES (so they are not re-audited)
+
+Registration: all 8 sites correct and drift-free, `PCPL_CONCEPTS` correctly *absent*,
+`PILOT_CONCEPTS` 0 hits and `visual_baselines/` empty — both correct for an unsealed concept.
+Console: 0 errors / 0 pageerrors / 0 failed requests across all 8 states on port 8111 (4 warnings,
+all headless-WebGL `ReadPixels` stalls). Layout: `0 collisions across 8 states`. Word budget: all
+8 within Rule 31. Delta cues ≤5 words on all 8. Anti-plagiarism: clean. Rule 35: spotless.
+Per-line formula reveal verified working (S6 line 1 present at t=2000, line 2 correctly absent).
+
+---
+
 ## 🔴 B-13 SCOPE BROADENED + ESCALATED TO CRITICAL — 2026-08-06 pre-seal walk
 
 **B-13 was filed as "point_arrow labels overlap on S4/S5/S6" (MODERATE, `alex:json_author`,
