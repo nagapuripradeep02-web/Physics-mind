@@ -172,7 +172,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -184,7 +184,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -196,7 +196,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -208,7 +208,7 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
             },
             "font_size": 10,
@@ -220,7 +220,7 @@
             "text": "3",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 3
             },
             "font_size": 10,
@@ -249,7 +249,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "(x, y) = ({x}, {y})",
               "offset": {
                 "x": -85,
                 "y": -14
@@ -381,7 +381,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -393,7 +393,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -405,7 +405,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -417,7 +417,7 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
             },
             "font_size": 10,
@@ -429,7 +429,7 @@
             "text": "3",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 3
             },
             "font_size": 10,
@@ -587,7 +587,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -5.28,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -599,7 +599,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -5.28,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -611,7 +611,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -5.28,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -623,7 +623,7 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -5.28,
+              "x": -6.9,
               "y": 2
             },
             "font_size": 10,
@@ -635,7 +635,7 @@
             "text": "3",
             "plane_id": "plane",
             "position": {
-              "x": -5.28,
+              "x": -6.9,
               "y": 3
             },
             "font_size": 10,
@@ -788,7 +788,7 @@
       "STATE_4": {
         "title": "Multiply by a: Flipped, Then Twice as Tall",
         "duration": 20,
-        "eye_capture_ms": 12000,
+        "eye_capture_ms": 16000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "p_prime",
@@ -825,7 +825,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -837,7 +837,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -849,7 +849,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -861,7 +861,7 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
             },
             "font_size": 10,
@@ -873,7 +873,7 @@
             "text": "3",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 3
             },
             "font_size": 10,
@@ -1031,7 +1031,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -1043,7 +1043,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -1055,7 +1055,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -1067,7 +1067,7 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
             },
             "font_size": 10,
@@ -1079,7 +1079,7 @@
             "text": "3",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 3
             },
             "font_size": 10,
@@ -1137,11 +1137,11 @@
             "plane_id": "plane",
             "position": {
               "x": 3.14,
-              "y": -1.95
+              "y": -1.8
             },
             "position_expr": {
               "x": "PI/b",
-              "y": "-1.95"
+              "y": "-1.8"
             },
             "font_size": 12,
             "color": "#4ADE80",
@@ -1278,7 +1278,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -1290,7 +1290,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -1302,7 +1302,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -1314,8 +1314,20 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.9,
+              "y": 3
             },
             "font_size": 10,
             "color": "#64748B"
@@ -1423,10 +1435,10 @@
           {
             "type": "label",
             "id": "chip_inside",
-            "text": "inside — acts on x, inverted (÷ b, + h)",
+            "text": "inside — acts on x, the opposite way (÷ b, + h)",
             "position": {
               "x": 147,
-              "y": 124
+              "y": 132
             },
             "font_size": 11,
             "color": "#38BDF8",
@@ -1493,7 +1505,7 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Two outside numbers move first: k lifts the curve, then a stretches it — both act on y, in the direction their sign says.",
+              "text_en": "Two outside numbers move first: k lifts the curve, then a stretches it — both act on y, as written (× a, + k).",
               "glow": "chip_outside"
             },
             {
@@ -1545,7 +1557,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -1557,7 +1569,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -1569,7 +1581,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -1581,8 +1593,20 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.9,
+              "y": 3
             },
             "font_size": 10,
             "color": "#64748B"
@@ -1790,7 +1814,7 @@
             "text": "−2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -2
             },
             "font_size": 10,
@@ -1802,7 +1826,7 @@
             "text": "−1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": -1
             },
             "font_size": 10,
@@ -1814,7 +1838,7 @@
             "text": "1",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 1
             },
             "font_size": 10,
@@ -1826,7 +1850,7 @@
             "text": "2",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 2
             },
             "font_size": 10,
@@ -1838,7 +1862,7 @@
             "text": "3",
             "plane_id": "plane",
             "position": {
-              "x": -6.5,
+              "x": -6.9,
               "y": 3
             },
             "font_size": 10,
