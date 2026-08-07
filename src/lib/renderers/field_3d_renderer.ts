@@ -45414,6 +45414,19 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
+    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane EVERY
+                                               // marker caption is placed on (nlbMkPlace).
+                                               // Named because nlbStackMarkerLabels has to
+                                               // return a lifted caption to exactly this
+                                               // value every frame, and two copies of the
+                                               // literal would drift apart.
+    // Marker captions that share the lane, in the FIXED order the stack pass walks:
+    // the two prediction instruments hold the lane, the authored checkpoints lift
+    // around them. marker_h_ref is deliberately absent — it is NOT on this lane
+    // (nlbUpdateMarkers parks it at the level line's own height, out at the track
+    // end), so resetting it to the lane would move a caption that is not colliding.
+    var NLB_MK_LANE_IDS = ["marker_true", "marker_ghost",
+                           "checkpoint_1", "checkpoint_2", "checkpoint_3"];
     // Plain-English defaults (Rule 41) — the bar caption is the force's ordinary
     // name, never an impossible subscript. Unicode has no subscript g / f / d, so
     // "W_g" cannot be written honestly at all; the symbol line stays a clean W and
@@ -45590,7 +45603,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
         var x = s_m * NLB_WORLD_PER_M;
         if (g) g.position.set(x, 0, 0);
-        if (l) l.position.set(x, NLB_MK_H + 0.30, 0);
+        if (l) l.position.set(x, NLB_MK_LABEL_LANE, 0);
     }
     function nlbMkShow(id, on) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
@@ -45600,6 +45613,100 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbMkLabel(id, txt) {
         var l = nlbFindById(id + "_label");
         if (l) nlbSetBodyLabelText(l, txt);      // the same churn-guarded setter the body billboards use
+    }
+    // Rule 34d for the MARKER lane — the half nlbStackBodyLabels never covered.
+    //   nlbDodgeBodyLabels walks nlb.bodies, so a marker caption has never been in
+    //   ANY obstacle set: not a body's, and — the defect — not another marker's.
+    //   Every caption on this lane is therefore parked at the same surface-local
+    //   height and its x is whatever metre the author picked, so two checkpoints a
+    //   short distance apart overprint outright: at 0.2 m the posts are 0.10 world
+    //   units apart while the two strings measure ~1.4 and ~0.9 of ink, i.e. ~90%
+    //   overlap, and BOTH become unreadable ("back at the flag start").
+    //   Nothing in the file was staggering anything: the ONE case that reads cleanly
+    //   today does so because its flags are 0.6 m apart ON A TILTED SURFACE, so the
+    //   ramp rotation alone lifts the upper caption ~0.15 world units. That is
+    //   incidental geometry, not a resolution pass — flatten the ramp or shorten the
+    //   spacing and it collides exactly the same way.
+    //   The fix mirrors the body-label stack: sideways is not available (a caption
+    //   that leaves its post stops naming it), so a colliding caption is LIFTED along
+    //   the surface normal — straight up its own post — until the measured ink rects
+    //   clear. Differences from the body pass, both forced by this lane:
+    //     * the clearance test is done in CAMERA axes (right/up), not world x/y,
+    //       because these captions live in the ROTATED surface frame: at theta = 30
+    //       deg a raw x test reads 0.87 of the separation two labels actually have on
+    //       screen, and at steep theta it would under-report the overlap and leave
+    //       the collision half-fixed.
+    //     * the lift is therefore divided by how much of the surface normal points at
+    //       camera-up, so the ACHIEVED screen separation is the ink height that was
+    //       asked for, on a flat track and a steep one alike.
+    //   Same easing as the body pass (NLB_LABEL_EASE) so a caption riding a live
+    //   prediction never jumps as it separates (Rule 32b), and the same home-lane
+    //   reset FIRST so no lift can accumulate across frames. One pass, no clock, no
+    //   integration: a pure function of the current positions, the measured ink and
+    //   the camera, so a SET_TIME_FREEZE pin reproduces it byte for byte (Rule 36).
+    function nlbStackMarkerLabels() {
+        var placed = [];
+        var haveCam = (typeof camera !== "undefined") && !!camera;
+        var right = null, up = null;
+        if (haveCam) {
+            right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+            up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        }
+        for (var i = 0; i < NLB_MK_LANE_IDS.length; i++) {
+            var l = nlbFindById(NLB_MK_LANE_IDS[i] + "_label");
+            if (!l) continue;
+            l.position.y = NLB_MK_LABEL_LANE;          // home lane FIRST, every frame
+            if (!haveCam || !l.visible || !l.parent) continue;
+            l.parent.updateWorldMatrix(true, false);
+            var liftDir = new THREE.Vector3(0, 1, 0).transformDirection(l.parent.matrixWorld).normalize();
+            var upDot = liftDir.dot(up);
+            var p = l.parent.localToWorld(l.position.clone());
+            var hw = nlbInkHalfW(l), hh = nlbInkHalfH(l);
+            var lift = 0;
+            for (var q = 0; q < placed.length; q++) {
+                var o = placed[q];
+                var d = p.clone().sub(o.p);
+                // How far this caption's ink is from clearing the placed one along the
+                // screen-horizontal. Negative = the two strings genuinely overlap.
+                var gapR = Math.abs(d.dot(right)) - (hw + o.hw + NLB_BODY_LABEL_GAP);
+                if (gapR >= NLB_LABEL_EASE) continue;
+                var k = (gapR <= 0) ? 1 : (1 - gapR / NLB_LABEL_EASE);
+                var needU = (hh + o.hh + NLB_BODY_LABEL_GAP) * k;
+                // Lift only ABOVE: the placed caption keeps the lane, this one climbs.
+                if (upDot > 0.15) {
+                    var want = (needU - d.dot(up)) / upDot;
+                    if (want > lift) lift = want;
+                }
+            }
+            if (lift > 0) {
+                l.position.y = NLB_MK_LABEL_LANE + lift;
+                p.addScaledVector(liftDir, lift);
+            }
+            placed.push({ p: p, hw: hw, hh: hh });
+        }
+    }
+    // The projected ink rect of every VISIBLE marker caption, in screen px. Published
+    // rather than derived because the collision this lane had is a SCREEN fact: the
+    // captions sit in a rotated frame, on billboards whose width is a live function of
+    // their text, so no reader of the concept JSON can predict where two of them land.
+    // A gate wanting "no two marker captions overprint" needs exactly this and can get
+    // it nowhere else (the sprites live inside a closure). Read-only, no pixels.
+    function nlbMarkerLabelRects() {
+        if (typeof camera === "undefined" || !camera) return [];
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var out = [];
+        for (var i = 0; i < NLB_MK_LANE_IDS.length; i++) {
+            var id = NLB_MK_LANE_IDS[i];
+            var l = nlbFindById(id + "_label");
+            if (!l || !l.visible || !l.parent) continue;
+            l.parent.updateWorldMatrix(true, false);
+            var c = l.parent.localToWorld(l.position.clone());
+            var r = nlbSpriteRectPx(l, c, right, up);
+            out.push({ id: id, text: l._nlbLblTxt || "",
+                       x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1 });
+        }
+        return out;
     }
 
     // ── Note 7 — per-state display, and the per-frame follow ────────────────
@@ -45646,6 +45753,8 @@ export const FIELD_3D_RENDERER_CODE = `
                   pred.dir * pred.d * eng.markers_cfg.ghost_marker.fraction
                 : null,
             checkpoints: cpOut,
+            // The marker lane's screen footprint — see nlbMarkerLabelRects.
+            label_rects: nlbMarkerLabelRects(),
             // The RENDERED state of each instrument, read straight off the Three
             // object. The computed number above and the drawn object below are two
             // different claims and both have to be checkable — a marker at the right
@@ -45669,7 +45778,9 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function nlbUpdateMarkers(eng) {
         var cfg = eng.markers_cfg;
-        if (!cfg) { nlbPublishMarkers(eng, null); return; }
+        // The lane separation runs before EVERY publish path, so the rects reported
+        // are the rects drawn — including this one, where only checkpoints are up.
+        if (!cfg) { nlbStackMarkerLabels(); nlbPublishMarkers(eng, null); return; }
         // The LEVEL line sits at exactly the resolved energy reference — the same
         // eng.energy_h_ref_m the U_grav numeric is measured from (spec note 7: the
         // number and the line cannot be allowed to disagree, so they read the ONE
@@ -45715,6 +45826,9 @@ export const FIELD_3D_RENDERER_CODE = `
         } else {
             nlbMkShow("marker_ghost", false);
         }
+        // AFTER every placement on this lane (checkpoints in nlbApplyMarkers, the two
+        // prediction markers just above) and before the publish that quotes it.
+        nlbStackMarkerLabels();
         nlbPublishMarkers(eng, pred);
     }
 
@@ -68179,6 +68293,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // otherwise fall through to the bare "Drag to rotate" hint, but suppress
         // explicitly for consistency with every 2026-07+ scenario).
         if (config.scenario_type === "em_wave_propagation") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // newtons_laws_body was never added to this list, so it fell through to the
+        // generic branch below and printed stateDef.label — a field every other
+        // scenario treats as an AUTHORING note — verbatim on the canvas. Authors
+        // wrote paragraphs there, including the state's own outcome, so the answer
+        // rendered from frame one (work_energy_theorem STATE_4: "…speeds up to
+        // K = 46.1 J beside net = +28.1 J at the loop's end"), Rule 34a was broken on
+        // every nlb concept, and THE CALCULATOR harvested the legend's joule values as
+        // if they were instrument readings. Suppressed here for the same reason as the
+        // scenarios above: the bars, the arrows, the HUD and the ONE formula surface
+        // carry everything, and the delta cue is the only text the canvas owes.
+        if (config.scenario_type === "newtons_laws_body") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
