@@ -191,21 +191,20 @@ export const PILOT_CONCEPTS: string[] = [
     'meter_bridge',
 
     // ── MATHEMATICS ──────────────────────────────────────────────────────────
-    // derivative_as_secant_limit (added 2026-08-07, founder-instructed).
-    // THE FIRST NON-PHYSICS AND FIRST PARAMETRIC CONCEPT IN THIS CATALOG — every
-    // other entry above is field_3d or particle_field. Two things changed to make
-    // it possible: listPilotConceptIds() now resolves through the shared subject
-    // resolver (the old flat-path test silently dropped it), and PR #46 fixed the
-    // readout-placement geometry its states depend on.
-    // 9 states on the cartesian_plane engine; THE EYE 56/56; baselines locked
-    // 2026-08-07 (STATE_2/3/5/6/7/9 re-approved after the readout fix).
-    // KNOWN, NOT YET FIXED — two OPEN engine_bug_queue rows a teacher CAN see:
-    //   • sibling-ink collision: STATE_3's `Q = (1.07, 0.57)` has its "=" struck
-    //     by the curve, and `y = x²/2` is crossed by the secant on STATE_2/7.
-    //   • canvas-drawn readouts never enter the de-overlap solver, which on this
-    //     concept resolves nothing at all (primitives_resolved=0).
-    // Also NOT yet through the professor gate (AUTHORING_PIPELINE ④, Asmi review).
-    'derivative_as_secant_limit',
+    // No mathematics concept is in the pilot catalog yet (founder, 2026-08-07:
+    // "don't do the pilot concepts at all, we'll see if we need it later").
+    // derivative_as_secant_limit was added and then removed the same day WITHOUT
+    // ever being deployed — verified against the live site, which returned 404
+    // for it throughout, because a catalog entry only reaches teachers via
+    // build:pilot -> deploy:app and deploy:app was never run.
+    //
+    // The catalog is technically ready for one whenever that changes:
+    // listPilotConceptIds() resolves through the shared subject resolver, so a
+    // namespaced concept is no longer silently dropped here. Two things would
+    // want deciding first: this list has no notion of subject, so a mathematics
+    // concept renders as a bare "Chapter N" beside the named physics chapters;
+    // and no mathematics concept has been through the professor gate
+    // (AUTHORING_PIPELINE ④), which every physics entry above has.
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
