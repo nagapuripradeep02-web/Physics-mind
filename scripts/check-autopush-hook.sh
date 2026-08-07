@@ -168,6 +168,59 @@ fi
 _cleanup
 
 # ---------------------------------------------------------------------------
+# CASE 5 — the per-worktree lock must not leak between pushes
+#          (shipped defect: local var invisible to the EXIT trap)
+#
+# The hook serialized pushes with `mkdir "$LOCK"` and cleaned up via
+# `trap 'rmdir "$LOCK"' EXIT`. Broken twice over, both verified empirically:
+# LOCK was `local` so the trap's expansion was empty by fire time -- and
+# deeper, bash does NOT run EXIT traps at all when the subshell is a
+# backgrounded function call (`_pm_autopush ... &`), so no EXIT-trap variant
+# can work in this hook's shape. The lock dir leaked on EVERY push; release
+# must be explicit code on the push path, which is what this case pins.
+# Any commit within the 10-minute stale-reclaim window then read the leaked
+# lock as "a push is already in flight" and silently skipped. The hook's own
+# comment claimed the next push is cumulative -- true within one branch,
+# FALSE across `git checkout -b`, which is exactly how it was caught
+# (observed 2026-08-07: a new branch's first commit never pushed).
+#
+# This case makes two commits back-to-back on the SAME branch and asserts
+# BOTH land. The first push's leaked lock makes the second a silent no-op,
+# so the pre-fix hook fails on the second assertion. Same-branch is the
+# WEAKER form of the observed failure -- if even the cumulative-push
+# argument's home turf drops the commit, the cross-branch case is a
+# fortiori. Not time-dependent: the leak persists until reclaim, and the
+# whole test runs well inside 10 minutes.
+# ---------------------------------------------------------------------------
+_sandbox
+git init -q --bare "$SB/remote.git"
+git clone -q "$SB/remote.git" "$SB/w" 2>/dev/null
+(
+  cd "$SB/w" || exit 1
+  echo a > a.txt; git add .; git commit -qm init; git push -q origin master
+  git checkout -qb feat/x
+  git push -q --set-upstream origin feat/x 2>/dev/null
+  install -m 755 "$HOOK" .git/hooks/post-commit
+  echo b > b.txt; git add .; git commit -qm first >/dev/null 2>&1
+) >/dev/null 2>&1
+TIP1="$(git -C "$SB/w" rev-parse HEAD 2>/dev/null)"
+if ! _await_ref "$TIP1" "$SB/remote.git" refs/heads/feat/x; then
+  _bad "lock-leak setup: the FIRST push did not land (cannot exercise the leak)"
+else
+  (
+    cd "$SB/w" || exit 1
+    echo c > c.txt; git add .; git commit -qm second >/dev/null 2>&1
+  ) >/dev/null 2>&1
+  TIP2="$(git -C "$SB/w" rev-parse HEAD 2>/dev/null)"
+  if _await_ref "$TIP2" "$SB/remote.git" refs/heads/feat/x; then
+    _ok "back-to-back commits both push (lock released between pushes)"
+  else
+    _bad "second commit silently dropped -- the push lock leaked"
+  fi
+fi
+_cleanup
+
+# ---------------------------------------------------------------------------
 # CASE 4 — the hook must never force-push. Static, but this is the one
 # property whose violation is unrecoverable, so it is asserted directly.
 # ---------------------------------------------------------------------------

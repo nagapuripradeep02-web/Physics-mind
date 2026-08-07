@@ -136,18 +136,44 @@ _pm_autopush() {
   # One push at a time per worktree. Git guarantees one branch per worktree, so
   # this is exactly a per-branch lock. mkdir is the atomic primitive — flock is
   # NOT shipped with Git for Windows.
-  local LOCK="$GD/autopush.lock"
-  if ! mkdir "$LOCK" 2>/dev/null; then
-    if [ -n "$(find "$LOCK" -maxdepth 0 -mmin +10 2>/dev/null)" ]; then
-      rmdir "$LOCK" 2>/dev/null
-      mkdir "$LOCK" 2>/dev/null || return 0
+  #
+  # RELEASE IS EXPLICIT (_pm_autopush_work below + rmdir after it), NOT a trap.
+  # The original `trap 'rmdir "$LOCK"' EXIT` was broken twice over, both
+  # verified empirically on 2026-08-07:
+  #   1. LOCK was `local`, and an EXIT trap fires after the function has
+  #      returned — the expansion was empty, so it removed nothing; and
+  #   2. deeper: bash does NOT run EXIT traps at all when the subshell is a
+  #      backgrounded function call (`_pm_autopush ... &`, the exact shape at
+  #      the bottom of this file) — a probe trap never fired, foreground or
+  #      not, scope aside.
+  # Net effect: the lock dir LEAKED ON EVERY PUSH, so any commit inside the
+  # 10-minute stale-reclaim window read it as "a push is in flight" and was
+  # silently dropped. The "pushes are cumulative" argument below is true
+  # within one branch but FALSE across `git checkout -b`, which is how it was
+  # caught (a new branch's first commit never pushed). The INT/TERM trap is
+  # kept for kill-mid-push; a stale lock from a hard kill is what the
+  # 10-minute reclaim path above exists for. Gate: check-autopush-hook case 5.
+  PM_LOCK="$GD/autopush.lock"
+  if ! mkdir "$PM_LOCK" 2>/dev/null; then
+    if [ -n "$(find "$PM_LOCK" -maxdepth 0 -mmin +10 2>/dev/null)" ]; then
+      rmdir "$PM_LOCK" 2>/dev/null
+      mkdir "$PM_LOCK" 2>/dev/null || return 0
     else
-      # A push is already in flight. Pushes are CUMULATIVE — that one, or the
-      # next commit's, carries this commit too. Nothing is lost by returning.
+      # A push is already in flight on THIS branch (one branch per worktree).
+      # That push's own tail-check re-pushes if the branch moved meanwhile, so
+      # this commit is carried — but only because the lock is provably
+      # released when each push finishes (case 5 asserts exactly that).
       return 0
     fi
   fi
-  trap 'rmdir "$LOCK" 2>/dev/null' EXIT INT TERM
+  trap 'rmdir "$PM_LOCK" 2>/dev/null' INT TERM
+
+  _pm_autopush_work
+  rmdir "$PM_LOCK" 2>/dev/null
+  return 0
+}
+
+_pm_autopush_work() {
 
   local TMO=''
   command -v timeout >/dev/null 2>&1 && TMO='timeout 300'
