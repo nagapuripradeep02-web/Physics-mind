@@ -1831,6 +1831,92 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
+    // PRE-REGISTERED 2026-08-04 for the Phase-0d parallel authoring wave, so
+    // the five desks never edit this file. Gate 8b hard-FAILs a concept that is
+    // missing here, so all eight land up front. Engines: rigid_body_rotation
+    // (0c-1) for the first six, newtons_laws_body SEAM R (0c-2) for the two
+    // rolling concepts. See docs/loop_runs/rotmech/.
+    rigid_body_rotation: {
+        concept_id: 'rigid_body_rotation',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rigid_body_rotation',
+            label: 'Rigid Body Rotation — one axle, one ω, v = ωr (3D)',
+        },
+    },
+
+    rotational_kinematics: {
+        concept_id: 'rotational_kinematics',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rotational_kinematics',
+            label: 'Rotational Kinematics — θ, ω, α over time (3D)',
+        },
+    },
+
+    tau_eq_i_alpha: {
+        concept_id: 'tau_eq_i_alpha',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'tau_eq_i_alpha',
+            label: 'The Rotational Second Law — α = τ/I (3D)',
+        },
+    },
+
+    rotational_work_energy: {
+        concept_id: 'rotational_work_energy',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rotational_work_energy',
+            label: 'Rotational Work and Energy — KE = ½Iω², W = τ·θ (3D)',
+        },
+    },
+
+    angular_momentum: {
+        concept_id: 'angular_momentum',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'angular_momentum',
+            label: 'Angular Momentum — L = Iω along the axis (3D)',
+        },
+    },
+
+    conservation_of_angular_momentum: {
+        concept_id: 'conservation_of_angular_momentum',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'conservation_of_angular_momentum',
+            label: 'Conservation of Angular Momentum — I falls, ω rises, L holds (3D)',
+        },
+    },
+
+    pure_rolling: {
+        concept_id: 'pure_rolling',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'pure_rolling',
+            label: 'Rolling Without Slipping — v = ωR, contact point at rest (3D)',
+        },
+    },
+
+    rolling_on_incline: {
+        concept_id: 'rolling_on_incline',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rolling_on_incline',
+            label: 'Rolling Down an Incline — a = g sin θ/(1+k) (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

@@ -5,57 +5,27 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { buildParametricConfig, type ParametricSourceJson } from '@/scripts/lib/buildParametricConfig';
 
-type TtsSentence = { id?: string; pause_after_ms?: number; highlight_primitive_id?: string };
-type ConceptState = {
-    scene_composition?: unknown[];
-    focal_primitive_id?: string;
-    teacher_script?: { tts_sentences?: TtsSentence[] };
-};
-type ConceptJson = {
-    concept_id: string;
-    physics_engine_config?: { variables?: Record<string, { default?: number }> };
-    epic_l_path?: { states?: Record<string, ConceptState> };
-};
-
-function loadConcept(): ConceptJson {
+function loadConcept(): ParametricSourceJson {
     const path = join(process.cwd(), 'src', 'data', 'concepts', 'friction_static_kinetic.json');
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(path, 'utf-8')) as ParametricSourceJson;
 }
 
-function defaultVarsFromConfig(json: ConceptJson): Record<string, number> {
-    const vars: Record<string, number> = {};
-    const declared = json.physics_engine_config?.variables ?? {};
-    for (const [name, spec] of Object.entries(declared)) {
-        if (typeof spec.default === 'number') vars[name] = spec.default;
-    }
-    return vars;
-}
-
-function buildFocalSequence(s: ConceptState): Array<{ highlight_primitive_id: string; duration_ms: number }> | undefined {
-    const sentences = s.teacher_script?.tts_sentences ?? [];
-    const seq = sentences
-        .filter(sen => !!sen.highlight_primitive_id)
-        .map(sen => ({ highlight_primitive_id: sen.highlight_primitive_id!, duration_ms: sen.pause_after_ms ?? 3000 }));
-    return seq.length > 0 ? seq : undefined;
-}
-
+// One config per state via the SHARED assembler (whole-state passthrough);
+// synthesizeFocalSequenceFromScript preserves this page's narration-derived
+// focal sequence for states with no authored one. The old local projection
+// hand-picked 3 fields (engine_bug_queue:
+// review_site_private_config_assembler_drops_variable_choreography).
 function buildConfigForState(stateId: string): ParametricConfig {
     const json = loadConcept();
-    const states = json.epic_l_path?.states ?? {};
-    const stateScene = states[stateId]?.scene_composition ?? [];
+    const base = buildParametricConfig('friction_static_kinetic', json, {
+        synthesizeFocalSequenceFromScript: true,
+    });
     return {
-        concept_id: json.concept_id,
-        scene_composition: stateScene,
-        states: Object.fromEntries(
-            Object.entries(states).map(([id, s]) => [id, {
-                scene_composition: s.scene_composition ?? [],
-                focal_primitive_id: s.focal_primitive_id,
-                focal_sequence: buildFocalSequence(s),
-            }])
-        ),
-        default_variables: defaultVarsFromConfig(json),
+        ...base,
         current_state: stateId,
+        scene_composition: base.states?.[stateId]?.scene_composition ?? base.scene_composition,
     };
 }
 

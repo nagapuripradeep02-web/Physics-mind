@@ -6,39 +6,23 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { buildParametricConfig, type ParametricSourceJson } from '@/scripts/lib/buildParametricConfig';
 
-type ConceptJson = {
-    concept_id: string;
-    physics_engine_config?: { variables?: Record<string, { default?: number }> };
-    epic_l_path?: { states?: Record<string, { scene_composition?: unknown[] }> };
-};
-
-function loadConcept(): ConceptJson {
+function loadConcept(): ParametricSourceJson {
     const path = join(process.cwd(), 'src', 'data', 'concepts', 'newton_second_law_direction.json');
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    return JSON.parse(readFileSync(path, 'utf-8')) as ParametricSourceJson;
 }
 
-function defaultVarsFromConfig(json: ConceptJson): Record<string, number> {
-    const vars: Record<string, number> = {};
-    const declared = json.physics_engine_config?.variables ?? {};
-    for (const [name, spec] of Object.entries(declared)) {
-        if (typeof spec.default === 'number') vars[name] = spec.default;
-    }
-    return vars;
-}
-
+// One config per state via the SHARED assembler (whole-state passthrough) —
+// this page's old 1-field projection dropped every non-scene field
+// (engine_bug_queue: review_site_private_config_assembler_drops_variable_choreography).
 function buildConfigForState(stateId: string): ParametricConfig {
     const json = loadConcept();
-    const states = json.epic_l_path?.states ?? {};
-    const stateScene = states[stateId]?.scene_composition ?? [];
+    const base = buildParametricConfig('newton_second_law_direction', json);
     return {
-        concept_id: json.concept_id,
-        scene_composition: stateScene,
-        states: Object.fromEntries(
-            Object.entries(states).map(([id, s]) => [id, { scene_composition: s.scene_composition ?? [] }])
-        ),
-        default_variables: defaultVarsFromConfig(json),
+        ...base,
         current_state: stateId,
+        scene_composition: base.states?.[stateId]?.scene_composition ?? base.scene_composition,
     };
 }
 
