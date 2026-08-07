@@ -1,0 +1,43 @@
+{
+  "approved_at": "2026-08-07T07:11:55.182Z",
+  "source_run": "/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-mathematics-derivative/.visual_runs/derivative_as_secant_limit/20260807-091046",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_9": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}
