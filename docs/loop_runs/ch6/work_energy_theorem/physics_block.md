@@ -91,8 +91,7 @@ CRITICAL is already FIXED). None forces an exception in this block. `concept_shi
       "unit": "m/s",
       "min": -5,
       "max": 5,
-      "default": 0,
-      "derived": "the integrator's own live value; only S6 exposes a v0 slider, which SEEDS v -- no slider anywhere in this concept writes v directly thereafter"
+      "default": 0
     },
     "g": {
       "name": "gravitational acceleration",
@@ -118,8 +117,7 @@ CRITICAL is already FIXED). None forces an exception in this block. `concept_shi
       "unit": "m",
       "min": 0,
       "max": 12,
-      "default": 0,
-      "derived": "s(t) - initial_position_m; rendered as the d arrow's value only in S3, S5, S6"
+      "default": 0
     },
     "K": {
       "name": "kinetic energy",
@@ -139,10 +137,10 @@ CRITICAL is already FIXED). None forces an exception in this block. `concept_shi
   },
 
   "computed_outputs": {
-    "K_J": "0.5 * m * v * v",
-    "W_net_J": "0.5 * m * v * v - 0.5 * m * v0 * v0",
-    "W_pull_J": "F * d",
-    "W_friction_J": "-1 * mu_k * m * g * d"
+    "K_J": { "formula": "0.5 * m * v * v" },
+    "net_J": { "formula": "0.5 * m * v * v - 0.5 * m * v0 * v0" },
+    "pull_J": { "formula": "F * d" },
+    "friction_J": { "formula": "-1 * mu_k * m * g * d" }
   },
 
   "constraints": [
@@ -155,6 +153,49 @@ CRITICAL is already FIXED). None forces an exception in this block. `concept_shi
   ]
 }
 ```
+
+### FIX-CYCLE CORRECTION (2026-08-07) -- `derived` is an expression slot, never a comment slot
+
+`v` and `d` above previously carried ENGLISH PROSE in their `derived` field. `independentVars`
+(`deriveAssertions.ts` L225-232) excludes ANY variable whose `derived` is a non-empty string, with no
+check that the string is an expression -- so both variables were silently treated as DEPENDENT, their
+painted values were discarded from THE CALCULATOR's scope, and `normalizeDerived` could not recompute
+them from prose. Net effect: `v` and `d` were `undefined` in every state's scope, and all four
+`computed_outputs` skipped on all six states (32 `N1` skips, zero physics assertions). Corrected:
+`derived` is now OMITTED on both -- each is a genuinely INDEPENDENT quantity the sim paints but does not
+compute from other declared inputs (v is the integrator's own live value; d is the displacement-arrow's
+own painted value), so the gate now binds them from the live `v`/`d` DOM readings directly. The prose
+documentation that used to live in `derived` now lives here instead.
+
+`computed_outputs` is also corrected on two counts: (1) the SHAPE was wrong in this block -- the
+runtime reads `{ name: { formula: string } }` (`deriveAssertions.ts` L390), not the bare-string shape
+this document previously showed; the JSON already shipped the correct `{formula: ...}` wrapper, only
+this markdown was stale. (2) The keys are RENAMED `W_net_J`->`net_J`, `W_pull_J`->`pull_J`,
+`W_friction_J`->`friction_J`. `splitNameUnit` only strips a trailing unit suffix (`_J`), so
+`W_pull_J` produced the display symbol `W_pull` -- which nothing on screen paints, because the work
+bar's caption is the plain single word `pull` (CALLOUT-2/CALLOUT-4: work bars never carry the symbol
+`W`). Every reading was harvested by channel B and then discarded as inadmissible. Renamed so
+`splitNameUnit(name).symbol` is byte-equal to the painted caption -- this is bug_class
+`computed_output_name_encodes_a_symbol_no_instrument_paints_so_every_reading_is_harvested_then_discarded`
+in the live `engine_bug_queue` (CRITICAL/OPEN, already named against this concept plus four siblings).
+
+**Landing order matters and is deliberate.** Renaming the `W_*` keys ALONE, without also closing the
+scope gap below, would MINT FALSE FAILURES: `friction_J`/`net_J` need `mu_k`/`v0`, and neither is
+painted nor reachable by `stateOverrides`' BFS (it explicitly skips arrays -- `deriveAssertions.ts`
+L171, `if (... Array.isArray(node)) continue;` -- and `bodies[]` is authored as an array, so
+`bodies[0].mu_k`/`bodies[0].initial_velocity_mps` are structurally UNREACHABLE by that mechanism,
+regardless of key naming). Verified by source-level trace, not assumption: with the rename alone and no
+further fix, `mu_k`/`v0` fall back to their DECLARED DEFAULTS (both 0) in every state, so
+`friction_J` evaluates to 0 in every state (wrong on S2/S3/S6, where `mu_k` is really 0.4/0.4/0.3) and
+`net_J` collapses to `K_J` (wrong on every state whose `v0` is not really 0: S2, S3, S4, S5). This
+block therefore ALSO adds an explicit `newtons_laws_body.variable_overrides` block per state (below,
+section 2) so `stateOverrides` -- which DOES reach a plain sibling object at this nesting depth -- can
+bind `v0`/`mu_k` (and, defensively, `m`/`F`) with TRUSTED (`state_override`) provenance. This key
+is CONFIRMED INERT to rendering: `applyNewtonsLawsBodyState` (`field_3d_renderer.ts`:46426) reads
+`nlb.bodies` directly and never reads `nlb.variable_overrides` for this scenario (grep confirms zero
+hits); the schema accepts it via `.passthrough()` (`conceptJson.ts`). Verified end-to-end against the
+real production gate code (`buildStateScope`/`deriveAssertions`) fed the concept's OWN painted
+readings -- see section 9 for the quoted output.
 
 **Contracted config-key map** (json-author writes these under `newtons_laws_body`, not
 `physics_engine_config`'s own names):
@@ -228,6 +269,36 @@ the concept default, and in every state below except the S6 default that default
 `surface.frictionless: true` is REQUIRED on S1, S4, S5 and FORBIDDEN on S2, S3, S6. Omitting it on
 S1/S4/S5 makes the cart decelerate and every constant-net-work-then-derivation claim in the narration
 false on screen; authoring it on S2/S3/S6 hard-zeroes the mu_s/mu_k the state whole picture depends on.
+
+### `newtons_laws_body.variable_overrides` -- FIX-CYCLE ADDITION (2026-08-07), THE CALCULATOR only
+
+A SECOND, calculator-scoped copy of each state's independent values, added as a sibling key beside
+`bodies`/`surface`/etc. inside `newtons_laws_body`. It duplicates numbers already in the table above --
+deliberately: `stateOverrides`' BFS (`deriveAssertions.ts`) walks the state tree but explicitly SKIPS
+any array node, and `bodies` is an array, so `bodies[0].initial_velocity_mps`/`bodies[0].mu_k` can never
+reach THE CALCULATOR's scope through the render-facing table alone -- `v0` and `mu_k` sit at their
+declared defaults (both 0) in every state regardless of what the cart actually does. This key is a PLAIN
+OBJECT (never an array), so the same BFS reaches it in two hops and binds every entry with TRUSTED
+(`state_override`) provenance. It is INERT to rendering -- `applyNewtonsLawsBodyState` never reads it for
+this scenario (confirmed by grep against `field_3d_renderer.ts`) -- so authoring it changes nothing a
+teacher sees; it exists solely so `net_J`/`friction_J`/`pull_J` can evaluate to the PHYSICALLY CORRECT
+number instead of a wrong one computed against a stuck-at-zero `v0`/`mu_k`. Every value below is the
+same number already authored in the table above, restated for the reader's convenience:
+
+| State | `newtons_laws_body.variable_overrides` |
+|---|---|
+| S1 | `{ "v0": 0, "m": 5, "F": 10, "mu_k": 0 }` |
+| S2 | `{ "v0": 4, "m": 5, "mu_k": 0.4 }` (F omitted -- S2 authors no `applied_force` at all) |
+| S3 | `{ "v0": 2.5, "m": 5, "F": 19.6, "mu_k": 0.4 }` |
+| S4 | `{ "v0": -3, "m": 4, "F": 12, "mu_k": 0 }` |
+| S5 | `{ "v0": 2, "m": 5, "F": 5, "mu_k": 0 }` |
+| S6 | `{ "v0": 0, "m": 4, "F": 20, "mu_k": 0.3 }` (matches the slider defaults, per the table above) |
+
+Verified against the REAL production gate code (`buildStateScope`), fed these exact overrides plus this
+run's own harvested painted readings: every computed_output resolves to the physically correct number
+wherever its symbol is painted (`net_J` matches the independently-derived `net` value on S1/S2/S3/S4/S5
+to display precision; `pull_J`/`friction_J` match on S3), and safely SKIPS (never falsely fails) wherever
+a bar is not authored on that state. Full quoted output in section 9.
 
 `work_accumulators`, `energy_layer`, `work_scale_J`, `bar_max_J` per state (the concept own section-1
 invariant -- every state authors BOTH blocks, mechanically greppable):
@@ -527,7 +598,7 @@ pass cannot reach; a binding there is a silent no-op that dims everything and li
 ## 7. Narration -- teacher_script.tts_sentences
 
 Rule 31a word budget, machine-counted on `text_en` (Python regex word count, script and full output in
-section 9): S1 55, S2 49, S3 50, S4 55, S5 55, S6 27 (explore, exempt). Every guided state is inside the
+section 9): S1 55, S2 49, S3 53, S4 55, S5 55, S6 27 (explore, exempt). Every guided state is inside the
 hard 25-55 range and is exactly 4 sentences. S1 (55) and S2 (49) exceed the skeleton own suggested
 per-state band (30-45) -- declared, not accidental: S1 must carry the PRIMARY aha itself plus two Block-1
 prerequisite-cliff patch clauses (for concepts 1 and 3) plus the misconception planting flag ("only one
@@ -554,14 +625,14 @@ board-divergent term (cell vs battery, p.d. vs voltage) arises anywhere in this 
 
 | # | text_en | glow |
 |---|---|---|
-| s1_1 | A ten newton pull acts on this crate -- the only force, so its work is the whole net work. | nlb_arrow_cart_applied |
-| s1_2 | The work bar climbs as the pull acts over distance -- force times metres. | energy_panel |
-| s1_3 | The K bar reads the crate kinetic energy -- the energy a moving body has. | energy_bar_K |
-| s1_4 | Both bars climb together and meet at forty joules. | energy_panel |
+| s1_1 | A ten newton pull acts on this crate, the only force, so its work is the whole net work. | nlb_arrow_cart_applied |
+| s1_2 | The work bar climbs as the pull acts over distance, force times metres. | energy_panel |
+| s1_3 | The K bar reads the crate kinetic energy, the energy a moving body has. | energy_bar_K |
+| s1_4 | Both bars always match, reaching forty joules each cycle. | energy_panel |
 
 text_hi: "इस crate पर दस newton का एक pull लगता है -- यह अकेला force है, इसलिए इसका work पूरा net work है। Work bar
 उतना ही चढ़ता है जितनी दूरी तक pull काम करता है -- force गुणा metres। K bar crate की kinetic energy दिखाता है -- वह
-energy जो एक चलती हुई body के पास होती है। दोनों bars साथ चढ़ते हैं और चालीस joules पर मिलते हैं।"
+energy जो एक चलती हुई body के पास होती है। दोनों bars हमेशा बराबर रहते हैं, हर cycle में चालीस joules तक पहुँचते हैं।"
 
 Block-1 cliff clauses honoured (both, non-condescending, both early in S1): clause for concept 1 missing
 -- sentence 2, "the work bar climbs as the pull acts over distance -- force times metres" (verbatim per
@@ -585,17 +656,17 @@ zero की तरफ गिरता है। Crate रुक जाती ह
 Block-1 cliff clause honoured (verbatim, sentence 2): "friction points against the motion, so its work
 counts negative" -- the concept-2-missing patch clause.
 
-### STATE_3 -- 50 words, 4 sentences (SUPPORTING aha + Rule 16a beat)
+### STATE_3 -- 53 words, 4 sentences (SUPPORTING aha + Rule 16a beat)
 
 | # | text_en | glow |
 |---|---|---|
 | s3_1 | The pull and friction are equal, nineteen point six newtons, and the crate coasts. | nlb_arrow_cart_applied |
-| s3_2 | The pull bar climbs to ninety-eight joules of real work. | energy_panel |
-| s3_3 | Friction bar dives to minus ninety-eight, so the two cancel to zero. | energy_panel |
+| s3_2 | The pull bar climbs steadily, reaching ninety-eight joules by the loop's end. | energy_panel |
+| s3_3 | Friction bar dives just as far, so the two always cancel to zero. | energy_panel |
 | s3_4 | Only the net counts: the K bar holds flat at fifteen point six joules. | energy_bar_K |
 
 text_hi: "Pull और friction बराबर हैं, उन्नीस point six newtons, और crate coast करती है। Pull का bar अट्ठानवे joules
-के असली work तक चढ़ता है। Friction का bar minus अट्ठानवे तक गिरता है, तो दोनों cancel होकर zero बनाते हैं। सिर्फ net
+तक, हर loop के अंत में, लगातार चढ़ता है। Friction का bar भी उतना ही गिरता है, तो दोनों हमेशा cancel होकर zero बनाते हैं। सिर्फ net
 गिनती में आता है: K bar पंद्रह point six joules पर flat रहता है।"
 
 Rule 16a delivery, straightforward contrast beat (matches skeleton section 4 verbatim): belief -- the
@@ -612,12 +683,12 @@ panel renders the wrong expectation tracked quantity (98.0 J) directly alongside
 | # | text_en | glow |
 |---|---|---|
 | s4_1 | This cart starts backward at three metres a second, pulled by twelve newtons. | nlb_body_cart |
-| s4_2 | As it slows, net dives to minus eighteen joules when K reads zero. | energy_panel |
-| s4_3 | It turns and speeds up: K reaches forty-six point one, net plus twenty-eight point one. | energy_panel |
+| s4_2 | At the turn, net dives to minus eighteen joules as K reads zero. | energy_panel |
+| s4_3 | By the end, K climbs to forty-six point one, net to plus twenty-eight point one. | energy_panel |
 | s4_4 | Two nonzero numbers: net measures the change from the start, not the final energy. | energy_panel |
 
 text_hi: "यह cart पीछे की ओर तीन metres per second से शुरू होती है, बारह newtons से खींची जाती है। जैसे यह धीमी होती
-है, net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है। यह पलटती है और तेज़ होती है: K छियालीस point one तक
+है, मोड़ पर net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है। अंत तक, K छियालीस point one तक
 पहुँचता है, net plus अट्ठाइस point one तक। दो non-zero numbers: net शुरुआत से बदलाव मापता है, आखिरी energy को नहीं।"
 
 Rule 16a delivery, matches skeleton section 4 verbatim (F5, Checkpoint A cycle 0): belief -- net work
@@ -701,7 +772,7 @@ subscript 0, minus sign, right arrow, middle dot), never ASCII transcription.
 "aha_moment": {
   "state_id": "STATE_1",
   "statement": "The work meter and the energy meter are the same meter, reading the same number.",
-  "visual_confirmation": "A crate pulled from rest by a steady 10 N force: the net-work bar and the K bar climb together, frame by frame, and both land on exactly 40.0 J."
+  "visual_confirmation": "A crate pulled from rest by a steady 10 N force: the net-work bar and the K bar always read the same number, frame by frame, reaching exactly 40.0 J by the loop end."
 }
 ```
 Physics check: TRUE. For a single constant force F acting alone from rest, W_net(t) = F times x(t) and
@@ -916,24 +987,119 @@ sim renders one), and no word about where the removed energy GOES (heat is conce
 
 ## 9. THE CALCULATOR -- harvestable readings, ground truth, and the independent re-derivation
 
-### Which numerals THE CALCULATOR can harvest, per state (channel B, bare-symbol gate)
+### FIX-CYCLE CORRECTION (2026-08-07) -- the claim below was FALSIFIED, not merely incomplete
+
+The prior version of this section asserted "All four channel-B numerals harvest on every state that
+authors them" and named exactly ONE unharvestable number (the S5 stamp). That was false. A live audit
+found TWO independent root causes (both corrected above, section 1/2) that together left THE
+CALCULATOR harvesting ZERO physics assertions on this concept -- 32 N1 skips from the v/d
+prose-in-derived bug (section 1 FIX-CYCLE CORRECTION), plus every W_star_J symbol mismatched against
+its painted caption (the W_pull vs pull class). npm run numeric:calc -- work_energy_theorem, run
+against the UNFIXED JSON this fix cycle started from, printed 7 assertions, 7 passed, 0 failed, 44
+skipped -- and six of those seven passes were N0_readings_present, a coverage count, not a physics
+check. Quoted verbatim:
+
+```
+  harvested 36 reading(s) across 6 state(s)
+    STATE_1: PASS N0_readings_present (v=2.4, K=14.4 J, m=5 kg)
+    ...
+  Skipped (44):
+    N1_readout_matches_formula -- 32
+      . STATE_1: K_J (computed_outputs): expression "0.5 * m * v * v" did not evaluate -- v is not defined
+      . STATE_1: W_pull_J (computed_outputs): expression "F * d" did not evaluate -- d is not defined
+      ...
+Result: 7 assertion(s), 7 passed, 0 failed, 44 skipped
+```
+
+Full run: .calc_runs/work_energy_theorem/20260807-175333/readings.json.
+
+### Which numerals THE CALCULATOR can harvest, per state (channel B, bare-symbol gate) -- corrected
 
 | State | Harvestable bars/values | computed_outputs ground truth used |
 |---|---|---|
-| S1 | net, K | W_net_J equals K_J (v0=0): both formulas evaluate to the same live-v expression |
-| S2 | net, K | W_net_J using v0=4; at any sampled v (including the rest-hold value v=0) |
-| S3 | pull, friction, net, K | W_pull_J = F*d, W_friction_J = -mu_k*m*g*d, W_net_J (should read approximately 0 for every d, since v is always v0), K_J |
-| S4 | net, K | W_net_J using v0=-3 (squared, so the sign of v0 does not need separate handling) |
-| S5 | net, K -- plus d is independently harvestable (the d-arrow value, S3/S5/S6 only) | W_net_J (from v, v0); cross-checked by W_pull_J = F*d since S5 is frictionless (W_pull_J should equal W_net_J exactly at every sampled instant) |
-| S6 | pull, friction, net, K | All four formulas, using the LIVE slider values of F, m, v0 at sample time |
+| S1 | K, net | K_J equals net_J (v0=0, both formulas evaluate to the same live-v expression) |
+| S2 | K, net | net_J using the state true v0=4, bound via variable_overrides (section 2) |
+| S3 | K, pull, friction, net | pull_J = F times d, friction_J = -mu_k times m times g times d, net_J (reads 0 for every d, since v is always v0), K_J |
+| S4 | K, net | net_J using the state true v0=-3 |
+| S5 | K, net, d (independently harvestable, the d-arrow value) | net_J; cross-checked by pull_J = F times d since S5 is frictionless (should equal net_J exactly) |
+| S6 | K, pull, friction, net | All four formulas, using the LIVE slider values of F, m, v0 at sample time |
 
-All four channel-B numerals harvest on every state that authors them -- single-word captions
-(pull/friction/net, and the engine-fixed K) pass the bare-symbol gate (the F1/F8 fix, confirmed live by
-Checkpoint A cycle 1/2). A SKIP is not a pass: the one number this concept renders that channel B CANNOT
-harvest is the S5 checkpoint stamp own text (flag: W net = 10.0 J, K = 20.0 J, composed into one
-`#nlb_formula` text node) -- that number is hand-verified in section 1 sanity table (K_flag=20.0,
-W_flag=10.0) rather than machine-harvested, and this is stated explicitly here so it is never silently
-read as a SKIP standing in for a PASS.
+The single-word captions (pull/friction/net, and the engine-fixed K) pass the bare-symbol gate ONLY
+after the section-1 rename (W_pull_J to pull_J etc.) -- before it, splitNameUnit produced W_pull /
+W_friction / W_net, which nothing on screen paints. Verified end-to-end against the REAL production
+gate code (buildStateScope / deriveAssertions, not a hand simulation), fed this run own harvested
+painted readings plus the section-2 variable_overrides:
+
+```
+Cause B alone (derived-prose removed, computed_outputs NOT yet renamed):
+  STATE_1  K_J = 14.4    painted K = 14.4 J   PASS (delta 1.8e-15)
+  STATE_2  K_J = 0       painted K = 0 J      PASS
+  STATE_3  K_J = 15.625  painted K = 15.6 J   PASS (delta 0.025, tol 0.156)
+  STATE_4  K_J = 5.5112  painted K = 5.5 J    PASS (delta 0.011, tol 0.055)
+  STATE_5  K_J = 29.584  painted K = 29.6 J   PASS (delta 0.016, tol 0.296)
+  STATE_6  K_J = 75.891  painted K = 76 J     PASS (delta 0.109, tol 0.759)
+  -- 6 real assertions where there were previously zero. W_pull_J / W_friction_J / W_net_J SKIP
+     safely ("symbol not painted") rather than false-failing, exactly like before Cause B.
+
+Cause A + B + variable_overrides together (production buildStateScope, TRUSTED provenance):
+  STATE_1  net_J = 14.4                              (matches reference-instant net = +14.4 J)
+  STATE_2  net_J = -40                                (matches net = -40.0 J)
+  STATE_3  net_J = 0, pull_J = 58.8, friction_J = -58.8   (matches pull/friction/net = +58.8/-58.8/0.0 J)
+  STATE_4  net_J = -12.3552                           (matches net = -12.4 J to display precision)
+  STATE_5  net_J = 19.584, pull_J = 19.584            (matches net = +19.6 J; frictionless, pull == net)
+  STATE_6  net_J, pull_J, friction_J all evaluate to physically correct values from the live scope
+```
+
+A new, SEPARATE finding surfaced while verifying this. The K symbol on STATE_4/STATE_5 has a THIRD
+painted reading beyond the real K-bar (and, on S5, the legitimate checkpoint stamp): a bottom-left
+legend overlay renders the state own field_3d_config.states.STATE_ID.label field VERBATIM as bold
+on-canvas prose, and STATE_4/STATE_5 label text happens to contain literal K = NUMBER J substrings
+-- their own terminal, end-of-loop values, authored as an internal design summary, never meant to be
+teacher-facing. This is a Rule 24/34 violation independent of anything else in this physics block
+(the engine_bug_queue candidate immediately below), and it mints two of its own false N1 FAILs once K_J starts
+evaluating (confirmed live, same production gate, same real harvest):
+
+```
+STATE_4  FAIL  K painted as 46.1 J at "b" (the legend box), but K_J = 5.5112 (delta 40.6, tol 0.055)
+STATE_4  PASS  K painted as 5.5 J at #nlb_en_g0_K_y (the real K bar) -- matches K_J exactly
+STATE_5  FAIL  K painted as 20 J at #nlb_formula (the S5 checkpoint OWN latched stamp -- a
+                HISTORICAL reading, not live; comparing it to the live K_J formula is a category
+                mismatch on top of the legend leak), K_J = 29.584 (delta 9.6, tol 0.296)
+STATE_5  PASS  K painted as 29.6 J at #nlb_en_g0_K_y (the real, live K bar) -- matches K_J exactly
+```
+
+Both are diagnosed, both are pre-existing (present before and after every edit in this fix cycle),
+and NEITHER is a physics defect -- the REAL K-bar instrument matches the formula exactly on every
+state, every time. Flagged here so quality_auditor does not mistake a future numeric:calc FAIL on
+STATE_4 / STATE_5 K for a new regression. Recommended engine_bug_queue row (physics_author has no
+write access to this table by design -- flagging for the dispatching session / quality_auditor to
+file):
+
+```
+bug_class: nlb_generic_legend_renders_the_authored_state_label_as_onscreen_spoiler_prose
+severity: MAJOR (blast radius: every newtons_laws_body-family state shipped since 2026-07-25 that is
+  absent from updateLegend scenario_type suppression list -- confirmed missing for newtons_laws_body;
+  not yet checked for kinematics_1d_track / force_rig / rigid_body_rotation)
+owner_cluster: peter_parker:field3d_surgeon
+title: updateLegend (field_3d_renderer.ts:68127) pushes "<b>" + stateDef.label + "</b>" unconditionally
+  for every scenario_type not explicitly suppressed; newtons_laws_body was never added to the roughly
+  30-line suppression list every other 2026-06/07 scenario carries (capacitance, molecular_geometry,
+  bonding_scene, em_wave_propagation, etc. all suppress it with the identical one-line pattern).
+  CONFIRMED via a frozen STATE_4 frame: a bottom-left box renders the full authored label sentence,
+  including the state own terminal K/net values, regardless of playback position -- a spoiler, a
+  Rule 24 (silent visual, labels/equations only) violation, and a Rule 34 (uncluttered canvas)
+  violation, on every state of every affected concept.
+prevention_rule: Suppress the generic legend for newtons_laws_body (and audit its 2026-07-25+
+  scenario siblings) with the same one-line pattern already used roughly 30 times in this function --
+  exact precedent: bug_class nowork_generic_legend_on_every_state_rule24 (FIXED, on
+  magnetic_force_perpendicular_no_work). A state label field remains legitimate internal
+  documentation; the bug is rendering it as teacher-facing UI text.
+probe(js_eval): For each scenario_type added to field_3d after 2026-06-01, drive one state and assert
+  #legend is either display:none or its innerHTML excludes the raw stateDef.label string.
+```
+
+This is NOT something json_author should work around by rewriting the label text -- the field is
+legitimate internal documentation; the defect is that the renderer shows it to the teacher at all.
 
 ### Reference instants -- the frozen-pin values (0.60 R phase, matches THE EYE own pin), independently re-derived
 
@@ -948,6 +1114,13 @@ read as a SKIP standing in for a PASS.
 Every value above was computed independently in the Python session recorded below and matches the
 skeleton own DoD margin table to the last printed decimal (S1 14.4, S2 -40.0/0.0, S3 15.6/0.0, S4
 5.6/-12.4 -- all confirmed at source in founder_proxy_A_cycle2.md own re-derivation).
+
+Live cross-check (2026-08-07, numeric:calc): the LIVE engine painted v=1.66 / K=5.5 J at the S4 pin,
+against the continuum table above (v=1.68, K=5.6 J). A small, pre-existing discrete-vs-continuum gap --
+already covered by the OPEN architect-owned row
+nlb_frozen_pin_lands_within_one_frame_of_the_beat_the_dod_asserts_it_shows -- not a new defect. Every
+OTHER live-painted value (S1 v=2.4/K=14.4, S3 v=2.5/K=15.6/d=3.0, S5 v=3.44/K=29.6/d=3.92) matched this
+table to display precision exactly.
 
 ### Independent arithmetic verification (Python, run before this document narration section was written)
 
@@ -1012,7 +1185,7 @@ this dispatch own instruction, so the check is auditable rather than merely asse
   variable readings move, and that IS the taught content -- three ledgers, one state); 32c all cues 5
   words or fewer; 32d permanent home pose, one body id, fixed camera; 32e zero state-level focals, argued
   per state, with per-sentence glows carrying all emphasis.
-- [x] Word budget (Rule 31a) -- S1 55, S2 49, S3 50, S4 55, S5 55 (all inside 25-55; S1/S2 exceed the
+- [x] Word budget (Rule 31a) -- S1 55, S2 49, S3 53, S4 55, S5 55 (all inside 25-55; S1/S2 exceed the
   skeleton own suggested band, declared and justified in section 7); S6 27, explore, exempt.
 - [x] Notation ladder (Rule 38c) -- every formula surface is algebra-only, core/extended/advanced-1
   rings, nothing to FLAG to the founder (section 7). Dialect (38d) -- no board-divergent term arises in
@@ -1029,9 +1202,10 @@ this dispatch own instruction, so the check is auditable rather than merely asse
 
 ## 11. Handoff to json-author
 
-Author from this document plus `skeleton.md`, with NO deviation from the sealed design (unlike the
-`kinetic_energy_definition` handoff, this block finds zero measured defects requiring a change -- every
-number was independently confirmed, not merely trusted):
+Author from this document plus `skeleton.md`. FIX-CYCLE UPDATE (2026-08-07): the design (state count,
+arc, archetypes, scales, sliders, home poses, loop_reset_ms) is UNCHANGED and remains sealed. Three
+authoring defects ARE corrected below (items 17-19) -- the numeric contract (physics_engine_config) and
+three narration sentences (S1/S3/S4). Every other item 1-16 is unchanged from the original handoff:
 
 1. `energy_layer` on every state: bars is exactly [K], bar_max_J is 55 on S1-S5 and 340 on S6,
    precision is 1, no `body_ids` anywhere (single body).
@@ -1065,9 +1239,143 @@ number was independently confirmed, not merely trusted):
 16. No left-edge overlay on any state other than the combined energy-and-work panel (section 6
     CALLOUT-9).
 
+17. `physics_engine_config.variables.v` and `.d`: DELETE the `derived` key entirely (keep name/unit/
+    min/max/default unchanged). `physics_engine_config.computed_outputs`: rename `W_net_J`->`net_J`,
+    `W_pull_J`->`pull_J`, `W_friction_J`->`friction_J` (keep `K_J` and its formula unchanged); shape stays
+    `{ formula: "..." }` per key (already correct in the shipped JSON).
+18. Add a NEW sibling key `newtons_laws_body.variable_overrides` on every state (section 2 table) --
+    inert to rendering, read only by THE CALCULATOR: S1 `{v0:0,m:5,F:10,mu_k:0}`; S2 `{v0:4,m:5,mu_k:0.4}`;
+    S3 `{v0:2.5,m:5,F:19.6,mu_k:0.4}`; S4 `{v0:-3,m:4,F:12,mu_k:0}`; S5 `{v0:2,m:5,F:5,mu_k:0}`; S6
+    `{v0:0,m:4,F:20,mu_k:0.3}`.
+19. Replace exactly FIVE `tts_sentences[].text_en` values (glow ids unchanged): S1 sentence 4 ->
+    "Both bars always match, reaching forty joules each cycle."; S3 sentence 2 -> "The pull bar climbs
+    steadily, reaching ninety-eight joules by the loop's end."; S3 sentence 3 -> "Friction bar dives just
+    as far, so the two always cancel to zero."; S4 sentence 2 -> "At the turn, net dives to minus eighteen
+    joules as K reads zero."; S4 sentence 3 -> "By the end, K climbs to forty-six point one, net to plus
+    twenty-eight point one." (S3 carries two, the other three states carry one each). Update the
+    matching `text_hi` mirrors from section 7. Do NOT touch S2/S5/S6 narration -- verified consistent
+    with their own frozen pins.
+20. Replace `aha_moment.visual_confirmation` (same PRIMARY-aha over-claim as item 19 S1): was "...the
+    net-work bar and the K bar climb together, frame by frame, and both land on exactly 40.0 J." -> "...the
+    net-work bar and the K bar always read the same number, frame by frame, reaching exactly 40.0 J by the
+    loop end." `aha_moment.statement` is unchanged (already accurate, no height claim).
+
 Checks to run before declaring done: `npx tsc --noEmit` at 0, `npm run validate:concepts` passing on
-this id, the eight registration sites, THE EYE (`npm run visual:eyes -- work_energy_theorem`), with
-section 6 CALLOUT-1 overflow probe (CF-1) and CALLOUT-2 panel-height-identity probe (CF-3, corrected
-boundary) run explicitly, not merely inherited from the skeleton prose, and THE CALCULATOR
-(`npm run numeric:calc -- work_energy_theorem`), checked against section 9 harvestable-numerals table --
-any new SKIP beyond the one named exception (the S5 stamp text) is investigated, never waved through.
+this id, the eight registration sites, THE EYE (`npm run visual:eyes -- work_energy_theorem`) --
+EXPECT new H2 diffs on S1/S3/S4 only (narration text changed; re-baseline via `visual:approve` after
+founder OK, not a fix cycle, per Rule 34e), and THE CALCULATOR (`npm run numeric:calc -- work_energy_theorem`),
+checked against section 9's corrected harvestable-numerals table -- EXPECT the two pre-existing
+STATE_4/STATE_5 legend-leak FAILs described there (not a regression; do not chase them here), and
+investigate any OTHER new SKIP or FAIL, never waved through.
+
+---
+
+## 12. Fix cycle patch log (2026-08-07, alex:physics_author, dispatched off a quality_auditor FAIL)
+
+Two independent findings routed here: FINDING 1 (quality_auditor, the numeric contract) and FINDING 2
+(the dispatching session, narration/frozen-frame mismatch, including 2b). A third, previously undetected
+finding surfaced while verifying FINDING 1 and is logged here too.
+
+### FINDING 1 -- the numeric contract
+
+1. **Cause B (land first, pure gain).** Removed the English-prose `derived` string from `variables.v` and
+   `variables.d` (section 1). Reasoning: `derived` is an expression slot the gate evaluates, never a
+   comment slot; prose there makes `independentVars` treat the variable as dependent, discards its
+   painted value, and cannot recompute it (no expression to run). Both are genuinely independent
+   quantities the sim paints but does not derive from other declared inputs. Verified: `K_J` now
+   evaluates and matches the painted K on all six states (six real assertions where there were
+   previously zero) -- quoted in section 9.
+2. **Shape correction.** `computed_outputs` in this document previously showed bare-string values; the
+   runtime contract is `{ name: { formula: string } }`. Corrected the documentation to match (the shipped
+   JSON already had the right shape -- only this markdown was stale).
+3. **Cause A, landed TOGETHER WITH item 4 below (never alone).** Renamed `W_net_J`/`W_pull_J`/
+   `W_friction_J` to `net_J`/`pull_J`/`friction_J` so `splitNameUnit(name).symbol` matches the painted
+   caption (`pull`/`friction`/`net`), not `W_pull`/`W_friction`/`W_net`, which nothing on screen paints.
+4. **`newtons_laws_body.variable_overrides` (new, section 2).** Added per-state so `v0`/`mu_k` (and,
+   defensively, `m`/`F`) reach THE CALCULATOR with TRUSTED provenance. Reasoning, verified by source-level
+   trace of `deriveAssertions.ts`: `stateOverrides`' BFS explicitly skips array nodes, and `bodies[]` is
+   an array, so `bodies[0].initial_velocity_mps`/`bodies[0].mu_k` can never reach scope through the
+   render-facing table alone -- `v0`/`mu_k` would sit at their declared defaults (0/0) in every state
+   regardless of the cart real motion. Landing Cause A without this addition would MINT FALSE FAILURES
+   on `friction_J`/`net_J` (confirmed by source trace, matching quality_auditor own hand-simulation).
+   The added key is a plain, non-array sibling object, reached by the same BFS in two hops, and is
+   CONFIRMED INERT to rendering (`applyNewtonsLawsBodyState` never reads it for this scenario; grep
+   confirms zero hits in `field_3d_renderer.ts`).
+5. **Decision on Cause A: land it now, with (4).** The dispatch offered two options -- land A blind with
+   overrides, or defer A and land B alone. Chose the former because verification was completed, not
+   assumed: ran the REAL production gate code (`buildStateScope`/`deriveAssertions`, `readoutFormula.ts`
+   own comparison logic) against an in-memory patched clone of the real JSON, fed this run own harvested
+   painted readings. `net_J` matches the independently-derived reference-instant `net` value on every
+   state that renders one; `pull_J`/`friction_J` match on S3. Quoted output in section 9.
+6. **Falsified claim in section 9 corrected.** The old text asserted "all four channel-B numerals harvest
+   on every state" and named ONE exception. `npm run numeric:calc -- work_energy_theorem`, run against the
+   UNFIXED JSON, actually printed 7 passed / 0 failed / 44 skipped, with 6 of 7 "passes" being a coverage
+   count and zero real physics assertions. Section 9 now quotes this run verbatim, plus the corrected
+   post-fix harvest table, plus the production-gate verification output.
+
+### FINDING 2 -- narration asserting values the frozen pin does not show
+
+7. **S1 sentence 4.** Was "Both bars climb together and meet at forty joules." (asserts a terminal value;
+   the 0.60R pin shows 14.4-14.8 J, not 40.0 J). Replaced with "Both bars always match, reaching forty
+   joules each cycle." -- states the INVARIANT (true at every instant, since K(t) = W_net(t) identically
+   when v0=0) plus the loop-end value, explicitly framed as a per-cycle terminus, never a claim about
+   "now."
+8. **S3 sentences 2-3.** Were "The pull bar climbs to ninety-eight joules..." / "Friction bar dives to
+   minus ninety-eight..." (terminal values; the pin at d=3.0 m shows +58.8/-58.8 J, not +98.0/-98.0 J).
+   Replaced with "...climbs steadily, reaching ninety-eight joules by the loop end." / "...dives just as
+   far, so the two always cancel to zero." -- the second half of sentence 3 ("always cancel to zero") is
+   the STRONGEST possible claim here: net = 0 at every single frame of this state, no temporal caveat
+   needed.
+9. **S4 sentences 2-3.** Were "As it slows, net dives to minus eighteen joules when K reads zero." / "It
+   turns and speeds up: K reaches forty-six point one, net plus twenty-eight point one." (two different
+   in-state instants asserted with no temporal anchor; the 1560 ms pin, past the turn, shows neither).
+   Replaced with explicit anchors: "At the turn, net dives to..." / "By the end, K climbs to...". Same
+   word count both times (13 and 15), so S4 total is unchanged at 55.
+
+### FINDING 2b -- "climb together" is not visually true
+
+10. Folded into item 7: replaced the HEIGHT claim ("climb together") with a NUMERALS claim ("always
+    match"), per founder_proxy own ruling that the work bars and the K bar are different instruments
+    read from the numerals, never compared by height.
+11. The identical "climb together, frame by frame, and both land on" phrasing also appeared in
+    section 8's `aha_moment.visual_confirmation` (a real shipped JSON field, not just narration) --
+    same defect, same fix, reworded to a numerals claim. `aha_moment.statement` itself never claimed a
+    height and needed no change.
+
+### Word budget verified after every edit
+
+Recomputed with the SAME algorithm the gate uses (`countWords` in `conceptGates.ts`: join `text_en`
+sentences, split on whitespace). Also discovered and corrected: this document own narration cells used
+" -- " (a space-surrounded double hyphen) where the SHIPPED JSON already uses a plain comma -- a stale
+mismatch between this markdown and the real file that would have cost a word-count miscount on the next
+touch (the exact clone gotcha named in the dispatch). Fixed throughout the S1 row (S2/S4/S5/S6 already
+matched). Final counts: S1 55, S2 49 (unchanged), S3 53 (was 50), S4 55 (unchanged), S5 55 (unchanged), S6
+27 (unchanged, exempt). All inside the 25-55 range.
+
+### A third finding, surfaced while verifying FINDING 1: the legend box
+
+While feeding real painted readings through the production gate, STATE_4 and STATE_5 produced FAILs the
+physics could not explain. Traced to `field_3d_renderer.ts` generic `updateLegend` function, which
+renders `stateDef.label` (an internal per-state design-summary field) as bold on-canvas text for every
+`newtons_laws_body` state -- the scenario was never added to the roughly 30-line suppression list every
+other 2026-06/07 scenario carries. STATE_4/STATE_5 label text happens to contain literal terminal values
+("K = 46.1 J", "K = 20.0 J"), so those numbers are visibly spoiled on screen from the FIRST frame of every
+playback, and they collide with THE CALCULATOR channel-A harvest once `K_J` starts evaluating. Full
+detail, reproduction, and a recommended `engine_bug_queue` row: section 9. NOT fixed here -- it is a
+renderer defect (`peter_parker:field3d_surgeon`), outside physics_author tools and outside this dispatch
+scope; flagged with enough detail that quality_auditor does not mistake its 2 residual FAILs for a
+regression, and does not route the fix to json_author (rewriting `.label` text would hide symptoms while
+leaving every OTHER newtons_laws_body concept, and every state whose label happens not to contain a
+digit, equally spoiled and equally unfixed).
+
+### What was deliberately NOT changed
+
+- State count, arc, motion archetypes, scales (`work_scale_J`, `bar_max_J`), sliders, home poses,
+  `loop_reset_ms` -- all sealed, all re-verified correct, none touched.
+- S2, S5, S6 narration -- checked against their own frozen pins (S2: post-stop hold, consistent; S5: the
+  checkpoint stamp latches and holds, consistent; S6: explore, no terminal-value claims) and left as-is.
+- The render-facing `bodies[]`/`work_accumulators`/`energy_layer` tables in section 2 -- unchanged; the
+  new `variable_overrides` block is an ADDITION, not a substitution.
+- The legend/label rendering defect (see above) -- flagged, not fixed; not physics_author tool or scope.
+- `misconception_watch`, `aha_moment`, `assessment`, `real_world_anchor` (section 8) -- re-read, still
+  physically correct, none touched.

@@ -35,18 +35,18 @@
       "m":    { "name": "cart mass", "unit": "kg", "min": 2, "max": 6, "default": 4, "step": 1 },
       "F":    { "name": "applied pull, magnitude", "unit": "N", "min": 0, "max": 30, "default": 20, "step": 5 },
       "v0":   { "name": "launch speed at the state's own start (signed)", "unit": "m/s", "min": 0, "max": 4, "default": 0, "step": 1 },
-      "v":    { "name": "speed", "unit": "m/s", "min": -5, "max": 5, "default": 0, "derived": "the integrator's own live value; only S6 exposes a v0 slider, which SEEDS v -- no slider anywhere in this concept writes v directly thereafter" },
+      "v":    { "name": "speed", "unit": "m/s", "min": -5, "max": 5, "default": 0 },
       "g":    { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
       "mu_k": { "name": "coefficient of kinetic friction (S2, S3, S6 only)", "unit": "", "min": 0, "max": 1, "default": 0 },
       "mu_s": { "name": "coefficient of static friction (authored equal to mu_k, S2/S3/S6 only)", "unit": "", "min": 0, "max": 1, "default": 0 },
-      "d":    { "name": "displacement from the state's own initial_position_m", "unit": "m", "min": 0, "max": 12, "default": 0, "derived": "s(t) - initial_position_m; rendered as the d arrow's value only in S3, S5, S6" },
+      "d":    { "name": "displacement from the state's own initial_position_m", "unit": "m", "min": 0, "max": 12, "default": 0 },
       "K":    { "name": "kinetic energy", "unit": "J", "min": 0, "max": 340, "derived": "0.5 * m * v * v" }
     },
     "computed_outputs": {
-      "K_J":         { "formula": "0.5 * m * v * v" },
-      "W_net_J":     { "formula": "0.5 * m * v * v - 0.5 * m * v0 * v0" },
-      "W_pull_J":    { "formula": "F * d" },
-      "W_friction_J":{ "formula": "-1 * mu_k * m * g * d" }
+      "K_J":        { "formula": "0.5 * m * v * v" },
+      "net_J":      { "formula": "0.5 * m * v * v - 0.5 * m * v0 * v0" },
+      "pull_J":     { "formula": "F * d" },
+      "friction_J": { "formula": "-1 * mu_k * m * g * d" }
     },
     "formulas": {
       "the_theorem":             "W_net = delta K = half m v^2 minus half m v0^2 -- the ONE idea this concept teaches (every state)",
@@ -74,7 +74,7 @@
   "aha_moment": {
     "state_id": "STATE_1",
     "statement": "The work meter and the energy meter are the same meter, reading the same number.",
-    "visual_confirmation": "A crate pulled from rest by a steady 10 N force: the net-work bar and the K bar climb together, frame by frame, and both land on exactly 40.0 J."
+    "visual_confirmation": "A crate pulled from rest by a steady 10 N force: the net-work bar and the K bar always read the same number, frame by frame, reaching exactly 40.0 J by the loop end."
   },
 
   "entry_state_map": {
@@ -122,7 +122,7 @@
             { "id": "s1_1", "text_en": "A ten newton pull acts on this crate, the only force, so its work is the whole net work.", "text_hi": "इस crate पर दस newton का एक pull लगता है, यह अकेला force है, इसलिए इसका work पूरा net work है।", "glow": "nlb_arrow_cart_applied" },
             { "id": "s1_2", "text_en": "The work bar climbs as the pull acts over distance, force times metres.", "text_hi": "Work bar उतना ही चढ़ता है जितनी दूरी तक pull काम करता है, force गुणा metres।", "glow": "energy_panel" },
             { "id": "s1_3", "text_en": "The K bar reads the crate kinetic energy, the energy a moving body has.", "text_hi": "K bar crate की kinetic energy दिखाता है, वह energy जो एक चलती हुई body के पास होती है।", "glow": "energy_bar_K" },
-            { "id": "s1_4", "text_en": "Both bars climb together and meet at forty joules.", "text_hi": "दोनों bars साथ चढ़ते हैं और चालीस joules पर मिलते हैं।", "glow": "energy_panel" }
+            { "id": "s1_4", "text_en": "Both bars always match, reaching forty joules each cycle.", "text_hi": "दोनों bars हमेशा बराबर रहते हैं, हर cycle में चालीस joules तक पहुँचते हैं।", "glow": "energy_panel" }
           ]
         }
       },
@@ -210,8 +210,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s3_1", "text_en": "The pull and friction are equal, nineteen point six newtons, and the crate coasts.", "text_hi": "Pull और friction बराबर हैं, उन्नीस point six newtons, और crate coast करती है।", "glow": "nlb_arrow_cart_applied" },
-            { "id": "s3_2", "text_en": "The pull bar climbs to ninety-eight joules of real work.", "text_hi": "Pull का bar अट्ठानवे joules के असली work तक चढ़ता है।", "glow": "energy_panel" },
-            { "id": "s3_3", "text_en": "Friction bar dives to minus ninety-eight, so the two cancel to zero.", "text_hi": "Friction का bar minus अट्ठानवे तक गिरता है, तो दोनों cancel होकर zero बनाते हैं।", "glow": "energy_panel" },
+            { "id": "s3_2", "text_en": "The pull bar climbs steadily, reaching ninety-eight joules by the loop's end.", "text_hi": "Pull का bar अट्ठानवे joules तक, हर loop के अंत में, लगातार चढ़ता है।", "glow": "energy_panel" },
+            { "id": "s3_3", "text_en": "Friction bar dives just as far, so the two always cancel to zero.", "text_hi": "Friction का bar भी उतना ही गिरता है, तो दोनों हमेशा cancel होकर zero बनाते हैं।", "glow": "energy_panel" },
             { "id": "s3_4", "text_en": "Only the net counts: the K bar holds flat at fifteen point six joules.", "text_hi": "सिर्फ net गिनती में आता है: K bar पंद्रह point six joules पर flat रहता है।", "glow": "energy_bar_K" }
           ]
         },
@@ -264,8 +264,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s4_1", "text_en": "This cart starts backward at three metres a second, pulled by twelve newtons.", "text_hi": "यह cart पीछे की ओर तीन metres per second से शुरू होती है, बारह newtons से खींची जाती है।", "glow": "nlb_body_cart" },
-            { "id": "s4_2", "text_en": "As it slows, net dives to minus eighteen joules when K reads zero.", "text_hi": "जैसे यह धीमी होती है, net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है।", "glow": "energy_panel" },
-            { "id": "s4_3", "text_en": "It turns and speeds up: K reaches forty-six point one, net plus twenty-eight point one.", "text_hi": "यह पलटती है और तेज़ होती है: K छियालीस point one तक पहुँचता है, net plus अट्ठाइस point one तक।", "glow": "energy_panel" },
+            { "id": "s4_2", "text_en": "At the turn, net dives to minus eighteen joules as K reads zero.", "text_hi": "जैसे यह धीमी होती है, मोड़ पर net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है।", "glow": "energy_panel" },
+            { "id": "s4_3", "text_en": "By the end, K climbs to forty-six point one, net to plus twenty-eight point one.", "text_hi": "अंत तक, K छियालीस point one तक पहुँचता है, net plus अट्ठाइस point one तक।", "glow": "energy_panel" },
             { "id": "s4_4", "text_en": "Two nonzero numbers: net measures the change from the start, not the final energy.", "text_hi": "दो non-zero numbers: net शुरुआत से बदलाव मापता है, आखिरी energy को नहीं।", "glow": "energy_panel" }
           ]
         },
@@ -606,6 +606,7 @@
         "formula_overlay": "Wₙₑₜ = ΔK",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": 0, "m": 5, "F": 10, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
             { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 10, "angle_deg": 0 } }
@@ -633,6 +634,7 @@
         "formula_overlay": "Wₙₑₜ = ΔK",
         "newtons_laws_body": {
           "mode": "coast_with_friction",
+          "variable_overrides": { "v0": 4, "m": 5, "mu_k": 0.4 },
           "surface": { "theta_deg": 0, "length_m": 6 },
           "bodies": [
             { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4, "mu_s": 0.4, "mu_k": 0.4 }
@@ -660,6 +662,7 @@
         "formula_overlay": "Wₙₑₜ = 0, ΔK = 0",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": 2.5, "m": 5, "F": 19.6, "mu_k": 0.4 },
           "surface": { "theta_deg": 0, "length_m": 6 },
           "bodies": [
             { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2.5, "mu_s": 0.4, "mu_k": 0.4, "applied_force": { "N": 19.6, "angle_deg": 0 } }
@@ -690,6 +693,7 @@
         "formula_overlay": "ΔK = ½mv² − ½mv₀²",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": -3, "m": 4, "F": 12, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
             { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": 1.6, "initial_velocity_mps": -3, "applied_force": { "N": 12, "angle_deg": 0 } }
@@ -717,6 +721,7 @@
         "formula_overlay": "Wₙₑₜ = ma·d = ½mv² − ½mv₀²",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": 2, "m": 5, "F": 5, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
             { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2, "applied_force": { "N": 5, "angle_deg": 0 } }
@@ -748,6 +753,7 @@
         "formula_overlay": "Wₙₑₜ = ΔK",
         "newtons_laws_body": {
           "mode": "sandbox",
+          "variable_overrides": { "v0": 0, "m": 4, "F": 20, "mu_k": 0.3 },
           "surface": { "theta_deg": 0, "length_m": 6 },
           "bodies": [
             { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.3, "mu_k": 0.3, "applied_force": { "N": 20, "angle_deg": 0 } }
