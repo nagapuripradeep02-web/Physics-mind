@@ -122,6 +122,16 @@ jobs:
       - name: Mathematics concept schema + gates
         run: npm run validate:mathematics
 
+      # The cartesian_plane engine gate (P0, 339 assertions, all negative-
+      # controlled). It was NOT in this workflow, and on 2026-08-07 that cost
+      # us: PR #59 added a shared PM_fmtNum formatter, the gate's extraction
+      # list did not include it, and the whole gate died at load with
+      # "ReferenceError: PM_fmtNum is not defined" — on master, with CI green,
+      # because CI never ran it. Every mathematics concept rides this engine.
+      # Reads only tracked local files: no .env.local, no browser, no network.
+      - name: Cartesian-plane engine gate
+        run: npm run check:cartesian-plane
+
       - name: Unit tests
         run: npm test
 
