@@ -17,6 +17,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { Buffer } from 'node:buffer';
 import type { CaptureResult } from './screenshotter';
+import type { CheckResult } from './spec';
 
 export interface FrameDumpEntry {
     role: 'state_panel_a' | 'state_panel_b' | 'state_combined' | 'dense' | 'keyframe' | 'i2_formula' | 'frozen';
@@ -40,6 +41,15 @@ export interface DumpCaptureOptions {
     capture: CaptureResult;
     /** Root folder for runs. Default: <cwd>/.visual_runs */
     outRoot?: string;
+    /**
+     * Deterministic gate results for this run, persisted into the manifest.
+     *
+     * Without them the run's headline ("27/27 checks passed") lives only in
+     * stdout, so a reviewer reading the dump afterwards cannot reproduce the
+     * count, see WHICH checks ran, or tell a real pass from a check that never
+     * executed. A passing gate with no artifact behind it is not evidence.
+     */
+    checks?: readonly CheckResult[];
 }
 
 function timestampSlug(d: Date): string {
@@ -100,12 +110,24 @@ export function dumpCaptureToDisk(opts: DumpCaptureOptions): FrameDumpResult {
         });
     }
 
+    const checks = opts.checks ?? [];
+    const failedChecks = checks.filter(c => !c.passed);
     const manifestPath = join(dir, 'manifest.json');
     writeFileSync(manifestPath, JSON.stringify({
         concept_id: opts.conceptId,
         captured_at: new Date().toISOString(),
         warnings: opts.capture.warnings,
         timings: opts.capture.timings,
+        // The headline the run prints, as an artifact rather than a claim.
+        // `checks_present: false` distinguishes "no checks ran" from "all passed".
+        check_summary: {
+            checks_present: opts.checks !== undefined,
+            total: checks.length,
+            passed: checks.length - failedChecks.length,
+            failed: failedChecks.length,
+            failed_ids: failedChecks.map(c => `${c.state_id}:${c.check_id}`),
+        },
+        checks,
         entries,
     }, null, 2));
 

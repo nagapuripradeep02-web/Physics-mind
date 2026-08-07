@@ -146,28 +146,60 @@ export const HARVEST_READ = `(function () {
   // ── channel A: DIRECT text nodes of every visible element ─────────────────
   // Direct-only (not innerText) so a container never duplicates its children and
   // per-value spans such as #pm-ro-r stay individually addressable.
+  function pmDirectText(el) {
+    if (!el) return '';
+    var t = '';
+    for (var q = 0; q < el.childNodes.length; q++) {
+      var nn = el.childNodes[q];
+      if (nn.nodeType === 3) t += nn.nodeValue;
+    }
+    return t.replace(/\\s+/g, ' ').trim();
+  }
+  function pmVisible(el) {
+    if (!el) return false;
+    var s = window.getComputedStyle(el);
+    if (s.display === 'none' || s.visibility === 'hidden') return false;
+    if (parseFloat(s.opacity || '1') === 0) return false;
+    var b = el.getBoundingClientRect();
+    return b.width > 0 && b.height > 0;
+  }
   try {
     var els = document.querySelectorAll('body *');
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
       if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') continue;
-      var st = window.getComputedStyle(el);
-      if (st.display === 'none' || st.visibility === 'hidden') continue;
-      if (parseFloat(st.opacity || '1') === 0) continue;
-      var r = el.getBoundingClientRect();
-      if (!(r.width > 0 && r.height > 0)) continue;   // also catches display:none ancestors
-      var direct = '';
-      for (var k = 0; k < el.childNodes.length; k++) {
-        var n = el.childNodes[k];
-        if (n.nodeType === 3) direct += n.nodeValue;
-      }
-      direct = direct.replace(/\\s+/g, ' ').trim();
+      if (!pmVisible(el)) continue;                   // also catches display:none ancestors
+      var direct = pmDirectText(el);
       if (!direct) continue;
       var where = el.id ? ('#' + el.id) : el.tagName.toLowerCase();
       if (!el.id && el.className && typeof el.className === 'string' && el.className.trim()) {
         where += '.' + el.className.trim().split(/\\s+/).join('.');
       }
       out.dom.push({ where: where, text: direct });
+
+      // ── channel B: a symbol and its value living in SIBLING elements ───────
+      // The energy panel emits <div class="nlb_en_sym">K</div> immediately
+      // before <div class="nlb_en_val">12.5 J</div>. Neither node alone holds a
+      // reading — the symbol carries no number and the value carries no symbol —
+      // so channel A is structurally BLIND to every panel built that way (the
+      // whole SEAM L energy layer, and any future split-cell readout). Compose
+      // the adjacent pair into the chip form ("K 12.5 J") that CHIP_RE already
+      // understands, rather than teaching the parser a second shape.
+      // Deliberately additive: neither node parses to a reading on its own, so
+      // this can only ADD readings, never double-count an existing one.
+      var bare = direct.length <= 12
+              && direct.indexOf('=') < 0
+              && !/\\s/.test(direct)
+              && !/^[+-]?[0-9.]/.test(direct);
+      if (bare) {
+        var sib = el.nextElementSibling;
+        if (sib && pmVisible(sib)) {
+          var sdirect = pmDirectText(sib);
+          if (/^[+-]?[0-9]/.test(sdirect)) {
+            out.dom.push({ where: where + '+next', text: direct + ' ' + sdirect });
+          }
+        }
+      }
     }
   } catch (e) { out.err = 'dom: ' + String(e && e.message || e); }
 

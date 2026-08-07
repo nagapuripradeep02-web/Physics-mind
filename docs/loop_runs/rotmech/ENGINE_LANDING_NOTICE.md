@@ -137,15 +137,89 @@ Full `sources[]` shape is in `FROZEN_SCOPE_0c3.md` §B E4 and the E4 commit body
    moved has `earlierMoved === false` and it reports the actively misleading *"OK — no frozen
    tail"*; `[D6]` needs a nonzero median to search at all. **Desk B measured two concepts at 35/35
    PASS whose frames are MD5-identical across t=0/5000/10000/frozen.**
-   **Until this is fixed, `md5sum` your dense frames.** One hash across the series = a dead scene,
-   whatever the headline says. Filed as `eye_dense_motion_gates_all_pass_by_construction_on_a_totally_static_scene`
-   in `_engine/scar_candidates_0c3.sql` (CRITICAL, `peter_parker:visual_validator`, **not applied**).
+   **Until this is fixed, `md5sum` your dense frames — WITHIN ONE RUN ONLY.** One hash across the
+   series = a dead scene, whatever the headline says. Filed as
+   `eye_dense_motion_gates_all_pass_by_construction_on_a_totally_static_scene` in
+   `_engine/scar_candidates_0c3.sql` (CRITICAL, `peter_parker:visual_validator`, **not applied**).
+
+> ### 🔬 §4.1 — THE md5 QUESTION, RESOLVED 2026-08-06. Desk C is right about its experiment and the remedy is SOUND — they are different tests.
+>
+> Desk C (PASS 17) found PNG encoding nondeterministic **across runs** and concluded the md5 check
+> "can only return all-clear". **Desk B used md5 *within a single run* on adjacent timestamps and
+> correctly caught two dead scenes.** Those are different tests, and I measured both on this desk's
+> own frames rather than adjudicating from either report.
+>
+> **Measured — within one run, on 118 adjacent dense-frame pairs of `coulombs_law`:**
+> **88 pairs were pixel-identical (0 of 921600 differing). All 88 produced EQUAL md5. Zero
+> mismatches.** So within a run the encoder is a deterministic function of the pixels.
+>
+> **Measured — across two runs of an unchanged build, same file:** bytes differ, **and 238 px of
+> 921600 genuinely differ** (0.026%) — so cross-run is worse than Desk C reported: not merely
+> re-encoding noise, there is real render jitter, almost certainly the OPEN scar
+> `field3d_focal_glow_pulse_phase_reads_absolute_time_so_frozen_h2_jitters`.
+>
+> | comparison | md5 EQUAL ⟹ | md5 DIFFERENT ⟹ | verdict |
+> |---|---|---|---|
+> | **within one run** | pixels identical | pixels differ | **SOUND both ways** |
+> | **across runs** | (never happens) | nothing | **WORTHLESS — never do it** |
+>
+> ### The ruling
+> 1. **The §4 remedy is SCOPED TO WITHIN-RUN and it stands.** Compare adjacent frames of **one
+>    capture**. A repeated hash across a series is proof of a dead scene.
+> 2. **Desk B's dead-scene findings need NO re-derivation.** Its method was the sound one, and
+>    `rolling_on_incline` S8's single hash across 10.5 s was a true reading — since confirmed
+>    independently by the E11 fix, after which S8 gives **260 distinct positions in 260 frames**.
+> 3. **NEVER md5 across runs**, and never quote a cross-run hash difference as evidence of anything.
+> 4. **One honest limit, and it is Desk C's underlying point:** within-run md5 *difference* proves
+>    **pixels changed**, not that the **taught motion** happened — a glow pulse or a caption timer
+>    changes pixels too. So it is a strong **deadness detector** and a weak liveness proof. Use it to
+>    disprove death, never to certify life; for that, measure the physical quantity.
 2. **Your seed script probably disarms `[D5]` on rbr concepts.** The cloned exemplar writes
    `physics_config: { epic_l_path }` with `field_3d_config` **absent**, starving
    `deriveMotionExpectations`. Add it (this desk fixed both its canary seeds; Desk C fixed its
    own). **Caveat, because PASS 14 over-generalised:** this only restores `[D5]` for scenarios that
    *have* a motion branch — `rigid_body_rotation` does, `newtons_laws_body` and `coulombs_law_force`
    do not, and for those the `?` is by design.
+
+---
+
+## §4.2 — THE HARNESS LEDGER. Six findings, in BOTH directions. Read before trusting any gate result.
+
+This chapter has now found **six** ways the verification harness reports the wrong answer — and
+they do **not** all point the same way. Three make a broken thing look fine; three make a fine thing
+look broken. Both cost real cycles.
+
+| # | Finding | Direction | Mechanism |
+|---|---|---|---|
+| 1 | **B-4** — dense gates pass on a dead scene | **false PASS** | `[D5]` abstains when motion is undeclared; `[D7]` needs `earlierMoved`, so a scene that never moved reports "OK — no frozen tail"; `[D6]` needs a nonzero median. 35/35 on MD5-identical frames. |
+| 2 | **E2** — byte-identical A/B against a dead baseline | **false PASS** | "17/17 identical" was the expected output of a corpse. Proves non-regression, never correctness. |
+| 3 | **B-11** — hybrid frozen frame | **false PASS** | a frozen capture that blends states reads as a coherent pose that never existed. |
+| 4 | **Desk C criterion-4** — a bare delta cannot distinguish "flipped" from "disappeared" | **false PASS** | F-C7's luminance-delta probe would have gone green on an invisible arrow: 15 occluded px getting brighter satisfies "assert a measurable increase". |
+| 5 | **eye-walker aliasing** — 1 Hz sampling on a 4.19 s rotor | **false FAIL** | the sampling period beat against the rotation period, so a steady spin read as stillness. A phantom regression. |
+| 6 | **§4.1 md5** — cross-run vs within-run | **both** | cross-run: byte AND pixel jitter ⇒ worthless. Within-run: deterministic, 88/88 ⇒ sound. Conflating them would have discarded a working check. |
+
+**Two more this session, same family:** Desk A lost five founder-proxy probes to a **review site
+built before its merge** — the agents were served a pre-E7 bundle and chased a phantom regression
+(**false FAIL**). And **PNG cross-run jitter** is itself downstream of the OPEN glow-phase scar.
+
+> ### 📏 STANDING RULE — vector verification (from Desk C, adopted chapter-wide)
+> **Measure ABSOLUTE INK at the pose pointing AWAY from the camera, plus a RATIO against the
+> favourable pose. NEVER a delta.**
+>
+> A delta cannot tell "it flipped" from "it disappeared", and the unfavourable pose is exactly where
+> a vector dies — which is how **F-C9** (S4's reversed L vector, 48.8% of the up vector's ink) went
+> unnoticed while E7's own acceptance passed at 1579 px on the favourable pose.
+
+> ### 📏 STANDING RULE — every A/B (Desk E, from finding 2)
+> **Assert LIVENESS on the quantity under test before the comparison means anything, and carry a
+> PAIRED POSITIVE CONTROL** — a case that must differ, shown differing in the same run. An A/B
+> licenses *"this change did not alter X"*, never *"X is correct"*.
+
+> ### 📏 STANDING RULE — order of operations (from Desk A's lost probes)
+> **`sync` → `rebuild` → `re-seed` → `EYE`.** A review site or cache built before a merge serves the
+> **old bundle**, and every downstream reading is about code that is no longer there. Re-seed before
+> **every** EYE run — a stale `sim_html` silently re-tests the old engine. This desk hit exactly
+> that and caught it only because the assembled byte count had not moved.
 
 ---
 
@@ -378,6 +452,60 @@ sat still until 688 ms.
 - **A backward pin *within one state entry* does not rewind** on `newtons_laws_body` (it steps
   `s`/`v` rather than closing them in `t`). **Pre-existing** — demonstrated on the unmodified
   renderer — and harmless to THE EYE, which enters fresh per pin.
+
+---
+
+## §6e — APPENDED 2026-08-07: **F-C9 — the reversed L vector is back.** Desk C, `angular_momentum` should be clear for a Checkpoint B retry
+
+**Four lines** — `depthTest`/`depthWrite` off and `renderOrder 998` on the L arrow's own material
+and meshes. **This is NOT an E7 regression:** E7's world-length map is verified correct (slope
+0.200000 exactly, intercept 1.5e-15, 7/7 pins both signs) and is **byte-untouched**. It is a second
+distinct defect on the same primitive, and it was invisible to E7's acceptance **because that
+acceptance measured the favourable pose** — which is precisely why §4.2's standing rule now exists.
+
+The anchor was already correctly sign-mirrored. The cause is **silhouette**: the camera sits 23.5°
+above the rotation plane, so the drum's opaque disc projects over anything below it near the axis —
+exactly where the down vector lives.
+
+### Acceptance — absolute ink at the UNFAVOURABLE pose, per §4.2. Never a delta.
+
+| measure | before | after |
+|---|---|---|
+| **down-pose ink (absolute)** | 720 px | **1294 px** |
+| ratio down / up | 48.2% *(Desk C measured 48.8%)* | **84.1%** |
+| **shaft (non-head) ink at down** | 51 px | **545 px — 10.7×** |
+| bbox height at down | 23 rows | **61 rows** |
+| up pose (must not regress) | 1494–1507 px | **1539 px — no regression** |
+
+The residual 16% is **perspective, not leftover occlusion**, proved three ways: the row-width
+profile is unbroken, the tail renders at its predicted anchor row (371 measured vs 371.4
+predicted), and shaft ink equals width × length exactly (0.696 predicted vs 0.699 measured).
+
+**Desk C — two asks.** (1) Re-run on the **real** `angular_momentum` config: the surgeon rebuilt the
+beat synthetically because your JSON is not in this worktree, so the *ratios* match yours closely
+(48.2 vs 48.8%) but the *absolute* numbers use a different mask. (2) The measurement rig is
+reproducible with **no DB and no seed** — `assembleField3DHtml` → headless chromium at 1280×720,
+`SET_TIME_FREEZE`, arrow isolated by rendering the same state twice with
+`visible_elements ["all","rbr_l_arrow"]` vs `["all"]` and `show_l_arrow:false`, diff on
+max per-channel Δ > 12.
+
+### ⚠ A trade was taken deliberately — founder-proxy should review it
+
+The alternation question was **measured over a full revolution at 12 pins**, not assumed:
+- **Against the drum / axle / R_drum torus — NO alternation.** They are solids of revolution about
+  the very axis the arrow lies on, and it lives in `root`. Down-pose ink is flat within **0.6%**
+  across all 12 pins. **That is what makes the targeted `depthTest` route legitimate here, where it
+  was correctly rejected fleet-wide in E7.**
+- **Against the `spin` group — YES.** The up pose showed a **6.3%** spread with minima at exactly
+  the two angles a mass lies between camera and axis. Post-fix the up pose is flat at 1539 px, and
+  **the flatness IS the inversion**: the arrow now draws over the rod and the masses where they
+  genuinely cross it.
+
+**Trade: ~90 px of partial overdraw twice a turn, against 774 px lost on every negative-L frame.**
+Filed as `rbr_axial_overlay_drawn_over_the_spin_group_members_that_genuinely_cross_it`
+(MAJOR, OPEN, Candidate 10) rather than buried. A geometric offset was rejected **on evidence**
+rather than by inheriting E7's clause (d): clearance needs `R_drum·tan(elevation) + 0.10` = 0.53 at
+23.5° but **1.81 at 60°**, longer than the whole arrow, so no fixed offset survives a teacher orbit.
 
 ---
 
