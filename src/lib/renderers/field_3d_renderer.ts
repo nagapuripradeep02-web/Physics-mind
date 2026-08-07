@@ -40444,6 +40444,212 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_X_AXIS = new THREE.Vector3(1, 0, 0);
     var NLB_DOWN = new THREE.Vector3(0, -1, 0);
 
+    // ══ SEAM Q — the INK LEGIBILITY FLOOR (founder 2026-08-02) ═════════════
+    //   "the friction arrow and the angle between the distance and friction
+    //   arrow shown is not properly visible. This is really light. Make it a
+    //   little bit more darker to see, so that it is visible."
+    //
+    //   MEASURED, not assumed (positive_negative_zero_work STATE_2, the dense
+    //   t = 1000 ms frame, sampled pixel by pixel):
+    //     the lit slab renders at rgb(129,155,168) -> relative luminance 0.309
+    //     the page behind it   at rgb(10,10,26)    ->                    0.0036
+    //     the friction shaft's own pixels arrive at                      0.310
+    //   That is a contrast ratio of 1.00:1 against the surface the arrow is
+    //   drawn on. The arrow is not dim — it is EXACTLY as bright as its
+    //   backdrop, which is the one value at which no further brightness can
+    //   help. Its label measured 1.01:1 in the same frame.
+    //
+    //   WHY force_rig's FIXED floor CANNOT SIMPLY BE PORTED. FR_INK_LUM_MIN is
+    //   a hue-preserving LIFT to 0.62, and it is right there because every
+    //   backdrop in that scenario is dark (its brightest is the table disc at
+    //   0.047). Here ONE frame carries ink over two backdrops six stops apart,
+    //   and the ink ranges that clear 4.5:1 against them are DISJOINT: text
+    //   over the page needs luminance >= 0.191, text over the slab needs
+    //   <= 0.030. No single ink value exists, so a blanket lift would fix the
+    //   theta label and push the friction arrow from 1.00:1 to WORSE than 1:1.
+    //   The floor is therefore stated RELATIVE to the backdrop — push AWAY
+    //   from it, upward over the page and DOWNWARD over the slab — and the
+    //   direction is decided per element from the geometry, never authored.
+    //
+    //   BOTH DIRECTIONS PRESERVE HUE, so a label still matches its arrow by
+    //   colour alone (the whole point of the identity palette):
+    //     lift   c' = c + (255 - c)*t   scales every channel gap by (1 - t),
+    //                                   leaving the HSL hue unchanged (this is
+    //                                   force_rig's own argument, unchanged);
+    //     deepen c' = c*(1 - t)         is a pure VALUE scale, which leaves the
+    //                                   HSV hue AND saturation exactly fixed —
+    //                                   strictly less identity spent than the
+    //                                   lift, which spends saturation.
+    var NLB_INK_LUM_MIN = 0.62;   // over the dark page: lift toward white
+    var NLB_INK_LUM_MAX = 0.007;  // over the lit slab: deepen toward black
+    //   WHERE 0.007 COMES FROM. A stroke has to clear 3:1 and a label 4.5:1
+    //   against the measured slab INCLUDING as a dimmed peer, and the slab has
+    //   TWO faces: the lit top at 0.309 and the shaded front edge at 0.211. The
+    //   FRONT EDGE is the binding one, and a label that straddles the two faces
+    //   is measured against it: 4.5:1 there needs a rendered 0.008, and a label
+    //   glyph arrives slightly ABOVE its ink (it blends with its own near-black
+    //   halo, which pulls the same way here) — measured 0.0095 from a 0.010
+    //   ink. 0.007 takes that with margin: measured 6.0:1 for a stroke over the
+    //   top face, 4.6:1 for a label over the front edge. Darker still would buy
+    //   fractions of a ratio at the cost of the hue reading AS the friction
+    //   colour, which is the whole point of an identity palette.
+    //
+    //   THE PEER RECEDE. GLOW_DIM_OPACITY (0.40) multiplies the ink toward the
+    //   backdrop, and no ink floor survives being multiplied by 0.40 — that is
+    //   force_rig's own finding, and it holds over the page as well as over a
+    //   lit surface: a 0.62 ink at 0.40 over the page renders at 0.078, i.e.
+    //   2.4:1, under the 3:1 stroke floor. Measured targets at the values
+    //   below: page stroke 4.7:1, slab stroke 3.7:1, label 6.9:1. Rule 32e is
+    //   untouched — the focal still goes to full opacity PLUS the contrast
+    //   boost below, so exactly one element is loudest; the peers simply
+    //   recede to a level that still READS, which is the trade force_rig
+    //   already made for its labels (0.40 -> 0.85).
+    var NLB_LABEL_DIM_OPACITY = 0.85;  // peer LABEL recede (port of FR_LABEL_DIM_OPACITY)
+    var NLB_ARROW_DIM_OPACITY = 0.60;  // peer STROKE recede over the page
+    var NLB_INK_DIM_OPACITY = 0.85;    // peer STROKE recede over the lit slab
+    function nlbSrgbLin(c) {
+        var s = c / 255;
+        return (s <= 0.04045) ? (s / 12.92) : Math.pow((s + 0.055) / 1.055, 2.4);
+    }
+    function nlbRelLum(r, g, b) {
+        return 0.2126 * nlbSrgbLin(r) + 0.7152 * nlbSrgbLin(g) + 0.0722 * nlbSrgbLin(b);
+    }
+    function nlbHexRgb(hex) {
+        if (typeof hex !== "string") return null;
+        var h = hex.charAt(0) === "#" ? hex.slice(1) : hex;
+        if (h.length === 3) h = h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2);
+        if (h.length !== 6) return null;
+        var n = parseInt(h, 16);
+        if (!isFinite(n)) return null;
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+    function nlbHex2(v) {
+        var s = Math.max(0, Math.min(255, Math.round(v))).toString(16);
+        return s.length < 2 ? "0" + s : s;
+    }
+    //   Pure function of (authored hex, backdrop class) -> drawn hex, memoised
+    //   because it runs inside the per-frame ink pass and the answer for a
+    //   given palette entry never changes. Luminance is strictly monotonic in
+    //   t in both directions, so bisection finds the SMALLEST move that clears
+    //   the floor — the least identity spent for the contrast.
+    var nlbInkCache = {};
+    function nlbInkLens(hex, overLight) {
+        var key = hex + (overLight ? "|L" : "|D");
+        if (nlbInkCache[key] != null) return nlbInkCache[key];
+        var c = nlbHexRgb(hex), out = hex;
+        if (c) {
+            var lum = nlbRelLum(c[0], c[1], c[2]), lo = 0, hi = 1, t, r, g, b, k;
+            if (overLight) {
+                if (lum > NLB_INK_LUM_MAX) {
+                    for (k = 0; k < 18; k++) {
+                        t = (lo + hi) / 2;
+                        r = c[0] * (1 - t); g = c[1] * (1 - t); b = c[2] * (1 - t);
+                        if (nlbRelLum(r, g, b) <= NLB_INK_LUM_MAX) hi = t; else lo = t;
+                    }
+                    out = "#" + nlbHex2(c[0] * (1 - hi)) + nlbHex2(c[1] * (1 - hi)) + nlbHex2(c[2] * (1 - hi));
+                }
+            } else if (lum < NLB_INK_LUM_MIN) {
+                for (k = 0; k < 18; k++) {
+                    t = (lo + hi) / 2;
+                    r = c[0] + (255 - c[0]) * t; g = c[1] + (255 - c[1]) * t; b = c[2] + (255 - c[2]) * t;
+                    if (nlbRelLum(r, g, b) >= NLB_INK_LUM_MIN) hi = t; else lo = t;
+                }
+                out = "#" + nlbHex2(c[0] + (255 - c[0]) * hi) + nlbHex2(c[1] + (255 - c[1]) * hi) +
+                            nlbHex2(c[2] + (255 - c[2]) * hi);
+            }
+        }
+        nlbInkCache[key] = out;
+        return out;
+    }
+    //   Rule 29 generalised to a light backdrop. Emphasis is still a LUMINANCE
+    //   move and never a size move — but "brighten" is only the right move when
+    //   the backdrop is dark. Over the slab the focal element moves DEEPER, so
+    //   emphasis is always "further from the local backdrop"; on the dark page
+    //   this is byte-identical to what applyGlowEmphasis already did (the same
+    //   lerp toward white by the same colT), so no existing frame changes for
+    //   that reason. Flagged as an interpretive call in the report.
+    function nlbInkEmphasis(hex, overLight, colT) {
+        var c = nlbHexRgb(hex);
+        if (!c) return hex;
+        var t = Math.max(0, Math.min(1, colT || 0));
+        if (overLight) {
+            return "#" + nlbHex2(c[0] * (1 - t)) + nlbHex2(c[1] * (1 - t)) + nlbHex2(c[2] * (1 - t));
+        }
+        return "#" + nlbHex2(c[0] + (255 - c[0]) * t) + nlbHex2(c[1] + (255 - c[1]) * t) +
+                     nlbHex2(c[2] + (255 - c[2]) * t);
+    }
+    //   THE BACKDROP TEST. WHY A RAYCAST AND NOT A WORLD-Y BAND. The slab's
+    //   SCREEN footprint is not its world-y band: the camera sits slightly
+    //   above, so 1.6 world units of slab DEPTH project into roughly 16 px of
+    //   screen height ABOVE the top face — which is exactly where the friction
+    //   lane (0.035 above the surface, NLB_ARROW_LANE) lives. A band test in
+    //   world y would call that lane "off the slab", which is precisely the
+    //   misclassification this bug is. The camera is also draggable, so any
+    //   hardcoded band is wrong the moment a teacher rotates the scene. The ray
+    //   asks the only question that matters — is the slab the thing behind this
+    //   ink from where we are looking — and is a pure function of camera plus
+    //   geometry, so a SET_TIME_FREEZE rewind reproduces it exactly.
+    //   The slab is the ONLY light backdrop in this scenario (the page is
+    //   0.0036 and every other surface is ink); the bodies are deliberately NOT
+    //   in the target list, because a body MOVES under a static arrow and would
+    //   make the class flicker as it passed.
+    var NLB_INK_RAY = null;
+    var NLB_INK_P = null;
+    function nlbInkOverSlab(p) {
+        if (!p || typeof camera === "undefined" || !camera) return false;
+        var slab = nlbFindById("nlb_surface");
+        if (!slab || !slab.visible) return false;
+        if (!NLB_INK_RAY) NLB_INK_RAY = new THREE.Raycaster();
+        if (!NLB_INK_P) NLB_INK_P = new THREE.Vector3();
+        NLB_INK_P.copy(p).sub(camera.position);
+        var L = NLB_INK_P.length();
+        if (!(L > 1e-6)) return false;
+        NLB_INK_RAY.set(camera.position, NLB_INK_P.multiplyScalar(1 / L));
+        return nlbRayHits(NLB_INK_RAY, slab);
+    }
+    function nlbRayHits(ray, obj) {
+        var hits = ray.intersectObject(obj, false);
+        return !!(hits && hits.length);
+    }
+    // ── The mesh shaft (spec: the 1 px hairline is half the defect) ────────
+    //   WebGL ignores LineBasicMaterial linewidth on essentially every desktop
+    //   driver (the note already standing in nlbUpdateArrow), so an
+    //   ArrowHelper's own shaft is a 1 px line — and measured on the real
+    //   frames it does not even fill that one pixel: the friction shaft arrives
+    //   at rgb(186,137,164), which is exactly a 50/50 blend of its ink with the
+    //   slab. Half the ink is thrown away by coverage before any colour rule
+    //   can act, and a 50%-covered stroke cannot hold 3:1 at ANY ink value
+    //   (a 0.020 ink at half coverage over the slab measures 2.0:1). So the
+    //   floor needs real stroke weight as well as the right ink.
+    //   Cloned LOCALLY from force_rig's frAddShaft per that function's own note
+    //   — the thick-vector pattern already exists several times over in this
+    //   file and refactoring a sealed sibling to share it is a founder call.
+    //   MeshBasicMaterial, NOT Phong: the cone ArrowHelper builds is
+    //   MeshBasicMaterial, so an unlit shaft renders at EXACTLY the ink the
+    //   lens computed and cannot be pulled off the floor by a light.
+    var NLB_ARROW_SHAFT_R = 0.030;   // world units — about 4 px at the authored framing
+    function nlbAddShaft(arrow, hex) {
+        if (!arrow) return arrow;
+        var sh = new THREE.Mesh(
+            new THREE.CylinderGeometry(NLB_ARROW_SHAFT_R, NLB_ARROW_SHAFT_R, 1, 12),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(hex), transparent: true, opacity: 1.0 }));
+        var L0 = Math.max(1e-4, NLB_ARROW_MIN_LEN - 0.21);
+        sh.scale.set(1, L0, 1);
+        sh.position.set(0, L0 / 2, 0);
+        arrow._nlbShaft = sh;
+        arrow.add(sh);
+        return arrow;
+    }
+    // Spans tail -> base of the cone, exactly the span ArrowHelper gives its own
+    // line, so head and shaft always meet and the tip stays at len.
+    function nlbFitShaft(arrow, len, headLen) {
+        var sh = arrow ? arrow._nlbShaft : null;
+        if (!sh) return;
+        var L = Math.max(1e-4, len - headLen);
+        sh.scale.set(1, L, 1);
+        sh.position.set(0, L / 2, 0);
+    }
+
     // ── SEAM D — pulley bracket + the two rope segments ────────────────────
     //   Spec section 1's pulley block; spec section 6 honest-extension flag 1
     //   (this asset class is genuinely new). GEOMETRY ONLY: nothing below reads a
@@ -41645,6 +41851,8 @@ export const FIELD_3D_RENDERER_CODE = `
         arrow.position.copy(originWorld);
         arrow.setDirection(dirUnit);
         arrow.setLength(len, headLen, headLen * 0.80);
+        nlbFitShaft(arrow, len, headLen);           // SEAM Q
+        arrow.userData._inkLen = len;               // SEAM Q anchor: the shaft midpoint
         if (lbl) {
             var hanging = !!(arrow.userData && arrow.userData.hanging);
             var th = nlbFrameThetaDeg();
@@ -41690,6 +41898,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var len = nlbArrowLen(mag);
         grp.position.copy(originWorld);
         grp.quaternion.setFromUnitVectors(NLB_X_AXIS, dirUnit);
+        grp.userData._inkLen = len;                 // SEAM Q anchor (local +x is this group's direction)
         nlbSetDashLen(grp.userData._shaft, Math.max(0.02, len - NLB_COMP_HEAD_LEN));
         if (grp.userData._head) grp.userData._head.position.set(len - NLB_COMP_HEAD_LEN / 2, 0, 0);
         if (lbl) {
@@ -41804,6 +42013,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 bodyId: bodyId, kind: kind, hanging: !!hanging
             };
             ar.visible = false;
+            nlbAddShaft(ar, col);          // SEAM Q: the 1 px hairline is half the defect
             parent.add(ar); nlbRegister(ar);
 
             var lb = pmCreateAutoLabel(NLB_ARROW_DEFAULT_LABELS[kind], col, NLB_ARROW_LABEL_H);
@@ -42824,10 +43034,128 @@ export const FIELD_3D_RENDERER_CODE = `
                                   ud.elementType === "nlb_spring");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solidApparatus);
         });
+        // SEAM Q — the ink floor, AFTER the glow pass on purpose (see nlbInkPass).
+        nlbInkPass(focal, glowActive, glowP);
         // SEAM L — the same ONE focal, carried to the DOM overlay applyGlowEmphasis
         // structurally cannot reach. Churn-guarded inside, so this costs a string
         // compare per frame and cannot move a frozen pixel.
         nlbEnergyApplyGlow(focal);
+    }
+
+    // ══ SEAM Q — the per-frame ink pass ════════════════════════════════════
+    //   Runs AFTER applyGlowEmphasis, and it has to: that pass restores every
+    //   material's CACHED authored colour on every frame, so an ink written
+    //   anywhere else is reverted one frame later (the same trap frRecolourArrow
+    //   documents). It owns the drawn colour of the OVERLAY only — arrows, their
+    //   labels, the component construction, the right-angle marker, the
+    //   displacement vector, the arc labels and the incline arc. It never
+    //   touches the apparatus (slab, bodies, ropes, pulley, spring): those are
+    //   the thing being looked at, not ink drawn on top of it.
+    //     1 = stroke — the drawn colour IS material.color
+    //     2 = sprite — the ink is BAKED into a canvas texture, so a change costs
+    //         a redraw and is churn-guarded on the resulting hex (a canvas
+    //         re-allocation 60 times a second is banned everywhere in this file)
+    var NLB_INK_TYPES = {
+        nlb_arrow: 1, nlb_comp: 1, nlb_right_angle: 1, nlb_disp: 1,
+        nlb_fang: 1, nlb_theta_arc: 1,
+        nlb_arrow_label: 2, nlb_comp_label: 2, nlb_disp_label: 2,
+        nlb_fang_label: 2, nlb_seg_label: 2, nlb_theta_label: 2
+    };
+    // The AUTHORED identity hex — the lens moves luminance only, so this stays
+    // the single source of every element's colour identity.
+    function nlbInkBase(ud) {
+        var t = ud.elementType;
+        if (t === "nlb_arrow" || t === "nlb_arrow_label") return NLB_ARROW_COLORS[ud.kind] || null;
+        if (t === "nlb_comp" || t === "nlb_comp_label" || t === "nlb_right_angle") return NLB_COMP_COLOR;
+        if (t === "nlb_disp" || t === "nlb_disp_label") return NLB_DISP_COLOR;
+        if (t === "nlb_fang" || t === "nlb_fang_label") return NLB_FANG_COLOR;
+        if (t === "nlb_theta_arc" || t === "nlb_theta_label") return NLB_ARC_COLOR;
+        if (t === "nlb_seg_label") return NLB_SEG_LABEL_COLOR;
+        return null;
+    }
+    //   Where an element's ink actually SITS. An arrow is anchored at its shaft
+    //   MIDPOINT rather than its tail, because the tail sits on the body and the
+    //   tip can be a body-length away: the midpoint is the majority of the ink.
+    var NLB_INK_A = null;
+    function nlbInkAnchor(o, ud) {
+        if (!NLB_INK_A) NLB_INK_A = new THREE.Vector3();
+        o.updateWorldMatrix(true, false);
+        var t = ud.elementType;
+        if (t === "nlb_arrow" || t === "nlb_disp") {
+            // ArrowHelper's local +y IS the arrow direction (setDirection rotates it).
+            return NLB_INK_A.set(0, ((o.userData && o.userData._inkLen) || 0) * 0.5, 0).applyMatrix4(o.matrixWorld);
+        }
+        if (t === "nlb_comp") {
+            return NLB_INK_A.set(((o.userData && o.userData._inkLen) || 0) * 0.5, 0, 0).applyMatrix4(o.matrixWorld);
+        }
+        return NLB_INK_A.setFromMatrixPosition(o.matrixWorld);
+    }
+    function nlbInkOverLight(o, ud) {
+        // The arc carries its own casing and is the one stroke that crosses both
+        // backdrops mid-sweep, so it is PINNED to the page class rather than
+        // flipping half way round (see the note in nlbBuildOffAxis).
+        if (ud.elementType === "nlb_fang") return false;
+        return nlbInkOverSlab(nlbInkAnchor(o, ud));
+    }
+    function nlbInkWriteStroke(o, hex, op, writeOp) {
+        var col = hexToThreeColor(hex), cse = hexToThreeColor(NLB_INK_CASE_COLOR);
+        o.traverse(function (n) {
+            if (!n.material) return;
+            var ms = Array.isArray(n.material) ? n.material : [n.material];
+            for (var i = 0; i < ms.length; i++) {
+                var m = ms[i];
+                var isCase = !!(m.userData && m.userData._nlbCase);
+                if (m.color) m.color.set(isCase ? cse : col);
+                if (m.emissive && !isCase) m.emissive.set(col);
+                if (writeOp) {
+                    m.transparent = true;
+                    // The casing IS the legibility floor: it never recedes, or the
+                    // one stroke that crosses the slab loses the outline carrying it.
+                    m.opacity = isCase ? 0.95 : op;
+                }
+            }
+        });
+    }
+    function nlbInkWriteSprite(o, hex, op, writeOp) {
+        if (o._nlbInkSrc !== hex) {
+            var txt = (o._nlbText != null) ? o._nlbText : o._pmText;
+            o._nlbInkSrc = hex;
+            o._pmColor = hex;
+            if (txt != null) updateLabelSpriteText(o, txt);
+        }
+        if (o.material) {
+            // The ink is the TEXTURE; a material tint would multiply the new ink
+            // onto the old palette ink AND onto the dark halo (frRecolourLabel's
+            // scar), so the material stays white and only the opacity speaks.
+            if (o.material.color) o.material.color.set(0xFFFFFF);
+            if (writeOp) { o.material.transparent = true; o.material.opacity = op; }
+        }
+    }
+    function nlbInkPass(focal, glowActive, glowP) {
+        var colT = 0.10 + 0.18 * glowP;   // the same pulse applyGlowEmphasis uses
+        nlbEach(function (o, ud) {
+            var cls = NLB_INK_TYPES[ud.elementType];
+            if (!cls || !o.visible) return;
+            var base = nlbInkBase(ud);
+            if (!base) return;
+            var isFocal = !!focal && (ud.id === focal || ud.elementType === focal || ud.bodyId === focal);
+            var overLight = nlbInkOverLight(o, ud);
+            var hex = nlbInkLens(base, overLight);
+            // A LABEL is a name tag, not a peer competing for attention (force_rig's
+            // finding): its focal signal is opacity, never a per-frame re-inking —
+            // pulsing a baked texture would redraw a canvas every frame.
+            if (cls === 1 && isFocal && glowActive) hex = nlbInkEmphasis(hex, overLight, colT);
+            var op = 1.0, writeOp = false;
+            if (glowActive) {
+                writeOp = true;
+                if (!isFocal) {
+                    op = (cls === 2) ? NLB_LABEL_DIM_OPACITY
+                                     : (overLight ? NLB_INK_DIM_OPACITY : NLB_ARROW_DIM_OPACITY);
+                }
+            }
+            if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp);
+            else nlbInkWriteSprite(o, hex, op, writeOp);
+        });
     }
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
     // two seams cannot disagree about the function name.
@@ -44267,6 +44595,25 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     // ── The panel DOM, built ONCE at the maximum shape ───────────────────────
+    // The teacher-facing name of the left-edge panel, read from what the CONCEPT
+    // authors rather than from the element id. Union over every state (same scan the
+    // slider-token union already uses), so the name covers everything the panel can
+    // ever show in this concept and never depends on which state opened first.
+    function nlbEnergyPanelLabel() {
+        var keys = (config && config.states) ? Object.keys(config.states) : [];
+        var hasEn = false, hasWk = false, i;
+        for (i = 0; i < keys.length; i++) {
+            var nb = (config.states[keys[i]] || {}).newtons_laws_body;
+            if (!nb) continue;
+            if (nb.energy_layer && nb.energy_layer.bars && nb.energy_layer.bars.length) hasEn = true;
+            if (nb.work_accumulators && nb.work_accumulators.length) hasWk = true;
+        }
+        if (hasEn && hasWk) return "Energy and work bars";
+        // Matches the section header the panel actually renders, so the ⚙ row and the
+        // thing it toggles read as the same object.
+        if (hasWk) return "Work done";
+        return "Energy bars";
+    }
     function nlbBuildEnergyPanel() {
         var p = document.createElement("div");
         p.id = "nlb_energy";
@@ -44274,6 +44621,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // convention the generic widget engine DISCOVERS — so the teacher's gear
         // toggle and clean mode pick this up with zero per-scenario code and zero
         // curation. pointer-events:none: it is an instrument, never a control.
+        //   ...but the id is SEAM L's and SEAM M reused the panel to carry the signed
+        // work ledgers, so the id-derived ⚙ label read "Energy" over a header reading
+        // "Work done" — on a concept that bans the word energy from every
+        // reader-facing string. The panel names ITSELF instead (data-wg-label), from
+        // what this concept actually authors. Concept-wide, not per state: the
+        // generic engine captures the label once at declaration and a teacher may
+        // open the states in any order (Rule 25d), so a label read off the state that
+        // happens to be applied first would not be stable.
+        p.setAttribute("data-wg-label", nlbEnergyPanelLabel());
         p.style.cssText = "position:fixed;left:12px;top:52px;background:rgba(0,0,0,0.82);" +
             "color:#ECEFF1;padding:10px 13px;border-radius:8px;font:12px/1.3 monospace;" +
             "z-index:10;display:none;pointer-events:none;";
@@ -44322,11 +44678,29 @@ export const FIELD_3D_RENDERER_CODE = `
         //   exactly like the bars above (Rule 31/32d).
         html += '<div id="nlb_wk" style="display:none;margin-top:10px;">';
         html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">Work done</div>';
-        html += '<div class="nlb_en_bars" id="nlb_wk_bars" style="display:flex;align-items:flex-end;">';
+        //   align-items:STRETCH, and every work slot is itself a COLUMN flex whose
+        //   caption is the only growing child. This is the instrument's alignment
+        //   contract, and it is STRUCTURAL — nothing here measures text.
+        //     A signed bar is read by comparing deflections against ONE zero line, so
+        //     the tracks (and therefore the zero lines drawn at top:50% inside them)
+        //     MUST be collinear. Under the original align-items:flex-end they were
+        //     not: a caption is a force's plain-English NAME and wraps by design, so a
+        //     three-line caption made its slot one line taller and bottom alignment
+        //     pushed THAT slot's track up by exactly one line height (measured 15 px
+        //     at step 0 = 13 px x 1.15). On a 180 J scale that is 28 J of phantom
+        //     deflection, and it landed on the normal-force bar — the one whose whole
+        //     claim is that it sits exactly ON zero.
+        //     With stretch every slot takes the row height, the track is the FIRST
+        //     child at fixed height so every track top is equal by construction, the
+        //     caption takes all the slack, and the value is pinned to the common
+        //     bottom. Any number of wrapped lines — one, three, five — is absorbed by
+        //     the caption alone, so no future authored label can re-break it, and a
+        //     row whose captions all wrap alike lays out pixel-identically to before.
+        html += '<div class="nlb_en_bars" id="nlb_wk_bars" style="display:flex;align-items:stretch;">';
         for (var w = 0; w < NLB_WK_MAX; w++) {
             var wid = "nlb_wk_" + w;
-            html += '<div class="nlb_en_slot" id="' + wid + '" data-en="" style="display:none;text-align:center;">';
-            html += '<div class="nlb_en_trk" id="' + wid + '_t" style="position:relative;overflow:hidden;background:rgba(255,255,255,0.10);border-radius:3px;">';
+            html += '<div class="nlb_en_slot" id="' + wid + '" data-en="" style="display:none;flex-direction:column;text-align:center;">';
+            html += '<div class="nlb_en_trk" id="' + wid + '_t" style="flex:0 0 auto;position:relative;overflow:hidden;background:rgba(255,255,255,0.10);border-radius:3px;">';
             // The ZERO baseline at mid-height — the thing that makes a signed bar
             // readable at a glance (finding F6). Drawn under the fill so a bar at
             // full deflection does not erase its own reference.
@@ -44336,8 +44710,13 @@ export const FIELD_3D_RENDERER_CODE = `
             // WRAPS on purpose (the energy symbols above do not): a work bar is
             // captioned with the force's plain-English NAME, and "applied force"
             // cannot fit one 46 px slot on one line at any step of the ladder.
-            html += '<div class="nlb_en_sym" id="' + wid + '_y" style="margin-top:4px;color:#B0BEC5;font-family:Cambria Math,Times New Roman,serif;line-height:1.15;"></div>';
-            html += '<div class="nlb_en_val" id="' + wid + '_v" style="color:#ECEFF1;white-space:nowrap;">0.0 J</div>';
+            // flex:1 0 auto — the ONE growing child, so a slot whose caption wraps to
+            // fewer lines than its neighbours absorbs the difference HERE instead of
+            // displacing its own track (see the row comment above). grow only, never
+            // shrink: the row is as tall as its tallest slot, so the slack is never
+            // negative and the caption can never be squeezed into clipping its text.
+            html += '<div class="nlb_en_sym" id="' + wid + '_y" style="flex:1 0 auto;margin-top:4px;color:#B0BEC5;font-family:Cambria Math,Times New Roman,serif;line-height:1.15;"></div>';
+            html += '<div class="nlb_en_val" id="' + wid + '_v" style="flex:0 0 auto;color:#ECEFF1;white-space:nowrap;">0.0 J</div>';
             html += '</div>';
         }
         html += '</div></div>';
@@ -45000,6 +45379,14 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_FANG_COLOR = "#FFE082";        // amber 200 — deliberately the SAME family as the
                                            // incline arc (NLB_ARC_COLOR): an angle is an angle
     var NLB_FANG_R = 0.85;                 // default arc radius from the body centre
+    var NLB_FANG_TUBE_R = 0.022;           // SEAM Q: real stroke weight (~3 px) — a hairline
+                                           // curve loses most of its ink to coverage
+    var NLB_FANG_CASE_R = 0.052;           // the dark casing that carries the arc over the slab.
+                                           // 0.052 - 0.022 leaves a ~2 px dark ring EACH side of the
+                                           // core: measured, a 1 px ring is eaten by coverage and an
+                                           // outline that thin stops being an outline
+    var NLB_INK_CASE_COLOR = "#0A0A1A";    // the page colour — the same near-black the label
+                                           // sprites already stroke their glyphs with
     var NLB_FANG_MIN_DEG = 1.5;            // below this there is no angle to draw
     var NLB_FANG_QUANT = 2;                // arc endpoints QUANTIZED to 1/2 degree before the
                                            // geometry is rebuilt. This is a determinism
@@ -45018,6 +45405,7 @@ export const FIELD_3D_RENDERER_CODE = `
             1, hexToThreeColor(NLB_DISP_COLOR), NLB_DISP_HEAD, NLB_DISP_HEAD * 0.8);
         da.userData = { elementType: "nlb_disp", id: "displacement_vector" };
         da.visible = false;
+        nlbAddShaft(da, NLB_DISP_COLOR);           // SEAM Q
         surf.add(da); nlbRegister(da);
 
         var dl = pmCreateAutoLabel("d", NLB_DISP_COLOR, 0.34);
@@ -45029,15 +45417,45 @@ export const FIELD_3D_RENDERER_CODE = `
         // The arc lives in the UN-rotated world group: its two directions are already
         // world vectors (SEAM C's frame convention), so no second rotation is needed
         // and a hanging body's arc works through the same path.
-        var arc = new THREE.Line(
-            new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0)]),
-            new THREE.LineBasicMaterial({
-                color: hexToThreeColor(NLB_FANG_COLOR), transparent: true,
+        //   SEAM Q. The arc used to be a THREE.Line, i.e. the same 1 px hairline
+        //   the force arrows were, and measured on the real frames its crossing
+        //   of the slab is not faint but ABSENT: the diagonal runs land at about
+        //   a quarter coverage (rgb(35,32,37) where the pure ink would be
+        //   rgb(108,96,68)) and the near-vertical runs blend 40/60 into the
+        //   slab. A curve cannot be given weight through linewidth (WebGL
+        //   ignores it), so it becomes a real tube.
+        //   AND IT IS THE ONE STROKE THAT STRUCTURALLY CROSSES BOTH BACKDROPS
+        //   IN A SINGLE SWEEP — a 180 degrees arc of radius 0.85 about a body
+        //   centre 0.275 above the surface spends about a third of its length
+        //   over the slab and the rest over the page. So it is deliberately NOT
+        //   put through the two-way ink lens: recolouring the middle third of a
+        //   continuous curve would read as a rendering fault, not as emphasis.
+        //   It takes the page ink (the lift) plus a dark CASING — exactly the
+        //   construction every label sprite in this file already uses (an 8 px
+        //   rgba(10,10,26) stroke under the glyphs), which is what makes one ink
+        //   readable over any backdrop. Over the page the casing is invisible
+        //   against 0.0036; over the slab it is a 6.7:1 outline.
+        var arcCurve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0.01, 0, 0)]);
+        var arc = new THREE.Mesh(
+            new THREE.TubeGeometry(arcCurve, 2, NLB_FANG_TUBE_R, 6, false),
+            new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(nlbInkLens(NLB_FANG_COLOR, false)), transparent: true,
                 opacity: 0.95, depthTest: false
             }));
         arc.renderOrder = NLB_MK_RENDER_ORDER;
         arc.userData = { elementType: "nlb_fang", id: "angle_arc" };
         arc.visible = false;
+        var arcCase = new THREE.Mesh(
+            new THREE.TubeGeometry(arcCurve, 2, NLB_FANG_CASE_R, 6, false),
+            new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(NLB_INK_CASE_COLOR), transparent: true,
+                opacity: 0.95, depthTest: false
+            }));
+        arcCase.renderOrder = NLB_MK_RENDER_ORDER - 1;
+        arcCase.material.userData = { _nlbCase: true };
+        arcCase.userData = { elementType: "nlb_fang_case", _nlbCase: true };
+        arc.add(arcCase);
+        arc._nlbCase = arcCase;
         world.add(arc); nlbRegister(arc);
 
         var al = pmCreateAutoLabel("θ", NLB_FANG_COLOR, 0.34);
@@ -45166,6 +45584,8 @@ export const FIELD_3D_RENDERER_CODE = `
                     da.position.set(x0, NLB_DISP_LANE, 0);
                     da.setDirection(new THREE.Vector3(sgn, 0, 0));
                     da.setLength(lenW, hd, hd * 0.8);
+                    nlbFitShaft(da, lenW, hd);      // SEAM Q
+                    da.userData._inkLen = lenW;
                 }
                 if (dl) {
                     // Mid-span, below the shaft: a growing arrow whose label sat at
@@ -45216,8 +45636,17 @@ export const FIELD_3D_RENDERER_CODE = `
                     var tA = (a1 + sweep * (i / steps)) * Math.PI / 180;
                     pts.push(new THREE.Vector3(R * Math.cos(tA), R * Math.sin(tA), 0));
                 }
+                // SEAM Q: same quantized points, now swept into a tube (plus its
+                // casing). Still rebuilt ONLY on a key change, so a held frame
+                // does zero geometry churn and a rewound frame rebuilds to the
+                // identical vertices.
+                var curve = new THREE.CatmullRomCurve3(pts);
                 if (arc.geometry) arc.geometry.dispose();
-                arc.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+                arc.geometry = new THREE.TubeGeometry(curve, steps, NLB_FANG_TUBE_R, 6, false);
+                if (arc._nlbCase) {
+                    if (arc._nlbCase.geometry) arc._nlbCase.geometry.dispose();
+                    arc._nlbCase.geometry = new THREE.TubeGeometry(curve, steps, NLB_FANG_CASE_R, 6, false);
+                }
             }
             arc.position.copy(org);
             arc.visible = true;
@@ -45614,7 +46043,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var sl = document.getElementById("nlb_wk_" + i);
             if (!sl) continue;
             var e = wk ? wk[i] : null;
-            sl.style.display = e ? "block" : "none";
+            // "flex", not "block": the slot is a COLUMN flex box (track / caption /
+            // value) so the caption is the only child that grows and every track top
+            // stays collinear no matter how many lines a caption wraps to. The energy
+            // slots above are untouched and stay display:block.
+            sl.style.display = e ? "flex" : "none";
             if (!e) continue;
             sl.setAttribute("data-en", NLB_WK_GLOW[e.force] || "");
             var y = document.getElementById("nlb_wk_" + i + "_y");
@@ -73364,7 +73797,28 @@ export const FIELD_3D_RENDERER_CODE = `
         return !!(el && el.isConnected && el.getClientRects().length > 0);
     }
     function pmWgIsRowId(id) { return id.slice(-4) === "_row"; }
+    // An element id is written for CODE; a ⚙ row is read by a TEACHER. Ids abbreviate
+    // ("annots", "slowmo") and an abbreviation printed verbatim is not English
+    // (Rule 41), so the id-derived fallback expands the stems it knows before it
+    // capitalises. Whole-token match only — never a substring, or "sep" inside
+    // "separator" would rewrite a word that was already correct. This is the LAST
+    // resort: a widget that knows its own name declares it with data-wg-label.
+    var PM_WG_WORDS = {
+        annot: "annotations", annots: "annotations", slowmo: "slow motion",
+        eqn: "equation", eqns: "equations", calc: "calculation",
+        coef: "coefficient", coeff: "coefficient", accel: "acceleration",
+        vel: "velocity", temp: "temperature", freq: "frequency",
+        dist: "distance", sep: "separation", ctrls: "controls",
+        params: "parameters", diag: "diagram"
+    };
+    function pmWgWord(tok) {
+        var t = String(tok || "");
+        return PM_WG_WORDS[t.toLowerCase()] || t;
+    }
     function pmWgRowLabel(el) {
+        // A row may name itself (same contract as a panel) — the authoritative path.
+        var dlr = el.getAttribute("data-wg-label");
+        if (dlr) return dlr;
         var lab = el.querySelector("label");
         if (lab) {
             // Cut at the value separator ("I = 5 A", "Turns N: 100") — the
@@ -73380,7 +73834,9 @@ export const FIELD_3D_RENDERER_CODE = `
             if (t && t.length <= 24) return t + " slider";
         }
         var stem = el.id.slice(0, el.id.length - 4).split("_");
-        var word = stem.length > 1 ? stem.slice(1).join(" ") : stem[0];
+        var sTok = stem.length > 1 ? stem.slice(1) : [stem[0]], sOut = [], si;
+        for (si = 0; si < sTok.length; si++) sOut.push(pmWgWord(sTok[si]));
+        var word = sOut.join(" ");
         word = word.length <= 2 ? word.toUpperCase() : word.charAt(0).toUpperCase() + word.slice(1);
         return word + " slider";
     }
@@ -73394,13 +73850,19 @@ export const FIELD_3D_RENDERER_CODE = `
         for (pi = 0; pi < parts.length; pi++) {
             var p = parts[pi];
             if (p === "panel" || p === "box" || p === "overlay" || p === "hud" || p === "canvas") continue;
-            out.push(p);
+            out.push(pmWgWord(p));
         }
         if (!out.length) out = parts;
         var words = out.join(" ").trim();
         return words ? words.charAt(0).toUpperCase() + words.slice(1) : id;
     }
     function pmWgPanelLabel(el) {
+        // SELF-DECLARATION, and the only guaranteed-correct source. An id-derived
+        // label describes what the panel was NAMED, not what it now SHOWS, so it
+        // rots silently the moment a panel is reused for new content (nlb_energy
+        // carrying the signed work ledgers under a header reading "Work done").
+        // Any panel that knows its own teacher-facing name writes it here — no
+        // curated 39a list, no per-concept authoring.
         var dl = el.getAttribute("data-wg-label");
         if (dl) return dl;
         var id = el.id;
