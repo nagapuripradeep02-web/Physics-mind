@@ -1815,6 +1815,22 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #3 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author the SEAM L energy_layer
+    // (the K bar). Kinetic energy K = ½mv²: proportional to mass,
+    // proportional to the SQUARE of the speed, never negative, exactly zero at
+    // rest. Zero work_accumulators anywhere — the #3/#4 boundary invariant.
+    // Pure configuration, zero renderer edits (0d). Alex pipeline, 2026-08-02.
+    kinetic_energy_definition: {
+        concept_id: 'kinetic_energy_definition',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'kinetic_energy_definition',
+            label: 'Kinetic Energy — K = ½mv² (3D)',
+        },
+    },
+
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 for the Phase-0d parallel authoring wave, so
     // the five desks never edit this file. Gate 8b hard-FAILs a concept that is

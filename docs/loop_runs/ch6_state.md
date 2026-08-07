@@ -12,7 +12,88 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-## ▶ NEXT SESSION STARTS HERE — concept #2 SHIPPED, TWO PRs OPEN (2026-08-02, end of day)
+## ▶ NEXT SESSION STARTS HERE — concept #3 SHIPPED, THREE PRs OPEN (2026-08-03)
+
+**`kinetic_energy_definition` is authored, reviewed, fixed and SHIPPED.** 12 baselines locked
+(first lock) · 23 EN clips voiced, 0 stale · **zero renderer edits to author it** — the Phase-0 bet
+holds a third time. Checkpoint A took the founder's 2-cycle cap exactly; Checkpoint B returned
+`APPROVE`. Review port **8094** (8093 is held by another session's worktree).
+
+| PR | branch | contents | state |
+|---|---|---|---|
+| **#18** | `feat/ch6-nlb-engine-fixes` | 3 `field_3d_renderer.ts` commits on current master | OPEN |
+| **#19** | `feat/ch6-concept-2` | concept #2, stacked on #18 | OPEN |
+| **#21** | `feat/ch6-concept-3` | concept #3 + 2 more platform fixes, stacked on #19 | OPEN |
+
+**MERGE ORDER: #18 → #19 → #21.** Each collapses to its own content on the next sync.
+
+### 🔴 Founder decisions waiting (new this session)
+1. **SEAM R changed the fleet's weight-arrow picture and nobody has looked at it with eyes.** Force
+   ink now leaves the depth buffer, so every weight arrow on a body resting on a surface draws its
+   previously-occluded sub-floor portion — `normal_force`, `friction_force`, `block_on_incline`,
+   `rolling_friction`, all shipped. Baselines pass at 0.28–0.85%, but *"within the 2% tolerance is a
+   pixel statement, not a taste statement."* **Should weight ink draw through the floor, or clip at
+   the contact surface?** Frame: `.visual_runs/kinetic_energy_definition/20260802-231127/STATE_3__frozen.png`.
+2. **Rule 40 exposure is now ~475+ lines.** SEAM Q/R + the whole SEAM K/L/M/N energy layer are NOT on
+   master. Land #18/#19/#21 before the next chapter branch opens or the layer gets rebuilt independently.
+3. Carried from last session and still open: the `glow_focal` vs `SET_GLOW` precedence, and whether
+   to darken the slab.
+
+### Before concept #4 (`work_energy_theorem`)
+- **Fix `readoutHarvest.ts` — THE CALCULATOR is structurally blind to the energy panel.** 1 passed /
+  0 failed / **59 SKIPPED**; `readings.json` shows `readings=[]` on five of six states. It matches
+  `symbol = value` inside ONE text node while the panel emits symbol and value as sibling elements.
+  Only STATE_5 harvested anything, and only because a checkpoint stamp writes both into
+  `#nlb_formula` as one string. Blind for #4/#7/#8/#9/#10. *A skip is not a pass.*
+- **Make THE EYE write its `checks` block into `manifest.json`** — "27/27" currently has no artifact
+  behind it (eye-walker could not reproduce it from the dump; `warnings: []`, no `checks`).
+- **The reflow scar's trigger is corrected but not applied.** The sim iframe is **1052×551**, not
+  1280×720, so two-group states drop a reflow rung on EVERY screen including every baseline. #9
+  authors five-slot groups — 5 × 2 at step 0 will overrun a 551 px iframe badly.
+- **#4 inherits the `W` collision this concept was built to avoid.** `mg` held the line here
+  (`NLB_ARROW_DEFAULT_LABELS.weight = "mg"`). #4 authors *both* work bars and weight arrows — that
+  is where it actually bites.
+- **Scar rows are APPLIED** (2026-08-03, after an MCP 502 blocked the first attempt). **18 rows live
+  for this concept: 2 FIXED, 16 OPEN.** The two CRITICALs (`seam_q_backdrop_raycast_ignores_hit_SIGN…`
+  and `nlb_force_arrow_anchored_at_body_centre…`) were applied as **FIXED with `fixed_at`**, not OPEN
+  as the surgeon's file had them — they were genuinely fixed and regression-verified in `8bd84a2`, and
+  filing a closed bug as open sends the next session re-investigating. The existing friction row was
+  **widened** (it was filed as a first-frame transient; it is a recurring phase-locked case).
+- **The arrow-label size fix (E3) is BUILT and HELD, not abandoned.** Its structural half landed
+  byte-identical: `NLB_BODY_LABEL_H` is extracted and consumed at the build site and
+  `NLB_LABEL_MIN_SEP` derives from `NLB_ARROW_LABEL_H` (reproducing 0.30 exactly), so the two
+  constants are now RELATED — the drift to 65% happened because nothing in the file connected them.
+  **Restoring parity is ONE line** (`= NLB_BODY_LABEL_H`) once
+  `nlb_work_bar_track_tops_lose_collinearity_when_a_3d_label_size_changes` closes. Do NOT take it
+  before then: at parity, `work_done_by_constant_force` STATE_5's work-bar tracks lose zero-line
+  collinearity — the contract concept #2 repaired — and the two rendering paths **disagree** about it
+  (THE EYE reproduces 4445 differing px including regions outside the 3D viewport; a review-site probe
+  shows zero panel movement and would have exonerated it wrongly). Also recorded: the "ink ≥ 0.7 ×
+  body label" target cannot be read literally — two body labels at the *identical* 0.40 scale already
+  measure a 0.71 ink ratio, so state the invariant in GLYPH height, not ink height.
+- **Do NOT add a normal arrow to S3** if concept #4 clones it. Post-SEAM-R both arrows would be
+  full-length and both would double (N = mg), making the mass cue *more* ambiguous while importing an
+  untaught `N`. In S3 the arrow is a mass GAUGE, not a free-body diagram.
+
+### The lessons that cost the most this session
+- **A gate reporting 27/27 was reporting on a picture with a force vector at 1.07:1 in it — again.**
+  Third time in three concepts. Every defect that mattered was found by reading pixels.
+- **Two reviewers disagreed and neither was simply wrong.** eye-walker measured S5's friction arrow at
+  1.07:1, quality-auditor at 4.6–6.3:1 and retracted its own "invisible" read. The surgeon adjudicated:
+  eye-walker right about the failure, quality-auditor right about the *frames it sampled* — they never
+  met because `loop_reset_ms = 2100` and 17000 mod 2100 = 200 ms, the same loop phase. **Report a
+  measurement disagreement; do not smooth it.**
+- **A scar row prevented a defect inside the same chapter, one cycle after being written.** Checkpoint
+  A's cycle-0 row said "find a rendered correlate that scales with it (a force arrow, an instrument
+  needle)"; the architect applied exactly that and produced an arrow that doubles to four decimals.
+  First ch6 instance of the ratchet paying.
+- **An agent correcting its own earlier record was the most valuable single output.** founder-proxy
+  retracted its own Checkpoint A viewport claim, which is the only reason the reflow scar now has the
+  right trigger before #9 needs it.
+
+---
+
+## (superseded) concept #2 — SHIPPED, TWO PRs OPEN (2026-08-02, end of day)
 
 **`positive_negative_zero_work` is authored, reviewed, founder-approved, SHIPPED and up as PRs.**
 12 baselines locked · 18 EN clips voiced · 10 scar rows applied · concept #1's baselines re-approved.
