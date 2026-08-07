@@ -217,15 +217,79 @@ console.log("\n=== 2. THE ORIGIN — F2 straddle vs edge ===");
 
 console.log("\n=== 3. TICKS — authored step (D5) + pi-mode labels (F3) ===");
 {
-  // Step 1 on [-6.5, 6.5]: 14 ticks, -6.5 .. 6.5.
+  // bug_class cartesian_plane_tick_values_enumerate_from_range_min_so_every_
+  // axis_label_misreports_its_own_gridline (CRITICAL, engine_bug_queue).
+  //
+  // BEFORE this fix, this exact section asserted the DEFECT as correct:
+  //   check("tick count, step 1 on [-6.5,6.5]", xt.length, 14, 0);
+  //   check("first tick", xt[0], -6.5, 1e-12);
+  //   check("last tick", xt[xt.length - 1], 6.5, 1e-12);
+  //   check("tick[6] = -0.5", xt[6], -0.5, 1e-9);
+  //   check("tick[7] = 0.5", xt[7], 0.5, 1e-9);
+  // — 14 unsnapped marks walked from rangeMin (-6.5, -5.5, ..., 6.5), NONE of
+  // them an integer, and NO mark at x=0 at all (graph_transformations' "gap
+  // at the origin" report). AFTER: ticks are snapped to exact multiples of
+  // the step (measured from 0), so [-6.5,6.5] step 1 now yields the 13
+  // integers -6..6, with a genuine tick AT 0.
   const xt = E.PM_planeTickValues(-6.5, 6.5, 1);
-  check("tick count, step 1 on [-6.5,6.5]", xt.length, 14, 0);
-  check("first tick", xt[0], -6.5, 1e-12);
-  check("last tick", xt[xt.length - 1], 6.5, 1e-12);
-  check("tick[6] = -0.5", xt[6], -0.5, 1e-9);
-  check("tick[7] = 0.5", xt[7], 0.5, 1e-9);
+  check("tick count, step 1 on [-6.5,6.5] (SNAPPED: 13 integers, -6..6)", xt.length, 13, 0);
+  check("first tick is -6 (the first integer INSIDE the range, not the unsnapped rangeMin -6.5)", xt[0], -6, 1e-12);
+  check("last tick is 6 (the last integer INSIDE the range, not the unsnapped rangeMax 6.5)", xt[xt.length - 1], 6, 1e-12);
+  check("tick[6] = 0 (the origin IS enumerated, closing the graph_transformations 'gap at 0' report)", xt[6], 0, 1e-9);
+  check("tick[7] = 1", xt[7], 1, 1e-9);
   // x_tick: 0 -> no ticks at all.
   check("x_tick 0 -> zero ticks", E.PM_planeTickValues(-6.5, 6.5, 0).length, 0, 0);
+
+  // Every enumerated tick is an EXACT multiple of the step (the probe's own
+  // wording: v / tick is within 1e-9 of an integer) — the defining property
+  // a label can be trusted to describe.
+  assertTrue("every tick on [-6.5,6.5]/1 is an exact multiple of the step",
+    (xt as number[]).every((v: number) => Math.abs(v / 1 - Math.round(v / 1)) < 1e-9));
+
+  // ── THE FOUNDER'S OWN REPRO — derivative_as_secant_limit's authored plane:
+  // x_range [-2.4, 2.6], tick 1. Pre-fix this produced marks at -2.40, -1.40,
+  // -0.40, 0.60, 1.60, 2.60 with labels "-2 -1 -0 1 2 3" (the visible '-0').
+  // Post-fix, expected marks/labels are exactly -2 -1 0 1 2. ──────────────
+  const founderXt = E.PM_planeTickValues(-2.4, 2.6, 1) as number[];
+  check("founder repro [-2.4,2.6]/1: tick count", founderXt.length, 5, 0);
+  assertTrue("founder repro [-2.4,2.6]/1: ticks are EXACTLY [-2,-1,0,1,2]",
+    founderXt.length === 5 && founderXt.every((v: number, i: number) => Math.abs(v - (-2 + i)) < 1e-9));
+  assertTrue("founder repro: a tick exists at 0 (range spans zero)",
+    founderXt.some((v: number) => Math.abs(v) < 1e-9));
+  const founderLabels: string[] = founderXt.map((v: number) => E.PM_formatTickLabel(v, "number", 0));
+  check("founder repro labels", founderLabels.join(" "), "-2 -1 0 1 2", 0 as any);
+  assertTrue("founder repro: NO label is '-0' (the visible symptom that was originally reported)",
+    !founderLabels.some((l: string) => /^-0(\.0+)?$/.test(l)));
+  // Probe's own wording: the label parses back to EXACTLY the tick value at
+  // the authored decimals — no label can round away from its own mark.
+  assertTrue("founder repro: every label round-trips to Number(value.toFixed(decimals)) exactly",
+    founderXt.every((v: number, i: number) => Number(founderLabels[i]) === Number(v.toFixed(0))));
+
+  // NEGATIVE CONTROL — the PRE-FIX enumerator (walks from rangeMin, clamps
+  // the final tick to rangeMax), reproduced HERE only (never re-shipped),
+  // demonstrated to FAIL every assertion this section now enforces.
+  function preFixTickValues(rangeMin: number, rangeMax: number, tick: number): number[] {
+    const out: number[] = [];
+    if (!(tick > 0)) return out;
+    const EPS = 1e-9;
+    for (let t = rangeMin; t <= rangeMax + EPS; t += tick) out.push(Math.min(t, rangeMax));
+    return out;
+  }
+  const preFix65 = preFixTickValues(-6.5, 6.5, 1);
+  check("NEGATIVE CONTROL: pre-fix [-6.5,6.5]/1 reproduces the old 14-mark count", preFix65.length, 14, 0);
+  assertTrue("NEGATIVE CONTROL: pre-fix [-6.5,6.5]/1 has NO mark at x=0 (the reported 'gap at origin')",
+    !preFix65.some((v) => Math.abs(v) < 1e-9));
+  assertTrue("NEGATIVE CONTROL: pre-fix [-6.5,6.5]/1 marks are NOT integer multiples of the step (every one lands on a .5)",
+    preFix65.every((v) => Math.abs(v / 1 - Math.round(v / 1)) > 0.4));
+
+  const preFix2426 = preFixTickValues(-2.4, 2.6, 1);
+  assertTrue("NEGATIVE CONTROL: pre-fix [-2.4,2.6]/1 reproduces the founder's exact 6 marks (-2.4,-1.4,-0.4,0.6,1.6,2.6)",
+    preFix2426.length === 6 && [-2.4, -1.4, -0.4, 0.6, 1.6, 2.6].every((v, i) => Math.abs(v - preFix2426[i]) < 1e-9));
+  const preFixLabel = E.PM_formatTickLabel(preFix2426[2], "number", 0); // the -0.40 mark
+  check("NEGATIVE CONTROL: PM_formatTickLabel on the pre-fix -0.40 mark literally prints '-0' — the ORIGINAL reported bug",
+    preFixLabel, "-0", 0 as any);
+  assertTrue("NEGATIVE CONTROL: the '-0' assertion that now guards the fixed enumerator correctly FAILS against the pre-fix one",
+    /^-0(\.0+)?$/.test(preFixLabel));
 
   // pi-mode: range [0, 2*PI], tick = PI/2 -> 0, pi/2, pi, 3pi/2, 2pi.
   const piTicks = E.PM_planeTickValues(0, 2 * Math.PI, Math.PI / 2);

@@ -59104,10 +59104,47 @@ export const FIELD_3D_RENDERER_CODE = `
     //       mode: 'orbit_dissolve'|'boundary'|'p_build'|'node_probe'|'p_set'|
     //             'd_clover'|'radial_node'|'node_count'|'explore',
     //       orbital: '1s'|'2s'|'2p_x'|'2p_y'|'2p_z'|'3s'|'3p_x'|'3p_y'|'3p_z'|
-    //                '4s'|'3d_xy'|'valence',
+    //                '4s'|'3d_xy'|'valence'|'shell',
     //                                        // 'valence' = the OUTERMOST occupied
     //                                        // subshell of element+charge, derived
     //                                        // (Na 3s, Na+ 2p) — see osIonOf below
+    //                                        // 'shell' = that SAME subshell drawn
+    //                                        // as ONE SPHERE at its spherically
+    //                                        // averaged radial extent
+    //                                        // (osShellOuterPm) instead of as its
+    //                                        // angular shape. The mode for a
+    //                                        // concept about SIZE: atomic and
+    //                                        // ionic radius are spherical
+    //                                        // quantities by definition, a closed
+    //                                        // subshell's density really is
+    //                                        // spherically symmetric, and
+    //                                        // OS_VALENCE_ORBITAL maps "2,1" to
+    //                                        // "2p_z" — so every closed-core
+    //                                        // species (Na+, Mg2+, Al3+, N3-,
+    //                                        // O2-, F-, Ne, Ar) drew a DUMBBELL.
+    //                                        // A period sweep in shell mode keeps
+    //                                        // ONE silhouette Li -> Ne instead of
+    //                                        // flipping sphere -> dumbbell at
+    //                                        // boron, and the radius HUD stops
+    //                                        // renaming itself r -> lobe tip
+    //                                        // mid-state.
+    //                                        // OPT-IN AND ADDITIVE: 'valence',
+    //                                        // every explicit orbital id, a hybrid
+    //                                        // and an mo are untouched.
+    //                                        // The swarm switches to the
+    //                                        // spherically averaged sample table
+    //                                        // with it (same radial law, uniform
+    //                                        // directions), and the occupancy HUD
+    //                                        // measures the sphere it draws.
+    //                                        // An OPEN subshell (B 2p^1, O 2p^4)
+    //                                        // is NOT spherical: the shell is its
+    //                                        // spherical AVERAGE, and the radius
+    //                                        // HUD stamps ", spherical average"
+    //                                        // (PM_osShellExact === false). An s
+    //                                        // subshell is exact at any occupancy.
+    //                                        // Ignored (no shell) on a hybrid or a
+    //                                        // molecular orbital, where the 1/Z
+    //                                        // similarity does not hold.
     //       element: 'H'|'He'|...|'Ar'|'K'|'Ca',   // periods 1-4, s/p block ONLY.
     //                                        // Z, the ground-state configuration
     //                                        // and the Slater screening S are all
@@ -59121,8 +59158,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                        // line MEASURES what it encloses)
     //       z_eff,                           // effective nuclear charge (default
     //                                        // 1 = hydrogen), OR the string
-    //                                        // 'slater' = Z - S for the outermost
-    //                                        // electron of element+charge. The
+    //                                        // 'slater' = Z - S resolved PER
+    //                                        // ORBITAL from element+charge (each
+    //                                        // shell at its own screening; the
+    //                                        // outermost electron's value for an
+    //                                        // orbital the species does not
+    //                                        // occupy). The
     //                                        // WHOLE atomic picture contracts to
     //                                        // 1/Z of the Z=1 one — see osZEffAt
     //       z_ramp: {from,to,at_ms,duration_ms},   // ...swept during the state
@@ -59135,7 +59176,19 @@ export const FIELD_3D_RENDERER_CODE = `
     //       probe_auto: {from,to,at_ms,duration_ms},          // S4 sweep
     //       populate_steps: [{at_ms, orbital}],               // S5
     //       bloom_at_ms, bloom_duration_ms, ghost_at_ms, ghost_orbitals, // S6
-    //       ghost_species: [{at_ms, element, charge}],
+    //       ghost_species: [{at_ms, element, charge, as, clear}],
+    //                                        // as: 'valence' (default) | 'core'.
+    //                                        // 'core' draws that species'
+    //                                        // outermost occupied subshell as a
+    //                                        // spherical REGION (osCoreRadiusPm)
+    //                                        // instead of its valence SHAPE — the
+    //                                        // honest picture of a closed shell,
+    //                                        // whose angular density is constant.
+    //                                        // Refused (falls back to 'valence')
+    //                                        // when that subshell is not full.
+    //                                        // clear: true drops the held species
+    //                                        // at that step, so a "before" cannot
+    //                                        // outlive its phase.
     //                                        // THE GHOST HOLDS A PREVIOUS SPECIES.
     //                                        // ghost_orbitals (above) means "a
     //                                        // DIFFERENT orbital at the CURRENT
@@ -59158,6 +59211,24 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                        // latest fired wins); no step fired =
     //                                        // no ghost. ADDITIVE: ghost_orbitals is
     //                                        // untouched and both may run at once.
+    //       camera_steps: [{at_ms, az, el, dist, ease_ms}],
+    //                                        // THE MID-STATE CAMERA SCHEDULE.
+    //                                        // Cue names "camera_0", "camera_1",
+    //                                        // ...; each step inherits the fields
+    //                                        // it does not name from the step
+    //                                        // before it (step 0 from 'camera').
+    //                                        // Closed-form on the state clock —
+    //                                        // an eased pose evaluated FROM ms,
+    //                                        // never a lerp in flight — so a
+    //                                        // SET_TIME_FREEZE pin reproduces the
+    //                                        // same camera byte-identically.
+    //                                        // ease_ms 0 = a cut; default 900.
+    //                                        // A state authoring it OWNS its
+    //                                        // camera for the whole state (no
+    //                                        // entry glide) and must author
+    //                                        // 'camera' as the opening pose.
+    //                                        // NOT combinable with cutaway_at_ms:
+    //                                        // the slab normal is fixed at apply.
     //       grow_at_ms, cutaway_at_ms, cutaway_duration_ms,   // S7
     //       gallery_steps: [{at_ms, orbital}],                // S8
     //       element_steps: [{at_ms, element}],   // WITHIN-STATE SCHEDULING. The
@@ -59355,7 +59426,49 @@ export const FIELD_3D_RENDERER_CODE = `
     // the 0.10 the ghost LOBES use, because a held sphere is a single closed
     // outline rather than a pair of lobes and reads fainter at the same alpha —
     // and it has to stay legible while the LIVE cloud sits inside it.
-    var OS_GHOST_SP_ALPHA = 0.13;
+    //   ── RAISED 0.13 -> 0.20 (#18). 0.13 was tuned on the case where the ghost
+    //   is the BIGGER sphere and therefore has an edge against the near-black
+    //   background. The comparison the layer exists for is the other case too:
+    //   a held Na(+) core (61.75 pm) sits INSIDE the live 3s cloud (up to 469
+    //   pm), and there its only contrast is against the live surface\\u0027s own
+    //   fill. Measured on a real frozen frame: a luminance lift of ~12 on a
+    //   base of ~66 (18%) with NO silhouette — two independent frame reads
+    //   reported "no grey core sphere anywhere", and a third reported every
+    //   plain ghost in ionisation_enthalpy at ~10% delta. Alpha alone does not
+    //   fix that (a fill has no edge at any alpha); it is raised here so the
+    //   ghost LOBE path gains contrast too, and the ghost SPHERE additionally
+    //   gets the edge-weighted ink the lobes have carried since the p_set scar.
+    //   Restricted to ghost_species by construction: the ghost_orbitals path
+    //   keeps its own 0.10, so hybridisation / atomic_orbitals are untouched.
+    var OS_GHOST_SP_ALPHA = 0.20;
+    //   And the ghost SPHERE carries its own, higher figure. Same reason the
+    //   sphere needed the rim shader and the lobes did not: a lobe pair is two
+    //   shapes with four visible tips, a held sphere is ONE closed outline, and
+    //   at the same alpha the outline reads fainter. Under the Fresnel profile
+    //   this is an OUTLINE strength, not a fill — face-on it multiplies to 0.10,
+    //   so the live cloud inside stays fully readable through it.
+    var OS_GHOST_SP_SPHERE_ALPHA = 0.34;
+    // ── THE SYMBOL-FIT REFERENCE (#18) ──────────────────────────────────────
+    //   Three things on this stage are SYMBOLS, not lengths: the nucleus marker
+    //   (a real nucleus is ~5 fm — invisible at every scale this scenario
+    //   draws), the x/y/z axis letters, and the orbital name sprite. All three
+    //   carried FIXED WORLD sizes and FIXED WORLD offsets chosen when every
+    //   orbital on stage was a hydrogenic valence shell (0.70 .. 4.04 world
+    //   units of drawn radius). A shell gallery walks OTHER shells: potassium\\u0027s
+    //   1s at Z_eff 18.70 is 7.53 pm = 0.0376 units, and at that scale the
+    //   0.085-unit nucleus marker is 2.26x LARGER THAN THE SHELL IT FRAMES,
+    //   the 0.34-unit axis letters fill the viewport, and the "1s" name is
+    //   thrown 0.42 units out — 1.6 frame-heights off screen. The state that
+    //   exists to show four shells showed a pink ball and two clipped glyphs.
+    //   NO CAMERA DISTANCE FIXES ANY OF IT: zooming out shrinks the shell and
+    //   the marker together.
+    //   So each of those constants becomes a CEILING measured against the scene
+    //   the state actually draws: min(constant, constant x drawnRadius / REF).
+    //   ABOVE the reference the expression IS the constant, byte for byte — the
+    //   smallest drawn radius in the shipped fleet is 140.76 pm (hydrogen 1s,
+    //   atomic_orbitals_s_p_d), i.e. 0.7038 units, a 28% margin over this 0.55,
+    //   so every shipped atomic state is untouched by construction.
+    var OS_MARK_FIT_U = 0.55;          // = 110 pm of drawn radius
     var OS_ENCLOSURES = ["50", "70", "90"];
     function osEnclKey(v) {
         if (typeof v !== "number") return "90";
@@ -59826,14 +59939,75 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 var chLbl = (q === 0) ? "" : ((Math.abs(q) === 1 ? "" : osSup(Math.abs(q)))
                     + (q > 0 ? "\\u207A" : "\\u207B"));
+                // ── PER-SUBSHELL Z_eff, one entry per OCCUPIED subshell of this
+                //   species, keyed "n,l". zEff above is the OUTERMOST electron's
+                //   number: exactly right for the valence picture and wrong for
+                //   every shell inside it. Potassium's 1s electron is screened by
+                //   0.30 (Z_eff 18.70), not by 16.80 (Z_eff 2.20) — a factor of
+                //   8.5 in the drawn radius — so a gallery walking 1s -> 4s that
+                //   scaled every shell by the valence value drew the core eight
+                //   times too big under a caption whose whole subject is that the
+                //   inner shells feel almost the bare nucleus.
+                //     Nothing new is derived here: osSlaterS ALREADY takes an
+                //   arbitrary subshell index and always did — it was the CALLER
+                //   that threw the orbital away. Built once at load beside the row
+                //   it belongs to, for the same reason the rest of the row is
+                //   (static data, twenty elements x seven charges x at most eight
+                //   subshells), and RESOLVED per frame like everything else.
+                var zBy = {}, zk;
+                for (zk = 0; zk < OS_SUBSHELLS.length; zk++) {
+                    if (occ[zk] <= 0) continue;
+                    zBy[OS_SUBSHELLS[zk].n + "," + OS_SUBSHELLS[zk].l] = zi - osSlaterS(occ, zk);
+                }
                 OS_IONS[OS_ELEMENTS[zi - 1] + "|" + q] = {
                     sym: OS_ELEMENTS[zi - 1], Z: zi, charge: q, nE: nE, config: cfg,
                     label: OS_ELEMENTS[zi - 1] + chLbl,
                     valenceN: sub.n, valenceL: sub.l,
                     valenceKey: OS_VALENCE_ORBITAL[sub.n + "," + sub.l] || null,
+                    // The outermost occupied subshell, and whether it is FULL. A
+                    // closed subshell's summed |Y|^2 is a constant over angle, so
+                    // its charge density is genuinely spherically symmetric and a
+                    // SHELL is the honest picture of it; a partly filled one is
+                    // not, and the core surface refuses to draw it (osCoreRadiusPm).
+                    coreKey: sub.n + "," + sub.l, coreClosed: (occ[si] === sub.cap),
+                    zEffBy: zBy,
                     S: S, zEff: zi - S
                 };
             }
+        }
+    })();
+    // ── THE Z_eff DIAL'S RANGE, DERIVED FROM THE ENUM AND NOT CHOSEN ROUND.
+    //   It spans every value the table above can produce ACROSS EVERY OCCUPIED
+    //   SUBSHELL, not just the valence one: once the picture resolves Z_eff per
+    //   orbital, a state opening on an inner shell opens at a charge the old
+    //   0.5..10 dial could not reach — the slider clamped to 10 while the readout
+    //   printed the real value, so the teacher could never drag back to the
+    //   opening picture. Computed here rather than typed, so the day OS_ELEMENTS
+    //   grows the dial grows with it.
+    //   Values at or below the 0.05 osZEffAt itself refuses are EXCLUDED from the
+    //   scan: the deep anions the -3 charge opens up (He(2-)'s 2s electron
+    //   screens to Z_eff = -0.05) have no picture at all — the hydrogenic
+    //   similarity inverts and then blows up — so a floor derived from them would
+    //   span charges the renderer will not draw.
+    //   Rounded outward to the slider's own 0.05 step, so both ends are reachable
+    //   dial values rather than approximations of them.
+    //   (Today: 0.15 = K(3-) 4s .. 19.70 = Ca 1s. The old typed 0.5..10 recorded
+    //   0.70..9.10, which was the VALENCE-only span of the same table.)
+    var OS_ZEFF_STEP = 0.05;
+    var OS_ZEFF_DIAL_MIN = 0.5, OS_ZEFF_DIAL_MAX = 10;
+    (function () {
+        var lo = Infinity, hi = -Infinity, key, sk;
+        for (key in OS_IONS) {
+            var zb = OS_IONS[key].zEffBy;
+            for (sk in zb) {
+                if (!(zb[sk] > 0.05)) continue;
+                if (zb[sk] < lo) lo = zb[sk];
+                if (zb[sk] > hi) hi = zb[sk];
+            }
+        }
+        if (isFinite(lo) && isFinite(hi)) {
+            OS_ZEFF_DIAL_MIN = Math.round(Math.floor(lo / OS_ZEFF_STEP) * OS_ZEFF_STEP * 100) / 100;
+            OS_ZEFF_DIAL_MAX = Math.round(Math.ceil(hi / OS_ZEFF_STEP) * OS_ZEFF_STEP * 100) / 100;
         }
     })();
     // ── MEASURED IONISATION ENERGIES (row M) ────────────────────────────────
@@ -59906,7 +60080,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // does not carry, and rounding it to "899" would misquote it.
     function osIeFmt(v) {
         if (v == null) return "\\u2014";
-        return String(Math.round(v * 10) / 10);
+        // ONE decimal, ALWAYS. Math.round(v*10)/10 drops a trailing zero, so
+        // fluorine\\u0027s cited 1681.0 printed as "1681" beside 495.8 / 899.5 /
+        // 1402.3 — the same table, the same source, two different apparent
+        // precisions. The uniform tenths digit IS the claim this line makes
+        // (these are MEASURED numbers, quoted as measured), so it is formatted,
+        // never arithmetically rounded into a shorter string.
+        return Number(v).toFixed(1);
     }
     // How many rungs of the successive staircase to draw. NOT authored, and not
     // "all of them": sodium's cited series runs to 25496 kJ/mol, so a staircase
@@ -59974,17 +60154,25 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!ion || !ion.valenceN) return null;
         return 13.6 * ion.zEff * ion.zEff / (ion.valenceN * ion.valenceN) * OS_EV_KJ;
     }
-    // The DERIVED outer reach of a neutral element's valence orbital, in pm —
-    // r90 of the Z = 1 orbital divided by that element's own Slater Z_eff. It is
-    // the SAME expression the primary radius readout uses (osOuterPm x osZUnit),
-    // so the point the marker sits on and the number in the HUD can never
-    // disagree: one law, read twice.
+    // The DERIVED outer reach of a neutral element's outermost occupied subshell,
+    // in pm — the RADIAL 90% extent of the Z = 1 orbital divided by that element's
+    // own Slater Z_eff. It is the SAME law the live shell surface draws
+    // (osShellOuterPm), so the point the marker sits on and the surface on stage
+    // can never disagree: one law, read twice.
+    //   IT USED TO BE osOuterPm x osZUnit — the ISO-DENSITY contour, which is the
+    // r90 sphere for an s valence and the LOBE TIP for a p one. That put two
+    // different geometric quantities on one axis: across period 2 the series ran
+    // Li/Be as sphere radii and B..Ne as lobe tips, so the curve carried a
+    // family jump at boron that is an artefact of the measuring convention and
+    // not of the physics, on the one plot whose entire subject is the trend.
+    // A radius is spherical by definition and by every measurement convention, so
+    // the trend curve, the shell surface and the radius HUD now all read the
+    // spherically averaged radial extent, and the curve's r90 axis means the same
+    // thing at every element on it.
     function osElemRadiusPm(sym, encKey) {
         var ion = OS_IONS[sym + "|0"];
         if (!ion || !ion.valenceKey) return null;
-        var orb = OS_ORBITALS[ion.valenceKey];
-        if (!orb || !orb.rByLev) return null;
-        return osOuterPm(orb, encKey) * osZUnit(orb, ion.zEff);
+        return osShellOuterPm(OS_ORBITALS[ion.valenceKey], encKey, ion.zEff);
     }
     function osPeriodOf(Z) { return (Z <= 2) ? 1 : (Z <= 10 ? 2 : (Z <= 18 ? 3 : 4)); }
     function osPeriodMembers(p) {
@@ -60274,7 +60462,14 @@ export const FIELD_3D_RENDERER_CODE = `
             g.fillText(txt, L0 + 50, ly);
             ly += 26;
         }
-        if (measIsModel) legend(OS_OVL_MODEL, true, "Slater model");
+        // radius_vs_z's one series keys on the NEUTRAL element (osElemRadiusPm
+        // reads OS_IONS[sym + "|0"]) while the HUD prints the LIVE species, so a
+        // state showing Al(3+) puts 55 pm in the HUD beside a 312 pm point on the
+        // plate. Both numbers are right and neither is the other's answer — the
+        // LABEL is the whole difference between a trend and a contradiction, and
+        // saying so on the legend closes it at the source instead of pushing an
+        // annotation onto every concept that ever draws this curve.
+        if (measIsModel) legend(OS_OVL_MODEL, true, "Slater model \\u00B7 neutral atoms");
         else {
             legend(OS_OVL_MEASURED, false, "measured");
             if (model.length) legend(OS_OVL_MODEL, true, "Slater model");
@@ -60344,19 +60539,101 @@ export const FIELD_3D_RENDERER_CODE = `
     //   through the drag-seize above: the held picture is a "before" the author
     //   named, and a teacher dragging the LIVE element must not drag the thing
     //   they are comparing against with it.
-    //   Returns an OS_IONS row (which carries that species' own Slater Z_eff and
-    //   its own valence orbital) or null while nothing is held.
+    //   Returns { ion, as } — the OS_IONS row (which carries that species' own
+    //   Slater Z_eff and its own valence orbital) plus HOW it is to be drawn — or
+    //   null while nothing is held.
+    //   ── A STEP MAY ALSO CLEAR. Latest-fired-wins with "no element = skip this
+    //   step" meant a held species outlived its phase: a ghost set at 3400 ms
+    //   survived an element swap at 9000 ms, so a stale 468 pm sodium outline sat
+    //   around a chlorine atom for the rest of the state — the "before" of a beat
+    //   that had already ended, presented as a live comparison. A step carrying
+    //   clear: true drops it. Written as an EXPLICIT flag rather than as "a step
+    //   with no element clears", because that reading would silently re-purpose a
+    //   mis-authored step (a typo'd element name) into an intentional erase.
+    //   ── AND A STEP MAY ASK FOR THE CORE. as: 'core' draws the species'
+    //   outermost occupied subshell as a spherical REGION instead of its valence
+    //   orbital's shape (osCoreRadiusPm). It exists because OS_VALENCE_ORBITAL
+    //   maps "2,1" to "2p_z", so every closed-core species ([Ne], [Ar]) resolved
+    //   to LOBES and a held Na(+) rendered a grey 2p_z dumbbell — a wrong shape
+    //   taught as right, and unfixable by authoring, since no species in OS_IONS
+    //   draws a noble core as a shell. Default 'valence' = the shipped behaviour,
+    //   unchanged.
     function osGhostSpeciesAt(os, ms) {
         var steps = os.ghost_species || [], cur = null, i;
         for (i = 0; i < steps.length; i++) {
             var st = steps[i] || {};
-            if (!st.element) continue;
+            if (!st.element && st.clear !== true) continue;
             if (ms >= cueTriggerMs("ghost_species_" + i, (st.at_ms != null) ? st.at_ms : 0)) {
+                if (st.clear === true) { cur = null; continue; }
                 var q = Math.round(osClamp((typeof st.charge === "number") ? st.charge : 0, -3, 3));
-                cur = OS_IONS[st.element + "|" + q] || cur;
+                var row = OS_IONS[st.element + "|" + q];
+                if (row) cur = { ion: row, as: (st.as === "core") ? "core" : "valence" };
             }
         }
         return cur;
+    }
+    // ── THE CORE AS A SPHERICAL REGION ──────────────────────────────────────
+    //   A CLOSED subshell's angular density sums to a constant over m, so its
+    //   charge density is exactly spherically symmetric: the honest boundary is a
+    //   sphere, and the dumbbell OS_VALENCE_ORBITAL hands back for "2,1" is not.
+    //   ITS RADIUS IS A DIFFERENT LAW FROM THE VALENCE ONE, and deliberately so.
+    //   osOuterPm reads rByLev — the iso-density contour of ONE orbital, i.e. the
+    //   lobe TIP along its own axis. A spherically averaged closed shell has no
+    //   tip; the radius enclosing the same fraction of ITS charge is the RADIAL
+    //   90% radius, which is the inverse radial CDF the dot sampler already
+    //   inverts (osRhoAt) evaluated at the state's own enclosure. So this is one
+    //   more reading of tables that already exist, not a second solve — and the
+    //   core sphere is correctly SMALLER than the tip of a lobe of the same shell.
+    //   Divided by that subshell's OWN Slater Z_eff (zEffBy), never the valence
+    //   one: a core is exactly the place the two numbers differ most.
+    //   Returns null when the outermost occupied subshell is NOT full — a partly
+    //   filled shell is not spherically symmetric, and the caller then falls back
+    //   to the ordinary valence ghost rather than drawing a comfortable lie.
+    //   ── AND IT IS THE SAME LAW THE LIVE SHELL SURFACE DRAWS (orbital: 'shell').
+    //   The core region was built for the GHOST only, so a closed-core species
+    //   drawn LIVE still resolved through OS_VALENCE_ORBITAL and rendered a 2p_z
+    //   dumbbell: the comparison layer was fixed while the object being compared
+    //   kept the wrong shape. So the law is factored into osShellOuterPmZ1 (the Z = 1
+    //   radial extent, in pm) + osShellOuterPm (that extent at a charge), and
+    //   BOTH the ghost core and the live shell read the one function. The ghost's
+    //   refusal on an open subshell is preserved exactly, and lives here rather
+    //   than in the shared law, because a live shell is authorable on an open
+    //   subshell (a spherically AVERAGED radius is the honest quantity for size)
+    //   while a ghost stamped "core" is a claim about a closed shell.
+    //   THE ARITHMETIC IS UNCHANGED: osRhoAt(orb, enc) * OS_A0 / z, the same
+    //   expression, now read from one place instead of two.
+    //   NAMING TRAP: orb.shellPm / orb.shellPms / orb.shellRho are a DIFFERENT
+    //   quantity — the solved RADIAL NODE radii (where R_nl crosses zero), used
+    //   by the cutaway. Nothing below reads them.
+    function osShellOuterPmZ1(orb, encKey) {
+        if (!orb || !orb._cdf) return null;
+        return osRhoAt(orb, Number(encKey) / 100) * OS_A0;
+    }
+    function osShellOuterPm(orb, encKey, z) {
+        var r = osShellOuterPmZ1(orb, encKey);
+        if (r == null || !(z > 0)) return null;
+        return r / z;
+    }
+    function osCoreRadiusPm(ion, encKey) {
+        if (!ion || !ion.coreKey || !ion.coreClosed) return null;
+        var id = OS_VALENCE_ORBITAL[ion.coreKey];
+        var orb = id ? OS_ORBITALS[id] : null;
+        var z = (ion.zEffBy && typeof ion.zEffBy[ion.coreKey] === "number") ? ion.zEffBy[ion.coreKey] : ion.zEff;
+        return osShellOuterPm(orb, encKey, z);
+    }
+    // Is the shell this species draws EXACTLY spherical, or a spherical AVERAGE?
+    //   l = 0: exactly spherical at any occupancy (one 2s electron's density is a
+    //          ball; there is no angular structure to average away).
+    //   l > 0: exactly spherical only when the subshell is FULL (the summed |Y|^2
+    //          over m is constant). A partly filled p or d subshell is genuinely
+    //          not spherical, and the shell surface then draws its spherically
+    //          AVERAGED extent — which is the honest quantity for a radius and is
+    //          what the radius HUD says out loud, rather than passing an open
+    //          subshell off as a closed one.
+    function osShellExact(ion, orb) {
+        if (orb && orb.l === 0) return true;
+        if (!ion || !orb || orb.n == null || orb.l == null) return false;
+        return !!ion.coreClosed && ion.coreKey === (orb.n + "," + orb.l);
     }
     // ── Z_eff: the effective nuclear charge the electron actually feels ──────
     //   Hydrogenic scaling is an EXACT similarity: psi_Z(r) = Z^(3/2) psi_1(Z r),
@@ -60380,11 +60657,32 @@ export const FIELD_3D_RENDERER_CODE = `
     //   accumulator, so a SET_TIME_FREEZE pin reproduces it byte-identically.
     //   'mode' is NOT a motion source (it is a camera-table key and deliberately
     //   nothing else), which is why this is its own explicit timing field.
-    function osZEffAt(os, ms) {
+    //   ── AND IT IS RESOLVED PER ORBITAL. The third argument is the orbital the
+    //   caller is about to DRAW. It changes nothing on a numeric z_eff (an
+    //   authored charge is one charge for the whole picture, by definition) and
+    //   everything on z_eff: 'slater', where the screening is a property of the
+    //   SUBSHELL and not of the atom: this function took (os, ms) only, so a
+    //   gallery walking 1s -> 2s -> 2p -> 3s -> 3p -> 4s drew every shell at the
+    //   VALENCE screening and printed one static number under six captions
+    //   claiming a running ledger — on the state whose subject IS per-shell
+    //   screening. An orbital the species does not occupy (a shape gallery on
+    //   hydrogen) has no screening of its own and falls back to the outermost
+    //   value, which is what it always was.
+    function osZEffFor(ion, orbId) {
+        if (!ion) return 1;
+        var orb = orbId ? OS_ORBITALS[orbId] : null;
+        if (!orb || orb.n == null || orb.l == null || !ion.zEffBy) return ion.zEff;
+        var z = ion.zEffBy[orb.n + "," + orb.l];
+        return (typeof z === "number") ? z : ion.zEff;
+    }
+    function osZEffAt(os, ms, orbId) {
         // The teacher's dial seizes the whole resolution — the static value AND
         // the ramp — at the ONE site every consumer reads. Returned before the
         // ramp on purpose: a drag that a still-running z_ramp overwrote two
         // frames later would be a dial the state fights.
+        //   It is deliberately NOT per-orbital: the dial is ONE number the
+        // teacher chose, and a drag that landed on six different charges across
+        // six shells would be a control whose value is not what it reads.
         if (osCtrlOn(os, "zeff") && window.PM_osZEffDragged
             && typeof window.PM_osZEffPick === "number" && window.PM_osZEffPick > 0.05) {
             return Math.min(window.PM_osZEffPick, 100);
@@ -60399,7 +60697,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // rather than to an invented charge.
         if (os.z_eff === "slater") {
             var ion = osIonAt(os, ms);
-            z = ion ? ion.zEff : 1;
+            z = ion ? osZEffFor(ion, orbId) : 1;
         }
         var zr = os.z_ramp;
         if (zr) {
@@ -60422,14 +60720,127 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!orb || !(z > 0)) return 1;
         return (orb.kind === "sphere" || orb.kind === "lobes") ? 1 / z : 1;
     }
+    // ── THE MID-STATE CAMERA SCHEDULE (camera_steps) ────────────────────────
+    //   animateCameraTo was called ONCE, in the apply pass, so a state had
+    //   exactly ONE camera. A state whose two phases differ 2.5x in scale — a
+    //   468 pm sodium system, then a 190 pm chlorine one — therefore cannot
+    //   frame both: framed for the larger, the smaller phase's whole change is
+    //   about 1% of the frame width, and the beat is invisible for the reason
+    //   the eye cannot resolve it rather than for anything physical.
+    //
+    //   IT IS CLOSED-FORM, AND THAT IS THE WHOLE DESIGN. animateCameraTo is a
+    //   fixed-rate lerp (bonding_scene E1c-H: a STATE CHANGE should read as one
+    //   caused move), and a lerp is HISTORY-DEPENDENT: where the camera has got
+    //   to depends on how many frames have run, so a SET_TIME_FREEZE pin lands
+    //   on a different pose depending on how the renderer arrived at that time.
+    //   Two independent page loads pinned to the same ms would not agree, which
+    //   is exactly the byte-identity every other beat in this scenario holds.
+    //   So a scheduled camera is not driven THROUGH the lerp at all: this
+    //   function returns the pose as a pure function of state-local ms, and the
+    //   frame writes it straight onto the shared spherical pose.
+    //
+    //   IT EASES RATHER THAN CUTTING — because it can. The reason the fleet's
+    //   other scheduled camera work CUTS (bonding_scene E2d) is that a lerp
+    //   crossing a sharp scale change draws the new scene under the old camera
+    //   for the whole glide; a closed-form ease has no such flight, since the
+    //   pose at every ms is decided in advance. A smoothstep starts and ends at
+    //   rest, so the move reads as one caused motion (Rule 32d, no teleport) and
+    //   still reproduces byte-identically. ease_ms: 0 is authorable and IS a cut,
+    //   for a state that wants one.
+    //
+    //   A STATE THAT AUTHORS camera_steps OWNS ITS CAMERA FOR THE WHOLE STATE,
+    //   including entry: at ms below the first step the pose is the state's own
+    //   base camera, written directly, so the inter-state glide is given up
+    //   deliberately. Keeping it would reintroduce exactly the history the
+    //   closed form exists to remove, and these are the states whose scale
+    //   changes sharply — the same measured condition under which bonding_scene
+    //   already refuses to glide.
+    //   Each step inherits az/el/dist it does not name from the step before it
+    //   (and step 0 from the base camera), so "pull back to 900" is one field.
+    // ── THE EXPLORE SANDBOX'S IDLE TURN (Rule 37) ───────────────────────────
+    //   An explore state must MOVE on its own — the headless harness never drags,
+    //   so a sandbox authoring no spin_rate is BYTE-STATIC across frames and fails
+    //   the motion probe. bonding_scene has carried this fallback (rate 0.14)
+    //   since its own Checkpoint B; orbital_shapes had none.
+    //   THE GATE IS ABSENCE, NOT ZERO. bonding_scene tests !(spinRate > 0), which
+    //   would also override an explicitly authored spin_rate: 0 — and
+    //   sigma_pi_bonding STATE_9 authors exactly that, deliberately, because a
+    //   turning bond axis is not what that sandbox is for. An author who wrote 0
+    //   asked for 0; only a state that said nothing gets the default.
+    var OS_EXPLORE_SPIN = 0.14;
+    function OS_EXPLORE_SPIN_FALLBACK(os) {
+        return ((os.mode || "boundary") === "explore" && os.spin_rate == null) ? OS_EXPLORE_SPIN : 0;
+    }
+    var OS_CAM_EASE_MS = 900;
+    function osCamBase(os, mode) {
+        var c = os.camera || OS_CAMERAS[mode || "boundary"] || OS_CAMERAS.boundary;
+        return { az: c.az || 0, el: c.el || 0, dist: c.dist || 8 };
+    }
+    function osCamScheduleAt(os, ms, base) {
+        var steps = os.camera_steps || [];
+        if (!steps.length) return null;
+        var poses = [], ts = [], prev = base, i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            prev = {
+                az: (st.az != null) ? st.az : prev.az,
+                el: (st.el != null) ? st.el : prev.el,
+                dist: (st.dist != null) ? st.dist : prev.dist,
+                ease: (st.ease_ms != null) ? Math.max(0, st.ease_ms) : OS_CAM_EASE_MS
+            };
+            poses.push(prev);
+            ts.push(cueTriggerMs("camera_" + i, (st.at_ms != null) ? st.at_ms : 0));
+        }
+        var k = -1;
+        for (i = 0; i < steps.length; i++) if (ms >= ts[i]) k = i;
+        if (k < 0) return { az: base.az, el: base.el, dist: base.dist, step: -1, moving: false };
+        var to = poses[k], fr = (k === 0) ? base : poses[k - 1];
+        var u = (to.ease > 0) ? osClamp((ms - ts[k]) / to.ease, 0, 1) : 1;
+        u = u * u * (3 - 2 * u);      // smoothstep: starts and ends at rest
+        return {
+            az: fr.az + (to.az - fr.az) * u,
+            el: fr.el + (to.el - fr.el) * u,
+            dist: fr.dist + (to.dist - fr.dist) * u,
+            step: k, moving: u < 1
+        };
+    }
     // The orbital a state actually draws. 'valence' (or an element state that
     // names no orbital at all) resolves to the OUTERMOST occupied subshell of the
     // element+charge at this instant, which is what makes ionisation a change of
     // SHELL and not just a change of scale: Na draws 3s, Na+ draws 2p, and the
     // whole isoelectronic series draws the same 2p at six different charges. A
     // concrete orbital name is always honoured as authored.
+    // ── THE SHELL SURFACE (orbital: 'shell') ────────────────────────────────
+    //   'shell' resolves its IDENTITY exactly like 'valence' — the outermost
+    //   occupied subshell of element+charge — and differs only in what is DRAWN
+    //   for it: one sphere at that subshell's spherically averaged radial
+    //   extent, instead of that subshell's angular SHAPE. It is a new enum value
+    //   and changes nothing about 'valence', an explicit orbital id, a hybrid or
+    //   a molecular orbital, all of which keep their lobes byte for byte.
+    //   It exists because a concept about atomic SIZE must draw a size: atomic
+    //   and ionic radius are spherical quantities by definition, a closed
+    //   subshell's density really is spherically symmetric, and every closed-core
+    //   species (Na+, Mg2+, Al3+, N3-, O2-, F-, Ne...) resolved through
+    //   OS_VALENCE_ORBITAL["2,1"] = "2p_z" and rendered a DUMBBELL.
+    //   A period sweep in shell mode also keeps ONE silhouette across Li -> Ne
+    //   instead of flipping sphere -> dumbbell at boron, so the only thing that
+    //   changes between steps is the size, which is the whole claim.
+    function osShellRequested(os, ctrls) {
+        // The explore picker wins both ways: a teacher who picks a named orbital
+        // leaves shell mode (they asked for that shape), and one who picks
+        // 'shell' enters it — otherwise the mode would be a one-way door in a
+        // sandbox. Reads the LIVE global, never the authored value.
+        if (ctrls && ctrls.indexOf("orbital") >= 0 && window.PM_osOrbitalDragged) {
+            if (window.PM_osOrbital === "shell") return true;
+            if (OS_ORBITALS[window.PM_osOrbital]) return false;
+        }
+        return os.orbital === "shell";
+    }
     function osBaseOrbitalId(os, ms) {
         var id = os.orbital || null;
+        // 'shell' is 'valence' plus a drawing decision — same identity, same
+        // resolution, one place.
+        if (id === "shell") id = "valence";
         // "names an element" now means ANY element source — the static scalar,
         // the schedule, or the teacher's picker. Testing os.element alone sent a
         // schedule-driven or dragged state down the "1s" fallback, i.e. drew
@@ -60535,6 +60946,54 @@ export const FIELD_3D_RENDERER_CODE = `
         orb._pos = pos;
         orb._sampleN = nSamp;
         orb._insideBy = { "90": inside, "70": inside70, "50": inside50 };
+    }
+    // ── THE SPHERICALLY AVERAGED SWARM (orbital: 'shell') ────────────────────
+    //   A shell surface with the ORDINARY swarm inside it is the same wrong
+    //   shape one layer down: a sphere drawn around a cos^2 dumbbell of dots
+    //   still reads as a dumbbell. So a shell state draws its own table — the
+    //   SAME radial law (R_nl^2 r^2, i.e. the same inverse radial CDF), uniform
+    //   directions. For a closed subshell that IS the exact density (the summed
+    //   |Y|^2 over m is constant); for an open one it is the spherical average,
+    //   which is what the surface claims and what the radius HUD says.
+    //   An l = 0 orbital's own table is already uniform, so it is REUSED by
+    //   reference — a 2s shell is byte-identical to the 2s cloud that ships.
+    //   The inside-prefix is counted against the SPHERICAL boundary (radius =
+    //   the radial extent at that enclosure), so the occupancy HUD stays a
+    //   MEASURED count of the dots on screen and never becomes an assertion.
+    //   Seeded from the orbital's own seed with one fixed twist, so dot i is a
+    //   pure lookup forever after (Rule 26/36) exactly like the primary table.
+    function osBuildSphSamples(orb) {
+        var reuse = (orb.l === 0);
+        var nSamp = reuse ? orb._sampleN : OS_DOT_MAX;
+        var pos, i;
+        if (reuse) pos = orb._pos;
+        else {
+            var rng = osRng((orb.seed ^ 0x5E11) >>> 0);
+            pos = new Float32Array(nSamp * 3);
+            for (i = 0; i < nSamp; i++) {
+                var rho = osRhoAt(orb, rng());
+                var ct = 2 * rng() - 1, st = Math.sqrt(Math.max(0, 1 - ct * ct)), ph0 = 2 * Math.PI * rng();
+                var rU0 = rho * OS_A0 / OS_PM_PER_UNIT;
+                pos[i * 3] = st * Math.cos(ph0) * rU0;
+                pos[i * 3 + 1] = st * Math.sin(ph0) * rU0;
+                pos[i * 3 + 2] = ct * rU0;
+            }
+        }
+        var byLev = {}, li2;
+        for (li2 = 0; li2 < OS_ENCLOSURES.length; li2++) {
+            var lk2 = OS_ENCLOSURES[li2];
+            var rEnc = osRhoAt(orb, Number(lk2) / 100) * OS_A0 / OS_PM_PER_UNIT;
+            var pre = new Int32Array(nSamp + 1), nn = 0;
+            for (i = 0; i < nSamp; i++) {
+                var x = pos[i * 3], y = pos[i * 3 + 1], z2 = pos[i * 3 + 2];
+                if (Math.sqrt(x * x + y * y + z2 * z2) <= rEnc) nn++;
+                pre[i + 1] = nn;
+            }
+            byLev[lk2] = pre;
+        }
+        orb._posSph = pos;
+        orb._sampleNSph = nSamp;
+        orb._insideSphBy = byLev;
     }
     // The angular factor written in the LOBE'S OWN frame (lobe axis = +y), which
     // is what makes ONE canonical mesh serve every orientation. Evaluating the
@@ -61777,6 +62236,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (sprite._osMain === main && sprite._osSub === sub && !color) return;
         osDrawSubLabel(sprite, main, sub);
     }
+    // Re-scale a label sprite by the symbol-fit factor (#18), preserving the
+    // aspect its own canvas measured. f === 1 reproduces exactly what
+    // pmCreateAutoLabel / osCreateSubLabel set at build time, so a scene at or
+    // above OS_MARK_FIT_U is byte-identical. Called AFTER any text redraw,
+    // because osDrawSubLabel re-writes sprite.scale when the canvas resizes.
+    function osFitSprite(sprite, f) {
+        if (!sprite) return;
+        var c = sprite._pmCanvas, hs = sprite._pmHeightScale;
+        if (!c || !hs || !c.height) return;
+        sprite.scale.set(hs * f * (c.width / c.height), hs * f, 1);
+    }
     function osFindById(id) {
         for (var i = 0; i < sceneObjects.length; i++) {
             if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
@@ -62011,6 +62481,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (ob.kind === "hybrid") { osBuildHybrid(ob); continue; }
             osBuildTables(ob);
             osBuildSamples(ob);
+            osBuildSphSamples(ob);
             // r90 (spheres) / lobe tip (lobes) at each enclosure, in real pm —
             // computed from the contour, never typed in.
             ob.rByLev = {};
@@ -62363,6 +62834,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var opts = "", oi;
         for (oi = 0; oi < pickList.length; oi++) {
             var ok = pickList[oi], ov = OS_ORBITALS[ok];
+            // 'shell' is not an entry in the orbital library — it is a way of
+            // drawing whichever subshell the species already has — so it is
+            // spelled out here rather than being skipped as an unknown id. It
+            // appears ONLY when a concept names it in explore_orbitals, so every
+            // shipped picker list is unchanged.
+            if (ok === "shell") {
+                opts += '<option value="shell"' + (orbDef === "shell" ? ' selected' : '') + '>'
+                    + 'outer shell (size)</option>';
+                continue;
+            }
             if (!ov) continue;
             // an <option> renders no markup, and Unicode has no subscript y or z,
             // so the picker spells the axis instead of shipping "2py" as if that
@@ -62401,13 +62882,17 @@ export const FIELD_3D_RENDERER_CODE = `
             // dial can never name a species the picture is not drawing.
             '<div id="os_charge_row" style="display:none;margin-top:6px"><label>Charge: <span id="os_charge_val">0</span> \\u2192 <span id="os_charge_sym">\\u2014</span></label>' +
             '<input type="range" id="os_charge_slider" min="-3" max="3" step="1" value="' + chgDef + '" style="width:100%"></div>' +
-            // Z_eff: the range is DERIVED from the enum, not chosen round. Every
-            // species OS_IONS can name lands in 0.70 (H(-)) .. 9.10 (Ca(3+)), so
-            // the dial spans 0.5..10 and a teacher cannot drag to a charge no atom
-            // in this scenario has. The subscript is a real DOM <sub> — this label
-            // is innerHTML, so "Z_eff" would be an ASCII notation lie (Rule 34c).
+            // Z_eff: the range is DERIVED from the enum, not chosen round, and it
+            // is now COMPUTED from it (OS_ZEFF_DIAL_MIN/MAX) rather than typed.
+            // The old 0.5..10 was solved for the VALENCE electron alone
+            // (0.70 = H(-) .. 9.10 = Ca(3+)); with Z_eff resolved per orbital an
+            // inner shell reaches 19.70 (Ca 1s), so a state opening on a core
+            // clamped the slider at 10 while the readout printed the real value
+            // and the teacher could never drag back to the opening picture.
+            // The subscript is a real DOM <sub> — this label is innerHTML, so
+            // "Z_eff" would be an ASCII notation lie (Rule 34c).
             '<div id="os_zeff_row" style="display:none;margin-top:6px"><label>Effective charge Z<sub>eff</sub>: <span id="os_zeff_val">1.00</span></label>' +
-            '<input type="range" id="os_zeff_slider" min="0.5" max="10" step="0.05" value="' + zeffDef + '" style="width:100%"></div>' +
+            '<input type="range" id="os_zeff_slider" min="' + OS_ZEFF_DIAL_MIN + '" max="' + OS_ZEFF_DIAL_MAX + '" step="0.05" value="' + zeffDef + '" style="width:100%"></div>' +
             '<div id="os_dots_row" style="display:none;margin-top:6px"><label>Measurements: <span id="os_dots_val">' + Math.round(dotsDef) + '</span></label>' +
             '<input type="range" id="os_dots_slider" min="100" max="5000" step="100" value="' + Math.round(dotsDef) + '" style="width:100%"></div>' +
             '<div id="os_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="os_spin_val">' + Number(spinDef).toFixed(2) + '</span> rad/s</label>' +
@@ -62567,11 +63052,22 @@ export const FIELD_3D_RENDERER_CODE = `
         //    already use, so the two ghost paths read as one thing.
         //    Appended at the very END of the build for the node-shell reason: no
         //    shipped concept's sceneObjects order moves by a single entry.
-        var gsp = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), new THREE.MeshPhongMaterial({
-            color: hexToThreeColor("#546E7A"), emissive: hexToThreeColor("#546E7A"),
-            emissiveIntensity: 0.18, shininess: 30, transparent: true, opacity: 0.0,
-            side: THREE.DoubleSide, depthWrite: false
-        }));
+        //    ── AND IT IS DRAWN IN THE LOBES\\u0027 EDGE-WEIGHTED INK (#18), not the
+        //    flat translucent ink the LIVE sphere uses. The reason is the p_set
+        //    scar\\u0027s reason, one level up: a flat translucent surface carries no
+        //    shading cue at its own silhouette, so it reads only where it has an
+        //    EDGE AGAINST THE BACKGROUND. The live sphere always does. A held
+        //    core does not — it sits INSIDE the live cloud, and there its whole
+        //    signal is a uniform fill lift over another fill (measured: ~18% of
+        //    background luminance, no boundary). osLobeMaterial\\u0027s Fresnel alpha
+        //    inverts that: near-transparent where the surface faces the viewer,
+        //    near-solid at its own outline — which is exactly and only the thing
+        //    a "held boundary" is asked to show. Same material, same shader, same
+        //    program cache key the lobes already compile; no new mechanism.
+        //    The INK IS UNCHANGED (#546E7A): the fix is the alpha profile, not the
+        //    colour, so the ghost sphere and the ghost lobes still read as one
+        //    thing and nothing about "which object is the held one" moves.
+        var gsp = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), osLobeMaterial("#546E7A"));
         gsp.userData = { elementType: "os_surface", id: "os_ghost_sphere" };
         gsp.visible = false;
         addToScene(gsp);
@@ -62587,7 +63083,11 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osSCharDragged = false; window.PM_osTwistDragged = false;
         window.PM_osElementDragged = false; window.PM_osChargeDragged = false;
         window.PM_osZEffDragged = false;
-        window.PM_osOrbital = osBaseOrbitalId(os, 0) || window.PM_osOrbitalDef || "1s";
+        // a shell state opens its own picker ON 'shell', not on the member id the
+        // identity resolves to — otherwise the dial reads "2p (z)" beside a
+        // sphere, and a teacher's first drag would look like no change at all.
+        window.PM_osOrbital = (os.orbital === "shell") ? "shell"
+            : (osBaseOrbitalId(os, 0) || window.PM_osOrbitalDef || "1s");
         // #17: the twist dial opens at the state\\u0027s own preset (its static
         // angle, or the START of its scripted ramp — never the end, or the frame
         // before the ramp fires would already show the payoff).
@@ -62606,9 +63106,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // would otherwise already show the contracted atom). Seeded here as well
         // as per-frame so the first captured frame of a state can never carry the
         // previous state's charge.
-        window.PM_osZEff = osZEffAt(os, 0);
+        //   ...resolved for the orbital this state OPENS on, so the dial and the
+        // first frame agree on a per-shell 'slater' state too.
+        window.PM_osZEff = osZEffAt(os, 0, osBaseOrbitalId(os, 0));
         window.PM_osDots = (os.dot_target != null) ? os.dot_target : (window.PM_osDotsDef != null ? window.PM_osDotsDef : 1200);
-        window.PM_osSpin = (os.spin_rate != null) ? os.spin_rate : 0;
+        // the explore idle turn is seeded here as well as read per frame, or the
+        // dial would open at 0 while the picture turns at 0.14
+        window.PM_osSpin = (os.spin_rate != null) ? os.spin_rate : OS_EXPLORE_SPIN_FALLBACK(os);
         window.PM_osProbe = (os.probe_auto && os.probe_auto.from != null) ? os.probe_auto.from : 0;
         // seed the s-character dial from the state's own hybrid (or its morph
         // endpoint), so each state opens as a reproducible preset
@@ -62627,7 +63131,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
             var dd = cam.dist || 8;
             camVec = [dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)];
-            animateCameraTo(camVec);
+            // ...unless the state carries a camera SCHEDULE, which owns the pose
+            // closed-form for the whole state (osCamScheduleAt). Handing the same
+            // move to the generic lerp as well would put a history-dependent
+            // glide underneath a history-free schedule — the one thing a pinned
+            // capture cannot reproduce. The schedule's own pose at ms < the first
+            // step IS this camera, so nothing is lost but the entry glide, which
+            // is given up deliberately.
+            if (!(os.camera_steps && os.camera_steps.length)) animateCameraTo(camVec);
         }
         window.PM_osCutN = osNorm(camVec);
 
@@ -62654,7 +63165,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // never bleeds into the next beat). DOM-only, no input event fired, so
         // the drag-seize listeners are not tripped.
         var orbSel = document.getElementById("os_orbital_select");
-        if (orbSel && OS_ORBITALS[window.PM_osOrbital]) orbSel.value = window.PM_osOrbital;
+        // ('shell' is a picker value with no OS_ORBITALS row — it names a way of
+        //  drawing whichever subshell the species has — so it is allowed here
+        //  explicitly rather than failing the library test and leaving the dial
+        //  on the previous state's orbital.)
+        if (orbSel && (OS_ORBITALS[window.PM_osOrbital] || window.PM_osOrbital === "shell")) orbSel.value = window.PM_osOrbital;
         var dotsSl = document.getElementById("os_dots_slider"), dotsV = document.getElementById("os_dots_val");
         if (dotsSl) dotsSl.value = String(window.PM_osDots);
         if (dotsV) dotsV.textContent = String(Math.round(window.PM_osDots));
@@ -62845,16 +63360,54 @@ export const FIELD_3D_RENDERER_CODE = `
         // On a molecular state the SCALE comes from the MO itself (it advertises
         // its own outer reach through rByLev), never from an atom nobody asked
         // for: the axes triad was being sized to the 1s r90.
+        var primaryId = (active.length ? active[active.length - 1] : null)
+            || (moPrim ? null : (OS_ORBITALS[baseId] ? baseId : "1s"));
         var primary = OS_ORBITALS[active[active.length - 1]] || moPrim
             || OS_ORBITALS[baseId] || OS_ORBITALS["1s"];
         var encKey = osEnclKey(os.enclosure);
+        // ── THE SCHEDULED CAMERA (camera_steps), written straight onto the
+        //   spherical pose as a pure function of ms. lerpSpherical() has already
+        //   run this frame (the stepping dispatch calls it before every scenario
+        //   update), so clearing the animating flag here is what stops the glide
+        //   from fighting a schedule that already knows where the camera belongs.
+        //   Nothing happens at all on a state that authors no steps, which is
+        //   every shipped concept.
+        //   PM_osCutN is NOT re-derived from it: the cutaway slab and the default
+        //   spin axis are state-level identity fixed at apply, and a state that
+        //   both re-frames and cuts away is a combination this build does not
+        //   claim (recorded as a limitation, not silently approximated).
+        var camSch = osCamScheduleAt(os, ms, osCamBase(os, mode));
+        if (camSch) {
+            targetSpherical.radius = camSch.dist;
+            targetSpherical.phi = Math.PI / 2 - camSch.el * Math.PI / 180;
+            targetSpherical.theta = camSch.az * Math.PI / 180;
+            spherical.radius = targetSpherical.radius;
+            spherical.phi = targetSpherical.phi;
+            spherical.theta = targetSpherical.theta;
+            animating = false;
+            updateCameraFromSpherical();
+        }
+        window.PM_osCamPose = camSch ? { az: camSch.az, el: camSch.el, dist: camSch.dist } : null;
+        window.PM_osCamStep = camSch ? camSch.step : null;
         // ── the effective nuclear charge, closed-form on the state clock. zuPrim
         //    is the primary orbital's 1/Z similarity factor: every REAL length
         //    below (primR, the axes, the node-plane disc, the probe travel, the
         //    label radius, the node shell) carries it, while everything expressed
         //    in the BAKED Z=1 frame (the seeded sample table, the cutaway slab
         //    that is tested against it) deliberately does not.
-        var zEff = osZEffAt(os, ms);
+        //    ...and it is resolved PER ORBITAL (osZEffAt's third argument): with
+        //    z_eff: 'slater' every shell on stage is drawn at ITS OWN screening,
+        //    so a 1s core and a 4s valence in one gallery are two different
+        //    charges and two honestly different sizes. zEff below is the PRIMARY
+        //    orbital's — the one the HUD, the energy line and the radius readout
+        //    all describe — so those three keep reading the same object they draw.
+        //    (called directly rather than through a per-frame closure — the frame
+        //    body runs 60x a second and has no reason to allocate a function
+        //    object each time. Note this was tried as a fix for a 400-px live-
+        //    capture drift on hybridisation STATE_4/S5 and did NOT move it: those
+        //    two are un-pinned mid-ramp captures whose magnitude varies run to
+        //    run, while every SET_TIME_FREEZE frame is byte-identical.)
+        var zEff = osZEffAt(os, ms, primaryId);
         var zuPrim = osZUnit(primary, zEff);
         window.PM_osZEff = zEff;
         // the atom/ion this state is showing RIGHT NOW (null on every concept that
@@ -62870,18 +63423,31 @@ export const FIELD_3D_RENDERER_CODE = `
         //   held species' valence orbital AND the held species' Slater Z_eff —
         //   never the live charge, which is what made a ghost land exactly on top
         //   of the live orbital and show nothing at all.
-        var ghostIon = osGhostSpeciesAt(os, ms);
-        var ghostOrbId = (ghostIon && ghostIon.valenceKey && OS_ORBITALS[ghostIon.valenceKey])
+        var ghostRes = osGhostSpeciesAt(os, ms);
+        var ghostIon = ghostRes ? ghostRes.ion : null;
+        //   as: 'core' asks for a spherical REGION instead of a valence shape,
+        //   and osCoreRadiusPm REFUSES an open shell (returns null) — so the flag
+        //   silently degrades to the ordinary valence ghost rather than drawing a
+        //   sphere around a density that is not spherical. ghostKind reports which
+        //   picture actually rendered, so the refusal is visible to a probe and to
+        //   the author instead of being a claim nobody can check.
+        var ghostCorePm = (ghostRes && ghostRes.as === "core") ? osCoreRadiusPm(ghostIon, encKey) : null;
+        var ghostIsCore = (ghostCorePm > 0);
+        var ghostOrbId = (!ghostIsCore && ghostIon && ghostIon.valenceKey && OS_ORBITALS[ghostIon.valenceKey])
             ? ghostIon.valenceKey : null;
         var ghostOrb = ghostOrbId ? OS_ORBITALS[ghostOrbId] : null;
         var ghostZ = ghostIon ? ghostIon.zEff : null;
         //   Its outer reach in pm, through the SAME expression the live radius
         //   readout uses (osOuterPm x osZUnit) — one law, read twice, so the held
         //   boundary and the live one can never come from two different rules.
-        var ghostPm = (ghostOrb && ghostOrb.rByLev) ? osOuterPm(ghostOrb, encKey) * osZUnit(ghostOrb, ghostZ) : null;
+        var ghostPm = ghostIsCore ? ghostCorePm
+            : ((ghostOrb && ghostOrb.rByLev) ? osOuterPm(ghostOrb, encKey) * osZUnit(ghostOrb, ghostZ) : null);
         window.PM_osGhostSpecies = ghostIon ? ghostIon.label : null;
-        window.PM_osGhostZEff = ghostZ;
-        window.PM_osGhostOrbital = ghostOrbId;
+        window.PM_osGhostZEff = ghostIsCore
+            ? ((ghostIon.zEffBy && ghostIon.zEffBy[ghostIon.coreKey] != null) ? ghostIon.zEffBy[ghostIon.coreKey] : ghostZ)
+            : ghostZ;
+        window.PM_osGhostOrbital = ghostIsCore ? ("core " + ghostIon.coreKey) : ghostOrbId;
+        window.PM_osGhostKind = ghostIon ? (ghostIsCore ? "core" : "valence") : null;
         window.PM_osGhostPm = ghostPm;
         // ── row E: the element overlay is redrawn from the LIVE identity every
         //   frame, never seeded at apply — that is the whole reason element_steps
@@ -62890,8 +63456,47 @@ export const FIELD_3D_RENDERER_CODE = `
         //   SET_TIME_FREEZE byte-identity the rest of this scenario holds.
         osDrawStrip(osIon ? osIon.sym : null);
         osDrawCurve(os, osIon, encKey);
-        var primR = osOuterPm(primary, encKey) * zuPrim;
+        // ── THE SHELL SURFACE. One resolution, read by the surface, the swarm,
+        //   the axes, the label and the HUD, so they cannot describe two objects.
+        //   Restricted to the one-centre s/p/d family the hydrogenic similarity is
+        //   exact for (osZUnit returns 1 on a hybrid and on a molecular orbital,
+        //   so a shell radius there would be a Z = 1 length under a contracted
+        //   picture) — a hybridisation or sigma/pi state can therefore never
+        //   enter this mode even by mis-authoring.
+        //   shellRPm is the SAME law as the ghost core (osShellOuterPmZ1) carried by
+        //   zuPrim, the primary orbital's own 1/Z factor — derived from the
+        //   factor the meshes are scaled by rather than recomputed from zEff, so
+        //   the number printed and the metres drawn cannot come from two charges
+        //   (the row-K discipline).
+        var shellReq = osShellRequested(os, ctrls);
+        var shellRPm = (shellReq && !moPrim && primary
+            && (primary.kind === "sphere" || primary.kind === "lobes"))
+            ? osShellOuterPmZ1(primary, encKey) * zuPrim : null;
+        var shellOn = shellRPm > 0;
+        // EXACT (a closed subshell, or any s subshell) vs a spherical AVERAGE (an
+        // open p/d subshell, e.g. boron's 2p^1). Both are drawn; only one of them
+        // may be called the shape of the density, so the difference is reported
+        // to the HUD and to the probe rather than being silently absorbed.
+        var shellExact = shellOn ? osShellExact(osIon, primary) : null;
+        var primR = shellOn ? shellRPm : (osOuterPm(primary, encKey) * zuPrim);
         window.PM_osPrimPm = primR;
+        // ── THE SYMBOL-FIT FACTOR (#18, OS_MARK_FIT_U). One number per frame,
+        //   read by the nucleus marker, the axis letters and the orbital name —
+        //   the three fixed-world SYMBOLS on this stage. 1 at and above the
+        //   reference radius (every shipped atomic state), shrinking linearly
+        //   below it so a marker can never grow larger than the object it marks.
+        //   MOLECULAR ORBITALS ARE EXCLUDED. On an MO stage the two nuclei are
+        //   parked at a real internuclear separation and the scene\\u0027s scale is
+        //   THAT separation, not a one-centre radius (sigma_pi_bonding reports
+        //   primR = 70 pm while drawing a 134 pm C=C bond) — so primR is simply
+        //   not the right ruler there, and the fit would shrink markers on a
+        //   scene that has no problem. Restricting it also makes every MO state
+        //   byte-identical by construction.
+        var osMarkF = (moPrim || !(primR > 0))
+            ? 1 : Math.min(1, (primR / OS_PM_PER_UNIT) / OS_MARK_FIT_U);
+        window.PM_osMarkFit = osMarkF;
+        window.PM_osShellRadiusPm = shellOn ? shellRPm : null;
+        window.PM_osShellExact = shellExact;
         window.PM_osActive = active.slice();
         // ── row K: THE ORBITAL ENERGY IS READ AT FRAME TIME FROM THE SAME LIVE
         //    CHARGE THE PICTURE IS SCALED BY. orb.E (built once, at page load) is
@@ -62921,7 +63526,7 @@ export const FIELD_3D_RENDERER_CODE = `
         //    every scenario onto +y, which would swing both of those out of
         //    their countable views within a couple of seconds.
         var spinRate = (ctrls.indexOf("spin") >= 0 && window.PM_osSpinDragged)
-            ? window.PM_osSpin : ((os.spin_rate != null) ? os.spin_rate : 0);
+            ? window.PM_osSpin : ((os.spin_rate != null) ? os.spin_rate : OS_EXPLORE_SPIN_FALLBACK(os));
         var spinStart = (os.spin_start_ms != null) ? os.spin_start_ms : 0;
         var spinAng = (ms > spinStart) ? spinRate * (ms - spinStart) / 1000 : 0;
         // DEFAULT spin axis = the state's OWN view axis, never world +y. Every
@@ -62987,7 +63592,10 @@ export const FIELD_3D_RENDERER_CODE = `
             pts.visible = on;
             if (!on) { pts.geometry.setDrawRange(0, 0); continue; }
             var orb = OS_ORBITALS[active[i]];
-            var src = orb._pos;
+            // in shell mode the swarm is the SPHERICALLY AVERAGED table (same
+            // radial law, uniform directions) — a sphere drawn around a dumbbell
+            // of dots is still a dumbbell on screen.
+            var src = (shellOn && orb._posSph) ? orb._posSph : orb._pos;
             // A molecular orbital carries no seeded dot table: the stipple is a
             // one-centre measurement picture and a two-centre one would need its
             // own 3-D inverse sampler to stay reproducible. Rather than fake it,
@@ -63006,7 +63614,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // the revealed count while the pool lasts, and once that pool
                 // is exhausted it decays CONTINUOUSLY with the slab — never in a
                 // step. Still a pure lookup: dot j is table entry j.
-                var poolN = orb._sampleN || OS_DOT_MAX;
+                var poolN = ((shellOn && orb._posSph) ? orb._sampleNSph : orb._sampleN) || OS_DOT_MAX;
                 if (poolN > src.length / 3) poolN = Math.floor(src.length / 3);
                 for (j = 0; j < poolN && wrote < count; j++) {
                     var s = src[j * 3] * cutNl[0] + src[j * 3 + 1] * cutNl[1] + src[j * 3 + 2] * cutNl[2];
@@ -63020,7 +63628,10 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             pts.geometry.attributes.position.needsUpdate = true;
             pts.geometry.setDrawRange(0, wrote);
-            if (i === 0) { window.PM_osVisDots = wrote; window.PM_osSlabPm = slabHalf * OS_PM_PER_UNIT * osZUnit(orb, zEff); }
+            // each shell carries ITS OWN screening (zAt), so a core drawn beside a
+            // valence shell is at the charge that shell actually feels
+            var zOrb = osZEffAt(os, ms, active[i]);
+            if (i === 0) { window.PM_osVisDots = wrote; window.PM_osSlabPm = slabHalf * OS_PM_PER_UNIT * osZUnit(orb, zOrb); }
             pts.quaternion.copy(osSpinQ);
             // Z_eff contracts the whole cloud uniformly. Applied as an OBJECT
             // scale, not by rewriting the table: the positions are the baked Z=1
@@ -63029,7 +63640,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // rest of this scenario treats as immutable. PointsMaterial.size is
             // untouched by the scale, so the measurement MARK keeps its ~7 px
             // on-screen size while the cloud it belongs to shrinks.
-            pts.scale.setScalar(osZUnit(orb, zEff));
+            pts.scale.setScalar(osZUnit(orb, zOrb));
             osSetColor(pts, orb.color);
             if (pts.material) {
                 // The dot is a MEASUREMENT MARK, not a physical object, so its
@@ -63052,8 +63663,19 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // ── occupancy, measured from the dots that are actually on screen.
         var occ = null;
-        if (count > 0 && primary._insideBy) occ = primary._insideBy[encKey][count] / count;
+        // ...and against the boundary that is actually on screen: in shell mode
+        // that is the SPHERE at the radial extent, counted over the spherical
+        // table, so the occupancy line keeps measuring the picture rather than a
+        // contour the state is not drawing.
+        var occSrc = (shellOn && primary._insideSphBy) ? primary._insideSphBy : primary._insideBy;
+        if (count > 0 && occSrc) occ = occSrc[encKey][count] / count;
         window.PM_osOccupancy = occ;
+        // THE PRIMARY'S OWN SAMPLE TABLE, resolved once for every consumer that
+        // reads a dot POSITION rather than drawing one: the slice counter and the
+        // measurement flashes both claim to be about the dots on screen, so in
+        // shell mode they read the spherical table the swarm is drawn from. Read
+        // through this variable, never through primary._pos directly.
+        var primSrc = (shellOn && primary._posSph) ? primary._posSph : primary._pos;
 
         var lobeGeo = window.PM_osLobeGeo || {};
 
@@ -63119,14 +63741,26 @@ export const FIELD_3D_RENDERER_CODE = `
         var growF = (os.grow_at_ms != null) ? osRamp(ms, cueTriggerMs("grow", os.grow_at_ms), (os.grow_duration_ms != null) ? os.grow_duration_ms : 1800, 0, 1) : 1;
 
         var sph = osFindById("os_sphere");
-        var sphOrb = null;
-        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "sphere") sphOrb = OS_ORBITALS[active[i]];
+        var sphOrb = null, sphOrbId = null;
+        for (i = 0; i < active.length; i++) if (OS_ORBITALS[active[i]].kind === "sphere") { sphOrb = OS_ORBITALS[active[i]]; sphOrbId = active[i]; }
         var sphAlpha = (typeof os.surface_opacity === "number") ? os.surface_opacity : 0.16;
         if (sph) {
-            var sOn = !!sphOrb && surfF > 0.002;
+            // SHELL MODE DRAWS ON THIS MESH. A shell IS a closed spherical
+            // boundary in the live orbital's own ink, so giving it a second mesh
+            // would be two objects making one claim (the ghost core shares its
+            // sibling mesh for the same reason). It takes priority over the
+            // ordinary sphere branch, and its radius is the RADIAL extent, not
+            // the iso-density contour — for an s valence those differ slightly
+            // (2s has a node the contour region excludes), so the branch is a
+            // real choice and not a convenience.
+            var sOn = (shellOn || !!sphOrb) && surfF > 0.002;
             sph.visible = sOn;
-            if (sOn) {
-                sph.scale.setScalar(osOuterPm(sphOrb, encKey) * osZUnit(sphOrb, zEff) / OS_PM_PER_UNIT);
+            if (sOn && shellOn) {
+                sph.scale.setScalar(shellRPm / OS_PM_PER_UNIT);
+                osSetColor(sph, primary.color);
+                if (sph.material) sph.material.opacity = sphAlpha * surfF;
+            } else if (sOn) {
+                sph.scale.setScalar(osOuterPm(sphOrb, encKey) * osZUnit(sphOrb, osZEffAt(os, ms, sphOrbId)) / OS_PM_PER_UNIT);
                 osSetColor(sph, sphOrb.color);
                 // During a hybrid morph the s orbital is being CONSUMED by the
                 // mix, so it fades on the morph's own progress rather than on a
@@ -63142,13 +63776,16 @@ export const FIELD_3D_RENDERER_CODE = `
         //   screen, not the live boundary's reveal beat, and gating it on the
         //   live surface's timer would make the "before" appear on the "after"'s
         //   schedule.
+        //   ...and it is the SAME mesh a core region draws on: a core IS a closed
+        //   spherical boundary in the ghost's own ink, so giving it a second mesh
+        //   would be two objects making one claim.
         var gsph = osFindById("os_ghost_sphere");
         if (gsph) {
-            var gOn = !!ghostOrb && ghostOrb.kind === "sphere" && ghostPm > 0;
+            var gOn = (ghostIsCore || (!!ghostOrb && ghostOrb.kind === "sphere")) && ghostPm > 0;
             gsph.visible = gOn;
             if (gOn) {
                 gsph.scale.setScalar(ghostPm / OS_PM_PER_UNIT);
-                if (gsph.material) gsph.material.opacity = OS_GHOST_SP_ALPHA;
+                if (gsph.material) gsph.material.opacity = OS_GHOST_SP_SPHERE_ALPHA;
             }
         }
         // lobes: pull from the shared pool, aim each along its (spun) direction.
@@ -63255,6 +63892,12 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < active.length; i++) {
             var aOrb = OS_ORBITALS[active[i]];
             if (aOrb.kind !== "lobes" && aOrb.kind !== "hybrid") continue;
+            // shell mode draws the SUBSHELL as one sphere, so its member's lobes
+            // are not drawn at all — a sphere with a dumbbell inside it is two
+            // claims about one object. The HELD species (ghost_species, placed
+            // above) is untouched: what a state holds as a "before" is its own
+            // decision and carries its own as: 'core' flag.
+            if (shellOn) continue;
             var gth = extrF;
             // the bloom beat drives the d clover AND every hybrid set: a hybrid
             // has no l field, so gating on l === 2 alone silently made bloom_at_ms a
@@ -63262,12 +63905,24 @@ export const FIELD_3D_RENDERER_CODE = `
             // while the narration described a set assembling.
             if ((aOrb.l === 2 || aOrb.kind === "hybrid") && os.bloom_at_ms != null) gth = bloomF;
             if (os.grow_at_ms != null) gth = Math.min(gth, growF);
-            osPlaceLobes(active[i], gth, lobeAlpha * surfF, false);
+            // this shell's OWN screening, through the same zOv the held species
+            // already used — one argument, two callers, no second code path
+            osPlaceLobes(active[i], gth, lobeAlpha * surfF, false, osZEffAt(os, ms, active[i]));
         }
         for (i = lobeSlot; i < OS_MAX_LOBES; i++) {
             var lbOff = osFindById("os_lobe_" + i);
             if (lbOff) lbOff.visible = false;
         }
+        // ── WHICH SURFACE ACTUALLY RENDERED. Reported the way the ghost reports
+        //   its own (PM_osGhostKind), so a probe can tell a shell from a lobe
+        //   without reading pixels — and so a refusal (a shell asked for on a
+        //   hybrid, or a surface the state has hidden) is visible instead of
+        //   being a claim nobody can check.
+        window.PM_osSurfaceKind = osNothingYet ? "none"
+            : (moPrim ? "mo"
+                : (!(surfF > 0.002) ? "none"
+                    : (shellOn ? "shell"
+                        : ((primary.kind === "sphere") ? "sphere" : primary.kind))));
 
         // ── MOLECULAR ORBITALS (#17). Everything below is a pure function of
         //    state-local t or of a precomputed table: the twist is closed-form,
@@ -63339,14 +63994,21 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // the two nuclei. os_nucleus is re-parked at the origin whenever no MO is
         // on stage, so an atomic-orbital concept is untouched by construction.
+        //   Both carry the symbol-fit factor (#18): the marker is a SYMBOL for
+        //   "the nucleus is here", never a length, so it is sized against the
+        //   shell it frames instead of against a constant chosen for one scale.
+        //   osMarkF is 1 on every MO stage and on every scene at or above the
+        //   reference radius, so setScalar(1) is what these two have always had.
         var nucA = osFindById("os_nucleus"), nucB2 = osFindById("os_nucleus_b");
         if (nucA) {
+            nucA.scale.setScalar(osMarkF);
             if (moPrim) {
                 var pA = osSpun(moCent[0]);
                 nucA.position.set(osMoUnits(moPrim, pA[0]), osMoUnits(moPrim, pA[1]), osMoUnits(moPrim, pA[2]));
             } else nucA.position.set(0, 0, 0);
         }
         if (nucB2) {
+            nucB2.scale.setScalar(osMarkF);
             nucB2.visible = !!moPrim && (moSt.show_nuclei !== false);
             if (nucB2.visible) {
                 var pB = osSpun(moCent[1]);
@@ -63699,7 +64361,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 axm.visible = !!os.show_axes;
                 if (axm.visible) {
                     var ad = osSpun([axDirs[i][0] * (sg ? -1 : 1), axDirs[i][1] * (sg ? -1 : 1), axDirs[i][2] * (sg ? -1 : 1)]);
-                    osAimY(axm, ad, 1, axLen);
+                    // the rod\\u0027s LENGTH already tracks the scene (axLen); its
+                    // THICKNESS is the 0.012 build constant and did not, so on a
+                    // 0.038-unit shell the triad drew as a fat cross 35 px wide
+                    // across a 104 px ball. Same symbol-fit factor, same reason.
+                    osAimY(axm, ad, osMarkF, axLen);
                 }
             }
             var axlb = osFindById("os_axis_label_" + axKeys2[i]);
@@ -63718,7 +64384,26 @@ export const FIELD_3D_RENDERER_CODE = `
                 axlb.visible = !!os.show_axes && (os.show_labels !== false) && alignD < 0.975;
                 if (axlb.visible) {
                     var ld = lvd;
-                    axlb.position.set(ld[0] * (axLen + 0.22), ld[1] * (axLen + 0.22), ld[2] * (axLen + 0.22));
+                    // sprite size AND stand-off both ride the symbol-fit factor
+                    // (#18): at K\\u0027s 1s the 0.34-unit letters were 1.3 viewport
+                    // heights tall and the 0.22-unit stand-off parked them past
+                    // the frame edge, on a shell 0.038 units across.
+                    osFitSprite(axlb, osMarkF);
+                    var axOff = axLen + 0.22 * osMarkF;
+                    axlb.position.set(ld[0] * axOff, ld[1] * axOff, ld[2] * axOff);
+                    // ── AND IT IS PULLED BACK INSIDE THE VIEWPORT. axLen is
+                    //   1.30 x the drawn radius while the camera distance is
+                    //   AUTHORED to frame the radius itself, so a state that
+                    //   frames its sphere tightly pushes the axis letter off
+                    //   screen (K\\u0027s 4s step: the y label lands at 104% of the
+                    //   half-height and is simply gone, while z and x — which
+                    //   run diagonally — survive). Clamping the LABEL, not the
+                    //   axis, keeps the geometry honest and the name readable.
+                    //   Pure no-op for a label that already projects inside the
+                    //   band, which is every label in the shipped fleet.
+                    osProbeV.set(axlb.position.x, axlb.position.y, axlb.position.z).project(camera);
+                    var axWorst = Math.max(Math.abs(osProbeV.x) / 0.94, Math.abs(osProbeV.y) / 0.90);
+                    if (axWorst > 1) axlb.position.multiplyScalar(1 / axWorst);
                     osAvoid.push([axlb.position.x, axlb.position.y, axlb.position.z]);
                 }
             }
@@ -63832,7 +64517,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // thin slab about the plane, counted from the sample table.
         var psi2 = osPlaneMaxDensity(primary, probeU, zEff);
         var sliceDots = 0;
-        if (primary._pos) {
+        if (primSrc) {
             // The slab is PROPORTIONAL to the orbital (2.2% of its own r90) and
             // deliberately thin: at the nodal plane the count must read a true
             // 0, not "a couple of dots that were nearly there" — the claim the
@@ -63846,7 +64531,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // at any other charge.
             var probeUL = probeU / zuPrim, slabPL = slabP / zuPrim;
             for (j = 0; j < count; j++) {
-                var sp2 = primary._pos[j * 3] * probeAxis[0] + primary._pos[j * 3 + 1] * probeAxis[1] + primary._pos[j * 3 + 2] * probeAxis[2];
+                var sp2 = primSrc[j * 3] * probeAxis[0] + primSrc[j * 3 + 1] * probeAxis[1] + primSrc[j * 3 + 2] * probeAxis[2];
                 if (sp2 >= probeUL - slabPL && sp2 <= probeUL + slabPL) sliceDots++;
             }
         }
@@ -63872,13 +64557,19 @@ export const FIELD_3D_RENDERER_CODE = `
         //    construction (#17 E1). A label is drawn only while the surface it
         //    names is actually being drawn: a twisted pi withholds its surface,
         //    and a staged reveal has not delivered it yet.
-        var labelOrbs = [];
+        //    ...and each label carries the Z_eff of the orbital it names, not the
+        //    primary's: with Z_eff resolved per orbital, a "1s" sprite parked at
+        //    the 1s radius divided by the 4s screening lands nowhere near the
+        //    cloud it labels. labelZ is null on the MO path (osZUnit returns 1
+        //    for a molecular orbital, so the value is never read there).
+        var labelOrbs = [], labelZ = [];
         if (moPrim) {
             for (i = 0; i < moList.length; i++) {
                 if (moLabelF[i] > 0.5) labelOrbs.push(moList[i]);
             }
         } else {
             for (i = 0; i < active.length; i++) labelOrbs.push(OS_ORBITALS[active[i]]);
+            for (i = 0; i < active.length; i++) labelZ.push(osZEffAt(os, ms, active[i]));
         }
         for (i = 0; i < OS_MAX_SETS; i++) {
             var olb = osFindById("os_orb_label_" + i);
@@ -63893,16 +64584,33 @@ export const FIELD_3D_RENDERER_CODE = `
             var lOn = !!lorb && (os.show_labels !== false) && !lFaded;
             olb.visible = lOn;
             if (lOn) {
-                osSetSubLabel(olb, lorb.main, lorb.sub, lorb.color);
+                // in shell mode the object on stage is the SUBSHELL, not its z
+                // member: "2p", never "2p_z". Naming one member over a sphere
+                // that averages all three would be the dumbbell claim surviving
+                // in the caption after the geometry stopped making it.
+                osSetSubLabel(olb, lorb.main, shellOn ? "" : lorb.sub, lorb.color);
                 // anchored on the thing it names (a lobe tip, or the top of the
                 // sphere), then pushed to whichever screen diagonal is clear.
                 //   an MO carries its own axis (sigma along the bond, pi across
                 // it), so the two names are anchored on opposite reaches and
                 // cannot be parked on top of each other.
-                var ldir = osSpun((lorb.kind === "lobes" || lorb.kind === "mo")
+                var ldir = osSpun((!shellOn && (lorb.kind === "lobes" || lorb.kind === "mo"))
                     ? (lorb.axis || [0, 0, 1]) : [0, 1, 0]);
-                var lrad = (osOuterPm(lorb, encKey) * osZUnit(lorb, zEff) / OS_PM_PER_UNIT) * 0.92;
-                osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42, osAvoid);
+                var lz2 = (labelZ[i] != null) ? labelZ[i] : zEff;
+                // parked on the SHELL's own rim in shell mode — the lobe-tip
+                // radius is 3.4x the shell radius for a 2p subshell, so reading
+                // it here would leave the name floating in empty space beside
+                // the sphere it names (the sprite-parked-off-its-cloud scar).
+                var lrad = (shellOn ? (shellRPm / OS_PM_PER_UNIT)
+                    : (osOuterPm(lorb, encKey) * osZUnit(lorb, lz2) / OS_PM_PER_UNIT)) * 0.92;
+                // symbol-fit (#18): the name sprite and its stand-off are sized
+                // against the cloud they name. At K\\u0027s 1s the fixed 0.42
+                // stand-off threw "1s" 1.6 viewport heights off screen — the
+                // gallery step\\u0027s whole caption, absent for five seconds — and
+                // the sprite itself would have been taller than the frame.
+                // Applied AFTER osSetSubLabel, which rewrites scale on a redraw.
+                osFitSprite(olb, osMarkF);
+                osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42 * osMarkF, osAvoid);
                 osAvoid.push([olb.position.x, olb.position.y, olb.position.z]);
             }
         }
@@ -63952,7 +64660,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // same Z contraction the cloud does — reading the baked Z=1
                     // table straight into a world position would park the spark
                     // outside a contracted atom.
-                    fl2.position.set(primary._pos[idx * 3] * zuPrim, primary._pos[idx * 3 + 1] * zuPrim, primary._pos[idx * 3 + 2] * zuPrim);
+                    fl2.position.set(primSrc[idx * 3] * zuPrim, primSrc[idx * 3 + 1] * zuPrim, primSrc[idx * 3 + 2] * zuPrim);
                     // a spark just larger than the mark it becomes, held at a
                     // constant on-screen size like the dots themselves.
                     var camR2 = (typeof spherical !== "undefined" && spherical.radius) ? spherical.radius : 8;
@@ -63987,12 +64695,22 @@ export const FIELD_3D_RENDERER_CODE = `
                 } else if (want[i] === "nodes") {
                     lines.push("nodes: " + primary.nodesRadial + " radial \\u00B7 " + primary.nodesAngular + " angular");
                 } else if (want[i] === "radius") {
-                    lines.push((primary.kind === "sphere" ? "r = " : "lobe tip = ") + Math.round(primR) + " pm ("
-                        + encKey + "%)");
+                    // ONE quantity with ONE name in shell mode. The relabel
+                    // "r = " -> "lobe tip = " on primary.kind is what made a
+                    // period sweep rename its own readout mid-state at boron,
+                    // where the geometry family changes and the physical
+                    // quantity does not: a radius is a radius across the whole
+                    // period. The open-subshell case says so out loud rather
+                    // than presenting an average as the shape of the density.
+                    lines.push((shellOn ? "r = " : (primary.kind === "sphere" ? "r = " : "lobe tip = "))
+                        + Math.round(primR) + " pm ("
+                        + encKey + "%" + ((shellOn && shellExact === false) ? ", spherical average" : "") + ")");
                 } else if (want[i] === "label") {
                     // the DOM HUD can carry a real subscript, so it must: "2pz"
                     // is the same notation lie the two-run sprite exists to avoid.
-                    lines.push(primary.main + (primary.sub ? "<sub>" + primary.sub + "</sub>" : ""));
+                    //   ...and in shell mode the subscript is DROPPED: the object
+                    // is the whole 2p subshell, not its z member.
+                    lines.push(primary.main + ((primary.sub && !shellOn) ? "<sub>" + primary.sub + "</sub>" : ""));
                 } else if (want[i] === "dots") {
                     lines.push("measurements: " + count);
                 } else if (want[i] === "s_char") {
@@ -64278,6 +64996,26 @@ export const FIELD_3D_RENDERER_CODE = `
             // row K: the energy the HUD is printing THIS frame, beside the charge
             // it was computed from — the pair a build-time fold cannot produce.
             E: window.PM_osE,
+            // ── WHICH SURFACE ACTUALLY RENDERED (orbital: 'shell'). The scales
+            //   above are read whether or not the mesh is on screen — right for a
+            //   mesh a state always shows, useless for telling a shell from a
+            //   lobe, because a hidden lobe keeps the scale it had last state.
+            //   So the shell reading is VISIBILITY-gated (the ghostSphere
+            //   discipline): sphereOn / lobesOn count what is being drawn, and
+            //   surface names it. exact:false = an OPEN subshell drawn as its
+            //   spherical AVERAGE, which the radius HUD also says.
+            surface: window.PM_osSurfaceKind,
+            shellPm: window.PM_osShellRadiusPm,
+            shellExact: window.PM_osShellExact,
+            sphereOn: (function () { var s2 = osFindById("os_sphere"); return !!(s2 && s2.visible); })(),
+            lobesOn: (function () {
+                var n2 = 0, li3;
+                for (li3 = 0; li3 < OS_MAX_LOBES; li3++) {
+                    var l3 = osFindById("os_lobe_" + li3);
+                    if (l3 && l3.visible) n2++;
+                }
+                return n2;
+            })(),
             hud: hudEl ? hudEl.textContent : null
         };
     };
