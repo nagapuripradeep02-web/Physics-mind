@@ -170,6 +170,7 @@
             "animate_in_ms": 400
           },
           {
+            "_design_note": "FIX ROUND (json_author, founder-caught defect, 2026-08-07): was appear_at_ms:10000 — same instant x0's OWN choreography starts sliding it (STATE_1's variable_choreography below), which is a different event entirely. That gate left P (and its readout) off-screen for the first 10000ms of a 20000ms state while the caption ('The curve, one point'), s1_1's narration ('...one point marked on it — point P.') and the state's whole pedagogical job (a subject for 'how steep is the curve HERE?') all assume P is on screen from near the start. Tried removing the gate outright (P visible from t=0): rejected on pixel evidence — the curve's own draw-in (xdraw: -2.1 to 2.1, start_ms 1500, duration_ms 7000) has not yet reached x=-1.2 (P's parked x0 value pre-choreography) until t=3000ms exactly ( (x0-domainMin)/(domainMax-domainMin)*duration+start = (0.9/4.2)*7000+1500 = 3000 ), so for t in [0,3000) P would render as a dot with a coordinate readout floating in empty space next to (or above/right of) a curve segment nowhere near it — confirmed in STATE_1__dense_t01000.png / t02000.png, a WORSE defect than the one being fixed (a labelled point detached from any curve). appear_at_ms is now 3000 — the exact moment the curve's own left-to-right draw-in sweeps through P's location, so P is never seen disconnected from a curve: before 3000ms there is no P yet (curve alone, matching the opening clause of s1_1 while it is still being spoken), and P pops in already SITTING on an already-drawn stretch of curve (confirmed in STATE_1__dense_t03000.png: the draw-in edge lands exactly on P's dot) — the same 'gate a reveal to when the draw-in physically arrives there' technique this state's own curve_label primitive already uses (appear_at_ms:8500, exactly when xdraw finishes at 1500+7000). s1_1 (~4000ms estimated spoken length) is still mid-sentence at 3000ms, so P now appears BEFORE the sentence naming it finishes, not 6s after the whole state has moved on.",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
@@ -177,7 +178,7 @@
             "y_expr": "x0*x0/2",
             "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
             "size": 14,
-            "appear_at_ms": 10000,
+            "appear_at_ms": 3000,
             "animate_in_ms": 400
           },
           {
@@ -331,6 +332,7 @@
             "animate_in_ms": 600
           },
           {
+            "_design_note": "FIX ROUND (json_author, founder-caught defect survey, 2026-08-07): was appear_at_ms:15000 — 68% into this 22000ms state. This state's title ('A Chord Through Two Points'), its always-visible caption ('Two points make a chord') and s2_2's narration ('The chord's slope is rise divided by run...') all NAME the chord well before 15000ms, yet the actual connecting line (this primitive) was the only thing on screen that could BE 'the chord' and it did not exist — confirmed in STATE_2__dense_t04000.png and t10000.png (P, Q, and later the 'run' dashed leg are all visible with zero line connecting P to Q) while s2 is actively narrating 'the chord's slope is...'. Same defect class as STATE_1's P (a primitive gated behind an appear_at_ms that postdates its own caption/narration naming it), found during the STATE_1 fix's mandated cross-state survey. Retimed to appear_at_ms:2500 — the same instant Q lands (Q's own appear_at_ms) — so 'two points make a chord' is true the moment the second point exists (an immediate, direct visual consequence, not a delayed one); the run/rise vectors (7000/11000) now read as a decomposition of an ALREADY-VISIBLE chord's slope into rise/run legs, rather than legs assembling toward a chord that isn't there yet. chord_dual_label/slope_dual_label stay at 15000 unchanged — they are a formal-terminology beat ('chord (secant line)' / 'slope (gradient)') consolidating near s3, independent of when the chord itself first appears, and their collision-safe positions (see their own _design_note) do not depend on sec's reveal time. focal_sequence is unaffected: sec is a visible-but-dimmed peer (alphaMul 0.6) from 2500 until its own focal window opens at 15000, the same 'visible early, glows late' pattern already verified correct for STATE_1's P.",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
@@ -338,7 +340,7 @@
             "to_expr": { "x": "x0+1", "y": "(x0+1)*(x0+1)/2" },
             "extend": "frame",
             "readout": { "format": "slope = {m}", "decimals": 4 },
-            "appear_at_ms": 15000,
+            "appear_at_ms": 2500,
             "animate_in_ms": 600
           },
           {
