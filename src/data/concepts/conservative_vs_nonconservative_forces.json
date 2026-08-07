@@ -293,10 +293,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The friction arrow points down the slope on the way up." },
-            { "id": "s3_2", "text_en": "At the top it flips to point up the slope instead." },
-            { "id": "s3_3", "text_en": "Friction always opposes the motion; the weight arrow never turns." },
-            { "id": "s3_4", "text_en": "At the same spot, the flag reads minus seven joules, then minus eight point four — the loss grows." }
+            { "id": "s3_1", "text_en": "The friction arrow points down the slope on the way up.", "text_hi": "ऊपर जाते समय friction का arrow slope की नीचे की दिशा में point करता है।" },
+            { "id": "s3_2", "text_en": "At the top it flips to point up the slope instead.", "text_hi": "Top पर पहुँचते ही यह flip होकर slope की ऊपर की दिशा में point करने लगता है।" },
+            { "id": "s3_3", "text_en": "Friction always opposes the motion; the weight arrow never turns.", "text_hi": "Friction हमेशा motion के विपरीत होता है; weight का arrow कभी नहीं मुड़ता।" },
+            { "id": "s3_4", "text_en": "At the same spot, the flag reads minus seven joules, then minus eight point four — the loss grows.", "text_hi": "उसी spot पर, flag पहले minus seven joules पढ़ता है, फिर minus eight point four -- loss बढ़ता जाता है।" }
           ]
         },
         "misconception_watch": [
