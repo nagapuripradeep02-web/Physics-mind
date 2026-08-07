@@ -68179,6 +68179,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // otherwise fall through to the bare "Drag to rotate" hint, but suppress
         // explicitly for consistency with every 2026-07+ scenario).
         if (config.scenario_type === "em_wave_propagation") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // newtons_laws_body was never added to this list, so it fell through to the
+        // generic branch below and printed stateDef.label — a field every other
+        // scenario treats as an AUTHORING note — verbatim on the canvas. Authors
+        // wrote paragraphs there, including the state's own outcome, so the answer
+        // rendered from frame one (work_energy_theorem STATE_4: "…speeds up to
+        // K = 46.1 J beside net = +28.1 J at the loop's end"), Rule 34a was broken on
+        // every nlb concept, and THE CALCULATOR harvested the legend's joule values as
+        // if they were instrument readings. Suppressed here for the same reason as the
+        // scenarios above: the bars, the arrows, the HUD and the ONE formula surface
+        // carry everything, and the delta cue is the only text the canvas owes.
+        if (config.scenario_type === "newtons_laws_body") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
