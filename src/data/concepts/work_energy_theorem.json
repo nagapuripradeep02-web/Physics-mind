@@ -266,7 +266,7 @@
             { "id": "s4_1", "text_en": "This cart starts backward at three metres a second, pulled by twelve newtons.", "text_hi": "यह cart पीछे की ओर तीन metres per second से शुरू होती है, बारह newtons से खींची जाती है।", "glow": "nlb_body_cart" },
             { "id": "s4_2", "text_en": "At the turn, net dives to minus eighteen joules as K reads zero.", "text_hi": "जैसे यह धीमी होती है, मोड़ पर net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है।", "glow": "energy_panel" },
             { "id": "s4_3", "text_en": "By the end, K climbs to forty-six point one, net to plus twenty-eight point one.", "text_hi": "अंत तक, K छियालीस point one तक पहुँचता है, net plus अट्ठाइस point one तक।", "glow": "energy_panel" },
-            { "id": "s4_4", "text_en": "Two nonzero numbers: net measures the change from the start, not the final energy.", "text_hi": "दो non-zero numbers: net शुरुआत से बदलाव मापता है, आखिरी energy को नहीं।", "glow": "energy_panel" }
+            { "id": "s4_4", "text_en": "Two nonzero numbers: net measures change from eighteen starting joules, not the final energy.", "text_hi": "दो non-zero numbers: net अट्ठारह शुरुआती joules से बदलाव मापता है, आखिरी energy को नहीं।", "glow": "checkpoint_1" }
           ]
         },
         "misconception_watch": [
@@ -614,7 +614,7 @@
           "arrows": [
             { "body_id": "cart", "show": ["applied"] }
           ],
-          "energy_layer": { "bars": ["K"], "bar_max_J": 55, "precision": 1 },
+          "energy_layer": { "bars": ["K"], "bar_max_J": 110, "precision": 1 },
           "work_accumulators": [
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
@@ -642,7 +642,7 @@
           "arrows": [
             { "body_id": "cart", "show": ["friction"] }
           ],
-          "energy_layer": { "bars": ["K"], "bar_max_J": 55, "precision": 1 },
+          "energy_layer": { "bars": ["K"], "bar_max_J": 110, "precision": 1 },
           "work_accumulators": [
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
@@ -706,6 +706,9 @@
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
           "work_scale_J": 40,
+          "checkpoints": [
+            { "s_m": 1.6, "label": "start", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "first" }
+          ],
           "loop_reset_ms": 2600,
           "readouts": ["v"],
           "controls_visible": []

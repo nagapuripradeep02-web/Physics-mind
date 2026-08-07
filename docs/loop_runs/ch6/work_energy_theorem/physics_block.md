@@ -210,7 +210,7 @@ readings -- see section 9 for the quoted output.
 | `d` | `displacement_vector: { body_id: cart, label: d, show_value: true }` | S3, S5, S6 only (DoD b). Drawn from initial_position_m. |
 | `K` (bar) | `energy_layer: { bars: [K], bar_max_J, precision: 1 }` | Every state, no body_ids (single body, aggregate = the one body). |
 | `W` (bars) | `work_accumulators` + state `work_scale_J` | force from the CLOSED enum applied/friction/normal/net; label verbatim single words (CALLOUT-2). S1/S2/S4/S5: net only. S3/S6: applied + friction + net. |
-| flag | `checkpoints` | S5 only, one checkpoint (CALLOUT-3). |
+| flag | `checkpoints` | S4 and S5, one checkpoint each (CALLOUT-11 for S4, CALLOUT-3 for S5). |
 | HUD | `readouts` | see section 3 exact per-state readout list. |
 | sliders (S6 only) | `slider_controls: { F, m, v0 }` | F min 0 max 30 step 5 default 20; m min 2 max 6 step 1 default 4; v0 min 0 max 4 step 1 default 0 (F4 fix -- no negative launch reachable). Key is literally "default", never "def". |
 
@@ -300,21 +300,118 @@ wherever its symbol is painted (`net_J` matches the independently-derived `net` 
 to display precision; `pull_J`/`friction_J` match on S3), and safely SKIPS (never falsely fails) wherever
 a bar is not authored on that state. Full quoted output in section 9.
 
-`work_accumulators`, `energy_layer`, `work_scale_J`, `bar_max_J` per state (the concept own section-1
+`work_accumulators`, `energy_layer`, `work_scale_J`, `bar_max_J` per state (the concept's own section-1
 invariant -- every state authors BOTH blocks, mechanically greppable):
 
-| State | work_accumulators (force -> label) | work_scale_J | bar_max_J |
+| State | work_accumulators (force -> label) | `work_scale_J` | `bar_max_J` |
 |---|---|---|---|
-| S1 | net -> "net" | 55 | 55 |
-| S2 | net -> "net" | 55 | 55 |
-| S3 | applied -> "pull", friction -> "friction", net -> "net" | 110 | 55 |
-| S4 | net -> "net" | 40 | 55 |
-| S5 | net -> "net" | 55 | 55 |
-| S6 | applied -> "pull", friction -> "friction", net -> "net" | 400 | 340 |
+| S1 | net -> "net" | 55 | 110 (FIX CYCLE 1, was 55 -- see below) |
+| S2 | net -> "net" | 55 | 110 (FIX CYCLE 1, was 55 -- see below) |
+| S3 | applied -> "pull", friction -> "friction", net -> "net" | 110 | 55 (exempted, see below) |
+| S4 | net -> "net" | 40 | 55 (exempted, see below) |
+| S5 | net -> "net" | 55 | 55 (exempted, see below) |
+| S6 | applied -> "pull", friction -> "friction", net -> "net" | 400 | 340 (priced and declined, see below) |
 
-`precision: 1` on every state energy_layer. `loop_reset_ms`: 2000 / 2100 / 2000 / 2600 / 2400 on S1-S5;
+precision: 1 on every state energy_layer. loop_reset_ms: 2000 / 2100 / 2000 / 2600 / 2400 on S1-S5;
 none on S6 (the SEAM J sandbox wrap is the loop, cited at source L48204-05 in the skeleton section 0,
 and re-verified independently in Checkpoint A cycle 2 F3/F4).
+
+### FIX CYCLE 1 (Checkpoint B, 2026-08-07/08) -- `bar_max_J` parity for S1/S2; S3/S4/S5 exempted in writing; S6 priced and declined
+
+bug_class: nlb_signed_bar_half_range_breaks_equal_value_pairing_with_an_unsigned_bar (P1 CRITICAL,
+routed by founder-proxy Checkpoint B, independently re-confirmed by an eye-walker re-walk with pixel
+measurements). The K bar is UNSIGNED, mapping [0, `bar_max_J`] over the FULL track; a work-accumulator
+bar is SIGNED, mapping [-`work_scale_J`, +`work_scale_J`] over the SAME track, so its positive side gets
+only HALF the track. One joule maps to the SAME pixel height on both instruments only when
+`bar_max_J` = 2 x `work_scale_J` exactly -- this is an identity, not a tuning target, and the two
+constants were originally chosen independently with no shared invariant, so the ratio drifted
+state to state with no reason to land on parity anywhere.
+
+Disproportion table (= 2 x `work_scale_J` / `bar_max_J`), before and after this cycle:
+
+| State | `work_scale_J` | `bar_max_J` before | disproportion before | `bar_max_J` after | disproportion after |
+|---|---|---|---|---|---|
+| S1 | 55 | 55 | 2.00x | 110 | 1.00x (parity) |
+| S2 | 55 | 55 | 2.00x | 110 | 1.00x (parity) |
+| S3 | 110 | 55 | 4.00x | 55 (unchanged) | 4.00x (EXEMPT) |
+| S4 | 40 | 55 | 1.45x | 55 (unchanged) | 1.45x (EXEMPT) |
+| S5 | 55 | 55 | 2.00x | 55 (unchanged) | 2.00x (EXEMPT) |
+| S6 | 400 | 340 | 2.35x | 340 (unchanged) | 2.35x (PRICED, DECLINED) |
+
+S1/S2 re-derivation, independent of the routing report's own numbers. Track = 186 px, the
+eye-walker's own measured value at ladder step 0 (CALLOUT-2). New pph (pixels per joule) =
+186 / 110 = 1.6909 px/J for the K bar (track / `bar_max_J`); the work bar positive-half pph =
+(186 / 2) / 55 = 93 / 55 = 1.6909 px/J -- IDENTICAL by construction, which is the whole fix. At the
+pin instant (K = net = 14.4 J, the concept's own reference-instant table, section 9): fill =
+14.4 x 1.6909 = 24.35 px on EACH bar (was 50 px / 25 px, a measured 2.00x mismatch -- now equal). At
+the loop end (K = net = 40.0 J): fill = 40.0 x 1.6909 = 67.64 px on each, 36.4% of the 186 px track --
+comfortably under the 90% ceiling this fix must not cross.
+
+Cross-check against Checkpoint B's own worked figures, run independently and landing on the same
+numbers: at the reduced fit-ladder step (trk: 138 px, CALLOUT-2's own cited value), pph =
+138 / 110 = 1.2545 px/J; loop-end fill = 40.0 x 1.2545 = 50.18 px, matching the routing report's cited
+"50.2 px" to within rounding; pin fill at the routing report's own cited K = 14.8 J (a live, discretized
+reading -- see the pre-existing discrete-vs-continuum gap this document already documents for S4 pin,
+section 9; this document's own CONTINUUM pin value is 14.4 J, a known small gap, irrelevant to the fix
+itself) = 14.8 x 1.2545 = 18.57 px, matching the cited "18.6 px" to within rounding. This independent
+reproduction of the routing report's own numbers, from the `bar_max_J`:110 fix alone, is the confirmation
+that this is the correct and complete fix.
+
+K-peak / `bar_max_J` ratio, every state, post-fix -- verifying no peak exceeds 90% and nothing goes
+illegibly small (the explicit check this cycle's dispatch requires):
+
+| State | K peak (J) | `bar_max_J` | K peak / `bar_max_J` |
+|---|---|---|---|
+| S1 | 40.0 (loop end) | 110 | 36.4% |
+| S2 | 40.0 (K0, falls to 0.0) | 110 | 36.4% |
+| S3 | 15.625 (flat, constant) | 55 | 28.4% (unchanged) |
+| S4 | 46.08 (loop end) | 55 | 83.8% (unchanged) |
+| S5 | 48.4 (loop end) | 55 | 88.0% (unchanged) |
+| S6 | 305.44 worst corner / 98.88 default | 340 | 89.8% / 29.1% (unchanged) |
+
+All six states stay under the 90% ceiling. The smallest SUSTAINED value (S3 flat 28.4% band) is a
+full, legible fill, not a sliver -- "illegibly small" is not reached anywhere.
+
+S3/S4/S5 exemption, written down explicitly (not left implicit, per this cycle's instruction):
+
+- S3 -- real cost, no benefit, genuinely exempt. Parity would require `bar_max_J`: 220
+  (2 x 110), shrinking the FLAT K band from a legible 28.4% to an illegible 7.1% of track. S3 own
+  claim (the SUPPORTING aha) is "K holds still while two work bars swing through +-98.0 J" -- that claim
+  needs K to stay VISIBLE at a readable height, never height-EQUAL to anything; there is no instant in
+  S3 where a matching K/work height would represent a true relationship (K is flat at 15.6 J while pull
+  and friction each swing to 98.0 J -- these are never meant to look alike). Shrinking K to a sliver to
+  chase a proportion nobody claims would actively hurt the one thing this state needs legible.
+- S4 -- would be cheap, but visualizes nothing true, so not applied. Parity would require
+  `bar_max_J`: 80 (2 x 40), which only takes K's own peak down to 46.08/80 = 57.6% (still
+  comfortably legible) -- genuinely low-cost. Not applied anyway, because S4's entire teaching point is
+  that K and net are two DIFFERENT nonzero numbers at every instant (at the turn K=0.0/net=-18.0; at the
+  end K=46.1/net=+28.1 -- never equal in this state). Height-matching the two bars would not represent
+  anything physically true here, unlike S1/S2 where equal height IS the true relationship. A cosmetic
+  change with no teaching payoff.
+- S5 -- the one truly free option, left alone per instruction. Parity would require
+  `bar_max_J`: 110, taking K's own peak down to only 48.4/110 = 44.0% -- essentially free. Not applied,
+  because S5's verification is 100% NUMERALS-based (the checkpoint stamp "ten and ten agree," sentence
+  4) -- no claim in this state depends on bar height, so `bar_max_J`: 55 teaches exactly as much as
+  `bar_max_J`: 110 would. Flagged here as a zero-cost future polish if the founder later wants
+  full-fleet visual consistency across every S1-S5-family state -- not required by anything S5 itself
+  claims.
+
+S6 -- priced and declined, in writing. Parity requires `bar_max_J`: 800 (2 x 400). Priced:
+at the SLIDER DEFAULT (m=4, F=20, v0=0 -- the configuration every teacher sees on first opening this
+state), K fill drops from a comfortable 98.88/340 = 29.1% to a persistently thin 98.88/800 = 12.4%;
+even at the worst reachable slider corner (m=2, F=30, v0=4, K=305.44 J) it only reaches
+305.44/800 = 38.2%, against the current 89.8%. The only alternative -- shrinking `work_scale_J` to
+fit the CURRENT `bar_max_J`=340 (i.e. `work_scale_J`: 170) -- is not viable at all: the worst
+slider-reachable pull work is 360.0 J, more than double a 170 J scale, which would genuinely CLIP a
+legitimately reachable reading (triggering the overflow-warn path this concept has never had to use).
+The identity is strict -- `bar_max_J` = 2 x `work_scale_J` exactly, or no parity at all -- so no partial
+value buys both proportion and legibility here. Decision: DECLINED. S6 is drag-sandbox /
+Rule-32b-exempt by design; its own narration claim (s6_3, "the net bar always matches the change in K")
+is explicitly a NUMERALS claim, matching CALLOUT-2's fleet-wide design law that fills are reinforcement
+only, never the primary evidence; its delta cue ("Change force, mass, speed") makes no height-comparison
+promise at all, unlike S1's literal "Two bars, one number." Paying a persistent legibility cost across
+the state's entire commonly-viewed slider range, to fix a proportion nothing in S6 is claiming, is the
+wrong trade. Left unchanged: `bar_max_J`: 340, `work_scale_J`: 400.
 
 ---
 
@@ -353,6 +450,7 @@ guided state breaks all three at once (the seized-slider bug class, section 0).
 | S2 | loop reset | At t=2100 ms rewinds and re-launches at 4 m/s; every cycle replays identically | loop_reset_ms=2100 | none |
 | S3 | 0-2000 ms, forever | Cart coasts at a CONSTANT 2.5 m/s (a=0 exactly, F=mu*m*g=19.6 N balances friction exactly); crosses s=-5.4 to -0.4; d arrow grows the whole time | s(t) = -5.4 + 2.5t | none |
 | S3 | continuous | THREE work bars run at once and NOTHING else changes: pull climbs 0 to +98.0 J, friction dives 0 to -98.0 J, net sits PARKED on the zero line at 0.0 J the whole loop -- while K holds flat at 15.6 J and the crate visibly crosses the floor | three simultaneous ledgers | none |
+| S4 | approximately 0-30 ms, one-shot, LATCHES | Cart crosses its own start flag at s=+1.6 (its home pose); the stamp reading start colon v equals -3.00 m/s middle-dot K equals 18.0 J lands beneath the formula surface and holds for the whole state (CALLOUT-11, FIX CYCLE 1) | crossing detector, capture order v then K | none |
 | S4 | 0-1000 ms | Cart (4 kg) launched LEFT at -3 m/s against a steady +12 N pull, frictionless, from s=+1.6; it SLOWS: net bar dives 0 to -18.0 J exactly as K falls 18.0 to 0.0 J at the turn (s=+0.1) | v(t) = -3+3t | none |
 | S4 | 1000-2600 ms | Cart accelerates back RIGHT; K refills 0 to 46.1 J as the SAME net bar climbs back through zero to +28.1 J at t=2600 ms (v=+4.8, s=+3.94) -- one loop equals fall, turn, refill | v(t) = -3+3t (same law, no branch) | none |
 | S4 | loop reset | At t=2600 ms rewinds to s=+1.6, v=-3 and replays identically | loop_reset_ms=2600 | none |
@@ -587,11 +685,73 @@ right/bottom zones (Rule 34d corners reserved).
 ### CALLOUT-10 -- every tts_sentences entry carries a valid glow
 
 Valid ids in this scenario: `nlb_body_cart` (matched on ud.id), `nlb_arrow_cart_applied`,
-`nlb_arrow_cart_friction`, `checkpoint_1` (S5 flag group ud.id), and the DOM ids `energy_bar_K` and
+`nlb_arrow_cart_friction`, `checkpoint_1` (the FIRST checkpoint mesh in a state's own `checkpoints[]`
+array -- a generic, state-scoped id, not exclusive to S5: S4 gains its own independent `checkpoint_1`
+group in FIX CYCLE 1, CALLOUT-11), and the DOM ids `energy_bar_K` and
 `energy_panel` (carried by `nlbEnergyApplyGlow`), plus `displacement_vector` (S3/S5/S6). Never
 `work_bar_applied` / `work_bar_friction` / `work_bar_net` -- declared-but-unreachable behind the
 `energy_*` prefix gate (section 0). Never a bare HUD row id (`nlb_ro_*`) -- those are DOM rows the glow
 pass cannot reach; a binding there is a silent no-op that dims everything and lights nothing.
+
+### CALLOUT-11 -- STATE_4 gains ONE checkpoint so K0 (and v0) are ON SCREEN, not merely spoken (FIX CYCLE 1, Checkpoint B finding 2)
+
+s_m is emitted as the state's own initial_position_m verbatim (+1.6, the same literal value
+bodies[0].initial_position_m already carries -- not a separately-chosen number, so it can never drift
+out of sync with a future edit to the state's seed). This is the SAME primitive S5 already uses
+(CALLOUT-3) -- no new engine mechanism, no redesign.
+
+```json
+"checkpoints": [{
+  "s_m": 1.6,
+  "label": "start",
+  "body_id": "cart",
+  "capture": ["v", "K"],
+  "capture_mode": "first"
+}]
+```
+
+Mechanism, verified by source-level trace of nlbRunCheckpoints / nlbCpStampText
+(field_3d_renderer.ts:46156-46286, the identical function S5's checkpoint already exercises): a
+checkpoint's _side is ADOPTED, never fired, on the first frame after state entry (the "adopt, never
+fire" guard, so state entry can never manufacture a phantom crossing) -- at that instant the cart sits
+exactly at s=1.6=cp.s_m, so the adopted side is whatever 1.6 >= 1.6 resolves to, no fire. On the VERY
+NEXT frame the cart has moved backward (v0=-3), so its side flips and the checkpoint fires, evaluated
+at the CROSSING-INSTANT position (s=cp.s_m exactly, per the overshoot-correction algorithm at
+46187-46233, the fix for the once-CRITICAL nlb_checkpoint_capture_overshoots_exact_crossing_value --
+already FIXED, section 0) rather than at wherever the cart happens to be one frame later.
+With f (the crossing displacement fraction) essentially 0 -- the cart has moved perhaps 0.03-0.05 m by
+the first evaluated frame, out of a 1.5 m total S4 excursion -- the captured v and K are the TRUE
+v0/K0 to well inside display precision, independent of frame rate (Rule 36): a hand check with a
+single 16 ms step gives v = -3.0003 m/s, K = 18.0036 J, both rounding to the displayed -3.00 m/s /
+18.0 J. The stamp latches (capture_mode: "first") and holds for the rest of the state, including
+through the SECOND crossing of s=1.6 that genuinely occurs later in the run (the cart returns through
+s=1.6 moving FORWARD at t=2000 ms, v=+3.0, K=18.0 J again by coincidence of equal |v| -- capture_mode
+"first" correctly ignores this second pass, so the display never flickers or re-stamps).
+
+Rendered result: "start:  v = -3.00 m/s  ·  K = 18.0 J" appears beneath the existing formula
+surface within roughly one frame of the state starting (visually indistinguishable from being there
+from t=0) and STAYS through the whole 2600 ms loop -- so at ANY instant a teacher pauses on, including
+THE EYE's own 1560 ms frozen pin (K=5.5 J, net=-12.5 J live), the arithmetic net = K - K0 =
+5.5 - 18.0 = -12.5 is now fully verifiable on screen without relying on memory or narration. This
+generalizes finding 2's fix beyond the two specific instants (turn, end) the narration names -- the
+identity now holds visibly at every instant, the same property the S1/S2 bar_max_J fix above restores
+for the K/net BAR pair.
+
+This is additive to the sealed design -- state count, arc, archetype, sliders, home pose and
+loop_reset_ms on S4 are all UNCHANGED; only a new checkpoints block is added, exactly as S5 already
+carries one.
+
+Known, pre-existing, NOT a new defect: THE CALCULATOR (section 9) will very likely produce the SAME
+diagnosed pattern on STATE_4 that section 9 already documents for STATE_5 -- a "K" symbol painted at
+TWO places (the live K bar AND this new latched checkpoint stamp), so a K_J formula check against the
+LATCHED "18.0 J" text will mismatch the LIVE K_J value at sample time (a category mismatch, comparing
+a historical reading to a live formula, exactly as already diagnosed for S5's own flag). Expect an
+analogous FAIL/PASS pair on STATE_4 once numeric:calc is re-run; this is not this fix's regression, it
+is the SAME pre-existing multi-reading-of-one-symbol pattern this document already flags
+quality_auditor not to misread (section 9). A THIRD "K = ..." source (the separately-flagged legend
+spoiler, section 9, nlb_generic_legend_renders_the_authored_state_label_as_onscreen_spoiler_prose,
+still OPEN, engine-owned, out of this cycle's scope) already competes on STATE_4 -- unrelated to this
+fix, unchanged by it, still pending a peter_parker:field3d_surgeon dispatch.
 
 ---
 
@@ -685,11 +845,11 @@ panel renders the wrong expectation tracked quantity (98.0 J) directly alongside
 | s4_1 | This cart starts backward at three metres a second, pulled by twelve newtons. | nlb_body_cart |
 | s4_2 | At the turn, net dives to minus eighteen joules as K reads zero. | energy_panel |
 | s4_3 | By the end, K climbs to forty-six point one, net to plus twenty-eight point one. | energy_panel |
-| s4_4 | Two nonzero numbers: net measures the change from the start, not the final energy. | energy_panel |
+| s4_4 | Two nonzero numbers: net measures change from eighteen starting joules, not the final energy. | checkpoint_1 |
 
 text_hi: "यह cart पीछे की ओर तीन metres per second से शुरू होती है, बारह newtons से खींची जाती है। जैसे यह धीमी होती
 है, मोड़ पर net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है। अंत तक, K छियालीस point one तक
-पहुँचता है, net plus अट्ठाइस point one तक। दो non-zero numbers: net शुरुआत से बदलाव मापता है, आखिरी energy को नहीं।"
+पहुँचता है, net plus अट्ठाइस point one तक। दो non-zero numbers: net अट्ठारह शुरुआती joules से बदलाव मापता है, आखिरी energy को नहीं।"
 
 Rule 16a delivery, matches skeleton section 4 verbatim (F5, Checkpoint A cycle 0): belief -- net work
 equals the final half m v squared; visual_counter -- at the end of the run the K bar reads 46.1 J while
@@ -801,6 +961,13 @@ ahas -- two ahas total is the sweet spot, matching every shipped Ch.6 sibling ow
 
 S1, S2, S5, S6 carry no misconception_watch -- exactly 2 genuine pivots, never a per-state tic. EPIC-C
 branches: NONE (EPIC-L-first directive 2026-06-10).
+
+FIX CYCLE 1 note: the S4 row's visual_counter above already asserted "measured from the starting
+18.0 J," which was true reasoning but, before this cycle, not something a teacher could actually READ
+on screen (finding 2, CALLOUT-11) -- the state's own checkpoint stamp now renders "start: v = -3.00
+m/s, K = 18.0 J" from state entry, so this visual_counter's claim is now literally, visibly true, not
+merely narratively true. No change to the JSON text of misconception_watch itself -- it was already
+correct, only now it is backed by a rendered number instead of by memory.
 
 ### assessment -- 6 questions, one per state, every answer physics-checked
 
@@ -1075,6 +1242,14 @@ STATE_4 / STATE_5 K for a new regression. Recommended engine_bug_queue row (phys
 write access to this table by design -- flagging for the dispatching session / quality_auditor to
 file):
 
+FIX CYCLE 1 ADDENDUM: STATE_4 now carries its OWN version of this exact pattern too, deliberately
+introduced by this cycle's fix for finding 2 (CALLOUT-11) -- a new checkpoint stamp latches "K = 18.0 J"
+(the starting value) beside the live K bar, so a K_J formula check will find a THIRD painted "K = ..."
+reading on STATE_4 (live bar, checkpoint stamp, and the pre-existing legend spoiler below), only ONE of
+which (the live bar) should ever match the live K_J formula. Expect an analogous FAIL/PASS pair on
+STATE_4, alongside the pre-existing STATE_5 one below -- not a regression, the SAME diagnosed pattern,
+now on a second state by design.
+
 ```
 bug_class: nlb_generic_legend_renders_the_authored_state_label_as_onscreen_spoiler_prose
 severity: MAJOR (blast radius: every newtons_laws_body-family state shipped since 2026-07-25 that is
@@ -1268,6 +1443,12 @@ checked against section 9's corrected harvestable-numerals table -- EXPECT the t
 STATE_4/STATE_5 legend-leak FAILs described there (not a regression; do not chase them here), and
 investigate any OTHER new SKIP or FAIL, never waved through.
 
+NOTE (FIX CYCLE 1, Checkpoint B, 2026-08-07/08): items 1-20 above are the CLOSED, already-verified
+handoff from the earlier quality_auditor-triggered cycle (section 12 immediately below) -- unchanged,
+not reopened. A SECOND, separate round of patch items (21-22: the S1/S2 bar_max_J parity fix and the
+new S4 checkpoint) is in section 13, at the end of this document. json-author should apply items
+1-20 from this section AND items 21-22 from section 13 together for this cycle.
+
 ---
 
 ## 12. Fix cycle patch log (2026-08-07, alex:physics_author, dispatched off a quality_auditor FAIL)
@@ -1379,3 +1560,126 @@ digit, equally spoiled and equally unfixed).
 - The legend/label rendering defect (see above) -- flagged, not fixed; not physics_author tool or scope.
 - `misconception_watch`, `aha_moment`, `assessment`, `real_world_anchor` (section 8) -- re-read, still
   physically correct, none touched.
+
+---
+
+## 13. Fix cycle 1 patch log (Checkpoint B, 2026-08-07/08, alex:physics_author)
+
+Two independent findings routed here by founder-proxy Checkpoint B, both independently re-confirmed by
+an eye-walker re-walk with pixel measurements. This is a SEPARATE cycle from the earlier "Fix cycle
+patch log" (section 12 above), which closed a DIFFERENT dispatch (a quality_auditor FAIL on the numeric
+contract, narration temporal-scoping, and the legend spoiler) -- that cycle's fixes are CLOSED,
+re-verified, and NOT reopened here.
+
+### FINDING 1 -- the two bars draw one number at two heights
+
+`bug_class: nlb_signed_bar_half_range_breaks_equal_value_pairing_with_an_unsigned_bar` (P1 CRITICAL).
+
+1. Root cause confirmed by independent re-derivation, not merely re-stated from the routing report: the
+   K bar is UNSIGNED, mapping `[0, bar_max_J]` over the full track; a work accumulator bar is SIGNED,
+   mapping `[-work_scale_J, +work_scale_J]` over the SAME track, so its positive side only gets HALF the
+   track. Equal joule-to-pixel height on both families requires exactly `bar_max_J = 2 x work_scale_J`.
+   Authoring both constants independently, as this concept originally did, has no reason to land on that
+   ratio, and did not.
+2. Fixed on S1 and S2 (the two states whose claim IS the equal-value identity -- S1 is the PRIMARY aha,
+   "Two bars, one number"): `bar_max_J: 55 -> 110`, `work_scale_J` UNCHANGED at 55. Re-derived fills: pin
+   instant (K=net=14.4 J) -> 24.35 px each (was 50 px / 25 px, a 2.00x mismatch); loop end (K=net=40.0 J)
+   -> 67.64 px each, 36.4% of track, comfortably under the 90% ceiling. Independently cross-checked
+   against Checkpoint B's own worked figures at the reduced ladder step (`trk: 138 px`): 40.0 x
+   (138/110) = 50.18 px, matching the cited "50.2 px"; 14.8 x (138/110) = 18.57 px, matching the cited
+   "18.6 px" -- the 14.8 vs this document's own 14.4 J continuum pin value is the SAME pre-existing
+   discrete-vs-continuum gap already documented in section 9 for S4's pin, not a new discrepancy, and
+   irrelevant to the fix itself. Full derivation: new section-2 subsection ("FIX CYCLE 1").
+3. Verified no peak exceeds 90% of track and nothing goes illegibly small, across ALL SIX states,
+   post-fix (full table in the new section-2 subsection): S1 36.4%, S2 36.4%, S3 28.4% (unchanged), S4
+   83.8% (unchanged), S5 88.0% (unchanged), S6 89.8% worst-corner / 29.1% default (unchanged).
+4. S3, S4 and S5 are EXPLICITLY EXEMPTED, in writing (new section-2 subsection), with per-state
+   cost/benefit reasoning: S3 exempt because parity would cost `bar_max_J: 220`, shrinking its flat,
+   legible 28.4% K band to an illegible 7.1% for a claim ("K holds still while two work bars swing")
+   that was never a height-equality claim in the first place. S4 exempt because its claim is the
+   OPPOSITE of an equal-value claim (K and net are two DIFFERENT nonzero numbers at every instant) --
+   parity there would be cheap but would visualize nothing true. S5 exempt per instruction, flagged as
+   the one truly free option (bar_max_J: 110 would only take its K peak to 44.0%) should the founder
+   later want full-fleet visual consistency -- but S5's own verification is 100% numerals-based.
+5. S6 PRICED and DECLINED, in writing (new section-2 subsection): parity requires `bar_max_J: 800`,
+   which would drop the K bar to 12.4% full at the slider DEFAULT position and 38.2% at the worst
+   reachable slider corner (versus the current 89.8%/29.1%). The only alternative (`work_scale_J: 170`
+   to fit the current `bar_max_J=340`) is not viable at all -- the worst slider-reachable pull work is
+   360.0 J, more than double a 170 J scale, which would CLIP a legitimately reachable reading. Decision:
+   leave S6 unchanged -- it is drag-sandbox/explore-exempt by design (Rule 32b), its narration claim is
+   explicitly numerals-based, and its delta cue makes no height-comparison promise.
+
+### FINDING 2 -- STATE_4 could not carry its own delta arithmetic
+
+`bug_class: nlb_signed_launch_velocity_state_never_renders_K0_so_the_delta_arithmetic_is_unverifiable`
+(P2 MAJOR).
+
+6. Added ONE `checkpoints` entry to STATE_4 (CALLOUT-11, new): `s_m: 1.6` (the state's own
+   `initial_position_m`, not a separately-chosen number), `label: "start"`, `body_id: "cart"`,
+   `capture: ["v","K"]`, `capture_mode: "first"` -- the SAME primitive S5 already carries (CALLOUT-3),
+   no new engine mechanism.
+7. Mechanism verified by source-level trace of `nlbRunCheckpoints`/`nlbCpStampText`
+   (`field_3d_renderer.ts`:46156-46286): the "adopt, never fire" first-frame guard means the checkpoint
+   does not fire AT s=1.6 (where it starts), but fires on the FIRST frame the cart has moved off it
+   (within ~16-33 ms, since v0=-3 m/s), evaluated via the crossing-instant correction, so the captured v
+   and K are the TRUE v0/K0 to well inside display precision -- hand-checked at a single 16 ms step:
+   v=-3.0003 m/s, K=18.0036 J, both round to the displayed -3.00 m/s / 18.0 J. `capture_mode: "first"`
+   correctly ignores the SECOND, later crossing of s=1.6 (the cart returns through it moving forward at
+   t=2000 ms, same |v|, same K by coincidence) -- no re-stamp, no flicker.
+8. Result: "start:  v = -3.00 m/s  ·  K = 18.0 J" renders beneath the existing formula surface within
+   about one frame of state entry and HOLDS for the whole 2600 ms loop, so at ANY instant -- including
+   THE EYE's own 1560 ms frozen pin (K=5.5 J, net=-12.5 J) -- the arithmetic net = K - K0 =
+   5.5 - 18.0 = -12.5 is verifiable on screen, not from memory. This closes finding 2 for BOTH missing
+   quantities the routing report named (v0 was never in `readouts`; K0 was nowhere) with one stamp.
+9. Narration: ONE sentence edited, word-count-neutral. S4 sentence 4 was "Two nonzero numbers: net
+   measures the change from the start, not the final energy." (14 words) -> "Two nonzero numbers: net
+   measures change from eighteen starting joules, not the final energy." (14 words) -- the abstract "the
+   start" is replaced by the concrete "eighteen starting joules," now literally readable on screen; glow
+   moved from `energy_panel` to `checkpoint_1` so the sentence points at the new stamp. `text_hi` updated
+   to match (Sonnet-5 subscription translation, Rule 30g/30i code-mix: the Hindi spelling for eighteen
+   matches the one already used in S4 sentence 2; "joules"/"energy"/"non-zero" stay Latin). Sentences 1-3
+   and their glows are UNTOUCHED -- the cycle-1-CLOSED temporal-scoping fixes are not reopened. S4 total
+   word count: 55 before, 55 after (unchanged, still at the ceiling, still inside 25-55).
+10. Flagged, not fixed, pre-existing and unrelated to this change (documented in CALLOUT-11 and
+    cross-referenced in section 9): adding the checkpoint means STATE_4 now exhibits the SAME "K painted
+    at two places, one live one latched" pattern section 9 already diagnoses for STATE_5 -- expect an
+    analogous THE CALCULATOR FAIL/PASS pair on STATE_4 next run, not a regression. The separately-flagged
+    legend spoiler (still OPEN, engine-owned) is a THIRD, unrelated "K = ..." source on STATE_4 --
+    unchanged by this fix, still pending `peter_parker:field3d_surgeon`.
+
+### What was deliberately NOT changed (this cycle)
+
+- State count, arc, motion archetypes, sliders, home poses, `loop_reset_ms` -- unchanged, per
+  instruction.
+- The numeric contract (`net_J`/`pull_J`/`friction_J` + `variable_overrides`) established in the prior
+  fix cycle (section 12) -- unchanged, not reopened.
+- S3, S4 (scale), S5, S6 `bar_max_J`/`work_scale_J` -- explicitly exempted/declined, reasoning written
+  down above and in section 2, not silently left implicit.
+- S4 sentences 1-3, all other states' narration -- unchanged.
+- The legend-spoiler engine bug -- still flagged, still out of `alex:physics_author` scope and tools.
+
+### Handoff: patch items 21-22 for json-author (in addition to items 1-20, section 11)
+
+21. `newtons_laws_body.energy_layer.bar_max_J`: STATE_1 `55 -> 110`, STATE_2 `55 -> 110`. No other
+    state's `bar_max_J` or `work_scale_J` changes.
+22. STATE_4 gains a new `checkpoints` array (CALLOUT-11):
+    `[{ "s_m": 1.6, "label": "start", "body_id": "cart", "capture": ["v","K"], "capture_mode": "first" }]`.
+    STATE_4 `tts_sentences` sentence 4 (`s4_4`): `text_en` -> "Two nonzero numbers: net measures change
+    from eighteen starting joules, not the final energy."; `glow` -> `checkpoint_1` (was
+    `energy_panel`); `text_hi` -> updated per section 7 (only the final clause changes). Sentences 1-3
+    unchanged.
+
+### Checks for json-author to run before declaring this cycle done
+
+`npx tsc --noEmit` at 0; `npm run validate:concepts` passing; THE EYE (`npm run visual:eyes --
+work_energy_theorem`) -- EXPECT new H2 diffs on S1, S2 (bar_max_J changed the rendered fill height by
+construction) and S4 (a new checkpoint mesh + stamp now renders) -- re-baseline via `visual:approve`
+after founder OK, not a fix cycle, per Rule 34e; THE CALCULATOR (`npm run numeric:calc --
+work_energy_theorem`) -- EXPECT the pre-existing STATE_5 legend/dual-K pattern (section 9) PLUS a new,
+analogous STATE_4 dual-K pattern (item 10 above); investigate any OTHER new SKIP or FAIL, never wave
+one through. Also spot-check visually (a single frozen frame near t=0 on STATE_4) that the new
+checkpoint flag mesh, co-located with the cart's own home pose at s=1.6, is NOT visually confused with
+the cart body itself -- this document reasons it should read cleanly (a small marker post + tick vs.
+the cart's own body mesh, the same visual language S5's flag already uses elsewhere on the same track),
+but this physics-author dispatch had no live renderer to confirm the pixel-level result; flag any real
+collision found back to this role, do not silently reshape it in json-author.
