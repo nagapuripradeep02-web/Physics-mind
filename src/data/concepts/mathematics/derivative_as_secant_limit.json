@@ -463,7 +463,8 @@
             "plane_id": "plane",
             "x_expr": "x0+pow(10,hlog)",
             "y_expr": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2 },
+            "_design_note_revert": "INTERIM REVERT (founder-directed, founder_proxy Checkpoint B cycle 2 G-12, 2026-08-08): cycle 2 DELETED this offset to let the engine place it. The engine then flips P at sim t=6800-8800ms (P grazes sec by 10x3px, mirrors to {-12,-20}) and lands it on Q — a 52x12px overprint rendering \"P = (1.00,(0.50)0.87)\" for 2.3s of a 24s GUIDED CORE state, playing automatically for every teacher with no interaction, and invisible to THE EYE because eye_capture_ms 14400 sits outside the window. Restored to {130,25}, the cycle-1 value that review verified as \"side by side with a clean gap\". This is a REVERT, not a new hand-tune, and it is EXPECTED TO BE DELETED AGAIN once the resolver candidate-set fix lands (fix/pcpl-resolver-candidate-set) — that round makes zero authored readout offsets the correct end state here. Kept only so a guided core state is not garbled in the interim.",
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 25 } },
             "size": 14,
             "color": "#34D399"
           },
