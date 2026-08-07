@@ -43431,6 +43431,16 @@ export const FIELD_3D_RENDERER_CODE = `
             if (writeOp) { o.material.transparent = true; o.material.opacity = op; }
         }
     }
+    //   Does this stroke carry the OPTIONAL casing nlbAddShaft builds (hidden) for
+    //   the arrow family? Only an element that can put a dark outline under a
+    //   lifted core may take the focal lift below — nlb_comp and nlb_right_angle
+    //   have no casing, so a lifted ink over the slab would make them INVISIBLE,
+    //   which is the very failure SEAM Q exists to prevent. The two handles are
+    //   set on the arrow object itself by nlbAddShaft, so this is a property read,
+    //   not a traverse, and costs nothing inside a per-frame pass.
+    function nlbInkHasCase(o) {
+        return !!(o && (o._nlbShaftCase || o._nlbConeCase));
+    }
     function nlbInkPass(focal, glowActive, glowP) {
         var colT = 0.10 + 0.18 * glowP;   // the same pulse applyGlowEmphasis uses
         // Resolved ONCE per pass, not once per raycast sample: the classifier now
@@ -43447,11 +43457,59 @@ export const FIELD_3D_RENDERER_CODE = `
             // carry it over the slab — never a majority vote, which would only
             // choose which half of the element stays invisible.
             var overLight = (kls === NLB_INK_SLAB);
-            var hex = nlbInkLens(base, overLight);
+            //   ── SEAM Q2 — THE FOCAL IS THE BRIGHTEST THING IN THE FRAME ────────
+            //   Rule 29 defines emphasis as brightness, and nlbInkEmphasis above
+            //   generalised it to "further from the local backdrop" so that a focal
+            //   over the LIT slab moved DEEPER. That generalisation is right about
+            //   contrast and wrong about EMPHASIS, and the difference is measurable:
+            //   at conservative_vs_nonconservative_forces STATE_3 the friction
+            //   arrow IS the glow focal (its 180 degree flip at turnaround is the
+            //   state's one new thing) and it renders rgb(29,12,18) — the slab lens
+            //   #220e15 deepened a further 14% by the focal pulse, i.e. the focal
+            //   boost made the focal DARKER than its own peer ink. In the same
+            //   frame the NON-focal mg arrow renders full #FFD54F over the page.
+            //   Measured 1.04:1 against the page it actually hangs over; the object
+            //   the state is about was the least visible thing on screen.
+            //   TWO CANDIDATE FIXES WERE COMPARED ON THE NUMBERS, not on taste:
+            //     (a) REORDER — lens first, then always lift. A near-black #220e15
+            //         lifted by colT 0.28 reaches lum 0.06, i.e. 2.15:1 against this
+            //         slab (a 30 degree incline face, rgb(102,123,134), lum 0.187)
+            //         and still far below every page-backed peer. It breaks the ink
+            //         floor AND does not restore the invariant. Rejected.
+            //     (b) BLANKET EXEMPTION — a focal simply skips the deepen. Over THIS
+            //         slab the lifted ink measures 2.83:1 bare; over the brighter
+            //         slab of the flat-track concepts (rgb(129,155,168), lum 0.309)
+            //         it measures 1.87:1. That is the original invisible-arrow bug
+            //         handed back on the one element that must not have it. Rejected
+            //         as stated — but it is the right move WITH the casing.
+            //   So: a focal stroke that owns a casing takes the PAGE ink and turns
+            //   the casing ON. The casing is not new (Rule 40a) — nlbAddShaft has
+            //   built it for every arrow since SEAM Q and nlbInkWriteStroke already
+            //   shows it for the NLB_INK_BOTH class, for exactly this reason: "a
+            //   dark outline that lets ONE lifted ink read over the slab as well as
+            //   over the page". Measured here: core lum 0.652-0.713 (13:1 against
+            //   its own #0A0A1A outline), outline 4.42:1 against this slab and
+            //   6.70:1 against the brighter one. The focal is now the lightest ink
+            //   in the frame BY CONSTRUCTION — nlbInkLens floors the page ink at
+            //   NLB_INK_LUM_MIN (0.62), nlbInkEmphasis lifts it further, and it is
+            //   the only stroke drawn at opacity 1.0 — and it is strictly lighter
+            //   than its own authored NLB_ARROW_COLORS entry, which is the second
+            //   half of the invariant.
+            //   NON-FOCAL INK IS UNTOUCHED. The condition carries isFocal, so every
+            //   peer keeps the deepen the ink pass exists to give it; exactly one
+            //   element per frame can take this branch (Rule 32e), and on frames
+            //   with no focal over the slab the pass is byte-identical to before.
+            //   DETERMINISM (Rule 36 / scar 1): the branch reads camera, geometry
+            //   and the focal id only. No accumulator, no wall clock — a
+            //   SET_TIME_FREEZE rewind reproduces it exactly, like the class it
+            //   overrides.
+            var focalLift = (cls === 1 && isFocal && glowActive && overLight && nlbInkHasCase(o));
+            var lensLight = focalLift ? false : overLight;
+            var hex = nlbInkLens(base, lensLight);
             // A LABEL is a name tag, not a peer competing for attention (force_rig's
             // finding): its focal signal is opacity, never a per-frame re-inking —
             // pulsing a baked texture would redraw a canvas every frame.
-            if (cls === 1 && isFocal && glowActive) hex = nlbInkEmphasis(hex, overLight, colT);
+            if (cls === 1 && isFocal && glowActive) hex = nlbInkEmphasis(hex, lensLight, colT);
             var op = 1.0, writeOp = false;
             if (glowActive) {
                 writeOp = true;
@@ -43460,7 +43518,7 @@ export const FIELD_3D_RENDERER_CODE = `
                                      : (overLight ? NLB_INK_DIM_OPACITY : NLB_ARROW_DIM_OPACITY);
                 }
             }
-            if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp, kls === NLB_INK_BOTH);
+            if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp, kls === NLB_INK_BOTH || focalLift);
             else nlbInkWriteSprite(o, hex, op, writeOp);
         });
     }
