@@ -59426,7 +59426,49 @@ export const FIELD_3D_RENDERER_CODE = `
     // the 0.10 the ghost LOBES use, because a held sphere is a single closed
     // outline rather than a pair of lobes and reads fainter at the same alpha —
     // and it has to stay legible while the LIVE cloud sits inside it.
-    var OS_GHOST_SP_ALPHA = 0.13;
+    //   ── RAISED 0.13 -> 0.20 (#18). 0.13 was tuned on the case where the ghost
+    //   is the BIGGER sphere and therefore has an edge against the near-black
+    //   background. The comparison the layer exists for is the other case too:
+    //   a held Na(+) core (61.75 pm) sits INSIDE the live 3s cloud (up to 469
+    //   pm), and there its only contrast is against the live surface\\u0027s own
+    //   fill. Measured on a real frozen frame: a luminance lift of ~12 on a
+    //   base of ~66 (18%) with NO silhouette — two independent frame reads
+    //   reported "no grey core sphere anywhere", and a third reported every
+    //   plain ghost in ionisation_enthalpy at ~10% delta. Alpha alone does not
+    //   fix that (a fill has no edge at any alpha); it is raised here so the
+    //   ghost LOBE path gains contrast too, and the ghost SPHERE additionally
+    //   gets the edge-weighted ink the lobes have carried since the p_set scar.
+    //   Restricted to ghost_species by construction: the ghost_orbitals path
+    //   keeps its own 0.10, so hybridisation / atomic_orbitals are untouched.
+    var OS_GHOST_SP_ALPHA = 0.20;
+    //   And the ghost SPHERE carries its own, higher figure. Same reason the
+    //   sphere needed the rim shader and the lobes did not: a lobe pair is two
+    //   shapes with four visible tips, a held sphere is ONE closed outline, and
+    //   at the same alpha the outline reads fainter. Under the Fresnel profile
+    //   this is an OUTLINE strength, not a fill — face-on it multiplies to 0.10,
+    //   so the live cloud inside stays fully readable through it.
+    var OS_GHOST_SP_SPHERE_ALPHA = 0.34;
+    // ── THE SYMBOL-FIT REFERENCE (#18) ──────────────────────────────────────
+    //   Three things on this stage are SYMBOLS, not lengths: the nucleus marker
+    //   (a real nucleus is ~5 fm — invisible at every scale this scenario
+    //   draws), the x/y/z axis letters, and the orbital name sprite. All three
+    //   carried FIXED WORLD sizes and FIXED WORLD offsets chosen when every
+    //   orbital on stage was a hydrogenic valence shell (0.70 .. 4.04 world
+    //   units of drawn radius). A shell gallery walks OTHER shells: potassium\\u0027s
+    //   1s at Z_eff 18.70 is 7.53 pm = 0.0376 units, and at that scale the
+    //   0.085-unit nucleus marker is 2.26x LARGER THAN THE SHELL IT FRAMES,
+    //   the 0.34-unit axis letters fill the viewport, and the "1s" name is
+    //   thrown 0.42 units out — 1.6 frame-heights off screen. The state that
+    //   exists to show four shells showed a pink ball and two clipped glyphs.
+    //   NO CAMERA DISTANCE FIXES ANY OF IT: zooming out shrinks the shell and
+    //   the marker together.
+    //   So each of those constants becomes a CEILING measured against the scene
+    //   the state actually draws: min(constant, constant x drawnRadius / REF).
+    //   ABOVE the reference the expression IS the constant, byte for byte — the
+    //   smallest drawn radius in the shipped fleet is 140.76 pm (hydrogen 1s,
+    //   atomic_orbitals_s_p_d), i.e. 0.7038 units, a 28% margin over this 0.55,
+    //   so every shipped atomic state is untouched by construction.
+    var OS_MARK_FIT_U = 0.55;          // = 110 pm of drawn radius
     var OS_ENCLOSURES = ["50", "70", "90"];
     function osEnclKey(v) {
         if (typeof v !== "number") return "90";
@@ -60038,7 +60080,13 @@ export const FIELD_3D_RENDERER_CODE = `
     // does not carry, and rounding it to "899" would misquote it.
     function osIeFmt(v) {
         if (v == null) return "\\u2014";
-        return String(Math.round(v * 10) / 10);
+        // ONE decimal, ALWAYS. Math.round(v*10)/10 drops a trailing zero, so
+        // fluorine\\u0027s cited 1681.0 printed as "1681" beside 495.8 / 899.5 /
+        // 1402.3 — the same table, the same source, two different apparent
+        // precisions. The uniform tenths digit IS the claim this line makes
+        // (these are MEASURED numbers, quoted as measured), so it is formatted,
+        // never arithmetically rounded into a shorter string.
+        return Number(v).toFixed(1);
     }
     // How many rungs of the successive staircase to draw. NOT authored, and not
     // "all of them": sodium's cited series runs to 25496 kJ/mol, so a staircase
@@ -62188,6 +62236,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (sprite._osMain === main && sprite._osSub === sub && !color) return;
         osDrawSubLabel(sprite, main, sub);
     }
+    // Re-scale a label sprite by the symbol-fit factor (#18), preserving the
+    // aspect its own canvas measured. f === 1 reproduces exactly what
+    // pmCreateAutoLabel / osCreateSubLabel set at build time, so a scene at or
+    // above OS_MARK_FIT_U is byte-identical. Called AFTER any text redraw,
+    // because osDrawSubLabel re-writes sprite.scale when the canvas resizes.
+    function osFitSprite(sprite, f) {
+        if (!sprite) return;
+        var c = sprite._pmCanvas, hs = sprite._pmHeightScale;
+        if (!c || !hs || !c.height) return;
+        sprite.scale.set(hs * f * (c.width / c.height), hs * f, 1);
+    }
     function osFindById(id) {
         for (var i = 0; i < sceneObjects.length; i++) {
             if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
@@ -62993,11 +63052,22 @@ export const FIELD_3D_RENDERER_CODE = `
         //    already use, so the two ghost paths read as one thing.
         //    Appended at the very END of the build for the node-shell reason: no
         //    shipped concept's sceneObjects order moves by a single entry.
-        var gsp = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), new THREE.MeshPhongMaterial({
-            color: hexToThreeColor("#546E7A"), emissive: hexToThreeColor("#546E7A"),
-            emissiveIntensity: 0.18, shininess: 30, transparent: true, opacity: 0.0,
-            side: THREE.DoubleSide, depthWrite: false
-        }));
+        //    ── AND IT IS DRAWN IN THE LOBES\\u0027 EDGE-WEIGHTED INK (#18), not the
+        //    flat translucent ink the LIVE sphere uses. The reason is the p_set
+        //    scar\\u0027s reason, one level up: a flat translucent surface carries no
+        //    shading cue at its own silhouette, so it reads only where it has an
+        //    EDGE AGAINST THE BACKGROUND. The live sphere always does. A held
+        //    core does not — it sits INSIDE the live cloud, and there its whole
+        //    signal is a uniform fill lift over another fill (measured: ~18% of
+        //    background luminance, no boundary). osLobeMaterial\\u0027s Fresnel alpha
+        //    inverts that: near-transparent where the surface faces the viewer,
+        //    near-solid at its own outline — which is exactly and only the thing
+        //    a "held boundary" is asked to show. Same material, same shader, same
+        //    program cache key the lobes already compile; no new mechanism.
+        //    The INK IS UNCHANGED (#546E7A): the fix is the alpha profile, not the
+        //    colour, so the ghost sphere and the ghost lobes still read as one
+        //    thing and nothing about "which object is the held one" moves.
+        var gsp = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), osLobeMaterial("#546E7A"));
         gsp.userData = { elementType: "os_surface", id: "os_ghost_sphere" };
         gsp.visible = false;
         addToScene(gsp);
@@ -63410,6 +63480,21 @@ export const FIELD_3D_RENDERER_CODE = `
         var shellExact = shellOn ? osShellExact(osIon, primary) : null;
         var primR = shellOn ? shellRPm : (osOuterPm(primary, encKey) * zuPrim);
         window.PM_osPrimPm = primR;
+        // ── THE SYMBOL-FIT FACTOR (#18, OS_MARK_FIT_U). One number per frame,
+        //   read by the nucleus marker, the axis letters and the orbital name —
+        //   the three fixed-world SYMBOLS on this stage. 1 at and above the
+        //   reference radius (every shipped atomic state), shrinking linearly
+        //   below it so a marker can never grow larger than the object it marks.
+        //   MOLECULAR ORBITALS ARE EXCLUDED. On an MO stage the two nuclei are
+        //   parked at a real internuclear separation and the scene\\u0027s scale is
+        //   THAT separation, not a one-centre radius (sigma_pi_bonding reports
+        //   primR = 70 pm while drawing a 134 pm C=C bond) — so primR is simply
+        //   not the right ruler there, and the fit would shrink markers on a
+        //   scene that has no problem. Restricting it also makes every MO state
+        //   byte-identical by construction.
+        var osMarkF = (moPrim || !(primR > 0))
+            ? 1 : Math.min(1, (primR / OS_PM_PER_UNIT) / OS_MARK_FIT_U);
+        window.PM_osMarkFit = osMarkF;
         window.PM_osShellRadiusPm = shellOn ? shellRPm : null;
         window.PM_osShellExact = shellExact;
         window.PM_osActive = active.slice();
@@ -63700,7 +63785,7 @@ export const FIELD_3D_RENDERER_CODE = `
             gsph.visible = gOn;
             if (gOn) {
                 gsph.scale.setScalar(ghostPm / OS_PM_PER_UNIT);
-                if (gsph.material) gsph.material.opacity = OS_GHOST_SP_ALPHA;
+                if (gsph.material) gsph.material.opacity = OS_GHOST_SP_SPHERE_ALPHA;
             }
         }
         // lobes: pull from the shared pool, aim each along its (spun) direction.
@@ -63909,14 +63994,21 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // the two nuclei. os_nucleus is re-parked at the origin whenever no MO is
         // on stage, so an atomic-orbital concept is untouched by construction.
+        //   Both carry the symbol-fit factor (#18): the marker is a SYMBOL for
+        //   "the nucleus is here", never a length, so it is sized against the
+        //   shell it frames instead of against a constant chosen for one scale.
+        //   osMarkF is 1 on every MO stage and on every scene at or above the
+        //   reference radius, so setScalar(1) is what these two have always had.
         var nucA = osFindById("os_nucleus"), nucB2 = osFindById("os_nucleus_b");
         if (nucA) {
+            nucA.scale.setScalar(osMarkF);
             if (moPrim) {
                 var pA = osSpun(moCent[0]);
                 nucA.position.set(osMoUnits(moPrim, pA[0]), osMoUnits(moPrim, pA[1]), osMoUnits(moPrim, pA[2]));
             } else nucA.position.set(0, 0, 0);
         }
         if (nucB2) {
+            nucB2.scale.setScalar(osMarkF);
             nucB2.visible = !!moPrim && (moSt.show_nuclei !== false);
             if (nucB2.visible) {
                 var pB = osSpun(moCent[1]);
@@ -64269,7 +64361,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 axm.visible = !!os.show_axes;
                 if (axm.visible) {
                     var ad = osSpun([axDirs[i][0] * (sg ? -1 : 1), axDirs[i][1] * (sg ? -1 : 1), axDirs[i][2] * (sg ? -1 : 1)]);
-                    osAimY(axm, ad, 1, axLen);
+                    // the rod\\u0027s LENGTH already tracks the scene (axLen); its
+                    // THICKNESS is the 0.012 build constant and did not, so on a
+                    // 0.038-unit shell the triad drew as a fat cross 35 px wide
+                    // across a 104 px ball. Same symbol-fit factor, same reason.
+                    osAimY(axm, ad, osMarkF, axLen);
                 }
             }
             var axlb = osFindById("os_axis_label_" + axKeys2[i]);
@@ -64288,7 +64384,26 @@ export const FIELD_3D_RENDERER_CODE = `
                 axlb.visible = !!os.show_axes && (os.show_labels !== false) && alignD < 0.975;
                 if (axlb.visible) {
                     var ld = lvd;
-                    axlb.position.set(ld[0] * (axLen + 0.22), ld[1] * (axLen + 0.22), ld[2] * (axLen + 0.22));
+                    // sprite size AND stand-off both ride the symbol-fit factor
+                    // (#18): at K\\u0027s 1s the 0.34-unit letters were 1.3 viewport
+                    // heights tall and the 0.22-unit stand-off parked them past
+                    // the frame edge, on a shell 0.038 units across.
+                    osFitSprite(axlb, osMarkF);
+                    var axOff = axLen + 0.22 * osMarkF;
+                    axlb.position.set(ld[0] * axOff, ld[1] * axOff, ld[2] * axOff);
+                    // ── AND IT IS PULLED BACK INSIDE THE VIEWPORT. axLen is
+                    //   1.30 x the drawn radius while the camera distance is
+                    //   AUTHORED to frame the radius itself, so a state that
+                    //   frames its sphere tightly pushes the axis letter off
+                    //   screen (K\\u0027s 4s step: the y label lands at 104% of the
+                    //   half-height and is simply gone, while z and x — which
+                    //   run diagonally — survive). Clamping the LABEL, not the
+                    //   axis, keeps the geometry honest and the name readable.
+                    //   Pure no-op for a label that already projects inside the
+                    //   band, which is every label in the shipped fleet.
+                    osProbeV.set(axlb.position.x, axlb.position.y, axlb.position.z).project(camera);
+                    var axWorst = Math.max(Math.abs(osProbeV.x) / 0.94, Math.abs(osProbeV.y) / 0.90);
+                    if (axWorst > 1) axlb.position.multiplyScalar(1 / axWorst);
                     osAvoid.push([axlb.position.x, axlb.position.y, axlb.position.z]);
                 }
             }
@@ -64488,7 +64603,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 // the sphere it names (the sprite-parked-off-its-cloud scar).
                 var lrad = (shellOn ? (shellRPm / OS_PM_PER_UNIT)
                     : (osOuterPm(lorb, encKey) * osZUnit(lorb, lz2) / OS_PM_PER_UNIT)) * 0.92;
-                osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42, osAvoid);
+                // symbol-fit (#18): the name sprite and its stand-off are sized
+                // against the cloud they name. At K\\u0027s 1s the fixed 0.42
+                // stand-off threw "1s" 1.6 viewport heights off screen — the
+                // gallery step\\u0027s whole caption, absent for five seconds — and
+                // the sprite itself would have been taller than the frame.
+                // Applied AFTER osSetSubLabel, which rewrites scale on a redraw.
+                osFitSprite(olb, osMarkF);
+                osPlaceLabelClear(olb, [ldir[0] * lrad, ldir[1] * lrad, ldir[2] * lrad], 0.42 * osMarkF, osAvoid);
                 osAvoid.push([olb.position.x, olb.position.y, olb.position.z]);
             }
         }
