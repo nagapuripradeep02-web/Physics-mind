@@ -45010,8 +45010,13 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         if (hasEn && hasWk) return "Energy and work bars";
         // Matches the section header the panel actually renders, so the ⚙ row and the
-        // thing it toggles read as the same object.
-        if (hasWk) return "Work done";
+        // thing it toggles read as the same object. Deliberately the UNQUALIFIED
+        // text even on a concept whose header carries the "so far" time qualifier on
+        // some states: this label is concept-wide (a teacher may open the states in
+        // any order, Rule 25d, and the generic engine captures it once), and it names
+        // the panel, not one state's reading. "Work done" is still what a teacher
+        // switching off "Work done so far" is switching off.
+        if (hasWk) return NLB_WK_CAP_BASE;
         return "Energy bars";
     }
     function nlbBuildEnergyPanel() {
@@ -45077,7 +45082,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //   Built ONCE at the maximum shape (4 slots) and shown/hidden per state,
         //   exactly like the bars above (Rule 31/32d).
         html += '<div id="nlb_wk" style="display:none;margin-top:10px;">';
-        html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">Work done</div>';
+        //   Built at the UNQUALIFIED text and rewritten per state by
+        //   nlbApplyWorkSection, which owns the qualifier gate. Built-once DOM, so
+        //   this is only the shape the first state overwrites anyway.
+        html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">' + NLB_WK_CAP_BASE + '</div>';
         //   align-items:STRETCH, and every work slot is itself a COLUMN flex whose
         //   caption is the only growing child. This is the instrument's alignment
         //   contract, and it is STRUCTURAL — nothing here measures text.
@@ -45477,6 +45485,31 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_WK_POS_COLOR = "#66BB6A";      // W > 0
     var NLB_WK_NEG_COLOR = "#EF5350";      // W < 0
     var NLB_SUM_MERGE_MS = 900;            // default slide duration
+
+    // ── The work section's TIME QUALIFIER ────────────────────────────────────
+    //   engine_bug_queue: nlb_latched_checkpoint_stamp_and_the_live_work_bar_
+    //   report_one_symbol_at_two_values_with_no_time_qualifier (CRITICAL).
+    //   A capture_mode 'first' stamp LATCHES its value at the crossing while the
+    //   bar beside it keeps integrating, so for the whole life of the stamp the
+    //   screen carries the SAME symbol at two different numbers — the stamp says
+    //   "W gravity = 0.0 J", the column headed "gravity" says +24.9 J — and
+    //   nothing said which one was NOW. Measured on
+    //   conservative_vs_nonconservative_forces: the bar matched the stamped value
+    //   on ZERO of the ~14 frames the stamp was on screen, on both states.
+    //   The two surfaces are both honest; only the reading order was missing. The
+    //   STAMP already carries its own time in its label ("back at the start:"),
+    //   so the thing with no time on it is the INSTRUMENT — and this names it.
+    //   "so far", not "now": on a work chapter "the work done now" reads as the
+    //   work being done at this instant (a rate — the very thing power is), while
+    //   the bar is a RUNNING TOTAL from the start of the run. "So far" is what
+    //   the bar actually shows, in the plainest words that say it (Rule 41).
+    var NLB_WK_CAP_BASE = "Work done";
+    var NLB_WK_CAP_LIVE = "Work done so far";
+    //   How close to its body's own start line a checkpoint has to sit to count
+    //   as the ROUND-TRIP flag (metres). Authors write the seed coordinate
+    //   verbatim, so this only has to survive a re-typed decimal; it is three
+    //   orders below the closest authored flag spacing in the fleet (0.6 m).
+    var NLB_WK_START_TOL_M = 0.001;
 
     // ── Config readers. Each returns null unless the state genuinely authors the
     //    block, which is what makes every instrument additive.
@@ -46547,12 +46580,59 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbEnSumMergeWrite(groups, pr);
     }
 
+    // ── The qualifier GATE — narrow on purpose ───────────────────────────────
+    //   True only where the ambiguity is a genuine CONTRADICTION, which needs all
+    //   three of:
+    //     (1) live work bars on screen at all;
+    //     (2) a LATCHED stamp (mode 'first') that reports W — the same symbol the
+    //         bars carry. A stamp capturing only v/K/U reports a different symbol
+    //         and cannot be mistaken for the ledger;
+    //     (3) that stamp sitting on its body's OWN start line. This is the whole
+    //         narrowing, and it is a physical criterion, not a concept name: every
+    //         ledger is zeroed at the body's seed position, so for a
+    //         position-determined force W(s) = F_along·(s − s0) and W = 0 EXACTLY
+    //         at s = s0. A start-line crossing is therefore the one place the
+    //         ledger passes through zero and REVERSES — the stamp records the
+    //         closed-path total (0.0 J, the concept's whole claim) while the bar
+    //         immediately runs the other way. A mid-path flag (work_done_by_
+    //         constant_force's "flag at 2 m", 2.0 m from its crate's start) stamps
+    //         a value the monotone bar has merely grown past; same number, same
+    //         direction, no contradiction to resolve — and its shipped baselines
+    //         must not move for a defect it does not have.
+    //   Evaluated ONCE at state entry and stored, never per frame: the header must
+    //   not change text mid-state (it would reflow the panel width at exactly the
+    //   instant the stamp lands — the aha beat) and a state-static string is
+    //   trivially byte-stable under a SET_TIME_FREEZE pin (Rule 36).
+    function nlbWkCapLive(eng) {
+        if (!eng || !eng.work_state || !eng.work_state.length) return false;
+        var cps = eng.checkpoint_state;
+        if (!cps || !cps.length) return false;
+        for (var i = 0; i < cps.length; i++) {
+            var cp = cps[i];
+            if (!cp || cp.mode !== "first") continue;
+            if (!cp.capture || cp.capture.indexOf("W") < 0) continue;
+            var b = eng.bodies[cp.body_id];
+            if (!b || typeof b.s0 !== "number") continue;
+            if (Math.abs(cp.s_m - b.s0) <= NLB_WK_START_TOL_M) return true;
+        }
+        return false;
+    }
     // ── Note 10 — the work section's per-state display + per-frame write ────
     function nlbApplyWorkSection(eng) {
         var wk = eng.work_state;
         var sec = document.getElementById("nlb_wk");
         if (!sec) return;
         sec.style.display = (wk && wk.length) ? "block" : "none";
+        // The header carries the instrument's time. Written here, on the same
+        // per-state display pass that shows/hides the slots and BEFORE
+        // nlbFitEnergyPanel measures — a caption is the panel's widest child in a
+        // work-only state, so a text change after the fit would be measured against
+        // the previous state's width.
+        var cap = document.getElementById("nlb_wk_cap");
+        if (cap) {
+            var capTxt = eng._wkCapLive ? NLB_WK_CAP_LIVE : NLB_WK_CAP_BASE;
+            if (cap.textContent !== capTxt) cap.textContent = capTxt;
+        }
         for (var i = 0; i < NLB_WK_MAX; i++) {
             var sl = document.getElementById("nlb_wk_" + i);
             if (!sl) continue;
@@ -46905,6 +46985,11 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var cr = 0; eng.checkpoint_state && cr < eng.checkpoint_state.length; cr++) {
             if (!eng.bodies[eng.checkpoint_state[cr].body_id]) eng.checkpoint_state[cr].body_id = mDefId;
         }
+        // The work section's time qualifier (see nlbWkCapLive). Resolved HERE, once
+        // per state entry: it reads both instrument tables and the body seeds, so it
+        // has to run after the id defaults just above, and it must be settled before
+        // nlbApplyEnergyLayer writes and measures the panel further down.
+        eng._wkCapLive = nlbWkCapLive(eng);
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
