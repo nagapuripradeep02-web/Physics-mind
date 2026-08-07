@@ -19,8 +19,16 @@
  *     --owner alex:json_author \
  *     --root-cause "Authored the Class-10 mnemonic panel without stating its limits." \
  *     --prevention-rule "Any Fleming overlay must state: works for +q only; right-hand rule stays canonical." \
- *     [--concept magnetic_force_moving_charge] \
- *     [--probe-logic "manual review during professor gate"]
+ *     [--concept magnetic_force_moving_charge]   (repeatable via --concepts a,b,c) \
+ *     [--probe-logic "manual review during professor gate"] \
+ *     [--probe-type js_eval|sql|manual] \
+ *     [--row-type directive|bug]
+ *
+ * --probe-type / --row-type added 2026-08-02: Checkpoint A reviews produce
+ * DIRECTIVE rows carrying real automated probes (js_eval/sql). The tool used to
+ * hardcode probe_type='manual' and never set row_type, so filing a reviewer's row
+ * through it silently stripped the two fields that make the scar FIRE at the gate
+ * — leaving a lesson that reads well and checks nothing. Defaults are unchanged.
  */
 
 // MUST be the first import.
@@ -28,6 +36,8 @@ import '@/lib/loadEnvLocal';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
 const VALID_SEVERITIES = ['CRITICAL', 'MAJOR', 'MODERATE'] as const;
+const VALID_PROBE_TYPES = ['manual', 'js_eval', 'sql'] as const;
+const VALID_ROW_TYPES = ['directive', 'bug'] as const;
 const VALID_OWNERS = [
     'alex:architect', 'alex:physics_author', 'alex:chemistry_author', 'alex:json_author',
     'peter_parker:renderer_primitives', 'peter_parker:field3d_surgeon',
@@ -81,7 +91,23 @@ async function main(): Promise<void> {
     const title = args.get('title') ?? bugClass.replaceAll('_', ' ').toLowerCase();
     const rootCause = args.get('root-cause') ?? 'Captured via log:lesson — see prevention_rule.';
     const probeLogic = args.get('probe-logic') ?? 'manual review — see prevention_rule';
-    const concept = args.get('concept')?.trim();
+
+    const probeType = args.get('probe-type') ?? 'manual';
+    if (!VALID_PROBE_TYPES.includes(probeType as typeof VALID_PROBE_TYPES[number])) {
+        fail(`--probe-type must be one of ${VALID_PROBE_TYPES.join(' | ')}.`);
+    }
+    const rowType = args.get('row-type');
+    if (rowType && !VALID_ROW_TYPES.includes(rowType as typeof VALID_ROW_TYPES[number])) {
+        fail(`--row-type must be one of ${VALID_ROW_TYPES.join(' | ')}.`);
+    }
+
+    // A scar can bind more than one concept (a shared engine build routinely does).
+    // --concept keeps the single-value contract; --concepts takes a comma list.
+    const conceptList = [
+        ...(args.get('concept')?.trim() ? [args.get('concept')!.trim()] : []),
+        ...(args.get('concepts')?.split(',').map((c) => c.trim()).filter(Boolean) ?? []),
+    ];
+    const concepts = [...new Set(conceptList)];
 
     interface ExistingRow {
         bug_class: string;
@@ -98,13 +124,19 @@ async function main(): Promise<void> {
 
     if (existing) {
         const current = existing.concepts_affected ?? [];
-        const next = concept && !current.includes(concept) ? [...current, concept] : current;
+        const next = [...new Set([...current, ...concepts])];
         const { error } = await supabaseAdmin
             .from('engine_bug_queue')
             .update({
                 title,
                 prevention_rule: preventionRule,
                 concepts_affected: next,
+                // Only overwrite the probe on an EXISTING row when the caller
+                // explicitly passed one — the defaults would downgrade a working
+                // js_eval/sql probe to 'manual' on any concept-widening upsert.
+                ...(args.has('probe-type') ? { probe_type: probeType } : {}),
+                ...(args.has('probe-logic') ? { probe_logic: probeLogic } : {}),
+                ...(rowType ? { row_type: rowType } : {}),
                 updated_at: new Date().toISOString(),
             })
             .eq('bug_class', bugClass);
@@ -121,10 +153,11 @@ async function main(): Promise<void> {
                 owner_cluster: owner,
                 root_cause: rootCause,
                 prevention_rule: preventionRule,
-                probe_type: 'manual',
+                probe_type: probeType,
                 probe_logic: probeLogic,
+                ...(rowType ? { row_type: rowType } : {}),
                 status: 'OPEN',
-                concepts_affected: concept ? [concept] : [],
+                concepts_affected: concepts,
                 discovered_in_session: `log_lesson_${new Date().toISOString().slice(0, 10)}`,
             });
         if (error) fail(`insert failed: ${error.message}`);

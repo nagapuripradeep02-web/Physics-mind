@@ -10,7 +10,7 @@ Per [docs/ARCHITECTURE_v2.2.md §2.2](../../docs/ARCHITECTURE_v2.2.md): **"writi
 
 | Cluster | Roles | Pattern |
 |---|---|---|
-| **Alex** | `architect` · `physics_author` · `chemistry_author` · `json_author` · `quality_auditor` · `eye_walker` · `retrofit_surgeon` | authoring pipeline (sequential) + parallel frame verification + per-concept doctrine deltas |
+| **Alex** | `architect` · `physics_author` · `chemistry_author` · `mathematics_author` · `json_author` · `quality_auditor` · `eye_walker` · `retrofit_surgeon` | authoring pipeline (sequential) + parallel frame verification + per-concept doctrine deltas |
 | **Review** | `founder_proxy` | founder taste gate at Checkpoints A/B/C — reject-biased, report-only, never ships |
 | **Peter Parker** | `pcpl_surgeon` (renamed from `renderer_primitives` 2026-07-31) · `field3d_surgeon` · `runtime_generation` | engine layer — FAIL-routed by quality_auditor/founder_proxy, never called directly |
 | **Release** | `shipper` | post-founder-approval release chain (owner-tag `release:shipper`); no OVERVIEW.md by design |
@@ -44,6 +44,7 @@ Valid owner tags (mirrors the live `engine_bug_queue.owner_cluster` CHECK constr
 - `alex:architect`
 - `alex:physics_author`
 - `alex:chemistry_author` (added 2026-07-23 — chemistry-pipeline sibling of physics_author)
+- `alex:mathematics_author` (added 2026-08-04 — mathematics-pipeline sibling; MATHEMATICS_BUILD_PLAN.md Phase 2)
 - `alex:json_author`
 - `peter_parker:renderer_primitives` (**historical tag, kept live** — maps to the renamed `pcpl_surgeon` agent; 2D display-layer root causes)
 - `peter_parker:field3d_surgeon` (field_3d_renderer.ts root causes — added with the 2026-07-31 graduation)

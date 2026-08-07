@@ -37,7 +37,11 @@ async function main(): Promise<void> {
         concept_key: CONCEPT_ID,
         concept_id: CONCEPT_ID,
         sim_html: simHtml,
-        physics_config: { epic_l_path: json.epic_l_path },
+        // field_3d_config MUST be seeded here: visual_eyes.ts:68 derives the motion
+        // map from physics_config, and deriveMotionExpectations resolves field_3d
+        // motion from field_3d_config.states. Omit it and THE EYE's D5 motion gate
+        // SKIPS every state while still reporting all-green (findings_c.md PASS 14).
+        physics_config: { epic_l_path: json.epic_l_path, field_3d_config: json.field_3d_config },
         teacher_script: null,
         sim_type: 'single',
         renderer_type: 'field_3d',

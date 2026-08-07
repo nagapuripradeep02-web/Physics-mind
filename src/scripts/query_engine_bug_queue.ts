@@ -10,49 +10,61 @@
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id>
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner peter_parker:renderer_primitives
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --field3d        # all field_3d concepts
+ *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --scenario newtons_laws_body
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --pcpl           # all PCPL/parametric concepts
  *   npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --row-type directive
  *   add --open to show only OPEN/DEFERRED rows (the unresolved scars to watch).
  *
  * Prints bug_class · severity · status · owner · concepts + the prevention_rule
  * (what to do BEFORE authoring) and probe_logic (what the gate runs).
+ *
+ * SCAR (2026-08-02, rotmech Phase 0): --field3d used to read a hand-maintained
+ * 22-id array. The fleet had grown to 74 field_3d concepts, so the flag was blind
+ * to 52 of them — including all ELEVEN newtons_laws_body concepts, the single
+ * most-used scenario in the codebase and the family Ch.7's rolling concepts
+ * extend. Five separate agents in one session had to hand-roll
+ * `grep -rl "<scenario>" src/data/concepts/*.json` to reach rows the tool could
+ * not surface, and two Checkpoint A reviews recorded that a clean --field3d sweep
+ * is NOT coverage. The list is now DERIVED from the concept files at run time and
+ * cannot drift again; --scenario is the query those agents actually wanted.
  */
+import { readdirSync, readFileSync } from 'node:fs';
+import { basename, join } from 'node:path';
 import '@/lib/loadEnvLocal';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
-import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
 
-// The field_3d fleet, DERIVED at runtime rather than hand-listed.
-//
-// A hand-maintained literal rotted silently: until 2026-08-02 it named only the
-// electrostatics/magnetism/EMI concepts and contained no `newtons_laws_body`,
-// `force_rig`, `momentum_bench` or `kinematics_1d_track` concept at all — so
-// `--field3d --open` hid every Ch.5 Laws-of-Motion and Ch.6 Work-Energy scar from
-// anyone querying that way, with no warning that the list was partial.
-//
-// A concept renders on field_3d iff its JSON carries a top-level `field_3d_config`
-// block (that is the exact condition `aiSimulationGenerator`'s strict-engines bypass
-// tests before calling `assembleField3DHtml`), so read it from the files and the
-// list cannot go stale again.
 const CONCEPTS_DIR = join(process.cwd(), 'src', 'data', 'concepts');
 
-function field3dConcepts(): string[] {
-  const ids: string[] = [];
-  for (const file of readdirSync(CONCEPTS_DIR)) {
-    if (!file.endsWith('.json')) continue;
-    let parsed: unknown;
-    try {
-      parsed = JSON.parse(readFileSync(join(CONCEPTS_DIR, file), 'utf8'));
-    } catch {
-      continue; // a malformed JSON is validate:concepts' problem, not this reader's
-    }
-    // Most files are one concept; the legacy Ch.3 bundle is an array of them.
-    for (const c of Array.isArray(parsed) ? parsed : [parsed]) {
-      const concept = c as { concept_id?: string; field_3d_config?: unknown };
-      if (concept?.field_3d_config && concept.concept_id) ids.push(concept.concept_id);
-    }
+interface ConceptIndexEntry {
+  id: string;
+  isField3d: boolean;
+  scenarios: string[];
+}
+
+/**
+ * Derive the field_3d fleet (and each concept's scenario_type set) from the
+ * concept JSONs themselves. Never hand-maintain this — see the SCAR note above.
+ */
+function loadConceptIndex(): ConceptIndexEntry[] {
+  let files: string[];
+  try {
+    files = readdirSync(CONCEPTS_DIR).filter((f) => f.endsWith('.json'));
+  } catch {
+    console.error(`could not read ${CONCEPTS_DIR} — run from the repo root.`);
+    process.exit(1);
   }
-  return ids.sort();
+  return files.map((file) => {
+    const raw = readFileSync(join(CONCEPTS_DIR, file), 'utf8');
+    let id = basename(file, '.json');
+    try {
+      const parsed = JSON.parse(raw) as { concept_id?: string; id?: string };
+      id = parsed.concept_id ?? parsed.id ?? id;
+    } catch {
+      // Malformed JSON: fall back to the filename rather than dropping the concept.
+    }
+    const scenarios = [...raw.matchAll(/"scenario_type"\s*:\s*"([a-z0-9_]+)"/g)].map((m) => m[1]);
+    return { id, isField3d: raw.includes('"field_3d_config"'), scenarios: [...new Set(scenarios)] };
+  });
 }
 
 // PCPL / parametric_renderer.ts fleet (the Class-11 Vectors track + the legacy
@@ -82,9 +94,24 @@ async function main(): Promise<void> {
   const openOnly = argv.includes('--open');
   const owner = arg('--owner');
   const rowType = arg('--row-type');
-  const concept = argv.find((a) => !a.startsWith('--') && a !== owner && a !== rowType);
+  const scenario = arg('--scenario');
+  const concept = argv.find((a) => !a.startsWith('--') && a !== owner && a !== rowType && a !== scenario);
   const field3d = argv.includes('--field3d');
   const pcpl = argv.includes('--pcpl');
+
+  let field3dIds: string[] = [];
+  let scenarioIds: string[] = [];
+  if (field3d || scenario) {
+    const index = loadConceptIndex();
+    field3dIds = index.filter((c) => c.isField3d).map((c) => c.id);
+    if (scenario) {
+      scenarioIds = index.filter((c) => c.scenarios.includes(scenario)).map((c) => c.id);
+      if (scenarioIds.length === 0) {
+        console.error(`no concept declares scenario_type "${scenario}" — check the name.`);
+        process.exit(1);
+      }
+    }
+  }
 
   let q = supabaseAdmin
     .from('engine_bug_queue')
@@ -92,7 +119,8 @@ async function main(): Promise<void> {
     .order('severity', { ascending: true });
 
   if (concept) q = q.contains('concepts_affected', [concept]);
-  else if (field3d) q = q.overlaps('concepts_affected', field3dConcepts());
+  else if (scenario) q = q.overlaps('concepts_affected', scenarioIds);
+  else if (field3d) q = q.overlaps('concepts_affected', field3dIds);
   else if (pcpl) q = q.overlaps('concepts_affected', PCPL);
   if (owner) q = q.eq('owner_cluster', owner);
   if (rowType) q = q.eq('row_type', rowType);
@@ -103,7 +131,11 @@ async function main(): Promise<void> {
   const rows = (data ?? []) as Row[];
   if (rows.length === 0) { console.log('No matching engine_bug_queue rows.'); return; }
 
-  const scope = concept ?? (field3d ? 'all field_3d concepts' : pcpl ? 'all PCPL/parametric concepts' : owner ?? rowType ?? 'all');
+  const scope = concept
+    ?? (scenario ? `scenario "${scenario}" (${scenarioIds.length} concept(s): ${scenarioIds.join(', ')})`
+      : field3d ? `all field_3d concepts (${field3dIds.length}, derived from src/data/concepts)`
+        : pcpl ? 'all PCPL/parametric concepts'
+          : owner ?? rowType ?? 'all');
   console.log(`\nengine_bug_queue — ${rows.length} row(s) for: ${scope}${openOnly ? ' (OPEN/DEFERRED only)' : ''}\n`);
   for (const r of rows) {
     const tag = r.row_type === 'directive' ? 'DIRECTIVE' : r.severity;

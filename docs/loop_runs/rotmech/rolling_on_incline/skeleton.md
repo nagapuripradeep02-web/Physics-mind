@@ -1,13 +1,68 @@
-# SKELETON — `rolling_on_incline` (chapter `rotmech`, Class 11 Ch.7 — Systems of Particles & Rotational Motion) — REV 3 (fix cycle 1 response)
+# SKELETON — `rolling_on_incline` (chapter `rotmech`, Class 11 Ch.7 — Systems of Particles & Rotational Motion) — REV 6 (post-escalation revision — authorised by FOUNDER RULING 4; supersedes REV 5)
 
-> **Phase-0 role:** 0b spec driver for build **0c-2** (bounded rotational extension to `newtons_laws_body`). This skeleton + the physics block ARE the spec the field3d-surgeon builds against. founder-proxy Checkpoint A ran on REV 2 → `DESIGN_FIX` (`founder_proxy_A.md`); this is the cycle-1 revision. Every P1/P2/P3 is addressed — the FIX-CYCLE-1 RESPONSE table at the end is the diff index. REV 2 preserved at `skeleton_rev2.md`.
-> Survey: `docs/loop_runs/rotmech/phase0_survey.md` (founder-approved 2026-08-02). Concept #12 of the 14-concept spine, ★ Diamond, V1 priority. Sibling: `pure_rolling` (#11, same 0c-2 build — **see the union-scope limit in ENGINE REQUIREMENTS, P2-5**).
->
-> **Engine bug queue consultation (REV 3 — live, queries stated):** live table queried this cycle via `query_engine_bug_queue.ts` AND a direct read-only SELECT — **the script's canned `FIELD3D` concept list predates the nlb fleet and cannot reach scenario-scoped rows, which is the root cause of REV 2's seven skipped rows.** Exact query list in the SCAR AUDIT preamble. Renderer claims re-verified with line numbers this cycle: `length_m` half-length declaration `:941` + readers `:40060–40067`/`:44176`; `nlbGravAlong` sign `:45093–45096`; contact lift `NLB_BODY_SIZE/2` `:40015`; spin divisor `NLB_WHEEL_R` `:40053`; lane derivation `:39998–40001`; `PerspectiveCamera(60,…)` `:3341`; θ-arc `R = 1.05` `:40074`; `controls_visible` enum `:1340`; `#nlb_formula` `:41746`; `param_ramp` `:42295`; energy-layer `slice(0,2)` `:43247/:43356`; body loops `:39895/:40245/:44663`. All rolling motions are tier **[NEEDS-SCENARIO]**.
+> **Phase-0 role:** 0b spec driver for build **0c-2** (bounded rotational extension to `newtons_laws_body`). founder-proxy Checkpoint A: REV 2 → `DESIGN_FIX`, REV 3 → `DESIGN_FIX`, REV 5 → **`ESCALATE`** (`founder_proxy_A_cycle2_final.md`) — the fix-cycle budget was spent and ONE decision was parked to the founder. **The founder answered on 2026-08-02 (RULING 4 below) — this revision is the one the escalation asked for, not a new fix cycle.** Everything the escalation verified ("verified and holding — do not churn") is carried untouched: the finish semantics, the checkpoints diff, the synchronised restart, the arrow-map force channel and every re-computed value, the glow ruling, the back-compat clause, the eleven-id sweep, every re-derived timing row (S1/S2/S3/S4/S5/S7), A-1…A-13, and the E-numbering scheme. REV 3 at `skeleton_rev3.md`; REV 4 at `skeleton_rev4.md`; REV 5 at `skeleton_rev5.md`.
+> Survey: `docs/loop_runs/rotmech/phase0_survey.md`. Concept #12 of 14, ★ Diamond, V1. Sibling: `pure_rolling` (#11 — REV 3 against the same ruling).
+> **FOUNDER RULING 1 (2026-08-02):** the survey's 0c-2 row amendment is SIGNED-in-principle — the union is enumerated honestly and completely, not shrunk. **FOUNDER RULING 2:** the arrow map is authorable per-concept, defaults preserved; widened to TWO channels. **FOUNDER RULING 3 (identical contract for both concepts):** (i) two-phase 16a beats stay ONE state on `bodies[].activate_at_ms`; (ii) three-phase states SPLIT (A5 deleted); (iii) `lane_gap_m = 0` legal; (iv) S6's hold-then-release is the single-body case of the same mechanism; (v) the buy is narrowly scoped — no general choreography DSL.
+> **FOUNDER RULING 4 (2026-08-02 — the escalation's answer; identical contract for both concepts):** the middle path. **BUY the formula-line reveal ONLY (E18, narrowed to one of the escalation's two halves):** `formula_overlay` becomes an ordered list of lines, each with its own optional `at_ms` — same discipline as `activate_at_ms` (pure function of state-local t; absent ⇒ today's single-string behaviour byte-identically; pin/rewind byte-stable; **registered in `deriveStateMeta.ts`'s nlb reveal-candidate list, `:2739–2994`, or THE EYE mis-pins**). **DO NOT BUY per-arrow `show_at_ms`:** S6's three force arrows are static from state entry, and their teaching sequence is carried by `phases[].glow_focal` (`nlbRunPhases`, `:45296–45310` — exists, Rule-29 native). Reasoning as ruled: three visible force arrows from t = 0 is honest physics, not a spoiler; what genuinely prespoils is the final formula line, which IS the answer the state derives. **The 0c-2 buy is therefore TWO timed field classes — `activate_at_ms` (bodies) and per-line `at_ms` (the one formula surface) — and the scope guard is restated at exactly that boundary** (§3). Ruling 3(v) is amended by this ruling and only by it.
+> **Routing correction (carried):** `field3d_nlb_physics_clock_not_state_local` is owned `peter_parker:renderer_primitives` → dispatches the **pcpl-surgeon** agent. E1 must be dispatched on that tag.
+> **Cross-document contract note (P2-2/P2-5):** §3's ACTIVATION SEMANTICS ¶ and FORMULA-LINE REVEAL ¶ are the **single canonical source** for both bought fields across the pair; #11's REV 3 quotes them verbatim. Cross-references to #11's states go by CONTENT with the REV-2 number quoted in parentheses (scar rule: never a bare state number across a renumbering).
+
+## RULING-RESPONSE (RULING 4 + the escalation's six carry-forwards + the sibling's cross-document items → what changed → where)
+
+| # | Item | What changed vs REV 5 | Where |
+|---|---|---|---|
+| R-1 | **RULING 4 buy** — formula-line reveal | New **FORMULA-LINE REVEAL SEMANTICS** ¶ (canonical; sibling imports verbatim): `formula_overlay` as ordered lines `{text, at_ms?}`; absent-list/legacy-string ⇒ byte-identical; `deriveStateMeta` registration mandatory; presence by `typeof`, `at_ms = 0` legal. New union row **U16/E18** | §3 FORMULA-LINE REVEAL ¶; U16/E18; S6 row |
+| R-2 | **RULING 4 refusal** — no per-arrow `show_at_ms` | S6's three arrows are **static from state entry** at the tabled force-channel lengths; the mg sin θ → N → f_s sequence is a **glow-walk** on `phases[].glow_focal` with hand-back (windows 400–800 / 800–1200 / 1200–1600 ms). The REV 5 "arrows draw in sequence 450/900/1350" beat — the escalation's blocking finding — is deleted. One declaring sentence added: the held phase is the derivation's free-body diagram for the ROLLING case (the `a` readout holds 0.00 until release, then matches 2.76) | §3 S6 row; glow table S6 row |
+| R-3 | **RULING 4 fence** — scope guard restated | TWO timed field classes and only two (`activate_at_ms`; per-line formula `at_ms`) — no per-arrow reveal, no per-label reveal, no `phases[].action` revival, no choreography DSL; **a THIRD timed class = the alarm rule** | §3 scope guard; U10; U16; build sheet |
+| R-4 | **RULING 4 timing** — S6 re-derived | Last asserted REVEAL is now the final formula line at **2200 ms** (47.8%); release (activation) 2500 (54.3%); pin 2760 lands **560 ms after the final line and 260 ms after release** ✓; the 300 ms gap between the derived answer and the release that verifies it is the Rule-32a readable beat. Halt 4305, loop 4600, pin = 0.60R exactly — unchanged | §3 timing table S6 |
+| R-5 | **P2-1** — the union dropped items its state table consumes | **(b)-7 `rotation_locked` restored as U14/E19**; **(b)-15 centre markers restored as U15/E20**; a full **(b)-1…(b)-19 → U mapping walk** added, plus a state-primitives→union walk. The walk surfaced a THIRD unrowed item: the **μ_min tick** (named by S7/S8 and REV 3's (b)-5, no REV 5 U-row) — folded into U1, no new E | Build sheet U14/U15 + mapping walk; U1 |
+| R-6 | **P2-2** — two documents, two semantics | Canonical-source declaration added: #11 imports the ACTIVATION SEMANTICS ¶ verbatim; its 1400 ms dissolve is deleted on its side — retirement at the successor's activation is the ONLY phase-boundary rule | Header note; §3 ¶ |
+| R-7 | **P2-3** — S7's clamping friction arrow was untabled | S7's two friction values **added to the arrow-map table**: pre-slip ring f_s = 2.0708 N → 0.621 wu (no clamp); post-slip f_k = 0.4441 N → true 0.133 wu, **renders CLAMPED at the 0.25 floor (1.88× overstated; the drop reads 2.5× instead of 4.7×)** — and **declared honest-by-scope**, grounds stated (the taught contrast is the friction TYPE flip + contact leaving zero, carried by the label flip, skid trail, spin lag and the live latched `f_k 0.44 N` readout — never a length ratio). "No clamp anywhere" re-scoped to S6's drag range + S3 | §3 arrow-map table + declaration |
+| R-8 | **P2-4** — one field, two E numbers | **E7b merged into E10** (one field, one code site `nlbBodyLaneZ` `:39992–40001`, one dispatch number); E7b marked RETIRED | U8; E-numbering note |
+| R-9 | **P2-5** — (b)-19 mis-quoted its own row | Acceptance re-worded to the live DO: *"H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer **or has max channel delta ≤ 3**"*, settled by a pre/post pixel diff (bounding box + max channel delta). The invented "recorded wobble band" phrasing removed everywhere | Build-sheet preamble; SCAR AUDIT |
+| R-10 | **P3-1** — retirement gated on a rendering value | Retirement now fires only in states authoring an explicit **`single_lane: true`** — never inferred from `lane_gap_m === 0`. S3 authors both flags | §3 ACTIVATION ¶; S3 row; U10; U8 |
+| R-11 | **P3-2** — E9's expectation names the whole body | Pre-activation hiding enumerated: mesh, **arrows (separate path, `nlbDriveArrowsForBody`), labels, trail, readout rows** | §3 ACTIVATION ¶; U10 |
+| R-12 | **P3-3** — the `readouts` enum never diffed here | Diffed in THIS document: `:1336` closed union lacks `KE_trans`, `KE_rot`, `contact`, `Rω` and bare `ω`; U4's buy EXTENDS the enum (declaration + reader + validator co-edit) | U4 |
+| R-13 | **Sibling P2-5(i)/(ii)** — stale `#11 S4` references | U10's consumer column and E8's shape note re-referenced by content; **both `#11 S4` force-table rows STRUCK** (#11 draws no force arrows); U7's consumers re-referenced by content | Arrow-map table; U7; U10; E8 |
+| R-14 | **Sibling P2-6 (adopted)** | Every new optional field has a legal falsy value. Added to E9/E10/E11/E18 acceptance: *presence resolved by `typeof x === 'number'` / `in`, never truthiness; the regression pair asserts authored-0 and absent produce DIFFERENT geometry wherever semantics differ, and notes where they coincide by definition* | Build-sheet preamble; E9/E10/E11/E18 |
+
+## AMENDMENT-TO-REV-4 (preserved from REV 5; brackets where REV 6 supersedes)
+
+| # | Item | What changed vs REV 4 | Where |
+|---|---|---|---|
+| A-1 | RULING 3(i) — `activate_at_ms` bought | ACTIVATION SEMANTICS ¶: activation instant, seed-at-activation, default-hidden-before, single-lane retirement, `visible_before_activation` *(REV 6: retirement gated on `single_lane: true` — R-10; whole-body hiding enumerated — R-11; guard restated at the two-class boundary — R-3)* | §3 ¶; U10/E9 |
+| A-2 | S3's dissolve cue did not exist | Phase A = full 0–1500 ms skid; disc ACTIVATES / block RETIRES at 1500 — hard cut; trail clears. Numbers verified (pin 1920 = 420 ms after activation; block never clamps — 1961 > 1500) | §3 S3; timing table |
+| A-3 | RULING 3(iv) — S6's held disc | `activate_at_ms = 2500` + `visible_before_activation: true`; release 2500 → pin 2760 ✓; halt 4305; loop 4600 *(REV 6: the choreography inside the hold is re-authored per RULING 4 — R-1/R-2/R-4; the hold mechanism is unchanged)* | §3 S6; timing table |
+| A-4 | RULING 3(iii) — gap 0 legal | S3 authors gap 0 *(REV 6: + explicit `single_lane: true` — R-10)* | §3 S3; U8 |
+| A-5 | RULING 3(ii) — A5 deleted | E8's shape note: up to TWO sequential activation bodies per state | Build sheet E8 |
+| A-6 | Sibling P1-B — two-channel map | Force + velocity channels, defaults `0.048`/`0.55`; zero-vector marker; FORCE channel (0.30/0.25) verbatim *(REV 6: the two `#11 S4` force rows STRUCK; S7's values tabled + declared — R-7/R-13)* | §3 arrow-map ¶; U7/E11 |
+| A-7 | Sibling P1-D — marks off `checkpoints` | Marks + bracket → own primitive U11/E12 (#11-only) | U4; U11/E12 |
+| A-8 | Sibling P2-4 — wrap re-seeds v only | ω re-seed: per-body wrap (U12/E13) + S8's synchronised restart for ALL bodies (U6/E4) | §3 S8; U6; U12 |
+| A-9 | Sibling P2-7 — matcher registration | E8 enumerates the set; matcher row = E14 (pcpl-surgeon) | E8; E14 |
+| A-10 | Sibling P2-1 — A1 as branch PRIORITY | U1: the rolling branch SUPERSEDES Branch A's kinetic path (`:45497–45499`) while rolling holds; θ = 0 is the TEST case | U1 |
+| A-11 | Sibling P2-3 — close cameras vs the run | Run-midpoint targets + framed extents tabled (S2: 3.0 m; S6/S7: 5.4 m) | §3 framing plan |
+| A-12 | Scar sweep re-run | `eye_h2…` applied to (b)-19 *(REV 6: acceptance corrected to the row's actual DO — R-9)*; `concept_ships_zero_narration_glow_bindings` routed | SCAR AUDIT |
+| A-13 | Housekeeping | HOLD note removed; E-collision resolved *(REV 6: + E18 = RULING 4's formula-line reveal; E19/E20 for restored U14/U15; E7b retired into E10)* | Header; numbering note |
+
+## FIX-CYCLE-2 RESPONSE (preserved so the reviewer can verify the original fix set)
+
+| Finding | What changed | Where |
+|---|---|---|
+| **P1-A(1)** finish semantics | Per-body HALT-AND-LATCH at own CoM crossing; S5 reads sphere `7.0 / 2.8` beside ring `4.9 / 4.9`; the 14.0 J frame impossible by construction | §3; (b)-16 |
+| **P1-A(2)** checkpoints enum diff | Four line-numbered reasons; F9/finish reuses the crossing interpolator, bypasses stamp rendering | §3; (b)-16 |
+| **P1-A(3)** S8 per-body wrap | Synchronised all-body race restart; Rule 37 preserved; DoD (j)(2) achievable | §3 S8; (b)-17 |
+| **P1-A(4)** loop_reset re-derivation | Full timing table against halted geometry, all eight states | §3 timing table |
+| **P1-B / RULING 2** arrow map | `arrow_scale = 0.30`, `min_len = 0.25`; S6 lengths 1.243 / 2.665 / 0.414 all unclamped; θ narrowed 20°–40° *(REV 5: became the FORCE channel; REV 6: S7's clamp tabled + declared — R-7)* | §3 arrow-map ¶ |
+| **P1-C** glow ruling | Per-state channel table; S4/S5 author NO state-level focal; E6 blocking for S4 | §3 glow table; E6 |
+| **P1-D** S2/S3/S6 timing | All three tabled *(REV 5: S3 superseded by A-2; REV 6: S6's arrow/formula sub-beats superseded by RULING 4 — R-2/R-4)* | §3; timing table |
+| **P1-E** back-compat clause | Every field OPTIONAL; absent ⇒ today's behaviour byte-identically; EYE regression pair *(REV 6: criterion re-quoted — R-9; falsy discipline — R-14; `formula_overlay` added to the covered list)* | (b)-19 |
+| **P2-1…P2-4, P3-1, P3-2, #11 A1–A5** | Scar sweep; radius clause; t = 0 worst case; frame-fit bound; no invisible wall; S1 title; the four sibling flags AGREE, A5 DELETED | as tabled at REV 5 |
+
+**Engine bug queue consultation (REV 6):** REV 5's full consultation stands — the escalation report independently re-ran it (eleven-id sweep, same 29 OPEN rows; every renderer citation re-read; **both concepts still return 0 rows — the sibling review's five candidates + three upserts AND the escalation's three candidates + one upsert are still unfiled; the dispatching session files all of them before the 0c-2 dispatch**). REV 6's deltas introduce no mechanism outside RULING 4's named buy. All rolling motions remain tier **[NEEDS-SCENARIO]**.
 
 ## 1. Atomic claim
 
-This concept teaches that a body rolling without slipping down an incline accelerates at a rate set ONLY by the dimensionless shape factor k = I/mR² — so four shapes released together always finish in the fixed order solid sphere, disc, hollow sphere, ring, regardless of mass or radius. It does NOT teach the rolling constraint itself or contact-point kinematics in depth (`pure_rolling`, which precedes it; here one compact recap beat), and it does NOT teach rotational kinetic energy as a topic (`rotational_work_energy`); the energy split appears only as the extended-ring explanation of the race.
+This concept teaches that a body rolling without slipping down an incline accelerates at a rate set ONLY by the dimensionless shape factor k = I/mR² — so four shapes released together always finish in the fixed order solid sphere, disc, hollow sphere, ring, regardless of mass or radius. It does NOT teach the rolling constraint itself or contact-point kinematics in depth (`pure_rolling` #11, which precedes it; here one compact recap beat), and it does NOT teach rotational kinetic energy as a topic; the energy split appears only as the extended-ring explanation of the race.
 
 ## 2. State count + arc
 
@@ -15,88 +70,123 @@ This concept teaches that a body rolling without slipping down an incline accele
 
 | State | Title (Rule 41 — literal, rail-truncation-safe) | Purpose | teaching_method | depth_ring |
 |---|---|---|---|---|
-| STATE_1 | The race: four shapes | Hook — four bodies released together finish in a fixed order, every time | straightforward beat | core |
-| STATE_2 | Rolling links v and ω | Recap: v = Rω on screen — a rim point stops at contact, centre at v, top at 2v | straightforward beat | core |
-| STATE_3 | The friction is static | RM-G7 kill: contact speed 0.00 m/s ⇒ static, not kinetic — SEQUENTIAL contrast with a skidding block | straightforward beat (16a) | core |
+| STATE_1 | **Four shapes, one finish order** | Hook — four bodies released together finish in a fixed order, every time | straightforward beat | core |
+| STATE_2 | Rolling links v and ω | Recap of #11: v = Rω on screen — cycloid cusp + equal readouts, on #11's own wheel radius | straightforward beat | core |
+| STATE_3 | The friction is static | RM-G7 kill: contact speed 0.00 ⇒ static, not kinetic — SEQUENTIAL contrast with a skidding block | straightforward beat (16a) | core |
 | STATE_4 | Mass and radius cancel | Second kill: a heavy large sphere and a light small sphere TIE — only k = I/mR² matters | straightforward beat (16a) | core |
-| STATE_5 | The same energy, split two ways | WHY (AP/IB/NCERT mainstream route): same drop = same total KE; the ring puts more into spinning | straightforward beat | extended |
-| STATE_6 | One formula ranks all four | a = g sin θ/(1 + I/mR²) built from the CoM equations (f R = I_cm α, then F = ma along the slope) | derivation_first_principles | advanced |
-| STATE_7 | Low friction: rolling becomes slipping | Regime switch: μ_s below (k/(1+k))·tan θ → the contact slides, friction flips to kinetic | straightforward beat | advanced |
-| STATE_8 | Try every variable | Sandbox — controls live per `min_ring`, core-ring readouts only | exploration_sliders | explore |
+| STATE_5 | The same energy, split two ways | WHY (AP/IB/NCERT route): same drop = same total KE; the ring puts more into spinning | straightforward beat | extended |
+| STATE_6 | One formula ranks all four | a = g sin θ/(1 + I/mR²) built from the CoM equations | derivation_first_principles | advanced |
+| STATE_7 | Low friction: rolling becomes slipping | Regime switch: μ_s below (k/(1+k))·tan θ → contact slides, friction flips kinetic | straightforward beat | advanced |
+| STATE_8 | Try every variable | Sandbox — controls per `min_ring`, core-ring readouts only; synchronised race restart | exploration_sliders | explore |
 
 The hook MOVES (S1 is the race itself). No `narrative_socratic`, no `wait_for_answer`, no `pause_after_ms`.
 
 ## 3. Per-state choreography + control plan (Rule 31 control table)
 
+**FINISH-LINE SEMANTICS (unchanged):** any state may author a `finish_line` at track coordinate `s_finish`. When a body's **CoM track coordinate crosses `s_finish`** (crossing-interpolated — the FIXED `nlb_checkpoint_capture_overshoots_exact_crossing_value` machinery, `:44240–44262`), that body **HALTS at the line** (position pinned, v → 0, a → 0) **and its compared readouts, chips and labels LATCH at their crossing-instant values** to state end. The halt is a FINISH, not a wall: friction TYPE and every label latch as-at-crossing, never re-derived at rest (`:45584–45590` — S7's ring holds `f_k`). Trails and traces break at the halt and at every reset. **No state ever reaches the track-bound clamp (`:45582–45591`) on screen.** Mechanism = (b)-16/E3.
+
+**ACTIVATION SEMANTICS (RULING 3 — CANONICAL for the pair; U10/E9. REV 6.1, 2026-08-02: any edit here is a PAIRED edit — `pure_rolling` re-imports it in the same session and restates the source revision; "the sibling quotes this verbatim" is a claim to be diffed, never asserted):** a body may author **`activate_at_ms`** (optional; absent ⇒ active from state entry — the (b)-19 default; presence resolved by `typeof`, never truthiness — authored 0 ≡ absent by definition, the documented coincide-by-definition case). Before its activation instant the body is **NOT integrated and entirely absent from the frame: mesh, force arrows (their own draw path, `nlbDriveArrowsForBody`), labels, trail/trace geometry and readout rows are all hidden** (R-11); AT it, the body is seeded at its authored `initial_position_m`/`v₀` (and ω₀ per U1) and integrates on the state-local clock.
+
+> **"NOT integrated" means s and v DO NOT ADVANCE — it does NOT mean the forces are not solved (REV 6.1, P1-A condition 2).** A body that is present-but-held (`visible_before_activation: true`) is still solved by seam B every frame: its arrows and readouts carry the **live statics** values. Skipping the body's seam-B pass renders `b.f` as a stale zero (zero-marker or floor), which is not the authored picture either. The distinction matters because `nlbDriveArrowsForBody` (`:40815+`) reads arrow magnitudes LIVE off the body — *"seam B owns every number here"* — so an authored arrow magnitude is a PREDICTION of what the engine will report, never an instruction to it.
+
+Two derived rules, both on the SAME authored instants — no third timed field:
+- **Single-lane retirement — gated on an explicit `single_lane: true` state flag (R-10), never inferred from `lane_gap_m === 0`:** in a `single_lane: true` state, a body is live from its own `activate_at_ms` (absent ⇒ 0) until the NEXT body's, at which instant it **retires** — hidden, no longer integrated, its trail cleared. A state authoring `lane_gap_m = 0` WITHOUT `single_lane: true` keeps all bodies co-visible. The retirement cut is HARD (the buy has no dissolve animation) — declared, bridged by narration where used (S3, which authors both flags).
+- **Held-visible single body:** a state's ONLY body may author **`visible_before_activation: true`**: it renders at its seed pose with v = 0, a = 0 (arrows, labels and the formula surface live on it) until its activation — Ruling 3(iv)'s release-cue-on-a-held-body, as one boolean on the bought instant (S6).
+
+**FORMULA-LINE REVEAL SEMANTICS (RULING 4 — CANONICAL for the pair; #11 REV 3 quotes this verbatim; U16/E18):** a state's `formula_overlay` may be authored as an **ordered list of lines**, each `{text, at_ms?}`, rendering on the ONE existing formula surface (`:44801`; Rule 34b — still one surface). A line renders from its `at_ms` as a pure function of state-local t (pin/rewind byte-stable); `at_ms` absent on a line ⇒ visible from state entry (authored 0 ≡ absent; presence still resolved by `typeof` so the code path is uniform). Authoring the legacy single string ⇒ today's behaviour **byte-identically** ((b)-19). The checkpoint stamper (`:44374–44389`) appends after the last authored line (fleet-defined; this pair bypasses stamps per U5). **The field MUST be registered in `deriveStateMeta.ts`'s nlb reveal-candidate list (`:2739–2994`) — the last line's `at_ms` joins the max-reveal computation — or THE EYE mis-pins.**
+
+**Scope guard (Ruling 3(v) as amended by RULING 4):** 0c-2's timed surface is exactly **TWO field classes — `bodies[].activate_at_ms` and `formula_overlay[].at_ms` — and nothing else.** No per-arrow `show_at_ms`, no per-label reveal, no `phases[].action` revival, no per-body show/hide timeline, no general choreography DSL. Retirement and `visible_before_activation` are derived semantics on the activation instant. **If the surgeon finds a THIRD timed class needed, that is the alarm rule firing — STOP and re-scope with the survey.**
+
+**ARROW MAP (RULING 2, two channels — binding both concepts; U7/E11):** per-concept-authorable in two independent channels, each defaulting to today's constants (`0.048`/`0.55`, `:39661–39662`; clamp `:40602–40607`; `NLB_ARROW_MAX_LEN = 2.80`, `NLB_ARROW_EPS = 0.05`, `:39663–39665`).
+
+**Force channel — authored here: `force_scale = 0.30` wu/N · `force_min_len = 0.25` wu.** Rendered lengths *(REV 6: the two `#11 S4` rows STRUCK — #11 draws NO force arrows (R-13); S7's two values ADDED (R-7))*:
+
+| State | Arrow | F (N) | Rendered L (wu) | Clamp? |
+|---|---|---|---|---|
+| S6 **HELD** (disc, m = 1 kg, θ = 25°) — statics, 0–2500 ms | f_s = −drive = mg sin θ | **4.1417** | **1.243** | no — **balanced against mg sin θ; ΣF hides natively (F_net = 0, `:40860`)** |
+| S6 (disc, m = 1 kg, θ = 25°) | mg sin θ | 4.1417 | **1.243** | no |
+| S6 | N = mg cos θ | 8.8818 | **2.665** | no (< 2.80, margin 0.135) |
+| S6 **RELEASED** (2500 ms →) | f_s = k·mg sin θ/(1+k) | 1.3806 | **0.414** | no — 1.66× the 0.25 floor; **the friction arrow shrinks 1.243 → 0.414, exactly 3× = (1+k)/k, at the instant `a` jumps 0.00 → 2.76** |
+| S3 | f_k = μ_k·mg cos θ | 1.3323 | 0.400 | no |
+| S3 | f_s (rolling half) | 1.3806 | 0.414 | no |
+| S7 (ring, pre-slip) | f_s = k·mg sin θ/(1+k), k = 1 | 2.0708 | **0.621** | no |
+| S7 (ring, post-slip) | f_k = μ_k·N = 0.05 × 8.8818 | 0.4441 | **renders 0.25 (floor)** — true 0.133 | **CLAMPS — declared** |
+
+True ratios rendered exactly in S6: N : f_s = **6.43 : 1**, mg sin θ : f_s = **3.00 : 1**. **Drag-range honesty:** S6's θ slider is **20°–40°** — across that range no S6 arrow clamps (20°: N = 2.763 ≤ 2.80, f_s = 0.335 > 0.25; 40°: N = 2.252, f_s = 0.630). **S3's near-equal f_k/f_s lengths declared honest** (the forces ARE near-equal; the taught contrast is the friction TYPE). **S7's post-slip clamp declared honest-by-scope (R-7):** at the floor the arrow overstates f_k 1.88×, so the friction DROP reads ~2.5× instead of ~4.7× — accepted, because S7's taught claim is the REGIME switch, not a length ratio: the flip is carried by the label f_s → f_k, the skid trail appearing, the spin visibly lagging, the contact readout leaving 0.00, and the live **`f_k 0.44 N` readout** (latched as-at-crossing), which carries the true magnitude the arrow cannot. Same declaration class as S3's pair. The scar-row closure claim is accordingly scoped: **closed for every COMPARED arrow** (S6's three across its whole drag range; S3's pair); S7's single post-slip arrow clamps, tabled and declared.
+
+**Velocity channel — `velocity_scale`/`velocity_min_len`** (wu per m/s): consumed by #11's point-speed states. **#12 draws NO point-speed velocity arrows anywhere**; the channel VALUES are authored by #11, and if #12 ever adds them it binds to those same values — one chapter value, Rule 32d. **Zero-vector marker (fleet definition):** an exactly-zero vector renders as a **labelled dot + its value** — never a stub, never a floored arrow.
+
 | State | Teaches | Archetype | Distinct motion | Delta cue | Live controls | Words | Ring |
 |---|---|---|---|---|---|---|---|
-| S1 | Shape decides the finish order | `translate-through` | Four visibly different bodies (equal m = 1 kg, R = 0.15 m) roll from a common start line, **released simultaneously** (no stagger), **approaching the camera**; they separate; finish chips light 1-2-3-4, each stamped on the body's CENTRE (CoM coordinate) crossing `s_finish`; loop resets — same order every time. Authored, no teacher input | "Four shapes, one ramp" | none | 40–50 (incl. ≤12-word anchor) | core |
-| S2 | v = Rω in action | `flow-along-path` | ONE disc rolls slowly from the home pose (the loop covers only the first ≈2 m so the cycloid reads); a marked rim point traces its cycloid, pausing at each ground touch; velocity arrows at contact (0), centre (v), top (2v); v and Rω readouts stay equal | "v equals R ω" | none | 30–45 | core |
-| S3 | The contact friction is STATIC | `null-result-hold` | **SEQUENTIAL, never co-present:** the locked block ALONE skids down (μ_k = 0.15) — contact slides, f_k label, skid trail; the block DISSOLVES; only then the rolling disc assembles and descends (μ_s = 0.50) — contact readout holds 0.00 m/s, f_s label, no trail. Cues on the scenario_cue channel; at no instant are both visible | "Contact point speed: zero" | none | 40–55 | core |
-| S4 | Only k matters — mass and radius cancel | `translate-through` — **declared contrast pair with S1** | A large heavy sphere (5 kg, R = 0.30) races a small light one (0.5 kg, R = 0.10), released simultaneously, approaching the camera; their CENTRES stay exactly abreast — **each body carries a centre marker (axle dot + vertical tick), and the tie is judged on the CoM track coordinate** (P1-8): both cross the finish line's centre-height cue in the SAME frame, both chips stamp "TIE". **The small sphere visibly spins 3× faster** (ω = v/R at equal v — per-body radius drives spin, (b)-9), making "equivalent except in size" literally visible. Both k chips read 0.40; μ_s = 0.50. The m₂/R₂ sliders are the Rule-31 extra — a re-drag re-runs and it still ties | "Mass and radius cancel" | m₂, R₂ | 35–50 | core |
-| S5 | WHY: the energy split | `cycle-compare` — **freeze-and-read rhythm, distinct from S1/S4** (P2-3): the payoff frame is a HELD side-by-side comparison at arrival, not a crossing | Solid sphere beside ring, **same 1.00 m drop** (d = 2.366 m at θ = 25°, m = 1 kg, μ_s = 0.50): release → value-only readouts **count up** as they descend, DERIVED live from v and ω (KE_trans = ½mv², KE_rot = ½k·mv² under rolling, zero at release) → at the ring's arrival the scene FREEZES ≈1.5 s with both splits side by side, each pair glowing one at a time: sphere `KE_trans 7.0 J · KE_rot 2.8 J`, ring `4.9 J · 4.9 J`; totals identical (mgh = 9.8 J), splits different; the sphere arrived first with more KE_trans → reset. **NO energy bars — founder decision; SEAM-M readouts only** | "Same energy, different split" | none | 40–55 | extended |
-| S6 | a = g sin θ/(1 + I/mR²) | `reveal-build` | One disc HELD at the home pose (v₀ = 0 + release cue — never the `fixed` flag, which collapses lane derivation, (b)-10); arrows mg sin θ, N, f_s draw in sequence; **CoM derivation route (P2-1)**: the surface builds f·R = I_cm·α (the f_s arrow's torque spins the disc) → with α = a/R, f = k·m·a → mg sin θ − f = ma → a = g sin θ/(1+k) — **the drawn f_s arrow is CONSUMED by the derivation, and the route needs no parallel-axis theorem**; then the disc releases and the live a readout matches. The θ slider is the contextual extra | "One formula ranks all" | θ | 45–55 | advanced |
-| S7 | The slipping condition | `regime-switch` (coined — restated as a RHYTHM claim, P3-1: nothing → nothing → sudden discontinuity at a threshold. Nearest neighbour it is NOT: `ramp-response` (8 corpus uses), whose beat is PROPORTIONAL tracking of a ramped cause) | Ring rolls at μ_s = 0.50 (μ_k = 0.05); an **AUTHORED `param_ramp`** (`:42295`) drives μ_s **0.50 → 0.05 over 600–1600 ms** — re-derived for the true 6 m plank (P1-3): the old 1000–5000 ms ramp put slip onset AFTER the ring left the track. Slider thumb + label move in lockstep; authored μ_s = `param_ramp.from` = 0.50. The μ_min tick sits on the μ_s row; when the ramp crosses μ_min = 0.233 (**≈1193 ms**, at s ≈ +0.93 after 1.474 m of rolling), the contact readout jumps off zero, the label flips f_s → f_k, a skid trail starts, spin visibly lags; the ring skids the remaining 3.026 m (a = g(sin θ − μ_k cos θ) = 3.698 m/s²), reaching the finish at **≈1968 ms**, then holds the slip picture until reset | "Too little friction: slipping" | μ_s | 35–50 | advanced |
-| S8 | Everything, teacher-driven | `drag-sandbox` | Teacher drives the ring-gated set; race re-runs live; finish chips, per-body compact readout rows, contact-speed live. Core-ring content only (38b): v = Rω + k chips; no formula, no KE split. **The μ_min tick is NOT explore content — it is part of the μ_s slider ROW and appears/vanishes with that row per its `min_ring`** (P1-6) | "All controls live" | see min_ring table | 0 / open | explore |
+| S1 | Shape decides the finish order | `translate-through` | Four visibly different bodies (equal m = 1 kg, R = 0.15 m; rotation markers per A3) roll from a common start line, released simultaneously, approaching the camera; they separate; **each body HALTS AT the finish line as its CoM crosses `s_finish = −2.1`** (crossings 1744 / 1805 / 1903 / 2085 ms) and its chip stamps 1-2-3-4 at the crossing; by 2085 ms the frame is a finish-line LINEUP; loop resets, same order every time | "Four shapes, one ramp" | none | 40–50 (incl. ≤12-word anchor) | core |
+| S2 | v = Rω in action (recap of #11) | `flow-along-path` | ONE recap disc at **R = 0.25 m — #11's own wheel radius** (`nlb_disc_recap`); released from rest, rolls 2.0 m (+2.4 → +0.4) in 1204 ms (1.27 revolutions — one full arch); the marked rim dot's trace comes to a **cusp** at the ground touch (754 ms) while `contact 0.00 m/s` holds; **halt-latches at s = +0.4** with v and Rω equal (3.32 = 3.32). No point-speed arrows | "v equals R ω" | none | 30–45 | core |
+| S3 | The contact friction is STATIC | `null-result-hold` | **SEQUENTIAL on the activation mechanism; authors `single_lane: true` + `lane_gap_m = 0`** (both bodies z = 0; the default 0.85 gap would split them 1.7 m across the track): 0–1500 ms the locked block ALONE skids (active from entry; `rotation_locked` — U14; μ_k = 0.15, a = 2.809 m/s², 3.16 m of visible skid +2.4 → −0.76) — contact slides, f_k label + arrow (0.400 wu), skid trail, contact readout ≠ 0; **at 1500 ms the disc ACTIVATES (`activate_at_ms = 1500`, seeded s₀ = +2.4, v₀ = 0) and the block RETIRES** (single-lane rule — hard cut, declared; narration bridges it; the block's trail clears with it); the disc descends rolling (μ_s = 0.50) — `contact 0.00`, f_s label + arrow, no trail; loop ends with the disc mid-track at s = −1.59 (1.41 m clear). The block never reaches the bound (clamp would be 1961 ms > its 1500 ms retirement) | "Contact point speed: zero" | none | 40–55 | core |
+| S4 | Only k matters — mass and radius cancel | `translate-through` — declared contrast pair with S1 | A large heavy sphere (5 kg, R = 0.30) races a small light one (0.5 kg, R = 0.10), released simultaneously, approaching the camera; centres stay exactly abreast (**centre markers — U15**, the CoM tie metric); **both halt at the line in the SAME frame (1745 ms) and both chips stamp "TIE" at the crossing**; the small sphere visibly spins 3× faster; both k chips read 0.40; m₂/R₂ re-drag re-runs and it still ties | "Mass and radius cancel" | m₂, R₂ | 35–50 | core |
+| S5 | WHY: the energy split | `cycle-compare` — count-up, arrive, HOLD | Solid sphere beside ring, same 1.00 m drop (d = 2.366 m): release → value-only readouts count up, DERIVED live (KE_trans = ½mv², KE_rot = ½k·mv²) → **the sphere halt-latches at ITS crossing (1265 ms): `KE_trans 7.0 J · KE_rot 2.8 J`; the ring at 1512 ms: `4.9 J · 4.9 J`** → from 1512 ms the held side-by-side: both at the line, totals identical (mgh = 9.8 J), splits different, sphere's chip first. NO energy bars — SEAM-M readouts only | "Same energy, different split" | none | 40–55 | extended |
+| S6 | a = g sin θ/(1 + I/mR²) | `reveal-build` | **Disc visible AND held at home from t = 0: `activate_at_ms = 2500` + `visible_before_activation: true`** (s and v do not advance; **seam B still solves it every frame** — ACTIVATION SEMANTICS ¶). **All three force arrows render STATIC from state entry** (RULING 4 — never timer-revealed) and carry the **LIVE STATICS values, not the post-release ones (P1-A)**: the held disc passes the static test (drive 4.1417 ≤ μ_sN), so seam B reports `f = −drive` = **4.1417 N** — friction drawn **equal and opposite to mg sin θ**, ΣF hidden natively (F_net = 0), `a` reading **0.00** honestly. **This is a correct balanced statics picture, not a diagram of a case the body is not in** — the REV 6 "derivation's diagram" declaration is RETIRED, because `nlbDriveArrowsForBody` reads magnitudes live and can never render 1.3806 N on a body at rest. **`mu_s = 0.90` authored on this disc (P1-A condition 1)**: the hold requires tan θ ≤ μ_s, i.e. θ ≤ 26.57° at μ_s = 0.50 — inside the 20°–40° slider the body would leave equilibrium and fall to the kinetic branch. μ_s = 0.90 ≥ tan 40° = 0.839 holds it across the whole range, and changes NO post-release number (rolling needs only μ_s ≥ μ_min = 0.2797 at 40°, and the rolling branch f_s = k·m·a is μ_s-independent). The teaching sequence is a **glow-walk on `phases[].glow_focal`**: mg sin θ 400–800 ms, N 800–1200, f_s 1200–1600, hand-back. The formula surface then **builds line by line on per-line `at_ms` (U16/E18)**: `f·R = I_cm·α` at **1600**, `f = k·m·a` at **1900**, `a = g sin θ/(1+k)` at **2200** — the final line IS the answer and the last reveal; **activation = release at 2500 ms** (a 300 ms readable beat: the formula predicts, the release verifies). **At release the friction arrow shrinks 1.243 → 0.414 wu — exactly 3× = (1+k)/k for a disc, the coefficient the derivation produced two lines earlier — while `a` jumps 0.00 → 2.76.** The formula's own factor is acted out on screen. **Finish halt at 4305 ms.** θ slider **20°–40°** | "One formula ranks all" | θ (20°–40°) | 45–55 | advanced |
+| S7 | The slipping condition | `regime-switch` | Ring rolls at μ_s = 0.50; authored `param_ramp` 0.50 → 0.05 over 600–1600 ms; crosses μ_min = 0.233 at ≈1193 ms (s ≈ +0.93) → contact jumps off zero, label flips f_s → f_k, skid trail, spin lags; skids 3.026 m at 3.698 m/s²; **halt-latches at the finish (≈1968 ms) holding the slip picture — `f_k 0.44 N` LATCHED as-at-crossing** (the readout carries the true magnitude; the arrow sits at the declared floor). μ_min tick rides the μ_s row (U1) | "Too little friction: slipping" | μ_s | 35–50 | advanced |
+| S8 | Everything, teacher-driven | `drag-sandbox` | Teacher drives the ring-gated set; the four-body race re-runs live under a **SYNCHRONISED restart (U6/E4): lap ends at the LAST body's crossing; after a short hold ALL bodies re-anchor together — position, `_dsp0`/seeds, v₀ and ω re-seeded to authored ω₀ = v₀/R for every body — and chips re-stamp** (the per-body wrap `:45569–45577` re-seeds `v1 = b.v0` only and desynchronises; replaced for race states). Rule 37: the clock free-runs. Trails/traces break at each restart. Core-ring content only: v = Rω, contact, k chips, centre markers, finish chips | "All controls live" | see min_ring table | 0 / open | explore |
 
-**S8 explore controls with `min_ring`:**
+**S8 explore controls with `min_ring`:** shape (core, S1/S4) · m (core, S4) · R (core, S4) · θ **20°–40°** (advanced, S6) · μ_s 0.05–1.00 with the μ_min tick riding the row (advanced, S7). *Hide advanced* → shape + m + R ✓. *Hide advanced+extended* → same ✓.
 
-| Control | `min_ring` | Guided state that teaches it |
+**Slip envelope (unchanged):** μ_min = (k/(1+k))·tan θ. At 25°: 0.133 / 0.155 / 0.187 / 0.233 — authored μ_s = 0.50 clears every shape in every guided state. Full-product maximum: ring at 40° = **0.420** > the 0.05 floor — slip reachable in the full-preset sandbox by design. Reduced presets: worst case 0.233 < 0.50 — provably slip-free.
+
+**Per-state glow plan (channel named per state; Rule 32e caps at one, it does not require one):**
+
+| State | Channel | Emphasis |
 |---|---|---|
-| shape (per lane) | core | S1, S4 |
-| m (selected body) | core | S4 |
-| R (selected body) | core | S4 |
-| θ (10°–40°) | **advanced** | S6 |
-| μ_s (0.05–1.00, with its μ_min tick riding the row) | **advanced** | S7 |
+| S1 | `phases[].glow_focal` (`nlbRunPhases`, `:45296–45310`) | each finish chip glows in a window at its body's crossing, hand-back after |
+| S2 | state-level | the rim dot |
+| S3 | `phases[]` | phase A (0–1500): the f_k readout · phase B (1500→): the contact readout — windows aligned to the activation boundary |
+| S4 | **NO state-level `glow_focal`** — a relation between two k chips | `phases[]`: chip A → chip B → hand-back (both full-bright for the tie run + TIE stamp; mass labels DIMMED as emphasis peers — **precondition E6**) |
+| S5 | **NO state-level `glow_focal`** — a relation between two KE pairs | `phases[]` during the hold: sphere pair → ring pair → hand-back (both pairs full-bright at the 2700 pin) |
+| S6 | `phases[]` | *(REV 6)* the glow-WALK over the three STATIC arrows (mg sin θ 400–800, N 800–1200, f_s 1200–1600) → each formula line in its window as it lands (1600–1900, 1900–2200, 2200–2500) → the a readout at release (2500→), hand-back. One focal at every instant ✓ |
+| S7 | state-level | the friction label (one id; flips f_s → f_k at onset) |
+| S8 | none | sandbox |
 
-*Hide advanced* → shape + m + R (exactly the surviving core lesson) ✓. *Hide advanced+extended* → same set ✓. No control survives whose lesson is hidden.
+**Multi-body framing plan (unchanged; one flag renamed):** ψ = 35°, elevation 22°; races approach the camera; t = 0 is the far end and worst case. S1 clearance ≈ 66 px, S4 ≈ 109 px at s ≈ 187 px/m. Acceptance = bbox disjointness under the projection probe at t = 0 and every 100 ms sample, gated by (b)-12. Frame-fit: 6 sin ψ a conservative upper bound. Lanes: S1 `lane_gap_m` = 0.8, speed-ordered; S4/S5 = 1.2; **S3 `single_lane: true` + `lane_gap_m = 0`**; S2/S6/S7 single body. Close-camera table:
 
-**Slip envelope over the FULL slider product (P1-6 — the generalisable half of the envelope scar, now computed):** rolling requires μ_s ≥ (k/(1+k))·tan θ. At θ = 25°: sphere 0.133 · disc 0.155 · hollow 0.187 · ring 0.233 — the fleet-wide authored **μ_s = 0.50 clears every shape in every guided state**. Over S8's full ranges the envelope maximum is the ring at 40°: μ_min = **0.420 > the 0.05 slider floor — slip IS reachable in the full-preset sandbox, by design**: (b)-5 implements honest slip physics, and the μ_min tick (recomputed live from the selected shape's k and current θ) **rides the μ_s slider row itself**, so wherever the row is exposed the cue is exposed with it. Under reduced presets the surviving controls (shape/m/R at fixed θ = 25°, μ_s = 0.50) give a worst case of 0.233 < 0.50 — **no reduced preset can reach slip**, so the sandbox never contradicts the core claim with its cue suppressed. This replaces REV 2's blanket "no μ_min in S8".
+| State | Run (track s) | Static target | Framed along-track extent |
+|---|---|---|---|
+| S2 | +2.4 → +0.4 (2.0 m) | contact at **s = +1.4** | **3.0 m** ([−0.1, +2.9]) |
+| S6 | +2.4 → −2.1 (4.5 m) | contact at **s = +0.15** | **5.4 m** ([−2.55, +2.85]) — smallest arrow f_s 0.414 wu ≈ 149 px at ~180 px/m ✓ |
+| S7 | +2.4 → −2.1 (4.5 m) | contact at **s = +0.15** | **5.4 m** — same frame as S6 (Rule 32d continuity) |
 
-**Multi-body framing plan (REV 3 rewrite per P1-1/P1-2/P1-5).** Track along world x; lanes along world z (`nlbBodyLaneZ`, `:39998–40001` — today index × the hard constant `NLB_LANE_GAP = 0.85` wu, auto-centred, returns 0 if any body is `fixed`; authorable lane geometry is (b)-10). The camera is `PerspectiveCamera(60,…)` (`:3341`) — the argument below is perspective-aware and the PROOF is the probe, not the geometry:
+Acceptance: projection probe (in frame at t = 0 and every 100 ms to halt) **plus** body-mesh rects ∩ `nlbPanelRects()` = ∅ under every authored camera.
 
-- **Yaw convention (P1-1, explicit):** ψ ≡ the angle between the horizontal projection of the camera view axis and the track axis (world x). Authored: **ψ = 35°, elevation 22°** (cos ψ = 0.819, sin ψ = 0.574). A lane offset Δz projects to screen-x as **Δz × s × cos ψ** (s = px/m at that depth); a body's screen diameter carries **no** foreshortening; along-track Δx projects as Δx × s × sin ψ and into depth as Δx × cos ψ.
-- **Approach direction (P1-2):** +s is UP-slope (`:45093–45096`), so the race runs toward −s. The camera sits on the **down-slope side of the finish**, so bodies **approach** through the whole run: per-body scale and the lane term both GROW as the race proceeds — perspective *aids* the speed-ordered-lane monotonicity argument instead of undermining it. That argument is now the design heuristic; **the proof is the 100 ms-sampled projection probe.**
-- **S1 (4 bodies):** authored `lane_gap_m` = 0.8 (z = −1.2, −0.4, +0.4, +1.2), lanes ASSIGNED speed-ordered in the drift direction. Design estimates at a mid-run reference s ≈ 220 px/m (fitting the 6 m run × sin 35° ≈ 757 px plus the 2.4 m lane span × cos 35° ≈ 432 px inside ≈1200 px of a 1280 px canvas): adjacent separation ≈ 0.8 × 220 × 0.819 ≈ **144 px**; body diameter ≈ **66 px**; clearance ≈ 78 px. **These are design estimates, NOT the acceptance criterion — the criterion is disjointness under the projection probe.** **No release stagger** (a stagger would falsify the narrated "released together").
-- **S4 (2 bodies, the dead heat):** `lane_gap_m` = 1.2. Separation ≈ **216 px**; projected half-width sum ≈ 88 px; clearance ≈ 128 px. Both bodies hold identical track positions at every t, so their screen separation is the constant lane projection for the entire descent. **Lane offset + camera angle, no time stagger.**
-- **S5 (2 bodies):** `lane_gap_m` = 1.2, same treatment; the speed-ordered rule + approach direction keep the gap monotone.
-- **S3:** two bodies but SEQUENTIAL — multi-body probe N/A per instant; single-body centre-lane framing.
-- **S8:** inherits S1's four-lane camera. **S2/S6/S7:** single body, centre lane; camera closes on the contact point (position + target per state — target authoring is (b)-13).
-- **Occlusion gate:** the probe that would catch a framing failure does not exist yet — (b)-12 (`PM_NLB_LANE_OCCLUSION` → `manifest.warnings`) is a **precondition for signing off this plan**.
+**Home pose + track geometry (unchanged):** `surface.length_m = 3.0` (half-length) → 6.0 m plank, s ∈ [−3.0, +3.0]; θ default 25°; `initial_position_m = +2.4` every state; `s_finish = −2.1` (S1/S4/S6/S7/S8), `+0.034` (S5), `+0.4` (S2); all crossings on the CoM track coordinate.
 
-**Home pose + track geometry (P1-3 — corrected against BOTH declaration and reader, lines quoted):** `length_m` is a **half-length** — declaration `// visible half-length, default 6` (`:941`); readers `halfWorld = lenM * NLB_WORLD_PER_M; slab.scale.set(halfWorld*2,…)` (`:40060–40067`) and `span = (eng.length_m||0)*2` (`:44176`). And **+s is UP-slope** — `nlbGravAlong` returns `−b.m·NLB_G·sin θ` (`:45093–45096`), so released bodies move toward decreasing s. Therefore **`surface.length_m = 3.0`** — ONE value concept-wide (Rule 32d + the `field3d_release_widens_ground_plane_per_state…` row) — rendering a **6.0 m plank spanning s ∈ [−3.0, +3.0]**; θ default 25°. Home pose every state: **`initial_position_m = +2.4`** (0.6 m inset from the +3.0 bound — ≥ 2× the largest body half-width R = 0.30). Finish lines as arithmetic on the home pose, running DOWN-slope: `s_finish = initial_position_m − 4.5 = −2.1` (S1/S4/S7 — 0.9 m inset from −3.0), `s_finish = initial_position_m − 2.366 = +0.034` (S5). All crossings judged on the **CoM track coordinate** (P1-8).
+**Loop-reset / frozen-pin timing (g sin θ = 4.1417; a = 2.958 / 2.761 / 2.485 / 2.071; json_author re-verifies at h = 1/60; CONDITIONAL on the state-local clock, U9/E1):**
 
-**Loop-reset / frozen-pin timing (RE-DERIVED after the P1-3 fix; θ = 25°, g sin θ = 4.142; a = 2.958/2.761/2.485/2.071 for sphere/disc/hollow/ring; json_author re-verifies at h = 1/60).** S1/S4/S5 event times **re-verified unchanged** — they depend only on run distance d and a, neither touched by the coordinate fix (the finish COORDINATES changed, the displacements did not). S7 is **fully re-derived**: on the true 6 m plank the old ramp's slip onset (3372 ms) fell AFTER the ring's rolling exit (2085 ms) — **the old state was unrenderable.** New: ramp 600–1600 ms crosses μ_min = 0.23315 at t = 600 + 1000×(0.26685/0.45) ≈ **1193 ms**; rolling distance ½·2.071·1.193² = 1.474 m (s ≈ +0.93), v = 2.471 m/s; post-slip a = 9.8(sin 25° − 0.05 cos 25°) = 3.698 m/s²; remaining 3.026 m in 0.775 s → **arrival ≈ 1968 ms**, skid drawn ≈775 ms. **The timing table is valid ONLY on a state-local physics clock — (b)-11 is its precondition.**
+| State | R (ms) | Sub-beats / last asserted event | Event time (% R) | Pin 0.60R | What the pin photographs · margin |
+|---|---|---|---|---|---|
+| S1 | 4000 | crossings + chip stamps 1744 / 1805 / 1903 / 2085; all four HALTED from 2085 | 2085 (52.1%) ✓ | 2400 | the finished race: four bodies AT the line, chips 1-2-3-4 · 315 ms ✓ |
+| S2 | 3000 | cusp 754; halt-latch at s = +0.4 at 1204 (v = Rω = 3.32 latched) | 1204 (40.1%) ✓ | 1800 | full one-arch cycloid + cusp + equal latched readouts · 596 ms ✓ |
+| S3 | 3200 | A: block skids alone 0–1500 (+2.4 → −0.76, never clamps) · disc ACTIVATES / block RETIRES at 1500 | 1500 (46.9%) ✓ | 1920 | the ROLLING half — disc at s = +2.156, `contact 0.00` + f_s, no block, no trail · 420 ms after activation ✓; loop ends disc at s = −1.59, 1.41 m clear |
+| S4 | 3500 | tie crossing + double-TIE stamp + halt 1745 | 1745 (49.9%) ✓ | 2100 | both bodies halted abreast at the line, TIE chips · 355 ms ✓ |
+| S5 | 4500 | sphere halt-latch 1265 (7.0/2.8); ring 1512 (4.9/4.9); held from 1512 | 1512 (33.6%) ✓ | 2700 | the held split: 7.0/2.8 beside 4.9/4.9, both at the line · 1188 ms ✓ |
+| S6 | 4600 | *(REV 6 — R-4)* arrows static from entry (no reveal); glow-walk 400–1600; **formula lines land 1600 / 1900 / 2200 (E18) — the final line at 2200 is the LAST ASSERTED REVEAL (47.8%)**; activation (release) 2500 (54.3%) — 300 ms readable beat after the answer; finish halt 4305 | 2500 (54.3%) ✓ | 2760 | the released disc rolling at s = +2.307, ALL THREE formula lines + all three arrows + a readout 2.76 · **560 ms after the final line, 260 ms after release ✓** |
+| S7 | 4000 | slip onset 1193 (29.8%); halt-latch at finish 1968, f_k latched | 1968 (49.2%) ✓ | 2400 | the held slip picture · 432 ms ✓ |
+| S8 | — | free-run sandbox; synchronised restart each lap incl. the all-body ω re-seed (Rule 37) | — | — | — |
 
-| State | R (ms) | Last asserted event | Event time | < 55% R? | Pin 0.60R | Margin |
-|---|---|---|---|---|---|---|
-| S1 | 6000 | ring crosses finish (d = 4.5) | ≈ 2085 (34.8%) | ✓ | 3600 | ≈ 1515 ms ✓ |
-| S4 | 5000 | tie crossing (d = 4.5, a = 2.958) | ≈ 1745 (34.9%) | ✓ | 3000 | ≈ 1255 ms ✓ |
-| S5 | 4500 | ring arrives → freeze-and-read hold begins (d = 2.366) | ≈ 1512 (33.6%) | ✓ | 2700 | ≈ 1188 ms ✓ (pin photographs the held split) |
-| S7 | 4000 | slip onset ≈ 1193 (29.8%); arrival + hold ≈ 1968 (49.2%) | both < 55% | ✓ | 2400 | ≈ 432 ms past arrival ✓ (pin photographs the held slip picture) |
-
-**Rule 32 legibility:** cause before effect everywhere (S1/S4 release → separation; S6 θ slider → arrows re-resolve → a updates after a beat; S7 ramp falls → μ_min tick crossed → THEN slip). Only the taught variable moves per state. Same apparatus persists from the home pose across all 8 states — bodies swap by show/hide of a union-built set with **distinct body ids per role** (the S3 block is `nlb_block`, never a reused disc id; any build-time-consumed flag such as `rotation_locked` is constant per id). Exactly ONE glow focal per instant (S2 rim point · S3 contact readout · S4 k chips · S5 the compared KE pair, one body at a time during the hold · S6 the formula term · S7 the friction label) — every target names a primitive the state builds.
+**Rule 32 legibility:** unchanged, plus: S6's line-by-line build is cause-first by construction — each formula line lands only after its glow-walked arrow evidence, and the final line precedes the release that verifies it by a readable 300 ms beat (32a). S3's activation cut remains the one declared exception to within-state visual continuity (the 16a phase boundary itself; the disc appears AT the home pose).
 
 ## 4. Misconception confrontation plan (Rule 16a — 2 genuine pivots)
 
 | Wrong belief | Source | At | `misconception_watch` beat |
 |---|---|---|---|
-| "Rolling friction is kinetic friction" | RM-G7 | STATE_3 | `belief`: the contact scrubs like a sliding block. `visual_counter`: the skidding locked block (f_k + skid trail) shown FIRST and ALONE, dissolving before the rolling disc assembles — wrong expectation, then real physics, back-to-back in motion. `one_line_fix`: the contact point is instantaneously at rest, so the friction is static; kinetic appears only when the body slips (S7 closes the loop). **Named primitives:** `rotation_locked` flag + skid-trail primitive + f_k label — all in the build sheet |
-| "The heavier (or bigger) body wins" | PER + catalog | STATE_4 | `belief`: 5 kg beats 0.5 kg downhill. `visual_counter`: both centre markers stay exactly abreast for the full descent — a dead tie stamped "TIE", re-runnable at any m₂/R₂. `one_line_fix` (**ring-safe, P2-2 — no formula in a core state**): "doubling the mass doubles both the pull down the slope and the resistance to speeding up, so the motion is unchanged — only the shape factor k survives." (The formula appears first in S6, advanced.) |
+| "Rolling friction is kinetic friction" | RM-G7 | STATE_3 | `belief`: the contact scrubs like a sliding block. `visual_counter`: the skidding locked block (f_k + trail) FIRST and ALONE for the full first phase, retiring at the instant the rolling disc activates at the same home pose. `one_line_fix`: the contact point is instantaneously at rest, so the friction is static; kinetic appears only when the body slips (S7 closes the loop). Named primitives: `rotation_locked` (U14) + skid trail + f_k label/arrow + the activation boundary |
+| "The heavier (or bigger) body wins" | PER + catalog | STATE_4 | `belief`: 5 kg beats 0.5 kg downhill. `visual_counter`: centre markers (U15) exactly abreast for the full descent — a dead tie, double-stamped "TIE", re-runnable at any m₂/R₂. `one_line_fix`: "doubling the mass doubles both the pull down the slope and the resistance to speeding up, and making the body bigger raises the turning push and the turning resistance by the same amount — so mass and radius both drop out, and only the shape factor k survives." (The formula appears first in S6, advanced.) |
 
 No other state carries a `misconception_watch`. EPIC-C branches: ZERO.
 
 ## 5. `has_prebuilt_deep_dive` states
 
-- **STATE_4** — the PRIMARY aha and the stickiest point ("surely mass matters" survives one viewing).
-- **STATE_6** — the derivation; also the right home for the ALTERNATIVE contact-point route, which uses the parallel-axis theorem the main state now avoids.
-
-All others un-flagged (Rule 18).
+**STATE_4** — the PRIMARY aha and the stickiest point. **STATE_6** — the derivation; home of the ALTERNATIVE contact-point route. All others un-flagged (Rule 18).
 
 ## 6. Drill-down clusters
 
-**STATE_4:** `why_mass_cancels` · `shape_factor_table` · `same_shape_always_ties`.
-**STATE_6:** `torque_about_contact_point` (the alternative route; needs I_contact = (1+k)mR² — parallel-axis introduced HERE, in the deep-dive, not the main state) · `why_one_plus_k` · `rolling_vs_frictionless_slider`.
+**STATE_4:** `why_mass_cancels` · `shape_factor_table` · `same_shape_always_ties`. **STATE_6:** `torque_about_contact_point` · `why_one_plus_k` · `rolling_vs_frictionless_slider`.
 
 ## 7. `entry_state_map`
 
@@ -110,230 +200,108 @@ Default `foundational`. Cross-slice pill: "See WHY the sphere wins? (energy)" �
 
 ## 8. Prerequisites (advisory, Rule 23)
 
-`pure_rolling` (#11, same 0c-2 build — S2 is its compact recap) · `moment_of_inertia` (#6 — S4's cliff) · `tau_eq_i_alpha` (#7 — S6's cliff; f·R = I_cm·α is its rotational-second-law form, and **the parallel-axis theorem is NOT needed on the main path**, P2-1) · `friction_force` (SHIPPED, same scenario — static/kinetic vocabulary for S3/S7) · `rotational_work_energy` (#8 — advisory only for S5).
+`pure_rolling` (#11 — S2 is its compact recap at its own wheel radius) · `moment_of_inertia` (#6 — S4's cliff) · `tau_eq_i_alpha` (#7 — S6's cliff) · `friction_force` (SHIPPED, same scenario) · `rotational_work_energy` (#8 — advisory for S5). Namespace check: no collision.
 
-Namespace check: `rolling_on_incline` collides with no rostered physics or chemistry id.
+## 9. Real-world anchor (Rule 35 / 38f — unchanged, verified clean)
 
-## 9. Real-world anchor (Rule 35 / 38f — universal, culture-neutral)
-
-**Primary (assigned to STATE_1, ≤ 12 words inside its 40–50 budget):** the closing sentence of S1's narration — *"Try it at home: a food can beats a roll of tape."* A can and a ring-shaped tape roll on a tilted board reproduce the race in any kitchen or classroom on Earth; physics-true at every depth (the tape roll genuinely has k ≈ 1); no brand, place, or culture. Placement pre-spoils nothing: S1's visual already shows the outcome. **Secondary (available to physics_author for S8's opening caption only):** a bicycle wheel on a sloped path — the widest-syllabus-overlap rolling device (38f). Why it hooks: checkable at home in thirty seconds, and it contradicts the "heavier wins" instinct immediately — the hook and the misconception kill are the same object. (The catalog's 12 anchors are ALL India-specific — none imported.)
-
-**DC Pandey check:** chapter table of contents only. No teaching sequence, example, figure or phrasing imported. NCERT: rolling motion is §7.14 (taught via the energy route — which is why the energy explanation is ringed extended, not dropped).
+**Primary (STATE_1, ≤12 words):** *"Try it at home: a food can beats a roll of tape."* **Secondary (S8 opening caption option):** a bicycle wheel on a sloped path — the SAME device as #11's primary anchor, deliberate cross-concept continuity. **DC Pandey check:** chapter table of contents only. NCERT §7.14 noted.
 
 ## 10. Definition of Done (Gate 0 — no TBDs)
 
-**(a) States:** the 8 of §2, exactly as tabled in §3, including the framing plan, corrected home-pose geometry, and re-derived timing table.
+**(a) States:** the 8 of §2, exactly as tabled in §3 — including the finish semantics, the activation semantics, the formula-line reveal semantics, the two-channel arrow map, the glow channel table, the close-camera table, and the eight-state timing table.
 
-**(b) Symbol-label table:**
+**(b) Symbol-label table:** as REV 3, with: **Finish chips** — stamped crossing-interpolated at the body's own CoM crossing; chip and readouts latch. **Rotation markers (A3):** contrasting meridian stripe (spheres), radial face-stripe (disc), one contrasting arc segment (ring) — geometry, not emphasis. **Centre markers (U15):** axle dot + vertical tick per raced body; finish-line centre-height cue. **Energy readouts (S5):** count up live, LATCH at the body's own crossing. **S6 formula surface:** now THREE authored lines on the one surface (E18); the 340 px pixel check runs at the LONGEST line. All Unicode across all three text paths (Rule 34c).
 
-| Quantity | On-canvas label |
-|---|---|
-| Incline angle | θ ("Incline θ") |
-| Body velocity (CoM) | v |
-| Angular velocity | ω |
-| Radius (authored per body, (b)-9) | R (and R₂ on S4's row) |
-| Rolling constraint readout | v = Rω (`v 2.40 m/s · Rω 2.40 m/s`) |
-| Contact-point speed | `contact 0.00 m/s` (metric: \|v − ωR\|) |
-| Shape factor chip | k = I/mR² → `k 0.40` `k 0.50` `k 0.67` `k 1.00` |
-| Centre marker (P1-8) | axle dot + short vertical tick per raced body; finish line carries a centre-height cue |
-| Weight component | mg sin θ · Normal force N · friction f_s / f_k |
-| Acceleration readout | a (m/s²) |
-| Formula surface (S6 only) | builds f·R = I_cm·α → f = k·m·a → a = g sin θ/(1 + I/mR²) — on `#nlb_formula` (Cambria Math, `:41746`), never the generic overlay; **verified in pixels at the LONGEST line against the 340 px max-width** ((b)-14) |
-| Slip threshold | μ_min tick on the μ_s row, recomputed live from shape k and θ |
-| Energy readouts (S5 only) | `KE_trans 7.0 J · KE_rot 2.8 J` (value-only, DERIVED; they **count up** — never fill, no bar) |
-| Masses | m₁, m₂ · Friction slider μ_s |
-| Finish chips | `1` `2` `3` `4` and `TIE` — stamped on CoM crossing |
+**(b′) Term-introduction ledger:** unchanged from REV 3. Re-read against the REV 6 S6: the three formula lines introduce I_cm, α, k in the derivation state itself — already the ledger's placement; no change.
 
-All Unicode across all three text paths (Rule 34c).
+**(c) RHR plan:** N/A — declared deliberately.
 
-**(b′) Term-introduction ledger:**
+**(d) Motion plan:** per §3; nothing static, nothing asserted-but-unrendered. Spin driven by position through the body's OWN `radius_m`; halts are finishes with latched labels; holds and phase boundaries run on `activate_at_ms` — a held body is genuinely un-integrated, never a narrated fiction; retirement is the `single_lane: true` rule, never a nonexistent dissolve cue; **S6's arrows are static from entry and glow-walked (never a nonexistent arrow-reveal); its formula builds on the bought per-line `at_ms` (E18), and the final line is the last reveal before the release**.
 
-| Symbol/term | DEFINED in | First USED in | ✓ |
-|---|---|---|---|
-| finish chips, centre markers | S1 | S1 | ✓ |
-| v, ω, R, v = Rω | S2 | S2 | ✓ |
-| contact-speed readout | S2 | S2 (re-used S3/S7) | ✓ |
-| f_k, f_s, skid trail | S3 (S1 narration stays friction-neutral) | S3 | ✓ |
-| k chip | S4 | S4 (re-used S6/S8) | ✓ — **k chips MUST NOT render in S1–S3** |
-| KE_trans, KE_rot | S5 | S5 | ✓ |
-| mg sin θ, N, a, the formula | S6 | S6 | ✓ |
-| μ_s, μ_min tick, TIE chip | S7 / S7 / S4 | S7 / S7 + S8-full-preset / S4 | ✓ |
+**(e) Modes:** 0c-2 adds `rolling_race`, `rolling_contact`, `rolling_friction_contrast`, `rolling_energy_split`, `rolling_derive`, `rolling_slip`, reusing `sandbox` (+ the S8 `race_restart: 'synchronized'` flag). S3's contrast mode is built on the activation mechanism (U10); S6's derive mode consumes the formula-line reveal (U16). deriveStateMeta co-edit at all three sites — **including E18's reveal-candidate registration**.
 
-**(c) Right-hand-rule plan:** N/A — no direction rule taught here (ω/L vectors belong to `angular_momentum`, 0c-1). Declared deliberately.
+**(f)** `assessment` + `coverage_map`: unchanged span; `misconception_watch` = exactly §4's two beats.
 
-**(d) Motion plan:** per the §3 table; nothing static, nothing asserted-but-not-rendered (S3's skid trail and S7's spin-lag are drawn). Spin is driven by position via the extended SEAM-G mechanism **divided by the body's OWN authored radius** (ω = v/R — (b)-9; S4's 3× difference is a taught picture) and honours the slip state. Every archetype is discharged by the AUTHORED beat with zero teacher input (S4 the tie run; S5 the count-up + freeze-and-read hold; S6 the build + release + match; S7 the `param_ramp`); sliders are Rule-31 extras only.
+**(g) Macro↔micro (Rule 33):** unchanged — every readout metric-defined; document numbers are CHECK values.
 
-**(e) Modes:** the nlb `mode` enum is closed — 0c-2 adds `rolling_race`, `rolling_contact`, `rolling_friction_contrast`, `rolling_energy_split`, `rolling_derive`, `rolling_slip`, reusing `sandbox`.
+**(h) Canvas budget (Rule 34):** unchanged (S6 the ONE formula surface — now line-built, still one surface (34b)).
 
-**(f)** `assessment` + `coverage_map` span race order (S1), constraint (S2), friction type (S3), cancellation (S4), speed ratio (S5/S6), slip threshold (S7); `misconception_watch` = exactly the two beats of §4.
+**(i) Curriculum-flex (Rule 38):** (i-1)–(i-5) unchanged, re-checked against the REV 6 deltas: the formula-line reveal, the `single_lane` flag and the restored U14/U15 are ring-neutral apparatus behaviour; the narrowed θ range appears only in advanced-ring rows; S8 still surfaces core content only.
 
-**(g) Macro↔micro (Rule 33):** strict lattice/carrier structure N/A — the mechanism is contact-scale. The 33d instrument duty is met: every instrument shows a live numeric value tracking the motion; no decorative dials. Every derived readout specified by METRIC, not values: contact speed = |v − ωR|; KE_trans = ½mv², KE_rot = ½k·mv² (rolling), zero-baselined at release; a = the integrator's own acceleration. The numbers in this document are the CHECK values those metrics must reproduce, never authored display strings.
-
-**(h) Canvas budget (Rule 34):** ONE formula surface max per state (S2 `v = Rω`; S5 none; S6 the acceleration formula; S7 the μ_min inequality; S1/S3/S4/S8 none); on-canvas caption = the ≤5-word cue only; prose in the strip below; HUD value-only; every NEW top-anchored panel at `top:52px+` on BOTH edges. **S8 readout load bounded by design:** one compact chip row per body (`k 0.40 · v 2.40 · Rω 2.40 · contact 0.00`) — 4 rows + finish chips, with the readout zone sized off ACTUAL rendered neighbour height ((b)-14).
-
-**(i) Curriculum-flex (Rule 38):**
-- **(i-1) Preset-cut coherence over states AND controls:** *Hide advanced (S1–S5 + S8):* phenomenon → constraint → friction type → cancellation → energy explanation → sandbox (shape/m/R). No surviving narration references the formula or slip condition (S4's `one_line_fix` is now the ring-safe cancellation sentence of §4). *Hide advanced+extended (S1–S4 + S8):* a complete qualitative lesson. Both cuts verified against every §3 caption, control, the min_ring column, and the slip envelope (no reduced preset can reach slip).
-- **(i-2)** S8 surfaces CORE content only: v = Rω, contact-speed, finish chips, k chips, centre markers. No formula surface exists in explore at all, so no explore relation needs a deriving state under any preset; the one explore relation, v = Rω, is derived in core S2. **The μ_min tick is control-row furniture, not explore content: it belongs to the advanced μ_s row and is ring-gated WITH it.**
-- **(i-3) `curriculum_tags` (claims, not facts):** CBSE/NCERT core+extended = §7.14 — **verified at authoring**; advanced S6 + S7 = JEE Main/Advanced — verified against the DCP index. AP Physics C full · AP Physics 1 core+extended · IB DP core+extended · A-level core only — every one `needs_teacher_verification`.
-- **(i-4) Presets:** `full` = S1–S8; `mainstream` = hide S6–S7 (sandbox loses θ, μ_s + the tick); `qualitative` = hide S5–S7.
-- **(i-5) Graph axes:** no graph panel — N/A, declared.
-- **Notation ladder (38c):** core/extended surfaces algebra-free or single-relation; the only compound formula sits in advanced. **Dialect (38d):** "incline (ramp)" once, then bare.
-
-**(j) Teacher-walk answers:** (1) *States and shows the named thing in the assessed representation?* Yes — S6 states the closed form and shows the live a matching it; S5 shows the NCERT/AP energy route; S4 states the governing claim. (2) *First thing a teacher tries, demonstrable in range?* Re-run S4 at the extremes — m₂ ∈ [0.2, 10] kg, R₂ ∈ [0.05, 0.40] m all tie (and the spin contrast grows with the R gap); then S8 pit a marble against a huge ring. (3) *Term ledger:* table (b′). Declared omissions re-examined: the constraint's full treatment is deferred to `pure_rolling` by roster design (S2 recaps on screen), rotational KE to `rotational_work_energy` (S5 still shows the split live) — decisions, not exemptions.
+**(j) Teacher-walk answers:** (1) unchanged. (2) Re-run S4 at the extremes — all tie; then S8 pit a marble against a huge ring — achievable via the synchronised restart + ω re-seed. (3) Ledger (b′); declared omissions unchanged.
 
 ---
 
 ## Two-pass cognitive lens
 
-### Block 1 — Pass-1 strategic checklist
+**Block 1.** Prerequisite cliff, JEE-backwards trace and misconception entry mapping all unchanged (verified by Checkpoint A cycle 1): constraint → S2; KE split → S5; formula → S6; k per shape → S4 + S1; μ_min → S7; friction-static legitimises the energy route → S3.
 
-1. **Prerequisite cliff.** `pure_rolling` → **S2**: patch is S2 itself (one compact sentence while the cycloid shows it). `moment_of_inertia` → **S4** (the k chips): "k measures how far the mass sits from the axis — a ring's mass is all at the rim, so k = 1." `tau_eq_i_alpha` → **S6**: "torque divided by rotational inertia gives angular acceleration, the rotational form of F = ma" — now the ONLY imported rotational tool, since the CoM route needs no parallel-axis theorem, so no second patch sentence is required. `friction_force` (shipped) → S3's skidding-block half IS the patch.
-2. **JEE-backwards trace.** *"A solid sphere and a ring, same m and R, roll without slipping from rest down an incline of height h. (i) Ratio of their speeds at the bottom; (ii) the minimum μ_s for the ring to roll at angle θ."* Constraint v = Rω → S2; KE split with equal drops → S5; v = √(2gh/(1+k)) / a = g sin θ/(1+k) → S6; k per shape → S4 + S1; μ_min → S7; friction-is-static (so it does no work, legitimising the energy route) → S3. No missing piece.
-3. **Misconception entry mapping.** RM-G7 → S3. *Planting risk:* S1's narration must never say the bodies "rub" or "grip" (also Rule 41) — physics_author flagged to phrase S1 friction-neutrally. Heavier-wins → S4. *Planting risk:* S1 must show four bodies of EQUAL m and R (labels visible on demand) so the race never suggests mass caused the order.
-
-### Block 2 — Aha-moment designation
-
-- **PRIMARY aha, at STATE_4:** "mass and radius cancel: a marble and a bowling ball tie, because only the SHAPE — the dimensionless k = I/mR² — decides who wins."
-- **SUPPORTING aha, at STATE_3:** "the contact point is at rest, so rolling friction is STATIC friction" — the mechanism behind the primary (static friction converts shape into rank, and it legitimises S5's equal-energy argument since it does no work).
-- **Wrong-belief setup:** primary — S1 builds "the order must come from some property of the bodies" and instinct supplies "heavier/bigger"; S2 quietly shows m nowhere in v = Rω; S4 breaks it. Supporting — S1's rolling contact plus the everyday word "friction" builds "the wheels rub, so kinetic"; S3 breaks it with the 0.00 readout.
-- **Foundational coverage:** S4 ∈ foundational (S1–S4) ✓.
+**Block 2.** Unchanged: PRIMARY at S4, SUPPORTING at S3, wrong-belief setups S1/S2 and S1, S4 ∈ foundational ✓. **The RULING-4 re-authoring strengthens the do-not-prespoil discipline on S6: the answer line `a = g sin θ/(1+k)` is now genuinely absent until 2200 ms — the exact property the escalation existed to protect.**
 
 ---
 
-## ENGINE REQUIREMENTS (the 0c-2 build sheet)
+## SCAR AUDIT (REV 5's audit carried; escalation-verified; REV 6 deltas noted)
 
-> **Union-scope limit (P2-5, stated):** the survey named #12 the 0c-2 spec driver, but the union this sheet closes is **one-of-two** — `pure_rolling` (#11) shares the build and has NO skeleton yet, so the union below is complete over THIS concept only. **Recommendation: author #11's skeleton (short — it consumes (b)-3/(b)-4 and little else) BEFORE the 0c-2 surgeon dispatch**, so the success test is measured against a true union. If the founder dispatches on #12 alone, this limit is the recorded reason a second, smaller 0c-2 amendment may follow — the alarm rule firing by design, not by surprise.
+**Queries:** as REV 5 (eleven-id grep re-run; per-id queries; `--owner alex:architect` 32 + `--row-type directive` 47; both concepts → 0 rows — **the sibling review's five candidates + three upserts AND the escalation's three candidates + one upsert remain UNFILED; the dispatching session files all of them before the 0c-2 dispatch**; scenario-scoped rows). The escalation report independently re-ran these with identical results.
 
-### (a) What `newtons_laws_body` ALREADY provides (no work) — lines quoted
-
-1. **Inclined surface** — `surface.theta_deg`; **`length_m` is a HALF-length** (`:941`; readers `:40060–40067`, `:44176`) — authored 3.0 for a 6 m plank; **+s is UP-slope** (`:45093–45096`), races run toward −s.
-2. **Bodies with mass / position / velocity** — `bodies[]`, stable IDs, union-built meshes shown/hidden per state. Body iteration loops `bodies.length` (`:39895/:40245/:44663` — F7, downgraded).
-3. **Static + kinetic friction** — `mu_s` / `mu_k` per body, `surface.frictionless`.
-4. **Rolling wheel mesh + position-driven spin** — SEAM G (`:40045`), **but its divisor is the constant `NLB_WHEEL_R` (`:40053`) and body lift the constant `NLB_BODY_SIZE/2` (`:40015`) — both replaced by per-body radius, (b)-9.**
-5. **Force-arrow overlay** — SEAM C — S6's mg sin θ / N / f_s arrows.
-6. **Live numeric readouts** — SEAM M — v, Rω, contact-speed, a, k chips, and the S5 KE pair as VALUE-ONLY readouts (SEAM L untouched).
-7. **Per-state sliders + guided ramp + drag-seize** — `controls_visible` (`:1340/:41856–:42146`), `param_ramp` (`:42295–:42318`, closed form of t_ms — pin/rewind safe), `trusted_drag_seizes`.
-8. **Fixed-step real integrator** (Rule 36, trapezoid position update) — the substrate the rolling branch plugs into; must preserve dt-fold exactness in position AND velocity at 1e-9. **Its clock is NOT yet state-local — see (b)-11 (CRITICAL/OPEN).**
-9. **Ghost/fixed body machinery + Cambria formula panel** — `#nlb_formula` (`:41746`); S3's locked block is an ordinary integrated body with `rotation_locked`, distinct id. **Note: `nlbBodyLaneZ` returns 0 for ALL bodies if any body is `fixed` (`:39998–40001`) — S6's held disc is v₀ = 0 + release cue, never `fixed`.**
-
-### (b) What the extension must ADD
-
-*1–8 as in REV 2; 9–15 are NEW in REV 3, forced by Checkpoint A:*
-
-1. **Per-body shape factor k = I/mR²** — authored per body (2/5 · 1/2 · 2/3 · 1), surfaced as a live chip (rendered only from S4 onward).
-2. **Rolling acceleration branch** — a = g sin θ/(1 + k) with v = Rω driving ω and mesh spin; f_s = k·mg sin θ/(1+k) so SEAM-C arrows are honest — **the same f = k·m·a the S6 CoM derivation produces on screen (P2-1)**. Fold-exactness preserved.
-3. **Contact-point velocity picture** — arrows 0/v/2v + cycloid trace + contact-speed readout. (Shared with #11 — **see the union-scope limit.**) **Trace constraint:** cycloid and skid trails must be REPLAYABLE pure functions of state-local t over a bounded lookback, never latched per-frame state, so pins are byte-stable.
-4. **Static-vs-kinetic friction call-out** — f_s / f_k at the contact; regime a closed-form function of state-local t, no latch.
-5. **Rolling-vs-slipping regime switch** — when μ_s < k tan θ/(1+k): a = g(sin θ − μ_k cos θ), α from kinetic-friction torque, contact ≠ 0, spin lags, skid trail draws. The **μ_min tick renders ON the μ_s row** (live from shape k and θ) and is ring-gated WITH the row (P1-6); the ramp drives thumb + label in lockstep.
-6. **KE_trans / KE_rot** exposed to SEAM-M readouts, derived from the live post-step state in one pass; readouts **count up** (P3-2); **no SEAM-L change, no new bar, ever.**
-7. **`rotation_locked` per-body flag + sequential contrast cueing** — S3's wrong-picture primitives, named at design time: the flag (constant per body id, never a per-state build-branch), skid-trail primitive, f_k label, and show/dissolve cues on the scenario_cue channel.
-8. **`controls_visible` token enum extension** — the closed enum at `:1340` lacks `'R2'`, `'R'` and the per-lane shape-picker tokens. Extend + build rows via the existing union-over-states builder; empty deferred list.
-9. **(NEW — P1-4) Per-body physical radius `radius_m`.** **No such field exists** (grep: zero hits); today lift is the constant `NLB_BODY_SIZE/2` (`:40015`) and spin divides by the constant `NLB_WHEEL_R` (`:40053`, coupled by comment to `NLB_BODY_SIZE`). `radius_m` must drive: mesh scale, contact-height lift (centre at `radius_m` above the surface), spin ω = v/radius_m (S4's small sphere spins 3× faster — a taught picture), and live re-lift + re-scale under an `R`/`R2` drag. **Rule-29 ruling, stated for the surgeon:** the `NLB_BODY_SIZE` comment ("size is never a magnitude cue") is scoped to MASS-independence and stands; here R is a REAL physical magnitude the concept teaches, so a size change with R is Rule-29-legal under the same clause that lets a vector's length change. **Do not stop at the comment.**
-10. **(NEW — P1-5) Authorable lane geometry** — per-state `lane_gap_m` (S1 0.8; S4/S5 1.2) + explicit per-body lane ASSIGNMENT (speed-ordered); today lane z = index × the hard `NLB_LANE_GAP = 0.85` wu (`:39998–40001`), auto-centred, zeroed if any body is `fixed`. **Slab depth sized ONCE per concept from the widest lane span:** S1's span = 2.4 + 2×0.15 = 2.7 m ≤ default `NLB_SURFACE_DEPTH` 1.6 wu = 3.2 m — verified sufficient with ≥ 0.25 m margin per side; sized once, never per state.
-11. **(NEW — P1-7, CRITICAL) State-local physics clock rebase** — per `field3d_nlb_physics_clock_not_state_local`: the nlb integrator must rebase on RESET_TRAJECTORY / state-local (t − stateStartTime), or hold dt = 0 from SET_STATE until first RESET_TRAJECTORY/Play. **Precondition for the entire timing table, all pin margins, the S7 crossing, and the literal truth of "released together".**
-12. **(NEW — P1-7) `PM_NLB_LANE_OCCLUSION` renderer warning** — emitted whenever two non-ghost body screen bboxes intersect, surfaced in `manifest.warnings` — **the gate that makes the framing plan verifiable; a precondition for signing off S1/S4/S5.**
-13. **(NEW — P2-4) Camera position AND TARGET authoring per state** — position is authorable, the **target is not** (`field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable`, MAJOR/OPEN), and S2/S6/S7's "camera closes on the contact point" is exactly a target change. Reconcile with that row's second DO: reference surfaces sized ONCE ((b)-10) so the apparatus never resizes between states. Surgeon's solve sweeps BOTH yaw and elevation with feasible-band reporting.
-14. **(NEW — P1-7 residue) Overlay verifications in pixels, at this concept's extremes:** `#nlb_formula` (340 px max-width) at S6's LONGEST built line; θ-arc (fixed world R = 1.05, `:40074`) clamped to nearest-body screen distance or drawn behind with a leader, checked against S8's outer lane; screen-space label de-collision under EVERY authored camera incl. rotated (five of eight states); readout zone sized off ACTUAL rendered neighbour height at S8's 4-row + chips load.
-15. **(NEW — P1-8) Centre markers + CoM crossing metric** — axle dot + vertical tick per raced body; finish-line centre-height cue; all finish/TIE stamps defined on the CoM track coordinate crossing `s_finish`.
-
-### Phase-0 union WALK (state × row, both directions)
-
-| State | Rows consumed |
+| bug_class (status/owner) | Verdict |
 |---|---|
-| S1 | (a)1,2,3 · (b)1,2,9,10,11,12,13,15 · F8 · F7 · F9 · F10 |
-| S2 | (a)1,2,4 · (b)2,3,9,11,13 · F10 |
-| S3 | (a)1,2,3,9 · (b)3,4,7,11 · F10 |
-| S4 | (a)1,2,7 · (b)1,2,8,9,10,11,12,13,15 · F8 · F9 · F10 |
-| S5 | (a)1,2 · (b)1,2,6,9,10,11,12,13 · F9 · F10 |
-| S6 | (a)1,2,5,7,9 · (b)1,2,9,11,13,14 · F10 |
-| S7 | (a)1,2,3,7 · (b)3,4,5,9,11,13,14 · F11 · F10 |
-| S8 | (a)1,2,3,7 · (b)1,2,3,5,8,9,10,12,14 · F7,F8,F9,F15 · F10 |
+| `nlb_body_label_is_brighten_only_so_static_text_outranks_the_state_focal` (MAJOR/OPEN) | **build precondition E6, blocking for S4** |
+| `field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio` (MAJOR/OPEN) | *(R-7)* **CLOSED for every COMPARED arrow** (S6's three, whole drag range; S3's pair; #11's velocity fan via its own channel); **S7's single post-slip f_k clamps — tabled and declared honest-by-scope** (taught claim = the TYPE flip; the latched `f_k 0.44 N` readout carries the true magnitude). The row's DO quotes a stale `NLB_ARROW_SCALE = 0.030` — live code 0.048 (`:39661`), applied |
+| `field3d_nlb_body_screen_anchor_lands_under_the_dom_slider_panel` (MAJOR/OPEN) | **applied** — close cameras carry the row's acceptance + A-11 extents |
+| `frozen_frame_read_as_dense_series_continuation_on_translating_body` (MODERATE/OPEN) | **routed to eye_walker/quality_auditor as a READING directive** |
+| `eye_h2_frozen_frames_of_moving_elements_wobble_sub_perceptually_so_zero_percent_is_not_a_valid_gate` (MODERATE/OPEN) | *(R-9, corrected)* **applied to (b)-19, quoting the live DO:** same-session A/B EYE runs; criterion = *"H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer **or has max channel delta ≤ 3**"*; settled by a pre/post pixel diff (bounding box + max channel delta) |
+| `concept_ships_zero_narration_glow_bindings` (MAJOR/OPEN) | **routed to physics_author** |
+| `field3d_generic_visible_elements_matcher_blanks_new_scenario_apparatus` (DIRECTIVE/OPEN) | **surgeon duty, E14 + E8's bring-up probe** |
+| `field3d_sprite_label_text_and_ink_box_are_invisible_to_every_dom_probe` (MODERATE/OPEN) | **applied to (b)-14** — sprite projection probe, never DOM |
+| `nlb_friction_vector_first_frame_reveal_tint_bypasses_seam_q_ink_fix` (MODERATE/OPEN) | **ride-along (E8)** — sampled at each body's ACTIVATION frame *(REV 6: S6's arrows now render at state t = 0 — its sample point is t = 0; S3's phase B stays the activation frame)* |
+| `nlb_multibody_lane_gap_is_along_z…` (DIRECTIVE/OPEN) | **satisfied** — framing plan + S3 explicitly `single_lane: true`, gap 0 |
+| `nlb_checkpoint_s_m_authored_as_displacement…` (DIRECTIVE/OPEN) | **satisfied** |
+| `field3d_param_ramp_authoring_contract` (DIRECTIVE/OPEN) | **satisfied** — S7's ramp per contract |
 
-Reverse: every row (a)1–9, (b)1–15, F7–F11 claimed by ≥1 state; every state claims ≥1 row. Both directions closed.
+**Scenario-scoped rows:** unchanged — clock → U9/E1 (pcpl-surgeon; precondition of every pin, every `activate_at_ms`, **and every formula-line `at_ms`**) · occlusion → E2 · camera target → (b)-13 + A-11 · glow-relation → applied · SET_GLOW row → not chased · per-body wrap → U6/E4 + U12.
 
-### ⚠ FINDINGS not explicit in the survey's union table
-
-7. **Body count > 2 — DOWNGRADED (code-verified).** Every body path loops `bodies.length`; the only `slice(0,2)` caps are the unused energy panel. **Residual widened per Checkpoint A ruling 3:** correct the stale "1 or 2 bodies" comment; VERIFY HUD/label layout at 4 bodies; plus lane-geometry authoring (b)-10 and the occlusion warning (b)-12 — the parts of the 4-body picture that ARE real work.
-8. **Four new rolling-shape meshes** — `shape` enum `'solid_sphere' | 'disc' | 'hollow_sphere' | 'ring'`, scaled by (b)-9's `radius_m`. **Design-time resolution of the reviewer's caveat (ruling 3): at R = 0.15 m each body is ~5% of track length, so hollowness cannot be carried by interior detail — distinctness comes from SILHOUETTE + COLOUR (ring = open annulus; hollow sphere = shell-cutaway silhouette + its own colour), with a stated minimum on-screen diameter of ≈ 60 px at the reference scale (0.30 m × 220 px/m — met at the design camera).** Decided here, not left to the surgeon.
-9. **Finish-order chips + start/finish lines + TIE stamp** — finish as a track coordinate on the home pose, per-body chips, TIE stamp, **all stamped on CoM crossing with centre markers (b)-15**. New top-anchored panels at `top:52px+` both edges.
-10. **New `mode` values + deriveStateMeta co-edit** — all three sites (`F3D_REVEAL_KEYS` + `maxRevealForField3dState` + `deriveHoldExpectations`), proven against both config shapes.
-11. **Slip-threshold indicator** — the μ_min tick as slider-row furniture, live-recomputed — (b)-5 and the envelope paragraph.
-12. **`controls_visible` token enum extension** — (b)-8 (declaration `:1340` and reader `:42146` quoted).
-13. **Multi-body race camera authoring — position AND target** — (b)-13; speed-ordered lane assignment as authorable state data; verified by the projection probe + (b)-12.
-14. **Registration duty for json_author** — inserts `concept_panel_config` (default_panel_count=1) in the SAME session, and declares motion consistently in `epic_l_path` AND `field_3d_config`.
-
-Nothing else. No energy bars, no zoom inset, no graph panel, no RHR hand. If Checkpoint A or the surgeon finds any FURTHER capability needed, that is the alarm rule firing — STOP and re-scope with the survey.
+**Escalation candidate rows (unfiled — dispositioned here):** `skeleton_authors_a_timed_reveal_chain_of_overlays_on_a_scenario_whose_overlay_config_is_static` → **the defect REV 6 fixes**: the formula build now rides the BOUGHT per-line `at_ms` (U16/E18, deriveStateMeta-registered), and the arrows are static + glow-walked on the channel that exists — the row's probe passes by construction once E18 lands · `signed_engine_union_drops_items_its_own_state_table_still_consumes` → **fixed by R-5** (U14/U15 restored + the mapping walk, which recovered the μ_min tick) · `two_skeletons_sharing_one_engine_build_state_different_semantics_for_the_same_bought_field` → **fixed by R-6** (one canonical paragraph per field; sibling quotes verbatim).
 
 ---
 
-## SCAR AUDIT (queries stated first)
+# THE 0c-2 BUILD SHEET — as signed (Rulings 1 + 3 + 4; enumerated honestly over BOTH consumers)
 
-**Queries run this cycle (2026-08-02, all read-only):**
+> Consumers: `rolling_on_incline` (#12, this document) + `pure_rolling` (#11). No new `scenario_type`; everything extends `newtons_laws_body`. **Cross-cutting clause (b)-19:** every added config field is OPTIONAL; absent ⇒ today's constant/behaviour **byte-identically** — acceptance *(R-9)*: **same-session A/B THE EYE runs** (pre-build vs post-build) on `rolling_friction` (`shape:'wheel'` path) and `work_done_by_constant_force` (two-body lane compare); criterion quoted from the `eye_h2…` row's live DO — *"H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer or has max channel delta ≤ 3"* — settled by a pre/post pixel diff (bounding box + max channel delta), never raw zero-percent against aged baselines. **Falsy-value discipline (R-14):** every new optional field with a legal falsy value (`lane_gap_m = 0`, `activate_at_ms = 0`, `visible_before_activation: false`, per-line `at_ms = 0`) resolves presence by `typeof x === 'number'` / `in` — NEVER truthiness (`x || DEFAULT` silently restores the constant and reproduces the exact defect the field was bought to fix); the regression pair asserts authored-0 and absent produce DIFFERENT geometry wherever semantics differ (`lane_gap_m`: 0 ⇒ z = 0 vs absent ⇒ ±0.425 wu; a formula LIST vs the legacy string), and notes where 0 ≡ absent by definition (`activate_at_ms`, a line's `at_ms`). If the surgeon finds any FURTHER capability needed — above all a THIRD timed field class — that is the alarm rule firing: STOP and re-scope with the survey.
+>
+> **E-numbering note:** the sibling review's E9–E14 stand; REV 4's colliding E9–E11 are re-tagged E15–E17; **E18 = RULING 4's formula-line reveal (the escalation's number, scope narrowed to the bought half)**; **E19/E20 minted for the restored U14/U15**; **E7b is RETIRED — merged into E10**. E1–E8 are the cycle-2 report's, with E5 superseded by E11.
 
-1. `query_engine_bug_queue.ts rolling_on_incline` → 0 rows (new id).
-2. `… --owner alex:architect` → **32 rows**.
-3. `… --row-type directive` → **47 rows**.
-4. `… --field3d --open` → **30 rows** — note: **the script's `FIELD3D` list predates the nlb fleet, so this query CANNOT reach nlb-scenario rows. REV 2 relied on it, which is HOW the seven rows were skipped.**
-5. `… friction_force` → 3 rows; `… normal_force` → 3 rows; `… newtons_laws_body` → 0 rows (scenario names are not concept ids — confirming the gap).
-6. **Direct read-only SELECT** on `engine_bug_queue` by `bug_class` for the seven rows Checkpoint A named + the camera-target and ground-plane rows — **all returned**; their `prevention_rule` texts are applied below and in the build sheet.
+| # | Union item | Consumed by | Engine queue | Owner | Tag |
+|---|---|---|---|---|---|
+| U1 | **Rolling physics branch**: per-body k = I/mR²; a = g sin θ/(1+k) with f_s = k·m·a; **BRANCH PRIORITY (A-10):** the rolling branch SUPERSEDES Branch A's kinetic path (`f = -vSign * b.mu_k * N`, `:45497–45499`) while rolling holds; θ = 0 is the TEST case; slip BOTH directions, closed-form in state-local t; independent ω integrator with `omega0_rad_s` + `'omega0'` token; dt-fold exactness; ***(restored at R-5)* the μ_min tick renders ON the μ_s slider row — live-recomputed from shape k and θ, ring-gated WITH the row** | #12 all states; #11 all states | **E15** | field3d_surgeon | **blocking** |
+| U2 | **Contact-point picture**: rim dot + cycloid trace + skid trail (replayable pure functions of state-local t; wrap/halt/reset/retirement break discipline); point-speed arrows computed from live (v, ω) — never hardcoded — through U7's VELOCITY channel; contact-speed readout; static/kinetic call-out | #12 S2/S3/S7/S8; #11's contact/point-speed states | **E16** | field3d_surgeon | **blocking** |
+| U3 | **Per-body `radius_m`** [optional, default = `NLB_BODY_SIZE/2` lift `:40015` + `NLB_WHEEL_R` divisor `:40053`] | both, every state | E7a | field3d_surgeon | **blocking** |
+| U4 | **Rolling apparatus set**: four meshes each with a rotation marker (A3); k chips; KE_trans/KE_rot as SEAM-M value-only readouts, no SEAM-L change ever; bare-ω readout token; `controls_visible` extension `R/R2/omega0/shape` (`:1340`). ***(R-12)* the `readouts` union at `:1336` is CLOSED and lacks `KE_trans`, `KE_rot`, `contact`, `Rω`, `ω`: this buy EXTENDS it (declaration + reader + validator co-edit)** | #12 S1/S4/S5/S8; #11's race/apparatus states | **E17** | field3d_surgeon | **blocking** |
+| U5 | **Finish-line halt-and-latch**: per-state `finish_line {s_m, bodies, halt, stamp}`; latch crossing-interpolated (reuses `:44240–44262`); stamps → finish chips + per-body readout rows, NOT the formula surface. Bypasses `checkpoints` for the four line-numbered reasons | #12 S1/S2/S4/S5/S6/S7 | E3 | field3d_surgeon | **blocking** |
+| U6 | **Synchronised all-body race restart** for `race_restart:'synchronized'`: ALL bodies re-anchor together — position, `_dsp0`/seeds, v₀ AND ω re-seeded to authored ω₀ = v₀/R; chips re-stamp; Rule 37 preserved | #12 S8 | E4 | field3d_surgeon | **blocking** |
+| U7 | **TWO-CHANNEL authorable vector map**: `force_scale`/`force_min_len` AND `velocity_scale`/`velocity_min_len`, defaults `0.048`/`0.55`; + the zero-vector marker. Authored: force channel 0.30/0.25 (§3 table, incl. S7's declared floor case); velocity values authored by #11 | #12 S3/S6/S7 (force); **#11 velocity ONLY — #11 draws NO force arrows (R-13)** | **E11** | field3d_surgeon | **blocking** |
+| U8 | **Race framing surfaces**: authorable `lane_gap_m` + speed-ordered lane assignment [optional, default `0.85`] — **0 is LEGAL; single-lane RETIREMENT requires the separate explicit `single_lane: true` flag (R-10)**; `PM_NLB_LANE_OCCLUSION` → `manifest.warnings`; camera **target** authoring + A-11 run-midpoint targets + body-rect-vs-DOM acceptance | #12 S1/S3/S4/S5/S8; #11 | E2 + **E10 (absorbs the retired E7b)** + E8a | field3d_surgeon | E2/E10 **blocking** |
+| U9 | **State-local physics clock rebase** — `RESET_TRAJECTORY` exists (`:45002–45018`); fix the `SET_STATE`-without-reset path. **Precondition of every pin, every `activate_at_ms`, and every formula-line `at_ms`** | both | E1 | **`peter_parker:renderer_primitives` → pcpl-surgeon** | **blocking** |
+| U10 | **Per-body `activate_at_ms`**: hidden and NOT integrated before its instant — **hidden means the WHOLE body: mesh, arrows (`nlbDriveArrowsForBody`), labels, trail, readout rows (R-11)**; seeded at authored s₀/v₀/ω₀; **retirement only in `single_lane: true` states** (R-10); `visible_before_activation: true` for the held case. Presence by `typeof` (R-14). **Scope guard: with U16, these are the ONLY TWO timed field classes in 0c-2 — a third = the alarm rule.** **Classification-sweep acceptance (P2-C — the allowed-class list is derived from BOTH documents):** every authored millisecond in either skeleton is (i) a physics event, (ii) a `phases[].glow_focal` window, (iii) one of the two bought fields, or **(iv) a PRE-EXISTING authored-time engine field — `param_ramp` (`:1576`, registered `deriveStateMeta.ts:2770`) and `loop_reset_ms`**. Without class (iv) the sweep flags #12 S7's legitimate `param_ramp` 600–1600 as an unbought timed action and stops a correct build. **Expectations:** #12 S3 — disc absent (mesh, arrows, labels, rows) and un-integrated until 1500 ms, then descends while the block retires trail-and-all; **#12 S6 — a body held by `visible_before_activation: true` does not advance s or v but IS solved by seam B every frame, its arrows and readouts carrying the live statics values (`stuck ⇒ f = −drive`, `F_net = 0`, fₛ glyph): at 1000 ms the friction arrow measures 1.243 wu and `a` reads 0.00; at 2600 ms the friction arrow measures 0.414 wu and `a` reads 2.76 (P1-A)**; **#11's two-phase skid-vs-roll 16a contrast state (S3 at its REV 3)** | #12 S3/S6; #11's 16a contrast state | **E9** | field3d_surgeon | **blocking** |
+| U11 | **Revolution marks + circumference bracket as their OWN primitive**: own mesh, turn-count trigger, live respace; no `checkpoints` reuse, no formula-surface stamp, no `energy_active`, no `NLB_CP_MAX` cap | #11 only | **E12** | field3d_surgeon | **blocking** (for #11) |
+| U12 | **ω re-seed on the per-body sandbox wrap**: `:45571–45572` re-seeds `v1 = b.v0` only; re-seed ω to authored ω₀ | #11 S8; #12 S8 via U6 | **E13** | field3d_surgeon | ride-along |
+| U13 | **Visible-elements matcher registration**: finish line + chips, rotation markers, centre markers, k chips, KE readouts, skid trail, cycloid trace, revolution marks, bracket, velocity arrows, zero-vector marker | both | **E14** | **pcpl-surgeon** | ride-along |
+| U14 | ***(RESTORED — R-5)* Per-body `rotation_locked` flag**: the body translates with ω forced 0 — mesh never spins, rotation marker holds pose — while integrating normally under the kinetic-friction branch; constant per body id, never a per-state build-branch | #12 S3 (the skidding block); #11's 16a contrast state | **E19** | field3d_surgeon | **blocking** |
+| U15 | ***(RESTORED — R-5)* Centre markers + CoM crossing metric**: axle dot + vertical tick per raced body; finish-line centre-height cue; all finish/TIE stamps defined on the CoM track-coordinate crossing (the metric U5 consumes) | #12 S4 + S8; U5 (metric) | **E20** | field3d_surgeon | **blocking** (for S4) |
+| U16 | ***(NEW — RULING 4)* Formula-line reveal**: `formula_overlay` as an ordered list `{text, at_ms?}` on the ONE existing surface (`:44801`); pure function of state-local t, pin/rewind byte-stable; legacy single string ⇒ byte-identical; stamper (`:44374–44389`) appends after the last line; **MUST register in `deriveStateMeta.ts` (`:2739–2994`) — the last line's `at_ms` joins max-reveal — or THE EYE mis-pins**; presence by `typeof`. Machine evidence for the gap: `:44801` (static string), `:44374–44389` (stamps the only dynamic writer), `deriveStateMeta.ts:2739–2994` (no overlay reveal candidate). Expectation: #12 S6 at 1550 ms shows ZERO lines; at 1700 line 1 only; at 2300 all three; the pin (2760) photographs all three. **No per-arrow `show_at_ms` exists or may be built** | #12 S6; #11's formula-building states | **E18** | field3d_surgeon | **blocking** |
 
-A row I did not query is not dispositioned; every disposition traces to one of these six queries.
+**Ride-along duties (E8 — one dispatch, non-blocking):** `nlb_body_label` out of the brighten-only set (**E6 — blocking for S4**); θ-arc clamp vs outer lane; `#nlb_formula` pixel check at each concept's longest line (340 px); readout zone sized off rendered neighbour height; label decollision via the sprite projection probe; friction-arrow reveal-ink floor sampled at each body's ACTIVATION frame (S6's arrows: state t = 0); new-mode apparatus-visibility bring-up probe; new modes + `deriveStateMeta` co-edit at all three sites — **shape requirement: up to TWO sequential activation bodies per state. No three-phase shape exists anywhere in the union.**
 
-**The seven previously-skipped rows — now queried and dispositioned:**
+**What is deliberately NOT in the union:** no energy bars / SEAM-L change; no zoom inset; no graph panel; no RHR hand; no new `scenario_type`; **no per-arrow `show_at_ms`, no per-label reveal, no choreography DSL — `activate_at_ms` + `formula_overlay[].at_ms` are the WHOLE timed surface**; no three-phase config shape. #11 consumes U1–U4 + U7(velocity) + U8 + U9 + U10 + U11 + U12 + U14 + U16 + shared ride-alongs; U5–U6 + U15 are #12-only.
 
-| bug_class | Verdict |
-|---|---|
-| `field3d_nlb_physics_clock_not_state_local` (CRITICAL/OPEN) | **build-item precondition** — (b)-11 per the row's DO. The timing table, all pin margins, the S7 crossing and "released together" are CONDITIONAL on it |
-| `the_eye_passes_a_frame_in_which_one_compared_body_is_hidden_behind_another` (MAJOR/OPEN) | **build-item precondition** — (b)-12, exactly per the DO; named in §3 as the gate for the framing plan |
-| `nlb_camera_rotated_body_label_bleed_through_slider_panel` (MODERATE/OPEN) | **satisfied via (b)-14** — screen-space label dodge verified under every authored camera, rotated included |
-| `nlb_angle_arc_radius_overruns_the_neighbouring_lane_body` (MAJOR/OPEN) | **satisfied via (b)-14** — θ-arc clamped to nearest-body screen distance or drawn behind with a leader; checked against S8's outer lane |
-| `nlb_formula_and_readout_zones_are_fixed_css_and_collide_with_a_tall_hud` (MODERATE/OPEN) | **satisfied via DoD (h) + (b)-14** — S8's load bounded by design; zone sized off actual rendered neighbour height |
-| `field3d_edge_anchored_formula_surface_wraps_back_over_the_apparatus…` (MODERATE/OPEN) | **satisfied via (b)-14** — verified in pixels at S6's LONGEST built line against 340 px |
-| `field3d_world_space_label_decollision_is_projection_blind…` (MODERATE/OPEN) | **satisfied** — (b)-14 asserts pairwise screen-space gaps under every camera; the row's corollary now JUSTIFIES S6's near-side-on close-up explicitly, and confirms per-state `camera_position` is authorable — de-risking half of (b)-13 |
+## MAPPING WALK (R-5 — old list → union, and state primitives → union)
 
-**Rows underpinning the P1 fixes (queried via #6):**
+**(b)-1…(b)-19 → U:** (b)-1 → U1 + U4 · (b)-2 → U1 · (b)-3 → U2 · (b)-4 → U2 · (b)-5 → U1 (slip branch **+ the μ_min tick — recovered by this walk**) · (b)-6 → U4 · **(b)-7 → U14 (RESTORED; its scenario_cue half is dead — superseded by U10)** · (b)-8 → U4 · (b)-9 → U3 · (b)-10 → U8 · (b)-11 → U9 · (b)-12 → U8/E2 · (b)-13 → U8 · (b)-14 → E8 · **(b)-15 → U15 (RESTORED)** · (b)-16 → U5 · (b)-17 → U6 · (b)-18 → U7 · (b)-19 → the cross-cutting clause.
 
-| bug_class | Verdict |
-|---|---|
-| `field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable` (MAJOR/OPEN) | **build-item** — (b)-13 names the TARGET as the missing surface; its second DO ("sized ONCE") applied to slab depth in (b)-10 |
-| `field3d_release_widens_ground_plane_per_state_causing_unnarrated_apparatus_jump` (MODERATE/OPEN) | **fixed-in-this-revision** — ONE `length_m = 3.0` concept-wide; slab depth sized once from the widest lane span |
-
-**Corrected verdicts this cycle:**
-
-| bug_class | REV 3 verdict |
-|---|---|
-| `nlb_checkpoint_s_m_authored_as_displacement_not_track_coordinate` | **NOW genuinely fixed** — REV 2 claimed this while authoring an up-slope race on a mis-modelled track. REV 3: finish lines are track coordinates on the corrected model: `s_finish = 2.4 − 4.5 = −2.1` / `2.4 − 2.366 = +0.034`; insets 0.6 m and 0.9 m real against the ±3.0 bounds |
-| `architect_declares_an_engine_limit_without_checking_the_per_concept_override_path` | **NOW genuinely satisfied** — previously quote-free claims are quoted BOTH sides: `length_m` `:941` + `:40060–40067`/`:44176`; gravity `:45093–45096`; lane `:39998–40001`; lift `:40015`; spin `:40053`; camera `:3341`; arc `:40074` |
-| `nlb_multibody_lane_gap…` | **fixed with projection honesty** — separations recomputed as `lane_gap × s × cos ψ` with ψ and s stated; acceptance = probe disjointness; approach-the-camera closes the perspective gap; occlusion warning is the gate |
-| `nlb_static_state_authored_on_the_track_bound…` | **fixed on the corrected bounds** — 0.6 m inset from +3.0 = 2× largest half-width |
-| `nlb_loop_reset_clears_checkpoint_stamp…` / `nlb_frozen_pin_lands_within_one_frame…` | **re-derived** — S1/S4/S5 unchanged (d, a untouched); **S7 rebuilt** (ramp 600–1600, onset 1193 ms = 29.8%, arrival 1968 ms = 49.2%; pin 2400; margins 432–1515 ms) — CONDITIONAL on (b)-11 |
-| `explore_controls_not_ring_gated_survive_the_ring_cut` | **fixed + envelope closed** — min_ring table stands; NEW: envelope over the full (θ, μ_s) product (max 0.420, ring @ 40°); full preset reaches slip WITH its cue; no reduced preset can reach slip |
-| `teach_visual_must_match_narration` | **strengthened** — S4's tie judged and DRAWN on centres; the 3× spin contrast rendered; "released together" true on a state-local clock |
-| `archetype_live_tier_unverified_against_renderer` | **extended** — the three constants standing in for radius and the lane constant verified as NOT providing what S1/S4 need → (b)-9/(b)-10, with file:line |
-
-All other REV 2 rows (`teach_do_not_prespoil`, `contrast_ghost`, `symbol_printed…`, `derived_readout…`, `phase0_union_table…` (WALK re-run over (b)1–15), `field3d_param_ramp_authoring_contract`, `ghost_compare_cause_invisible_slider_frozen`, `hysteretic_state…`, `spec_semi_implicit_euler…`, `derivestatemeta…`, `deferred_enum_members`, `chemistry_concept_id_collides`, the N/A-with-reason set, and the routed physics_author/visual_validator directives): **verdicts unchanged**, re-checked against the corrected geometry this cycle.
+**State primitives → union:** S1: meshes/markers U4 · finish+chips U5 · lanes/camera U8 · clock U9. S2: radius U3 · dot/trace/readouts U2 (+U4 enum) · halt U5 · target U8. S3: locked block **U14** · trail/call-out U2 · f arrows U7 · activation/retirement U10 · single-lane U8/U10 · clock U9. S4: per-body m/R U3 · **centre markers U15** · TIE chips U5 · k chips/rotation markers/tokens U4 · lanes U8. S5: KE readouts U4 · halt-latch U5 · lanes U8. S6: force arrows U7 · **formula lines U16** · hold/release U10 · halt U5 · target U8 · glow `phases[]` (exists). S7: ramp (exists) · **μ_min tick U1** · regime U1 · trail/contact U2 · halt-latch U5 · target U8. S8: restart U6 (+U12) · apparatus U4/U15 · lanes U8 · tokens U4. **No primitive named in §3 lacks a union row; no union row is unclaimed.**
 
 ---
 
-## FIX-CYCLE-1 RESPONSE (finding × what changed × where)
+**Handoff:** REV 6 answers the escalation with FOUNDER RULING 4 applied exactly at the boundary the founder drew, lands all six carry-forwards, both sibling cross-document fixes, and the sibling's falsy discipline — and churns nothing on the escalation's verified list. Pending before the 0c-2 dispatch, for the ORCHESTRATING session: file the eight sibling-review rows + the escalation's three candidates + one upsert via `npm run log:lesson`; verify #11's REV 3 imports the two canonical paragraphs verbatim and deletes its 1400 ms dissolve.
 
-| Finding | What changed | Where |
-|---|---|---|
-| **P1-1** | ψ convention defined (camera view axis vs track axis, ψ = 35°); separations recomputed as `lane_gap × s × cos ψ` with s ≈ 220 px/m stated; px figures demoted to design estimates; acceptance = disjointness under the 100 ms probe | §3 framing plan |
-| **P1-2** | Race authored APPROACHING the camera; perspective now aids monotonicity; probe named as the proof, geometry argument demoted to heuristic | §3 framing plan; S1/S4 |
-| **P1-3** | Track model corrected both sides with line numbers: `length_m` = half-length → authored **3.0** (6 m plank, s ∈ [−3,+3]); +s = up-slope → race toward −s; `initial_position_m = +2.4`; `s_finish = −2.1` / `+0.034`; one `length_m` concept-wide; dependent numbers re-derived | §3 home-pose + timing table; scar audit |
-| **P1-3 knock-on** | S7's old ramp was **unrenderable** on the true plank (onset 3372 ms > rolling exit 2085 ms): re-authored 600–1600 ms → onset ≈ 1193 ms, skid ≈ 775 ms visible, arrival ≈ 1968 ms, R = 4000, pin 2400 | §3 S7 + timing table |
-| **P1-4** | Per-body `radius_m` added (b)-9 (mesh scale, contact lift replacing `:40015`, spin ω = v/R replacing `:40053`, live re-lift); explicit Rule-29 ruling for the surgeon; S4 now RENDERS the 3× spin contrast | (b)-9, (a)-4; §3 S4; DoD (b)/(d) |
-| **P1-5** | Authorable `lane_gap_m` + lane assignment (b)-10; slab depth sized ONCE (2.7 m ≤ 3.2 m — verified); `fixed`-body early-out flagged (S6 = v₀ = 0 + release cue) | (b)-10, (a)-9; §3; S6 |
-| **P1-6** | μ_s authored per state; per-shape μ_min at 25°; envelope over the FULL product (max 0.420); μ_min tick ring-gated WITH the μ_s row + honest slip physics; reduced presets provably slip-free; (i-2) reworded | §3 envelope + min_ring + S8; DoD (i-2); (b)-5 |
-| **P1-7** | SCAR AUDIT rebuilt with six queries STATED (incl. the direct SELECT the script cannot replace — **root cause named**); all seven skipped rows queried and dispositioned; the CRITICAL clock row became (b)-11 and the timing table is declared conditional on it; occlusion warning (b)-12; overlay verifications (b)-14 | SCAR AUDIT; (b)-11/12/14 |
-| **P1-8** | Centre markers on raced bodies; TIE/finish crossing on the CoM coordinate; finish-line centre-height cue; (b)-15 | §3 S1/S4; DoD (b); (b)-15, F9 |
-| **P2-1** | S6 switched to the CoM route (f·R = I_cm·α → f = k·m·a → a = g sin θ/(1+k)) — no parallel-axis theorem, f_s arrow consumed, produces (b)-2's f_s; contact-point route moved to the S6 deep-dive; Block-1 cliff updated | §2/§3 S6; §6; Block 1 |
-| **P2-2** | §4's `one_line_fix` rewritten ring-safe (no formula); the formula's first appearance pinned to S6 | §4; DoD (i-1) |
-| **P2-3** | S5 given a distinct rhythm: count-up during descent → FREEZE-AND-READ hold (~1.5 s) at arrival with the splits side by side — the payoff frame is the held comparison, not a crossing | §3 S5; timing table |
-| **P2-4** | (b)-13 names the camera TARGET as the missing surface; sized-ONCE reconciliation applied to slab depth | (b)-13/(b)-10 |
-| **P2-5** | 0c-2 union declared one-of-two; recommendation to author #11's skeleton before the surgeon dispatch, with the fallback consequence stated | ENGINE REQ preamble; header |
-| **P3-1** | `regime-switch` re-justified as a RHYTHM claim, naming `ramp-response` as the nearest neighbour it is not | §3 S7 |
-| **P3-2** | "fill" → "count up" | §3 S5; (b)-6; DoD (b) |
-| Ruling 3 (F8 caveat) | Hollow-vs-solid distinctness resolved at design time: silhouette + colour, minimum ≈ 60 px on-screen diameter | FINDINGS F8 |
-| Praised items | No-stagger decision, F7 downgrade, S5 geometry (d = 2.366 m, 7.0/2.8 vs 4.9/4.9 J), min_ring structure, term ledger, all nine line citations — **all preserved unchanged** | throughout |
+**Founder-attention note (flagged, not acted on):** with S6's arrows now static from state entry, the held disc displays the rolling-case free-body diagram (f_s at 1.3806 N) while its `a` readout reads 0.00 — physically, a *held* body's f_s would be 4.14 N. REV 6 declares the hold as "the derivation's diagram" in the S6 row so it cannot read as an error. If the founder prefers the arrows to appear only at the glow-walk's start (400 ms), that would require exactly the per-arrow reveal RULING 4 refused, so the declaration is the only in-scope treatment.
