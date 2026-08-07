@@ -24,8 +24,9 @@
  * pilot_feedback: authenticated insert-own-only, no select).
  */
 
-import { writeFileSync, existsSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { join } from 'path';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 
 // ── Pilot Supabase project (production data; NOT the dev project) ────────────
 
@@ -188,6 +189,23 @@ export const PILOT_CONCEPTS: string[] = [
     // KNOWN nuance (founder-accepted): STATE_4's live trial-X readout shares styling
     // with the final answer — instructive as-is, revisit only if a teacher flags it.
     'meter_bridge',
+
+    // ── MATHEMATICS ──────────────────────────────────────────────────────────
+    // derivative_as_secant_limit (added 2026-08-07, founder-instructed).
+    // THE FIRST NON-PHYSICS AND FIRST PARAMETRIC CONCEPT IN THIS CATALOG — every
+    // other entry above is field_3d or particle_field. Two things changed to make
+    // it possible: listPilotConceptIds() now resolves through the shared subject
+    // resolver (the old flat-path test silently dropped it), and PR #46 fixed the
+    // readout-placement geometry its states depend on.
+    // 9 states on the cartesian_plane engine; THE EYE 56/56; baselines locked
+    // 2026-08-07 (STATE_2/3/5/6/7/9 re-approved after the readout fix).
+    // KNOWN, NOT YET FIXED — two OPEN engine_bug_queue rows a teacher CAN see:
+    //   • sibling-ink collision: STATE_3's `Q = (1.07, 0.57)` has its "=" struck
+    //     by the curve, and `y = x²/2` is crossed by the secant on STATE_2/7.
+    //   • canvas-drawn readouts never enter the de-overlap solver, which on this
+    //     concept resolves nothing at all (primitives_resolved=0).
+    // Also NOT yet through the professor gate (AUTHORING_PIPELINE ④, Asmi review).
+    'derivative_as_secant_limit',
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
@@ -198,7 +216,21 @@ export function isPilotConcept(_root: string, conceptId: string): boolean {
 
 export function listPilotConceptIds(root: string): string[] {
     // Build only pilot concepts that actually have a concept JSON on disk.
-    return PILOT_CONCEPTS.filter((id) => existsSync(join(root, 'src', 'data', 'concepts', `${id}.json`)));
+    //
+    // Resolved through the SHARED subject resolver, not a hardcoded flat path.
+    // The flat `src/data/concepts/<id>.json` test is subject-BLIND: a chemistry
+    // or mathematics concept lives in its own namespace dir, so listing one in
+    // PILOT_CONCEPTS was silently filtered out here — the array grew, the
+    // catalog did not, and nothing errored. A silent drop on the DEPLOYED
+    // catalog is the worst possible failure mode for this list.
+    //
+    // build_review_site.ts's loadConcept() has resolved this way since the
+    // chemistry isolation contract landed, so before this change the builder
+    // and the catalog filter disagreed about where a concept lives. The
+    // resolver checks the flat physics dir FIRST, so physics resolution stays
+    // byte-identical to the old existsSync test.
+    void root; // resolver is repo-root relative, same as every other caller
+    return PILOT_CONCEPTS.filter((id) => resolveConceptJsonPath(id) !== null);
 }
 
 // NCERT Class-12 Physics chapter titles (the concept JSONs' `chapter` field is
