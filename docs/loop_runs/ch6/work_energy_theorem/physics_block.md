@@ -11,7 +11,9 @@
 > deliberately empty.
 >
 > **CF-1 and CF-3, addressed directly to this stage, are both applied — see §6 CALLOUT-1 (CF-1) and the
-> corrected reflow paragraph in §6 CALLOUT-2 (CF-3).**
+> corrected reflow paragraph in §6 CALLOUT-2 (CF-3). CF-4 (the S6 friction dial, originally declined at
+> Checkpoint A cycle 0 mu_max=0.6 pricing) is RE-PRICED and APPLIED in FIX CYCLE 2 (section 14) at the
+> Checkpoint-B-instructed mu range [0.2, 0.5].**
 
 ## VERDICT LINE
 
@@ -99,18 +101,19 @@ CRITICAL is already FIXED). None forces an exception in this block. `concept_shi
       "constant": 9.8
     },
     "mu_k": {
-      "name": "coefficient of kinetic friction (S2, S3, S6 only)",
+      "name": "coefficient of kinetic friction (S2, S3 fixed; S6 the ONE live friction dial, FIX CYCLE 2)",
       "unit": "",
-      "min": 0,
-      "max": 1,
-      "default": 0
+      "min": 0.2,
+      "max": 0.5,
+      "step": 0.1,
+      "default": 0.3
     },
     "mu_s": {
-      "name": "coefficient of static friction (authored equal to mu_k, S2/S3/S6 only)",
+      "name": "coefficient of static friction (S2, S3, S6 all FIXED at 0.3, never a live slider in this concept -- FIX CYCLE 2 decision, see section 14)",
       "unit": "",
       "min": 0,
       "max": 1,
-      "default": 0
+      "default": 0.3
     },
     "d": {
       "name": "displacement from the state's own initial_position_m",
@@ -204,7 +207,7 @@ readings -- see section 9 for the quoted output.
 |---|---|---|
 | `F` | `bodies[].applied_force: { N, angle_deg: 0 }` | SEAM N key, angle_deg authored explicitly at 0 (never omitted) so entry never jumps. Omit the whole key on S2 (no pull authored at all -- see section 2). |
 | `m` | `bodies[].mass_kg` | Independent of the S6 slider default; every guided state authors its own value explicitly (section 2). |
-| `mu_s`, `mu_k` | `bodies[].mu_s`, `bodies[].mu_k` | S2, S3, S6 only, authored EQUAL (never mu_k greater than mu_s). |
+| `mu_s`, `mu_k` | `bodies[].mu_s`, `bodies[].mu_k` | S2, S3: authored EQUAL, fixed (0.4/0.4). S6 (FIX CYCLE 2): `mu_k` is the ONE live friction dial (`slider_controls.mu_k`, [0.2,0.5]); `mu_s` stays FIXED at 0.3, never a slider -- see section 14 for why one dial, not two, and why the residual mu_k (dragged) greater than mu_s (fixed) internal state is inert in this sim. |
 | `v0` | `bodies[].initial_velocity_mps` | Signed. S4 is the one negative value (-3). |
 | frictionless | `surface.frictionless: true` | S1, S4, S5 only. Never author on S2, S3, S6 -- it hard-zeroes mu_s/mu_k at read time. |
 | `d` | `displacement_vector: { body_id: cart, label: d, show_value: true }` | S3, S5, S6 only (DoD b). Drawn from initial_position_m. |
@@ -212,7 +215,7 @@ readings -- see section 9 for the quoted output.
 | `W` (bars) | `work_accumulators` + state `work_scale_J` | force from the CLOSED enum applied/friction/normal/net; label verbatim single words (CALLOUT-2). S1/S2/S4/S5: net only. S3/S6: applied + friction + net. |
 | flag | `checkpoints` | S4 and S5, one checkpoint each (CALLOUT-11 for S4, CALLOUT-3 for S5). |
 | HUD | `readouts` | see section 3 exact per-state readout list. |
-| sliders (S6 only) | `slider_controls: { F, m, v0 }` | F min 0 max 30 step 5 default 20; m min 2 max 6 step 1 default 4; v0 min 0 max 4 step 1 default 0 (F4 fix -- no negative launch reachable). Key is literally "default", never "def". |
+| sliders (S6 only) | `slider_controls: { F, m, v0, mu_k }` | F min 0 max 30 step 5 default 20; m min 2 max 6 step 1 default 4; v0 min 0 max 4 step 1 default 0 (F4 fix -- no negative launch reachable); mu_k min 0.2 max 0.5 step 0.1 default 0.3 (FIX CYCLE 2, CF-4). Key is literally "default", never "def". |
 
 No `radians()` anywhere in this JSON, by construction. `surface.theta_deg = 0` in every state and
 no `angle_arc`/`F_ang` is authored anywhere (the LABELLING SCHEME, section 6 CALLOUT-4), so no formula
@@ -264,7 +267,7 @@ the concept default, and in every state below except the S6 default that default
 | S3 | mass_kg 5, initial_velocity_mps 2.5, applied_force N=19.6 angle_deg=0, mu_s 0.4, mu_k 0.4, surface.frictionless OMITTED, initial_position_m -5.4 | F must equal mu_k times m times g to the displayed precision or the exact-balance constant-speed claim breaks visibly (the crate would drift). This is the state the misconception confrontation depends on -- a wrong F silently deletes the whole state point. |
 | S4 | mass_kg 4, initial_velocity_mps -3, applied_force N=12 angle_deg=0, surface.frictionless true, initial_position_m +1.6 | Both the SIGN of v0 and the non-default mass_kg 4 (the only state at 4 kg, not 5) are load-bearing: a missing minus sign deletes the reversal, and an inherited m=5 moves K0 from 18.0 J to 20.0 J and desyncs every number in section 1 sanity table. initial_position_m is POSITIVE here (+1.6), the one state where it is -- inheriting -5.4 puts the reversal outside the drawn floor. |
 | S5 | mass_kg 5, initial_velocity_mps 2, applied_force N=5 angle_deg=0, surface.frictionless true, initial_position_m -5.4 | checkpoints[].s_m is computed from THIS state initial_position_m (CALLOUT-3) -- any drift in the seed silently moves the flag off the -3.4 m arithmetic and the stamp no longer matches the formula surface. |
-| S6 | mass_kg 4, initial_velocity_mps 0, applied_force N=20 angle_deg=0, mu_s 0.3, mu_k 0.3, surface.frictionless OMITTED, initial_position_m -5.4, slider_controls F/m/v0 all min_ring core | This concept authors zero angles anywhere (LABELLING SCHEME, section 6 CALLOUT-4) -- there is no F_ang control and no angle_arc in this concept. S6 own body seed MUST equal the sliders own default values (F=20, m=4, v0=0) or the first frame disagrees with the knob positions -- the second live instance in this concept of the default_variables_only_first_var_merged bug class (the first is every guided state m). |
+| S6 | mass_kg 4, initial_velocity_mps 0, applied_force N=20 angle_deg=0, mu_s 0.3 (FIXED, never a slider), mu_k 0.3, surface.frictionless OMITTED, initial_position_m -5.4, slider_controls F/m/v0/mu_k all min_ring core (mu_k added FIX CYCLE 2) | This concept authors zero angles anywhere (LABELLING SCHEME, section 6 CALLOUT-4) -- there is no F_ang control and no angle_arc in this concept. S6 own body seed MUST equal the sliders own default values (F=20, m=4, v0=0, mu_k=0.3) or the first frame disagrees with the knob positions -- the second live instance in this concept of the default_variables_only_first_var_merged bug class (the first is every guided state m). mu_s is NEVER slider-controlled (section 14) -- its fixed 0.3 seed is unchanged by this cycle. |
 
 `surface.frictionless: true` is REQUIRED on S1, S4, S5 and FORBIDDEN on S2, S3, S6. Omitting it on
 S1/S4/S5 makes the cart decelerate and every constant-net-work-then-derivation claim in the narration
@@ -310,7 +313,7 @@ invariant -- every state authors BOTH blocks, mechanically greppable):
 | S3 | applied -> "pull", friction -> "friction", net -> "net" | 110 | 55 (exempted, see below) |
 | S4 | net -> "net" | 40 | 55 (exempted, see below) |
 | S5 | net -> "net" | 55 | 55 (exempted, see below) |
-| S6 | applied -> "pull", friction -> "friction", net -> "net" | 400 | 340 (priced and declined, see below) |
+| S6 | applied -> "pull", friction -> "friction", net -> "net" | 400 | 400 (FIX CYCLE 2: 340 -> 400, the mu_k slider new worst-K corner reopened the 90 percent ceiling check -- see section 14) |
 
 precision: 1 on every state energy_layer. loop_reset_ms: 2000 / 2100 / 2000 / 2600 / 2400 on S1-S5;
 none on S6 (the SEAM J sandbox wrap is the loop, cited at source L48204-05 in the skeleton section 0,
@@ -367,7 +370,8 @@ illegibly small (the explicit check this cycle's dispatch requires):
 | S3 | 15.625 (flat, constant) | 55 | 28.4% (unchanged) |
 | S4 | 46.08 (loop end) | 55 | 83.8% (unchanged) |
 | S5 | 48.4 (loop end) | 55 | 88.0% (unchanged) |
-| S6 | 305.44 worst corner / 98.88 default | 340 | 89.8% / 29.1% (unchanged) |
+| S6 | 305.44 worst corner (mu fixed 0.3, pre-CF-4) / 98.88 default | 340 | 89.8% / 29.1% (superseded, next row) |
+| S6 (FIX CYCLE 2) | 328.96 worst corner (mu now [0.2,0.5], worst at mu=0.2) / 98.88 default | 400 | 82.2% / 24.7% |
 
 All six states stay under the 90% ceiling. The smallest SUSTAINED value (S3 flat 28.4% band) is a
 full, legible fill, not a sliver -- "illegibly small" is not reached anywhere.
@@ -411,7 +415,15 @@ is explicitly a NUMERALS claim, matching CALLOUT-2's fleet-wide design law that 
 only, never the primary evidence; its delta cue ("Change force, mass, speed") makes no height-comparison
 promise at all, unlike S1's literal "Two bars, one number." Paying a persistent legibility cost across
 the state's entire commonly-viewed slider range, to fix a proportion nothing in S6 is claiming, is the
-wrong trade. Left unchanged: `bar_max_J`: 340, `work_scale_J`: 400.
+wrong trade. Left unchanged AT THIS DECISION POINT: `bar_max_J`: 340, `work_scale_J`: 400.
+
+**Superseded by FIX CYCLE 2 (section 14):** the parity-vs-legibility trade above was priced against a
+FIXED `mu_k`: 0.3. Once `mu_k` became a live [0.2, 0.5] dial (CF-4, section 14), the worst-K corner moved
+from 305.44 J to 328.96 J, which reopened THIS SAME 90 percent ceiling check (328.96/340 = 96.8 percent,
+over the ceiling this section itself established). `bar_max_J` is raised to 400 in FIX CYCLE 2 to restore
+compliance -- `work_scale_J`: 400 is unchanged and re-verified safe against the wider mu range, and the
+PARITY-DECLINED verdict above still stands (2 x 400 / 400 = 2.00x, still far from the 1.00x parity
+identity, still not worth chasing on an explore-exempt, numerals-verified state).
 
 ---
 
@@ -431,7 +443,7 @@ satisfied). Rule 37 makes S6 free-run forever with no extra authoring.
 | S3 | none | [] | section 1 sanity table row S3 |
 | S4 | none | [] | section 1 sanity table row S4 |
 | S5 | none | [] | section 1 sanity table row S5 |
-| S6 | F [0,30,step 5,default 20], m [2,6,step 1,default 4], v0 [0,4,step 1,default 0] | [F, m, v0] | section 1 sanity table S6 rows (default + worst corner) |
+| S6 | F [0,30,step 5,default 20], m [2,6,step 1,default 4], v0 [0,4,step 1,default 0], mu_k [0.2,0.5,step 0.1,default 0.3] (FIX CYCLE 2, CF-4) | [F, m, v0, mu_k] | section 1 sanity table S6 rows (default + worst corners) + section 14 |
 
 Load-bearing, do not improve: zero sliders on S1-S5 is exactly why every K/W peak in section 1 is
 exactly determined, why every frozen-pin margin in the skeleton DoD (d) table is provable, and why the
@@ -458,7 +470,7 @@ guided state breaks all three at once (the seized-slider bug class, section 0).
 | S5 | approximately 828 ms, one-shot, LATCHES | Cart crosses the flag at s=-3.4 (d=2.0 m); the stamp reading flag colon W net equals 10.0 J, K equals 20.0 J lands beneath the formula surface and holds to the end of the state | crossing detector, capture order W then K | none |
 | S5 | 828-2400 ms | Cart keeps accelerating past the flag; at R=2400 ms, v=4.4, K=48.4 J (the concept own K peak), net=38.4 J -- what the 1440 ms frozen pin photographs mid-flight (past the flag, still climbing) | v(t) = 2+t | none |
 | S5 | loop reset | At t=2400 ms rewinds to s=-5.4, v=2 and the stamp clears -- the next cycle re-crosses and re-stamps identically | loop_reset_ms=2400 | none |
-| S6 | continuous, free-running (Rule 37) | Teacher drags F, m, v0 live; all three arrows, three work bars and K re-derive every frame; on wrap v re-seeds to the current v0, every ledger re-zeroes, d re-anchors -- the loop IS the wrap, not an authored loop_reset_ms | F, m, v0, drag | ALL (F, m, v0) |
+| S6 | continuous, free-running (Rule 37) | Teacher drags F, m, v0, mu_k live (FIX CYCLE 2 adds mu_k); all three arrows, three work bars and K re-derive every frame; on wrap v re-seeds to the current v0, every ledger re-zeroes, d re-anchors -- the loop IS the wrap, not an authored loop_reset_ms | F, m, v0, mu_k, drag | ALL (F, m, v0, mu_k) |
 | S6 | drag gesture | Dragging the crate REPOSITIONS AND STOPS it (v=0) -- the honest way to park it and read K fresh | trusted drag | drag |
 
 ### Rule 32 audit
@@ -650,7 +662,8 @@ screen check of the header text.
 ### CALLOUT-6 -- friction declared by name, per state
 
 `surface.frictionless: true` on S1, S4, S5. S2, S3, S6 OMIT it and author `mu_s`/`mu_k` explicitly (S2:
-0.4/0.4; S3: 0.4/0.4, with F = 19.6 exactly; S6: 0.3/0.3).
+0.4/0.4, both fixed; S3: 0.4/0.4, both fixed, with F = 19.6 exactly; S6: `mu_s` FIXED at 0.3, `mu_k`
+seeded at 0.3 but LIVE-SLIDER-CONTROLLED thereafter, range [0.2, 0.5] -- FIX CYCLE 2, CF-4, section 14).
 
 ### CALLOUT-7 -- arrow-length floor compliance, checked per state
 
@@ -664,6 +677,7 @@ screen check of the header text.
 | S4 | applied 12 N | 0.576 | just above the floor |
 | S5 | applied 5 N | 0.24 clamped to 0.55 | yes, at the floor, direction cue only |
 | S6 | applied 0-30 N (slider) | 0 (hidden at F=0) up to 1.44 at F=30 | never past the floor clamp band below F about 11.46 N; never approaches the 2.80 ceiling |
+| S6 | friction, N = mu_k x m x g, mu_k now [0.2,0.5] slider (FIX CYCLE 2) | 0.188 clamped to 0.55 (worst: mu_k=0.2, m=2) up to 1.4112 (worst: mu_k=0.5, m=6) | floor-clamped at the low end, never approaches the 2.80 ceiling at the high end |
 
 No state anywhere claims an arrow-LENGTH ratio between two different force magnitudes except S3, where
 the two forces are numerically equal (19.6 N each) and render at the identical 0.9408 length -- a true
@@ -751,15 +765,29 @@ is the SAME pre-existing multi-reading-of-one-symbol pattern this document alrea
 quality_auditor not to misread (section 9). A THIRD "K = ..." source (the separately-flagged legend
 spoiler, section 9, nlb_generic_legend_renders_the_authored_state_label_as_onscreen_spoiler_prose,
 still OPEN, engine-owned, out of this cycle's scope) already competes on STATE_4 -- unrelated to this
-fix, unchanged by it, still pending a peter_parker:field3d_surgeon dispatch.
+### CALLOUT-12 -- the S5 to S6 scale jump has no on-screen ceiling numeral (FIX CYCLE 2, Finding 2)
+
+`bar_max_J` jumps 55 (S5) to 400 (S6, FIX CYCLE 2 -- was 340) with no ceiling numeral rendered anywhere
+on the panel -- a teacher reading FILL HEIGHT alone (not the numerals) can misread K climbing as K
+falling. This is NOT an authoring inconsistency: S6 teacher-controlled worst-corner K (328.96 J, section
+14 FINDING 1) is nearly seven times S1-S5 individually-tuned peaks (15.6-48.4 J), so a shared scale would
+either clip S6 legitimate range or crush S1-S5 FIX CYCLE 1 fills to illegible slivers (the exact trade
+FIX CYCLE 1 rejected for S3). Mitigated here two ways: (1) STATE_6 narration gains an explicit, plain
+heads-up (s6_2, section 7) that the SCALE changed, not the physics; (2) the underlying fix -- a rendered
+scale-ceiling numeral -- is ENGINE-side (SEAM L) and out of `alex:physics_author` tools and scope;
+flagged as a formal `engine_bug_queue` candidate in section 14 (a recurrence of an ALREADY-OPEN row per
+the routing report, not a new one). CALLOUT-2 existing fleet-wide rule already governs the narration
+side: no caption, title or aha may compare bar HEIGHT across states -- re-verified: nothing in this
+concept narration does.
 
 ---
 
 ## 7. Narration -- teacher_script.tts_sentences
 
 Rule 31a word budget, machine-counted on `text_en` (Python regex word count, script and full output in
-section 9): S1 55, S2 49, S3 53, S4 55, S5 55, S6 27 (explore, exempt). Every guided state is inside the
-hard 25-55 range and is exactly 4 sentences. S1 (55) and S2 (49) exceed the skeleton own suggested
+section 9): S1 55, S2 49, S3 53, S4 55, S5 55, S6 40 (explore, exempt -- FIX CYCLE 2 grows S6 from 27 to
+40 words, adding the mu_k control mention and a scale-change heads-up, section 14). Every guided state is
+inside the hard 25-55 range and is exactly 4 sentences (S6 is 4 sentences too now, up from 3). S1 (55) and S2 (49) exceed the skeleton own suggested
 per-state band (30-45) -- declared, not accidental: S1 must carry the PRIMARY aha itself plus two Block-1
 prerequisite-cliff patch clauses (for concepts 1 and 3) plus the misconception planting flag ("only one
 force acts, so its work is the whole net work") -- four obligations in one state; the same precedent
@@ -879,16 +907,23 @@ arithmetic a teacher reads aloud: 20.0 minus 10.0 equals 10.0. The independent c
 ties the same 10.0 J to F times d equals 5 times 2.0, verified against the d arrow own rendered value --
 two different roads to the same number, which is the derivation whole teaching point.
 
-### STATE_6 -- explore, 27 words, 3 sentences (0/open, exempt)
+### STATE_6 -- explore, 40 words, 4 sentences (0/open, exempt) -- FIX CYCLE 2 (CF-4 + Finding 2)
 
 | # | text_en | glow |
 |---|---|---|
-| s6_1 | Change the force, the mass, and the starting speed. | nlb_body_cart |
-| s6_2 | Watch the work bars and the K bar together. | energy_panel |
-| s6_3 | The net bar always matches the change in K. | energy_bar_K |
+| s6_1 | Change the force, the mass, the starting speed, and the friction. | nlb_body_cart |
+| s6_2 | The energy scale is bigger here, because the numbers reach higher. | energy_panel |
+| s6_3 | Watch the work bars and the K bar together. | energy_panel |
+| s6_4 | The net bar always matches the change in K. | energy_bar_K |
 
-text_hi: "Force, mass, और starting speed बदलिए। Work bars और K bar को साथ देखिए। Net bar हमेशा K में बदलाव से
-मिलता है।"
+text_hi: "Force, mass, starting speed, और friction बदलिए। यहाँ energy का scale बड़ा है, क्योंकि numbers ज़्यादा
+बड़े होते हैं। Work bars और K bar को साथ देखिए। Net bar हमेशा K में बदलाव से मिलता है।"
+
+s6_1 adds the new mu_k dial to the existing 3-control sentence (CF-4). s6_2 is NEW (Finding 2): a plain,
+literal heads-up that the K bar SCALE changed, not its physics -- authored because the engine does not
+yet render a scale-ceiling numeral (bug_class in section 14) and CALLOUT-2 already forbids any narration
+from comparing bar HEIGHT across states, so the reader needs a NUMERALS-level explanation instead. s6_3
+and s6_4 (the old s6_2 and s6_3) are unchanged from before this cycle.
 
 ---
 
@@ -901,7 +936,7 @@ text_hi: "Force, mass, और starting speed बदलिए। Work bars और
 | S3 | Only the net work changes kinetic energy | Net zero: K constant |
 | S4 | Change measured from the starting energy | Measured from the start |
 | S5 | The theorem comes from F = ma | Derived from F = ma |
-| S6 | Explore: force, mass and starting speed | Change force, mass, speed |
+| S6 | Explore: force, mass, speed and friction | Change force, mass, speed, friction |
 
 ### Formula surfaces (Rule 34b -- ONE per state; Rule 38c -- algebra only)
 
@@ -1189,7 +1224,7 @@ Full run: .calc_runs/work_energy_theorem/20260807-175333/readings.json.
 | S3 | K, pull, friction, net | pull_J = F times d, friction_J = -mu_k times m times g times d, net_J (reads 0 for every d, since v is always v0), K_J |
 | S4 | K, net | net_J using the state true v0=-3 |
 | S5 | K, net, d (independently harvestable, the d-arrow value) | net_J; cross-checked by pull_J = F times d since S5 is frictionless (should equal net_J exactly) |
-| S6 | K, pull, friction, net | All four formulas, using the LIVE slider values of F, m, v0 at sample time |
+| S6 | K, pull, friction, net | All four formulas, using the LIVE slider values of F, m, v0, mu_k at sample time (mu_k added FIX CYCLE 2 -- previously fixed at 0.3, now the ONE live friction dial) |
 
 The single-word captions (pull/friction/net, and the engine-fixed K) pass the bare-symbol gate ONLY
 after the section-1 rename (W_pull_J to pull_J etc.) -- before it, splitNameUnit produced W_pull /
@@ -1683,3 +1718,202 @@ the cart body itself -- this document reasons it should read cleanly (a small ma
 the cart's own body mesh, the same visual language S5's flag already uses elsewhere on the same track),
 but this physics-author dispatch had no live renderer to confirm the pixel-level result; flag any real
 collision found back to this role, do not silently reshape it in json-author.
+
+---
+
+## 14. Fix cycle 2 patch log (2026-08-08, alex:physics_author, dispatched off Checkpoint B findings CF-4 and the scale-ceiling recurrence)
+
+Two independent findings routed here, both against the SEALED design (state count, arc, archetypes,
+home poses, loop_reset_ms, the numeric contract and the S1/S2 bar parity from FIX CYCLE 1 are all
+UNCHANGED -- confirmed at the end of this section). This cycle touches ONLY STATE_6 (the sandbox) plus
+the documentation tables that describe it.
+
+### FINDING 1 -- CF-4, the mu dial
+
+**Re-derivation, independent of the routing report own numbers.** S6 worst-corner arithmetic uses
+K at wrap = half*m*v0^2 + (F - mu*m*g)*span, span = 12.0 m (verified against the ALREADY-approved
+S6-default and S6-worst-corner rows in section 1, which this formula reproduces exactly at mu = 0.3:
+half*4*0 + (20 - 0.3*4*9.8)*12 = 98.88 J default; half*2*16 + (30 - 0.3*2*9.8)*12 = 305.44 J worst
+corner, both matching section 1 to the printed decimal).
+
+Partial-derivative argument for the extremum (not asserted, derived): dK/dv0 = m*v0 >= 0 for m > 0,
+v0 >= 0, so K is non-decreasing in v0 -- v0 = 4 (max) is always optimal, independent of every other
+variable's sign. dK/dmu = -m*g*span < 0 always -- K is strictly decreasing in mu, so mu = 0.2 (min) is
+always optimal for MAXIMIZING K, independent of m. dK/dm (at F=30, v0=4 fixed) = half*v0^2 - mu*g*span
+= 8 - 117.6*mu; at mu = 0.2 this is 8 - 23.52 = -15.52 < 0, so K is decreasing in m at the mu that
+maximizes K -- m = 2 (min) is optimal. F enters only as +F*span, strictly increasing, so F = 30 (max) is
+always optimal. This proves the worst-K corner is the GLOBAL maximum over the box, not merely the
+largest of a few sampled points: **m=2, F=30, v0=4, mu=0.2**.
+
+```
+K_worst = half*2*4^2 + (30 - 0.2*2*9.8)*12 = 16 + 26.08*12 = 16 + 312.96 = 328.96 J  (displays 329.0 J)
+```
+
+This MATCHES the dispatch own cited "329.0 J" (16 + 313.0) to rounding. Confirmed: **328.96 < 340**
+(the strict clip check the dispatch asked for holds) -- but see the 90 percent ceiling catch below,
+which the strict "< bar_max_J" check alone does NOT capture.
+
+Friction work is monotonic INCREASING in both mu and m (friction_worst = mu*m*g*span, all positive
+factors), so its global maximum over the box is independent of F and v0 (friction acts over the full
+span regardless of how fast the cart covers it, as already established in section 1 formula
+`friction_work`): **mu=0.5, m=6** (any F that keeps the cart moving forward the whole span -- F=30
+certifies this: drive = 30 - 0.5*6*9.8 = 0.6 N > 0, so the cart does complete the span).
+
+```
+friction_worst = 0.5*6*9.8*12 = 352.8 J
+```
+
+MATCHES the dispatch own cited "352.8 J" exactly. **352.8 < 400** holds, AND 352.8/400 = 88.2 percent,
+under the 90 percent ceiling too -- no issue on the work-bar side.
+
+Net work (= K_wrap - K0 = (F - mu*m*g)*span, independent of v0 by the theorem itself) is maximized at
+F=30, mu=0.2, m=2 (same corner as K, since dropping the v0 term does not change which corner maximizes
+the remaining expression): net_worst = (30 - 0.2*2*9.8)*12 = 312.96 J, 78.2 percent of 400 -- safe. Pull
+work (F*span, independent of mu/m/v0) stays at its PRE-EXISTING worst value 360.0 J = 90.0 percent of
+400 exactly -- unaffected by this cycle, not reopened.
+
+**A genuine catch, not in the dispatch own framing: the strict "< bar_max_J" check is necessary but NOT
+sufficient.** FIX CYCLE 1 additionally established a 90 percent-of-track legibility ceiling ("verified
+no peak exceeds 90 percent... all six states stay under the 90 percent ceiling", section 2) as a design
+law, separate from the raw clip check. 328.96/340 = **96.8 percent** -- this REOPENS that same ceiling
+check, even though the raw "< 340" check the dispatch quoted is technically true. Checked whether a
+narrower mu range could avoid touching `bar_max_J` at all: solving K_worst(mu) = 0.9*340 = 306 J for mu
+gives mu ~ 0.298 -- essentially back to the CURRENT fixed 0.3, meaning there is almost NO room below 0.3
+without breaking the ceiling. Since the priced instruction is the FULL [0.2, 0.5] range (both "rougher"
+and "smoother" directions), and narrowing away the smoother half would only half-deliver the teaching
+goal, `bar_max_J` is raised instead:
+
+```
+bar_max_J >= 328.96 / 0.9 = 365.51...  ->  chosen: 400 (round, comfortable margin: 328.96/400 = 82.2 percent)
+```
+
+`work_scale_J` stays at 400, unchanged, and re-verified safe against the wider mu range (friction 88.2
+percent, net 78.2 percent, pull 90.0 percent pre-existing) -- no state's work-bar ceiling needed to move.
+
+**Effect on the default frame.** At the UNCHANGED slider defaults (F=20, m=4, v0=0, mu_k=0.3), K stays
+98.88 J exactly (mu_k default did not change) -- only its FILL FRACTION on the K bar moves, from
+98.88/340 = 29.1 percent to 98.88/400 = 24.7 percent. This is a real, expected pixel change (bar
+shortens slightly at the SAME joule value) -- THE EYE will show a new H2 diff on S6, re-baseline via
+`visual:approve` after founder OK, not a fix cycle (Rule 34e), same as every prior FIX CYCLE 1 scale
+edit.
+
+### Decision -- ONE dial, mu_k, not two
+
+Chose to expose ONLY `mu_k` as a live slider ([0.2, 0.5], step 0.1, default 0.3, matching the priced
+range exactly), keeping `mu_s` FIXED at 0.3 (unchanged from today) and never slider-controlled anywhere
+in this concept. Reasoning, checked against the live engine source, not assumed:
+
+1. **mu_s is physically load-bearing, not decorative.** Traced `field_3d_renderer.ts` (read-only,
+   FINDING 1 is JSON-only, no renderer edit): `var maxStat = b.mu_s * N;` and
+   `var stuck = ... (Math.abs(drive) <= maxStat);` (the static-friction "start from rest" gate) show
+   `mu_s` genuinely GATES whether the cart begins moving when v is near zero -- it is not an unused
+   field. This matters here because S6 v0 default is 0 (the cart starts each wrap from rest), so the
+   gate fires on every wrap.
+2. **Two independent sliders create a REAL "mu_k greater than mu_s" risk with no built-in guard.**
+   Source-traced the slider-write path: `if (token === "mu_s") b.mu_s = value; else b.mu_k = value;`
+   (field_3d_renderer.ts) -- each token writes ONLY its own field, with no linking mechanism anywhere
+   in the engine. Two independently-draggable sliders sharing an overlapping [0.2, 0.5]-ish range WOULD
+   let a teacher set mu_k above mu_s, which is unphysical (kinetic friction should never exceed static).
+3. **Checked whether the engine already has a "linked slider" primitive -- it does not.** Confirmed by
+   reading the full `nlbSc`/token-dispatch code: min/max/step/default are per-token, independently
+   overridable via `slider_controls`, with no cross-token constraint anywhere.
+4. **Checked the existing fleet precedent -- this exact risk is ALREADY accepted elsewhere, on-topic.**
+   `block_on_incline` STATE_5 ships FIVE live sliders including BOTH `mu_s` and `mu_k` independently
+   (falls back to the engine default [0,1] range for both, no linking), and `friction_static_kinetic`
+   exposes both with overlapping ranges (mu_s [0.1,0.9], mu_k [0.05,0.8]) -- BECAUSE that concept whole
+   point is teaching the mu_s-vs-mu_k distinction. `work_energy_theorem` has never taught that
+   distinction and does not need to start now -- exposing two sliders here would be importing untaught
+   complexity, not delivering it.
+5. **Considered fixing mu_s HIGH (0.5, matching mu_k slider max) instead of at the current 0.3 -- REJECTED,
+   verified concretely.** At the CURRENT approved default mass (m=4) with mu_s fixed 0.3: F=15 N already
+   starts the cart moving today (drive 15 > maxStat 11.76). With mu_s fixed at 0.5 instead: maxStat
+   becomes 19.6, so the SAME F=15 N would now leave the cart STUCK -- a real, visible regression to
+   already-reachable exploration, for zero benefit (this concept never displays mu_s as a number, so
+   there is nothing for a higher fixed value to protect).
+
+**How the "mu_k greater than mu_s" risk is handled, stated directly per the dispatch instruction.** With
+only `mu_k` exposed, mu_s never moves from 0.3, so dragging mu_k above 0.3 (toward 0.5) DOES create an
+internal state where mu_k (dragged) numerically exceeds mu_s (fixed) -- this is real, not hidden. It is
+INERT in this sim for three checked reasons: (a) `mu_s` is never displayed anywhere -- no readout, no
+label, no HUD row in this concept (section 3 arrows.show/readouts table lists only v, F, f); (b) the
+"stuck" gate it feeds is evaluated IDENTICALLY to today at every already-reachable slider position (mu_s
+never changes from the currently-approved 0.3), so nothing that used to move stops moving, and nothing
+that used to stay stuck starts moving unexpectedly; (c) once the cart IS moving, mu_s plays no further
+role at all -- the kinetic branch (`a = (drive - mu_k*N)/m`, `friction_J = -mu_k*m*g*d`) reads mu_k
+exclusively, which is exactly the quantity this concept teaches through. The residual is a private,
+invisible, functionally-inert internal-state technicality, not a rendered or teachable inconsistency --
+traded deliberately against the CONFIRMED regression of the alternative (fixing mu_s high, item 5 above).
+
+**Legibility judgment (the dispatch own question).** Choosing ONE dial keeps S6 at FOUR live sliders
+(m, F, mu_k, v0, in that on-screen order -- SEAM E canonical row order is `m, m2, F, ..., mu_s, mu_k,
+v0, ...`, so the new row inserts BETWEEN F and v0, not appended at the bottom), not the FIVE the routing
+report priced for a two-dial design. Judged still legible: (a) it is fewer rows than the two-dial
+alternative; (b) `block_on_incline` STATE_5 already ships FIVE live sliders successfully in this same
+concept fleet, so even the two-dial count would not have been unprecedented, and four is comfortably
+inside that demonstrated ceiling; (c) Rule 31 explicitly reserves "expose ALL controls" for the final
+explore state, which S6 is. The Rule-31 control table (section 3) is updated in place (already applied
+above) to add mu_k to S6 own row -- no other state row changes, and the explore-exempt / drag-sandbox
+archetype is unchanged.
+
+### FINDING 2 -- the unlabelled scale ceiling
+
+Addressed via CALLOUT-12 (section 6, inserted this cycle) plus the STATE_6 narration edit (section 7,
+already applied above): the structural reasoning (S6 worst-corner K is roughly seven times S1-S5
+individual peaks, so a shared scale would clip S6 or crush S1-S5), the narration mitigation (a new,
+plain, NUMERALS-level sentence naming that the scale changed), and the formal engine-bug flag are all
+recorded there rather than repeated here. One additional note: FIX CYCLE 2 own `bar_max_J` change
+(340 -> 400, FINDING 1) makes the S5-to-S6 jump slightly LARGER than before (was 55 -> 340, a 6.2x jump;
+now 55 -> 400, a 7.3x jump) -- the mitigation above accounts for the POST-fix jump, not the pre-fix one.
+
+### What was deliberately NOT changed
+
+- State count, arc, motion archetypes, home poses, `loop_reset_ms` -- unchanged, per instruction.
+- S1/S2 `bar_max_J`: 110 (the parity fix from FIX CYCLE 1) -- unchanged, not reopened.
+- S3/S4/S5 `bar_max_J`: 55 each (explicitly exempted in FIX CYCLE 1) -- unchanged, not reopened; S5
+  remains the one "free" future option FIX CYCLE 1 already flagged, still not required by anything S5
+  itself claims.
+- `work_scale_J` on every state, including S6 own 400 -- unchanged; re-verified safe against the wider
+  mu range (worst friction 88.2 percent, worst net 78.2 percent, worst pull 90.0 percent pre-existing).
+- `mu_s` -- NOT exposed as a slider anywhere in this concept. S2/S3 entirely untouched (still fixed
+  0.4/0.4). S6 own fixed 0.3 seed is unchanged; only `mu_k` gained live-slider behaviour.
+- S1-S5 narration, titles, delta cues, formula surfaces -- untouched.
+- The numeric contract (`net_J`/`pull_J`/`friction_J` renames, `variable_overrides`) from the earlier
+  fix cycle -- unchanged, not reopened. S6 own `variable_overrides` entry
+  (`{v0:0,m:4,F:20,mu_k:0.3}`) already matched the unchanged default and needs no edit.
+- STATE_4 own checkpoint (FIX CYCLE 1, CALLOUT-11) -- unchanged, not reopened.
+- The legend-spoiler engine bug (section 9) -- still flagged, still open, still out of scope.
+
+### Handoff: patch items 23-28 for json-author (in addition to items 1-22, sections 11 and 13)
+
+23. `physics_engine_config.variables.mu_k`: min 0.2, max 0.5, step 0.1, default 0.3 (was min 0, max 1,
+    default 0). `physics_engine_config.variables.mu_s`: default 0.3 (was 0); min/max stay 0/1
+    (documentation only, mu_s is never a slider).
+24. STATE_6 `newtons_laws_body.slider_controls`: ADD
+    `mu_k: { min: 0.2, max: 0.5, step: 0.1, default: 0.3, min_ring: "core" }`. `controls_visible`:
+    `["F","m","v0"]` -> `["F","m","v0","mu_k"]`. `bodies[0].mu_k` and `.mu_s` seeds stay UNCHANGED
+    (0.3 / 0.3) -- the default frame is pixel-identical except for the new 4th slider row (which SEAM E
+    inserts between F and v0 in on-screen order, not appended at the bottom -- expect the panel to grow
+    one row taller).
+25. STATE_6 `newtons_laws_body.energy_layer.bar_max_J`: `340 -> 400`. No other state own `bar_max_J` or
+    `work_scale_J` changes.
+26. STATE_6 `tts_sentences`: was 3 entries (s6_1..s6_3), now 4 -- s6_1 edited (names mu_k too), s6_2 is
+    NEW (the scale heads-up), old s6_2/s6_3 become s6_3/s6_4 verbatim. Exact text_en/text_hi/glow per
+    section 7 STATE_6 table (already updated above).
+27. STATE_6 `title`: "Explore: force, mass and starting speed" -> "Explore: force, mass, speed and
+    friction". Delta cue: "Change force, mass, speed" -> "Change force, mass, speed, friction" (5 words,
+    inside the Rule 32c budget).
+28. No change needed to `newtons_laws_body.variable_overrides.STATE_6` -- already
+    `{v0:0,m:4,F:20,mu_k:0.3}`, which matches the unchanged slider default exactly.
+
+### Checks for json-author to run before declaring this cycle done
+
+`npx tsc --noEmit` at 0; `npm run validate:concepts` passing. THE EYE
+(`npm run visual:eyes -- work_energy_theorem`) -- EXPECT a new H2 diff on STATE_6 ONLY (new slider row,
+`bar_max_J` fill-height change, narration text change) -- re-baseline via `visual:approve` after founder
+OK, not a fix cycle (Rule 34e). EXPECT ZERO new diffs on S1-S5 -- if any appear, that is a real
+regression, investigate before re-baselining. THE CALCULATOR (`npm run numeric:calc --
+work_energy_theorem`) -- EXPECT STATE_6 own `K_J`/`net_J`/`pull_J`/`friction_J` checks to PASS exactly as
+before at the unchanged default sample point (mu_k=0.3 did not move); the pre-existing STATE_4/STATE_5
+legend/dual-K FAIL pattern (section 9) is unrelated and still expected. Also spot-check visually that
+the new mu_k slider row lands between F and v0 (not at the bottom of the panel, per SEAM E own canonical
+token order) and that its glyph renders as the Unicode `μₖ` (never the ASCII "mu_k").

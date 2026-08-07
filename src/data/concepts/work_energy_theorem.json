@@ -37,8 +37,8 @@
       "v0":   { "name": "launch speed at the state's own start (signed)", "unit": "m/s", "min": 0, "max": 4, "default": 0, "step": 1 },
       "v":    { "name": "speed", "unit": "m/s", "min": -5, "max": 5, "default": 0 },
       "g":    { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
-      "mu_k": { "name": "coefficient of kinetic friction (S2, S3, S6 only)", "unit": "", "min": 0, "max": 1, "default": 0 },
-      "mu_s": { "name": "coefficient of static friction (authored equal to mu_k, S2/S3/S6 only)", "unit": "", "min": 0, "max": 1, "default": 0 },
+      "mu_k": { "name": "coefficient of kinetic friction (S2, S3 fixed; S6 the ONE live friction dial, FIX CYCLE 2)", "unit": "", "min": 0.2, "max": 0.5, "step": 0.1, "default": 0.3 },
+      "mu_s": { "name": "coefficient of static friction (S2, S3, S6 all FIXED at 0.3, never a live slider in this concept -- FIX CYCLE 2 decision, see section 14)", "unit": "", "min": 0, "max": 1, "default": 0.3 },
       "d":    { "name": "displacement from the state's own initial_position_m", "unit": "m", "min": 0, "max": 12, "default": 0 },
       "K":    { "name": "kinetic energy", "unit": "J", "min": 0, "max": 340, "derived": "0.5 * m * v * v" }
     },
@@ -321,13 +321,13 @@
       },
 
       "STATE_6": {
-        "title": "Explore: force, mass and starting speed",
+        "title": "Explore: force, mass, speed and friction",
         "duration": 0,
         "focal_primitive_id": "wet_s6_panel",
         "advance_mode": "interaction_complete",
         "teaching_method": "exploration_sliders",
         "motion_archetype": "drag-sandbox",
-        "delta_cue": "Change force, mass, speed",
+        "delta_cue": "Change force, mass, speed, friction",
         "depth_ring": "core",
         "scene_composition": [
           {
@@ -354,9 +354,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Change the force, the mass, and the starting speed.", "text_hi": "Force, mass, और starting speed बदलिए।", "glow": "nlb_body_cart" },
-            { "id": "s6_2", "text_en": "Watch the work bars and the K bar together.", "text_hi": "Work bars और K bar को साथ देखिए।", "glow": "energy_panel" },
-            { "id": "s6_3", "text_en": "The net bar always matches the change in K.", "text_hi": "Net bar हमेशा K में बदलाव से मिलता है।", "glow": "energy_bar_K" }
+            { "id": "s6_1", "text_en": "Change the force, the mass, the starting speed, and the friction.", "text_hi": "Force, mass, starting speed, और friction बदलिए।", "glow": "nlb_body_cart" },
+            { "id": "s6_2", "text_en": "The energy scale is bigger here, because the numbers reach higher.", "text_hi": "यहाँ energy का scale बड़ा है, क्योंकि numbers ज़्यादा बड़े होते हैं।", "glow": "energy_panel" },
+            { "id": "s6_3", "text_en": "Watch the work bars and the K bar together.", "text_hi": "Work bars और K bar को साथ देखिए।", "glow": "energy_panel" },
+            { "id": "s6_4", "text_en": "The net bar always matches the change in K.", "text_hi": "Net bar हमेशा K में बदलाव से मिलता है।", "glow": "energy_bar_K" }
           ]
         }
       }
@@ -592,9 +593,10 @@
       "field_line": "#FFD54F"
     },
     "slider_controls": {
-      "F":  { "min": 0, "max": 30, "step": 5, "default": 20, "label": "F" },
-      "m":  { "min": 2, "max": 6, "step": 1, "default": 4, "label": "m" },
-      "v0": { "min": 0, "max": 4, "step": 1, "default": 0, "label": "v₀" }
+      "F":    { "min": 0, "max": 30, "step": 5, "default": 20, "label": "F" },
+      "m":    { "min": 2, "max": 6, "step": 1, "default": 4, "label": "m" },
+      "v0":   { "min": 0, "max": 4, "step": 1, "default": 0, "label": "v₀" },
+      "mu_k": { "min": 0.2, "max": 0.5, "step": 0.1, "default": 0.3, "label": "μₖ" }
     },
     "states": {
       "STATE_1": {
@@ -751,7 +753,7 @@
         "label": "Sandbox: force, mass and starting speed sliders drive the cart on a rough floor (μ = 0.3); the work bars (pull, friction, net) and the K meter track every choice live",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
-        "caption": "Change force, mass, speed",
+        "caption": "Change force, mass, speed, friction",
         "show_sliders": true,
         "formula_overlay": "Wₙₑₜ = ΔK",
         "newtons_laws_body": {
@@ -765,7 +767,7 @@
             { "body_id": "cart", "show": ["applied", "friction"] }
           ],
           "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
-          "energy_layer": { "bars": ["K"], "bar_max_J": 340, "precision": 1 },
+          "energy_layer": { "bars": ["K"], "bar_max_J": 400, "precision": 1 },
           "work_accumulators": [
             { "force": "applied", "label": "pull", "body_id": "cart" },
             { "force": "friction", "label": "friction", "body_id": "cart" },
@@ -773,7 +775,7 @@
           ],
           "work_scale_J": 400,
           "readouts": ["F_applied", "f", "v"],
-          "controls_visible": ["F", "m", "v0"],
+          "controls_visible": ["F", "m", "v0", "mu_k"],
           "trusted_drag_seizes": true
         }
       }
