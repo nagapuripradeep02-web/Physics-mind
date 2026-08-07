@@ -418,7 +418,7 @@
       "STATE_3": {
         "title": "Subtract h Inside: It Slides Right",
         "duration": 20,
-        "eye_capture_ms": 13000,
+        "eye_capture_ms": 13100,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "transform_curve",
@@ -599,7 +599,7 @@
       "STATE_4": {
         "title": "Multiply by a: Taller, Then Flipped",
         "duration": 20,
-        "eye_capture_ms": 12000,
+        "eye_capture_ms": 11900,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "p_prime",
@@ -1240,8 +1240,8 @@
             "id": "chip_a_hop",
             "text": "y: 1 × 1.5 = 1.5",
             "position": {
-              "x": 147,
-              "y": 130
+              "x": 300,
+              "y": 90
             },
             "font_size": 11,
             "color": "#FBBF24",
@@ -1253,8 +1253,8 @@
             "id": "chip_k_hop",
             "text": "y: 1.5 + 1 = 2.5",
             "position": {
-              "x": 147,
-              "y": 150
+              "x": 300,
+              "y": 110
             },
             "font_size": 11,
             "color": "#FBBF24",
