@@ -355,10 +355,11 @@
             "animate_in_ms": 600
           },
           {
+            "_design_note": "FIX ROUND (founder-caught, 2026-08-07): was raw pixel (382,166), CENTER-aligned (drawLabel uses textAlign(CENTER,CENTER)) so it spanned x 340-424. The pcpl round-2 readout-clearance fix (parametric_renderer.ts on feat/pcpl-readout-placement, b50632e) displaces a secant_line's readout along the line normal by the label's own support function so the stroke can never cross it; on STATE_2 that moves 'sec' readout 'slope = 1.5000' to x 297-375, producing a 34px text-on-text overlap with this caption, confirmed in-frame at 4x. Neither side could avoid the other: canvas-drawn readouts never enter the de-overlap solver (subSimSolverHost.ts) that places label primitives, so no gate could see the collision (filed OPEN/MAJOR as canvas_drawn_readouts_never_enter_the_de_overlap_solver_*). Moved into the right-hand definitions column directly below chord_dual_label (640,130), matching that label's own note ('reading as a continuation of that definitions column'): the two dual-terminology captions now stack as one block, 'chord (secant line)' over 'slope (gradient)', both already appearing together at 15000ms. At (640,152) the text spans about x 596-684, y 146-158 - clear of the fs formula box above it (bottom edge ~102), inside the 760px canvas, and outside the plane viewport (x in [60,460]) so neither the curve nor the frame-extended secant line can ever reach it, mathematically guaranteed rather than nudged-and-hoped. Chosen to be independent of the readout's slope-dependent placement, so no future clearance change can re-collide it.",
             "type": "label",
             "id": "slope_dual_label",
             "text": "slope (gradient)",
-            "position": { "x": 382, "y": 166 },
+            "position": { "x": 640, "y": 152 },
             "font_size": 12,
             "color": "#CBD5E1",
             "appear_at_ms": 15000,
