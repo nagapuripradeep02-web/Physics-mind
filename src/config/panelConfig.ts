@@ -1096,20 +1096,14 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
-    work_energy_theorem: {
-        concept_id: 'work_energy_theorem',
-        layout: 'dual_horizontal',
-        primary: {
-            renderer: 'mechanics_2d',
-            config_key: 'work_energy_theorem_sim',
-            label: 'Forces & Motion',
-        },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'work_energy_theorem_graph',
-            label: 'Work & Energy Bars',
-        },
-    },
+    // work_energy_theorem was here as a RETIRED dual_horizontal mechanics_2d
+    // entry — no concept JSON, absent from VALID_CONCEPT_IDS, i.e. never a
+    // live product concept. Removed 2026-08-05 because the Class 11 Ch.6
+    // work-energy build claims the id for a real field_3d concept (#4), and
+    // a duplicate key in this literal is a TS1117 error. The live entry is
+    // registered below, in the Ch.6 Work, Energy and Power cluster
+    // (mirrors the rolling_on_incline precedent, 2026-08-04, in
+    // src/lib/aiSimulationGenerator.ts).
 
     conservation_of_momentum: {
         concept_id: 'conservation_of_momentum',
@@ -1828,6 +1822,22 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'kinetic_energy_definition',
             label: 'Kinetic Energy — K = ½mv² (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #4 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author BOTH the SEAM L energy_layer
+    // AND SEAM M work_accumulators together (the engine's own panel header
+    // reads "Energy and work bars"). The net work done on a body equals the
+    // change in its kinetic energy, W_net = ΔK = ½mv² − ½mv₀². Pure
+    // configuration, zero renderer edits (0d). Alex pipeline, 2026-08-05.
+    work_energy_theorem: {
+        concept_id: 'work_energy_theorem',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'work_energy_theorem',
+            label: 'The Work–Energy Theorem — Wₙₑₜ = ΔK (3D)',
         },
     },
 
