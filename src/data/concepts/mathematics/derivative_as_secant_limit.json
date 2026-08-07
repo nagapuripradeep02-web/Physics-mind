@@ -88,6 +88,13 @@
         "min": -2.1,
         "max": 2.1,
         "default": -2.1
+      },
+      "h7": {
+        "name": "STATE_7-only linear h sweep for the algebra ladder (0.800 → 0.020, never a slider) — added Checkpoint B F-6",
+        "unit": "dimensionless",
+        "min": 0.02,
+        "max": 0.8,
+        "default": 0.8
       }
     },
     "formulas": {
@@ -105,7 +112,8 @@
       "chord_slope = x0 + h/2 exactly, recomputed every frame from x0 and h — never interpolated, never cached, never duplicated by a second live readout",
       "tangent_slope = x0 exactly, defined and legal to display at every h including h = 0 — this is what un-strands the STATE_5 comparison",
       "canvas pixels = 80 x data units on both axes (equal_scale, k=80 measured), origin at px (252, 294) — the one scale factor, reused verbatim in every *_expr field",
-      "f'(x) = x holds for every real x for THIS parent (f = x^2/2 only); the STATE_8 ghost line is drawn only on x in [-1.6, 1.6], matching the trace — no narration or label may generalise this to 'every curve has a linear derivative' (false: f = x^3 => f' = 3x^2)"
+      "f'(x) = x holds for every real x for THIS parent (f = x^2/2 only); the STATE_8 trace (fprime_trace/marker8/seg_tan) sweeps only u in [-1.6, 1.6] — no narration or label may generalise this to 'every curve has a linear derivative' (false: f = x^3 => f' = 3x^2)",
+      "STATE_7's h7 (Checkpoint B F-6) is a STATE_7-only linear sweep (0.800 -> 0.020, never a slider, never drag-bound) distinct from hlog/hz — do not conflate it with the log-decade shrink used in S3/S4/S5"
     ]
   },
   "epic_l_path": {
@@ -159,18 +167,8 @@
             "stroke_weight": 3
           },
           {
-            "type": "label",
-            "id": "curve_label",
-            "text": "y = x²/2",
-            "position": { "x": 2.1, "y": 2.52 },
-            "plane_id": "plane",
-            "font_size": 13,
-            "color": "#38BDF8",
-            "appear_at_ms": 8500,
-            "animate_in_ms": 400
-          },
-          {
-            "_design_note": "FIX ROUND (json_author, founder-caught defect, 2026-08-07): was appear_at_ms:10000 — same instant x0's OWN choreography starts sliding it (STATE_1's variable_choreography below), which is a different event entirely. That gate left P (and its readout) off-screen for the first 10000ms of a 20000ms state while the caption ('The curve, one point'), s1_1's narration ('...one point marked on it — point P.') and the state's whole pedagogical job (a subject for 'how steep is the curve HERE?') all assume P is on screen from near the start. Tried removing the gate outright (P visible from t=0): rejected on pixel evidence — the curve's own draw-in (xdraw: -2.1 to 2.1, start_ms 1500, duration_ms 7000) has not yet reached x=-1.2 (P's parked x0 value pre-choreography) until t=3000ms exactly ( (x0-domainMin)/(domainMax-domainMin)*duration+start = (0.9/4.2)*7000+1500 = 3000 ), so for t in [0,3000) P would render as a dot with a coordinate readout floating in empty space next to (or above/right of) a curve segment nowhere near it — confirmed in STATE_1__dense_t01000.png / t02000.png, a WORSE defect than the one being fixed (a labelled point detached from any curve). appear_at_ms is now 3000 — the exact moment the curve's own left-to-right draw-in sweeps through P's location, so P is never seen disconnected from a curve: before 3000ms there is no P yet (curve alone, matching the opening clause of s1_1 while it is still being spoken), and P pops in already SITTING on an already-drawn stretch of curve (confirmed in STATE_1__dense_t03000.png: the draw-in edge lands exactly on P's dot) — the same 'gate a reveal to when the draw-in physically arrives there' technique this state's own curve_label primitive already uses (appear_at_ms:8500, exactly when xdraw finishes at 1500+7000). s1_1 (~4000ms estimated spoken length) is still mid-sentence at 3000ms, so P now appears BEFORE the sentence naming it finishes, not 6s after the whole state has moved on.",
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-9, 2026-08-07): dropped the on-plane 'curve_label' primitive that used to sit here ('y = x²/2' at data (2.1,2.52)) — it duplicated the SAME string already shown by the 'fs' formula_box below (also 'y = x²/2'), the exact Rule 34b 'one formula surface per state' violation, and worst on THIS state because S1 is the emptiest frame in the whole concept (nothing else competes for attention). Every other state's curve_label survives untouched: elsewhere the formula_box shows something DIFFERENT (slope formulas, the S4 ladder, the S7 lim ladder, f′(x)=x), so no duplication exists there — this is an S1-only fix, not a fleet change.",
+            "_design_note_2": "FIX ROUND (json_author, founder-caught defect, 2026-08-07): was appear_at_ms:10000 — same instant x0's OWN choreography starts sliding it (STATE_1's variable_choreography below), which is a different event entirely. That gate left P (and its readout) off-screen for the first 10000ms of a 20000ms state while the caption ('The curve, one point'), s1_1's narration ('...one point marked on it — point P.') and the state's whole pedagogical job (a subject for 'how steep is the curve HERE?') all assume P is on screen from near the start. Tried removing the gate outright (P visible from t=0): rejected on pixel evidence — the curve's own draw-in (xdraw: -2.1 to 2.1, start_ms 1500, duration_ms 7000) has not yet reached x=-1.2 (P's parked x0 value pre-choreography) until t=3000ms exactly ( (x0-domainMin)/(domainMax-domainMin)*duration+start = (0.9/4.2)*7000+1500 = 3000 ), so for t in [0,3000) P would render as a dot with a coordinate readout floating in empty space next to (or above/right of) a curve segment nowhere near it — confirmed in STATE_1__dense_t01000.png / t02000.png, a WORSE defect than the one being fixed (a labelled point detached from any curve). appear_at_ms is now 3000 — the exact moment the curve's own left-to-right draw-in sweeps through P's location, so P is never seen disconnected from a curve: before 3000ms there is no P yet (curve alone, matching the opening clause of s1_1 while it is still being spoken), and P pops in already SITTING on an already-drawn stretch of curve (confirmed in STATE_1__dense_t03000.png: the draw-in edge lands exactly on P's dot) — the same 'gate a reveal to when the draw-in physically arrives there' technique this state's OWN curve_label primitive used to use before the Checkpoint-B F-9 pass above dropped it (it appeared at 8500ms, exactly when xdraw finished at 1500+7000 — the technique is recorded here for lineage even though the primitive itself is gone). s1_1 (~4000ms estimated spoken length) is still mid-sentence at 3000ms, so P now appears BEFORE the sentence naming it finishes, not 6s after the whole state has moved on.",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
@@ -275,21 +273,23 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-10, 2026-08-07): readout offset moved {12,20} → {-104,20} — VACATING the space right-below P (where run_label now sits, see run_label's own note) rather than colliding with it. Text is LEFT-aligned off the anchor (drawPlotPoint textAlign(LEFT,CENTER)), so 'P = (1.00, 0.50)' (~114px at textSize 12) now spans roughly px [228,342] on row py≈274 — grazing but not crossing P's own dot (px 332±7, row py 247–261, an 13px VERTICAL gap from the readout row) and clearing the curve/chord to P's left (nothing else is drawn in that region in S2). Verified against the founder_proxy's own suggested number (report 'e.g. {-104,20}'); re-checked visually post-render (see the Checkpoint-B fix report).",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": -104, "y": 20 } },
             "size": 14
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-11, 2026-08-07): readout offset moved {12,-30} (up-right — runs straight back INTO the rising curve, the named defect). FIRST candidate {-95,34} (left-and-below) was tried and WALKED across frames per the report's own instruction — it cleared the curve but landed almost exactly on 'sec' (the chord)'s own DEFAULT (unauthored) readout anchor, which PM_labelClearOffset computes as roughly (281,166) in canvas space for S2's h=1 chord (perpendicular escape from the chord's own ~56° pixel direction, biased up-left) — confirmed as a real text-on-text collision in a rendered frame (STATE_2__dense_t08000.png, pre-revision), not a hypothetical. REVISED to {130,45}: pushes the readout PAST the plane's own viewport right edge (canvas x=460) entirely — ink-free by clip-construction (curve/chord/tangent can never draw past x=460, the same technique this state's own chord_dual_label/slope_dual_label already use), so it no longer depends on tracking the chord's own moving default position at all. y=45 clears BOTH 'fs' (bottom edge ~102) and this state's chord_dual_label/slope_dual_label (y 123-159, appearing at 15000ms) with margin, verified in a re-rendered frame. STATE_3 and STATE_9 use a SMALLER y (25, not 45) — see their own notes — because their Q can slide down to nearly coincide with P (canvas y approaching 254), where a 45px offset would enter PM_readoutDangerZones' x-axis band (canvas y 291-314) and trigger an unwanted flip; 25px keeps the anchor under that threshold at every reachable Q position in those two states. The three states are therefore NOT byte-identical on this field — a deliberate, documented deviation from the 'shared offset' default, justified by S2's genuinely different geometry (Q fixed high, never near the axis) versus S3/S9 (Q can approach P's height).",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "x0+1",
             "y_expr": "(x0+1)*(x0+1)/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": -30 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 45 } },
             "size": 14,
             "color": "#34D399",
             "appear_at_ms": 2500,
@@ -307,13 +307,14 @@
             "animate_in_ms": 600
           },
           {
-            "_design_note": "FIX ROUND (json_author, defect 2 MODERATE): was the 'run' vector's own embedded label (drawVector always centers a vector's label on the segment's exact pixel midpoint with no offset control). At x0=1 that midpoint sits only 40px from P's own plot_point marker (radius 7px) — with 'run = h = 1.000' (~100-104px wide at the hardcoded textSize(11)) the text's left half reaches back onto P's dot, confirmed in STATE_2__frozen.png (the amber dot covers 'ru'). Split into this standalone label so its position is authorable independent of the segment midpoint. Placed BELOW the x-axis near x0+0.4 (data y=-0.45, constant) — verified against the actual plane transform (origin px (252,294), k=80): at this position the label sits far below the curve (which never goes negative) and, across its full text width, below every data-x point where the secant line 'sec' (appears 15000ms, slope 1.5 through P) or P's own dot/readout are ever drawn — the secant line only dips below the x-axis for x<0.667 data, and this label's x-span stays entirely above that, so it is never crossed even once 'sec' appears. Loses the vector's shared focal_sequence glow-sync during the 'run' window (7000-11000ms) — a standalone id can never equal focal_sequence's 'run' target — but this exactly mirrors the ALREADY-authored pattern of chord_dual_label/slope_dual_label in this same state (standalone captions that stay at alphaMul 0.6, never glowing with their referent). Flagged for founder_proxy per the file's own B-3/B-4 convention.",
+            "_design_note": "FIX ROUND (json_author, defect 2 MODERATE): was the 'run' vector's own embedded label (drawVector always centers a vector's label on the segment's exact pixel midpoint with no offset control). At x0=1 that midpoint sits only 40px from P's own plot_point marker (radius 7px) — with 'run = h = 1.000' (~100-104px wide at the hardcoded textSize(11)) the text's left half reaches back onto P's dot, confirmed in STATE_2__frozen.png (the amber dot covers 'ru'). Split into this standalone label so its position is authorable independent of the segment midpoint.",
+            "_design_note_2": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-10, 2026-08-07): moved UP from below the x-axis (data y=-0.45, ~110px from its own segment — read as an axis caption, the named defect) to data y = x0²/2 + 0.20 (a constant 0.20 data units = 16px ABOVE the run segment itself, genuinely 'beside' it now). At x0=1 that is (1.5, 0.70) → px (372, 238) — inside the WEDGE strictly between the run line (y=0.5, px 254) and the curve above it (y=1.125 at x=1.5, px 204): 16px clear of the dashed run segment below, ~34px clear of the curve above. The chord/secant line at x=1.5 sits even higher (y=1.25 for a convex parabola's chord, px 194) so it clears too. x centred at x0+0.5 (not x0+0.4) to sit closer to the SEGMENT's own midpoint (P to P+1) rather than biased toward P, keeping horizontal clearance from both P's dot (px 332) and the 'rise' vertical leg at x0+1 (px 412) — centred text (~96px wide) spans roughly px [324,420], comfortably inside that corridor. Vacating P's own readout (F-10's other half, see P's design note) removes the only thing that used to occupy the space directly right-below P, so this new position no longer competes with it either. Re-checked visually post-render (see the Checkpoint-B fix report).",
             "type": "label",
             "id": "run_label",
             "text": "run = h = 1.000",
             "plane_id": "plane",
-            "position": { "x": 1.4, "y": -0.45 },
-            "position_expr": { "x": "x0+0.4", "y": "-0.45" },
+            "position": { "x": 1.5, "y": 0.70 },
+            "position_expr": { "x": "x0+0.5", "y": "x0*x0/2 + 0.20" },
             "font_size": 11,
             "color": "#94A3B8",
             "appear_at_ms": 7000,
@@ -456,12 +457,13 @@
             "size": 14
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-11, 2026-08-07): readout offset moved {12,-30} → {130,25} — pushes the readout past the plane's viewport edge (canvas x=460, ink-free by clip-construction), same technique as STATE_2's Q fix, but y=25 (not S2's 45): this state's Q slides all the way down to Q≈P (canvas y approaching 254 as h shrinks toward 0.01), and PM_readoutDangerZones' x-axis band starts at canvas y=291 — a 25px offset keeps the anchor (max ≈254+25=279) under that threshold for the whole reachable range, so the renderer's collision-flip never fires and the readout never jumps back toward the curve/y-axis side. (S2 could safely use a larger 45px offset because its Q sits fixed at canvas y=134, nowhere near that band; S3's continuously-sliding Q cannot assume that headroom.) Verified in re-rendered dense frames across the FULL sweep including the exact state-end (t=24000ms, Q=(1.01,0.51), h=0.010): no flip fired anywhere, and the readout stays clean and clearly separated from P's own text even as the two dots visually merge — see the Checkpoint-B fix report.",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "x0+pow(10,hlog)",
             "y_expr": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": -30 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 25 } },
             "size": 14,
             "color": "#34D399"
           },
@@ -500,7 +502,7 @@
           "tts_sentences": [
             { "id": "s3_1", "text_en": "Watch the gap, h, shrink." },
             { "id": "s3_2", "text_en": "At gap h equal to one, the chord reads slope 1.5000 — if that were the answer, we would be done." },
-            { "id": "s3_3", "text_en": "But as point Q slides toward point P, the number keeps moving, then stops: it settles near 1.0050." },
+            { "id": "s3_3", "text_en": "But as point Q slides toward point P, the number keeps moving, then settles near 1.0050." },
             { "id": "s3_4", "text_en": "That value, not any gap's average, belongs to the point." }
           ]
         }
@@ -528,9 +530,10 @@
         ],
         "scene_composition": [
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-3, 2026-08-07): text was 'h = 0: no chord' — false for the first 13500ms of this 24000ms state (the chord is plainly on screen and rotating for 56% of the state's runtime; it only vanishes at 13500ms exactly). Reworded to the ACTION the state performs, which is true for the whole state per the architect's own suggested wording (applied verbatim).",
             "type": "annotation",
             "id": "delta_cue",
-            "text": "h = 0: no chord",
+            "text": "Shrink h all the way",
             "position": { "x": 40, "y": 55 },
             "style": "callout",
             "color": "#F1F5F9"
@@ -595,6 +598,15 @@
             "equation": "(f(x₀+h) − f(x₀)) / h   at h = 0 → 0/0",
             "position": { "x": 560, "y": 64 },
             "border_color": "#3B82F6"
+          },
+          {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-4, 2026-08-07): S4 is CORE ring, but its own 'fs' formula box uses the symbols f(...) and x₀ — notation never DEFINED anywhere in the core-only path (S1–S6, S9; the only place x₀ is explained as 'this point's own x-coordinate' is S7's x0_chip, which is ADVANCED ring and hidden under the no_advanced/core_only preset, 38a). Grounds the symbol here with a concrete live number — the exact fix the report suggests ('put S7's x₀ = 1.00 chip on S4') — so a student on the core-only cut can read x₀ off this chip and off P's own readout (already showing '(1.00, 0.50)') and infer 'x₀ is just P's x-coordinate' without ever needing S7.",
+            "type": "label",
+            "id": "x0_chip_s4",
+            "text_expr": "x₀ = {x0.toFixed(2).replace('-','−')}",
+            "position": { "x": 590, "y": 150 },
+            "font_size": 13,
+            "color": "#CBD5E1"
           },
           {
             "type": "label",
@@ -682,7 +694,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Open the gap again and watch each value pass." },
+            { "id": "s4_1", "text_en": "Shrink the gap again and watch each value pass." },
             { "id": "s4_2", "text_en": "Two points become one: no chord, no slope — zero over zero is not a number." },
             { "id": "s4_3", "text_en": "Yet the values were approaching one number: 1.0050, then 1.0005, closer to 1.0000 — the limit, the slope at the point." }
           ]
@@ -774,9 +786,10 @@
             "animate_in_ms": 800
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-13, 2026-08-07): mirrors the S9 h_chip's −0 clamp (abs(v)<half-the-last-digit ? 0 : v) so a float-noise near-zero x0 (e.g. mid-choreography rounding, never a real reachable value here since S5's x0 is static at the default 1) can never print '−0.0000'.",
             "type": "label",
             "id": "tan_label",
-            "text_expr": "tangent slope = {x0.toFixed(4).replace('-','−')}",
+            "text_expr": "tangent slope = {(abs(x0)<0.00005?0:x0).toFixed(4).replace('-','−')}",
             "position": { "x": 590, "y": 242 },
             "font_size": 13,
             "color": "#A78BFA",
@@ -784,13 +797,14 @@
             "animate_in_ms": 800
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-5, 2026-08-07): readout format changed from bare 'slope = {m}' to 'chord slope = {m}' — S5's whole claim is chord ≠ tangent, and the bare 'slope' left the number ambiguous next to tan_label's explicitly-named 'tangent slope = ...'. Authored an explicit readout.offset (now authorable per PR #46, docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md Phase-0 ledger item 8) rather than relying on the auto-computed default clearance, since the string is now 6 characters longer: {55,55} moves the anchor perpendicular AWAY from the tangent's own direction (data slope 1 ⇒ pixel direction (1,−1); (55,55) is the pixel-space perpendicular (1,1), so the readout moves into the open region below-right of P that neither the tangent NOR the near-coincident chord ever crosses) rather than along it (which is exactly what a same-direction offset would re-cross). Re-checked visually post-render across the sweep (see the Checkpoint-B fix report).",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
             "from_expr": { "x": "x0", "y": "x0*x0/2" },
             "to_expr": { "x": "x0+pow(10,hlog)", "y": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2" },
             "extend": "frame",
-            "readout": { "format": "slope = {m}", "decimals": 4 },
+            "readout": { "format": "chord slope = {m}", "decimals": 4, "offset": { "x": 55, "y": 55 } },
             "appear_at_ms": 4000,
             "animate_in_ms": 600
           }
@@ -893,9 +907,10 @@
             "extend": "frame"
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-13, 2026-08-07): −0 clamp added, mirroring the S9 h_chip's pattern — guards the ~23ms window mid-sweep where the choreographed x0 floats just below exact zero (drag is quantised to 1/80=0.0125 and never lands there by hand, but the autoplay sweep does pass through it).",
             "type": "label",
             "id": "tan_label",
-            "text_expr": "slope at P = {x0.toFixed(2).replace('-','−')}",
+            "text_expr": "slope at P = {(abs(x0)<0.005?0:x0).toFixed(2).replace('-','−')}",
             "position": { "x": 590, "y": 242 },
             "font_size": 13,
             "color": "#A78BFA"
@@ -983,11 +998,12 @@
             "size": 14
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-6, 2026-08-07): to_expr changed from a static literal 0.8 to the new live variable h7 (see physics_engine_config.variables and this state's own variable_choreography below) so the chord visibly ROTATES onto the tangent as the algebra reveals — 'static plane 24s while cue+narration promise a shrink' was the named defect. h7 sweeps 0.800 → 0.020 exactly across the line3→line4 reveal window (13000→18000ms), so the readout marches ~1.4000 → 1.0100 IN STEP with the algebra concluding.",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
             "from_expr": { "x": "x0", "y": "x0*x0/2" },
-            "to_expr": { "x": "x0+0.8", "y": "(x0+0.8)*(x0+0.8)/2" },
+            "to_expr": { "x": "x0+h7", "y": "(x0+h7)*(x0+h7)/2" },
             "extend": "frame",
             "readout": { "format": "slope = {m}", "decimals": 4 },
             "appear_at_ms": 1000,
@@ -1012,9 +1028,10 @@
             "animate_in_ms": 600
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-2 P1, 2026-08-07): was 'limₕ→₀ (x₀ + h/2)' — Unicode has NO subscript arrow codepoint, so the h→0 condition rendered as subscript-h, then a FULL-SIZE arrow, then subscript-0: three type sizes glued onto one operator, invisible at 1×, obvious at 4×. formula_box is single-baseline (drawFormulaBox, textSize 14 uniformly for every line — E-1, no engine fix available this round), so a true smaller-font stacked subscript cannot be authored without an engine change. Adopted the report's explicit engine-free alternative instead: spell 'as h → 0' out in plain words with ONE full-size Unicode arrow and zero subscript characters at all — the malformed glyph combination cannot occur because no subscript-plus-arrow construction is attempted. 'lim' stays (permitted advanced-ring notation, 38c); the expression it operates on and the condition it operates under are now both legible words+symbols at a single, uniform type size. Verified at 4× post-render (see the Checkpoint-B fix report).",
             "type": "formula_box",
             "id": "line3",
-            "equation": "limₕ→₀ (x₀ + h/2)",
+            "equation": "lim (x₀ + h/2) as h → 0",
             "position": { "x": 510, "y": 190 },
             "border_color": "#3B82F6",
             "appear_at_ms": 13000,
@@ -1030,24 +1047,36 @@
             "animate_in_ms": 600
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-2 secondary, 2026-08-07): font_size bumped 13→15 — the report flagged the ₀ subscript glyph sitting so low at 13px that it read as a stray comma next to 'x' at 1× ('x, = 1.00'). A larger size does not move the subscript's relative baseline (a Unicode metrics property, outside authoring control) but does make the whole glyph more legible on inspection, the cheap content-level nudge available without an engine change.",
             "type": "label",
             "id": "x0_chip",
             "text_expr": "x₀ = {x0.toFixed(2).replace('-','−')}",
             "position": { "x": 590, "y": 279 },
-            "font_size": 13,
+            "font_size": 15,
             "color": "#CBD5E1",
             "appear_at_ms": 1000,
             "animate_in_ms": 400
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-6, 2026-08-07): was a STATIC literal 'h = 0.800' — now that the chord's own h7 shrinks live (see 'sec' above), a frozen caption would go stale the instant the sweep starts and contradict the moving picture. Converted to text_expr reading h7 live, 3dp per this concept's h-precision doctrine.",
             "type": "label",
             "id": "h_chip",
-            "text": "h = 0.800",
+            "text_expr": "h = {h7.toFixed(3)}",
             "position": { "x": 590, "y": 307 },
             "font_size": 13,
             "color": "#CBD5E1",
             "appear_at_ms": 1000,
             "animate_in_ms": 400
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "h7",
+            "mode": "once",
+            "from": 0.8,
+            "to": 0.02,
+            "start_ms": 13000,
+            "duration_ms": 5000
           }
         ],
         "focal_sequence": [
@@ -1059,7 +1088,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Expand the chord's slope algebraically: x-naught plus half of gap h — that extra half is the cost of the gap." },
+            { "id": "s7_1", "text_en": "Expand the chord's slope algebraically: x-naught plus half of gap h — that extra half is what the gap adds." },
             { "id": "s7_2", "text_en": "At x-naught equal to one and gap h equal to 0.800, this gives 1.4000, matching the chord." },
             { "id": "s7_3", "text_en": "Only the limit, as gap h shrinks to zero, removes that term and names the derivative." }
           ]
@@ -1072,7 +1101,8 @@
         "depth_ring": "advanced",
         "teaching_method": "derivation_first_principles",
         "advance_mode": "manual_click",
-        "focal_primitive_id": "fprime_head",
+        "focal_primitive_id": "corr_vector",
+        "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-1 P1, 2026-08-07): this state used to render two IDENTICAL unlabelled teal dots 32px apart with NO connector, NO number anywhere, and the curve point (marker8) dimmed at alphaMul 0.6 for the entire 24s (static focal 'fprime_head'). Rebuilt around the primitive vocabulary already in the file (no engine change): (a) 'corr_vector' — a dashed vector from the curve point (u, u²/2) to the traced height (u, u) at the SAME u, reusing STATE_2's already-proven dashed-connector pattern; (b) distinct identity per marker — marker8 recoloured to #FBBF24 (the SAME amber every OTHER state's 'P' point already uses, since marker8 plays that exact role here — a point riding the curve; Rule 32d continuity) with an embedded 'point' label below it, while fprime_head keeps the teal 'derivative family' hue shared with seg_tan/fprime_trace and gets its OWN standalone 'height = slope' label (a separate label primitive, not body.label_below, so it can be offset clear of marker8's label even at u=0 where the two dots literally coincide — see fprime_head_label's own note); (c) 'u_slope_chip' — a LIVE 2dp text_expr readout in the instrument column, the same convention S6/S9 use for their tan_label. Also reconsiders the focal per the report's own suggestion: a NEW focal_sequence (marker8 → corr_vector → fprime_head → fs, summing to the full 24000ms) tells the CORRESPONDENCE as a story — the cause (a point on the curve) first, then the link itself, then the traced effect, then the concluding formula — rather than one endpoint sitting bright/dim for the whole state. focal_primitive_id (the required static fallback) now names 'corr_vector' — the report's own diagnosis was 'the correspondence, not one endpoint, is the story'. Also fixes F-17 (ghost_fprime, dropped — see below).",
         "scene_composition": [
           {
             "type": "annotation",
@@ -1126,7 +1156,9 @@
             "position_expr": { "x": "u", "y": "u*u/2" },
             "plane_id": "plane",
             "size": 12,
-            "fill_color": "#2DD4BF"
+            "fill_color": "#FBBF24",
+            "label": "point",
+            "label_below": true
           },
           {
             "type": "tangent_line",
@@ -1136,6 +1168,16 @@
             "slope_expr": "u",
             "extend": "segment",
             "color": "#2DD4BF"
+          },
+          {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-1, 2026-08-07): dashed vertical connector (same x=u for both ends) linking the curve point to the height it becomes — reuses the SAME from_expr/to_expr point-string shape STATE_2's 'run'/'rise' vectors already use.",
+            "type": "vector",
+            "id": "corr_vector",
+            "plane_id": "plane",
+            "from_expr": "{x: u, y: u*u/2}",
+            "to_expr": "{x: u, y: u}",
+            "style": "dashed",
+            "color": "#94A3B8"
           },
           {
             "type": "locus_trace",
@@ -1160,16 +1202,24 @@
             "fill_color": "#2DD4BF"
           },
           {
-            "type": "function_plot",
-            "id": "ghost_fprime",
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-1, 2026-08-07): a STANDALONE label (not fprime_head's own body.label_below) so it can be offset AWAY from marker8's 'point' label — marker8 and fprime_head literally coincide at u=0 (the curve's vertex, where f(0)=0=f'(0)), so two body-centred labels would stack on top of each other for that instant; this one sits up-right of the dot (position_expr offset by data +0.18/+0.15) while marker8's sits directly below its own dot, so the two never occupy the same pixels even at the coincidence point.",
+            "type": "label",
+            "id": "fprime_head_label",
+            "text": "height = slope",
             "plane_id": "plane",
-            "y_expr": "x",
-            "x_domain": { "min": -1.6, "max": 1.6 },
-            "samples": 100,
-            "style": "dashed",
-            "color": "#2DD4BF",
-            "appear_at_ms": 17000,
-            "animate_in_ms": 600
+            "position": { "x": -1.42, "y": -1.45 },
+            "position_expr": { "x": "u+0.18", "y": "u+0.15" },
+            "font_size": 11,
+            "color": "#2DD4BF"
+          },
+          {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-1, 2026-08-07): the LIVE number the state was missing entirely — 2dp, the same convention S6/S9 use for tan_label (an at-a-glance instrument during a sweep, Rule 33d), same violet as every other state's tangent-slope readout (a live slope number means the same thing everywhere in this concept). No appear_at_ms — visible from t=0, so the state's re-entry orientation window (first 5s) already shows a real number, not an empty column.",
+            "type": "label",
+            "id": "u_slope_chip",
+            "text_expr": "slope at point = {(abs(u)<0.005?0:u).toFixed(2).replace('-','−')}",
+            "position": { "x": 590, "y": 242 },
+            "font_size": 13,
+            "color": "#A78BFA"
           },
           {
             "type": "formula_box",
@@ -1191,10 +1241,16 @@
             "duration_ms": 14000
           }
         ],
+        "focal_sequence": [
+          { "highlight_primitive_id": "marker8", "duration_ms": 6000 },
+          { "highlight_primitive_id": "corr_vector", "duration_ms": 8000 },
+          { "highlight_primitive_id": "fprime_head", "duration_ms": 4000 },
+          { "highlight_primitive_id": "fs", "duration_ms": 6000 }
+        ],
         "teacher_script": {
           "tts_sentences": [
             { "id": "s8_1", "text_en": "Now watch the slope itself, not the curve." },
-            { "id": "s8_2", "text_en": "As the sweep value u moves, its slope at each point is traced as a new height." },
+            { "id": "s8_2", "text_en": "As the point slides along the curve, its slope at that spot is traced as a new height." },
             { "id": "s8_3", "text_en": "For this curve, those heights line up on a straight line — the derivative, collected as its own function." }
           ]
         }
@@ -1251,12 +1307,13 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-11, 2026-08-07): readout offset moved {12,-30} → {130,25}, matching STATE_3's revised fix (see that state's note for the full reasoning — pushes past the viewport edge, y kept small enough to stay clear of PM_readoutDangerZones' x-axis band when Q approaches P's height). This is the report's named WORST CASE: dragging Q toward P (the state's own target manoeuvre) used to park the up-right-offset readout directly on P's marker and destroy Q's own readable x. Verified via a custom Playwright probe driving the ACTUAL rebuilt sim HTML (assembleSimFromSource → SET_STATE STATE_9 → PARAM_UPDATE x0=1.00, xq=1.02, the closest-approach pose reachable under the drag quantum) and a full-canvas screenshot, cropped/zoomed — see the Checkpoint-B fix report for the captured evidence and its result. Known residual: the drag range extends to xq=-1.9 (the curve's LEFT branch, where this rightward-push offset does not apply the same escape logic); the primary target manoeuvre this report names — dragging Q toward P near the default x0=1 — is the one directly verified.",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "xq",
             "y_expr": "xq*xq/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": -30 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 25 } },
             "size": 14,
             "color": "#34D399",
             "drag": { "bind_variable": "xq", "axis": "x", "min": -1.9, "max": 2.0 }
@@ -1289,9 +1346,10 @@
             "extend": "frame"
           },
           {
+            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-13, 2026-08-07): −0 clamp added, mirroring this SAME state's own h_chip pattern below.",
             "type": "label",
             "id": "tan_label",
-            "text_expr": "slope at P = {x0.toFixed(2).replace('-','−')}",
+            "text_expr": "slope at P = {(abs(x0)<0.005?0:x0).toFixed(2).replace('-','−')}",
             "position": { "x": 590, "y": 242 },
             "font_size": 13,
             "color": "#A78BFA"
@@ -1325,8 +1383,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Drag point P and point Q anywhere on the curve." },
-            { "id": "s9_2", "text_en": "Watch the chord's slope and the tangent's slope as you move them." }
+            { "id": "s9_1", "text_en": "" }
           ]
         }
       }
@@ -1344,7 +1401,7 @@
       "label": "Same idea, a cubic curve",
       "physical_world": "the curve f(x) = x³/6 instead of x²/2",
       "same_physics": "the chord slope still settles onto the tangent slope as h shrinks to zero; only the algebra of the settling value changes (x₀² instead of x₀), and f′(x) = x²/2 replaces f′(x) = x",
-      "scene_hint": "swap every function_plot.y_expr and every chord/tangent expression's x*x/2 for x*x*x/6; STATE_8's ghost line becomes y = x*x/2"
+      "scene_hint": "swap every function_plot.y_expr and every chord/tangent expression's x*x/2 for x*x*x/6; STATE_8's fprime_trace/seg_tan (x_expr/y_expr 'u'/'u*u/2') and its concluding formula_box 'f′(x) = x' become 'f′(x) = x²/2'"
     },
     {
       "variant_id": "cost_curve_economics",
