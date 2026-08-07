@@ -2089,19 +2089,52 @@ function PM_formatTickLabel(value, mode, decimals) {
     var body = (absNum === 1) ? 'π' : (absNum + 'π');
     return (den === 1) ? (sign + body) : (sign + body + '/' + den);
   }
-  return value.toFixed((typeof decimals === 'number') ? decimals : 0);
+  // bug_class cartesian_plane_tick_values_enumerate_from_range_min_so_every_
+  // axis_label_misreports_its_own_gridline — the pi branch above already
+  // clamped near-zero to a clean '0'; the numeric branch never did, so a mark
+  // that is mathematically zero (or landed a float epsilon off zero) could
+  // round to the sign-preserving '-0' (e.g. (-0.4).toFixed(0) === '-0' in
+  // JS). Clamp here too, in EVERY branch, not just 'pi'.
+  var numericValue = (Math.abs(value) < 1e-9) ? 0 : value;
+  return numericValue.toFixed((typeof decimals === 'number') ? decimals : 0);
 }
 
 // D5 — pure enumeration of tick DATA values from rangeMin to rangeMax
 // stepping by tick (tick <= 0 → no ticks). Shared by the gridline / tick-mark
 // / tick-label passes below AND independently testable (check:cartesian-plane
 // §3) with no p5 dependency.
+//
+// bug_class cartesian_plane_tick_values_enumerate_from_range_min_so_every_
+// axis_label_misreports_its_own_gridline — the previous body walked
+// rangeMin, rangeMin+tick, rangeMin+2*tick, ..., i.e. offsets from
+// wherever the AUTHOR happened to set rangeMin, not from a round data-space
+// coordinate. A gridline drawn at that value but LABELLED by
+// PM_formatTickLabel's toFixed() rounding is a label that names a number
+// its own mark is not at (off by up to a full step; the origin could be
+// skipped or double-counted entirely). A tick label is a CLAIM about where
+// the gridline sits, so the values must be pre-snapped to exact multiples
+// of the tick step (measured from 0 — the number line's own origin, not the
+// authored viewport) before either the mark or the label is built from them.
+//
+// Enumerated by INDEX (i * tick), not by repeated t += tick accumulation,
+// so float drift never creeps in over a long range, and i=0 always yields
+// an exact 0 (multiplying by zero is exact in IEEE754 — no epsilon needed
+// to land the origin tick cleanly).
+//
+// Ruling on the old Math.min(t, rangeMax) boundary clamp: DROPPED, not
+// kept. That clamp forced a final tick onto rangeMax even when rangeMax is
+// not itself a multiple of the step — an unsnapped mark wearing a rounded
+// label, the exact same defect in miniature. The correct behaviour (matches
+// every graphing tool a student has seen) is: a boundary tick is drawn only
+// when the range genuinely lands on one; otherwise the axis simply stops
+// short of the edge with no tick there.
 function PM_planeTickValues(rangeMin, rangeMax, tick) {
   var out = [];
   if (!(tick > 0)) return out;
   var EPS = 1e-9;
-  for (var t = rangeMin; t <= rangeMax + EPS; t += tick) {
-    out.push(Math.min(t, rangeMax));
+  var startIndex = Math.ceil((rangeMin / tick) - EPS);
+  for (var i = startIndex; i * tick <= rangeMax + EPS; i++) {
+    out.push(i * tick);
   }
   return out;
 }
