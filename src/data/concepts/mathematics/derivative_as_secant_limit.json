@@ -302,7 +302,19 @@
             "to_expr": "{x: x0+1, y: x0*x0/2}",
             "style": "dashed",
             "color": "#94A3B8",
-            "label": "run = h = 1.000",
+            "appear_at_ms": 7000,
+            "animate_in_ms": 600
+          },
+          {
+            "_design_note": "FIX ROUND (json_author, defect 2 MODERATE): was the 'run' vector's own embedded label (drawVector always centers a vector's label on the segment's exact pixel midpoint with no offset control). At x0=1 that midpoint sits only 40px from P's own plot_point marker (radius 7px) — with 'run = h = 1.000' (~100-104px wide at the hardcoded textSize(11)) the text's left half reaches back onto P's dot, confirmed in STATE_2__frozen.png (the amber dot covers 'ru'). Split into this standalone label so its position is authorable independent of the segment midpoint. Placed BELOW the x-axis near x0+0.4 (data y=-0.45, constant) — verified against the actual plane transform (origin px (252,294), k=80): at this position the label sits far below the curve (which never goes negative) and, across its full text width, below every data-x point where the secant line 'sec' (appears 15000ms, slope 1.5 through P) or P's own dot/readout are ever drawn — the secant line only dips below the x-axis for x<0.667 data, and this label's x-span stays entirely above that, so it is never crossed even once 'sec' appears. Loses the vector's shared focal_sequence glow-sync during the 'run' window (7000-11000ms) — a standalone id can never equal focal_sequence's 'run' target — but this exactly mirrors the ALREADY-authored pattern of chord_dual_label/slope_dual_label in this same state (standalone captions that stay at alphaMul 0.6, never glowing with their referent). Flagged for founder_proxy per the file's own B-3/B-4 convention.",
+            "type": "label",
+            "id": "run_label",
+            "text": "run = h = 1.000",
+            "plane_id": "plane",
+            "position": { "x": 1.4, "y": -0.45 },
+            "position_expr": { "x": "x0+0.4", "y": "-0.45" },
+            "font_size": 11,
+            "color": "#94A3B8",
             "appear_at_ms": 7000,
             "animate_in_ms": 600
           },
@@ -330,10 +342,11 @@
             "animate_in_ms": 600
           },
           {
+            "_design_note": "FIX ROUND (json_author, defect 2 MODERATE, second finding): was raw pixel (367,210), inside the P-Q corridor. Verified mathematically against the plane transform (origin px (252,294), k=80): the curve y=x^2/2 and the chord line y=1.5x-1 intersect ONLY at P (x=1) and Q (x=2) — everywhere between them they run within ~10px of each other (max separation 0.125 data units at x=1.5, the corridor's midpoint), far less than a single text line's height, so NO horizontal label can sit inside that corridor without one stroke or the other crossing it (confirmed in STATE_2__frozen.png: the secant line crosses directly through 'secant'). Moved outside the plane's viewport entirely (viewport is x in [60,460] px; CALLOUT_ZONE_R starts at x=475) so neither the curve nor the extended secant line (visible only for canvas x in [201,449]) can ever reach it, mathematically guaranteed rather than nudged-and-hoped. Placed directly below the 'fs' formula box (560,64, ~172px wide, bottom edge ~102) in the same right-hand column, reading as a continuation of that definitions column rather than a floating orphan.",
             "type": "label",
             "id": "chord_dual_label",
             "text": "chord (secant line)",
-            "position": { "x": 367, "y": 210 },
+            "position": { "x": 640, "y": 130 },
             "font_size": 12,
             "color": "#CBD5E1",
             "appear_at_ms": 15000,
@@ -502,7 +515,7 @@
           "what_does_undefined_actually_mean",
           "limit_as_a_target_not_a_value_there"
         ],
-        "_design_note": "B-3 (json_author, verbatim as required): focal_sequence window 2 targets 'row5' from 13500ms for 800ms, BEFORE row5.appear_at_ms=14300. PM_focalEmphasis matches ids only and never checks visibility, so for this window nothing on screen matches 'row5' (it has not appeared yet) and every visible peer sits at alphaMul 0.6. This is the INTENDED void beat — the frame dims the instant the chord is gone, before the ladder names why. Do not re-time this window to 'fix' it.",
+        "_design_note": "B-3 (json_author, verbatim as required): focal_sequence window 2 (13500-14300ms) is the INTENDED void beat — the frame should dim uniformly the instant the chord is gone, before the ladder names why. Do not re-time this window to 'fix' it. FIX ROUND (json_author, evidence-based, 2026-08 eye_walker defect 1 MAJOR): the window 2 entry originally carried NO highlight_primitive_id key at all (not 'row5' as an earlier note claimed — that claim was never actually reflected in the authored JSON). PM_focalEmphasis's loop sets focalId = seq[i].highlight_primitive_id = undefined for a keyless entry; the post-loop 'keep last' fallback tests `focalId === null` specifically, and undefined !== null, so that fallback does NOT fire — focalId stays undefined, `!focalId` is true, and control falls through to Priority 2, this state's REQUIRED static focal_primitive_id ('P'). Verified in pixels (STATE_4__dense_t14000.png, pre-fix): P's dot and readout render bold with a visible glow-bloom during the void window — the OPPOSITE of 'nobody glows'. FIX: window 2's highlight_primitive_id is now the sentinel string '__void_beat__', which matches no primitive id in this state's scene_composition. This keeps focalId truthy (so neither the null-keep-last fallback NOR the static-focal fallback fires) while guaranteeing `focalId === spec.id` is false for every real primitive — every visible peer (P, curve, row1-row4, fs) evaluates isFocal:false/alphaMul:0.6/glowPx:0 uniformly, and nothing glows. Re-verified in pixels post-fix at t=14000ms. Note the state's window 3 ('row6', 14300-24000ms) already exhibits this same 'target not yet on screen = uniform dim' behavior for the 3200ms before row6.appear_at_ms=17500 — that sub-window was NOT a bug, since 'row6' is itself a non-empty string that never equals any OTHER primitive's id either, so it never fell through to the static-focal trap; it is the existing precedent the sentinel-id fix now mirrors deliberately for window 2.",
         "misconception_watch": [
           {
             "belief": "At h = 0 it's 0/0, so the slope at a point is meaningless",
@@ -661,7 +674,7 @@
         ],
         "focal_sequence": [
           { "highlight_primitive_id": "sec", "duration_ms": 13500 },
-          { "duration_ms": 800 },
+          { "highlight_primitive_id": "__void_beat__", "duration_ms": 800 },
           { "highlight_primitive_id": "row6", "duration_ms": 9700 }
         ],
         "teacher_script": {
