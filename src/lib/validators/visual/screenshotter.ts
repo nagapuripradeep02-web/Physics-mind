@@ -181,10 +181,23 @@ export interface TemplateLeakFinding {
 export interface ConsoleErrorFinding {
     /** State active when the error fired ('(load)' = before the first state drive). */
     state_id: string;
-    /** 'pageerror' = uncaught exception; 'console' = console.error() output. */
-    kind: 'pageerror' | 'console';
+    /**
+     * 'pageerror' = uncaught exception; 'console' = console.error() output;
+     * 'consolewarn' = a renderer self-diagnostic emitted via console.warn
+     * (collected into `diagnostic_warnings`, never into `console_errors`).
+     */
+    kind: 'pageerror' | 'console' | 'consolewarn';
     text: string;
 }
+
+/**
+ * Renderer self-diagnostics worth surfacing from console.warn.
+ *
+ * Deliberately an allow-list of documented `[PM_*]` prefixes rather than every
+ * warning: browsers and third-party libraries emit warnings constantly, and a
+ * capture that reports all of them reports none of them.
+ */
+const DIAGNOSTIC_WARN_RE = /\[PM_[A-Z0-9_]+\]/;
 
 export interface CaptureResult {
     state_captures: StateCapture[];
@@ -206,6 +219,15 @@ export interface CaptureResult {
      * up here even when the pixels look plausible.
      */
     console_errors: ConsoleErrorFinding[];
+    /**
+     * Renderer self-diagnostics (`[PM_*]` prefixes) emitted via console.warn.
+     *
+     * Separate from `console_errors` so surfacing them does not silently become a
+     * new hard gate — H3 fails on any `console_errors` entry. These are evidence
+     * for a reviewer (an overflowing work ledger, a bound-clamped energy layer),
+     * not a verdict.
+     */
+    diagnostic_warnings?: ConsoleErrorFinding[];
     /** Non-fatal warnings (e.g., "panel B SIM_READY timed out"). */
     warnings: string[];
 }
@@ -310,6 +332,7 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
         // child-frame events, and iframe uncaught exceptions surface as
         // console-type 'error' (pageerror covers the wrapper itself).
         const consoleErrors: ConsoleErrorFinding[] = [];
+        const diagnosticWarnings: ConsoleErrorFinding[] = [];
         let consoleStateId = '(load)';
         page.on('pageerror', (e) => {
             consoleErrors.push({ state_id: consoleStateId, kind: 'pageerror', text: String(e) });
@@ -317,6 +340,22 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
         page.on('console', (m) => {
             if (m.type() === 'error') {
                 consoleErrors.push({ state_id: consoleStateId, kind: 'console', text: m.text() });
+                return;
+            }
+            // Renderer self-diagnostics are emitted with console.warn, which Playwright
+            // types 'warning' — so filtering on 'error' alone made every one of them
+            // invisible to every gate. Two renderer contracts assert THE EYE audits
+            // [PM_NLB_ENERGY_SCALE] / [PM_NLB_ENERGY_CLAMP]; neither prefix had ever
+            // reached a capture, so an overflowing work ledger or a bound-clamped
+            // energy layer shipped silently while the comments claimed otherwise.
+            //
+            // Collected SEPARATELY from console_errors on purpose: runConsoleChecks
+            // fails H3 on any console_errors entry, so routing warnings there would
+            // silently turn a visibility fix into a new hard gate and could fail
+            // already-shipped concepts. Surface them as evidence; promoting them to a
+            // failure is a separate, founder-gated decision.
+            if (m.type() === 'warning' && DIAGNOSTIC_WARN_RE.test(m.text())) {
+                diagnosticWarnings.push({ state_id: consoleStateId, kind: 'consolewarn', text: m.text() });
             }
         });
 
@@ -523,6 +562,7 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             dense_timeseries: req.dense ? denseTimeseries : undefined,
             template_leak_dom_findings: templateLeakDomFindings,
             console_errors: consoleErrors,
+            diagnostic_warnings: diagnosticWarnings,
             warnings,
         };
     } finally {

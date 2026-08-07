@@ -117,6 +117,9 @@ export function dumpCaptureToDisk(opts: DumpCaptureOptions): FrameDumpResult {
         concept_id: opts.conceptId,
         captured_at: new Date().toISOString(),
         warnings: opts.capture.warnings,
+        // Renderer self-diagnostics ([PM_*] via console.warn). Historically invisible
+        // to every gate — surfaced here so a reviewer reading the dump can see them.
+        diagnostic_warnings: opts.capture.diagnostic_warnings ?? [],
         timings: opts.capture.timings,
         // The headline the run prints, as an artifact rather than a claim.
         // `checks_present: false` distinguishes "no checks ran" from "all passed".
