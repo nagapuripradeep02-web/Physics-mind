@@ -5117,6 +5117,28 @@ export const FIELD_3D_RENDERER_CODE = `
         return grp;
     }
 
+    // ── Panel-label edge clamp (bug_class graph_marker_label_clipped) ─────
+    //   THE ONE clamp for the whole idiom "a label anchored to a data-driven
+    //   point on a bounded scale". The idiom had been hand-rolled THREE times
+    //   with three different guard levels — acgMarkerLabel (both edges), the
+    //   orbital-size mark (right edge only), the rbr KE-bar tick (neither) —
+    //   because the 2d606b9 fix was a clamp at ONE CALL SITE, not a shared
+    //   helper, and its prevention rule was phrased in canvas vocabulary
+    //   ("draw-x", padL) that a DOM author had no way to inherit. Anything
+    //   that places a measured label against a box goes through HERE.
+    //
+    //   Pure function of (anchor, measured width, box) — no clock, no state,
+    //   no accumulator (Rule 36): a rewind re-evaluates to the same x.
+    //   Left wins on conflict, so a label WIDER than its box keeps its head
+    //   readable instead of losing the first glyph; callers that can author
+    //   an over-wide string warn on that case rather than clipping silently.
+    function pmClampLabelX(anchorX, textW, boxL, boxR) {
+        var x = anchorX;
+        if (x + textW > boxR) x = boxR - textW;
+        if (x < boxL) x = boxL;
+        return x;
+    }
+
     // ── Text-label sprite (Diamond #2) ────────────────────────────────────
     //   Cheap canvas-texture sprite. Always faces the camera. Used to label
     //   v / F / v cos θ / v sin θ arrows in the Lorentz scenario.
@@ -26121,11 +26143,12 @@ export const FIELD_3D_RENDERER_CODE = `
             // RIGHT edge (a quarter/half period back from the live dot at xPix(t)).
             // Clamp each label's x so the whole string stays inside [padL, W-padR]
             // instead of truncating at the panel clip ("eps p...").
+            //   Now routed through the SHARED pmClampLabelX so this stops being
+            //   a private copy of the clamp (the reason the class reopened on a
+            //   different scenario). Same operands in the same order, so every
+            //   ac_generator frame is bit-identical to the pre-helper build.
             function acgMarkerLabel(text, mx, y) {
-                var lx = mx - 2, tw = ctx.measureText(text).width;
-                if (lx + tw > W - padR) lx = (W - padR) - tw;
-                if (lx < padL) lx = padL;
-                ctx.fillText(text, lx, y);
+                ctx.fillText(text, pmClampLabelX(mx - 2, ctx.measureText(text).width, padL, W - padR), y);
             }
             if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; acgMarkerLabel("\\u03a6 max, \\u03b5 = 0", xPix(tF), padT + 9); }
             if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; acgMarkerLabel("\\u03b5 peak, \\u03a6 = 0", xPix(tE), H - padB - 2); }
@@ -51171,6 +51194,12 @@ export const FIELD_3D_RENDERER_CODE = `
         rbrTokenWarnOnce("tick:nobar", "a reference_marks entry with form 'tick' is authored, " +
             "but this state has no ke_bar.max_j — the bar is never built, so the tick is never drawn.");
     }
+    function rbrWarnTickLabelWider(tok, w, box) {
+        rbrTokenWarnOnce("tick:wide:" + tok, "the tick label '" + tok + "' measures " +
+            Math.round(w) + "px, wider than the whole KE-bar panel (" + Math.round(box) +
+            "px) — it is left-aligned to the panel edge so its head stays readable, but its " +
+            "tail still overflows. Shorten the label; the clamp cannot fix an over-wide string.");
+    }
     function rbrWarnUnknownControl(tok) {
         rbrTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
             "', which has no RBR_SLIDER_SPEC row — no slider is built for it, in ANY state. " +
@@ -51251,6 +51280,57 @@ export const FIELD_3D_RENDERER_CODE = `
             '<div id="rbr_kebar_fill" style="width:0%;height:100%;background:#4DD0E1;border-radius:3px"></div>' + ticks + '</div>' +
             (wantTick ? '<div style="height:18px"></div>' : "");
         el.style.display = "block";
+        if (wantTick) rbrClampTickLabels(el, marks);
+    }
+    // bug_class graph_marker_label_clipped — the DOM leg.
+    //   A tick label is centred on its tick (left:pct% + translateX(-50%)), so a
+    //   tick low on the scale pushes half the string off the LEFT of the panel
+    //   and a tick near full scale pushes it off the RIGHT. Measured on the
+    //   authored S4 case: the 151.2px label "if energy stayed constant" at
+    //   pct 19.59 landed at viewport x 1.52 against a panel box of [22, 260] —
+    //   20.5px outside its own panel, on the bare scene.
+    //
+    //   Same clamp as the canvas leg, same helper, so the two paths can no
+    //   longer drift apart. Run ONCE at apply (never per frame): the result is a
+    //   pure function of the label text, the font and the tick percentage, so a
+    //   SET_TIME_FREEZE pin and a rewind both reproduce it exactly (Rule 36).
+    //
+    //   A label that needs NO move has NOTHING written to it — the zero-delta
+    //   branch returns before touching style — so every already-inside label
+    //   stays byte-identical to the pre-fix build.
+    function rbrClampTickLabels(panel, marks) {
+        var pr = panel.getBoundingClientRect();
+        if (!(pr.width > 0)) return;   // panel not laid out yet — nothing to measure against
+        for (var i = 0; i < marks.length; i++) {
+            var mk = marks[i] || {};
+            if (mk.form !== "tick" || (mk.surface || "KE") !== "KE") continue;
+            var lbl = document.getElementById("rbr_mark_" + (mk.id || ("t" + i)) + "_lbl");
+            if (!lbl) continue;
+            // The label ships display:none (it reveals on its own cue), and a
+            // display:none box has no geometry — so show it just long enough to
+            // measure, with visibility:hidden so the measuring pass can never
+            // flash it on screen at the wrong instant.
+            var prevDisp = lbl.style.display, prevVis = lbl.style.visibility;
+            lbl.style.visibility = "hidden";
+            lbl.style.display = "block";
+            var lr = lbl.getBoundingClientRect();
+            var want = pmClampLabelX(lr.left, lr.width, pr.left, pr.right);
+            lbl.style.display = prevDisp;
+            lbl.style.visibility = prevVis;
+            if (lr.width > pr.width) {
+                rbrWarnTickLabelWider(String(mk.label || ""), lr.width, pr.width);
+            }
+            if (want === lr.left) continue;   // already inside — write nothing
+            // Shift by a margin rather than rewriting left/transform, so the
+            // authored percentage anchor stays visible in the DOM and the move
+            // reads as exactly what it is: a correction, not a new position.
+            //   Round the shift to a WHOLE pixel and always AWAY from the edge
+            // that was hit, so the clamp can never land a fraction of a pixel
+            // proud of the box (a 2dp round left the glyph column straddling
+            // the panel border at 21.99 against a border at 22.00).
+            var d = want - lr.left;
+            lbl.style.marginLeft = (d > 0 ? Math.ceil(d) : Math.floor(d)) + "px";
+        }
     }
     // Hold-glow is the INSTRUMENT channel, deliberately separate from the scene
     // focal (Rule 32e counts scene elements; a pinned readout is an instrument
@@ -51509,6 +51589,68 @@ export const FIELD_3D_RENDERER_CODE = `
         lArrow.position.set(0, 0.22, 0);
         lArrow.userData.elementType = "rbr_l_arrow";
         lArrow.userData.id = "rbr_l_arrow";
+        // ── F-C9 · the L arrow draws THROUGH the drum ──────────────────────
+        //   bug_class rbr_reversed_l_vector_swallowed_by_the_drum_projected_
+        //   silhouette. This is NOT an E7 regression: E7's world-length map is
+        //   exact (slope 0.200000, intercept 1.5e-15 at 7/7 pins across both
+        //   signs) and is untouched. It is a SECOND defect on the same
+        //   primitive, invisible to E7's acceptance because that acceptance
+        //   measured the FAVOURABLE pose. Measured by hide-and-diff at
+        //   |L| = 4.59 on the pre-fix build: sign +1 drew 1494 px of ink in a
+        //   46x69 bbox with 734 px of non-head (shaft) ink; sign -1 drew 720 px
+        //   in a 42x23 bbox with 51 px of shaft ink. 48.2% of the ink and 7% of
+        //   the shaft — at sign -1 only the CONE survived.
+        //
+        //   The cause is the DRUM's projected silhouette, not the anchor (the
+        //   anchor is already sign-mirrored, y = sign*0.22, and is correct).
+        //   The drum is an opaque cylinder of radius RBR_DEF_DRUM_R*W = 0.99
+        //   and half-thickness 0.10; the camera sits at phi 1.16, i.e. 23.5
+        //   degrees ABOVE the rotation plane. A sightline to an on-axis point
+        //   at height y < 0 clears the drum's lower rim only below
+        //   y = -(0.99*tan(23.5 deg) + 0.10) = -0.53, so the upper 0.38 of a
+        //   0.918-long down vector sits inside the disc's silhouette.
+        //
+        //   Why NOT a geometric offset. Ruled out for E7 as clause (d), and
+        //   ruled out again here for a stronger reason: the required clearance
+        //   is a function of the CAMERA ELEVATION, which the teacher orbits. At
+        //   the default 23.5 degrees it is 0.53; at 60 degrees it is 1.81 —
+        //   longer than the whole arrow. No fixed offset survives an orbit.
+        //
+        //   The mechanism is REUSED, not invented (Rule 40a): depthTest off +
+        //   depthWrite off + a high renderOrder is this file's standing answer
+        //   to "an overlay vector disappears into the apparatus it measures"
+        //   (the FIXED row pp_probe_and_sheet_arrows_camouflaged_by_
+        //   translucent_plate_blend, and ~20 call sites — the gauss probe and
+        //   force arrows, the capacitance field-line shafts, the flux cap
+        //   arrows). This arrow's OWN label already renders that way:
+        //   pmCreateAutoLabel -> createLabelSprite sets depthTest:false with
+        //   renderOrder 999. 998 keeps the label above the shaft, exactly as
+        //   every sibling pair in this file is ordered.
+        //
+        //   Why it is safe HERE and still NOT on the pull arrows. E7 kept
+        //   depthTest ON because rbr SPINS, so an always-on-top vector riding a
+        //   mass would invert depth every half turn. That reasoning is intact
+        //   for the PULL arrows and they are UNTOUCHED — they live in the spin
+        //   group and ride the masses. The L arrow is AXIAL and lives in root:
+        //   it never turns, and what swallows it (the drum, plus the axle and
+        //   the R_drum torus) is a solid of revolution about that same axis, so
+        //   its silhouette is invariant under spin. MEASURED over one full
+        //   revolution (12 pins, omega 1.5 rad/s, T = 4188.79 ms) the down-pose
+        //   ink is 716-720 px — a 0.6% spread — and the bbox is 42x23 at every
+        //   pin: the relationship this change touches does NOT alternate. The
+        //   up-pose ink over the same sweep is 1412-1507 (6.3% spread), the rod
+        //   and near mass crossing the shaft twice a turn at theta 2.24 and
+        //   5.39 rad; that ~90 px relationship DOES alternate and this change
+        //   does invert it — a 6% partial overdraw twice a turn traded against
+        //   a 51% loss on every negative-L frame. Recorded, not hidden.
+        //
+        //   Scope: rbrMakeThickVector builds ONE material per call, so the
+        //   material and the two meshes reached here belong to this group
+        //   alone. Nothing else in the scenario is addressable from this site.
+        lArrow.userData._mat.depthTest = false;
+        lArrow.userData._mat.depthWrite = false;
+        lArrow.userData._shaft.renderOrder = 998;
+        lArrow.userData._head.renderOrder = 998;
         root.add(lArrow); rbrRegister(lArrow);
         var lLbl = rbrMakeLabel("L", RBR_POS_COLOR, 0.34);
         lLbl.userData = { elementType: "rbr_l_label", id: "rbr_l_label" };
