@@ -283,13 +283,13 @@
             "size": 14
           },
           {
-            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-11, 2026-08-07): readout offset moved {12,-30} (up-right — runs straight back INTO the rising curve, the named defect). FIRST candidate {-95,34} (left-and-below) was tried and WALKED across frames per the report's own instruction — it cleared the curve but landed almost exactly on 'sec' (the chord)'s own DEFAULT (unauthored) readout anchor, which PM_labelClearOffset computes as roughly (281,166) in canvas space for S2's h=1 chord (perpendicular escape from the chord's own ~56° pixel direction, biased up-left) — confirmed as a real text-on-text collision in a rendered frame (STATE_2__dense_t08000.png, pre-revision), not a hypothetical. REVISED to {130,45}: pushes the readout PAST the plane's own viewport right edge (canvas x=460) entirely — ink-free by clip-construction (curve/chord/tangent can never draw past x=460, the same technique this state's own chord_dual_label/slope_dual_label already use), so it no longer depends on tracking the chord's own moving default position at all. y=45 clears BOTH 'fs' (bottom edge ~102) and this state's chord_dual_label/slope_dual_label (y 123-159, appearing at 15000ms) with margin, verified in a re-rendered frame. STATE_3 and STATE_9 use a SMALLER y (25, not 45) — see their own notes — because their Q can slide down to nearly coincide with P (canvas y approaching 254), where a 45px offset would enter PM_readoutDangerZones' x-axis band (canvas y 291-314) and trigger an unwanted flip; 25px keeps the anchor under that threshold at every reachable Q position in those two states. The three states are therefore NOT byte-identical on this field — a deliberate, documented deviation from the 'shared offset' default, justified by S2's genuinely different geometry (Q fixed high, never near the axis) versus S3/S9 (Q can approach P's height).",
+            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1, 2026-08-07): first TRIED deleting the hand-tuned offset here to match STATE_3/STATE_9's copies of this point (see this state's own note history) — verified by direct render (window.__pmDebug.readouts, never arithmetic) that the DEFAULT candidate {10,-12} collides (Q sits ON the curve, and IS the chord's own second endpoint, so both lines converge on Q from up-right AND down-left at once; the un-authored candidate grazed the curve by well under 1px) and the resolver's single unconditional mirror ({-10,12}) does not escape either — it still visually crosses BOTH the curve and the chord through the letter 'Q' itself (confirmed in a rendered zoom crop). Unlike S3/S9, S2's x0 is STATIC (no choreography, no drag) — a single hand-tuned offset here carries none of the multi-pose risk that made the S3/S9 constants wrong, so this point keeps an authored offset while its S3/S9 copies do not. RE-AUTHORED (not deleted) at {85,60}: pushes the readout past the plane's own viewport edge (px x=460; Q's own anchor is at px 412, +85=497) so the curve/chord — both clipped to the viewport — can never reach it, into the one genuinely empty band in the right-hand column (canvas y 159-227, below chord_dual_label/slope_dual_label at y 123-159, above P's own resolved box at y 227-241 — verified via __pmDebug, not the design note P inherited from cycle 1, which asserted a placement that never actually rendered). x=70 was tried first and measured (via textWidth, not estimated) to leave only a 5.2px gap from the 'rise' vector's own embedded label ('rise = 1.500', which appears at 11000ms in the same row) — legal but knife-edge; x=85 widens that gap to ~20px. Verified clear of P's box, sec's own resolved readout box, chord_dual_label, slope_dual_label, rise's embedded label, and fs — see the Checkpoint-B cycle-2 fix report. S3's hlog-driven sweep and S9's drag range genuinely need the engine's per-frame resolver (their Q traverses many poses no single constant can cover); S2's single static pose does not, so it is authored directly.",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "x0+1",
             "y_expr": "(x0+1)*(x0+1)/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 45 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 85, "y": 60 } },
             "size": 14,
             "color": "#34D399",
             "appear_at_ms": 2500,
@@ -308,13 +308,13 @@
           },
           {
             "_design_note": "FIX ROUND (json_author, defect 2 MODERATE): was the 'run' vector's own embedded label (drawVector always centers a vector's label on the segment's exact pixel midpoint with no offset control). At x0=1 that midpoint sits only 40px from P's own plot_point marker (radius 7px) — with 'run = h = 1.000' (~100-104px wide at the hardcoded textSize(11)) the text's left half reaches back onto P's dot, confirmed in STATE_2__frozen.png (the amber dot covers 'ru'). Split into this standalone label so its position is authorable independent of the segment midpoint.",
-            "_design_note_2": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-10, 2026-08-07): moved UP from below the x-axis (data y=-0.45, ~110px from its own segment — read as an axis caption, the named defect) to data y = x0²/2 + 0.20 (a constant 0.20 data units = 16px ABOVE the run segment itself, genuinely 'beside' it now). At x0=1 that is (1.5, 0.70) → px (372, 238) — inside the WEDGE strictly between the run line (y=0.5, px 254) and the curve above it (y=1.125 at x=1.5, px 204): 16px clear of the dashed run segment below, ~34px clear of the curve above. The chord/secant line at x=1.5 sits even higher (y=1.25 for a convex parabola's chord, px 194) so it clears too. x centred at x0+0.5 (not x0+0.4) to sit closer to the SEGMENT's own midpoint (P to P+1) rather than biased toward P, keeping horizontal clearance from both P's dot (px 332) and the 'rise' vertical leg at x0+1 (px 412) — centred text (~96px wide) spans roughly px [324,420], comfortably inside that corridor. Vacating P's own readout (F-10's other half, see P's design note) removes the only thing that used to occupy the space directly right-below P, so this new position no longer competes with it either. Re-checked visually post-render (see the Checkpoint-B fix report).",
+            "_design_note_2": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-3, 2026-08-07): cycle-1's fix (ABOVE the run leg, in the wedge between run and the curve) checked clearance at the label's CENTRE x only — the label is CENTER-anchored (drawLabel: textAlign(CENTER,CENTER)), and its actual measured half-width (37.3px at font_size 11, textWidth('run = h = 1.000')=74.6) reaches back into the wedge's own narrowing geometry: the curve-vs-chord gap at x0=1,h=1 is a hard geometric fact (gap(x)=(chord y)-(curve y), zero at both P and Q, peaking at only 0.125 data units/10px at the segment's midpoint) — NO horizontal label of this width can sit inside that wedge without one line or the other crossing its actual span, confirmed by rendering (the curve struck the word 'run' at its own left portion, px~337-353, even though the label's CENTRE at px 372 was clear). RELOCATED below the run leg instead of above it: data y = x0*x0/2 - 0.20 (px y=270, 16px below the run segment at px y=254, 24px above the x-axis at px y=294) — a position that is CLEAR OF BOTH the curve and the chord by construction, not by tuning: for the entire span P-to-Q (x in [x0,x0+1]), both curve and chord sit AT OR ABOVE the run segment's own height (they meet run only at its two endpoints), so anything drawn strictly BELOW run's height is geometrically unreachable by either line, for any x0 the state's choreography visits. x shifted from x0+0.5 to x0+0.8 (px 396, half-width 37.3 -> span [358.7,433.3]) to clear P's own readout box (STATE_2's P readout offset {-104,20} -> box right edge at px 342 -- 16.7px margin) which the OLD y+0.20-above position never had to consider because vacating P's own offset (F-10) was a separate, unrelated fix. Verified via measured textWidth + rendered frame (not the old center-only check) — see the Checkpoint-B cycle-2 fix report.",
             "type": "label",
             "id": "run_label",
             "text": "run = h = 1.000",
             "plane_id": "plane",
-            "position": { "x": 1.5, "y": 0.70 },
-            "position_expr": { "x": "x0+0.5", "y": "x0*x0/2 + 0.20" },
+            "position": { "x": 1.8, "y": 0.30 },
+            "position_expr": { "x": "x0+0.8", "y": "x0*x0/2 - 0.20" },
             "font_size": 11,
             "color": "#94A3B8",
             "appear_at_ms": 7000,
@@ -457,13 +457,13 @@
             "size": 14
           },
           {
-            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-11, 2026-08-07): readout offset moved {12,-30} → {130,25} — pushes the readout past the plane's viewport edge (canvas x=460, ink-free by clip-construction), same technique as STATE_2's Q fix, but y=25 (not S2's 45): this state's Q slides all the way down to Q≈P (canvas y approaching 254 as h shrinks toward 0.01), and PM_readoutDangerZones' x-axis band starts at canvas y=291 — a 25px offset keeps the anchor (max ≈254+25=279) under that threshold for the whole reachable range, so the renderer's collision-flip never fires and the readout never jumps back toward the curve/y-axis side. (S2 could safely use a larger 45px offset because its Q sits fixed at canvas y=134, nowhere near that band; S3's continuously-sliding Q cannot assume that headroom.) Verified in re-rendered dense frames across the FULL sweep including the exact state-end (t=24000ms, Q=(1.01,0.51), h=0.010): no flip fired anywhere, and the readout stays clean and clearly separated from P's own text even as the two dots visually merge — see the Checkpoint-B fix report.",
+            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1, 2026-08-07): DELETED the hand-tuned offset {130,25} — see STATE_2 Q's own note for the full cycle-2 rationale (the engine's widened collision-aware resolver, PR #59/1c68c30, now does this job every frame instead of one arithmetic guess doing it once at authoring time). This state's Q slides continuously from (2,2) toward (1.01,0.51) as h shrinks — exactly the moving-anchor case PM_readoutResolveOffset's flip exists for; the un-authored default {10,-12} is re-tested against real ink (curve, chord, axis bands, P's own dot/box) every frame of the sweep, not tuned once against a hand-picked sample. Verified via window.__pmDebug.readouts at the sweep's end (hlog=-2, Q≈(1.01,0.51), the tightest approach to P) — see the Checkpoint-B cycle-2 fix report.",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "x0+pow(10,hlog)",
             "y_expr": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 25 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "color": "#34D399"
           },
@@ -601,11 +601,12 @@
           },
           {
             "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-4, 2026-08-07): S4 is CORE ring, but its own 'fs' formula box uses the symbols f(...) and x₀ — notation never DEFINED anywhere in the core-only path (S1–S6, S9; the only place x₀ is explained as 'this point's own x-coordinate' is S7's x0_chip, which is ADVANCED ring and hidden under the no_advanced/core_only preset, 38a). Grounds the symbol here with a concrete live number — the exact fix the report suggests ('put S7's x₀ = 1.00 chip on S4') — so a student on the core-only cut can read x₀ off this chip and off P's own readout (already showing '(1.00, 0.50)') and infer 'x₀ is just P's x-coordinate' without ever needing S7.",
+            "_design_note_2": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-7, 2026-08-07): font_size bumped 13 → 15, matching S7's own x0_chip (same commit's cycle-1 fix, F-2 secondary — the ₀ subscript glyph reads as a stray comma at 13px). This chip is the SAME symbol on the SAME core-ring path S7's chip grounds on the advanced ring, so it gets the same legibility fix for consistency.",
             "type": "label",
             "id": "x0_chip_s4",
             "text_expr": "x₀ = {x0.toFixed(2).replace('-','−')}",
             "position": { "x": 590, "y": 150 },
-            "font_size": 13,
+            "font_size": 15,
             "color": "#CBD5E1"
           },
           {
@@ -797,14 +798,14 @@
             "animate_in_ms": 800
           },
           {
-            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-5, 2026-08-07): readout format changed from bare 'slope = {m}' to 'chord slope = {m}' — S5's whole claim is chord ≠ tangent, and the bare 'slope' left the number ambiguous next to tan_label's explicitly-named 'tangent slope = ...'. Authored an explicit readout.offset (now authorable per PR #46, docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md Phase-0 ledger item 8) rather than relying on the auto-computed default clearance, since the string is now 6 characters longer: {55,55} moves the anchor perpendicular AWAY from the tangent's own direction (data slope 1 ⇒ pixel direction (1,−1); (55,55) is the pixel-space perpendicular (1,1), so the readout moves into the open region below-right of P that neither the tangent NOR the near-coincident chord ever crosses) rather than along it (which is exactly what a same-direction offset would re-cross). Re-checked visually post-render across the sweep (see the Checkpoint-B fix report).",
+            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-4, 2026-08-07): RE-TUNED, not deleted — this is the one G finding where deletion made things WORSE. Tested both ways by direct render (window.__pmDebug.readouts, not arithmetic): DELETING the offset falls back to PM_labelClearOffset's default, which clears the chord LINE itself (its whole job) but its computed direction lands the box straddling PM_readoutDangerZones' x-axis tick band for most of the S3/S5-shared hlog sweep (measured bbox y-range overlapping [291,314] by ~4-15px at S5's mid/near_end/end poses) — a direct regression to the cycle-0 defect ('sits on the x-axis tick row'). The cycle-1 offset {55,55} has the OPPOSITE problem: it is itself collision-tested against the widened obstacle set (PR #59) and LOSES (the down-right candidate also grazes the axis band at every sampled pose), so the resolver flips it to {-55,-55} (up-left) — which then grazes the CURVE instead (confirmed in a rendered frame: the curve strikes '...558' in 'chord slope = 1.1558' at S5's start pose). Root cause: {55,55} was never large enough to clear the axis band on its OWN (unflipped) side, so it always paid the flip's cost. RETUNED to {75,100} — same down-right family as the original intent, but with y large enough (100, not 55) that even at the sweep's largest chord-midpoint anchor.y (239.6, S5's start pose, furthest from P) the box's top edge (anchor.y+100-7=332.6) sits 18.6px clear of the axis band's bottom edge (314) — so the resolver never needs to flip at all, at any point in the sweep, and the up-left curve-graze never triggers. Verified via __pmDebug at 4 poses spanning the full hlog sweep (start/mid/near_end/end): offset renders UNFLIPPED at every one, comfortably below the axis band, clear of the curve (which cannot reach px y>294, i.e. data y<0, where this box now lives), clear of the chord's own line (which crosses that y-band far to the left, outside the box's x-range), and clear of P's own readout box. Re-verified visually (4× zoom) at all four poses — see the Checkpoint-B cycle-2 fix report.",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
             "from_expr": { "x": "x0", "y": "x0*x0/2" },
             "to_expr": { "x": "x0+pow(10,hlog)", "y": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2" },
             "extend": "frame",
-            "readout": { "format": "chord slope = {m}", "decimals": 4, "offset": { "x": 55, "y": 55 } },
+            "readout": { "format": "chord slope = {m}", "decimals": 4, "offset": { "x": 75, "y": 100 } },
             "appear_at_ms": 4000,
             "animate_in_ms": 600
           }
@@ -931,7 +932,7 @@
           "tts_sentences": [
             { "id": "s6_1", "text_en": "Drag point P anywhere on the curve." },
             { "id": "s6_2", "text_en": "The tangent line follows, tilting down, then flat, then up." },
-            { "id": "s6_3", "text_en": "Each point has its own slope — at the valley floor, the slope is exactly 0.00." }
+            { "id": "s6_3", "text_en": "Each point has its own slope — at the lowest point of the curve, the slope is exactly 0.00." }
           ]
         }
       },
@@ -1203,13 +1204,12 @@
           },
           {
             "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-1, 2026-08-07): a STANDALONE label (not fprime_head's own body.label_below) so it can be offset AWAY from marker8's 'point' label — marker8 and fprime_head literally coincide at u=0 (the curve's vertex, where f(0)=0=f'(0)), so two body-centred labels would stack on top of each other for that instant; this one sits up-right of the dot (position_expr offset by data +0.18/+0.15) while marker8's sits directly below its own dot, so the two never occupy the same pixels even at the coincidence point.",
+            "_design_note_2": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-5, 2026-08-07): RELOCATED off the tracked dot entirely — labels are CENTER-anchored (drawLabel: textAlign(CENTER,CENTER)), and the old small tracking offset (position_expr +0.18/+0.15 data, ~18.7px pixel magnitude) left roughly HALF the label's measured width (68.8px at font_size 11, half-width 34.4px) straddling back over the anchor — struck by marker8's dot, the curve, the tangent segment and the axis all at once at u≈0 (the four-way crossing the report named). Tried enlarging the tracking offset instead (option 1 of the two the report offered): the arithmetic requires >46.4px magnitude (half-width 34.4 + marker radius 6 + 6px margin) to clear the DOT, but the STATIC background curve (function_plot, always fully drawn for the whole x-domain regardless of u) rises at close to the same up-right diagonal the tracking offset must travel along near u=0 — every diagonal magnitude tested up to 100px pixel-offset still intersected the curve's own y-band at some x within the label's span, confirmed by direct calculation against the curve's closed form (px_y = 294 - 40*dataX^2) at three candidate offsets. Took option 2 instead: a FIXED position in the instrument column (590,216), matching u_slope_chip's own convention (raw pixel position, no plane_id, no position_expr) and its own teal (#2DD4BF, fprime_head/corr_vector/seg_tan/fprime_trace's shared 'derivative family' hue) — zero dependency on u means zero risk of ever crossing the curve/tangent/axis/dots at any sweep position, verified at the frozen pin (u=1.6), u=0 (the crossing), and sweep start (u=-1.6). The dashed corr_vector (its own focal window) still makes the visual 'height = slope' claim by CONNECTING the two dots; this caption now names the CLAIM from a position that can never collide with the geometry it is naming, and sits directly above the live u_slope_chip number it describes (10px vertical gap, same column, same teal-vs-violet colour convention every other state already uses to pair a caption with its number).",
             "type": "label",
             "id": "fprime_head_label",
             "text": "height = slope",
-            "plane_id": "plane",
-            "position": { "x": -1.42, "y": -1.45 },
-            "position_expr": { "x": "u+0.18", "y": "u+0.15" },
-            "font_size": 11,
+            "position": { "x": 590, "y": 216 },
+            "font_size": 13,
             "color": "#2DD4BF"
           },
           {
@@ -1241,9 +1241,12 @@
             "duration_ms": 14000
           }
         ],
+        "_design_note_focal": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-8, 2026-08-07): the ORIGINAL single corr_vector window (6000-14000ms) fully contained u's own zero-crossing (u=0 at t=9500ms, the sweep's own midpoint) — corr_vector runs from (u,u²/2) to (u,u), a length of |u−u²/2| that is mathematically zero exactly at u=0 (f(0)=0=f'(0)), so the declared focal glow sat on a segment that visibly shrank to a 1px hairline mid-beat. Split the single window into TWO corr_vector spans bridged by a brief second marker8 window centred on the crossing (9200-9800ms, 600ms — u ranges only ±0.0686 either side of zero in that span): marker8 is a legitimate, meaningful focal at that instant (the point sliding through the curve's own vertex, where curve height and derivative height genuinely coincide — the SAME coincidence marker8's and fprime_head_label's own design notes already document), not a sentinel/void trick. corr_vector keeps its full 8000ms of glow time in total (3200+4200), just not spanning the one instant its own geometry degenerates. Durations sum to the full 24000ms unchanged.",
         "focal_sequence": [
           { "highlight_primitive_id": "marker8", "duration_ms": 6000 },
-          { "highlight_primitive_id": "corr_vector", "duration_ms": 8000 },
+          { "highlight_primitive_id": "corr_vector", "duration_ms": 3200 },
+          { "highlight_primitive_id": "marker8", "duration_ms": 600 },
+          { "highlight_primitive_id": "corr_vector", "duration_ms": 4200 },
           { "highlight_primitive_id": "fprime_head", "duration_ms": 4000 },
           { "highlight_primitive_id": "fs", "duration_ms": 6000 }
         ],
@@ -1307,35 +1310,39 @@
             "color": "#38BDF8"
           },
           {
-            "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-11, 2026-08-07): readout offset moved {12,-30} → {130,25}, matching STATE_3's revised fix (see that state's note for the full reasoning — pushes past the viewport edge, y kept small enough to stay clear of PM_readoutDangerZones' x-axis band when Q approaches P's height). This is the report's named WORST CASE: dragging Q toward P (the state's own target manoeuvre) used to park the up-right-offset readout directly on P's marker and destroy Q's own readable x. Verified via a custom Playwright probe driving the ACTUAL rebuilt sim HTML (assembleSimFromSource → SET_STATE STATE_9 → PARAM_UPDATE x0=1.00, xq=1.02, the closest-approach pose reachable under the drag quantum) and a full-canvas screenshot, cropped/zoomed — see the Checkpoint-B fix report for the captured evidence and its result. Known residual: the drag range extends to xq=-1.9 (the curve's LEFT branch, where this rightward-push offset does not apply the same escape logic); the primary target manoeuvre this report names — dragging Q toward P near the default x0=1 — is the one directly verified.",
+            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1 P1, 2026-08-07): DELETED the hand-tuned offset {130,25} — this was the report's named WORST CASE: on this explore state's own target manoeuvre (dragging Q toward P), the fixed rightward push parked Q's readout directly on top of P's, destroying both numbers, at every xq in the deterministic band (-1.22,-0.72) including the symmetric pose xq=-x0 where the chord slope is exactly 0.0000 — the single best demonstration the sandbox offers. See STATE_2 Q's own note for the engine-side fix this deletion relies on (PR #59/1c68c30's widened, collision-aware PM_readoutResolveOffset, now re-tested every frame against real ink — including P's own dot and readout box — rather than a fixed constant tuned against one sampled pose). Verified via window.__pmDebug.readouts (never arithmetic) across the full reachable drag range: both branches (xq=-1.9 and xq=2.0), the symmetric pose, the coincidence pose (xq→x0), and the full deterministic band at its two edges and midpoint.",
+            "_design_note_2": "FIX ROUND 3 continued (json_author, same session): the bare deletion (falling back fully to the engine's hardcoded {10,-12} default) left a genuine graze at the symmetric pose — Q sits ON the chord by construction, the mirrored candidate {-10,12} lands its box top edge (anchor.y+12-7=259) EXACTLY on the chord ink band's bottom edge (axisPxY+5=259, since the chord is horizontal there), a 0px margin that renders as the chord line visibly clipping through the top of the letter 'Q' and the opening parenthesis (confirmed in a rendered 4x zoom crop). Re-authored a SLIGHTLY larger diagonal offset {12,-18} — same small up-right family the engine default already uses (unlike P's/S2-Q's big perpendicular jumps, Q's position here still needs to generalise across the WHOLE drag range, so this stays close to the un-authored shape rather than replacing it with a fixed-direction escape), just with enough extra magnitude that its mirrored form clears the 5px ink padding with margin instead of exactly touching it. Re-verified via __pmDebug + rendered zoom across the full pose sweep: symmetric, coincidence, both branches, band edges and midpoint — clean of P, sec, and each other everywhere.",
+            "_design_note_3": "DISCLOSED RESIDUAL (json_author, same session): at xq=2.0 (the drag range's own far-right extreme, h=1) Q's mirrored candidate still grazes the CURVE through the letters 'Q =' — confirmed at 4x zoom, and confirmed BY MATH that the engine's pure un-authored default {10,-12} has the identical graze at this same pose (the curve, chord and tangent all converge steeply within a few px of Q's own position there, so ANY small-magnitude offset in either diagonal direction runs near-parallel to one of them). Tried doubling the magnitude to {24,-30}: the graze persists at essentially the same severity (confirmed by re-render), because scaling a diagonal direction that is already near-parallel to the offending line does not change how close it runs to that line. A genuinely different (perpendicular) direction would very likely need to be pose-conditional (sign(xq) dependent) to also keep the SYMMETRIC/coincidence/band poses clean, which risks new regressions for a P3-severity residual on a single edge-of-range pose. Left as authored ({12,-18}) — same disclosed-residual class the founder_proxy report itself already accepted for G-4 ('clears the axis band, with a disclosed corner-graze residual against the curve'). Severity: only the 'Q =' prefix glyphs are touched — the coordinate VALUES '(2.00, 2.00)' remain fully legible, unlike the original P1 (which destroyed both numbers entirely).",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "xq",
             "y_expr": "xq*xq/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 25 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": -18 } },
             "size": 14,
             "color": "#34D399",
             "drag": { "bind_variable": "xq", "axis": "x", "min": -1.9, "max": 2.0 }
           },
           {
+            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1 follow-on, 2026-08-07): the report's named P1 (Q-on-P overprint) is fixed by Q's own deletion above, but verifying the symmetric pose by RENDERING (not arithmetic, per the mandate) surfaced a second, distinct defect on THIS point that the report did not name: P's own authored {12,20} collides with 'sec' (the chord)'s own resolved readout box at the symmetric pose (P and sec's boxes overlap ~26x7px, confirmed via __pmDebug), so the resolver mirrors it to {-12,-20} — which then runs the text straight up the tangent's own line (P sits ON both the curve and the tangent by construction, so the ONLY two diagonal directions a small offset can take both run roughly PARALLEL to lines passing through P; confirmed struck in a rendered 4x zoom crop, 'P = (1.00, 0.50)' cut through by both the curve and the tangent at the symmetric pose — the state's own best demonstration). RE-AUTHORED to {80,80}, the same down-right PERPENDICULAR-escape family S5's chord-slope readout (G-4) and S2's Q (G-1) both needed: at this magnitude the box sits below the axis danger band (canvas y 291-314) — the same margin logic as S5 — so it can never re-enter axis territory, and it is far enough down-right that neither the tangent (pixel y=586-x through P at x0=1) nor the curve (which diverges upward even faster) reach that y-range at that x-range. Verified via __pmDebug + rendered zoom across the SAME full pose sweep as Q above: symmetric, coincidence, both branches, and the deterministic band's two edges and midpoint.",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 80, "y": 80 } },
             "size": 14,
             "drag": { "bind_variable": "x0", "axis": "x", "min": -1.6, "max": 1.6 }
           },
           {
+            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2, discovered during G-1 verification, 2026-08-07): never authored an offset before (unlike its S2/S3/S5 siblings) — always relied on the engine's PM_labelClearOffset default, which guarantees clearance from the chord's OWN line but not from anything ELSE. At the symmetric pose (x0=1, xq=-1) sec's anchor (the P-Q midpoint) sits at (252,254) — exactly on the y-axis's own danger band (Y_LABEL_BAND, canvas x 222-255) — so the default up-biased candidate collides with the axis band and mirrors to a down-right candidate that lands back on the curve+tangent instead (both pass through that same region, confirmed struck in a rendered 4x zoom: 'slope = 0.0000' cut through by both lines at the report's own named 'single best demonstration' pose). A near-flat chord (band poses near xq≈-x0) shows the same pattern from the opposite cause: the chord's own frame-extended line, nearly horizontal, spans the full viewport and the flip-resolved candidate still grazes it. RE-AUTHORED {70,90} — the same down-right, axis-clearing family as P's {80,80} in this same state and S5's chord readout (G-4): large enough to sit below the axis band regardless of anchor position across the reachable P-Q midpoint range, and far enough right/down to clear the curve+tangent's diagonal through the plane's centre. Verified via rendered zoom across the full G-1 pose sweep (symmetric, coincidence, both branches, band edges/midpoint) — see the Checkpoint-B cycle-2 fix report.",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
             "from_expr": { "x": "x0", "y": "x0*x0/2" },
             "to_expr": { "x": "xq", "y": "xq*xq/2" },
             "extend": "frame",
-            "readout": { "format": "slope = {m}", "decimals": 4 }
+            "readout": { "format": "slope = {m}", "decimals": 4, "offset": { "x": 70, "y": 90 } }
           },
           {
             "type": "tangent_line",
