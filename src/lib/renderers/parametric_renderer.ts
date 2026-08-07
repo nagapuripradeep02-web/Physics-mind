@@ -3167,24 +3167,58 @@ function PM_readoutAuthoredOffset(spec) {
   return { x: ox, y: oy };
 }
 
-// Unit normal to the pixel-space segment p0->p1, scaled to 'dist' px and
-// biased to the "upward" screen normal (ny <= 0) so a line whose readout
-// has no authored offset defaults to sitting ABOVE its own stroke — the
-// same SIDE the old hardcoded -12 y always chose, but now perpendicular to
-// the line's OWN direction rather than a fixed screen-axis offset. A fixed
-// {+10,-12} screen offset is exactly what a sloped line is guaranteed to
-// intersect: on an equal-scale plane, a chord near slope 1 climbs ~10-15px
-// across that same 10px horizontal offset, so the readout sat ON its own
-// stroke BY CONSTRUCTION (the bug_class this primitive exists to fix).
-// Degenerates safely to the OLD default direction {dist,-dist} for a
+// Unit normal to the pixel-space segment p0->p1, biased to the "upward"
+// screen normal (ny <= 0) so a line whose readout has no authored offset
+// defaults to sitting ABOVE its own stroke — the same SIDE the old
+// hardcoded -12 y always chose, but derived from the line's OWN direction
+// rather than a fixed screen axis. Degenerates safely to straight up for a
 // zero-length segment — never divides by zero, never returns NaN.
-function PM_perpendicularOffset(p0, p1, dist) {
+function PM_upwardNormal(p0, p1) {
   var dx = p1.x - p0.x, dy = p1.y - p0.y;
   var len = Math.sqrt(dx * dx + dy * dy);
-  if (!(len > 1e-9)) return { x: dist, y: -dist };
+  if (!(len > 1e-9)) return { x: 0, y: -1 };
   var nx = -dy / len, ny = dx / len;
   if (ny > 0) { nx = -nx; ny = -ny; }
-  return { x: nx * dist, y: ny * dist };
+  return { x: nx, y: ny };
+}
+
+// The offset that places a horizontal text box of (textW x textH) fully
+// CLEAR of the line it annotates, given that the draw anchor lies ON that
+// line (the chord midpoint for a secant, the tangency point for a tangent).
+//
+// Why a fixed perpendicular distance is NOT enough (the second half of
+// bug_class parametric_canvas_drawn_readout_overprints_its_own_line...): a
+// constant 13px displacement moves the box's CENTRE off the stroke, but a
+// ~79px-wide horizontal label straddling a STEEP line still has its far end
+// swinging straight back across it. Measured on the shipped content, all
+// six secant-readout states of derivative_as_secant_limit were struck by
+// ~17-18px under the constant-13px default — the label was moved, not
+// freed.
+//
+// The closed-form remedy is the box's SUPPORT along the line normal: for an
+// axis-aligned box with half-extents (hw, hh), its extent along a unit
+// direction n is |hw*nx| + |hh*ny| (the standard separating-axis support
+// function). Displacing the box centre along n by that support + a margin
+// makes non-intersection a GEOMETRIC GUARANTEE at every slope, not a tuned
+// constant that happens to work at some angles: for a vertical line it
+// reduces to "half the text width + margin" (a pure sideways shove), for a
+// horizontal line to "half the text height + margin" (the old behaviour),
+// and interpolates exactly between them. One evaluation, no iteration, no
+// search, no wall-clock, no random — Rule 36 safe and byte-stable under
+// THE EYE's frozen clock.
+//
+// Returned in the draw call's own frame: text() is issued with
+// textAlign(LEFT, CENTER), so the box spans [anchor+off.x, +textW]
+// horizontally and is CENTRED on anchor+off.y vertically — hence the
+// -hw term on x (turning a centre displacement into a left-edge offset)
+// and none on y.
+function PM_labelClearOffset(p0, p1, textW, textH, margin) {
+  var n = PM_upwardNormal(p0, p1);
+  var hw = (typeof textW === 'number' && isFinite(textW) ? textW : 0) / 2;
+  var hh = (typeof textH === 'number' && isFinite(textH) ? textH : 0) / 2;
+  var m = (typeof margin === 'number' && isFinite(margin)) ? margin : 6;
+  var d = Math.abs(hw * n.x) + Math.abs(hh * n.y) + m;
+  return { x: d * n.x - hw, y: d * n.y };
 }
 
 // ── plot_point collision-aware side selection ───────────────────────────
@@ -3236,9 +3270,40 @@ var PM_CANVAS_W = 760, PM_CANVAS_H = 500;
 function PM_readoutOffCanvas(bbox) {
   return bbox.x0 < 0 || bbox.x1 > PM_CANVAS_W || bbox.y0 < 0 || bbox.y1 > PM_CANVAS_H;
 }
+// Pulls a text box back inside the 760x500 canvas by TRANSLATION, never by
+// a side flip. These are different failure modes with different remedies
+// and must not share one: a flip changes WHICH SIDE of the anchor the label
+// sits on, which cannot fix a horizontal overrun — mirroring an offset of
+// +12 to -12 moves a ~100px-wide box by 24px while its overhang past the
+// edge may be far larger, so the flipped placement runs off too. Only a
+// clamp is a fix. Runs LAST, after any authored offset / computed default /
+// collision flip, so it is the final word on containment.
+//
+// Right/bottom are clamped BEFORE left/top so that a box wider or taller
+// than the canvas keeps its START visible (a truncated tail is readable; a
+// truncated head is not). A box already fully inside is returned byte-
+// identical — the early-out makes that explicit, so this can never perturb
+// a placement it was not needed for (and THE EYE's baselines stay stable
+// wherever it does not fire).
+function PM_clampOffsetToCanvas(anchorPx, offset, textW, textH) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  if (!PM_readoutOffCanvas(box)) return offset;
+  var ox = offset.x, oy = offset.y;
+  if (anchorPx.x + ox + textW > PM_CANVAS_W) ox = PM_CANVAS_W - textW - anchorPx.x;
+  if (anchorPx.x + ox < 0) ox = -anchorPx.x;
+  if (anchorPx.y + oy + textH / 2 > PM_CANVAS_H) oy = PM_CANVAS_H - textH / 2 - anchorPx.y;
+  if (anchorPx.y + oy - textH / 2 < 0) oy = textH / 2 - anchorPx.y;
+  return { x: ox, y: oy };
+}
+// Ink/label-ZONE collision only — canvas containment is deliberately NOT
+// tested here, because the two have different remedies (see
+// PM_clampOffsetToCanvas above) and folding them together makes the wrong
+// one fire: an off-canvas box would take a useless flip and still need the
+// clamp afterwards, churning the placement for nothing. This predicate now
+// answers exactly one question — "does the box land on the plane's own axis
+// ink or tick-label band?" — and a true answer is what the flip is for.
 function PM_readoutCollides(anchorPx, offset, textW, textH, plane) {
   var box = PM_readoutBBox(anchorPx, offset, textW, textH);
-  if (PM_readoutOffCanvas(box)) return true;
   var zones = PM_readoutDangerZones(plane);
   for (var i = 0; i < zones.length; i++) if (PM_rectsOverlap(box, zones[i])) return true;
   return false;
@@ -3363,6 +3428,9 @@ function drawPlotPoint(spec) {
     var candidateOff = PM_readoutAuthoredOffset(spec) || { x: 10, y: -12 };
     var readoutTW = textWidth(resolved.readoutText);
     var finalOff = PM_readoutResolveOffset(px, candidateOff, readoutTW, 14, PM_planeRegistry[spec.plane_id]);
+    // Containment runs LAST — after the authored/default offset and after
+    // any axis-zone flip — so nothing downstream can push the box back out.
+    finalOff = PM_clampOffsetToCanvas(px, finalOff, readoutTW, 14);
     text(resolved.readoutText, px.x + finalOff.x, px.y + finalOff.y);
   }
   if (emph.glowPx > 0) {
@@ -3968,13 +4036,17 @@ function drawSecantLine(spec) {
       textSize(12);
       textAlign(LEFT, CENTER);
       // F-readout — an authored offset always wins (parity with
-      // plot_point.readout.offset); with none authored, default
-      // PERPENDICULAR to the drawn stroke's OWN pixel-space direction
-      // (p0->p1, the same segment just stroked above) rather than a fixed
-      // screen-axis {+10,-12} — the fixed offset is exactly what a sloped
-      // chord is guaranteed to intersect (this primitive's whole bug_class).
-      var secOff = PM_readoutAuthoredOffset(spec) || PM_perpendicularOffset(p0, p1, 13);
-      text(computed.readoutText, (rFrom.x + rTo.x) / 2 + secOff.x, (rFrom.y + rTo.y) / 2 + secOff.y);
+      // plot_point.readout.offset); with none authored, clear the stroke by
+      // the MEASURED width of this frame's own string against the drawn
+      // segment's OWN pixel direction (p0->p1, just stroked above). A fixed
+      // screen-axis offset — and equally a fixed PERPENDICULAR one — is
+      // what a sloped chord is guaranteed to intersect once the label is
+      // wider than the displacement (this primitive's whole bug_class).
+      var secAnchor = { x: (rFrom.x + rTo.x) / 2, y: (rFrom.y + rTo.y) / 2 };
+      var secTW = textWidth(computed.readoutText);
+      var secOff = PM_readoutAuthoredOffset(spec) || PM_labelClearOffset(p0, p1, secTW, 14, 6);
+      secOff = PM_clampOffsetToCanvas(secAnchor, secOff, secTW, 14);
+      text(computed.readoutText, secAnchor.x + secOff.x, secAnchor.y + secOff.y);
     }
   }
   if (emph.glowPx > 0) {
@@ -4025,9 +4097,11 @@ function drawTangentLine(spec) {
       textSize(12);
       textAlign(LEFT, CENTER);
       // F-readout — same offset contract as drawSecantLine above: authored
-      // offset wins; default is PERPENDICULAR to the drawn tangent's own
-      // pixel-space direction (p0->p1), never the fixed {+10,-12}.
-      var tanOff = PM_readoutAuthoredOffset(spec) || PM_perpendicularOffset(p0, p1, 13);
+      // offset wins; default clears the drawn tangent's own pixel-space
+      // direction (p0->p1) by this frame's MEASURED text width.
+      var tanTW = textWidth(computed.readoutText);
+      var tanOff = PM_readoutAuthoredOffset(spec) || PM_labelClearOffset(p0, p1, tanTW, 14, 6);
+      tanOff = PM_clampOffsetToCanvas(rAt, tanOff, tanTW, 14);
       text(computed.readoutText, rAt.x + tanOff.x, rAt.y + tanOff.y);
     }
   }
