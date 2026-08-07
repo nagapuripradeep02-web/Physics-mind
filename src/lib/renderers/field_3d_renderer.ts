@@ -44838,6 +44838,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var wq = 0; eng.work_state && wq < eng.work_state.length; wq++) eng.work_state[wq].W = 0;
         for (var cq = 0; eng.checkpoint_state && cq < eng.checkpoint_state.length; cq++) {
             eng.checkpoint_state[cq]._side = null;
+            eng.checkpoint_state[cq]._home = false;   // note 11c — re-armed by nlbCpArm
             eng.checkpoint_state[cq]._count = 0;
             eng.checkpoint_state[cq].text = "";
         }
@@ -46302,6 +46303,55 @@ export const FIELD_3D_RENDERER_CODE = `
     //   capture_mode 'first' LATCHES (the end-pose rule: a stamp, once made, holds
     //   for the rest of the state); 'every' re-stamps and carries the pass number,
     //   which is what makes "W by gravity is back to 0 on the return pass" showable.
+    // ── Note 11c — the ARMED side, decided from AUTHORED SEED DATA ────────────
+    //   engine_bug_queue: nlb_checkpoint_at_the_body_home_pose_adopts_its_side_in_a_
+    //   race_so_the_stamp_renders_only_on_some_runs (CRITICAL).
+    //   The adopt-never-fire guard above is correct ONLY where sign(s - s_m) has a
+    //   sign to read. A checkpoint authored AT the body's own home pose
+    //   (s_m === initial_position_m — "stamp the start conditions", concept #4's
+    //   STATE_4) is the degenerate case it cannot resolve: at s === s_m the body is
+    //   on NEITHER side, so what gets adopted is decided by whether a clock advance
+    //   happened before the checkpoint pass first ran. Both frame paths are real —
+    //   an entry under a held pin runs dt = 0 frames and adopts the +1 side (the
+    //   departure then fires the stamp), an entry with the clock already advancing
+    //   samples a body one step downrange and adopts -1 (the departure is invisible
+    //   and the stamp waits for the RETURN pass, ~2.0 s later, past the reveal pin).
+    //   Same JSON, same physics, two different pictures — a race, and an approved
+    //   baseline can capture either.
+    //   THE FIX: never sample a position a clock advance can flip. The side is armed
+    //   from the state's OWN seed (b.s0, b.v0, cp.s_m) at the two places a seeded
+    //   rewind happens — state entry and RESET_TRAJECTORY — so it is a pure function
+    //   of authored data and identical on every run, whatever the frame timing:
+    //     s0 > s_m / s0 < s_m   the ordinary case, byte-identical to what the lazy
+    //                           adopt read (at entry and after a rewind the live s
+    //                           IS s0) — just decided before any frame can move it.
+    //     s0 === s_m            HOME-ARMED (_home): the flag is the home pose. The
+    //                           body is treated as standing on the side it is about
+    //                           to leave (-sign(v0)), and while it is still exactly
+    //                           on the flag NOTHING is decided — the first departure,
+    //                           either way, IS the crossing. v0 === 0 arms _side = 0
+    //                           (no seeded direction to read) and adopts the side it
+    //                           just left at that first departure, so a body pushed
+    //                           off its own flag by a force still stamps.
+    //   Rule 36: reads authored seed values only — no clock, no accumulator, no
+    //   history. A rewind re-arms to exactly the same numbers, so RESET -> pin ->
+    //   RESET -> dense stays byte-identical. A SANDBOX WRAP is deliberately NOT
+    //   armed here: the wrap teleports the body across the band (it does not rewind
+    //   to s0), so its post-wrap position is the only honest side to adopt and the
+    //   null/adopt path it already used is left untouched.
+    function nlbCpArm(eng) {
+        if (!eng || !eng.checkpoint_state) return;
+        for (var i = 0; i < eng.checkpoint_state.length; i++) {
+            var cp = eng.checkpoint_state[i];
+            var b = eng.bodies ? eng.bodies[cp.body_id] : null;
+            if (!b) { cp._side = null; cp._home = false; continue; }   // unresolvable: legacy adopt
+            var s0 = (typeof b.s0 === "number" && isFinite(b.s0)) ? b.s0 : 0;
+            var v0 = (typeof b.v0 === "number" && isFinite(b.v0)) ? b.v0 : 0;
+            if (s0 > cp.s_m) { cp._side = 1; cp._home = false; }
+            else if (s0 < cp.s_m) { cp._side = -1; cp._home = false; }
+            else { cp._side = (v0 < 0) ? 1 : ((v0 > 0) ? -1 : 0); cp._home = true; }
+        }
+    }
     function nlbRunCheckpoints(eng) {
         var cps = eng.checkpoint_state;
         if (!cps || !cps.length) return;
@@ -46313,6 +46363,16 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!b) continue;
             var side = (b.s >= cp.s_m) ? 1 : -1;
             if (cp._side == null) { cp._side = side; continue; }
+            // note 11c — HOME-ARMED: the body starts standing on this flag. Hold
+            // while it is still exactly there (a dt = 0 frame decides nothing), and
+            // let the first departure be the crossing. Reached ONLY by a checkpoint
+            // whose seed sits on the flag, so every other checkpoint runs the
+            // original two lines below unchanged.
+            if (cp._home) {
+                if (b.s === cp.s_m) continue;
+                cp._home = false;
+                if (cp._side === 0) cp._side = (side === 1) ? -1 : 1;   // seeded at rest
+            }
             if (side === cp._side) continue;
             cp._side = side;
             cp._count++;
@@ -46780,7 +46840,9 @@ export const FIELD_3D_RENDERER_CODE = `
                     body_id: ce.body_id || "",
                     capture: (ce.capture && ce.capture.length) ? ce.capture : ["K", "U_grav"],
                     mode: (ce.capture_mode === "every") ? "every" : "first",
-                    _side: null, _count: 0, text: ""
+                    // note 11c: both latches are (re)written by nlbCpArm() below,
+                    // once eng.bodies exists and every body_id has been resolved.
+                    _side: null, _home: false, _count: 0, text: ""
                 });
             }
         }
@@ -46905,6 +46967,11 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var cr = 0; eng.checkpoint_state && cr < eng.checkpoint_state.length; cr++) {
             if (!eng.bodies[eng.checkpoint_state[cr].body_id]) eng.checkpoint_state[cr].body_id = mDefId;
         }
+        // note 11c — ARM every checkpoint from the authored seed, HERE: after
+        // nlbSeedKinematics (which may clamp s0 into a legal band) and after the
+        // body_id resolution just above, so the arm reads the final seed and the
+        // final body. Nothing about the side is left for a frame to decide.
+        nlbCpArm(eng);
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
@@ -47235,6 +47302,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // supposed to start clean, which is a determinism failure THE EYE's
         // RESET -> pin -> RESET -> dense drive would surface as a moving baseline.
         nlbSpringPhysReset(eng);
+        // note 11c — re-arm the checkpoints from the seed, AFTER the reset above
+        // cleared their latches and AFTER nlbSeedKinematics restored s0/v0. A rewind
+        // puts every body back on its home pose, so the armed side is once again a
+        // pure function of authored data — the first frame after the rewind can no
+        // longer decide it (and, at a home-pose flag, no longer decide whether the
+        // stamp exists at all).
+        nlbCpArm(eng);
         nlbLastEmitS = null;
         nlbFitRopes();
         nlbFitSpring();                     // the coil rewinds with the carts it sits between
