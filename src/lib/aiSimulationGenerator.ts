@@ -3048,6 +3048,15 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // work_energy_theorem (#4). Pure configuration, zero renderer edits (0d).
     // Alex pipeline, 2026-08-02.
     kinetic_energy_definition:      "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #5 — same newtons_laws_body engine,
+    // exercising the round-trip checkpoint latch (a flag seeded exactly at the
+    // home pose adopts side without firing, then fires once on the return
+    // crossing) alongside 'every' pass-1/pass-2 interior stamps. A force is
+    // conservative when its total work around any closed path is zero
+    // (gravity); friction is non-conservative because it always opposes the
+    // motion, so a round trip adds its losses instead of cancelling them.
+    // Pure configuration, zero renderer edits (0d). Alex pipeline, 2026-08-07.
+    conservative_vs_nonconservative_forces: "field_3d",
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave so the
     // five parallel desks never edit this file (docs/loop_runs/rotmech/).
