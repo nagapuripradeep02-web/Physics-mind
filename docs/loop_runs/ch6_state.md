@@ -12,7 +12,108 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-## ▶ NEXT SESSION STARTS HERE — concept #2 `positive_negative_zero_work`
+## ▶ NEXT SESSION STARTS HERE — concept #2 SHIPPED, TWO PRs OPEN (2026-08-02, end of day)
+
+**`positive_negative_zero_work` is authored, reviewed, founder-approved, SHIPPED and up as PRs.**
+12 baselines locked · 18 EN clips voiced · 10 scar rows applied · concept #1's baselines re-approved.
+
+| PR | branch | contents | state |
+|---|---|---|---|
+| **#18** | `feat/ch6-nlb-engine-fixes` | the 3 `field_3d_renderer.ts` commits, cherry-picked onto current master | MERGEABLE / CLEAN, CI pass |
+| **#19** | `feat/ch6-concept-2` | the concept + registrations + migration + baselines + audio + docs + scar scripts | MERGEABLE, CI pass, stacked on #18 |
+
+**MERGE #18 FIRST.** Until it lands, every chapter on `newtons_laws_body` renders an invisible
+friction arrow (measured **1.00:1** — an exact 50/50 blend with the slab) and misaligned work-bar
+zero lines. #19's diff collapses to concept-only on its next sync after #18 merges — the same
+stacked shape as #14/#15, and that pattern is proven in this repo (git resolved the cherry-picked
+SHAs with zero conflict markers last time).
+
+**NOT deployed.** `PILOT_CONCEPTS` and `deploy:app` untouched. Deployment needs #18 on master first.
+
+### Founder decisions waiting
+1. **`glow_focal` vs `SET_GLOW` precedence.** An authored state-level focal outranks the
+   per-sentence narration channel for the whole state, so bindings can be 100% authored and 100%
+   inert (12 of 14 were, on this concept). Filed OPEN as
+   `authored_state_glow_focal_silently_voids_every_tts_sentence_glow_in_that_state`. **Deliberately
+   not changed from a chapter branch** — it alters live behaviour on every field_3d concept that
+   authors both, and THE EYE can never catch a regression because it never sends `SET_GLOW`.
+2. **Darken the slab?** The arc core where it crosses the lit slab sits below the 3:1 floor and is
+   carried by a dark casing; clearing 3:1 against a 0.309 backdrop needs rendered luminance > 1.0.
+   Darkening the slab would retire the casing workaround entirely — but the slab is the apparatus
+   and its colour is a taste call. (Two measurements of the residual disagree: 2.82:1 surgeon,
+   2.03:1 eye-walker. Same severity class; the discrepancy is unresolved and recorded.)
+
+### Before concept #3
+- **Route `nlb_friction_vector_first_frame_reveal_tint_bypasses_seam_q_ink_fix`** (OPEN, MODERATE).
+  SEAM Q reached the update path but not the reveal path, so the friction vector renders a pale
+  1.87:1 tint on its first frame. Invisible today ONLY because every state seeds its body at the
+  slab's left edge — geometric, verified, not luck. **A mid-slab home pose reproduces the founder's
+  own complaint for one frame.**
+- **`#nlb_energy` is declared as a ⚙ toggle on all 12 nlb concepts**, including the 10 that never
+  show it (`pmWgIsDynamicPanel` declares an inline panel on sight, not on first visibility). The
+  teacher is offered switches for widgets that do not exist. Recorded in a prevention rule; wants
+  its own `bug_class` and routing.
+- **The lessons that cost the most this session** are in the PROGRESS.md entry — read those before
+  authoring #3. Shortest form: *a skip is not a pass* (THE CALCULATOR's N3 skip WAS the S3 defect);
+  *a deterministic gate reporting 27/27 was reporting on a picture with an invisible force vector
+  in it*; and *the founder found what three review agents did not*.
+
+---
+
+## (superseded) concept #2 — awaiting-review notes
+
+**`positive_negative_zero_work` is authored, reviewed through Checkpoint B, fixed and re-verified.
+It awaits FOUNDER REVIEW. Nothing is shipped** — `visual:approve`, `tts:*`, `PILOT_CONCEPTS` and
+`deploy:*` are all untouched (Rule 17), so the concept has NO `visual_baselines` entry and no audio.
+
+**Review link:** `http://localhost:8097/positive_negative_zero_work/`
+(port 8097, NOT this file's declared 8093 — **8093 is occupied by another session serving a
+different worktree**, and opening it shows a stale unrelated site. If the server is gone:
+`npx --yes http-server "C:\Tutor\physics-mind-ch6-work-energy-power\review-site" -p 8097 -c-1`.)
+
+Branch `feat/ch6-concept-2` off master. Commits: `a306581` bug-queue tooling · `96738d5` skeleton ·
+`5811a67` Checkpoint A · `a1179b2` Checkpoint A cycle 2 · `51fff09` physics block · `f2b8fd3` the
+concept · `d211a4b` auditor fixes · `a590ee0` Checkpoint B authoring fixes · **`dc783bd` the ENGINE
+fix (Rule 40 — land on master SEPARATELY from all concept work)**.
+
+**The 0d bet held a second time: ZERO renderer edits were needed to AUTHOR the concept.** The one
+renderer commit is a *routed Checkpoint-B engine fix*, not concept work — exactly the concept-#1
+shape.
+
+### What the review chain caught that no gate could (carry to #3)
+- **The four work-bar tracks were not collinear.** `align-items:flex-end` + a 3-line caption
+  ("by the / normal / force") pushed that slot's track up **15 px = 28.1 J** on S4's scale — on the
+  state titled "Four bars, one sum", displacing the *always-zero* bar in the POSITIVE direction.
+  Fixed structurally (stretch + column flex, track as first child) so no future caption can
+  re-break it. **The surgeon then found the SHIPPED concept #1 has the same defect on its S5**
+  ("flat pull" 1 line vs "tilted pull" 2 lines) — its two H2 baselines now encode the OLD
+  misalignment and should be re-approved after founder review.
+- **A state-level `glow_focal` silently voids every `tts_sentences[].glow` in that state.**
+  12 of this concept's 14 bindings were inert. The OPEN ratchet
+  `concept_ships_zero_narration_glow_bindings` asserts a RATIO, so it reads 1.0 while every binding
+  is dead. **Precedence change is a FOUNDER DECISION — do not fix from a chapter branch.**
+- **A focal on a RELATION state dims half the relation.** S1/S5's applied arrow measured 2.49:1 and
+  2.45:1 vs 9.74:1 on S4 (which authors no focal). Rule 32e caps the focal at one; it does not
+  require one.
+- **THE CALCULATOR's SKIPs hid a real defect.** S3 painted `F = 0.00 N` on a state with no applied
+  force while its taught `N` had no readout at all — the m-slider beat had no number to move.
+  *A skip is not a pass.*
+- **`scene_composition` annotations are never painted on field_3d.** S6's two discoverables reached
+  nobody, and `q6` examined one of them. Rule 19's "≥3 primitives" was satisfied entirely by
+  objects that are never drawn.
+
+### Do this FIRST next session
+1. **Apply the scar rows** — `scar_candidates_checkpointA.sql` (3) and
+   `scar_candidates_checkpointB.sql` (6) are SQL TEXT, **NOT APPLIED**. The B1 row was already
+   filed FIXED by the surgeon. Applying belongs in the ship chain beside `visual:approve`.
+2. **Founder call on the `glow_focal` vs `SET_GLOW` precedence** (scar row 3, checkpoint B).
+3. **Re-approve `work_done_by_constant_force`'s STATE_5 baselines** after the founder sees the fix.
+4. Ride-alongs before #3: **E-B** (port the force_rig label legibility floor to `newtons_laws_body`
+   — worst label 1.52:1) and **E-C** (⚙ says "Energy" over a panel headed "Work done").
+
+---
+
+## (historical) concept #2 kickoff notes
 
 **Everything from concept #1 is MERGED TO MASTER 2026-08-02.** PR #14 (the Phase-0 engine, seams
 K–N + two routed fixes) → merge `1695a7a`. PR #15 (concept #1, baselines, audio, the scar-apply
