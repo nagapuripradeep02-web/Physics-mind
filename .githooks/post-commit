@@ -61,7 +61,15 @@ fi
 
 # Surface the PREVIOUS push failure, then clear it. A background push that
 # fails silently is worse than no push at all — this is the feedback channel.
+#
+# The banner is NOT decoration. Without it this block prints a bare
+# "auto-push FAILED" immediately after a commit whose own push then succeeds
+# seconds later, so the operator reads a stale failure as a live one and
+# starts debugging a working push (observed 2026-08-07). The status file
+# carries its own timestamp for the same reason.
 if [ -f "$GD/autopush.status" ]; then
+  printf 'post-commit: NOTE — an EARLIER auto-push failed; details below.\n'
+  printf '             THIS commit is unaffected and is being pushed now.\n'
   while IFS= read -r _l || [ -n "$_l" ]; do printf '%s\n' "$_l"; done < "$GD/autopush.status"
   rm -f "$GD/autopush.status" 2>/dev/null
 fi
@@ -155,25 +163,74 @@ _pm_autopush() {
     # and never do something irreversible on the user's behalf.
     if git -C "$TOP" rev-parse --verify -q "refs/remotes/origin/$BRANCH" >/dev/null; then
       if ! git -C "$TOP" merge-base --is-ancestor "refs/remotes/origin/$BRANCH" "$sha"; then
-        printf '%s [%s] SKIP: diverged from origin/%s (history rewritten)\n' "$now" "$BRANCH" "$BRANCH"
-        printf 'post-commit: auto-push SKIPPED — %s has diverged from origin/%s.\n  This hook never force-pushes. Review, then:\n    git push --force-with-lease origin %s\n' \
-               "$BRANCH" "$BRANCH" "$BRANCH" > "$GD/autopush.status"
+        printf '%s [%s] SKIP: diverged from origin/%s\n' "$now" "$BRANCH" "$BRANCH"
+        # TWO causes reach here and they need OPPOSITE remedies, so the message
+        # must not assert one. Local rewrite (amend / reset --hard / rebase)
+        # wants force-with-lease; a remote that simply advanced wants a pull —
+        # force-with-lease there would DESTROY a teammate's commits. The
+        # retry-with-fetch path below makes this branch far more reachable than
+        # it used to be, so naming only the rewrite case is now actively unsafe.
+        printf 'post-commit: auto-push SKIPPED — %s and origin/%s have diverged.\n  This hook never force-pushes. Check which happened first:\n    git log --oneline --left-right origin/%s...%s\n  Remote advanced  -> git pull --rebase origin %s\n  History rewritten locally -> git push --force-with-lease origin %s\n' \
+               "$BRANCH" "$BRANCH" "$BRANCH" "$BRANCH" "$BRANCH" "$BRANCH" > "$GD/autopush.status"
         return 0
       fi
     fi
 
     printf '%s [%s] pushing %s (attempt %s)\n' "$now" "$BRANCH" "${sha:0:8}" "$attempt"
-    if git -C "$TOP" rev-parse --verify -q "$BRANCH@{upstream}" >/dev/null; then
-      $TMO git -C "$TOP" -c credential.interactive=false push --quiet
+
+    # Always push an EXPLICIT refspec — never a bare `git push`.
+    #
+    # A bare push obeys push.default (default 'simple'), which FATALS rc=128
+    # when the branch's upstream NAME differs from the branch name:
+    #   fatal: The upstream branch of your current branch does not match
+    #          the name of your current branch.
+    # That is the state EVERY worktree starts in when it is branched from a
+    # remote-tracking start point — the new branch inherits upstream
+    # origin/master. The old test only asked "does an upstream exist?", which
+    # is TRUE in exactly that broken case, so it took the bare-push path and
+    # the desk never auto-pushed even once. (feat/pcpl-readout-placement:
+    # 0 successes, 2 rc=128 failures, two rounds of engine work left on one
+    # disk — the precise failure this hook exists to prevent.)
+    # An explicit refspec makes push.default irrelevant by construction.
+    _up="$(git -C "$TOP" rev-parse --abbrev-ref --symbolic-full-name "$BRANCH@{upstream}" 2>/dev/null)"
+    if [ "$_up" = "origin/$BRANCH" ]; then
+      $TMO git -C "$TOP" -c credential.interactive=false \
+        push --quiet origin "refs/heads/$BRANCH:refs/heads/$BRANCH"
     else
-      $TMO git -C "$TOP" -c credential.interactive=false push --quiet --set-upstream origin "$BRANCH"
+      # Missing OR mismatched upstream — repoint it at the matching remote
+      # branch so every later push, by hook or by hand, is unambiguous.
+      $TMO git -C "$TOP" -c credential.interactive=false \
+        push --quiet --set-upstream origin "refs/heads/$BRANCH:refs/heads/$BRANCH"
     fi
     rc=$?
 
     if [ $rc -ne 0 ]; then
-      printf '%s [%s] FAILED rc=%s\n' "$(date '+%F %T')" "$BRANCH" "$rc"
-      printf 'post-commit: auto-push of %s FAILED (rc=%s). Your commit is safe locally.\n  Log: %s\n' \
-             "$BRANCH" "$rc" "$GD/autopush.log" > "$GD/autopush.status"
+      # RETRY — do not give up on the first error.
+      #
+      # The `for attempt in 1 2 3` loop above was dead code for failures: this
+      # branch returned immediately, so only a SHA change could ever reach a
+      # second iteration. Every transient error was therefore permanent.
+      #
+      # The dominant transient here is a stale remote-tracking ref, which the
+      # server rejects with
+      #   cannot lock ref 'refs/heads/X': is at <a> but expected <b>
+      # (observed twice on feat/mathematics-derivative, 2026-08-07). Refreshing
+      # origin/<branch> and retrying fixes exactly that for the cost of one
+      # fetch. If the remote has genuinely advanced, the ancestor check at the
+      # top of the next iteration catches it and SKIPs — this never forces.
+      if [ "$attempt" -lt 3 ]; then
+        printf '%s [%s] rc=%s — refreshing origin/%s, retrying\n' \
+               "$(date '+%F %T')" "$BRANCH" "$rc" "$BRANCH"
+        $TMO git -C "$TOP" fetch --quiet origin \
+          "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" 2>/dev/null
+        sleep 2
+        continue
+      fi
+      printf '%s [%s] FAILED rc=%s after %s attempts\n' \
+             "$(date '+%F %T')" "$BRANCH" "$rc" "$attempt"
+      printf 'post-commit: auto-push of %s FAILED (rc=%s) after %s attempts at %s.\n  Your commit is safe locally. Recover with:  git push origin %s\n  Log: %s\n' \
+             "$BRANCH" "$rc" "$attempt" "$(date '+%F %T')" "$BRANCH" "$GD/autopush.log" \
+             > "$GD/autopush.status"
       return 0
     fi
 
