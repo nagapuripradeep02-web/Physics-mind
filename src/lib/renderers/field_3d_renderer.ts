@@ -40283,12 +40283,47 @@ export const FIELD_3D_RENDERER_CODE = `
         b.theta_rad = seg.th0 + seg.w0 * tau + 0.5 * seg.alpha * tau * tau;
         nlbApplySpin(b.id, b.theta_rad);
     }
+    // ── SEAM J (U13) — which WAY the re-seeded launch must point ───────────────
+    //   The wrap re-seeds the authored launch (U12 above, and SEAM J's own header).
+    // It did not ask which END the body re-entered from. On a FLAT track that
+    // question has no teeth: every shipped flat sandbox is driven one way, so it
+    // only ever leaves by the high bound, re-enters at the low bound, and the
+    // authored v0 (>= 0 in all of them) already points back up the track.
+    //   On a SLOPE it decides the whole state. conservative_vs_nonconservative_forces
+    // STATE_5 authors v0 = +4 UP a 30 deg slope: gravity brings the block back down,
+    // it leaves by the LOW bound, is placed at the HIGH bound and handed +4 up-slope
+    // again — which points straight back out of the bound it just came in through.
+    // It crossed bd.hi on that same frame or the next, wrapped again, and was pinned
+    // in the bottom 1.07 m of a 12 m track for a whole 24 s drive (measured s in
+    // [-5.89, -4.82]) while the state's formula surface asserted a ROUND TRIP.
+    // A double wrap, not a lap.
+    //   The rule is the one the position remap already obeys: a wrap re-enters the
+    // track, so the launch it re-seeds must point INTO the track. This returns the
+    // MIRROR FACTOR (+1 or -1) for that, and the caller applies it to v0 and to
+    // omega0 TOGETHER — mirroring both is a reflection through the track axis, so a
+    // wheel launched with a deliberate v/omega mismatch keeps exactly the mismatch
+    // its sandbox exists to show (U12's case), just aimed the other way.
+    //   It is a NO-OP wherever the seed already points inward, and a no-op for a
+    // seed of ZERO (nlbSgn(0) === 0): that is 12 of the 14 authored nlb sandboxes
+    // outright, plus kinetic_energy_definition STATE_6, whose v0 = +4 on a flat
+    // track only ever leaves by the high bound. So no authored default changes
+    // except the incline that is broken. Rule 36: a sign, no dt, no accumulator.
+    function nlbWrapSeedMirror(v0, dirIn) {
+        var sv = nlbSgn(v0);
+        return (sv !== 0 && dirIn !== 0 && sv !== dirIn) ? -1 : 1;
+    }
     // U12 — the sandbox wrap re-seeds omega alongside v, and re-anchors the segment
     // so the new lap is identical to the last one (SEAM J's own argument for
     // re-seeding v, applied to the quantity it forgot).
-    function nlbRollWrapSeed(eng, b) {
+    //   mirror is U13's factor and is ABSENT on the race-restart call site, where the
+    // body is re-anchored at its authored s0 rather than at a bound and the authored
+    // launch is right by construction — so that path stays bit-for-bit identical.
+    // The w !== 0 guard keeps a mirrored zero from writing -0 into omega.
+    function nlbRollWrapSeed(eng, b, mirror) {
         if (!b) return;
-        b.omega = (typeof b.omega0 === "number" && isFinite(b.omega0)) ? b.omega0 : 0;
+        var w = (typeof b.omega0 === "number" && isFinite(b.omega0)) ? b.omega0 : 0;
+        if (mirror === -1 && w !== 0) w = -w;
+        b.omega = w;
         b.theta_rad = 0;
         b._slipping = false;
         nlbRollSeg(eng, b, b.omega, 0);
@@ -48373,8 +48408,20 @@ export const FIELD_3D_RENDERER_CODE = `
                         // demonstration the sandbox exists for survives exactly one
                         // lap. omega is therefore re-seeded to the SAME authored seed
                         // in the SAME statement, and the angular segment re-anchors.
-                        if (s1 > bd.hi) { s1 -= span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b); }
-                        else if (s1 < bd.lo) { s1 += span; v1 = (b.v0 != null) ? b.v0 : 0; nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b); }
+                        //   wDir is the direction the body re-enters MOVING INTO the
+                        // track: it left by the high bound (+1) so it comes back on at
+                        // the low one, or it left by the low bound (-1) and comes back
+                        // on at the high one. The remap is the same subtraction either
+                        // way (wDir = -1 gives s1 + span, the old low branch exactly),
+                        // and wDir is also the answer to the question U13 above says the
+                        // re-seed forgot to ask.
+                        var wDir = (s1 > bd.hi) ? 1 : ((s1 < bd.lo) ? -1 : 0);
+                        if (wDir !== 0) {
+                            s1 -= wDir * span;
+                            var wMr = nlbWrapSeedMirror(b.v0, wDir);
+                            v1 = wMr * ((b.v0 != null) ? b.v0 : 0);
+                            nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b, wMr);
+                        }
                     }
                     b.a = a; b.v = v1; b.s = s1;
                     b._boundArrestedSliding = false;
@@ -48591,7 +48638,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 // up an unreadable blur. eng.v_string_seed is stamped by
                 // nlbSeedKinematics from the authored v0, so a state that legitimately
                 // starts the train moving repeats at ITS speed, not from rest.
-                vs1 = (eng.v_string_seed != null) ? eng.v_string_seed : 0;
+                //   U13: mirrored by the same rule and the same helper as the
+                // single-body wrap, because it is the same question — a train that
+                // re-enters travelling BACKWARD (dir = -1, frontmost cart placed on
+                // the high bound) handed a FORWARD seed would drive straight back out
+                // of the bound it just came in through. dir is the direction it
+                // re-enters moving, so it is exactly Branch A's wDir. This is a no-op
+                // on the one authored train sandbox (connected_bodies STATE_7 seeds 0,
+                // and nlbSgn(0) === 0 never mirrors), so that sealed explore state
+                // stays bit-for-bit what it was.
+                var vsSeed = (eng.v_string_seed != null) ? eng.v_string_seed : 0;
+                vs1 = nlbWrapSeedMirror(vsSeed, dir) * vsSeed;
                 sAdv = 0;                // the shift IS this frame's motion
                 wrapped = true;
             }
