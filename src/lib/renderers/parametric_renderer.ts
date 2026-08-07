@@ -3142,6 +3142,121 @@ function drawFunctionPlot(spec) {
   pop();
 }
 
+// ── shared readout placement (bug_class parametric_canvas_drawn_readout_
+// overprints_its_own_line_and_is_invisible_to_the_layout_checker, MAJOR/
+// OPEN in engine_bug_queue) ─────────────────────────────────────────────────
+// Every primitive that draws its OWN canvas text readout (plot_point,
+// secant_line, tangent_line) shares ONE offset-resolution idiom, so
+// plot_point's pre-existing readout.offset field and secant/tangent's
+// newly-added one behave IDENTICALLY — one funnel, not three independently
+// invented ones (mirrors F7's "one funnel" discipline for plane_id).
+
+// Authored offset, with the SAME non-finite/type-fallback discipline every
+// other *_expr/offset field on this engine uses: a present-but-malformed
+// offset (not an object, x/y not a finite number) is treated as ABSENT,
+// never as a crash and never as a silent NaN draw. Returns null when
+// nothing usable was authored, so a caller falls through to ITS OWN
+// computed default (plot_point: {10,-12}; secant/tangent: the
+// perpendicular default below) — exactly mirroring how every *_expr caller
+// already falls back to a literal when the expression is unusable.
+function PM_readoutAuthoredOffset(spec) {
+  var off = (spec && spec.readout && spec.readout.offset && typeof spec.readout.offset === 'object') ? spec.readout.offset : null;
+  if (!off) return null;
+  var ox = off.x, oy = off.y;
+  if (typeof ox !== 'number' || !isFinite(ox) || typeof oy !== 'number' || !isFinite(oy)) return null;
+  return { x: ox, y: oy };
+}
+
+// Unit normal to the pixel-space segment p0->p1, scaled to 'dist' px and
+// biased to the "upward" screen normal (ny <= 0) so a line whose readout
+// has no authored offset defaults to sitting ABOVE its own stroke — the
+// same SIDE the old hardcoded -12 y always chose, but now perpendicular to
+// the line's OWN direction rather than a fixed screen-axis offset. A fixed
+// {+10,-12} screen offset is exactly what a sloped line is guaranteed to
+// intersect: on an equal-scale plane, a chord near slope 1 climbs ~10-15px
+// across that same 10px horizontal offset, so the readout sat ON its own
+// stroke BY CONSTRUCTION (the bug_class this primitive exists to fix).
+// Degenerates safely to the OLD default direction {dist,-dist} for a
+// zero-length segment — never divides by zero, never returns NaN.
+function PM_perpendicularOffset(p0, p1, dist) {
+  var dx = p1.x - p0.x, dy = p1.y - p0.y;
+  var len = Math.sqrt(dx * dx + dy * dy);
+  if (!(len > 1e-9)) return { x: dist, y: -dist };
+  var nx = -dy / len, ny = dx / len;
+  if (ny > 0) { nx = -nx; ny = -ny; }
+  return { x: nx * dist, y: ny * dist };
+}
+
+// ── plot_point collision-aware side selection ───────────────────────────
+// A CONSTANT offset cannot serve a MOVING anchor (a drag-bound or slider-
+// driven plot_point sweeps a whole range of positions) — no single {x,y}
+// clears the axis lines, their tick-label bands, AND the canvas edge at
+// every position the point can reach. Cheap, DETERMINISTIC side-test-and-
+// flip: given the candidate placement's (measured) text box, if it
+// collides with a known ink/label zone, mirror the offset to the anchor's
+// OTHER side once. No solver, no iteration, no per-frame search — a pure
+// function of (anchorPx, offset, textW, textH, the registered plane's OWN
+// static geometry), so the SAME inputs always give the SAME output
+// (required for THE EYE's frozen baselines to stay byte-identical under a
+// fixed clock, Rule 36 — this reads no wall time, no random seed).
+function PM_rectsOverlap(a, b) {
+  return a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0;
+}
+function PM_readoutBBox(anchorPx, offset, textW, textH) {
+  var x0 = anchorPx.x + offset.x;
+  var y0 = anchorPx.y + offset.y - textH / 2;
+  return { x0: x0, y0: y0, x1: x0 + textW, y1: y0 + textH };
+}
+// The plane's own axis lines + their tick-label bands: a vertical strip at
+// the y-axis (its tick-label COLUMN sits to its LEFT) spanning the plane's
+// full drawn height, and a horizontal strip at the x-axis (its tick-label
+// ROW sits BELOW it) spanning the plane's full drawn width — the two ink
+// zones drawCartesianPlane itself draws (F2/F3 above). Band widths are a
+// deliberately generous fixed estimate of that draw call's own geometry
+// (textSize 10, typically 1-5 char labels): a cheap safety net, not a
+// pixel-exact re-derivation.
+function PM_readoutDangerZones(plane) {
+  var vp = plane.viewport, xRange = plane.xRange, yRange = plane.yRange;
+  var originDataX = PM_clamp(0, xRange.min, xRange.max);
+  var originDataY = PM_clamp(0, yRange.min, yRange.max);
+  var axisPxX = plane.toPx(originDataX, yRange.min).x;
+  var axisPxY = plane.toPx(xRange.min, originDataY).y;
+  var Y_LABEL_BAND = 30, X_LABEL_BAND = 20, AXIS_HALF = 3;
+  return [
+    { x0: axisPxX - Y_LABEL_BAND, y0: vp.y, x1: axisPxX + AXIS_HALF, y1: vp.y + vp.h },
+    { x0: vp.x, y0: axisPxY - AXIS_HALF, x1: vp.x + vp.w, y1: axisPxY + X_LABEL_BAND }
+  ];
+}
+// Off-CANVAS (the 760x500 design space every state renders into —
+// createCanvas(760,500) below), not merely off the plane's own inner
+// viewport: a readout is routinely (and correctly) placed just outside a
+// plane's own rectangle — that is normal layout, not a defect. Only
+// actually leaving the visible canvas is a placement failure.
+var PM_CANVAS_W = 760, PM_CANVAS_H = 500;
+function PM_readoutOffCanvas(bbox) {
+  return bbox.x0 < 0 || bbox.x1 > PM_CANVAS_W || bbox.y0 < 0 || bbox.y1 > PM_CANVAS_H;
+}
+function PM_readoutCollides(anchorPx, offset, textW, textH, plane) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  if (PM_readoutOffCanvas(box)) return true;
+  var zones = PM_readoutDangerZones(plane);
+  for (var i = 0; i < zones.length; i++) if (PM_rectsOverlap(box, zones[i])) return true;
+  return false;
+}
+// Resolves the FINAL {x,y} pixel offset to draw a readout at: the
+// candidate offset unchanged when it does not collide, or the candidate
+// mirrored to the anchor's opposite side (both components negated) when it
+// does. The flip is taken unconditionally once collision is detected —
+// never iterated/searched further (deterministic, O(1), Rule-36-safe) — so
+// a pathological anchor whose MIRRORED placement also collides still gets
+// a placement (the mirror, the far more likely side to be clear on
+// balance), never an unbounded search for a perfect spot.
+function PM_readoutResolveOffset(anchorPx, candidateOffset, textW, textH, plane) {
+  if (!plane) return candidateOffset;
+  if (!PM_readoutCollides(anchorPx, candidateOffset, textW, textH, plane)) return candidateOffset;
+  return { x: -candidateOffset.x, y: -candidateOffset.y };
+}
+
 // ── plot_point (CP-B, F11-F12) ──────────────────────────────────────────────
 // D8 — the readout and the picture must read the SAME scope in the same
 // frame. Pure (no p5) so the gate can assert one-evaluation discipline
@@ -3235,14 +3350,20 @@ function drawPlotPoint(spec) {
   fill(rgb[0], rgb[1], rgb[2], alpha255);
   ellipse(px.x, px.y, size, size);
   if (resolved.readoutText) {
-    var off = (spec.readout && spec.readout.offset && typeof spec.readout.offset === 'object') ? spec.readout.offset : {};
-    var offX = (typeof off.x === 'number') ? off.x : 10;
-    var offY = (typeof off.y === 'number') ? off.y : -12;
     fill(rgb[0], rgb[1], rgb[2], alpha255);
     noStroke();
     textSize(12);
     textAlign(LEFT, CENTER);
-    text(resolved.readoutText, px.x + offX, px.y + offY);
+    // F-readout — candidate is the authored offset if usable, else the old
+    // {10,-12} default; then collision-tested against this frame's ACTUAL
+    // registered plane (a moving/dragged point needs a live re-test every
+    // frame, not a one-time authoring-side guess) using a REAL measured
+    // text width (textWidth(), not an estimate — accurate for whatever
+    // string this frame's live variables produced).
+    var candidateOff = PM_readoutAuthoredOffset(spec) || { x: 10, y: -12 };
+    var readoutTW = textWidth(resolved.readoutText);
+    var finalOff = PM_readoutResolveOffset(px, candidateOff, readoutTW, 14, PM_planeRegistry[spec.plane_id]);
+    text(resolved.readoutText, px.x + finalOff.x, px.y + finalOff.y);
   }
   if (emph.glowPx > 0) {
     drawingContext.shadowColor = 'transparent';
@@ -3846,7 +3967,14 @@ function drawSecantLine(spec) {
       fill(rgb[0], rgb[1], rgb[2], alpha255);
       textSize(12);
       textAlign(LEFT, CENTER);
-      text(computed.readoutText, (rFrom.x + rTo.x) / 2 + 10, (rFrom.y + rTo.y) / 2 - 12);
+      // F-readout — an authored offset always wins (parity with
+      // plot_point.readout.offset); with none authored, default
+      // PERPENDICULAR to the drawn stroke's OWN pixel-space direction
+      // (p0->p1, the same segment just stroked above) rather than a fixed
+      // screen-axis {+10,-12} — the fixed offset is exactly what a sloped
+      // chord is guaranteed to intersect (this primitive's whole bug_class).
+      var secOff = PM_readoutAuthoredOffset(spec) || PM_perpendicularOffset(p0, p1, 13);
+      text(computed.readoutText, (rFrom.x + rTo.x) / 2 + secOff.x, (rFrom.y + rTo.y) / 2 + secOff.y);
     }
   }
   if (emph.glowPx > 0) {
@@ -3896,7 +4024,11 @@ function drawTangentLine(spec) {
       fill(rgb[0], rgb[1], rgb[2], alpha255);
       textSize(12);
       textAlign(LEFT, CENTER);
-      text(computed.readoutText, rAt.x + 10, rAt.y - 12);
+      // F-readout — same offset contract as drawSecantLine above: authored
+      // offset wins; default is PERPENDICULAR to the drawn tangent's own
+      // pixel-space direction (p0->p1), never the fixed {+10,-12}.
+      var tanOff = PM_readoutAuthoredOffset(spec) || PM_perpendicularOffset(p0, p1, 13);
+      text(computed.readoutText, rAt.x + tanOff.x, rAt.y + tanOff.y);
     }
   }
   if (emph.glowPx > 0) {

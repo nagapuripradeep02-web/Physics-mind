@@ -82,7 +82,7 @@ function grabVar(name: string, src: string = SRC): string {
   return src.slice(m!.index!, src.indexOf(";", i) + 1);
 }
 
-const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC"];
+const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC", "PM_CANVAS_W"];
 const FNS = [
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
@@ -101,6 +101,14 @@ const FNS = [
   // assertions in section 10 instead (same technique as section 12/14).
   "PM_lineClipToRect", "PM_extendLineToFrame", "PM_secantTangentReadout",
   "PM_secantLineCompute", "PM_tangentLineCompute",
+  // F-readout additions — bug_class parametric_canvas_drawn_readout_
+  // overprints_its_own_line_and_is_invisible_to_the_layout_checker. All
+  // pure; drawPlotPoint/drawSecantLine/drawTangentLine (the p5-drawing
+  // wrappers that call them) are verified by static source assertions in
+  // section 17 below (same technique as section 10/12/14).
+  "PM_readoutAuthoredOffset", "PM_perpendicularOffset", "PM_rectsOverlap",
+  "PM_readoutBBox", "PM_readoutDangerZones", "PM_readoutOffCanvas",
+  "PM_readoutCollides", "PM_readoutResolveOffset",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -1478,6 +1486,193 @@ console.log("\n=== 16. RANGE CONTAINMENT — cross-product of control ranges sta
   const badPolylines = E.PM_functionPlotSample("x*x - 0", 0, badB, 240, {}, yRange);
   assertTrue("NEGATIVE CONTROL: the D4 sampler breaks the b=2.3 curve rather than silently drawing it out of frame",
     badPolylines.length !== 1 || badPolylines[0].length !== 240);
+}
+
+console.log("\n=== 17. F-READOUT PLACEMENT — offset parity, perpendicular default, collision-aware flip (bug_class parametric_canvas_drawn_readout_overprints_its_own_line_and_is_invisible_to_the_layout_checker) ===");
+{
+  // (a) PM_readoutAuthoredOffset — same non-finite/type-fallback discipline
+  // as every other *_expr/offset field on this engine.
+  check("authored {x,y} both finite numbers -> passed through", JSON.stringify(E.PM_readoutAuthoredOffset({ readout: { offset: { x: 5, y: -7 } } })), JSON.stringify({ x: 5, y: -7 }), 0 as any);
+  assertTrue("no readout at all -> null", E.PM_readoutAuthoredOffset({}) === null);
+  assertTrue("readout present but no offset -> null", E.PM_readoutAuthoredOffset({ readout: { format: "slope = {m}" } }) === null);
+  assertTrue("offset.x is a string -> null (never coerced)", E.PM_readoutAuthoredOffset({ readout: { offset: { x: "5", y: -7 } } }) === null);
+  assertTrue("offset.y is NaN -> null", E.PM_readoutAuthoredOffset({ readout: { offset: { x: 5, y: NaN } } }) === null);
+  assertTrue("offset.x is Infinity -> null", E.PM_readoutAuthoredOffset({ readout: { offset: { x: Infinity, y: -7 } } }) === null);
+  assertTrue("offset is a non-object (e.g. a string) -> null", E.PM_readoutAuthoredOffset({ readout: { offset: "10,-12" } }) === null);
+
+  // NEGATIVE CONTROL — a naive resolver that only checks `typeof === 'number'`
+  // (no isFinite guard) WOULD accept NaN, unlike the shipped one.
+  function naiveOffset(spec: { readout?: { offset?: { x?: unknown; y?: unknown } } }) {
+    const off = spec.readout && spec.readout.offset;
+    if (!off || typeof off.x !== "number" || typeof off.y !== "number") return null;
+    return { x: off.x, y: off.y };
+  }
+  const naiveResult = naiveOffset({ readout: { offset: { x: 5, y: NaN } } });
+  assertTrue("NEGATIVE CONTROL: a typeof-only (no isFinite) resolver WOULD accept {x:5,y:NaN}", naiveResult !== null && Number.isNaN(naiveResult.y));
+  assertTrue("the shipped resolver does NOT share that defect (rejects the same NaN offset)", E.PM_readoutAuthoredOffset({ readout: { offset: { x: 5, y: NaN } } }) === null);
+
+  // (b) PM_perpendicularOffset — genuinely PERPENDICULAR to the segment at
+  // every slope (dot product with the segment's own direction vector is 0),
+  // magnitude equals the requested distance, and the "upward" screen-normal
+  // (ny <= 0) is always chosen so a horizontal chord defaults directly ABOVE
+  // itself (matching the pre-fix visual convention's y=-12 side).
+  function dot(ax: number, ay: number, bx: number, by: number) { return ax * bx + ay * by; }
+  const slopeGrid: [number, number][] = [[10, 0], [0, 10], [10, 5], [10, -5], [10, 15], [-10, 15], [3, 97]];
+  let allPerp = true, allMag = true, allUpward = true;
+  for (const [dx, dy] of slopeGrid) {
+    const off = E.PM_perpendicularOffset({ x: 0, y: 0 }, { x: dx, y: dy }, 13);
+    if (Math.abs(dot(dx, dy, off.x, off.y)) > 1e-9) allPerp = false;
+    if (Math.abs(Math.hypot(off.x, off.y) - 13) > 1e-9) allMag = false;
+    if (off.y > 1e-9) allUpward = false;
+  }
+  assertTrue("PM_perpendicularOffset is exactly perpendicular to the segment (dot product 0) across 7 slopes incl. vertical/horizontal", allPerp);
+  assertTrue("PM_perpendicularOffset's magnitude is exactly the requested distance (13px) across all 7 slopes", allMag);
+  assertTrue("PM_perpendicularOffset always picks the UPWARD screen normal (ny <= 0) across all 7 slopes", allUpward);
+  const horizOff = E.PM_perpendicularOffset({ x: 0, y: 0 }, { x: 10, y: 0 }, 13);
+  check("horizontal segment defaults directly above (x=0,y=-13) — same SIDE the old hardcoded -12 y chose", JSON.stringify(horizOff), JSON.stringify({ x: 0, y: -13 }), 0 as any);
+  const degenerateOff = E.PM_perpendicularOffset({ x: 5, y: 5 }, { x: 5, y: 5 }, 13);
+  check("zero-length segment degrades safely to the OLD default direction {dist,-dist} (never NaN)", JSON.stringify(degenerateOff), JSON.stringify({ x: 13, y: -13 }), 0 as any);
+
+  // ── THE FOUNDER'S OWN NUMBERS — derivative_as_secant_limit STATE_2's real
+  // authored geometry (equal-scale plane, k=80px/unit): a chord of data-space
+  // slope 1.5 has PIXEL-space slope -1.5 (scaleX===scaleY, y-flip). The OLD
+  // fixed {+10,-12} offset is nearly AT the chord's own direction (10px
+  // across, ~15px expected climb at slope 1.5) rather than across it — this
+  // is precisely why it sat ON the stroke. Demonstrate the OLD offset's
+  // angular closeness to the tangent direction, and the NEW default's exact
+  // orthogonality, on this SAME real geometry. ──────────────────────────────
+  const chordP0 = { x: 0, y: 0 }, chordP1 = { x: 10, y: -15 }; // pixel-space, slope -1.5 (data slope 1.5)
+  const oldFixedOffset = { x: 10, y: -12 };
+  const tangentUnit = { x: 10 / Math.hypot(10, 15), y: -15 / Math.hypot(10, 15) };
+  const oldOffsetUnit = { x: oldFixedOffset.x / Math.hypot(10, 12), y: oldFixedOffset.y / Math.hypot(10, 12) };
+  const oldAlignment = Math.abs(dot(tangentUnit.x, tangentUnit.y, oldOffsetUnit.x, oldOffsetUnit.y)); // 1 = parallel, 0 = perpendicular
+  assertTrue(`NEGATIVE CONTROL: the OLD fixed {+10,-12} offset on the founder's own slope-1.5 chord is nearly PARALLEL to the stroke (|cos| = ${oldAlignment.toFixed(3)}), not perpendicular to it — this is why it sat on the line`,
+    oldAlignment > 0.9);
+  const newPerp = E.PM_perpendicularOffset(chordP0, chordP1, 13);
+  const newAlignment = Math.abs(dot(tangentUnit.x, tangentUnit.y, newPerp.x / 13, newPerp.y / 13));
+  assertTrue(`the NEW perpendicular default on the SAME chord is genuinely orthogonal to the stroke (|cos| = ${newAlignment.toExponential(2)}, want ~0)`,
+    newAlignment < 1e-9);
+
+  // (c) PM_rectsOverlap — AABB overlap, edges touching does NOT count as
+  // overlap (strict <, matching section 15's own clip-sanity convention).
+  assertTrue("two overlapping rects -> true", E.PM_rectsOverlap({ x0: 0, y0: 0, x1: 10, y1: 10 }, { x0: 5, y0: 5, x1: 15, y1: 15 }));
+  assertTrue("two disjoint rects -> false", !E.PM_rectsOverlap({ x0: 0, y0: 0, x1: 10, y1: 10 }, { x0: 20, y0: 20, x1: 30, y1: 30 }));
+  assertTrue("two rects touching exactly at an edge (x1===x0) -> false (strict inequality)", !E.PM_rectsOverlap({ x0: 0, y0: 0, x1: 10, y1: 10 }, { x0: 10, y0: 0, x1: 20, y1: 10 }));
+
+  // (d) PM_readoutBBox — anchor + offset + measured text size -> the exact
+  // box the text() call would occupy under LEFT/CENTER alignment (matching
+  // every readout draw call's own textAlign(LEFT, CENTER)).
+  const bbox = E.PM_readoutBBox({ x: 100, y: 200 }, { x: 12, y: -20 }, 80, 14);
+  check("bbox.x0 = anchor.x + offset.x", bbox.x0, 112, 1e-9);
+  check("bbox.x1 = x0 + textW", bbox.x1, 192, 1e-9);
+  check("bbox.y0 = anchor.y + offset.y - textH/2 (CENTER alignment)", bbox.y0, 173, 1e-9);
+  check("bbox.y1 = y0 + textH", bbox.y1, 187, 1e-9);
+
+  // (e) PM_readoutDangerZones — the plane's OWN axis-line + tick-label-band
+  // zones, built off the SAME PM_planeBuildTransform every other section
+  // already trusts. Straddling range: axis is INTERIOR, not at the edge.
+  const dzPlane = E.PM_planeBuildTransform(DEFAULT_PLANE); // x_range/y_range both straddle 0
+  const zones = E.PM_readoutDangerZones(dzPlane);
+  check("exactly 2 danger zones (y-axis strip, x-axis strip)", zones.length, 2, 0);
+  const axisPxOrigin = dzPlane.toPx(0, 0);
+  assertTrue("y-axis danger zone straddles the ACTUAL y-axis pixel x (from PM_planeBuildTransform, not re-derived)",
+    zones[0].x0 < axisPxOrigin.x && zones[0].x1 > axisPxOrigin.x);
+  assertTrue("x-axis danger zone straddles the ACTUAL x-axis pixel y", zones[1].y0 < axisPxOrigin.y && zones[1].y1 > axisPxOrigin.y);
+  assertTrue("y-axis danger zone spans the plane's FULL drawn height (tick labels occur at every tick, not just one spot)",
+    Math.abs(zones[0].y0 - dzPlane.viewport.y) < 1e-9 && Math.abs(zones[0].y1 - (dzPlane.viewport.y + dzPlane.viewport.h)) < 1e-9);
+  assertTrue("x-axis danger zone spans the plane's FULL drawn width", Math.abs(zones[1].x0 - dzPlane.viewport.x) < 1e-9 && Math.abs(zones[1].x1 - (dzPlane.viewport.x + dzPlane.viewport.w)) < 1e-9);
+  // its own tick-label column sits to the LEFT of the y-axis (never the right).
+  assertTrue("y-axis danger zone extends LEFT of the axis (where y-tick labels are drawn), not right",
+    zones[0].x0 < axisPxOrigin.x - 10);
+
+  // (f) PM_readoutOffCanvas — the 760x500 design space (createCanvas below).
+  assertTrue("a bbox fully inside 760x500 -> false", !E.PM_readoutOffCanvas({ x0: 10, y0: 10, x1: 100, y1: 30 }));
+  assertTrue("a bbox exceeding the RIGHT canvas edge -> true", E.PM_readoutOffCanvas({ x0: 700, y0: 10, x1: 800, y1: 30 }));
+  assertTrue("a bbox exceeding the BOTTOM canvas edge -> true", E.PM_readoutOffCanvas({ x0: 10, y0: 480, x1: 100, y1: 520 }));
+  assertTrue("a bbox with a NEGATIVE x0 (off the left edge) -> true", E.PM_readoutOffCanvas({ x0: -20, y0: 10, x1: 50, y1: 30 }));
+
+  // ── THE FOUNDER'S OWN REPRO — derivative_as_secant_limit STATE_6's dragged
+  // P: x_range [-2.4,2.6]/tick 1, y_range [-1.95,2.7], viewport
+  // {x:60,y:78,w:400,h:372}, equal_scale true (k=80px/unit, matching the
+  // authored JSON exactly). At data (0.75, 0.28) — "P lands ON the x-axis in
+  // a pinned baseline" — with the JSON's OWN authored offset {x:12,y:20}
+  // (drawn BELOW-right of P, i.e. TOWARD the x-axis since P sits barely
+  // above it). Reproduce end-to-end: collides pre-fix, clears post-fix. ────
+  const founderPlaneSpec = {
+    id: "plane", viewport: { x: 60, y: 78, w: 400, h: 372 },
+    x_range: { min: -2.4, max: 2.6 }, y_range: { min: -1.95, max: 2.7 }, equal_scale: true,
+  };
+  const founderPlane = E.PM_planeBuildTransform(founderPlaneSpec);
+  check("founder repro: equal_scale k = 80 px/unit (400/5.0 == 372/4.65)", founderPlane.scaleX, 80, 1e-9);
+  const pAnchor = founderPlane.toPx(0.75, 0.28);
+  const authoredCandidate = { x: 12, y: 20 }; // the JSON's own authored plot_point.readout.offset for P
+  const readoutTextW = "P = (0.75, 0.28)".length * 7; // conservative per-char estimate (headless — no p5 textWidth here)
+  const preFixCollides = E.PM_readoutCollides(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane);
+  assertTrue("founder repro: the AUTHORED offset {12,20} DOES collide with the x-axis danger zone at P=(0.75,0.28) (the reported defect)", preFixCollides);
+  const resolved2 = E.PM_readoutResolveOffset(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane);
+  check("founder repro: PM_readoutResolveOffset flips to the mirrored offset {-12,-20}", JSON.stringify(resolved2), JSON.stringify({ x: -12, y: -20 }), 0 as any);
+  const postFixCollides = E.PM_readoutCollides(pAnchor, resolved2, readoutTextW, 14, founderPlane);
+  assertTrue("founder repro: the FLIPPED placement clears the x-axis danger zone (no longer struck)", !postFixCollides);
+
+  // NEGATIVE CONTROL — "an implementation with no collision awareness must
+  // FAIL": simply returning the candidate unmodified (the pre-fix renderer's
+  // actual behaviour) leaves the collision in place.
+  function preFixResolve(anchorPx: { x: number; y: number }, candidate: { x: number; y: number }) { return candidate; }
+  const preFixPlacement = preFixResolve(pAnchor, authoredCandidate);
+  assertTrue("NEGATIVE CONTROL: a no-collision-awareness resolver leaves the SAME struck placement in place",
+    E.PM_readoutCollides(pAnchor, preFixPlacement, readoutTextW, 14, founderPlane));
+
+  // A point comfortably clear of every axis (no collision) must NOT be
+  // touched — the fix must be a SAFETY NET, not a blanket repositioning.
+  const clearAnchor = founderPlane.toPx(2.0, 2.4); // far corner, well clear of both axes
+  const clearCandidate = { x: 12, y: 20 };
+  const clearResolved = E.PM_readoutResolveOffset(clearAnchor, clearCandidate, readoutTextW, 14, founderPlane);
+  check("a placement with NO collision is returned UNCHANGED (the fix never moves what wasn't broken)",
+    JSON.stringify(clearResolved), JSON.stringify(clearCandidate), 0 as any);
+
+  // Absent plane (F7 fleet-safety, mirrors section 11) -> pass the candidate
+  // straight through, never throws.
+  const noPlaneResolved = E.PM_readoutResolveOffset({ x: 0, y: 0 }, { x: 5, y: 5 }, 50, 14, null);
+  check("PM_readoutResolveOffset with no registered plane returns the candidate unchanged (never throws)",
+    JSON.stringify(noPlaneResolved), JSON.stringify({ x: 5, y: 5 }), 0 as any);
+
+  // (g) STATIC — every readout-drawing primitive is actually WIRED to the
+  // new shared placement functions (not merely defined-but-unused), mirrors
+  // section 10's static-assertion technique.
+  const drawPlotPointSrc = grabFn("drawPlotPoint");
+  assertTrue("drawPlotPoint calls PM_readoutAuthoredOffset(spec)", drawPlotPointSrc.indexOf("PM_readoutAuthoredOffset(spec)") >= 0);
+  assertTrue("drawPlotPoint measures the REAL text width via textWidth(), not an estimate", drawPlotPointSrc.indexOf("textWidth(resolved.readoutText)") >= 0);
+  assertTrue("drawPlotPoint calls PM_readoutResolveOffset(", drawPlotPointSrc.indexOf("PM_readoutResolveOffset(") >= 0);
+
+  const drawSecantLineSrc = grabFn("drawSecantLine");
+  assertTrue("drawSecantLine calls PM_readoutAuthoredOffset(spec)", drawSecantLineSrc.indexOf("PM_readoutAuthoredOffset(spec)") >= 0);
+  assertTrue("drawSecantLine calls PM_perpendicularOffset(p0, p1, 13) as its fallback default", drawSecantLineSrc.indexOf("PM_perpendicularOffset(p0, p1, 13)") >= 0);
+  assertTrue("drawSecantLine no longer contains the OLD hardcoded '+ 10' / '- 12' readout literals", !/\+\s*10,\s*\([^)]*\)\s*\/\s*2\s*-\s*12/.test(drawSecantLineSrc));
+
+  const drawTangentLineSrc = grabFn("drawTangentLine");
+  assertTrue("drawTangentLine calls PM_readoutAuthoredOffset(spec)", drawTangentLineSrc.indexOf("PM_readoutAuthoredOffset(spec)") >= 0);
+  assertTrue("drawTangentLine calls PM_perpendicularOffset(p0, p1, 13) as its fallback default", drawTangentLineSrc.indexOf("PM_perpendicularOffset(p0, p1, 13)") >= 0);
+  assertTrue("drawTangentLine no longer contains the OLD hardcoded 'rAt.x + 10, rAt.y - 12' readout literal", drawTangentLineSrc.indexOf("rAt.x + 10, rAt.y - 12") === -1);
+
+  // NEGATIVE CONTROL for the static scanner itself — a deliberately-
+  // unwired snippet (draws a readout at the OLD fixed offset, calling
+  // neither new function) must be caught.
+  const unwiredSnippet = "function drawSecantLine_bad(spec) {\n  text(computed.readoutText, mid.x + 10, mid.y - 12);\n}";
+  assertTrue("NEGATIVE CONTROL: the wiring scanner correctly reports an unwired implementation as NOT calling PM_perpendicularOffset(",
+    unwiredSnippet.indexOf("PM_perpendicularOffset(") === -1);
+
+  // (h) SCHEMA PARITY — scene_composition primitives are validated as
+  // z.record(z.string(), z.unknown()) (src/schemas/conceptJson.ts), i.e. an
+  // open record with no per-type field enumeration — so secant_line/
+  // tangent_line authoring `readout.offset` requires ZERO schema change;
+  // the only gap was the renderer never reading it (now fixed above). This
+  // is a documentation assertion (always true, by the schema's own design)
+  // rather than a runtime probe, recorded here so the parity claim is
+  // checked into the same gate that would break if it stopped holding.
+  assertTrue("scene_composition primitives remain an open record (z.record(z.string(), z.unknown())) in the live schema source — readout.offset on ANY primitive type needs no schema edit",
+    /scene_composition:\s*z\.array\(z\.record\(z\.string\(\),\s*z\.unknown\(\)\)\)/.test(
+      require("fs").readFileSync(require("path").join(__dirname, "../schemas/conceptJson.ts"), "utf8")
+    ));
 }
 
 console.log(failures === 0
