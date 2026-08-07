@@ -162,9 +162,69 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B",
+            "grid_color": "#72859F",
             "appear_at_ms": 0,
             "animate_in_ms": 1000
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 3
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -218,7 +278,7 @@
           {
             "type": "label",
             "id": "curve_label",
-            "text": "y = sin x",
+            "text": "parent",
             "plane_id": "plane",
             "position": {
               "x": 5.6,
@@ -242,7 +302,7 @@
           {
             "type": "annotation",
             "id": "delta_cue",
-            "text": "The curve follows its rule",
+            "text": "The base sine curve",
             "position": {
               "x": 40,
               "y": 55
@@ -265,15 +325,18 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Parent curve — the base graph."
+              "text_en": "Parent curve — the base graph.",
+              "glow": "parent_draw"
             },
             {
               "id": "s1_2",
-              "text_en": "This is the sine curve — the height of a circling point, laid out flat."
+              "text_en": "This is the sine curve — the height of a circling point, laid out flat.",
+              "glow": "pen_point"
             },
             {
               "id": "s1_3",
-              "text_en": "Whistle a steady note at a phone — its display shows this same wave shape."
+              "text_en": "Whistle a steady note at a phone — its display shows this same wave shape.",
+              "glow": "curve_label"
             }
           ]
         }
@@ -310,7 +373,67 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 3
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -340,7 +463,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
                 "y": -12
@@ -402,15 +525,18 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "The dim ghost is the parent, sin x, held still."
+              "text_en": "The dim ghost is the parent, sin x, held still.",
+              "glow": "parent_ghost"
             },
             {
               "id": "s2_2",
-              "text_en": "The bright copy is sin x plus k: as k rises from zero, the copy slides straight up by k."
+              "text_en": "The bright copy is sin x plus k: as k rises from zero, the copy slides straight up by k.",
+              "glow": "transform_curve"
             },
             {
               "id": "s2_3",
-              "text_en": "P′ rises with it — the peak's image."
+              "text_en": "P′ rises with it — the peak's image.",
+              "glow": "p_prime"
             }
           ]
         }
@@ -418,7 +544,7 @@
       "STATE_3": {
         "title": "Subtract h Inside: It Slides Right",
         "duration": 20,
-        "eye_capture_ms": 13100,
+        "eye_capture_ms": 10000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "transform_curve",
@@ -453,7 +579,67 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -5.28,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -5.28,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -5.28,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -5.28,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -5.28,
+              "y": 3
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -514,7 +700,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
                 "y": -12
@@ -583,23 +769,26 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "The dashed guess curve slides left, then freezes — the wrong direction."
+              "text_en": "The dashed guess curve slides left, then freezes — the wrong direction.",
+              "glow": "guess_curve"
             },
             {
               "id": "s3_2",
-              "text_en": "The real copy slides right instead: x minus h equals the old value only when x is larger."
+              "text_en": "The real copy slides right instead: x minus h equals the old value only when x is larger.",
+              "glow": "transform_curve"
             },
             {
               "id": "s3_3",
-              "text_en": "Both sit apart on screen until the guess fades."
+              "text_en": "Both sit apart on screen until the guess fades.",
+              "glow": "guess_curve"
             }
           ]
         }
       },
       "STATE_4": {
-        "title": "Multiply by a: Taller, Then Flipped",
+        "title": "Multiply by a: Flipped, Then Twice as Tall",
         "duration": 20,
-        "eye_capture_ms": 11900,
+        "eye_capture_ms": 12000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "p_prime",
@@ -628,7 +817,67 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 3
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -658,10 +907,10 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
-                "y": -12
+                "y": 18
               }
             }
           },
@@ -720,15 +969,18 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Outside multiplication differs from outside addition: a scales every height, not the position."
+              "text_en": "Outside multiplication differs from outside addition: a scales every height, not the position.",
+              "glow": "transform_curve"
             },
             {
               "id": "s4_2",
-              "text_en": "As a runs from one to negative two, the copy shrinks, flips, grows twice as tall upside down."
+              "text_en": "As a runs from one to negative two, the copy shrinks, flips, grows twice as tall upside down.",
+              "glow": "transform_curve"
             },
             {
               "id": "s4_3",
-              "text_en": "P′, the peak's image, travels straight down."
+              "text_en": "P′, the peak's image, travels straight down.",
+              "glow": "p_prime"
             }
           ]
         }
@@ -771,7 +1023,67 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 3
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -801,7 +1113,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
                 "y": -12
@@ -904,15 +1216,18 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Bigger b does not mean a wider curve — it means narrower."
+              "text_en": "Bigger b does not mean a wider curve — it means narrower.",
+              "glow": "transform_curve"
             },
             {
               "id": "s5_2",
-              "text_en": "As b increases from one to three in counted steps, the width bracket shrinks: two pi over b."
+              "text_en": "As b increases from one to three in counted steps, the width bracket shrinks: two pi over b.",
+              "glow": "bracket_vector"
             },
             {
               "id": "s5_3",
-              "text_en": "b multiplies x before sine acts, so the width divides by b."
+              "text_en": "b multiplies x before sine acts, so the width divides by b.",
+              "glow": "bracket_label"
             }
           ]
         }
@@ -955,7 +1270,55 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -985,7 +1348,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
                 "y": -12
@@ -1047,7 +1410,7 @@
           {
             "type": "label",
             "id": "chip_outside",
-            "text": "outside — acts on y, same direction",
+            "text": "outside — acts on y, as written",
             "position": {
               "x": 147,
               "y": 106
@@ -1060,7 +1423,7 @@
           {
             "type": "label",
             "id": "chip_inside",
-            "text": "inside — acts on x, opposite direction",
+            "text": "inside — acts on x, inverted (÷ b, + h)",
             "position": {
               "x": 147,
               "y": 124
@@ -1130,11 +1493,13 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Two outside numbers move first: k lifts the curve, then a stretches it — both act on y, in the direction their sign says."
+              "text_en": "Two outside numbers move first: k lifts the curve, then a stretches it — both act on y, in the direction their sign says.",
+              "glow": "chip_outside"
             },
             {
               "id": "s6_2",
-              "text_en": "Two inside numbers follow: h shifts the curve right, b squeezes it narrower — both act on x, in the opposite direction."
+              "text_en": "Two inside numbers follow: h shifts the curve right, b squeezes it narrower — both act on x, the opposite way.",
+              "glow": "chip_inside"
             }
           ]
         }
@@ -1172,7 +1537,55 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -1202,7 +1615,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
                 "y": -12
@@ -1321,15 +1734,18 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Write f for whatever curve you started with — here it was sine."
+              "text_en": "Write f for whatever curve you started with — here it was sine.",
+              "glow": "formula_surface"
             },
             {
               "id": "s7_2",
-              "text_en": "One point moves in four hops: divide its x by b, then add h; multiply its y by a, then add k."
+              "text_en": "One point moves in four hops: divide its x by b, then add h; multiply its y by a, then add k.",
+              "glow": "p_prime"
             },
             {
               "id": "s7_3",
-              "text_en": "Order matters — divide first, then add."
+              "text_en": "Order matters — divide first, then add.",
+              "glow": "chip_b_hop"
             }
           ]
         }
@@ -1366,7 +1782,67 @@
             "y_tick_labels": "none",
             "gridlines": true,
             "color": "#64748B",
-            "grid_color": "#1E293B"
+            "grid_color": "#72859F"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg2",
+            "text": "−2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_neg1",
+            "text": "−1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": -1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos1",
+            "text": "1",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 1
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos2",
+            "text": "2",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 2
+            },
+            "font_size": 10,
+            "color": "#64748B"
+          },
+          {
+            "type": "label",
+            "id": "y_edge_label_pos3",
+            "text": "3",
+            "plane_id": "plane",
+            "position": {
+              "x": -6.5,
+              "y": 3
+            },
+            "font_size": 10,
+            "color": "#64748B"
           },
           {
             "type": "function_plot",
@@ -1396,7 +1872,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "({x}, {y})",
+              "format": "P′ = ({x}, {y})",
               "offset": {
                 "x": 6,
                 "y": -12
