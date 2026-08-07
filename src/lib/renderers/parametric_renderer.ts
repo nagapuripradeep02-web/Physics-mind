@@ -684,6 +684,44 @@ function computePhysics_unit_circle_to_sine_wave(vars) {
   };
 }
 
+// derivative_as_secant_limit — MATHEMATICS namespace (src/data/concepts/mathematics/),
+// the SECOND mathematics concept and the first to ride the cartesian_plane /
+// secant_line / tangent_line family (CP-A...CP-D). Iframe-side twin of the TS
+// engine (derivativeAsSecantLimitEngine in physicsEngine/concepts/) — both
+// implement the SAME (trivial) contract, per the scar
+// parametric_computephysics_missing_silent_template_leak (same reasoning as
+// unit_circle_to_sine_wave above): without a non-null return here PM_physics
+// stays null and every plot_point/secant_line/tangent_line/label on this
+// concept freezes at its authoring default or leaks a literal {x0} brace.
+//
+// DELIBERATE PASSTHROUGH — derived: {} is not an oversight. Per the
+// mathematics_author's binding constraint (derivative_as_secant_limit_
+// mathematics_block.md, engine_config.constraints #2/#3): the chord slope
+// (x0 + h/2) and the tangent slope (x0) are each computed EXACTLY ONCE,
+// inside PM_secantLineCompute / PM_tangentLineCompute (the two line
+// primitives' own draw-time math) — never a second time here. A derived
+// chord_slope/tangent_slope key on this function would be a second live
+// implementation of the same number, which is exactly the sigma/pi defect
+// class (a slider reading one value beside a HUD reading a stale one) the
+// "one quantity, one readout" doctrine exists to prevent. Every label that
+// needs x0/xq/hlog/hz/u/xdraw reads them straight out of 'variables' below;
+// no label anywhere renders the CHORD slope (the narrowed h=0 safety
+// constraint, P1-2).
+function computePhysics_derivative_as_secant_limit(vars) {
+  var x0    = (vars && typeof vars.x0    === 'number' && isFinite(vars.x0))    ? vars.x0    : 1;
+  var xq    = (vars && typeof vars.xq    === 'number' && isFinite(vars.xq))    ? vars.xq    : 1.9;
+  var hlog  = (vars && typeof vars.hlog  === 'number' && isFinite(vars.hlog))  ? vars.hlog  : 0;
+  var hz    = (vars && typeof vars.hz    === 'number' && isFinite(vars.hz))    ? vars.hz    : 1;
+  var u     = (vars && typeof vars.u     === 'number' && isFinite(vars.u))     ? vars.u     : -1.6;
+  var xdraw = (vars && typeof vars.xdraw === 'number' && isFinite(vars.xdraw)) ? vars.xdraw : -2.1;
+  return {
+    concept_id: 'derivative_as_secant_limit',
+    variables: { x0: x0, xq: xq, hlog: hlog, hz: hz, u: u, xdraw: xdraw },
+    derived: {},
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -711,6 +749,7 @@ function computePhysics(conceptId, vars) {
   // pattern as the chemistry pair above; fires only for this id, so the physics
   // dispatch remains byte-unchanged.
   else if (conceptId === 'unit_circle_to_sine_wave') result = computePhysics_unit_circle_to_sine_wave(vars);
+  else if (conceptId === 'derivative_as_secant_limit') result = computePhysics_derivative_as_secant_limit(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
