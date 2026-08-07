@@ -84,6 +84,13 @@ function grabVar(name: string, src: string = SRC): string {
 
 const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC", "PM_CANVAS_W"];
 const FNS = [
+  // PM_fmtNum MUST stay ahead of its callers in this list — the harness
+  // evaluates these in order, and PM_formatTickLabel / PM_plotPointResolve now
+  // call it. Omitting it crashed this whole gate with a bare
+  // "ReferenceError: PM_fmtNum is not defined" the moment PR #59 landed
+  // (shared U+2212 formatter). Nothing caught it: check:cartesian-plane is NOT
+  // in verify.yml, so CI was green on a gate that could not start.
+  "PM_fmtNum",
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
   // CP-B additions (F8-F12).
@@ -280,14 +287,25 @@ console.log("\n=== 3. TICKS — authored step (D5) + pi-mode labels (F3) ===");
     founderXt.length === 5 && founderXt.every((v: number, i: number) => Math.abs(v - (-2 + i)) < 1e-9));
   assertTrue("founder repro: a tick exists at 0 (range spans zero)",
     founderXt.some((v: number) => Math.abs(v) < 1e-9));
+  // Tick labels emit U+2212 MINUS SIGN, not ASCII hyphen, since PR #59's shared
+  // PM_fmtNum (Rule 34c). Every assertion below that inspects a SIGN must
+  // normalise first — an ASCII-hyphen regex silently stops matching a U+2212
+  // string and the guard passes VACUOUSLY, which is how the "-0" guard below
+  // was quietly disarmed when that PR landed. Normalising keeps these testing
+  // the numeric symptom they were written for rather than the glyph.
+  const ascii = (s: string) => s.replace(/−/g, "-");
   const founderLabels: string[] = founderXt.map((v: number) => E.PM_formatTickLabel(v, "number", 0));
-  check("founder repro labels", founderLabels.join(" "), "-2 -1 0 1 2", 0 as any);
+  check("founder repro labels (U+2212 minus per Rule 34c)",
+    founderLabels.join(" "), "−2 −1 0 1 2", 0 as any);
+  assertTrue("founder repro: labels carry U+2212, never ASCII hyphen",
+    founderLabels.every((l: string) => !l.includes("-")));
   assertTrue("founder repro: NO label is '-0' (the visible symptom that was originally reported)",
-    !founderLabels.some((l: string) => /^-0(\.0+)?$/.test(l)));
+    !founderLabels.some((l: string) => /^-0(\.0+)?$/.test(ascii(l))));
   // Probe's own wording: the label parses back to EXACTLY the tick value at
   // the authored decimals — no label can round away from its own mark.
+  // Number() cannot parse U+2212, so normalise before comparing.
   assertTrue("founder repro: every label round-trips to Number(value.toFixed(decimals)) exactly",
-    founderXt.every((v: number, i: number) => Number(founderLabels[i]) === Number(v.toFixed(0))));
+    founderXt.every((v: number, i: number) => Number(ascii(founderLabels[i])) === Number(v.toFixed(0))));
 
   // NEGATIVE CONTROL — the PRE-FIX enumerator (walks from rangeMin, clamps
   // the final tick to rangeMax), reproduced HERE only (never re-shipped),
@@ -310,10 +328,10 @@ console.log("\n=== 3. TICKS — authored step (D5) + pi-mode labels (F3) ===");
   assertTrue("NEGATIVE CONTROL: pre-fix [-2.4,2.6]/1 reproduces the founder's exact 6 marks (-2.4,-1.4,-0.4,0.6,1.6,2.6)",
     preFix2426.length === 6 && [-2.4, -1.4, -0.4, 0.6, 1.6, 2.6].every((v, i) => Math.abs(v - preFix2426[i]) < 1e-9));
   const preFixLabel = E.PM_formatTickLabel(preFix2426[2], "number", 0); // the -0.40 mark
-  check("NEGATIVE CONTROL: PM_formatTickLabel on the pre-fix -0.40 mark literally prints '-0' — the ORIGINAL reported bug",
-    preFixLabel, "-0", 0 as any);
+  check("NEGATIVE CONTROL: PM_formatTickLabel on the pre-fix -0.40 mark still prints a negative zero — the ORIGINAL reported bug",
+    preFixLabel, "−0", 0 as any);
   assertTrue("NEGATIVE CONTROL: the '-0' assertion that now guards the fixed enumerator correctly FAILS against the pre-fix one",
-    /^-0(\.0+)?$/.test(preFixLabel));
+    /^-0(\.0+)?$/.test(ascii(preFixLabel)));
 
   // pi-mode: range [0, 2*PI], tick = PI/2 -> 0, pi/2, pi, 3pi/2, 2pi.
   const piTicks = E.PM_planeTickValues(0, 2 * Math.PI, Math.PI / 2);
