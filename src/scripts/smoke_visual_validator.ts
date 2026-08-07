@@ -220,7 +220,7 @@ async function main(): Promise<void> {
 
     if (dumpFrames) {
         console.log('\n💾 Dumping frames to disk (--dump-frames)...');
-        const dump = dumpCaptureToDisk({ conceptId, capture });
+        const dump = dumpCaptureToDisk({ conceptId, capture, checks: allChecks });
         console.log(`   Run dir: ${dump.dir}`);
         try {
             const sheets = await buildContactSheets(capture);

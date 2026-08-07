@@ -15,6 +15,7 @@ import { bohrModelEnergyLevelsEngine } from './concepts/bohr_model_energy_levels
 import { lawOfConservationOfMassEngine } from './concepts/law_of_conservation_of_mass';
 import { unitCircleToSineWaveEngine } from './concepts/unit_circle_to_sine_wave';
 import { graphTransformationsEngine } from './concepts/graph_transformations';
+import { derivativeAsSecantLimitEngine } from './concepts/derivative_as_secant_limit';
 import type { ConceptPhysicsEngine, PhysicsResult } from './types';
 
 const ENGINES: Record<string, ConceptPhysicsEngine> = {
@@ -35,6 +36,7 @@ const ENGINES: Record<string, ConceptPhysicsEngine> = {
   law_of_conservation_of_mass: lawOfConservationOfMassEngine,
   unit_circle_to_sine_wave: unitCircleToSineWaveEngine,
   graph_transformations: graphTransformationsEngine,
+  derivative_as_secant_limit: derivativeAsSecantLimitEngine,
 };
 
 export function computePhysics(

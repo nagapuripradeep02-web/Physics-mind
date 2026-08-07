@@ -82,7 +82,7 @@ function grabVar(name: string, src: string = SRC): string {
   return src.slice(m!.index!, src.indexOf(";", i) + 1);
 }
 
-const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC"];
+const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC", "PM_CANVAS_W"];
 const FNS = [
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
@@ -101,7 +101,31 @@ const FNS = [
   // assertions in section 10 instead (same technique as section 12/14).
   "PM_lineClipToRect", "PM_extendLineToFrame", "PM_secantTangentReadout",
   "PM_secantLineCompute", "PM_tangentLineCompute",
+  // F-readout additions — bug_class parametric_canvas_drawn_readout_
+  // overprints_its_own_line_and_is_invisible_to_the_layout_checker. All
+  // pure; drawPlotPoint/drawSecantLine/drawTangentLine (the p5-drawing
+  // wrappers that call them) are verified by static source assertions in
+  // section 17 below (same technique as section 10/12/14).
+  "PM_readoutAuthoredOffset", "PM_upwardNormal", "PM_labelClearOffset", "PM_rectsOverlap",
+  "PM_readoutBBox", "PM_readoutDangerZones", "PM_readoutOffCanvas",
+  "PM_clampOffsetToCanvas", "PM_readoutCollides", "PM_readoutResolveOffset",
 ];
+
+// Helvetica advance widths (units/1000) — p5's default face at textSize(12).
+// The renderer measures with the REAL textWidth(); headless, this model
+// stands in for it. Calibrated against a rendered frame: the model gives
+// 84.4px for "Q = (1.90, 1.80)" where the pixels measure ~85px (<1% error),
+// so a width-dependent placement can be asserted here with confidence.
+const HELV_W: Record<string, number> = (() => {
+  const m: Record<string, number> = { " ": 278, "(": 333, ")": 333, ",": 278, "-": 333, ".": 278, "/": 278, "=": 584, "+": 584 };
+  for (const d of "0123456789") m[d] = 556;
+  const up = "667 667 722 722 667 611 778 722 278 500 667 556 833 722 778 667 778 722 667 611 722 667 944 667 667 611".split(" ").map(Number);
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((c, i) => { m[c] = up[i]; });
+  const lo = "556 556 500 556 556 278 556 556 222 222 500 222 833 556 556 556 556 333 500 278 556 500 722 500 500 500".split(" ").map(Number);
+  "abcdefghijklmnopqrstuvwxyz".split("").forEach((c, i) => { m[c] = lo[i]; });
+  return m;
+})();
+const textW12 = (s: string) => [...s].reduce((a, c) => a + (HELV_W[c] ?? 556), 0) / 1000 * 12;
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -1478,6 +1502,353 @@ console.log("\n=== 16. RANGE CONTAINMENT — cross-product of control ranges sta
   const badPolylines = E.PM_functionPlotSample("x*x - 0", 0, badB, 240, {}, yRange);
   assertTrue("NEGATIVE CONTROL: the D4 sampler breaks the b=2.3 curve rather than silently drawing it out of frame",
     badPolylines.length !== 1 || badPolylines[0].length !== 240);
+}
+
+console.log("\n=== 17. F-READOUT PLACEMENT — offset parity, perpendicular default, collision-aware flip (bug_class parametric_canvas_drawn_readout_overprints_its_own_line_and_is_invisible_to_the_layout_checker) ===");
+{
+  // (a) PM_readoutAuthoredOffset — same non-finite/type-fallback discipline
+  // as every other *_expr/offset field on this engine.
+  check("authored {x,y} both finite numbers -> passed through", JSON.stringify(E.PM_readoutAuthoredOffset({ readout: { offset: { x: 5, y: -7 } } })), JSON.stringify({ x: 5, y: -7 }), 0 as any);
+  assertTrue("no readout at all -> null", E.PM_readoutAuthoredOffset({}) === null);
+  assertTrue("readout present but no offset -> null", E.PM_readoutAuthoredOffset({ readout: { format: "slope = {m}" } }) === null);
+  assertTrue("offset.x is a string -> null (never coerced)", E.PM_readoutAuthoredOffset({ readout: { offset: { x: "5", y: -7 } } }) === null);
+  assertTrue("offset.y is NaN -> null", E.PM_readoutAuthoredOffset({ readout: { offset: { x: 5, y: NaN } } }) === null);
+  assertTrue("offset.x is Infinity -> null", E.PM_readoutAuthoredOffset({ readout: { offset: { x: Infinity, y: -7 } } }) === null);
+  assertTrue("offset is a non-object (e.g. a string) -> null", E.PM_readoutAuthoredOffset({ readout: { offset: "10,-12" } }) === null);
+
+  // NEGATIVE CONTROL — a naive resolver that only checks `typeof === 'number'`
+  // (no isFinite guard) WOULD accept NaN, unlike the shipped one.
+  function naiveOffset(spec: { readout?: { offset?: { x?: unknown; y?: unknown } } }) {
+    const off = spec.readout && spec.readout.offset;
+    if (!off || typeof off.x !== "number" || typeof off.y !== "number") return null;
+    return { x: off.x, y: off.y };
+  }
+  const naiveResult = naiveOffset({ readout: { offset: { x: 5, y: NaN } } });
+  assertTrue("NEGATIVE CONTROL: a typeof-only (no isFinite) resolver WOULD accept {x:5,y:NaN}", naiveResult !== null && Number.isNaN(naiveResult.y));
+  assertTrue("the shipped resolver does NOT share that defect (rejects the same NaN offset)", E.PM_readoutAuthoredOffset({ readout: { offset: { x: 5, y: NaN } } }) === null);
+
+  // (b) PM_upwardNormal — the unit normal to the segment at every slope (dot
+  // product with the segment's own direction vector is 0), unit magnitude,
+  // and the "upward" screen-normal (ny <= 0) always chosen so a horizontal
+  // chord defaults directly ABOVE itself (matching the pre-fix visual
+  // convention's y=-12 side).
+  function dot(ax: number, ay: number, bx: number, by: number) { return ax * bx + ay * by; }
+  const slopeGrid: [number, number][] = [[10, 0], [0, 10], [10, 5], [10, -5], [10, 15], [-10, 15], [3, 97]];
+  let allPerp = true, allMag = true, allUpward = true;
+  for (const [dx, dy] of slopeGrid) {
+    const n = E.PM_upwardNormal({ x: 0, y: 0 }, { x: dx, y: dy });
+    if (Math.abs(dot(dx, dy, n.x, n.y)) > 1e-9) allPerp = false;
+    if (Math.abs(Math.hypot(n.x, n.y) - 1) > 1e-9) allMag = false;
+    if (n.y > 1e-9) allUpward = false;
+  }
+  assertTrue("PM_upwardNormal is exactly perpendicular to the segment (dot product 0) across 7 slopes incl. vertical/horizontal", allPerp);
+  assertTrue("PM_upwardNormal is a UNIT vector across all 7 slopes", allMag);
+  assertTrue("PM_upwardNormal always picks the UPWARD screen normal (ny <= 0) across all 7 slopes", allUpward);
+  const degenerateN = E.PM_upwardNormal({ x: 5, y: 5 }, { x: 5, y: 5 });
+  check("zero-length segment degrades safely to straight up {0,-1} (never NaN)", JSON.stringify(degenerateN), JSON.stringify({ x: 0, y: -1 }), 0 as any);
+
+  // ── ROUND-2 CORE DEFECT: a constant perpendicular displacement cannot free
+  // a WIDE label from a STEEP line. Founder review of the round-1 frames found
+  // the pink secant AND the blue curve still cutting through "slope" in FOUR
+  // states; the headless walk below shows it is in fact all SIX states that
+  // carry a secant readout. Root cause is geometric, not a tuning miss: the
+  // round-1 default moved the box CENTRE 13px off the stroke, but a ~79px-wide
+  // horizontal label straddling a steep line swings its far end straight back
+  // across. The remedy is the box's SUPPORT along the normal — |hw*nx| +
+  // |hh*ny| + margin — which makes clearance a geometric guarantee at every
+  // slope. Asserted here on the SIX states' own real geometry. ───────────────
+  const secantPlane = E.PM_planeBuildTransform({
+    id: "plane", viewport: { x: 60, y: 78, w: 400, h: 372 },
+    x_range: { min: -2.4, max: 2.6 }, y_range: { min: -1.95, max: 2.7 }, equal_scale: true,
+  });
+  const fq = (x: number) => x * x / 2;
+  // (x0, xq) at each state's own eye_capture_ms pin, from the authored choreography
+  const SECANT_STATES: [string, number, number][] = [
+    ["STATE_2", 1.0, 2.0], ["STATE_3", 1.0, 1.0 + Math.pow(10, -1.5)], ["STATE_4", 1.0, 1.4],
+    ["STATE_5", 1.0, 1.002], ["STATE_7", 0.6, 1.4], ["STATE_9", 1.0, 1.9],
+  ];
+  // Signed clearance of a text box from the infinite line through p0->p1:
+  // (distance of the box centre along the normal) - (the box's support along it).
+  function lineClearance(p0: { x: number; y: number }, p1: { x: number; y: number }, box: { x0: number; y0: number; x1: number; y1: number }) {
+    const n = E.PM_upwardNormal(p0, p1);
+    const cx = (box.x0 + box.x1) / 2, cy = (box.y0 + box.y1) / 2;
+    const hw = (box.x1 - box.x0) / 2, hh = (box.y1 - box.y0) / 2;
+    return Math.abs((cx - p0.x) * n.x + (cy - p0.y) * n.y) - (Math.abs(hw * n.x) + Math.abs(hh * n.y));
+  }
+  let allOldStruck = true, allNewClear = true, worstNew = Infinity;
+  const struckDetail: string[] = [];
+  for (const [st, x0, xq] of SECANT_STATES) {
+    const slope = (fq(xq) - fq(x0)) / (xq - x0);
+    const txt = "slope = " + slope.toFixed(4);
+    const tw = textW12(txt), th = 14;
+    const p0 = secantPlane.toPx(x0, fq(x0)), p1 = secantPlane.toPx(xq, fq(xq));
+    const mid = { x: (p0.x + p1.x) / 2, y: (p0.y + p1.y) / 2 };
+    // ROUND-1 behaviour, reconstructed exactly: a constant 13px along the normal.
+    const n1 = E.PM_upwardNormal(p0, p1);
+    const oldClear = lineClearance(p0, p1, E.PM_readoutBBox(mid, { x: n1.x * 13, y: n1.y * 13 }, tw, th));
+    const newClear = lineClearance(p0, p1, E.PM_readoutBBox(mid, E.PM_labelClearOffset(p0, p1, tw, th, 6), tw, th));
+    if (oldClear >= 0) allOldStruck = false;
+    if (newClear <= 0) allNewClear = false;
+    worstNew = Math.min(worstNew, newClear);
+    struckDetail.push(`${st} "${txt}" old ${oldClear.toFixed(1)}px -> new +${newClear.toFixed(1)}px`);
+  }
+  assertTrue(`NEGATIVE CONTROL: the round-1 constant-13px default leaves ALL SIX secant-readout states STRUCK (the founder named 4; the walk finds 6) — ${struckDetail.join(" | ")}`, allOldStruck);
+  assertTrue("the width-aware default CLEARS the stroke in all six states", allNewClear);
+  check("worst-case clearance across all six equals the requested margin exactly (a geometric guarantee, not a tuned constant)", worstNew, 6, 1e-9, "px");
+
+  // The guarantee must hold for ANY width at ANY angle, not just the six
+  // shipped cases — sweep 360 directions x 5 label widths.
+  let sweepOk = true, sweepMin = Infinity;
+  for (let deg = 0; deg < 360; deg += 1) {
+    const p0 = { x: 200, y: 200 };
+    const p1 = { x: 200 + 100 * Math.cos(deg * Math.PI / 180), y: 200 + 100 * Math.sin(deg * Math.PI / 180) };
+    for (const w of [10, 40, 79, 160, 400]) {
+      const c = lineClearance(p0, p1, E.PM_readoutBBox(p0, E.PM_labelClearOffset(p0, p1, w, 14, 6), w, 14));
+      if (!(c > 0)) sweepOk = false;
+      sweepMin = Math.min(sweepMin, c);
+    }
+  }
+  assertTrue(`the clearance guarantee holds across 360 angles x 5 widths (1800 cases, worst = +${sweepMin.toFixed(3)}px)`, sweepOk);
+  check("that sweep's worst case is still exactly the margin (no angle is a weak spot)", sweepMin, 6, 1e-9, "px");
+  // Degenerate reductions: a VERTICAL line must push sideways by half the
+  // width + margin (pure shove); a HORIZONTAL line keeps the old above-the-
+  // line behaviour (half the height + margin).
+  const vertOff = E.PM_labelClearOffset({ x: 100, y: 0 }, { x: 100, y: 100 }, 80, 14, 6);
+  check("vertical line -> pushed sideways by half the width + margin (x = -(40+6+40))", vertOff.x, -86, 1e-9, "px");
+  check("vertical line -> no vertical displacement at all", vertOff.y, 0, 1e-9, "px");
+  const horizOff2 = E.PM_labelClearOffset({ x: 0, y: 100 }, { x: 100, y: 100 }, 80, 14, 6);
+  check("horizontal line -> centred on the anchor (x = -halfW)", horizOff2.x, -40, 1e-9, "px");
+  check("horizontal line -> lifted by half the height + margin, the OLD above-the-line side", horizOff2.y, -13, 1e-9, "px");
+  // Non-finite inputs must degrade, never emit NaN into a text() call.
+  const nanOff = E.PM_labelClearOffset({ x: 0, y: 0 }, { x: 10, y: 10 }, NaN, 14, 6);
+  assertTrue("a NaN text width degrades to a finite offset (never draws text at NaN)", isFinite(nanOff.x) && isFinite(nanOff.y));
+
+  // (c) PM_rectsOverlap — AABB overlap, edges touching does NOT count as
+  // overlap (strict <, matching section 15's own clip-sanity convention).
+  assertTrue("two overlapping rects -> true", E.PM_rectsOverlap({ x0: 0, y0: 0, x1: 10, y1: 10 }, { x0: 5, y0: 5, x1: 15, y1: 15 }));
+  assertTrue("two disjoint rects -> false", !E.PM_rectsOverlap({ x0: 0, y0: 0, x1: 10, y1: 10 }, { x0: 20, y0: 20, x1: 30, y1: 30 }));
+  assertTrue("two rects touching exactly at an edge (x1===x0) -> false (strict inequality)", !E.PM_rectsOverlap({ x0: 0, y0: 0, x1: 10, y1: 10 }, { x0: 10, y0: 0, x1: 20, y1: 10 }));
+
+  // (d) PM_readoutBBox — anchor + offset + measured text size -> the exact
+  // box the text() call would occupy under LEFT/CENTER alignment (matching
+  // every readout draw call's own textAlign(LEFT, CENTER)).
+  const bbox = E.PM_readoutBBox({ x: 100, y: 200 }, { x: 12, y: -20 }, 80, 14);
+  check("bbox.x0 = anchor.x + offset.x", bbox.x0, 112, 1e-9);
+  check("bbox.x1 = x0 + textW", bbox.x1, 192, 1e-9);
+  check("bbox.y0 = anchor.y + offset.y - textH/2 (CENTER alignment)", bbox.y0, 173, 1e-9);
+  check("bbox.y1 = y0 + textH", bbox.y1, 187, 1e-9);
+
+  // (e) PM_readoutDangerZones — the plane's OWN axis-line + tick-label-band
+  // zones, built off the SAME PM_planeBuildTransform every other section
+  // already trusts. Straddling range: axis is INTERIOR, not at the edge.
+  const dzPlane = E.PM_planeBuildTransform(DEFAULT_PLANE); // x_range/y_range both straddle 0
+  const zones = E.PM_readoutDangerZones(dzPlane);
+  check("exactly 2 danger zones (y-axis strip, x-axis strip)", zones.length, 2, 0);
+  const axisPxOrigin = dzPlane.toPx(0, 0);
+  assertTrue("y-axis danger zone straddles the ACTUAL y-axis pixel x (from PM_planeBuildTransform, not re-derived)",
+    zones[0].x0 < axisPxOrigin.x && zones[0].x1 > axisPxOrigin.x);
+  assertTrue("x-axis danger zone straddles the ACTUAL x-axis pixel y", zones[1].y0 < axisPxOrigin.y && zones[1].y1 > axisPxOrigin.y);
+  assertTrue("y-axis danger zone spans the plane's FULL drawn height (tick labels occur at every tick, not just one spot)",
+    Math.abs(zones[0].y0 - dzPlane.viewport.y) < 1e-9 && Math.abs(zones[0].y1 - (dzPlane.viewport.y + dzPlane.viewport.h)) < 1e-9);
+  assertTrue("x-axis danger zone spans the plane's FULL drawn width", Math.abs(zones[1].x0 - dzPlane.viewport.x) < 1e-9 && Math.abs(zones[1].x1 - (dzPlane.viewport.x + dzPlane.viewport.w)) < 1e-9);
+  // its own tick-label column sits to the LEFT of the y-axis (never the right).
+  assertTrue("y-axis danger zone extends LEFT of the axis (where y-tick labels are drawn), not right",
+    zones[0].x0 < axisPxOrigin.x - 10);
+
+  // (f) PM_readoutOffCanvas — the 760x500 design space (createCanvas below).
+  assertTrue("a bbox fully inside 760x500 -> false", !E.PM_readoutOffCanvas({ x0: 10, y0: 10, x1: 100, y1: 30 }));
+  assertTrue("a bbox exceeding the RIGHT canvas edge -> true", E.PM_readoutOffCanvas({ x0: 700, y0: 10, x1: 800, y1: 30 }));
+  assertTrue("a bbox exceeding the BOTTOM canvas edge -> true", E.PM_readoutOffCanvas({ x0: 10, y0: 480, x1: 100, y1: 520 }));
+  assertTrue("a bbox with a NEGATIVE x0 (off the left edge) -> true", E.PM_readoutOffCanvas({ x0: -20, y0: 10, x1: 50, y1: 30 }));
+
+  // (f2) PM_clampOffsetToCanvas — a horizontal overrun is fixed by
+  // TRANSLATION, never by the side flip. A flip mirrors the offset about the
+  // anchor, which moves a ~100px box by only 2*|offset.x| and therefore
+  // cannot pull back an overhang larger than that; the NEGATIVE CONTROL below
+  // states that impossibility as a test so the two remedies can never be
+  // conflated again.
+  const overrunAnchor = { x: 700, y: 200 };
+  const overrunOff = { x: 12, y: -12 };
+  const overrunTW = 100;
+  assertTrue("a readout at x=700 with offset +12 and width 100 DOES overrun the right edge (712..812 vs 760)",
+    E.PM_readoutOffCanvas(E.PM_readoutBBox(overrunAnchor, overrunOff, overrunTW, 14)));
+  const flipped = { x: -overrunOff.x, y: -overrunOff.y };
+  assertTrue("NEGATIVE CONTROL: MIRRORING that offset (what a side flip does) still overruns — a flip can never fix a horizontal overrun",
+    E.PM_readoutOffCanvas(E.PM_readoutBBox(overrunAnchor, flipped, overrunTW, 14)));
+  const clamped = E.PM_clampOffsetToCanvas(overrunAnchor, overrunOff, overrunTW, 14);
+  const clampedBox = E.PM_readoutBBox(overrunAnchor, clamped, overrunTW, 14);
+  assertTrue("PM_clampOffsetToCanvas pulls the same box fully back inside the canvas", !E.PM_readoutOffCanvas(clampedBox));
+  check("the clamped box sits flush against the right edge (x1 === 760), not further in than needed", clampedBox.x1, 760, 1e-9);
+  check("the clamp does NOT touch y when only x overruns", clamped.y, overrunOff.y, 1e-9);
+  // left / top / bottom edges
+  const leftClamped = E.PM_clampOffsetToCanvas({ x: 5, y: 200 }, { x: -40, y: 0 }, 60, 14);
+  check("a LEFT overrun clamps to x0 === 0", E.PM_readoutBBox({ x: 5, y: 200 }, leftClamped, 60, 14).x0, 0, 1e-9);
+  const topClamped = E.PM_clampOffsetToCanvas({ x: 300, y: 4 }, { x: 0, y: -20 }, 60, 14);
+  check("a TOP overrun clamps to y0 === 0", E.PM_readoutBBox({ x: 300, y: 4 }, topClamped, 60, 14).y0, 0, 1e-9);
+  const botClamped = E.PM_clampOffsetToCanvas({ x: 300, y: 495 }, { x: 0, y: 20 }, 60, 14);
+  check("a BOTTOM overrun clamps to y1 === 500", E.PM_readoutBBox({ x: 300, y: 495 }, botClamped, 60, 14).y1, 500, 1e-9);
+  // A box WIDER than the canvas keeps its START visible (truncated tail is
+  // readable, truncated head is not) — right is clamped before left.
+  const hugeClamped = E.PM_clampOffsetToCanvas({ x: 400, y: 200 }, { x: 0, y: 0 }, 900, 14);
+  check("a box wider than the canvas keeps its START on screen (x0 === 0, tail truncated not head)",
+    E.PM_readoutBBox({ x: 400, y: 200 }, hugeClamped, 900, 14).x0, 0, 1e-9);
+  // Must be a NO-OP on anything already inside — this is what keeps THE EYE's
+  // baselines stable everywhere the clamp is not needed.
+  const insideOff = { x: 10, y: -12 };
+  const insideRes = E.PM_clampOffsetToCanvas({ x: 300, y: 200 }, insideOff, 80, 14);
+  assertTrue("a placement already fully inside the canvas is returned BYTE-IDENTICAL (same object identity, no perturbation)", insideRes === insideOff);
+
+  // (f3) PM_readoutCollides is now ink/label-ZONE only — canvas containment
+  // moved to the clamp. A box off-canvas but clear of both axis zones must
+  // NOT report a collision (otherwise a useless flip fires before the clamp).
+  const farOffCanvas = { x: 2000, y: 200 };
+  assertTrue("a box far off-canvas but clear of the axis zones does NOT trigger the flip (containment is the clamp's job, not the flip's)",
+    !E.PM_readoutCollides(farOffCanvas, { x: 10, y: -12 }, 80, 14, E.PM_planeBuildTransform(DEFAULT_PLANE)));
+
+  // ── THE FOUNDER'S OWN REPRO — derivative_as_secant_limit STATE_6's dragged
+  // P: x_range [-2.4,2.6]/tick 1, y_range [-1.95,2.7], viewport
+  // {x:60,y:78,w:400,h:372}, equal_scale true (k=80px/unit, matching the
+  // authored JSON exactly). At data (0.75, 0.28) — "P lands ON the x-axis in
+  // a pinned baseline" — with the JSON's OWN authored offset {x:12,y:20}
+  // (drawn BELOW-right of P, i.e. TOWARD the x-axis since P sits barely
+  // above it). Reproduce end-to-end: collides pre-fix, clears post-fix. ────
+  const founderPlaneSpec = {
+    id: "plane", viewport: { x: 60, y: 78, w: 400, h: 372 },
+    x_range: { min: -2.4, max: 2.6 }, y_range: { min: -1.95, max: 2.7 }, equal_scale: true,
+  };
+  const founderPlane = E.PM_planeBuildTransform(founderPlaneSpec);
+  check("founder repro: equal_scale k = 80 px/unit (400/5.0 == 372/4.65)", founderPlane.scaleX, 80, 1e-9);
+  const pAnchor = founderPlane.toPx(0.75, 0.28);
+  const authoredCandidate = { x: 12, y: 20 }; // the JSON's own authored plot_point.readout.offset for P
+  const readoutTextW = "P = (0.75, 0.28)".length * 7; // conservative per-char estimate (headless — no p5 textWidth here)
+  const preFixCollides = E.PM_readoutCollides(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane);
+  assertTrue("founder repro: the AUTHORED offset {12,20} DOES collide with the x-axis danger zone at P=(0.75,0.28) (the reported defect)", preFixCollides);
+  // ROUND-2 REGRESSION GUARD — founder accepted STATE_6's flip as a clean win
+  // and told this round not to touch that path. Round 2 narrowed
+  // PM_readoutCollides to ink/label zones only (canvas containment moved to
+  // the clamp), so pin WHICH trigger drives this flip: it must be the x-axis
+  // zone and NOT off-canvas, otherwise narrowing the predicate would have
+  // silently killed the accepted behaviour.
+  const s6Box = E.PM_readoutBBox(pAnchor, authoredCandidate, readoutTextW, 14);
+  const s6Zones = E.PM_readoutDangerZones(founderPlane);
+  assertTrue("STATE_6 accepted win is driven by the X-AXIS zone (the trigger round 2 kept)", E.PM_rectsOverlap(s6Box, s6Zones[1]));
+  assertTrue("STATE_6 accepted win is NOT driven by off-canvas (the trigger round 2 removed) — narrowing the predicate cannot regress it", !E.PM_readoutOffCanvas(s6Box));
+  assertTrue("STATE_6 accepted win is NOT driven by the y-axis zone either", !E.PM_rectsOverlap(s6Box, s6Zones[0]));
+  const resolved2 = E.PM_readoutResolveOffset(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane);
+  check("founder repro: PM_readoutResolveOffset flips to the mirrored offset {-12,-20}", JSON.stringify(resolved2), JSON.stringify({ x: -12, y: -20 }), 0 as any);
+  const postFixCollides = E.PM_readoutCollides(pAnchor, resolved2, readoutTextW, 14, founderPlane);
+  assertTrue("founder repro: the FLIPPED placement clears the x-axis danger zone (no longer struck)", !postFixCollides);
+
+  // NEGATIVE CONTROL — "an implementation with no collision awareness must
+  // FAIL": simply returning the candidate unmodified (the pre-fix renderer's
+  // actual behaviour) leaves the collision in place.
+  function preFixResolve(anchorPx: { x: number; y: number }, candidate: { x: number; y: number }) { return candidate; }
+  const preFixPlacement = preFixResolve(pAnchor, authoredCandidate);
+  assertTrue("NEGATIVE CONTROL: a no-collision-awareness resolver leaves the SAME struck placement in place",
+    E.PM_readoutCollides(pAnchor, preFixPlacement, readoutTextW, 14, founderPlane));
+
+  // A point comfortably clear of every axis (no collision) must NOT be
+  // touched — the fix must be a SAFETY NET, not a blanket repositioning.
+  const clearAnchor = founderPlane.toPx(2.0, 2.4); // far corner, well clear of both axes
+  const clearCandidate = { x: 12, y: 20 };
+  const clearResolved = E.PM_readoutResolveOffset(clearAnchor, clearCandidate, readoutTextW, 14, founderPlane);
+  check("a placement with NO collision is returned UNCHANGED (the fix never moves what wasn't broken)",
+    JSON.stringify(clearResolved), JSON.stringify(clearCandidate), 0 as any);
+
+  // Absent plane (F7 fleet-safety, mirrors section 11) -> pass the candidate
+  // straight through, never throws.
+  const noPlaneResolved = E.PM_readoutResolveOffset({ x: 0, y: 0 }, { x: 5, y: 5 }, 50, 14, null);
+  check("PM_readoutResolveOffset with no registered plane returns the candidate unchanged (never throws)",
+    JSON.stringify(noPlaneResolved), JSON.stringify({ x: 5, y: 5 }), 0 as any);
+
+  // ── ROUND-2 CLAIM THAT DID NOT REPRODUCE — recorded as a test so the
+  // finding cannot quietly rot. Round 2 was briefed that Q's readout "runs off
+  // the RIGHT canvas edge, truncated mid-number" (STATE_2 rendering "Q = (2.0",
+  // STATE_9 "Q = (1.90"). Swept across the FULL authored slider range, Q's box
+  // never comes within 250px of the 760 edge — and the rendered frames show
+  // both strings complete. What IS visibly damaging those glyphs is the curve /
+  // secant ink crossing them, which is the separate OPEN bug_class
+  // parametric_readout_and_label_collision_awareness_does_not_cover_a_sibling_
+  // primitives_curve_or_line_ink. If this assertion ever FAILS, a real
+  // horizontal overrun has appeared and the clamp above is what catches it. ──
+  let worstQ = -Infinity, worstQAt = 0;
+  for (let xq = -1.9; xq <= 2.0001; xq += 0.005) {
+    const t = `Q = (${xq.toFixed(2)}, ${fq(xq).toFixed(2)})`;
+    const b = E.PM_readoutBBox(secantPlane.toPx(xq, fq(xq)), { x: 12, y: -30 }, textW12(t), 14);
+    if (b.x1 > worstQ) { worstQ = b.x1; worstQAt = xq; }
+  }
+  assertTrue(`Q's readout never approaches the right canvas edge across its whole slider range (worst x1 = ${worstQ.toFixed(1)} at xq=${worstQAt.toFixed(2)}, canvas 760) — the briefed truncation does NOT reproduce`,
+    worstQ < 760);
+  check("that worst case has >250px of headroom (so the reported clipping cannot be a canvas overrun)", worstQ < 510, true, 0 as any);
+  // graph_transformations' p_prime is the fleet's genuinely tight one — this
+  // is where the clamp earns its place, and the margin is worth watching.
+  const gtPlane = E.PM_planeBuildTransform({
+    id: "plane", viewport: { x: 70, y: 78, w: 660, h: 372 },
+    x_range: { min: -6.5, max: 6.5 }, y_range: { min: -4, max: 4 },
+  });
+  let worstGt = -Infinity;
+  for (let b = 0.5; b <= 3.0001; b += 0.05) for (const h of [-2, -1, 0, 1, 2]) {
+    const x = Math.PI / 2 / b + h; if (x < -6.5 || x > 6.5) continue;
+    for (const y of [-3.5, 0, 3.5]) {
+      const t = `(${x.toFixed(2)}, ${y.toFixed(2)})`;
+      const bb = E.PM_readoutBBox(gtPlane.toPx(x, y), { x: 6, y: -12 }, textW12(t), 14);
+      if (bb.x1 > worstGt) worstGt = bb.x1;
+    }
+  }
+  assertTrue(`graph_transformations p_prime worst-case right edge = ${worstGt.toFixed(1)} of 760 — inside today, but the tightest on the fleet (the clamp's real justification)`, worstGt < 760);
+
+  // (g) STATIC — every readout-drawing primitive is actually WIRED to the
+  // new shared placement functions (not merely defined-but-unused), mirrors
+  // section 10's static-assertion technique.
+  const drawPlotPointSrc = grabFn("drawPlotPoint");
+  assertTrue("drawPlotPoint calls PM_readoutAuthoredOffset(spec)", drawPlotPointSrc.indexOf("PM_readoutAuthoredOffset(spec)") >= 0);
+  assertTrue("drawPlotPoint measures the REAL text width via textWidth(), not an estimate", drawPlotPointSrc.indexOf("textWidth(resolved.readoutText)") >= 0);
+  assertTrue("drawPlotPoint calls PM_readoutResolveOffset(", drawPlotPointSrc.indexOf("PM_readoutResolveOffset(") >= 0);
+  assertTrue("drawPlotPoint clamps to the canvas LAST", drawPlotPointSrc.indexOf("PM_clampOffsetToCanvas(") >= 0);
+
+  const drawSecantLineSrc = grabFn("drawSecantLine");
+  assertTrue("drawSecantLine calls PM_readoutAuthoredOffset(spec)", drawSecantLineSrc.indexOf("PM_readoutAuthoredOffset(spec)") >= 0);
+  assertTrue("drawSecantLine measures the REAL text width via textWidth(), not an estimate", drawSecantLineSrc.indexOf("textWidth(computed.readoutText)") >= 0);
+  assertTrue("drawSecantLine calls the WIDTH-AWARE PM_labelClearOffset as its fallback default", /PM_labelClearOffset\(p0,\s*p1,\s*secTW,\s*14,\s*6\)/.test(drawSecantLineSrc));
+  assertTrue("drawSecantLine no longer calls the round-1 fixed-distance PM_perpendicularOffset", drawSecantLineSrc.indexOf("PM_perpendicularOffset(") === -1);
+  assertTrue("drawSecantLine clamps to the canvas LAST", drawSecantLineSrc.indexOf("PM_clampOffsetToCanvas(") >= 0);
+  assertTrue("drawSecantLine no longer contains the OLD hardcoded '+ 10' / '- 12' readout literals", !/\+\s*10,\s*\([^)]*\)\s*\/\s*2\s*-\s*12/.test(drawSecantLineSrc));
+
+  const drawTangentLineSrc = grabFn("drawTangentLine");
+  assertTrue("drawTangentLine calls PM_readoutAuthoredOffset(spec)", drawTangentLineSrc.indexOf("PM_readoutAuthoredOffset(spec)") >= 0);
+  assertTrue("drawTangentLine measures the REAL text width via textWidth(), not an estimate", drawTangentLineSrc.indexOf("textWidth(computed.readoutText)") >= 0);
+  assertTrue("drawTangentLine calls the WIDTH-AWARE PM_labelClearOffset as its fallback default", /PM_labelClearOffset\(p0,\s*p1,\s*tanTW,\s*14,\s*6\)/.test(drawTangentLineSrc));
+  assertTrue("drawTangentLine no longer calls the round-1 fixed-distance PM_perpendicularOffset", drawTangentLineSrc.indexOf("PM_perpendicularOffset(") === -1);
+  assertTrue("drawTangentLine clamps to the canvas LAST", drawTangentLineSrc.indexOf("PM_clampOffsetToCanvas(") >= 0);
+  assertTrue("drawTangentLine no longer contains the OLD hardcoded 'rAt.x + 10, rAt.y - 12' readout literal", drawTangentLineSrc.indexOf("rAt.x + 10, rAt.y - 12") === -1);
+
+  // The round-1 function must be GONE from the renderer, not left dead — a
+  // fixed-distance perpendicular is the defect this round removed, and leaving
+  // it callable invites a future site from re-introducing it.
+  assertTrue("the superseded PM_perpendicularOffset is fully removed from the renderer (no dead fixed-distance path left callable)",
+    SRC.indexOf("function PM_perpendicularOffset(") === -1);
+
+  // NEGATIVE CONTROL for the static scanner itself — a deliberately-
+  // unwired snippet (draws a readout at the OLD fixed offset, calling
+  // neither new function) must be caught.
+  const unwiredSnippet = "function drawSecantLine_bad(spec) {\n  text(computed.readoutText, mid.x + 10, mid.y - 12);\n}";
+  assertTrue("NEGATIVE CONTROL: the wiring scanner correctly reports an unwired implementation as NOT calling PM_labelClearOffset(",
+    unwiredSnippet.indexOf("PM_labelClearOffset(") === -1);
+  assertTrue("NEGATIVE CONTROL: the wiring scanner correctly reports an unwired implementation as NOT clamping",
+    unwiredSnippet.indexOf("PM_clampOffsetToCanvas(") === -1);
+
+  // (h) SCHEMA PARITY — scene_composition primitives are validated as
+  // z.record(z.string(), z.unknown()) (src/schemas/conceptJson.ts), i.e. an
+  // open record with no per-type field enumeration — so secant_line/
+  // tangent_line authoring `readout.offset` requires ZERO schema change;
+  // the only gap was the renderer never reading it (now fixed above). This
+  // is a documentation assertion (always true, by the schema's own design)
+  // rather than a runtime probe, recorded here so the parity claim is
+  // checked into the same gate that would break if it stopped holding.
+  assertTrue("scene_composition primitives remain an open record (z.record(z.string(), z.unknown())) in the live schema source — readout.offset on ANY primitive type needs no schema edit",
+    /scene_composition:\s*z\.array\(z\.record\(z\.string\(\),\s*z\.unknown\(\)\)\)/.test(
+      require("fs").readFileSync(require("path").join(__dirname, "../schemas/conceptJson.ts"), "utf8")
+    ));
 }
 
 console.log(failures === 0

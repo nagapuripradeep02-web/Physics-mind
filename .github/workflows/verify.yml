@@ -70,6 +70,19 @@ jobs:
       - name: Agent specs in sync with canonicals
         run: npm run check:agents
 
+      # The auto-push hook is the repo's backup mechanism and had NO gate: it is
+      # not typechecked, not linted, not imported by anything, and it logs its
+      # own failures to a file nobody reads. On 2026-08-07 it was silently
+      # broken on 4 of 4 worktrees, stranding two rounds of platform engine work
+      # on one disk. Each case in this script is a defect that actually shipped
+      # and fails against the pre-fix hook.
+      #
+      # Hermetic: temp bare repos on local disk, isolated git config, no network
+      # and no credentials — so it is safe on a runner. ~15s, dominated by the
+      # deliberate sleeps that wait for the hook's own detached push.
+      - name: Auto-push hook regression gate
+        run: npm run check:autopush-hook
+
       - name: Renderer template syntax (Rule 36c)
         run: npm run check:renderer-syntax
 
