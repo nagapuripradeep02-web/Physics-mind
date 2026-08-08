@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 11,
   "concept_tier": "medium",
-  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power — table-of-contents scope only (conservative and non-conservative forces sit between the work definitions and potential energy), teaching authored from first principles. The atomic concept: a force is CONSERVATIVE when the total work it does around any closed path is exactly zero — equivalently, its work depends only on the endpoints, never on the path taken. Gravity is the conservative exemplar: its along-track pull never changes direction, so the outbound leg's negative work is exactly cancelled by the return leg's positive work. Friction is NOT conservative: because it always points against the instantaneous motion, its work is negative on the way out AND on the way back, so a round trip ADDS the two losses instead of cancelling them. Does NOT define potential energy (potential_energy_definition, #6, which builds directly on the endpoint property proved here), does NOT do energy conservation (#9), does NOT account for where friction's negative work goes (#10), and does NOT re-teach the work definition (work_done_by_constant_force, #1), the sign taxonomy (positive_negative_zero_work, #2) or kinetic energy (kinetic_energy_definition, #3) — all prerequisites, consumed and never re-derived. The spring is deliberately absent: it cannot be represented in a per-step work ledger, so 'the spring is also conservative' is ceded to elastic_potential_energy_spring (#8). Built on the newtons_laws_body field_3d engine with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md) — the first concept in the fleet to exercise the round-trip start-line latch (checkpoints seeded exactly at the home pose, capture_mode 'first') alongside the 'every' pass-1/pass-2 interior stamps. Pure configuration, zero renderer edits (0d).",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power — table-of-contents scope only (conservative and non-conservative forces sit between the work definitions and potential energy), teaching authored from first principles. The atomic concept: a force is CONSERVATIVE when the total work it does around any closed path is exactly zero — equivalently, its work depends only on the endpoints, never on the path taken. Gravity is the conservative exemplar: its along-track pull never changes direction, so the outbound leg's negative work is exactly cancelled by the return leg's positive work. Friction is NOT conservative: because it always points against the instantaneous motion, its work is negative on the way out AND on the way back, so a round trip ADDS the two losses instead of cancelling them. Does NOT define potential energy (potential_energy_definition, #6, which builds directly on the endpoint property proved here), does NOT do energy conservation (#9), does NOT account for where friction's negative work goes (#10), and does NOT re-teach the work definition (work_done_by_constant_force, #1), the sign taxonomy (positive_negative_zero_work, #2) or kinetic energy (kinetic_energy_definition, #3) — all prerequisites, consumed and never re-derived. The spring is deliberately absent: it cannot be represented in a per-step work ledger, so 'the spring is also conservative' is ceded to elastic_potential_energy_spring (#8). Built on the newtons_laws_body field_3d engine with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md) — the first concept in the fleet to exercise the round-trip start-line latch (checkpoints seeded exactly at the home pose, capture_mode 'every') alongside the 'every' pass-1/pass-2 interior stamps, and the first to author the SEAM-M teaching DWELL: every checkpoint is a labelled point (marker 'point') and the scene's physics HOLDS for 1.5-2.5 s on a stamped crossing so a teacher can read the values before the motion resumes.",
 
   "prerequisites": [
     "work_done_by_constant_force",
@@ -53,15 +53,15 @@
       "f_rough_states_mu_0_3": { "formula": "13.3227" },
       "S1_apex_W_gravity_J": { "formula": "-160.0" },
       "S1_latch_W_gravity_J": { "formula": "0.0" },
-      "S2_flag_out_W_gravity_J": { "formula": "-41.4" },
-      "S2_flag_out_W_friction_J": { "formula": "-26.6" },
-      "S2_flag_return_W_friction_J": { "formula": "-98.6" },
+      "S2_pointB_pass1_W_gravity_J": { "formula": "-41.4" },
+      "S2_pointB_pass1_W_friction_J": { "formula": "-26.6" },
+      "S2_pointB_pass2_W_friction_J": { "formula": "-98.6" },
       "S2_latch_W_gravity_J": { "formula": "0.0" },
       "S2_latch_W_friction_J": { "formula": "-125.3" },
-      "S3_flag_pass1_W_friction_J": { "formula": "-20.0" },
-      "S3_flag_pass2_W_friction_J": { "formula": "-75.9" },
-      "S4_flagA_W_gravity_J": { "formula": "-62.1" },
-      "S4_flagB_W_gravity_J": { "formula": "-124.2" },
+      "S3_pointA_pass1_W_friction_J": { "formula": "-20.0" },
+      "S3_pointA_pass2_W_friction_J": { "formula": "-75.9" },
+      "S4_pointA_W_gravity_J": { "formula": "-62.1" },
+      "S4_pointB_W_gravity_J": { "formula": "-124.2" },
       "gravity_J": { "formula": "-m * g * sin(radians(theta_deg)) * d" },
       "friction_J": { "formula": "-mu_k * m * g * cos(radians(theta_deg)) * d" }
     },
@@ -87,7 +87,7 @@
       "friction's work is never positive while the block is sliding: W_friction_leg <= 0 on every leg, because kinetic friction always opposes the instantaneous velocity",
       "friction's round-trip work is strictly more negative than either leg alone: W_friction_round_trip = -2*mu_k*m*g*cos(theta)*d_up, never zero and never positive for any real trip",
       "the round trip can only happen if tan(theta) > mu_s (this concept's guided states: tan25 = 0.466 > mu 0.3, margin 1.55x); otherwise the block sticks at the top and never returns",
-      "every guided launch stays strictly inside the +/-6 m track: the highest apex is S4's at s = +4.78 m (v0 = 9 m/s frictionless from s0 = -5.0 m) and the lowest reset point is S4's at s = -5.49 m, so no state ever reaches a geometric bound and the clamp artifact is unreachable by construction",
+      "every guided launch stays strictly inside the +/-6 m track: the highest apex is S4's at s = +5.12 m (v0 = 8.5 m/s frictionless from s0 = -3.6 m) and the lowest reset point is S3's at s = -5.27 m, so no state ever reaches a geometric bound and the clamp artifact is unreachable by construction",
       "N = m*g*cos(theta) > 0 at every authored theta in this concept (5 deg to 45 deg on S5's slider, fixed 25 deg on S1-S4); no applied force anywhere, so N never clamps to zero and lift-off is never reachable",
       "g = 9.8 m/s^2 (engine constant NLB_G); m = 5 kg fixed in every one of the five states, never a slider anywhere in this concept"
     ]
@@ -102,7 +102,7 @@
   "aha_moment": {
     "state_id": "STATE_2",
     "statement": "The same round trip that erases gravity's work makes friction's work larger, not zero.",
-    "visual_confirmation": "Two work bars and a start-line flag: gravity's reads 0.0 J at the crossing while friction's reads minus 125.3 J on the same latched line."
+    "visual_confirmation": "Two work bars and point A: the block halts there for 2.5 s on the return while gravity reads 0.0 J and friction reads minus 125.3 J on the same held line."
   },
 
   "entry_state_map": {
@@ -153,18 +153,18 @@
             "color": "#4DD0E1"
           },
           {
-            "id": "cnc_s1_flag",
-            "type": "checkpoint_flag",
-            "text": "the start-line flag, seeded exactly at the home pose, capture_mode 'every': it stamps 0.0 J at the departure and RE-stamps on the return as 'back at the start (pass 2): W gravity = 0.0 J', held 237 ms before the reset. 'every' is required, not cosmetic — a home-pose checkpoint fires at t = 0, so under 'first' the stamp would freeze on the departure reading and never show the return crossing this state exists to prove",
+            "id": "cnc_s1_pointA",
+            "type": "checkpoint_point",
+            "text": "point A, a track-level dot seeded exactly at the home pose (marker 'point', capture_mode 'every'): it stamps 0.0 J at the departure and RE-stamps on the return as 'point A (pass 2): W gravity = 0.0 J'. dwell_from_pass 2 skips the departure and freezes the whole scene for 2500 ms on the RETURN crossing (T = 3863 → 6363 ms), badge 'paused: point A'. 'every' is required, not cosmetic — a home-pose checkpoint fires at t = 0, so under 'first' the stamp would freeze on the departure reading and never show the return crossing this state exists to prove",
             "color": "#FFCA28"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "This block slides up a frictionless slope at eight metres per second.", "text_hi": "यह block आठ metres per second की speed से एक frictionless slope पर ऊपर की ओर चढ़ रहा है।", "glow": "nlb_body_block" },
+            { "id": "s1_1", "text_en": "The block leaves point A up a frictionless slope at eight metres per second.", "text_hi": "Block point A से आठ metres per second की speed से एक frictionless slope पर ऊपर जाता है।", "glow": "nlb_body_block" },
             { "id": "s1_2", "text_en": "Gravity's meter falls as it climbs, then climbs back as it slides down again.", "text_hi": "जैसे-जैसे block ऊपर चढ़ता है, gravity का meter गिरता है, फिर जब block नीचे slide करता है तो meter वापस चढ़ता है।", "glow": "nlb_arrow_block_weight" },
-            { "id": "s1_3", "text_en": "Crossing back over its start line, the flag reads: total work by gravity, zero joules.", "text_hi": "अपनी start line को फिर से पार करते हुए, flag यह पढ़ता है: gravity द्वारा किया गया total work, zero joules।", "glow": "checkpoint_1" },
-            { "id": "s1_4", "text_en": "Up and back to the same spot, gravity's total work returns to zero.", "text_hi": "ऊपर जाकर उसी जगह वापस आने पर, gravity का total work zero पर लौट आता है।", "glow": "nlb_body_block" }
+            { "id": "s1_3", "text_en": "Back at point A the motion pauses: total work by gravity, zero joules.", "text_hi": "Point A पर वापस आते ही motion रुक जाता है: gravity द्वारा किया गया total work, zero joules।", "glow": "checkpoint_1" },
+            { "id": "s1_4", "text_en": "Up and back to the same place, gravity's total work returns to zero.", "text_hi": "ऊपर जाकर उसी जगह वापस आने पर, gravity का total work zero पर लौट आता है।", "glow": "nlb_body_block" }
           ]
         }
       },
@@ -172,7 +172,7 @@
       "STATE_2": {
         "title": "Friction: a round trip does not cancel its work",
         "duration": 22,
-        "focal_primitive_id": "cnc_s2_flag",
+        "focal_primitive_id": "cnc_s2_points",
         "advance_mode": "manual_click",
         "teaching_method": "misconception_confrontation",
         "motion_archetype": "cycle-compare (declared contrast pair with STATE_1)",
@@ -216,24 +216,24 @@
             "color": "#EF5350"
           },
           {
-            "id": "cnc_s2_flag",
-            "type": "checkpoint_flag",
-            "text": "two flags 2.0 m apart: an interior flag at +2.0 m stamps 'at the flag: W gravity = −41.4 J · W friction = −26.6 J' outbound, then '(pass 2) … W friction = −98.6 J' on the return; the start-line flag (capture_mode 'every') stamps 0.0 J for both ledgers at the departure and re-stamps on the return as 'back at the start (pass 2): W gravity = 0.0 J · W friction = −125.3 J', held 402 ms before the reset — that pass-2 line IS the concept's PRIMARY aha, and under 'first' it would read a frozen 0.0 J for friction, asserting the exact misconception this state destroys",
+            "id": "cnc_s2_points",
+            "type": "checkpoint_point",
+            "text": "two track-level points 2.0 m apart, both 'every'. Point B at +2.0 m stamps 'point B: W gravity = −41.4 J · W friction = −26.6 J' outbound (T = 284) and '(pass 2) … W friction = −98.6 J' on the return (T = 4588), holding the scene 1500 ms each time — gravity repeats, friction has grown, and the pause is what lets a teacher compare them. Point A at the home pose stamps 0.0 J for both ledgers at the departure and re-stamps on the return as 'point A (pass 2): W gravity = 0.0 J · W friction = −125.3 J', holding 2500 ms (T = 6698 → 9198) — that held line IS the concept's PRIMARY aha, and under 'first' it would read a frozen 0.0 J for friction, asserting the exact misconception this state destroys",
             "color": "#FFCA28"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "This slope is rough now, same round trip.", "text_hi": "अब यह slope rough है, same round trip।", "glow": "nlb_body_block" },
-            { "id": "s2_2", "text_en": "Gravity's meter falls and climbs back to zero; friction's meter only falls.", "text_hi": "Gravity का meter गिरता है और वापस zero तक चढ़ता है; friction का meter सिर्फ गिरता ही रहता है।", "glow": "nlb_arrow_block_weight" },
-            { "id": "s2_3", "text_en": "Crossing the start line, the flag reads gravity zero, friction minus one hundred twenty-five point three joules.", "text_hi": "Start line पार करते ही flag पढ़ता है: gravity zero, friction minus one hundred twenty-five point three joules।", "glow": "checkpoint_2" },
-            { "id": "s2_4", "text_en": "Friction is negative both ways, so the trip adds the losses: gravity is conservative, friction is non-conservative.", "text_hi": "Friction दोनों तरफ negative है, इसलिए trip दोनों losses को जोड़ देती है: gravity conservative है, friction non-conservative है।", "glow": "nlb_body_block" }
+            { "id": "s2_1", "text_en": "The slope is rough now, same launch from point A.", "text_hi": "अब slope rough है, point A से वही launch।", "glow": "nlb_body_block" },
+            { "id": "s2_2", "text_en": "At point B the meters pause going up, then again coming down.", "text_hi": "Point B पर meters ऊपर जाते समय रुकते हैं, फिर नीचे आते समय दोबारा।", "glow": "checkpoint_2" },
+            { "id": "s2_3", "text_en": "Back at point A: gravity zero, friction minus one hundred twenty-five point three joules.", "text_hi": "Point A पर वापस: gravity zero, friction minus one hundred twenty-five point three joules।", "glow": "checkpoint_1" },
+            { "id": "s2_4", "text_en": "Friction is negative both ways, so the trip adds the losses: gravity is conservative, friction is not.", "text_hi": "Friction दोनों तरफ negative है, इसलिए trip दोनों losses को जोड़ देती है: gravity conservative है, friction नहीं।", "glow": "nlb_body_block" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "Retracing the path reverses friction's work the way it reverses gravity's",
-            "visual_counter": "At the interior flag, gravity stamps −41.4 J on both passes while friction's stamp falls from −26.6 J to −98.6 J; the latched start-line flag reads 'W gravity = 0.0 J, W friction = −125.3 J', holding until the loop restarts.",
+            "visual_counter": "At point B, gravity stamps −41.4 J on both passes while friction's stamp falls from −26.6 J to −98.6 J — the scene halts 1.5 s on each pass so the two can be read against each other; point A then halts 2.5 s reading 'W gravity = 0.0 J, W friction = −125.3 J'.",
             "one_line_fix": "Friction's work is negative on every leg, so a round trip adds the two losses — it never cancels them."
           }
         ]
@@ -258,7 +258,7 @@
           {
             "id": "cnc_s3_block",
             "type": "body",
-            "text": "the same block, a slower launch (7 m/s) on the same rough slope (μ = 0.3) — a 3.24 s round trip climbing 3.60 m, chosen so the two-pass flag lands its second stamp inside the frozen frame",
+            "text": "the same block, a slower launch (7 m/s) on the same rough slope (μ = 0.3) — a 3.24 s round trip climbing 3.60 m, with both point-A passes held long enough to read",
             "color": "#42A5F5"
           },
           {
@@ -286,9 +286,9 @@
             "color": "#EF5350"
           },
           {
-            "id": "cnc_s3_flag",
-            "type": "checkpoint_flag",
-            "text": "a flag at +1.5 m stamps 'the same spot: W friction = −20.0 J' outbound (243 ms) and '(pass 2) −75.9 J' on the return (2715 ms) — same place, motion reversed, the loss still growing",
+            "id": "cnc_s3_pointA",
+            "type": "checkpoint_point",
+            "text": "point A, a track-level dot at +1.5 m, stamps 'point A: W friction = −20.0 J' outbound and '(pass 2) −75.9 J' on the return, freezing the scene 2000 ms each time (T = 243 → 2243 and T = 4715 → 6715) — same place, motion reversed, the loss 3.8× larger, and each number standing still long enough to be read",
             "color": "#FFCA28"
           }
         ],
@@ -297,7 +297,7 @@
             { "id": "s3_1", "text_en": "The friction arrow points down the slope on the way up.", "text_hi": "ऊपर जाते समय friction का arrow slope की नीचे की दिशा में point करता है।" },
             { "id": "s3_2", "text_en": "At the top it flips to point up the slope instead.", "text_hi": "Top पर पहुँचते ही यह flip होकर slope की ऊपर की दिशा में point करने लगता है।" },
             { "id": "s3_3", "text_en": "Friction always opposes the motion; the weight arrow never turns.", "text_hi": "Friction हमेशा motion के विपरीत होता है; weight का arrow कभी नहीं मुड़ता।" },
-            { "id": "s3_4", "text_en": "At the same spot, the flag reads minus twenty joules, then minus seventy-five point nine — the loss grows.", "text_hi": "उसी spot पर, flag पहले minus twenty joules पढ़ता है, फिर minus seventy-five point nine -- loss बढ़ता जाता है।" }
+            { "id": "s3_4", "text_en": "At point A the motion pauses twice: minus twenty joules, then minus seventy-five point nine — the loss grows.", "text_hi": "Point A पर motion दो बार रुकता है: पहले minus twenty joules, फिर minus seventy-five point nine -- loss बढ़ता जाता है।", "glow": "checkpoint_1" }
           ]
         },
         "misconception_watch": [
@@ -312,7 +312,7 @@
       "STATE_4": {
         "title": "Gravity's work depends only on position",
         "duration": 22,
-        "focal_primitive_id": "cnc_s4_flag",
+        "focal_primitive_id": "cnc_s4_pointA",
         "advance_mode": "manual_click",
         "motion_archetype": "reveal-build",
         "delta_cue": "Same place, same number",
@@ -345,28 +345,28 @@
           {
             "id": "cnc_s4_workbar",
             "type": "work_bar",
-            "text": "the gravity work bar climbs to −180.6 J near the top; no ledger stays at zero here, it is the two flags below that carry the claim",
+            "text": "the gravity work bar climbs to −180.6 J near the top; no ledger stays at zero here, it is the two points below that carry the claim",
             "color": "#EF5350"
           },
           {
-            "id": "cnc_s4_flag_a",
-            "type": "checkpoint_flag",
-            "text": "flag A at +3.0 m stamps 'flag A: W gravity = −62.1 J' outbound, then '(pass 2) −62.1 J' — identical — on the return",
+            "id": "cnc_s4_pointA",
+            "type": "checkpoint_point",
+            "text": "point A, a track-level dot at +3.0 m, stamps 'point A: W gravity = −62.1 J' outbound (no dwell) and '(pass 2) −62.1 J' — identical — on the return, where the scene holds 2000 ms (T = 5715 → 7715)",
             "color": "#FFCA28"
           },
           {
-            "id": "cnc_s4_flag_b",
-            "type": "checkpoint_flag",
-            "text": "flag B at +6.0 m stamps 'flag B: W gravity = −124.2 J' outbound, then '(pass 2) −124.2 J' — identical — on the return; the two flags are 3.0 m apart, so their captions can never overlap",
+            "id": "cnc_s4_pointB",
+            "type": "checkpoint_point",
+            "text": "point B, a track-level dot at +6.0 m, stamps 'point B: W gravity = −124.2 J' outbound and '(pass 2) −124.2 J' — identical — on the return, holding 2000 ms (T = 3199 → 5199); the two points are 3.0 m apart, so their captions can never overlap",
             "color": "#FFCA28"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
             { "id": "s4_1", "text_en": "Launched faster, the block flies higher, still frictionless.", "text_hi": "तेज़ speed से launch होने पर, block ऊँचा उड़ता है, फिर भी frictionless।", "glow": "nlb_body_block" },
-            { "id": "s4_2", "text_en": "Flag A reads minus sixty-two point one; flag B, minus one hundred twenty-four point two.", "text_hi": "Flag A minus sixty-two point one पढ़ता है; flag B, minus one hundred twenty-four point two।", "glow": "checkpoint_1" },
-            { "id": "s4_3", "text_en": "Coming back, both readings repeat exactly.", "text_hi": "वापस आते समय, दोनों readings बिल्कुल वैसी ही दोहराई जाती हैं।", "glow": "checkpoint_2" },
-            { "id": "s4_4", "text_en": "Because gravity's work depends only on start and end points, each point gets one number—potential energy, the next concept, is built from this.", "text_hi": "क्योंकि gravity का work सिर्फ start और end points पर निर्भर करता है, हर point को एक number मिलता है -- potential energy, अगला concept, इसी पर बना है।", "glow": "nlb_body_block" }
+            { "id": "s4_2", "text_en": "Point A reads minus sixty-two point one; point B, minus one hundred twenty-four point two.", "text_hi": "Point A minus sixty-two point one पढ़ता है; point B, minus one hundred twenty-four point two।", "glow": "checkpoint_1" },
+            { "id": "s4_3", "text_en": "Coming back, the motion pauses at each: both readings repeat exactly.", "text_hi": "वापस आते समय, motion हर एक पर रुकता है: दोनों readings बिल्कुल वैसी ही दोहराई जाती हैं।", "glow": "checkpoint_2" },
+            { "id": "s4_4", "text_en": "Gravity's work depends only on start and end points, so each point gets one number—potential energy, the next concept.", "text_hi": "Gravity का work सिर्फ start और end points पर निर्भर करता है, इसलिए हर point को एक number मिलता है -- potential energy, अगला concept।", "glow": "nlb_body_block" }
           ]
         }
       },
@@ -513,7 +513,7 @@
       },
       {
         "q_id": "q4_flag_reading_repeats",
-        "stem": "On a frictionless slope, flag A sits 3.0 m from the launch point. On the way up, gravity's work reading at flag A is -62.1 J. What is the reading at flag A when the block passes it again on the way down?",
+        "stem": "On a frictionless slope, point A sits 3.0 m from the launch point. On the way up, gravity's work reading at point A is -62.1 J. What is the reading at point A when the block passes it again on the way down?",
         "options": {
           "A": "-62.1 J, unchanged",
           "B": "+62.1 J",
@@ -529,7 +529,7 @@
         "tested_idea": "gravity's work is a function of position alone, so the same place gives the same reading",
         "teaches_state": "STATE_4",
         "difficulty": "core",
-        "parallel_form_stem": "On a frictionless slope, a flag sits 0.8 m from the launch point and reads -19.6 J on the way up. What does it read when the block crosses it again on the way down?"
+        "parallel_form_stem": "On a frictionless slope, a marked point sits 0.8 m from the launch point and reads -19.6 J on the way up. What does it read when the block crosses it again on the way down?"
       },
       {
         "q_id": "q5_conservative_classification",
@@ -664,10 +664,11 @@
     },
     "states": {
       "STATE_1": {
-        "label": "A 5 kg block launched up a frictionless 25° slope at 8 m/s climbs 7.73 m and returns — a 3.86 s round trip; the gravity work bar falls to −160.0 J and climbs back, and a start-line flag latches 'W gravity = 0.0 J' on the return",
+        "label": "A 5 kg block launched from point A up a frictionless 25° slope at 8 m/s climbs 7.73 m and returns — a 3.86 s round trip; the gravity work bar falls to −160.0 J and climbs back, and the scene HOLDS 2.5 s at point A on the return showing 'W gravity = 0.0 J'",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Gravity's work returns to zero",
+        "eye_capture_ms": 5100,
         "show_sliders": true,
         "formula_overlay": "W(up) + W(down) = 0",
         "newtons_laws_body": {
@@ -684,20 +685,21 @@
             { "force": "gravity", "label": "gravity", "body_id": "block" }
           ],
           "checkpoints": [
-            { "s_m": -3.6, "label": "back at the start", "body_id": "block", "capture": ["W"], "capture_mode": "every" }
+            { "s_m": -3.6, "label": "point A", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2500, "dwell_from_pass": 2 }
           ],
           "work_scale_J": 180,
-          "loop_reset_ms": 4100,
+          "loop_reset_ms": 6400,
           "readouts": ["v"],
           "controls_visible": []
         }
       },
 
       "STATE_2": {
-        "label": "Same slope now rough (μ=0.3), same 8 m/s launch: gravity's bar repeats the round trip to zero while friction's bar only falls; the start-line flag latches 'W gravity = 0.0 J · W friction = −125.3 J' on the return",
+        "label": "Same slope now rough (μ=0.3), same 8 m/s launch from point A: gravity's bar repeats the round trip to zero while friction's bar only falls; the scene holds 1.5 s at point B on each pass and 2.5 s at point A on the return, where it reads 'W gravity = 0.0 J · W friction = −125.3 J'",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Friction: negative both ways",
+        "eye_capture_ms": 7950,
         "show_sliders": true,
         "formula_overlay": "W(up) + W(down) < 0",
         "newtons_laws_body": {
@@ -714,21 +716,22 @@
             { "force": "friction", "label": "friction", "body_id": "block" }
           ],
           "checkpoints": [
-            { "s_m": -1.6, "label": "at the flag", "body_id": "block", "capture": ["W"], "capture_mode": "every" },
-            { "s_m": -3.6, "label": "back at the start", "body_id": "block", "capture": ["W"], "capture_mode": "every" }
+            { "s_m": -3.6, "label": "point A", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2500, "dwell_from_pass": 2 },
+            { "s_m": -1.6, "label": "point B", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 1500 }
           ],
           "work_scale_J": 140,
-          "loop_reset_ms": 4100,
+          "loop_reset_ms": 9400,
           "readouts": ["v", "f"],
           "controls_visible": []
         }
       },
 
       "STATE_3": {
-        "label": "A slower launch (7 m/s) on the same rough slope: the friction arrow debuts pointing down-slope, flips to up-slope at the turnaround, and a flag 1.5 m up the slope restamps a growing loss on each pass",
+        "label": "A slower launch (7 m/s) on the same rough slope: the friction arrow debuts pointing down-slope, flips to up-slope at the turnaround, and the scene halts 2 s at point A on BOTH passes, restamping a growing loss each time",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Friction flips at turnaround",
+        "eye_capture_ms": 5700,
         "show_sliders": true,
         "formula_overlay": "W friction = −f·d (both legs)",
         "newtons_laws_body": {
@@ -744,10 +747,10 @@
             { "force": "friction", "label": "friction", "body_id": "block" }
           ],
           "checkpoints": [
-            { "s_m": -2.1, "label": "the same spot", "body_id": "block", "capture": ["W"], "capture_mode": "every" }
+            { "s_m": -2.1, "label": "point A", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000 }
           ],
           "work_scale_J": 110,
-          "loop_reset_ms": 3300,
+          "loop_reset_ms": 7700,
           "glow_focal": "nlb_arrow_block_friction",
           "readouts": ["v", "f"],
           "controls_visible": []
@@ -755,10 +758,11 @@
       },
 
       "STATE_4": {
-        "label": "A faster frictionless launch (8.5 m/s): two flags 3.0 m apart each stamp an unchanging gravity reading on the way up and the way down, showing the work depends only on position",
+        "label": "A faster frictionless launch (8.5 m/s): two points 3.0 m apart each stamp an unchanging gravity reading on the way up and the way down, and the scene halts 2 s at each on the RETURN so the repeated number can be read against the outbound one",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Same place, same number",
+        "eye_capture_ms": 6700,
         "show_sliders": true,
         "formula_overlay": "W gravity = −mg·sinθ·(s − s₀)",
         "newtons_laws_body": {
@@ -774,11 +778,11 @@
             { "force": "gravity", "label": "gravity", "body_id": "block" }
           ],
           "checkpoints": [
-            { "s_m": -0.6, "label": "flag A", "body_id": "block", "capture": ["W"], "capture_mode": "every" },
-            { "s_m": 2.4, "label": "flag B", "body_id": "block", "capture": ["W"], "capture_mode": "every" }
+            { "s_m": -0.6, "label": "point A", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000, "dwell_from_pass": 2 },
+            { "s_m": 2.4, "label": "point B", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000, "dwell_from_pass": 2 }
           ],
           "work_scale_J": 200,
-          "loop_reset_ms": 4150,
+          "loop_reset_ms": 8300,
           "readouts": ["v"],
           "controls_visible": []
         }
