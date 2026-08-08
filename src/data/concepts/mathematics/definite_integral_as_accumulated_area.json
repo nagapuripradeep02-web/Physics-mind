@@ -833,7 +833,7 @@
             "id": "zoomlink_1",
             "from_expr": "{x: 180 + (b - 2*(b/round(pow(10,nlog))))*220, y: 357 - (b*b - c - 4.5*b*(b/round(pow(10,nlog))))*62}",
             "to": {
-              "x": 230,
+              "x": 460,
               "y": 233
             },
             "style": "line",
@@ -846,8 +846,8 @@
             "id": "zoomlink_2",
             "from_expr": "{x: 180 + b*220, y: 357 - (b*b - c + 0.5*b*(b/round(pow(10,nlog))))*62}",
             "to": {
-              "x": 230,
-              "y": 88
+              "x": 460,
+              "y": 233
             },
             "style": "line",
             "color": "#64748B",
