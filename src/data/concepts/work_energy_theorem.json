@@ -37,8 +37,8 @@
       "v0":   { "name": "launch speed at the state's own start (signed)", "unit": "m/s", "min": 0, "max": 4, "default": 0, "step": 1 },
       "v":    { "name": "speed", "unit": "m/s", "min": -5, "max": 5, "default": 0 },
       "g":    { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
-      "mu_k": { "name": "coefficient of kinetic friction (S2, S3 fixed; S6 the ONE live friction dial, FIX CYCLE 2)", "unit": "", "min": 0.2, "max": 0.5, "step": 0.1, "default": 0.3 },
-      "mu_s": { "name": "coefficient of static friction (S2, S3, S6 all FIXED at 0.3, never a live slider in this concept -- FIX CYCLE 2 decision, see section 14)", "unit": "", "min": 0, "max": 1, "default": 0.3 },
+      "mu_k": { "name": "coefficient of kinetic friction (S2 fixed 0.1, S3 fixed 0.25; S6 the ONE live friction dial, FIX CYCLE 2)", "unit": "", "min": 0.2, "max": 0.5, "step": 0.1, "default": 0.3 },
+      "mu_s": { "name": "coefficient of static friction (always equal to that state's mu_k -- S2 0.1, S3 0.25, S6 0.3 -- never a live slider in this concept, FIX CYCLE 2 decision, see section 14)", "unit": "", "min": 0, "max": 1, "default": 0.3 },
       "d":    { "name": "displacement from the state's own initial_position_m", "unit": "m", "min": 0, "max": 12, "default": 0 },
       "K":    { "name": "kinetic energy", "unit": "J", "min": 0, "max": 340, "derived": "0.5 * m * v * v" }
     },
@@ -53,7 +53,7 @@
       "derivation_chain":        "W_net = m a d, and v^2 = v0^2 + 2 a d, therefore W_net = half m v^2 minus half m v0^2 -- S5's derivation, checked by the stamp",
       "pull_work_constant_force":"W_pull = F d -- valid whenever F is a constant force, even through a velocity reversal (S4 -- constant-force work is path-independent, it depends only on net displacement)",
       "friction_work":           "W_friction = -mu_k * m * g * d -- valid because the cart never reverses direction while friction acts anywhere in this concept (S2, S3, S6), so d equals the distance actually slid",
-      "s3_exact_balance":        "F = mu_k * m * g = 19.6 N exactly, so a = 0 identically, so W_net = 0 identically (S3)"
+      "s3_exact_balance":        "F = mu_k * m * g = 0.25 * 5 * 9.8 = 12.25 N exactly, so a = 0 identically, so W_net = 0 identically (S3)"
     },
     "constraints": [
       "W_net = delta K = half m v^2 minus half m v0^2 at every instant, in every state of this concept -- this is the theorem itself, not a special case",
@@ -61,7 +61,8 @@
       "for a CONSTANT force, W = F times the net displacement, regardless of any velocity reversal in between (S4 -- work is path-independent for a constant force)",
       "kinetic friction's work is never positive while the body slides, and holds at its last value once the body is at rest (S2, S3, S6)",
       "kinetic energy K = half m v^2 is never negative; the net-work bar CAN be negative -- K and W_net are different kinds of quantity read on different instruments",
-      "g = 9.8 m/s^2 (constant, NLB_G); every surface in this concept is flat, so no angle enters any formula and gravity does identically zero work throughout"
+      "g = 9.8 m/s^2 (constant, NLB_G); every surface in this concept is flat, so no angle enters any formula and gravity does identically zero work throughout",
+      "every guided run stays strictly inside the +/-6 m track, so the geometric bound clamp -- which would freeze the energy bars and raise PM_NLB_ENERGY_CLAMP -- is unreachable: the furthest any cart travels is S5's to s = +5.09 m, and S2 is the only state that comes to rest, doing so at s = +2.76 m"
     ]
   },
 
@@ -74,7 +75,7 @@
   "aha_moment": {
     "state_id": "STATE_1",
     "statement": "The work meter and the energy meter are the same meter, reading the same number.",
-    "visual_confirmation": "A crate pulled from rest by a steady 10 N force: the net-work bar and the K bar always read the same number, frame by frame, reaching exactly 40.0 J by the loop end."
+    "visual_confirmation": "A crate pulled from rest by a steady 5 N force over 8.0 m: the net-work bar and the K bar always read the same number, frame by frame, reaching exactly 40.0 J by the loop end."
   },
 
   "entry_state_map": {
@@ -99,7 +100,7 @@
             "id": "wet_s1_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "a ten newton pull acts on this crate, the only horizontal force, from rest on a frictionless floor",
+            "text": "a five newton pull acts on this crate, the only horizontal force, from rest on a frictionless floor — it covers 8.0 m in 4.0 s",
             "color": "#FFF176"
           },
           {
@@ -119,7 +120,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "A ten newton pull acts on this crate, the only force, so its work is the whole net work.", "text_hi": "इस crate पर दस newton का एक pull लगता है, यह अकेला force है, इसलिए इसका work पूरा net work है।", "glow": "nlb_arrow_cart_applied" },
+            { "id": "s1_1", "text_en": "A five newton pull acts on this crate, the only force, so its work is the whole net work.", "text_hi": "इस crate पर पाँच newton का एक pull लगता है, यह अकेला force है, इसलिए इसका work पूरा net work है।", "glow": "nlb_arrow_cart_applied" },
             { "id": "s1_2", "text_en": "The work bar climbs as the pull acts over distance, force times metres.", "text_hi": "Work bar उतना ही चढ़ता है जितनी दूरी तक pull काम करता है, force गुणा metres।", "glow": "energy_panel" },
             { "id": "s1_3", "text_en": "The K bar reads the crate kinetic energy, the energy a moving body has.", "text_hi": "K bar crate की kinetic energy दिखाता है, वह energy जो एक चलती हुई body के पास होती है।", "glow": "energy_bar_K" },
             { "id": "s1_4", "text_en": "Both bars always match, reaching forty joules each cycle.", "text_hi": "दोनों bars हमेशा बराबर रहते हैं, हर cycle में चालीस joules तक पहुँचते हैं।", "glow": "energy_panel" }
@@ -189,7 +190,7 @@
             "id": "wet_s3_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "the pull and kinetic friction are authored exactly equal, 19.6 N each, so the crate coasts at a constant 2.5 m/s",
+            "text": "the pull and kinetic friction are authored exactly equal, 12.25 N each, so the crate coasts at a constant 2.0 m/s across 8.0 m",
             "color": "#FFF176"
           },
           {
@@ -203,22 +204,22 @@
             "id": "wet_s3_hud",
             "type": "annotation",
             "position": { "x": 560, "y": 400 },
-            "text": "the K bar holds flat at 15.6 J the whole loop while the d arrow grows, and the HUD's F and f rows both read 19.6 N",
+            "text": "the K bar holds flat at 10.0 J the whole loop while the d arrow grows, and the HUD's F and f rows both read 12.25 N",
             "color": "#4DD0E1"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The pull and friction are equal, nineteen point six newtons, and the crate coasts.", "text_hi": "Pull और friction बराबर हैं, उन्नीस point six newtons, और crate coast करती है।", "glow": "nlb_arrow_cart_applied" },
+            { "id": "s3_1", "text_en": "The pull and friction are equal, twelve point two five newtons, and the crate coasts.", "text_hi": "Pull और friction बराबर हैं, बारह point two five newtons, और crate coast करती है।", "glow": "nlb_arrow_cart_applied" },
             { "id": "s3_2", "text_en": "The pull bar climbs steadily, reaching ninety-eight joules by the loop's end.", "text_hi": "Pull का bar अट्ठानवे joules तक, हर loop के अंत में, लगातार चढ़ता है।", "glow": "energy_panel" },
             { "id": "s3_3", "text_en": "Friction bar dives just as far, so the two always cancel to zero.", "text_hi": "Friction का bar भी उतना ही गिरता है, तो दोनों हमेशा cancel होकर zero बनाते हैं।", "glow": "energy_panel" },
-            { "id": "s3_4", "text_en": "Only the net counts: the K bar holds flat at fifteen point six joules.", "text_hi": "सिर्फ net गिनती में आता है: K bar पंद्रह point six joules पर flat रहता है।", "glow": "energy_bar_K" }
+            { "id": "s3_4", "text_en": "Only the net counts: the K bar holds flat at ten joules.", "text_hi": "सिर्फ net गिनती में आता है: K bar दस joules पर flat रहता है।", "glow": "energy_bar_K" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "The work done by the force you apply becomes kinetic energy",
-            "visual_counter": "The pull bar climbs to +98.0 J — the number the belief tracks — while the K bar holds 15.6 J without moving and the net bar sits on its zero line",
+            "visual_counter": "The pull bar climbs to +98.0 J — the number the belief tracks — while the K bar holds 10.0 J without moving and the net bar sits on its zero line",
             "one_line_fix": "Only the net work changes kinetic energy — add the works with their signs first."
           }
         ]
@@ -243,14 +244,14 @@
             "id": "wet_s4_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "a 4 kg cart launches backward at three metres a second against a steady twelve newton pull, on a frictionless floor",
+            "text": "a 4 kg cart launches backward at three metres a second against a steady six newton pull, on a frictionless floor — 3.0 m back, then 6.75 m forward",
             "color": "#FFF176"
           },
           {
             "id": "wet_s4_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the net bar dives to −18.0 J exactly as the K bar falls to 0.0 J at the turn, then both climb back — K to 46.1 J beside net at +28.1 J",
+            "text": "the net bar dives to −18.0 J exactly as the K bar falls to 0.0 J at the turn (t = 2.0 s), then both climb back — K to 40.5 J beside net at +22.5 J",
             "color": "#FFCA28"
           },
           {
@@ -263,16 +264,16 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "This cart starts backward at three metres a second, pulled by twelve newtons.", "text_hi": "यह cart पीछे की ओर तीन metres per second से शुरू होती है, बारह newtons से खींची जाती है।", "glow": "nlb_body_cart" },
+            { "id": "s4_1", "text_en": "This cart starts backward at three metres a second, pulled by six newtons.", "text_hi": "यह cart पीछे की ओर तीन metres per second से शुरू होती है, छह newtons से खींची जाती है।", "glow": "nlb_body_cart" },
             { "id": "s4_2", "text_en": "At the turn, net dives to minus eighteen joules as K reads zero.", "text_hi": "जैसे यह धीमी होती है, मोड़ पर net minus अट्ठारह joules तक गिरता है जब K zero दिखाता है।", "glow": "energy_panel" },
-            { "id": "s4_3", "text_en": "By the end, K climbs to forty-six point one, net to plus twenty-eight point one.", "text_hi": "अंत तक, K छियालीस point one तक पहुँचता है, net plus अट्ठाइस point one तक।", "glow": "energy_panel" },
+            { "id": "s4_3", "text_en": "By the end, K climbs to forty point five, net to plus twenty-two point five.", "text_hi": "अंत तक, K चालीस point five तक पहुँचता है, net plus बाईस point five तक।", "glow": "energy_panel" },
             { "id": "s4_4", "text_en": "Two nonzero numbers: net measures change from eighteen starting joules, not the final energy.", "text_hi": "दो non-zero numbers: net अट्ठारह शुरुआती joules से बदलाव मापता है, आखिरी energy को नहीं।", "glow": "checkpoint_1" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "Net work equals the final half m v squared",
-            "visual_counter": "At the end of the run the K bar reads 46.1 J while the net bar reads +28.1 J — two different nonzero numbers on one screen; the change is 46.1 minus 18.0 equals 28.1, measured from the starting 18.0 J",
+            "visual_counter": "At the end of the run the K bar reads 40.5 J while the net bar reads +22.5 J — two different nonzero numbers on one screen; the change is 40.5 minus 18.0 equals 22.5, measured from the starting 18.0 J",
             "one_line_fix": "W_net equals half m v squared minus half m v0 squared, the change, not the final value."
           }
         ]
@@ -292,7 +293,7 @@
             "id": "wet_s5_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "a five newton pull speeds up this cart from two metres a second on a frictionless floor",
+            "text": "a two newton pull speeds up this cart from two metres a second on a frictionless floor, covering 10.49 m in 3.8 s",
             "color": "#FFF176"
           },
           {
@@ -306,16 +307,16 @@
             "id": "wet_s5_hud",
             "type": "annotation",
             "position": { "x": 560, "y": 400 },
-            "text": "the d arrow shows exactly 2.0 m at the flag, and the HUD's a row holds at 1.00 m/s²",
+            "text": "the d arrow shows exactly 5.0 m at the flag, and the HUD's a row holds at 0.40 m/s²",
             "color": "#4DD0E1"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "A five newton pull speeds up this cart from two metres a second.", "text_hi": "पाँच newton का pull इस cart को दो metres per second से तेज़ करता है।", "glow": "nlb_arrow_cart_applied" },
+            { "id": "s5_1", "text_en": "A two newton pull speeds up this cart from two metres a second.", "text_hi": "दो newton का pull इस cart को दो metres per second से तेज़ करता है।", "glow": "nlb_arrow_cart_applied" },
             { "id": "s5_2", "text_en": "Net work, mass times acceleration times distance, equals the change in kinetic energy.", "text_hi": "Net work — mass गुणा acceleration गुणा distance — kinetic energy में बदलाव के बराबर होता है।", "glow": "energy_panel" },
             { "id": "s5_3", "text_en": "At the flag, the pull has done ten joules while K rises from ten to twenty.", "text_hi": "Flag पर, pull ने दस joules का work किया है जबकि K दस से बीस joules तक बढ़ता है।", "glow": "checkpoint_1" },
-            { "id": "s5_4", "text_en": "Ten and ten agree: five newtons times two metres matches the d arrow.", "text_hi": "दस और दस मिलते हैं: पाँच newtons गुणा दो metres भी d arrow की reading से मिलता है।", "glow": "displacement_vector" }
+            { "id": "s5_4", "text_en": "Ten and ten agree: two newtons times five metres matches the d arrow.", "text_hi": "दस और दस मिलते हैं: दो newtons गुणा पाँच metres भी d arrow की reading से मिलता है।", "glow": "displacement_vector" }
           ]
         }
       },
@@ -600,7 +601,7 @@
     },
     "states": {
       "STATE_1": {
-        "label": "A 5 kg cart accelerates from rest under a steady 10 N pull on a frictionless floor; the net-work bar and the K bar climb together, both landing on exactly 40.0 J",
+        "label": "A 5 kg cart accelerates from rest under a steady 5 N pull on a frictionless floor, covering 8.0 m in 4.0 s; the net-work bar and the K bar climb together, both landing on exactly 40.0 J",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Two bars, one number",
@@ -608,10 +609,10 @@
         "formula_overlay": "Wₙₑₜ = ΔK",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
-          "variable_overrides": { "v0": 0, "m": 5, "F": 10, "mu_k": 0 },
+          "variable_overrides": { "v0": 0, "m": 5, "F": 5, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 10, "angle_deg": 0 } }
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 5, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["applied"] }
@@ -621,14 +622,14 @@
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
           "work_scale_J": 55,
-          "loop_reset_ms": 2000,
+          "loop_reset_ms": 4000,
           "readouts": ["v"],
           "controls_visible": []
         }
       },
 
       "STATE_2": {
-        "label": "A 5 kg cart launched at 4 m/s onto a rough floor (μ = 0.4) with no pull; the net bar dives to −40.0 J as the K bar falls to exactly 0.0 J at rest",
+        "label": "A 5 kg cart launched at 4 m/s onto a rough floor (μ = 0.1) with no pull; it coasts 8.16 m over 4.08 s while the net bar dives to −40.0 J and the K bar falls to exactly 0.0 J, then holds at rest for 1.2 s",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Negative net work: K falls",
@@ -636,10 +637,10 @@
         "formula_overlay": "Wₙₑₜ = ΔK",
         "newtons_laws_body": {
           "mode": "coast_with_friction",
-          "variable_overrides": { "v0": 4, "m": 5, "mu_k": 0.4 },
+          "variable_overrides": { "v0": 4, "m": 5, "mu_k": 0.1 },
           "surface": { "theta_deg": 0, "length_m": 6 },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4, "mu_s": 0.4, "mu_k": 0.4 }
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4, "mu_s": 0.1, "mu_k": 0.1 }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["friction"] }
@@ -649,14 +650,14 @@
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
           "work_scale_J": 55,
-          "loop_reset_ms": 2100,
+          "loop_reset_ms": 5300,
           "readouts": ["f", "v"],
           "controls_visible": []
         }
       },
 
       "STATE_3": {
-        "label": "A 5 kg cart coasts at a constant 2.5 m/s while a 19.6 N pull exactly balances 19.6 N of kinetic friction; the pull bar climbs to +98.0 J and the friction bar dives to −98.0 J while the net bar and the K bar (15.6 J) hold still",
+        "label": "A 5 kg cart coasts at a constant 2.0 m/s over 8.0 m in 4.0 s while a 12.25 N pull exactly balances 12.25 N of kinetic friction; the pull bar climbs to +98.0 J and the friction bar dives to −98.0 J while the net bar and the K bar (10.0 J) hold still",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Net zero: K constant",
@@ -664,10 +665,10 @@
         "formula_overlay": "Wₙₑₜ = 0, ΔK = 0",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
-          "variable_overrides": { "v0": 2.5, "m": 5, "F": 19.6, "mu_k": 0.4 },
+          "variable_overrides": { "v0": 2, "m": 5, "F": 12.25, "mu_k": 0.25 },
           "surface": { "theta_deg": 0, "length_m": 6 },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2.5, "mu_s": 0.4, "mu_k": 0.4, "applied_force": { "N": 19.6, "angle_deg": 0 } }
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2, "mu_s": 0.25, "mu_k": 0.25, "applied_force": { "N": 12.25, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["applied", "friction"] }
@@ -680,14 +681,14 @@
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
           "work_scale_J": 110,
-          "loop_reset_ms": 2000,
+          "loop_reset_ms": 4000,
           "readouts": ["v", "F_applied", "f"],
           "controls_visible": []
         }
       },
 
       "STATE_4": {
-        "label": "A 4 kg cart launched left at −3 m/s against a steady +12 N pull, frictionless, slows to K = 0 as net dives to −18.0 J, then turns and speeds up to K = 46.1 J beside net = +28.1 J at the loop's end",
+        "label": "A 4 kg cart launched left at −3 m/s against a steady +6 N pull, frictionless, travels 3.0 m left over 2.0 s and slows to K = 0 as net dives to −18.0 J, then turns and speeds up over 6.75 m to K = 40.5 J beside net = +22.5 J at the loop's end",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Measured from the start",
@@ -695,10 +696,10 @@
         "formula_overlay": "ΔK = ½mv² − ½mv₀²",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
-          "variable_overrides": { "v0": -3, "m": 4, "F": 12, "mu_k": 0 },
+          "variable_overrides": { "v0": -3, "m": 4, "F": 6, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": 1.6, "initial_velocity_mps": -3, "applied_force": { "N": 12, "angle_deg": 0 } }
+            { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -1.5, "initial_velocity_mps": -3, "applied_force": { "N": 6, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["applied"] }
@@ -709,16 +710,16 @@
           ],
           "work_scale_J": 40,
           "checkpoints": [
-            { "s_m": 1.6, "label": "start", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "first" }
+            { "s_m": -1.5, "label": "start", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "first" }
           ],
-          "loop_reset_ms": 2600,
+          "loop_reset_ms": 5000,
           "readouts": ["v"],
           "controls_visible": []
         }
       },
 
       "STATE_5": {
-        "label": "A 5 kg cart accelerates from 2 m/s under a steady 5 N pull, frictionless; at the flag (d = 2.0 m) the stamp reads flag: W net = 10.0 J · K = 20.0 J, checked against the d arrow's own value",
+        "label": "A 5 kg cart accelerates from 2 m/s under a steady 2 N pull, frictionless, covering 10.49 m in 3.8 s; at the flag (d = 5.0 m) the stamp reads flag: W net = 10.0 J · K = 20.0 J, checked against the d arrow's own value",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Derived from F = ma",
@@ -726,10 +727,10 @@
         "formula_overlay": "Wₙₑₜ = ma·d = ½mv² − ½mv₀²",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
-          "variable_overrides": { "v0": 2, "m": 5, "F": 5, "mu_k": 0 },
+          "variable_overrides": { "v0": 2, "m": 5, "F": 2, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2, "applied_force": { "N": 5, "angle_deg": 0 } }
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2, "applied_force": { "N": 2, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["applied"] }
@@ -739,11 +740,11 @@
           "work_accumulators": [
             { "force": "net", "label": "net", "body_id": "cart" }
           ],
-          "work_scale_J": 55,
+          "work_scale_J": 25,
           "checkpoints": [
-            { "s_m": -3.4, "label": "flag", "body_id": "cart", "capture": ["W", "K"], "capture_mode": "first" }
+            { "s_m": -0.4, "label": "flag", "body_id": "cart", "capture": ["W", "K"], "capture_mode": "first" }
           ],
-          "loop_reset_ms": 2400,
+          "loop_reset_ms": 3800,
           "readouts": ["v", "a"],
           "controls_visible": []
         }
