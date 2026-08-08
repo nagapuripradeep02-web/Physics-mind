@@ -833,15 +833,15 @@ const F3D_REVEAL_KEYS = [
     // still be recognised as field_3d rather than falling through to the PCPL
     // branch (which would derive a wall-clock reveal pin and a PCPL hold class).
     'rigid_body_rotation',
-    // vector_products_in_space (MATHEMATICS — dot & cross product in 3D,
-    // Rule-40 platform dispatch, 2026-08-08): the per-state `vp` block
+    // vector_geometry_3d (MATHEMATICS — dot & cross product in 3D,
+    // Rule-40 platform dispatch, 2026-08-08): the per-state `vg` block
     // (mode dot|cross|triple, a_mag/b_mag/theta_deg, c_mag/c_theta_deg/
     // c_phi_deg, show_c/show_cross_vector/show_angle_arc/show_parallelogram/
     // show_parallelepiped, reveal_ms). Registered here so a cached
     // physics_config that flattened field_3d_config.states to the top level
     // is still recognised as field_3d, not PCPL (same reason every sibling
     // above is listed).
-    'vp',
+    'vg',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -3344,21 +3344,42 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (!rbrFound && rbr.mode !== 'sandbox') candidates.push(RBR_CUSHION);
     }
 
-    // vector_products_in_space (MATHEMATICS, prefix `vp`). Every guided
-    // state's only scripted reveal is the vector grow-in ease (state.vp.
-    // reveal_ms, renderer default 900ms — see updateVectorProductsInSpaceFrame
-    // in field_3d_renderer.ts) — a ONE-SHOT closed form of state-local ms
-    // that then HOLDS at full length. A scenario with no block here pins at
-    // DEFAULT_REVEAL_MS = 1500 mid-grow-in and mints a self-contradictory H2
-    // baseline (field3d_scenario_missing_maxreveal_block_frozen_pin_
-    // defaults_1500ms_predates_scripted_reveal). The explore state
-    // (show_sliders: true) skips the grow-in entirely (ease pinned at 1), so
-    // it needs no candidate here — deriveHoldExpectations classifies it
-    // 'interactive' below.
-    const vp = asObj(state.vp);
-    if (vp && state.show_sliders !== true) {
-        const VP_CUSHION = 300; // past the ease-out cubic's settle, into the held pose
-        candidates.push(asNum(vp.reveal_ms, 900) + VP_CUSHION);
+    // vector_geometry_3d (MATHEMATICS, prefix `vg`). A guided state has up to
+    // THREE scripted beats, all closed forms of state-local ms that then
+    // HOLD: the vector grow-in ease (state.vg.reveal_ms, renderer default
+    // 900ms), the F21 parameter ramps (state.vg.animate[], each
+    // start_ms + duration_ms, one-shot-hold), and the F24 camera schedule
+    // (state.vg.camera_steps[], each at_ms + ease_ms). The pin must land past
+    // the LAST of them, never merely past reveal_ms: a pin that lands
+    // mid-ramp captures a transitional pose and mints a baseline the state
+    // itself contradicts a frame later (scar
+    // field3d_slcr_reveal_hold_captures_transitional_r_family). A scenario
+    // with no block here pins at DEFAULT_REVEAL_MS = 1500 mid-grow-in
+    // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_
+    // predates_scripted_reveal). The explore state (show_sliders: true) skips
+    // the grow-in entirely (ease pinned at 1) and free-runs under the
+    // teacher, so it needs no candidate here — deriveHoldExpectations
+    // classifies it 'interactive' below.
+    const vg = asObj(state.vg);
+    if (vg && state.show_sliders !== true) {
+        const VG_CUSHION = 300; // past the ease-out cubic's settle, into the held pose
+        let vgLastMs = asNum(vg.reveal_ms, 900);
+        const vgAnim = Array.isArray(vg.animate) ? vg.animate : [];
+        for (const raw of vgAnim) {
+            const r = asObj(raw);
+            if (!r) continue;
+            const end = asNum(r.start_ms, 0) + asNum(r.duration_ms, 0);
+            if (end > vgLastMs) vgLastMs = end;
+        }
+        const vgSteps = Array.isArray(vg.camera_steps) ? vg.camera_steps : [];
+        for (const raw of vgSteps) {
+            const st = asObj(raw);
+            if (!st) continue;
+            // 900 is VG_CAM_EASE_MS, the renderer's default ease per step.
+            const end = asNum(st.at_ms, 0) + asNum(st.ease_ms, 900);
+            if (end > vgLastMs) vgLastMs = end;
+        }
+        candidates.push(vgLastMs + VG_CUSHION);
     }
 
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
@@ -4096,7 +4117,7 @@ export function deriveHoldExpectations(
                     ? 'interactive' : 'reveal_hold';
                 continue;
             }
-            // vector_products_in_space (MATHEMATICS, prefix `vp`): the explore
+            // vector_geometry_3d (MATHEMATICS, prefix `vg`): the explore
             // state exposes its own contextual a_mag/b_mag/theta_deg/c_mag/
             // c_theta_deg/c_phi_deg slider rows (Rule 31 `show_sliders`), driven
             // live by the teacher's drag -> interactive; every other (guided)
@@ -4105,8 +4126,8 @@ export function deriveHoldExpectations(
             // as rigid_body_rotation/force_rig above) -> reveal_hold, so D7
             // (stuck tail) / D1p (frozen) permit the settled tail instead of
             // false-failing it.
-            const vpHold = asObj(state.vp);
-            if (vpHold) {
+            const vgHold = asObj(state.vg);
+            if (vgHold) {
                 out[stateId] = state.show_sliders === true ? 'interactive' : 'reveal_hold';
                 continue;
             }
