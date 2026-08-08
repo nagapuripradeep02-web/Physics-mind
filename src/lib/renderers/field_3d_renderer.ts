@@ -1891,6 +1891,38 @@ export interface Field3DConfig {
                 // signed value. Default ['K','U_grav'].
                 capture?: Array<'K' | 'U_grav' | 'U_spring' | 'E_total' | 'v' | 's' | 'W'>;
                 capture_mode?: 'first' | 'every';   // default 'first' (latch on pass 1)
+                // ── Note 11d — the TEACHING DWELL ────────────────────────────
+                //   engine_bug_queue nlb_checkpoint_crossing_has_no_teaching_dwell:
+                // a crossing STAMPS in one frame and the body keeps going, so the
+                // stamp the whole state exists to teach is on screen at its own
+                // instant for ~16 ms. dwell_ms holds the WHOLE SCENE's physics
+                // still for this many ms of state-clock time immediately after a
+                // STAMPED crossing (so it respects capture_mode: a 'first' flag
+                // dwells once, an 'every' flag dwells on each stamped pass), then
+                // resumes from exactly where it stopped.
+                //   This is docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md's slow_factor
+                // doctrine at its limit — slow_factor = infinity for a bounded
+                // window — and it carries the same mandatory honesty badge
+                // (#nlb_slowmo reads "paused at <label>"), because a still body
+                // that is not labelled as paused teaches a = 0.
+                //   Narration, reveals and eng.t_ms keep running (Rule 26): only
+                // the integrator's dt is gated, so the phase clock, loop_reset_ms
+                // and every cue stay on one timeline. Frozen-pin baselines are
+                // unaffected — under a pin dt is already 0.
+                //   Sanitised to (0, NLB_DWELL_MAX_MS]. ABSENT ⇒ the scheduler
+                // never runs and the gate latch stays null ⇒ byte-identical.
+                //   AUTHORING: loop_reset_ms must be > the last crossing + its
+                // dwell + a settle tail, or the reset would rewind the scene mid
+                // stamp. The engine DEFERS such a reset to the dwell end and warns
+                // once under NLB_DWELL_WARN_PREFIX.
+                dwell_ms?: number;
+                // Dwell only from this pass onward (1-based, default 1). The use
+                // case is a HOME-ARMED flag (note 11c) whose pass-1 stamp is the
+                // body's departure from the flag it started on: dwelling there
+                // would freeze the state before it has shown anything, so
+                // dwell_from_pass: 2 puts the pause on the RETURN crossing, which
+                // is the one a round-trip work test is actually about.
+                dwell_from_pass?: number;
             }>;
             // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ══════════════════
             //   The two measuring instruments that turn `applied_force {N, angle_deg}`
@@ -44669,15 +44701,36 @@ export const FIELD_3D_RENDERER_CODE = `
     //   #nlb_formula mid-right, #nlb_sliders bottom-right, #caption top-centre,
     //   #legend bottom-left), at top:52px so it clears the review-chrome
     //   "Full screen" button exactly as the HUD does (Rule 34d).
+    //   Note 11d reuses this ONE badge for the checkpoint dwell, and takes
+    //   PRECEDENCE over the slow-motion text when both are somehow live: a fully
+    //   stopped scene is the stronger claim, and "slow motion ×4" over a body that
+    //   is not moving at all would be the false one. Wording is deliberately the
+    //   plainest available (Rule 41) and names the flag, so the badge says WHY the
+    //   picture is still — the same honesty argument that made the slow badge
+    //   mandatory: an unlabelled still body teaches a = 0.
     function nlbUpdateSlowBadge(eng) {
         var el = document.getElementById("nlb_slowmo");
         if (!el) return;
-        var on = !!(eng && eng.slow_active);
+        var dwell = !!(eng && eng._dwell_until_ms != null);
+        var on = dwell || !!(eng && eng.slow_active);
         var want = on ? "block" : "none";
         if (el.style.display !== want) el.style.display = want;
         if (!on) return;
-        var f = eng.spring_slow_factor;
-        var txt = "slow motion ×" + String(Math.round(f * 10) / 10);
+        var txt;
+        if (dwell) {
+            // A COLON, not "paused at " + label. Checkpoint labels are authored as
+            // phrases that already carry their own preposition — ch6 ships "at the
+            // flag", "back at the start", "the same spot", "flag A" — so the
+            // preposition form renders "paused at at the flag" and "paused at back
+            // at the start" on half of them (measured on the concept that asked for
+            // this feature). The colon reads correctly against every one of those,
+            // and matches the punctuation the STAMP itself already uses for the
+            // same label (nlbCpStampText composes label + ": " + values). Rule 41.
+            var lb = eng._dwell_label || "";
+            txt = lb ? ("paused: " + lb) : "paused";
+        } else {
+            txt = "slow motion ×" + String(Math.round(eng.spring_slow_factor * 10) / 10);
+        }
         if (el.textContent !== txt) el.textContent = txt;
     }
 
@@ -44965,6 +45018,15 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.spring_force_N = 0;
         eng.slow_active = false;             // 18e — and the slow window / badge
         eng.spring_slow_factor = 1;
+        // Note 11d — the checkpoint dwell is a latched WINDOW on the state clock,
+        // so it belongs in exactly this cluster. A rewind puts t_ms back to 0 while
+        // an open window's end time is in the future, which would freeze the whole
+        // scene from the first frame of the new cycle; the warn latch clears with
+        // it so a re-entry can report a genuinely re-made authoring mistake.
+        eng._dwell_until_ms = null;
+        eng._dwell_label = "";
+        eng._dwell_loop_warned = false;
+        window.PM_nlbDwell = null;
         eng.E_t0 = null;                     // 18d — re-captured on the next frame
         eng.energy_held = false;
         eng.energy_snapshot = null;
@@ -45039,10 +45101,42 @@ export const FIELD_3D_RENDERER_CODE = `
         var cycle = Math.floor((eng.t_ms || 0) / R);
         if (eng._loop_cycle == null) { eng._loop_cycle = cycle; return; }  // adopt, never fire
         if (cycle === eng._loop_cycle) return;
+        // Note 11d — a dwell OUTRANKS the loop clock. An un-deferred reset would
+        // rewind the scene while its checkpoint stamp is still on screen, which is
+        // precisely the flash-past failure the dwell exists to prevent — and the
+        // teacher would see the state restart mid-sentence. So we return without
+        // touching eng._loop_cycle: the cycle counter is still behind, so the very
+        // first post-dwell frame reaches the rewind below and it fires exactly
+        // once, late rather than never.
+        //   Sited AFTER the cycle test, not before it, and the difference is not
+        // cosmetic: ahead of the test this branch is reached on EVERY frame of
+        // EVERY dwell, so a perfectly well-authored state (loop 6000 ms, dwell
+        // 204-1004 ms) warns about a reset that was never due — measured, twice in
+        // one 9 s headless run, before this line was moved.
+        //   A reset that IS due mid-dwell is a genuine authoring error (R too short
+        // for the choreography it has to contain), so it warns — once per state
+        // entry, the same latch discipline the energy-clamp and scale warns use, so
+        // THE EYE's repeated RESET drive cannot multiply one mistake into a wall of
+        // console noise.
+        if (eng._dwell_until_ms != null && eng.t_ms <= eng._dwell_until_ms) {
+            if (!eng._dwell_loop_warned) {
+                eng._dwell_loop_warned = true;
+                console.warn(NLB_DWELL_WARN_PREFIX + " loop_reset_ms fired mid-dwell — DEFERRED to " +
+                    "the dwell end; author R > last crossing + its dwell + settle tail.");
+            }
+            return;
+        }
         var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+        // Note 11d — carried across the rewind for the SAME reason the clock is:
+        // this rewind is not a state entry. The warn latch lives in the reset
+        // cluster so a genuine entry / RESET_TRAJECTORY re-arms it, but a looping
+        // state would otherwise clear its own suppressor every cycle and report one
+        // authoring mistake once per lap (measured: 5 warns in a 7 s headless run).
+        var wKeep = eng._dwell_loop_warned;
         nlbResetTrajectory();                 // the ONE rewind path
         eng.t_ms = tKeep;                     // the master clock stays monotonic
         window.PM_nlbTimeMs = tKeepPub;
+        eng._dwell_loop_warned = wKeep;
         eng._loop_cycle = cycle;              // AFTER the rewind (which nulls it)
     }
 
@@ -45632,6 +45726,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_MK_HREF_COLOR = "#4FC3F7";
     var NLB_CP_COLOR = "#CE93D8";
     var NLB_CP_MAX = 3;                    // checkpoint flags built once
+    // Note 11d — the teaching dwell. A ceiling, not a default: five seconds is
+    // already longer than any single delta-cue beat (Rule 31's 25-55 word budget
+    // is 10-20 s for a whole STATE), and an unbounded dwell would let one
+    // mis-typed number stop a state dead with no way to tell it from a hang.
+    var NLB_DWELL_MAX_MS = 5000;
+    var NLB_DWELL_WARN_PREFIX = "[PM_NLB_DWELL]";
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
@@ -46589,6 +46689,34 @@ export const FIELD_3D_RENDERER_CODE = `
             if (cp.mode === "first" && cp._count > 1) continue;
             cp.text = nlbCpStampText(eng, cp, b, snap);
             changed = true;
+            // ── Note 11d — SCHEDULE the teaching dwell ────────────────────────
+            //   Deliberately sited AFTER the stamp line and INSIDE the same
+            //   branch: the 'first' early-return above has already sent every
+            //   unstamped re-crossing away, so a dwell can only ever be attached
+            //   to a stamp that is actually on screen. No dwell without a stamp,
+            //   and no stamp-mode rule to keep in sync in two places.
+            //   The window is anchored on the CROSSING INSTANT (note 11b's own
+            //   fraction), not on this frame's end, so the pause is the same
+            //   length of physics whether the browser folded 1 or 3 steps into
+            //   this frame — the Rule 36 requirement that made note 11b exist.
+            //   Carved out of a sandbox (Rule 37: the explore state never stops)
+            //   and of a seized scene (a teacher dragging owns the clock).
+            if (cp.dwell_ms > 0 && cp._count >= cp.dwell_from_pass && eng.mode !== "sandbox"
+                && !window.PM_nlbSweepSeized && !window.PM_nlbBodyDragged) {
+                var fD = nlbCpFrac(cp, b);
+                var tCross = eng._tPrevMs + (fD != null ? fD : 1) * (eng.t_ms - eng._tPrevMs);
+                var until = tCross + cp.dwell_ms;
+                // max(), not overwrite: when ONE step carries the body through two
+                // flags, the longer explanation wins and BOTH stamps are readable
+                // under a single freeze. A plain assignment would let the second
+                // (possibly shorter) dwell truncate the first. The until-beats-now
+                // guard below drops a window that has already expired within
+                // the frame that opened it, so no gate can latch on dead time.
+                if (until > eng.t_ms && (eng._dwell_until_ms == null || until > eng._dwell_until_ms)) {
+                    eng._dwell_until_ms = until;
+                    eng._dwell_label = cp.label;
+                }
+            }
             var g = nlbFindById("checkpoint_" + (i + 1));
             if (g) g.userData._nlbFired = true;
         }
@@ -47120,6 +47248,16 @@ export const FIELD_3D_RENDERER_CODE = `
                     body_id: ce.body_id || "",
                     capture: (ce.capture && ce.capture.length) ? ce.capture : ["K", "U_grav"],
                     mode: (ce.capture_mode === "every") ? "every" : "first",
+                    // note 11d — the teaching dwell, sanitised HERE (where every
+                    // other checkpoint default is resolved) so the per-frame
+                    // scheduler is a straight number compare and can never see a
+                    // string, a negative or an unbounded value. Absent / invalid
+                    // ⇒ 0 ⇒ the scheduler's first test fails and the whole
+                    // feature is inert, byte for byte.
+                    dwell_ms: (typeof ce.dwell_ms === "number" && isFinite(ce.dwell_ms) && ce.dwell_ms > 0)
+                        ? Math.min(ce.dwell_ms, NLB_DWELL_MAX_MS) : 0,
+                    dwell_from_pass: (typeof ce.dwell_from_pass === "number" && isFinite(ce.dwell_from_pass)
+                        && ce.dwell_from_pass >= 1) ? Math.floor(ce.dwell_from_pass) : 1,
                     // note 11c: both latches are (re)written by nlbCpArm() below,
                     // once eng.bodies exists and every body_id has been resolved.
                     _side: null, _home: false, _count: 0, text: ""
@@ -48398,6 +48536,47 @@ export const FIELD_3D_RENDERER_CODE = `
         //   eng.slow_active is false in every state with no spring_action, in a
         //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
         var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        // ── Note 11d — the CHECKPOINT DWELL gate ────────────────────────────────
+        //   The same dt multiplier the slow-motion badge above documents, taken to
+        //   its limit: a bounded window in which the factor is infinite. Sited HERE,
+        //   on the ONE dt every integrator branch reads, rather than on the
+        //   per-body nlbLatchedNow branch, for two reasons that are not stylistic:
+        //     • that branch ZEROES b.v (it models a mechanical latch), which would
+        //       blank the very velocity the stamp is teaching and resume the body
+        //       from rest — the pause would rewrite the physics it exists to show;
+        //     • it is per-body, so on a coupled/pulley state (Branch B) holding one
+        //       body while its partner ran would stretch an inextensible string.
+        //   A WHOLE-SCENE dt of zero has neither problem: every body's s and v are
+        //   simply rewritten to the values they already hold.
+        //   Rule 36, in full:
+        //     • hPhys is only ever MULTIPLIED (never divided) downstream, so exact
+        //       0 is safe and is what we use — an epsilon would creep the pose and
+        //       break the held frame's byte-stability;
+        //     • the resume frame integrates ONLY its post-window fraction, so N
+        //       folded micro-steps still cover exactly the same physics as N
+        //       separate frames (without this line a 3-step frame and three 1-step
+        //       frames disagree by up to one h). This is phsComputeFreeze's
+        //       piecewise-affine idiom applied to a single window;
+        //     • eng.t_ms is untouched — the phase clock, narration, reveals and
+        //       cues all keep running (Rule 26). We stop the physics, not the state.
+        //   Rule 37: a trusted sweep or body drag CANCELS an open window outright —
+        //   a teacher who grabs the block gets it immediately, never after a pause.
+        if (eng._dwell_until_ms != null) {
+            if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) {
+                eng._dwell_until_ms = null; eng._dwell_label = "";
+            } else if (eng.t_ms <= eng._dwell_until_ms) {
+                hPhys = 0;                                    // wholly inside the window
+            } else {
+                var rawMs = eng.t_ms - eng._tPrevMs;          // resume frame: the active tail only
+                if (rawMs > 0) hPhys *= (eng.t_ms - Math.max(eng._tPrevMs, eng._dwell_until_ms)) / rawMs;
+                eng._dwell_until_ms = null; eng._dwell_label = "";
+            }
+        }
+        // DERIVED mirror for the probes (and for THE EYE's own diagnostics); nothing
+        // in the engine ever reads it back.
+        window.PM_nlbDwell = (eng._dwell_until_ms != null)
+            ? { active: true, until_ms: eng._dwell_until_ms, label: eng._dwell_label || "" }
+            : null;
         // SEAM K read point: the dt the integrator actually took this frame, in
         // SECONDS. The energy layer needs it for the ripple correction, and a probe
         // needs it to tell a slowed frame from a real-time one.
