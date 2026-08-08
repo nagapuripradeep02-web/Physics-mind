@@ -757,9 +757,15 @@ function computePhysics_derivative_as_secant_limit(vars) {
   var hz    = (vars && typeof vars.hz    === 'number' && isFinite(vars.hz))    ? vars.hz    : 1;
   var u     = (vars && typeof vars.u     === 'number' && isFinite(vars.u))     ? vars.u     : -1.6;
   var xdraw = (vars && typeof vars.xdraw === 'number' && isFinite(vars.xdraw)) ? vars.xdraw : -2.1;
+  // h7 — added founder_proxy Checkpoint B F-6 (2026-08-07): STATE_7-only
+  // linear h sweep (0.800 -> 0.020) driving the chord's own visible rotation
+  // as its algebra reveals. Same defensive-default shape as every other
+  // variable above; mirrored verbatim in the TS twin
+  // (physicsEngine/concepts/derivative_as_secant_limit.ts).
+  var h7    = (vars && typeof vars.h7    === 'number' && isFinite(vars.h7))    ? vars.h7    : 0.8;
   return {
     concept_id: 'derivative_as_secant_limit',
-    variables: { x0: x0, xq: xq, hlog: hlog, hz: hz, u: u, xdraw: xdraw },
+    variables: { x0: x0, xq: xq, hlog: hlog, hz: hz, u: u, xdraw: xdraw, h7: h7 },
     derived: {},
     forces: []
   };
