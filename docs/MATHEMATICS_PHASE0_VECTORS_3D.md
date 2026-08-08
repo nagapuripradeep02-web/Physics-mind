@@ -134,6 +134,44 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > **⚠ The skeleton's §(f) dispatch table (`:1121`) is missing a row** — it assigns SR-B "gate sections
 > 3–7, 11–12", but §13 is SR-B's by founder constraint 1. SR-B built it and said so.
 >
+> ## ⭐ A29 · THE DEFECT CLASS, EIGHTH INSTANCE — AND THIS TIME IT WAS THE VERIFICATION, BY ME
+> `mathematics_author` solved #7's S7 `c` and reported `Volume 9.951209 / Base 4.270752 / Height
+> 2.330084` → displayed **9.95 / 4.27 / 2.33**, product **9.9491 → 9.95, closes with 0.0041 margin**.
+> **I did not accept it — I recomputed independently**, matched the Volume to six decimals, got a
+> different Base and Height, and sent it back saying the rounding did not close.
+>
+> **I was wrong. My reconstruction had `a` and `b` swapped.** Shipped `vgBuildVectors` (`:12120–12121`)
+> puts **`a` at +θ/2 and `b` at −θ/2**; I had the z-signs exchanged — a reflection `diag(1,1,−1)`
+> applied to `a` and `b` but not to `c`.
+>
+> **AND MY CHECK COULD NOT HAVE CAUGHT IT.** Both `a` and `b` lie in the xz-plane, so `a×b` is purely
+> along ±y and `a·(b×c) = (a×b)_y · c_y`. The swap negates `(a×b)_y`; the reflection negates the
+> determinant; the absolute value restores it. **Volume is therefore IDENTICALLY invariant under the
+> exact error I made.** Measured over 20 000 random configurations:
+> ```
+> max |Volume difference| = 0.00e+00     ← the quantity I validated on
+> max |Base   difference| = 20.2942      ← the quantity that discriminates
+> ```
+> **I validated on the one quantity that provably cannot distinguish the two conventions**, and its
+> *exactness* — six decimals, dead on — is what made it feel like strong evidence. It was the weakest
+> possible evidence, for the same structural reason VG-C's area check passed a crossed winding
+> (permutation-invariant) and SR-B's index count passed a wrong reveal order (also
+> permutation-invariant). **Three instances of "agrees for a reason unrelated to what it tests," and
+> the third is the verification step itself.**
+>
+> > ### THE RULE, and it now governs verification as well as gates
+> > **An exact match on a quantity that is INVARIANT under the error you might have made is weaker
+> > evidence than an approximate match on one that DISCRIMINATES.** Before trusting a reconstruction
+> > against a reference, ask what your check would report *if you were wrong* — and if the answer is
+> > "the same thing," you have not checked anything. Choose the discriminating quantity first, then
+> > measure. Here: `Base = |b×c|` was the probe; `Volume = |a·(b×c)|` never could be.
+>
+> **The practice that made this recoverable is worth keeping:** the dispatch said *"if my numbers are
+> right the fix is not done; if yours are, show me where my construction is wrong — I would rather be
+> corrected than have you conform."* The author took the second branch, quoted the shipped lines, and
+> proved the invariance rather than merely asserting the convention. **A verification culture only
+> works if the verifier can be the one who is wrong.**
+>
 > **A25 · NEW CONTRACT BUG, FLAGGED NOT FIXED — the authored enum is incomplete for `lines_planes`.**
 > `:408`'s type union lists the **11 `products` tokens only**, but `VG_READOUT_LABEL` labels the **13
 > Δ6 `lines_planes` tokens** and `vgReadoutLine` prints any key a state names. **So a `lines_planes`
