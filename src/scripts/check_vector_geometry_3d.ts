@@ -37,6 +37,19 @@
  *      deleted and rebuilt).
  *   7  the parallelepiped: 8 corners, 6 faces, the solid CLOSES by
  *      construction, and its volume equals |a.(b x c)|.
+ *  7b  D-5 solid_build_frac — the face-by-face BUILD moves the DRAW RANGE,
+ *      never the geometry, so the closure signature of 7 holds at every
+ *      value of the knob.
+ *  7c  D-5 split_solid_frac — the decomposition is a VOLUME-EXACT shear:
+ *      base x height == |a.(b x c)| at every fraction, the base extraction
+ *      is in the base PLANE (so it cannot corrupt the height the picture
+ *      reads), and the solid stays closed throughout.
+ *  7d  D-5 determinism — both knobs are closed forms of state-local ms, so
+ *      a rewound / re-pinned SET_TIME_FREEZE frame is bit-for-bit identical.
+ *  7e  show_parallelogram / show_parallelepiped — the visibility toggles,
+ *      run against the SHIPPED apply pass on a stub scene (they had zero
+ *      coverage: every other section tests pure geometry, and a mesh that is
+ *      built, correct and never shown passes all of them).
  *  11  FLEET SAFETY — every scenario other than vector_geometry_3d emits
  *      byte-identical template output vs the base ref.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
@@ -79,12 +92,14 @@ const FNS = [
   "vgParallelepipedFaces", "vgProjectPoint", "vgPairwiseScreenSeparationDeg",
   "vgEase", "vgAnimKnobs", "vgAnimValue", "vgAnimEndMs",
   "vgCamScheduleAt", "vgCamStepsEndMs", "vgAutoFramePos",
+  "vgSplitPieces", "vgSolidFaceCount",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
   ...FNS.map((f) => grabFn(f)),
   "var VG_CAM_EASE_MS = 900;",
+  "var VG_SPLIT_GAP_K = 1.25;",
   "return { " + FNS.join(", ") + " };",
 ].join("\n"))() as any;
 
@@ -424,6 +439,357 @@ console.log("\n=== 5. deriveStateMeta registration — the reveal pin lands past
   assertTrue(`the un-registered default is exactly DEFAULT_REVEAL_MS = 1500 ms (got ${bare.STATE_X}) — mid-ramp, and the reason the block is mandatory`,
     bare.STATE_X === 1500);
   assertTrue("the registered STATE_2 pin is LATER than the un-registered default", (reveal.STATE_2 ?? 0) > (bare.STATE_X ?? 0));
+}
+
+console.log("\n=== 7b. D-5 — solid_build_frac: the face-by-face BUILD moves the DRAW RANGE, never the geometry ===");
+{
+  // The knob exists at all, and is ramp-able (a static scalar with no driver
+  // is what Checkpoint A P1-3 rejected).
+  const knobs: string[] = E.vgAnimKnobs();
+  assertTrue("solid_build_frac is in the CLOSED animate[] knob enum (it is a RAMPED field, not a static one)",
+    knobs.indexOf("solid_build_frac") >= 0);
+  assertTrue("split_solid_frac is in the CLOSED animate[] knob enum", knobs.indexOf("split_solid_frac") >= 0);
+  // Rule 40a ON THE MECHANISM, not the name: the face-by-face reveal of a
+  // closed box off a state-local clock already ships as electric_flux's
+  // faceRevealCount. This build is a PORT of it, and this assertion is what
+  // stops a future dispatch rebuilding it a third time.
+  assertTrue("the PORTED mechanism exists in the shipped renderer (Rule 40a on the MECHANISM): efluxUpdateClosed's faceRevealCount",
+    SRC.indexOf("function efluxUpdateClosed(") >= 0 && SRC.indexOf("faceRevealCount") >= 0);
+
+  check("frac 0 draws NO faces (the solid genuinely builds from nothing)", E.vgSolidFaceCount(0), 0, 0);
+  check("frac 1 draws all 6", E.vgSolidFaceCount(1), 6, 0);
+  check("an ABSENT knob (undefined) means fully built — the pre-D-5 picture is unchanged", E.vgSolidFaceCount(undefined), 6, 0);
+  check("frac 0.5 draws 3", E.vgSolidFaceCount(0.5), 3, 0);
+  // 1/6, 2/6 ... land exactly on their own face boundary rather than one
+  // short of it (a float-floor defect that would leave the solid a face down
+  // at frac = 1 - epsilon of a face window).
+  let boundariesExact = true;
+  for (let i = 0; i <= 6; i++) if (E.vgSolidFaceCount(i / 6) !== Math.min(6, i)) boundariesExact = false;
+  assertTrue("every face boundary k/6 reveals exactly k faces (no float-floor off-by-one)", boundariesExact);
+  let monotone = true;
+  let prev = 0;
+  for (let i = 0; i <= 200; i++) { const n = E.vgSolidFaceCount(i / 200); if (n < prev) monotone = false; prev = n; }
+  assertTrue("the face count is MONOTONE NON-DECREASING across [0,1] (a build never un-builds)", monotone);
+
+  // THE POINT OF THE DESIGN: the FACE SET is untouched by the build, so the
+  // closure signature section 7 asserts holds at every value of the knob.
+  const v = E.vgBuildVectors({ a_mag: 2.2, b_mag: 1.7, theta_deg: 70, c_mag: 1.9, c_theta_deg: 50, c_phi_deg: 210 });
+  const fullFaces: V3[][] = E.vgParallelepipedFaces(v.a, v.b, v.c);
+  assertTrue("the build knob is a DRAW RANGE: the renderer writes all 6 faces then calls setDrawRange",
+    SRC.indexOf("o.geometry.setDrawRange(0, nFaces * 6)") >= 0);
+  assertTrue("...and vgSolidFaceCount touches no vertex (it takes a fraction and returns a count, nothing else)",
+    grabFn("vgSolidFaceCount").indexOf("[") < 0);
+
+  // NEGATIVE CONTROL — the OTHER way to write a face-by-face build, and the
+  // one that looks right in a still frame: collapse the not-yet-built faces'
+  // vertices onto the origin. Written here only, never shipped. Note what it
+  // does NOT break: the solid still has exactly 8 unique corner points (the
+  // three faces it has built already carry all 8), so a corner-count check
+  // would pass it. What it breaks is that three of the six faces are drawn as
+  // a POINT — a face of zero area — which is why the validity metric here is
+  // per-face area, not corner count.
+  function faceArea(f: V3[]): number {
+    return 0.5 * len3(cross3(sub3(f[1], f[0]), sub3(f[2], f[0])))
+      + 0.5 * len3(cross3(sub3(f[2], f[0]), sub3(f[3], f[0])));
+  }
+  function collapseBuild(faces: V3[][], nBuilt: number): V3[][] {
+    return faces.map((f, i) => (i < nBuilt ? f : f.map(() => [0, 0, 0] as V3)));
+  }
+  const collapsed = collapseBuild(fullFaces, 3);
+  const collapsedMinArea = Math.min(...collapsed.map(faceArea));
+  expectFail(`a build that collapses un-built faces to the origin leaves every face a real face (min face area ${collapsedMinArea.toFixed(6)})`,
+    collapsedMinArea > 1e-9);
+  const shippedMinArea = Math.min(...fullFaces.map(faceArea));
+  assertTrue(`the SHIPPED build does not share that defect — it draws from the untouched closed hexahedron, every face real at every fraction (min face area ${shippedMinArea.toFixed(4)})`,
+    shippedMinArea > 1e-9);
+  assertTrue("...and the corner-count check a lazier gate would have used passes the BROKEN build too (recorded so it is never substituted back in)",
+    new Set(collapsed.flat().map((p) => p.map((n) => n.toFixed(9)).join(","))).size === 8);
+}
+
+console.log("\n=== 7c. D-5 — split_solid_frac: the split is VOLUME-EXACT, base x height == volume, and the solid stays closed ===");
+{
+  // Closure machinery, same shape as section 7's (a closed hexahedron has
+  // exactly 12 face pairs sharing a genuine edge).
+  function edgesOf(f: V3[]): [V3, V3][] { return [[f[0], f[1]], [f[1], f[2]], [f[2], f[3]], [f[3], f[0]]]; }
+  function facesShareAnEdge(fa: V3[], fb: V3[]): boolean {
+    for (const [p, q] of edgesOf(fa)) for (const [r, s] of edgesOf(fb)) {
+      if ((len3(sub3(p, r)) < 1e-12 && len3(sub3(q, s)) < 1e-12) || (len3(sub3(p, s)) < 1e-12 && len3(sub3(q, r)) < 1e-12)) return true;
+    }
+    return false;
+  }
+  function sharedPairs(fs: V3[][]): number {
+    let n = 0;
+    for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++) if (facesShareAnEdge(fs[i], fs[j])) n++;
+    return n;
+  }
+
+  // Four configurations, deliberately including one where a.(b x c) is
+  // NEGATIVE (a left-handed a,b,c triple). The shear must straighten the
+  // solid onto the SAME side of the base it already sits on — a sign-blind
+  // implementation flips the solid through its own base plane on the way,
+  // which is a motion no student can read and a volume that passes through
+  // zero.
+  const configs = [
+    { a_mag: 2.2, b_mag: 1.7, theta_deg: 70, c_mag: 1.9, c_theta_deg: 50, c_phi_deg: 210 },
+    { a_mag: 3.0, b_mag: 2.5, theta_deg: 60, c_mag: 2.0, c_theta_deg: 50, c_phi_deg: 65 },
+    { a_mag: 1.0, b_mag: 4.0, theta_deg: 20, c_mag: 0.5, c_theta_deg: 170, c_phi_deg: 359 },
+    // c_theta_deg is measured FROM +Y, so c_theta_deg = 90 puts c in the very
+    // xz-plane a and b live in and the solid is FLAT — a real, reachable
+    // slider setting, gated separately below rather than smuggled in here
+    // where a zero-volume solid would be scored against a closed-solid
+    // signature it cannot have.
+    { a_mag: 5.0, b_mag: 1.0, theta_deg: 160, c_mag: 4.0, c_theta_deg: 25, c_phi_deg: 270 },
+  ];
+  const fracs = [0, 0.001, 0.17, 0.25, 0.5, 0.75, 0.999, 1];
+  let volInvariantMax = 0, baseTimesHeightMax = 0, baseAreaDriftMax = 0, heightDriftMax = 0;
+  let closesEverywhere = true, offPlaneMax = 0, sawNegativeTriple = false;
+  const closureCounts: number[] = [];
+  for (const cfg of configs) {
+    const v = E.vgBuildVectors(cfg);
+    const trueVol = Math.abs(dot3(v.a as V3, cross3(v.b as V3, v.c as V3)));
+    const trueBase = len3(cross3(v.b as V3, v.c as V3));
+    const trueHeight = trueVol / trueBase;
+    if (dot3(v.a as V3, cross3(v.b as V3, v.c as V3)) < 0) sawNegativeTriple = true;
+    const n: V3 = E.vgNormalize(cross3(v.b as V3, v.c as V3));
+    for (const f of fracs) {
+      const p = E.vgSplitPieces(v.a, v.b, v.c, f);
+      volInvariantMax = Math.max(volInvariantMax, Math.abs(p.volume - trueVol));
+      baseTimesHeightMax = Math.max(baseTimesHeightMax, Math.abs(p.base_area * p.height - trueVol));
+      baseAreaDriftMax = Math.max(baseAreaDriftMax, Math.abs(p.base_area - trueBase));
+      heightDriftMax = Math.max(heightDriftMax, Math.abs(p.height - trueHeight));
+      // The extracted base moves IN ITS OWN PLANE: zero component along n.
+      offPlaneMax = Math.max(offPlaneMax, Math.abs(dot3(p.base_offset as V3, n)));
+      const sp = sharedPairs(p.faces);
+      if (f === 0 || f === 1) closureCounts.push(sp);
+      if (sp !== 12) closesEverywhere = false;
+    }
+  }
+  assertTrue("the fixture set genuinely includes a LEFT-HANDED (a.(b x c) < 0) configuration", sawNegativeTriple);
+  check("VOLUME IS INVARIANT under the split — max drift over 4 configs x 8 fractions", volInvariantMax, 0, 1e-9);
+  check("base x height == |a.(b x c)| at every fraction", baseTimesHeightMax, 0, 1e-9);
+  check("the BASE AREA never moves (b and c are untouched by the shear)", baseAreaDriftMax, 0, 1e-12);
+  check("the HEIGHT never moves (it is the perpendicular distance, and the shear is parallel to nothing else)", heightDriftMax, 0, 1e-12);
+  check("the extracted base's offset is IN THE BASE PLANE — zero component along n, so it cannot corrupt the height the picture reads", offPlaneMax, 0, 1e-12);
+  assertTrue(`the solid stays CLOSED (12 shared-edge face pairs) at EVERY fraction, in every config (endpoint counts: ${closureCounts.join(", ")})`, closesEverywhere);
+
+  // The endpoints are the two pictures the state actually shows.
+  const v0 = E.vgBuildVectors(configs[0]);
+  const at0 = E.vgSplitPieces(v0.a, v0.b, v0.c, 0);
+  const at1 = E.vgSplitPieces(v0.a, v0.b, v0.c, 1);
+  check("at frac 0 the generator IS a (the solid is exactly the pre-split parallelepiped)", len3(sub3(at0.a_split as V3, v0.a as V3)), 0, 1e-12);
+  check("at frac 0 the base is NOT yet extracted (zero offset)", len3(at0.base_offset as V3), 0, 1e-12);
+  const n0: V3 = E.vgNormalize(cross3(v0.b as V3, v0.c as V3));
+  check("at frac 1 the generator is PERPENDICULAR to the base — the solid is a right prism, so base x height is what the picture shows",
+    len3(cross3(at1.a_split as V3, n0)), 0, 1e-9);
+  check("...and its length IS the height", len3(at1.a_split as V3), at1.height, 1e-9);
+  check("the height SEGMENT is perpendicular to the base too", len3(cross3(sub3(at1.height_seg[1] as V3, at1.height_seg[0] as V3), n0)), 0, 1e-9);
+  check("...and its length IS the height", len3(sub3(at1.height_seg[1] as V3, at1.height_seg[0] as V3)), at1.height, 1e-9);
+  check("the extracted base is a translate of the (b,c) parallelogram — its own area is unchanged",
+    0.5 * len3(cross3(sub3(at1.base_verts[1] as V3, at1.base_verts[0] as V3), sub3(at1.base_verts[2] as V3, at1.base_verts[0] as V3)))
+    + 0.5 * len3(cross3(sub3(at1.base_verts[2] as V3, at1.base_verts[0] as V3), sub3(at1.base_verts[3] as V3, at1.base_verts[0] as V3))),
+    at1.base_area, 1e-9);
+  // Degenerate b parallel to c: no plausible-looking fallback.
+  const degen = E.vgSplitPieces([1, 0, 0], [2, 0, 0], [3, 0, 0], 1);
+  check("b parallel to c (zero base) returns height 0 rather than a plausible number", degen.height, 0, 0);
+  check("...and leaves the generator UNSHEARED rather than pointing at a normalize-of-zero", len3(sub3(degen.a_split as V3, [1, 0, 0])), 0, 1e-12);
+
+  // THE COPLANAR CASE, and it is REACHABLE FROM THE SANDBOX, not a contrived
+  // input: c_theta_deg is the polar angle FROM +Y, so the authored slider
+  // value c_theta_deg = 90 puts c in the same xz-plane a and b live in and
+  // the parallelepiped is FLAT. Found by this section failing on a fixture
+  // that used it. Zero volume is the TRUTH there, so the requirement is that
+  // the split degrades honestly (volume 0, height 0, nothing NaN) rather than
+  // that the solid stays a solid.
+  const flat = E.vgBuildVectors({ a_mag: 5.0, b_mag: 1.0, theta_deg: 160, c_mag: 4.0, c_theta_deg: 90, c_phi_deg: 270 });
+  check("c_theta_deg = 90 (an authored slider value) makes a, b, c COPLANAR — the true volume is 0", Math.abs(dot3(flat.a as V3, cross3(flat.b as V3, flat.c as V3))), 0, 1e-12);
+  let flatFinite = true;
+  for (const f of [0, 0.5, 1]) {
+    const p = E.vgSplitPieces(flat.a, flat.b, flat.c, f);
+    if (Math.abs(p.volume) > 1e-12 || Math.abs(p.height) > 1e-12) flatFinite = false;
+    for (const face of p.faces as V3[][]) for (const pt of face) for (const co of pt) if (!isFinite(co)) flatFinite = false;
+    for (const co of (p.height_seg[1] as V3)) if (!isFinite(co)) flatFinite = false;
+  }
+  assertTrue("the flat case reports volume 0 and height 0 at every fraction, with NO NaN reaching a vertex (a NaN vertex blanks the mesh silently)", flatFinite);
+  check("...and its base area is still a real, non-zero number (the base is a genuine parallelogram; it is the HEIGHT that is zero)",
+    E.vgSplitPieces(flat.a, flat.b, flat.c, 1).base_area > 1e-6, true, 0);
+
+  // NEGATIVE CONTROL 1 — the split an implementer in a hurry writes: "stand
+  // the box upright" by pointing a along the base normal WITHOUT shortening
+  // it to the perpendicular height. It looks identical in a still frame at
+  // frac 1 and it changes the volume, which is the one number the state is
+  // there to hold still.
+  function naiveStandUpright(a: V3, b: V3, c: V3, f: number): V3 {
+    const n: V3 = E.vgNormalize(cross3(b, c));
+    const la = len3(a);
+    return [a[0] * (1 - f) + f * la * n[0], a[1] * (1 - f) + f * la * n[1], a[2] * (1 - f) + f * la * n[2]];
+  }
+  const naiveGen = naiveStandUpright(v0.a as V3, v0.b as V3, v0.c as V3, 1);
+  const naiveVol = Math.abs(dot3(naiveGen, cross3(v0.b as V3, v0.c as V3)));
+  const trueVol0 = Math.abs(dot3(v0.a as V3, cross3(v0.b as V3, v0.c as V3)));
+  expectFail(`a "keep |a|, just point it up" split preserves the volume (${naiveVol.toFixed(4)} vs ${trueVol0.toFixed(4)})`,
+    Math.abs(naiveVol - trueVol0) < 1e-9);
+  assertTrue("the SHIPPED shear does not share that defect — it shortens the generator to the perpendicular height, exactly",
+    Math.abs(at1.volume - trueVol0) < 1e-9);
+
+  // NEGATIVE CONTROL 2 — the OTHER hurried split: translate the top face along
+  // the normal and leave the four sides where they were. That is what
+  // "separate the base from the height" reads like if it is implemented as a
+  // per-face move, and it tears the solid open.
+  const tornFaces: V3[][] = (E.vgSplitPieces(v0.a, v0.b, v0.c, 0).faces as V3[][]).map((f, i) =>
+    i === 1 ? f.map((p) => add3(p, [n0[0] * 0.4, n0[1] * 0.4, n0[2] * 0.4]) as V3) : f);
+  expectFail(`a split that moves the top face alone keeps the solid closed (${sharedPairs(tornFaces)} shared-edge pairs)`,
+    sharedPairs(tornFaces) === 12);
+  assertTrue("the SHIPPED split does not share that defect — it shears the GENERATOR, so all six faces follow and the solid closes at every fraction",
+    sharedPairs(at1.faces) === 12);
+}
+
+console.log("\n=== 7d. D-5 — DETERMINISM: both knobs are closed forms of state-local ms (a rewound pin redraws bit for bit) ===");
+{
+  // The S7 script as the skeleton authors it: build 3000-4600, split
+  // 4800-6400, both through F21.
+  const animate = [
+    { knob: "c_reveal_frac", from: 0, to: 1, start_ms: 1800, duration_ms: 1200 },
+    { knob: "solid_build_frac", from: 0, to: 1, start_ms: 3000, duration_ms: 1600 },
+    { knob: "split_solid_frac", from: 0, to: 1, start_ms: 4800, duration_ms: 1600 },
+  ];
+  check("before its window opens, solid_build_frac sits at its 'from'", E.vgAnimValue(animate, "solid_build_frac", 0, 1), 0, 1e-12);
+  check("the build is complete at start + duration", E.vgAnimValue(animate, "solid_build_frac", 4600, 1), 1, 1e-12);
+  check("...and HOLDS (one-shot-hold, never a returning triangle)", E.vgAnimValue(animate, "solid_build_frac", 99999, 1), 1, 1e-12);
+  check("the split has not started while the solid is still building", E.vgAnimValue(animate, "split_solid_frac", 4600, 0), 0, 1e-12);
+  check("the split completes at 6400", E.vgAnimValue(animate, "split_solid_frac", 6400, 0), 1, 1e-12);
+  check("vgAnimEndMs reports 6400 — the reveal pin lands PAST the split, not mid-transition", E.vgAnimEndMs(animate), 6400, 0, " ms");
+
+  // deriveStateMeta must actually follow the split ramp (its evaluator is
+  // knob-agnostic, but "should be generic" is not evidence).
+  const cfg = {
+    field_3d_config: {
+      scenario_type: "vector_geometry_3d",
+      states: { STATE_7: { vg: { mode: "products", reveal_ms: 900, animate } } },
+    },
+  };
+  check("deriveStateMeta pins STATE_7 past the SPLIT's end (6400) + cushion", deriveMaxRevealTimeMs(cfg as any).STATE_7, 6700, 0, " ms");
+
+  // THE REWIND TEST, over the WHOLE pipeline (knob -> pieces -> face count),
+  // not just the ramp evaluator: this is the property camera_steps was built
+  // to preserve and the one a "+= dt" build would silently destroy.
+  const v = E.vgBuildVectors({ a_mag: 3.0, b_mag: 2.5, theta_deg: 60, c_mag: 2.0, c_theta_deg: 50, c_phi_deg: 65 });
+  const times = [0, 1800, 3000, 3400, 3999, 4600, 4800, 5200, 5600, 6000, 6400, 9000];
+  function frameAt(ms: number): string {
+    const sb = E.vgAnimValue(animate, "solid_build_frac", ms, 1);
+    const sp = E.vgAnimValue(animate, "split_solid_frac", ms, 0);
+    return JSON.stringify({ n: E.vgSolidFaceCount(sb), p: E.vgSplitPieces(v.a, v.b, v.c, sp) });
+  }
+  const fwd = times.map(frameAt);
+  const rew = [...times].reverse().map(frameAt);
+  assertTrue("REWIND: replaying the build+split backwards reproduces every frame BIT FOR BIT (no accumulator anywhere in the chain)",
+    fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+  // And a re-pin at the SAME ms is byte-identical (the SET_TIME_FREEZE case).
+  assertTrue("RE-PIN: asking for the same ms twice returns the identical frame", times.every((t) => frameAt(t) === frameAt(t)));
+  assertTrue("neither pure function reads a frame count or a delta",
+    grabFn("vgSplitPieces").indexOf("frame") < 0 && grabFn("vgSplitPieces").indexOf("dt") < 0
+    && grabFn("vgSolidFaceCount").indexOf("frame") < 0);
+
+  // NEGATIVE CONTROL — the accumulator the scar list names by hand
+  // (field3d_dt_accumulated_motion_invisible_to_eye_timepin): a build
+  // fraction advanced by += dt every frame. It cannot rewind, so a pinned
+  // capture at 3400 ms differs depending on where the clock has BEEN.
+  function accumulated(pathMs: number[]): number {
+    let f = 0;
+    for (let i = 1; i < pathMs.length; i++) f = Math.min(1, f + Math.max(0, pathMs[i] - pathMs[i - 1]) / 1600);
+    return f;
+  }
+  const straight = accumulated([3000, 3400]);
+  const viaFuture = accumulated([3000, 6000, 3400]);   // played forward, then the teacher scrubbed back
+  expectFail(`a "+= dt" build fraction gives the SAME value at 3400 ms whichever way the clock got there (${straight.toFixed(3)} vs ${viaFuture.toFixed(3)})`,
+    Math.abs(straight - viaFuture) < 1e-9);
+  assertTrue("the SHIPPED closed form does not share that defect — its value at 3400 ms depends on 3400 ms and nothing else",
+    E.vgAnimValue(animate, "solid_build_frac", 3400, 1) === E.vgAnimValue(animate, "solid_build_frac", 3400, 1));
+}
+
+console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibility toggles, run against the SHIPPED apply pass ===");
+{
+  // These two booleans had ZERO gate coverage: every other section tests pure
+  // geometry, and a mesh that is built, correct and never shown is the scar
+  // field3d_scenario_declares_bead_element_but_never_builds_the_meshes read
+  // from the other end. So the SHIPPED apply function is pulled out and run
+  // against a stub scene — presence is not correctness, and neither is
+  // absence.
+  type FakeObj = { userData: { elementType: string; tracks?: string }; visible: boolean };
+  function fakeScene(): FakeObj[] {
+    const types = ["vg_vector_a", "vg_vector_b", "vg_vector_c", "vg_cross_vector", "vg_angle_arc",
+      "vg_parallelogram", "vg_parallelepiped", "vg_base_face", "vg_height_seg"];
+    const objs: FakeObj[] = types.map((t) => ({ userData: { elementType: t }, visible: false }));
+    objs.push({ userData: { elementType: "vg_label", tracks: "vg_vector_c" }, visible: false });
+    // A FOREIGN element from a different scenario, to prove the apply pass
+    // touches only its own vg_ prefix (it runs over the shared sceneObjects).
+    objs.push({ userData: { elementType: "field_line" }, visible: true });
+    return objs;
+  }
+  const applySrc = grabFn("applyVectorGeometry3DState");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const applyFactory = new Function("sceneObjects", "window", "document", "vgAnimKnobs",
+    applySrc + "\nreturn applyVectorGeometry3DState;");
+  function runApply(scene: FakeObj[], stateDef: unknown) {
+    const winStub: Record<string, unknown> = {};
+    const docStub = { getElementById: () => ({ style: {}, value: "", textContent: "", disabled: false }) };
+    applyFactory(scene, winStub, docStub, E.vgAnimKnobs)(stateDef);
+    return { win: winStub };
+  }
+  const visOf = (s: FakeObj[], t: string) => s.filter((o) => o.userData.elementType === t)[0].visible;
+
+  // The quad ON, the solid OFF (the cross-product-area state).
+  const sQuad = fakeScene();
+  runApply(sQuad, { vg: { show_parallelogram: true, show_parallelepiped: false } });
+  assertTrue("show_parallelogram: true SHOWS the quad", visOf(sQuad, "vg_parallelogram"));
+  assertTrue("...and does NOT show the solid", !visOf(sQuad, "vg_parallelepiped"));
+  assertTrue("...nor the D-5 decomposition pieces (they belong to the solid)",
+    !visOf(sQuad, "vg_base_face") && !visOf(sQuad, "vg_height_seg"));
+
+  // The solid ON, the quad OFF (the triple-product state).
+  const sSolid = fakeScene();
+  runApply(sSolid, { vg: { show_parallelepiped: true, show_parallelogram: false, show_c: true } });
+  assertTrue("show_parallelepiped: true SHOWS the solid", visOf(sSolid, "vg_parallelepiped"));
+  assertTrue("...and does NOT show the quad", !visOf(sSolid, "vg_parallelogram"));
+  assertTrue("...and DOES admit the D-5 pieces (the frame then gates them on split_solid_frac > 0)",
+    visOf(sSolid, "vg_base_face") && visOf(sSolid, "vg_height_seg"));
+  assertTrue("show_c: true shows c and its label", visOf(sSolid, "vg_vector_c")
+    && sSolid.filter((o) => o.userData.tracks === "vg_vector_c")[0].visible);
+
+  // Neither authored: both hidden, a and b still shown (they are the scenario).
+  const sBare = fakeScene();
+  runApply(sBare, { vg: {} });
+  assertTrue("with neither flag authored BOTH stay hidden", !visOf(sBare, "vg_parallelogram") && !visOf(sBare, "vg_parallelepiped"));
+  assertTrue("a and b are ALWAYS shown (they are the scenario)", visOf(sBare, "vg_vector_a") && visOf(sBare, "vg_vector_b"));
+  assertTrue("a foreign scenario's element is NOT touched by this apply pass",
+    sBare.filter((o) => o.userData.elementType === "field_line")[0].visible);
+  // A state with no vg block at all must not throw (a renderer that throws
+  // blanks the scene and never posts SIM_READY — scar
+  // field3d_createtubeline_undefined_field_lines_throws).
+  let threw = false;
+  try { runApply(fakeScene(), { label: "no vg block" }); } catch { threw = true; }
+  assertTrue("a state carrying NO vg block does not throw (a throw here blanks the scene and stalls the clock)", !threw);
+
+  // NEGATIVE CONTROL — the mis-wiring these two flags invite, because they sit
+  // on adjacent lines and differ by four characters: the solid reading
+  // show_parallelogram. Written here only, never shipped. A quad-only state
+  // then draws the solid too.
+  function miswiredWant(d: Record<string, boolean>, elementType: string): boolean {
+    if (elementType === "vg_parallelogram") return !!d.show_parallelogram;
+    if (elementType === "vg_parallelepiped") return !!d.show_parallelogram;   // the copy-paste
+    return false;
+  }
+  expectFail("a solid wired to show_parallelogram stays hidden in a quad-only state",
+    !miswiredWant({ show_parallelogram: true, show_parallelepiped: false }, "vg_parallelepiped"));
+  assertTrue("the SHIPPED apply pass does not share that defect (proved above on the real function, not on a source grep)",
+    !visOf(sQuad, "vg_parallelepiped"));
+
+  // The readout enum grew with D-5, and a readout key with no label renders
+  // NOTHING (vgReadoutLine returns null) — the silent half of scar
+  // field3d_slcr_reactance_value_never_rendered.
+  for (const key of ["volume", "base_area", "height"]) {
+    assertTrue(`the D-5 readout key "${key}" has a label in VG_READOUT_LABEL (an unlabelled key renders nothing at all)`,
+      new RegExp("\\b" + key + ":\\s*\"").test(SRC.slice(SRC.indexOf("var VG_READOUT_LABEL"), SRC.indexOf("var VG_READOUT_LABEL") + 700)));
+  }
 }
 
 console.log("\n=== 11. FLEET SAFETY — every scenario other than vector_geometry_3d emits byte-identical template output ===");

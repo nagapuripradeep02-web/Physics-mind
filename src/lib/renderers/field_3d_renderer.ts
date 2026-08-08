@@ -385,6 +385,20 @@ export interface Field3DConfig {
             // Reveal fractions — each 0..1, each ramp-able through animate[].
             arc_reveal_frac?: number; cross_reveal_frac?: number;
             c_reveal_frac?: number; flip_frac?: number;
+            // D-5 — the parallelepiped's BUILD and DECOMPOSITION, both 0..1
+            // and both ramp-able through animate[]. solid_build_frac moves the
+            // solid's DRAW RANGE face by face (the geometry stays the closed
+            // hexahedron at every value); split_solid_frac shears the
+            // generator onto the base normal — a VOLUME-EXACT motion — and
+            // extracts the base parallelogram along an IN-PLANE offset, so
+            // "Volume = Base x Height" is watched rather than captioned.
+            // Absent/unauthored means fully built and unsplit, i.e. exactly
+            // the pre-D-5 picture.
+            solid_build_frac?: number; split_solid_frac?: number;
+            // How far the extracted base slides, as a multiple of |b + c|
+            // (default 1.25). In the BASE PLANE by construction, so it can
+            // never corrupt the height the picture reads.
+            split_gap_k?: number;
             reveal_ms?: number;
             // F9 — the numeric readout panel. Closed enum; every entry is
             // emitted as ONE DOM text node carrying symbol AND value
@@ -392,7 +406,8 @@ export interface Field3DConfig {
             // (scar calculator_dom_harvest_needs_symbol_and_value_in_ONE_
             // text_node). Rule 33d: live numbers, never a decorative dial.
             readouts?: Array<'a_mag' | 'b_mag' | 'theta_deg' | 'a_dot_b'
-                | 'cross_mag' | 'a_dot_cross' | 'b_dot_cross' | 'triple'>;
+                | 'cross_mag' | 'a_dot_cross' | 'b_dot_cross' | 'triple'
+                | 'volume' | 'base_area' | 'height'>;
             // F21 — per-state parameter ramps, evaluated CLOSED-FORM on
             // state-local ms (a PORT of the shipped param_ramp /
             // idle_auto_sweep mechanisms, never an accumulator). Several
@@ -12106,7 +12121,8 @@ export const FIELD_3D_RENDERER_CODE = `
     function vgAnimKnobs() {
         return ["a_mag", "b_mag", "theta_deg", "b_tilt_deg",
                 "c_mag", "c_theta_deg", "c_phi_deg",
-                "arc_reveal_frac", "cross_reveal_frac", "c_reveal_frac", "flip_frac"];
+                "arc_reveal_frac", "cross_reveal_frac", "c_reveal_frac", "flip_frac",
+                "solid_build_frac", "split_solid_frac"];
     }
     function vgAnimValue(animate, knob, stateMs, authored) {
         if (!animate || !animate.length) return authored;
@@ -12274,6 +12290,98 @@ export const FIELD_3D_RENDERER_CODE = `
             faceBC,                        // left   (base O, edges b,c)
             vgTranslateVerts(faceBC, a)     // right  (base a, edges b,c)
         ];
+    }
+
+    // ── D-5 · the parallelepiped DECOMPOSITION ──────────────────────────────
+    //   bug_class field3d_vector_geometry_parallelepiped_is_a_boolean_solid_
+    //   so_the_volume_state_cannot_decompose. show_parallelepiped is a
+    //   BOOLEAN, and a boolean cannot decompose: the state that teaches "the
+    //   scalar triple product IS the volume" needs the solid to BUILD and
+    //   then to SEPARATE into the two factors the formula names.
+    //
+    //   TWO knobs, both resolved through the F21 ramp evaluator
+    //   (vgAnimValue) as CLOSED FORMS of state-local ms — never accumulated,
+    //   never frame-counted — so a SET_TIME_FREEZE re-pin redraws
+    //   byte-identically and a rewind reproduces the earlier frame exactly.
+    //
+    //   solid_build_frac 0..1 — the face-by-face BUILD. A PORT of the
+    //     mechanism efluxUpdateClosed already ships (its faceRevealCount
+    //     staggers a closed box's 6 faces in off a state-local clock); Rule
+    //     40a was run on the MECHANISM, not only on the knob name. The
+    //     GEOMETRY is untouched: every vertex is always one of the solid's 8
+    //     true corners and the face set is always the closed hexahedron —
+    //     only the DRAW RANGE moves. So the closure signature (12 shared-edge
+    //     face pairs) holds at EVERY value of the knob by construction rather
+    //     than within a tolerance, and a half-built solid is a solid with
+    //     faces not yet drawn, never a solid with broken vertices.
+    //
+    //   split_solid_frac 0..1 — the DECOMPOSITION into base x height. It is
+    //     a VOLUME-EXACT SHEAR, not an explosion:
+    //       n = norm(b x c),  baseArea = |b x c|,  h = |a.(b x c)| / baseArea
+    //       a(f) = (1 - f) * a + f * (s * h * n),  s = sign(a.(b x c))
+    //     so a(f).(b x c) = (1-f) * V + f * s * h * baseArea = V for EVERY f:
+    //     the volume the readout prints CANNOT change while the solid visibly
+    //     straightens up over its base. That identity IS the lesson
+    //     (Cavalieri), and it is exact in real arithmetic rather than within
+    //     a tolerance. At f = 1 the generator is perpendicular to the base,
+    //     so the solid is a right prism and "base x height" is what the
+    //     picture literally shows. baseArea and h are untouched by the shear,
+    //     so all three readouts hold steady through the whole motion.
+    //
+    //     The base parallelogram is ALSO extracted as its own piece,
+    //     translated by f * gapK * (b + c) — a vector that lies IN THE BASE
+    //     PLANE by construction (both b and c do), so the extraction has ZERO
+    //     component along n and therefore CANNOT corrupt the height the
+    //     picture reads. An exploded lift along n was rejected for exactly
+    //     that reason: it would add the gap to the on-screen height while the
+    //     readout printed h, which is this wave's own recorded defect class
+    //     (a picture that measures a different number from the one it claims).
+    //     Rule 29 is intact: nothing is scaled for emphasis, the separation is
+    //     a real translation of a real piece.
+    //
+    //     Degenerate b parallel to c (baseArea = 0) returns the UNSHEARED
+    //     solid with height 0, rather than a plausible-looking fallback.
+    var VG_SPLIT_GAP_K = 1.25;
+    function vgSplitPieces(a, b, c, frac, gapK) {
+        var f = (typeof frac === "number" && isFinite(frac)) ? Math.max(0, Math.min(1, frac)) : 0;
+        var k = (typeof gapK === "number" && isFinite(gapK)) ? gapK : VG_SPLIT_GAP_K;
+        var bxc = vgCrossVec(b, c);
+        var baseArea = vgLenVec(bxc);
+        var signedVol = vgDotVec(a, bxc);
+        var height = (baseArea > 1e-9) ? Math.abs(signedVol) / baseArea : 0;
+        var n = vgNormalize(bxc);
+        var s = (signedVol >= 0) ? 1 : -1;
+        var aSplit = [a[0], a[1], a[2]];
+        if (baseArea > 1e-9) {
+            aSplit = [
+                a[0] * (1 - f) + f * s * height * n[0],
+                a[1] * (1 - f) + f * s * height * n[1],
+                a[2] * (1 - f) + f * s * height * n[2]
+            ];
+        }
+        var off = [f * k * (b[0] + c[0]), f * k * (b[1] + c[1]), f * k * (b[2] + c[2])];
+        var mid = [(b[0] + c[0]) / 2, (b[1] + c[1]) / 2, (b[2] + c[2]) / 2];
+        return {
+            faces: vgParallelepipedFaces(aSplit, b, c),
+            a_split: aSplit,
+            base_verts: vgTranslateVerts(vgParallelogramVerts(b, c), off),
+            base_offset: off,
+            height_seg: [mid, [mid[0] + s * height * n[0], mid[1] + s * height * n[1], mid[2] + s * height * n[2]]],
+            base_area: baseArea,
+            height: height,
+            volume: Math.abs(vgDotVec(aSplit, bxc))
+        };
+    }
+    // How many of the solid's 6 faces are DRAWN at a given build fraction.
+    // The FACE SET never changes — this is a draw range, not a geometry edit
+    // (see the header above). An unauthored/absent knob means "fully built",
+    // so every state that only sets show_parallelepiped behaves exactly as it
+    // did before this knob existed.
+    function vgSolidFaceCount(frac) {
+        if (!(typeof frac === "number" && isFinite(frac))) return 6;
+        if (frac >= 1) return 6;
+        if (frac <= 0) return 0;
+        return Math.max(0, Math.min(6, Math.floor(frac * 6 + 1e-9)));
     }
 
     // Pure perspective projection of a world point into NDC-like screen
@@ -12446,7 +12554,11 @@ export const FIELD_3D_RENDERER_CODE = `
     var VG_READOUT_LABEL = {
         a_mag: "|a|", b_mag: "|b|", theta_deg: "θ",
         a_dot_b: "a·b", cross_mag: "|a×b|",
-        a_dot_cross: "a·(a×b)", b_dot_cross: "b·(a×b)", triple: "a·(b×c)"
+        a_dot_cross: "a·(a×b)", b_dot_cross: "b·(a×b)", triple: "a·(b×c)",
+        // D-5's three: the volume the triple product measures, and the two
+        // factors the split separates it into. Each is still ONE text node
+        // carrying name AND value ("Volume = 9.95"), per D-9.
+        volume: "Volume", base_area: "Base", height: "Height"
     };
     function buildVectorGeometryReadout() {
         var rd = document.createElement("div"); rd.id = "vg_readout";
@@ -12537,6 +12649,34 @@ export const FIELD_3D_RENDERER_CODE = `
         ppMesh.visible = false;
         addToScene(ppMesh);
 
+        // 4b. D-5 — the two DECOMPOSITION pieces, drawn only while
+        //     split_solid_frac > 0. Both are TOP-LEVEL meshes handed to
+        //     addToScene individually: a child mesh never enters sceneObjects,
+        //     so the per-frame updater would never match it and it would sit
+        //     at build-time geometry forever (scar field3d_child_mesh_never_
+        //     registered_in_sceneobjects_so_updater_never_matches).
+        //     The extracted BASE parallelogram carries its own mesh at higher
+        //     opacity so "Base" is a thing on screen rather than a caption;
+        //     the HEIGHT segment stands perpendicular to it through the middle
+        //     of the solid, which at split_solid_frac = 1 is exactly the
+        //     prism's own generator.
+        var bfGeo = new THREE.BufferGeometry();
+        bfGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(4 * 3), 3));
+        bfGeo.setIndex([0, 1, 2, 0, 2, 3]);
+        var bfMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(colCross), transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false });
+        var bfMesh = new THREE.Mesh(bfGeo, bfMat);
+        bfMesh.userData = { elementType: "vg_base_face", id: "vg_base_face" };
+        bfMesh.visible = false;
+        addToScene(bfMesh);
+
+        var hsGeo = new THREE.BufferGeometry();
+        hsGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+        var hsMat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFFFFF"), transparent: true, opacity: 0.9 });
+        var hsLine = new THREE.Line(hsGeo, hsMat);
+        hsLine.userData = { elementType: "vg_height_seg", id: "vg_height_seg" };
+        hsLine.visible = false;
+        addToScene(hsLine);
+
         // 5. Labels (tip-anchored each frame).
         var labA = createLabelSprite("a", colA, 0.85);
         labA.userData = { elementType: "vg_label", id: "vp_label_a", tracks: "vg_vector_a" };
@@ -12578,6 +12718,11 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (ud.elementType === "vg_angle_arc") want = !!d.show_angle_arc;
             else if (ud.elementType === "vg_parallelogram") want = !!d.show_parallelogram;
             else if (ud.elementType === "vg_parallelepiped") want = !!d.show_parallelepiped;
+            // The D-5 decomposition pieces belong to the solid: they can only
+            // appear where the solid does, and the FRAME hides them again
+            // whenever split_solid_frac is still 0 (a time-dependent value
+            // this apply pass deliberately does not try to guess).
+            else if (ud.elementType === "vg_base_face" || ud.elementType === "vg_height_seg") want = !!d.show_parallelepiped;
             else if (ud.elementType === "vg_label") {
                 var tr = ud.tracks;
                 if (tr === "vg_vector_a" || tr === "vg_vector_b") want = true;
@@ -12706,6 +12851,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var ec = [c[0] * cFrac, c[1] * cFrac, c[2] * cFrac];
         var eaxb = [crossDrawn[0] * crossFrac, crossDrawn[1] * crossFrac, crossDrawn[2] * crossFrac];
 
+        // ── D-5 · the solid's BUILD and SPLIT. Both default to the pre-D-5
+        //    behaviour when unauthored (fully built, unsplit), so every state
+        //    that only sets show_parallelepiped draws exactly what it drew
+        //    before these knobs existed. vgSplitPieces is a pure function of
+        //    the drawn vectors and the fraction — recomputed from scratch
+        //    every frame, nothing cached, so the frame is a closed form of
+        //    state-local ms all the way down (D3).
+        var solidFrac = vgAnimValue(anim, "solid_build_frac", stateMs, (d.solid_build_frac != null ? d.solid_build_frac : 1));
+        var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0));
+        var pieces = vgSplitPieces(ea, eb, ec, splitFrac, d.split_gap_k);
+
         // ── The camera (skeleton D-1). "authored" is the default and does
         //    nothing here: applyState's generic camera_position ->
         //    animateCameraTo path already owns it. The other two modes write
@@ -12748,11 +12904,21 @@ export const FIELD_3D_RENDERER_CODE = `
             var keys = d.readouts || [];
             if (!keys.length) { rdEl.style.display = "none"; }
             else {
+                // D-5's three come from the TRUE a/b/c, never from the split
+                // pieces: the whole claim of the decomposition is that none of
+                // these numbers moves while the solid does, so computing them
+                // off the sheared generator would make the readout agree with
+                // itself for the wrong reason.
+                var trip = vgDotVec(a, vgCrossVec(b, c));
+                var bcArea = vgLenVec(vgCrossVec(b, c));
                 var vals = {
                     a_mag: vgLenVec(a), b_mag: vgLenVec(b), theta_deg: thetaDeg,
                     a_dot_b: vgDotVec(a, b), cross_mag: vgLenVec(axb),
                     a_dot_cross: vgDotVec(a, axb), b_dot_cross: vgDotVec(b, axb),
-                    triple: vgDotVec(a, vgCrossVec(b, c))
+                    triple: trip,
+                    volume: Math.abs(trip),
+                    base_area: bcArea,
+                    height: (bcArea > 1e-9) ? Math.abs(trip) / bcArea : 0
                 };
                 var html = "";
                 for (var ri = 0; ri < keys.length; ri++) {
@@ -12822,14 +12988,45 @@ export const FIELD_3D_RENDERER_CODE = `
                     o.visible = true;
                 } else o.visible = false;
             } else if (ud.elementType === "vg_parallelepiped") {
-                if (d.show_parallelepiped) {
-                    var faces = vgParallelepipedFaces(ea, eb, ec);
+                // The FULL 6-face closed hexahedron is always written into the
+                // buffer; solid_build_frac only moves the DRAW RANGE, so the
+                // geometry is closed and valid at every value of the knob and
+                // a half-built solid is a solid whose later faces are not yet
+                // drawn — never a solid with broken vertices.
+                var nFaces = d.show_parallelepiped ? vgSolidFaceCount(solidFrac) : 0;
+                if (nFaces > 0) {
+                    var faces = pieces.faces;
                     var ppArr = o.geometry.attributes.position.array;
                     for (var fi = 0; fi < 6; fi++) {
                         for (var vj = 0; vj < 4; vj++) {
                             var idx = (fi * 4 + vj) * 3;
                             ppArr[idx] = faces[fi][vj][0]; ppArr[idx + 1] = faces[fi][vj][1]; ppArr[idx + 2] = faces[fi][vj][2];
                         }
+                    }
+                    o.geometry.setDrawRange(0, nFaces * 6);   // 2 triangles = 6 indices per face
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_base_face") {
+                if (d.show_parallelepiped && splitFrac > 0 && vgSolidFaceCount(solidFrac) > 0) {
+                    var bfArr = o.geometry.attributes.position.array;
+                    for (var bvi = 0; bvi < 4; bvi++) {
+                        bfArr[bvi * 3] = pieces.base_verts[bvi][0];
+                        bfArr[bvi * 3 + 1] = pieces.base_verts[bvi][1];
+                        bfArr[bvi * 3 + 2] = pieces.base_verts[bvi][2];
+                    }
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_height_seg") {
+                if (d.show_parallelepiped && splitFrac > 0 && pieces.height > 0.02 && vgSolidFaceCount(solidFrac) > 0) {
+                    var hsArr = o.geometry.attributes.position.array;
+                    for (var hsi = 0; hsi < 2; hsi++) {
+                        hsArr[hsi * 3] = pieces.height_seg[hsi][0];
+                        hsArr[hsi * 3 + 1] = pieces.height_seg[hsi][1];
+                        hsArr[hsi * 3 + 2] = pieces.height_seg[hsi][2];
                     }
                     o.geometry.attributes.position.needsUpdate = true;
                     o.geometry.computeBoundingSphere();
@@ -12875,6 +13072,8 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (ud.elementType === "vg_cross_vector") applyGlowEmphasis(o, focal("cross"), glowActive, glowT, true);
             else if (ud.elementType === "vg_parallelogram") applyGlowEmphasis(o, focal("area"), glowActive, glowT);
             else if (ud.elementType === "vg_parallelepiped") applyGlowEmphasis(o, focal("volume"), glowActive, glowT);
+            else if (ud.elementType === "vg_base_face") applyGlowEmphasis(o, focal("base"), glowActive, glowT);
+            else if (ud.elementType === "vg_height_seg") applyGlowEmphasis(o, focal("height"), glowActive, glowT, true);
         }
     }
 
