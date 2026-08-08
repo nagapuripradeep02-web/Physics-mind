@@ -344,12 +344,29 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > because its capture only sweeps variables named in `variable_choreography`** — which is also why the
 > deterministic gates could never have caught instance 4.
 >
-> **The process failure, and it is the durable finding: a scar row that is AUTHORED but never SEEDED
-> is invisible to the very consultation designed to surface it.** §queue made the live
-> `engine_bug_queue` query mandatory and this session ran it — correctly, and against 886 rows — and
-> still could not see these two, because they exist only as an unrun script in a dirty working tree.
-> The static mirror is not a substitute for the live queue (§traps Trap 2); **and the live queue is not
-> a substitute for the rows nobody ran.**
+> ~~**The process failure: a scar row that is AUTHORED but never SEEDED is invisible to the
+> consultation designed to surface it.**~~ **⛔ THIS DIAGNOSIS WAS WRONG — CORRECTED 2026-08-09 by
+> running the script.** Both rows came back **`⏭ already filed (OPEN)`**. They had been seeded all
+> along; the untracked script in a dirty tree was a *leftover*, not a pending action. I inferred
+> "never run" from "untracked + says Run:" and committed it as a finding without testing it — the
+> same substitution of a plausible story for a measurement that this whole document is about.
+>
+> **THE REAL CAUSE IS MORE USEFUL, and it is a live hazard rather than a housekeeping lapse.** Both
+> rows are filed against **`definite_integral_as_accumulated_area`** — a **PCPL/parametric** concept.
+> §queue's mandated query is `--field3d --open`, and `--field3d` derives its id list from the concept
+> files, so it **correctly excluded them.** The query did exactly what it was asked. **The blind spot
+> is CROSS-RENDERER TRANSFER:** a defect class discovered on PCPL is filed against PCPL concepts and
+> never surfaces for a `field_3d` dispatch — even when the class is renderer-independent, which this
+> one emphatically is (*"sweep the FULL CARTESIAN PRODUCT of the live variables; a constant is only
+> validated over the region actually swept"* is the WORST-CASE LAW, and it was sitting in the table
+> under a different renderer's name the whole time).
+>
+> **The durable rule, replacing the wrong one:** ***a subject- or renderer-filtered scar query is a
+> claim about relevance, and defect CLASSES do not respect renderer boundaries.*** Any engine dispatch
+> queries `--field3d --open` **and** sweeps the table for the *class* it is about to build against
+> (camera/projection, cap-vs-extent, live-variable sweeps, publication) with no renderer filter at all.
+> The static mirror is not a substitute for the live queue (§traps Trap 2); **and a filtered live query
+> is not a substitute for an unfiltered one.**
 >
 > **NOT RUN BY THIS SESSION** — the rows are the prior session's authored content, they write to
 > `engine_bug_queue` (a non-cache table), and seeding another session's unverified rows is a founder
