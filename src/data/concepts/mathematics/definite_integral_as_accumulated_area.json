@@ -764,14 +764,10 @@
               "h": 145
             },
             "x_range": {
-              "min": 1.75,
-              "max": 2,
               "min_expr": "b - 2*(b/round(pow(10,nlog)))",
               "max_expr": "b"
             },
             "y_range": {
-              "min": 3,
-              "max": 4,
               "min_expr": "b*b - c - 4.5*b*(b/round(pow(10,nlog)))",
               "max_expr": "b*b - c + 0.5*b*(b/round(pow(10,nlog)))"
             },
