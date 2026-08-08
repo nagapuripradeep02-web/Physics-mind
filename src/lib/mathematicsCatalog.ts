@@ -87,7 +87,7 @@ export const MATHEMATICS_GHOSTS: GhostSeed[] = [
     {
         concept_id: 'graph_transformations',
         concept_name: 'Graph Transformations — a·f(b(x−h))+k',
-        chapter: 2, section: '2.1', class_level: 11, prerequisites: [], is_spine: true,
+        chapter: 2, section: '2.1', class_level: 11, prerequisites: ['unit_circle_to_sine_wave'], is_spine: true,
         why_learn: 'Four numbers reshape any curve — stretch, squeeze, shift, flip. A teacher can redraw two cases and assert the pattern; a slider shows the whole family moving, which is the only way the pattern becomes obvious rather than memorised. The widest Indian-and-international overlap in school mathematics.',
     },
     {
