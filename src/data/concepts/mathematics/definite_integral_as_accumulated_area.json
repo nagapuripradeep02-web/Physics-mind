@@ -132,7 +132,8 @@
       "gap(n) = b^3(3n-1)/(6n^2) is EXACT, strictly positive for every integer n >= 1, and is INDEPENDENT of c -- at STATE_4's fixed b=2, c=0 this is 4/n - 4/(3n^2), the founder-ratified F2 surface",
       "canvas pixels = 220 x data units on x, 62 x data units on y, origin at px (180, 357) on the MAIN plane, FIXED throughout -- the STATE_4 inset is a SEPARATE plane_id ('plane_inset') whose transform RE-ZOOMS every frame from the live window (viewport 230x145 px over a window 2h wide by 5bh tall, h = b/round(pow(10,nlog))): at b=2 this is roughly 115n/b (~57.5n) px/x-unit and 7.25n px/y-unit, e.g. 5,750 / 725 at n=100 climbing past 490,000 / 61,900 by n=8536 -- NOT a fixed constant, and the two live factors are never mixed in one expression",
       "'left <= integral <= right' (STATE_6's formula surface) is TRUE only because f is increasing on the drawn interval at STATE_6's fixed c=0 -- the one-surface-per-state rule (34b) cannot carry that hypothesis on canvas, so STATE_6's narration states it in words",
-      "max_bars_drawn is a PER-PRIMITIVE opt-in field, not a global engine cap -- authored ONLY on STATE_4 (value 400, with the 'rectangles drawn: {n_drawn} of {n}' disclosure); STATE_3 and STATE_6 author NO max_bars_drawn, so their riemann_bars draw the true n with no silent truncation"
+      "max_bars_drawn is a PER-PRIMITIVE opt-in field, not a global engine cap -- authored ONLY on STATE_4 (value 400, with the 'rectangles drawn: {n_drawn} of {n}' disclosure); STATE_3 and STATE_6 author NO max_bars_drawn, so their riemann_bars draw the true n with no silent truncation",
+      "AMENDED, not authored: the skeleton's Gate-0 symbol-table row 'interval ends | a, b (axis marks) | label + plane_id | S1 | S1-S8' over-specifies a lower bound that is never a named quantity in this build -- the interval is always [0, b] with the lower end authored as the LITERAL 0 (from_expr:'0' on every region_fill/riemann_bars/function_plot in every state), never a variable, slider, or drag target called 'a'; physics_engine_config.variables has no 'a' key and no state ever varies, drags, or highlights a lower interval end. A dedicated axis-pin label for a constant zero would mark a non-quantity and add a 9th label to states that are already at their primitive budget (S4 alone carries 17). The row is satisfied for its ONE real quantity: 'b', the interval's one variable bound, which IS pin-marked wherever it is actually variable -- the draggable bound_marker (S5, S8) and the STATE_4 inset's own zoom-linked corner (the sliver sits exactly at x = b). Read this row as 'b, pin-marked where it is variable' with 'a' struck, not as an unmet S1 obligation"
     ]
   },
   "epic_l_path": {
@@ -149,10 +150,10 @@
           {
             "type": "annotation",
             "id": "delta_cue",
-            "text": "The region under the curve",
+            "text": "Region under the curve",
             "position": {
               "x": 40,
-              "y": 90
+              "y": 55
             },
             "style": "callout",
             "color": "#F1F5F9"
@@ -300,10 +301,10 @@
           {
             "type": "annotation",
             "id": "delta_cue",
-            "text": "Four rectangles, left heights",
+            "text": "Four left rectangles",
             "position": {
               "x": 40,
-              "y": 90
+              "y": 55
             },
             "style": "callout",
             "color": "#F1F5F9"
@@ -470,10 +471,10 @@
           {
             "type": "annotation",
             "id": "delta_cue",
-            "text": "More rectangles, closer sum",
+            "text": "More rectangles, closer",
             "position": {
               "x": 40,
-              "y": 90
+              "y": 55
             },
             "style": "callout",
             "color": "#F1F5F9"
@@ -1042,7 +1043,8 @@
             "signed": true,
             "color": "#22D3EE",
             "color_positive": "#22D3EE",
-            "color_negative": "#F87171"
+            "color_negative": "#F87171",
+            "opacity": 0.5
           },
           {
             "type": "riemann_bars",
@@ -1056,7 +1058,8 @@
             "signed": true,
             "color": "#22D3EE",
             "color_positive": "#22D3EE",
-            "color_negative": "#F87171"
+            "color_negative": "#F87171",
+            "opacity": 0.5
           },
           {
             "type": "plot_point",
@@ -1667,6 +1670,7 @@
             "color": "#22D3EE",
             "color_positive": "#22D3EE",
             "color_negative": "#F87171",
+            "opacity": 0.5,
             "appear_at_ms": 0,
             "animate_in_ms": 1200
           },
@@ -1683,6 +1687,7 @@
             "color": "#22D3EE",
             "color_positive": "#22D3EE",
             "color_negative": "#F87171",
+            "opacity": 0.5,
             "sum_var": "S_n",
             "appear_at_ms": 0,
             "animate_in_ms": 1200
