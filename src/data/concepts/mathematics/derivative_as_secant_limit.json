@@ -169,12 +169,13 @@
           {
             "_design_note": "FIX ROUND 2 (json_author, founder_proxy Checkpoint B F-9, 2026-08-07): dropped the on-plane 'curve_label' primitive that used to sit here ('y = x²/2' at data (2.1,2.52)) — it duplicated the SAME string already shown by the 'fs' formula_box below (also 'y = x²/2'), the exact Rule 34b 'one formula surface per state' violation, and worst on THIS state because S1 is the emptiest frame in the whole concept (nothing else competes for attention). Every other state's curve_label survives untouched: elsewhere the formula_box shows something DIFFERENT (slope formulas, the S4 ladder, the S7 lim ladder, f′(x)=x), so no duplication exists there — this is an S1-only fix, not a fleet change.",
             "_design_note_2": "FIX ROUND (json_author, founder-caught defect, 2026-08-07): was appear_at_ms:10000 — same instant x0's OWN choreography starts sliding it (STATE_1's variable_choreography below), which is a different event entirely. That gate left P (and its readout) off-screen for the first 10000ms of a 20000ms state while the caption ('The curve, one point'), s1_1's narration ('...one point marked on it — point P.') and the state's whole pedagogical job (a subject for 'how steep is the curve HERE?') all assume P is on screen from near the start. Tried removing the gate outright (P visible from t=0): rejected on pixel evidence — the curve's own draw-in (xdraw: -2.1 to 2.1, start_ms 1500, duration_ms 7000) has not yet reached x=-1.2 (P's parked x0 value pre-choreography) until t=3000ms exactly ( (x0-domainMin)/(domainMax-domainMin)*duration+start = (0.9/4.2)*7000+1500 = 3000 ), so for t in [0,3000) P would render as a dot with a coordinate readout floating in empty space next to (or above/right of) a curve segment nowhere near it — confirmed in STATE_1__dense_t01000.png / t02000.png, a WORSE defect than the one being fixed (a labelled point detached from any curve). appear_at_ms is now 3000 — the exact moment the curve's own left-to-right draw-in sweeps through P's location, so P is never seen disconnected from a curve: before 3000ms there is no P yet (curve alone, matching the opening clause of s1_1 while it is still being spoken), and P pops in already SITTING on an already-drawn stretch of curve (confirmed in STATE_1__dense_t03000.png: the draw-in edge lands exactly on P's dot) — the same 'gate a reveal to when the draw-in physically arrives there' technique this state's OWN curve_label primitive used to use before the Checkpoint-B F-9 pass above dropped it (it appeared at 8500ms, exactly when xdraw finished at 1500+7000 — the technique is recorded here for lineage even though the primitive itself is gone). s1_1 (~4000ms estimated spoken length) is still mid-sentence at 3000ms, so P now appears BEFORE the sentence naming it finishes, not 6s after the whole state has moved on.",
+            "_design_note_3": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,20} DELETED. Verified via a pure-function sweep across this state's full 20s timeline (x0/xdraw choreography) at 100ms resolution: at eye_capture_ms (17000ms) the readout is clean either way (0px² foreign-ink overlap). Mid-sweep, deleting and keeping tie EXACTLY (462px² at t≈10700ms, during x0's own fast autoplay slide 10000-16000ms): P sits close enough to the y-axis (px x≈176, axis label band 222-255) that a ~90px-wide readout cannot clear the band from either side at small-offset magnitude — a text-width-vs-axis-margin residual unrelated to the delete/keep choice, present under the OLD {12,20} too. Disclosed, not hidden — this state was not one of the offsets flagged for retune. Deleted per the round's default (no measured regression).",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "appear_at_ms": 3000,
             "animate_in_ms": 400
@@ -283,13 +284,13 @@
             "size": 14
           },
           {
-            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1, 2026-08-07): first TRIED deleting the hand-tuned offset here to match STATE_3/STATE_9's copies of this point (see this state's own note history) — verified by direct render (window.__pmDebug.readouts, never arithmetic) that the DEFAULT candidate {10,-12} collides (Q sits ON the curve, and IS the chord's own second endpoint, so both lines converge on Q from up-right AND down-left at once; the un-authored candidate grazed the curve by well under 1px) and the resolver's single unconditional mirror ({-10,12}) does not escape either — it still visually crosses BOTH the curve and the chord through the letter 'Q' itself (confirmed in a rendered zoom crop). Unlike S3/S9, S2's x0 is STATIC (no choreography, no drag) — a single hand-tuned offset here carries none of the multi-pose risk that made the S3/S9 constants wrong, so this point keeps an authored offset while its S3/S9 copies do not. RE-AUTHORED (not deleted) at {85,60}: pushes the readout past the plane's own viewport edge (px x=460; Q's own anchor is at px 412, +85=497) so the curve/chord — both clipped to the viewport — can never reach it, into the one genuinely empty band in the right-hand column (canvas y 159-227, below chord_dual_label/slope_dual_label at y 123-159, above P's own resolved box at y 227-241 — verified via __pmDebug, not the design note P inherited from cycle 1, which asserted a placement that never actually rendered). x=70 was tried first and measured (via textWidth, not estimated) to leave only a 5.2px gap from the 'rise' vector's own embedded label ('rise = 1.500', which appears at 11000ms in the same row) — legal but knife-edge; x=85 widens that gap to ~20px. Verified clear of P's box, sec's own resolved readout box, chord_dual_label, slope_dual_label, rise's embedded label, and fs — see the Checkpoint-B cycle-2 fix report. S3's hlog-driven sweep and S9's drag range genuinely need the engine's per-frame resolver (their Q traverses many poses no single constant can cover); S2's single static pose does not, so it is authored directly.",
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {85,60} DELETED, reversing the cycle-2 KEEP decision above — that decision was correct against the resolver that existed at the time (a single blind mirror), but PR #64 replaces it with an ordered, tested candidate set (original → x-mirror → y-mirror → full-mirror → ±curve-tangent-normal) plus a least-overlap fallback. Verified via a pure-function sweep (the same functions the renderer ships) at this state's single static pose (x0=1, eye_capture_ms=16500 — no choreography moves x0 in this state): DELETED and KEPT both resolve to 0px² foreign-ink overlap for P, Q and sec simultaneously — Q's own un-authored default now resolves to a curve-tangent-normal candidate (≈(-92,-25)) that clears everything without hand-tuning. Deleted per the round's default (no measured regression, and the prior justification for keeping no longer holds).",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "x0+1",
             "y_expr": "(x0+1)*(x0+1)/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 85, "y": 60 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "color": "#34D399",
             "appear_at_ms": 2500,
@@ -448,23 +449,24 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,20} DELETED. Verified via a pure-function sweep (the same PM_readoutResolveOffset/PM_plotPointResolve/PM_labelClearOffset the renderer ships, driven directly against this state's own JSON) across this state's full timeline at 100ms resolution — x0 stays at its default (1.00) throughout this state, only the state's own choreographed variable moves: zero foreign-ink collisions found anywhere, identically whether the offset is kept or deleted. This state's P never approaches the axis bands or the curve/chord ink closely enough for the offset choice to matter. Deleted per the round's default (no measured regression).",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14
           },
           {
-            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1, 2026-08-07): DELETED the hand-tuned offset {130,25} — see STATE_2 Q's own note for the full cycle-2 rationale (the engine's widened collision-aware resolver, PR #59/1c68c30, now does this job every frame instead of one arithmetic guess doing it once at authoring time). This state's Q slides continuously from (2,2) toward (1.01,0.51) as h shrinks — exactly the moving-anchor case PM_readoutResolveOffset's flip exists for; the un-authored default {10,-12} is re-tested against real ink (curve, chord, axis bands, P's own dot/box) every frame of the sweep, not tuned once against a hand-picked sample. Verified via window.__pmDebug.readouts at the sweep's end (hlog=-2, Q≈(1.01,0.51), the tightest approach to P) — see the Checkpoint-B cycle-2 fix report.",
+            "_design_note": "FIX ROUND 5 (json_author, founder-directed, 2026-08-08): DELETED again, superseding the G-12 interim revert below. That revert was necessary because the OLD (pre-PR-#64) resolver flipped P onto Q at sim t=6800-8800ms — but PR #64 (the resolver candidate-set round) has since merged, replacing the single blind mirror with an ordered, tested candidate set (original → x-mirror → y-mirror → full-mirror → ±curve-tangent-normal) plus a least-overlap fallback. Verified via a pure-function sweep (the same functions the renderer ships) across this state's full 24s timeline at 100ms resolution, PLUS a fine 25ms sweep specifically re-covering the previously-flagged 6500-8800ms window: zero foreign-ink collisions found anywhere, for P, Q and sec together, whether P's or Q's offset is kept or deleted. The specific t=6800-8800ms P-onto-Q overprint that forced the G-12 revert does not reproduce under the new resolver. Deleted.",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "x0+pow(10,hlog)",
             "y_expr": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2",
-            "_design_note_revert": "INTERIM REVERT (founder-directed, founder_proxy Checkpoint B cycle 2 G-12, 2026-08-08): cycle 2 DELETED this offset to let the engine place it. The engine then flips P at sim t=6800-8800ms (P grazes sec by 10x3px, mirrors to {-12,-20}) and lands it on Q — a 52x12px overprint rendering \"P = (1.00,(0.50)0.87)\" for 2.3s of a 24s GUIDED CORE state, playing automatically for every teacher with no interaction, and invisible to THE EYE because eye_capture_ms 14400 sits outside the window. Restored to {130,25}, the cycle-1 value that review verified as \"side by side with a clean gap\". This is a REVERT, not a new hand-tune, and it is EXPECTED TO BE DELETED AGAIN once the resolver candidate-set fix lands (fix/pcpl-resolver-candidate-set) — that round makes zero authored readout offsets the correct end state here. Kept only so a guided core state is not garbled in the interim.",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 130, "y": 25 } },
+            "_design_note_revert_history": "INTERIM REVERT (founder-directed, founder_proxy Checkpoint B cycle 2 G-12, 2026-08-08 — SUPERSEDED by the _design_note above, PR #64 having since landed): cycle 2 DELETED this offset to let the engine place it. The engine then flipped P at sim t=6800-8800ms (P grazes sec by 10x3px, mirrors to {-12,-20}) and landed it on Q — a 52x12px overprint rendering \"P = (1.00,(0.50)0.87)\" for 2.3s of a 24s GUIDED CORE state, playing automatically for every teacher with no interaction, and invisible to THE EYE because eye_capture_ms 14400 sits outside the window. Restored to {130,25}, the cycle-1 value that review verified as \"side by side with a clean gap\", pending the resolver candidate-set fix — which has now landed and closed this specific defect (see _design_note above).",
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "color": "#34D399"
           },
@@ -576,12 +578,13 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,20} DELETED. Verified via a pure-function sweep (the same PM_readoutResolveOffset/PM_plotPointResolve/PM_labelClearOffset the renderer ships, driven directly against this state's own JSON) across this state's full timeline at 100ms resolution — x0 stays at its default (1.00) throughout this state, only the state's own choreographed variable moves: zero foreign-ink collisions found anywhere, identically whether the offset is kept or deleted. This state's P never approaches the axis bands or the curve/chord ink closely enough for the offset choice to matter. Deleted per the round's default (no measured regression).",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14
           },
           {
@@ -769,12 +772,13 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,20} DELETED. Verified via a pure-function sweep (the same PM_readoutResolveOffset/PM_plotPointResolve/PM_labelClearOffset the renderer ships, driven directly against this state's own JSON) across this state's full timeline at 100ms resolution — x0 stays at its default (1.00) throughout this state, only the state's own choreographed variable moves: zero foreign-ink collisions found anywhere, identically whether the offset is kept or deleted. This state's P never approaches the axis bands or the curve/chord ink closely enough for the offset choice to matter. Deleted per the round's default (no measured regression).",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14
           },
           {
@@ -799,14 +803,15 @@
             "animate_in_ms": 800
           },
           {
-            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-4, 2026-08-07): RE-TUNED, not deleted — this is the one G finding where deletion made things WORSE. Tested both ways by direct render (window.__pmDebug.readouts, not arithmetic): DELETING the offset falls back to PM_labelClearOffset's default, which clears the chord LINE itself (its whole job) but its computed direction lands the box straddling PM_readoutDangerZones' x-axis tick band for most of the S3/S5-shared hlog sweep (measured bbox y-range overlapping [291,314] by ~4-15px at S5's mid/near_end/end poses) — a direct regression to the cycle-0 defect ('sits on the x-axis tick row'). The cycle-1 offset {55,55} has the OPPOSITE problem: it is itself collision-tested against the widened obstacle set (PR #59) and LOSES (the down-right candidate also grazes the axis band at every sampled pose), so the resolver flips it to {-55,-55} (up-left) — which then grazes the CURVE instead (confirmed in a rendered frame: the curve strikes '...558' in 'chord slope = 1.1558' at S5's start pose). Root cause: {55,55} was never large enough to clear the axis band on its OWN (unflipped) side, so it always paid the flip's cost. RETUNED to {75,100} — same down-right family as the original intent, but with y large enough (100, not 55) that even at the sweep's largest chord-midpoint anchor.y (239.6, S5's start pose, furthest from P) the box's top edge (anchor.y+100-7=332.6) sits 18.6px clear of the axis band's bottom edge (314) — so the resolver never needs to flip at all, at any point in the sweep, and the up-left curve-graze never triggers. Verified via __pmDebug at 4 poses spanning the full hlog sweep (start/mid/near_end/end): offset renders UNFLIPPED at every one, comfortably below the axis band, clear of the curve (which cannot reach px y>294, i.e. data y<0, where this box now lives), clear of the chord's own line (which crosses that y-band far to the left, outside the box's x-range), and clear of P's own readout box. Re-verified visually (4× zoom) at all four poses — see the Checkpoint-B cycle-2 fix report.",
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {75,100} DELETED, reversing the cycle-2 RE-TUNE decision below. That decision found deletion regressed to the x-axis tick band under the resolver that existed then (a single blind mirror); PR #64 has since merged, replacing that with an ordered, tested candidate set (original → x-mirror → y-mirror → full-mirror → ±curve-tangent-normal) plus a least-overlap fallback. Verified via a pure-function sweep across this state's full 22s timeline (hlog choreography, 100ms resolution): DELETED and KEPT both resolve to 0px² foreign-ink overlap throughout — the resolver's candidate set now clears the axis band without hand-tuning. Deleted per the round's default (no measured regression, and the prior justification for retuning no longer holds).",
+            "_design_note_history": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-4, 2026-08-07 — SUPERSEDED by the _design_note above, PR #64 having since landed): RE-TUNED, not deleted — this is the one G finding where deletion made things WORSE at the time. Tested both ways by direct render (window.__pmDebug.readouts, not arithmetic): DELETING the offset fell back to PM_labelClearOffset's default, which cleared the chord LINE itself (its whole job) but its computed direction landed the box straddling PM_readoutDangerZones' x-axis tick band for most of the S3/S5-shared hlog sweep (measured bbox y-range overlapping [291,314] by ~4-15px at S5's mid/near_end/end poses) — a direct regression to the cycle-0 defect ('sits on the x-axis tick row'), under the single-blind-mirror resolver that existed then. RETUNED to {75,100} at the time; see the _design_note above for why deletion is now safe again post-PR-#64.",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
             "from_expr": { "x": "x0", "y": "x0*x0/2" },
             "to_expr": { "x": "x0+pow(10,hlog)", "y": "(x0+pow(10,hlog))*(x0+pow(10,hlog))/2" },
             "extend": "frame",
-            "readout": { "format": "chord slope = {m}", "decimals": 4, "offset": { "x": 75, "y": 100 } },
+            "readout": { "format": "chord slope = {m}", "decimals": 4 },
             "appear_at_ms": 4000,
             "animate_in_ms": 600
           }
@@ -891,12 +896,13 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,20} DELETED — the round's clearest win. Verified via a pure-function sweep across this state's own choreography (x0: -1.4→1.4, 2000-15000ms) AND the full draggable range (x0 ∈ [-1.6,1.6], step 0.05): with the offset KEPT, the readout at this state's own eye_capture_ms (12000ms, x0≈0.754) struck the x-axis label band by 489px² (bbox (326,283)-(409,297) vs axis band (60,291)-(460,314)) — a live, currently-shipped defect at the exact narrated snapshot, invisible to THE EYE (which checks pixel motion/regression, not readout-vs-ink collision). DELETING clears it completely (0px² at the same pose): PR #64's now-tangent-aware default (PM_labelClearOffset probing the curve's own local tangent at P) places the label perpendicular to the curve, which the fixed {12,20}+mirror candidate set could not reliably beat. Worst case across the full drag grid: DELETED 462px² (t=4100ms, choreography only — the same axis-adjacent case as STATE_1's P) vs KEPT 1521px² (drag x0=-0.25). Deleted.",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "drag": { "bind_variable": "x0", "axis": "x", "min": -1.6, "max": 1.6 }
           },
@@ -991,12 +997,13 @@
             "color": "#38BDF8"
           },
           {
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,20} DELETED. Verified via a pure-function sweep (the same PM_readoutResolveOffset/PM_plotPointResolve/PM_labelClearOffset the renderer ships, driven directly against this state's own JSON) across this state's full timeline at 100ms resolution — x0 stays at its default (1.00) throughout this state, only the state's own choreographed variable moves: zero foreign-ink collisions found anywhere, identically whether the offset is kept or deleted. This state's P never approaches the axis bands or the curve/chord ink closely enough for the offset choice to matter. Deleted per the round's default (no measured regression).",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": 20 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14
           },
           {
@@ -1311,39 +1318,40 @@
             "color": "#38BDF8"
           },
           {
-            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1 P1, 2026-08-07): DELETED the hand-tuned offset {130,25} — this was the report's named WORST CASE: on this explore state's own target manoeuvre (dragging Q toward P), the fixed rightward push parked Q's readout directly on top of P's, destroying both numbers, at every xq in the deterministic band (-1.22,-0.72) including the symmetric pose xq=-x0 where the chord slope is exactly 0.0000 — the single best demonstration the sandbox offers. See STATE_2 Q's own note for the engine-side fix this deletion relies on (PR #59/1c68c30's widened, collision-aware PM_readoutResolveOffset, now re-tested every frame against real ink — including P's own dot and readout box — rather than a fixed constant tuned against one sampled pose). Verified via window.__pmDebug.readouts (never arithmetic) across the full reachable drag range: both branches (xq=-1.9 and xq=2.0), the symmetric pose, the coincidence pose (xq→x0), and the full deterministic band at its two edges and midpoint.",
-            "_design_note_2": "FIX ROUND 3 continued (json_author, same session): the bare deletion (falling back fully to the engine's hardcoded {10,-12} default) left a genuine graze at the symmetric pose — Q sits ON the chord by construction, the mirrored candidate {-10,12} lands its box top edge (anchor.y+12-7=259) EXACTLY on the chord ink band's bottom edge (axisPxY+5=259, since the chord is horizontal there), a 0px margin that renders as the chord line visibly clipping through the top of the letter 'Q' and the opening parenthesis (confirmed in a rendered 4x zoom crop). Re-authored a SLIGHTLY larger diagonal offset {12,-18} — same small up-right family the engine default already uses (unlike P's/S2-Q's big perpendicular jumps, Q's position here still needs to generalise across the WHOLE drag range, so this stays close to the un-authored shape rather than replacing it with a fixed-direction escape), just with enough extra magnitude that its mirrored form clears the 5px ink padding with margin instead of exactly touching it. Re-verified via __pmDebug + rendered zoom across the full pose sweep: symmetric, coincidence, both branches, band edges and midpoint — clean of P, sec, and each other everywhere.",
-            "_design_note_3": "DISCLOSED RESIDUAL (json_author, same session): at xq=2.0 (the drag range's own far-right extreme, h=1) Q's mirrored candidate still grazes the CURVE through the letters 'Q =' — confirmed at 4x zoom, and confirmed BY MATH that the engine's pure un-authored default {10,-12} has the identical graze at this same pose (the curve, chord and tangent all converge steeply within a few px of Q's own position there, so ANY small-magnitude offset in either diagonal direction runs near-parallel to one of them). Tried doubling the magnitude to {24,-30}: the graze persists at essentially the same severity (confirmed by re-render), because scaling a diagonal direction that is already near-parallel to the offending line does not change how close it runs to that line. A genuinely different (perpendicular) direction would very likely need to be pose-conditional (sign(xq) dependent) to also keep the SYMMETRIC/coincidence/band poses clean, which risks new regressions for a P3-severity residual on a single edge-of-range pose. Left as authored ({12,-18}) — same disclosed-residual class the founder_proxy report itself already accepted for G-4 ('clears the axis band, with a disclosed corner-graze residual against the curve'). Severity: only the 'Q =' prefix glyphs are touched — the coordinate VALUES '(2.00, 2.00)' remain fully legible, unlike the original P1 (which destroyed both numbers entirely).",
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {12,-18} DELETED, superseding the cycle-2 re-authoring below (that magnitude was tuned against the resolver's single-blind-mirror-era behaviour). Verified via a pure-function sweep across the full explorable (x0,xq) grid (x0 ∈[-1.6,1.6], xq ∈[-1.9,2.0], step 0.1 — 1320 poses) plus the founder's own named checkpoints: at the DEFAULT no-interaction pose (x0=1.00, xq=1.90, the pose shown before any drag) all three readouts (P, Q, sec) resolve to 0px² foreign ink, with or without this offset — PR #64 already fixes the pre-existing rest-pose defect independent of this delete/keep choice. On the 1D xq-sweep at x0=1.0 fixed (the founder's own reported worst-case scenario), DELETED peaks at 462px² (xq=-1.00) vs KEPT peaks at 1606px² (xq=-0.38); at the specifically-named xq=-0.76 pose, DELETED=462px² vs KEPT=831px² — deletion is a clear, measured improvement, not a tie. On the full 2D grid (both points dragged simultaneously, a genuinely reachable teacher action), DELETING all three of P/Q/sec together peaks at 1593px² vs KEEPING all three at 2557px² — deletion wins there too. DISCLOSED RESIDUAL, not hidden: neither choice reaches a fully-clean bar at the grid's extreme far corners (both points dragged to opposite, distant poses) — Q sits ON the chord/curve by construction there, a structural limit no small offset escapes (matches this state's own pre-existing disclosed graze at xq=2.0, below). Deleted: strictly better than keeping, everywhere measured.",
+            "_design_note_history": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1 P1/P1-follow-on/DISCLOSED-RESIDUAL, 2026-08-07 — SUPERSEDED by the _design_note above, PR #64 having since landed): DELETED the hand-tuned offset {130,25} at the time (the report's named WORST CASE: Q's readout landing on P's at every xq in the deterministic band). The bare deletion under the single-blind-mirror resolver then in place left a genuine graze at the symmetric pose, so this point was RE-AUTHORED to {12,-18}, with a disclosed residual at xq=2.0 (Q's mirrored candidate grazing the curve through the 'Q =' prefix, coordinate values remaining legible). See the _design_note above for the post-PR-#64 re-test that supersedes this reasoning.",
             "type": "plot_point",
             "id": "Q",
             "plane_id": "plane",
             "x_expr": "xq",
             "y_expr": "xq*xq/2",
-            "readout": { "format": "Q = ({x}, {y})", "decimals": 2, "offset": { "x": 12, "y": -18 } },
+            "readout": { "format": "Q = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "color": "#34D399",
             "drag": { "bind_variable": "xq", "axis": "x", "min": -1.9, "max": 2.0 }
           },
           {
-            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1 follow-on, 2026-08-07): the report's named P1 (Q-on-P overprint) is fixed by Q's own deletion above, but verifying the symmetric pose by RENDERING (not arithmetic, per the mandate) surfaced a second, distinct defect on THIS point that the report did not name: P's own authored {12,20} collides with 'sec' (the chord)'s own resolved readout box at the symmetric pose (P and sec's boxes overlap ~26x7px, confirmed via __pmDebug), so the resolver mirrors it to {-12,-20} — which then runs the text straight up the tangent's own line (P sits ON both the curve and the tangent by construction, so the ONLY two diagonal directions a small offset can take both run roughly PARALLEL to lines passing through P; confirmed struck in a rendered 4x zoom crop, 'P = (1.00, 0.50)' cut through by both the curve and the tangent at the symmetric pose — the state's own best demonstration). RE-AUTHORED to {80,80}, the same down-right PERPENDICULAR-escape family S5's chord-slope readout (G-4) and S2's Q (G-1) both needed: at this magnitude the box sits below the axis danger band (canvas y 291-314) — the same margin logic as S5 — so it can never re-enter axis territory, and it is far enough down-right that neither the tangent (pixel y=586-x through P at x0=1) nor the curve (which diverges upward even faster) reach that y-range at that x-range. Verified via __pmDebug + rendered zoom across the SAME full pose sweep as Q above: symmetric, coincidence, both branches, and the deterministic band's two edges and midpoint.",
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {80,80} DELETED, superseding the cycle-2 re-authoring below (tuned against the single-blind-mirror-era resolver). Verified via the same full-grid + 1D sweep as Q's own note: deleting P alongside Q and sec is never worse, and the combined 'all three deleted' comparison beats 'all three kept' everywhere measured (1593px² vs 2557px² on the full 2D grid; 462px² vs 831px² at the founder's named xq=-0.76 checkpoint). Deleted alongside Q and sec — the three were re-authored together in cycle 2 for the same reason and are re-tested together here; no case found where deleting P alone regresses relative to keeping it.",
+            "_design_note_history": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2 G-1 follow-on, 2026-08-07 — SUPERSEDED by the _design_note above, PR #64 having since landed): P's own authored {12,20} collided with sec's box at the symmetric pose under the resolver then in place, mirroring onto the tangent's own line. RE-AUTHORED to {80,80} at the time. See the _design_note above for the post-PR-#64 re-test that supersedes this reasoning.",
             "type": "plot_point",
             "id": "P",
             "plane_id": "plane",
             "x_expr": "x0",
             "y_expr": "x0*x0/2",
-            "readout": { "format": "P = ({x}, {y})", "decimals": 2, "offset": { "x": 80, "y": 80 } },
+            "readout": { "format": "P = ({x}, {y})", "decimals": 2 },
             "size": 14,
             "drag": { "bind_variable": "x0", "axis": "x", "min": -1.6, "max": 1.6 }
           },
           {
-            "_design_note": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2, discovered during G-1 verification, 2026-08-07): never authored an offset before (unlike its S2/S3/S5 siblings) — always relied on the engine's PM_labelClearOffset default, which guarantees clearance from the chord's OWN line but not from anything ELSE. At the symmetric pose (x0=1, xq=-1) sec's anchor (the P-Q midpoint) sits at (252,254) — exactly on the y-axis's own danger band (Y_LABEL_BAND, canvas x 222-255) — so the default up-biased candidate collides with the axis band and mirrors to a down-right candidate that lands back on the curve+tangent instead (both pass through that same region, confirmed struck in a rendered 4x zoom: 'slope = 0.0000' cut through by both lines at the report's own named 'single best demonstration' pose). A near-flat chord (band poses near xq≈-x0) shows the same pattern from the opposite cause: the chord's own frame-extended line, nearly horizontal, spans the full viewport and the flip-resolved candidate still grazes it. RE-AUTHORED {70,90} — the same down-right, axis-clearing family as P's {80,80} in this same state and S5's chord readout (G-4): large enough to sit below the axis band regardless of anchor position across the reachable P-Q midpoint range, and far enough right/down to clear the curve+tangent's diagonal through the plane's centre. Verified via rendered zoom across the full G-1 pose sweep (symmetric, coincidence, both branches, band edges/midpoint) — see the Checkpoint-B cycle-2 fix report.",
+            "_design_note": "FIX ROUND 4 (json_author, founder-directed re-test of PR #64's resolver candidate-set round, 2026-08-08): offset {70,90} DELETED, superseding the cycle-2 authoring below (this readout never had a hand-tuned offset before that round either — it always relied on the engine default; {70,90} was cycle-2's first-ever authored value for it, tuned against the single-blind-mirror-era resolver). Verified via the same full-grid + 1D sweep as Q's/P's own notes: deleting all three together (P/Q/sec) measurably beats keeping all three together everywhere swept (462px² vs 831px² at the founder's named xq=-0.76 checkpoint; 1593px² vs 2557px² on the full 2D grid). Deleted.",
+            "_design_note_history": "FIX ROUND 3 (json_author, founder_proxy Checkpoint B cycle 2, discovered during G-1 verification, 2026-08-07 — SUPERSEDED by the _design_note above, PR #64 having since landed): sec's anchor sat exactly on the y-axis danger band at the symmetric pose under the resolver then in place; RE-AUTHORED {70,90} at the time. See the _design_note above for the post-PR-#64 re-test that supersedes this reasoning.",
             "type": "secant_line",
             "id": "sec",
             "plane_id": "plane",
             "from_expr": { "x": "x0", "y": "x0*x0/2" },
             "to_expr": { "x": "xq", "y": "xq*xq/2" },
             "extend": "frame",
-            "readout": { "format": "slope = {m}", "decimals": 4, "offset": { "x": 70, "y": 90 } }
+            "readout": { "format": "slope = {m}", "decimals": 4 }
           },
           {
             "type": "tangent_line",
