@@ -44838,6 +44838,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var wq = 0; eng.work_state && wq < eng.work_state.length; wq++) eng.work_state[wq].W = 0;
         for (var cq = 0; eng.checkpoint_state && cq < eng.checkpoint_state.length; cq++) {
             eng.checkpoint_state[cq]._side = null;
+            eng.checkpoint_state[cq]._home = false;   // note 11c — re-armed by nlbCpArm
             eng.checkpoint_state[cq]._count = 0;
             eng.checkpoint_state[cq].text = "";
         }
@@ -45010,8 +45011,13 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         if (hasEn && hasWk) return "Energy and work bars";
         // Matches the section header the panel actually renders, so the ⚙ row and the
-        // thing it toggles read as the same object.
-        if (hasWk) return "Work done";
+        // thing it toggles read as the same object. Deliberately the UNQUALIFIED
+        // text even on a concept whose header carries the "so far" time qualifier on
+        // some states: this label is concept-wide (a teacher may open the states in
+        // any order, Rule 25d, and the generic engine captures it once), and it names
+        // the panel, not one state's reading. "Work done" is still what a teacher
+        // switching off "Work done so far" is switching off.
+        if (hasWk) return NLB_WK_CAP_BASE;
         return "Energy bars";
     }
     function nlbBuildEnergyPanel() {
@@ -45077,7 +45083,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //   Built ONCE at the maximum shape (4 slots) and shown/hidden per state,
         //   exactly like the bars above (Rule 31/32d).
         html += '<div id="nlb_wk" style="display:none;margin-top:10px;">';
-        html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">Work done</div>';
+        //   Built at the UNQUALIFIED text and rewritten per state by
+        //   nlbApplyWorkSection, which owns the qualifier gate. Built-once DOM, so
+        //   this is only the shape the first state overwrites anyway.
+        html += '<div class="nlb_en_cap" id="nlb_wk_cap" style="text-align:center;color:#B0BEC5;margin-bottom:5px;white-space:nowrap;">' + NLB_WK_CAP_BASE + '</div>';
         //   align-items:STRETCH, and every work slot is itself a COLUMN flex whose
         //   caption is the only growing child. This is the instrument's alignment
         //   contract, and it is STRUCTURAL — nothing here measures text.
@@ -45477,6 +45486,31 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_WK_POS_COLOR = "#66BB6A";      // W > 0
     var NLB_WK_NEG_COLOR = "#EF5350";      // W < 0
     var NLB_SUM_MERGE_MS = 900;            // default slide duration
+
+    // ── The work section's TIME QUALIFIER ────────────────────────────────────
+    //   engine_bug_queue: nlb_latched_checkpoint_stamp_and_the_live_work_bar_
+    //   report_one_symbol_at_two_values_with_no_time_qualifier (CRITICAL).
+    //   A capture_mode 'first' stamp LATCHES its value at the crossing while the
+    //   bar beside it keeps integrating, so for the whole life of the stamp the
+    //   screen carries the SAME symbol at two different numbers — the stamp says
+    //   "W gravity = 0.0 J", the column headed "gravity" says +24.9 J — and
+    //   nothing said which one was NOW. Measured on
+    //   conservative_vs_nonconservative_forces: the bar matched the stamped value
+    //   on ZERO of the ~14 frames the stamp was on screen, on both states.
+    //   The two surfaces are both honest; only the reading order was missing. The
+    //   STAMP already carries its own time in its label ("back at the start:"),
+    //   so the thing with no time on it is the INSTRUMENT — and this names it.
+    //   "so far", not "now": on a work chapter "the work done now" reads as the
+    //   work being done at this instant (a rate — the very thing power is), while
+    //   the bar is a RUNNING TOTAL from the start of the run. "So far" is what
+    //   the bar actually shows, in the plainest words that say it (Rule 41).
+    var NLB_WK_CAP_BASE = "Work done";
+    var NLB_WK_CAP_LIVE = "Work done so far";
+    //   How close to its body's own start line a checkpoint has to sit to count
+    //   as the ROUND-TRIP flag (metres). Authors write the seed coordinate
+    //   verbatim, so this only has to survive a re-typed decimal; it is three
+    //   orders below the closest authored flag spacing in the fleet (0.6 m).
+    var NLB_WK_START_TOL_M = 0.001;
 
     // ── Config readers. Each returns null unless the state genuinely authors the
     //    block, which is what makes every instrument additive.
@@ -46302,6 +46336,55 @@ export const FIELD_3D_RENDERER_CODE = `
     //   capture_mode 'first' LATCHES (the end-pose rule: a stamp, once made, holds
     //   for the rest of the state); 'every' re-stamps and carries the pass number,
     //   which is what makes "W by gravity is back to 0 on the return pass" showable.
+    // ── Note 11c — the ARMED side, decided from AUTHORED SEED DATA ────────────
+    //   engine_bug_queue: nlb_checkpoint_at_the_body_home_pose_adopts_its_side_in_a_
+    //   race_so_the_stamp_renders_only_on_some_runs (CRITICAL).
+    //   The adopt-never-fire guard above is correct ONLY where sign(s - s_m) has a
+    //   sign to read. A checkpoint authored AT the body's own home pose
+    //   (s_m === initial_position_m — "stamp the start conditions", concept #4's
+    //   STATE_4) is the degenerate case it cannot resolve: at s === s_m the body is
+    //   on NEITHER side, so what gets adopted is decided by whether a clock advance
+    //   happened before the checkpoint pass first ran. Both frame paths are real —
+    //   an entry under a held pin runs dt = 0 frames and adopts the +1 side (the
+    //   departure then fires the stamp), an entry with the clock already advancing
+    //   samples a body one step downrange and adopts -1 (the departure is invisible
+    //   and the stamp waits for the RETURN pass, ~2.0 s later, past the reveal pin).
+    //   Same JSON, same physics, two different pictures — a race, and an approved
+    //   baseline can capture either.
+    //   THE FIX: never sample a position a clock advance can flip. The side is armed
+    //   from the state's OWN seed (b.s0, b.v0, cp.s_m) at the two places a seeded
+    //   rewind happens — state entry and RESET_TRAJECTORY — so it is a pure function
+    //   of authored data and identical on every run, whatever the frame timing:
+    //     s0 > s_m / s0 < s_m   the ordinary case, byte-identical to what the lazy
+    //                           adopt read (at entry and after a rewind the live s
+    //                           IS s0) — just decided before any frame can move it.
+    //     s0 === s_m            HOME-ARMED (_home): the flag is the home pose. The
+    //                           body is treated as standing on the side it is about
+    //                           to leave (-sign(v0)), and while it is still exactly
+    //                           on the flag NOTHING is decided — the first departure,
+    //                           either way, IS the crossing. v0 === 0 arms _side = 0
+    //                           (no seeded direction to read) and adopts the side it
+    //                           just left at that first departure, so a body pushed
+    //                           off its own flag by a force still stamps.
+    //   Rule 36: reads authored seed values only — no clock, no accumulator, no
+    //   history. A rewind re-arms to exactly the same numbers, so RESET -> pin ->
+    //   RESET -> dense stays byte-identical. A SANDBOX WRAP is deliberately NOT
+    //   armed here: the wrap teleports the body across the band (it does not rewind
+    //   to s0), so its post-wrap position is the only honest side to adopt and the
+    //   null/adopt path it already used is left untouched.
+    function nlbCpArm(eng) {
+        if (!eng || !eng.checkpoint_state) return;
+        for (var i = 0; i < eng.checkpoint_state.length; i++) {
+            var cp = eng.checkpoint_state[i];
+            var b = eng.bodies ? eng.bodies[cp.body_id] : null;
+            if (!b) { cp._side = null; cp._home = false; continue; }   // unresolvable: legacy adopt
+            var s0 = (typeof b.s0 === "number" && isFinite(b.s0)) ? b.s0 : 0;
+            var v0 = (typeof b.v0 === "number" && isFinite(b.v0)) ? b.v0 : 0;
+            if (s0 > cp.s_m) { cp._side = 1; cp._home = false; }
+            else if (s0 < cp.s_m) { cp._side = -1; cp._home = false; }
+            else { cp._side = (v0 < 0) ? 1 : ((v0 > 0) ? -1 : 0); cp._home = true; }
+        }
+    }
     function nlbRunCheckpoints(eng) {
         var cps = eng.checkpoint_state;
         if (!cps || !cps.length) return;
@@ -46313,6 +46396,16 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!b) continue;
             var side = (b.s >= cp.s_m) ? 1 : -1;
             if (cp._side == null) { cp._side = side; continue; }
+            // note 11c — HOME-ARMED: the body starts standing on this flag. Hold
+            // while it is still exactly there (a dt = 0 frame decides nothing), and
+            // let the first departure be the crossing. Reached ONLY by a checkpoint
+            // whose seed sits on the flag, so every other checkpoint runs the
+            // original two lines below unchanged.
+            if (cp._home) {
+                if (b.s === cp.s_m) continue;
+                cp._home = false;
+                if (cp._side === 0) cp._side = (side === 1) ? -1 : 1;   // seeded at rest
+            }
             if (side === cp._side) continue;
             cp._side = side;
             cp._count++;
@@ -46547,12 +46640,59 @@ export const FIELD_3D_RENDERER_CODE = `
         nlbEnSumMergeWrite(groups, pr);
     }
 
+    // ── The qualifier GATE — narrow on purpose ───────────────────────────────
+    //   True only where the ambiguity is a genuine CONTRADICTION, which needs all
+    //   three of:
+    //     (1) live work bars on screen at all;
+    //     (2) a LATCHED stamp (mode 'first') that reports W — the same symbol the
+    //         bars carry. A stamp capturing only v/K/U reports a different symbol
+    //         and cannot be mistaken for the ledger;
+    //     (3) that stamp sitting on its body's OWN start line. This is the whole
+    //         narrowing, and it is a physical criterion, not a concept name: every
+    //         ledger is zeroed at the body's seed position, so for a
+    //         position-determined force W(s) = F_along·(s − s0) and W = 0 EXACTLY
+    //         at s = s0. A start-line crossing is therefore the one place the
+    //         ledger passes through zero and REVERSES — the stamp records the
+    //         closed-path total (0.0 J, the concept's whole claim) while the bar
+    //         immediately runs the other way. A mid-path flag (work_done_by_
+    //         constant_force's "flag at 2 m", 2.0 m from its crate's start) stamps
+    //         a value the monotone bar has merely grown past; same number, same
+    //         direction, no contradiction to resolve — and its shipped baselines
+    //         must not move for a defect it does not have.
+    //   Evaluated ONCE at state entry and stored, never per frame: the header must
+    //   not change text mid-state (it would reflow the panel width at exactly the
+    //   instant the stamp lands — the aha beat) and a state-static string is
+    //   trivially byte-stable under a SET_TIME_FREEZE pin (Rule 36).
+    function nlbWkCapLive(eng) {
+        if (!eng || !eng.work_state || !eng.work_state.length) return false;
+        var cps = eng.checkpoint_state;
+        if (!cps || !cps.length) return false;
+        for (var i = 0; i < cps.length; i++) {
+            var cp = cps[i];
+            if (!cp || cp.mode !== "first") continue;
+            if (!cp.capture || cp.capture.indexOf("W") < 0) continue;
+            var b = eng.bodies[cp.body_id];
+            if (!b || typeof b.s0 !== "number") continue;
+            if (Math.abs(cp.s_m - b.s0) <= NLB_WK_START_TOL_M) return true;
+        }
+        return false;
+    }
     // ── Note 10 — the work section's per-state display + per-frame write ────
     function nlbApplyWorkSection(eng) {
         var wk = eng.work_state;
         var sec = document.getElementById("nlb_wk");
         if (!sec) return;
         sec.style.display = (wk && wk.length) ? "block" : "none";
+        // The header carries the instrument's time. Written here, on the same
+        // per-state display pass that shows/hides the slots and BEFORE
+        // nlbFitEnergyPanel measures — a caption is the panel's widest child in a
+        // work-only state, so a text change after the fit would be measured against
+        // the previous state's width.
+        var cap = document.getElementById("nlb_wk_cap");
+        if (cap) {
+            var capTxt = eng._wkCapLive ? NLB_WK_CAP_LIVE : NLB_WK_CAP_BASE;
+            if (cap.textContent !== capTxt) cap.textContent = capTxt;
+        }
         for (var i = 0; i < NLB_WK_MAX; i++) {
             var sl = document.getElementById("nlb_wk_" + i);
             if (!sl) continue;
@@ -46780,7 +46920,9 @@ export const FIELD_3D_RENDERER_CODE = `
                     body_id: ce.body_id || "",
                     capture: (ce.capture && ce.capture.length) ? ce.capture : ["K", "U_grav"],
                     mode: (ce.capture_mode === "every") ? "every" : "first",
-                    _side: null, _count: 0, text: ""
+                    // note 11c: both latches are (re)written by nlbCpArm() below,
+                    // once eng.bodies exists and every body_id has been resolved.
+                    _side: null, _home: false, _count: 0, text: ""
                 });
             }
         }
@@ -46905,6 +47047,18 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var cr = 0; eng.checkpoint_state && cr < eng.checkpoint_state.length; cr++) {
             if (!eng.bodies[eng.checkpoint_state[cr].body_id]) eng.checkpoint_state[cr].body_id = mDefId;
         }
+        // note 11c — ARM every checkpoint from the authored seed, HERE: after
+        // nlbSeedKinematics (which may clamp s0 into a legal band) and after the
+        // body_id resolution just above, so the arm reads the final seed and the
+        // final body. Nothing about the side is left for a frame to decide.
+        nlbCpArm(eng);
+        // The work section's time qualifier (see nlbWkCapLive). Resolved HERE, once
+        // per state entry: it reads both instrument tables and the body seeds, so it
+        // has to run after the id defaults just above, and it must be settled before
+        // nlbApplyEnergyLayer writes and measures the panel further down.
+        // Ordered AFTER nlbCpArm deliberately: the gate inspects checkpoint state, so
+        // it should see it fully resolved rather than half-initialised.
+        eng._wkCapLive = nlbWkCapLive(eng);
 
         // Surface pose + per-body visibility/label/colour + home position.
         nlbApplySurface(thetaDeg, lenM);
@@ -47235,6 +47389,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // supposed to start clean, which is a determinism failure THE EYE's
         // RESET -> pin -> RESET -> dense drive would surface as a moving baseline.
         nlbSpringPhysReset(eng);
+        // note 11c — re-arm the checkpoints from the seed, AFTER the reset above
+        // cleared their latches and AFTER nlbSeedKinematics restored s0/v0. A rewind
+        // puts every body back on its home pose, so the armed side is once again a
+        // pure function of authored data — the first frame after the rewind can no
+        // longer decide it (and, at a home-pose flag, no longer decide whether the
+        // stamp exists at all).
+        nlbCpArm(eng);
         nlbLastEmitS = null;
         nlbFitRopes();
         nlbFitSpring();                     // the coil rewinds with the carts it sits between
