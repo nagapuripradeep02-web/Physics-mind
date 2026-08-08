@@ -48,7 +48,10 @@
 import type { ConceptPhysicsEngine, PhysicsResult } from '../types';
 
 export const derivativeAsSecantLimitEngine: ConceptPhysicsEngine = {
-  default_variables: { x0: 1, xq: 1.9, hlog: 0, hz: 1, u: -1.6, xdraw: -2.1 },
+  // h7 added Checkpoint B F-6 (2026-08-07) — STATE_7-only linear h sweep
+  // (0.800 -> 0.020) driving the chord's own visible rotation as its algebra
+  // reveals. Distinct from hlog/hz (the log-decade shrink used in S3/S4/S5).
+  default_variables: { x0: 1, xq: 1.9, hlog: 0, hz: 1, u: -1.6, xdraw: -2.1, h7: 0.8 },
   variable_ranges: {
     x0:    { min: -1.6, max: 1.6, step: 0.01, unit: 'dimensionless' },
     xq:    { min: -1.9, max: 2.0, step: 0.01, unit: 'dimensionless' },
@@ -56,6 +59,7 @@ export const derivativeAsSecantLimitEngine: ConceptPhysicsEngine = {
     hz:    { min: 0, max: 1, step: 0.001, unit: 'dimensionless' },
     u:     { min: -1.6, max: 1.6, step: 0.01, unit: 'dimensionless' },
     xdraw: { min: -2.1, max: 2.1, step: 0.01, unit: 'dimensionless' },
+    h7:    { min: 0.02, max: 0.8, step: 0.001, unit: 'dimensionless' },
   },
   compute(variables): PhysicsResult {
     // Defensive reads mirroring the renderer twin: reached with whatever vars
@@ -68,10 +72,11 @@ export const derivativeAsSecantLimitEngine: ConceptPhysicsEngine = {
     const hz    = Number.isFinite(variables.hz)    ? variables.hz    : 1;
     const u     = Number.isFinite(variables.u)     ? variables.u     : -1.6;
     const xdraw = Number.isFinite(variables.xdraw) ? variables.xdraw : -2.1;
+    const h7    = Number.isFinite(variables.h7)    ? variables.h7    : 0.8;
 
     return {
       concept_id: 'derivative_as_secant_limit',
-      variables: { x0, xq, hlog, hz, u, xdraw },
+      variables: { x0, xq, hlog, hz, u, xdraw, h7 },
       derived: {},
       forces: [],
       graph: [],
