@@ -153,6 +153,14 @@ That is scar row `camera_metric_scored_foreshortening_not_pairwise_screen_separa
 mechanical check. Keep it whatever else changes.
 
 ### The JSON contract it exposed (for whoever authors against it)
+
+> **⛔ SUPERSEDED — DO NOT AUTHOR AGAINST THE BLOCK BELOW.** It is doubly stale: the block is named
+> `vp` (now **`vg`**), its `mode` enum reads `'dot'|'cross'|'triple'` (now
+> **`'products'|'lines_planes'`**), and it carries **no value panel at all** — only
+> `controls?/static_readouts?`. The live contract is
+> `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` §contract as amended by **A24** (`vg.value_readouts`), plus
+> the closed contracts published by VG-C and SR-A. Kept verbatim below as the historical record of
+> what the stopped round built.
 ```
 states.<id>.camera_position: [x,y,z]        // REQUIRED per state — no fixed pose works (§7)
 states.<id>.vp: {

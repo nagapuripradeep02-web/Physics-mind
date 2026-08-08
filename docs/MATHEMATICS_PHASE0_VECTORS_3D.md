@@ -47,8 +47,44 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > SIM will print, computed from the authored inputs — never hand-rounded to a nicer value.
 >
 > ### HANDOFF TO 0d (blocking `mathematics_author`)
-> 1. **`vg.readouts` vs `vg.static_readouts`** — VG-A shipped `static_readouts` as *greyed slider rows*;
->    Δ6's tokens are readout VALUES and land on `readouts`. **Resolve the naming before authoring.**
+> 1. ~~**`vg.readouts` vs `vg.static_readouts`**~~ ✅ **RESOLVED 2026-08-08 → `vg.value_readouts`** (A24).
+>
+> ## A24 · THE NAMING CLASH — resolved, and it had ALREADY SHIPPED AS A SILENT NO-OP IN THIS DOCUMENT
+> **Founder-decided: the NEWCOMER moves, the fleet convention stays.** `vg.readouts` (the numeric VALUE
+> panel, authored by zero shipped concepts) → **`vg.value_readouts`**. `static_readouts` does NOT move:
+> re-measured at **22 sites on master across ~8 scenarios**, documented identically at each (*"a disabled
+> row at the SAME position"*), and **authored by 7 shipped concept JSONs** — `magnetic_flux`,
+> `capacitance`, `displacement_current`, `ac_voltage_resistor/_capacitor/_inductor`,
+> `vsepr_molecular_shapes`. Landed on the VG branch as `719ac77` **before PR #75 merged, so master never
+> saw the ambiguous name.**
+>
+> **⚠ THE PART THAT MATTERS MORE THAN THE RENAME: the collision was already committed to paper — in
+> THIS document.** §contract's authoring example read `"static_readouts": ["a_dot_b"]  // ⟵ F9, live
+> numbers`, i.e. **a VALUE token on the SLIDER-ROW field.** Authored exactly as written, `a_dot_b` is
+> not a `rowIds` key, so it renders **nothing at all and the value panel silently stays hidden.**
+> **Not an error — a no-op**, which is the `os.orbital || "1s"` silent-fallback class
+> (`patterns/mathematics.md` hazard 2: *a valid default is more dangerous than one that throws*).
+> A concept authored from this document would have shipped a blank panel and passed every gate.
+> Corrected in place, along with #9's Δ6 heading which carried the same inversion.
+>
+> **THE REAL HAZARD WAS THE FIX, NOT THE BUG.** `readouts` is ALSO the authored field of **three other
+> scenarios** — `newtons_laws_body` (`:1742`), `rigid_body_rotation` (`:1216`), `force_rig` (`:2206`) —
+> so a file-wide find-and-replace would have destroyed all three. The rename was scoped by asserted
+> region anchors and proved by a contamination grep plus fleet byte-identity: **0 lines added, 0 removed
+> outside the vg region.** Gate **377/38 → 389/40** — new section 11b asserts the vg region reads
+> `d.value_readouts` at exactly 3 consumers and `d.readouts` at 0, that the three sibling scenarios
+> survive **outside** it, and — the discriminating part — **it is demonstrated to FIRE on the
+> reconstructed pre-rename source**, with negative controls proving a blind fleet-wide replace destroys
+> `nlb.readouts`/`rb.readouts` and that a plain string-presence check cannot tell the broken source from
+> the fixed one.
+>
+> **A25 · NEW CONTRACT BUG, FLAGGED NOT FIXED — the authored enum is incomplete for `lines_planes`.**
+> `:408`'s type union lists the **11 `products` tokens only**, but `VG_READOUT_LABEL` labels the **13
+> Δ6 `lines_planes` tokens** and `vgReadoutLine` prints any key a state names. **So a `lines_planes`
+> state MUST author `value_readouts: ["point_plane_distance", …]` — tokens its own type union
+> forbids.** Different root cause from the rename, so it was correctly left alone. **Fix before 0d:** a
+> 3-line union widening plus a gate assertion that the union ⊇ `VG_READOUT_LABEL` keys — an assertion
+> that would have caught it. → next VG dispatch.
 > 2. **Correct #9 §11's 2.200 / (1.23,−0.83,0.00) → 2.198 / (1.22,−0.83,0.01)** in narration, DoD and
 >    formula surfaces (A23).
 > 3. **S9-B and S3 re-solve** (A19 condition 3) — now *checkable*: gate §13 scores any authored pose
@@ -923,7 +959,12 @@ internal, the scenario name is not. Per-mode camera table keyed exactly like `BS
   // ── shared ───────────────────────────────────────────────────────────
   "reveal_ms": 900,                   // ⟵ one-shot grow-in, then HOLD
   "controls": ["a_mag", "b_mag", "theta_deg"],   // ⟵ Rule 31 per-state rows
-  "static_readouts": ["a_dot_b"]                 // ⟵ F9, Rule 33d live numbers
+  "value_readouts": ["a_dot_b"]                  // ⟵ F9, Rule 33d live numbers
+  // ⚠ CORRECTED 2026-08-08 (A24). This line previously read `"static_readouts": ["a_dot_b"]`,
+  // which was THE COLLISION COMMITTED TO PAPER: `static_readouts` is the fleet's GREYED
+  // SLIDER-ROW convention, so a VALUE token authored there is not a rowIds key and renders
+  // NOTHING — the value panel silently stays hidden. Not an error, a no-op. `value_readouts`
+  // is the numeric panel. See A24.
 },
 
 // concept-level

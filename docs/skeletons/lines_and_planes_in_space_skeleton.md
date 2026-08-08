@@ -754,7 +754,11 @@ Requested:
 The `L1,P1` form must render the angle to the PLANE (the complement), not to the normal — the two are the state's
 whole point and must be separately addressable.
 
-### Δ6 — the `static_readouts` token set for `lines_planes` is unspecified
+### Δ6 — the `value_readouts` token set for `lines_planes` is unspecified
+<!-- ⚠ RENAMED 2026-08-08 (Phase-0 A24, commit 719ac77): this section previously said
+     `static_readouts`, which is the FLEET's greyed SLIDER-ROW convention (22 sites on master,
+     7 shipped concepts). Δ6's tokens are readout VALUES and land on `vg.value_readouts`.
+     Authoring them under `static_readouts` renders nothing at all. -->
 The draft shows `["a_dot_b"]` only. Requested closed enum, closed **in both directions** against §13's states
 (`phase0_config_enum_closed_against_the_spec_driver_not_the_served_concept_set`):
 `point_plane_distance` · `skew_distance` · `angle_lines_deg` · `angle_line_plane_deg` · `angle_line_normal_deg` ·
