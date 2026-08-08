@@ -2255,10 +2255,49 @@ function PM_planeResolveBound(rangeObj, key, vars) {
   return rangeObj ? rangeObj[key] : undefined;
 }
 
+// ── Dual-bound-authored trap warning (bug_class E-2 /
+// pcpl_x_domain_precedence_disagreed_with_plane_range_precedence_and_
+// failed_silently, founder Checkpoint B cycle 2, 2026-08-08) — an author
+// who writes BOTH a numeric bound (e.g. x_domain.min) AND its *_expr
+// sibling (x_domain.min_expr) on the SAME rangeObj gets the expression
+// (PM_planeResolveBound's own precedence, D3, now unified across every
+// caller — see drawFunctionPlot below) with the numeric silently ignored.
+// That precedence is correct, but SILENT correctness is still a trap: the
+// STATE_4 magnifier incident measured exactly this — an authored numeric
+// x_domain.min:1.75 sat beside a min_expr computing the live re-zoom
+// window, the numeric read as though it were live, and the actual symptom
+// was not 'the expression got ignored' but 'the curve does not draw at
+// all' (240 samples spread across the WIDE numeric domain instead of the
+// tiny live one, so only a sliver of them ever lands inside the plane's
+// own zoomed viewport). Warn ONCE per (state, primitive, bound) — never
+// per-frame — because PM_planeBuildTransform runs every plane every frame
+// (D1) and drawFunctionPlot runs every function_plot every frame; an
+// unguarded console.warn at either site would spam the console at 60 Hz.
+// The map is keyed by state so a genuine re-author (editing the JSON
+// between page loads) is caught again on the next load; it is never
+// cleared mid-session (the underlying JSON does not change during a
+// session) so a teacher revisiting the same state does not re-spam either.
+var PM_dualBoundWarned = {};
+function PM_warnIfDualBoundAuthored(primitiveId, boundLabel, rangeObj, key) {
+  if (!rangeObj) return;
+  var exprKey = key + '_expr';
+  if (typeof rangeObj[key] === 'undefined' || typeof rangeObj[exprKey] !== 'string') return;
+  var warnKey = PM_currentState + '|' + (primitiveId || '(no id)') + '|' + boundLabel;
+  if (PM_dualBoundWarned[warnKey]) return;
+  PM_dualBoundWarned[warnKey] = true;
+  console.warn('[pcpl] "' + (primitiveId || '(no id)') + '" authors BOTH ' + boundLabel + '=' +
+    rangeObj[key] + ' AND ' + boundLabel + '_expr="' + rangeObj[exprKey] +
+    '" on the same bound — the EXPRESSION wins (PM_planeResolveBound precedence); the numeric value is silently ignored. Author only one.');
+}
+
 function PM_planeBuildTransform(spec, vars) {
   var viewport = (spec && spec.viewport) || { x: 70, y: 78, w: 660, h: 372 };
   var xRangeRaw = (spec && spec.x_range) || { min: -6.5, max: 6.5 };
   var yRangeRaw = (spec && spec.y_range) || { min: -4, max: 4 };
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'x_range.min', xRangeRaw, 'min');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'x_range.max', xRangeRaw, 'max');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'y_range.min', yRangeRaw, 'min');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'y_range.max', yRangeRaw, 'max');
   var xRange = {
     min: PM_planeResolveBound(xRangeRaw, 'min', vars),
     max: PM_planeResolveBound(xRangeRaw, 'max', vars),
@@ -3270,6 +3309,48 @@ function PM_stateLiveControlVars(scene) {
   return out;
 }
 
+// ── Cross-state live-control inheritance gate (bug_class
+// pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_
+// state_on_state_change, founder_proxy Checkpoint B cycle 1, 2026-08-08) ───
+// PM_sliderValues is a durable store — it is written by a genuine canvas
+// drag (drawCanvasSlider/drawPlotPoint) or a PARAM_UPDATE and is NEVER
+// cleared on SET_STATE (only PM_userTouched, the SEIZURE flag, is cleared
+// per-state; PM_sliderValues deliberately survives so the explore state can
+// be left and re-entered without losing what the teacher set — see
+// requirement 2 below). The SET_STATE handler used to overlay
+// PM_sliderValues onto the incoming state's vars for ANY variable that
+// state happens to declare as a live control, with no regard for WHICH
+// state last wrote that value. Rule 25d's reorderable/jumpable state rail
+// means a teacher can arrive at any GUIDED state from the explore
+// sandbox (or from any other state) at any time, so a value dragged on
+// STATE_8's explore sandbox silently overwrote STATE_5's own authored
+// default the instant STATE_5 was opened — measured on
+// definite_integral_as_accumulated_area: drag bound_marker to b=0.279 on
+// STATE_8, click STATE_5 in the rail, STATE_5 opened at b=0.2792 (not its
+// authored b=2), destroying the above/below-the-axis contrast that state
+// exists to teach.
+//
+// Only advance_mode:'interaction_complete' (Rule 31 — the ONE state whose
+// entire job is open-ended manipulation) may inherit a value the teacher
+// set elsewhere, on both first entry and every re-entry. Every OTHER
+// (guided) state opens strictly on its OWN vars — whatever 'vars' already
+// holds by the time this runs (PM_resolveStateVars' authored defaults, or
+// an explicit e.data.variables/inline_variables override) — with no
+// PM_sliderValues overlay at all, no exceptions for "the teacher was just
+// there a second ago". Does NOT touch PM_liveDragScope (the genuine-drag
+// rebuild used WITHIN the currently-open state, unaffected by this gate)
+// or the PARAM_UPDATE handler (which only ever updates PM_currentState's
+// OWN live control, never a value inherited from a state transition).
+function PM_overlayLiveControlValues(vars, stateData, stateSliderVars) {
+  if (!stateData || stateData.advance_mode !== 'interaction_complete') return vars;
+  for (var svk in PM_sliderValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
+      vars[svk] = PM_sliderValues[svk];
+    }
+  }
+  return vars;
+}
+
 // ── Live drag/seize scope builder (F1 fix — bug_class:
 // pcpl_drag_rebuilds_physics_scope_from_authored_defaults_and_drops_every_
 // other_live_choreography_value, BLOCKING, founder_proxy Checkpoint B
@@ -3391,14 +3472,26 @@ function drawFunctionPlot(spec) {
   var ranges = PM_planeRangesOf(spec.plane_id);
   if (!ranges) return;
 
+  // E-2 fix (bug_class pcpl_x_domain_precedence_disagreed_with_plane_range_
+  // precedence_and_failed_silently, founder Checkpoint B cycle 2,
+  // 2026-08-08) — this used to prefer the NUMERIC bound over its *_expr
+  // sibling when a primitive authored both, the OPPOSITE of
+  // PM_planeResolveBound's own precedence (D3: expression wins, numeric is
+  // the fallback). Unified onto PM_planeResolveBound itself — the single
+  // shared precedence function, not a second hand-rolled copy — so a plane
+  // that re-zooms via min_expr/max_expr and a function_plot sharing that
+  // SAME plane now agree on which window to sample. A missing/invalid
+  // expression AND a missing numeric both still fall back to the plane's
+  // OWN current xRange (unchanged from before — a function_plot with no
+  // authored x_domain at all still fills the visible frame).
   var domainSpec = spec.x_domain || {};
   var vars = PM_liveExprVars();
-  var domainMin = (typeof domainSpec.min === 'number') ? domainSpec.min
-    : (typeof domainSpec.min_expr === 'string') ? PM_safeEval(domainSpec.min_expr, vars)
-    : ranges.xRange.min;
-  var domainMax = (typeof domainSpec.max === 'number') ? domainSpec.max
-    : (typeof domainSpec.max_expr === 'string') ? PM_safeEval(domainSpec.max_expr, vars)
-    : ranges.xRange.max;
+  PM_warnIfDualBoundAuthored(spec.id, 'x_domain.min', domainSpec, 'min');
+  PM_warnIfDualBoundAuthored(spec.id, 'x_domain.max', domainSpec, 'max');
+  var domainMin = PM_planeResolveBound(domainSpec, 'min', vars);
+  if (typeof domainMin !== 'number' || !isFinite(domainMin)) domainMin = ranges.xRange.min;
+  var domainMax = PM_planeResolveBound(domainSpec, 'max', vars);
+  if (typeof domainMax !== 'number' || !isFinite(domainMax)) domainMax = ranges.xRange.max;
 
   var polylines = PM_functionPlotSample(spec.y_expr, domainMin, domainMax, spec.samples, vars, ranges.yRange);
   if (polylines.length === 0) return;
@@ -6451,19 +6544,21 @@ window.addEventListener('message', function(e) {
       }
     }
     // Overlay slider values ONLY for variables the new state actually authors
-    // as a slider primitive. Blanket overlay breaks STATE_2 (horizontal desk,
-    // theta should be 0) when the user has dragged a slider in STATE_5 to e.g.
-    // 32° — the old theta value would bleed back and tilt the N arrow.
+    // as a slider primitive, AND only when the new state is the teacher
+    // sandbox (advance_mode:'interaction_complete' — Rule 31; see
+    // PM_overlayLiveControlValues's own header for the full bug_class this
+    // gate closes). Blanket overlay breaks STATE_2 (horizontal desk, theta
+    // should be 0) when the user has dragged a slider in STATE_5 to e.g.
+    // 32° — the old theta value would bleed back and tilt the N arrow; the
+    // advance_mode gate additionally closes the wider sibling defect where
+    // the SAME leak happens between ANY two states sharing a live-control
+    // variable, not only same-typed ones.
     var newStateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
     var newScene = (newStateData && newStateData.scene_composition) || [];
     // CP-B (F5/F12) — "slider" here means "live-control" (type:'slider' OR a
     // type:'plot_point' drag.bind_variable); see PM_stateLiveControlVars.
     var stateSliderVars = PM_stateLiveControlVars(newScene);
-    for (var svk in PM_sliderValues) {
-      if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
-        vars[svk] = PM_sliderValues[svk];
-      }
-    }
+    vars = PM_overlayLiveControlValues(vars, newStateData, stateSliderVars);
     PM_physics = computePhysics(PM_config.concept_id, vars);
     // Same-state SET_STATE carrying new variables (slider drag) — rewind the
     // sim clock so time-driven motions (atwood, free_fall, pendulum) re-run

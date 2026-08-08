@@ -47,6 +47,8 @@
  *
  *   npm run check:cartesian-plane
  */
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
 import { PARAMETRIC_RENDERER_CODE } from "../lib/renderers/parametric_renderer";
 
 const SRC = PARAMETRIC_RENDERER_CODE;
@@ -90,6 +92,12 @@ const VARS = [
   // literals, exactly like PM_planeRegistry above.
   "PM_planeInkZones", "PM_planeGridInkZones", "PM_planeCurveExpr",
   "PM_GRID_OVERLAP_TIEBREAK_WEIGHT", "PM_TANGENT_PROBE_EPS", "PM_INK_SEGMENT_SUBDIVISIONS",
+  // E-2 engine round (2026-08-08) — PM_warnIfDualBoundAuthored (in FNS
+  // below) closes over PM_currentState (its warn-once dedup key) and
+  // PM_dualBoundWarned (the dedup map itself); both are simple `var`
+  // globals in the shipped renderer, grabbed here the same way
+  // PM_planeRegistry etc. are.
+  "PM_currentState", "PM_dualBoundWarned",
 ];
 const FNS = [
   // PM_signGlyph/PM_fmtNum MUST stay ahead of their callers in this list —
@@ -107,6 +115,10 @@ const FNS = [
   "PM_planeBuildTransform", "PM_planeResolve",
   // D3 (2026-08-08) — live `*_expr` range bounds, so a plane can re-zoom.
   "PM_planeResolveBound",
+  // E-2 (2026-08-08) — the dual-bound-authored trap warning; PM_planeBuildTransform
+  // (already listed above) calls it, so it must be present in this list too
+  // (hoisting makes the LIST ORDER irrelevant, but it must be IN the list).
+  "PM_warnIfDualBoundAuthored",
   // CP-B additions (F8-F12).
   "PM_planeRangesOf", "PM_planeResolveInverse",
   "PM_buildEvalScope", "PM_safeEval",
@@ -2614,7 +2626,334 @@ console.log("\n=== F6 — PM_interpolate numeric substitutions carry the real U+
     && JSON.stringify(legacy.yRange) === JSON.stringify(legacyNoVars.yRange));
 }
 
+console.log("\n=== WP-R6 — cross-state live-control inheritance gate: a teacher-set value on the explore state must not leak into a GUIDED state on SET_STATE (bug_class pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_state_on_state_change, founder_proxy Checkpoint B cycle 1, 2026-08-08) ===");
+{
+  // A DEDICATED sandbox (mirrors runLiveDragScope's own pattern above) —
+  // PM_overlayLiveControlValues closes over the global PM_sliderValues, so
+  // supply it as a literal fixture rather than adding it to the shared
+  // VARS list (which would force every OTHER section in this file to
+  // reason about a shared mutable global). grabFn pulls the SHIPPED
+  // function body (never a reimplementation), so this runs the real code.
+  function runOverlay(fixture: {
+    sliderValues: Record<string, number>;
+    vars: Record<string, number>;
+    stateData: { advance_mode?: string } | null;
+    stateSliderVars: Record<string, boolean>;
+  }): Record<string, number> {
+    const body = [
+      "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      grabFn("PM_overlayLiveControlValues"),
+      "return PM_overlayLiveControlValues(" +
+        JSON.stringify(fixture.vars) + ", " +
+        JSON.stringify(fixture.stateData) + ", " +
+        JSON.stringify(fixture.stateSliderVars) + ");",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // The exact reported shape: a teacher dragged the explore state's bound
+  // marker to b=0.2792 (landing in PM_sliderValues.b), then jumped to
+  // STATE_5, a GUIDED state (advance_mode:'manual_click') that ALSO
+  // declares 'b' as a live control (its own plot_point drag). STATE_5's
+  // own resolved vars carry its authored default b=2 before this overlay
+  // runs (matches PM_resolveStateVars' output, not reimplemented here).
+  const guidedVars = { b: 2, c: 1 };
+  const guidedResult = runOverlay({
+    sliderValues: { b: 0.2792 },
+    vars: { ...guidedVars },
+    stateData: { advance_mode: "manual_click" },
+    stateSliderVars: { b: true },
+  });
+  check("GUIDED state (manual_click): b is UNCHANGED at its authored default (2), not the leaked explore value (0.2792) — the measured STATE_5 defect",
+    guidedResult.b, 2, 0);
+
+  // Every advance_mode that is NOT interaction_complete must behave
+  // identically — the gate is an ALLOWLIST of exactly one value, not a
+  // denylist of 'manual_click' alone. Includes the missing-field case
+  // (stateData with no advance_mode at all — build_review_site.ts's own
+  // '?? manual_click' default), which must resolve the same as an explicit
+  // non-interaction_complete mode.
+  for (const stateData of [
+    { advance_mode: "auto_after_tts" },
+    { advance_mode: "auto_after_animation" },
+    { advance_mode: "wait_for_answer" },
+    {}, // advance_mode omitted entirely
+    null, // no state data resolvable at all
+  ]) {
+    const r = runOverlay({
+      sliderValues: { b: 0.2792 },
+      vars: { ...guidedVars },
+      stateData: stateData as { advance_mode?: string } | null,
+      stateSliderVars: { b: true },
+    });
+    assertTrue(`advance_mode=${JSON.stringify(stateData)}: b stays at the authored default (2), no inheritance`, r.b === 2);
+  }
+
+  // The explore state itself (advance_mode:'interaction_complete') MUST
+  // still inherit — both a fresh arrival and a re-entry are IDENTICAL
+  // inputs to this pure function (it carries no notion of "first time"),
+  // so one fixture legitimately covers both per the brief's own
+  // requirement 2.
+  const exploreResult = runOverlay({
+    sliderValues: { b: 0.2792 },
+    vars: { b: 2, c: 1 },
+    stateData: { advance_mode: "interaction_complete" },
+    stateSliderVars: { b: true },
+  });
+  check("EXPLORE state (interaction_complete): b DOES inherit the teacher-set value (0.2792), identically on entry and on re-entry",
+    exploreResult.b, 0.2792, 1e-9);
+
+  // A variable the incoming state does NOT declare as a live control stays
+  // untouched regardless of advance_mode — the pre-existing per-variable
+  // stateSliderVars gate (the STATE_2/theta precedent already documented
+  // at the call site) must survive this change unchanged.
+  const untouchedResult = runOverlay({
+    sliderValues: { b: 0.2792, theta: 32 },
+    vars: { b: 2, theta: 0 },
+    stateData: { advance_mode: "interaction_complete" },
+    stateSliderVars: { b: true }, // theta deliberately NOT declared as a live control here
+  });
+  check("a variable NOT declared as this state's OWN live control is never overlaid, even on the explore state",
+    untouchedResult.theta, 0, 0);
+
+  // NEGATIVE CONTROL — the PRE-FIX algorithm this dispatch replaced (an
+  // UNCONDITIONAL PM_sliderValues overlay for every stateSliderVars match,
+  // no advance_mode gate at all), reimplemented independently here, run at
+  // the SAME inputs as the guided-state case above — never against the
+  // shipped renderer.
+  function preFixOverlay(sliderValues: Record<string, number>, vars: Record<string, number>, stateSliderVars: Record<string, boolean>) {
+    const merged: Record<string, number> = { ...vars };
+    for (const k of Object.keys(sliderValues)) {
+      if (stateSliderVars[k]) merged[k] = sliderValues[k];
+    }
+    return merged;
+  }
+  const broken = preFixOverlay({ b: 0.2792 }, { ...guidedVars }, { b: true });
+  assertTrue("NEGATIVE CONTROL: the pre-fix unconditional overlay DOES leak the explore value (0.2792) into the GUIDED state's b at this exact input, reproducing the measured STATE_5 defect",
+    Math.abs(broken.b - 0.2792) < 1e-9 && broken.b !== 2);
+  assertTrue("the shipped PM_overlayLiveControlValues does NOT share that defect at the SAME input",
+    guidedResult.b === 2 && guidedResult.b !== broken.b);
+
+  // STATIC REACHABILITY — the SET_STATE handler actually calls
+  // PM_overlayLiveControlValues (wired, not merely defined-but-unused) and
+  // no longer contains the old unconditional inline overlay loop.
+  const setStateStart = SRC.indexOf("e.data.type === 'SET_STATE'");
+  const paramUpdateStart = SRC.indexOf("e.data.type === 'PARAM_UPDATE'");
+  assertTrue("SET_STATE handler located ahead of PARAM_UPDATE handler in source (sanity check on the slice below)",
+    setStateStart >= 0 && paramUpdateStart > setStateStart);
+  const setStateSrc = SRC.slice(setStateStart, paramUpdateStart);
+  assertTrue("the SET_STATE handler calls PM_overlayLiveControlValues(vars, newStateData, stateSliderVars)",
+    setStateSrc.indexOf("vars = PM_overlayLiveControlValues(vars, newStateData, stateSliderVars);") >= 0);
+  assertTrue("the SET_STATE handler no longer contains the old unconditional 'for (var svk in PM_sliderValues)' overlay loop",
+    setStateSrc.indexOf("for (var svk in PM_sliderValues)") === -1);
+
+  // The PARAM_UPDATE handler is DELIBERATELY untouched by this fix — it
+  // only ever updates PM_currentState's OWN live control (never a value
+  // inherited across a state transition), so its own unconditional overlay
+  // loop must still be present, unchanged.
+  const paramUpdateSrc = SRC.slice(paramUpdateStart, SRC.indexOf("e.data.type === 'SET_TIME_FREEZE'"));
+  assertTrue("the PARAM_UPDATE handler's own overlay loop is UNCHANGED (still unconditional — it never crosses a state boundary)",
+    paramUpdateSrc.indexOf("for (var usk in PM_sliderValues)") >= 0);
+}
+
+console.log("\n=== E-2 — x_domain precedence unified onto PM_planeResolveBound (expression wins, numeric is the fallback); the dual-authored trap now warns instead of failing silently (founder Checkpoint B cycle 2, 2026-08-08) ===");
+{
+  // The EXACT STATE_4-style input the founder cited: a numeric min:1.75
+  // authored alongside a live min_expr using the definite_integral_as_
+  // accumulated_area concept's own real choreography shape (nlog -> n via
+  // n_expr:"round(pow(10,nlog))", documented in
+  // docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md and the concept's own
+  // skeleton doc — NOT read from the concept JSON itself, which is being
+  // authored on a parallel desk and is untouched here). nlog=3.3625 is the
+  // skeleton doc's own S4 pin value, giving n=round(10^3.3625)=2304 — a
+  // doc-grounded, not invented, worked example.
+  const domainSpec = { min: 1.75, min_expr: "b - 2*(b/round(pow(10,nlog)))", max: 2.0 };
+  const vars = { b: 2, nlog: 3.3625 };
+  const nAtFixture = Math.round(Math.pow(10, vars.nlog));
+  assertTrue("fixture sanity: nlog=3.3625 gives n=2304 (matches the skeleton doc's own S4 pin exactly)", nAtFixture === 2304);
+  const minExprValue = vars.b - 2 * (vars.b / nAtFixture); // = 1.998263888...
+
+  // NEGATIVE CONTROL FIRST — the PRE-FIX algorithm this dispatch replaced
+  // (numeric wins over its *_expr sibling), reimplemented independently
+  // here, never against the shipped renderer. This is drawFunctionPlot's
+  // OWN pre-fix ternary, copied verbatim in spirit.
+  function preFixDomainBound(spec: { min?: number; min_expr?: string }, exprVal: number, fallback: number): number {
+    return (typeof spec.min === "number") ? spec.min
+      : (typeof spec.min_expr === "string") ? exprVal
+      : fallback;
+  }
+  const preFixMin = preFixDomainBound(domainSpec, minExprValue, 0);
+  assertTrue("NEGATIVE CONTROL: the pre-fix algorithm resolves domainMin to the NUMERIC (1.75), silently discarding the live min_expr (would resolve to 1.998263...)",
+    preFixMin === 1.75);
+
+  // Connect that wrong domainMin to the ACTUAL measured symptom ("the curve
+  // does not draw at all", not "the expression was ignored"): sample
+  // PM_functionPlotSample (the SHIPPED, unmodified sampler) across the
+  // pre-fix WIDE domain [1.75, 2.0] and count how many of its 240 samples
+  // land inside the plane's OWN re-zoomed visible window. That window is
+  // exactly [minExprValue, 2.0] BY DESIGN — the whole point of x_domain
+  // sharing the plane's min_expr formula is that the curve's sampled
+  // domain is supposed to track the SAME shrinking window the plane's own
+  // x_range shows (the magnifier-inset use case D3 was built for).
+  const visibleMin = minExprValue, visibleMax = 2.0;
+  function countInsideWindow(domainMin: number, domainMax: number, winMin: number, winMax: number): number {
+    const polylines = E.PM_functionPlotSample("x", domainMin, domainMax, 240, { b: vars.b }, undefined) as { x: number; y: number }[][];
+    let count = 0;
+    for (const line of polylines) for (const p of line) if (p.x >= winMin && p.x <= winMax) count++;
+    return count;
+  }
+  const preFixVisibleCount = countInsideWindow(preFixMin, domainSpec.max, visibleMin, visibleMax);
+  check("NEGATIVE CONTROL: under the pre-fix WIDE domain [1.75, 2.0], only 2 of 240 sampled points land inside the plane's re-zoomed visible window [1.998263..., 2.0] — a 2-point sliver is the measured 'curve does not draw at all' symptom, not a smooth curve",
+    preFixVisibleCount, 2, 0);
+  assertTrue("...that is <1% coverage of the visible window (practically invisible, matching the D3 section's own 'sub-pixel' threshold for the twin riemann_bars defect)",
+    preFixVisibleCount / 240 < 0.01);
+
+  // THE FIX — domainMin resolved via PM_planeResolveBound itself (the
+  // SAME shared precedence function drawFunctionPlot now calls; this is
+  // not a reimplementation, it is the actual mechanism unification runs
+  // through).
+  const fixedMin = E.PM_planeResolveBound(domainSpec, "min", vars) as number;
+  check("the SHIPPED PM_planeResolveBound resolves domainMin to the LIVE min_expr value (1.998263...), not the stale numeric (1.75)",
+    fixedMin, minExprValue, 1e-9);
+  assertTrue("the shipped resolution does NOT share the pre-fix defect at the SAME input",
+    Math.abs(fixedMin - preFixMin) > 0.2 && fixedMin !== preFixMin);
+  const fixedVisibleCount = countInsideWindow(fixedMin, domainSpec.max, visibleMin, visibleMax);
+  check("post-fix: ALL 240 sampled points land inside the (now correctly tracked) visible window — a fully legible curve, not a sliver",
+    fixedVisibleCount, 240, 0);
+
+  // Fallback discipline carried over unchanged: no x_domain authored at
+  // all still falls back to the plane's own current xRange (never a
+  // degenerate/empty domain).
+  const noDomainMin = E.PM_planeResolveBound({}, "min", vars);
+  assertTrue("an EMPTY domainSpec resolves to undefined from PM_planeResolveBound itself (the ranges.xRange fallback lives in drawFunctionPlot's own post-check, asserted below via source)",
+    typeof noDomainMin === "undefined");
+
+  // STATIC REACHABILITY — drawFunctionPlot's source actually calls
+  // PM_planeResolveBound for both min and max (wired, not merely defined),
+  // no longer contains the old numeric-first ternary, and falls back to
+  // ranges.xRange when PM_planeResolveBound returns a non-finite/absent
+  // value (the "never a degenerate domain" discipline, preserved).
+  const drawFunctionPlotSrc = grabFn("drawFunctionPlot");
+  assertTrue("drawFunctionPlot resolves domainMin via PM_planeResolveBound(domainSpec, 'min', vars)",
+    drawFunctionPlotSrc.indexOf("PM_planeResolveBound(domainSpec, 'min', vars)") >= 0);
+  assertTrue("drawFunctionPlot resolves domainMax via PM_planeResolveBound(domainSpec, 'max', vars)",
+    drawFunctionPlotSrc.indexOf("PM_planeResolveBound(domainSpec, 'max', vars)") >= 0);
+  assertTrue("drawFunctionPlot no longer contains the old pre-fix numeric-first ternary ('typeof domainSpec.min === ' + \"'number'\" + ')",
+    drawFunctionPlotSrc.indexOf("typeof domainSpec.min === 'number'") === -1);
+  assertTrue("drawFunctionPlot still falls back to ranges.xRange.min when PM_planeResolveBound yields nothing finite (degenerate-domain discipline preserved)",
+    /domainMin = ranges\.xRange\.min/.test(drawFunctionPlotSrc) && /domainMax = ranges\.xRange\.max/.test(drawFunctionPlotSrc));
+
+  // ── The dual-bound-authored WARNING (requirement 3) ──────────────────
+  // A DEDICATED sandbox (mirrors WP-R6's own runOverlay/runLiveDragScope
+  // pattern above) — NOT the shared E object. E's PM_currentState is a
+  // snapshot COPY taken when E was built (new Function(...)() runs once
+  // and returns plain property values); reassigning E.PM_currentState from
+  // outside only changes that copy, never the variable binding
+  // PM_warnIfDualBoundAuthored's own closure actually reads. So the whole
+  // call SEQUENCE below — including the state change partway through — is
+  // baked as literal statements inside ONE generated function body,
+  // exactly like runLiveDragScope's fixture technique, so every
+  // reassignment lands on the SAME closure-scoped PM_currentState the
+  // grabbed function reads. console.warn is the REAL global (monkey-patched
+  // from outside) — a dynamically-created function still reads the shared
+  // global console object at call time, so that part needs no faking.
+  const maxOnlySpec = { min: 1.0, max: 2.0 }; // no *_expr authored at all — no conflict
+  function runDualBoundWarnSequence(): void {
+    const body = [
+      "var PM_dualBoundWarned = {};",
+      "var PM_currentState = 'STATE_4_TEST';",
+      grabFn("PM_warnIfDualBoundAuthored"),
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.min', " + JSON.stringify(domainSpec) + ", 'min');",
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.min', " + JSON.stringify(domainSpec) + ", 'min');", // repeat, SAME state
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.max', " + JSON.stringify(maxOnlySpec) + ", 'max');", // single-authored — no conflict
+      "PM_currentState = 'STATE_9_TEST';", // a genuinely different state
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.min', " + JSON.stringify(domainSpec) + ", 'min');",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    new Function(body)();
+  }
+
+  const originalWarn = console.warn;
+  const warnCalls: string[] = [];
+  console.warn = (...args: unknown[]) => { warnCalls.push(args.map(String).join(" ")); };
+  try {
+    runDualBoundWarnSequence();
+  } finally {
+    console.warn = originalWarn;
+  }
+  assertTrue("PM_warnIfDualBoundAuthored fires exactly ONCE for the FIRST genuinely dual-authored bound on a state, naming the primitive id and the bound",
+    warnCalls.length >= 1 && warnCalls[0].indexOf("curve_probe") >= 0 && warnCalls[0].indexOf("x_domain.min") >= 0);
+  assertTrue("the SAME (state, primitive, bound) does NOT warn a second time on repeat calls — the per-frame call sites (PM_planeBuildTransform runs every plane every frame, drawFunctionPlot runs every function_plot every frame) would otherwise spam the console at 60 Hz",
+    warnCalls.length === 2); // call 1 warns; call 2 (repeat) does not; call 3 (single-authored) does not; call 4 (new state) DOES
+  assertTrue("NEGATIVE CONTROL: a bound authoring ONLY a numeric (no *_expr sibling) never warns — the scanner is not just always-true",
+    warnCalls.filter((w) => w.indexOf("x_domain.max") >= 0).length === 0);
+  assertTrue("a NEW state re-warns for the same primitive/bound (the dedup key is per-state, not per-primitive-forever — a teacher revisiting an ALREADY-warned state does not re-spam, but a genuinely different state is not silently swallowed)",
+    warnCalls.length === 2 && warnCalls[1].indexOf("curve_probe") >= 0 && warnCalls[1].indexOf("x_domain.min") >= 0);
+
+  // STATIC — both call sites (PM_planeBuildTransform for x_range/y_range,
+  // drawFunctionPlot for x_domain) actually invoke the warning, so the
+  // trap is visible fleet-wide through the ONE shared choke point, not
+  // just at the site the founder's own repro happened to hit.
+  const planeBuildSrc = grabFn("PM_planeBuildTransform");
+  for (const label of ["x_range.min", "x_range.max", "y_range.min", "y_range.max"]) {
+    assertTrue(`PM_planeBuildTransform warns for a dual-authored ${label}`,
+      planeBuildSrc.indexOf(`PM_warnIfDualBoundAuthored(spec && spec.id, '${label}'`) >= 0);
+  }
+  assertTrue("drawFunctionPlot warns for a dual-authored x_domain.min",
+    drawFunctionPlotSrc.indexOf("PM_warnIfDualBoundAuthored(spec.id, 'x_domain.min'") >= 0);
+  assertTrue("drawFunctionPlot warns for a dual-authored x_domain.max",
+    drawFunctionPlotSrc.indexOf("PM_warnIfDualBoundAuthored(spec.id, 'x_domain.max'") >= 0);
+
+  // ── Blast-radius sweep (requirement 2) — a PERMANENT regression gate,
+  // not a one-off. Walks every concept JSON on this desk and asserts NO
+  // primitive authors both a numeric bound AND its *_expr sibling on the
+  // SAME rangeObj (x_domain, x_range, or y_range) — the precondition the
+  // founder's brief asked to prove, not assume. If this ever finds a real
+  // conflict, this gate is designed to FAIL LOUDLY (per requirement 2:
+  // "STOP and report rather than changing its rendered output") rather
+  // than silently pass.
+  function walkJsonFiles(dir: string, out: string[]): void {
+    for (const entry of readdirSync(dir)) {
+      const p = path.join(dir, entry);
+      const st = statSync(p);
+      if (st.isDirectory()) walkJsonFiles(p, out);
+      else if (entry.endsWith(".json")) out.push(p);
+    }
+  }
+  type DualBoundHit = { file: string; primitiveId: string; boundLabel: string; rangeObj: Record<string, unknown> };
+  function walkForDualBounds(node: unknown, filePath: string, hits: DualBoundHit[]): void {
+    if (node === null || typeof node !== "object") return;
+    if (Array.isArray(node)) { for (const item of node) walkForDualBounds(item, filePath, hits); return; }
+    const obj = node as Record<string, unknown>;
+    for (const rangeKey of ["x_domain", "x_range", "y_range"]) {
+      const rangeObj = obj[rangeKey];
+      if (rangeObj && typeof rangeObj === "object" && !Array.isArray(rangeObj)) {
+        const ro = rangeObj as Record<string, unknown>;
+        for (const bound of ["min", "max"]) {
+          if (typeof ro[bound] !== "undefined" && typeof ro[bound + "_expr"] === "string") {
+            hits.push({ file: filePath, primitiveId: String(obj.id ?? "(no id)"), boundLabel: rangeKey + "." + bound, rangeObj: ro });
+          }
+        }
+      }
+    }
+    for (const k of Object.keys(obj)) walkForDualBounds(obj[k], filePath, hits);
+  }
+  const conceptFiles: string[] = [];
+  walkJsonFiles(path.join(__dirname, "..", "data", "concepts"), conceptFiles);
+  const dualBoundHits: DualBoundHit[] = [];
+  for (const f of conceptFiles) {
+    let json: unknown;
+    try { json = JSON.parse(readFileSync(f, "utf8")); } catch { continue; }
+    walkForDualBounds(json, f, dualBoundHits);
+  }
+  console.log(`  [E-2 sweep] scanned ${conceptFiles.length} concept JSON files, found ${dualBoundHits.length} dual-authored (numeric + *_expr on the SAME bound) instance(s)`);
+  for (const h of dualBoundHits) console.log(`    CONFLICT: ${h.file} primitive="${h.primitiveId}" bound=${h.boundLabel} rangeObj=${JSON.stringify(h.rangeObj)}`);
+  assertTrue(`blast-radius sweep: zero shipped concepts author both a numeric bound and its *_expr sibling on the same x_domain/x_range/y_range bound (measured: ${dualBoundHits.length} across ${conceptFiles.length} files) — the precedence CHANGE (expr now always wins, matching PM_planeResolveBound) is a strict no-op for every shipped concept`,
+    dualBoundHits.length === 0);
+}
+
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D + D3) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D + D3 + E-2) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);
