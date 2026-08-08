@@ -27,11 +27,24 @@
     "primary": "A speed graph works this way too: the area under it is the distance the vehicle travelled."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
-    "sign": ["STATE_5"],
-    "method": ["STATE_6"],
-    "accumulation": ["STATE_7"],
-    "exploration": ["STATE_8"]
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "sign": [
+      "STATE_5"
+    ],
+    "method": [
+      "STATE_6"
+    ],
+    "accumulation": [
+      "STATE_7"
+    ],
+    "exploration": [
+      "STATE_8"
+    ]
   },
   "physics_engine_config": {
     "variables": {
@@ -94,12 +107,25 @@
       "area_total": "exact - 2*area_below"
     },
     "computed_outputs": {
-      "exact": { "formula": "pow(b,3)/3 - c*b" },
-      "A_beta": { "formula": "pow(beta,3)/3 - c*beta" },
-      "area_below": { "formula": "pow(min(b, sqrt(c)), 3)/3 - c*min(b, sqrt(c))" },
-      "area_total": { "formula": "exact - 2*area_below" }
+      "exact": {
+        "formula": "pow(b,3)/3 - c*b"
+      },
+      "A_beta": {
+        "formula": "pow(beta,3)/3 - c*beta"
+      },
+      "area_below": {
+        "formula": "pow(min(b, sqrt(c)), 3)/3 - c*min(b, sqrt(c))"
+      },
+      "area_total": {
+        "formula": "exact - 2*area_below"
+      }
     },
-    "derived_fields_declared": ["exact", "A_beta", "area_total", "area_below"],
+    "derived_fields_declared": [
+      "exact",
+      "A_beta",
+      "area_total",
+      "area_below"
+    ],
     "constraints": [
       "f(x) = x^2 - c is a polynomial: defined and continuous for EVERY real x, on every value of c the sim ever reaches (c in [0,1]) -- there is no excluded point anywhere in the function's own domain",
       "the DRAWN interval is x in [0, b] with b in [0.2, 2.0], authored as function_plot.x_domain = {min:0, max_expr:'b'} in every state except STATE_1's reveal window (max_expr:'min(xdraw, b)', handing off to 'b' with no discontinuity since xdraw's ceiling equals b's own static value at STATE_1's default 2.0)",
@@ -124,16 +150,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "The region under the curve",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -151,7 +191,10 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "min(xdraw, b)" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "min(xdraw, b)"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8"
@@ -169,8 +212,14 @@
             "type": "label",
             "id": "edge_readout_draw",
             "text_expr": "x = {xdraw.toFixed(2)}",
-            "position": { "x": 0.5, "y": 1.5 },
-            "position_expr": { "x": "xdraw", "y": "xdraw*xdraw - c + 0.25" },
+            "position": {
+              "x": 0.5,
+              "y": 1.5
+            },
+            "position_expr": {
+              "x": "xdraw",
+              "y": "xdraw*xdraw - c + 0.25"
+            },
             "plane_id": "plane",
             "font_size": 12,
             "color": "#F1F5F9",
@@ -182,8 +231,14 @@
             "type": "label",
             "id": "edge_readout_fill",
             "text_expr": "x = {fillx.toFixed(2)}",
-            "position": { "x": 1.5, "y": 2.5 },
-            "position_expr": { "x": "fillx", "y": "fillx*fillx - c + 0.25" },
+            "position": {
+              "x": 1.5,
+              "y": 2.5
+            },
+            "position_expr": {
+              "x": "fillx",
+              "y": "fillx*fillx - c + 0.25"
+            },
             "plane_id": "plane",
             "font_size": 12,
             "color": "#F1F5F9",
@@ -194,18 +249,43 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "y = x²",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
         "variable_choreography": [
-          { "variable": "xdraw", "mode": "once", "from": 0, "to": 2, "start_ms": 1200, "duration_ms": 7800 },
-          { "variable": "fillx", "mode": "once", "from": 0, "to": 2, "start_ms": 9000, "duration_ms": 9000 }
+          {
+            "variable": "xdraw",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 1200,
+            "duration_ms": 7800
+          },
+          {
+            "variable": "fillx",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 9000,
+            "duration_ms": 9000
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "The curve draws left to right, then the region beneath it fills in — y equals x squared, bounding one exact area not yet measured.", "glow": "region" },
-            { "id": "s1_2", "text_en": "A speed graph works this way too: the area under it is the distance the vehicle travelled.", "glow": "region" }
+            {
+              "id": "s1_1",
+              "text_en": "The curve draws left to right, then the region beneath it fills in — y equals x squared, bounding one exact area not yet measured.",
+              "glow": "region"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "A speed graph works this way too: the area under it is the distance the vehicle travelled.",
+              "glow": "region"
+            }
           ]
         }
       },
@@ -221,16 +301,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "Four rectangles, left heights",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -248,7 +342,10 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8"
@@ -257,8 +354,14 @@
             "type": "label",
             "id": "curve_label",
             "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
             "plane_id": "plane",
             "font_size": 13,
             "color": "#38BDF8"
@@ -293,7 +396,10 @@
             "type": "label",
             "id": "n_chip",
             "text": "n = 4",
-            "position": { "x": 350, "y": 110 },
+            "position": {
+              "x": 350,
+              "y": 110
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -301,7 +407,10 @@
             "type": "label",
             "id": "h_chip",
             "text": "h = 0.5000",
-            "position": { "x": 350, "y": 142 },
+            "position": {
+              "x": 350,
+              "y": 142
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -309,7 +418,10 @@
             "type": "label",
             "id": "Sn_chip",
             "text_expr": "Sₙ = {S_n.toFixed(4)}",
-            "position": { "x": 350, "y": 174 },
+            "position": {
+              "x": 350,
+              "y": 174
+            },
             "font_size": 13,
             "color": "#A78BFA",
             "appear_at_ms": 18000,
@@ -319,14 +431,25 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "Sₙ = Σ f(xᵢ)·h",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Four rectangles estimate the region, each as tall as the curve where it begins.", "glow": "bars" },
-            { "id": "s2_2", "text_en": "Each rectangle's area is its width times its height, and its height is the curve's value at its left edge — which for the first one is zero.", "glow": "bars" }
+            {
+              "id": "s2_1",
+              "text_en": "Four rectangles estimate the region, each as tall as the curve where it begins.",
+              "glow": "bars"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Each rectangle's area is its width times its height, and its height is the curve's value at its left edge — which for the first one is zero.",
+              "glow": "bars"
+            }
           ]
         }
       },
@@ -348,16 +471,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "More rectangles, closer sum",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -375,7 +512,10 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8"
@@ -384,8 +524,14 @@
             "type": "label",
             "id": "curve_label",
             "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
             "plane_id": "plane",
             "font_size": 13,
             "color": "#38BDF8"
@@ -417,7 +563,10 @@
             "type": "label",
             "id": "n_chip",
             "text_expr": "n = {n}",
-            "position": { "x": 350, "y": 110 },
+            "position": {
+              "x": 350,
+              "y": 110
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -425,7 +574,10 @@
             "type": "label",
             "id": "Sn_chip",
             "text_expr": "Sₙ = {S_n.toFixed(4)}",
-            "position": { "x": 350, "y": 142 },
+            "position": {
+              "x": 350,
+              "y": 142
+            },
             "font_size": 13,
             "color": "#A78BFA"
           },
@@ -433,7 +585,10 @@
             "type": "label",
             "id": "exact_chip",
             "text_expr": "exact = {exact.toFixed(4)}",
-            "position": { "x": 350, "y": 174 },
+            "position": {
+              "x": 350,
+              "y": 174
+            },
             "font_size": 13,
             "color": "#94A3B8"
           },
@@ -441,7 +596,10 @@
             "type": "label",
             "id": "gap_chip",
             "text_expr": "gap = {(exact - S_n).toFixed(6)}",
-            "position": { "x": 350, "y": 206 },
+            "position": {
+              "x": 350,
+              "y": 206
+            },
             "font_size": 13,
             "color": "#F472B6"
           },
@@ -449,7 +607,10 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "Sₙ → exact",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
@@ -462,15 +623,29 @@
             "start_ms": 1000,
             "duration_ms": 15000,
             "holds": [
-              { "at_value": 1.301, "hold_ms": 2000 },
-              { "at_value": 2.0, "hold_ms": 2000 }
+              {
+                "at_value": 1.301,
+                "hold_ms": 2000
+              },
+              {
+                "at_value": 2.0,
+                "hold_ms": 2000
+              }
             ]
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Watch the rectangles multiply and thin, from just four toward a thousand — pausing at twenty, then again at a hundred.", "glow": "bars" },
-            { "id": "s3_2", "text_en": "Each time, the estimate climbs closer to a single number: the exact total the region is heading for, though the rectangle count itself never actually reaches it.", "glow": "bars" }
+            {
+              "id": "s3_1",
+              "text_en": "Watch the rectangles multiply and thin, from just four toward a thousand — pausing at twenty, then again at a hundred.",
+              "glow": "bars"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Each time, the estimate climbs closer to a single number: the exact total the region is heading for, though the sum itself never actually reaches it.",
+              "glow": "bars"
+            }
           ]
         }
       },
@@ -500,16 +675,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "Gap shrinks like 4/n",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -527,7 +716,10 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8"
@@ -536,8 +728,14 @@
             "type": "label",
             "id": "curve_label",
             "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
             "plane_id": "plane",
             "font_size": 13,
             "color": "#38BDF8"
@@ -559,9 +757,24 @@
           {
             "type": "cartesian_plane",
             "id": "plane_inset",
-            "viewport": { "x": 230, "y": 88, "w": 230, "h": 145 },
-            "x_range": { "min": 1.75, "max": 2.00 },
-            "y_range": { "min": 3.0, "max": 4.0 },
+            "viewport": {
+              "x": 230,
+              "y": 88,
+              "w": 230,
+              "h": 145
+            },
+            "x_range": {
+              "min": 1.75,
+              "max": 2.0,
+              "min_expr": "b - 2*(b/round(pow(10,nlog)))",
+              "max_expr": "b"
+            },
+            "y_range": {
+              "min": 3.0,
+              "max": 4.0,
+              "min_expr": "b*b - c - 4.5*b*(b/round(pow(10,nlog)))",
+              "max_expr": "b*b - c + 0.5*b*(b/round(pow(10,nlog)))"
+            },
             "equal_scale": false,
             "x_tick": 0.25,
             "y_tick": 0.5,
@@ -579,7 +792,10 @@
             "id": "curve_inset",
             "plane_id": "plane_inset",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 1.75, "max": 2.00 },
+            "x_domain": {
+              "min_expr": "b - 2*(b/round(pow(10,nlog)))",
+              "max_expr": "b"
+            },
             "samples": 60,
             "stroke_weight": 2,
             "color": "#38BDF8",
@@ -597,13 +813,20 @@
             "mode": "left",
             "color": "#F472B6",
             "appear_at_ms": 0,
-            "animate_in_ms": 1200
+            "animate_in_ms": 1200,
+            "opacity": 0.45
           },
           {
             "type": "vector",
             "id": "zoomlink_1",
-            "from": { "x": 565, "y": 171 },
-            "to": { "x": 460, "y": 233 },
+            "from": {
+              "x": 565,
+              "y": 171
+            },
+            "to": {
+              "x": 460,
+              "y": 233
+            },
             "style": "line",
             "color": "#64748B",
             "appear_at_ms": 0,
@@ -612,8 +835,14 @@
           {
             "type": "vector",
             "id": "zoomlink_2",
-            "from": { "x": 620, "y": 109 },
-            "to": { "x": 460, "y": 233 },
+            "from": {
+              "x": 620,
+              "y": 109
+            },
+            "to": {
+              "x": 460,
+              "y": 233
+            },
             "style": "line",
             "color": "#64748B",
             "appear_at_ms": 0,
@@ -623,7 +852,10 @@
             "type": "label",
             "id": "n_chip",
             "text_expr": "n = {round(pow(10,nlog))}",
-            "position": { "x": 260, "y": 250 },
+            "position": {
+              "x": 260,
+              "y": 250
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -631,7 +863,10 @@
             "type": "label",
             "id": "gap_chip",
             "text_expr": "gap = {((pow(b,3)*(3*round(pow(10,nlog)) - 1)) / (6*round(pow(10,nlog))*round(pow(10,nlog)))).toFixed(6)}",
-            "position": { "x": 260, "y": 282 },
+            "position": {
+              "x": 260,
+              "y": 282
+            },
             "font_size": 13,
             "color": "#F472B6"
           },
@@ -639,7 +874,10 @@
             "type": "label",
             "id": "rectangles_drawn_chip",
             "text_expr": "rectangles drawn: {n_drawn} of {round(pow(10,nlog))}",
-            "position": { "x": 260, "y": 314 },
+            "position": {
+              "x": 260,
+              "y": 314
+            },
             "font_size": 13,
             "color": "#CBD5E1",
             "appear_at_ms": 6000,
@@ -649,14 +887,20 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "gap = 4/n − 4/(3n²)",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           },
           {
             "type": "label",
             "id": "integral_chip",
             "text_expr": "∫₀²x²dx = {exact.toFixed(4)}",
-            "position": { "x": 690, "y": 130 },
+            "position": {
+              "x": 690,
+              "y": 130
+            },
             "font_size": 13,
             "color": "#A78BFA"
           }
@@ -670,16 +914,35 @@
             "start_ms": 1500,
             "duration_ms": 16000,
             "holds": [
-              { "at_value": 3, "hold_ms": 2000 }
+              {
+                "at_value": 3,
+                "hold_ms": 2000
+              }
             ]
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "The picture stops moving, but the numbers do not.", "glow": "sliver_inset" },
-            { "id": "s4_2", "text_en": "Zoom into the last sliver: even at ten thousand rectangles, it is still there.", "glow": "sliver_inset" },
-            { "id": "s4_3", "text_en": "Its exact size is four over n, minus four over three n squared — always positive.", "glow": "sliver_inset" },
-            { "id": "s4_4", "text_en": "No count of rectangles ever makes that gap zero.", "glow": "sliver_inset" }
+            {
+              "id": "s4_1",
+              "text_en": "The picture stops moving, but the numbers do not.",
+              "glow": "sliver_inset"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Zoom into the last sliver: even at ten thousand rectangles, it is still there.",
+              "glow": "sliver_inset"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Its exact size is four over n, minus four over three n squared — always positive.",
+              "glow": "sliver_inset"
+            },
+            {
+              "id": "s4_4",
+              "text_en": "No count of rectangles ever makes that gap zero.",
+              "glow": "sliver_inset"
+            }
           ]
         }
       },
@@ -708,16 +971,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "Below the axis, negative",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -735,19 +1012,12 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
-            "color": "#38BDF8"
-          },
-          {
-            "type": "label",
-            "id": "curve_label",
-            "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
-            "plane_id": "plane",
-            "font_size": 13,
             "color": "#38BDF8"
           },
           {
@@ -783,13 +1053,21 @@
             "x_expr": "b",
             "y_expr": "b*b - c",
             "size": 14,
-            "drag": { "bind_variable": "b", "axis": "x", "min": 0.2, "max": 2.0 }
+            "drag": {
+              "bind_variable": "b",
+              "axis": "x",
+              "min": 0.2,
+              "max": 2.0
+            }
           },
           {
             "type": "label",
             "id": "c_chip",
             "text_expr": "c = {c.toFixed(1)}",
-            "position": { "x": 350, "y": 110 },
+            "position": {
+              "x": 350,
+              "y": 110
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -797,7 +1075,10 @@
             "type": "label",
             "id": "b_chip",
             "text_expr": "b = {b.toFixed(2)}",
-            "position": { "x": 350, "y": 142 },
+            "position": {
+              "x": 350,
+              "y": 142
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -805,7 +1086,10 @@
             "type": "label",
             "id": "total_area_chip",
             "text_expr": "total area = {area_total.toFixed(4)}",
-            "position": { "x": 350, "y": 174 },
+            "position": {
+              "x": 350,
+              "y": 174
+            },
             "font_size": 13,
             "color": "#94A3B8",
             "appear_at_ms": 14000,
@@ -815,7 +1099,10 @@
             "type": "label",
             "id": "integral_chip",
             "text_expr": "∫ = {exact.toFixed(4)}",
-            "position": { "x": 350, "y": 206 },
+            "position": {
+              "x": 350,
+              "y": 206
+            },
             "font_size": 13,
             "color": "#A78BFA",
             "appear_at_ms": 16000,
@@ -824,8 +1111,11 @@
           {
             "type": "label",
             "id": "below_axis_chip",
-            "text_expr": "below axis = {area_below.toFixed(4)}",
-            "position": { "x": 350, "y": 238 },
+            "text_expr": "below axis = {(abs(area_below) < 0.00005 ? 0 : area_below).toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 238
+            },
             "font_size": 13,
             "color": "#F87171",
             "appear_at_ms": 16000,
@@ -835,18 +1125,40 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "f(x) = x² − c",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
         "variable_choreography": [
-          { "variable": "c", "mode": "once", "from": 0, "to": 1, "start_ms": 2000, "duration_ms": 12000 }
+          {
+            "variable": "c",
+            "mode": "once",
+            "from": 0,
+            "to": 1,
+            "start_ms": 2000,
+            "duration_ms": 12000
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Lower the curve: part of it dips below the axis.", "glow": "bars" },
-            { "id": "s5_2", "text_en": "If area only ever added, the total would read 2.0000 — dim, and wrong here.", "glow": "bars" },
-            { "id": "s5_3", "text_en": "The real total is 0.6667, bright: the below-axis piece, minus 0.6667, subtracted from what is above.", "glow": "bars" }
+            {
+              "id": "s5_1",
+              "text_en": "Lower the curve: part of it dips below the axis.",
+              "glow": "bars"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "If area only ever added, the total would read 2.0000 — dim, and wrong here.",
+              "glow": "bars"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The real total is 0.6667, bright: the below-axis piece, minus 0.6667, subtracted from what is above.",
+              "glow": "bars"
+            }
           ]
         }
       },
@@ -869,16 +1181,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "Three sampling rules",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -896,7 +1222,10 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8"
@@ -905,8 +1234,14 @@
             "type": "label",
             "id": "curve_label",
             "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
             "plane_id": "plane",
             "font_size": 13,
             "color": "#38BDF8"
@@ -972,7 +1307,10 @@
             "type": "label",
             "id": "n_chip",
             "text_expr": "n = {n}",
-            "position": { "x": 350, "y": 110 },
+            "position": {
+              "x": 350,
+              "y": 110
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -980,7 +1318,10 @@
             "type": "label",
             "id": "readout_left",
             "text_expr": "left sum (left Riemann sum) = {S_left.toFixed(4)}",
-            "position": { "x": 350, "y": 142 },
+            "position": {
+              "x": 350,
+              "y": 142
+            },
             "font_size": 13,
             "color": "#38BDF8",
             "appear_at_ms": 300,
@@ -990,7 +1331,10 @@
             "type": "label",
             "id": "readout_right",
             "text_expr": "right sum = {S_right.toFixed(4)}",
-            "position": { "x": 350, "y": 174 },
+            "position": {
+              "x": 350,
+              "y": 174
+            },
             "font_size": 13,
             "color": "#F59E0B",
             "appear_at_ms": 2300,
@@ -1000,7 +1344,10 @@
             "type": "label",
             "id": "readout_mid",
             "text_expr": "midpoint sum = {S_mid.toFixed(4)}",
-            "position": { "x": 350, "y": 206 },
+            "position": {
+              "x": 350,
+              "y": 206
+            },
             "font_size": 13,
             "color": "#22D3EE",
             "appear_at_ms": 4300,
@@ -1010,18 +1357,37 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "left ≤ ∫ ≤ right",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
         "variable_choreography": [
-          { "variable": "nlog", "mode": "once", "from": 0.903, "to": 2.7, "start_ms": 6000, "duration_ms": 14000 }
+          {
+            "variable": "nlog",
+            "mode": "once",
+            "from": 0.903,
+            "to": 2.7,
+            "start_ms": 6000,
+            "duration_ms": 14000
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Three rules sample the same rectangles differently: left sum (left Riemann sum), right sum, and midpoint." },
-            { "id": "s6_2", "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, bracketing the truth." },
-            { "id": "s6_3", "text_en": "Add more rectangles: all three readouts draw closer, never landing on exactly the same value." }
+            {
+              "id": "s6_1",
+              "text_en": "Three rules sample the same rectangles differently: left sum (left Riemann sum), right sum, and midpoint."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, bracketing the truth."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Add more rectangles: all three readouts draw closer, never landing on exactly the same value."
+            }
           ]
         }
       },
@@ -1038,16 +1404,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "Area so far, plotted",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -1065,7 +1445,10 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8"
@@ -1074,8 +1457,14 @@
             "type": "label",
             "id": "curve_label",
             "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
             "plane_id": "plane",
             "font_size": 13,
             "color": "#38BDF8"
@@ -1114,8 +1503,14 @@
             "type": "label",
             "id": "accum_curve_label",
             "text": "A(x)",
-            "position": { "x": 1.5, "y": 2.9 },
-            "position_expr": { "x": "beta", "y": "A_beta + 0.25" },
+            "position": {
+              "x": 1.5,
+              "y": 2.9
+            },
+            "position_expr": {
+              "x": "beta",
+              "y": "A_beta + 0.25"
+            },
             "plane_id": "plane",
             "font_size": 13,
             "color": "#8B5CF6"
@@ -1124,7 +1519,10 @@
             "type": "label",
             "id": "beta_chip",
             "text_expr": "β = {beta.toFixed(2)}",
-            "position": { "x": 350, "y": 110 },
+            "position": {
+              "x": 350,
+              "y": 110
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -1132,7 +1530,10 @@
             "type": "label",
             "id": "Abeta_chip",
             "text_expr": "A(β) = {A_beta.toFixed(4)}",
-            "position": { "x": 350, "y": 142 },
+            "position": {
+              "x": 350,
+              "y": 142
+            },
             "font_size": 13,
             "color": "#A78BFA"
           },
@@ -1140,21 +1541,45 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "A(x) = x³/3",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
         "variable_choreography": [
-          { "variable": "beta", "mode": "once", "from": 0, "to": 2, "start_ms": 2000, "duration_ms": 18000 }
+          {
+            "variable": "beta",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 2000,
+            "duration_ms": 18000
+          }
         ],
         "focal_sequence": [
-          { "highlight_primitive_id": "curve", "duration_ms": 2000 },
-          { "highlight_primitive_id": "accum_head", "duration_ms": 22000 }
+          {
+            "highlight_primitive_id": "curve",
+            "duration_ms": 2000
+          },
+          {
+            "highlight_primitive_id": "accum_head",
+            "duration_ms": 22000
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Sweep the upper bound rightward: the filled region grows, and its running total is traced at the same moment as a new curve, A of x.", "glow": "accum_head" },
-            { "id": "s7_2", "text_en": "By x equals 2, that curve ends at 2.6667 — the same number the rectangles were heading for all along.", "glow": "accum_head" }
+            {
+              "id": "s7_1",
+              "text_en": "Sweep the upper bound rightward: the filled region grows, and its running total is traced at the same moment as a new curve, A of x.",
+              "glow": "accum_head"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "By x equals 2, that curve ends at 2.6667 — the same number the rectangles were heading for all along.",
+              "glow": "accum_head"
+            }
           ]
         }
       },
@@ -1170,16 +1595,30 @@
             "type": "annotation",
             "id": "delta_cue",
             "text": "Drag the upper bound",
-            "position": { "x": 40, "y": 55 },
+            "position": {
+              "x": 40,
+              "y": 55
+            },
             "style": "callout",
             "color": "#F1F5F9"
           },
           {
             "type": "cartesian_plane",
             "id": "plane",
-            "viewport": { "x": 70, "y": 78, "w": 660, "h": 372 },
-            "x_range": { "min": -0.5, "max": 2.5 },
-            "y_range": { "min": -1.5, "max": 4.5 },
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
             "equal_scale": false,
             "x_tick": 0.5,
             "y_tick": 1,
@@ -1197,22 +1636,15 @@
             "id": "curve",
             "plane_id": "plane",
             "y_expr": "x*x - c",
-            "x_domain": { "min": 0, "max_expr": "b" },
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
             "samples": 240,
             "stroke_weight": 3,
             "color": "#38BDF8",
             "appear_at_ms": 0,
             "animate_in_ms": 1200
-          },
-          {
-            "type": "label",
-            "id": "curve_label",
-            "text": "y = x²",
-            "position": { "x": 2, "y": 4 },
-            "position_expr": { "x": "b", "y": "b*b - c + 0.15" },
-            "plane_id": "plane",
-            "font_size": 13,
-            "color": "#38BDF8"
           },
           {
             "type": "region_fill",
@@ -1252,7 +1684,12 @@
             "x_expr": "b",
             "y_expr": "b*b - c",
             "size": 14,
-            "drag": { "bind_variable": "b", "axis": "x", "min": 0.2, "max": 2.0 }
+            "drag": {
+              "bind_variable": "b",
+              "axis": "x",
+              "min": 0.2,
+              "max": 2.0
+            }
           },
           {
             "type": "slider",
@@ -1280,7 +1717,10 @@
             "type": "label",
             "id": "n_chip",
             "text_expr": "n = {n.toFixed(0)}",
-            "position": { "x": 350, "y": 110 },
+            "position": {
+              "x": 350,
+              "y": 110
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -1288,7 +1728,10 @@
             "type": "label",
             "id": "Sn_chip",
             "text_expr": "Sₙ = {S_n.toFixed(4)}",
-            "position": { "x": 350, "y": 142 },
+            "position": {
+              "x": 350,
+              "y": 142
+            },
             "font_size": 13,
             "color": "#A78BFA"
           },
@@ -1296,7 +1739,10 @@
             "type": "label",
             "id": "integral_chip",
             "text_expr": "∫ = {exact.toFixed(4)}",
-            "position": { "x": 350, "y": 174 },
+            "position": {
+              "x": 350,
+              "y": 174
+            },
             "font_size": 13,
             "color": "#94A3B8"
           },
@@ -1304,7 +1750,10 @@
             "type": "label",
             "id": "b_chip",
             "text_expr": "b = {b.toFixed(2)}",
-            "position": { "x": 350, "y": 206 },
+            "position": {
+              "x": 350,
+              "y": 206
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -1312,7 +1761,10 @@
             "type": "label",
             "id": "c_chip",
             "text_expr": "c = {c.toFixed(1)}",
-            "position": { "x": 350, "y": 238 },
+            "position": {
+              "x": 350,
+              "y": 238
+            },
             "font_size": 13,
             "color": "#CBD5E1"
           },
@@ -1320,16 +1772,30 @@
             "type": "formula_box",
             "id": "fs",
             "equation": "∫₀ᵇ (x² − c) dx",
-            "position": { "x": 500, "y": 62 },
+            "position": {
+              "x": 500,
+              "y": 38
+            },
             "border_color": "#3B82F6"
           }
         ],
         "variable_choreography": [
-          { "variable": "b", "mode": "ping_pong", "from": 0.6, "to": 2.0, "start_ms": 2500, "duration_ms": 9000, "seizable": true }
+          {
+            "variable": "b",
+            "mode": "ping_pong",
+            "from": 2.0,
+            "to": 0.6,
+            "start_ms": 2500,
+            "duration_ms": 9000,
+            "seizable": true
+          }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "" }
+            {
+              "id": "s8_1",
+              "text_en": ""
+            }
           ]
         }
       }
@@ -1485,14 +1951,29 @@
   },
   "coverage_map": {
     "by_state": {
-      "STATE_2": ["q1"],
-      "STATE_3": ["q2"],
-      "STATE_4": ["q3"],
-      "STATE_5": ["q4"],
-      "STATE_6": ["q5"],
-      "STATE_7": ["q6"]
+      "STATE_2": [
+        "q1"
+      ],
+      "STATE_3": [
+        "q2"
+      ],
+      "STATE_4": [
+        "q3"
+      ],
+      "STATE_5": [
+        "q4"
+      ],
+      "STATE_6": [
+        "q5"
+      ],
+      "STATE_7": [
+        "q6"
+      ]
     },
-    "non_assessed_states": ["STATE_1", "STATE_8"]
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_8"
+    ]
   },
   "curriculum_tags": {
     "entries": [
