@@ -41068,6 +41068,42 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_SPRING_RING_TAU_MS = 130;     // exponential decay constant
     var NLB_SPRING_RING_PERIOD_MS = 100;  // 10 Hz — fast enough to read as a twang, not a wobble
 
+    // ══ The ONE formula surface's WIDTH — MEASURED, never a literal ════════════
+    //   #nlb_formula carried a hardcoded "max-width:340px". On the 1280 px review
+    //   canvas that literal wrapped a two-checkpoint two-accumulator stamp into
+    //   FIVE display lines, and the wrap landed MID-CLAUSE: "W gravity =" on one
+    //   line and its value on the next, with the middot separator orphaned to the
+    //   start of a line (conservative_vs_nonconservative_forces STATE_2 — the
+    //   MEASURED 159.45 px tall surface against STATE_1's 63.78 px).
+    //   Two independent defects, two mechanisms, both here:
+    //     (1) the CAP is derived from the space actually free beside the apparatus
+    //         (nlbFitFormula), so the surface uses the empty canvas it is standing
+    //         next to instead of a number typed once for one screen size;
+    //     (2) a stamp CLAUSE is unbreakable and the separator hangs at the end of
+    //         its line (nlbStampClauses), so when the surface still has to wrap it
+    //         wraps at a clause boundary and a value is never severed from its
+    //         symbol at ANY width.
+    var NLB_FML_RIGHT_PX = 22;    // mirrors the #nlb_formula right anchor
+    var NLB_FML_CLEAR_PX = 14;    // gap kept between apparatus ink and the surface
+    //   FLOOR — the pre-2026-08-08 literal, kept on purpose so the derivation may
+    //   only ever GROW the surface. A concept whose apparatus reaches further right
+    //   than (viewport - 22 - 14 - 340) would otherwise derive a NARROWER cap than
+    //   it shipped with, and a formula that fits today would start wrapping — a
+    //   regression inside an already-approved baseline. It is also comfortably
+    //   wider than the longest single clause a W capture can emit (measured 209 px
+    //   at 22 px for "W friction = -123.4 J"), so a glued clause cannot overflow.
+    var NLB_FML_MIN_W_PX = 340;
+    //   The non-breaking space that glues a clause together, and the separator that
+    //   hangs at the end of a wrapped line (NBSP + middot + one ordinary space, so
+    //   the break opportunity sits AFTER the middot). Rule 14: this whole body is
+    //   ONE template literal, so each escape is doubled here and the browser
+    //   receives real characters, never the six source letters.
+    //   NBSP has the SAME advance as a space in the surface's font stack (measured:
+    //   both 27 px for "x x" at 22 px 'Cambria Math'), so gluing changes not one
+    //   pixel of a line that was already fitting.
+    var NLB_NBSP = "\\u00A0";
+    var NLB_STAMP_SEP = "\\u00A0\\u00B7 ";
+
     // Explicit id registry. addToScene() only registers the object handed to it,
     // so child meshes (bodies parented to the rotated surface group) would never
     // be reachable from sceneObjects — the "child mesh never registered, updater
@@ -41810,6 +41846,92 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
                  y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+    }
+    // ── Rule 34b/34d — how wide the ONE formula surface is allowed to be ────────
+    //   See the NLB_FML_* block for WHY. This is the measurement half.
+    //
+    //   THE APPARATUS' RIGHTMOST INK, in screen px, asked of the id REGISTRY rather
+    //   than a hand-picked list of "the wide things": in several states the widest
+    //   object is the thin h = 0 reference LINE, not the slab, and a hand-picked
+    //   list is exactly how a layer gets missed (the "declares an element but never
+    //   builds the meshes" family, in reverse). Every id-addressable nlb object is
+    //   in nlbIndex by construction, so every one of them is measured.
+    //   Invisible objects are skipped — up the whole parent chain, because a hidden
+    //   GROUP (the pulley bracket, the rolling pool) draws none of its children.
+    function nlbVisibleUp(o) {
+        while (o) { if (o.visible === false) return false; o = o.parent; }
+        return true;
+    }
+    function nlbApparatusRightPx() {
+        if (typeof camera === "undefined" || !camera) return -1;
+        var vw = window.innerWidth || 0;
+        if (!(vw > 0)) return -1;
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var corner = new THREE.Vector3();
+        var maxX = -1;
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            if (!o || !nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            if (o.isSprite) {
+                // A billboard's ink rect is already solved for (labels are the same
+                // objects nlbDodgeBodyLabels measures), so reuse that solver — it
+                // honours _pmInkFrac, i.e. the drawn glyphs, not the padded quad.
+                var sc = new THREE.Vector3().setFromMatrixPosition(o.matrixWorld);
+                var sr = nlbSpriteRectPx(o, sc, right, up);
+                if (isFinite(sr.x1) && sr.x1 > maxX) maxX = sr.x1;
+                continue;
+            }
+            var geo = o.geometry;
+            if (!geo) continue;                      // groups carry no ink of their own
+            if (!geo.boundingBox) geo.computeBoundingBox();
+            var bb = geo.boundingBox;
+            if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+            for (var c = 0; c < 8; c++) {
+                corner.set((c & 1) ? bb.max.x : bb.min.x,
+                           (c & 2) ? bb.max.y : bb.min.y,
+                           (c & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                var px = nlbProjPx(corner).x;
+                if (isFinite(px) && px > maxX) maxX = px;
+            }
+        }
+        // A point BEHIND the camera projects to garbage (the perspective divide
+        // flips sign), so the answer is clamped to the viewport: a garbage-wide
+        // reading degrades to "no free space", i.e. the NLB_FML_MIN_W_PX floor,
+        // never to a surface pushed off screen.
+        return (maxX > vw) ? vw : maxX;
+    }
+    //   The viewport width the current cap was measured at. -1 = never measured.
+    var nlbFmlCapVw = -1;
+    //   MEASURED PER STATE ENTRY, NOT PER FRAME — deliberately (Rule 36). The
+    //   apparatus MOVES inside a state (a block slides, an arrow grows), so a
+    //   per-frame re-measure would rewrite max-width every frame, and a fractional
+    //   width re-rounds differently under sub-pixel layout: two otherwise identical
+    //   frozen frames could then differ by one wrapped word, which is the one thing
+    //   an H2 baseline cannot tolerate (the trap nlbEnergyTopPx rounds against).
+    //   So the cap is a per-STATE quantity taken at the entry (home) pose — where
+    //   the rightmost ink of every authored state is the TRACK, which does not move
+    //   within a state — and rounded to a whole pixel. The only per-frame work is
+    //   one integer compare against the viewport width, so a resize or a full-screen
+    //   still re-fits, and a frozen pin (fixed viewport) never re-measures at all.
+    //   No clock, no accumulator: a pure function of (camera, entry pose, viewport).
+    function nlbFitFormula() {
+        var ff = document.getElementById("nlb_formula");
+        if (!ff) return;
+        var vw = window.innerWidth || 0;
+        var app = (vw > 0) ? nlbApparatusRightPx() : -1;
+        var cap = NLB_FML_MIN_W_PX;
+        if (vw > 0 && app >= 0) {
+            cap = Math.max(NLB_FML_MIN_W_PX,
+                Math.round(vw - NLB_FML_RIGHT_PX - NLB_FML_CLEAR_PX - app));
+        }
+        var want = cap + "px";
+        if (ff.style.maxWidth !== want) ff.style.maxWidth = want;
+        nlbFmlCapVw = vw;
+        // Probe surface (the filed probe_logic reads exactly these two numbers).
+        window.PM_nlbAppRightPx = app;
+        window.PM_nlbFmlCapPx = cap;
     }
     // Rule 34d, the cross-body half. Each billboard is centred over its OWN block
     // and must stay there (a label that drifts off its block stops naming it), so
@@ -43240,7 +43362,10 @@ export const FIELD_3D_RENDERER_CODE = `
         //    applyState hide-chain suppresses for this scenario).
         var ff = document.createElement("div");
         ff.id = "nlb_formula";
-        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:340px;text-align:right;white-space:pre-line;";
+        // The width is the FLOOR here and only the floor: nlbFitFormula re-derives it
+        // from the space free beside the apparatus on every state entry, so no pixel
+        // literal decides how wide the one formula surface may be.
+        ff.style.cssText = "position:fixed;top:42%;right:" + NLB_FML_RIGHT_PX + "px;transform:translateY(-50%);color:#FFF176;font:600 22px/1.45 'Cambria Math','Times New Roman',serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:" + NLB_FML_MIN_W_PX + "px;text-align:right;white-space:pre-line;";
         document.body.appendChild(ff);
 
         // 6. Contextual control panel CONTAINER only — SEAM E builds the rows
@@ -46576,7 +46701,30 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         var head = cp.label + (cp.mode === "every" && cp._count > 1 ? (" (pass " + cp._count + ")") : "");
-        return head + ":  " + parts.join("  ·  ");
+        return head + ":  " + nlbStampClauses(parts);
+    }
+    // ── The CLAUSE-BOUNDARY WRAP (Rule 34b — one surface, and it reads as one) ───
+    //   Every element of parts[] is one clause: a symbol, its equals sign, its value
+    //   and its unit. Soft-wrapping treated the spaces INSIDE a clause as break
+    //   opportunities, so a narrow surface put "W gravity =" on one line and
+    //   "-4.9 J" on the next, and orphaned the middot separator to the start of a
+    //   line — a formula surface contradicting itself
+    //   (nlb_formula_surface_wraps_mid_clause_when_two_checkpoint_stamps_coexist).
+    //   So a clause is made UNBREAKABLE (its own spaces become non-breaking) and the
+    //   separator is glued to the clause it FOLLOWS, with the one ordinary space
+    //   after it: the only break opportunities left inside a stamp are AFTER a
+    //   middot, i.e. at clause boundaries. A wrap can then still happen — it just
+    //   can no longer separate a value from its symbol, at any width.
+    //   PIXEL-NEUTRAL for a line that already fitted: NBSP has the same advance as a
+    //   space in this font stack, and the separator keeps exactly one space-advance
+    //   on each side of the middot (the surface is white-space:pre-line, which
+    //   collapsed the authored double spaces to one anyway).
+    //   The AUTHORED text is deliberately untouched — formula_base / formula_lines
+    //   are rendered byte-for-byte as authored, as they always were.
+    function nlbStampClauses(parts) {
+        var glued = [];
+        for (var i = 0; i < parts.length; i++) glued.push(String(parts[i]).split(" ").join(NLB_NBSP));
+        return glued.join(NLB_STAMP_SEP);
     }
     //   Stamps land on the state's ONE formula surface (Rule 34b) — never a second
     //   text overlay to collide with it. The authored formula is kept verbatim as
@@ -47268,6 +47416,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // PM_currentState lookup, so the proxies can never be armed one state late
         // if applyState ever runs before PM_currentState is committed.
         nlbSetDragProxies(listed, !!nlb.trusted_drag_seizes);
+
+        // Rule 34b/34d — the ONE formula surface's width, re-derived for THIS state's
+        // apparatus. LAST of the overlay passes on purpose: nlbApplyMarkers /
+        // nlbApplyOffAxis / the pulley scope above decide what is visible, and the
+        // measurement is over the VISIBLE ink. Measured here (state entry, home pose)
+        // and nowhere else per frame — see nlbFitFormula for why.
+        nlbFitFormula();
 
         nlbApplyGlow();
     }
@@ -48130,6 +48285,12 @@ export const FIELD_3D_RENDERER_CODE = `
     function updateNewtonsLawsBodyFrame(dt) {
         var eng = window.PM_nlbEngine;
         if (!eng) return;                                  // build ran, no state seeded yet
+        // Rule 34b/34d — the formula surface's width is a per-STATE measurement (see
+        // nlbFitFormula), so the only thing this frame checks is whether the VIEWPORT
+        // changed under it: a teacher hitting full screen must get the wider surface
+        // that screen now affords. One integer compare; nothing is written, measured
+        // or re-rounded while the width is unchanged, so no frozen frame can move.
+        if ((window.innerWidth || 0) !== nlbFmlCapVw) nlbFitFormula();
         var h = (typeof dt === "number" && isFinite(dt) && dt > 0) ? dt : 0;
         var nlb = nlbStateCfg();
         var lenM = eng.length_m;
