@@ -46073,6 +46073,84 @@ export const FIELD_3D_RENDERER_CODE = `
         var l = nlbFindById(id + "_label");
         if (l) nlbSetBodyLabelText(l, txt);      // the same churn-guarded setter the body billboards use
     }
+    // ── Note 11g — the POINT caption's OTHER obstacle: the body standing on it ──
+    //   engine_bug_queue: nlb_point_marker_caption_renders_over_the_body_parked_
+    //   on_that_point (MAJOR).
+    //   Note 11f pulled the point caption down to 0.35 surface-local so it sits on
+    //   the dot it names. That is right while the track is clear — and wrong at
+    //   exactly the one instant the frame is REVIEWED. A checkpoint is a place a body
+    //   crosses, note 11d's teaching dwell FREEZES the scene on that crossing, and
+    //   every concept authors its eye_capture_ms inside that freeze. So "the body is
+    //   standing on the point" is not an occasional frame: it is the guaranteed state
+    //   of every frozen baseline of every dwell state, i.e. the single frame the
+    //   founder reviews and H2 locks. Measured on work_energy_theorem STATE_1: the
+    //   caption "point B" drawn in #CE93D8 over the cart's #42A5F5 face with the
+    //   applied-force arrow crossing the glyphs; and on
+    //   conservative_vs_nonconservative_forces STATE_4, where "point A" (block parked)
+    //   and "point B" (clear track) sit in the SAME frame — one unreadable, one clean.
+    //   The remedy is the one the lane already has: the caption LIFTS, along the
+    //   surface normal, out of the way of ink it overlaps. All that was missing is the
+    //   ink — a marker caption's obstacle set held other captions and nothing else, so
+    //   a whole cart could stand in it unnoticed. This is the obstacle set:
+    //     * the body MESH — measured off its own geometry box (never Box3.setFromObject,
+    //       which would swallow the billboard parented to it and double-count), so a
+    //       cart, a wheel carrier and a wall slab each contribute their true footprint;
+    //     * the body BILLBOARD — because clearing only the mesh lands the caption at
+    //       ~0.77 surface-local, which is precisely where the mass label lives (0.80),
+    //       i.e. it would trade a caption-over-a-block for two overprinted strings.
+    //   Both are read off the DRAWN scene through the id registry (the same discipline
+    //   nlbMkLane and nlbMkMeshProbe follow), not off nlb.bodies: a body's authored
+    //   presence is not its presence on screen.
+    //   Extents are taken in CAMERA axes in world units — the identical basis the
+    //   caption-vs-caption test already uses — so there is ONE projection story on this
+    //   lane, not two. Pure function of the current pose, the current camera and the
+    //   measured ink: no memory, no hysteresis, no clock, so a SET_TIME_FREEZE pin
+    //   reproduces the same lane byte for byte and a rewind carries nothing (Rule 36).
+    function nlbMkBodyObstacles(right, up) {
+        var out = [], c = new THREE.Vector3();
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            var t = (o && o.userData) ? o.userData.elementType : null;
+            if (t !== "nlb_body" && t !== "nlb_body_label") continue;
+            // Invisible up the WHOLE chain (a hidden pool group draws none of its
+            // children) — the nlbApparatusRightPx test, for the same reason.
+            if (!nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            var minR = Infinity, maxR = -Infinity, minU = Infinity, maxU = -Infinity;
+            if (o.isSprite) {
+                var sc = new THREE.Vector3().setFromMatrixPosition(o.matrixWorld);
+                var shw = nlbInkHalfW(o), shh = nlbInkHalfH(o);
+                var cr = sc.dot(right), cu = sc.dot(up);
+                minR = cr - shw; maxR = cr + shw; minU = cu - shh; maxU = cu + shh;
+            } else {
+                var geo = o.geometry;
+                if (!geo) continue;
+                if (!geo.boundingBox) geo.computeBoundingBox();
+                var bb = geo.boundingBox;
+                if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+                for (var k = 0; k < 8; k++) {
+                    c.set((k & 1) ? bb.max.x : bb.min.x,
+                          (k & 2) ? bb.max.y : bb.min.y,
+                          (k & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                    var dr = c.dot(right), du = c.dot(up);
+                    if (dr < minR) minR = dr;
+                    if (dr > maxR) maxR = dr;
+                    if (du < minU) minU = du;
+                    if (du > maxU) maxU = du;
+                }
+            }
+            if (!isFinite(minR) || !isFinite(minU)) continue;
+            // camera-axis centre, expressed as a world point: right and up are
+            // orthonormal, so this vector's dot with each axis IS the centre on that
+            // axis, which is all the separation test reads.
+            out.push({
+                p: new THREE.Vector3().addScaledVector(right, (minR + maxR) / 2)
+                                      .addScaledVector(up, (minU + maxU) / 2),
+                hw: (maxR - minR) / 2, hh: (maxU - minU) / 2
+            });
+        }
+        return out;
+    }
     // Rule 34d for the MARKER lane — the half nlbStackBodyLabels never covered.
     //   nlbDodgeBodyLabels walks nlb.bodies, so a marker caption has never been in
     //   ANY obstacle set: not a body's, and — the defect — not another marker's.
@@ -46111,6 +46189,9 @@ export const FIELD_3D_RENDERER_CODE = `
             right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
             up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
         }
+        // Note 11g — built on FIRST use, so a state with no point-form caption walks
+        // the id registry exactly zero times and renders the pixels it always did.
+        var bodyObs = null;
         for (var i = 0; i < NLB_MK_LANE_IDS.length; i++) {
             var l = nlbFindById(NLB_MK_LANE_IDS[i] + "_label");
             if (!l) continue;
@@ -46119,6 +46200,8 @@ export const FIELD_3D_RENDERER_CODE = `
             // drawn form every frame, so the reset stays memoryless.
             var home = nlbMkLane(NLB_MK_LANE_IDS[i]);
             l.position.y = home;                       // home lane FIRST, every frame
+            l._nlbMkLift = 0;                          // ... and so does the published lift
+            l._nlbMkBodyLift = 0;
             if (!haveCam || !l.visible || !l.parent) continue;
             l.parent.updateWorldMatrix(true, false);
             var liftDir = new THREE.Vector3(0, 1, 0).transformDirection(l.parent.matrixWorld).normalize();
@@ -46141,6 +46224,93 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (want > lift) lift = want;
                 }
             }
+            // ── Note 11g — and now the apparatus. POINT FORM ONLY ────────────────
+            //   The gate is the DRAWN form, not the authored field: a flag caption
+            //   already stands at the tip of a 1.05-unit post, clear of every cart in
+            //   the fleet, so admitting it here could only move pixels that are
+            //   correct today. This keeps marker_true / marker_ghost / every 'flag'
+            //   checkpoint byte-identical by construction.
+            //   Same separation test, same ease band as the caption pass above, so a
+            //   caption approached by a moving body rises smoothly into its lift and
+            //   settles back out of it — never the 40-px jump a hard threshold gives,
+            //   which a student would read as physics (Rule 32b).
+            //   CAPPED at the flag lane. Note 11f's whole finding was a caption
+            //   floating ~90 px from the dot it names with nothing drawn in between,
+            //   and an uncapped measured lift would re-create exactly that for a tall
+            //   body (the wall slab is 1.76 units). The flag lane is the file's own
+            //   answer to "how high clears a body-height object", so a point caption
+            //   is never lifted past where a post caption would already have been —
+            //   and under the cap the ink is a continuous column (dot, block, mass
+            //   label, caption), which reads as a stack rather than a float.
+            //   The dot itself is hidden under the body in exactly this case: that is
+            //   correct and accepted — the mark is where the body IS, and the stamp
+            //   and badge carry the point's name too.
+            var bodyLift = 0;
+            if (home === NLB_CP_LABEL_LANE && upDot > 0.15) {
+                if (!bodyObs) bodyObs = nlbMkBodyObstacles(right, up);
+                var capLift = NLB_MK_LABEL_LANE - home;
+                if (capLift < 0) capLift = 0;
+                // ── how much of a REAL collision there is, right now ─────────────
+                //   Sharing a screen column is not a collision. The lift runs along
+                //   the SURFACE NORMAL, which on a tilted track is up-AND-ACROSS, so
+                //   an obstacle can sit high in the caption's column while the caption
+                //   is nowhere near it — and demanding to be above it then throws the
+                //   caption clean off its own dot. That is note 11f's defect re-made
+                //   from the other side: measured at theta = 45 deg, "point A" was
+                //   flung 88 px up-slope-LEFT of the mark it names to clear a mass
+                //   billboard 1.0 units ABOVE it and 0.16 to the side, with nothing
+                //   drawn in between.
+                //   So the lift is scaled by how strongly the apparatus ACTUALLY
+                //   overlaps the caption's ink at its home lane, measured on BOTH
+                //   screen axes over the same ease band. Full ink overlap (a body
+                //   standing on the point — the whole reason this pass exists) gives
+                //   exactly 1 and leaves the clearance untouched; a body merely
+                //   passing overhead scales it away. The AMOUNT still comes from the
+                //   stack below, so the two questions stay separate: "is there
+                //   something here" and "how far above it do I have to be".
+                var trig = 0;
+                for (var b = 0; b < bodyObs.length; b++) {
+                    var ob = bodyObs[b];
+                    var db = p.clone().sub(ob.p);
+                    var gapB = Math.abs(db.dot(right)) - (hw + ob.hw + NLB_BODY_LABEL_GAP);
+                    if (gapB >= NLB_LABEL_EASE) continue;
+                    var kb = (gapB <= 0) ? 1 : (1 - gapB / NLB_LABEL_EASE);
+                    // the vertical half of the same measurement — eased over the same
+                    // band, so the collision strength is continuous in the body's pose
+                    // on both axes and can only ever reach zero smoothly.
+                    var gapU = Math.abs(db.dot(up)) - (hh + ob.hh);
+                    var kvv = (gapU <= 0) ? 1 : (gapU >= NLB_LABEL_EASE ? 0 : (1 - gapU / NLB_LABEL_EASE));
+                    if (kb * kvv > trig) trig = kb * kvv;
+                    // The ease scales the WHOLE lift, not just the clearance margin —
+                    // the one place this test cannot copy the caption pass above.
+                    // Two captions share a lane, so there d.dot(up) is ~0 and easing
+                    // the margin alone reaches zero on its own. A body does NOT share
+                    // the lane: on a rising track it sits ABOVE the caption, d.dot(up)
+                    // goes negative, and that term — which no ease touches — GROWS as
+                    // the body climbs away. Measured before this line was written: the
+                    // caption stayed pinned at the cap for 2.4 m of travel after the
+                    // body had passed, then fell 1.01 units (107 px) in ONE 16 ms frame
+                    // the moment the ease band expired and the obstacle was dropped
+                    // outright. Scaling the whole lift makes the two branches MEET at
+                    // zero — a caption eased out is a caption skipped — so the lane is
+                    // continuous in the body's position by construction (Rule 32b: no
+                    // motion a student could read as physics).
+                    var wantB = kb * ((hh + ob.hh + NLB_BODY_LABEL_GAP) - db.dot(up)) / upDot;
+                    if (wantB > bodyLift) bodyLift = wantB;
+                }
+                // CAPPED at the flag lane. Note 11f's finding was a caption
+                // floating ~90 px from the dot it names with nothing drawn between, and
+                // an uncapped measured lift re-creates exactly that for a tall body (the
+                // wall slab is 1.76 units). The flag lane is this file's own answer to
+                // "how high clears a body-height object", so the point form is never
+                // lifted past where the post form would already have stood — no worse
+                // than a flag caption in the same geometry, by construction.
+                if (bodyLift > capLift) bodyLift = capLift;
+                bodyLift *= trig;
+                if (bodyLift > lift) lift = bodyLift;
+            }
+            l._nlbMkLift = lift;
+            l._nlbMkBodyLift = bodyLift;
             if (lift > 0) {
                 l.position.y = home + lift;
                 p.addScaledVector(liftDir, lift);
@@ -46167,6 +46337,55 @@ export const FIELD_3D_RENDERER_CODE = `
             var c = l.parent.localToWorld(l.position.clone());
             var r = nlbSpriteRectPx(l, c, right, up);
             out.push({ id: id, text: l._nlbLblTxt || "",
+                       x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1,
+                       // Note 11f/11g — the lane this caption RESOLVED to on this
+                       // frame, its home lane, and how much of the lift the apparatus
+                       // dodge asked for. A rect alone cannot tell "cleared the body"
+                       // from "never met one", and the lift is the only number that
+                       // distinguishes them.
+                       lane: l.position.y, home_lane: nlbMkLane(id),
+                       lift: l._nlbMkLift || 0, body_lift: l._nlbMkBodyLift || 0 });
+        }
+        return out;
+    }
+    // Note 11g — the apparatus ink the lane above dodges, in the SAME screen px the
+    // caption rects are quoted in. Published because the claim a gate has to make is
+    // "no point caption's ink intersects a body's ink", and half of that is otherwise
+    // unreachable: the meshes live inside this closure and no reader of the concept
+    // JSON can predict where a moving block lands on screen. Read-only, no pixels.
+    function nlbMkBodyRectsPx() {
+        if (typeof camera === "undefined" || !camera) return [];
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var out = [], c = new THREE.Vector3();
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            var t = (o && o.userData) ? o.userData.elementType : null;
+            if (t !== "nlb_body" && t !== "nlb_body_label") continue;
+            if (!nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            var r = null;
+            if (o.isSprite) {
+                r = nlbSpriteRectPx(o, new THREE.Vector3().setFromMatrixPosition(o.matrixWorld),
+                                    right, up);
+            } else {
+                var geo = o.geometry;
+                if (!geo) continue;
+                if (!geo.boundingBox) geo.computeBoundingBox();
+                var bb = geo.boundingBox;
+                if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+                var xs = [], ys = [];
+                for (var k = 0; k < 8; k++) {
+                    c.set((k & 1) ? bb.max.x : bb.min.x,
+                          (k & 2) ? bb.max.y : bb.min.y,
+                          (k & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                    var q = nlbProjPx(c);
+                    xs.push(q.x); ys.push(q.y);
+                }
+                r = { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+                      y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+            }
+            out.push({ id: o.userData.id, kind: t,
                        x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1 });
         }
         return out;
@@ -46229,6 +46448,8 @@ export const FIELD_3D_RENDERER_CODE = `
             checkpoints: cpOut,
             // The marker lane's screen footprint — see nlbMarkerLabelRects.
             label_rects: nlbMarkerLabelRects(),
+            // The apparatus ink that lane dodges — see nlbMkBodyRectsPx (note 11g).
+            body_rects: nlbMkBodyRectsPx(),
             // The RENDERED state of each instrument, read straight off the Three
             // object. The computed number above and the drawn object below are two
             // different claims and both have to be checkable — a marker at the right
