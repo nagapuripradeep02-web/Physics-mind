@@ -22,6 +22,53 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > sub-optimal: S3 is authored at 23.58° claiming "the length floor is BINDING" when **S2's own pose
 > meets the same floor at 59.41°**, forfeiting a free Rule-32d home-pose win.
 >
+> > ### ⛔ A19 AMENDED BY VG-A (2026-08-08) — **THE RULER WAS BENT, AND EVERYONE SHARED IT**
+> > **The remedy below is RIGHT and now more strongly justified. Its RATIONALE is overstated, and the
+> > correction is the sixth and worst instance of this wave's defect class.**
+> > `vpProjectPoint` returned **normalised device coordinates** — `x: camX/(camZ·tanHalfFov·aspect)`
+> > with `y` undivided (verified directly in the source at `3eac36a`). NDC's two axes carry **different
+> > physical scales**, so every angle computed from them is **sheared by the aspect ratio — 1.78× at
+> > 16:9.** `vpPairwiseScreenSeparationDeg` was therefore measuring NDC angles, not screen angles.
+> > **On a corrected, isotropic metric, four independently hand-derived skeleton numbers reproduce
+> > EXACTLY:** min pairwise over 529 737 poses **18.914°** (claimed 18.91) · max projected arm
+> > **0.4364** (claimed 0.436, and the shipped metric said 0.755 — *off frame, a defect that was not
+> > there*) · min arm **0.0412** (claimed 0.0412) · entry pose **az 0.00 / el 30.00 / R 12.99**
+> > (claimed exactly that) · worst in-plane angle error at az90/el70 **3.56°** (claimed 3.56°).
+> > **Act I's hand-solve was right to four significant figures. The hands were fine; the instrument
+> > was bent, and every agent in the wave shared it.**
+> >
+> > **WHICH FALSIFICATIONS SURVIVE — because not all three were the same kind of error:**
+> > | Round | Failure | Metric-dependent? | Verdict |
+> > |---|---|---|---|
+> > | stopped round | scored **ONE pair** instead of all pairs | no — a *coverage* failure | **STANDS** |
+> > | 0b round 0 | solved at **FOV 50**, renderer is 60 | no — a *parameter* error | **STANDS** |
+> > | 0b cycle 1 | **sweep resolution** (0.07° vs 11.04°) | **YES** | ⚠ **IN DOUBT — re-measure** |
+> >
+> > **THE DEEPEST POINT, and it is why this correction matters more than the numbers.** Had VG-A
+> > shipped the gate as inherited, **gate §13 would have enforced the broken metric** — rejecting good
+> > poses, passing bad ones — while carrying an 8-negative-control pedigree that made it look
+> > trustworthy. A gate built to catch projection defects, computing projection wrong. That is the
+> > recorded scar's own prevention rule turned on the instrument: *when a measurement is introduced to
+> > prevent a defect, check that the thing it measures is the thing that failed* — **including when the
+> > measurement is your own gate.**
+> >
+> > **CONSEQUENCE FOR VG-C, and it is a scope question, not a nicety.** #9's **Δ10 `scene_group`
+> > selector** was bought on a measured claim that **no single-scene camera exists** (architect 1.35°,
+> > reviewer 8.08° — *a disagreement that now itself looks like a metric discrepancy*). **Both figures
+> > were computed on the bent ruler.** **Re-measure S9 on the corrected isotropic metric BEFORE VG-C is
+> > dispatched.** If a single-scene pose is in fact feasible, Δ10 is scope bought for nothing; if it is
+> > not, the selector stands on a number that can be defended. Either way the de-certification of #9's
+> > pose table (A19 condition 1) is **unchanged** — those poses were measured on the bent ruler and
+> > none of them may enter a dispatch prompt as fact.
+> >
+> > **The surgeon's two proposed scar rows are both correct and should be filed:**
+> > `field3d_screen_separation_metric_measured_ndc_angles_so_aspect_ratio_sheared_every_camera_solve`
+> > [MAJOR] — *a metric introduced to police what a VIEWER sees must be computed in the space the
+> > viewer sees* — and
+> > `phase0_camera_solve_disagreement_attributed_to_the_hand_when_the_instrument_was_wrong` [MODERATE]
+> > — ***before ruling a class of design output un-derivable, verify the instrument that falsified
+> > it.*** The second is this document's own error, and it is the more valuable of the two.
+>
 > > ### THE RULING, and it supersedes any further hand-solving
 > > **This is not fixable by another architect cycle. It is fixable by a gate.**
 > > A camera pose is no longer a design output that a reviewer certifies — it is a **claim the gate
