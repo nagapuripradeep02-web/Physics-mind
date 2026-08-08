@@ -118,3 +118,39 @@ INSERT INTO engine_bug_queue (
 ARRAY['work_energy_theorem','conservative_vs_nonconservative_forces']::text[],
 ARRAY[]::text[],
 'ch6 teaching-dwell session (2026-08-08)', 'incident');
+
+-- 7 ─ the point caption vs the body parked on it (engine, FIXED)
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+'nlb_point_marker_caption_renders_over_the_body_parked_on_that_point',
+'A track-level checkpoint caption prints on the face of the body standing on that point - guaranteed on every frozen baseline of every dwell state',
+'MAJOR', 'peter_parker:field3d_surgeon',
+'nlbStackMarkerLabels resolved caption-vs-caption only, so a whole cart could stand in a caption unnoticed. Note 11f then pulled the point-form caption down to 0.35 surface-local (right, while the track is clear) and note 11d''s teaching dwell freezes the scene ON a crossing with every concept authoring eye_capture_ms inside that window - so "the body is standing on the point" is the guaranteed state of the single frame the founder reviews and H2 locks, not an occasional frame. Measured: 33/33 and 34/34 of the caption''s sampled ink inside the block''s ink bbox on conservative_vs_nonconservative_forces STATE_4/STATE_2 frozen frames, pink #CE93D8 on #42A5F5 with the applied-force arrow crossing the glyphs. FIXED: the body MESH (own geometry box, never Box3.setFromObject - it would swallow the billboard parented to it) and the body BILLBOARD both join the obstacle set, measured in camera axes in world units like the existing test; the lift is scaled by measured ink overlap on BOTH screen axes and capped at the flag lane.',
+'A caption lane''s obstacle set is every piece of ink that can occupy its column, read off the DRAWN scene through the id registry - not just its own siblings. Clearing a body mesh without its billboard only trades a caption-on-a-block for two overprinted strings. When the lift direction (surface normal) and the collision axis (camera up) diverge, ease the WHOLE lift and scale it by measured overlap on both axes: easing only the clearance margin leaves a positional term no ease touches, which pins the caption at the cap long after the body has gone and then drops it in one frame (measured 1.01 world units, ~107 px, in a single 16 ms frame before the fix was corrected).',
+'js_eval',
+'For every state authoring a point-form checkpoint, at each authored eye_capture_ms read PM_nlbMarkers.label_rects (point-form entries, home_lane === the dot lane) and PM_nlbMarkers.body_rects, and assert no caption rect intersects any body rect. Additionally drive the state free-running and assert max |lane[i] - lane[i-1]| over consecutive rendered frames stays under 0.35 world units (no teleport), and that two SET_TIME_FREEZE pins at the same at_ms report identical lane/lift bytes.',
+'FIXED',
+ARRAY['conservative_vs_nonconservative_forces','work_energy_theorem']::text[],
+ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+'ch6 teaching-dwell session (2026-08-08)', 'incident');
+
+-- 8 ─ the half that stays open: caption vs the body's own BILLBOARD (OPEN)
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+'nlb_marker_caption_corner_nicks_the_body_mass_billboard_on_transit_frames',
+'A marker caption and a body''s mass billboard clip corners by a few px while the body passes close to the point',
+'MODERATE', 'peter_parker:field3d_surgeon',
+'nlbDodgeBodyLabels walks nlb.bodies, so a MARKER caption is still absent from the obstacle set of a BODY caption - the original direction of the note-11g finding. With the body ~0.2 m up-slope of a point the caption needs 1.02 surface-local to clear the billboard while the lift is capped at the flag lane (1.01), so a corner survives. Measured on conservative_vs_nonconservative_forces: worst 7.2 x 2.8 px = 20 px^2 against a caption ink area of ~800 px^2, on 26-28 of ~540 transit frames (~5%); ZERO on body-at-rest frames, ZERO on every frozen frame, ZERO at theta 5/25/45. A FLAG-form caption has the identical nick in the same geometry, so the point form is no worse than the post form - which is why the cap was kept.',
+'Closing this means the body-label pass learning about marker captions (the mirror of note 11g), not raising the marker cap - an uncapped lift re-creates note 11f''s float for a wall-height body. Treat the two passes as one obstacle system or accept the bounded residual; do not tune the cap.',
+'js_eval',
+'Free-run each state authoring checkpoints and, over every rendered frame, compute the intersection area of every PM_nlbMarkers.label_rects entry against every PM_nlbMarkers.body_rects entry. Assert the area is 0 on all frames where the tracked body is at rest, and report the max area and the fraction of frames affected on moving frames so a regression past ~25 px^2 or ~10% of frames is visible.',
+'OPEN',
+ARRAY['conservative_vs_nonconservative_forces','work_energy_theorem']::text[],
+ARRAY[]::text[],
+'ch6 teaching-dwell session (2026-08-08)', 'incident');
