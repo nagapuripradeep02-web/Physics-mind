@@ -2,7 +2,70 @@
 
 **Status: 0a COMPLETE · 0b COMPLETE — three skeletons designed, Checkpoint A `DESIGN_OK` ×3 at
 cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) ·
-0c NOT DISPATCHED (cleared to dispatch) · 0d BLOCKED on 0c + four named conditions (A19).**
+0c **VG-A + VG-B + VG-C COMPLETE on the engine desk** (2026-08-08, `feat/field3d-vector-products-scenario`
+@ `93097fc`; not merged — shipping is founder-only) · SR-A/SR-B not dispatched ·
+0d BLOCKED on 0c landing + four named conditions (A19) + the A22 handoff items.**
+
+> ## A22 · 0c OUTCOME — `vector_geometry_3d` is built, and the gate grew 6× while doing it
+> | Dispatch | Commit | Built | Gate |
+> |---|---|---|---|
+> | **VG-A** | `8baa94d` | the rename + shell + F3–F9 + F21/F24 ports + `deriveStateMeta` | 64/8 → **131/15** |
+> | **VG-B** | `8a5fba2` | F8 decompose — `solid_build_frac`, `split_solid_frac` (volume-exact shear) | → **196/20** |
+> | **VG-C** | `93097fc` | F11–F14, F22, F23, Δ2, Δ5, Δ6, **Δ10 `scene_group`** | → **377 assertions / 38 negative controls** |
+>
+> Verified independently by the dispatching session at each step. Final chain: `check:renderer-syntax`
+> OK ×3 · `check:renderer-backticks` clean · `tsc` 0 · `validate:concepts` **151 PASS** ·
+> `validate:mathematics` PASS · `npm test` 356 · `check:vector-geometry-3d` **ALL SECTIONS PASSED** ·
+> **fleet safety §11: 0 lines added / 0 removed** outside the vg region and the 9 named glue sites.
+> **`#9 requires ZERO further renderer edits`** — the 0d success test, met at 0c.
+>
+> **⭐ THE DEFECT CLASS APPEARED AT A FOURTH LEVEL — inside a NEGATIVE CONTROL.** It has now been found
+> in the *design* (instances 1–5), in the *instrument* (A20, the NDC shear), in the *reviewer's own
+> probe* (A21), and now in **the control written to prove a gate works**:
+> - **VG-C's D2 control scored AREA.** A crossed winding `[c, +U, +V, +U+V]` tiles the **same total** —
+>   independently reproduced here at **3.6021 vs 3.6021, bit-identical.** A set-of-points comparison is
+>   vacuous for the same reason. Only the **ordered** parallelogram identity `q₀+q₂ = q₁+q₃`
+>   discriminates (0.0 vs 3.4525) — *and vertex order is what a triangle strip actually consumes.*
+>   **Both vacuous tools are now SHIPPED IN THE GATE as demonstrated-vacuous, so neither can be
+>   substituted back in as a simplification.**
+> - **A degeneracy guard written as `=== 0` would have shipped a plausible wrong number.**
+>   `d₁ × 2.5d₁` is **1.1e-16, not zero** (reproduced), so the undivided formula returns a **finite,
+>   believable distance** instead of NaN. **NaN is visible; a plausible number is not.** The epsilon is
+>   load-bearing, not defensive tidiness.
+>
+> **THE RULE THIS SETTLES, and it is the whole wave in one line:** *a negative control is only worth
+> what it discriminates. Run it and watch it fail before you trust it — and prefer the property the
+> CONSUMER reads (vertex order, the rendered angle) over any rotation- or permutation-invariant
+> summary of it (area, centroid, point set).*
+>
+> **A23 · THE SKELETON'S GEOMETRY NUMBERS DRIFTED — the engine is the source of truth.** #9's §11
+> quotes point-plane distance **2.200** and foot **(1.23, −0.83, 0.00)**. The exact values are
+> **2.19828** (verified: `2.393/√1.185`) and **(1.22322, −0.82936, 0.00516)**, so at the concept's own
+> precision doctrine the sim prints **2.198** and **(1.22, −0.83, 0.01)**. Narration or a formula
+> surface authored against the quoted figures would **contradict the HUD beside it**. → handoff item 2.
+> **Durable rule:** every derived number in a skeleton's geometry block is stated at the precision the
+> SIM will print, computed from the authored inputs — never hand-rounded to a nicer value.
+>
+> ### HANDOFF TO 0d (blocking `mathematics_author`)
+> 1. **`vg.readouts` vs `vg.static_readouts`** — VG-A shipped `static_readouts` as *greyed slider rows*;
+>    Δ6's tokens are readout VALUES and land on `readouts`. **Resolve the naming before authoring.**
+> 2. **Correct #9 §11's 2.200 / (1.23,−0.83,0.00) → 2.198 / (1.22,−0.83,0.01)** in narration, DoD and
+>    formula surfaces (A23).
+> 3. **S9-B and S3 re-solve** (A19 condition 3) — now *checkable*: gate §13 scores any authored pose
+>    pairwise, isotropic, at 1°. A21 measured the replacements available: S9-B **42.58°**
+>    (R11/az16/el2) vs 0.12° authored; S3 **89.87°**, or **55.98°** at S2's own pose, which also wins
+>    Rule-32d home-pose continuity for free.
+> 4. **Exempt-pair list (Δ7a):** `M2` ^ common-perpendicular is **NOT** exempt (A21.3). Legitimate:
+>    S1's `d̂` on its own line, S3's perpendicular vs `n`.
+> 5. **`c_theta_deg = 90` is a reachable zero-volume sandbox state** (VG-B) — authoring information for
+>    S8's defaults, not a defect.
+> 6. **#7's target numbers do not fall out of the defaults** — engine gives Volume 8.35 / Base 4.99 /
+>    Height 1.67 against the authored 9.95 / 4.25 / 2.34. Solve `c`, and check displayed
+>    `Base × Height` **rounds** to displayed `Volume`.
+> 7. **Author `"easing": "linear"` on `solid_build_frac`** — smoothstep gives a 415 ms dead lead-in and
+>    lands the six faces unevenly.
+> 8. **Nine scar rows are drafted across VG-A/B/C and NONE is applied** (no DB writes were authorised).
+>    Founder call, with A20's unrun seed script (open decision 11).
 
 > ## ⭐ A19 · THE CONCLUSION OF PHASE 0 — **the camera cannot be hand-solved, and that is the finding**
 > All three concepts reached `DESIGN_OK` at cycle 1. Every reviewer re-derived the architect's numbers
@@ -21,6 +84,111 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > a teacher dragging θ lands on it.** The reviewer also found the *search itself* systematically
 > sub-optimal: S3 is authored at 23.58° claiming "the length floor is BINDING" when **S2's own pose
 > meets the same floor at 59.41°**, forfeiting a free Rule-32d home-pose win.
+>
+> > ### ⛔ A19 AMENDED BY VG-A (2026-08-08) — **THE RULER WAS BENT, AND EVERYONE SHARED IT**
+> > **The remedy below is RIGHT and now more strongly justified. Its RATIONALE is overstated, and the
+> > correction is the sixth and worst instance of this wave's defect class.**
+> > `vpProjectPoint` returned **normalised device coordinates** — `x: camX/(camZ·tanHalfFov·aspect)`
+> > with `y` undivided (verified directly in the source at `3eac36a`). NDC's two axes carry **different
+> > physical scales**, so every angle computed from them is **sheared by the aspect ratio — 1.78× at
+> > 16:9.** `vpPairwiseScreenSeparationDeg` was therefore measuring NDC angles, not screen angles.
+> > **On a corrected, isotropic metric, four independently hand-derived skeleton numbers reproduce
+> > EXACTLY:** min pairwise over 529 737 poses **18.914°** (claimed 18.91) · max projected arm
+> > **0.4364** (claimed 0.436, and the shipped metric said 0.755 — *off frame, a defect that was not
+> > there*) · min arm **0.0412** (claimed 0.0412) · entry pose **az 0.00 / el 30.00 / R 12.99**
+> > (claimed exactly that) · worst in-plane angle error at az90/el70 **3.56°** (claimed 3.56°).
+> > **Act I's hand-solve was right to four significant figures. The hands were fine; the instrument
+> > was bent, and every agent in the wave shared it.**
+> >
+> > **WHICH FALSIFICATIONS SURVIVE — because not all three were the same kind of error:**
+> > | Round | Failure | Metric-dependent? | Verdict |
+> > |---|---|---|---|
+> > | stopped round | scored **ONE pair** instead of all pairs | no — a *coverage* failure | **STANDS** |
+> > | 0b round 0 | solved at **FOV 50**, renderer is 60 | no — a *parameter* error | **STANDS** |
+> > | 0b cycle 1 | **sweep resolution** (0.07° vs 11.04°) | **YES** | ⚠ **IN DOUBT — re-measure** |
+> >
+> > **THE DEEPEST POINT, and it is why this correction matters more than the numbers.** Had VG-A
+> > shipped the gate as inherited, **gate §13 would have enforced the broken metric** — rejecting good
+> > poses, passing bad ones — while carrying an 8-negative-control pedigree that made it look
+> > trustworthy. A gate built to catch projection defects, computing projection wrong. That is the
+> > recorded scar's own prevention rule turned on the instrument: *when a measurement is introduced to
+> > prevent a defect, check that the thing it measures is the thing that failed* — **including when the
+> > measurement is your own gate.**
+> >
+> > **CONSEQUENCE FOR VG-C, and it is a scope question, not a nicety.** #9's **Δ10 `scene_group`
+> > selector** was bought on a measured claim that **no single-scene camera exists** (architect 1.35°,
+> > reviewer 8.08° — *a disagreement that now itself looks like a metric discrepancy*). **Both figures
+> > were computed on the bent ruler.** **Re-measure S9 on the corrected isotropic metric BEFORE VG-C is
+> > dispatched.** If a single-scene pose is in fact feasible, Δ10 is scope bought for nothing; if it is
+> > not, the selector stands on a number that can be defended. Either way the de-certification of #9's
+> > pose table (A19 condition 1) is **unchanged** — those poses were measured on the bent ruler and
+> > none of them may enter a dispatch prompt as fact.
+> >
+> > **The surgeon's two proposed scar rows are both correct and should be filed:**
+> > `field3d_screen_separation_metric_measured_ndc_angles_so_aspect_ratio_sheared_every_camera_solve`
+> > [MAJOR] — *a metric introduced to police what a VIEWER sees must be computed in the space the
+> > viewer sees* — and
+> > `phase0_camera_solve_disagreement_attributed_to_the_hand_when_the_instrument_was_wrong` [MODERATE]
+> > — ***before ruling a class of design output un-derivable, verify the instrument that falsified
+> > it.*** The second is this document's own error, and it is the more valuable of the two.
+>
+> > ### A21 · S9 RE-MEASURED ON THE CORRECTED METRIC — **Δ10 SURVIVES, on a restated and weaker argument**
+> > Run by the #9 reviewer on its own probe with **one variable changed** (angles in isotropic
+> > `camX/camZ, camY/camZ`; fill and arm left in NDC), everything else identical.
+> >
+> > **⭐ THE DEEPEST LESSON OF THE WHOLE WAVE, and the reviewer stated it against itself first:**
+> > > *"My probe had the same defect, and my validation of it was worthless. I reported that my model
+> > > 'reproduces the architect's numbers exactly' and treated that as proof the instrument was sound.
+> > > It was two probes agreeing **because they shared the same bug**. **Mutual agreement between
+> > > independently written tools is not validation when both were written from the same wrong
+> > > spec.**"*
+> > This is why the wave kept "independently confirming" wrong numbers, and it outranks every
+> > individual finding here. **Independent implementation is not independent verification.** Only two
+> > things break the tie: a measurement against a *closed form solved outside the tool*, or a negative
+> > control proving the tool fails on a case it must fail. Both are what the gates now do.
+> >
+> > **1 · No feasible single-scene pose. Δ10 is justified — but say it correctly.**
+> > | | architect | reviewer NDC | **reviewer isotropic** |
+> > |---|---|---|---|
+> > | single-scene best-anywhere | 1.35° | 8.08° | **12.19°** (R14 / az 24 / el 2) |
+> > Threshold **18.91°** — Act I's auto-frame floor, *the only figure in this wave independently
+> > reproduced on the corrected metric by two parties*. 12.19° is **0.64×** that floor, as a worst case
+> > over the slider product, in the one state whose purpose is a teacher moving those sliders. Both
+> > groups clear the floor by ~2.3×.
+> > **The skeleton's sentence must be replaced verbatim.** It is no longer *"no camera exists — 1.35°"*.
+> > It is: ***the best single-scene pose sits about a third below the chapter's own validated floor,
+> > while splitting the scene gives 3.5× the separation.*** Weaker, sufficient, and true.
+> >
+> > **2 · Both authored S9 poses move; one catastrophically. The de-certification (A19 condition 1) is
+> > vindicated.**
+> > | | claimed | isotropic @ authored pose | isotropic best-anywhere |
+> > |---|---|---|---|
+> > | S9-A | 41.1° | **25.85°** | 44.84° (R14 / az −96 / el 16) |
+> > | S9-B | 11.0° | **0.12°** | 42.58° (R11 / az 16 / el 2) |
+> > **S9-A FELL — the shear was inflating it.** A metric error is not conservative in a known direction;
+> > it flatters some poses and condemns others, which is exactly why no pose measured on it may be
+> > carried forward.
+> >
+> > **3 · The third falsification STANDS and is metric-independent — but its stated reason was wrong,
+> > and a THIRD error is now implied.** Re-swept at decreasing θ step on the corrected metric:
+> > 15° → 3.33° · 5° → 3.33° · 3° → 0.29° · **1° → 0.13°**. So it is a *resolution* artefact —
+> > **but even a 15° step returns 3.33°, so coarse sampling cannot produce 11.04° on either ruler.**
+> > The claimed figure is unexplained by both known errors, pointing at a third: most likely the
+> > group-B sweep omitted `theta_deg`, or the `M2`/common-perpendicular pair was scored as **exempt**.
+> > **It is not exempt** — those two are perpendicular in 3D, which is the claim the state exists to
+> > show. **A19's ruling is unaffected:** all three falsifications now stand, and this one on its own
+> > terms.
+> >
+> > **4 · Two more #9 numbers move materially.** S3's length floor is **NOT met** — the perpendicular
+> > draws at **31.5 %** of patch width, not the claimed 33.1 %. And S3's sub-optimality is worse than
+> > Checkpoint A reported: the best pose meeting the floor scores **89.87°** (az −120 / el 20, 41.1 %
+> > length) — **3.6×** the authored pose — while **S2's own pose gives 55.98° at 40.1 %**, i.e. the
+> > home-pose-continuity option wins on *both* criteria and is free.
+> >
+> > **5 · GATE §13 GAINS ITS METRIC CLAUSE, and it is now the binding form:**
+> > **angles scored in ISOTROPIC units, fill and arm in NDC, with the corrected `vgProjectPoint`
+> > (`8baa94d`) as the SINGLE source — plus a negative control asserting the NDC-angle form FAILS on
+> > Act I's 18.91° case.**
 >
 > > ### THE RULING, and it supersedes any further hand-solving
 > > **This is not fixable by another architect cycle. It is fixable by a gate.**

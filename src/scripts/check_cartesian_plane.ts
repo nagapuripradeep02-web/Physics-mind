@@ -92,15 +92,21 @@ const VARS = [
   "PM_GRID_OVERLAP_TIEBREAK_WEIGHT", "PM_TANGENT_PROBE_EPS", "PM_INK_SEGMENT_SUBDIVISIONS",
 ];
 const FNS = [
-  // PM_fmtNum MUST stay ahead of its callers in this list — the harness
-  // evaluates these in order, and PM_formatTickLabel / PM_plotPointResolve now
-  // call it. Omitting it crashed this whole gate with a bare
+  // PM_signGlyph/PM_fmtNum MUST stay ahead of their callers in this list —
+  // the harness evaluates these in order, and PM_formatTickLabel /
+  // PM_plotPointResolve now call PM_fmtNum, which itself now calls
+  // PM_signGlyph (F6 engine round, 2026-08-08 — factored the ASCII->U+2212
+  // substitution out of PM_fmtNum so PM_interpolateFormatNumeric can share
+  // it). Omitting either crashes this whole gate with a bare
   // "ReferenceError: PM_fmtNum is not defined" the moment PR #59 landed
   // (shared U+2212 formatter). Nothing caught it: check:cartesian-plane is NOT
   // in verify.yml, so CI was green on a gate that could not start.
+  "PM_signGlyph",
   "PM_fmtNum",
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
+  // D3 (2026-08-08) — live `*_expr` range bounds, so a plane can re-zoom.
+  "PM_planeResolveBound",
   // CP-B additions (F8-F12).
   "PM_planeRangesOf", "PM_planeResolveInverse",
   "PM_buildEvalScope", "PM_safeEval",
@@ -135,6 +141,14 @@ const FNS = [
   "PM_registerInkZone", "PM_registerGridInkZone", "PM_registerLineInk",
   "PM_rectOverlapArea", "PM_readoutHardOverlapArea", "PM_readoutGridOverlapArea", "PM_readoutOverlapArea",
   "PM_plotPointCurveTangentPx",
+  // F6 addition (2026-08-08) — the interpolate-path numeric formatter
+  // (pure; depends only on PM_signGlyph, already listed above).
+  // PM_interpolate/PM_liveDragScope themselves are NOT listed here — they
+  // close over PM_config/PM_currentState/PM_sliderValues/PM_choreoValues/
+  // PM_userTouched/PM_physics, mutable globals this shared `E` sandbox
+  // deliberately does not expose; their own sections below build a
+  // DEDICATED sandbox with literal fixtures instead (see runLiveDragScope).
+  "PM_interpolateFormatNumeric",
 ];
 
 // Helvetica advance widths (units/1000) — p5's default face at textSize(12).
@@ -2272,7 +2286,335 @@ console.log("\n=== 19. plot_point default-offset direction — outward normal to
     Math.abs((tanPlane.toData(shippedTan.p1.x, shippedTan.p1.y).x - tanPlane.toData(shippedTan.p0.x, shippedTan.p0.y).x) - E.PM_TANGENT_PROBE_EPS) < 1e-9);
 }
 
+console.log("\n=== F1a — live-drag scope rebuild: an UNRELATED choreographed variable survives a genuine drag (bug_class pcpl_drag_rebuilds_physics_scope_from_authored_defaults_and_drops_every_other_live_choreography_value, founder_proxy Checkpoint B 2026-08-08) ===");
+{
+  // A DEDICATED sandbox (mirrors the shared `E` pattern) supplying its OWN
+  // literal fixtures for PM_liveDragScope's free variables
+  // (PM_config/PM_currentState/PM_sliderValues/PM_choreoValues/
+  // PM_userTouched) — deliberately NOT added to the shared VARS list,
+  // which would force every OTHER section in this file to reason about a
+  // shared mutable global. grabFn pulls the SHIPPED function bodies
+  // (never a reimplementation) so this section runs the real code.
+  function runLiveDragScope(fixture: {
+    config: unknown; currentState: string;
+    sliderValues: Record<string, number>; choreoValues: Record<string, number>;
+    userTouched: Record<string, boolean>;
+  }): Record<string, number> {
+    const body = [
+      "var PM_config = " + JSON.stringify(fixture.config) + ";",
+      "var PM_currentState = " + JSON.stringify(fixture.currentState) + ";",
+      "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      "var PM_choreoValues = " + JSON.stringify(fixture.choreoValues) + ";",
+      "var PM_userTouched = " + JSON.stringify(fixture.userTouched) + ";",
+      grabFn("PM_stateLiveControlVars"),
+      grabFn("PM_resolveStateVars"),
+      grabFn("PM_liveDragScope"),
+      "return PM_liveDragScope();",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // The exact reported shape: a state authors a plot_point.drag on 'b' AND
+  // a variable_choreography on 'c' (independent variables). By the time
+  // the teacher drags 'b', the choreography has already carried 'c' to its
+  // end value 1 (PM_choreoValues.c = 1); PM_userTouched contains only 'b'
+  // (the variable being seized THIS frame — matches the shipped call
+  // order: PM_userTouched[bind_variable] = true runs BEFORE
+  // PM_liveDragScope()).
+  const cfg = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_5: {
+        scene_composition: [
+          { type: "plot_point", id: "P", plane_id: "plane", x_expr: "b", y_expr: "b*b-c",
+            drag: { bind_variable: "b", axis: "x", min: 0, max: 2 } },
+        ],
+      },
+    },
+  };
+  const fixed = runLiveDragScope({
+    config: cfg, currentState: "STATE_5",
+    sliderValues: { b: 1.5 }, choreoValues: { c: 1 }, userTouched: { b: true },
+  });
+  check("PM_liveDragScope: the CHOREOGRAPHED variable (c) holds its live end value through a drag on an UNRELATED variable", fixed.c, 1, 0);
+  check("PM_liveDragScope: the SEIZED/dragged variable (b) reads the just-set drag value", fixed.b, 1.5, 0);
+
+  // NEGATIVE CONTROL — the PRE-FIX algorithm this dispatch replaced
+  // (PM_resolveStateVars's authored defaults + a blanket PM_sliderValues
+  // overlay, NO PM_choreoValues merge at all), reimplemented independently
+  // here — never against the shipped renderer.
+  function preFixDragScope(fixture: { config: any; currentState: string; sliderValues: Record<string, number> }) {
+    const merged: Record<string, number> = { ...fixture.config.default_variables };
+    for (const k of Object.keys(fixture.sliderValues)) merged[k] = fixture.sliderValues[k];
+    return merged;
+  }
+  const broken = preFixDragScope({ config: cfg, currentState: "STATE_5", sliderValues: { b: 1.5 } });
+  assertTrue("NEGATIVE CONTROL: the pre-fix scope-rebuild resets the choreographed 'c' back to its state-entry DEFAULT (0), not its live value (1)",
+    broken.c === 0);
+  assertTrue("the shipped PM_liveDragScope does NOT share that defect",
+    fixed.c === 1 && fixed.c !== broken.c);
+}
+
+console.log("\n=== F1b — drag-handle LATCH: a claimed handle keeps updating even when a later frame's proximity re-test would fail (bug_class pcpl_drag_handle_re-tests_pointer_proximity_every_frame_so_a_handle_that_drifts_off_its_own_drag_axis_drops_itself) ===");
+{
+  // Reimplements BOTH the pre-fix ('hit && isActive', re-tested every
+  // frame) and the fixed ('mouseIsPressed && isActive', proximity tested
+  // ONLY at the moment of claim) state machines independently here, and
+  // drives an IDENTICAL frame sequence through both: frame 0 grabs the
+  // handle (mouse near px); frames 1+ reproduce the measured symptom — px
+  // jumps away (the F1a scope-corruption teleport, or simply the mouse
+  // drifting off a drag.axis:'x' point's own curve-following y) so a
+  // per-frame proximity re-test would fail — while the mouse keeps
+  // travelling toward the clamp.
+  function simulateDrag(usesLatch: boolean, hitR: number, clampMin: number, clampMax: number,
+    frames: { px: number; mouseX: number; mousePressed: boolean }[]): number {
+    let activeId: string | null = null;
+    let value = clampMin;
+    for (const f of frames) {
+      const hit = f.mousePressed && Math.abs(f.mouseX - f.px) < hitR;
+      if (usesLatch) {
+        const claim = f.mousePressed && activeId === null && hit;
+        if (claim) activeId = "P";
+        if (!f.mousePressed) activeId = null;
+        const isActive = activeId === "P";
+        if (f.mousePressed && isActive) value = Math.max(clampMin, Math.min(clampMax, f.mouseX));
+      } else {
+        if (hit && activeId === null) activeId = "P";
+        if (!f.mousePressed) activeId = null;
+        const isActive = activeId === "P";
+        if (hit && isActive) value = Math.max(clampMin, Math.min(clampMax, f.mouseX));
+      }
+    }
+    return value;
+  }
+
+  const hitR = 22;
+  const frames = [
+    { px: 100, mouseX: 100, mousePressed: true },  // frame 0 — genuine grab
+    { px: 400, mouseX: 130, mousePressed: true },  // px teleports off-curve; mouse keeps moving
+    { px: 400, mouseX: 160, mousePressed: true },
+    { px: 400, mouseX: 190, mousePressed: true },
+    { px: 400, mouseX: 200, mousePressed: true },  // mouse reaches the clamp
+  ];
+  const latched = simulateDrag(true, hitR, 0, 200, frames);
+  const nonLatched = simulateDrag(false, hitR, 0, 200, frames);
+  check("LATCHED state machine: reaches the clamp (200) across all 5 frames despite px teleporting off-curve on frame 1", latched, 200, 0);
+  assertTrue("NEGATIVE CONTROL: the PRE-FIX ('hit && isActive', re-tested every frame) state machine FREEZES at frame 0's value (100) once px teleports away — it never reaches the clamp (measured shape: b froze at 1.947 for 24 further steps while mouseX travelled 608->534)",
+    nonLatched === 100);
+
+  // STATIC REACHABILITY — the shipped drawPlotPoint/drawCanvasSlider
+  // source actually implement the latch shape (mirrors section F5's own
+  // static-reachability technique): the update gate reads
+  // 'mouseIsPressed && isActive' (latched — proximity NOT re-tested), and
+  // the old re-tested 'hit && isActive' gate is gone from both.
+  const plotPointSrc = grabFn("drawPlotPoint");
+  const sliderSrc = grabFn("drawCanvasSlider");
+  assertTrue("drawPlotPoint's update gate is 'mouseIsPressed && isActive' (latched)",
+    plotPointSrc.indexOf("if (mouseIsPressed && isActive) {") >= 0);
+  assertTrue("drawPlotPoint no longer gates the update on the re-tested 'hit && isActive'",
+    plotPointSrc.indexOf("if (hit && isActive) {") === -1);
+  assertTrue("drawCanvasSlider's update gate is ALSO 'mouseIsPressed && isActive' (latched) — the twin call site fixed the same way",
+    sliderSrc.indexOf("if (mouseIsPressed && isActive) {") >= 0);
+  assertTrue("drawCanvasSlider no longer gates the update on the re-tested 'hit && isActive'",
+    sliderSrc.indexOf("if (hit && isActive) {") === -1);
+  assertTrue("drawPlotPoint's claim (not the update) is the ONLY place proximity is tested — guarded by 'PM_activeSliderId == null'",
+    /var claim = mouseIsPressed && PM_activeSliderId == null[\s\S]{0,80}Math\.hypot/.test(plotPointSrc));
+
+  // NEGATIVE CONTROL for the static scanner itself — a deliberately
+  // unfixed (pre-fix-shaped) snippet must be CAUGHT as still re-testing.
+  const unfixedSnippet = "function drawFakeDrag(spec) {\n  var hit = mouseIsPressed && dist < hitR;\n  if (hit && isActive) { doUpdate(); }\n}";
+  assertTrue("NEGATIVE CONTROL: the scanner correctly finds the pre-fix 'hit && isActive' shape in a deliberately unfixed snippet",
+    unfixedSnippet.indexOf("if (hit && isActive) {") >= 0);
+}
+
+console.log("\n=== F2 — riemann_bars' max_bars_drawn bounds COST, never EXTENT (bug_class pcpl_riemann_bars_max_bars_drawn_truncates_the_partition_instead_of_bounding_its_cost, founder_proxy Checkpoint B 2026-08-08) ===");
+{
+  const from = 0, to = 2;
+  const cap = 20;
+  const sweepNs = [50, 500, 5000]; // three values spanning the sweep, per the dispatch's own requirement
+  for (const n of sweepNs) {
+    const computed = E.PM_riemannBarsCompute("x*x", from, to, n, "left", cap, {});
+    const bars = computed.bars as { i: number; xL: number; xR: number }[];
+    assertTrue(`n=${n}, cap=${cap}: at least one bar drawn`, bars.length > 0);
+    const xL0 = bars[0].xL;
+    const xRLast = bars[bars.length - 1].xR;
+    assertTrue(`n=${n}: leftmost drawn bar's xL (${xL0}) <= from + 1% of span`, xL0 <= from + 0.01 * (to - from));
+    assertTrue(`n=${n}: rightmost drawn bar's xR (${xRLast}) >= to - 1% of span`, xRLast >= to - 0.01 * (to - from));
+    // The published SUM is untouched by the cap — still the true full-n sum.
+    const uncappedSum = E.PM_riemannBarsCompute("x*x", from, to, n, "left", undefined, {}).sum;
+    check(`n=${n}: capped sum still equals the uncapped (full-n) sum`, computed.sum, uncappedSum, 1e-9);
+  }
+
+  // NEGATIVE CONTROL — the PRE-FIX selection ("first cap bars only"),
+  // reimplemented independently here (never against the shipped
+  // renderer), reproduces the measured shrinking-extent shape at large n.
+  function preFixSelectFirstN(from2: number, to2: number, n2: number, cap2: number) {
+    const h = (to2 - from2) / n2;
+    const drawn = Math.min(n2, cap2);
+    return { xL0: from2, xRLast: from2 + drawn * h };
+  }
+  const broken = preFixSelectFirstN(from, to, 6494, cap);
+  assertTrue("NEGATIVE CONTROL: the pre-fix 'first cap bars' selection at n=6494 draws only a SHRUNKEN leading slice (xR nowhere near `to`, reproducing the measured n=6494 -> [0,0.12] shape)",
+    broken.xRLast < to - 0.5 * (to - from));
+  const fixedAt6494 = E.PM_riemannBarsCompute("x*x", from, to, 6494, "left", cap, {});
+  const fixedBars = fixedAt6494.bars as { xR: number }[];
+  assertTrue("the shipped PM_riemannBarsCompute does NOT share that defect at the SAME n",
+    fixedBars[fixedBars.length - 1].xR >= to - 0.01 * (to - from));
+}
+
+console.log("\n=== F3 — plane children are clipped to their OWN plane's viewport (bug_class pcpl_plane_children_paint_past_their_owning_planes_viewport_when_resolved_from_a_data_point_outside_the_planes_own_range, founder_proxy Checkpoint B 2026-08-08) ===");
+{
+  // Reproduces the measured geometry: STATE_4's plane_inset windowed to
+  // y_range [3,4]; riemann_bars' FIXED baseline sits at data y=0 (outside
+  // that window) — the exact defect the dispatch measured (py 668, off
+  // the 500px canvas).
+  const insetSpec = {
+    id: "plane_inset",
+    viewport: { x: 480, y: 90, w: 220, h: 140 },
+    x_range: { min: 0, max: 2 },
+    y_range: { min: 3, max: 4 },
+  };
+  const insetPlane = E.PM_planeBuildTransform(insetSpec);
+  const baselinePx = insetPlane.toPx(1, 0); // riemann_bars' fixed baseline, data y=0
+  function pointInRect(p: { x: number; y: number }, r: { x: number; y: number; w: number; h: number }) {
+    return p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
+  }
+  assertTrue("the baseline (data y=0) resolved through the inset plane lands OUTSIDE the inset's own viewport rect — the root defect, measured",
+    !pointInRect(baselinePx, insetPlane.viewport));
+  assertTrue("...specifically BELOW the 500px canvas (py > 500), matching the measured 'py 668, off the 500px canvas'",
+    baselinePx.y > 500);
+  const insideProbe = insetPlane.toPx(1, 3.5); // a point genuinely inside the authored y_range [3,4]
+  assertTrue("NEGATIVE CONTROL: a point genuinely INSIDE the plane's own y_range is NOT excluded by the same rect test (the scanner isn't just always-false)",
+    pointInRect(insideProbe, insetPlane.viewport));
+
+  // STATIC — PM_planeClipGeometryBegin/End exist and shape a real canvas
+  // clip (save/rect/clip, paired with restore), and EVERY plane-child
+  // geometry-drawing function calls them exactly once each (balanced
+  // begin/end), not just riemann_bars — the dispatch's explicit "not per
+  // primitive type, every child" requirement.
+  const beginSrc = grabFn("PM_planeClipGeometryBegin");
+  assertTrue("PM_planeClipGeometryBegin saves context state before clipping", beginSrc.indexOf("drawingContext.save()") >= 0);
+  assertTrue("PM_planeClipGeometryBegin clips to the plane's OWN registered viewport rect (x,y,w,h)",
+    beginSrc.indexOf("plane.viewport.x, plane.viewport.y, plane.viewport.w, plane.viewport.h") >= 0);
+  const endSrc = grabFn("PM_planeClipGeometryEnd");
+  assertTrue("PM_planeClipGeometryEnd restores context state (undoing the clip)", endSrc.indexOf("drawingContext.restore()") >= 0);
+
+  const geometryFns = ["drawRegionFill", "drawRiemannBars", "drawFunctionPlot", "drawSecantLine", "drawTangentLine", "drawPlotPoint"];
+  for (const fn of geometryFns) {
+    const src = grabFn(fn);
+    const beginCount = (src.match(/PM_planeClipGeometryBegin\(spec\.plane_id\)/g) || []).length;
+    const endCount = (src.match(/PM_planeClipGeometryEnd\(__pmClip\)/g) || []).length;
+    assertTrue(`${fn} calls PM_planeClipGeometryBegin(spec.plane_id) exactly once`, beginCount === 1);
+    assertTrue(`${fn} calls the MATCHING PM_planeClipGeometryEnd(__pmClip) exactly once (balanced begin/end)`, endCount === 1 && endCount === beginCount);
+  }
+
+  // NEGATIVE CONTROL for the scanner itself — a deliberately-unclipped
+  // (pre-fix-shaped) draw function must be CAUGHT as missing the call.
+  const unclippedSnippet = "function drawFakeGeom(spec) {\n  push();\n  fill(1,2,3);\n  rect(0,0,10,10);\n  pop();\n}";
+  const fakeBeginCount = (unclippedSnippet.match(/PM_planeClipGeometryBegin\(spec\.plane_id\)/g) || []).length;
+  assertTrue("NEGATIVE CONTROL: the scanner correctly reports ZERO clip calls in an unclipped (pre-fix-shaped) draw function", fakeBeginCount === 0);
+}
+
+console.log("\n=== F6 — PM_interpolate numeric substitutions carry the real U+2212 minus + near-zero clamp (bug_class pcpl_interpolate_numeric_substitution_ships_an_ascii_hyphen_where_every_other_readout_ships_u+2212, founder_proxy Checkpoint B 2026-08-08 — recurrence of a class already closed once at the authoring layer on derivative_as_secant_limit) ===");
+{
+  assertTrue("PM_interpolateFormatNumeric(-0.6667) carries U+2212, never ASCII U+002D",
+    E.PM_interpolateFormatNumeric(-0.6667) === "−0.6667" && String(E.PM_interpolateFormatNumeric(-0.6667)).indexOf("-") === -1);
+  assertTrue("PM_interpolateFormatNumeric('-0.6667') — an author's OWN inline .toFixed() STRING — is ALSO normalised",
+    E.PM_interpolateFormatNumeric("-0.6667") === "−0.6667");
+  assertTrue("PM_interpolateFormatNumeric('-0.0000') strips the sign — a negative-zero artifact renders unsigned",
+    E.PM_interpolateFormatNumeric("-0.0000") === "0.0000");
+  assertTrue("PM_interpolateFormatNumeric('-0') strips the sign",
+    E.PM_interpolateFormatNumeric("-0") === "0");
+  assertTrue("PM_interpolateFormatNumeric(1.5) — a positive number is untouched (nothing to normalise)",
+    E.PM_interpolateFormatNumeric(1.5) === "1.5");
+  assertTrue("PM_interpolateFormatNumeric leaves a NON-numeric hyphen alone (only '-' immediately before a digit converts)",
+    E.PM_interpolateFormatNumeric("a-b") === "a-b");
+
+  // NEGATIVE CONTROL — the PRE-FIX behaviour (bare String(result), the
+  // renderer's OWN literal shape before this fix), reimplemented here.
+  function preFixNumeric(value: unknown): string { return String(value); }
+  assertTrue("NEGATIVE CONTROL: the pre-fix String(result) DOES leak an ASCII U+002D hyphen for a negative number",
+    preFixNumeric(-0.6667).indexOf("-") >= 0);
+  assertTrue("NEGATIVE CONTROL: the pre-fix path also reaches the screen as a signed zero ('-0.0000'), never clamped",
+    preFixNumeric((-0.00003).toFixed(4)) === "-0.0000");
+  assertTrue("no U+002D reaches PM_interpolateFormatNumeric's output across a signed sweep of representative authored .toFixed() values",
+    [-0.6667, -1, -12.345, 0, 1, -0.00003].every((v) => String(E.PM_interpolateFormatNumeric(v.toFixed(4))).indexOf("-") === -1));
+  assertTrue("no string matches /-0\\.0+$/ (the ASCII negative-zero pattern) after formatting",
+    !/-0\.0+$/.test(String(E.PM_interpolateFormatNumeric((-0.00003).toFixed(4)))));
+
+  // STATIC REACHABILITY — PM_interpolate actually calls
+  // PM_interpolateFormatNumeric at BOTH substitution sites (the simple-
+  // identifier fast path AND the evaluated-expression path, which is
+  // where an author's own inline .toFixed() lives) — proving the fix is
+  // WIRED, not merely defined-but-unused.
+  const interpSrc = grabFn("PM_interpolate");
+  const callCount = (interpSrc.match(/PM_interpolateFormatNumeric\(/g) || []).length;
+  assertTrue("PM_interpolate calls PM_interpolateFormatNumeric at BOTH substitution sites (fast-path identifier + evaluated expression)", callCount === 2);
+  assertTrue("PM_interpolate's fast path no longer bare-String()s the identifier value", interpSrc.indexOf("String(vars[body])") === -1);
+  assertTrue("PM_interpolate's expression path no longer bare-String()s the evaluated result", interpSrc.indexOf("return String(result);") === -1);
+}
+
+// ── D3 — live `*_expr` plane range bounds (the re-zooming magnifier) ─────────
+{
+  // A magnifier inset over the LAST Riemann bar. Its width must track the bar
+  // width h = (to-from)/n, or the subject shrinks to sub-pixel as n grows and
+  // the inset shows an empty box — which is exactly the defect this replaces.
+  const live = (n: number) => ({ b: 2, n, h: 2 / n });
+  const insetSpec = {
+    id: "plane_inset",
+    viewport: { x: 230, y: 88, w: 230, h: 145 },
+    x_range: { min: 1.75, max: 2.0, min_expr: "b - 3*(b/n)", max_expr: "b" },
+    y_range: { min: 3, max: 4 },
+  };
+
+  const at8 = E.PM_planeBuildTransform(insetSpec, live(8));
+  const at2304 = E.PM_planeBuildTransform(insetSpec, live(2304));
+  assertTrue("D3: a plane with min_expr/max_expr resolves at all (both n values build a transform)",
+    !!at8 && !!at2304);
+
+  // The SUBJECT (one bar, width h) must occupy a constant fraction of the
+  // inset's width at every n — that is the whole point of re-zooming.
+  const fracOf = (plane: any, n: number) => (2 / n) / (plane.xRange.max - plane.xRange.min);
+  const f8 = fracOf(at8, 8), f2304 = fracOf(at2304, 2304);
+  assertTrue(`D3: the bar occupies a CONSTANT fraction of the inset at n=8 and n=2304 (${f8.toFixed(4)} vs ${f2304.toFixed(4)})`,
+    Math.abs(f8 - f2304) < 1e-9);
+  assertTrue("D3: that constant fraction is legibly large (>= 1/4 of the inset width)", f8 >= 0.25);
+
+  // NEGATIVE CONTROL — the PRE-FIX behaviour: a FIXED window over the same
+  // subject. Reimplemented independently, never against the shipped renderer.
+  const fixedWindowFrac = (n: number) => (2 / n) / (2.0 - 1.75);
+  assertTrue(`NEGATIVE CONTROL: a FIXED inset window renders the same bar at ${(fixedWindowFrac(2304) * 100).toFixed(3)}% of its width at n=2304 — sub-pixel, i.e. the empty-box defect`,
+    fixedWindowFrac(2304) < 0.005);
+  assertTrue("NEGATIVE CONTROL: and that fixed window is NOT constant across n (it collapses by >100x from n=8 to n=2304)",
+    fixedWindowFrac(8) / fixedWindowFrac(2304) > 100);
+
+  // Fallback discipline: a broken expression must keep the AUTHORED window,
+  // never produce a degenerate range (a vanished frame reads as a broken sim).
+  const brokenSpec = {
+    id: "p_broken",
+    viewport: { x: 230, y: 88, w: 230, h: 145 },
+    x_range: { min: 1.75, max: 2.0, min_expr: "this_is_not_a_variable * (" },
+    y_range: { min: 3, max: 4 },
+  };
+  const brokenPlane = E.PM_planeBuildTransform(brokenSpec, live(100));
+  assertTrue("D3: an unparseable min_expr falls back to the authored numeric bound (window preserved, not degenerate)",
+    !!brokenPlane && brokenPlane.xRange.min === 1.75 && brokenPlane.xRange.max === 2.0);
+  assertTrue("D3: PM_planeResolveBound returns the numeric bound when no *_expr is authored",
+    E.PM_planeResolveBound({ min: -6.5, max: 6.5 }, "min", {}) === -6.5);
+  assertTrue("NEGATIVE CONTROL: PM_planeResolveBound is not a pass-through — it DOES prefer a valid expr over the numeric bound",
+    E.PM_planeResolveBound({ min: 1.75, min_expr: "b - 3*(b/n)" }, "min", live(8)) === 1.25);
+
+  // Every plane already shipped authors numeric ranges only — prove the
+  // addition is a strict no-op for them.
+  const legacy = E.PM_planeBuildTransform(DEFAULT_PLANE, {});
+  const legacyNoVars = E.PM_planeBuildTransform(DEFAULT_PLANE, undefined);
+  assertTrue("D3: a numeric-only plane is byte-identical with and without a live scope (strict no-op for every shipped concept)",
+    JSON.stringify(legacy.xRange) === JSON.stringify(legacyNoVars.xRange)
+    && JSON.stringify(legacy.yRange) === JSON.stringify(legacyNoVars.yRange));
+}
+
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D + D3) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);
