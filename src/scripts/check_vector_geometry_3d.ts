@@ -83,6 +83,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
 import { deriveMaxRevealTimeMs, deriveHoldExpectations } from "../lib/validators/visual/deriveStateMeta";
+import { runFleetSafety, classify, type FleetSafetySpec } from "./lib/fleetSafety";
 
 const SRC = FIELD_3D_RENDERER_CODE;
 
@@ -143,6 +144,11 @@ function check(label: string, got: unknown, want: unknown, tol: number, unit = "
 function assertTrue(label: string, ok: boolean) {
   if (!ok) failures++;
   console.log(`  ${ok ? "PASS" : "FAIL"}  ${label}`);
+}
+/** A negative control, phrased positively: the planted defect MUST be caught. */
+function control2(label: string, caught: boolean) {
+  if (!caught) failures++;
+  console.log(`  ${caught ? "PASS" : "FAIL"}  NEGATIVE CONTROL (must itself fail first): ${label}`);
 }
 /** Run a predicate and assert it evaluates to `wantFail` (used for negative controls). */
 function expectFail(label: string, ok: boolean) {
@@ -838,140 +844,127 @@ console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibili
   }
 }
 
-console.log("\n=== 11. FLEET SAFETY — every scenario other than vector_geometry_3d emits byte-identical template output ===");
+console.log("\n=== 11. FLEET SAFETY — vector_geometry_3d's blast radius is the enumerated glue, and nothing else ===");
 {
-  // A new scenario_type is additive BY CONSTRUCTION: 60 existing scenarios
-  // dispatch on their own string and none can reach a case that did not
-  // exist. The blast radius is confined to SHARED GLUE — the scenario_type
-  // union terminator, the #sliders NOT-list, and the build/apply/frame/glow
-  // dispatch chains — which is exactly what this section bounds.
-  // THE BASE REF IS DERIVED, NOT NAMED. "origin/master" is the wrong baseline
-  // the moment origin/master moves ahead of the desk: the comparison then
-  // reports somebody else's commits as this dispatch's blast radius. The
-  // right baseline is the last ancestor of HEAD whose renderer carries NO
-  // vector scenario AT ALL — in either its old or its new name — because
-  // that is the fleet as it stood before this scenario existed, at the
-  // mainline point this desk is synced to.
-  const RENDERER = "src/lib/renderers/field_3d_renderer.ts";
-  // Compare TEMPLATE-BODY SOURCE TEXT on both sides. Two traps, both
-  // measured: (a) the imported SRC is the body BETWEEN the backticks while a
-  // git blob is the whole file, so diffing one against the other compares
-  // different things (1596 added / 4194 removed against a real diff of
-  // 584 / 2); and (b) SRC is the EVALUATED literal, so every escape is
-  // already resolved and `\\u2192` in source reads as `\u2192` here — every
-  // escaped line then shows as changed. So both sides are sliced out of
-  // source text by the same function.
-  function emittedFrom(file: string, ref: string): string {
-    const open = file.indexOf("FIELD_3D_RENDERER_CODE = ");
-    if (open < 0) throw new Error("no FIELD_3D_RENDERER_CODE in " + ref);
-    const tickOpen = file.indexOf("`", open);
-    const tickClose = file.indexOf("`", tickOpen + 1);
-    if (tickOpen < 0 || tickClose < 0) throw new Error("unbalanced template in " + ref);
-    return file.slice(tickOpen + 1, tickClose);
-  }
-  const emittedAt = (ref: string) => emittedFrom(execFileSync("git", ["show", `${ref}:${RENDERER}`], { encoding: "utf-8", maxBuffer: 64 * 1024 * 1024 }), ref);
-  const CUR_EMITTED = emittedFrom(readFileSync(RENDERER, "utf-8"), "working tree");
-  const blobAt = emittedAt;
-  const rawAt = (ref: string) => execFileSync("git", ["show", `${ref}:${RENDERER}`], { encoding: "utf-8", maxBuffer: 64 * 1024 * 1024 });
-  const hasScenario = (body: string) => body.indexOf("vector_geometry_3d") >= 0 || body.indexOf("vector_products_in_space") >= 0;
-  let BASE_REF = process.env.VG_FLEET_BASE || "";
-  let baseSrc = "";
-  try {
-    if (BASE_REF) {
-      baseSrc = blobAt(BASE_REF);
-    } else {
-      // The MAINLINE point this desk is synced to: the newest commit shared
-      // with origin/master. Walking the desk's own first-parent chain instead
-      // lands on the commit the desk was CUT from, which predates whatever
-      // master has landed since, and reports master's own progress as this
-      // dispatch's blast radius (measured: 4194 phantom removed lines).
-      const mb = execFileSync("git", ["merge-base", "HEAD", "origin/master"], { encoding: "utf-8" }).trim();
-      const candidates = [mb, ...execFileSync("git", ["rev-list", "--max-count=20", mb, "--", RENDERER], { encoding: "utf-8" }).split("\n").map((r) => r.trim()).filter(Boolean)];
-      for (const r of candidates) {
-        const body = rawAt(r);
-        if (!hasScenario(body)) { BASE_REF = r; baseSrc = emittedAt(r); break; }
-      }
-    }
-  } catch {
-    /* fall through to the SKIP below */
-  }
-  if (!baseSrc) console.log(`  SKIP  no pre-scenario ancestor found in the last 40 renderer commits — cannot diff (set VG_FLEET_BASE)`);
-  else console.log(`        base ref (last ancestor with NO vector scenario): ${BASE_REF.slice(0, 10)}`);
-  if (baseSrc) {
-    // The vg-owned region: the scenario body between its banner and the next
-    // scenario's banner, plus the type-declaration block. Everything else in
-    // the file is FLEET, and a changed fleet line must be one of the named
-    // shared-glue lines below.
-    // The shared glue, ENUMERATED — the entire blast radius of a new
-    // scenario_type. Everything else in the emitted template must be
-    // byte-identical, and lines inside the scenario's own region are excised
-    // by span (below) rather than matched by token, because most of a
-    // scenario body is comments and generic code that carries no prefix.
-    const SHARED_GLUE = [
-      "'vector_geometry_3d';",                                        // the scenario_type union terminator
-      'case "vector_geometry_3d":',                                   // buildScenario dispatch
-      'if (config.scenario_type === "vector_geometry_3d") {',         // applyState + animate dispatch
-      "var isVecGeom = config.scenario_type",                         // the #sliders NOT-list boolean
-      "slidersEl.style.display = (stateDef.show_sliders",             // the #sliders NOT-list condition
-      "buildVectorGeometry3D();",                                     // buildScenario case body
-      "applyVectorGeometry3DState(stateDef);",                        // applyState dispatch body
-      "updateVectorGeometry3DFrame();",                               // animate() frame call
-      "applyVectorGeometry3DGlow();",                                 // animate() glow call
-    ];
-    // A changed fleet line is accepted ONLY if it sits within GLUE_RADIUS
-    // lines of one of the named code sites above — i.e. it is part of that
-    // insertion's own comment block or its closing braces. Judged by INDEX,
-    // not by content: a content allowlist has to keep growing to cover every
-    // continuation comment, and each growth is a place a real fleet edit can
-    // hide. Anything further away than the radius is a genuine fleet change
-    // and fails, whatever it says.
-    const GLUE_RADIUS = 12;
-    const cur = CUR_EMITTED.split("\n"), base = baseSrc.split("\n");
-    // Excise the scenario's OWN region by span. Both anchors are asserted, so
-    // a rename that moves them fails loudly instead of silently widening the
-    // region until the check passes vacuously.
-    const vgBannerIdx = cur.findIndex((l) => l.indexOf("vector_geometry_3d (MATHEMATICS") >= 0);
-    const vgEndIdx = cur.findIndex((l, i) => i > vgBannerIdx && vgBannerIdx >= 0 && l.indexOf("rhr_force_direction — DIRECTION-ONLY") >= 0);
-    assertTrue("the vg region's opening anchor is found in the emitted template", vgBannerIdx > 0);
-    assertTrue("the vg region's closing anchor (the next scenario's banner) is found", vgEndIdx > vgBannerIdx);
-    const regionStart = Math.max(0, vgBannerIdx - 1);          // the ═ rule above the banner
-    const regionEnd = Math.max(regionStart, vgEndIdx - 1);     // the ═ rule above the next banner
-    console.log(`        vg region excised: emitted lines ${regionStart}..${regionEnd} (${regionEnd - regionStart} lines)`);
-    const curFleet = cur.filter((_, i) => i < regionStart || i >= regionEnd);
-    function multisetDiff(a: string[], b: string[]) {
-      const bag = new Map<string, number>();
-      for (const l of b) bag.set(l, (bag.get(l) || 0) + 1);
-      const added: string[] = [];
-      for (const l of a) { const n = bag.get(l) || 0; if (n > 0) bag.set(l, n - 1); else added.push(l); }
-      const removed = [...bag.entries()].filter(([, n]) => n > 0).flatMap(([l, n]) => Array(n).fill(l) as string[]);
-      return { added, removed };
-    }
-    const { added, removed } = multisetDiff(curFleet, base);
-    const anchors: number[] = [];
-    curFleet.forEach((l, i) => { if (SHARED_GLUE.some((g) => l.indexOf(g) >= 0)) anchors.push(i); });
-    assertTrue(`every named shared-glue site is present exactly once or twice (${anchors.length} anchor lines found)`, anchors.length >= SHARED_GLUE.length);
-    const nearAnchor = (l: string) => curFleet.some((c, i) => c === l && anchors.some((aIdx) => Math.abs(aIdx - i) <= GLUE_RADIUS));
-    const unexplainedAdded = added.filter((l) => l.trim() && !nearAnchor(l));
-    // A REMOVED line is explained only if the line that replaced it is one
-    // of the named glue sites (the #sliders NOT-list condition is rewritten
-    // in place, so its old text disappears). Nothing else may vanish.
-    const unexplainedRemoved = removed.filter((l) => l.trim() && !SHARED_GLUE.some((g) => l.indexOf(g) >= 0));
-    console.log(`        ${added.filter((l) => l.trim()).length} fleet lines changed, all within ${GLUE_RADIUS} lines of a named dispatch site`);
-    if (unexplainedAdded.length) console.log("        unexplained ADDED:   " + unexplainedAdded.slice(0, 8).map((l) => l.trim().slice(0, 100)).join("\n                             "));
-    if (unexplainedRemoved.length) console.log("        unexplained REMOVED: " + unexplainedRemoved.slice(0, 8).map((l) => l.trim().slice(0, 100)).join("\n                             "));
-    check(`fleet lines ADDED outside the vg region and the named shared glue`, unexplainedAdded.length, 0, 0);
-    check(`fleet lines REMOVED outside the vg region and the named shared glue`, unexplainedRemoved.length, 0, 0);
-    assertTrue(`the shared-glue allowlist is SHORT and enumerated (${SHARED_GLUE.length} entries) — the measured blast radius of a new scenario_type`,
-      SHARED_GLUE.length <= 10);
+  // REWRITTEN 2026-08-09 alongside check:solid-of-revolution, and the reason
+  // is worth stating plainly: THIS SECTION WAS GREEN BY ACCIDENT. Its baseline
+  // walk looks for the newest ancestor carrying no vector scenario and landed
+  // on 07ea1218 — a commit on the solid_of_revolution BRANCH, which therefore
+  // already contained SR. SR's 1531 lines happened not to diff, so no drift
+  // was reported. Had SR merged one day later, or had any other scenario
+  // landed after this baseline, this section would have reported that
+  // sibling's entire block as vector_geometry_3d's blast radius, exactly as
+  // check:solid-of-revolution did from the hour it merged (measured there:
+  // 1271 of 1271 stray lines were that gate's OWN block). An accidentally
+  // green gate is the next red one, so the accident is removed rather than
+  // relied on.
+  //
+  // The mechanism — a derived baseline plus attribution BY AUTHORSHIP rather
+  // than by time — is documented once in src/scripts/lib/fleetSafety.ts and
+  // shared with check:solid-of-revolution, so the next scenario's gate
+  // inherits it instead of copying whichever version it finds first.
+  const SPEC: FleetSafetySpec = {
+    renderer: "src/lib/renderers/field_3d_renderer.ts",
+    sentinel: "vector_geometry_3d",
+    // The pre-rename name still means "this scenario exists".
+    altSentinels: ["vector_products_in_space"],
+    // The scenario's VOCABULARY: its type string plus the `vg` symbol prefix
+    // convention the whole region is named with. Derived from the naming
+    // convention rather than listed symbol by symbol, so a new vg helper
+    // needs no edit here.
+    vocabulary: /vector_geometry_3d|vector_products_in_space|\bvg[A-Z]|\bvg_[a-z]|VectorGeometry3D/,
+    regionStart: "vector_geometry_3d (MATHEMATICS — the GENERIC two-vector",
+    regionEnd: "rhr_force_direction — DIRECTION-ONLY sibling of lorentz_force_uniform_field",
+    glue: [
+      "vector_geometry_3d",                             // union terminator + every dispatch
+      "isVecGeom",                                      // the #sliders NOT-list boolean
+      "slidersEl.style.display",                        // the NOT-list condition it joins
+      "buildVectorGeometry3D();",
+      "applyVectorGeometry3DState(stateDef);",
+      "updateVectorGeometry3DFrame();",
+      "applyVectorGeometry3DGlow();",
+    ],
+    stripOwn: (l: string) => l
+      .split(' || config.scenario_type === "vector_geometry_3d"').join("")
+      .split(" && !isVecGeom").join(""),
+    baseEnv: "VG_FLEET_BASE",
+  };
+  const R = runFleetSafety(SPEC);
+  if (!R.base) {
+    console.log("  SKIP  no pre-vg ancestor found in the last 60 renderer commits (set VG_FLEET_BASE)");
+  } else {
+    console.log(`        baseline (newest ancestor with NO vector scenario): ${R.base.slice(0, 10)}`);
+    console.log(`        vg region excised: template lines ${R.region[0]}..${R.region[1]} (${R.region[1] - R.region[0]} lines)`);
+    console.log(`        commits since the baseline: ${R.mineCommits.length} vg, ${R.othersCommits.length} other`);
+    assertTrue("the baseline predates vector_geometry_3d — not HEAD wearing a baseline's name (the defect that made the SR gate red on master)",
+      R.base !== execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).trim());
+    assertTrue("the vg region's opening anchor is found in the emitted template", R.region[0] > 0);
+    assertTrue("the vg region's closing anchor (the next scenario's banner) is found", R.region[1] > R.region[0]);
 
-    // NEGATIVE CONTROL — the comparison must actually be able to SEE a fleet
-    // change. Mutate a line belonging to ANOTHER scenario and confirm it is
-    // reported as unexplained.
-    const victim = base.find((l) => l.indexOf('case "ac_generator":') >= 0) || "";
-    const mutatedFleet = curFleet.map((l) => (l === victim ? l + " /* fleet mutation */" : l));
-    const mut = multisetDiff(mutatedFleet, base);
-    const foreign2 = mut.added.filter((l) => l.trim() && !nearAnchor(l));
-    expectFail(`a mutated fleet line (${victim.trim().slice(0, 40)}) goes UNDETECTED by this comparison`, foreign2.length === 0);
+    // ── THE STRUCTURAL HALF — no history at all, so it can never rot. With
+    //    the region excised, every surviving mention of the scenario must be
+    //    an enumerated glue site. Strictly stronger than the diff on the
+    //    addition side, which cannot see an unlisted dispatch that arrived in
+    //    the SAME commit as the region: to a snapshot diff that is just "the
+    //    scenario landed".
+    for (const s of R.unlistedReach.slice(0, 8)) console.log("      unlisted reach: " + s.trim().slice(0, 120));
+    assertTrue(`vg names itself outside its own region ONLY on enumerated glue lines (${R.unlistedReach.length} unlisted)`,
+      R.unlistedReach.length === 0);
+    assertTrue(`every enumerated glue chain is present (${R.glueHits.length} hits over ${SPEC.glue.length} chains)`,
+      R.glueHits.length >= SPEC.glue.length);
+    for (const chain of ['case "vector_geometry_3d":', "var isVecGeom = config.scenario_type",
+      "buildVectorGeometry3D();", "applyVectorGeometry3DState(stateDef);",
+      "updateVectorGeometry3DFrame();", "applyVectorGeometry3DGlow();"]) {
+      assertTrue(`the "${chain.slice(0, 42)}" dispatch is wired`,
+        R.stripped.filter((l) => l.includes(chain)).length >= 1);
+    }
+    assertTrue(`the shared-glue allowlist is SHORT and enumerated (${SPEC.glue.length} entries) — the measured blast radius of a new scenario_type`,
+      SPEC.glue.length <= 10);
+
+    // ── THE HISTORICAL HALF, attributed.
+    const C = classify(SPEC, R);
+    for (const s of C.strayAdded.slice(0, 6)) console.log("      stray ADDED:   " + s.trim().slice(0, 120));
+    for (const s of C.strayRemoved.slice(0, 6)) console.log("      stray REMOVED: " + s.trim().slice(0, 120));
+    console.log(`        ${C.changed} lines differ from the baseline; ${C.exemptOthers} attributed to other scenarios' commits, ${C.exemptNearGlue} inside vg's own dispatch insertions, ${C.exemptPunctuation} structural punctuation`);
+    check("fleet lines ADDED outside the vg region and the named shared glue", C.strayAdded.length, 0, 0);
+    check("fleet lines REMOVED outside the vg region and the named shared glue", C.strayRemoved.length, 0, 0);
+
+    // ── NEGATIVE CONTROLS, the same three the SR gate carries, because the
+    //    authorship exemption is exactly the kind of widening that can make a
+    //    gate pass vacuously and the only proof it has not is that a planted
+    //    line is still caught in each place the exemption could swallow it.
+    const tamperedAt = (find: string, replace: string) =>
+      classify(SPEC, R, R.stripped.map((l) => (l.includes(find) ? l.replace(find, replace) : l)));
+
+    const t1 = tamperedAt("    function addToScene(obj) {", "    function addToScene(obj) { /* tampered */");
+    control2("tampering with a SHARED helper (addToScene) is reported",
+      t1.strayAdded.length + t1.strayRemoved.length > 0);
+
+    // The discriminating one for this rewrite: authorship exempts a sibling's
+    // COMMITS, and must never harden into "anything outside my own block is
+    // forgiven". solid_of_revolution is the sibling that landed after this
+    // baseline, so its region is exactly where the exemption could hide a
+    // planted line.
+    const sibling = R.stripped.find((l) => l.includes("function srExactVolume("))
+      ?? R.stripped.find((l) => l.includes("function buildSolidOfRevolution("));
+    assertTrue("a sibling scenario's region (solid_of_revolution) is present in the stripped body, so the control below has something to plant in",
+      !!sibling);
+    const t2 = tamperedAt(sibling!, sibling! + " /* tampered */");
+    control2("a planted line inside a SIBLING scenario's region (solid_of_revolution) is still reported — authorship exempts a sibling's COMMITS, never a sibling's TERRITORY",
+      t2.strayAdded.length + t2.strayRemoved.length > 0);
+
+    // A shared line vg APPENDED TO, not one vg created outright: a line with
+    // no earlier version has nothing to differ from, so planting on one
+    // proves nothing (the SR gate's control (3) was written that way first).
+    const glueLine = R.stripped.find((l) => l.includes("slidersEl.style.display") && l.includes("isVecGeom"));
+    assertTrue("a shared line vg APPENDED TO (the #sliders NOT-list) exists, so the control below has a real target",
+      !!glueLine);
+    const t3 = glueLine ? tamperedAt(glueLine, glueLine + " /* tampered */") : { strayAdded: [], strayRemoved: [] };
+    control2("editing a shared line vg appended to, BEYOND vg's own insertion, is reported",
+      t3.strayAdded.length + t3.strayRemoved.length > 0);
+
+    assertTrue(`somebody else's commits are actually being attributed (${R.othersAdded.size} added / ${R.othersRemoved.size} removed lines credited elsewhere)`,
+      R.othersCommits.length === 0 || R.othersAdded.size + R.othersRemoved.size > 0);
   }
 }
 console.log("\n=== 11b. THE AUTHORED VALUE PANEL IS vg.value_readouts — and the fleet's static_readouts convention is untouched ===");
