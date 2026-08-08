@@ -249,11 +249,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "(x, y) = ({x}, {y})",
-              "offset": {
-                "x": -85,
-                "y": -14
-              }
+              "format": "({x}, {y})"
             }
           },
           {
@@ -266,11 +262,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P = ({x}, {y})",
-              "offset": {
-                "x": 10,
-                "y": -12
-              }
+              "format": "P = ({x}, {y})"
             },
             "appear_at_ms": 13500,
             "animate_in_ms": 400
@@ -463,11 +455,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P′ = ({x}, {y})",
-              "offset": {
-                "x": 6,
-                "y": -12
-              }
+              "format": "P′ = ({x}, {y})"
             }
           },
           {
@@ -700,11 +688,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P′ = ({x}, {y})",
-              "offset": {
-                "x": 6,
-                "y": -12
-              }
+              "format": "P′ = ({x}, {y})"
             }
           },
           {
@@ -907,11 +891,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P′ = ({x}, {y})",
-              "offset": {
-                "x": 6,
-                "y": 18
-              }
+              "format": "P′ = ({x}, {y})"
             }
           },
           {
@@ -1113,11 +1093,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P′ = ({x}, {y})",
-              "offset": {
-                "x": 6,
-                "y": -12
-              }
+              "format": "P′ = ({x}, {y})"
             }
           },
           {
@@ -1133,7 +1109,7 @@
           {
             "type": "label",
             "id": "bracket_label",
-            "text_expr": "width = 2π/b = {(2*PI/b).toFixed(2)}",
+            "text_expr": "period = 2π/b = {(2*PI/b).toFixed(2)}",
             "plane_id": "plane",
             "position": {
               "x": 3.14,
@@ -1209,7 +1185,7 @@
           {
             "belief": "b = 2 stretches the graph wider — bigger number, bigger graph",
             "visual_counter": "the stepping bracket against the fixed ghost period",
-            "one_line_fix": "b multiplies x before sin acts — the width divides by b."
+            "one_line_fix": "b multiplies x before sin acts — the period divides by b."
           }
         ],
         "teacher_script": {
@@ -1221,12 +1197,12 @@
             },
             {
               "id": "s5_2",
-              "text_en": "As b increases from one to three in counted steps, the width bracket shrinks: two pi over b.",
+              "text_en": "As b increases from one to three in counted steps, the period bracket shrinks: two pi over b.",
               "glow": "bracket_vector"
             },
             {
               "id": "s5_3",
-              "text_en": "b multiplies x before sine acts, so the width divides by b.",
+              "text_en": "b multiplies x before sine acts, so the period divides by b.",
               "glow": "bracket_label"
             }
           ]
@@ -1360,11 +1336,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P′ = ({x}, {y})",
-              "offset": {
-                "x": 6,
-                "y": -12
-              }
+              "format": "P′ = ({x}, {y})"
             }
           },
           {
@@ -1438,7 +1410,7 @@
             "text": "inside — acts on x, the opposite way (÷ b, + h)",
             "position": {
               "x": 147,
-              "y": 132
+              "y": 137
             },
             "font_size": 11,
             "color": "#38BDF8",
@@ -1896,11 +1868,7 @@
             "color": "#FBBF24",
             "readout": {
               "decimals": 2,
-              "format": "P′ = ({x}, {y})",
-              "offset": {
-                "x": 6,
-                "y": -12
-              }
+              "format": "P′ = ({x}, {y})"
             }
           },
           {
