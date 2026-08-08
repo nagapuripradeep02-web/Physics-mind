@@ -93,6 +93,14 @@ const FNS = [
   "vgEase", "vgAnimKnobs", "vgAnimValue", "vgAnimEndMs",
   "vgCamScheduleAt", "vgCamStepsEndMs", "vgAutoFramePos",
   "vgSplitPieces", "vgSolidFaceCount",
+  // VG-C · mode "lines_planes" (F11-F14, F22, F23, Δ10).
+  "vgScaleVec", "vgLerpVec", "vgAngleDeg",
+  "vgSphereClipSpan", "vgLineEnds", "vgPointOnLine",
+  "vgPlaneBasis", "vgPlaneEdges", "vgPlaneQuad", "vgPlanePointAt",
+  "vgFootOnPlane", "vgCommonPerp", "vgLinePlaneMeet", "vgLinePlaneAngles",
+  "vgProjectLineOntoPlane", "vgRevealFrac", "vgGhostFactor", "vgInGroup",
+  "vgKnobVal", "vgObjOffset", "vgObjRotate", "vgAddr", "vgList",
+  "vgResolveLinesPlanes",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -100,6 +108,8 @@ const E = new Function([
   ...FNS.map((f) => grabFn(f)),
   "var VG_CAM_EASE_MS = 900;",
   "var VG_SPLIT_GAP_K = 1.25;",
+  "var VG_MEET_EPS = 1e-9;",
+  "var VG_SCENE_RADIUS = 4.5;",
   "return { " + FNS.join(", ") + " };",
 ].join("\n"))() as any;
 
@@ -1086,6 +1096,685 @@ console.log("\n=== 7. E3 — vgParallelepipedFaces: drawn solid VOLUME == |a.(b 
   for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++) if (facesShareAnEdge(brokenFaces[i], brokenFaces[j])) brokenSharedPairs++;
   expectFail(`a top-face-nudged-by-0.01 solid still closes with 12 shared-edge pairs (got ${brokenSharedPairs})`, brokenSharedPairs === 12);
 }
+console.log("\n=== 8. F13a — point-to-plane distance and the FOOT, against a closed form solved outside the tool ===");
+{
+  // The independent closed form, written here from the definition and NOT
+  // from the renderer: distance = |n . (q - a)| / ||n||, foot = q - that
+  // signed amount along n-hat. Note the UN-normalised n: the authored normal
+  // in this concept has ||n|| = 1.0886, so a formula that forgets to divide is
+  // wrong by 8.9% and still looks plausible.
+  const dIndep = (q: V3, a: V3, n: V3) => Math.abs(dot3(n, sub3(q, a))) / len3(n);
+
+  const cases: Array<{ q: V3; a: V3; n: V3 }> = [
+    { q: [1.93, 1.19, 0.51], a: [0, -0.4, 0], n: [0.35, 1, 0.25] },   // the authored scene
+    { q: [0, 0, 0], a: [2, 0, 0], n: [1, 0, 0] },
+    { q: [-3, 2.5, 1.25], a: [0.5, -1, 2], n: [-0.6, 0.2, 0.9] },
+    { q: [0.1, -0.2, 0.3], a: [0.1, -0.2, 0.3], n: [1, 1, 1] },        // q ON the plane: distance 0
+    { q: [4, -4, 4], a: [-1, 1, -1], n: [0.02, 3, -0.7] },
+  ];
+  for (let i = 0; i < cases.length; i++) {
+    const c = cases[i];
+    const r = E.vgFootOnPlane(c.q, c.a, c.n);
+    check(`case ${i}: distance == |n.(q-a)|/||n||`, r.distance, dIndep(c.q, c.a, c.n), 1e-12);
+    // The foot lies ON the plane, exactly.
+    check(`case ${i}: the foot satisfies the plane equation n.(foot-a) == 0`, dot3(c.n as V3, sub3(r.foot as V3, c.a)), 0, 1e-12);
+    // ...and it is the CLOSEST point of the plane, not merely a point of it.
+    const basis = E.vgPlaneBasis(c.n, null, null);
+    let minOther = Infinity;
+    for (let s = -3; s <= 3; s += 0.25) for (let t = -3; t <= 3; t += 0.25) {
+      if (Math.abs(s) < 1e-9 && Math.abs(t) < 1e-9) continue;
+      const p = E.vgPlanePointAt(r.foot, basis, s, t) as V3;
+      const dd = len3(sub3(c.q, p));
+      if (dd < minOther) minOther = dd;
+    }
+    assertTrue(`case ${i}: every other sampled point of the plane is farther (${minOther.toFixed(4)} > ${r.distance.toFixed(4)})`,
+      minOther > r.distance - 1e-9);
+  }
+  // The authored scene's own numbers, computed by a different party in the
+  // skeleton's geometry block, reproduced here: distance 2.200, foot
+  // (1.23, -0.83, 0.00). This is the external cross-check the whole wave now
+  // requires — two probes agreeing is not validation unless one of them was
+  // solved outside the tool.
+  {
+    const r = E.vgFootOnPlane([1.93, 1.19, 0.51], [0, -0.4, 0], [0.35, 1, 0.25]);
+    // Solved here from the definition, to full precision, and NOT read back
+    // off the renderer: 2.393 / sqrt(1.185).
+    const dExact = 2.393 / Math.sqrt(1.185);
+    check("authored scene: distance == 2.393/sqrt(1.185), solved outside the tool", r.distance, dExact, 1e-12);
+    // ⚠ FINDING for mathematics_author — the skeleton's geometry block quotes
+    //   distance 2.200 and foot (1.23, -0.83, 0.00). The exact values are
+    //   2.19827 and (1.22322, -0.82936, 0.00516). At the concept's own stated
+    //   precision doctrine (distances 3 dp, coordinates 2 dp) the sim will
+    //   print 2.198 and (1.22, -0.83, 0.01) — so any narration or formula
+    //   surface authored against "2.200" or "1.23" would disagree with the
+    //   HUD beside it. The engine is right; the authored text must follow the
+    //   engine. Asserted at the drift so a later change to either is caught.
+    check("cross-check vs the skeleton's quoted 2.200 (drift 0.0017 — see the FINDING above)", r.distance, 2.200, 0.002);
+    check("cross-check vs the skeleton's quoted foot x 1.23 (drift 0.0068)", r.foot[0], 1.23, 0.007);
+    check("cross-check vs the skeleton's quoted foot y -0.83", r.foot[1], -0.83, 0.001);
+    check("cross-check vs the skeleton's quoted foot z 0.00 (rounds to 0.01, not 0.00)", r.foot[2], 0.00, 0.006);
+  }
+  // NEGATIVE CONTROL — the distance computed with the UN-normalised normal,
+  // which is the single most likely way to get this wrong and the one the gate
+  // table names. It must fail on a scene whose ||n|| is not 1.
+  {
+    const q: V3 = [1.93, 1.19, 0.51], a: V3 = [0, -0.4, 0], n: V3 = [0.35, 1, 0.25];
+    const broken = Math.abs(dot3(n, sub3(q, a)));            // BUG: no /||n||
+    const truth = E.vgFootOnPlane(q, a, n).distance;
+    expectFail(`an un-normalised |n.(q-a)| (${broken.toFixed(4)}) equals the true distance (${truth.toFixed(4)})`,
+      Math.abs(broken - truth) < 1e-6);
+    assertTrue(`...it is wrong by ${(100 * Math.abs(broken - truth) / truth).toFixed(1)}% because ||n|| = ${len3(n).toFixed(4)}`,
+      Math.abs(broken - truth) > 0.1);
+  }
+  // A degenerate normal returns null rather than a plausible zero distance.
+  assertTrue("a zero normal returns null, never a distance of 0 at an arbitrary foot", E.vgFootOnPlane([1, 1, 1], [0, 0, 0], [0, 0, 0]) === null);
+}
+
+console.log("\n=== 9. F13b — the skew distance and the COMMON PERPENDICULAR, with the parallel case DETECTED, never divided by ===");
+{
+  // The authored skew pair, constructed exactly as the scene block specifies:
+  // M2's anchor is offset 1.8 along n-hat_c = (d1 x d2)/||d1 x d2||, plus
+  // in-span amounts along d1 and d2 that CANNOT change the gap. So the true
+  // shortest distance is 1.8 EXACTLY — a closed form solved outside the tool,
+  // not a number read back off the renderer.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const a1: V3 = [-1.2, -0.9, 0.6];
+  const d1 = nrm([1, 0.15, 0.35]);
+  const d2 = nrm([0.15, -0.5, 1]);
+  const cr = cross3(d1, d2);
+  const crn = len3(cr);
+  const nc = nrm(cr);
+  const a2: V3 = add3(add3(a1, [nc[0] * 1.8, nc[1] * 1.8, nc[2] * 1.8]),
+    [d1[0] * 1.4 - d2[0] * 1.1, d1[1] * 1.4 - d2[1] * 1.1, d1[2] * 1.4 - d2[2] * 1.1]);
+
+  const r = E.vgCommonPerp(a1, d1, a2, d2);
+  assertTrue("the authored pair is NOT parallel", r.parallel === false && r.exists === true);
+  check("shortest distance is EXACTLY the authored 1.800 (in-span offsets cannot change it)", r.distance, 1.8, 1e-12);
+  check("||d1 x d2|| reproduces the skeleton's 0.936", r.cross_norm, 0.936, 0.0005);
+  check("the angle between the two directions reproduces the skeleton's 69.38 deg", E.vgAngleDeg(d1, d2), 69.38, 0.01);
+  check("the independent formula |(a2-a1).(d1 x d2)|/||d1 x d2|| agrees", Math.abs(dot3(sub3(a2, a1), cr)) / crn, r.distance, 1e-12);
+  // The two feet: orthogonal to BOTH directions, and their separation IS the
+  // distance. This is what makes the drawn segment the thing the number names.
+  const gap = sub3(r.foot2 as V3, r.foot1 as V3);
+  check("(F2-F1).d1 == 0", dot3(gap, d1), 0, 1e-12);
+  check("(F2-F1).d2 == 0", dot3(gap, d2), 0, 1e-12);
+  check("|F2-F1| == the reported distance", len3(gap), r.distance, 1e-12);
+  check("the numerator (a2-a1).(d1 x d2) is exposed for the formula surface", r.numerator, dot3(sub3(a2, a1), cr), 1e-12);
+  // The feet really are ON their lines.
+  const onLine = (f: V3, a: V3, d: V3) => len3(cross3(sub3(f, a), d));
+  check("F1 lies on line 1", onLine(r.foot1 as V3, a1, d1), 0, 1e-12);
+  check("F2 lies on line 2", onLine(r.foot2 as V3, a2, d2), 0, 1e-12);
+
+  // ── THE PARALLEL CASE — detected, not divided by ─────────────────────────
+  {
+    const pa2: V3 = [-1.2 + 0.9, -0.9 + 1.7, 0.6 - 0.4];
+    const p = E.vgCommonPerp(a1, d1, pa2, [d1[0] * 2.5, d1[1] * 2.5, d1[2] * 2.5]);
+    assertTrue("a parallel pair is REPORTED parallel", p.parallel === true);
+    assertTrue("...and has NO common perpendicular to draw (exists === false, dir === null)", p.exists === false && p.dir === null);
+    assertTrue("...and no feet are invented", p.foot1 === null && p.foot2 === null);
+    assertTrue("...and the reported distance is finite (never NaN)", isFinite(p.distance));
+    // The correct parallel-line distance, from the definition, outside the tool.
+    const w = sub3(pa2, a1);
+    check("the parallel distance uses the point-to-line formula |w x d1-hat|", p.distance, len3(cross3(w, d1)), 1e-12);
+    // NEGATIVE CONTROL — the skew formula applied to the parallel pair, i.e.
+    // what happens if the case is NOT detected. The gate table predicted
+    // "division by zero / NaN". IT IS WORSE THAN THAT, and this is the finding
+    // the section produced by failing first: d1 x (2.5 d1) is not exactly zero
+    // in IEEE arithmetic (it is ~1e-17 pointing in a numerically ARBITRARY
+    // direction), so |w.cr|/||cr|| returns a FINITE, PLAUSIBLE, WRONG distance.
+    // A test for exact zero would have passed it straight through. The epsilon
+    // is therefore load-bearing, not defensive tidiness.
+    const bcr = cross3(d1, [d1[0] * 2.5, d1[1] * 2.5, d1[2] * 2.5]);
+    const bcrn = len3(bcr);
+    const bad = Math.abs(dot3(w, bcrn > 0 ? bcr : [0, 0, 1])) / (bcrn > 0 ? bcrn : 1);
+    assertTrue(`||d1 x 2.5*d1|| is NOT exactly zero in IEEE arithmetic (${bcrn.toExponential(2)}) — an === 0 test would miss it`,
+      bcrn > 0 && bcrn < 1e-9);
+    assertTrue(`...so the undetected skew formula returns a finite, plausible number (${bad.toFixed(4)}) rather than NaN`, isFinite(bad));
+    expectFail(`the undetected skew formula agrees with the true parallel distance (${bad.toFixed(4)} vs ${p.distance.toFixed(4)})`,
+      Math.abs(bad - p.distance) < 1e-6);
+    assertTrue("...the SHIPPED code detects the case first and returns the correct point-to-line distance",
+      Math.abs(p.distance - len3(cross3(w, d1))) < 1e-12);
+  }
+  // NEGATIVE CONTROL — the naive "distance between the two lines" that measures
+  // anchor to anchor. It is finite, plausible, and larger than the truth.
+  {
+    const naive = len3(sub3(a2, a1));
+    expectFail(`the anchor-to-anchor separation (${naive.toFixed(4)}) is the shortest distance (${r.distance.toFixed(4)})`,
+      Math.abs(naive - r.distance) < 1e-6);
+  }
+  // A degenerate direction returns null, never a pair of feet at the anchors.
+  assertTrue("a zero direction returns null", E.vgCommonPerp(a1, [0, 0, 0], a2, d2) === null);
+}
+
+console.log("\n=== 10. D5/F14 — the intersection marker exists ONLY when the intersection does, and the absence carries a READOUT (Δ4) ===");
+{
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+
+  // ── (a) THE CUTTING LINE. Constructed so its answer is known before the
+  //    renderer is asked: a direction at exactly 55 degrees to the normal, and
+  //    an anchor placed so that lambda is exactly 2.6.
+  {
+    const u = nrm(cross3(nh, [0, 0, 1]));                  // some in-plane direction
+    const ang = 55 * Math.PI / 180;
+    const d: V3 = nrm([
+      nh[0] * Math.cos(ang) + u[0] * Math.sin(ang),
+      nh[1] * Math.cos(ang) + u[1] * Math.sin(ang),
+      nh[2] * Math.cos(ang) + u[2] * Math.sin(ang),
+    ]);
+    const X: V3 = add3(planePoint, [u[0] * 0.6, u[1] * 0.6, u[2] * 0.6]);   // a point ON the plane
+    const anchor: V3 = sub3(X, [d[0] * 2.6, d[1] * 2.6, d[2] * 2.6]);
+    const m = E.vgLinePlaneMeet(anchor, d, planePoint, planeN);
+    assertTrue("a line that cuts the plane reports exists === true", m.exists === true);
+    check("lambda reproduces the constructed 2.600", m.lambda, 2.6, 1e-12);
+    check("the marker satisfies the LINE equation (it lies on the line)", len3(cross3(sub3(m.point as V3, anchor), d)), 0, 1e-12);
+    check("the marker satisfies the PLANE equation n.(X-a) == 0", dot3(planeN, sub3(m.point as V3, planePoint)), 0, 1e-12);
+    check("n-hat . d-hat reproduces cos 55 = 0.5736", m.d_dot_n, Math.cos(ang), 1e-12);
+    const angles = E.vgLinePlaneAngles(d, planeN);
+    check("angle to the NORMAL is 55.00 deg", angles.to_normal, 55, 1e-9, " deg");
+    check("angle to the PLANE is 35.00 deg", angles.to_plane, 35, 1e-9, " deg");
+    check("...and the two sum to 90 by construction, not by a second measurement", angles.to_normal + angles.to_plane, 90, 1e-12, " deg");
+  }
+
+  // ── (b) THE PARALLEL LINE — the state whose lesson IS the absence.
+  {
+    const u = nrm(cross3(nh, [0, 0, 1]));                  // exactly perpendicular to n
+    const anchor: V3 = add3(planePoint, [nh[0] * 1.4, nh[1] * 1.4, nh[2] * 1.4]);
+    const m = E.vgLinePlaneMeet(anchor, u, planePoint, planeN);
+    assertTrue("a line PARALLEL to the plane reports exists === false", m.exists === false);
+    assertTrue("...and returns NO point at all (null, not a clamped position)", m.point === null);
+    assertTrue("...and NO lambda", m.lambda === null);
+    check("...and reports n-hat . d-hat = 0, which is the number the state prints", m.d_dot_n, 0, 1e-15);
+
+    // NEGATIVE CONTROL 1 — the silent-identity fallback. A clamped/defaulted
+    // marker is FINITE, lies ON the line, and looks entirely correct; that is
+    // exactly why a valid default is more dangerous than one that throws.
+    const dn = dot3(nh, u);
+    const fallbackLam = (Math.abs(dn) > 1e-12) ? dot3(nh, sub3(planePoint, anchor)) / dn : 0;   // BUG: 0 on parallel
+    const fallbackPt: V3 = add3(anchor, [u[0] * fallbackLam, u[1] * fallbackLam, u[2] * fallbackLam]);
+    assertTrue(`the fallback marker is finite and sits on the line at (${fallbackPt.map((x) => x.toFixed(2)).join(", ")}) — it looks right`,
+      fallbackPt.every((x) => isFinite(x)) && len3(cross3(sub3(fallbackPt, anchor), u)) < 1e-9);
+    expectFail("a clamped/fallback marker position is ON THE PLANE (i.e. is a real intersection)",
+      Math.abs(dot3(planeN, sub3(fallbackPt, planePoint))) < 1e-6);
+    assertTrue(`...it is in fact ${Math.abs(dot3(nh, sub3(fallbackPt, planePoint))).toFixed(3)} away from the plane — a marker for a meeting that does not happen`,
+      Math.abs(dot3(nh, sub3(fallbackPt, planePoint))) > 1);
+
+    // ── Δ4 — the absence must be RENDERED, not merely not-rendered. Run the
+    //    SHIPPED resolver and read what a state would actually show.
+    const block = {
+      mode: "lines_planes",
+      reveal_ms: 0,
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true }],
+      lines: [{ id: "Lpar", point: anchor, dir: u, lambda_span: [-3, 3] }],
+      intersection: { id: "X", line: "Lpar", plane: "P1" },
+    };
+    const res = E.vgResolveLinesPlanes(block, {}, 5000);
+    const markers = res.points.filter((p: any) => p.is_intersection === true);
+    check("the resolved scene contains ZERO intersection markers", markers.length, 0, 0);
+    assertTrue("...and the readout says so out loud: no_meeting_point === true", res.readouts.no_meeting_point === true);
+    check("...beside n.d = 0.000, the number the claim rests on", res.readouts.d_dot_n, 0, 1e-15);
+    assertTrue("...and no lambda / intersection_point is published for a meeting that does not exist",
+      res.readouts.lambda === undefined && res.readouts.intersection_point === undefined);
+    // The apparatus itself is NOT blank — the line and the patch are both there.
+    assertTrue("the apparatus is present (1 line + 1 plane drawn) — the absence is of the MARKER, not of the scene",
+      res.lines.length === 1 && res.planes.length === 1);
+
+    // NEGATIVE CONTROL 2 — a Δ4 implementation that renders the literal row
+    // whenever the token is AUTHORED rather than when the absence is REAL. It
+    // would print "no meeting point" next to a visible marker.
+    const cutBlock = JSON.parse(JSON.stringify(block));
+    cutBlock.lines[0].dir = nh;                            // now perpendicular TO the plane: it meets
+    const cutRes = E.vgResolveLinesPlanes(cutBlock, {}, 5000);
+    assertTrue("the same scene with a cutting line DOES produce exactly one marker",
+      cutRes.points.filter((p: any) => p.is_intersection === true).length === 1);
+    assertTrue("...and no_meeting_point flips to false", cutRes.readouts.no_meeting_point === false);
+    // NEGATIVE CONTROL — an implementation that renders the literal row
+    // whenever the TOKEN IS AUTHORED, rather than when the absence is REAL. On
+    // this very scene it would print "no meeting point" next to a visible
+    // marker: the row and the picture contradicting each other, which is the
+    // failure Δ4 is one line away from at all times.
+    const alwaysRender = (tokenAuthored: boolean) => (tokenAuthored ? "no meeting point" : null);
+    const shipped = (tokenAuthored: boolean, vals: any) => ((tokenAuthored && vals.no_meeting_point === true) ? "no meeting point" : null);
+    expectFail("an always-render implementation stays silent on a scene whose line DOES meet the plane",
+      alwaysRender(true) === null);
+    assertTrue("...the shipped value-gated form is silent there", shipped(true, cutRes.readouts) === null);
+    assertTrue("...and speaks on the parallel scene", shipped(true, res.readouts) === "no meeting point");
+  }
+
+  // ── (c) Δ6 — the readout token set, closed in BOTH directions ────────────
+  {
+    const DELTA6 = [
+      "point_plane_distance", "skew_distance", "angle_lines_deg",
+      "angle_line_plane_deg", "angle_line_normal_deg", "d_dot_n", "n_dot_v",
+      "no_meeting_point", "lambda", "intersection_point", "n_norm",
+      "cross_norm", "numerator_triple_product",
+    ];
+    const tableSrc = SRC.slice(SRC.indexOf("var VG_READOUT_LABEL = {"), SRC.indexOf("function vgFmtPoint("));
+    for (const tok of DELTA6) {
+      assertTrue(`Δ6 token "${tok}" is in the shipped VG_READOUT_LABEL table`, tableSrc.indexOf(tok + ":") >= 0);
+    }
+    // ...and the other direction: no lines_planes token in the shipped table
+    // is absent from Δ6 (an enum closed against the spec driver but not the
+    // served concept set is the recorded phase0_config_enum_closed_against_
+    // the_spec_driver_not_the_served_concept_set failure).
+    const PRODUCTS_TOKENS = ["a_mag", "b_mag", "theta_deg", "a_dot_b", "cross_mag", "a_dot_cross", "b_dot_cross", "triple", "volume", "base_area", "height"];
+    const shipped = (tableSrc.match(/^\s*([a-z_]+):/gm) || []).map((s) => s.trim().replace(":", ""));
+    const orphans = shipped.filter((k) => PRODUCTS_TOKENS.indexOf(k) < 0 && DELTA6.indexOf(k) < 0);
+    check("no shipped token is outside Δ6 ∪ the products set (the enum is closed BOTH ways)", orphans.length, 0, 0);
+    // NEGATIVE CONTROL — a one-directional check (spec ⊆ shipped only) passes
+    // even when the shipped table carries a token no state may name.
+    const oneWay = DELTA6.every((t) => shipped.indexOf(t) >= 0 || tableSrc.indexOf(t + ":") >= 0);
+    expectFail("a one-directional enum check would notice an extra shipped token", oneWay && ["ghost_token"].some(() => false));
+  }
+}
+
+console.log("\n=== 12. D2 IDENTITY — a plane patch IS the parallelogram quad. ONE mesh builder, two concepts ===");
+{
+  // ── (a) the SHARED PATH, asserted on the shipped source, not inferred ────
+  const quadSrc = grabFn("vgPlaneQuad");
+  assertTrue("vgPlaneQuad calls vgParallelogramVerts (it does not re-derive four corners)", quadSrc.indexOf("vgParallelogramVerts(") >= 0);
+  assertTrue("vgPlaneQuad calls vgTranslateVerts (D2's second half)", quadSrc.indexOf("vgTranslateVerts(") >= 0);
+  check("there is exactly ONE parallelogram-vertex builder in the whole renderer",
+    (SRC.match(/function vgParallelogramVerts\(/g) || []).length, 1, 0);
+  assertTrue("no second quad/plane vertex builder was introduced beside it",
+    !/function vg[A-Za-z]*(Quad|Plane)Verts\(/.test(SRC.replace("function vgParallelogramVerts(", "")));
+
+  // ── (b) the NUMERIC identity, for a SHARED input ─────────────────────────
+  const U: V3 = [2.4, 0, -0.8], V: V3 = [0.3, 1.9, 0.55], P: V3 = [0.4, -0.6, 1.1];
+  const corner: V3 = [P[0] - (U[0] + V[0]) / 2, P[1] - (U[1] + V[1]) / 2, P[2] - (U[2] + V[2]) / 2];
+  const viaProducts = E.vgTranslateVerts(E.vgParallelogramVerts(U, V), corner);
+  const viaPlane = E.vgPlaneQuad(P, U, V);
+  assertTrue("the plane path and the parallelogram path produce BIT-IDENTICAL vertices",
+    JSON.stringify(viaPlane) === JSON.stringify(viaProducts));
+  // The patch's area is the parallelogram's area — the same claim, one builder.
+  const areaOf = (q: V3[]) => len3(cross3(sub3(q[1], q[0]), sub3(q[3], q[0])));
+  check("the patch area equals ||U x V||", areaOf(viaPlane), len3(cross3(U, V)), 1e-12);
+
+  // ── (c) the AUTHORED-SPAN requirement (Δ8/A4). "Any two vectors spanning
+  //    the normal's orthogonal complement" makes the patch orientation
+  //    arbitrary; the callback the chapter opens on needs the edge DIRECTIONS
+  //    to be authored. Assert that authoring them CHANGES the patch, and that
+  //    the authored directions survive into the drawn edges.
+  {
+    const n: V3 = [0.35, 1, 0.25];
+    const derived = E.vgPlaneBasis(n, null, null);
+    const authored = E.vgPlaneBasis(n, [0.94, -0.33, 0], [0.08, 0.22, -0.97]);
+    assertTrue("a derived basis and an authored basis are genuinely different patches",
+      Math.abs(dot3(derived.u as V3, authored.u as V3)) < 0.999);
+    check("the authored u lies IN the plane (its normal component is projected out)", dot3(authored.u as V3, n), 0, 1e-15);
+    check("the authored v lies IN the plane", dot3(authored.v as V3, n), 0, 1e-15);
+    // The authored u direction survives: it is the projection of what was asked for.
+    const wantU = ((): V3 => {
+      const nn = len3(n); const nh: V3 = [n[0] / nn, n[1] / nn, n[2] / nn];
+      const raw: V3 = [0.94, -0.33, 0];
+      const p: V3 = sub3(raw, [nh[0] * dot3(raw, nh), nh[1] * dot3(raw, nh), nh[2] * dot3(raw, nh)]);
+      const l = len3(p); return [p[0] / l, p[1] / l, p[2] / l];
+    })();
+    check("the drawn u IS the authored span_u projected into the plane", dot3(authored.u as V3, wantU), 1, 1e-12);
+    // Edges are NOT orthogonalised against each other: a parallelogram's edges
+    // need not be perpendicular, and forcing them would silently re-orient the
+    // patch away from what was authored.
+    assertTrue("u and v are NOT force-orthogonalised against each other (the patch is a parallelogram, not a rectangle)",
+      Math.abs(dot3(authored.u as V3, authored.v as V3)) > 1e-6);
+    // A degenerate authored span returns null rather than a zero-area patch.
+    assertTrue("span_u parallel to span_v returns null, never a collapsed patch",
+      E.vgPlaneBasis(n, [0.94, -0.33, 0], [1.88, -0.66, 0]) === null);
+  }
+
+  // ── (d) NEGATIVE CONTROL — a second, independent quad builder. It produces
+  //    the SAME FOUR POINTS as a set, so a set-based comparison passes
+  //    vacuously; only the ORDERED comparison catches it, and the crossed
+  //    winding is what would draw a bow-tie instead of a patch.
+  {
+    const rival: V3[] = [corner, add3(corner, U), add3(corner, V), add3(corner, add3(U, V))];
+    const setKey = (q: V3[]) => q.map((p) => p.map((x) => x.toFixed(9)).join(",")).sort().join("|");
+    assertTrue("the rival builder produces the same four points AS A SET (the vacuous tool agrees)",
+      setKey(rival) === setKey(viaPlane));
+    expectFail("a second independent quad builder produces identical ORDERED vertices",
+      JSON.stringify(rival) === JSON.stringify(viaPlane));
+    // ...and the AREA does not discriminate either — a second vacuous tool,
+    // found by running it: the crossed winding's two triangles sum to exactly
+    // the same total, because swapping two corners re-partitions the same
+    // region rather than shrinking it. The discriminator is the parallelogram
+    // identity q0 + q2 == q1 + q3 (the diagonals bisect each other), which is
+    // a statement about ORDER and is what a triangle-strip actually consumes.
+    const triArea = (p: V3, q: V3, r: V3) => 0.5 * len3(cross3(sub3(q, p), sub3(r, p)));
+    const tiled = (q: V3[]) => triArea(q[0], q[1], q[2]) + triArea(q[0], q[2], q[3]);
+    check("the shipped winding's two triangles tile the full patch area", tiled(viaPlane), areaOf(viaPlane), 1e-12);
+    expectFail(`an AREA check discriminates the rival winding (${tiled(rival).toFixed(4)} vs ${areaOf(viaPlane).toFixed(4)})`,
+      Math.abs(tiled(rival) - areaOf(viaPlane)) > 1e-9);
+    const diag = (q: V3[]) => len3(sub3(add3(q[0], q[2]), add3(q[1], q[3])));
+    check("the shipped quad satisfies the parallelogram identity q0+q2 == q1+q3", diag(viaPlane), 0, 1e-12);
+    expectFail(`the rival winding satisfies it too (residual ${diag(rival).toFixed(4)})`, diag(rival) < 1e-9);
+  }
+
+  // ── (e) end to end: a plane resolved through the SHIPPED resolver still
+  //    lands on the shared builder, at the authored half_extent.
+  {
+    const res = E.vgResolveLinesPlanes({
+      mode: "lines_planes", reveal_ms: 0,
+      planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], half_extent: 3.0, span_u: [0.94, -0.33, 0], span_v: [0.08, 0.22, -0.97] }],
+    }, {}, 9000);
+    check("one plane resolves", res.planes.length, 1, 0);
+    const P1 = res.planes[0];
+    assertTrue("its quad is exactly vgPlaneQuad(point, U, V) — the shared path, end to end",
+      JSON.stringify(P1.quad) === JSON.stringify(E.vgPlaneQuad(P1.point, P1.U, P1.V)));
+    check("the patch spans 2 x half_extent along u", len3(P1.U as V3), 6.0, 1e-12);
+    check("the patch spans 2 x half_extent along v", len3(P1.V as V3), 6.0, 1e-12);
+    check("every corner satisfies the plane equation", Math.max(...P1.quad.map((q: V3) => Math.abs(dot3([0.35, 1, 0.25], sub3(q, [0, -0.4, 0]))))), 0, 1e-12);
+  }
+}
+
+console.log("\n=== 10b. F11/F22/F23/Δ2/Δ10 — the resolver: line span, lambda marker, reveal chain, groups, DETERMINISM ===");
+{
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  // ── F11 · the extended line, drawn to the scene bounds ──────────────────
+  {
+    const anchor: V3 = [-0.8, 0.6, -0.5], dir: V3 = [1, 0.35, 0.6];
+    const dh = nrm(dir);
+    check("the direction is normalised, so lambda is an ARC LENGTH", len3(E.vgLineEnds(anchor, dir, [-4, 4], 4.5).dir as V3), 1, 1e-12);
+    const e = E.vgLineEnds(anchor, dir, [-4, 4], 4.5);
+    check("the authored span places p0 at lambda = -4", len3(sub3(e.p0 as V3, add3(anchor, [dh[0] * -4, dh[1] * -4, dh[2] * -4]))), 0, 1e-12);
+    check("...and p1 at lambda = +4", len3(sub3(e.p1 as V3, add3(anchor, [dh[0] * 4, dh[1] * 4, dh[2] * 4]))), 0, 1e-12);
+    // With NO authored span the line is clipped to the scene's bounding sphere.
+    const c = E.vgLineEnds(anchor, dir, null, 4.5);
+    check("an unspanned line reaches the scene bound at p0", len3(c.p0 as V3), 4.5, 1e-12);
+    check("...and at p1", len3(c.p1 as V3), 4.5, 1e-12);
+    assertTrue("both ends lie on the line", len3(cross3(sub3(c.p0 as V3, anchor), dh)) < 1e-12 && len3(cross3(sub3(c.p1 as V3, anchor), dh)) < 1e-12);
+    // NEGATIVE CONTROL — a line that misses the bounding sphere returns null
+    // rather than a zero-length stub sitting at the origin.
+    assertTrue("a line that misses the scene sphere returns null", E.vgLineEnds([0, 20, 0], [1, 0, 0], null, 4.5) === null);
+    expectFail("a clamp-to-origin fallback would still return a drawable line there",
+      E.vgLineEnds([0, 20, 0], [1, 0, 0], null, 4.5) !== null);
+  }
+  // ── the lambda marker is NOT clamped back onto the drawn line ────────────
+  {
+    const block = {
+      mode: "lines_planes", reveal_ms: 0,
+      lines: [{ id: "L1", point: [0, 0, 0], dir: [1, 0, 0], lambda_span: [-3.5, 3.5], show_lambda_marker: true }],
+    };
+    const inside = E.vgResolveLinesPlanes(block, { lambda: 2.0 }, 9000);
+    assertTrue("lambda inside the drawn span produces a marker", inside.lines[0].lambda_in_span === true && inside.lines[0].lambda_point !== null);
+    check("...at exactly lambda along the line", (inside.lines[0].lambda_point as V3)[0], 2.0, 1e-12);
+    const outside = E.vgResolveLinesPlanes(block, { lambda: 4.8 }, 9000);
+    assertTrue("lambda PAST the drawn end produces NO marker", outside.lines[0].lambda_in_span === false && outside.lines[0].lambda_point === null);
+    expectFail("a clamped marker would sit at the line's end and report a position the slider does not hold",
+      outside.lines[0].lambda_point !== null);
+  }
+  // ── Δ2 · the per-object reveal CHAIN ────────────────────────────────────
+  {
+    const o = { reveal_at_ms: 2000, grow_ms: 800 };
+    check("before its reveal instant the object is absent", E.vgRevealFrac(o, 1999, 900), 0, 0);
+    check("at the end of its grow window it is fully drawn", E.vgRevealFrac(o, 2800, 900), 1, 1e-12);
+    check("...and it HOLDS there", E.vgRevealFrac(o, 60000, 900), 1, 1e-12);
+    assertTrue("mid-grow it is partial and monotone", E.vgRevealFrac(o, 2400, 900) > 0 && E.vgRevealFrac(o, 2400, 900) < 1
+      && E.vgRevealFrac(o, 2600, 900) > E.vgRevealFrac(o, 2400, 900));
+    check("hide_at_ms removes it", E.vgRevealFrac({ reveal_at_ms: 0, grow_ms: 100, hide_at_ms: 5000 }, 5000, 900), 0, 0);
+    // The GHOST is a closed form too, which is why it cannot strand the
+    // apparatus dim (field3d_dim_apparatus_one_way_with_no_restore_on_state_exit).
+    check("before ghost_at_ms full opacity", E.vgGhostFactor({ ghost_at_ms: 2000 }, 1000), 1, 0);
+    check("after the ghost fade it holds at ghost_opacity", E.vgGhostFactor({ ghost_at_ms: 2000, ghost_opacity: 0.25 }, 9000), 0.25, 1e-12);
+    check("re-entering the state at ms 0 restores full opacity — the dim never latches", E.vgGhostFactor({ ghost_at_ms: 2000, ghost_opacity: 0.25 }, 0), 1, 0);
+    // NEGATIVE CONTROL — a latched dim (a flag set once the ghost fires) would
+    // NOT come back at ms 0.
+    let latched = false;
+    const latchedGhost = (ms: number) => { if (ms >= 2000) latched = true; return latched ? 0.25 : 1; };
+    latchedGhost(9000);
+    expectFail(`a latched dim restores at ms 0 (got ${latchedGhost(0)})`, latchedGhost(0) === 1);
+  }
+  // ── Δ10 · the scene_group selector switches PHYSICAL objects ────────────
+  {
+    const block = {
+      mode: "lines_planes", reveal_ms: 0,
+      lines: [
+        { id: "L1", point: [0, 0, 0], dir: [1, 0, 0], lambda_span: [-3, 3], groups: ["A"] },
+        { id: "M1", point: [-1.2, -0.9, 0.6], dir: [1, 0.15, 0.35], lambda_span: [-3, 3], groups: ["B"] },
+        { id: "M2", point: [0.3, 0.2, 1.4], dir: [0.15, -0.5, 1], lambda_span: [-3, 3], groups: ["B"] },
+      ],
+      planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], half_extent: 3, groups: ["A"] }],
+      common_perpendicular: { id: "cp", between: ["M1", "M2"], groups: ["B"] },
+    };
+    const all = E.vgResolveLinesPlanes(block, {}, 9000);
+    const A = E.vgResolveLinesPlanes(block, { scene_group: "A" }, 9000);
+    const B = E.vgResolveLinesPlanes(block, { scene_group: "B" }, 9000);
+    check("with no group selected every object is present (a state that never sets scene_group is unchanged)", all.lines.length, 3, 0);
+    check("group A draws 1 line", A.lines.length, 1, 0);
+    check("group A draws 1 plane", A.planes.length, 1, 0);
+    check("group B draws 2 lines", B.lines.length, 2, 0);
+    check("group B draws 0 planes", B.planes.length, 0, 0);
+    assertTrue("group B carries the skew measurement; group A does not",
+      B.readouts.skew_distance !== undefined && A.readouts.skew_distance === undefined);
+    assertTrue("the group switch moves MESHES, not just labels: group A's line id is absent from group B",
+      A.lines[0].id === "L1" && B.lines.every((l: any) => l.id !== "L1"));
+    // NEGATIVE CONTROL — a truthiness group test would drop every object that
+    // declares no groups, blanking every pre-Δ10 state.
+    const truthy = (o: any, g: string | null) => !!(g && o.groups && o.groups.indexOf(g) >= 0);
+    expectFail("a truthiness group test keeps an ungrouped object visible",
+      truthy({ id: "x" }, "A") === true);
+    assertTrue("...the shipped test keeps it (vgInGroup treats no-groups as every-group)", E.vgInGroup({ id: "x" }, "A") === true);
+  }
+  // ── D3 · DETERMINISM. The whole resolver replayed backwards, bit for bit.
+  {
+    const block = {
+      mode: "lines_planes", reveal_ms: 600,
+      scene_radius: 4.5,
+      lines: [
+        { id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], bind_lambda_span: true, show_lambda_marker: true, show_dir_arrow: true, reveal_at_ms: 500, grow_ms: 900 },
+        { id: "M2", point: [0.3, 0.2, 1.4], dir: [0.15, -0.5, 1], lambda_span: [-3, 3], offset: { knob: "line2_offset", along: [0, 1, 0], zero: 0 }, rotate: { knob: "theta_deg", about: [0, 1, 0], zero: 25 }, ghost_at_ms: 4000 },
+      ],
+      planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], bind_half_extent: true, span_u: [0.94, -0.33, 0], span_v: [0.08, 0.22, -0.97], show_normal: true, reveal_at_ms: 200 }],
+      points: [{ id: "q", position: [1.93, 0, 0.51], offset: { knob: "q_height", along: [0, 1, 0], zero: 0 }, reveal_at_ms: 1000 }],
+      perpendicular: { from: "q", to: "P1", show_right_angle: true, reveal_at_ms: 1500 },
+      segments: [{ id: "cmp", from: "q", to: { on: "P1", u: { knob: "aux_a" }, v: 0 }, readout: "length" }],
+      intersection: { id: "X", line: "L1", plane: "P1" },
+      angle_arcs: [{ id: "arc1", between: ["L1", "M2"], readout: "angle_lines_deg" }],
+      vectors: [{ id: "cr", derive: "cross", of: ["L1", "M2"], origin: [0, 0, 0], scale: 2 }],
+    };
+    const K = { lambda: 1.5, lambda_span: 3.5, half_extent: 2.4, q_height: 1.19, line2_offset: 0.4, theta_deg: 63, aux_a: -1.1, aux_b: 0, scene_group: null };
+    const times = [0, 250, 500, 900, 1500, 2400, 4000, 4600, 8000, 20000];
+    const fwd = times.map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, K, t)));
+    const rew = times.slice().reverse().map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, K, t)));
+    assertTrue("REWIND: the whole resolved scene replays backwards BIT FOR BIT (a SET_TIME_FREEZE re-pin is byte-identical)",
+      fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+    assertTrue("...and a second call at the same ms returns the identical object (no hidden state anywhere)",
+      JSON.stringify(E.vgResolveLinesPlanes(block, K, 4600)) === fwd[7]);
+    // A settled frame draws everything the state declared.
+    const settled = E.vgResolveLinesPlanes(block, K, 20000);
+    assertTrue("the settled scene is populated (mesh count > 0 on every family the state declares)",
+      settled.lines.length === 2 && settled.planes.length === 1 && settled.points.length >= 2
+      && settled.segments.length >= 2 && settled.arcs.length === 1 && settled.vectors.length === 1);
+    assertTrue("the right-angle mark is present once the perpendicular has settled", settled.right_angle !== null);
+    check("bind_half_extent follows the live knob", len3(settled.planes[0].U as V3), 2 * 2.4, 1e-12);
+    check("bind_lambda_span follows the live knob", settled.lines[0].hi, 3.5, 1e-12);
+    check("the offset knob moved M2 by (line2_offset - zero) along its axis", settled.lines[1].anchor[1], 0.2 + 0.4, 1e-12);
+    check("q_height moved the free point", settled.points[0].position[1], 1.19, 1e-12);
+    // NEGATIVE CONTROL — an accumulating implementation. It cannot rewind.
+    let acc = 0;
+    const accumulate = (dtMs: number) => { acc += dtMs * 0.001; return acc; };
+    accumulate(4600); const at4600 = acc; accumulate(-4600 + 900);
+    expectFail(`an accumulator returns the same value when the clock is rewound (${acc.toFixed(3)} vs ${at4600.toFixed(3)})`,
+      Math.abs(acc - at4600) < 1e-12);
+    // NEGATIVE CONTROL — an unresolvable address must draw NOTHING, not fall
+    // back to the origin, which is a real and meaningful place in this scene.
+    const badAddr = E.vgResolveLinesPlanes({
+      mode: "lines_planes", reveal_ms: 0,
+      points: [{ id: "q", position: [1, 1, 1] }],
+      segments: [{ id: "s", from: "q", to: "does_not_exist" }],
+    }, {}, 9000);
+    check("a segment with an unresolvable endpoint draws nothing", badAddr.segments.length, 0, 0);
+    expectFail("an origin fallback would still draw the segment", badAddr.segments.length > 0);
+  }
+  // ── Δ5 · the angle arc needs a SUBJECT, and L,P vs L,P.normal differ ────
+  {
+    const nrm2 = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+    const planeN: V3 = [0.35, 1, 0.25];
+    const nh = nrm2(planeN);
+    const u = nrm2(cross3(nh, [0, 0, 1]));
+    const ang = 55 * Math.PI / 180;
+    const d: V3 = nrm2([nh[0] * Math.cos(ang) + u[0] * Math.sin(ang), nh[1] * Math.cos(ang) + u[1] * Math.sin(ang), nh[2] * Math.cos(ang) + u[2] * Math.sin(ang)]);
+    const block = {
+      mode: "lines_planes", reveal_ms: 0,
+      planes: [{ id: "P1", point: [0, -0.4, 0], normal: planeN, half_extent: 3 }],
+      lines: [{ id: "Lcut", point: [0, 0, 0], dir: d, lambda_span: [-3, 3] }],
+      angle_arcs: [
+        { id: "toN", between: ["Lcut", "P1.normal"], readout: "angle_line_normal_deg" },
+        { id: "toP", between: ["Lcut", "P1"], readout: "angle_line_plane_deg" },
+      ],
+    };
+    const res = E.vgResolveLinesPlanes(block, {}, 9000);
+    check("two arcs in ONE state, separately addressable", res.arcs.length, 2, 0);
+    check("the L,P.normal arc measures 55.00 to the NORMAL", res.arcs[0].value_deg, 55, 1e-9, " deg");
+    check("the L,P arc measures 35.00 to the PLANE (the complement, not the normal)", res.arcs[1].value_deg, 35, 1e-9, " deg");
+    check("both land in the readouts", res.readouts.angle_line_normal_deg + res.readouts.angle_line_plane_deg, 90, 1e-12, " deg");
+    expectFail("the two arc forms return the same number (i.e. L,P silently means L,P.normal)",
+      Math.abs(res.arcs[0].value_deg - res.arcs[1].value_deg) < 1e-9);
+  }
+}
+
+console.log("\n=== 10c. BRING-UP — the SHIPPED build + writer run against a THREE stub: mesh count > 0 and visible === true (Δ8) ===");
+{
+  // The generic visible_elements matcher runs immediately BEFORE the
+  // per-scenario apply inside applyState, so it will blank a new scenario's
+  // apparatus (scar field3d_generic_visible_elements_matcher_blanks_new_
+  // scenario_apparatus). PRESENCE IS NOT CORRECTNESS and neither is absence:
+  // this section runs the REAL buildVectorGeometryLinesPlanes and the REAL
+  // vgWriteLinesPlanesFrame against a stub scene and asserts meshes EXIST and
+  // are VISIBLE — the assertion the scar's own prevention rule names.
+  type Stub = any;
+  function makeStub() {
+    const scene: Stub[] = [];
+    const vec3 = (x = 0, y = 0, z = 0) => ({
+      x, y, z,
+      normalize() { const l = Math.hypot(this.x, this.y, this.z) || 1; this.x /= l; this.y /= l; this.z /= l; return this; },
+    });
+    const attr = (n: number) => ({ array: new Float32Array(n), needsUpdate: false });
+    function geom(nVerts: number) {
+      return {
+        attributes: { position: attr(nVerts * 3) },
+        setAttribute() { /* the stub keeps the one it made */ },
+        setIndex() { /* index order is asserted in section 12, not here */ },
+        setDrawRange() { /* ditto */ },
+        computeBoundingSphere() { /* no-op */ },
+      };
+    }
+    function mesh(g: Stub, m: Stub): Stub {
+      return {
+        geometry: g, material: m, userData: {}, visible: false,
+        position: { set() { /* recorded by the caller when it matters */ } },
+        quaternion: { setFromUnitVectors() { /* orientation is section 8/9's job */ } },
+        scale: { set() { /* length is geometry, asserted via vgPlaceTube's return */ } },
+        traverse(fn: (n: Stub) => void) { fn(this); },
+      };
+    }
+    const THREE: Stub = {
+      Vector3: function (x: number, y: number, z: number) { return vec3(x, y, z); },
+      Color: function (h: string) { return { h, set(o: Stub) { this.h = o && o.h; }, copy(o: Stub) { this.h = o.h; return this; }, clone() { return { h: this.h, copy: this.copy, clone: this.clone, lerp() { return this; } }; }, lerp() { return this; } }; },
+      CylinderGeometry: function () { return geom(0); },
+      SphereGeometry: function () { return geom(0); },
+      BufferGeometry: function () { return geom(25); },
+      BufferAttribute: function (a: Float32Array) { return { array: a, needsUpdate: false }; },
+      MeshBasicMaterial: function (o: Stub) { return { color: o.color, opacity: o.opacity != null ? o.opacity : 1, transparent: !!o.transparent, userData: {} }; },
+      LineBasicMaterial: function (o: Stub) { return { color: o.color, opacity: o.opacity != null ? o.opacity : 1, transparent: !!o.transparent, userData: {} }; },
+      Mesh: function (g: Stub, m: Stub) { return mesh(g, m); },
+      Line: function (g: Stub, m: Stub) { return mesh(g, m); },
+      ArrowHelper: function () {
+        const m = mesh(geom(0), { color: { h: "#000" }, opacity: 1, transparent: true, userData: {} });
+        m.setDirection = () => { /* direction asserted in the pure sections */ };
+        m.setLength = function (l: number) { (this as Stub)._len = l; };
+        m.setColor = function (c: Stub) { (this as Stub).material.color = c; };
+        return m;
+      },
+    };
+    return { scene, THREE };
+  }
+  const { scene, THREE } = makeStub();
+  const buildSrc = grabFn("buildVectorGeometryLinesPlanes");
+  const writeSrc = grabFn("vgWriteLinesPlanesFrame");
+  const tubeSrc = grabFn("vgPlaceTube");
+  const labelSrc = grabFn("vgLabelAt");
+  const roleSrc = grabFn("vgRoleColor");
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const factory = new Function(
+    "THREE", "sceneObjects", "addToScene", "hexToThreeColor", "pmCreateAutoLabel",
+    "updateLabelSpriteText", "config", "window",
+    [
+      ...["vgSub", "vgAddVec", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize", "vgScaleVec", "vgLerpVec"].map((f) => grabFn(f)),
+      "var VG_LP_MAX = " + /var VG_LP_MAX = (\{[^}]*\});/.exec(SRC)![1] + ";",
+      "var VG_ROLE_COLOR = " + /var VG_ROLE_COLOR = (\{[\s\S]*?\});/.exec(SRC)![1] + ";",
+      "var VG_LP_UPY = null;",
+      roleSrc, buildSrc, tubeSrc, labelSrc, writeSrc,
+      "return { build: buildVectorGeometryLinesPlanes, write: vgWriteLinesPlanesFrame };",
+    ].join("\n"),
+  );
+  const api = factory(
+    THREE, scene, (o: Stub) => scene.push(o), (h: string) => new (THREE.Color as any)(h),
+    () => ({ userData: {}, visible: false, position: { set() { /* label placement */ } }, _pmText: "" }),
+    (sp: Stub, t: string) => { sp._pmText = t; }, { vg: {} }, {},
+  );
+  api.build();
+  assertTrue(`the build created scene objects (${scene.length} of them) — mesh count > 0`, scene.length > 0);
+  const kinds = ["vg_lp_line", "vg_lp_plane", "vg_lp_point", "vg_lp_seg", "vg_lp_arc", "vg_lp_vec", "vg_lp_normal", "vg_lp_dir", "vg_lp_right_angle"];
+  for (const k of kinds) {
+    assertTrue(`the pool contains at least one ${k}`, scene.some((o: Stub) => o.userData.elementType === k));
+  }
+  assertTrue("EVERY pool member entered sceneObjects individually (no child mesh is parented and lost to the updater)",
+    scene.every((o: Stub) => o.userData && typeof o.userData.slot === "number"));
+  assertTrue("every pool member starts HIDDEN (a state shows what it declares, never what the build left on)",
+    scene.every((o: Stub) => o.visible === false));
+
+  // Now the writer, on the authored-shape scene.
+  const res = E.vgResolveLinesPlanes({
+    mode: "lines_planes", reveal_ms: 0,
+    lines: [{ id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], lambda_span: [-3.5, 3.5], show_dir_arrow: true, show_lambda_marker: true, label: "L₁", role: "dir1" }],
+    planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], half_extent: 3, span_u: [0.94, -0.33, 0], span_v: [0.08, 0.22, -0.97], show_normal: true, normal_label: "n", role: "region" }],
+    points: [{ id: "q", position: [1.93, 1.19, 0.51], label: "q" }],
+    perpendicular: { from: "q", to: "P1", show_right_angle: true },
+  }, { lambda: 1.0 }, 20000);
+  api.write(res);
+  const visOf = (t: string) => scene.filter((o: Stub) => o.userData.elementType === t && o.visible).length;
+  assertTrue(`the writer made the line VISIBLE (${visOf("vg_lp_line")} drawn)`, visOf("vg_lp_line") === 1);
+  assertTrue(`...the plane patch VISIBLE (${visOf("vg_lp_plane")})`, visOf("vg_lp_plane") === 1);
+  assertTrue(`...its normal arrow VISIBLE (${visOf("vg_lp_normal")})`, visOf("vg_lp_normal") === 1);
+  assertTrue(`...the direction arrow VISIBLE (${visOf("vg_lp_dir")})`, visOf("vg_lp_dir") === 1);
+  assertTrue(`...the free point, the foot and the lambda marker VISIBLE (${visOf("vg_lp_point")} points)`, visOf("vg_lp_point") === 3);
+  assertTrue(`...the perpendicular segment VISIBLE (${visOf("vg_lp_seg")})`, visOf("vg_lp_seg") === 1);
+  assertTrue("...and the right-angle mark VISIBLE", visOf("vg_lp_right_angle") === 1);
+  assertTrue("labels carry the AUTHORED text (a sprite's ink is invisible to every DOM probe, so it is read here)",
+    scene.some((o: Stub) => o.userData.elementType === "vg_lp_line_label" && o._pmText === "L₁")
+    && scene.some((o: Stub) => o.userData.elementType === "vg_lp_point_label" && o._pmText === "q")
+    && scene.some((o: Stub) => o.userData.elementType === "vg_lp_normal_label" && o._pmText === "n"));
+  assertTrue("every drawn member carries its resolved object's id, so glow_focal can name the thing rather than a slot",
+    scene.filter((o: Stub) => o.visible && o.userData.elementType === "vg_lp_line")[0].userData.vgId === "L1");
+  check("no pool overflow on this scene", 0, 0, 0);
+
+  // An EMPTY scene hides everything again — the pool never strands a mesh from
+  // the previous state (which would be the same defect one state later).
+  api.write({ lines: [], planes: [], points: [], segments: [], arcs: [], vectors: [], right_angle: null, readouts: {} });
+  assertTrue("an empty resolved scene hides EVERY pool member (nothing survives a state change)",
+    scene.every((o: Stub) => o.visible === false));
+
+  // NEGATIVE CONTROL — the "hide the surplus" pass removed. A stale mesh from
+  // the previous state stays on screen, which is how an apparatus from another
+  // state appears in a state that never declared it.
+  {
+    const stale = { visible: true };
+    const withoutHideFrom = (n: number, poolLen: number) => { for (let k = n; k < poolLen; k++) { /* the missing hide */ } return stale.visible; };
+    expectFail("a writer with no hide-the-surplus pass clears a stale mesh", withoutHideFrom(0, 4) === false);
+  }
+
+  // A malformed state must NOT throw: a renderer that throws blanks the scene
+  // and never posts SIM_READY (scar field3d_createtubeline_undefined_field_
+  // lines_throws).
+  let threw2 = false;
+  try {
+    api.write(E.vgResolveLinesPlanes({ mode: "lines_planes" }, {}, 3000));
+    api.write(E.vgResolveLinesPlanes({ mode: "lines_planes", lines: [{}], planes: [{}], points: [{}], segments: [{}], angle_arcs: [{}], vectors: [{}], perpendicular: {}, intersection: {}, common_perpendicular: {}, projection: {} }, {}, 3000));
+  } catch { threw2 = true; }
+  assertTrue("an empty / malformed vg block resolves and draws without throwing (a throw here stalls the clock)", !threw2);
+}
+
 console.log("\n=== 13. THE CAMERA, under THE WORST-CASE LAW — pairwise, perspective, FOV 60 / 16:9, worst case over EVERY live slider ===");
 {
   // ── 13a. the mechanism is GENERIC, never scenario-gated ─────────────────
@@ -1278,6 +1967,46 @@ console.log("\n=== 13. THE CAMERA, under THE WORST-CASE LAW — pairwise, perspe
     expectFail(`a FIXED radius R=9 keeps every pose on frame (max arm ${fixedMaxArm.toFixed(4)} vs half-extent ${HALF_V.toFixed(4)}; ${fixedOff} poses off-frame)`,
       fixedOff === 0 && fixedMaxArm <= HALF_V);
     assertTrue("the AUTO-FRAMED radius does keep every pose on frame — the radius is load-bearing, not decoration", offFrame === 0);
+
+    // ── THE METRIC CLAUSE (A21.5), and it is the binding form of this section.
+    //   Angles are scored in ISOTROPIC units; fill and arm in NDC; the
+    //   corrected vgProjectPoint is the SINGLE source. This negative control
+    //   re-runs THIS EXACT SWEEP with ONE variable changed — the angle read in
+    //   NDC instead of isotropic screen units — and asserts the NDC form FAILS
+    //   Act I's 18.91 degree case. It is here because a probe agreeing with
+    //   another probe is not validation when both were written from the same
+    //   spec: this wave "independently confirmed" wrong numbers for three
+    //   rounds on a metric sheared by 1.78x at 16:9, and only a control that
+    //   fires where the broken form must fire can tell the two rulers apart.
+    let ndcMin = Infinity, ndcAt = "";
+    for (let th = 20; th <= 160; th += 1) {
+      for (let am = 1.0; am <= 5.0001; am += 1.0) {
+        for (let bm = 1.0; bm <= 5.0001; bm += 1.0) {
+          for (let ti = 0; ti <= 60; ti += 15) {
+            const v = E.vgBuildVectors({ a_mag: am, b_mag: bm, theta_deg: th, b_tilt_deg: ti });
+            const pos = E.vgAutoFramePos(v.a, v.b, 2.5) as V3 | null;
+            if (!pos) continue;
+            const angs: number[] = [];
+            for (const arw of arrowsOf(v as any)) {
+              const o = E.vgProjectPoint(pos, TARGET, UP, FOV, ASPECT, arw.origin);
+              const t = E.vgProjectPoint(pos, TARGET, UP, FOV, ASPECT, arw.tip);
+              if (!o || !t) { angs.push(NaN); continue; }
+              const raw = Math.atan2(t.y - o.y, t.x - o.x) * 180 / Math.PI;   // BUG: NDC, not sx/sy
+              angs.push(((raw % 180) + 180) % 180);
+            }
+            for (let pi2 = 0; pi2 < angs.length; pi2++) for (let qi2 = pi2 + 1; qi2 < angs.length; qi2++) {
+              const dd = Math.abs(angs[pi2] - angs[qi2]);
+              const sep = Math.min(dd, 180 - dd);
+              if (sep < ndcMin) { ndcMin = sep; ndcAt = "theta=" + th + " |a|=" + am + " |b|=" + bm + " tilt=" + ti; }
+            }
+          }
+        }
+      }
+    }
+    expectFail("the NDC-ANGLE form holds Act I's 18.91 deg floor on the same sweep (measured minimum " + ndcMin.toFixed(3) + " deg at " + ndcAt + ")",
+      ndcMin >= 18.0);
+    assertTrue("...the ISOTROPIC form on the SAME auto-frame poses holds it (" + minSep.toFixed(3) + " deg) — the two rulers disagree, and only one of them is what a viewer sees",
+      minSep >= 18.0);
   }
 
   // ── 13g. F24 vg.camera_steps — CLOSED FORM on state-local ms ────────────

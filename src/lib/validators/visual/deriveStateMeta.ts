@@ -3379,6 +3379,39 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             const end = asNum(st.at_ms, 0) + asNum(st.ease_ms, 900);
             if (end > vgLastMs) vgLastMs = end;
         }
+        // VG-C · the Δ2 per-object REVEAL CHAIN. mode "lines_planes" gives
+        // every line / plane / point / segment / arc / vector and every derived
+        // measurement its own reveal_at_ms + grow_ms (and an optional
+        // ghost_at_ms whose fade the renderer runs over 600 ms). A pin that
+        // only cleared reveal_ms would land mid-chain and mint a baseline the
+        // state contradicts a frame later — the same
+        // field3d_slcr_reveal_hold_captures_transitional_r_family shape the
+        // block above exists for, one authoring level down. The last settled
+        // beat is the LAST of all of them.
+        const VG_DEFAULT_GROW_MS = asNum(vg.reveal_ms, 900);
+        const VG_GHOST_FADE_MS = 600;
+        const vgTimedLists = ['lines', 'planes', 'points', 'segments', 'angle_arcs', 'vectors'];
+        const vgTimedSingles = ['perpendicular', 'common_perpendicular', 'intersection', 'projection'];
+        const vgConsiderTimed = (raw: unknown) => {
+            const o = asObj(raw);
+            if (!o) return;
+            const at = asNum(o.reveal_at_ms, 0);
+            const grow = asNum(o.grow_ms, VG_DEFAULT_GROW_MS);
+            if (at + grow > vgLastMs) vgLastMs = at + grow;
+            if (o.ghost_at_ms !== undefined) {
+                const g = asNum(o.ghost_at_ms, 0) + VG_GHOST_FADE_MS;
+                if (g > vgLastMs) vgLastMs = g;
+            }
+            if (o.hide_at_ms !== undefined) {
+                const h = asNum(o.hide_at_ms, 0);
+                if (h > vgLastMs) vgLastMs = h;
+            }
+        };
+        for (const key of vgTimedLists) {
+            const list = (vg as Record<string, unknown>)[key];
+            if (Array.isArray(list)) for (const raw of list) vgConsiderTimed(raw);
+        }
+        for (const key of vgTimedSingles) vgConsiderTimed((vg as Record<string, unknown>)[key]);
         candidates.push(vgLastMs + VG_CUSHION);
     }
 
