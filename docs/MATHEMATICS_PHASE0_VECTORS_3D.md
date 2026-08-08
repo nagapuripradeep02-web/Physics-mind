@@ -2,7 +2,7 @@
 
 **Status: 0a COMPLETE · 0b COMPLETE — three skeletons designed, Checkpoint A `DESIGN_OK` ×3 at
 cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) ·
-0c **VG-A + VG-B + VG-C COMPLETE on the engine desk** (2026-08-08, `feat/field3d-vector-products-scenario`
+0c **COMPLETE — VG-A/B/C + SR-A/SR-B on their desks** (2026-08-08, `feat/field3d-vector-products-scenario`
 @ `93097fc`; not merged — shipping is founder-only) · SR-A/SR-B not dispatched ·
 0d BLOCKED on 0c landing + four named conditions (A19) + the A22 handoff items.**
 
@@ -77,6 +77,62 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > reconstructed pre-rename source**, with negative controls proving a blind fleet-wide replace destroys
 > `nlb.readouts`/`rb.readouts` and that a plain string-presence check cannot tell the broken source from
 > the fixed one.
+>
+> ## A26 · SR-A + SR-B COMPLETE — the wave is ENGINE-COMPLETE, and the units defect returned in reverse
+> `solid_of_revolution` is built on `feat/field3d-solids-of-revolution` (SR-A `a755f0f`, SR-B
+> `07ea121`). Gate **111 PASS / 12 controls → 217 / 32**, sections 0–13 live. Chain verified
+> independently: syntax OK ×3 · backticks clean · `tsc` 0 · `validate:concepts` **151 PASS** ·
+> mathematics 3/3 · chemistry 10/10 · `npm test` **356** · fleet safety **38 changed / 0 stray**.
+> **THE EYE cannot run** — no concept authors the scenario; the gate is the only evidence, stated
+> rather than dressed up as a pass.
+>
+> **⭐ THE UNITS DEFECT, SEVENTH INSTANCE — AND THIS TIME IN THE OPPOSITE DIRECTION.** The skeleton's
+> §12 explore-camera solve reports the min-corner span as **"17.7 % of frame height."** SR-B measures
+> **15.4 %**, and diagnosed why: `2r/D = 1.6/9 = 17.8 %` is the **isotropic TANGENT span**, not a
+> fraction of frame height — the frame fraction divides by `tan(fov/2)` and by the 2-NDC frame height.
+> **A20 was fill computed in NDC where an ANGLE was needed; this is an ANGLE reported where FILL was
+> claimed.** Both clear their floors, so **the gate asserts the ≥12 % floor, not the design literal**
+> (founder constraint 3, upheld again). **The rule stands and now cuts both ways: angles and shape
+> ratios in isotropic tangent units; fill and containment in NDC and nowhere else — and every camera
+> claim names which of the two it is, beside its FOV and aspect.**
+>
+> **⭐ SR-B DISOWNED TWO OF ITS OWN NEGATIVE CONTROLS, and left both documented in the gate rather
+> than quietly fixing them.**
+> - **The θ-major reveal control scored an index COUNT** — permutation-invariant on a 96×72 grid, so
+>   it **passed on a build that would have revealed a growing rod instead of a sweep.** *This is
+>   VG-C's crossed-winding area defect, reproduced one dispatch later by a different agent that had
+>   been warned about it in its own prompt.* Rewritten to score which vertices the head of the buffer
+>   touches — and the count-based form ships beside it, asserted blind.
+> - **The compensated-summation control was wrong by three orders.** It claimed naive accumulation
+>   fails at the authored n; measured drift is **1.2e-13** against a 1e-12 tolerance, crossing only at
+>   **n ≈ 2e7**. The bound ignored that the slab width scales the error down with n. **A worst-case
+>   estimate was written where a measurement was required** — the same substitution as A21's lesson,
+>   one level down. Compensation is kept for what it actually buys, and the comment now names its own
+>   first draft as wrong.
+>
+> **A27 · `osCamScheduleAt` IS A CALL, NOT A PORT — the cheapest reuse of the wave.** It reads nothing
+> but `.camera_steps` off the object handed to it, so SR14 is `osCamScheduleAt(sr, tMs, srCamBase(…))`
+> — **zero new mechanism, the sibling byte-identical.** Running tally of things this wave was about to
+> build that already existed: **seven** (`param_ramp`/`idle_auto_sweep`, `os.camera_steps` ×2 — once
+> ported, once merely *called*, the graph mechanisms, `nlbProjPx`, `efluxUpdateClosed`, `capRamp`).
+> Counter-finding worth keeping: `param_ramp` ships in **three per-scenario copies** and has never
+> been a shared helper — *a repeated pattern is not the same as an available mechanism*, and SR clones
+> locally rather than pretending otherwise. `LatheGeometry`: **0 hits anywhere** — genuinely new.
+>
+> **A28 · TWO AUTHORING TRAPS FOR `mathematics_author`, both made visible rather than hidden.**
+> (a) **On `f = √x` the MIDPOINT rule is EXACT** — 8π at every n — so a state teaching convergence
+> **must author `rule: "left"`.** The gate asserts midpoint returns exactly 8π so the trap surprises
+> nobody. (b) **S5 must author `discs.n = 20000`**; n = 1000 breaks the primary aha's equality at 13
+> of 101 radii (re-derived independently a third time).
+> **And one engine hazard recorded, not fixed:** the generic glow pass rewrites opacity, so a focal
+> translucent stack at 1.0 **occludes what it contains** and a 0.20 ghost skin "dimmed" to
+> `GLOW_DIM_OPACITY` 0.40 becomes **twice as opaque**. SR uses `brightenOnly` to avoid authoring a new
+> instance; the hue half remains the OPEN fleet row
+> `glow_focal_fr_ring_whiteouts_the_ring_and_occludes_it`, correctly left alone as a different
+> `bug_class`.
+>
+> **⚠ The skeleton's §(f) dispatch table (`:1121`) is missing a row** — it assigns SR-B "gate sections
+> 3–7, 11–12", but §13 is SR-B's by founder constraint 1. SR-B built it and said so.
 >
 > **A25 · NEW CONTRACT BUG, FLAGGED NOT FIXED — the authored enum is incomplete for `lines_planes`.**
 > `:408`'s type union lists the **11 `products` tokens only**, but `VG_READOUT_LABEL` labels the **13
