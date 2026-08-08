@@ -833,6 +833,15 @@ const F3D_REVEAL_KEYS = [
     // still be recognised as field_3d rather than falling through to the PCPL
     // branch (which would derive a wall-clock reveal pin and a PCPL hold class).
     'rigid_body_rotation',
+    // vector_products_in_space (MATHEMATICS — dot & cross product in 3D,
+    // Rule-40 platform dispatch, 2026-08-08): the per-state `vp` block
+    // (mode dot|cross|triple, a_mag/b_mag/theta_deg, c_mag/c_theta_deg/
+    // c_phi_deg, show_c/show_cross_vector/show_angle_arc/show_parallelogram/
+    // show_parallelepiped, reveal_ms). Registered here so a cached
+    // physics_config that flattened field_3d_config.states to the top level
+    // is still recognised as field_3d, not PCPL (same reason every sibling
+    // above is listed).
+    'vp',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -3335,6 +3344,23 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (!rbrFound && rbr.mode !== 'sandbox') candidates.push(RBR_CUSHION);
     }
 
+    // vector_products_in_space (MATHEMATICS, prefix `vp`). Every guided
+    // state's only scripted reveal is the vector grow-in ease (state.vp.
+    // reveal_ms, renderer default 900ms — see updateVectorProductsInSpaceFrame
+    // in field_3d_renderer.ts) — a ONE-SHOT closed form of state-local ms
+    // that then HOLDS at full length. A scenario with no block here pins at
+    // DEFAULT_REVEAL_MS = 1500 mid-grow-in and mints a self-contradictory H2
+    // baseline (field3d_scenario_missing_maxreveal_block_frozen_pin_
+    // defaults_1500ms_predates_scripted_reveal). The explore state
+    // (show_sliders: true) skips the grow-in entirely (ease pinned at 1), so
+    // it needs no candidate here — deriveHoldExpectations classifies it
+    // 'interactive' below.
+    const vp = asObj(state.vp);
+    if (vp && state.show_sliders !== true) {
+        const VP_CUSHION = 300; // past the ease-out cubic's settle, into the held pose
+        candidates.push(asNum(vp.reveal_ms, 900) + VP_CUSHION);
+    }
+
     return candidates.length > 0 ? Math.max(...candidates) : DEFAULT_REVEAL_MS;
 }
 
@@ -4068,6 +4094,20 @@ export function deriveHoldExpectations(
             if (rbrHold) {
                 out[stateId] = (rbrHold.mode === 'sandbox' || rbrHold.trusted_drag_seizes === true)
                     ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // vector_products_in_space (MATHEMATICS, prefix `vp`): the explore
+            // state exposes its own contextual a_mag/b_mag/theta_deg/c_mag/
+            // c_theta_deg/c_phi_deg slider rows (Rule 31 `show_sliders`), driven
+            // live by the teacher's drag -> interactive; every other (guided)
+            // state runs the one-shot vector grow-in ease then HOLDS at full
+            // length for the rest of the state (the same one-shot-hold contract
+            // as rigid_body_rotation/force_rig above) -> reveal_hold, so D7
+            // (stuck tail) / D1p (frozen) permit the settled tail instead of
+            // false-failing it.
+            const vpHold = asObj(state.vp);
+            if (vpHold) {
+                out[stateId] = state.show_sliders === true ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

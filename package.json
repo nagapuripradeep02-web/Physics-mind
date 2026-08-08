@@ -58,7 +58,8 @@
     "check:hybrid-orbitals": "npx tsx src/scripts/check_hybrid_orbitals.ts",
     "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts",
     "check:bonding-scene": "npx tsx src/scripts/check_bonding_scene.ts",
-    "check:cartesian-plane": "npx tsx src/scripts/check_cartesian_plane.ts"
+    "check:cartesian-plane": "npx tsx src/scripts/check_cartesian_plane.ts",
+    "check:vector-products": "npx tsx src/scripts/check_vector_products.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
