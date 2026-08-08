@@ -40912,8 +40912,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   whose LENGTH carries a magnitude are lifted (nlb_arrow and its component
     //   pair). The displacement vector, the angle arcs and the right-angle marker
     //   stay depth-tested — they are drawn along the surface, they are not
-    //   anchored inside a body, and an angle is not a length. Label sprites stay
-    //   depth-tested too: a label sits PAST the tip, in free space.
+    //   anchored inside a body, and an angle is not a length.
+    //   LABEL SPRITES ARE NOT IN THAT LIST, and this note used to say they were
+    //   ("a label sits PAST the tip, in free space"). They have depthTest:false
+    //   and renderOrder 999 from birth (createLabelSprite / pmCreateAutoLabel),
+    //   i.e. they are the ONE family that was overlay ink before SEAM R named the
+    //   idea. Sitting past the tip is not the same as being in FRONT of what is
+    //   past the tip, and the ink classifier believed the sentence rather than the
+    //   material — see the correction at nlbInkSpanClass.
     //
     //   ORDER: the casing draws first so it stays an OUTLINE under its own core.
     //   depthWrite is off as well — this ink draws last and must not stamp depth
@@ -43396,10 +43402,44 @@ export const FIELD_3D_RENDERER_CODE = `
         var alongX = (t === "nlb_comp");
         var len = (alongY || alongX) ? ((o.userData && o.userData._inkLen) || 0) : 0;
         var own = ud.bodyId ? nlbFindById("nlb_body_" + ud.bodyId) : null;
-        // SEAM R lifts exactly these two families in front of the apparatus, so
-        // exactly these two read an occluder as a BACKDROP. Every other ink type
-        // is still depth-tested and keeps the discard semantics byte-for-byte.
-        var ovl = (t === "nlb_arrow" || t === "nlb_comp");
+        // ── WHO READS AN OCCLUDER AS A BACKDROP ────────────────────────────
+        //   SEAM R lifts the two LENGTH-carrying stroke families in front of the
+        //   apparatus, so those two read an occluder as a BACKDROP rather than as
+        //   something that hides them.
+        //   AND SO DOES EVERY LABEL SPRITE — which is a CORRECTION, not an
+        //   extension. SEAM R's own note claimed "label sprites stay depth-tested
+        //   too: a label sits PAST the tip, in free space". That sentence is
+        //   false, and was false before SEAM R existed: createLabelSprite and
+        //   pmCreateAutoLabel have ALWAYS built their SpriteMaterial with
+        //   depthTest:false, depthWrite:false and renderOrder 999 ("always draw on
+        //   top of arrows"). A label sprite is therefore the MOST overlay-like ink
+        //   in this file — it wins every pixel it covers, unconditionally.
+        //   THE DEFECT THAT PROVED IT (measured, conservative_vs_nonconservative_
+        //   forces STATE_3 at 1280x720, the state whose whole teaching job is to
+        //   watch the friction arrow flip): the fₖ label's origin sits 9.325 from
+        //   the camera and the slab is hit at 8.495 — 0.83 units IN FRONT. Under
+        //   depth-tested semantics that is "occluded, draws nothing", so the
+        //   sample was DISCARDED and the element fell back to the page class and
+        //   took the LIFTED ink #f9bfd2 (luminance 0.62 by construction). It then
+        //   drew that near-white pink, in front, over the lit slab: 1.40:1 at the
+        //   brightest glyph pixel against a 3:1 floor. In the SAME frame the arrow
+        //   the label names measures 14.17:1, because PR #56 gave the focal stroke
+        //   the page ink PLUS its casing. Fixing the arrow made the unfixed label
+        //   HARDER to notice, not easier.
+        //   Every friction label in the fleet rides the same lane (NLB_ARROW_LANE
+        //   friction sits just above the contact face, so it is behind the slab's
+        //   screen silhouette from an elevated camera) and every one of them was
+        //   wrong the same way: measured across the three friction-drawing
+        //   concepts, 6 states (cvnf S3/S5, friction_force S2/S3/S4,
+        //   newton_third_law S4). No other label family mis-classifies today —
+        //   but the premise was wrong for all six of them, so the fix is stated
+        //   over the sprite class (NLB_INK_TYPES === 2) rather than over the one
+        //   elementType that happened to expose it.
+        //   NOTHING ELSE MOVES. A label whose ray misses every solid still
+        //   classifies PAGE and takes exactly the ink it took before (measured:
+        //   the mg and θ labels are unchanged in every sampled frame), and no
+        //   stroke class is touched at all.
+        var ovl = (t === "nlb_arrow" || t === "nlb_comp" || NLB_INK_TYPES[t] === 2);
         if (!(len > 1e-6)) {
             var c0 = nlbInkSampleClass(NLB_INK_A.setFromMatrixPosition(o.matrixWorld), own, ovl);
             return (c0 === NLB_INK_SLAB) ? NLB_INK_SLAB : NLB_INK_PAGE;
@@ -44965,13 +45005,25 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         return out;
     }
+    // Rule 34c: every on-canvas minus is a REAL minus (U+2212). toFixed() emits
+    // U+002D, the ASCII hyphen, while every authored formula surface in this file
+    // carries U+2212 — so an overlay that puts an authored base above an engine
+    // numeral shows TWO DIFFERENT minus glyphs on one screen. Measured on the
+    // checkpoint stamp, which composes both in a single line:
+    //   "\\u0394K = \\u00bdmv\\u00b2 \\u2212 \\u00bdmv\\u2080\\u00b2 start: v = -3.00 m/s"
+    // The substitution lives HERE, in the formatter, not at the ~30 call sites:
+    // a sweep that fixes call sites re-breaks on the next one, and the two nlb
+    // formatters below are the only funnel every nlb numeral passes through.
+    // DISPLAY ONLY — the argument is already a finished string, so nothing
+    // arithmetic can see this, and no clock or accumulator is involved (Rule 36).
+    function nlbMinus(s) { return s.replace(/-/g, "\\u2212"); }
     // Joules -> text, with the negative-zero clamp every value-only readout in this
     // file carries: -0.000 must never render.
     function nlbEnFx(v, p) {
         var d = (p === 0 || p === 1 || p === 2) ? p : 1;
         var x = (typeof v === "number" && isFinite(v)) ? v : 0;
         if (Math.abs(x) < 0.5 * Math.pow(10, -d)) x = 0;
-        return x.toFixed(d) + " J";
+        return nlbMinus(x.toFixed(d)) + " J";
     }
     function nlbEnPct(v, maxJ) {
         if (!(maxJ > 0)) return 0;
@@ -47422,12 +47474,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //   identically, with NO special-case branch — frozen frames are byte-stable
     //   by construction.
     function nlbSgn(x) { return x > 0 ? 1 : (x < 0 ? -1 : 0); }
-    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar), and
+    // carries the same U+2212 substitution as nlbEnFx (see nlbMinus). Both
+    // formatters, not just the energy one: nlbCpStampText composes a checkpoint
+    // line out of BOTH ("K = ... J  \\u00b7  v = ... m/s"), so fixing only the
+    // energy side would leave the two-different-minus-glyphs defect alive on the
+    // exact overlay it was reported against, merely relocated.
     function nlbFx(v, dp) {
         var d = (dp == null) ? 2 : dp;
         var n = (typeof v === "number" && isFinite(v)) ? v : 0;
         if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
-        return n.toFixed(d);
+        return nlbMinus(n.toFixed(d));
     }
     // Gravity component along the body's OWN positive axis, in newtons.
     //   surface body: +axis is UP-slope  → -m*g*sin(theta)

@@ -75,6 +75,29 @@ describe('parseReadings — DOM', () => {
         expect(r[1].unitToken).toBe('');
     });
 
+    it('reads a REAL minus U+2212 as a negative, not as part of a symbol', () => {
+        // Rule 34c makes U+2212 the on-canvas minus, so the renderers' own numeral
+        // formatters emit it. An ASCII-only sign class parses none of these — the
+        // reading does not come back wrong, it silently does not come back at all,
+        // which is invisible in a green run. Strings are post-fix nlb output.
+        const r = parseReadings(dom(
+            'W friction = −8.4 J',
+            'ΔK = ½mv² − ½mv₀² start: v = −3.00 m/s',
+        ));
+        expect(r.map((x) => [x.symbol, x.value])).toEqual([['friction', -8.4], ['v', -3]]);
+        expect(r[0].unitToken).toBe('J');
+        expect(r[0].decimals).toBe(1);
+        expect(r[1].decimals).toBe(2);
+    });
+
+    it('composes a sibling chip whose value carries a real minus (nlb work ledger)', () => {
+        // The work panel emits <div>net</div><div>−40.0 J</div>; neither node is a
+        // reading alone, and HARVEST_READ composes them in-page. This is the parser
+        // half of that path — the CHIP form it hands over.
+        const r = parseReadings(dom('net −40.0 J'));
+        expect(r).toEqual([expect.objectContaining({ symbol: 'net', value: -40, unitToken: 'J' })]);
+    });
+
     it('does NOT match prose or a placeholder dash', () => {
         const r = parseReadings(dom(
             'Same push, unequal mass',

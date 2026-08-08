@@ -23,13 +23,106 @@
 | — | DB migration authored + pre-flighted (`84e85bc`) | ✅ **APPLIED 2026-08-05** by the founder to dev `dxwpkjfypzxrzgbevfnx`, verbatim. Verified after: 681 rows intact, 9 owners, both CHECKs carry the mathematics values. `alex:mathematics_author` + `subject='mathematics'` are now writable. |
 | P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | ✅ **MERGED 2026-08-06** — CP-A…CP-D (PRs #36–#40) on master; F1–F17 built, gate `check:cartesian-plane` all-negative-controlled (**338** assertions — 339 is a doc off-by-one, corrected 2026-08-07). **Pixel layer now exercised (2026-08-07):** THE EYE ran the p5 draw path on two concepts (`derivative_as_secant_limit` 56/56, `graph_transformations` 50/50) and it held — the compute layer was right, but readout PLACEMENT was not, and the fix landed as PR #46. Unblocks ranked P1 #1–#3. |
 | 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | ✅ **BASELINE-LOCKED 2026-08-06**, zero known defects encoded. Was 🟡 AWAITING FOUNDER; on desk `feat/mathematics-unit-circle`. Skeleton + mathematics block + TS engine + JSON committed. Gate chain run in full: THE EYE ×4 · `quality_auditor` (FAIL → fixed) · `eye_walker` ×3 · founder_proxy Checkpoint B (**FIX**, on 2 platform blockers only). 18 scar rows filed, 15 closed. Both Rule-40 platform blockers fixed on master (`084f06c`, `e0734a9`). |
+| 3b | Second concept — **`graph_transformations`** (a·f(b(x−h))+k) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 ride-along · 8 P3). Merged as PR #53; desk `fix/math-graph-transformations-checkpointB` carries the fix rounds + re-baseline (`8b2d196`, 8 states), **not yet PR'd**. Chain: CP-A → author → quality_auditor → founder_proxy B ×3 cycles → offset-deletion round (8 of 9 deleted). **Checkpoint C + professor gate SKIPPED — founder call 2026-08-08.** TTS 20 EN clips; stale clips auto-muted. |
+| 3c | Third concept — **`derivative_as_secant_limit`** (ranked P1) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 · 4 P3). Merged as PR #50; desk `fix/math-derivative-checkpointB` carries the fix rounds + re-baseline (`7012e42`, 9 states), **not yet PR'd**. Same chain, 3 B-cycles, then 11 of 12 offsets deleted. **Checkpoint C + professor gate SKIPPED — founder call.** TTS 26 EN clips. |
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
-The first concept is in flight; nothing is authored off-list.**
+Three concepts are authored and Checkpoint-B approved; the engine's placement layer — the thing all
+three paid for — is now built rather than hand-compensated. Nothing is authored off-list.**
 
 ---
+
+## 🔧 SESSION — the placement round: three engine PRs, two concepts Checkpoint-B APPROVED, and the hand-placement budget declared spent (2026-08-07/08, master + two concept desks)
+
+> The session that stopped paying an engine debt by hand. Both mathematics concepts went FIX → FIX →
+> **APPROVE** across three founder_proxy cycles, and the thing that finally moved them was not a better
+> authoring round — it was making the renderer's placement decisions **observable**. Seven PRs merged
+> (#46 #49 #50 #51 #53 #59 #60 #64). The durable output is a rule: *detection and escape are two
+> capabilities, and a round that widens one must prove the other.*
+
+- **🔴 The founder's own review method beat every gate, twice, and the reason was zoom.** Round 1 of the
+  readout fix reported "fixed (soft focal-glow halo grazes 's', legible)". At 3× the opaque pink secant
+  AND the blue curve cut through the "o" and "p" of the word — in **four** states, not one. Every
+  deterministic gate was green throughout. The zoom rule became binding on every dispatch after that,
+  and it caught things at 4× that were invisible at 1× for the rest of the session.
+- **🔴 I reported a defect that did not exist, and the agent refused to build against it.** I read an
+  off-canvas `Q` truncation off crops that were **894×834 and 715×667** — not the 760×500 canvas. A crop
+  boundary read as a canvas edge. The agent swept `Q` across its slider range, measured 250px of
+  headroom, and said so instead of implementing. **Second session running that a subagent was right to
+  refute the dispatching session's premise.**
+- **The fix rounds each moved a label and each exposed a new collision — three times.** Cycle 0's y-scale
+  fix made gridlines visible *including through the aha chip*; cycle 1's Q offset cleared P's marker and
+  landed on P's **readout** at the symmetric pose where the chord slope is exactly 0.0000 — the sandbox's
+  best demonstration. founder_proxy's conclusion, adopted: *"that is not an authoring failure any more;
+  it is the engine telling us the hand-placement budget is spent."*
+- **🔴 The root cause was invisibility, not bad constants.** `PM_readoutResolveOffset` silently negated
+  BOTH components of an authored offset on an axis-band hit — `{−104,20}` rendered as `{+104,−20}`. Three
+  shipped `_design_note`s described, in careful detail, placements that **never rendered**. They landed
+  clean by luck, so nobody noticed. PR #59's first deliverable was therefore `__pmDebug.readouts`
+  exposing the FINAL resolved placement; the collision work rode on top of it.
+- **PR #59 widened the obstacle set without widening the candidate set** — which converts a silent
+  overlap into a detected-but-unavoidable one that **looks identical on screen**. PR #64 fixed the other
+  half (ordered, fully-tested candidate walk + least-overlap fallback, replacing a single blind mirror).
+  Recorded in the Phase-0 ledger as the rule for the next engine build.
+- **Then the offsets were DELETED rather than re-tuned: 11 of 12 and 8 of 9.** The clearest win:
+  `derivative_as_secant_limit` STATE_6 shipped a baseline with `P = (0.75, 0.28)` struck through by both
+  the curve and the tangent, on the concept's best teacher state — now clear, because the engine places
+  it. Verified the readout **moved** and did not vanish (a deleted readout also measures "0 foreign ink").
+- **One offset survives and it is an open engine defect, not a preference.** `graph_transformations`
+  STATE_7: `PM_planeCurveExpr` is a per-plane singleton and a ghost-styled curve registers only if nothing
+  has yet, so with two ghosts `parent_ghost` wins and the tangent probe derives its slope from the
+  **parent** while the point rides the **transform** curve (336px² mid-sweep vs 0px² elsewhere; the probe's
+  p0→p1 jumps 13.6px in y across a 0.005px x-step — an artifact, not a slope). Filed; **delete the offset
+  when the row closes**, or it becomes a mystery constant.
+- **🔴 A gate was dead on master for ~2h and CI was green because the gate was never in CI.**
+  `check:cartesian-plane` died at load with `ReferenceError: PM_fmtNum is not defined` — 339 assertions,
+  none running. My PR-#59 brief omitted it despite my having quoted its own count earlier the same day.
+  Repairing it exposed something worse: the `-0` guard used an **ASCII hyphen**, so against a U+2212
+  string it could never match — **the guard protecting the original founder-reported bug was passing
+  vacuously.** Fixed, wired into `verify.yml`, and filed as a class nothing in 879 rows covered: *every
+  existing gate-blindness row is about a gate that RAN and looked at the wrong thing.*
+- **🔴 Four scar rows read FIXED while their code sat on an unmerged branch** (two CRITICAL). Confirmed:
+  the symbols appeared 0× on master and 3/9/3× on `fix/pcpl-resolver-candidate-set`. Consequences: a
+  status query returns a **false yes**, and every offset tuned in the interval was tuned against a
+  resolver about to be replaced. Merged as PR #64; new row filed — *a row moves to FIXED when its fix is
+  on MASTER, never when it is on a branch.*
+- **The stale-artifact trap fired FIVE times and was caught five times by one cheap check** — comparing a
+  commit timestamp to a dump directory name. Agents run THE EYE, keep editing, then report the earlier
+  numbers (worst case: a dump 40 minutes older than the commit; last case, 4.5 minutes). THE EYE's own
+  hand-seeded-cache gate caught two of them and refused to run. **Worth a scar row of its own before the
+  next concept.**
+- **founder_proxy corrected its own prescriptions three times**, unprompted: its cycle-0 wording
+  ("opposite direction") was mathematically false for a scale factor; its cycle-1 pin arithmetic ignored
+  that `holds` INSERT time; its cycle-1 "script-verified the only two cases" tested horizontal gridline
+  rows and never vertical columns. At cycle 2 it also **declined to raise** a P3 to P1 on unchanged
+  evidence: *"grade discipline runs both ways."*
+- **Ruling recorded on stale audio:** not a shipping blocker, but *"a stale clip is worse than a missing
+  one"* — missing is silence, which is the Rule-24 default; stale is the aha state speaking the exact
+  sentence the fix round just corrected. `build:review`'s auto-mute (SHA1 `text_hash`) handles it
+  generically, verified rather than assumed.
+- **Verification:** `tsc` **0** · `validate:mathematics` **3/3** · `validate:concepts` **151/151** ·
+  `vitest` **354/354** · `check:cartesian-plane` **339 → 388 PASS** (repaired, now a CI step) ·
+  THE EYE `derivative_as_secant_limit` **56/56**, `graph_transformations` **50/50**,
+  `unit_circle_to_sine_wave` **50/50**, plus `scalar_vs_vector` 32/32 and `ohms_law` 38/38 as
+  cross-engine controls. `newton_first_law` 24/26 — proven **pre-existing on bare master** via git-stash
+  isolation, unrelated.
+- **Re-baselines (founder-approved):** `derivative_as_secant_limit` 9 states (`7012e42`),
+  `graph_transformations` 8 states (`8b2d196`) — both against dumps re-run to match their committed
+  trees. Re-baselined even where nothing FAILED: diffs sat inside the 2% tolerance, but the references
+  still held pre-fix pictures, which is the ch6 concept-#1 trap (a defective baseline passing against
+  itself at 0.05–0.38%).
+- **State at close:** master `5201846`+. **Both concept branches are clean, pushed, and have NO PRs** —
+  the one thing between them and master. Checkpoint C and the professor gate **skipped by founder call**.
+  TTS shipped EN-only (26 + 20 clips).
+- **NEXT:** (1) **PR both concept branches.** (2) `cartesian_plane` **concept #3** — now on an engine that
+  places its own readouts; founder_proxy's standing advice not to start before PR #64 landed is
+  satisfied. (3) Close the ghost-curve tangent row, then delete STATE_7's surviving offset. (4) **E3, the
+  tick-labels-under-curves draw order** — the proxy's own pick as the first thing to fix, deliberately
+  left out of #59/#64 because it moves nearly every baseline and needs a founder re-baseline sweep.
+  (5) File the stale-artifact scar row. (6) Founder ruling still open on the `ascii_minus` FIXED row
+  (third recurrence; owner should move to `peter_parker:renderer_primitives`).
 
 ## 📐 SESSION — PCPL readout placement fixed in two rounds (PR #46), `derivative_as_secant_limit` re-baselined, auto-push found broken on 4 of 4 desks (PR #49) (2026-08-07, `feat/pcpl-readout-placement` + `fix/autopush-hook` → master; `feat/mathematics-derivative`)
 
