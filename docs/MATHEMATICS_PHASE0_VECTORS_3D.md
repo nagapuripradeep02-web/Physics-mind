@@ -2,7 +2,70 @@
 
 **Status: 0a COMPLETE · 0b COMPLETE — three skeletons designed, Checkpoint A `DESIGN_OK` ×3 at
 cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) ·
-0c NOT DISPATCHED (cleared to dispatch) · 0d BLOCKED on 0c + four named conditions (A19).**
+0c **VG-A + VG-B + VG-C COMPLETE on the engine desk** (2026-08-08, `feat/field3d-vector-products-scenario`
+@ `93097fc`; not merged — shipping is founder-only) · SR-A/SR-B not dispatched ·
+0d BLOCKED on 0c landing + four named conditions (A19) + the A22 handoff items.**
+
+> ## A22 · 0c OUTCOME — `vector_geometry_3d` is built, and the gate grew 6× while doing it
+> | Dispatch | Commit | Built | Gate |
+> |---|---|---|---|
+> | **VG-A** | `8baa94d` | the rename + shell + F3–F9 + F21/F24 ports + `deriveStateMeta` | 64/8 → **131/15** |
+> | **VG-B** | `8a5fba2` | F8 decompose — `solid_build_frac`, `split_solid_frac` (volume-exact shear) | → **196/20** |
+> | **VG-C** | `93097fc` | F11–F14, F22, F23, Δ2, Δ5, Δ6, **Δ10 `scene_group`** | → **377 assertions / 38 negative controls** |
+>
+> Verified independently by the dispatching session at each step. Final chain: `check:renderer-syntax`
+> OK ×3 · `check:renderer-backticks` clean · `tsc` 0 · `validate:concepts` **151 PASS** ·
+> `validate:mathematics` PASS · `npm test` 356 · `check:vector-geometry-3d` **ALL SECTIONS PASSED** ·
+> **fleet safety §11: 0 lines added / 0 removed** outside the vg region and the 9 named glue sites.
+> **`#9 requires ZERO further renderer edits`** — the 0d success test, met at 0c.
+>
+> **⭐ THE DEFECT CLASS APPEARED AT A FOURTH LEVEL — inside a NEGATIVE CONTROL.** It has now been found
+> in the *design* (instances 1–5), in the *instrument* (A20, the NDC shear), in the *reviewer's own
+> probe* (A21), and now in **the control written to prove a gate works**:
+> - **VG-C's D2 control scored AREA.** A crossed winding `[c, +U, +V, +U+V]` tiles the **same total** —
+>   independently reproduced here at **3.6021 vs 3.6021, bit-identical.** A set-of-points comparison is
+>   vacuous for the same reason. Only the **ordered** parallelogram identity `q₀+q₂ = q₁+q₃`
+>   discriminates (0.0 vs 3.4525) — *and vertex order is what a triangle strip actually consumes.*
+>   **Both vacuous tools are now SHIPPED IN THE GATE as demonstrated-vacuous, so neither can be
+>   substituted back in as a simplification.**
+> - **A degeneracy guard written as `=== 0` would have shipped a plausible wrong number.**
+>   `d₁ × 2.5d₁` is **1.1e-16, not zero** (reproduced), so the undivided formula returns a **finite,
+>   believable distance** instead of NaN. **NaN is visible; a plausible number is not.** The epsilon is
+>   load-bearing, not defensive tidiness.
+>
+> **THE RULE THIS SETTLES, and it is the whole wave in one line:** *a negative control is only worth
+> what it discriminates. Run it and watch it fail before you trust it — and prefer the property the
+> CONSUMER reads (vertex order, the rendered angle) over any rotation- or permutation-invariant
+> summary of it (area, centroid, point set).*
+>
+> **A23 · THE SKELETON'S GEOMETRY NUMBERS DRIFTED — the engine is the source of truth.** #9's §11
+> quotes point-plane distance **2.200** and foot **(1.23, −0.83, 0.00)**. The exact values are
+> **2.19828** (verified: `2.393/√1.185`) and **(1.22322, −0.82936, 0.00516)**, so at the concept's own
+> precision doctrine the sim prints **2.198** and **(1.22, −0.83, 0.01)**. Narration or a formula
+> surface authored against the quoted figures would **contradict the HUD beside it**. → handoff item 2.
+> **Durable rule:** every derived number in a skeleton's geometry block is stated at the precision the
+> SIM will print, computed from the authored inputs — never hand-rounded to a nicer value.
+>
+> ### HANDOFF TO 0d (blocking `mathematics_author`)
+> 1. **`vg.readouts` vs `vg.static_readouts`** — VG-A shipped `static_readouts` as *greyed slider rows*;
+>    Δ6's tokens are readout VALUES and land on `readouts`. **Resolve the naming before authoring.**
+> 2. **Correct #9 §11's 2.200 / (1.23,−0.83,0.00) → 2.198 / (1.22,−0.83,0.01)** in narration, DoD and
+>    formula surfaces (A23).
+> 3. **S9-B and S3 re-solve** (A19 condition 3) — now *checkable*: gate §13 scores any authored pose
+>    pairwise, isotropic, at 1°. A21 measured the replacements available: S9-B **42.58°**
+>    (R11/az16/el2) vs 0.12° authored; S3 **89.87°**, or **55.98°** at S2's own pose, which also wins
+>    Rule-32d home-pose continuity for free.
+> 4. **Exempt-pair list (Δ7a):** `M2` ^ common-perpendicular is **NOT** exempt (A21.3). Legitimate:
+>    S1's `d̂` on its own line, S3's perpendicular vs `n`.
+> 5. **`c_theta_deg = 90` is a reachable zero-volume sandbox state** (VG-B) — authoring information for
+>    S8's defaults, not a defect.
+> 6. **#7's target numbers do not fall out of the defaults** — engine gives Volume 8.35 / Base 4.99 /
+>    Height 1.67 against the authored 9.95 / 4.25 / 2.34. Solve `c`, and check displayed
+>    `Base × Height` **rounds** to displayed `Volume`.
+> 7. **Author `"easing": "linear"` on `solid_build_frac`** — smoothstep gives a 415 ms dead lead-in and
+>    lands the six faces unevenly.
+> 8. **Nine scar rows are drafted across VG-A/B/C and NONE is applied** (no DB writes were authorised).
+>    Founder call, with A20's unrun seed script (open decision 11).
 
 > ## ⭐ A19 · THE CONCLUSION OF PHASE 0 — **the camera cannot be hand-solved, and that is the finding**
 > All three concepts reached `DESIGN_OK` at cycle 1. Every reviewer re-derived the architect's numbers
