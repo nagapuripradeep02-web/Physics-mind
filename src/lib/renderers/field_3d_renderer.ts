@@ -45752,6 +45752,7 @@ export const FIELD_3D_RENDERER_CODE = `
     // z-fights the surface it is drawn on.
     var NLB_CP_DOT_R = 0.07;
     var NLB_CP_DOT_Y = 0.05;
+    var NLB_CP_LABEL_H = 0.30;             // the checkpoint caption's sprite height
     // Note 11d — the teaching dwell. A ceiling, not a default: five seconds is
     // already longer than any single delta-cue beat (Rule 31's 25-55 word budget
     // is 10-20 s for a whole STATE), and an unbounded dwell would let one
@@ -45761,12 +45762,33 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
-    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane EVERY
-                                               // marker caption is placed on (nlbMkPlace).
-                                               // Named because nlbStackMarkerLabels has to
-                                               // return a lifted caption to exactly this
-                                               // value every frame, and two copies of the
-                                               // literal would drift apart.
+    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane every
+                                               // FLAG-form marker caption is placed on
+                                               // (nlbMkPlace). Named because
+                                               // nlbStackMarkerLabels has to return a lifted
+                                               // caption to exactly this value every frame,
+                                               // and two copies of the literal would drift
+                                               // apart.
+    // ── Note 11f — the POINT form needs its OWN, much shorter home lane ───────
+    //   engine_bug_queue: nlb_point_marker_caption_keeps_the_post_lane_so_it_
+    //   floats_away_from_the_dot_it_names (MAJOR).
+    //   NLB_MK_LABEL_LANE is 1.35 surface-local units because it has to clear the
+    //   TIP of a 1.05-unit post. In 'point' form that post is not drawn, so the
+    //   caption keeps a clearance it is no longer clearing anything with — and
+    //   because the lane runs along the SURFACE NORMAL, on a tilted track the
+    //   displacement is up-AND-ACROSS, not straight up. Measured on
+    //   conservative_vs_nonconservative_forces STATE_4 (theta = 25 deg, two points
+    //   3.0 m apart): caption "point B" centred at (676, 240) px, its dot at
+    //   (712, 322) px — ~90 px away, diagonally up-slope, with nothing drawn in
+    //   between. Both captions formed their own floating row above the ramp and the
+    //   pairing had to be inferred from left-to-right order, which is the one thing
+    //   naming two points A and B exists to make unnecessary.
+    //   So the lane is derived from what a track-level mark actually has to clear:
+    //   the TOP of the dot, plus the caption's own ink half-height, plus the same
+    //   inter-label gap the two stack passes already use. Nothing tuned by hand —
+    //   change the dot radius or the caption size and this follows.
+    var NLB_CP_LABEL_LANE = NLB_CP_DOT_Y + NLB_CP_DOT_R +
+                            NLB_CP_LABEL_H / 2 + NLB_BODY_LABEL_GAP;   // = 0.35
     // Marker captions that share the lane, in the FIXED order the stack pass walks:
     // the two prediction instruments hold the lane, the authored checkpoints lift
     // around them. marker_h_ref is deliberately absent — it is NOT on this lane
@@ -46013,7 +46035,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // they keep the overlay post and are not offered the alternative.
             var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false, true);
             surf.add(cp); nlbRegister(cp);
-            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, 0.30);
+            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, NLB_CP_LABEL_H);
             cpL.userData = {
                 elementType: "nlb_marker_label", id: "checkpoint_" + (c + 1) + "_label",
                 bodyId: "checkpoint_" + (c + 1)
@@ -46022,13 +46044,25 @@ export const FIELD_3D_RENDERER_CODE = `
             surf.add(cpL); nlbRegister(cpL);
         }
     }
+    // Note 11f — the HOME LANE of one marker's caption, resolved from the form that
+    // is actually DRAWN (the dot's own visibility), never from the authored field.
+    // Same discipline as nlbMkMeshProbe: a caption's height has to follow the mesh
+    // on screen, so a marker that asked for a dot and got a post must keep the post
+    // lane. Pure read of the current scene — no memory, no clock, so the two callers
+    // (placement and the per-frame stack reset) can never disagree and a
+    // SET_TIME_FREEZE pin reproduces it byte for byte (Rule 36).
+    function nlbMkLane(id) {
+        var g = nlbFindById(id);
+        var ud = g ? (g.userData || {}) : {};
+        return (ud._nlbDot && ud._nlbDot.visible) ? NLB_CP_LABEL_LANE : NLB_MK_LABEL_LANE;
+    }
     // Place a marker group + its label at a track coordinate, in SURFACE-local
     // units. One funnel, so a marker and its caption can never separate.
     function nlbMkPlace(id, s_m) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
         var x = s_m * NLB_WORLD_PER_M;
         if (g) g.position.set(x, 0, 0);
-        if (l) l.position.set(x, NLB_MK_LABEL_LANE, 0);
+        if (l) l.position.set(x, nlbMkLane(id), 0);
     }
     function nlbMkShow(id, on) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
@@ -46080,7 +46114,11 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < NLB_MK_LANE_IDS.length; i++) {
             var l = nlbFindById(NLB_MK_LANE_IDS[i] + "_label");
             if (!l) continue;
-            l.position.y = NLB_MK_LABEL_LANE;          // home lane FIRST, every frame
+            // Note 11f — the home lane is now PER MARKER (a track-level dot's caption
+            // sits ~0.35 above the slab, a post's at 1.35). Still read fresh from the
+            // drawn form every frame, so the reset stays memoryless.
+            var home = nlbMkLane(NLB_MK_LANE_IDS[i]);
+            l.position.y = home;                       // home lane FIRST, every frame
             if (!haveCam || !l.visible || !l.parent) continue;
             l.parent.updateWorldMatrix(true, false);
             var liftDir = new THREE.Vector3(0, 1, 0).transformDirection(l.parent.matrixWorld).normalize();
@@ -46104,7 +46142,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
             if (lift > 0) {
-                l.position.y = NLB_MK_LABEL_LANE + lift;
+                l.position.y = home + lift;
                 p.addScaledVector(liftDir, lift);
             }
             placed.push({ p: p, hw: hw, hh: hh });
@@ -46150,13 +46188,18 @@ export const FIELD_3D_RENDERER_CODE = `
             var id = "checkpoint_" + (c + 1);
             var e = cps ? cps[c] : null;
             if (!e) { nlbMkShow(id, false); continue; }
-            nlbMkPlace(id, e.s_m);
-            nlbMkLabel(id, e.label || ("point " + (c + 1)));
             // Note 11e — the FORM, resolved per state and before the show so a
             // marker is never visible for a frame in the form the state did not
             // ask for. Anything other than the exact string 'point' is the flag,
             // which is what makes an absent field byte-identical.
+            // Note 11f — and before the PLACE, because nlbMkPlace now reads the
+            // drawn form to pick the caption's home lane. (nlbStackMarkerLabels
+            // re-reads it every frame regardless, so this only removes a one-frame
+            // stale lane on the entry frame — but a funnel that is right only
+            // because a later pass repairs it is not a funnel.)
             nlbMkForm(id, nlbCpForm(e) === "point");
+            nlbMkPlace(id, e.s_m);
+            nlbMkLabel(id, e.label || ("point " + (c + 1)));
             nlbMkShow(id, true);
         }
         nlbUpdateMarkers(eng);
