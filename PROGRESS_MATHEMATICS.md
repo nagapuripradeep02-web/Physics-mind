@@ -25,12 +25,25 @@
 | 3 | First concept — **`unit_circle_to_sine_wave`** (ranked P1 #4) | ✅ **BASELINE-LOCKED 2026-08-06**, zero known defects encoded. Was 🟡 AWAITING FOUNDER; on desk `feat/mathematics-unit-circle`. Skeleton + mathematics block + TS engine + JSON committed. Gate chain run in full: THE EYE ×4 · `quality_auditor` (FAIL → fixed) · `eye_walker` ×3 · founder_proxy Checkpoint B (**FIX**, on 2 platform blockers only). 18 scar rows filed, 15 closed. Both Rule-40 platform blockers fixed on master (`084f06c`, `e0734a9`). |
 | 3b | Second concept — **`graph_transformations`** (a·f(b(x−h))+k) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 ride-along · 8 P3). Merged as PR #53; desk `fix/math-graph-transformations-checkpointB` carries the fix rounds + re-baseline (`8b2d196`, 8 states), **not yet PR'd**. Chain: CP-A → author → quality_auditor → founder_proxy B ×3 cycles → offset-deletion round (8 of 9 deleted). **Checkpoint C + professor gate SKIPPED — founder call 2026-08-08.** TTS 20 EN clips; stale clips auto-muted. |
 | 3c | Third concept — **`derivative_as_secant_limit`** (ranked P1) | ✅ **Checkpoint B APPROVED 2026-08-08** (cycle 2; 0 P1 · 3 P2 · 4 P3). Merged as PR #50; desk `fix/math-derivative-checkpointB` carries the fix rounds + re-baseline (`7012e42`, 9 states), **not yet PR'd**. Same chain, 3 B-cycles, then 11 of 12 offsets deleted. **Checkpoint C + professor gate SKIPPED — founder call.** TTS 26 EN clips. |
+| 3d | Fourth concept — **`definite_integral_as_accumulated_area`** (ranked P1 #3 — completes P1) | 🟠 **Checkpoint B cycle 0 = FIX(engine) 2026-08-08.** Authored, gated and PR'd (**PR #70**, `fb4fe5c`, **HOLD — do not merge**), but Checkpoint B's live-drive found 3 BLOCKING engine defects + 3 P1 authoring defects that every deterministic gate passed. Authoring fixes DONE; engine fixes **incomplete — the surgeon hit a session limit mid-sweep**. Baselines approved 2026-08-08 encode the WRONG picture and must be re-taken. Detail below. |
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
+| — | **3D-vectors chapter (ranked P3 #7/#9)** | ⏸ **STOPPED mid-flight by founder 2026-08-08**, to restart from Phase 0 in a fresh session. Full record: `docs/MATHEMATICS_VECTORS_3D_HANDOFF.md` → superseded by `docs/MATHEMATICS_PHASE0_VECTORS_3D.md`. Ranked list corrected P2 #5 → **P3 #7** (the "no new engine" premise was false). |
+| P0-3D | **`vector_geometry_3d` scenario** (engine; `field_3d`; master, Rule 40) — serves ranked **#7 + #9**; **#8 is a separate purchase** | ✅ **0a + 0b COMPLETE 2026-08-08** → `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` (survey + AMENDMENTS A1–A19) + three skeletons in `docs/skeletons/` (4 040 lines). **founder_proxy Checkpoint A `DESIGN_OK` ×3 at cycle 1**, inside the founder's 2-cycle budget. Engine: **VG-A/VG-B/VG-C** (#7+#9) and **SR-A/SR-B** (#8), each with a negative-controlled headless gate. **0c cleared to dispatch; 0d blocked on 0c + A19's four conditions.** Founder decisions taken: scenario = `vector_geometry_3d`, concept id = `vector_products_in_space`, #8 stays scheduled. |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
-Three concepts are authored and Checkpoint-B approved; the engine's placement layer — the thing all
-three paid for — is now built rather than hand-compensated. Nothing is authored off-list.**
+Three concepts are Checkpoint-B approved and baseline-locked; the fourth is authored and PR'd but
+HELD on an engine fix round. Nothing is authored off-list.**
+
+> **⚠ The load-bearing lesson of 2026-08-08, and the reason the fourth concept is held:**
+> `definite_integral_as_accumulated_area` passed **THE EYE 35/35 twice**, passed `quality_auditor`,
+> and was called baseline-ready by `eye_walker` — while STATE_4's taught region **visibly shrank to
+> nothing** as n grew (the exact opposite of the concept's central claim) and STATE_5's only control
+> **erased the state's only lesson** the instant a teacher touched it. Deterministic pixel gates
+> measure THAT pixels changed and that frames reproduce; they carry **no notion of the DIRECTION a
+> state claims its change has**, and they never touch a control. Only founder_proxy's live-drive
+> (Playwright, real mouse drags) found either. Filed as
+> `eye_deterministic_gates_pass_a_state_whose_motion_is_correct_in_amount_and_wrong_in_direction`.
 
 ---
 
@@ -123,6 +136,95 @@ three paid for — is now built rather than hand-compensated. Nothing is authore
   left out of #59/#64 because it moves nearly every baseline and needs a founder re-baseline sweep.
   (5) File the stale-artifact scar row. (6) Founder ruling still open on the `ascii_minus` FIXED row
   (third recurrence; owner should move to `peter_parker:renderer_primitives`).
+
+## 📐 SESSION — Phase 0 for the 3D-geometry chapter: three skeletons, `DESIGN_OK` ×3, and the finding that a camera cannot be hand-solved (2026-08-08, `master` @ `dfca9cf` → `9b52ef7`; survey + design only, no engine code, no concept JSON)
+
+> Founder restarted the stopped 3D-vectors round from Phase 0, scoped to the **whole chapter** so the
+> `field_3d` engine is bought once, then authorised 0b in the same session at a **2-cycle** Checkpoint-A
+> budget. Deliverables: `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` (1 341 lines) + three architect
+> skeletons (4 040 lines). Cost ≈ 2.0 M subagent tokens across 12 dispatches (3 architects ×2 cycles,
+> 3 founder_proxy ×2 verdicts).
+
+**The result.** **#7 (dot & cross) and #9 (lines & planes) are ONE engine purchase** — they share 14 of
+15 features, because *a plane patch **is** the parallelogram quad translated, and the common
+perpendicular of two skew lines **is** `d₁ × d₂`*. **#8 (solids of revolution) is a separate
+purchase**, on measurement not preference: its overlap is the scenario shell only, and there is no
+`F12 = F7` identity between a parallelepiped and a disc stack. All three reached `DESIGN_OK` at
+cycle 1.
+
+**⭐ The load-bearing lesson, and it outranks everything else here: a camera pose cannot be
+hand-solved.** Three rounds of camera numbers were falsified in three independent ways — verified on
+**ONE pair** instead of all pairs (the stopped round); solved at **FOV 50** when
+`field_3d_renderer.ts:3733` is `PerspectiveCamera(60, …)`; and **sweep resolution** (a 1° θ sweep finds
+a **0.07°** collapse where a coarse sweep reported 11.04°, putting two 3D-perpendicular vectors on one
+screen line at θ = 102°, where a teacher dragging the slider lands). Three careful agents, each having
+read the scar that warns about exactly this. **So the ruling is mechanical, not procedural: hand-solving
+proposes, `check:vector-geometry-3d` §13 decides** — 1° resolution, pairwise, perspective, FOV 60,
+every live slider, with an exempt-pair list and a screen-length floor. Every falsified round above
+would have been caught at **$0 in seconds**. #9's pose table is **de-certified** and may not enter the
+dispatch prompt as measured fact.
+
+**FIVE instances of one defect class, three concepts, one wave** — perpendicular drawing collinear
+(#7) · skew drawing intersecting (#9) · a circle drawing as an ellipse (#8) · a sandbox already
+off-frame at its own authored magnitudes (#7, arm 0.885 vs half-extent 0.577) · a remedy degrading
+below its own gate floor as the object travels (#8, 0.9690 → 0.9385 vs a ≥0.95 floor). **Instance 4 was
+committed inside the fix for instance 1.** Generalised into **THE WORST-CASE LAW** (A14) — *a
+projection metric is scored at the worst case over everything that moves, reporting both an angular
+separation AND a screen extent; a metric evaluated at the authored pose, at the pin, or over a subset
+of the axes is a sample that will agree with the design that produced it.* Its first real result was
+not a tuned number: it **proved a single-camera explore state impossible** for #9 (best pose anywhere
+1.35°/8.08° by two independent probes), forcing the `scene_group` selector.
+
+**FOUR things this wave was about to build that already ship** — `param_ramp`/`idle_auto_sweep`
+(`:1050`/`:1968`/`:2097`, `:374`/`:926`/`:1052`/`:1951`), `os.camera_steps` (`:60704`, `:62213–62290`),
+the canvas graph mechanisms (priced, then correctly rejected), and `nlbProjPx` (`:41833`).
+**`camera_steps` alone retired three separate design-arounds**, including the whole `lerpSpherical`
+frame-rate workaround. The Rule-40a sweep had been run on the scenario **NAME** and never on the
+**MECHANISMS** declared missing — in the documents whose entire value is engine deltas.
+
+**Corrections to this session's own survey, recorded because they are the argument for running a 0b:**
+`crossProduct` = **0** occurrences (the "193/215/217" reuse figure is `ArrowHelper` 205 +
+`PlaneGeometry` 10 + `crossProduct` 0 — *never sum unlike symbols into one reuse number*) ·
+`field_3d` has **ZERO** expression evaluation, which is what scopes #8 out · the §union table was
+**missing an animation row entirely** · engine decision **D2 and §arc rule 5 were mutually
+unsatisfiable** · the §0a collision check **scanned concept files and never swept the catalog**, so one
+roadmap row held a second concept id for four days.
+
+**Handoff §2 RESOLVED at $0, and the answer was the least-likely candidate.** Local master was **6
+commits behind origin** (4 touching the renderer) — *sync before you measure*. On a clean master with
+**zero** of the stopped round's engine diff, `parallel_currents_force` returns **43/56, 13 failures,
+every one `H2/VISUAL_REGRESSION`, zero functional gates**; its baselines were approved **2026-07-05**
+and **199 commits have touched `field_3d_renderer.ts` since**. **The surgeon's diff is exonerated**;
+the engine desk is **KEEP-and-WIDEN**, gated on the rename.
+
+**Founder decisions taken this session:** scenario = **`vector_geometry_3d`** (`mode: products |
+lines_planes`), retiring a concept-id-in-a-scenario-slot before it reached master · concept id =
+**`vector_products_in_space`** (`mathematicsCatalog.ts` corrected, the only divergent site) · **#8 stays
+scheduled** and the two extra engine dispatches are approved, with `ncert-boundaries.ts` set aside ·
+the stale-baseline vintage sized with one further EYE run.
+
+---
+
+## ∫ SESSION — the fourth concept authored and HELD: every deterministic gate passed a sim whose picture taught the reverse (2026-08-08, desks `feat/mathematics-definite-integral` + `fix/pcpl-drag-scope-and-bar-span`; 3D-vectors stopped and handed off)
+
+> Two concepts were opened in parallel desks. The founder stopped the 3D-vectors one mid-flight to
+> restart it from Phase 0 in a fresh session (`docs/MATHEMATICS_VECTORS_3D_HANDOFF.md`), leaving this
+> session to finish the integral alone. It is authored, gated, PR'd — and **held**, because the taste
+> gate found what four machine gates could not.
+
+- **🔴 The finding that matters more than the concept: THE EYE cannot see a state that moves the WRONG WAY.** `definite_integral_as_accumulated_area` passed `35 deterministic checks · 35 passed · 0 failed` **twice**, passed `quality_auditor`, and `eye_walker` called it baseline-ready. founder_proxy Checkpoint B then drove it live with Playwright and found **three blocking engine defects**, two of which are invisible to any pixel gate by construction. Dense-series motion, frozen-frame reproducibility and H2 regression all measure *that* pixels changed — never the **direction** a state claims its change has — and no deterministic gate touches a control at all. Filed `eye_deterministic_gates_pass_a_state_whose_motion_is_correct_in_amount_and_wrong_in_direction` [MAJOR].
+- **🔴 F2 — `max_bars_drawn` bounded EXTENT instead of COST, so the taught region shrank as n grew.** `PM_riemannBarsCompute` (`parametric_renderer.ts:4181`) kept the **first** `barsDrawnCount` bars: `if (ok && i < barsDrawnCount)`. Drawn extent is therefore `cap × (to−from)/n`, which **falls** as n rises — measured n=365 → full interval, n=1000 → `[0,0.80]`, pin n=2304 → `[0,0.35]`, n=6494 → `[0,0.12]`. The student watched the shaded area retreat leftward and vanish while the narration said the numbers keep going. The field had been bought to make the picture STOP changing above the cap; it made the picture change *against* the lesson. **Invariant now recorded: a drawing cap bounds cost, never extent.**
+- **🔴 F1 — a drag rebuilt the physics scope without choreography, so one touch erased the state.** `:3842` built `currentVars` from `PM_resolveStateVars(state)` + `PM_sliderValues` and **never merged `PM_choreoValues`**. On STATE_5 (`c` choreographed to 1, `b` drag-bound) the first drag frame reset `c` 1 → 0: curve springs above the axis, red below-axis rectangles vanish, `below axis` reads `0.0000` — under a delta cue still reading "Below the axis, negative". Compounding: the marker re-resolved 49 px off the curve, fell outside the 22 px `hitR`, and **the drag died permanently after one frame** (`b` 2.000 → 1.947, then frozen across 24 further steps while the mouse travelled 74 px).
+- **🔴 F3 — plane children are not clipped to their plane's viewport.** STATE_4's `sliver_inset` (`riemann_bars` on `plane_inset`, `y_range [3,4]`) drew from data y=0 → logical py 668, off a 500 px canvas, rendering as a magenta column across the full canvas height — and it was that state's `focal_primitive_id`, so also the brightest thing on screen. Only line-type primitives carried their own clip.
+- **F4/F5/F6 (authoring + a recurrence).** `curve_label` was the literal `"y = x²"` in all seven non-S1 states while the function is `x² − c` — false on exactly the two states where `c` is live. **Fixed asymmetrically at the root cause**: deleted on S5 (choreographed) and S8 (live slider) where the formula box already carries the `c`-aware equation; kept on S2/S3/S4/S6/S7 where `c` is pinned at 0 and the label is true by construction. S4's formula box was striking through that label — the box moved y 62 → 38, **and the dispatching session then moved all eight to y=38** so the equation holds one position across the concept (the agent had moved S4 alone, leaving a 24 px jump in and out of that state — Rule 32d). F6, an ASCII hyphen in `-0.6667`, is a **recurrence** of a class closed once at the authoring layer on `derivative_as_secant_limit`: `PM_interpolate` (`:1231`) returns `String(result)` while only `PM_fmtNum` (`:3408`) normalises to U+2212. **Closing a defect in one concept's JSON left the class live for every concept after it** — the durable fix is engine-side.
+- **Gate-0 caught a dropped ruling, and the pipeline's own paperwork was the root cause.** `quality_auditor` FAILed round 1: the founder-ratified FLAG 1 requires `∫`'s first canvas appearance to be STATE_4's value chip, and it had slipped to STATE_5 — because the mathematics block's §3 primitive list omitted the chip its own §4 promised, and `json_author` built §3 faithfully. Fixed; re-audit **PASS**. Filed `mathematics_block_constraint_callout_is_not_re_checked_against_the_authored_json`.
+- **A new geometric gate, negative-controlled in both directions.** THE EYE's first walk found the HUD column sitting inside the plane's own y-axis tick-label lane on 6 of 8 states — the y-axis is at pixel **x=180**, not the viewport edge (`viewport.x=70`, `x_range −0.5→2.5` ⇒ 220 px/unit), so tick labels render at ≈x145–178 and the HUD was authored at x=150. Row pitch 32 px against tick pitch 62 px means **a vertical shift can never fix it**; the column moved horizontally to x=350, bounded below by S6's widest chip (≥314) and above by right-mode bar overshoot (≤379). The prevention half shipped as `src/scripts/_probe_plane_tick_label_collision.mjs`: **pre-fix geometry → 13 collisions, fixed → 0.** The original placement *had* been verified clear of curve/region/bar ink — it simply measured the wrong ink, the same meta-defect as the camera scar (`camera_metric_scored_foreshortening_not_pairwise_screen_separation`), **twice in one day**.
+- **Checkpoint B's verdict on the teaching, which is the good news.** *"Five of the eight states are board-impossible in a way that matters"* — S3's 1000 rectangles thinning live, S6's three sampling rules co-present at n=96 converging, **S7 (the fill edge and the accumulation trace driven by ONE variable — "the best state in the concept and the one I would show a teacher first")**, S5's continuous sweep through the axis. Rule 38 ring cuts are *"the cleanest part of this build"*; the mathematics is correct throughout (closed forms, all six assessment answers checked). Rubric 15/20. **S4 is the one state judged worse than a whiteboard as built** — and weak *by design* even after the engine fixes, since a 920 px/unit magnifier of a wedge that goes sub-pixel in ~3 s asks the picture to carry a claim only the number can carry. Its proposed alternative — a magnifier that **re-zooms to hold the sliver at constant on-screen size**, so the inset's axis numbers shrink instead — is an open founder design call.
+- **⚠ State at close — the engine fix round is INCOMPLETE.** `pcpl-surgeon` terminated on a session limit mid-regression-sweep. All four fixes ARE in the working tree of `fix/pcpl-drag-scope-and-bar-span` (**uncommitted**, 508 insertions across `parametric_renderer.ts` + `check_cartesian_plane.ts`): F1 merges `PM_choreoValues` for every non-`PM_userTouched` variable and latches the grab on mousedown; F2 replaces first-N truncation with an **evenly-spread index selection** anchoring k=0 at `xL = domainFrom`; F3 and F6 present. Verified green by the dispatching session: `check:renderer-syntax` OK ×3 · `check:renderer-backticks` clean · `tsc` **0** · `check:cartesian-plane` **ALL PASS at 446 assertions (up from 338)** · `vitest` **356**. **NOT verified: the negative controls in both directions, and the fleet regression sweep** — `derivative_as_secant_limit` returned **56/56** before the agent died; `graph_transformations` never ran.
+- **PR #70 is OPEN and must NOT merge.** Its 8 approved baselines were taken *before* Checkpoint B and encode the wrong picture (S4's near-empty plot and strikethrough, S5's false `y = x²` label and ASCII hyphen). Re-baselining is mandatory after the engine fixes land. Approving before the taste gate was a dispatching-session sequencing error, flagged when made.
+- **NEXT:** (1) finish the surgeon's round — run the negative controls in both directions, sweep `graph_transformations`, commit, PR to master **separately** (Rule 40). (2) Sync the engine fixes into the concept desk → re-seed → **re-run THE EYE** → **re-baseline** → **Checkpoint B cycle 1**. (3) Founder call on S4's magnifier redesign *before* re-baselining, not after. (4) Three P2s deliberately deferred as design calls with Checkpoint A's budget spent: S6's near-identical left/mid hues, S7's missing "this axis is an area" label, S5's missing drag affordance. (5) Cross-concept drift worth one ruling: formula box x=500 here vs **560** in all three siblings; HUD x=350 here vs 590/640 and 100–300 — three `cartesian_plane` concepts, three conventions.
+
+---
 
 ## 📐 SESSION — PCPL readout placement fixed in two rounds (PR #46), `derivative_as_secant_limit` re-baselined, auto-push found broken on 4 of 4 desks (PR #49) (2026-08-07, `feat/pcpl-readout-placement` + `fix/autopush-hook` → master; `feat/mathematics-derivative`)
 
