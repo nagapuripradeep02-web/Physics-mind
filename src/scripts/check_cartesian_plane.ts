@@ -2639,9 +2639,16 @@ console.log("\n=== WP-R6 — cross-state live-control inheritance gate: a teache
     vars: Record<string, number>;
     stateData: { advance_mode?: string } | null;
     stateSliderVars: Record<string, boolean>;
+    userTouched?: Record<string, boolean>;
   }): Record<string, number> {
     const body = [
       "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      // PM_userTouched (round 3, 2026-08-09) — PM_overlayLiveControlValues
+      // now reads this per-variable seizure flag directly (a closed-over
+      // global in the shipped renderer, same technique as PM_sliderValues
+      // above). Defaults to {} — every ROUND-1 fixture below tests a
+      // CROSS-state scenario, where the flag has always just been wiped.
+      "var PM_userTouched = " + JSON.stringify(fixture.userTouched ?? {}) + ";",
       grabFn("PM_overlayLiveControlValues"),
       "return PM_overlayLiveControlValues(" +
         JSON.stringify(fixture.vars) + ", " +
@@ -2668,6 +2675,39 @@ console.log("\n=== WP-R6 — cross-state live-control inheritance gate: a teache
   check("GUIDED state (manual_click): b is UNCHANGED at its authored default (2), not the leaked explore value (0.2792) — the measured STATE_5 defect",
     guidedResult.b, 2, 0);
 
+  // Round 3 (2026-08-09, bug_class
+  // pcpl_guided_state_drag_evaporates_mid_choreography) — the SAME GUIDED
+  // state, but 'b' was dragged WITHIN this same visit (PM_userTouched.b
+  // is true — set by a genuine mouse drag on THIS state's own primitive,
+  // never carried over from a different state, since the flag is wiped on
+  // every real SET_STATE before this function is ever called again). The
+  // per-variable seizure flag is now a SECOND admission path alongside
+  // advance_mode — a value SEIZED IN THIS STATE survives its own state's
+  // unrelated choreography ticks.
+  const guidedTouchedResult = runOverlay({
+    sliderValues: { b: 0.2792 },
+    vars: { ...guidedVars },
+    stateData: { advance_mode: "manual_click" },
+    stateSliderVars: { b: true },
+    userTouched: { b: true },
+  });
+  check("GUIDED state (manual_click) with b SEIZED in this same visit (PM_userTouched.b=true): the drag value (0.2792) DOES apply — this is the fix for the mid-choreography evaporation defect",
+    guidedTouchedResult.b, 0.2792, 1e-9);
+
+  // NEGATIVE CONTROL for the round-3 fix specifically — the round-1-only
+  // gate (advance_mode alone, no per-variable touched admission),
+  // reimplemented independently, does NOT let the seized value through at
+  // this exact input; the shipped function does.
+  function round1OnlyGate(sliderValues: Record<string, number>, vars: Record<string, number>, stateData: { advance_mode?: string } | null, stateSliderVars: Record<string, boolean>) {
+    const merged: Record<string, number> = { ...vars };
+    if (!stateData || stateData.advance_mode !== "interaction_complete") return merged;
+    for (const k of Object.keys(sliderValues)) if (stateSliderVars[k]) merged[k] = sliderValues[k];
+    return merged;
+  }
+  const round1OnlyResult = round1OnlyGate({ b: 0.2792 }, { ...guidedVars }, { advance_mode: "manual_click" }, { b: true });
+  assertTrue("NEGATIVE CONTROL: the round-1-only gate (advance_mode alone) refuses the seized drag value even WITHIN its own state — reproducing the mid-choreography evaporation defect at this exact input",
+    round1OnlyResult.b === 2 && round1OnlyResult.b !== guidedTouchedResult.b);
+
   // Every advance_mode that is NOT interaction_complete must behave
   // identically — the gate is an ALLOWLIST of exactly one value, not a
   // denylist of 'manual_click' alone. Includes the missing-field case
@@ -2690,18 +2730,27 @@ console.log("\n=== WP-R6 — cross-state live-control inheritance gate: a teache
     assertTrue(`advance_mode=${JSON.stringify(stateData)}: b stays at the authored default (2), no inheritance`, r.b === 2);
   }
 
-  // The explore state itself (advance_mode:'interaction_complete') MUST
-  // still inherit — both a fresh arrival and a re-entry are IDENTICAL
-  // inputs to this pure function (it carries no notion of "first time"),
-  // so one fixture legitimately covers both per the brief's own
-  // requirement 2.
+  // PM_overlayLiveControlValues IN ISOLATION: on the explore state
+  // (advance_mode:'interaction_complete') it DOES write PM_sliderValues
+  // into vars for a declared live control — this is what THIS FUNCTION
+  // does, always, given these inputs (it has no notion of "first time" vs
+  // "re-entry", nor of whether the SAME variable is also choreographed).
+  // CAUTION (quality_auditor round 3, 2026-08-09 — the SAME synthetic-
+  // fixture blind spot that hid the second door): this is NOT the same
+  // claim as "the explore state observably inherits a dragged value on
+  // re-entry" — that end-to-end claim is FALSE whenever the SAME variable
+  // is ALSO choreographed (STATE_8's own real shape: 'b' is BOTH
+  // drag-bound AND choreographed, ping_pong, seizable) — see the
+  // WP-R6-REOPENED section below, which composes this function with
+  // PM_applyChoreography's own choreo-merge loop and demonstrates BOTH
+  // outcomes explicitly, with the real variable shapes.
   const exploreResult = runOverlay({
     sliderValues: { b: 0.2792 },
     vars: { b: 2, c: 1 },
     stateData: { advance_mode: "interaction_complete" },
     stateSliderVars: { b: true },
   });
-  check("EXPLORE state (interaction_complete): b DOES inherit the teacher-set value (0.2792), identically on entry and on re-entry",
+  check("PM_overlayLiveControlValues alone: on the explore state it writes PM_sliderValues (0.2792) into a declared live control — the function's own isolated contract, NOT a claim about end-to-end re-entry behaviour when the same variable is also choreographed",
     exploreResult.b, 0.2792, 1e-9);
 
   // A variable the incoming state does NOT declare as a live control stays
@@ -2850,11 +2899,47 @@ console.log("\n=== WP-R6 REOPENED — the SECOND door: PM_applyChoreography had 
   assertTrue("the shipped PM_applyChoreography does NOT share that defect at the SAME input",
     guidedResult.capturedVars !== null && guidedResult.capturedVars.b === 2 && guidedResult.capturedVars.b !== broken.b);
 
+  // ── Round 3 core regression (2026-08-09, bug_class
+  // pcpl_guided_state_drag_evaporates_mid_choreography) — the EXACT
+  // reported shape: STATE_5 drags 'b' WITHIN this same visit
+  // (PM_userTouched.b=true) while an UNRELATED variable_choreography
+  // entry (c) is still actively ramping. Pre-fix, PM_applyChoreography's
+  // rebuild-and-clobber (triggered by c's step, nothing to do with b)
+  // evaporated the drag back to b's authored default the instant it ran —
+  // but ONLY while c's ramp was still active; once c settled,
+  // PM_applyChoreography stopped rebuilding at all ('if (!changed)
+  // return'), so a drag performed AFTER the ramp happened to already
+  // survive. A value surviving or dying depending on WHEN the teacher
+  // drags is worse than a consistent failure — this is what the
+  // PM_userTouched admission path fixes. ──────────────────────────────
+  const midChoreoDragResult = runApplyChoreography({
+    config: state5Cfg, currentState: "STATE_5", simClockMs: 500, // mid-ramp: c's 0->1/1000ms is still active
+    sliderValues: { b: 1.2 }, choreoValues: {}, userTouched: { b: true },
+  });
+  check("PM_applyChoreography (GUIDED state, manual_click), b DRAGGED within THIS visit (PM_userTouched.b=true) while c's UNRELATED choreography is still ramping: b HOLDS at the dragged value (1.2), not evaporated back to the authored default (2) — the round-3 regression, now fixed",
+    midChoreoDragResult.capturedVars ? midChoreoDragResult.capturedVars.b : NaN, 1.2, 0);
+
+  // NEGATIVE CONTROL — the round-1-only PM_applyChoreography (advance_mode
+  // gate alone, no per-variable PM_userTouched admission), reimplemented
+  // independently, DOES evaporate the seized drag at this exact input.
+  function round1OnlyApplyChoreographyVars(sliderValues: Record<string, number>, defaultVariables: Record<string, number>, stateSliderVars: Record<string, boolean>, isExplore: boolean) {
+    const vars: Record<string, number> = { ...defaultVariables };
+    if (!isExplore) return vars; // round-1 gate: advance_mode only, ignores PM_userTouched entirely
+    for (const k of Object.keys(sliderValues)) if (stateSliderVars[k]) vars[k] = sliderValues[k];
+    return vars;
+  }
+  const round1OnlyMidChoreo = round1OnlyApplyChoreographyVars({ b: 1.2 }, { b: 2, c: 0 }, { b: true }, false);
+  assertTrue("NEGATIVE CONTROL: the round-1-only gate (advance_mode alone) evaporates the seized mid-ramp drag back to the authored default (2) at this exact input, reproducing the round-3 regression",
+    round1OnlyMidChoreo.b === 2 && round1OnlyMidChoreo.b !== midChoreoDragResult.capturedVars?.b);
+
   // Requirement 2 preservation — the EXPLORE state (interaction_complete)
-  // choreographing a DIFFERENT variable must STILL inherit b through
-  // PM_applyChoreography exactly as before this fix (the gate is an
-  // allowlist that PASSES interaction_complete through unchanged, not a
-  // blanket block).
+  // choreographing a DIFFERENT (non-seizable-in-this-fixture) variable
+  // must STILL inherit b through PM_applyChoreography exactly as before
+  // this fix (the gate is an allowlist that PASSES interaction_complete
+  // through unchanged, not a blanket block). NOTE — this fixture's 'b' is
+  // NOT itself choreographed; see the DISTINGUISHING pair right below for
+  // what changes when it is (the quality_auditor round-3 finding on
+  // check_cartesian_plane's OWN prior blind spot).
   const state8Cfg = {
     default_variables: { b: 2, c: 0 },
     states: {
@@ -2872,8 +2957,57 @@ console.log("\n=== WP-R6 REOPENED — the SECOND door: PM_applyChoreography had 
     config: state8Cfg, currentState: "STATE_8", simClockMs: 0,
     sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: {},
   });
-  check("PM_applyChoreography (EXPLORE state, interaction_complete): b STILL inherits the teacher-set value (1.0909...) — requirement 2 preserved",
+  check("PM_applyChoreography (EXPLORE state, interaction_complete), b NOT itself choreographed: b STILL inherits the teacher-set value (1.0909...) on a fresh/re-entry call — requirement 2 preserved",
     exploreResult.capturedVars ? exploreResult.capturedVars.b : NaN, 1.0909090909090908, 1e-9);
+
+  // ── DISTINGUISHING PAIR (quality_auditor round 3, 2026-08-09) — the
+  // SAME synthetic-fixture blind spot that hid the second door: the check
+  // above is TRUE for a fixture where 'b' is only drag-bound, but STATE_8's
+  // REAL authored shape ALSO choreographs 'b' itself (ping_pong, seizable —
+  // "the sandbox restarts its own demo"). On a fresh RE-ENTRY to that real
+  // shape, PM_userTouched has JUST been wiped (a real SET_STATE always
+  // clears it before this ever runs again — even re-entering the SAME
+  // state counts, since isNewState is `newState !== PM_currentState` at
+  // the moment of the message), so PM_overlayLiveControlValues's
+  // interaction_complete branch DOES write the dragged PM_sliderValues.b —
+  // but the choreo-merge loop right after it (`if (!PM_userTouched[ck])
+  // vars[ck] = PM_choreoValues[ck]`) then OVERWRITES it, because 'b' is
+  // ALSO a PM_choreoValues key and is not (yet, this visit) touched. Net
+  // effect, MEASURED on the real concept: the choreographed 'b' wins on
+  // re-entry, not the previously-dragged value — arguably the authored
+  // intent (the sandbox restarts its own demo) and DELIBERATELY NOT
+  // changed by this dispatch. 'c' (NOT choreographed in either fixture)
+  // is the control: it DOES inherit, both here and on the real concept. ──
+  const state8CfgBChoreographed = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_8: {
+        advance_mode: "interaction_complete",
+        variable_choreography: [
+          { variable: "b", mode: "ping_pong", from: 2, to: 0.6, start_ms: 0, duration_ms: 1000, seizable: true },
+        ],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+          // c_slider — matches the REAL STATE_8's own second live control
+          // (n_slider/c_slider). Without a declared live control for 'c',
+          // it would never be overlaid regardless of the choreography
+          // question this pair exists to test — a DIFFERENT reason
+          // (stateSliderVars.c undefined) that would make the control
+          // assertion below vacuous.
+          { type: "slider", id: "c_slider", variable: "c", min: 0, max: 1, step: 0.1, default: 0 },
+        ],
+      },
+    },
+  };
+  const reentryChoreographedB = runApplyChoreography({
+    config: state8CfgBChoreographed, currentState: "STATE_8", simClockMs: 0, // t=0 of the ping_pong, matching a fresh re-entry
+    sliderValues: { b: 1.0909090909090908, c: 0.7 }, choreoValues: {}, userTouched: {},
+  });
+  check("PM_applyChoreography (EXPLORE state re-entry), b IS ALSO choreographed (ping_pong, seizable): b resolves to the CHOREOGRAPHED value (2, the ping_pong's own t=0 start), NOT the previously-dragged PM_sliderValues (1.0909...) — matches the REAL concept's measured re-entry behaviour exactly; deliberately UNCHANGED by this dispatch",
+    reentryChoreographedB.capturedVars ? reentryChoreographedB.capturedVars.b : NaN, 2, 0);
+  check("...meanwhile 'c' (NOT choreographed) DOES inherit the dragged PM_sliderValues on the SAME re-entry call — the control that proves this is a per-variable distinction, not a blanket explore-state failure",
+    reentryChoreographedB.capturedVars ? reentryChoreographedB.capturedVars.c : NaN, 0.7, 1e-9);
 
   // A guided state's SEIZED variable (PM_userTouched) is unaffected by this
   // change — the choreography-MERGE loop (below the overlay this fix

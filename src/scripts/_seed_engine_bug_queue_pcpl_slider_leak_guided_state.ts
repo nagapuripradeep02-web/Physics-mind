@@ -60,6 +60,13 @@
  * control, never a value inherited across a state transition) remain
  * deliberately untouched — neither crosses a state boundary.
  *
+ * CROSS-REFERENCE (2026-08-09): the cycle-2 fix here (advance_mode-only
+ * gate) itself introduced a MAJOR regression in the opposite direction —
+ * a guided-state in-state drag could now evaporate mid-choreography. Filed
+ * as its OWN bug_class (a distinct defect, not folded into this row):
+ * pcpl_guided_state_drag_evaporates_mid_choreography, see
+ * _seed_engine_bug_queue_pcpl_guided_state_drag_evaporates_mid_choreography.ts.
+ *
  * Idempotent: upsert onConflict 'bug_class'. Run:
  *   npx tsx --env-file=.env.local src/scripts/_seed_engine_bug_queue_pcpl_slider_leak_guided_state.ts
  */

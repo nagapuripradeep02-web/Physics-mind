@@ -3331,21 +3331,59 @@ function PM_stateLiveControlVars(scene) {
 // exists to teach.
 //
 // Only advance_mode:'interaction_complete' (Rule 31 — the ONE state whose
-// entire job is open-ended manipulation) may inherit a value the teacher
-// set elsewhere, on both first entry and every re-entry. Every OTHER
-// (guided) state opens strictly on its OWN vars — whatever 'vars' already
-// holds by the time this runs (PM_resolveStateVars' authored defaults, or
-// an explicit e.data.variables/inline_variables override) — with no
-// PM_sliderValues overlay at all, no exceptions for "the teacher was just
-// there a second ago". Does NOT touch PM_liveDragScope (the genuine-drag
-// rebuild used WITHIN the currently-open state, unaffected by this gate)
-// or the PARAM_UPDATE handler (which only ever updates PM_currentState's
-// OWN live control, never a value inherited from a state transition).
+// entire job is open-ended manipulation) may BLANKET-inherit a value the
+// teacher set elsewhere, on both first entry and every re-entry. Every
+// OTHER (guided) state opens strictly on its OWN vars — UNLESS the
+// specific variable was itself seized WITHIN THIS SAME STATE VISIT
+// (PM_userTouched[svk] — see the per-variable gate added below, bug_class
+// pcpl_guided_state_drag_evaporates_mid_choreography, quality_auditor
+// round 3, 2026-08-09).
+//
+// WHY THE PER-VARIABLE FLAG, NOT JUST advance_mode: PM_applyChoreography
+// rebuilds vars (via THIS function) on every frame in which ANY
+// choreographed variable in the CURRENT state moves — not just the
+// dragged one. A guided state that drags 'b' (bound_marker) AND
+// choreographs an UNRELATED 'c' (definite_integral_as_accumulated_area's
+// real STATE_5) used to have nothing keeping 'b' alive once c's ramp made
+// PM_applyChoreography rebuild vars from PM_resolveStateVars: the
+// blanket-refused overlay meant a drag-seized 'b' evaporated back to its
+// authored default the instant ANY unrelated choreography ticked — but
+// ONLY while that choreography was still active (once it settled,
+// PM_applyChoreography's own "if (!changed) return" stopped rebuilding at
+// all, so the LAST value drawPlotPoint's own direct computePhysics call
+// had set — the correct dragged one — happened to survive). Measured: drag
+// b=1.2 DURING the c-ramp -> evaporates to 2.0000 within ~1s; the SAME drag
+// AFTER the ramp settles -> correctly holds at 1.2. A drag surviving or
+// dying depending on WHEN the teacher performs it is worse than a
+// consistent failure.
+//
+// PM_userTouched IS the exactly-right flag to gate on: it is wiped to {}
+// ONLY on a genuine isNewState SET_STATE (~PM_userTouched = {}, WP-R5),
+// and set true ONLY by a REAL mouse drag claim on THIS state's own
+// primitive (drawCanvasSlider / drawPlotPoint's genuine-drag branches —
+// the only two write sites in the whole file). So
+// PM_userTouched[svk] === true encodes exactly "svk was dragged during
+// THIS visit to the current state" — never carries across a real state
+// change (the wipe always runs BEFORE this function is ever called again,
+// see the SET_STATE handler's own ordering), so a value seized in STATE_8
+// still cannot survive into STATE_5 (WP-R6's original guarantee, intact);
+// but a value seized WITHIN STATE_5 now correctly survives STATE_5's own
+// unrelated choreography ticks for the rest of that SAME visit (this
+// fix). Re-entering STATE_5 later (a fresh isNewState) still opens on its
+// authored default — seizure never survives an actual state change,
+// guided or explore.
+//
+// Does NOT touch PM_liveDragScope (the genuine-drag rebuild used WITHIN
+// the currently-open state, unaffected by this gate either way) or the
+// PARAM_UPDATE handler (which only ever updates PM_currentState's OWN
+// live control, never a value inherited from a state transition).
 function PM_overlayLiveControlValues(vars, stateData, stateSliderVars) {
-  if (!stateData || stateData.advance_mode !== 'interaction_complete') return vars;
+  var explore = !!(stateData && stateData.advance_mode === 'interaction_complete');
   for (var svk in PM_sliderValues) {
     if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
-      vars[svk] = PM_sliderValues[svk];
+      if (explore || PM_userTouched[svk]) {
+        vars[svk] = PM_sliderValues[svk];
+      }
     }
   }
   return vars;
