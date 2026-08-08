@@ -2757,6 +2757,177 @@ console.log("\n=== WP-R6 — cross-state live-control inheritance gate: a teache
     paramUpdateSrc.indexOf("for (var usk in PM_sliderValues)") >= 0);
 }
 
+console.log("\n=== WP-R6 REOPENED — the SECOND door: PM_applyChoreography had its OWN independent, un-gated copy of the overlay, reachable only when the guided state ALSO authors variable_choreography (quality_auditor live-drive on the REAL concept, 2026-08-08/09) ===");
+{
+  // ROUND 1's fixture (above) called PM_overlayLiveControlValues directly
+  // and could not have caught this — the defect lived in a DIFFERENT
+  // caller (PM_applyChoreography) that built its OWN vars and called
+  // computePhysics directly, bypassing PM_overlayLiveControlValues's gate
+  // entirely pre-fix. This section drives the REAL binding shape instead:
+  // a plot_point.drag.bind_variable on a GUIDED state that ALSO authors
+  // variable_choreography on a DIFFERENT variable — exactly
+  // definite_integral_as_accumulated_area's STATE_5 (drags 'b', choreographs
+  // 'c') — the shape a synthetic slider-only fixture cannot reproduce
+  // because PM_applyChoreography's rebuild-and-clobber only runs at all
+  // when the CURRENT state authors ANY variable_choreography.
+  //
+  // A DEDICATED sandbox (same technique as runOverlay/runLiveDragScope
+  // above): computePhysics is STUBBED to a transparent echo (this section
+  // tests PM_applyChoreography's OWN vars-building logic, not physics
+  // computation) and captures exactly what vars it was called with —
+  // grabFn pulls every OTHER function's SHIPPED body untouched.
+  function runApplyChoreography(fixture: {
+    config: unknown; currentState: string; simClockMs: number;
+    sliderValues: Record<string, number>; choreoValues: Record<string, number>;
+    userTouched: Record<string, boolean>;
+  }): { capturedVars: Record<string, number> | null; physicsB: number | undefined } {
+    const body = [
+      "var PM_config = " + JSON.stringify(fixture.config) + ";",
+      "var PM_currentState = " + JSON.stringify(fixture.currentState) + ";",
+      "var PM_simClockMs = " + JSON.stringify(fixture.simClockMs) + ";",
+      "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      "var PM_choreoValues = " + JSON.stringify(fixture.choreoValues) + ";",
+      "var PM_userTouched = " + JSON.stringify(fixture.userTouched) + ";",
+      "var PM_physics = null;",
+      "var __capturedVars = null;",
+      "function computePhysics(conceptId, vars) { __capturedVars = vars; return { concept_id: conceptId, variables: vars, derived: {}, forces: [] }; }",
+      grabFn("PM_stateLiveControlVars"),
+      grabFn("PM_resolveStateVars"),
+      grabFn("PM_overlayLiveControlValues"),
+      grabFn("PM_choreoBuildSegments"),
+      grabFn("PM_choreoSampleSegments"),
+      grabFn("PM_choreoValue"),
+      grabFn("PM_applyChoreography"),
+      "PM_applyChoreography();",
+      "return { capturedVars: __capturedVars, physicsB: PM_physics && PM_physics.variables ? PM_physics.variables.b : undefined };",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // The exact reported shape: STATE_5 drags 'b' (its own live control) and
+  // choreographs 'c' (an UNRELATED variable). simClockMs:0 with an EMPTY
+  // PM_choreoValues (the per-state wipe PM_resetSimClock performs on every
+  // real state entry) reproduces the measured trigger precisely: prev is
+  // undefined on the very first evaluation, so 'changed' is forced true
+  // regardless of c's own numeric delta — matching the live-drive's own
+  // finding that the clobber fires on literally the first post-entry frame.
+  const state5Cfg = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_5: {
+        advance_mode: "manual_click",
+        variable_choreography: [{ variable: "c", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 }],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+        ],
+      },
+    },
+  };
+  const guidedResult = runApplyChoreography({
+    config: state5Cfg, currentState: "STATE_5", simClockMs: 0,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: {},
+  });
+  check("PM_applyChoreography (GUIDED state, manual_click): b resolves to the AUTHORED default (2), not the leaked drag value (1.0909...) — the measured STATE_5 defect, second door",
+    guidedResult.capturedVars ? guidedResult.capturedVars.b : NaN, 2, 0);
+  check("...and PM_physics.variables.b (what PM_liveExprVars() actually reads) agrees",
+    guidedResult.physicsB ?? NaN, 2, 0);
+
+  // NEGATIVE CONTROL — the PRE-FIX PM_applyChoreography (the unconditional
+  // raw overlay loop it used to run, BEFORE routing through
+  // PM_overlayLiveControlValues), reimplemented independently here, run at
+  // the SAME input as the guided case above — never against the shipped
+  // renderer.
+  function preFixApplyChoreographyVars(sliderValues: Record<string, number>, defaultVariables: Record<string, number>, stateSliderVars: Record<string, boolean>) {
+    const vars: Record<string, number> = { ...defaultVariables };
+    for (const k of Object.keys(sliderValues)) if (stateSliderVars[k]) vars[k] = sliderValues[k];
+    return vars;
+  }
+  const broken = preFixApplyChoreographyVars({ b: 1.0909090909090908 }, { b: 2, c: 0 }, { b: true });
+  assertTrue("NEGATIVE CONTROL: the pre-fix PM_applyChoreography DOES leak the dragged value (1.0909...) into the guided state's b at this exact input, reproducing the measured defect",
+    Math.abs(broken.b - 1.0909090909090908) < 1e-9 && broken.b !== 2);
+  assertTrue("the shipped PM_applyChoreography does NOT share that defect at the SAME input",
+    guidedResult.capturedVars !== null && guidedResult.capturedVars.b === 2 && guidedResult.capturedVars.b !== broken.b);
+
+  // Requirement 2 preservation — the EXPLORE state (interaction_complete)
+  // choreographing a DIFFERENT variable must STILL inherit b through
+  // PM_applyChoreography exactly as before this fix (the gate is an
+  // allowlist that PASSES interaction_complete through unchanged, not a
+  // blanket block).
+  const state8Cfg = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_8: {
+        advance_mode: "interaction_complete",
+        variable_choreography: [{ variable: "c", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 }],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+        ],
+      },
+    },
+  };
+  const exploreResult = runApplyChoreography({
+    config: state8Cfg, currentState: "STATE_8", simClockMs: 0,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: {},
+  });
+  check("PM_applyChoreography (EXPLORE state, interaction_complete): b STILL inherits the teacher-set value (1.0909...) — requirement 2 preserved",
+    exploreResult.capturedVars ? exploreResult.capturedVars.b : NaN, 1.0909090909090908, 1e-9);
+
+  // A guided state's SEIZED variable (PM_userTouched) is unaffected by this
+  // change — the choreography-MERGE loop (below the overlay this fix
+  // touched, itself untouched) still skips a seized variable's own
+  // choreographed value. Needs a SECOND, unseized choreographed variable
+  // (k) to force 'changed' true (a seized-only choreography correctly
+  // no-ops entirely — see the standalone assertion right after this one).
+  const state5CfgTwoChoreo = {
+    default_variables: { b: 2, c: 0, k: 0 },
+    states: {
+      STATE_5: {
+        advance_mode: "manual_click",
+        variable_choreography: [
+          { variable: "c", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 },
+          { variable: "k", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 },
+        ],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+        ],
+      },
+    },
+  };
+  const seizedResult = runApplyChoreography({
+    config: state5CfgTwoChoreo, currentState: "STATE_5", simClockMs: 500,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: { c: 0.4 }, userTouched: { c: true },
+  });
+  assertTrue("a SEIZED choreography variable (c, PM_userTouched.c=true) is NOT sourced from PM_choreoValues by the merge loop — c falls back to its authored default (0), not the stale choreo value (0.4) — unrelated to this fix, still correct",
+    seizedResult.capturedVars !== null && seizedResult.capturedVars.c === 0);
+  assertTrue("...while the OTHER (unseized) choreographed variable k DOES advance mid-ramp (0 < k < 1 at simClockMs:500 of a 1000ms once ramp)",
+    seizedResult.capturedVars !== null && seizedResult.capturedVars.k > 0 && seizedResult.capturedVars.k < 1);
+
+  // A seized-ONLY choreography (no other variable to force a rebuild)
+  // correctly no-ops entirely — computePhysics is never even called. This
+  // is pre-existing, correct, and unrelated to this fix; asserted so the
+  // fixture above (which needed the SECOND variable specifically to avoid
+  // this no-op) is itself explained, not just worked around silently.
+  const seizedOnlyResult = runApplyChoreography({
+    config: state5Cfg, currentState: "STATE_5", simClockMs: 0,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: { c: true },
+  });
+  assertTrue("a choreography whose ONLY entry is already seized never triggers a recompute at all (computePhysics not called) — the reason the merge-loop test above needed a second, unseized variable",
+    seizedOnlyResult.capturedVars === null);
+
+  // STATIC REACHABILITY — PM_applyChoreography's source actually calls
+  // PM_overlayLiveControlValues (wired, not merely defined-but-unused) and
+  // no longer contains its own OLD unconditional inline overlay loop.
+  const applyChoreoSrc = grabFn("PM_applyChoreography");
+  assertTrue("PM_applyChoreography calls PM_overlayLiveControlValues(vars, stateData, stateSliderVars)",
+    applyChoreoSrc.indexOf("vars = PM_overlayLiveControlValues(vars, stateData, stateSliderVars);") >= 0);
+  assertTrue("PM_applyChoreography no longer contains its own inline 'for (var sk in PM_sliderValues)' overlay loop",
+    applyChoreoSrc.indexOf("for (var sk in PM_sliderValues)") === -1);
+}
+
 console.log("\n=== E-2 — x_domain precedence unified onto PM_planeResolveBound (expression wins, numeric is the fallback); the dual-authored trap now warns instead of failing silently (founder Checkpoint B cycle 2, 2026-08-08) ===");
 {
   // The EXACT STATE_4-style input the founder cited: a numeric min:1.75
@@ -2906,13 +3077,21 @@ console.log("\n=== E-2 — x_domain precedence unified onto PM_planeResolveBound
     drawFunctionPlotSrc.indexOf("PM_warnIfDualBoundAuthored(spec.id, 'x_domain.max'") >= 0);
 
   // ── Blast-radius sweep (requirement 2) — a PERMANENT regression gate,
-  // not a one-off. Walks every concept JSON on this desk and asserts NO
-  // primitive authors both a numeric bound AND its *_expr sibling on the
-  // SAME rangeObj (x_domain, x_range, or y_range) — the precondition the
-  // founder's brief asked to prove, not assume. If this ever finds a real
-  // conflict, this gate is designed to FAIL LOUDLY (per requirement 2:
-  // "STOP and report rather than changing its rendered output") rather
-  // than silently pass.
+  // not a one-off. SPLIT IN TWO (founder review of PR #76 — composing this
+  // sweep with the mathematics chapter branch, where
+  // definite_integral_as_accumulated_area's own STATE_4 magnifier
+  // legitimately co-authors a numeric x_range/y_range bound alongside its
+  // *_expr sibling — PM_planeResolveBound's D3 precedence for PLANE ranges
+  // is untouched by E-2 and always resolved expr-wins already, so that
+  // co-authoring is intentional, pre-existing, correct design, not a risk
+  // this dispatch introduced) — asserting on the COMBINED set made a legal
+  // plane-range co-authoring red-gate an unrelated branch that composes
+  // this file with that concept. E-2 flipped ONE precedence: x_domain
+  // (drawFunctionPlot). Only x_domain's blast radius is a claim this
+  // dispatch can make and must prove; x_range/y_range dual-authoring is
+  // reported for visibility (it is real, load-bearing, on-purpose data) but
+  // NEVER fails this gate — asserting on it would be asserting a fact E-2
+  // has no bearing on.
   function walkJsonFiles(dir: string, out: string[]): void {
     for (const entry of readdirSync(dir)) {
       const p = path.join(dir, entry);
@@ -2922,11 +3101,11 @@ console.log("\n=== E-2 — x_domain precedence unified onto PM_planeResolveBound
     }
   }
   type DualBoundHit = { file: string; primitiveId: string; boundLabel: string; rangeObj: Record<string, unknown> };
-  function walkForDualBounds(node: unknown, filePath: string, hits: DualBoundHit[]): void {
+  function walkForDualBounds(node: unknown, filePath: string, rangeKeys: string[], hits: DualBoundHit[]): void {
     if (node === null || typeof node !== "object") return;
-    if (Array.isArray(node)) { for (const item of node) walkForDualBounds(item, filePath, hits); return; }
+    if (Array.isArray(node)) { for (const item of node) walkForDualBounds(item, filePath, rangeKeys, hits); return; }
     const obj = node as Record<string, unknown>;
-    for (const rangeKey of ["x_domain", "x_range", "y_range"]) {
+    for (const rangeKey of rangeKeys) {
       const rangeObj = obj[rangeKey];
       if (rangeObj && typeof rangeObj === "object" && !Array.isArray(rangeObj)) {
         const ro = rangeObj as Record<string, unknown>;
@@ -2937,20 +3116,35 @@ console.log("\n=== E-2 — x_domain precedence unified onto PM_planeResolveBound
         }
       }
     }
-    for (const k of Object.keys(obj)) walkForDualBounds(obj[k], filePath, hits);
+    for (const k of Object.keys(obj)) walkForDualBounds(obj[k], filePath, rangeKeys, hits);
   }
   const conceptFiles: string[] = [];
   walkJsonFiles(path.join(__dirname, "..", "data", "concepts"), conceptFiles);
-  const dualBoundHits: DualBoundHit[] = [];
+
+  // ASSERTED — x_domain is the ONLY bound E-2 changed the precedence of.
+  const xDomainHits: DualBoundHit[] = [];
   for (const f of conceptFiles) {
     let json: unknown;
     try { json = JSON.parse(readFileSync(f, "utf8")); } catch { continue; }
-    walkForDualBounds(json, f, dualBoundHits);
+    walkForDualBounds(json, f, ["x_domain"], xDomainHits);
   }
-  console.log(`  [E-2 sweep] scanned ${conceptFiles.length} concept JSON files, found ${dualBoundHits.length} dual-authored (numeric + *_expr on the SAME bound) instance(s)`);
-  for (const h of dualBoundHits) console.log(`    CONFLICT: ${h.file} primitive="${h.primitiveId}" bound=${h.boundLabel} rangeObj=${JSON.stringify(h.rangeObj)}`);
-  assertTrue(`blast-radius sweep: zero shipped concepts author both a numeric bound and its *_expr sibling on the same x_domain/x_range/y_range bound (measured: ${dualBoundHits.length} across ${conceptFiles.length} files) — the precedence CHANGE (expr now always wins, matching PM_planeResolveBound) is a strict no-op for every shipped concept`,
-    dualBoundHits.length === 0);
+  console.log(`  [E-2 sweep] scanned ${conceptFiles.length} concept JSON files, found ${xDomainHits.length} dual-authored x_domain (numeric + *_expr on the SAME bound) instance(s)`);
+  for (const h of xDomainHits) console.log(`    CONFLICT: ${h.file} primitive="${h.primitiveId}" bound=${h.boundLabel} rangeObj=${JSON.stringify(h.rangeObj)}`);
+  assertTrue(`blast-radius sweep (x_domain ONLY — the precedence E-2 actually changed): zero shipped concepts author both a numeric x_domain bound and its *_expr sibling (measured: ${xDomainHits.length} across ${conceptFiles.length} files) — the precedence CHANGE (expr now always wins, matching PM_planeResolveBound) is a strict no-op for every shipped concept`,
+    xDomainHits.length === 0);
+
+  // REPORTED ONLY, never asserted — x_range/y_range (the PLANE's own
+  // ranges) already resolved expr-wins before E-2 (D3, unchanged by this
+  // dispatch); a hit here is expected, legal, on-purpose data (the
+  // magnifier-inset pattern), not a regression signal for THIS bug_class.
+  const planeRangeHits: DualBoundHit[] = [];
+  for (const f of conceptFiles) {
+    let json: unknown;
+    try { json = JSON.parse(readFileSync(f, "utf8")); } catch { continue; }
+    walkForDualBounds(json, f, ["x_range", "y_range"], planeRangeHits);
+  }
+  console.log(`  [E-2 sweep, INFO ONLY — plane x_range/y_range precedence was ALREADY expr-wins pre-E-2, D3, unaffected by this dispatch] found ${planeRangeHits.length} dual-authored plane-range instance(s) (legal, on-purpose — e.g. a magnifier-inset re-zoom)`);
+  for (const h of planeRangeHits) console.log(`    (info) ${h.file} primitive="${h.primitiveId}" bound=${h.boundLabel} rangeObj=${JSON.stringify(h.rangeObj)}`);
 }
 
 console.log(failures === 0

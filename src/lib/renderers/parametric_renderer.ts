@@ -6055,11 +6055,36 @@ function PM_applyChoreography() {
   // function shared by every consumer instead of four separate scans.
   var stateSliderVars = PM_stateLiveControlVars(scene);
   var vars = PM_resolveStateVars(PM_currentState) || {};
-  for (var sk in PM_sliderValues) {
-    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
-      vars[sk] = PM_sliderValues[sk];
-    }
-  }
+  // WP-R6 REOPENED (bug_class
+  // pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_
+  // state_on_state_change, second door, quality_auditor live-drive on the
+  // REAL definite_integral_as_accumulated_area, 2026-08-08/09) — this used
+  // to run the SAME unconditional PM_sliderValues overlay the SET_STATE
+  // handler had (fixed via PM_overlayLiveControlValues), but as an
+  // INDEPENDENT, un-gated copy nobody caught: PM_applyChoreography runs
+  // every frame whenever the CURRENT state authors ANY variable_choreography
+  // AT ALL (any variable, not necessarily the leaked one), rebuilds vars
+  // from scratch here, and — pre-fix — clobbered PM_physics with the stale
+  // PM_sliderValues value the instant that rebuild ran, UNDOING the
+  // SET_STATE handler's own correct (gated) resolution one frame later.
+  // Measured via direct instrumentation on the real concept (a synthetic
+  // fixture, WP-R6's first round, did not reproduce this — it authored no
+  // variable_choreography on the leaking state): drag bound_marker on
+  // STATE_8 (b -> 1.0909...), SET_STATE STATE_5 (advance_mode:'manual_click',
+  // choreographs 'c', ALSO declares 'b' via its own bound_marker drag) — the
+  // SET_STATE handler's computePhysics call correctly resolved b=2, but
+  // PM_applyChoreography's very next call (triggered by c's choreography
+  // stepping, entirely unrelated to b) clobbered it back to 1.0909... on the
+  // SAME frame's first choreography tick (prev===undefined after the
+  // per-state PM_choreoValues wipe, so 'changed' is true on frame 1
+  // regardless of c's own numeric delta). STATE_2 (no choreography) and
+  // STATE_3/STATE_1 (choreograph OTHER variables but never author 'b' as a
+  // live control themselves) never triggered it — matching the audit's own
+  // selective "only STATE_5 bleeds" pattern exactly. Fixed by routing
+  // through the SAME centralised, advance_mode-gated function the SET_STATE
+  // handler already uses — one gate, every caller, never a second
+  // hand-rolled copy again.
+  vars = PM_overlayLiveControlValues(vars, stateData, stateSliderVars);
   for (var ck in PM_choreoValues) {
     if (Object.prototype.hasOwnProperty.call(PM_choreoValues, ck) && !PM_userTouched[ck]) {
       vars[ck] = PM_choreoValues[ck];
