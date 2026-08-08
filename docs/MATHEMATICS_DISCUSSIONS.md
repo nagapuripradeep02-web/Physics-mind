@@ -10,6 +10,80 @@
 
 ---
 
+## Session M2 — Phase 0 for the 3D-geometry wave: two concepts are one engine purchase, the third is measurably not, and the stopped round's unexplained EYE failures were never ours (2026-08-08, `master` @ `dfca9cf` — survey only, no code, no concept authored)
+
+> Founder restarted the 3D-vectors chapter from Phase 0 after stopping the previous round mid-flight
+> (`docs/MATHEMATICS_VECTORS_3D_HANDOFF.md`), with the stated goal of surveying the **whole chapter**
+> so the `field_3d` engine is bought once. Deliverable: **`docs/MATHEMATICS_PHASE0_VECTORS_3D.md`**.
+
+**Six findings, in the order they matter:**
+
+1. **#7 (dot & cross) and #9 (lines & planes) are ONE purchase; #8 (solids of revolution) is not.**
+   #7 and #9 share 14 of 15 engine features and the entire camera contract — **a plane patch *is* the
+   parallelogram quad translated, and the common perpendicular of two skew lines *is* `d₁ × d₂`.**
+   #8 shares only the shell (5 of its ~11 needs). Bundling it doubles the dispatch and amortises
+   nothing, so it is **ledgered with its cost stated, not declined**.
+
+2. **`field_3d_renderer.ts` has ZERO expression evaluation** — no `safeEval`, no `*_expr`, no
+   `new Function`. All 60 scenarios compute geometry from numeric parameters in hard-coded JS. This
+   had never been measured, and it is *the* reason #8 is out: a solid of revolution rotates an
+   **authored** `y = f(x)`, which needs either a closed profile enum or a fleet-wide evaluator.
+
+3. **`crossProduct` = 0.** The "193 / 215 / 217 occurrences of
+   `crossProduct`/`ArrowHelper`/`PlaneGeometry`" figure that mis-tiered this concept into a
+   "no new engine" tier is `ArrowHelper` **205** + `PlaneGeometry` **10** + `crossProduct` **0**. The
+   reuse claim was 95 % about arrow *drawing*. **Never sum unlike symbols into one reuse number.**
+
+4. **Handoff §2 is RESOLVED at $0, and the answer was the least-likely candidate.** The engine desk's
+   unexplained 10 EYE failures were not the surgeon's diff. Local master was **6 commits behind
+   origin** (4 touching `field_3d_renderer.ts`); after fast-forwarding, a clean master carrying **zero**
+   of that diff returns **43/56 — 13 failures, every one `H2/VISUAL_REGRESSION`, zero functional
+   gates.** `parallel_currents_force`'s baselines were approved **2026-07-05** and **199 commits have
+   touched the renderer since**. **The surgeon is exonerated** — and a standing fleet condition is
+   exposed: for any concept of that vintage the H2 gate reports noise, not signal.
+
+5. **A new screen trap, found by walking #9 before it exists: two skew lines ALWAYS project to
+   intersecting lines.** Projection preserves non-intersection no better than it preserves
+   perpendicularity. The states whose whole lesson is "these lines do not meet" draw them meeting.
+   This is the handoff §6 collinearity trap in a second geometry, and surveying #9 *now* turns it
+   into a design constraint instead of a Checkpoint-B finding.
+
+6. **The camera ease is frame-rate dependent** (`lerpSpherical`, a fixed `t = 0.05` **per rendered
+   frame**, called outside the fixed-step accumulator). Rule 36's named failure class, invisible to
+   THE EYE by construction — and #7's PRIMARY AHA state is a camera tilt. A Rule-40 platform
+   question, raised as an open founder decision rather than buried in a ledger.
+
+**0b ran the same day and closed inside the 2-cycle budget: three architect skeletons, Checkpoint A
+`DESIGN_OK` ×3.** Its conclusion is one sentence and it outranks everything else this session
+produced: **a camera pose cannot be hand-solved and must be gate-verified.** Three rounds of camera
+numbers were falsified in three independent ways — verification on ONE pair (the stopped round),
+solving at **FOV 50** when the renderer is **60**, and **sweep resolution** (a 1° sweep finds a 0.07°
+collapse where a coarse sweep reported 11.04°). Three careful agents, each having read the scar that
+warns about exactly this. So the ruling is mechanical, not procedural: **hand-solving proposes,
+`check:vector-geometry-3d` §13 decides** — 1° resolution, pairwise, perspective, FOV 60, every live
+slider, with the exempt-pair list and a screen-length floor. Every falsified round above would have
+been caught at $0 in seconds. Four conditions ride on #9's verdict (its pose table is **de-certified**
+and may not enter the dispatch prompt as measured fact); none blocks 0c.
+
+**Four things this wave was about to build that already ship** — `param_ramp`/`idle_auto_sweep`,
+`os.camera_steps`, the canvas graph mechanisms (priced, then correctly rejected), and `nlbProjPx`.
+`camera_steps` alone retired three separate design-arounds across the three concepts, including the
+frame-rate workaround. **The Rule-40a sweep had been run on the scenario NAME and never on the
+MECHANISMS declared missing** — in the documents whose entire value is engine deltas.
+
+**Two decisions that are free today and impossible later**, both open to the founder: the engine desk
+is **kept and widened** rather than rebuilt (its 512-line gate with 8 confirmed negative controls is
+the expensive part, and it is scenario-shaped not concept-shaped); and its `scenario_type` is
+**renamed** from `vector_products_in_space` — a concept id in a scenario slot — to `vector_geometry_3d`
+with `mode: products | lines_planes`.
+
+**Recorded honestly:** this is the **weakest international-breadth wave** mathematics has scheduled.
+All three concepts are absent from IGCSE and #9 is absent from AP too. It is a deliberate
+CBSE/JEE/IB-HL depth play under Rule 38f, not breadth work — and the standing Rule-38g gap (no
+international cell ever teacher-confirmed, on any subject) is enlarged by it, not closed.
+
+---
+
 ## Session M1 — The whiteboard test applied to mathematics; the intersection-first ranked list; and the finding that the most fundamental math visual does not exist yet (2026-08-04, branch `feat/mathematics-foundation` — design only, no concept authored)
 
 > Founder asked to open mathematics as the third subject, built the way **chemistry** was built —
@@ -246,19 +320,60 @@ once we have decided to build. A scheduled mathematics concept gets the full tra
 
 | # | Concept | Breadth | Capability | Surface |
 |---|---|---|---|---|
-| 5 | **Vectors in 3D — dot & cross product** | 5.5/7 | 3 | `field_3d` (reuse — Finding 3d) |
-| 6 | **Conditional probability & base rates** | 6.5/7 | 1, 4 | `parametric` (grid of 1000) |
-| 7 | **Conic sections as loci** — the defining condition traced, then morphed | 4/7 | 2, 4 | `parametric` `locus_trace` **[LIVE]** |
+| 5 | **Conditional probability & base rates** | 6.5/7 | 1, 4 | `parametric` (grid of 1000) |
+| 6 | **Conic sections as loci** — the defining condition traced, then morphed | 4/7 | 2, 4 | `parametric` `locus_trace` **[LIVE — proven by a shipped concept]** |
 
 **P3 — real diamonds, narrower or costlier.**
 
 | # | Concept | Breadth | Capability | Surface |
 |---|---|---|---|---|
+| 7 | **Vectors in 3D — dot & cross product** ⚑ *founder-scheduled NOW (2026-08-08) — tier reflects COST, not schedule* | 5.5/7 | 3 | `field_3d` — **3 engine asks**, see note below |
 | 8 | **Solids of revolution** | 5.5/7 | 3, 2 | `field_3d` (new scenario) |
-| 9 | **3D coordinate geometry — lines & planes** | 4.5/7 | 3 | `field_3d` (reuse) |
+| 9 | **3D coordinate geometry — lines & planes** | 4.5/7 | 3 | `field_3d` — **shares #7's engine purchase**, survey it into that dispatch |
 | 10 | **Normal distribution, sampling & the CLT** | 4.5/7 | 1, 4 | `particle_field` (new scenario) |
 | 11 | **Complex numbers & the Argand plane** | 4/7 | 2 | `cartesian_plane` |
 | 12 | **Differential equations & slope fields** | 5/7 | 2 | `cartesian_plane` |
+
+> **⚑ CORRECTION 2026-08-08 — "Vectors in 3D" moved P2 #5 → P3 #7, and the `[LIVE]` tag audited.**
+> It was placed in P2 on the strength of `docs/patterns/mathematics.md` tagging archetype **D**
+> `[LIVE — reuse, verified 2026-08-04]`. founder_proxy Checkpoint A falsified that, and the numbers
+> were re-measured independently against `field_3d_renderer.ts`: **234** hard-coded
+> `scenario_type ===` dispatch branches (so there is NO generic two-vector scenario a JSON author can
+> target), **0** hits for `parallelogram`, **0** for `parallelepiped` — against **217**
+> `crossProduct`/`ArrowHelper`/`PlaneGeometry`. So the archetype's *primitives* are live; its
+> *wiring* is not. Three asks follow, all `[owner: peter_parker:field3d_surgeon]`, all landing on
+> master separately under Rule 40 BEFORE any JSON is authored: (1) a `scenario_type:
+> "vector_products_in_space"` case exposing a **per-state** camera pose, (2) a live parallelogram
+> mesh, (3) a live parallelepiped mesh.
+>
+> **⚠ AMENDED 2026-08-08 by the Phase-0 survey (`docs/MATHEMATICS_PHASE0_VECTORS_3D.md` §inventory).
+> Two numbers above are wrong in the direction that matters, and the scenario name is corrected.**
+> (a) The composite `crossProduct`/`ArrowHelper`/`PlaneGeometry` total re-measures at **215**, but its
+> parts are `ArrowHelper` **205** + `PlaneGeometry` **10** + **`crossProduct` 0** — *there is no symbol
+> called `crossProduct` anywhere in the renderer.* The "vector maths is already there" claim is 95 % a
+> claim about arrow **drawing**; the maths that exists is `THREE.Vector3.crossVectors` (17 sites),
+> which every Three.js project already has. **Rule for the next survey: never sum unlike symbols into
+> one reuse number.** (b) The better dispatch number is **60 distinct `scenario_type` names**, not 234
+> lines. (c) The scenario must NOT be named `vector_products_in_space` — that is a concept id in a
+> scenario slot, and #9 would then author a scenario named after a different concept. Recommended:
+> **`vector_geometry_3d`** with `mode: products | lines_planes`. (d) A fourth engine ask is added for
+> #9 (extended line · plane from point+normal · foot of perpendicular · intersection marker), and #8
+> (solids of revolution) is measured **OUT** of this purchase — `field_3d` has **zero** expression
+> evaluation, so an authored `y = f(x)` profile needs either a closed profile enum or a fleet-wide
+> evaluator, and its 2D half is `cartesian_plane` on a different renderer.
+>
+> **The durable lesson — `[LIVE]` has two very different meanings, and only one is safe.**
+> *Proven by shipping* (a concept runs on it today: archetype **B** `locus_trace`, archetype **C**
+> the unit circle, archetype **A** `cartesian_plane` after three concepts) versus *proven by
+> code-reading* (the primitives exist, nothing was ever wired end-to-end: archetypes **D** and
+> **E**). Only the first is a costing basis. **Never schedule a concept into a "no new engine" tier
+> on a code-read tag** — build one throwaway state on the archetype first, or price the wiring in.
+>
+> **The founder ruled 2026-08-08 to build it anyway, accepting the engine cost** — so it is scheduled
+> next despite sitting in P3. The tier records what it COSTS; the schedule is a separate decision
+> (§6's own "the order is a default, not a contract"). #9 (lines & planes) reuses the same scenario
+> shell and camera work, so its union needs are surveyed INTO the #7 dispatch — one purchase, two
+> concepts, the way `cartesian_plane` amortised across three.
 
 **The one recommendation on record:** open with **#4, the unit circle**, not #1. It is 7/7 on
 intersection, a genuine diamond, and it is the only P1-grade concept that runs on a **[LIVE]**

@@ -35,7 +35,8 @@
 | P0 | **`cartesian_plane` scenario** (engine; master, Rule 40) | medium | ◐ **0a COMPLETE + 0b COMPLETE 2026-08-06** → `docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md` (survey + contract, AMENDMENT 1) · `docs/skeletons/definite_integral_as_accumulated_area_skeleton.md` (spec driver, round 1). Checkpoint A cycle 0 = `DESIGN_FIX`, 19 findings applied; **cycle 1 pending**. 0c/0d open. **BLOCKS P1 concepts** |
 | 3 | First concept — vertical slice | medium | ☐ recommendation: **the unit circle** (`parametric`, [LIVE], zero engine spend) |
 | 4 | Mathematics-specific gates (interval honesty, notation ladder) | medium | ☐ (grows from scars) |
-| 5 | Further scenarios (3D solids, sampling box) | high | ☐ founder-gated |
+| P0-3D | **`vector_geometry_3d` scenario** (engine; `field_3d`; master, Rule 40) | medium | ◐ **0a + 0b COMPLETE 2026-08-08** → `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` (survey + AMENDMENTS A1–A19) · three skeletons in `docs/skeletons/`. **Checkpoint A `DESIGN_OK` ×3 at cycle 1**, inside the 2-cycle budget. #7 + #9 = ONE purchase (VG-A/B/C); **#8 = a SEPARATE purchase, now fully specced** (SR-A/SR-B, closed profile enum, DOM tick labels via `nlbProjPx`). **0c cleared to dispatch; 0d blocked on 0c + A19's four conditions.** **BLOCKS concepts #7, #8, #9** |
+| 5 | Further scenarios (solids of revolution, sampling box) | high | ☐ founder-gated. Solids of revolution is now **specified** in `MATHEMATICS_PHASE0_VECTORS_3D.md` §ledger 1: it needs a closed profile enum (no `field_3d` expression evaluator exists) + a founder ruling on sharing a screen with `cartesian_plane` |
 
 **Recorded baseline (2026-08-04, at `origin/master` after a 128-commit fast-forward):**
 `tsc` = 0 errors · `validate:concepts` = **149/149 PASS, 0 FAIL** · `validate:chemistry` =
@@ -184,6 +185,40 @@ derivative, the definite integral) are all blocked on it; #4 (the unit circle) i
 **Exit criteria:** the gate passes with negative controls · `check:renderer-syntax` +
 `check:renderer-backticks` clean · **`vector_head_to_tail` and every other shipped PCPL concept comes
 back unchanged from THE EYE** (the regression-bearing-edit check the bonding wave used) · tripwire green.
+
+---
+
+## Phase P0-3D — the `vector_geometry_3d` scenario (BLOCKS concepts #7 and #9)
+
+**Goal:** the `field_3d` render surface the 3D half of mathematics needs, bought ONCE for two concepts.
+
+**Why it is a phase of its own:** `MATHEMATICS_DISCUSSIONS.md` §6 ⚑ (2026-08-08) falsified the
+`[LIVE]` tag on archetype D. There is **no generic two-vector scenario** — 60 distinct hard-coded
+`scenario_type` names and not one of them reachable by a mathematics JSON author.
+
+**Discipline (identical to Phase P0, and for the same recorded reasons):**
+1. **Phase-0 survey first.** **✅ DONE 2026-08-08 → `docs/MATHEMATICS_PHASE0_VECTORS_3D.md`** (0a:
+   survey, union table, union walk for all three candidate concepts, config contract, nine engine
+   decisions, the generalised camera invariant, the live queue consultation, the three-dispatch plan
+   and the 13-section gate spec). 0b — the deepest-concept skeleton (**#9, lines & planes**) +
+   Checkpoint A — is the next step.
+2. **A new CASE on `field_3d_renderer.ts`, not a new file.** The recorded `CHEMISTRY_ARCHITECTURE.md`
+   §5c lesson.
+3. **Lands on master separately and immediately**, one `bug_class` per dispatch (VG-A / VG-B / VG-C),
+   dispatched to `field3d-surgeon` — never bundled into a concept branch.
+4. **Ships its own headless gate** — `npm run check:vector-geometry-3d`, a negative control on every
+   section, no browser.
+
+**Two decisions the survey flags as free-today / impossible-later** (founder, see that doc's
+OPEN DECISIONS): keep-and-widen the stopped round's engine desk rather than rebuild it; and rename its
+`scenario_type` off a concept id (`vector_products_in_space` → `vector_geometry_3d` + a `mode` enum)
+before it merges.
+
+**Exit criteria:** the gate passes with **all negative controls firing** · `check:renderer-syntax` +
+`check:renderer-backticks` clean · every OTHER scenario's emitted template byte-identical (gate §11) ·
+THE EYE returns every baseline-locked `field_3d` concept unchanged **relative to a same-day
+pre-change run** (relative, not against the approved baselines — see that doc's §eye stale-baseline
+finding) · tripwire green.
 
 ---
 
