@@ -1180,7 +1180,6 @@
         "eye_capture_ms": 20500,
         "depth_ring": "extended",
         "advance_mode": "manual_click",
-        "focal_primitive_id": "__relation_no_single_focal__",
         "misconception_watch": [
           {
             "belief": "Left rectangles and right rectangles give different answers, so one of them must be the wrong method",
@@ -1601,7 +1600,6 @@
         "depth_ring": "core",
         "teaching_method": "exploration_sliders",
         "advance_mode": "interaction_complete",
-        "focal_primitive_id": "delta_cue",
         "scene_composition": [
           {
             "type": "annotation",
