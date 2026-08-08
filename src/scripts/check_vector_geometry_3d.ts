@@ -52,6 +52,11 @@
  *      built, correct and never shown passes all of them).
  *  11  FLEET SAFETY — every scenario other than vector_geometry_3d emits
  *      byte-identical template output vs the base ref.
+ * 11b  THE AUTHORED VALUE PANEL IS `vg.value_readouts` — scoped to the vg
+ *      region, because `readouts` is also the authored field of three OTHER
+ *      scenarios (newtons_laws_body / rigid_body_rotation / force_rig) and
+ *      `static_readouts` (greyed SLIDER ROWS) is a fleet convention authored
+ *      by seven shipped concepts. Both names must survive the rename.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -937,6 +942,65 @@ console.log("\n=== 11. FLEET SAFETY — every scenario other than vector_geometr
     const foreign2 = mut.added.filter((l) => l.trim() && !nearAnchor(l));
     expectFail(`a mutated fleet line (${victim.trim().slice(0, 40)}) goes UNDETECTED by this comparison`, foreign2.length === 0);
   }
+}
+console.log("\n=== 11b. THE AUTHORED VALUE PANEL IS vg.value_readouts — and the fleet's static_readouts convention is untouched ===");
+{
+  // bug_class field3d_vector_geometry_authored_readouts_field_collides_with_
+  // the_fleet_static_readouts_convention. The vg block carried TWO authored
+  // keys four characters apart with DIFFERENT meanings: `readouts` (the
+  // numeric VALUE panel, authored by nobody — the scenario is unshipped) and
+  // `static_readouts` (greyed/disabled SLIDER ROWS at the same position — a
+  // long-established fleet convention, 22 sites across ~8 scenarios, authored
+  // today by magnetic_flux / capacitance / displacement_current / the three
+  // ac_voltage_* / vsepr_molecular_shapes). The established one could not
+  // move, so the newcomer was renamed to value_readouts.
+  //
+  // `readouts` is ALSO the authored field name of three OTHER scenarios
+  // (newtons_laws_body, rigid_body_rotation, force_rig), which is why this
+  // check is SCOPED to the vg region by the same anchors §11 excises with: a
+  // fleet-wide rename is the actual hazard, not the rename itself.
+  const lines = SRC.split("\n");
+  const startIdx = lines.findIndex((l) => l.indexOf("vector_geometry_3d (MATHEMATICS") >= 0);
+  const endIdx = lines.findIndex((l, i) => i > startIdx && startIdx >= 0 && l.indexOf("rhr_force_direction — DIRECTION-ONLY") >= 0);
+  assertTrue("the vg region anchors resolve, so this check is SCOPED and not fleet-wide", startIdx > 0 && endIdx > startIdx);
+  const vgRegion = lines.slice(startIdx, endIdx).join("\n");
+  const outsideVg = lines.filter((_, i) => i < startIdx || i >= endIdx).join("\n");
+
+  // (a) the vg region reads the AUTHORED value panel under the new name, at
+  //     both consumers (the apply pass's show/hide gate, twice, and the frame
+  //     driver's key list) — and never under the old one.
+  check("vg reads d.value_readouts at every consumer (apply gate x2 + frame driver)",
+    (vgRegion.match(/d\.value_readouts/g) || []).length, 3, 0);
+  check("the ambiguous d.readouts is GONE from the vg region", (vgRegion.match(/d\.readouts/g) || []).length, 0, 0);
+
+  // (b) the fleet convention did not move: vg still reads d.static_readouts
+  //     for its greyed rows, and the three sibling scenarios still read their
+  //     own `readouts` field through their own state handles.
+  assertTrue("vg still reads d.static_readouts for the greyed SLIDER ROWS (the convention it must not disturb)",
+    vgRegion.indexOf("d.static_readouts") >= 0);
+  assertTrue("newtons_laws_body still reads nlb.readouts", outsideVg.indexOf("nlb.readouts") >= 0);
+  assertTrue("rigid_body_rotation still reads rb.readouts", outsideVg.indexOf("rb.readouts") >= 0);
+  assertTrue("force_rig still reads fr.readouts", outsideVg.indexOf("fr.readouts") >= 0);
+  check("the new name never leaks OUTSIDE the vg region", (outsideVg.match(/value_readouts/g) || []).length, 0, 0);
+  assertTrue("the fleet's static_readouts convention is still carried by many scenarios (>= 15 emitted sites)",
+    (SRC.match(/static_readouts/g) || []).length >= 15);
+
+  // NEGATIVE CONTROL — the whole risk of this rename is a blind find-and-
+  // replace. Simulate one and confirm it destroys the sibling scenarios'
+  // fields, i.e. that a check asserting only "vg reads value_readouts" would
+  // have accepted it.
+  const blind = SRC.split("readouts").join("value_readouts");
+  expectFail("a blind fleet-wide find-and-replace leaves nlb.readouts / rb.readouts intact",
+    blind.indexOf("nlb.readouts") >= 0 && blind.indexOf("rb.readouts") >= 0);
+  // ...and the check above is demonstrated to FAIL on the pre-rename source,
+  // reconstructed here, so it is known to discriminate rather than to be
+  // green by construction.
+  const ambiguous = SRC.split("d.value_readouts").join("d.readouts");
+  const ambiguousRegion = ambiguous.split("\n").slice(startIdx, endIdx).join("\n");
+  assertTrue("the scoped check FIRES on the reconstructed pre-rename source (3 d.readouts sites in the vg region)",
+    (ambiguousRegion.match(/d\.readouts/g) || []).length === 3);
+  expectFail("a plain string-presence check on \"readouts\" can tell the ambiguous source from the fixed one",
+    (ambiguous.indexOf("readouts") >= 0) !== (SRC.indexOf("readouts") >= 0));
 }
 console.log("\n=== 6. E2 — vgParallelogramVerts: drawn quad AREA == |a x b|, monotonic in |b| ===");
 {

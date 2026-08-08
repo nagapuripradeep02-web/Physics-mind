@@ -400,12 +400,23 @@ export interface Field3DConfig {
             // never corrupt the height the picture reads.
             split_gap_k?: number;
             reveal_ms?: number;
-            // F9 — the numeric readout panel. Closed enum; every entry is
-            // emitted as ONE DOM text node carrying symbol AND value
+            // F9 — the numeric VALUE panel (#vg_readout). Closed enum; every
+            // entry is emitted as ONE DOM text node carrying symbol AND value
             // ("a·b = 5.64") so THE CALCULATOR's DOM harvest can read it
             // (scar calculator_dom_harvest_needs_symbol_and_value_in_ONE_
             // text_node). Rule 33d: live numbers, never a decorative dial.
-            readouts?: Array<'a_mag' | 'b_mag' | 'theta_deg' | 'a_dot_b'
+            //
+            // NAMED value_readouts, NOT "readouts", and the distinction is
+            // load-bearing: `static_readouts` below is the long-established
+            // FLEET convention for greyed/disabled SLIDER ROWS at the same
+            // position (22 sites across ~8 scenarios; authored today by
+            // magnetic_flux / capacitance / displacement_current / the three
+            // ac_voltage_* / vsepr_molecular_shapes). Two authored keys four
+            // characters apart, one holding VALUES and one holding ROWS, is
+            // how the wrong one gets authored — so the newcomer says what it
+            // contains (bug_class field3d_vector_geometry_authored_readouts_
+            // field_collides_with_the_fleet_static_readouts_convention).
+            value_readouts?: Array<'a_mag' | 'b_mag' | 'theta_deg' | 'a_dot_b'
                 | 'cross_mag' | 'a_dot_cross' | 'b_dot_cross' | 'triple'
                 | 'volume' | 'base_area' | 'height'>;
             // F21 — per-state parameter ramps, evaluated CLOSED-FORM on
@@ -429,6 +440,9 @@ export interface Field3DConfig {
             // "auto_frame" only: R = auto_frame_k * max(|a|,|b|,|a x b|).
             auto_frame_k?: number;
             controls?: string[];          // Rule 31 live rows (explore state)
+            // FLEET convention, identical at every other scenario that has it:
+            // SLIDER ROWS shown greyed/disabled at the SAME position as the
+            // live row. NOT numbers — the numbers are value_readouts above.
             static_readouts?: string[];   // disabled row at the same position
         };
         // ── electric_potential_meaning per-state block (scenario point_charge_positive
@@ -13828,7 +13842,8 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // Authoritative per-state visibility (mirrors applyAcResistorState) +
     // per-state contextual-control panel (Rule 31: controls[] = live row(s),
-    // static_readouts[] = disabled row at the SAME position).
+    // static_readouts[] = disabled row at the SAME position — SLIDER ROWS,
+    // the fleet convention; the numeric VALUE panel is value_readouts[]).
     function applyVectorGeometry3DState(stateDef) {
         var d = stateDef.vg || {};
         for (var i = 0; i < sceneObjects.length; i++) {
@@ -13958,7 +13973,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var panelEl = document.getElementById("vg_sliders");
         if (panelEl) panelEl.style.display = (stateDef.show_sliders && anyRow) ? "block" : "none";
         var rdEl = document.getElementById("vg_readout");
-        if (rdEl) rdEl.style.display = (d.readouts && d.readouts.length) ? "block" : "none";
+        if (rdEl) rdEl.style.display = (d.value_readouts && d.value_readouts.length) ? "block" : "none";
     }
 
     // Per-frame driver. EVERYTHING here is a CLOSED FORM of state-local ms
@@ -14110,13 +14125,14 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         window.PM_vgCamPose = camPose ? { az: camPose.az, el: camPose.el, dist: camPose.dist } : null;
 
-        // ── F9 · the numeric readouts, computed in 3D from the SAME a/b/c
-        //    the meshes are drawn from, so the number and the picture can
-        //    never disagree.
+        // ── F9 · the numeric VALUE readouts (authored vg.value_readouts —
+        //    a list of TOKENS, never the greyed slider rows of the fleet's
+        //    static_readouts), computed in 3D from the SAME a/b/c the meshes
+        //    are drawn from, so the number and the picture can never disagree.
         window.PM_vgVectors = { a: a, b: b, c: c, axb: axb, theta_deg: thetaDeg, b_tilt_deg: bTiltDeg };
         var rdEl = document.getElementById("vg_readout");
         if (rdEl) {
-            var keys = d.readouts || [];
+            var keys = d.value_readouts || [];
             if (!keys.length) { rdEl.style.display = "none"; }
             else {
                 // D-5's three come from the TRUE a/b/c, never from the split
@@ -14139,6 +14155,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 // scene the meshes are drawn from, so the readout and the
                 // picture cannot disagree. Nothing is recomputed here from a
                 // second copy of the geometry.
+                // lpRes.readouts is the RESOLVER's internal token -> value bag
+                // (an implementation detail of vgResolveLinesPlanes, never an
+                // authored surface); it is merged into vals, and only the
+                // tokens the state named in vg.value_readouts get printed.
                 if (lpRes) {
                     for (var rk in lpRes.readouts) {
                         if (Object.prototype.hasOwnProperty.call(lpRes.readouts, rk)) vals[rk] = lpRes.readouts[rk];
