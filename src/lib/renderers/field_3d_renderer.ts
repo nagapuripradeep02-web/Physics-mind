@@ -44965,13 +44965,25 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         return out;
     }
+    // Rule 34c: every on-canvas minus is a REAL minus (U+2212). toFixed() emits
+    // U+002D, the ASCII hyphen, while every authored formula surface in this file
+    // carries U+2212 — so an overlay that puts an authored base above an engine
+    // numeral shows TWO DIFFERENT minus glyphs on one screen. Measured on the
+    // checkpoint stamp, which composes both in a single line:
+    //   "\\u0394K = \\u00bdmv\\u00b2 \\u2212 \\u00bdmv\\u2080\\u00b2 start: v = -3.00 m/s"
+    // The substitution lives HERE, in the formatter, not at the ~30 call sites:
+    // a sweep that fixes call sites re-breaks on the next one, and the two nlb
+    // formatters below are the only funnel every nlb numeral passes through.
+    // DISPLAY ONLY — the argument is already a finished string, so nothing
+    // arithmetic can see this, and no clock or accumulator is involved (Rule 36).
+    function nlbMinus(s) { return s.replace(/-/g, "\\u2212"); }
     // Joules -> text, with the negative-zero clamp every value-only readout in this
     // file carries: -0.000 must never render.
     function nlbEnFx(v, p) {
         var d = (p === 0 || p === 1 || p === 2) ? p : 1;
         var x = (typeof v === "number" && isFinite(v)) ? v : 0;
         if (Math.abs(x) < 0.5 * Math.pow(10, -d)) x = 0;
-        return x.toFixed(d) + " J";
+        return nlbMinus(x.toFixed(d)) + " J";
     }
     function nlbEnPct(v, maxJ) {
         if (!(maxJ > 0)) return 0;
@@ -47422,12 +47434,17 @@ export const FIELD_3D_RENDERER_CODE = `
     //   identically, with NO special-case branch — frozen frames are byte-stable
     //   by construction.
     function nlbSgn(x) { return x > 0 ? 1 : (x < 0 ? -1 : 0); }
-    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar).
+    // Kills "-0.00" in every readout (the negative-zero-at-quadrature scar), and
+    // carries the same U+2212 substitution as nlbEnFx (see nlbMinus). Both
+    // formatters, not just the energy one: nlbCpStampText composes a checkpoint
+    // line out of BOTH ("K = ... J  \\u00b7  v = ... m/s"), so fixing only the
+    // energy side would leave the two-different-minus-glyphs defect alive on the
+    // exact overlay it was reported against, merely relocated.
     function nlbFx(v, dp) {
         var d = (dp == null) ? 2 : dp;
         var n = (typeof v === "number" && isFinite(v)) ? v : 0;
         if (Math.abs(n) < 0.5 * Math.pow(10, -d)) n = 0;
-        return n.toFixed(d);
+        return nlbMinus(n.toFixed(d));
     }
     // Gravity component along the body's OWN positive axis, in newtons.
     //   surface body: +axis is UP-slope  → -m*g*sin(theta)
