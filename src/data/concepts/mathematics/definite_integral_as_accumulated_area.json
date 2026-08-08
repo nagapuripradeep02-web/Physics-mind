@@ -52,8 +52,8 @@
         "name": "interval upper bound",
         "unit": "dimensionless",
         "min": 0.2,
-        "max": 2.0,
-        "default": 2.0
+        "max": 2,
+        "default": 2
       },
       "c": {
         "name": "vertical lowering parameter",
@@ -80,21 +80,21 @@
         "name": "STATE_7 accumulation sweep parameter - phi law: never a slider, never drag-bound",
         "unit": "dimensionless",
         "min": 0,
-        "max": 2.0,
+        "max": 2,
         "default": 0
       },
       "xdraw": {
         "name": "STATE_1-only curve draw-in reveal bound",
         "unit": "dimensionless",
         "min": 0,
-        "max": 2.0,
+        "max": 2,
         "default": 0
       },
       "fillx": {
         "name": "STATE_1-only region fill-in reveal bound",
         "unit": "dimensionless",
         "min": 0,
-        "max": 2.0,
+        "max": 2,
         "default": 0
       }
     },
@@ -251,7 +251,7 @@
             "equation": "y = x²",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -278,7 +278,7 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "The curve draws left to right, then the region beneath it fills in — y equals x squared, bounding one exact area not yet measured.",
+              "text_en": "The curve draws left to right, then the region beneath it fills in completely — y equals x squared, bounding one exact area not yet measured.",
               "glow": "region"
             },
             {
@@ -292,7 +292,7 @@
       "STATE_2": {
         "title": "Four Rectangles Estimate It",
         "duration": 24,
-        "eye_capture_ms": 19000,
+        "eye_capture_ms": 18500,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "bars",
@@ -433,7 +433,7 @@
             "equation": "Sₙ = Σ f(xᵢ)·h",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -442,7 +442,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Four rectangles estimate the region, each as tall as the curve where it begins.",
+              "text_en": "Four rectangles estimate the region's area, each as tall as the curve where it begins.",
               "glow": "bars"
             },
             {
@@ -609,7 +609,7 @@
             "equation": "Sₙ → exact",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -619,7 +619,7 @@
             "variable": "nlog",
             "mode": "once",
             "from": 0.60206,
-            "to": 3.0,
+            "to": 3,
             "start_ms": 1000,
             "duration_ms": 15000,
             "holds": [
@@ -628,7 +628,7 @@
                 "hold_ms": 2000
               },
               {
-                "at_value": 2.0,
+                "at_value": 2,
                 "hold_ms": 2000
               }
             ]
@@ -662,7 +662,7 @@
           "what_a_limit_means_here",
           "why_define_it_as_a_limit"
         ],
-        "focal_primitive_id": "sliver_inset",
+        "focal_primitive_id": "wedge_inset",
         "misconception_watch": [
           {
             "belief": "Adding up rectangles is only ever an approximation, so the exact area is a fiction",
@@ -765,13 +765,13 @@
             },
             "x_range": {
               "min": 1.75,
-              "max": 2.0,
+              "max": 2,
               "min_expr": "b - 2*(b/round(pow(10,nlog)))",
               "max_expr": "b"
             },
             "y_range": {
-              "min": 3.0,
-              "max": 4.0,
+              "min": 3,
+              "max": 4,
               "min_expr": "b*b - c - 4.5*b*(b/round(pow(10,nlog)))",
               "max_expr": "b*b - c + 0.5*b*(b/round(pow(10,nlog)))"
             },
@@ -803,6 +803,18 @@
             "animate_in_ms": 1200
           },
           {
+            "type": "region_fill",
+            "id": "wedge_inset",
+            "plane_id": "plane_inset",
+            "y_expr": "x*x - c",
+            "from_expr": "b - b/round(pow(10,nlog))",
+            "to_expr": "b",
+            "color": "#F472B6",
+            "opacity": 0.55,
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
             "type": "riemann_bars",
             "id": "sliver_inset",
             "plane_id": "plane_inset",
@@ -811,20 +823,17 @@
             "to_expr": "b",
             "n_expr": "1",
             "mode": "left",
-            "color": "#F472B6",
+            "color": "#94A3B8",
+            "render": "outline",
             "appear_at_ms": 0,
-            "animate_in_ms": 1200,
-            "opacity": 0.45
+            "animate_in_ms": 1200
           },
           {
             "type": "vector",
             "id": "zoomlink_1",
-            "from": {
-              "x": 565,
-              "y": 171
-            },
+            "from_expr": "{x: 180 + (b - 2*(b/round(pow(10,nlog))))*220, y: 357 - (b*b - c - 4.5*b*(b/round(pow(10,nlog))))*62}",
             "to": {
-              "x": 460,
+              "x": 230,
               "y": 233
             },
             "style": "line",
@@ -835,13 +844,10 @@
           {
             "type": "vector",
             "id": "zoomlink_2",
-            "from": {
-              "x": 620,
-              "y": 109
-            },
+            "from_expr": "{x: 180 + b*220, y: 357 - (b*b - c + 0.5*b*(b/round(pow(10,nlog))))*62}",
             "to": {
-              "x": 460,
-              "y": 233
+              "x": 230,
+              "y": 88
             },
             "style": "line",
             "color": "#64748B",
@@ -884,12 +890,23 @@
             "animate_in_ms": 400
           },
           {
+            "type": "label",
+            "id": "window_chip",
+            "text_expr": "window width {(2*b/round(pow(10,nlog))).toFixed(4)}",
+            "position": {
+              "x": 260,
+              "y": 346
+            },
+            "font_size": 13,
+            "color": "#94A3B8"
+          },
+          {
             "type": "formula_box",
             "id": "fs",
             "equation": "gap = 4/n − 4/(3n²)",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           },
@@ -926,22 +943,22 @@
             {
               "id": "s4_1",
               "text_en": "The picture stops moving, but the numbers do not.",
-              "glow": "sliver_inset"
+              "glow": "wedge_inset"
             },
             {
               "id": "s4_2",
               "text_en": "Zoom into the last sliver: even at ten thousand rectangles, it is still there.",
-              "glow": "sliver_inset"
+              "glow": "wedge_inset"
             },
             {
               "id": "s4_3",
               "text_en": "Its exact size is four over n, minus four over three n squared — always positive.",
-              "glow": "sliver_inset"
+              "glow": "wedge_inset"
             },
             {
               "id": "s4_4",
               "text_en": "No count of rectangles ever makes that gap zero.",
-              "glow": "sliver_inset"
+              "glow": "wedge_inset"
             }
           ]
         }
@@ -949,7 +966,7 @@
       "STATE_5": {
         "title": "Below the Axis Counts Negative",
         "duration": 24,
-        "eye_capture_ms": 19000,
+        "eye_capture_ms": 16500,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": true,
@@ -1057,7 +1074,7 @@
               "bind_variable": "b",
               "axis": "x",
               "min": 0.2,
-              "max": 2.0
+              "max": 2
             }
           },
           {
@@ -1127,7 +1144,7 @@
             "equation": "f(x) = x² − c",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -1359,7 +1376,7 @@
             "equation": "left ≤ ∫ ≤ right",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -1543,7 +1560,7 @@
             "equation": "A(x) = x³/3",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -1572,7 +1589,7 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Sweep the upper bound rightward: the filled region grows, and its running total is traced at the same moment as a new curve, A of x.",
+              "text_en": "Sweep the upper bound rightward: the filled region grows, and its running total is traced at the same moment as a new curve, A of x, the area swept so far.",
               "glow": "accum_head"
             },
             {
@@ -1688,7 +1705,7 @@
               "bind_variable": "b",
               "axis": "x",
               "min": 0.2,
-              "max": 2.0
+              "max": 2
             }
           },
           {
@@ -1774,7 +1791,7 @@
             "equation": "∫₀ᵇ (x² − c) dx",
             "position": {
               "x": 500,
-              "y": 38
+              "y": 62
             },
             "border_color": "#3B82F6"
           }
@@ -1783,7 +1800,7 @@
           {
             "variable": "b",
             "mode": "ping_pong",
-            "from": 2.0,
+            "from": 2,
             "to": 0.6,
             "start_ms": 2500,
             "duration_ms": 9000,
