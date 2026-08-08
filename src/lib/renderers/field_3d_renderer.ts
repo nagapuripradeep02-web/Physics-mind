@@ -1923,6 +1923,26 @@ export interface Field3DConfig {
                 // dwell_from_pass: 2 puts the pause on the RETURN crossing, which
                 // is the one a round-trip work test is actually about.
                 dwell_from_pass?: number;
+                // ── Note 11e — WHAT THE CHECKPOINT LOOKS LIKE ────────────────
+                //   engine_bug_queue nlb_checkpoint_flag_marker_occludes_body_
+                //   at_track_level (founder: "why are you using a flag there?
+                //   Instead of flag, you can use two points, point a, point b").
+                //   'flag' (DEFAULT, exactly the original apparatus): a 1.05-unit
+                // post with a cross-tick at its top, drawn on the overlay lane
+                // (depthTest false, renderOrder 940) so it is never lost inside
+                // busy geometry. Right for a GATE the body passes through; wrong
+                // for a teaching point, because a tall post on the overlay lane
+                // draws straight THROUGH the block that is standing on it.
+                //   'point': a small dot lying ON the track surface at s_m, drawn
+                // with NORMAL depth (depthTest true, default renderOrder) — so
+                // when the body passes over the point, the body HIDES it, which
+                // is the honest picture of a mark painted on the track. The
+                // caption is untouched: it stays on the shared marker lane
+                // (NLB_MK_LABEL_LANE) carrying the same authored string, so the
+                // de-collision pass and the stamp head read identically in both
+                // modes.
+                //   ABSENT ⇒ 'flag' ⇒ byte-identical to every shipped concept.
+                marker?: 'flag' | 'point';
             }>;
             // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ══════════════════
             //   The two measuring instruments that turn `applied_force {N, angle_deg}`
@@ -45725,7 +45745,13 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_MK_GHOST_COLOR = "#90A4AE";
     var NLB_MK_HREF_COLOR = "#4FC3F7";
     var NLB_CP_COLOR = "#CE93D8";
-    var NLB_CP_MAX = 3;                    // checkpoint flags built once
+    var NLB_CP_MAX = 3;                    // checkpoint markers built once
+    // Note 11e — the TRACK-LEVEL checkpoint dot ('point' mode). Small enough to
+    // read as a painted mark rather than an object (the post is 1.05 units tall;
+    // this is a fifteenth of that), and lifted a hair off the slab so it never
+    // z-fights the surface it is drawn on.
+    var NLB_CP_DOT_R = 0.07;
+    var NLB_CP_DOT_Y = 0.05;
     // Note 11d — the teaching dwell. A ceiling, not a default: five seconds is
     // already longer than any single delta-cue beat (Rule 31's 25-55 word budget
     // is 10-20 s for a whole STATE), and an unbounded dwell would let one
@@ -45861,7 +45887,7 @@ export const FIELD_3D_RENDERER_CODE = `
     //   level at every incline angle. The two markers live in the SURFACE group so
     //   the one theta rotation stands them upright on the track with no branch
     //   anywhere — the same trick the pulley bracket uses.
-    function nlbMkMakeMarker(id, colorHex, isGhost) {
+    function nlbMkMakeMarker(id, colorHex, isGhost, withDot) {
         var grp = new THREE.Group();
         var mat = function () {
             return new THREE.MeshBasicMaterial({
@@ -45877,12 +45903,61 @@ export const FIELD_3D_RENDERER_CODE = `
         tick.position.set(0, NLB_MK_H, 0);
         tick.renderOrder = NLB_MK_RENDER_ORDER;
         grp.add(tick);
+        // ── Note 11e — the track-level DOT, built only for checkpoints ────────
+        //   A third child, hidden at build time, so the DEFAULT marker is the
+        //   post + tick exactly as before and a state that authors nothing
+        //   renders the identical pixels. Only nlbApplyMarkers ever swaps which
+        //   of the two forms is visible.
+        //   Deliberately NOT on the overlay lane: depthTest stays TRUE and the
+        //   renderOrder stays at the default, which is the entire fix. The post
+        //   above must punch through busy geometry to be findable at all; a mark
+        //   painted on the track must NOT — the body passing over it has to hide
+        //   it, or the picture claims the mark is floating in front of the block.
+        var dot = null;
+        if (withDot) {
+            dot = new THREE.Mesh(
+                new THREE.SphereGeometry(NLB_CP_DOT_R, 12, 10),
+                new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(colorHex), transparent: true,
+                    opacity: isGhost ? 0.45 : 0.95
+                }));
+            dot.position.set(0, NLB_CP_DOT_Y, 0);
+            dot.visible = false;
+            grp.add(dot);
+        }
         // elementType is the FAMILY, id is the GLOW TARGET: nlbApplyGlow matches
         // ud.id === focal, so a state focals a marker by writing marker_true,
-        // marker_ghost or checkpoint_1 — never a mesh name.
-        grp.userData = { elementType: "nlb_marker", id: id, ghost: !!isGhost };
+        // marker_ghost or checkpoint_1 — never a mesh name. The three part
+        // handles ride along on the SAME userData so the display swap (and any
+        // later pass that wants the fired marker's own material — the
+        // _nlbFired write in nlbRunCheckpoints has no reader yet) can reach a
+        // part without walking children by index.
+        grp.userData = {
+            elementType: "nlb_marker", id: id, ghost: !!isGhost,
+            _nlbPost: post, _nlbTick: tick, _nlbDot: dot
+        };
         grp.visible = false;
         return grp;
+    }
+    // Note 11e — the ONE place the authored marker field is resolved. Two call
+    // sites need the answer (the display swap in nlbApplyMarkers and the
+    // sanitised copy on checkpoint_state that the PM_ mirror publishes), and a
+    // second copy of the string compare is exactly how a default drifts.
+    function nlbCpForm(ce) {
+        return (ce && ce.marker === "point") ? "point" : "flag";
+    }
+    // Note 11e — which FORM of the marker is on screen. One funnel, called from
+    // the checkpoint loop in nlbApplyMarkers only: the two prediction markers
+    // have no dot and never call it, so they cannot be reshaped by a typo.
+    function nlbMkForm(id, asPoint) {
+        var g = nlbFindById(id);
+        if (!g || !g.userData) return;
+        var ud = g.userData;
+        if (!ud._nlbDot) return;                  // no dot built ⇒ flag is the only form
+        var pt = !!asPoint;
+        if (ud._nlbPost) ud._nlbPost.visible = !pt;
+        if (ud._nlbTick) ud._nlbTick.visible = !pt;
+        ud._nlbDot.visible = pt;
     }
     function nlbBuildMarkers(surf, world) {
         // The dashed LEVEL line. Built as explicit dash segments rather than a
@@ -45932,7 +46007,11 @@ export const FIELD_3D_RENDERER_CODE = `
         surf.add(mkGL); nlbRegister(mkGL);
 
         for (var c = 0; c < NLB_CP_MAX; c++) {
-            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false);
+            // withDot: ONLY the checkpoints carry the note-11e track dot. The two
+            // prediction markers above are readings of a COMPUTED place ("highest
+            // point", "expected stop") that must stay findable over the block, so
+            // they keep the overlay post and are not offered the alternative.
+            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false, true);
             surf.add(cp); nlbRegister(cp);
             var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, 0.30);
             cpL.userData = {
@@ -46073,6 +46152,11 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!e) { nlbMkShow(id, false); continue; }
             nlbMkPlace(id, e.s_m);
             nlbMkLabel(id, e.label || ("point " + (c + 1)));
+            // Note 11e — the FORM, resolved per state and before the show so a
+            // marker is never visible for a frame in the form the state did not
+            // ask for. Anything other than the exact string 'point' is the flag,
+            // which is what makes an absent field byte-identical.
+            nlbMkForm(id, nlbCpForm(e) === "point");
             nlbMkShow(id, true);
         }
         nlbUpdateMarkers(eng);
@@ -46087,7 +46171,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var cps = eng.checkpoint_state || [];
         var cpOut = [];
         for (var i = 0; i < cps.length; i++) {
-            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count, text: cps[i].text });
+            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count,
+                         text: cps[i].text, marker: cps[i].marker });
         }
         window.PM_nlbMarkers = {
             h_ref_m: eng.energy_h_ref_m || 0,
@@ -46115,9 +46200,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var out = {};
         for (var i = 0; i < ids.length; i++) {
             var o = nlbFindById(ids[i]), l = nlbFindById(ids[i] + "_label");
+            // note 11e — the FORM is reported as drawn (read off the meshes),
+            // not as authored: a marker that asked for a dot and got a post is
+            // exactly the presence-is-not-correctness failure this probe exists
+            // to catch, so the authored field is never the thing quoted.
+            var ud = o ? (o.userData || {}) : {};
             out[ids[i]] = o
                 ? { visible: !!o.visible, x: o.position.x, y: o.position.y, sx: o.scale.x,
-                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null }
+                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null,
+                    postVisible: ud._nlbPost ? !!ud._nlbPost.visible : null,
+                    dotVisible: ud._nlbDot ? !!ud._nlbDot.visible : null,
+                    dotY: ud._nlbDot ? ud._nlbDot.position.y : null }
                 : null;
         }
         return out;
@@ -47258,6 +47351,11 @@ export const FIELD_3D_RENDERER_CODE = `
                         ? Math.min(ce.dwell_ms, NLB_DWELL_MAX_MS) : 0,
                     dwell_from_pass: (typeof ce.dwell_from_pass === "number" && isFinite(ce.dwell_from_pass)
                         && ce.dwell_from_pass >= 1) ? Math.floor(ce.dwell_from_pass) : 1,
+                    // note 11e — the resolved marker FORM, sanitised here with
+                    // every other checkpoint default. Carried so the PM_ mirror
+                    // reports what was asked for next to what was drawn; the
+                    // display swap resolves through the same nlbCpForm.
+                    marker: nlbCpForm(ce),
                     // note 11c: both latches are (re)written by nlbCpArm() below,
                     // once eng.bodies exists and every body_id has been resolved.
                     _side: null, _home: false, _count: 0, text: ""
