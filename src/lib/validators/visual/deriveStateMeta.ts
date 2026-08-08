@@ -287,6 +287,19 @@ export function deriveMotionExpectations(
                 if (bscTh && typeof bscTh.jiggle_scale === 'number' && bscTh.jiggle_scale > 0) { out[stateId] = true; continue; }
                 // still beat: fall through to the reveal_hold classification.
             }
+            // solid_of_revolution (MATHEMATICS): every guided beat is a one-shot
+            // closed-form ramp on the state clock that SETTLES — the frame draws,
+            // the curve draws left to right, the region fills, the log-n ramp ends
+            // — and every authored pin lands PAST the end of that ramp, so at the
+            // captured frame nothing is still moving. Left undefined here so the
+            // hold pass classifies it reveal_hold instead of false-failing it for
+            // standing still. The explore sandbox is user-driven → declare static
+            // and let the interactive hold classification relax its tail.
+            const srMotion = state ? asObj(state.sr) : null;
+            if (srMotion) {
+                if (srMotion.mode === 'explore') { out[stateId] = false; continue; }
+                // guided: fall through to the reveal_hold classification.
+            }
             const osMotion = state ? asObj(state.orbital_shapes) : null;
             if (osMotion) {
                 // explore stays DECLARED STATIC even though the renderer now turns
@@ -743,6 +756,12 @@ const F3D_REVEAL_KEYS = [
     // E3 the lattice). Listed here so a cached physics_config that flattened
     // field_3d_config.states is still recognised as field_3d, not PCPL.
     'bonding_scene',
+    // solid_of_revolution (MATHEMATICS — Phase-0 SR-A engine dispatch, 2026-08-08):
+    // the per-state `sr` block (ticked frame reveal / curve draw / region fill /
+    // log-n ramp; SR-B adds the theta sweep and the disc-stack beats). Listed here
+    // so a cached physics_config that flattened field_3d_config.states is still
+    // recognised as field_3d, not PCPL.
+    'sr',
     // electric_potential_dipole (dipole_potential) + the potential siblings: every
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
@@ -2330,6 +2349,60 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             const step = asObj(rawStep);
             if (step) candidates.push(asNum(step.at_ms, 0) + asNum(step.ease_ms, 900) + 300);
         }
+    }
+    // solid_of_revolution (MATHEMATICS — Phase-0 SR-A, 2026-08-08): every beat is a
+    // one-shot LINEAR ramp over the state's own clock that then HOLDS — the frame
+    // draws, the curve draws left to right, the region fills beneath it, the log-n
+    // ramp thins the staircase. Pin the frozen frame PAST the LAST settled beat so
+    // THE EYE photographs the settled picture (the whole curve, the full region,
+    // the converged count), never a half-drawn one. WITHOUT THIS BLOCK every state
+    // pins at the 1500 ms default mid-animation and mints a self-contradictory
+    // baseline — the first line of the field_3d scar checklist.
+    //
+    // The ramps carry HOLDS, and `duration_ms` is the total WALL span INCLUDING
+    // them (the renderer's own srRampFrac contract), so the settle time is
+    // start_ms + duration_ms and the holds are already inside it — subtracting
+    // them here would pin BEFORE the ramp finished. The renderer is
+    // accumulator-free (closed-form on state-local ms), so the snap-to-pin capture
+    // is byte-identical to crawling there.
+    const srState = asObj(state.sr);
+    if (srState) {
+        const srRv = asObj(srState.reveal);
+        if (srRv) {
+            for (const key of ['frame', 'curve', 'region']) {
+                if (typeof srRv[key + '_at_ms'] === 'number') {
+                    candidates.push(asNum(srRv[key + '_at_ms'], 0) + asNum(srRv[key + '_ms'], 1200) + 600);
+                }
+            }
+        }
+        // the theta sweep (SR-B) and the log-n ramp (SR-A) are the two longest
+        // beats; a pin before either closes photographs a half-swept surface or a
+        // staircase mid-thinning beside a total the state's caption contradicts.
+        const srTheta = asObj(srState.theta_ramp);
+        if (srTheta && typeof srTheta.start_ms === 'number') {
+            candidates.push(asNum(srTheta.start_ms, 0) + asNum(srTheta.duration_ms, 12000) + 700);
+        }
+        const srDiscs = asObj(srState.discs);
+        if (srDiscs) {
+            const srNRamp = asObj(srDiscs.n_ramp);
+            if (srNRamp && typeof srNRamp.start_ms === 'number') {
+                candidates.push(asNum(srNRamp.start_ms, 0) + asNum(srNRamp.duration_ms, 16000) + 800);
+            }
+        }
+        // the SR-B parameter sweep (x_cut / r / b). S5's radius sweep IS the primary
+        // aha and S8's b sweep IS the limits beat: a pin before either closes
+        // photographs the claim half-made, with the two readouts mid-flight.
+        const srParam = asObj(srState.param_ramp);
+        if (srParam && typeof srParam.start_ms === 'number') {
+            candidates.push(asNum(srParam.start_ms, 0) + asNum(srParam.duration_ms, 12000) + 700);
+        }
+        // the wrong-solid contrast beat settles only after it DISSOLVES — the whole
+        // point of the beat is that the wrong picture leads and CLEARS.
+        const srContrast = asObj(srState.contrast);
+        if (srContrast && typeof srContrast.dissolve_at_ms === 'number') {
+            candidates.push(asNum(srContrast.dissolve_at_ms, 0) + 900);
+        }
+        if (typeof srState.reveal_ms === 'number') candidates.push(asNum(srState.reveal_ms, 900) + 600);
     }
     // em_wave_propagation (traveling transverse EM wave — Ch.8 §8.3): the trains
     // move perpetually, but the STATE's one-shot cues (motes vanish → the "no
@@ -4078,6 +4151,19 @@ export function deriveHoldExpectations(
             const osHold = asObj(state.orbital_shapes);
             if (osHold) {
                 out[stateId] = (osHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // solid_of_revolution (MATHEMATICS): four guided states expose one
+            // contextual control row each (Rule 31), so the generic show_sliders
+            // catch below would swallow them into 'interactive' before they reach
+            // it. Classify explicitly (mirrors the capacitance / orbital_shapes /
+            // bonding_scene guided-vs-explore split above): the sandbox
+            // (mode 'explore', Rule 37 free-run) is user-driven → interactive;
+            // every other mode is a guided beat whose one-shot ramp payoff (pinned
+            // in maxRevealForField3dState) settles to a HOLD → reveal_hold.
+            const srHold = asObj(state.sr);
+            if (srHold) {
+                out[stateId] = (srHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             // newtons_laws_body (Laws of Motion): every state exposes its own
