@@ -21,10 +21,19 @@
  *      and because a control that measures a permutation-invariant summary of
  *      the thing that failed passes vacuously.
  *
- * SR-A owns sections 0, 1, 2, 4a, 8, 9, 10. Sections 3-7 and 11-13 (the theta sweep,
- * the disc / ring stack, the published volume total, the axis swap, the screen-
- * truth camera metrics) land with SR-B and are NOT stubbed here: an empty
- * section that prints PASS is exactly the vacuous pass this gate exists against.
+ * SR-A owned sections 0, 1, 2, 4a, 8, 9, 10. SR-B adds 3, 4, 4b, 5, 6, 7, 11, 11a,
+ * 12 and 13 — the theta sweep, the disc / ring stack, the published volume total
+ * and its cap, the axis swap, determinism, and screen truth. Every section is now
+ * live; none is stubbed, because an empty section that prints PASS is exactly the
+ * vacuous pass this gate exists against.
+ *
+ * TWO CONTROLS IN THIS FILE WERE WRONG WHEN FIRST WRITTEN AND ARE LEFT DOCUMENTED
+ * RATHER THAN QUIETLY FIXED, because both are the lesson: (i) the theta-major
+ * control scored an index COUNT, which is permutation-invariant on this grid and
+ * passed vacuously — only the index ORDER discriminates, and order is what the
+ * renderer consumes; (ii) the compensated-summation control asserted that naive
+ * accumulation fails at the authored n, which is false by three orders (measured
+ * 1.2e-13, tolerance 1e-12). Run every control and watch it fail before trusting it.
  *
  *   npm run check:solid-of-revolution
  */
@@ -72,11 +81,15 @@ function grabVar(name: string): string {
   return SRC.slice(m.index, SRC.indexOf(";", i) + 1);
 }
 
-const VARS = ["SR_MODES", "SR_MODES_COMPLETE", "SR_FAMILIES", "SR_READOUTS", "SR_GLOW_KEYS", "SR_PUB"];
+const VARS = ["SR_MODES", "SR_MODES_COMPLETE", "SR_FAMILIES", "SR_READOUTS", "SR_GLOW_KEYS", "SR_PUB",
+  "SR_RULES", "SR_KINDS", "SR_RAMP_PARAMS", "SR_DISC_POOL", "SR_DEFAULT_MAX_DRAWN"];
 const FNS = [
   "srClamp", "srClamp01", "srProfileFamily", "srF", "srAntiF", "srIntegralF",
   "srAntiF2", "srIntegralF2", "srHoldTotal", "srRampFrac", "srRamp", "srRampN",
   "srFmt", "srTickValues", "srPubClear",
+  // SR-B
+  "srInvF", "srAntiInvF2", "srStackSpan", "srSpanOuterR", "srSpanInnerR",
+  "srDiscSum", "srExactVolume", "srProjectPoint", "srPairwiseScreenSeparationDeg",
 ];
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -183,7 +196,8 @@ function ref_quad(g: (x: number) => number, x0: number, x1: number, n = 200000):
 
 console.log("\n╔══════════════════════════════════════════════════════════════════════════╗");
 console.log("║  check:solid-of-revolution — SR-A (shell / profile enum / frame /        ║");
-console.log("║  region / HUD / log-n ramp). Sections 3-7 + 11-13 land with SR-B.      ║");
+console.log("║  region / HUD / ramp) + SR-B (sweep / stack / publication / axis /       ║");
+console.log("║  determinism / screen truth). Every section is live.                     ║");
 console.log("╚══════════════════════════════════════════════════════════════════════════╝");
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -193,8 +207,19 @@ assertTrue("profile enum is exactly power | circle_arc | sin | exp",
   Object.keys(E.SR_FAMILIES).sort().join("|") === "circle_arc|exp|power|sin");
 assertTrue("mode enum is exactly region | sweep | slice | stack | compare | explore",
   Object.keys(E.SR_MODES).sort().join("|") === "compare|explore|region|slice|stack|sweep");
-assertTrue("SR-A declares which modes it renders COMPLETELY (region, explore)",
-  Object.keys(E.SR_MODES_COMPLETE).sort().join("|") === "explore|region");
+// With SR-B landed every declared mode renders completely, and the map stays as a
+// LIVE invariant: a mode added to SR_MODES and not to this map would render the
+// shared apparatus and nothing else, silently.
+assertTrue("every declared mode is declared COMPLETE — no mode is a silent no-op",
+  Object.keys(E.SR_MODES).sort().join("|") === Object.keys(E.SR_MODES_COMPLETE).sort().join("|"));
+assertTrue("the rule enum is exactly left | right | midpoint",
+  Object.keys(E.SR_RULES).sort().join("|") === "left|midpoint|right");
+assertTrue("the slice-kind enum is exactly disc | ring | radius_difference",
+  Object.keys(E.SR_KINDS).sort().join("|") === "disc|radius_difference|ring");
+assertTrue("the ramp-target enum is exactly x_cut | r | b",
+  Object.keys(E.SR_RAMP_PARAMS).sort().join("|") === "b|r|x_cut");
+assertTrue("the drawing cap can never exceed the mesh pool it draws into",
+  E.SR_DEFAULT_MAX_DRAWN <= E.SR_DISC_POOL);
 assertTrue("srF THROWS on an unknown family (no family || \"power\" fallback)",
   throws(() => E.srF({ family: "parabola", a: 1, p: 2 }, 1)));
 assertTrue("srF THROWS on a missing profile block",
@@ -415,6 +440,377 @@ console.log("\n=== 4a. SR4 — the REGION STRIP and the CURVE TUBE, actually run
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 4b. SR5 — the SWEPT SURFACE and its theta-major draw range ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// srWriteSurface touches no THREE symbol, so the shipped writer runs here against
+// the same kind of stub mesh section 4a uses, and what is asserted is the
+// GEOMETRY it wrote — where the vertices are, and how many indices the draw range
+// exposes at a given angle.
+{
+  const S = new Function([
+    grabVar("SR_FAMILIES"), grabVar("SR_SURF_NU"), grabVar("SR_SURF_NTH"),
+    grabFn("srClamp"), grabFn("srClamp01"), grabFn("srProfileFamily"), grabFn("srF"),
+    grabFn("srWriteSurface"),
+    "return { srWriteSurface, SR_SURF_NU, SR_SURF_NTH };",
+  ].join("\n"))() as Record<string, any>;
+  const nu = S.SR_SURF_NU, nth = S.SR_SURF_NTH;
+  const stub = () => ({
+    visible: true,
+    geometry: {
+      attributes: { position: { array: new Float32Array((nth + 1) * (nu + 1) * 3), needsUpdate: false } },
+      drawRange: { start: 0, count: 0 },
+      setDrawRange(s: number, c: number) { this.drawRange = { start: s, count: c }; },
+    },
+  });
+  const sqrtR = (u: number) => Math.sqrt(u);
+  const m = stub();
+  S.srWriteSurface(m, 0, 4, "x", sqrtR, 360);
+  check("a fully swept surface indexes every theta ring", m.geometry.drawRange.count, nth * nu * 6, 0);
+  // the index order is THETA-MAJOR: that is the whole reveal mechanism, so it is
+  // asserted as a count, not assumed from the writer's loop nesting.
+  const m90 = stub();
+  S.srWriteSurface(m90, 0, 4, "x", sqrtR, 90);
+  check("a 90 deg sweep indexes exactly a QUARTER of the rings", m90.geometry.drawRange.count,
+    Math.round(nth / 4) * nu * 6, 0);
+  const m0 = stub();
+  S.srWriteSurface(m0, 0, 4, "x", sqrtR, 0);
+  assertTrue("a 0 deg sweep is HIDDEN, not a degenerate sliver",
+    m0.visible === false && m0.geometry.drawRange.count === 0);
+  // the vertices themselves: ring 0 is theta = 0, so it must lie in the +y plane
+  // at radius f(u), and the axis must be x.
+  {
+    const arr = m.geometry.attributes.position.array;
+    const i = nu;                                   // ring 0, last u sample (u = 4)
+    check("ring 0 at u = 4 sits at (4, f(4), 0) — theta = 0 is +y, the axis is x",
+      Math.hypot(arr[i * 3] - 4, arr[i * 3 + 1] - 2, arr[i * 3 + 2]), 0, 1e-6);
+    const j = Math.round(nth / 4) * (nu + 1) + nu;  // ring at theta = 90 deg
+    check("the quarter ring at u = 4 sits at (4, 0, f(4)) — a real revolution, not a fan",
+      Math.hypot(arr[j * 3] - 4, arr[j * 3 + 1], arr[j * 3 + 2] - 2), 0, 1e-6);
+  }
+  // axis y swaps which coordinate carries u — the SAME writer, no branch of its own
+  const my = stub();
+  S.srWriteSurface(my, 0, 2, "y", (u: number) => 4, 360);
+  {
+    const arr = my.geometry.attributes.position.array;
+    const i = nu;
+    check("about y, ring 0 at u = 2 sits at (4, 2, 0) — u is the HEIGHT",
+      Math.hypot(arr[i * 3] - 4, arr[i * 3 + 1] - 2, arr[i * 3 + 2]), 0, 1e-6);
+  }
+  // NEGATIVE CONTROL — a U-MAJOR index order, and it has to be scored on WHICH
+  // vertices the first quarter of the index buffer touches, NOT on how many.
+  // THE FIRST ATTEMPT AT THIS CONTROL PASSED VACUOUSLY: on a 96 x 72 grid both
+  // orderings expose 0.25 * nth * nu * 6 indices at a quarter reveal, so a COUNT
+  // is permutation-invariant — exactly the defect VG-C's area-based control had.
+  // Order is what the renderer consumes, so order is what must be measured.
+  {
+    const quarter = (major: "theta" | "u") => {
+      const idx: number[] = [];
+      for (let t = 0; t < nth; t++) {
+        for (let u = 0; u < nu; u++) {
+          const a = t * (nu + 1) + u, b = (t + 1) * (nu + 1) + u;
+          const six = [a, b, a + 1, b, b + 1, a + 1];
+          if (major === "theta") idx.push(...six);
+        }
+      }
+      if (major === "u") {
+        for (let u = 0; u < nu; u++) {
+          for (let t = 0; t < nth; t++) {
+            const a = t * (nu + 1) + u, b = (t + 1) * (nu + 1) + u;
+            idx.push(a, b, a + 1, b, b + 1, a + 1);
+          }
+        }
+      }
+      const head = idx.slice(0, Math.round(idx.length / 4));
+      let maxT = 0, maxU = 0;
+      for (const v of head) { maxT = Math.max(maxT, Math.floor(v / (nu + 1))); maxU = Math.max(maxU, v % (nu + 1)); }
+      return { maxT, maxU, n: head.length };
+    };
+    const th = quarter("theta"), um = quarter("u");
+    assertTrue("at a quarter reveal the SHIPPED theta-major order touches a quarter of the "
+      + "rings and ALL of the length (rings " + th.maxT + "/" + nth + ", u " + th.maxU + "/" + nu + ")",
+      th.maxT <= nth / 4 + 1 && th.maxU >= nu);
+    control("a u-major order exposes the SAME index COUNT (" + um.n + " = " + th.n
+      + ") but touches all " + um.maxT + " rings and only u <= " + um.maxU
+      + " — a growing ROD, not a quarter turn, and invisible to a count-based control",
+      um.n === th.n && um.maxU < nu && um.maxT >= nth);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 3. SR6 — the disc series, against the closed form solved by hand ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// The left disc sum of pi f(x)^2 for f = sqrt x on [0, 4] with n slabs:
+//   V_n = pi * (4/n) * SUM_{i=0..n-1} (4i/n) = 8 pi (n-1)/n,   V - V_n = 8 pi / n
+// derived here from the mathematics, not read off the renderer.
+const SQRT_P = { family: "power", a: 1, p: 0.5, c: 0 };
+const HALF_P = { family: "power", a: 0.5, p: 1, c: 0 };
+const stack = (o: Prof, i: Prof | null, n: number, rule: string, kind: string, axis = "x",
+  x0 = 0, x1 = 4, cap = 120) =>
+  E.srDiscSum({ outer: o, inner: i, x0, x1, n, axis, rule, kind, max_drawn: cap });
+for (const n of [4, 8, 20, 100, 1000, 5000]) {
+  const got = stack(SQRT_P, null, n, "left", "disc").volume;
+  check(`left disc sum at n = ${String(n).padEnd(5)} = 8pi(n-1)/n`, got, 8 * Math.PI * (n - 1) / n, 1e-12);
+  check(`   ...and the gap V - V_n is EXACTLY 8pi/n`, 8 * Math.PI - got, 8 * Math.PI / n, 1e-12);
+}
+// the OTHER two rules through the SAME placement loop — three independent closed
+// forms is a far stronger check of one loop than one closed form is.
+check("right disc sum at n = 7 = 8pi(n+1)/n", stack(SQRT_P, null, 7, "right", "disc").volume,
+  8 * Math.PI * 8 / 7, 1e-12);
+check("midpoint at n = 7 is EXACTLY 8pi — the declared hazard, asserted so it cannot surprise",
+  stack(SQRT_P, null, 7, "midpoint", "disc").volume, 8 * Math.PI, 1e-12);
+assertTrue("an unknown rule THROWS (no rule || \"left\" fallback)",
+  throws(() => stack(SQRT_P, null, 4, "simpson", "disc")));
+assertTrue("an unknown kind THROWS", throws(() => stack(SQRT_P, null, 4, "left", "washer")));
+// COMPENSATED SUMMATION — measured, not assumed, and the first version of this
+// block asserted something FALSE. It claimed naive accumulation drifts ~1.5e-10 at
+// the n = 20 000 S5 authors; measured, naive drifts 1.2e-13 there and would have
+// PASSED. So the claim is restated at what compensation actually buys: a tolerance
+// that is a property of the SUMMATION rather than of the particular n someone
+// authored. The control is run at the n where naive genuinely crosses 1e-12.
+{
+  const n = 20000;
+  check("at n = 20 000 the shipped sum holds 1e-12", stack(SQRT_P, null, n, "left", "disc").volume,
+    8 * Math.PI * (n - 1) / n, 1e-12);
+  const sphereNaive = (r: number, N: number) => {
+    const du = 2 * r / N;
+    let s = 0;
+    for (let i = 0; i < N; i++) { const x = -r + i * du, f = Math.sqrt(r * r - x * x); s += f * f; }
+    return Math.PI * du * s;
+  };
+  const want = (r: number, N: number) => (4 / 3) * Math.PI * r ** 3 * (1 - 1 / (N * N));
+  const at20k = Math.abs(sphereNaive(2, 20000) - want(2, 20000));
+  const at20m = Math.abs(sphereNaive(2, 20000000) - want(2, 20000000));
+  const shipped20m = Math.abs(E.srDiscSum({ outer: { family: "circle_arc", r: 2, x0: 0, c: 0 },
+    inner: null, x0: -2, x1: 2, n: 20000000, axis: "x", rule: "left", kind: "disc", max_drawn: 120 }).volume
+    - want(2, 20000000));
+  console.log("      naive drift: " + at20k.toExponential(2) + " at n = 2e4 (INSIDE 1e-12 — the "
+    + "first draft of this control was wrong), " + at20m.toExponential(2) + " at n = 2e7; "
+    + "the shipped compensated sum holds " + shipped20m.toExponential(2) + " there");
+  control("a NAIVE accumulator crosses 1e-12 at n = 2e7 where the shipped one holds "
+    + shipped20m.toExponential(2), at20m > 1e-12 && shipped20m <= 1e-12);
+}
+// NEGATIVE CONTROL — the off-by-one partition: n sampled points but the slab
+// width computed over n-1 of them.
+{
+  const offByOne = (n: number) => {
+    const dx = 4 / (n - 1);
+    let s = 0;
+    for (let i = 0; i < n; i++) s += i * dx;
+    return Math.PI * dx * s;
+  };
+  control("an off-by-one partition at n = 20 gives " + offByOne(20).toFixed(4) + ", not "
+    + (8 * Math.PI * 19 / 20).toFixed(4), Math.abs(offByOne(20) - 8 * Math.PI * 19 / 20) > 1e-6);
+}
+// THE CAP BOUNDS COST, NEVER EXTENT (the PCPL F2 lesson, mechanised here).
+{
+  const r = stack(SQRT_P, null, 20000, "left", "disc");
+  check("the cap draws exactly max_discs_drawn discs", r.n_drawn, 120, 0);
+  check("...whose FIRST index is 0 (the near end, exactly)", r.place[0].u, 0, 1e-12);
+  check("...and whose LAST is index n-1, so the drawn stack spans the WHOLE solid",
+    r.place[119].u, 4 - 4 / 20000, 1e-12);
+  check("...while the published total still sums all 20 000 terms",
+    r.volume, 8 * Math.PI * 19999 / 20000, 1e-12);
+  // NEGATIVE CONTROL — the pre-F2 shape: keep the FIRST 120 indices.
+  const firstN = 120 * (4 / 20000);
+  control("keeping the FIRST 120 of 20 000 draws out to x = " + firstN.toFixed(3)
+    + " — 0.6 % of the solid, SHRINKING as n rises", Math.abs(firstN - 4) > 1e-6);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 4. SR6 — the RING stack, and M2 built as a named kind ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// Outer sqrt x, inner x/2 on [0, 4]. The two meet at x = 0 and x = 4.
+//   exact    V = pi INT (x - x^2/4) dx = pi(8 - 16/3) = 8pi/3   = 8.3776
+//   left sum V_n = (8pi/3)(1 - 1/n^2)                            (derived by hand)
+//   the WRONG reading pi INT (sqrt x - x/2)^2 dx = 0.5333 pi     = 1.6755
+check("the EXACT ring volume is 8pi/3", E.srExactVolume(SQRT_P, HALF_P, 0, 4, "x"), 8 * Math.PI / 3, 1e-12);
+for (const n of [8, 120, 4000]) {
+  check(`ring stack at n = ${String(n).padEnd(4)} = (8pi/3)(1 - 1/n^2)`,
+    stack(SQRT_P, HALF_P, n, "left", "ring").volume, (8 * Math.PI / 3) * (1 - 1 / (n * n)), 1e-12);
+}
+{
+  // M2, mechanised: the same loop, the same partition, the wrong slice rule.
+  const wrong = stack(SQRT_P, HALF_P, 4000, "left", "radius_difference").volume;
+  check("the radius_difference kind converges on 0.5333pi = 1.6755 (M2's own number)",
+    wrong, 0.5333333333333333 * Math.PI, 1e-3);
+  control("a (R - r)^2 implementation reads " + wrong.toFixed(4) + " where the ring reads "
+    + (8 * Math.PI / 3).toFixed(4) + " — 5.0x too small",
+    Math.abs(wrong - 8 * Math.PI / 3) > 1);
+  // and at the LABELLED slice the design chose (x = 1, the widest radial gap)
+  const R = Math.sqrt(1), ri = 1 / 2;
+  check("at the labelled slice x = 1 the ring area is 0.75pi = 2.3562", Math.PI * (R * R - ri * ri), 0.75 * Math.PI, 1e-12);
+  check("...against the wrong area 0.25pi = 0.7854, 3.0x too small", Math.PI * (R - ri) ** 2, 0.25 * Math.PI, 1e-12);
+  // NEGATIVE CONTROL — the slice the design deliberately did NOT label.
+  control("at x = 4 the two curves MEET (R = r = 2), so the ring is empty and "
+    + "carries no contrast at all", Math.abs(Math.sqrt(4) - 4 / 2) < 1e-12);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 5. SR-D3 — ONE summation, PUBLISHED, and nothing else recomputes it ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// WHICH READING OF D11 IS HONOURED, stated so it can be argued with. SR-D3's
+// WORDING said the total is computed "inside the loop that places the cylinders".
+// At n = 20 000 with a 120-disc cap that loop runs 120 times, so the wording
+// demands the wrong number on the one state whose claim is an equality. The
+// PROPERTY D11 buys is honoured instead: computed ONCE, published, never
+// recomputed. srDiscSum is that one computation and it returns the placement
+// radii in the same pass — one implementation, two consumers.
+{
+  // CODE lines only: the block's own header comment names srDiscSum, and a count
+  // that includes prose would be a check on documentation, not on the build.
+  const codeOnly = SRC.split("\n").filter((l) => !/^\s*(\/\/|\*|\/\*)/.test(l)).join("\n");
+  const calls = (codeOnly.match(/srDiscSum\(/g) || []).length;
+  assertTrue("srDiscSum appears exactly twice in renderer CODE: its definition and ONE call site ("
+    + calls + ")", calls === 2);
+  const hud = grabFn("srWriteHud");
+  assertTrue("the HUD READS SR_PUB.volume and never calls srDiscSum",
+    /SR_PUB\.volume/.test(hud) && !/srDiscSum/.test(hud));
+  assertTrue("no function outside the summation writes SR_PUB.volume",
+    (SRC.match(/SR_PUB\.volume\s*=/g) || []).length === 1);
+  assertTrue("no function outside the summation writes SR_PUB.n_drawn",
+    (SRC.match(/SR_PUB\.n_drawn\s*=/g) || []).length === 1);
+  // SR-D5 — the cap declaration is STRUCTURAL, not authored: the HUD emits the
+  // drawn count whenever n_drawn < n whatever the state's readout list says.
+  assertTrue("the HUD declares the cap even when the state did not author the key",
+    /SR_PUB\.n_drawn\s*<\s*SR_PUB\.n/.test(hud) && /indexOf\("discs_drawn"\)\s*<\s*0/.test(hud));
+  // NEGATIVE CONTROL — the shape this forbids: a HUD with its own loop.
+  {
+    const hudRecompute = (n: number) => { let s = 0; for (let i = 0; i < n; i++) s += i * 4 / n; return Math.PI * (4 / n) * s; };
+    control("a HUD that recomputes the total is a SECOND implementation that can disagree ("
+      + hudRecompute(1000).toFixed(6) + " vs the published "
+      + stack(SQRT_P, null, 1000, "left", "disc").volume.toFixed(6) + " — equal today, "
+      + "unpoliced tomorrow)", /for\s*\(/.test(hudRecompute.toString()));
+  }
+}
+// and the RUNTIME half: the published total equals the independent series at
+// every n, on every family the stack can carry.
+{
+  let worst = 0;
+  for (const n of [4, 17, 120, 1001, 20000]) {
+    worst = Math.max(worst, Math.abs(stack(SQRT_P, null, n, "left", "disc").volume - 8 * Math.PI * (n - 1) / n));
+    const cap = stack(SQRT_P, null, n, "left", "disc");
+    if (cap.n_drawn !== Math.min(n, 120)) worst = 1;
+  }
+  check("the published total matches the series and n_drawn = min(n, cap) at every n", worst, 0, 1e-12);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 6. SR7 — the AXIS SWAP, which is a different solid, not a relabelling ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// The region under sqrt x on [0, 4] turned about the Y axis: at height y the
+// slice runs from the curve (x = y^2) out to the far edge (x = 4), so
+//   V = pi INT_0^2 (16 - y^4) dy = pi(32 - 32/5) = 128pi/5 = 80.4248
+check("about y the EXACT volume is 128pi/5 = 80.4248", E.srExactVolume(SQRT_P, null, 0, 4, "y"),
+  128 * Math.PI / 5, 1e-12);
+check("about x the SAME region gives 8pi = 25.1327", E.srExactVolume(SQRT_P, null, 0, 4, "x"),
+  8 * Math.PI, 1e-12);
+check("the y stack converges on 128pi/5", stack(SQRT_P, null, 200000, "left", "ring", "y").volume,
+  128 * Math.PI / 5, 1e-3);
+// the inner radius at height y IS y squared — the inverse, not a relabelled f
+{
+  const sp = E.srStackSpan(SQRT_P, null, 0, 4, "y");
+  check("about y the inner radius at height 1.4 is 1.96 = y^2", E.srSpanInnerR(sp, 1.4), 1.96, 1e-12);
+  check("about y the outer radius is the far edge 4, at every height", E.srSpanOuterR(sp, 0.3), 4, 1e-12);
+}
+// SR-D8 for the inverse: the families that are not one-to-one THROW.
+assertTrue("a circle_arc revolved about y THROWS (two x for every y — a branch choice)",
+  throws(() => E.srInvF({ family: "circle_arc", r: 2, x0: 0, c: 0 }, 1)));
+assertTrue("a sin profile revolved about y THROWS", throws(() => E.srInvF({ family: "sin", A: 1, omega: 1, phi: 0, c: 0 }, 0.5)));
+assertTrue("an exp profile revolved about y THROWS — monotone, but DECLARED not bought",
+  throws(() => E.srInvF({ family: "exp", A: 1, k: 1, c: 0 }, 2)));
+// NEGATIVE CONTROL — the symbol swap: reuse the x formula and call it y.
+control("a y-revolve that merely swaps symbols returns 25.1327, not 80.4248",
+  Math.abs(8 * Math.PI - 128 * Math.PI / 5) > 1);
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 7. SR-D2 — determinism: same ms in, same bytes out, no carry-over ===");
+// ═══════════════════════════════════════════════════════════════════════════
+{
+  // (i) the summation carries NO state between calls: a big n between two small
+  // ones must not change the small one's answer.
+  const a1 = stack(SQRT_P, null, 5, "left", "disc");
+  stack(SQRT_P, null, 20000, "left", "disc");
+  const a2 = stack(SQRT_P, null, 5, "left", "disc");
+  check("srDiscSum at n = 5 is identical either side of an n = 20 000 call", a2.volume, a1.volume, 0);
+  assertTrue("...including its placement array", JSON.stringify(a1.place) === JSON.stringify(a2.place));
+  // (ii) the surface writer produces byte-identical vertex buffers at the same
+  // theta, into two independent buffers.
+  const S = new Function([
+    grabVar("SR_FAMILIES"), grabVar("SR_SURF_NU"), grabVar("SR_SURF_NTH"),
+    grabFn("srClamp"), grabFn("srClamp01"), grabFn("srProfileFamily"), grabFn("srF"),
+    grabFn("srWriteSurface"), "return { srWriteSurface, SR_SURF_NU, SR_SURF_NTH };",
+  ].join("\n"))() as Record<string, any>;
+  const mk = () => ({
+    visible: true,
+    geometry: {
+      attributes: { position: { array: new Float32Array((S.SR_SURF_NTH + 1) * (S.SR_SURF_NU + 1) * 3), needsUpdate: false } },
+      drawRange: { start: 0, count: 0 },
+      setDrawRange(s: number, c: number) { this.drawRange = { start: s, count: c }; },
+    },
+  });
+  const A = mk(), B = mk(), C = mk();
+  const f = (u: number) => Math.sqrt(u);
+  S.srWriteSurface(A, 0, 4, "x", f, 137.5);
+  S.srWriteSurface(B, 0, 4, "x", f, 300);        // B is walked THROUGH another angle
+  S.srWriteSurface(B, 0, 4, "x", f, 137.5);
+  S.srWriteSurface(C, 0, 4, "x", f, 137.5);
+  const eq = (p: Float32Array, q: Float32Array) => p.every((v, i) => v === q[i]);
+  assertTrue("two independent writes at the same theta are BYTE-identical",
+    eq(A.geometry.attributes.position.array, C.geometry.attributes.position.array));
+  assertTrue("...and a buffer walked through another angle first lands on the same bytes "
+    + "(no accumulation, no history)",
+    eq(A.geometry.attributes.position.array, B.geometry.attributes.position.array));
+  // (iii) theta itself is a closed form of ms — a re-pin cannot land elsewhere.
+  const T = new Function([
+    grabFn("srClamp"), grabFn("srClamp01"), grabFn("srHoldTotal"), grabFn("srRampFrac"),
+    grabFn("srThetaDeg"), "return { srThetaDeg };",
+  ].join("\n"))() as Record<string, any>;
+  const srB = { mode: "sweep", theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 1500, duration_ms: 12000 } };
+  check("theta at 7500 ms is 214.3 deg, computed from the clock alone",
+    T.srThetaDeg(srB, 7500), 360 * (7500 - 1500) / 12000, 1e-12);
+  assertTrue("...and re-asking at 7500 after asking at 11 000 gives the same answer",
+    (T.srThetaDeg(srB, 11000), T.srThetaDeg(srB, 7500)) === 180);
+  assertTrue("a state with no theta_ramp is NOT mid-sweep (region 0, every other mode 360)",
+    T.srThetaDeg({ mode: "region" }, 5000) === 0 && T.srThetaDeg({ mode: "stack" }, 5000) === 360);
+  // NEGATIVE CONTROL — n (or theta) from a frame counter.
+  {
+    let frames = 0;
+    const fromCounter = () => { frames++; return frames * 6; };
+    const first = fromCounter(); fromCounter(); fromCounter();
+    control("a theta derived from a FRAME COUNTER returns " + fromCounter()
+      + " the fourth time it is asked for the same instant, not " + first,
+      fromCounter() !== first);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+console.log("\n=== 7b. GLOW — a translucent volume is never made opaque by its own emphasis ===");
+// ═══════════════════════════════════════════════════════════════════════════
+// The generic pass REWRITES opacity: focal -> 1.0, peer -> GLOW_DIM_OPACITY. For a
+// volume you must see through, both are defects: an opaque focal stack hides the
+// axis, region and curve inside it, and a 0.20 ghost skin "dimmed" to 0.40 gets
+// TWICE as opaque. Asserted statically, on the shipped glow applier.
+{
+  const glow = grabFn("applySolidOfRevolutionGlow");
+  const dim = /var GLOW_DIM_OPACITY = ([\d.]+)/.exec(SRC);
+  assertTrue("GLOW_DIM_OPACITY is read from the renderer, not assumed", !!dim);
+  const dimV = Number(dim ? dim[1] : NaN);
+  assertTrue("every entry in the glow map carries its OWN brightenOnly flag "
+    + "(no shared literal false)", /map\[i\]\[2\]/.test(glow) && !/,\s*1,\s*false\)/.test(glow));
+  assertTrue("the two swept skins and all three disc pools are brightenOnly",
+    (glow.match(/,\s*true\]/g) || []).length === 5);
+  assertTrue("the opaque line objects still carry the peer dim (brightenOnly false)",
+    (glow.match(/,\s*false\]/g) || []).length === 5);
+  // NEGATIVE CONTROL — the shared-literal form, and what it would do to a 0.20 skin.
+  {
+    const surfOpacity = 0.20;
+    control("a peer dim applied to a 0.20 ghost skin would set it to " + dimV
+      + " — " + (dimV / surfOpacity).toFixed(1) + "x MORE opaque, which is emphasis "
+      + "running backwards", dimV > surfOpacity);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n=== 8. SR10 — the ramp, in ADVANCING PROGRESS TIME (holds excluded) ===");
 // ═══════════════════════════════════════════════════════════════════════════
 // (a) srRamp is LINEAR — it is NOT capRamp's capSmooth01.
@@ -527,6 +923,20 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
             discs: { n_ramp: { log10_from: 0.602, log10_to: 3.0, start_ms: 2000, duration_ms: 16000,
                                holds: [{ at_ms: 5000, hold_ms: 2000 }, { at_ms: 11000, hold_ms: 2000 }] } } },
     },
+    STATE_2: {
+      sr: { mode: "sweep", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4],
+            theta_ramp: { from_deg: 0, to_deg: 360, start_ms: 1500, duration_ms: 12000 } },
+    },
+    STATE_5: {
+      sr: { mode: "stack", outer: { family: "circle_arc", r: 1, x0: 0, c: 0 }, domain: [-1, 1],
+            discs: { n: 20000, max_discs_drawn: 120, rule: "left" },
+            param_ramp: { param: "r", from: 1.0, to: 2.0, start_ms: 2500, duration_ms: 14000 } },
+    },
+    STATE_6: {
+      sr: { mode: "compare", outer: { family: "power", a: 1, p: 0.5, c: 0 },
+            inner: { family: "power", a: 0.5, p: 1, c: 0 }, domain: [0, 4],
+            contrast: { kind: "radius_difference", at_ms: 1500, dissolve_at_ms: 9000 } },
+    },
     STATE_9: {
       sr: { mode: "explore", outer: { family: "power", a: 1, p: 0.5, c: 0 }, domain: [0, 4], controls: ["a", "b", "n"] },
       show_sliders: true,
@@ -537,14 +947,28 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
   const motion = deriveMotionExpectations(cfg as never);
   check("S1 pins PAST the region fill (6000 + 7000 + 600)", reveal.STATE_1, 13600, 0);
   check("S4 pins PAST the log-n ramp (2000 + 16000 + 800)", reveal.STATE_4, 18800, 0);
+  check("S2 pins PAST the theta sweep (1500 + 12000 + 700)", reveal.STATE_2, 14200, 0);
+  check("S5 pins PAST the radius sweep — the PRIMARY AHA (2500 + 14000 + 700)", reveal.STATE_5, 17200, 0);
+  check("S6 pins PAST the wrong solid's DISSOLVE (9000 + 900)", reveal.STATE_6, 9900, 0);
   assertTrue("S1 (guided) is classified reveal_hold", hold.STATE_1 === "reveal_hold");
   assertTrue("S4 (guided, with a live row) is classified reveal_hold", hold.STATE_4 === "reveal_hold");
+  assertTrue("every SR-B mode is classified: sweep / stack / compare are reveal_hold",
+    hold.STATE_2 === "reveal_hold" && hold.STATE_5 === "reveal_hold" && hold.STATE_6 === "reveal_hold");
   assertTrue("S9 (mode explore) is classified interactive", hold.STATE_9 === "interactive");
   assertTrue("S9 declares STATIC motion (user-driven)", motion.STATE_9 === false);
   assertTrue("guided states declare no motion expectation (their ramps settle)",
-    motion.STATE_1 === undefined && motion.STATE_4 === undefined);
+    motion.STATE_1 === undefined && motion.STATE_4 === undefined && motion.STATE_5 === undefined);
   assertTrue("'sr' is a recognised field_3d reveal key (a cached flattened config is not read as PCPL)",
-    Object.keys(reveal).length === 3);
+    Object.keys(reveal).length === 6);
+  // NEGATIVE CONTROL — a state whose param_ramp is NOT accounted for pins at the
+  // 1500 ms default, mid-sweep, with the two readouts of the primary aha in flight.
+  {
+    const noRamp = deriveMaxRevealTimeMs(mkConfig({
+      STATE_5: { sr: { mode: "stack", outer: { family: "circle_arc", r: 1, x0: 0, c: 0 }, domain: [-1, 1] } },
+    }) as never);
+    control("a stack state with NO ramp of any kind pins at the 1500 ms default",
+      noRamp.STATE_5 === 1500);
+  }
   // NEGATIVE CONTROL — a state with no sr block falls to the 1500 ms default,
   // which is the defect this registration exists to prevent.
   {
@@ -664,11 +1088,342 @@ console.log("\n=== 10. FLEET SAFETY — every other scenario emits byte-identica
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// SCREEN TRUTH (sections 11 + 12). The renderer ships the RULER — srProjectPoint,
+// pure and THREE-free — and this gate supplies the POSES. No pose is hardcoded,
+// defaulted or assumed anywhere in the renderer: poses are authored JSON, and the
+// engine's job is only to make them checkable.
+//
+// UNITS, and this is the wave's central defect stated as a rule: SHAPE and ANGLE
+// are scored in the ISOTROPIC tangent plane (tx, ty); FRAME FILL is scored in NDC,
+// which is the only place the 16:9 aspect belongs. A helper that returned NDC and
+// was used for angles sheared every measured angle by 1.78x — inside the gate
+// written to catch projection defects.
+//
+// The RULER IS VERIFIED BEFORE IT IS USED, because a gate that scores poses with a
+// broken projector agrees with the bug.
+// ═══════════════════════════════════════════════════════════════════════════
+const FOV = 60, ASPECT = 16 / 9, ORIGIN = [0, 0, 0];
+const P = (cam: number[], x: number, y: number, z: number) =>
+  E.srProjectPoint(cam, ORIGIN, FOV, ASPECT, x, y, z);
+
+console.log("\n=== 11a. THE RULER ITSELF, against perspective solved by hand ===");
+{
+  // camera on +z looking at the origin: a point one unit up at the origin plane
+  // subtends atan(1/5) in the isotropic plane, and NDC-y divides by tan(30 deg).
+  const c = [0, 0, 5];
+  const p = P(c, 0, 1, 0);
+  check("tangent-plane ty of (0,1,0) from [0,0,5] is 1/5", p.ty, 0.2, 1e-12);
+  check("ndcY is ty / tan(fov/2)", p.ndcY, 0.2 / Math.tan(Math.PI / 6), 1e-12);
+  const q = P(c, 1, 0, 0);
+  check("tangent-plane tx of (1,0,0) is 1/5 — the SAME scale as ty (isotropic)", q.tx, 0.2, 1e-12);
+  check("ndcX carries the 16:9 aspect and ty does NOT", q.ndcX, 0.2 / (Math.tan(Math.PI / 6) * ASPECT), 1e-12);
+  assertTrue("a point BEHIND the camera is flagged, not silently projected",
+    P(c, 0, 0, 9).behind === true);
+  check("depth is the distance along the view axis", p.depth, 5, 1e-12);
+  // NEGATIVE CONTROL — the wave's actual defect: measure a 45 deg screen angle in
+  // NDC instead of isotropic units and watch it shear.
+  {
+    const a = P(c, 1, 1, 0);
+    const isoDeg = Math.atan2(a.ty, a.tx) * 180 / Math.PI;
+    const ndcDeg = Math.atan2(a.ndcY, a.ndcX) * 180 / Math.PI;
+    control("the same 45 deg direction reads " + ndcDeg.toFixed(1) + " deg in NDC and "
+      + isoDeg.toFixed(1) + " deg isotropic — a 1.78x shear at 16:9",
+      Math.abs(ndcDeg - isoDeg) > 5);
+  }
+  // and the pairwise separation, on a pair whose answer is known by hand
+  {
+    const sep = E.srPairwiseScreenSeparationDeg(c, ORIGIN, FOV, ASPECT, [0, 0, 0], [1, 0, 0], [0, 1, 0]);
+    check("two perpendicular world directions face-on separate by 90 deg on screen", sep, 90, 1e-6);
+  }
+}
+
+console.log("\n=== 11. S3's CIRCLE, over the FULL x_cut sweep, in perspective ===");
+// A circular disc face viewed off-axis projects to an ELLIPSE, so the state whose
+// whole lesson is "every slice is a circle" can draw an ellipse. The remedy is
+// scored at the WORST position of everything that moves (A14), not at the authored
+// pose — the round-0 remedy was solved at one pose and gated at that same pose.
+// THE ASSERTION IS THE >= 0.95 FLOOR, NOT THE 0.960 SOLVE CONSTRAINT. Two aspect
+// metrics disagree by ~0.004 (conic fit vs normal angle), so a gate asserting
+// 0.960 would pass or fail on metric CHOICE. Both are measured and both reported.
+{
+  /** algebraic conic fit through projected rim points -> minor/major axis ratio.
+   *  Independent of the renderer: only srProjectPoint is shipped code. */
+  const conicAspect = (pts: Array<[number, number]>): number => {
+    let cx = 0, cy = 0;
+    for (const p of pts) { cx += p[0]; cy += p[1]; }
+    cx /= pts.length; cy /= pts.length;
+    let s = 0;
+    for (const p of pts) s += Math.hypot(p[0] - cx, p[1] - cy);
+    const sc = pts.length / s, N = 5;
+    const M = Array.from({ length: N }, () => new Array(N).fill(0));
+    const b = new Array(N).fill(0);
+    for (const p of pts) {
+      const x = (p[0] - cx) * sc, y = (p[1] - cy) * sc;
+      const row = [x * x, x * y, y * y, x, y];
+      for (let i = 0; i < N; i++) {
+        for (let j = 0; j < N; j++) M[i][j] += row[i] * row[j];
+        b[i] += row[i];
+      }
+    }
+    for (let i = 0; i < N; i++) {
+      let piv = i;
+      for (let k = i + 1; k < N; k++) if (Math.abs(M[k][i]) > Math.abs(M[piv][i])) piv = k;
+      [M[i], M[piv]] = [M[piv], M[i]]; [b[i], b[piv]] = [b[piv], b[i]];
+      for (let k = i + 1; k < N; k++) {
+        const f = M[k][i] / M[i][i];
+        for (let j = i; j < N; j++) M[k][j] -= f * M[i][j];
+        b[k] -= f * b[i];
+      }
+    }
+    const sol = new Array(N).fill(0);
+    for (let i = N - 1; i >= 0; i--) {
+      let v = b[i];
+      for (let j = i + 1; j < N; j++) v -= M[i][j] * sol[j];
+      sol[i] = v / M[i][i];
+    }
+    const [A, B, C] = sol;
+    const tr = A + C, d = Math.sqrt((A - C) ** 2 + B * B);
+    const l1 = (tr + d) / 2, l2 = (tr - d) / 2;
+    return (l1 > 0 && l2 > 0) ? Math.sqrt(Math.min(l1, l2) / Math.max(l1, l2)) : NaN;
+  };
+  const SHIFT = -2;                       // SR-D10: the apparatus sits on the origin
+  const rimConic = (cam: number[], xg: number) => {
+    const r = Math.sqrt(xg), pts: Array<[number, number]> = [];
+    for (let i = 0; i < 720; i++) {
+      const ph = (i / 720) * Math.PI * 2;
+      const p = P(cam, xg + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+      pts.push([p.tx, p.ty]);
+    }
+    return conicAspect(pts);
+  };
+  const rimNormal = (cam: number[], xg: number) => {
+    const vx = xg + SHIFT - cam[0], vy = -cam[1], vz = -cam[2];
+    return Math.abs(vx / Math.hypot(vx, vy, vz));
+  };
+  const sweep = (cam: number[], f: (c: number[], x: number) => number) => {
+    let min = 2, at = 0;
+    for (let i = 1; i <= 80; i++) {
+      const x = i * 0.05, v = f(cam, x);
+      if (v < min) { min = v; at = x; }
+    }
+    return { min, at };
+  };
+  const DESIGN = [7.83, 0.80, 1.46];      // the CHECKPOINT-A pose, supplied by the gate
+  const ROUND0 = [11.0, 1.6, 2.9];        // the pose the remedy replaced
+  const dc = sweep(DESIGN, rimConic), dn = sweep(DESIGN, rimNormal);
+  console.log(`      design pose worst aspect: conic ${dc.min.toFixed(4)} @x=${dc.at.toFixed(2)}`
+    + `  |  normal-angle ${dn.min.toFixed(4)} @x=${dn.at.toFixed(2)}  (they differ by `
+    + `${Math.abs(dc.min - dn.min).toFixed(4)} — which is why the FLOOR is asserted)`);
+  assertTrue("the design pose holds aspect >= 0.95 at EVERY one of the 80 swept x_cut "
+    + "positions, on BOTH metrics", dc.min >= 0.95 && dn.min >= 0.95);
+  assertTrue("...and the worst position is the FAR end of the travel, not the authored pose",
+    Math.abs(dc.at - 4) < 1e-9);
+  // (b) the solid never reads as a flat disc: projected axial length / face diameter
+  {
+    const r = Math.sqrt(4), pts: Array<[number, number]> = [];
+    for (let i = 0; i < 360; i++) {
+      const ph = (i / 360) * Math.PI * 2;
+      const p = P(DESIGN, 4 + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+      pts.push([p.tx, p.ty]);
+    }
+    let dia = 0;
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      dia = Math.max(dia, Math.hypot(pts[i][0] - pts[j][0], pts[i][1] - pts[j][1]));
+    }
+    const a0 = P(DESIGN, 0 + SHIFT, 0, 0), a1 = P(DESIGN, 4 + SHIFT, 0, 0);
+    const axial = Math.hypot(a0.tx - a1.tx, a0.ty - a1.ty);
+    console.log("      projected axial length / face diameter at x = 4: "
+      + (100 * axial / dia).toFixed(1) + "%  (floor 8 %)");
+    assertTrue("the solid's projected depth is >= 8 % of its face diameter", axial / dia >= 0.08);
+  }
+  // (d) the axis line and the profile curve never collapse onto each other
+  {
+    const sep = E.srPairwiseScreenSeparationDeg(DESIGN, ORIGIN, FOV, ASPECT,
+      [1 + SHIFT, 1, 0], [1, 0, 0], [1, 0.5, 0]);   // axis tangent vs curve tangent at x = 1
+    console.log("      (axis, curve) pairwise screen separation at x = 1: " + sep.toFixed(1) + " deg");
+    assertTrue("the axis and the profile curve separate by >= 15 deg on screen", sep >= 15);
+  }
+  // (e) the whole solid stays inside the frame
+  {
+    let mx = 0, my = 0;
+    for (let i = 0; i <= 60; i++) {
+      const x = 4 * i / 60, r = Math.sqrt(x);
+      for (let k = 0; k < 48; k++) {
+        const ph = (k / 48) * Math.PI * 2;
+        const p = P(DESIGN, x + SHIFT, r * Math.cos(ph), r * Math.sin(ph));
+        mx = Math.max(mx, Math.abs(p.ndcX)); my = Math.max(my, Math.abs(p.ndcY));
+      }
+    }
+    console.log("      max |NDC| over the whole solid: (" + mx.toFixed(3) + ", " + my.toFixed(3) + ")");
+    assertTrue("max |NDC| <= 0.80 over the whole solid", Math.max(mx, my) <= 0.80);
+  }
+  // FOUR NEGATIVE CONTROLS.
+  const r0c = sweep(ROUND0, rimConic), r0n = sweep(ROUND0, rimNormal);
+  control("round 0's own pose [11.0, 1.6, 2.9] FAILS the 0.95 floor at x = 4 (conic "
+    + r0c.min.toFixed(4) + ", normal " + r0n.min.toFixed(4) + ") — the gate carries the "
+    + "history of the defect it was written for", r0c.min < 0.95 && r0n.min < 0.95);
+  control("an aspect scored ONLY at the authored pose x = 0 reads "
+    + rimConic(ROUND0, 0.05).toFixed(4) + " and would PASS the pose that fails — the "
+    + "vacuous pass PROVED, not assumed", rimConic(ROUND0, 0.05) >= 0.95);
+  {
+    // an on-axis camera: the circle is perfect and the solid is a disc
+    const onAxis = [9, 0, 0];
+    const a0 = P(onAxis, 0 + SHIFT, 0, 0), a1 = P(onAxis, 4 + SHIFT, 0, 0);
+    const axial = Math.hypot(a0.tx - a1.tx, a0.ty - a1.ty);
+    control("an ON-AXIS camera draws a perfect circle (" + rimConic(onAxis, 4).toFixed(4)
+      + ") with " + (axial * 100).toFixed(2) + "% axial extent — it fails the DEPTH floor, "
+      + "which is why a circle metric alone is not a camera solve", axial < 1e-6);
+  }
+  {
+    // a per-object foreshortening metric passes where the pairwise one fails: the
+    // apparatus lives in the plane z = 0, so a camera IN that plane views it
+    // edge-on — every object still has a perfectly good foreshortening of its own,
+    // and the axis and the curve lie on top of each other on screen.
+    const bad = [6.0, 3.0, 0.05];
+    const perObject = rimNormal(bad, 1) > 0.30;   // each object individually "visible"
+    const pair = E.srPairwiseScreenSeparationDeg(bad, ORIGIN, FOV, ASPECT,
+      [1 + SHIFT, 1, 0], [1, 0, 0], [1, 0.5, 0]);
+    control("a per-object metric PASSES at a pose where the pairwise separation is "
+      + pair.toFixed(1) + " deg — a per-object camera check cannot see two things collapsing",
+      perObject && pair < 15);
+  }
+}
+
+console.log("\n=== 12. S9's explore camera, over the FULL slider product, ENUMERATED ===");
+// A camera solved from the default slider values is a camera solved for one point
+// of a 793-point product, and a sweep of ONE axis with the other held is a search
+// that hides the feasible region in the axis it held fixed.
+{
+  const solidExtent = (cam: number[], a: number, b: number) => {
+    const shift = -b / 2;
+    let mx = 0, my = 0, ymin = Infinity, ymax = -Infinity;
+    for (let i = 0; i <= 60; i++) {
+      const x = b * i / 60, r = a * Math.sqrt(x);
+      for (let k = 0; k < 48; k++) {
+        const ph = (k / 48) * Math.PI * 2;
+        const p = P(cam, x + shift, r * Math.cos(ph), r * Math.sin(ph));
+        mx = Math.max(mx, Math.abs(p.ndcX)); my = Math.max(my, Math.abs(p.ndcY));
+        ymin = Math.min(ymin, p.ndcY); ymax = Math.max(ymax, p.ndcY);
+      }
+    }
+    // NDC y runs -1..1, so the frame is 2 NDC tall and the span FRACTION is /2
+    return { mx, my, span: (ymax - ymin) / 2 };
+  };
+  const EXPLORE = [5.42, 3.43, 6.32];
+  let worst = { v: 0, a: 0, b: 0 }, minSpan = { v: 9, a: 0, b: 0 }, corners = 0;
+  for (let ia = 0; ia <= 12; ia++) {
+    for (let ib = 0; ib <= 60; ib++) {
+      const a = 0.8 + ia * 0.05, b = 1.0 + ib * 0.05;
+      corners++;
+      const m = solidExtent(EXPLORE, a, b);
+      const v = Math.max(m.mx, m.my);
+      if (v > worst.v) worst = { v, a, b };
+      if (m.span < minSpan.v) minSpan = { v: m.span, a, b };
+    }
+  }
+  check("the product is ENUMERATED, not sampled: 13 x 61 corners", corners, 793, 0);
+  console.log(`      worst max |NDC| = ${worst.v.toFixed(3)} at a = ${worst.a.toFixed(2)}, `
+    + `b = ${worst.b.toFixed(2)}  |  min corner screen span = ${(minSpan.v * 100).toFixed(1)}% `
+    + `at a = ${minSpan.a.toFixed(2)}, b = ${minSpan.b.toFixed(2)}`);
+  assertTrue("BOTH are reported and BOTH are asserted — an angle-only or fill-only "
+    + "report is not a solve: max |NDC| <= 0.80 AND min span >= 12 %",
+    worst.v <= 0.80 && minSpan.v >= 0.12);
+  assertTrue("the worst corner is the LARGEST solid (a = 1.40, b = 4.00), as designed",
+    Math.abs(worst.a - 1.40) < 1e-9 && Math.abs(worst.b - 4.00) < 1e-9);
+  // TWO NEGATIVE CONTROLS. Both are framed against a TIGHTER floor than the shipped
+  // one, because at 0.80 every search passes and a control that cannot fail proves
+  // nothing: what is being demonstrated is that a partial search HIDES NDC.
+  {
+    const dflt = solidExtent(EXPLORE, 1.0, 4.0);
+    const dv = Math.max(dflt.mx, dflt.my);
+    control("framing computed from the DEFAULT corner alone reads " + dv.toFixed(3)
+      + " and misses " + (worst.v - dv).toFixed(3) + " of NDC at the a = 1.40 corner",
+      dv < worst.v - 0.05);
+    let bOnly = 0;
+    for (let ib = 0; ib <= 60; ib++) {
+      const m = solidExtent(EXPLORE, 1.0, 1.0 + ib * 0.05);
+      bOnly = Math.max(bOnly, Math.max(m.mx, m.my));
+    }
+    control("a sweep of b with a HELD at its default reads " + bOnly.toFixed(3)
+      + " — it would PASS a 0.60 floor that the full product (" + worst.v.toFixed(3)
+      + ") fails: the one-axis search hides the feasible region in the axis it held",
+      bOnly <= 0.60 && worst.v > 0.60);
+  }
+}
+
+console.log("\n=== 13. S5's PRIMARY AHA, on the RENDERED STRINGS, EXHAUSTIVELY ===");
+// The state claims the disc total and (4/3)pi r cubed "stay equal at every r".
+// The closed form, derived by hand here and NOT read off the renderer: for
+// f = sqrt(r^2 - x^2) on [-r, r] the semicircle vanishes at both ends, so the LEFT
+// rule IS the trapezoid rule, and
+//     V_n(r) = (4/3) pi r^3 (1 - 1/n^2),   gap = (4/3) pi r^3 / n^2
+// Quantising r to its slider step does not make the claim TRUE — n does that. It
+// makes it PROVABLE: the reachable set is 101 values, so this is an EXHAUSTIVE
+// assertion over a finite set rather than a probabilistic bound.
+{
+  const R_STEP = 0.01, N_SHIP = 20000, N_CONTROL = 1000;
+  const radii: number[] = [];
+  for (let i = 0; i <= 100; i++) radii.push(Math.round((1 + i * R_STEP) / R_STEP) * R_STEP);
+  check("the reachable radius set is exactly 101 values", radii.length, 101, 0);
+  const sphere = (r: number, n: number) =>
+    E.srDiscSum({ outer: { family: "circle_arc", r, x0: 0, c: 0 }, inner: null,
+      x0: -r, x1: r, n, axis: "x", rule: "left", kind: "disc", max_drawn: 120 });
+  // (i) the closed form the claim rests on, to 1e-12
+  {
+    let worst = 0;
+    for (const r of [1.0, 1.5, 2.0]) {
+      for (const n of [120, 316, 1000, 20000]) {
+        worst = Math.max(worst, Math.abs(sphere(r, n).volume - (4 / 3) * Math.PI * r ** 3 * (1 - 1 / (n * n))));
+      }
+    }
+    check("the disc sum equals (4/3)pi r^3 (1 - 1/n^2) at 3 radii x 4 counts", worst, 0, 1e-12);
+  }
+  // (ii) THE STRING ASSERTION, over all 101 radii, at the shipped n
+  {
+    let bad = 0, worstGap = 0, first = "";
+    for (const r of radii) {
+      const got = sphere(r, N_SHIP).volume, want = (4 / 3) * Math.PI * r ** 3;
+      worstGap = Math.max(worstGap, Math.abs(want - got));
+      if (E.srFmt(got, 4) !== E.srFmt(want, 4)) {
+        bad++;
+        if (!first) first = `r=${r.toFixed(2)} ${E.srFmt(got, 4)} vs ${E.srFmt(want, 4)}`;
+      }
+    }
+    console.log("      worst analytic gap at n = 20 000: " + worstGap.toExponential(3)
+      + "  (display quantum 1e-4)");
+    assertTrue("at n = 20 000 all 101 reachable radii format to the IDENTICAL 4-dp string ("
+      + bad + " disagree)", bad === 0);
+    assertTrue("...and the analytic gap is <= 8.38e-8 at every one, four orders below the "
+      + "display quantum", worstGap <= 8.38e-8);
+  }
+  // TWO NEGATIVE CONTROLS.
+  {
+    let bad = 0, first = "";
+    for (const r of radii) {
+      const got = sphere(r, N_CONTROL).volume, want = (4 / 3) * Math.PI * r ** 3;
+      if (E.srFmt(got, 4) !== E.srFmt(want, 4)) { bad++; if (!first) first = `r=${r.toFixed(2)} ${E.srFmt(got, 4)} vs ${E.srFmt(want, 4)}`; }
+    }
+    control("n = 1000 DISAGREES at " + bad + " of the 101 radii (" + first
+      + ") — the measured number that killed round 0's n choice", bad === 13);
+    // an UNQUANTISED r: the set is not enumerable, so the claim can only be sampled
+    let sampledBad = 0;
+    for (let i = 0; i < 5000; i++) {
+      const r = 1 + Math.abs(Math.sin(i * 12.9898)) ;            // deterministic spread in [1,2]
+      const got = sphere(r, N_CONTROL).volume, want = (4 / 3) * Math.PI * r ** 3;
+      if (E.srFmt(got, 4) !== E.srFmt(want, 4)) sampledBad++;
+    }
+    control("an UNQUANTISED r has no finite reachable set — 5 000 samples at n = 1000 find "
+      + sampledBad + " disagreements and can never prove there are no more",
+      sampledBad > 0);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 console.log("\n" + "═".repeat(78));
-console.log("  sections run: 0, 1, 2, 4a, 8, 9, 10  (SR-A scope)");
+console.log("  sections run: 0, 1, 2, 3, 4, 4a, 4b, 5, 6, 7, 8, 9, 10, 11, 11a, 12, 13");
 console.log("  negative controls fired: " + controlsFired);
-console.log("  NOT RUN — sections 3-7, 11-13 land with SR-B (theta sweep, disc/ring");
-console.log("  stack, SR-D3 volume publication, SR-D5 cap, axis swap, screen truth).");
+console.log("  THE EYE CANNOT RUN on this scenario: no concept JSON authors it yet, so");
+console.log("  there are no frames and no baseline. This gate is the only evidence.");
 console.log("═".repeat(78));
 if (failures > 0) {
   console.log("\n❌ check:solid-of-revolution FAILED — " + failures + " assertion(s)\n");

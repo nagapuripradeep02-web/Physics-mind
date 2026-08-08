@@ -2380,6 +2380,13 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(asNum(srNRamp.start_ms, 0) + asNum(srNRamp.duration_ms, 16000) + 800);
             }
         }
+        // the SR-B parameter sweep (x_cut / r / b). S5's radius sweep IS the primary
+        // aha and S8's b sweep IS the limits beat: a pin before either closes
+        // photographs the claim half-made, with the two readouts mid-flight.
+        const srParam = asObj(srState.param_ramp);
+        if (srParam && typeof srParam.start_ms === 'number') {
+            candidates.push(asNum(srParam.start_ms, 0) + asNum(srParam.duration_ms, 12000) + 700);
+        }
         // the wrong-solid contrast beat settles only after it DISSOLVES — the whole
         // point of the beat is that the wrong picture leads and CLEARS.
         const srContrast = asObj(srState.contrast);
