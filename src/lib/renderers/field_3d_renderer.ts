@@ -83,6 +83,17 @@ export interface Field3DConfig {
         // chemistry 3D render surface — see the scenario header comment in the
         // renderer body for the per-state config shape.
         'orbital_shapes' |
+        // solid_of_revolution (MATHEMATICS — Phase 0 dispatches SR-A + SR-B,
+        // 2026-08-08): a plane region under an AUTHORED curve, drawn on a ticked
+        // coordinate frame built as flat 3D geometry in the revolution plane, swept
+        // about either axis into a solid, and decomposed into a disc or ring stack
+        // whose total is PUBLISHED by the one summation that computes it. The
+        // profile is a CLOSED enum (power | circle_arc | sin | exp), never an
+        // expression evaluator, because every member has an analytic integral of
+        // f squared and the gate asserts the volume against a closed form to
+        // 1e-12. See docs/skeletons/solids_of_revolution_skeleton.md and the
+        // scenario header comment in the renderer body.
+        'solid_of_revolution' |
         // bonding_scene (CHEMISTRY BONDING WAVE — Phase 0 dispatch E1, 2026-08-01):
         // a scene of charged UNITS (rigid multi-atom molecules, or ions on a
         // lattice) with per-atom partial charge, bond-dipole arrows + a derived
@@ -69150,6 +69161,1537 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ═══════════════════════════════════════════════════════════════════════
+    // solid_of_revolution — VOLUME BY INTEGRATION (MATHEMATICS, 2026-08-08).
+    //
+    //   SR-A builds: the scenario SHELL (build / apply / per-frame
+    //   update / glow), the CLOSED PROFILE ENUM (srF + its analytic antiderivatives),
+    //   the TICKED COORDINATE FRAME as flat 3D geometry with DOM tick numbers, the
+    //   PLANE REGION mesh, the value-only HUD, and the LOG-n RAMP.
+    //   SR-B adds: the theta sweep into a solid (SR5), the disc / ring stack with
+    //   its PUBLISHED volume total and its drawing cap (SR6 / SR-D3 / SR-D5), the
+    //   axis-of-revolution selector (SR7), the parameter sweep with drag-seize,
+    //   the mid-state camera schedule (SR14) and the screen-truth instrument.
+    //
+    //   SR-B — WHERE THE DISC TOTAL IS COMPUTED, AND WHY IT IS NOT INSIDE THE
+    //   PLACEMENT LOOP. The design (SR-D3) said the total is computed "inside the
+    //   loop that places the cylinders". That WORDING is unsatisfiable the moment
+    //   the cap engages: S5 runs n = 20 000 while max_discs_drawn is 120, so the
+    //   placement loop runs 120 times and a total computed there would be the sum
+    //   of 120 terms — the wrong number, on the one state whose whole claim is an
+    //   equality. What SR-D3 (and cartesian_plane's D11) actually BUYS is a
+    //   property: a primitive that computes a quantity while placing its own pixels
+    //   PUBLISHES it, never prints it, and NOTHING ELSE RECOMPUTES IT. That
+    //   property is what is honoured here. srDiscSum() is the ONE summation, called
+    //   ONCE per frame; it accumulates all n terms and returns, in the same pass,
+    //   the per-disc radii for the <= max_discs_drawn the picture actually draws.
+    //   ONE IMPLEMENTATION, TWO CONSUMERS — the HUD reads SR_PUB, the placement
+    //   loop reads place[]. There is no second sum anywhere and the gate asserts
+    //   that statically (one call site, and a HUD with no summation of its own).
+    //
+    //   SR-D5 — AND WHEN THE CAP ENGAGES THE CANVAS SAYS SO, STRUCTURALLY. A
+    //   picture drawn at 120 beside a number computed at 20 000 is a provenance
+    //   split; the sigma/pi scar is a slider reading 1.000 beside a HUD reading
+    //   0.000 in one frame. So the drawn-count line is NOT gated on the authored
+    //   readout list: whenever n_drawn < n the HUD emits it whether the state asked
+    //   for it or not. A declaration a state can forget to author is not a
+    //   declaration.
+    //
+    //   THE CAP BOUNDS COST, NEVER EXTENT (the paid-for F2 lesson from PCPL's
+    //   pcpl_riemann_bars_max_bars_drawn_truncates_the_partition_instead_of_
+    //   bounding_its_cost, fixed 2026-08-08). Keeping the FIRST 120 discs of
+    //   20 000 would draw a stack covering 0.6 % of the solid — a picture that
+    //   SHRINKS as n rises, the exact opposite of a convergence beat. The drawn
+    //   indices are an integer linspace over the full [0, n) range, anchored at
+    //   i = 0 and i = n-1, so the drawn stack spans the whole solid at every n.
+    //
+    //   WHY A CLOSED ENUM AND NOT AN EXPRESSION EVALUATOR (blocker 1, decided at
+    //   design time and implemented here rather than re-argued): every enum member
+    //   has an ANALYTIC integral of f squared, so the gate asserts the shipped
+    //   volume against a closed form to 1e-12. An evaluator forces numeric
+    //   quadrature, which cannot distinguish an engine bug from quadrature error —
+    //   on the one number this concept exists to produce. Secondary: an evaluator
+    //   is a fleet-wide Rule-40 platform change none of the other 59 scenarios has
+    //   ever asked for.
+    //
+    //   SR-D8 — AN UNKNOWN PROFILE FAMILY THROWS. There is no family || "power"
+    //   fallback anywhere in this block: a valid default is more dangerous than one
+    //   that throws, because a silently-wrong curve still draws a believable solid.
+    //   Same rule for mode, for readout keys and for glow keys — every enum here is
+    //   CLOSED and every miss is loud.
+    //
+    //   SR-D2 — NO ACCUMULATION. Every value is a pure function of state-local ms:
+    //   reveal fractions, the ramp, the sampled curve, the region strip, the tick
+    //   label screen positions. Nothing caches between frames and nothing derives a
+    //   count from a frame counter, so a SET_TIME_FREEZE re-pin to the same at_ms
+    //   redraws byte-identical pixels (Rule 26/36). This scenario is therefore in
+    //   the accumulator-free snap-to-pin set.
+    //
+    //   SR-D10 — the whole apparatus is authored in GRAPH coordinates and shifted
+    //   onto the world origin by srShiftX = -(domain0 + domain1) / 2, because the
+    //   camera TARGET is not authorable (the open MAJOR row
+    //   field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable).
+    //
+    //   TICK NUMBERS ARE DOM, NOT SPRITES (blocker 2). A world-space sprite cannot
+    //   control its glyph height in device px, decollides blind to the projection,
+    //   and is invisible to every DOM probe — three OPEN scars. The tick container
+    //   is a body child positioned per frame from nlbProjPx (:41833, already ships,
+    //   used 7x), which dissolves all three and rides Rule 39f widget discovery for
+    //   free (data-wg-label "Axis numbers").
+    // ═══════════════════════════════════════════════════════════════════════
+
+    // ── The CLOSED enums. Membership is checked, never defaulted (SR-D8). ──
+    var SR_MODES = { region: 1, sweep: 1, slice: 1, stack: 1, compare: 1, explore: 1 };
+    // With SR-B landed EVERY declared mode renders completely. The map is kept
+    // (rather than deleted with its staging note) because it is now a LIVE
+    // invariant: a future mode added to SR_MODES and not to this map renders the
+    // shared apparatus and nothing else, silently, and srWarnStage is what makes
+    // that loud. The gate asserts the two maps are equal.
+    var SR_MODES_COMPLETE = { region: 1, sweep: 1, slice: 1, stack: 1, compare: 1, explore: 1 };
+    var SR_FAMILIES = { power: 1, circle_arc: 1, sin: 1, exp: 1 };
+    // The sampling rule for the stack. CLOSED. This concept authors "left" in
+    // every state; "right" and "midpoint" ship because they cost one line each and
+    // because three independent closed forms through ONE placement loop is a far
+    // stronger check of that loop than one is.
+    //   HAZARD, DECLARED RATHER THAN DISCOVERED: on the authored profile f = sqrt x
+    //   the integrand f squared is LINEAR, so the MIDPOINT rule is EXACT (8pi at
+    //   every n) and its gap beat would be a lie. A state that teaches "the sum
+    //   approaches the volume" must author "left" on this profile. The engine will
+    //   not stop an author from writing "midpoint"; this comment and the gate's
+    //   own assertion that midpoint returns 8pi exactly are what make the trap
+    //   visible instead of surprising.
+    var SR_RULES = { left: 1, right: 1, midpoint: 1 };
+    // What a slice IS. CLOSED, and the third member is the WRONG one on purpose:
+    // M2 (a ring's area is pi(R - r) squared) is a misconception the design
+    // CONFRONTS by building it, reading 1.6755, and dissolving it. Shipping it as a
+    // named kind through the same summation is what makes the wrong number
+    // reproducible and gateable instead of hand-typed into a caption.
+    var SR_KINDS = { disc: 1, ring: 1, radius_difference: 1 };
+    // Which live parameter a state's own ramp drives. CLOSED.
+    var SR_RAMP_PARAMS = { x_cut: 1, r: 1, b: 1 };
+    // Readout keys. SR-B adds every quantity the nine states name.
+    var SR_READOUTS = {
+        area: 1, x_edge: 1, a: 1, b: 1, n: 1, V_exact: 1,
+        theta: 1, x_cut: 1, r: 1, face_area: 1, R: 1, r_inner: 1, ring_area: 1,
+        V_n: 1, gap: 1, discs_drawn: 1, V_about_x: 1, V_about_y: 1, V_wrong: 1
+    };
+    var SR_GLOW_KEYS = {
+        region: 1, curve: 1, inner_curve: 1, axis: 1, frame: 1, readout: 1, formula: 1,
+        solid: 1, disc: 1, stack: 1, ring_stack: 1, wrong_solid: 1
+    };
+
+    var SR_REGION_SAMPLES = 121;    // 120 quads across the domain
+    var SR_SURF_NU = 72;            // samples along the axis of revolution
+    var SR_SURF_NTH = 96;           // theta segments (3.75 deg) — the sweep's grain
+    var SR_DISC_SEG = 28;           // radial segments of one pooled disc
+    var SR_DISC_POOL = 120;         // pooled disc meshes; the cap can never exceed it
+    var SR_DEFAULT_MAX_DRAWN = 120; // a COST bound, not a physics choice (A1)
+    var SR_CURVE_TUB = 120;         // tubular segments of the pooled profile tube
+    var SR_CURVE_RADIAL = 6;
+    var SR_CURVE_RADIUS = 0.035;
+    var SR_AXIS_RADIUS = 0.020;
+    var SR_TICK_LEN = 0.11;
+    var SR_TICK_FONT_PX = 13;       // glyph height in DEVICE px — authored, which is
+                                    // the whole reason the numbers are not sprites
+    var SR_COLORS = {
+        outer: "#4FC3F7", inner: "#FFB74D", axis: "#ECEFF1",
+        region: "#4FC3F7", frame: "#78909C", tick: "#CFD8DC",
+        solid: "#4DD0E1", disc: "#B39DDB", wrong: "#EF5350"
+    };
+
+    // ── SR-D3 — THE PUBLICATION MAP ────────────────────────────────────────
+    //   A primitive that computes a quantity while placing its own pixels
+    //   PUBLISHES it, never prints it, and nothing else recomputes it. SR_PUB is
+    //   a dedicated frame-scoped map declared OUTSIDE every object another
+    //   concern owns and replaces (the sigma/pi topology: a slider reading 1.000
+    //   beside a HUD reading 0.000 in one frame), cleared unconditionally at the
+    //   top of every frame pass, written by the pass that places the pixels, and
+    //   read afterwards by the HUD writer only.
+    //   SR-A publishes n (from the ramp, the only quantity it places pixels for
+    //   the count of). SR-B publishes volume and n_drawn from the placement loop.
+    //   IT IS NEVER REASSIGNED — a fresh object would let a stale reference read
+    //   the old map, which is the erasure this indirection exists to prevent.
+    var SR_PUB = {};
+    function srPubClear() { for (var k in SR_PUB) { if (Object.prototype.hasOwnProperty.call(SR_PUB, k)) delete SR_PUB[k]; } }
+
+    var srShiftX = 0;               // graph x -> world x offset (SR-D10)
+    var srFrameGroup = null;        // axes + arrowheads + tick marks (rebuilt on apply)
+    var srRegionMesh = null;        // pooled triangle strip (rewritten per frame)
+    var srCurveMesh = null;         // pooled tube (rewritten per frame)
+    var srInnerCurveMesh = null;
+    var srAxisMesh = null;          // the axis of revolution, drawn brighter than the frame
+    var srTicks = [];               // [{gx, gy, text}] in GRAPH coords
+    var srTickNodes = [];           // the DOM divs, 1:1 with srTicks
+    var srStageWarned = {};
+    var srSurfOuter = null;         // SR5 — the swept skin (theta-major draw range)
+    var srSurfInner = null;         // the hole's skin: a ring's inner wall, or the
+                                    // bowl the y-axis revolution leaves
+    var srDiscPool = null;          // capped cylinders — solid discs
+    var srRingOutPool = null;       // open cylinders — a ring's outer wall
+    var srRingInPool = null;        // open cylinders — a ring's inner wall
+
+    function srWarnStage(mode) {
+        if (SR_MODES_COMPLETE[mode] === 1 || srStageWarned[mode]) return;
+        srStageWarned[mode] = 1;
+        if (typeof console !== "undefined" && console.warn) {
+            console.warn("[solid_of_revolution] mode " + mode + " renders the shared apparatus only until SR-B lands the sweep / stack / axis selector.");
+        }
+    }
+
+    // ── PURE, THREE-FREE HELPERS ───────────────────────────────────────────
+    //   These take and return plain numbers and touch no THREE symbol, which is
+    //   what lets check:solid-of-revolution pull the SHIPPED bodies out of the
+    //   template literal by brace matching and run them in node with no browser.
+    function srClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+    function srClamp01(u) { return u < 0 ? 0 : (u > 1 ? 1 : u); }
+
+    function srProfileFamily(p, where) {
+        if (!p || typeof p !== "object") {
+            throw new Error("solid_of_revolution: missing profile block at " + where);
+        }
+        var fam = p.family;
+        if (SR_FAMILIES[fam] !== 1) {
+            throw new Error("solid_of_revolution: unknown profile family " + String(fam)
+                + " at " + where + " — the enum is CLOSED to power | circle_arc | sin | exp");
+        }
+        return fam;
+    }
+
+    // f(x). OUT OF DOMAIN RETURNS NON-FINITE, NEVER 0: a circle_arc clamped to 0
+    // outside its own radius draws a believable flat cap, and a believable wrong
+    // number is invisible where a NaN is not.
+    function srF(p, x) {
+        var fam = srProfileFamily(p, "srF");
+        var c = (p.c != null) ? p.c : 0;
+        if (fam === "power") {
+            var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1;
+            return a * Math.pow(x, ex) + c;
+        }
+        if (fam === "circle_arc") {
+            var r = p.r, u = x - ((p.x0 != null) ? p.x0 : 0);
+            return Math.sqrt(r * r - u * u) + c;
+        }
+        if (fam === "sin") {
+            return p.A * Math.sin(p.omega * x + ((p.phi != null) ? p.phi : 0)) + c;
+        }
+        return p.A * Math.exp(p.k * x) + c;
+    }
+
+    // Antiderivative of f — the region AREA between a profile and the axis.
+    function srAntiF(p, x) {
+        var fam = srProfileFamily(p, "srAntiF");
+        var c = (p.c != null) ? p.c : 0;
+        if (fam === "power") {
+            var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1;
+            if (Math.abs(ex + 1) < 1e-15) return a * Math.log(Math.abs(x)) + c * x;
+            return a * Math.pow(x, ex + 1) / (ex + 1) + c * x;
+        }
+        if (fam === "circle_arc") {
+            var r = p.r, u = x - ((p.x0 != null) ? p.x0 : 0);
+            return 0.5 * (u * Math.sqrt(r * r - u * u) + r * r * Math.asin(srClamp(u / r, -1, 1))) + c * u;
+        }
+        if (fam === "sin") {
+            var w = p.omega, ph = (p.phi != null) ? p.phi : 0;
+            if (Math.abs(w) < 1e-15) return (p.A * Math.sin(ph) + c) * x;
+            return -(p.A / w) * Math.cos(w * x + ph) + c * x;
+        }
+        var k = p.k;
+        if (Math.abs(k) < 1e-15) return (p.A + c) * x;
+        return (p.A / k) * Math.exp(k * x) + c * x;
+    }
+    function srIntegralF(p, x0, x1) { return srAntiF(p, x1) - srAntiF(p, x0); }
+
+    // Antiderivative of f SQUARED — the disc-method volume, over pi.
+    //   power:      a2 x^(2p+1)/(2p+1) + 2ac x^(p+1)/(p+1) + c2 x
+    //   circle_arc: (r2 u - u3/3) + c (u sqrt(r2-u2) + r2 asin(u/r)) + c2 u
+    //   sin:        A2 (x/2 - sin(2wx+2ph)/(4w)) - (2Ac/w) cos(wx+ph) + c2 x
+    //   exp:        A2 e^(2kx)/(2k) + 2Ac e^(kx)/k + c2 x
+    // The MIDDLE term of each is the cross-term 2 f_var c. Dropping it is the
+    // gate's section-2 negative control, because it is invisible whenever c = 0
+    // and every authored state in the first concept has c = 0.
+    function srAntiF2(p, x) {
+        var fam = srProfileFamily(p, "srAntiF2");
+        var c = (p.c != null) ? p.c : 0;
+        if (fam === "power") {
+            var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1;
+            var t1 = (Math.abs(2 * ex + 1) < 1e-15)
+                ? a * a * Math.log(Math.abs(x))
+                : a * a * Math.pow(x, 2 * ex + 1) / (2 * ex + 1);
+            var t2 = (Math.abs(ex + 1) < 1e-15)
+                ? 2 * a * c * Math.log(Math.abs(x))
+                : 2 * a * c * Math.pow(x, ex + 1) / (ex + 1);
+            return t1 + t2 + c * c * x;
+        }
+        if (fam === "circle_arc") {
+            var r = p.r, u = x - ((p.x0 != null) ? p.x0 : 0);
+            return (r * r * u - u * u * u / 3)
+                + c * (u * Math.sqrt(r * r - u * u) + r * r * Math.asin(srClamp(u / r, -1, 1)))
+                + c * c * u;
+        }
+        if (fam === "sin") {
+            var A = p.A, w = p.omega, ph = (p.phi != null) ? p.phi : 0;
+            if (Math.abs(w) < 1e-15) { var v0 = A * Math.sin(ph) + c; return v0 * v0 * x; }
+            return A * A * (x / 2 - Math.sin(2 * w * x + 2 * ph) / (4 * w))
+                - (2 * A * c / w) * Math.cos(w * x + ph) + c * c * x;
+        }
+        var k2 = p.k, A2 = p.A;
+        if (Math.abs(k2) < 1e-15) { var v1 = A2 + c; return v1 * v1 * x; }
+        return A2 * A2 * Math.exp(2 * k2 * x) / (2 * k2)
+            + 2 * A2 * c * Math.exp(k2 * x) / k2 + c * c * x;
+    }
+    function srIntegralF2(p, x0, x1) { return srAntiF2(p, x1) - srAntiF2(p, x0); }
+
+    // ── SR7 — THE OTHER AXIS. It needs the profile's INVERSE, and the inverse is
+    //   where a closed enum stops being free.
+    //   Revolving the region under y = f(x), x in [x0, x1], about the Y axis makes
+    //   a solid whose slice at HEIGHT y is the annulus from the curve out to the
+    //   far edge: outer radius x1 (constant), inner radius f-inverse(y). So the
+    //   stack along y needs x(y), not y(x).
+    //   ONLY "power" IS INVERTED, AND THE OTHERS THROW. circle_arc and sin are not
+    //   one-to-one on the domains this concept authors — a semicircle has two x for
+    //   every y — so an inverse for them is a CHOICE of branch, and a silently
+    //   chosen branch draws a believable wrong bowl. exp IS monotone and could be
+    //   inverted in three lines, but no state authors it and an unrendered
+    //   GEOMETRY path is not the same purchase as an unrendered numeric family:
+    //   the enum argument (b-i) is that a family contributes numbers, not pixels,
+    //   and an inverse contributes pixels. So the y axis is bought for power and
+    //   declared not bought for the rest, loudly.
+    function srInvF(p, y) {
+        var fam = srProfileFamily(p, "srInvF");
+        if (fam !== "power") {
+            throw new Error("solid_of_revolution: axis \\u0027y\\u0027 needs an invertible profile — "
+                + fam + " is not one-to-one on an authored domain; only power is inverted");
+        }
+        var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1, c = (p.c != null) ? p.c : 0;
+        return Math.pow((y - c) / a, 1 / ex);
+    }
+    // Antiderivative of (f-inverse) SQUARED, in y — the hole the y-revolution
+    // leaves. x(y) squared = ((y-c)/a)^(2/p), so its integral is
+    // a^(-2/p) (y-c)^(2/p+1) / (2/p+1), with the usual log branch at 2/p + 1 = 0.
+    function srAntiInvF2(p, y) {
+        srInvF(p, y);                       // the same family gate, same error
+        var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1, c = (p.c != null) ? p.c : 0;
+        var q = 2 / ex;
+        // q = -1 (that is p = -2) is the log branch: integral of a/(y-c) dy.
+        if (Math.abs(q + 1) < 1e-15) return a * Math.log(Math.abs(y - c));
+        return Math.pow(a, -q) * Math.pow(y - c, q + 1) / (q + 1);
+    }
+
+    // ── THE STACK SPAN — one description of "what is stacked, over what, between
+    //   which two radii", so that ONE summation serves both axes (SR7) and all
+    //   three kinds (SR6 + the wrong solid). Pure: numbers in, numbers out.
+    //     axis x: u = x over [x0, x1];  R(u) = f(u),  r(u) = g(u) or 0
+    //     axis y: u = y over [0, f(x1)]; R(u) = x1,   r(u) = max(x0, f-inverse(u))
+    //   (the clamp is what keeps a domain starting away from the origin honest:
+    //   below y = f(x0) the slice is the full annulus from x0 to x1).
+    function srStackSpan(outer, inner, x0, x1, axis) {
+        if (axis === "y") {
+            var yTop = srF(outer, x1), yBot = srF(outer, x0);
+            return { u0: 0, u1: yTop, yBot: yBot, axis: "y", x0: x0, x1: x1, outer: outer, inner: null };
+        }
+        return { u0: x0, u1: x1, yBot: 0, axis: "x", x0: x0, x1: x1, outer: outer, inner: inner };
+    }
+    function srSpanOuterR(sp, u) { return (sp.axis === "y") ? sp.x1 : srF(sp.outer, u); }
+    function srSpanInnerR(sp, u) {
+        if (sp.axis === "y") return (u <= sp.yBot) ? sp.x0 : Math.max(sp.x0, srInvF(sp.outer, u));
+        return sp.inner ? srF(sp.inner, u) : 0;
+    }
+
+    // ── SR-D3 / SR6 — THE ONE SUMMATION. Called ONCE per frame. It accumulates
+    //   ALL n terms and returns, in the SAME pass, the placements for the discs
+    //   that are actually drawn. Nothing else in this renderer computes a disc
+    //   total; the HUD reads what this publishes.
+    //
+    //   COMPENSATED (Neumaier) SUMMATION, with its justification MEASURED rather
+    //   than estimated. The first draft of this comment claimed naive accumulation
+    //   drifts ~1.5e-10 at the n = 20 000 S5 authors; that was a worst-case
+    //   estimate and it is wrong by three orders. Measured: naive drifts 1.2e-13
+    //   at n = 20 000, which would have PASSED the gate's 1e-12 tolerance.
+    //   Compensation is kept anyway, for what it actually buys — the shipped sum
+    //   holds <= 7e-15 (a 17x margin at the authored n) and stays inside 1e-12 out
+    //   to n ~ 2e7, where naive crosses it (1.27e-12, measured). So the tolerance
+    //   is a property of the summation, not of the particular n someone authored.
+    //
+    //   THE DRAWN SUBSET IS AN INTEGER LINSPACE OVER [0, n), never the first
+    //   maxDrawn indices (the PCPL F2 lesson: a cap must bound COST, not EXTENT).
+    function srDiscSum(spec) {
+        var outer = spec.outer, inner = spec.inner || null;
+        var x0 = spec.x0, x1 = spec.x1;
+        var axis = (spec.axis === "y") ? "y" : "x";
+        var rule = spec.rule, kind = spec.kind;
+        if (SR_RULES[rule] !== 1) {
+            throw new Error("solid_of_revolution: unknown disc rule " + String(rule)
+                + " — the enum is CLOSED to left | right | midpoint");
+        }
+        if (SR_KINDS[kind] !== 1) {
+            throw new Error("solid_of_revolution: unknown slice kind " + String(kind)
+                + " — the enum is CLOSED to disc | ring | radius_difference");
+        }
+        var n = Math.round(spec.n);
+        var out = { volume: 0, n: n, n_drawn: 0, du: 0, u0: 0, u1: 0, axis: axis, place: [] };
+        if (!(n >= 1)) return out;
+        var sp = srStackSpan(outer, inner, x0, x1, axis);
+        var u0 = sp.u0, u1 = sp.u1;
+        if (!isFinite(u0) || !isFinite(u1) || !(u1 > u0)) return out;
+        var du = (u1 - u0) / n;
+        out.du = du; out.u0 = u0; out.u1 = u1;
+
+        var cap = (spec.max_drawn != null) ? Math.round(spec.max_drawn) : SR_DEFAULT_MAX_DRAWN;
+        cap = srClamp(cap, 0, Math.min(n, SR_DISC_POOL));
+        var keep = null;                       // null = draw every index
+        if (cap < n) {
+            keep = {};
+            if (cap >= 1) keep[0] = 1;         // the left end, always
+            for (var k = 1; k < cap; k++) keep[Math.round(k * (n - 1) / (cap - 1))] = 1;
+        }
+
+        var off = (rule === "right") ? 1 : (rule === "midpoint" ? 0.5 : 0);
+        var sum = 0, comp = 0;                 // Neumaier accumulator
+        for (var i = 0; i < n; i++) {
+            var u = u0 + (i + off) * du;
+            var R = srSpanOuterR(sp, u), ri = srSpanInnerR(sp, u);
+            if (!isFinite(R)) R = 0;
+            if (!isFinite(ri)) ri = 0;
+            var term;
+            if (kind === "disc") term = R * R;
+            else if (kind === "ring") term = R * R - ri * ri;
+            else term = (R - ri) * (R - ri);   // the WRONG reading, built on purpose
+            var t = sum + term;
+            comp += (Math.abs(sum) >= Math.abs(term)) ? ((sum - t) + term) : ((term - t) + sum);
+            sum = t;
+            if (keep === null || keep[i] === 1) {
+                // the drawn disc sits on the SAMPLED radius but spans its own slab,
+                // so the picture and the number describe the same partition
+                out.place.push({ i: i, u: u0 + i * du, u_mid: u0 + (i + 0.5) * du, R: R, r: ri });
+            }
+        }
+        out.volume = Math.PI * du * (sum + comp);
+        out.n_drawn = out.place.length;
+        return out;
+    }
+
+    // The EXACT volume, from the closed forms — never a sum. About x it is
+    // pi(integral f^2 - integral g^2); about y it is pi(x1^2 * height - integral
+    // of the inverse squared). This is not a "disc total": it is the limit the
+    // disc total approaches, and the two are deliberately different computations
+    // because the state that shows them side by side is showing exactly that.
+    function srExactVolume(outer, inner, x0, x1, axis) {
+        if (axis === "y") {
+            var yTop = srF(outer, x1), yBot = srF(outer, x0);
+            var holeLow = x0 * x0 * Math.max(0, yBot);           // the flat annulus below f(x0)
+            var holeHigh = srAntiInvF2(outer, yTop) - srAntiInvF2(outer, Math.max(yBot, 0));
+            return Math.PI * (x1 * x1 * yTop - holeLow - holeHigh);
+        }
+        return Math.PI * (srIntegralF2(outer, x0, x1) - (inner ? srIntegralF2(inner, x0, x1) : 0));
+    }
+
+    // ── THE SCREEN-TRUTH INSTRUMENT (SR-D1 / the concept's own trap, section 3b).
+    //   Projection preserves neither angle nor circle: the disc face S3 exists to
+    //   call a circle projects to an ellipse, and a camera that reads well at the
+    //   authored pose can be a lie at the far end of the disc's travel.
+    //   These are PURE and THREE-free so the gate can score any candidate pose
+    //   against them. NO POSE IS HARDCODED, DEFAULTED OR ASSUMED ANYWHERE IN THIS
+    //   RENDERER — poses are authored JSON; this is only the ruler.
+    //
+    //   IT RETURNS BOTH UNIT SYSTEMS, AND THAT IS THE POINT. tx/ty are ISOTROPIC
+    //   tangent-plane units (x and y scaled identically) — the only units in which
+    //   a screen ANGLE or a SHAPE ratio is meaningful. ndcX/ndcY carry the aspect
+    //   ratio and are the only units in which FRAME FILL is meaningful. The wave's
+    //   central defect was a helper that returned NDC and was used for angles,
+    //   shearing every measured angle by 1.78x at 16:9 — inside the gate written
+    //   to catch projection defects.
+    function srProjectPoint(cam, target, fovDeg, aspect, px, py, pz) {
+        var zx = cam[0] - target[0], zy = cam[1] - target[1], zz = cam[2] - target[2];
+        var zl = Math.sqrt(zx * zx + zy * zy + zz * zz) || 1;
+        zx /= zl; zy /= zl; zz /= zl;
+        // right = up x z, with the renderer's own world up (0, 1, 0)
+        var xx = 1 * zz - 0 * zy, xy = 0 * zx - 0 * zz, xz = 0 * zy - 1 * zx;
+        var xl = Math.sqrt(xx * xx + xy * xy + xz * xz);
+        if (xl < 1e-12) { xx = 1; xy = 0; xz = 0; xl = 1; }
+        xx /= xl; xy /= xl; xz /= xl;
+        var yx = zy * xz - zz * xy, yy = zz * xx - zx * xz, yz = zx * xy - zy * xx;
+        var vx = px - cam[0], vy = py - cam[1], vz = pz - cam[2];
+        var a = vx * xx + vy * xy + vz * xz;
+        var b = vx * yx + vy * yy + vz * yz;
+        var d = -(vx * zx + vy * zy + vz * zz);        // depth, positive in front
+        var tx = a / d, ty = b / d;                     // ISOTROPIC
+        var th = Math.tan(fovDeg * Math.PI / 360);
+        return { tx: tx, ty: ty, depth: d, ndcX: tx / (th * aspect), ndcY: ty / th, behind: d <= 0 };
+    }
+    // The screen angle between two WORLD directions anchored at a point, measured
+    // in isotropic units (never NDC). Pairwise, because a per-object metric cannot
+    // see two objects collapsing onto each other.
+    function srPairwiseScreenSeparationDeg(cam, target, fovDeg, aspect, anchor, dirA, dirB) {
+        function screenDir(dir) {
+            var p0 = srProjectPoint(cam, target, fovDeg, aspect, anchor[0], anchor[1], anchor[2]);
+            var s = 1e-3;
+            var p1 = srProjectPoint(cam, target, fovDeg, aspect,
+                anchor[0] + dir[0] * s, anchor[1] + dir[1] * s, anchor[2] + dir[2] * s);
+            return [p1.tx - p0.tx, p1.ty - p0.ty];
+        }
+        var A = screenDir(dirA), B = screenDir(dirB);
+        var la = Math.sqrt(A[0] * A[0] + A[1] * A[1]), lb = Math.sqrt(B[0] * B[0] + B[1] * B[1]);
+        if (la < 1e-15 || lb < 1e-15) return 0;
+        var cosv = srClamp((A[0] * B[0] + A[1] * B[1]) / (la * lb), -1, 1);
+        var deg = Math.acos(cosv) * 180 / Math.PI;
+        return (deg > 90) ? 180 - deg : deg;            // an unsigned separation
+    }
+
+    // ── SR10 — THE RAMP. IT IS LINEAR, DECLARED RATHER THAN INHERITED. ─────
+    //   It clones capRamp's CLOCK discipline (:6678 — a pure function of
+    //   state-local ms, no accumulation, SET_TIME_FREEZE-reproducible) and
+    //   explicitly NOT capRamp's capSmooth01 easing (:6672). The ramped variable
+    //   advances linearly in its OWN parameter (log10 n, x, r, b, theta) and
+    //   pacing is carried by the authored holds[], not by easing. The reason is a
+    //   teaching claim: each decade of n must cost the same screen time, and an
+    //   eased ramp makes the first and last decades slower than the middle ones —
+    //   a rate the narration does not claim.
+    //
+    //   HOLD SEMANTICS, fixed so a pin is computable from the timing table alone:
+    //   duration_ms is the total WALL span INCLUDING holds; holds[{at_ms, hold_ms}]
+    //   are wall times measured from start_ms; the ADVANCING span is
+    //   duration_ms - sum(hold_ms); and the fraction at wall time t is
+    //   (t - start_ms - elapsed holds) / advancing span.
+    //   (t is STATE-LOCAL MILLISECONDS here, unlike capRamp whose t is seconds.)
+    function srHoldTotal(holds) {
+        var s = 0, hs = holds || [];
+        for (var i = 0; i < hs.length; i++) s += Math.max(0, (hs[i] && hs[i].hold_ms) || 0);
+        return s;
+    }
+    function srRampFrac(tMs, startMs, durationMs, holds) {
+        var w = tMs - ((startMs != null) ? startMs : 0);
+        var dur = Math.max(1e-9, (durationMs != null) ? durationMs : 1);
+        if (w <= 0) return 0;
+        if (w >= dur) return 1;
+        var hs = holds || [];
+        var adv = Math.max(1e-9, dur - srHoldTotal(hs));
+        var held = 0;
+        for (var i = 0; i < hs.length; i++) {
+            var h = hs[i]; if (!h) continue;
+            var at = h.at_ms || 0, hm = Math.max(0, h.hold_ms || 0);
+            if (w > at) held += Math.min(hm, w - at);
+        }
+        return srClamp01((w - held) / adv);
+    }
+    function srRamp(tMs, startMs, durationMs, from, to, holds) {
+        return from + (to - from) * srRampFrac(tMs, startMs, durationMs, holds);
+    }
+    // A LINEAR n-ramp is useless — the interesting decades flash past. Every
+    // sweeping state ramps log10 n and rounds. At 50 % of ADVANCING progress this
+    // gives n = 63 (the geometric mid of 4 and 1000); a linear ramp gives 502, and
+    // reaches n = 8 at 0.402 % of the same clock against this ramp's 12.55 %.
+    function srRampN(frac, log10From, log10To) {
+        return Math.max(1, Math.round(Math.pow(10, log10From + (log10To - log10From) * srClamp01(frac))));
+    }
+
+    // SR5 — the sweep angle, closed form on state-local ms. A state with no
+    // theta_ramp is not mid-sweep: mode "region" has no solid at all (0 degrees),
+    // every other mode shows the CLOSED solid (360). There is no "partly swept
+    // because nobody said" state.
+    function srThetaDeg(sr, tMs) {
+        var tr = sr.theta_ramp;
+        if (!tr) return (sr.mode === "region") ? 0 : 360;
+        var f = srRampFrac(tMs, tr.start_ms, tr.duration_ms, tr.holds);
+        var a0 = (tr.from_deg != null) ? tr.from_deg : 0;
+        var a1 = (tr.to_deg != null) ? tr.to_deg : 360;
+        return a0 + (a1 - a0) * f;
+    }
+
+    // Quantise a live value to ITS OWN SLIDER STEP, on every path that can set it.
+    //   This is load-bearing on S5 and it is not a cosmetic rounding. That state
+    //   claims the disc total and (4/3)pi r cubed print the SAME four decimals at
+    //   every radius it can reach. Quantising r to its authored step makes the
+    //   reachable set exactly 101 values instead of a continuum — which does not
+    //   make the claim TRUE (n does that), it makes it PROVABLE: the gate asserts
+    //   the rendered strings over the whole finite set rather than sampling it.
+    //   Both drive paths quantise: the slider input handler and the ramp below.
+    function srQuant(name, v) {
+        var sc = (config.slider_controls || {})[name];
+        var st = (sc && sc.step != null) ? sc.step : 0;
+        if (!(st > 0) || !isFinite(v)) return v;
+        return Math.round(v / st) * st;
+    }
+
+    // The per-state PARAMETER SWEEP (x_cut / r / b), closed form on state-local ms
+    // and QUANTISED to the slider step.
+    //   NAME NOTE, so a reader is not trapped by it: field_3d already carries three
+    //   per-scenario param_ramp blocks (newtons_laws_body, force_rig,
+    //   rigid_body_rotation) — the mechanism is a REPEATED PATTERN in this
+    //   renderer, never a shared helper, so this is a local clone and not a
+    //   refactor of a sealed sibling. The field name is kept for recognition; the
+    //   TIMING CONTRACT is this scenario's own (start_ms + duration_ms + holds,
+    //   like theta_ramp and n_ramp beside it) and deliberately NOT the fleet's
+    //   start_ms/end_ms, because a state's three ramps must be readable as one
+    //   timing table.
+    function srParamRamp(sr, tMs) {
+        var pr = sr.param_ramp;
+        if (!pr) return null;
+        if (SR_RAMP_PARAMS[pr.param] !== 1) {
+            throw new Error("solid_of_revolution: unknown param_ramp target " + String(pr.param)
+                + " — the enum is CLOSED to x_cut | r | b");
+        }
+        var f = srRampFrac(tMs, pr.start_ms, pr.duration_ms, pr.holds);
+        var v0 = (pr.from != null) ? pr.from : 0, v1 = (pr.to != null) ? pr.to : 1;
+        return { param: pr.param, value: srQuant(pr.param, v0 + (v1 - v0) * f) };
+    }
+
+    // ── formatting: the -0.000 clamp, applied BEFORE toFixed ────────────────
+    function srFmt(v, dp) {
+        var d = (dp != null) ? dp : 4;
+        if (!isFinite(v)) return "—";
+        if (Math.abs(v) < 0.5 * Math.pow(10, -d)) v = 0;
+        return v.toFixed(d);
+    }
+    // Sparse, integer-by-default tick VALUES over [lo, hi] at the authored step,
+    // walked from 0 outward so the origin always carries a mark (the pre-fix
+    // cartesian_plane enumerator walked from rangeMin and left a gap at 0).
+    function srTickValues(lo, hi, step) {
+        var out = [], s = Math.abs(step) > 1e-9 ? Math.abs(step) : 1;
+        var i0 = Math.ceil(lo / s - 1e-9), i1 = Math.floor(hi / s + 1e-9);
+        for (var i = i0; i <= i1; i++) out.push(i * s);
+        return out;
+    }
+
+    // ── the per-state block, validated once, no defaults on the closed enums ──
+    function srBlock(stateDef, where) {
+        var sr = stateDef && stateDef.sr;
+        if (!sr) throw new Error("solid_of_revolution: state carries no sr block at " + where);
+        if (SR_MODES[sr.mode] !== 1) {
+            throw new Error("solid_of_revolution: unknown mode " + String(sr.mode)
+                + " — the enum is CLOSED to region | sweep | slice | stack | compare | explore");
+        }
+        if (sr.axis != null && sr.axis !== "x" && sr.axis !== "y") {
+            throw new Error("solid_of_revolution: unknown axis " + String(sr.axis) + " — x | y only");
+        }
+        return sr;
+    }
+    function srDomain(sr) {
+        var d = sr.domain || [0, 1];
+        var lo = d[0], hi = d[1];
+        // S8 / S9 ramp the far end b, so the LIVE value wins over the authored one
+        // (a frame that reads the authored value while the picker moved the global
+        // is the explore-picker scar).
+        if (window.PM_srB != null) hi = window.PM_srB;
+        return [lo, hi];
+    }
+    function srOuter(sr) {
+        var p = sr.outer;
+        srProfileFamily(p, "sr.outer");
+        if (p.family === "power" && window.PM_srA != null) {
+            return { family: "power", a: window.PM_srA, p: p.p, c: p.c };
+        }
+        if (p.family === "circle_arc" && window.PM_srR != null) {
+            return { family: "circle_arc", r: window.PM_srR, x0: p.x0, c: p.c };
+        }
+        return p;
+    }
+    function srInner(sr) {
+        if (!sr.inner) return null;
+        srProfileFamily(sr.inner, "sr.inner");
+        return sr.inner;
+    }
+
+    // ── REVEAL BEATS. Every one is cue-bindable through cueTriggerMs so a pacing
+    //    trim retimes the picture with the narration instead of desyncing from it
+    //    (a bare hardcoded *_at_ms is the fleet's one-shot desync scar).
+    function srRevealWin(sr, key, defAt, defDur) {
+        var rv = sr.reveal || {};
+        var at = cueTriggerMs("sr_" + key, (rv[key + "_at_ms"] != null) ? rv[key + "_at_ms"] : defAt);
+        var dur = (rv[key + "_ms"] != null) ? rv[key + "_ms"] : defDur;
+        return { at: at, dur: Math.max(1, dur) };
+    }
+
+    // ── BUILD ──────────────────────────────────────────────────────────────
+    function srDisposeGroup(g) {
+        if (!g) return;
+        g.traverse(function (o) {
+            if (o.geometry && o.geometry.dispose) o.geometry.dispose();
+            if (o.material && o.material.dispose) o.material.dispose();
+        });
+        if (g.parent) g.parent.remove(g);
+        for (var i = sceneObjects.length - 1; i >= 0; i--) if (sceneObjects[i] === g) sceneObjects.splice(i, 1);
+    }
+
+    // A pooled tube whose vertices are REWRITTEN per frame. The curve is planar in
+    // z = 0, so the tube frame is the constant pair (in-plane normal, +z) rather
+    // than a Frenet frame — no allocation, no per-frame geometry churn, and the
+    // vertex order matches TubeGeometry so setDrawRange still reveals it left to
+    // right one segment at a time.
+    function srMakeTube(color) {
+        var tub = SR_CURVE_TUB, rad = SR_CURVE_RADIAL;
+        var vCount = (tub + 1) * (rad + 1);
+        var pos = new Float32Array(vCount * 3);
+        var idx = [];
+        for (var i = 1; i <= tub; i++) {
+            for (var j = 1; j <= rad; j++) {
+                var a = (rad + 1) * (i - 1) + (j - 1);
+                var b = (rad + 1) * i + (j - 1);
+                var c = (rad + 1) * i + j;
+                var d = (rad + 1) * (i - 1) + j;
+                idx.push(a, b, d, b, c, d);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        geo.setIndex(idx);
+        var mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: hexToThreeColor(color) }));
+        return mesh;
+    }
+    function srWriteTube(mesh, pts, radius, drawSegments) {
+        var tub = SR_CURVE_TUB, rad = SR_CURVE_RADIAL;
+        var pos = mesh.geometry.attributes.position.array;
+        var n = pts.length;
+        for (var i = 0; i <= tub; i++) {
+            var k = Math.min(n - 1, i);
+            var px = pts[k][0], py = pts[k][1];
+            // tangent from the neighbouring samples, in-plane normal = perp(tangent)
+            var kA = Math.max(0, k - 1), kB = Math.min(n - 1, k + 1);
+            var tx = pts[kB][0] - pts[kA][0], ty = pts[kB][1] - pts[kA][1];
+            var tl = Math.sqrt(tx * tx + ty * ty) || 1;
+            var nx = -ty / tl, ny = tx / tl;
+            for (var j = 0; j <= rad; j++) {
+                var v = j / rad * Math.PI * 2;
+                var cv = Math.cos(v), sv = Math.sin(v);
+                var o = ((rad + 1) * i + j) * 3;
+                pos[o] = px + radius * cv * nx;
+                pos[o + 1] = py + radius * cv * ny;
+                pos[o + 2] = radius * sv;
+            }
+        }
+        mesh.geometry.attributes.position.needsUpdate = true;
+        var segs = Math.max(0, Math.min(tub, Math.round(drawSegments)));
+        mesh.geometry.setDrawRange(0, segs * rad * 6);
+        mesh.visible = segs > 0;
+    }
+
+    function srMakeRegion(color) {
+        var quads = SR_REGION_SAMPLES - 1;
+        var pos = new Float32Array(quads * 6 * 3);
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        var mat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: 0.34,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        return new THREE.Mesh(geo, mat);
+    }
+    // The region between the outer profile and either the inner profile or the
+    // axis, as a triangle strip rebuilt from scratch every frame (SR-D2).
+    function srWriteRegion(mesh, outer, inner, x0, x1, fillFrac) {
+        var pos = mesh.geometry.attributes.position.array;
+        var quads = SR_REGION_SAMPLES - 1;
+        var span = (x1 - x0) * srClamp01(fillFrac);
+        var wrote = 0;
+        for (var q = 0; q < quads; q++) {
+            var xa = x0 + span * (q / quads), xb = x0 + span * ((q + 1) / quads);
+            var ya = srF(outer, xa), yb = srF(outer, xb);
+            var la = inner ? srF(inner, xa) : 0, lb = inner ? srF(inner, xb) : 0;
+            if (!isFinite(ya) || !isFinite(yb) || !isFinite(la) || !isFinite(lb)) continue;
+            var o = wrote * 18;
+            pos[o] = xa; pos[o + 1] = la; pos[o + 2] = 0;
+            pos[o + 3] = xb; pos[o + 4] = lb; pos[o + 5] = 0;
+            pos[o + 6] = xb; pos[o + 7] = yb; pos[o + 8] = 0;
+            pos[o + 9] = xa; pos[o + 10] = la; pos[o + 11] = 0;
+            pos[o + 12] = xb; pos[o + 13] = yb; pos[o + 14] = 0;
+            pos[o + 15] = xa; pos[o + 16] = ya; pos[o + 17] = 0;
+            wrote++;
+        }
+        mesh.geometry.attributes.position.needsUpdate = true;
+        mesh.geometry.setDrawRange(0, wrote * 6);
+        mesh.visible = wrote > 0;
+    }
+
+    // ── SR5 — THE REVOLUTION SURFACE, with a PARTIAL-THETA REVEAL. ────────────
+    //   A pooled (NTH+1) x (NU+1) grid whose vertices are rewritten every frame.
+    //   THE INDEX ORDER IS THETA-MAJOR, and that is the entire mechanism: with
+    //   every quad of theta-ring t contiguous, setDrawRange(0, sweptRings * NU * 6)
+    //   reveals the surface as an ANGLE, one ring at a time, with no geometry
+    //   rebuild and no second mesh. (The technique — reveal by draw range rather
+    //   than by rebuilding — is the renderer's own, used by acgThetaArc :26065 and
+    //   by the trail meshes; what is new here is applying it to a surface of
+    //   revolution, which no scenario in this file draws. Rule 40a on the
+    //   mechanism, not just the symbol: LatheGeometry appears NOWHERE in any
+    //   renderer, and there is no existing lathe / surface-of-revolution builder
+    //   to call.)
+    function srMakeSurface(color, opacity) {
+        var nu = SR_SURF_NU, nth = SR_SURF_NTH;
+        var pos = new Float32Array((nth + 1) * (nu + 1) * 3);
+        var idx = [];
+        for (var t = 0; t < nth; t++) {
+            for (var u = 0; u < nu; u++) {
+                var a = t * (nu + 1) + u, b = (t + 1) * (nu + 1) + u;
+                idx.push(a, b, a + 1, b, b + 1, a + 1);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        geo.setIndex(idx);
+        var mat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: opacity,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        return new THREE.Mesh(geo, mat);
+    }
+    // radiusAt(u) is handed in, so ONE writer draws the outer skin, the inner skin
+    // of a ring, and the bowl the y axis makes, with no branch of its own.
+    function srWriteSurface(mesh, u0, u1, axis, radiusAt, thetaDeg) {
+        var nu = SR_SURF_NU, nth = SR_SURF_NTH;
+        var pos = mesh.geometry.attributes.position.array;
+        var any = false;
+        for (var t = 0; t <= nth; t++) {
+            var th = (t / nth) * Math.PI * 2;
+            var cs = Math.cos(th), sn = Math.sin(th);
+            for (var i = 0; i <= nu; i++) {
+                var u = u0 + (u1 - u0) * (i / nu);
+                var R = radiusAt(u);
+                if (!isFinite(R)) R = 0;
+                if (R > 1e-6) any = true;
+                var o = (t * (nu + 1) + i) * 3;
+                if (axis === "y") { pos[o] = R * cs; pos[o + 1] = u; pos[o + 2] = R * sn; }
+                else { pos[o] = u; pos[o + 1] = R * cs; pos[o + 2] = R * sn; }
+            }
+        }
+        mesh.geometry.attributes.position.needsUpdate = true;
+        var rings = srClamp(Math.round((thetaDeg / 360) * nth), 0, nth);
+        mesh.geometry.setDrawRange(0, rings * nu * 6);
+        mesh.visible = any && rings > 0;
+    }
+
+    // ── SR6 — THE POOLED DISC STACK. ─────────────────────────────────────────
+    //   THREE pools, and the reason is the hole. A solid disc is a CAPPED
+    //   cylinder; a ring is an outer wall and an inner wall with the annulus
+    //   OPEN, because a capped outer cylinder would close the hole the state
+    //   exists to show, and a capped INNER cylinder would draw a rod through the
+    //   ring — which is M2 (subtracting radii instead of areas) rendered as
+    //   geometry. Every pool shares one geometry and one material, so 360 meshes
+    //   cost three of each.
+    //   DECLARED SIMPLIFICATION: a ring's annular END CAPS are not drawn. Adding
+    //   them is 240 more meshes for a surface that is occluded by its neighbours
+    //   everywhere except the two ends of the stack.
+    function srMakeDiscPool(color, openEnded, opacity) {
+        var geo = new THREE.CylinderGeometry(1, 1, 1, SR_DISC_SEG, 1, !!openEnded);
+        var mat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: opacity,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        var grp = new THREE.Group(), arr = [];
+        for (var i = 0; i < SR_DISC_POOL; i++) {
+            var m = new THREE.Mesh(geo, mat);
+            m.visible = false;
+            grp.add(m);
+            arr.push(m);
+        }
+        return { group: grp, meshes: arr };
+    }
+    // Place the drawn subset. The slab THICKNESS is always the TRUE du, never a
+    // thickness scaled up to stay visible: a disc drawn wider than its own slab is
+    // a picture of a different partition from the one that was summed. At n well
+    // past the cap the discs are legitimately sub-pixel and the smooth surface is
+    // what the eye sees — which is exactly what SR-D5 describes, with the drawn
+    // count still literally true.
+    function srPlaceDiscs(pool, res, kind, which, shiftX) {
+        var meshes = pool.meshes, i, m;
+        for (i = 0; i < meshes.length; i++) {
+            m = meshes[i];
+            if (!res || i >= res.place.length) { m.visible = false; continue; }
+            var pl = res.place[i];
+            var rad = (which === "inner")
+                ? pl.r
+                : ((kind === "radius_difference") ? Math.max(0, pl.R - pl.r) : pl.R);
+            if (!isFinite(rad) || rad <= 1e-9 || !isFinite(res.du)) { m.visible = false; continue; }
+            var th = Math.abs(res.du);
+            if (res.axis === "y") {
+                m.rotation.set(0, 0, 0);
+                m.position.set(shiftX, pl.u_mid, 0);
+            } else {
+                m.rotation.set(0, 0, Math.PI / 2);
+                m.position.set(shiftX + pl.u_mid, 0, 0);
+            }
+            m.scale.set(rad, th, rad);
+            m.visible = true;
+        }
+    }
+    function srHideDiscs(pool) {
+        for (var i = 0; i < pool.meshes.length; i++) pool.meshes[i].visible = false;
+    }
+
+    // ── SR3 — THE TICKED FRAME as flat 3D geometry, in the revolution plane. ──
+    //   It is NOT the cartesian_plane duplicate: in a 3D scene the mathematics
+    //   coordinates ARE the world coordinates (one graph unit = one world unit,
+    //   identity), so there is no data-to-pixel transform registry to build — the
+    //   thing that makes cartesian_plane a four-dispatch purchase. What is built
+    //   is two axis rods with cone heads and a set of tick segments.
+    //   Grid lines are deliberately NOT drawn: a 3D grid reads as clutter under a
+    //   tilted camera and Rule 34 forbids clutter. Axes, ticks and numbers only.
+    function srBuildFrame(sr) {
+        srDisposeGroup(srFrameGroup);
+        srFrameGroup = new THREE.Group();
+        srFrameGroup.position.x = srShiftX;
+        srFrameGroup.userData = { elementType: "sr_frame", id: "sr_frame" };
+        srTicks = [];
+        var fr = sr.frame || {};
+        if (fr.show_frame === false) { addToScene(srFrameGroup); return; }
+        var xr = fr.x_range || [0, 1], yr = fr.y_range || [0, 1];
+        var col = hexToThreeColor(SR_COLORS.frame);
+        var tcol = hexToThreeColor(SR_COLORS.tick);
+
+        function rod(ax, from, to) {
+            var len = to - from;
+            var g = new THREE.CylinderGeometry(SR_AXIS_RADIUS, SR_AXIS_RADIUS, len, 8);
+            var m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: col }));
+            if (ax === "x") { m.rotation.z = Math.PI / 2; m.position.set(from + len / 2, 0, 0); }
+            else { m.position.set(0, from + len / 2, 0); }
+            srFrameGroup.add(m);
+            var hg = new THREE.ConeGeometry(SR_AXIS_RADIUS * 3, SR_AXIS_RADIUS * 8, 10);
+            var hm = new THREE.Mesh(hg, new THREE.MeshBasicMaterial({ color: col }));
+            if (ax === "x") { hm.rotation.z = -Math.PI / 2; hm.position.set(to, 0, 0); }
+            else { hm.position.set(0, to, 0); }
+            srFrameGroup.add(hm);
+        }
+        rod("x", Math.min(0, xr[0]), xr[1]);
+        rod("y", Math.min(0, yr[0]), yr[1]);
+
+        var dp = (fr.tick_decimals != null) ? fr.tick_decimals : 0;
+        var xs = srTickValues(Math.min(0, xr[0]), xr[1], (fr.x_tick != null) ? fr.x_tick : 1);
+        var ys = srTickValues(Math.min(0, yr[0]), yr[1], (fr.y_tick != null) ? fr.y_tick : 1);
+        var i, g2, m2;
+        for (i = 0; i < xs.length; i++) {
+            if (Math.abs(xs[i]) < 1e-9) continue;                 // the origin carries ONE mark
+            g2 = new THREE.BoxGeometry(SR_AXIS_RADIUS * 1.6, SR_TICK_LEN, SR_AXIS_RADIUS * 1.6);
+            m2 = new THREE.Mesh(g2, new THREE.MeshBasicMaterial({ color: tcol }));
+            m2.position.set(xs[i], 0, 0);
+            srFrameGroup.add(m2);
+            srTicks.push({ gx: xs[i], gy: -SR_TICK_LEN * 1.6, text: srFmt(xs[i], dp) });
+        }
+        for (i = 0; i < ys.length; i++) {
+            if (Math.abs(ys[i]) < 1e-9) continue;
+            g2 = new THREE.BoxGeometry(SR_TICK_LEN, SR_AXIS_RADIUS * 1.6, SR_AXIS_RADIUS * 1.6);
+            m2 = new THREE.Mesh(g2, new THREE.MeshBasicMaterial({ color: tcol }));
+            m2.position.set(0, ys[i], 0);
+            srFrameGroup.add(m2);
+            srTicks.push({ gx: -SR_TICK_LEN * 1.9, gy: ys[i], text: srFmt(ys[i], dp) });
+        }
+        srTicks.push({ gx: -SR_TICK_LEN * 1.9, gy: -SR_TICK_LEN * 1.6, text: srFmt(0, dp) });
+        addToScene(srFrameGroup);
+        srSyncTickNodes();
+    }
+
+    // The DOM tick numbers. One pointer-events:none container, N absolutely
+    // positioned divs, written per frame from nlbProjPx (:41833). CSS glyph
+    // height, screen-space decollision, readable by every DOM probe.
+    function srSyncTickNodes() {
+        var cont = document.getElementById("sr_ticks");
+        if (!cont) return;
+        while (srTickNodes.length > srTicks.length) {
+            var gone = srTickNodes.pop();
+            if (gone && gone.parentNode) gone.parentNode.removeChild(gone);
+        }
+        while (srTickNodes.length < srTicks.length) {
+            var d = document.createElement("div");
+            d.className = "sr_tick";
+            d.style.cssText = "position:absolute;transform:translate(-50%,-50%);white-space:nowrap;color:"
+                + SR_COLORS.tick + ";font:" + SR_TICK_FONT_PX + "px/1.0 monospace;text-shadow:0 0 6px rgba(0,0,0,0.95);";
+            cont.appendChild(d);
+            srTickNodes.push(d);
+        }
+        for (var i = 0; i < srTicks.length; i++) srTickNodes[i].textContent = srTicks[i].text;
+    }
+    var srTmpV = null;
+    function srPlaceTickNodes(show) {
+        var cont = document.getElementById("sr_ticks");
+        if (!cont) return;
+        cont.style.display = show ? "block" : "none";
+        if (!show || typeof camera === "undefined" || !camera) return;
+        if (!srTmpV) srTmpV = new THREE.Vector3();
+        var fwd = camera.getWorldDirection(new THREE.Vector3());
+        var placed = [];
+        for (var i = 0; i < srTicks.length; i++) {
+            var node = srTickNodes[i];
+            if (!node) continue;
+            srTmpV.set(srTicks[i].gx + srShiftX, srTicks[i].gy, 0);
+            // BEHIND the camera projects to garbage — a dot product, not a second
+            // projector (nlbProjPx is the one projection helper and it already ships).
+            var behind = srTmpV.clone().sub(camera.position).dot(fwd) <= 0;
+            if (behind) { node.style.display = "none"; continue; }
+            var p = nlbProjPx(srTmpV);
+            if (!isFinite(p.x) || !isFinite(p.y)) { node.style.display = "none"; continue; }
+            var hw = (srTicks[i].text.length * SR_TICK_FONT_PX * 0.62) / 2 + 2;
+            var hh = SR_TICK_FONT_PX * 0.62;
+            var hit = false;
+            for (var j = 0; j < placed.length; j++) {
+                var q = placed[j];
+                if (Math.abs(q.x - p.x) < (q.hw + hw) && Math.abs(q.y - p.y) < (q.hh + hh)) { hit = true; break; }
+            }
+            // Decollision runs in SCREEN space, where the collision happens. Ticks
+            // are ordered origin-outward, so the label nearest the origin wins.
+            if (hit) { node.style.display = "none"; continue; }
+            placed.push({ x: p.x, y: p.y, hw: hw, hh: hh });
+            node.style.display = "block";
+            node.style.left = p.x.toFixed(1) + "px";
+            node.style.top = p.y.toFixed(1) + "px";
+        }
+    }
+
+    function buildSolidOfRevolution(config) {
+        // 1. the DOM surfaces — every one a body child with inline position:fixed,
+        //    which is exactly what the generic Rule-39f widget engine discovers, so
+        //    the teacher toggles cost no wiring. data-wg-label names each one.
+        var tk = document.createElement("div"); tk.id = "sr_ticks";
+        tk.setAttribute("data-wg-label", "Axis numbers");
+        tk.style.cssText = "position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:8;display:none;";
+        document.body.appendChild(tk);
+
+        // Rule 34d — the HUD clears the review chrome Full screen button (top:52px+);
+        // it is VALUE-ONLY (Rule 33d/34b) and never carries a symbolic relation.
+        var hud = document.createElement("div"); hud.id = "sr_readout";
+        hud.setAttribute("data-wg-label", "Live numbers");
+        hud.style.cssText = "position:fixed;top:52px;left:16px;background:rgba(0,0,0,0.82);color:"
+            + textColor + ";padding:9px 13px;border-radius:8px;font:13px/1.7 monospace;z-index:10;display:none;min-width:150px;";
+        document.body.appendChild(hud);
+
+        // Rule 34b — the ONE formula surface, math-serif Unicode, top-centre and
+        // below the chrome strip. The generic bottom-right #formula_overlay is
+        // suppressed for this scenario so there is never a second surface.
+        var fml = document.createElement("div"); fml.id = "sr_formula";
+        fml.setAttribute("data-wg-label", "Formula");
+        fml.style.cssText = "position:fixed;top:58px;left:50%;transform:translateX(-50%);color:#FFF176;"
+            + "font:bold 21px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;";
+        document.body.appendChild(fml);
+
+        // Rule 31 — per-state contextual rows over ONE panel, built once, shown or
+        // hidden per state, each keeping the same screen position. Ids are
+        // multi-letter and prefixed: single-letter slider ids are a shared
+        // namespace across every concept on this renderer.
+        var SC = config.slider_controls || {};
+        function def(k, fb) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : fb; }
+        function rng(k, f, fb) { return (SC[k] && SC[k][f] != null) ? SC[k][f] : fb; }
+        var sp = document.createElement("div"); sp.id = "sr_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:"
+            + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:210px;display:none;";
+        sp.innerHTML =
+            '<div id="sr_acoef_row" style="display:none"><label>Curve height a: <span id="sr_acoef_val">'
+            + Number(def("a", 1)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_acoef_slider" min="' + rng("a", "min", 0.8) + '" max="' + rng("a", "max", 1.4)
+            + '" step="' + rng("a", "step", 0.05) + '" value="' + def("a", 1) + '" style="width:100%"></div>'
+            + '<div id="sr_bend_row" style="display:none;margin-top:6px"><label>Far end b: <span id="sr_bend_val">'
+            + Number(def("b", 4)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_bend_slider" min="' + rng("b", "min", 1.0) + '" max="' + rng("b", "max", 4.0)
+            + '" step="' + rng("b", "step", 0.05) + '" value="' + def("b", 4) + '" style="width:100%"></div>'
+            + '<div id="sr_radius_row" style="display:none;margin-top:6px"><label>Radius r: <span id="sr_radius_val">'
+            + Number(def("r", 1)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_radius_slider" min="' + rng("r", "min", 1.0) + '" max="' + rng("r", "max", 2.0)
+            + '" step="' + rng("r", "step", 0.01) + '" value="' + def("r", 1) + '" style="width:100%"></div>'
+            + '<div id="sr_count_row" style="display:none;margin-top:6px"><label>Discs n: <span id="sr_count_val">'
+            + Math.round(def("n", 20)) + '</span></label>'
+            + '<input type="range" id="sr_count_slider" min="' + rng("n", "min", 4) + '" max="' + rng("n", "max", 120)
+            + '" step="' + rng("n", "step", 4) + '" value="' + Math.round(def("n", 20)) + '" style="width:100%"></div>'
+            + '<div id="sr_cut_row" style="display:none;margin-top:6px"><label>Cut at x: <span id="sr_cut_val">'
+            + Number(def("x_cut", 0)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_cut_slider" min="' + rng("x_cut", "min", 0) + '" max="' + rng("x_cut", "max", 4)
+            + '" step="' + rng("x_cut", "step", 0.05) + '" value="' + def("x_cut", 0) + '" style="width:100%"></div>'
+            // SR7's control is a CHOICE, not a magnitude, so it is a two-button
+            // toggle rather than a two-position range: a slider whose only reachable
+            // values are its two ends invites a drag that does nothing.
+            + '<div id="sr_axis_row" style="display:none;margin-top:6px"><label>Axis of revolution</label><br>'
+            + '<button type="button" id="sr_axis_x" style="margin-top:3px">about x</button> '
+            + '<button type="button" id="sr_axis_y" style="margin-top:3px">about y</button></div>';
+        document.body.appendChild(sp);
+
+        // The frame reads the LIVE global, never the authored per-state value —
+        // a picker that updates a global while the frame reads the authored value
+        // is the explore-picker scar. r is QUANTISED to its slider step in the
+        // drive path, which is what makes the reachable set finite (and gateable).
+        window.PM_srA = null; window.PM_srB = null; window.PM_srR = null; window.PM_srN = null;
+        window.PM_srX = null; window.PM_srAxis = null;
+        // DRAG-SEIZE (the fleet's own pattern — PM_nlbSweepSeized :1474). A state
+        // may both RAMP a parameter and expose its row: the ramp drives until the
+        // teacher touches the slider, and from that touch the slider owns the value
+        // for the rest of the state. Without the latch the ramp would overwrite the
+        // drag on the very next frame and the row would look broken.
+        window.PM_srSeized = {};
+        function wire(id, valId, dp, key, setter) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener("input", function () {
+                var v = parseFloat(el.value);
+                var st = parseFloat(el.step) || 0;
+                if (st > 0) v = Math.round(v / st) * st;
+                if (key) window.PM_srSeized[key] = 1;
+                setter(v);
+                var lab = document.getElementById(valId);
+                if (lab) lab.textContent = (dp === 0) ? String(Math.round(v)) : v.toFixed(dp);
+            });
+        }
+        wire("sr_acoef_slider", "sr_acoef_val", 2, "a", function (v) { window.PM_srA = v; });
+        wire("sr_bend_slider", "sr_bend_val", 2, "b", function (v) { window.PM_srB = v; });
+        wire("sr_radius_slider", "sr_radius_val", 2, "r", function (v) { window.PM_srR = v; });
+        wire("sr_count_slider", "sr_count_val", 0, "n", function (v) { window.PM_srN = Math.round(v); });
+        wire("sr_cut_slider", "sr_cut_val", 2, "x_cut", function (v) { window.PM_srX = v; });
+        function wireAxis(id, val) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener("click", function () { window.PM_srSeized.axis = 1; window.PM_srAxis = val; });
+        }
+        wireAxis("sr_axis_x", "x");
+        wireAxis("sr_axis_y", "y");
+
+        // 2. the pooled 3D objects. Each is registered with addToScene in its own
+        //    right — a child mesh that never enters sceneObjects is a layer the
+        //    per-frame updater can never match.
+        srRegionMesh = srMakeRegion(SR_COLORS.region);
+        srRegionMesh.userData = { elementType: "sr_region", id: "sr_region" };
+        addToScene(srRegionMesh);
+
+        srCurveMesh = srMakeTube(SR_COLORS.outer);
+        srCurveMesh.userData = { elementType: "sr_curve", id: "sr_curve_outer" };
+        addToScene(srCurveMesh);
+
+        srInnerCurveMesh = srMakeTube(SR_COLORS.inner);
+        srInnerCurveMesh.userData = { elementType: "sr_curve", id: "sr_curve_inner" };
+        addToScene(srInnerCurveMesh);
+
+        var ag = new THREE.CylinderGeometry(SR_AXIS_RADIUS * 1.3, SR_AXIS_RADIUS * 1.3, 1, 10);
+        srAxisMesh = new THREE.Mesh(ag, new THREE.MeshBasicMaterial({ color: hexToThreeColor(SR_COLORS.axis) }));
+        srAxisMesh.userData = { elementType: "sr_axis", id: "sr_axis" };
+        addToScene(srAxisMesh);
+
+        // SR-B — the swept skins and the three disc pools. Each pool is registered
+        // through its GROUP: a child mesh that never enters sceneObjects is a layer
+        // the glow pass and the per-frame updater can never reach.
+        srSurfOuter = srMakeSurface(SR_COLORS.solid, 0.20);
+        srSurfOuter.userData = { elementType: "sr_solid", id: "sr_solid_outer" };
+        addToScene(srSurfOuter);
+        srSurfInner = srMakeSurface(SR_COLORS.inner, 0.20);
+        srSurfInner.userData = { elementType: "sr_solid", id: "sr_solid_inner" };
+        addToScene(srSurfInner);
+
+        srDiscPool = srMakeDiscPool(SR_COLORS.disc, false, 0.55);
+        srDiscPool.group.userData = { elementType: "sr_stack", id: "sr_disc_stack" };
+        addToScene(srDiscPool.group);
+        srRingOutPool = srMakeDiscPool(SR_COLORS.disc, true, 0.60);
+        srRingOutPool.group.userData = { elementType: "sr_stack", id: "sr_ring_outer" };
+        addToScene(srRingOutPool.group);
+        srRingInPool = srMakeDiscPool(SR_COLORS.inner, true, 0.60);
+        srRingInPool.group.userData = { elementType: "sr_stack", id: "sr_ring_inner" };
+        addToScene(srRingInPool.group);
+
+        var first = config.states && config.states[Object.keys(config.states)[0]];
+        if (first && first.sr) applySolidOfRevolutionState(first);
+    }
+
+    // ── APPLY ──────────────────────────────────────────────────────────────
+    function applySolidOfRevolutionState(stateDef) {
+        var sr = srBlock(stateDef, "applySolidOfRevolutionState");
+        srWarnStage(sr.mode);
+        var dom = sr.domain || [0, 1];
+        srShiftX = -(dom[0] + dom[1]) / 2;      // SR-D10
+
+        // A state that exposes a control SEIZES the live global at its authored
+        // value on entry, so the picture opens on the lesson rather than on
+        // whatever the previous state was dragged to; a state that exposes none
+        // clears it, so the authored value is authoritative again.
+        var ctl = sr.controls || [];
+        function seize(name, glob, val, rowId, sliderId, valId, dp) {
+            var on = ctl.indexOf(name) >= 0;
+            var row = document.getElementById(rowId);
+            if (row) row.style.display = on ? "block" : "none";
+            if (!on) { window[glob] = null; return; }
+            window[glob] = val;
+            var s = document.getElementById(sliderId); if (s) s.value = String(val);
+            var l = document.getElementById(valId); if (l) l.textContent = (dp === 0) ? String(Math.round(val)) : Number(val).toFixed(dp);
+        }
+        var op = sr.outer;
+        // A NEW STATE CLEARS EVERY SEIZE LATCH. A latch that survived a state
+        // change would leave the previous state's drag driving this state's ramp,
+        // which is the dimmed-apparatus scar in a different costume: a one-way flag
+        // set on entry and never restored on exit.
+        window.PM_srSeized = {};
+        seize("a", "PM_srA", (op && op.a != null) ? op.a : 1, "sr_acoef_row", "sr_acoef_slider", "sr_acoef_val", 2);
+        seize("b", "PM_srB", dom[1], "sr_bend_row", "sr_bend_slider", "sr_bend_val", 2);
+        seize("r", "PM_srR", (op && op.r != null) ? op.r : 1, "sr_radius_row", "sr_radius_slider", "sr_radius_val", 2);
+        seize("n", "PM_srN", (sr.discs && sr.discs.n != null) ? sr.discs.n : 20, "sr_count_row", "sr_count_slider", "sr_count_val", 0);
+        seize("x_cut", "PM_srX", (sr.slice_x != null) ? sr.slice_x : dom[0], "sr_cut_row", "sr_cut_slider", "sr_cut_val", 2);
+        // the axis toggle carries no numeric row of its own
+        var axRow = document.getElementById("sr_axis_row");
+        var axOn = ctl.indexOf("axis") >= 0;
+        if (axRow) axRow.style.display = axOn ? "block" : "none";
+        window.PM_srAxis = axOn ? (sr.axis || "x") : null;
+
+        var sl = document.getElementById("sr_sliders");
+        if (sl) sl.style.display = (ctl.length ? "block" : "none");
+
+        srBuildFrame(sr);
+        srAxisMesh.position.x = srShiftX;
+
+        var fml = document.getElementById("sr_formula");
+        if (fml) {
+            fml.textContent = stateDef.formula_overlay || "";
+            fml.style.display = stateDef.formula_overlay ? "block" : "none";
+        }
+        var hud = document.getElementById("sr_readout");
+        if (hud) hud.style.display = (sr.readouts && sr.readouts.length) ? "block" : "none";
+
+        srInnerCurveMesh.visible = !!sr.inner;
+        updateSolidOfRevolutionFrame(stateDef);
+    }
+
+    // ── PER-FRAME ──────────────────────────────────────────────────────────
+    //   The ONLY site that steps this scenario. The freeze path snaps the time
+    //   variable to the pin and falls through to exactly this call, so a frozen or
+    //   dense capture runs the SAME code as live playback (a second stepping
+    //   branch at the freeze call site is how a gate passes twice on wrong pixels).
+    function updateSolidOfRevolutionFrame(stateDef) {
+        var sr = srBlock(stateDef, "updateSolidOfRevolutionFrame");
+        srPubClear();
+        var tMs = (time - stateStartTime) * 1000;
+        // The scripted sweep runs BEFORE anything reads a live global, so the
+        // curve, the region, the solid, the stack and the HUD all describe the
+        // same instant. Driving it later would draw one frame of last frame's r.
+        srDriveParamRamp(sr, tMs);
+        var outer = srOuter(sr), inner = srInner(sr);
+        var d = srDomain(sr), x0 = d[0], x1 = d[1];
+
+        var wc = srRevealWin(sr, "curve", 0, 1200);
+        var wr = srRevealWin(sr, "region", 1200, 1200);
+        var curveF = srRampFrac(tMs, wc.at, wc.dur, null);
+        var fillF = srRampFrac(tMs, wr.at, wr.dur, null);
+        if (sr.reveal === false) { curveF = 1; fillF = 1; }
+
+        // the sampled profile, recomputed from scratch every frame (SR-D2)
+        var pts = [], i, n = SR_CURVE_TUB + 1;
+        for (i = 0; i < n; i++) {
+            var x = x0 + (x1 - x0) * (i / (n - 1));
+            var y = srF(outer, x);
+            pts.push([x, isFinite(y) ? y : 0]);
+        }
+        srWriteTube(srCurveMesh, pts, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
+        srCurveMesh.position.x = srShiftX;
+        if (inner) {
+            var ip = [];
+            for (i = 0; i < n; i++) {
+                var xi = x0 + (x1 - x0) * (i / (n - 1));
+                var yi = srF(inner, xi);
+                ip.push([xi, isFinite(yi) ? yi : 0]);
+            }
+            srWriteTube(srInnerCurveMesh, ip, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
+            srInnerCurveMesh.position.x = srShiftX;
+        } else {
+            srInnerCurveMesh.visible = false;
+        }
+
+        srWriteRegion(srRegionMesh, outer, inner, x0, x1, fillF);
+        srRegionMesh.position.x = srShiftX;
+        srRegionMesh.visible = srRegionMesh.visible && (sr.show_region !== false);
+
+        // the axis of revolution, drawn as its own brighter rod so the line the
+        // region turns about is never confused with the frame it is measured on.
+        // SR7 — the LIVE choice wins over the authored one (the explore-picker
+        // scar: a frame that reads the authored value while the picker moved).
+        var ax = (window.PM_srAxis === "y" || window.PM_srAxis === "x") ? window.PM_srAxis : (sr.axis || "x");
+        if (ax === "x") {
+            srAxisMesh.scale.set(1, Math.max(1e-3, x1 - x0), 1);
+            srAxisMesh.rotation.set(0, 0, Math.PI / 2);
+            srAxisMesh.position.set(srShiftX + (x0 + x1) / 2, 0, 0);
+        } else {
+            var yTop = Math.max(1e-3, srF(outer, x1));
+            srAxisMesh.scale.set(1, isFinite(yTop) ? yTop : 1, 1);
+            srAxisMesh.rotation.set(0, 0, 0);
+            srAxisMesh.position.set(srShiftX + x0, (isFinite(yTop) ? yTop : 1) / 2, 0);
+        }
+
+        // SR10 — the ramp PUBLISHES n; nothing else recomputes it (SR-D3).
+        var nLive = 0;
+        if (window.PM_srN != null) nLive = Math.round(window.PM_srN);
+        else if (sr.discs) {
+            var dd = sr.discs;
+            if (dd.n_ramp) {
+                var nr = dd.n_ramp;
+                nLive = srRampN(srRampFrac(tMs, nr.start_ms, nr.duration_ms, nr.holds), nr.log10_from, nr.log10_to);
+            } else if (dd.n != null) nLive = Math.round(dd.n);
+        }
+        if (nLive > 0) SR_PUB.n = nLive;
+
+        // ── THE WRONG-SOLID CONTRAST BEAT (S6 / M2), and why it cannot leak. ──
+        //   Only ONE kind is summed per frame, so the wrong total and the true
+        //   total can NEVER be on screen together: it is not a draw-order
+        //   convention, it is that the other number does not exist this frame
+        //   (the contrast-ghost-co-resident scar, closed by construction).
+        var kind = (sr.discs && sr.discs.kind)
+            ? sr.discs.kind
+            : ((inner || ax === "y") ? "ring" : "disc");
+        var ct = sr.contrast, wrongOn = false;
+        if (ct) {
+            var cOn = cueTriggerMs("sr_contrast", (ct.at_ms != null) ? ct.at_ms : 0);
+            var cOff = cueTriggerMs("sr_contrast_off", (ct.dissolve_at_ms != null) ? ct.dissolve_at_ms : 1e12);
+            wrongOn = (tMs >= cOn && tMs < cOff);
+            if (wrongOn) kind = (ct.kind === "radius_difference") ? "radius_difference" : kind;
+        }
+
+        // ── SR5 — the swept skin. theta is a pure function of state-local ms and
+        //   the reveal is a DRAW RANGE over theta-major quads, never a rebuild.
+        var thDeg = srThetaDeg(sr, tMs);
+        SR_PUB.theta_deg = thDeg;
+        var sp = srStackSpan(outer, inner, x0, x1, ax);
+        var showSolid = (sr.mode !== "region") && (sr.show_solid !== false) && !wrongOn;
+        if (showSolid && isFinite(sp.u0) && isFinite(sp.u1) && sp.u1 > sp.u0) {
+            srWriteSurface(srSurfOuter, sp.u0, sp.u1, ax, function (u) { return srSpanOuterR(sp, u); }, thDeg);
+            srSurfOuter.position.x = srShiftX;
+            if (ax === "y" || inner) {
+                srWriteSurface(srSurfInner, sp.u0, sp.u1, ax, function (u) { return srSpanInnerR(sp, u); }, thDeg);
+                srSurfInner.position.x = srShiftX;
+            } else { srSurfInner.visible = false; }
+        } else { srSurfOuter.visible = false; srSurfInner.visible = false; }
+        // the flat region turns WITH its own sweep, so the thing that paints the
+        // surface is visibly the thing that was measured (Rule 32d, one apparatus)
+        if (ax === "y") srRegionMesh.rotation.set(0, thDeg * Math.PI / 180, 0);
+        else srRegionMesh.rotation.set(thDeg * Math.PI / 180, 0, 0);
+
+        // ── SR6 / SR-D3 — THE ONE SUMMATION. Called ONCE per frame, publishing
+        //   its total and its drawn count; the placement below READS its radii.
+        var res = null;
+        var summing = (sr.mode === "stack" || sr.mode === "compare" || sr.mode === "explore");
+        if (summing && nLive > 0) {
+            res = srDiscSum({
+                outer: outer, inner: inner, x0: x0, x1: x1, n: nLive, axis: ax,
+                rule: (sr.discs && sr.discs.rule) ? sr.discs.rule : "left",
+                kind: kind,
+                max_drawn: (sr.discs && sr.discs.max_discs_drawn != null)
+                    ? sr.discs.max_discs_drawn : SR_DEFAULT_MAX_DRAWN
+            });
+            SR_PUB.volume = res.volume;
+            SR_PUB.n_drawn = res.n_drawn;
+            SR_PUB.kind = kind;
+        } else if (sr.mode === "slice") {
+            // S3's ONE travelling disc. It is a placement, not a sum: the state
+            // teaches what a single face IS and publishes no volume at all, so a
+            // later state's answer cannot leak out of this one.
+            var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
+            var rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
+            var thk = (sr.slice_thickness != null) ? sr.slice_thickness : 0.12;
+            res = {
+                volume: 0, n: 1, n_drawn: 1, du: thk, u0: xc, u1: xc + thk, axis: ax,
+                place: [{ i: 0, u: xc, u_mid: xc, R: isFinite(rc) ? rc : 0, r: isFinite(ric) ? ric : 0 }]
+            };
+            SR_PUB.slice_x = xc;
+        }
+        if (res && kind === "ring" && sr.mode !== "slice") {
+            srHideDiscs(srDiscPool);
+            srPlaceDiscs(srRingOutPool, res, kind, "outer", srShiftX);
+            srPlaceDiscs(srRingInPool, res, kind, "inner", srShiftX);
+        } else if (res) {
+            srPlaceDiscs(srDiscPool, res, kind, "outer", srShiftX);
+            if (sr.mode === "slice" && inner) srPlaceDiscs(srRingInPool, res, kind, "inner", srShiftX);
+            else srHideDiscs(srRingInPool);
+            srHideDiscs(srRingOutPool);
+        } else {
+            srHideDiscs(srDiscPool); srHideDiscs(srRingOutPool); srHideDiscs(srRingInPool);
+        }
+
+        // ── SR14 — THE MID-STATE CAMERA SCHEDULE. It is a straight REUSE of the
+        //   shipped osCamScheduleAt (:62279 — declared @60714, implemented for
+        //   orbital_shapes), not a clone: that function reads nothing but
+        //   camera_steps off the object handed to it, so passing the sr block
+        //   costs zero new mechanism and leaves the sibling byte-identical. Rule
+        //   40a asked whether a camera schedule already ships; it does, and the
+        //   answer to that question is to CALL it.
+        //   It is closed-form on state-local ms, so it bypasses lerpSpherical's
+        //   frame-rate-dependent ease entirely and a SET_TIME_FREEZE pin lands on
+        //   the same pose however the renderer arrived there.
+        if (sr.camera_steps && sr.camera_steps.length) {
+            var camSch = osCamScheduleAt(sr, tMs, srCamBase(stateDef, sr));
+            if (camSch) {
+                targetSpherical.radius = camSch.dist;
+                targetSpherical.phi = Math.PI / 2 - camSch.el * Math.PI / 180;
+                targetSpherical.theta = camSch.az * Math.PI / 180;
+                spherical.radius = targetSpherical.radius;
+                spherical.phi = targetSpherical.phi;
+                spherical.theta = targetSpherical.theta;
+                animating = false;
+                updateCameraFromSpherical();
+                window.PM_srCamPose = { az: camSch.az, el: camSch.el, dist: camSch.dist };
+            }
+        } else { window.PM_srCamPose = null; }
+
+        srPlaceTickNodes((sr.frame && sr.frame.show_frame === false) ? false : true);
+        srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax);
+    }
+
+    // The slice the state labels: the live control if a teacher has one, else the
+    // authored slice_x, else the near end of the domain.
+    function srSliceX(sr, x0, x1) {
+        if (window.PM_srX != null) return window.PM_srX;
+        if (sr.slice_x != null) return sr.slice_x;
+        return x0;
+    }
+    // The scripted sweep of one live parameter, unless the teacher has seized it.
+    function srDriveParamRamp(sr, tMs) {
+        var pr = srParamRamp(sr, tMs);
+        if (!pr) return;
+        if (window.PM_srSeized && window.PM_srSeized[pr.param]) return;
+        var v = pr.value, sid;
+        if (pr.param === "r") { window.PM_srR = v; sid = "sr_radius"; }
+        else if (pr.param === "b") { window.PM_srB = v; sid = "sr_bend"; }
+        else { window.PM_srX = v; sid = "sr_cut"; }
+        var s = document.getElementById(sid + "_slider"); if (s) s.value = String(v);
+        var l = document.getElementById(sid + "_val"); if (l) l.textContent = Number(v).toFixed(2);
+    }
+    // The base pose a camera schedule starts from. NO POSE IS DEFAULTED: it is the
+    // state's own authored camera_position (converted to the shared spherical
+    // pose), or an authored sr.camera_base, or — if the state authored neither —
+    // wherever the camera already is, which is the only honest answer.
+    function srCamBase(stateDef, sr) {
+        if (sr.camera_base) {
+            var cb = sr.camera_base;
+            return { az: cb.az || 0, el: cb.el || 0, dist: cb.dist || 8 };
+        }
+        var cp = stateDef && stateDef.camera_position;
+        if (cp && cp.length === 3) {
+            var d = Math.sqrt(cp[0] * cp[0] + cp[1] * cp[1] + cp[2] * cp[2]) || 1;
+            return {
+                az: Math.atan2(cp[0], cp[2]) * 180 / Math.PI,
+                el: Math.asin(srClamp(cp[1] / d, -1, 1)) * 180 / Math.PI,
+                dist: d
+            };
+        }
+        return {
+            az: spherical.theta * 180 / Math.PI,
+            el: (Math.PI / 2 - spherical.phi) * 180 / Math.PI,
+            dist: spherical.radius
+        };
+    }
+
+    // Value-only HUD (Rule 33d / 34b). Every line gates on the state's OWN
+    // readout list, so a state can never leak a quantity it has not taught.
+    function srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax) {
+        var hud = document.getElementById("sr_readout");
+        if (!hud) return;
+        var keys = sr.readouts || [];
+        var lines = [];
+        var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
+        var Rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            if (SR_READOUTS[k] !== 1) {
+                throw new Error("solid_of_revolution: unknown readout key " + String(k)
+                    + " — the enum is CLOSED; see SR_READOUTS");
+            }
+            if (k === "area") {
+                var A = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
+                lines.push("area = " + srFmt(A, 4));
+            } else if (k === "x_edge") {
+                lines.push("x = " + srFmt(x0 + (x1 - x0) * Math.max(curveF, fillF), 3));
+            } else if (k === "a") {
+                lines.push("a = " + srFmt((outer.a != null) ? outer.a : 1, 2));
+            } else if (k === "b") {
+                lines.push("b = " + srFmt(x1, 2));
+            } else if (k === "n") {
+                lines.push("n = " + String(SR_PUB.n != null ? SR_PUB.n : 0));
+            } else if (k === "V_exact") {
+                lines.push("V = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
+            } else if (k === "theta") {
+                lines.push("\\u03B8 = " + srFmt(SR_PUB.theta_deg != null ? SR_PUB.theta_deg : 0, 0) + "\\u00B0");
+            } else if (k === "x_cut") {
+                lines.push("x = " + srFmt(xc, 2));
+            } else if (k === "r") {
+                lines.push("r = " + srFmt(Rc, 3));
+            } else if (k === "face_area") {
+                lines.push("face area = " + srFmt(Math.PI * Rc * Rc, 4));
+            } else if (k === "R") {
+                lines.push("R = " + srFmt(Rc, 3));
+            } else if (k === "r_inner") {
+                lines.push("r = " + srFmt(ric, 3));
+            } else if (k === "ring_area") {
+                lines.push("ring area = " + srFmt(Math.PI * (Rc * Rc - ric * ric), 4));
+            } else if (k === "V_n") {
+                // the PUBLISHED total — never a second sum. It prints only when the
+                // frame actually summed the TRUE slice, so the wrong-solid window
+                // cannot print a true-looking Vn.
+                if (SR_PUB.volume != null && SR_PUB.kind !== "radius_difference") {
+                    lines.push("V\\u2099 = " + srFmt(SR_PUB.volume, 4));
+                }
+            } else if (k === "V_wrong") {
+                if (SR_PUB.volume != null && SR_PUB.kind === "radius_difference") {
+                    lines.push("wrong = " + srFmt(SR_PUB.volume, 4));
+                }
+            } else if (k === "gap") {
+                if (SR_PUB.volume != null && SR_PUB.kind !== "radius_difference") {
+                    lines.push("still missing = "
+                        + srFmt(srExactVolume(outer, inner, x0, x1, ax) - SR_PUB.volume, 4));
+                }
+            } else if (k === "discs_drawn") {
+                lines.push(srCapLine());
+            } else if (k === "V_about_x") {
+                lines.push("about x: " + srFmt(srExactVolume(outer, inner, x0, x1, "x"), 4));
+            } else if (k === "V_about_y") {
+                lines.push("about y: " + srFmt(srExactVolume(outer, inner, x0, x1, "y"), 4));
+            }
+        }
+        // ── SR-D5, STRUCTURALLY. When the cap engages, the canvas SAYS SO —
+        //   whether or not the state authored the key. A picture drawn at 120
+        //   beside a number computed at 20 000 is a provenance split, and a
+        //   declaration a state can forget to author is not a declaration.
+        if (SR_PUB.n_drawn != null && SR_PUB.n != null && SR_PUB.n_drawn < SR_PUB.n
+            && keys.indexOf("discs_drawn") < 0) {
+            lines.push(srCapLine());
+        }
+        if (!lines.length) { hud.style.display = "none"; return; }
+        hud.innerHTML = lines.join("<br>");
+        hud.style.display = "block";
+    }
+    function srCapLine() {
+        var d = (SR_PUB.n_drawn != null) ? SR_PUB.n_drawn : 0;
+        var n = (SR_PUB.n != null) ? SR_PUB.n : 0;
+        return "discs drawn: " + String(d) + " of " + String(n);
+    }
+
+    // ── GLOW (Rules 29 / 32e) ──────────────────────────────────────────────
+    //   Emphasis is BRIGHTNESS, never size, and exactly one focal at a time. The
+    //   key enum is CLOSED: a non-keyed glow_focal would dim the whole scene with
+    //   no focal lit, which reads as a rendering fault rather than as emphasis.
+    function applySolidOfRevolutionGlow(stateDef) {
+        var sr = stateDef && stateDef.sr; if (!sr) return;
+        var focal = sr.glow_focal || null;
+        if (focal != null && SR_GLOW_KEYS[focal] !== 1) {
+            throw new Error("solid_of_revolution: unknown glow key " + String(focal)
+                + " — the enum is CLOSED; see SR_GLOW_KEYS");
+        }
+        var on = !!focal;
+        // "solid" lights BOTH skins and "stack" lights all three pools, because a
+        // ring's two walls are one object to a student. "disc" is the slice state's
+        // single travelling face, which lives in the same pool as the stack — so
+        // the two keys resolve to the same meshes and differ only in the state that
+        // names them. One focal at a time (Rule 32e) either way.
+        var stackFocal = (focal === "stack" || focal === "disc" || focal === "ring_stack"
+            || focal === "wrong_solid");
+        // ── THE TRANSLUCENT MESHES ARE BRIGHTEN-ONLY, AND THAT IS A CORRECTNESS
+        //   FIX, NOT A PREFERENCE. The generic pass REWRITES OPACITY: a focal goes
+        //   to 1.0 and a peer to GLOW_DIM_OPACITY = 0.40. Both are wrong for a
+        //   volume you must see THROUGH — a focal disc stack at opacity 1.0 hides
+        //   the axis, the region and the curve inside it (that is the occlusion
+        //   half of the OPEN row glow_focal_fr_ring_whiteouts_the_ring_and_occludes
+        //   _it), and a 0.20 ghost skin "dimmed" to 0.40 becomes twice as OPAQUE as
+        //   it started. So the volumes take brightenOnly: the focal still brightens
+        //   through the colour and emissive channels, which is real emphasis and
+        //   not the exempted-into-a-no-op failure — and the opaque line objects
+        //   (curve, axis, frame, region) still carry the peer dim.
+        var map = [
+            [srRegionMesh, "region", false], [srCurveMesh, "curve", false],
+            [srInnerCurveMesh, "inner_curve", false], [srAxisMesh, "axis", false],
+            [srFrameGroup, "frame", false],
+            [srSurfOuter, "solid", true], [srSurfInner, "solid", true],
+            [srDiscPool ? srDiscPool.group : null, stackFocal ? focal : "stack", true],
+            [srRingOutPool ? srRingOutPool.group : null, stackFocal ? focal : "stack", true],
+            [srRingInPool ? srRingInPool.group : null, stackFocal ? focal : "stack", true]
+        ];
+        for (var i = 0; i < map.length; i++) {
+            if (!map[i][0]) continue;
+            applyGlowEmphasis(map[i][0], map[i][1] === focal, on, 1, map[i][2]);
+        }
+        var hud = document.getElementById("sr_readout");
+        if (hud) hud.style.opacity = (on && focal !== "readout") ? "0.55" : "1";
+        var fml = document.getElementById("sr_formula");
+        if (fml) fml.style.opacity = (on && focal !== "formula") ? "0.55" : "1";
+    }
+
     function buildScenario() {
         clearScene();
 
@@ -69219,6 +70761,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "orbital_shapes":
                 buildOrbitalShapes(config);
+                break;
+
+            case "solid_of_revolution":
+                buildSolidOfRevolution(config);
                 break;
 
             case "displacement_current":
@@ -70257,6 +71803,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // cut-plane normal the cutaway slab uses. Every mesh is placed by
         // updateOrbitalShapesFrame from the state's own clock on the next frame,
         // so there is nothing positional to seed here.
+        // solid_of_revolution (MATHEMATICS) — authoritative per-state apply: the
+        // frame is rebuilt for this state\u0027s ranges, the contextual slider rows are
+        // shown and seized at their authored values, the ONE formula surface is
+        // written, and the first frame is drawn immediately so a SET_STATE that
+        // lands on a pin never photographs the previous state\u0027s picture.
+        if (config.scenario_type === "solid_of_revolution") {
+            applySolidOfRevolutionState(stateDef);
+        }
+
         if (config.scenario_type === "orbital_shapes") {
             applyOrbitalShapesState(stateDef);
         }
@@ -70579,6 +72134,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // through with its straight-wire-current defaults (THE-EYE "#sliders
         // exclusion chain" -- every dedicated panel excludes itself here).
         var isBondScene = config.scenario_type === "bonding_scene";
+        // solid_of_revolution owns its OWN #sr_sliders panel (a/b/r/n rows) -- must
+        // be excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" -- every dedicated panel excludes itself here).
+        var isSolidRev = config.scenario_type === "solid_of_revolution";
         var isSwc = config.scenario_type === "straight_wire_current" && !!stateDef.swc;
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
@@ -70598,7 +72157,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isKt && !isVecGeom) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isSolidRev && !isKt && !isVecGeom) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -70785,7 +72344,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -71286,6 +72845,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // boundary surface + the two-run orbital label carry the meaning, and the
         // generic legend would restate them as prose over the cloud.
         if (config.scenario_type === "orbital_shapes") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // solid_of_revolution is a silent visual too (Rule 24): the frame, the
+        // curve and the value-only HUD carry the meaning, so the generic legend is
+        // a second, competing text surface.
+        if (config.scenario_type === "solid_of_revolution") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // bonding_scene is a silent visual too (Rule 24): the units + bond sticks
         // + delta labels + dipole arrows + the value-only HUD carry everything,
         // and a "point charge / drag to rotate" legend would be both wrong and
@@ -73848,7 +75411,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -73974,6 +75537,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "orbital_shapes") {
             var osStateDef = config.states[PM_currentState];
             if (osStateDef) { updateOrbitalShapesFrame(osStateDef); applyOrbitalShapesGlow(osStateDef); }
+        }
+
+        // solid_of_revolution (MATHEMATICS) — the frame draw, the curve draw, the
+        // region fill, the DOM tick numbers, the log-n ramp and the value-only HUD.
+        // THIS IS THE ONLY SITE THAT STEPS THIS SCENARIO: the freeze path above
+        // snaps the time variable to the pin and falls through to exactly this
+        // call, so a frozen or dense capture runs the SAME dispatcher as live
+        // playback. Accumulator-free: every value is a pure fn of state-local t.
+        if (config.scenario_type === "solid_of_revolution") {
+            var srStateDef = config.states[PM_currentState];
+            if (srStateDef) { updateSolidOfRevolutionFrame(srStateDef); applySolidOfRevolutionGlow(srStateDef); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor

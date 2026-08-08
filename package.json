@@ -59,6 +59,7 @@
     "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts",
     "check:bonding-scene": "npx tsx src/scripts/check_bonding_scene.ts",
     "check:cartesian-plane": "npx tsx src/scripts/check_cartesian_plane.ts",
+    "check:solid-of-revolution": "npx tsx src/scripts/check_solid_of_revolution.ts",
     "check:vector-geometry-3d": "npx tsx src/scripts/check_vector_geometry_3d.ts"
   },
   "dependencies": {
