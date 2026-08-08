@@ -69,6 +69,64 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > > — ***before ruling a class of design output un-derivable, verify the instrument that falsified
 > > it.*** The second is this document's own error, and it is the more valuable of the two.
 >
+> > ### A21 · S9 RE-MEASURED ON THE CORRECTED METRIC — **Δ10 SURVIVES, on a restated and weaker argument**
+> > Run by the #9 reviewer on its own probe with **one variable changed** (angles in isotropic
+> > `camX/camZ, camY/camZ`; fill and arm left in NDC), everything else identical.
+> >
+> > **⭐ THE DEEPEST LESSON OF THE WHOLE WAVE, and the reviewer stated it against itself first:**
+> > > *"My probe had the same defect, and my validation of it was worthless. I reported that my model
+> > > 'reproduces the architect's numbers exactly' and treated that as proof the instrument was sound.
+> > > It was two probes agreeing **because they shared the same bug**. **Mutual agreement between
+> > > independently written tools is not validation when both were written from the same wrong
+> > > spec.**"*
+> > This is why the wave kept "independently confirming" wrong numbers, and it outranks every
+> > individual finding here. **Independent implementation is not independent verification.** Only two
+> > things break the tie: a measurement against a *closed form solved outside the tool*, or a negative
+> > control proving the tool fails on a case it must fail. Both are what the gates now do.
+> >
+> > **1 · No feasible single-scene pose. Δ10 is justified — but say it correctly.**
+> > | | architect | reviewer NDC | **reviewer isotropic** |
+> > |---|---|---|---|
+> > | single-scene best-anywhere | 1.35° | 8.08° | **12.19°** (R14 / az 24 / el 2) |
+> > Threshold **18.91°** — Act I's auto-frame floor, *the only figure in this wave independently
+> > reproduced on the corrected metric by two parties*. 12.19° is **0.64×** that floor, as a worst case
+> > over the slider product, in the one state whose purpose is a teacher moving those sliders. Both
+> > groups clear the floor by ~2.3×.
+> > **The skeleton's sentence must be replaced verbatim.** It is no longer *"no camera exists — 1.35°"*.
+> > It is: ***the best single-scene pose sits about a third below the chapter's own validated floor,
+> > while splitting the scene gives 3.5× the separation.*** Weaker, sufficient, and true.
+> >
+> > **2 · Both authored S9 poses move; one catastrophically. The de-certification (A19 condition 1) is
+> > vindicated.**
+> > | | claimed | isotropic @ authored pose | isotropic best-anywhere |
+> > |---|---|---|---|
+> > | S9-A | 41.1° | **25.85°** | 44.84° (R14 / az −96 / el 16) |
+> > | S9-B | 11.0° | **0.12°** | 42.58° (R11 / az 16 / el 2) |
+> > **S9-A FELL — the shear was inflating it.** A metric error is not conservative in a known direction;
+> > it flatters some poses and condemns others, which is exactly why no pose measured on it may be
+> > carried forward.
+> >
+> > **3 · The third falsification STANDS and is metric-independent — but its stated reason was wrong,
+> > and a THIRD error is now implied.** Re-swept at decreasing θ step on the corrected metric:
+> > 15° → 3.33° · 5° → 3.33° · 3° → 0.29° · **1° → 0.13°**. So it is a *resolution* artefact —
+> > **but even a 15° step returns 3.33°, so coarse sampling cannot produce 11.04° on either ruler.**
+> > The claimed figure is unexplained by both known errors, pointing at a third: most likely the
+> > group-B sweep omitted `theta_deg`, or the `M2`/common-perpendicular pair was scored as **exempt**.
+> > **It is not exempt** — those two are perpendicular in 3D, which is the claim the state exists to
+> > show. **A19's ruling is unaffected:** all three falsifications now stand, and this one on its own
+> > terms.
+> >
+> > **4 · Two more #9 numbers move materially.** S3's length floor is **NOT met** — the perpendicular
+> > draws at **31.5 %** of patch width, not the claimed 33.1 %. And S3's sub-optimality is worse than
+> > Checkpoint A reported: the best pose meeting the floor scores **89.87°** (az −120 / el 20, 41.1 %
+> > length) — **3.6×** the authored pose — while **S2's own pose gives 55.98° at 40.1 %**, i.e. the
+> > home-pose-continuity option wins on *both* criteria and is free.
+> >
+> > **5 · GATE §13 GAINS ITS METRIC CLAUSE, and it is now the binding form:**
+> > **angles scored in ISOTROPIC units, fill and arm in NDC, with the corrected `vgProjectPoint`
+> > (`8baa94d`) as the SINGLE source — plus a negative control asserting the NDC-angle form FAILS on
+> > Act I's 18.91° case.**
+>
 > > ### THE RULING, and it supersedes any further hand-solving
 > > **This is not fixable by another architect cycle. It is fixable by a gate.**
 > > A camera pose is no longer a design output that a reviewer certifies — it is a **claim the gate
