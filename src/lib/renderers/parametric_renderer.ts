@@ -2328,17 +2328,48 @@ function drawCartesianPlane(spec) {
   if (spec.gridlines) {
     stroke(gridColor[0], gridColor[1], gridColor[2], alpha255 * 0.6);
     strokeWeight(1);
-    // Gridline-ink obstacle registration (bug_class
-    // parametric_readout_and_label_collision_awareness_does_not_cover_a_
-    // sibling_primitives_curve_or_line_ink) — a thin band each side of the
-    // drawn pixel, registered into PM_planeInkZones (Pass 0.25 runs before
-    // Pass 0.3, so every readout this frame already sees these bands).
+    // Gridline-ink obstacle registration — SOFT tier (bug_class
+    // readout_resolver_predicate_saturated_by_gridline_ink_so_it_always_
+    // returns_true, CRITICAL, engine round 2026-08-07/08). Registered into
+    // PM_planeGridInkZones, NOT the hard PM_planeInkZones a curve/axis/
+    // sibling-readout collision uses.
+    //
+    // Why gridlines cannot be a HARD obstacle, geometrically (not a tuning
+    // call): a vertical gridline's registered band is, by construction,
+    // narrow in x but spans the plane's FULL height in y (same for a
+    // horizontal gridline in x) — an accurate record of where the drawn
+    // pixel really is, unlike a diagonal curve/chord's own bbox (which
+    // PM_registerLineInk subdivides because a SINGLE box around a long
+    // diagonal blankets empty corners the line never touches). Subdividing a
+    // straight axis-aligned gridline along its OWN length does not change
+    // this: each sub-segment still spans padding-to-padding in the
+    // perpendicular axis, and the union of the pieces still covers the same
+    // full-length band. The actual saturation is arithmetic: on a plane with
+    // x_tick pitch P (measured ~51px on graph_transformations' authored
+    // 660px/13-unit plane) and a readout box of width W (~87px for a
+    // 2-decimal coordinate pair at textSize 12), whenever W > P - 2*pad the
+    // box CANNOT be positioned anywhere without straddling at least one
+    // gridline column, by the pigeonhole principle — true at every padding
+    // width, including a padding of zero. Folding that into the SAME boolean
+    // OR as "crosses the bold x-axis" or "sits on a curve" made
+    // PM_readoutCollides return true for every candidate on any plane whose
+    // gridlines are enabled and whose tick pitch is smaller than a readout's
+    // own width — a predicate true for every input is not a predicate (it
+    // cannot filter a search, so PM_readoutResolveOffset's flip fired
+    // unconditionally even when the FIRST, authored candidate had no real
+    // collision at all — the "9 of 9 authored offsets inverted" defect).
+    // Demoting gridlines to the least-overlap-area TIE-BREAK (see
+    // PM_readoutResolveOffset below) keeps the predicate meaningful — an
+    // authored offset that only grazes a dim, 60%-alpha decorative gridline
+    // is accepted outright; one that lands on the bold axis line, a curve
+    // stroke, or another readout's own box is still rejected exactly as
+    // before, since none of THOSE moved tier.
     var GRID_INK_HALF = 4;
     var gxTicks = PM_planeTickValues(xRange.min, xRange.max, xTick);
     for (var gi = 0; gi < gxTicks.length; gi++) {
       var gTop = toPx(gxTicks[gi], yRange.max), gBot = toPx(gxTicks[gi], yRange.min);
       line(gTop.x, gTop.y, gBot.x, gBot.y);
-      PM_registerInkZone(spec.id, {
+      PM_registerGridInkZone(spec.id, {
         x0: gTop.x - GRID_INK_HALF, y0: Math.min(gTop.y, gBot.y),
         x1: gTop.x + GRID_INK_HALF, y1: Math.max(gTop.y, gBot.y)
       });
@@ -2347,7 +2378,7 @@ function drawCartesianPlane(spec) {
     for (var gj = 0; gj < gyTicks.length; gj++) {
       var gL = toPx(xRange.min, gyTicks[gj]), gR = toPx(xRange.max, gyTicks[gj]);
       line(gL.x, gL.y, gR.x, gR.y);
-      PM_registerInkZone(spec.id, {
+      PM_registerGridInkZone(spec.id, {
         x0: Math.min(gL.x, gR.x), y0: gL.y - GRID_INK_HALF,
         x1: Math.max(gL.x, gR.x), y1: gL.y + GRID_INK_HALF
       });
@@ -3189,6 +3220,18 @@ function drawFunctionPlot(spec) {
   if (!gate.visible) return;
   var emph = PM_focalEmphasis(spec);
 
+  // Track this plane's LIVE curve formula for drawPlotPoint's default-offset
+  // direction below (bug_class plot_point_default_offset_is_a_screen_axis_
+  // constant_not_the_curves_own_tangent, MAJOR, engine round 2026-08-07/08).
+  // A ghost/parent copy (style:'ghost' — graph_transformations authors a
+  // faded parent curve alongside every transformed one) never overrides an
+  // ALREADY-registered live curve, so a plot_point always rides the
+  // TRANSFORMED curve's tangent, never the parent's — regardless of which
+  // one this state happens to author first in scene_composition.
+  if (spec.style !== 'ghost' || !PM_planeCurveExpr[spec.plane_id]) {
+    PM_planeCurveExpr[spec.plane_id] = spec.y_expr;
+  }
+
   // F7 — inert when the named plane isn't registered this frame. Ranges are
   // metadata only (PM_planeRangesOf performs no coordinate math); the actual
   // pixel conversion below goes exclusively through PM_planeResolve.
@@ -3296,13 +3339,26 @@ function PM_readoutAuthoredOffset(spec) {
 // every numeric-to-string conversion this readout family owns: round first
 // (toFixed, so precision stays IEEE754-exact and unaffected by the
 // substitution), THEN substitute the sign glyph on the rendered string —
-// never the other way around. Near-zero clamp mirrors PM_formatTickLabel's
-// own EPS guard (a genuine "-0.00" from float noise reads as a fabricated
-// negative; a real negative that merely rounds small, e.g. slope -0.004 at
-// 2dp, is not this bug and is left alone by the 1e-9 threshold).
+// never the other way around.
+//
+// Near-zero clamp (engine round, bug_class ascii_minus_in_oncanvas_math_
+// from_tofixed's sibling: "shipped twice, third occurrence via a magnitude
+// instead of a glyph"). The clamp threshold MUST scale with decimals —
+// a fixed 1e-9 (this function's own pre-round-2 value) sits three orders of
+// magnitude below what ANY authored decimals setting can even display, so it
+// never fires for the case that actually reaches the screen: a value that
+// rounds to the printed "-0" at THIS precision but is not exactly zero
+// (float noise, e.g. -0.003 at decimals:2, or -0.4 at decimals:0 — verified
+// (-0.4).toFixed(0) is the literal string "-0" in JS). The correct clamp is
+// "half of the smallest printable increment at this precision" —
+// 0.5 * 10^-decimals — so a value that would ROUND to a false "-0" at the
+// requested precision is caught, while a real negative that merely rounds
+// SMALL (e.g. slope -0.006 at 2dp, which prints "-0.01", a genuine nonzero
+// reading) is left alone: |-0.006| = 0.006 > 0.005 = 0.5*10^-2, untouched.
 function PM_fmtNum(value, decimals) {
   var d = (typeof decimals === 'number' && isFinite(decimals)) ? decimals : 2;
-  var v = (Math.abs(value) < 1e-9) ? 0 : value;
+  var eps = 0.5 * Math.pow(10, -d);
+  var v = (Math.abs(value) < eps) ? 0 : value;
   return v.toFixed(d).replace('-', '−');
 }
 
@@ -3428,6 +3484,18 @@ function PM_registerInkZone(planeId, rect) {
   PM_planeInkZones[planeId].push(rect);
 }
 
+// SOFT-tier obstacle registry (see drawCartesianPlane's gridline header
+// comment above for why gridline ink cannot share the HARD registry above).
+// Read only by PM_readoutGridOverlapArea below — never by PM_readoutCollides
+// / PM_readoutDangerZones, so a gridline can never by itself force the
+// unconditional-flip path; it only tie-breaks among candidates that are
+// ALREADY clear of every hard obstacle.
+function PM_registerGridInkZone(planeId, rect) {
+  if (!planeId || !rect) return;
+  if (!PM_planeGridInkZones[planeId]) PM_planeGridInkZones[planeId] = [];
+  PM_planeGridInkZones[planeId].push(rect);
+}
+
 // Registers a straight PIXEL-space segment's ink as a chain of small AABBs
 // rather than one bbox spanning its full extent. A single bounding box
 // around a long diagonal (a secant/tangent authored extend:'frame' can span
@@ -3514,31 +3582,119 @@ function PM_clampOffsetToCanvas(anchorPx, offset, textW, textH) {
 // one fire: an off-canvas box would take a useless flip and still need the
 // clamp afterwards, churning the placement for nothing. This predicate now
 // answers exactly one question — "does the box land on the plane's own axis
-// ink or tick-label band?" — and a true answer is what the flip is for.
+// ink, a curve/chord's own stroke, or another readout's already-placed
+// box?" (the HARD obstacle set, PM_readoutDangerZones) — deliberately NOT
+// gridline ink (PM_planeGridInkZones, the SOFT tier — see
+// drawCartesianPlane's gridline header comment for why). A true answer here
+// is what the ordered-candidate search below treats as disqualifying.
 function PM_readoutCollides(anchorPx, offset, textW, textH, plane, planeId) {
   var box = PM_readoutBBox(anchorPx, offset, textW, textH);
   var zones = PM_readoutDangerZones(plane, planeId);
   for (var i = 0; i < zones.length; i++) if (PM_rectsOverlap(box, zones[i])) return true;
   return false;
 }
-// Resolves the FINAL {x,y} pixel offset to draw a readout at: the
-// candidate offset unchanged when it does not collide, or the candidate
-// mirrored to the anchor's opposite side (both components negated) when it
-// does. The flip is taken unconditionally once collision is detected —
-// never iterated/searched further (deterministic, O(1), Rule-36-safe) — so
-// a pathological anchor whose MIRRORED placement also collides still gets
-// a placement (the mirror, the far more likely side to be clear on
-// balance), never an unbounded search for a perfect spot.
+// Area of the AABB intersection of a and b, or 0 when disjoint (never
+// negative — a degenerate/negative width or height clamps to 0 rather than
+// contributing a spurious negative "overlap"). Pure, symmetric, O(1).
+function PM_rectOverlapArea(a, b) {
+  var ox = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0);
+  var oy = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
+  if (!(ox > 0) || !(oy > 0)) return 0;
+  return ox * oy;
+}
+// Total HARD-obstacle overlap area for a candidate placement — the same
+// zone set PM_readoutCollides tests, summed rather than OR'd, so two
+// candidates that both collide can still be RANKED (a graze scores far
+// lower than a placement centred on the axis line).
+function PM_readoutHardOverlapArea(anchorPx, offset, textW, textH, plane, planeId) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  var zones = PM_readoutDangerZones(plane, planeId);
+  var total = 0;
+  for (var i = 0; i < zones.length; i++) total += PM_rectOverlapArea(box, zones[i]);
+  return total;
+}
+// Total SOFT-obstacle (gridline) overlap area — never contributes to
+// PM_readoutCollides' boolean, only to the tie-break score below.
+function PM_readoutGridOverlapArea(anchorPx, offset, textW, textH, planeId) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  var zones = (planeId && PM_planeGridInkZones[planeId]) ? PM_planeGridInkZones[planeId] : [];
+  var total = 0;
+  for (var i = 0; i < zones.length; i++) total += PM_rectOverlapArea(box, zones[i]);
+  return total;
+}
+// Combined score used ONLY to rank candidates once none is hard-collision-
+// free (see PM_readoutResolveOffset below) — hard overlap dominates
+// (weight 1), grid overlap is a light tie-break (weight 0.25) so it can
+// never outrank a genuinely smaller hard collision, only choose between
+// two hard-equal candidates.
+var PM_GRID_OVERLAP_TIEBREAK_WEIGHT = 0.25;
+function PM_readoutOverlapArea(anchorPx, offset, textW, textH, plane, planeId) {
+  return PM_readoutHardOverlapArea(anchorPx, offset, textW, textH, plane, planeId)
+    + PM_GRID_OVERLAP_TIEBREAK_WEIGHT * PM_readoutGridOverlapArea(anchorPx, offset, textW, textH, planeId);
+}
+
+// Resolves the FINAL {x,y} pixel offset to draw a readout at, from a FIXED,
+// ORDERED candidate set — never a single blind flip (bug_class
+// readout_resolver_flips_blind_without_testing_the_mirrored_candidate,
+// CRITICAL, engine round 2026-08-07/08; the pre-round behaviour negated
+// BOTH offset components unconditionally the instant ANY collision fired,
+// including collisions the flip itself did not clear — measured on
+// graph_transformations: 9 of 9 authored offsets inverted, the curve
+// running through the P' readout in 7 of 8 states).
 //
-// planeId (added alongside the widened obstacle set) is OPTIONAL and
-// additive: every existing call site already passes plane_id, and a caller
-// that omits it simply sees zero ink zones (the original two-zone axis-band
-// behaviour), never a crash — PM_readoutDangerZones guards planeId
-// truthiness before indexing PM_planeInkZones.
-function PM_readoutResolveOffset(anchorPx, candidateOffset, textW, textH, plane, planeId) {
+// Candidate order (every one ACTUALLY TESTED — Rule "never return a
+// candidate you have not tested"):
+//   1. the authored/computed candidate, unchanged
+//   2. x-mirror   {-x, y}
+//   3. y-mirror   {x, -y}
+//   4. full mirror {-x, -y}
+//   5/6. (only when localInk is supplied) +/- the unit normal to localInk's
+//        own pixel-space segment, scaled to the candidate's own magnitude —
+//        the same direction a plot_point riding a curve or a secant/tangent
+//        readout's OWN chord would prefer, tried as an explicit alternative
+//        rather than assumed as the default.
+// The FIRST candidate clear of every HARD obstacle (axis lines, curve/
+// chord ink, another readout's own box — PM_readoutCollides) is returned
+// immediately, so a placement that was never broken is never touched (only
+// gridline-grazing, the SOFT tier, cannot force this branch to keep
+// searching). If NONE of the fixed candidates is hard-collision-free, the
+// one with the LEAST total overlap area (hard-weighted, grid tie-broken —
+// PM_readoutOverlapArea) is returned — still a candidate that was tested,
+// never a guess.
+//
+// O(1): at most 6 candidates, each one rect-overlap test against a fixed
+// zone list — no iteration to convergence, no wall-clock, no randomness,
+// so THE EYE's frozen baselines stay byte-identical by construction
+// (Rule 36).
+//
+// planeId/localInk are OPTIONAL and additive: every existing call site
+// already passes plane_id, and a caller that omits planeId simply sees zero
+// ink/grid zones (the original two-zone axis-band behaviour); a caller that
+// omits localInk simply gets the 4 mirror candidates without the 2 normal
+// ones — never a crash either way.
+function PM_readoutResolveOffset(anchorPx, candidateOffset, textW, textH, plane, planeId, localInk) {
   if (!plane) return candidateOffset;
-  if (!PM_readoutCollides(anchorPx, candidateOffset, textW, textH, plane, planeId)) return candidateOffset;
-  return { x: -candidateOffset.x, y: -candidateOffset.y };
+  var candidates = [
+    candidateOffset,
+    { x: -candidateOffset.x, y: candidateOffset.y },
+    { x: candidateOffset.x, y: -candidateOffset.y },
+    { x: -candidateOffset.x, y: -candidateOffset.y }
+  ];
+  if (localInk && localInk.p0 && localInk.p1) {
+    var n = PM_upwardNormal(localInk.p0, localInk.p1);
+    var mag = Math.sqrt(candidateOffset.x * candidateOffset.x + candidateOffset.y * candidateOffset.y);
+    if (!(mag > 1e-6)) mag = Math.max(textW, textH) / 2 + 10;
+    candidates.push({ x: mag * n.x, y: mag * n.y });
+    candidates.push({ x: -mag * n.x, y: -mag * n.y });
+  }
+  var bestOff = candidates[0], bestScore = Infinity;
+  for (var i = 0; i < candidates.length; i++) {
+    var c = candidates[i];
+    if (!PM_readoutCollides(anchorPx, c, textW, textH, plane, planeId)) return c;
+    var score = PM_readoutOverlapArea(anchorPx, c, textW, textH, plane, planeId);
+    if (score < bestScore) { bestScore = score; bestOff = c; }
+  }
+  return bestOff;
 }
 
 // ── plot_point (CP-B, F11-F12) ──────────────────────────────────────────────
@@ -3560,6 +3716,41 @@ function PM_plotPointResolve(spec, vars) {
     readoutText = fmt.split('{x}').join(PM_fmtNum(x, decimals)).split('{y}').join(PM_fmtNum(y, decimals));
   }
   return { x: x, y: y, readoutText: readoutText };
+}
+
+// Local pixel-space tangent of the CURVE a plot_point rides, at that point's
+// own (already-resolved) data position — numeric differentiation of the
+// REGISTERED function_plot's y_expr (PM_planeCurveExpr, set by
+// drawFunctionPlot above), never of the point's OWN x_expr/y_expr. This
+// matters because a point like Q (x_expr:"x0+1") is a REPARAMETERISATION of
+// the same curve, not an independent one — probing dy/dx0 there would give
+// the wrong tangent whenever the reparameterisation itself isn't 1:1
+// (e.g. "x0+pow(10,hlog)" as hlog, not x0, sweeps). Evaluating the curve's
+// own y_expr as a bare function of x sidesteps that entirely: whatever
+// parameter actually moved the point, the curve's shape at this x is fixed.
+//
+// Returns a tiny pixel-space {p0,p1} segment along the tangent direction
+// (feedable straight into PM_labelClearOffset/PM_upwardNormal, the same
+// idiom secant_line/tangent_line already use for their own chord), or null
+// when no curve is registered for this plane this frame, the probe's
+// dx/dy comes out degenerate (zero-length — e.g. a vertical tangent at the
+// probe's floating-point resolution), or any evaluation is non-finite.
+// Callers fall back to a constant default in every null case — never a
+// crash, never a NaN pixel.
+var PM_TANGENT_PROBE_EPS = 1e-4;
+function PM_plotPointCurveTangentPx(spec, vars, plane, x, y) {
+  var curveExpr = (spec && spec.plane_id) ? PM_planeCurveExpr[spec.plane_id] : null;
+  if (typeof curveExpr !== 'string' || !plane || !isFinite(x) || !isFinite(y)) return null;
+  var probeScope = {};
+  for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) probeScope[k] = vars[k];
+  probeScope.x = x + PM_TANGENT_PROBE_EPS;
+  var yPlus = PM_safeEval(curveExpr, probeScope);
+  if (!isFinite(yPlus)) return null;
+  var p0 = plane.toPx(x, y);
+  var p1 = plane.toPx(x + PM_TANGENT_PROBE_EPS, yPlus);
+  if (!p0 || !p1 || !isFinite(p0.x) || !isFinite(p0.y) || !isFinite(p1.x) || !isFinite(p1.y)) return null;
+  if (Math.abs(p1.x - p0.x) < 1e-9 && Math.abs(p1.y - p0.y) < 1e-9) return null;
+  return { p0: p0, p1: p1 };
 }
 
 function drawPlotPoint(spec) {
@@ -3639,15 +3830,35 @@ function drawPlotPoint(spec) {
     noStroke();
     textSize(12);
     textAlign(LEFT, CENTER);
-    // F-readout — candidate is the authored offset if usable, else the old
-    // {10,-12} default; then collision-tested against this frame's ACTUAL
-    // registered plane (a moving/dragged point needs a live re-test every
-    // frame, not a one-time authoring-side guess) using a REAL measured
-    // text width (textWidth(), not an estimate — accurate for whatever
-    // string this frame's live variables produced).
-    var candidateOff = PM_readoutAuthoredOffset(spec) || { x: 10, y: -12 };
+    // F-readout — candidate is the authored offset if usable, else a
+    // DEFAULT DIRECTION derived from the curve this point actually rides
+    // (bug_class plot_point_default_offset_is_a_screen_axis_constant_not_
+    // the_curves_own_tangent): the outward normal to the local curve
+    // tangent at this point's own data position, via the SAME width-aware
+    // support-function displacement (PM_labelClearOffset) secant_line/
+    // tangent_line already use for their own chord/tangent — so the label
+    // clears the curve at every slope, not just the ones the old fixed
+    // {10,-12} happened to clear. Falls back to that same {10,-12} only
+    // when no curve is registered on this plane this frame (a plot_point
+    // authored with no accompanying function_plot) or the tangent probe is
+    // degenerate. Real measured text width (textWidth(), not an estimate)
+    // feeds BOTH the default's own clearance math and the collision test
+    // below — accurate for whatever string this frame's live variables
+    // produced, and must be measured before the default can be computed.
     var readoutTW = textWidth(resolved.readoutText);
-    var finalOff = PM_readoutResolveOffset(px, candidateOff, readoutTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id);
+    var tangentPx = PM_plotPointCurveTangentPx(spec, vars, PM_planeRegistry[spec.plane_id], resolved.x, resolved.y);
+    var defaultOff = tangentPx
+      ? PM_labelClearOffset(tangentPx.p0, tangentPx.p1, readoutTW, 14, size / 2 + 8)
+      : { x: 10, y: -12 };
+    var candidateOff = PM_readoutAuthoredOffset(spec) || defaultOff;
+    // Then collision-tested (ordered candidate set, see PM_readoutResolveOffset's
+    // own header) against this frame's ACTUAL registered plane — a moving/
+    // dragged point needs a live re-test every frame, not a one-time
+    // authoring-side guess. localInk (tangentPx) feeds the resolver's own
+    // +/- normal candidates when a curve tangent was resolvable, so the
+    // TESTED alternative and the DEFAULT direction share one geometric idea
+    // instead of two unrelated ones.
+    var finalOff = PM_readoutResolveOffset(px, candidateOff, readoutTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id, tangentPx);
     // Containment runs LAST — after the authored/default offset and after
     // any axis-zone flip — so nothing downstream can push the box back out.
     finalOff = PM_clampOffsetToCanvas(px, finalOff, readoutTW, 14);
@@ -4291,8 +4502,12 @@ function drawSecantLine(spec) {
       // (bug_class readout_collision_flip_is_wired_at_one_call_site_of_
       // three) — secant/tangent readouts used to get PM_clampOffsetToCanvas
       // ONLY, so an authored offset could never escape the axis/tick band,
-      // let alone a sibling's curve ink or another readout's box.
-      secOff = PM_readoutResolveOffset(secAnchor, secOff, secTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id);
+      // let alone a sibling's curve ink or another readout's box. This
+      // chord's own {p0,p1} doubles as the resolver's localInk, so the
+      // ordered candidate set's +/- normal alternatives are the SAME
+      // direction PM_labelClearOffset's own default already prefers, tried
+      // as an explicit TESTED candidate rather than assumed.
+      secOff = PM_readoutResolveOffset(secAnchor, secOff, secTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id, { p0: p0, p1: p1 });
       secOff = PM_clampOffsetToCanvas(secAnchor, secOff, secTW, 14);
       text(computed.readoutText, secAnchor.x + secOff.x, secAnchor.y + secOff.y);
       PM_debugRecordReadout(spec.id, secAnchor, secOff, secTW, 14);
@@ -4355,8 +4570,9 @@ function drawTangentLine(spec) {
       var tanTW = textWidth(computed.readoutText);
       var tanOff = PM_readoutAuthoredOffset(spec) || PM_labelClearOffset(p0, p1, tanTW, 14, 6);
       // Route through the SAME collision-aware resolver plot_point uses —
-      // see the parallel comment in drawSecantLine above.
-      tanOff = PM_readoutResolveOffset(rAt, tanOff, tanTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id);
+      // see the parallel comment in drawSecantLine above (localInk = this
+      // tangent's own {p0,p1}).
+      tanOff = PM_readoutResolveOffset(rAt, tanOff, tanTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id, { p0: p0, p1: p1 });
       tanOff = PM_clampOffsetToCanvas(rAt, tanOff, tanTW, 14);
       text(computed.readoutText, rAt.x + tanOff.x, rAt.y + tanOff.y);
       PM_debugRecordReadout(spec.id, rAt, tanOff, tanTW, 14);
@@ -5165,15 +5381,35 @@ var PM_planeRegistry = {};
 // Engine round (bug_class
 // parametric_readout_and_label_collision_awareness_does_not_cover_a_sibling_
 // primitives_curve_or_line_ink) — { [plane_id]: Array<{x0,y0,x1,y1}> }, the
-// per-frame obstacle registry PM_readoutDangerZones folds into the axis
-// bands it has always returned. Populated by drawCartesianPlane (gridlines,
-// Pass 0.25), drawFunctionPlot/drawSecantLine/drawTangentLine (their own
-// ink, Pass 0.3) and every readout primitive's OWN final resolved box
-// (PM_debugRecordReadout's sibling registration call) — reset once per
-// frame, BEFORE Pass 0.25 (see draw()), so gridlines registered there
-// survive into Pass 0.3 the SAME frame instead of being wiped by a later
-// reset.
+// HARD per-frame obstacle registry PM_readoutDangerZones folds into the axis
+// bands it has always returned — a candidate that overlaps ANY zone here is
+// rejected outright by PM_readoutCollides. Populated by drawFunctionPlot/
+// drawSecantLine/drawTangentLine (their own curve/chord/tangent ink, Pass
+// 0.3) and every readout primitive's OWN final resolved box + marker dot
+// (PM_debugRecordReadout's sibling registration calls) — reset once per
+// frame, BEFORE Pass 0.25 (see draw()). Gridlines are deliberately NOT
+// registered here as of the 2026-08-08 engine round — see
+// PM_planeGridInkZones immediately below and drawCartesianPlane's gridline
+// header comment for the full geometric argument.
 var PM_planeInkZones = {};
+// SOFT per-frame obstacle registry, same shape as PM_planeInkZones — holds
+// ONLY gridline ink (drawCartesianPlane, Pass 0.25). Read exclusively by
+// PM_readoutGridOverlapArea (the least-overlap-area tie-break inside
+// PM_readoutResolveOffset), never by the hard PM_readoutCollides predicate —
+// so a readout that merely grazes a dim decorative gridline is never
+// rejected outright, only nudged toward whichever tested candidate crosses
+// less of it. Reset in lockstep with PM_planeInkZones (see draw()).
+var PM_planeGridInkZones = {};
+// Per-frame, per-plane: the LIVE (non-ghost) function_plot's y_expr on this
+// plane, as authored — e.g. "x*x/2". Set by drawFunctionPlot as it draws
+// (Pass 0.3, the SAME fixed-order guarantee PM_planeInkZones relies on:
+// function_plot always runs before plot_point) and consumed by
+// drawPlotPoint's default-offset direction (PM_plotPointCurveTangentPx)
+// below. A state that draws a parent "ghost" copy alongside the live curve
+// (graph_transformations' style:'ghost' pattern) never lets the ghost
+// overwrite an already-registered live curve — see drawFunctionPlot's own
+// registration guard. Reset in lockstep with PM_planeInkZones (see draw()).
+var PM_planeCurveExpr = {};
 // D11 (AMENDMENT 2 / F6 supersession, CP-C2, bug_class
 // pcpl_riemann_bars_composition_and_draw_order_undeclared) — { [var_name]:
 // number }, riemann_bars' publish target. Deliberately OUTSIDE PM_physics:
@@ -5628,13 +5864,17 @@ function draw() {
     if (sPrim && sPrim.type === 'surface') drawSurface(sPrim);
   }
 
-  // Reset the per-frame readout obstacle registry + debug snapshot BEFORE
+  // Reset the per-frame readout obstacle registries + debug snapshot BEFORE
   // Pass 0.25 — drawCartesianPlane's gridlines (Pass 0.25) register into
-  // PM_planeInkZones, and every readout drawn later this same frame (Pass
-  // 0.3) must see them; resetting any later would wipe what Pass 0.25 just
-  // wrote. A stale zone/debug entry from a PRIOR frame's dragged offset or a
-  // PRIOR state's plane must never leak into this frame's placement.
+  // PM_planeGridInkZones, and every readout drawn later this same frame
+  // (Pass 0.3) must see them (plus whatever function_plot registers into
+  // PM_planeInkZones/PM_planeCurveExpr); resetting any later would wipe what
+  // Pass 0.25 just wrote. A stale zone/curve/debug entry from a PRIOR
+  // frame's dragged offset or a PRIOR state's plane must never leak into
+  // this frame's placement.
   PM_planeInkZones = {};
+  PM_planeGridInkZones = {};
+  PM_planeCurveExpr = {};
   if (typeof window !== 'undefined') {
     window.__pmDebug = window.__pmDebug || {};
     window.__pmDebug.readouts = {};

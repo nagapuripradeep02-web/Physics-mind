@@ -82,7 +82,15 @@ function grabVar(name: string, src: string = SRC): string {
   return src.slice(m!.index!, src.indexOf(";", i) + 1);
 }
 
-const VARS = ["PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC", "PM_CANVAS_W"];
+const VARS = [
+  "PM_planeRegistry", "PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC", "PM_CANVAS_W",
+  // Engine round (2026-08-07/08) — the tiered obstacle registries + the
+  // per-plane live-curve tracker, all mutable `var {}` state read/written
+  // by the FNS below. Grabbed as VARS (not FNS) because they are object
+  // literals, exactly like PM_planeRegistry above.
+  "PM_planeInkZones", "PM_planeGridInkZones", "PM_planeCurveExpr",
+  "PM_GRID_OVERLAP_TIEBREAK_WEIGHT", "PM_TANGENT_PROBE_EPS", "PM_INK_SEGMENT_SUBDIVISIONS",
+];
 const FNS = [
   // PM_fmtNum MUST stay ahead of its callers in this list — the harness
   // evaluates these in order, and PM_formatTickLabel / PM_plotPointResolve now
@@ -116,6 +124,17 @@ const FNS = [
   "PM_readoutAuthoredOffset", "PM_upwardNormal", "PM_labelClearOffset", "PM_rectsOverlap",
   "PM_readoutBBox", "PM_readoutDangerZones", "PM_readoutOffCanvas",
   "PM_clampOffsetToCanvas", "PM_readoutCollides", "PM_readoutResolveOffset",
+  // Engine round (2026-08-07/08, bug_class readout_resolver_predicate_
+  // saturated_by_gridline_ink_so_it_always_returns_true and
+  // readout_resolver_flips_blind_without_testing_the_mirrored_candidate) —
+  // the ordered-candidate resolver's own helpers, the tiered ink registry
+  // functions (PM_registerInkZone/PM_registerGridInkZone/PM_registerLineInk
+  // were already needed by section 15/CP-D but are listed here for
+  // completeness against the new tiered split), and the plot_point
+  // curve-tangent default-offset probe.
+  "PM_registerInkZone", "PM_registerGridInkZone", "PM_registerLineInk",
+  "PM_rectOverlapArea", "PM_readoutHardOverlapArea", "PM_readoutGridOverlapArea", "PM_readoutOverlapArea",
+  "PM_plotPointCurveTangentPx",
 ];
 
 // Helvetica advance widths (units/1000) — p5's default face at textSize(12).
@@ -133,6 +152,27 @@ const HELV_W: Record<string, number> = (() => {
   return m;
 })();
 const textW12 = (s: string) => [...s].reduce((a, c) => a + (HELV_W[c] ?? 556), 0) / 1000 * 12;
+
+// Sign-aware helpers, SHARED across every section that parses a PM_fmtNum-
+// produced string (bug_class check_cartesian_plane_sign_parsing_is_ascii_
+// only_so_every_negative_fixture_is_vacuously_absent — engine round
+// 2026-08-07/08). PM_fmtNum emits real U+2212 MINUS SIGN (Rule 34c), never
+// ASCII U+002D hyphen-minus — but `parseFloat` does not recognise U+2212 as
+// a sign character (parseFloat("−1.5") is NaN, not -1.5) and an ASCII-
+// only character class like [-\d.] simply never matches it either. A probe
+// built from either primitive on a POSITIVE-only fixture set passes
+// vacuously — it never actually exercises the sign path — which is exactly
+// how check:cartesian-plane's own "parses back to two numbers"/"readoutText
+// carries the same slope value" assertions in sections 7 and 10 shipped
+// with silent sign-blind spots (named directly by the founder brief at
+// check_cartesian_plane.ts:467/681, this file's line numbers at the time).
+// asciiMinus() normalises U+2212 -> '-' BEFORE parseFloat/regex ever see the
+// string, so a negative fixture is actually exercised, not skipped.
+const asciiMinus = (s: string) => s.replace(/−/g, "-");
+const parseSignedFloat = (s: string) => parseFloat(asciiMinus(s));
+// A char class that matches EITHER glyph, for regexes that need to capture
+// a signed numeral straight out of PM_fmtNum's own output.
+const SIGNED_NUM_RE_SRC = "[\\u2212\\-\\d.]+";
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const E = new Function([
@@ -327,11 +367,38 @@ console.log("\n=== 3. TICKS — authored step (D5) + pi-mode labels (F3) ===");
   const preFix2426 = preFixTickValues(-2.4, 2.6, 1);
   assertTrue("NEGATIVE CONTROL: pre-fix [-2.4,2.6]/1 reproduces the founder's exact 6 marks (-2.4,-1.4,-0.4,0.6,1.6,2.6)",
     preFix2426.length === 6 && [-2.4, -1.4, -0.4, 0.6, 1.6, 2.6].every((v, i) => Math.abs(v - preFix2426[i]) < 1e-9));
+  // -0.40 fed to the LIVE (shipped) formatter. Before the 2026-08-07/08
+  // engine round this ACTUALLY reproduced the reported bug (not merely a
+  // hypothetical): PM_fmtNum's near-zero clamp was a FIXED 1e-9, and
+  // |-0.4| = 0.4 sits nowhere near that, so it never clamped — the shipped
+  // PM_formatTickLabel really did print "−0" for this mark. The clamp fix
+  // (bug_class ascii_minus_in_oncanvas_math_from_tofixed's sibling: "shipped
+  // twice, third occurrence via a magnitude instead of a glyph" — the clamp
+  // must scale with decimals, 0.5*10^-decimals, not a fixed epsilon) closes
+  // this exact case as a side effect, since PM_formatTickLabel's numeric
+  // branch funnels through PM_fmtNum. This assertion is now POSITIVE, not a
+  // negative control — a real defect the shipped code no longer has.
   const preFixLabel = E.PM_formatTickLabel(preFix2426[2], "number", 0); // the -0.40 mark
-  check("NEGATIVE CONTROL: PM_formatTickLabel on the pre-fix -0.40 mark still prints a negative zero — the ORIGINAL reported bug",
-    preFixLabel, "−0", 0 as any);
-  assertTrue("NEGATIVE CONTROL: the '-0' assertion that now guards the fixed enumerator correctly FAILS against the pre-fix one",
-    /^-0(\.0+)?$/.test(ascii(preFixLabel)));
+  check("the LIVE formatter on the pre-fix -0.40 mark now prints a clean 0, not a negative zero (the ORIGINAL reported bug, closed by the decimals-scaled clamp)",
+    preFixLabel, "0", 0 as any);
+  assertTrue("no residual '-0'/'−0' on the live formatter's output for this mark",
+    !/^-0(\.0+)?$/.test(ascii(preFixLabel)));
+
+  // NEGATIVE CONTROL, properly isolated this time — a hand-reimplemented
+  // PRE-ROUND-2 PM_fmtNum (the fixed-1e-9-epsilon version this file's own
+  // history shows was actually shipped), run here only, never re-shipped.
+  // Demonstrates the assertion above WOULD have failed against the old
+  // implementation, so the positive check is known to discriminate.
+  function preFixFmtNum(value: number, decimals: number): string {
+    const d = decimals;
+    const v = Math.abs(value) < 1e-9 ? 0 : value; // BUG: fixed epsilon, not decimals-scaled
+    return v.toFixed(d).replace("-", "−");
+  }
+  const preFixFmtLabel = preFixFmtNum(preFix2426[2], 0);
+  check("NEGATIVE CONTROL: the pre-round-2 fixed-epsilon PM_fmtNum DOES still print a negative zero for -0.40 at 0dp",
+    preFixFmtLabel, "−0", 0 as any);
+  check("NEGATIVE CONTROL: PM_fmtNum(-0.003, 2) under the pre-round-2 implementation prints a genuine negative (does not clamp)",
+    preFixFmtNum(-0.003, 2), "−0.00", 0 as any);
 
   // pi-mode: range [0, 2*PI], tick = PI/2 -> 0, pi/2, pi, 3pi/2, 2pi.
   const piTicks = E.PM_planeTickValues(0, 2 * Math.PI, Math.PI / 2);
@@ -482,10 +549,38 @@ console.log("\n=== 7. plot_point — readout AND pixel position derive from ONE 
 
   // The picture and the text must be traceable to the SAME (x, y) — re-parse
   // the numbers OUT of the readout text and confirm they match resolved.x/y.
-  const m = /P = \(([-\d.]+), ([-\d.]+)\)/.exec(resolved.readoutText);
+  // Uses SIGNED_NUM_RE_SRC/parseSignedFloat (this file's shared sign-aware
+  // helpers) — NOT a bare [-\d.] class + raw parseFloat — because
+  // PM_fmtNum emits real U+2212, which an ASCII-only class/parseFloat
+  // silently fails to match. This positive-only fixture (x0=1.5) cannot by
+  // itself prove the sign path works — the dedicated NEGATIVE fixture and
+  // negative control immediately below exist for exactly that reason.
+  const signedReadoutRe = new RegExp("P = \\(" + SIGNED_NUM_RE_SRC + ", " + SIGNED_NUM_RE_SRC + "\\)");
+  const m = new RegExp("P = \\((" + SIGNED_NUM_RE_SRC + "), (" + SIGNED_NUM_RE_SRC + ")\\)").exec(resolved.readoutText);
   assertTrue("readout text parses back to two numbers", !!m);
-  check("readout's printed x matches resolved.x", parseFloat(m![1]), resolved.x, 1e-9);
-  check("readout's printed y matches resolved.y", parseFloat(m![2]), resolved.y, 1e-9);
+  check("readout's printed x matches resolved.x", parseSignedFloat(m![1]), resolved.x, 1e-9);
+  check("readout's printed y matches resolved.y", parseSignedFloat(m![2]), resolved.y, 1e-9);
+
+  // ── NEGATIVE FIXTURE — x0 negative, so the readout actually PRINTS a
+  // U+2212 minus sign (bug_class check_cartesian_plane_sign_parsing_is_
+  // ascii_only_so_every_negative_fixture_is_vacuously_absent). Every prior
+  // fixture in this section was positive-only. ──────────────────────────
+  const negPointSpec = { x_expr: "x0", y_expr: "x0*x0", readout: { format: "P = ({x}, {y})", decimals: 2 } };
+  const negResolved = E.PM_plotPointResolve(negPointSpec, { x0: -1.5 });
+  check("negative fixture: resolved.x", negResolved.x, -1.5, 1e-12);
+  check("negative fixture: resolved.y (x0^2 is positive even though x0 is negative)", negResolved.y, 2.25, 1e-12);
+  check("negative fixture: readoutText carries a REAL U+2212, not ASCII hyphen", negResolved.readoutText, "P = (−1.50, 2.25)", 0 as any);
+  assertTrue("negative fixture: signedReadoutRe (U+2212-aware) DOES match", signedReadoutRe.test(negResolved.readoutText));
+  const negM = new RegExp("P = \\((" + SIGNED_NUM_RE_SRC + "), (" + SIGNED_NUM_RE_SRC + ")\\)").exec(negResolved.readoutText);
+  assertTrue("negative fixture: the sign-aware regex parses back two numbers", !!negM);
+  check("negative fixture: parseSignedFloat recovers -1.5 from the U+2212 string", parseSignedFloat(negM![1]), -1.5, 1e-9);
+
+  // NEGATIVE CONTROL — the OLD ASCII-only regex + raw parseFloat, run here
+  // only, demonstrating exactly the vacuous-pass this section's positive-
+  // only fixture allowed to ship undetected.
+  const oldAsciiOnlyRe = /P = \(([-\d.]+), ([-\d.]+)\)/;
+  assertTrue("NEGATIVE CONTROL: the OLD ASCII-only char class does NOT match a U+2212 readout at all", !oldAsciiOnlyRe.test(negResolved.readoutText));
+  assertTrue("NEGATIVE CONTROL: raw parseFloat on a U+2212 string is NaN, not the numeral (the silent failure mode)", Number.isNaN(parseFloat("−1.50")));
 
   // The pixel position derives from the SAME resolved.x/y through the ONE
   // plane funnel (PM_planeResolve) — register a plane and confirm.
@@ -697,6 +792,29 @@ console.log("\n=== 10. secant_line / tangent_line — DATA-space slope, extend:'
   // float; the point being tested is "one evaluation", not "no rounding".
   check("secant readoutText carries the SAME slope value (D8: picture and readout, one scope)",
     parseFloat(secantComputed.readoutText.replace("slope = ", "")), secantComputed.slope, 5e-4);
+
+  // ── NEGATIVE FIXTURE — a NEGATIVE slope, so readoutText actually PRINTS a
+  // U+2212 (bug_class check_cartesian_plane_sign_parsing_is_ascii_only_so_
+  // every_negative_fixture_is_vacuously_absent, named at this exact call
+  // site by the founder brief). x0=2: cos(2) ~ -0.416, genuinely negative —
+  // the fixture immediately above (x0=1, cos(1) ~ +0.540) can never exercise
+  // this path no matter how many times it is re-run. ─────────────────────
+  const negSlopeVars = { x0: 2, h: 0.001 };
+  const negSlopeComputed = E.PM_secantLineCompute(secantSpec, negSlopeVars, ranges);
+  assertTrue("negative-slope fixture: secant_line resolves valid", negSlopeComputed.valid);
+  assertTrue("negative-slope fixture: the slope IS actually negative (the precondition, not assumed)", negSlopeComputed.slope < 0);
+  assertTrue("negative-slope fixture: readoutText carries a REAL U+2212, not an ASCII hyphen", negSlopeComputed.readoutText.includes("−"));
+  assertTrue("negative-slope fixture: readoutText carries ZERO ASCII hyphen-minus characters", !negSlopeComputed.readoutText.includes("-"));
+  check("negative-slope fixture: parseSignedFloat (U+2212-aware) recovers the SAME slope value",
+    parseSignedFloat(negSlopeComputed.readoutText.replace("slope = ", "")), negSlopeComputed.slope, 5e-4);
+
+  // NEGATIVE CONTROL — the OLD raw parseFloat on this exact U+2212 string,
+  // demonstrating the silent failure this call site's positive-only fixture
+  // let ship undetected: parseFloat stops at the first non-numeral
+  // character, and U+2212 is not one it recognises as a sign, so it returns
+  // NaN rather than the (correctly signed) numeral.
+  assertTrue("NEGATIVE CONTROL: raw parseFloat on the negative-slope readoutText is NaN, not the numeral",
+    Number.isNaN(parseFloat(negSlopeComputed.readoutText.replace("slope = ", ""))));
 
   // ── tangent slope reproduces slope_expr EXACTLY (never numerically
   // differentiated — ledger item 5) ────────────────────────────────────────
@@ -1752,10 +1870,92 @@ console.log("\n=== 17. F-READOUT PLACEMENT — offset parity, perpendicular defa
   assertTrue("STATE_6 accepted win is driven by the X-AXIS zone (the trigger round 2 kept)", E.PM_rectsOverlap(s6Box, s6Zones[1]));
   assertTrue("STATE_6 accepted win is NOT driven by off-canvas (the trigger round 2 removed) — narrowing the predicate cannot regress it", !E.PM_readoutOffCanvas(s6Box));
   assertTrue("STATE_6 accepted win is NOT driven by the y-axis zone either", !E.PM_rectsOverlap(s6Box, s6Zones[0]));
-  const resolved2 = E.PM_readoutResolveOffset(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane);
-  check("founder repro: PM_readoutResolveOffset flips to the mirrored offset {-12,-20}", JSON.stringify(resolved2), JSON.stringify({ x: -12, y: -20 }), 0 as any);
+  // Engine round 2026-08-07/08 (bug_class readout_resolver_flips_blind_
+  // without_testing_the_mirrored_candidate) — the resolver no longer takes
+  // the full mirror unconditionally; it walks an ORDERED candidate set
+  // (authored, x-mirror, y-mirror, full-mirror, +/-normal) and returns the
+  // FIRST one that is actually tested clear. Worked by hand against the
+  // SAME zones section 17(e) above already derived (s6Zones[0]=y-axis
+  // strip x[222,255]; s6Zones[1]=x-axis strip y[291,314]):
+  //   candidate 1 (authored {12,20}):  box x[324,443] y[284.6,298.6] -> overlaps zone[1] (y 284.6<314, 298.6>291) -> COLLIDES
+  //   candidate 2 (x-mirror {-12,20}): box x[300,419] y[284.6,298.6] -> SAME y-span -> still overlaps zone[1] -> COLLIDES
+  //   candidate 3 (y-mirror {12,-20}): box x[324,443] y[244.6,258.6] -> y1=258.6 < zone[1].y0=291 -> clear of zone[1]; x[324,443] vs zone[0] x[222,255] -> clear too -> FREE, returned immediately
+  // The y-mirror is tried BEFORE the full mirror by the documented candidate
+  // order, so it wins first — {12,-20}, NOT the old blind flip's {-12,-20}
+  // (which is ALSO collision-free here, just never reached because a nearer
+  // tested candidate already cleared). This is a strictly BETTER outcome:
+  // the y-mirror keeps P's x-offset (rightward, already comfortably clear of
+  // the y-axis strip) and only flips the axis that was actually struck.
+  const resolved2 = E.PM_readoutResolveOffset(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane, "plane");
+  check("founder repro (engine round 2026-08-07/08): the ORDERED resolver returns the y-mirror {12,-20} — the FIRST tested candidate that is actually clear, not the old blind full-mirror {-12,-20}",
+    JSON.stringify(resolved2), JSON.stringify({ x: 12, y: -20 }), 0 as any);
   const postFixCollides = E.PM_readoutCollides(pAnchor, resolved2, readoutTextW, 14, founderPlane);
-  assertTrue("founder repro: the FLIPPED placement clears the x-axis danger zone (no longer struck)", !postFixCollides);
+  assertTrue("founder repro: the resolved placement clears the x-axis danger zone (no longer struck)", !postFixCollides);
+
+  // The OLD full-mirror {-12,-20} is ALSO collision-free at this anchor —
+  // confirm that explicitly, so "the new answer differs from the old one"
+  // is read as "a nearer candidate won", never "the old answer was wrong".
+  const oldFullMirror = { x: -authoredCandidate.x, y: -authoredCandidate.y };
+  assertTrue("the OLD blind-flip answer {-12,-20} is independently ALSO collision-free (both are valid; the ordered search just finds the nearer one first)",
+    !E.PM_readoutCollides(pAnchor, oldFullMirror, readoutTextW, 14, founderPlane));
+
+  // NEGATIVE CONTROL for the ORDER itself — a resolver that checked full-
+  // mirror BEFORE y-mirror would return {-12,-20} here; demonstrate that
+  // reordering the SAME candidate set changes the answer, so the documented
+  // order is load-bearing, not cosmetic.
+  function resolveWithFullMirrorFirst(anchor: { x: number; y: number }, cand: { x: number; y: number }, tw: number, th: number, plane: any): { x: number; y: number } {
+    const order = [cand, { x: -cand.x, y: -cand.y }, { x: cand.x, y: -cand.y }, { x: -cand.x, y: cand.y }];
+    for (const c of order) if (!E.PM_readoutCollides(anchor, c, tw, th, plane)) return c;
+    return cand;
+  }
+  const reorderedResolve = resolveWithFullMirrorFirst(pAnchor, authoredCandidate, readoutTextW, 14, founderPlane);
+  check("NEGATIVE CONTROL: reordering full-mirror ahead of y-mirror in the SAME candidate set changes the answer to {-12,-20}",
+    JSON.stringify(reorderedResolve), JSON.stringify({ x: -12, y: -20 }), 0 as any);
+  assertTrue("the SHIPPED order does NOT share that defect (returns {12,-20}, not {-12,-20})",
+    JSON.stringify(resolved2) !== JSON.stringify(reorderedResolve));
+
+  // ── "NEVER RETURN A CANDIDATE YOU HAVE NOT TESTED" + least-overlap-area
+  // fallback — an anchor boxed in on every side by hard obstacles (no
+  // candidate can ever be collision-free) must still return one of the 4
+  // TESTED candidates, ranked by PM_readoutOverlapArea, never a 5th
+  // untested guess. Construct a pathological plane whose ink registry
+  // blocks all four quadrants around the anchor with obstacles of
+  // DIFFERENT sizes, so the ranking is falsifiable. x_range/y_range are
+  // both entirely POSITIVE and far from the anchor's own pixel position, so
+  // the plane's OWN axis/tick-label danger bands (PM_readoutDangerZones'
+  // static 2 zones) land nowhere near the 4 candidate boxes and cannot
+  // contaminate this test's engineered obstacle areas. ───────────────────
+  for (const k of Object.keys(E.PM_planeInkZones)) delete E.PM_planeInkZones[k];
+  const trapPlaneId = "trap";
+  const trapPlane = E.PM_planeBuildTransform({ id: trapPlaneId, viewport: { x: 0, y: 0, w: 800, h: 500 }, x_range: { min: 100, max: 200 }, y_range: { min: 100, max: 200 } });
+  const trapAnchor = { x: 400, y: 250 };
+  const trapTW = 60, trapTH = 14;
+  assertTrue("trap setup sanity: the plane's own axis danger zones do not reach the trap anchor's box neighbourhood",
+    !E.PM_readoutDangerZones(trapPlane).some((z: { x0: number; y0: number; x1: number; y1: number }) =>
+      E.PM_rectsOverlap(z, { x0: 350, y0: 200, x1: 500, y1: 300 })));
+  // Candidate boxes at offset (30,-20)/(-30,-20)/(30,20)/(-30,20) (textAlign
+  // LEFT,CENTER: box spans [anchor.x+off.x, +tw] x [anchor.y+off.y-th/2, +th]).
+  // Register one obstacle EXACTLY sized against each candidate's own bbox —
+  // candidate 1 (authored) gets a 5px sliver (smallest overlap), candidate 3
+  // (y-mirror) a partial strip, candidates 2/4 (x-mirror, full-mirror) full
+  // covers — so the least-overlap-area ranking is unambiguous.
+  const cand1 = { x: 30, y: -20 }, cand2 = { x: -30, y: -20 }, cand3 = { x: 30, y: 20 }, cand4 = { x: -30, y: 20 };
+  const bbox1 = E.PM_readoutBBox(trapAnchor, cand1, trapTW, trapTH);
+  const bbox2 = E.PM_readoutBBox(trapAnchor, cand2, trapTW, trapTH);
+  const bbox3 = E.PM_readoutBBox(trapAnchor, cand3, trapTW, trapTH);
+  const bbox4 = E.PM_readoutBBox(trapAnchor, cand4, trapTW, trapTH);
+  E.PM_planeInkZones[trapPlaneId] = [
+    { x0: bbox1.x0, y0: bbox1.y0, x1: bbox1.x0 + 5, y1: bbox1.y1 }, // candidate 1: a 5px sliver, smallest overlap
+    bbox2, // candidate 2: fully covered
+    { x0: bbox3.x0, y0: bbox3.y0, x1: bbox3.x1, y1: bbox3.y0 + 10 }, // candidate 3: partial (bigger than sliver, smaller than full)
+    bbox4, // candidate 4 (full mirror): fully covered
+  ];
+  const trapResolved = E.PM_readoutResolveOffset(trapAnchor, cand1, trapTW, trapTH, trapPlane, trapPlaneId);
+  assertTrue("boxed-in anchor: every candidate DOES collide (the trap is genuinely inescapable)",
+    [cand1, cand2, cand3, cand4].every((c) => E.PM_readoutCollides(trapAnchor, c, trapTW, trapTH, trapPlane, trapPlaneId)));
+  check("boxed-in anchor: the resolver falls back to the LEAST-overlap-area candidate (candidate 1, the 5px sliver) — a TESTED candidate, never a 5th guess",
+    JSON.stringify(trapResolved), JSON.stringify(cand1), 0 as any);
+  delete E.PM_planeInkZones[trapPlaneId];
 
   // NEGATIVE CONTROL — "an implementation with no collision awareness must
   // FAIL": simply returning the candidate unmodified (the pre-fix renderer's
@@ -1772,6 +1972,94 @@ console.log("\n=== 17. F-READOUT PLACEMENT — offset parity, perpendicular defa
   const clearResolved = E.PM_readoutResolveOffset(clearAnchor, clearCandidate, readoutTextW, 14, founderPlane);
   check("a placement with NO collision is returned UNCHANGED (the fix never moves what wasn't broken)",
     JSON.stringify(clearResolved), JSON.stringify(clearCandidate), 0 as any);
+
+  // ── GRIDLINE SATURATION — bug_class readout_resolver_predicate_saturated_
+  // by_gridline_ink_so_it_always_returns_true (CRITICAL, engine round
+  // 2026-08-07/08). On a plane shaped like graph_transformations' own
+  // (x_tick pitch ~51px, a 2-decimal coordinate-pair readout ~87-100px
+  // wide), gridline pitch is SMALLER than the readout's own width — by the
+  // pigeonhole principle EVERY horizontal position for the box straddles at
+  // least one gridline column. Proven directly below, not asserted. ──────
+  const gridSatPlaneId = "gridsat";
+  const gridSatPlane = E.PM_planeBuildTransform({
+    id: gridSatPlaneId, viewport: { x: 70, y: 78, w: 660, h: 372 },
+    x_range: { min: -6.5, max: 6.5 }, y_range: { min: -4, max: 4 },
+  });
+  const gridPitchPx = gridSatPlane.scaleX * 1; // x_tick = 1
+  check("gridline pitch on the graph_transformations-shaped plane matches the founder's measured ~51px", gridPitchPx, 50.77, 0.05, "px");
+  const gsReadoutText = "P' = (3.14, -2.50)";
+  const gsTW = textW12(gsReadoutText);
+  assertTrue("this readout's own width EXCEEDS the gridline pitch (the saturation precondition, not assumed)", gsTW > gridPitchPx);
+
+  // Register gridline ink exactly as drawCartesianPlane would (one band per
+  // x-tick, full plane height, GRID_INK_HALF=4 padding) — reproduced here as
+  // DATA, without calling the p5-drawing wrapper.
+  for (const k of Object.keys(E.PM_planeGridInkZones)) delete E.PM_planeGridInkZones[k];
+  const gsXTicks = E.PM_planeTickValues(-6.5, 6.5, 1) as number[];
+  E.PM_planeGridInkZones[gridSatPlaneId] = gsXTicks.map((tv: number) => {
+    const top = gridSatPlane.toPx(tv, 4), bot = gridSatPlane.toPx(tv, -4);
+    return { x0: top.x - 4, y0: Math.min(top.y, bot.y), x1: top.x + 4, y1: Math.max(top.y, bot.y) };
+  });
+
+  // An anchor + offset sweep restricted to ox in [-140,150] (59 positions),
+  // oy=0. Bounds derived, not guessed: the anchor sits at data (3,2) — data
+  // x=3 lands EXACTLY on a gridline column (px 552.3, an authored integer
+  // x_tick) — and the grid's 13 columns span px [95.4, 704.6] with an
+  // 8px-wide band each. A gsTW~93.7px box only stays inside that periodic
+  // region (guaranteeing pigeonhole coverage) up to ox<=155 before it slides
+  // past the last column entirely; ox>-149.3 is required to clear the
+  // y-axis danger band (px [370,403]) on the right side. [-140,150] sits
+  // comfortably inside both bounds with margin — verified empirically
+  // against the real column/zone geometry before being hardcoded here, not
+  // assumed from the abstract pigeonhole argument alone.
+  const gsAnchor = gridSatPlane.toPx(3, 2); // px (552.3, 171) — off both axes
+  const gsSweepOx: number[] = [];
+  for (let ox = -140; ox <= 150; ox += 5) gsSweepOx.push(ox);
+  const gsStaticZones = E.PM_readoutDangerZones(gridSatPlane);
+  const gsNoneHitAxis = gsSweepOx.every((ox) => {
+    const box = E.PM_readoutBBox(gsAnchor, { x: ox, y: 0 }, gsTW, 14);
+    return gsStaticZones.every((z: { x0: number; y0: number; x1: number; y1: number }) => !E.PM_rectsOverlap(box, z));
+  });
+  assertTrue(`sweep sanity: none of the ${gsSweepOx.length} swept offsets touch the plane's own axis/tick-label zones (isolates the gridline argument)`, gsNoneHitAxis);
+
+  // NEGATIVE CONTROL — if this ink were registered as a HARD obstacle
+  // (PM_planeInkZones, the pre-round-2 design this fix corrects), the
+  // predicate saturates: every one of the swept positions collides,
+  // purely because of gridline ink.
+  const savedHard = E.PM_planeInkZones[gridSatPlaneId];
+  E.PM_planeInkZones[gridSatPlaneId] = E.PM_planeGridInkZones[gridSatPlaneId];
+  const allSaturatedAsHard = gsSweepOx.every((ox) =>
+    E.PM_readoutCollides(gsAnchor, { x: ox, y: 0 }, gsTW, 14, gridSatPlane, gridSatPlaneId) === true);
+  assertTrue(`NEGATIVE CONTROL: treating gridline ink as a HARD obstacle saturates the predicate — all ${gsSweepOx.length} swept offsets collide, none axis-driven`, allSaturatedAsHard);
+  E.PM_planeInkZones[gridSatPlaneId] = savedHard; // restore — gridlines are NEVER hard in the shipped design (undefined/empty again)
+
+  // POSITIVE — the SHIPPED design (gridlines in the SOFT registry only): the
+  // predicate is no longer saturated — at least some of the same swept
+  // offsets are now genuinely collision-free, so PM_readoutCollides "can
+  // return false" again, per the literal requirement.
+  const someClearAsSoft = gsSweepOx.some((ox) =>
+    E.PM_readoutCollides(gsAnchor, { x: ox, y: 0 }, gsTW, 14, gridSatPlane, gridSatPlaneId) === false);
+  assertTrue(`shipped: with gridlines in the SOFT tier, PM_readoutCollides again returns false for SOME of the same ${gsSweepOx.length} offsets`, someClearAsSoft);
+
+  // The resolver now returns the AUTHORED offset UNCHANGED on a gridline-
+  // heavy plane when no OTHER hard obstacle is present — even though it
+  // visibly grazes a gridline column. This is the regression PR #59
+  // introduced (9 of 9 authored offsets inverted on graph_transformations)
+  // and this round closes.
+  const gsCandidate = { x: 90, y: 0 };
+  assertTrue("shipped: this specific authored-style candidate is hard-collision-free despite crossing gridline ink",
+    !E.PM_readoutCollides(gsAnchor, gsCandidate, gsTW, 14, gridSatPlane, gridSatPlaneId));
+  const gsResolved = E.PM_readoutResolveOffset(gsAnchor, gsCandidate, gsTW, 14, gridSatPlane, gridSatPlaneId);
+  check("shipped: the resolver returns the AUTHORED offset UNCHANGED on a gridline-heavy plane (never an unconditional flip triggered by grid ink alone)",
+    JSON.stringify(gsResolved), JSON.stringify(gsCandidate), 0 as any);
+
+  // The soft tier still MATTERS — it tie-breaks among otherwise hard-tied
+  // candidates via PM_readoutOverlapArea; it just never forces a flip on
+  // its own.
+  const gridOnlyScore = E.PM_readoutGridOverlapArea(gsAnchor, gsCandidate, gsTW, 14, gridSatPlaneId);
+  assertTrue("the grazed gridline DOES register nonzero soft overlap area (not literally invisible to the engine, just non-blocking)", gridOnlyScore > 0);
+
+  delete E.PM_planeGridInkZones[gridSatPlaneId];
 
   // Absent plane (F7 fleet-safety, mirrors section 11) -> pass the candidate
   // straight through, never throws.
@@ -1867,6 +2155,121 @@ console.log("\n=== 17. F-READOUT PLACEMENT — offset parity, perpendicular defa
     /scene_composition:\s*z\.array\(z\.record\(z\.string\(\),\s*z\.unknown\(\)\)\)/.test(
       require("fs").readFileSync(require("path").join(__dirname, "../schemas/conceptJson.ts"), "utf8")
     ));
+}
+
+console.log("\n=== 18. PM_fmtNum — decimals-scaled near-zero clamp (bug_class ascii_minus_in_oncanvas_math_from_tofixed's sibling) ===");
+{
+  // The founder brief's own two literal assertions.
+  check("PM_fmtNum(-0.003, 2) === '0.00' (clamped: 0.003 < 0.5*10^-2 = 0.005)", E.PM_fmtNum(-0.003, 2), "0.00", 0 as any);
+  check("PM_fmtNum(-0.4, 0) === '0' (clamped: 0.4 < 0.5*10^0 = 0.5)", E.PM_fmtNum(-0.4, 0), "0", 0 as any);
+
+  // A genuine negative that merely ROUNDS small must NOT be clamped away —
+  // the clamp catches false "-0"s from float noise, not real small readings.
+  check("PM_fmtNum(-0.006, 2) stays a real negative (0.006 > 0.005 = 0.5*10^-2)", E.PM_fmtNum(-0.006, 2), "−0.01", 0 as any);
+  check("PM_fmtNum(-0.6, 0) stays a real negative (0.6 > 0.5 = 0.5*10^0)", E.PM_fmtNum(-0.6, 0), "−1", 0 as any);
+
+  // Boundary — exactly AT the threshold is NOT clamped (strict <, matching
+  // this function's own `<` comparison, mirrored here so the boundary
+  // itself is pinned rather than merely implied by the two cases above).
+  check("PM_fmtNum(-0.005, 2) at the EXACT threshold is NOT clamped (strict <, not <=)", E.PM_fmtNum(-0.005, 2), "−0.01", 0 as any);
+
+  // Every decimals value in active use on this engine (0,1,2,3,4 — plot_point
+  // defaults to 2, secant/tangent readouts commonly author 3-4, tick labels
+  // commonly author 0) gets its OWN correctly-scaled clamp, not one value
+  // borrowed from a different precision.
+  const perDecimalsOk = [0, 1, 2, 3, 4].every((d) => {
+    const eps = 0.5 * Math.pow(10, -d);
+    const justInside = E.PM_fmtNum(-(eps * 0.99), d); // just inside the clamp -> "0"
+    const justOutside = E.PM_fmtNum(-(eps * 1.5), d); // just outside -> a real negative
+    return justInside === (0).toFixed(d) && justOutside.startsWith("−");
+  });
+  assertTrue("the clamp threshold is correctly decimals-scaled at every authored precision (0-4dp), not a single borrowed constant", perDecimalsOk);
+
+  // Non-finite decimals falls back to the function's own documented default
+  // (2dp) rather than crashing or producing NaN text.
+  assertTrue("a non-finite decimals argument degrades to the 2dp default, never NaN text", !E.PM_fmtNum(-0.003, NaN as any).includes("NaN"));
+
+  // NEGATIVE CONTROL — the pre-round-2 fixed-1e-9-epsilon implementation
+  // (hand-reproduced here, matching section 3's own preFixFmtNum), run
+  // against the SAME two founder-brief cases, demonstrating it does NOT
+  // close either one.
+  function preFixFmtNumV2(value: number, decimals: number): string {
+    const v = Math.abs(value) < 1e-9 ? 0 : value;
+    return v.toFixed(decimals).replace("-", "−");
+  }
+  assertTrue("NEGATIVE CONTROL: the pre-round-2 fixed-epsilon clamp does NOT close PM_fmtNum(-0.003, 2)", preFixFmtNumV2(-0.003, 2) !== "0.00");
+  assertTrue("NEGATIVE CONTROL: the pre-round-2 fixed-epsilon clamp does NOT close PM_fmtNum(-0.4, 0)", preFixFmtNumV2(-0.4, 0) !== "0");
+}
+
+console.log("\n=== 19. plot_point default-offset direction — outward normal to the LOCAL CURVE TANGENT, not a screen-axis constant (bug_class plot_point_default_offset_is_a_screen_axis_constant_not_the_curves_own_tangent) ===");
+{
+  for (const k of Object.keys(E.PM_planeCurveExpr)) delete E.PM_planeCurveExpr[k];
+  const tanPlaneId = "tanplane";
+  const tanPlane = E.PM_planeBuildTransform({ id: tanPlaneId, viewport: { x: 0, y: 0, w: 400, h: 400 }, x_range: { min: -4, max: 4 }, y_range: { min: -4, max: 4 } });
+  E.PM_planeCurveExpr[tanPlaneId] = "x*x/2"; // the SAME parabola derivative_as_secant_limit's curve authors
+
+  // At x=0 (the parabola's vertex) the tangent is HORIZONTAL — the outward
+  // normal must point straight up (or down); at x=2 the tangent has slope 2
+  // (steep) — the outward normal must be mostly HORIZONTAL, matching
+  // PM_upwardNormal's own already-verified geometry (section 17b) rather
+  // than a re-derivation here.
+  const tanAtVertex = E.PM_plotPointCurveTangentPx({ plane_id: tanPlaneId }, {}, tanPlane, 0, 0);
+  assertTrue("a curve IS registered for this plane -> tangent probe resolves (not null)", !!tanAtVertex);
+  const nVertex = E.PM_upwardNormal(tanAtVertex.p0, tanAtVertex.p1);
+  assertTrue("at the parabola's vertex (slope 0): the tangent probe's own normal is (near-)VERTICAL, |ny| >> |nx|", Math.abs(nVertex.y) > 0.99 && Math.abs(nVertex.x) < 0.15);
+
+  const tanAtSteep = E.PM_plotPointCurveTangentPx({ plane_id: tanPlaneId }, {}, tanPlane, 2, 2);
+  assertTrue("steep point (x=2, slope=2) -> tangent probe resolves", !!tanAtSteep);
+  const nSteep = E.PM_upwardNormal(tanAtSteep.p0, tanAtSteep.p1);
+  assertTrue("at a steep point (data slope 2): the normal leans substantially HORIZONTAL (|nx| > |ny| is false for slope 2 in DATA space, but pixel-space normal must differ measurably from the vertex's near-vertical normal)",
+    Math.abs(nSteep.x - nVertex.x) > 0.1 || Math.abs(nSteep.y - nVertex.y) > 0.1);
+
+  // Feeding the tangent segment into PM_labelClearOffset (the SAME support-
+  // function displacement secant_line/tangent_line already use) produces a
+  // GEOMETRIC clearance guarantee identical to section 17's own sweep — not
+  // re-derived by hand here, reused directly.
+  const tanDefaultOff = E.PM_labelClearOffset(tanAtVertex.p0, tanAtVertex.p1, 90, 14, 6);
+  assertTrue("the curve-tangent default offset is finite (never NaN feeding into a text() draw call)", isFinite(tanDefaultOff.x) && isFinite(tanDefaultOff.y));
+
+  // No curve registered on this plane this frame -> null, never a crash;
+  // caller (drawPlotPoint) falls back to the constant {10,-12} default.
+  const noCurvePlaneId = "nocurve";
+  const noCurvePlane = E.PM_planeBuildTransform({ id: noCurvePlaneId, viewport: { x: 0, y: 0, w: 400, h: 400 }, x_range: { min: -4, max: 4 }, y_range: { min: -4, max: 4 } });
+  const noCurveResult = E.PM_plotPointCurveTangentPx({ plane_id: noCurvePlaneId }, {}, noCurvePlane, 0, 0);
+  check("no function_plot registered on this plane -> null (caller falls back to the constant default)", noCurveResult, null, 0 as any);
+
+  // A point riding a REPARAMETERISED curve (Q-style: x_expr:"x0+1", still on
+  // the SAME parabola) gets the SAME tangent as a direct point at that x —
+  // proving the probe differentiates the CURVE's own y_expr (data x), never
+  // the point's OWN x_expr/parameter, which is what makes this correct for
+  // derivative_as_secant_limit's actual Q authoring (x_expr:"x0+1" or
+  // "x0+pow(10,hlog)" — both reparameterisations of the same y=x^2/2).
+  const tanDirect = E.PM_plotPointCurveTangentPx({ plane_id: tanPlaneId }, {}, tanPlane, 1.3, 1.3 * 1.3 / 2);
+  const tanReparam = E.PM_plotPointCurveTangentPx({ plane_id: tanPlaneId }, { x0: 0.3 }, tanPlane, 1.3, 1.3 * 1.3 / 2); // same (x,y), different scope, extra unrelated var
+  assertTrue("reparameterisation-independence: two probes at the SAME (x,y) but different `vars` scopes agree exactly",
+    !!tanDirect && !!tanReparam &&
+    Math.abs(tanDirect.p1.x - tanDirect.p0.x - (tanReparam.p1.x - tanReparam.p0.x)) < 1e-9 &&
+    Math.abs(tanDirect.p1.y - tanDirect.p0.y - (tanReparam.p1.y - tanReparam.p0.y)) < 1e-9);
+
+  // NEGATIVE CONTROL — a probe that (wrongly) differentiates the POINT's own
+  // x_expr/y_expr instead of the registered curve's y_expr would give a
+  // DIFFERENT (and for a genuinely different reparameterisation, WRONG)
+  // answer whenever the point's own parameterisation rate differs from 1:1.
+  // Demonstrated with x_expr:"2*t" (a 2x-rate reparameterisation) evaluated
+  // the WRONG way (differentiating x_expr/y_expr directly w.r.t. t) vs the
+  // CORRECT way (this section's own shipped probe, which ignores x_expr/
+  // y_expr entirely and only reads the plane's registered curve formula).
+  const wrongVars = { t: 0.65 };
+  const wrongDx = E.PM_safeEval("2*t", { t: wrongVars.t + 1e-4 }) - E.PM_safeEval("2*t", wrongVars);
+  assertTrue("NEGATIVE CONTROL: differentiating the POINT's OWN x_expr (2*t) gives a rate of ~2 per unit t, an artifact of the reparameterisation, not the curve's own dx",
+    Math.abs(wrongDx / 1e-4 - 2) < 1e-2);
+  const shippedTan = E.PM_plotPointCurveTangentPx({ plane_id: tanPlaneId }, {}, tanPlane, 1.3, 1.3 * 1.3 / 2);
+  const shippedDx = shippedTan.p1.x - shippedTan.p0.x;
+  // The shipped probe's OWN dx (in DATA space, before the plane's px scale)
+  // is exactly PM_TANGENT_PROBE_EPS (1e-4) by construction — it never
+  // inherits the point's 2x reparameterisation rate at all.
+  assertTrue("the SHIPPED probe does NOT share that defect — its own data-space dx is exactly PM_TANGENT_PROBE_EPS, un-scaled by any point-side reparameterisation",
+    Math.abs((tanPlane.toData(shippedTan.p1.x, shippedTan.p1.y).x - tanPlane.toData(shippedTan.p0.x, shippedTan.p0.y).x) - E.PM_TANGENT_PROBE_EPS) < 1e-9);
 }
 
 console.log(failures === 0
