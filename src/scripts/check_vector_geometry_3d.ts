@@ -57,6 +57,14 @@
  *      scenarios (newtons_laws_body / rigid_body_rotation / force_rig) and
  *      `static_readouts` (greyed SLIDER ROWS) is a fleet convention authored
  *      by seven shipped concepts. Both names must survive the rename.
+ * 11c  THE value_readouts UNION == THE VG_READOUT_LABEL TABLE, both ways.
+ *      The authoring contract (a TS union in the wrapper) and the rendering
+ *      table (a JS map 12,880 lines away, inside the template) declared the
+ *      SAME closed enum with nothing binding them, and drifted: 11 tokens vs
+ *      24, so every lines_planes readout the renderer already printed was
+ *      unauthorable by its own type. Binding direction union superset of
+ *      table; the reverse is verified and asserted too; plus a third — every
+ *      authorable token must actually be COMPUTED somewhere.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -1001,6 +1009,135 @@ console.log("\n=== 11b. THE AUTHORED VALUE PANEL IS vg.value_readouts — and th
     (ambiguousRegion.match(/d\.readouts/g) || []).length === 3);
   expectFail("a plain string-presence check on \"readouts\" can tell the ambiguous source from the fixed one",
     (ambiguous.indexOf("readouts") >= 0) !== (SRC.indexOf("readouts") >= 0));
+}
+console.log("\n=== 11c. THE AUTHORED value_readouts UNION == THE SHIPPED VG_READOUT_LABEL TABLE (both directions) ===");
+{
+  // bug_class field3d_vg_value_readouts_type_union_omits_every_lines_planes_
+  // token_the_renderer_already_prints.
+  //
+  // TWO declarations of the same closed enum, in two different languages,
+  // 12,880 lines apart and with nothing binding them:
+  //   * the TYPESCRIPT union `vg.value_readouts?: Array<...>` — the AUTHORING
+  //     contract, in the wrapper ABOVE the template literal;
+  //   * `var VG_READOUT_LABEL` — the RENDERING table, inside the emitted body,
+  //     and the thing vgReadoutLine actually dispatches on.
+  // Before A25 the union carried the 11 "products" tokens and the table
+  // carried 24: every one of the 13 Δ6 "lines_planes" tokens was rendered
+  // correctly by an engine that its own type forbade an author from naming.
+  // The defect is INVISIBLE to every other section here — the geometry is
+  // right, the labels are right, the frame driver prints them; only the
+  // contract is wrong — and it is invisible to tsc too, because no concept
+  // authors the scenario yet, so nothing type-checks against the union.
+  //
+  // The BINDING direction is union ⊇ table: every key the renderer can label
+  // must be authorable, or the engine ships a capability no state can reach.
+  // The reverse (table ⊇ union) is asserted too and VERIFIED to hold today —
+  // an authorable token with no label is a silent no-op, because vgReadoutLine
+  // returns null on a missing label and the row simply never appears.
+  //
+  // Read from the SOURCE FILE, not from SRC: SRC is the evaluated template
+  // body, and the union lives in the TypeScript wrapper ABOVE the opening
+  // backtick, so it is not in SRC at all.
+  const RENDERER_PATH = "src/lib/renderers/field_3d_renderer.ts";
+  const FILE = readFileSync(RENDERER_PATH, "utf-8");
+  const stripComments = (s: string) => s.replace(/\/\/[^\n]*/g, "");
+
+  /** The authored TS union, as a token set. */
+  function unionTokensOf(file: string): string[] {
+    const at = file.indexOf("value_readouts?: Array<");
+    if (at < 0) throw new Error("no value_readouts union in the renderer wrapper");
+    const end = file.indexOf(">;", at);
+    if (end < 0) throw new Error("unterminated value_readouts union");
+    return (stripComments(file.slice(at, end)).match(/'([a-z0-9_]+)'/g) || []).map((s) => s.replace(/'/g, ""));
+  }
+  /** The shipped VG_READOUT_LABEL table, as a key set. */
+  function labelKeysOf(body: string): string[] {
+    const at = body.indexOf("var VG_READOUT_LABEL = {");
+    if (at < 0) throw new Error("no VG_READOUT_LABEL in the emitted body");
+    const end = body.indexOf("};", at);
+    const inner = stripComments(body.slice(body.indexOf("{", at) + 1, end));
+    return (inner.match(/([A-Za-z_][A-Za-z0-9_]*)\s*:/g) || []).map((s) => s.replace(/\s*:$/, ""));
+  }
+
+  // The union must be in the WRAPPER, above the template. If it ever moved
+  // inside the body this extraction would be reading a different thing.
+  const tickOpen = FILE.indexOf("`", FILE.indexOf("FIELD_3D_RENDERER_CODE = "));
+  assertTrue("the value_readouts union lives in the TS wrapper, ABOVE the template literal (so SRC cannot see it)",
+    FILE.indexOf("value_readouts?: Array<") < tickOpen && tickOpen > 0);
+
+  const UNION = unionTokensOf(FILE);
+  const LABELS = labelKeysOf(SRC);
+  console.log(`        union tokens: ${UNION.length}   VG_READOUT_LABEL keys: ${LABELS.length}`);
+
+  // (a) THE BINDING DIRECTION — union ⊇ table.
+  const unlabelable = LABELS.filter((k) => UNION.indexOf(k) < 0);
+  check("every VG_READOUT_LABEL key is AUTHORABLE in the value_readouts union (union superset of table)",
+    unlabelable.length, 0, 0);
+  if (unlabelable.length) console.log(`        UNAUTHORABLE: ${unlabelable.join(", ")}`);
+
+  // (b) THE REVERSE — verified to hold today, so it is asserted rather than
+  //     assumed. An authorable token with no label renders NOTHING.
+  const unlabelled = UNION.filter((t) => LABELS.indexOf(t) < 0);
+  check("every authorable token HAS a label (table superset of union — an unlabelled token is a silent no-op)",
+    unlabelled.length, 0, 0);
+  if (unlabelled.length) console.log(`        UNLABELLED: ${unlabelled.join(", ")}`);
+
+  check("the two declarations are the SAME closed set", UNION.length, LABELS.length, 0);
+  check("the set is the full 24 (11 products + 13 lines_planes)", LABELS.length, 24, 0);
+  assertTrue("the union is still CLOSED — never weakened to string[]",
+    /value_readouts\?:\s*Array</.test(FILE) && !/value_readouts\?:\s*string\[\]/.test(FILE));
+
+  // (c) THIRD DIRECTION — a token that is authorable AND labelled but never
+  //     COMPUTED prints nothing either (vgReadoutLine bails on a null value).
+  //     Every token must have a value source: the products half is the frame
+  //     driver's `vals` literal, the lines_planes half is the resolver writing
+  //     out.readouts.<token>.
+  const valsAt = SRC.indexOf("var vals = {");
+  const valsLit = SRC.slice(valsAt, SRC.indexOf("};", valsAt));
+  const sourceless = UNION.filter((t) =>
+    valsLit.indexOf(t + ":") < 0 && !new RegExp("out\\.readouts\\." + t + "\\b").test(SRC));
+  check("every authorable token has a VALUE SOURCE (vals literal or resolver out.readouts.<token>)",
+    sourceless.length, 0, 0);
+  if (sourceless.length) console.log(`        NEVER COMPUTED: ${sourceless.join(", ")}`);
+
+  // ── NEGATIVE CONTROLS ────────────────────────────────────────────────────
+  // Reconstruct the PRE-A25 union (the 11 products tokens) against the SHIPPED
+  // 24-key table and show the binding check FIRES. A control that has never
+  // failed is not known to discriminate.
+  const PRE_A25 = ["a_mag", "b_mag", "theta_deg", "a_dot_b", "cross_mag",
+    "a_dot_cross", "b_dot_cross", "triple", "volume", "base_area", "height"];
+  const preMissing = LABELS.filter((k) => PRE_A25.indexOf(k) < 0);
+  assertTrue(`the binding check FIRES on the pre-A25 union: ${preMissing.length} of ${LABELS.length} keys unauthorable`,
+    preMissing.length === 13);
+  expectFail("the pre-A25 11-token union satisfies union-superset-of-table",
+    LABELS.every((k) => PRE_A25.indexOf(k) >= 0));
+
+  // ...and the pre-A25 union is reconstructed from the FILE rather than only
+  // hand-typed, so the control cannot drift away from what actually shipped:
+  // deleting the Δ6 arm of the union must reproduce exactly those 11 tokens.
+  const dropLinesPlanes = FILE.replace(
+    /\/\/ mode "lines_planes"[\s\S]*?\n(\s*)>;/,
+    "\n$1>;");
+  const reconstructed = unionTokensOf(dropLinesPlanes);
+  check("the pre-A25 union is reconstructible from the shipped file (Δ6 arm excised)", reconstructed.length, 11, 0);
+  assertTrue("the reconstructed pre-A25 union is exactly the products half",
+    reconstructed.join(",") === PRE_A25.join(","));
+  expectFail("the reconstructed pre-A25 source passes the binding check",
+    LABELS.every((k) => reconstructed.indexOf(k) >= 0));
+
+  // THE DIRECTION IS THE POINT. The reverse-only check — "every authorable
+  // token has a label" — is GREEN on the broken source, so a gate that
+  // asserted only that direction would have shipped the defect. This is the
+  // control that justifies asserting BOTH directions rather than one.
+  expectFail("a reverse-ONLY gate (table superset of union) can tell the pre-A25 source from the fixed one",
+    PRE_A25.every((t) => LABELS.indexOf(t) >= 0) !== UNION.every((t) => LABELS.indexOf(t) >= 0));
+
+  // A weakened `string[]` union would also make every token authorable, and
+  // would pass (a) — so (a) alone does not defend the CLOSED enum. Show that
+  // the closedness assertion is what discriminates there.
+  const weakened = FILE.replace(/value_readouts\?:\s*Array<[\s\S]*?>;/, "value_readouts?: string[];");
+  expectFail("the closed-enum assertion accepts a string[]-weakened union",
+    /value_readouts\?:\s*Array</.test(weakened) && !/value_readouts\?:\s*string\[\]/.test(weakened));
 }
 console.log("\n=== 6. E2 — vgParallelogramVerts: drawn quad AREA == |a x b|, monotonic in |b| ===");
 {

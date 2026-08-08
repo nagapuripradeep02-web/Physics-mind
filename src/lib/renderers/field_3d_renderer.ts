@@ -416,9 +416,39 @@ export interface Field3DConfig {
             // how the wrong one gets authored — so the newcomer says what it
             // contains (bug_class field3d_vector_geometry_authored_readouts_
             // field_collides_with_the_fleet_static_readouts_convention).
-            value_readouts?: Array<'a_mag' | 'b_mag' | 'theta_deg' | 'a_dot_b'
+            //
+            // THE UNION IS THE FULL VG_READOUT_LABEL KEY SET, both halves of
+            // the scenario, and that is a GATED invariant, not a convention:
+            // check:vector-geometry-3d §11c asserts set EQUALITY between this
+            // union and the shipped VG_READOUT_LABEL table. Until A25 the
+            // union carried only the 11 "products" tokens while the table
+            // carried 24, so every one of the 13 "lines_planes" tokens the
+            // renderer already labels and prints was UNAUTHORABLE by its own
+            // type — lines_and_planes_in_space could not declare the readouts
+            // built for it (bug_class field3d_vg_value_readouts_type_union_
+            // omits_every_lines_planes_token_the_renderer_already_prints).
+            // Kept CLOSED (never string[]): vgReadoutLine returns null for an
+            // unlabelled key, so an unknown token renders NOTHING — a silent
+            // missing row is exactly the failure the closed enum exists to
+            // turn into a compile error.
+            value_readouts?: Array<
+                // mode "products" — the cross/dot/triple half (F9, D-5).
+                'a_mag' | 'b_mag' | 'theta_deg' | 'a_dot_b'
                 | 'cross_mag' | 'a_dot_cross' | 'b_dot_cross' | 'triple'
-                | 'volume' | 'base_area' | 'height'>;
+                | 'volume' | 'base_area' | 'height'
+                // mode "lines_planes" — the Δ6 token set. Every one is
+                // produced by vgResolveLinesPlanes into lpRes.readouts and
+                // merged into the frame driver's `vals` bag.
+                | 'point_plane_distance' | 'skew_distance'
+                | 'angle_lines_deg' | 'angle_line_plane_deg' | 'angle_line_normal_deg'
+                | 'd_dot_n' | 'n_dot_v'
+                | 'lambda' | 'intersection_point'
+                | 'n_norm' | 'cross_norm' | 'numerator_triple_product'
+                // Δ4 — the literal "no meeting point" row. A first-class
+                // authored token, not an internal: the state whose payoff is
+                // an ABSENCE would otherwise teach by omission.
+                | 'no_meeting_point'
+            >;
             // F21 — per-state parameter ramps, evaluated CLOSED-FORM on
             // state-local ms (a PORT of the shipped param_ramp /
             // idle_auto_sweep mechanisms, never an accumulator). Several
