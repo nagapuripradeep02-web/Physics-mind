@@ -1876,9 +1876,17 @@ export interface Field3DConfig {
             // ── Note 11 — checkpoint flags with capture-on-pass ──────────────────
             //   1..3 authored positions along the track. A flag stands at each; when
             // the tracked body's s CROSSES it, that instant's values stamp into the
-            // state's ONE formula surface (Rule 34b — never a second text overlay)
-            // and the flag brightens. Stamps LATCH and hold to the end of the state
-            // (the end-pose rule) and re-arm on RESET_TRAJECTORY (note 18b).
+            // state's ONE formula surface (Rule 34b — never a second text overlay).
+            // Stamps LATCH and hold to the end of the state (the end-pose rule) and
+            // re-arm on RESET_TRAJECTORY (note 18b).
+            //   THE MARKER ITSELF brightens only while a dwell_ms window is open on
+            // it (note 11h) — never on a bare crossing. A crossing is one frame, so a
+            // brightness that fired there would be gone before an eye could follow it;
+            // the window is the only interval long enough for the signal to mean
+            // anything. Rule 32e is why it is not simply always-on for a fired flag:
+            // three stamped points would all be lit at once and none of them would be
+            // the focal. (This sentence used to claim "the flag brightens" on every
+            // crossing. It never did — the _nlbFired write below had no reader.)
             //   The crossing detector is general on purpose: with capture_mode
             // 'every' a body that comes BACK through the same flag re-stamps and the
             // stamp carries its pass number, which is exactly what a round-trip work
@@ -43521,6 +43529,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // structurally cannot reach. Churn-guarded inside, so this costs a string
         // compare per frame and cannot move a frozen pixel.
         nlbEnergyApplyGlow(focal);
+        // Note 11h — the teaching dwell's own highlight, LAST. It has to be last for
+        // the same reason SEAM Q does: applyGlowEmphasis restores each material's
+        // cached authored colour every frame, so a brighten written before it is
+        // reverted one frame later. It is also why the pass can never corrupt the
+        // cache — _glowBaseCol is captured by the loop ABOVE, from the authored
+        // colour, before this ever writes.
+        nlbDwellEmphasis(focal, glowActive, glowP);
     }
 
     // ══ SEAM Q — the per-frame ink pass ════════════════════════════════════
@@ -43773,6 +43788,104 @@ export const FIELD_3D_RENDERER_CODE = `
             if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp, kls === NLB_INK_BOTH || focalLift);
             else nlbInkWriteSprite(o, hex, op, writeOp);
         });
+    }
+    // ══ Note 11h — THE DWELL HIGHLIGHT ══════════════════════════════════════
+    //   Which marker, if any, the open dwell window belongs to. Null unless a
+    //   window is genuinely open THIS frame, so the whole pass below is a pure
+    //   function of the current frame's engine state (Rule 36): the gate in
+    //   updateNewtonsLawsBodyFrame clears the window on the resume frame and
+    //   nlbSpringPhysReset clears it on every rewind, both BEFORE this runs.
+    function nlbDwellOwnerId(eng) {
+        return (eng && eng._dwell_until_ms != null && eng._dwell_cp_idx != null)
+            ? ("checkpoint_" + (eng._dwell_cp_idx + 1)) : null;
+    }
+    //   WHY THIS PASS OWNS A RESTORE AT ALL, i.e. why it is not simply "write the
+    //   lift while lit and let the glow pass take the object back". applyGlowEmphasis
+    //   restores a material's colour on three of its four branches — but NOT on the
+    //   one that matters here: a peer under an ACTIVE glow gets its opacity written
+    //   and its colour left exactly as it was found. So on any state that authors a
+    //   glow_focal elsewhere, a lift written and then abandoned would persist for the
+    //   rest of the state. The pass therefore hands back what it took, in the same
+    //   frame the window closes, to the value THIS frame's glow state asks for.
+    //   The one bit of memory is per-material (_nlbDwellLit) and names only what has
+    //   to be cleaned up — never what to draw. The DRAWN result is decided entirely
+    //   by the owner id, so a pin inside a window and a pin outside one each
+    //   reproduce byte for byte, and a rewind from inside to outside restores in the
+    //   frame it lands on, before that frame renders.
+    //   BYTE-IDENTITY when no dwell is authored: nlbDwellLitAny starts false and can
+    //   only be set by a lit frame, so a concept with no dwell_ms takes the early
+    //   return and executes zero reads and zero writes — flag concepts, dwell-less
+    //   point states, marker_true and marker_ghost included (the two prediction
+    //   markers are not in this loop at all).
+    var nlbDwellLitAny = false;
+    function nlbDwellEmphasis(focal, glowActive, glowP) {
+        var own = nlbDwellOwnerId(window.PM_nlbEngine);
+        if (!own && !nlbDwellLitAny) return;
+        var colT = 0.10 + 0.18 * glowP;   // the same lerp applyGlowEmphasis's focal branch uses
+        var anyLit = false;
+        for (var c = 0; c < NLB_CP_MAX; c++) {
+            var id = "checkpoint_" + (c + 1);
+            var lit = (own === id);
+            if (lit) anyLit = true;
+            // A checkpoint that IS the state's glow focal has to be handed back to the
+            // focal branch's own value, not to the bare palette entry, or the frame the
+            // window closes would read as the focal switching off (the flicker the
+            // dispatch names). With glow_focal pointing at this same marker the lit
+            // write and the focal write differ only in magnitude, so the transition is
+            // one step of brightness in each direction and nothing blinks.
+            var isFocal = !!focal && (focal === id);
+            var g = nlbFindById(id), l = nlbFindById(id + "_label");
+            // The MARKER. Whole group on purpose: the dot in 'point' form, the post and
+            // tick in 'flag' form. Lighting whichever one is drawn costs one branch less
+            // than asking which form is up, and the hidden children are free.
+            if (g) {
+                g.traverse(function (n) {
+                    if (!n.material) return;
+                    var ms = Array.isArray(n.material) ? n.material : [n.material];
+                    for (var i = 0; i < ms.length; i++) {
+                        var m = ms[i];
+                        if (!m.userData) m.userData = {};
+                        if (lit) {
+                            if (m.color) m.color.copy(NLB_DWELL_COL);
+                            // Full opacity too, or a dwell on a non-focal checkpoint would
+                            // be brightened and dimmed to GLOW_DIM_OPACITY in the same
+                            // frame. No restore needed on the way out: applyGlowEmphasis
+                            // writes opacity on every branch, every frame.
+                            m.transparent = true; m.opacity = 1.0;
+                            m.userData._nlbDwellLit = true;
+                        } else if (m.userData._nlbDwellLit) {
+                            m.userData._nlbDwellLit = false;
+                            if (m.color && m.userData._glowBaseCol) {
+                                m.color.copy(m.userData._glowBaseCol);
+                                if (isFocal && glowActive) m.color.lerp(GLOW_WHITE, colT);
+                            }
+                        }
+                    }
+                });
+            }
+            // The CAPTION — the half that survives the parked body (note 11g's lane
+            // keeps it clear, and a label sprite is depthTest:false). Its ink is BAKED
+            // into a canvas texture, so a material tint cannot brighten it: the
+            // material stays white by nlbInkWriteSprite's own argument (a tint would
+            // multiply onto the dark halo as well as the glyph), and the lift is a
+            // redraw. Churn-guarded on the drawn hex, so the texture is rebuilt exactly
+            // twice per window — once when it opens, once when it closes — and never
+            // per frame.
+            if (l) {
+                var want = lit ? NLB_DWELL_INK : (l._nlbDwellLit ? NLB_CP_COLOR : null);
+                if (want && l._pmColor !== want) {
+                    l._pmColor = want;
+                    if (l._pmText != null) updateLabelSpriteText(l, l._pmText);
+                }
+                if (lit) {
+                    if (l.material) { l.material.transparent = true; l.material.opacity = 1.0; }
+                    l._nlbDwellLit = true;
+                } else if (l._nlbDwellLit) {
+                    l._nlbDwellLit = false;
+                }
+            }
+        }
+        nlbDwellLitAny = anyLit;
     }
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
     // two seams cannot disagree about the function name.
@@ -45045,6 +45158,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // it so a re-entry can report a genuinely re-made authoring mistake.
         eng._dwell_until_ms = null;
         eng._dwell_label = "";
+        eng._dwell_cp_idx = null;            // note 11h — the highlight's owner, rewound with it
         eng._dwell_loop_warned = false;
         window.PM_nlbDwell = null;
         eng.E_t0 = null;                     // 18d — re-captured on the next frame
@@ -45759,6 +45873,41 @@ export const FIELD_3D_RENDERER_CODE = `
     // mis-typed number stop a state dead with no way to tell it from a hang.
     var NLB_DWELL_MAX_MS = 5000;
     var NLB_DWELL_WARN_PREFIX = "[PM_NLB_DWELL]";
+    // ── Note 11h — the dwell has to SIGNAL AT THE POINT ──────────────────────
+    //   engine_bug_queue: nlb_point_marker_gives_no_signal_while_the_scene_is_
+    //   paused_on_it (MAJOR). Note 11d stops the scene AT a point, and note 11e
+    //   turned that point into a small painted dot — but nothing at the place
+    //   being read says it is the place being read. The two things that DO say
+    //   it are both far away from it: the honesty badge is pinned top-left
+    //   (nlbUpdateSlowBadge, the one free corner) and the stamp is on the
+    //   right-hand formula surface. Measured on
+    //   conservative_vs_nonconservative_forces STATE_4: the frozen frame holds
+    //   for 2.4 s with the dot at #CE93D8, i.e. the identical ink it carries on
+    //   every other frame of the state and the identical ink its idle sibling
+    //   carries in the same frame. The founder watched it and the eye is never
+    //   pulled to the point being read.
+    //   WHY THE DOT ALONE CANNOT CARRY IT. Note 11e's dot keeps depthTest TRUE
+    //   on purpose (a mark painted on the track must be hidden by the block
+    //   standing on it, or the picture claims the mark floats in front). A dwell
+    //   is scheduled ON a crossing, so the body is PARKED ON the dot for exactly
+    //   the frames the window is open: lighting only the dot would be invisible
+    //   precisely when it matters. So the highlight reaches the CAPTION too —
+    //   which note 11g's lane keeps clear of the parked body, and which is a
+    //   depthTest:false sprite that wins every pixel it covers.
+    //   Rule 29: BRIGHTNESS ONLY. No scale, no bulge, no size move of any kind.
+    //   0.45 toward white, and the number is not taste: applyGlowEmphasis's own
+    //   focal lerp tops out at colT 0.28, so anything at or below that is
+    //   indistinguishable from "this element is the state's glow focal", which
+    //   is a different claim. 0.45 clears that ceiling while staying in-hue
+    //   (a lift scales every channel gap by (1 - t), which leaves the HSL hue
+    //   fixed — the ink-lens note's own argument), so the point still reads as
+    //   the checkpoint colour and not as a new object.
+    var NLB_DWELL_LIFT = 0.45;
+    // #CE93D8 -> #e4c4ea. Computed ONCE from the palette entry and the lift, so
+    // the dot and the caption can never be lifted to two different levels and no
+    // literal has to be re-derived by hand if the palette moves.
+    var NLB_DWELL_INK = nlbInkEmphasis(NLB_CP_COLOR, false, NLB_DWELL_LIFT);
+    var NLB_DWELL_COL = new THREE.Color(NLB_DWELL_INK);
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
@@ -46469,12 +46618,26 @@ export const FIELD_3D_RENDERER_CODE = `
             // exactly the presence-is-not-correctness failure this probe exists
             // to catch, so the authored field is never the thing quoted.
             var ud = o ? (o.userData || {}) : {};
+            // note 11h — the DRAWN ink of the marker and of its caption. Same
+            // presence-is-not-correctness argument as the two visibility flags above:
+            // the dwell highlight is a colour and nothing else, so a colour nothing can
+            // read is a claim nothing can check. Both are read off the object that
+            // actually renders — the marker's own material and the sprite's retained
+            // draw colour — never off the palette constant the highlight is derived from.
+            var mkm = (ud._nlbDot && ud._nlbDot.visible) ? ud._nlbDot
+                    : (ud._nlbPost || ud._nlbDot || null);
             out[ids[i]] = o
                 ? { visible: !!o.visible, x: o.position.x, y: o.position.y, sx: o.scale.x,
                     label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null,
                     postVisible: ud._nlbPost ? !!ud._nlbPost.visible : null,
                     dotVisible: ud._nlbDot ? !!ud._nlbDot.visible : null,
-                    dotY: ud._nlbDot ? ud._nlbDot.position.y : null }
+                    dotY: ud._nlbDot ? ud._nlbDot.position.y : null,
+                    markerHex: (mkm && mkm.material && mkm.material.color)
+                        ? ("#" + mkm.material.color.getHexString()) : null,
+                    markerOpacity: (mkm && mkm.material) ? mkm.material.opacity : null,
+                    labelInk: l ? (l._pmColor || null) : null,
+                    dwellLit: !!(mkm && mkm.material && mkm.material.userData &&
+                                 mkm.material.userData._nlbDwellLit) }
                 : null;
         }
         return out;
@@ -47072,6 +47235,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (until > eng.t_ms && (eng._dwell_until_ms == null || until > eng._dwell_until_ms)) {
                     eng._dwell_until_ms = until;
                     eng._dwell_label = cp.label;
+                    // Note 11h — WHO the window belongs to, latched with the window
+                    // itself. The label alone cannot answer it: two checkpoints may
+                    // legitimately carry the same authored string (a there-and-back
+                    // state naming both crossings "the same spot"), and the
+                    // highlight has to light the ONE marker the body is standing
+                    // on, not both. Written in the same branch and under the same
+                    // max() rule as the two lines above, so the owner is always the
+                    // checkpoint whose window is the one actually open.
+                    eng._dwell_cp_idx = i;
                 }
             }
             var g = nlbFindById("checkpoint_" + (i + 1));
@@ -48923,21 +49095,33 @@ export const FIELD_3D_RENDERER_CODE = `
         //       cues all keep running (Rule 26). We stop the physics, not the state.
         //   Rule 37: a trusted sweep or body drag CANCELS an open window outright —
         //   a teacher who grabs the block gets it immediately, never after a pause.
+        //   Note 11h: the OWNER index is cleared on both exits, beside the two
+        //   fields it was latched with. It is what nlbDwellEmphasis reads to decide
+        //   which marker is lit, so a stale index would leave one point brightened
+        //   after its window closed — the residue the highlight's own restore pass
+        //   exists to prevent, handed back one level up.
         if (eng._dwell_until_ms != null) {
             if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) {
-                eng._dwell_until_ms = null; eng._dwell_label = "";
+                eng._dwell_until_ms = null; eng._dwell_label = ""; eng._dwell_cp_idx = null;
             } else if (eng.t_ms <= eng._dwell_until_ms) {
                 hPhys = 0;                                    // wholly inside the window
             } else {
                 var rawMs = eng.t_ms - eng._tPrevMs;          // resume frame: the active tail only
                 if (rawMs > 0) hPhys *= (eng.t_ms - Math.max(eng._tPrevMs, eng._dwell_until_ms)) / rawMs;
-                eng._dwell_until_ms = null; eng._dwell_label = "";
+                eng._dwell_until_ms = null; eng._dwell_label = ""; eng._dwell_cp_idx = null;
             }
         }
         // DERIVED mirror for the probes (and for THE EYE's own diagnostics); nothing
         // in the engine ever reads it back.
         window.PM_nlbDwell = (eng._dwell_until_ms != null)
-            ? { active: true, until_ms: eng._dwell_until_ms, label: eng._dwell_label || "" }
+            ? { active: true, until_ms: eng._dwell_until_ms, label: eng._dwell_label || "",
+                // Note 11h — the OWNER, published beside the window it belongs to.
+                // The label is not an identifier (two checkpoints may share one), so
+                // without this a probe cannot tell WHICH point the highlight lit and
+                // the one thing worth asserting about the fix is unassertable.
+                cp_idx: (eng._dwell_cp_idx != null) ? eng._dwell_cp_idx : null,
+                marker_id: (eng._dwell_cp_idx != null)
+                    ? ("checkpoint_" + (eng._dwell_cp_idx + 1)) : null }
             : null;
         // SEAM K read point: the dt the integrator actually took this frame, in
         // SECONDS. The energy layer needs it for the ripple correction, and a probe
