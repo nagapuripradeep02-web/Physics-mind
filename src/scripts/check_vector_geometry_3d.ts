@@ -106,6 +106,9 @@ const FNS = [
   "vgEase", "vgAnimKnobs", "vgAnimValue", "vgAnimEndMs",
   "vgCamScheduleAt", "vgCamStepsEndMs", "vgAutoFramePos",
   "vgSplitPieces", "vgSolidFaceCount",
+  // Δ11 · the projection of b onto â (the dot product's picture) and the
+  // drawn cross vector's OWN NAME (derived from flip_frac, never authored).
+  "vgProjectionOnto", "vgCrossLabelText",
   // VG-C · mode "lines_planes" (F11-F14, F22, F23, Δ10).
   "vgScaleVec", "vgLerpVec", "vgAngleDeg",
   "vgSphereClipSpan", "vgLineEnds", "vgPointOnLine",
@@ -123,6 +126,7 @@ const E = new Function([
   "var VG_SPLIT_GAP_K = 1.25;",
   "var VG_MEET_EPS = 1e-9;",
   "var VG_SCENE_RADIUS = 4.5;",
+  "var VG_FLIP_EPS = " + /var VG_FLIP_EPS = ([0-9.]+);/.exec(SRC)![1] + ";",
   "return { " + FNS.join(", ") + " };",
 ].join("\n"))() as any;
 
@@ -740,9 +744,11 @@ console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibili
   type FakeObj = { userData: { elementType: string; tracks?: string }; visible: boolean };
   function fakeScene(): FakeObj[] {
     const types = ["vg_vector_a", "vg_vector_b", "vg_vector_c", "vg_cross_vector", "vg_angle_arc",
-      "vg_parallelogram", "vg_parallelepiped", "vg_base_face", "vg_height_seg"];
+      "vg_parallelogram", "vg_parallelepiped", "vg_base_face", "vg_height_seg",
+      "vg_proj_seg", "vg_proj_drop"];
     const objs: FakeObj[] = types.map((t) => ({ userData: { elementType: t }, visible: false }));
     objs.push({ userData: { elementType: "vg_label", tracks: "vg_vector_c" }, visible: false });
+    objs.push({ userData: { elementType: "vg_label", tracks: "vg_proj_seg" }, visible: false });
     // A FOREIGN element from a different scenario, to prove the apply pass
     // touches only its own vg_ prefix (it runs over the shared sceneObjects).
     objs.push({ userData: { elementType: "field_line" }, visible: true });
@@ -778,9 +784,26 @@ console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibili
   assertTrue("show_c: true shows c and its label", visOf(sSolid, "vg_vector_c")
     && sSolid.filter((o) => o.userData.tracks === "vg_vector_c")[0].visible);
 
+  // Δ11 — the projection pair, admitted ONLY by its own flag. A dot-product
+  // state authors show_projection and nothing else changes; the cross-product
+  // states must not inherit a segment along â they never asked for.
+  const sProj = fakeScene();
+  runApply(sProj, { vg: { show_projection: true } });
+  assertTrue("show_projection: true admits the segment AND its dashed drop",
+    visOf(sProj, "vg_proj_seg") && visOf(sProj, "vg_proj_drop"));
+  assertTrue("...and its label (the picture is named, so the state reads sound-off)",
+    sProj.filter((o) => o.userData.tracks === "vg_proj_seg")[0].visible);
+  assertTrue("...and admits NOTHING else (no quad, no solid, no c)",
+    !visOf(sProj, "vg_parallelogram") && !visOf(sProj, "vg_parallelepiped") && !visOf(sProj, "vg_vector_c"));
+  assertTrue("the cross-product state (show_parallelogram, no show_projection) does NOT inherit the projection",
+    !visOf(sQuad, "vg_proj_seg") && !visOf(sQuad, "vg_proj_drop")
+    && !sQuad.filter((o) => o.userData.tracks === "vg_proj_seg")[0].visible);
+
   // Neither authored: both hidden, a and b still shown (they are the scenario).
   const sBare = fakeScene();
   runApply(sBare, { vg: {} });
+  assertTrue("with show_projection unauthored the projection pair stays hidden (every state that predates Δ11 is unchanged)",
+    !visOf(sBare, "vg_proj_seg") && !visOf(sBare, "vg_proj_drop"));
   assertTrue("with neither flag authored BOTH stay hidden", !visOf(sBare, "vg_parallelogram") && !visOf(sBare, "vg_parallelepiped"));
   assertTrue("a and b are ALWAYS shown (they are the scenario)", visOf(sBare, "vg_vector_a") && visOf(sBare, "vg_vector_b"));
   assertTrue("a foreign scenario's element is NOT touched by this apply pass",
@@ -2246,6 +2269,383 @@ console.log("\n=== 13. THE CAMERA, under THE WORST-CASE LAW — pairwise, perspe
       Math.abs(lerpPose(60, 0.05) - lerpPose(240, 0.05)) < 1e-6);
     assertTrue("the closed form has no such dependence — it never reads a frame count", grabFn("vgCamScheduleAt").indexOf("frame") < 0);
   }
+}
+
+console.log("\n=== 14. Δ11 — THE PROJECTION OF b ONTO â: signed length, foot on the â line, drop ⊥ a, and the OBTUSE reversal ===");
+{
+  // bug_class field3d_vg_products_mode_cannot_draw_the_projection_segment_so_
+  // the_dot_product_states_lead_numerically. The claim under test is not "a
+  // segment exists" — it is that the segment's LENGTH IS SIGNED, because the
+  // obtuse state's whole payoff is the projection landing on the far side of
+  // the origin. An unsigned |b·â| draws an identical picture at every acute
+  // angle and a WRONG one at every obtuse angle, so the discriminating
+  // quantity is the signed length past 90°, never the length itself.
+  const rad = (d: number) => d * Math.PI / 180;
+  let worstLen = 0, worstPerp = 0, worstFoot = 0, samples = 0;
+  for (const thetaDeg of [20, 35, 50, 65, 80, 89, 90, 91, 100, 115, 130, 145, 160]) {
+    for (const aMag of [1, 3, 5]) {
+      for (const bMag of [1, 2, 4.5]) {
+        for (const tilt of [0, 25, 60]) {
+          const v = E.vgBuildVectors({ a_mag: aMag, b_mag: bMag, theta_deg: thetaDeg, b_tilt_deg: tilt });
+          const p = E.vgProjectionOnto(v.a, v.b);
+          samples++;
+          // 1. the SIGNED closed form, solved outside the tool: |b| cos θ.
+          worstLen = Math.max(worstLen, Math.abs(p.length - bMag * Math.cos(rad(thetaDeg))));
+          // 2. the foot is ON the â line (its cross with a vanishes) and at
+          //    exactly that signed distance from the origin.
+          worstFoot = Math.max(worstFoot, len3(cross3(p.foot as V3, v.a as V3)));
+          // 3. the drop is PERPENDICULAR to a — which is what makes the foot a
+          //    projection rather than a point that happens to be nearby.
+          worstPerp = Math.max(worstPerp, Math.abs(dot3(sub3(v.b as V3, p.foot as V3), v.a as V3)));
+        }
+      }
+    }
+  }
+  check(`signed length == |b| cos θ over ${samples} (θ, |a|, |b|, tilt) samples incl. the obtuse half`, worstLen, 0, 1e-12);
+  check("the foot lies ON the â line at every sample (|foot × a|)", worstFoot, 0, 1e-12);
+  check("the drop b→foot is ⊥ a at every sample ((b−foot)·a)", worstPerp, 0, 1e-12);
+
+  // THE OBTUSE REVERSAL, gated explicitly.
+  const acute = E.vgProjectionOnto(E.vgBuildVectors({ theta_deg: 60, b_mag: 2 }).a, E.vgBuildVectors({ theta_deg: 60, b_mag: 2 }).b);
+  const right = E.vgBuildVectors({ theta_deg: 90, b_mag: 2 });
+  const pRight = E.vgProjectionOnto(right.a, right.b);
+  const obtuse = E.vgBuildVectors({ theta_deg: 120, b_mag: 2 });
+  const pObtuse = E.vgProjectionOnto(obtuse.a, obtuse.b);
+  check("θ = 60°: the projection points ALONG â (+1.000)", acute.length, 1.0, 1e-12);
+  check("θ = 90°: it is exactly zero — the segment vanishes, matching the 0.00 the readout prints", pRight.length, 0, 1e-15);
+  check("θ = 120°: it REVERSES through the origin (−1.000, not +1.000)", pObtuse.length, -1.0, 1e-12);
+  assertTrue("...and the foot itself sits on the far side of the origin (foot·â < 0)",
+    dot3(pObtuse.foot as V3, E.vgNormalize(obtuse.a) as V3) < 0);
+  assertTrue("the sign flip happens AT 90°, not near it (89° positive, 91° negative)",
+    E.vgProjectionOnto(E.vgBuildVectors({ theta_deg: 89 }).a, E.vgBuildVectors({ theta_deg: 89 }).b).length > 0
+    && E.vgProjectionOnto(E.vgBuildVectors({ theta_deg: 91 }).a, E.vgBuildVectors({ theta_deg: 91 }).b).length < 0);
+
+  // NEGATIVE CONTROL — the unsigned |b·â| form, which is the projection a
+  // renderer writes when it reaches for a LENGTH instead of a COMPONENT.
+  // First the control is shown to be BLIND where a weak gate would have run
+  // it (every acute angle), then shown to catch the case that matters. A
+  // control that reported the same thing in both halves would be worthless.
+  const unsignedAt = (thetaDeg: number) => {
+    const v = E.vgBuildVectors({ theta_deg: thetaDeg, b_mag: 2 });
+    return Math.abs(E.vgProjectionOnto(v.a, v.b).length);
+  };
+  assertTrue(`the unsigned form is INDISTINGUISHABLE below 90° (θ=60: ${unsignedAt(60).toFixed(6)} vs signed ${acute.length.toFixed(6)}) — which is why an acute-only check proves nothing`,
+    Math.abs(unsignedAt(60) - acute.length) < 1e-12);
+  expectFail(`an unsigned |b·â| still equals the signed projection at θ=120 (${unsignedAt(120).toFixed(3)} vs ${pObtuse.length.toFixed(3)})`,
+    Math.abs(unsignedAt(120) - pObtuse.length) < 1e-9);
+  assertTrue("the SHIPPED helper does not take an absolute value anywhere (proved on the extracted source, not on a re-implementation)",
+    grabFn("vgProjectionOnto").indexOf("Math.abs") < 0);
+
+  // Degenerate |a| — a zero-length a has no â to project onto, and a renderer
+  // that divides by it blanks the scene (scar field3d_createtubeline_
+  // undefined_field_lines_throws, the divide-by-zero cousin).
+  assertTrue("a degenerate a returns null rather than NaN coordinates (a NaN position blanks the scene)",
+    E.vgProjectionOnto([0, 0, 0], [1, 2, 3]) === null);
+
+  // The projection must track the LIVE vectors, i.e. it is a pure function of
+  // them with no state — the same guarantee every other vg helper carries.
+  const t1 = E.vgProjectionOnto(E.vgBuildVectors({ theta_deg: 40 }).a, E.vgBuildVectors({ theta_deg: 40 }).b);
+  const t2 = E.vgProjectionOnto(E.vgBuildVectors({ theta_deg: 140 }).a, E.vgBuildVectors({ theta_deg: 140 }).b);
+  const t3 = E.vgProjectionOnto(E.vgBuildVectors({ theta_deg: 40 }).a, E.vgBuildVectors({ theta_deg: 40 }).b);
+  assertTrue("REWIND: 40° → 140° → 40° reproduces the first result BIT FOR BIT (no accumulator, so a pinned frame is byte-stable)",
+    JSON.stringify(t1) === JSON.stringify(t3) && JSON.stringify(t1) !== JSON.stringify(t2));
+}
+
+console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees with the ARROW at every flip_frac ===");
+{
+  // bug_class field3d_vg_cross_arrow_label_is_built_once_so_the_order_
+  // contrast_state_labels_b_cross_a_as_a_cross_b — the contrast state teaching
+  // something false. THE DISCRIMINATING QUANTITY IS THE LABEL'S TEXT, not
+  // whether a label exists: the pre-fix build DID have a label, correctly
+  // placed, correctly coloured, tracking the right arrow. Every check except
+  // "what does it say" passed on the broken build.
+  const FLIP_EPS = Number(/var VG_FLIP_EPS = ([0-9.]+);/.exec(SRC)![1]);
+  check("VG_FLIP_EPS is read from the SHIPPED renderer, not restated here", FLIP_EPS, 0.02, 0);
+
+  const v = E.vgBuildVectors({ a_mag: 3, b_mag: 2, theta_deg: 55 });
+  const axb = E.vgCrossVec(v.a, v.b) as V3;
+  const bxa = E.vgCrossVec(v.b, v.a) as V3;
+  const drawnAt = (f: number): V3 => (f ? E.vgRotateAbout(axb, E.vgNormalize(v.a), Math.PI * f) : axb) as V3;
+  const angleTo = (u: V3, w: V3) => Math.acos(Math.max(-1, Math.min(1, dot3(u, w) / (len3(u) * len3(w))))) * 180 / Math.PI;
+
+  // The geometry the fix rests on: at flip_frac = 1 the drawn arrow IS b×a.
+  check("at flip_frac = 1 the DRAWN arrow is b×a exactly (|drawn − b×a|)", len3(sub3(drawnAt(1), bxa)), 0, 1e-14);
+  check("...and is the NEGATIVE of a×b, not a shrunken copy (|drawn| − |a×b|)", len3(drawnAt(1)) - len3(axb), 0, 1e-14);
+
+  // THE ASSERTION THE DISPATCH NAMES.
+  assertTrue(`the cross label reads "b×a" at flip_frac = 1 (got "${E.vgCrossLabelText(1)}")`, E.vgCrossLabelText(1) === "b×a");
+  assertTrue(`...and "a×b" at flip_frac = 0 (got "${E.vgCrossLabelText(0)}")`, E.vgCrossLabelText(0) === "a×b");
+
+  // CORRECT AT EVERY VALUE, not only at the endpoints. The rule the label
+  // obeys: it may make an ORDER CLAIM only where the drawn arrow is within
+  // VG_FLIP_EPS·180° of the vector it names; everywhere else it must name the
+  // transition instead of either operand order.
+  const bandDeg = FLIP_EPS * 180 + 1e-9;
+  let claimViolations = 0, transitionCount = 0, checked = 0;
+  for (let f = 0; f <= 1.0000001; f += 0.005) {
+    const txt = E.vgCrossLabelText(f);
+    const d = drawnAt(f);
+    checked++;
+    if (txt === "a×b") { if (angleTo(d, axb) > bandDeg) claimViolations++; }
+    else if (txt === "b×a") { if (angleTo(d, bxa) > bandDeg) claimViolations++; }
+    else {
+      transitionCount++;
+      // The transition string names the MOTION, which is true at every value
+      // it is shown at — but it must never be shown where an exact operand
+      // order is available, or the endpoints would go unnamed.
+      if (angleTo(d, axb) <= bandDeg || angleTo(d, bxa) <= bandDeg) claimViolations++;
+    }
+  }
+  check(`over ${checked} flip_frac samples, label claims contradicted by the drawn arrow`, claimViolations, 0, 0);
+  assertTrue(`the transition is NAMED rather than left to one of the two orders (${transitionCount} of ${checked} samples)`, transitionCount > 0);
+  assertTrue("out-of-range / non-finite flip_frac clamps to the a×b end rather than producing an unnamed arrow",
+    E.vgCrossLabelText(-3) === "a×b" && E.vgCrossLabelText(9) === "b×a"
+    && E.vgCrossLabelText(NaN) === "a×b" && E.vgCrossLabelText(undefined) === "a×b");
+
+  // NEGATIVE CONTROL — the SHIPPED PRE-FIX BEHAVIOUR, restated exactly: a
+  // sprite built once with the literal "a×b" and never re-texted. It reports
+  // "a×b" at BOTH endpoints, which is the defect. Note what a weaker control
+  // would have said: "a label exists at flip_frac = 1" and "the label tracks
+  // vg_cross_vector" are both TRUE of the broken build, so neither can
+  // discriminate — only the text can.
+  const builtOnce = (_f: number) => "a×b";
+  expectFail(`a label built ONCE as "a×b" reads b×a at flip_frac = 1 (it reads "${builtOnce(1)}")`, builtOnce(1) === "b×a");
+  assertTrue("...and it is INDISTINGUISHABLE from the fix at flip_frac = 0 — which is why the pre-fix build looked fine in every state but one",
+    builtOnce(0) === E.vgCrossLabelText(0));
+  // A midpoint switch is the OTHER tempting shape, and it fails the same test
+  // one step in: at flip_frac 0.49 it claims a×b while the arrow stands 88°
+  // away from a×b.
+  const midpointSwitch = (f: number) => (f < 0.5 ? "a×b" : "b×a");
+  expectFail(`a midpoint switch keeps its claim inside the ${bandDeg.toFixed(1)}° band at flip_frac = 0.49 (arrow is ${angleTo(drawnAt(0.49), axb).toFixed(1)}° off a×b)`,
+    angleTo(drawnAt(0.49), axb) <= bandDeg && midpointSwitch(0.49) === "a×b");
+
+  // AND THE WIRING, on the SHIPPED FRAME DRIVER. The helper being right is
+  // worth nothing if the frame never calls it — the pre-fix defect was
+  // precisely a correct label that nothing re-texted. So the real
+  // updateVectorGeometry3DFrame is pulled out and run against stubs, and the
+  // SPRITE's retained text is read at both endpoints.
+  {
+    type Stub = any;
+    const vec3 = (x = 0, y = 0, z = 0) => ({
+      x, y, z,
+      normalize() { const l = Math.hypot(this.x, this.y, this.z) || 1; this.x /= l; this.y /= l; this.z /= l; return this; },
+    });
+    const THREE: Stub = { Vector3: function (x: number, y: number, z: number) { return vec3(x, y, z); } };
+    const geomStub = (n: number) => ({
+      attributes: { position: { array: new Float32Array(n * 3), needsUpdate: false } },
+      computeBoundingSphere() { /* no-op */ }, setDrawRange() { /* section 7b's job */ },
+    });
+    function obj(elementType: string, tracks?: string): Stub {
+      return {
+        userData: tracks ? { elementType, tracks } : { elementType },
+        visible: false, geometry: geomStub(24), _pmText: "",
+        position: { set(x: number, y: number, z: number) { (this as Stub).v = [x, y, z]; } },
+        quaternion: { setFromUnitVectors() { /* orientation is section 14's job */ } },
+        scale: { set(_r: number, l: number) { (this as Stub).len = l; } },
+        setDirection(d: Stub) { (this as Stub).dir = [d.x, d.y, d.z]; },
+        setLength(l: number) { (this as Stub).len = l; },
+        computeLineDistances() { (this as Stub).dashed = true; },
+      };
+    }
+    const scene: Stub[] = [
+      obj("vg_vector_a"), obj("vg_vector_b"), obj("vg_cross_vector"),
+      obj("vg_proj_seg"), obj("vg_proj_drop"),
+      obj("vg_label", "vg_cross_vector"), obj("vg_label", "vg_proj_seg"),
+    ];
+    const frameSrc = grabFn("updateVectorGeometry3DFrame");
+    const INJECT = [
+      "vgAnimValue", "vgBuildVectors", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize",
+      "vgAddVec", "vgSub", "vgRotateAbout", "vgParallelogramVerts", "vgSplitPieces",
+      "vgSolidFaceCount", "vgProjectionOnto", "vgCrossLabelText", "vgAutoFramePos",
+      "vgCamScheduleAt", "vgResolveLinesPlanes",
+    ];
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const frameFactory = new Function(
+      ...INJECT, "THREE", "sceneObjects", "config", "PM_currentState", "time", "stateStartTime",
+      "window", "document", "targetSpherical", "spherical", "animating",
+      "updateCameraFromSpherical", "vgWriteLinesPlanesFrame", "vgReadoutLine", "vgCamBaseFromState",
+      "updateLabelSpriteText", "vgPlaceTube",
+      frameSrc + "\nreturn updateVectorGeometry3DFrame;",
+    );
+    // stateMs matters: the shared grow-in ease is a closed form of it, so a
+    // frame run at ms 0 draws vectors of length zero and every derived piece
+    // correctly refuses to exist. 5000 ms is well past any reveal.
+    function runFrame(vg: Record<string, unknown>, stateMs = 5000) {
+      for (const o of scene) { o.visible = false; }
+      const fn = frameFactory(
+        ...INJECT.map((k) => E[k]), THREE, scene,
+        { states: { STATE_1: { vg } } }, "STATE_1", stateMs / 1000, 0,
+        {}, { getElementById: () => null }, {}, {}, false,
+        () => { /* camera */ }, () => { /* lines/planes writer */ }, () => null,
+        () => ({ az: 0, el: 0, dist: 10 }),
+        (sp: Stub, t: string) => { sp._pmText = t; },
+        // the REAL vgPlaceTube would need THREE.Vector3 quaternion maths; the
+        // segment's geometry is section 14's job, so here it only records that
+        // the frame asked for a pose and with what endpoints.
+        (m: Stub, p0: number[], p1: number[]) => { m.placed = [p0, p1]; m.visible = true; return true; },
+      );
+      fn();
+      return scene;
+    }
+    const labOf = () => scene.filter((o: Stub) => o.userData.tracks === "vg_cross_vector")[0];
+    runFrame({ show_cross_vector: true, flip_frac: 0, cross_reveal_frac: 1 });
+    assertTrue(`the SHIPPED FRAME writes "a×b" onto the sprite at flip_frac = 0 (got "${labOf()._pmText}")`, labOf()._pmText === "a×b");
+    runFrame({ show_cross_vector: true, flip_frac: 1, cross_reveal_frac: 1 });
+    assertTrue(`the SHIPPED FRAME re-texts the SAME sprite to "b×a" at flip_frac = 1 (got "${labOf()._pmText}") — the wiring, not just the helper`,
+      labOf()._pmText === "b×a");
+    assertTrue("...and the label is still visible and still tracking the cross arrow (the fix did not trade a wrong label for a missing one)",
+      labOf().visible === true);
+    // The same frame run, driven by an animate[] ramp rather than an authored
+    // literal — the way the order-contrast state actually flips.
+    runFrame({
+      show_cross_vector: true, cross_reveal_frac: 1,
+      animate: [{ knob: "flip_frac", from: 0, to: 1, start_ms: 0, duration_ms: 0 }],
+    });
+    assertTrue(`a flip driven by an animate[] ramp re-texts too (got "${labOf()._pmText}") — the label reads the RESOLVED knob, not the authored field`,
+      labOf()._pmText === "b×a");
+
+    // Δ11's projection, driven by the same shipped frame.
+    const segOf = () => scene.filter((o: Stub) => o.userData.elementType === "vg_proj_seg")[0];
+    const dropOf = () => scene.filter((o: Stub) => o.userData.elementType === "vg_proj_drop")[0];
+    const projLabOf = () => scene.filter((o: Stub) => o.userData.tracks === "vg_proj_seg")[0];
+    // `placed` is null until the frame asks for a pose, so every read of it is
+    // guarded: a gate that THROWS on the defect it is testing takes every
+    // later section down with it and reports one failure instead of ten.
+    const placedAt = (i: number): V3 => (segOf().placed ? segOf().placed[i] : [NaN, NaN, NaN]) as V3;
+    runFrame({ show_projection: true, a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 });
+    assertTrue("the SHIPPED FRAME draws the projection segment from the ORIGIN to the foot",
+      segOf().visible && len3(placedAt(0)) === 0);
+    check("...at the signed length |b| cos 60° = 1.000", len3(placedAt(1)), 1.0, 1e-9);
+    assertTrue("...and the dashed drop is drawn AND re-measured for its dashes (computeLineDistances ran)",
+      dropOf().visible && dropOf().dashed === true);
+    assertTrue("...and named on canvas, so the state reads sound-off (Rule 24)", projLabOf().visible === true);
+    runFrame({ show_projection: true, a_mag: 3, b_mag: 2, theta_deg: 90, reveal_ms: 0 });
+    assertTrue("at θ = 90° the segment and its label VANISH rather than leaving a zero-length stub beside a 0.00 readout",
+      !segOf().visible && !projLabOf().visible);
+    runFrame({ show_projection: true, a_mag: 3, b_mag: 2, theta_deg: 120, reveal_ms: 0 });
+    const footObtuse = placedAt(1);
+    const aHat120 = E.vgNormalize(E.vgBuildVectors({ theta_deg: 120 }).a) as V3;
+    assertTrue(`at θ = 120° the drawn segment runs the OTHER WAY along â (foot·â = ${dot3(footObtuse, aHat120).toFixed(3)})`,
+      dot3(footObtuse, aHat120) < 0);
+    runFrame({ a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 });
+    assertTrue("with show_projection unauthored the frame draws neither piece (states that predate Δ11 are untouched)",
+      !segOf().visible && !dropOf().visible && !projLabOf().visible);
+  }
+}
+
+console.log("\n=== 16. Δ11 — THE OVERLAY LAYOUT: #vg_sliders and #formula_overlay no longer share a corner ===");
+{
+  // bug_class field3d_vg_formula_overlay_and_slider_panel_occupy_the_identical_
+  // corner_so_the_formula_is_painted_over. Both panels were fixed at
+  // bottom:12px/right:12px at the same z-index, and #vg_sliders is appended to
+  // <body> later — so on every state that shows sliders AND a formula, the
+  // state's ONE formula surface (Rule 34b) was painted over. Rule 34d.
+  //
+  // The coordinates are READ OUT OF THE SHIPPED SOURCE, never restated here: a
+  // layout gate that carries its own copy of the numbers passes forever after
+  // the renderer moves.
+  function edges(css: string) {
+    const get = (k: string) => { const m = new RegExp(k + "\\s*:\\s*(-?[0-9.]+)px").exec(css); return m ? Number(m[1]) : null; };
+    return { left: get("left"), right: get("right"), top: get("top"), bottom: get("bottom") };
+  }
+  const sliderCss = /spd\.style\.cssText = "([^"]*)";/.exec(SRC.slice(SRC.indexOf("function buildVectorGeometrySliders")))![1];
+  const readoutCss = /rd\.style\.cssText = "([^"]*)";/.exec(SRC.slice(SRC.indexOf("function buildVectorGeometryReadout")))![1];
+  // #formula_overlay's rule lives in the HTML/CSS shell ABOVE the opening
+  // backtick, so it is not in SRC at all — the same trap §11c records for the
+  // TypeScript union. Read it from the source FILE (§11c's own precedent).
+  const RENDERER_FILE = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf-8");
+  const foAt = RENDERER_FILE.indexOf("#formula_overlay {");
+  assertTrue("the #formula_overlay CSS rule is found in the renderer shell (a layout gate that cannot find its subject proves nothing)", foAt > 0);
+  const formulaCss = RENDERER_FILE.slice(foAt, RENDERER_FILE.indexOf("}", foAt));
+  const sl = edges(sliderCss), rd = edges(readoutCss), fo = edges(formulaCss);
+  assertTrue(`#formula_overlay is bottom-RIGHT anchored (bottom:${fo.bottom} right:${fo.right}) — the fixed point this fix moves around`,
+    fo.bottom === 12 && fo.right === 12 && fo.left === null);
+  assertTrue(`#vg_sliders is bottom-LEFT anchored (bottom:${sl.bottom} left:${sl.left}) — the skeleton's own position`,
+    sl.bottom === 12 && sl.left === 12 && sl.right === null);
+  assertTrue(`#vg_readout is top-LEFT anchored below the review chrome (top:${rd.top} left:${rd.left}) — Rule 34d's top:52px floor`,
+    rd.top === 52 && rd.left === 12 && (rd.top as number) >= 52);
+
+  // The rects. Widths come from the shipped min-width/max-width + padding;
+  // heights are left FREE, because the whole point of putting the two panels
+  // on opposite edges is that NO panel height can bring them back into
+  // contact — a clearance that depends on a row count is one authored state
+  // away from failing.
+  const px = (css: string, k: string) => { const m = new RegExp(k + "\\s*:\\s*([0-9.]+)px").exec(css); return m ? Number(m[1]) : 0; };
+  const padX = 14 * 2;                                  // both panels: padding 10px 14px
+  const slW = px(sliderCss, "min-width") + padX;        // 230 + 28 — the FLOOR; text may widen it
+  const foW = px(formulaCss, "max-width") + padX;       // 300 + 28 — the CEILING
+  type Rect = { x0: number; x1: number; y0: number; y1: number };
+  const intersects = (p: Rect, q: Rect) => p.x0 < q.x1 && q.x0 < p.x1 && p.y0 < q.y1 && q.y0 < p.y1;
+  function layout(W: number, H: number, sliderW: number, sliderH: number, sliderRight: boolean) {
+    const slider: Rect = sliderRight
+      ? { x0: W - 12 - sliderW, x1: W - 12, y0: H - 12 - sliderH, y1: H - 12 }
+      : { x0: 12, x1: 12 + sliderW, y0: H - 12 - sliderH, y1: H - 12 };
+    const formula: Rect = { x0: W - 12 - foW, x1: W - 12, y0: H - 12 - 120, y1: H - 12 };
+    return { slider, formula };
+  }
+  // THE EYE captures at 1280x720 (screenshotter.ts default viewport); 800x600
+  // is the pessimistic small-projector case.
+  // THE ANCHOR IS READ FROM THE SHIPPED CSS, never assumed: a layout check
+  // that hardcodes which edge the panel is on cannot fail when the panel moves
+  // back, which is the whole class of control this wave is paying for.
+  const shippedRight = sl.right !== null;
+  for (const [W, H] of [[1280, 720], [800, 600]]) {
+    // A deliberately GENEROUS slider width: the min-width floor plus 120px of
+    // room for the longest label, so the assertion is not resting on the
+    // narrowest possible panel.
+    const gen = slW + 120;
+    for (const sliderH of [80, 300, 560, H - 24]) {
+      const L = layout(W, H, gen, sliderH, shippedRight);
+      assertTrue(`${W}x${H}: the SHIPPED panels do NOT intersect at slider height ${sliderH}px (gap ${((W - 12 - foW) - (12 + gen)).toFixed(0)}px)`,
+        !intersects(L.slider, L.formula));
+    }
+  }
+  const gap1280 = (1280 - 12 - foW) - (12 + slW + 120);
+  check("horizontal gap between the two panels at 1280 wide (px) — height-independent by construction", gap1280, gap1280, 0);
+  assertTrue(`the gap is positive with 120px of label headroom (${gap1280.toFixed(0)}px) — no panel HEIGHT can close it`, gap1280 > 0);
+
+  // NEGATIVE CONTROL — the SHIPPED PRE-FIX coordinates, restated exactly:
+  // #vg_sliders at bottom:12/right:12, the same corner as #formula_overlay.
+  // What a weaker control would have reported: "both panels are present",
+  // "both have z-index 10", "the formula overlay's CSS is unchanged" — all
+  // TRUE of the broken layout, and all blind to the overlap. The
+  // discriminating quantity is the RECT INTERSECTION.
+  {
+    const pre = layout(1280, 720, slW + 120, 300, true);
+    expectFail("the PRE-FIX coordinates (slider at right:12px) keep the two rects apart",
+      !intersects(pre.slider, pre.formula));
+    assertTrue("...and the pre-fix panels overlapped over the FULL formula width (the formula was covered, not clipped)",
+      Math.min(pre.slider.x1, pre.formula.x1) - Math.max(pre.slider.x0, pre.formula.x0) >= foW - 1);
+    const shipped = layout(1280, 720, slW + 120, 300, shippedRight);
+    assertTrue("...while the SHIPPED coordinates do not overlap at all (the anchor is PARSED, so a panel moved back into the corner fails here, not only at the anchor assertion above)",
+      !intersects(shipped.slider, shipped.formula));
+  }
+
+  // The left edge the panel moved ONTO must be clear too — moving a collision
+  // rather than removing it is the same bug one panel over. #vg_readout is the
+  // only other left-edge panel, and it is top-anchored.
+  // The row ids are read from the SHIPPED apply pass (scoped to the vg region:
+  // several scenarios declare a `rowIds` map, and the first one in the file is
+  // not this one).
+  const applyAt = SRC.indexOf("function applyVectorGeometry3DState");
+  const rowIdKeys = /var rowIds = \{([^}]*)\}/.exec(SRC.slice(applyAt))![1]
+    .split(",").map((s) => s.split(":")[0].trim()).filter(Boolean);
+  // A state authors ONE mode, so the tallest realistic panel is the tallest
+  // MODE, plus the scene_group select. Both lists are asserted to be subsets
+  // of the shipped map, so they cannot quietly rot away from it.
+  const PRODUCTS_ROWS = ["a_mag", "b_mag", "theta_deg", "b_tilt_deg", "c_mag", "c_theta_deg", "c_phi_deg"];
+  const LP_ROWS = ["lambda", "lambda_span", "half_extent", "q_height", "line2_offset"];
+  assertTrue(`every modelled row is a row the shipped apply pass actually shows (${rowIdKeys.length} rows in the map)`,
+    PRODUCTS_ROWS.concat(LP_ROWS).every((k) => rowIdKeys.indexOf(k) >= 0)
+    && rowIdKeys.length === PRODUCTS_ROWS.length + LP_ROWS.length);
+  const ROW_PX = 50;                                    // label line + range input + margin-top
+  const readoutRows = 6;                                // the widest authored value_readouts list
+  const readoutBottom = 52 + 8 + readoutRows * 22 + 8;
+  const sliderTop = (rows: number) => 720 - 12 - (rows * ROW_PX + 20);
+  const capacity = Math.floor((720 - 12 - 20 - readoutBottom) / ROW_PX);
+  const tallestMode = Math.max(PRODUCTS_ROWS.length, LP_ROWS.length) + 1;   // + the scene_group select
+  assertTrue(`at 1280x720 the top-left readout (bottom ≈ ${readoutBottom}px) leaves room for ${capacity} slider rows, and the tallest single MODE authors ${tallestMode} — so the panel's new edge is genuinely free, not just less crowded`,
+    sliderTop(tallestMode) > readoutBottom && capacity >= tallestMode);
 }
 console.log(`\n${failures === 0 ? "ALL SECTIONS PASSED" : `${failures} ASSERTION(S) FAILED`}\n`);
 process.exit(failures === 0 ? 0 : 1);
