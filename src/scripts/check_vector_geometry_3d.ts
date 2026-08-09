@@ -3964,5 +3964,481 @@ console.log("\n=== 22. THE a/b SCAFFOLDING PAIR IS MODE-GATED: gone in \"lines_p
   }
 }
 
+console.log("\n=== 23. F14 — THE INTERSECTION IS A LIST: ONE STATE MAY TEACH BOTH CASES, AND NO SUBJECT WINS SILENTLY ===");
+{
+  // bug_class vg_intersection_is_a_single_target_so_a_state_teaching_BOTH_
+  // cases_can_render_only_one (MAJOR). ENGINE DELTA 4 exists so the case with
+  // NO intersection carries a readout instead of teaching by omission. But
+  // `var isec = d.intersection` named ONE line and one plane for a whole
+  // state, and lines_and_planes_in_space STATE_4 teaches BOTH cases inside one
+  // state: Lpar (n·d = 0) glides past the plane for 9.5 s — the lesson IS the
+  // absence — and then Lcut punches through at λ = 2.600.
+  //
+  // THE DISCRIMINATING QUANTITY IS WHETHER ONE AUTHORED BLOCK CAN PRODUCE BOTH
+  // HALVES. Every weaker quantity was already true of the singleton: Δ4's row
+  // renders (on a parallel-only state), the marker renders (on a cutting-only
+  // state), the numbers are right, the resolver is deterministic, and §10 +
+  // §19b are both green. What the singleton could not do is serve one state
+  // that needs both — so the two targetings are BOTH run below, and both are
+  // watched to fail, before the list is asserted to succeed.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+  const uIn = nrm(cross3(nh, [0, 0, 1]));                    // exactly IN the plane: n̂·d̂ = 0
+  const ang55 = 55 * Math.PI / 180;
+  const dCut: V3 = nrm([
+    nh[0] * Math.cos(ang55) + uIn[0] * Math.sin(ang55),
+    nh[1] * Math.cos(ang55) + uIn[1] * Math.sin(ang55),
+    nh[2] * Math.cos(ang55) + uIn[2] * Math.sin(ang55),
+  ]);
+  const Xpt: V3 = add3(planePoint, [uIn[0] * 0.6, uIn[1] * 0.6, uIn[2] * 0.6]);      // ON the plane
+  const cutAnchor: V3 = sub3(Xpt, [dCut[0] * 2.6, dCut[1] * 2.6, dCut[2] * 2.6]);    // so λ == 2.600
+  const parAnchor: V3 = add3(planePoint, [nh[0] * 1.4, nh[1] * 1.4, nh[2] * 1.4]);
+
+  // ── THE PRE-FIX RESOLVER, RECONSTRUCTED ──────────────────────────────────
+  //   The SHIPPED sandbox with exactly ONE region replaced: the F14 block, by
+  //   the single-target text that shipped. It is not a paraphrase — it is the
+  //   master body, so the control EXECUTES the defect. If either delimiter
+  //   stops matching, this THROWS: a control that silently fails to plant its
+  //   defect is worse than no control (§19b's rule, applied to a region rather
+  //   than to one line).
+  const F14_START = "        var isecs = vgList(d.intersections).slice();";
+  const F14_END = "        // ── F23 · the line's shadow in the plane";
+  const PRE_F14 = [
+    "        var isec = d.intersection;",
+    "        if (isec && vgInGroup(isec, group)) {",
+    "            var iL = ctx.lines[isec.line], iP = ctx.planes[isec.plane];",
+    "            if (iL && iP) {",
+    "                var meet = vgLinePlaneMeet(iL.anchor, iL.dir, iP.point, iP.n);",
+    "                if (meet) {",
+    "                    var ifrac = vgRevealFrac(isec, stateMs, growMs);",
+    "                    var iShown = vgArrived(ifrac);",
+    "                    out.meet = meet;",
+    "                    if (iShown) out.readouts.d_dot_n = meet.d_dot_n;",
+    "                    if (meet.exists) {",
+    "                        if (iShown) {",
+    "                            out.readouts.lambda = meet.lambda;",
+    "                            out.readouts.intersection_point = meet.point;",
+    "                            out.readouts.no_meeting_point = false;",
+    "                        }",
+    "                        ctx.derived[(isec.id || \"X\")] = meet.point;",
+    "                        if (ifrac > 0) {",
+    "                            out.points.push({",
+    "                                id: isec.id || \"X\", position: meet.point, frac: ifrac, ghost: 1,",
+    "                                role: isec.role || \"derived\", label: isec.label || null,",
+    "                                size: (typeof isec.size === \"number\" && isFinite(isec.size)) ? isec.size : 0.15,",
+    "                                is_intersection: true",
+    "                            });",
+    "                        }",
+    "                    } else if (iShown) {",
+    "                        out.readouts.no_meeting_point = true;",
+    "                    }",
+    "                }",
+    "            }",
+    "        }",
+    "",
+  ].join("\n");
+  const singleTarget = (name: string, src: string) => {
+    if (name !== "vgResolveLinesPlanes") return src;
+    const s = src.indexOf(F14_START), e = src.indexOf(F14_END);
+    if (s < 0 || e < 0 || e < s) {
+      throw new Error(
+        "§23 NEGATIVE CONTROL CANNOT BE BUILT: the shipped F14 region no longer matches the delimiters this "
+        + "control replaces (start " + s + ", end " + e + "). A control that silently fails to plant its defect "
+        + "is worse than no control. Re-anchor F14_START / F14_END and re-watch it fail.");
+    }
+    return src.slice(0, s) + PRE_F14 + src.slice(e);
+  };
+  const PRE = buildVgSandbox(singleTarget) as any;
+  assertTrue("the reconstructed pre-fix resolver really is single-target (it reads d.intersection and ignores d.intersections)",
+    Object.keys(PRE.vgResolveLinesPlanes({
+      mode: "lines_planes", reveal_ms: 0,
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3 }],
+      lines: [{ id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3] }],
+      intersections: [{ id: "X", line: "Lcut", plane: "P1" }],
+    }, {}, 9000).readouts).length === 0);
+
+  // ── (a) THE STATE THAT COULD NOT BE AUTHORED, END TO END ─────────────────
+  //   ONE block, two intersections, disjoint reveal windows — and it is read
+  //   through the SHIPPED FRAME DRIVER and the #vg_readout DOM panel, not off
+  //   the resolver's return value: the claim is about what a teacher READS.
+  const STATE_4: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 0,
+    value_readouts: ["d_dot_n", "lambda", "intersection_point", "no_meeting_point"],
+    planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true }],
+    lines: [
+      { id: "Lpar", point: parAnchor, dir: uIn, lambda_span: [-3, 3], label: "d", hide_at_ms: 9500 },
+      { id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3], label: "d", reveal_at_ms: 9500 },
+    ],
+    // Each line publishes its OWN pair, on its own beat, inside its own window.
+    intersections: [
+      { id: "Xpar", line: "Lpar", plane: "P1", reveal_at_ms: 1000, hide_at_ms: 9500 },
+      { id: "X", line: "Lcut", plane: "P1", reveal_at_ms: 12000 },
+    ],
+  };
+  const runFrame = FRAME_HARNESS.run!;
+  const frameAt = (block: Record<string, unknown>, ms: number) => {
+    const dom = fakeDom();
+    const win: Record<string, unknown> = {};
+    runFrame(block, ms, dom, win);
+    const el = dom.get("vg_readout");
+    return { html: el.innerHTML, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+  };
+  {
+    // THE FIRST HALF — the absence, which is the lesson.
+    const f = frameAt(STATE_4, 2000);
+    assertTrue(`t=2000ms: the panel prints the PARALLEL line's own pair — "n·d = 0.000" AND "no meeting point" (got: ${f.html.replace(/<[^>]+>/g, " | ").trim()})`,
+      f.html.includes("n·d = 0.000") && f.html.includes("no meeting point") && f.shown === "block");
+    assertTrue("t=2000ms: ...and NOT one number belonging to the line that has not appeared yet — no λ, no meeting point",
+      !f.html.includes("vg_readout_lambda") && !f.html.includes("vg_readout_intersection_point"));
+    check("t=2000ms: n·d is Lpar's own 0.000, to 1e-15 (the value the printed row rests on)", f.lp.readouts.d_dot_n, 0, 1e-15);
+    assertTrue("t=2000ms: no_meeting_point is TRUE — Δ4 doing the job it was built for, on the state that needs it",
+      f.lp.readouts.no_meeting_point === true);
+    const early = E.vgResolveLinesPlanes(STATE_4, {}, 2000);
+    const drawnEarly = early.lines.filter((l: any) => l.frac > 0).map((l: any) => l.id);
+    assertTrue(`t=2000ms: the picture agrees — the only line drawn is Lpar (got [${drawnEarly.join(", ")}]) and there is NO marker anywhere`,
+      drawnEarly.length === 1 && drawnEarly[0] === "Lpar"
+      && early.points.filter((p: any) => p.is_intersection === true).length === 0);
+  }
+  {
+    // THE SECOND HALF — the meeting, on the same authored block.
+    const f = frameAt(STATE_4, 15000);
+    assertTrue(`t=15000ms: the SAME block now prints the CUTTING line's numbers — "n·d = 0.574", "λ = 2.600" and a meeting point (got: ${f.html.replace(/<[^>]+>/g, " | ").trim()})`,
+      f.html.includes("n·d = 0.574") && f.html.includes("λ = 2.600")
+      && f.html.includes("vg_readout_intersection_point") && f.shown === "block");
+    assertTrue("t=15000ms: ...and the absence row is GONE — the panel never claims both at once",
+      !f.html.includes("no meeting point"));
+    check("t=15000ms: n·d is the constructed cos 55", f.lp.readouts.d_dot_n, Math.cos(ang55), 1e-12);
+    check("t=15000ms: λ is the constructed 2.600", f.lp.readouts.lambda, 2.6, 1e-12);
+    const late = E.vgResolveLinesPlanes(STATE_4, {}, 15000);
+    const markers = late.points.filter((p: any) => p.is_intersection === true);
+    const drawnLate = late.lines.filter((l: any) => l.frac > 0).map((l: any) => l.id);
+    assertTrue(`t=15000ms: the picture agrees — exactly one marker, and the only line drawn is Lcut (got [${drawnLate.join(", ")}])`,
+      markers.length === 1 && markers[0].id === "X" && drawnLate.length === 1 && drawnLate[0] === "Lcut");
+    check("...and the printed point really is ON the plane (n·(X−a) == 0), solved outside the renderer",
+      dot3(planeN, sub3(f.lp.readouts.intersection_point as V3, planePoint)), 0, 1e-12);
+    check("...and ON the line (the marker is not a plausible position near it)",
+      len3(cross3(sub3(f.lp.readouts.intersection_point as V3, cutAnchor), dCut)), 0, 1e-12);
+    // THE SWITCH IS A SWITCH: the token's VALUE moves when its subject does.
+    assertTrue("n·d changes subject across the state — 0.000 while Lpar is on screen, 0.574 once Lcut is",
+      Math.abs(frameAt(STATE_4, 2000).lp.readouts.d_dot_n - 0) < 1e-15
+      && Math.abs(frameAt(STATE_4, 15000).lp.readouts.d_dot_n - Math.cos(ang55)) < 1e-12);
+    assertTrue("...and nothing is ever ambiguous: PM_vgLinesPlanes.readout_conflicts is empty at every sampled instant",
+      [0, 1500, 2000, 5000, 9000, 9600, 12500, 15000, 20000]
+        .every((ms) => (frameAt(STATE_4, ms).lp.readout_conflicts as unknown[]).length === 0));
+  }
+
+  // ── (b) NEGATIVE CONTROL — BOTH TARGETINGS OF THE SINGLETON, AND THERE ARE
+  //    ONLY TWO. The singleton names one line, so "target Lcut" and "target
+  //    Lpar" are the whole option space; each is run against the SAME two-line
+  //    scene, and each is watched to lose one half of the state.
+  {
+    const singleBlock = (target: string) => {
+      const b = JSON.parse(JSON.stringify(STATE_4));
+      delete b.intersections;
+      b.intersection = (target === "Lcut")
+        ? { id: "X", line: "Lcut", plane: "P1", reveal_at_ms: 12000 }
+        : { id: "Xpar", line: "Lpar", plane: "P1", reveal_at_ms: 1000, hide_at_ms: 9500 };
+      return b;
+    };
+    // FIRST, THE SECTION'S OWN FALSIFIABILITY: run (a)'s exact authored block
+    // through the pre-fix build. It reads a field that does not exist for it,
+    // so every assertion in (a) fails on it — this section cannot pass on the
+    // build that shipped the defect. (Against the pre-fix RENDERER the control
+    // throws instead, by design: the delimiters are gone, and a control that
+    // cannot plant its defect must stop the run rather than pass it.)
+    const SWEEP0 = [0, 2000, 5000, 9600, 12500, 15000, 20000];
+    expectFail("the pre-fix build prints ANYTHING at all from the intersections[] block section (a) reads",
+      SWEEP0.some((ms) => Object.keys(PRE.vgResolveLinesPlanes(STATE_4, {}, ms).readouts).length > 0));
+    // TARGETING Lcut — what the concept actually shipped. The absence row can
+    // never render, at any instant of the state.
+    const cutB = singleBlock("Lcut");
+    const SWEEP = [0, 500, 1000, 1500, 2000, 3000, 5000, 7000, 9000, 9600, 11000, 12500, 15000, 20000];
+    const cutSays = SWEEP.map((ms) => PRE.vgResolveLinesPlanes(cutB, {}, ms).readouts);
+    expectFail("targeting Lcut, the singleton can render Δ4's \"no meeting point\" at SOME instant of the state",
+      cutSays.some((r: any) => r.no_meeting_point === true));
+    expectFail("targeting Lcut, the singleton says ANYTHING at all during Lpar's 9.5 s (its readouts are empty every sample before 12000 ms)",
+      SWEEP.filter((ms) => ms < 12000).some((ms) => Object.keys(PRE.vgResolveLinesPlanes(cutB, {}, ms).readouts).length > 0));
+    assertTrue("...and that is not a broken fixture — it does print the CUTTING half correctly, which is why it shipped",
+      Math.abs(PRE.vgResolveLinesPlanes(cutB, {}, 15000).readouts.d_dot_n - Math.cos(ang55)) < 1e-12
+      && Math.abs(PRE.vgResolveLinesPlanes(cutB, {}, 15000).readouts.lambda - 2.6) < 1e-12);
+    // TARGETING Lpar — the only other option. The absence row renders, and the
+    // marker the second half is built around never exists.
+    const parB = singleBlock("Lpar");
+    const parMarkers = SWEEP.map((ms) => PRE.vgResolveLinesPlanes(parB, {}, ms).points.filter((p: any) => p.is_intersection === true).length);
+    expectFail("targeting Lpar, the singleton produces the X marker Lcut's half is built around at SOME instant",
+      parMarkers.some((n: number) => n > 0));
+    expectFail("targeting Lpar, the singleton publishes λ or a meeting point at SOME instant",
+      SWEEP.some((ms) => {
+        const r = PRE.vgResolveLinesPlanes(parB, {}, ms).readouts;
+        return r.lambda !== undefined || r.intersection_point !== undefined;
+      }));
+    assertTrue("...and that targeting DOES print the parallel half correctly — so neither targeting is simply broken; each serves exactly one half",
+      PRE.vgResolveLinesPlanes(parB, {}, 2000).readouts.no_meeting_point === true);
+    // THE OPTION SPACE IS CLOSED, read off the pre-fix text itself.
+    assertTrue("the singleton names exactly ONE line (its whole body reads d.intersection once, and no list anywhere)",
+      (PRE_F14.match(/d\.intersection/g) || []).length === 1 && PRE_F14.indexOf("d.intersections") < 0);
+    // ...and the SHIPPED list serves both halves from the one block that the
+    // singleton could not: the same two measurements, side by side.
+    assertTrue("the SHIPPED resolver does both from ONE block — the absence at 2000 ms and the marker at 15000 ms",
+      E.vgResolveLinesPlanes(STATE_4, {}, 2000).readouts.no_meeting_point === true
+      && E.vgResolveLinesPlanes(STATE_4, {}, 15000).points.filter((p: any) => p.is_intersection === true).length === 1);
+  }
+
+  // ── (c) BACKWARD COMPATIBILITY — d.intersection is the SHIPPED SHAPE ──────
+  //   Not "it still runs": the singular path must resolve to the SAME frame.
+  //   Compared against the reconstructed pre-fix build, over a time sweep, on
+  //   every surface the frame writer and the panel actually consume — and the
+  //   key-set difference is MEASURED, so "the two new keys" is proved rather
+  //   than asserted by hand.
+  {
+    const CONSUMED = ["lines", "planes", "points", "segments", "arcs", "vectors",
+      "right_angle", "readouts", "unknown_readouts", "group", "meet"];
+    const singular = (target: "Lcut" | "Lpar") => ({
+      mode: "lines_planes", reveal_ms: 0,
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true }],
+      lines: [
+        { id: "Lpar", point: parAnchor, dir: uIn, lambda_span: [-3, 3] },
+        { id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3] },
+      ],
+      intersection: { id: "X", line: target, plane: "P1", reveal_at_ms: 1200, grow_ms: 800 },
+    });
+    const SWEEP = [0, 600, 1200, 1600, 2000, 2400, 5000, 20000];
+    for (const target of ["Lcut", "Lpar"] as const) {
+      const b = singular(target);
+      const same = SWEEP.every((ms) => {
+        const now = E.vgResolveLinesPlanes(b, {}, ms), was = PRE.vgResolveLinesPlanes(b, {}, ms);
+        return CONSUMED.every((k) => JSON.stringify(now[k]) === JSON.stringify(was[k]));
+      });
+      assertTrue(`singular d.intersection targeting ${target}: every consumed surface is IDENTICAL to the pre-fix build at all ${SWEEP.length} sampled instants (lines, planes, points, segments, arcs, vectors, right_angle, readouts, group, meet)`, same);
+    }
+    // The two new keys are DECLARED in the shared `out` literal, outside the
+    // region this control replaces, so the pre-fix build carries them too and
+    // empty — which is the strongest possible statement of "additive": the key
+    // SET does not move at all, and the new keys are what a singular authoring
+    // would have put there anyway.
+    const nowRes = E.vgResolveLinesPlanes(singular("Lcut"), {}, 5000);
+    const wasRes = PRE.vgResolveLinesPlanes(singular("Lcut"), {}, 5000);
+    const nowKeys = Object.keys(nowRes).sort(), wasKeys = Object.keys(wasRes).sort();
+    assertTrue(`the key SET of the resolved frame does not move at all (now [${nowKeys.join(", ")}])`,
+      nowKeys.join(",") === wasKeys.join(","));
+    assertTrue(`...and the additions are purely additive on the singular path: meets echoes the one intersection (${nowRes.meets.length}, id "${nowRes.meets[0].id}") and readout_conflicts is empty (${nowRes.readout_conflicts.length})`,
+      nowRes.meets.length === 1 && nowRes.meets[0].id === "X" && nowRes.readout_conflicts.length === 0
+      && wasRes.meets.length === 0 && wasRes.readout_conflicts.length === 0);
+    // The DEFAULT ADDRESS did not move. An unnamed intersection's id is what
+    // the frame writer stamps onto the marker mesh (glow_focal names it), so
+    // renaming the first one to "X0" would silently orphan every authored
+    // reference to "X".
+    const unnamed = {
+      mode: "lines_planes", reveal_ms: 0,
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0 }],
+      lines: [{ id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3] }],
+      intersection: { line: "Lcut", plane: "P1" },
+    };
+    const uNow = E.vgResolveLinesPlanes(unnamed, {}, 5000).points.filter((p: any) => p.is_intersection)[0];
+    const uWas = PRE.vgResolveLinesPlanes(unnamed, {}, 5000).points.filter((p: any) => p.is_intersection)[0];
+    assertTrue(`an UNNAMED singular intersection still resolves to the id "X" (pre-fix "${uWas.id}", shipped "${uNow.id}")`,
+      uNow.id === "X" && uWas.id === "X");
+    // ...and a block that authors BOTH keeps both — a newer field never
+    // silently swallows the object authored beside it.
+    const both = {
+      mode: "lines_planes", reveal_ms: 0,
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0 }],
+      lines: [
+        { id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3] },
+        { id: "Lpar", point: parAnchor, dir: uIn, lambda_span: [-3, 3] },
+      ],
+      intersections: [{ id: "Xa", line: "Lcut", plane: "P1" }],
+      intersection: { id: "Xb", line: "Lpar", plane: "P1" },
+    };
+    const bothRes = E.vgResolveLinesPlanes(both, {}, 5000);
+    assertTrue(`authoring both keys resolves BOTH intersections, in list-then-singular order (got [${bothRes.meets.map((m: any) => m.id).join(", ")}])`,
+      bothRes.meets.length === 2 && bothRes.meets[0].id === "Xa" && bothRes.meets[1].id === "Xb");
+  }
+
+  // ── (d) THE COLLISION IS A REFUSAL, NOT A WINNER ─────────────────────────
+  //   Two intersections arrived at once cannot both own a token whose NAME is
+  //   d_dot_n. The decision recorded here: publish NOTHING and RECORD the
+  //   collision, rather than pick. A precedence rule is a coin flip the reader
+  //   cannot see — demonstrated below by running both plausible rules on the
+  //   identical frame and watching them disagree.
+  {
+    const clash: Record<string, unknown> = {
+      mode: "lines_planes", reveal_ms: 0,
+      value_readouts: ["d_dot_n", "lambda", "intersection_point", "no_meeting_point"],
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0 }],
+      lines: [
+        { id: "Lpar", point: parAnchor, dir: uIn, lambda_span: [-3, 3], label: "d" },
+        { id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3], label: "d" },
+      ],
+      intersections: [
+        { id: "Xpar", line: "Lpar", plane: "P1", reveal_at_ms: 1000 },
+        { id: "X", line: "Lcut", plane: "P1", reveal_at_ms: 1000 },
+      ],
+    };
+    const res = E.vgResolveLinesPlanes(clash, {}, 5000);
+    assertTrue("two co-revealed intersections publish NOT ONE of the four tokens",
+      ["d_dot_n", "lambda", "intersection_point", "no_meeting_point"]
+        .every((t) => res.readouts[t] === undefined));
+    assertTrue(`...and the collision is RECORDED, naming both claimants (got ${JSON.stringify(res.readout_conflicts)})`,
+      res.readout_conflicts.length === 1 && res.readout_conflicts[0].family === "intersection"
+      && res.readout_conflicts[0].claimants.sort().join(",") === "X,Xpar");
+    // The record's token list is BOUND to the branch that publishes them: a
+    // fifth token added to the family without being added to the record would
+    // fail here rather than start slipping through the refusal.
+    {
+      const start = SRC.indexOf("function vgResolveLinesPlanes(");
+      let depth = 0, end = start;
+      for (let j = SRC.indexOf("{", start); j < SRC.length; j++) {
+        if (SRC[j] === "{") depth++;
+        else if (SRC[j] === "}") { depth--; if (depth === 0) { end = j + 1; break; } }
+      }
+      const RES = SRC.slice(start, end);
+      // The F14 REGION ONLY, bounded by the same two delimiters the negative
+      // control uses — the projection and the arcs publish further down, and a
+      // slice that ran to the end of the resolver would silently swallow them.
+      const f14 = RES.slice(RES.indexOf(F14_START.trim()), RES.indexOf(F14_END.trim()));
+      assertTrue("the F14 region is bounded by the same delimiters the negative control replaces (a mis-sliced region would count the projection's tokens too)",
+        f14.length > 0 && f14.indexOf("angle_line_normal_deg") < 0);
+      const published = (f14.match(/out\.readouts\.([a-z_]+) =/g) || [])
+        .map((s) => /out\.readouts\.([a-z_]+) =/.exec(s)![1]);
+      const recorded = res.readout_conflicts[0].tokens.slice().sort().join(",");
+      assertTrue(`the recorded token list IS the set the single-claimant branch assigns (publishes [${Array.from(new Set(published)).sort().join(", ")}], records [${recorded}])`,
+        Array.from(new Set(published)).sort().join(",") === recorded);
+      check("out.readout_conflicts is pushed from exactly ONE site (the refusal has no second, weaker path)",
+        (RES.match(/out\.readout_conflicts\.push\(/g) || []).length, 1, 0);
+    }
+    // THE PICTURE IS NOT WITHHELD — only the ambiguous NUMBER is. Geometry is
+    // addressed by id and can never be misread as belonging to the other line.
+    assertTrue("the marker for the line that DOES meet is still drawn (the refusal costs the panel a row, never the scene an object)",
+      res.points.filter((p: any) => p.is_intersection === true).length === 1);
+    // ...and the frame driver carries the record to where a probe can read it.
+    const f = frameAt(clash, 5000);
+    assertTrue("the panel prints no intersection row at all, and PM_vgLinesPlanes.readout_conflicts carries the reason",
+      !f.html.includes("vg_readout_d_dot_n") && !f.html.includes("vg_readout_no_meeting_point")
+      && (f.lp.readout_conflicts as any[]).length === 1);
+    // NEGATIVE CONTROL — the two precedence rules, on this identical frame.
+    {
+      const arrived = E.vgResolveLinesPlanes(clash, {}, 5000).meets
+        .filter((m: any) => E.vgArrived(m.frac));
+      const firstWins = arrived[0].meet.d_dot_n;
+      const lastWins = arrived[arrived.length - 1].meet.d_dot_n;
+      expectFail(`a precedence rule prints the same number either way (first-authored says n·d = ${firstWins.toFixed(3)}, last-authored says ${lastWins.toFixed(3)}, on the same frame)`,
+        Math.abs(firstWins - lastWins) < 1e-9);
+      assertTrue("...and BOTH are arithmetically correct, for different lines that carry the same label d — which is why a silent winner is unreadable, not wrong",
+        Math.abs(firstWins - 0) < 1e-15 && Math.abs(lastWins - Math.cos(ang55)) < 1e-12);
+      expectFail("an \"exists wins\" rule is any better: it prints λ and a meeting point while the parallel line's n·d = 0 is the taught claim",
+        arrived.filter((m: any) => m.meet.exists).length !== 1);
+    }
+    // The refusal is a WINDOW property, not a permanent one: separate the two
+    // beats and the family publishes again. (A rule that never publishes on a
+    // two-intersection state would pass every assertion above.)
+    {
+      const spaced = JSON.parse(JSON.stringify(clash));
+      spaced.intersections[0].hide_at_ms = 4000;
+      const r = E.vgResolveLinesPlanes(spaced, {}, 5000);
+      assertTrue("close the first window and the second intersection publishes normally again (the rule gates on OVERLAP, not on arity)",
+        r.readout_conflicts.length === 0 && Math.abs(r.readouts.d_dot_n - Math.cos(ang55)) < 1e-12);
+    }
+  }
+
+  // ── (e) DETERMINISM (D3 / Rule 36) — the list did not cost the rewind ─────
+  {
+    const times = [0, 500, 1000, 2000, 5000, 9400, 9600, 12000, 12500, 15000, 20000];
+    const fwd = times.map((t) => JSON.stringify(E.vgResolveLinesPlanes(STATE_4, {}, t)));
+    const rew = times.slice().reverse().map((t) => JSON.stringify(E.vgResolveLinesPlanes(STATE_4, {}, t)));
+    assertTrue("REWIND: the two-intersection state replays backwards BIT FOR BIT (a SET_TIME_FREEZE re-pin is byte-identical)",
+      fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+    const keysAt = (t: number) => Object.keys(E.vgResolveLinesPlanes(STATE_4, {}, t).readouts).sort().join(",");
+    assertTrue(`the two halves arrive beat by beat and never overlap (t=0 "${keysAt(0)}", t=2000 "${keysAt(2000)}", t=10000 "${keysAt(10000)}", t=15000 "${keysAt(15000)}")`,
+      keysAt(0) === "" && keysAt(2000) === "d_dot_n,no_meeting_point" && keysAt(10000) === ""
+      && keysAt(15000) === "d_dot_n,intersection_point,lambda,no_meeting_point");
+  }
+
+  // ── (f) NOTHING ELSE CONSUMED THE SINGULAR ───────────────────────────────
+  //   The founder's standing question on this scenario: what else reads the
+  //   thing being changed? Proved off the shipped source rather than reported.
+  {
+    const start = SRC.indexOf("function vgResolveLinesPlanes(");
+    let depth = 0, end = start;
+    for (let j = SRC.indexOf("{", start); j < SRC.length; j++) {
+      if (SRC[j] === "{") depth++;
+      else if (SRC[j] === "}") { depth--; if (depth === 0) { end = j + 1; break; } }
+    }
+    const RES = SRC.slice(start, end), OUTSIDE = SRC.slice(0, start) + SRC.slice(end);
+    // Comments MENTION both names (this fix is documented where it lives), so
+    // the count is taken over code only.
+    const code = (s: string) => s.split("\n").map((l) => {
+      const i = l.indexOf("//");
+      return i >= 0 ? l.slice(0, i) : l;
+    }).join("\n");
+    const isecLines = code(RES).split("\n").filter((l) => /d\.intersection\b/.test(l));
+    assertTrue(`d.intersection is read on exactly ONE line of the whole renderer — the list fallback (got: ${isecLines.map((l) => l.trim()).join(" ⏎ ")})`,
+      isecLines.length === 1 && isecLines[0].indexOf("isecs.push(d.intersection)") >= 0);
+    check("...and nowhere outside the resolver", (code(OUTSIDE).match(/d\.intersection\b/g) || []).length, 0, 0);
+    // out.meet: written, and read by NOBODY outside this resolver — which is
+    // why turning the target into a list could not break a consumer of it.
+    // Measured off the shipped source, not assumed from a grep in a report.
+    check("out.meet has no consumer anywhere else in the renderer (\".meet\" appears zero times outside the resolver)",
+      (OUTSIDE.match(/\.meet\b/g) || []).length, 0, 0);
+    check("...and inside it, exactly the three touches this fix authors (write, null-test, publish)",
+      (code(RES).match(/\.meet\b/g) || []).length, 3, 0);
+    assertTrue("...and it still carries the FIRST intersection's result, so a future reader gets the singular value unchanged",
+      JSON.stringify(E.vgResolveLinesPlanes(STATE_4, {}, 20000).meet)
+      === JSON.stringify(E.vgResolveLinesPlanes(STATE_4, {}, 20000).meets[0].meet));
+    // Act I cannot regress through this: the resolver is mode-gated (§19b(e)
+    // proves the single call site) — restated here as a live measurement.
+    const win: Record<string, unknown> = {};
+    runFrame({ a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "a_dot_b"] }, 9000, fakeDom(), win);
+    assertTrue("a products-mode frame never enters the resolver, so vector_products_in_space cannot see this change (PM_vgLinesPlanes === null)",
+      win.PM_vgLinesPlanes === null);
+  }
+
+  // ── (g) THE GATE REFUSES A COLLIDING AUTHORING, on the REAL concept ───────
+  //   The rule above is worth nothing if a state can ship with an overlap and
+  //   nobody looks. Every authored lines_planes state is resolved across a
+  //   dense sweep and must produce ZERO conflicts. Advisory only if the
+  //   concept is not on this desk (the §22(d) precedent).
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let states: Array<{ key: string; vg: Record<string, unknown> }> = [];
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      if (cfg) {
+        states = Object.keys(cfg.states)
+          .map((k) => ({ key: k, vg: (cfg.states[k].vg || {}) as Record<string, unknown> }))
+          .filter((s) => s.vg.mode === "lines_planes");
+      }
+    } catch { states = []; }
+    if (states.length === 0) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the authored-collision refusal is advisory");
+    } else {
+      const SWEEP: number[] = [];
+      for (let t = 0; t <= 24000; t += 250) SWEEP.push(t);
+      const withIsec = states.filter((s) => s.vg.intersection || (Array.isArray(s.vg.intersections) && (s.vg.intersections as unknown[]).length));
+      let bad = 0, worst = "";
+      for (const s of states) {
+        for (const ms of SWEEP) {
+          const c = E.vgResolveLinesPlanes(s.vg, {}, ms).readout_conflicts;
+          if (c.length) { bad++; if (!worst) worst = `${s.key} @ ${ms}ms: ${JSON.stringify(c)}`; }
+        }
+      }
+      check(`every one of the ${states.length} authored lines_planes states resolves with ZERO readout collisions across ${SWEEP.length} sampled instants${worst ? " (" + worst + ")" : ""}`,
+        bad, 0, 0);
+      assertTrue(`...and the scan is not vacuous — ${withIsec.length} of those states author an intersection (${withIsec.map((s) => s.key).join(", ")})`,
+        withIsec.length > 0);
+    }
+  }
+}
+
 console.log(`\n${failures === 0 ? "ALL SECTIONS PASSED" : `${failures} ASSERTION(S) FAILED`}\n`);
 process.exit(failures === 0 ? 0 : 1);

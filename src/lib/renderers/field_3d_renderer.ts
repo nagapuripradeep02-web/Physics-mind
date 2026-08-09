@@ -12968,7 +12968,15 @@ export const FIELD_3D_RENDERER_CODE = `
         var ctx = { points: {}, lines: {}, planes: {}, derived: {} };
         var out = {
             lines: [], planes: [], points: [], segments: [], arcs: [], vectors: [],
-            right_angle: null, readouts: {}, unknown_readouts: [], group: group
+            right_angle: null, readouts: {}, unknown_readouts: [], group: group,
+            // F14 — one entry per AUTHORED intersection, keyed by its own id, so
+            // a state teaching two cases against one plane has two addressable
+            // results instead of one target (see the F14 block below).
+            meets: [],
+            // The readout tokens NO subject could claim unambiguously this frame.
+            // Empty on every well-authored state; never silently dropped, on the
+            // PM_vgPoolOverflow precedent.
+            readout_conflicts: []
         };
         var i, o, frac;
 
@@ -13153,47 +13161,100 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
-        // ── F14 · the intersection marker, which exists only when it exists ─
-        var isec = d.intersection;
-        if (isec && vgInGroup(isec, group)) {
+        // ── F14 · the intersections, A LIST, each keyed to its OWN line ─────
+        //   bug_class vg_intersection_is_a_single_target_so_a_state_teaching_
+        //   BOTH_cases_can_render_only_one. d.intersection named ONE line and
+        //   one plane for a whole state. lines_and_planes_in_space STATE_4
+        //   teaches BOTH cases sequentially inside one state: the parallel line
+        //   Lpar glides past the plane for 9.5 s (n·d = 0, and the LESSON IS THE
+        //   ABSENCE), then the cutting line Lcut punches through and the marker
+        //   snaps on at λ = 2.600. Targeting Lcut makes meet.exists permanently
+        //   true, so Δ4's no_meeting_point row can never render; targeting Lpar
+        //   renders the absence and destroys the marker the second half needs.
+        //   No authoring of a singleton serves both, so Δ4 could not do its job
+        //   on the only state that needs it.
+        //
+        //   THE SINGULAR REMAINS THE SHIPPED SHAPE. d.intersection is read as
+        //   one more element of the list rather than as a legacy branch, so a
+        //   concept authored against it resolves BYTE-IDENTICALLY (gated), and a
+        //   block that authors both keeps both — an authored object is never
+        //   silently dropped because a newer field exists beside it.
+        var isecs = vgList(d.intersections).slice();
+        if (d.intersection) isecs.push(d.intersection);
+        var arrivedMeets = [];                     // the ones whose beat has come
+        for (var xi = 0; xi < isecs.length; xi++) {
+            var isec = isecs[xi] || {};
+            if (!vgInGroup(isec, group)) continue;
             var iL = ctx.lines[isec.line], iP = ctx.planes[isec.plane];
-            if (iL && iP) {
-                var meet = vgLinePlaneMeet(iL.anchor, iL.dir, iP.point, iP.n);
-                if (meet) {
-                    // Δ2b — THE MEASURED CASE. Every one of these four describes
-                    // the line named by d.intersection, so every one waits for
-                    // that intersection's own reveal instant. out.meet stays
-                    // ungated: it is resolved GEOMETRY (like ctx.derived below),
-                    // never a value surface, and gating it would move a marker's
-                    // address rather than a number's arrival.
-                    var ifrac = vgRevealFrac(isec, stateMs, growMs);
-                    var iShown = vgArrived(ifrac);
-                    out.meet = meet;
-                    if (iShown) out.readouts.d_dot_n = meet.d_dot_n;
-                    if (meet.exists) {
-                        if (iShown) {
-                            out.readouts.lambda = meet.lambda;
-                            out.readouts.intersection_point = meet.point;
-                            out.readouts.no_meeting_point = false;
-                        }
-                        ctx.derived[(isec.id || "X")] = meet.point;
-                        if (ifrac > 0) {
-                            out.points.push({
-                                id: isec.id || "X", position: meet.point, frac: ifrac, ghost: 1,
-                                role: isec.role || "derived", label: isec.label || null,
-                                size: (typeof isec.size === "number" && isFinite(isec.size)) ? isec.size : 0.15,
-                                is_intersection: true
-                            });
-                        }
-                    } else if (iShown) {
-                        // NO marker, at any position, ever — and the readout
-                        // says so out loud (Δ4). This is the whole state, and it
-                        // still arrives on the intersection's authored beat: a
-                        // claim about an absence is a claim, not a default.
-                        out.readouts.no_meeting_point = true;
-                    }
+            if (!iL || !iP) continue;
+            var meet = vgLinePlaneMeet(iL.anchor, iL.dir, iP.point, iP.n);
+            if (!meet) continue;
+            // The FIRST unnamed intersection keeps the historical default "X":
+            // it is an ADDRESS (ctx.derived, so segments / vectors / labels can
+            // name it), and renaming it to "X0" would move an address that
+            // already-authored blocks resolve against.
+            var iId = isec.id || (xi === 0 ? "X" : "X" + xi);
+            var ifrac = vgRevealFrac(isec, stateMs, growMs);
+            // RESOLVED GEOMETRY, never a value surface — ungated exactly as
+            // out.meet always was: gating it would move a marker's ADDRESS
+            // rather than a number's arrival. out.meets is the addressable
+            // form (one record per authored intersection); out.meet stays as
+            // the first one, which is the singular result unchanged.
+            out.meets.push({ id: iId, line: isec.line, plane: isec.plane, frac: ifrac, meet: meet });
+            if (out.meet == null) out.meet = meet;
+            if (meet.exists) {
+                ctx.derived[iId] = meet.point;
+                if (ifrac > 0) {
+                    out.points.push({
+                        id: iId, position: meet.point, frac: ifrac, ghost: 1,
+                        role: isec.role || "derived", label: isec.label || null,
+                        size: (typeof isec.size === "number" && isFinite(isec.size)) ? isec.size : 0.15,
+                        is_intersection: true
+                    });
                 }
             }
+            // Δ2b — the four numbers describe THIS intersection's line, so they
+            // wait for THIS intersection's own reveal instant.
+            if (vgArrived(ifrac)) arrivedMeets.push({ id: iId, meet: meet });
+        }
+        // ── ONE SUBJECT AT A TIME, AND NEVER A SILENT WINNER ────────────────
+        //   The four tokens below are NAMES, not addresses: d_dot_n means "n·d"
+        //   for whichever line the panel is describing. Two arrived
+        //   intersections both claim all four — and on the state this exists
+        //   for, both lines carry the same generic label d — so any precedence
+        //   rule (first authored, last authored, the one that exists) prints a
+        //   number the reader cannot attach to a line. That is
+        //   vg_lines_planes_segment_readouts_compute_regardless_of_reveal_state
+        //   one level up: the number is arithmetically right and describes
+        //   something other than what the reader is looking at.
+        //
+        //   So the family publishes only while exactly ONE intersection is
+        //   arrived — which is what makes STATE_4's disjoint windows (Lpar
+        //   0-9500, Lcut 9500+) the authoring, not a lucky ordering — and a
+        //   collision publishes NOTHING and is RECORDED, so the gate can refuse
+        //   the state rather than a wrong number reaching a teacher.
+        if (arrivedMeets.length === 1) {
+            var mt = arrivedMeets[0].meet;
+            out.readouts.d_dot_n = mt.d_dot_n;
+            if (mt.exists) {
+                out.readouts.lambda = mt.lambda;
+                out.readouts.intersection_point = mt.point;
+                out.readouts.no_meeting_point = false;
+            } else {
+                // NO marker, at any position, ever — and the readout says so out
+                // loud (Δ4). This is the whole state, and it still arrives on the
+                // intersection's authored beat: a claim about an absence is a
+                // claim, not a default.
+                out.readouts.no_meeting_point = true;
+            }
+        } else if (arrivedMeets.length > 1) {
+            var claimants = [];
+            for (var ci = 0; ci < arrivedMeets.length; ci++) claimants.push(arrivedMeets[ci].id);
+            out.readout_conflicts.push({
+                family: "intersection",
+                tokens: ["d_dot_n", "lambda", "intersection_point", "no_meeting_point"],
+                claimants: claimants
+            });
         }
 
         // ── F23 · the line's shadow in the plane ────────────────────────────
@@ -14548,7 +14609,12 @@ export const FIELD_3D_RENDERER_CODE = `
             window.PM_vgLinesPlanes = {
                 group: lpRes.group, readouts: lpRes.readouts,
                 lines: lpRes.lines.length, planes: lpRes.planes.length,
-                points: lpRes.points.length, segments: lpRes.segments.length
+                points: lpRes.points.length, segments: lpRes.segments.length,
+                // F14 — the readout tokens no subject could claim unambiguously
+                // this frame (empty on every well-authored state). Published for
+                // the same reason PM_vgPoolOverflow is: a resolver that cannot
+                // say something says so out loud, where a probe can read it.
+                readout_conflicts: lpRes.readout_conflicts
             };
         } else {
             window.PM_vgLinesPlanes = null;
