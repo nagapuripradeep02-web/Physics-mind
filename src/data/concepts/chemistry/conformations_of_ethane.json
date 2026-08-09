@@ -1,0 +1,837 @@
+{
+  "concept_id": "conformations_of_ethane",
+  "concept_name": "Conformations of Ethane: Staggered, Eclipsed, and the Energy of Turning",
+  "chapter": 13,
+  "section": "13.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Chemistry Class 11, Ch.13 'Hydrocarbons', §13.2 — alkanes: conformations of ethane, sawhorse and Newman projections — chapter-index scope reference only; teaching sequence, real-world anchor, narration and drill-down phrasings authored from first principles. Every energy carries a primary literature citation stamped on the engine's ORG_ENERGY_TABLE.ethane row: Kemp & Pitzer, JACS 59 (1937) 276; Weiss & Leroi, J. Chem. Phys. 48 (1968) 962 (V3 ≈ 1024 cm⁻¹). NCERT's 12.5 kJ·mol⁻¹ is the 3.0 kcal·mol⁻¹ rounding of the same measurement — reconciled in the barrier_vs_bond_breaking drill-down, never on canvas.",
+
+  "renderer_pair": { "panel_a": "field_3d", "panel_b": "field_3d" },
+  "available_renderer_scenarios": { "field_3d": ["organic_structure"] },
+  "prerequisites": ["sigma_pi_bonding", "hybridisation_sp_sp2_sp3", "vsepr_molecular_shapes"],
+
+  "real_world_anchor": {
+    "primary": "A hexagonal pencil lying on a flat table rests on one of its flat faces. Push it and it rolls, but not smoothly — it lifts over an edge and drops onto the next face. It can be turned to any position, yet it is almost always found resting on a face. That is the whole concept in an object every student owns: a rotation that is possible but not free, with resting positions separated by small barriers. It is physics-true rather than metaphorical — a periodic potential in a rotational coordinate, minima at the faces and maxima at the edges. The one honest difference: at room temperature ethane's barrier is small enough that the molecule turns millions of times a second, while the pencil stays put.",
+    "secondary": "The lid of a screw-top bottle turns freely all the way round — the counter-example that sharpens the pencil. Offered as a foil only; the guided narration does not use it."
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 7,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 16
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Rotation about a single bond is not free: the energy rises and falls.",
+    "visual_confirmation": "the same rotation the student has already watched twice now draws the energy curve as it happens — the rider IS the drawing tip, measured off the turning molecule — and the curve falls three times and climbs three times in one turn"
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "phi_deg": {
+        "name": "dihedral angle about C1-C2, measured C1H1-C1-C2-C2H1",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 60
+      },
+      "E_kJ_per_mol": {
+        "name": "torsional energy above staggered",
+        "unit": "kJ/mol",
+        "min": 0,
+        "max": 12,
+        "default": 0,
+        "derived": "6 * (1 + cos(radians(3 * phi_deg)))"
+      },
+      "barrier_kJ_per_mol": {
+        "name": "rotation barrier, eclipsed minus staggered",
+        "unit": "kJ/mol",
+        "constant": 12
+      },
+      "V3_kJ_per_mol": {
+        "name": "threefold torsional constant V3",
+        "unit": "kJ/mol",
+        "constant": 12
+      },
+      "n_fold": {
+        "name": "rotor symmetry number of a methyl group",
+        "unit": "",
+        "constant": 3
+      },
+      "period_deg": {
+        "name": "period of the torsional energy profile",
+        "unit": "deg",
+        "constant": 120
+      },
+      "eclipsing_increment_kJ_per_mol": {
+        "name": "eclipsing strain per H/H pair",
+        "unit": "kJ/mol",
+        "constant": 4
+      },
+      "d_CC_pm": { "name": "C-C bond length", "unit": "pm", "constant": 154 },
+      "d_CH_pm": { "name": "C-H bond length", "unit": "pm", "constant": 109 },
+      "theta_tet_deg": { "name": "tetrahedral bond angle", "unit": "deg", "constant": 109.47 },
+      "spin_deg_per_s": {
+        "name": "view spin rate",
+        "unit": "deg/s",
+        "min": 0,
+        "max": 40,
+        "default": 0
+      }
+    },
+    "computed_outputs": {
+      "E_kJ_per_mol": { "formula": "6 * (1 + cos(radians(3 * phi_deg)))" },
+      "barrier_kJ_per_mol": { "formula": "12" }
+    },
+    "formulas": {
+      "torsional_profile": "6 * (1 + cos(radians(3 * phi_deg)))",
+      "barrier_from_profile": "max(E) - min(E)"
+    },
+    "constraints": [
+      "atoms are conserved at every phi: C 2 and H 6 on every frame, no bond made and no bond broken (FIXED)",
+      "connectivity is invariant at every phi: exactly 1 C-C bond and 6 C-H bonds, same adjacency (FIXED)",
+      "total charge is 0 at every phi; every formal charge is 0 and every carbon oxidation number is -3 (FIXED)",
+      "E(phi) = 6(1 + cos 3phi) kJ/mol with phi in degrees, E = 0 at staggered (FIXED, published table; the engine never computes an energy)",
+      "barrier = max(E) - min(E) = 12 - 0 = 12 kJ/mol (DERIVED from the published stationary rows, not sampled)",
+      "phi is reported wrapped into [0, 360): an authored 390 reads 30 on the HUD and on the slider handle (FIXED)"
+    ]
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_5" },
+    "newman_projection": { "start": "STATE_2", "end": "STATE_3" },
+    "energy_barrier": { "start": "STATE_4", "end": "STATE_6" }
+  },
+
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "The C–C bond turns",
+        "duration": 17,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_molecule_skeleton",
+        "advance_mode": "manual_click",
+        "motion_archetype": "bond-axis-turn",
+        "motion_delta": "the molecule turns a full circle about its own C–C axis in a fixed oblique 3D view; nothing else moves",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s1_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion (engine-drawn)",
+            "describes": "ethane: two carbon spheres, six hydrogen spheres, seven drawn bonds, rotating about the C1–C2 axis from φ = 60° to φ = 390°"
+          },
+          {
+            "type": "readout",
+            "id": "s1_hud_atoms_and_phi",
+            "rendered": true,
+            "renders_via": "organic_structure.hud_lines [atom_count, phi]",
+            "describes": "value-only HUD, top-right: 'C 2 · H 6' recounted live from the drawn scene every frame, and 'φ = N.N°' measured on the built geometry"
+          },
+          {
+            "type": "label",
+            "id": "s1_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_1.caption",
+            "describes": "the on-canvas delta cue 'The C–C bond turns' (Rule 34a — prose narration lives in the strip below the canvas)"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s1_phi_readout_row",
+            "rendered": true,
+            "renders_via": "organic_structure.static_readouts [{ id: phi }]",
+            "describes": "the φ row, shown but disabled; its handle tracks the MEASURED wrapped dihedral and reads 30 at the end of the sweep, never clamping at 360"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Staggered and eclipsed are different compounds.",
+            "visual_counter": "the HUD prints C 2 · H 6 for the whole turn and no bond ever breaks; one molecule turns continuously from one arrangement into the other without interruption",
+            "one_line_fix": "Staggered and eclipsed are the same molecule at different points of one rotation."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A hexagonal pencil rolls to any position, yet it rests on a flat face." },
+            { "id": "s1_2", "text_en": "Ethane turns the same way about its C–C sigma bond." },
+            { "id": "s1_3", "text_en": "The angle φ measures the turn. Two carbons and six hydrogens, through the whole turn." }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Look down the C–C bond",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_molecule_skeleton",
+        "advance_mode": "manual_click",
+        "motion_archetype": "sight-line-collapse",
+        "motion_delta": "the camera glides from the oblique 3D pose onto the C–C bond axis while the molecule holds a static staggered pose",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "newman_front_vs_back_carbon",
+          "newman_from_a_3d_model",
+          "newman_vs_sawhorse_projection"
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s2_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion.pose 'staggered'",
+            "describes": "ethane held static at staggered; as the camera reaches the axis the front carbon becomes the point where three bonds meet and the back carbon is drawn as the Newman rim circle"
+          },
+          {
+            "type": "readout",
+            "id": "s2_hud_bond_pose_atoms",
+            "rendered": true,
+            "renders_via": "organic_structure.hud_lines [bond, pose, atom_count]",
+            "describes": "value-only HUD: 'bond = C1–C2', 'pose = staggered' (static pose, so the line cannot contradict the picture), 'C 2 · H 6'"
+          },
+          {
+            "type": "label",
+            "id": "s2_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_2.caption",
+            "describes": "the on-canvas delta cue 'Now looking down the bond'"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s2_view_readout_row",
+            "rendered": true,
+            "renders_via": "organic_structure.static_readouts [{ id: view }]",
+            "describes": "the View row, shown but disabled, reading 'Along the bond' — the state's own taught variable, named where the teacher can point at it"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "A Newman projection is two overlapping Y shapes; I cannot tell front from back.",
+            "visual_counter": "the camera travels from the familiar 3D view onto the bond axis over 12.5 seconds, so the confusing symbol is built in front of the student rather than presented finished",
+            "one_line_fix": "The centre point is the front carbon; the circle is the back carbon."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The camera moves onto the bond axis. This view is the Newman projection." },
+            { "id": "s2_2", "text_en": "The front carbon is the centre point; the back carbon is the circle." },
+            { "id": "s2_3", "text_en": "Each sp³ carbon puts its three hydrogens 120° apart." }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "Staggered and eclipsed",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_dihedral_arc",
+        "advance_mode": "manual_click",
+        "motion_archetype": "arc-closes-to-zero",
+        "motion_delta": "the drawn dihedral arc shrinks to nothing as the front hydrogens rotate onto the back ones; the state stops AT eclipsed",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s3_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion sweep 60° → 0°",
+            "describes": "ethane in the Newman view at dist 8; the three front hydrogens rotate onto the three back ones, staying countable (measured disc gap +0.198 against the engine's 0.12 floor)"
+          },
+          {
+            "type": "annotation_arc",
+            "id": "s3_dihedral_arc",
+            "rendered": true,
+            "renders_via": "organic_structure.measure[0] (kind torsion, C1H1–C1–C2–C2H1)",
+            "describes": "the drawn dihedral arc between the two reference hydrogens, built from their directions projected perpendicular to the C–C bond, with the engine's self-identifying label 'φ(C1–C2) = N.N°' counting 60.0 down to 0.0"
+          },
+          {
+            "type": "label",
+            "id": "s3_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_3.caption",
+            "describes": "the on-canvas delta cue 'Hydrogens line up: eclipsed'"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s3_phi_readout_row",
+            "rendered": true,
+            "renders_via": "organic_structure.static_readouts [{ id: phi }]",
+            "describes": "the φ row, shown but disabled; the handle tracks the closing dihedral. The HUD is OFF in this state so the arc label is the only φ string on screen"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The angle φ starts at 60°, with the hydrogens between each other." },
+            { "id": "s3_2", "text_en": "This is the staggered arrangement." },
+            { "id": "s3_3", "text_en": "As the bond turns, φ falls to 0° and front and back hydrogens line up: eclipsed." }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "Turning costs energy",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_energy_curve",
+        "advance_mode": "manual_click",
+        "motion_archetype": "turn-draws-the-curve",
+        "motion_delta": "the rotation is the pen: the curve grows left to right and the rider IS its drawing tip, measured off the turning molecule",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_eclipsed_is_higher",
+          "torsional_strain_named",
+          "barrier_vs_bond_breaking"
+        ],
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s4_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion sweep 0° → 358°",
+            "describes": "ethane in the Newman view, turning through one full rotation and passing eclipsed three times"
+          },
+          {
+            "type": "graph",
+            "id": "s4_energy_curve",
+            "rendered": true,
+            "renders_via": "organic_structure.energy { curve: ethane, coordinate: torsion }",
+            "describes": "the torsional energy curve, revealed over the same window as the sweep so the drawing tip never leads or lags the molecule; axes φ (°) 0→360 and E (kJ·mol⁻¹), stationary points labelled staggered / eclipsed from the published registry row, stamped (literature)"
+          },
+          {
+            "type": "body",
+            "id": "s4_energy_rider",
+            "rendered": true,
+            "renders_via": "organic_structure.energy.show_point",
+            "describes": "the point riding the curve at the MEASURED dihedral of the molecule on screen — one number drives both, so the rider cannot drift from the pose"
+          },
+          {
+            "type": "readout",
+            "id": "s4_hud_energy",
+            "rendered": true,
+            "renders_via": "organic_structure.hud_lines [energy]",
+            "describes": "value-only HUD 'E = N.N kJ·mol⁻¹', running 12.0 → 0.0 → 12.0 → 0.0 → 12.0 → 0.0 → 12.0 across the turn"
+          },
+          {
+            "type": "label",
+            "id": "s4_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_4.caption",
+            "describes": "the on-canvas delta cue 'Turning draws an energy curve'"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s4_phi_readout_row",
+            "rendered": true,
+            "renders_via": "organic_structure.static_readouts [{ id: phi }]",
+            "describes": "the φ row, shown but disabled; the handle tracks the sweep"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Rotation about a single bond is completely free; it costs nothing.",
+            "visual_counter": "the identical rotation the student has already watched twice now draws a curve that rises and falls; the contrast is structural, not staged, and nothing pauses to ask a question",
+            "one_line_fix": "Single bonds turn, but not freely — the energy rises and falls as they turn."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The same turn now draws an energy curve." },
+            { "id": "s4_2", "text_en": "The moving dot is this molecule's own angle." },
+            { "id": "s4_3", "text_en": "In one full turn the curve falls three times and climbs three times." },
+            { "id": "s4_4", "text_en": "Rotation about a single bond costs energy." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "The barrier is 12 kJ·mol⁻¹",
+        "duration": 11,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s5_barrier_bracket",
+        "advance_mode": "manual_click",
+        "motion_archetype": "peak-crossing",
+        "motion_delta": "the curve and its bracket settle first, then the rider alone descends into one minimum and climbs the next maximum beneath the standing bracket",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s5_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion sweep 0° → 120°",
+            "describes": "ethane in the Newman view, turning from one eclipsed arrangement through staggered to the next eclipsed"
+          },
+          {
+            "type": "graph",
+            "id": "s5_energy_curve",
+            "rendered": true,
+            "renders_via": "organic_structure.energy { reveal_at_ms 0, reveal_ramp_ms 900 }",
+            "describes": "the complete torsional curve, drawn in the first 900 ms so it stands still while the rider moves"
+          },
+          {
+            "type": "annotation_bracket",
+            "id": "s5_barrier_bracket",
+            "rendered": true,
+            "renders_via": "organic_structure.energy.show_barrier",
+            "describes": "the barrier bracket spanning the PUBLISHED low (staggered, 0) to the published high (eclipsed, 12); it draws only once the curve is complete, and prints 'barrier 12.0 kJ·mol⁻¹' beside the span"
+          },
+          {
+            "type": "body",
+            "id": "s5_energy_rider",
+            "rendered": true,
+            "renders_via": "organic_structure.energy.show_point",
+            "describes": "the rider descending 12.0 → 0.0 and climbing 0.0 → 12.0 — the exact traverse the bracket measures"
+          },
+          {
+            "type": "readout",
+            "id": "s5_hud_barrier",
+            "rendered": true,
+            "renders_via": "organic_structure.hud_lines [barrier]",
+            "describes": "value-only HUD 'barrier = 12 kJ·mol⁻¹', constant. The live energy line is deliberately omitted: at the pinned instant it also reads 12.0, and two lines printing 12 for different reasons is a degeneracy"
+          },
+          {
+            "type": "label",
+            "id": "s5_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_5.caption",
+            "describes": "the on-canvas delta cue 'The barrier: 12 kJ·mol⁻¹'"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s5_phi_readout_row",
+            "rendered": true,
+            "renders_via": "organic_structure.static_readouts [{ id: phi, min_ring: extended }]",
+            "describes": "the φ row, shown but disabled; the handle tracks the traverse"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "The bracket runs from staggered up to eclipsed." },
+            { "id": "s5_2", "text_en": "That height is the rotation barrier: 12 kJ·mol⁻¹ of torsional strain." },
+            { "id": "s5_3", "text_en": "It is the edge a rolling pencil lifts over." }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "One formula for the curve",
+        "duration": 11,
+        "depth_ring": "advanced",
+        "focal_primitive_id": "s6_formula_surface",
+        "advance_mode": "manual_click",
+        "motion_archetype": "period-repeat",
+        "motion_delta": "the rider traverses the NEXT identical peak — a region of the curve no earlier state has occupied — while the formula stands on canvas",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s6_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion sweep 120° → 240°",
+            "describes": "ethane in the Newman view; the molecule at 240° looks identical to the molecule at 120°, which is the state's point"
+          },
+          {
+            "type": "graph",
+            "id": "s6_energy_curve",
+            "rendered": true,
+            "renders_via": "organic_structure.energy { reveal_at_ms 0, reveal_ramp_ms 900 }",
+            "describes": "the complete torsional curve, no bracket; the second period of the profile is the region the rider crosses"
+          },
+          {
+            "type": "body",
+            "id": "s6_energy_rider",
+            "rendered": true,
+            "renders_via": "organic_structure.energy.show_point",
+            "describes": "the rider descending into the staggered minimum at 180° and climbing to the eclipsed maximum at 240°"
+          },
+          {
+            "type": "formula_surface",
+            "id": "s6_formula_surface",
+            "rendered": true,
+            "renders_via": "organic_structure.show_formula + formula",
+            "describes": "the ONE formula surface of the whole concept (Rule 34b), math-serif Unicode: E(φ) = 6(1 + cos 3φ) kJ·mol⁻¹. It re-anchors to the top-left because the graph owns the bottom-left"
+          },
+          {
+            "type": "readout",
+            "id": "s6_hud_phi_energy",
+            "rendered": true,
+            "renders_via": "organic_structure.hud_lines [phi, energy]",
+            "describes": "value-only HUD 'φ = N.N°' and 'E = N.N kJ·mol⁻¹', so the formula's two symbols both carry a live number"
+          },
+          {
+            "type": "label",
+            "id": "s6_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_6.caption",
+            "describes": "the on-canvas delta cue 'Same peak every 120°'"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s6_phi_readout_row",
+            "rendered": true,
+            "renders_via": "organic_structure.static_readouts [{ id: phi, min_ring: advanced }]",
+            "describes": "the φ row, shown but disabled; the handle tracks the traverse"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "One formula covers the whole curve." },
+            { "id": "s6_2", "text_en": "The 3 in cos 3φ makes the whole profile repeat every 120°." },
+            { "id": "s6_3", "text_en": "This peak matches the one just before it." }
+          ]
+        }
+      },
+
+      "STATE_7": {
+        "title": "Turn it yourself",
+        "duration": 30,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_control_panel",
+        "advance_mode": "interaction_complete",
+        "motion_archetype": "free-explore",
+        "motion_delta": "φ free-runs at 24 °/s and wraps forever until a teacher seizes the slider; the sandbox never freezes (Rule 37)",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "s7_molecule_skeleton",
+            "rendered": true,
+            "renders_via": "organic_structure.molecule + torsion.continuous 24",
+            "describes": "ethane in the Newman view, turning continuously; one full turn takes 15.0 s and one 120° period takes 5.0 s"
+          },
+          {
+            "type": "graph",
+            "id": "s7_energy_curve",
+            "rendered": true,
+            "renders_via": "organic_structure.energy { reveal_at_ms 0, reveal_ramp_ms 600 }",
+            "describes": "the torsional curve with its stationary labels, no bracket and no formula — the sandbox surfaces core-ring content only (Rule 38b)"
+          },
+          {
+            "type": "body",
+            "id": "s7_energy_rider",
+            "rendered": true,
+            "renders_via": "organic_structure.energy.show_point",
+            "describes": "the rider circulating over the curve, or following the handle the moment a teacher drags φ"
+          },
+          {
+            "type": "readout",
+            "id": "s7_hud_phi_energy",
+            "rendered": true,
+            "renders_via": "organic_structure.hud_lines [phi, energy]",
+            "describes": "value-only HUD 'φ = N.N°' and 'E = N.N kJ·mol⁻¹', both live under the teacher's hand"
+          },
+          {
+            "type": "label",
+            "id": "s7_delta_caption",
+            "rendered": true,
+            "renders_via": "field_3d_config.states.STATE_7.caption",
+            "describes": "the on-canvas delta cue 'Turn it yourself'"
+          },
+          {
+            "type": "slider_panel",
+            "id": "s7_control_panel",
+            "rendered": true,
+            "renders_via": "organic_structure.controls [view, phi, implicit_h, spin]",
+            "describes": "all four implemented control rows, LIVE: View (Standard / Along the bond), φ 0–360 step 1 (a trusted drag seizes the coordinate for the rest of the state), Show hydrogens, Turn speed 0–40 °/s. These four rows ARE the state's discoverables — no unrendered annotation carries content"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Turn it yourself. Drag the angle φ to any value, switch the view, hide the hydrogens, or raise the turn speed." }
+          ]
+        }
+      }
+    }
+  },
+
+  "field_3d_config": {
+    "scenario_type": "organic_structure",
+    "field_lines": { "opacity": 0 },
+    "render_annotations": false,
+    "slider_controls": {
+      "phi": { "min": 0, "max": 360, "step": 1, "default": 60, "label": "φ" },
+      "spin": { "min": 0, "max": 40, "step": 1, "default": 0, "label": "Turn speed" }
+    },
+    "_cameras_and_endpoints_are_MEASURED_note": "Do not round or tidy any camera number or sweep endpoint below. (1) dist 8 on every Newman state: at the engine default 11.5 the eclipsed frame's closest drawn-disc gap is +0.042, BELOW the engine's ORG_HOME_GAP_FLOOR of 0.12 — front and back hydrogens fuse at exactly the moment STATE_3 exists to teach. dist 9 gives +0.140, dist 8 gives +0.198, and +0.198 is the worst case anywhere over a full turn. (2) az 180 / el 6 on STATE_1: swept over a full turn it is the argmax at +0.304; the engine home pose az 266 / el 10 dips to -0.104 and az 258 / el 18 to -0.043. (3) STATE_2 camera_steps[1] el -35.2644 = -asin(1/sqrt(3)), the pose orgSolveCamera returns for sight_along C1-C2, invariant in φ; any other value ends the flight off-axis and makes every later angle claim false. (4) STATE_1 ends at φ 390 not 420 and STATE_4 at 358 not 360: 420 ≡ 60 is the opening frame (the frozen pin would photograph a static state) and a sweep landing on exactly 360 MEASURES as 0, snapping the rider to the left edge of a complete curve. (5) STATE_2 was retimed from the skeleton's ease_ms 9500 / pin 11300 to 12500 / 14300 so the three claims it carries fit at 2.55 words per second (chemistry block §I-3, founder-accepted). Every scheduled key is STEMMED (phi_at_ms / phi_ramp_ms / reveal_at_ms / reveal_ramp_ms); a bare at_ms is authored ONLY inside the measure array leg, which is the one place the frozen-pin evaluator reads it.",
+    "states": {
+      "STATE_1": {
+        "label": "The C–C bond turns",
+        "caption": "The C–C bond turns",
+        "eye_capture_ms": 16300,
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "rotate",
+          "torsion": {
+            "about": "C1-C2",
+            "phi_from": 60,
+            "phi_deg": 390,
+            "phi_at_ms": 700,
+            "phi_ramp_ms": 15000
+          },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "az": 180, "el": 6, "dist": 9 },
+          "show_hud": true,
+          "hud_lines": ["atom_count", "phi"],
+          "static_readouts": [{ "id": "phi", "min_ring": "core" }]
+        }
+      },
+
+      "STATE_2": {
+        "label": "Look down the C–C bond",
+        "caption": "Now looking down the bond",
+        "eye_capture_ms": 14300,
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "rotate",
+          "torsion": { "pose": "staggered" },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "sight_along": "C1-C2", "dist": 8, "newman": true },
+          "camera_steps": [
+            { "at_ms": 0, "az": 180, "el": 6, "dist": 9, "ease_ms": 0 },
+            { "at_ms": 1200, "az": 180, "el": -35.2644, "dist": 8, "ease_ms": 12500 }
+          ],
+          "show_hud": true,
+          "hud_lines": ["bond", "pose", "atom_count"],
+          "static_readouts": [{ "id": "view", "min_ring": "core" }]
+        }
+      },
+
+      "STATE_3": {
+        "label": "Staggered and eclipsed",
+        "caption": "Hydrogens line up: eclipsed",
+        "eye_capture_ms": 13000,
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "rotate",
+          "torsion": {
+            "about": "C1-C2",
+            "phi_from": 60,
+            "phi_deg": 0,
+            "phi_at_ms": 900,
+            "phi_ramp_ms": 11500
+          },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "sight_along": "C1-C2", "dist": 8, "newman": true },
+          "measure": [
+            {
+              "kind": "torsion",
+              "between": ["C1H1", "C1", "C2", "C2H1"],
+              "at_ms": 300,
+              "ramp_ms": 700
+            }
+          ],
+          "show_hud": false,
+          "static_readouts": [{ "id": "phi", "min_ring": "core" }]
+        }
+      },
+
+      "STATE_4": {
+        "label": "Turning costs energy",
+        "caption": "Turning draws an energy curve",
+        "eye_capture_ms": 14300,
+        "glow_focal": "curve",
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "rotate",
+          "torsion": {
+            "about": "C1-C2",
+            "phi_from": 0,
+            "phi_deg": 358,
+            "phi_at_ms": 700,
+            "phi_ramp_ms": 13000
+          },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "sight_along": "C1-C2", "dist": 8, "newman": true },
+          "energy": {
+            "show": true,
+            "curve": "ethane",
+            "coordinate": "torsion",
+            "show_point": true,
+            "show_barrier": false,
+            "label_stationary": true,
+            "reveal_at_ms": 700,
+            "reveal_ramp_ms": 13000
+          },
+          "show_hud": true,
+          "hud_lines": ["energy"],
+          "static_readouts": [{ "id": "phi", "min_ring": "core" }]
+        }
+      },
+
+      "STATE_5": {
+        "label": "The barrier is 12 kJ·mol⁻¹",
+        "caption": "The barrier: 12 kJ·mol⁻¹",
+        "eye_capture_ms": 10800,
+        "glow_focal": "curve",
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "rotate",
+          "torsion": {
+            "about": "C1-C2",
+            "phi_from": 0,
+            "phi_deg": 120,
+            "phi_at_ms": 1200,
+            "phi_ramp_ms": 9000
+          },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "sight_along": "C1-C2", "dist": 8, "newman": true },
+          "energy": {
+            "show": true,
+            "curve": "ethane",
+            "coordinate": "torsion",
+            "show_point": true,
+            "show_barrier": true,
+            "label_stationary": true,
+            "reveal_at_ms": 0,
+            "reveal_ramp_ms": 900
+          },
+          "show_hud": true,
+          "hud_lines": ["barrier"],
+          "static_readouts": [{ "id": "phi", "min_ring": "extended" }]
+        }
+      },
+
+      "STATE_6": {
+        "label": "One formula for the curve",
+        "caption": "Same peak every 120°",
+        "eye_capture_ms": 10800,
+        "glow_focal": "curve",
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "rotate",
+          "torsion": {
+            "about": "C1-C2",
+            "phi_from": 120,
+            "phi_deg": 240,
+            "phi_at_ms": 1200,
+            "phi_ramp_ms": 9000
+          },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "sight_along": "C1-C2", "dist": 8, "newman": true },
+          "energy": {
+            "show": true,
+            "curve": "ethane",
+            "coordinate": "torsion",
+            "show_point": true,
+            "show_barrier": false,
+            "label_stationary": true,
+            "reveal_at_ms": 0,
+            "reveal_ramp_ms": 900
+          },
+          "show_hud": true,
+          "hud_lines": ["phi", "energy"],
+          "show_formula": true,
+          "formula": "E(φ) = 6(1 + cos 3φ) kJ·mol⁻¹",
+          "static_readouts": [{ "id": "phi", "min_ring": "advanced" }]
+        }
+      },
+
+      "STATE_7": {
+        "label": "Turn it yourself",
+        "caption": "Turn it yourself",
+        "eye_capture_ms": 1500,
+        "organic_structure": {
+          "molecule": "ethane",
+          "mode": "explore",
+          "torsion": { "about": "C1-C2", "continuous": 24 },
+          "show_h": "all",
+          "show_labels": true,
+          "camera": { "sight_along": "C1-C2", "dist": 8, "newman": true },
+          "energy": {
+            "show": true,
+            "curve": "ethane",
+            "coordinate": "torsion",
+            "show_point": true,
+            "show_barrier": false,
+            "label_stationary": true,
+            "reveal_at_ms": 0,
+            "reveal_ramp_ms": 600
+          },
+          "show_hud": true,
+          "hud_lines": ["phi", "energy"],
+          "controls": [
+            { "id": "view", "min_ring": "core" },
+            { "id": "phi", "min_ring": "core" },
+            { "id": "implicit_h", "min_ring": "core" },
+            { "id": "spin", "min_ring": "core" }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "The same rotation one carbon along: propane about its C1–C2 bond",
+      "physical_world": "Propane replaces one of ethane's six hydrogens with a methyl group. Sight down the C1–C2 bond and the same Newman picture appears — three spokes from the centre point, three from the rim — except one back spoke is now a carbon.",
+      "same_physics": "Identical reasoning: one rotatable single bond, a threefold profile with minima at staggered and maxima at eclipsed, and a barrier read as the height from one to the other. Only the size of the number changes, because one eclipsing pair is now H against CH₃ instead of H against H."
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "A hexagonal nut turning on a bolt, one flat at a time",
+      "physical_world": "A spanner turns a hexagonal nut. The nut can stop anywhere, but let go and it settles with a flat against the spanner's jaw; getting from one flat to the next means lifting over a corner.",
+      "same_physics": "A rotation with a periodic energy profile: six equivalent low positions, six barriers between them, and a period set purely by the symmetry of the turning object. Ethane's methyl group is a threefold rotor rather than a sixfold one, so its period is 120° instead of 60°, but the shape of the argument is the same."
+    }
+  ],
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.13 'Hydrocarbons', §13.2 — alkanes: conformations of ethane, sawhorse and Newman projections, staggered and eclipsed forms and the energy difference between them",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main / Advanced",
+        "coverage": "full",
+        "syllabus_unit": "General Organic Chemistry — conformational isomerism of ethane: the energy profile, staggered and eclipsed conformers, the number of maxima per full rotation and the barrier value",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "mirrors the NCERT Class 11 Ch.13 unit above",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry (HL)",
+        "coverage": "partial",
+        "syllabus_unit": "conformations are not a named HL topic; used as supporting material for structure, bonding and isomerism",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Chemistry (Cambridge / Edexcel / AQA)",
+        "coverage": "partial",
+        "syllabus_unit": "not in every specification; where present, sits with alkane structure and free rotation about sigma bonds",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "conformational analysis is not an AP Chemistry topic; the sigma-bond rotation statement may still be used alongside molecular structure",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "absent",
+        "syllabus_unit": "alkanes are covered; conformations are not",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  }
+}
