@@ -7,8 +7,8 @@
 -- crossing) and a track-level POINT marker form; both concepts re-authored to
 -- teach from named points A/B.
 --
--- NOT APPLIED. Apply with the standard seed-script contract after founder
--- review. `bug_class` is the upsert key.
+-- APPLIED 2026-08-09 (founder asked for the session's findings to be in the queue).
+-- `bug_class` is the upsert key.
 -- ============================================================================
 
 -- 1 ─ the seam this session built (engine, FIXED)
