@@ -1164,12 +1164,12 @@
             },
             {
               "id": "s5_2",
-              "text_en": "If area only ever added, the total would read 2.0000 — dim, and wrong here.",
+              "text_en": "If area only ever added, the total would read 2.0000 — but that is wrong here.",
               "glow": "bars"
             },
             {
               "id": "s5_3",
-              "text_en": "The real total is 0.6667, bright: the below-axis piece, minus 0.6667, subtracted from what is above.",
+              "text_en": "The real total is 0.6667: the below-axis piece contributes minus 0.6667, subtracted from the area above.",
               "glow": "bars"
             }
           ]
