@@ -153,7 +153,7 @@ async function main(): Promise<void> {
     }
 
     console.log('\n💾 Dumping frames to disk...');
-    const dump = dumpCaptureToDisk({ conceptId, capture });
+    const dump = dumpCaptureToDisk({ conceptId, capture, checks: allResults });
     console.log(`   Run dir:  ${dump.dir}`);
     console.log(`   Manifest: ${dump.manifestPath}`);
 

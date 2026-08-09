@@ -26,6 +26,7 @@ export interface BugQueueRow {
         | "alex:architect"
         | "alex:physics_author"
         | "alex:chemistry_author"
+        | "alex:mathematics_author"
         | "alex:json_author"
         | "peter_parker:renderer_primitives"
         | "peter_parker:field3d_surgeon"

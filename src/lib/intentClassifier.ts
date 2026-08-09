@@ -276,6 +276,66 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // positive_negative_zero_work (concept #2). Does NOT cover kinetic
     // energy, the work-energy theorem, or power. Alex pipeline, 2026-08-01.
     'work_done_by_constant_force',
+    // Work, Energy and Power #2 (Class 11 Ch.6.3 — same newtons_laws_body
+    // field_3d engine + SEAM K/L/M/N energy layer as #1, opening the F_ang
+    // regime #1 ceded, 0…180° instead of #1's 0…85°). The work done by a
+    // force carries a SIGN, set by the angle between the force and the
+    // displacement: positive along the motion (a forward pull), zero at 90°
+    // (the normal force, acting the whole way and doing nothing), negative
+    // against the motion (kinetic friction on a launched crate, decelerating
+    // it to a permanent stop), and net work is the signed sum over every
+    // force acting (four bars: pull, friction, normal, net). Covers the full
+    // sign taxonomy across all three angle regimes AND the sole obtuse-angle
+    // sign-flip state. Does NOT cover kinetic energy, the work-energy
+    // theorem, or power, and assumes work_done_by_constant_force's
+    // definition/joule/cos θ for 0°≤θ<90° as prerequisite. Alex pipeline,
+    // 2026-08-02.
+    'positive_negative_zero_work',
+    // Work, Energy and Power #3 (Class 11 Ch.6.4 — same newtons_laws_body
+    // field_3d engine, and the FIRST concept in the fleet to author the SEAM L
+    // energy_layer, i.e. the live K bar). A moving body HAS kinetic energy,
+    // K = ½mv², measured in joules: proportional to the mass, proportional to
+    // the SQUARE of the speed (two identical carts at 2 and 4 m/s read 10.0 J
+    // and 40.0 J — four times, not twice, the PRIMARY aha), a scalar with no
+    // direction and no sign (two carts at the same speed in opposite
+    // directions read the same 22.5 J), and exactly 0.0 J at rest. Does NOT
+    // cover what CHANGES kinetic energy (that is work_energy_theorem), where
+    // the energy goes when friction stops a body, potential energy,
+    // conservation, or power — and it authors no work bar and never uses the
+    // word 'work'. It does NOT require work_done_by_constant_force or
+    // positive_negative_zero_work: kinetic energy is fully teachable without
+    // work, which is what keeps the boundary clean. Alex pipeline, 2026-08-02.
+    'kinetic_energy_definition',
+    // ── Class 11 Ch.7 — Systems of Particles & Rotational Motion (rotmech) ──
+    // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave, so the
+    // five parallel desks never touch this file (docs/loop_runs/rotmech/).
+    // Registration with no concept JSON is inert: checkRegistrations() in
+    // src/scripts/validate-concepts.ts iterates the JSONs found on disk, so an
+    // id registered here is never checked until its file lands. PCPL_CONCEPTS
+    // is the ONE reverse orphan check and is correctly skipped — all eight are
+    // field_3d.
+    //
+    // Engine: the rigid_body_rotation scenario (0c-1) serves the first six;
+    // pure_rolling + rolling_on_incline ride the newtons_laws_body SEAM R
+    // rolling extension (0c-2). Both landed in PR #28.
+    //
+    // Rigid body spinning on a fixed axle — the turntable apparatus itself.
+    'rigid_body_rotation',
+    // Angular kinematics: θ, ω, α over time; a point's v = ωr at radius r.
+    'rotational_kinematics',
+    // The rotational second law, α = τ_net / I.
+    'tau_eq_i_alpha',
+    // Rotational work and energy: KE_rot = ½Iω², W = τ·θ.
+    'rotational_work_energy',
+    // Angular momentum L = Iω, drawn as a vector along the axis.
+    'angular_momentum',
+    // Conservation of L: masses slide inward, I falls, ω rises, L holds. The
+    // 0c-1 spec driver — the hardest single requirement in the chapter.
+    'conservation_of_angular_momentum',
+    // Rolling without slipping: the contact point at rest, v = ωR.
+    'pure_rolling',
+    // Rolling down an incline: a = g sin θ/(1+k); sphere beats disc beats ring.
+    'rolling_on_incline',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
@@ -1235,6 +1295,18 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
 
   ── Work, Energy and Power (Class 11 Ch.6) ──
   work_done_by_constant_force ← work done by a CONSTANT force, W = F·d·cos θ: force acting through a displacement, and only the component of the force ALONG that displacement counts; NO displacement means ZERO work, however large the force (pushing a stalled car, holding a heavy bag still); a tilted pull does LESS work per metre, set by cos θ; a live numeric prediction stamps against the meter's own live reading; work is the SCALAR (dot) product of two vectors, W = F⃗·d⃗ = F d cos θ, NOT the cross product; work done by a force is INDEPENDENT of the mass being moved. Covers θ from 0° up to (not including) 90° ONLY — zero/negative work and the full sign taxonomy across all three angle regimes belong to the sibling positive_negative_zero_work. Does NOT cover kinetic energy, the work-energy theorem, or power.
+  positive_negative_zero_work ← the SIGN of work: the angle between a force and the displacement decides it — θ<90° positive (a forward pull, the bar climbs above zero), θ=90° ZERO however long the force acts (the normal force pushing up while the crate coasts; the carried-bag case), θ>90° negative (kinetic friction on a launched, still-moving crate, decelerating it to a permanent stop; the friction arrow VANISHES at rest but the bar holds its negative reading); NET work is the signed SUM of every force's work (four bars at once: the pull, friction, the normal force, and their net); the SAME formula W = F·d·cos θ spans all three sign regimes, and the sign lives in cos θ, never in the force's own magnitude (a 25 N pull at 120° still reads +25 N on the HUD while its work bar goes negative). Opens the F_ang regime (0°…180°) that the sibling work_done_by_constant_force deliberately ceded. Does NOT cover kinetic energy, the work-energy theorem, or power.
+  kinetic_energy_definition ← what kinetic ENERGY IS: a moving body has kinetic energy K = ½mv², measured in joules, and a live meter reads it — proportional to the MASS (double the mass at a fixed speed and the reading doubles, 16.0 J to 32.0 J), proportional to the SQUARE of the SPEED (two identical 5 kg carts at 2 m/s and 4 m/s read 10.0 J and 40.0 J — FOUR times, not twice, because the speed is squared); kinetic energy is a SCALAR with no direction and no sign, so two identical carts at the same speed moving in OPPOSITE directions read exactly the same 22.5 J and kinetic energy can never be negative; and the reading falls continuously as the speed falls, reaching exactly 0.0 J when and only when the body is at rest. Does NOT cover what CHANGES kinetic energy (W = ΔK, the work-energy theorem), where the energy goes when friction stops a body, potential energy, conservation, or power — and it never uses the word work at all. Does NOT require the two work concepts as prerequisites.
+
+  ── Systems of Particles and Rotational Motion (Class 11 Ch.7) ──
+  rigid_body_rotation ← a rigid body turning about a FIXED AXLE: internal distances stay fixed, every point sweeps the same angle in the same time and so shares one ω, but a point far from the axis traces a LONGER PATH in that same time. The body's shape and the axle it turns on are the picture; the turntable, its rod and its two masses are one machine seen across the chapter. Does NOT cover the formula v = ωr or the velocity arrow at radius r — those belong to rotational_kinematics (founder ruling 2026-08-04, matching phase0_survey.md:43 and :156). Does NOT cover how ω changes with time (rotational_kinematics) or what makes it change (tau_eq_i_alpha).
+  rotational_kinematics ← the angular equations of motion: θ, ω and α over time, ω = ω₀ + αt and θ = ω₀t + ½αt², the exact mirrors of the straight-line equations; a point on the body has v = ωr, so the same ω gives a bigger v further out. Does NOT cover torque, moment of inertia, or WHY α has the value it has.
+  tau_eq_i_alpha ← the rotational second law, α = τ_net / I: torque is what changes a spin, and the SAME torque produces a smaller α on a body with a bigger moment of inertia. The rotational twin of a = F/m. Does NOT cover how I itself is computed from the mass distribution (moment_of_inertia) or the definition of torque as r × F (torque).
+  rotational_work_energy ← work and energy for a turning body: KE_rot = ½Iω², work done by a torque W = τ·θ, and the work-energy theorem in rotational form. Does NOT cover the rolling KE split between translation and rotation (pure_rolling / rolling_on_incline).
+  angular_momentum ← L = Iω, the rotational counterpart of momentum p = mv, drawn as a VECTOR along the rotation axis with its direction set by the right-hand rule. Does NOT cover what happens when L is conserved (conservation_of_angular_momentum).
+  conservation_of_angular_momentum ← with no external torque, L = Iω stays CONSTANT: pull the masses inward, I falls, and ω must rise to keep the product fixed — the spinning-stool result. Kinetic energy does NOT stay constant (the pull does work), which is the usual confusion. A brake supplies a real external torque and L then falls. Does NOT cover rolling.
+  pure_rolling ← rolling without slipping: v = ωR ties the turning to the travel, and the CONTACT POINT is instantaneously at rest, which is why static friction acts there and does no work. One turn of the wheel advances it exactly one circumference. Does NOT cover the race down a slope (rolling_on_incline).
+  rolling_on_incline ← a body rolling down a slope: a = g sin θ/(1+k), where the shape factor k (solid sphere 0.4, disc 0.5, hollow sphere 2/3, ring 1.0) decides the winner — a sphere beats a disc beats a ring, every time, regardless of mass or radius. The kinetic energy splits between translation and rotation. Does NOT cover the slipping/skidding regime boundary in depth.
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
@@ -1491,7 +1563,17 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "Newton's third law" / "action and reaction" / "for every action there is an equal and opposite reaction" / "why don't equal and opposite forces cancel" / "does the heavier one push harder" / "does a wall push back" / "why can I still move if the reaction pushes back equally" → newton_third_law (NOT newton_second_law — that concept is about ONE body's a = F/m; this one is about the PAIR of forces on TWO different bodies and why they never cancel)
 
 CRITICAL DISAMBIGUATION (work-energy, Ch.6):
-- "what is work in physics" / "work done by a force" / "W = F d cos theta" / "why is work zero if nothing moves" / "I pushed hard so did I do work" / "does holding something up count as work" / "why does a tilted pull do less work" / "why cos theta and not sin theta in work" / "work as a dot product" / "F dot d" / "is work a vector or a scalar" / "does mass affect the work done" / "work done by a constant force" (force between 0 degrees and just under 90 degrees ONLY — some positive component along the motion) → work_done_by_constant_force (does NOT cover work at exactly 90 degrees, negative work, or the full positive/negative/zero sign taxonomy — that is the sibling positive_negative_zero_work, not yet shipped; does NOT cover kinetic energy or the work-energy theorem)
+- "what is work in physics" / "work done by a force" / "W = F d cos theta" / "why is work zero if nothing moves" / "I pushed hard so did I do work" / "does holding something up count as work" / "why does a tilted pull do less work" / "why cos theta and not sin theta in work" / "work as a dot product" / "F dot d" / "is work a vector or a scalar" / "does mass affect the work done" / "work done by a constant force" (force between 0 degrees and just under 90 degrees ONLY — some positive component along the motion) → work_done_by_constant_force (does NOT cover work at exactly 90 degrees, negative work, or the full positive/negative/zero sign taxonomy — that is the sibling positive_negative_zero_work; does NOT cover kinetic energy or the work-energy theorem)
+- "can work be negative" / "how can work be negative" / "why is friction's work negative" / "does friction do work" / "is work zero if the force is at 90 degrees" / "why does a perpendicular force do no work" / "does carrying a bag count as work" / "is holding a bag up zero work" / "what is net work" / "how do you add up work from different forces" / "why does the same force do different work at different angles" / "is negative work the same as a negative force" / "work at an obtuse angle" / "sign of work" / "positive negative or zero work" → positive_negative_zero_work (covers the FULL sign taxonomy across all three angle regimes — θ<90° positive, θ=90° zero, θ>90° negative — plus net work as a signed sum; does NOT cover the θ<90° definition/joule/cos θ basics, which are work_done_by_constant_force's prerequisite scope, and does NOT cover kinetic energy or the work-energy theorem)
+- "what is kinetic energy" / "kinetic energy formula" / "half m v squared" / "K = 1/2 mv^2" / "energy of a moving object" / "why is v squared in kinetic energy" / "double the speed what happens to kinetic energy" / "twice as fast four times the energy" / "does kinetic energy depend on mass" / "double the mass what happens to kinetic energy" / "can kinetic energy be negative" / "moving backward is the kinetic energy negative" / "is kinetic energy a vector or a scalar" / "does a body at rest have kinetic energy" / "when is kinetic energy zero" / "difference between momentum and kinetic energy" / "calculate the kinetic energy of a 5 kg body at 4 m/s" → kinetic_energy_definition (this is WHAT kinetic energy IS and what it depends on — mass, the SQUARE of the speed, no sign, zero at rest. It does NOT cover what CHANGES it: "work equals change in kinetic energy" / "work-energy theorem" / "W = ΔK" is the sibling work_energy_theorem. It does NOT cover where the energy goes when friction stops a body, potential energy, conservation, or power. NOT work_done_by_constant_force or positive_negative_zero_work — those two are about WORK, a different quantity; a question naming only a moving body's energy, never a force acting through a displacement, belongs here)
+- "rigid body rotation" / "body turning on an axle" / "why do all points have the same omega" / "why does the outer point move faster" / "v = omega r" (the SPINNING BODY itself, fixed axis) → rigid_body_rotation (does NOT cover how omega changes with time — rotational_kinematics; or what changes it — tau_eq_i_alpha)
+- "rotational kinematics" / "angular equations of motion" / "omega = omega0 + alpha t" / "theta = omega0 t + half alpha t squared" / "angular acceleration formula" → rotational_kinematics (does NOT cover torque or moment of inertia)
+- "tau = I alpha" / "rotational second law" / "torque and angular acceleration" / "why does the same torque spin one wheel faster" / "rotational F = ma" → tau_eq_i_alpha (does NOT cover how I is computed from the mass distribution — moment_of_inertia, not yet shipped; or the r x F definition of torque — torque, not yet shipped)
+- "rotational kinetic energy" / "half I omega squared" / "work done by a torque" / "W = tau theta" / "energy of a spinning body" → rotational_work_energy (does NOT cover the rolling KE split — pure_rolling / rolling_on_incline)
+- "angular momentum" / "L = I omega" / "rotational momentum" / "right hand rule for angular momentum" / "which way does L point" → angular_momentum (does NOT cover the conservation result — conservation_of_angular_momentum)
+- "conservation of angular momentum" / "why does a skater spin faster when she pulls her arms in" / "spinning stool" / "L stays constant" / "why does omega go up when I goes down" / "is kinetic energy conserved when the skater pulls in" → conservation_of_angular_momentum (kinetic energy is NOT conserved — the pull does work; does NOT cover rolling)
+- "rolling without slipping" / "pure rolling" / "v = omega R" / "why is the contact point at rest" / "why does friction do no work in rolling" / "one turn one circumference" → pure_rolling (does NOT cover the race down a slope — rolling_on_incline)
+- "rolling down an incline" / "which rolls down faster sphere or ring" / "why does the sphere win" / "a = g sin theta over 1 plus k" / "does mass affect which body wins the roll" / "rolling race" → rolling_on_incline (the winner does NOT depend on mass or radius, only on the shape factor k; does NOT cover the slipping regime in depth)
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",

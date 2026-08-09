@@ -1800,6 +1800,123 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #2 — same newtons_laws_body engine
+    // + SEAM K/L/M/N energy layer, opening the F_ang regime #1 ceded
+    // (0…180° vs #1's 0…85°). Positive, negative and zero work; net work as
+    // a signed sum. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-02.
+    positive_negative_zero_work: {
+        concept_id: 'positive_negative_zero_work',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'positive_negative_zero_work',
+            label: 'Positive, Negative and Zero Work — the Sign of W = F·d·cos θ (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #3 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author the SEAM L energy_layer
+    // (the K bar). Kinetic energy K = ½mv²: proportional to mass,
+    // proportional to the SQUARE of the speed, never negative, exactly zero at
+    // rest. Zero work_accumulators anywhere — the #3/#4 boundary invariant.
+    // Pure configuration, zero renderer edits (0d). Alex pipeline, 2026-08-02.
+    kinetic_energy_definition: {
+        concept_id: 'kinetic_energy_definition',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'kinetic_energy_definition',
+            label: 'Kinetic Energy — K = ½mv² (3D)',
+        },
+    },
+
+    // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
+    // PRE-REGISTERED 2026-08-04 for the Phase-0d parallel authoring wave, so
+    // the five desks never edit this file. Gate 8b hard-FAILs a concept that is
+    // missing here, so all eight land up front. Engines: rigid_body_rotation
+    // (0c-1) for the first six, newtons_laws_body SEAM R (0c-2) for the two
+    // rolling concepts. See docs/loop_runs/rotmech/.
+    rigid_body_rotation: {
+        concept_id: 'rigid_body_rotation',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rigid_body_rotation',
+            label: 'Rigid Body Rotation — one axle, one ω, v = ωr (3D)',
+        },
+    },
+
+    rotational_kinematics: {
+        concept_id: 'rotational_kinematics',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rotational_kinematics',
+            label: 'Rotational Kinematics — θ, ω, α over time (3D)',
+        },
+    },
+
+    tau_eq_i_alpha: {
+        concept_id: 'tau_eq_i_alpha',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'tau_eq_i_alpha',
+            label: 'The Rotational Second Law — α = τ/I (3D)',
+        },
+    },
+
+    rotational_work_energy: {
+        concept_id: 'rotational_work_energy',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rotational_work_energy',
+            label: 'Rotational Work and Energy — KE = ½Iω², W = τ·θ (3D)',
+        },
+    },
+
+    angular_momentum: {
+        concept_id: 'angular_momentum',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'angular_momentum',
+            label: 'Angular Momentum — L = Iω along the axis (3D)',
+        },
+    },
+
+    conservation_of_angular_momentum: {
+        concept_id: 'conservation_of_angular_momentum',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'conservation_of_angular_momentum',
+            label: 'Conservation of Angular Momentum — I falls, ω rises, L holds (3D)',
+        },
+    },
+
+    pure_rolling: {
+        concept_id: 'pure_rolling',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'pure_rolling',
+            label: 'Rolling Without Slipping — v = ωR, contact point at rest (3D)',
+        },
+    },
+
+    rolling_on_incline: {
+        concept_id: 'rolling_on_incline',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'rolling_on_incline',
+            label: 'Rolling Down an Incline — a = g sin θ/(1+k) (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',

@@ -33,8 +33,9 @@ import {
     assembleParticleFieldHtml,
     type ParticleFieldAuthoredConfig,
 } from '@/lib/renderers/particle_field_renderer';
-import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { assembleParametricHtml } from '@/lib/renderers/parametric_renderer';
 import { resolveConceptJsonPath } from './lib/resolveConceptJson';
+import { buildParametricConfig, type ParametricSourceJson } from './lib/buildParametricConfig';
 import {
     pilotHeadTags,
     isPilotConcept,
@@ -88,10 +89,14 @@ type ConceptJson = {
                 advance_mode?: string;
                 duration?: number;
                 teacher_script?: { tts_sentences?: TtsSentenceJson[] };
-                // PCPL-only fields (ignored by the field_3d/particle_field branches).
-                scene_composition?: unknown[];
-                focal_primitive_id?: string;
-                focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
+                // PCPL-only fields (scene_composition, focal_*, variable_choreography,
+                // variable_overrides, …) are deliberately NOT declared here: the sim
+                // config is assembled by the SHARED buildParametricConfig (whole-state
+                // passthrough), so this narration-only type can no longer silently
+                // filter what reaches the renderer. This file once kept a private
+                // assembler whose hand-picked projection shipped dead choreography to
+                // the teacher surface while every gate passed (engine_bug_queue:
+                // review_site_private_config_assembler_drops_variable_choreography).
             }
         >;
     };
@@ -294,7 +299,7 @@ function loadConcept(conceptId: string): ConceptJson {
     // to reading CONCEPTS_DIR directly — then src/data/concepts/chemistry/, which
     // is the only place chemistry concepts may live (isolation contract,
     // docs/CHEMISTRY_ARCHITECTURE.md §7). Same resolver already used by
-    // generate_tts_audio, _seed_chemistry_cache, buildParametricConfig and
+    // generate_tts_audio, _seed_subject_cache, buildParametricConfig and
     // loadCachedSim, so every script layer agrees on where a concept lives.
     const resolved = resolveConceptJsonPath(conceptId);
     if (!resolved) {
@@ -304,42 +309,6 @@ function loadConcept(conceptId: string): ConceptJson {
         );
     }
     return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
-}
-
-// ── PCPL (mechanics_2d) adapter ───────────────────────────────────────────────
-// assembleParametricHtml() takes a ParametricConfig, not the concept JSON's own
-// physics_engine_config/epic_l_path shapes — those are the authored source; this
-// is the runtime shape the renderer template consumes (mirrors the ad-hoc
-// buildConfigForState() in src/app/admin/test-scalar-vs-vector/page.tsx, but
-// assembles EVERY state into ONE config so a single sim.html can switch between
-// them via SET_STATE — same contract as the field_3d/particle_field branches —
-// instead of one throwaway srcDoc iframe per state as that admin scratch page does).
-function buildParametricConfig(conceptId: string, json: ConceptJson): ParametricConfig {
-    const declaredVars = json.physics_engine_config?.variables ?? {};
-    const default_variables: Record<string, number> = {};
-    for (const [name, spec] of Object.entries(declaredVars)) {
-        if (typeof spec.default === 'number') default_variables[name] = spec.default;
-        else if (typeof spec.constant === 'number') default_variables[name] = spec.constant;
-    }
-    const epicStates = json.epic_l_path?.states ?? {};
-    const stateIds = Object.keys(epicStates).sort((a, b) => stateNumber(a) - stateNumber(b));
-    const states: NonNullable<ParametricConfig['states']> = {};
-    for (const id of stateIds) {
-        const st = epicStates[id];
-        states[id] = {
-            scene_composition: st.scene_composition ?? [],
-            ...(st.focal_primitive_id ? { focal_primitive_id: st.focal_primitive_id } : {}),
-            ...(st.focal_sequence ? { focal_sequence: st.focal_sequence } : {}),
-        };
-    }
-    const firstStateId = stateIds[0];
-    return {
-        concept_id: conceptId,
-        scene_composition: firstStateId ? epicStates[firstStateId].scene_composition ?? [] : [],
-        states,
-        default_variables,
-        current_state: firstStateId,
-    };
 }
 
 function extractStates(
@@ -1163,10 +1132,40 @@ ${pilotHeadTags(1)}
       timeline.push({ start: t, end: t + dur, si: i });
       t = t + dur + GAP_MS;
     }
-    timelineTotal = timeline.length > 0
+    var narrationEnd = timeline.length > 0
       ? timeline[timeline.length - 1].end
       : Math.max(1, Math.round((st.duration || 12) * 1000));
+    // The reveal timeline must not be shorter than the state's own AUTHORED
+    // duration (founder_proxy Checkpoint B cycle 2, 2026-08-09) — narrationEnd
+    // derives from estSentenceMs(), which scales with the teacher's live Speed
+    // slider (rate, 0.7-1.1, enabled whenever no audio clip exists — true for
+    // this concept). Every appear_at_ms in the JSON is an ABSOLUTE constant
+    // budgeted against the state's authored duration, so a faster rate shrinks
+    // the reveal window under content that never moved: measured at rate 1.0,
+    // STATE_2's Sn=1.7500 payoff never rendered at all; at rate 1.05, STATE_5
+    // froze on "total area = 2.0000" — the DIM WRONG NUMBER its own
+    // misconception_watch exists to refute; at rate 1.1, STATE_1's region fill
+    // stopped short. Rule 31: "motion may outrun narration, never the reverse" —
+    // narration finishing early must never truncate authored motion. Duration
+    // wins the max, never overrides narrationEnd's own existing floor/fallback
+    // above (a state whose narration alone already runs longer than its
+    // authored duration keeps that longer narration timeline, unaffected).
+    timelineTotal = Math.max(narrationEnd, Math.round((st.duration || 0) * 1000));
     scrubEl.max = String(Math.max(1, timelineTotal));
+    // Any label derived from a computed timeline is refreshed in the SAME
+    // function that computes it (engine_bug_queue:
+    // review_player_scrub_total_label_not_refreshed_on_rail_entry_so_a_state_
+    // reads_zero_seconds, founder_proxy Checkpoint B cycle 3, 2026-08-09).
+    // Before this line, goToState() set scrubEl.max via computeTimeline() but
+    // #scrubtime's TEXT was left stale until the next playback tick /
+    // updateScrubLabel call — measured: opening a state from the rail read
+    // "0.0 / 0.0s" for a 24-second state. A teacher planning a lesson reads
+    // the state duration BEFORE pressing Play, exactly the moment the label
+    // was wrong. Uses scrubEl.value (already reset to '0' by goToState before
+    // this call, or left at the current scrub position on a rate change) so
+    // BOTH callers of computeTimeline() — state entry and the Speed-slider
+    // change handler — get a correct, immediately-fresh label.
+    updateScrubLabel(parseInt(scrubEl.value, 10) || 0);
   }
   // Bind each scenario one-shot to the sentence that narrates it: post that
   // sentence's window START (state-local ms, already per-language because
@@ -1667,6 +1666,25 @@ ${pilotHeadTags(1)}
       pendingRoll = cur().id;
       var want = cur().id;
       setTimeout(function () { if (pendingRoll === want) { pendingRoll = null; rollTimeline(); } }, 400);
+    } else if (cur() && (cur().advance_mode === 'interaction_complete' || cur().continuous_motion)) {
+      // Rule 37 GAP, part (a) (founder_proxy Checkpoint B cycle 2, 2026-08-09) —
+      // onTimelineEnd() already exempts these states from the auto-freeze at
+      // timeline END (Rule 37: "the explore/final state runs CONTINUOUSLY"),
+      // but nothing exempted them at ENTRY: every rail-opened state, including
+      // this one, hit the SAME SET_TIME_FREEZE {at_ms:0} pin below and sat
+      // dead — the sandbox's own live choreography (e.g. a ping_pong sweep)
+      // never started, motion never ran, until the teacher ALSO pressed Play.
+      // "Alive on entry" is the matching half of Rule 37's own contract, not a
+      // new rule: skip the pin entirely — the renderer's SET_STATE handler
+      // already unconditionally releases any PRIOR freeze pin (PM_frozen=false,
+      // before this state's own isNewState block even runs), so simply never
+      // sending a fresh one here IS "start the clock immediately". playing/
+      // setPlayBtnUI are deliberately left alone: there is no narration
+      // timeline to "play" for a state whose script is empty by design (Rule
+      // 31 — explore states are 0/open), so the Play button's own on/off
+      // meaning does not apply here either way.
+      pendingRoll = null;
+      applyReveal(activeSiAt(0));                     // still paint the opening beat's own glow/caption bookkeeping
     } else {
       pendingRoll = null;
       playing = false; setPlayBtnUI(false);
@@ -3641,7 +3659,7 @@ function buildOne(conceptId: string): void {
             ? assembleField3DHtml(json.field_3d_config, json.epic_l_path as never)
             : json.particle_field_config
                 ? assembleParticleFieldHtml(json.particle_field_config as ParticleFieldAuthoredConfig)
-                : assembleParametricHtml(buildParametricConfig(conceptId, json)),
+                : assembleParametricHtml(buildParametricConfig(conceptId, json as ParametricSourceJson)),
     );
     writeFileSync(join(conceptDir, 'sim.html'), simHtml, 'utf-8');
 

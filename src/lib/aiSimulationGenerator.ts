@@ -31,7 +31,8 @@ import {
     type MechanicsState,
     assembleMechanics2DHtml,
 } from "@/lib/renderers/mechanics_2d_renderer";
-import { assembleParametricHtml } from "@/lib/renderers/parametric_renderer";
+import { assembleParametricHtml, type ParametricStateConfig } from "@/lib/renderers/parametric_renderer";
+import { buildParametricConfig, type ParametricSourceJson } from "@/scripts/lib/buildParametricConfig";
 import {
     type WaveCanvasConfig,
     assembleWaveCanvasHtml,
@@ -2862,7 +2863,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     moment_of_inertia_shapes:       "mechanics_2d",
     combined_rotation_translation:  "mechanics_2d",
     torque_and_couple:              "mechanics_2d",
-    rolling_on_incline:             "mechanics_2d",
+    // rolling_on_incline was here as a RETIRED mechanics_2d entry — no concept
+    // JSON, absent from VALID_CONCEPT_IDS and CONCEPT_PANEL_MAP, i.e. never a
+    // live product concept. Removed 2026-08-04 because the Class 11 Ch.7
+    // rotmech build claims the id for a real field_3d concept, and a duplicate
+    // key in this literal is a TS1117 error. The vestigial
+    // MECHANICS_SCENARIO_MAP entry is a DIFFERENT object and is left alone.
     rolling_without_slipping:       "mechanics_2d",
     // Energy
     conservation_of_energy:         "mechanics_2d",
@@ -3025,6 +3031,38 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // the along-motion component. Pure configuration, zero renderer edits
     // (0d). Alex pipeline, 2026-08-01.
     work_done_by_constant_force:    "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #2 — same newtons_laws_body +
+    // SEAM K/L/M/N energy layer, opening the F_ang regime #1 ceded (0…180°
+    // vs #1's 0…85°). The work done by a force carries a SIGN, set by the
+    // angle between the force and the displacement: positive along the
+    // motion, zero at 90° (the normal force, acting the whole way and doing
+    // nothing), negative against the motion (friction), and net work is the
+    // signed sum. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-02.
+    positive_negative_zero_work:    "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #3 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author the SEAM L energy_layer (the
+    // K bar). Kinetic energy K = ½mv²: proportional to the mass, proportional
+    // to the SQUARE of the speed, never negative, and exactly zero at rest.
+    // Authors ZERO work_accumulators — the mechanically-greppable boundary with
+    // work_energy_theorem (#4). Pure configuration, zero renderer edits (0d).
+    // Alex pipeline, 2026-08-02.
+    kinetic_energy_definition:      "field_3d",
+    // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
+    // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave so the
+    // five parallel desks never edit this file (docs/loop_runs/rotmech/).
+    // First six ride the rigid_body_rotation scenario (0c-1); the two rolling
+    // concepts ride the newtons_laws_body SEAM R extension (0c-2). Both landed
+    // in PR #28. Pure configuration at 0d, zero renderer edits.
+    // NOT in PCPL_CONCEPTS (that set is 2D parametric_renderer only).
+    rigid_body_rotation:            "field_3d",
+    rotational_kinematics:          "field_3d",
+    tau_eq_i_alpha:                 "field_3d",
+    rotational_work_energy:         "field_3d",
+    angular_momentum:               "field_3d",
+    conservation_of_angular_momentum: "field_3d",
+    pure_rolling:                   "field_3d",
+    rolling_on_incline:             "field_3d",
 };
 
 // ── RENDERER_MAP — concept_id prefix → renderer type ──────────────────────
@@ -6015,54 +6053,23 @@ export async function generateSimulation(
             if (PCPL_CONCEPTS.has(conceptIdForLookup)) {
                 console.log('[pcpl] parametric pipeline for concept:', conceptIdForLookup);
             }
+            // Assembled by the SHARED builder (whole-state passthrough) — this path
+            // once kept its own 3-field projection, which dropped
+            // variable_choreography AND variable_overrides on the live app
+            // (engine_bug_queue:
+            // review_site_private_config_assembler_drops_variable_choreography).
+            // synthesizeFocalSequenceFromScript preserves this path's
+            // narration-driven focus for states with no authored focal_sequence;
+            // default_variables now always derive from the concept's declared
+            // physics_engine_config.variables (the old empty-case fallback table
+            // predated that derivation).
             const bypassPanelAHtml = PCPL_CONCEPTS.has(conceptIdForLookup)
-                ? assembleParametricHtml({
-                    concept_id: conceptIdForLookup,
-                    scene_composition: (() => {
-                        const states = (epicLStates as Record<string, unknown>) ?? {};
-                        // Find first state with a force_arrow primitive
-                        for (const [, s] of Object.entries(states)) {
-                            const sc = ((s as { scene_composition?: Array<{ type?: string }> }).scene_composition) ?? [];
-                            if (sc.some((p) => p.type === 'force_arrow')) return sc as unknown[];
-                        }
-                        // Fallback: first state's scene_composition
-                        const firstKey = Object.keys(states)[0];
-                        return firstKey
-                            ? ((states[firstKey] as { scene_composition?: unknown[] }).scene_composition ?? [])
-                            : [];
-                    })(),
-                    states: (() => {
-                        const raw = (epicLStates as Record<string, {
-                            scene_composition?: unknown[];
-                            focal_primitive_id?: string;
-                            teacher_script?: { tts_sentences?: Array<{ id?: string; pause_after_ms?: number; highlight_primitive_id?: string }> };
-                        }>) ?? {};
-                        const out: Record<string, { scene_composition?: unknown[]; focal_primitive_id?: string; focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }> }> = {};
-                        for (const [sid, s] of Object.entries(raw)) {
-                            const sentences = s.teacher_script?.tts_sentences ?? [];
-                            const focal_sequence = sentences
-                                .filter(sen => !!sen.highlight_primitive_id)
-                                .map(sen => ({ highlight_primitive_id: sen.highlight_primitive_id!, duration_ms: sen.pause_after_ms ?? 3000 }));
-                            out[sid] = {
-                                scene_composition: s.scene_composition,
-                                focal_primitive_id: s.focal_primitive_id,
-                                ...(focal_sequence.length > 0 ? { focal_sequence } : {}),
-                            };
-                        }
-                        return out;
-                    })(),
-                    default_variables: (Object.keys(peDefaultVars).length > 0
-                        ? peDefaultVars
-                        : (
-                            conceptIdForLookup === 'contact_forces' ? { N: 20, f: 15 } :
-                            conceptIdForLookup === 'normal_reaction' ? { m: 2, theta: 30 } :
-                            conceptIdForLookup === 'tension_in_string' ? { m1: 2, m2: 1 } :
-                            { m: 1 }
-                          )
-                    ),
-                    current_state: 'STATE_1',
-                    canvas_style: boardCanvasStyle,
-                })
+                ? assembleParametricHtml(
+                    buildParametricConfig(conceptIdForLookup, boardMergedJson as ParametricSourceJson, {
+                        synthesizeFocalSequenceFromScript: true,
+                        canvasStyle: boardCanvasStyle,
+                    }),
+                )
                 : assembleMechanics2DHtml(
                     bypassPanelAConfig as unknown as
                     import("@/lib/renderers/mechanics_2d_renderer").Mechanics2DConfig
@@ -6533,7 +6540,7 @@ export async function generateSimulation(
             const parametricConfig = {
                 concept_id: conceptIdForLookup,
                 scene_composition: scene,
-                states: allStates as Record<string, { scene_composition?: unknown[] }>,
+                states: allStates as Record<string, ParametricStateConfig>,
                 default_variables: defaultVariables,
                 current_state: chosenStateKey ?? 'STATE_1',
                 canvas_style: canvasStyle,

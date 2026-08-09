@@ -56,9 +56,29 @@ export async function loadCachedSim(conceptId: string): Promise<CacheRow> {
  * caught by a human cross-checking frames against live source, which is not a
  * gate. The class then cost a second session the same way.
  *
- * Scoped to CHEMISTRY, deliberately. Physics concepts are served by the live
- * pipeline (aiSimulationGenerator), whose output legitimately differs from a
- * bare renderer assembly, so comparing there would fail on every run.
+ * Scoped by EXCLUDING PHYSICS, deliberately — not by naming one subject.
+ * Physics concepts are served by the live pipeline (aiSimulationGenerator), whose
+ * output legitimately differs from a bare renderer assembly, so comparing there
+ * would fail on every run. EVERY other namespace is hand-seeded and therefore
+ * exposed to the exact defect above.
+ *
+ * 2026-08-04: this read `!== 'chemistry'` and so silently skipped MATHEMATICS,
+ * which is hand-seeded for the identical reason (mathematics concepts register at
+ * site #1 only — the isolation contract — so they never touch the live pipeline
+ * either). A guard written as an allowlist of one had to be edited for every new
+ * subject, and the cost of forgetting is not a broken run but a GREEN one: the
+ * class above returned "35 checks / 35 passed" over pre-fix pixels twice. Written
+ * as a physics-exclusion it is correct for every future subject by construction.
+ *
+ * 2026-08-06: the physics exclusion no longer covers the PARAMETRIC family.
+ * Parametric physics rows are hand-seeded too (_seed_subject_cache /
+ * _seed_pcpl_batch_cache — never the live pipeline), so they were exposed to
+ * the exact stale-cache class this guard exists for, with the exclusion
+ * silently waving them through. The seeder and this gate share
+ * assembleSimFromSource, so a freshly seeded row byte-matches by construction;
+ * a stale row fails loudly with the re-seed instruction below. field_3d /
+ * particle_field physics stay excluded — those CAN carry live-pipeline rows
+ * whose HTML legitimately differs from a bare renderer assembly.
  */
 export function assertCacheMatchesSource(conceptId: string, cachedHtml: string): void {
     let built: ReturnType<typeof assembleSimFromSource>;
@@ -67,7 +87,8 @@ export function assertCacheMatchesSource(conceptId: string, cachedHtml: string):
     } catch {
         return;                       // not assemblable from source — nothing to compare against
     }
-    if (!built || built.subject !== 'chemistry') return;
+    if (!built) return;
+    if (built.subject === 'physics' && built.rendererType !== 'parametric') return;
     if (built.simHtml === cachedHtml) return;
 
     const h = (s: string) => createHash('sha256').update(s).digest('hex').slice(0, 12);
@@ -75,12 +96,12 @@ export function assertCacheMatchesSource(conceptId: string, cachedHtml: string):
         `STALE simulation_cache for "${conceptId}" — the cached sim does NOT match the current source.\n` +
         `     cached  ${h(cachedHtml)}  (${cachedHtml.length} chars)\n` +
         `     source  ${h(built.simHtml)}  (${built.simHtml.length} chars)\n\n` +
-        `   Chemistry cache rows are seeded BY HAND and never auto-refresh, and this gate reads only\n` +
+        `   ${built.subject} cache rows are seeded BY HAND and never auto-refresh, and this gate reads only\n` +
         `   the row — so continuing would report on PRE-EDIT pixels and every visual finding would be\n` +
         `   a false negative. This has already happened twice (engine_bug_queue:\n` +
         `   eye_reads_the_hand_seeded_cache_not_the_current_source).\n\n` +
         `   Re-seed, then re-run:\n` +
-        `     npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts ${conceptId}`,
+        `     npx tsx --env-file=.env.local src/scripts/_seed_subject_cache.ts ${conceptId}`,
     );
 }
 

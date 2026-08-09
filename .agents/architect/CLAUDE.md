@@ -397,6 +397,44 @@ inline silent-failure catalogs in `.agents/pcpl_surgeon/CLAUDE.md` and
 go stale and carry no staleness signal. **Treat the live table as canonical; the mirrors are a
 supplement, never a substitute.**
 
+## Probe, don't just grep — behavioral claims carry measured evidence (2026-08-06 addition, founder-approved)
+
+The Bash grant above closed the EXISTENCE blind spot: you can verify a primitive, field or mode IS in
+the renderer and cite its file:line. The costlier failure mode remains: **certifying BEHAVIOR from
+existence.** The record that forced this section:
+
+- `skeleton_certifies_a_state_buildable_from_a_mode_string_without_a_frame_probe` (MAJOR, FIXED —
+  `unit_circle_to_sine_wave`): a skeleton marked states buildable by checking mode NAMES against the
+  implemented-mode enum. The modes existed; what they drew was not what the skeleton promised.
+- ch6 `work_done_by_constant_force`, Checkpoint-A cycle 2: the skeleton asserted the integrator's
+  energy ripple sits "below 0.1 J display precision". The measured figure was ≈0.93 J — the ripple is
+  LINEAR in ω·dt — 9× the display bar, in the very state whose caption claims the total is constant.
+- The counter-example that sets the bar: on `uniform_circular_motion` all four flagged skeleton
+  assumptions were checked against the REAL engine with a throwaway probe before authoring — ZERO
+  architect numbers needed correcting. The sibling concept skipped this; THREE did.
+
+**The rule.** Every skeleton claim that rests on renderer BEHAVIOR — a rendered size, a motion shape,
+a settle time, a numeric readout, a reveal timing, "this mode shows X" — must carry ONE of:
+
+1. **Clone evidence** — a named, SHIPPED concept state that already exhibits the exact behavior
+   (concept_id + state + what to look at), or
+2. **A measured number from a probe you ran.** Within the READ-ONLY CONTRACT above (you write no
+   files), that means: run an EXISTING committed probe/verify script
+   (`src/scripts/_verify_size_expr_probe.ts` and `src/scripts/_verify_label_position_expr_probe.ts`
+   are the templates — Playwright + synthetic config + canvas pixel measurement), or an inline
+   computation (`npx tsx -e '<code>'` writes nothing), and record the measured value beside the
+   claim, or
+3. **An explicit ASSUMPTION flag** — when the probe would need a new script file you cannot write,
+   include the probe's intended body in your report, mark the claim `ASSUMPTION —
+   probe-before-authoring`, and expect physics_author / mathematics_author / chemistry_author to
+   measure it BEFORE authoring against it (the lom-g pattern). An unflagged unmeasured behavioral
+   claim is the defect; a flagged one is routing.
+
+Record the evidence IN the skeleton, beside the claim — the ENGINE FIT CHECK section for field_3d,
+the archetype declarations for PCPL/mathematics. Judgment on cost applies: a behavior the fleet
+already exhibits needs the citation, not a fresh probe; a NUMBER you are about to promise in a
+caption or HUD always needs measuring.
+
 ## Self-review checklist — run before submitting your skeleton
 
 - [ ] Atomic claim is ONE sentence. If it's two sentences, split into two concepts.
@@ -408,6 +446,7 @@ supplement, never a substitute.**
 - [ ] **Per-state control table present (Rule 31)** — one row per state: teaches × motion archetype × distinct motion (no two alike, none static; no archetype repeat except a declared contrast pair; drag-sandbox only on explore) × delta (one line, unique) × live controls (only-what-this-state-needs; explore state = ALL) × narration budget (25–55 EN words guided, explore 0/open).
 - [ ] **Rule 32 legibility plan** — every state's choreography sequences CAUSE before effect (readable beat); only the taught variable moves (explore exempt); the delta column doubles as the ≤5-word caption cue; apparatus persists from a home pose (no teleport-rebuild; camera moves only to frame the new thing); exactly ONE glow focal at any instant.
 - [ ] **Rule 33 macro↔micro plan (2026-07-12)** — when the taught variable is macroscopic, the skeleton declares the per-state macro↔micro plan: macro visible change × micro story × the real number exposed × instruments with live numeric readouts + tracking needles.
+- [ ] **Probe-don't-grep (2026-08-06)** — every behavioral claim in the skeleton carries clone evidence, a measured probe number, or an explicit `ASSUMPTION — probe-before-authoring` flag. Zero unflagged unmeasured behavioral claims.
 - [ ] **Rule 34 canvas budget (2026-07-12)** — per state: ONE math-serif Unicode formula surface, on-canvas caption = the ≤5-word delta cue only, HUD value-only.
 - [ ] **Rule 38 curriculum-flex (2026-07-21)** — control table carries the `depth_ring` column (core|extended|advanced); states ordered qualitative → quantitative → derivation; advanced ring is a CONTIGUOUS block immediately before the explore state; BOTH preset cuts explicitly checked coherent (hide advanced; hide advanced+extended — no surviving state's narration/caption/formula references hidden-ring content); explore state surfaces CORE-ring content only (38b); `curriculum_tags` block present with `needs_teacher_verification` on every unverified cell (only CBSE/NCERT may be marked verified — 38g); preset proposal derived from the rings (38h); graph-axis convention named per board wherever a graph exists (38e); anchor prefers widest-syllabus-overlap devices (38f). Exemplar: `docs/proof_runs/capacitance_skeleton.md`.
 - [ ] **(Reconstruction mode only)** every OLD state graded keep/merge/delete/split via the archetype rubric with a one-line verdict each; PRIMARY aha survives (named surviving state); deletion-mechanics checklist fully accounted for (renumbering, entry_state_map, Gate 12, deep-dive flags, TTS re-voice note, baselines); Class A/B scenario triage stated (Class B → renderer_primitives delta flagged FIRST).

@@ -21,16 +21,50 @@ import { computePhysics } from '@/lib/physicsEngine';
 import { solveSubSimLayout } from '@/lib/subSimSolverHost';
 import { PREMIUM_PRIMITIVES_CODE } from '@/lib/renderers/premium_primitives';
 
+// The COMPLETE set of per-state fields the renderer body reads off
+// PM_config.states[...] (bindings named stateData at :837/:2402/:3532 AND
+// `state` inside PM_resolveStateVars — a scan for one binding name misses the
+// other, which is how variable_overrides stayed droppable after the
+// variable_choreography fix). Every config assembler must carry all of these;
+// the parity test asserts this list against the renderer source, and the
+// _assertOracleComplete check below makes adding a field here without
+// extending PARAMETRIC_STATE_FIELDS a compile error.
+export interface ParametricStateKnownFields {
+    scene_composition?: unknown[];
+    focal_primitive_id?: string;
+    focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
+    variable_choreography?: unknown[];
+    variable_overrides?: Record<string, number>;
+}
+
+// Open shape: authored extras (title, advance_mode, teacher_script, depth_ring,
+// …) pass through untouched, so a passthrough assembler is type-safe without an
+// `as` cast — and a hand-picked projection is visibly lossy instead of being
+// rewarded by the checker.
+export interface ParametricStateConfig extends ParametricStateKnownFields {
+    [key: string]: unknown;
+}
+
+export const PARAMETRIC_STATE_FIELDS = [
+    'scene_composition',
+    'focal_primitive_id',
+    'focal_sequence',
+    'variable_choreography',
+    'variable_overrides',
+] as const satisfies readonly (keyof ParametricStateKnownFields)[];
+
+type _MissingFromOracle = Exclude<keyof ParametricStateKnownFields, (typeof PARAMETRIC_STATE_FIELDS)[number]>;
+const _assertOracleComplete: _MissingFromOracle extends never ? true : never = true;
+void _assertOracleComplete;
+
 export interface ParametricConfig {
     concept_id: string;
     scene_composition: unknown[];
-    states?: Record<string, {
-        scene_composition?: unknown[];
-        focal_primitive_id?: string;
-        focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
-    }>;
+    states?: Record<string, ParametricStateConfig>;
     default_variables: Record<string, number>;
     current_state?: string;
+    // Assembly-time only: assembleParametricHtml() recomputes and embeds
+    // PM_PRECOMPUTED_PHYSICS itself; nothing reads this field off the config.
     precomputed_physics?: unknown;
     // Board-mode styling. When 'answer_sheet', the canvas background switches
     // to off-white with faint horizontal rules and a red left margin, and
@@ -603,6 +637,179 @@ function computePhysics_law_of_conservation_of_mass(vars) {
   };
 }
 
+// unit_circle_to_sine_wave — MATHEMATICS namespace (src/data/concepts/mathematics/),
+// the first mathematics concept. Iframe-side twin of the TS engine
+// (unitCircleToSineWaveEngine in physicsEngine/concepts/) — both implement the
+// SAME formula contract, per the scar
+// parametric_computephysics_missing_silent_template_leak: standing up a new
+// parametric-family concept is never data-only, and without a non-null return
+// here PM_physics stays null, PM_liveExprVars()/PM_liveVarsWithDerived() fall
+// back to the STATIC default_variables, and every body, vector, arc and label
+// freezes at its authoring default while the {interpolations} leak as literal
+// braces.
+//
+// UNITS: theta/phi/phi_r are DEGREES (the fleet convention for angle-driven PCPL
+// concepts — cf. computePhysics_newton_second_law_direction's theta_F, and
+// resultant_direction's theta). Degrees are what drawCanvasSlider's caption
+// formatter prints verbatim (it has no unit-conversion field, so a radian value
+// would drag-caption as "3.9" instead of "210°") and what drawAngleArc consumes
+// natively. Every trig call converts inline.
+//
+// phi / phi_r are choreography-only sweep parameters and MUST NEVER be authored
+// as sliders: PM_choreoVarsAtTime merges a live slider value into every
+// historical sample of a locus_trace, so a trace parameterised on a slider
+// variable collapses to a point on first drag (engine_bug_queue:
+// pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve).
+function computePhysics_unit_circle_to_sine_wave(vars) {
+  var theta = (vars && typeof vars.theta === 'number' && isFinite(vars.theta)) ? vars.theta : 0;
+  var phi   = (vars && typeof vars.phi   === 'number' && isFinite(vars.phi))   ? vars.phi   : 0;
+  var phi_r = (vars && typeof vars.phi_r === 'number' && isFinite(vars.phi_r)) ? vars.phi_r : 0;
+
+  var theta_rad = theta * Math.PI / 180;
+  var sin_theta = Math.sin(theta_rad);
+  var cos_theta = Math.cos(theta_rad);
+  // s does DOUBLE DUTY: the radian measure of theta AND the arc length in
+  // radius-lengths. r === 1 always in this concept (nothing in PCPL draws a
+  // circle at a live radius — body size is number-only), so arc length
+  // = theta_rad * r = theta_rad exactly. That identity is what STATE_2 teaches,
+  // and it is why the dual-unit HUD reads "theta = {s} rad ({theta} deg)":
+  // the radian slot is s, never the raw theta variable.
+  var s = theta_rad;
+
+  return {
+    concept_id: 'unit_circle_to_sine_wave',
+    variables: { theta: theta, phi: phi, phi_r: phi_r },
+    derived: { sin_theta: sin_theta, cos_theta: cos_theta, s: s },
+    forces: []
+  };
+}
+
+// graph_transformations — MATHEMATICS namespace (src/data/concepts/mathematics/),
+// the SECOND mathematics concept and the FIRST consumer of the cartesian_plane /
+// function_plot / plot_point primitive family (Phase 0, PRs #36-#40). Iframe-side
+// twin of the TS engine (graphTransformationsEngine in physicsEngine/concepts/) —
+// both implement the SAME formula contract, per the scar
+// parametric_computephysics_missing_silent_template_leak, here BINDING (P2-8):
+// without a non-null return here draw() returns before any primitive paints
+// (@5105, the "Unknown concept" blank-canvas branch) with zero console/page
+// errors — THE EYE would photograph the blank frame and report a clean run.
+//
+// UNITLESS: a, b, h, k are the taught parameters (vertical stretch, horizontal
+// stretch/compress, horizontal shift, vertical shift). xdraw/hg are
+// choreography-only sweep drivers (S1's draw-in edge, S3's wrong-guess offset)
+// and are NEVER authored as sliders anywhere in this concept.
+//
+// This function computes nothing the geometry doesn't — every scene_composition
+// primitive (function_plot, plot_point, the S5 bracket) evaluates its own
+// x_expr/y_expr/from_expr/to_expr directly against a/b/h/k. It exists to make
+// PM_physics non-null, carry the echo net (WP-F2, below), and discharge the
+// no-literal-'{' duty (Rule 24) — the derived trio (p_prime_x/p_prime_y/
+// bracket_width) is published for completeness/documentation parity with the
+// JSON's own physics_engine_config.computed_outputs, even though every
+// consuming primitive re-derives the same values inline via its own *_expr.
+function computePhysics_graph_transformations(vars) {
+  var a = (vars && typeof vars.a === 'number' && isFinite(vars.a)) ? vars.a : 1;
+  var b = (vars && typeof vars.b === 'number' && isFinite(vars.b) && vars.b !== 0) ? vars.b : 1;
+  var h = (vars && typeof vars.h === 'number' && isFinite(vars.h)) ? vars.h : 0;
+  var k = (vars && typeof vars.k === 'number' && isFinite(vars.k)) ? vars.k : 0;
+  var xdraw = (vars && typeof vars.xdraw === 'number' && isFinite(vars.xdraw)) ? vars.xdraw : -6.5;
+  var hg = (vars && typeof vars.hg === 'number' && isFinite(vars.hg)) ? vars.hg : 0;
+
+  var p_prime_x = Math.PI / 2 / b + h;
+  var p_prime_y = a * Math.sin(Math.PI / 2) + k;
+  var bracket_width = 2 * Math.PI / b;
+
+  return {
+    concept_id: 'graph_transformations',
+    variables: { a: a, b: b, h: h, k: k, xdraw: xdraw, hg: hg },
+    derived: { p_prime_x: p_prime_x, p_prime_y: p_prime_y, bracket_width: bracket_width },
+    forces: []
+  };
+}
+
+// derivative_as_secant_limit — MATHEMATICS namespace (src/data/concepts/mathematics/),
+// the SECOND mathematics concept and the first to ride the cartesian_plane /
+// secant_line / tangent_line family (CP-A...CP-D). Iframe-side twin of the TS
+// engine (derivativeAsSecantLimitEngine in physicsEngine/concepts/) — both
+// implement the SAME (trivial) contract, per the scar
+// parametric_computephysics_missing_silent_template_leak (same reasoning as
+// unit_circle_to_sine_wave above): without a non-null return here PM_physics
+// stays null and every plot_point/secant_line/tangent_line/label on this
+// concept freezes at its authoring default or leaks a literal {x0} brace.
+//
+// DELIBERATE PASSTHROUGH — derived: {} is not an oversight. Per the
+// mathematics_author's binding constraint (derivative_as_secant_limit_
+// mathematics_block.md, engine_config.constraints #2/#3): the chord slope
+// (x0 + h/2) and the tangent slope (x0) are each computed EXACTLY ONCE,
+// inside PM_secantLineCompute / PM_tangentLineCompute (the two line
+// primitives' own draw-time math) — never a second time here. A derived
+// chord_slope/tangent_slope key on this function would be a second live
+// implementation of the same number, which is exactly the sigma/pi defect
+// class (a slider reading one value beside a HUD reading a stale one) the
+// "one quantity, one readout" doctrine exists to prevent. Every label that
+// needs x0/xq/hlog/hz/u/xdraw reads them straight out of 'variables' below;
+// no label anywhere renders the CHORD slope (the narrowed h=0 safety
+// constraint, P1-2).
+function computePhysics_derivative_as_secant_limit(vars) {
+  var x0    = (vars && typeof vars.x0    === 'number' && isFinite(vars.x0))    ? vars.x0    : 1;
+  var xq    = (vars && typeof vars.xq    === 'number' && isFinite(vars.xq))    ? vars.xq    : 1.9;
+  var hlog  = (vars && typeof vars.hlog  === 'number' && isFinite(vars.hlog))  ? vars.hlog  : 0;
+  var hz    = (vars && typeof vars.hz    === 'number' && isFinite(vars.hz))    ? vars.hz    : 1;
+  var u     = (vars && typeof vars.u     === 'number' && isFinite(vars.u))     ? vars.u     : -1.6;
+  var xdraw = (vars && typeof vars.xdraw === 'number' && isFinite(vars.xdraw)) ? vars.xdraw : -2.1;
+  // h7 — added founder_proxy Checkpoint B F-6 (2026-08-07): STATE_7-only
+  // linear h sweep (0.800 -> 0.020) driving the chord's own visible rotation
+  // as its algebra reveals. Same defensive-default shape as every other
+  // variable above; mirrored verbatim in the TS twin
+  // (physicsEngine/concepts/derivative_as_secant_limit.ts).
+  var h7    = (vars && typeof vars.h7    === 'number' && isFinite(vars.h7))    ? vars.h7    : 0.8;
+  return {
+    concept_id: 'derivative_as_secant_limit',
+    variables: { x0: x0, xq: xq, hlog: hlog, hz: hz, u: u, xdraw: xdraw, h7: h7 },
+    derived: {},
+    forces: []
+  };
+}
+
+// definite_integral_as_accumulated_area — THIRD mathematics concept (src/data/
+// concepts/mathematics/), riding the region_fill / riemann_bars / locus_trace
+// accumulation family (docs/skeletons/definite_integral_as_accumulated_area_
+// skeleton.md). f(x) = x^2 - c on [0, b]. Per A6 (skeleton §10f), this
+// function computes ONLY the closed forms the geometry cannot produce itself
+// — 'exact' (the definite integral I(b,c)), 'A_beta' (the accumulation
+// function A(beta,c), STATE_7), 'area_total' and 'area_below' (the unsigned
+// total and the below-axis subtotal, STATE_5, F7) — NEVER a Riemann sum
+// (riemann_bars computes and PUBLISHES its own sum via sum_var, see
+// PM_riemannPublish above; a second implementation here would be the exact
+// "one quantity, two readouts" defect class this fleet's doctrine forbids).
+// TS twin: src/lib/physicsEngine/concepts/definite_integral_as_accumulated_area.ts
+// (scar parametric_computephysics_missing_silent_template_leak — a missing
+// twin fails SILENTLY, every {exact}/{A_beta}/{area_total}/{area_below}
+// resolves to a literal '{...}' string on canvas).
+function computePhysics_definite_integral_as_accumulated_area(vars) {
+  var b    = (vars && typeof vars.b    === 'number' && isFinite(vars.b))    ? vars.b    : 2.0;
+  var c    = (vars && typeof vars.c    === 'number' && isFinite(vars.c))    ? vars.c    : 0;
+  var beta = (vars && typeof vars.beta === 'number' && isFinite(vars.beta)) ? vars.beta : 0;
+  var exact = Math.pow(b, 3) / 3 - c * b;
+  var aBeta = Math.pow(beta, 3) / 3 - c * beta;
+  // area_below (F7): I(min(b, sqrt(c)), c) — the below-axis piece, defined
+  // only where the curve actually crosses the axis inside [0,b] (c>0). The
+  // 0.00005 clamp (engine-bug-queue: hud_prints_negative_zero_on_a_value_
+  // only_instrument) guards the exact-zero-at-c=0 case from a signed-float
+  // '-0.0000' print — the ONLY quantity in this concept that can arrive at
+  // a signed zero.
+  var crossX = Math.min(b, Math.sqrt(c > 0 ? c : 0));
+  var areaBelowRaw = Math.pow(crossX, 3) / 3 - c * crossX;
+  var areaBelow = (Math.abs(areaBelowRaw) < 0.00005) ? 0 : areaBelowRaw;
+  var areaTotal = exact - 2 * areaBelow;
+  return {
+    concept_id: 'definite_integral_as_accumulated_area',
+    variables: { b: b, c: c, beta: beta },
+    derived: { exact: exact, A_beta: aBeta, area_total: areaTotal, area_below: areaBelow },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -626,6 +833,13 @@ function computePhysics(conceptId, vars) {
   // only for this id; the physics dispatch above is byte-unchanged.
   else if (conceptId === 'bohr_model_energy_levels') result = computePhysics_bohr_model_energy_levels(vars);
   else if (conceptId === 'law_of_conservation_of_mass') result = computePhysics_law_of_conservation_of_mass(vars);
+  // Mathematics namespace (src/data/concepts/mathematics/) — same concept-gated
+  // pattern as the chemistry pair above; fires only for this id, so the physics
+  // dispatch remains byte-unchanged.
+  else if (conceptId === 'unit_circle_to_sine_wave') result = computePhysics_unit_circle_to_sine_wave(vars);
+  else if (conceptId === 'graph_transformations') result = computePhysics_graph_transformations(vars);
+  else if (conceptId === 'derivative_as_secant_limit') result = computePhysics_derivative_as_secant_limit(vars);
+  else if (conceptId === 'definite_integral_as_accumulated_area') result = computePhysics_definite_integral_as_accumulated_area(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
@@ -746,6 +960,31 @@ function PM_animationGate(spec) {
     return { visible: true, alpha: 1 - fadeProgress };
   }
   if (animMs <= 0) return { visible: true, alpha: 1 };
+  // Rule 37 GAP, part (b) (founder_proxy Checkpoint B cycle 2, 2026-08-09) —
+  // a primitive due AT-OR-BEFORE state start (appear_at_ms<=0) is the
+  // state's OWN OPENING PICTURE, not a mid-state reveal. Every rail-opened
+  // state's clock is parked at t=0 until Play is pressed (Rule 26 — hold
+  // the opening frame); against a clock that has not yet started moving,
+  // the old (elapsed-appearAt)/animMs ramp evaluates to EXACT 0 progress —
+  // zero alpha, sustained for as long as the state sits open pre-Play, not
+  // a one-frame flicker. A not-yet-started transition is not the same
+  // thing as a hidden element: STATE_1 (this concept's opening state) was
+  // measured entirely blank before Play; STATE_4's magnifier inset (the
+  // state's whole subject) and STATE_8's curve/region/rectangles (all
+  // appear_at_ms:0/animate_in_ms:1200) were absent the same way. An
+  // element with a LATER appear_at_ms (a genuine mid-state reveal, synced
+  // to narration reaching that point) is UNCHANGED — it still correctly
+  // waits (elapsed<appearAt above) and still fades in over animMs once due
+  // (the branch below, unreached here). Only the appear_at_ms<=0 case — a
+  // transition whose start and the state's own start are the SAME
+  // instant, so "in progress" and "not started" are indistinguishable —
+  // resolves to its COMPLETED appearance immediately, matching Rule 37's
+  // part (a) exemption (parametric_renderer's own SET_STATE handler
+  // already frees the clock for interaction_complete on entry; this
+  // covers the same-instant items even before that clock ever ticks, and
+  // covers every OTHER advance_mode's own frozen opening frame too — the
+  // more general fix, not scoped to interaction_complete alone).
+  if (appearAt <= 0) return { visible: true, alpha: 1 };
   var progress = Math.min(1, Math.max(0, (elapsed - appearAt) / animMs));
   return { visible: true, alpha: progress };
 }
@@ -944,6 +1183,19 @@ function PM_resolveArrowPoint(literal, exprStr, vars) {
 // a derived field directly instead of only raw slider variables. Without this merge,
 // PM_safeEval silently returns NaN for any expr naming a derived-only field and the
 // caller's isFinite() guard falls back to 0 (an invisible zero-length arrow).
+//
+// D11 (AMENDMENT 2 / F6 supersession, CP-C2) — ALSO merges PM_riemannPublish,
+// deliberately kept in lockstep with PM_liveExprVars' own merge (same map,
+// same last-wins order, same hasOwnProperty guard). This function and
+// PM_liveExprVars are otherwise byte-for-byte identical, and PM_liveExprVars'
+// own header (immediately below) states why that duplication is dangerous
+// rather than incidental: "TEXT bindings and POSITION bindings read one
+// scope instead of two copies that merely happen to agree — a state can't
+// render a number and place its glyph from different values." A
+// vector/force_arrow/angle_arc positioned by magnitude_expr off a published
+// sum_var must resolve the SAME value a label's text_expr prints — letting
+// this function's copy of the merge drop out of sync would be exactly the
+// failure that comment already exists to prevent, recreated one call away.
 function PM_liveVarsWithDerived() {
   var baseVars = (PM_physics && PM_physics.variables)
     || (PM_config && PM_config.default_variables)
@@ -952,6 +1204,7 @@ function PM_liveVarsWithDerived() {
   var vars = {};
   for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
   for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  for (var pk in PM_riemannPublish) if (Object.prototype.hasOwnProperty.call(PM_riemannPublish, pk)) vars[pk] = PM_riemannPublish[pk];
   return vars;
 }
 
@@ -974,7 +1227,45 @@ function PM_liveExprVars() {
   var vars = {};
   for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
   for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
+  // D11 (AMENDMENT 2 / F6 supersession, CP-C2) — merge the frame-scoped
+  // riemann_bars publish map LAST (see PM_riemannPublish's own declaration).
+  // It lives outside PM_physics specifically so a mid-frame PM_physics
+  // reassignment (drawPlotPoint's drag branch, PM_applyChoreography) can
+  // never erase a value riemann_bars already published this frame.
+  for (var pk in PM_riemannPublish) if (Object.prototype.hasOwnProperty.call(PM_riemannPublish, pk)) vars[pk] = PM_riemannPublish[pk];
   return vars;
+}
+
+// F6 fix (bug_class: pcpl_interpolate_numeric_substitution_ships_an_ascii_
+// hyphen_where_every_other_readout_ships_u+2212, BLOCKING recurrence,
+// founder_proxy Checkpoint B live-drive 2026-08-08) — PM_fmtNum (the
+// renderer's own canvas-drawn readouts, e.g. secant/tangent slope) already
+// normalises Number.prototype.toFixed()'s always-ASCII '-' to the real
+// U+2212 MINUS SIGN (Rule 34c) via PM_signGlyph. PM_interpolate is a
+// SECOND, independent numeral-to-string path — every {expr} substitution
+// in an authored text_expr/label_expr/magnitude_expr/etc — and previously
+// returned String(result) untouched: a bare {b} (a raw number's own
+// Number#toString(), ASCII '-') and an authored {area_below.toFixed(4)}
+// (the AUTHOR'S OWN inline toFixed call, also always ASCII) both leaked
+// the wrong glyph (measured: "-0.6667" beside an authored "−1.0" y-tick in
+// an APPROVED baseline). Recurrence of a class already closed once at the
+// AUTHORING layer on derivative_as_secant_limit — closing it in one
+// concept's JSON left the class live for every concept after; this closes
+// it at the LAST COMMON SEAM before pixels instead, through the SAME
+// PM_signGlyph substitution PM_fmtNum uses, so no future concept can
+// reopen it. See PM_interpolateFormatNumeric below for the accompanying
+// near-zero clamp (PM_fmtNum's own near-zero rule, applied at the STRING
+// level here since {expr} has no single 'decimals' to derive a numeric
+// epsilon from).
+function PM_interpolateFormatNumeric(value) {
+  var s = PM_signGlyph(String(value));
+  // A result that prints as a MINUS SIGN followed by nothing but zero
+  // digits (optionally a decimal point) is a negative-zero artifact, not
+  // a real negative reading (e.g. authored {(-0.00003).toFixed(4)} ->
+  // "−0.0000") — strip the sign so it renders unsigned, mirroring
+  // PM_fmtNum's own eps-based zeroing.
+  if (/^−0(\\.0+)?$/.test(s)) s = s.slice(1);
+  return s;
 }
 
 function PM_interpolate(text) {
@@ -983,7 +1274,7 @@ function PM_interpolate(text) {
   return text.replace(/\\{([^{}]+)\\}/g, function(_m, body) {
     // Simple identifier — fast path for {theta} / {m1} etc.
     if (/^\\w+$/.test(body)) {
-      return (vars[body] != null) ? String(vars[body]) : ('{' + body + '}');
+      return (vars[body] != null) ? PM_interpolateFormatNumeric(vars[body]) : ('{' + body + '}');
     }
     // Complex JS expression — safely evaluate with current vars in scope.
     // Supports {((2*m1*m2*9.8)/(m1+m2)).toFixed(2)} and similar.
@@ -994,7 +1285,7 @@ function PM_interpolate(text) {
       var result = fn.apply(null, scope.vals);
       if (result == null) return '{' + body + '}';
       if (typeof result === 'number' && !isFinite(result)) return '{' + body + '}';
-      return String(result);
+      return PM_interpolateFormatNumeric(result);
     } catch (e) {
       return '{' + body + '}';
     }
@@ -1222,6 +1513,56 @@ function drawBody(spec) {
     if (isFinite(peX) && isFinite(peY)) pos = { x: peX, y: peY };
   }
 
+  // CP-A (F7) — plane_id: when present (and not overridden by a surface
+  // attach or the Engine 20 motion integrator — same "physics overrides win"
+  // precedence as position_expr above), pos (whether it came from the literal
+  // spec.position or the position_expr resolution above) is DATA and is
+  // transformed through the plane's registered transform. Inert when
+  // plane_id is absent/unregistered (PM_planeResolve returns null) — the
+  // fleet-safety guarantee (gate §11).
+  if (!attachedPos && !(spec.id && PM_motionState[spec.id]) && spec.plane_id) {
+    var bodyPx = PM_planeResolve(spec, pos.x, pos.y);
+    if (bodyPx) pos = bodyPx;
+  }
+
+  // size_expr — live variable-driven size, the size sibling of position_expr
+  // above. Until now only POSITION could react to a slider: a circle's own
+  // radius stayed frozen at its authored literal even while it rode to a
+  // live coordinate, so a "radius tracks the slider" state had no honest
+  // rendering path (a locus_trace under a ramping radius draws a spiral, not
+  // a circle; scaling only a to_expr vector leaves a shrinking arrow inside a
+  // fixed outline). This binds the body's own SIZE to the same variables so
+  // the shape itself grows/shrinks with the number — e.g. the unit circle's
+  // radius riding a slider, or a conic's semi-axes morphing continuously.
+  //
+  // Reads PM_liveExprVars() — the SAME merged variables+derived scope
+  // PM_interpolate/position_expr use — so a size binding and a text/position
+  // binding in one state can never disagree about the value they show.
+  //
+  // spec.size is authored as either a bare number (circle/stickman/pulley)
+  // or a {w, h} object (rect/tree/door); size_expr mirrors whichever shape
+  // spec.size already has — a single expression string for the scalar
+  // shapes, a {w, h} object of expression strings for the boxed ones.
+  // Resolved ONCE here, before the bw/bh derivation below, so every shape
+  // inherits it without re-deriving the expression at each draw call site.
+  //
+  // Opt-in and last-resort by construction: a non-finite eval (malformed
+  // expression, or a size_expr shape that doesn't match spec.size's own
+  // shape) keeps the static authored spec.size, so a broken expression
+  // degrades to today's layout rather than vanishing.
+  var resolvedSize = spec.size;
+  if (spec.size_expr != null) {
+    var seVars = PM_liveExprVars();
+    if (typeof spec.size_expr === 'string' && typeof spec.size === 'number') {
+      var seVal = PM_safeEval(spec.size_expr, seVars);
+      if (isFinite(seVal)) resolvedSize = seVal;
+    } else if (typeof spec.size_expr === 'object' && spec.size && typeof spec.size === 'object') {
+      var seW = (spec.size_expr.w != null) ? PM_safeEval(String(spec.size_expr.w), seVars) : spec.size.w;
+      var seH = (spec.size_expr.h != null) ? PM_safeEval(String(spec.size_expr.h), seVars) : spec.size.h;
+      if (isFinite(seW) && isFinite(seH)) resolvedSize = { w: seW, h: seH };
+    }
+  }
+
   // Physics-driven animation delta. Engines learn nothing — JSONs declare the
   // animation shape and the renderer applies the equation.
   //   free_fall: y grows as 0.5·g·t²·PPM (true acceleration under gravity).
@@ -1429,12 +1770,12 @@ function drawBody(spec) {
   var isTree = (spec.shape === 'tree' && spec.size && typeof spec.size === 'object');
   var isPulley = (spec.shape === 'pulley' && typeof spec.size === 'number');
   var isDoor = (spec.shape === 'door' && spec.size && typeof spec.size === 'object');
-  if (isRect) { bw = spec.size.w; bh = spec.size.h; }
-  else if (isCircle) { bw = spec.size; bh = spec.size; }
-  else if (isStickman) { bw = spec.size * 0.5; bh = spec.size; }
-  else if (isTree) { bw = spec.size.w; bh = spec.size.h; }
-  else if (isPulley) { bw = spec.size; bh = spec.size; }
-  else if (isDoor) { bw = spec.size.w; bh = spec.size.h; }
+  if (isRect) { bw = resolvedSize.w; bh = resolvedSize.h; }
+  else if (isCircle) { bw = resolvedSize; bh = resolvedSize; }
+  else if (isStickman) { bw = resolvedSize * 0.5; bh = resolvedSize; }
+  else if (isTree) { bw = resolvedSize.w; bh = resolvedSize.h; }
+  else if (isPulley) { bw = resolvedSize; bh = resolvedSize; }
+  else if (isDoor) { bw = resolvedSize.w; bh = resolvedSize.h; }
 
   // Resolve label once: prefer label_expr (interactive scenes like
   // field_forces STATE_5 use "m = {m} kg"), fall back to static label.
@@ -1476,13 +1817,13 @@ function drawBody(spec) {
         text(labelText, 0, -bh / 2);
       }
     } else if (isCircle) {
-      circle(0, -bw / 2, spec.size);
+      circle(0, -bw / 2, bw);
       if (labelText) {
         fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(12);
         text(labelText, 0, -bw / 2);
       }
     } else if (isStickman) {
-      drawStickman(0, 0, spec.size, rgb);
+      drawStickman(0, 0, bh, rgb);
       if (labelText) {
         fill(220); noStroke(); textAlign(CENTER, TOP); textSize(11);
         text(labelText, 0, 6);
@@ -1498,8 +1839,8 @@ function drawBody(spec) {
     translate(cx, cy);
     rotate(rotRad);
     if (isRect) rect(-bw / 2, -bh / 2, bw, bh, 4);
-    else if (isCircle) circle(0, 0, spec.size);
-    else if (isStickman) drawStickman(0, bh / 2, spec.size, rgb);
+    else if (isCircle) circle(0, 0, bw);
+    else if (isStickman) drawStickman(0, bh / 2, bh, rgb);
     if (labelText) {
       fill(255); noStroke(); textAlign(CENTER, CENTER); textSize(12);
       text(labelText, 0, 0);
@@ -1511,8 +1852,8 @@ function drawBody(spec) {
     cx = isBoxed ? (safeX + bw / 2) : safeX;
     cy = isBoxed ? (safeY + bh / 2) : safeY;
     if (isRect) rect(safeX, safeY, bw, bh, 4);
-    else if (isCircle) circle(safeX, safeY, spec.size);
-    else if (isStickman) drawStickman(safeX, safeY, spec.size, rgb);
+    else if (isCircle) circle(safeX, safeY, bw);
+    else if (isStickman) drawStickman(safeX, safeY, bh, rgb);
     else if (isTree) {
       // Trunk: centered brown rect, bottom 30% of bh, width ~25% of bw.
       var trunkW = Math.max(12, bw * 0.22);
@@ -1546,11 +1887,11 @@ function drawBody(spec) {
     }
     else if (isPulley) {
       // Wheel: outer circle filled, hub ring, axle dot.
-      var r = spec.size / 2;
+      var r = bw / 2;
       fill(rgb[0], rgb[1], rgb[2]);
       stroke(30, 41, 59);
       strokeWeight(2);
-      circle(safeX, safeY, spec.size);
+      circle(safeX, safeY, bw);
       noFill();
       stroke(30, 41, 59);
       strokeWeight(1.5);
@@ -1600,8 +1941,8 @@ function drawBody(spec) {
       var labelY;
       if (isStickman) labelY = safeY + 14;
       else if (isTree) labelY = safeY + bh + 10;
-      else if (isPulley) labelY = safeY + spec.size / 2 + 14;
-      else if (spec.label_below && isCircle) labelY = safeY + spec.size / 2 + 12;
+      else if (isPulley) labelY = safeY + bw / 2 + 14;
+      else if (spec.label_below && isCircle) labelY = safeY + bw / 2 + 12;
       else if (spec.label_below && (isRect || isBoxed)) labelY = safeY + bh + 12;
       else if (spec.label_above && (isRect || isBoxed)) labelY = safeY - 10;
       else labelY = cy;
@@ -1632,6 +1973,50 @@ function drawLabel(spec) {
   if (!resolved) return;
   // Phase 2 solver: prefer solver-resolved position when host wrote one.
   var pos = spec._solverPosition || spec.position;
+
+  // position_expr — live variable-driven position, the label's own version of
+  // drawBody's position_expr (see the block above drawBody's pos resolution).
+  // Until now only a label's TEXT could react to a slider ("theta = {theta}
+  // deg"), while the symbol naming a moving object sat frozen at its authored
+  // coordinate — a unit-circle angle glyph beside a point riding the rim had
+  // no way to ride along with it, so authors were forced to fake the anchor
+  // via the owning primitive's own label field instead of a real label.
+  //
+  // Reads PM_liveExprVars() — the SAME merged variables+derived scope
+  // PM_interpolate and drawBody's position_expr use — so a label's text and
+  // its own position can never disagree about the value they describe.
+  //
+  // Precedence (documented here because it is not obvious): an authored
+  // position_expr WINS over _solverPosition. The de-overlap solver resolves
+  // positions from the state's static layout and cannot see expression-driven
+  // geometry (open scar:
+  // pcpl_solver_cannot_register_expression_driven_vector_primitives_as_obstacles)
+  // — its slot for this label is therefore stale the instant the driving
+  // variable moves, so a label that explicitly asks to track a live value
+  // must beat it. spec.position remains the last-resort fallback exactly like
+  // drawBody: a non-finite eval (malformed expression, or missing vars) keeps
+  // today's static authored position rather than vanishing the label.
+  if (spec.position_expr) {
+    var lblVars = PM_liveExprVars();
+    var lblX = (spec.position_expr.x != null) ? PM_safeEval(String(spec.position_expr.x), lblVars) : pos.x;
+    var lblY = (spec.position_expr.y != null) ? PM_safeEval(String(spec.position_expr.y), lblVars) : pos.y;
+    if (isFinite(lblX) && isFinite(lblY)) pos = { x: lblX, y: lblY };
+  }
+
+  // CP-A (F7/F11) — plane_id: pos (the literal spec.position OR the
+  // position_expr result above) is DATA and is transformed through the
+  // plane. This is the tracking-label contract: a label that carries BOTH
+  // plane_id and position_expr evaluates position_expr in DATA coordinates,
+  // never pixels — a pixel-space reading would force hand-carried scale
+  // factors back into authored expressions, exactly what F1 exists to
+  // remove. Runs AFTER position_expr so a live-tracking label (e.g. a curve
+  // label riding a domain-driven x) resolves in one step. Inert when
+  // plane_id is absent/unregistered (gate §11).
+  if (spec.plane_id) {
+    var lblPx = PM_planeResolve(spec, pos.x, pos.y);
+    if (lblPx) pos = lblPx;
+  }
+
   var size = spec.font_size || 14;
   var color = spec.color || '#D4D4D8';
   var rgb = PM_hexToRgb(color);
@@ -1799,6 +2184,489 @@ function drawSurface(spec) {
       friction: spec.friction || { mu_s: 0, mu_k: 0 }
     };
   }
+}
+
+// ── cartesian_plane (CP-A, F1-F7) ─────────────────────────────────────────
+// bug_class: pcpl_has_no_coordinate_frame_so_every_graph_expression_carries_its_own_scale.
+// Registers a data<->pixel transform other primitives resolve through
+// (PM_planeResolve below) — the SAME registry pattern drawSurface uses for
+// PM_surfaceRegistry/attach_to_surface, instanced for a coordinate frame
+// instead of a line segment (D1). Nothing here is a new mechanism.
+//
+// D5 — clamp a value into [lo, hi]. Used for F2's origin resolution: clamping
+// 0 into the axis range gives the origin INSIDE the frame when the range
+// straddles 0, and the nearer EDGE when it does not (a range entirely > 0
+// clamps to its own min; entirely < 0 clamps to its own max).
+function PM_clamp(v, lo, hi) {
+  return Math.min(Math.max(v, lo), hi);
+}
+
+function PM_gcd(a, b) {
+  a = Math.abs(a); b = Math.abs(b);
+  while (b) { var t = b; b = a % b; a = t; }
+  return a || 1;
+}
+
+// F3/D5 — tick label formatter. Ticks are AUTHORED (x_tick/y_tick, a data
+// step) and this ONLY formats the value at each authored tick — it never
+// invents a step ("auto-nice"), so a gate can check it without re-implementing
+// a nicing algorithm. mode is a closed enum: 'number' | 'pi' | 'none'.
+// 'pi' expresses value as a REDUCED fraction of PI: the smallest denominator
+// D in 1..12 such that (value/PI)*D rounds to an integer within 1e-6 — exact
+// for every authored case (PI/2, PI/3, PI/4, PI, ...; every x_tick a math
+// concept would author is a rational multiple of PI). 'number' is a fixed
+// tick_decimals toFixed — deliberately NOT the slider's own
+// toFixed(step<1?1:0) formatter (D8: a coordinate readout owns its own
+// precision, not the slider caption's).
+function PM_formatTickLabel(value, mode, decimals) {
+  if (mode === 'none') return '';
+  if (mode === 'pi') {
+    if (Math.abs(value) < 1e-9) return '0';
+    var ratio = value / Math.PI;
+    var bestN = null, bestD = 1;
+    for (var D = 1; D <= 12; D++) {
+      var n = Math.round(ratio * D);
+      if (Math.abs(ratio * D - n) < 1e-6) { bestN = n; bestD = D; break; }
+    }
+    // PM_fmtNum (Rule 34c, engine-round extension of bug_class
+    // ascii_minus_in_oncanvas_math_from_tofixed — founder_proxy P3-2 named
+    // THIS formatter by name as a contributing site) — not a clean rational
+    // multiple — approximate, never silently wrong, but the glyph must still
+    // be the same Unicode minus every other surface on this plane uses.
+    if (bestN === null) return PM_fmtNum(ratio, 2) + 'π';
+    var g = PM_gcd(bestN, bestD);
+    var num = bestN / g, den = bestD / g;
+    var sign = num < 0 ? '−' : '';
+    var absNum = Math.abs(num);
+    var body = (absNum === 1) ? 'π' : (absNum + 'π');
+    return (den === 1) ? (sign + body) : (sign + body + '/' + den);
+  }
+  // bug_class cartesian_plane_tick_values_enumerate_from_range_min_so_every_
+  // axis_label_misreports_its_own_gridline — the pi branch above already
+  // clamped near-zero to a clean '0'; the numeric branch never did, so a mark
+  // that is mathematically zero (or landed a float epsilon off zero) could
+  // round to the sign-preserving '-0' (e.g. (-0.4).toFixed(0) === '-0' in
+  // JS). PM_fmtNum's own EPS clamp (identical threshold) now does this same
+  // job AND emits the real Unicode minus for every genuine negative tick —
+  // one funnel, not two independently-maintained near-zero guards.
+  return PM_fmtNum(value, (typeof decimals === 'number') ? decimals : 0);
+}
+
+// D5 — pure enumeration of tick DATA values from rangeMin to rangeMax
+// stepping by tick (tick <= 0 → no ticks). Shared by the gridline / tick-mark
+// / tick-label passes below AND independently testable (check:cartesian-plane
+// §3) with no p5 dependency.
+//
+// bug_class cartesian_plane_tick_values_enumerate_from_range_min_so_every_
+// axis_label_misreports_its_own_gridline — the previous body walked
+// rangeMin, rangeMin+tick, rangeMin+2*tick, ..., i.e. offsets from
+// wherever the AUTHOR happened to set rangeMin, not from a round data-space
+// coordinate. A gridline drawn at that value but LABELLED by
+// PM_formatTickLabel's toFixed() rounding is a label that names a number
+// its own mark is not at (off by up to a full step; the origin could be
+// skipped or double-counted entirely). A tick label is a CLAIM about where
+// the gridline sits, so the values must be pre-snapped to exact multiples
+// of the tick step (measured from 0 — the number line's own origin, not the
+// authored viewport) before either the mark or the label is built from them.
+//
+// Enumerated by INDEX (i * tick), not by repeated t += tick accumulation,
+// so float drift never creeps in over a long range, and i=0 always yields
+// an exact 0 (multiplying by zero is exact in IEEE754 — no epsilon needed
+// to land the origin tick cleanly).
+//
+// Ruling on the old Math.min(t, rangeMax) boundary clamp: DROPPED, not
+// kept. That clamp forced a final tick onto rangeMax even when rangeMax is
+// not itself a multiple of the step — an unsnapped mark wearing a rounded
+// label, the exact same defect in miniature. The correct behaviour (matches
+// every graphing tool a student has seen) is: a boundary tick is drawn only
+// when the range genuinely lands on one; otherwise the axis simply stops
+// short of the edge with no tick there.
+function PM_planeTickValues(rangeMin, rangeMax, tick) {
+  var out = [];
+  if (!(tick > 0)) return out;
+  var EPS = 1e-9;
+  var startIndex = Math.ceil((rangeMin / tick) - EPS);
+  for (var i = startIndex; i * tick <= rangeMax + EPS; i++) {
+    out.push(i * tick);
+  }
+  return out;
+}
+
+// D1 — the transform, built ONCE per plane per frame. PURE (no p5, no global
+// registry write) so it is independently testable; drawCartesianPlane below
+// is the only caller that stores the result into PM_planeRegistry.
+// D2 — equal_scale SHRINKS the longer axis's pixel extent to match the
+// shorter one (k = min(w/dx, h/dy)) and CENTRES the smaller effective rect
+// inside the authored viewport; it never grows past the authored rect
+// (growing would silently invade the slider band / caption zone, Rule 34d).
+// D3 — LIVE ranges (added 2026-08-08). A range bound may be authored as a
+// numeric min/max OR as a min_expr/max_expr string evaluated against the live
+// scope, so a plane can RE-ZOOM as a variable changes. The motivating case is a
+// magnifier inset: a fixed window showing a quantity that shrinks with n
+// eventually shows nothing, so the honest picture holds the SUBJECT at constant
+// on-screen size and lets the inset's own axis numbers shrink instead — the
+// measurement is then legible at every n, which a fixed window cannot be.
+// A bad/NaN expression falls back to the numeric bound, never to a degenerate
+// range: a plane that fails to resolve keeps its authored window rather than
+// vanishing, because a missing frame reads as a broken sim.
+// NOTE: no backticks in this comment — the whole renderer body is emitted from
+// a template literal, and a stray backtick closes it (check:renderer-backticks).
+function PM_planeResolveBound(rangeObj, key, vars) {
+  var exprKey = key + '_expr';
+  if (rangeObj && typeof rangeObj[exprKey] === 'string') {
+    var v = PM_safeEval(rangeObj[exprKey], vars || {});
+    if (isFinite(v)) return v;
+  }
+  return rangeObj ? rangeObj[key] : undefined;
+}
+
+// ── Dual-bound-authored trap warning (bug_class E-2 /
+// pcpl_x_domain_precedence_disagreed_with_plane_range_precedence_and_
+// failed_silently, founder Checkpoint B cycle 2, 2026-08-08) — an author
+// who writes BOTH a numeric bound (e.g. x_domain.min) AND its *_expr
+// sibling (x_domain.min_expr) on the SAME rangeObj gets the expression
+// (PM_planeResolveBound's own precedence, D3, now unified across every
+// caller — see drawFunctionPlot below) with the numeric silently ignored.
+// That precedence is correct, but SILENT correctness is still a trap: the
+// STATE_4 magnifier incident measured exactly this — an authored numeric
+// x_domain.min:1.75 sat beside a min_expr computing the live re-zoom
+// window, the numeric read as though it were live, and the actual symptom
+// was not 'the expression got ignored' but 'the curve does not draw at
+// all' (240 samples spread across the WIDE numeric domain instead of the
+// tiny live one, so only a sliver of them ever lands inside the plane's
+// own zoomed viewport). Warn ONCE per (state, primitive, bound) — never
+// per-frame — because PM_planeBuildTransform runs every plane every frame
+// (D1) and drawFunctionPlot runs every function_plot every frame; an
+// unguarded console.warn at either site would spam the console at 60 Hz.
+// The map is keyed by state so a genuine re-author (editing the JSON
+// between page loads) is caught again on the next load; it is never
+// cleared mid-session (the underlying JSON does not change during a
+// session) so a teacher revisiting the same state does not re-spam either.
+var PM_dualBoundWarned = {};
+function PM_warnIfDualBoundAuthored(primitiveId, boundLabel, rangeObj, key) {
+  if (!rangeObj) return;
+  var exprKey = key + '_expr';
+  if (typeof rangeObj[key] === 'undefined' || typeof rangeObj[exprKey] !== 'string') return;
+  var warnKey = PM_currentState + '|' + (primitiveId || '(no id)') + '|' + boundLabel;
+  if (PM_dualBoundWarned[warnKey]) return;
+  PM_dualBoundWarned[warnKey] = true;
+  console.warn('[pcpl] "' + (primitiveId || '(no id)') + '" authors BOTH ' + boundLabel + '=' +
+    rangeObj[key] + ' AND ' + boundLabel + '_expr="' + rangeObj[exprKey] +
+    '" on the same bound — the EXPRESSION wins (PM_planeResolveBound precedence); the numeric value is silently ignored. Author only one.');
+}
+
+function PM_planeBuildTransform(spec, vars) {
+  var viewport = (spec && spec.viewport) || { x: 70, y: 78, w: 660, h: 372 };
+  var xRangeRaw = (spec && spec.x_range) || { min: -6.5, max: 6.5 };
+  var yRangeRaw = (spec && spec.y_range) || { min: -4, max: 4 };
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'x_range.min', xRangeRaw, 'min');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'x_range.max', xRangeRaw, 'max');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'y_range.min', yRangeRaw, 'min');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'y_range.max', yRangeRaw, 'max');
+  var xRange = {
+    min: PM_planeResolveBound(xRangeRaw, 'min', vars),
+    max: PM_planeResolveBound(xRangeRaw, 'max', vars),
+  };
+  var yRange = {
+    min: PM_planeResolveBound(yRangeRaw, 'min', vars),
+    max: PM_planeResolveBound(yRangeRaw, 'max', vars),
+  };
+  var dx = xRange.max - xRange.min;
+  var dy = yRange.max - yRange.min;
+  if (!(dx > 0) || !(dy > 0)) return null; // degenerate range — nothing to register or draw
+
+  var equalScale = !!(spec && spec.equal_scale);
+  var scaleX, scaleY, originPxX, originPxY, effViewport;
+  if (equalScale) {
+    var k = Math.min(viewport.w / dx, viewport.h / dy);
+    var effW = dx * k, effH = dy * k;
+    scaleX = k; scaleY = k;
+    originPxX = viewport.x + (viewport.w - effW) / 2;
+    originPxY = viewport.y + (viewport.h - effH) / 2;
+    effViewport = { x: originPxX, y: originPxY, w: effW, h: effH };
+  } else {
+    scaleX = viewport.w / dx;
+    scaleY = viewport.h / dy;
+    originPxX = viewport.x;
+    originPxY = viewport.y;
+    effViewport = { x: viewport.x, y: viewport.y, w: viewport.w, h: viewport.h };
+  }
+
+  function toPx(x, y) {
+    return {
+      x: originPxX + (x - xRange.min) * scaleX,
+      // canvas y grows DOWN, data y grows UP — this flip is the ONE place it
+      // lives (D1); no authored expression ever carries it (§10c of the spec
+      // driver).
+      y: originPxY + (yRange.max - y) * scaleY
+    };
+  }
+  function toData(px, py) {
+    return {
+      x: xRange.min + (px - originPxX) / scaleX,
+      y: yRange.max - (py - originPxY) / scaleY
+    };
+  }
+
+  return {
+    toPx: toPx, toData: toData,
+    viewport: effViewport, xRange: xRange, yRange: yRange,
+    scaleX: scaleX, scaleY: scaleY
+  };
+}
+
+// F7 — the single resolution funnel every plane_id-carrying primitive uses.
+// spec.plane_id must name a plane registered THIS FRAME by drawCartesianPlane
+// (Pass 0.25 runs before every consumer pass: bodies Pass 1, vectors/labels/
+// locus_trace Pass 3). Returns the pixel-space {x,y} for the DATA-space
+// (dataX, dataY) pair, or null when spec carries no plane_id, the named plane
+// was not drawn this frame/state, or the inputs are non-finite — inert by
+// construction when plane_id is absent (the fleet-safety guarantee, gate §11):
+// every existing call site that gates a plane transform behind spec.plane_id
+// truthiness runs zero new code for the 7 baseline-locked parametric concepts,
+// none of which authors plane_id.
+function PM_planeResolve(spec, dataX, dataY) {
+  if (!spec || !spec.plane_id) return null;
+  var plane = PM_planeRegistry[spec.plane_id];
+  if (!plane) return null;
+  if (!isFinite(dataX) || !isFinite(dataY)) return null;
+  return plane.toPx(dataX, dataY);
+}
+
+// CP-B (F8-F10) — read-only metadata accessor for a registered plane's own
+// ranges. NOT a transform: it performs no coordinate math and calls neither
+// toPx nor toData — it only reports the xRange/yRange PM_planeBuildTransform
+// already computed and drawCartesianPlane already stored (D1: the transform
+// lives in ONE place). function_plot needs this for two things the point-only
+// PM_planeResolve funnel cannot supply: defaulting x_domain to the plane's
+// own x_range, and D4's break-on-range-exit check against y_range.
+function PM_planeRangesOf(planeId) {
+  var plane = PM_planeRegistry[planeId];
+  return plane ? { xRange: plane.xRange, yRange: plane.yRange } : null;
+}
+
+// CP-B (F12) — the INVERSE of PM_planeResolve: pixel -> DATA. Needed by
+// plot_point's drag path (a mouse position must become a data-space value to
+// drive drag.bind_variable). Same registry, same inert-when-missing contract
+// as PM_planeResolve, calling the SAME plane.toData PM_planeBuildTransform
+// already built (D1) — this is that transform's existing mirror, not a new one.
+function PM_planeResolveInverse(spec, px, py) {
+  if (!spec || !spec.plane_id) return null;
+  var plane = PM_planeRegistry[spec.plane_id];
+  if (!plane) return null;
+  if (!isFinite(px) || !isFinite(py)) return null;
+  return plane.toData(px, py);
+}
+
+// F3 fix (bug_class: pcpl_plane_children_paint_past_their_owning_planes_
+// viewport_when_resolved_from_a_data_point_outside_the_planes_own_range,
+// BLOCKING, founder_proxy Checkpoint B live-drive 2026-08-08) — D1's
+// transform performs a pure LINEAR map with no bounds check by design: a
+// data point outside the plane's own x_range/y_range is a legitimate
+// EXTRAPOLATION some callers genuinely need (PM_extendLineToFrame's
+// data-space Liang-Barsky clip for extend:'frame' relies on exactly this).
+// But nothing stopped the RESULT of that extrapolation from painting
+// straight across the whole 760x500 canvas: STATE_4's plane_inset (a
+// riemann_bars windowed to y_range [3,4]) drew its rectangles' baseline at
+// data y=0, which the inset's own toPx mapped to logical py 668 — off the
+// 500px canvas — and painted a bright bar clean through a SIBLING plane,
+// the curve, the region and the x-axis (measured). Two planes sharing one
+// canvas make this mandatory, not optional.
+//
+// A plane owns a pixel rect (its own registered .viewport, PM_planeRegistry
+// [planeId].viewport); every child's drawn GEOMETRY (fills/strokes — bars,
+// region polygons, curve/chord/tangent lines, the plot_point marker) is
+// bounded to that rect with a real canvas clip, applied via this ONE
+// shared pair — called from inside each plane-child draw function, around
+// its own geometry only, never per-primitive-type reimplemented. Text
+// READOUTS are deliberately left OUTSIDE this clip: PM_clampOffsetToCanvas
+// + the ink-zone/collision resolver already keep them legible in
+// full-CANVAS space, a separately-engineered concern this fix must not
+// disturb. p5's push()/pop() already save/restore the 2D drawingContext,
+// but this helper calls save()/restore() directly so its scope can start
+// and end INSIDE a function's own push()/pop() bracket — around geometry
+// only — without also silently clipping that same bracket's text draws.
+function PM_planeClipGeometryBegin(planeId) {
+  var plane = PM_planeRegistry[planeId];
+  if (!plane || !plane.viewport) return false;
+  drawingContext.save();
+  drawingContext.beginPath();
+  drawingContext.rect(plane.viewport.x, plane.viewport.y, plane.viewport.w, plane.viewport.h);
+  drawingContext.clip();
+  return true;
+}
+function PM_planeClipGeometryEnd(didClip) {
+  if (didClip) drawingContext.restore();
+}
+
+function drawCartesianPlane(spec) {
+  if (!spec || !spec.id) return;
+  // D6 — both standard brackets, before any drawing. Third recurrence of the
+  // omission class on this renderer (drawAngleArc/drawLocusTrace missed the
+  // focal channel; drawVector missed both) — see drawVector's header comment.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // D3 — pass the live scope so min_expr/max_expr range bounds can re-zoom.
+  var plane = PM_planeBuildTransform(spec, PM_liveVarsWithDerived());
+  if (!plane) return;
+  PM_planeRegistry[spec.id] = plane;
+
+  var xRange = plane.xRange, yRange = plane.yRange, effViewport = plane.viewport;
+  var toPx = plane.toPx;
+
+  // F2 — origin: inside the frame when the range straddles 0, clamped to the
+  // nearer edge when it does not.
+  var originDataX = PM_clamp(0, xRange.min, xRange.max);
+  var originDataY = PM_clamp(0, yRange.min, yRange.max);
+
+  var lineColor = PM_hexToRgb(spec.color || '#94A3B8');
+  var gridColor = PM_hexToRgb(spec.grid_color || '#1E293B');
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#94A3B8';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+
+  var xTick = (typeof spec.x_tick === 'number') ? spec.x_tick : 0;
+  var yTick = (typeof spec.y_tick === 'number') ? spec.y_tick : 0;
+  var EPS = 1e-9;
+
+  // F4 — gridlines, opt-in, dim, drawn BEHIND everything else: this whole
+  // primitive runs in Pass 0.25, before bodies/vectors/labels (Pass 1/3), so
+  // "behind everything" holds by pass order alone.
+  if (spec.gridlines) {
+    stroke(gridColor[0], gridColor[1], gridColor[2], alpha255 * 0.6);
+    strokeWeight(1);
+    // Gridline-ink obstacle registration — SOFT tier (bug_class
+    // readout_resolver_predicate_saturated_by_gridline_ink_so_it_always_
+    // returns_true, CRITICAL, engine round 2026-08-07/08). Registered into
+    // PM_planeGridInkZones, NOT the hard PM_planeInkZones a curve/axis/
+    // sibling-readout collision uses.
+    //
+    // Why gridlines cannot be a HARD obstacle, geometrically (not a tuning
+    // call): a vertical gridline's registered band is, by construction,
+    // narrow in x but spans the plane's FULL height in y (same for a
+    // horizontal gridline in x) — an accurate record of where the drawn
+    // pixel really is, unlike a diagonal curve/chord's own bbox (which
+    // PM_registerLineInk subdivides because a SINGLE box around a long
+    // diagonal blankets empty corners the line never touches). Subdividing a
+    // straight axis-aligned gridline along its OWN length does not change
+    // this: each sub-segment still spans padding-to-padding in the
+    // perpendicular axis, and the union of the pieces still covers the same
+    // full-length band. The actual saturation is arithmetic: on a plane with
+    // x_tick pitch P (measured ~51px on graph_transformations' authored
+    // 660px/13-unit plane) and a readout box of width W (~87px for a
+    // 2-decimal coordinate pair at textSize 12), whenever W > P - 2*pad the
+    // box CANNOT be positioned anywhere without straddling at least one
+    // gridline column, by the pigeonhole principle — true at every padding
+    // width, including a padding of zero. Folding that into the SAME boolean
+    // OR as "crosses the bold x-axis" or "sits on a curve" made
+    // PM_readoutCollides return true for every candidate on any plane whose
+    // gridlines are enabled and whose tick pitch is smaller than a readout's
+    // own width — a predicate true for every input is not a predicate (it
+    // cannot filter a search, so PM_readoutResolveOffset's flip fired
+    // unconditionally even when the FIRST, authored candidate had no real
+    // collision at all — the "9 of 9 authored offsets inverted" defect).
+    // Demoting gridlines to the least-overlap-area TIE-BREAK (see
+    // PM_readoutResolveOffset below) keeps the predicate meaningful — an
+    // authored offset that only grazes a dim, 60%-alpha decorative gridline
+    // is accepted outright; one that lands on the bold axis line, a curve
+    // stroke, or another readout's own box is still rejected exactly as
+    // before, since none of THOSE moved tier.
+    var GRID_INK_HALF = 4;
+    var gxTicks = PM_planeTickValues(xRange.min, xRange.max, xTick);
+    for (var gi = 0; gi < gxTicks.length; gi++) {
+      var gTop = toPx(gxTicks[gi], yRange.max), gBot = toPx(gxTicks[gi], yRange.min);
+      line(gTop.x, gTop.y, gBot.x, gBot.y);
+      PM_registerGridInkZone(spec.id, {
+        x0: gTop.x - GRID_INK_HALF, y0: Math.min(gTop.y, gBot.y),
+        x1: gTop.x + GRID_INK_HALF, y1: Math.max(gTop.y, gBot.y)
+      });
+    }
+    var gyTicks = PM_planeTickValues(yRange.min, yRange.max, yTick);
+    for (var gj = 0; gj < gyTicks.length; gj++) {
+      var gL = toPx(xRange.min, gyTicks[gj]), gR = toPx(xRange.max, gyTicks[gj]);
+      line(gL.x, gL.y, gR.x, gR.y);
+      PM_registerGridInkZone(spec.id, {
+        x0: Math.min(gL.x, gR.x), y0: gL.y - GRID_INK_HALF,
+        x1: Math.max(gL.x, gR.x), y1: gL.y + GRID_INK_HALF
+      });
+    }
+  }
+
+  // F2 — axis lines.
+  stroke(lineColor[0], lineColor[1], lineColor[2], alpha255);
+  strokeWeight(1.5);
+  var yAxisTop = toPx(originDataX, yRange.max), yAxisBot = toPx(originDataX, yRange.min);
+  line(yAxisTop.x, yAxisTop.y, yAxisBot.x, yAxisBot.y);
+  var xAxisL = toPx(xRange.min, originDataY), xAxisR = toPx(xRange.max, originDataY);
+  line(xAxisL.x, xAxisL.y, xAxisR.x, xAxisR.y);
+
+  // F3 — ticks + tick labels. D5: ticks are AUTHORED (x_tick/y_tick is a
+  // data-space step); x_tick_labels/y_tick_labels select the FORMATTER only.
+  var tickDecimals = (typeof spec.tick_decimals === 'number') ? spec.tick_decimals : 0;
+  var xLabelMode = spec.x_tick_labels || 'number';
+  var yLabelMode = spec.y_tick_labels || 'number';
+  var tickPx = 5;
+  textSize(10);
+  var xTicks = PM_planeTickValues(xRange.min, xRange.max, xTick);
+  for (var xi = 0; xi < xTicks.length; xi++) {
+    var txv = xTicks[xi];
+    if (Math.abs(txv - originDataX) < EPS) continue; // the origin itself carries no separate tick
+    stroke(lineColor[0], lineColor[1], lineColor[2], alpha255);
+    strokeWeight(1);
+    var tpX = toPx(txv, originDataY);
+    line(tpX.x, tpX.y - tickPx, tpX.x, tpX.y + tickPx);
+    if (xLabelMode !== 'none') {
+      noStroke();
+      fill(lineColor[0], lineColor[1], lineColor[2], alpha255);
+      textAlign(CENTER, TOP);
+      text(PM_formatTickLabel(txv, xLabelMode, tickDecimals), tpX.x, tpX.y + tickPx + 2);
+    }
+  }
+  var yTicks = PM_planeTickValues(yRange.min, yRange.max, yTick);
+  for (var yi = 0; yi < yTicks.length; yi++) {
+    var tyv = yTicks[yi];
+    if (Math.abs(tyv - originDataY) < EPS) continue;
+    stroke(lineColor[0], lineColor[1], lineColor[2], alpha255);
+    strokeWeight(1);
+    var tpY = toPx(originDataX, tyv);
+    line(tpY.x - tickPx, tpY.y, tpY.x + tickPx, tpY.y);
+    if (yLabelMode !== 'none') {
+      noStroke();
+      fill(lineColor[0], lineColor[1], lineColor[2], alpha255);
+      textAlign(RIGHT, CENTER);
+      text(PM_formatTickLabel(tyv, yLabelMode, tickDecimals), tpY.x - tickPx - 3, tpY.y);
+    }
+  }
+
+  // F6 — axis titles, quadrant-safe: the x-title never lands in the slider
+  // band (PM_ZONES.CONTROL_ZONE.y = 460), the y-title never rises above the
+  // (possibly equal_scale-shrunk) effective viewport's own top edge.
+  noStroke();
+  fill(lineColor[0], lineColor[1], lineColor[2], alpha255);
+  textSize(12);
+  if (spec.x_label) {
+    var xtEnd = toPx(xRange.max, originDataY);
+    var xLabelY = Math.min(xtEnd.y + 16, PM_ZONES.CONTROL_ZONE.y - 8);
+    textAlign(RIGHT, TOP);
+    text(String(spec.x_label), xtEnd.x, xLabelY);
+  }
+  if (spec.y_label) {
+    var ytEnd = toPx(originDataX, yRange.max);
+    textAlign(LEFT, BOTTOM);
+    text(String(spec.y_label), ytEnd.x + 6, Math.max(ytEnd.y - 4, effViewport.y - 2));
+  }
+
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
 }
 
 function drawForceArrow(spec, physics, origin) {
@@ -2183,6 +3051,19 @@ function drawForceComponents(spec, physics) {
 // comparison_panel nested dispatch.
 function drawVector(spec, ox, oy) {
   ox = ox || 0; oy = oy || 0;
+  // peter_parker:renderer_primitives, 2026-08-05 — drawVector was the last
+  // visible-mark primitive with NEITHER standard bracket. Every sibling
+  // (drawBody :1217, drawLabel :1678, drawAnnotation :1718, drawSurface :1783,
+  // drawForceArrow :1882, drawLocusTrace :2409, drawFormulaBox :2774) gates on
+  // PM_animationGate and consumes PM_focalEmphasis; this one did neither, so
+  // appear_at_ms/animate_in_ms authored on a vector were SILENTLY INERT and a
+  // vector could be neither brightened as the state's focal nor dimmed as a
+  // peer. Both halves fixed together — same omission, same file.
+  // Scars: pcpl_vector_and_angle_arc_ignore_appear_at_ms_so_authored_reveal_chains_no_op,
+  //        pcpl_drawvector_has_no_focal_glow_channel.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
   var rgb = PM_hexToRgb(spec.color || '#8B5CF6');
   // Endpoints: either a literal {x,y} OR a string anchor like "mass_1.top" /
   // "pulley.bottom" that resolves against the (animated) body registry so
@@ -2195,17 +3076,31 @@ function drawVector(spec, ox, oy) {
   // to (0,0). Resolve it via PM_safeEvalPoint (literal/anchor paths unchanged).
   var vLive = null;
   var from = spec.from;
+  // CP-A (F7) — an anchor-resolved endpoint ("block.top") is ALREADY absolute
+  // pixel space (read from PM_bodyRegistry/PM_surfaceRegistry, themselves
+  // screen positions) and must never be run through the plane transform a
+  // second time; a magnitude/direction-synthesized endpoint is a pixel delta
+  // off an already-resolved 'from' for the same reason. Only a literal {x,y}
+  // or an *_expr point is authored DATA under plane_id. Tracked per endpoint
+  // so drawVector's existing three-path precedence is untouched.
+  var fromIsPixelResolved = false;
   if (typeof from === 'string') {
     from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
+    fromIsPixelResolved = true;
   } else if ((from == null || typeof from.x !== 'number') && typeof spec.from_expr === 'string') {
     vLive = vLive || PM_liveVarsWithDerived();
     from = PM_safeEvalPoint(spec.from_expr, vLive);
   }
   if (!from || typeof from.x !== 'number') from = { x: 0, y: 0 };
+  if (spec.plane_id && !fromIsPixelResolved) {
+    var fromPx = PM_planeResolve(spec, from.x, from.y);
+    if (fromPx) from = fromPx;
+  }
   var to;
+  var toIsPixelResolved = false;
   if (spec.to != null) {
     to = spec.to;
-    if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+    if (typeof to === 'string') { to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry); toIsPixelResolved = true; }
   } else if (typeof spec.to_expr === 'string') {
     vLive = vLive || PM_liveVarsWithDerived();
     to = PM_safeEvalPoint(spec.to_expr, vLive) || { x: from.x, y: from.y };
@@ -2221,17 +3116,30 @@ function drawVector(spec, ox, oy) {
     if (!isFinite(dirDegV)) dirDegV = 0;
     var radV = dirDegV * Math.PI / 180;
     // Physics y-up → canvas y-down: flip y (matches drawForceArrow line 1007).
+    // Deliberately a PIXEL delta off 'from' (which is already plane-resolved
+    // above when plane_id is set) — magnitude_expr/direction_deg are not
+    // plane-scaled by this dispatch (open boundary, see CP-A report).
     to = { x: from.x + magV * Math.cos(radV), y: from.y - magV * Math.sin(radV) };
+    toIsPixelResolved = true;
   } else {
     to = { x: 0, y: 0 };
+  }
+  if (spec.plane_id && !toIsPixelResolved) {
+    var toPx = PM_planeResolve(spec, to.x, to.y);
+    if (toPx) to = toPx;
   }
   var fx = from.x + ox, fy = from.y + oy;
   var tx = to.x + ox, ty = to.y + oy;
 
   push();
-  stroke(rgb[0], rgb[1], rgb[2]);
+  var vAlpha = 255 * gate.alpha * emph.alphaMul;
+  stroke(rgb[0], rgb[1], rgb[2], vAlpha);
   strokeWeight(2);
-  fill(rgb[0], rgb[1], rgb[2]);
+  fill(rgb[0], rgb[1], rgb[2], vAlpha);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#8B5CF6';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
 
   // style: 'dashed' = dashed line, no arrowhead.
   // style: 'line' OR hide_arrowhead: true = plain line (for ropes, strings).
@@ -2254,8 +3162,28 @@ function drawVector(spec, ox, oy) {
   if (spec.label) {
     noStroke();
     textSize(11);
-    textAlign(CENTER, BOTTOM);
-    text(spec.label, (fx + tx) / 2, (fy + ty) / 2 - 4);
+    // peter_parker:renderer_primitives, 2026-08-05 —
+    // pcpl_vector_label_at_segment_midpoint_is_bisected_by_a_vertical_segment.
+    // The label sat at the exact midpoint, 4px up. That clears a HORIZONTAL
+    // segment (which is why it survived so long — nearly every labelled vector
+    // in the fleet is horizontal or diagonal) but on a VERTICAL segment the
+    // stroke runs straight through the glyph: the "y" on a height segment read
+    // as a downward chevron, i.e. as a stray arrowhead, at 100% zoom.
+    // Near-vertical segments now offset ACROSS the segment instead. Deliberately
+    // scoped to the near-vertical case so every existing horizontal/diagonal
+    // label keeps its authored position and the fleet re-baseline stays small.
+    var lmx = (fx + tx) / 2, lmy = (fy + ty) / 2;
+    if (Math.abs(ty - fy) > Math.abs(tx - fx)) {
+      textAlign(LEFT, CENTER);
+      text(spec.label, lmx + 7, lmy);
+    } else {
+      textAlign(CENTER, BOTTOM);
+      text(spec.label, lmx, lmy - 4);
+    }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
   }
   pop();
 }
@@ -2312,11 +3240,11 @@ function PM_choreoVarsAtTime(tMs) {
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
   var choreo = (stateData && stateData.variable_choreography) || [];
   var scene = (stateData && stateData.scene_composition) || [];
-  var stateSliderVars = {};
-  for (var si = 0; si < scene.length; si++) {
-    var sp = scene[si];
-    if (sp && sp.type === 'slider' && sp.variable) stateSliderVars[sp.variable] = true;
-  }
+  // CP-B (F5/F12) — "slider" here means "live-control": either a
+  // type:'slider' primitive or a type:'plot_point' with a drag.bind_variable.
+  // See PM_stateLiveControlVars's own header for why this must be ONE
+  // function shared by every consumer instead of four separate scans.
+  var stateSliderVars = PM_stateLiveControlVars(scene);
   var vars = PM_resolveStateVars(PM_currentState) || {};
   for (var sk in PM_sliderValues) {
     if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
@@ -2392,6 +3320,15 @@ function drawLocusTrace(spec) {
     var x = PM_safeEval(spec.x_expr, sampleVars);
     var y = PM_safeEval(spec.y_expr, sampleVars);
     if (!isFinite(x) || !isFinite(y)) { prevPt = null; continue; }
+    // CP-A (F7) — x_expr/y_expr evaluate to a raw (x, y) pair; under
+    // plane_id that pair is DATA and is transformed through the plane before
+    // it becomes a screen point. Inert when plane_id is absent/unregistered
+    // (gate §11) — every existing locus_trace concept authors pixel-space
+    // expressions with no plane_id and is untouched.
+    if (spec.plane_id) {
+      var ltPx = PM_planeResolve(spec, x, y);
+      if (ltPx) { x = ltPx.x; y = ltPx.y; }
+    }
     if (prevPt) {
       var alphaMul = 1;
       if (fadeTail && sampleCount > 1) alphaMul = 0.25 + 0.75 * (i / (sampleCount - 1));
@@ -2399,6 +3336,1723 @@ function drawLocusTrace(spec) {
       line(prevPt.x, prevPt.y, x, y);
     }
     prevPt = { x: x, y: y };
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
+// ── State live-control variables (CP-B, F5/F12) ────────────────────────────
+// A "live-control" variable is one THIS STATE lets a teacher drive directly,
+// right now: a type:'slider' primitive's own 'variable', or a
+// type:'plot_point' primitive's 'drag.bind_variable'. Both write through the
+// SAME PM_sliderValues store and both seize through the SAME PM_userTouched
+// flag (the F5 clause — a plot_point drag must behave EXACTLY like a slider
+// drag: PM_userTouched[bind_variable] = true on a genuine drag, cleared only
+// on a true SET_STATE, same as drawCanvasSlider's own genuine-drag branch
+// below). PM_choreoVarsAtTime, PM_applyChoreography, the SET_STATE handler
+// and the PARAM_UPDATE handler each used to answer "is v a live control of
+// this state" independently and identically (four copies of the same
+// type:'slider' scan) — every one of them needed the SAME widening, because
+// a plot_point drag is a second seizure door none of them could see.
+// Centralised here once so a future live-control primitive (e.g. a CP-D
+// draggable secant endpoint) only widens this ONE function, not four call
+// sites again.
+function PM_stateLiveControlVars(scene) {
+  var out = {};
+  if (!Array.isArray(scene)) return out;
+  for (var i = 0; i < scene.length; i++) {
+    var p = scene[i];
+    if (!p) continue;
+    if (p.type === 'slider' && p.variable) out[p.variable] = true;
+    else if (p.type === 'plot_point' && p.drag && typeof p.drag.bind_variable === 'string') {
+      out[p.drag.bind_variable] = true;
+    }
+  }
+  return out;
+}
+
+// ── Cross-state live-control inheritance gate (bug_class
+// pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_
+// state_on_state_change, founder_proxy Checkpoint B cycle 1, 2026-08-08) ───
+// PM_sliderValues is a durable store — it is written by a genuine canvas
+// drag (drawCanvasSlider/drawPlotPoint) or a PARAM_UPDATE and is NEVER
+// cleared on SET_STATE (only PM_userTouched, the SEIZURE flag, is cleared
+// per-state; PM_sliderValues deliberately survives so the explore state can
+// be left and re-entered without losing what the teacher set — see
+// requirement 2 below). The SET_STATE handler used to overlay
+// PM_sliderValues onto the incoming state's vars for ANY variable that
+// state happens to declare as a live control, with no regard for WHICH
+// state last wrote that value. Rule 25d's reorderable/jumpable state rail
+// means a teacher can arrive at any GUIDED state from the explore
+// sandbox (or from any other state) at any time, so a value dragged on
+// STATE_8's explore sandbox silently overwrote STATE_5's own authored
+// default the instant STATE_5 was opened — measured on
+// definite_integral_as_accumulated_area: drag bound_marker to b=0.279 on
+// STATE_8, click STATE_5 in the rail, STATE_5 opened at b=0.2792 (not its
+// authored b=2), destroying the above/below-the-axis contrast that state
+// exists to teach.
+//
+// Only advance_mode:'interaction_complete' (Rule 31 — the ONE state whose
+// entire job is open-ended manipulation) may BLANKET-inherit a value the
+// teacher set elsewhere, on both first entry and every re-entry. Every
+// OTHER (guided) state opens strictly on its OWN vars — UNLESS the
+// specific variable was itself seized WITHIN THIS SAME STATE VISIT
+// (PM_userTouched[svk] — see the per-variable gate added below, bug_class
+// pcpl_guided_state_drag_evaporates_mid_choreography, quality_auditor
+// round 3, 2026-08-09).
+//
+// WHY THE PER-VARIABLE FLAG, NOT JUST advance_mode: PM_applyChoreography
+// rebuilds vars (via THIS function) on every frame in which ANY
+// choreographed variable in the CURRENT state moves — not just the
+// dragged one. A guided state that drags 'b' (bound_marker) AND
+// choreographs an UNRELATED 'c' (definite_integral_as_accumulated_area's
+// real STATE_5) used to have nothing keeping 'b' alive once c's ramp made
+// PM_applyChoreography rebuild vars from PM_resolveStateVars: the
+// blanket-refused overlay meant a drag-seized 'b' evaporated back to its
+// authored default the instant ANY unrelated choreography ticked — but
+// ONLY while that choreography was still active (once it settled,
+// PM_applyChoreography's own "if (!changed) return" stopped rebuilding at
+// all, so the LAST value drawPlotPoint's own direct computePhysics call
+// had set — the correct dragged one — happened to survive). Measured: drag
+// b=1.2 DURING the c-ramp -> evaporates to 2.0000 within ~1s; the SAME drag
+// AFTER the ramp settles -> correctly holds at 1.2. A drag surviving or
+// dying depending on WHEN the teacher performs it is worse than a
+// consistent failure.
+//
+// PM_userTouched IS the exactly-right flag to gate on: it is wiped to {}
+// ONLY on a genuine isNewState SET_STATE (~PM_userTouched = {}, WP-R5),
+// and set true ONLY by a REAL mouse drag claim on THIS state's own
+// primitive (drawCanvasSlider / drawPlotPoint's genuine-drag branches —
+// the only two write sites in the whole file). So
+// PM_userTouched[svk] === true encodes exactly "svk was dragged during
+// THIS visit to the current state" — never carries across a real state
+// change (the wipe always runs BEFORE this function is ever called again,
+// see the SET_STATE handler's own ordering), so a value seized in STATE_8
+// still cannot survive into STATE_5 (WP-R6's original guarantee, intact);
+// but a value seized WITHIN STATE_5 now correctly survives STATE_5's own
+// unrelated choreography ticks for the rest of that SAME visit (this
+// fix). Re-entering STATE_5 later (a fresh isNewState) still opens on its
+// authored default — seizure never survives an actual state change,
+// guided or explore.
+//
+// Does NOT touch PM_liveDragScope (the genuine-drag rebuild used WITHIN
+// the currently-open state, unaffected by this gate either way) or the
+// PARAM_UPDATE handler (which only ever updates PM_currentState's OWN
+// live control, never a value inherited from a state transition).
+function PM_overlayLiveControlValues(vars, stateData, stateSliderVars) {
+  var explore = !!(stateData && stateData.advance_mode === 'interaction_complete');
+  for (var svk in PM_sliderValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
+      if (explore || PM_userTouched[svk]) {
+        vars[svk] = PM_sliderValues[svk];
+      }
+    }
+  }
+  return vars;
+}
+
+// ── Live drag/seize scope builder (F1 fix — bug_class:
+// pcpl_drag_rebuilds_physics_scope_from_authored_defaults_and_drops_every_
+// other_live_choreography_value, BLOCKING, founder_proxy Checkpoint B
+// live-drive 2026-08-08) ───────────────────────────────────────────────────
+// BEFORE this fix, drawCanvasSlider's and drawPlotPoint's genuine-drag
+// branches each rebuilt "the vars scope" from PM_resolveStateVars(
+// PM_currentState) — the state's AUTHORED DEFAULTS — plus a blanket
+// PM_sliderValues overlay, with NO regard for PM_choreoValues. On a state
+// whose variable_choreography drives a SECOND variable independent of the
+// one being dragged, that second variable's live, already-progressed
+// choreographed value was discarded and replaced by its state-entry
+// default the instant ANY OTHER handle was touched — the seized variable
+// updated correctly, but every unseized live variable snapped backward
+// (measured: definite_integral_as_accumulated_area STATE_5, dragging 'b'
+// reset a fully-choreographed 'c' from 1 back to 0 on the very first
+// drag frame).
+//
+// This mirrors, byte-for-byte, the ALREADY-CORRECT merge idiom
+// PM_applyChoreography uses on every choreography tick: state defaults +
+// overrides, THEN live-control slider/drag values for whatever THIS state
+// authors as a slider or a plot_point drag target, THEN the
+// freshly-stepped choreography value for every variable that is NOT
+// currently seized. A genuine drag must rebuild the SAME frame-live scope
+// the sketch was already rendering with — never reconstruct from authored
+// defaults mid-interaction. Shared by both genuine-drag branches so the
+// bug class is closed once, at the primitive, not per call site.
+function PM_liveDragScope() {
+  var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
+  var scene = (stateData && stateData.scene_composition) || [];
+  var stateSliderVars = PM_stateLiveControlVars(scene);
+  var vars = PM_resolveStateVars(PM_currentState) || {};
+  for (var sk in PM_sliderValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
+      vars[sk] = PM_sliderValues[sk];
+    }
+  }
+  for (var ck in PM_choreoValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_choreoValues, ck) && !PM_userTouched[ck]) {
+      vars[ck] = PM_choreoValues[ck];
+    }
+  }
+  return vars;
+}
+
+// ── function_plot (CP-B, F8-F10) ───────────────────────────────────────────
+// bug_class: pcpl_cannot_plot_y_equals_f_of_x_across_a_domain.
+//
+// D3 — NOT drawLocusTrace, deliberately. drawLocusTrace (above) samples over
+// TIME via PM_choreoVarsAtTime, which merges the LIVE slider value into every
+// historical sample — the recorded CRITICAL scar
+// (pcpl_locus_trace_sweep_parameter_exposed_as_a_slider_collapses_the_curve):
+// a trace parameterised on a slider variable collapses to a point on the
+// first drag. The mathematics graph-transformation family's a/b/h/k ARE
+// sliders, so a curve of x must never go anywhere near that code path.
+// function_plot instead samples the x-DOMAIN, every frame, against
+// PM_liveExprVars() — the SAME live scope every other *_expr field reads
+// (D8) — with x bound by THIS sampler loop and NEVER read from the variable
+// scope. Time-swept accumulation (F17) stays locus_trace's job; the two
+// primitives answer different questions and must not be merged.
+//
+// Pure sampler (no p5, no drawing) — independently testable
+// (check:cartesian-plane sections 5/6/16). samples is clamped to the
+// authored contract's closed range [40, 480] (MATHEMATICS_PHASE0_
+// CARTESIAN_PLANE.md's function_plot contract), default 240.
+//
+// D4 — a sample that is non-finite, or (when yRange is supplied) whose y
+// leaves yRange, ENDS the current polyline and starts a new one at the next
+// in-range sample: never drawn, never clamped. tan(x) must not sprout a
+// vertical line at pi/2; 1/x must not flatten onto the frame edge. Returns
+// an array of POLYLINES, each an array of {x,y} DATA points (both endpoints
+// included by construction: i/(n-1) reaches exactly 0 and exactly 1, so the
+// first and last samples land exactly on domainMin/domainMax).
+function PM_functionPlotSample(yExpr, domainMin, domainMax, samplesRaw, vars, yRange) {
+  var out = [];
+  if (!isFinite(domainMin) || !isFinite(domainMax) || !(domainMax > domainMin)) return out;
+  var n = PM_clamp(Math.round((typeof samplesRaw === 'number') ? samplesRaw : 240), 40, 480);
+  var scopeVars = {};
+  for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) scopeVars[k] = vars[k];
+  var cur = [];
+  var yEps = 1e-9;
+  for (var i = 0; i < n; i++) {
+    var x = domainMin + (domainMax - domainMin) * (i / (n - 1));
+    scopeVars.x = x; // bound by the sampler — never read from vars (D3)
+    var y = PM_safeEval(yExpr, scopeVars);
+    var inRange = isFinite(y) && (!yRange || (y >= yRange.min - yEps && y <= yRange.max + yEps));
+    if (!inRange) {
+      if (cur.length > 1) out.push(cur);
+      cur = [];
+      continue;
+    }
+    cur.push({ x: x, y: y });
+  }
+  if (cur.length > 1) out.push(cur);
+  return out;
+}
+
+function drawFunctionPlot(spec) {
+  if (!spec || typeof spec.y_expr !== 'string' || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // Track this plane's LIVE curve formula for drawPlotPoint's default-offset
+  // direction below (bug_class plot_point_default_offset_is_a_screen_axis_
+  // constant_not_the_curves_own_tangent, MAJOR, engine round 2026-08-07/08).
+  // A ghost/parent copy (style:'ghost' — graph_transformations authors a
+  // faded parent curve alongside every transformed one) never overrides an
+  // ALREADY-registered live curve, so a plot_point always rides the
+  // TRANSFORMED curve's tangent, never the parent's — regardless of which
+  // one this state happens to author first in scene_composition.
+  if (spec.style !== 'ghost' || !PM_planeCurveExpr[spec.plane_id]) {
+    PM_planeCurveExpr[spec.plane_id] = spec.y_expr;
+  }
+
+  // F7 — inert when the named plane isn't registered this frame. Ranges are
+  // metadata only (PM_planeRangesOf performs no coordinate math); the actual
+  // pixel conversion below goes exclusively through PM_planeResolve.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  // E-2 fix (bug_class pcpl_x_domain_precedence_disagreed_with_plane_range_
+  // precedence_and_failed_silently, founder Checkpoint B cycle 2,
+  // 2026-08-08) — this used to prefer the NUMERIC bound over its *_expr
+  // sibling when a primitive authored both, the OPPOSITE of
+  // PM_planeResolveBound's own precedence (D3: expression wins, numeric is
+  // the fallback). Unified onto PM_planeResolveBound itself — the single
+  // shared precedence function, not a second hand-rolled copy — so a plane
+  // that re-zooms via min_expr/max_expr and a function_plot sharing that
+  // SAME plane now agree on which window to sample. A missing/invalid
+  // expression AND a missing numeric both still fall back to the plane's
+  // OWN current xRange (unchanged from before — a function_plot with no
+  // authored x_domain at all still fills the visible frame).
+  var domainSpec = spec.x_domain || {};
+  var vars = PM_liveExprVars();
+  PM_warnIfDualBoundAuthored(spec.id, 'x_domain.min', domainSpec, 'min');
+  PM_warnIfDualBoundAuthored(spec.id, 'x_domain.max', domainSpec, 'max');
+  var domainMin = PM_planeResolveBound(domainSpec, 'min', vars);
+  if (typeof domainMin !== 'number' || !isFinite(domainMin)) domainMin = ranges.xRange.min;
+  var domainMax = PM_planeResolveBound(domainSpec, 'max', vars);
+  if (typeof domainMax !== 'number' || !isFinite(domainMax)) domainMax = ranges.xRange.max;
+
+  var polylines = PM_functionPlotSample(spec.y_expr, domainMin, domainMax, spec.samples, vars, ranges.yRange);
+  if (polylines.length === 0) return;
+
+  var rgb = PM_hexToRgb(spec.color || '#38BDF8');
+  var sw = (typeof spec.stroke_weight === 'number') ? spec.stroke_weight : 3;
+  var style = spec.style || 'solid'; // 'solid' | 'dashed' | 'ghost'
+  var styleAlphaMul = (style === 'ghost') ? 0.35 : 1;
+  var alpha255 = 255 * gate.alpha * emph.alphaMul * styleAlphaMul;
+
+  push();
+  // F3 — bound this curve's drawn geometry to its OWN plane's viewport;
+  // see PM_planeClipGeometryBegin's header for why (shared by every
+  // plane-child draw function, applied around geometry only).
+  var __pmClip = PM_planeClipGeometryBegin(spec.plane_id);
+  noFill();
+  strokeWeight(sw);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#38BDF8';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  if (style === 'dashed' && drawingContext.setLineDash) {
+    drawingContext.setLineDash([sw * 2.5, sw * 2]);
+  }
+  stroke(rgb[0], rgb[1], rgb[2], alpha255);
+  // Curve-ink obstacle registration (bug_class
+  // parametric_readout_and_label_collision_awareness_does_not_cover_a_
+  // sibling_primitives_curve_or_line_ink) — a small padded rect per ALREADY-
+  // short sample-to-sample segment (never one bbox for the whole polyline,
+  // which for a curve spanning most of the domain would blanket the plane).
+  // function_plot draws BEFORE secant_line/tangent_line/plot_point in every
+  // frame (Pass 0.3's fixed order, CP-C2/D12) so their readouts always see
+  // this curve's ink already registered.
+  var inkPad = Math.max(sw, 1) + 3;
+  for (var pi = 0; pi < polylines.length; pi++) {
+    var poly = polylines[pi];
+    var prevPx = null;
+    for (var qi = 0; qi < poly.length; qi++) {
+      // F7 — the ONE funnel; no second transform path.
+      var pxPt = PM_planeResolve(spec, poly[qi].x, poly[qi].y);
+      if (!pxPt) { prevPx = null; continue; }
+      if (prevPx) {
+        line(prevPx.x, prevPx.y, pxPt.x, pxPt.y);
+        PM_registerInkZone(spec.plane_id, {
+          x0: Math.min(prevPx.x, pxPt.x) - inkPad, y0: Math.min(prevPx.y, pxPt.y) - inkPad,
+          x1: Math.max(prevPx.x, pxPt.x) + inkPad, y1: Math.max(prevPx.y, pxPt.y) + inkPad
+        });
+      }
+      prevPx = pxPt;
+    }
+  }
+  if (style === 'dashed' && drawingContext.setLineDash) {
+    drawingContext.setLineDash([]);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  PM_planeClipGeometryEnd(__pmClip);
+  pop();
+}
+
+// ── shared readout placement (bug_class parametric_canvas_drawn_readout_
+// overprints_its_own_line_and_is_invisible_to_the_layout_checker, MAJOR/
+// OPEN in engine_bug_queue) ─────────────────────────────────────────────────
+// Every primitive that draws its OWN canvas text readout (plot_point,
+// secant_line, tangent_line) shares ONE offset-resolution idiom, so
+// plot_point's pre-existing readout.offset field and secant/tangent's
+// newly-added one behave IDENTICALLY — one funnel, not three independently
+// invented ones (mirrors F7's "one funnel" discipline for plane_id).
+
+// Authored offset, with the SAME non-finite/type-fallback discipline every
+// other *_expr/offset field on this engine uses: a present-but-malformed
+// offset (not an object, x/y not a finite number) is treated as ABSENT,
+// never as a crash and never as a silent NaN draw. Returns null when
+// nothing usable was authored, so a caller falls through to ITS OWN
+// computed default (plot_point: {10,-12}; secant/tangent: the
+// perpendicular default below) — exactly mirroring how every *_expr caller
+// already falls back to a literal when the expression is unusable.
+function PM_readoutAuthoredOffset(spec) {
+  var off = (spec && spec.readout && spec.readout.offset && typeof spec.readout.offset === 'object') ? spec.readout.offset : null;
+  if (!off) return null;
+  var ox = off.x, oy = off.y;
+  if (typeof ox !== 'number' || !isFinite(ox) || typeof oy !== 'number' || !isFinite(oy)) return null;
+  return { x: ox, y: oy };
+}
+
+// F6 fix (bug_class: pcpl_interpolate_numeric_substitution_ships_an_ascii_
+// hyphen_where_every_other_readout_ships_u+2212, BLOCKING recurrence,
+// founder_proxy Checkpoint B live-drive 2026-08-08) — the ASCII-vs-U+2212
+// minus substitution, factored out of PM_fmtNum so PM_interpolate (below)
+// can share the EXACT same glyph rule instead of reimplementing it. Only a
+// '-' immediately followed by a digit is converted (the numeric-sign
+// shape) — never a blanket string-wide replace, so a template that
+// happens to carry a non-numeric literal hyphen is left untouched.
+function PM_signGlyph(s) {
+  return String(s).replace(/-(?=\\d)/g, '−');
+}
+
+// ── shared numeric formatter — real Unicode minus, never ASCII hyphen
+// (bug_class ascii_minus_in_oncanvas_math_from_tofixed, MODERATE/FIXED —
+// alex:json_author, shipped 3x; this is the missing engine hook the row's
+// own prevention_rule names: "readout.format has no transform hook") ──────
+// Number.prototype.toFixed() always emits ASCII U+002D regardless of sign,
+// locale, or the font it is later drawn in — so any readout that
+// interpolates toFixed() directly leaks an ASCII hyphen beside an authored
+// Unicode U+2212 elsewhere on the SAME frame (Rule 34c). ONE funnel for
+// every numeric-to-string conversion this readout family owns: round first
+// (toFixed, so precision stays IEEE754-exact and unaffected by the
+// substitution), THEN substitute the sign glyph on the rendered string —
+// never the other way around.
+//
+// Near-zero clamp (engine round, bug_class ascii_minus_in_oncanvas_math_
+// from_tofixed's sibling: "shipped twice, third occurrence via a magnitude
+// instead of a glyph"). The clamp threshold MUST scale with decimals —
+// a fixed 1e-9 (this function's own pre-round-2 value) sits three orders of
+// magnitude below what ANY authored decimals setting can even display, so it
+// never fires for the case that actually reaches the screen: a value that
+// rounds to the printed "-0" at THIS precision but is not exactly zero
+// (float noise, e.g. -0.003 at decimals:2, or -0.4 at decimals:0 — verified
+// (-0.4).toFixed(0) is the literal string "-0" in JS). The correct clamp is
+// "half of the smallest printable increment at this precision" —
+// 0.5 * 10^-decimals — so a value that would ROUND to a false "-0" at the
+// requested precision is caught, while a real negative that merely rounds
+// SMALL (e.g. slope -0.006 at 2dp, which prints "-0.01", a genuine nonzero
+// reading) is left alone: |-0.006| = 0.006 > 0.005 = 0.5*10^-2, untouched.
+function PM_fmtNum(value, decimals) {
+  var d = (typeof decimals === 'number' && isFinite(decimals)) ? decimals : 2;
+  var eps = 0.5 * Math.pow(10, -d);
+  var v = (Math.abs(value) < eps) ? 0 : value;
+  return PM_signGlyph(v.toFixed(d));
+}
+
+// Unit normal to the pixel-space segment p0->p1, biased to the "upward"
+// screen normal (ny <= 0) so a line whose readout has no authored offset
+// defaults to sitting ABOVE its own stroke — the same SIDE the old
+// hardcoded -12 y always chose, but derived from the line's OWN direction
+// rather than a fixed screen axis. Degenerates safely to straight up for a
+// zero-length segment — never divides by zero, never returns NaN.
+function PM_upwardNormal(p0, p1) {
+  var dx = p1.x - p0.x, dy = p1.y - p0.y;
+  var len = Math.sqrt(dx * dx + dy * dy);
+  if (!(len > 1e-9)) return { x: 0, y: -1 };
+  var nx = -dy / len, ny = dx / len;
+  if (ny > 0) { nx = -nx; ny = -ny; }
+  return { x: nx, y: ny };
+}
+
+// The offset that places a horizontal text box of (textW x textH) fully
+// CLEAR of the line it annotates, given that the draw anchor lies ON that
+// line (the chord midpoint for a secant, the tangency point for a tangent).
+//
+// Why a fixed perpendicular distance is NOT enough (the second half of
+// bug_class parametric_canvas_drawn_readout_overprints_its_own_line...): a
+// constant 13px displacement moves the box's CENTRE off the stroke, but a
+// ~79px-wide horizontal label straddling a STEEP line still has its far end
+// swinging straight back across it. Measured on the shipped content, all
+// six secant-readout states of derivative_as_secant_limit were struck by
+// ~17-18px under the constant-13px default — the label was moved, not
+// freed.
+//
+// The closed-form remedy is the box's SUPPORT along the line normal: for an
+// axis-aligned box with half-extents (hw, hh), its extent along a unit
+// direction n is |hw*nx| + |hh*ny| (the standard separating-axis support
+// function). Displacing the box centre along n by that support + a margin
+// makes non-intersection a GEOMETRIC GUARANTEE at every slope, not a tuned
+// constant that happens to work at some angles: for a vertical line it
+// reduces to "half the text width + margin" (a pure sideways shove), for a
+// horizontal line to "half the text height + margin" (the old behaviour),
+// and interpolates exactly between them. One evaluation, no iteration, no
+// search, no wall-clock, no random — Rule 36 safe and byte-stable under
+// THE EYE's frozen clock.
+//
+// Returned in the draw call's own frame: text() is issued with
+// textAlign(LEFT, CENTER), so the box spans [anchor+off.x, +textW]
+// horizontally and is CENTRED on anchor+off.y vertically — hence the
+// -hw term on x (turning a centre displacement into a left-edge offset)
+// and none on y.
+function PM_labelClearOffset(p0, p1, textW, textH, margin) {
+  var n = PM_upwardNormal(p0, p1);
+  var hw = (typeof textW === 'number' && isFinite(textW) ? textW : 0) / 2;
+  var hh = (typeof textH === 'number' && isFinite(textH) ? textH : 0) / 2;
+  var m = (typeof margin === 'number' && isFinite(margin)) ? margin : 6;
+  var d = Math.abs(hw * n.x) + Math.abs(hh * n.y) + m;
+  return { x: d * n.x - hw, y: d * n.y };
+}
+
+// ── plot_point collision-aware side selection ───────────────────────────
+// A CONSTANT offset cannot serve a MOVING anchor (a drag-bound or slider-
+// driven plot_point sweeps a whole range of positions) — no single {x,y}
+// clears the axis lines, their tick-label bands, AND the canvas edge at
+// every position the point can reach. Cheap, DETERMINISTIC side-test-and-
+// flip: given the candidate placement's (measured) text box, if it
+// collides with a known ink/label zone, mirror the offset to the anchor's
+// OTHER side once. No solver, no iteration, no per-frame search — a pure
+// function of (anchorPx, offset, textW, textH, the registered plane's OWN
+// static geometry), so the SAME inputs always give the SAME output
+// (required for THE EYE's frozen baselines to stay byte-identical under a
+// fixed clock, Rule 36 — this reads no wall time, no random seed).
+function PM_rectsOverlap(a, b) {
+  return a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0;
+}
+function PM_readoutBBox(anchorPx, offset, textW, textH) {
+  var x0 = anchorPx.x + offset.x;
+  var y0 = anchorPx.y + offset.y - textH / 2;
+  return { x0: x0, y0: y0, x1: x0 + textW, y1: y0 + textH };
+}
+// ── widened obstacle set (bug_class
+// parametric_readout_and_label_collision_awareness_does_not_cover_a_sibling_
+// primitives_curve_or_line_ink, MODERATE/OPEN — scoped fix for the READOUT
+// side only; label/annotation-vs-ink collision stays a separate, larger
+// mechanism and stays OPEN) ────────────────────────────────────────────────
+// PM_readoutDangerZones used to know only the plane's OWN two axis/tick
+// bands. Every OTHER thing a readout can land on top of — a gridline, a
+// sibling curve's stroke, another readout's own box — was invisible to it.
+// PM_planeInkZones is the per-frame, per-plane obstacle list every ink-
+// producing primitive registers into AS IT DRAWS (drawCartesianPlane's
+// gridlines, drawFunctionPlot's sampled polyline, drawSecantLine/
+// drawTangentLine's own chord, and every readout's own FINAL resolved box —
+// see PM_debugRecordReadout below). Declared + reset once per frame
+// (draw(), immediately before Pass 0.25) alongside PM_planeRegistry.
+//
+// Order-dependent by construction, matching this resolver's existing "no
+// search, no iteration" doctrine (Rule 36): a primitive drawn AFTER
+// another's ink is the one that must dodge it, never the reverse — draw
+// order in this renderer is FIXED per pass (region_fill, riemann_bars,
+// function_plot, secant_line, tangent_line, plot_point; CP-C2/D12), not
+// author order, so "what's registered so far" is deterministic and
+// THE-EYE-stable, never a function of scene_composition array order.
+function PM_readoutDangerZones(plane, planeId) {
+  var vp = plane.viewport, xRange = plane.xRange, yRange = plane.yRange;
+  var originDataX = PM_clamp(0, xRange.min, xRange.max);
+  var originDataY = PM_clamp(0, yRange.min, yRange.max);
+  var axisPxX = plane.toPx(originDataX, yRange.min).x;
+  var axisPxY = plane.toPx(xRange.min, originDataY).y;
+  var Y_LABEL_BAND = 30, X_LABEL_BAND = 20, AXIS_HALF = 3;
+  var zones = [
+    { x0: axisPxX - Y_LABEL_BAND, y0: vp.y, x1: axisPxX + AXIS_HALF, y1: vp.y + vp.h },
+    { x0: vp.x, y0: axisPxY - AXIS_HALF, x1: vp.x + vp.w, y1: axisPxY + X_LABEL_BAND }
+  ];
+  var ink = planeId ? PM_planeInkZones[planeId] : null;
+  if (ink) for (var ii = 0; ii < ink.length; ii++) zones.push(ink[ii]);
+  return zones;
+}
+
+// Registers one axis-aligned obstacle rect for a plane, consumed by
+// PM_readoutDangerZones above for the REST of this frame. Silently inert
+// when planeId/rect are missing — every call site already gates on a
+// resolved plane, so this never needs its own defensive early-return story.
+function PM_registerInkZone(planeId, rect) {
+  if (!planeId || !rect) return;
+  if (!PM_planeInkZones[planeId]) PM_planeInkZones[planeId] = [];
+  PM_planeInkZones[planeId].push(rect);
+}
+
+// SOFT-tier obstacle registry (see drawCartesianPlane's gridline header
+// comment above for why gridline ink cannot share the HARD registry above).
+// Read only by PM_readoutGridOverlapArea below — never by PM_readoutCollides
+// / PM_readoutDangerZones, so a gridline can never by itself force the
+// unconditional-flip path; it only tie-breaks among candidates that are
+// ALREADY clear of every hard obstacle.
+function PM_registerGridInkZone(planeId, rect) {
+  if (!planeId || !rect) return;
+  if (!PM_planeGridInkZones[planeId]) PM_planeGridInkZones[planeId] = [];
+  PM_planeGridInkZones[planeId].push(rect);
+}
+
+// Registers a straight PIXEL-space segment's ink as a chain of small AABBs
+// rather than one bbox spanning its full extent. A single bounding box
+// around a long diagonal (a secant/tangent authored extend:'frame' can span
+// most of the plane) would blanket almost the entire viewport as "danger" —
+// a false-positive machine, not a fix. PM_INK_SEGMENT_SUBDIVISIONS is a
+// FIXED constant (Rule 36: no adaptive/iterative subdivision), tight enough
+// that even a corner-to-corner line registers a band that hugs its own
+// pixels.
+var PM_INK_SEGMENT_SUBDIVISIONS = 24;
+function PM_registerLineInk(planeId, p0, p1, halfPad) {
+  if (!planeId || !p0 || !p1) return;
+  var n = PM_INK_SEGMENT_SUBDIVISIONS;
+  var pad = (typeof halfPad === 'number' && isFinite(halfPad)) ? halfPad : 5;
+  var prevX = p0.x, prevY = p0.y;
+  for (var i = 1; i <= n; i++) {
+    var t = i / n;
+    var curX = p0.x + (p1.x - p0.x) * t;
+    var curY = p0.y + (p1.y - p0.y) * t;
+    PM_registerInkZone(planeId, {
+      x0: Math.min(prevX, curX) - pad, y0: Math.min(prevY, curY) - pad,
+      x1: Math.max(prevX, curX) + pad, y1: Math.max(prevY, curY) + pad
+    });
+    prevX = curX; prevY = curY;
+  }
+}
+
+// ── __pmDebug — the resolved placement, exposed for reading rather than
+// asserting (bug_class
+// readout_collision_flip_is_wired_at_one_call_site_of_three_so_an_authored_
+// offset_means_different_things_per_primitive, MODERATE/OPEN). Every
+// authoring design note that reasoned about a readout's offset in prose
+// rather than in the rendered frame is the direct product of this NOT
+// existing before now. window.__pmDebug.readouts[primitive_id] = the FINAL
+// (post-flip, post-clamp) anchor/offset/bbox actually drawn this frame —
+// reset every frame (alongside PM_planeInkZones) so a stale id from a
+// PRIOR state never survives a SET_STATE.
+function PM_debugRecordReadout(id, anchorPx, offset, textW, textH) {
+  if (!id || typeof window === 'undefined') return;
+  if (!window.__pmDebug) window.__pmDebug = {};
+  if (!window.__pmDebug.readouts) window.__pmDebug.readouts = {};
+  window.__pmDebug.readouts[id] = {
+    anchor: { x: anchorPx.x, y: anchorPx.y },
+    offset: { x: offset.x, y: offset.y },
+    bbox: PM_readoutBBox(anchorPx, offset, textW, textH)
+  };
+}
+// Off-CANVAS (the 760x500 design space every state renders into —
+// createCanvas(760,500) below), not merely off the plane's own inner
+// viewport: a readout is routinely (and correctly) placed just outside a
+// plane's own rectangle — that is normal layout, not a defect. Only
+// actually leaving the visible canvas is a placement failure.
+var PM_CANVAS_W = 760, PM_CANVAS_H = 500;
+function PM_readoutOffCanvas(bbox) {
+  return bbox.x0 < 0 || bbox.x1 > PM_CANVAS_W || bbox.y0 < 0 || bbox.y1 > PM_CANVAS_H;
+}
+// Pulls a text box back inside the 760x500 canvas by TRANSLATION, never by
+// a side flip. These are different failure modes with different remedies
+// and must not share one: a flip changes WHICH SIDE of the anchor the label
+// sits on, which cannot fix a horizontal overrun — mirroring an offset of
+// +12 to -12 moves a ~100px-wide box by 24px while its overhang past the
+// edge may be far larger, so the flipped placement runs off too. Only a
+// clamp is a fix. Runs LAST, after any authored offset / computed default /
+// collision flip, so it is the final word on containment.
+//
+// Right/bottom are clamped BEFORE left/top so that a box wider or taller
+// than the canvas keeps its START visible (a truncated tail is readable; a
+// truncated head is not). A box already fully inside is returned byte-
+// identical — the early-out makes that explicit, so this can never perturb
+// a placement it was not needed for (and THE EYE's baselines stay stable
+// wherever it does not fire).
+function PM_clampOffsetToCanvas(anchorPx, offset, textW, textH) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  if (!PM_readoutOffCanvas(box)) return offset;
+  var ox = offset.x, oy = offset.y;
+  if (anchorPx.x + ox + textW > PM_CANVAS_W) ox = PM_CANVAS_W - textW - anchorPx.x;
+  if (anchorPx.x + ox < 0) ox = -anchorPx.x;
+  if (anchorPx.y + oy + textH / 2 > PM_CANVAS_H) oy = PM_CANVAS_H - textH / 2 - anchorPx.y;
+  if (anchorPx.y + oy - textH / 2 < 0) oy = textH / 2 - anchorPx.y;
+  return { x: ox, y: oy };
+}
+// Ink/label-ZONE collision only — canvas containment is deliberately NOT
+// tested here, because the two have different remedies (see
+// PM_clampOffsetToCanvas above) and folding them together makes the wrong
+// one fire: an off-canvas box would take a useless flip and still need the
+// clamp afterwards, churning the placement for nothing. This predicate now
+// answers exactly one question — "does the box land on the plane's own axis
+// ink, a curve/chord's own stroke, or another readout's already-placed
+// box?" (the HARD obstacle set, PM_readoutDangerZones) — deliberately NOT
+// gridline ink (PM_planeGridInkZones, the SOFT tier — see
+// drawCartesianPlane's gridline header comment for why). A true answer here
+// is what the ordered-candidate search below treats as disqualifying.
+function PM_readoutCollides(anchorPx, offset, textW, textH, plane, planeId) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  var zones = PM_readoutDangerZones(plane, planeId);
+  for (var i = 0; i < zones.length; i++) if (PM_rectsOverlap(box, zones[i])) return true;
+  return false;
+}
+// Area of the AABB intersection of a and b, or 0 when disjoint (never
+// negative — a degenerate/negative width or height clamps to 0 rather than
+// contributing a spurious negative "overlap"). Pure, symmetric, O(1).
+function PM_rectOverlapArea(a, b) {
+  var ox = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0);
+  var oy = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
+  if (!(ox > 0) || !(oy > 0)) return 0;
+  return ox * oy;
+}
+// Total HARD-obstacle overlap area for a candidate placement — the same
+// zone set PM_readoutCollides tests, summed rather than OR'd, so two
+// candidates that both collide can still be RANKED (a graze scores far
+// lower than a placement centred on the axis line).
+function PM_readoutHardOverlapArea(anchorPx, offset, textW, textH, plane, planeId) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  var zones = PM_readoutDangerZones(plane, planeId);
+  var total = 0;
+  for (var i = 0; i < zones.length; i++) total += PM_rectOverlapArea(box, zones[i]);
+  return total;
+}
+// Total SOFT-obstacle (gridline) overlap area — never contributes to
+// PM_readoutCollides' boolean, only to the tie-break score below.
+function PM_readoutGridOverlapArea(anchorPx, offset, textW, textH, planeId) {
+  var box = PM_readoutBBox(anchorPx, offset, textW, textH);
+  var zones = (planeId && PM_planeGridInkZones[planeId]) ? PM_planeGridInkZones[planeId] : [];
+  var total = 0;
+  for (var i = 0; i < zones.length; i++) total += PM_rectOverlapArea(box, zones[i]);
+  return total;
+}
+// Combined score used ONLY to rank candidates once none is hard-collision-
+// free (see PM_readoutResolveOffset below) — hard overlap dominates
+// (weight 1), grid overlap is a light tie-break (weight 0.25) so it can
+// never outrank a genuinely smaller hard collision, only choose between
+// two hard-equal candidates.
+var PM_GRID_OVERLAP_TIEBREAK_WEIGHT = 0.25;
+function PM_readoutOverlapArea(anchorPx, offset, textW, textH, plane, planeId) {
+  return PM_readoutHardOverlapArea(anchorPx, offset, textW, textH, plane, planeId)
+    + PM_GRID_OVERLAP_TIEBREAK_WEIGHT * PM_readoutGridOverlapArea(anchorPx, offset, textW, textH, planeId);
+}
+
+// Resolves the FINAL {x,y} pixel offset to draw a readout at, from a FIXED,
+// ORDERED candidate set — never a single blind flip (bug_class
+// readout_resolver_flips_blind_without_testing_the_mirrored_candidate,
+// CRITICAL, engine round 2026-08-07/08; the pre-round behaviour negated
+// BOTH offset components unconditionally the instant ANY collision fired,
+// including collisions the flip itself did not clear — measured on
+// graph_transformations: 9 of 9 authored offsets inverted, the curve
+// running through the P' readout in 7 of 8 states).
+//
+// Candidate order (every one ACTUALLY TESTED — Rule "never return a
+// candidate you have not tested"):
+//   1. the authored/computed candidate, unchanged
+//   2. x-mirror   {-x, y}
+//   3. y-mirror   {x, -y}
+//   4. full mirror {-x, -y}
+//   5/6. (only when localInk is supplied) +/- the unit normal to localInk's
+//        own pixel-space segment, scaled to the candidate's own magnitude —
+//        the same direction a plot_point riding a curve or a secant/tangent
+//        readout's OWN chord would prefer, tried as an explicit alternative
+//        rather than assumed as the default.
+// The FIRST candidate clear of every HARD obstacle (axis lines, curve/
+// chord ink, another readout's own box — PM_readoutCollides) is returned
+// immediately, so a placement that was never broken is never touched (only
+// gridline-grazing, the SOFT tier, cannot force this branch to keep
+// searching). If NONE of the fixed candidates is hard-collision-free, the
+// one with the LEAST total overlap area (hard-weighted, grid tie-broken —
+// PM_readoutOverlapArea) is returned — still a candidate that was tested,
+// never a guess.
+//
+// O(1): at most 6 candidates, each one rect-overlap test against a fixed
+// zone list — no iteration to convergence, no wall-clock, no randomness,
+// so THE EYE's frozen baselines stay byte-identical by construction
+// (Rule 36).
+//
+// planeId/localInk are OPTIONAL and additive: every existing call site
+// already passes plane_id, and a caller that omits planeId simply sees zero
+// ink/grid zones (the original two-zone axis-band behaviour); a caller that
+// omits localInk simply gets the 4 mirror candidates without the 2 normal
+// ones — never a crash either way.
+function PM_readoutResolveOffset(anchorPx, candidateOffset, textW, textH, plane, planeId, localInk) {
+  if (!plane) return candidateOffset;
+  var candidates = [
+    candidateOffset,
+    { x: -candidateOffset.x, y: candidateOffset.y },
+    { x: candidateOffset.x, y: -candidateOffset.y },
+    { x: -candidateOffset.x, y: -candidateOffset.y }
+  ];
+  if (localInk && localInk.p0 && localInk.p1) {
+    var n = PM_upwardNormal(localInk.p0, localInk.p1);
+    var mag = Math.sqrt(candidateOffset.x * candidateOffset.x + candidateOffset.y * candidateOffset.y);
+    if (!(mag > 1e-6)) mag = Math.max(textW, textH) / 2 + 10;
+    candidates.push({ x: mag * n.x, y: mag * n.y });
+    candidates.push({ x: -mag * n.x, y: -mag * n.y });
+  }
+  var bestOff = candidates[0], bestScore = Infinity;
+  for (var i = 0; i < candidates.length; i++) {
+    var c = candidates[i];
+    if (!PM_readoutCollides(anchorPx, c, textW, textH, plane, planeId)) return c;
+    var score = PM_readoutOverlapArea(anchorPx, c, textW, textH, plane, planeId);
+    if (score < bestScore) { bestScore = score; bestOff = c; }
+  }
+  return bestOff;
+}
+
+// ── plot_point (CP-B, F11-F12) ──────────────────────────────────────────────
+// D8 — the readout and the picture must read the SAME scope in the same
+// frame. Pure (no p5) so the gate can assert one-evaluation discipline
+// directly (check:cartesian-plane section 7): computes x, y AND the
+// formatted readout string from ONE vars snapshot — never two separately
+// evaluated scopes that merely happen to agree. readout.decimals is this
+// primitive's OWN precision (never the slider caption's hardcoded
+// toFixed(step<1?1:0) — labelText, D8's other half).
+function PM_plotPointResolve(spec, vars) {
+  var x = PM_safeEval(spec.x_expr, vars);
+  var y = PM_safeEval(spec.y_expr, vars);
+  var readoutText = '';
+  if (spec.readout && isFinite(x) && isFinite(y)) {
+    var decimals = (typeof spec.readout.decimals === 'number') ? spec.readout.decimals : 2;
+    var fmt = (typeof spec.readout.format === 'string') ? spec.readout.format : '({x}, {y})';
+    // PM_fmtNum (Rule 34c) — real Unicode minus, never toFixed()'s ASCII hyphen.
+    readoutText = fmt.split('{x}').join(PM_fmtNum(x, decimals)).split('{y}').join(PM_fmtNum(y, decimals));
+  }
+  return { x: x, y: y, readoutText: readoutText };
+}
+
+// Local pixel-space tangent of the CURVE a plot_point rides, at that point's
+// own (already-resolved) data position — numeric differentiation of the
+// REGISTERED function_plot's y_expr (PM_planeCurveExpr, set by
+// drawFunctionPlot above), never of the point's OWN x_expr/y_expr. This
+// matters because a point like Q (x_expr:"x0+1") is a REPARAMETERISATION of
+// the same curve, not an independent one — probing dy/dx0 there would give
+// the wrong tangent whenever the reparameterisation itself isn't 1:1
+// (e.g. "x0+pow(10,hlog)" as hlog, not x0, sweeps). Evaluating the curve's
+// own y_expr as a bare function of x sidesteps that entirely: whatever
+// parameter actually moved the point, the curve's shape at this x is fixed.
+//
+// Returns a tiny pixel-space {p0,p1} segment along the tangent direction
+// (feedable straight into PM_labelClearOffset/PM_upwardNormal, the same
+// idiom secant_line/tangent_line already use for their own chord), or null
+// when no curve is registered for this plane this frame, the probe's
+// dx/dy comes out degenerate (zero-length — e.g. a vertical tangent at the
+// probe's floating-point resolution), or any evaluation is non-finite.
+// Callers fall back to a constant default in every null case — never a
+// crash, never a NaN pixel.
+var PM_TANGENT_PROBE_EPS = 1e-4;
+function PM_plotPointCurveTangentPx(spec, vars, plane, x, y) {
+  var curveExpr = (spec && spec.plane_id) ? PM_planeCurveExpr[spec.plane_id] : null;
+  if (typeof curveExpr !== 'string' || !plane || !isFinite(x) || !isFinite(y)) return null;
+  var probeScope = {};
+  for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) probeScope[k] = vars[k];
+  probeScope.x = x + PM_TANGENT_PROBE_EPS;
+  var yPlus = PM_safeEval(curveExpr, probeScope);
+  if (!isFinite(yPlus)) return null;
+  var p0 = plane.toPx(x, y);
+  var p1 = plane.toPx(x + PM_TANGENT_PROBE_EPS, yPlus);
+  if (!p0 || !p1 || !isFinite(p0.x) || !isFinite(p0.y) || !isFinite(p1.x) || !isFinite(p1.y)) return null;
+  if (Math.abs(p1.x - p0.x) < 1e-9 && Math.abs(p1.y - p0.y) < 1e-9) return null;
+  return { p0: p0, p1: p1 };
+}
+
+function drawPlotPoint(spec) {
+  if (!spec || !spec.id || typeof spec.x_expr !== 'string' || typeof spec.y_expr !== 'string' || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  var vars = PM_liveExprVars();
+  var resolved = PM_plotPointResolve(spec, vars);
+  // F7 — the ONE funnel; also inert when x/y are non-finite (unresolvable
+  // expression) or the named plane isn't registered this frame.
+  var px = PM_planeResolve(spec, resolved.x, resolved.y);
+  if (!px) return;
+
+  // F12 (the F5 clause) — a genuine drag seizes drag.bind_variable EXACTLY
+  // as drawCanvasSlider's genuine-drag branch seizes a slider variable
+  // (below, ~PM_userTouched[spec.variable] = true): set PM_userTouched (so
+  // choreography stands down — read via PM_stateLiveControlVars above by
+  // every consumer), write through PM_sliderValues (the SAME store a
+  // slider writes), recompute PM_physics and echo PARAM_UPDATE upward.
+  // Hit-tested against THIS frame's already-resolved pixel position, mirror-
+  // ing drawCanvasSlider's own knob hit-test, and sharing the SAME
+  // PM_activeSliderId single-touch claim so a point-drag and a slider-drag
+  // can never both fire from one mouse press.
+  if (spec.drag && typeof spec.drag.bind_variable === 'string') {
+    var hitR = ((typeof spec.size === 'number') ? spec.size : 12) + 8;
+    // F1b (bug_class: pcpl_drag_handle_re-tests_pointer_proximity_every_
+    // frame_so_a_handle_that_drifts_off_its_own_drag_axis_drops_itself,
+    // BLOCKING, founder_proxy Checkpoint B live-drive 2026-08-08) — LATCH
+    // on mousedown: proximity is tested ONLY at the moment of claim
+    // (PM_activeSliderId still null this frame). Once claimed, every
+    // subsequent frame of the SAME press keeps updating regardless of how
+    // far mouseY (a drag.axis:'x' point's own y follows the curve, not the
+    // mouse) or a since-corrected px has drifted from the marker's pixel
+    // position — exactly like drawCanvasSlider's own genuine-drag branch
+    // below. Released ONLY on mouseup, never by a failed proximity
+    // re-test (measured pre-fix: b froze at 1.947 for 24 further drag
+    // steps while mouseX travelled 608 -> 534, because px had jumped 49px
+    // off-curve on frame 1 and every later frame's re-tested hit failed).
+    var claim = mouseIsPressed && PM_activeSliderId == null
+      && Math.hypot(mouseX - px.x, mouseY - px.y) < hitR;
+    if (claim) PM_activeSliderId = spec.id;
+    if (!mouseIsPressed) PM_activeSliderId = null;
+    var isActive = PM_activeSliderId === spec.id;
+    if (mouseIsPressed && isActive) {
+      PM_userTouched[spec.drag.bind_variable] = true;
+      var dataAtMouse = PM_planeResolveInverse(spec, mouseX, mouseY);
+      if (dataAtMouse) {
+        var dragMin = (typeof spec.drag.min === 'number') ? spec.drag.min : -Infinity;
+        var dragMax = (typeof spec.drag.max === 'number') ? spec.drag.max : Infinity;
+        var rawDrag = (spec.drag.axis === 'y') ? dataAtMouse.y : dataAtMouse.x;
+        var snappedDrag = PM_clamp(rawDrag, dragMin, dragMax);
+        if (PM_sliderValues[spec.drag.bind_variable] !== snappedDrag) {
+          PM_sliderValues[spec.drag.bind_variable] = snappedDrag;
+          // F1a — rebuild the SAME frame-live scope (choreography included
+          // for every OTHER unseized variable), never authored defaults.
+          var currentVars = PM_liveDragScope();
+          try { PM_physics = computePhysics(PM_config.concept_id, currentVars); } catch (err) { /* keep last good PM_physics */ }
+          if (PM_sliderLastEmitted[spec.drag.bind_variable] !== snappedDrag) {
+            PM_sliderLastEmitted[spec.drag.bind_variable] = snappedDrag;
+            try { window.parent.postMessage({ type: 'PARAM_UPDATE', key: spec.drag.bind_variable, value: snappedDrag }, '*'); } catch (e) {}
+          }
+        }
+        // Re-resolve THIS frame against the just-updated scope so the point
+        // visibly tracks the mouse in the same frame it is grabbed (D8: one
+        // scope, not a frame behind).
+        vars = PM_liveExprVars();
+        resolved = PM_plotPointResolve(spec, vars);
+        var pxNow = PM_planeResolve(spec, resolved.x, resolved.y);
+        if (pxNow) px = pxNow;
+      }
+    }
+  }
+
+  var rgb = PM_hexToRgb(spec.color || '#FBBF24');
+  var size = (typeof spec.size === 'number') ? spec.size : 12;
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#FBBF24';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  // F3 — bound just the marker DOT to its own plane's viewport (the
+  // readout TEXT below is deliberately left unclipped — see
+  // PM_planeClipGeometryBegin's header).
+  var __pmClip = PM_planeClipGeometryBegin(spec.plane_id);
+  noStroke();
+  fill(rgb[0], rgb[1], rgb[2], alpha255);
+  ellipse(px.x, px.y, size, size);
+  PM_planeClipGeometryEnd(__pmClip);
+  if (resolved.readoutText) {
+    fill(rgb[0], rgb[1], rgb[2], alpha255);
+    noStroke();
+    textSize(12);
+    textAlign(LEFT, CENTER);
+    // F-readout — candidate is the authored offset if usable, else a
+    // DEFAULT DIRECTION derived from the curve this point actually rides
+    // (bug_class plot_point_default_offset_is_a_screen_axis_constant_not_
+    // the_curves_own_tangent): the outward normal to the local curve
+    // tangent at this point's own data position, via the SAME width-aware
+    // support-function displacement (PM_labelClearOffset) secant_line/
+    // tangent_line already use for their own chord/tangent — so the label
+    // clears the curve at every slope, not just the ones the old fixed
+    // {10,-12} happened to clear. Falls back to that same {10,-12} only
+    // when no curve is registered on this plane this frame (a plot_point
+    // authored with no accompanying function_plot) or the tangent probe is
+    // degenerate. Real measured text width (textWidth(), not an estimate)
+    // feeds BOTH the default's own clearance math and the collision test
+    // below — accurate for whatever string this frame's live variables
+    // produced, and must be measured before the default can be computed.
+    var readoutTW = textWidth(resolved.readoutText);
+    var tangentPx = PM_plotPointCurveTangentPx(spec, vars, PM_planeRegistry[spec.plane_id], resolved.x, resolved.y);
+    var defaultOff = tangentPx
+      ? PM_labelClearOffset(tangentPx.p0, tangentPx.p1, readoutTW, 14, size / 2 + 8)
+      : { x: 10, y: -12 };
+    var candidateOff = PM_readoutAuthoredOffset(spec) || defaultOff;
+    // Then collision-tested (ordered candidate set, see PM_readoutResolveOffset's
+    // own header) against this frame's ACTUAL registered plane — a moving/
+    // dragged point needs a live re-test every frame, not a one-time
+    // authoring-side guess. localInk (tangentPx) feeds the resolver's own
+    // +/- normal candidates when a curve tangent was resolvable, so the
+    // TESTED alternative and the DEFAULT direction share one geometric idea
+    // instead of two unrelated ones.
+    var finalOff = PM_readoutResolveOffset(px, candidateOff, readoutTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id, tangentPx);
+    // Containment runs LAST — after the authored/default offset and after
+    // any axis-zone flip — so nothing downstream can push the box back out.
+    finalOff = PM_clampOffsetToCanvas(px, finalOff, readoutTW, 14);
+    text(resolved.readoutText, px.x + finalOff.x, px.y + finalOff.y);
+    // __pmDebug — the RESOLVED placement, for reading rather than asserting.
+    PM_debugRecordReadout(spec.id, px, finalOff, readoutTW, 14);
+    // Register this readout's own final box as an obstacle for whatever
+    // draws on this plane NEXT this frame (another plot_point later in the
+    // same loop — e.g. Q reading P's already-placed box; fixes bug_class
+    // readout_collision_flip_is_wired_at_one_call_site_of_three's G-1
+    // recurrence: two point readouts overprinting each other).
+    PM_registerInkZone(spec.plane_id, PM_readoutBBox(px, finalOff, readoutTW, 14));
+  }
+  // The marker DOT itself is an obstacle too ("check the offset against
+  // every other point's marker AND readout box, not just against the
+  // lines" — the prevention_rule this bug_class was filed under).
+  // Registered AFTER this point's own readout is placed, so a point's
+  // candidate offset is never tested against its OWN dot (every authored/
+  // default offset already clears its own anchor by construction); a
+  // LATER-drawn point in this same loop still sees it.
+  PM_registerInkZone(spec.plane_id, { x0: px.x - size / 2 - 3, y0: px.y - size / 2 - 3, x1: px.x + size / 2 + 3, y1: px.y + size / 2 + 3 });
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
+// ── region_fill (CP-C1, F15 — bug_class:
+// pcpl_cannot_shade_or_partition_the_region_under_a_curve) ─────────────────
+// D7 — re-integrates from scratch every frame; nothing is cached between
+// frames (no accumulated array, no memo across draw() calls). Pure sampler
+// + piecewise trapezoidal integration (no p5, no PM_physics write — unlike
+// riemann_bars below, region_fill publishes nothing; only its DRAWN pixels
+// exist), so the gate can assert the computed AREA independently of any
+// canvas call, and so the drawn polygon and the asserted area are the SAME
+// evaluation (D8's "picture and readout read the same scope", applied here
+// to "picture and gate assertion").
+//
+// signed:true splits [from,to] at every zero-crossing of (y - baseline),
+// each crossing found by LINEAR INTERPOLATION between the two straddling
+// samples (never "whichever grid sample happens to be nearer"), so both
+// bands' areas stay accurate independent of whether a crossing lands
+// exactly on a sample point. signed:false (or omitted) returns ONE segment
+// spanning the whole domain. Either way 'totalSignedArea' is the plain
+// signed integral of (y - baseline) — signed:true only additionally
+// DECOMPOSES it into same-sign bands; it never changes the total (asserted
+// in gate section 8, whose negative control is an UNSIGNED/absolute-value
+// integral, a genuinely different — and wrong — quantity for this family).
+//
+// Colour (color_positive/color_negative), opacity and the declared
+// composition order against riemann_bars are CP-C2 (below); this function
+// still makes no colour decision — it returns per-segment SIGN and the
+// drawing wrapper below reads it to pick color_positive/color_negative.
+//
+// CP-C2 reconciliation (a) — NON-FINITE SAMPLE RULE, unified with
+// riemann_bars. CP-C1 had this function clamp a non-finite sample to
+// 'base' (silently fabricating a y=0 point the function never produced
+// there) while riemann_bars dropped a non-finite bar entirely — two
+// primitives in the SAME family answering "what do we do with a
+// singularity" two different ways. Resolved toward function_plot's OWN D4
+// rule (PM_functionPlotSample: "ends the current polyline and starts a new
+// one... never drawn, never clamped") rather than riemann_bars', because D4
+// is the family's pre-existing, doc-cited mathematics-correctness
+// requirement — clamping to baseline is exactly the fabrication D4 forbids,
+// so region_fill's old behaviour was the outlier, not riemann_bars'. A
+// non-finite sample now BREAKS the current run (never joined across it,
+// never assigned a fake y) and integration/sign-splitting resumes fresh at
+// the next finite sample — riemann_bars is unchanged (it already dropped
+// the bar outright, draws and sums nothing for it).
+function PM_regionFillCompute(yExpr, domainMin, domainMax, baseline, vars, signed) {
+  var out = { segments: [], totalSignedArea: 0, positiveArea: 0, negativeArea: 0 };
+  if (!isFinite(domainMin) || !isFinite(domainMax) || !(domainMax > domainMin)) return out;
+  var base = (typeof baseline === 'number') ? baseline : 0;
+  var n = 480; // matches function_plot's own sample cap (D3's contract, [40,480])
+  var scopeVars = {};
+  for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) scopeVars[k] = vars[k];
+
+  // D4 parity — build RUNS of consecutive finite samples; a non-finite
+  // sample ends the current run (if it has >1 point) and starts a new one.
+  var runs = [];
+  var curRun = [];
+  for (var i = 0; i <= n; i++) {
+    var x = domainMin + (domainMax - domainMin) * (i / n);
+    scopeVars.x = x;
+    var y = PM_safeEval(yExpr, scopeVars);
+    if (!isFinite(y)) {
+      if (curRun.length > 1) runs.push(curRun);
+      curRun = [];
+      continue;
+    }
+    curRun.push({ x: x, y: y });
+  }
+  if (curRun.length > 1) runs.push(curRun);
+
+  function trapArea(seg) {
+    var a = 0;
+    for (var j = 1; j < seg.length; j++) {
+      a += ((seg[j - 1].y - base) + (seg[j].y - base)) / 2 * (seg[j].x - seg[j - 1].x);
+    }
+    return a;
+  }
+
+  for (var ri = 0; ri < runs.length; ri++) {
+    var pts = runs[ri];
+    if (!signed) {
+      var wholeArea = trapArea(pts);
+      out.segments.push({ points: pts, sign: 0, area: wholeArea });
+      out.totalSignedArea += wholeArea;
+      continue;
+    }
+    var cur = [pts[0]];
+    var curSign = (pts[0].y >= base) ? 1 : -1;
+    for (var qi = 1; qi < pts.length; qi++) {
+      var prev = pts[qi - 1], next = pts[qi];
+      var nextSign = (next.y >= base) ? 1 : -1;
+      if (nextSign !== curSign) {
+        var t = (base - prev.y) / (next.y - prev.y);
+        var xCross = prev.x + t * (next.x - prev.x);
+        var crossPt = { x: xCross, y: base };
+        cur.push(crossPt);
+        var segA = trapArea(cur);
+        out.segments.push({ points: cur, sign: curSign, area: segA });
+        if (curSign > 0) out.positiveArea += segA; else out.negativeArea += segA;
+        cur = [crossPt];
+        curSign = nextSign;
+      }
+      cur.push(next);
+    }
+    var lastA = trapArea(cur);
+    out.segments.push({ points: cur, sign: curSign, area: lastA });
+    if (curSign > 0) out.positiveArea += lastA; else out.negativeArea += lastA;
+  }
+  // Only the SIGNED path accumulates via positiveArea/negativeArea; the
+  // unsigned path already summed totalSignedArea inline above and must not
+  // be overwritten by two variables it never touched.
+  if (signed) out.totalSignedArea = out.positiveArea + out.negativeArea;
+  return out;
+}
+
+function drawRegionFill(spec) {
+  if (!spec || typeof spec.y_expr !== 'string' || typeof spec.from_expr !== 'string'
+      || typeof spec.to_expr !== 'string' || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var vars = PM_liveExprVars();
+  var domainFrom = PM_safeEval(spec.from_expr, vars);
+  var domainTo = PM_safeEval(spec.to_expr, vars);
+  var baseline = (typeof spec.baseline === 'number') ? spec.baseline : 0;
+  var signed = !!spec.signed;
+  var computed = PM_regionFillCompute(spec.y_expr, domainFrom, domainTo, baseline, vars, signed);
+  if (computed.segments.length === 0) return;
+
+  // CP-C2 — real colour + opacity semantics, replacing CP-C1's provisional
+  // one-colour / hardcoded-0.28-alpha stub (its contract carried no plain
+  // 'color' field at all for the unsigned case). 'color' is the UNSIGNED
+  // colour (also the fallback if signed but color_positive/negative are
+  // omitted); color_positive/color_negative — field NAMES copied VERBATIM
+  // from the doc's own contract (Delta 8's "one concept, one name" point) —
+  // colour each SIGNED segment by its own computed .sign. opacity defaults
+  // to 0.28 (unchanged visual default from CP-C1's hardcoded constant).
+  var baseColor = spec.color || '#22D3EE';
+  var posColor = spec.color_positive || baseColor;
+  var negColor = spec.color_negative || '#F87171';
+  var opacity = (typeof spec.opacity === 'number') ? spec.opacity : 0.28;
+  push();
+  // F3 — bound this fill's drawn geometry to its own plane's viewport.
+  var __pmClip = PM_planeClipGeometryBegin(spec.plane_id);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = baseColor;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  for (var si = 0; si < computed.segments.length; si++) {
+    var seg = computed.segments[si];
+    var poly = seg.points;
+    if (poly.length < 2) continue;
+    var rgb = PM_hexToRgb(signed ? (seg.sign < 0 ? negColor : posColor) : baseColor);
+    var alpha255 = 255 * gate.alpha * emph.alphaMul * opacity;
+    noStroke();
+    fill(rgb[0], rgb[1], rgb[2], alpha255);
+    var pxStart = PM_planeResolve(spec, poly[0].x, baseline);
+    var pxEnd = PM_planeResolve(spec, poly[poly.length - 1].x, baseline);
+    beginShape();
+    for (var pj = 0; pj < poly.length; pj++) {
+      var pxPt = PM_planeResolve(spec, poly[pj].x, poly[pj].y);
+      if (pxPt) vertex(pxPt.x, pxPt.y);
+    }
+    if (pxEnd) vertex(pxEnd.x, pxEnd.y);
+    if (pxStart) vertex(pxStart.x, pxStart.y);
+    endShape(CLOSE);
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  PM_planeClipGeometryEnd(__pmClip);
+  pop();
+}
+
+// ── riemann_bars (CP-C1 geometry + CP-C2 composition — bug_class:
+// pcpl_cannot_shade_or_partition_the_region_under_a_curve /
+// pcpl_riemann_bars_composition_and_draw_order_undeclared) ─────────────────
+// mode is a CLOSED four-value enum: 'left' | 'right' | 'midpoint' |
+// 'trapezoid'. AMENDMENT 1 to MATHEMATICS_PHASE0_CARTESIAN_PLANE.md keeps
+// 'trapezoid' (0b proposed dropping it; the gate table asserts
+// trap(4)=0.34375 on x^2/[0,1] and three claimed boards examine the
+// trapezium rule by name) — dropping the token would ship a gate asserting
+// a mode that does not exist.
+//
+// D7 — n derives from n_expr EVERY FRAME (never a frame counter, never
+// cached). max_bars_drawn caps only which rectangles are PLACED on screen;
+// the SUM always accumulates over the TRUE n — this is the whole point of
+// the cap (S4's convergence beat: above the cap the picture stops changing
+// while the number keeps moving) and is why the loop below always runs the
+// full n iterations regardless of max_bars_drawn.
+//
+// D11 — the primitive computes the sum ONCE, inside THIS loop, and
+// PUBLISHES it (drawRiemannBars below writes sum_var/bars_drawn_var into
+// PM_riemannPublish, AMENDMENT 2 / F6 supersession — see that map's own
+// declaration for why the target moved off PM_physics.derived); it draws no
+// text itself. See the pass-order note on drawRiemannBars.
+//
+// CP-C2 reads (but this function still makes no colour/render decision —
+// see drawRiemannBars): colour incl. signed colour, render
+// ('filled'|'outline'), opacity, the declared draw order against
+// region_fill, show_partition, reveal_stagger_ms. Every bar carries its own
+// TRUE original index 'i' (added for CP-C2) so reveal_stagger_ms — and
+// show_partition's line-per-bar gating — stay correct even if an earlier
+// bar was dropped for being non-finite (the array position among SURVIVING
+// bars is not always the same as the bar's true index among all n).
+function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsDrawn, vars) {
+  var out = { bars: [], sum: 0, n: 0, barsDrawn: 0 };
+  if (!isFinite(domainFrom) || !isFinite(domainTo) || !(domainTo > domainFrom)) return out;
+  var n = Math.round(nRaw);
+  if (!(n >= 1)) return out;
+  var m = (mode === 'right' || mode === 'midpoint' || mode === 'trapezoid') ? mode : 'left';
+  var barsDrawnCount = (typeof maxBarsDrawn === 'number' && isFinite(maxBarsDrawn))
+    ? PM_clamp(Math.round(maxBarsDrawn), 0, n) : n;
+  var h = (domainTo - domainFrom) / n;
+  var scopeVars = {};
+  for (var k in vars) if (Object.prototype.hasOwnProperty.call(vars, k)) scopeVars[k] = vars[k];
+
+  // F2 fix (bug_class: pcpl_riemann_bars_max_bars_drawn_truncates_the_
+  // partition_instead_of_bounding_its_cost, BLOCKING, founder_proxy
+  // Checkpoint B live-drive 2026-08-08) — a drawing cap must bound COST,
+  // never EXTENT. The old 'if (i < barsDrawnCount)' kept the FIRST barsDrawnCount
+  // bars only, so the drawn extent was cap*(to-from)/n — SHRINKING as n
+  // rises (measured: n=1000 -> [0,0.80], n=2304 -> [0,0.35], n=6494 ->
+  // [0,0.12], the exact opposite of what a convergence beat should show).
+  // The published SUM below is untouched by ANY of this — it always
+  // accumulates all n terms regardless of the cap (D7's own comment).
+  var capEngaged = barsDrawnCount < n;
+
+  var sum = 0;
+  for (var i = 0; i < n; i++) {
+    var xL = domainFrom + i * h;
+    var xR = xL + h;
+    scopeVars.x = xL;
+    var fL = PM_safeEval(yExpr, scopeVars);
+    scopeVars.x = xR;
+    var fR = PM_safeEval(yExpr, scopeVars);
+    var yTopLeft, yTopRight, area;
+    if (m === 'right') {
+      yTopLeft = fR; yTopRight = fR; area = fR * h;
+    } else if (m === 'midpoint') {
+      scopeVars.x = xL + h / 2;
+      var fM = PM_safeEval(yExpr, scopeVars);
+      yTopLeft = fM; yTopRight = fM; area = fM * h;
+    } else if (m === 'trapezoid') {
+      yTopLeft = fL; yTopRight = fR; area = (fL + fR) / 2 * h;
+    } else { // 'left' — default
+      yTopLeft = fL; yTopRight = fL; area = fL * h;
+    }
+    // A non-finite sample (e.g. a singularity inside this bar) contributes
+    // NOTHING to the sum and draws NOTHING for this one bar, rather than
+    // poisoning the whole published sum with a NaN. CP-C2 reconciliation
+    // (b) — this is the rule region_fill was made to MATCH (see
+    // PM_regionFillCompute's own header); unchanged here.
+    var ok = isFinite(area) && isFinite(yTopLeft) && isFinite(yTopRight);
+    if (ok) sum += area;
+    // F3 fix (bug_class pcpl_riemann_bars_cap_preserves_extent_but_draws_
+    // true_width_so_the_region_evaporates_as_n_grows, MAJOR, founder_proxy
+    // Checkpoint B cycle 2, 2026-08-09) — the OLD selection here pushed a
+    // sparse EVEN SPREAD of TRUE bars (each at its own true width
+    // h=(to-from)/n) into out.bars. That preserved EXTENT (the spread
+    // spans the full domain at every n, F2's own fix) but not COVERAGE:
+    // at n=10000, h is 0.044 canvas px, so 400 sub-pixel-wide bars render
+    // as nothing between them — measured inked fraction of the region
+    // crashing 0.992 -> 0.707 -> 0.008 as n climbed past the cap. The
+    // renderer's own comment above promises "above the cap the picture
+    // stops changing while the number keeps moving" — it did not stop,
+    // it EMPTIED. Once the cap is engaged, this per-true-index loop no
+    // longer builds out.bars AT ALL (the cap-not-engaged case, every true
+    // bar at its own true width, is UNCHANGED below). See the dedicated
+    // representative-partition loop after this one for what replaces it.
+    if (ok && !capEngaged) {
+      out.bars.push({ i: i, xL: xL, xR: xR, yTopLeft: yTopLeft, yTopRight: yTopRight, area: area });
+    }
+  }
+  out.sum = sum;
+  out.n = n;
+  out.barsDrawn = barsDrawnCount;
+
+  // Cap engaged: draw barsDrawnCount FRESH bars, each spanning the width
+  // it REPRESENTS — (domainTo-domainFrom)/barsDrawnCount — resampled at
+  // ITS OWN edges. This is a SECOND, independent equal partition of
+  // [domainFrom, domainTo] into exactly barsDrawnCount bars — NOT a
+  // selection from the true-n bars above (their own true width IS the
+  // bug). barsDrawnCount is FIXED once the cap engages (PM_clamp'd to n
+  // above), so this partition is IDENTICAL at every n above the cap:
+  // "above the cap the picture stops changing while the number keeps
+  // moving" is now genuinely delivered, not just promised in a comment.
+  // The published sum above is completely untouched by this — it already
+  // accumulated all n TRUE terms. bar.i is this loop's own sequential
+  // position (0..barsDrawnCount-1) — PM_riemannBarReveal's stagger reads
+  // bar.i as "this bar's position in DRAWN order" (see drawRiemannBars'
+  // own header: "the array position among SURVIVING bars is not always
+  // the same as the bar's true index among all n"), which is exactly
+  // what a fresh representative partition's own sequential position IS;
+  // show_partition below gates on the DRAW LOOP's own array position,
+  // never on bar.i, so it is unaffected either way.
+  if (capEngaged && barsDrawnCount > 0) {
+    var hDraw = (domainTo - domainFrom) / barsDrawnCount;
+    for (var j = 0; j < barsDrawnCount; j++) {
+      var dxL = domainFrom + j * hDraw;
+      var dxR = dxL + hDraw;
+      scopeVars.x = dxL;
+      var dfL = PM_safeEval(yExpr, scopeVars);
+      scopeVars.x = dxR;
+      var dfR = PM_safeEval(yExpr, scopeVars);
+      var dTopLeft, dTopRight, dArea;
+      if (m === 'right') {
+        dTopLeft = dfR; dTopRight = dfR; dArea = dfR * hDraw;
+      } else if (m === 'midpoint') {
+        scopeVars.x = dxL + hDraw / 2;
+        var dfM = PM_safeEval(yExpr, scopeVars);
+        dTopLeft = dfM; dTopRight = dfM; dArea = dfM * hDraw;
+      } else if (m === 'trapezoid') {
+        dTopLeft = dfL; dTopRight = dfR; dArea = (dfL + dfR) / 2 * hDraw;
+      } else { // 'left' — default
+        dTopLeft = dfL; dTopRight = dfL; dArea = dfL * hDraw;
+      }
+      var dOk = isFinite(dArea) && isFinite(dTopLeft) && isFinite(dTopRight);
+      if (dOk) {
+        out.bars.push({ i: j, xL: dxL, xR: dxR, yTopLeft: dTopLeft, yTopRight: dTopRight, area: dArea });
+      }
+    }
+  }
+  return out;
+}
+
+// D7 — PURE function of the clock: bar index barIndex's own reveal gate opens
+// at appearAtMs + barIndex*staggerMs (never a frame counter, never
+// accumulated across draw() calls), so a SET_TIME_FREEZE re-pin to the SAME
+// nowMs reproduces byte-identical bar visibility every time (H2 baselines).
+// animateInMs (when authored) ramps that ONE bar's alpha 0->1 over the same
+// window PM_animationGate uses for a whole primitive; omitted (falsy) means
+// each bar snaps straight to fully visible the instant its own gate opens.
+function PM_riemannBarReveal(barIndex, appearAtMs, staggerMs, animateInMs, nowMs) {
+  var appear = (typeof appearAtMs === 'number' ? appearAtMs : 0)
+    + barIndex * (typeof staggerMs === 'number' ? staggerMs : 0);
+  if (nowMs < appear) return { visible: false, alpha: 0 };
+  var animMs = (typeof animateInMs === 'number') ? animateInMs : 0;
+  if (animMs <= 0) return { visible: true, alpha: 1 };
+  var progress = (nowMs - appear) / animMs;
+  if (progress < 0) progress = 0;
+  if (progress > 1) progress = 1;
+  return { visible: true, alpha: progress };
+}
+
+function drawRiemannBars(spec) {
+  if (!spec || !spec.id || typeof spec.y_expr !== 'string' || typeof spec.from_expr !== 'string'
+      || typeof spec.to_expr !== 'string' || typeof spec.n_expr !== 'string' || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var vars = PM_liveExprVars();
+  var domainFrom = PM_safeEval(spec.from_expr, vars);
+  var domainTo = PM_safeEval(spec.to_expr, vars);
+  var nRaw = PM_safeEval(spec.n_expr, vars);
+  var computed = PM_riemannBarsCompute(spec.y_expr, domainFrom, domainTo, nRaw, spec.mode, spec.max_bars_drawn, vars);
+
+  // D11 (AMENDMENT 2 / F6 supersession, CP-C2) — PUBLISH into
+  // PM_riemannPublish, a frame-scoped map OUTSIDE PM_physics that survives
+  // ANY mid-frame PM_physics reassignment (see that map's own declaration).
+  // Runs UNCONDITIONALLY, even when there is nothing to draw this frame, so
+  // a label's {sum_var} is never one frame stale relative to the geometry.
+  // PASS-ORDER GUARANTEE (asserted in the dispatch report): this function
+  // runs inside Pass 0.3, which completes in full before Pass 3 (labels)
+  // starts — publisher-before-consumer holds by pass order, every frame,
+  // REGARDLESS of where plot_point sits in Pass 0.3 (D12's restored order
+  // runs riemann_bars BEFORE plot_point; the publish target no longer cares
+  // either way — see the Pass 0.3 header comment in draw()).
+  if (typeof spec.sum_var === 'string') PM_riemannPublish[spec.sum_var] = computed.sum;
+  if (typeof spec.bars_drawn_var === 'string') PM_riemannPublish[spec.bars_drawn_var] = computed.barsDrawn;
+
+  if (computed.bars.length === 0) return;
+
+  // CP-C2 — colour (incl. signed), render mode, opacity, reveal_stagger_ms,
+  // show_partition. 'color' is the UNSIGNED colour (also the signed
+  // fallback if color_positive/negative are omitted); color_positive/
+  // color_negative — field NAMES copied VERBATIM from region_fill (Delta
+  // 8) — colour each rectangle by the SIGN of its own computed .area (which
+  // equals sign(yTopLeft)=sign(yTopRight) for left/right/midpoint, and
+  // gives a single well-defined colour for a 'trapezoid' bar whose two
+  // edge-heights straddle the baseline — a judgment call, see dispatch
+  // report). riemann_bars has NO authored 'baseline' (unchanged, F16) —
+  // the sign test is against the SAME fixed data y=0 the rectangles already
+  // sit on. opacity defaults to 1.0 (D12/D9's "opaque over region_fill" by
+  // construction — see the Pass 0.3 draw-order restoration in draw()).
+  var baseColor = spec.color || '#22D3EE';
+  var posColor = spec.color_positive || baseColor;
+  var negColor = spec.color_negative || '#F87171';
+  var signed = !!spec.signed;
+  var renderMode = (spec.render === 'outline') ? 'outline' : 'filled';
+  var opacity = (typeof spec.opacity === 'number') ? spec.opacity : 1.0;
+  var appearAtMs = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
+  var staggerMs = (typeof spec.reveal_stagger_ms === 'number') ? spec.reveal_stagger_ms : 0;
+  var animateInMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
+  var nowMs = PM_simClockMs;
+
+  push();
+  // F3 — bound every drawn rectangle (and its partition line, below) to
+  // this riemann_bars' own plane viewport. This is the exact defect the
+  // dispatch measured: sliver_inset's baseline at data y=0 resolved off
+  // the 500px canvas and painted straight through a sibling plane.
+  var __pmClip = PM_planeClipGeometryBegin(spec.plane_id);
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = baseColor;
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  for (var i = 0; i < computed.bars.length; i++) {
+    var bar = computed.bars[i];
+    // reveal_stagger_ms — bar bar.i's (its TRUE original index, not its
+    // position among surviving bars) own gate; D7-pure, driven only by the
+    // clock (PM_simClockMs), never a frame counter.
+    var reveal = PM_riemannBarReveal(bar.i, appearAtMs, staggerMs, animateInMs, nowMs);
+    if (!reveal.visible) continue;
+
+    // riemann_bars has no authored 'baseline' — rectangles always sit on
+    // data y=0 (the contract's F16 field list carries no baseline key).
+    var p1 = PM_planeResolve(spec, bar.xL, 0);
+    var p2 = PM_planeResolve(spec, bar.xL, bar.yTopLeft);
+    var p3 = PM_planeResolve(spec, bar.xR, bar.yTopRight);
+    var p4 = PM_planeResolve(spec, bar.xR, 0);
+    if (!p1 || !p2 || !p3 || !p4) continue;
+
+    var rgb = PM_hexToRgb(signed ? (bar.area < 0 ? negColor : posColor) : baseColor);
+    var barAlpha255 = 255 * gate.alpha * emph.alphaMul * opacity * reveal.alpha;
+    if (renderMode === 'outline') {
+      noFill();
+      stroke(rgb[0], rgb[1], rgb[2], barAlpha255);
+      strokeWeight(1.5);
+    } else {
+      noStroke();
+      fill(rgb[0], rgb[1], rgb[2], barAlpha255);
+    }
+    beginShape();
+    vertex(p1.x, p1.y); vertex(p2.x, p2.y); vertex(p3.x, p3.y); vertex(p4.x, p4.y);
+    endShape(CLOSE);
+
+    // show_partition (A4) — the interior division line at bar i's LEFT
+    // edge (== the PREVIOUS drawn bar's right edge), gated by THIS bar's
+    // own reveal so the line arrives together with the rectangle it
+    // bounds. i=0's left edge is the domain start, not an interior
+    // boundary — skipped. Spans the plane's FULL y_range (a ruled line,
+    // not the rectangle's own height) specifically so it stays visible
+    // when the ADJACENT rectangle has zero height (the left-rule-on-x^2-
+    // at-n=4 case the field exists for) — a height-dependent tick would be
+    // invisible in exactly the case show_partition exists to fix.
+    if (spec.show_partition && i > 0) {
+      var pTop = PM_planeResolve(spec, bar.xL, ranges.yRange.max);
+      var pBot = PM_planeResolve(spec, bar.xL, ranges.yRange.min);
+      if (pTop && pBot) {
+        noFill();
+        stroke(148, 163, 184, 90 * reveal.alpha * gate.alpha * emph.alphaMul);
+        strokeWeight(1);
+        line(pTop.x, pTop.y, pBot.x, pBot.y);
+      }
+    }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  PM_planeClipGeometryEnd(__pmClip);
+  pop();
+}
+
+// ── secant_line / tangent_line (CP-D, F13-F14 — bug_class:
+// pcpl_cannot_draw_a_secant_or_tangent_with_a_live_slope) ─────────────────
+// THE TRAP, stated once, because it is what makes this family dangerous: a
+// plane's x and y pixel scales differ (the spec driver's own main plane —
+// definite_integral_as_accumulated_area_skeleton.md's viewport {w:660,h:372}
+// over x_range width 3.0 / y_range width 6.0 — is 220 px per x-unit against
+// 62 px per y-unit; gate section 10 uses this exact plane), so a slope
+// computed from PIXEL deltas is wrong by the aspect ratio AND looks
+// plausible on screen — nothing about a wrong pixel-derived line looks
+// broken until it is checked against the real number. The slope is
+// therefore computed ONLY from the RESOLVED DATA-space endpoints, in
+// PM_secantLineCompute / PM_tangentLineCompute below, and NEVER from
+// anything PM_planeResolve returns. extend:'frame' is a SEPARATE, LATER
+// step applied to the already-final data-space slope: PM_lineClipToRect
+// clips the (already-correct) data-space line against the plane's
+// data-space rectangle — a pixel-space CONCERN (what shows on screen) but
+// still a purely data-space OPERATION (no pixel value is read). Only
+// drawSecantLine/drawTangentLine below ever call PM_planeResolve, and only
+// on the two already-resolved endpoints (drawFrom/drawTo) — one funnel,
+// one direction, exactly like every other primitive in this family (D1/F7).
+
+// Liang-Barsky line-rectangle clip, DATA-space in, DATA-space out. Pure, so
+// the gate can assert it directly with no p5 dependency. Clips the infinite
+// line PASSING THROUGH (x0,y0)-(x1,y1) — callers pass two points already far
+// enough apart (PM_extendLineToFrame below sizes that distance off the
+// rectangle's own diagonal, never a fixed magic number) that the [0,1]
+// parametric segment already spans well past the rectangle in every
+// direction the line can leave it. Returns the clipped {x0,y0,x1,y1}, or
+// null if the line misses the rectangle entirely (should not occur for an
+// in-range origin point, but never assumed away).
+function PM_lineClipToRect(x0, y0, x1, y1, xMin, xMax, yMin, yMax) {
+  var dx = x1 - x0, dy = y1 - y0;
+  var t0 = 0, t1 = 1;
+  var p = [-dx, dx, -dy, dy];
+  var q = [x0 - xMin, xMax - x0, y0 - yMin, yMax - y0];
+  for (var i = 0; i < 4; i++) {
+    if (p[i] === 0) {
+      if (q[i] < 0) return null; // parallel to this edge and entirely outside it
+    } else {
+      var r = q[i] / p[i];
+      if (p[i] < 0) { if (r > t1) return null; if (r > t0) t0 = r; }
+      else { if (r < t0) return null; if (r < t1) t1 = r; }
+    }
+  }
+  return { x0: x0 + t0 * dx, y0: y0 + t0 * dy, x1: x0 + t1 * dx, y1: y0 + t1 * dy };
+}
+
+// Extends (originX, originY) along dataSlope far enough past the plane's
+// data-space rectangle in BOTH directions (sized off the rectangle's own
+// diagonal, so it is correct at any authored x_range/y_range, never a fixed
+// magic number) and clips to it via PM_lineClipToRect. Shared by
+// secant_line (extend:'frame', using the chord's own computed slope) and
+// tangent_line (extend:'frame', using slope_expr) — one clip implementation,
+// two callers.
+function PM_extendLineToFrame(originX, originY, dataSlope, xRange, yRange) {
+  var norm = Math.sqrt(1 + dataSlope * dataSlope);
+  var diag = Math.sqrt(Math.pow(xRange.max - xRange.min, 2) + Math.pow(yRange.max - yRange.min, 2));
+  var big = (diag * 10) / norm;
+  return PM_lineClipToRect(
+    originX - big, originY - big * dataSlope,
+    originX + big, originY + big * dataSlope,
+    xRange.min, xRange.max, yRange.min, yRange.max
+  );
+}
+
+// D8 — the readout and the picture derive from the SAME evaluation (mirrors
+// PM_plotPointResolve's own header above). '{m}' is the one substitution
+// token; decimals is this primitive's OWN precision, never the slider
+// caption's hardcoded toFixed(step<1?1:0).
+function PM_secantTangentReadout(spec, slope) {
+  if (!spec.readout || !isFinite(slope)) return '';
+  var decimals = (typeof spec.readout.decimals === 'number') ? spec.readout.decimals : 3;
+  var fmt = (typeof spec.readout.format === 'string') ? spec.readout.format : 'slope = {m}';
+  // PM_fmtNum (Rule 34c) — real Unicode minus, never toFixed()'s ASCII hyphen.
+  return fmt.split('{m}').join(PM_fmtNum(slope, decimals));
+}
+
+// F13 — from_expr/to_expr are OBJECTS ({x: exprString, y: exprString}), one
+// expression per coordinate — deliberately NOT PM_safeEvalPoint's single-
+// expression-returning-an-object shape (that shape belongs to
+// drawVector/drawForceArrow's from_expr/to_expr; this family's contract, per
+// docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md's own example, authors x and y
+// as two separate expressions, e.g. from_expr: {x:"x0", y:"f0"}).
+function PM_secantLineCompute(spec, vars, ranges) {
+  var out = { valid: false, from: null, to: null, slope: NaN, drawFrom: null, drawTo: null, readoutText: '' };
+  if (!spec || !spec.from_expr || !spec.to_expr
+      || typeof spec.from_expr.x !== 'string' || typeof spec.from_expr.y !== 'string'
+      || typeof spec.to_expr.x !== 'string' || typeof spec.to_expr.y !== 'string') return out;
+  var fx = PM_safeEval(spec.from_expr.x, vars), fy = PM_safeEval(spec.from_expr.y, vars);
+  var tx = PM_safeEval(spec.to_expr.x, vars), ty = PM_safeEval(spec.to_expr.y, vars);
+  if (!isFinite(fx) || !isFinite(fy) || !isFinite(tx) || !isFinite(ty)) return out;
+  if (Math.abs(tx - fx) < 1e-12) return out; // vertical chord: undefined slope as dy/dx, nothing to draw
+
+  // THE ONE PLACE the slope is computed — DATA coordinates only, never a
+  // pixel value (see the family header comment above).
+  var slope = (ty - fy) / (tx - fx);
+
+  out.valid = true;
+  out.from = { x: fx, y: fy };
+  out.to = { x: tx, y: ty };
+  out.slope = slope;
+
+  var extend = spec.extend || 'segment';
+  if (extend === 'frame' && ranges) {
+    var clipped = PM_extendLineToFrame(fx, fy, slope, ranges.xRange, ranges.yRange);
+    out.drawFrom = clipped ? { x: clipped.x0, y: clipped.y0 } : out.from;
+    out.drawTo = clipped ? { x: clipped.x1, y: clipped.y1 } : out.to;
+  } else {
+    out.drawFrom = out.from;
+    out.drawTo = out.to;
+  }
+
+  out.readoutText = PM_secantTangentReadout(spec, slope);
+  return out;
+}
+
+// F14 — at_expr is the same {x: exprString, y: exprString} object shape as
+// secant_line's from_expr/to_expr (F13's comment above). slope_expr is
+// AUTHORED, never numerically differentiated — the engine is deliberately
+// not a CAS (ledger item 5: "#2 authors slope_expr explicitly (cos(x0) for
+// sin), which keeps the mathematics in the concept JSON where
+// mathematics_author can put a domain ledger on it").
+//
+// extend:'segment' has no natural from/to for a POINT + slope (unlike
+// secant_line, which always has two authored points), so a fixed data-space
+// half-width, symmetric around at.x along the tangent's own slope, stands
+// in — sized as a FRACTION of the plane's OWN x_range span so it scales
+// with whatever window a state authors, never a fixed px/data magic number.
+// Flagged as a judgment call in the dispatch report: the doc's contract
+// does not specify a segment length for a point-defined line.
+var PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC = 0.12;
+
+function PM_tangentLineCompute(spec, vars, ranges) {
+  var out = { valid: false, at: null, slope: NaN, drawFrom: null, drawTo: null, readoutText: '' };
+  if (!spec || !spec.at_expr || typeof spec.at_expr.x !== 'string' || typeof spec.at_expr.y !== 'string'
+      || typeof spec.slope_expr !== 'string') return out;
+  var ax = PM_safeEval(spec.at_expr.x, vars), ay = PM_safeEval(spec.at_expr.y, vars);
+  var slope = PM_safeEval(spec.slope_expr, vars);
+  if (!isFinite(ax) || !isFinite(ay) || !isFinite(slope)) return out;
+
+  out.valid = true;
+  out.at = { x: ax, y: ay };
+  out.slope = slope;
+
+  var extend = spec.extend || 'segment';
+  if (extend === 'frame' && ranges) {
+    var clipped = PM_extendLineToFrame(ax, ay, slope, ranges.xRange, ranges.yRange);
+    out.drawFrom = clipped ? { x: clipped.x0, y: clipped.y0 } : out.at;
+    out.drawTo = clipped ? { x: clipped.x1, y: clipped.y1 } : out.at;
+  } else {
+    var xSpan = (ranges && ranges.xRange) ? (ranges.xRange.max - ranges.xRange.min) : 1;
+    var halfW = xSpan * PM_TANGENT_SEGMENT_HALF_WIDTH_FRAC;
+    out.drawFrom = { x: ax - halfW, y: ay - halfW * slope };
+    out.drawTo = { x: ax + halfW, y: ay + halfW * slope };
+  }
+
+  out.readoutText = PM_secantTangentReadout(spec, slope);
+  return out;
+}
+
+function drawSecantLine(spec) {
+  if (!spec || !spec.id || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var vars = PM_liveExprVars();
+  var computed = PM_secantLineCompute(spec, vars, ranges);
+  if (!computed.valid) return;
+
+  // F7 — the ONE resolution funnel, called ONLY on the already-final
+  // data-space endpoints (drawFrom/drawTo). No pixel value ever feeds back
+  // into the slope computed above (the family header comment states why).
+  var p0 = PM_planeResolve(spec, computed.drawFrom.x, computed.drawFrom.y);
+  var p1 = PM_planeResolve(spec, computed.drawTo.x, computed.drawTo.y);
+  if (!p0 || !p1) return;
+
+  var rgb = PM_hexToRgb(spec.color || '#F472B6');
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#F472B6';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  // F3 — bound the drawn chord to its own plane's viewport (extend:'frame'
+  // already self-clips in DATA space via PM_lineClipToRect; extend:'segment'
+  // did not, so this is the general backstop for both).
+  var __pmClip = PM_planeClipGeometryBegin(spec.plane_id);
+  stroke(rgb[0], rgb[1], rgb[2], alpha255);
+  strokeWeight(2);
+  line(p0.x, p0.y, p1.x, p1.y);
+  PM_planeClipGeometryEnd(__pmClip);
+  // Register the chord's OWN ink as an obstacle for whatever draws on this
+  // plane next this frame (tangent_line, plot_point — Pass 0.3's fixed
+  // order). Subdivided (PM_registerLineInk), never one bbox spanning the
+  // full extend:'frame' span.
+  PM_registerLineInk(spec.plane_id, p0, p1, 5);
+  if (computed.readoutText) {
+    // Readout sits near the CHORD's own midpoint (the authored from/to),
+    // never the frame-extended endpoints — the number labels the two
+    // authored points, not wherever the clip happened to land.
+    var rFrom = PM_planeResolve(spec, computed.from.x, computed.from.y);
+    var rTo = PM_planeResolve(spec, computed.to.x, computed.to.y);
+    if (rFrom && rTo) {
+      noStroke();
+      fill(rgb[0], rgb[1], rgb[2], alpha255);
+      textSize(12);
+      textAlign(LEFT, CENTER);
+      // F-readout — an authored offset always wins (parity with
+      // plot_point.readout.offset); with none authored, clear the stroke by
+      // the MEASURED width of this frame's own string against the drawn
+      // segment's OWN pixel direction (p0->p1, just stroked above). A fixed
+      // screen-axis offset — and equally a fixed PERPENDICULAR one — is
+      // what a sloped chord is guaranteed to intersect once the label is
+      // wider than the displacement (this primitive's whole bug_class).
+      var secAnchor = { x: (rFrom.x + rTo.x) / 2, y: (rFrom.y + rTo.y) / 2 };
+      var secTW = textWidth(computed.readoutText);
+      var secOff = PM_readoutAuthoredOffset(spec) || PM_labelClearOffset(p0, p1, secTW, 14, 6);
+      // Route through the SAME collision-aware resolver plot_point uses
+      // (bug_class readout_collision_flip_is_wired_at_one_call_site_of_
+      // three) — secant/tangent readouts used to get PM_clampOffsetToCanvas
+      // ONLY, so an authored offset could never escape the axis/tick band,
+      // let alone a sibling's curve ink or another readout's box. This
+      // chord's own {p0,p1} doubles as the resolver's localInk, so the
+      // ordered candidate set's +/- normal alternatives are the SAME
+      // direction PM_labelClearOffset's own default already prefers, tried
+      // as an explicit TESTED candidate rather than assumed.
+      secOff = PM_readoutResolveOffset(secAnchor, secOff, secTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id, { p0: p0, p1: p1 });
+      secOff = PM_clampOffsetToCanvas(secAnchor, secOff, secTW, 14);
+      text(computed.readoutText, secAnchor.x + secOff.x, secAnchor.y + secOff.y);
+      PM_debugRecordReadout(spec.id, secAnchor, secOff, secTW, 14);
+      PM_registerInkZone(spec.plane_id, PM_readoutBBox(secAnchor, secOff, secTW, 14));
+    }
+  }
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = 'transparent';
+    drawingContext.shadowBlur = 0;
+  }
+  pop();
+}
+
+function drawTangentLine(spec) {
+  if (!spec || !spec.id || !spec.plane_id) return;
+  // D6 — both standard brackets, before any drawing.
+  var gate = PM_animationGate(spec);
+  if (!gate.visible) return;
+  var emph = PM_focalEmphasis(spec);
+
+  // F7 — inert when the named plane isn't registered this frame.
+  var ranges = PM_planeRangesOf(spec.plane_id);
+  if (!ranges) return;
+
+  var vars = PM_liveExprVars();
+  var computed = PM_tangentLineCompute(spec, vars, ranges);
+  if (!computed.valid) return;
+
+  // F7 — the ONE resolution funnel, called ONLY on the already-final
+  // data-space endpoints.
+  var p0 = PM_planeResolve(spec, computed.drawFrom.x, computed.drawFrom.y);
+  var p1 = PM_planeResolve(spec, computed.drawTo.x, computed.drawTo.y);
+  if (!p0 || !p1) return;
+
+  var rgb = PM_hexToRgb(spec.color || '#A78BFA');
+  var alpha255 = 255 * gate.alpha * emph.alphaMul;
+  push();
+  if (emph.glowPx > 0) {
+    drawingContext.shadowColor = spec.color || '#A78BFA';
+    drawingContext.shadowBlur = emph.glowPx;
+  }
+  // F3 — bound the drawn tangent to its own plane's viewport (extend:'frame'
+  // already self-clips in DATA space via PM_lineClipToRect; extend:'segment'
+  // did not, so this is the general backstop for both).
+  var __pmClip = PM_planeClipGeometryBegin(spec.plane_id);
+  stroke(rgb[0], rgb[1], rgb[2], alpha255);
+  strokeWeight(2);
+  line(p0.x, p0.y, p1.x, p1.y);
+  PM_planeClipGeometryEnd(__pmClip);
+  // Register the tangent's OWN ink as an obstacle for whatever draws on
+  // this plane next this frame (plot_point — Pass 0.3's fixed order).
+  PM_registerLineInk(spec.plane_id, p0, p1, 5);
+  if (computed.readoutText) {
+    // Readout sits near the authored tangency point 'at', never the
+    // frame-extended endpoints.
+    var rAt = PM_planeResolve(spec, computed.at.x, computed.at.y);
+    if (rAt) {
+      noStroke();
+      fill(rgb[0], rgb[1], rgb[2], alpha255);
+      textSize(12);
+      textAlign(LEFT, CENTER);
+      // F-readout — same offset contract as drawSecantLine above: authored
+      // offset wins; default clears the drawn tangent's own pixel-space
+      // direction (p0->p1) by this frame's MEASURED text width.
+      var tanTW = textWidth(computed.readoutText);
+      var tanOff = PM_readoutAuthoredOffset(spec) || PM_labelClearOffset(p0, p1, tanTW, 14, 6);
+      // Route through the SAME collision-aware resolver plot_point uses —
+      // see the parallel comment in drawSecantLine above (localInk = this
+      // tangent's own {p0,p1}).
+      tanOff = PM_readoutResolveOffset(rAt, tanOff, tanTW, 14, PM_planeRegistry[spec.plane_id], spec.plane_id, { p0: p0, p1: p1 });
+      tanOff = PM_clampOffsetToCanvas(rAt, tanOff, tanTW, 14);
+      text(computed.readoutText, rAt.x + tanOff.x, rAt.y + tanOff.y);
+      PM_debugRecordReadout(spec.id, rAt, tanOff, tanTW, 14);
+      PM_registerInkZone(spec.plane_id, PM_readoutBBox(rAt, tanOff, tanTW, 14));
+    }
   }
   if (emph.glowPx > 0) {
     drawingContext.shadowColor = 'transparent';
@@ -2558,6 +5212,13 @@ function PM_drawSubScene(prims, ox, oy) {
 // to_deg_expr for dynamic angles that track a slider variable. Used by
 // vector_resolution to visualize α and by normal_reaction for θ indicators.
 function drawAngleArc(spec) {
+  // peter_parker:renderer_primitives, 2026-08-05 — same missing bracket as
+  // drawVector: drawAngleArc consumed PM_focalEmphasis but never
+  // PM_animationGate, so appear_at_ms on an arc was silently inert and a timed
+  // reveal that gated its body correctly still drew its arc from frame 0
+  // (pcpl_vector_and_angle_arc_ignore_appear_at_ms_so_authored_reveal_chains_no_op).
+  var arcGate = PM_animationGate(spec);
+  if (!arcGate.visible) return;
   // Vertex resolution priority:
   //   0. spec.anchor_to (WP-R5, D5) → PM_endpointRegistry lookup. Wins over
   //      everything below when the target primitive has already been
@@ -2586,6 +5247,17 @@ function drawAngleArc(spec) {
   }
   if (!center) center = { x: 250, y: 300 };
   var radius = (typeof spec.radius === 'number') ? spec.radius : 40;
+  // radius_expr — live variable-driven radius, the drawAngleArc sibling of
+  // drawBody's size_expr above (same PM_liveExprVars() scope, same opt-in
+  // non-finite-eval fallback to the authored literal/default). Without this
+  // an arc's sweep could track a slider (to_deg_expr / angle_value_expr) but
+  // its RADIUS stayed frozen — a morphing-radius family (e.g. a conic's
+  // arc growing with its own semi-axis) had no honest rendering path.
+  if (typeof spec.radius_expr === 'string') {
+    var radVars = PM_liveExprVars();
+    var radVal = PM_safeEval(spec.radius_expr, radVars);
+    if (isFinite(radVal)) radius = radVal;
+  }
   var fromDeg = (typeof spec.from_deg === 'number') ? spec.from_deg : 0;
   var toDeg;
   if (typeof spec.to_deg_expr === 'string') {
@@ -3046,11 +5718,37 @@ function drawCanvasSlider(spec, idx, total) {
   if (PM_sliderValues[spec.variable] === undefined) {
     PM_sliderValues[spec.variable] = defV;
   }
-  var val = PM_sliderValues[spec.variable];
+  // peter_parker:renderer_primitives, 2026-08-05 —
+  // pcpl_slider_label_stale_under_choreography. The knob and caption read
+  // PM_sliderValues only, which PM_applyChoreography never writes (it writes
+  // PM_choreoValues, :3485). So on any state whose variable_choreography drives
+  // a slider-bound variable, the caption printed the untouched seed while the
+  // HUD beside it tracked the live angle — two on-canvas readouts of the SAME
+  // quantity, disagreeing, in one frame. DISPLAY-ONLY fix: before a real drag
+  // seizes the variable the choreography owns it, so show the choreographed
+  // value; once seized, PM_sliderValues is authoritative again. The physics
+  // already read the choreographed value, so nothing about behaviour changes.
+  // Mirrors the pf_slider_label_ignores_oneshot_lerp precedent on particle_field.
+  var val = (!PM_userTouched[spec.variable]
+             && typeof PM_choreoValues[spec.variable] === 'number')
+    ? PM_choreoValues[spec.variable]
+    : PM_sliderValues[spec.variable];
   var frac = (val - minV) / (maxV - minV);
   if (!isFinite(frac)) frac = 0;
   frac = Math.max(0, Math.min(1, frac));
   var knobX = slot.x + frac * slot.w;
+
+  // Read-only probe registry (THE CALCULATOR's N3 gate). Canvas sliders have no
+  // DOM handle, so a harness scanning input[type=range] finds ZERO sliders on
+  // every parametric sim and its slider-response gate silently no-ops. Geometry
+  // is DESIGN-SPACE (760x500) — a prober maps to page coords via the canvas
+  // bounding box. Stamped with frameCount so stale entries from a previous
+  // state are distinguishable (only sliders drawn this frame re-stamp).
+  window.__PM_sliderGeom = window.__PM_sliderGeom || {};
+  window.__PM_sliderGeom[spec.variable] = {
+    id: spec.id || spec.variable, x: slot.x, y: slot.y, w: slot.w,
+    min: minV, max: maxV, value: val, f: frameCount
+  };
 
   // Draw slot
   push();
@@ -3078,6 +5776,16 @@ function drawCanvasSlider(spec, idx, total) {
   pop();
 
   // Drag handling — single-slider-at-a-time to avoid cross-interference.
+  // F1b (bug_class: pcpl_drag_handle_re-tests_pointer_proximity_every_
+  // frame_so_a_handle_that_drifts_off_its_own_drag_axis_drops_itself,
+  // BLOCKING, founder_proxy Checkpoint B live-drive 2026-08-08, found on
+  // drawPlotPoint's twin branch and mirrored here) — LATCH on mousedown:
+  // proximity is tested ONLY at the moment of claim (PM_activeSliderId
+  // still null this frame). Once claimed, every subsequent frame of the
+  // SAME press keeps updating regardless of how far mouseX/mouseY have
+  // since drifted outside the slot's hit band (a fast drag past the
+  // slot's own ends, or vertical drift off the horizontal line) —
+  // released ONLY on mouseup, never by a failed proximity re-test.
   var hit = mouseIsPressed
     && Math.abs(mouseY - slot.y) < 18
     && mouseX > slot.x - 8
@@ -3092,7 +5800,7 @@ function drawCanvasSlider(spec, idx, total) {
   }
   var isActive = PM_activeSliderId === (spec.id || spec.variable);
 
-  if (hit && isActive) {
+  if (mouseIsPressed && isActive) {
     // WP-R5 (D5 seizure) — a REAL drag (genuine mouseIsPressed, this exact
     // branch) permanently hands this variable's variable_choreography (if
     // any) over to the teacher for the rest of this state. Synthetic
@@ -3110,12 +5818,11 @@ function drawCanvasSlider(spec, idx, total) {
     // Value changed? Update local physics + emit PARAM_UPDATE upward.
     if (PM_sliderValues[spec.variable] !== snapped) {
       PM_sliderValues[spec.variable] = snapped;
-      var currentVars = PM_resolveStateVars(PM_currentState) || {};
-      for (var sk in PM_sliderValues) {
-        if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk)) {
-          currentVars[sk] = PM_sliderValues[sk];
-        }
-      }
+      // F1a — rebuild the SAME frame-live scope (choreography included for
+      // every OTHER unseized variable), never authored defaults. See
+      // PM_liveDragScope's own header (shared with drawPlotPoint's twin
+      // drag branch — one fix closes the bug class at both call sites).
+      var currentVars = PM_liveDragScope();
       try {
         PM_physics = computePhysics(PM_config.concept_id, currentVars);
       } catch (err) {
@@ -3148,6 +5855,59 @@ var PM_physics = null;
 var PM_currentState = 'STATE_1';
 var PM_bodyRegistry = {};
 var PM_surfaceRegistry = {};
+// CP-A (F1/D1) — { [plane_id]: { toPx(x,y), toData(px,py), viewport, xRange,
+// yRange } }, populated by drawCartesianPlane in Pass 0.25 (after surfaces,
+// before bodies) — the SAME registry pattern PM_surfaceRegistry uses for
+// attach_to_surface, instanced for a coordinate frame instead of a line
+// segment. Every plane_id-carrying primitive resolves through PM_planeResolve
+// against THIS object, never re-deriving its own transform.
+var PM_planeRegistry = {};
+// Engine round (bug_class
+// parametric_readout_and_label_collision_awareness_does_not_cover_a_sibling_
+// primitives_curve_or_line_ink) — { [plane_id]: Array<{x0,y0,x1,y1}> }, the
+// HARD per-frame obstacle registry PM_readoutDangerZones folds into the axis
+// bands it has always returned — a candidate that overlaps ANY zone here is
+// rejected outright by PM_readoutCollides. Populated by drawFunctionPlot/
+// drawSecantLine/drawTangentLine (their own curve/chord/tangent ink, Pass
+// 0.3) and every readout primitive's OWN final resolved box + marker dot
+// (PM_debugRecordReadout's sibling registration calls) — reset once per
+// frame, BEFORE Pass 0.25 (see draw()). Gridlines are deliberately NOT
+// registered here as of the 2026-08-08 engine round — see
+// PM_planeGridInkZones immediately below and drawCartesianPlane's gridline
+// header comment for the full geometric argument.
+var PM_planeInkZones = {};
+// SOFT per-frame obstacle registry, same shape as PM_planeInkZones — holds
+// ONLY gridline ink (drawCartesianPlane, Pass 0.25). Read exclusively by
+// PM_readoutGridOverlapArea (the least-overlap-area tie-break inside
+// PM_readoutResolveOffset), never by the hard PM_readoutCollides predicate —
+// so a readout that merely grazes a dim decorative gridline is never
+// rejected outright, only nudged toward whichever tested candidate crosses
+// less of it. Reset in lockstep with PM_planeInkZones (see draw()).
+var PM_planeGridInkZones = {};
+// Per-frame, per-plane: the LIVE (non-ghost) function_plot's y_expr on this
+// plane, as authored — e.g. "x*x/2". Set by drawFunctionPlot as it draws
+// (Pass 0.3, the SAME fixed-order guarantee PM_planeInkZones relies on:
+// function_plot always runs before plot_point) and consumed by
+// drawPlotPoint's default-offset direction (PM_plotPointCurveTangentPx)
+// below. A state that draws a parent "ghost" copy alongside the live curve
+// (graph_transformations' style:'ghost' pattern) never lets the ghost
+// overwrite an already-registered live curve — see drawFunctionPlot's own
+// registration guard. Reset in lockstep with PM_planeInkZones (see draw()).
+var PM_planeCurveExpr = {};
+// D11 (AMENDMENT 2 / F6 supersession, CP-C2, bug_class
+// pcpl_riemann_bars_composition_and_draw_order_undeclared) — { [var_name]:
+// number }, riemann_bars' publish target. Deliberately OUTSIDE PM_physics:
+// drawPlotPoint's genuine-drag branch (and PM_applyChoreography, WP-R5)
+// reassign PM_physics = computePhysics(...) WHOLESALE mid-frame, and D12's
+// declared draw order runs plot_point AFTER riemann_bars — so a value
+// published into PM_physics.derived (CP-C1's original target, per the F6
+// scope map) would be WIPED before Pass 3 (labels) reads it whenever a drag
+// fires the SAME frame riemann_bars published. Cleared at the START of
+// every Pass 0.3 (see draw()) and merged by PM_liveExprVars() below, so
+// PM_interpolate resolves {sum_var}/{bars_drawn_var} exactly as it did under
+// the old target, but survives ANY PM_physics reassignment for the rest of
+// the frame. See the Pass 0.3 header comment for the full argument.
+var PM_riemannPublish = {};
 // WP-R5 (D5 anchor_to) — { [primitive_id]: { origin: {x,y}, tip: {x,y} } },
 // refilled every draw() frame by drawForceArrow/drawAngleArc (array order =
 // PM_resolveAnchorTo's "must precede" contract). Cleared on true SET_STATE.
@@ -3438,17 +6198,42 @@ function PM_applyChoreography() {
   if (!changed) return;
 
   var scene = (stateData && stateData.scene_composition) || [];
-  var stateSliderVars = {};
-  for (var si = 0; si < scene.length; si++) {
-    var sp = scene[si];
-    if (sp && sp.type === 'slider' && sp.variable) stateSliderVars[sp.variable] = true;
-  }
+  // CP-B (F5/F12) — "slider" here means "live-control": either a
+  // type:'slider' primitive or a type:'plot_point' with a drag.bind_variable.
+  // See PM_stateLiveControlVars's own header for why this must be ONE
+  // function shared by every consumer instead of four separate scans.
+  var stateSliderVars = PM_stateLiveControlVars(scene);
   var vars = PM_resolveStateVars(PM_currentState) || {};
-  for (var sk in PM_sliderValues) {
-    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
-      vars[sk] = PM_sliderValues[sk];
-    }
-  }
+  // WP-R6 REOPENED (bug_class
+  // pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_
+  // state_on_state_change, second door, quality_auditor live-drive on the
+  // REAL definite_integral_as_accumulated_area, 2026-08-08/09) — this used
+  // to run the SAME unconditional PM_sliderValues overlay the SET_STATE
+  // handler had (fixed via PM_overlayLiveControlValues), but as an
+  // INDEPENDENT, un-gated copy nobody caught: PM_applyChoreography runs
+  // every frame whenever the CURRENT state authors ANY variable_choreography
+  // AT ALL (any variable, not necessarily the leaked one), rebuilds vars
+  // from scratch here, and — pre-fix — clobbered PM_physics with the stale
+  // PM_sliderValues value the instant that rebuild ran, UNDOING the
+  // SET_STATE handler's own correct (gated) resolution one frame later.
+  // Measured via direct instrumentation on the real concept (a synthetic
+  // fixture, WP-R6's first round, did not reproduce this — it authored no
+  // variable_choreography on the leaking state): drag bound_marker on
+  // STATE_8 (b -> 1.0909...), SET_STATE STATE_5 (advance_mode:'manual_click',
+  // choreographs 'c', ALSO declares 'b' via its own bound_marker drag) — the
+  // SET_STATE handler's computePhysics call correctly resolved b=2, but
+  // PM_applyChoreography's very next call (triggered by c's choreography
+  // stepping, entirely unrelated to b) clobbered it back to 1.0909... on the
+  // SAME frame's first choreography tick (prev===undefined after the
+  // per-state PM_choreoValues wipe, so 'changed' is true on frame 1
+  // regardless of c's own numeric delta). STATE_2 (no choreography) and
+  // STATE_3/STATE_1 (choreograph OTHER variables but never author 'b' as a
+  // live control themselves) never triggered it — matching the audit's own
+  // selective "only STATE_5 bleeds" pattern exactly. Fixed by routing
+  // through the SAME centralised, advance_mode-gated function the SET_STATE
+  // handler already uses — one gate, every caller, never a second
+  // hand-rolled copy again.
+  vars = PM_overlayLiveControlValues(vars, stateData, stateSliderVars);
   for (var ck in PM_choreoValues) {
     if (Object.prototype.hasOwnProperty.call(PM_choreoValues, ck) && !PM_userTouched[ck]) {
       vars[ck] = PM_choreoValues[ck];
@@ -3588,6 +6373,32 @@ function draw() {
     if (sPrim && sPrim.type === 'surface') drawSurface(sPrim);
   }
 
+  // Reset the per-frame readout obstacle registries + debug snapshot BEFORE
+  // Pass 0.25 — drawCartesianPlane's gridlines (Pass 0.25) register into
+  // PM_planeGridInkZones, and every readout drawn later this same frame
+  // (Pass 0.3) must see them (plus whatever function_plot registers into
+  // PM_planeInkZones/PM_planeCurveExpr); resetting any later would wipe what
+  // Pass 0.25 just wrote. A stale zone/curve/debug entry from a PRIOR
+  // frame's dragged offset or a PRIOR state's plane must never leak into
+  // this frame's placement.
+  PM_planeInkZones = {};
+  PM_planeGridInkZones = {};
+  PM_planeCurveExpr = {};
+  if (typeof window !== 'undefined') {
+    window.__pmDebug = window.__pmDebug || {};
+    window.__pmDebug.readouts = {};
+  }
+
+  // Pass 0.25 (CP-A, D1) — draw cartesian_plane frames (populates
+  // PM_planeRegistry). Runs after surfaces (Pass 0) and before bodies
+  // (Pass 1) so every plane_id-carrying primitive resolves through a
+  // transform that is current THIS frame. A state may declare more than one
+  // plane (F1 multi-plane, e.g. an inset) — every one of them registers.
+  for (var pl = 0; pl < scene.length; pl++) {
+    var plPrim = scene[pl];
+    if (plPrim && plPrim.type === 'cartesian_plane') drawCartesianPlane(plPrim);
+  }
+
   // Engine 20 init hook — runs after Pass 0 so PM_surfaceRegistry is current.
   // Triggered by state switch or slider drag; seeds PM_motionState with the
   // correct initial position derived from the (possibly re-oriented) surface.
@@ -3632,6 +6443,96 @@ function draw() {
   // accepts elsewhere in this function; no authored surface uses a
   // choreographed angle_expr today.
   PM_applyChoreography();
+
+  // D11 (AMENDMENT 2 / F6 supersession, CP-C2) — clear the frame-scoped
+  // riemann_bars publish map at the START of Pass 0.3, before either
+  // publisher below runs. A key from a PRIOR frame (or a state that no
+  // longer authors the publishing primitive) must never survive into THIS
+  // frame's PM_liveExprVars() merge — see PM_riemannPublish's declaration.
+  PM_riemannPublish = {};
+
+  // Pass 0.3 (CP-B, F8-F12; CP-C1, F15-F16 geometry; CP-C2, D12 draw order
+  // RESTORED; CP-D, F13-F14 slotted into the already-declared position) —
+  // region_fill, then riemann_bars, then function_plot, then secant_line /
+  // tangent_line, then plot_point, then Pass 3 labels. Runs AFTER
+  // PM_applyChoreography() (immediately above) so a choreographed x_domain
+  // bound (e.g. xdraw/beta/b) is reflected the same frame it steps (D3 — every
+  // primitive below reads PM_liveExprVars(), which PM_applyChoreography()
+  // is what refreshes).
+  //
+  // D12's LITERAL ORDER, RESTORED (bug_class
+  // pcpl_riemann_bars_composition_and_draw_order_undeclared; supersedes
+  // CP-C1's inversion). CP-C1 ran region_fill/riemann_bars LAST, AFTER
+  // plot_point, to dodge a publication clobber: drawPlotPoint's
+  // genuine-drag branch (below) reassigns PM_physics wholesale mid-pass,
+  // and CP-C1's D11 publish target was PM_physics.derived — so if
+  // riemann_bars had already published this frame and the drag-reassign ran
+  // afterward, the publish would be WIPED before Pass 3 (labels) read it.
+  // But that inversion made rectangles/fill paint OVER the curve and point
+  // marker (drawn LAST), the opposite of D12, and — decisively for CP-C2's
+  // own delta 9 — an opaque (opacity:1.0) rectangle drawn last fully
+  // occludes the curve it is meant to sit beneath, destroying the "missed
+  // sliver above each rectangle" reading a first-partition state depends
+  // on. The ROOT CAUSE was never the draw order — it was that a
+  // RENDER-PASS OUTPUT (the published sum) lived inside PM_physics, an
+  // object a DIFFERENT concern (drag input handling) reassigns wholesale.
+  // CP-C2 fixed that directly: the publish target moved to
+  // PM_riemannPublish (declared above global scope), a map no PM_physics
+  // reassignment can touch, at any pass position, ever. D12's order is
+  // restored with NO publication hazard.
+  //
+  // SAME-FRAME CONSEQUENCE, measured (not assumed) — see the CP-C2 dispatch
+  // report for the full argument: because region_fill/riemann_bars/
+  // function_plot ALL read PM_liveExprVars() and now all run BEFORE
+  // plot_point in this pass, during a drag frame they draw with the
+  // PRE-drag scope (this frame's value as of the end of the PREVIOUS
+  // frame), while plot_point (below) recomputes AND re-renders itself with
+  // the POST-drag value in the SAME frame it is grabbed (its own D8
+  // same-frame self-correction, unchanged by this dispatch). The dragged
+  // point therefore leads the curve/fill/bars by one frame (~16 ms at 60
+  // Hz) during an active drag — imperceptible, and NOT a new class of lag:
+  // drawCanvasSlider's own knob is drawn with the PRE-drag value on every
+  // drag frame too (it updates PM_sliderValues/PM_physics only AFTER
+  // painting itself), so "everything except the actively-dragged element
+  // reads last frame's value" is this renderer's existing, shipped
+  // convention, not a new one. What this restoration actually FIXES: under
+  // CP-C1's inverted order, region_fill/riemann_bars ran AFTER plot_point
+  // and so were AHEAD of function_plot (which ran BEFORE plot_point) on
+  // every drag frame — curve and fill/bars read two DIFFERENT b values in
+  // the SAME frame, a same-frame mismatch between the shaded region and the
+  // curve it is shaded under. Restoring D12's order makes region_fill,
+  // riemann_bars AND function_plot all read the SAME (pre-drag) scope every
+  // frame — internally consistent with each other by construction, with
+  // only the dragged point ever ahead.
+  for (var rf = 0; rf < scene.length; rf++) {
+    var rfPrim = scene[rf];
+    if (rfPrim && rfPrim.type === 'region_fill') drawRegionFill(rfPrim);
+  }
+  for (var rb = 0; rb < scene.length; rb++) {
+    var rbPrim = scene[rb];
+    if (rbPrim && rbPrim.type === 'riemann_bars') drawRiemannBars(rbPrim);
+  }
+  for (var fp = 0; fp < scene.length; fp++) {
+    var fpPrim = scene[fp];
+    if (fpPrim && fpPrim.type === 'function_plot') drawFunctionPlot(fpPrim);
+  }
+  // CP-D (F13-F14) — secant_line / tangent_line slot into D12's ALREADY
+  // DECLARED position, between function_plot and plot_point (the doc's own
+  // draw-order line and this pass's own header comment both reserved this
+  // slot before CP-D existed) — restored order is NOT changed by this
+  // dispatch, only filled in.
+  for (var sl = 0; sl < scene.length; sl++) {
+    var slPrim = scene[sl];
+    if (slPrim && slPrim.type === 'secant_line') drawSecantLine(slPrim);
+  }
+  for (var tl = 0; tl < scene.length; tl++) {
+    var tlPrim = scene[tl];
+    if (tlPrim && tlPrim.type === 'tangent_line') drawTangentLine(tlPrim);
+  }
+  for (var pp = 0; pp < scene.length; pp++) {
+    var ppPrim = scene[pp];
+    if (ppPrim && ppPrim.type === 'plot_point') drawPlotPoint(ppPrim);
+  }
 
   // Pass 0.5 — resolve attach_to_surface for bodies (non-mutating: store on a clone).
   // Must run after surfaces registered but before bodies drawn.
@@ -3785,6 +6686,7 @@ window.addEventListener('message', function(e) {
     if (isNewState) {
       PM_bodyRegistry = {};
       PM_surfaceRegistry = {};
+      PM_planeRegistry = {};  // CP-A — stale plane transforms don't survive a real state switch
       PM_endpointRegistry = {}; // WP-R5 — stale anchor_to targets don't survive a real state switch
       PM_cueOverrides = {};   // player re-sends SET_CUE_TIME after SET_STATE
       PM_glowOverride = null; // SET_GLOW is per-sentence; a fresh state starts on its authored focal
@@ -3816,23 +6718,21 @@ window.addEventListener('message', function(e) {
       }
     }
     // Overlay slider values ONLY for variables the new state actually authors
-    // as a slider primitive. Blanket overlay breaks STATE_2 (horizontal desk,
-    // theta should be 0) when the user has dragged a slider in STATE_5 to e.g.
-    // 32° — the old theta value would bleed back and tilt the N arrow.
+    // as a slider primitive, AND only when the new state is the teacher
+    // sandbox (advance_mode:'interaction_complete' — Rule 31; see
+    // PM_overlayLiveControlValues's own header for the full bug_class this
+    // gate closes). Blanket overlay breaks STATE_2 (horizontal desk, theta
+    // should be 0) when the user has dragged a slider in STATE_5 to e.g.
+    // 32° — the old theta value would bleed back and tilt the N arrow; the
+    // advance_mode gate additionally closes the wider sibling defect where
+    // the SAME leak happens between ANY two states sharing a live-control
+    // variable, not only same-typed ones.
     var newStateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
     var newScene = (newStateData && newStateData.scene_composition) || [];
-    var stateSliderVars = {};
-    for (var nsi = 0; nsi < newScene.length; nsi++) {
-      var nsp = newScene[nsi];
-      if (nsp && nsp.type === 'slider' && nsp.variable) {
-        stateSliderVars[nsp.variable] = true;
-      }
-    }
-    for (var svk in PM_sliderValues) {
-      if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
-        vars[svk] = PM_sliderValues[svk];
-      }
-    }
+    // CP-B (F5/F12) — "slider" here means "live-control" (type:'slider' OR a
+    // type:'plot_point' drag.bind_variable); see PM_stateLiveControlVars.
+    var stateSliderVars = PM_stateLiveControlVars(newScene);
+    vars = PM_overlayLiveControlValues(vars, newStateData, stateSliderVars);
     PM_physics = computePhysics(PM_config.concept_id, vars);
     // Same-state SET_STATE carrying new variables (slider drag) — rewind the
     // sim clock so time-driven motions (atwood, free_fall, pendulum) re-run
@@ -3864,13 +6764,9 @@ window.addEventListener('message', function(e) {
     // surface is horizontal (STATE_2) or at a fixed authored angle (STATE_3/4).
     var curStateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
     var curScene = (curStateData && curStateData.scene_composition) || [];
-    var curSliderVars = {};
-    for (var csi = 0; csi < curScene.length; csi++) {
-      var csp = curScene[csi];
-      if (csp && csp.type === 'slider' && csp.variable) {
-        curSliderVars[csp.variable] = true;
-      }
-    }
+    // CP-B (F5/F12) — "slider" here means "live-control" (type:'slider' OR a
+    // type:'plot_point' drag.bind_variable); see PM_stateLiveControlVars.
+    var curSliderVars = PM_stateLiveControlVars(curScene);
     var updatedVars = PM_resolveStateVars(PM_currentState) || {};
     for (var usk in PM_sliderValues) {
       if (Object.prototype.hasOwnProperty.call(PM_sliderValues, usk) && curSliderVars[usk]) {

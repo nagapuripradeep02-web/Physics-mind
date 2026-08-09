@@ -1,19 +1,27 @@
 /**
- * Seed a CHEMISTRY concept into simulation_cache so `npm run visual:eyes` /
- * `smoke:visual-validator` can drive it.
+ * Seed a SUBJECT-NAMESPACE concept (chemistry or mathematics) into
+ * simulation_cache so `npm run visual:eyes` / `smoke:visual-validator` can drive it.
  *
  * Why this exists: THE EYE reads the sim from the `simulation_cache` table, NOT
  * from the concept JSON (the review-site path renders straight from JSON and
- * needs no cache). Chemistry concepts live in src/data/concepts/chemistry/ and
- * never run through the live generation pipeline, so without a seed row the
- * visual gate simply cannot see them — this was the single hard blocker keeping
- * chemistry off physics-grade visual verification.
+ * needs no cache). Subject-namespace concepts live in src/data/concepts/<subject>/
+ * and never run through the live generation pipeline — they register at site #1
+ * only, the isolation contract — so without a seed row the visual gate simply
+ * cannot see them. This was the single hard blocker keeping chemistry off
+ * physics-grade visual verification, and it binds mathematics identically.
  *
- * Generalised over the chemistry namespace (unlike the per-concept physics
+ * RENAMED 2026-08-04 from `_seed_chemistry_cache.ts`. Nothing in its code ever
+ * gated on chemistry: it resolves through resolveConceptJsonPath and dispatches on
+ * the engine config block, so it has always been namespace-general — only the name
+ * said otherwise, which made it undiscoverable the moment a third subject existed.
+ * Historical session logs and scar rows still cite the old name; they are records
+ * of what was true then and were deliberately left unedited.
+ *
+ * Generalised over the subject namespaces (unlike the per-concept physics
  * `_seed_<id>_cache.ts` scripts) and renderer-aware: parametric-family concepts
  * assemble via assembleParametricHtml, field_3d via assembleField3DHtml.
  *
- * Run: npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts <concept_id>
+ * Run: npx tsx --env-file=.env.local src/scripts/_seed_subject_cache.ts <concept_id>
  */
 import '@/lib/loadEnvLocal';
 import { readFileSync } from 'node:fs';
@@ -41,7 +49,7 @@ type ConceptJson = ParametricSourceJson & {
 async function main(): Promise<void> {
     const conceptId = process.argv[2];
     if (!conceptId) {
-        console.error('Usage: npx tsx --env-file=.env.local src/scripts/_seed_chemistry_cache.ts <concept_id>');
+        console.error('Usage: npx tsx --env-file=.env.local src/scripts/_seed_subject_cache.ts <concept_id>');
         process.exit(1);
     }
 

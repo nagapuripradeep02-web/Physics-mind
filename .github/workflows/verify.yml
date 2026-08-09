@@ -70,6 +70,19 @@ jobs:
       - name: Agent specs in sync with canonicals
         run: npm run check:agents
 
+      # The auto-push hook is the repo's backup mechanism and had NO gate: it is
+      # not typechecked, not linted, not imported by anything, and it logs its
+      # own failures to a file nobody reads. On 2026-08-07 it was silently
+      # broken on 4 of 4 worktrees, stranding two rounds of platform engine work
+      # on one disk. Each case in this script is a defect that actually shipped
+      # and fails against the pre-fix hook.
+      #
+      # Hermetic: temp bare repos on local disk, isolated git config, no network
+      # and no credentials — so it is safe on a runner. ~15s, dominated by the
+      # deliberate sleeps that wait for the hook's own detached push.
+      - name: Auto-push hook regression gate
+        run: npm run check:autopush-hook
+
       - name: Renderer template syntax (Rule 36c)
         run: npm run check:renderer-syntax
 
@@ -97,6 +110,27 @@ jobs:
       # only tracked local files: no .env.local, no browser, no network.
       - name: Chemistry concept schema + gates
         run: npm run validate:chemistry
+
+      # Same rationale as the chemistry step above: validate:concepts cannot see a
+      # subject subfolder, so mathematics needs its own gate or it has NO CI at all.
+      # Added 2026-08-04 in the SAME commit as the validator and before the first
+      # mathematics concept exists — chemistry ran four concepts deep across five
+      # sessions before its step was added, and a broken concept passed this whole
+      # workflow green the entire time. An empty namespace is a PASS, so this is
+      # green from day one. Reads only tracked local files: no .env.local, no
+      # browser, no network.
+      - name: Mathematics concept schema + gates
+        run: npm run validate:mathematics
+
+      # The cartesian_plane engine gate (P0, 339 assertions, all negative-
+      # controlled). It was NOT in this workflow, and on 2026-08-07 that cost
+      # us: PR #59 added a shared PM_fmtNum formatter, the gate's extraction
+      # list did not include it, and the whole gate died at load with
+      # "ReferenceError: PM_fmtNum is not defined" — on master, with CI green,
+      # because CI never ran it. Every mathematics concept rides this engine.
+      # Reads only tracked local files: no .env.local, no browser, no network.
+      - name: Cartesian-plane engine gate
+        run: npm run check:cartesian-plane
 
       - name: Unit tests
         run: npm test
