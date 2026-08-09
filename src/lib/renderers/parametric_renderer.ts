@@ -4459,24 +4459,9 @@ function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsD
   // bars only, so the drawn extent was cap*(to-from)/n — SHRINKING as n
   // rises (measured: n=1000 -> [0,0.80], n=2304 -> [0,0.35], n=6494 ->
   // [0,0.12], the exact opposite of what a convergence beat should show).
-  // selectedIdx picks barsDrawnCount indices EVENLY SPREAD across the
-  // FULL [0, n) index range instead — an integer linspace that always
-  // anchors k=0 at i=0 (xL = domainFrom exactly) and k=barsDrawnCount-1 at
-  // i=n-1 (xR = domainTo exactly), so the drawn partition spans the true
-  // domain at every n, however many (or few) bars the cap lets through.
-  // The published SUM below is untouched by this selection (D7's own
-  // comment) — it always accumulates all n terms regardless of the cap.
-  var selectedIdx = null; // null = "select every i" (cap not engaged, or absent)
-  if (barsDrawnCount < n) {
-    selectedIdx = {};
-    if (barsDrawnCount >= 1) selectedIdx[0] = true; // left edge, always
-    if (barsDrawnCount >= 2) {
-      var lastK = barsDrawnCount - 1;
-      for (var selK = 1; selK < barsDrawnCount; selK++) {
-        selectedIdx[Math.round((selK * (n - 1)) / lastK)] = true; // selK===lastK -> exactly n-1
-      }
-    }
-  }
+  // The published SUM below is untouched by ANY of this — it always
+  // accumulates all n terms regardless of the cap (D7's own comment).
+  var capEngaged = barsDrawnCount < n;
 
   var sum = 0;
   for (var i = 0; i < n; i++) {
@@ -4505,13 +4490,74 @@ function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsD
     // PM_regionFillCompute's own header); unchanged here.
     var ok = isFinite(area) && isFinite(yTopLeft) && isFinite(yTopRight);
     if (ok) sum += area;
-    if (ok && (selectedIdx === null || selectedIdx[i])) {
+    // F3 fix (bug_class pcpl_riemann_bars_cap_preserves_extent_but_draws_
+    // true_width_so_the_region_evaporates_as_n_grows, MAJOR, founder_proxy
+    // Checkpoint B cycle 2, 2026-08-09) — the OLD selection here pushed a
+    // sparse EVEN SPREAD of TRUE bars (each at its own true width
+    // h=(to-from)/n) into out.bars. That preserved EXTENT (the spread
+    // spans the full domain at every n, F2's own fix) but not COVERAGE:
+    // at n=10000, h is 0.044 canvas px, so 400 sub-pixel-wide bars render
+    // as nothing between them — measured inked fraction of the region
+    // crashing 0.992 -> 0.707 -> 0.008 as n climbed past the cap. The
+    // renderer's own comment above promises "above the cap the picture
+    // stops changing while the number keeps moving" — it did not stop,
+    // it EMPTIED. Once the cap is engaged, this per-true-index loop no
+    // longer builds out.bars AT ALL (the cap-not-engaged case, every true
+    // bar at its own true width, is UNCHANGED below). See the dedicated
+    // representative-partition loop after this one for what replaces it.
+    if (ok && !capEngaged) {
       out.bars.push({ i: i, xL: xL, xR: xR, yTopLeft: yTopLeft, yTopRight: yTopRight, area: area });
     }
   }
   out.sum = sum;
   out.n = n;
   out.barsDrawn = barsDrawnCount;
+
+  // Cap engaged: draw barsDrawnCount FRESH bars, each spanning the width
+  // it REPRESENTS — (domainTo-domainFrom)/barsDrawnCount — resampled at
+  // ITS OWN edges. This is a SECOND, independent equal partition of
+  // [domainFrom, domainTo] into exactly barsDrawnCount bars — NOT a
+  // selection from the true-n bars above (their own true width IS the
+  // bug). barsDrawnCount is FIXED once the cap engages (PM_clamp'd to n
+  // above), so this partition is IDENTICAL at every n above the cap:
+  // "above the cap the picture stops changing while the number keeps
+  // moving" is now genuinely delivered, not just promised in a comment.
+  // The published sum above is completely untouched by this — it already
+  // accumulated all n TRUE terms. bar.i is this loop's own sequential
+  // position (0..barsDrawnCount-1) — PM_riemannBarReveal's stagger reads
+  // bar.i as "this bar's position in DRAWN order" (see drawRiemannBars'
+  // own header: "the array position among SURVIVING bars is not always
+  // the same as the bar's true index among all n"), which is exactly
+  // what a fresh representative partition's own sequential position IS;
+  // show_partition below gates on the DRAW LOOP's own array position,
+  // never on bar.i, so it is unaffected either way.
+  if (capEngaged && barsDrawnCount > 0) {
+    var hDraw = (domainTo - domainFrom) / barsDrawnCount;
+    for (var j = 0; j < barsDrawnCount; j++) {
+      var dxL = domainFrom + j * hDraw;
+      var dxR = dxL + hDraw;
+      scopeVars.x = dxL;
+      var dfL = PM_safeEval(yExpr, scopeVars);
+      scopeVars.x = dxR;
+      var dfR = PM_safeEval(yExpr, scopeVars);
+      var dTopLeft, dTopRight, dArea;
+      if (m === 'right') {
+        dTopLeft = dfR; dTopRight = dfR; dArea = dfR * hDraw;
+      } else if (m === 'midpoint') {
+        scopeVars.x = dxL + hDraw / 2;
+        var dfM = PM_safeEval(yExpr, scopeVars);
+        dTopLeft = dfM; dTopRight = dfM; dArea = dfM * hDraw;
+      } else if (m === 'trapezoid') {
+        dTopLeft = dfL; dTopRight = dfR; dArea = (dfL + dfR) / 2 * hDraw;
+      } else { // 'left' — default
+        dTopLeft = dfL; dTopRight = dfL; dArea = dfL * hDraw;
+      }
+      var dOk = isFinite(dArea) && isFinite(dTopLeft) && isFinite(dTopRight);
+      if (dOk) {
+        out.bars.push({ i: j, xL: dxL, xR: dxR, yTopLeft: dTopLeft, yTopRight: dTopRight, area: dArea });
+      }
+    }
+  }
   return out;
 }
 

@@ -2475,6 +2475,194 @@ console.log("\n=== F2 — riemann_bars' max_bars_drawn bounds COST, never EXTENT
     fixedBars[fixedBars.length - 1].xR >= to - 0.01 * (to - from));
 }
 
+console.log("\n=== F3-DRAW — riemann_bars draws each SELECTED bar at the width it REPRESENTS, not its true sub-pixel width, so the region does not evaporate above the cap (bug_class pcpl_riemann_bars_cap_preserves_extent_but_draws_true_width_so_the_region_evaporates_as_n_grows, MAJOR, founder_proxy Checkpoint B cycle 2, 2026-08-09) ===");
+{
+  // F2 (above) proved EXTENT survives the cap (the drawn spread still
+  // spans [from,to]). It did not prove COVERAGE: each F2-selected bar was
+  // still drawn at its own TRUE width h=(to-from)/n, which collapses
+  // toward zero as n climbs past the cap — 400 sub-pixel bars painting
+  // nothing between them. "inked fraction" is the founder_proxy's own
+  // pixel metric; the geometry-only proxy available to this headless gate
+  // is DRAWN HORIZONTAL COVERAGE — sum of (xR-xL) across every drawn bar,
+  // over the region's own full width (to-from). It is a faithful proxy
+  // for pixel-inked fraction because every bar spans the FULL vertical
+  // extent under the curve at its own x-slice — horizontal coverage IS
+  // the dominant term the pixel metric responds to (measured: pre-fix
+  // coverage and the founder_proxy's OWN inked-fraction numbers collapse
+  // in lockstep, matching to within a few percent, below).
+  const from3 = 0, to3 = 2, cap400 = 400; // the REAL authored shape (definite_integral_as_accumulated_area STATE_4)
+  function coverageFraction(bars: { xL: number; xR: number }[], domainFrom: number, domainTo: number): number {
+    let covered = 0;
+    for (const b of bars) covered += (b.xR - b.xL);
+    return covered / (domainTo - domainFrom);
+  }
+
+  // NEGATIVE CONTROL FIRST — the PRE-FIX selection (F2's own even-spread
+  // TRUE-width bars), reimplemented independently here, never against the
+  // shipped renderer. Reproduces F2's own selectedIdx linspace exactly so
+  // the comparison isolates ONLY the width choice this dispatch changes.
+  function preFixEvenSpreadTrueWidthBars(domainFrom: number, domainTo: number, n: number, barsDrawnCount: number): { xL: number; xR: number }[] {
+    const h = (domainTo - domainFrom) / n;
+    const selected: number[] = [];
+    if (barsDrawnCount >= 1) selected.push(0);
+    if (barsDrawnCount >= 2) {
+      const lastK = barsDrawnCount - 1;
+      for (let selK = 1; selK < barsDrawnCount; selK++) {
+        const idx = Math.round((selK * (n - 1)) / lastK);
+        if (!selected.includes(idx)) selected.push(idx);
+      }
+    }
+    return selected.map((i) => ({ xL: domainFrom + i * h, xR: domainFrom + i * h + h }));
+  }
+
+  const nAtCap = cap400;             // cap not yet engaged here (barsDrawnCount===n) — both schemes agree
+  const nAt100xCap = 100 * cap400;   // 40000 — deep above the cap, matching the founder_proxy's own n=4870-and-beyond collapse regime
+
+  const brokenAtCap = coverageFraction(preFixEvenSpreadTrueWidthBars(from3, to3, nAtCap, Math.min(cap400, nAtCap)), from3, to3);
+  const brokenAt100xCap = coverageFraction(preFixEvenSpreadTrueWidthBars(from3, to3, nAt100xCap, Math.min(cap400, nAt100xCap)), from3, to3);
+  const brokenRatio = brokenAtCap / brokenAt100xCap;
+  check("NEGATIVE CONTROL: pre-fix coverage at n=cap (400) is ~full (cap not yet engaged)", brokenAtCap, 1.0, 1e-9);
+  check("NEGATIVE CONTROL: pre-fix coverage at n=100*cap (40000) COLLAPSES to cap/n = 0.01 — reproducing the founder_proxy's own measured evaporation (inked 0.992 -> 0.008)", brokenAt100xCap, cap400 / nAt100xCap, 1e-9);
+  assertTrue(`NEGATIVE CONTROL: the pre-fix ratio (coverage@cap / coverage@100*cap = ${brokenRatio.toFixed(2)}) is WAY outside [0.9, 1.1] — the region visibly evaporates`,
+    brokenRatio < 0.9 || brokenRatio > 1.1);
+
+  const fixedAtCap = coverageFraction(E.PM_riemannBarsCompute("x*x", from3, to3, nAtCap, "left", cap400, {}).bars, from3, to3);
+  const fixedAt100xCap = coverageFraction(E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", cap400, {}).bars, from3, to3);
+  const fixedRatio = fixedAtCap / fixedAt100xCap;
+  check("the SHIPPED PM_riemannBarsCompute: coverage at n=cap (400) is full", fixedAtCap, 1.0, 1e-9);
+  check("...and STAYS full at n=100*cap (40000) — 'above the cap the picture stops changing', now actually delivered, not just promised in a comment", fixedAt100xCap, 1.0, 1e-9);
+  assertTrue(`the shipped code's ratio (${fixedRatio.toFixed(4)}) does NOT share the pre-fix defect at the SAME inputs — it does not evaporate`,
+    fixedRatio !== brokenRatio && Math.abs(fixedRatio - brokenRatio) > 50);
+
+  // THE REQUIRED ASSERTION, verbatim — inked fraction (this gate's
+  // coverage-fraction proxy) at n=cap versus n=100*cap must stay within
+  // [0.9, 1.1] for the SHIPPED code, at the REAL authored cap (400).
+  assertTrue(`REQUIRED: shipped coverage ratio at n=cap vs n=100*cap (${fixedRatio.toFixed(4)}) is within [0.9, 1.1]`,
+    fixedRatio >= 0.9 && fixedRatio <= 1.1);
+
+  // Sanity sweep across the founder_proxy's OWN measured n values (274,
+  // 1540, 4870) — every one of them, capped=400, must be full coverage
+  // under the shipped code (the pre-fix values at these SAME n would have
+  // been 400/274 (>1, cap not yet engaged — clamped to n itself), 400/1540
+  // = 0.260, 400/4870 = 0.082 respectively; 0.082 matches the measured
+  // inked 0.008 order of magnitude — the SAME collapse, off only by the
+  // vertical/anti-aliasing terms this horizontal-only proxy does not model).
+  for (const nMeasured of [274, 1540, 4870]) {
+    const cov = coverageFraction(E.PM_riemannBarsCompute("x*x", from3, to3, nMeasured, "left", cap400, {}).bars, from3, to3);
+    check(`shipped coverage at the founder_proxy's own measured n=${nMeasured} is full (1.0)`, cov, 1.0, 1e-9);
+  }
+
+  // Extent (F2's own guarantee) is preserved by the NEW width choice too —
+  // not just coverage. bars[0].xL===from and bars[last].xR===to EXACTLY
+  // (not just within 1%) now, since the representative partition's own
+  // first/last edges land on the domain boundary by direct construction.
+  const fixedBarsAt40000 = E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", cap400, {}).bars as { xL: number; xR: number }[];
+  check("extent still holds under the new width choice: leftmost bar's xL === from, exactly", fixedBarsAt40000[0].xL, from3, 1e-9);
+  check("extent still holds under the new width choice: rightmost bar's xR === to, exactly", fixedBarsAt40000[fixedBarsAt40000.length - 1].xR, to3, 1e-9);
+
+  // The published SUM is untouched — still the true-n sum, at the exact
+  // input the coverage assertions above used.
+  const sumAt40000 = E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", cap400, {}).sum;
+  const uncappedSumAt40000 = E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", undefined, {}).sum;
+  check("the published sum at n=40000/cap=400 is UNTOUCHED by this fix — still the true-n sum", sumAt40000, uncappedSumAt40000, 1e-9);
+
+  // STATIC REACHABILITY — the shipped source actually contains the
+  // representative-partition loop (wired, not merely documented) and no
+  // longer selects bars from the true-n loop when the cap is engaged.
+  const riemannSrc = grabFn("PM_riemannBarsCompute");
+  assertTrue("PM_riemannBarsCompute computes hDraw = (domainTo - domainFrom) / barsDrawnCount for the capped representative partition",
+    riemannSrc.indexOf("var hDraw = (domainTo - domainFrom) / barsDrawnCount;") >= 0);
+  assertTrue("the true-n loop no longer pushes bars when the cap is engaged (capEngaged gate present)",
+    riemannSrc.indexOf("if (ok && !capEngaged)") >= 0);
+  assertTrue("the old sparse selectedIdx linspace is gone from the shipped source",
+    riemannSrc.indexOf("selectedIdx") === -1);
+}
+
+console.log("\n=== RULE-37-GAP-B — PM_animationGate: a primitive due at-or-before state start (appear_at_ms<=0) resolves to full alpha immediately, never a zero-progress fade held at t=0 (founder_proxy Checkpoint B cycle 2, 2026-08-09) ===");
+{
+  // A DEDICATED sandbox (same technique as runOverlay/runApplyChoreography
+  // above) — PM_animationGate closes over the globals PM_simClockMs and
+  // PM_cueOverrides, so supply them as literal fixtures.
+  function runAnimationGate(fixture: {
+    simClockMs: number;
+    cueOverrides?: Record<string, number>;
+    spec: Record<string, unknown>;
+  }): { visible: boolean; alpha: number } {
+    const body = [
+      "var PM_simClockMs = " + JSON.stringify(fixture.simClockMs) + ";",
+      "var PM_cueOverrides = " + JSON.stringify(fixture.cueOverrides ?? {}) + ";",
+      grabFn("PM_animationGate"),
+      "return PM_animationGate(" + JSON.stringify(fixture.spec) + ");",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // REQUIRED ASSERTION, verbatim — appear_at_ms<=0 (a state-opening
+  // primitive) with a live fade-in must resolve to FULL alpha at t=0,
+  // matching the measured defects: STATE_1 (this concept's own opening
+  // state) was entirely blank pre-Play; STATE_4's magnifier inset (its
+  // whole subject) and STATE_8's curve/region/rectangles (all
+  // appear_at_ms:0/animate_in_ms:1200) were absent the same way, because
+  // the clock sits parked at t=0 until Play is pressed (Rule 26) — the OLD
+  // (elapsed-appearAt)/animMs ramp evaluated to exactly 0 progress there,
+  // sustained for as long as the state sat open, not a one-frame flicker.
+  const gateAtZero = runAnimationGate({ simClockMs: 0, spec: { appear_at_ms: 0, animate_in_ms: 1200 } });
+  check("REQUIRED: appear_at_ms<=0 (0) resolves to alpha=1 at t=0 (clock parked, pre-Play)", gateAtZero.alpha, 1, 0);
+  assertTrue("...and visible=true", gateAtZero.visible === true);
+
+  // Negative appear_at_ms (authored before state start, degenerate but
+  // legal input) must resolve the same way.
+  const gateNegative = runAnimationGate({ simClockMs: 0, spec: { appear_at_ms: -50, animate_in_ms: 1200 } });
+  check("appear_at_ms<0 (-50) ALSO resolves to alpha=1 at t=0", gateNegative.alpha, 1, 0);
+
+  // A LATER reveal (appear_at_ms>0 — a genuine mid-state reveal synced to
+  // narration reaching that point) is UNCHANGED: still correctly hidden
+  // before its own due time, and still correctly fades in over animMs once
+  // due — this fix must not blanket-remove the fade-in effect fleet-wide,
+  // only for items due at-or-before state start.
+  const gateLaterBeforeDue = runAnimationGate({ simClockMs: 0, spec: { appear_at_ms: 3000, animate_in_ms: 800 } });
+  check("a LATER reveal (appear_at_ms=3000) is still HIDDEN at t=0 (unaffected by this fix)", gateLaterBeforeDue.alpha, 0, 0);
+  assertTrue("...visible=false", gateLaterBeforeDue.visible === false);
+  const gateLaterMidFade = runAnimationGate({ simClockMs: 3400, spec: { appear_at_ms: 3000, animate_in_ms: 800 } });
+  check("a LATER reveal, once due, still fades in over animMs exactly as before (t=3400, 400/800=50%)", gateLaterMidFade.alpha, 0.5, 1e-9);
+
+  // A due-immediately primitive that ALSO authors a scheduled fade-OUT is
+  // unaffected during its fade-out window — this fix only touches the
+  // fade-IN branch.
+  const gateFadeOutStillWorks = runAnimationGate({
+    simClockMs: 900, spec: { appear_at_ms: 0, animate_in_ms: 1200, disappear_at_ms: 800, fade_out_ms: 400 },
+  });
+  check("a state-opening primitive with an authored fade-OUT still fades out on schedule (t=900, 100/400=25% through the fade-out -> alpha=0.75)",
+    gateFadeOutStillWorks.alpha, 0.75, 1e-9);
+
+  // NEGATIVE CONTROL — the PRE-FIX PM_animationGate (the plain elapsed-vs-
+  // appearAt ramp, no appearAt<=0 special case), reimplemented
+  // independently here, never against the shipped renderer. Reproduces
+  // the measured zero-alpha-at-t=0 defect at the exact input above.
+  function preFixAnimationGate(simClockMs: number, spec: { appear_at_ms?: number; animate_in_ms?: number; disappear_at_ms?: number; fade_out_ms?: number }): { visible: boolean; alpha: number } {
+    const appearAt = typeof spec.appear_at_ms === "number" ? spec.appear_at_ms : 0;
+    const animMs = typeof spec.animate_in_ms === "number" ? spec.animate_in_ms : 0;
+    const disappearAt = typeof spec.disappear_at_ms === "number" ? spec.disappear_at_ms : Infinity;
+    if (appearAt <= 0 && animMs <= 0 && disappearAt === Infinity) return { visible: true, alpha: 1 };
+    const elapsed = simClockMs;
+    if (elapsed < appearAt) return { visible: false, alpha: 0 };
+    if (animMs <= 0) return { visible: true, alpha: 1 };
+    const progress = Math.min(1, Math.max(0, (elapsed - appearAt) / animMs));
+    return { visible: true, alpha: progress };
+  }
+  const brokenAtZero = preFixAnimationGate(0, { appear_at_ms: 0, animate_in_ms: 1200 });
+  assertTrue(`NEGATIVE CONTROL: the pre-fix gate resolves appear_at_ms<=0 to alpha=0 at t=0 (got ${brokenAtZero.alpha}) — reproducing the measured blank-state defect (STATE_1 entirely blank, STATE_4's magnifier absent, STATE_8's curve/region/bars absent)`,
+    brokenAtZero.alpha === 0);
+  assertTrue("the shipped PM_animationGate does NOT share that defect at the SAME input",
+    gateAtZero.alpha === 1 && gateAtZero.alpha !== brokenAtZero.alpha);
+
+  // STATIC REACHABILITY.
+  const animGateSrc = grabFn("PM_animationGate");
+  assertTrue("PM_animationGate contains the appearAt<=0 early-resolve branch",
+    animGateSrc.indexOf("if (appearAt <= 0) return { visible: true, alpha: 1 };") >= 0);
+}
+
 console.log("\n=== F3 — plane children are clipped to their OWN plane's viewport (bug_class pcpl_plane_children_paint_past_their_owning_planes_viewport_when_resolved_from_a_data_point_outside_the_planes_own_range, founder_proxy Checkpoint B 2026-08-08) ===");
 {
   // Reproduces the measured geometry: STATE_4's plane_inset windowed to
