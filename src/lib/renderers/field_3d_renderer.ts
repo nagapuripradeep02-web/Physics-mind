@@ -2060,9 +2060,17 @@ export interface Field3DConfig {
             // ── Note 11 — checkpoint flags with capture-on-pass ──────────────────
             //   1..3 authored positions along the track. A flag stands at each; when
             // the tracked body's s CROSSES it, that instant's values stamp into the
-            // state's ONE formula surface (Rule 34b — never a second text overlay)
-            // and the flag brightens. Stamps LATCH and hold to the end of the state
-            // (the end-pose rule) and re-arm on RESET_TRAJECTORY (note 18b).
+            // state's ONE formula surface (Rule 34b — never a second text overlay).
+            // Stamps LATCH and hold to the end of the state (the end-pose rule) and
+            // re-arm on RESET_TRAJECTORY (note 18b).
+            //   THE MARKER ITSELF brightens only while a dwell_ms window is open on
+            // it (note 11h) — never on a bare crossing. A crossing is one frame, so a
+            // brightness that fired there would be gone before an eye could follow it;
+            // the window is the only interval long enough for the signal to mean
+            // anything. Rule 32e is why it is not simply always-on for a fired flag:
+            // three stamped points would all be lit at once and none of them would be
+            // the focal. (This sentence used to claim "the flag brightens" on every
+            // crossing. It never did — the _nlbFired write below had no reader.)
             //   The crossing detector is general on purpose: with capture_mode
             // 'every' a body that comes BACK through the same flag re-stamps and the
             // stamp carries its pass number, which is exactly what a round-trip work
@@ -2075,6 +2083,58 @@ export interface Field3DConfig {
                 // signed value. Default ['K','U_grav'].
                 capture?: Array<'K' | 'U_grav' | 'U_spring' | 'E_total' | 'v' | 's' | 'W'>;
                 capture_mode?: 'first' | 'every';   // default 'first' (latch on pass 1)
+                // ── Note 11d — the TEACHING DWELL ────────────────────────────
+                //   engine_bug_queue nlb_checkpoint_crossing_has_no_teaching_dwell:
+                // a crossing STAMPS in one frame and the body keeps going, so the
+                // stamp the whole state exists to teach is on screen at its own
+                // instant for ~16 ms. dwell_ms holds the WHOLE SCENE's physics
+                // still for this many ms of state-clock time immediately after a
+                // STAMPED crossing (so it respects capture_mode: a 'first' flag
+                // dwells once, an 'every' flag dwells on each stamped pass), then
+                // resumes from exactly where it stopped.
+                //   This is docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md's slow_factor
+                // doctrine at its limit — slow_factor = infinity for a bounded
+                // window — and it carries the same mandatory honesty badge
+                // (#nlb_slowmo reads "paused at <label>"), because a still body
+                // that is not labelled as paused teaches a = 0.
+                //   Narration, reveals and eng.t_ms keep running (Rule 26): only
+                // the integrator's dt is gated, so the phase clock, loop_reset_ms
+                // and every cue stay on one timeline. Frozen-pin baselines are
+                // unaffected — under a pin dt is already 0.
+                //   Sanitised to (0, NLB_DWELL_MAX_MS]. ABSENT ⇒ the scheduler
+                // never runs and the gate latch stays null ⇒ byte-identical.
+                //   AUTHORING: loop_reset_ms must be > the last crossing + its
+                // dwell + a settle tail, or the reset would rewind the scene mid
+                // stamp. The engine DEFERS such a reset to the dwell end and warns
+                // once under NLB_DWELL_WARN_PREFIX.
+                dwell_ms?: number;
+                // Dwell only from this pass onward (1-based, default 1). The use
+                // case is a HOME-ARMED flag (note 11c) whose pass-1 stamp is the
+                // body's departure from the flag it started on: dwelling there
+                // would freeze the state before it has shown anything, so
+                // dwell_from_pass: 2 puts the pause on the RETURN crossing, which
+                // is the one a round-trip work test is actually about.
+                dwell_from_pass?: number;
+                // ── Note 11e — WHAT THE CHECKPOINT LOOKS LIKE ────────────────
+                //   engine_bug_queue nlb_checkpoint_flag_marker_occludes_body_
+                //   at_track_level (founder: "why are you using a flag there?
+                //   Instead of flag, you can use two points, point a, point b").
+                //   'flag' (DEFAULT, exactly the original apparatus): a 1.05-unit
+                // post with a cross-tick at its top, drawn on the overlay lane
+                // (depthTest false, renderOrder 940) so it is never lost inside
+                // busy geometry. Right for a GATE the body passes through; wrong
+                // for a teaching point, because a tall post on the overlay lane
+                // draws straight THROUGH the block that is standing on it.
+                //   'point': a small dot lying ON the track surface at s_m, drawn
+                // with NORMAL depth (depthTest true, default renderOrder) — so
+                // when the body passes over the point, the body HIDES it, which
+                // is the honest picture of a mark painted on the track. The
+                // caption is untouched: it stays on the shared marker lane
+                // (NLB_MK_LABEL_LANE) carrying the same authored string, so the
+                // de-collision pass and the stamp head read identically in both
+                // modes.
+                //   ABSENT ⇒ 'flag' ⇒ byte-identical to every shipped concept.
+                marker?: 'flag' | 'point';
             }>;
             // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ══════════════════
             //   The two measuring instruments that turn `applied_force {N, angle_deg}`
@@ -46665,6 +46725,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // structurally cannot reach. Churn-guarded inside, so this costs a string
         // compare per frame and cannot move a frozen pixel.
         nlbEnergyApplyGlow(focal);
+        // Note 11h — the teaching dwell's own highlight, LAST. It has to be last for
+        // the same reason SEAM Q does: applyGlowEmphasis restores each material's
+        // cached authored colour every frame, so a brighten written before it is
+        // reverted one frame later. It is also why the pass can never corrupt the
+        // cache — _glowBaseCol is captured by the loop ABOVE, from the authored
+        // colour, before this ever writes.
+        nlbDwellEmphasis(focal, glowActive, glowP);
     }
 
     // ══ SEAM Q — the per-frame ink pass ════════════════════════════════════
@@ -46917,6 +46984,104 @@ export const FIELD_3D_RENDERER_CODE = `
             if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp, kls === NLB_INK_BOTH || focalLift);
             else nlbInkWriteSprite(o, hex, op, writeOp);
         });
+    }
+    // ══ Note 11h — THE DWELL HIGHLIGHT ══════════════════════════════════════
+    //   Which marker, if any, the open dwell window belongs to. Null unless a
+    //   window is genuinely open THIS frame, so the whole pass below is a pure
+    //   function of the current frame's engine state (Rule 36): the gate in
+    //   updateNewtonsLawsBodyFrame clears the window on the resume frame and
+    //   nlbSpringPhysReset clears it on every rewind, both BEFORE this runs.
+    function nlbDwellOwnerId(eng) {
+        return (eng && eng._dwell_until_ms != null && eng._dwell_cp_idx != null)
+            ? ("checkpoint_" + (eng._dwell_cp_idx + 1)) : null;
+    }
+    //   WHY THIS PASS OWNS A RESTORE AT ALL, i.e. why it is not simply "write the
+    //   lift while lit and let the glow pass take the object back". applyGlowEmphasis
+    //   restores a material's colour on three of its four branches — but NOT on the
+    //   one that matters here: a peer under an ACTIVE glow gets its opacity written
+    //   and its colour left exactly as it was found. So on any state that authors a
+    //   glow_focal elsewhere, a lift written and then abandoned would persist for the
+    //   rest of the state. The pass therefore hands back what it took, in the same
+    //   frame the window closes, to the value THIS frame's glow state asks for.
+    //   The one bit of memory is per-material (_nlbDwellLit) and names only what has
+    //   to be cleaned up — never what to draw. The DRAWN result is decided entirely
+    //   by the owner id, so a pin inside a window and a pin outside one each
+    //   reproduce byte for byte, and a rewind from inside to outside restores in the
+    //   frame it lands on, before that frame renders.
+    //   BYTE-IDENTITY when no dwell is authored: nlbDwellLitAny starts false and can
+    //   only be set by a lit frame, so a concept with no dwell_ms takes the early
+    //   return and executes zero reads and zero writes — flag concepts, dwell-less
+    //   point states, marker_true and marker_ghost included (the two prediction
+    //   markers are not in this loop at all).
+    var nlbDwellLitAny = false;
+    function nlbDwellEmphasis(focal, glowActive, glowP) {
+        var own = nlbDwellOwnerId(window.PM_nlbEngine);
+        if (!own && !nlbDwellLitAny) return;
+        var colT = 0.10 + 0.18 * glowP;   // the same lerp applyGlowEmphasis's focal branch uses
+        var anyLit = false;
+        for (var c = 0; c < NLB_CP_MAX; c++) {
+            var id = "checkpoint_" + (c + 1);
+            var lit = (own === id);
+            if (lit) anyLit = true;
+            // A checkpoint that IS the state's glow focal has to be handed back to the
+            // focal branch's own value, not to the bare palette entry, or the frame the
+            // window closes would read as the focal switching off (the flicker the
+            // dispatch names). With glow_focal pointing at this same marker the lit
+            // write and the focal write differ only in magnitude, so the transition is
+            // one step of brightness in each direction and nothing blinks.
+            var isFocal = !!focal && (focal === id);
+            var g = nlbFindById(id), l = nlbFindById(id + "_label");
+            // The MARKER. Whole group on purpose: the dot in 'point' form, the post and
+            // tick in 'flag' form. Lighting whichever one is drawn costs one branch less
+            // than asking which form is up, and the hidden children are free.
+            if (g) {
+                g.traverse(function (n) {
+                    if (!n.material) return;
+                    var ms = Array.isArray(n.material) ? n.material : [n.material];
+                    for (var i = 0; i < ms.length; i++) {
+                        var m = ms[i];
+                        if (!m.userData) m.userData = {};
+                        if (lit) {
+                            if (m.color) m.color.copy(NLB_DWELL_COL);
+                            // Full opacity too, or a dwell on a non-focal checkpoint would
+                            // be brightened and dimmed to GLOW_DIM_OPACITY in the same
+                            // frame. No restore needed on the way out: applyGlowEmphasis
+                            // writes opacity on every branch, every frame.
+                            m.transparent = true; m.opacity = 1.0;
+                            m.userData._nlbDwellLit = true;
+                        } else if (m.userData._nlbDwellLit) {
+                            m.userData._nlbDwellLit = false;
+                            if (m.color && m.userData._glowBaseCol) {
+                                m.color.copy(m.userData._glowBaseCol);
+                                if (isFocal && glowActive) m.color.lerp(GLOW_WHITE, colT);
+                            }
+                        }
+                    }
+                });
+            }
+            // The CAPTION — the half that survives the parked body (note 11g's lane
+            // keeps it clear, and a label sprite is depthTest:false). Its ink is BAKED
+            // into a canvas texture, so a material tint cannot brighten it: the
+            // material stays white by nlbInkWriteSprite's own argument (a tint would
+            // multiply onto the dark halo as well as the glyph), and the lift is a
+            // redraw. Churn-guarded on the drawn hex, so the texture is rebuilt exactly
+            // twice per window — once when it opens, once when it closes — and never
+            // per frame.
+            if (l) {
+                var want = lit ? NLB_DWELL_INK : (l._nlbDwellLit ? NLB_CP_COLOR : null);
+                if (want && l._pmColor !== want) {
+                    l._pmColor = want;
+                    if (l._pmText != null) updateLabelSpriteText(l, l._pmText);
+                }
+                if (lit) {
+                    if (l.material) { l.material.transparent = true; l.material.opacity = 1.0; }
+                    l._nlbDwellLit = true;
+                } else if (l._nlbDwellLit) {
+                    l._nlbDwellLit = false;
+                }
+            }
+        }
+        nlbDwellLitAny = anyLit;
     }
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
     // two seams cannot disagree about the function name.
@@ -47696,8 +47861,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 eng._po_cycle = cycle;                   // entry / post-rewind: adopt, never fire
             } else if (cycle !== eng._po_cycle) {
                 var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+                // The clock a monotonic rewind preserves is the PAIR
+                // (_tPrevMs, t_ms), never t_ms alone — see the long note at the
+                // identical restore in nlbRunLoopReset. nlbResetTrajectory zeroes
+                // _tPrevMs to pair it with the t_ms = 0 a genuine RESET_TRAJECTORY
+                // wants, so without this line the rewind frame reports a single
+                // 16 ms step as spanning [0, t_ms] to every crossing-instant and
+                // angular-segment reader. No shipped push_off state authors a
+                // checkpoint or a rolling body, so this site is a no-op today and a
+                // latent defect tomorrow; the two rewind paths keep ONE contract.
+                var pKeep = eng._tPrevMs;
                 nlbResetTrajectory();                    // the ONE rewind path
                 eng.t_ms = tKeep;                        // the master clock stays monotonic
+                eng._tPrevMs = pKeep;                    // ...and so does this frame's segment start
                 window.PM_nlbTimeMs = tKeepPub;
                 eng._po_cycle = cycle;                   // AFTER the rewind (which nulls it)
             }
@@ -47865,15 +48041,36 @@ export const FIELD_3D_RENDERER_CODE = `
     //   #nlb_formula mid-right, #nlb_sliders bottom-right, #caption top-centre,
     //   #legend bottom-left), at top:52px so it clears the review-chrome
     //   "Full screen" button exactly as the HUD does (Rule 34d).
+    //   Note 11d reuses this ONE badge for the checkpoint dwell, and takes
+    //   PRECEDENCE over the slow-motion text when both are somehow live: a fully
+    //   stopped scene is the stronger claim, and "slow motion ×4" over a body that
+    //   is not moving at all would be the false one. Wording is deliberately the
+    //   plainest available (Rule 41) and names the flag, so the badge says WHY the
+    //   picture is still — the same honesty argument that made the slow badge
+    //   mandatory: an unlabelled still body teaches a = 0.
     function nlbUpdateSlowBadge(eng) {
         var el = document.getElementById("nlb_slowmo");
         if (!el) return;
-        var on = !!(eng && eng.slow_active);
+        var dwell = !!(eng && eng._dwell_until_ms != null);
+        var on = dwell || !!(eng && eng.slow_active);
         var want = on ? "block" : "none";
         if (el.style.display !== want) el.style.display = want;
         if (!on) return;
-        var f = eng.spring_slow_factor;
-        var txt = "slow motion ×" + String(Math.round(f * 10) / 10);
+        var txt;
+        if (dwell) {
+            // A COLON, not "paused at " + label. Checkpoint labels are authored as
+            // phrases that already carry their own preposition — ch6 ships "at the
+            // flag", "back at the start", "the same spot", "flag A" — so the
+            // preposition form renders "paused at at the flag" and "paused at back
+            // at the start" on half of them (measured on the concept that asked for
+            // this feature). The colon reads correctly against every one of those,
+            // and matches the punctuation the STAMP itself already uses for the
+            // same label (nlbCpStampText composes label + ": " + values). Rule 41.
+            var lb = eng._dwell_label || "";
+            txt = lb ? ("paused: " + lb) : "paused";
+        } else {
+            txt = "slow motion ×" + String(Math.round(eng.spring_slow_factor * 10) / 10);
+        }
         if (el.textContent !== txt) el.textContent = txt;
     }
 
@@ -48161,6 +48358,16 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.spring_force_N = 0;
         eng.slow_active = false;             // 18e — and the slow window / badge
         eng.spring_slow_factor = 1;
+        // Note 11d — the checkpoint dwell is a latched WINDOW on the state clock,
+        // so it belongs in exactly this cluster. A rewind puts t_ms back to 0 while
+        // an open window's end time is in the future, which would freeze the whole
+        // scene from the first frame of the new cycle; the warn latch clears with
+        // it so a re-entry can report a genuinely re-made authoring mistake.
+        eng._dwell_until_ms = null;
+        eng._dwell_label = "";
+        eng._dwell_cp_idx = null;            // note 11h — the highlight's owner, rewound with it
+        eng._dwell_loop_warned = false;
+        window.PM_nlbDwell = null;
         eng.E_t0 = null;                     // 18d — re-captured on the next frame
         eng.energy_held = false;
         eng.energy_snapshot = null;
@@ -48235,10 +48442,68 @@ export const FIELD_3D_RENDERER_CODE = `
         var cycle = Math.floor((eng.t_ms || 0) / R);
         if (eng._loop_cycle == null) { eng._loop_cycle = cycle; return; }  // adopt, never fire
         if (cycle === eng._loop_cycle) return;
+        // Note 11d — a dwell OUTRANKS the loop clock. An un-deferred reset would
+        // rewind the scene while its checkpoint stamp is still on screen, which is
+        // precisely the flash-past failure the dwell exists to prevent — and the
+        // teacher would see the state restart mid-sentence. So we return without
+        // touching eng._loop_cycle: the cycle counter is still behind, so the very
+        // first post-dwell frame reaches the rewind below and it fires exactly
+        // once, late rather than never.
+        //   Sited AFTER the cycle test, not before it, and the difference is not
+        // cosmetic: ahead of the test this branch is reached on EVERY frame of
+        // EVERY dwell, so a perfectly well-authored state (loop 6000 ms, dwell
+        // 204-1004 ms) warns about a reset that was never due — measured, twice in
+        // one 9 s headless run, before this line was moved.
+        //   A reset that IS due mid-dwell is a genuine authoring error (R too short
+        // for the choreography it has to contain), so it warns — once per state
+        // entry, the same latch discipline the energy-clamp and scale warns use, so
+        // THE EYE's repeated RESET drive cannot multiply one mistake into a wall of
+        // console noise.
+        if (eng._dwell_until_ms != null && eng.t_ms <= eng._dwell_until_ms) {
+            if (!eng._dwell_loop_warned) {
+                eng._dwell_loop_warned = true;
+                console.warn(NLB_DWELL_WARN_PREFIX + " loop_reset_ms fired mid-dwell — DEFERRED to " +
+                    "the dwell end; author R > last crossing + its dwell + settle tail.");
+            }
+            return;
+        }
         var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+        // Note 11d — the clock this rewind preserves is the PAIR (_tPrevMs, t_ms),
+        // never t_ms alone. nlbResetTrajectory zeroes _tPrevMs to pair it with the
+        // t_ms = 0 a genuine RESET_TRAJECTORY wants; this path then puts t_ms back
+        // and, before this line existed, left _tPrevMs at 0 — so on the rewind frame
+        // the engine believed one 16 ms step spanned [0, 9312].
+        //   Not cosmetic, because that segment is what every crossing-instant reader
+        // anchors on:
+        //     tCross = _tPrevMs + f·(t_ms − _tPrevMs)          (notes 11b / 11d)
+        // and the ONE crossing that can land on the rewind frame is a HOME-ARMED
+        // checkpoint's departure: the body has just been put back ON its flag, so
+        // its step segment STARTS at s_m and f is exactly 0. tCross therefore
+        // collapsed to the stale 0, "until = 0 + dwell_ms" landed a whole cycle in
+        // the past, and the until-beats-now freshness guard threw the window away.
+        // The stamp itself was fine — counts and text DO rewind — so the failure
+        // read as "the dwell only works on the first cycle".
+        //   Measured on work_energy_theorem STATE_4 (loop 9300, point A home-armed
+        // at s0, dwell 2000): cycle 1 held 0-2000 ms, cycles 2+ did not hold at all,
+        // and the 2 s of physics that hold was supposed to absorb instead ran the
+        // cart into the +6 m track bound, where nlbEnergyClampGuard froze the bars —
+        // putting "v = 0.00 m/s" on screen beside "K = 62.7 J" in a founder review.
+        //   nlbRollSeg (SEAM R) anchors an angular segment on the same field, so a
+        // rolling body on a looping state was handed a ~9 s tau on the rewind frame
+        // for its closed form; no shipped looping state rolls, so that one never
+        // reached a teacher, but it is the same missing restore.
+        var pKeep = eng._tPrevMs;
+        // Note 11d — carried across the rewind for the SAME reason the clock is:
+        // this rewind is not a state entry. The warn latch lives in the reset
+        // cluster so a genuine entry / RESET_TRAJECTORY re-arms it, but a looping
+        // state would otherwise clear its own suppressor every cycle and report one
+        // authoring mistake once per lap (measured: 5 warns in a 7 s headless run).
+        var wKeep = eng._dwell_loop_warned;
         nlbResetTrajectory();                 // the ONE rewind path
         eng.t_ms = tKeep;                     // the master clock stays monotonic
+        eng._tPrevMs = pKeep;                 // ...and so does this frame's segment start
         window.PM_nlbTimeMs = tKeepPub;
+        eng._dwell_loop_warned = wKeep;
         eng._loop_cycle = cycle;              // AFTER the rewind (which nulls it)
     }
 
@@ -48827,16 +49092,85 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_MK_GHOST_COLOR = "#90A4AE";
     var NLB_MK_HREF_COLOR = "#4FC3F7";
     var NLB_CP_COLOR = "#CE93D8";
-    var NLB_CP_MAX = 3;                    // checkpoint flags built once
+    var NLB_CP_MAX = 3;                    // checkpoint markers built once
+    // Note 11e — the TRACK-LEVEL checkpoint dot ('point' mode). Small enough to
+    // read as a painted mark rather than an object (the post is 1.05 units tall;
+    // this is a fifteenth of that), and lifted a hair off the slab so it never
+    // z-fights the surface it is drawn on.
+    var NLB_CP_DOT_R = 0.07;
+    var NLB_CP_DOT_Y = 0.05;
+    var NLB_CP_LABEL_H = 0.30;             // the checkpoint caption's sprite height
+    // Note 11d — the teaching dwell. A ceiling, not a default: five seconds is
+    // already longer than any single delta-cue beat (Rule 31's 25-55 word budget
+    // is 10-20 s for a whole STATE), and an unbounded dwell would let one
+    // mis-typed number stop a state dead with no way to tell it from a hang.
+    var NLB_DWELL_MAX_MS = 5000;
+    var NLB_DWELL_WARN_PREFIX = "[PM_NLB_DWELL]";
+    // ── Note 11h — the dwell has to SIGNAL AT THE POINT ──────────────────────
+    //   engine_bug_queue: nlb_point_marker_gives_no_signal_while_the_scene_is_
+    //   paused_on_it (MAJOR). Note 11d stops the scene AT a point, and note 11e
+    //   turned that point into a small painted dot — but nothing at the place
+    //   being read says it is the place being read. The two things that DO say
+    //   it are both far away from it: the honesty badge is pinned top-left
+    //   (nlbUpdateSlowBadge, the one free corner) and the stamp is on the
+    //   right-hand formula surface. Measured on
+    //   conservative_vs_nonconservative_forces STATE_4: the frozen frame holds
+    //   for 2.4 s with the dot at #CE93D8, i.e. the identical ink it carries on
+    //   every other frame of the state and the identical ink its idle sibling
+    //   carries in the same frame. The founder watched it and the eye is never
+    //   pulled to the point being read.
+    //   WHY THE DOT ALONE CANNOT CARRY IT. Note 11e's dot keeps depthTest TRUE
+    //   on purpose (a mark painted on the track must be hidden by the block
+    //   standing on it, or the picture claims the mark floats in front). A dwell
+    //   is scheduled ON a crossing, so the body is PARKED ON the dot for exactly
+    //   the frames the window is open: lighting only the dot would be invisible
+    //   precisely when it matters. So the highlight reaches the CAPTION too —
+    //   which note 11g's lane keeps clear of the parked body, and which is a
+    //   depthTest:false sprite that wins every pixel it covers.
+    //   Rule 29: BRIGHTNESS ONLY. No scale, no bulge, no size move of any kind.
+    //   0.45 toward white, and the number is not taste: applyGlowEmphasis's own
+    //   focal lerp tops out at colT 0.28, so anything at or below that is
+    //   indistinguishable from "this element is the state's glow focal", which
+    //   is a different claim. 0.45 clears that ceiling while staying in-hue
+    //   (a lift scales every channel gap by (1 - t), which leaves the HSL hue
+    //   fixed — the ink-lens note's own argument), so the point still reads as
+    //   the checkpoint colour and not as a new object.
+    var NLB_DWELL_LIFT = 0.45;
+    // #CE93D8 -> #e4c4ea. Computed ONCE from the palette entry and the lift, so
+    // the dot and the caption can never be lifted to two different levels and no
+    // literal has to be re-derived by hand if the palette moves.
+    var NLB_DWELL_INK = nlbInkEmphasis(NLB_CP_COLOR, false, NLB_DWELL_LIFT);
+    var NLB_DWELL_COL = new THREE.Color(NLB_DWELL_INK);
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
-    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane EVERY
-                                               // marker caption is placed on (nlbMkPlace).
-                                               // Named because nlbStackMarkerLabels has to
-                                               // return a lifted caption to exactly this
-                                               // value every frame, and two copies of the
-                                               // literal would drift apart.
+    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane every
+                                               // FLAG-form marker caption is placed on
+                                               // (nlbMkPlace). Named because
+                                               // nlbStackMarkerLabels has to return a lifted
+                                               // caption to exactly this value every frame,
+                                               // and two copies of the literal would drift
+                                               // apart.
+    // ── Note 11f — the POINT form needs its OWN, much shorter home lane ───────
+    //   engine_bug_queue: nlb_point_marker_caption_keeps_the_post_lane_so_it_
+    //   floats_away_from_the_dot_it_names (MAJOR).
+    //   NLB_MK_LABEL_LANE is 1.35 surface-local units because it has to clear the
+    //   TIP of a 1.05-unit post. In 'point' form that post is not drawn, so the
+    //   caption keeps a clearance it is no longer clearing anything with — and
+    //   because the lane runs along the SURFACE NORMAL, on a tilted track the
+    //   displacement is up-AND-ACROSS, not straight up. Measured on
+    //   conservative_vs_nonconservative_forces STATE_4 (theta = 25 deg, two points
+    //   3.0 m apart): caption "point B" centred at (676, 240) px, its dot at
+    //   (712, 322) px — ~90 px away, diagonally up-slope, with nothing drawn in
+    //   between. Both captions formed their own floating row above the ramp and the
+    //   pairing had to be inferred from left-to-right order, which is the one thing
+    //   naming two points A and B exists to make unnecessary.
+    //   So the lane is derived from what a track-level mark actually has to clear:
+    //   the TOP of the dot, plus the caption's own ink half-height, plus the same
+    //   inter-label gap the two stack passes already use. Nothing tuned by hand —
+    //   change the dot radius or the caption size and this follows.
+    var NLB_CP_LABEL_LANE = NLB_CP_DOT_Y + NLB_CP_DOT_R +
+                            NLB_CP_LABEL_H / 2 + NLB_BODY_LABEL_GAP;   // = 0.35
     // Marker captions that share the lane, in the FIXED order the stack pass walks:
     // the two prediction instruments hold the lane, the authored checkpoints lift
     // around them. marker_h_ref is deliberately absent — it is NOT on this lane
@@ -48957,7 +49291,7 @@ export const FIELD_3D_RENDERER_CODE = `
     //   level at every incline angle. The two markers live in the SURFACE group so
     //   the one theta rotation stands them upright on the track with no branch
     //   anywhere — the same trick the pulley bracket uses.
-    function nlbMkMakeMarker(id, colorHex, isGhost) {
+    function nlbMkMakeMarker(id, colorHex, isGhost, withDot) {
         var grp = new THREE.Group();
         var mat = function () {
             return new THREE.MeshBasicMaterial({
@@ -48973,12 +49307,61 @@ export const FIELD_3D_RENDERER_CODE = `
         tick.position.set(0, NLB_MK_H, 0);
         tick.renderOrder = NLB_MK_RENDER_ORDER;
         grp.add(tick);
+        // ── Note 11e — the track-level DOT, built only for checkpoints ────────
+        //   A third child, hidden at build time, so the DEFAULT marker is the
+        //   post + tick exactly as before and a state that authors nothing
+        //   renders the identical pixels. Only nlbApplyMarkers ever swaps which
+        //   of the two forms is visible.
+        //   Deliberately NOT on the overlay lane: depthTest stays TRUE and the
+        //   renderOrder stays at the default, which is the entire fix. The post
+        //   above must punch through busy geometry to be findable at all; a mark
+        //   painted on the track must NOT — the body passing over it has to hide
+        //   it, or the picture claims the mark is floating in front of the block.
+        var dot = null;
+        if (withDot) {
+            dot = new THREE.Mesh(
+                new THREE.SphereGeometry(NLB_CP_DOT_R, 12, 10),
+                new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(colorHex), transparent: true,
+                    opacity: isGhost ? 0.45 : 0.95
+                }));
+            dot.position.set(0, NLB_CP_DOT_Y, 0);
+            dot.visible = false;
+            grp.add(dot);
+        }
         // elementType is the FAMILY, id is the GLOW TARGET: nlbApplyGlow matches
         // ud.id === focal, so a state focals a marker by writing marker_true,
-        // marker_ghost or checkpoint_1 — never a mesh name.
-        grp.userData = { elementType: "nlb_marker", id: id, ghost: !!isGhost };
+        // marker_ghost or checkpoint_1 — never a mesh name. The three part
+        // handles ride along on the SAME userData so the display swap (and any
+        // later pass that wants the fired marker's own material — the
+        // _nlbFired write in nlbRunCheckpoints has no reader yet) can reach a
+        // part without walking children by index.
+        grp.userData = {
+            elementType: "nlb_marker", id: id, ghost: !!isGhost,
+            _nlbPost: post, _nlbTick: tick, _nlbDot: dot
+        };
         grp.visible = false;
         return grp;
+    }
+    // Note 11e — the ONE place the authored marker field is resolved. Two call
+    // sites need the answer (the display swap in nlbApplyMarkers and the
+    // sanitised copy on checkpoint_state that the PM_ mirror publishes), and a
+    // second copy of the string compare is exactly how a default drifts.
+    function nlbCpForm(ce) {
+        return (ce && ce.marker === "point") ? "point" : "flag";
+    }
+    // Note 11e — which FORM of the marker is on screen. One funnel, called from
+    // the checkpoint loop in nlbApplyMarkers only: the two prediction markers
+    // have no dot and never call it, so they cannot be reshaped by a typo.
+    function nlbMkForm(id, asPoint) {
+        var g = nlbFindById(id);
+        if (!g || !g.userData) return;
+        var ud = g.userData;
+        if (!ud._nlbDot) return;                  // no dot built ⇒ flag is the only form
+        var pt = !!asPoint;
+        if (ud._nlbPost) ud._nlbPost.visible = !pt;
+        if (ud._nlbTick) ud._nlbTick.visible = !pt;
+        ud._nlbDot.visible = pt;
     }
     function nlbBuildMarkers(surf, world) {
         // The dashed LEVEL line. Built as explicit dash segments rather than a
@@ -49028,9 +49411,13 @@ export const FIELD_3D_RENDERER_CODE = `
         surf.add(mkGL); nlbRegister(mkGL);
 
         for (var c = 0; c < NLB_CP_MAX; c++) {
-            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false);
+            // withDot: ONLY the checkpoints carry the note-11e track dot. The two
+            // prediction markers above are readings of a COMPUTED place ("highest
+            // point", "expected stop") that must stay findable over the block, so
+            // they keep the overlay post and are not offered the alternative.
+            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false, true);
             surf.add(cp); nlbRegister(cp);
-            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, 0.30);
+            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, NLB_CP_LABEL_H);
             cpL.userData = {
                 elementType: "nlb_marker_label", id: "checkpoint_" + (c + 1) + "_label",
                 bodyId: "checkpoint_" + (c + 1)
@@ -49039,13 +49426,25 @@ export const FIELD_3D_RENDERER_CODE = `
             surf.add(cpL); nlbRegister(cpL);
         }
     }
+    // Note 11f — the HOME LANE of one marker's caption, resolved from the form that
+    // is actually DRAWN (the dot's own visibility), never from the authored field.
+    // Same discipline as nlbMkMeshProbe: a caption's height has to follow the mesh
+    // on screen, so a marker that asked for a dot and got a post must keep the post
+    // lane. Pure read of the current scene — no memory, no clock, so the two callers
+    // (placement and the per-frame stack reset) can never disagree and a
+    // SET_TIME_FREEZE pin reproduces it byte for byte (Rule 36).
+    function nlbMkLane(id) {
+        var g = nlbFindById(id);
+        var ud = g ? (g.userData || {}) : {};
+        return (ud._nlbDot && ud._nlbDot.visible) ? NLB_CP_LABEL_LANE : NLB_MK_LABEL_LANE;
+    }
     // Place a marker group + its label at a track coordinate, in SURFACE-local
     // units. One funnel, so a marker and its caption can never separate.
     function nlbMkPlace(id, s_m) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
         var x = s_m * NLB_WORLD_PER_M;
         if (g) g.position.set(x, 0, 0);
-        if (l) l.position.set(x, NLB_MK_LABEL_LANE, 0);
+        if (l) l.position.set(x, nlbMkLane(id), 0);
     }
     function nlbMkShow(id, on) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
@@ -49055,6 +49454,84 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbMkLabel(id, txt) {
         var l = nlbFindById(id + "_label");
         if (l) nlbSetBodyLabelText(l, txt);      // the same churn-guarded setter the body billboards use
+    }
+    // ── Note 11g — the POINT caption's OTHER obstacle: the body standing on it ──
+    //   engine_bug_queue: nlb_point_marker_caption_renders_over_the_body_parked_
+    //   on_that_point (MAJOR).
+    //   Note 11f pulled the point caption down to 0.35 surface-local so it sits on
+    //   the dot it names. That is right while the track is clear — and wrong at
+    //   exactly the one instant the frame is REVIEWED. A checkpoint is a place a body
+    //   crosses, note 11d's teaching dwell FREEZES the scene on that crossing, and
+    //   every concept authors its eye_capture_ms inside that freeze. So "the body is
+    //   standing on the point" is not an occasional frame: it is the guaranteed state
+    //   of every frozen baseline of every dwell state, i.e. the single frame the
+    //   founder reviews and H2 locks. Measured on work_energy_theorem STATE_1: the
+    //   caption "point B" drawn in #CE93D8 over the cart's #42A5F5 face with the
+    //   applied-force arrow crossing the glyphs; and on
+    //   conservative_vs_nonconservative_forces STATE_4, where "point A" (block parked)
+    //   and "point B" (clear track) sit in the SAME frame — one unreadable, one clean.
+    //   The remedy is the one the lane already has: the caption LIFTS, along the
+    //   surface normal, out of the way of ink it overlaps. All that was missing is the
+    //   ink — a marker caption's obstacle set held other captions and nothing else, so
+    //   a whole cart could stand in it unnoticed. This is the obstacle set:
+    //     * the body MESH — measured off its own geometry box (never Box3.setFromObject,
+    //       which would swallow the billboard parented to it and double-count), so a
+    //       cart, a wheel carrier and a wall slab each contribute their true footprint;
+    //     * the body BILLBOARD — because clearing only the mesh lands the caption at
+    //       ~0.77 surface-local, which is precisely where the mass label lives (0.80),
+    //       i.e. it would trade a caption-over-a-block for two overprinted strings.
+    //   Both are read off the DRAWN scene through the id registry (the same discipline
+    //   nlbMkLane and nlbMkMeshProbe follow), not off nlb.bodies: a body's authored
+    //   presence is not its presence on screen.
+    //   Extents are taken in CAMERA axes in world units — the identical basis the
+    //   caption-vs-caption test already uses — so there is ONE projection story on this
+    //   lane, not two. Pure function of the current pose, the current camera and the
+    //   measured ink: no memory, no hysteresis, no clock, so a SET_TIME_FREEZE pin
+    //   reproduces the same lane byte for byte and a rewind carries nothing (Rule 36).
+    function nlbMkBodyObstacles(right, up) {
+        var out = [], c = new THREE.Vector3();
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            var t = (o && o.userData) ? o.userData.elementType : null;
+            if (t !== "nlb_body" && t !== "nlb_body_label") continue;
+            // Invisible up the WHOLE chain (a hidden pool group draws none of its
+            // children) — the nlbApparatusRightPx test, for the same reason.
+            if (!nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            var minR = Infinity, maxR = -Infinity, minU = Infinity, maxU = -Infinity;
+            if (o.isSprite) {
+                var sc = new THREE.Vector3().setFromMatrixPosition(o.matrixWorld);
+                var shw = nlbInkHalfW(o), shh = nlbInkHalfH(o);
+                var cr = sc.dot(right), cu = sc.dot(up);
+                minR = cr - shw; maxR = cr + shw; minU = cu - shh; maxU = cu + shh;
+            } else {
+                var geo = o.geometry;
+                if (!geo) continue;
+                if (!geo.boundingBox) geo.computeBoundingBox();
+                var bb = geo.boundingBox;
+                if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+                for (var k = 0; k < 8; k++) {
+                    c.set((k & 1) ? bb.max.x : bb.min.x,
+                          (k & 2) ? bb.max.y : bb.min.y,
+                          (k & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                    var dr = c.dot(right), du = c.dot(up);
+                    if (dr < minR) minR = dr;
+                    if (dr > maxR) maxR = dr;
+                    if (du < minU) minU = du;
+                    if (du > maxU) maxU = du;
+                }
+            }
+            if (!isFinite(minR) || !isFinite(minU)) continue;
+            // camera-axis centre, expressed as a world point: right and up are
+            // orthonormal, so this vector's dot with each axis IS the centre on that
+            // axis, which is all the separation test reads.
+            out.push({
+                p: new THREE.Vector3().addScaledVector(right, (minR + maxR) / 2)
+                                      .addScaledVector(up, (minU + maxU) / 2),
+                hw: (maxR - minR) / 2, hh: (maxU - minU) / 2
+            });
+        }
+        return out;
     }
     // Rule 34d for the MARKER lane — the half nlbStackBodyLabels never covered.
     //   nlbDodgeBodyLabels walks nlb.bodies, so a marker caption has never been in
@@ -49094,10 +49571,19 @@ export const FIELD_3D_RENDERER_CODE = `
             right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
             up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
         }
+        // Note 11g — built on FIRST use, so a state with no point-form caption walks
+        // the id registry exactly zero times and renders the pixels it always did.
+        var bodyObs = null;
         for (var i = 0; i < NLB_MK_LANE_IDS.length; i++) {
             var l = nlbFindById(NLB_MK_LANE_IDS[i] + "_label");
             if (!l) continue;
-            l.position.y = NLB_MK_LABEL_LANE;          // home lane FIRST, every frame
+            // Note 11f — the home lane is now PER MARKER (a track-level dot's caption
+            // sits ~0.35 above the slab, a post's at 1.35). Still read fresh from the
+            // drawn form every frame, so the reset stays memoryless.
+            var home = nlbMkLane(NLB_MK_LANE_IDS[i]);
+            l.position.y = home;                       // home lane FIRST, every frame
+            l._nlbMkLift = 0;                          // ... and so does the published lift
+            l._nlbMkBodyLift = 0;
             if (!haveCam || !l.visible || !l.parent) continue;
             l.parent.updateWorldMatrix(true, false);
             var liftDir = new THREE.Vector3(0, 1, 0).transformDirection(l.parent.matrixWorld).normalize();
@@ -49120,8 +49606,95 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (want > lift) lift = want;
                 }
             }
+            // ── Note 11g — and now the apparatus. POINT FORM ONLY ────────────────
+            //   The gate is the DRAWN form, not the authored field: a flag caption
+            //   already stands at the tip of a 1.05-unit post, clear of every cart in
+            //   the fleet, so admitting it here could only move pixels that are
+            //   correct today. This keeps marker_true / marker_ghost / every 'flag'
+            //   checkpoint byte-identical by construction.
+            //   Same separation test, same ease band as the caption pass above, so a
+            //   caption approached by a moving body rises smoothly into its lift and
+            //   settles back out of it — never the 40-px jump a hard threshold gives,
+            //   which a student would read as physics (Rule 32b).
+            //   CAPPED at the flag lane. Note 11f's whole finding was a caption
+            //   floating ~90 px from the dot it names with nothing drawn in between,
+            //   and an uncapped measured lift would re-create exactly that for a tall
+            //   body (the wall slab is 1.76 units). The flag lane is the file's own
+            //   answer to "how high clears a body-height object", so a point caption
+            //   is never lifted past where a post caption would already have been —
+            //   and under the cap the ink is a continuous column (dot, block, mass
+            //   label, caption), which reads as a stack rather than a float.
+            //   The dot itself is hidden under the body in exactly this case: that is
+            //   correct and accepted — the mark is where the body IS, and the stamp
+            //   and badge carry the point's name too.
+            var bodyLift = 0;
+            if (home === NLB_CP_LABEL_LANE && upDot > 0.15) {
+                if (!bodyObs) bodyObs = nlbMkBodyObstacles(right, up);
+                var capLift = NLB_MK_LABEL_LANE - home;
+                if (capLift < 0) capLift = 0;
+                // ── how much of a REAL collision there is, right now ─────────────
+                //   Sharing a screen column is not a collision. The lift runs along
+                //   the SURFACE NORMAL, which on a tilted track is up-AND-ACROSS, so
+                //   an obstacle can sit high in the caption's column while the caption
+                //   is nowhere near it — and demanding to be above it then throws the
+                //   caption clean off its own dot. That is note 11f's defect re-made
+                //   from the other side: measured at theta = 45 deg, "point A" was
+                //   flung 88 px up-slope-LEFT of the mark it names to clear a mass
+                //   billboard 1.0 units ABOVE it and 0.16 to the side, with nothing
+                //   drawn in between.
+                //   So the lift is scaled by how strongly the apparatus ACTUALLY
+                //   overlaps the caption's ink at its home lane, measured on BOTH
+                //   screen axes over the same ease band. Full ink overlap (a body
+                //   standing on the point — the whole reason this pass exists) gives
+                //   exactly 1 and leaves the clearance untouched; a body merely
+                //   passing overhead scales it away. The AMOUNT still comes from the
+                //   stack below, so the two questions stay separate: "is there
+                //   something here" and "how far above it do I have to be".
+                var trig = 0;
+                for (var b = 0; b < bodyObs.length; b++) {
+                    var ob = bodyObs[b];
+                    var db = p.clone().sub(ob.p);
+                    var gapB = Math.abs(db.dot(right)) - (hw + ob.hw + NLB_BODY_LABEL_GAP);
+                    if (gapB >= NLB_LABEL_EASE) continue;
+                    var kb = (gapB <= 0) ? 1 : (1 - gapB / NLB_LABEL_EASE);
+                    // the vertical half of the same measurement — eased over the same
+                    // band, so the collision strength is continuous in the body's pose
+                    // on both axes and can only ever reach zero smoothly.
+                    var gapU = Math.abs(db.dot(up)) - (hh + ob.hh);
+                    var kvv = (gapU <= 0) ? 1 : (gapU >= NLB_LABEL_EASE ? 0 : (1 - gapU / NLB_LABEL_EASE));
+                    if (kb * kvv > trig) trig = kb * kvv;
+                    // The ease scales the WHOLE lift, not just the clearance margin —
+                    // the one place this test cannot copy the caption pass above.
+                    // Two captions share a lane, so there d.dot(up) is ~0 and easing
+                    // the margin alone reaches zero on its own. A body does NOT share
+                    // the lane: on a rising track it sits ABOVE the caption, d.dot(up)
+                    // goes negative, and that term — which no ease touches — GROWS as
+                    // the body climbs away. Measured before this line was written: the
+                    // caption stayed pinned at the cap for 2.4 m of travel after the
+                    // body had passed, then fell 1.01 units (107 px) in ONE 16 ms frame
+                    // the moment the ease band expired and the obstacle was dropped
+                    // outright. Scaling the whole lift makes the two branches MEET at
+                    // zero — a caption eased out is a caption skipped — so the lane is
+                    // continuous in the body's position by construction (Rule 32b: no
+                    // motion a student could read as physics).
+                    var wantB = kb * ((hh + ob.hh + NLB_BODY_LABEL_GAP) - db.dot(up)) / upDot;
+                    if (wantB > bodyLift) bodyLift = wantB;
+                }
+                // CAPPED at the flag lane. Note 11f's finding was a caption
+                // floating ~90 px from the dot it names with nothing drawn between, and
+                // an uncapped measured lift re-creates exactly that for a tall body (the
+                // wall slab is 1.76 units). The flag lane is this file's own answer to
+                // "how high clears a body-height object", so the point form is never
+                // lifted past where the post form would already have stood — no worse
+                // than a flag caption in the same geometry, by construction.
+                if (bodyLift > capLift) bodyLift = capLift;
+                bodyLift *= trig;
+                if (bodyLift > lift) lift = bodyLift;
+            }
+            l._nlbMkLift = lift;
+            l._nlbMkBodyLift = bodyLift;
             if (lift > 0) {
-                l.position.y = NLB_MK_LABEL_LANE + lift;
+                l.position.y = home + lift;
                 p.addScaledVector(liftDir, lift);
             }
             placed.push({ p: p, hw: hw, hh: hh });
@@ -49146,6 +49719,55 @@ export const FIELD_3D_RENDERER_CODE = `
             var c = l.parent.localToWorld(l.position.clone());
             var r = nlbSpriteRectPx(l, c, right, up);
             out.push({ id: id, text: l._nlbLblTxt || "",
+                       x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1,
+                       // Note 11f/11g — the lane this caption RESOLVED to on this
+                       // frame, its home lane, and how much of the lift the apparatus
+                       // dodge asked for. A rect alone cannot tell "cleared the body"
+                       // from "never met one", and the lift is the only number that
+                       // distinguishes them.
+                       lane: l.position.y, home_lane: nlbMkLane(id),
+                       lift: l._nlbMkLift || 0, body_lift: l._nlbMkBodyLift || 0 });
+        }
+        return out;
+    }
+    // Note 11g — the apparatus ink the lane above dodges, in the SAME screen px the
+    // caption rects are quoted in. Published because the claim a gate has to make is
+    // "no point caption's ink intersects a body's ink", and half of that is otherwise
+    // unreachable: the meshes live inside this closure and no reader of the concept
+    // JSON can predict where a moving block lands on screen. Read-only, no pixels.
+    function nlbMkBodyRectsPx() {
+        if (typeof camera === "undefined" || !camera) return [];
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var out = [], c = new THREE.Vector3();
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            var t = (o && o.userData) ? o.userData.elementType : null;
+            if (t !== "nlb_body" && t !== "nlb_body_label") continue;
+            if (!nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            var r = null;
+            if (o.isSprite) {
+                r = nlbSpriteRectPx(o, new THREE.Vector3().setFromMatrixPosition(o.matrixWorld),
+                                    right, up);
+            } else {
+                var geo = o.geometry;
+                if (!geo) continue;
+                if (!geo.boundingBox) geo.computeBoundingBox();
+                var bb = geo.boundingBox;
+                if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+                var xs = [], ys = [];
+                for (var k = 0; k < 8; k++) {
+                    c.set((k & 1) ? bb.max.x : bb.min.x,
+                          (k & 2) ? bb.max.y : bb.min.y,
+                          (k & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                    var q = nlbProjPx(c);
+                    xs.push(q.x); ys.push(q.y);
+                }
+                r = { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+                      y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+            }
+            out.push({ id: o.userData.id, kind: t,
                        x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1 });
         }
         return out;
@@ -49167,6 +49789,16 @@ export const FIELD_3D_RENDERER_CODE = `
             var id = "checkpoint_" + (c + 1);
             var e = cps ? cps[c] : null;
             if (!e) { nlbMkShow(id, false); continue; }
+            // Note 11e — the FORM, resolved per state and before the show so a
+            // marker is never visible for a frame in the form the state did not
+            // ask for. Anything other than the exact string 'point' is the flag,
+            // which is what makes an absent field byte-identical.
+            // Note 11f — and before the PLACE, because nlbMkPlace now reads the
+            // drawn form to pick the caption's home lane. (nlbStackMarkerLabels
+            // re-reads it every frame regardless, so this only removes a one-frame
+            // stale lane on the entry frame — but a funnel that is right only
+            // because a later pass repairs it is not a funnel.)
+            nlbMkForm(id, nlbCpForm(e) === "point");
             nlbMkPlace(id, e.s_m);
             nlbMkLabel(id, e.label || ("point " + (c + 1)));
             nlbMkShow(id, true);
@@ -49183,7 +49815,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var cps = eng.checkpoint_state || [];
         var cpOut = [];
         for (var i = 0; i < cps.length; i++) {
-            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count, text: cps[i].text });
+            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count,
+                         text: cps[i].text, marker: cps[i].marker });
         }
         window.PM_nlbMarkers = {
             h_ref_m: eng.energy_h_ref_m || 0,
@@ -49197,6 +49830,8 @@ export const FIELD_3D_RENDERER_CODE = `
             checkpoints: cpOut,
             // The marker lane's screen footprint — see nlbMarkerLabelRects.
             label_rects: nlbMarkerLabelRects(),
+            // The apparatus ink that lane dodges — see nlbMkBodyRectsPx (note 11g).
+            body_rects: nlbMkBodyRectsPx(),
             // The RENDERED state of each instrument, read straight off the Three
             // object. The computed number above and the drawn object below are two
             // different claims and both have to be checkable — a marker at the right
@@ -49211,9 +49846,31 @@ export const FIELD_3D_RENDERER_CODE = `
         var out = {};
         for (var i = 0; i < ids.length; i++) {
             var o = nlbFindById(ids[i]), l = nlbFindById(ids[i] + "_label");
+            // note 11e — the FORM is reported as drawn (read off the meshes),
+            // not as authored: a marker that asked for a dot and got a post is
+            // exactly the presence-is-not-correctness failure this probe exists
+            // to catch, so the authored field is never the thing quoted.
+            var ud = o ? (o.userData || {}) : {};
+            // note 11h — the DRAWN ink of the marker and of its caption. Same
+            // presence-is-not-correctness argument as the two visibility flags above:
+            // the dwell highlight is a colour and nothing else, so a colour nothing can
+            // read is a claim nothing can check. Both are read off the object that
+            // actually renders — the marker's own material and the sprite's retained
+            // draw colour — never off the palette constant the highlight is derived from.
+            var mkm = (ud._nlbDot && ud._nlbDot.visible) ? ud._nlbDot
+                    : (ud._nlbPost || ud._nlbDot || null);
             out[ids[i]] = o
                 ? { visible: !!o.visible, x: o.position.x, y: o.position.y, sx: o.scale.x,
-                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null }
+                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null,
+                    postVisible: ud._nlbPost ? !!ud._nlbPost.visible : null,
+                    dotVisible: ud._nlbDot ? !!ud._nlbDot.visible : null,
+                    dotY: ud._nlbDot ? ud._nlbDot.position.y : null,
+                    markerHex: (mkm && mkm.material && mkm.material.color)
+                        ? ("#" + mkm.material.color.getHexString()) : null,
+                    markerOpacity: (mkm && mkm.material) ? mkm.material.opacity : null,
+                    labelInk: l ? (l._pmColor || null) : null,
+                    dwellLit: !!(mkm && mkm.material && mkm.material.userData &&
+                                 mkm.material.userData._nlbDwellLit) }
                 : null;
         }
         return out;
@@ -49785,6 +50442,43 @@ export const FIELD_3D_RENDERER_CODE = `
             if (cp.mode === "first" && cp._count > 1) continue;
             cp.text = nlbCpStampText(eng, cp, b, snap);
             changed = true;
+            // ── Note 11d — SCHEDULE the teaching dwell ────────────────────────
+            //   Deliberately sited AFTER the stamp line and INSIDE the same
+            //   branch: the 'first' early-return above has already sent every
+            //   unstamped re-crossing away, so a dwell can only ever be attached
+            //   to a stamp that is actually on screen. No dwell without a stamp,
+            //   and no stamp-mode rule to keep in sync in two places.
+            //   The window is anchored on the CROSSING INSTANT (note 11b's own
+            //   fraction), not on this frame's end, so the pause is the same
+            //   length of physics whether the browser folded 1 or 3 steps into
+            //   this frame — the Rule 36 requirement that made note 11b exist.
+            //   Carved out of a sandbox (Rule 37: the explore state never stops)
+            //   and of a seized scene (a teacher dragging owns the clock).
+            if (cp.dwell_ms > 0 && cp._count >= cp.dwell_from_pass && eng.mode !== "sandbox"
+                && !window.PM_nlbSweepSeized && !window.PM_nlbBodyDragged) {
+                var fD = nlbCpFrac(cp, b);
+                var tCross = eng._tPrevMs + (fD != null ? fD : 1) * (eng.t_ms - eng._tPrevMs);
+                var until = tCross + cp.dwell_ms;
+                // max(), not overwrite: when ONE step carries the body through two
+                // flags, the longer explanation wins and BOTH stamps are readable
+                // under a single freeze. A plain assignment would let the second
+                // (possibly shorter) dwell truncate the first. The until-beats-now
+                // guard below drops a window that has already expired within
+                // the frame that opened it, so no gate can latch on dead time.
+                if (until > eng.t_ms && (eng._dwell_until_ms == null || until > eng._dwell_until_ms)) {
+                    eng._dwell_until_ms = until;
+                    eng._dwell_label = cp.label;
+                    // Note 11h — WHO the window belongs to, latched with the window
+                    // itself. The label alone cannot answer it: two checkpoints may
+                    // legitimately carry the same authored string (a there-and-back
+                    // state naming both crossings "the same spot"), and the
+                    // highlight has to light the ONE marker the body is standing
+                    // on, not both. Written in the same branch and under the same
+                    // max() rule as the two lines above, so the owner is always the
+                    // checkpoint whose window is the one actually open.
+                    eng._dwell_cp_idx = i;
+                }
+            }
             var g = nlbFindById("checkpoint_" + (i + 1));
             if (g) g.userData._nlbFired = true;
         }
@@ -50316,6 +51010,21 @@ export const FIELD_3D_RENDERER_CODE = `
                     body_id: ce.body_id || "",
                     capture: (ce.capture && ce.capture.length) ? ce.capture : ["K", "U_grav"],
                     mode: (ce.capture_mode === "every") ? "every" : "first",
+                    // note 11d — the teaching dwell, sanitised HERE (where every
+                    // other checkpoint default is resolved) so the per-frame
+                    // scheduler is a straight number compare and can never see a
+                    // string, a negative or an unbounded value. Absent / invalid
+                    // ⇒ 0 ⇒ the scheduler's first test fails and the whole
+                    // feature is inert, byte for byte.
+                    dwell_ms: (typeof ce.dwell_ms === "number" && isFinite(ce.dwell_ms) && ce.dwell_ms > 0)
+                        ? Math.min(ce.dwell_ms, NLB_DWELL_MAX_MS) : 0,
+                    dwell_from_pass: (typeof ce.dwell_from_pass === "number" && isFinite(ce.dwell_from_pass)
+                        && ce.dwell_from_pass >= 1) ? Math.floor(ce.dwell_from_pass) : 1,
+                    // note 11e — the resolved marker FORM, sanitised here with
+                    // every other checkpoint default. Carried so the PM_ mirror
+                    // reports what was asked for next to what was drawn; the
+                    // display swap resolves through the same nlbCpForm.
+                    marker: nlbCpForm(ce),
                     // note 11c: both latches are (re)written by nlbCpArm() below,
                     // once eng.bodies exists and every body_id has been resolved.
                     _side: null, _home: false, _count: 0, text: ""
@@ -51594,6 +52303,59 @@ export const FIELD_3D_RENDERER_CODE = `
         //   eng.slow_active is false in every state with no spring_action, in a
         //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
         var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        // ── Note 11d — the CHECKPOINT DWELL gate ────────────────────────────────
+        //   The same dt multiplier the slow-motion badge above documents, taken to
+        //   its limit: a bounded window in which the factor is infinite. Sited HERE,
+        //   on the ONE dt every integrator branch reads, rather than on the
+        //   per-body nlbLatchedNow branch, for two reasons that are not stylistic:
+        //     • that branch ZEROES b.v (it models a mechanical latch), which would
+        //       blank the very velocity the stamp is teaching and resume the body
+        //       from rest — the pause would rewrite the physics it exists to show;
+        //     • it is per-body, so on a coupled/pulley state (Branch B) holding one
+        //       body while its partner ran would stretch an inextensible string.
+        //   A WHOLE-SCENE dt of zero has neither problem: every body's s and v are
+        //   simply rewritten to the values they already hold.
+        //   Rule 36, in full:
+        //     • hPhys is only ever MULTIPLIED (never divided) downstream, so exact
+        //       0 is safe and is what we use — an epsilon would creep the pose and
+        //       break the held frame's byte-stability;
+        //     • the resume frame integrates ONLY its post-window fraction, so N
+        //       folded micro-steps still cover exactly the same physics as N
+        //       separate frames (without this line a 3-step frame and three 1-step
+        //       frames disagree by up to one h). This is phsComputeFreeze's
+        //       piecewise-affine idiom applied to a single window;
+        //     • eng.t_ms is untouched — the phase clock, narration, reveals and
+        //       cues all keep running (Rule 26). We stop the physics, not the state.
+        //   Rule 37: a trusted sweep or body drag CANCELS an open window outright —
+        //   a teacher who grabs the block gets it immediately, never after a pause.
+        //   Note 11h: the OWNER index is cleared on both exits, beside the two
+        //   fields it was latched with. It is what nlbDwellEmphasis reads to decide
+        //   which marker is lit, so a stale index would leave one point brightened
+        //   after its window closed — the residue the highlight's own restore pass
+        //   exists to prevent, handed back one level up.
+        if (eng._dwell_until_ms != null) {
+            if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) {
+                eng._dwell_until_ms = null; eng._dwell_label = ""; eng._dwell_cp_idx = null;
+            } else if (eng.t_ms <= eng._dwell_until_ms) {
+                hPhys = 0;                                    // wholly inside the window
+            } else {
+                var rawMs = eng.t_ms - eng._tPrevMs;          // resume frame: the active tail only
+                if (rawMs > 0) hPhys *= (eng.t_ms - Math.max(eng._tPrevMs, eng._dwell_until_ms)) / rawMs;
+                eng._dwell_until_ms = null; eng._dwell_label = ""; eng._dwell_cp_idx = null;
+            }
+        }
+        // DERIVED mirror for the probes (and for THE EYE's own diagnostics); nothing
+        // in the engine ever reads it back.
+        window.PM_nlbDwell = (eng._dwell_until_ms != null)
+            ? { active: true, until_ms: eng._dwell_until_ms, label: eng._dwell_label || "",
+                // Note 11h — the OWNER, published beside the window it belongs to.
+                // The label is not an identifier (two checkpoints may share one), so
+                // without this a probe cannot tell WHICH point the highlight lit and
+                // the one thing worth asserting about the fix is unassertable.
+                cp_idx: (eng._dwell_cp_idx != null) ? eng._dwell_cp_idx : null,
+                marker_id: (eng._dwell_cp_idx != null)
+                    ? ("checkpoint_" + (eng._dwell_cp_idx + 1)) : null }
+            : null;
         // SEAM K read point: the dt the integrator actually took this frame, in
         // SECONDS. The energy layer needs it for the ripple correction, and a probe
         // needs it to tell a slowed frame from a real-time one.
