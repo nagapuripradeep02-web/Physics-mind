@@ -122,7 +122,7 @@ const FNS = [
   "vgSphereClipSpan", "vgLineEnds", "vgPointOnLine",
   "vgPlaneBasis", "vgPlaneEdges", "vgPlaneQuad", "vgPlanePointAt",
   "vgFootOnPlane", "vgCommonPerp", "vgLinePlaneMeet", "vgLinePlaneAngles",
-  "vgProjectLineOntoPlane", "vgRevealFrac", "vgGhostFactor", "vgInGroup",
+  "vgProjectLineOntoPlane", "vgRevealFrac", "vgGhostFactor", "vgInGroup", "vgArrived",
   "vgKnobVal", "vgObjOffset", "vgObjRotate", "vgAddr", "vgList",
   "vgResolveLinesPlanes",
   // §22 · the one predicate that decides whether the a/b scaffolding pair is
@@ -130,16 +130,30 @@ const FNS = [
   "vgShowAB",
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-implied-eval
-const E = new Function([
-  ...FNS.map((f) => grabFn(f)),
-  "var VG_CAM_EASE_MS = 900;",
-  "var VG_SPLIT_GAP_K = 1.25;",
-  "var VG_MEET_EPS = 1e-9;",
-  "var VG_SCENE_RADIUS = 4.5;",
-  "var VG_FLIP_EPS = " + /var VG_FLIP_EPS = ([0-9.]+);/.exec(SRC)![1] + ";",
-  "return { " + FNS.join(", ") + " };",
-].join("\n"))() as any;
+/**
+ * The pure-function sandbox, built from the SHIPPED source of every function in
+ * FNS. `mutate` lets a negative control replace exactly ONE of those bodies and
+ * get back an otherwise IDENTICAL sandbox — which is what makes "the pre-fix
+ * build" a reconstruction rather than a second implementation that could differ
+ * for reasons the control never names (§19b).
+ */
+function buildVgSandbox(mutate?: (name: string, src: string) => string): any {
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  return new Function([
+    ...FNS.map((f) => (mutate ? mutate(f, grabFn(f)) : grabFn(f))),
+    "var VG_CAM_EASE_MS = 900;",
+    "var VG_SPLIT_GAP_K = 1.25;",
+    "var VG_MEET_EPS = 1e-9;",
+    "var VG_SCENE_RADIUS = 4.5;",
+    // Δ2b — the readout arrival threshold, READ OUT OF THE RENDERER rather than
+    // restated: vgArrived is the resolver's whole reveal gate, and a gate holding
+    // its own copy of that number passes forever after the renderer changes it.
+    grabScalar("VG_SUBJECT_SHOWN_MIN"),
+    "var VG_FLIP_EPS = " + /var VG_FLIP_EPS = ([0-9.]+);/.exec(SRC)![1] + ";",
+    "return { " + FNS.join(", ") + " };",
+  ].join("\n"))();
+}
+const E = buildVgSandbox() as any;
 
 /** Pull `var NAME = { ... };` out of the emitted renderer by brace matching. */
 function grabVar(name: string): string {
@@ -3040,6 +3054,396 @@ console.log("\n=== 19. A3 — A NUMBER MAY NOT PRECEDE ITS SUBJECT (Rule 32a) ==
       Math.abs(vals.base_area * vals.height - vals.volume) < 1e-3);
     assertTrue("...and it is INDISTINGUISHABLE from the fix once the solid is built",
       ungated.length === 3 && panelAt(13000).html.includes("vg_readout_volume"));
+  }
+}
+
+console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RESOLVER (the lines/planes half) ===");
+{
+  // bug_class vg_lines_planes_segment_readouts_compute_regardless_of_reveal_
+  // state (CRITICAL). §19 gated the PANEL for the three Act I subjects that
+  // carry a reveal knob. The lines/planes half publishes from a different
+  // place — vgResolveLinesPlanes — and published the instant its referenced
+  // objects RESOLVED, which is state entry, not the beat the state reveals
+  // them on. vgRevealFrac gated the drawn MARKER and nothing else.
+  //
+  // MEASURED (EYE walk, lines_and_planes_in_space STATE_4, frames
+  // STATE_4__dense_t00000.png / t02000.png): from the first frame the panel
+  // read n·d = 0.574, λ = 2.600 and a meeting point — four numbers describing
+  // Lcut, which does not appear until 9500 ms — while the only line on screen
+  // was Lpar, the PARALLEL line whose whole lesson is that n·d = 0 and there
+  // is no meeting point. Both lines carry the same generic label d.
+  //
+  // THE DISCRIMINATING QUANTITY IS WHETHER THE VALUE EXISTS BEFORE ITS
+  // SUBJECT DOES. Every weaker quantity is true of the broken build: the
+  // numbers are arithmetically right, the panel renders, the marker is
+  // correctly hidden, and the resolver is deterministic.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+  const uIn = nrm(cross3(nh, [0, 0, 1]));                    // an IN-plane direction
+  const ang55 = 55 * Math.PI / 180;
+  const dCut: V3 = nrm([
+    nh[0] * Math.cos(ang55) + uIn[0] * Math.sin(ang55),
+    nh[1] * Math.cos(ang55) + uIn[1] * Math.sin(ang55),
+    nh[2] * Math.cos(ang55) + uIn[2] * Math.sin(ang55),
+  ]);
+  const Xpt: V3 = add3(planePoint, [uIn[0] * 0.6, uIn[1] * 0.6, uIn[2] * 0.6]);
+  const cutAnchor: V3 = sub3(Xpt, [dCut[0] * 2.6, dCut[1] * 2.6, dCut[2] * 2.6]);
+  const parAnchor: V3 = add3(planePoint, [nh[0] * 1.4, nh[1] * 1.4, nh[2] * 1.4]);
+
+  // ── THE PRE-FIX RESOLVER, RECONSTRUCTED ─────────────────────────────────
+  //   The SHIPPED sandbox with exactly ONE body replaced: vgArrived, the whole
+  //   of this fix. Anything else that differs would make the control a second
+  //   implementation rather than the build that shipped the defect — so the
+  //   substitution is guarded, and a miss is an ERROR, not a quiet pass.
+  const GATE_BODY = /return \(typeof frac === "number" && isFinite\(frac\)\) && frac >= VG_SUBJECT_SHOWN_MIN;/;
+  const neuter = (name: string, src: string) => {
+    if (name !== "vgArrived") return src;
+    if (!GATE_BODY.test(src)) {
+      throw new Error(
+        "§19b NEGATIVE CONTROL CANNOT BE BUILT: vgArrived's shipped body no longer matches the "
+        + "text this control replaces. A control that silently fails to plant its defect is worse "
+        + "than no control. Update GATE_BODY to the new body and re-watch it fail.\n  got: " + src);
+    }
+    return src.replace(GATE_BODY, "return true;");
+  };
+  const PRE = buildVgSandbox(neuter) as any;
+  assertTrue("the reconstructed pre-fix resolver really is neutered (its gate returns true unconditionally)",
+    PRE.vgArrived(0) === true && PRE.vgArrived(-1) === true && E.vgArrived(0) === false);
+  const SHOWN_MIN = Number(/var VG_SUBJECT_SHOWN_MIN = ([0-9.]+);/.exec(SRC)![1]);
+  assertTrue(`...and the SHIPPED gate is the 'arrived' threshold F9 already uses (${SHOWN_MIN}), not a second number`,
+    E.vgArrived(1) === true && E.vgArrived(0.99) === false && E.vgArrived(SHOWN_MIN) === true
+    && E.vgArrived(undefined) === false && E.vgArrived(NaN) === false);
+
+  // ── (a) THE MEASURED SCENE, END TO END THROUGH THE SHIPPED FRAME DRIVER ──
+  //   Not the resolver alone: the founder's question was whether anything
+  //   RE-PUBLISHES after the resolver returns. The frame driver is the only
+  //   consumer, so the frame driver is what is measured — the DOM panel a
+  //   teacher reads, written by the shipped #vg_readout writer.
+  {
+    const state4: Record<string, unknown> = {
+      mode: "lines_planes", reveal_ms: 0,
+      value_readouts: ["d_dot_n", "lambda", "intersection_point", "no_meeting_point"],
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true }],
+      lines: [
+        { id: "Lpar", point: parAnchor, dir: uIn, lambda_span: [-3, 3], label: "d" },
+        { id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3], label: "d", reveal_at_ms: 9500 },
+      ],
+      intersection: { id: "X", line: "Lcut", plane: "P1", reveal_at_ms: 9500 },
+    };
+    const runFrame = FRAME_HARNESS.run!;
+    const frameAt = (ms: number) => {
+      const dom = fakeDom();
+      const win: Record<string, unknown> = {};
+      runFrame(state4, ms, dom, win);
+      const el = dom.get("vg_readout");
+      return { html: el.innerHTML, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+    };
+    for (const ms of [0, 2000, 5000, 9500]) {
+      const f = frameAt(ms);
+      assertTrue(`t=${ms}ms (Lcut reveals at 9500): the panel prints NO n·d / λ / meeting-point row, and is hidden`,
+        !f.html.includes("vg_readout_d_dot_n") && !f.html.includes("vg_readout_lambda")
+        && !f.html.includes("vg_readout_intersection_point") && !f.html.includes("vg_readout_no_meeting_point")
+        && f.shown === "none");
+      assertTrue(`t=${ms}ms: nothing re-publishes downstream either — PM_vgLinesPlanes.readouts is empty`,
+        Object.keys(f.lp.readouts).length === 0);
+    }
+    // PRESENCE IS NOT CORRECTNESS, and neither is absence: the apparatus is on
+    // screen the whole time. What is missing is the NUMBERS, not the scene.
+    {
+      const early = E.vgResolveLinesPlanes(state4, {}, 2000);
+      const drawn = early.lines.filter((l: any) => l.frac > 0).map((l: any) => l.id);
+      assertTrue(`t=2000ms: the scene is NOT blank — the plane and exactly one line are drawn, and that line is Lpar (got [${drawn.join(", ")}])`,
+        early.planes.length === 1 && early.planes[0].frac === 1 && drawn.length === 1 && drawn[0] === "Lpar");
+      check("...and Lpar's own n̂·d̂ is 0 — the number the pre-fix panel contradicted", dot3(nh, uIn), 0, 1e-15);
+    }
+    // ...and the numbers arrive, in full, the moment Lcut does.
+    {
+      const f = frameAt(9501);
+      assertTrue("t=9501ms: n·d, λ and the meeting point all appear the instant Lcut is on screen",
+        f.html.includes("vg_readout_d_dot_n") && f.html.includes("vg_readout_lambda")
+        && f.html.includes("vg_readout_intersection_point") && f.shown === "block");
+      check("...and n·d is the constructed cos 55 = 0.5736 (the fix delays the value, it does not change it)",
+        f.lp.readouts.d_dot_n, Math.cos(ang55), 1e-12);
+      check("...and λ is the constructed 2.600", f.lp.readouts.lambda, 2.6, 1e-12);
+      assertTrue("...and the row TEXT a teacher reads carries both the symbol and the value in one node",
+        f.html.includes("n·d = 0.574") && f.html.includes("λ = 2.600"));
+    }
+    // ── NEGATIVE CONTROL 1 — the SHIPPED PRE-FIX RESOLVER on this very scene.
+    {
+      const pre0 = PRE.vgResolveLinesPlanes(state4, {}, 0);
+      expectFail(`the pre-fix resolver stays silent at t=0 (it publishes n·d = ${pre0.readouts.d_dot_n.toFixed(3)}, λ = ${pre0.readouts.lambda.toFixed(3)} and a meeting point, over a scene where nothing is drawn yet)`,
+        pre0.readouts.d_dot_n === undefined && pre0.readouts.lambda === undefined
+        && pre0.readouts.intersection_point === undefined);
+      // ...and at the second dumped EYE frame, where the apparatus IS on screen,
+      // the numbers and the picture say opposite things.
+      const pre2 = PRE.vgResolveLinesPlanes(state4, {}, 2000);
+      const preDrawn = pre2.lines.filter((l: any) => l.frac > 0).map((l: any) => l.id);
+      assertTrue(`t=2000ms: those numbers describe Lcut while the ONLY line on screen is [${preDrawn.join(", ")}], whose n̂·d̂ is 0 — the panel and the picture contradict each other`,
+        preDrawn.length === 1 && preDrawn[0] === "Lpar"
+        && Math.abs(pre2.readouts.d_dot_n - Math.cos(ang55)) < 1e-12 && Math.abs(dot3(nh, uIn)) < 1e-15);
+      assertTrue("...and its MARKER was correctly hidden all along — a marker-only check saw nothing wrong",
+        pre2.points.filter((p: any) => p.is_intersection === true).length === 0);
+      // ...and the reconstruction is faithful: once everything has arrived the
+      // two resolvers are IDENTICAL, so the control isolates the gate and
+      // nothing else.
+      assertTrue("the pre-fix and shipped resolvers agree BIT FOR BIT on a settled frame (the control changes one thing)",
+        JSON.stringify(PRE.vgResolveLinesPlanes(state4, {}, 20000)) === JSON.stringify(E.vgResolveLinesPlanes(state4, {}, 20000)));
+    }
+    // ── NEGATIVE CONTROL 2 — the fix at the PANEL instead of the resolver.
+    //   F9's vgReadoutSubjectShown knows only the three Act I subjects, so it
+    //   waves every lines/planes token straight through: a display-site fix
+    //   would have been a total no-op, which is why this one is at the source.
+    {
+      const T = vgTextFns({}, fakeDom().document);
+      expectFail("the F9 panel gate alone would have suppressed n·d before its subject",
+        T.vgReadoutSubjectShown("d_dot_n", {}, {}) === false);
+      assertTrue("...it waves through every one of the 13 lines/planes tokens (it can only gate subjects it can name)",
+        ["point_plane_distance", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
+          "angle_line_normal_deg", "d_dot_n", "n_dot_v", "no_meeting_point", "lambda",
+          "intersection_point", "n_norm", "cross_norm", "numerator_triple_product"]
+          .every((t) => T.vgReadoutSubjectShown(t, {}, {}) === true));
+    }
+  }
+
+  // ── (b) EVERY PUBLISH SITE, SWEPT ────────────────────────────────────────
+  //   The class, not the one site: each fixture authors ONE readout-producing
+  //   construct with every object revealed at 3000 ms (grow 0, so the reveal is
+  //   a clean step), and is swept before and after. A fixture that resolved
+  //   NOTHING would pass the "silent before" half vacuously, so each one must
+  //   also produce its tokens AFTER — that is what makes the sweep capable of
+  //   failing.
+  {
+    const R = 3000;
+    const line = (id: string, point: V3, dir: V3) => ({ id, point, dir, lambda_span: [-3, 3], reveal_at_ms: R });
+    const P1 = { id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true, reveal_at_ms: R };
+    const d1: V3 = [1, 0.15, 0.35], d2: V3 = [0.15, -0.5, 1];
+    const cr = cross3(d1, d2);
+    const m2anchor: V3 = add3(add3([-1.2, -0.9, 0.6], [nrm(cr)[0] * 1.8, nrm(cr)[1] * 1.8, nrm(cr)[2] * 1.8]),
+      [d1[0] * 1.4 - d2[0] * 1.1, d1[1] * 1.4 - d2[1] * 1.1, d1[2] * 1.4 - d2[2] * 1.1]);
+    const FIXTURES: Array<{ name: string; tokens: string[]; block: Record<string, unknown> }> = [
+      {
+        name: "F13a the perpendicular from a point to a plane", tokens: ["point_plane_distance", "n_norm"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0, planes: [P1],
+          points: [{ id: "q", position: [1.93, 1.19, 0.51], reveal_at_ms: R }],
+          perpendicular: { from: "q", to: "P1", show_right_angle: true, reveal_at_ms: R },
+        },
+      },
+      {
+        name: "F23 a comparison segment's LENGTH", tokens: ["point_plane_distance"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0,
+          points: [{ id: "q1", position: [1, 1, 1], reveal_at_ms: R }, { id: "q2", position: [-1, 0.2, 0.4], reveal_at_ms: R }],
+          segments: [{ id: "cmp", from: "q1", to: "q2", readout: "length", reveal_at_ms: R }],
+        },
+      },
+      {
+        name: "F23 a comparison segment's n·v against a plane", tokens: ["n_dot_v"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0, planes: [P1],
+          points: [{ id: "q1", position: [1, 1, 1], reveal_at_ms: R }, { id: "q2", position: [-1, 0.2, 0.4], reveal_at_ms: R }],
+          segments: [{ id: "cmp", from: "q1", to: "q2", readout: "n_dot_v", against: "P1", reveal_at_ms: R }],
+        },
+      },
+      {
+        name: "F13b the common perpendicular of two skew lines",
+        tokens: ["skew_distance", "cross_norm", "numerator_triple_product"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0,
+          lines: [line("M1", [-1.2, -0.9, 0.6], d1), line("M2", m2anchor, d2)],
+          common_perpendicular: { id: "cp", between: ["M1", "M2"], reveal_at_ms: R },
+        },
+      },
+      {
+        name: "F14 the intersection that EXISTS", tokens: ["d_dot_n", "lambda", "intersection_point", "no_meeting_point"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0, planes: [P1], lines: [line("Lcut", cutAnchor, dCut)],
+          intersection: { id: "X", line: "Lcut", plane: "P1", reveal_at_ms: R },
+        },
+      },
+      {
+        name: "Δ4 the intersection that does NOT (the absence is a claim too)", tokens: ["d_dot_n", "no_meeting_point"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0, planes: [P1], lines: [line("Lpar", parAnchor, uIn)],
+          intersection: { id: "X", line: "Lpar", plane: "P1", reveal_at_ms: R },
+        },
+      },
+      {
+        name: "F23 the projection's two angles", tokens: ["angle_line_normal_deg", "angle_line_plane_deg"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0, planes: [P1], lines: [line("Lcut", cutAnchor, dCut)],
+          projection: { id: "shadow", line: "Lcut", plane: "P1", reveal_at_ms: R },
+        },
+      },
+      {
+        name: "Δ5 the angle arcs to the NORMAL and to the PLANE", tokens: ["angle_line_normal_deg", "angle_line_plane_deg"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0, planes: [P1], lines: [line("Lcut", cutAnchor, dCut)],
+          angle_arcs: [
+            { id: "toN", between: ["Lcut", "P1.normal"], readout: "angle_line_normal_deg", reveal_at_ms: R },
+            { id: "toP", between: ["Lcut", "P1"], readout: "angle_line_plane_deg", reveal_at_ms: R },
+          ],
+        },
+      },
+      {
+        name: "Δ5 the angle between two LINES", tokens: ["angle_lines_deg"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0,
+          lines: [line("M1", [-1.2, -0.9, 0.6], d1), line("M2", m2anchor, d2)],
+          angle_arcs: [{ id: "arc", between: ["M1", "M2"], readout: "angle_lines_deg", reveal_at_ms: R }],
+        },
+      },
+      {
+        name: "F23 the derived cross vector's ‖d₁×d₂‖", tokens: ["cross_norm"],
+        block: {
+          mode: "lines_planes", reveal_ms: 0,
+          lines: [line("M1", [-1.2, -0.9, 0.6], d1), line("M2", m2anchor, d2)],
+          vectors: [{ id: "cr", derive: "cross", of: ["M1", "M2"], origin: [0, 0, 0], scale: 1, reveal_at_ms: R }],
+        },
+      },
+    ];
+    const covered = new Set<string>();
+    for (const fx of FIXTURES) {
+      let silent = true;
+      for (const ms of [0, 1500, 2999, R]) {
+        const keys = Object.keys(E.vgResolveLinesPlanes(fx.block, {}, ms).readouts);
+        if (keys.length) { silent = false; console.log(`        (leaked at t=${ms}ms: ${keys.join(", ")})`); }
+      }
+      assertTrue(`${fx.name}: NOT ONE readout key is published before its subject's reveal at ${R}ms`, silent);
+      const after = E.vgResolveLinesPlanes(fx.block, {}, R + 1).readouts;
+      const got = Object.keys(after);
+      for (const t of got) covered.add(t);
+      assertTrue(`${fx.name}: ...and all of [${fx.tokens.join(", ")}] arrive at ${R + 1}ms (so the silence above is a GATE, not an empty fixture)`,
+        fx.tokens.every((t) => Object.prototype.hasOwnProperty.call(after, t)) && got.length === fx.tokens.length);
+      // NEGATIVE CONTROL — the same fixture through the pre-fix resolver, which
+      // publishes at t=0 with nothing on screen at all.
+      const preKeys = Object.keys(PRE.vgResolveLinesPlanes(fx.block, {}, 0).readouts);
+      expectFail(`${fx.name}: the pre-fix resolver is silent at t=0 (it publishes ${preKeys.length} key(s): ${preKeys.join(", ")})`,
+        preKeys.length === 0);
+    }
+    // The token set the sweep actually exercised IS the Δ6 enum — a site added
+    // later with a token no fixture covers is caught by the tripwire below.
+    const DELTA6 = ["point_plane_distance", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
+      "angle_line_normal_deg", "d_dot_n", "n_dot_v", "no_meeting_point", "lambda",
+      "intersection_point", "n_norm", "cross_norm", "numerator_triple_product"];
+    check("the sweep covers EVERY Δ6 readout token (no token is gated only in principle)",
+      DELTA6.filter((t) => !covered.has(t)).length, 0, 0);
+    // THE TRIPWIRE. Counted off the SHIPPED resolver: if a future edit adds an
+    // out.readouts.* site, this number moves and this section fails until the
+    // new site is swept above — which is the whole prevention rule of this
+    // bug_class ("apply it at the value SOURCE in the same pass").
+    {
+      const start = SRC.indexOf("function vgResolveLinesPlanes(");
+      let depth = 0, end = start;
+      for (let j = SRC.indexOf("{", start); j < SRC.length; j++) {
+        if (SRC[j] === "{") depth++;
+        else if (SRC[j] === "}") { depth--; if (depth === 0) { end = j + 1; break; } }
+      }
+      const RES = SRC.slice(start, end);
+      check("the shipped resolver publishes from exactly the 19 sites this sweep covers (tripwire on a 20th)",
+        (RES.match(/out\.readouts\.[a-z_]+ =/g) || []).length, 19, 0);
+      assertTrue("...and the gate is called at least once per gated construct (10 call sites)",
+        (RES.match(/vgArrived\(/g) || []).length >= 10);
+      // Scope, proved rather than assumed: vgArrived exists ONLY here.
+      const outside = SRC.slice(0, start) + SRC.slice(end);
+      check("vgArrived is called nowhere outside the resolver (only its own declaration lives there)",
+        (outside.match(/vgArrived\(/g) || []).length, 1, 0);
+      assertTrue("...and that one occurrence IS the declaration", outside.indexOf("function vgArrived(frac)") >= 0);
+      // THE HARNESS'S OWN BLIND SPOT, CLOSED. This file INJECTS
+      // VG_SUBJECT_SHOWN_MIN into the sandbox, so if the shipped vgArrived read
+      // a constant declared in some OTHER scope it would be `undefined` in the
+      // browser, `frac >= undefined` would be false, and EVERY lines/planes
+      // number would silently vanish forever — with this whole section green.
+      // The two declarations are therefore checked to share one brace depth in
+      // the emitted body (the renderer's own scope), measured, not assumed.
+      const depthAt = (idx: number) => {
+        let d = 0, inStr: string | null = null;
+        for (let i = 0; i < idx; i++) {
+          const c = SRC[i];
+          if (inStr) { if (c === "\\") { i++; continue; } if (c === inStr) inStr = null; continue; }
+          if (c === '"' || c === "'") { inStr = c; continue; }
+          if (c === "/" && SRC[i + 1] === "/") { while (i < idx && SRC[i] !== "\n") i++; continue; }
+          if (c === "{") d++; else if (c === "}") d--;
+        }
+        return d;
+      };
+      const dGate = depthAt(SRC.indexOf("function vgArrived(frac)"));
+      const dConst = depthAt(SRC.indexOf("var VG_SUBJECT_SHOWN_MIN ="));
+      assertTrue(`vgArrived and VG_SUBJECT_SHOWN_MIN share ONE scope in the emitted body (depth ${dGate} vs ${dConst}) — the constant this harness injects is really in scope at runtime`,
+        dGate === dConst && dGate === 1);
+    }
+  }
+
+  // ── (c) "ARRIVED", NOT "STARTED" ─────────────────────────────────────────
+  //   The threshold is the one §19 already uses: a half-drawn segment beside
+  //   its full length is the same disagreement one notch smaller. A `frac > 0`
+  //   gate would look like a fix and publish mid-grow.
+  {
+    const qa: V3 = [1, 1, 1], qb: V3 = [-1, 0.2, 0.4];
+    const block = {
+      mode: "lines_planes", reveal_ms: 0,
+      points: [{ id: "q1", position: qa }, { id: "q2", position: qb }],
+      segments: [{ id: "cmp", from: "q1", to: "q2", readout: "length", reveal_at_ms: 1000, grow_ms: 1000 }],
+    };
+    const at = (ms: number) => E.vgResolveLinesPlanes(block, {}, ms);
+    const f1500 = at(1500).segments[0].frac;
+    assertTrue(`t=1500ms: the segment is only ${(f1500 * 100).toFixed(0)}% drawn, so its length is NOT published`,
+      f1500 > 0 && f1500 < 1 && at(1500).readouts.point_plane_distance === undefined);
+    assertTrue("t=2000ms: the grow completes and the length appears", at(2000).segments[0].frac === 1
+      && Math.abs(at(2000).readouts.point_plane_distance - len3(sub3(qa, qb))) < 1e-12);
+    // NEGATIVE CONTROL — a "started" gate, which is the plausible weaker fix.
+    const STARTED = buildVgSandbox((name, src) =>
+      (name === "vgArrived" ? src.replace(GATE_BODY, "return frac > 0;") : src)) as any;
+    assertTrue("the 'started' variant really was planted", STARTED.vgArrived(0.01) === true && E.vgArrived(0.01) === false);
+    expectFail(`a 'frac > 0' gate stays silent while the segment is ${(f1500 * 100).toFixed(0)}% drawn`,
+      STARTED.vgResolveLinesPlanes(block, {}, 1500).readouts.point_plane_distance === undefined);
+  }
+
+  // ── (d) THE GATE DID NOT COST DETERMINISM (D3 / Rule 36) ─────────────────
+  {
+    const block = {
+      mode: "lines_planes", reveal_ms: 600,
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3, reveal_at_ms: 200 }],
+      lines: [
+        { id: "Lcut", point: cutAnchor, dir: dCut, lambda_span: [-3, 3], reveal_at_ms: 500, grow_ms: 900 },
+        { id: "Lpar", point: parAnchor, dir: uIn, lambda_span: [-3, 3] },
+      ],
+      intersection: { id: "X", line: "Lcut", plane: "P1", reveal_at_ms: 1500 },
+      angle_arcs: [{ id: "toN", between: ["Lcut", "P1.normal"], readout: "angle_line_normal_deg", reveal_at_ms: 2500 }],
+    };
+    const times = [0, 250, 500, 1400, 1600, 2400, 2600, 9000, 20000];
+    const fwd = times.map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, {}, t)));
+    const rew = times.slice().reverse().map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, {}, t)));
+    assertTrue("REWIND: the gated resolver still replays backwards BIT FOR BIT (a SET_TIME_FREEZE re-pin is byte-identical)",
+      fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+    // ...and the readouts arrive in the AUTHORED order, one beat at a time
+    // (each object's reveal_at_ms PLUS its grow: 1500+600 and 2500+600).
+    const keysAt = (t: number) => Object.keys(E.vgResolveLinesPlanes(block, {}, t).readouts).sort().join(",");
+    assertTrue(`the numbers arrive beat by beat, never all at entry (t=0 "${keysAt(0)}", t=2000 "${keysAt(2000)}", t=2200 "${keysAt(2200)}", t=3200 "${keysAt(3200)}")`,
+      keysAt(0) === "" && keysAt(2000) === ""
+      && keysAt(2200) === "d_dot_n,intersection_point,lambda,no_meeting_point"
+      && keysAt(3200) === "angle_line_normal_deg,d_dot_n,intersection_point,lambda,no_meeting_point");
+  }
+
+  // ── (e) ACT I CANNOT REGRESS THROUGH THIS ────────────────────────────────
+  //   vgResolveLinesPlanes is reached from exactly one call site, inside the
+  //   mode gate, so vector_products_in_space never enters it. Proved from the
+  //   shipped frame driver AND measured live, rather than assumed.
+  {
+    const frameSrc = FRAME_HARNESS.src!;
+    const callAt = frameSrc.indexOf("vgResolveLinesPlanes(");
+    check("the resolver has exactly ONE call site in the frame driver", (frameSrc.match(/vgResolveLinesPlanes\(/g) || []).length, 1, 0);
+    assertTrue("...and it sits inside the `d.mode === \"lines_planes\"` gate",
+      frameSrc.lastIndexOf('d.mode === "lines_planes"', callAt) >= 0
+      && callAt - frameSrc.lastIndexOf('d.mode === "lines_planes"', callAt) < 120);
+    const win: Record<string, unknown> = {};
+    const dom = fakeDom();
+    FRAME_HARNESS.run!({ a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+    assertTrue("a products-mode frame never enters the resolver at all (PM_vgLinesPlanes === null)", win.PM_vgLinesPlanes === null);
+    assertTrue("...and its own panel is untouched by this fix — all four Act I rows still print",
+      ["a_mag", "b_mag", "theta_deg", "a_dot_b"].every((k) => dom.get("vg_readout").innerHTML.includes("vg_readout_" + k)));
   }
 }
 

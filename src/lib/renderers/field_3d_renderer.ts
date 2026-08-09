@@ -12852,6 +12852,34 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < g.length; i++) if (g[i] === group) return true;
         return false;
     }
+    // ── Δ2b · A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE SOURCE ───────────
+    //   bug_class vg_lines_planes_segment_readouts_compute_regardless_of_reveal_
+    //   state. The reveal chain above gated what is DRAWN and nothing else, so
+    //   every out.readouts.* below published the instant its referenced objects
+    //   RESOLVED — which is state entry, not the beat the state reveals them on.
+    //   Measured on lines_and_planes_in_space STATE_4: from frame zero the panel
+    //   read "n·d = 0.574, λ = 2.600, meeting point (...)", all four describing
+    //   Lcut, a line that does not appear until 9500 ms, while the only line on
+    //   screen was Lpar — the PARALLEL line whose whole lesson is that n·d = 0
+    //   and there is no meeting point. Both carry the generic label d, so a
+    //   viewer reads the numbers as describing what they see, on the very state
+    //   built to break the normal-vs-plane misconception.
+    //
+    //   The gate therefore lives HERE, at the value source, not at the panel
+    //   that prints it: vgReadoutSubjectShown (F9) can only gate tokens whose
+    //   subject it can name, and the resolver is the only place that knows which
+    //   authored object each number came from. Gating the display surface while
+    //   the resolver still publishes leaves the number one authoring mistake
+    //   away from the screen — that is the recorded prevention rule of this very
+    //   bug_class, applied to itself.
+    //
+    //   VG_SUBJECT_SHOWN_MIN is the SAME threshold F9 already uses for the Act I
+    //   subjects (cross / c / solid), and it is deliberately "arrived", not
+    //   "started": a half-drawn segment beside its full length is the same
+    //   disagreement one notch smaller. One doctrine, one number, one constant.
+    function vgArrived(frac) {
+        return (typeof frac === "number" && isFinite(frac)) && frac >= VG_SUBJECT_SHOWN_MIN;
+    }
 
     // ── THE RESOLVER · one pure function from (authored block, live knobs,
     //    state-local ms) to a fully-resolved scene description ──────────────
@@ -13047,8 +13075,11 @@ export const FIELD_3D_RENDERER_CODE = `
                         id: (perp.foot_id || "foot"), position: f.foot, frac: pfrac, ghost: 1,
                         role: "neutral", label: perp.foot_label || null, size: 0.09
                     });
-                    out.readouts.point_plane_distance = f.distance;
-                    out.readouts.n_norm = pl.n_norm;
+                    // Δ2b — each number waits for the object it MEASURES: the
+                    // distance for the perpendicular segment, ‖n‖ for the plane
+                    // whose normal it is (two different subjects, two gates).
+                    if (vgArrived(pfrac)) out.readouts.point_plane_distance = f.distance;
+                    if (vgArrived(pl.frac)) out.readouts.n_norm = pl.n_norm;
                     if (perp.show_right_angle === true && pfrac > 0.99) {
                         // The mark sits at the foot, in the plane spanned by the
                         // segment and one in-plane direction — a real right angle
@@ -13076,9 +13107,15 @@ export const FIELD_3D_RENDERER_CODE = `
                 frac: sfrac, ghost: vgGhostFactor(o, stateMs),
                 role: o.role || "neutral", label: o.label || null, arrow: o.arrow === true
             });
-            if (o.readout === "length") out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));
-            else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
-                out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
+            // Δ2b — the segment's own reveal gates its length; n·v additionally
+            // waits for the PLANE it is measured against, because a dot product
+            // printed beside a plane that is not there yet names half a picture.
+            if (o.readout === "length") {
+                if (vgArrived(sfrac)) out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));
+            } else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
+                if (vgArrived(sfrac) && vgArrived(ctx.planes[o.against].frac)) {
+                    out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
+                }
             }
         }
 
@@ -13089,11 +13126,18 @@ export const FIELD_3D_RENDERER_CODE = `
             if (m1 && m2) {
                 var res = vgCommonPerp(m1.anchor, m1.dir, m2.anchor, m2.dir);
                 if (res) {
-                    out.readouts.skew_distance = res.distance;
-                    out.readouts.cross_norm = res.cross_norm;
-                    if (res.numerator != null) out.readouts.numerator_triple_product = res.numerator;
+                    var cfrac = vgRevealFrac(cp, stateMs, growMs);
+                    // Δ2b — all three numbers belong to the common perpendicular,
+                    // so all three wait for it. They are published on the PARALLEL
+                    // case too (where there is no segment to draw), because the
+                    // absence is a lesson with its own authored beat — the beat is
+                    // cp's reveal instant either way, never state entry.
+                    if (vgArrived(cfrac)) {
+                        out.readouts.skew_distance = res.distance;
+                        out.readouts.cross_norm = res.cross_norm;
+                        if (res.numerator != null) out.readouts.numerator_triple_product = res.numerator;
+                    }
                     if (res.exists) {
-                        var cfrac = vgRevealFrac(cp, stateMs, growMs);
                         ctx.derived[(cp.foot1_id || "F1")] = res.foot1;
                         ctx.derived[(cp.foot2_id || "F2")] = res.foot2;
                         ctx.derived[(cp.id || "common_perp")] = vgLerpVec(res.foot1, res.foot2, 0.5);
@@ -13116,14 +13160,23 @@ export const FIELD_3D_RENDERER_CODE = `
             if (iL && iP) {
                 var meet = vgLinePlaneMeet(iL.anchor, iL.dir, iP.point, iP.n);
                 if (meet) {
-                    out.readouts.d_dot_n = meet.d_dot_n;
+                    // Δ2b — THE MEASURED CASE. Every one of these four describes
+                    // the line named by d.intersection, so every one waits for
+                    // that intersection's own reveal instant. out.meet stays
+                    // ungated: it is resolved GEOMETRY (like ctx.derived below),
+                    // never a value surface, and gating it would move a marker's
+                    // address rather than a number's arrival.
+                    var ifrac = vgRevealFrac(isec, stateMs, growMs);
+                    var iShown = vgArrived(ifrac);
                     out.meet = meet;
+                    if (iShown) out.readouts.d_dot_n = meet.d_dot_n;
                     if (meet.exists) {
-                        out.readouts.lambda = meet.lambda;
-                        out.readouts.intersection_point = meet.point;
-                        out.readouts.no_meeting_point = false;
+                        if (iShown) {
+                            out.readouts.lambda = meet.lambda;
+                            out.readouts.intersection_point = meet.point;
+                            out.readouts.no_meeting_point = false;
+                        }
                         ctx.derived[(isec.id || "X")] = meet.point;
-                        var ifrac = vgRevealFrac(isec, stateMs, growMs);
                         if (ifrac > 0) {
                             out.points.push({
                                 id: isec.id || "X", position: meet.point, frac: ifrac, ghost: 1,
@@ -13132,9 +13185,11 @@ export const FIELD_3D_RENDERER_CODE = `
                                 is_intersection: true
                             });
                         }
-                    } else {
+                    } else if (iShown) {
                         // NO marker, at any position, ever — and the readout
-                        // says so out loud (Δ4). This is the whole state.
+                        // says so out loud (Δ4). This is the whole state, and it
+                        // still arrives on the intersection's authored beat: a
+                        // claim about an absence is a claim, not a default.
                         out.readouts.no_meeting_point = true;
                     }
                 }
@@ -13165,8 +13220,13 @@ export const FIELD_3D_RENDERER_CODE = `
                         ctx.lines[proj.id || "shadow"] = out.lines[out.lines.length - 1];
                     }
                 }
+                // Δ2b — the two angles are the projection's own claim (the shadow
+                // IS the picture of "angle to the plane"), so they wait for the
+                // projection's reveal instant. The angles are still COMPUTED when
+                // no shadow exists — a line perpendicular to the plane projects to
+                // a point — because that case reports 90/0, not silence.
                 var ang = vgLinePlaneAngles(pL.dir, pP.n);
-                if (ang) {
+                if (ang && vgArrived(vgRevealFrac(proj, stateMs, growMs))) {
                     out.readouts.angle_line_normal_deg = ang.to_normal;
                     out.readouts.angle_line_plane_deg = ang.to_plane;
                 }
@@ -13184,6 +13244,11 @@ export const FIELD_3D_RENDERER_CODE = `
             o = srcArcs[i] || {};
             if (!vgInGroup(o, group)) continue;
             if (!o.between || o.between.length !== 2) continue;
+            // Δ2b — an arc's number is the arc's claim, so it waits for the arc.
+            // Read once, above the branch chain, because one branch publishes
+            // from inside itself and the rest publish after the push.
+            var afrac = vgRevealFrac(o, stateMs, growMs);
+            var aShown = vgArrived(afrac);
             var arcApex = null, u0 = null, u1 = null, val = null;
             var mA = o.between[0], mB = o.between[1];
             var lnA = ctx.lines[mA];
@@ -13208,18 +13273,20 @@ export const FIELD_3D_RENDERER_CODE = `
                 u1 = ctx.lines[mB].dir;
                 val = vgAngleDeg(u0, u1);
                 if (o.apex_at_origin === true) arcApex = [0, 0, 0];
-                out.readouts.angle_lines_deg = val;
+                if (aShown) out.readouts.angle_lines_deg = val;
             } else continue;
             out.arcs.push({
                 id: o.id || ("arc" + i), apex: arcApex, u0: vgNormalize(u0), u1: vgNormalize(u1),
                 radius: (typeof o.radius === "number" && isFinite(o.radius)) ? o.radius : 0.9,
-                frac: vgRevealFrac(o, stateMs, growMs), value_deg: val,
+                frac: afrac, value_deg: val,
                 role: o.role || "neutral", label: o.label || null,
                 readout: o.readout || null
             });
-            if (o.readout === "angle_line_normal_deg") out.readouts.angle_line_normal_deg = val;
-            else if (o.readout === "angle_line_plane_deg") out.readouts.angle_line_plane_deg = val;
-            else if (o.readout === "angle_lines_deg") out.readouts.angle_lines_deg = val;
+            if (aShown) {
+                if (o.readout === "angle_line_normal_deg") out.readouts.angle_line_normal_deg = val;
+                else if (o.readout === "angle_line_plane_deg") out.readouts.angle_line_plane_deg = val;
+                else if (o.readout === "angle_lines_deg") out.readouts.angle_lines_deg = val;
+            }
         }
 
         // ── F23 · free vectors (the skew formula's two named arrows) ────────
@@ -13229,10 +13296,12 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!vgInGroup(o, group)) continue;
             var vOrigin = vgAddr(o.origin, ctx, K) || [0, 0, 0];
             var vTip = null;
+            // Δ2b — ‖d₁×d₂‖ is the length of THIS arrow, so it waits for it.
+            var vfrac = vgRevealFrac(o, stateMs, growMs);
             if (o.derive === "cross" && o.of && o.of.length === 2 && ctx.lines[o.of[0]] && ctx.lines[o.of[1]]) {
                 var cvec = vgCrossVec(ctx.lines[o.of[0]].dir, ctx.lines[o.of[1]].dir);
                 var cs = (typeof o.scale === "number" && isFinite(o.scale)) ? o.scale : 1;
-                out.readouts.cross_norm = vgLenVec(cvec);
+                if (vgArrived(vfrac)) out.readouts.cross_norm = vgLenVec(cvec);
                 vTip = vgAddVec(vOrigin, vgScaleVec(cvec, cs));
             } else if (o.derive === "between" && o.of && o.of.length === 2) {
                 var bA = vgAddr(o.of[0], ctx, K), bB = vgAddr(o.of[1], ctx, K);
@@ -13241,7 +13310,6 @@ export const FIELD_3D_RENDERER_CODE = `
                 vTip = vgAddr(o.tip, ctx, K);
             }
             if (!vTip) continue;
-            var vfrac = vgRevealFrac(o, stateMs, growMs);
             out.vectors.push({
                 id: o.id || ("vec" + i), origin: vOrigin, tip: vgLerpVec(vOrigin, vTip, vfrac),
                 frac: vfrac, ghost: vgGhostFactor(o, stateMs),
