@@ -1,0 +1,39 @@
+{
+  "approved_at": "2026-08-09T08:02:05.724Z",
+  "source_run": "/Users/karthikyerragadda/Desktop/Viditra/Physics-mind-mathematics-definite-integral/.visual_runs/definite_integral_as_accumulated_area/20260809-094446",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_8": {
+      "compare": false,
+      "compare_frozen": true
+    }
+  }
+}
