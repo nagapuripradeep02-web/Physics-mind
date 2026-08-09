@@ -1,5 +1,37 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🎯 SESSION — Ch.6 #4 + #5 founder review round: the teaching DWELL built, the point instrument DE-TEMPLATED, and a state deleted for having no idea of its own (2026-08-08/09, `feat/ch6-concept-4` + `feat/ch6-concept-5`, engine PR #74)
+
+**Bottom line: the founder watched both sims and the notes were all one note — the picture moves too fast and too little to teach from, and the marks on the track say nothing. Six renderer commits built a teaching DWELL (the scene's physics freezes on a stamped crossing so a teacher can read v, K and the work ledger before the motion resumes) plus a `point` marker form. Then the more valuable half: taking almost all of it back out.**
+
+### The dwell (engine, PR #74 — six commits, Rule 40 platform)
+- `dwell_ms` + `dwell_from_pass` per checkpoint: a stamped crossing freezes the WHOLE scene via `hPhys = 0` at the single dt site — never the per-body latch branch, which zeroes `b.v` and would falsify the very reading being taught. Fold-exact partial-frame resume, `loop_reset_ms` deferred past a live dwell with a one-shot `[PM_NLB_DWELL]` warn, `"paused: <label>"` badge on the slow-mo channel.
+- `marker: 'flag' | 'point'` (a small sphere at track level, `depthTest: true` so the body honestly passes OVER it) + a short caption lane so two points 0.2 m apart stop colliding.
+- **The rewind clock fix was the real bug.** Dwells fired in cycle 1 and never again; the cart hit the +6 bound and the screen showed `v = 0.00 m/s` beside `K = 62.7 J`. **Both hypotheses I briefed were false.** `nlbResetTrajectory` zeroes `eng._tPrevMs`, and the loop path restored `t_ms` but not `_tPrevMs`, so `tCross = _tPrevMs + f·(t_ms − _tPrevMs)` collapsed to a stale 0 for home-armed checkpoints and the freshness guard discarded the window.
+- **The surgeon refuted my premise.** I briefed that a dwell makes stamp and live bar agree. It does not — the freeze begins one integrator step after the crossing, leaving a bounded ~0.94 J residual. Filed OPEN rather than claimed as solved.
+
+### 🔴 The correction that mattered: I templated the instrument across every state
+Given "use two points instead of a flag", I wrote the pattern into my own plan and then applied it to **all 11 states across both concepts**. The founder: *"You used it for every state. Why did you do that? … it looks same thing explained in all the simulations."* Correct, and the fault was mine, not the request's.
+
+**The rule derived from it: a mark earns its place when the claim is a DIFFERENCE BETWEEN TWO PLACES.** WET S1–S3 carry continuous truths (an equality at every frame, a decay ending in a real stop, a constant) — a freeze there only samples what the bars already prove. Final state: WET keeps points on **S4 only**; C-vs-NC keeps **one** start-line mark on S1/S2, **none** on S3 (the flipping arrow IS the state), **two** on S4.
+
+### 🔴 The primary aha was rendering the misconception — found by reading pixels
+C-vs-NC's start-line checkpoint sits at the home pose, so it fires at t = 0; under `capture_mode: 'first'` the stamp froze on the DEPARTURE reading and the aha state displayed **`back at the start: W gravity = 0.0 J · W friction = 0.0 J`** — asserting friction's round-trip work is zero, the exact belief the concept exists to kill. Pre-existing since the PR #62 determinism fix; **the approved baseline predates it**. `capture_mode: 'every'` → now reads **−125.3 J**.
+
+### WET S4: the backward launch removed, then S5 deleted
+- The founder asked why the block moves backward. The honest answer: it was never load-bearing for the claim, only for motion variety, and it cost a confusing reversal in a straightforward theorem state. Removed — S4 now starts already moving forward at point A. What IS load-bearing is `K₀ ≠ 0`: from rest, the misconception (net work = final K) accidentally gives the right answer and the state collapses into S1.
+- **Then S4 and S5 read as the same state, because they were.** Both: "a constant pull speeds up a cart that is already moving; read v and K at two labelled points; the net work is the difference." S5's only distinguishing claim was that the theorem *derives* from F = ma — but it never showed the derivation, it showed the same two-point reading with different numbers. **A state earns its place by a distinct IDEA, not a distinct set of numbers.** Deleted; the sandbox renumbered STATE_6 → STATE_5; `state_count` 6 → 5.
+- The deletion surfaced staleness the forward-only rebuild had left **outside S4's own block**: `mastery_definition` and the JEE Advanced tag still claimed a velocity reversal and a derivation, q4's `tested_idea`/`parallel_form_stem` still described a cart turning around, the S4 HUD line still said "v crosses zero at the turn", two reversal-specific drill_down clusters no longer matched, and the ±6 m clamp-headroom constraint cited the deleted state's +5.09 m. **An edit scoped to one state is almost never scoped to one state.**
+
+### Verification + state at close
+- `tsc` **0** · `validate:concepts` **152 PASS / 0 FAIL** (back to baseline; the deletion briefly tripped the `questions >= 6` floor — resolved by authoring a second S4 question that checks `W = F·d` against `ΔK`, not by relaxing the gate) · `check:renderer-syntax` OK · `vitest` **356/356**.
+- THE EYE on #4: **28/32**, the 4 failures **H2 stale-baseline only** (S5's baseline holds the deleted derivation state; S4's predates the forward-only rebuild), **zero H3 console errors**. Frames read, not assumed: S4 holds at point B with the badge and the `K 36.1 / net 18.1` split intact; S5 renders the sandbox with all four sliders.
+- **H2 was again shown blind** — WET S2 passed under the 2% tolerance on a completely new picture. Frames, not tolerances.
+- **10 scar rows authored, NOT applied.** Dwell seam FIXED · bounded one-step residual OPEN · marker form FIXED · caption lane FIXED · CALCULATOR cross-stamp pairing OPEN · dwell authoring arithmetic OPEN (`alex:architect`) · caption-vs-body FIXED · billboard corner nick OPEN · rewind clock FIXED · **EYE captures renderer `[PM_*]` self-diagnostics but no gate consumes them** OPEN.
+- **NOT re-baselined. NOT deployed. No TTS.** `visual:approve` stays founder-only (Rule 17) — every H2 failure above is awaiting the founder's eyes, not a re-approve by me.
+
+---
+
 ## 🔨 SESSION — Ch.6 concepts #4 `work_energy_theorem` + #5 `conservative_vs_nonconservative_forces` BUILT, REVIEWED, BASELINED · the ch6 PR stack merged · **NINE platform PRs, and the most valuable output was agents refuting the instructions they were given** (2026-08-07/08, `feat/ch6-concept-4` + `feat/ch6-concept-5`)
 
 **Bottom line: two concepts went from nothing to approved baselines in one session — architect → Checkpoint A (2 cycles each) → physics-author → json-author → quality-auditor ∥ eye-walker → Checkpoint B → fix rounds → `visual:approve`. The Phase-0 bet held a FOURTH and FIFTH time: neither concept needed a renderer edit to AUTHOR. But the session's real product is nine platform fixes, every one found by reading pixels or driving the sim while every deterministic gate reported clean — and SIX of them were found because an agent refused the diagnosis it was handed and proved it wrong.**
