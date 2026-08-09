@@ -32,10 +32,12 @@
 | P0-3D | **`vector_geometry_3d` scenario** (engine; `field_3d`; master, Rule 40) — serves ranked **#7 + #9**; **#8 is a separate purchase** | ✅ **0a + 0b COMPLETE 2026-08-08** → `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` (survey + AMENDMENTS A1–A19) + three skeletons in `docs/skeletons/` (4 040 lines). **founder_proxy Checkpoint A `DESIGN_OK` ×3 at cycle 1**, inside the founder's 2-cycle budget. Engine: **VG-A/VG-B/VG-C** (#7+#9) and **SR-A/SR-B** (#8), each with a negative-controlled headless gate. **0c cleared to dispatch; 0d blocked on 0c + A19's four conditions.** Founder decisions taken: scenario = `vector_geometry_3d`, concept id = `vector_products_in_space`, #8 stays scheduled. |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
-Three concepts are Checkpoint-B approved and baseline-locked; the fourth is authored and PR'd but
-HELD on an engine fix round. Nothing is authored off-list.**
+**P1 IS COMPLETE 2026-08-09** — all four ranked-P1 concepts are Checkpoint-B
+approved, baseline-locked and MERGED to master. Nothing is authored off-list. Next unbuilt work is
+the 3D-geometry wave: its engine (`vector_geometry_3d`, `solid_of_revolution`) and all three
+skeletons are on master, but no concept JSON exists yet.**
 
-> **⚠ The load-bearing lesson of 2026-08-08, and the reason the fourth concept is held:**
+> **⚠ The load-bearing lesson of 2026-08-08 (the fourth concept has since been fixed and MERGED — kept because the lesson generalises):**
 > `definite_integral_as_accumulated_area` passed **THE EYE 35/35 twice**, passed `quality_auditor`,
 > and was called baseline-ready by `eye_walker` — while STATE_4's taught region **visibly shrank to
 > nothing** as n grew (the exact opposite of the concept's central claim) and STATE_5's only control
