@@ -6,6 +6,13 @@
 > design → 0c engine once → 0d concepts as pure JSON). Sibling of `docs/CHEMISTRY_PHASE0_BONDING.md`,
 > which is the shape this doc copies.
 >
+> **⚠ AMENDED 2026-08-09 by `docs/ORGANIC_ENGINE_PLAN.md`** (founder: *"we first plan to cover all
+> organic simulations"*). That doc unions the engine needs of all 32 organic sims and supersedes this
+> one wherever they differ. Four corrections are already applied below — the `mode` enum now closes
+> over all 32 rather than over Wave O-0, the energy instrument is generalised, `rehybridise` is named
+> as substrate, and §0c is five dispatches instead of four. **Read `ORGANIC_ENGINE_PLAN.md` first;
+> this doc is the O-0 execution detail beneath it.**
+>
 > **NOTHING IS DISPATCHED.** 0c below is a plan, not a build. The gate before 0c is founder-proxy
 > Checkpoint A on the 0b skeleton, then founder go.
 >
@@ -103,8 +110,13 @@ json-author is writing a dialect it already knows.
 state.organic_structure = {
   molecule: ethane | butane | cyclohexane | methane | propane | ethene |
             stereocentre | isomer_set,            // CLOSED, from OS_MOLECULES
-  mode: lift | rotate | pucker | mirror | block_twist | rewire | compare | explore,
-                                                  // CLOSED, 8 modes
+  mode: // ⚠ CLOSED over ALL 32 ORGANIC SIMS, never over Wave O-0 alone
+        // (ORGANIC_ENGINE_PLAN.md §5 correction 4). O-0 authors only the
+        // first row; the rest are declared now so no later wave reopens
+        // the enum across shipped concepts.
+        lift | rotate | pucker | mirror | block_twist | rewire | compare | explore |
+        rehybridise | shade | delocalise |                      // Layer B, Wave O-1
+        break | form | approach | invert | migrate | sequence | sweep,  // Layer C, O-2+
 
   // ── U2 the dihedral ────────────────────────────────────────────────
   torsion: { about: '<bond id>',                  // e.g. 'C1-C2'
@@ -125,8 +137,16 @@ state.organic_structure = {
                    highlight }],
 
   // ── U4 the energy instrument ───────────────────────────────────────
+  //    GENERALISED at S2, not narrowed to a torsion curve
+  //    (ORGANIC_ENGINE_PLAN.md §5 correction 1). O-0 authors only
+  //    coordinate: torsion | pucker, but the stationary-point vocabulary
+  //    ships from the start so Wave O-2's reaction profiles reuse this
+  //    instrument instead of rebuilding it.
   energy: { show, curve: ethane | butane | cyclohexane,   // CLOSED, PUBLISHED tables
+            coordinate: torsion | pucker | reaction,
             units: 'kJ/mol', show_point, show_barrier,
+            stationary: [{ at, kind: minimum | maximum | reactant | ts |
+                                 intermediate | product, label }],
             label_minima, zero_at },              // which pose is the datum
 
   // ── U6 / U8 / U7 / U10 the ops ─────────────────────────────────────
@@ -272,12 +292,20 @@ Four dispatches to `field3d-surgeon`, **ONE `bug_class` each** (Amendment 4 — 
 each with a ~100-call ceiling and a clean handoff note. Ordered so every dispatch has a real consumer
 to be proven against, exactly as E1/E2/E3 were on `bonding_scene`.
 
+**FIVE dispatches, not four** — `ORGANIC_ENGINE_PLAN.md` §5 correction 3 separates the energy
+instrument out of the torsion dispatch, because it is subject-wide rather than an O-0 asset.
+
 | Dispatch | `bug_class` | Builds | Proven against |
 |---|---|---|---|
-| **A1** | `organic_structure_substrate` | U1 skeleton + closed molecule table + camera solve + HUD/formula chrome + closed-form t. Enums FREEZE here | #2 ethane, static poses only |
-| **A2** | `organic_structure_torsion` | U2 dihedral + U5 Newman camera + U4 energy instrument | #2, then #3 butane |
-| **A3** | `organic_structure_pucker` | U3 ring pucker + U9 a/e tagging + the substituent layer | #4 chair flip (the 0b spec) |
-| **A4** | `organic_structure_stereo_ops` | U6 mirror/superimposition · U7 flat lift · U8 blocked twist · U10 rewire | #5, then #1, #6, #7 |
+| **S1** | `organic_structure_substrate` | U1 skeleton + closed molecule table + camera solve + HUD/formula chrome + closed-form t. Enums FREEZE here — **over all 32 sims, not over O-0** | #2 ethane, static poses only |
+| **S2** | `organic_structure_energy` | U4 energy instrument, **generalised** (torsion + pucker + reaction-profile shape) + U5 sight-along/Newman camera | #2 ethane E(φ) |
+| **A1** | `organic_structure_torsion` | U2 dihedral + pose targets | #2, then #3 butane |
+| **A2** | `organic_structure_pucker` | U3 ring pucker + U9 a/e tagging + the substituent layer | #4 chair flip (the 0b spec) |
+| **A3** | `organic_structure_stereo_ops` | U6 mirror/superimposition · U7 flat lift · U8 blocked twist · U10 rewire | #5, then #1, #6, #7 |
+
+`S4 organic_structure_rehybridise` (sp³ ⇄ sp²) is substrate too, but **no O-0 concept consumes it** —
+it is dispatched at Wave O-1 against #11. It is named here so it is not re-invented inside Layer C,
+where six later sims would otherwise each grow their own copy.
 
 **Rule 40:** every one of these lands on **master separately and immediately** — engine files are
 platform, shared by both subjects. They do not ride inside a concept branch.
