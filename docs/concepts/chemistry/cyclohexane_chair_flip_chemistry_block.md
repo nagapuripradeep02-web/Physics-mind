@@ -542,12 +542,12 @@ Notation used below: `t-window · what animates · driven by`. Every branch is a
 
 **`text_en` (48 words · 17.45 s):**
 
-> Watch the one axial bond that is marked. The ring now folds the other way. No bond breaks, and the formula stays C₆H₁₂ all the way through. When the ring settles, the marked bond is equatorial. Every axial bond has become equatorial, and the compound is the same.
+> Watch the one axial bond that is marked. The ring now flips the other way. No bond breaks, and the formula stays C₆H₁₂ all the way through. When the ring settles, the marked bond is equatorial. Every axial bond has become equatorial, and the compound is the same.
 
 | clause | words | window | focal |
 |---|---|---|---|
 | "Watch the one axial bond that is marked." | 8 | 0 – 2909 | the traced bond |
-| "The ring now folds the other way." | 7 | 2909 – 5455 | the ring |
+| "The ring now flips the other way." | 7 | 2909 – 5455 | the ring |
 | "No bond breaks, and the formula stays C₆H₁₂ all the way through." | 12 | 5455 – 9818 | the `C₆H₁₂` surface |
 | "When the ring settles, the marked bond is equatorial." | 9 | 9818 – 13091 | the traced bond's new label |
 | **"Every axial bond has become equatorial, and the compound is the same."** | 12 | **13091 – 17455** | **the six origin-tinted bonds, in their single re-glow** — NOT `ae_count` |
