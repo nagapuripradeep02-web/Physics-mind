@@ -1152,6 +1152,20 @@ ${pilotHeadTags(1)}
     // authored duration keeps that longer narration timeline, unaffected).
     timelineTotal = Math.max(narrationEnd, Math.round((st.duration || 0) * 1000));
     scrubEl.max = String(Math.max(1, timelineTotal));
+    // Any label derived from a computed timeline is refreshed in the SAME
+    // function that computes it (engine_bug_queue:
+    // review_player_scrub_total_label_not_refreshed_on_rail_entry_so_a_state_
+    // reads_zero_seconds, founder_proxy Checkpoint B cycle 3, 2026-08-09).
+    // Before this line, goToState() set scrubEl.max via computeTimeline() but
+    // #scrubtime's TEXT was left stale until the next playback tick /
+    // updateScrubLabel call — measured: opening a state from the rail read
+    // "0.0 / 0.0s" for a 24-second state. A teacher planning a lesson reads
+    // the state duration BEFORE pressing Play, exactly the moment the label
+    // was wrong. Uses scrubEl.value (already reset to '0' by goToState before
+    // this call, or left at the current scrub position on a rate change) so
+    // BOTH callers of computeTimeline() — state entry and the Speed-slider
+    // change handler — get a correct, immediately-fresh label.
+    updateScrubLabel(parseInt(scrubEl.value, 10) || 0);
   }
   // Bind each scenario one-shot to the sentence that narrates it: post that
   // sentence's window START (state-local ms, already per-language because
