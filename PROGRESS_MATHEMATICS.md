@@ -29,7 +29,7 @@
 | 4 | Mathematics-specific gates | ◐ **interval honesty is now EARNED** — S6 licensed a universal identity empirically (2026-08-05); write the gate |
 | 5 | Further scenarios (3D solids, sampling box) | ☐ founder-gated |
 | — | **3D-vectors chapter (ranked P3 #7/#9)** | ⏸ **STOPPED mid-flight by founder 2026-08-08**, to restart from Phase 0 in a fresh session. Full record: `docs/MATHEMATICS_VECTORS_3D_HANDOFF.md` → superseded by `docs/MATHEMATICS_PHASE0_VECTORS_3D.md`. Ranked list corrected P2 #5 → **P3 #7** (the "no new engine" premise was false). |
-| P0-3D | **`vector_geometry_3d` scenario** (engine; `field_3d`; master, Rule 40) — serves ranked **#7 + #9**; **#8 is a separate purchase** | ✅ **0a + 0b COMPLETE 2026-08-08** → `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` (survey + AMENDMENTS A1–A19) + three skeletons in `docs/skeletons/` (4 040 lines). **founder_proxy Checkpoint A `DESIGN_OK` ×3 at cycle 1**, inside the founder's 2-cycle budget. Engine: **VG-A/VG-B/VG-C** (#7+#9) and **SR-A/SR-B** (#8), each with a negative-controlled headless gate. **0c cleared to dispatch; 0d blocked on 0c + A19's four conditions.** Founder decisions taken: scenario = `vector_geometry_3d`, concept id = `vector_products_in_space`, #8 stays scheduled. |
+| P0-3D | **`vector_geometry_3d` + `solid_of_revolution`** (engine; `field_3d`; master, Rule 40) — serve ranked **#7, #9** and **#8** | ✅ **COMPLETE AND MERGED 2026-08-09** — PRs #75/#77/#78/#79. Gates **570/60** and **231/34**; both fleet-safety gates repaired against one shared module. **#9 and #8 need ZERO renderer work.** Concept **#7 BANKED** (desk `feat/mathematics-vector-products` @ `25a1a99`, nothing approved) → `docs/MATHEMATICS_VECTOR_PRODUCTS_HANDOFF.md`. Detail below. *(0a + 0b record:* ✅ **2026-08-08** → `docs/MATHEMATICS_PHASE0_VECTORS_3D.md` (survey + AMENDMENTS A1–A19) + three skeletons in `docs/skeletons/` (4 040 lines). **founder_proxy Checkpoint A `DESIGN_OK` ×3 at cycle 1**, inside the founder's 2-cycle budget. Engine: **VG-A/VG-B/VG-C** (#7+#9) and **SR-A/SR-B** (#8), each with a negative-controlled headless gate. **0c cleared to dispatch; 0d blocked on 0c + A19's four conditions.** Founder decisions taken: scenario = `vector_geometry_3d`, concept id = `vector_products_in_space`, #8 stays scheduled.)* |
 
 **Mathematics is a first-class subject in the tooling, and its visual gate is now correct for it.
 **P1 IS COMPLETE 2026-08-09** — all four ranked-P1 concepts are Checkpoint-B
@@ -138,6 +138,74 @@ skeletons are on master, but no concept JSON exists yet.**
   left out of #59/#64 because it moves nearly every baseline and needs a founder re-baseline sweep.
   (5) File the stale-artifact scar row. (6) Founder ruling still open on the `ascii_minus` FIXED row
   (third recurrence; owner should move to `peter_parker:renderer_primitives`).
+
+## 🔩 SESSION — the 3D-geometry ENGINE built and merged, and one concept banked one clause short (2026-08-08/09, master `dfca9cf` → `39e6928`; PRs #75/#77/#78/#79)
+
+> Continues the Phase-0 session below. Founder authorised 0b → 0c → 0d in sequence, then **banked
+> concept #7 rather than spend a third fix round.** Full record: `docs/MATHEMATICS_VECTOR_PRODUCTS_HANDOFF.md`.
+
+**THE ENGINE IS THE WIN, and it is merged.**
+
+| scenario | serves | gate |
+|---|---|---|
+| **`vector_geometry_3d`** | ranked **#7** + **#9** | `check:vector-geometry-3d` **570 assertions / 60 negative controls** |
+| **`solid_of_revolution`** | ranked **#8** | `check:solid-of-revolution` **231 / 34** |
+
+Five `field3d-surgeon` dispatches, four merged PRs, **801 gated assertions**. **Concepts #9 and #8 now
+need ZERO renderer work** — 0d's success test, met. Both fleet-safety gates were found broken and
+repaired against one shared module (`src/scripts/lib/fleetSafety.ts`), so the next scenario inherits it.
+
+**Concept #7 `vector_products_in_space` is BANKED, not shipped.** Authored, gated, committed on desk
+`feat/mathematics-vector-products` @ `25a1a99`. `tsc` 0 · `validate:mathematics` PASS ·
+`validate:concepts` 151 PASS. **Nothing approved: no `visual:approve`, no baseline, no
+`PILOT_CONCEPTS`, no PR.** Two full gate rounds took it from FAIL + 13 findings to FAIL + 12, with
+**six of eight shipped fixes confirmed correct on pixels**. What remains: one false sentence (one
+clause), one design question, one gate that never ran, and a framing complaint raised twice.
+
+**⭐ THE LESSON OF THE WHOLE SESSION, and it is not about vectors.** Every MAJOR finding across both EYE
+walks was ONE SHAPE: **a text surface that disagrees with the picture beside it.** A stale slider row, a
+hardcoded readout label, a volume printed before its solid existed, a sentence its own panel disproves,
+and finally **two magnitudes that are equal by definition drawn 34 % apart** (275 px vs 182 px, in the
+state whose lesson is *same length, opposite direction*). **None was a rendering failure; all were
+claims.** 570 headless assertions and a `35 passed` headline were **structurally blind to every one** —
+only reading frames found them. *A gate proves the geometry is right; only an authoring pass and a human
+eye ask what the picture CLAIMS.*
+
+**And a second-order finding worth more than any single fix: the `cross_mag` label fix is what made the
+34 % asymmetry legible.** Before it, both readouts printed `|a×b|`, so nobody would compare them.
+**Fixing one truth-surface exposed the one beneath it.**
+
+**SEVEN mechanisms were found ALREADY SHIPPING rather than built twice** (Rule 40a run on *mechanisms*,
+not just names): `param_ramp` / `idle_auto_sweep`, `os.camera_steps` (ported once, merely *called* the
+second time — zero new mechanism), the canvas graph mechanisms (priced, then correctly rejected),
+`nlbProjPx`, `efluxUpdateClosed`, `capRamp`, `nlbSyncSliderRow`. The wave's recorded failure was that
+40a had been swept on the scenario NAME and never on the MECHANISMS declared missing.
+
+**FOUR of my own errors, corrected by agents with measurements I did not have** — recorded because the
+mechanism that caught them is the deliverable: (1) I validated a vector construction on `Volume`, which
+is **identically invariant** under the exact swap I had made (0.00e+0 over 20 000 configs) — `Base`
+discriminates; (2) I diagnosed the red fleet gate as a sibling-drift problem when it was **the gate
+diffing the file against itself**, having crossed the two gates' internals; (3) I told an auditor four
+scar rows were seeded when they never were; (4) I forwarded a "restore the `b×c` arrow, measured safe"
+instruction for a primitive **that does not exist**. Agents overturned my numbers on `split_gap_k`
+(0.35 → 0.6, measured by overlap not centroid) and `control_ranges` (3.00 → 2.75, by projecting the
+*label* neither of us had measured).
+
+**Scar rows: 18 seeded this session** (`_seed_engine_bug_queue_vector_products_gate_rounds.ts`) — 5 FIXED,
+**13 OPEN** — plus the earlier 13-row wave harvest. The concept went from 7 rows to **25**. One status was
+**corrected against its own author**: the D5-skip row was filed FIXED after the `vg` motion registration
+landed, and the second EYE walk proved D5 **still** skipped on all eight states, so it is seeded OPEN.
+*A row is FIXED when the product has the thing it describes, not when a change intended to deliver it has
+landed.*
+
+**Founder decisions taken:** scenario named `vector_geometry_3d` (a concept id in a scenario slot,
+retired before it reached master) · concept id `vector_products_in_space` · #8 kept scheduled ·
+`vg.value_readouts` renamed off the fleet's `static_readouts` convention · concept #7 banked.
+
+**Housekeeping:** five merged desks closed (the concurrent session's three deliberately left alone); the
+concept desk survives with its unmerged work committed.
+
+---
 
 ## 📐 SESSION — Phase 0 for the 3D-geometry chapter: three skeletons, `DESIGN_OK` ×3, and the finding that a camera cannot be hand-solved (2026-08-08, `master` @ `dfca9cf` → `9b52ef7`; survey + design only, no engine code, no concept JSON)
 
@@ -270,6 +338,21 @@ the stale-baseline vintage sized with one further EYE run.
 - **Guards now exist for all three.** `check:cartesian-plane` 507 → **533** (26 new); a NEW suite `check:review-site-timeline` **15/15** extracts `computeTimeline`'s real body from `build_review_site.ts` by brace-matching (no exported constant exists for the player script). Negative controls run first throughout: reverting fix 3 flips 8 assertions, reverting fix 1 flips 8. `vitest` 356/356. Fleet EYE: `derivative_as_secant_limit` 56/56 and `graph_transformations` 50/50, H2 **identical to every prior run — neither moved**, consistent with the proven blast radius.
 - **⚠ An agent hit a session limit mid-fix-3.** Fixes 1 and 2 were committed as an explicitly UNVERIFIED snapshot (`9037ea0`) to get them off one disk, then verified at unit level by the coordinator, then completed and guarded by `ce11b79`. Nothing was lost. The recovery pattern — commit the partial work labelled unverified, verify, then resume the agent from its own transcript — is worth reusing.
 - **THE EYE on the composed tree: 41/50, nine H2 drifts, all baseline-vintage.** STATE_4 is now the LARGEST at **9.76 %**, which is the signature of the evaporation fix working — the region is drawn where the baseline shows it empty. S1/S2/S3 still pass. Nothing re-baselined; `visual:approve` remains untouched and founder-only.
+### 🎧 SESSION CLOSE — ride-alongs landed, the integral VOICED, and a render that billed and kept nothing (2026-08-09)
+
+- **Six PRs merged this stretch: #70, #76, #81, #82, #83, #84.** The concept is complete, voiced and on master. **Not shipped** — it is deliberately absent from `PILOT_CONCEPTS` (Rule 17, founder-only), and Checkpoint C + the professor gate stay skipped by founder call.
+- **Queue hygiene first.** Four rows were FIXED but still reading OPEN — a queue that lies about what is left is the exact drift Gate 8 exists to catch. Closed: the CRITICAL live-control leak, the focal/semantic-colour row, the stale-transform row, and the E-2 precedence row. **Five left deliberately open**, which matters as much: `visual_eyes_never_sweeps_live_controls` (genuinely open, and it just gained a NEW instance — see below), E-1 tick expressions, the D5 motion-gate gap, `position_expr_offset_constant` ("not reachable here" ≠ fixed), and `uniformity_fix_moved_every_overlay`, where **the two reviewers genuinely disagree** (49 px against the 52 px threshold vs 32 px of measured page-pixel clearance) — that is a founder ruling, not a closure. The table has no `resolution` column; the evidence lives in the commit.
+- **🔴 A layout gate was crying wolf 95 times on one concept — and was BLIND at the same time.** `check-layout-overlap.mjs` compared data-space `position_expr` against pixel-space boxes and had no time axis. Worse, `formula_box` stores its text in **`equation`**, not `text`/`text_expr`, so the checker had never seen **any of the 76 formula boxes in the fleet**. Fixing that RECOVERED a genuine hidden collision (`direction_of_resultant` EPIC_C_1) while eliminating false ones: fleet **259 → 148**, `graph_transformations` **95 → 0, every one false**. The same drift existed in `validate-concepts.ts`'s twin copy, still emitting those false positives in the MANDATORY validator output. A gate that cries wolf trains reviewers to ignore it — this was doing active harm.
+- **The zoom-link diagnosis was wrong at the wrong END of the line.** Two rounds were spent proving no inset corner clears both the inset box and the formula box. founder_proxy then measured the SOURCE points: they resolve **0.14 px apart at n=10000**. The two links were never separable at any n, so `zoomlink_2` was dead config drawn on top of `zoomlink_1`. Deleted; what was actually missing — a source marker showing WHICH speck is magnified — is now authored, clearances proven across the full `nlog` ramp.
+- **STATE_8 stopped erasing the parabola.** Every state authored `curve.x_domain` `max_expr: "b"`; in the sandbox `b` IS the dragged control, so the reading became "the function stops here" rather than "we stop accumulating here". Now fixed at `max: 2`, matching STATE_7's convention inside the same concept. **THE EYE cannot see this fix at all** — it never drags a control — which is a concrete new instance of the `visual_eyes_never_sweeps_live_controls` scar, and means a future regression of it would be equally invisible.
+- **🔴 A render billed 18 Sarvam clips and kept NONE.** `generate_tts_audio` calls Sarvam first and transcodes WAV→MP3 second; the machine had no `ffmpeg`, so every clip was paid for and then failed on `spawnSync ffmpeg ENOENT`, leaving a manifest of 19 entries with zero audio. The persistence prerequisite HAD been checked (and caught a real trap — `review-site/` is gitignored, and the generator mirrors to tracked `tts_audio/` precisely because vsepr's 17 clips once died in a worktree). The TOOLCHAIN prerequisite was not. **Fixed durably in PR #83**: `ffmpeg-static` travels with the repo as a fallback, and a PREFLIGHT now proves the transcoder converts BEFORE the first paid call — verified at zero API cost by encoding a generated silent WAV.
+- **🎧 The integral is VOICED — 18 English clips, 141.7 s, `bulbul:v3`/`priya`.** Committed to `tts_audio/` because that mirror is the only cache. STATE_8's sentence is empty by design (explore is 0/open, Rule 31). `text_hash` on every clip, so a later text edit MUTES the clip rather than playing the wrong voice.
+- **🔴 AND THE TIMELINE FLOOR IMMEDIATELY EARNED ITS KEEP.** Once clips exist, `computeTimeline` abandons the character estimate for REAL durations. Sarvam came in SHORTER than the estimate on two states: **S1 audio ends 17,944 ms against a reveal at 18,000; S4 ends 19,442 against 19,500.** Without `max(narrationEnd, duration*1000)` from PR #76, the region fill would have been cut on both — reproducing the exact Speed-1.05 defect founder_proxy caught. **The TTS hazard was fixed three rounds before anyone decided to do TTS.**
+- **Sequencing that saved money and rework**, worth copying: fix the English → translate Hindi FROM the final English → render audio LAST. STATE_5's "dim"/"bright" narration (a P2 both reviewers raised, owner `alex:physics_author`) was fixed BEFORE rendering — its own objection was *"spoken aloud this is unparseable"*, and we were about to make it spoken aloud. Any English edit from here costs a re-render.
+- **`text_hi` authored, 18 sentences** (Rule 30i: text-only, never voiced, kept for portability; Rule 30g: a Sonnet-5 sub-agent on the SUBSCRIPTION, never `tts:translate`, which bills the metered keys). Diff shape proven mechanically — 18 `text_hi` additions plus 18 lines differing only by a trailing comma, so no number literal was normalised by the JSON round-trip.
+- **Verification at close:** `tsc` 0 · `validate:mathematics` 4/4 · `validate:concepts` 151/151 · `check:cartesian-plane` **533** · `check:review-site-timeline` (new suite) · `vitest` **368/368** (was 356) · THE EYE **50/50, 0 failed** twice — after the content ride-alongs and again after audio. Nothing re-baselined; audio changes no pixels.
+- **⏭ NEXT.** The 3D-geometry wave. Its engine and all three skeletons are on master but **no concept JSON exists**. Ordering caveat: PR #79 was open against `vector_geometry_3d`, the scenario concept #7 rides — so **#8 solids of revolution** is the cleaner first target unless #79 has landed.
+
 ### 🏁 ROUND CLOSED — both PRs MERGED, baselines re-approved, scars filed (2026-08-09)
 
 - **`definite_integral_as_accumulated_area` is on master.** PR **#70 MERGED** (concept + baselines) and PR **#76 MERGED** (seven platform fixes, landed separately per Rule 40 and never bundled into the chapter branch). **P1 is complete** — this was the fourth and last P1 concept.

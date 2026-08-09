@@ -1,0 +1,1482 @@
+{
+  "concept_id": "rate_law_and_order",
+  "concept_name": "Rate law and order of reaction",
+  "chapter": 3,
+  "section": "3.4-3.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "source_book": "NCERT Chemistry Class 12 Ch.3 Chemical Kinetics (rate expression, rate constant, order of a reaction, initial-rate method) — scope only; teaching method, examples and anchors are first-principles (chemistry.md source rule)",
+  "concept_tier": "complex",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "gas_box"
+    ]
+  },
+  "prerequisites": [
+    "collision_theory_activation_energy",
+    "rate_of_reaction",
+    "dynamic_equilibrium",
+    "kinetic_particle_theory"
+  ],
+  "real_world_anchor": {
+    "primary": "A glowing wooden splint barely smoulders in air, but pushed into pure oxygen it bursts into flame — the same reaction, roughly five times the oxygen concentration, dramatically faster. How much faster a reaction gets when a concentration changes is a number, and that number — the order — has to be measured.",
+    "secondary": "A disinfectant diluted with water still kills germs — just more slowly. Halving the concentration cuts the rate by a factor you can only find by experiment.",
+    "why_it_matters": "Both anchors are things a student has seen, and both pose exactly the question the sim answers with a measured factor rather than an assertion — the order is read off a box that was never told the rate law."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "order_wrt_one_reactant": [
+      "STATE_2",
+      "STATE_3"
+    ],
+    "overall_order": [
+      "STATE_4"
+    ],
+    "inert_and_crowding": [
+      "STATE_5"
+    ],
+    "rate_constant": [
+      "STATE_6",
+      "STATE_7"
+    ],
+    "temperature_dependence": [
+      "STATE_7"
+    ],
+    "order_from_graph": [
+      "STATE_8",
+      "STATE_9"
+    ],
+    "first_order": [
+      "STATE_9"
+    ],
+    "exploration": [
+      "STATE_10"
+    ]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "T": {
+        "name": "temperature of the thermostat bath",
+        "unit": "K",
+        "min": 250,
+        "max": 900,
+        "default": 300,
+        "step": 10,
+        "role": "taught_variable"
+      },
+      "nA": {
+        "name": "A poured (teacher control, STATE_8/STATE_10)",
+        "unit": "particles",
+        "min": 0,
+        "max": 120,
+        "default": 90,
+        "step": 5
+      },
+      "nB": {
+        "name": "B poured (teacher control, STATE_10)",
+        "unit": "particles",
+        "min": 0,
+        "max": 120,
+        "default": 90,
+        "step": 5
+      },
+      "V": {
+        "name": "box volume as a fraction of full width (STATE_4 reseed, STATE_10 slider)",
+        "unit": "",
+        "min": 0.35,
+        "max": 1,
+        "default": 1,
+        "step": 0.05,
+        "role": "taught_variable"
+      },
+      "activation_fwd_kT": {
+        "name": "forward barrier, multiples of kT at ea_ref_T — collision_theory_activation_energy's own value, run here unchanged",
+        "unit": "",
+        "constant": 3,
+        "role": "reaction_constant"
+      },
+      "bond_energy_kT": {
+        "name": "energy released on bonding",
+        "unit": "",
+        "constant": 2.1,
+        "role": "reaction_constant"
+      },
+      "reverse_attempt_per_s": {
+        "name": "Arrhenius pre-exponential factor for breakup — authored EXPLICITLY per state (0 on STATE_1-STATE_8/STATE_10; 8 on STATE_9); never inherits the renderer's 3.5 default",
+        "unit": "s^-1",
+        "role": "reaction_constant"
+      },
+      "ea_ref_T": {
+        "name": "reference temperature activation_fwd_kT is pinned to",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "speed_scale": {
+        "name": "velocity calibration, sigma = speed_scale * sqrt(T/m)",
+        "unit": "px/tick/K^0.5",
+        "constant": 0.105,
+        "role": "calibration"
+      },
+      "k": {
+        "name": "rate constant (forward) — readout E only, never the equilibrium-K chip",
+        "unit": "",
+        "derived": "fitted forward event rate / (nA_live * nB_live)",
+        "role": "computed_output"
+      },
+      "m_A": {
+        "name": "mass of reactant A",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_B": {
+        "name": "mass of reactant B",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_AB": {
+        "name": "mass of the bonded pair",
+        "unit": "engine mass units",
+        "derived": "m_A + m_B",
+        "role": "species"
+      },
+      "m_X": {
+        "name": "mass of the inert species (STATE_5 only)",
+        "unit": "engine mass units",
+        "constant": 1.5,
+        "role": "species"
+      },
+      "r_A": {
+        "name": "disc radius of reactant A",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_B": {
+        "name": "disc radius of reactant B",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_AB": {
+        "name": "disc radius of the bonded pair",
+        "unit": "px",
+        "derived": "sqrt(r_A^2 + r_B^2)",
+        "role": "species"
+      },
+      "r_X": {
+        "name": "disc radius of the inert species (STATE_5 only)",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "n_A": {
+        "name": "live population of A",
+        "unit": "particles",
+        "min": 0,
+        "max": 270,
+        "role": "live_readout"
+      },
+      "n_B": {
+        "name": "live population of B",
+        "unit": "particles",
+        "min": 0,
+        "max": 270,
+        "role": "live_readout"
+      },
+      "n_AB": {
+        "name": "live population of bonded pairs",
+        "unit": "particles",
+        "min": 0,
+        "max": 244,
+        "role": "live_readout"
+      }
+    },
+    "formulas": {
+      "rate_law": "rate = k[A]ˣ[B]ʸ — the orders x and y are measured, never read off the balanced equation's coefficients",
+      "order_definition": "x = order with respect to A, y = order with respect to B; x + y = overall order",
+      "rate_constant_definition": "k = fitted forward event rate ÷ (nA × nB), the concentration-independent factor in the rate law — read from readout E only, never from the equilibrium-K chip",
+      "initial_rate_method": "order is measured by comparing the INITIAL rates of two separately seeded fresh runs — on the run-pair states (STATE_2/STATE_3/STATE_4/STATE_5) an averaged read over R=3 repeated 350 ms windows at the opening of each run, elsewhere a fitted chord over the opening window — never a ratio pinned to an earlier instant of the same run",
+      "reverse_barrier": "Ea_rev = Ea_fwd + bond_energy_kT (derived, never authored)",
+      "concentration_basis_note": "a rate comparison across a volume change (STATE_4's piston, STATE_10's V slider) uses the concentration basis; every fixed-volume state uses the count basis, which differs from concentration only by a constant area factor that cancels in any ratio",
+      "first_order_law": "the reverse (breakup) reaction AB → A + B is order 1: rate = k′[AB]"
+    },
+    "constraints": [
+      "atoms of each model species conserve: LHS count = RHS count in every displayed equation",
+      "total charge LHS = RHS = 0 (neutral model species throughout)",
+      "every authored species_counts object, INCLUDING each run of a two-run state, sums exactly to that run's own particle total",
+      "a rate comparison ACROSS a volume change must use the concentration basis; the count basis is valid only at fixed area (DQ-3)",
+      "k is read only from readout E (rate ÷ (A×B)); the equilibrium constant K = [AB]/([A][B]) is a DIFFERENT quantity and must never source a k narration",
+      "forward and reverse run simultaneously in STATE_9; no visual may show either direction stopping while the other continues"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 40,
+    "max_labels_per_state": 20,
+    "max_words_per_tts_sentence": 40
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "The exponent is a number you measure, not a number you assume.",
+    "visual_confirmation": "run one's kept ×1.00 chip and run two's live ratio chip settling near ×4 (mean of 3 repeats) as the x-slot fills to 1"
+  },
+  "epic_l_path": {
+    "state_count": 10,
+    "states": {
+      "STATE_1": {
+        "title": "The exponents are unknowns",
+        "duration": 16,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "formula_surface",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the sealed container — the apparatus that persists unchanged in every state (Rule 32d home pose)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "90 blue A and 90 pink B reacting continuously in the background from state entry"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "A(g) + B(g) → AB(g) above rate = k[A]ˣ[B]ʸ, with x and y shown as unfilled '?' slots — the only unfilled thing on screen"
+          },
+          {
+            "type": "readout",
+            "id": "species_counts_chip",
+            "role": "counts-only chip (A, B, AB) — no rate instrument yet, the word 'rate' is not earned until this concept measures one (Rule 25)"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "The coefficients in the balanced equation give the orders x and y.",
+            "visual_counter": "the rate law shows x and y as unfilled '?' slots, to be measured — even with the balanced equation A(g) + B(g) → AB(g) fully visible on screen, the equation alone cannot tell you their values, whatever they turn out to be",
+            "one_line_fix": "The exponent is a number you measure, not a number you read off the equation — even when it later matches a coefficient, that match still had to be checked."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "This box holds A and B reacting to make AB."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "The rate law is rate equals k times A to the x, times B to the y."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "We don't know x and y yet — they have to be measured."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Today, we measure them."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Quadruple A: rate quadruples",
+        "duration": 18,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "kinetics_panel",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose (Rule 32d)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "run 1 opens at 90 A / 360 B (B kept abundant); at the reseed cue the box refills with four times the A discs — the cause beat, visible before the ratio updates (Rule 32a)"
+          },
+          {
+            "type": "kinetics_panel",
+            "id": "kinetics_panel",
+            "role": "the R1 initial-rate instrument: run 1's averaged rate (mean of 3 repeats) kept as a ×1.00 chip, run 2's averaged ratio read live as it settles — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate = k[A]ˣ[B]ʸ, with the x slot filling to 1 as the ratio settles"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Run one: A at ninety, B kept abundant, rate measured and kept."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Run two: A becomes four times as much, B unchanged."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The rate reads about four times run one's."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Order with respect to A is one."
+            },
+            {
+              "id": "s2_5",
+              "text_en": "It matches the coefficient only for this one-step reaction — hidden steps elsewhere would give a different order."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Quadruple B: same test",
+        "duration": 12,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "kinetics_panel",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose — declared contrast pair with STATE_2 (flip: the other species)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "run 1 opens at 360 A (A kept abundant) / 90 B; at the reseed cue the box refills with four times the B discs — the same test, the other reactant"
+          },
+          {
+            "type": "kinetics_panel",
+            "id": "kinetics_panel",
+            "role": "run 1's averaged rate (mean of 3 repeats) kept at ×1.00, run 2's averaged ratio read live — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate = k[A][B], with the y slot filling to 1 as the ratio settles"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Same test, other reactant."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "A stays abundant, B starts at ninety, kept."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Now B becomes four times as much, A stays put."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The rate again reads about four times run one's."
+            },
+            {
+              "id": "s3_5",
+              "text_en": "Order with respect to B is also one."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Half the volume: rate ×4",
+        "duration": 19,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "kinetics_panel",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose"
+          },
+          {
+            "type": "wall",
+            "id": "piston_wall",
+            "role": "the movable wall — drives from full width to half width at the reseed cue, with no settle gap before the second window opens (the measured construction, DQ-3)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the same 180 discs, crowding into half the room after the wall drives in — counts unchanged, concentration doubled"
+          },
+          {
+            "type": "kinetics_panel",
+            "id": "kinetics_panel",
+            "role": "run 1's averaged rate (mean of 3 repeats) kept at ×1.00 on the concentration basis, run 2's averaged ratio reading about ×4 — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate = k[A][B], with x + y = 2 appearing alongside"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Same particles, half the room — so both concentrations double at once."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The rate reads about four times run one's, not two."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "In collision theory, crowding barely changed the fraction of collisions clearing the barrier."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "That has not changed."
+            },
+            {
+              "id": "s4_5",
+              "text_en": "What changed is how many times A meets B, and doubling both multiplies it by four."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Extra inert particles change nothing",
+        "duration": 17,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "kinetics_panel",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose — confronts STATE_4's crowding plant, same ring (confrontation-ring clause)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "run 1 opens at 90 A / 360 B (the same abundant-B baseline as STATE_2); at the reseed cue ninety grey X discs pour in — not more reactant. Legend gains 'X: inert' this state only"
+          },
+          {
+            "type": "counter",
+            "id": "collision_counter",
+            "role": "collisions/s — visibly higher in run 2, the real number behind 'more crowded' (Rule 33c)"
+          },
+          {
+            "type": "kinetics_panel",
+            "id": "kinetics_panel",
+            "role": "run 1's averaged rate (mean of 3 repeats) kept at ×1.00, run 2's averaged ratio landing at about ×1.00 too — the focal (Rule 32e), the null result"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Anything that adds collisions speeds the reaction.",
+            "visual_counter": "the collision counter reads clearly higher after the inert pour, while the initial-rate ratio chip still lands at about ×1.00",
+            "one_line_fix": "Only species named in the rate law change the rate — more collisions overall is not enough."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Same test — but this time we pour in ninety inert grey particles, not more reactant."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The collision counter climbs: many more hits per second."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "But the rate barely moves."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Particles the rate law doesn't name don't change the rate, even when they fill the box."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "k stays fixed",
+        "duration": 22,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rate_constant_vs_rate",
+          "k_units_by_order",
+          "k_only_temperature"
+        ],
+        "focal_primitive_id": "rate_constant_chip",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose, reverse off, single run-down (no reseed)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "reactants thinning over the 22 s run-down"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "the fwd rate bar visibly shrinking as A and B run out"
+          },
+          {
+            "type": "chip",
+            "id": "rate_constant_chip",
+            "role": "the live k chip — wandering in the same rough range while the rate bar shrinks — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "k = rate ÷ (A × B) — replaces the reaction header this state (Rule 34b, one formula surface)"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "k changes when concentration changes / k and rate are the same thing.",
+            "visual_counter": "the rate bar visibly shrinks over the run-down while the k chip stays in the same rough range the whole time",
+            "one_line_fix": "Rate falls because concentration falls; k is the part of the law that concentration does not change."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Watch the rate bar shrink as A and B run out."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Now watch k."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "It doesn't fall with the rate — it stays in the same rough range the whole time."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "k is the part of the law that concentration does not change."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Heating changes k",
+        "duration": 15,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "rate_constant_chip",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose — declared contrast pair with STATE_6 (the two-directional split)"
+          },
+          {
+            "type": "gauge",
+            "id": "gas_thermometer",
+            "role": "the thermometer climbing from 300 toward 450 K — the cause, moving first (Rule 32a)"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "the fwd rate bar climbing with the temperature"
+          },
+          {
+            "type": "chip",
+            "id": "rate_constant_chip",
+            "role": "the same k chip that held flat in STATE_6 — now climbing with the thermometer — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "k = rate ÷ (A × B) — same instrument trio as STATE_6 (A count, B count, k)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Same box, same concentrations — only the temperature climbs now."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Watch the same k chip that just held flat."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "This time it climbs with the thermometer."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Concentration didn't move k; temperature does."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Rate against concentration: a line",
+        "duration": 32,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rate_vs_conc_graph_shapes",
+          "slope_reads_k",
+          "line_through_origin_meaning"
+        ],
+        "focal_primitive_id": "kinetics_plot",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, same home pose, reverse off, run-down"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the reaction running down while a teacher drag on the A-poured control can pour in more A"
+          },
+          {
+            "type": "kinetics_plot",
+            "id": "kinetics_plot",
+            "role": "the R2 rate-vs-quantity plot: forward rate against A×B, accumulating one straight line through the origin — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate = k[A][B] — the law the line is tracing"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Every few seconds this plots one point: the rate right now, against A times B right now."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "The points land on one straight line through the origin — that is what order one in each looks like."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Its slope is k."
+            },
+            {
+              "id": "s8_4",
+              "text_en": "Pour in more A, and the new points land on the same line."
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Breaking apart: order one",
+        "duration": 20,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "kinetics_plot",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same box, opened at pure product — the declared entry recomposition (Rule 32d), precedent: dynamic_equilibrium STATE_5 — declared contrast pair with STATE_8 (flip: the other direction)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "90 bonded pairs breaking apart one by one, reverse on"
+          },
+          {
+            "type": "kinetics_plot",
+            "id": "kinetics_plot",
+            "role": "the R2 plot in its second configuration: breakup rate against AB count, accumulating its OWN straight line — a different line — the focal (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "AB(g) → A(g) + B(g), rate = k′[AB]"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Start from pure product this time."
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Now we plot the breakup rate against how much AB is left."
+            },
+            {
+              "id": "s9_3",
+              "text_en": "Again a straight line through the origin — but a different line, a different slope."
+            },
+            {
+              "id": "s9_4",
+              "text_en": "Breaking apart is order one: a different law from the one that built it."
+            }
+          ]
+        }
+      },
+      "STATE_10": {
+        "title": "Your experiments",
+        "duration": 14,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "gas_box",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the live sandbox, opening from the home pose, running continuously (Rule 37)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the reaction running live through every drag and every New Run"
+          },
+          {
+            "type": "readout",
+            "id": "rate_bars",
+            "role": "the fwd/rev rate bars responding live"
+          },
+          {
+            "type": "kinetics_panel",
+            "id": "kinetics_panel",
+            "role": "the R1 chip row: the previous run's fitted rate kept on screen so the teacher can stage their own doubling experiments"
+          },
+          {
+            "type": "slider_panel",
+            "id": "controls",
+            "role": "A poured, B poured, volume and temperature — all four live at once, plus the New Run control (Rule 31 explore-last)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "rate = k[A][B] — core-ring content only, no rate-law plot, no ⇌ header, no k-vs-T framing (Rule 38b)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s10_1",
+              "text_en": "Set the next run yourself: how much A, how much B, the volume, the temperature."
+            },
+            {
+              "id": "s10_2",
+              "text_en": "Press New run to seed it, and watch the rate change."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same physics, a different world (a disinfectant killing germs faster at higher concentration)",
+      "physical_world": "A diluted disinfectant still kills germs, just more slowly — halving its concentration cuts the kill rate by a factor that can only be found by measuring, exactly the same experimental logic used to find x and y here."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 12 Chemistry — Unit 3 Chemical Kinetics (rate law, order of reaction, rate constant, initial-rate method)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Physical Chemistry — Chemical Kinetics (rate law and order of reaction)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge International A Level Chemistry (9701)",
+        "coverage": "full",
+        "syllabus_unit": "Reaction kinetics — orders of reaction, rate equations, rate constants",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reactivity 2.2 — What are the mechanisms of chemical change? (rate expressions)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 5 — Kinetics (rate law, reaction order, rate constant)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "absent",
+        "syllabus_unit": "Rate law / order of reaction is not part of the IGCSE Chemistry syllabus (qualitative rate factors only) — claimed, hidden at catalog level via the igcse preset, not by ring-cutting",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "assessment": {
+    "mastery_definition": "A student who can state what 'order with respect to a reactant' means, correctly predict the rate-factor from a stated concentration change (doubling one reactant, doubling both via volume, or adding an inert species), distinguish the rate constant k from the rate itself, explain why order is measured from initial rates on fresh mixtures rather than a running reaction, and read k as a straight line's slope on a rate-vs-concentration plot has mastered this concept.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "stem": "In the rate law rate = k[A]ˣ[B]ʸ, the order with respect to A is found to be x = 1. What does that mean?",
+        "options": {
+          "A": "Doubling the concentration of A alone doubles the initial rate.",
+          "B": "The balanced equation has one A on the reactant side, so x must equal 1.",
+          "C": "A is completely used up in exactly one second.",
+          "D": "The concentration of A stays constant throughout the reaction."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "The coefficients in the balanced equation give the orders x and y — the central misconception this concept confronts.",
+          "C": "Confuses the kinetic order with a literal consumption rate of one unit per second.",
+          "D": "Confuses 'order one' with 'A is held constant' rather than 'the rate scales linearly with A'."
+        },
+        "tested_idea": "order_definition",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A student is told the order with respect to a reactant Q is one. What should happen to the initial rate if [Q] is doubled while everything else is held fixed?"
+      },
+      {
+        "q_id": "q2",
+        "stem": "In a fresh run, doubling [B] while holding [A] fixed makes the initial rate exactly double. What can you conclude about the order with respect to B?",
+        "options": {
+          "A": "Order with respect to B is 1.",
+          "B": "Order with respect to B is 2, because rate and concentration both changed.",
+          "C": "Order with respect to B is 0, because B's coefficient in the equation is 1.",
+          "D": "The order cannot be found without knowing the order with respect to A first."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Mistakes 'the rate doubled' for 'the rate quadrupled' — confuses order 1 with order 2.",
+          "C": "Reads the coefficient off the balanced equation instead of the measured doubling response — the central misconception.",
+          "D": "Wrongly assumes orders with respect to different reactants are not independently measurable."
+        },
+        "tested_idea": "order_from_doubling_arithmetic",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Doubling [A] while [B] is held fixed makes the initial rate four times larger. What is the order with respect to A?"
+      },
+      {
+        "q_id": "q3",
+        "stem": "The volume of a reaction vessel is halved at constant temperature, so both [A] and [B] double. If the reaction is order 1 in each reactant, by what factor does the rate change?",
+        "options": {
+          "A": "×4",
+          "B": "×2",
+          "C": "×1 (no change, since only volume changed, not amounts)",
+          "D": "×8"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Only accounts for ONE concentration doubling, missing that both double together.",
+          "C": "Confuses particle count (unchanged) with concentration (which doubles when volume halves).",
+          "D": "Over-multiplies — mistakes order (1+1=2, giving ×2²=×4) for a cubic dependence."
+        },
+        "tested_idea": "overall_order_volume_factor",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A gas-phase reaction is order 1 in A and order 1 in B. If the container's volume is reduced to one third, by what factor does the initial rate increase?"
+      },
+      {
+        "q_id": "q4",
+        "stem": "Ninety inert particles (which do not appear in the rate law) are added to a reaction mixture. What happens to the initial rate?",
+        "options": {
+          "A": "The rate stays about the same, even though total collisions per second rise.",
+          "B": "The rate roughly doubles, since there are now more particles in the box.",
+          "C": "The rate drops to zero, since the inert particles block reactant collisions completely.",
+          "D": "The rate rises in proportion to the square of the number of inert particles added."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes 'more particles anywhere in the box' automatically means 'more reaction' — ignores that only species in the rate law matter.",
+          "C": "Overcorrects — assumes inert crowding stops the reaction rather than leaving it unchanged.",
+          "D": "Invents a scaling law with no basis in the rate expression."
+        },
+        "tested_idea": "inert_addition_null_result",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "An inert gas is bled into a reacting mixture until the total pressure has risen sharply. Does the reaction rate rise by the same proportion?"
+      },
+      {
+        "q_id": "q5",
+        "stem": "As a reaction runs, the concentrations of A and B fall and the measured rate falls with them. What happens to the rate constant k over the same time, at constant temperature?",
+        "options": {
+          "A": "k stays in the same rough range — it does not track the falling rate.",
+          "B": "k falls along with the rate, since rate = k[A][B].",
+          "C": "k rises to compensate for the falling concentrations.",
+          "D": "k is only defined at the instant the reaction starts, so the question has no meaning later on."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the rate (which depends on concentration) with the rate constant (which does not) — the central k-vs-rate misconception.",
+          "C": "Invents a compensating mechanism that has no physical basis.",
+          "D": "Wrongly assumes k is only meaningful at t = 0."
+        },
+        "tested_idea": "rate_constant_vs_rate",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "The same reaction mixture is heated from 300 K to 450 K, with concentrations unchanged at the moment of heating. What happens to k?"
+      },
+      {
+        "q_id": "q6",
+        "stem": "Why is a reaction's order measured from the initial rate of two freshly seeded experiments, rather than from a live rate measured partway through a single running reaction?",
+        "options": {
+          "A": "Because a running mixture may already contain product and a reverse reaction, which can make the same doubling test read the wrong exponent.",
+          "B": "Because the initial rate is always the fastest rate a reaction ever reaches.",
+          "C": "Because concentrations cannot be measured accurately once a reaction has started.",
+          "D": "Because only the initial rate has correct units of concentration per second."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses 'initial' with 'fastest' — for some reactions the initial rate is not the peak rate.",
+          "C": "Concentration is measurable mid-reaction; that is not why initial rates are preferred here.",
+          "D": "Units of rate do not depend on which point in the reaction is measured."
+        },
+        "tested_idea": "why_measure_initial_rate",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two students measure the same reaction's rate response to doubling A — one on a fresh mixture, one on a mixture that has been running for a while with the reverse reaction active. Whose result correctly gives the order?"
+      },
+      {
+        "q_id": "q7",
+        "stem": "On a graph of forward rate (y) against A×B (x), the points lie on one straight line through the origin. What does the slope of that line represent?",
+        "options": {
+          "A": "The rate constant k.",
+          "B": "The overall order of the reaction.",
+          "C": "The initial concentration of A.",
+          "D": "The activation energy of the reaction."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the slope (which reads off k) with the order (which is shown by the line being straight, not by its steepness).",
+          "C": "Confuses a graph slope with an axis intercept or a starting value.",
+          "D": "Activation energy is read from a completely different plot (Arrhenius), not a rate-vs-concentration line."
+        },
+        "tested_idea": "slope_reads_rate_constant",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A different reaction's breakup rate is plotted against the amount of AB remaining, and the points also fall on one straight line through the origin. What does that line's slope represent for this reaction?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "q1",
+        "q2",
+        "q6"
+      ],
+      "STATE_3": [
+        "q2"
+      ],
+      "STATE_4": [
+        "q3"
+      ],
+      "STATE_5": [
+        "q4"
+      ],
+      "STATE_6": [
+        "q5"
+      ],
+      "STATE_7": [
+        "q5"
+      ],
+      "STATE_8": [
+        "q7"
+      ],
+      "STATE_9": [
+        "q7"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_10"
+    ]
+  },
+  "particle_field_config": {
+    "scenario_type": "gas_box",
+    "design": {
+      "background": "#0A0A1A",
+      "phys_seed": 29919362
+    },
+    "canvas": {
+      "width": 900,
+      "height": 560
+    },
+    "gas": {
+      "count": 180,
+      "temperature_K": 300,
+      "ea_ref_T": 300,
+      "speed_scale": 0.105,
+      "kinetics_home": "bl",
+      "species": [
+        {
+          "id": "A",
+          "mass": 1,
+          "radius": 5,
+          "color": "#60A5FA",
+          "label": "A",
+          "count": 90
+        },
+        {
+          "id": "B",
+          "mass": 1,
+          "radius": 5,
+          "color": "#F472B6",
+          "label": "B",
+          "count": 90
+        },
+        {
+          "id": "AB",
+          "mass": 2,
+          "radius": 7.0710678,
+          "color": "#C084FC",
+          "label": "AB",
+          "count": 0
+        },
+        {
+          "id": "X",
+          "mass": 1.5,
+          "radius": 5,
+          "color": "#9CA3AF",
+          "label": "X",
+          "count": 0
+        }
+      ],
+      "reaction": {
+        "enabled": true,
+        "reactants": [
+          "A",
+          "B"
+        ],
+        "product": "AB",
+        "activation_fwd_kT": 3,
+        "bond_energy_kT": 2.1,
+        "reverse_attempt_per_s": 0
+      }
+    },
+    "slider_controls": {
+      "T": {
+        "label": "Temperature",
+        "min": 250,
+        "max": 900,
+        "step": 10,
+        "default": 300,
+        "unit": "K"
+      },
+      "nA": {
+        "label": "A poured",
+        "min": 0,
+        "max": 120,
+        "step": 5,
+        "default": 90
+      },
+      "nB": {
+        "label": "B poured",
+        "min": 0,
+        "max": 120,
+        "step": 5,
+        "default": 90
+      },
+      "V": {
+        "label": "Volume",
+        "min": 0.35,
+        "max": 1,
+        "step": 0.05,
+        "default": 1
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "STATE_1",
+        "caption": "x and y: unknown",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "formula_overlay": "A(g) + B(g) → AB(g)\nrate = k[A]ˣ[B]ʸ   x = ?   y = ?",
+        "eye_capture_ms": 16000
+      },
+      "STATE_2": {
+        "label": "STATE_2",
+        "caption": "Quadruple A, quadruple rate",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 360,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "cues": [
+          {
+            "id": "reseed",
+            "at_ms": 2500
+          }
+        ],
+        "kinetics_reseed_cue": "reseed",
+        "kinetics_reseed_charge": {
+          "species_counts": {
+            "A": 360,
+            "B": 360,
+            "AB": 0,
+            "X": 0
+          }
+        },
+        "kinetics_marks": [
+          {
+            "t0_ms": 0,
+            "t1_ms": 350,
+            "series": "fwd",
+            "keep": true
+          },
+          {
+            "t0_ms": 2500,
+            "t1_ms": 2850,
+            "series": "fwd",
+            "at_cue": "reseed"
+          }
+        ],
+        "kinetics_window_ms": 350,
+        "kinetics_repeat_runs": 3,
+        "show_kinetics_plot": true,
+        "glow_focal": "kinetics_mark",
+        "formula_overlay": "rate = k[A]ˣ[B]ʸ\nx = 1   y = ?",
+        "eye_capture_ms": 17500
+      },
+      "STATE_3": {
+        "label": "STATE_3",
+        "caption": "Quadruple B, quadruple rate",
+        "T": 300,
+        "species_counts": {
+          "A": 360,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "cues": [
+          {
+            "id": "reseed",
+            "at_ms": 2500
+          }
+        ],
+        "kinetics_reseed_cue": "reseed",
+        "kinetics_reseed_charge": {
+          "species_counts": {
+            "A": 360,
+            "B": 360,
+            "AB": 0,
+            "X": 0
+          }
+        },
+        "kinetics_marks": [
+          {
+            "t0_ms": 0,
+            "t1_ms": 350,
+            "series": "fwd",
+            "keep": true
+          },
+          {
+            "t0_ms": 2500,
+            "t1_ms": 2850,
+            "series": "fwd",
+            "at_cue": "reseed"
+          }
+        ],
+        "kinetics_window_ms": 350,
+        "kinetics_repeat_runs": 3,
+        "show_kinetics_plot": true,
+        "glow_focal": "kinetics_mark",
+        "formula_overlay": "rate = k[A][B]\nx = 1   y = 1",
+        "eye_capture_ms": 12000
+      },
+      "STATE_4": {
+        "label": "STATE_4",
+        "caption": "Both doubled: rate ×4",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "piston_from": 1.0,
+        "piston_frac": 0.5,
+        "piston_ramp_ms": 60,
+        "piston_cue": "reseed",
+        "cues": [
+          {
+            "id": "reseed",
+            "at_ms": 3500
+          }
+        ],
+        "kinetics_reseed_cue": "reseed",
+        "kinetics_reseed_charge": {
+          "species_counts": {
+            "A": 90,
+            "B": 90,
+            "AB": 0,
+            "X": 0
+          },
+          "piston_frac": 0.5
+        },
+        "kinetics_marks": [
+          {
+            "t0_ms": 0,
+            "t1_ms": 2000,
+            "series": "fwd",
+            "keep": true
+          },
+          {
+            "t0_ms": 3500,
+            "t1_ms": 5500,
+            "series": "fwd",
+            "at_cue": "reseed"
+          }
+        ],
+        "kinetics_window_ms": 2000,
+        "kinetics_rate_basis": "concentration",
+        "show_kinetics_plot": true,
+        "glow_focal": "kinetics_mark",
+        "visible_controls": [
+          "V"
+        ],
+        "formula_overlay": "rate = k[A][B]\nx + y = 2",
+        "eye_capture_ms": 19000
+      },
+      "STATE_5": {
+        "label": "STATE_5",
+        "caption": "More collisions, same rate",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 360,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "cues": [
+          {
+            "id": "reseed",
+            "at_ms": 2500
+          }
+        ],
+        "kinetics_reseed_cue": "reseed",
+        "kinetics_reseed_charge": {
+          "species_counts": {
+            "A": 90,
+            "B": 360,
+            "AB": 0,
+            "X": 90
+          }
+        },
+        "kinetics_marks": [
+          {
+            "t0_ms": 0,
+            "t1_ms": 350,
+            "series": "fwd",
+            "keep": true
+          },
+          {
+            "t0_ms": 2500,
+            "t1_ms": 2850,
+            "series": "fwd",
+            "at_cue": "reseed"
+          }
+        ],
+        "kinetics_window_ms": 350,
+        "kinetics_repeat_runs": 3,
+        "show_kinetics_plot": true,
+        "show_collision_counter": true,
+        "glow_focal": "kinetics_mark",
+        "eye_capture_ms": 17000
+      },
+      "STATE_6": {
+        "label": "STATE_6",
+        "caption": "Rate falls, k holds",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "continuous_motion": true,
+        "show_reaction_readout": true,
+        "show_rate_constant": true,
+        "kinetics_window_ms": 5000,
+        "kinetics_rate_series": "fwd",
+        "glow_focal": "rate_constant",
+        "formula_overlay": "k = rate ÷ (A × B)",
+        "eye_capture_ms": 22000
+      },
+      "STATE_7": {
+        "label": "STATE_7",
+        "caption": "Hotter: k climbs",
+        "T": 450,
+        "T_from": 300,
+        "T_cue": "heat",
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "cues": [
+          {
+            "id": "heat",
+            "at_ms": 1000
+          }
+        ],
+        "show_reaction_readout": true,
+        "show_rate_constant": true,
+        "kinetics_window_ms": 5000,
+        "kinetics_rate_series": "fwd",
+        "glow_focal": "rate_constant",
+        "visible_controls": [
+          "T"
+        ],
+        "formula_overlay": "k = rate ÷ (A × B)",
+        "eye_capture_ms": 15000
+      },
+      "STATE_8": {
+        "label": "STATE_8",
+        "caption": "Straight line, slope k",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "kinetics_mode": "rate_vs_quantity",
+        "kinetics_rate_series": "fwd",
+        "kinetics_x_source": "reactant_product",
+        "kinetics_window_ms": 2500,
+        "show_kinetics_plot": true,
+        "glow_focal": "kinetics_plot",
+        "visible_controls": [
+          "nA"
+        ],
+        "continuous_motion": true,
+        "formula_overlay": "rate = k[A][B]",
+        "eye_capture_ms": 32000
+      },
+      "STATE_9": {
+        "label": "STATE_9",
+        "caption": "New reaction, new law",
+        "T": 300,
+        "species_counts": {
+          "A": 0,
+          "B": 0,
+          "AB": 90,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 8
+        },
+        "kinetics_mode": "rate_vs_quantity",
+        "kinetics_rate_series": "rev",
+        "kinetics_x_source": "product_count",
+        "kinetics_window_ms": 2500,
+        "show_kinetics_plot": true,
+        "glow_focal": "kinetics_plot",
+        "continuous_motion": true,
+        "formula_overlay": "AB(g) → A(g) + B(g)\nrate = k′[AB]",
+        "eye_capture_ms": 19500
+      },
+      "STATE_10": {
+        "label": "STATE_10",
+        "caption": "Run your own experiments",
+        "T": 300,
+        "species_counts": {
+          "A": 90,
+          "B": 90,
+          "AB": 0,
+          "X": 0
+        },
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "kinetics_rate_basis": "concentration",
+        "show_kinetics_plot": true,
+        "show_reaction_readout": true,
+        "show_kinetics_new_run": true,
+        "show_sliders": true,
+        "formula_overlay": "rate = k[A][B]",
+        "eye_capture_ms": 14000
+      }
+    }
+  },
+  "authoring_notes": {
+    "measured_constants": "Home pose reused from the shipped equilibrium pair (box geometry, species A/B/AB/X, T=300 K, speed_scale 0.105) with activation_fwd_kT re-pinned to 3 (collision_theory_activation_energy's own value — REV 2's 1.2 alignment is retired, measured wrong for an irreversible box: half-life ~4 s at 180 discs vs ~27 s at Ea 3; DQ-0 re-confirmed half-life ≈ 24 s at these constants, seed 29919362). STATE_1/STATE_4/STATE_6/STATE_7/STATE_8/STATE_9/STATE_10 stay at N=180 (90 A / 90 B, or the atom-conserving equivalent). STATE_2/STATE_3/STATE_5's run-pair construction was RE-CALIBRATED (2026-08 measured fix, superseding the original 180-disc doubling scheme — see engine_bug_queue row gas_box_kinetics_ratio_needs_r10_not_r5_to_separate_x2_from_x1): the doubling test at N=180 could not separate x2 from x1 across R (×2 ratio spanned 1.12-4.78, the null spanned 0.52-3.90 across two independent 10-seed batches) and repeat-averaging alone needed R≈10 (20 s/slot) to fix it. Quadrupling the varied reactant while holding the constant reactant genuinely abundant resolves it at R=3 in 1050 ms/slot instead, measured across two independent batches (separation clean in both, limiting-reagent depletion inside the <=10% 'still initial' bound at 6.4-7.4% / max 10.0%, packing fraction checked, truncation trap clear): STATE_2 baseline A90/B360/AB0/X0 (450, B held abundant) -> disturbed A360/B360/AB0/X0 (720, A quadrupled); STATE_3 mirrors it (A held abundant, B varied) baseline A360/B90/AB0/X0 (450) -> disturbed A360/B360/AB0/X0 (720, B quadrupled); STATE_5 shares STATE_2's abundant-B baseline (A90/B360=450) with X:90 poured on reseed (540). design.phys_seed 29919362 was the ORIGINAL joint 40-seed search target (S2 x1.88, S3 x2.73, S4 x4.13, S5 x0.82) for the pre-recalibration 180-disc scheme; S2/S3/S5's targets above are superseded by the 2026-08 quadrupling recalibration, S4's target still applies — re-verify the recalibrated states against this fully assembled JSON before visual:approve. The old S8 charge family (A(90−n)/B(90−n)/AB(n)) and its own separately-calibrated 167->244 doubling exception no longer apply — that state is removed, see state8_removed_named_fallback.",
+    "s4_construction_critical": "STATE_4's piston beat uses the EXACT measured construction from the chemistry block — do not simplify. A naive kinetics_reseed_charge.piston_frac springs back toward the state's OWN authored piston_frac at 6%/tick (gasMovePiston's free ease), landing back near 1.0 inside the fit window and reading a ratio far below ~4. The fix routes the stroke through the DRIVEN ramp branch: piston_from:1.0 + piston_frac:0.5 + piston_ramp_ms:60 + piston_cue set to the SAME id as kinetics_reseed_cue. There is deliberately NO settle gap between the cue and run 2's fit window (gap 0 measured ×4.23 concentration-basis; gap 1600 ms measured only ×2.81, because the reaction never pauses and keeps consuming reactant while waiting — waiting costs more than the area overshoot it fixes). kinetics_rate_basis:'concentration' is REQUIRED on this state (and on STATE_10's V slider) — the count-basis rate is a 2D collision-count rate ⎄ N_A·N_B/Area (an event rate), while the textbook concentration rate d[A]/dt ⎄ N_A·N_B/Area² carries one extra factor of area; without the concentration basis this state would read ~×2 under a caption claiming ×4. STATE_4's species_counts/kinetics_reseed_charge are UNCHANGED by the 2026-08 recalibration. Its window/R WAS briefly aligned to the other run-pair states' 350 ms/R=3 discipline and that alignment is now REVERTED — that setting was measured for the pour-based charge on STATE_2/STATE_3/STATE_5, never for this piston state, and running it on STATE_4 read ×0.64 (a 36% DECREASE) at t=5000-19000 ms against a title/caption/narration all claiming ×4 (scar: calibration_discipline_propagated_to_a_state_whose_measurement_did_not_cover_it). STATE_4 is restored to the window ITS OWN measurement covers: kinetics_window_ms:2000, kinetics_repeat_runs omitted (R=1 — the 40-seed ratio-of-sums held 3.87-4.23, and 3.37-4.13 at design.phys_seed 29919362, both measured at R=1/2000 ms, never at 350 ms/R=3). The reseed cue's at_ms is recomputed off the restored window, not left at the 350 ms/R=3 value: R x window = 1 x 2000 = 2000 ms; at_ms:3500 clears that by a 1500 ms margin, above this concept's own measured 1300 ms floor for this guard (see kinetics_repeat_run_discipline) with a similar buffer to the other run-pair states' 1450 ms-over-1300 ms margin. kinetics_marks follow: open [0,2000] keep:true, cue [3500,5500] at_cue:'reseed' — no settle gap preserved (cue mark t0 === cue at_ms, per the no-gap measurement above). STATE_4's dwell (duration 19 s / eye_capture_ms 19000) already clears the new cue window's end (5500 ms) with 13500 ms to spare for the piston stroke, the read beat and the narration — comparable to or larger than the other run-pair states' post-cue-window headroom (9150-14650 ms) — so neither field needed to grow.",
+    "kinetics_repeat_run_discipline": "STATE_2/STATE_3/STATE_5 author kinetics_window_ms:350 + kinetics_repeat_runs:3 (R=3 x 350 ms = 1050 ms per slot, both the 'open' mark and the 'cue' mark) — this discipline was measured for the pour-based run-pair states' raised-B/raised-A charge only. Each of those three states' reseed cue fires at_ms:2500, which clears the engine's guard against the cue arming while the 'open' slot's own repeat sequence is still mid-flight (particle_field_renderer.ts ~4149-4174 — firing too early silently falls back to a single-shot reseed, degrading the read to R=1) with margin 2500-1050=1450 ms, above the measured 1300 ms floor. STATE_4 (the piston state) does NOT share this discipline — its own measurement covers a 2000 ms window at R=1, not 350 ms/R=3; applying the 350 ms/R=3 setting to STATE_4 is the exact regression this pass reverted (see s4_construction_critical). STATE_4's kinetics_repeat_runs is therefore omitted (R=1, byte-identical to authoring the value 1) and its reseed cue at_ms:3500 clears its OWN R x window (1 x 2000 = 2000 ms) by 1500 ms, above the same measured 1300 ms floor used above — the floor is a property of the engine's cue-vs-window-close guard, not of the 350 ms/R=3 setting specifically, so it is reused rather than re-derived. (The old STATE_8's separate single-shot 2500 ms window construction is gone with that state — see state8_removed_named_fallback.)",
+    "per_run_species_sums": "The chemistry validator (validate-chemistry.ts gasPopulationErrors) checks only ONE species-count sum per state, and only when a state's reaction is OFF (this concept's reaction stays ON in every state, so the automatic check never fires here) — both runs of every two-run state were summed BY HAND against the fix instructions and must be preserved exactly on any future edit: STATE_2 450→720 (A quadrupled 90→360, B held abundant at 360), STATE_3 450→720 (B quadrupled 90→360, A held abundant at 360), STATE_4 180→180 (volume changes, counts do not), STATE_5 450→540 (X poured: +90), STATE_9 entry 90 particles (=180 atoms, all AB), every other state 180. Note the raised B in STATE_2/STATE_5's baseline makes A the SCARCE reagent there (90 vs 360) — narration was checked against this (A, not B, is what runs thin).",
+    "x_species_authoring_trap": "gasInit/gasKinReseed fill any species OMITTED from an authored species_counts with the LEFTOVER particle budget, not zero (the le_chateliers_principle-documented trap). Every state in this concept therefore authors 'X': 0 explicitly except STATE_5's reseed charge, which authors X:90.",
+    "vocabulary_quarantine": "The reverse-reaction framing (reverse_attempt_per_s > 0, the AB(g) → A(g) + B(g) breakup law, kinetics_rate_series:'rev') is confined to STATE_9 alone (advanced ring) — Rule 38a cut-1 coherence: hiding STATE_8–STATE_9 leaves STATE_1–STATE_7+STATE_10 coherent, with no surviving state referencing either. The rate-law plot (kinetics_mode: rate_vs_quantity) is confined to STATE_8–STATE_9 and never surfaces in STATE_10 (Rule 38b, core-ring only). The ⇌ header and the net-series reverse framing that previously lived in the now-removed STATE_8 are gone entirely — no state in this concept authors them any more (2026-08 §4 named-fallback removal, see state8_removed_named_fallback).",
+    "glow_focal_enum": "Only the four wired dim names are ever authored as glow_focal on this concept — kinetics_plot (STATE_8–STATE_9), kinetics_mark (STATE_2–STATE_5), rate_constant (STATE_6–STATE_7) — grep-verified against the four dimFor() call sites in particle_field_renderer.ts (:5849, :5971, :6055, :6082). STATE_1 and STATE_10 author no glow_focal (narrated/teacher focus only, per the architect skeleton).",
+    "mode_overrides_omitted": "No mode_overrides authored (Rule 20 [D], conceptual-only directive) — no board or competitive mode for this concept.",
+    "state8_removed_named_fallback": "STATE_8 ('Why measure a fresh mixture') is REMOVED per the architect skeleton's own pre-authorised §4/DQ-2 named fallback — this is a designed contingency triggered by a measurement, not an ad-hoc cut. §4 stated the gate explicitly: 'if no n clears → invoke the named fallback (delete S8, state count returns to 10, demote the coefficients contrast to a narrated caveat, re-aim the PRIMARY aha at the exponent is a measured number)'. DQ-2 has now definitively failed: with the concept's run-pair states re-calibrated to quadrupling (see measured_constants), S8's home-box-run-partway charge family A(90−n)/B(90−n)/AB(n) was swept across 40+ configurations — baseline Ea 3/reverse 8 and Ea 3/reverse 8 alternates, AB charge n from 10 to 200, fit windows 350/700/1000 ms, repeat counts R from 3 to 20 — and in every configuration the doubled-A net-rate ratio either overlapped the fresh-box ×4 reference in both independent measurement batches (no separable signal) or diverged wildly on a near-zero net baseline (individual seeds reading −962, 374, 188 — the box sitting too close to equilibrium for an initial-rate measurement to be well-posed at all). The cause is structural, not a tuning miss: the forward step scales with N_A·N_B while the reverse step is first-order in AB alone, so a large seeded B dominates the net rate unless AB is pushed to where the box is genuinely near equilibrium — exactly where 'initial rate' stops being a well-defined quantity. Depletion itself was fine throughout (3.9–5.0%, inside the <=10% bound); the signal could not be made simultaneously large and stable. Actions taken per the named fallback: (1) STATE_8 deleted, state_count returns to 10, STATE_9/STATE_10/STATE_11 renumbered to STATE_8/STATE_9/STATE_10 across epic_l_path, particle_field_config.states, entry_state_map, coverage_map and every prose cross-reference in this file; (2) the assessment item S8 carried (q6, 'why measure initial rates from fresh mixtures') is KEPT — it is examinable and the concept still teaches the initial-rate method itself in STATE_2's construction (two separately, freshly seeded runs, never a ratio pinned to an earlier instant of the same run) — its teaches_state is re-mapped to STATE_2 and coverage_map updated to match; (3) the multi-step 'coefficients are never the order' caveat S8 used to close on is preserved as a narrated caveat in STATE_2 (s2_5, replacing the old bare coefficient-match honesty line) — the 'demote the coefficients contrast to a narrated caveat' half of the fallback; (4) the primary aha was already re-aimed at 'the exponent is a number you measure, not a number you assume' (aha_moment.state_id STATE_2) and STATE_1's misconception_watch already uses the soft 'even with the balanced equation fully visible, it cannot tell you the values' framing rather than a hard refusal the sim could not deliver — both survived this pass unchanged and are now the only design, not a fallback-in-waiting.",
+    "engine_bug_queue_consulted": "16 rows consulted (npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts rate_law_and_order, re-run 2026-08 — supersedes the earlier stale '9 rows' count). CRITICAL: fleet_constant_transplanted_across_a_reversible_to_irreversible_regime_boundary [applied — activation_fwd_kT re-pinned to collision_theory_activation_energy's own value, not inherited from a reversible sibling]; gas_kinetics_buffer_samples_stamped_with_stale_previous_state_clock [FIXED, engine-side]; misconception_beat_whose_own_evidence_confirms_the_wrong_belief [applied, THIS PASS finalized — the row's own named fallback fully invoked: STATE_8 deleted (its viability re-measured across 40+ configurations, all either overlapping the fresh-box reference or unstable near equilibrium — see state8_removed_named_fallback), STATE_1's confrontation stays demoted to a narrated caveat, and the primary aha stays re-aimed to 'the exponent is a measured number' — no runnable counterexample exists inside this model, so none is staged]; batch_box_rate_ratio_pinned_to_an_earlier_value_measures_the_run_down_not_the_disturbance [applied — every run-pair state compares two SEPARATE freshly seeded runs, never a pin-then-poll inside one run]. MAJOR: new_renderer_instrument_ships_without_a_dim_key_so_every_glow_focal_naming_it_reaches_nothing [applied — glow_focal restricted to the wired dimFor() set, see glow_focal_enum]; merged_spec_omits_an_instrument_two_states_depend_on_and_the_nearest_existing_chip_measures_a_different_quantity [architect-level, cross-skeleton — not actionable from this file]; explore_state_runs_its_reaction_to_completion_and_has_no_teacher_facing_rerun [applied — STATE_10 ships show_kinetics_new_run:true]; reseed_charge_piston_frac_springs_back_to_the_states_authored_value_inside_the_fit_window [applied — STATE_4's driven-ramp construction (piston_from/piston_frac/piston_ramp_ms/piston_cue==kinetics_reseed_cue, no settle gap) preserved exactly]; kinetics_per_species_reagent_taps_declared_but_not_wired_to_the_gas [FIXED, engine-side — grep-confirmed gasSyncSpeciesTaps/gasSpeciesTapSeized now wire nA/nB; this pass removed the now-false na_nb_engine_gap note that had filed it as unfixed]; gas_box_kinetics_ratio_needs_r10_not_r5_to_separate_x2_from_x1 [FIXED for the ORIGINAL 180-disc doubling scheme only — this pass's quadrupling + abundant-constant-reactant recalibration is a different, higher-density construction independently measured to resolve at R=3, see measured_constants]; density_mitigation_for_one_state_breaks_a_null_result_claimed_by_another [applied — STATE_5's null result was re-verified at its new N=450/540 density, not assumed carried over from N=180]; misconception_planted_in_core_ring_and_confronted_only_in_a_hideable_ring [applied — STATE_1 plants and STATE_2 confronts (via the s2_5 caveat), both core-ring]; sibling_skeletons_specify_one_shared_engine_mechanism_in_two_incompatible_documents [architect-level, cross-skeleton — not actionable from this file]; window_shrink_animation_shows_non_monotonic_unstable_intermediate_values [FIXED, engine-side]. MODERATE: coincident_series_dash_is_sub_pixel_and_reads_as_one_solid_line_at_native_scale [engine-side visual, no dash authored by this concept]; kinetics_rate_readout_count_basis_not_concentration_under_volume_change [applied — STATE_4 and STATE_10's V slider both author kinetics_rate_basis:'concentration']. All rows actionable from this file are applied in this JSON; the two architect-level cross-skeleton rows are flagged for alex:architect, not fixable within a single concept JSON."
+  }
+}
