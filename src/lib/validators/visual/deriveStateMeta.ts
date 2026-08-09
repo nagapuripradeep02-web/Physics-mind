@@ -279,12 +279,53 @@ export function deriveMotionExpectations(
             // standing still. The explore sandbox is user-driven → declare static
             // and let the interactive hold classification relax its tail (the
             // renderer's idle auto-sweep keeps it moving regardless, Rule 37).
+            //   E3b S-2 (2026-08-03, site-layer parity): the jiggle_scale branch
+            //   below was TRUE-BY-DECLARATION and FALSE-ON-SCREEN for every ion
+            //   and every lattice state, because bscJiggle had exactly one call
+            //   site in the renderer — inside the unit layer's orgAt — and
+            //   bscIsSite switches the unit layer off for those species. So this
+            //   file declared a byte-static state MOVING: a green D5/D6 gate over
+            //   a dead beat. The renderer now applies the same deterministic
+            //   jiggle on the SITE layer (bscSiteAt), so the declaration below is
+            //   true of both layers and needs no change here — recorded because
+            //   the next reader must not "fix" it back.
             const bscMotion = state ? asObj(state.bonding_scene) : null;
             if (bscMotion) {
                 if (bscMotion.mode === 'explore') { out[stateId] = false; continue; }
                 if (typeof bscMotion.spin_rate === 'number' && bscMotion.spin_rate > 0) { out[stateId] = true; continue; }
                 const bscTh = asObj(bscMotion.thermal);
                 if (bscTh && typeof bscTh.jiggle_scale === 'number' && bscTh.jiggle_scale > 0) { out[stateId] = true; continue; }
+                //   E3b T-4 (row R, 2026-08-03): a GROUPED state may author its
+                //   jiggle per group and nothing at scene level, so reading the
+                //   scene block alone would call a permanently-moving two-crystal
+                //   state STILL and hand it to the reveal_hold classifier — the
+                //   mirror of the S-2 defect (there the declaration was true and
+                //   the screen was static; here the screen moves and the
+                //   declaration would miss it). A group inherits the scene block
+                //   when it authors none, so scanning both is the whole rule.
+                const bscGrps = Array.isArray(bscMotion.groups) ? bscMotion.groups : [];
+                let bscGrpMoves = false;
+                for (const g of bscGrps) {
+                    const gTh = asObj(asObj(g)?.thermal);
+                    if (gTh && typeof gTh.jiggle_scale === 'number' && gTh.jiggle_scale > 0) bscGrpMoves = true;
+                }
+                if (bscGrpMoves) { out[stateId] = true; continue; }
+                //   E3b Q-1 / row G (2026-08-03): the two CARRIER layers move on
+                //   their own clocks. A drawn electron sea is in permanent motion
+                //   whether or not a field acts on it, and a field acting on ions
+                //   that its own temperature has freed makes them migrate. Both are
+                //   declared here in the SAME change as the renderer read, because
+                //   the alternative is the S-2 defect verbatim — an authored field
+                //   the deriver treats as real over a screen that never moves, or
+                //   (as here) real motion this file cannot see.
+                //   DELIBERATELY NOT DECLARED: a field over a SOLID sample. Those
+                //   ions jiggle and never translate, so the field alone is not a
+                //   motion signal — the jiggle branch above is what covers that
+                //   state, and it is the honest classification of ionic S8's
+                //   negative-control half.
+                if (asObj(bscMotion.sea)?.show === true) { out[stateId] = true; continue; }
+                const bscFieldOn = typeof bscMotion.field === 'number' && bscMotion.field > 0;
+                if (bscFieldOn && asObj(bscMotion.ions)?.mobile === true) { out[stateId] = true; continue; }
                 // still beat: fall through to the reveal_hold classification.
             }
             // solid_of_revolution (MATHEMATICS): every guided beat is a one-shot
@@ -2191,9 +2232,39 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (bscTr && typeof bscTr.at_ms === 'number') {
             candidates.push(asNum(bscTr.at_ms, 0) + asNum(bscTr.duration_ms, 2000) + 600);
         }
+        // E3b L-1 (2026-08-03): the LAYER SLIP. The key was registered here before
+        // the renderer read it (declared-deferred to this dispatch), with a flat
+        // +700 that pinned the frozen frame just past the SLIDE. That is now the
+        // wrong instant by construction: the slide is only the CAUSE, and the
+        // state's settled picture is the halves having come apart afterwards —
+        // Rule 32a says the effect follows the cause after a readable beat, and
+        // the engine holds the new registry for BS_SHIFT_HOLD_MS (1000) and then
+        // opens the cleave over BS_CLEAVE_MS (5000). Pinning at +700 would
+        // photograph a slipped-but-intact crystal under a caption about a crystal
+        // that has split — the self-contradictory baseline this whole block
+        // exists to prevent. The three constants below are BS_SHIFT_MS /
+        // BS_SHIFT_HOLD_MS / BS_CLEAVE_MS in field_3d_renderer.ts and the two
+        // files must stay equal (the same pairing BS_T_RAMP_MS already has).
         const bscSh = asObj(bscState.shift);
         if (bscSh && typeof bscSh.at_ms === 'number') {
-            candidates.push(asNum(bscSh.at_ms, 0) + asNum(bscSh.duration_ms, 2000) + 700);
+            candidates.push(asNum(bscSh.at_ms, 0) + asNum(bscSh.duration_ms, 2000)
+                + 1000 + 5000 + 600);
+        }
+        // E3b Q-2 (2026-08-03): THE FIELD CUE. Registered in the SAME change as the
+        // renderer read, which is the standing rule on this surface and the lesson
+        // dispatch 3 paid for in the other direction (a pin offset registered AHEAD
+        // of its implementation was wrong by construction — it pinned just past the
+        // slide, which is only the cause). field_at_ms is DESTINATION-valued: the
+        // field ramps 0 -> field over field_duration_ms, is HELD for a readable
+        // beat, and only then do the carriers migrate, saturating over the drift
+        // window. The settled picture is the END of that migration, so the pin is
+        // the sum of all four. The four constants below are BS_FIELD_MS /
+        // BS_FIELD_HOLD_MS / BS_DRIFT_MS in field_3d_renderer.ts and the two files
+        // must stay equal (check:bonding-scene section 13 asserts exactly that,
+        // reading both sources).
+        if (typeof bscState.field_at_ms === 'number') {
+            candidates.push(asNum(bscState.field_at_ms, 0)
+                + asNum(bscState.field_duration_ms, 1200) + 1000 + 5000 + 600);
         }
         const bscLat = asObj(bscState.lattice);
         if (bscLat) {
@@ -2201,6 +2272,31 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
                 candidates.push(asNum(bscLat.grow_at_ms, 0) + asNum(bscLat.grow_duration_ms, 3000) + 600);
             }
             if (typeof bscLat.reveal_at_ms === 'number') candidates.push(asNum(bscLat.reveal_at_ms, 0) + 1200);
+        }
+        // E3b T-4 (row R, 2026-08-03): a GROUP may carry its own thermal ramp and
+        // its own lattice beat — ionic_bonding S8 heats ONE of its two crystals —
+        // and those cue times live at groups[].thermal.T_at_ms, a path this block
+        // could not see. A cue the pin deriver does not know about photographs the
+        // wrong instant (the polarity E1c-8 lesson), and here it would pin the
+        // frozen frame mid-melt on the group whose melting IS the state. Registered
+        // in the SAME change as the renderer read, which is the standing rule.
+        // The group's cue keys are the SCENE's keys — no new key name is
+        // introduced, only a second place they can be authored.
+        const bscGroups = Array.isArray(bscState.groups) ? bscState.groups : [];
+        for (const g of bscGroups) {
+            const gg = asObj(g);
+            if (!gg) continue;
+            const gTh = asObj(gg.thermal);
+            if (gTh && typeof gTh.T_at_ms === 'number') {
+                candidates.push(asNum(gTh.T_at_ms, 0) + asNum(gTh.T_ramp_ms, 2000) + 600);
+            }
+            const gLat = asObj(gg.lattice);
+            if (gLat) {
+                if (typeof gLat.grow_at_ms === 'number') {
+                    candidates.push(asNum(gLat.grow_at_ms, 0) + asNum(gLat.grow_duration_ms, 3000) + 600);
+                }
+                if (typeof gLat.reveal_at_ms === 'number') candidates.push(asNum(gLat.reveal_at_ms, 0) + 1200);
+            }
         }
     }
     // orbital_shapes (ATOMIC ORBITALS — CHEMISTRY, 2026-07-28 engine ask): every
