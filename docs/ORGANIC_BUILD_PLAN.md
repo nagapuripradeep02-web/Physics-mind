@@ -156,6 +156,16 @@ structure; DNA double helix. All three are outside CBSE organic.
 
 ## 6. The three engines that gate the whole subject
 
+> **⚠ AMENDED 2026-08-09 — see `docs/ORGANIC_ENGINE_PLAN.md`.** The all-32 engine survey found that
+> **14 of the 32 sims need two of these "engines" in the same state** (E2 needs A's dihedral *and*
+> C's bond breaking; EAS needs B's cloud *and* C's steps). So A/B/C are **capability LAYERS inside
+> ONE `scenario_type` (`organic_structure`), not three scenario types** — a new LAYER where a new
+> CASE would do, one level past this section's own "a new CASE where a new FILE would do". The waves,
+> the concept list and the relative cost ranking below all stand; only the packaging changes. Two
+> further corrections: **B is cheaper than ranked here** (`bonding_scene` already ships per-atom
+> partial charge and a shiftable electron-pair glyph), and the energy instrument is **one generalised
+> instrument** serving torsion curves, reaction profiles and comparisons — not three.
+
 All three are new `scenario_type` cases on the **existing** `field_3d_renderer.ts` — not new renderer
 files. This is the Session-C6 lesson applied up front: `CHEMISTRY_ARCHITECTURE.md` §5c named a new
 FILE where a new CASE would do, and that inflated estimate founder-gated Phase 5 behind two waves of
