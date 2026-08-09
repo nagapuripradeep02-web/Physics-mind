@@ -1132,9 +1132,25 @@ ${pilotHeadTags(1)}
       timeline.push({ start: t, end: t + dur, si: i });
       t = t + dur + GAP_MS;
     }
-    timelineTotal = timeline.length > 0
+    var narrationEnd = timeline.length > 0
       ? timeline[timeline.length - 1].end
       : Math.max(1, Math.round((st.duration || 12) * 1000));
+    // The reveal timeline must not be shorter than the state's own AUTHORED
+    // duration (founder_proxy Checkpoint B cycle 2, 2026-08-09) — narrationEnd
+    // derives from estSentenceMs(), which scales with the teacher's live Speed
+    // slider (rate, 0.7-1.1, enabled whenever no audio clip exists — true for
+    // this concept). Every appear_at_ms in the JSON is an ABSOLUTE constant
+    // budgeted against the state's authored duration, so a faster rate shrinks
+    // the reveal window under content that never moved: measured at rate 1.0,
+    // STATE_2's Sn=1.7500 payoff never rendered at all; at rate 1.05, STATE_5
+    // froze on "total area = 2.0000" — the DIM WRONG NUMBER its own
+    // misconception_watch exists to refute; at rate 1.1, STATE_1's region fill
+    // stopped short. Rule 31: "motion may outrun narration, never the reverse" —
+    // narration finishing early must never truncate authored motion. Duration
+    // wins the max, never overrides narrationEnd's own existing floor/fallback
+    // above (a state whose narration alone already runs longer than its
+    // authored duration keeps that longer narration timeline, unaffected).
+    timelineTotal = Math.max(narrationEnd, Math.round((st.duration || 0) * 1000));
     scrubEl.max = String(Math.max(1, timelineTotal));
   }
   // Bind each scenario one-shot to the sentence that narrates it: post that
@@ -1636,6 +1652,25 @@ ${pilotHeadTags(1)}
       pendingRoll = cur().id;
       var want = cur().id;
       setTimeout(function () { if (pendingRoll === want) { pendingRoll = null; rollTimeline(); } }, 400);
+    } else if (cur() && (cur().advance_mode === 'interaction_complete' || cur().continuous_motion)) {
+      // Rule 37 GAP, part (a) (founder_proxy Checkpoint B cycle 2, 2026-08-09) —
+      // onTimelineEnd() already exempts these states from the auto-freeze at
+      // timeline END (Rule 37: "the explore/final state runs CONTINUOUSLY"),
+      // but nothing exempted them at ENTRY: every rail-opened state, including
+      // this one, hit the SAME SET_TIME_FREEZE {at_ms:0} pin below and sat
+      // dead — the sandbox's own live choreography (e.g. a ping_pong sweep)
+      // never started, motion never ran, until the teacher ALSO pressed Play.
+      // "Alive on entry" is the matching half of Rule 37's own contract, not a
+      // new rule: skip the pin entirely — the renderer's SET_STATE handler
+      // already unconditionally releases any PRIOR freeze pin (PM_frozen=false,
+      // before this state's own isNewState block even runs), so simply never
+      // sending a fresh one here IS "start the clock immediately". playing/
+      // setPlayBtnUI are deliberately left alone: there is no narration
+      // timeline to "play" for a state whose script is empty by design (Rule
+      // 31 — explore states are 0/open), so the Play button's own on/off
+      // meaning does not apply here either way.
+      pendingRoll = null;
+      applyReveal(activeSiAt(0));                     // still paint the opening beat's own glow/caption bookkeeping
     } else {
       pendingRoll = null;
       playing = false; setPlayBtnUI(false);

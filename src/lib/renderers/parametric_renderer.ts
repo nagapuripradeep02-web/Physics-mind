@@ -771,6 +771,45 @@ function computePhysics_derivative_as_secant_limit(vars) {
   };
 }
 
+// definite_integral_as_accumulated_area — THIRD mathematics concept (src/data/
+// concepts/mathematics/), riding the region_fill / riemann_bars / locus_trace
+// accumulation family (docs/skeletons/definite_integral_as_accumulated_area_
+// skeleton.md). f(x) = x^2 - c on [0, b]. Per A6 (skeleton §10f), this
+// function computes ONLY the closed forms the geometry cannot produce itself
+// — 'exact' (the definite integral I(b,c)), 'A_beta' (the accumulation
+// function A(beta,c), STATE_7), 'area_total' and 'area_below' (the unsigned
+// total and the below-axis subtotal, STATE_5, F7) — NEVER a Riemann sum
+// (riemann_bars computes and PUBLISHES its own sum via sum_var, see
+// PM_riemannPublish above; a second implementation here would be the exact
+// "one quantity, two readouts" defect class this fleet's doctrine forbids).
+// TS twin: src/lib/physicsEngine/concepts/definite_integral_as_accumulated_area.ts
+// (scar parametric_computephysics_missing_silent_template_leak — a missing
+// twin fails SILENTLY, every {exact}/{A_beta}/{area_total}/{area_below}
+// resolves to a literal '{...}' string on canvas).
+function computePhysics_definite_integral_as_accumulated_area(vars) {
+  var b    = (vars && typeof vars.b    === 'number' && isFinite(vars.b))    ? vars.b    : 2.0;
+  var c    = (vars && typeof vars.c    === 'number' && isFinite(vars.c))    ? vars.c    : 0;
+  var beta = (vars && typeof vars.beta === 'number' && isFinite(vars.beta)) ? vars.beta : 0;
+  var exact = Math.pow(b, 3) / 3 - c * b;
+  var aBeta = Math.pow(beta, 3) / 3 - c * beta;
+  // area_below (F7): I(min(b, sqrt(c)), c) — the below-axis piece, defined
+  // only where the curve actually crosses the axis inside [0,b] (c>0). The
+  // 0.00005 clamp (engine-bug-queue: hud_prints_negative_zero_on_a_value_
+  // only_instrument) guards the exact-zero-at-c=0 case from a signed-float
+  // '-0.0000' print — the ONLY quantity in this concept that can arrive at
+  // a signed zero.
+  var crossX = Math.min(b, Math.sqrt(c > 0 ? c : 0));
+  var areaBelowRaw = Math.pow(crossX, 3) / 3 - c * crossX;
+  var areaBelow = (Math.abs(areaBelowRaw) < 0.00005) ? 0 : areaBelowRaw;
+  var areaTotal = exact - 2 * areaBelow;
+  return {
+    concept_id: 'definite_integral_as_accumulated_area',
+    variables: { b: b, c: c, beta: beta },
+    derived: { exact: exact, A_beta: aBeta, area_total: areaTotal, area_below: areaBelow },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -800,6 +839,7 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'unit_circle_to_sine_wave') result = computePhysics_unit_circle_to_sine_wave(vars);
   else if (conceptId === 'graph_transformations') result = computePhysics_graph_transformations(vars);
   else if (conceptId === 'derivative_as_secant_limit') result = computePhysics_derivative_as_secant_limit(vars);
+  else if (conceptId === 'definite_integral_as_accumulated_area') result = computePhysics_definite_integral_as_accumulated_area(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
@@ -920,6 +960,31 @@ function PM_animationGate(spec) {
     return { visible: true, alpha: 1 - fadeProgress };
   }
   if (animMs <= 0) return { visible: true, alpha: 1 };
+  // Rule 37 GAP, part (b) (founder_proxy Checkpoint B cycle 2, 2026-08-09) —
+  // a primitive due AT-OR-BEFORE state start (appear_at_ms<=0) is the
+  // state's OWN OPENING PICTURE, not a mid-state reveal. Every rail-opened
+  // state's clock is parked at t=0 until Play is pressed (Rule 26 — hold
+  // the opening frame); against a clock that has not yet started moving,
+  // the old (elapsed-appearAt)/animMs ramp evaluates to EXACT 0 progress —
+  // zero alpha, sustained for as long as the state sits open pre-Play, not
+  // a one-frame flicker. A not-yet-started transition is not the same
+  // thing as a hidden element: STATE_1 (this concept's opening state) was
+  // measured entirely blank before Play; STATE_4's magnifier inset (the
+  // state's whole subject) and STATE_8's curve/region/rectangles (all
+  // appear_at_ms:0/animate_in_ms:1200) were absent the same way. An
+  // element with a LATER appear_at_ms (a genuine mid-state reveal, synced
+  // to narration reaching that point) is UNCHANGED — it still correctly
+  // waits (elapsed<appearAt above) and still fades in over animMs once due
+  // (the branch below, unreached here). Only the appear_at_ms<=0 case — a
+  // transition whose start and the state's own start are the SAME
+  // instant, so "in progress" and "not started" are indistinguishable —
+  // resolves to its COMPLETED appearance immediately, matching Rule 37's
+  // part (a) exemption (parametric_renderer's own SET_STATE handler
+  // already frees the clock for interaction_complete on entry; this
+  // covers the same-instant items even before that clock ever ticks, and
+  // covers every OTHER advance_mode's own frozen opening frame too — the
+  // more general fix, not scoped to interaction_complete alone).
+  if (appearAt <= 0) return { visible: true, alpha: 1 };
   var progress = Math.min(1, Math.max(0, (elapsed - appearAt) / animMs));
   return { visible: true, alpha: progress };
 }
@@ -2255,10 +2320,49 @@ function PM_planeResolveBound(rangeObj, key, vars) {
   return rangeObj ? rangeObj[key] : undefined;
 }
 
+// ── Dual-bound-authored trap warning (bug_class E-2 /
+// pcpl_x_domain_precedence_disagreed_with_plane_range_precedence_and_
+// failed_silently, founder Checkpoint B cycle 2, 2026-08-08) — an author
+// who writes BOTH a numeric bound (e.g. x_domain.min) AND its *_expr
+// sibling (x_domain.min_expr) on the SAME rangeObj gets the expression
+// (PM_planeResolveBound's own precedence, D3, now unified across every
+// caller — see drawFunctionPlot below) with the numeric silently ignored.
+// That precedence is correct, but SILENT correctness is still a trap: the
+// STATE_4 magnifier incident measured exactly this — an authored numeric
+// x_domain.min:1.75 sat beside a min_expr computing the live re-zoom
+// window, the numeric read as though it were live, and the actual symptom
+// was not 'the expression got ignored' but 'the curve does not draw at
+// all' (240 samples spread across the WIDE numeric domain instead of the
+// tiny live one, so only a sliver of them ever lands inside the plane's
+// own zoomed viewport). Warn ONCE per (state, primitive, bound) — never
+// per-frame — because PM_planeBuildTransform runs every plane every frame
+// (D1) and drawFunctionPlot runs every function_plot every frame; an
+// unguarded console.warn at either site would spam the console at 60 Hz.
+// The map is keyed by state so a genuine re-author (editing the JSON
+// between page loads) is caught again on the next load; it is never
+// cleared mid-session (the underlying JSON does not change during a
+// session) so a teacher revisiting the same state does not re-spam either.
+var PM_dualBoundWarned = {};
+function PM_warnIfDualBoundAuthored(primitiveId, boundLabel, rangeObj, key) {
+  if (!rangeObj) return;
+  var exprKey = key + '_expr';
+  if (typeof rangeObj[key] === 'undefined' || typeof rangeObj[exprKey] !== 'string') return;
+  var warnKey = PM_currentState + '|' + (primitiveId || '(no id)') + '|' + boundLabel;
+  if (PM_dualBoundWarned[warnKey]) return;
+  PM_dualBoundWarned[warnKey] = true;
+  console.warn('[pcpl] "' + (primitiveId || '(no id)') + '" authors BOTH ' + boundLabel + '=' +
+    rangeObj[key] + ' AND ' + boundLabel + '_expr="' + rangeObj[exprKey] +
+    '" on the same bound — the EXPRESSION wins (PM_planeResolveBound precedence); the numeric value is silently ignored. Author only one.');
+}
+
 function PM_planeBuildTransform(spec, vars) {
   var viewport = (spec && spec.viewport) || { x: 70, y: 78, w: 660, h: 372 };
   var xRangeRaw = (spec && spec.x_range) || { min: -6.5, max: 6.5 };
   var yRangeRaw = (spec && spec.y_range) || { min: -4, max: 4 };
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'x_range.min', xRangeRaw, 'min');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'x_range.max', xRangeRaw, 'max');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'y_range.min', yRangeRaw, 'min');
+  PM_warnIfDualBoundAuthored(spec && spec.id, 'y_range.max', yRangeRaw, 'max');
   var xRange = {
     min: PM_planeResolveBound(xRangeRaw, 'min', vars),
     max: PM_planeResolveBound(xRangeRaw, 'max', vars),
@@ -3270,6 +3374,86 @@ function PM_stateLiveControlVars(scene) {
   return out;
 }
 
+// ── Cross-state live-control inheritance gate (bug_class
+// pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_
+// state_on_state_change, founder_proxy Checkpoint B cycle 1, 2026-08-08) ───
+// PM_sliderValues is a durable store — it is written by a genuine canvas
+// drag (drawCanvasSlider/drawPlotPoint) or a PARAM_UPDATE and is NEVER
+// cleared on SET_STATE (only PM_userTouched, the SEIZURE flag, is cleared
+// per-state; PM_sliderValues deliberately survives so the explore state can
+// be left and re-entered without losing what the teacher set — see
+// requirement 2 below). The SET_STATE handler used to overlay
+// PM_sliderValues onto the incoming state's vars for ANY variable that
+// state happens to declare as a live control, with no regard for WHICH
+// state last wrote that value. Rule 25d's reorderable/jumpable state rail
+// means a teacher can arrive at any GUIDED state from the explore
+// sandbox (or from any other state) at any time, so a value dragged on
+// STATE_8's explore sandbox silently overwrote STATE_5's own authored
+// default the instant STATE_5 was opened — measured on
+// definite_integral_as_accumulated_area: drag bound_marker to b=0.279 on
+// STATE_8, click STATE_5 in the rail, STATE_5 opened at b=0.2792 (not its
+// authored b=2), destroying the above/below-the-axis contrast that state
+// exists to teach.
+//
+// Only advance_mode:'interaction_complete' (Rule 31 — the ONE state whose
+// entire job is open-ended manipulation) may BLANKET-inherit a value the
+// teacher set elsewhere, on both first entry and every re-entry. Every
+// OTHER (guided) state opens strictly on its OWN vars — UNLESS the
+// specific variable was itself seized WITHIN THIS SAME STATE VISIT
+// (PM_userTouched[svk] — see the per-variable gate added below, bug_class
+// pcpl_guided_state_drag_evaporates_mid_choreography, quality_auditor
+// round 3, 2026-08-09).
+//
+// WHY THE PER-VARIABLE FLAG, NOT JUST advance_mode: PM_applyChoreography
+// rebuilds vars (via THIS function) on every frame in which ANY
+// choreographed variable in the CURRENT state moves — not just the
+// dragged one. A guided state that drags 'b' (bound_marker) AND
+// choreographs an UNRELATED 'c' (definite_integral_as_accumulated_area's
+// real STATE_5) used to have nothing keeping 'b' alive once c's ramp made
+// PM_applyChoreography rebuild vars from PM_resolveStateVars: the
+// blanket-refused overlay meant a drag-seized 'b' evaporated back to its
+// authored default the instant ANY unrelated choreography ticked — but
+// ONLY while that choreography was still active (once it settled,
+// PM_applyChoreography's own "if (!changed) return" stopped rebuilding at
+// all, so the LAST value drawPlotPoint's own direct computePhysics call
+// had set — the correct dragged one — happened to survive). Measured: drag
+// b=1.2 DURING the c-ramp -> evaporates to 2.0000 within ~1s; the SAME drag
+// AFTER the ramp settles -> correctly holds at 1.2. A drag surviving or
+// dying depending on WHEN the teacher performs it is worse than a
+// consistent failure.
+//
+// PM_userTouched IS the exactly-right flag to gate on: it is wiped to {}
+// ONLY on a genuine isNewState SET_STATE (~PM_userTouched = {}, WP-R5),
+// and set true ONLY by a REAL mouse drag claim on THIS state's own
+// primitive (drawCanvasSlider / drawPlotPoint's genuine-drag branches —
+// the only two write sites in the whole file). So
+// PM_userTouched[svk] === true encodes exactly "svk was dragged during
+// THIS visit to the current state" — never carries across a real state
+// change (the wipe always runs BEFORE this function is ever called again,
+// see the SET_STATE handler's own ordering), so a value seized in STATE_8
+// still cannot survive into STATE_5 (WP-R6's original guarantee, intact);
+// but a value seized WITHIN STATE_5 now correctly survives STATE_5's own
+// unrelated choreography ticks for the rest of that SAME visit (this
+// fix). Re-entering STATE_5 later (a fresh isNewState) still opens on its
+// authored default — seizure never survives an actual state change,
+// guided or explore.
+//
+// Does NOT touch PM_liveDragScope (the genuine-drag rebuild used WITHIN
+// the currently-open state, unaffected by this gate either way) or the
+// PARAM_UPDATE handler (which only ever updates PM_currentState's OWN
+// live control, never a value inherited from a state transition).
+function PM_overlayLiveControlValues(vars, stateData, stateSliderVars) {
+  var explore = !!(stateData && stateData.advance_mode === 'interaction_complete');
+  for (var svk in PM_sliderValues) {
+    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
+      if (explore || PM_userTouched[svk]) {
+        vars[svk] = PM_sliderValues[svk];
+      }
+    }
+  }
+  return vars;
+}
+
 // ── Live drag/seize scope builder (F1 fix — bug_class:
 // pcpl_drag_rebuilds_physics_scope_from_authored_defaults_and_drops_every_
 // other_live_choreography_value, BLOCKING, founder_proxy Checkpoint B
@@ -3391,14 +3575,26 @@ function drawFunctionPlot(spec) {
   var ranges = PM_planeRangesOf(spec.plane_id);
   if (!ranges) return;
 
+  // E-2 fix (bug_class pcpl_x_domain_precedence_disagreed_with_plane_range_
+  // precedence_and_failed_silently, founder Checkpoint B cycle 2,
+  // 2026-08-08) — this used to prefer the NUMERIC bound over its *_expr
+  // sibling when a primitive authored both, the OPPOSITE of
+  // PM_planeResolveBound's own precedence (D3: expression wins, numeric is
+  // the fallback). Unified onto PM_planeResolveBound itself — the single
+  // shared precedence function, not a second hand-rolled copy — so a plane
+  // that re-zooms via min_expr/max_expr and a function_plot sharing that
+  // SAME plane now agree on which window to sample. A missing/invalid
+  // expression AND a missing numeric both still fall back to the plane's
+  // OWN current xRange (unchanged from before — a function_plot with no
+  // authored x_domain at all still fills the visible frame).
   var domainSpec = spec.x_domain || {};
   var vars = PM_liveExprVars();
-  var domainMin = (typeof domainSpec.min === 'number') ? domainSpec.min
-    : (typeof domainSpec.min_expr === 'string') ? PM_safeEval(domainSpec.min_expr, vars)
-    : ranges.xRange.min;
-  var domainMax = (typeof domainSpec.max === 'number') ? domainSpec.max
-    : (typeof domainSpec.max_expr === 'string') ? PM_safeEval(domainSpec.max_expr, vars)
-    : ranges.xRange.max;
+  PM_warnIfDualBoundAuthored(spec.id, 'x_domain.min', domainSpec, 'min');
+  PM_warnIfDualBoundAuthored(spec.id, 'x_domain.max', domainSpec, 'max');
+  var domainMin = PM_planeResolveBound(domainSpec, 'min', vars);
+  if (typeof domainMin !== 'number' || !isFinite(domainMin)) domainMin = ranges.xRange.min;
+  var domainMax = PM_planeResolveBound(domainSpec, 'max', vars);
+  if (typeof domainMax !== 'number' || !isFinite(domainMax)) domainMax = ranges.xRange.max;
 
   var polylines = PM_functionPlotSample(spec.y_expr, domainMin, domainMax, spec.samples, vars, ranges.yRange);
   if (polylines.length === 0) return;
@@ -4303,24 +4499,9 @@ function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsD
   // bars only, so the drawn extent was cap*(to-from)/n — SHRINKING as n
   // rises (measured: n=1000 -> [0,0.80], n=2304 -> [0,0.35], n=6494 ->
   // [0,0.12], the exact opposite of what a convergence beat should show).
-  // selectedIdx picks barsDrawnCount indices EVENLY SPREAD across the
-  // FULL [0, n) index range instead — an integer linspace that always
-  // anchors k=0 at i=0 (xL = domainFrom exactly) and k=barsDrawnCount-1 at
-  // i=n-1 (xR = domainTo exactly), so the drawn partition spans the true
-  // domain at every n, however many (or few) bars the cap lets through.
-  // The published SUM below is untouched by this selection (D7's own
-  // comment) — it always accumulates all n terms regardless of the cap.
-  var selectedIdx = null; // null = "select every i" (cap not engaged, or absent)
-  if (barsDrawnCount < n) {
-    selectedIdx = {};
-    if (barsDrawnCount >= 1) selectedIdx[0] = true; // left edge, always
-    if (barsDrawnCount >= 2) {
-      var lastK = barsDrawnCount - 1;
-      for (var selK = 1; selK < barsDrawnCount; selK++) {
-        selectedIdx[Math.round((selK * (n - 1)) / lastK)] = true; // selK===lastK -> exactly n-1
-      }
-    }
-  }
+  // The published SUM below is untouched by ANY of this — it always
+  // accumulates all n terms regardless of the cap (D7's own comment).
+  var capEngaged = barsDrawnCount < n;
 
   var sum = 0;
   for (var i = 0; i < n; i++) {
@@ -4349,13 +4530,74 @@ function PM_riemannBarsCompute(yExpr, domainFrom, domainTo, nRaw, mode, maxBarsD
     // PM_regionFillCompute's own header); unchanged here.
     var ok = isFinite(area) && isFinite(yTopLeft) && isFinite(yTopRight);
     if (ok) sum += area;
-    if (ok && (selectedIdx === null || selectedIdx[i])) {
+    // F3 fix (bug_class pcpl_riemann_bars_cap_preserves_extent_but_draws_
+    // true_width_so_the_region_evaporates_as_n_grows, MAJOR, founder_proxy
+    // Checkpoint B cycle 2, 2026-08-09) — the OLD selection here pushed a
+    // sparse EVEN SPREAD of TRUE bars (each at its own true width
+    // h=(to-from)/n) into out.bars. That preserved EXTENT (the spread
+    // spans the full domain at every n, F2's own fix) but not COVERAGE:
+    // at n=10000, h is 0.044 canvas px, so 400 sub-pixel-wide bars render
+    // as nothing between them — measured inked fraction of the region
+    // crashing 0.992 -> 0.707 -> 0.008 as n climbed past the cap. The
+    // renderer's own comment above promises "above the cap the picture
+    // stops changing while the number keeps moving" — it did not stop,
+    // it EMPTIED. Once the cap is engaged, this per-true-index loop no
+    // longer builds out.bars AT ALL (the cap-not-engaged case, every true
+    // bar at its own true width, is UNCHANGED below). See the dedicated
+    // representative-partition loop after this one for what replaces it.
+    if (ok && !capEngaged) {
       out.bars.push({ i: i, xL: xL, xR: xR, yTopLeft: yTopLeft, yTopRight: yTopRight, area: area });
     }
   }
   out.sum = sum;
   out.n = n;
   out.barsDrawn = barsDrawnCount;
+
+  // Cap engaged: draw barsDrawnCount FRESH bars, each spanning the width
+  // it REPRESENTS — (domainTo-domainFrom)/barsDrawnCount — resampled at
+  // ITS OWN edges. This is a SECOND, independent equal partition of
+  // [domainFrom, domainTo] into exactly barsDrawnCount bars — NOT a
+  // selection from the true-n bars above (their own true width IS the
+  // bug). barsDrawnCount is FIXED once the cap engages (PM_clamp'd to n
+  // above), so this partition is IDENTICAL at every n above the cap:
+  // "above the cap the picture stops changing while the number keeps
+  // moving" is now genuinely delivered, not just promised in a comment.
+  // The published sum above is completely untouched by this — it already
+  // accumulated all n TRUE terms. bar.i is this loop's own sequential
+  // position (0..barsDrawnCount-1) — PM_riemannBarReveal's stagger reads
+  // bar.i as "this bar's position in DRAWN order" (see drawRiemannBars'
+  // own header: "the array position among SURVIVING bars is not always
+  // the same as the bar's true index among all n"), which is exactly
+  // what a fresh representative partition's own sequential position IS;
+  // show_partition below gates on the DRAW LOOP's own array position,
+  // never on bar.i, so it is unaffected either way.
+  if (capEngaged && barsDrawnCount > 0) {
+    var hDraw = (domainTo - domainFrom) / barsDrawnCount;
+    for (var j = 0; j < barsDrawnCount; j++) {
+      var dxL = domainFrom + j * hDraw;
+      var dxR = dxL + hDraw;
+      scopeVars.x = dxL;
+      var dfL = PM_safeEval(yExpr, scopeVars);
+      scopeVars.x = dxR;
+      var dfR = PM_safeEval(yExpr, scopeVars);
+      var dTopLeft, dTopRight, dArea;
+      if (m === 'right') {
+        dTopLeft = dfR; dTopRight = dfR; dArea = dfR * hDraw;
+      } else if (m === 'midpoint') {
+        scopeVars.x = dxL + hDraw / 2;
+        var dfM = PM_safeEval(yExpr, scopeVars);
+        dTopLeft = dfM; dTopRight = dfM; dArea = dfM * hDraw;
+      } else if (m === 'trapezoid') {
+        dTopLeft = dfL; dTopRight = dfR; dArea = (dfL + dfR) / 2 * hDraw;
+      } else { // 'left' — default
+        dTopLeft = dfL; dTopRight = dfL; dArea = dfL * hDraw;
+      }
+      var dOk = isFinite(dArea) && isFinite(dTopLeft) && isFinite(dTopRight);
+      if (dOk) {
+        out.bars.push({ i: j, xL: dxL, xR: dxR, yTopLeft: dTopLeft, yTopRight: dTopRight, area: dArea });
+      }
+    }
+  }
   return out;
 }
 
@@ -5962,11 +6204,36 @@ function PM_applyChoreography() {
   // function shared by every consumer instead of four separate scans.
   var stateSliderVars = PM_stateLiveControlVars(scene);
   var vars = PM_resolveStateVars(PM_currentState) || {};
-  for (var sk in PM_sliderValues) {
-    if (Object.prototype.hasOwnProperty.call(PM_sliderValues, sk) && stateSliderVars[sk]) {
-      vars[sk] = PM_sliderValues[sk];
-    }
-  }
+  // WP-R6 REOPENED (bug_class
+  // pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_
+  // state_on_state_change, second door, quality_auditor live-drive on the
+  // REAL definite_integral_as_accumulated_area, 2026-08-08/09) — this used
+  // to run the SAME unconditional PM_sliderValues overlay the SET_STATE
+  // handler had (fixed via PM_overlayLiveControlValues), but as an
+  // INDEPENDENT, un-gated copy nobody caught: PM_applyChoreography runs
+  // every frame whenever the CURRENT state authors ANY variable_choreography
+  // AT ALL (any variable, not necessarily the leaked one), rebuilds vars
+  // from scratch here, and — pre-fix — clobbered PM_physics with the stale
+  // PM_sliderValues value the instant that rebuild ran, UNDOING the
+  // SET_STATE handler's own correct (gated) resolution one frame later.
+  // Measured via direct instrumentation on the real concept (a synthetic
+  // fixture, WP-R6's first round, did not reproduce this — it authored no
+  // variable_choreography on the leaking state): drag bound_marker on
+  // STATE_8 (b -> 1.0909...), SET_STATE STATE_5 (advance_mode:'manual_click',
+  // choreographs 'c', ALSO declares 'b' via its own bound_marker drag) — the
+  // SET_STATE handler's computePhysics call correctly resolved b=2, but
+  // PM_applyChoreography's very next call (triggered by c's choreography
+  // stepping, entirely unrelated to b) clobbered it back to 1.0909... on the
+  // SAME frame's first choreography tick (prev===undefined after the
+  // per-state PM_choreoValues wipe, so 'changed' is true on frame 1
+  // regardless of c's own numeric delta). STATE_2 (no choreography) and
+  // STATE_3/STATE_1 (choreograph OTHER variables but never author 'b' as a
+  // live control themselves) never triggered it — matching the audit's own
+  // selective "only STATE_5 bleeds" pattern exactly. Fixed by routing
+  // through the SAME centralised, advance_mode-gated function the SET_STATE
+  // handler already uses — one gate, every caller, never a second
+  // hand-rolled copy again.
+  vars = PM_overlayLiveControlValues(vars, stateData, stateSliderVars);
   for (var ck in PM_choreoValues) {
     if (Object.prototype.hasOwnProperty.call(PM_choreoValues, ck) && !PM_userTouched[ck]) {
       vars[ck] = PM_choreoValues[ck];
@@ -6451,19 +6718,21 @@ window.addEventListener('message', function(e) {
       }
     }
     // Overlay slider values ONLY for variables the new state actually authors
-    // as a slider primitive. Blanket overlay breaks STATE_2 (horizontal desk,
-    // theta should be 0) when the user has dragged a slider in STATE_5 to e.g.
-    // 32° — the old theta value would bleed back and tilt the N arrow.
+    // as a slider primitive, AND only when the new state is the teacher
+    // sandbox (advance_mode:'interaction_complete' — Rule 31; see
+    // PM_overlayLiveControlValues's own header for the full bug_class this
+    // gate closes). Blanket overlay breaks STATE_2 (horizontal desk, theta
+    // should be 0) when the user has dragged a slider in STATE_5 to e.g.
+    // 32° — the old theta value would bleed back and tilt the N arrow; the
+    // advance_mode gate additionally closes the wider sibling defect where
+    // the SAME leak happens between ANY two states sharing a live-control
+    // variable, not only same-typed ones.
     var newStateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
     var newScene = (newStateData && newStateData.scene_composition) || [];
     // CP-B (F5/F12) — "slider" here means "live-control" (type:'slider' OR a
     // type:'plot_point' drag.bind_variable); see PM_stateLiveControlVars.
     var stateSliderVars = PM_stateLiveControlVars(newScene);
-    for (var svk in PM_sliderValues) {
-      if (Object.prototype.hasOwnProperty.call(PM_sliderValues, svk) && stateSliderVars[svk]) {
-        vars[svk] = PM_sliderValues[svk];
-      }
-    }
+    vars = PM_overlayLiveControlValues(vars, newStateData, stateSliderVars);
     PM_physics = computePhysics(PM_config.concept_id, vars);
     // Same-state SET_STATE carrying new variables (slider drag) — rewind the
     // sim clock so time-driven motions (atwood, free_fall, pendulum) re-run
