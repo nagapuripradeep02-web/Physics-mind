@@ -1,0 +1,900 @@
+{
+  "concept_id": "atomic_and_ionic_radius",
+  "concept_name": "Atomic and Ionic Radius — Effective Nuclear Charge Sets the Size",
+  "chapter": 3,
+  "section": "3.7.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.3 'Classification of Elements and Periodicity in Properties', §3.7.1(a)(b) — atomic radius and ionic radius, scope reference only; teaching, sequence and phrasing authored from first principles (effective nuclear charge Z_eff = Z − S, Slater's screening rules, period/group trends, ion formation, the isoelectronic series). NCERT Exemplar consulted for the misconception belief only ('more electrons means a bigger atom'); no problem text, figure, or worked example imported. Every radius/screening figure is the field_3d 'orbital_shapes' engine's own r90 (Slater Z_eff, then the hydrogenic 1/Z_eff similarity) — never a cited covalent or ionic radius table, none exists or was imported. Ninth chemistry concept through the pipeline; first of the Ch.3 Periodicity wave, on the orbital_shapes surface (engine builds 1-6).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "orbital_shapes"
+    ]
+  },
+  "prerequisites": [
+    "bohr_model_energy_levels",
+    "atomic_orbitals_s_p_d"
+  ],
+  "real_world_anchor": {
+    "primary": "In a phone battery, lithium ions carry the charge — they fit through the electrode's narrow layers because they are among the smallest ions. Small size is what lets them move in and out as the battery charges and discharges, in a phone, a laptop, or a vehicle anywhere in the world."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_3"
+    },
+    "period_trend": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "group_trend": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    },
+    "ionic_radius": {
+      "start": "STATE_6",
+      "end": "STATE_7"
+    },
+    "screening_subshells": {
+      "start": "STATE_8",
+      "end": "STATE_8"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Z": {
+        "name": "nuclear charge (atomic number)",
+        "unit": "e",
+        "min": 1,
+        "max": 20,
+        "default": 11
+      },
+      "S": {
+        "name": "Slater screening constant",
+        "unit": "e",
+        "min": 0,
+        "max": 18.7
+      },
+      "Z_eff": {
+        "name": "effective nuclear charge",
+        "unit": "e",
+        "derived": "Z - S",
+        "min": 0.15,
+        "max": 19.70
+      },
+      "r90": {
+        "name": "90%-boundary radius",
+        "unit": "pm",
+        "derived": "r90_Z1(orbital) / Z_eff",
+        "min": 7.53,
+        "max": 808.71
+      },
+      "n": {
+        "name": "principal quantum number (shell)",
+        "unit": "dimensionless",
+        "min": 1,
+        "max": 4
+      },
+      "charge": {
+        "name": "ion charge",
+        "unit": "e",
+        "min": -3,
+        "max": 3,
+        "default": 0
+      },
+      "nE": {
+        "name": "electron count",
+        "unit": "dimensionless",
+        "derived": "Z - charge",
+        "min": 1,
+        "max": 22
+      }
+    },
+    "computed_outputs": {
+      "radius_hud_pm": {
+        "formula": "r90_pm, printed 'r = <n> pm (90%)' or 'r = <n> pm (90%, spherical average)' on an open subshell — the (model) provenance stamp lives in the state's own formula surface (show_formula/formula), never the caption (Rule 34a reserves the caption for the delta cue) and never the HUD"
+      },
+      "z_eff_hud": {
+        "formula": "Z_eff, printed '(Slater)' only when derived from an element (never on a bare authored z_eff)"
+      },
+      "electron_count_hud": {
+        "formula": "nE, printed as '<n> e-' with a '(held)' suffix only at STATE_7, where the engine has MEASURED the species changed while the count did not"
+      },
+      "config_hud": {
+        "formula": "electron configuration string, STATE_8 only (e.g. '1s2 2s2 2p6 3s2 3p6')"
+      }
+    },
+    "formulas": {
+      "slater_S": "0.30*(other same-group electrons, 1s ONLY) + 0.35*(other same-group electrons, ns/np) + 0.85*(electrons in shell n-1) + 1.00*(electrons in shell <= n-2)",
+      "z_eff": "Z - S",
+      "r90_pm": "r90_Z1[orbital] / Z_eff"
+    },
+    "constraints": [
+      "electron count is exactly conserved in every ion-formation equation (Na 11e- -> Na+ 10e- + 1e-; Cl 17e- + 1e- -> Cl- 18e-)",
+      "charge balances on both sides of every ion-formation equation (0 = +1 + -1; 0 + -1 = -1)",
+      "Z_eff = Z - S at all times; S is never negative and Z_eff never exceeds Z",
+      "every STATE_7 isoelectronic species carries exactly 10 electrons; only Z and Z_eff vary across the series",
+      "every displayed radius is the model's own r90 (Slater Z_eff + hydrogenic 1/Z similarity), never a cited covalent or ionic radius",
+      "ion charge is always an integer in {-3 ... +3}; no fractional charge is ever shown"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 12,
+    "max_labels_per_state": 6,
+    "max_words_per_tts_sentence": 36
+  },
+  "aha_moment": {
+    "state_id": "STATE_7",
+    "statement": "Six ions share ten electrons; only the nuclear pull changes, and the radius still falls.",
+    "visual_confirmation": "the electron-count HUD line holds 10 e- (held) while the radius keeps falling as Z climbs, from N3- down to Al3+"
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Radius: a measured boundary",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_boundary_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_orbit_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "the familiar picture: a fixed orbit",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_boundary_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "measurements build a cloud with a boundary",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_anchor_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "small ions move fastest — lithium in a battery",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "An electron in hydrogen is not on a fixed orbit — measured repeatedly, its cloud has a boundary holding nine tenths: the atomic radius.",
+              "glow": "dots",
+              "scenario_cue": "stipple"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "In a phone battery, lithium ions are small enough to slide through."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "More protons, smaller shell",
+        "duration": 22,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_shrink_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_ladder_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "H to He+ to Li2+: one electron, more protons",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_shrink_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "nothing screens the pull — the shell shrinks",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_radius_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "141 to 70.5 to 47.0 pm",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Hydrogen has one electron and one proton.",
+              "glow": "surface"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Add a proton with no new electron, and that same electron feels a stronger pull: helium plus, then lithium two-plus, written He⁺ and Li²⁺."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Nothing screens that pull, so each added proton pulls the shell in, and it steps smaller."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Screening by inner electrons",
+        "duration": 23,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_screen_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_core_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "sodium's ten inner electrons appear as a core",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_screen_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "Z_eff = Z − S = 11 − 8.8 = 2.2",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_relax_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "the outer electron settles far outside the core",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Sodium's outer electron does not feel the full pull of eleven protons."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Ten inner electrons screen most of that pull — the screening (shielding) effect."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "What remains is the effective nuclear charge: Z_eff = Z − S = 11 − 8.8 = 2.2.",
+              "scenario_cue": "z_ramp"
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Screened this weakly, the electron settles far outside the core."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Across a period: smaller",
+        "duration": 23,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_marker_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_period_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "period two: lithium to neon",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_marker_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "the marker moves along the trend, one element at a time",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_shrink_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "same shell, rising pull, falling radius",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Across period two, every atom keeps the same outer shell, but each proton added raises the effective nuclear charge, pulling the shell in a little more."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "From boron on, the shell is part filled, so the reading is a spherical average."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "A marker moves along the trend already there, lithium to neon.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Down a group: larger",
+        "duration": 19,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_shell_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_group_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "down group one: lithium, sodium, potassium",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_shell_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "a new shell opens farther out",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_larger_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "the atom is larger again",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Lithium's outer electron sits in the second shell, sodium's the third, potassium's the fourth."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Down the group a new shell opens farther from the nucleus at every step — the atom is larger again because a whole new shell has appeared."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Making ions: remove or add electrons",
+        "duration": 24,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_asymmetry_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_remove_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "remove an electron: Na to Na+",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_add_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "add an electron: Cl to Cl-",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_asymmetry_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "remove: big shrink. add: small growth",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Removing sodium's one outer electron empties its whole third shell: Na → Na⁺ + e⁻."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "The ionic radius shrinks sharply — a big shrink."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Adding an electron to chlorine only adds one same-shell neighbour: Cl + e⁻ → Cl⁻."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "A same-shell electron screens weakly, so the ion grows only a little: remove big, add small."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Same electron count, smaller ions",
+        "duration": 27,
+        "depth_ring": "core",
+        "focal_primitive_id": "s7_pinned_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_series_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "six ions, all with ten electrons",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_pinned_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "electron count held at 10 e-",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_falling_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "radius still falls as Z climbs",
+            "color": "#81D4FA"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "More electrons means a bigger atom.",
+            "visual_counter": "The electron-count HUD line holds 10 e⁻ (held) while the radius falls from about 148 pm down to about 48 pm across six ions, as the nuclear charge alone climbs from 7 to 13 protons.",
+            "one_line_fix": "Size follows the pull per electron, the effective nuclear charge, not the number of electrons."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Nitride, oxide, fluoride, sodium, magnesium and aluminium ions are isoelectronic species: each holds exactly ten electrons, held fixed on screen.",
+              "glow": "surface"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "The nuclear charge alone rises, seven protons to thirteen."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "As it climbs, the ten electrons are pulled in tighter and the radius falls each step: size follows the pull per electron, not the count.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Inner shells set the screening",
+        "duration": 27,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s8_rule_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_shells_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "potassium's four occupied shells",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_rule_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "S = 0.35 same shell + 0.85 shell in + 1.00 deeper",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_zeff_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "Z_eff: 18.7, 14.85, 7.75, 2.2",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Potassium's nineteen electrons fill four shells.",
+              "glow": "surface",
+              "scenario_cue": "gallery_0"
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Slater's rule counts each electron's screening: 0.35 from a same-group neighbour, 0.85 from the shell just inside, 1.00 from every shell deeper."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Shell by shell this gives effective nuclear charges 18.7, 14.85, 7.75 and 2.2: the innermost electron barely screened, the outermost almost fully screened.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore atomic and ionic size",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s9_watch_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s9_pick_label",
+            "position": { "x": 200, "y": 70 },
+            "text": "pick an element",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_charge_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "set the ion charge",
+            "color": "#E040FB"
+          },
+          {
+            "type": "annotation",
+            "id": "s9_watch_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "watch Z_eff and the radius",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Choose an element, set the ion charge, and watch the effective nuclear charge and the radius respond.",
+              "glow": "surface"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "orbital_shapes",
+    "explorer_id": "orbital_explorer",
+    "field_lines": {
+      "opacity": 0
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The believed hydrogen orbit dissolves into a measured cloud; the 90% boundary settles over it",
+        "caption": "One electron, one shell",
+        "orbital_shapes": {
+          "element": "H",
+          "orbital": "1s",
+          "z_eff": 1,
+          "show_orbit": true,
+          "orbit_ms": 1800,
+          "dissolve_at_ms": 1800,
+          "dissolve_duration_ms": 2500,
+          "stipple_at_ms": 1800,
+          "per_dot_ms": 12,
+          "dot_target": 500,
+          "show_dots": true,
+          "surface_at_ms": 8200,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["radius"],
+          "show_formula": true,
+          "formula": "r₉₀ = 90% boundary (model)",
+          "camera": { "az": 35, "el": 28, "dist": 3.2 },
+          "controls": []
+        }
+      },
+      "STATE_2": {
+        "label": "H, He+, Li2+ walk a one-electron ladder as two paired cuts; a ghost pins each before",
+        "caption": "More protons, smaller shell",
+        "orbital_shapes": {
+          "orbital": "1s",
+          "z_eff": "slater",
+          "element_steps": [
+            { "at_ms": 0, "element": "H" },
+            { "at_ms": 6200, "element": "He" },
+            { "at_ms": 12000, "element": "Li" }
+          ],
+          "charge_steps": [
+            { "at_ms": 0, "charge": 0 },
+            { "at_ms": 6200, "charge": 1 },
+            { "at_ms": 12000, "charge": 2 }
+          ],
+          "ghost_species": [
+            { "at_ms": 5600, "element": "H", "charge": 0 },
+            { "at_ms": 11400, "element": "He", "charge": 1 }
+          ],
+          "show_dots": false,
+          "dot_target": 700,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "radius"],
+          "show_formula": true,
+          "formula": "r ∝ 1/Z (model)",
+          "camera": { "az": 35, "el": 28, "dist": 3.2 },
+          "controls": []
+        }
+      },
+      "STATE_3": {
+        "label": "Na+'s core appears from nothing and holds; ~1s later the 3s cloud relaxes outward as Z_eff ramps down",
+        "caption": "Inner electrons reduce the pull",
+        "orbital_shapes": {
+          "element": "Na",
+          "charge": 0,
+          "orbital": "valence",
+          "z_ramp": { "from": 11, "to": 2.2, "at_ms": 8000, "duration_ms": 6500 },
+          "ghost_species": [
+            { "at_ms": 6900, "element": "Na", "charge": 1, "as": "core" }
+          ],
+          "show_dots": false,
+          "dot_target": 1300,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "z_eff", "radius"],
+          "show_formula": true,
+          "formula": "Z_eff = Z − S = 11 − 8.8 = 2.2 (Slater)",
+          "camera": { "az": 35, "el": 28, "dist": 7.05 },
+          "controls": ["zeff"]
+        }
+      },
+      "STATE_4": {
+        "label": "Li through Ne cut through eight elements as one spherical shell silhouette; the marker walks the completed trend curve",
+        "caption": "Same shell, smaller each step",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "z_eff": "slater",
+          "element_steps": [
+            { "at_ms": 0, "element": "Li" },
+            { "at_ms": 1850, "element": "Be" },
+            { "at_ms": 3700, "element": "B" },
+            { "at_ms": 5550, "element": "C" },
+            { "at_ms": 7400, "element": "N" },
+            { "at_ms": 9250, "element": "O" },
+            { "at_ms": 11100, "element": "F" },
+            { "at_ms": 12950, "element": "Ne" }
+          ],
+          "overlay": { "table": true, "curve": "radius_vs_z", "mark": "line" },
+          "show_dots": false,
+          "dot_target": 1200,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "z_eff", "radius"],
+          "camera": { "az": 35, "el": 28, "dist": 6.06 },
+          "controls": ["element"]
+        }
+      },
+      "STATE_5": {
+        "label": "Li to Na to K cut through three periods; a held ghost marks each previous shell before the new, larger one appears",
+        "caption": "New shell, larger again",
+        "orbital_shapes": {
+          "orbital": "valence",
+          "z_eff": "slater",
+          "element_steps": [
+            { "at_ms": 0, "element": "Li" },
+            { "at_ms": 5000, "element": "Na" },
+            { "at_ms": 10000, "element": "K" }
+          ],
+          "ghost_species": [
+            { "at_ms": 4400, "element": "Li", "charge": 0 },
+            { "at_ms": 9400, "element": "Na", "charge": 0 }
+          ],
+          "overlay": { "table": true, "curve": null },
+          "show_dots": false,
+          "dot_target": 1700,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "radius"],
+          "show_formula": true,
+          "formula": "r ∝ 1/Z_eff (model)",
+          "camera": { "az": 35, "el": 28, "dist": 10.10 },
+          "controls": ["element"]
+        }
+      },
+      "STATE_6": {
+        "label": "Na loses its outer shell to become Na+; the camera re-frames tight and Cl gains one same-shell electron to become Cl-",
+        "caption": "Big drop, then small rise",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "z_eff": "slater",
+          "element_steps": [
+            { "at_ms": 0, "element": "Na" },
+            { "at_ms": 9000, "element": "Cl" }
+          ],
+          "charge_steps": [
+            { "at_ms": 0, "charge": 0 },
+            { "at_ms": 4000, "charge": 1 },
+            { "at_ms": 9000, "charge": 0 },
+            { "at_ms": 13000, "charge": -1 }
+          ],
+          "ghost_species": [
+            { "at_ms": 3400, "element": "Na", "charge": 0 },
+            { "at_ms": 9000, "clear": true },
+            { "at_ms": 12400, "element": "Cl", "charge": 0 }
+          ],
+          "camera_steps": [
+            { "at_ms": 9000, "az": 35, "el": 28, "dist": 3.61, "ease_ms": 900 }
+          ],
+          "show_dots": false,
+          "dot_target": 1500,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "radius"],
+          "show_formula": true,
+          "formula": "Na → Na⁺ + e⁻<br>Cl + e⁻ → Cl⁻<br>r₉₀ (model)",
+          "camera": { "az": 35, "el": 28, "dist": 7.05 },
+          "controls": ["charge"]
+        }
+      },
+      "STATE_7": {
+        "label": "Six isoelectronic ions cut through in turn; the electron-count line holds 10 e- while the radius steps down each cut",
+        "caption": "Same electron count, smaller",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "z_eff": "slater",
+          "element_steps": [
+            { "at_ms": 0, "element": "N" },
+            { "at_ms": 3000, "element": "O" },
+            { "at_ms": 6000, "element": "F" },
+            { "at_ms": 9000, "element": "Na" },
+            { "at_ms": 12000, "element": "Mg" },
+            { "at_ms": 15000, "element": "Al" }
+          ],
+          "charge_steps": [
+            { "at_ms": 0, "charge": -3 },
+            { "at_ms": 3000, "charge": -2 },
+            { "at_ms": 6000, "charge": -1 },
+            { "at_ms": 9000, "charge": 1 },
+            { "at_ms": 12000, "charge": 2 },
+            { "at_ms": 15000, "charge": 3 }
+          ],
+          "show_dots": false,
+          "dot_target": 900,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "electron_count", "z_eff", "radius"],
+          "camera": { "az": 35, "el": 28, "dist": 3.32 },
+          "controls": []
+        }
+      },
+      "STATE_8": {
+        "label": "Potassium's four occupied shells swap through a gallery walk 1s to 2s to 3s to 4s, camera re-framing at each step",
+        "caption": "Inner shells set the screening",
+        "orbital_shapes": {
+          "element": "K",
+          "orbital": "1s",
+          "gallery_steps": [
+            { "at_ms": 0, "orbital": "1s" },
+            { "at_ms": 4500, "orbital": "2s" },
+            { "at_ms": 9000, "orbital": "3s" },
+            { "at_ms": 13500, "orbital": "4s" }
+          ],
+          "z_eff": "slater",
+          "camera_steps": [
+            { "at_ms": 4500, "az": 35, "el": 28, "dist": 1.22, "ease_ms": 900 },
+            { "at_ms": 9000, "az": 35, "el": 28, "dist": 3.08, "ease_ms": 900 },
+            { "at_ms": 13500, "az": 35, "el": 28, "dist": 10.10, "ease_ms": 900 }
+          ],
+          "show_dots": false,
+          "dot_target": 1600,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "config", "z_eff"],
+          "show_formula": true,
+          "formula": "S = 0.35 × (same group) + 0.85 × (shell n−1) + 1.00 × (deeper shells)",
+          "camera": { "az": 35, "el": 28, "dist": 0.47 },
+          "controls": []
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — element, charge and Z_eff dials live; cloud, strip, curve and HUD respond in real time",
+        "caption": "Element, charge, Z_eff",
+        "orbital_shapes": {
+          "mode": "explore",
+          "element": "Na",
+          "charge": 0,
+          "orbital": "shell",
+          "z_eff": "slater",
+          "overlay": { "table": true, "curve": "radius_vs_z", "mark": "line" },
+          "show_dots": false,
+          "dot_target": 1500,
+          "show_surface": true,
+          "show_axes": true,
+          "show_labels": true,
+          "show_hud": true,
+          "hud_lines": ["element", "z_eff", "radius"],
+          "show_formula": true,
+          "formula": "Z_eff = Z − S",
+          "camera": { "az": 45, "el": 35.26, "dist": 8.0 },
+          "controls": ["element", "charge", "zeff"]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same screening idea, a different battery ion (sodium-ion instead of lithium-ion)",
+      "physical_world": "Sodium-ion batteries use Na+ instead of Li+ — a larger ion from the row below, but still small enough to move between electrode layers, showing the same size-versus-function link at a different point on the same period table.",
+      "same_physics": "Identical physics: Z_eff = Z - S sets the ion's radius, the same Slater screening rule, the same period and group trends — only which specific ion anchors the real-world hook changes."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.3 'Classification of Elements and Periodicity in Properties', §3.7.1(a)(b) — atomic radius, ionic radius, isoelectronic species, effective nuclear charge (Slater's rules)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced · NEET",
+        "coverage": "full",
+        "syllabus_unit": "full concept; ranking isoelectronic ions and computing Z_eff from Slater's rules are recurring items in both exams",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge A-level Chemistry (9701)",
+        "coverage": "full",
+        "syllabus_unit": "atomic and ionic radius trends, and shielding, across AS/A2",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "periodic trends in atomic and ionic radius, at SL and HL",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "atomic and ionic radius trends across periods and groups",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "periodic trends in atomic radius, taught at a lighter, more qualitative depth — core preset likely sufficient",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ],
+    "notes": "Rule 38g: every non-CBSE cell is a CLAIM. Only CBSE/NCERT is author-verified against the live syllabus; no preset goes teacher-visible until a teacher of that curriculum confirms its row."
+  }
+}
