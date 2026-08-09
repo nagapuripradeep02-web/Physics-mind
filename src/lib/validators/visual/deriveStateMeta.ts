@@ -300,6 +300,35 @@ export function deriveMotionExpectations(
                 if (srMotion.mode === 'explore') { out[stateId] = false; continue; }
                 // guided: fall through to the reveal_hold classification.
             }
+            // vector_geometry_3d (MATHEMATICS, prefix `vg`). The scenario had NO
+            // entry here at all, so every one of its states resolved to
+            // `undefined` and D5 reported "Skipped — motion expectation unknown"
+            // on all of them — while the run still headlined a full pass. A gate
+            // that is skipped is not a gate that passed.
+            //
+            // D5 reads the DENSE series across the whole state (adjacent-frame
+            // diffs), not the settled reveal pin, so a state that ramps really
+            // does have to move pixels and can be held to it:
+            //   · a non-empty vg.animate[] IS the state's motion — a closed-form
+            //     ramp of a knob the meshes are rebuilt from every frame.
+            //   · a vg.camera_steps schedule with more than one step moves the
+            //     whole picture even when no knob ramps.
+            //   · a state that shows sliders and ramps nothing is the teacher's
+            //     sandbox: user-driven, declared STATIC, and the interactive
+            //     hold classification relaxes its tail.
+            //   · anything else (a still guided beat riding only the shared
+            //     grow-in ease) is left undefined on purpose, the sr precedent:
+            //     the hold pass classifies it reveal_hold rather than D5
+            //     false-failing it for standing still.
+            const vgMotion = state ? asObj(state.vg) : null;
+            if (vgMotion) {
+                const vgAnim = Array.isArray(vgMotion.animate) ? vgMotion.animate : [];
+                const vgCamSteps = Array.isArray(vgMotion.camera_steps) ? vgMotion.camera_steps : [];
+                if (vgAnim.length > 0) { out[stateId] = true; continue; }
+                if (vgMotion.camera_mode === 'steps' && vgCamSteps.length > 1) { out[stateId] = true; continue; }
+                if (state && state.show_sliders === true) { out[stateId] = false; continue; }
+                // still guided beat: fall through to the reveal_hold classification.
+            }
             const osMotion = state ? asObj(state.orbital_shapes) : null;
             if (osMotion) {
                 // explore stays DECLARED STATIC even though the renderer now turns
