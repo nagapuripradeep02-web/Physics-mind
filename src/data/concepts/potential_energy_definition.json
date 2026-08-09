@@ -1,0 +1,653 @@
+{
+  "concept_id": "potential_energy_definition",
+  "concept_name": "Potential Energy — ΔU = −W_conservative",
+  "chapter": 6,
+  "section": "6.7",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power — table-of-contents scope only (the concept of potential energy sits between the conservative/non-conservative material and energy conservation), teaching authored from first principles. The atomic concept: potential energy U is energy stored by POSITION against a conservative force, DEFINED by ΔU = −W_conservative — when gravity does −40 J of work, the stored energy rises by exactly +40 J: the same size change, the opposite sign, in the same frames — and only a conservative force can have a U at all, because only its work is a single number per position (friction's is not, so 'friction potential energy' does not exist). Does NOT teach U = mgh or any formula for U's value, the freedom to choose the h = 0 reference, or path independence (all gravitational_potential_energy, #7 — the dashed U = 0 line at the ramp's foot is named once as 'where the count starts' and never discussed as a choice); does NOT teach spring PE (#8 — no spring); does NOT do K, E_total or conservation (#9 — no K bar anywhere); does NOT do the accounting of where friction's heat goes (#10 — S2 names the destination in one authored clause, nothing more); and does NOT re-teach the work meter (work_done_by_constant_force, #1), work's sign (positive_negative_zero_work, #2) or the round-trip test (conservative_vs_nonconservative_forces, #5 — consumed in one leaning clause, never re-run). Built on the newtons_laws_body field_3d engine with the SEAM K/L/M/N energy layer — the first concept in the fleet to render the U_grav energy bar, the first to pair the energy layer with a work accumulator where the claim IS their numeric CHANGE-identity (ΔU = −W_c), and the first to author capture_mode 'first' with dwell_ms. STATE_3 teaches from two labelled points A and B (marker 'point', the SEAM-M teaching dwell): the scene HOLDS 2 s at each stamped crossing so a teacher can read U and gravity's work together before the motion resumes. STATE_1/STATE_2 deliberately carry their claims on the live bars alone — their truths are continuous, a lock-step mirror at every frame — so the point instrument appears exactly where the claim is a difference between two places.",
+
+  "prerequisites": [
+    "conservative_vs_nonconservative_forces",
+    "positive_negative_zero_work",
+    "work_done_by_constant_force",
+    "block_on_incline"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A pumped-storage hydroelectric plant. At night, spare electricity pumps water uphill into a high reservoir; at peak hours the water runs back down through the turbines. A whole power grid stores energy by position — and the energy it gets back is exactly minus the work gravity did while the water was pumped up.",
+    "secondary": "A rooftop water tank. A pump pushes water up to a tank above a building; open a tap and the stored energy comes back — the water flows down on its own."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m":     { "name": "mass", "unit": "kg", "constant": 4 },
+      "g":     { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "theta": { "name": "incline angle", "unit": "deg", "constant": 30 },
+      "h_ref": { "name": "energy reference height (the U = 0 line, measured from the ramp's foot)", "unit": "m", "constant": -3.05 },
+      "s0":    { "name": "home position along the track (+s is up-slope)", "unit": "m", "constant": -3.6 },
+      "v0":    { "name": "launch speed", "unit": "m/s", "min": 0, "max": 8, "default": 8, "step": 0.5 },
+      "mu_s":  { "name": "coefficient of static friction", "unit": "(dimensionless)", "min": 0, "max": 0.5, "default": 0, "step": 0.05 },
+      "mu_k":  { "name": "coefficient of kinetic friction", "unit": "(dimensionless)", "min": 0, "max": 0.5, "default": 0, "step": 0.05 },
+      "N":     { "name": "normal force", "unit": "N", "derived": "m * g * cos(radians(theta))" },
+      "f_k":   { "name": "kinetic friction magnitude", "unit": "N", "derived": "mu_k * N" },
+      "F_grav_parallel": { "name": "gravity's component along the incline (always down-slope)", "unit": "N", "derived": "m * g * sin(radians(theta))" }
+    },
+    "formulas": {
+      "h_of_s":       "s * sin(radians(theta)) - h_ref",
+      "U_grav":       "m * g * (s * sin(radians(theta)) - h_ref)",
+      "W_gravity":    "-(m * g * sin(radians(theta))) * (s - s_ref)",
+      "W_friction":   "-(mu_k * m * g * cos(radians(theta))) * path_length_since_s_ref",
+      "a_free":       "g * sin(radians(theta))",
+      "a_up_rough":   "g * (sin(radians(theta)) + mu_k * cos(radians(theta)))",
+      "a_down_rough": "g * (sin(radians(theta)) - mu_k * cos(radians(theta)))"
+    },
+    "computed_outputs": {
+      "U_J":        { "formula": "U_grav" },
+      "gravity_J":  { "formula": "W_gravity" },
+      "friction_J": { "formula": "W_friction" }
+    },
+    "constraints": [
+      "Delta-U = -W_gravity at every instant, for any motion, rough or smooth, guided or dragged — the definitional law this concept teaches",
+      "U = m * g * (s * sin(theta) - h_ref) is a pure function of position s only, never of time or velocity directly",
+      "friction's work is path-dependent (proportional to cumulative |ds| since s_ref, not to net displacement), so friction has no potential energy",
+      "U >= 0 everywhere on the track for h_ref = -3.05 m; the guard margin is >= 1.96 J at the track's lowest reachable point (s = -6 m)",
+      "h_ref = -3.05 m is IDENTICAL in all four states -- the U = 0 reference never moves at any state transition",
+      "normal force N = m * g * cos(theta) is constant -- the block never leaves the incline surface in any state"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "Gravity's negative work is not lost — U rises by the same joules, opposite sign.",
+    "visual_confirmation": "The block climbs a frictionless slope: as gravity's work bar falls to −128.0 J, the U bar climbs from 49.0 to 177.0 J — equal joule changes, opposite directions, in the same frames."
+  },
+
+  "entry_state_map": {
+    "foundational":   { "start": "STATE_1", "end": "STATE_2" },
+    "two_point_form": { "start": "STATE_3", "end": "STATE_3" }
+  },
+
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Negative work becomes stored energy",
+        "duration": 24,
+        "focal_primitive_id": "peu_s1_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "Negative work, stored as U",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "where_negative_work_goes",
+          "stored_energy_returns_on_descent",
+          "sign_of_delta_u"
+        ],
+        "scene_composition": [
+          {
+            "id": "peu_s1_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a 4 kg block is launched up a frictionless 30° slope at 8 m/s, starting 1.25 m above the dashed U = 0 line at the ramp's foot",
+            "color": "#FFF176"
+          },
+          {
+            "id": "peu_s1_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the U bar opens at 49.0 J and climbs to 177.0 J at the 1.63 s apex while gravity's work bar falls to −128.0 J — equal joule changes, opposite directions, every frame; on the descent both bars mirror back",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "peu_s1_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD's v row tracks speed, and the formula surface reads ΔU = −W gravity",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Like a pumped-storage plant, this block stores energy by position.", "glow": "nlb_body_block" },
+            { "id": "s1_2", "text_en": "U, the potential energy, counts from the dashed line at the ramp's foot, opening at 49.0 joules.", "glow": "marker_h_ref" },
+            { "id": "s1_3", "text_en": "Going up, gravity's work falls to negative 128 joules while U climbs equally.", "glow": "nlb_arrow_block_weight" },
+            { "id": "s1_4", "text_en": "Coming down, gravity's work turns positive, climbing back toward zero as U falls back equally.", "glow": "energy_panel" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Negative work means the energy is gone",
+            "visual_counter": "As gravity's bar falls from 0 to −128.0 J, the U bar climbs from 49.0 to 177.0 J — up by the same 128.0 J in the same frames; on the descent U falls back exactly as gravity's total climbs back toward zero",
+            "one_line_fix": "Gravity's negative work is stored as potential energy and returned on the way down — moved, not destroyed"
+          }
+        ]
+      },
+
+      "STATE_2": {
+        "title": "Friction has no potential energy",
+        "duration": 22,
+        "focal_primitive_id": "peu_s2_panel",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "No store for friction",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_only_conservative_forces_have_u",
+          "friction_work_is_not_stored",
+          "round_trip_test_recap"
+        ],
+        "scene_composition": [
+          {
+            "id": "peu_s2_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "same 30° slope now rough (μₛ = μₖ = 0.35), same 8 m/s launch — only friction is new",
+            "color": "#FFF176"
+          },
+          {
+            "id": "peu_s2_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "a third bar joins: friction falls to −48.3 J at the 1.02 s apex and keeps falling to −91.2 J by the loop's end, on both legs, while U still climbs and falls joule-for-joule with gravity's bar",
+            "color": "#FFD54F"
+          },
+          {
+            "id": "peu_s2_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD reads v and f = 11.9 N, and the formula surface reads ΔU = −W conservative",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Same rough slope, same launch speed.", "glow": "nlb_body_block" },
+            { "id": "s2_2", "text_en": "A third bar joins: friction, falling going up, and falling coming down.", "glow": "energy_panel" },
+            { "id": "s2_3", "text_en": "No partner rises to meet it.", "glow": "energy_panel" },
+            { "id": "s2_4", "text_en": "U keeps its joule-for-joule lock with gravity's work, both ways.", "glow": "energy_bar_U_grav" },
+            { "id": "s2_5", "text_en": "Friction's joules become heat, a later lesson tracks them.", "glow": "energy_panel" },
+            { "id": "s2_6", "text_en": "Only conservative forces have a potential energy.", "glow": "energy_bar_U_grav" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Work done against any force is stored, friction too",
+            "visual_counter": "On the rough trip U still moves joule-for-joule with gravity's bar, while friction's bar falls on both legs and no bar rises to meet it — friction's joules become heat, not into any stored-by-position number",
+            "one_line_fix": "Friction's work depends on the path taken, not the position reached, so no single stored number per position can exist for it — only conservative forces have a potential energy"
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "Only the change in U matches",
+        "duration": 30,
+        "focal_primitive_id": "peu_s3_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "ΔU equals −W gravity",
+        "depth_ring": "extended",
+        "eye_capture_ms": 3934,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "computing_delta_u_from_work",
+          "u_level_vs_u_change",
+          "minus_sign_in_the_definition"
+        ],
+        "scene_composition": [
+          {
+            "id": "peu_s3_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a slower 7 m/s launch, frictionless — the block crosses two marked points, A then B, along the slope",
+            "color": "#FFF176"
+          },
+          {
+            "id": "peu_s3_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the scene freezes 2 s at each crossing: point A stamps U = 88.2 J, W gravity = −39.2 J; point B stamps U = 135.2 J, W gravity = −86.2 J — the levels differ, but 135.2 − 88.2 = 47.0 J is exactly minus the work gravity did between them",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "peu_s3_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD reads v, and the formula surface reads ΔU = −W gravity (A → B)",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Slower launch this time.", "glow": "nlb_body_block" },
+            { "id": "s3_2", "text_en": "The block crosses point A, then point B, the scene freezes.", "glow": "checkpoint_1" },
+            { "id": "s3_3", "text_en": "The levels don't match, but the change does: U rose by 47.0 joules, and gravity's work fell equally.", "glow": "checkpoint_2" },
+            { "id": "s3_4", "text_en": "The next concept gives gravity's U its own formula, and lets you place the U = 0 line wherever you like.", "glow": "marker_h_ref" }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "Explore: launch speed, friction, drag",
+        "duration": 0,
+        "focal_primitive_id": "peu_s4_panel",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change anything",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "peu_s4_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the sandbox opens MOVING — the same 8 m/s launch as STATE_1, both friction dials at zero — with the same dashed U = 0 line and the same 49.0 J opening",
+            "color": "#FFF176"
+          },
+          {
+            "id": "peu_s4_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "drag the block anywhere on the slope, raise either friction dial, or relaunch at any speed — the U bar and both work ledgers re-derive live, and ΔU = −W gravity holds through every motion",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "peu_s4_sliders",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "three live dials: launch speed v₀ (0–8 m/s), static friction μₛ and kinetic friction μₖ (both 0–0.5, capped below tan 30° so no corner sticks)",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Drag the block anywhere on the slope." },
+            { "id": "s4_2", "text_en": "U always tracks its height above the dashed line." },
+            { "id": "s4_3", "text_en": "Raise friction, and its bar falls both ways with no partner." },
+            { "id": "s4_4", "text_en": "Relaunch faster — U at the same height never changes." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "skateboarder_on_a_ramp",
+      "type": "B",
+      "label": "A Skateboarder Launched Up a Ramp",
+      "physical_world": "A skateboarder rides up a smooth ramp at speed, coasts to the top, and rolls back down. A second run adds a rough patch that only removes speed, never returns it.",
+      "same_physics": "Identical readings: the same U bar and gravity work bar move by equal joules in opposite directions on the smooth run; on the rough run a third bar falls on both legs with no partner rising to meet it.",
+      "scene_hint": "Same single-body rig, same inclined track — only the block becomes a skater."
+    },
+    {
+      "variant_id": "mine_cart_on_a_hillside_track",
+      "type": "B",
+      "label": "A Mine Cart Rolling on a Hillside Track",
+      "physical_world": "A mine cart is released up a sloped rail track, climbs, and rolls back down under gravity alone; a second run adds a rough rail section.",
+      "same_physics": "Same law, same numbers: the cart's U bar and gravity's work ledger always move by equal joules, opposite signs, every frame; a rough section adds a third bar that never gets a partner.",
+      "scene_hint": "Same rig and physics — the block is relabelled a cart, the slope becomes a rail track."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state the definition ΔU = −W_conservative; explain why a force must be conservative (path-independent) to have a potential energy at all; predict the sign of ΔU from the sign of a conservative force's work, in either direction of motion; compute ΔU between two marked points from the work done between them, without needing an absolute reference; and explain that U depends only on position, never on speed.",
+    "questions": [
+      {
+        "q_id": "q1_negative_work_stores_u",
+        "stem": "A ball is launched up a frictionless slope. While it climbs, is the work done by gravity positive or negative? What happens to the potential energy U during the climb?",
+        "options": {
+          "A": "Gravity's work is negative; U rises by exactly the same amount gravity's work falls.",
+          "B": "Gravity's work is negative; U falls by the same amount gravity's work falls.",
+          "C": "Gravity's work is positive; U rises as the ball climbs.",
+          "D": "Gravity's work is negative; U cannot be found without knowing the ball's speed."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the sign of gravity's work with the sign of the change in U — the definition makes them opposite, not equal",
+          "C": "reverses gravity's own sign convention: gravity always points down-slope, so its work while climbing is negative, not positive",
+          "D": "treats U as dependent on speed — U is a pure function of position only, never of velocity"
+        },
+        "tested_idea": "negative work by gravity produces an equal, positive change in U — the definition's sign, qualitative case",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A cart is pushed up a frictionless ramp. While it climbs, is the work done by gravity positive or negative, and what happens to U?"
+      },
+      {
+        "q_id": "q2_descent_positive_work_u_falls",
+        "stem": "As the block moves from its highest point back down the slope, is the work done by gravity on that leg positive or negative? Does U rise or fall over that same leg?",
+        "options": {
+          "A": "Gravity's work is positive; U falls by the same amount.",
+          "B": "Gravity's work is negative; U falls.",
+          "C": "Gravity's work is positive; U also rises.",
+          "D": "Gravity's work is positive; U stays the same, since the block already reached its highest point."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "mistakes gravity's sign as a fixed property of the force instead of one set by the direction of motion relative to the force — on the descent gravity acts with the motion, so its work is positive",
+          "C": "assumes work and the change in U always move the same way — the definition makes them opposite in sign at every instant, ascent or descent",
+          "D": "treats U as fixed once the highest point is reached, missing that U keeps changing as the block keeps moving"
+        },
+        "tested_idea": "gravity's work sign is set by the direction of motion relative to the force, not a fixed property of the force",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "As a cart rolls back down a frictionless ramp from its highest point, is gravity's work on that leg positive or negative, and does U rise or fall?"
+      },
+      {
+        "q_id": "q3_friction_no_u",
+        "stem": "A block is dragged across a rough floor and back to its start. Explain why there is no 'potential energy of friction,' and state where the energy removed by friction actually goes.",
+        "options": {
+          "A": "Friction's work depends on the path taken, not the position reached, so no single number-per-position exists for it — the energy becomes heat.",
+          "B": "Friction's work is destroyed — it disappears completely once the block stops.",
+          "C": "Friction does have a potential energy, just like gravity, since its work can also be computed with a formula.",
+          "D": "Friction's energy is stored in the block's motion and is released the next time the block moves."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the belief this concept exists to correct — negative work is never destroyed, it becomes heat, not nothing",
+          "C": "mistakes computability of work for storability — friction's work CAN be calculated, but only a path-independent force gives a single value per position",
+          "D": "confuses heat with kinetic energy — friction's dissipated joules become heat in the block and floor, not stored motion energy released later"
+        },
+        "tested_idea": "only path-independent (conservative) forces can have a potential energy — friction fails the round-trip test",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A crate is pushed across a rough table and back to its start. Explain why there is no 'potential energy of friction,' and state where the removed energy goes."
+      },
+      {
+        "q_id": "q4_delta_u_between_points",
+        "stem": "Between two marked points on a slope, gravity does −50 J of work on a block. What is the change in the block's potential energy between those two points?",
+        "options": {
+          "A": "ΔU = +50 J",
+          "B": "ΔU = −50 J",
+          "C": "U at the second point equals −50 J",
+          "D": "ΔU cannot be found without knowing the reference height"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the minus sign in the definition ΔU = −W — the change in U is the negative of the work done",
+          "C": "confuses the CHANGE in U with the LEVEL of U at a point — exactly the distinction this state's stamps exist to teach; the level needs a reference, the change does not",
+          "D": "the definition ΔU = −W needs no reference height at all — only the LEVEL of U needs one, not the change"
+        },
+        "tested_idea": "ΔU = −W_gravity gives the CHANGE directly from the work done, with no reference needed",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Between two marked points on a slope, gravity does +30 J of work on a block. What is the change in the block's potential energy between those two points?"
+      },
+      {
+        "q_id": "q5_general_definition_conservative_only",
+        "stem": "State the general definition of potential energy in terms of work, and explain why this definition can only apply to certain forces.",
+        "options": {
+          "A": "ΔU = −W_conservative; only forces whose work is path-independent can have a potential energy defined this way.",
+          "B": "ΔU = −W for any force whose work can be calculated with a formula.",
+          "C": "ΔU = −W_conservative, and every force in mechanics qualifies, since work can always be computed.",
+          "D": "U = −W_conservative, so U itself, not just its change, equals minus the work done."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "mistakes computability of work for storability — any force's work can be calculated, but only a path-independent one gives a single value per position",
+          "C": "the exact scope error the definition exists to prevent — friction's work IS computable, yet friction has no U, because its work is path-dependent",
+          "D": "confuses the LEVEL U with the CHANGE ΔU — the definition constrains the change, not an absolute value of U itself"
+        },
+        "tested_idea": "the definition ΔU = −W_conservative and why it is undefined for a path-dependent force",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "State the general definition of potential energy in terms of work, and name one force it cannot apply to, with a reason."
+      },
+      {
+        "q_id": "q6_u_independent_of_speed",
+        "stem": "A block is released from the same height on a frictionless slope twice — once launched slowly, once launched fast. Compare the potential energy U at that height in the two cases.",
+        "options": {
+          "A": "U is identical in both cases — it depends only on position, never on speed.",
+          "B": "The faster block has more potential energy, since it has more total energy.",
+          "C": "The slower block has more potential energy, since it spends more time at that height.",
+          "D": "U cannot be compared without also knowing each block's kinetic energy."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses kinetic energy, which does depend on speed, with potential energy, which does not — U is a pure function of position only",
+          "C": "invents a time-dependence for U that does not exist — U depends only on where the block is, not how long it stays there",
+          "D": "assumes U needs K to be meaningful — U at a position is fully determined by that position alone"
+        },
+        "tested_idea": "U depends only on position, never on speed — a transfer check separating U from kinetic energy",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A cart passes through the same height on a frictionless ramp on two different runs, once slow and once fast. Compare its potential energy U at that height in the two runs."
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_negative_work_stores_u", "q2_descent_positive_work_u_falls"],
+      "STATE_2": ["q3_friction_no_u", "q5_general_definition_conservative_only"],
+      "STATE_3": ["q4_delta_u_between_points"],
+      "STATE_4": ["q6_u_independent_of_speed"]
+    },
+    "non_assessed_states": []
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.6 Work, Energy and Power — The concept of potential energy (between conservative forces and conservation)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "full",
+        "syllabus_unit": "Topic 2.3 Work, energy and power — potential energy defined via work",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 Work, Energy and Power — the relationship between work and potential energy",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — potential energy defined from work done against a conservative force",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — potential energy, ΔU = −W_conservative",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — potential energy defined by work, scope restricted to conservative forces",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — potential energy definition",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "v0":    { "min": 0, "max": 8, "step": 0.5, "default": 8, "label": "v₀" },
+      "mu_s":  { "min": 0, "max": 0.5, "step": 0.05, "default": 0, "label": "μₛ" },
+      "mu_k":  { "min": 0, "max": 0.5, "step": 0.05, "default": 0, "label": "μₖ" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A 4 kg block is launched up a frictionless 30° slope at 8 m/s from 1.25 m above the dashed U = 0 line at the ramp's foot; over 1.63 s to the apex the U bar climbs from 49.0 to 177.0 J while gravity's work bar falls from 0.0 to −128.0 J — equal joule changes, opposite directions, every frame; on the descent gravity's work climbs back toward zero as U falls back by the same joules; the loop resets at 3150 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "Negative work, stored as U",
+        "eye_capture_ms": 1890,
+        "show_sliders": true,
+        "formula_overlay": "ΔU = −W gravity",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "variable_overrides": { "v0": 8, "mu_s": 0, "mu_k": 0 },
+          "surface": { "theta_deg": 30, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "block", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -3.6, "initial_velocity_mps": 8 }
+          ],
+          "arrows": [
+            { "body_id": "block", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 290, "h_ref_m": -3.05, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "U = 0" },
+          "work_accumulators": [
+            { "force": "gravity", "label": "gravity", "body_id": "block" }
+          ],
+          "work_scale_J": 145,
+          "loop_reset_ms": 3150,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_2": {
+        "label": "Same 30° slope, now rough (μₛ = μₖ = 0.35), same 8 m/s launch: a third bar joins — friction — falling to −48.3 J at the 1.02 s apex and continuing to fall to −91.2 J by the 2.95 s loop end, on both legs; U still climbs and falls joule-for-joule with gravity's bar throughout.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "No store for friction",
+        "eye_capture_ms": 1770,
+        "show_sliders": true,
+        "formula_overlay": "ΔU = −W conservative",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "variable_overrides": { "v0": 8, "mu_s": 0.35, "mu_k": 0.35 },
+          "surface": { "theta_deg": 30, "length_m": 6 },
+          "bodies": [
+            { "id": "block", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -3.6, "initial_velocity_mps": 8, "mu_s": 0.35, "mu_k": 0.35 }
+          ],
+          "arrows": [
+            { "body_id": "block", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 290, "h_ref_m": -3.05, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "U = 0" },
+          "work_accumulators": [
+            { "force": "gravity", "label": "gravity", "body_id": "block" },
+            { "force": "friction", "label": "friction", "body_id": "block" }
+          ],
+          "work_scale_J": 145,
+          "loop_reset_ms": 2950,
+          "readouts": ["v", "f"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_3": {
+        "label": "A slower 7 m/s launch, frictionless: the block crosses point A (s = −1.6 m) at 322 ms, where the scene freezes 2 s and stamps 'point A: U = 88.2 J · W gravity = −39.2 J'; it then crosses point B (s = +0.8 m) and freezes again, stamping 'point B: U = 135.2 J · W gravity = −86.2 J' — the levels differ, but 135.2 − 88.2 = 47.0 J is exactly minus the work gravity did between them; the loop resets at 6600 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "ΔU equals −W gravity",
+        "eye_capture_ms": 3934,
+        "show_sliders": true,
+        "formula_overlay": "ΔU = −W gravity (A → B)",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "variable_overrides": { "v0": 7, "mu_s": 0, "mu_k": 0 },
+          "surface": { "theta_deg": 30, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "block", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -3.6, "initial_velocity_mps": 7 }
+          ],
+          "arrows": [
+            { "body_id": "block", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 290, "h_ref_m": -3.05, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "U = 0" },
+          "work_accumulators": [
+            { "force": "gravity", "label": "gravity", "body_id": "block" }
+          ],
+          "checkpoints": [
+            { "s_m": -1.6, "label": "point A", "body_id": "block", "capture": ["U_grav", "W"], "capture_mode": "first", "marker": "point", "dwell_ms": 2000 },
+            { "s_m": 0.8, "label": "point B", "body_id": "block", "capture": ["U_grav", "W"], "capture_mode": "first", "marker": "point", "dwell_ms": 2000 }
+          ],
+          "work_scale_J": 145,
+          "loop_reset_ms": 6600,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_4": {
+        "label": "Sandbox: the block opens moving — the same 8 m/s launch as STATE_1, both friction dials at zero — with the same dashed U = 0 line and the same 49.0 J opening; drag the block, raise either friction dial (capped below tan 30° so no corner sticks), or relaunch at any speed, and ΔU = −W gravity holds through every motion.",
+        "visible_elements": [],
+        "camera_position": [0, 2.3, 10.6],
+        "caption": "Change anything",
+        "show_sliders": true,
+        "formula_overlay": "ΔU = −W gravity",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 30, "length_m": 6 },
+          "bodies": [
+            { "id": "block", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -3.6, "initial_velocity_mps": 8, "mu_s": 0, "mu_k": 0 }
+          ],
+          "arrows": [
+            { "body_id": "block", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 560, "h_ref_m": -3.05, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "U = 0" },
+          "work_accumulators": [
+            { "force": "gravity", "label": "gravity", "body_id": "block" },
+            { "force": "friction", "label": "friction", "body_id": "block" }
+          ],
+          "work_scale_J": 280,
+          "glow_focal": "nlb_body_block",
+          "readouts": ["v", "f"],
+          "controls_visible": ["v0", "mu_s", "mu_k"],
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}

@@ -3076,6 +3076,12 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // same name — that dead entry was removed above (2026-08-05, mirrors
     // the rolling_on_incline precedent). Alex pipeline, 2026-08-05.
     work_energy_theorem:            "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #6 — same newtons_laws_body
+    // engine, the FIRST concept in the fleet to render the U_grav energy bar
+    // and pair it with a work accumulator where the claim IS their numeric
+    // CHANGE-identity (ΔU = −W_conservative). Pure configuration, zero
+    // renderer edits (0d). Alex pipeline, 2026-08-10.
+    potential_energy_definition:    "field_3d",
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave so the
     // five parallel desks never edit this file (docs/loop_runs/rotmech/).
