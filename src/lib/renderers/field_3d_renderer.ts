@@ -63705,8 +63705,15 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                        // instead of its valence SHAPE — the
     //                                        // honest picture of a closed shell,
     //                                        // whose angular density is constant.
-    //                                        // Refused (falls back to 'valence')
-    //                                        // when that subshell is not full.
+    //                                        // REFUSED LOUDLY when that subshell
+    //                                        // is not full: the held picture then
+    //                                        // draws the spherically AVERAGED
+    //                                        // extent (never the lobes the flag
+    //                                        // exists to suppress) and the HUD
+    //                                        // plus PM_osGhostAsRefused say so.
+    //                                        // SUBSUMED in shell mode, where the
+    //                                        // held species already inherits the
+    //                                        // same sphere and the same law.
     //                                        // clear: true drops the held species
     //                                        // at that step, so a "before" cannot
     //                                        // outlive its phase.
@@ -65108,8 +65115,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Divided by that subshell's OWN Slater Z_eff (zEffBy), never the valence
     //   one: a core is exactly the place the two numbers differ most.
     //   Returns null when the outermost occupied subshell is NOT full — a partly
-    //   filled shell is not spherically symmetric, and the caller then falls back
-    //   to the ordinary valence ghost rather than drawing a comfortable lie.
+    //   filled shell is not spherically symmetric, so this function will not call
+    //   it one. The CALLER then draws the spherically AVERAGED extent of that same
+    //   subshell (the honest radius quantity, and what the live shell surface
+    //   already does) and reports the refusal; it used to fall back to the valence
+    //   LOBES, which handed an author who asked for a sphere the exact dumbbell
+    //   the flag exists to suppress, silently.
     //   ── AND IT IS THE SAME LAW THE LIVE SHELL SURFACE DRAWS (orbital: 'shell').
     //   The core region was built for the GHOST only, so a closed-core species
     //   drawn LIVE still resolved through OS_VALENCE_ORBITAL and rendered a 2p_z
@@ -67939,46 +67950,9 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_osCharge = osIon ? osIon.charge : null;
         window.PM_osConfig = osIon ? osIon.config : null;
         window.PM_osSlaterS = osIon ? osIon.S : null;
-        // ── the species the ghost HOLDS, and the geometry that species owns.
-        //   Resolved from ITS OWN OS_IONS row, so the held picture carries the
-        //   held species' valence orbital AND the held species' Slater Z_eff —
-        //   never the live charge, which is what made a ghost land exactly on top
-        //   of the live orbital and show nothing at all.
-        var ghostRes = osGhostSpeciesAt(os, ms);
-        var ghostIon = ghostRes ? ghostRes.ion : null;
-        //   as: 'core' asks for a spherical REGION instead of a valence shape,
-        //   and osCoreRadiusPm REFUSES an open shell (returns null) — so the flag
-        //   silently degrades to the ordinary valence ghost rather than drawing a
-        //   sphere around a density that is not spherical. ghostKind reports which
-        //   picture actually rendered, so the refusal is visible to a probe and to
-        //   the author instead of being a claim nobody can check.
-        var ghostCorePm = (ghostRes && ghostRes.as === "core") ? osCoreRadiusPm(ghostIon, encKey) : null;
-        var ghostIsCore = (ghostCorePm > 0);
-        var ghostOrbId = (!ghostIsCore && ghostIon && ghostIon.valenceKey && OS_ORBITALS[ghostIon.valenceKey])
-            ? ghostIon.valenceKey : null;
-        var ghostOrb = ghostOrbId ? OS_ORBITALS[ghostOrbId] : null;
-        var ghostZ = ghostIon ? ghostIon.zEff : null;
-        //   Its outer reach in pm, through the SAME expression the live radius
-        //   readout uses (osOuterPm x osZUnit) — one law, read twice, so the held
-        //   boundary and the live one can never come from two different rules.
-        var ghostPm = ghostIsCore ? ghostCorePm
-            : ((ghostOrb && ghostOrb.rByLev) ? osOuterPm(ghostOrb, encKey) * osZUnit(ghostOrb, ghostZ) : null);
-        window.PM_osGhostSpecies = ghostIon ? ghostIon.label : null;
-        window.PM_osGhostZEff = ghostIsCore
-            ? ((ghostIon.zEffBy && ghostIon.zEffBy[ghostIon.coreKey] != null) ? ghostIon.zEffBy[ghostIon.coreKey] : ghostZ)
-            : ghostZ;
-        window.PM_osGhostOrbital = ghostIsCore ? ("core " + ghostIon.coreKey) : ghostOrbId;
-        window.PM_osGhostKind = ghostIon ? (ghostIsCore ? "core" : "valence") : null;
-        window.PM_osGhostPm = ghostPm;
-        // ── row E: the element overlay is redrawn from the LIVE identity every
-        //   frame, never seeded at apply — that is the whole reason element_steps
-        //   and charge_steps can move it. Both marks are pure functions of the
-        //   resolved element/charge (no accumulator, no RNG), so they hold the
-        //   SET_TIME_FREEZE byte-identity the rest of this scenario holds.
-        osDrawStrip(osIon ? osIon.sym : null);
-        osDrawCurve(os, osIon, encKey);
         // ── THE SHELL SURFACE. One resolution, read by the surface, the swarm,
-        //   the axes, the label and the HUD, so they cannot describe two objects.
+        //   the axes, the label, the HUD **and the held species below**, so they
+        //   cannot describe two objects.
         //   Restricted to the one-centre s/p/d family the hydrogenic similarity is
         //   exact for (osZUnit returns 1 on a hybrid and on a molecular orbital,
         //   so a shell radius there would be a Z = 1 length under a contracted
@@ -67989,11 +67963,126 @@ export const FIELD_3D_RENDERER_CODE = `
         //   factor the meshes are scaled by rather than recomputed from zEff, so
         //   the number printed and the metres drawn cannot come from two charges
         //   (the row-K discipline).
+        //   ── RESOLVED HERE, ABOVE THE GHOST, AND NOT BELOW IT. It used to sit
+        //   after the ghost block with the rest of the shell readouts, and that
+        //   ordering was the whole defect: a held species cannot inherit a
+        //   display decision that has not been made yet, so ghost_species
+        //   resolved its own shape family and its own radius law while the live
+        //   species was in shell mode — one comparison drawn under two rules
+        //   (ghost_species_ignores_the_display_mode). Nothing about the values
+        //   changes; only where they are computed.
         var shellReq = osShellRequested(os, ctrls);
         var shellRPm = (shellReq && !moPrim && primary
             && (primary.kind === "sphere" || primary.kind === "lobes"))
             ? osShellOuterPmZ1(primary, encKey) * zuPrim : null;
         var shellOn = shellRPm > 0;
+        // ── the species the ghost HOLDS, and the geometry that species owns.
+        //   Resolved from ITS OWN OS_IONS row, so the held picture carries the
+        //   held species' valence orbital AND the held species' Slater Z_eff —
+        //   never the live charge, which is what made a ghost land exactly on top
+        //   of the live orbital and show nothing at all.
+        var ghostRes = osGhostSpeciesAt(os, ms);
+        var ghostIon = ghostRes ? ghostRes.ion : null;
+        var ghostZ = ghostIon ? ghostIon.zEff : null;
+        //   the held species' OWN valence orbital, before any display decision.
+        var ghostVal = (ghostIon && ghostIon.valenceKey) ? OS_ORBITALS[ghostIon.valenceKey] : null;
+        //   ── THE HELD SPECIES INHERITS THE STATE'S DISPLAY MODE. A comparison is
+        //   one claim about two objects, so both objects must be drawn in the same
+        //   shape family and measured by the same law; the moment they are not,
+        //   the comparison reports a difference that is partly a change of ruler.
+        //   That is exactly what shipped: on a shell-mode state the live species
+        //   drew a sphere at the spherically averaged RADIAL extent while the held
+        //   one drew its valence LOBES at the iso-density lobe TIP, so a held
+        //   neutral Cl (3p, tip law, 179 pm) sat beside a live Cl(-) (3p, radial
+        //   law, 169 pm) and the only comparison on screen CONTRACTED under a
+        //   caption whose whole claim is that the ion grows. Two silhouettes, two
+        //   conventions, one comparison — and it taught the opposite of itself.
+        //   Same restriction as the live shell (the one-centre s/p/d family the
+        //   hydrogenic similarity is exact for), same function, the held species'
+        //   own Z_eff: osShellOuterPmZ1 x osZUnit is osShellOuterPm, i.e. THE
+        //   SAME LAW THE LIVE SURFACE READS, not a second one that agrees today.
+        var ghostIsShell = false, ghostShellPm = null;
+        if (shellOn && ghostVal && (ghostVal.kind === "sphere" || ghostVal.kind === "lobes")) {
+            ghostShellPm = osShellOuterPmZ1(ghostVal, encKey) * osZUnit(ghostVal, ghostZ);
+            ghostIsShell = (ghostShellPm > 0);
+        }
+        //   as: 'core' asks for a spherical REGION instead of a valence shape,
+        //   and osCoreRadiusPm REFUSES an open shell (returns null). In shell mode
+        //   the request is already satisfied by the inherited shell — the two are
+        //   the SAME law read at the same subshell's own screening — so the flag
+        //   is simply subsumed and never fights the mode.
+        //   ── AND A REFUSAL IS NOW LOUD. It used to fall through to the ordinary
+        //   valence ghost, which drew the dumbbell the flag exists to suppress:
+        //   an author who asked for a sphere got lobes, with nothing on screen and
+        //   nothing in any probe to say so, and the wrong picture then passed
+        //   every gate because each half of it was drawn correctly. So a refused
+        //   core now falls back to the spherically AVERAGED shell (the honest
+        //   radius quantity for an open subshell — the same fallback the live
+        //   shell surface already makes, reported the same way) and NEVER to the
+        //   suppressed geometry, records why in PM_osGhostAsRefused, and says so
+        //   in the HUD.
+        var ghostCoreAsked = !!(ghostRes && ghostRes.as === "core");
+        var ghostCorePm = (!ghostIsShell && ghostCoreAsked) ? osCoreRadiusPm(ghostIon, encKey) : null;
+        var ghostIsCore = (ghostCorePm > 0);
+        //   the refused core's honest sphere: the spherically averaged extent of
+        //   its own outermost subshell, one call, the same law again.
+        var ghostAvgPm = null;
+        if (ghostCoreAsked && !ghostIsShell && !ghostIsCore && ghostVal
+            && (ghostVal.kind === "sphere" || ghostVal.kind === "lobes")) {
+            ghostAvgPm = osShellOuterPmZ1(ghostVal, encKey) * osZUnit(ghostVal, ghostZ);
+        }
+        var ghostIsAvg = (ghostAvgPm > 0);
+        //   named in the notation a reader uses ("3p", not the internal "3,1"
+        //   key) — a refusal nobody can parse is barely louder than a silent one.
+        var ghostAsRefused = null;
+        if (ghostCoreAsked && !ghostIsShell && !ghostIsCore) {
+            var gck = ghostIon ? ghostIon.coreKey.split(",") : null;
+            ghostAsRefused = gck
+                ? (ghostIon.label + " " + gck[0] + "spdf".charAt(Number(gck[1])) + " not full")
+                : "no species";
+        }
+        //   A ghost drawn as ANY sphere (inherited shell, accepted core, refused
+        //   core) owns no lobe id: that is what keeps the ghost lobe pool and the
+        //   ghost sphere mesh from both firing for one held species.
+        var ghostIsSphereDraw = (ghostIsShell || ghostIsCore || ghostIsAvg);
+        var ghostOrbId = (!ghostIsSphereDraw && ghostVal) ? ghostIon.valenceKey : null;
+        var ghostOrb = ghostOrbId ? OS_ORBITALS[ghostOrbId] : null;
+        //   Its outer reach in pm, through the SAME expression the live radius
+        //   readout uses (osOuterPm x osZUnit) — one law, read twice, so the held
+        //   boundary and the live one can never come from two different rules.
+        var ghostPm = ghostIsShell ? ghostShellPm
+            : (ghostIsCore ? ghostCorePm
+                : (ghostIsAvg ? ghostAvgPm
+                    : ((ghostOrb && ghostOrb.rByLev) ? osOuterPm(ghostOrb, encKey) * osZUnit(ghostOrb, ghostZ) : null)));
+        window.PM_osGhostSpecies = ghostIon ? ghostIon.label : null;
+        window.PM_osGhostZEff = ghostIsCore
+            ? ((ghostIon.zEffBy && ghostIon.zEffBy[ghostIon.coreKey] != null) ? ghostIon.zEffBy[ghostIon.coreKey] : ghostZ)
+            : ghostZ;
+        window.PM_osGhostOrbital = ghostIsShell ? ("shell " + ghostIon.valenceKey)
+            : (ghostIsCore ? ("core " + ghostIon.coreKey)
+                : (ghostIsAvg ? ("shell " + ghostIon.valenceKey) : ghostOrbId));
+        //   reported the way the live surface reports its own (PM_osSurfaceKind),
+        //   so "are these two drawn under one rule?" is one string comparison.
+        window.PM_osGhostKind = ghostIon
+            ? (ghostIsShell ? "shell" : (ghostIsCore ? "core" : (ghostIsAvg ? "shell" : "valence")))
+            : null;
+        //   EXACT (a closed subshell, or any s subshell) vs a spherical AVERAGE,
+        //   the same distinction the live shell reports — a held boundary makes
+        //   the same claim and gets held to it.
+        window.PM_osGhostExact = (ghostIon && ghostIsSphereDraw)
+            ? (ghostIsCore ? true : osShellExact(ghostIon, ghostVal)) : null;
+        window.PM_osGhostAsRefused = ghostAsRefused;
+        window.PM_osGhostPm = ghostPm;
+        // ── row E: the element overlay is redrawn from the LIVE identity every
+        //   frame, never seeded at apply — that is the whole reason element_steps
+        //   and charge_steps can move it. Both marks are pure functions of the
+        //   resolved element/charge (no accumulator, no RNG), so they hold the
+        //   SET_TIME_FREEZE byte-identity the rest of this scenario holds.
+        osDrawStrip(osIon ? osIon.sym : null);
+        osDrawCurve(os, osIon, encKey);
+        // ── THE SHELL SURFACE, part two. shellReq / shellRPm / shellOn are
+        //   resolved ABOVE the ghost block (the held species inherits them);
+        //   everything that depends on the LIVE primary alone stays here.
         // EXACT (a closed subshell, or any s subshell) vs a spherical AVERAGE (an
         // open p/d subshell, e.g. boron's 2p^1). Both are drawn; only one of them
         // may be called the shape of the density, so the difference is reported
@@ -68302,7 +68391,13 @@ export const FIELD_3D_RENDERER_CODE = `
         //   would be two objects making one claim.
         var gsph = osFindById("os_ghost_sphere");
         if (gsph) {
-            var gOn = (ghostIsCore || (!!ghostOrb && ghostOrb.kind === "sphere")) && ghostPm > 0;
+            //   ...and it is the mesh an INHERITED SHELL draws on too. In shell
+            //   mode the live boundary is one sphere, so the held one is a sphere
+            //   as well — same family, same law, same mesh — and the ghost lobe
+            //   path below is starved of an id by construction (ghostOrbId is
+            //   null on every sphere-drawn ghost), which is what makes "one held
+            //   species, one held silhouette" structural rather than a rule.
+            var gOn = (ghostIsSphereDraw || (!!ghostOrb && ghostOrb.kind === "sphere")) && ghostPm > 0;
             gsph.visible = gOn;
             if (gOn) {
                 gsph.scale.setScalar(ghostPm / OS_PM_PER_UNIT);
@@ -68415,9 +68510,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (aOrb.kind !== "lobes" && aOrb.kind !== "hybrid") continue;
             // shell mode draws the SUBSHELL as one sphere, so its member's lobes
             // are not drawn at all — a sphere with a dumbbell inside it is two
-            // claims about one object. The HELD species (ghost_species, placed
-            // above) is untouched: what a state holds as a "before" is its own
-            // decision and carries its own as: 'core' flag.
+            // claims about one object. THE HELD SPECIES OBEYS THE SAME RULE: it
+            // used to be exempted here ("what a state holds as a before is its
+            // own decision"), and that exemption was the defect — a sphere beside
+            // a dumbbell is the same two claims one object apart, and the two
+            // silhouettes were measured by two different radius laws. The held
+            // species is now suppressed UPSTREAM instead, by resolving to a
+            // sphere and owning no lobe id at all (ghostOrbId), so this loop
+            // never sees it and the two paths cannot drift apart again.
             if (shellOn) continue;
             var gth = extrF;
             // the bloom beat drives the d clover AND every hybrid set: a hybrid
@@ -69391,6 +69491,21 @@ export const FIELD_3D_RENDERER_CODE = `
                         + ((bt == null) ? "\\u2014" : Math.round(bt) + " pm"));
                 }
             }
+            // ── THE REFUSAL, SAID OUT LOUD. Not an authorable hud_lines row on
+            //   purpose: a refusal an author has to opt in to seeing is the
+            //   silent degrade one step removed, and the whole reason this is
+            //   here is that a wrong picture passed every gate because nothing
+            //   on screen or in any probe contradicted it. It appears only when
+            //   as: 'core' was asked for on a subshell that is not full, which no
+            //   correctly authored state ever does — so it is invisible in
+            //   normal operation and impossible to miss when it is not.
+            //   Two short lines rather than one long one: the HUD grows to the
+            //   LEFT from its own right edge, and a single 78-character line
+            //   pushed it to within 15 px of the canvas edge (Rule 34d).
+            if (ghostAsRefused) {
+                lines.push("held: core refused (" + ghostAsRefused + ")");
+                lines.push("showing spherical average");
+            }
             hud.innerHTML = lines.join("<br>");
         }
         // keep the explore picker in sync with the scripted (non-dragged) value
@@ -69494,6 +69609,15 @@ export const FIELD_3D_RENDERER_CODE = `
             // the live numbers twice.
             ghost: window.PM_osGhostSpecies, ghostZ: window.PM_osGhostZEff,
             ghostOrbital: window.PM_osGhostOrbital, ghostPm: window.PM_osGhostPm,
+            // ── AND WHICH RULE DREW IT. ghostKind is reported in the SAME
+            //   vocabulary as the 'surface' field below, so "is this drawn under
+            //   one law?" is the string test ghostKind === surface — the reading
+            //   that was missing when a held lobe-tip radius sat beside a live
+            //   radial-CDF one and every frame gate passed. ghostAsRefused is the
+            //   loud half: non-null means an as: 'core' request was refused and
+            //   the honest spherical average was drawn in its place.
+            ghostKind: window.PM_osGhostKind, ghostExact: window.PM_osGhostExact,
+            ghostAsRefused: window.PM_osGhostAsRefused,
             // reported only while it is ON SCREEN. Every other scale here is a
             // live-or-stale object scale, which is the right reading for a mesh
             // the state always shows; a HELD boundary is absent on most states,
