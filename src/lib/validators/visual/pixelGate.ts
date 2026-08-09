@@ -176,6 +176,10 @@ export async function runPixelGate(input: RunPixelGateInput): Promise<PixelGateR
     // H3 — render console errors (collected by screenshotter's page listeners)
     results.push(...runConsoleChecks(input.capture));
 
+    // H4 — renderer self-diagnostics ([PM_*] console.warn), the consumer that
+    // turns diagnostic_warnings from a write-only log into a gate.
+    results.push(...runDiagnosticChecks(input.capture, input.conceptId));
+
     return {
         check_results: results,
         cost_usd: 0,
@@ -501,6 +505,77 @@ function runConsoleChecks(capture: CaptureResult): CheckResult[] {
             .join(' | ');
         results.push(mkResult('H3', stateId, false,
             `${hits.length} console error(s) during capture: ${sample}${hits.length > 3 ? ` (+${hits.length - 3} more)` : ''}. A rendering exception fired even if pixels look plausible — fix the throw, not the symptom.`));
+    }
+    return results;
+}
+
+// ─── H4 — renderer self-diagnostics ───────────────────────────────────────────
+
+/**
+ * Per-concept allow-list of [PM_*] diagnostic prefixes that are EXPECTED and so
+ * do not fail H4.
+ *
+ * Deliberately empty. An entry here says "this renderer is shouting about its
+ * own broken state and we are shipping it anyway", which is a founder call, not
+ * an author's convenience — so every entry needs a written reason and the state
+ * ids it applies to. Silencing a diagnostic to get a green run re-creates the
+ * exact hole H4 exists to close: `[PM_NLB_ENERGY_CLAMP]` sat in four EYE runs of
+ * work_energy_theorem for two days, reporting "v = 0.00 m/s" beside "K = 62.7 J",
+ * while every failing check id was an unrelated stale baseline.
+ */
+const H4_ALLOWED_PREFIXES: Record<string, { prefixes: string[]; reason: string }> = {};
+
+/** `[PM_NLB_ENERGY_CLAMP] body 'block' reached …` → `PM_NLB_ENERGY_CLAMP`. */
+function diagnosticPrefix(text: string): string | undefined {
+    return /\[(PM_[A-Z0-9_]+)\]/.exec(text)?.[1];
+}
+
+/**
+ * A clamp or an overflowed scale is an AUTHORING fault (the motion plan ran the
+ * body into a bound, or the authored bar range is too small) — routing it to the
+ * engine wastes a surgeon dispatch on a JSON edit.
+ */
+function diagnosticOwner(prefix: string): string {
+    return /^PM_NLB_ENERGY_(CLAMP|SCALE)$/.test(prefix) || /_SCALE$/.test(prefix)
+        ? 'alex:architect'
+        : 'peter_parker:field3d_surgeon';
+}
+
+/**
+ * One H4 CheckResult per state that emitted an unallow-listed renderer
+ * self-diagnostic, plus a single passing summary row when the capture was clean.
+ * Deterministic and $0.
+ */
+function runDiagnosticChecks(capture: CaptureResult, conceptId: string): CheckResult[] {
+    const allowed = new Set(H4_ALLOWED_PREFIXES[conceptId]?.prefixes ?? []);
+    const byState = new Map<string, Map<string, string>>();
+
+    for (const w of capture.diagnostic_warnings ?? []) {
+        const prefix = diagnosticPrefix(w.text);
+        if (prefix === undefined || allowed.has(prefix)) continue;
+        // Dedupe per state+prefix: nlbEnWarnOnce is once-per-context, but a
+        // multi-context capture (state drive + dense pass + frozen pin) repeats
+        // the same warning and N copies are one defect, not N.
+        const forState = byState.get(w.state_id) ?? new Map<string, string>();
+        if (!forState.has(prefix)) forState.set(prefix, w.text);
+        byState.set(w.state_id, forState);
+    }
+
+    if (byState.size === 0) {
+        const note = allowed.size > 0
+            ? ` (allow-listed for this concept: ${[...allowed].join(', ')} — ${H4_ALLOWED_PREFIXES[conceptId]?.reason})`
+            : '';
+        return [mkResult('H4', 'ALL_STATES', true,
+            `OK — zero renderer self-diagnostics during capture.${note}`)];
+    }
+
+    const results: CheckResult[] = [];
+    for (const [stateId, hits] of byState) {
+        const detail = [...hits.entries()]
+            .map(([prefix, text]) => `[owner: ${diagnosticOwner(prefix)}] ${text.length > 260 ? text.slice(0, 260) + '…' : text}`)
+            .join(' | ');
+        results.push(mkResult('H4', stateId, false,
+            `${hits.size} renderer self-diagnostic(s): ${detail} The renderer is reporting its own broken state — the pixels can look plausible while a bar is frozen or pinned, so fix the cause rather than re-baselining over it.`));
     }
     return results;
 }
