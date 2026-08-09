@@ -65,13 +65,33 @@ async function main(): Promise<void> {
 
     const isMulti = cached.sim_type === 'multi_panel' && !!cached.secondary_sim_html;
     const durationMsByState = deriveStateDurationsMs(cached.physics_config);
-    const expectsMotion = deriveMotionExpectations(cached.physics_config);
 
-    // TTS math_show replay — drives SET_MATH so the equation panel renders in
-    // dedicated I2 frames (the headless capture never plays TTS). $0 — these are
-    // just extra screenshots dumped to disk so the founder/Claude can confirm
-    // every formula actually renders before paying for the vision smoke.
+    // Loaded BEFORE the motion derivation below — see the comment there. (It is
+    // also the TTS math_show source further down; one load serves both.)
     const conceptJson = loadConceptJson(conceptId);
+
+    // D5's motion expectations read `conceptJson ?? cached.physics_config`, the
+    // SAME source as the reveal/hold derivations below — and the reason is a
+    // measured one, not symmetry for its own sake.
+    //
+    // SCAR (2026-08-09, lines_and_planes_in_space bring-up; the mechanism behind
+    // the OPEN row eye_gate_skipped_for_an_unregistered_scenario_is_counted_as_a_pass):
+    // this read `cached.physics_config` alone. A SUBJECT-NAMESPACE concept
+    // (chemistry / mathematics) is HAND-SEEDED into simulation_cache, and its
+    // seeded physics_config carries only `epic_l_path` — no field_3d_config and
+    // no states. So resolveField3dStates() returned null, deriveMotionExpectations
+    // returned {}, every state's expectation was `undefined`, and D5 emitted
+    // "Skipped — motion expectation unknown" on EVERY state while visual_eyes
+    // aggregated those skips into the headline pass count. Measured on the first
+    // run of lines_and_planes_in_space: "39 checks · 39 passed · 0 failed" where
+    // NINE were skips (8x D5 + H2) and the motion gate had never executed once.
+    //
+    // This is why registering `vg` in deriveMotionExpectations did not make D5
+    // run on vector_products_in_space either: the registration was never
+    // reachable, because the config handed to it does not contain the states the
+    // resolver looks for. A gate fed the wrong source cannot be fixed by teaching
+    // it about a new scenario.
+    const expectsMotion = deriveMotionExpectations(conceptJson ?? cached.physics_config);
     const ttsBindings = conceptJson ? extractTtsVisualBindings(conceptJson) : {};
     const ttsMathByState = Object.keys(ttsBindings).length > 0 ? buildTtsMathByState(ttsBindings) : undefined;
     const i2FormulaStates = ttsMathByState ? Object.keys(ttsMathByState).length : 0;

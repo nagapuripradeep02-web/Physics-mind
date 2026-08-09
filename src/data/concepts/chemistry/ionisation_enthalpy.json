@@ -1,0 +1,1089 @@
+{
+  "concept_id": "ionisation_enthalpy",
+  "concept_name": "Ionisation Enthalpy: The Energy Cost of Removing an Electron",
+  "chapter": 3,
+  "section": "3.7.1(c)",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "complex",
+  "source_book": "NCERT Chemistry Class 11, Ch.3 'Classification of Elements and Periodicity in Properties', §3.7.1(c) — ionisation enthalpy: the definition (ΔᵢH₁), the size/pull link, periodic and group trends, successive ionisation enthalpies and the shell-structure evidence they carry, and the Be/B and N/O anomalies where the screening model measurably fails — chapter-index scope and vocabulary reference only (the terms 'ionisation enthalpy', 'successive ionisation enthalpies', ΔᵢH₁ meet the student's own textbook and exam); teaching, sequence and phrasing authored from first principles. NCERT Exemplar consulted for misconception beliefs only (every electron costs about the same; ionisation energy just rises across a period); no problem text, figure or worked example imported. Every ionisation enthalpy shown is a direct citation (CRC 97th / NIST ASD, OS_IE), never computed by the engine; every radius, Z_eff and Slater screening figure is independently re-derived from the exact hydrogenic radial functions and Slater's rules. Second concept of the Ch.3 periodicity wave (desk feat/chemistry-periodicity), second concept on the field_3d orbital_shapes surface.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "orbital_shapes"
+    ]
+  },
+  "prerequisites": [
+    "atomic_and_ionic_radius",
+    "bohr_model_energy_levels"
+  ],
+  "real_world_anchor": {
+    "primary": "Sodium must be stored under oil; neon needs no protection at all. How easily an atom gives up its outer electron decides how it behaves, and that ease is a measured number: 495.8 kJ/mol for sodium, 2080.7 for neon."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_2"
+    },
+    "period_trend": {
+      "start": "STATE_3",
+      "end": "STATE_3"
+    },
+    "group_trend": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "successive_ie": {
+      "start": "STATE_5",
+      "end": "STATE_6"
+    },
+    "anomalies": {
+      "start": "STATE_7",
+      "end": "STATE_7"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Z": {
+        "name": "nuclear charge (atomic number)",
+        "unit": "e",
+        "min": 1,
+        "max": 20,
+        "default": 11
+      },
+      "S": {
+        "name": "Slater screening constant",
+        "unit": "e",
+        "min": 0,
+        "max": 5.85
+      },
+      "Z_eff": {
+        "name": "effective nuclear charge",
+        "unit": "e",
+        "derived": "Z - S",
+        "min": 1.3,
+        "max": 6.85
+      },
+      "r90": {
+        "name": "90%-boundary radius (this concept's guided-state range)",
+        "unit": "pm",
+        "derived": "r90_Z1(orbital) / Z_eff",
+        "min": 61.75,
+        "max": 808.71
+      },
+      "n": {
+        "name": "principal quantum number of the drawn valence shell",
+        "unit": "dimensionless",
+        "min": 2,
+        "max": 4
+      },
+      "charge": {
+        "name": "ion charge",
+        "unit": "e",
+        "min": -3,
+        "max": 3,
+        "default": 0
+      },
+      "k": {
+        "name": "electron index — the k-th electron removed (IE index = charge + 1)",
+        "unit": "dimensionless",
+        "min": 1,
+        "max": 5,
+        "default": 1
+      },
+      "IE_k": {
+        "name": "k-th ionisation enthalpy (cited, never computed)",
+        "unit": "kJ/mol",
+        "min": 418.8,
+        "max": 14842
+      }
+    },
+    "computed_outputs": {
+      "ie_measured_hud": {
+        "formula": "IE_k for the species/index on screen, printed 'IEk = <value> kJ/mol (measured)' with a real <sub> k index; em dash for an anion or an index past the citation"
+      },
+      "staircase_rung_count": {
+        "formula": "osIeDrawCount(element) = valence electron count (neutral) + 2 -- e.g. Na 3, Mg 4, Al 5 -- derived so the cliff always lands one rung from the right edge, keyed to the NEUTRAL atom so the axis never rescales under a charge drag"
+      },
+      "radius_hud_pm": {
+        "formula": "r90_pm, printed 'r = <n> pm (90%)', or with the ', spherical average' suffix on an open p subshell (from S2/F on — never on Li, Be, or a full subshell like Ne)"
+      },
+      "z_eff_hud": {
+        "formula": "Z_eff, printed '(Slater)' -- S7 only in this concept (38b: the symbol is the prerequisite's, not taught in this concept's own core states)"
+      },
+      "delta_ratio_display": {
+        "formula": "IE_2 / IE_1, arithmetic on two citations, printed '9.2 x' on S5's formula surface"
+      }
+    },
+    "formulas": {
+      "z_eff": "Z - S",
+      "r90_pm": "r90_Z1[orbital] / Z_eff",
+      "ie_index": "charge + 1",
+      "delta_h2_over_delta_h1": "IE_2 / IE_1"
+    },
+    "constraints": [
+      "electron count is exactly conserved in every ionisation equation (Na 11e- -> Na+ 10e- + 1e-; Na+ 10e- -> Na2+ 9e- + 1e-)",
+      "charge balances on both sides of every ionisation equation (0 = +1 + -1; +1 = +2 + -1)",
+      "every ionisation enthalpy on any surface is a citation from OS_IE (CRC 97th / NIST ASD), stamped (measured); the engine never computes an IE",
+      "the model series (Slater-hydrogenic 13.6 Z_eff^2/n^2) is drawn only beside the measurement, in its own colour/dash/mark, and is never stamped (measured)",
+      "the staircase rung count is keyed to the neutral atom's valence electron count, never to the live charge, so the axis never rescales under a marker mid-state",
+      "ion charge is always an integer in {-3 ... +3}; no fractional charge is ever shown"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "Energy to remove an electron",
+        "duration": 14,
+        "depth_ring": "core",
+        "focal_primitive_id": "s1_cost_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s1_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "sodium's outer electron, before removal",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_cost_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "removing it costs energy — measured",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "s1_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "495.8 kilojoules per mole for sodium",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Sodium must be stored under oil; neon needs no protection at all.",
+              "glow": "surface"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Pulling one electron off an atom costs energy — the ionisation enthalpy, ΔᵢH₁, also written IE₁.",
+              "glow": "surface"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Sodium's cost: 495.8 kilojoules per mole, measured.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Lithium and fluorine compared",
+        "duration": 16,
+        "depth_ring": "core",
+        "focal_primitive_id": "s2_pull_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s2_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "lithium and fluorine, same outer shell",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_pull_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "fluorine has far more protons pulling",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "s2_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "520.2 versus 1681.0 kilojoules per mole",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Lithium and fluorine both keep their outermost electron in the second shell, but fluorine feels far more protons with little screening.",
+              "glow": "surface"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Lithium's electron costs 520.2 kilojoules per mole; fluorine's costs 1681.0.",
+              "glow": "surface"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Fluorine's outer subshell is only part filled, so radius reads as a spherical average.",
+              "glow": "surface"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Cost rises across a period",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s3_inversion_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s3_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "across period two, element by element",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_inversion_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "size falls while removal cost rises",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "s3_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "371 down to 72 picometres; 520 up to 2081",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Across period two, rising nuclear charge pulls each shell in — lithium 371 picometres down to neon 72 — while the same charge raises the removal cost, step by step: 520 up to 2081 kilojoules per mole."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Cost falls down a group",
+        "duration": 15,
+        "depth_ring": "core",
+        "focal_primitive_id": "s4_shell_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s4_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "down a group, one more shell each step",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_shell_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "outer electron sits farther from the nucleus",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "s4_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "520.2, then 495.8, then 418.8 kilojoules per mole",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Down a group, sodium's outer electron starts in a new, farther shell than lithium's — potassium's farther still, shell four."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Farther out and screened by more inner electrons, removal costs less each step: 520.2, then 495.8, then 418.8 kilojoules per mole."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Second electron costs more",
+        "duration": 20,
+        "depth_ring": "core",
+        "focal_primitive_id": "s5_cliff_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s5_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "sodium's staircase, three rungs, fixed",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_cliff_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "the second electron costs nine times more",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s5_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "495.8, then 4562, then 6910.3 kilojoules per mole",
+            "color": "#81D4FA"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Every electron costs about the same to remove.",
+            "visual_counter": "The second electron's rung stands about nine times taller than the first electron's rung on one staircase, and the HUD reading steps from 495.8 up to 4562.",
+            "one_line_fix": "The second electron comes from a full inner shell, much closer to the nucleus — that is the jump."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Sodium's staircase is fixed on screen: three rungs, complete before anything moves."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The first electron costs 495.8 kilojoules per mole."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The second climbs the same staircase to 4562 — the jump, nine times taller."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "The second electron comes from a full inner shell, closer to the nucleus, causing the jump."
+            },
+            {
+              "id": "s5_5",
+              "text_en": "The third rung: 6910.3."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Counting valence electrons from jumps",
+        "duration": 18,
+        "depth_ring": "core",
+        "focal_primitive_id": "s6_jump_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s6_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "the staircase swaps with each element",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_jump_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "where the jump falls counts the valence electrons",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "s6_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "sodium one, magnesium two, aluminium three",
+            "color": "#81D4FA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now the whole staircase swaps with the element, and the jump moves."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Sodium's one valence electron puts the jump after the first rung."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Magnesium has two electrons: 737.7, 1450.7, then the jump at 7732.7, after the second rung."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Aluminium has three: 577.5, 1816.7, 2744.8, then 11577."
+            },
+            {
+              "id": "s6_5",
+              "text_en": "The jump position counts the valence electrons."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Model fails at boron",
+        "duration": 22,
+        "depth_ring": "extended",
+        "focal_primitive_id": "s7_dip_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s7_setup_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "measured cost against the screening model",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_dip_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "the measured trace dips; the model does not",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "s7_number_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "899.5 down to 800.6; 1402.3 down to 1313.9",
+            "color": "#81D4FA"
+          }
+        ],
+        "misconception_watch": [
+          {
+            "belief": "Across a period the ionisation cost only rises.",
+            "visual_counter": "The amber measured trace dips at boron and at oxygen while the cyan model trace rises through both points.",
+            "one_line_fix": "The rise holds shell by shell — a new subshell at boron and a shared orbital at oxygen each make removal cheaper."
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Measured, the cost dips at boron: 899.5 down to 800.6 kilojoules per mole."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Boron's new electron sits in a different, higher subshell — the model, rising smoothly, misses this."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Measured, oxygen dips: 1402.3 down to 1313.9; two electrons now share one orbital, a cause not shown here."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "The axis is compressed so both traces fit."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Explore ionisation enthalpy",
+        "duration": 0,
+        "depth_ring": "core",
+        "focal_primitive_id": "s8_charge_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "s8_pick_label",
+            "position": {
+              "x": 200,
+              "y": 70
+            },
+            "text": "choose any element",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_charge_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "choose any charge",
+            "color": "#E040FB"
+          },
+          {
+            "type": "annotation",
+            "id": "s8_watch_label",
+            "position": {
+              "x": 560,
+              "y": 400
+            },
+            "text": "size and removal cost respond together",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Now choose any element and any charge, and watch the size and the removal cost respond together.",
+              "glow": "surface"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Sodium's second electron costs nine times the first — a shell edge, not a slope.",
+    "visual_confirmation": "the staircase's second rung stands about nine times taller than the first, and the HUD reading steps from 495.8 to 4562 kJ/mol as the marker climbs"
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 30,
+    "max_labels_per_state": 14,
+    "max_words_per_tts_sentence": 34
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same energy-cost idea, argon's first ionisation instead of sodium's",
+      "physical_world": "Argon, a noble gas with a full outer shell, still gives up its outermost electron for a real, measured energy cost — far higher than sodium's, because argon's outer electrons are held by a much larger effective nuclear charge with no easy shell to empty into.",
+      "same_physics": "Identical reasoning: the ionisation enthalpy is a citation from the same measured table, the removal is the same all-or-nothing cut, and the same successive-IE staircase logic applies — only the element and its numbers change, never the physics."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Chemistry, Ch.3 'Classification of Elements and Periodicity in Properties', §3.7.1(c) — ionisation enthalpy, periodic and group trends, successive ionisation enthalpies, the Be/B and N/O anomalies",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "JEE Main/Advanced · NEET",
+        "coverage": "full",
+        "syllabus_unit": "full concept; successive-IE tables and the Be/B, N/O anomaly ordering are recurring items across both exams",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge A-level Chemistry (9701)",
+        "coverage": "full",
+        "syllabus_unit": "first and successive ionisation energies, periodic trends, anomalies at Be/B and N/O — uses 'ionisation energy' where CBSE says 'ionisation enthalpy'",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "periodic trends in ionisation energy at SL/HL; successive ionisation energies as shell-structure evidence",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "periodic trends in ionisation energy, including the p-subshell exceptions at Be/B and N/O",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "first ionisation energy and its periodic/group trend; successive ionisation energies as evidence for electron shells",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ],
+    "notes": "Rule 38g: every non-CBSE cell is a CLAIM. Only CBSE/NCERT is author-verified against the live syllabus; no preset goes teacher-visible until a teacher of that curriculum confirms its row. Dialect note (38d): 'ionisation' spelling (NCERT/IGCSE/A-level), not US 'ionization'; 'ionisation enthalpy' (CBSE/NCERT) vs 'ionisation energy' (JEE/NEET, IGCSE, IB DP, AP, A-level) — dual-labelled once at STATE_1, then bare thereafter."
+  },
+  "field_3d_config": {
+    "scenario_type": "orbital_shapes",
+    "explorer_id": "ionisation_explorer",
+    "field_lines": {
+      "opacity": 0
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8"
+    },
+    "slider_controls": {
+      "element": {
+        "default": "Na"
+      },
+      "charge": {
+        "default": 0
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Neutral sodium's outer 3s shell, then one clean cut removes the electron",
+        "caption": "Energy to remove one electron",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "element": "Na",
+          "charge_steps": [
+            {
+              "at_ms": 0,
+              "charge": 0
+            },
+            {
+              "at_ms": 9000,
+              "charge": 1
+            }
+          ],
+          "ghost_species": [
+            {
+              "at_ms": 8400,
+              "element": "Na",
+              "charge": 0
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": null,
+          "hud_lines": [
+            "element",
+            "radius"
+          ],
+          "formula": "Na(g) → Na⁺(g) + e⁻ · ΔᵢH₁ = 495.8 kJ/mol (measured)",
+          "show_formula": true,
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 7.0
+          },
+          "controls": []
+        }
+      },
+      "STATE_2": {
+        "label": "Lithium's shell held as a ghost while fluorine's own, far smaller shell cuts in",
+        "caption": "Smaller atom, more energy",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "element_steps": [
+            {
+              "at_ms": 0,
+              "element": "Li"
+            },
+            {
+              "at_ms": 11000,
+              "element": "F"
+            }
+          ],
+          "charge": 0,
+          "ghost_species": [
+            {
+              "at_ms": 10400,
+              "element": "Li",
+              "charge": 0
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": null,
+          "hud_lines": [
+            "element",
+            "radius",
+            "ie_measured"
+          ],
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 5.9
+          },
+          "controls": []
+        }
+      },
+      "STATE_3": {
+        "label": "Eight elements step across period two — the shell shrinks while the removal cost climbs",
+        "caption": "Size falls, energy rises",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "charge": 0,
+          "element_steps": [
+            {
+              "at_ms": 0,
+              "element": "Li"
+            },
+            {
+              "at_ms": 2200,
+              "element": "Be"
+            },
+            {
+              "at_ms": 4400,
+              "element": "B"
+            },
+            {
+              "at_ms": 6600,
+              "element": "C"
+            },
+            {
+              "at_ms": 8800,
+              "element": "N"
+            },
+            {
+              "at_ms": 11000,
+              "element": "O"
+            },
+            {
+              "at_ms": 13200,
+              "element": "F"
+            },
+            {
+              "at_ms": 15400,
+              "element": "Ne"
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": {
+            "table": true,
+            "curve": "ie_vs_z",
+            "mark": "line"
+          },
+          "hud_lines": [
+            "element",
+            "radius",
+            "ie_measured"
+          ],
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 5.9
+          },
+          "controls": [
+            "element"
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Lithium, then sodium, then potassium — each outer electron opens one shell farther out",
+        "caption": "Outer shell, less energy",
+        "orbital_shapes": {
+          "orbital": "valence",
+          "charge": 0,
+          "element_steps": [
+            {
+              "at_ms": 0,
+              "element": "Li"
+            },
+            {
+              "at_ms": 5000,
+              "element": "Na"
+            },
+            {
+              "at_ms": 10000,
+              "element": "K"
+            }
+          ],
+          "ghost_species": [
+            {
+              "at_ms": 4400,
+              "element": "Li",
+              "charge": 0
+            },
+            {
+              "at_ms": 9400,
+              "element": "Na",
+              "charge": 0
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": {
+            "table": true,
+            "curve": null
+          },
+          "hud_lines": [
+            "element",
+            "radius",
+            "ie_measured"
+          ],
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 11.0
+          },
+          "controls": [
+            "element"
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "Sodium's three-rung staircase is complete before anything moves; the marker climbs it electron by electron",
+        "caption": "Second electron costs far more",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "element": "Na",
+          "charge_steps": [
+            {
+              "at_ms": 0,
+              "charge": 0
+            },
+            {
+              "at_ms": 6500,
+              "charge": 1
+            },
+            {
+              "at_ms": 13800,
+              "charge": 2
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": {
+            "table": false,
+            "curve": "ie_successive",
+            "mark": "step"
+          },
+          "hud_lines": [
+            "element",
+            "ie_measured"
+          ],
+          "formula": "ΔᵢH₂ = 9.2 × ΔᵢH₁ (measured)",
+          "show_formula": true,
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 7.0
+          },
+          "controls": [
+            "charge"
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "The whole staircase swaps whole at each element, and the cliff lands one rung further right",
+        "caption": "The jump gives valence count",
+        "orbital_shapes": {
+          "orbital": "shell",
+          "charge": 0,
+          "element_steps": [
+            {
+              "at_ms": 0,
+              "element": "Na"
+            },
+            {
+              "at_ms": 6000,
+              "element": "Mg"
+            },
+            {
+              "at_ms": 13500,
+              "element": "Al"
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": {
+            "table": true,
+            "curve": "ie_successive",
+            "mark": "step"
+          },
+          "hud_lines": [
+            "element",
+            "ie_measured"
+          ],
+          "formula": "valence electrons = last k before the jump",
+          "show_formula": true,
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 7.0
+          },
+          "controls": [
+            "element"
+          ]
+        }
+      },
+      "STATE_7": {
+        "label": "Measured cost and the Slater model drawn on one axis — the measured trace dips twice where the model does not",
+        "caption": "Measured dips; model rises",
+        "orbital_shapes": {
+          "orbital": "valence",
+          "charge": 0,
+          "element_steps": [
+            {
+              "at_ms": 0,
+              "element": "Be"
+            },
+            {
+              "at_ms": 5500,
+              "element": "B"
+            },
+            {
+              "at_ms": 11000,
+              "element": "N"
+            },
+            {
+              "at_ms": 16500,
+              "element": "O"
+            }
+          ],
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 600,
+          "overlay": {
+            "table": true,
+            "curve": "ie_vs_z",
+            "model_series": true
+          },
+          "hud_lines": [
+            "element",
+            "z_eff",
+            "ie_measured"
+          ],
+          "camera": {
+            "az": 6,
+            "el": 26,
+            "dist": 3.4
+          },
+          "controls": [
+            "element"
+          ]
+        }
+      },
+      "STATE_8": {
+        "label": "Every taught dial live at once — drag any element, drag any charge",
+        "caption": "Explore ionisation enthalpy",
+        "orbital_shapes": {
+          "mode": "explore",
+          "orbital": "shell",
+          "element": "Na",
+          "charge": 0,
+          "z_eff": "slater",
+          "show_surface": true,
+          "show_dots": false,
+          "show_axes": false,
+          "show_labels": true,
+          "show_hud": true,
+          "dot_target": 1600,
+          "overlay": {
+            "table": true,
+            "curve": "ie_successive",
+            "mark": "step"
+          },
+          "hud_lines": [
+            "element",
+            "radius",
+            "ie_measured"
+          ],
+          "formula": "X(g) → X⁺(g) + e⁻ · ΔᵢH₁",
+          "show_formula": true,
+          "camera": {
+            "az": 35,
+            "el": 24,
+            "dist": 11.0
+          },
+          "controls": [
+            "element",
+            "charge"
+          ]
+        }
+      }
+    }
+  }
+}

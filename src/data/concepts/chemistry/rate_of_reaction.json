@@ -1,0 +1,1201 @@
+{
+  "concept_id": "rate_of_reaction",
+  "concept_name": "Rate of a chemical reaction",
+  "chapter": 3,
+  "section": "3.1",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "source_book": "NCERT Chemistry Class 12 Ch.3 (Chemical Kinetics) §3.1 + Cambridge IGCSE / IB DP Reactivity 2.2 / AP Chem Unit 5 (TOPIC 5.1) / Cambridge A-level Reaction Kinetics",
+  "concept_tier": "medium",
+  "renderer_pair": {
+    "panel_a": "particle_field",
+    "panel_b": "particle_field"
+  },
+  "available_renderer_scenarios": {
+    "particle_field": [
+      "gas_box"
+    ]
+  },
+  "prerequisites": [
+    "kinetic_particle_theory",
+    "collision_theory_activation_energy"
+  ],
+  "real_world_anchor": {
+    "primary": "An effervescent tablet dropped in a glass of water fizzes hard at first, then weaker, then stops. The bubble stream is a rate meter you can watch: lots of tablet left means fast fizzing, little left means slow, none left means zero. Nobody times the whole fizz and calls that 'the rate' — the fizzing at the first second and at the last second are plainly different speeds, which is exactly average rate versus instantaneous rate.",
+    "secondary": "A glow stick is brightest just after snapping and dims over the hours — the light output tracks a chemical reaction slowing down as its reactants are used up.",
+    "why_it_matters": "Every student has watched a fizz die down. This concept gives that dying-down a number and a slope: how a reaction rate is measured, why the measured number falls as the reaction proceeds, and what 'the rate at one instant' actually means."
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_4"
+    },
+    "average_rate": {
+      "start": "STATE_3",
+      "end": "STATE_4"
+    },
+    "instantaneous_rate": {
+      "start": "STATE_5",
+      "end": "STATE_6"
+    },
+    "units": {
+      "start": "STATE_3",
+      "end": "STATE_3"
+    },
+    "stoichiometry": {
+      "start": "STATE_6",
+      "end": "STATE_6"
+    },
+    "exploration": {
+      "start": "STATE_7",
+      "end": "STATE_7"
+    }
+  },
+  "physics_engine_config": {
+    "variables": {
+      "T": {
+        "name": "temperature of the gas",
+        "unit": "K",
+        "min": 200,
+        "max": 800,
+        "default": 300,
+        "role": "taught_variable",
+        "note": "S7 only (exploration). Every guided state (S1-S6) holds T fixed at 300 K — this concept never teaches the temperature dependence (that is collision_theory_activation_energy's job)."
+      },
+      "t_lo": {
+        "name": "measuring window position",
+        "unit": "s",
+        "min": 3,
+        "max": 23,
+        "default": 15,
+        "role": "taught_variable",
+        "note": "Conceptual/documentation units are SECONDS (this row). The renderer's kinetics_mark_bind reads the slider's RAW numeric value with no unit conversion, so the actual authored particle_field_config.slider_controls.t_lo widget is declared in MILLISECONDS (min 3000, max 23000, default 7000) — the x1000 conversion happens at authoring time, not at runtime. gasKinEffectiveMarks binds t_lo to the LAST mark's CENTRE — a true centre-pinned symmetric resize (position moves the centre, span moves the half-width about it), not a moving left/right edge. STATE_4 also declares this binding on its own last (late) mark, but never shows the slider row (only STATE_7 authors show_sliders — Rule 31 contextual controls), so no teacher ever drags t_lo while STATE_4 is open; the default only has to match the ONE state whose row is live, STATE_7, whose own authored mark is centred at 7000 ms — the same canonical instant STATE_3/4/5/6 use (see authoring_notes.window_centre_recentred_2026_08_09). A mismatched default (15000) put the slider thumb 8 s away from the drawn window's actual centre, so the first touch teleported the window; the default is now the authored centre."
+      },
+      "t_span": {
+        "name": "measuring window half-width",
+        "unit": "s",
+        "min": 1,
+        "max": 5,
+        "role": "taught_variable",
+        "note": "Conceptual units SECONDS; the actual slider_controls.t_span widget is authored in MILLISECONDS (min 1000, max 5000, default 3000) for the same reason as t_lo. gasKinEffectiveMarks binds t_span to the LAST mark's HALF-WIDTH about its centre (a true centre-pinned symmetric resize, never a t1 = t0 + span extension) — dragging t_span alone shrinks or grows the window symmetrically without moving its centre, which is exactly S5's own thesis (pin the centre, shrink the window, watch the number hold). max=5 (5000 ms) is the MEASURED data-availability bound at the canonical window's centre, t=7000 ms (moved from an original, unsatisfiable 5000 ms — see authoring_notes.window_centre_recentred_2026_08_09): a 5000 ms half-width there needs data back to t=2000 ms, landing exactly on the t0_ms floor (DQ-4), not a style choice. S5 binds t_span to the mark's half-width; S7 binds it too."
+      },
+      "N": {
+        "name": "total particle count — a declared Rule 32d density exception (4x the sibling/collision_theory's 180), the noise-floor fix for a measurable fitted slope",
+        "unit": "particles",
+        "constant": 720,
+        "role": "calibration",
+        "note": "Authored alongside species_counts in EVERY state without exception. This concept keeps the reaction ON in every state (unlike collision_theory), so gasSyncCount treats N as a delta control rather than a truncating population cap — but N is still authored explicitly per state as a defensive, load-bearing habit (the truncation trap only fires with the reaction off, and a future retrofit that turns the reaction off in some state must not rediscover the trap)."
+      },
+      "activation_fwd_kT": {
+        "name": "the reaction layer's forward barrier — collision_theory_activation_energy's own value, reused because that concept owns the barrier",
+        "unit": "",
+        "constant": 3,
+        "role": "reaction_constant",
+        "note": "NOT collision_theory's suppressed-per-state value — the reaction is ON from STATE_1 here (this concept watches the reaction run), so activation_fwd_kT is authored once at config level and never overridden per state."
+      },
+      "reverse_attempt_per_s": {
+        "name": "reverse pre-exponential factor — pinned to zero everywhere (this box is irreversible)",
+        "unit": "s^-1",
+        "constant": 0,
+        "role": "reaction_constant",
+        "note": "The renderer DEFAULT is 3.5, not 0 — every one of this concept's seven states authors reaction.reverse_attempt_per_s: 0 explicitly. Omitting it on any state silently makes that state reversible, which would let the box level off at a balance instead of running out of reactant (the misconception this concept must NOT teach — see S1's narration clause)."
+      },
+      "ea_ref_T": {
+        "name": "reference temperature the counter/reaction barrier is pinned to",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "speed_scale": {
+        "name": "velocity calibration, sigma = speed_scale * sqrt(T/m)",
+        "unit": "px/tick/K^0.5",
+        "constant": 0.105,
+        "role": "calibration"
+      },
+      "temperature_K": {
+        "name": "opening temperature of the box",
+        "unit": "K",
+        "constant": 300,
+        "role": "calibration"
+      },
+      "activation_energy_kT": {
+        "name": "the collision-counter's own teaching barrier",
+        "unit": "",
+        "constant": 0,
+        "role": "calibration",
+        "note": "Authored as 0 in every state (skeleton §3e) — no threshold overlay, no shaded tail, no clearing flash is ever shown in this concept. The reaction layer's own activation_fwd_kT gates bonding invisibly, without an on-canvas barrier graphic."
+      },
+      "bond_energy_kT": {
+        "name": "energy released on bonding (exothermic forward)",
+        "unit": "",
+        "constant": 2.1,
+        "role": "reaction_constant",
+        "note": "Reused verbatim from the shipped fleet constant. INERT in this concept: with reverse_attempt_per_s pinned to 0 in every state, bond_energy_kT only ever feeds Ea_rev (the reverse barrier), and the reverse direction never fires. Kept for documentation completeness only; never narrated."
+      },
+      "m_A": {
+        "name": "mass of reactant A",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_B": {
+        "name": "mass of reactant B",
+        "unit": "engine mass units",
+        "constant": 1,
+        "role": "species"
+      },
+      "m_AB": {
+        "name": "mass of the bonded pair — derived, never authored",
+        "unit": "engine mass units",
+        "derived": "m_A + m_B",
+        "role": "species"
+      },
+      "r_A": {
+        "name": "disc radius of A",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_B": {
+        "name": "disc radius of B",
+        "unit": "px",
+        "constant": 5,
+        "role": "species"
+      },
+      "r_AB": {
+        "name": "disc radius of the bonded pair — derived, never authored",
+        "unit": "px",
+        "derived": "sqrt(r_A^2 + r_B^2)",
+        "role": "species"
+      },
+      "rate_A": {
+        "name": "rate read from the falling [A] curve — the SIGN-CORRECTED quantity the concept teaches as 'the rate'",
+        "unit": "discs/s",
+        "derived": "-gasKinFitWindow('A', t0_ms, t1_ms).rateDiscsPerSec",
+        "role": "live_readout",
+        "note": "The raw fitted slope on a FALLING curve is negative; the concept's own definition (rate = -delta[A]/delta t) is what makes the printed rate positive. THE CALCULATOR reads this derived expression as ground truth. The on-canvas kinetics_mark chip (drawGasKinMarks in particle_field_renderer.ts) resolves the sign from the species' stoichiometric role, so an 'A'-series mark's chip now prints this same sign-corrected positive value (measured: raw −16.61 → displayed +16.61) — the negate-option gap once flagged here was closed in particle_field_renderer.ts, see authoring_notes.kinetics_engine_gaps_closed_2026_08_07. Every 'A'-series kinetics_mark in this concept is authored to match '-Δ[A]/Δt', matching what the curve on screen literally is, and S3's narration teaches the sign flip as a definitional step."
+      },
+      "rate_AB": {
+        "name": "rate read from the rising [AB] curve — already positive, no sign correction needed",
+        "unit": "discs/s",
+        "derived": "gasKinFitWindow('AB', t0_ms, t1_ms).rateDiscsPerSec",
+        "role": "live_readout",
+        "note": "Used by S6's mirror-tangent construction. Matches rate_A in magnitude by construction (1:1:1 stoichiometry, irreversible)."
+      }
+    },
+    "formulas": {
+      "rate_definition": "rate = −Δ[A]/Δt = +Δ[AB]/Δt",
+      "rate_derivative": "rate = −d[A]/dt = +d[AB]/dt",
+      "units_lab": "mol L⁻¹ s⁻¹",
+      "units_box": "discs/s",
+      "reaction_ledger": "A(g) + B(g) → AB(g)"
+    },
+    "computed_outputs": {
+      "count_A_S4_start_end": {
+        "formula": "A: 360 discs at STATE_4 entry -> about 117 discs at STATE_4 end (26 s run, phys_seed 818518434) — exact, authored, per-tick populations, screen-independent; this count evidence is what STATE_4 narrates"
+      },
+      "rate_and_ratio_not_narratable": {
+        "formula": "discs/s fitted rates (and any early:late ratio built from them) are set by box AREA — under design.fill_viewport that area is the teacher's browser viewport, so the fitted number and the fitted ratio are both screen-dependent. Measured at five common geometries: STATE_4's early:late ratio ranged 1.79:1 (1024x768) to 3.35:1 (900x560, the authored-but-unused canvas size), below the concept's own 2.5:1 design floor on four of five screens, and matching no single fixed claim on more than one screen. No discs/s value and no fitted-slope ratio is ever narrated anywhere in this concept as a result (see constraints + authoring_notes.narration_number_policy); STATE_4/STATE_5's on-screen chips stay as qualitative, non-narrated evidence only"
+      }
+    },
+    "constraints": [
+      "count(A) + count(AB) = 360 and count(B) + count(AB) = 360 at all times (irreversible, N fixed at state entry)",
+      "reverse_attempt_per_s = 0 authored explicitly in every state (renderer default is 3.5)",
+      "the displayed rate is never negative: rate = −slope(A) = +slope(AB); the sign lives in the definition, never in the reading",
+      "kinetics_y_max fixed at 360; axes never autoscale, in any state",
+      "no kinetics_marks window opens before t0_ms = 2000 — window-averaged thermostat overshoot at this floor is ~1.2% (~0.6% in rate), negligible against the depletion signal being measured; instantaneous settling to <1% is not reached until ~6-8 s, but no authored window ever reads an instantaneous value (DQ-4, corrected 2026-08-08 — moving the floor to t0_ms=8000 was measured to collapse S4's contrast to 2.92:1, with 8 of 20 seeds below the 2.5:1 design floor, to fix a ~0.6% rate error; rejected)",
+      "S5's wide window never exceeds a 5000 ms half-width at its centre = 7000 ms anchor (data-availability bound — DQ-2, recentred 2026-08-09; back-edge lands exactly on the t0_ms=2000 floor)",
+      "N: 720 authored alongside species_counts in EVERY state (species_counts alone is silently truncated when the reaction is off; defensive habit even though the reaction stays on throughout this concept)",
+      "no state authors show_reaction_readout, show_k_ratio, or show_rate_constant (each would print a second, disagreeing 'rate' beside the kinetics chip)",
+      "no absolute discs/s value AND no fitted-slope ratio is ever narrated — narration speaks particle COUNTS (exact, authored, screen-independent) and directions only ('a much smaller number', 'far fewer discs left'), never a rate or a ratio, because both are viewport-dependent under design.fill_viewport (measured: no single ratio holds across screen geometries — see computed_outputs.rate_and_ratio_not_narratable)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 5,
+    "max_words_per_tts_sentence": 24
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "The rate keeps falling because fewer reactant particles remain to react.",
+    "visual_confirmation": "the late window's chip reads noticeably smaller than the kept early chip while the box visibly empties of blue and pink discs, matching the falling A/B counts (360 -> ~117 over the state)"
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Watch the counts fall",
+        "duration": 20,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "species_counts_chip",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the sealed container — the apparatus that persists unchanged through every state of this concept (Rule 32d home pose)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "three hundred sixty blue A discs and three hundred sixty pink B discs, reacting from the moment the state opens — this concept watches the reaction run from S1, unlike collision_theory_activation_energy"
+          },
+          {
+            "type": "event_flash",
+            "id": "bond_flash",
+            "role": "a purple flash marking a blue-pink pair bonding into AB"
+          },
+          {
+            "type": "readout",
+            "id": "species_counts_chip",
+            "role": "the counts-only chip — no rate bars yet, the word 'rate' has not been defined (Rule 25); the falling/rising numbers ARE the measurement — the focal (Rule 32e)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Discs move and collide nonstop; a hard enough meeting bonds a blue and a pink into a purple pair."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch the counts fall and rise."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "This box is four times fuller than the collision box, so there is enough to measure."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "These pairs never split apart — it stops only when reactants run out."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The counts draw curves",
+        "duration": 26,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "kinetics_plot_inset",
+        "misconception_watch": [
+          {
+            "belief": "Product appears at some unrelated speed of its own.",
+            "visual_counter": "the [AB] curve rises as the exact mirror of the [A] fall, drawn live from the same events — every purple gained is a blue-plus-pink lost",
+            "one_line_fix": "The product's curve is not independent — it is the reactant's fall, drawn upside down."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture reacting on — the source of every point the inset plots"
+          },
+          {
+            "type": "graph",
+            "id": "kinetics_plot_inset",
+            "role": "the kinetics panel populating for the first time this concept: pink draws on top of blue (one of each used every event, so the two curves coincide), purple rising as their mirror — the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "species_counts_chip",
+            "role": "the counts chip, still ticking — keeps the raw numbers visible beside the curve that plots them"
+          },
+          {
+            "type": "formula_surface",
+            "id": "reaction_ledger",
+            "role": "A(g) + B(g) → AB(g), the one-line balanced equation, shown from this state on"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Plot those same counts against time and they become curves."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Blue and pink fall together, one of each consumed per event, so the curve alternates pink and blue dashes to stay visible."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Purple rises as their exact mirror, drawn live from the same events — every purple gained is one blue and one pink lost."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Rate is a slope",
+        "duration": 24,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "average_rate_calculation",
+          "rate_sign_convention",
+          "rate_units_conversion"
+        ],
+        "focal_primitive_id": "formula_surface",
+        "misconception_watch": [
+          {
+            "belief": "The rate of the reactant is negative.",
+            "visual_counter": "the chord visibly slopes down — a negative slope, drawn and labeled — then the minus sign in the formula surface flips it, and the chip prints a positive rate",
+            "one_line_fix": "The sign lives in the definition, not in the reading."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, still reacting, the source of the measured slope"
+          },
+          {
+            "type": "graph",
+            "id": "kinetics_plot_inset",
+            "role": "the same panel, now carrying the window/chord/chip construction"
+          },
+          {
+            "type": "readout",
+            "id": "avg_rate_window",
+            "role": "two time markers on the [A] curve, the chord between them, and a value chip printing the fitted average rate in discs/s"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "the reaction ledger, the rate definition rate = −Δ[A]/Δt = +Δ[AB]/Δt, and the lab-unit/box-unit bridge — the focal (Rule 32e)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Pick two times on the curve — the chord has a slope."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "It falls, so the slope is negative; rate is defined as minus delta A over delta t, so the minus sign makes it positive."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "This chip counts discs per second; a lab counts moles per litre per second — same idea, different unit."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The rate keeps falling",
+        "duration": 26,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "rate_falls_reactant_used",
+          "average_vs_instantaneous",
+          "reading_intervals_off_curve"
+        ],
+        "focal_primitive_id": "late_window_chip",
+        "misconception_watch": [
+          {
+            "belief": "A reaction has ONE rate — a fixed number.",
+            "visual_counter": "the identical window construction from STATE_3 replays on a later window and lands a much smaller number next to the kept early number — two honest measurements, one reaction; the box behind it is visibly poorer in blue and pink, and the count chips are lower, which is the why",
+            "one_line_fix": "A reaction has a rate that keeps changing, not a single fixed number."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose, visibly thinner in blue and pink than STATE_1"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, fewer blue and pink discs left to meet — the why behind the falling rate"
+          },
+          {
+            "type": "graph",
+            "id": "kinetics_plot_inset",
+            "role": "the same panel, now carrying two sequential window constructions, never superimposed"
+          },
+          {
+            "type": "readout",
+            "id": "early_window_chip",
+            "role": "the STATE_3-identical early window, kept on screen as the ×1.00 reference"
+          },
+          {
+            "type": "readout",
+            "id": "late_window_chip",
+            "role": "the same construction replayed later, landing a much smaller number beside the kept early chip — the primary aha, the focal (Rule 32e)"
+          },
+          {
+            "type": "readout",
+            "id": "species_counts_chip",
+            "role": "the falling counts — the physical reason the second measurement is smaller"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "The same window, replayed later, gives a much smaller number."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "A starts at three hundred sixty discs and falls to about one hundred seventeen discs by the end of this state."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Fewer blue and pink discs left means fewer meetings to react."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "One reaction, two honest measurements, the rate keeps falling as reactants run out."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Rate at one instant",
+        "duration": 26,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "focal_primitive_id": "settling_chip",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, reacting on, centred on the same t≈7 s moment STATE_3 and STATE_4's early window used"
+          },
+          {
+            "type": "graph",
+            "id": "kinetics_plot_inset",
+            "role": "the same panel, now carrying a window whose ends visibly slide together"
+          },
+          {
+            "type": "readout",
+            "id": "settling_chip",
+            "role": "the window shrinking from ±5 s to ±3 s while its chip's number holds steady — the focal, the supporting aha (Rule 32e)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "the reaction ledger and 'rate at t = the settled slope of [A] vs t'"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Let the reaction run first, so the wide time window fills with real data."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now watch the window narrow toward the middle while its number keeps updating.",
+              "scenario_cue": "window_ready"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Once the number stops changing, that settled value is the rate at this one instant."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "The rate written with d/dt",
+        "duration": 24,
+        "depth_ring": "advanced",
+        "advance_mode": "manual_click",
+        "continuous_motion": true,
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "stoichiometric_rate_coefficients",
+          "derivative_notation_reading",
+          "product_vs_reactant_rate"
+        ],
+        "focal_primitive_id": "formula_surface",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the same sealed container, same home pose"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, reacting on — blue and pink used together, one each per event"
+          },
+          {
+            "type": "graph",
+            "id": "kinetics_plot_inset",
+            "role": "the same panel, now carrying the STATE_5 tangent, then its mirror on the [AB] curve"
+          },
+          {
+            "type": "readout",
+            "id": "a_tangent_chip",
+            "role": "the STATE_5 settled tangent, reappearing at the same window — its label morphing from Δ to d"
+          },
+          {
+            "type": "readout",
+            "id": "ab_mirror_tangent_chip",
+            "role": "the mirrored tangent, drawn on the rising [AB] curve at the same window — its chip matches the A-tangent's by conservation (count(A)+count(AB) is fixed every tick, 1:1:1 stoichiometry, irreversible), not as an independent measurement"
+          },
+          {
+            "type": "formula_surface",
+            "id": "formula_surface",
+            "role": "the reaction ledger and rate = −d[A]/dt = +d[AB]/dt — the focal (Rule 32e), advanced ring only (Rule 38c)"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "That settled slope has a name: rate equals minus d A over d t."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "The same construction, redrawn on the purple curve, settles to the same size.",
+              "scenario_cue": "mirror_reveal"
+            },
+            {
+              "id": "s6_2b",
+              "text_en": "It rises instead of falling, so rate also equals plus d AB over d t."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Blue and pink are used together, one each per event."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Your turn",
+        "duration": 20,
+        "depth_ring": "core",
+        "advance_mode": "interaction_complete",
+        "continuous_motion": true,
+        "focal_primitive_id": "gas_box",
+        "scene_composition": [
+          {
+            "type": "particle_box",
+            "id": "gas_box",
+            "role": "the live sandbox, running continuously (Rule 37) — the focal (Rule 32e)"
+          },
+          {
+            "type": "particle_cloud",
+            "id": "particle_mixture",
+            "role": "the mixture, responding live to the temperature drag"
+          },
+          {
+            "type": "graph",
+            "id": "kinetics_plot_inset",
+            "role": "the same panel, now with a draggable window a teacher can move and resize"
+          },
+          {
+            "type": "readout",
+            "id": "species_counts_chip",
+            "role": "the live counts — core-ring content only, no derivative surface (Rule 38b)"
+          },
+          {
+            "type": "slider_panel",
+            "id": "controls",
+            "role": "temperature, window position, and window half-width — all three live at once (Rule 31 explore-last)"
+          },
+          {
+            "type": "formula_surface",
+            "id": "reaction_ledger",
+            "role": "A(g) + B(g) → AB(g) only — core-ring content only"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Rerun the reaction and measure any part of the curve yourself."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Change the temperature, and drag the window anywhere along the curve."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Same tools, your choice of moment."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Same physics, a different world (a bonfire calming down as the wood is used up)",
+      "physical_world": "A bonfire roars tall right after it is lit, then settles to a low, steady burn, then dies to embers — the same reaction (wood plus oxygen), the same falling rate, tracked by flame height instead of a fizz.",
+      "same_physics": "rate = -Δ[fuel]/Δt falls over the burn exactly as -Δ[A]/Δt falls in the gas box — less fuel left means fewer reacting encounters per second."
+    }
+  ],
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 12 Chemistry — Ch.3 Chemical Kinetics, §3.1 (Rate of a Chemical Reaction: average rate, instantaneous rate, units, sign convention)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "Cambridge IGCSE Chemistry",
+        "coverage": "partial",
+        "syllabus_unit": "Rates of reaction — reading average rate from a concentration-time graph; STATE_6's d/dt notation and the 1/ν assessment question hidden by the no_calculus preset",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reactivity 2.2 — What can the rate expression tell us about the mechanism of a reaction? (average and instantaneous rate, rate expressions)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Unit 5 — Kinetics, Topic 5.1 (Reaction Rates: average rate, instantaneous rate)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge International A Level Chemistry",
+        "coverage": "full",
+        "syllabus_unit": "Reaction Kinetics — rate of reaction, average and instantaneous rate, stoichiometric rate expressions",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "presets": {
+    "full": {
+      "label": "Full path",
+      "hidden_states": [],
+      "note": "S1-S7, every ring. The complete concept as authored."
+    },
+    "no_calculus": {
+      "label": "No calculus",
+      "hidden_states": [
+        "STATE_6"
+      ],
+      "note": "Hides STATE_6 (advanced ring — d/dt notation and the A<->AB mirror-tangent). S1-S5 + S7 stand alone: the lesson ends on the settled instantaneous-rate chip from STATE_5, and no surviving state, caption, or narration references derivative notation. Matches the Cambridge IGCSE Chemistry curriculum_tags entry, which reads average rate from a concentration-time graph and never requires d/dt."
+    },
+    "qualitative_plus_average": {
+      "label": "Qualitative + average rate only",
+      "hidden_states": [
+        "STATE_5",
+        "STATE_6"
+      ],
+      "note": "Hides STATE_5 (extended ring — instantaneous rate via window-shrink) and STATE_6 (advanced ring — d/dt). S1-S4 + S7 stand alone: the lesson ends on 'the rate keeps falling, measured as average rates over a chosen window'; no surviving caption or narration says 'instantaneous' or 'tangent'."
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student who can compute an average rate from tabulated concentration-time data with correct sign and units, explain why the measured rate falls as a reaction proceeds, read an instantaneous rate off a drawn tangent, and scale a rate by a stoichiometric coefficient has mastered how a reaction rate is measured.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In a reaction, [R] falls from 0.60 mol L⁻¹ to 0.48 mol L⁻¹ in the first 20 s. What is the average rate of the reaction over this interval?",
+        "options": {
+          "A": "0.006 mol L⁻¹ s⁻¹",
+          "B": "0.024 mol L⁻¹ s⁻¹",
+          "C": "−0.006 mol L⁻¹ s⁻¹",
+          "D": "0.12 mol L⁻¹ s⁻¹"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Divided by the wrong time interval instead of the full 20 s.",
+          "C": "Kept the concentration's negative slope instead of applying the definition's minus sign.",
+          "D": "Used the raw concentration change without dividing by the time interval."
+        },
+        "tested_idea": "average_rate_definition",
+        "teaches_state": "STATE_3",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A rate is measured as 0.006 mol L⁻¹ s⁻¹ in the lab. What is this rate expressed in mol L⁻¹ min⁻¹?",
+        "options": {
+          "A": "0.36 mol L⁻¹ min⁻¹",
+          "B": "0.0001 mol L⁻¹ min⁻¹",
+          "C": "0.006 mol L⁻¹ min⁻¹",
+          "D": "6 mol L⁻¹ min⁻¹"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Divided by 60 instead of multiplying, treating minutes as the smaller unit.",
+          "C": "Left the number unchanged, forgetting seconds and minutes are different units.",
+          "D": "Multiplied by 1000, confusing a unit-prefix conversion with a time conversion."
+        },
+        "tested_idea": "units_conversion",
+        "teaches_state": "STATE_3",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "The same reaction is measured early and again later. The early rate is much larger than the late rate. Why?",
+        "options": {
+          "A": "Fewer reactant particles remain later, so there are fewer chances for particles to meet and react",
+          "B": "The reaction rate constant decreases as the reaction proceeds",
+          "C": "The container has grown, spreading the particles out",
+          "D": "The reaction has two different rate laws, one for early and one for late times"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the rate CONSTANT, which does not change at fixed temperature, with the rate itself.",
+          "C": "Invents a volume change that was never part of this fixed-volume measurement.",
+          "D": "Assumes the reaction mechanism switches mid-run instead of one rate law simply evaluated at a lower concentration."
+        },
+        "tested_idea": "rate_falls_as_reactant_consumed",
+        "teaches_state": "STATE_4",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A teacher asks: 'What is the rate of this reaction right now, at exactly t = 12 s?' Which measurement answers that question?",
+        "options": {
+          "A": "The instantaneous rate — the average rate over a window shrunk small enough that it stops changing",
+          "B": "The average rate taken over the reaction's entire duration",
+          "C": "The average rate taken over the first 5 seconds only, no matter what time was asked about",
+          "D": "The rate constant k, since it is the same at every instant"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "An average over the whole run answers 'what is the overall rate', not the rate at one instant.",
+          "C": "An early window answers the question at its own time, not at t = 12 s.",
+          "D": "The rate constant is not the reaction rate — it does not carry the same units and is not what the question is asking for."
+        },
+        "tested_idea": "average_vs_instantaneous_choice",
+        "teaches_state": "STATE_5",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "On the concentration-vs-time curve, a tangent line is drawn at t = 8 s. The tangent falls from 0.30 to 0.18 mol L⁻¹ over a 4 s span centred on t = 8 s. What is the instantaneous rate at t = 8 s?",
+        "options": {
+          "A": "0.03 mol L⁻¹ s⁻¹",
+          "B": "0.12 mol L⁻¹ s⁻¹",
+          "C": "−0.03 mol L⁻¹ s⁻¹",
+          "D": "0.015 mol L⁻¹ s⁻¹"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Forgot to divide the concentration change by the time span of the tangent.",
+          "C": "Kept the tangent's negative slope instead of applying the rate definition's minus sign.",
+          "D": "Divided by the full 8 s elapsed since state entry instead of the 4 s span of the tangent itself."
+        },
+        "tested_idea": "instantaneous_rate_reading",
+        "teaches_state": "STATE_5",
+        "difficulty": "core"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "For the reaction 2A → B, A disappears at a rate of 0.10 mol L⁻¹ s⁻¹. What is the rate of the reaction?",
+        "options": {
+          "A": "0.05 mol L⁻¹ s⁻¹",
+          "B": "0.10 mol L⁻¹ s⁻¹",
+          "C": "0.20 mol L⁻¹ s⁻¹",
+          "D": "−0.05 mol L⁻¹ s⁻¹"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Ignored the coefficient of 2 in front of A, treating the reaction as if the coefficients were 1:1.",
+          "C": "Multiplied by the coefficient instead of dividing by it.",
+          "D": "Kept the reactant's negative sign instead of applying the rate definition, which is always reported as a positive number."
+        },
+        "tested_idea": "stoichiometric_coefficient_scaling",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": [
+        "Q1",
+        "Q2"
+      ],
+      "STATE_4": [
+        "Q3"
+      ],
+      "STATE_5": [
+        "Q4",
+        "Q5"
+      ],
+      "STATE_6": [
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_7"
+    ]
+  },
+  "particle_field_config": {
+    "scenario_type": "gas_box",
+    "design": {
+      "background": "#0A0A1A",
+      "phys_seed": 818518434
+    },
+    "canvas": {
+      "width": 900,
+      "height": 560
+    },
+    "gas": {
+      "count": 720,
+      "temperature_K": 300,
+      "ea_ref_T": 300,
+      "speed_scale": 0.105,
+      "hist_ref_T": 300,
+      "activation_energy_kT": 0,
+      "kinetics_home": "tr",
+      "species": [
+        {
+          "id": "A",
+          "mass": 1,
+          "radius": 5,
+          "color": "#60A5FA",
+          "label": "A",
+          "count": 360
+        },
+        {
+          "id": "B",
+          "mass": 1,
+          "radius": 5,
+          "color": "#F472B6",
+          "label": "B",
+          "count": 360
+        },
+        {
+          "id": "AB",
+          "mass": 2,
+          "radius": 7.0710678,
+          "color": "#C084FC",
+          "label": "AB",
+          "count": 0
+        }
+      ],
+      "reaction": {
+        "enabled": true,
+        "reactants": [
+          "A",
+          "B"
+        ],
+        "product": "AB",
+        "activation_fwd_kT": 3,
+        "bond_energy_kT": 2.1,
+        "reverse_attempt_per_s": 0
+      }
+    },
+    "slider_controls": {
+      "T": {
+        "label": "Temperature",
+        "min": 200,
+        "max": 800,
+        "step": 10,
+        "default": 300,
+        "unit": "K"
+      },
+      "t_lo": {
+        "label": "Window position",
+        "min": 3000,
+        "max": 23000,
+        "step": 1000,
+        "default": 7000,
+        "unit": "ms"
+      },
+      "t_span": {
+        "label": "Window half-width",
+        "min": 1000,
+        "max": 5000,
+        "step": 500,
+        "default": 3000,
+        "unit": "ms"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "STATE_1",
+        "caption": "Discs react; counts fall",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "glow_focal": "species_counts",
+        "continuous_motion": true,
+        "eye_capture_ms": 20000
+      },
+      "STATE_2": {
+        "label": "STATE_2",
+        "caption": "Counts plotted against time",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "show_kinetics_plot": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "formula_overlay": "A(g) + B(g) → AB(g)",
+        "glow_focal": "kinetics_plot",
+        "continuous_motion": true,
+        "eye_capture_ms": 26000
+      },
+      "STATE_3": {
+        "label": "STATE_3",
+        "caption": "Two times, one slope",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "show_kinetics_plot": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "kinetics_marks": [
+          {
+            "t0_ms": 4000,
+            "t1_ms": 10000,
+            "series": "A"
+          }
+        ],
+        "formula_overlay": "A(g) + B(g) → AB(g)\nrate = −Δ[A]/Δt = +Δ[AB]/Δt\nmol L⁻¹ s⁻¹ (lab) — chip shows discs/s (this box)",
+        "glow_focal": [
+          "kinetics_mark",
+          "formula"
+        ],
+        "continuous_motion": true,
+        "eye_capture_ms": 24000
+      },
+      "STATE_4": {
+        "label": "STATE_4",
+        "caption": "Early steep, late flat",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "show_kinetics_plot": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "kinetics_marks": [
+          {
+            "t0_ms": 4000,
+            "t1_ms": 10000,
+            "series": "A",
+            "keep": true
+          },
+          {
+            "t0_ms": 12000,
+            "t1_ms": 18000,
+            "series": "A"
+          }
+        ],
+        "kinetics_mark_bind": {
+          "position": "t_lo"
+        },
+        "formula_overlay": "A(g) + B(g) → AB(g)",
+        "glow_focal": "kinetics_mark",
+        "continuous_motion": true,
+        "eye_capture_ms": 26000
+      },
+      "STATE_5": {
+        "label": "STATE_5",
+        "caption": "Window shrinks, number holds",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "show_kinetics_plot": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "cues": [
+          {
+            "id": "window_ready",
+            "at_ms": 12000
+          }
+        ],
+        "kinetics_marks": [
+          {
+            "t0_ms": 4000,
+            "t1_ms": 10000,
+            "series": "A",
+            "at_cue": "window_ready",
+            "converge_from": {
+              "t0_ms": 2000,
+              "t1_ms": 12000
+            },
+            "converge_ms": 16000
+          }
+        ],
+        "kinetics_mark_bind": {
+          "span": "t_span"
+        },
+        "formula_overlay": "A(g) + B(g) → AB(g)\nrate at t = the settled slope of [A] vs t",
+        "glow_focal": "kinetics_mark",
+        "continuous_motion": true,
+        "eye_capture_ms": 26000
+      },
+      "STATE_6": {
+        "label": "STATE_6",
+        "caption": "Δ becomes d: same slope",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "show_kinetics_plot": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "cues": [
+          {
+            "id": "mirror_reveal",
+            "at_ms": 6500
+          }
+        ],
+        "kinetics_marks": [
+          {
+            "t0_ms": 4000,
+            "t1_ms": 10000,
+            "series": "A",
+            "as_tangent": true,
+            "keep": true
+          },
+          {
+            "t0_ms": 4000,
+            "t1_ms": 10000,
+            "series": "AB",
+            "as_tangent": true,
+            "at_cue": "mirror_reveal"
+          }
+        ],
+        "formula_overlay": "A(g) + B(g) → AB(g)\nrate = −d[A]/dt = +d[AB]/dt",
+        "glow_focal": [
+          "kinetics_mark",
+          "formula"
+        ],
+        "continuous_motion": true,
+        "eye_capture_ms": 24000
+      },
+      "STATE_7": {
+        "label": "STATE_7",
+        "caption": "Measure any run",
+        "T": 300,
+        "activation_energy_kT": 0,
+        "species_counts": {
+          "A": 360,
+          "B": 360,
+          "AB": 0
+        },
+        "N": 720,
+        "reaction": {
+          "reverse_attempt_per_s": 0
+        },
+        "show_species_counts_only": true,
+        "show_kinetics_plot": true,
+        "show_kinetics_new_run": true,
+        "kinetics_y_max": 360,
+        "kinetics_span_ms": 30000,
+        "kinetics_marks": [
+          {
+            "t0_ms": 4000,
+            "t1_ms": 10000,
+            "series": "A"
+          }
+        ],
+        "kinetics_mark_bind": {
+          "position": "t_lo",
+          "span": "t_span"
+        },
+        "formula_overlay": "A(g) + B(g) → AB(g)",
+        "show_sliders": true,
+        "glow_focal": "box",
+        "continuous_motion": true,
+        "eye_capture_ms": 14000
+      }
+    }
+  },
+  "authoring_notes": {
+    "measured_constants": "Every calibration number traces to docs/rate_of_reaction_chemistry_block.md §0 (DQ-1..DQ-4, harness vm-cloned from check_gas_reaction_physics.ts, 5 seeds, home pose 720 discs / A:360,B:360,AB:0 / activation_fwd_kT:3 / reverse_attempt_per_s:0 / T 300). DQ-1: reactant A remaining 300@1s / 189@5s / 130@10s / 84@20s / 61@30s (half-consumed ~6-7s, flattening ~24-28s) — this is the count evidence STATE_4 narrates (A: 360 -> ~117 over its 26 s run). DQ-2 (recentred 2026-08-09 — see authoring_notes.window_centre_recentred_2026_08_09): the S5 window is a TRUE symmetric shrink ±5s -> ±3s, centred at t=7s (not t=5s — a ±5s window centred at t=5s needs data back to t=0ms, one tick past the t0_ms=2000 floor DQ-4 sets, and never reproduces cleanly). DQ-3 (corrected 2026-08-09 — SUPERSEDES the discs/s figures previously logged here): fitted discs/s rates and any early:late ratio built from them are set by box AREA, which design.fill_viewport ties to the teacher's browser viewport — measured across five common screen geometries, STATE_4's early:late ratio ranged 1.79:1 to 3.35:1, below the concept's own 2.5:1 design floor on four of five screens, matching no single fixed claim ('roughly four times slower', ~3.99:1, or any other) on more than one screen at once. No discs/s value and no fitted-slope ratio is narrated anywhere in this concept as a result (see computed_outputs.rate_and_ratio_not_narratable + narration_number_policy below); the retired single-geometry figures (~16.29 / ~4.08 / ~3.99:1, measured only at phys_seed 818518434's default canvas) are not reproduced here — they were never independent of the viewport-coupling bug DQ-3 exists to document. DQ-4 (corrected 2026-08-08): moving the t0_ms floor from 2000 to 8000 was measured to collapse S4's contrast to 2.92:1, with 8 of 20 seeds below the 2.5:1 design floor, to fix a rate error of only ~0.6% — rejected. t0_ms=2000 stays: its window-averaged thermostat overshoot is ~1.2% (~0.6% in rate), negligible against the depletion signal being measured; instantaneous settling to <1% is not reached until ~6-8s, but no authored window ever reads an instantaneous value.",
+    "slider_ms_conversion": "physics_engine_config.variables.t_lo/t_span document the CONCEPTUAL units (seconds, matching chemistry_author's engine_config table). The actual particle_field_config.slider_controls.t_lo/t_span widgets are authored in MILLISECONDS (x1000) because gasKinEffectiveMarks reads sliderVal() with no unit conversion and kinetics_marks fields are t0_ms/t1_ms — authoring the widget bounds in ms is the only way the binding site's arithmetic lands on the right timescale.",
+    "reaction_on_from_s1": "Unlike collision_theory_activation_energy (reaction suppressed per-state until its own STATE_7), this concept's gas.reaction.enabled is true at config level and never overridden per state — the reaction runs from STATE_1. reverse_attempt_per_s:0 is still authored explicitly on every state's own reaction block regardless, per the constraint callout (renderer default is 3.5, not 0).",
+    "narration_number_policy": "No discs/s rate value AND no fitted-slope ratio is ever narrated — both are viewport-dependent under design.fill_viewport (measured S4 ratio spans 1.79:1 to 3.35:1 across five common screen geometries, below the concept's own 2.5:1 design floor on four of five, so no fitted ratio — including the old 'roughly four times slower' claim — is true on more than one screen). STATE_4 instead narrates particle COUNTS (exact, authored, screen-independent: A falls 360 -> ~117 discs over the state, phys_seed 818518434) plus a DIRECTION for the slope ('a much smaller number', 'far fewer discs left'); the on-screen kinetics chips stay visible as qualitative evidence only, never quoted as a number in speech.",
+    "window_centre_recentred_2026_08_09": "S5's converge_from originally opened at t0_ms=0, straight through the t0_ms=2000 settling floor (DQ-4) the floor exists to exclude — a ±5s window centred at t=5000ms has no room to widen further without crossing that floor, since 5000-3000=2000 already IS the final (narrow) window's own left edge. Fix: moved the centre later to t=7000ms, which opens the exact amount of headroom the floor allows. Final window (S3's kept mark / S4's kept reference / S5's settle target / S6's tangent / S7's default mark) moved from {t0_ms:2000,t1_ms:8000} to {t0_ms:4000,t1_ms:10000} (same ±3s half-width, same construction, later centre); S5's converge_from moved from {t0_ms:0,t1_ms:10000} to {t0_ms:2000,t1_ms:12000} (±5s half-width about the same t=7000ms centre, back-edge landing exactly on the t0_ms=2000 floor — the widest legal window at this centre). STATE_4's own late aha-window ({t0_ms:12000,t1_ms:18000}) is unaffected — it never touched the floor and needed no change. slider_controls.t_lo.default moved from 15000 to 7000 to match (FIX 4 — see physics_engine_config.variables.t_lo.note).",
+    "dashed_series_caveat": "drawGasKinModeA dashes every series after the FIRST authored entry in kinetics_series (s>0), not specifically the species that visually coincides with the first. This concept never overrides kinetics_series (default order [A,B,AB]), so B (which genuinely coincides with A) draws dashed as intended, but AB (which does not coincide — it rises while A/B fall) also draws dashed as a side effect of the renderer's blanket rule. Cosmetic only; AB remains visually distinct because it moves in the opposite direction.",
+    "vocabulary_quarantine": "STATE_1 deliberately shows no formula surface (no reaction_ledger, no rate formula) — it introduces A, B and AB only via the counts chip and narration, mirroring collision_theory_activation_energy's STATE_1 discipline. The reaction ledger A(g)+B(g)→AB(g) first appears in STATE_2's formula surface and persists through STATE_7; it shares the single formula_overlay string with each state's own rate formula (Rule 34b: one formula surface, multiple lines) rather than adding a second overlay element.",
+    "kinetics_engine_gaps_closed_2026_08_07": "Three renderer gaps found at json_author stage were CLOSED in particle_field_renderer.ts before this concept was reviewed: (1) the mark chip printed the raw fitted slope, so an A-series chip read negative against S3 own sign-convention lesson — the sign is now resolved from the species stoichiometric role; (2) kinetics_mark_bind moved one edge rather than resizing about a fixed centre, which contradicted S5 \"shrink the window, the number holds\" — it is now a true centre-pinned symmetric resize (measured centre drift 0 ms across every span); (3) nA/nB were declared but unwired (affects the sibling concept). Earlier authoring_notes describing these as accepted limitations are removed: a note describing a live defect is a bug report, not a disposition.",
+    "s5_reveal_gated_2026_08_09": "FIX A (2026-08-09, gas_kinetics_window_underfilled_prints_and_chord_extrapolates) made drawGasKinMarks require windowFilled (real sampled data reaching dt1) before fitting/drawing/printing ANY kinetics_mark — correct (it stopped the chip printing a number fitted against blank future canvas, previously measured swinging 20.03 -> 23.52 -> 16.61 on this exact mark), but it exposed that S5's mark could never satisfy windowFilled during its own shrink: drawGasKinMarks anchors the converge_from ramp's clock to the SAME field as the mark's own final t0_ms (cf = (PM_simTimeMs - t0_ms) / converge_ms), so with converge_from's wide edge at t1_ms=12000 and converge_ms=6000, the algebraic crossing where dt1(tau) first drops to <= tau landed EXACTLY at settle completion (tau=10000) — the entire 6 s shrink read 'measuring...' with no line drawn, then the settled [4000,10000] value appeared all at once, never animating. FIX (this note, no physics changed — t0_ms/t1_ms/converge_from all unchanged, still the DQ-2 window_centre_recentred_2026_08_09 anchor): (1) added state.cues=[{id:'window_ready', at_ms:12000}] and kinetics_marks[0].at_cue:'window_ready', gating the mark's entire draw (chip text + chord line, not just the number) behind that cue. 12000 ms is provably safe regardless of converge_ms: dt1(tau) = converge_from.t1_ms + (t1_ms - converge_from.t1_ms) * cf(tau), and since t1_ms=10000 < converge_from.t1_ms=12000 and cf in [0,1], dt1(tau) <= 12000 for every tau — so revealing no earlier than tau=12000 guarantees windowFilled (tau >= dt1(tau)) on the very first drawn frame, by construction, not by tuning. (2) grew converge_ms 6000 -> 16000 (same t0_ms=4000 anchor) so the crossing that used to land exactly on settle now lands well before it: at the tau=12000 reveal the window reads roughly [3000,11000] (44% converged), then visibly narrows to the final [4000,10000] by tau=20000 (4000+16000) — 8 s of genuinely live, updating numbers instead of an instant pop. (3) tagged the reveal-narrating sentence (s5_2) with scenario_cue:'window_ready', matching the STATE_6/mirror_reveal precedent (build_review_site.ts posts SET_CUE_TIME at that sentence's own narrated start when audio is on; at_ms:12000 stays the deterministic THE EYE / muted fallback per cueTriggerMs). (4) grew STATE_5's duration 24 -> 26 s (eye_capture_ms 24000 -> 26000) so the settle at 20000 ms gets a 6 s hold before state end, matching the 4-6 s hold pattern already used after S3/S4/S6's own settle points. Narration (s5_1/s5_2/s5_3) rewritten to match: s5_1 describes the wait (0-12000 ms, mark not yet drawn, box/curve still visibly running), s5_2 (cue-bound) describes the live narrowing, s5_3 describes the settled read — no sentence claims a number is on screen before it provably is. Audited S3/S4/S6/S7 against the same fault (see PR notes): none carry a converge_from, so none can enter the exact 'requested window still ahead of real time for the entire shrink' state S5 had; S4's late mark [12000,18000] and S6's cued AB-tangent mark both still show a brief, honest 'measuring...' window before windowFilled (6 s and 3.5 s respectively) but resolve to a real number for the clear majority of their state's remaining runtime, so neither reproduces this bug's defining symptom (a printed number that visibly swings, or an animation that is silent for effectively its entire run)."
+  }
+}
