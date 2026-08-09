@@ -89,10 +89,41 @@ named only chemistry, so it actively instructed an author to make five forbidden
 
 **Scar rows: 18 verified already-seeded (the handoff's §3 was stale), + 14 new/updated this session.**
 
-**Next:** ⚠ the `intersections[]` migration is authored but the concept is UNWALKED by `quality_auditor`
-and has no founder review. Then: STATE_1's ghost-multiplier scar, STATE_6's missing `d₁` label
-(root cause unproven — three discriminating tests are on the row), the `θ (a, b)` slider label naming
-objects no longer on screen, and D5's ink-lens false positive on explore states.
+**THEN AN XHIGH WORKFLOW REVIEW OF PR #96 FOUND 15 CONFIRMED DEFECTS, AND THE CONCEPT IS BANKED AGAIN.**
+60 agents, one finder per correctness angle plus an independent verifier per candidate location; 50
+verified findings collapsing to 15 distinct defects, **none fixed**. **PR #96 is OPEN and must NOT merge.**
+Full resume record, in fix order: **`docs/MATHEMATICS_LINES_AND_PLANES_HANDOFF.md`** — read it first.
+
+Two clusters. **(1) The concept JSON.** The EYE walks caught what was ON screen and wrong; the review
+caught what is MISSING or TIME-SHIFTED — a `lambda` readout no construct in that state can publish (the
+token is legal, so the closed enum cannot catch it: *legality ≠ reachability*), sliders authored on three
+states that `show_sliders` never displays, STATE_7's answer on the HUD ~11 s before the beat deriving it,
+STATE_3 labelling every slanted segment **"distance"** for 9 s (the exact belief the state exists to break,
+and its own assessment distractor), and STATE_5's rebuttal number arriving **2.3 s after** the false picture
+it must contradict is gone — so M3's confront beat never happens. Several findings falsify the concept's
+OWN `misconception_watch` and the skeleton's own DoD. Also: the chapter-seam normal is deleted and regrown
+(the skeleton forbids it by name, reintroduced through a parent/child reveal coupling invisible from the
+JSON); the explore sandbox freezes at 72 s, offers ~half-dead sliders per scene group, and leaks
+advanced-ring notation under `core_only`.
+
+**(2) My own scar bookkeeping — and this is the one worth internalising.** The round-2 corrections (a
+`FALSE_POSITIVE` retraction, a CRITICAL escalation, six PR-fix annotations) exist **only in the live DB**,
+while the committed seed scripts and migrations still assert the round-1 state through **unguarded full-row
+upserts**. Replaying any of them reverts FIXED rows to OPEN and resurrects a row this same session proved
+false — laundering superseded beliefs back into the record through the files meant to preserve it. One
+migration also *advertises an UPDATE it does not contain*. **This is the failure mode I corrected the #7
+handoff for this morning, reproduced by me, the same day.** The new
+`_seed_engine_bug_queue_lines_and_planes_xhigh_review.ts` carries the guard the others lack
+(`WHERE status NOT IN ('FIXED','FALSE_POSITIVE')`, in both the script and its emitted SQL) — copy it into
+the other three.
+
+**Next, in the founder's agreed order:** (a) the scar-queue bookkeeping — mechanical, and it corrupts the
+record on every replay; (b) `show_sliders` on STATE_1/2/6 and STATE_6's `aux_a` ending at 0 instead of −1.5
+(measured: the arc's second arm detaches from its own apex by ~1 world unit across the whole θ sweep);
+(c) the timing/readout re-authoring LAST, because it interacts with the reveal-gating shipped in #93/#94.
+Then `quality_auditor` (never yet run on this concept) → `eye_walker` → founder review.
+
+---
 
 ---
 
