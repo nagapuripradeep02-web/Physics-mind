@@ -102,6 +102,18 @@ export interface Field3DConfig {
         // layer rather than re-deriving VSEPR angles. See docs/CHEMISTRY_PHASE0_
         // BONDING.md and the scenario header comment in the renderer body.
         'bonding_scene' |
+        // organic_structure (ORGANIC CHEMISTRY — Phase 0 dispatch S1, 2026-08-09):
+        // ONE scenario planned to serve all 32 organic simulations as three
+        // capability LAYERS on one substrate (A geometry, B electrons, C
+        // reaction) — never three scenario_types, because fourteen of the 32
+        // need two layers in the SAME state. S1 ships the substrate: a
+        // multi-atom skeleton generated from a molecule TABLE (explicit
+        // connectivity, per-atom identity + labels, drawn bonds, >7 atoms), the
+        // camera solve including sight-along-a-bond, the occlusion discipline,
+        // ONE formula surface, ring-gated controls, a value-only HUD and closed
+        // form in state-local t. See docs/ORGANIC_ENGINE_PLAN.md and the
+        // scenario header comment in the renderer body.
+        'organic_structure' |
         // vector_geometry_3d (MATHEMATICS — the GENERIC two-vector /
         // 3D-geometry scenario, Rule-40 platform dispatch, 2026-08-08).
         // ONE scenario, TWO modes (`vg.mode`), so a single engine purchase
@@ -64526,6 +64538,987 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── organic_structure (ONE scenario for ALL 32 ORGANIC simulations) ──────
+    //   NEW scenario, Phase-0 dispatch S1 (2026-08-09). Spec:
+    //   docs/ORGANIC_ENGINE_PLAN.md (the all-32 union + the three-LAYER
+    //   architecture), docs/ORGANIC_PHASE0_CONFORMATION.md (the O-0 contract
+    //   at :110-167), docs/concepts/chemistry/cyclohexane_chair_flip_skeleton.md
+    //   (the hardest consumer; §9 buy list N-1..N-20, §9E enum ledger).
+    //
+    //   S1 BUILDS THE SUBSTRATE ONLY: S1 (a multi-atom skeleton from a molecule
+    //   TABLE with explicit connectivity, per-atom identity + labels, drawn
+    //   bonds, >7 atoms) and S3 (the camera solve including sight-along-a-bond,
+    //   the occlusion discipline, ONE formula surface, ring-gated controls, a
+    //   value-only HUD, closed form in state-local t). The driven dihedral (A1),
+    //   the ring pucker + a/e tagging (A2), the stereo ops (A3), the energy
+    //   instrument (S2), rehybridisation (S4) and every Layer-B/C capability are
+    //   DECLARED here and REJECTED LOUDLY at apply — never silently defaulted.
+    //
+    //   NAMING: the prefix is ORG_/org, NOT the OS_/os of the spec documents —
+    //   OS_ is already 380 identifiers of orbital_shapes in this file, and a
+    //   second OS_MOLECULES would have collided silently.
+    //
+    //   PER-STATE CONFIG (the frozen contract; json-author targets this):
+    //     state.organic_structure = {
+    //       molecule,                      // TABLE KEY into ORG_MOLECULES,
+    //                                      // growable by data row (see the
+    //                                      // freeze note below) — NOT an enum
+    //       mode,                          // CLOSED, ORG_MODES
+    //       torsion: { about, phi_deg, pose },        // STATIC at S1; the
+    //                                      // scheduled fields (phi_from/at_ms/
+    //                                      // ramp_ms/continuous) are A1
+    //       show_h: 'none'|'all'|['C1',..],// N-1, per-state H gating (an
+    //                                      // occlusion CORRECTNESS control on
+    //                                      // an 18-atom skeleton, not a taste)
+    //       show_labels,                   // per-atom id sprites
+    //       camera: { az, el, dist } | { sight_along: '<bond id>', dist, newman },
+    //       camera_steps: [{at_ms, az, el, dist, ease_ms}],   // the THIRD verbatim
+    //                                      // adoption of the orbital_shapes /
+    //                                      // vector_geometry_3d mechanism
+    //       spin_start_ms, spin_rate,      // deg/s about the CAMERA VIEW AXIS
+    //                                      // (N-20; commit 075d5aa's class)
+    //       show_hud, hud_lines: [...],    // CLOSED, ORG_HUD_LINES
+    //       show_formula, formula,         // ONE surface, Rule 34b
+    //       controls: [{id, min_ring}]|[id],          // RING-GATED, ORG_CONTROL_IDS
+    //       static_readouts: [...]
+    //     }
+    //
+    //   THE FREEZE (§9E + P2-6, extended by this dispatch to EVERY closed enum):
+    //   a CLOSED ENUM is a fixed VOCABULARY — reopening it churns every shipped
+    //   concept, so it is closed over all 32 sims and each member is either
+    //   IMPLEMENTED or DEFERRED-with-a-named-owner. A TABLE KEY SET
+    //   (ORG_MOLECULES, the energy-curve registry, the substituent-group
+    //   registry) is NOT an enum: a new key is a new DATA ROW with a
+    //   chemistry-author-verified geometry or literature value, and adding one
+    //   binds nothing already shipped. Freezing those three at their O-0 size is
+    //   provably wrong (32 sims need benzene, phenol, a reaction profile per
+    //   mechanism, NO2/OMe/CN/phenyl...). The gate asserts CLOSURE AGAINST THE
+    //   TABLE for the key sets and IMPLEMENTED-union-DEFERRED for the enums.
+    //
+    //   D-1: EVERY position, the camera pose and the spin angle are closed-form
+    //   pure functions of state-local t. No integrator anywhere, so a
+    //   SET_TIME_FREEZE pin reproduces byte-identical pixels and this scenario
+    //   joins the accumulator-free snap-to-pin set.
+    //   Rule 29: the ONLY things that change size are real magnitudes — bond
+    //   lengths (C-C 154 pm, C-H 109 pm, C=C 134 pm) and atomic radii. Emphasis
+    //   is brightness (applyGlowEmphasis), never size.
+    //   REUSE (docs §reuse, not re-derived here): mgIdealDirs(4) IS the
+    //   tetrahedron every sp3 centre is completed against; mgIdealDirs(3) is
+    //   every sp2 centre; MG_BOND_LEN is the ONE bond-length scale (a third copy
+    //   is forbidden, so ORG_U_PER_A is DERIVED from it); mgRamp/mgSmooth01/
+    //   mgNorm/mgDot/mgAngleDeg are the shared closed-form kit; the ring-gated
+    //   control list is bonding_scene's shape, cloned locally (never refactored
+    //   into a sealed sibling).
+
+    // Scene units per angstrom. DERIVED from MG_BOND_LEN so a C-C bond draws at
+    // exactly the fleet's one bond length and C-H draws SHORTER in the true
+    // ratio (Rule 29 — a real magnitude). Never a third bond-length constant.
+    var ORG_U_PER_A = MG_BOND_LEN / 1.54;
+    var ORG_CC_A = 1.54, ORG_CH_A = 1.09, ORG_CCd_A = 1.34;
+    // H-C-H on a CH2 centre, from the skeleton §10 parameterisation. A CH3 is an
+    // EXACT mgIdealDirs(4) tetrahedron and takes no constant.
+    var ORG_HCH_DEG = 107.5;
+    // Ball-and-stick display scale on the MG_ELEMENTS radii. NOT a second radius
+    // table and NOT emphasis: the VSEPR radii are solved for a 5-atom centre, and
+    // at 18 atoms the closest projected pair (0.570 A at the solved HOME camera)
+    // is narrower than C+H = 0.76 units of drawn disc, so every atom would fuse
+    // with its neighbour and nothing the narration counts would be countable.
+    // Uniform, so every relative size is preserved. Solved in the gate.
+    var ORG_ATOM_SCALE = 0.50;
+    var ORG_MAX_ATOMS = 24;         // cyclohexane 18; head-room for substituents
+    var ORG_MAX_BONDS = 30;         // cyclohexane 18; ethene draws 2 per double
+    // The solved HOME pose. RE-SOLVED IN THIS DISPATCH in the real perspective
+    // camera at the real atom disc radii, which is what the skeleton §8 asked for
+    // and could not do offline. The design-time estimate (az 254, el 10-12,
+    // ORTHOGRAPHIC, centres only) does NOT survive: at el 11 the 18-atom
+    // cyclohexane skeleton's closest projected DISC pair overlaps by 0.145 scene
+    // units, i.e. two atoms the narration counts fuse into one blob. Swept az
+    // 0..358 x el 0..30 at 1 deg on all eighteen atoms, both acceptance criteria
+    // together (disc gap > 0 AND at least one C-C-H arc within 4.0 deg of its
+    // 109.5 label): the window is el 14..26 at the authored azimuth, 12 deg wide
+    // rather than the 2 deg the orthographic solve predicted. el 18 sits
+    // mid-window: disc gap +0.263 units, best C-C-H projected error 1.96 deg,
+    // shortest projected arm 1.30 units. Reported by check:organic-structure.
+    var ORG_HOME = { az: 254, el: 18, dist: 11.5 };
+    var ORG_CAM_EASE_MS = 900;
+    // The Newman rim convention (contract decision 4). Sighting down a bond puts
+    // the back carbon EXACTLY behind the front one, which is the definition of
+    // the view and also the exact condition under which its three bonds cannot be
+    // read. The conventional fix ships in the ENGINE, not per concept: the back
+    // atom's sphere is withheld, a rim circle is drawn, and its bonds are drawn
+    // from the rim outward. The hydrogen POSITIONS are untouched, so the torsion
+    // the HUD publishes is still measured on the real geometry.
+    var ORG_NEWMAN_RIM_FRAC = 0.55;
+
+    // ── CLOSED ENUMS. Frozen at S1 over ALL 32 organic sims. ─────────────────
+    //   Every member is IMPLEMENTED (a live code path today) or DEFERRED (parsed,
+    //   REJECTED LOUDLY, and owned by a named dispatch). The split moves as
+    //   dispatches land; the UNION never changes.
+    var ORG_MODES_S1 = ["rotate", "explore"];
+    var ORG_MODES_DEFERRED = {
+        "pucker": "A2", "lift": "A3", "mirror": "A3", "block_twist": "A3",
+        "rewire": "A3", "compare": "A2", "rehybridise": "S4", "shade": "B1",
+        "delocalise": "B2", "break": "C1", "form": "C1", "approach": "C2",
+        "invert": "C2", "migrate": "C1", "sequence": "C3", "sweep": "C4"
+    };
+    var ORG_HUD_LINES_S1 = ["phi", "bond", "pose", "atom_count"];
+    var ORG_HUD_LINES_DEFERRED = {
+        "energy": "S2", "barrier": "S2", "angle": "S2", "distance": "S2",
+        "overlap": "A3", "residual": "A3", "descriptor": "A3",
+        "ae_count": "A2", "population": "A2", "temperature": "A2", "a_value": "A2"
+    };
+    var ORG_CONTROL_IDS_S1 = ["view", "spin", "implicit_h"];
+    var ORG_CONTROL_IDS_DEFERRED = {
+        "phi": "A1", "pucker": "A2", "substituent": "A2", "group": "A2",
+        "temperature": "A2", "mirror": "A3", "isomer": "A3", "chain_length": "A3"
+    };
+    // N-8's instrument family. Nothing S1 renders, so every member is deferred to
+    // the dispatch that draws it — declared now because the enum freezes here.
+    var ORG_MEASURE_KINDS_S1 = [];
+    var ORG_MEASURE_KINDS_DEFERRED = {
+        "angle": "S2", "distance": "S2", "torsion": "S2",
+        "axis_line": "A2", "plane_disc": "A2"
+    };
+    // Torsion POSES are pure angle look-ups on the molecule's declared reference
+    // dihedral, so all five work on the static substrate today.
+    var ORG_POSES = { "eclipsed": 0, "gauche": 60, "staggered": 60, "syn": 0, "anti": 180 };
+    var ORG_POSES_S1 = ["staggered", "eclipsed", "anti", "gauche", "syn"];
+    var ORG_POSES_DEFERRED = {};
+    var ORG_PUCKER_PATHS_S1 = [];
+    var ORG_PUCKER_PATHS_DEFERRED = { "chair_flip": "A2" };
+    // The two PRIMED members are found by this dispatch's enum walk and are NOT
+    // in the drafted contract: the chair-flip walk visits twist-boat at u = 0.36
+    // AND at u = 0.64, and half-chair at u = 0.22 AND u = 0.78. A waypoint that
+    // resolves to a single u cannot name the return leg, so skeleton §5's
+    // seven-leg S5 walk was unauthorable as drafted.
+    var ORG_WAYPOINTS_S1 = [];
+    var ORG_WAYPOINTS_DEFERRED = {
+        "chair": "A2", "half_chair": "A2", "twist_boat": "A2", "boat": "A2",
+        "twist_boat_alt": "A2", "half_chair_alt": "A2", "chair_alt": "A2"
+    };
+    var ORG_MIRROR_PLANES_S1 = [];
+    var ORG_MIRROR_PLANES_DEFERRED = { "xy": "A3", "yz": "A3", "xz": "A3", "screen": "A3" };
+    var ORG_ENERGY_COORDS_S1 = [];
+    var ORG_ENERGY_COORDS_DEFERRED = {
+        "torsion": "S2", "pucker": "S2", "reaction": "C2", "species": "B3"
+    };
+    var ORG_STATIONARY_KINDS_S1 = [];
+    var ORG_STATIONARY_KINDS_DEFERRED = {
+        "minimum": "S2", "maximum": "S2",
+        "reactant": "C2", "ts": "C2", "intermediate": "C3", "product": "C2"
+    };
+    // FIELD-level deferral. A closed enum is not the only way a state can ask for
+    // something that does not exist: the scheduled torsion fields are the A1 half
+    // of a block S1 implements statically, and accepting them silently would be
+    // the accepted-but-ignored scar one authoring level down.
+    var ORG_DEFERRED_FIELDS = {
+        "torsion.phi_from": "A1", "torsion.at_ms": "A1", "torsion.ramp_ms": "A1",
+        "torsion.continuous": "A1",
+        "pucker": "A2", "substituents": "A2", "energy": "S2", "measure": "S2",
+        "trace": "A2", "population": "A2", "compare": "A2",
+        "mirror": "A3", "block_twist": "A3", "lift": "A3", "rewire": "A3",
+        "rehybridise": "S4", "density": "B1", "delocalisation": "B2"
+    };
+    function orgKeys(o) { var k, a = []; for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) a.push(k); return a; }
+    var ORG_MODES = ORG_MODES_S1.concat(orgKeys(ORG_MODES_DEFERRED));
+    var ORG_HUD_LINES = ORG_HUD_LINES_S1.concat(orgKeys(ORG_HUD_LINES_DEFERRED));
+    var ORG_CONTROL_IDS = ORG_CONTROL_IDS_S1.concat(orgKeys(ORG_CONTROL_IDS_DEFERRED));
+    var ORG_MEASURE_KINDS = ORG_MEASURE_KINDS_S1.concat(orgKeys(ORG_MEASURE_KINDS_DEFERRED));
+
+    // ── THE MOLECULE TABLE (a growable KEY SET, not a frozen enum) ───────────
+    //   Geometry is GENERATED from connectivity + hybridisation against
+    //   mgIdealDirs, never hand-tabled coordinates: a coordinate table is the
+    //   second geometry source the reuse contract exists to prevent, and it does
+    //   not scale to 32 sims. ring_param is the skeleton §10 chair
+    //   parameterisation (ring radius and pucker solved for C-C = 1.540 A and
+    //   C-C-C = 111.4 deg), the ONE place a published ring geometry is imported.
+    var ORG_MOLECULES = {
+        methane:     { formula: "CH\\u2084", carbons: 1, kind: "chain" },
+        ethane:      { formula: "C\\u2082H\\u2086", carbons: 2, kind: "chain",
+                       torsion_bond: "C1-C2", ref_dihedral: ["C1H1", "C1", "C2", "C2H1"],
+                       default_pose: "staggered" },
+        propane:     { formula: "C\\u2083H\\u2088", carbons: 3, kind: "chain",
+                       torsion_bond: "C1-C2", ref_dihedral: ["C1H1", "C1", "C2", "C3"] },
+        butane:      { formula: "C\\u2084H\\u2081\\u2080", carbons: 4, kind: "chain",
+                       torsion_bond: "C2-C3", ref_dihedral: ["C1", "C2", "C3", "C4"],
+                       default_pose: "anti" },
+        ethene:      { formula: "C\\u2082H\\u2084", carbons: 2, kind: "sp2_pair" },
+        cyclohexane: { formula: "C\\u2086H\\u2081\\u2082", carbons: 6, kind: "ring",
+                       ring_param: { radius_a: 1.4690, half_h_a: 0.2311 },
+                       ref_dihedral: ["C1", "C2", "C3", "C4"] }
+    };
+    // Declared, not built: both need the substituent layer (A3), and authoring
+    // one must fail loudly rather than render an empty stage.
+    var ORG_MOLECULES_DEFERRED = { "stereocentre": "A3", "isomer_set": "A3" };
+
+    // ── the loud-rejection channel ───────────────────────────────────────────
+    //   deferred_enum_members_must_be_declared_not_merely_unimplemented: a state
+    //   that authors a deferred member must FAIL VISIBLY at apply, never silently
+    //   render a default scene. The banner is on-canvas (a teacher sees it), the
+    //   console line is machine-readable, and the hit list is what the gate reads.
+    function orgReject(kind, member, owner) {
+        if (!window.PM_orgRejects) window.PM_orgRejects = [];
+        var msg = "organic_structure: " + kind + " \\u0027" + member + "\\u0027 is DECLARED but NOT IMPLEMENTED"
+            + (owner ? " (owner: dispatch " + owner + ")" : "");
+        window.PM_orgRejects.push({ kind: kind, member: member, owner: owner || null });
+        if (console && console.error) console.error(msg);
+        var b = document.getElementById("org_deferred");
+        if (b) { b.textContent = msg; b.style.display = "block"; }
+        return false;
+    }
+    function orgCheckMember(kind, member, implList, defMap) {
+        if (member == null) return true;
+        var i;
+        for (i = 0; i < implList.length; i++) if (implList[i] === member) return true;
+        if (Object.prototype.hasOwnProperty.call(defMap, member)) return orgReject(kind, member, defMap[member]);
+        return orgReject(kind + " (UNKNOWN member — not in the frozen enum)", member, null);
+    }
+
+    // ── geometry kit ─────────────────────────────────────────────────────────
+    function orgCross(a, b) {
+        return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    }
+    function orgAdd(a, b) { return [a[0] + b[0], a[1] + b[1], a[2] + b[2]]; }
+    function orgSub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+    function orgMul(a, s) { return [a[0] * s, a[1] * s, a[2] * s]; }
+    function orgLen(a) { return Math.sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]); }
+    // Rodrigues. The ONE rotation in this scenario: the static torsion, the
+    // view-axis spin and the frame construction all route through it, so there is
+    // exactly one place a rotation convention can be wrong.
+    function orgRotAxis(v, axis, ang) {
+        var k = mgNorm(axis), c = Math.cos(ang), s = Math.sin(ang);
+        var kv = orgCross(k, v), kd = mgDot(k, v);
+        return [v[0] * c + kv[0] * s + k[0] * kd * (1 - c),
+                v[1] * c + kv[1] * s + k[1] * kd * (1 - c),
+                v[2] * c + kv[2] * s + k[2] * kd * (1 - c)];
+    }
+    // The three remaining sp3 directions at a centre whose FIRST bond points
+    // along u. mgIdealDirs(4) is the exact tetrahedron (already verified, never
+    // re-derived): rotate its apex onto u, then spin the tripod by phase.
+    function orgTetraSlots(u, phaseDeg) {
+        var T = mgIdealDirs(4), up = [0, 1, 0], un = mgNorm(u), i, out = [];
+        var ax = orgCross(up, un), axl = orgLen(ax), ang = Math.acos(mgClamp(mgDot(up, un), -1, 1));
+        if (axl < 1e-9) { ax = [1, 0, 0]; ang = (mgDot(up, un) > 0) ? 0 : Math.PI; }
+        for (i = 1; i < 4; i++) {
+            var d = orgRotAxis(T[i], ax, ang);
+            if (phaseDeg) d = orgRotAxis(d, un, phaseDeg * Math.PI / 180);
+            out.push(mgNorm(d));
+        }
+        return out;
+    }
+    // The two remaining sp3 directions at a centre that already has TWO bonds.
+    // Closed form: the outward bisector, opened to ORG_HCH_DEG about the normal.
+    function orgCompleteTwo(e0, e1, hchDeg) {
+        var b = mgNorm([-(e0[0] + e1[0]), -(e0[1] + e1[1]), -(e0[2] + e1[2])]);
+        var n = orgCross(e0, e1);
+        if (orgLen(n) < 1e-9) n = [0, 1, 0];
+        n = mgNorm(n);
+        var h = (hchDeg * Math.PI / 180) / 2, c = Math.cos(h), s = Math.sin(h);
+        return [mgNorm([b[0] * c + n[0] * s, b[1] * c + n[1] * s, b[2] * c + n[2] * s]),
+                mgNorm([b[0] * c - n[0] * s, b[1] * c - n[1] * s, b[2] * c - n[2] * s])];
+    }
+    // The IUPAC dihedral A-B-C-D, in degrees, 0..360, measured on the BUILT
+    // coordinates. The HUD publishes THIS, never the authored number — decision 3
+    // (the claim must never rest on the projection, and never on the author).
+    function orgDihedral(pa, pb, pc, pd) {
+        var b1 = orgSub(pb, pa), b2 = orgSub(pc, pb), b3 = orgSub(pd, pc);
+        var n1 = orgCross(b1, b2), n2 = orgCross(b2, b3), m = orgCross(n1, mgNorm(b2));
+        var x = mgDot(n1, n2), y = mgDot(m, n2);
+        var a = Math.atan2(y, x) * 180 / Math.PI;
+        return (a < 0) ? a + 360 : a;
+    }
+    /**
+     * Build a molecule's ATOM + BOND lists from the table. Angstroms, centroid
+     * at the origin. Pure: same key + same phi in, same coordinates out, so a
+     * frozen pin re-derives byte-identically.
+     */
+    function orgBuildGeometry(molKey, phiDeg) {
+        var m = ORG_MOLECULES[molKey];
+        if (!m) return null;
+        var atoms = [], bonds = [], i, j;
+        var addAtom = function (id, el, p) { atoms.push({ id: id, el: el, p: p }); };
+        var addBond = function (a, b, order) { bonds.push({ id: a + "-" + b, a: a, b: b, order: order || 1 }); };
+        var carbonDirs = [];        // heavy-neighbour directions per carbon
+        if (m.kind === "ring") {
+            // Skeleton §10: carbons at azimuth 60k, alternating +/- half_h in y.
+            var R = m.ring_param.radius_a, hh = m.ring_param.half_h_a;
+            for (i = 0; i < m.carbons; i++) {
+                var az = i * Math.PI / 3;
+                addAtom("C" + (i + 1), "C", [R * Math.cos(az), (i % 2 === 0 ? hh : -hh), R * Math.sin(az)]);
+            }
+            for (i = 0; i < m.carbons; i++) addBond("C" + (i + 1), "C" + ((i + 1) % m.carbons + 1), 1);
+        } else if (m.kind === "sp2_pair") {
+            // Both centres trigonal planar (mgIdealDirs(3)), sharing the C=C axis.
+            addAtom("C1", "C", [-ORG_CCd_A / 2, 0, 0]);
+            addAtom("C2", "C", [ORG_CCd_A / 2, 0, 0]);
+            addBond("C1", "C2", 2);
+        } else {
+            // Alkane zig-zag in the xy plane at the exact tetrahedral angle, so
+            // the C-C-C angle is mgIdealDirs(4)'s, not a second constant.
+            var half = mgAngleDeg(mgIdealDirs(4)[1], mgIdealDirs(4)[2]) / 2 * Math.PI / 180;
+            var dx = ORG_CC_A * Math.sin(half), dy = ORG_CC_A * Math.cos(half);
+            for (i = 0; i < m.carbons; i++) addAtom("C" + (i + 1), "C", [i * dx, (i % 2 === 0 ? 0 : dy), 0]);
+            for (i = 0; i + 1 < m.carbons; i++) addBond("C" + (i + 1), "C" + (i + 2), 1);
+        }
+        // Heavy-neighbour direction lists, then hydrogen completion.
+        var find = function (id) { for (var k = 0; k < atoms.length; k++) if (atoms[k].id === id) return atoms[k]; return null; };
+        var nC = m.carbons;
+        for (i = 0; i < nC; i++) {
+            var cid = "C" + (i + 1), ca = find(cid), dirs = [];
+            for (j = 0; j < bonds.length; j++) {
+                if (bonds[j].a === cid) dirs.push(mgNorm(orgSub(find(bonds[j].b).p, ca.p)));
+                else if (bonds[j].b === cid) dirs.push(mgNorm(orgSub(find(bonds[j].a).p, ca.p)));
+            }
+            carbonDirs.push(dirs);
+            var hDirs = [];
+            if (m.kind === "sp2_pair") {
+                // sp2: the two remaining trigonal directions, coplanar with the
+                // C=C axis. mgIdealDirs(3) rotated so slot 0 lies on that axis.
+                var T3 = mgIdealDirs(3), u3 = dirs[0], up3 = [0, 1, 0];
+                var ax3 = orgCross(up3, u3), l3 = orgLen(ax3);
+                var an3 = Math.acos(mgClamp(mgDot(up3, u3), -1, 1));
+                if (l3 < 1e-9) { ax3 = [1, 0, 0]; an3 = (mgDot(up3, u3) > 0) ? 0 : Math.PI; }
+                hDirs = [mgNorm(orgRotAxis(T3[1], ax3, an3)), mgNorm(orgRotAxis(T3[2], ax3, an3))];
+                // put the H in the molecular plane (z = 0), which is what makes a
+                // cis/trans claim readable at all
+                for (j = 0; j < hDirs.length; j++) hDirs[j] = mgNorm([hDirs[j][0], hDirs[j][1], 0]);
+            } else if (dirs.length === 1) {
+                hDirs = orgTetraSlots(dirs[0], 0);
+            } else if (dirs.length === 2) {
+                hDirs = orgCompleteTwo(dirs[0], dirs[1], ORG_HCH_DEG);
+            } else if (dirs.length === 0) {
+                var T4 = mgIdealDirs(4);
+                hDirs = [T4[0], T4[1], T4[2], T4[3]];
+            } else {
+                hDirs = [mgNorm([-(dirs[0][0] + dirs[1][0] + dirs[2][0]), -(dirs[0][1] + dirs[1][1] + dirs[2][1]), -(dirs[0][2] + dirs[1][2] + dirs[2][2])])];
+            }
+            for (j = 0; j < hDirs.length; j++) {
+                var hid = cid + "H" + (j + 1);
+                addAtom(hid, "H", orgAdd(ca.p, orgMul(hDirs[j], ORG_CH_A)));
+                addBond(cid, hid, 1);
+            }
+        }
+        var geom = { key: molKey, atoms: atoms, bonds: bonds, formula: m.formula, def: m };
+        if (m.torsion_bond && phiDeg != null) orgSetTorsion(geom, m.torsion_bond, phiDeg);
+        // N-4: the scenario places ITSELF around the origin — there is no
+        // authorable camera target (the OPEN scar
+        // field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable
+        // names exactly that as the wrong fix).
+        var cen = [0, 0, 0];
+        for (i = 0; i < atoms.length; i++) { cen[0] += atoms[i].p[0]; cen[1] += atoms[i].p[1]; cen[2] += atoms[i].p[2]; }
+        cen = orgMul(cen, 1 / Math.max(1, atoms.length));
+        for (i = 0; i < atoms.length; i++) atoms[i].p = orgSub(atoms[i].p, cen);
+        return geom;
+    }
+    /** Atoms reachable from the FROM end without crossing the from-stop bond. */
+    function orgSideOf(geom, from, stop) {
+        var seen = {}, stack = [from], out = [];
+        seen[from] = true; seen[stop] = true;
+        while (stack.length) {
+            var cur = stack.pop(); out.push(cur);
+            for (var i = 0; i < geom.bonds.length; i++) {
+                var b = geom.bonds[i], nx = null;
+                if (b.a === cur) nx = b.b; else if (b.b === cur) nx = b.a;
+                if (nx && !seen[nx]) { seen[nx] = true; stack.push(nx); }
+            }
+        }
+        return out;
+    }
+    /**
+     * STATIC torsion: rotate the far side of bondId about the bond axis until
+     * the molecule's reference dihedral reads phiDeg. A1 owns driving phi from t;
+     * S1 owns only the geometry operation, because a static pose IS geometry.
+     */
+    function orgSetTorsion(geom, bondId, phiDeg) {
+        var parts = bondId.split("-"), aId = parts[0], bId = parts[1];
+        var byId = {}, i;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        if (!byId[aId] || !byId[bId]) return;
+        var ref = geom.def.ref_dihedral;
+        if (!ref || !byId[ref[0]] || !byId[ref[3]]) return;
+        var cur = orgDihedral(byId[ref[0]].p, byId[ref[1]].p, byId[ref[2]].p, byId[ref[3]].p);
+        // MEASURED sign: rotating the far side by +delta about the a->b axis
+        // DECREASES the IUPAC dihedral, so the correction is (cur - target). The
+        // gate asserts the achieved phi on the BUILT coordinates, never the
+        // authored number, which is what caught the sign.
+        var d = (cur - phiDeg) * Math.PI / 180;
+        var axis = mgNorm(orgSub(byId[bId].p, byId[aId].p)), org = byId[aId].p;
+        var side = orgSideOf(geom, bId, aId), s = {};
+        for (i = 0; i < side.length; i++) s[side[i]] = true;
+        for (i = 0; i < geom.atoms.length; i++) {
+            if (!s[geom.atoms[i].id] || geom.atoms[i].id === bId) continue;
+            geom.atoms[i].p = orgAdd(org, orgRotAxis(orgSub(geom.atoms[i].p, org), axis, d));
+        }
+    }
+    /** The resolved static phi for a state: explicit degrees beat a pose name. */
+    function orgResolvePhi(mol, tor) {
+        if (!tor) return (mol && mol.default_pose != null) ? ORG_POSES[mol.default_pose] : null;
+        if (tor.phi_deg != null) return tor.phi_deg;
+        if (tor.pose != null) return ORG_POSES[tor.pose];
+        return (mol && mol.default_pose != null) ? ORG_POSES[mol.default_pose] : null;
+    }
+    /** Is this atom's hydrogen shown in this state? N-1's three shapes. */
+    function orgShowH(showH, atom) {
+        if (showH === "none") return false;
+        if (showH == null || showH === "all") return true;
+        if (Object.prototype.toString.call(showH) === "[object Array]") {
+            var owner = atom.id.split("H")[0];
+            for (var i = 0; i < showH.length; i++) if (showH[i] === owner) return true;
+            return false;
+        }
+        return true;
+    }
+    /** Ring-gated control list — bonding_scene's normalisation, cloned locally. */
+    function orgControlList(raw) {
+        var out = [], i;
+        for (i = 0; i < (raw || []).length; i++) {
+            var c = raw[i];
+            if (typeof c === "string") out.push({ id: c, min_ring: "core" });
+            else if (c && c.id) out.push({ id: c.id, min_ring: c.min_ring || "core" });
+        }
+        return out;
+    }
+    function orgHasControl(list, id) {
+        for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
+        return false;
+    }
+    /**
+     * The SOLVED camera pose for a state, in (az, el, dist) degrees + units —
+     * N-5's contract decision, chosen because camera_steps already speaks it.
+     * sight_along is a SOLVED CONSTRAINT (decision 3), not taste: the camera is
+     * placed exactly on the named bond's axis, so the projected torsion IS the
+     * true torsion. Closed form and history-free.
+     */
+    function orgSolveCamera(os, geom) {
+        var cam = os.camera || {};
+        if (cam.sight_along && geom) {
+            var parts = String(cam.sight_along).split("-"), byId = {}, i;
+            for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+            if (byId[parts[0]] && byId[parts[1]]) {
+                // FRONT atom toward the camera: the axis runs back->front.
+                var ax = mgNorm(orgSub(byId[parts[0]].p, byId[parts[1]].p));
+                var d = (cam.dist != null) ? cam.dist : ORG_HOME.dist;
+                var v = orgMul(ax, d * ORG_U_PER_A / ORG_U_PER_A);
+                return {
+                    az: Math.atan2(v[2], v[0]) * 180 / Math.PI,
+                    el: Math.asin(mgClamp(v[1] / (orgLen(v) || 1), -1, 1)) * 180 / Math.PI,
+                    dist: d, sight: cam.sight_along, front: parts[0], back: parts[1]
+                };
+            }
+        }
+        var dd = (cam.dist != null) ? cam.dist : ORG_HOME.dist;
+        if (cam.az == null && cam.el == null && geom) {
+            var home = orgSolveHome(geom, dd);
+            return { az: home.az, el: home.el, dist: dd, sight: null, front: null, back: null };
+        }
+        return {
+            az: (cam.az != null) ? cam.az : ORG_HOME.az,
+            el: (cam.el != null) ? cam.el : ORG_HOME.el,
+            dist: dd, sight: null, front: null, back: null
+        };
+    }
+    /**
+     * THE HOME CAMERA IS SOLVED PER MOLECULE, not chosen (skeleton §8 / contract
+     * decision 4 — occlusion is a gate, not an aesthetic). A single authored pose
+     * cannot serve an 8-atom ethane and an 18-atom cyclohexane: the pose that
+     * makes the ring countable overlaps two of ethane's hydrogens. So the default
+     * pose is SWEPT here, over a band around the authored azimuth and elevation,
+     * and the pose maximising the minimum pairwise screen DISC gap wins. Pure and
+     * memoised per molecule + distance, so it is identical on the first frame and
+     * under a freeze pin, and a state that authors its own camera never reaches
+     * this at all.
+     */
+    var ORG_HOME_AZ_SPAN = 12;      // +/- degrees around the authored azimuth
+    var ORG_HOME_EL_LO = 8;
+    var ORG_HOME_EL_HI = 42;
+    // The countability floor, in scene units of clear space between two drawn
+    // atom discs. 0.12 is 80% of a drawn hydrogen radius at ORG_ATOM_SCALE, so
+    // two atoms the narration counts are separated by a visible band of
+    // background rather than merely not overlapping.
+    var ORG_HOME_GAP_FLOOR = 0.12;
+    function orgSolveHome(geom, dist) {
+        if (!window.PM_orgHomeSolve) window.PM_orgHomeSolve = {};
+        var ck = geom.key + "|" + dist;
+        if (window.PM_orgHomeSolve[ck]) return window.PM_orgHomeSolve[ck];
+        var shown = {}, i, az, el;
+        for (i = 0; i < geom.atoms.length; i++) shown[geom.atoms[i].id] = true;
+        // THE OBJECTIVE IS NOT "the biggest gap". Elevation buys countability and
+        // SPENDS angle fidelity monotonically — the projected C-C-H arc drifts
+        // ~0.20 deg per degree of elevation — so a pure gap maximiser climbs to
+        // the band edge and quietly breaks the OTHER acceptance criterion (it
+        // did: el 39 gave a 0.43 gap and a 6.55 deg arc error, past the 4.0 deg
+        // floor). The solve therefore takes the LOWEST elevation that clears a
+        // countability FLOOR, and only falls back to argmax if nothing clears it.
+        var best = null, floorHit = null;
+        for (el = ORG_HOME_EL_LO; el <= ORG_HOME_EL_HI; el += 1) {
+            var rowBest = null;
+            for (az = ORG_HOME.az - ORG_HOME_AZ_SPAN; az <= ORG_HOME.az + ORG_HOME_AZ_SPAN; az += 2) {
+                var pose = { az: az, el: el, dist: dist };
+                var g = orgMinScreenGap(geom, pose, shown).gap;
+                if (!rowBest || g > rowBest.gap) rowBest = { az: az, el: el, gap: g };
+                if (!best || g > best.gap) best = { az: az, el: el, gap: g };
+            }
+            if (!floorHit && rowBest && rowBest.gap >= ORG_HOME_GAP_FLOOR) floorHit = rowBest;
+        }
+        if (floorHit) best = floorHit;
+        if (!best) best = { az: ORG_HOME.az, el: ORG_HOME.el, gap: 0 };
+        window.PM_orgHomeSolve[ck] = best;
+        return best;
+    }
+    /** Camera schedule — the THIRD verbatim adoption, same fields, same semantics. */
+    function orgCamScheduleAt(steps, ms, base) {
+        if (!steps || !steps.length) return null;
+        var poses = [], ts = [], prev = base, i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            prev = {
+                az: (st.az != null) ? st.az : prev.az,
+                el: (st.el != null) ? st.el : prev.el,
+                dist: (st.dist != null) ? st.dist : prev.dist,
+                ease: (st.ease_ms != null) ? Math.max(0, st.ease_ms) : ORG_CAM_EASE_MS
+            };
+            poses.push(prev);
+            ts.push((st.at_ms != null) ? st.at_ms : 0);
+        }
+        var k = -1;
+        for (i = 0; i < steps.length; i++) if (ms >= ts[i]) k = i;
+        if (k < 0) return { az: base.az, el: base.el, dist: base.dist, moving: false };
+        var to = poses[k], fr = (k === 0) ? base : poses[k - 1];
+        var u = (to.ease > 0) ? mgClamp((ms - ts[k]) / to.ease, 0, 1) : 1;
+        u = mgSmooth01(u);
+        return { az: fr.az + (to.az - fr.az) * u, el: fr.el + (to.el - fr.el) * u,
+                 dist: fr.dist + (to.dist - fr.dist) * u, moving: u < 1 };
+    }
+    /** Camera basis for a pose: forward (origin->camera), right and up. */
+    function orgCamBasis(pose) {
+        var azr = pose.az * Math.PI / 180, elr = pose.el * Math.PI / 180;
+        var f = [Math.cos(elr) * Math.cos(azr), Math.sin(elr), Math.cos(elr) * Math.sin(azr)];
+        var r = mgNorm(orgCross([0, 1, 0], f));
+        if (!isFinite(r[0])) r = [1, 0, 0];
+        return { fwd: f, right: r, up: mgNorm(orgCross(f, r)) };
+    }
+    /**
+     * COUNTABILITY (skeleton §8, the acceptance criterion). Minimum pairwise
+     * screen separation between rendered atom DISCS, measured in ISOTROPIC screen
+     * units (camX/camZ, camY/camZ) and never in NDC — dividing x by the aspect
+     * ratio shears every measured direction by 1.78x at 16:9. Returns the gap in
+     * scene units at the molecule plane, i.e. centre distance MINUS the two drawn
+     * radii, so a positive number means the discs are separately countable.
+     */
+    function orgMinScreenGap(geom, pose, shown) {
+        var b = orgCamBasis(pose), pts = [], i, j;
+        for (i = 0; i < geom.atoms.length; i++) {
+            var a = geom.atoms[i];
+            if (shown && !shown[a.id]) continue;
+            var p = orgMul(a.p, ORG_U_PER_A);
+            var depth = pose.dist - mgDot(p, b.fwd);
+            var k = (depth > 0.05) ? (pose.dist / depth) : 1;   // perspective, isotropic
+            pts.push({ x: mgDot(p, b.right) * k, y: mgDot(p, b.up) * k,
+                       r: orgAtomRadius(a.el) * k });
+        }
+        var best = Infinity, worst = null;
+        for (i = 0; i < pts.length; i++) for (j = i + 1; j < pts.length; j++) {
+            var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+            var g = Math.sqrt(dx * dx + dy * dy) - pts[i].r - pts[j].r;
+            if (g < best) { best = g; worst = [i, j]; }
+        }
+        return { gap: (best === Infinity ? 0 : best), pair: worst, n: pts.length };
+    }
+    function orgAtomRadius(el) {
+        var e = MG_ELEMENTS[el];
+        return (e ? e.radius : 0.40) * ORG_ATOM_SCALE;
+    }
+    /**
+     * Memoised mesh lookup. A LOCAL clone of the fleet pattern, deliberately:
+     * reaching into a sealed sibling's bscFindById would share bonding_scene's
+     * window.PM_bscIdx cache across two scenarios (DF1 sealed-scenario
+     * protection — a clone-sibling touches sealed blocks only through the shared
+     * one-line dispatch chains).
+     */
+    function orgFindById(id) {
+        if (!window.PM_orgIdx) window.PM_orgIdx = {};
+        var hit = window.PM_orgIdx[id];
+        if (hit) return hit;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) {
+                window.PM_orgIdx[id] = sceneObjects[i];
+                return sceneObjects[i];
+            }
+        }
+        return null;
+    }
+
+    function buildOrganicStructure(config) {
+        var CO = config.colors || {};
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var bondColor = CO.bond || "#CFD8DC";
+        var i;
+        window.PM_orgRejects = [];
+
+        // Pooled meshes, repositioned per frame from the closed-form geometry —
+        // the fleet pattern. Every child is registered in sceneObjects
+        // INDIVIDUALLY (the field3d_child_mesh_never_registered scar: addToScene
+        // registers only the object handed to it, so a child never matched by the
+        // updater sits at build-time opacity forever).
+        for (i = 0; i < ORG_MAX_ATOMS; i++) {
+            var at = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 18), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#90A4AE"),
+                emissiveIntensity: 0.26, shininess: 62
+            }));
+            at.userData = { elementType: "org_atom", id: "org_atom_" + i, slot: i };
+            at.visible = false;
+            addToScene(at);
+            var lb = pmCreateAutoLabel("C1", textColor, 0.40);
+            lb.userData = { elementType: "org_atom_label", id: "org_atom_label_" + i, slot: i };
+            lb.visible = false;
+            addToScene(lb);
+        }
+        var stickGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 12);
+        stickGeo.translate(0, 0.5, 0);      // origin at the base: scale y = length
+        for (i = 0; i < ORG_MAX_BONDS; i++) {
+            var bd = new THREE.Mesh(stickGeo, new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(bondColor), emissive: hexToThreeColor(bondColor),
+                emissiveIntensity: 0.16, shininess: 40
+            }));
+            bd.userData = { elementType: "org_bond", id: "org_bond_" + i, slot: i };
+            bd.visible = false;
+            addToScene(bd);
+        }
+        // The Newman rim (decision 4). One ring, hidden unless a state sights
+        // down a bond and asks for the convention.
+        var rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.045, 10, 72), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(bondColor), transparent: true, opacity: 0.82,
+            depthTest: false
+        }));
+        rim.renderOrder = 996;
+        rim.userData = { elementType: "org_rim", id: "org_rim" };
+        rim.visible = false;
+        addToScene(rim);
+
+        // DOM surfaces. top:52px clears the review-chrome Full-screen button at
+        // BOTH edges (Rule 34d). Rule 39f: an inline position:fixed panel created
+        // dynamically is exactly what the generic widget engine auto-discovers, so
+        // the teacher toggle comes free and no per-scenario widget code is written.
+        var hud = document.createElement("div"); hud.id = "org_hud";
+        hud.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:186px;display:none;";
+        document.body.appendChild(hud);
+
+        var ff = document.createElement("div"); ff.id = "org_formula";
+        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
+        document.body.appendChild(ff);
+
+        var db = document.createElement("div"); db.id = "org_deferred";
+        db.style.cssText = "position:fixed;top:52px;left:50%;transform:translateX(-50%);background:rgba(120,0,0,0.92);color:#FFEBEE;padding:8px 14px;border-radius:8px;font:12px/1.5 monospace;z-index:20;display:none;max-width:70%;";
+        document.body.appendChild(db);
+
+        var SC = config.slider_controls || {};
+        var lim = function (k, w, d) { return (SC[k] && SC[k][w] != null) ? Number(SC[k][w]) : d; };
+        var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? Number(SC[k]["default"]) : d; };
+        var sp = document.createElement("div"); sp.id = "org_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:224px;display:none;";
+        sp.innerHTML =
+            '<div id="org_view_row" style="display:none"><label>View: <select id="org_view_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="home">Standard</option><option value="sight">Along the bond</option></select></label></div>' +
+            '<div id="org_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="org_spin_val">' + def("spin", 0).toFixed(0) + '</span> \\u00B0/s</label><input type="range" id="org_spin_slider" min="' + lim("spin", "min", 0) + '" max="' + lim("spin", "max", 40) + '" step="' + lim("spin", "step", 1) + '" value="' + def("spin", 0) + '" style="width:100%"></div>' +
+            '<div id="org_implicit_h_row" style="display:none;margin-top:6px"><label><input type="checkbox" id="org_implicit_h_check" checked> Show hydrogens</label></div>';
+        document.body.appendChild(sp);
+
+        var vSel = document.getElementById("org_view_select");
+        if (vSel) vSel.addEventListener("change", function (ev) { if (ev && ev.isTrusted) window.PM_orgViewDragged = true; window.PM_orgView = vSel.value; });
+        var sSl = document.getElementById("org_spin_slider");
+        if (sSl) sSl.addEventListener("input", function (ev) {
+            if (ev && ev.isTrusted) window.PM_orgSpinDragged = true;
+            window.PM_orgSpin = parseFloat(sSl.value);
+            var sv = document.getElementById("org_spin_val"); if (sv) sv.textContent = Number(sSl.value).toFixed(0);
+        });
+        var hCk = document.getElementById("org_implicit_h_check");
+        if (hCk) hCk.addEventListener("change", function (ev) { if (ev && ev.isTrusted) window.PM_orgHDragged = true; window.PM_orgShowH = hCk.checked; });
+    }
+
+    function applyOrganicStructureState(stateDef) {
+        var os = stateDef.organic_structure || {}, i;
+        window.PM_orgRejects = [];
+        var banner = document.getElementById("org_deferred");
+        if (banner) { banner.style.display = "none"; banner.textContent = ""; }
+        window.PM_orgViewDragged = false;
+        window.PM_orgSpinDragged = false;
+        window.PM_orgHDragged = false;
+        window.PM_orgCamSeized = false;
+
+        // ── the enum gate. A deferred member or a deferred FIELD fails loudly
+        //    here, at apply, and the state renders its rejection instead of a
+        //    silent default scene.
+        orgCheckMember("mode", os.mode || "rotate", ORG_MODES_S1, ORG_MODES_DEFERRED);
+        var molKey = os.molecule || "ethane";
+        if (!ORG_MOLECULES[molKey]) {
+            if (Object.prototype.hasOwnProperty.call(ORG_MOLECULES_DEFERRED, molKey)) orgReject("molecule", molKey, ORG_MOLECULES_DEFERRED[molKey]);
+            else orgReject("molecule (NOT in ORG_MOLECULES)", molKey, null);
+            molKey = "ethane";
+        }
+        var want = os.hud_lines || [];
+        for (i = 0; i < want.length; i++) orgCheckMember("hud_lines", want[i], ORG_HUD_LINES_S1, ORG_HUD_LINES_DEFERRED);
+        var ctrls = orgControlList(os.controls), statics = orgControlList(os.static_readouts);
+        for (i = 0; i < ctrls.length; i++) orgCheckMember("controls", ctrls[i].id, ORG_CONTROL_IDS_S1, ORG_CONTROL_IDS_DEFERRED);
+        for (i = 0; i < statics.length; i++) orgCheckMember("controls", statics[i].id, ORG_CONTROL_IDS_S1, ORG_CONTROL_IDS_DEFERRED);
+        if (os.torsion && os.torsion.pose != null) orgCheckMember("torsion.pose", os.torsion.pose, ORG_POSES_S1, ORG_POSES_DEFERRED);
+        var fk = orgKeys(ORG_DEFERRED_FIELDS);
+        for (i = 0; i < fk.length; i++) {
+            var path = fk[i].split("."), v = os;
+            for (var d = 0; d < path.length && v != null; d++) v = v[path[d]];
+            if (v !== undefined && v !== null) orgReject("field", fk[i], ORG_DEFERRED_FIELDS[fk[i]]);
+        }
+
+        window.PM_orgMol = molKey;
+        window.PM_orgView = (os.camera && os.camera.sight_along) ? "sight" : "home";
+        window.PM_orgSpin = (os.spin_rate != null) ? os.spin_rate : 0;
+        window.PM_orgShowH = (os.show_h !== "none");
+        window.PM_orgControlRings = ctrls;
+
+        var panel = document.getElementById("org_sliders"), anyRow = false;
+        for (i = 0; i < ORG_CONTROL_IDS_S1.length; i++) {
+            var id = ORG_CONTROL_IDS_S1[i];
+            var live = orgHasControl(ctrls, id), stat = orgHasControl(statics, id);
+            var rowEl = document.getElementById("org_" + id + "_row");
+            if (rowEl) {
+                rowEl.style.display = (live || stat) ? "block" : "none";
+                var inp = rowEl.querySelector("input,select");
+                if (inp) inp.disabled = (!live && stat);
+            }
+            if (live || stat) anyRow = true;
+        }
+        if (panel) panel.style.display = (anyRow && stateDef.show_sliders !== false) ? "block" : "none";
+        // Re-seed each widget to the state's authored preset, DOM-only (no input
+        // event), so the isTrusted drag-seize listeners are not tripped.
+        var vSel = document.getElementById("org_view_select");
+        if (vSel) vSel.value = window.PM_orgView;
+        var sSl = document.getElementById("org_spin_slider"), sv = document.getElementById("org_spin_val");
+        if (sSl) sSl.value = String(window.PM_orgSpin);
+        if (sv) sv.textContent = Number(window.PM_orgSpin).toFixed(0);
+        var hCk = document.getElementById("org_implicit_h_check");
+        if (hCk) hCk.checked = !!window.PM_orgShowH;
+
+        var hud = document.getElementById("org_hud");
+        if (hud) hud.style.display = os.show_hud ? "block" : "none";
+        var ff = document.getElementById("org_formula");
+        if (ff) {
+            if (os.show_formula && os.formula) { ff.innerHTML = os.formula; ff.style.display = "block"; }
+            else { ff.style.display = "none"; }
+        }
+        // Draw the first frame NOW so a SET_STATE landing on a pin never
+        // photographs the previous state's picture.
+        updateOrganicStructureFrame(stateDef);
+    }
+
+    function updateOrganicStructureFrame(stateDef) {
+        var os = stateDef.organic_structure || {};
+        var ms = (time - stateStartTime) * 1000;
+        var molKey = window.PM_orgMol || os.molecule || "ethane";
+        var mol = ORG_MOLECULES[molKey];
+        if (!mol) return;
+        var phi = orgResolvePhi(mol, os.torsion);
+        var geom = orgBuildGeometry(molKey, phi);
+        if (!geom) return;
+        var i, j, byId = {};
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+
+        // ── the camera. Closed form: the schedule (if any) over the solved base
+        //    pose, written DIRECTLY to the spherical pose so a freeze pin
+        //    reproduces it exactly instead of catching a history-dependent glide.
+        var explore = (os.mode === "explore");
+        var viewLive = (window.PM_orgViewDragged && window.PM_orgView) ? window.PM_orgView : null;
+        var camOs = os;
+        if (viewLive === "home" && os.camera && os.camera.sight_along) camOs = { camera: { az: ORG_HOME.az, el: ORG_HOME.el, dist: (os.camera.dist != null) ? os.camera.dist : ORG_HOME.dist } };
+        var solved = orgSolveCamera(camOs, geom);
+        var pose = { az: solved.az, el: solved.el, dist: solved.dist };
+        if (os.camera_steps && os.camera_steps.length) {
+            var sch = orgCamScheduleAt(os.camera_steps, ms, pose);
+            if (sch) { pose.az = sch.az; pose.el = sch.el; pose.dist = sch.dist; }
+        }
+        // The explore sandbox is camera-RECOVERABLE, not camera-solved (skeleton
+        // §8 row 9): a trusted orbit seizes the camera for the rest of the state,
+        // and re-picking "Standard" in the view row returns exactly to the solved
+        // HOME pose. THE EYE never drags, so a frozen frame always takes the
+        // closed-form branch and stays byte-identical.
+        if (explore && isDragging) window.PM_orgCamSeized = true;
+        if (viewLive === "home") window.PM_orgCamSeized = false;
+        if (!(explore && window.PM_orgCamSeized)) {
+            targetSpherical.radius = pose.dist;
+            targetSpherical.phi = Math.PI / 2 - pose.el * Math.PI / 180;
+            targetSpherical.theta = pose.az * Math.PI / 180;
+            spherical.radius = targetSpherical.radius;
+            spherical.phi = targetSpherical.phi;
+            spherical.theta = targetSpherical.theta;
+            animating = false;
+            updateCameraFromSpherical();
+        }
+        var basis = orgCamBasis(pose);
+
+        // ── N-20: the spin is about the CAMERA VIEW AXIS, never a world axis.
+        //    The solved elevation window at HOME is ~2 deg wide (skeleton §10), so
+        //    a world +y spin walks the molecule out of the only pose where the
+        //    count is countable within a second. Commit 075d5aa fixed exactly this
+        //    class on bonding_scene. Closed form in state-local t.
+        var spinRate = (window.PM_orgSpinDragged && window.PM_orgSpin != null) ? window.PM_orgSpin
+            : ((os.spin_rate != null) ? os.spin_rate : 0);
+        var spinFrom = (os.spin_start_ms != null) ? os.spin_start_ms : 0;
+        var spinAng = (spinRate ? (Math.max(0, ms - spinFrom) / 1000) * spinRate : 0) * Math.PI / 180;
+        if (spinAng) for (i = 0; i < geom.atoms.length; i++) geom.atoms[i].p = orgRotAxis(geom.atoms[i].p, basis.fwd, spinAng);
+
+        // ── which hydrogens this state shows (N-1). An occlusion correctness
+        //    control, not a convenience: 12 H on an 18-atom skeleton hide the very
+        //    arc a state is asking the student to read.
+        var showH = os.show_h;
+        if (window.PM_orgHDragged) showH = window.PM_orgShowH ? "all" : "none";
+        var shown = {}, drawn = [];
+        for (i = 0; i < geom.atoms.length; i++) {
+            var a = geom.atoms[i];
+            var vis = (a.el !== "H") || orgShowH(showH, a);
+            // Newman: the back atom sits EXACTLY behind the front one by
+            // construction, so its sphere is withheld and the rim carries its bonds.
+            if (solved.back && a.id === solved.back && os.camera && os.camera.newman) vis = false;
+            shown[a.id] = vis;
+            if (vis) drawn.push(a);
+        }
+
+        // ── place the atoms + their id labels.
+        var wantLabels = !!os.show_labels;
+        for (i = 0; i < ORG_MAX_ATOMS; i++) {
+            var sph = orgFindById("org_atom_" + i), lab = orgFindById("org_atom_label_" + i);
+            var src = (i < drawn.length) ? drawn[i] : null;
+            if (sph) {
+                sph.visible = !!src;
+                if (src) {
+                    var r = orgAtomRadius(src.el);
+                    sph.position.set(src.p[0] * ORG_U_PER_A, src.p[1] * ORG_U_PER_A, src.p[2] * ORG_U_PER_A);
+                    sph.scale.set(r, r, r);
+                    var col = (MG_ELEMENTS[src.el] || MG_ELEMENTS.C).color;
+                    sph.material.color.set(hexToThreeColor(col));
+                    sph.material.emissive.set(hexToThreeColor(col));
+                    sph.userData.atomId = src.id;
+                }
+            }
+            if (lab) {
+                lab.visible = !!src && wantLabels && src.el === "C";
+                if (lab.visible) {
+                    updateLabelSpriteText(lab, src.id);
+                    var off = orgMul(basis.right, 0.42);
+                    lab.position.set(src.p[0] * ORG_U_PER_A + off[0], src.p[1] * ORG_U_PER_A + off[1] + 0.34, src.p[2] * ORG_U_PER_A + off[2]);
+                }
+            }
+        }
+
+        // ── place the bonds. A double bond draws as TWO parallel sticks offset in
+        //    the plane perpendicular to the camera, which is what makes "this bond
+        //    cannot turn" legible later (A3) rather than decorative now.
+        var slot = 0;
+        var rimR = 0;
+        if (solved.back && os.camera && os.camera.newman && byId[solved.back]) {
+            var axN = mgNorm(orgSub(byId[solved.front].p, byId[solved.back].p));
+            var best = 0;
+            for (i = 0; i < geom.bonds.length; i++) {
+                var bb = geom.bonds[i];
+                var other = (bb.a === solved.back) ? bb.b : ((bb.b === solved.back) ? bb.a : null);
+                if (!other || other === solved.front || !byId[other]) continue;
+                var rel = orgSub(byId[other].p, byId[solved.back].p);
+                var perp = orgSub(rel, orgMul(axN, mgDot(rel, axN)));
+                if (orgLen(perp) > best) best = orgLen(perp);
+            }
+            rimR = best * ORG_U_PER_A * ORG_NEWMAN_RIM_FRAC;
+        }
+        for (i = 0; i < geom.bonds.length && slot < ORG_MAX_BONDS; i++) {
+            var b = geom.bonds[i];
+            if (!shown[b.a] || !shown[b.b]) {
+                // A bond to a WITHHELD back atom is still drawn — from the rim.
+                if (!(rimR > 0 && ((b.a === solved.back && shown[b.b]) || (b.b === solved.back && shown[b.a])))) continue;
+            }
+            var pa = byId[b.a].p, pb = byId[b.b].p;
+            if (rimR > 0 && (b.a === solved.back || b.b === solved.back)) {
+                var backP = byId[solved.back].p, outId = (b.a === solved.back) ? b.b : b.a;
+                if (outId === solved.front) continue;    // the sighted bond is a point
+                var axR = mgNorm(orgSub(byId[solved.front].p, backP));
+                var relR = orgSub(byId[outId].p, backP);
+                var perpR = orgSub(relR, orgMul(axR, mgDot(relR, axR)));
+                var pl = orgLen(perpR) || 1;
+                pa = orgAdd(backP, orgMul(perpR, (rimR / ORG_U_PER_A) / pl));
+                pb = byId[outId].p;
+            }
+            var reps = (b.order === 2) ? 2 : 1;
+            for (j = 0; j < reps && slot < ORG_MAX_BONDS; j++) {
+                var st = orgFindById("org_bond_" + slot);
+                slot++;
+                if (!st) continue;
+                var A = orgMul(pa, ORG_U_PER_A), B = orgMul(pb, ORG_U_PER_A);
+                if (reps === 2) {
+                    var axD = mgNorm(orgSub(B, A));
+                    var offD = mgNorm(orgCross(axD, basis.fwd));
+                    var s2 = (j === 0 ? 0.11 : -0.11);
+                    A = orgAdd(A, orgMul(offD, s2)); B = orgAdd(B, orgMul(offD, s2));
+                }
+                var dv = orgSub(B, A), L = orgLen(dv);
+                st.visible = L > 1e-4;
+                if (!st.visible) continue;
+                st.position.set(A[0], A[1], A[2]);
+                st.scale.set(1, L, 1);
+                st.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / L, dv[1] / L, dv[2] / L));
+            }
+        }
+        for (i = slot; i < ORG_MAX_BONDS; i++) { var sx = orgFindById("org_bond_" + i); if (sx) sx.visible = false; }
+
+        var rimM = orgFindById("org_rim");
+        if (rimM) {
+            rimM.visible = rimR > 0;
+            if (rimM.visible) {
+                var bp = byId[solved.back].p;
+                rimM.position.set(bp[0] * ORG_U_PER_A, bp[1] * ORG_U_PER_A, bp[2] * ORG_U_PER_A);
+                rimM.scale.set(rimR, rimR, 1);
+                rimM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3(basis.fwd[0], basis.fwd[1], basis.fwd[2]));
+            }
+        }
+
+        // ── the countability metric, published for the gate and for the teacher
+        //    tooling. Isotropic screen units, never NDC.
+        var sep = orgMinScreenGap(geom, pose, shown);
+        window.PM_orgMinGap = sep.gap;
+        window.PM_orgPhi = (mol.ref_dihedral && byId[mol.ref_dihedral[0]] && byId[mol.ref_dihedral[3]])
+            ? orgDihedral(byId[mol.ref_dihedral[0]].p, byId[mol.ref_dihedral[1]].p, byId[mol.ref_dihedral[2]].p, byId[mol.ref_dihedral[3]].p)
+            : null;
+        window.PM_orgCam = pose;
+
+        // ── value-only HUD (Rule 33d/34b: numbers, never a restated equation).
+        var hud = document.getElementById("org_hud");
+        if (hud && hud.style.display !== "none") {
+            var lines = [], w = os.hud_lines || ["pose"], nC = 0, nH = 0;
+            for (i = 0; i < geom.atoms.length; i++) { if (geom.atoms[i].el === "C") nC++; else nH++; }
+            for (i = 0; i < w.length; i++) {
+                var key = w[i];
+                if (key === "phi") lines.push("\\u03C6 = " + ((window.PM_orgPhi == null) ? "\\u2014" : window.PM_orgPhi.toFixed(1)) + "\\u00B0");
+                else if (key === "bond") lines.push("bond = " + (solved.sight ? String(solved.sight).replace("-", "\\u2013") : "\\u2014"));
+                else if (key === "pose") lines.push("pose = " + ((os.torsion && os.torsion.pose) ? os.torsion.pose : (mol.default_pose || "\\u2014")));
+                else if (key === "atom_count") lines.push("C " + nC + " \\u00B7 H " + nH);
+            }
+            hud.innerHTML = lines.join("<br>");
+        }
+    }
+
+    /** Rule 29/32e: emphasis is brightness, exactly ONE focal at a time. */
+    var ORG_GLOW_ELS = {
+        atoms: ["org_atom"], labels: ["org_atom_label"],
+        bonds: ["org_bond"], rim: ["org_rim"]
+    };
+    function applyOrganicStructureGlow(stateDef) {
+        var focal = stateDef.glow_focal || null, k, i;
+        var focalTypes = {};
+        for (k in ORG_GLOW_ELS) {
+            if (!Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, k)) continue;
+            for (i = 0; i < ORG_GLOW_ELS[k].length; i++) focalTypes[ORG_GLOW_ELS[k][i]] = (focal === k);
+        }
+        var any = !!focal && Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, focal);
+        for (i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (!o.userData || String(o.userData.elementType || "").indexOf("org_") !== 0) continue;
+            applyGlowEmphasis(o, !!focalTypes[o.userData.elementType], any, 1, false);
+        }
+    }
+
     // ── orbital_shapes (an orbital is a 3D region of PROBABILITY, not a path) ─
     //   NEW scenario (2026-07-28 engine ask, skeleton §E). The P2 orbital-lobe
     //   render surface for chemistry: a whiteboard cannot draw a p_z dumbbell
@@ -72281,6 +73274,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildBondingScene(config);
                 break;
 
+            case "organic_structure":
+                buildOrganicStructure(config);
+                break;
+
             case "orbital_shapes":
                 buildOrbitalShapes(config);
                 break;
@@ -73348,6 +74345,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyBondingSceneState(stateDef);
         }
 
+        // organic_structure (ORGANIC — Phase-0 S1) — authoritative per-state
+        // seeding: the frozen-enum gate (a deferred member or field is REJECTED
+        // LOUDLY here, never silently defaulted), the molecule preset, the H
+        // visibility, the ring-gated contextual control rows (Rule 31), the HUD +
+        // ONE formula surface, and the SOLVED camera. The first frame is drawn at
+        // the end of the apply so a SET_STATE landing on a pin never photographs
+        // the previous state's picture.
+        if (config.scenario_type === "organic_structure") {
+            applyOrganicStructureState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -73656,6 +74664,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // through with its straight-wire-current defaults (THE-EYE "#sliders
         // exclusion chain" -- every dedicated panel excludes itself here).
         var isBondScene = config.scenario_type === "bonding_scene";
+        // organic_structure owns its OWN #org_sliders panel (view / spin /
+        // implicit_h today; the ring-gated list grows per dispatch) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" -- every dedicated panel excludes itself here).
+        var isOrganic = config.scenario_type === "organic_structure";
         // solid_of_revolution owns its OWN #sr_sliders panel (a/b/r/n rows) -- must
         // be excluded here or the generic #sliders panel bleeds through (THE-EYE
         // "#sliders exclusion chain" -- every dedicated panel excludes itself here).
@@ -73679,7 +74692,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isSolidRev && !isKt && !isVecGeom) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isOrganic && !isSolidRev && !isKt && !isVecGeom) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -73866,7 +74879,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (formulaEl && (config.scenario_type === "organic_structure" || config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -74391,6 +75404,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // and a "point charge / drag to rotate" legend would be both wrong and
         // clutter (Rule 34).
         if (config.scenario_type === "bonding_scene") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // organic_structure is a silent visual too (Rule 24): the skeleton + atom
+        // labels + the value-only HUD + the ONE formula surface carry everything,
+        // and a "point charge / drag to rotate" legend would be both wrong and
+        // clutter (Rule 34).
+        if (config.scenario_type === "organic_structure") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // em_wave_propagation is a silent visual (Rule 24): the antenna + axis +
         // green E-train / blue B-train + receiver dual gauge + motes + the ONE
         // formula surface carry everything — suppress the generic point-charge
@@ -76948,7 +77966,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (freezeAtTime !== null && (config.scenario_type === "organic_structure" || config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -77044,6 +78062,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "bonding_scene") {
             var bscStateDef = config.states[PM_currentState];
             if (bscStateDef) { updateBondingSceneFrame(bscStateDef); applyBondingSceneGlow(bscStateDef); }
+        }
+
+        // organic_structure (ORGANIC) — the skeleton layer: the generated atom +
+        // bond geometry, the static torsion pose, the solved / scheduled camera,
+        // the view-axis spin (N-20) and the value-only HUD. Accumulator-free:
+        // every value INCLUDING the camera pose and the spin angle is a pure fn
+        // of state-local t (Rule 26/36 — byte-stable under a SET_TIME_FREEZE pin).
+        if (config.scenario_type === "organic_structure") {
+            var orgStateDef = config.states[PM_currentState];
+            if (orgStateDef) { updateOrganicStructureFrame(orgStateDef); applyOrganicStructureGlow(orgStateDef); }
         }
 
         // molecular_geometry (VSEPR) — the assemble / flat-relax / domain-spread /

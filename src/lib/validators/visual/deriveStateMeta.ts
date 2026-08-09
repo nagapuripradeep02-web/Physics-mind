@@ -279,6 +279,20 @@ export function deriveMotionExpectations(
             // standing still. The explore sandbox is user-driven → declare static
             // and let the interactive hold classification relax its tail (the
             // renderer's idle auto-sweep keeps it moving regardless, Rule 37).
+            // organic_structure (ORGANIC): a beat that authors a non-zero
+            // spin_rate turns the skeleton forever on the state clock (about the
+            // CAMERA VIEW AXIS, N-20) → DECLARE motion so D5/D6 expect ongoing
+            // pixel movement. A still beat (spin off, Rule 32b) is a one-shot
+            // camera schedule that SETTLES: left undefined here so the hold pass
+            // classifies it reveal_hold instead of false-failing it for standing
+            // still. The explore sandbox is user-driven → declare static and let
+            // the interactive hold classification relax its tail.
+            const orgMotion = state ? asObj(state.organic_structure) : null;
+            if (orgMotion) {
+                if (orgMotion.mode === 'explore') { out[stateId] = false; continue; }
+                if (typeof orgMotion.spin_rate === 'number' && orgMotion.spin_rate > 0) { out[stateId] = true; continue; }
+                // still beat: fall through to the reveal_hold classification.
+            }
             const bscMotion = state ? asObj(state.bonding_scene) : null;
             if (bscMotion) {
                 if (bscMotion.mode === 'explore') { out[stateId] = false; continue; }
@@ -785,6 +799,14 @@ const F3D_REVEAL_KEYS = [
     // E3 the lattice). Listed here so a cached physics_config that flattened
     // field_3d_config.states is still recognised as field_3d, not PCPL.
     'bonding_scene',
+    // organic_structure (ORGANIC CHEMISTRY — Phase-0 S1 engine dispatch,
+    // 2026-08-09): the per-state `organic_structure` block (the generated
+    // multi-atom skeleton / static torsion pose / solved + scheduled camera
+    // including sight-along-a-bond / view-axis spin / value-only HUD; A1 adds
+    // the driven dihedral, A2 the ring pucker, S2 the energy instrument).
+    // Listed here so a cached physics_config that flattened
+    // field_3d_config.states is still recognised as field_3d, not PCPL.
+    'organic_structure',
     // solid_of_revolution (MATHEMATICS — Phase-0 SR-A engine dispatch, 2026-08-08):
     // the per-state `sr` block (ticked frame reveal / curve draw / region fill /
     // log-n ramp; SR-B adds the theta sweep and the disc-stack beats). Listed here
@@ -2114,6 +2136,64 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // scripted "hide the lone pairs → the shape is what is left" reveal.
         if (typeof mgState.hull_at_ms === 'number') candidates.push(asNum(mgState.hull_at_ms, 0) + 900 + 400);
         if (typeof mgState.hide_lone_at_ms === 'number') candidates.push(asNum(mgState.hide_lone_at_ms, 0) + 900);
+    }
+    // organic_structure (ORGANIC — Phase-0 S1, 2026-08-09). N-19. WITHOUT THIS
+    // BRANCH every state of every organic concept pins at DEFAULT_REVEAL_MS =
+    // 1500 ms — before every payoff in the chair-flip skeleton §5 table — and
+    // mints a self-contradictory baseline that no concept JSON can fix
+    // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms...).
+    // The fleet rule applies: candidates are pushed and the caller returns
+    // Math.max(...candidates); the nlb clamp(0.60*R, 150, R-150) at :3213 is that
+    // branch's LOCAL heuristic and is deliberately NOT copied here.
+    // Candidate sources: the camera schedule's last eased arrival, the spin
+    // spin-up, and a GENERIC sweep of every `*_at_ms` key the block carries
+    // paired with its `*_ramp_ms`/`*_duration_ms` sibling. The generic sweep is
+    // the anti-scar half: a LATER dispatch (A1's driven dihedral, A2's pucker
+    // walk, S2's energy reveal) adds a timed authoring key, and a key this
+    // evaluator cannot see is invisible until a baseline is already wrong.
+    const orgState = asObj(state.organic_structure);
+    if (orgState) {
+        const ORG_CUSHION = 600;
+        const camSteps = Array.isArray(orgState.camera_steps) ? orgState.camera_steps : [];
+        for (const rawStep of camSteps) {
+            const step = asObj(rawStep);
+            if (!step) continue;
+            candidates.push(asNum(step.at_ms, 0) + asNum(step.ease_ms, 900) + ORG_CUSHION);
+        }
+        if (typeof orgState.spin_start_ms === 'number') candidates.push(asNum(orgState.spin_start_ms, 0) + 1200);
+        // The generic timed-key sweep. `<name>_at_ms` pairs with `<name>_ramp_ms`
+        // or `<name>_duration_ms` when either is present, and with a 1500 ms
+        // default when neither is (the fleet's own no-duration assumption).
+        const sweep = (obj: Record<string, unknown>) => {
+            for (const key of Object.keys(obj)) {
+                if (!key.endsWith('_at_ms')) continue;
+                const at = obj[key];
+                if (typeof at !== 'number') continue;
+                const stem = key.slice(0, -('_at_ms'.length));
+                const ramp = obj[stem + '_ramp_ms'];
+                const dur = obj[stem + '_duration_ms'];
+                const span = (typeof ramp === 'number') ? ramp : ((typeof dur === 'number') ? dur : 1500);
+                candidates.push(at + span + ORG_CUSHION);
+            }
+        };
+        sweep(orgState as Record<string, unknown>);
+        for (const key of Object.keys(orgState)) {
+            const v = (orgState as Record<string, unknown>)[key];
+            const child = asObj(v);
+            if (child) { sweep(child as Record<string, unknown>); continue; }
+            if (!Array.isArray(v)) continue;
+            for (const rawLeg of v) {
+                const leg = asObj(rawLeg);
+                if (!leg) continue;
+                if (typeof leg.at_ms === 'number') {
+                    const span = (typeof leg.ramp_ms === 'number') ? leg.ramp_ms
+                        : ((typeof leg.duration_ms === 'number') ? leg.duration_ms : 0);
+                    const hold = (typeof leg.hold_ms === 'number') ? leg.hold_ms : 0;
+                    candidates.push(leg.at_ms + span + hold + ORG_CUSHION);
+                }
+                sweep(leg as Record<string, unknown>);
+            }
+        }
     }
     // bonding_scene (CHEMISTRY BONDING WAVE — Phase-0 E1, 2026-08-01): the unit
     // may turn perpetually and jiggle forever, but each state's TEACHING beat is a
@@ -4188,6 +4268,20 @@ export function deriveHoldExpectations(
             const bscHold = asObj(state.bonding_scene);
             if (bscHold) {
                 out[stateId] = (bscHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // organic_structure (ORGANIC): every state exposes at least a
+            // contextual control row (Rule 31 ring-gated `controls`), so the
+            // generic show_sliders catch below would swallow the guided beats
+            // into 'interactive' before they reach it. Classify explicitly
+            // (the molecular_geometry / bonding_scene / orbital_shapes
+            // guided-vs-explore split): the sandbox (mode 'explore', Rule 37
+            // free-run) is user-driven → interactive and is NEVER pinned; every
+            // other mode is a guided beat whose one-shot payoff (pinned in
+            // maxRevealForField3dState) settles to a HOLD → reveal_hold.
+            const orgHold = asObj(state.organic_structure);
+            if (orgHold) {
+                out[stateId] = (orgHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             const osHold = asObj(state.orbital_shapes);
