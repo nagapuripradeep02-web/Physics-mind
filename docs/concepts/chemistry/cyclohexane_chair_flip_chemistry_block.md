@@ -1,7 +1,9 @@
 # Chemistry block — `cyclohexane_chair_flip`
 
 **Author:** chemistry-author · 2026-08-09 · worktree `Viditra-organic-o0`
-**Input:** `docs/concepts/chemistry/cyclohexane_chair_flip_skeleton.md` (616 lines, read in full)
+**Input:** `docs/concepts/chemistry/cyclohexane_chair_flip_skeleton.md` **revision 2** (725 lines, re-read in full 2026-08-09)
+
+> **Revision 2 — Checkpoint A fix cycle 1 (2026-08-09).** founder-proxy returned `DESIGN_FIX`. One P1 and one P2 are mine and are applied: **P1-6** (the advanced-ring relation inverted the standard ΔG° sign convention — the surface and its HUD are rewritten in **A**, §D-8, §E-1, §I-4) and **P2-2** (S5 narrated three shapes over a timeline that renders five — CLOSED by rewording, §D-5). Seven reconciliation items the architect flagged rather than edited are also applied: the corrected Cut-2 rendered-string list (§E-6), S4's re-bound final-clause focal (§D-4), S2's restored and rewritten claim (§D-2), S5's `φ = 0.0°` payoff clause and HUD line (§D-5), the `H | CH₃` group restriction with a sourced answer on Cl/Br/OH (§H-11), the new rail titles and the changed S3/S6 cues (§D-2, §D-3, §D-6), and the adopted 145 s duration table with my §I-1 **withdrawn** (§D-0). Unchanged: §A, §B, §F, §H-1…H-10, §J's items, and every number founder-proxy spot-checked.
 **Status:** Phase-0 **0b** — `scenario_type: "organic_structure"` does not exist. Nothing below is marked blocked or downgraded to a live archetype; this block, with the skeleton, is the engine specification. Every motion targets the `organic_structure` contract of `ORGANIC_PHASE0_CONFORMATION.md` §contract as amended by the skeleton's §9 and by §C-3 / §H-10 below.
 
 **Numerical work is RUN, not eyeballed.** Every geometric claim below was re-derived from coordinates in an independent offline solve (chair closed-form; boat closed-form; twist-boat and boat by constrained relaxation; Cremer–Pople decomposition; Boltzmann and Eyring in closed form). Where my number differs from the skeleton's I say so and give the derivation.
@@ -24,13 +26,13 @@ Queries run 2026-08-09 against `engine_bug_queue` via `src/scripts/query_engine_
 | `bug_class` | Owner | Discharge |
 |---|---|---|
 | `prose_in_a_variable_derived_field_deletes_its_painted_value_from_scope_and_blocks_every_formula_referencing_it` **(CRITICAL/OPEN)** | physics_author | `E_kJ_per_mol` is a **published-table lookup**, not computable from declared variables. It is declared **INDEPENDENT with no `derived` field at all** (§C). Prose about it lives here, never in the JSON. Every other `computed_outputs` expression is substitutable and was evaluated numerically (§C-4) |
-| `computed_output_name_encodes_a_symbol_no_instrument_paints_so_every_reading_is_harvested_then_discarded` | physics_author | Every key was run through the live `splitNameUnit` regex (`deriveAssertions.ts:45`) and matched against the caption it claims. `E_kJ_per_mol`→`E`, `equatorial_pct`→`equatorial`, `axial_pct`→`axial`, `T_K`→`T`, `barrier_kJ_per_mol`→`barrier`. **Two declared exceptions** with reasons in §C-5 |
+| `computed_output_name_encodes_a_symbol_no_instrument_paints_so_every_reading_is_harvested_then_discarded` | physics_author | Every key was run through the live `splitNameUnit` regex (`deriveAssertions.ts:45`) and matched against the caption it claims. `E_kJ_per_mol`→`E`, `equatorial_pct`→`equatorial`, `axial_pct`→`axial`, `T_K`→`T`, `barrier_kJ_per_mol`→`barrier`, and (new in revision 2) **`A`→`A`** for the HUD line `A = 7.3 kJ·mol⁻¹ (literature)`. **Two declared exceptions** with reasons in §C-5 |
 | `physics_config_constraint_block_describes_a_transform_a_later_engine_change_made_dynamic` | physics_author | Every constraint in §G states whether its number is FIXED or DERIVED |
 | `narration_quotes_a_point_value_of_a_noisy_instrument` · `narration_claims_a_net_average_the_visible_transient_contradicts` | chemistry_author | No stochastic instrument exists here (closed-form in t, zero noise). Every narrated numeral is byte-identical to a printed instrument value — checked line by line in §E |
 | `gas_box_state4_asserts_unchanged_speed_with_no_instrument` | chemistry_author | Drove three "unchanged" claims to an instrument. **One failure found:** S5's "closer than two hydrogens fit" had no rendered 240 pm reference — engine ask **N-17** (§H-10) |
 | `real_world_anchor_promises_a_lever_the_sim_does_not_have` | chemistry_author | Anchor rewritten against the control surface: it names only the ring shape and the equatorial arrangement, both rendered. Nothing about glucose metabolism, digestion or starch is promised |
 | `the_most_likely_followup_question_was_undemonstrable_at_the_authored_range` | chemistry_author | The S8 temperature range is chosen by measuring the two questions a teacher asks first (cool it / heat it) — §C-2 |
-| `authored_annotation_asserts_a_value_its_own_state_control_can_falsify` **(CRITICAL)** | json_author | S8 is the only state with a control. Its formula surface is **rewritten to a symbolic relation** so no numeral on it can be falsified by the T slider (§D-8, §I-3). Bars and HUD carry the live values |
+| `authored_annotation_asserts_a_value_its_own_state_control_can_falsify` **(CRITICAL)** | json_author | S8 is the only state with a control. Its formula surface is **rewritten to a symbolic relation** so no numeral on it can be falsified by the T slider (§D-8, §I-4) — and in revision 2 that relation is written in **A**, not `ΔG°`, so its printed signs are right as well as its value (P1-6, §D-8). Bars and HUD carry the live values |
 | `narration_outruns_choreography` · `guided_state_overruns_pacing_target` | json_author | Every state's narration duration computed at 2.75 words·s⁻¹ and compared with its choreography end. **Six of eight states fail against the skeleton's §5 durations** — the largest disagreement in this block (§D-0, §I-1) |
 | `explore_state_surfaces_non_core_ring_symbol` · `core_ring_state_shows_value_whose_only_derivation_is_higher_ring` | json_author | Both cuts run literally over every symbol and every unit-bearing value in §E-9 |
 | `field3d_counted_element_occluded_along_view_axis` | json_author | Every counted thing (six axial, six equatorial, "two hydrogens", "two contact lines") is listed in §G-2 as a countability assertion |
@@ -67,6 +69,17 @@ Queries run 2026-08-09 against `engine_bug_queue` via `src/scripts/query_engine_
 | back-check vs butane gauche | 2 × 3.8 = 7.6 vs 7.3 | 4.1 % apart — consistent with the drawn geometry (an axial methyl has exactly two gauche-butane units along C1–C2 and C1–C6; an equatorial methyl has none) | ✔ |
 
 **Note for the record, not for the canvas.** McMurry quotes the same preference as **7.6 kJ·mol⁻¹** (1.8 kcal·mol⁻¹) and also reports 95 : 5 — because 7.6 gives 95.6 : 4.4, which rounds identically. Both books agree on the ratio; **7.3 is the primary literature A-value and gives 95.00 : 5.00 exactly**, so keep 7.3. The A-value that yields exactly 95.00 : 5.00 at 298.15 K is 7.2991 kJ·mol⁻¹.
+
+**The sign convention, written down once so nothing downstream can re-invert it (P1-6).** For the equilibrium **axial ⇌ equatorial**:
+
+```
+ΔG°(ax → eq) = G°(eq) − G°(ax) = −A          (NEGATIVE, because equatorial is the lower one)
+ΔG° = −RT ln K      ⇒   K = N(eq)/N(ax) = exp(−ΔG°/RT) = exp(+A/RT)
+A ≡ −ΔG°(ax → eq)   is POSITIVE by construction; A(CH₃) = +7.3 kJ·mol⁻¹
+K = exp(7300 / (8.314 × 298)) = 19.04                → 95.0 : 5.0
+```
+
+**Everything rendered on canvas is written in `A`, never in `ΔG°`.** Printing `ΔG° = 7.3 kJ·mol⁻¹` (wrong sign) inside `exp(ΔG°/RT)` (wrong sign) reaches the right number by cancelling two errors — §D-8 and §I-4.
 
 ### A-3 · Geometry
 
@@ -288,7 +301,8 @@ Lands in the concept JSON's `physics_engine_config` field (legacy name, subject-
   "computed_outputs": {
     "equatorial_pct": "100 * exp(A_Me_kJ * 1000 / (R_gas * T)) / (1 + exp(A_Me_kJ * 1000 / (R_gas * T)))",
     "axial_pct":      "100 / (1 + exp(A_Me_kJ * 1000 / (R_gas * T)))",
-    "T_K":            "T"
+    "T_K":            "T",
+    "A":              "A_Me_kJ"
   },
 
   "constraints": [
@@ -353,169 +367,202 @@ Both are checked by the chemistry gate instead: `check:organic-structure` assert
 
 ## §D — Within-state motion timeline, control spec, and narration
 
-### D-0 · The pacing reconciliation — the largest disagreement in this block
+### D-0 · Pacing — the architect's §5 durations ADOPTED (revision 2)
 
-Planning rate **2.75 words·s⁻¹** (Rule 31a's own calibration: 55 words ≈ 20 s, 25 words ≈ 10 s). Two hard requirements are in tension in the skeleton's §5:
+Planning rate **2.75 words·s⁻¹** (Rule 31a's own calibration: 55 words ≈ 20 s, 25 words ≈ 10 s).
 
-- **Rule 31:** motion may outrun narration, never the reverse → `R ≥ N + 500 ms`.
-- **Skeleton §5:** the frozen pin at `0.60·R` must land **after** the state's last asserted reveal `L`, with ≥ 167 ms margin → `R ≥ (L + 167) / 0.60`.
+**Revision 1 of this block proposed 162 s of guided runtime against two constraints. One of them does not exist.** I wrote `R ≥ (L + 167)/0.60`, treating the `nlb` branch's `clamp(0.60·R, …)` as the fleet pin law. The architect's revision-2 §5 is right: the pin is **authored per scenario** through `maxRevealForField3dState()`, and `organic_structure` has no branch at all yet (engine need **N-19**). **My §I-1 is WITHDRAWN.** One constraint survives, and it is Rule 31's own:
 
-Against the skeleton's §5 durations, **six of eight guided states fail the first requirement** and, once the narration clauses are ordered so that cause precedes effect (Rule 32a), **five fail the second as well**. Revised durations, with the architect's beat *structure* preserved and the windows scaled:
+> **`R ≥ N + 500 ms`** — motion may outrun narration, never the reverse.
 
-| S | words | N (s) | last reveal L | **proposed R** | pin 0.60R | margin | skeleton R |
+**The skeleton's §5 table now governs `R`, every beat window and the `Pin` column.** Every `R` below is the architect's; every `N` is recomputed from the word count I actually author; every margin is checked.
+
+| S | words | N (s) | **R (ms)** | margin (ms) | L (last reveal) | Pin (ms) | §3 word band |
 |---|---|---|---|---|---|---|---|
-| 1 | 51 | 18.5 | 12000 | **21000** | 12600 | 600 | 13000 |
-| 2 | 44 | 16.0 | 9300 | **17000** | 10200 | 900 | 14000 |
-| 3 | 45 | 16.4 | 12800 | **23000** | 13800 | 1000 | 15000 |
-| 4 | 48 | 17.5 | 11200 | **19500** | 11700 | 500 | 14000 |
-| 5 | 46 | 16.7 | 9800 | **20000** | 12000 | 2200 | 20000 ✔ |
-| 6 | 50 | 18.2 | 12500 | **22000** | 13200 | 700 | 16000 |
-| 7 | 51 | 18.5 | 12800 | **22500** | 13500 | 700 | 18000 |
-| 8 | 44 | 16.0 | 6600 | **17000** | 10200 | 3600 | 15000 |
-| 9 | 0 | — | — | continuous | none | — | — |
+| 1 | **50** | 18.18 | **19000** | 820 | 7800 | 12000 | 45–52 ✔ |
+| 2 | **44** | 16.00 | **16500** | 500 | 8400 | 11000 | 45–52 — one under, **FLAGged below** |
+| 3 | 45 | 16.36 | **17000** | 640 | 9200 | 11000 | 40–50 ✔ |
+| 4 | 48 | 17.45 | **18000** | 550 | 13500 | 14200 | 45–55 ✔ |
+| 5 | **53** | 19.27 | **20000** | 730 | 10200 | 12000 | 46–55 ✔ |
+| 6 | 50 | 18.18 (+300 ms lead) | **19000** | 518 | 10800 | 12500 | 45–55 ✔ |
+| 7 | 50 | 18.18 (+300 ms lead) | **19000** | 518 | 10200 | 12000 | 45–55 ✔ |
+| 8 | **43** | 15.64 | **16500** | 860 | 5400 | 10000 | 40–50 ✔ |
+| 9 | 0 | — | continuous | — | — | none | 0 / open |
 
-Guided total **162 s** vs the skeleton's 125 s. **This is a proposal, not an overwrite** — §I-1.
+**Guided total 145.0 s**, identical to the skeleton's §5 total. **383 narrated words.**
 
-Notation used below: `t-window · what animates · driven by`. Every branch is a pure function of the state clock (Rule 26, THE-EYE-safe). Focal per sentence is given for the eventual glow binding (N-18).
+**Four word counts moved, each for a stated reason, none by taste.**
+
+1. **S1 51 → 50.** At 51 words `N = 18.55 s`, so `R − N = 450 ms` — 50 ms under the 500 ms budget the skeleton itself holds. One word goes (`does not fit` → `cannot fit`, also the plainer form) and the margin becomes 820 ms.
+2. **S7 51 → 50.** Identical arithmetic at `R = 19000` (455 ms). Cut: `on carbon 3 and carbon 5` → `on carbons 3 and 5`.
+3. **S5 46 → 53.** The architect's own P1-5 payoff (the `φ = 0.0°` eclipsed-bond clause) and P2-2 (cover the return legs) are both narration *additions*; §5 costed neither. 53 words fits `R = 20000` with 730 ms to spare, and 53 is inside §3's own 46–55 band.
+4. **S8 44 → 43.** The A-value is now named in narration so the HUD symbol `A` is not an untaught term — a P1-6 consequence, not an option (§D-8, Rule 25).
+
+**FLAG — one arithmetic conflict inside the skeleton, the architect's to close.** §3 gives S2 a **45–52** word band; §5 gives it `N = 16.0 s` at `R = 16500`, and 16.0 s at 2.75 words·s⁻¹ **is 44 words**. At 45 words the margin is 136 ms, far under the 500 ms budget. I author **44** — inside Rule 31's 25–55, one word under §3's band, and an exact match to §5's own `N`. The alternative is `R = 16900` at 45 words, which moves the guided total to 145.4 s. Either is fine; I matched the arithmetic rather than the band, and I am not hiding the choice.
+
+Notation used below: `t-window · what animates · driven by`. Every branch is a pure function of the state clock (Rule 26, THE-EYE-safe). **Beat windows are the skeleton's §5 verbatim**; clause windows are computed at 2.75 words·s⁻¹ and checked against them for Rule 32a. Focal per sentence is given for the eventual glow binding (N-18). Where a beat order costs the teaching something, the fix is offered as a **RECOMMENDATION** and the §5 number is what I author — three of them appear below (S1, S2's title, S3).
 
 ---
 
-### D-1 · `STATE_1 — ring_is_not_flat` · core · `manual_click` · **R = 21000**
+### D-1 · `STATE_1 — ring_is_not_flat` · core · `manual_click` · **R = 19000**
 
-**Archetype:** flatten→relax (declared Rule-16a contrast beat, `docs/patterns/chemistry.md` archetype P family / `organic_structure.pucker`). **Delta cue:** `Flat drawing, then chair`. **Controls:** none. **Formula surface:** none — §I-5. **Hydrogens:** `show_h: 'none'` throughout.
+**Archetype:** flatten→relax (declared Rule-16a contrast beat, `docs/patterns/chemistry.md` archetype P family / `organic_structure.pucker`). **Rail title:** `Cyclohexane is not flat`. **Delta cue:** `Flat drawing, then chair`. **Controls:** none. **Formula surface:** none — §I-6. **Hydrogens:** `show_h: 'none'` throughout.
 
 | t-window | What animates | Driven by |
 |---|---|---|
-| 0 – 800 | flat ring held, camera FACE-ON (`flat_basis`), rigid | `pucker_amplitude = 0` (held) |
-| 800 – 1800 | live C–C–C arc draws on the certified carbon, reads `120.0°` | measurement reveal |
-| 2900 – 4200 | dimmed reference arc `109.5°` draws beside it, glows | measurement reveal (the prerequisite patch) |
-| 4500 – 6800 | eased camera step FACE-ON → HOME; **molecule perfectly rigid**; HUD holds `120.0` throughout — the held value is the proof the re-framing is not the pucker | `camera_steps` (existing, `field_3d_renderer.ts:492`) |
-| 6800 – 8600 | hold at HOME, both arcs up, nothing moves | — |
-| **8600 – 12000** | **the ring folds**; live arc closes `120.0° → 111.4°` continuously | **`pucker_amplitude: 0 → 1`** (§C-3) |
-| 12000 – 21000 | hold at the chair, arc reads `111.4°` | — |
+| 0 – 1500 | flat ring held at FACE-ON (`flat_basis`), rigid; the live C–C–C arc draws and reads `120.0°` | `pucker_amplitude = 0` (held) + `measure.angle` |
+| 1200 – 1800 | the dimmed reference arc `109.5°` draws beside it | `measure.angle` (the prerequisite patch) |
+| 1800 – 3600 | eased camera step FACE-ON → HOME; **the molecule stays perfectly rigid**; the HUD holds `120.0` throughout — the held value is the proof the re-framing is not the pucker | `camera_steps` (existing, `field_3d_renderer.ts:492`) |
+| 3600 – 4200 | hold at HOME, both arcs up, nothing moves | — |
+| **4200 – 7800** | **the ring folds**; the live arc closes `120.0° → 111.4°` continuously | **`pucker_amplitude: 0 → 1`** (§C-3) |
+| 7800 – 19000 | hold at the chair, arc reads `111.4°` | — |
 
-**Rule 32a:** three strictly sequential phases (evidence → re-frame → fold), never simultaneous, and the fold starts 5.7 s after the "does not fit" reason is on screen. **Rule 32e:** one focal at a time — the 120.0° arc, then the 109.5° reference, then the folding ring. **Pin at 12600** — 600 ms after the fold ends, so the frozen frame can never archive the flat ring.
+**Rule 32a:** three strictly sequential phases (evidence → re-frame → fold), never simultaneous. **Rule 32e:** one focal at a time — the `120.0°` arc, then the `109.5°` reference, then the folding ring. **Pin at 12000**, 4200 ms after the fold ends, so the frozen frame can never archive the flat ring.
 
-**`text_en` (51 words · 18.5 s):**
+**`text_en` (50 words · 18.18 s):**
 
-> Drawn flat, every ring angle is 120 degrees. A carbon bond angle is about 109.5 degrees, so a flat ring does not fit. Released, the ring folds into the shape called a chair, and the angle closes to 111.4 degrees. Sugar and cotton fibre are built from rings shaped like this.
+> Drawn flat, every ring angle is 120 degrees. A carbon bond angle is about 109.5 degrees, so a flat ring cannot fit. Released, the ring folds into the shape called a chair, and the angle closes to 111.4 degrees. Sugar and cotton fibre are built from rings shaped like this.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Drawn flat, every ring angle is 120 degrees." | 8 | 0 – 2900 | the `120.0°` arc |
-| "A carbon bond angle is about 109.5 degrees, so a flat ring does not fit." | 15 | 2900 – 8400 | the `109.5°` reference arc |
-| "Released, the ring folds into the shape called a chair, and the angle closes to 111.4 degrees." | 17 | 8400 – 14600 | the folding ring |
-| "Sugar and cotton fibre are built from rings shaped like this." | 11 | 14600 – 18600 | the settled chair |
+| "Drawn flat, every ring angle is 120 degrees." | 8 | 0 – 2909 | the `120.0°` arc |
+| "A carbon bond angle is about 109.5 degrees, so a flat ring cannot fit." | 14 | 2909 – 8000 | the `109.5°` reference arc |
+| "Released, the ring folds into the shape called a chair, and the angle closes to 111.4 degrees." | 17 | 8000 – 14182 | the ring, then the settled `111.4°` arc |
+| "Sugar and cotton fibre are built from rings shaped like this." | 11 | 14182 – 18182 | the settled chair |
 
-**The anchor is moved to the END of S1** (skeleton §6 placed it as the opener). Reason: with the anchor first, the fold cannot start until t ≈ 12.8 s, which pushes the pin before the fold and archives the flat ring — the exact failure the skeleton budgeted against. Moved last, it also reads better: a closing grounding on the chair the student has just watched form, rather than an opening aside about a ring they have not seen yet. Budget honoured at 11 words (≈12 reserved).
+**Motion outruns narration here, which is the permitted direction.** The fold completes at 7800 and the fold clause is spoken from 8000 over the settled chair, whose arc reads `111.4°` for every word of it — so no word contradicts the picture at any instant.
 
-**M1 confrontation:** both pictures shown back to back, no question asked, and the flat half carries its own quantitative cost (120.0° against a drawn 109.5° reference — 10.5° wrong) before the release.
+> **RECOMMENDATION to the architect (not applied — §5 governs).** Move the fold to **5600 – 9200**. `L` becomes 9200, the pin at 12000 still clears it by 2800 ms, `R` is unchanged, and the fold clause (8000 – 14182) is then spoken *across* the motion instead of after it. This is the only beat in the concept where the one motion finishes before the sentence about it begins.
+
+**The anchor is the CLOSING clause**, as the architect's §6 now specifies (the reason is at §I-9: as an opener it delays the fold past the pin and archives the flat ring). Budget honoured at 11 words against ≈12 reserved.
+
+**M1 confrontation:** both pictures back to back, no question asked, and the flat half carries its own quantitative cost — `120.0°` against a drawn `109.5°` reference, wrong by 10.5° — before the release. **No eclipsing claim appears** (§I-2, adopted into the skeleton's §4).
 
 ---
 
-### D-2 · `STATE_2 — every_bond_is_staggered` · core · `auto_after_tts` · **R = 17000**
+### D-2 · `STATE_2 — every_bond_is_staggered` · core · `auto_after_tts` · **R = 16500**
 
-**Archetype:** sight-along bond walk. **Delta cue:** `Sight down a bond`. **Controls:** none. **Formula surface:** none. **Hydrogens:** `show_h: ['C1','C2']` and re-targeted at each step; the rest of the ring is a dimmed stick.
+**Archetype:** sight-along bond walk. **Rail title:** `Every bond is staggered`. **Delta cue:** `Sight down a bond`. **Controls:** none. **Formula surface:** none. **Hydrogens:** `show_h: ['C1','C2']`, re-targeted at each step; the rest of the ring is a dimmed stick.
+
+**REWRITTEN — the architect's P1-5.** Revision 1's narration rested on a torsional claim whose evidence was the flat ring, off-screen by then, which §I-2 withdrew. **The state was RESTORED, not cut, and its claim changed:** it now makes a claim about the chair, on the chair, while the chair is the only thing on screen — the chair's six C–C bonds are all staggered, all read the same, so nothing in the chair is eclipsed, and that is why the chair is the low-energy shape. That sentence is the concept's only account of *why the chair specifically* (S1 shows only that flat is impossible), and **S5 cashes it** against two measured `0.0°` boat torsions (§A-7, §D-5).
 
 | t-window | What animates | Driven by |
 |---|---|---|
 | 0 – 2500 | eased camera HOME → SIGHT-ALONG(C1–C2); the two focus carbons' H fade in at 1800 | `camera_steps` + `camera.sight_along` |
-| 2500 – 5000 | hold in the Newman view; HUD `bond = C1–C2`, `torsion = 54.9°` | — |
-| 5000 – 5800 | eased step to SIGHT-ALONG(C2–C3); H visibility retargets | `camera_steps` |
-| 5800 – 8500 | hold; HUD `bond = C2–C3`, `torsion = 54.9°` | — |
-| 8500 – 9300 | eased step to SIGHT-ALONG(C3–C4) | `camera_steps` |
-| 9300 – 17000 | hold; HUD `bond = C3–C4`, `torsion = 54.9°` | — |
+| 2500 – 3200 | the torsion arc draws; HUD publishes `φ = 54.9°` and `bond = C1–C2` | `measure.torsion` + HUD `phi`, `bond` |
+| 3200 – 4500 | hold in the Newman view | — |
+| 4500 – 5200 | eased step to SIGHT-ALONG(C2–C3); H visibility retargets; HUD `bond = C2–C3`, `φ = 54.9°` | `camera_steps` |
+| 5200 – 7200 | hold | — |
+| 7200 – 7900 | eased step to SIGHT-ALONG(C3–C4) | `camera_steps` |
+| 7900 – 8400 | the third identical reading publishes: `bond = C3–C4`, `φ = 54.9°` | HUD |
+| 8400 – 16500 | hold | — |
 
-**The Newman rim convention is mandatory** (skeleton §8): front-carbon bonds to the centre, back-carbon bonds to a rim circle. **Recentring** onto each bond midpoint uses the scenario's own metres-to-world origin helper (N-4), never an authored camera target.
+**The Newman rim convention is mandatory** (skeleton §8): front-carbon bonds to the centre, back-carbon bonds to a rim circle. **Recentring** onto each bond midpoint uses the scenario's own metres-to-world origin helper (N-4), never an authored camera target. **Pin at 11000**, 2600 ms after the third reading.
 
-**A gap I am closing.** The torsion reads 54.9° at all three bonds — the point of the state, but it means the *only* changing quantity would be the camera. A camera-only motion reads as "the molecule spun" (Rule 32d hazard) and leaves the state with no changing number. **The HUD must therefore carry a line that names the current sight-along bond** (`bond = C1–C2` → `C2–C3` → `C3–C4`). The `hud_lines` enum has no such member and `pose` must not be re-purposed. **New enum gap E-3** (§H-10).
+**The changing quantity is the bond NAME, not the camera.** The torsion reads 54.9° at all three bonds — that is the whole point — so without a HUD line naming the current sight-along bond the only thing changing on screen is the viewpoint, which reads as "the molecule spun" (Rule 32d hazard) and leaves the state with no changing number (Rule 33d). Enum gap **E-2** (`hud_lines += bond`); `pose` must not be re-purposed, since it renders a conformation name (`existing_hud_line_reused_for_a_different_physical_quantity`).
 
-**`text_en` (44 words · 16.0 s):**
+**`text_en` (44 words · 16.00 s):**
 
-> Now look straight down one C–C bond. The three bonds on the front carbon sit between the three on the back carbon, not in front of them. That is staggered. The ring torsion reads 54.9 degrees. Step along: every C–C bond looks the same.
+> Look straight down one C–C bond. The front carbon's three bonds sit between the three on the back carbon: that is staggered. The torsion reads 54.9 degrees; every C–C bond reads the same. Nothing in the chair is eclipsed: this is the low-energy shape.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Now look straight down one C–C bond." | 7 | 0 – 2500 | the C1–C2 bond |
-| "The three bonds on the front carbon sit between the three on the back carbon, not in front of them." | 20 | 2500 – 9800 | the front carbon's three bonds |
-| "That is staggered." | 3 | 9800 – 10900 | the Newman rim |
-| "The ring torsion reads 54.9 degrees." | 6 | 10900 – 13100 | the torsion HUD line |
-| "Step along: every C–C bond looks the same." | 8 | 13100 – 16000 | the bond HUD line |
+| "Look straight down one C–C bond." | 6 | 0 – 2182 | the C1–C2 bond |
+| "The front carbon's three bonds sit between the three on the back carbon: that is staggered." | 16 | 2182 – 8000 | the front carbon's three bonds, then the Newman rim |
+| "The torsion reads 54.9 degrees; every C–C bond reads the same." | 11 | 8000 – 12000 | the `φ` HUD line, then the `bond` HUD line |
+| "Nothing in the chair is eclipsed: this is the low-energy shape." | 11 | 12000 – 16000 | the whole chair, brightened once |
 
-**No claim about the flat ring** — it is off-screen (skeleton §0). Consequence: the eclipsing evidence for "why not flat" has no renderable home and is **dropped from narration entirely** — §I-2.
+**Cause before effect:** clause 2 defines "staggered" while the Newman view is settled and the arc is drawn (2500 – 3200), clause 3 lands after the second and third readings, and clause 4 — the state's conclusion — is spoken only once all three readings have published (8400).
+
+**"every C–C bond reads the same" is an induction over three published readings, and no gate may read it as six.** The state publishes C1–C2, C2–C3 and C3–C4. The chair's remaining three ring torsions are equal in MAGNITUDE and opposite in SIGN (`+54.9 −54.9 +54.9 −54.9 +54.9 −54.9`, §A-7), and the HUD prints the magnitude. Recorded as constraint **§G-12**, so no one authors a signed sixth reading, a "six readings" countability assertion, or a narration line claiming six measurements were taken.
+
+**No claim about the flat ring** — it is off-screen (skeleton §0, `teach_visual_must_match_narration`) — and no claim about eclipsed hydrogens, which this sim never draws (§I-2). The word *eclipsed* appears here as a negative about the chair, and exactly once more, in S5, on a rendered `0.0°`.
+
+> **RECOMMENDATION on the rail title (not applied — the architect owns §3).** `Every bond is staggered` is loose: staggered/eclipsed is a property of a **C–C** bond's two ends, not of every bond in the molecule (a C–H bond is neither, on its own). **`Every C–C bond is staggered`** is the same length class, is exactly what the narration says, and is what q2 tests. Rule 41b (use the word the chemistry uses) and 41d (the first words carry the meaning).
 
 ---
 
-### D-3 · `STATE_3 — axial_and_equatorial` · core · `manual_click` · **R = 23000**
+### D-3 · `STATE_3 — axial_and_equatorial` · core · `manual_click` · **R = 17000**
 
-**Archetype:** two-family reveal. **Delta cue:** `Six axial, six equatorial`. **Controls:** none. **Formula surface:** none. **Hydrogens:** all twelve.
+**Archetype:** two-family reveal. **Rail title:** `Axial and equatorial bonds`. **Delta cue:** `Two kinds of C–H bond` (**changed** — the architect's P2-1; revision 1's `Six axial, six equatorial` was an end condition, false for the first 5.5 s of the state). **Controls:** none. **Formula surface:** none. **Hydrogens:** all twelve.
 
 | t-window | What animates | Driven by |
 |---|---|---|
 | 0 – 1200 | eased camera SIGHT-ALONG → HOME (az 254°, el 10–12°) | `camera_steps` |
-| 1200 – 2100 | the **ring axis** reference line draws (labelled `ring axis`) | `measure.axis_line` |
-| 2100 – 3000 | the **ring plane** reference disc draws (labelled `ring plane`) | `measure.plane_disc` |
-| 3000 – 4000 | the **C–C–H arc** draws on the one carbon the camera solve certifies, reads `109.5°` | `measure.angle` |
-| **5500 – 7500** | the six **axial** C–H bonds light **one per carbon, around the ring** (not as a spatial family) | staged reveal |
-| 7500 – 8500 | the axial family glows, then dims to a held tint | glow (single focal) |
-| **8800 – 10800** | the six **equatorial** C–H bonds light, again one per carbon, same path | staged reveal |
-| 10800 – 11800 | the equatorial family glows, then dims to a held tint | glow (single focal) |
-| 12800 – 13200 | HUD `axial 6 · equatorial 6` appears | HUD reveal |
-| 13200 – 23000 | hold: both families tinted, both reference geometries and the arc up | — |
+| **1500 – 3000** | the six **axial** C–H bonds light **one per carbon, around the ring** (never as a spatial family) | staged reveal |
+| 3000 – 4200 | the axial family glows | glow (single focal) |
+| 4200 – 4600 | the axial family dims to a held tint | — |
+| **5000 – 6800** | the six **equatorial** C–H bonds light, again one per carbon, the same path | staged reveal |
+| 6800 – 7800 | the equatorial family glows, then holds a tint | glow (single focal) |
+| 8000 – 8600 | the **ring axis** line (labelled `ring axis`) and the **ring plane** disc (labelled `ring plane`) draw | `measure.axis_line`, `measure.plane_disc` |
+| 8600 – 9200 | the **C–C–H arc** draws on the one carbon the camera solve certifies, reading `109.5°` | `measure.angle` |
+| 9200 – 17000 | hold: both families tinted, both reference geometries and the arc up, HUD `axial 6 · equatorial 6` | — |
 
-**M2 prevention is in the choreography, at the planting moment** (skeleton Block 1): the reveal is **per-carbon, never per-family in space**, so the picture the student forms is "every carbon has one", not "these carbons are the axial ones". **Rule 32e** strictly: axial glows alone → dims → equatorial glows.
+**Pin at 11000**, 1800 ms after the arc. **M2 prevention sits in the choreography, at the planting moment** (skeleton Block 1): the reveal is **per-carbon, never per-family in space**, so the picture the student forms is "every carbon has one", not "these carbons are the axial ones". **Rule 32e** strictly: axial glows alone → dims → equatorial glows.
 
-**The arc is the C–C–H angle, not the axial–C–equatorial angle.** See §I-7 — this is a numeric correction to the skeleton's §10.
+**The arc is the C–C–H angle, not the axial–C–equatorial angle** (109.46° vs 107.50°) — §I-7, endorsed by founder-proxy and adopted into the skeleton's §10.
 
-**`text_en` (45 words · 16.4 s):**
+**`text_en` (45 words · 16.36 s):**
 
-> Each ring carbon carries two C–H bonds, 109.5 degrees from the ring bonds beside them. One points along the ring axis: that is axial. The other points out near the ring plane: that is equatorial. Every carbon has one of each — six axial, six equatorial.
+> Each ring carbon carries two C–H bonds. One points along the ring axis: that is axial. The other points out near the ring plane: that is equatorial. Every carbon has one of each — six axial, six equatorial, 109.5 degrees from the ring bonds beside them.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Each ring carbon carries two C–H bonds, 109.5 degrees from the ring bonds beside them." | 15 | 0 – 5500 | the `109.5°` arc |
-| "One points along the ring axis: that is axial." | 9 | 5500 – 8800 | the axial family |
-| "The other points out near the ring plane: that is equatorial." | 11 | 8800 – 12800 | the equatorial family |
-| "Every carbon has one of each — six axial, six equatorial." | 10 | 12800 – 16400 | the `ae_count` HUD line |
+| "Each ring carbon carries two C–H bonds." | 7 | 0 – 2545 | one ring carbon's two C–H bonds |
+| "One points along the ring axis: that is axial." | 9 | 2545 – 5818 | the axial family |
+| "The other points out near the ring plane: that is equatorial." | 11 | 5818 – 9818 | the equatorial family |
+| "Every carbon has one of each — six axial, six equatorial, 109.5 degrees from the ring bonds beside them." | 18 | 9818 – 16364 | the `C–C–H = 109.5°` arc, then the `ae_count` HUD line |
 
-**Skeleton's constraint honoured (Block 2): S3 does not hint that the labels can change.** No word here suggests impermanence — the student is meant to leave S3 confident and slightly wrong. **Skeleton's §10 caution honoured:** the 4.07° axial deviation and 21.57° equatorial tilt are parameterisation-dependent and are **not quoted**; "along the ring axis" and "near the ring plane" are true under both parameterisations.
+**Clause order follows §5's beat order** — families first, reference geometries second — and NOT revision 1's order, which drew the references first. The consequence is stated rather than hidden: the words "ring axis" and "ring plane" are spoken from 2.5 s while their labelled references draw at 8000 – 8600. The **directions** are on screen throughout (the axial family is drawn parallel, the equatorial family splayed), so no claim outruns the picture; the reference geometries are the *measurement*, and clause 4 — the only clause that quotes a number — lands after all of them.
+
+> **RECOMMENDATION to the architect (not applied — §5 governs).** Draw the `ring axis` line at **1200 – 1800**, before the axial family, leaving the disc and the arc at 8000 – 9200. The word "axis" then has a drawn referent at the instant it is spoken, at zero cost to `L`, the pin or `R`, and it makes the axial family's reveal a comparison rather than an assertion.
+
+**Skeleton Block 2 honoured: S3 does not hint that the labels can change.** No word here suggests impermanence — the student is meant to leave S3 confident and slightly wrong, which is the condition S4 breaks. **Skeleton §10's caution honoured:** the 4.07° axial deviation and 21.57° equatorial tilt are parameterisation-dependent and are **not quoted**; "along the ring axis" and "near the ring plane" are true under both parameterisations, and the quoted 109.5° is robust under both (109.46° measured, 109.47° idealised).
 
 ---
 
-### D-4 · `STATE_4 — the_flip_swaps_them` · core · **PRIMARY AHA** · `manual_click` · **R = 19500**
+### D-4 · `STATE_4 — the_flip_swaps_them` · core · **PRIMARY AHA** · `manual_click` · **R = 18000**
 
-**Archetype:** follow-one-bond through the pucker. **Delta cue:** `Follow one axial bond`. **Controls:** none. **Formula surface:** `C₆H₁₂`. **Camera:** HOME, fixed for the whole flip.
+**Archetype:** follow-one-bond through the pucker. **Rail title:** `The flip swaps them`. **Delta cue:** `Follow one axial bond`. **Controls:** **`pucker`** (**new in revision 2 — the architect's P2-5**): the row is present but **inert while the scripted pass runs, and seizes on the teacher's first drag** (Rule 39b drag-seize, `bscControlList` / `<prefix>_<name>_row`, `:55294`, `:1313`). The pass completes at 11000 ms and the state then holds, so there is no contention window to lose. The row occupies the same screen position in S4, S5, S7 and S9 (Rule 31's shared-slider requirement). **Formula surface:** `C₆H₁₂`. **Camera:** HOME, fixed for the whole flip.
 
 | t-window | What animates | Driven by |
 |---|---|---|
-| 800 – 1800 | the traced C1–H(axial) bond is marked and labelled `C1 axial` | `trace` (N-10) |
-| 1800 – 3300 | hold — the mark is the cause of attention, held before anything moves | — |
-| **3300 – 11000** | **single-pass flip**; the traced bond keeps its identity and its mark throughout; all eighteen atoms move; the other eleven C–H bonds keep their family tint at reduced brightness | **`u: 0 → 1`** |
+| 800 – 1800 | the traced C1–H(axial) bond is marked and labelled `C1 axial` | `trace: { bonds: ['C1-Hax'], report_tag: true }` (N-10) |
+| **1800 – 2400** | **the six bonds that started axial take an origin-identity tint, as a SET** | `trace: { bonds: [the six origin-axial C–H], tint_by: 'origin' }` (N-10) |
+| 2400 – 3300 | hold — the marks are the cause of attention, held before anything moves | — |
+| **3300 – 11000** | **single-pass flip.** The traced bond keeps its identity and its mark throughout; the origin tint is fixed at state entry and never re-derived from the live a/e tag; all eighteen atoms move | **`u: 0 → 1`** |
 | (3800 – 10500) | the `ae_count` HUD reads `axial — · equatorial —` while off-chair (N-3) | derived from `u` |
 | 11000 – 11200 | the traced bond's label re-reads `C1 equatorial`; `ae_count` returns to `axial 6 · equatorial 6` | derived at u = 1 |
-| 11200 – 19500 | **hold at chair′. Single pass, no loop-back** — a loop would undo the state's own claim | — |
+| **11700 – 13500** | **the origin-tinted set re-glows ONCE, strictly after the traced bond's re-label** — six bonds that started axial, all standing equatorial | glow (single focal, Rule 32e) |
+| 13500 – 18000 | **hold at chair′. Single pass, no loop-back** — a loop would undo the state's own claim | — |
+
+**Pin at 14200**, 700 ms after the set re-glow ends. The frozen frame shows chair′ with the traced bond labelled `C1 equatorial` **and** all six origin-axial bonds visibly equatorial in their origin tint — the aha, archived.
 
 **The `C₆H₁₂` surface is up from t = 0 and never changes** — that is the M3 counter rendered, not narrated.
 
-**`text_en` (48 words · 17.5 s):**
+**`text_en` (48 words · 17.45 s):**
 
 > Watch the one axial bond that is marked. The ring now folds the other way. No bond breaks, and the formula stays C₆H₁₂ all the way through. When the ring settles, the marked bond is equatorial. Every axial bond has become equatorial, and the compound is the same.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Watch the one axial bond that is marked." | 8 | 0 – 2900 | the traced bond |
-| "The ring now folds the other way." | 7 | 2900 – 5400 | the ring |
-| "No bond breaks, and the formula stays C₆H₁₂ all the way through." | 13 | 5400 – 10100 | the `C₆H₁₂` surface |
-| "When the ring settles, the marked bond is equatorial." | 9 | 10100 – 13400 | the traced bond's new label |
-| "Every axial bond has become equatorial, and the compound is the same." | 12 | 13400 – 17800 | the `ae_count` HUD line |
+| "Watch the one axial bond that is marked." | 8 | 0 – 2909 | the traced bond |
+| "The ring now folds the other way." | 7 | 2909 – 5455 | the ring |
+| "No bond breaks, and the formula stays C₆H₁₂ all the way through." | 12 | 5455 – 9818 | the `C₆H₁₂` surface |
+| "When the ring settles, the marked bond is equatorial." | 9 | 9818 – 13091 | the traced bond's new label |
+| **"Every axial bond has become equatorial, and the compound is the same."** | 12 | **13091 – 17455** | **the six origin-tinted bonds, in their single re-glow** — NOT `ae_count` |
 
-**Cut-2 compliance (skeleton §7):** no barrier, no named intermediate, no substituent, no energy. The flip passes through the intermediates without labelling or costing them.
+**The final clause's focal is RE-BOUND — the architect's P1-4, and it is a correctness fix, not a preference.** Revision 1 bound *"every axial bond has become equatorial"* to the `ae_count` HUD line, which reads `axial 6 · equatorial 6` at **both** u = 0 and u = 1. That equality is a symmetry identity of the authored home pose (`measured_equality_is_an_identity_at_the_authored_home_pose`) and it proves nothing: it is the same string at both ends of the motion the state exists to show. The clause now binds to the **origin-identity trace SET** of N-10, which re-glows at 11700 – 13500 — **1.4 s before the clause opens**, so cause precedes effect, and the two marked things never glow together (Rule 32e: the traced bond's re-label at 11000 – 11200 finishes 500 ms before the set re-glows).
+
+**`ae_count` still renders, and its job is now correctly scoped.** It is the numeric backstop for a count the projection cannot be asked to carry (skeleton §8, camera row 4) and it is what makes N-3's off-chair `axial — · equatorial —` legible. It is no longer the evidence for the word "every"; six tinted bonds are.
+
+**Cut-2 compliance (skeleton §7):** no barrier, no named intermediate, no substituent, no energy. The flip passes through the intermediates without labelling or costing them (`teach_do_not_prespoil_a_later_reveal`).
 
 ---
 
-### D-5 · `STATE_5 — shapes_in_between` · extended · `manual_click` · **R = 20000** *(unchanged)*
+### D-5 · `STATE_5 — shapes_in_between` · extended · `manual_click` · **R = 20000**
 
-**Archetype:** waypoint step with holds. **Delta cue:** `Named shapes in between`. **Controls:** none. **Formula surface:** none. **Camera:** HOME, fixed.
+**Archetype:** waypoint step with holds. **Rail title:** `Shapes in between`. **Delta cue:** `Named shapes in between`. **Controls:** **`pucker`** (P2-5, drag-seize after the scripted walk; same row position as S4/S7/S9). **Formula surface:** none. **Camera:** HOME, fixed.
 
 | t-window | What animates | Driven by |
 |---|---|---|
@@ -525,122 +572,159 @@ Notation used below: `t-window · what animates · driven by`. Every branch is a
 | 4500 – 5800 | → twist-boat; sprite `twist-boat` | `u: 0.208 → 0.375` |
 | 5800 – 7300 | hold | — |
 | 7300 – 8600 | → boat; sprite `boat` | `u: 0.375 → 0.500` |
-| 8600 – 9200 | the **flagpole contact line** draws between the two flagpole H, labelled `H···H = 183 pm` | `measure.distance` |
-| 9200 – 9800 | the **`240 pm` van der Waals reference** draws, visually distinct, labelled `contact distance 240 pm` | `measure.reference_value_pm` — **new, N-17** |
-| 9800 – 13500 | **hold on the boat** (3.7 s), both labels readable | — |
-| 13500 – 17500 | return legs: → twist-boat′ → half-chair′ | `u: 0.500 → 0.792` |
-| 17500 – 20000 | chair′ hold; sprite `chair` | `u: 0.792 → 1` |
+| 8600 – 9600 | the **flagpole contact line** draws between the two flagpole H, labelled `H···H = 183 pm`, beside the drawn **240 pm** van der Waals reference labelled `contact distance 240 pm` | `measure.distance` + `measure.reference_value_pm` (**N-17**) |
+| **9600 – 10200** | **both fully-eclipsed ring bonds are marked and the HUD publishes `φ = 0.0°` with `bond = C2–C3`** — the second eclipsed bond, `C5–C6`, carries the same mark so "two" is countable | HUD `phi` + `bond`; `measure.torsion` |
+| 10200 – 13000 | **hold on the boat** (2.8 s); all three readings legible | — |
+| 13000 – 17000 | return legs: → twist-boat′ → half-chair′ | `u: 0.500 → 0.792` |
+| 17000 – 20000 | chair′ hold; sprite `chair` | `u: 0.792 → 1` |
 
-**Pin at 12000** — inside the boat hold, 2.2 s after the reference line completes. The boat is deliberately the archived frame: it is the state's single most informative picture.
+**Pin at 12000** — inside the boat hold, 1.8 s after the `φ = 0.0°` publication. The boat is deliberately the archived frame: it is the state's single most informative picture, and it is where S2's claim is cashed.
 
-**N-2 is load-bearing here:** the four intermediates must be REAL geometries as path knots. A linear interpolation of endpoint coordinates would put three labels on one shape. Gate assertions in §G-4; knot positions in §H-4.
+**The `φ = 0.0°` line is new in revision 2 (the architect's P1-5 payoff) and it needs NO new engine capability.** `phi` and `bond` are the same two HUD members S2 already consumes (enum gap E-2, already on the pre-freeze list), and `measure.kind: 'torsion'` is already pre-freeze item E-6. Checked against §9 before accepting the addition — the scar `state_added_at_review_outruns_the_config_contract_shape` binds here and is discharged.
 
-**`text_en` (46 words · 16.7 s):**
+**Instrument ledger for this state** (the list the contract must satisfy): `measure.distance` ×1 (flagpole) · `measure.reference_value_pm` ×1 (240 pm) · `measure.torsion` ×2 (both eclipsed bonds, one published) · HUD **`phi`** · HUD **`bond`** · HUD `pose` (`min_ring: extended`) · `pucker.walk[].label` sprites ×4.
 
-> Shapes a molecule can twist into without breaking a bond are called conformations. On the way the ring passes through three: the half-chair, the twist-boat, then the boat. In the boat two hydrogens point straight at each other, 183 picometres apart — closer than two hydrogens fit.
+**Which two bonds are at zero, by name.** From §A-7 the boat's ring torsions, in bond order C1–C2 · C2–C3 · C3–C4 · C4–C5 · C5–C6 · C6–C1, are `+54.9 · 0.0 · −54.9 · +54.9 · 0.0 · −54.9`. The two fully-eclipsed bonds are therefore **C2–C3** and **C5–C6** — para-related across the ring, which is why both can be marked without the two marks colliding at HOME. The HUD publishes one named reading; the mark on the other is what makes the narrated "two" countable (§G-2).
+
+**N-2 is load-bearing here, and the new HUD line is a second gate on it.** The four intermediates must be REAL geometries as path knots: a linear interpolation of endpoint coordinates would put three labels on one shape (`gallery_walk_steps_across_values_the_underlying_model_cannot_distinguish`) **and would never produce a torsion of exactly 0.0°**. Gate assertions in §G-4; knot positions in §H-4.
+
+**`text_en` (53 words · 19.27 s):**
+
+> Shapes a molecule can twist into without breaking a bond are called conformations. The ring passes through the half-chair, the twist-boat and the boat. In the boat two ring bonds read zero degrees — fully eclipsed — and two hydrogens sit 183 picometres apart. Then the same shapes in reverse, ending in the other chair.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Shapes a molecule can twist into without breaking a bond are called conformations." | 13 | 0 – 4700 | the ring |
-| "On the way the ring passes through three: the half-chair, the twist-boat, then the boat." | 15 | 4700 – 10200 | each waypoint sprite in turn |
-| "In the boat two hydrogens point straight at each other, 183 picometres apart — closer than two hydrogens fit." | 18 | 10200 – 16700 | the flagpole line |
+| "Shapes a molecule can twist into without breaking a bond are called conformations." | 13 | 0 – 4727 | the ring |
+| "The ring passes through the half-chair, the twist-boat and the boat." | 11 | 4727 – 8727 | each waypoint sprite in turn |
+| **"In the boat two ring bonds read zero degrees — fully eclipsed — and two hydrogens sit 183 picometres apart."** | 18 | 8727 – 15273 | the two marked eclipsed bonds and the `φ = 0.0°` HUD line, then the flagpole line |
+| **"Then the same shapes in reverse, ending in the other chair."** | 11 | 15273 – 19273 | the ring on the return legs |
 
-**The Rule-38d dual-label for "conformation" is relocated here from S1** — §I-8. It lands where the named shapes appear, which is its natural home, and S1's 51-word budget cannot hold two dual-labels plus the anchor plus the prerequisite patch plus the contrast.
+**P2-2 — CLOSED by rewording, and I state the call plainly: reword, do not label the return legs.** Revision 1 narrated *three* shapes over a timeline that renders **five** poses — the return through twist-boat′ and half-chair′ ran from 13000 to 17000 with no sprite and no words. Labelling the return legs would print `twist-boat` and `half-chair` a **second** time, on the same two geometries, eight seconds apart, and would teach a student that the path has five named shapes when it has three names and one symmetric path. The new final clause covers the return explicitly and is spoken at 15273 — **inside** the 13000 – 17000 return motion, so the picture moves before the words (Rule 31's permitted direction, never the reverse).
+
+**"ending in the other chair", not "back to the chair".** The return terminates at **chair′**, not at the starting chair. S4's whole claim is that a single pass reaches a different-but-equivalent chair and does not loop back (`authored_beat_ends_by_undoing_the_state_own_claim`); the wording is chosen so S5 cannot be read as contradicting it.
+
+**The eclipsed payoff, and how the callback is carried.** S2 ends on *"Nothing in the chair is eclipsed"*; this clause is the only other use of the word **eclipsed** in the concept, and it lands on a rendered `0.0°`. The callback is lexical and quantitative rather than a restated comparison: there is no room in 53 words for "in the chair nothing was eclipsed" as well, and restating a comparison to an off-screen chair is exactly the `teach_visual_must_match_narration` failure S2 was rewritten to avoid. **The two 0.0° torsions are the definitional difference from the twist-boat** (whose minimum |τ| is 30.6°, §A-7) — the same assertion §G-4 already gates on.
+
+**"closer than two hydrogens fit" is dropped from narration and carried on canvas instead.** The `240 pm` reference draws at 8600 – 9600, labelled `contact distance 240 pm`, beside `H···H = 183 pm`: two labelled numbers, one visibly smaller, so the comparison reads sound-off (Rule 24) — which is what N-17 was asked for in the first place. The words are spent on the eclipsed payoff, which nothing else on the canvas can state.
+
+**The Rule-38d dual-label for "conformation" lives here, relocated from S1** — §I-8, adopted into the skeleton's §7.
 
 ---
 
-### D-6 · `STATE_6 — the_barrier` · extended · `auto_after_tts` · **R = 22000**
+### D-6 · `STATE_6 — the_barrier` · extended · `auto_after_tts` · **R = 19000**
 
-**Archetype:** curve-and-rider. **Delta cue:** `Energy along the flip` (**changed** — §I-9). **Controls:** none. **Formula surface:** `barrier = 45 kJ·mol⁻¹` (**changed** — §I-3). **Camera:** HOME for the molecule; the graph is a 2D overlay, bottom-left zone.
+**Archetype:** curve-and-rider. **Rail title:** `Energy along the flip`. **Delta cue:** `Energy along the flip` (**changed** — §I-9, adopted into the skeleton's §3). **Controls:** none. **Formula surface:** `barrier = 45 kJ·mol⁻¹` (**changed** — §I-3, adopted). **Camera:** HOME for the molecule; the graph is a 2D overlay in the bottom-left zone.
 
 | t-window | What animates | Driven by |
 |---|---|---|
-| 500 – 3000 | the E(u) curve draws in left to right, all seven stationary points; axes `flip progress` / `energy (kJ·mol⁻¹)`, chair = 0 | curve reveal |
-| 3000 – 3500 | hold; nothing else moves | — |
-| **3500 – 12500** | **the rider travels the curve and the ring poses in lockstep** — ONE `u` drives both (N-16); HUD `E` reads live and stamps `(literature)` | **`u: 0 → 1`** |
-| (5375, 10625) | at each half-chair instant the barrier callout pulses on the curve's peak | derived from `u` |
-| 12500 – 22000 | hold: full curve, rider at chair′, `barrier = 45 kJ·mol⁻¹` on the surface | — |
+| 500 – 2500 | the E(u) curve draws in left to right, all seven stationary points; axes `flip progress` / `energy (kJ·mol⁻¹)`, chair = 0 | curve reveal |
+| 2500 – 3000 | hold; nothing else moves | — |
+| **3000 – 10000** | **the rider travels the curve and the ring poses in lockstep** — ONE `u` drives both (N-16); HUD `E` reads live with the `(literature)` stamp | **`u: 0 → 1`** |
+| (4458 and 8542) | at each half-chair instant (u = 0.2083 and 0.7917) the HUD `E` reads 45 and the curve's peak marker pulses | derived from `u` |
+| 10200 – 10800 | the barrier bracket draws from the chair level to the peak; the surface publishes `barrier = 45 kJ·mol⁻¹` | reveal |
+| 10800 – 19000 | hold: full curve, rider at chair′, bracket and surface up | — |
 
-**Rule 32a:** the curve completes before the rider or the ring moves. **`teach_coordinate_sim_with_graph`:** no static curve — the rider and the ring share one live parameter.
+**Pin at 12500**, 1700 ms after the bracket. **Rule 32a:** the curve completes before the rider or the ring moves. **`teach_coordinate_sim_with_graph`:** no static curve — the rider and the ring share one live parameter.
 
-**`text_en` (50 words · 18.2 s):**
+**`text_en` (50 words · 18.18 s, spoken from a 300 ms lead):**
 
 > Here is the energy along the flip, with the chair as zero. The two half-chairs are the highest points, 45 kilojoules per mole above the chair. The twist-boats sit at 23, the boat at 29. At room temperature the ring crosses this barrier about a hundred thousand times a second.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Here is the energy along the flip, with the chair as zero." | 12 | 0 – 4400 | the curve |
-| "The two half-chairs are the highest points, 45 kilojoules per mole above the chair." | 14 | 4400 – 9500 | the peaks |
-| "The twist-boats sit at 23, the boat at 29." | 9 | 9500 – 12800 | the three interior stationary points |
-| "At room temperature the ring crosses this barrier about a hundred thousand times a second." | 15 | 12800 – 18200 | the rider |
+| "Here is the energy along the flip, with the chair as zero." | 12 | 300 – 4664 | the curve |
+| "The two half-chairs are the highest points, 45 kilojoules per mole above the chair." | 14 | 4664 – 9755 | the two peaks |
+| "The twist-boats sit at 23, the boat at 29." | 9 | 9755 – 13027 | the three interior stationary points |
+| "At room temperature the ring crosses this barrier about a hundred thousand times a second." | 15 | 13027 – 18482 | the rider, then the barrier bracket |
 
-**Plural "half-chairs" and "twist-boats" is deliberate** — the curve draws seven stationary points, and singular narration against a two-peak curve is the `teach_visual_must_match_narration` failure. The flip rate is order-of-magnitude only, narration-only, no rendered numeral (§A-8).
+**The 300 ms lead is load-bearing, not cosmetic.** The rider reaches the first half-chair at `3000 + 0.2083 × 7000 = 4458 ms`, and clause 2 is the one that says "45". Opening narration at t = 0 would put the word 45 on screen **94 ms before the instrument first reads it**; at a 300 ms lead the clause opens at 4664, after the reading. The second half-chair is crossed at 8542, still inside clause 2 — which is what makes the plural honest. Clause 3's three interior stationary points are all passed by 7375 (twist-boat 5625, boat 6500, twist-boat′ 7375), before the clause opens at 9755. Margin `R − N` = **518 ms** ✔.
 
----
-
-### D-7 · `STATE_7 — a_methyl_on_the_ring` · extended · `manual_click` · **R = 22500**
-
-**Archetype:** substituent + contact-line reveal, then the flip (declared contrast pair with S4). **Delta cue:** `A methyl on the ring`. **Controls:** none. **Formula surface:** `C₇H₁₄` (**added** — §I-4). **Camera:** HOME, fixed.
-
-| t-window | What animates | Driven by |
-|---|---|---|
-| 0 – 800 | the chair holds; the `C₆H₁₂` surface changes to `C₇H₁₄` at 800 | — |
-| 800 – 1800 | the **methyl group appears at C1, axial**, replacing exactly one H; rotamer fixed staggered | `substituents` |
-| 2500 – 4000 | **two contact lines draw** — methyl carbon to axial H on **C3** and on **C5**, drawn to two *different* carbons so both are separately countable; labels `CH₃···H = 274 pm` | `measure.distance` ×2 |
-| 4000 – 4800 | the **`290 pm` van der Waals reference** draws, visually distinct from both, labelled `contact distance 290 pm` | `measure.reference_value_pm` |
-| 4800 – 6500 | hold, all three labels readable | — |
-| **6500 – 11500** | **the flip**; the two 274 pm lines lengthen continuously with the geometry and are removed at u = 1 | **`u: 0 → 1`** |
-| 11800 – 12800 | one contact line redraws to the **same two named atoms**, labelled `CH₃···H = 425 pm` | `measure.distance` |
-| 12800 – 22500 | hold: equatorial methyl, the 425 pm line up, the 290 pm reference still up | — |
-
-**Rule 32a:** the methyl (cause) appears, the contact lines (effect) draw 700 ms later, then the flip. **The line LENGTH is never the evidence** — a distance foreshortens; the numeric labels and the drawn 290 pm standard carry the claim.
-
-**`text_en` (51 words · 18.5 s):**
-
-> Put a methyl group on the ring, pointing axial. It sits 274 picometres from the axial hydrogens on carbon 3 and carbon 5 — closer than a carbon and a hydrogen fit, which needs 290. Flip the ring: the methyl is now equatorial and those same two hydrogens are 425 picometres away.
-
-| clause | words | window | focal |
-|---|---|---|---|
-| "Put a methyl group on the ring, pointing axial." | 9 | 0 – 3300 | the methyl |
-| "It sits 274 picometres from the axial hydrogens on carbon 3 and carbon 5 — closer than a carbon and a hydrogen fit, which needs 290." | 26 | 3300 – 12800 | the two contact lines, then the 290 pm reference |
-| "Flip the ring: the methyl is now equatorial and those same two hydrogens are 425 picometres away." | 16 | 12800 – 18500 | the 425 pm line |
-
-**Cut-1 compliance (skeleton §7, open question 6):** the words *ratio*, *A-value*, *population*, *percent*, *stable* and *prefers* do not appear. The state ends on a complete qualitative conclusion. **Scoping honoured (§A-5):** the claim is about *those same two hydrogens*, never about the equatorial methyl being clear of everything.
+**Plural "half-chairs" and "twist-boats" is deliberate** — the curve draws seven stationary points, and singular narration against a two-peak curve is the `teach_visual_must_match_narration` failure (§A-1, N-16 strengthened). The flip rate is order-of-magnitude only, narration-only, with **no rendered numeral** anywhere (§A-8).
 
 ---
 
-### D-8 · `STATE_8 — how_many_of_each` · **advanced** · `manual_click` · **R = 17000**
+### D-7 · `STATE_7 — a_methyl_on_the_ring` · extended · `manual_click` · **R = 19000**
 
-**Archetype:** population bar fill over a laned pair. **Delta cue:** `How many of each chair`. **Controls:** `temperature` only. **Formula surface:** `N(equatorial) : N(axial) = exp(ΔG°/RT) : 1` (**changed** — §I-3).
+**Archetype:** substituent + contact-line reveal, then the flip (the declared contrast pair with S4). **Rail title:** `A methyl group on the ring`. **Delta cue:** `A methyl on the ring`. **Controls:** **`pucker`** (P2-5, drag-seize after the scripted pass; same row position as S4/S5/S9). **Formula surface:** `C₇H₁₄` (**added** — §I-5, adopted). **Camera:** HOME, fixed.
 
 | t-window | What animates | Driven by |
 |---|---|---|
-| 500 – 2500 | the two chairs lane into place along the **camera's screen-right axis** (never a world axis) | `compare.lane_axis: 'screen_right'` (N-14) |
-| 3000 – 6000 | the **two bars fill side by side on one shared scale ceiling**, over the two rendered chairs | `equatorial_pct`, `axial_pct` |
-| 6000 – 6600 | bar labels appear: `equatorial 95%`, `axial 5%`; HUD `T = 298 K`, `ΔG° = 7.3 kJ·mol⁻¹ (literature)` | computed |
-| 7000 → | the `temperature` control goes live; bars and both labels track it continuously | **`T`** |
-| 6600 – 17000 | hold | — |
+| 0 – 800 | the chair holds | — |
+| 800 – 1800 | the **methyl group appears at C1, axial**, replacing exactly one H; the rotamer is fixed staggered; the surface reads `C₇H₁₄` from 800 | `substituents` + `show_formula` |
+| 2500 – 4000 | **two contact lines draw** — methyl carbon to the axial H on **C3** and on **C5**, drawn to two *different* carbons so both are separately countable; labels `CH₃···H = 274 pm` | `measure.distance` ×2 |
+| 4000 – 5500 | the **290 pm** van der Waals reference draws, visually distinct from both, labelled `contact distance 290 pm`; all three labels hold | `measure.reference_value_pm` |
+| **5500 – 9000** | **the flip**; the two 274 pm lines lengthen continuously with the geometry and are removed at u = 1 | **`u: 0 → 1`** |
+| 9200 – 10200 | one contact line redraws to the **same two named atoms**, labelled `CH₃···H = 425 pm` | `measure.distance` |
+| 10200 – 19000 | hold: equatorial methyl, the 425 pm line up, the 290 pm reference still up | — |
 
-**Every numeral on this state is live.** The bar labels are bound to `equatorial_pct` / `axial_pct`, never authored strings — otherwise the T slider falsifies them the moment a teacher touches it (`authored_annotation_asserts_a_value_its_own_state_control_can_falsify`, CRITICAL). The formula surface is **symbolic and T-independent**, so nothing on it can be falsified either.
+**Pin at 12000**, 1800 ms after the 425 pm line. **Rule 32a:** the methyl (cause) appears at 800, the contact lines (effect) draw from 2500 — a 700 ms readable gap after the methyl settles — then the flip. **The line LENGTH is never the evidence** (a distance foreshortens); the numeric labels and the drawn 290 pm standard carry the claim.
 
-**`text_en` (44 words · 16.0 s):**
+**`text_en` (50 words · 18.18 s, spoken from a 300 ms lead):**
 
-> Because the axial chair is 7.3 kilojoules per mole higher, at 298 kelvin the ring sits 95 to 5 in favour of the equatorial methyl. Cellulose is a long chain of these rings with every bulky group equatorial. Cotton fibre is made of it.
+> Put a methyl group on the ring, pointing axial. It sits 274 picometres from the axial hydrogens on carbons 3 and 5 — closer than a carbon and a hydrogen fit, which needs 290. Flip the ring: the methyl is now equatorial and those same two hydrogens are 425 picometres away.
 
 | clause | words | window | focal |
 |---|---|---|---|
-| "Because the axial chair is 7.3 kilojoules per mole higher, at 298 kelvin the ring sits 95 to 5 in favour of the equatorial methyl." | 25 | 0 – 9100 | the two bars |
-| "Cellulose is a long chain of these rings with every bulky group equatorial. Cotton fibre is made of it." | 19 | 9100 – 16000 | the equatorial chair |
+| "Put a methyl group on the ring, pointing axial." | 9 | 300 – 3573 | the methyl |
+| "It sits 274 picometres from the axial hydrogens on carbons 3 and 5 — closer than a carbon and a hydrogen fit, which needs 290." | 24 | 3573 – 12300 | the two contact lines, then the 290 pm reference |
+| "Flip the ring: the methyl is now equatorial and those same two hydrogens are 425 picometres away." | 17 | 12300 – 18482 | the 425 pm line |
 
-**"at 298 kelvin" is load-bearing and must not be trimmed** — it scopes the narrated 95 : 5 so a teacher's slider move does not make the sentence false. Recorded as constraint §G-10.
+Margin `R − N` = **518 ms** ✔. The word "274" lands at ≈4.9 s, after both 274 pm labels complete at 4000; "290" lands at ≈12.2 s, long after the reference draws at 5500; the final clause opens at 12300, after the 425 pm line completes at 10200. Cause before effect at every numeral.
 
-**Anchor: 19 words against the reserved ~15.** The overrun buys chemical accuracy — §H-7.
+**Cut-1 compliance (skeleton §7):** the words *ratio*, *A-value*, *population*, *percent*, *stable* and *prefers* do not appear, and the state ends on a complete qualitative conclusion, so hiding S8 leaves a coherent lesson. **Scoping honoured (§A-5):** the claim is about *those same two named hydrogens*, never about the equatorial methyl being clear of everything — it is not (its nearest ring H is 270 pm, inside the 290 pm sum).
+
+---
+
+### D-8 · `STATE_8 — how_many_of_each` · **advanced** · `manual_click` · **R = 16500**
+
+**Archetype:** population bar fill over a laned pair. **Rail title:** `How many of each chair`. **Delta cue:** `How many of each chair`. **Controls:** `temperature` only. **Formula surface:** **`N(equatorial) : N(axial) = exp(A/RT) : 1`** (**changed twice** — §I-4 made it a relation; **P1-6** writes that relation in `A`).
+
+| t-window | What animates | Driven by |
+|---|---|---|
+| 500 – 2000 | the two chairs lane into place along the **camera's screen-right axis** (never a world axis) | `compare.lane_axis: 'screen_right'` (N-14) |
+| 2500 – 5000 | the **two bars fill side by side against one shared scale ceiling**, over the two rendered chairs | `equatorial_pct`, `axial_pct` |
+| 5000 – 5400 | bar labels appear: `equatorial 95%`, `axial 5%`; HUD publishes `A = 7.3 kJ·mol⁻¹ (literature)` and `T = 298 K` | computed / published |
+| 6000 → | the `temperature` control goes live; bars and both labels track it continuously | **`T`** |
+| 5400 – 16500 | hold | — |
+
+**Pin at 10000**, 4600 ms after the labels.
+
+**P1-6 · the surface is written in `A`, not `ΔG°` — a sign-convention correction, not a relabelling.** For **axial ⇌ equatorial** the standard convention is `ΔG° = −RT ln K`, so `ΔG°(ax → eq) = G°(eq) − G°(ax) = −A` is **negative**, and `K = N(eq)/N(ax) = exp(−ΔG°/RT) = exp(+A/RT)`. Revision 1 printed `ΔG° = 7.3 kJ·mol⁻¹` (wrong sign) inside `exp(ΔG°/RT)` (wrong sign) — two inversions that cancel to the right number. That is precisely the shape of error a JEE or IB HL student is trained to catch, and S8 is the **advanced** ring, so those are exactly its readers. **The A-value is defined as −ΔG° for this equilibrium and is positive by construction**, so the relation written in `A` has every printed sign correct with nothing cancelling. Derivation and the arithmetic: §A-2.
+
+Four things this preserves, checked one by one:
+
+1. **§I-4's property is intact.** The surface is still **symbolic and T-independent**, so no numeral on it can be falsified by the live temperature slider — the CRITICAL `authored_annotation_asserts_a_value_its_own_state_control_can_falsify` row.
+2. **It is board-neutral.** A-values are the shared vocabulary of CBSE/JEE, IB HL and A-level; `ΔG°` for a conformational equilibrium is not written the same way across all of them.
+3. **It matches names already in the tree.** §A-2 already calls the quantity `A(CH₃)`; the skeleton's §9E pre-freeze item **E-4** already names the HUD member **`a_value`** — which, under revision 1, would have rendered a `ΔG°` string, an `existing_hud_line_reused_for_a_different_physical_quantity` smell in miniature. Member name and rendered symbol now agree.
+4. **No `Δ` glyph is left anywhere in the concept**, since §I-3 already removed `ΔG‡` from S6 — §E-4.
+
+**Every numeral on this state is live.** The bar labels are bound to `equatorial_pct` / `axial_pct`, never authored strings. `A` and `T` are HUD **value-only** lines (Rule 34b): `A` is a published constant carrying the `(literature)` stamp; `T` is the slider's live value.
+
+**`text_en` (43 words · 15.64 s):**
+
+> The axial chair is 7.3 kilojoules per mole higher — the methyl A-value. At 298 kelvin the ring sits 95 to 5 in favour of equatorial. Cellulose is a long chain of these rings, every bulky group equatorial. Cotton fibre is made of it.
+
+| clause | words | window | focal |
+|---|---|---|---|
+| "The axial chair is 7.3 kilojoules per mole higher — the methyl A-value." | 12 | 0 – 4364 | the `A = 7.3 kJ·mol⁻¹` HUD line |
+| "At 298 kelvin the ring sits 95 to 5 in favour of equatorial." | 13 | 4364 – 9091 | the two bars |
+| "Cellulose is a long chain of these rings, every bulky group equatorial. Cotton fibre is made of it." | 18 | 9091 – 15636 | the equatorial chair |
+
+**Naming the A-value in narration is a P1-6 consequence I am not free to skip.** Putting `A` on the canvas puts a letter there that no sentence defines, and Rule 25 forbids an untaught term. One clause fixes it, teaches the examinable word (A-values are directly assessed at JEE and IB HL), and costs one word *net* — 44 → 43 — because "the methyl A-value" replaces the longer causal phrasing revision 1 used. The words "95 to 5" land at ≈6.5 s, after the bar labels complete at 5400 ✔.
+
+**The HUD string is exactly `A = 7.3 kJ·mol⁻¹ (literature)`**, so the live `splitNameUnit` regex reads symbol `A`, matching the `A` computed output added in §C-1 — no third naming exception is created (§C-5 still lists two).
+
+**"at 298 kelvin" is load-bearing and must not be trimmed** — it scopes the narrated 95 : 5 so a teacher's slider move cannot make the sentence false. Constraint §G-10.
+
+**Anchor: 18 words against the reserved ≈15.** The 3-word overrun buys chemical accuracy — §H-7 (cellulose, not glucose; no rigidity overclaim).
 
 ---
 
 ### D-9 · `STATE_9 — explore` · core · `interaction_complete` · continuous (Rule 37)
 
-**Archetype:** drag-sandbox. **Delta cue:** `Move the ring yourself`. **Narration:** 0 / open. **Formula surface:** none. Controls and HUD lines exactly as the skeleton's §7, ring-gated. `pucker_amplitude` bounded to [0.85, 1.0] so the sandbox cannot return the ring to planar (§C-3, §G-8).
+**Archetype:** drag-sandbox. **Rail title:** `Explore`. **Delta cue:** `Move the ring yourself`. **Narration:** 0 / open. **Formula surface:** none. Controls and HUD lines exactly as the skeleton's §7 revision 2, ring-gated — including **`pose` at `min_ring: 'extended'`** (P1-1) and the **`group` selector restricted to `H | CH₃`** (P2-3, endorsed with sourced reasons at §H-11). `pucker_amplitude` bounded to [0.85, 1.0] so the sandbox cannot return the ring to planar (§C-3, §G-8). Idle `spin` about the **view axis** only (N-20), so an untouched sandbox is never a dead frame under Rule 37.
+
+**The teacher-facing control LABELS must use taught words, not contract ids** (new constraint §G-13). Under `core_only` the surviving control ids are `pucker`, `view`, `implicit_h` and `spin`, and *pucker* is a word no state narrates — S1 says "the ring folds", S4 says "the flip". Render the rows as **`flip`**, **`view`**, **`hydrogens`** and **`spin`**; the ids are unchanged.
 
 ---
 
@@ -650,13 +734,19 @@ Notation used below: `t-window · what animates · driven by`. Every branch is a
 
 | Ring | Permitted notation | Rendered here |
 |---|---|---|
-| **core** (S1–S4, S9) | arithmetic and named values only: degrees, picometres, a molecular formula | `120.0°`, `111.4°`, `109.5°`, `54.9°`, `axial 6 · equatorial 6`, `C₆H₁₂` |
-| **extended** (S5–S7) | adds units of energy and a difference; still arithmetic | `183 pm`, `240 pm`, `274 pm`, `290 pm`, `425 pm`, `E = 23 kJ·mol⁻¹`, `barrier = 45 kJ·mol⁻¹`, `C₇H₁₄` |
-| **advanced** (S8) | the single exponential relation, and only here | `N(equatorial) : N(axial) = exp(ΔG°/RT) : 1`, `ΔG° = 7.3 kJ·mol⁻¹`, `T = 298 K` |
+| **core** (S1–S4, S9) | arithmetic and named values only: degrees, a named angle symbol, a bond name, a molecular formula | `120.0°`, `111.4°`, `109.5°`, `φ = 54.9°`, `bond = C1–C2`, `axial 6 · equatorial 6`, `axial — · equatorial —`, `C1 axial` → `C1 equatorial`, `C₆H₁₂` |
+| **extended** (S5–S7) | adds picometres and units of energy; still arithmetic | `183 pm`, `240 pm`, `274 pm`, `290 pm`, `425 pm`, `φ = 0.0°`, `half-chair` / `twist-boat` / `boat`, `E = 23 kJ·mol⁻¹`, `barrier = 45 kJ·mol⁻¹`, `C₇H₁₄` |
+| **advanced** (S8) | the single exponential relation, and only here | `N(equatorial) : N(axial) = exp(A/RT) : 1`, `A = 7.3 kJ·mol⁻¹ (literature)`, `T = 298 K`, `equatorial 95%` / `axial 5%` |
 
-**No logarithm, no calculus and no quantum notation appears anywhere** — this concept needs none. **Nothing below the advanced ring carries `exp`, `ΔG°`, `R`, `T` or `‡`.**
+**No logarithm, no calculus and no quantum notation appears anywhere** — this concept needs none. **Nothing below the advanced ring carries `exp`, `A`, `R`, `T`, `%`, `K` (kelvin) or `‡`.**
 
-**One removal, and it is a correction rather than a preference.** The skeleton's DoD (b) puts `ΔG‡ = 45 kJ·mol⁻¹` on S6's surface, in the **extended** ring. Two reasons it must go — §I-3.
+**`φ` in the core ring is not a ladder breach, and I record why rather than leaving it to be re-litigated.** It is a named angle symbol printed with a degree value beside it — the same class of object as S1's and S3's labelled arcs — and it is the symbol every claimed board writes for a torsion. Rule 38c bans calculus and vector forms below the advanced ring; it does not ban Greek letters that name angles. The word "torsion" is defined by the picture at S2 before `φ` is used bare.
+
+**Two symbols were removed from this ladder, and both removals are corrections rather than preferences.**
+- `ΔG‡ = 45 kJ·mol⁻¹` on S6's **extended** surface → `barrier = 45 kJ·mol⁻¹` (§I-3: the decomposition is not agreed in the literature, and ‡ carries transition-state theory this concept never defines).
+- `ΔG° = 7.3 kJ·mol⁻¹` inside S8's relation → `A` (§I-4 made it a relation; **P1-6** fixed its sign convention, §D-8).
+
+**Consequence, checked: after both removals no `Δ` glyph is rendered anywhere in the concept** — §E-4.
 
 ### E-2 · Dialect dual-labels (Rule 38d) — once, then bare
 
@@ -667,6 +757,7 @@ Notation used below: `t-window · what animates · driven by`. Every branch is a
 | **axial / equatorial** | S3, labelled on canvas beside their two reference geometries (`ring axis`, `ring plane`) | bare |
 | **staggered** | S2: defined on screen ("the three bonds on the front carbon sit between the three on the back carbon") before the word is used | bare |
 | **van der Waals contact distance** | S5, on the reference line. Never "contact radius", never "vdW radius" | bare |
+| **A-value** | S8: "the axial chair is 7.3 kilojoules per mole higher — **the methyl A-value**". The term is defined by the sentence that carries its value and by the surface that consumes it (`exp(A/RT)`). Advanced ring only | bare |
 
 **Board-neutral choices, stated:** "conformation" not "conformer" as the introduction; "twist-boat" not "skew-boat"; "half-chair" not "sofa"/"envelope" (they are different geometries — §A-7); "barrier" not "activation energy" (they are different quantities — §I-3); "picometres" spoken, `pm` on canvas.
 
@@ -682,7 +773,9 @@ Notation used below: `t-window · what animates · driven by`. Every branch is a
 
 ### E-4 · Unicode (Rule 34c) — every rendered glyph
 
-`°` · `·` · `⁻¹` · `₆` `₁` `₂` `₇` `₄` `₃` · `Δ` · `···` (U+22EF, the contact ellipsis) · `→` · `′` (prime, U+2032, for chair′) · `‡` **banned** · `⇌` **not used** (there is no equilibrium arrow on this canvas; the 95 : 5 is a population, not a written equilibrium).
+`°` · `·` · `⁻¹` · `₆` `₁` `₂` `₇` `₄` `₃` · `φ` (U+03C6) · `···` (U+22EF, the contact ellipsis) · `→` · `′` (prime, U+2032, for chair′) · `‡` **banned** · `⇌` **not used** (there is no equilibrium arrow on this canvas; the 95 : 5 is a population, not a written equilibrium).
+
+**`Δ` is no longer rendered anywhere** (revision 2). It survived in revision 1 only through `ΔG‡` on S6's surface and `ΔG°` on S8's; §I-3 removed the first and **P1-6** removed the second. If a `Δ` reappears in any rendered string, one of those two decisions has been silently reverted — treat its presence as the alarm.
 
 **Explicitly banned ASCII transcriptions:** `C6H12`, `kJ/mol` on canvas (narration may say "kilojoules per mole"), `deg`, `->`, `...`, `dG`, `A-value` written as `Avalue`. `pm` is fine — it is the SI symbol, not a transcription.
 
@@ -706,13 +799,36 @@ Every reader-facing string was read against the ban list. **Present nowhere:** w
 - S6 narration "Forty-five is **small**, so..." → "At room temperature the ring crosses this barrier..." — "small" is a comparison with nothing on screen to compare against.
 - S8 anchor "That is what makes cotton fibre **rigid**" → dropped. It is a causal overclaim (cellulose's stiffness needs the β-1,4 geometry *and* interchain hydrogen bonding) and the two facts stand better unlinked.
 
-### E-6 · Symbols and units the explore state renders — the cut checks, run literally
+### E-6 · Symbols and units the presets render — the cut checks, re-run literally (CORRECTED, P1-1)
 
-**Cut 1 (hide advanced = S8).** Removed from anywhere on screen: `ΔG°`, `exp`, `R`, `T`, `%`, `K` (kelvin). S9's `temperature` control is `min_ring: advanced` and its `population` HUD line is `min_ring: advanced`, so both vanish. S7's narration and canvas contain none of them (checked word by word). **Coherent ✔**
+**Revision 1's Cut-2 list was FALSE, and the architect caught it rather than me.** I listed the `core_only` surviving strings without any conformation name while the `pose` HUD line was ringed `min_ring: 'core'` — so the teacher's first drag past u ≈ 0.2 in the sandbox would have printed *half-chair*, *twist-boat* or *boat*, vocabulary that only S5 teaches and `core_only` hides. That is `core_ring_state_shows_value_whose_only_derivation_is_higher_ring` recurring on a row already marked FIXED. **`pose` is re-ringed to `min_ring: 'extended'`** in the skeleton's §7, and the list below is rebuilt state by state rather than re-asserted.
 
-**Cut 2 (hide advanced + extended = S5–S8).** Additionally removed: `kJ·mol⁻¹`, `pm`, `barrier`, `E`, `conformation`, `half-chair`, `twist-boat`, `boat`, `CH₃`, `C₇H₁₄`. S9's `substituent` / `group` controls are `min_ring: extended` and its `distance` / `energy` HUD lines are `min_ring: extended`. Surviving S1–S4 + S9 renders only: `°`, `C₆H₁₂`, `axial`, `equatorial`, `chair`, `ring axis`, `ring plane`, and the numerals 120.0 / 111.4 / 109.5 / 54.9 / 6. **Every one of those first appears in a core state. Coherent ✔**
+**Cut 1 (hide `advanced` = S8).** Removed from anywhere on screen: `A`, `exp`, `R`, `T`, `%`, `K` (kelvin), `N(equatorial)`, `N(axial)`, and the two population bars. S9's `temperature` control and its `population` and `a_value` HUD lines are all `min_ring: advanced`, so all three vanish. S7's narration and canvas contain none of them (swept word by word, §H-6). **`pose` survives Cut 1 and is safe there** — S5 is shown, so all four conformation names are taught before the sandbox can print one. **Coherent ✔**
 
-**Rule 38b value check** (the `core_ring_state_shows_value_whose_only_derivation_is_higher_ring` row): every unit-bearing quantity S9 can print under the core preset — an angle in degrees and an a/e count — is shown concretely in S1/S3. No orphan. ✔
+**Cut 2 (hide `advanced` + `extended` = S5–S8).** Additionally removed: `kJ·mol⁻¹`, `pm`, `barrier`, `E`, `distance`, `conformation`, `half-chair`, `twist-boat`, `boat`, `CH₃`, `C₇H₁₄`, `φ = 0.0°`, `240 pm`, `290 pm`. S9's `substituent` / `group` controls are `min_ring: extended`; its `pose` / `bond` / `distance` / `energy` HUD lines are `min_ring: extended`.
+
+**The corrected surviving list, built state by state over S1–S4 + S9 rather than asserted:**
+
+| Surviving state | Rendered strings |
+|---|---|
+| **S1** | cue `Flat drawing, then chair` · `C–C–C = 120.0°` → `111.4°` · dimmed reference `109.5°` |
+| **S2** | cue `Sight down a bond` · HUD `φ = 54.9°` · HUD `bond = C1–C2` / `C2–C3` / `C3–C4` |
+| **S3** | cue `Two kinds of C–H bond` · `axial` · `equatorial` · `ring axis` · `ring plane` · `C–C–H = 109.5°` · HUD `axial 6 · equatorial 6` |
+| **S4** | cue `Follow one axial bond` · `C1 axial` → `C1 equatorial` · surface `C₆H₁₂` · HUD `axial — · equatorial —` (off-chair) |
+| **S9** | cue `Move the ring yourself` · control rows `flip` / `view` / `hydrogens` / `spin` (§G-13) · HUD `ae_count` and `angle` only |
+
+**Union:** `°` · `φ` · `C–C–C` · `C–C–H` · `bond` · `C1–C2` / `C2–C3` / `C3–C4` · `C1 axial` / `C1 equatorial` · `axial` · `equatorial` · `—` (the off-chair dash) · `ring axis` · `ring plane` · `C₆H₁₂` · and the numerals 120.0 / 111.4 / 109.5 / 54.9 / 6.
+
+**Two entries in the architect's §7 list needed correcting in the other direction, and I am reporting them rather than quietly conforming:**
+
+1. **`φ` and `bond` (with the bond names `C1–C2` / `C2–C3` / `C3–C4`) survive Cut 2 and the §7 list omits them.** S2 is a **core** state, so it renders under `core_only`; its HUD lines are the concept's own, not the sandbox's, and a preset hides *states*, not a shown state's instruments. Both are first shown in a core state, so the Rule-38b test still passes — but the list must name them or the next audit will find a rendered symbol with no entry.
+2. **`chair` survives as a NARRATED word, not as a rendered `pose` string.** S1's dual-label ("the shape called a chair") is narration; with `pose` at `min_ring: extended` the HUD prints no conformation name anywhere under `core_only`, and S5's `pucker.walk[].label` sprites are hidden with S5. If `chair` is wanted on canvas under Cut 2 it needs a source other than `pose`, and I would not add one — the picture is the definition.
+
+**Every string in the union first appears in a core state, and no conformation name renders anywhere. Coherent ✔**
+
+**Rule 38b value check** (`core_ring_state_shows_value_whose_only_derivation_is_higher_ring`): the only unit-bearing quantities S9 can print under `core_only` are an angle in degrees and an axial/equatorial count — both shown concretely in S1/S3 with their derivations on screen. **No orphan value. ✔**
+
+**Rule 41 check on the surviving control labels.** See §G-13: under `core_only` the id `pucker` names a word no surviving state narrates, so the row renders as `flip` — the word S4's title and narration both use.
 
 ---
 
@@ -797,7 +913,7 @@ Nine clusters from the skeleton's §12. These become `trigger_examples TEXT[]` r
 
 **G-1 · Conservation, every frame, every state.** 6 C, 12 H, 18 bonds (14 C and 20 bonds with the methyl). No atom or bond may fade, blink or be culled at any u, at any camera pose, at any occlusion depth. A frame that renders 17 bonds during a sweep is a frame that teaches a bond broke. *(FIXED counts.)*
 
-**G-2 · Countability, for everything the sim counts.** Minimum pairwise screen separation between rendered atom discs > 0, measured in **isotropic screen units (camX/camZ, camY/camZ)**, never in NDC — dividing x by the aspect ratio shears every measured direction by 1.78× at 16:9. Specifically countable: the twelve C–H bonds at S3; the two flagpole hydrogens during the boat hold at S5; the two 1,3-diaxial contact lines at S7 (drawn to **two different ring carbons**, C3 and C5, so "two" is verifiable); the two chairs and the two bars at S8. *(DERIVED per camera — the surgeon re-solves in perspective.)*
+**G-2 · Countability, for everything the sim counts.** Minimum pairwise screen separation between rendered atom discs > 0, measured in **isotropic screen units (camX/camZ, camY/camZ)**, never in NDC — dividing x by the aspect ratio shears every measured direction by 1.78× at 16:9. Specifically countable: the twelve C–H bonds at S3; the six origin-tinted bonds at S4 (at least four simultaneously visible at the pin — skeleton §8 camera row 4); the two flagpole hydrogens during the boat hold at S5; **the two fully-eclipsed ring bonds at S5, `C2–C3` and `C5–C6`** — both marked, one published on the HUD, and para-related across the ring so the two marks cannot collide at HOME; the two 1,3-diaxial contact lines at S7 (drawn to **two different ring carbons**, C3 and C5, so "two" is verifiable); the two chairs and the two bars at S8. *(DERIVED per camera — the surgeon re-solves in perspective.)*
 
 **G-3 · No axial/equatorial tag off-chair.** At the half-chair, twist-boat and boat, "axial" and "equatorial" have **no chemical meaning**. The tags fade out as `u` leaves a chair pose and re-read at the far end. `ae_count` renders in **exactly two string shapes**: `axial 6 · equatorial 6` in a chair, `axial — · equatorial —` off-chair. Rendering a count at the half-chair asserts a quantity that does not exist. *(FIXED.)*
 
@@ -824,6 +940,10 @@ Nine clusters from the skeleton's §12. These become `trigger_examples TEXT[]` r
 **G-10 · Narrated numerals are scoped to their conditions.** S8's sentence carries "at 298 kelvin" precisely so a teacher's slider move does not falsify it. Trimming that phrase for word budget is a correctness change, not an edit.
 
 **G-11 · No number the engine did not look up.** Every energy, A-value and contact distance carries a source stamp in the HUD (`(literature)`). The engine computes no steric energy at any u, ever — `ORGANIC_PHASE0_CONFORMATION.md` decision 1.
+
+**G-12 · Three published readings, six bonds — the induction must not become a counting assertion.** S2 publishes the torsion at C1–C2, C2–C3 and C3–C4 and narrates "every C–C bond reads the same". The chair's six ring torsions are `+54.9 −54.9 +54.9 −54.9 +54.9 −54.9` (§A-7): equal in **magnitude**, alternating in **sign**, and the HUD prints the magnitude. No gate may assert six readings, no narration line may claim six measurements were taken, and no state may publish a signed sixth torsion beside three unsigned ones. *(FIXED convention; DERIVED values.)*
+
+**G-13 · Teacher-facing control labels use taught words, never contract ids.** The `pucker` id is the contract's; the word the lesson teaches is **the flip** (S4's title and narration). Under `core_only` the sandbox's surviving rows are `pucker`, `view`, `implicit_h` and `spin`, and two of those ids are untaught strings (Rule 25: no untaught term; Rule 41: basic literal English in every reader-facing string, and a slider label is reader-facing). **Render `flip`, `view`, `hydrogens`, `spin`; the ids never change.** This is a labelling rule for every organic sandbox, not a one-off. *(FIXED.)*
 
 ---
 
@@ -883,13 +1003,39 @@ Recommendation to the surgeon: **adopt the CP arc-length set**, because it makes
 | **N-2 strengthened** | the boat knot is built at the **idealised tetrahedral** parameterisation while the chair knots use the experimental one; both must be **declared in the molecule table** | S5, S6, S7, S9 | Otherwise the rendered flagpole is 216 pm under a `183 pm` label. §A-6 |
 | **N-15 strengthened** | bar labels bound **live** to the computed percentages, never authored strings; and the bars are labelled as **percentages of molecules**, never counts | S8 | `authored_annotation_asserts_a_value_its_own_state_control_can_falsify` (CRITICAL) + §G-9 |
 
+**H-11 · The `group` selector — the architect asked whether I can source A(Cl), A(Br), A(OH) to the same standard as A(CH₃). I can source them; they are NOT to the same standard; I ENDORSE the `H | CH₃` restriction and DECLINE to re-open the selector.**
+
+The values exist and are standard (Eliel & Wilen, *Stereochemistry of Organic Compounds* (1994) ch. 11, A-value table). Populations computed at 298 K on the same Boltzmann relation as §A-9:
+
+| Group | A (kcal·mol⁻¹, literature band) | A (kJ·mol⁻¹) | eq : ax at 298 K | Verdict |
+|---|---|---|---|---|
+| **CH₃** | **1.74** (tight, universally quoted) | **7.3** | **95.0 : 5.0** | ✔ **the one sourced value — keep** |
+| Cl | 0.43 – 0.55 | 1.8 – 2.3 | 67.4 : 32.6 → 71.3 : 28.7 | ✗ |
+| Br | 0.38 – 0.55 | 1.6 – 2.3 | 65.5 : 34.5 → 71.3 : 28.7 | ✗ |
+| OH | 0.52 (aprotic) – 0.87 (hydroxylic) | 2.2 – 3.6 | 70.7 : 29.3 → 81.3 : 18.7 | ✗ |
+| *t*Bu | ≥ 4.5, commonly "4.7 – 5.4" | ≥ 19 | > 99.9 : < 0.1 | ✗ — **a lower bound, not a measurement** |
+
+**Three reasons, each fatal on its own.**
+
+1. **Cl and Br are not separable on the instrument, and their ORDER is not robust.** Their literature bands overlap almost completely; at the mid-band values the two population bars differ by **1.8 percentage points**, which no teacher reads off a bar, and which source you take decides which of the two is larger. Selecting Cl then Br would show a teacher two identical pictures and invite them to teach an ordering the literature does not support — `taught_delta_smaller_than_the_instruments_own_live_noise`.
+2. **A(OH) is solvent-dependent by roughly a factor of two in ΔG, and this sim has no solvent.** 0.52 kcal·mol⁻¹ in aprotic media versus 0.87 in hydroxylic media spans 70.7 : 29.3 to 81.3 : 18.7 — an 11-point swing on a bar with no rendered cause. Printing one of them as `A = … (literature)` asserts a condition the canvas cannot show; printing a range breaks the single-value HUD contract.
+3. **A(*t*Bu) is a LOWER BOUND, not a value.** The axial conformer of *tert*-butylcyclohexane is too scarce to measure directly, which is why the literature quotes "≥ 4.5 kcal·mol⁻¹" and books disagree between 4.7 and 5.4. `A = 20 kJ·mol⁻¹ (literature)` would assert a precision the sources explicitly refuse. **This independently supports the architect's decision to keep `tBu` in the contract's value set but NOT selectable**: q7 stays a transfer item, which is what it was designed to be, and the enum stays closed for the day a sourced bound-free value exists.
+
+**What would re-open the selector**, recorded so it is a test and not a mood: a group whose A-value is (i) a measured value rather than a bound, (ii) quoted within ±0.1 kcal·mol⁻¹ across at least two standard sources, (iii) solvent-insensitive at the same tolerance, and (iv) far enough from 7.3 kJ·mol⁻¹ that its bar is visibly different from methyl's at the authored slider default. Of the four candidates above **none passes**, and CH₃ passes all four. Ethyl (A ≈ 1.75 kcal·mol⁻¹) fails (iv) — it is indistinguishable from methyl, which is itself a good teaching point but not one this state's instrument can make.
+
+**Corollary for §F.** The drill-down cluster `does_a_bigger_group_change_it` keeps its phrasing *"does a chlorine behave the same as a methyl"* — it is a real student question and a good one. It is answered by a deep-dive, not by a sandbox control the published table cannot feed.
+
 ---
 
 ## §I — DISAGREEMENTS with the skeleton, stated plainly
 
-Nine. Each is flagged, none silently overwritten.
+Nine were raised in revision 1. **Eight were endorsed by founder-proxy and are adopted into the skeleton's revision 2. One — I-1 — is WITHDRAWN by me**, because the constraint half of its argument does not exist. §I-10 is new: the cross-document items I am flagging rather than editing.
 
-**I-1 · State durations (§5) — the largest.** Six of eight guided states have narration that outruns their choreography at the architect's `R`, and five also put the frozen pin **before** their last asserted reveal once narration clauses are ordered cause-before-effect. Worst case S1: 51 words ≈ 18.5 s against `R = 13000`. Proposed revised durations in §D-0 (guided total 162 s vs 125 s), with the architect's beat *structure* preserved and every pin margin ≥ 500 ms. **Founder/architect call, not mine to impose.** The structural cause is worth recording: with the pin fixed at `0.60·R` and the last reveal at the end of narration, `R` must be ≈1.45× the narration duration for any state.
+**I-1 · State durations (§5) — WITHDRAWN by me, in full.** Revision 1 argued for 162 s of guided runtime from two constraints. The second — `R ≥ (L + 167)/0.60` — was **invented**: I read the `clamp(0.60·R, 150, R−150)` at `deriveStateMeta.ts:3213` as the fleet pin law, when it is local to the `nlb` (`newtons_laws_body`) branch. The fleet rule is `maxRevealForField3dState()` (`:1087`), which returns `Math.max(...candidates)` from a **per-scenario** candidate push, or `DEFAULT_REVEAL_MS = 1500` where no branch exists. `organic_structure` has no branch — which is engine need **N-19**, a row I also missed and the architect supplied.
+
+Re-run against the surviving constraint alone (`R ≥ N + 500 ms`), **the architect's 145.0 s is correct and I adopt it verbatim.** My beat structure, clause ordering and word counts survive; only the runtimes shrink. This was my largest claimed disagreement and it was wrong; the arithmetic is redone in the open at §D-0, including the four word counts that had to move and the one conflict inside the skeleton (S2's band versus S2's `N`) that I could not close from here.
+
+**What I take from it, since a withdrawal should leave something behind:** `rewind_path_assertion_stops_at_the_function_body_and_never_follows_its_calls` bound my document too, not only the architect's. I quoted a formula from a file without following the call that selects it.
 
 **I-2 · §4 M1 contradicts §8 S1 — the eclipsing evidence cannot be rendered.** §4 says the flat ring is held "with all twelve C–H bonds exactly eclipsed" as visible counter-evidence; §8 says S1 runs `show_h: 'none'` through the flat phase and the pucker. **Both cannot be true.** Compounding it, at S1's FACE-ON camera the hydrogens of a *planar* ring lie in the image plane pointing radially outward — eclipsing is invisible from that direction by construction, so even showing them would not carry the claim. And S2 is forbidden from referencing the off-screen flat ring (§0, `teach_visual_must_match_narration`), so the claim has no other home.
 **My resolution: drop the eclipsing claim from narration entirely.** S1's counter-evidence is the angle alone — 120.0° against a drawn 109.5° reference, wrong by 10.5° — which is quantitative, immediate and fully rendered. This narrows §2's change-2 rationale ("the larger half is torsional"), which remains true chemistry the sim cannot show. The torsional half is carried implicitly by S2's staggered chair, never as a narrated comparison to a picture that is not on screen.
@@ -900,9 +1046,15 @@ Nine. Each is flagged, none silently overwritten.
 
 > **Replacement surface: `barrier = 45 kJ·mol⁻¹`.** True under every reading, plain English (Rule 41b), no ‡ below the advanced ring, and it matches the vertical measure the curve already draws from the chair level to the peak. The `(literature)` stamp lives on the HUD energy line, not on the surface.
 
-**I-4 · S8's formula surface `ΔG° = 7.3 kJ·mol⁻¹` should become a relation.** As authored it is a *value*, not a relation; it does not "resolve to a percentage" the way the skeleton's §0 disposition requires; and it sits in the same units as S6's adjacent 45 kJ·mol⁻¹, inviting confusion between a barrier and a difference.
+**I-4 · S8's formula surface — a relation, and (P1-6) a relation written in `A`.** Revision 1's surface `ΔG° = 7.3 kJ·mol⁻¹` was a *value*, not a relation; it did not resolve to a percentage the way the skeleton's §0 disposition requires; and it sat in the same units as S6's adjacent 45 kJ·mol⁻¹, inviting confusion between a barrier and a difference. That much was endorsed. **My replacement was still wrong in one respect, and founder-proxy's P1-6 is right.**
 
-> **Replacement surface: `N(equatorial) : N(axial) = exp(ΔG°/RT) : 1`** — symbolic, T-independent, therefore unfalsifiable by the live temperature slider (the CRITICAL `authored_annotation_asserts_a_value_its_own_state_control_can_falsify` row), and it resolves through the bars to the 95 : 5 the HUD renders. `ΔG° = 7.3 kJ·mol⁻¹ (literature)` and `T = 298 K` move to the HUD as value-only lines (Rule 34b). Note `eq` cannot be subscripted — Unicode has no subscript **q** — so `N(equatorial)` in parentheses is the correct rendering, not `N_eq`.
+> **Surface: `N(equatorial) : N(axial) = exp(A/RT) : 1`.** **HUD: `A = 7.3 kJ·mol⁻¹ (literature)` and `T = 298 K`**, value-only (Rule 34b).
+
+**Why the symbol had to change, not just the shape.** The standard convention is `ΔG° = −RT ln K`, and for **axial ⇌ equatorial** the A-value is defined as `A ≡ −ΔG°`, positive by construction. So revision 1's rendering inverted the sign **twice** — it printed `ΔG° = +7.3` where the convention gives `−7.3`, inside `exp(ΔG°/RT)` where the convention gives `exp(−ΔG°/RT)` — and the two errors cancelled to the right number, 19.04, and to the right 95 : 5. A cancelling pair is the worst kind of error to ship on the **advanced** ring, whose readers are exactly the students trained to check it. Written in `A`, every printed sign is right on its own terms. Derivation once, at §A-2; consequences at §D-8; ladder at §E-1.
+
+**What is preserved.** The surface stays **symbolic and T-independent**, so the live temperature slider still cannot falsify any numeral on it — the CRITICAL `authored_annotation_asserts_a_value_its_own_state_control_can_falsify` row, which was the whole reason for the relation. `A(CH₃)` is already §A-2's name for the quantity and `a_value` is already the enum member's name (skeleton §9E, E-4), so member, symbol and source now agree. Note `eq` cannot be subscripted — Unicode has no subscript **q** — so `N(equatorial)` in parentheses remains the correct rendering, not `N_eq`.
+
+**One narration consequence, discharged rather than left:** `A` on the canvas with no sentence defining it is an untaught term (Rule 25), so S8's narration now names "the methyl A-value" — one clause, one net word saved, and the examinable term taught. §D-8.
 
 **I-5 · S7 needs a `C₇H₁₄` formula surface, and DoD (b) omits it.** DoD (c) requires it ("the methyl replaces exactly one H, so the formula becomes C₇H₁₄ and the surface must say so") but the symbol-label table in (b) has no row for it. Added at §D-7 (t = 800 ms, when the methyl appears). This also gives S7 its one permitted surface without duplicating the contact labels or the 290 pm reference.
 
@@ -920,7 +1072,24 @@ Three consequences:
 **I-9 · Three delta cues and the anchor placement.**
 - S6's cue `The flip costs energy` → **`Energy along the flip`**. "Costs" is an economic metaphor (Rule 41a), and separately the cue must name the state's action, true from t = 0, not a judgement.
 - The S1 anchor moves from the opening to the closing clause. Reason at §D-1: as an opener it delays the fold past the pin and archives the flat ring — precisely the failure §5 budgeted against.
+- **S3's cue `Six axial, six equatorial` → `Two kinds of C–H bond`** (the architect's P2-1, adopted here). The old cue stated the state's **end condition** — false for the first 5.5 s, while the axial family is still drawing one bond at a time — which is `delta_cue_asserts_the_states_end_condition_so_it_is_false_while_most_of_the_state_plays`. The new cue names an action true from t = 0, names neither a carbon nor a permanence, and does not paraphrase M2.
+- **S6's cue is `Energy along the flip`**, adopted into the skeleton's §3 and used as both the rail title and the on-canvas cue.
 - The two remaining `nlb`-class cue rows were re-checked cue by cue against the revised timings; all nine cues name an action true from t = 0 and none paraphrases a watched belief.
+
+
+
+**I-10 · Cross-document items I am FLAGGING, not editing (revision 2).** The architect flagged §E-6 to me rather than editing my file; these are the mirror image — places where the skeleton still carries a string this block has changed. None is a disagreement; each is a propagation the skeleton's next revision must make, or the re-gate will read the pair as contradictory.
+
+| Where in the skeleton | Currently reads | Must read | Driver |
+|---|---|---|---|
+| §14 DoD (b), row "the population relation" | surface `N(equatorial) : N(axial) = exp(ΔG°/RT) : 1` | `… = exp(A/RT) : 1` | **P1-6** |
+| §14 DoD (b), row "the A-value and the temperature" | HUD `ΔG° = 7.3 kJ·mol⁻¹ (literature)` | `A = 7.3 kJ·mol⁻¹ (literature)` | **P1-6** |
+| §9E pre-freeze item **E-4** | "#4 S8 renders `ΔG° = 7.3 kJ·mol⁻¹`" | "#4 S8 renders `A = 7.3 kJ·mol⁻¹`" — the member is already named `a_value`, so this also removes an `existing_hud_line_reused_for_a_different_physical_quantity` smell | **P1-6** |
+| §5, S5 row | `N = 16.7` (46 words) | `N = 19.3` (53 words) — the P1-5 payoff clause and the P2-2 return clause are narration additions §5 did not cost; `R = 20000` absorbs them with 730 ms to spare | P1-5 / P2-2 |
+| §5, rows S1 and S7 | `N = 18.5` at `R = 19000` (margin 450/455 ms) | `N = 18.2` at 50 words each — 51 words is 50 ms **under** the 500 ms budget the same section declares | §D-0 |
+| §3, S2 word band | 45–52 | reconcile with §5's own `N = 16.0 s`, which is **44 words**; I author 44 and say so at §D-0 | §D-0 |
+| §3, S2 rail title | `Every bond is staggered` | `Every C–C bond is staggered` — recommended, not required (§D-2) | Rule 41b/41d |
+| §3, S4 rail title | `The flip swaps them` | recommend `Axial becomes equatorial` — "them" resolves only against the **previous** title, and the rail is reorderable by the teacher at runtime (Rule 25d), so a title that depends on its neighbour breaks on the first drag. Not required | Rule 25d / 41d |
 
 ---
 
@@ -938,7 +1107,7 @@ json_author writes the items; this is the correctness floor. Seven questions per
 | **q6** | S7 | an axial methyl is about 274 pm from the axial hydrogens on carbons 3 and 5, closer than a carbon and a hydrogen fit | *an equatorial methyl is further from the two hydrogens on the same carbon* (geminal confusion — the metric trap of §A-5 in question form) · *the equatorial C–CH₃ bond is shorter and stronger* (bond-length confusion) · *the ring cannot flip once a methyl is attached* (substitution blocks the flip) |
 | **q7** | S8, **transfer** | an even larger share sits equatorial, because a bulkier group has a larger A-value | *the same 95 : 5, the ratio depends only on temperature* (Boltzmann misread) · *a smaller share equatorial, a bigger group needs more room in the ring plane* (equatorial-crowding confusion) · *50 : 50, because the flip is fast* (rate/equilibrium confusion) |
 
-**q7 chemistry verified:** A(*tert*-butyl) ≈ 20–24 kJ·mol⁻¹ (4.7–5.4 kcal·mol⁻¹, Eliel & Wilen) → > 99.9 % equatorial at 298 K. The answer is correct and the margin is not marginal. `coverage_map.notes` must record that no single state stages it. `non_assessed_states: [STATE_9]`. `misconception_watch` on S1, S3, S4 only.
+**q7 chemistry verified:** A(*tert*-butyl) ≈ 20–24 kJ·mol⁻¹ (4.7–5.4 kcal·mol⁻¹, Eliel & Wilen) → > 99.9 % equatorial at 298 K. The answer is correct and the margin is not marginal. **Note added in revision 2 (§H-11):** that figure is a **lower bound**, not a measured value — the axial conformer is too scarce to measure directly, which is why the literature writes "≥ 4.5 kcal·mol⁻¹". q7 is safe because it asks only for the **direction** ("an even larger share sits equatorial"), which every source agrees on; the same fact is why *t*Bu must NOT become a selectable group whose HUD would print `A = … (literature)` (P2-3, endorsed). `coverage_map.notes` must record that no single state stages it. `non_assessed_states: [STATE_9]`. `misconception_watch` on S1, S3, S4 only.
 
 ---
 
@@ -947,18 +1116,22 @@ json_author writes the items; this is the correctness floor. Seven questions per
 - [x] Every quantity in the skeleton's state narratives appears in `variables` with a unit (§C-1).
 - [x] Conservation ledger complete — atom counts, charge, valence, bonds broken/formed and the **adjacency list** at u = 0, every intermediate u, and u = 1; separate ledger for the substituted C₇H₁₄ case. No redox, so no oxidation numbers (§B).
 - [x] Every state's motion targets `organic_structure`, the Phase-0 0b scenario this document specs. **No state downgraded, none marked blocked.** Eight new/strengthened engine asks raised rather than improvised around (§H-10).
-- [x] Rule 31 timeline for every state (t-window × what animates × driven-by), pure function of the state clock; no two states share a motion; no static state; controls match the architect's table exactly (§D).
+- [x] Rule 31 timeline for every state (t-window × what animates × driven-by), pure function of the state clock; no two states share a motion; no static state. **Controls match the architect's revision-2 table exactly** — `pucker` (drag-seize) is now exposed on **S4, S5 and S7** as well as S9, in the same screen position in all four (P2-5); S8 exposes `temperature`; S1/S2/S3/S6 expose nothing (§D).
+- [x] **Beat windows are the skeleton's §5 verbatim** and the guided total is **145.0 s**, not this block's withdrawn 162 s proposal (§D-0, §I-1).
 - [x] Rule 32 verified per state — cause window before effect with ≥ 0.5 s gap in S1/S3/S4/S6/S7; only the taught variable moves; no idle spin S1–S8; single glow focal; home pose preserved (§D).
 - [x] Rule 33 — 33a–c declared N/A by the architect and agreed (one molecule, one scale). **33d binds and is met:** every instrument shows a live number (arc, torsion, bond name, contacts, energy rider, population bars).
 - [x] Rule 34 — one formula surface per state at most, Unicode-only, value-only HUD, zones fixed and non-colliding (§E-4, §D).
-- [x] Word budget: every guided state 44–51 words, inside 25–55 and inside each architect per-state band; explore = 0/open. Speech duration computed per state and reconciled against choreography (§D-0).
-- [x] Notation ladder: no logarithm, no calculus, no quantum notation anywhere; the single exponential confined to S8 (advanced); ‡ removed from the extended ring (§E-1, §I-3). Dual-labels once then bare; IUPAC-first (§E-2, §E-3).
+- [x] Word budget: every guided state **43–53 words** (383 total), inside Rule 31's 25–55; inside each architect per-state band except S2, which is **one word under** §3's band and an exact match to §5's own `N` — the conflict is inside the skeleton and is FLAGged with both resolutions costed (§D-0, §I-10). Explore = 0/open. Every state's `R − N` margin is ≥ 500 ms, computed not eyeballed (§D-0).
+- [x] Notation ladder: no logarithm, no calculus, no quantum notation anywhere; the single exponential confined to S8 (advanced); `‡` removed from the extended ring (§I-3) and **`ΔG°` removed from the advanced one (P1-6, §I-4)** — so **no `Δ` glyph is rendered anywhere in the concept** (§E-1, §E-4). Dual-labels once then bare, with **A-value** added at S8 so the new canvas symbol `A` is not an untaught term; IUPAC-first (§E-2, §E-3).
+- [x] **P1-6 discharged:** the advanced-ring relation and its HUD are written in `A`, the sign convention is derived once at §A-2 (`A ≡ −ΔG°(ax → eq) > 0`, `K = exp(+A/RT)`), the surface stays symbolic and T-independent so the live slider cannot falsify it, and the three skeleton strings that still print `ΔG°` are FLAGged (§I-10).
+- [x] **P2-2 discharged:** S5's narration covers the return legs ("then the same shapes in reverse, ending in the other chair"), spoken **inside** the 13000 – 17000 return motion. The alternative — labelling the return legs — is declined with a reason: it would print `twist-boat` and `half-chair` twice and teach five named shapes where there are three (§D-5).
 - [x] Particle-count scale declared: **1 : 1, exactly 18 atoms, no representative scaling** — and the one real scale claim (S8's population bars over a mole-scale ensemble) isolated and constrained (§G-9).
 - [x] 45 drill-down phrasings, 5 per cluster × 9 clusters, real student voice, plain English, no Hinglish (§F).
 - [x] `constraints` block: 6 assertions, conservation first (§C-1).
 - [x] Numerical sanity check **RUN** — chair, methylcyclohexane, boat (three parameterisations), twist-boat, Cremer–Pople decomposition, Boltzmann across the full slider range, Eyring across the literature barrier band, kJ↔kcal on every published value, `splitNameUnit` against every output key (§A, §C-4, §C-5).
-- [x] Engine bug queue consulted; 13 binding rows discharged, 1 exception FLAGged (§0).
-- [x] `aha_moment` chemistry check: the PRIMARY aha is chemically TRUE (§B-3 proves the tag set inverts bond-by-bond while connectivity is fixed) and S4 demonstrates it. `misconception_watch` counters M1/M2/M3 are correct chemistry, not merely persuasive. Assessment answers verified, every distractor a real belief (§J).
+- [x] Engine bug queue consulted; 13 binding rows discharged, 1 exception FLAGged (§0). Revision 2 adds two self-caught recurrences: `rewind_path_assertion_stops_at_the_function_body_and_never_follows_its_calls` (mine, §I-1) and `core_ring_state_shows_value_whose_only_derivation_is_higher_ring` on the `pose` ring (the architect's catch, §E-6).
+- [x] **Preset cuts re-run literally, state by state rather than asserted** — Cut-2's surviving-string list is rebuilt from S1–S4 + S9, and two omissions in the skeleton's own corrected list (`φ` / `bond`, and `chair` as narration rather than a `pose` string) are reported back (§E-6).
+- [x] `aha_moment` chemistry check: the PRIMARY aha is chemically TRUE (§B-3 proves the tag set inverts bond-by-bond while connectivity is fixed) and S4 demonstrates it. **Its final clause is re-bound (P1-4) from the `ae_count` HUD line — a symmetry identity reading `axial 6 · equatorial 6` at both ends — to the six origin-tinted bonds, which re-glow 1.4 s before the clause opens (§D-4).** `misconception_watch` counters M1/M2/M3 are correct chemistry, not merely persuasive. Assessment answers verified, every distractor a real belief (§J).
 
 **Source check.** Consulted the NCERT Class-11 Chemistry Unit-13 *Hydrocarbons* chapter index for scope (cycloalkanes → conformations of cyclohexane: chair and boat named, chair stated more stable). **No teaching method, no example problem, no figure and no prose imported.** Note for the record: the `ncert_content` table in this project holds **physics only** — I enumerated its full chapter index and there is no NCERT Chemistry corpus on disk — so the scope claim rests on the published syllabus structure, not on a stored text. Energies, A-values, geometries and van der Waals radii are cited to named primary or standard sources in §A; every geometric consequence of them was re-derived independently rather than quoted.
 
