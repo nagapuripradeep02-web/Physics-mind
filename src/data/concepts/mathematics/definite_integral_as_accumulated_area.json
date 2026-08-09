@@ -825,22 +825,20 @@
             "animate_in_ms": 1200
           },
           {
-            "type": "vector",
-            "id": "zoomlink_1",
-            "from_expr": "{x: 180 + (b - 2*(b/round(pow(10,nlog))))*220, y: 357 - (b*b - c - 4.5*b*(b/round(pow(10,nlog))))*62}",
-            "to": {
-              "x": 460,
-              "y": 233
-            },
-            "style": "line",
-            "color": "#64748B",
+            "type": "plot_point",
+            "id": "source_marker",
+            "plane_id": "plane",
+            "x_expr": "b",
+            "y_expr": "b*b - c",
+            "size": 8,
+            "color": "#94A3B8",
             "appear_at_ms": 0,
             "animate_in_ms": 1200
           },
           {
             "type": "vector",
-            "id": "zoomlink_2",
-            "from_expr": "{x: 180 + b*220, y: 357 - (b*b - c + 0.5*b*(b/round(pow(10,nlog))))*62}",
+            "id": "zoomlink_1",
+            "from_expr": "{x: 180 + (b - 2*(b/round(pow(10,nlog))))*220, y: 357 - (b*b - c - 4.5*b*(b/round(pow(10,nlog))))*62}",
             "to": {
               "x": 460,
               "y": 233
@@ -1396,7 +1394,7 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, bracketing the truth."
+              "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, and the exact value lies between them."
             },
             {
               "id": "s6_3",
@@ -1651,7 +1649,7 @@
             "y_expr": "x*x - c",
             "x_domain": {
               "min": 0,
-              "max_expr": "b"
+              "max": 2
             },
             "samples": 240,
             "stroke_weight": 3,
