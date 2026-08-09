@@ -83,6 +83,17 @@ export interface Field3DConfig {
         // chemistry 3D render surface — see the scenario header comment in the
         // renderer body for the per-state config shape.
         'orbital_shapes' |
+        // solid_of_revolution (MATHEMATICS — Phase 0 dispatches SR-A + SR-B,
+        // 2026-08-08): a plane region under an AUTHORED curve, drawn on a ticked
+        // coordinate frame built as flat 3D geometry in the revolution plane, swept
+        // about either axis into a solid, and decomposed into a disc or ring stack
+        // whose total is PUBLISHED by the one summation that computes it. The
+        // profile is a CLOSED enum (power | circle_arc | sin | exp), never an
+        // expression evaluator, because every member has an analytic integral of
+        // f squared and the gate asserts the volume against a closed form to
+        // 1e-12. See docs/skeletons/solids_of_revolution_skeleton.md and the
+        // scenario header comment in the renderer body.
+        'solid_of_revolution' |
         // bonding_scene (CHEMISTRY BONDING WAVE — Phase 0 dispatch E1, 2026-08-01):
         // a scene of charged UNITS (rigid multi-atom molecules, or ions on a
         // lattice) with per-atom partial charge, bond-dipole arrows + a derived
@@ -90,7 +101,32 @@ export interface Field3DConfig {
         // thermal jiggle. Reuses molecular_geometry's mgFrame/mgIdealDirs geometry
         // layer rather than re-deriving VSEPR angles. See docs/CHEMISTRY_PHASE0_
         // BONDING.md and the scenario header comment in the renderer body.
-        'bonding_scene';
+        'bonding_scene' |
+        // vector_geometry_3d (MATHEMATICS — the GENERIC two-vector /
+        // 3D-geometry scenario, Rule-40 platform dispatch, 2026-08-08).
+        // ONE scenario, TWO modes (`vg.mode`), so a single engine purchase
+        // serves both `vector_products_in_space` (dot & cross) and
+        // `lines_and_planes_in_space` — the scenario is NOT named after
+        // either concept (the `mechanics_2d` naming trap, CLAUDE.md §1).
+        // Mode "products": two vectors a, b from a common origin straddling
+        // +x at -/+ theta/2 (so a x b runs along +Y), an optional third
+        // vector c by spherical angles, a live parallelogram mesh
+        // (|a x b| = area) and a live parallelepiped mesh (|a.(b x c)| =
+        // volume). Mode "lines_planes": lines/planes/distances (VG-C).
+        // Per-state behaviour rides the per-state `vg` block; camera framing
+        // rides the GENERIC `camera_position` + animateCameraTo mechanism,
+        // or — per state — `vg.camera_mode` "steps" (a closed-form mid-state
+        // schedule) or "auto_frame" (the pose recomputed per frame from the
+        // live vectors). Every state MUST author its own camera_position or
+        // a camera_mode — see the scenario header comment in the renderer
+        // body for why a single fixed pose is infeasible for this concept.
+        'vector_geometry_3d';
+    // vector_geometry_3d — optional colour overrides for a/b/c/(a x b) and
+    // the lines_planes half; everything else rides the per-state `vg` block
+    // above + slider_controls.
+    vg?: {
+        color_a?: string; color_b?: string; color_c?: string; color_cross?: string;
+    };
     // em_wave_propagation (Ch.8 §8.3 — a traveling transverse EM wave: an
     // oscillating antenna charge launches a green E-train on ŷ + a blue B-train
     // on ẑ that self-propagate +x at v = c/n; a receiver post reads live E (V/m)
@@ -331,6 +367,137 @@ export interface Field3DConfig {
         highlight?: string;
         caption: string;
         animate?: boolean;
+        // vector_geometry_3d per-state block (EVERYTHING this scenario needs
+        // lives in here or in scene_composition — Phase-0 D8: NO new
+        // top-level per-state field, because build_review_site.ts keeps a
+        // private config-assembler duplicate that hand-picks per-state
+        // fields and silently drops anything it has not been taught).
+        //
+        // SCENE CONVENTION (skeleton D-2, and it is load-bearing for every
+        // authored camera pose): a and b STRADDLE +x symmetrically — a at
+        // azimuth +theta/2, b at -theta/2, both in the xz-plane — so a x b
+        // runs along +Y by construction and the two taught pairs
+        // (a^(a x b), b^(a x b)) project symmetrically. b_tilt_deg rotates
+        // b ABOUT â (Rodrigues, skeleton D-3), which preserves theta and |b|
+        // exactly, so the HUD, the angle arc and the formula surface can
+        // never disagree with the slider. c is a genuine 3D vector via its
+        // own spherical angles c_theta_deg (from +Y) / c_phi_deg (azimuth
+        // in the xz-plane).
+        //
+        // Every guided state MUST author its own camera_position (the shared
+        // per-state field above) OR a camera_mode — see the scenario header
+        // comment in the renderer body.
+        vg?: {
+            mode?: 'products' | 'lines_planes';
+            a_mag?: number; b_mag?: number; theta_deg?: number; b_tilt_deg?: number;
+            c_mag?: number; c_theta_deg?: number; c_phi_deg?: number;
+            show_c?: boolean; show_cross_vector?: boolean; show_angle_arc?: boolean;
+            show_parallelogram?: boolean; show_parallelepiped?: boolean;
+            // Δ11 — the PROJECTION of b onto â: the segment from the origin
+            // along â of SIGNED length b·â = |b| cos θ, plus the dashed drop
+            // from b's tip to its foot. It is the PICTURE the dot-product
+            // states were leading with a number instead of (bug_class
+            // field3d_vg_products_mode_cannot_draw_the_projection_segment_so_
+            // the_dot_product_states_lead_numerically): "alignment" is a
+            // length on screen, and the segment REVERSES through the origin
+            // the moment θ passes 90° because the length it draws is signed.
+            // Same flag name as electric_flux / magnetic_flux_loop use in
+            // their own per-state blocks — the fleet word for "draw the
+            // shadow" (Rule 40a: reuse the name, never mint a synonym).
+            show_projection?: boolean;
+            // Reveal fractions — each 0..1, each ramp-able through animate[].
+            arc_reveal_frac?: number; cross_reveal_frac?: number;
+            c_reveal_frac?: number; flip_frac?: number;
+            // D-5 — the parallelepiped's BUILD and DECOMPOSITION, both 0..1
+            // and both ramp-able through animate[]. solid_build_frac moves the
+            // solid's DRAW RANGE face by face (the geometry stays the closed
+            // hexahedron at every value); split_solid_frac shears the
+            // generator onto the base normal — a VOLUME-EXACT motion — and
+            // extracts the base parallelogram along an IN-PLANE offset, so
+            // "Volume = Base x Height" is watched rather than captioned.
+            // Absent/unauthored means fully built and unsplit, i.e. exactly
+            // the pre-D-5 picture.
+            solid_build_frac?: number; split_solid_frac?: number;
+            // How far the extracted base slides, as a multiple of |b + c|
+            // (default 1.25). In the BASE PLANE by construction, so it can
+            // never corrupt the height the picture reads.
+            split_gap_k?: number;
+            reveal_ms?: number;
+            // F9 — the numeric VALUE panel (#vg_readout). Closed enum; every
+            // entry is emitted as ONE DOM text node carrying symbol AND value
+            // ("a·b = 5.64") so THE CALCULATOR's DOM harvest can read it
+            // (scar calculator_dom_harvest_needs_symbol_and_value_in_ONE_
+            // text_node). Rule 33d: live numbers, never a decorative dial.
+            //
+            // NAMED value_readouts, NOT "readouts", and the distinction is
+            // load-bearing: `static_readouts` below is the long-established
+            // FLEET convention for greyed/disabled SLIDER ROWS at the same
+            // position (22 sites across ~8 scenarios; authored today by
+            // magnetic_flux / capacitance / displacement_current / the three
+            // ac_voltage_* / vsepr_molecular_shapes). Two authored keys four
+            // characters apart, one holding VALUES and one holding ROWS, is
+            // how the wrong one gets authored — so the newcomer says what it
+            // contains (bug_class field3d_vector_geometry_authored_readouts_
+            // field_collides_with_the_fleet_static_readouts_convention).
+            //
+            // THE UNION IS THE FULL VG_READOUT_LABEL KEY SET, both halves of
+            // the scenario, and that is a GATED invariant, not a convention:
+            // check:vector-geometry-3d §11c asserts set EQUALITY between this
+            // union and the shipped VG_READOUT_LABEL table. Until A25 the
+            // union carried only the 11 "products" tokens while the table
+            // carried 24, so every one of the 13 "lines_planes" tokens the
+            // renderer already labels and prints was UNAUTHORABLE by its own
+            // type — lines_and_planes_in_space could not declare the readouts
+            // built for it (bug_class field3d_vg_value_readouts_type_union_
+            // omits_every_lines_planes_token_the_renderer_already_prints).
+            // Kept CLOSED (never string[]): vgReadoutLine returns null for an
+            // unlabelled key, so an unknown token renders NOTHING — a silent
+            // missing row is exactly the failure the closed enum exists to
+            // turn into a compile error.
+            value_readouts?: Array<
+                // mode "products" — the cross/dot/triple half (F9, D-5).
+                'a_mag' | 'b_mag' | 'theta_deg' | 'a_dot_b'
+                | 'cross_mag' | 'a_dot_cross' | 'b_dot_cross' | 'triple'
+                | 'volume' | 'base_area' | 'height'
+                // mode "lines_planes" — the Δ6 token set. Every one is
+                // produced by vgResolveLinesPlanes into lpRes.readouts and
+                // merged into the frame driver's `vals` bag.
+                | 'point_plane_distance' | 'skew_distance'
+                | 'angle_lines_deg' | 'angle_line_plane_deg' | 'angle_line_normal_deg'
+                | 'd_dot_n' | 'n_dot_v'
+                | 'lambda' | 'intersection_point'
+                | 'n_norm' | 'cross_norm' | 'numerator_triple_product'
+                // Δ4 — the literal "no meeting point" row. A first-class
+                // authored token, not an internal: the state whose payoff is
+                // an ABSENCE would otherwise teach by omission.
+                | 'no_meeting_point'
+            >;
+            // F21 — per-state parameter ramps, evaluated CLOSED-FORM on
+            // state-local ms (a PORT of the shipped param_ramp /
+            // idle_auto_sweep mechanisms, never an accumulator). Several
+            // entries may name the SAME knob with disjoint windows, which is
+            // how a multi-segment sweep (20 -> 90, hold, 90 -> 130) is
+            // authored as one list.
+            animate?: Array<{
+                knob: string; from: number; to: number;
+                start_ms?: number; duration_ms?: number;
+                easing?: 'linear' | 'smoothstep' | 'ease_out_cubic';
+            }>;
+            // F24 — the mid-state camera schedule, adopted verbatim from
+            // os.camera_steps: closed-form on state-local ms, so it bypasses
+            // the history-dependent lerpSpherical and a SET_TIME_FREEZE pin
+            // reproduces byte-identically. Only read when camera_mode is
+            // "steps".
+            camera_mode?: 'authored' | 'steps' | 'auto_frame';
+            camera_steps?: Array<{ at_ms?: number; az?: number; el?: number; dist?: number; ease_ms?: number }>;
+            // "auto_frame" only: R = auto_frame_k * max(|a|,|b|,|a x b|).
+            auto_frame_k?: number;
+            controls?: string[];          // Rule 31 live rows (explore state)
+            // FLEET convention, identical at every other scenario that has it:
+            // SLIDER ROWS shown greyed/disabled at the SAME position as the
+            // live row. NOT numbers — the numbers are value_readouts above.
+            static_readouts?: string[];   // disabled row at the same position
+        };
         // ── electric_potential_meaning per-state block (scenario point_charge_positive
         //   + config.potential_meaning). Drives the V = W/q "meaning" arc: the
         //   route-animating test charge + work tally (STATE_2), the energy badge
@@ -2274,6 +2441,15 @@ export interface Field3DConfig {
         v?: { min: number; max: number; step?: number; default: number; label: string };
         B?: { min: number; max: number; step?: number; default: number; label: string };
         theta_deg?: { min: number; max: number; step?: number; default: number; label: string };
+        // ── vector_geometry_3d sliders (a_mag/b_mag share the generic
+        //    r/theta_deg keys above where possible; these are the ones with
+        //    no existing sibling) ──────────────────────────────────────────
+        a_mag?: { min: number; max: number; step?: number; default: number; label: string };
+        b_mag?: { min: number; max: number; step?: number; default: number; label: string };
+        b_tilt_deg?: { min: number; max: number; step?: number; default: number; label: string };
+        c_mag?: { min: number; max: number; step?: number; default: number; label: string };
+        c_theta_deg?: { min: number; max: number; step?: number; default: number; label: string };
+        c_phi_deg?: { min: number; max: number; step?: number; default: number; label: string };
         // ── force_on_current_wire sliders ───────────────────────────────
         L?: { min: number; max: number; step?: number; default: number; label: string };
         current_dir?: { default: 1 | -1; label: string };
@@ -11812,6 +11988,2610 @@ export const FIELD_3D_RENDERER_CODE = `
             lzMarkerPool.push(lmDot);
         }
         trail.userData.marker_pool = lzMarkerPool;
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // vector_geometry_3d (MATHEMATICS — the GENERIC two-vector / 3D-geometry
+    // scenario). bug_class
+    // field3d_has_no_generic_two_vector_scenario_so_every_vector_claim_is_
+    // hardcoded_per_physics_scenario.
+    //
+    // ONE SCENARIO, TWO MODES. vg.mode is "products" (dot & cross, the
+    // vector_products_in_space concept) or "lines_planes" (lines, planes,
+    // distances — the lines_and_planes_in_space concept, VG-C). The scenario
+    // is deliberately NOT named after either concept: a concept id in a
+    // scenario slot is the recorded mechanics_2d naming trap (CLAUDE.md
+    // §1), and it would force the second concept to declare that it renders
+    // as the first one. Mode dispatch is modelled on BS_CAMERAS[bs.mode].
+    //
+    // THE SCENE CONVENTION, and it is load-bearing for every authored camera
+    // pose (skeleton D-2): a and b STRADDLE +x symmetrically — a at azimuth
+    // +theta/2, b at -theta/2, both in the xz-plane — so a x b runs along +Y
+    // by construction and the two taught pairs a^(a x b) and b^(a x b)
+    // project SYMMETRICALLY (73.9 deg each at the authored pose) instead of
+    // lopsided, which is exactly the picture the "order matters" state needs
+    // when it swaps the operands. b_tilt_deg is a Rodrigues rotation of b
+    // ABOUT â, NOT a lift toward an axis: rotating about â preserves both
+    // theta and |b| to machine precision, so the HUD, the angle arc and the
+    // formula surface can never disagree with the slider (the earlier
+    // "tilt toward +Y" semantics silently changed the taught angle by up to
+    // 41.98 deg while every readout still reported the slider). |a x b| is
+    // invariant under it and a x b co-rotates.
+    //
+    // CAMERA — three modes, and only one of them is new mechanism:
+    //   "authored"   (default) rides the EXISTING generic per-state
+    //                "camera_position" field through the EXISTING
+    //                animateCameraTo()/lerpSpherical() pair.
+    //   "steps"      rides vg.camera_steps, adopted VERBATIM from
+    //                os.camera_steps (see osCamScheduleAt): the pose is a
+    //                PURE FUNCTION of state-local ms, so it bypasses the
+    //                history-dependent lerp entirely and a SET_TIME_FREEZE
+    //                pin reproduces byte-identically. It eases (smoothstep,
+    //                starts and ends at rest, Rule 32d) rather than cutting,
+    //                and a state that authors steps OWNS its camera for the
+    //                whole state including entry.
+    //   "auto_frame" recomputes the pose per frame from the LIVE vectors:
+    //                position R * normalize(â + b̂ + ĉ) with ĉ = norm(a x b)
+    //                and R = auto_frame_k * max(|a|, |b|, |a x b|). u is
+    //                never in the plane of any of the three pairs, so no
+    //                pair can collapse on screen BY CONSTRUCTION rather than
+    //                by search — and the RADIUS is auto-framed too, which is
+    //                the OPEN CRITICAL scar
+    //                field3d_explore_camera_fixed_while_its_own_dials_span_
+    //                two_orders_of_radius. Assigned directly, never through
+    //                the spherical ease (the azimuth branch cut is crossed
+    //                inside the slider grid).
+    // NO single fixed pose renders every one of this concept's claims
+    // faithfully (a true 90 degrees measured 125.2 degrees at one fixed
+    // pose; at theta=35 degrees b and a x b — perpendicular in 3D —
+    // projected onto the SAME screen line at another), so every authored
+    // state MUST set a camera_position or a camera_mode. The architect owns
+    // the pose values; this file owns only the mechanism, and
+    // check:vector-geometry-3d owns whether a claimed pose is true.
+    //
+    // The pure geometry/projection/schedule helpers below (vgBuildVectors,
+    // vgParallelogramVerts, vgParallelepipedFaces, vgProjectPoint,
+    // vgPairwiseScreenSeparationDeg, vgAnimValue, vgCamScheduleAt,
+    // vgAutoFramePos) take/return PLAIN NUMBER ARRAYS, never THREE.Vector3 —
+    // so check:vector-geometry-3d (src/scripts/check_vector_geometry_3d.ts)
+    // can pull them out of the emitted template by brace-matching and run
+    // them headless in node, exactly like check:cartesian-plane/
+    // check:sigma-pi/check:bonding-scene do for their own renderers.
+    // THREE.js objects are built from their outputs only inside
+    // buildVectorGeometry3D/updateVectorGeometry3DFrame below.
+    // ════════════════════════════════════════════════════════════════════════
+    function vgSub(u, v) { return [u[0] - v[0], u[1] - v[1], u[2] - v[2]]; }
+    function vgAddVec(u, v) { return [u[0] + v[0], u[1] + v[1], u[2] + v[2]]; }
+    function vgCrossVec(u, v) {
+        return [
+            u[1] * v[2] - u[2] * v[1],
+            u[2] * v[0] - u[0] * v[2],
+            u[0] * v[1] - u[1] * v[0]
+        ];
+    }
+    function vgDotVec(u, v) { return u[0] * v[0] + u[1] * v[1] + u[2] * v[2]; }
+    function vgLenVec(u) { return Math.sqrt(u[0] * u[0] + u[1] * u[1] + u[2] * u[2]); }
+    function vgNormalize(u) {
+        var l = vgLenVec(u);
+        return l > 1e-9 ? [u[0] / l, u[1] / l, u[2] / l] : [0, 0, 0];
+    }
+    function vgTranslateVerts(verts, off) {
+        var out = [];
+        for (var i = 0; i < verts.length; i++) out.push(vgAddVec(verts[i], off));
+        return out;
+    }
+
+    // Rodrigues rotation of v about a UNIT axis k by ang radians. Pure, and
+    // it is what makes b_tilt_deg honest: rotating b about a-hat can change
+    // neither |b| nor the angle between a and b, so no readout can drift
+    // away from the slider that drives it.
+    function vgRotateAbout(v, k, ang) {
+        var cs = Math.cos(ang), sn = Math.sin(ang);
+        var kv = vgCrossVec(k, v);
+        var kd = vgDotVec(k, v) * (1 - cs);
+        return [
+            v[0] * cs + kv[0] * sn + k[0] * kd,
+            v[1] * cs + kv[1] * sn + k[1] * kd,
+            v[2] * cs + kv[2] * sn + k[2] * kd
+        ];
+    }
+
+    // Resolve a, b, c from a "vg" config block (or slider-live numbers passed
+    // in the same shape).
+    //
+    // THE SYMMETRIC CONVENTION (skeleton D-2): a and b straddle +x in the
+    // xz-plane at azimuth +theta/2 and -theta/2, measured about +Y:
+    //   a = |a| * (cos(+theta/2), 0,  sin(+theta/2))
+    //   b = |b| * (cos(-theta/2), 0,  sin(-theta/2))
+    // so a x b = |a||b| sin(theta) along +Y. The angle between them is
+    // exactly theta_deg for every theta, and a x b runs along +Y by
+    // CONSTRUCTION — never a hardcoded direction, always re-derived, so it
+    // stays honest under every slider drag. The symmetry is what makes the
+    // two taught pairs a^(a x b) and b^(a x b) project EQUALLY, which is the
+    // picture the "order matters" state needs when it swaps the operands.
+    //
+    // b_tilt_deg rotates b ABOUT a-hat (Rodrigues, skeleton D-3), taking b
+    // out of the a-b plane so the sandbox can show that the cross product's
+    // DIRECTION is a real degree of freedom — while preserving theta and |b|
+    // exactly. The earlier "tilt toward an axis" semantics silently changed
+    // the taught angle by up to 41.98 degrees while the HUD, the angle arc
+    // and the formula surface all still reported the slider. Under this form
+    // |a x b| is invariant and a x b co-rotates with b.
+    //
+    // c is a genuine 3D vector via its own spherical angles: c_theta_deg is
+    // the polar angle FROM +Y (the same up axis the cross product uses) and
+    // c_phi_deg is the azimuth in the xz-plane, measured exactly the way a
+    // and b are.
+    function vgBuildVectors(vg) {
+        vg = vg || {};
+        var aMag = vg.a_mag != null ? vg.a_mag : 3.0;
+        var bMag = vg.b_mag != null ? vg.b_mag : 2.0;
+        var thetaDeg = vg.theta_deg != null ? vg.theta_deg : 60;
+        var tiltDeg = vg.b_tilt_deg != null ? vg.b_tilt_deg : 0;
+        var halfRad = (thetaDeg / 2) * Math.PI / 180;
+        var a = [aMag * Math.cos(halfRad), 0, aMag * Math.sin(halfRad)];
+        var b = [bMag * Math.cos(halfRad), 0, -bMag * Math.sin(halfRad)];
+        if (tiltDeg) b = vgRotateAbout(b, vgNormalize(a), tiltDeg * Math.PI / 180);
+        var cMag = vg.c_mag != null ? vg.c_mag : 2.0;
+        var cThetaDeg = vg.c_theta_deg != null ? vg.c_theta_deg : 50;
+        var cPhiDeg = vg.c_phi_deg != null ? vg.c_phi_deg : 65;
+        var cThetaRad = cThetaDeg * Math.PI / 180, cPhiRad = cPhiDeg * Math.PI / 180;
+        var c = [
+            cMag * Math.sin(cThetaRad) * Math.cos(cPhiRad),
+            cMag * Math.cos(cThetaRad),
+            cMag * Math.sin(cThetaRad) * Math.sin(cPhiRad)
+        ];
+        return { a: a, b: b, c: c, theta_deg: thetaDeg, b_tilt_deg: tiltDeg };
+    }
+
+    // ── Δ11 · THE PROJECTION OF b ONTO â — the dot product's PICTURE ────────
+    //   bug_class field3d_vg_products_mode_cannot_draw_the_projection_segment_
+    //   so_the_dot_product_states_lead_numerically. "products" mode shipped
+    //   nine element classes and no projection, so the two states whose whole
+    //   lesson is that a·b measures ALIGNMENT could only lead with a·b's
+    //   number. vg_lp_seg cannot stand in for it: it is hard-gated behind
+    //   mode "lines_planes" and takes LITERAL coordinates, so it cannot track
+    //   |b| cos θ as the sliders move.
+    //
+    //   THE LENGTH IS SIGNED, and that is the whole obtuse beat. foot is
+    //   â * (a·b / |a|) = â * |b| cos θ, so at θ > 90° the dot product is
+    //   negative and the foot lands on the OTHER side of the origin: the
+    //   segment reverses through the origin rather than shortening to zero
+    //   and growing back the way an unsigned |b·â| would. A gate that
+    //   measured the unsigned form would pass everywhere below 90° and be
+    //   blind to exactly the case the state exists to teach.
+    //
+    //   The drop is b's tip -> its foot, perpendicular to a by construction
+    //   (foot is the orthogonal projection), so it needs no separate
+    //   right-angle assertion to be true — it is true or the projection is
+    //   not a projection, which section 14 checks at 1e-12.
+    //
+    //   PURE: plain number arrays in, plain number arrays out, so
+    //   check:vector-geometry-3d pulls it out of the emitted template and
+    //   runs it headless like every other vg helper.
+    function vgProjectionOnto(a, b) {
+        var la = vgLenVec(a);
+        if (!(la > 1e-9)) return null;
+        var ah = [a[0] / la, a[1] / la, a[2] / la];
+        var s = vgDotVec(a, b) / la;                       // = |b| cos θ, SIGNED
+        var foot = [ah[0] * s, ah[1] * s, ah[2] * s];
+        return {
+            unit: ah, length: s, foot: foot,
+            drop: [[b[0], b[1], b[2]], [foot[0], foot[1], foot[2]]]
+        };
+    }
+
+    // ── Δ11 · THE DRAWN CROSS VECTOR'S OWN NAME ─────────────────────────────
+    //   bug_class field3d_vg_cross_arrow_label_is_built_once_so_the_order_
+    //   contrast_state_labels_b_cross_a_as_a_cross_b. The label was built ONCE
+    //   as the literal "a×b" and never re-texted, so the state whose entire
+    //   lesson is that ORDER MATTERS drew b×a and called it a×b — the sim
+    //   contradicting its own claim, in the one state built to make the claim.
+    //
+    //   DERIVED, NOT AUTHORED. An authorable vg.cross_label would be a
+    //   compile-time constant one authoring slip away from re-shipping this
+    //   exact defect (the same shape as scar field3d_capacitor_charge_glyphs_
+    //   single_plate_and_sign_locked_colour: key the visual to the PHYSICAL
+    //   quantity, and prefer a form in which the wrong configuration is
+    //   UNREPRESENTABLE). flip_frac already drives the arrow; deriving the
+    //   name from the same number makes arrow and name incapable of
+    //   disagreeing.
+    //
+    //   THREE-WAY, because the arrow is a×b only at flip_frac 0 and b×a only
+    //   at 1 — in between it is a rotation of a×b about â by π·flip_frac and
+    //   is NEITHER. A midpoint switch would read "a×b" at flip_frac 0.49
+    //   while the arrow stands 88° away from a×b, which is a smaller version
+    //   of the defect being fixed. So the transition carries a statement that
+    //   is true at EVERY value it is shown at — the flip itself, named — and
+    //   the two operand-order claims are made only where they are exact
+    //   (within VG_FLIP_EPS = 0.02, i.e. 3.6° of the endpoint, well inside
+    //   the arrowhead's own angular width).
+    var VG_FLIP_EPS = 0.02;
+    function vgCrossLabelText(flipFrac) {
+        var f = (typeof flipFrac === "number" && isFinite(flipFrac))
+            ? Math.max(0, Math.min(1, flipFrac)) : 0;
+        if (f <= VG_FLIP_EPS) return "a×b";
+        if (f >= 1 - VG_FLIP_EPS) return "b×a";
+        return "a×b \\u2192 b×a";
+    }
+
+    // ── F21 · vg.animate[] — per-state parameter ramps ──────────────────────
+    //   A PORT of two mechanisms this renderer already ships, not an
+    //   invention: param_ramp (nlbRunParamRamp) and idle_auto_sweep
+    //   (nlbRunIdleSweep). Rule 40a was run on the MECHANISM, not only on the
+    //   scenario name — a sweep on the name is what previously dispatched a
+    //   rebuild of something the renderer already had.
+    //
+    //   WHAT IS PORTED, AND WHAT IS DELIBERATELY DIFFERENT. param_ramp WRITES
+    //   its value through the shared slider write-path, so it needs a churn
+    //   guard (eng._ramp_last) because that write re-tessellates geometry.
+    //   This scenario rebuilds every mesh from scratch every frame (D3), so
+    //   there is no write-path and no churn to guard: vgAnimValue is a PURE
+    //   FUNCTION that RESOLVES a knob at a given ms, and the frame asks for
+    //   it. That removes the last piece of hidden state param_ramp carries,
+    //   so the closed form is closed all the way down.
+    //
+    //   Rule 36 / D3: the value depends ONLY on stateMs. dt = 0 recomputes
+    //   the same value (a SET_TIME_FREEZE frame is byte-stable); a time-pin
+    //   rewind to an earlier ms reproduces the earlier value exactly (there
+    //   is no accumulator to unwind); folding N micro-steps into one dtStep
+    //   is exact.
+    //
+    //   SEMANTICS: the value is "from" for ms <= start_ms, eases from -> to
+    //   across [start_ms, start_ms + duration_ms], then HOLDS at "to"
+    //   forever — one-shot-hold, never a returning triangle. Several entries
+    //   may name the SAME knob with disjoint windows; the last entry whose
+    //   window has opened wins, which is how a multi-segment sweep (20 -> 90,
+    //   hold, 90 -> 130) is authored as ONE list. A knob no entry names
+    //   resolves to its authored value, untouched. duration_ms 0 IS a cut.
+    function vgEase(u, easing) {
+        if (u <= 0) return 0;
+        if (u >= 1) return 1;
+        if (easing === "linear") return u;
+        if (easing === "ease_out_cubic") return 1 - Math.pow(1 - u, 3);
+        return u * u * (3 - 2 * u);          // smoothstep — starts and ends at rest
+    }
+    // The CLOSED knob enum. A knob outside this list is IGNORED rather than
+    // written somewhere plausible (patterns/mathematics.md hazard 2 — a valid
+    // default is more dangerous than one that throws; a renderer cannot throw
+    // without blanking the scene, so it reports instead) and is published on
+    // window.PM_vgAnimUnknown for the probe and the gate.
+    function vgAnimKnobs() {
+        return ["a_mag", "b_mag", "theta_deg", "b_tilt_deg",
+                "c_mag", "c_theta_deg", "c_phi_deg",
+                "arc_reveal_frac", "cross_reveal_frac", "c_reveal_frac", "flip_frac",
+                "solid_build_frac", "split_solid_frac",
+                // VG-C · mode "lines_planes". lambda is the position along a
+                // line; lambda_span its drawn half-length; half_extent the
+                // plane patch's; q_height and line2_offset drive an authored
+                // object's offset knob. aux_a / aux_b are the two NAMED scratch
+                // knobs a state uses to drive an in-plane address (the sweeping
+                // comparison foot) or a swung test vector — named and closed
+                // rather than "any string", so an unknown knob is still
+                // reported instead of silently doing something plausible.
+                "lambda", "lambda_span", "half_extent", "q_height", "line2_offset",
+                "aux_a", "aux_b"];
+    }
+    function vgAnimValue(animate, knob, stateMs, authored) {
+        if (!animate || !animate.length) return authored;
+        var v = authored, seen = false;
+        for (var i = 0; i < animate.length; i++) {
+            var r = animate[i] || {};
+            if (r.knob !== knob) continue;
+            if (!(isFinite(r.from) && isFinite(r.to))) continue;
+            var t0 = (typeof r.start_ms === "number" && isFinite(r.start_ms)) ? r.start_ms : 0;
+            var dur = (typeof r.duration_ms === "number" && isFinite(r.duration_ms)) ? Math.max(0, r.duration_ms) : 0;
+            if (stateMs <= t0) {
+                // Before this window opens: only the FIRST such entry seeds
+                // the value (its "from" is the state's pre-roll pose). A
+                // later, still-closed window must not drag the value back.
+                if (!seen) { v = r.from; seen = true; }
+                continue;
+            }
+            var u = (dur > 0) ? Math.max(0, Math.min(1, (stateMs - t0) / dur)) : 1;
+            v = r.from + (r.to - r.from) * vgEase(u, r.easing);
+            seen = true;
+        }
+        return v;
+    }
+    // The last ms at which anything in this state is still moving — the
+    // number deriveStateMeta needs so a reveal pin lands PAST the last
+    // settled beat instead of mid-transition (scar
+    // field3d_slcr_reveal_hold_captures_transitional_r_family).
+    function vgAnimEndMs(animate) {
+        var end = 0;
+        if (!animate) return end;
+        for (var i = 0; i < animate.length; i++) {
+            var r = animate[i] || {};
+            var t0 = (typeof r.start_ms === "number" && isFinite(r.start_ms)) ? r.start_ms : 0;
+            var dur = (typeof r.duration_ms === "number" && isFinite(r.duration_ms)) ? Math.max(0, r.duration_ms) : 0;
+            if (t0 + dur > end) end = t0 + dur;
+        }
+        return end;
+    }
+
+    // ── F24 · vg.camera_steps — the mid-state camera schedule ───────────────
+    //   ADOPTED FROM os.camera_steps (osCamScheduleAt) — same fields, same
+    //   inheritance rule, same easing — because its design property is the
+    //   whole reason three concepts adopted it and withdrew their frame-rate
+    //   workarounds: IT IS CLOSED-FORM. animateCameraTo is a fixed-rate lerp,
+    //   and a lerp is HISTORY-DEPENDENT: where the camera has got to depends
+    //   on how many frames have run, so two page loads pinned to the same ms
+    //   would not agree. This returns the pose as a pure function of
+    //   state-local ms and the frame writes it straight onto the shared
+    //   spherical pose, so a SET_TIME_FREEZE pin reproduces byte-identically.
+    //   It EASES rather than cutting (smoothstep starts and ends at rest, so
+    //   the move reads as ONE caused motion, Rule 32d); ease_ms 0 is
+    //   authorable and IS a cut. Each step inherits az/el/dist it does not
+    //   name from the step before it (and step 0 from the base pose), so
+    //   "pull back to 16" is one field. A state that authors steps OWNS its
+    //   camera for the whole state INCLUDING ENTRY — the inter-state glide is
+    //   given up deliberately, because keeping it would reintroduce exactly
+    //   the history the closed form exists to remove.
+    var VG_CAM_EASE_MS = 900;
+    function vgCamScheduleAt(steps, ms, base) {
+        if (!steps || !steps.length) return null;
+        var poses = [], ts = [], prev = base, i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            prev = {
+                az: (st.az != null) ? st.az : prev.az,
+                el: (st.el != null) ? st.el : prev.el,
+                dist: (st.dist != null) ? st.dist : prev.dist,
+                ease: (st.ease_ms != null) ? Math.max(0, st.ease_ms) : VG_CAM_EASE_MS
+            };
+            poses.push(prev);
+            ts.push((st.at_ms != null) ? st.at_ms : 0);
+        }
+        var k = -1;
+        for (i = 0; i < steps.length; i++) if (ms >= ts[i]) k = i;
+        if (k < 0) return { az: base.az, el: base.el, dist: base.dist, step: -1, moving: false };
+        var to = poses[k], fr = (k === 0) ? base : poses[k - 1];
+        var u = (to.ease > 0) ? Math.max(0, Math.min(1, (ms - ts[k]) / to.ease)) : 1;
+        u = u * u * (3 - 2 * u);              // smoothstep: starts and ends at rest
+        return {
+            az: fr.az + (to.az - fr.az) * u,
+            el: fr.el + (to.el - fr.el) * u,
+            dist: fr.dist + (to.dist - fr.dist) * u,
+            step: k, moving: u < 1
+        };
+    }
+    // The base pose a camera schedule starts from and inherits step 0's
+    // unnamed fields from: the state's own authored camera_position, read in
+    // exactly the (az, el, dist) convention animateCameraTo uses, so a state
+    // can author its entry pose once and schedule moves away from it.
+    function vgCamBaseFromState(stateDef) {
+        var cp = stateDef && stateDef.camera_position;
+        if (cp && cp.length === 3) {
+            var dist = Math.sqrt(cp[0] * cp[0] + cp[1] * cp[1] + cp[2] * cp[2]);
+            if (dist > 1e-6) {
+                return {
+                    az: Math.atan2(cp[2], cp[0]) * 180 / Math.PI,
+                    el: Math.asin(Math.max(-1, Math.min(1, cp[1] / dist))) * 180 / Math.PI,
+                    dist: dist
+                };
+            }
+        }
+        return { az: 90, el: 30, dist: 12 };
+    }
+
+    // The last ms at which a camera schedule is still moving (same job as
+    // vgAnimEndMs, for the same reveal-pin reason).
+    function vgCamStepsEndMs(steps) {
+        var end = 0;
+        if (!steps) return end;
+        for (var i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            var t0 = (st.at_ms != null) ? st.at_ms : 0;
+            var ez = (st.ease_ms != null) ? Math.max(0, st.ease_ms) : VG_CAM_EASE_MS;
+            if (t0 + ez > end) end = t0 + ez;
+        }
+        return end;
+    }
+
+    // ── The auto-framed explore camera (skeleton D-1 / camera FINDING 3) ────
+    //   position = R * normalize(a-hat + b-hat + n-hat), n-hat = norm(a x b),
+    //   R = k * max(|a|, |b|, |a x b|), looking at the origin.
+    //   u is equally inclined to all three arms, so it is never in the plane
+    //   of any pair and NO PAIR CAN COLLAPSE ON SCREEN BY CONSTRUCTION rather
+    //   than by search — which is what an exhaustive search over fixed poses
+    //   could not deliver (zero feasible fixed poses, and no continuous
+    //   azimuth-only follow rule can exist: continuity forces a sign change).
+    //   The RADIUS is auto-framed too, and that is the half a fixed R = 9
+    //   omitted: dials that span |a x b| in [0.34, 25] against one authored
+    //   distance is the OPEN CRITICAL scar
+    //   field3d_explore_camera_fixed_while_its_own_dials_span_two_orders_of_
+    //   radius, verbatim. Returns null for a degenerate (collinear a, b)
+    //   configuration rather than a plausible fallback pose.
+    function vgAutoFramePos(a, b, k) {
+        var axb = vgCrossVec(a, b);
+        var la = vgLenVec(a), lb = vgLenVec(b), lx = vgLenVec(axb);
+        if (!(la > 1e-6 && lb > 1e-6 && lx > 1e-6)) return null;
+        var u = vgNormalize(vgAddVec(vgAddVec(vgNormalize(a), vgNormalize(b)), vgNormalize(axb)));
+        if (vgLenVec(u) < 1e-6) return null;
+        var R = ((k != null && isFinite(k)) ? k : 2.5) * Math.max(la, Math.max(lb, lx));
+        return [u[0] * R, u[1] * R, u[2] * R];
+    }
+
+    // E2 — the four vertices [O, a, a+b, b] of the parallelogram two vectors
+    // span, whose AREA equals |a x b| (the concept's own claim for the cross
+    // product's magnitude).
+    function vgParallelogramVerts(a, b) {
+        return [[0, 0, 0], a.slice(), vgAddVec(a, b), b.slice()];
+    }
+
+    // E3 — the parallelepiped three vectors span, as SIX faces (each a
+    // parallelogram, the same vgParallelogramVerts helper applied 6 times per
+    // the dispatch's own "marginal cost is small" plan). Built from the SAME
+    // 8 corner formulas (O, a, b, c, a+b, a+c, b+c, a+b+c) for every face, so
+    // adjacent faces share their edge vertices EXACTLY — the solid closes
+    // with no gaps by construction, never by a separate seam check.
+    function vgParallelepipedFaces(a, b, c) {
+        var faceAB = vgParallelogramVerts(a, b);
+        var faceAC = vgParallelogramVerts(a, c);
+        var faceBC = vgParallelogramVerts(b, c);
+        return [
+            faceAB,                        // bottom (base O, edges a,b)
+            vgTranslateVerts(faceAB, c),    // top    (base c, edges a,b)
+            faceAC,                        // front  (base O, edges a,c)
+            vgTranslateVerts(faceAC, b),    // back   (base b, edges a,c)
+            faceBC,                        // left   (base O, edges b,c)
+            vgTranslateVerts(faceBC, a)     // right  (base a, edges b,c)
+        ];
+    }
+
+    // ── D-5 · the parallelepiped DECOMPOSITION ──────────────────────────────
+    //   bug_class field3d_vector_geometry_parallelepiped_is_a_boolean_solid_
+    //   so_the_volume_state_cannot_decompose. show_parallelepiped is a
+    //   BOOLEAN, and a boolean cannot decompose: the state that teaches "the
+    //   scalar triple product IS the volume" needs the solid to BUILD and
+    //   then to SEPARATE into the two factors the formula names.
+    //
+    //   TWO knobs, both resolved through the F21 ramp evaluator
+    //   (vgAnimValue) as CLOSED FORMS of state-local ms — never accumulated,
+    //   never frame-counted — so a SET_TIME_FREEZE re-pin redraws
+    //   byte-identically and a rewind reproduces the earlier frame exactly.
+    //
+    //   solid_build_frac 0..1 — the face-by-face BUILD. A PORT of the
+    //     mechanism efluxUpdateClosed already ships (its faceRevealCount
+    //     staggers a closed box's 6 faces in off a state-local clock); Rule
+    //     40a was run on the MECHANISM, not only on the knob name. The
+    //     GEOMETRY is untouched: every vertex is always one of the solid's 8
+    //     true corners and the face set is always the closed hexahedron —
+    //     only the DRAW RANGE moves. So the closure signature (12 shared-edge
+    //     face pairs) holds at EVERY value of the knob by construction rather
+    //     than within a tolerance, and a half-built solid is a solid with
+    //     faces not yet drawn, never a solid with broken vertices.
+    //
+    //   split_solid_frac 0..1 — the DECOMPOSITION into base x height. It is
+    //     a VOLUME-EXACT SHEAR, not an explosion:
+    //       n = norm(b x c),  baseArea = |b x c|,  h = |a.(b x c)| / baseArea
+    //       a(f) = (1 - f) * a + f * (s * h * n),  s = sign(a.(b x c))
+    //     so a(f).(b x c) = (1-f) * V + f * s * h * baseArea = V for EVERY f:
+    //     the volume the readout prints CANNOT change while the solid visibly
+    //     straightens up over its base. That identity IS the lesson
+    //     (Cavalieri), and it is exact in real arithmetic rather than within
+    //     a tolerance. At f = 1 the generator is perpendicular to the base,
+    //     so the solid is a right prism and "base x height" is what the
+    //     picture literally shows. baseArea and h are untouched by the shear,
+    //     so all three readouts hold steady through the whole motion.
+    //
+    //     The base parallelogram is ALSO extracted as its own piece,
+    //     translated by f * gapK * (b + c) — a vector that lies IN THE BASE
+    //     PLANE by construction (both b and c do), so the extraction has ZERO
+    //     component along n and therefore CANNOT corrupt the height the
+    //     picture reads. An exploded lift along n was rejected for exactly
+    //     that reason: it would add the gap to the on-screen height while the
+    //     readout printed h, which is this wave's own recorded defect class
+    //     (a picture that measures a different number from the one it claims).
+    //     Rule 29 is intact: nothing is scaled for emphasis, the separation is
+    //     a real translation of a real piece.
+    //
+    //     Degenerate b parallel to c (baseArea = 0) returns the UNSHEARED
+    //     solid with height 0, rather than a plausible-looking fallback.
+    var VG_SPLIT_GAP_K = 1.25;
+    function vgSplitPieces(a, b, c, frac, gapK) {
+        var f = (typeof frac === "number" && isFinite(frac)) ? Math.max(0, Math.min(1, frac)) : 0;
+        var k = (typeof gapK === "number" && isFinite(gapK)) ? gapK : VG_SPLIT_GAP_K;
+        var bxc = vgCrossVec(b, c);
+        var baseArea = vgLenVec(bxc);
+        var signedVol = vgDotVec(a, bxc);
+        var height = (baseArea > 1e-9) ? Math.abs(signedVol) / baseArea : 0;
+        var n = vgNormalize(bxc);
+        var s = (signedVol >= 0) ? 1 : -1;
+        var aSplit = [a[0], a[1], a[2]];
+        if (baseArea > 1e-9) {
+            aSplit = [
+                a[0] * (1 - f) + f * s * height * n[0],
+                a[1] * (1 - f) + f * s * height * n[1],
+                a[2] * (1 - f) + f * s * height * n[2]
+            ];
+        }
+        var off = [f * k * (b[0] + c[0]), f * k * (b[1] + c[1]), f * k * (b[2] + c[2])];
+        var mid = [(b[0] + c[0]) / 2, (b[1] + c[1]) / 2, (b[2] + c[2]) / 2];
+        return {
+            faces: vgParallelepipedFaces(aSplit, b, c),
+            a_split: aSplit,
+            base_verts: vgTranslateVerts(vgParallelogramVerts(b, c), off),
+            base_offset: off,
+            height_seg: [mid, [mid[0] + s * height * n[0], mid[1] + s * height * n[1], mid[2] + s * height * n[2]]],
+            base_area: baseArea,
+            height: height,
+            volume: Math.abs(vgDotVec(aSplit, bxc))
+        };
+    }
+    // How many of the solid's 6 faces are DRAWN at a given build fraction.
+    // The FACE SET never changes — this is a draw range, not a geometry edit
+    // (see the header above). An unauthored/absent knob means "fully built",
+    // so every state that only sets show_parallelepiped behaves exactly as it
+    // did before this knob existed.
+    function vgSolidFaceCount(frac) {
+        if (!(typeof frac === "number" && isFinite(frac))) return 6;
+        if (frac >= 1) return 6;
+        if (frac <= 0) return 0;
+        return Math.max(0, Math.min(6, Math.floor(frac * 6 + 1e-9)));
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // VG-C · mode "lines_planes" — the PURE geometry.  bug_class
+    // field3d_cannot_draw_a_line_or_plane_in_space_or_the_distance_between_them
+    //
+    // F11 extended line (point + direction, drawn to the scene bounds, with a
+    // live lambda marker) · F12 plane from point + normal · F13 foot of
+    // perpendicular and the common perpendicular of two lines · F14 the
+    // intersection marker THAT ONLY EXISTS WHEN THE INTERSECTION DOES · F22 a
+    // free point in space · F23 comparison segment / projection.
+    //
+    // Every function below takes and returns PLAIN NUMBER ARRAYS and touches
+    // no THREE symbol and no config — D1, and it is what lets
+    // check:vector-geometry-3d pull them out of the emitted template by brace
+    // matching and run them headless in node. Every one of them is also a
+    // CLOSED FORM: no accumulator, no value cached between frames (D3), so a
+    // SET_TIME_FREEZE re-pin redraws bit for bit.
+    //
+    // THE ONE RULE THIS BLOCK IS BUILT AROUND (D5, and it governs three of the
+    // functions): WHEN A THING DOES NOT EXIST, RETURN THAT IT DOES NOT EXIST.
+    // A line parallel to a plane has NO intersection point; two parallel lines
+    // have NO common perpendicular direction; a line through the scene centre
+    // may miss the bounding sphere entirely. Each of those returns an explicit
+    // absence, never a clamped or fallback position — the recorded
+    // silent-identity-fallback scar (patterns/mathematics.md hazard 2: a valid
+    // default is more dangerous than one that throws), and in this concept the
+    // absence IS the lesson, so a plausible marker would teach the opposite of
+    // the state it appears in.
+    // ════════════════════════════════════════════════════════════════════════
+    var VG_MEET_EPS = 1e-9;         // |n-hat . d-hat| below this is "parallel"
+    var VG_SCENE_RADIUS = 4.5;      // default bounding sphere an unspanned line is drawn to
+
+    function vgScaleVec(u, s) { return [u[0] * s, u[1] * s, u[2] * s]; }
+    function vgLerpVec(u, v, t) {
+        return [u[0] + (v[0] - u[0]) * t, u[1] + (v[1] - u[1]) * t, u[2] + (v[2] - u[2]) * t];
+    }
+    // Undirected angle between two directions, in DEGREES over the full
+    // [0, 180]. Deliberately NOT folded to the acute [0, 90] "angle between two
+    // lines" convention: the state that teaches this rotates one direction
+    // continuously from 25 to 115 degrees and the readout must track it
+    // continuously. Folding would make the printed number turn around at 90
+    // while the picture kept rotating — a readout that disagrees with the
+    // motion beside it. The acute convention is one subtraction away for any
+    // state that wants it, and is authored as a separate readout token.
+    function vgAngleDeg(u, v) {
+        var lu = vgLenVec(u), lv = vgLenVec(v);
+        if (!(lu > VG_MEET_EPS && lv > VG_MEET_EPS)) return null;
+        var c = vgDotVec(u, v) / (lu * lv);
+        return Math.acos(Math.max(-1, Math.min(1, c))) * 180 / Math.PI;
+    }
+
+    // ── F11 · the extended line ─────────────────────────────────────────────
+    //   A line is drawn between two lambda values along its UNIT direction, so
+    //   lambda is an arc length and the marker's readout is a distance rather
+    //   than a coordinate of an un-normalised direction vector.
+    //   With no authored span the line is clipped to the scene's bounding
+    //   SPHERE (|p| = R), which is what "extended to the scene bounds" means
+    //   here — and a line that misses the sphere returns null rather than a
+    //   zero-length stub at the origin.
+    function vgSphereClipSpan(anchor, dirUnit, R) {
+        var b = vgDotVec(anchor, dirUnit);
+        var disc = b * b - (vgDotVec(anchor, anchor) - R * R);
+        if (!(disc > 0)) return null;
+        var s = Math.sqrt(disc);
+        return [-b - s, -b + s];
+    }
+    function vgLineEnds(anchor, dir, span, R) {
+        var d = vgNormalize(dir);
+        if (vgLenVec(d) < 0.5) return null;
+        var lo, hi;
+        if (span && span.length === 2 && isFinite(span[0]) && isFinite(span[1])) {
+            lo = Math.min(span[0], span[1]); hi = Math.max(span[0], span[1]);
+        } else {
+            var cl = vgSphereClipSpan(anchor, d, (isFinite(R) && R > 0) ? R : VG_SCENE_RADIUS);
+            if (!cl) return null;
+            lo = cl[0]; hi = cl[1];
+        }
+        if (!(hi - lo > 1e-6)) return null;
+        return {
+            dir: d, lo: lo, hi: hi,
+            p0: vgAddVec(anchor, vgScaleVec(d, lo)),
+            p1: vgAddVec(anchor, vgScaleVec(d, hi))
+        };
+    }
+    function vgPointOnLine(anchor, dir, lambda) {
+        return vgAddVec(anchor, vgScaleVec(vgNormalize(dir), lambda));
+    }
+
+    // ── F12 · the plane patch, AND IT IS F7 ─────────────────────────────────
+    //   A plane patch is the parallelogram quad on two in-plane edge vectors,
+    //   built through the SAME vgParallelogramVerts + vgTranslateVerts pair the
+    //   products mode uses (D2). There is deliberately no second quad builder:
+    //   one mesh builder, two concepts, and check:vector-geometry-3d section 12
+    //   asserts the two paths return identical vertices for a shared input.
+    //
+    //   THE EDGE DIRECTIONS ARE AUTHORABLE, not derived (Δ8/A4). "Any two
+    //   vectors spanning the normal's orthogonal complement" makes the patch
+    //   ORIENTATION ARBITRARY, and the chapter's opening callback needs this
+    //   patch to be recognisably the parallelogram the previous concept ended
+    //   on. So span_u / span_v are authored and only their normal COMPONENT is
+    //   projected out (they are never orthogonalised against each other — a
+    //   parallelogram's edges need not be perpendicular). With nothing authored
+    //   a deterministic orthonormal basis is derived from the least-aligned
+    //   world axis, so an unspanned plane is still stable frame to frame.
+    function vgPlaneBasis(normal, spanU, spanV) {
+        var n = vgNormalize(normal);
+        if (vgLenVec(n) < 0.5) return null;
+        function inPlane(w) { return vgSub(w, vgScaleVec(n, vgDotVec(w, n))); }
+        var u = null, v = null;
+        if (spanU && spanU.length === 3) {
+            var pu = inPlane(spanU);
+            if (vgLenVec(pu) > 1e-6) u = vgNormalize(pu);
+        }
+        if (!u) {
+            var ax = (Math.abs(n[0]) <= Math.abs(n[1]) && Math.abs(n[0]) <= Math.abs(n[2])) ? [1, 0, 0]
+                   : ((Math.abs(n[1]) <= Math.abs(n[2])) ? [0, 1, 0] : [0, 0, 1]);
+            u = vgNormalize(inPlane(ax));
+        }
+        if (spanV && spanV.length === 3) {
+            var pv = inPlane(spanV);
+            if (vgLenVec(pv) > 1e-6) v = vgNormalize(pv);
+        }
+        if (!v) v = vgNormalize(vgCrossVec(n, u));
+        // Degenerate authored span (v parallel to u) is an authoring error, and
+        // a patch with zero area is not a plane — reported, never patched over.
+        if (vgLenVec(vgCrossVec(u, v)) < 1e-6) return null;
+        return { n: n, u: u, v: v };
+    }
+    function vgPlaneEdges(basis, halfExtent) {
+        var h = (typeof halfExtent === "number" && isFinite(halfExtent)) ? Math.abs(halfExtent) : 3.0;
+        return { U: vgScaleVec(basis.u, 2 * h), V: vgScaleVec(basis.v, 2 * h) };
+    }
+    function vgPlaneQuad(point, U, V) {
+        var corner = vgSub(point, vgScaleVec(vgAddVec(U, V), 0.5));
+        return vgTranslateVerts(vgParallelogramVerts(U, V), corner);
+    }
+    // A point addressed IN the plane, s along u-hat and t along v-hat from the
+    // plane's anchor. This is how a comparison foot is authored: the two "wrong"
+    // feet and the true foot lie on ONE straight in-plane path, so one driven
+    // parameter sweeps through all three.
+    function vgPlanePointAt(point, basis, s, t) {
+        return vgAddVec(point, vgAddVec(vgScaleVec(basis.u, s), vgScaleVec(basis.v, t)));
+    }
+
+    // ── F13a · foot of the perpendicular from a point to a plane ────────────
+    //   distance = |n-hat . (q - p)|, foot = q - (n-hat . (q - p)) n-hat, and
+    //   the foot lies ON the plane exactly (the gate asserts it to 1e-12).
+    function vgFootOnPlane(q, planePoint, normal) {
+        var n = vgNormalize(normal);
+        if (vgLenVec(n) < 0.5) return null;
+        var signed = vgDotVec(n, vgSub(q, planePoint));
+        return { foot: vgSub(q, vgScaleVec(n, signed)), distance: Math.abs(signed), signed: signed, n: n };
+    }
+
+    // ── F13b · the common perpendicular of two lines ────────────────────────
+    //   THE PARALLEL CASE IS DETECTED, NEVER DIVIDED BY. When d1 x d2 is zero
+    //   the skew formula's denominator is zero: the shortest distance is still
+    //   perfectly well defined (it is the point-to-line distance) but there is
+    //   no unique common perpendicular DIRECTION and therefore no segment to
+    //   draw. Returning a plausible one would draw a "gap direction" that the
+    //   geometry does not have.
+    function vgCommonPerp(a1, dir1, a2, dir2) {
+        var d1 = vgNormalize(dir1), d2 = vgNormalize(dir2);
+        if (vgLenVec(d1) < 0.5 || vgLenVec(d2) < 0.5) return null;
+        var cr = vgCrossVec(d1, d2);
+        var crn = vgLenVec(cr);
+        var w = vgSub(a2, a1);
+        if (crn < 1e-9) {
+            // Parallel (or coincident): the distance is |w x d1-hat|, and there
+            // is no unique common perpendicular direction.
+            return {
+                parallel: true, exists: false,
+                distance: vgLenVec(vgCrossVec(w, d1)),
+                cross_norm: crn, numerator: null,
+                dir: null, foot1: null, foot2: null
+            };
+        }
+        var numerator = vgDotVec(w, cr);
+        var t1 = vgDotVec(vgCrossVec(w, d2), cr) / (crn * crn);
+        var t2 = vgDotVec(vgCrossVec(w, d1), cr) / (crn * crn);
+        return {
+            parallel: false, exists: true,
+            distance: Math.abs(numerator) / crn,
+            cross_norm: crn, numerator: numerator,
+            dir: vgScaleVec(cr, 1 / crn),
+            foot1: vgAddVec(a1, vgScaleVec(d1, t1)),
+            foot2: vgAddVec(a2, vgScaleVec(d2, t2)),
+            cross: cr
+        };
+    }
+
+    // ── F14 · line meets plane, OR IT DOES NOT ──────────────────────────────
+    //   d-hat . n-hat = 0 means the line's direction is perpendicular to the
+    //   NORMAL, which puts the line PARALLEL to the plane: no meeting point
+    //   exists. This returns exists:false and a null point — never a clamped
+    //   lambda, never the foot of something else, never the plane's anchor.
+    //   That absence is a whole state's lesson, and section 10 of the gate
+    //   negative-controls a fallback marker.
+    function vgLinePlaneMeet(anchor, dir, planePoint, normal) {
+        var d = vgNormalize(dir), n = vgNormalize(normal);
+        if (vgLenVec(d) < 0.5 || vgLenVec(n) < 0.5) return null;
+        var dn = vgDotVec(d, n);
+        if (Math.abs(dn) <= VG_MEET_EPS) {
+            return { exists: false, point: null, lambda: null, d_dot_n: dn };
+        }
+        var lam = vgDotVec(vgSub(planePoint, anchor), n) / dn;
+        return { exists: true, point: vgAddVec(anchor, vgScaleVec(d, lam)), lambda: lam, d_dot_n: dn };
+    }
+    // The two angles a line makes with a plane, both in [0, 90]: to the NORMAL,
+    // and to the PLANE itself. They are separately addressable because the
+    // difference between them is a whole state's claim, and they sum to 90 by
+    // construction rather than by a second measurement.
+    function vgLinePlaneAngles(dir, normal) {
+        var d = vgNormalize(dir), n = vgNormalize(normal);
+        if (vgLenVec(d) < 0.5 || vgLenVec(n) < 0.5) return null;
+        var c = Math.abs(vgDotVec(d, n));
+        var toNormal = Math.acos(Math.max(-1, Math.min(1, c))) * 180 / Math.PI;
+        return { to_normal: toNormal, to_plane: 90 - toNormal, d_dot_n: vgDotVec(d, n) };
+    }
+    // ── F23 · the line's shadow in the plane ────────────────────────────────
+    //   The projection of the line onto the plane: each point drops along the
+    //   normal. A line PERPENDICULAR to the plane projects to a single point,
+    //   which is not a line — reported as exists:false rather than drawn as a
+    //   degenerate stub.
+    function vgProjectLineOntoPlane(anchor, dir, planePoint, normal) {
+        var n = vgNormalize(normal);
+        var d = vgNormalize(dir);
+        if (vgLenVec(n) < 0.5 || vgLenVec(d) < 0.5) return null;
+        var pd = vgSub(d, vgScaleVec(n, vgDotVec(d, n)));
+        if (vgLenVec(pd) < 1e-6) return { exists: false, anchor: null, dir: null };
+        var f = vgFootOnPlane(anchor, planePoint, n);
+        return { exists: true, anchor: f.foot, dir: vgNormalize(pd), normal_component: vgScaleVec(n, vgDotVec(d, n)) };
+    }
+
+    // ── Δ2 · the per-object REVEAL CHAIN ────────────────────────────────────
+    //   One scalar reveal_ms per state cannot express "segment, then minimum
+    //   lock, then right-angle mark, then formula" — the recorded scar
+    //   skeleton_authors_a_timed_reveal_chain_of_overlays_on_a_scenario_whose_
+    //   overlay_config_is_static. Every line/plane/point/segment therefore
+    //   carries its own reveal_at_ms / grow_ms / ghost_at_ms / hide_at_ms.
+    //
+    //   All four are CLOSED FORMS of state-local ms, which is also why the
+    //   ghost is safe: the recorded dim-with-no-restore scar (field3d_dim_
+    //   apparatus_one_way_with_no_restore_on_state_exit) is a defect of a
+    //   LATCHED dim. Nothing latches here — re-entering the state at ms 0
+    //   recomputes full opacity, and a rewound pin recomputes the ghost.
+    function vgRevealFrac(o, stateMs, defGrowMs) {
+        o = o || {};
+        var at = (typeof o.reveal_at_ms === "number" && isFinite(o.reveal_at_ms)) ? o.reveal_at_ms : 0;
+        var hide = (typeof o.hide_at_ms === "number" && isFinite(o.hide_at_ms)) ? o.hide_at_ms : null;
+        if (hide != null && stateMs >= hide) return 0;
+        if (stateMs <= at) return 0;
+        var g = (typeof o.grow_ms === "number" && isFinite(o.grow_ms)) ? Math.max(0, o.grow_ms) : Math.max(0, defGrowMs);
+        if (g <= 0) return 1;
+        var u = Math.min(1, (stateMs - at) / g);
+        return 1 - Math.pow(1 - u, 3);        // ease-out cubic, never overshoots 1
+    }
+    function vgGhostFactor(o, stateMs) {
+        o = o || {};
+        var gAt = (typeof o.ghost_at_ms === "number" && isFinite(o.ghost_at_ms)) ? o.ghost_at_ms : null;
+        if (gAt == null || stateMs < gAt) return 1;
+        var gOp = (typeof o.ghost_opacity === "number" && isFinite(o.ghost_opacity)) ? o.ghost_opacity : 0.25;
+        var fade = Math.min(1, Math.max(0, (stateMs - gAt) / 600));
+        return 1 + (gOp - 1) * (1 - Math.pow(1 - fade, 3));
+    }
+    // ── Δ10 · the scene_group selector ──────────────────────────────────────
+    //   An object with no "groups" list belongs to EVERY group (so a state that
+    //   never sets scene_group behaves exactly as it did before this existed);
+    //   an object that names its groups appears only in those. Presence is
+    //   tested with a list lookup, never truthiness — "A" is a legal value and
+    //   so is an empty selection (optional_config_field_with_a_legal_zero_
+    //   value_is_resolved_by_truthiness).
+    function vgInGroup(o, group) {
+        if (group == null || group === "") return true;
+        var g = (o && o.groups);
+        if (!g || !g.length) return true;
+        for (var i = 0; i < g.length; i++) if (g[i] === group) return true;
+        return false;
+    }
+
+    // ── THE RESOLVER · one pure function from (authored block, live knobs,
+    //    state-local ms) to a fully-resolved scene description ──────────────
+    //   Everything the lines/planes half draws goes through here, and it takes
+    //   no THREE symbol, no config and no DOM — so check:vector-geometry-3d
+    //   runs the SHIPPED resolver headless against closed forms solved outside
+    //   it, rather than testing a re-implementation that could agree with the
+    //   renderer for the same wrong reason.
+    //
+    //   It is a CLOSED FORM of stateMs and the knob values: no accumulator, no
+    //   memo, no frame counter (D3 / Rule 36). Call it twice with the same
+    //   arguments and it returns the same numbers, which is what makes a
+    //   SET_TIME_FREEZE rewind byte-identical.
+    //
+    //   A knob value is read as a NUMBER or as {knob: "<name>"}; a missing knob
+    //   resolves to 0, never to "leave it alone", because 0 is a legal authored
+    //   value and truthiness cannot tell those apart
+    //   (optional_config_field_with_a_legal_zero_value_is_resolved_by_truthiness).
+    function vgKnobVal(x, K) {
+        if (typeof x === "number" && isFinite(x)) return x;
+        if (x && typeof x === "object" && typeof x.knob === "string") {
+            var v = K ? K[x.knob] : undefined;
+            return (typeof v === "number" && isFinite(v)) ? v : 0;
+        }
+        return 0;
+    }
+    function vgObjOffset(o, K) {
+        var off = o && o.offset;
+        if (!off || !off.along || off.along.length !== 3) return [0, 0, 0];
+        var zero = (typeof off.zero === "number" && isFinite(off.zero)) ? off.zero : 0;
+        return vgScaleVec(off.along, vgKnobVal(off, K) - zero);
+    }
+    function vgObjRotate(v, o, K) {
+        var rot = o && o.rotate;
+        if (!rot || !rot.about || rot.about.length !== 3) return v.slice();
+        var zero = (typeof rot.zero === "number" && isFinite(rot.zero)) ? rot.zero : 0;
+        var ax = vgNormalize(rot.about);
+        if (vgLenVec(ax) < 0.5) return v.slice();
+        return vgRotateAbout(v, ax, (vgKnobVal(rot, K) - zero) * Math.PI / 180);
+    }
+    // Address resolution. A position is one of:
+    //   [x,y,z]                          a literal world point
+    //   "<id>"                           a resolved point / a line's anchor /
+    //                                    a plane's anchor / a derived point
+    //   {on:"<planeId>", u:_, v:_}       IN the plane, u along u-hat, v along v-hat
+    //   {on:"<lineId>", lambda:_}        ON the line, lambda an arc length
+    //   {lerp:[addrA, addrB], t:_}       between two addresses (the overlay-match
+    //                                    translate: an object built in one place
+    //                                    and moved onto another)
+    // Anything else returns null — an unresolvable address draws nothing rather
+    // than falling back to the origin, which would put a marker at a real,
+    // meaningful, and wrong location.
+    function vgAddr(spec, ctx, K) {
+        if (!spec) return null;
+        if (Object.prototype.toString.call(spec) === "[object Array]" && spec.length === 3) return spec.slice();
+        if (typeof spec === "string") {
+            if (ctx.points[spec]) return ctx.points[spec].position.slice();
+            if (ctx.lines[spec]) return ctx.lines[spec].anchor.slice();
+            if (ctx.planes[spec]) return ctx.planes[spec].point.slice();
+            if (ctx.derived[spec]) return ctx.derived[spec].slice();
+            return null;
+        }
+        if (typeof spec === "object") {
+            if (spec.lerp && spec.lerp.length === 2) {
+                var pa = vgAddr(spec.lerp[0], ctx, K), pb = vgAddr(spec.lerp[1], ctx, K);
+                if (!pa || !pb) return null;
+                return vgLerpVec(pa, pb, Math.max(0, Math.min(1, vgKnobVal(spec.t, K))));
+            }
+            if (typeof spec.on === "string") {
+                var pl = ctx.planes[spec.on];
+                if (pl) return vgPlanePointAt(pl.point, pl.basis, vgKnobVal(spec.u, K), vgKnobVal(spec.v, K));
+                var ln = ctx.lines[spec.on];
+                if (ln) return vgPointOnLine(ln.anchor, ln.dir, vgKnobVal(spec.lambda, K));
+                return null;
+            }
+        }
+        return null;
+    }
+    function vgList(x) { return (Object.prototype.toString.call(x) === "[object Array]") ? x : []; }
+
+    function vgResolveLinesPlanes(d, K, stateMs) {
+        d = d || {}; K = K || {};
+        var growMs = (typeof d.reveal_ms === "number" && isFinite(d.reveal_ms)) ? d.reveal_ms : 900;
+        var R = (typeof d.scene_radius === "number" && isFinite(d.scene_radius)) ? d.scene_radius : VG_SCENE_RADIUS;
+        var group = (typeof K.scene_group === "string" && K.scene_group !== "") ? K.scene_group : null;
+        var ctx = { points: {}, lines: {}, planes: {}, derived: {} };
+        var out = {
+            lines: [], planes: [], points: [], segments: [], arcs: [], vectors: [],
+            right_angle: null, readouts: {}, unknown_readouts: [], group: group
+        };
+        var i, o, frac;
+
+        // ── F11 lines ───────────────────────────────────────────────────────
+        var srcLines = vgList(d.lines);
+        for (i = 0; i < srcLines.length; i++) {
+            o = srcLines[i] || {};
+            if (!vgInGroup(o, group)) continue;
+            var anchor = vgAddVec((o.point && o.point.length === 3) ? o.point : [0, 0, 0], vgObjOffset(o, K));
+            var dir = vgObjRotate((o.dir && o.dir.length === 3) ? o.dir : [1, 0, 0], o, K);
+            var span = null;
+            if (o.bind_lambda_span === true) {
+                var hs = Math.abs(vgKnobVal({ knob: "lambda_span" }, K));
+                span = [-hs, hs];
+            } else if (o.lambda_span && o.lambda_span.length === 2) span = o.lambda_span;
+            var ends = vgLineEnds(anchor, dir, span, R);
+            if (!ends) continue;                       // no drawable extent: draw nothing
+            frac = vgRevealFrac(o, stateMs, growMs);
+            var rec = {
+                id: o.id || ("line" + i), anchor: anchor, dir: ends.dir,
+                lo: ends.lo, hi: ends.hi,
+                p0: vgAddVec(anchor, vgScaleVec(ends.dir, ends.lo * frac)),
+                p1: vgAddVec(anchor, vgScaleVec(ends.dir, ends.hi * frac)),
+                frac: frac, ghost: vgGhostFactor(o, stateMs),
+                role: o.role || "dir1", label: o.label || null,
+                show_dir_arrow: o.show_dir_arrow === true,
+                lambda_point: null, lambda_in_span: false
+            };
+            if (o.show_lambda_marker === true) {
+                var lam = vgKnobVal((o.lambda != null) ? o.lambda : { knob: "lambda" }, K);
+                // The marker exists only where the line is DRAWN. A lambda past
+                // the drawn end is not clamped back onto the line: a clamped
+                // marker reports a position the slider does not hold.
+                if (lam >= ends.lo && lam <= ends.hi) {
+                    rec.lambda_point = vgPointOnLine(anchor, ends.dir, lam);
+                    rec.lambda_in_span = true;
+                }
+                rec.lambda = lam;
+            }
+            ctx.lines[rec.id] = rec;
+            out.lines.push(rec);
+        }
+
+        // ── F12 planes ──────────────────────────────────────────────────────
+        var srcPlanes = vgList(d.planes);
+        for (i = 0; i < srcPlanes.length; i++) {
+            o = srcPlanes[i] || {};
+            if (!vgInGroup(o, group)) continue;
+            var pPoint = vgAddVec((o.point && o.point.length === 3) ? o.point : [0, 0, 0], vgObjOffset(o, K));
+            var nRaw = vgObjRotate((o.normal && o.normal.length === 3) ? o.normal : [0, 1, 0], o, K);
+            var basis = vgPlaneBasis(nRaw, o.span_u, o.span_v);
+            if (!basis) continue;                      // degenerate authored span: draw nothing
+            var he = (o.bind_half_extent === true)
+                ? Math.abs(vgKnobVal({ knob: "half_extent" }, K))
+                : ((typeof o.half_extent === "number" && isFinite(o.half_extent)) ? o.half_extent : 3.0);
+            frac = vgRevealFrac(o, stateMs, growMs);
+            var edges = vgPlaneEdges(basis, he * frac);
+            var prec = {
+                id: o.id || ("plane" + i), point: pPoint, basis: basis, n: basis.n,
+                half_extent: he, U: edges.U, V: edges.V,
+                quad: vgPlaneQuad(pPoint, edges.U, edges.V),
+                frac: frac, ghost: vgGhostFactor(o, stateMs),
+                role: o.role || "region", label: o.label || null,
+                show_normal: o.show_normal === true,
+                normal_len: (typeof o.normal_len === "number" && isFinite(o.normal_len)) ? o.normal_len : 1.6,
+                n_norm: vgLenVec(nRaw), normal_label: o.normal_label || null
+            };
+            ctx.planes[prec.id] = prec;
+            out.planes.push(prec);
+        }
+
+        // ── F22 free points ─────────────────────────────────────────────────
+        var srcPoints = vgList(d.points);
+        for (i = 0; i < srcPoints.length; i++) {
+            o = srcPoints[i] || {};
+            if (!vgInGroup(o, group)) continue;
+            var pos = vgAddVec((o.position && o.position.length === 3) ? o.position : [0, 0, 0], vgObjOffset(o, K));
+            var prc = {
+                id: o.id || ("point" + i), position: pos,
+                frac: vgRevealFrac(o, stateMs, growMs), ghost: vgGhostFactor(o, stateMs),
+                role: o.role || "neutral", label: o.label || null,
+                size: (typeof o.size === "number" && isFinite(o.size)) ? o.size : 0.11
+            };
+            ctx.points[prc.id] = prc;
+            out.points.push(prc);
+        }
+
+        // ── F13a · the perpendicular from a point to a plane ────────────────
+        var perp = d.perpendicular;
+        if (perp && vgInGroup(perp, group)) {
+            var q = ctx.points[perp.from], pl = ctx.planes[perp.to];
+            if (q && pl) {
+                var f = vgFootOnPlane(q.position, pl.point, pl.n);
+                if (f) {
+                    ctx.derived[(perp.foot_id || "foot")] = f.foot;
+                    var pfrac = vgRevealFrac(perp, stateMs, growMs);
+                    out.segments.push({
+                        id: perp.id || "perp", p0: q.position,
+                        p1: vgLerpVec(q.position, f.foot, pfrac),
+                        frac: pfrac, ghost: vgGhostFactor(perp, stateMs),
+                        role: perp.role || "derived", label: perp.label || null, arrow: false
+                    });
+                    out.points.push({
+                        id: (perp.foot_id || "foot"), position: f.foot, frac: pfrac, ghost: 1,
+                        role: "neutral", label: perp.foot_label || null, size: 0.09
+                    });
+                    out.readouts.point_plane_distance = f.distance;
+                    out.readouts.n_norm = pl.n_norm;
+                    if (perp.show_right_angle === true && pfrac > 0.99) {
+                        // The mark sits at the foot, in the plane spanned by the
+                        // segment and one in-plane direction — a real right angle
+                        // in 3D, not a screen-space glyph that would be a right
+                        // angle from exactly one camera.
+                        var e1 = vgNormalize(vgSub(q.position, f.foot));
+                        var e2 = vgNormalize(vgSub(vgSub(pl.point, f.foot), vgScaleVec(e1, vgDotVec(vgSub(pl.point, f.foot), e1))));
+                        if (vgLenVec(e2) < 0.5) e2 = pl.basis.u;
+                        out.right_angle = { p: f.foot, e1: e1, e2: e2, size: 0.28 };
+                    }
+                }
+            }
+        }
+
+        // ── F23 · comparison segments ───────────────────────────────────────
+        var srcSegs = vgList(d.segments);
+        for (i = 0; i < srcSegs.length; i++) {
+            o = srcSegs[i] || {};
+            if (!vgInGroup(o, group)) continue;
+            var s0 = vgAddr(o.from, ctx, K), s1 = vgAddr(o.to, ctx, K);
+            if (!s0 || !s1) continue;                  // unresolvable: draw nothing
+            var sfrac = vgRevealFrac(o, stateMs, growMs);
+            out.segments.push({
+                id: o.id || ("seg" + i), p0: s0, p1: vgLerpVec(s0, s1, sfrac),
+                frac: sfrac, ghost: vgGhostFactor(o, stateMs),
+                role: o.role || "neutral", label: o.label || null, arrow: o.arrow === true
+            });
+            if (o.readout === "length") out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));
+            else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
+                out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
+            }
+        }
+
+        // ── F13b · the common perpendicular of two lines ────────────────────
+        var cp = d.common_perpendicular;
+        if (cp && vgInGroup(cp, group) && cp.between && cp.between.length === 2) {
+            var m1 = ctx.lines[cp.between[0]], m2 = ctx.lines[cp.between[1]];
+            if (m1 && m2) {
+                var res = vgCommonPerp(m1.anchor, m1.dir, m2.anchor, m2.dir);
+                if (res) {
+                    out.readouts.skew_distance = res.distance;
+                    out.readouts.cross_norm = res.cross_norm;
+                    if (res.numerator != null) out.readouts.numerator_triple_product = res.numerator;
+                    if (res.exists) {
+                        var cfrac = vgRevealFrac(cp, stateMs, growMs);
+                        ctx.derived[(cp.foot1_id || "F1")] = res.foot1;
+                        ctx.derived[(cp.foot2_id || "F2")] = res.foot2;
+                        ctx.derived[(cp.id || "common_perp")] = vgLerpVec(res.foot1, res.foot2, 0.5);
+                        out.segments.push({
+                            id: cp.id || "common_perp", p0: res.foot1,
+                            p1: vgLerpVec(res.foot1, res.foot2, cfrac),
+                            frac: cfrac, ghost: vgGhostFactor(cp, stateMs),
+                            role: cp.role || "derived", label: cp.label || null, arrow: false
+                        });
+                    }
+                    out.common_perp = res;
+                }
+            }
+        }
+
+        // ── F14 · the intersection marker, which exists only when it exists ─
+        var isec = d.intersection;
+        if (isec && vgInGroup(isec, group)) {
+            var iL = ctx.lines[isec.line], iP = ctx.planes[isec.plane];
+            if (iL && iP) {
+                var meet = vgLinePlaneMeet(iL.anchor, iL.dir, iP.point, iP.n);
+                if (meet) {
+                    out.readouts.d_dot_n = meet.d_dot_n;
+                    out.meet = meet;
+                    if (meet.exists) {
+                        out.readouts.lambda = meet.lambda;
+                        out.readouts.intersection_point = meet.point;
+                        out.readouts.no_meeting_point = false;
+                        ctx.derived[(isec.id || "X")] = meet.point;
+                        var ifrac = vgRevealFrac(isec, stateMs, growMs);
+                        if (ifrac > 0) {
+                            out.points.push({
+                                id: isec.id || "X", position: meet.point, frac: ifrac, ghost: 1,
+                                role: isec.role || "derived", label: isec.label || null,
+                                size: (typeof isec.size === "number" && isFinite(isec.size)) ? isec.size : 0.15,
+                                is_intersection: true
+                            });
+                        }
+                    } else {
+                        // NO marker, at any position, ever — and the readout
+                        // says so out loud (Δ4). This is the whole state.
+                        out.readouts.no_meeting_point = true;
+                    }
+                }
+            }
+        }
+
+        // ── F23 · the line's shadow in the plane ────────────────────────────
+        var proj = d.projection;
+        if (proj && vgInGroup(proj, group)) {
+            var pL = ctx.lines[proj.line], pP = ctx.planes[proj.plane];
+            if (pL && pP) {
+                var sh = vgProjectLineOntoPlane(pL.anchor, pL.dir, pP.point, pP.n);
+                if (sh && sh.exists) {
+                    var shSpan = (proj.lambda_span && proj.lambda_span.length === 2) ? proj.lambda_span : [pL.lo, pL.hi];
+                    var shEnds = vgLineEnds(sh.anchor, sh.dir, shSpan, R);
+                    if (shEnds) {
+                        var shFrac = vgRevealFrac(proj, stateMs, growMs);
+                        ctx.derived[(proj.id || "shadow")] = sh.anchor;
+                        out.lines.push({
+                            id: proj.id || "shadow", anchor: sh.anchor, dir: shEnds.dir,
+                            lo: shEnds.lo, hi: shEnds.hi,
+                            p0: vgAddVec(sh.anchor, vgScaleVec(shEnds.dir, shEnds.lo * shFrac)),
+                            p1: vgAddVec(sh.anchor, vgScaleVec(shEnds.dir, shEnds.hi * shFrac)),
+                            frac: shFrac, ghost: vgGhostFactor(proj, stateMs),
+                            role: proj.role || "neutral", label: proj.label || null,
+                            show_dir_arrow: false, lambda_point: null, lambda_in_span: false
+                        });
+                        ctx.lines[proj.id || "shadow"] = out.lines[out.lines.length - 1];
+                    }
+                }
+                var ang = vgLinePlaneAngles(pL.dir, pP.n);
+                if (ang) {
+                    out.readouts.angle_line_normal_deg = ang.to_normal;
+                    out.readouts.angle_line_plane_deg = ang.to_plane;
+                }
+            }
+        }
+
+        // ── Δ5 · angle arcs, WITH A SUBJECT ─────────────────────────────────
+        //   A member is "<lineId>" (its direction), "<planeId>.normal" (the
+        //   normal), or "<planeId>" (the line's own shadow in that plane). The
+        //   L,P form therefore renders the angle to the PLANE and the
+        //   L,P.normal form the angle to the NORMAL — separately addressable,
+        //   because the difference between them is the state's whole point.
+        var srcArcs = vgList(d.angle_arcs);
+        for (i = 0; i < srcArcs.length; i++) {
+            o = srcArcs[i] || {};
+            if (!vgInGroup(o, group)) continue;
+            if (!o.between || o.between.length !== 2) continue;
+            var arcApex = null, u0 = null, u1 = null, val = null;
+            var mA = o.between[0], mB = o.between[1];
+            var lnA = ctx.lines[mA];
+            if (!lnA) continue;
+            u0 = lnA.dir; arcApex = lnA.anchor;
+            if (typeof mB === "string" && mB.indexOf(".normal") > 0) {
+                var pnId = mB.substring(0, mB.indexOf(".normal"));
+                if (!ctx.planes[pnId]) continue;
+                u1 = ctx.planes[pnId].n;
+                var aN = vgLinePlaneAngles(lnA.dir, u1);
+                val = aN ? aN.to_normal : null;
+                // The arc is drawn on the acute side, which is the angle named.
+                if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);
+            } else if (ctx.planes[mB]) {
+                var shA = vgProjectLineOntoPlane(lnA.anchor, lnA.dir, ctx.planes[mB].point, ctx.planes[mB].n);
+                if (!shA || !shA.exists) continue;
+                u1 = shA.dir;
+                var aP = vgLinePlaneAngles(lnA.dir, ctx.planes[mB].n);
+                val = aP ? aP.to_plane : null;
+                if (vgDotVec(u0, u1) < 0) u1 = vgScaleVec(u1, -1);
+            } else if (ctx.lines[mB]) {
+                u1 = ctx.lines[mB].dir;
+                val = vgAngleDeg(u0, u1);
+                if (o.apex_at_origin === true) arcApex = [0, 0, 0];
+                out.readouts.angle_lines_deg = val;
+            } else continue;
+            out.arcs.push({
+                id: o.id || ("arc" + i), apex: arcApex, u0: vgNormalize(u0), u1: vgNormalize(u1),
+                radius: (typeof o.radius === "number" && isFinite(o.radius)) ? o.radius : 0.9,
+                frac: vgRevealFrac(o, stateMs, growMs), value_deg: val,
+                role: o.role || "neutral", label: o.label || null,
+                readout: o.readout || null
+            });
+            if (o.readout === "angle_line_normal_deg") out.readouts.angle_line_normal_deg = val;
+            else if (o.readout === "angle_line_plane_deg") out.readouts.angle_line_plane_deg = val;
+            else if (o.readout === "angle_lines_deg") out.readouts.angle_lines_deg = val;
+        }
+
+        // ── F23 · free vectors (the skew formula's two named arrows) ────────
+        var srcVecs = vgList(d.vectors);
+        for (i = 0; i < srcVecs.length; i++) {
+            o = srcVecs[i] || {};
+            if (!vgInGroup(o, group)) continue;
+            var vOrigin = vgAddr(o.origin, ctx, K) || [0, 0, 0];
+            var vTip = null;
+            if (o.derive === "cross" && o.of && o.of.length === 2 && ctx.lines[o.of[0]] && ctx.lines[o.of[1]]) {
+                var cvec = vgCrossVec(ctx.lines[o.of[0]].dir, ctx.lines[o.of[1]].dir);
+                var cs = (typeof o.scale === "number" && isFinite(o.scale)) ? o.scale : 1;
+                out.readouts.cross_norm = vgLenVec(cvec);
+                vTip = vgAddVec(vOrigin, vgScaleVec(cvec, cs));
+            } else if (o.derive === "between" && o.of && o.of.length === 2) {
+                var bA = vgAddr(o.of[0], ctx, K), bB = vgAddr(o.of[1], ctx, K);
+                if (bA && bB) vTip = vgAddVec(vOrigin, vgSub(bB, bA));
+            } else {
+                vTip = vgAddr(o.tip, ctx, K);
+            }
+            if (!vTip) continue;
+            var vfrac = vgRevealFrac(o, stateMs, growMs);
+            out.vectors.push({
+                id: o.id || ("vec" + i), origin: vOrigin, tip: vgLerpVec(vOrigin, vTip, vfrac),
+                frac: vfrac, ghost: vgGhostFactor(o, stateMs),
+                role: o.role || "derived", label: o.label || null
+            });
+        }
+        return out;
+    }
+
+    // Pure perspective projection of a world point into NDC-like screen
+    // space, given the SAME camera model this file already uses elsewhere
+    // (spherical position, camera.lookAt(0,0,0)-style target, vertical FOV).
+    // Returns null when the point is behind the camera (camZ <= 0).
+    function vgProjectPoint(camPos, camTarget, up, fovDeg, aspect, p) {
+        var fwd = vgNormalize(vgSub(camTarget, camPos));
+        var right = vgNormalize(vgCrossVec(fwd, up));
+        var camUp = vgCrossVec(right, fwd);
+        var rel = vgSub(p, camPos);
+        var camX = vgDotVec(rel, right);
+        var camY = vgDotVec(rel, camUp);
+        var camZ = vgDotVec(rel, fwd);
+        if (camZ <= 1e-6) return null;
+        var tanHalfFov = Math.tan((fovDeg * Math.PI / 180) / 2);
+        // TWO coordinate pairs, and the difference is load-bearing.
+        //
+        //   x, y  are NDC (each divided by its OWN half-extent, so the frame
+        //         is the square [-1,1]x[-1,1]). NDC is the right space to ask
+        //         "is this point inside the frame".
+        //   sx,sy are ISOTROPIC screen units (camX/camZ, camY/camZ — the
+        //         tangent of the angle off-axis). Both axes carry the SAME
+        //         scale, so this is the right space to ask "what ANGLE do two
+        //         drawn segments make on screen", and the vertical/horizontal
+        //         half-extents are tan(fov/2) and tan(fov/2)*aspect.
+        //
+        // Measuring an angle in NDC is wrong by exactly the aspect ratio: at
+        // 16:9 it shears every screen direction by 1.78x, so a true 90-degree
+        // pair at a good pose reads 61.8 degrees and a per-state camera solve
+        // is scored against a number no viewer will ever see. That is the
+        // recorded scar's own prevention rule turned on the metric itself —
+        // when a measurement is introduced to prevent a defect, check that
+        // the thing it measures is the thing that failed. The pairwise
+        // separation below therefore reads sx/sy, never x/y.
+        return {
+            x: camX / (camZ * tanHalfFov * aspect),
+            y: camY / (camZ * tanHalfFov),
+            sx: camX / camZ,
+            sy: camY / camZ,
+            z: camZ
+        };
+    }
+
+    // The scar-mandated PAIRWISE screen-separation metric (bug_class
+    // camera_metric_scored_foreshortening_not_pairwise_screen_separation):
+    // for EVERY pair of rendered vectors (never a single per-object margin),
+    // project both endpoints, take the screen-space direction of the drawn
+    // segment, and return how far apart (0-90 degrees, folded mod 180) the
+    // two directions are. 0 degrees = the two vectors draw COLLINEAR on
+    // screen (the theta=35 b/(a x b) defect this metric exists to catch);
+    // 90 degrees = maximally distinct. A "degenerate" pair (either vector
+    // projects to a zero-length segment, or lands behind the camera) is
+    // reported, never silently dropped.
+    function vgPairwiseScreenSeparationDeg(camPos, camTarget, up, fovDeg, aspect, vectors) {
+        var dirs = [];
+        for (var i = 0; i < vectors.length; i++) {
+            var v = vectors[i];
+            var pO = vgProjectPoint(camPos, camTarget, up, fovDeg, aspect, v.origin);
+            var pT = vgProjectPoint(camPos, camTarget, up, fovDeg, aspect, v.tip);
+            if (!pO || !pT) { dirs.push({ id: v.id, angle: null, degenerate: true }); continue; }
+            var dx = pT.sx - pO.sx, dy = pT.sy - pO.sy;   // ISOTROPIC units — never NDC (see vgProjectPoint)
+            var len = Math.sqrt(dx * dx + dy * dy);
+            if (len < 1e-6) { dirs.push({ id: v.id, angle: null, degenerate: true }); continue; }
+            var angDeg = Math.atan2(dy, dx) * 180 / Math.PI;
+            angDeg = ((angDeg % 180) + 180) % 180;
+            dirs.push({ id: v.id, angle: angDeg, degenerate: false });
+        }
+        var pairs = [];
+        for (var a2 = 0; a2 < dirs.length; a2++) {
+            for (var b2 = a2 + 1; b2 < dirs.length; b2++) {
+                var A = dirs[a2], B = dirs[b2];
+                if (A.degenerate || B.degenerate) {
+                    pairs.push({ pair: A.id + "|" + B.id, sepDeg: 0, degenerate: true });
+                    continue;
+                }
+                var diff = Math.abs(A.angle - B.angle);
+                var sep = Math.min(diff, 180 - diff);
+                pairs.push({ pair: A.id + "|" + B.id, sepDeg: sep, degenerate: false });
+            }
+        }
+        return pairs;
+    }
+
+    // Slider-control resolver (mirrors acrSc/acgSc): reads
+    // config.slider_controls[key] with a hardcoded fallback matching the
+    // physics_block-authored defaults.
+    function vgSc(key, dmin, dmax, dstep, ddef, dlabel) {
+        var scfg = config.slider_controls || {};
+        var o = scfg[key] || {};
+        return {
+            min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+            step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+            label: o.label || dlabel
+        };
+    }
+
+    // Dynamically-created inline position:fixed panel (Rule 39g convention —
+    // auto-discovered by the teacher-widget engine for free, no per-concept
+    // authoring). Mirrors buildAcResistorSliders' shape.
+    // Bottom-anchored, so it clears the review chrome's "Full screen" button
+    // at top:10 by construction (OPEN scar
+    // field3d_sliders_panel_top12_vs_fsbtn_top10 / Rule 34d — the READOUT
+    // panel below, which IS top-anchored, sits at top:52px for the same
+    // reason).
+    function buildVectorGeometrySliders() {
+        var spd = document.createElement("div"); spd.id = "vg_sliders";
+        // bottom:LEFT, and it is the fix for bug_class field3d_vg_formula_
+        // overlay_and_slider_panel_occupy_the_identical_corner_so_the_formula_
+        // is_painted_over. #formula_overlay is fixed bottom:12px/right:12px at
+        // the SAME z-index, and this panel is appended to <body> later, so at
+        // bottom-right it painted straight over the state's one formula
+        // surface — silently, on exactly the states that show both (Rule 34d:
+        // overlays never collide; Rule 34b: there is only one formula surface
+        // to lose). Left is where the skeleton put it, and the two panels are
+        // now horizontally disjoint, so no panel HEIGHT can bring them back
+        // into contact. The left edge is otherwise clear: #vg_readout is
+        // top-anchored (top:52px) and the review chrome's #simPenBar sits at
+        // top:10px/left:10px, both far above a bottom-anchored panel.
+        spd.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        var scA = vgSc("a_mag", 1.0, 5.0, 0.25, 3.0, "|a|");
+        var scB = vgSc("b_mag", 1.0, 5.0, 0.25, 2.0, "|b|");
+        var scTh = vgSc("theta_deg", 20, 160, 1, 60, "θ (a, b)");
+        var scTilt = vgSc("b_tilt_deg", 0, 60, 5, 0, "b tilt");
+        var scC = vgSc("c_mag", 0.5, 4.0, 0.1, 2.0, "|c|");
+        var scCTh = vgSc("c_theta_deg", 0, 180, 1, 50, "θ c");
+        var scCPhi = vgSc("c_phi_deg", 0, 360, 1, 65, "φ c");
+        // VG-C · the "lines_planes" knobs. Same resolver, same row convention,
+        // same panel — a shared slider keeps its screen position across states
+        // (Rule 31), and a state shows only the rows it teaches with.
+        var scLam = vgSc("lambda", -5.0, 5.0, 0.05, 0.0, "λ");
+        var scLamSpan = vgSc("lambda_span", 1.0, 5.0, 0.1, 4.0, "line length");
+        var scHalf = vgSc("half_extent", 1.0, 3.0, 0.05, 3.0, "patch size");
+        var scQH = vgSc("q_height", 0.0, 3.0, 0.05, 1.19, "point height");
+        var scL2 = vgSc("line2_offset", -2.5, 2.5, 0.05, 0.0, "second line");
+        function row(prefix, sc, unit, dec) {
+            return '<div id="vg_' + prefix + '_row" style="margin-top:6px"><label>' + sc.label + ': <span id="vg_' + prefix + '_val">' + sc.def.toFixed(dec) + '</span>' + unit + '</label>' +
+                '<input type="range" id="vg_' + prefix + '_slider" min="' + sc.min + '" max="' + sc.max + '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%"></div>';
+        }
+        // Δ10 · the scene_group selector. It is a SELECT, not a slider, because
+        // it chooses between authored object SETS rather than moving a
+        // quantity — and it still carries the <prefix>_<name>_row id so the
+        // Rule 39g widget engine discovers it for free.
+        var groupRow =
+            '<div id="vg_scene_group_row" style="margin-top:6px"><label>view: ' +
+            '<select id="vg_scene_group_select" style="background:#111;color:#fff;border:1px solid #555;border-radius:4px;font:12px monospace">' +
+            '</select></label></div>';
+        spd.innerHTML =
+            groupRow +
+            row("a_mag", scA, "", 2) + row("b_mag", scB, "", 2) + row("theta_deg", scTh, "°", 0) +
+            row("b_tilt_deg", scTilt, "°", 0) +
+            row("c_mag", scC, "", 1) + row("c_theta_deg", scCTh, "°", 0) + row("c_phi_deg", scCPhi, "°", 0) +
+            row("lambda", scLam, "", 2) + row("lambda_span", scLamSpan, "", 1) +
+            row("half_extent", scHalf, "", 2) + row("q_height", scQH, "", 2) +
+            row("line2_offset", scL2, "", 2);
+        document.body.appendChild(spd);
+
+        window.PM_vgLambda = scLam.def; window.PM_vgLambdaSpan = scLamSpan.def;
+        window.PM_vgHalfExtent = scHalf.def; window.PM_vgQHeight = scQH.def;
+        window.PM_vgLine2Offset = scL2.def;
+        window.PM_vgLambdaDragged = false; window.PM_vgLambdaSpanDragged = false;
+        window.PM_vgHalfExtentDragged = false; window.PM_vgQHeightDragged = false;
+        window.PM_vgLine2OffsetDragged = false;
+        window.PM_vgSceneGroup = null;
+
+        window.PM_vgAMag = scA.def; window.PM_vgBMag = scB.def; window.PM_vgTheta = scTh.def;
+        window.PM_vgBTilt = scTilt.def;
+        window.PM_vgCMag = scC.def; window.PM_vgCTheta = scCTh.def; window.PM_vgCPhi = scCPhi.def;
+        window.PM_vgAMagDragged = false; window.PM_vgBMagDragged = false; window.PM_vgThetaDragged = false;
+        window.PM_vgBTiltDragged = false;
+        window.PM_vgCMagDragged = false; window.PM_vgCThetaDragged = false; window.PM_vgCPhiDragged = false;
+
+        function vgEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "vector_geometry_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        function wire(prefix, winKey, dragKey, dec) {
+            var sl = document.getElementById("vg_" + prefix + "_slider"), vEl = document.getElementById("vg_" + prefix + "_val");
+            if (sl) sl.addEventListener("input", function (ev) {
+                window[winKey] = parseFloat(sl.value);
+                if (vEl) vEl.textContent = window[winKey].toFixed(dec);
+                if (ev && ev.isTrusted) window[dragKey] = true;
+                vgEmit(prefix, window[winKey]);
+            });
+        }
+        wire("a_mag", "PM_vgAMag", "PM_vgAMagDragged", 2);
+        wire("b_mag", "PM_vgBMag", "PM_vgBMagDragged", 2);
+        wire("theta_deg", "PM_vgTheta", "PM_vgThetaDragged", 0);
+        wire("b_tilt_deg", "PM_vgBTilt", "PM_vgBTiltDragged", 0);
+        wire("c_mag", "PM_vgCMag", "PM_vgCMagDragged", 1);
+        wire("c_theta_deg", "PM_vgCTheta", "PM_vgCThetaDragged", 0);
+        wire("c_phi_deg", "PM_vgCPhi", "PM_vgCPhiDragged", 0);
+        wire("lambda", "PM_vgLambda", "PM_vgLambdaDragged", 2);
+        wire("lambda_span", "PM_vgLambdaSpan", "PM_vgLambdaSpanDragged", 1);
+        wire("half_extent", "PM_vgHalfExtent", "PM_vgHalfExtentDragged", 2);
+        wire("q_height", "PM_vgQHeight", "PM_vgQHeightDragged", 2);
+        wire("line2_offset", "PM_vgLine2Offset", "PM_vgLine2OffsetDragged", 2);
+
+        // Δ10 · the group selector writes the LIVE global that the frame reads,
+        // and the frame reads that global rather than the authored per-state
+        // value (scar field3d_explore_picker_updates_global_but_frame_reads_
+        // authored_state_value). It also switches the PHYSICAL objects, not
+        // just their labels — that is the whole point of the split.
+        var gsel = document.getElementById("vg_scene_group_select");
+        if (gsel) gsel.addEventListener("change", function () {
+            window.PM_vgSceneGroup = gsel.value;
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "vector_geometry_explorer"), param: "scene_group", value: gsel.value }, "*"); } catch (e) {}
+        });
+    }
+
+    // ── F9 · the numeric readout panel ─────────────────────────────────────
+    //   Rule 33d in its mathematics form, and the hard lesson of the camera
+    //   contract: PROJECTION PRESERVES NOTHING, so perpendicular, parallel,
+    //   zero and equal may NEVER rest on pixels. Every geometric claim a
+    //   state makes carries a number computed in 3D; the picture's job is to
+    //   make the number believable, never to be the evidence.
+    //
+    //   Each entry is ONE DOM text node carrying SYMBOL AND VALUE
+    //   ("a·b = 5.64"), never a label node beside a value node — a split
+    //   label is invisible to THE CALCULATOR's DOM harvest (OPEN scar
+    //   calculator_dom_harvest_needs_symbol_and_value_in_ONE_text_node).
+    //   Rule 34c: the symbols are real Unicode (·, ×, θ, °), never ASCII
+    //   transcription. Rule 34b: this is the VALUE-only instrument — the
+    //   symbolic equation belongs to the state's one formula surface, and is
+    //   deliberately not repeated here.
+    //   Top-anchored at top:52px so it clears the review chrome (Rule 34d).
+    var VG_READOUT_LABEL = {
+        a_mag: "|a|", b_mag: "|b|", theta_deg: "θ",
+        a_dot_b: "a·b", cross_mag: "|a×b|",
+        a_dot_cross: "a·(a×b)", b_dot_cross: "b·(a×b)", triple: "a·(b×c)",
+        // D-5's three: the volume the triple product measures, and the two
+        // factors the split separates it into. Each is still ONE text node
+        // carrying name AND value ("Volume = 9.95"), per D-9.
+        volume: "Volume", base_area: "Base", height: "Height",
+        // ── VG-C · the "lines_planes" token set (Δ6), closed in BOTH
+        //    directions against the states that consume it: every token here is
+        //    claimed by a state, and no state may name a token outside it. An
+        //    unknown token renders NOTHING rather than an empty row with a
+        //    plausible label.
+        point_plane_distance: "distance", skew_distance: "shortest distance",
+        angle_lines_deg: "angle", angle_line_plane_deg: "angle to plane",
+        angle_line_normal_deg: "angle to normal",
+        d_dot_n: "n·d", n_dot_v: "n·v",
+        lambda: "λ", intersection_point: "meeting point",
+        n_norm: "‖n‖", cross_norm: "‖d₁×d₂‖",
+        numerator_triple_product: "(a₂−a₁)·(d₁×d₂)",
+        // Δ4 · the no-intersection READOUT. A hidden marker renders NOTHING,
+        // so the state whose entire lesson is the absence would teach by
+        // omission (scar state_whose_payoff_is_absence_carries_its_lesson_only_
+        // in_on_canvas_prose). This is a first-class token, not an internal:
+        // it renders a literal row beside n·d = 0.000, so the absence is a
+        // thing on screen.
+        no_meeting_point: "no meeting point"
+    };
+    // The readout tokens whose VALUE is a coordinate triple or a literal
+    // sentence rather than a number, so vgReadoutLine formats them separately.
+    function vgFmtPoint(p) {
+        return "(" + vgFx(p[0], 2) + ", " + vgFx(p[1], 2) + ", " + vgFx(p[2], 2) + ")";
+    }
+    function buildVectorGeometryReadout() {
+        var rd = document.createElement("div"); rd.id = "vg_readout";
+        rd.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:8px 12px;border-radius:8px;font:13px/1.7 'Cambria Math',Georgia,serif;z-index:10;min-width:150px;display:none;";
+        document.body.appendChild(rd);
+    }
+    // Format one readout line. The clamp kills a "-0.00" at a right angle
+    // (scar field3d_hud_negative_zero_at_resonance_quadrature): a·b at
+    // theta = 90 degrees is the single most important number this scenario
+    // prints, and it must read 0.00.
+    function vgFx(v, dec) {
+        var eps = 0.5 * Math.pow(10, -dec);
+        if (Math.abs(v) < eps) v = 0;
+        return v.toFixed(dec);
+    }
+    // Precision doctrine, constant across every state of the lines/planes half:
+    // distances and dot products 3 dp, angles 1 dp, coordinates 2 dp, λ 3 dp.
+    // The products half keeps its own 2 dp, unchanged.
+    var VG_READOUT_DP = {
+        point_plane_distance: 3, skew_distance: 3, d_dot_n: 3, n_dot_v: 3,
+        n_norm: 3, cross_norm: 3, numerator_triple_product: 3, lambda: 3,
+        angle_lines_deg: 1, angle_line_plane_deg: 1, angle_line_normal_deg: 1
+    };
+    var VG_READOUT_UNIT = { angle_lines_deg: "°", angle_line_plane_deg: "°", angle_line_normal_deg: "°" };
+    function vgReadoutLine(key, vals) {
+        var lab = VG_READOUT_LABEL[key];
+        if (!lab) return null;
+        if (key === "theta_deg") return lab + " = " + vgFx(vals.theta_deg, 0) + "°";
+        // Δ4 — a literal row, and it renders ONLY when the thing it denies is
+        // genuinely absent. Authoring the token on a state whose line DOES meet
+        // the plane prints nothing, so the row can never contradict the marker.
+        if (key === "no_meeting_point") return (vals.no_meeting_point === true) ? lab : null;
+        if (key === "intersection_point") {
+            return (vals.intersection_point && vals.intersection_point.length === 3)
+                ? lab + " = " + vgFmtPoint(vals.intersection_point) : null;
+        }
+        var v = vals[key];
+        if (v == null || !isFinite(v)) return null;
+        var dp = (VG_READOUT_DP[key] != null) ? VG_READOUT_DP[key] : 2;
+        return lab + " = " + vgFx(v, dp) + (VG_READOUT_UNIT[key] || "");
+    }
+
+    function buildVectorGeometry3D() {
+        var vgCfg = config.vg || {};
+        var colA = vgCfg.color_a || "#FF7043";
+        var colB = vgCfg.color_b || "#42A5F5";
+        var colC = vgCfg.color_c || "#AB47BC";
+        var colCross = vgCfg.color_cross || "#66BB6A";
+
+        // 1. Vector arrows a, b, c, a x b — direction/length recomputed every
+        //    frame in updateVectorGeometry3DFrame from the resolved a/b/c.
+        var arrA = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 2.5, hexToThreeColor(colA), 0.24, 0.13);
+        arrA.userData = { elementType: "vg_vector_a", id: "vg_a" };
+        addToScene(arrA);
+
+        var arrB = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 2.0, hexToThreeColor(colB), 0.24, 0.13);
+        arrB.userData = { elementType: "vg_vector_b", id: "vg_b" };
+        addToScene(arrB);
+
+        var arrC = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), 1.8, hexToThreeColor(colC), 0.24, 0.13);
+        arrC.userData = { elementType: "vg_vector_c", id: "vg_c" };
+        arrC.visible = false;
+        addToScene(arrC);
+
+        var arrCross = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), 1.0, hexToThreeColor(colCross), 0.22, 0.12);
+        arrCross.userData = { elementType: "vg_cross_vector", id: "vg_axb" };
+        arrCross.visible = false;
+        addToScene(arrCross);
+
+        // 2. Angle arc between a and b — swept in the a-b plane (the xz
+        //    plane at zero tilt), rebuilt every frame from the live a and b
+        //    so it never disagrees with the vectors it measures.
+        var arcSegs = 24;
+        var arcGeo = new THREE.BufferGeometry();
+        arcGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array((arcSegs + 1) * 3), 3));
+        var arcMat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFFFFF"), transparent: true, opacity: 0.85 });
+        var arcLine = new THREE.Line(arcGeo, arcMat);
+        arcLine.userData = { elementType: "vg_angle_arc", id: "vg_theta_arc" };
+        arcLine.visible = false;
+        addToScene(arcLine);
+
+        // 3. E2 — parallelogram mesh, 4 verts / 2 triangles, geometry
+        //    rewritten every frame from vgParallelogramVerts.
+        var pgGeo = new THREE.BufferGeometry();
+        var pgPos = new Float32Array(4 * 3);
+        pgGeo.setAttribute("position", new THREE.BufferAttribute(pgPos, 3));
+        pgGeo.setIndex([0, 1, 2, 0, 2, 3]);
+        var pgMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(colCross), transparent: true, opacity: 0.32, side: THREE.DoubleSide, depthWrite: false });
+        var pgMesh = new THREE.Mesh(pgGeo, pgMat);
+        pgMesh.userData = { elementType: "vg_parallelogram", id: "vg_parallelogram" };
+        pgMesh.visible = false;
+        addToScene(pgMesh);
+
+        // 4. E3 — parallelepiped mesh, 6 faces x 4 verts = 24 verts / 12
+        //    triangles, geometry rewritten every frame from
+        //    vgParallelepipedFaces (closes by construction, see that fn).
+        var ppGeo = new THREE.BufferGeometry();
+        var ppPos = new Float32Array(24 * 3);
+        ppGeo.setAttribute("position", new THREE.BufferAttribute(ppPos, 3));
+        var ppIdx = [];
+        for (var f = 0; f < 6; f++) { var base = f * 4; ppIdx.push(base, base + 1, base + 2, base, base + 2, base + 3); }
+        ppGeo.setIndex(ppIdx);
+        var ppMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(colC), transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false });
+        var ppMesh = new THREE.Mesh(ppGeo, ppMat);
+        ppMesh.userData = { elementType: "vg_parallelepiped", id: "vg_parallelepiped" };
+        ppMesh.visible = false;
+        addToScene(ppMesh);
+
+        // 4b. D-5 — the two DECOMPOSITION pieces, drawn only while
+        //     split_solid_frac > 0. Both are TOP-LEVEL meshes handed to
+        //     addToScene individually: a child mesh never enters sceneObjects,
+        //     so the per-frame updater would never match it and it would sit
+        //     at build-time geometry forever (scar field3d_child_mesh_never_
+        //     registered_in_sceneobjects_so_updater_never_matches).
+        //     The extracted BASE parallelogram carries its own mesh at higher
+        //     opacity so "Base" is a thing on screen rather than a caption;
+        //     the HEIGHT segment stands perpendicular to it through the middle
+        //     of the solid, which at split_solid_frac = 1 is exactly the
+        //     prism's own generator.
+        var bfGeo = new THREE.BufferGeometry();
+        bfGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(4 * 3), 3));
+        bfGeo.setIndex([0, 1, 2, 0, 2, 3]);
+        var bfMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(colCross), transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false });
+        var bfMesh = new THREE.Mesh(bfGeo, bfMat);
+        bfMesh.userData = { elementType: "vg_base_face", id: "vg_base_face" };
+        bfMesh.visible = false;
+        addToScene(bfMesh);
+
+        var hsGeo = new THREE.BufferGeometry();
+        hsGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+        var hsMat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFFFFF"), transparent: true, opacity: 0.9 });
+        var hsLine = new THREE.Line(hsGeo, hsMat);
+        hsLine.userData = { elementType: "vg_height_seg", id: "vg_height_seg" };
+        hsLine.visible = false;
+        addToScene(hsLine);
+
+        // 4c. Δ11 — the PROJECTION pair (mode "products"), the dot product's
+        //     picture. Both are TOP-LEVEL meshes handed to addToScene
+        //     individually for the same reason the D-5 pieces are: a child
+        //     mesh never enters sceneObjects and the per-frame updater would
+        //     never match it (scar field3d_child_mesh_never_registered_in_
+        //     sceneobjects_so_updater_never_matches).
+        //
+        //     The SEGMENT is a unit cylinder placed by vgPlaceTube every frame
+        //     (the shipped helper the lines/planes half already uses), so its
+        //     DIRECTION carries the sign of b·â — at θ > 90° it runs from the
+        //     origin the other way along â instead of shrinking to nothing.
+        //     Its colour is the "derived" ROLE, not a fresh hex: this is a
+        //     quantity derived from a and b, and the chapter's colour language
+        //     is a closed role enum a concept may re-point but not extend.
+        var prGeo = new THREE.CylinderGeometry(1, 1, 1, 10, 1, true);
+        var prMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(vgRoleColor("derived")), transparent: true, opacity: 0.95 });
+        var prMesh = new THREE.Mesh(prGeo, prMat);
+        prMesh.userData = { elementType: "vg_proj_seg", id: "vg_proj_seg" };
+        prMesh.visible = false;
+        addToScene(prMesh);
+
+        //     The DROP is dashed (LineDashedMaterial + computeLineDistances,
+        //     the pattern this file already ships for its axis/radius guides):
+        //     dashed says "construction line", solid says "quantity", and the
+        //     drop is the construction that finds the foot, never a length the
+        //     state is teaching.
+        var pdGeo = new THREE.BufferGeometry();
+        pdGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+        var pdMat = new THREE.LineDashedMaterial({ color: hexToThreeColor(vgRoleColor("derived")), transparent: true, opacity: 0.75, dashSize: 0.14, gapSize: 0.1 });
+        var pdLine = new THREE.Line(pdGeo, pdMat);
+        pdLine.userData = { elementType: "vg_proj_drop", id: "vg_proj_drop" };
+        pdLine.visible = false;
+        addToScene(pdLine);
+
+        // 5. Labels (tip-anchored each frame).
+        var labA = createLabelSprite("a", colA, 0.85);
+        labA.userData = { elementType: "vg_label", id: "vp_label_a", tracks: "vg_vector_a" };
+        addToScene(labA);
+        var labB = createLabelSprite("b", colB, 0.85);
+        labB.userData = { elementType: "vg_label", id: "vp_label_b", tracks: "vg_vector_b" };
+        addToScene(labB);
+        var labC = createLabelSprite("c", colC, 0.85);
+        labC.userData = { elementType: "vg_label", id: "vp_label_c", tracks: "vg_vector_c" };
+        labC.visible = false;
+        addToScene(labC);
+        // Δ11 — pmCreateAutoLabel, NOT createLabelSprite: this sprite is
+        // re-texted every frame from flip_frac (vgCrossLabelText), and the
+        // transition string is wider than the fixed 384px canvas, which a
+        // fixed-width sprite clips on redraw (scar: a fixed-size sprite
+        // truncates longer redraw text — use the auto-width sprite whose
+        // _pmAutoWidth path re-measures and re-fits). The short "a×b" / "b×a"
+        // strings still measure under the 384px floor, so the endpoint frames
+        // are pixel-identical to the fixed-width sprite they replace.
+        var labCross = pmCreateAutoLabel(vgCrossLabelText(0), colCross, 0.85);
+        labCross.userData = { elementType: "vg_label", id: "vp_label_cross", tracks: "vg_cross_vector" };
+        labCross.visible = false;
+        addToScene(labCross);
+        var labTheta = createLabelSprite("θ", "#FFFFFF", 0.65);
+        labTheta.userData = { elementType: "vg_label", id: "vp_label_theta", tracks: "vg_angle_arc" };
+        labTheta.visible = false;
+        addToScene(labTheta);
+        // Δ11 — the projection's name. CONSTANT text, and constant is correct
+        // here for the reason a constant "a×b" was not: |b| cos θ is the
+        // SIGNED quantity the segment draws, so the symbol stays true at every
+        // θ including the obtuse regime, where the drawn arrow's DIRECTION
+        // (not its name) carries the minus sign. Auto-width because "|b| cos θ"
+        // exceeds the fixed sprite canvas.
+        var labProj = pmCreateAutoLabel("|b| cos θ", vgRoleColor("derived"), 0.62);
+        labProj.userData = { elementType: "vg_label", id: "vp_label_projection", tracks: "vg_proj_seg" };
+        labProj.visible = false;
+        addToScene(labProj);
+
+        // 6. VG-C · the lines/planes apparatus pool.
+        buildVectorGeometryLinesPlanes();
+
+        // 7. Sandbox slider panel (explore state only; hidden by default) and
+        //    the F9 numeric readout panel.
+        buildVectorGeometrySliders();
+        buildVectorGeometryReadout();
+    }
+
+    // ── VG-C · the lines/planes mesh POOL ───────────────────────────────────
+    //   Every mesh is created ONCE at build time and handed to addToScene
+    //   individually. Nothing is parented to anything else: a child mesh never
+    //   enters sceneObjects, so the per-frame updater would never match it and
+    //   it would sit at build-time geometry forever (scar
+    //   field3d_child_mesh_never_registered_in_sceneobjects_so_updater_never_
+    //   matches). Per-frame the pool members are ASSIGNED to the resolved
+    //   objects by index and the surplus is hidden — so the count of drawn
+    //   lines/planes/points can change from state to state with no scene-graph
+    //   churn and no allocation in the frame loop.
+    //
+    //   The pool sizes are the measured maxima of the states this scenario
+    //   serves plus headroom; an authored object beyond the pool is REPORTED on
+    //   window.PM_vgPoolOverflow rather than silently dropped, because a
+    //   silently-missing object is exactly the "presence is not correctness"
+    //   defect (field3d_scenario_declares_bead_element_but_never_builds_the_
+    //   meshes) seen from the other side.
+    var VG_LP_MAX = { line: 4, plane: 2, point: 6, seg: 5, arc: 2, vec: 2 };
+    var VG_ROLE_COLOR = {
+        dir1: "#F5A623", dir2: "#3FC8E4", third: "#E15FA8",
+        derived: "#5BD97A", region: "#8B6FE8", neutral: "#D8DEE9"
+    };
+    // The colour language is a CLOSED ROLE ENUM, not a free hex per object:
+    // the chapter's load-bearing teaching claim is that one colour never means
+    // an input, and a role table is the only way an authored file can be
+    // checked against that claim. A concept may re-point a role
+    // (config.vg.color_derived) but cannot invent a sixth.
+    function vgRoleColor(role) {
+        var over = (config.vg || {})["color_" + role];
+        return over || VG_ROLE_COLOR[role] || VG_ROLE_COLOR.neutral;
+    }
+    function buildVectorGeometryLinesPlanes() {
+        var i;
+        function tube(radius, color, type, idx) {
+            var g = new THREE.CylinderGeometry(radius, radius, 1, 10, 1, true);
+            var m = new THREE.MeshBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.95 });
+            var mesh = new THREE.Mesh(g, m);
+            mesh.userData = { elementType: type, id: type + "_" + idx, slot: idx };
+            mesh.visible = false;
+            addToScene(mesh);
+            return mesh;
+        }
+        function label(type, idx) {
+            // pmCreateAutoLabel, never createLabelSprite: these labels are
+            // re-texted every state (L1, M2, q, F1, d1 x d2) and a fixed-width
+            // sprite truncates the longer ones on redraw.
+            var s = pmCreateAutoLabel("", "#FFFFFF", 0.42);
+            s.userData = { elementType: type, id: type + "_" + idx, slot: idx };
+            s.visible = false;
+            addToScene(s);
+            return s;
+        }
+        for (i = 0; i < VG_LP_MAX.line; i++) { tube(0.035, VG_ROLE_COLOR.dir1, "vg_lp_line", i); label("vg_lp_line_label", i); }
+        for (i = 0; i < VG_LP_MAX.seg; i++) { tube(0.045, VG_ROLE_COLOR.neutral, "vg_lp_seg", i); label("vg_lp_seg_label", i); }
+        for (i = 0; i < VG_LP_MAX.point; i++) {
+            var pg = new THREE.SphereGeometry(1, 16, 12);
+            var pm = new THREE.MeshBasicMaterial({ color: hexToThreeColor(VG_ROLE_COLOR.neutral), transparent: true, opacity: 1 });
+            var pmesh = new THREE.Mesh(pg, pm);
+            pmesh.userData = { elementType: "vg_lp_point", id: "vg_lp_point_" + i, slot: i };
+            pmesh.visible = false;
+            addToScene(pmesh);
+            label("vg_lp_point_label", i);
+        }
+        for (i = 0; i < VG_LP_MAX.plane; i++) {
+            var qg = new THREE.BufferGeometry();
+            qg.setAttribute("position", new THREE.BufferAttribute(new Float32Array(4 * 3), 3));
+            qg.setIndex([0, 1, 2, 0, 2, 3]);
+            var qm = new THREE.MeshBasicMaterial({ color: hexToThreeColor(VG_ROLE_COLOR.region), transparent: true, opacity: 0.28, side: THREE.DoubleSide, depthWrite: false });
+            var qmesh = new THREE.Mesh(qg, qm);
+            qmesh.userData = { elementType: "vg_lp_plane", id: "vg_lp_plane_" + i, slot: i };
+            qmesh.visible = false;
+            addToScene(qmesh);
+            var nArr = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1.6, hexToThreeColor(VG_ROLE_COLOR.derived), 0.22, 0.12);
+            nArr.userData = { elementType: "vg_lp_normal", id: "vg_lp_normal_" + i, slot: i };
+            nArr.visible = false;
+            addToScene(nArr);
+            label("vg_lp_normal_label", i);
+        }
+        for (i = 0; i < VG_LP_MAX.vec; i++) {
+            var vArr = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1, hexToThreeColor(VG_ROLE_COLOR.derived), 0.22, 0.12);
+            vArr.userData = { elementType: "vg_lp_vec", id: "vg_lp_vec_" + i, slot: i };
+            vArr.visible = false;
+            addToScene(vArr);
+            label("vg_lp_vec_label", i);
+        }
+        for (i = 0; i < VG_LP_MAX.line; i++) {
+            var dArr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 1, hexToThreeColor(VG_ROLE_COLOR.dir1), 0.2, 0.11);
+            dArr.userData = { elementType: "vg_lp_dir", id: "vg_lp_dir_" + i, slot: i };
+            dArr.visible = false;
+            addToScene(dArr);
+        }
+        for (i = 0; i < VG_LP_MAX.arc; i++) {
+            var ag = new THREE.BufferGeometry();
+            ag.setAttribute("position", new THREE.BufferAttribute(new Float32Array(25 * 3), 3));
+            var am = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFFFFF"), transparent: true, opacity: 0.9 });
+            var aline = new THREE.Line(ag, am);
+            aline.userData = { elementType: "vg_lp_arc", id: "vg_lp_arc_" + i, slot: i };
+            aline.visible = false;
+            addToScene(aline);
+        }
+        var rg = new THREE.BufferGeometry();
+        rg.setAttribute("position", new THREE.BufferAttribute(new Float32Array(3 * 3), 3));
+        var rm = new THREE.LineBasicMaterial({ color: hexToThreeColor(VG_ROLE_COLOR.derived), transparent: true, opacity: 0.95 });
+        var rline = new THREE.Line(rg, rm);
+        rline.userData = { elementType: "vg_lp_right_angle", id: "vg_lp_right_angle", slot: 0 };
+        rline.visible = false;
+        addToScene(rline);
+    }
+
+    // Place a unit-height cylinder (its axis along +Y) as the segment p0 -> p1.
+    // This is GEOMETRY, not emphasis: Rule 29 forbids scaling an object to make
+    // it stand out, not scaling a primitive to the length it is meant to be.
+    var VG_LP_UPY = null;
+    function vgPlaceTube(mesh, p0, p1, radius) {
+        var dx = p1[0] - p0[0], dy = p1[1] - p0[1], dz = p1[2] - p0[2];
+        var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (!(len > 1e-4)) { mesh.visible = false; return false; }
+        if (!VG_LP_UPY) VG_LP_UPY = new THREE.Vector3(0, 1, 0);
+        mesh.position.set(p0[0] + dx / 2, p0[1] + dy / 2, p0[2] + dz / 2);
+        mesh.quaternion.setFromUnitVectors(VG_LP_UPY, new THREE.Vector3(dx / len, dy / len, dz / len));
+        mesh.scale.set(radius, len, radius);
+        mesh.visible = true;
+        return true;
+    }
+    function vgLabelAt(sprite, text, p, dirOut, pad) {
+        if (!sprite) return;
+        if (!text) { sprite.visible = false; return; }
+        if (sprite._pmText !== text) updateLabelSpriteText(sprite, text);
+        var u = dirOut ? vgNormalize(dirOut) : [0, 1, 0];
+        sprite.position.set(p[0] + u[0] * pad, p[1] + u[1] * pad, p[2] + u[2] * pad);
+        sprite.visible = true;
+    }
+
+    // ── VG-C · the per-frame writer ─────────────────────────────────────────
+    //   Reads ONLY the resolver's output. Every pool member is either assigned
+    //   to a resolved object or hidden, so nothing survives from a previous
+    //   state and nothing accumulates.
+    function vgWriteLinesPlanesFrame(res) {
+        var byType = {};
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("vg_lp_") !== 0) continue;
+            if (!byType[ud.elementType]) byType[ud.elementType] = [];
+            byType[ud.elementType][ud.slot] = o;
+        }
+        function pool(t) { return byType[t] || []; }
+        function hideFrom(t, n) { var p = pool(t); for (var k = n; k < p.length; k++) if (p[k]) p[k].visible = false; }
+        function setOpacity(m, v) { if (m && m.material) { m.material.transparent = true; m.material.opacity = v; } }
+
+        // Every pool member carries the RESOLVED object's authored id while it
+        // is assigned to it, so glow_focal can name "the common perpendicular"
+        // rather than "pool slot 2" (Rule 32e: one focal, addressed by the
+        // thing it is, not by where it happened to land this frame).
+        function stamp(m, id) { if (m && m.userData) m.userData.vgId = id || null; }
+
+        var overflow = [];
+        function cap(list, t) {
+            var max = pool(t).length;
+            if (list.length > max) overflow.push(t + ":" + list.length + ">" + max);
+            return Math.min(list.length, max);
+        }
+
+        // lines + their direction arrows + their lambda markers
+        var lp = pool("vg_lp_line"), llab = pool("vg_lp_line_label"), ldir = pool("vg_lp_dir");
+        var nLine = cap(res.lines, "vg_lp_line"), li;
+        for (li = 0; li < nLine; li++) {
+            var L = res.lines[li], m = lp[li];
+            if (!m) continue;
+            stamp(m, L.id); stamp(llab[li], L.id); stamp(ldir[li], L.id);
+            if (L.frac <= 0 || !vgPlaceTube(m, L.p0, L.p1, 0.035)) { m.visible = false; if (llab[li]) llab[li].visible = false; if (ldir[li]) ldir[li].visible = false; continue; }
+            m.material.color.set(hexToThreeColor(vgRoleColor(L.role)));
+            setOpacity(m, 0.95 * L.ghost);
+            if (llab[li]) vgLabelAt(llab[li], L.label, L.p1, L.dir, 0.28);
+            if (ldir[li]) {
+                if (L.show_dir_arrow) {
+                    ldir[li].position.set(L.anchor[0], L.anchor[1], L.anchor[2]);
+                    ldir[li].setDirection(new THREE.Vector3(L.dir[0], L.dir[1], L.dir[2]));
+                    ldir[li].setLength(Math.max(0.05, 1.2 * L.frac), 0.2, 0.11);
+                    ldir[li].setColor(hexToThreeColor(vgRoleColor(L.role)));
+                    ldir[li].visible = true;
+                } else ldir[li].visible = false;
+            }
+        }
+        hideFrom("vg_lp_line", nLine); hideFrom("vg_lp_line_label", nLine); hideFrom("vg_lp_dir", nLine);
+
+        // planes + normals
+        var pp = pool("vg_lp_plane"), pn = pool("vg_lp_normal"), pnl = pool("vg_lp_normal_label");
+        var nPlane = cap(res.planes, "vg_lp_plane"), pi;
+        for (pi = 0; pi < nPlane; pi++) {
+            var P = res.planes[pi], qm = pp[pi];
+            if (!qm) continue;
+            stamp(qm, P.id); stamp(pn[pi], P.id + ".normal"); stamp(pnl[pi], P.id + ".normal");
+            if (P.frac <= 0) { qm.visible = false; if (pn[pi]) pn[pi].visible = false; if (pnl[pi]) pnl[pi].visible = false; continue; }
+            var arr = qm.geometry.attributes.position.array;
+            for (var vi = 0; vi < 4; vi++) { arr[vi * 3] = P.quad[vi][0]; arr[vi * 3 + 1] = P.quad[vi][1]; arr[vi * 3 + 2] = P.quad[vi][2]; }
+            qm.geometry.attributes.position.needsUpdate = true;
+            qm.geometry.computeBoundingSphere();
+            qm.material.color.set(hexToThreeColor(vgRoleColor(P.role)));
+            setOpacity(qm, 0.28 * P.ghost);
+            qm.visible = true;
+            if (pn[pi]) {
+                if (P.show_normal) {
+                    pn[pi].position.set(P.point[0], P.point[1], P.point[2]);
+                    pn[pi].setDirection(new THREE.Vector3(P.n[0], P.n[1], P.n[2]));
+                    pn[pi].setLength(Math.max(0.05, P.normal_len * P.frac), 0.22, 0.12);
+                    pn[pi].setColor(hexToThreeColor(vgRoleColor("derived")));
+                    pn[pi].visible = true;
+                    if (pnl[pi]) vgLabelAt(pnl[pi], P.normal_label, vgAddVec(P.point, vgScaleVec(P.n, P.normal_len * P.frac)), P.n, 0.28);
+                } else { pn[pi].visible = false; if (pnl[pi]) pnl[pi].visible = false; }
+            }
+        }
+        hideFrom("vg_lp_plane", nPlane); hideFrom("vg_lp_normal", nPlane); hideFrom("vg_lp_normal_label", nPlane);
+
+        // points (free points, feet, lambda markers, the intersection marker)
+        var pts = res.points.slice();
+        for (li = 0; li < res.lines.length; li++) {
+            if (res.lines[li].lambda_point) {
+                pts.push({ id: res.lines[li].id + "_lambda", position: res.lines[li].lambda_point, frac: res.lines[li].frac, ghost: 1, role: "neutral", label: res.lines[li].lambda_label || null, size: 0.1 });
+            }
+        }
+        var ptp = pool("vg_lp_point"), ptl = pool("vg_lp_point_label");
+        var nPt = cap(pts, "vg_lp_point"), ti;
+        for (ti = 0; ti < nPt; ti++) {
+            var Q = pts[ti], sm = ptp[ti];
+            if (!sm) continue;
+            stamp(sm, Q.id); stamp(ptl[ti], Q.id);
+            if (Q.frac <= 0) { sm.visible = false; if (ptl[ti]) ptl[ti].visible = false; continue; }
+            var sc = Q.size * (0.35 + 0.65 * Q.frac);
+            sm.position.set(Q.position[0], Q.position[1], Q.position[2]);
+            sm.scale.set(sc, sc, sc);
+            sm.material.color.set(hexToThreeColor(vgRoleColor(Q.role)));
+            setOpacity(sm, 1 * Q.ghost);
+            sm.visible = true;
+            if (ptl[ti]) vgLabelAt(ptl[ti], Q.label, Q.position, [0, 1, 0], Q.size + 0.22);
+        }
+        hideFrom("vg_lp_point", nPt); hideFrom("vg_lp_point_label", nPt);
+
+        // segments (comparison segments, the perpendicular, the common perpendicular)
+        var sp = pool("vg_lp_seg"), sl = pool("vg_lp_seg_label");
+        var nSeg = cap(res.segments, "vg_lp_seg"), si;
+        for (si = 0; si < nSeg; si++) {
+            var S = res.segments[si], smh = sp[si];
+            if (!smh) continue;
+            stamp(smh, S.id); stamp(sl[si], S.id);
+            if (S.frac <= 0 || !vgPlaceTube(smh, S.p0, S.p1, 0.045)) { smh.visible = false; if (sl[si]) sl[si].visible = false; continue; }
+            smh.material.color.set(hexToThreeColor(vgRoleColor(S.role)));
+            setOpacity(smh, 0.95 * S.ghost);
+            if (sl[si]) vgLabelAt(sl[si], S.label, vgLerpVec(S.p0, S.p1, 0.5), vgNormalize(vgCrossVec(vgSub(S.p1, S.p0), [0, 1, 0])), 0.26);
+        }
+        hideFrom("vg_lp_seg", nSeg); hideFrom("vg_lp_seg_label", nSeg);
+
+        // free vectors
+        var vp = pool("vg_lp_vec"), vl = pool("vg_lp_vec_label");
+        var nVec = cap(res.vectors, "vg_lp_vec"), vv;
+        for (vv = 0; vv < nVec; vv++) {
+            var V = res.vectors[vv], va = vp[vv];
+            if (!va) continue;
+            stamp(va, V.id); stamp(vl[vv], V.id);
+            var vlen = vgLenVec(vgSub(V.tip, V.origin));
+            if (V.frac <= 0 || vlen < 0.02) { va.visible = false; if (vl[vv]) vl[vv].visible = false; continue; }
+            va.position.set(V.origin[0], V.origin[1], V.origin[2]);
+            va.setDirection(new THREE.Vector3(V.tip[0] - V.origin[0], V.tip[1] - V.origin[1], V.tip[2] - V.origin[2]).normalize());
+            va.setLength(vlen, 0.22, 0.12);
+            va.setColor(hexToThreeColor(vgRoleColor(V.role)));
+            va.visible = true;
+            if (vl[vv]) vgLabelAt(vl[vv], V.label, V.tip, vgSub(V.tip, V.origin), 0.3);
+        }
+        hideFrom("vg_lp_vec", nVec); hideFrom("vg_lp_vec_label", nVec);
+
+        // angle arcs — a great-circle interpolation between the two unit
+        // directions, so the arc measures the angle it is drawn beside.
+        var ap = pool("vg_lp_arc");
+        var nArc = cap(res.arcs, "vg_lp_arc"), ai;
+        for (ai = 0; ai < nArc; ai++) {
+            var A = res.arcs[ai], al = ap[ai];
+            if (!al) continue;
+            if (A.frac <= 0) { al.visible = false; continue; }
+            var aarr = al.geometry.attributes.position.array;
+            var segs = (aarr.length / 3) - 1;
+            var om = Math.acos(Math.max(-1, Math.min(1, vgDotVec(A.u0, A.u1))));
+            for (var s = 0; s <= segs; s++) {
+                var t = ((segs > 0) ? (s / segs) : 0) * A.frac;
+                var w0 = Math.sin((1 - t) * om), w1 = Math.sin(t * om);
+                var pt = (om > 1e-6)
+                    ? vgNormalize([A.u0[0] * w0 + A.u1[0] * w1, A.u0[1] * w0 + A.u1[1] * w1, A.u0[2] * w0 + A.u1[2] * w1])
+                    : A.u0;
+                aarr[s * 3] = A.apex[0] + A.radius * pt[0];
+                aarr[s * 3 + 1] = A.apex[1] + A.radius * pt[1];
+                aarr[s * 3 + 2] = A.apex[2] + A.radius * pt[2];
+            }
+            al.geometry.attributes.position.needsUpdate = true;
+            al.geometry.computeBoundingSphere();
+            al.visible = true;
+        }
+        hideFrom("vg_lp_arc", nArc);
+
+        // the right-angle mark
+        var ra = pool("vg_lp_right_angle")[0];
+        if (ra) {
+            if (res.right_angle) {
+                var Rm = res.right_angle, raarr = ra.geometry.attributes.position.array;
+                var c1 = vgAddVec(Rm.p, vgScaleVec(Rm.e1, Rm.size));
+                var c2 = vgAddVec(c1, vgScaleVec(Rm.e2, Rm.size));
+                var c3 = vgAddVec(Rm.p, vgScaleVec(Rm.e2, Rm.size));
+                raarr[0] = c1[0]; raarr[1] = c1[1]; raarr[2] = c1[2];
+                raarr[3] = c2[0]; raarr[4] = c2[1]; raarr[5] = c2[2];
+                raarr[6] = c3[0]; raarr[7] = c3[1]; raarr[8] = c3[2];
+                ra.geometry.attributes.position.needsUpdate = true;
+                ra.geometry.computeBoundingSphere();
+                ra.visible = true;
+            } else ra.visible = false;
+        }
+        // applyGlowEmphasis caches a material's "base" colour and opacity on its
+        // FIRST call and copies that cache back on every later frame. Every mesh
+        // in this pool is RE-ASSIGNED to a different authored object — and so to
+        // a different role colour and a different ghost opacity — as the states
+        // change, so a cache taken once would freeze the first state's colour
+        // onto every later one and would undo the Δ2 ghost fade on the very next
+        // frame. The live channel is therefore republished as the base each
+        // frame, which makes the focal boost a MULTIPLIER ON the live value
+        // instead of a replacement of it. That is the recorded scar
+        // glow_focal_on_live_driven_object_exempted_becomes_total_noop seen from
+        // the other side: exempting the live channel makes the glow a no-op;
+        // letting the glow own the channel makes the live drive a no-op.
+        for (var gi2 = 0; gi2 < sceneObjects.length; gi2++) {
+            var go = sceneObjects[gi2];
+            if (!go.userData || !go.userData.elementType) continue;
+            if (go.userData.elementType.indexOf("vg_lp_") !== 0) continue;
+            if (go.userData.elementType.indexOf("_label") >= 0) continue;
+            if (!go.visible) continue;
+            go.traverse(function (n) {
+                if (!n.material) return;
+                var ms = Array.isArray(n.material) ? n.material : [n.material];
+                for (var mi = 0; mi < ms.length; mi++) {
+                    var mm = ms[mi];
+                    if (!mm.userData) mm.userData = {};
+                    mm.userData._glowBaseOp = mm.opacity;
+                    if (mm.color) {
+                        if (mm.userData._glowBaseCol) mm.userData._glowBaseCol.copy(mm.color);
+                        else mm.userData._glowBaseCol = mm.color.clone();
+                    }
+                }
+            });
+        }
+        window.PM_vgPoolOverflow = overflow;
+    }
+
+    // Authoritative per-state visibility (mirrors applyAcResistorState) +
+    // per-state contextual-control panel (Rule 31: controls[] = live row(s),
+    // static_readouts[] = disabled row at the SAME position — SLIDER ROWS,
+    // the fleet convention; the numeric VALUE panel is value_readouts[]).
+    function applyVectorGeometry3DState(stateDef) {
+        var d = stateDef.vg || {};
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("vg_") !== 0) continue;
+            // VG-C · the lines/planes pool is owned by vgWriteLinesPlanesFrame,
+            // which re-asserts every member's visibility from the resolved
+            // scene on EVERY frame. That is what defeats the generic
+            // visible_elements matcher (which runs immediately BEFORE this
+            // function inside applyState and would otherwise blank this
+            // scenario's apparatus — scar field3d_generic_visible_elements_
+            // matcher_blanks_new_scenario_apparatus): a per-frame re-assertion
+            // is strictly stronger than a one-shot force at state entry,
+            // because it also survives anything that hides an object later.
+            if (ud.elementType.indexOf("vg_lp_") === 0) continue;
+            var want = false;
+            if (ud.elementType === "vg_vector_a" || ud.elementType === "vg_vector_b") want = true;
+            else if (ud.elementType === "vg_vector_c") want = !!d.show_c;
+            else if (ud.elementType === "vg_cross_vector") want = !!d.show_cross_vector;
+            else if (ud.elementType === "vg_angle_arc") want = !!d.show_angle_arc;
+            else if (ud.elementType === "vg_parallelogram") want = !!d.show_parallelogram;
+            else if (ud.elementType === "vg_parallelepiped") want = !!d.show_parallelepiped;
+            // The D-5 decomposition pieces belong to the solid: they can only
+            // appear where the solid does, and the FRAME hides them again
+            // whenever split_solid_frac is still 0 (a time-dependent value
+            // this apply pass deliberately does not try to guess).
+            else if (ud.elementType === "vg_base_face" || ud.elementType === "vg_height_seg") want = !!d.show_parallelepiped;
+            // Δ11 — the projection pair. The FRAME hides them again whenever
+            // the drawn length collapses (θ = 90°, where b·â is exactly 0 and
+            // a zero-length segment would be a stub, not a picture) — a
+            // time- and slider-dependent condition this apply pass
+            // deliberately does not try to guess, exactly like the D-5 pieces.
+            else if (ud.elementType === "vg_proj_seg" || ud.elementType === "vg_proj_drop") want = !!d.show_projection;
+            else if (ud.elementType === "vg_label") {
+                var tr = ud.tracks;
+                if (tr === "vg_vector_a" || tr === "vg_vector_b") want = true;
+                else if (tr === "vg_vector_c") want = !!d.show_c;
+                else if (tr === "vg_cross_vector") want = !!d.show_cross_vector;
+                else if (tr === "vg_angle_arc") want = !!d.show_angle_arc;
+                else if (tr === "vg_proj_seg") want = !!d.show_projection;
+            }
+            o.visible = want;
+        }
+
+        // Seed the authored (or last-live) values so re-entering a state
+        // starts clean and the sandbox reads the authored default on entry.
+        window.PM_vgAMag = d.a_mag != null ? d.a_mag : (window.PM_vgAMag != null ? window.PM_vgAMag : 3.0);
+        window.PM_vgBMag = d.b_mag != null ? d.b_mag : (window.PM_vgBMag != null ? window.PM_vgBMag : 2.0);
+        window.PM_vgTheta = d.theta_deg != null ? d.theta_deg : (window.PM_vgTheta != null ? window.PM_vgTheta : 60);
+        window.PM_vgBTilt = d.b_tilt_deg != null ? d.b_tilt_deg : (window.PM_vgBTilt != null ? window.PM_vgBTilt : 0);
+        window.PM_vgCMag = d.c_mag != null ? d.c_mag : (window.PM_vgCMag != null ? window.PM_vgCMag : 2.0);
+        window.PM_vgCTheta = d.c_theta_deg != null ? d.c_theta_deg : (window.PM_vgCTheta != null ? window.PM_vgCTheta : 50);
+        window.PM_vgCPhi = d.c_phi_deg != null ? d.c_phi_deg : (window.PM_vgCPhi != null ? window.PM_vgCPhi : 65);
+        window.PM_vgAMagDragged = false; window.PM_vgBMagDragged = false; window.PM_vgThetaDragged = false;
+        window.PM_vgBTiltDragged = false;
+        window.PM_vgCMagDragged = false; window.PM_vgCThetaDragged = false; window.PM_vgCPhiDragged = false;
+
+        // VG-C · the lines/planes knobs, same seed-then-clear-drag contract.
+        window.PM_vgLambda = d.lambda != null ? d.lambda : (window.PM_vgLambda != null ? window.PM_vgLambda : 0.0);
+        window.PM_vgLambdaSpan = d.lambda_span != null ? d.lambda_span : (window.PM_vgLambdaSpan != null ? window.PM_vgLambdaSpan : 4.0);
+        window.PM_vgHalfExtent = d.half_extent != null ? d.half_extent : (window.PM_vgHalfExtent != null ? window.PM_vgHalfExtent : 3.0);
+        window.PM_vgQHeight = d.q_height != null ? d.q_height : (window.PM_vgQHeight != null ? window.PM_vgQHeight : 1.19);
+        window.PM_vgLine2Offset = d.line2_offset != null ? d.line2_offset : (window.PM_vgLine2Offset != null ? window.PM_vgLine2Offset : 0.0);
+        window.PM_vgLambdaDragged = false; window.PM_vgLambdaSpanDragged = false;
+        window.PM_vgHalfExtentDragged = false; window.PM_vgQHeightDragged = false;
+        window.PM_vgLine2OffsetDragged = false;
+
+        // Δ10 · the scene_group selector. The option list is AUTHORED (an enum
+        // of groups with teacher-readable labels), and the live global is
+        // re-seeded from the state on entry so re-entering a state opens on the
+        // authored group rather than whatever the teacher last chose.
+        var groups = d.scene_groups || null;
+        var gsel2 = document.getElementById("vg_scene_group_select");
+        var grpRow = document.getElementById("vg_scene_group_row");
+        if (groups && groups.length) {
+            window.PM_vgSceneGroup = (typeof d.scene_group === "string" && d.scene_group !== "") ? d.scene_group : groups[0].key;
+            if (gsel2) {
+                var ghtml = "";
+                for (var gi = 0; gi < groups.length; gi++) {
+                    ghtml += '<option value="' + groups[gi].key + '">' + (groups[gi].label || groups[gi].key) + "</option>";
+                }
+                gsel2.innerHTML = ghtml;
+                gsel2.value = window.PM_vgSceneGroup;
+            }
+        } else {
+            window.PM_vgSceneGroup = (typeof d.scene_group === "string" && d.scene_group !== "") ? d.scene_group : null;
+        }
+        if (grpRow) grpRow.style.display = (groups && groups.length && (d.controls || []).indexOf("scene_group") !== -1) ? "block" : "none";
+
+        // Report any animate[] knob outside the closed enum, rather than
+        // silently doing nothing with it (the shipped hazard is a valid
+        // default, not a loud refusal — a renderer cannot throw here without
+        // blanking the scene, so it publishes instead and the gate reads it).
+        var unknown = [];
+        var known = vgAnimKnobs();
+        var anim = d.animate || [];
+        for (var ai = 0; ai < anim.length; ai++) {
+            var kn = (anim[ai] || {}).knob;
+            if (kn && known.indexOf(kn) < 0 && unknown.indexOf(kn) < 0) unknown.push(kn);
+        }
+        window.PM_vgAnimUnknown = unknown;
+
+        function syncS(id, v, dec) {
+            var el = document.getElementById(id); if (el) el.value = String(v);
+            var vEl = document.getElementById(id.replace("_slider", "_val")); if (vEl) vEl.textContent = v.toFixed(dec);
+        }
+        syncS("vg_a_mag_slider", window.PM_vgAMag, 2);
+        syncS("vg_b_mag_slider", window.PM_vgBMag, 2);
+        syncS("vg_theta_deg_slider", window.PM_vgTheta, 0);
+        syncS("vg_b_tilt_deg_slider", window.PM_vgBTilt, 0);
+        syncS("vg_c_mag_slider", window.PM_vgCMag, 1);
+        syncS("vg_c_theta_deg_slider", window.PM_vgCTheta, 0);
+        syncS("vg_c_phi_deg_slider", window.PM_vgCPhi, 0);
+        syncS("vg_lambda_slider", window.PM_vgLambda, 2);
+        syncS("vg_lambda_span_slider", window.PM_vgLambdaSpan, 1);
+        syncS("vg_half_extent_slider", window.PM_vgHalfExtent, 2);
+        syncS("vg_q_height_slider", window.PM_vgQHeight, 2);
+        syncS("vg_line2_offset_slider", window.PM_vgLine2Offset, 2);
+
+        var controls = d.controls || [];
+        var statics = d.static_readouts || [];
+        var rowIds = { a_mag: "vg_a_mag_row", b_mag: "vg_b_mag_row", theta_deg: "vg_theta_deg_row", b_tilt_deg: "vg_b_tilt_deg_row", c_mag: "vg_c_mag_row", c_theta_deg: "vg_c_theta_deg_row", c_phi_deg: "vg_c_phi_deg_row", lambda: "vg_lambda_row", lambda_span: "vg_lambda_span_row", half_extent: "vg_half_extent_row", q_height: "vg_q_height_row", line2_offset: "vg_line2_offset_row" };
+        var sliderIds = { a_mag: "vg_a_mag_slider", b_mag: "vg_b_mag_slider", theta_deg: "vg_theta_deg_slider", b_tilt_deg: "vg_b_tilt_deg_slider", c_mag: "vg_c_mag_slider", c_theta_deg: "vg_c_theta_deg_slider", c_phi_deg: "vg_c_phi_deg_slider", lambda: "vg_lambda_slider", lambda_span: "vg_lambda_span_slider", half_extent: "vg_half_extent_slider", q_height: "vg_q_height_slider", line2_offset: "vg_line2_offset_slider" };
+        var anyRow = (controls.indexOf("scene_group") !== -1 && groups && groups.length) ? true : false;
+        for (var key in rowIds) {
+            var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
+            var rowEl = document.getElementById(rowIds[key]);
+            if (rowEl) rowEl.style.display = relevant ? "block" : "none";
+            if (relevant) anyRow = true;
+            var isLive = controls.indexOf(key) !== -1;
+            var slEl = document.getElementById(sliderIds[key]);
+            if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
+        }
+        var panelEl = document.getElementById("vg_sliders");
+        if (panelEl) panelEl.style.display = (stateDef.show_sliders && anyRow) ? "block" : "none";
+        var rdEl = document.getElementById("vg_readout");
+        if (rdEl) rdEl.style.display = (d.value_readouts && d.value_readouts.length) ? "block" : "none";
+    }
+
+    // Per-frame driver. EVERYTHING here is a CLOSED FORM of state-local ms
+    // (Rule 36 / D3 — no accumulator anywhere, and no value cached between
+    // frames): every mesh is rebuilt from scratch from the resolved knobs, so
+    // a SET_TIME_FREEZE pin re-draws the identical frame bit for bit and a
+    // rewind to an earlier ms reproduces the earlier frame exactly.
+    function updateVectorGeometry3DFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var d = stateDef.vg || {};
+        var anim = d.animate || null;
+        var stateMs = (time - stateStartTime) * 1000;
+
+        // Knob resolution, in ONE funnel: an F21 ramp drives the authored
+        // value, and a TRUSTED teacher drag on that row seizes it for the
+        // rest of the state (the drag-seize pattern param_ramp and
+        // idle_auto_sweep already use — a teacher scrubbing theta is never
+        // fought by a ramp). THE EYE never drags, so a frozen frame always
+        // takes the closed-form branch and stays deterministic.
+        function knob(key, dflt, liveKey, dragKey) {
+            if (stateDef.show_sliders && window[dragKey] && window[liveKey] != null) return window[liveKey];
+            return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt));
+        }
+        var aMag = knob("a_mag", 3.0, "PM_vgAMag", "PM_vgAMagDragged");
+        var bMag = knob("b_mag", 2.0, "PM_vgBMag", "PM_vgBMagDragged");
+        var thetaDeg = knob("theta_deg", 60, "PM_vgTheta", "PM_vgThetaDragged");
+        var bTiltDeg = knob("b_tilt_deg", 0, "PM_vgBTilt", "PM_vgBTiltDragged");
+        var cMag = knob("c_mag", 2.0, "PM_vgCMag", "PM_vgCMagDragged");
+        var cThetaDeg = knob("c_theta_deg", 50, "PM_vgCTheta", "PM_vgCThetaDragged");
+        var cPhiDeg = knob("c_phi_deg", 65, "PM_vgCPhi", "PM_vgCPhiDragged");
+        // VG-C · the lines/planes knobs ride the SAME funnel: an F21 ramp
+        // drives the authored value and a trusted teacher drag on that row
+        // seizes it for the rest of the state. THE EYE never drags, so a frozen
+        // frame always takes the closed-form branch.
+        var LP_KNOBS = {
+            lambda: knob("lambda", 0.0, "PM_vgLambda", "PM_vgLambdaDragged"),
+            lambda_span: knob("lambda_span", 4.0, "PM_vgLambdaSpan", "PM_vgLambdaSpanDragged"),
+            half_extent: knob("half_extent", 3.0, "PM_vgHalfExtent", "PM_vgHalfExtentDragged"),
+            q_height: knob("q_height", 1.19, "PM_vgQHeight", "PM_vgQHeightDragged"),
+            line2_offset: knob("line2_offset", 0.0, "PM_vgLine2Offset", "PM_vgLine2OffsetDragged"),
+            theta_deg: thetaDeg,
+            aux_a: vgAnimValue(anim, "aux_a", stateMs, (d.aux_a != null ? d.aux_a : 0)),
+            aux_b: vgAnimValue(anim, "aux_b", stateMs, (d.aux_b != null ? d.aux_b : 0)),
+            // Δ10 — the frame reads the LIVE global, never the authored
+            // per-state value: a picker that updates a global the frame ignores
+            // is the recorded field3d_explore_picker_updates_global_but_frame_
+            // reads_authored_state_value scar.
+            scene_group: (typeof window.PM_vgSceneGroup === "string") ? window.PM_vgSceneGroup : null
+        };
+        var lpRes = null;
+        if (d.mode === "lines_planes") {
+            lpRes = vgResolveLinesPlanes(d, LP_KNOBS, stateMs);
+            vgWriteLinesPlanesFrame(lpRes);
+            window.PM_vgLinesPlanes = {
+                group: lpRes.group, readouts: lpRes.readouts,
+                lines: lpRes.lines.length, planes: lpRes.planes.length,
+                points: lpRes.points.length, segments: lpRes.segments.length
+            };
+        } else {
+            window.PM_vgLinesPlanes = null;
+            vgWriteLinesPlanesFrame({ lines: [], planes: [], points: [], segments: [], arcs: [], vectors: [], right_angle: null, readouts: {} });
+        }
+
+        var vec = vgBuildVectors({ a_mag: aMag, b_mag: bMag, theta_deg: thetaDeg, b_tilt_deg: bTiltDeg,
+                                   c_mag: cMag, c_theta_deg: cThetaDeg, c_phi_deg: cPhiDeg });
+        var a = vec.a, b = vec.b, c = vec.c;
+        var axb = vgCrossVec(a, b);
+
+        var revealMs = (d.reveal_ms != null) ? d.reveal_ms : 900;
+        var growT = stateDef.show_sliders ? 1 : Math.max(0, Math.min(1, stateMs / Math.max(1, revealMs)));
+        var ease = 1 - Math.pow(1 - growT, 3);   // ease-out cubic, never overshoots 1
+
+        // The per-element reveal fractions. Each defaults to the shared
+        // grow-in ease, so a state that authors nothing behaves exactly as
+        // before; authoring the field (or ramping it through animate[])
+        // takes that element off the shared reveal and onto its own beat.
+        var arcFrac = vgAnimValue(anim, "arc_reveal_frac", stateMs, (d.arc_reveal_frac != null ? d.arc_reveal_frac : ease));
+        var crossFrac = vgAnimValue(anim, "cross_reveal_frac", stateMs, (d.cross_reveal_frac != null ? d.cross_reveal_frac : ease));
+        var cFrac = vgAnimValue(anim, "c_reveal_frac", stateMs, (d.c_reveal_frac != null ? d.c_reveal_frac : ease));
+        // flip_frac turns a x b into b x a by ROTATING it 180 degrees about
+        // a-hat (which is perpendicular to a x b, so a half turn maps
+        // a x b exactly onto -(a x b) = b x a). A linear interpolation
+        // through zero would instead shrink the arrow to nothing and regrow
+        // it, which teaches the wrong thing about what reversing the order
+        // does.
+        var flipFrac = vgAnimValue(anim, "flip_frac", stateMs, (d.flip_frac != null ? d.flip_frac : 0));
+        var crossDrawn = flipFrac ? vgRotateAbout(axb, vgNormalize(a), Math.PI * flipFrac) : axb;
+
+        var ea = [a[0] * ease, a[1] * ease, a[2] * ease];
+        var eb = [b[0] * ease, b[1] * ease, b[2] * ease];
+        var ec = [c[0] * cFrac, c[1] * cFrac, c[2] * cFrac];
+        var eaxb = [crossDrawn[0] * crossFrac, crossDrawn[1] * crossFrac, crossDrawn[2] * crossFrac];
+
+        // ── D-5 · the solid's BUILD and SPLIT. Both default to the pre-D-5
+        //    behaviour when unauthored (fully built, unsplit), so every state
+        //    that only sets show_parallelepiped draws exactly what it drew
+        //    before these knobs existed. vgSplitPieces is a pure function of
+        //    the drawn vectors and the fraction — recomputed from scratch
+        //    every frame, nothing cached, so the frame is a closed form of
+        //    state-local ms all the way down (D3).
+        var solidFrac = vgAnimValue(anim, "solid_build_frac", stateMs, (d.solid_build_frac != null ? d.solid_build_frac : 1));
+        var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0));
+        var pieces = vgSplitPieces(ea, eb, ec, splitFrac, d.split_gap_k);
+
+        // ── Δ11 · the projection of b onto â, computed from the DRAWN a and b
+        //    (ea/eb) rather than the resolved ones, so the foot sits under the
+        //    arrow that is actually on screen at every point of the shared
+        //    grow-in instead of jumping into place when the reveal ends. At
+        //    full reveal ea/eb ARE a/b, so the drawn length is exactly
+        //    |b| cos θ — signed, and section 14 checks the sign.
+        var proj = d.show_projection ? vgProjectionOnto(ea, eb) : null;
+
+        // ── The camera (skeleton D-1). "authored" is the default and does
+        //    nothing here: applyState's generic camera_position ->
+        //    animateCameraTo path already owns it. The other two modes write
+        //    the spherical pose DIRECTLY, closed-form, and clear the
+        //    animating flag so the history-dependent glide cannot fight a
+        //    schedule that already knows where the camera belongs.
+        var camMode = d.camera_mode || "authored";
+        var camPose = null;
+        if (camMode === "steps") {
+            camPose = vgCamScheduleAt(d.camera_steps, stateMs, vgCamBaseFromState(stateDef));
+        } else if (camMode === "group") {
+            // Δ10 · a per-GROUP pose. The two groups solve to different poses,
+            // so the selector moves the camera with the scene it switches. The
+            // VALUES are authored: no pose measured on the sheared metric may
+            // be hardcoded here, and this file owns only the mechanism.
+            // Assigned directly (closed form, no history) exactly like
+            // auto_frame, so a SET_TIME_FREEZE pin reproduces byte-identically.
+            var gcams = d.group_cameras || {};
+            var gkey = LP_KNOBS.scene_group;
+            var gc = (gkey != null) ? gcams[gkey] : null;
+            if (gc && isFinite(gc.az) && isFinite(gc.el) && isFinite(gc.dist)) {
+                camPose = { az: gc.az, el: gc.el, dist: gc.dist, step: -1, moving: false };
+            }
+        } else if (camMode === "auto_frame") {
+            var apos = vgAutoFramePos(a, b, d.auto_frame_k);
+            if (apos) {
+                var adist = vgLenVec(apos);
+                camPose = {
+                    az: Math.atan2(apos[2], apos[0]) * 180 / Math.PI,
+                    el: Math.asin(Math.max(-1, Math.min(1, apos[1] / adist))) * 180 / Math.PI,
+                    dist: adist, step: -1, moving: false
+                };
+            }
+        }
+        if (camPose) {
+            targetSpherical.radius = camPose.dist;
+            targetSpherical.phi = Math.PI / 2 - camPose.el * Math.PI / 180;
+            targetSpherical.theta = camPose.az * Math.PI / 180;
+            spherical.radius = targetSpherical.radius;
+            spherical.phi = targetSpherical.phi;
+            spherical.theta = targetSpherical.theta;
+            animating = false;
+            updateCameraFromSpherical();
+        }
+        window.PM_vgCamPose = camPose ? { az: camPose.az, el: camPose.el, dist: camPose.dist } : null;
+
+        // ── F9 · the numeric VALUE readouts (authored vg.value_readouts —
+        //    a list of TOKENS, never the greyed slider rows of the fleet's
+        //    static_readouts), computed in 3D from the SAME a/b/c the meshes
+        //    are drawn from, so the number and the picture can never disagree.
+        window.PM_vgVectors = { a: a, b: b, c: c, axb: axb, theta_deg: thetaDeg, b_tilt_deg: bTiltDeg };
+        var rdEl = document.getElementById("vg_readout");
+        if (rdEl) {
+            var keys = d.value_readouts || [];
+            if (!keys.length) { rdEl.style.display = "none"; }
+            else {
+                // D-5's three come from the TRUE a/b/c, never from the split
+                // pieces: the whole claim of the decomposition is that none of
+                // these numbers moves while the solid does, so computing them
+                // off the sheared generator would make the readout agree with
+                // itself for the wrong reason.
+                var trip = vgDotVec(a, vgCrossVec(b, c));
+                var bcArea = vgLenVec(vgCrossVec(b, c));
+                var vals = {
+                    a_mag: vgLenVec(a), b_mag: vgLenVec(b), theta_deg: thetaDeg,
+                    a_dot_b: vgDotVec(a, b), cross_mag: vgLenVec(axb),
+                    a_dot_cross: vgDotVec(a, axb), b_dot_cross: vgDotVec(b, axb),
+                    triple: trip,
+                    volume: Math.abs(trip),
+                    base_area: bcArea,
+                    height: (bcArea > 1e-9) ? Math.abs(trip) / bcArea : 0
+                };
+                // VG-C — the lines/planes numbers come from the SAME resolved
+                // scene the meshes are drawn from, so the readout and the
+                // picture cannot disagree. Nothing is recomputed here from a
+                // second copy of the geometry.
+                // lpRes.readouts is the RESOLVER's internal token -> value bag
+                // (an implementation detail of vgResolveLinesPlanes, never an
+                // authored surface); it is merged into vals, and only the
+                // tokens the state named in vg.value_readouts get printed.
+                if (lpRes) {
+                    for (var rk in lpRes.readouts) {
+                        if (Object.prototype.hasOwnProperty.call(lpRes.readouts, rk)) vals[rk] = lpRes.readouts[rk];
+                    }
+                }
+                var html = "";
+                for (var ri = 0; ri < keys.length; ri++) {
+                    var line = vgReadoutLine(keys[ri], vals);
+                    if (line != null) html += '<div id="vg_readout_' + keys[ri] + '">' + line + "</div>";
+                }
+                rdEl.innerHTML = html;
+                rdEl.style.display = html ? "block" : "none";
+            }
+        }
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            if (ud.elementType === "vg_vector_a") {
+                var lenA = vgLenVec(ea);
+                if (lenA > 0.02) { o.setDirection(new THREE.Vector3(ea[0], ea[1], ea[2]).normalize()); o.setLength(Math.max(0.05, lenA), 0.24, 0.13); o.visible = true; }
+                else o.visible = false;
+            } else if (ud.elementType === "vg_vector_b") {
+                var lenB = vgLenVec(eb);
+                if (lenB > 0.02) { o.setDirection(new THREE.Vector3(eb[0], eb[1], eb[2]).normalize()); o.setLength(Math.max(0.05, lenB), 0.24, 0.13); o.visible = true; }
+                else o.visible = false;
+            } else if (ud.elementType === "vg_vector_c") {
+                if (d.show_c) {
+                    var lenC = vgLenVec(ec);
+                    if (lenC > 0.02) { o.setDirection(new THREE.Vector3(ec[0], ec[1], ec[2]).normalize()); o.setLength(Math.max(0.05, lenC), 0.24, 0.13); o.visible = true; }
+                    else o.visible = false;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_cross_vector") {
+                if (d.show_cross_vector) {
+                    var lenX = vgLenVec(eaxb);
+                    if (lenX > 0.02) { o.setDirection(new THREE.Vector3(eaxb[0], eaxb[1], eaxb[2]).normalize()); o.setLength(Math.max(0.05, lenX), 0.22, 0.12); o.visible = true; }
+                    else o.visible = false;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_angle_arc") {
+                if (d.show_angle_arc) {
+                    // Swept BETWEEN the live a-hat and b-hat (a great-circle
+                    // interpolation), never in a fixed world plane: the arc
+                    // must measure the angle it is drawn beside, including
+                    // when b_tilt_deg has taken b out of the xz-plane.
+                    var arcR = 0.7;
+                    var ua = vgNormalize(a), ub = vgNormalize(b);
+                    var arr = o.geometry.attributes.position.array;
+                    var segs = (arr.length / 3) - 1;
+                    var om = Math.acos(Math.max(-1, Math.min(1, vgDotVec(ua, ub))));
+                    for (var s = 0; s <= segs; s++) {
+                        var t = ((segs > 0) ? (s / segs) : 0) * arcFrac;
+                        var w0 = Math.sin((1 - t) * om), w1 = Math.sin(t * om);
+                        var pt = (om > 1e-6)
+                            ? vgNormalize([ua[0] * w0 + ub[0] * w1, ua[1] * w0 + ub[1] * w1, ua[2] * w0 + ub[2] * w1])
+                            : ua;
+                        arr[s * 3] = arcR * pt[0];
+                        arr[s * 3 + 1] = arcR * pt[1];
+                        arr[s * 3 + 2] = arcR * pt[2];
+                    }
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_parallelogram") {
+                if (d.show_parallelogram) {
+                    var verts = vgParallelogramVerts(ea, eb);
+                    var pgArr = o.geometry.attributes.position.array;
+                    for (var vi = 0; vi < 4; vi++) { pgArr[vi * 3] = verts[vi][0]; pgArr[vi * 3 + 1] = verts[vi][1]; pgArr[vi * 3 + 2] = verts[vi][2]; }
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_parallelepiped") {
+                // The FULL 6-face closed hexahedron is always written into the
+                // buffer; solid_build_frac only moves the DRAW RANGE, so the
+                // geometry is closed and valid at every value of the knob and
+                // a half-built solid is a solid whose later faces are not yet
+                // drawn — never a solid with broken vertices.
+                var nFaces = d.show_parallelepiped ? vgSolidFaceCount(solidFrac) : 0;
+                if (nFaces > 0) {
+                    var faces = pieces.faces;
+                    var ppArr = o.geometry.attributes.position.array;
+                    for (var fi = 0; fi < 6; fi++) {
+                        for (var vj = 0; vj < 4; vj++) {
+                            var idx = (fi * 4 + vj) * 3;
+                            ppArr[idx] = faces[fi][vj][0]; ppArr[idx + 1] = faces[fi][vj][1]; ppArr[idx + 2] = faces[fi][vj][2];
+                        }
+                    }
+                    o.geometry.setDrawRange(0, nFaces * 6);   // 2 triangles = 6 indices per face
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_base_face") {
+                if (d.show_parallelepiped && splitFrac > 0 && vgSolidFaceCount(solidFrac) > 0) {
+                    var bfArr = o.geometry.attributes.position.array;
+                    for (var bvi = 0; bvi < 4; bvi++) {
+                        bfArr[bvi * 3] = pieces.base_verts[bvi][0];
+                        bfArr[bvi * 3 + 1] = pieces.base_verts[bvi][1];
+                        bfArr[bvi * 3 + 2] = pieces.base_verts[bvi][2];
+                    }
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_height_seg") {
+                if (d.show_parallelepiped && splitFrac > 0 && pieces.height > 0.02 && vgSolidFaceCount(solidFrac) > 0) {
+                    var hsArr = o.geometry.attributes.position.array;
+                    for (var hsi = 0; hsi < 2; hsi++) {
+                        hsArr[hsi * 3] = pieces.height_seg[hsi][0];
+                        hsArr[hsi * 3 + 1] = pieces.height_seg[hsi][1];
+                        hsArr[hsi * 3 + 2] = pieces.height_seg[hsi][2];
+                    }
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_proj_seg") {
+                // The segment origin -> foot. vgPlaceTube writes the pose AND
+                // the visibility (and refuses a degenerate length), so at
+                // θ = 90° — where b·â is exactly 0 — the segment disappears
+                // rather than leaving a zero-length stub on screen. That is
+                // the picture the number 0.00 is claiming, so the two agree.
+                if (proj && Math.abs(proj.length) > 0.03) vgPlaceTube(o, [0, 0, 0], proj.foot, 0.05);
+                else o.visible = false;
+            } else if (ud.elementType === "vg_proj_drop") {
+                var dropLen = proj ? vgLenVec(vgSub(eb, proj.foot)) : 0;
+                if (proj && dropLen > 0.03) {
+                    var pdArr = o.geometry.attributes.position.array;
+                    pdArr[0] = eb[0]; pdArr[1] = eb[1]; pdArr[2] = eb[2];
+                    pdArr[3] = proj.foot[0]; pdArr[4] = proj.foot[1]; pdArr[5] = proj.foot[2];
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    // A dashed material re-measures its dash spacing from the
+                    // line distances, which every geometry rewrite invalidates
+                    // — without this the dashes stretch as the drop moves.
+                    if (o.computeLineDistances) o.computeLineDistances();
+                    o.visible = true;
+                } else o.visible = false;
+            } else if (ud.elementType === "vg_label") {
+                var tracks = ud.tracks, showLab = false, anchorEnd = null, labPos = null;
+                if (tracks === "vg_vector_a") { showLab = true; anchorEnd = ea; }
+                else if (tracks === "vg_vector_b") { showLab = true; anchorEnd = eb; }
+                else if (tracks === "vg_vector_c") { showLab = !!d.show_c; anchorEnd = ec; }
+                else if (tracks === "vg_cross_vector") {
+                    showLab = !!d.show_cross_vector; anchorEnd = eaxb;
+                    // Δ11 — the drawn arrow's OWN NAME, re-texted from the SAME
+                    // flip_frac that rotates it, so the label and the arrow
+                    // cannot disagree (bug_class field3d_vg_cross_arrow_label_
+                    // is_built_once_so_the_order_contrast_state_labels_b_cross_
+                    // a_as_a_cross_b: at flip_frac = 1 the drawn arrow IS b×a
+                    // and was still captioned a×b, in the one state whose
+                    // entire lesson is that the two differ). The _pmText guard
+                    // is the shipped vgLabelAt pattern: a redraw only when the
+                    // string actually changed, so a held pose costs nothing.
+                    var xLabTxt = vgCrossLabelText(flipFrac);
+                    if (o._pmText !== xLabTxt) updateLabelSpriteText(o, xLabTxt);
+                }
+                else if (tracks === "vg_proj_seg") {
+                    // Δ11 — the projection's name rides the MIDPOINT of the
+                    // segment, pushed to the side of the a-axis AWAY from b, so
+                    // it never sits on a's shaft (which the foot lies on by
+                    // construction) nor on the dashed drop.
+                    showLab = !!d.show_projection && !!proj && Math.abs(proj.length) > 0.03;
+                    if (showLab) {
+                        var perpOut = vgNormalize(vgSub(proj.foot, eb));
+                        labPos = [
+                            proj.foot[0] * 0.5 + perpOut[0] * 0.42,
+                            proj.foot[1] * 0.5 + perpOut[1] * 0.42,
+                            proj.foot[2] * 0.5 + perpOut[2] * 0.42
+                        ];
+                    }
+                }
+                else if (tracks === "vg_angle_arc") {
+                    showLab = !!d.show_angle_arc;
+                    // On the live bisector of a-hat and b-hat, so the theta
+                    // glyph sits inside the arc it names for every theta and
+                    // every tilt.
+                    var bis = vgNormalize(vgAddVec(vgNormalize(a), vgNormalize(b)));
+                    anchorEnd = (vgLenVec(bis) > 1e-6) ? [bis[0] * 0.95, bis[1] * 0.95, bis[2] * 0.95] : null;
+                }
+                if (showLab && labPos) {
+                    o.position.set(labPos[0], labPos[1], labPos[2]);
+                    o.visible = true;
+                } else if (showLab && anchorEnd && vgLenVec(anchorEnd) > 0.05) {
+                    var padVec = vgNormalize(anchorEnd);
+                    o.position.set(anchorEnd[0] + padVec[0] * 0.3, anchorEnd[1] + padVec[1] * 0.3, anchorEnd[2] + padVec[2] * 0.3);
+                    o.visible = true;
+                } else {
+                    o.visible = false;
+                }
+            }
+        }
+    }
+
+    // Per-frame brightness emphasis (Rule 29 — brightness only, never size).
+    function applyVectorGeometry3DGlow() {
+        if (config.scenario_type !== "vector_geometry_3d") return;
+        var glowActive = glowTargets.length > 0;
+        var glowT = glowEmphT(time);
+        function focal(t) { return glowTargets.indexOf(t) >= 0; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || !o.visible) continue;
+            if (ud.elementType === "vg_vector_a") applyGlowEmphasis(o, focal("a"), glowActive, glowT, true);
+            else if (ud.elementType === "vg_vector_b") applyGlowEmphasis(o, focal("b"), glowActive, glowT, true);
+            else if (ud.elementType === "vg_vector_c") applyGlowEmphasis(o, focal("c"), glowActive, glowT, true);
+            else if (ud.elementType === "vg_cross_vector") applyGlowEmphasis(o, focal("cross"), glowActive, glowT, true);
+            else if (ud.elementType === "vg_parallelogram") applyGlowEmphasis(o, focal("area"), glowActive, glowT);
+            else if (ud.elementType === "vg_parallelepiped") applyGlowEmphasis(o, focal("volume"), glowActive, glowT);
+            else if (ud.elementType === "vg_base_face") applyGlowEmphasis(o, focal("base"), glowActive, glowT);
+            else if (ud.elementType === "vg_height_seg") applyGlowEmphasis(o, focal("height"), glowActive, glowT, true);
+            // Δ11 — the projection pair answers to ONE focal token, because it
+            // is one thing on screen: naming the segment without the drop that
+            // finds it would dim half of the construction the state is
+            // pointing at (Rule 32e — one focal, and it is the whole object).
+            else if (ud.elementType === "vg_proj_seg" || ud.elementType === "vg_proj_drop") applyGlowEmphasis(o, focal("projection"), glowActive, glowT, true);
+            // VG-C · the lines/planes pool. The focal is addressed by the
+            // AUTHORED object id the pool member currently carries, so a state
+            // names "n" or "common_perp" and the mechanism finds whichever slot
+            // holds it this frame. Labels are excluded: a sprite's ink is not a
+            // material channel applyGlowEmphasis can dim without making the
+            // text unreadable at the exact moment the state points at it.
+            else if (ud.elementType.indexOf("vg_lp_") === 0 && ud.elementType.indexOf("_label") < 0) {
+                applyGlowEmphasis(o, focal(ud.vgId), glowActive, glowT,
+                    ud.elementType === "vg_lp_line" || ud.elementType === "vg_lp_seg" ||
+                    ud.elementType === "vg_lp_normal" || ud.elementType === "vg_lp_vec" ||
+                    ud.elementType === "vg_lp_dir");
+            }
+        }
     }
 
     // ════════════════════════════════════════════════════════════════════════
@@ -66601,6 +69381,1537 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ═══════════════════════════════════════════════════════════════════════
+    // solid_of_revolution — VOLUME BY INTEGRATION (MATHEMATICS, 2026-08-08).
+    //
+    //   SR-A builds: the scenario SHELL (build / apply / per-frame
+    //   update / glow), the CLOSED PROFILE ENUM (srF + its analytic antiderivatives),
+    //   the TICKED COORDINATE FRAME as flat 3D geometry with DOM tick numbers, the
+    //   PLANE REGION mesh, the value-only HUD, and the LOG-n RAMP.
+    //   SR-B adds: the theta sweep into a solid (SR5), the disc / ring stack with
+    //   its PUBLISHED volume total and its drawing cap (SR6 / SR-D3 / SR-D5), the
+    //   axis-of-revolution selector (SR7), the parameter sweep with drag-seize,
+    //   the mid-state camera schedule (SR14) and the screen-truth instrument.
+    //
+    //   SR-B — WHERE THE DISC TOTAL IS COMPUTED, AND WHY IT IS NOT INSIDE THE
+    //   PLACEMENT LOOP. The design (SR-D3) said the total is computed "inside the
+    //   loop that places the cylinders". That WORDING is unsatisfiable the moment
+    //   the cap engages: S5 runs n = 20 000 while max_discs_drawn is 120, so the
+    //   placement loop runs 120 times and a total computed there would be the sum
+    //   of 120 terms — the wrong number, on the one state whose whole claim is an
+    //   equality. What SR-D3 (and cartesian_plane's D11) actually BUYS is a
+    //   property: a primitive that computes a quantity while placing its own pixels
+    //   PUBLISHES it, never prints it, and NOTHING ELSE RECOMPUTES IT. That
+    //   property is what is honoured here. srDiscSum() is the ONE summation, called
+    //   ONCE per frame; it accumulates all n terms and returns, in the same pass,
+    //   the per-disc radii for the <= max_discs_drawn the picture actually draws.
+    //   ONE IMPLEMENTATION, TWO CONSUMERS — the HUD reads SR_PUB, the placement
+    //   loop reads place[]. There is no second sum anywhere and the gate asserts
+    //   that statically (one call site, and a HUD with no summation of its own).
+    //
+    //   SR-D5 — AND WHEN THE CAP ENGAGES THE CANVAS SAYS SO, STRUCTURALLY. A
+    //   picture drawn at 120 beside a number computed at 20 000 is a provenance
+    //   split; the sigma/pi scar is a slider reading 1.000 beside a HUD reading
+    //   0.000 in one frame. So the drawn-count line is NOT gated on the authored
+    //   readout list: whenever n_drawn < n the HUD emits it whether the state asked
+    //   for it or not. A declaration a state can forget to author is not a
+    //   declaration.
+    //
+    //   THE CAP BOUNDS COST, NEVER EXTENT (the paid-for F2 lesson from PCPL's
+    //   pcpl_riemann_bars_max_bars_drawn_truncates_the_partition_instead_of_
+    //   bounding_its_cost, fixed 2026-08-08). Keeping the FIRST 120 discs of
+    //   20 000 would draw a stack covering 0.6 % of the solid — a picture that
+    //   SHRINKS as n rises, the exact opposite of a convergence beat. The drawn
+    //   indices are an integer linspace over the full [0, n) range, anchored at
+    //   i = 0 and i = n-1, so the drawn stack spans the whole solid at every n.
+    //
+    //   WHY A CLOSED ENUM AND NOT AN EXPRESSION EVALUATOR (blocker 1, decided at
+    //   design time and implemented here rather than re-argued): every enum member
+    //   has an ANALYTIC integral of f squared, so the gate asserts the shipped
+    //   volume against a closed form to 1e-12. An evaluator forces numeric
+    //   quadrature, which cannot distinguish an engine bug from quadrature error —
+    //   on the one number this concept exists to produce. Secondary: an evaluator
+    //   is a fleet-wide Rule-40 platform change none of the other 59 scenarios has
+    //   ever asked for.
+    //
+    //   SR-D8 — AN UNKNOWN PROFILE FAMILY THROWS. There is no family || "power"
+    //   fallback anywhere in this block: a valid default is more dangerous than one
+    //   that throws, because a silently-wrong curve still draws a believable solid.
+    //   Same rule for mode, for readout keys and for glow keys — every enum here is
+    //   CLOSED and every miss is loud.
+    //
+    //   SR-D2 — NO ACCUMULATION. Every value is a pure function of state-local ms:
+    //   reveal fractions, the ramp, the sampled curve, the region strip, the tick
+    //   label screen positions. Nothing caches between frames and nothing derives a
+    //   count from a frame counter, so a SET_TIME_FREEZE re-pin to the same at_ms
+    //   redraws byte-identical pixels (Rule 26/36). This scenario is therefore in
+    //   the accumulator-free snap-to-pin set.
+    //
+    //   SR-D10 — the whole apparatus is authored in GRAPH coordinates and shifted
+    //   onto the world origin by srShiftX = -(domain0 + domain1) / 2, because the
+    //   camera TARGET is not authorable (the open MAJOR row
+    //   field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable).
+    //
+    //   TICK NUMBERS ARE DOM, NOT SPRITES (blocker 2). A world-space sprite cannot
+    //   control its glyph height in device px, decollides blind to the projection,
+    //   and is invisible to every DOM probe — three OPEN scars. The tick container
+    //   is a body child positioned per frame from nlbProjPx (:41833, already ships,
+    //   used 7x), which dissolves all three and rides Rule 39f widget discovery for
+    //   free (data-wg-label "Axis numbers").
+    // ═══════════════════════════════════════════════════════════════════════
+
+    // ── The CLOSED enums. Membership is checked, never defaulted (SR-D8). ──
+    var SR_MODES = { region: 1, sweep: 1, slice: 1, stack: 1, compare: 1, explore: 1 };
+    // With SR-B landed EVERY declared mode renders completely. The map is kept
+    // (rather than deleted with its staging note) because it is now a LIVE
+    // invariant: a future mode added to SR_MODES and not to this map renders the
+    // shared apparatus and nothing else, silently, and srWarnStage is what makes
+    // that loud. The gate asserts the two maps are equal.
+    var SR_MODES_COMPLETE = { region: 1, sweep: 1, slice: 1, stack: 1, compare: 1, explore: 1 };
+    var SR_FAMILIES = { power: 1, circle_arc: 1, sin: 1, exp: 1 };
+    // The sampling rule for the stack. CLOSED. This concept authors "left" in
+    // every state; "right" and "midpoint" ship because they cost one line each and
+    // because three independent closed forms through ONE placement loop is a far
+    // stronger check of that loop than one is.
+    //   HAZARD, DECLARED RATHER THAN DISCOVERED: on the authored profile f = sqrt x
+    //   the integrand f squared is LINEAR, so the MIDPOINT rule is EXACT (8pi at
+    //   every n) and its gap beat would be a lie. A state that teaches "the sum
+    //   approaches the volume" must author "left" on this profile. The engine will
+    //   not stop an author from writing "midpoint"; this comment and the gate's
+    //   own assertion that midpoint returns 8pi exactly are what make the trap
+    //   visible instead of surprising.
+    var SR_RULES = { left: 1, right: 1, midpoint: 1 };
+    // What a slice IS. CLOSED, and the third member is the WRONG one on purpose:
+    // M2 (a ring's area is pi(R - r) squared) is a misconception the design
+    // CONFRONTS by building it, reading 1.6755, and dissolving it. Shipping it as a
+    // named kind through the same summation is what makes the wrong number
+    // reproducible and gateable instead of hand-typed into a caption.
+    var SR_KINDS = { disc: 1, ring: 1, radius_difference: 1 };
+    // Which live parameter a state's own ramp drives. CLOSED.
+    var SR_RAMP_PARAMS = { x_cut: 1, r: 1, b: 1 };
+    // Readout keys. SR-B adds every quantity the nine states name.
+    var SR_READOUTS = {
+        area: 1, x_edge: 1, a: 1, b: 1, n: 1, V_exact: 1,
+        theta: 1, x_cut: 1, r: 1, face_area: 1, R: 1, r_inner: 1, ring_area: 1,
+        V_n: 1, gap: 1, discs_drawn: 1, V_about_x: 1, V_about_y: 1, V_wrong: 1
+    };
+    var SR_GLOW_KEYS = {
+        region: 1, curve: 1, inner_curve: 1, axis: 1, frame: 1, readout: 1, formula: 1,
+        solid: 1, disc: 1, stack: 1, ring_stack: 1, wrong_solid: 1
+    };
+
+    var SR_REGION_SAMPLES = 121;    // 120 quads across the domain
+    var SR_SURF_NU = 72;            // samples along the axis of revolution
+    var SR_SURF_NTH = 96;           // theta segments (3.75 deg) — the sweep's grain
+    var SR_DISC_SEG = 28;           // radial segments of one pooled disc
+    var SR_DISC_POOL = 120;         // pooled disc meshes; the cap can never exceed it
+    var SR_DEFAULT_MAX_DRAWN = 120; // a COST bound, not a physics choice (A1)
+    var SR_CURVE_TUB = 120;         // tubular segments of the pooled profile tube
+    var SR_CURVE_RADIAL = 6;
+    var SR_CURVE_RADIUS = 0.035;
+    var SR_AXIS_RADIUS = 0.020;
+    var SR_TICK_LEN = 0.11;
+    var SR_TICK_FONT_PX = 13;       // glyph height in DEVICE px — authored, which is
+                                    // the whole reason the numbers are not sprites
+    var SR_COLORS = {
+        outer: "#4FC3F7", inner: "#FFB74D", axis: "#ECEFF1",
+        region: "#4FC3F7", frame: "#78909C", tick: "#CFD8DC",
+        solid: "#4DD0E1", disc: "#B39DDB", wrong: "#EF5350"
+    };
+
+    // ── SR-D3 — THE PUBLICATION MAP ────────────────────────────────────────
+    //   A primitive that computes a quantity while placing its own pixels
+    //   PUBLISHES it, never prints it, and nothing else recomputes it. SR_PUB is
+    //   a dedicated frame-scoped map declared OUTSIDE every object another
+    //   concern owns and replaces (the sigma/pi topology: a slider reading 1.000
+    //   beside a HUD reading 0.000 in one frame), cleared unconditionally at the
+    //   top of every frame pass, written by the pass that places the pixels, and
+    //   read afterwards by the HUD writer only.
+    //   SR-A publishes n (from the ramp, the only quantity it places pixels for
+    //   the count of). SR-B publishes volume and n_drawn from the placement loop.
+    //   IT IS NEVER REASSIGNED — a fresh object would let a stale reference read
+    //   the old map, which is the erasure this indirection exists to prevent.
+    var SR_PUB = {};
+    function srPubClear() { for (var k in SR_PUB) { if (Object.prototype.hasOwnProperty.call(SR_PUB, k)) delete SR_PUB[k]; } }
+
+    var srShiftX = 0;               // graph x -> world x offset (SR-D10)
+    var srFrameGroup = null;        // axes + arrowheads + tick marks (rebuilt on apply)
+    var srRegionMesh = null;        // pooled triangle strip (rewritten per frame)
+    var srCurveMesh = null;         // pooled tube (rewritten per frame)
+    var srInnerCurveMesh = null;
+    var srAxisMesh = null;          // the axis of revolution, drawn brighter than the frame
+    var srTicks = [];               // [{gx, gy, text}] in GRAPH coords
+    var srTickNodes = [];           // the DOM divs, 1:1 with srTicks
+    var srStageWarned = {};
+    var srSurfOuter = null;         // SR5 — the swept skin (theta-major draw range)
+    var srSurfInner = null;         // the hole's skin: a ring's inner wall, or the
+                                    // bowl the y-axis revolution leaves
+    var srDiscPool = null;          // capped cylinders — solid discs
+    var srRingOutPool = null;       // open cylinders — a ring's outer wall
+    var srRingInPool = null;        // open cylinders — a ring's inner wall
+
+    function srWarnStage(mode) {
+        if (SR_MODES_COMPLETE[mode] === 1 || srStageWarned[mode]) return;
+        srStageWarned[mode] = 1;
+        if (typeof console !== "undefined" && console.warn) {
+            console.warn("[solid_of_revolution] mode " + mode + " renders the shared apparatus only until SR-B lands the sweep / stack / axis selector.");
+        }
+    }
+
+    // ── PURE, THREE-FREE HELPERS ───────────────────────────────────────────
+    //   These take and return plain numbers and touch no THREE symbol, which is
+    //   what lets check:solid-of-revolution pull the SHIPPED bodies out of the
+    //   template literal by brace matching and run them in node with no browser.
+    function srClamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+    function srClamp01(u) { return u < 0 ? 0 : (u > 1 ? 1 : u); }
+
+    function srProfileFamily(p, where) {
+        if (!p || typeof p !== "object") {
+            throw new Error("solid_of_revolution: missing profile block at " + where);
+        }
+        var fam = p.family;
+        if (SR_FAMILIES[fam] !== 1) {
+            throw new Error("solid_of_revolution: unknown profile family " + String(fam)
+                + " at " + where + " — the enum is CLOSED to power | circle_arc | sin | exp");
+        }
+        return fam;
+    }
+
+    // f(x). OUT OF DOMAIN RETURNS NON-FINITE, NEVER 0: a circle_arc clamped to 0
+    // outside its own radius draws a believable flat cap, and a believable wrong
+    // number is invisible where a NaN is not.
+    function srF(p, x) {
+        var fam = srProfileFamily(p, "srF");
+        var c = (p.c != null) ? p.c : 0;
+        if (fam === "power") {
+            var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1;
+            return a * Math.pow(x, ex) + c;
+        }
+        if (fam === "circle_arc") {
+            var r = p.r, u = x - ((p.x0 != null) ? p.x0 : 0);
+            return Math.sqrt(r * r - u * u) + c;
+        }
+        if (fam === "sin") {
+            return p.A * Math.sin(p.omega * x + ((p.phi != null) ? p.phi : 0)) + c;
+        }
+        return p.A * Math.exp(p.k * x) + c;
+    }
+
+    // Antiderivative of f — the region AREA between a profile and the axis.
+    function srAntiF(p, x) {
+        var fam = srProfileFamily(p, "srAntiF");
+        var c = (p.c != null) ? p.c : 0;
+        if (fam === "power") {
+            var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1;
+            if (Math.abs(ex + 1) < 1e-15) return a * Math.log(Math.abs(x)) + c * x;
+            return a * Math.pow(x, ex + 1) / (ex + 1) + c * x;
+        }
+        if (fam === "circle_arc") {
+            var r = p.r, u = x - ((p.x0 != null) ? p.x0 : 0);
+            return 0.5 * (u * Math.sqrt(r * r - u * u) + r * r * Math.asin(srClamp(u / r, -1, 1))) + c * u;
+        }
+        if (fam === "sin") {
+            var w = p.omega, ph = (p.phi != null) ? p.phi : 0;
+            if (Math.abs(w) < 1e-15) return (p.A * Math.sin(ph) + c) * x;
+            return -(p.A / w) * Math.cos(w * x + ph) + c * x;
+        }
+        var k = p.k;
+        if (Math.abs(k) < 1e-15) return (p.A + c) * x;
+        return (p.A / k) * Math.exp(k * x) + c * x;
+    }
+    function srIntegralF(p, x0, x1) { return srAntiF(p, x1) - srAntiF(p, x0); }
+
+    // Antiderivative of f SQUARED — the disc-method volume, over pi.
+    //   power:      a2 x^(2p+1)/(2p+1) + 2ac x^(p+1)/(p+1) + c2 x
+    //   circle_arc: (r2 u - u3/3) + c (u sqrt(r2-u2) + r2 asin(u/r)) + c2 u
+    //   sin:        A2 (x/2 - sin(2wx+2ph)/(4w)) - (2Ac/w) cos(wx+ph) + c2 x
+    //   exp:        A2 e^(2kx)/(2k) + 2Ac e^(kx)/k + c2 x
+    // The MIDDLE term of each is the cross-term 2 f_var c. Dropping it is the
+    // gate's section-2 negative control, because it is invisible whenever c = 0
+    // and every authored state in the first concept has c = 0.
+    function srAntiF2(p, x) {
+        var fam = srProfileFamily(p, "srAntiF2");
+        var c = (p.c != null) ? p.c : 0;
+        if (fam === "power") {
+            var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1;
+            var t1 = (Math.abs(2 * ex + 1) < 1e-15)
+                ? a * a * Math.log(Math.abs(x))
+                : a * a * Math.pow(x, 2 * ex + 1) / (2 * ex + 1);
+            var t2 = (Math.abs(ex + 1) < 1e-15)
+                ? 2 * a * c * Math.log(Math.abs(x))
+                : 2 * a * c * Math.pow(x, ex + 1) / (ex + 1);
+            return t1 + t2 + c * c * x;
+        }
+        if (fam === "circle_arc") {
+            var r = p.r, u = x - ((p.x0 != null) ? p.x0 : 0);
+            return (r * r * u - u * u * u / 3)
+                + c * (u * Math.sqrt(r * r - u * u) + r * r * Math.asin(srClamp(u / r, -1, 1)))
+                + c * c * u;
+        }
+        if (fam === "sin") {
+            var A = p.A, w = p.omega, ph = (p.phi != null) ? p.phi : 0;
+            if (Math.abs(w) < 1e-15) { var v0 = A * Math.sin(ph) + c; return v0 * v0 * x; }
+            return A * A * (x / 2 - Math.sin(2 * w * x + 2 * ph) / (4 * w))
+                - (2 * A * c / w) * Math.cos(w * x + ph) + c * c * x;
+        }
+        var k2 = p.k, A2 = p.A;
+        if (Math.abs(k2) < 1e-15) { var v1 = A2 + c; return v1 * v1 * x; }
+        return A2 * A2 * Math.exp(2 * k2 * x) / (2 * k2)
+            + 2 * A2 * c * Math.exp(k2 * x) / k2 + c * c * x;
+    }
+    function srIntegralF2(p, x0, x1) { return srAntiF2(p, x1) - srAntiF2(p, x0); }
+
+    // ── SR7 — THE OTHER AXIS. It needs the profile's INVERSE, and the inverse is
+    //   where a closed enum stops being free.
+    //   Revolving the region under y = f(x), x in [x0, x1], about the Y axis makes
+    //   a solid whose slice at HEIGHT y is the annulus from the curve out to the
+    //   far edge: outer radius x1 (constant), inner radius f-inverse(y). So the
+    //   stack along y needs x(y), not y(x).
+    //   ONLY "power" IS INVERTED, AND THE OTHERS THROW. circle_arc and sin are not
+    //   one-to-one on the domains this concept authors — a semicircle has two x for
+    //   every y — so an inverse for them is a CHOICE of branch, and a silently
+    //   chosen branch draws a believable wrong bowl. exp IS monotone and could be
+    //   inverted in three lines, but no state authors it and an unrendered
+    //   GEOMETRY path is not the same purchase as an unrendered numeric family:
+    //   the enum argument (b-i) is that a family contributes numbers, not pixels,
+    //   and an inverse contributes pixels. So the y axis is bought for power and
+    //   declared not bought for the rest, loudly.
+    function srInvF(p, y) {
+        var fam = srProfileFamily(p, "srInvF");
+        if (fam !== "power") {
+            throw new Error("solid_of_revolution: axis \\u0027y\\u0027 needs an invertible profile — "
+                + fam + " is not one-to-one on an authored domain; only power is inverted");
+        }
+        var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1, c = (p.c != null) ? p.c : 0;
+        return Math.pow((y - c) / a, 1 / ex);
+    }
+    // Antiderivative of (f-inverse) SQUARED, in y — the hole the y-revolution
+    // leaves. x(y) squared = ((y-c)/a)^(2/p), so its integral is
+    // a^(-2/p) (y-c)^(2/p+1) / (2/p+1), with the usual log branch at 2/p + 1 = 0.
+    function srAntiInvF2(p, y) {
+        srInvF(p, y);                       // the same family gate, same error
+        var a = (p.a != null) ? p.a : 1, ex = (p.p != null) ? p.p : 1, c = (p.c != null) ? p.c : 0;
+        var q = 2 / ex;
+        // q = -1 (that is p = -2) is the log branch: integral of a/(y-c) dy.
+        if (Math.abs(q + 1) < 1e-15) return a * Math.log(Math.abs(y - c));
+        return Math.pow(a, -q) * Math.pow(y - c, q + 1) / (q + 1);
+    }
+
+    // ── THE STACK SPAN — one description of "what is stacked, over what, between
+    //   which two radii", so that ONE summation serves both axes (SR7) and all
+    //   three kinds (SR6 + the wrong solid). Pure: numbers in, numbers out.
+    //     axis x: u = x over [x0, x1];  R(u) = f(u),  r(u) = g(u) or 0
+    //     axis y: u = y over [0, f(x1)]; R(u) = x1,   r(u) = max(x0, f-inverse(u))
+    //   (the clamp is what keeps a domain starting away from the origin honest:
+    //   below y = f(x0) the slice is the full annulus from x0 to x1).
+    function srStackSpan(outer, inner, x0, x1, axis) {
+        if (axis === "y") {
+            var yTop = srF(outer, x1), yBot = srF(outer, x0);
+            return { u0: 0, u1: yTop, yBot: yBot, axis: "y", x0: x0, x1: x1, outer: outer, inner: null };
+        }
+        return { u0: x0, u1: x1, yBot: 0, axis: "x", x0: x0, x1: x1, outer: outer, inner: inner };
+    }
+    function srSpanOuterR(sp, u) { return (sp.axis === "y") ? sp.x1 : srF(sp.outer, u); }
+    function srSpanInnerR(sp, u) {
+        if (sp.axis === "y") return (u <= sp.yBot) ? sp.x0 : Math.max(sp.x0, srInvF(sp.outer, u));
+        return sp.inner ? srF(sp.inner, u) : 0;
+    }
+
+    // ── SR-D3 / SR6 — THE ONE SUMMATION. Called ONCE per frame. It accumulates
+    //   ALL n terms and returns, in the SAME pass, the placements for the discs
+    //   that are actually drawn. Nothing else in this renderer computes a disc
+    //   total; the HUD reads what this publishes.
+    //
+    //   COMPENSATED (Neumaier) SUMMATION, with its justification MEASURED rather
+    //   than estimated. The first draft of this comment claimed naive accumulation
+    //   drifts ~1.5e-10 at the n = 20 000 S5 authors; that was a worst-case
+    //   estimate and it is wrong by three orders. Measured: naive drifts 1.2e-13
+    //   at n = 20 000, which would have PASSED the gate's 1e-12 tolerance.
+    //   Compensation is kept anyway, for what it actually buys — the shipped sum
+    //   holds <= 7e-15 (a 17x margin at the authored n) and stays inside 1e-12 out
+    //   to n ~ 2e7, where naive crosses it (1.27e-12, measured). So the tolerance
+    //   is a property of the summation, not of the particular n someone authored.
+    //
+    //   THE DRAWN SUBSET IS AN INTEGER LINSPACE OVER [0, n), never the first
+    //   maxDrawn indices (the PCPL F2 lesson: a cap must bound COST, not EXTENT).
+    function srDiscSum(spec) {
+        var outer = spec.outer, inner = spec.inner || null;
+        var x0 = spec.x0, x1 = spec.x1;
+        var axis = (spec.axis === "y") ? "y" : "x";
+        var rule = spec.rule, kind = spec.kind;
+        if (SR_RULES[rule] !== 1) {
+            throw new Error("solid_of_revolution: unknown disc rule " + String(rule)
+                + " — the enum is CLOSED to left | right | midpoint");
+        }
+        if (SR_KINDS[kind] !== 1) {
+            throw new Error("solid_of_revolution: unknown slice kind " + String(kind)
+                + " — the enum is CLOSED to disc | ring | radius_difference");
+        }
+        var n = Math.round(spec.n);
+        var out = { volume: 0, n: n, n_drawn: 0, du: 0, u0: 0, u1: 0, axis: axis, place: [] };
+        if (!(n >= 1)) return out;
+        var sp = srStackSpan(outer, inner, x0, x1, axis);
+        var u0 = sp.u0, u1 = sp.u1;
+        if (!isFinite(u0) || !isFinite(u1) || !(u1 > u0)) return out;
+        var du = (u1 - u0) / n;
+        out.du = du; out.u0 = u0; out.u1 = u1;
+
+        var cap = (spec.max_drawn != null) ? Math.round(spec.max_drawn) : SR_DEFAULT_MAX_DRAWN;
+        cap = srClamp(cap, 0, Math.min(n, SR_DISC_POOL));
+        var keep = null;                       // null = draw every index
+        if (cap < n) {
+            keep = {};
+            if (cap >= 1) keep[0] = 1;         // the left end, always
+            for (var k = 1; k < cap; k++) keep[Math.round(k * (n - 1) / (cap - 1))] = 1;
+        }
+
+        var off = (rule === "right") ? 1 : (rule === "midpoint" ? 0.5 : 0);
+        var sum = 0, comp = 0;                 // Neumaier accumulator
+        for (var i = 0; i < n; i++) {
+            var u = u0 + (i + off) * du;
+            var R = srSpanOuterR(sp, u), ri = srSpanInnerR(sp, u);
+            if (!isFinite(R)) R = 0;
+            if (!isFinite(ri)) ri = 0;
+            var term;
+            if (kind === "disc") term = R * R;
+            else if (kind === "ring") term = R * R - ri * ri;
+            else term = (R - ri) * (R - ri);   // the WRONG reading, built on purpose
+            var t = sum + term;
+            comp += (Math.abs(sum) >= Math.abs(term)) ? ((sum - t) + term) : ((term - t) + sum);
+            sum = t;
+            if (keep === null || keep[i] === 1) {
+                // the drawn disc sits on the SAMPLED radius but spans its own slab,
+                // so the picture and the number describe the same partition
+                out.place.push({ i: i, u: u0 + i * du, u_mid: u0 + (i + 0.5) * du, R: R, r: ri });
+            }
+        }
+        out.volume = Math.PI * du * (sum + comp);
+        out.n_drawn = out.place.length;
+        return out;
+    }
+
+    // The EXACT volume, from the closed forms — never a sum. About x it is
+    // pi(integral f^2 - integral g^2); about y it is pi(x1^2 * height - integral
+    // of the inverse squared). This is not a "disc total": it is the limit the
+    // disc total approaches, and the two are deliberately different computations
+    // because the state that shows them side by side is showing exactly that.
+    function srExactVolume(outer, inner, x0, x1, axis) {
+        if (axis === "y") {
+            var yTop = srF(outer, x1), yBot = srF(outer, x0);
+            var holeLow = x0 * x0 * Math.max(0, yBot);           // the flat annulus below f(x0)
+            var holeHigh = srAntiInvF2(outer, yTop) - srAntiInvF2(outer, Math.max(yBot, 0));
+            return Math.PI * (x1 * x1 * yTop - holeLow - holeHigh);
+        }
+        return Math.PI * (srIntegralF2(outer, x0, x1) - (inner ? srIntegralF2(inner, x0, x1) : 0));
+    }
+
+    // ── THE SCREEN-TRUTH INSTRUMENT (SR-D1 / the concept's own trap, section 3b).
+    //   Projection preserves neither angle nor circle: the disc face S3 exists to
+    //   call a circle projects to an ellipse, and a camera that reads well at the
+    //   authored pose can be a lie at the far end of the disc's travel.
+    //   These are PURE and THREE-free so the gate can score any candidate pose
+    //   against them. NO POSE IS HARDCODED, DEFAULTED OR ASSUMED ANYWHERE IN THIS
+    //   RENDERER — poses are authored JSON; this is only the ruler.
+    //
+    //   IT RETURNS BOTH UNIT SYSTEMS, AND THAT IS THE POINT. tx/ty are ISOTROPIC
+    //   tangent-plane units (x and y scaled identically) — the only units in which
+    //   a screen ANGLE or a SHAPE ratio is meaningful. ndcX/ndcY carry the aspect
+    //   ratio and are the only units in which FRAME FILL is meaningful. The wave's
+    //   central defect was a helper that returned NDC and was used for angles,
+    //   shearing every measured angle by 1.78x at 16:9 — inside the gate written
+    //   to catch projection defects.
+    function srProjectPoint(cam, target, fovDeg, aspect, px, py, pz) {
+        var zx = cam[0] - target[0], zy = cam[1] - target[1], zz = cam[2] - target[2];
+        var zl = Math.sqrt(zx * zx + zy * zy + zz * zz) || 1;
+        zx /= zl; zy /= zl; zz /= zl;
+        // right = up x z, with the renderer's own world up (0, 1, 0)
+        var xx = 1 * zz - 0 * zy, xy = 0 * zx - 0 * zz, xz = 0 * zy - 1 * zx;
+        var xl = Math.sqrt(xx * xx + xy * xy + xz * xz);
+        if (xl < 1e-12) { xx = 1; xy = 0; xz = 0; xl = 1; }
+        xx /= xl; xy /= xl; xz /= xl;
+        var yx = zy * xz - zz * xy, yy = zz * xx - zx * xz, yz = zx * xy - zy * xx;
+        var vx = px - cam[0], vy = py - cam[1], vz = pz - cam[2];
+        var a = vx * xx + vy * xy + vz * xz;
+        var b = vx * yx + vy * yy + vz * yz;
+        var d = -(vx * zx + vy * zy + vz * zz);        // depth, positive in front
+        var tx = a / d, ty = b / d;                     // ISOTROPIC
+        var th = Math.tan(fovDeg * Math.PI / 360);
+        return { tx: tx, ty: ty, depth: d, ndcX: tx / (th * aspect), ndcY: ty / th, behind: d <= 0 };
+    }
+    // The screen angle between two WORLD directions anchored at a point, measured
+    // in isotropic units (never NDC). Pairwise, because a per-object metric cannot
+    // see two objects collapsing onto each other.
+    function srPairwiseScreenSeparationDeg(cam, target, fovDeg, aspect, anchor, dirA, dirB) {
+        function screenDir(dir) {
+            var p0 = srProjectPoint(cam, target, fovDeg, aspect, anchor[0], anchor[1], anchor[2]);
+            var s = 1e-3;
+            var p1 = srProjectPoint(cam, target, fovDeg, aspect,
+                anchor[0] + dir[0] * s, anchor[1] + dir[1] * s, anchor[2] + dir[2] * s);
+            return [p1.tx - p0.tx, p1.ty - p0.ty];
+        }
+        var A = screenDir(dirA), B = screenDir(dirB);
+        var la = Math.sqrt(A[0] * A[0] + A[1] * A[1]), lb = Math.sqrt(B[0] * B[0] + B[1] * B[1]);
+        if (la < 1e-15 || lb < 1e-15) return 0;
+        var cosv = srClamp((A[0] * B[0] + A[1] * B[1]) / (la * lb), -1, 1);
+        var deg = Math.acos(cosv) * 180 / Math.PI;
+        return (deg > 90) ? 180 - deg : deg;            // an unsigned separation
+    }
+
+    // ── SR10 — THE RAMP. IT IS LINEAR, DECLARED RATHER THAN INHERITED. ─────
+    //   It clones capRamp's CLOCK discipline (:6678 — a pure function of
+    //   state-local ms, no accumulation, SET_TIME_FREEZE-reproducible) and
+    //   explicitly NOT capRamp's capSmooth01 easing (:6672). The ramped variable
+    //   advances linearly in its OWN parameter (log10 n, x, r, b, theta) and
+    //   pacing is carried by the authored holds[], not by easing. The reason is a
+    //   teaching claim: each decade of n must cost the same screen time, and an
+    //   eased ramp makes the first and last decades slower than the middle ones —
+    //   a rate the narration does not claim.
+    //
+    //   HOLD SEMANTICS, fixed so a pin is computable from the timing table alone:
+    //   duration_ms is the total WALL span INCLUDING holds; holds[{at_ms, hold_ms}]
+    //   are wall times measured from start_ms; the ADVANCING span is
+    //   duration_ms - sum(hold_ms); and the fraction at wall time t is
+    //   (t - start_ms - elapsed holds) / advancing span.
+    //   (t is STATE-LOCAL MILLISECONDS here, unlike capRamp whose t is seconds.)
+    function srHoldTotal(holds) {
+        var s = 0, hs = holds || [];
+        for (var i = 0; i < hs.length; i++) s += Math.max(0, (hs[i] && hs[i].hold_ms) || 0);
+        return s;
+    }
+    function srRampFrac(tMs, startMs, durationMs, holds) {
+        var w = tMs - ((startMs != null) ? startMs : 0);
+        var dur = Math.max(1e-9, (durationMs != null) ? durationMs : 1);
+        if (w <= 0) return 0;
+        if (w >= dur) return 1;
+        var hs = holds || [];
+        var adv = Math.max(1e-9, dur - srHoldTotal(hs));
+        var held = 0;
+        for (var i = 0; i < hs.length; i++) {
+            var h = hs[i]; if (!h) continue;
+            var at = h.at_ms || 0, hm = Math.max(0, h.hold_ms || 0);
+            if (w > at) held += Math.min(hm, w - at);
+        }
+        return srClamp01((w - held) / adv);
+    }
+    function srRamp(tMs, startMs, durationMs, from, to, holds) {
+        return from + (to - from) * srRampFrac(tMs, startMs, durationMs, holds);
+    }
+    // A LINEAR n-ramp is useless — the interesting decades flash past. Every
+    // sweeping state ramps log10 n and rounds. At 50 % of ADVANCING progress this
+    // gives n = 63 (the geometric mid of 4 and 1000); a linear ramp gives 502, and
+    // reaches n = 8 at 0.402 % of the same clock against this ramp's 12.55 %.
+    function srRampN(frac, log10From, log10To) {
+        return Math.max(1, Math.round(Math.pow(10, log10From + (log10To - log10From) * srClamp01(frac))));
+    }
+
+    // SR5 — the sweep angle, closed form on state-local ms. A state with no
+    // theta_ramp is not mid-sweep: mode "region" has no solid at all (0 degrees),
+    // every other mode shows the CLOSED solid (360). There is no "partly swept
+    // because nobody said" state.
+    function srThetaDeg(sr, tMs) {
+        var tr = sr.theta_ramp;
+        if (!tr) return (sr.mode === "region") ? 0 : 360;
+        var f = srRampFrac(tMs, tr.start_ms, tr.duration_ms, tr.holds);
+        var a0 = (tr.from_deg != null) ? tr.from_deg : 0;
+        var a1 = (tr.to_deg != null) ? tr.to_deg : 360;
+        return a0 + (a1 - a0) * f;
+    }
+
+    // Quantise a live value to ITS OWN SLIDER STEP, on every path that can set it.
+    //   This is load-bearing on S5 and it is not a cosmetic rounding. That state
+    //   claims the disc total and (4/3)pi r cubed print the SAME four decimals at
+    //   every radius it can reach. Quantising r to its authored step makes the
+    //   reachable set exactly 101 values instead of a continuum — which does not
+    //   make the claim TRUE (n does that), it makes it PROVABLE: the gate asserts
+    //   the rendered strings over the whole finite set rather than sampling it.
+    //   Both drive paths quantise: the slider input handler and the ramp below.
+    function srQuant(name, v) {
+        var sc = (config.slider_controls || {})[name];
+        var st = (sc && sc.step != null) ? sc.step : 0;
+        if (!(st > 0) || !isFinite(v)) return v;
+        return Math.round(v / st) * st;
+    }
+
+    // The per-state PARAMETER SWEEP (x_cut / r / b), closed form on state-local ms
+    // and QUANTISED to the slider step.
+    //   NAME NOTE, so a reader is not trapped by it: field_3d already carries three
+    //   per-scenario param_ramp blocks (newtons_laws_body, force_rig,
+    //   rigid_body_rotation) — the mechanism is a REPEATED PATTERN in this
+    //   renderer, never a shared helper, so this is a local clone and not a
+    //   refactor of a sealed sibling. The field name is kept for recognition; the
+    //   TIMING CONTRACT is this scenario's own (start_ms + duration_ms + holds,
+    //   like theta_ramp and n_ramp beside it) and deliberately NOT the fleet's
+    //   start_ms/end_ms, because a state's three ramps must be readable as one
+    //   timing table.
+    function srParamRamp(sr, tMs) {
+        var pr = sr.param_ramp;
+        if (!pr) return null;
+        if (SR_RAMP_PARAMS[pr.param] !== 1) {
+            throw new Error("solid_of_revolution: unknown param_ramp target " + String(pr.param)
+                + " — the enum is CLOSED to x_cut | r | b");
+        }
+        var f = srRampFrac(tMs, pr.start_ms, pr.duration_ms, pr.holds);
+        var v0 = (pr.from != null) ? pr.from : 0, v1 = (pr.to != null) ? pr.to : 1;
+        return { param: pr.param, value: srQuant(pr.param, v0 + (v1 - v0) * f) };
+    }
+
+    // ── formatting: the -0.000 clamp, applied BEFORE toFixed ────────────────
+    function srFmt(v, dp) {
+        var d = (dp != null) ? dp : 4;
+        if (!isFinite(v)) return "—";
+        if (Math.abs(v) < 0.5 * Math.pow(10, -d)) v = 0;
+        return v.toFixed(d);
+    }
+    // Sparse, integer-by-default tick VALUES over [lo, hi] at the authored step,
+    // walked from 0 outward so the origin always carries a mark (the pre-fix
+    // cartesian_plane enumerator walked from rangeMin and left a gap at 0).
+    function srTickValues(lo, hi, step) {
+        var out = [], s = Math.abs(step) > 1e-9 ? Math.abs(step) : 1;
+        var i0 = Math.ceil(lo / s - 1e-9), i1 = Math.floor(hi / s + 1e-9);
+        for (var i = i0; i <= i1; i++) out.push(i * s);
+        return out;
+    }
+
+    // ── the per-state block, validated once, no defaults on the closed enums ──
+    function srBlock(stateDef, where) {
+        var sr = stateDef && stateDef.sr;
+        if (!sr) throw new Error("solid_of_revolution: state carries no sr block at " + where);
+        if (SR_MODES[sr.mode] !== 1) {
+            throw new Error("solid_of_revolution: unknown mode " + String(sr.mode)
+                + " — the enum is CLOSED to region | sweep | slice | stack | compare | explore");
+        }
+        if (sr.axis != null && sr.axis !== "x" && sr.axis !== "y") {
+            throw new Error("solid_of_revolution: unknown axis " + String(sr.axis) + " — x | y only");
+        }
+        return sr;
+    }
+    function srDomain(sr) {
+        var d = sr.domain || [0, 1];
+        var lo = d[0], hi = d[1];
+        // S8 / S9 ramp the far end b, so the LIVE value wins over the authored one
+        // (a frame that reads the authored value while the picker moved the global
+        // is the explore-picker scar).
+        if (window.PM_srB != null) hi = window.PM_srB;
+        return [lo, hi];
+    }
+    function srOuter(sr) {
+        var p = sr.outer;
+        srProfileFamily(p, "sr.outer");
+        if (p.family === "power" && window.PM_srA != null) {
+            return { family: "power", a: window.PM_srA, p: p.p, c: p.c };
+        }
+        if (p.family === "circle_arc" && window.PM_srR != null) {
+            return { family: "circle_arc", r: window.PM_srR, x0: p.x0, c: p.c };
+        }
+        return p;
+    }
+    function srInner(sr) {
+        if (!sr.inner) return null;
+        srProfileFamily(sr.inner, "sr.inner");
+        return sr.inner;
+    }
+
+    // ── REVEAL BEATS. Every one is cue-bindable through cueTriggerMs so a pacing
+    //    trim retimes the picture with the narration instead of desyncing from it
+    //    (a bare hardcoded *_at_ms is the fleet's one-shot desync scar).
+    function srRevealWin(sr, key, defAt, defDur) {
+        var rv = sr.reveal || {};
+        var at = cueTriggerMs("sr_" + key, (rv[key + "_at_ms"] != null) ? rv[key + "_at_ms"] : defAt);
+        var dur = (rv[key + "_ms"] != null) ? rv[key + "_ms"] : defDur;
+        return { at: at, dur: Math.max(1, dur) };
+    }
+
+    // ── BUILD ──────────────────────────────────────────────────────────────
+    function srDisposeGroup(g) {
+        if (!g) return;
+        g.traverse(function (o) {
+            if (o.geometry && o.geometry.dispose) o.geometry.dispose();
+            if (o.material && o.material.dispose) o.material.dispose();
+        });
+        if (g.parent) g.parent.remove(g);
+        for (var i = sceneObjects.length - 1; i >= 0; i--) if (sceneObjects[i] === g) sceneObjects.splice(i, 1);
+    }
+
+    // A pooled tube whose vertices are REWRITTEN per frame. The curve is planar in
+    // z = 0, so the tube frame is the constant pair (in-plane normal, +z) rather
+    // than a Frenet frame — no allocation, no per-frame geometry churn, and the
+    // vertex order matches TubeGeometry so setDrawRange still reveals it left to
+    // right one segment at a time.
+    function srMakeTube(color) {
+        var tub = SR_CURVE_TUB, rad = SR_CURVE_RADIAL;
+        var vCount = (tub + 1) * (rad + 1);
+        var pos = new Float32Array(vCount * 3);
+        var idx = [];
+        for (var i = 1; i <= tub; i++) {
+            for (var j = 1; j <= rad; j++) {
+                var a = (rad + 1) * (i - 1) + (j - 1);
+                var b = (rad + 1) * i + (j - 1);
+                var c = (rad + 1) * i + j;
+                var d = (rad + 1) * (i - 1) + j;
+                idx.push(a, b, d, b, c, d);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        geo.setIndex(idx);
+        var mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: hexToThreeColor(color) }));
+        return mesh;
+    }
+    function srWriteTube(mesh, pts, radius, drawSegments) {
+        var tub = SR_CURVE_TUB, rad = SR_CURVE_RADIAL;
+        var pos = mesh.geometry.attributes.position.array;
+        var n = pts.length;
+        for (var i = 0; i <= tub; i++) {
+            var k = Math.min(n - 1, i);
+            var px = pts[k][0], py = pts[k][1];
+            // tangent from the neighbouring samples, in-plane normal = perp(tangent)
+            var kA = Math.max(0, k - 1), kB = Math.min(n - 1, k + 1);
+            var tx = pts[kB][0] - pts[kA][0], ty = pts[kB][1] - pts[kA][1];
+            var tl = Math.sqrt(tx * tx + ty * ty) || 1;
+            var nx = -ty / tl, ny = tx / tl;
+            for (var j = 0; j <= rad; j++) {
+                var v = j / rad * Math.PI * 2;
+                var cv = Math.cos(v), sv = Math.sin(v);
+                var o = ((rad + 1) * i + j) * 3;
+                pos[o] = px + radius * cv * nx;
+                pos[o + 1] = py + radius * cv * ny;
+                pos[o + 2] = radius * sv;
+            }
+        }
+        mesh.geometry.attributes.position.needsUpdate = true;
+        var segs = Math.max(0, Math.min(tub, Math.round(drawSegments)));
+        mesh.geometry.setDrawRange(0, segs * rad * 6);
+        mesh.visible = segs > 0;
+    }
+
+    function srMakeRegion(color) {
+        var quads = SR_REGION_SAMPLES - 1;
+        var pos = new Float32Array(quads * 6 * 3);
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        var mat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: 0.34,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        return new THREE.Mesh(geo, mat);
+    }
+    // The region between the outer profile and either the inner profile or the
+    // axis, as a triangle strip rebuilt from scratch every frame (SR-D2).
+    function srWriteRegion(mesh, outer, inner, x0, x1, fillFrac) {
+        var pos = mesh.geometry.attributes.position.array;
+        var quads = SR_REGION_SAMPLES - 1;
+        var span = (x1 - x0) * srClamp01(fillFrac);
+        var wrote = 0;
+        for (var q = 0; q < quads; q++) {
+            var xa = x0 + span * (q / quads), xb = x0 + span * ((q + 1) / quads);
+            var ya = srF(outer, xa), yb = srF(outer, xb);
+            var la = inner ? srF(inner, xa) : 0, lb = inner ? srF(inner, xb) : 0;
+            if (!isFinite(ya) || !isFinite(yb) || !isFinite(la) || !isFinite(lb)) continue;
+            var o = wrote * 18;
+            pos[o] = xa; pos[o + 1] = la; pos[o + 2] = 0;
+            pos[o + 3] = xb; pos[o + 4] = lb; pos[o + 5] = 0;
+            pos[o + 6] = xb; pos[o + 7] = yb; pos[o + 8] = 0;
+            pos[o + 9] = xa; pos[o + 10] = la; pos[o + 11] = 0;
+            pos[o + 12] = xb; pos[o + 13] = yb; pos[o + 14] = 0;
+            pos[o + 15] = xa; pos[o + 16] = ya; pos[o + 17] = 0;
+            wrote++;
+        }
+        mesh.geometry.attributes.position.needsUpdate = true;
+        mesh.geometry.setDrawRange(0, wrote * 6);
+        mesh.visible = wrote > 0;
+    }
+
+    // ── SR5 — THE REVOLUTION SURFACE, with a PARTIAL-THETA REVEAL. ────────────
+    //   A pooled (NTH+1) x (NU+1) grid whose vertices are rewritten every frame.
+    //   THE INDEX ORDER IS THETA-MAJOR, and that is the entire mechanism: with
+    //   every quad of theta-ring t contiguous, setDrawRange(0, sweptRings * NU * 6)
+    //   reveals the surface as an ANGLE, one ring at a time, with no geometry
+    //   rebuild and no second mesh. (The technique — reveal by draw range rather
+    //   than by rebuilding — is the renderer's own, used by acgThetaArc :26065 and
+    //   by the trail meshes; what is new here is applying it to a surface of
+    //   revolution, which no scenario in this file draws. Rule 40a on the
+    //   mechanism, not just the symbol: LatheGeometry appears NOWHERE in any
+    //   renderer, and there is no existing lathe / surface-of-revolution builder
+    //   to call.)
+    function srMakeSurface(color, opacity) {
+        var nu = SR_SURF_NU, nth = SR_SURF_NTH;
+        var pos = new Float32Array((nth + 1) * (nu + 1) * 3);
+        var idx = [];
+        for (var t = 0; t < nth; t++) {
+            for (var u = 0; u < nu; u++) {
+                var a = t * (nu + 1) + u, b = (t + 1) * (nu + 1) + u;
+                idx.push(a, b, a + 1, b, b + 1, a + 1);
+            }
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        geo.setIndex(idx);
+        var mat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: opacity,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        return new THREE.Mesh(geo, mat);
+    }
+    // radiusAt(u) is handed in, so ONE writer draws the outer skin, the inner skin
+    // of a ring, and the bowl the y axis makes, with no branch of its own.
+    function srWriteSurface(mesh, u0, u1, axis, radiusAt, thetaDeg) {
+        var nu = SR_SURF_NU, nth = SR_SURF_NTH;
+        var pos = mesh.geometry.attributes.position.array;
+        var any = false;
+        for (var t = 0; t <= nth; t++) {
+            var th = (t / nth) * Math.PI * 2;
+            var cs = Math.cos(th), sn = Math.sin(th);
+            for (var i = 0; i <= nu; i++) {
+                var u = u0 + (u1 - u0) * (i / nu);
+                var R = radiusAt(u);
+                if (!isFinite(R)) R = 0;
+                if (R > 1e-6) any = true;
+                var o = (t * (nu + 1) + i) * 3;
+                if (axis === "y") { pos[o] = R * cs; pos[o + 1] = u; pos[o + 2] = R * sn; }
+                else { pos[o] = u; pos[o + 1] = R * cs; pos[o + 2] = R * sn; }
+            }
+        }
+        mesh.geometry.attributes.position.needsUpdate = true;
+        var rings = srClamp(Math.round((thetaDeg / 360) * nth), 0, nth);
+        mesh.geometry.setDrawRange(0, rings * nu * 6);
+        mesh.visible = any && rings > 0;
+    }
+
+    // ── SR6 — THE POOLED DISC STACK. ─────────────────────────────────────────
+    //   THREE pools, and the reason is the hole. A solid disc is a CAPPED
+    //   cylinder; a ring is an outer wall and an inner wall with the annulus
+    //   OPEN, because a capped outer cylinder would close the hole the state
+    //   exists to show, and a capped INNER cylinder would draw a rod through the
+    //   ring — which is M2 (subtracting radii instead of areas) rendered as
+    //   geometry. Every pool shares one geometry and one material, so 360 meshes
+    //   cost three of each.
+    //   DECLARED SIMPLIFICATION: a ring's annular END CAPS are not drawn. Adding
+    //   them is 240 more meshes for a surface that is occluded by its neighbours
+    //   everywhere except the two ends of the stack.
+    function srMakeDiscPool(color, openEnded, opacity) {
+        var geo = new THREE.CylinderGeometry(1, 1, 1, SR_DISC_SEG, 1, !!openEnded);
+        var mat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: opacity,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        var grp = new THREE.Group(), arr = [];
+        for (var i = 0; i < SR_DISC_POOL; i++) {
+            var m = new THREE.Mesh(geo, mat);
+            m.visible = false;
+            grp.add(m);
+            arr.push(m);
+        }
+        return { group: grp, meshes: arr };
+    }
+    // Place the drawn subset. The slab THICKNESS is always the TRUE du, never a
+    // thickness scaled up to stay visible: a disc drawn wider than its own slab is
+    // a picture of a different partition from the one that was summed. At n well
+    // past the cap the discs are legitimately sub-pixel and the smooth surface is
+    // what the eye sees — which is exactly what SR-D5 describes, with the drawn
+    // count still literally true.
+    function srPlaceDiscs(pool, res, kind, which, shiftX) {
+        var meshes = pool.meshes, i, m;
+        for (i = 0; i < meshes.length; i++) {
+            m = meshes[i];
+            if (!res || i >= res.place.length) { m.visible = false; continue; }
+            var pl = res.place[i];
+            var rad = (which === "inner")
+                ? pl.r
+                : ((kind === "radius_difference") ? Math.max(0, pl.R - pl.r) : pl.R);
+            if (!isFinite(rad) || rad <= 1e-9 || !isFinite(res.du)) { m.visible = false; continue; }
+            var th = Math.abs(res.du);
+            if (res.axis === "y") {
+                m.rotation.set(0, 0, 0);
+                m.position.set(shiftX, pl.u_mid, 0);
+            } else {
+                m.rotation.set(0, 0, Math.PI / 2);
+                m.position.set(shiftX + pl.u_mid, 0, 0);
+            }
+            m.scale.set(rad, th, rad);
+            m.visible = true;
+        }
+    }
+    function srHideDiscs(pool) {
+        for (var i = 0; i < pool.meshes.length; i++) pool.meshes[i].visible = false;
+    }
+
+    // ── SR3 — THE TICKED FRAME as flat 3D geometry, in the revolution plane. ──
+    //   It is NOT the cartesian_plane duplicate: in a 3D scene the mathematics
+    //   coordinates ARE the world coordinates (one graph unit = one world unit,
+    //   identity), so there is no data-to-pixel transform registry to build — the
+    //   thing that makes cartesian_plane a four-dispatch purchase. What is built
+    //   is two axis rods with cone heads and a set of tick segments.
+    //   Grid lines are deliberately NOT drawn: a 3D grid reads as clutter under a
+    //   tilted camera and Rule 34 forbids clutter. Axes, ticks and numbers only.
+    function srBuildFrame(sr) {
+        srDisposeGroup(srFrameGroup);
+        srFrameGroup = new THREE.Group();
+        srFrameGroup.position.x = srShiftX;
+        srFrameGroup.userData = { elementType: "sr_frame", id: "sr_frame" };
+        srTicks = [];
+        var fr = sr.frame || {};
+        if (fr.show_frame === false) { addToScene(srFrameGroup); return; }
+        var xr = fr.x_range || [0, 1], yr = fr.y_range || [0, 1];
+        var col = hexToThreeColor(SR_COLORS.frame);
+        var tcol = hexToThreeColor(SR_COLORS.tick);
+
+        function rod(ax, from, to) {
+            var len = to - from;
+            var g = new THREE.CylinderGeometry(SR_AXIS_RADIUS, SR_AXIS_RADIUS, len, 8);
+            var m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: col }));
+            if (ax === "x") { m.rotation.z = Math.PI / 2; m.position.set(from + len / 2, 0, 0); }
+            else { m.position.set(0, from + len / 2, 0); }
+            srFrameGroup.add(m);
+            var hg = new THREE.ConeGeometry(SR_AXIS_RADIUS * 3, SR_AXIS_RADIUS * 8, 10);
+            var hm = new THREE.Mesh(hg, new THREE.MeshBasicMaterial({ color: col }));
+            if (ax === "x") { hm.rotation.z = -Math.PI / 2; hm.position.set(to, 0, 0); }
+            else { hm.position.set(0, to, 0); }
+            srFrameGroup.add(hm);
+        }
+        rod("x", Math.min(0, xr[0]), xr[1]);
+        rod("y", Math.min(0, yr[0]), yr[1]);
+
+        var dp = (fr.tick_decimals != null) ? fr.tick_decimals : 0;
+        var xs = srTickValues(Math.min(0, xr[0]), xr[1], (fr.x_tick != null) ? fr.x_tick : 1);
+        var ys = srTickValues(Math.min(0, yr[0]), yr[1], (fr.y_tick != null) ? fr.y_tick : 1);
+        var i, g2, m2;
+        for (i = 0; i < xs.length; i++) {
+            if (Math.abs(xs[i]) < 1e-9) continue;                 // the origin carries ONE mark
+            g2 = new THREE.BoxGeometry(SR_AXIS_RADIUS * 1.6, SR_TICK_LEN, SR_AXIS_RADIUS * 1.6);
+            m2 = new THREE.Mesh(g2, new THREE.MeshBasicMaterial({ color: tcol }));
+            m2.position.set(xs[i], 0, 0);
+            srFrameGroup.add(m2);
+            srTicks.push({ gx: xs[i], gy: -SR_TICK_LEN * 1.6, text: srFmt(xs[i], dp) });
+        }
+        for (i = 0; i < ys.length; i++) {
+            if (Math.abs(ys[i]) < 1e-9) continue;
+            g2 = new THREE.BoxGeometry(SR_TICK_LEN, SR_AXIS_RADIUS * 1.6, SR_AXIS_RADIUS * 1.6);
+            m2 = new THREE.Mesh(g2, new THREE.MeshBasicMaterial({ color: tcol }));
+            m2.position.set(0, ys[i], 0);
+            srFrameGroup.add(m2);
+            srTicks.push({ gx: -SR_TICK_LEN * 1.9, gy: ys[i], text: srFmt(ys[i], dp) });
+        }
+        srTicks.push({ gx: -SR_TICK_LEN * 1.9, gy: -SR_TICK_LEN * 1.6, text: srFmt(0, dp) });
+        addToScene(srFrameGroup);
+        srSyncTickNodes();
+    }
+
+    // The DOM tick numbers. One pointer-events:none container, N absolutely
+    // positioned divs, written per frame from nlbProjPx (:41833). CSS glyph
+    // height, screen-space decollision, readable by every DOM probe.
+    function srSyncTickNodes() {
+        var cont = document.getElementById("sr_ticks");
+        if (!cont) return;
+        while (srTickNodes.length > srTicks.length) {
+            var gone = srTickNodes.pop();
+            if (gone && gone.parentNode) gone.parentNode.removeChild(gone);
+        }
+        while (srTickNodes.length < srTicks.length) {
+            var d = document.createElement("div");
+            d.className = "sr_tick";
+            d.style.cssText = "position:absolute;transform:translate(-50%,-50%);white-space:nowrap;color:"
+                + SR_COLORS.tick + ";font:" + SR_TICK_FONT_PX + "px/1.0 monospace;text-shadow:0 0 6px rgba(0,0,0,0.95);";
+            cont.appendChild(d);
+            srTickNodes.push(d);
+        }
+        for (var i = 0; i < srTicks.length; i++) srTickNodes[i].textContent = srTicks[i].text;
+    }
+    var srTmpV = null;
+    function srPlaceTickNodes(show) {
+        var cont = document.getElementById("sr_ticks");
+        if (!cont) return;
+        cont.style.display = show ? "block" : "none";
+        if (!show || typeof camera === "undefined" || !camera) return;
+        if (!srTmpV) srTmpV = new THREE.Vector3();
+        var fwd = camera.getWorldDirection(new THREE.Vector3());
+        var placed = [];
+        for (var i = 0; i < srTicks.length; i++) {
+            var node = srTickNodes[i];
+            if (!node) continue;
+            srTmpV.set(srTicks[i].gx + srShiftX, srTicks[i].gy, 0);
+            // BEHIND the camera projects to garbage — a dot product, not a second
+            // projector (nlbProjPx is the one projection helper and it already ships).
+            var behind = srTmpV.clone().sub(camera.position).dot(fwd) <= 0;
+            if (behind) { node.style.display = "none"; continue; }
+            var p = nlbProjPx(srTmpV);
+            if (!isFinite(p.x) || !isFinite(p.y)) { node.style.display = "none"; continue; }
+            var hw = (srTicks[i].text.length * SR_TICK_FONT_PX * 0.62) / 2 + 2;
+            var hh = SR_TICK_FONT_PX * 0.62;
+            var hit = false;
+            for (var j = 0; j < placed.length; j++) {
+                var q = placed[j];
+                if (Math.abs(q.x - p.x) < (q.hw + hw) && Math.abs(q.y - p.y) < (q.hh + hh)) { hit = true; break; }
+            }
+            // Decollision runs in SCREEN space, where the collision happens. Ticks
+            // are ordered origin-outward, so the label nearest the origin wins.
+            if (hit) { node.style.display = "none"; continue; }
+            placed.push({ x: p.x, y: p.y, hw: hw, hh: hh });
+            node.style.display = "block";
+            node.style.left = p.x.toFixed(1) + "px";
+            node.style.top = p.y.toFixed(1) + "px";
+        }
+    }
+
+    function buildSolidOfRevolution(config) {
+        // 1. the DOM surfaces — every one a body child with inline position:fixed,
+        //    which is exactly what the generic Rule-39f widget engine discovers, so
+        //    the teacher toggles cost no wiring. data-wg-label names each one.
+        var tk = document.createElement("div"); tk.id = "sr_ticks";
+        tk.setAttribute("data-wg-label", "Axis numbers");
+        tk.style.cssText = "position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:8;display:none;";
+        document.body.appendChild(tk);
+
+        // Rule 34d — the HUD clears the review chrome Full screen button (top:52px+);
+        // it is VALUE-ONLY (Rule 33d/34b) and never carries a symbolic relation.
+        var hud = document.createElement("div"); hud.id = "sr_readout";
+        hud.setAttribute("data-wg-label", "Live numbers");
+        hud.style.cssText = "position:fixed;top:52px;left:16px;background:rgba(0,0,0,0.82);color:"
+            + textColor + ";padding:9px 13px;border-radius:8px;font:13px/1.7 monospace;z-index:10;display:none;min-width:150px;";
+        document.body.appendChild(hud);
+
+        // Rule 34b — the ONE formula surface, math-serif Unicode, top-centre and
+        // below the chrome strip. The generic bottom-right #formula_overlay is
+        // suppressed for this scenario so there is never a second surface.
+        var fml = document.createElement("div"); fml.id = "sr_formula";
+        fml.setAttribute("data-wg-label", "Formula");
+        fml.style.cssText = "position:fixed;top:58px;left:50%;transform:translateX(-50%);color:#FFF176;"
+            + "font:bold 21px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;";
+        document.body.appendChild(fml);
+
+        // Rule 31 — per-state contextual rows over ONE panel, built once, shown or
+        // hidden per state, each keeping the same screen position. Ids are
+        // multi-letter and prefixed: single-letter slider ids are a shared
+        // namespace across every concept on this renderer.
+        var SC = config.slider_controls || {};
+        function def(k, fb) { return (SC[k] && SC[k]["default"] != null) ? SC[k]["default"] : fb; }
+        function rng(k, f, fb) { return (SC[k] && SC[k][f] != null) ? SC[k][f] : fb; }
+        var sp = document.createElement("div"); sp.id = "sr_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:"
+            + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:210px;display:none;";
+        sp.innerHTML =
+            '<div id="sr_acoef_row" style="display:none"><label>Curve height a: <span id="sr_acoef_val">'
+            + Number(def("a", 1)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_acoef_slider" min="' + rng("a", "min", 0.8) + '" max="' + rng("a", "max", 1.4)
+            + '" step="' + rng("a", "step", 0.05) + '" value="' + def("a", 1) + '" style="width:100%"></div>'
+            + '<div id="sr_bend_row" style="display:none;margin-top:6px"><label>Far end b: <span id="sr_bend_val">'
+            + Number(def("b", 4)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_bend_slider" min="' + rng("b", "min", 1.0) + '" max="' + rng("b", "max", 4.0)
+            + '" step="' + rng("b", "step", 0.05) + '" value="' + def("b", 4) + '" style="width:100%"></div>'
+            + '<div id="sr_radius_row" style="display:none;margin-top:6px"><label>Radius r: <span id="sr_radius_val">'
+            + Number(def("r", 1)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_radius_slider" min="' + rng("r", "min", 1.0) + '" max="' + rng("r", "max", 2.0)
+            + '" step="' + rng("r", "step", 0.01) + '" value="' + def("r", 1) + '" style="width:100%"></div>'
+            + '<div id="sr_count_row" style="display:none;margin-top:6px"><label>Discs n: <span id="sr_count_val">'
+            + Math.round(def("n", 20)) + '</span></label>'
+            + '<input type="range" id="sr_count_slider" min="' + rng("n", "min", 4) + '" max="' + rng("n", "max", 120)
+            + '" step="' + rng("n", "step", 4) + '" value="' + Math.round(def("n", 20)) + '" style="width:100%"></div>'
+            + '<div id="sr_cut_row" style="display:none;margin-top:6px"><label>Cut at x: <span id="sr_cut_val">'
+            + Number(def("x_cut", 0)).toFixed(2) + '</span></label>'
+            + '<input type="range" id="sr_cut_slider" min="' + rng("x_cut", "min", 0) + '" max="' + rng("x_cut", "max", 4)
+            + '" step="' + rng("x_cut", "step", 0.05) + '" value="' + def("x_cut", 0) + '" style="width:100%"></div>'
+            // SR7's control is a CHOICE, not a magnitude, so it is a two-button
+            // toggle rather than a two-position range: a slider whose only reachable
+            // values are its two ends invites a drag that does nothing.
+            + '<div id="sr_axis_row" style="display:none;margin-top:6px"><label>Axis of revolution</label><br>'
+            + '<button type="button" id="sr_axis_x" style="margin-top:3px">about x</button> '
+            + '<button type="button" id="sr_axis_y" style="margin-top:3px">about y</button></div>';
+        document.body.appendChild(sp);
+
+        // The frame reads the LIVE global, never the authored per-state value —
+        // a picker that updates a global while the frame reads the authored value
+        // is the explore-picker scar. r is QUANTISED to its slider step in the
+        // drive path, which is what makes the reachable set finite (and gateable).
+        window.PM_srA = null; window.PM_srB = null; window.PM_srR = null; window.PM_srN = null;
+        window.PM_srX = null; window.PM_srAxis = null;
+        // DRAG-SEIZE (the fleet's own pattern — PM_nlbSweepSeized :1474). A state
+        // may both RAMP a parameter and expose its row: the ramp drives until the
+        // teacher touches the slider, and from that touch the slider owns the value
+        // for the rest of the state. Without the latch the ramp would overwrite the
+        // drag on the very next frame and the row would look broken.
+        window.PM_srSeized = {};
+        function wire(id, valId, dp, key, setter) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener("input", function () {
+                var v = parseFloat(el.value);
+                var st = parseFloat(el.step) || 0;
+                if (st > 0) v = Math.round(v / st) * st;
+                if (key) window.PM_srSeized[key] = 1;
+                setter(v);
+                var lab = document.getElementById(valId);
+                if (lab) lab.textContent = (dp === 0) ? String(Math.round(v)) : v.toFixed(dp);
+            });
+        }
+        wire("sr_acoef_slider", "sr_acoef_val", 2, "a", function (v) { window.PM_srA = v; });
+        wire("sr_bend_slider", "sr_bend_val", 2, "b", function (v) { window.PM_srB = v; });
+        wire("sr_radius_slider", "sr_radius_val", 2, "r", function (v) { window.PM_srR = v; });
+        wire("sr_count_slider", "sr_count_val", 0, "n", function (v) { window.PM_srN = Math.round(v); });
+        wire("sr_cut_slider", "sr_cut_val", 2, "x_cut", function (v) { window.PM_srX = v; });
+        function wireAxis(id, val) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener("click", function () { window.PM_srSeized.axis = 1; window.PM_srAxis = val; });
+        }
+        wireAxis("sr_axis_x", "x");
+        wireAxis("sr_axis_y", "y");
+
+        // 2. the pooled 3D objects. Each is registered with addToScene in its own
+        //    right — a child mesh that never enters sceneObjects is a layer the
+        //    per-frame updater can never match.
+        srRegionMesh = srMakeRegion(SR_COLORS.region);
+        srRegionMesh.userData = { elementType: "sr_region", id: "sr_region" };
+        addToScene(srRegionMesh);
+
+        srCurveMesh = srMakeTube(SR_COLORS.outer);
+        srCurveMesh.userData = { elementType: "sr_curve", id: "sr_curve_outer" };
+        addToScene(srCurveMesh);
+
+        srInnerCurveMesh = srMakeTube(SR_COLORS.inner);
+        srInnerCurveMesh.userData = { elementType: "sr_curve", id: "sr_curve_inner" };
+        addToScene(srInnerCurveMesh);
+
+        var ag = new THREE.CylinderGeometry(SR_AXIS_RADIUS * 1.3, SR_AXIS_RADIUS * 1.3, 1, 10);
+        srAxisMesh = new THREE.Mesh(ag, new THREE.MeshBasicMaterial({ color: hexToThreeColor(SR_COLORS.axis) }));
+        srAxisMesh.userData = { elementType: "sr_axis", id: "sr_axis" };
+        addToScene(srAxisMesh);
+
+        // SR-B — the swept skins and the three disc pools. Each pool is registered
+        // through its GROUP: a child mesh that never enters sceneObjects is a layer
+        // the glow pass and the per-frame updater can never reach.
+        srSurfOuter = srMakeSurface(SR_COLORS.solid, 0.20);
+        srSurfOuter.userData = { elementType: "sr_solid", id: "sr_solid_outer" };
+        addToScene(srSurfOuter);
+        srSurfInner = srMakeSurface(SR_COLORS.inner, 0.20);
+        srSurfInner.userData = { elementType: "sr_solid", id: "sr_solid_inner" };
+        addToScene(srSurfInner);
+
+        srDiscPool = srMakeDiscPool(SR_COLORS.disc, false, 0.55);
+        srDiscPool.group.userData = { elementType: "sr_stack", id: "sr_disc_stack" };
+        addToScene(srDiscPool.group);
+        srRingOutPool = srMakeDiscPool(SR_COLORS.disc, true, 0.60);
+        srRingOutPool.group.userData = { elementType: "sr_stack", id: "sr_ring_outer" };
+        addToScene(srRingOutPool.group);
+        srRingInPool = srMakeDiscPool(SR_COLORS.inner, true, 0.60);
+        srRingInPool.group.userData = { elementType: "sr_stack", id: "sr_ring_inner" };
+        addToScene(srRingInPool.group);
+
+        var first = config.states && config.states[Object.keys(config.states)[0]];
+        if (first && first.sr) applySolidOfRevolutionState(first);
+    }
+
+    // ── APPLY ──────────────────────────────────────────────────────────────
+    function applySolidOfRevolutionState(stateDef) {
+        var sr = srBlock(stateDef, "applySolidOfRevolutionState");
+        srWarnStage(sr.mode);
+        var dom = sr.domain || [0, 1];
+        srShiftX = -(dom[0] + dom[1]) / 2;      // SR-D10
+
+        // A state that exposes a control SEIZES the live global at its authored
+        // value on entry, so the picture opens on the lesson rather than on
+        // whatever the previous state was dragged to; a state that exposes none
+        // clears it, so the authored value is authoritative again.
+        var ctl = sr.controls || [];
+        function seize(name, glob, val, rowId, sliderId, valId, dp) {
+            var on = ctl.indexOf(name) >= 0;
+            var row = document.getElementById(rowId);
+            if (row) row.style.display = on ? "block" : "none";
+            if (!on) { window[glob] = null; return; }
+            window[glob] = val;
+            var s = document.getElementById(sliderId); if (s) s.value = String(val);
+            var l = document.getElementById(valId); if (l) l.textContent = (dp === 0) ? String(Math.round(val)) : Number(val).toFixed(dp);
+        }
+        var op = sr.outer;
+        // A NEW STATE CLEARS EVERY SEIZE LATCH. A latch that survived a state
+        // change would leave the previous state's drag driving this state's ramp,
+        // which is the dimmed-apparatus scar in a different costume: a one-way flag
+        // set on entry and never restored on exit.
+        window.PM_srSeized = {};
+        seize("a", "PM_srA", (op && op.a != null) ? op.a : 1, "sr_acoef_row", "sr_acoef_slider", "sr_acoef_val", 2);
+        seize("b", "PM_srB", dom[1], "sr_bend_row", "sr_bend_slider", "sr_bend_val", 2);
+        seize("r", "PM_srR", (op && op.r != null) ? op.r : 1, "sr_radius_row", "sr_radius_slider", "sr_radius_val", 2);
+        seize("n", "PM_srN", (sr.discs && sr.discs.n != null) ? sr.discs.n : 20, "sr_count_row", "sr_count_slider", "sr_count_val", 0);
+        seize("x_cut", "PM_srX", (sr.slice_x != null) ? sr.slice_x : dom[0], "sr_cut_row", "sr_cut_slider", "sr_cut_val", 2);
+        // the axis toggle carries no numeric row of its own
+        var axRow = document.getElementById("sr_axis_row");
+        var axOn = ctl.indexOf("axis") >= 0;
+        if (axRow) axRow.style.display = axOn ? "block" : "none";
+        window.PM_srAxis = axOn ? (sr.axis || "x") : null;
+
+        var sl = document.getElementById("sr_sliders");
+        if (sl) sl.style.display = (ctl.length ? "block" : "none");
+
+        srBuildFrame(sr);
+        srAxisMesh.position.x = srShiftX;
+
+        var fml = document.getElementById("sr_formula");
+        if (fml) {
+            fml.textContent = stateDef.formula_overlay || "";
+            fml.style.display = stateDef.formula_overlay ? "block" : "none";
+        }
+        var hud = document.getElementById("sr_readout");
+        if (hud) hud.style.display = (sr.readouts && sr.readouts.length) ? "block" : "none";
+
+        srInnerCurveMesh.visible = !!sr.inner;
+        updateSolidOfRevolutionFrame(stateDef);
+    }
+
+    // ── PER-FRAME ──────────────────────────────────────────────────────────
+    //   The ONLY site that steps this scenario. The freeze path snaps the time
+    //   variable to the pin and falls through to exactly this call, so a frozen or
+    //   dense capture runs the SAME code as live playback (a second stepping
+    //   branch at the freeze call site is how a gate passes twice on wrong pixels).
+    function updateSolidOfRevolutionFrame(stateDef) {
+        var sr = srBlock(stateDef, "updateSolidOfRevolutionFrame");
+        srPubClear();
+        var tMs = (time - stateStartTime) * 1000;
+        // The scripted sweep runs BEFORE anything reads a live global, so the
+        // curve, the region, the solid, the stack and the HUD all describe the
+        // same instant. Driving it later would draw one frame of last frame's r.
+        srDriveParamRamp(sr, tMs);
+        var outer = srOuter(sr), inner = srInner(sr);
+        var d = srDomain(sr), x0 = d[0], x1 = d[1];
+
+        var wc = srRevealWin(sr, "curve", 0, 1200);
+        var wr = srRevealWin(sr, "region", 1200, 1200);
+        var curveF = srRampFrac(tMs, wc.at, wc.dur, null);
+        var fillF = srRampFrac(tMs, wr.at, wr.dur, null);
+        if (sr.reveal === false) { curveF = 1; fillF = 1; }
+
+        // the sampled profile, recomputed from scratch every frame (SR-D2)
+        var pts = [], i, n = SR_CURVE_TUB + 1;
+        for (i = 0; i < n; i++) {
+            var x = x0 + (x1 - x0) * (i / (n - 1));
+            var y = srF(outer, x);
+            pts.push([x, isFinite(y) ? y : 0]);
+        }
+        srWriteTube(srCurveMesh, pts, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
+        srCurveMesh.position.x = srShiftX;
+        if (inner) {
+            var ip = [];
+            for (i = 0; i < n; i++) {
+                var xi = x0 + (x1 - x0) * (i / (n - 1));
+                var yi = srF(inner, xi);
+                ip.push([xi, isFinite(yi) ? yi : 0]);
+            }
+            srWriteTube(srInnerCurveMesh, ip, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
+            srInnerCurveMesh.position.x = srShiftX;
+        } else {
+            srInnerCurveMesh.visible = false;
+        }
+
+        srWriteRegion(srRegionMesh, outer, inner, x0, x1, fillF);
+        srRegionMesh.position.x = srShiftX;
+        srRegionMesh.visible = srRegionMesh.visible && (sr.show_region !== false);
+
+        // the axis of revolution, drawn as its own brighter rod so the line the
+        // region turns about is never confused with the frame it is measured on.
+        // SR7 — the LIVE choice wins over the authored one (the explore-picker
+        // scar: a frame that reads the authored value while the picker moved).
+        var ax = (window.PM_srAxis === "y" || window.PM_srAxis === "x") ? window.PM_srAxis : (sr.axis || "x");
+        if (ax === "x") {
+            srAxisMesh.scale.set(1, Math.max(1e-3, x1 - x0), 1);
+            srAxisMesh.rotation.set(0, 0, Math.PI / 2);
+            srAxisMesh.position.set(srShiftX + (x0 + x1) / 2, 0, 0);
+        } else {
+            var yTop = Math.max(1e-3, srF(outer, x1));
+            srAxisMesh.scale.set(1, isFinite(yTop) ? yTop : 1, 1);
+            srAxisMesh.rotation.set(0, 0, 0);
+            srAxisMesh.position.set(srShiftX + x0, (isFinite(yTop) ? yTop : 1) / 2, 0);
+        }
+
+        // SR10 — the ramp PUBLISHES n; nothing else recomputes it (SR-D3).
+        var nLive = 0;
+        if (window.PM_srN != null) nLive = Math.round(window.PM_srN);
+        else if (sr.discs) {
+            var dd = sr.discs;
+            if (dd.n_ramp) {
+                var nr = dd.n_ramp;
+                nLive = srRampN(srRampFrac(tMs, nr.start_ms, nr.duration_ms, nr.holds), nr.log10_from, nr.log10_to);
+            } else if (dd.n != null) nLive = Math.round(dd.n);
+        }
+        if (nLive > 0) SR_PUB.n = nLive;
+
+        // ── THE WRONG-SOLID CONTRAST BEAT (S6 / M2), and why it cannot leak. ──
+        //   Only ONE kind is summed per frame, so the wrong total and the true
+        //   total can NEVER be on screen together: it is not a draw-order
+        //   convention, it is that the other number does not exist this frame
+        //   (the contrast-ghost-co-resident scar, closed by construction).
+        var kind = (sr.discs && sr.discs.kind)
+            ? sr.discs.kind
+            : ((inner || ax === "y") ? "ring" : "disc");
+        var ct = sr.contrast, wrongOn = false;
+        if (ct) {
+            var cOn = cueTriggerMs("sr_contrast", (ct.at_ms != null) ? ct.at_ms : 0);
+            var cOff = cueTriggerMs("sr_contrast_off", (ct.dissolve_at_ms != null) ? ct.dissolve_at_ms : 1e12);
+            wrongOn = (tMs >= cOn && tMs < cOff);
+            if (wrongOn) kind = (ct.kind === "radius_difference") ? "radius_difference" : kind;
+        }
+
+        // ── SR5 — the swept skin. theta is a pure function of state-local ms and
+        //   the reveal is a DRAW RANGE over theta-major quads, never a rebuild.
+        var thDeg = srThetaDeg(sr, tMs);
+        SR_PUB.theta_deg = thDeg;
+        var sp = srStackSpan(outer, inner, x0, x1, ax);
+        var showSolid = (sr.mode !== "region") && (sr.show_solid !== false) && !wrongOn;
+        if (showSolid && isFinite(sp.u0) && isFinite(sp.u1) && sp.u1 > sp.u0) {
+            srWriteSurface(srSurfOuter, sp.u0, sp.u1, ax, function (u) { return srSpanOuterR(sp, u); }, thDeg);
+            srSurfOuter.position.x = srShiftX;
+            if (ax === "y" || inner) {
+                srWriteSurface(srSurfInner, sp.u0, sp.u1, ax, function (u) { return srSpanInnerR(sp, u); }, thDeg);
+                srSurfInner.position.x = srShiftX;
+            } else { srSurfInner.visible = false; }
+        } else { srSurfOuter.visible = false; srSurfInner.visible = false; }
+        // the flat region turns WITH its own sweep, so the thing that paints the
+        // surface is visibly the thing that was measured (Rule 32d, one apparatus)
+        if (ax === "y") srRegionMesh.rotation.set(0, thDeg * Math.PI / 180, 0);
+        else srRegionMesh.rotation.set(thDeg * Math.PI / 180, 0, 0);
+
+        // ── SR6 / SR-D3 — THE ONE SUMMATION. Called ONCE per frame, publishing
+        //   its total and its drawn count; the placement below READS its radii.
+        var res = null;
+        var summing = (sr.mode === "stack" || sr.mode === "compare" || sr.mode === "explore");
+        if (summing && nLive > 0) {
+            res = srDiscSum({
+                outer: outer, inner: inner, x0: x0, x1: x1, n: nLive, axis: ax,
+                rule: (sr.discs && sr.discs.rule) ? sr.discs.rule : "left",
+                kind: kind,
+                max_drawn: (sr.discs && sr.discs.max_discs_drawn != null)
+                    ? sr.discs.max_discs_drawn : SR_DEFAULT_MAX_DRAWN
+            });
+            SR_PUB.volume = res.volume;
+            SR_PUB.n_drawn = res.n_drawn;
+            SR_PUB.kind = kind;
+        } else if (sr.mode === "slice") {
+            // S3's ONE travelling disc. It is a placement, not a sum: the state
+            // teaches what a single face IS and publishes no volume at all, so a
+            // later state's answer cannot leak out of this one.
+            var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
+            var rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
+            var thk = (sr.slice_thickness != null) ? sr.slice_thickness : 0.12;
+            res = {
+                volume: 0, n: 1, n_drawn: 1, du: thk, u0: xc, u1: xc + thk, axis: ax,
+                place: [{ i: 0, u: xc, u_mid: xc, R: isFinite(rc) ? rc : 0, r: isFinite(ric) ? ric : 0 }]
+            };
+            SR_PUB.slice_x = xc;
+        }
+        if (res && kind === "ring" && sr.mode !== "slice") {
+            srHideDiscs(srDiscPool);
+            srPlaceDiscs(srRingOutPool, res, kind, "outer", srShiftX);
+            srPlaceDiscs(srRingInPool, res, kind, "inner", srShiftX);
+        } else if (res) {
+            srPlaceDiscs(srDiscPool, res, kind, "outer", srShiftX);
+            if (sr.mode === "slice" && inner) srPlaceDiscs(srRingInPool, res, kind, "inner", srShiftX);
+            else srHideDiscs(srRingInPool);
+            srHideDiscs(srRingOutPool);
+        } else {
+            srHideDiscs(srDiscPool); srHideDiscs(srRingOutPool); srHideDiscs(srRingInPool);
+        }
+
+        // ── SR14 — THE MID-STATE CAMERA SCHEDULE. It is a straight REUSE of the
+        //   shipped osCamScheduleAt (:62279 — declared @60714, implemented for
+        //   orbital_shapes), not a clone: that function reads nothing but
+        //   camera_steps off the object handed to it, so passing the sr block
+        //   costs zero new mechanism and leaves the sibling byte-identical. Rule
+        //   40a asked whether a camera schedule already ships; it does, and the
+        //   answer to that question is to CALL it.
+        //   It is closed-form on state-local ms, so it bypasses lerpSpherical's
+        //   frame-rate-dependent ease entirely and a SET_TIME_FREEZE pin lands on
+        //   the same pose however the renderer arrived there.
+        if (sr.camera_steps && sr.camera_steps.length) {
+            var camSch = osCamScheduleAt(sr, tMs, srCamBase(stateDef, sr));
+            if (camSch) {
+                targetSpherical.radius = camSch.dist;
+                targetSpherical.phi = Math.PI / 2 - camSch.el * Math.PI / 180;
+                targetSpherical.theta = camSch.az * Math.PI / 180;
+                spherical.radius = targetSpherical.radius;
+                spherical.phi = targetSpherical.phi;
+                spherical.theta = targetSpherical.theta;
+                animating = false;
+                updateCameraFromSpherical();
+                window.PM_srCamPose = { az: camSch.az, el: camSch.el, dist: camSch.dist };
+            }
+        } else { window.PM_srCamPose = null; }
+
+        srPlaceTickNodes((sr.frame && sr.frame.show_frame === false) ? false : true);
+        srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax);
+    }
+
+    // The slice the state labels: the live control if a teacher has one, else the
+    // authored slice_x, else the near end of the domain.
+    function srSliceX(sr, x0, x1) {
+        if (window.PM_srX != null) return window.PM_srX;
+        if (sr.slice_x != null) return sr.slice_x;
+        return x0;
+    }
+    // The scripted sweep of one live parameter, unless the teacher has seized it.
+    function srDriveParamRamp(sr, tMs) {
+        var pr = srParamRamp(sr, tMs);
+        if (!pr) return;
+        if (window.PM_srSeized && window.PM_srSeized[pr.param]) return;
+        var v = pr.value, sid;
+        if (pr.param === "r") { window.PM_srR = v; sid = "sr_radius"; }
+        else if (pr.param === "b") { window.PM_srB = v; sid = "sr_bend"; }
+        else { window.PM_srX = v; sid = "sr_cut"; }
+        var s = document.getElementById(sid + "_slider"); if (s) s.value = String(v);
+        var l = document.getElementById(sid + "_val"); if (l) l.textContent = Number(v).toFixed(2);
+    }
+    // The base pose a camera schedule starts from. NO POSE IS DEFAULTED: it is the
+    // state's own authored camera_position (converted to the shared spherical
+    // pose), or an authored sr.camera_base, or — if the state authored neither —
+    // wherever the camera already is, which is the only honest answer.
+    function srCamBase(stateDef, sr) {
+        if (sr.camera_base) {
+            var cb = sr.camera_base;
+            return { az: cb.az || 0, el: cb.el || 0, dist: cb.dist || 8 };
+        }
+        var cp = stateDef && stateDef.camera_position;
+        if (cp && cp.length === 3) {
+            var d = Math.sqrt(cp[0] * cp[0] + cp[1] * cp[1] + cp[2] * cp[2]) || 1;
+            return {
+                az: Math.atan2(cp[0], cp[2]) * 180 / Math.PI,
+                el: Math.asin(srClamp(cp[1] / d, -1, 1)) * 180 / Math.PI,
+                dist: d
+            };
+        }
+        return {
+            az: spherical.theta * 180 / Math.PI,
+            el: (Math.PI / 2 - spherical.phi) * 180 / Math.PI,
+            dist: spherical.radius
+        };
+    }
+
+    // Value-only HUD (Rule 33d / 34b). Every line gates on the state's OWN
+    // readout list, so a state can never leak a quantity it has not taught.
+    function srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax) {
+        var hud = document.getElementById("sr_readout");
+        if (!hud) return;
+        var keys = sr.readouts || [];
+        var lines = [];
+        var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
+        var Rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            if (SR_READOUTS[k] !== 1) {
+                throw new Error("solid_of_revolution: unknown readout key " + String(k)
+                    + " — the enum is CLOSED; see SR_READOUTS");
+            }
+            if (k === "area") {
+                var A = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
+                lines.push("area = " + srFmt(A, 4));
+            } else if (k === "x_edge") {
+                lines.push("x = " + srFmt(x0 + (x1 - x0) * Math.max(curveF, fillF), 3));
+            } else if (k === "a") {
+                lines.push("a = " + srFmt((outer.a != null) ? outer.a : 1, 2));
+            } else if (k === "b") {
+                lines.push("b = " + srFmt(x1, 2));
+            } else if (k === "n") {
+                lines.push("n = " + String(SR_PUB.n != null ? SR_PUB.n : 0));
+            } else if (k === "V_exact") {
+                lines.push("V = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
+            } else if (k === "theta") {
+                lines.push("\\u03B8 = " + srFmt(SR_PUB.theta_deg != null ? SR_PUB.theta_deg : 0, 0) + "\\u00B0");
+            } else if (k === "x_cut") {
+                lines.push("x = " + srFmt(xc, 2));
+            } else if (k === "r") {
+                lines.push("r = " + srFmt(Rc, 3));
+            } else if (k === "face_area") {
+                lines.push("face area = " + srFmt(Math.PI * Rc * Rc, 4));
+            } else if (k === "R") {
+                lines.push("R = " + srFmt(Rc, 3));
+            } else if (k === "r_inner") {
+                lines.push("r = " + srFmt(ric, 3));
+            } else if (k === "ring_area") {
+                lines.push("ring area = " + srFmt(Math.PI * (Rc * Rc - ric * ric), 4));
+            } else if (k === "V_n") {
+                // the PUBLISHED total — never a second sum. It prints only when the
+                // frame actually summed the TRUE slice, so the wrong-solid window
+                // cannot print a true-looking Vn.
+                if (SR_PUB.volume != null && SR_PUB.kind !== "radius_difference") {
+                    lines.push("V\\u2099 = " + srFmt(SR_PUB.volume, 4));
+                }
+            } else if (k === "V_wrong") {
+                if (SR_PUB.volume != null && SR_PUB.kind === "radius_difference") {
+                    lines.push("wrong = " + srFmt(SR_PUB.volume, 4));
+                }
+            } else if (k === "gap") {
+                if (SR_PUB.volume != null && SR_PUB.kind !== "radius_difference") {
+                    lines.push("still missing = "
+                        + srFmt(srExactVolume(outer, inner, x0, x1, ax) - SR_PUB.volume, 4));
+                }
+            } else if (k === "discs_drawn") {
+                lines.push(srCapLine());
+            } else if (k === "V_about_x") {
+                lines.push("about x: " + srFmt(srExactVolume(outer, inner, x0, x1, "x"), 4));
+            } else if (k === "V_about_y") {
+                lines.push("about y: " + srFmt(srExactVolume(outer, inner, x0, x1, "y"), 4));
+            }
+        }
+        // ── SR-D5, STRUCTURALLY. When the cap engages, the canvas SAYS SO —
+        //   whether or not the state authored the key. A picture drawn at 120
+        //   beside a number computed at 20 000 is a provenance split, and a
+        //   declaration a state can forget to author is not a declaration.
+        if (SR_PUB.n_drawn != null && SR_PUB.n != null && SR_PUB.n_drawn < SR_PUB.n
+            && keys.indexOf("discs_drawn") < 0) {
+            lines.push(srCapLine());
+        }
+        if (!lines.length) { hud.style.display = "none"; return; }
+        hud.innerHTML = lines.join("<br>");
+        hud.style.display = "block";
+    }
+    function srCapLine() {
+        var d = (SR_PUB.n_drawn != null) ? SR_PUB.n_drawn : 0;
+        var n = (SR_PUB.n != null) ? SR_PUB.n : 0;
+        return "discs drawn: " + String(d) + " of " + String(n);
+    }
+
+    // ── GLOW (Rules 29 / 32e) ──────────────────────────────────────────────
+    //   Emphasis is BRIGHTNESS, never size, and exactly one focal at a time. The
+    //   key enum is CLOSED: a non-keyed glow_focal would dim the whole scene with
+    //   no focal lit, which reads as a rendering fault rather than as emphasis.
+    function applySolidOfRevolutionGlow(stateDef) {
+        var sr = stateDef && stateDef.sr; if (!sr) return;
+        var focal = sr.glow_focal || null;
+        if (focal != null && SR_GLOW_KEYS[focal] !== 1) {
+            throw new Error("solid_of_revolution: unknown glow key " + String(focal)
+                + " — the enum is CLOSED; see SR_GLOW_KEYS");
+        }
+        var on = !!focal;
+        // "solid" lights BOTH skins and "stack" lights all three pools, because a
+        // ring's two walls are one object to a student. "disc" is the slice state's
+        // single travelling face, which lives in the same pool as the stack — so
+        // the two keys resolve to the same meshes and differ only in the state that
+        // names them. One focal at a time (Rule 32e) either way.
+        var stackFocal = (focal === "stack" || focal === "disc" || focal === "ring_stack"
+            || focal === "wrong_solid");
+        // ── THE TRANSLUCENT MESHES ARE BRIGHTEN-ONLY, AND THAT IS A CORRECTNESS
+        //   FIX, NOT A PREFERENCE. The generic pass REWRITES OPACITY: a focal goes
+        //   to 1.0 and a peer to GLOW_DIM_OPACITY = 0.40. Both are wrong for a
+        //   volume you must see THROUGH — a focal disc stack at opacity 1.0 hides
+        //   the axis, the region and the curve inside it (that is the occlusion
+        //   half of the OPEN row glow_focal_fr_ring_whiteouts_the_ring_and_occludes
+        //   _it), and a 0.20 ghost skin "dimmed" to 0.40 becomes twice as OPAQUE as
+        //   it started. So the volumes take brightenOnly: the focal still brightens
+        //   through the colour and emissive channels, which is real emphasis and
+        //   not the exempted-into-a-no-op failure — and the opaque line objects
+        //   (curve, axis, frame, region) still carry the peer dim.
+        var map = [
+            [srRegionMesh, "region", false], [srCurveMesh, "curve", false],
+            [srInnerCurveMesh, "inner_curve", false], [srAxisMesh, "axis", false],
+            [srFrameGroup, "frame", false],
+            [srSurfOuter, "solid", true], [srSurfInner, "solid", true],
+            [srDiscPool ? srDiscPool.group : null, stackFocal ? focal : "stack", true],
+            [srRingOutPool ? srRingOutPool.group : null, stackFocal ? focal : "stack", true],
+            [srRingInPool ? srRingInPool.group : null, stackFocal ? focal : "stack", true]
+        ];
+        for (var i = 0; i < map.length; i++) {
+            if (!map[i][0]) continue;
+            applyGlowEmphasis(map[i][0], map[i][1] === focal, on, 1, map[i][2]);
+        }
+        var hud = document.getElementById("sr_readout");
+        if (hud) hud.style.opacity = (on && focal !== "readout") ? "0.55" : "1";
+        var fml = document.getElementById("sr_formula");
+        if (fml) fml.style.opacity = (on && focal !== "formula") ? "0.55" : "1";
+    }
+
     function buildScenario() {
         clearScene();
 
@@ -66670,6 +70981,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "orbital_shapes":
                 buildOrbitalShapes(config);
+                break;
+
+            case "solid_of_revolution":
+                buildSolidOfRevolution(config);
                 break;
 
             case "displacement_current":
@@ -66870,6 +71185,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "rhr_force_direction":
                 buildRhrForceDirection();
+                break;
+
+            case "vector_geometry_3d":
+                buildVectorGeometry3D();
                 break;
 
             case "magnetic_no_work":
@@ -67601,6 +71920,16 @@ export const FIELD_3D_RENDERER_CODE = `
             applyRhrForceDirectionState(stateDef);
         }
 
+        // vector_geometry_3d — per-state visibility (a/b always on, c/
+        // cross/arc/parallelogram/parallelepiped per the vp block) + slider
+        // panel sync. Camera is NOT handled here — every state's own
+        // camera_position was already applied via the generic
+        // animateCameraTo() call earlier in this function (the "Camera
+        // animation" block), same as every other scenario.
+        if (config.scenario_type === "vector_geometry_3d") {
+            applyVectorGeometry3DState(stateDef);
+        }
+
         // magnetic_no_work — per-state seeding (F-arrow / displacement-nub /
         // right-angle / meter visibility, split-compare assembly, trail reset).
         // The animate loop then drives the orbit (constant speed), the electric-
@@ -67694,6 +72023,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // cut-plane normal the cutaway slab uses. Every mesh is placed by
         // updateOrbitalShapesFrame from the state's own clock on the next frame,
         // so there is nothing positional to seed here.
+        // solid_of_revolution (MATHEMATICS) — authoritative per-state apply: the
+        // frame is rebuilt for this state\u0027s ranges, the contextual slider rows are
+        // shown and seized at their authored values, the ONE formula surface is
+        // written, and the first frame is drawn immediately so a SET_STATE that
+        // lands on a pin never photographs the previous state\u0027s picture.
+        if (config.scenario_type === "solid_of_revolution") {
+            applySolidOfRevolutionState(stateDef);
+        }
+
         if (config.scenario_type === "orbital_shapes") {
             applyOrbitalShapesState(stateDef);
         }
@@ -67966,6 +72304,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // NOT-list, same as isNlb/isFrig/isKt/... above).
         var isRbr = config.scenario_type === "rigid_body_rotation";
         var isRhr = config.scenario_type === "rhr_force_direction";
+        // vector_geometry_3d owns its OWN #vg_sliders panel (a_mag/
+        // b_mag/theta_deg/c_mag/c_theta_deg/c_phi_deg) -- must be excluded
+        // here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to
+        // this NOT-list, same as isRhr/isCap/isBondScene/... above).
+        var isVecGeom = config.scenario_type === "vector_geometry_3d";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
         var isHelix = config.scenario_type === "helix_in_uniform_field";
@@ -68010,6 +72354,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // through with its straight-wire-current defaults (THE-EYE "#sliders
         // exclusion chain" -- every dedicated panel excludes itself here).
         var isBondScene = config.scenario_type === "bonding_scene";
+        // solid_of_revolution owns its OWN #sr_sliders panel (a/b/r/n rows) -- must
+        // be excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" -- every dedicated panel excludes itself here).
+        var isSolidRev = config.scenario_type === "solid_of_revolution";
         var isSwc = config.scenario_type === "straight_wire_current" && !!stateDef.swc;
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
@@ -68029,7 +72377,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isKt) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isSolidRev && !isKt && !isVecGeom) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -68216,7 +72564,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -68717,6 +73065,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // boundary surface + the two-run orbital label carry the meaning, and the
         // generic legend would restate them as prose over the cloud.
         if (config.scenario_type === "orbital_shapes") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // solid_of_revolution is a silent visual too (Rule 24): the frame, the
+        // curve and the value-only HUD carry the meaning, so the generic legend is
+        // a second, competing text surface.
+        if (config.scenario_type === "solid_of_revolution") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // bonding_scene is a silent visual too (Rule 24): the units + bond sticks
         // + delta labels + dipole arrows + the value-only HUD carry everything,
         // and a "point charge / drag to rotate" legend would be both wrong and
@@ -71279,7 +75631,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -71405,6 +75757,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "orbital_shapes") {
             var osStateDef = config.states[PM_currentState];
             if (osStateDef) { updateOrbitalShapesFrame(osStateDef); applyOrbitalShapesGlow(osStateDef); }
+        }
+
+        // solid_of_revolution (MATHEMATICS) — the frame draw, the curve draw, the
+        // region fill, the DOM tick numbers, the log-n ramp and the value-only HUD.
+        // THIS IS THE ONLY SITE THAT STEPS THIS SCENARIO: the freeze path above
+        // snaps the time variable to the pin and falls through to exactly this
+        // call, so a frozen or dense capture runs the SAME dispatcher as live
+        // playback. Accumulator-free: every value is a pure fn of state-local t.
+        if (config.scenario_type === "solid_of_revolution") {
+            var srStateDef = config.states[PM_currentState];
+            if (srStateDef) { updateSolidOfRevolutionFrame(srStateDef); applySolidOfRevolutionGlow(srStateDef); }
         }
 
         // dipole_potential — timed reveals, STATE_3/5 sweeps, signed-V recolor
@@ -71726,6 +76089,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "rhr_force_direction") {
             updateRhrForceDirectionFrame(heldAtPin ? 0 : dtStep);
             applyRhrForceDirectionGlow();
+        }
+
+        // vector_geometry_3d — a/b/c resolved fresh every frame from
+        // either the authored vp block or the live explore-state sliders;
+        // every reveal is a closed form of state-local ms (no accumulator),
+        // so it is byte-stable under SET_TIME_FREEZE (Rule 36) for free.
+        if (config.scenario_type === "vector_geometry_3d") {
+            updateVectorGeometry3DFrame();
+            applyVectorGeometry3DGlow();
         }
 
         // magnetic_no_work — F ⊥ v ⇒ W = 0 ⇒ |v| constant. Drives the magnetic
