@@ -493,6 +493,23 @@ export interface Field3DConfig {
             // "auto_frame" only: R = auto_frame_k * max(|a|,|b|,|a x b|).
             auto_frame_k?: number;
             controls?: string[];          // Rule 31 live rows (explore state)
+            // PER-STATE control bounds, overriding the CONCEPT-WIDE
+            // config.slider_controls for this state's rows only (bug_class
+            // field3d_vg_slider_range_is_concept_wide_so_a_guided_state_cannot_
+            // bound_its_own_control). A guided state at a FIXED authored camera
+            // must be able to bound its own live control to the travel that
+            // camera frames: the area state's |b| row inherited the sandbox's
+            // 1.0–5.0 while its camera was solved for the authored 2.0 → 2.5
+            // ramp, so most of the row's travel drove the picture off frame on
+            // the state whose claim is that the arrow's length IS the area.
+            // Any field omitted inherits the concept-wide value; a state that
+            // omits the block entirely gets the concept-wide range RESTORED
+            // (never a narrowing that leaks forward). The renderer widens the
+            // range if it would exclude this state's own authored value or
+            // either end of an animate[] ramp on that knob, and publishes the
+            // widening on window.PM_vgControlRangeWidened rather than letting a
+            // range input silently sanitise the value into a lying thumb.
+            control_ranges?: Record<string, { min?: number; max?: number; step?: number }>;
             // FLEET convention, identical at every other scenario that has it:
             // SLIDER ROWS shown greyed/disabled at the SAME position as the
             // live row. NOT numbers — the numbers are value_readouts above.
@@ -12214,6 +12231,31 @@ export const FIELD_3D_RENDERER_CODE = `
         if (f >= 1 - VG_FLIP_EPS) return "b×a";
         return "a×b \\u2192 b×a";
     }
+    //   THE READOUT'S NAME FOR THE SAME ARROW — bug_class field3d_vg_a_value_
+    //   surface_can_disagree_with_the_geometry_it_names. The sprite was fixed
+    //   to derive its text from flip_frac (above) while the READOUT beside it
+    //   kept a hardcoded VG_READOUT_LABEL.cross_mag of "|a×b|", so on the one
+    //   state whose entire lesson is that the two names are NOT interchangeable
+    //   the picture said b×a and the number said |a×b|, ~1200 lines apart. The
+    //   durable rule this encodes: SIBLING SURFACES OF ONE FIXED DEFECT ARE
+    //   FIXED IN THE SAME PASS, and the way to make that structural rather than
+    //   remembered is to give both surfaces ONE source — flip_frac — so they
+    //   are incapable of disagreeing.
+    //
+    //   The MIDDLE case is not the arrow's middle case. Between the endpoints
+    //   the drawn arrow is neither a×b nor b×a, so its NAME must say so
+    //   (vgCrossLabelText); but its LENGTH is a rotation of a×b about â, and a
+    //   rotation preserves length, so |a×b| = |b×a| is true at every value of
+    //   flip_frac and is exactly what the flip state teaches. The transitional
+    //   label therefore states the equality rather than inventing an arrow
+    //   between two numbers that never differ.
+    function vgCrossMagLabelText(flipFrac) {
+        var f = (typeof flipFrac === "number" && isFinite(flipFrac))
+            ? Math.max(0, Math.min(1, flipFrac)) : 0;
+        if (f <= VG_FLIP_EPS) return "|a×b|";
+        if (f >= 1 - VG_FLIP_EPS) return "|b×a|";
+        return "|a×b| = |b×a|";
+    }
 
     // ── F21 · vg.animate[] — per-state parameter ramps ──────────────────────
     //   A PORT of two mechanisms this renderer already ships, not an
@@ -13303,6 +13345,124 @@ export const FIELD_3D_RENDERER_CODE = `
             label: o.label || dlabel
         };
     }
+    // ── THE ROW TABLE — one place that knows a knob is slider-bound ──────────
+    //   Every slider-bound knob's DOM ids follow "vg_<knob>_row/_slider/_val",
+    //   so the only per-knob fact worth tabulating is the row's decimal places.
+    //   The CONCEPT-WIDE range each row is built with is captured here at build
+    //   time (VG_ROW_RANGE) so a per-state override can be resolved against it
+    //   and, crucially, RESTORED when the next state does not override.
+    var VG_ROW_DEC = {
+        a_mag: 2, b_mag: 2, theta_deg: 0, b_tilt_deg: 0,
+        c_mag: 1, c_theta_deg: 0, c_phi_deg: 0,
+        lambda: 2, lambda_span: 1, half_extent: 2, q_height: 2, line2_offset: 2
+    };
+    var VG_ROW_DRAG = {
+        a_mag: "PM_vgAMagDragged", b_mag: "PM_vgBMagDragged", theta_deg: "PM_vgThetaDragged",
+        b_tilt_deg: "PM_vgBTiltDragged", c_mag: "PM_vgCMagDragged", c_theta_deg: "PM_vgCThetaDragged",
+        c_phi_deg: "PM_vgCPhiDragged", lambda: "PM_vgLambdaDragged", lambda_span: "PM_vgLambdaSpanDragged",
+        half_extent: "PM_vgHalfExtentDragged", q_height: "PM_vgQHeightDragged", line2_offset: "PM_vgLine2OffsetDragged"
+    };
+    var VG_ROW_RANGE = {};
+
+    // ── A SLIDER ROW MUST TRACK A RAMP OF ITS OWN KNOB ──────────────────────
+    //   bug_class field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_
+    //   names. vgAnimValue RESOLVES a knob as a pure function of state-local ms
+    //   and deliberately never writes through the slider write-path (that is
+    //   what makes it closed-form where param_ramp needs a churn guard) — but
+    //   the consequence shipped: the area state ramps |b| 2.00 → 2.50, the
+    //   readout and the parallelogram follow, and the LIVE ROW for that very
+    //   knob sits frozen at "|b|: 2.00" with its thumb at the t = 0 position.
+    //   The teacher reads the control as the state of the system.
+    //
+    //   NOT AN INVENTION (Rule 40a, run on the MECHANISM and not only on the
+    //   name): newtons_laws_body's param_ramp already ends every ramp step with
+    //   nlbSyncSliderRow(tok, v) for exactly this reason — a ramped knob's row
+    //   must show the ramped value. F21 dropped that half when it ported the
+    //   ramp as a pure resolver, and this restores it in the shape a pure
+    //   resolver allows: a per-frame WRITE derived from the resolved value,
+    //   rather than a write-path the ramp drives.
+    //
+    //   So the row is written from the RESOLVED value every frame — but ONLY
+    //   for knobs an animate[] entry actually names, and never while the
+    //   teacher owns that row: a trusted drag seizes the knob for the rest of
+    //   the state (the drag-seize contract the frame's knob() already honours),
+    //   and the browser's own input handler is then the row's writer.
+    //
+    //   Rule 36 / D3: the written value is a closed form of state-local ms, so
+    //   a SET_TIME_FREEZE pin rewrites the identical string and a rewind
+    //   reproduces the earlier one. The thumb quantises to the row's own step
+    //   (the range input sanitises what it is given) — that is the resolution
+    //   the control genuinely has, and the LABEL beside it carries the exact
+    //   resolved value, which is the number the geometry is built from.
+    function vgSyncRampedRows(anim, resolved, showSliders) {
+        var written = [];
+        if (!anim || !anim.length) { window.PM_vgRowsTracking = written; return written; }
+        for (var i = 0; i < anim.length; i++) {
+            var k = (anim[i] || {}).knob;
+            if (!k || VG_ROW_DEC[k] == null) continue;              // not a slider-bound knob
+            if (written.indexOf(k) >= 0) continue;                  // several windows, one row
+            if (showSliders && window[VG_ROW_DRAG[k]]) continue;    // the teacher's drag owns it
+            var v = resolved ? resolved[k] : null;
+            if (!(typeof v === "number" && isFinite(v))) continue;
+            var sl = document.getElementById("vg_" + k + "_slider");
+            if (sl) sl.value = String(v);
+            var vEl = document.getElementById("vg_" + k + "_val");
+            if (vEl) vEl.textContent = v.toFixed(VG_ROW_DEC[k]);
+            written.push(k);
+        }
+        window.PM_vgRowsTracking = written;
+        return written;
+    }
+
+    // ── PER-STATE CONTROL RANGES ────────────────────────────────────────────
+    //   bug_class field3d_vg_slider_range_is_concept_wide_so_a_guided_state_
+    //   cannot_bound_its_own_control. config.slider_controls is CONCEPT-WIDE,
+    //   so a guided state at a fixed authored camera inherits the sandbox's
+    //   travel: the area state's |b| row spans 1.00–5.00 while its camera is
+    //   solved for the authored 2.0 → 2.5 ramp, and most of the upper travel
+    //   drives the parallelogram's tip off frame — on the state whose claim is
+    //   that the arrow's LENGTH IS THE AREA. It regresses the recorded
+    //   field3d_explore_camera_fixed_while_its_own_dials_span_two_orders_of_
+    //   radius, whose subject is "a state", not "an explore state".
+    //
+    //   vg.control_ranges: { <knob>: { min?, max?, step? } } narrows (or widens)
+    //   ONE state's row without touching the concept-wide default, and the row
+    //   is restored to the concept-wide range on any state that does not
+    //   override it — a one-way narrowing is the recorded dim-with-no-restore
+    //   scar in slider form.
+    //
+    //   AND IT MAY NEVER EXCLUDE WHAT THE STATE ITSELF PRODUCES. If the
+    //   authored value or either end of an animate[] ramp on that knob falls
+    //   outside the override, the range is WIDENED to contain it and the
+    //   widening is PUBLISHED (window.PM_vgControlRangeWidened) — because the
+    //   alternative is a range input silently sanitising the value it is given
+    //   and a thumb that lies about the geometry, which is the defect one
+    //   namespace over. A silent plausible clamp is the hazard; a loud, visible
+    //   widening is not.
+    function vgControlRange(key, d) {
+        var base = VG_ROW_RANGE[key];
+        if (!base) return null;
+        var o = ((d && d.control_ranges) || {})[key] || {};
+        var min = (typeof o.min === "number" && isFinite(o.min)) ? o.min : base.min;
+        var max = (typeof o.max === "number" && isFinite(o.max)) ? o.max : base.max;
+        var step = (typeof o.step === "number" && isFinite(o.step) && o.step > 0) ? o.step : base.step;
+        if (max < min) { var sw = min; min = max; max = sw; }
+        var need = [];
+        if (d && typeof d[key] === "number" && isFinite(d[key])) need.push(d[key]);
+        var anim = (d && d.animate) || [];
+        for (var i = 0; i < anim.length; i++) {
+            var r = anim[i] || {};
+            if (r.knob !== key) continue;
+            if (isFinite(r.from)) need.push(r.from);
+            if (isFinite(r.to)) need.push(r.to);
+        }
+        var widened = false;
+        for (var j = 0; j < need.length; j++) {
+            if (need[j] < min) { min = need[j]; widened = true; }
+            if (need[j] > max) { max = need[j]; widened = true; }
+        }
+        return { min: min, max: max, step: step, widened: widened };
+    }
 
     // Dynamically-created inline position:fixed panel (Rule 39g convention —
     // auto-discovered by the teacher-widget engine for free, no per-concept
@@ -13343,6 +13503,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var scQH = vgSc("q_height", 0.0, 3.0, 0.05, 1.19, "point height");
         var scL2 = vgSc("line2_offset", -2.5, 2.5, 0.05, 0.0, "second line");
         function row(prefix, sc, unit, dec) {
+            // The CONCEPT-WIDE range this row is born with, kept so a per-state
+            // vg.control_ranges override can be resolved against it AND undone.
+            VG_ROW_RANGE[prefix] = { min: sc.min, max: sc.max, step: sc.step, def: sc.def };
             return '<div id="vg_' + prefix + '_row" style="margin-top:6px"><label>' + sc.label + ': <span id="vg_' + prefix + '_val">' + sc.def.toFixed(dec) + '</span>' + unit + '</label>' +
                 '<input type="range" id="vg_' + prefix + '_slider" min="' + sc.min + '" max="' + sc.max + '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%"></div>';
         }
@@ -13434,6 +13597,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Top-anchored at top:52px so it clears the review chrome (Rule 34d).
     var VG_READOUT_LABEL = {
         a_mag: "|a|", b_mag: "|b|", theta_deg: "θ",
+        // cross_mag's entry is the flip_frac = 0 form ONLY, kept here so the
+        // token has a label for the §11c union check and for anything that
+        // reads the table directly. The TEXT THAT REACHES THE SCREEN is derived
+        // per frame by vgCrossMagLabelText(flip_frac) inside vgReadoutLine —
+        // this constant is never the thing rendered on a flipped state, and the
+        // gate binds the two (vgCrossMagLabelText(0) === this string).
         a_dot_b: "a·b", cross_mag: "|a×b|",
         a_dot_cross: "a·(a×b)", b_dot_cross: "b·(a×b)", triple: "a·(b×c)",
         // D-5's three: the volume the triple product measures, and the two
@@ -13488,10 +13657,54 @@ export const FIELD_3D_RENDERER_CODE = `
         angle_lines_deg: 1, angle_line_plane_deg: 1, angle_line_normal_deg: 1
     };
     var VG_READOUT_UNIT = { angle_lines_deg: "°", angle_line_plane_deg: "°", angle_line_normal_deg: "°" };
+    // ── A NUMBER MAY NOT PRECEDE ITS SUBJECT (Rule 32a; bug_class
+    //    field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_names).
+    //    The triple-product state printed "Volume = 9.95 / Base = 4.27 /
+    //    Height = 2.33" at t = 0 — 4.6 s before c appeared and 8.2 s before the
+    //    solid finished building — so the panel measured a body that was not
+    //    yet on screen. Every readout whose subject has its OWN reveal knob is
+    //    therefore gated on that knob, not merely on the state's show_ flag:
+    //    the show_ flag says the object BELONGS to this state, the reveal
+    //    fraction says it is THERE YET.
+    //
+    //    CLOSED, and deliberately narrow. Only the three subjects that carry a
+    //    reveal fraction of their own (cross_reveal_frac / c_reveal_frac /
+    //    solid_build_frac) are listed; a and b ride the shared grow-in ease and
+    //    are the scenario itself, so their tokens are ungated (an authored
+    //    decision, recorded here rather than left to be inferred from the map's
+    //    silence). A token absent from this table renders exactly as before.
+    var VG_READOUT_SUBJECT = {
+        cross_mag: "cross", a_dot_cross: "cross", b_dot_cross: "cross",
+        triple: "c", volume: "solid", base_area: "solid", height: "solid"
+    };
+    // A reveal fraction is "arrived" only at the END of its ramp: a half-drawn
+    // a×b arrow beside the full |a×b| is the same disagreement one notch
+    // smaller, and on the area state the arrow's LENGTH is the claim.
+    var VG_SUBJECT_SHOWN_MIN = 0.999;
+    function vgReadoutSubjectShown(key, d, fr) {
+        var sub = VG_READOUT_SUBJECT[key];
+        if (!sub) return true;
+        var f = fr || {};
+        var num = function (x) { return (typeof x === "number" && isFinite(x)) ? x : 0; };
+        if (sub === "cross") return !!d.show_cross_vector && num(f.cross) >= VG_SUBJECT_SHOWN_MIN;
+        if (sub === "c") return !!d.show_c && num(f.c) >= VG_SUBJECT_SHOWN_MIN;
+        // The solid needs BOTH its generator (c) and its own build to finish —
+        // Volume/Base/Height describe the closed body, not a partial draw range.
+        if (sub === "solid") return !!d.show_parallelepiped && num(f.c) >= VG_SUBJECT_SHOWN_MIN && num(f.solid) >= VG_SUBJECT_SHOWN_MIN;
+        return true;
+    }
     function vgReadoutLine(key, vals) {
         var lab = VG_READOUT_LABEL[key];
         if (!lab) return null;
         if (key === "theta_deg") return lab + " = " + vgFx(vals.theta_deg, 0) + "°";
+        // The cross magnitude NAMES THE ARROW THAT IS ON SCREEN, derived from
+        // the same flip_frac the arrow and its sprite are drawn from, so the
+        // readout cannot go on saying "|a×b|" beside an arrow labelled b×a.
+        if (key === "cross_mag") {
+            var cv = vals.cross_mag;
+            if (cv == null || !isFinite(cv)) return null;
+            return vgCrossMagLabelText(vals.flip_frac) + " = " + vgFx(cv, 2);
+        }
         // Δ4 — a literal row, and it renders ONLY when the thing it denies is
         // genuinely absent. Authoring the token on a state whose line DOES meet
         // the plane prints nothing, so the row can never contradict the marker.
@@ -14134,6 +14347,23 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         window.PM_vgAnimUnknown = unknown;
 
+        // Per-state control ranges FIRST, because a range input sanitises the
+        // value it is given against the range it currently has: writing the
+        // state's value before its range would clamp the value to the PREVIOUS
+        // state's bounds. Every row is visited on every state — a row the state
+        // does not override is restored to the concept-wide range, so a
+        // narrowing can never leak forward.
+        var rangeWidened = [];
+        for (var rk in VG_ROW_RANGE) {
+            if (!Object.prototype.hasOwnProperty.call(VG_ROW_RANGE, rk)) continue;
+            var eff = vgControlRange(rk, d);
+            if (!eff) continue;
+            if (eff.widened) rangeWidened.push(rk);
+            var rEl = document.getElementById("vg_" + rk + "_slider");
+            if (rEl) { rEl.min = String(eff.min); rEl.max = String(eff.max); rEl.step = String(eff.step); }
+        }
+        window.PM_vgControlRangeWidened = rangeWidened;
+
         function syncS(id, v, dec) {
             var el = document.getElementById(id); if (el) el.value = String(v);
             var vEl = document.getElementById(id.replace("_slider", "_val")); if (vEl) vEl.textContent = v.toFixed(dec);
@@ -14333,6 +14563,20 @@ export const FIELD_3D_RENDERER_CODE = `
         //    static_readouts), computed in 3D from the SAME a/b/c the meshes
         //    are drawn from, so the number and the picture can never disagree.
         window.PM_vgVectors = { a: a, b: b, c: c, axb: axb, theta_deg: thetaDeg, b_tilt_deg: bTiltDeg };
+
+        // The RESOLVED value of every slider-bound knob, in one bag, so the
+        // live rows can be written from the same numbers the meshes are built
+        // from (a row that does not track its own ramp is a text surface
+        // disagreeing with the picture beside it).
+        var resolvedKnobs = {
+            a_mag: aMag, b_mag: bMag, theta_deg: thetaDeg, b_tilt_deg: bTiltDeg,
+            c_mag: cMag, c_theta_deg: cThetaDeg, c_phi_deg: cPhiDeg,
+            lambda: LP_KNOBS.lambda, lambda_span: LP_KNOBS.lambda_span,
+            half_extent: LP_KNOBS.half_extent, q_height: LP_KNOBS.q_height,
+            line2_offset: LP_KNOBS.line2_offset
+        };
+        vgSyncRampedRows(anim, resolvedKnobs, !!stateDef.show_sliders);
+
         var rdEl = document.getElementById("vg_readout");
         if (rdEl) {
             var keys = d.value_readouts || [];
@@ -14352,8 +14596,14 @@ export const FIELD_3D_RENDERER_CODE = `
                     triple: trip,
                     volume: Math.abs(trip),
                     base_area: bcArea,
-                    height: (bcArea > 1e-9) ? Math.abs(trip) / bcArea : 0
+                    height: (bcArea > 1e-9) ? Math.abs(trip) / bcArea : 0,
+                    // The cross magnitude's NAME is derived from the same
+                    // flip_frac the arrow is drawn from (vgCrossMagLabelText).
+                    flip_frac: flipFrac
                 };
+                // The reveal state of the three subjects that carry a reveal
+                // knob of their own — a readout may not precede its subject.
+                var rdFracs = { cross: crossFrac, c: cFrac, solid: solidFrac };
                 // VG-C — the lines/planes numbers come from the SAME resolved
                 // scene the meshes are drawn from, so the readout and the
                 // picture cannot disagree. Nothing is recomputed here from a
@@ -14369,6 +14619,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 var html = "";
                 for (var ri = 0; ri < keys.length; ri++) {
+                    if (!vgReadoutSubjectShown(keys[ri], d, rdFracs)) continue;
                     var line = vgReadoutLine(keys[ri], vals);
                     if (line != null) html += '<div id="vg_readout_' + keys[ri] + '">' + line + "</div>";
                 }
@@ -73069,6 +73320,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // curve and the value-only HUD carry the meaning, so the generic legend is
         // a second, competing text surface.
         if (config.scenario_type === "solid_of_revolution") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // vector_geometry_3d is a silent visual too (Rule 24), and here that is
+        // ALSO a layout fact: #legend is fixed bottom:8/left:8 at z-index 10 and
+        // #vg_sliders is fixed bottom:12/left:12 at z-index 10, so on every
+        // state that shows sliders a slider track struck straight through the
+        // state-label card and a thumb overprinted the "drag to rotate" hint
+        // (bug_class field3d_vg_overlay_relocation_moved_the_collision_instead_
+        // of_removing_it — the panel had been moved OFF the formula overlay's
+        // corner and ONTO this one, because the enumeration of the corner it
+        // moved to was asserted exhaustive without a symbol sweep). The fix is
+        // to REMOVE the second text surface, not to move the panel a third
+        // time: the a / b / c / a×b sprites name every object, and the
+        // #vg_readout panel carries the numbers, so the generic legend is a
+        // competing prose surface with nothing of its own to say. Same reason
+        // and same one-line shape as its Phase-0 sibling above.
+        if (config.scenario_type === "vector_geometry_3d") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // bonding_scene is a silent visual too (Rule 24): the units + bond sticks
         // + delta labels + dipole arrows + the value-only HUD carry everything,
         // and a "point charge / drag to rotate" legend would be both wrong and

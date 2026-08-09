@@ -82,7 +82,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
-import { deriveMaxRevealTimeMs, deriveHoldExpectations } from "../lib/validators/visual/deriveStateMeta";
+import { deriveMaxRevealTimeMs, deriveHoldExpectations, deriveMotionExpectations } from "../lib/validators/visual/deriveStateMeta";
 import { runFleetSafety, classify, type FleetSafetySpec } from "./lib/fleetSafety";
 
 const SRC = FIELD_3D_RENDERER_CODE;
@@ -130,6 +130,102 @@ const E = new Function([
   "var VG_FLIP_EPS = " + /var VG_FLIP_EPS = ([0-9.]+);/.exec(SRC)![1] + ";",
   "return { " + FNS.join(", ") + " };",
 ].join("\n"))() as any;
+
+/** Pull `var NAME = { ... };` out of the emitted renderer by brace matching. */
+function grabVar(name: string): string {
+  const start = SRC.indexOf("var " + name + " = ");
+  if (start < 0) throw new Error("var not found in renderer: " + name);
+  const i = SRC.indexOf("{", start);
+  let depth = 0;
+  for (let j = i; j < SRC.length; j++) {
+    if (SRC[j] === "{") depth++;
+    else if (SRC[j] === "}") { depth--; if (depth === 0) return SRC.slice(start, j + 1) + ";"; }
+  }
+  throw new Error("unbalanced braces reading " + name);
+}
+/** Pull `var NAME = <scalar>;` out of the emitted renderer. */
+function grabScalar(name: string): string {
+  const m = new RegExp("var " + name + " = ([^;]+);").exec(SRC);
+  if (!m) throw new Error("scalar not found in renderer: " + name);
+  return "var " + name + " = " + m[1] + ";";
+}
+
+// ── THE TEXT-SURFACE HARNESS ────────────────────────────────────────────────
+//   Sections 17-19 are about SURFACES THAT MAKE CLAIMS — a readout label, a
+//   slider row's displayed value, whether a row exists at all — and every one
+//   of those lives behind `document`. The shipped functions that write them are
+//   therefore pulled out WITH a document, against a DOM registry this file
+//   owns, so the discriminating quantity is the TEXT a teacher would read and
+//   not a restatement of the code that produced it.
+type FakeEl = {
+  id: string; style: Record<string, string>; value: string; textContent: string;
+  innerHTML: string; disabled: boolean; min: string; max: string; step: string;
+};
+function fakeDom() {
+  const els = new Map<string, FakeEl>();
+  const get = (id: string): FakeEl => {
+    let e = els.get(id);
+    if (!e) {
+      e = { id, style: {}, value: "", textContent: "", innerHTML: "", disabled: false, min: "", max: "", step: "" };
+      els.set(id, e);
+    }
+    return e;
+  };
+  return { els, get, document: { getElementById: (id: string) => get(id) } };
+}
+// The CONCEPT-WIDE slider ranges the panel is built with, READ OUT OF THE
+// SHIPPED buildVectorGeometrySliders call sites (`vgSc("b_mag", 1.0, 5.0, ...)`)
+// rather than restated here — a gate carrying its own copy of the numbers
+// passes forever after the renderer changes them.
+const SHIPPED_ROW_RANGE: Record<string, { min: number; max: number; step: number; def: number }> = {};
+{
+  const buildAt = SRC.indexOf("function buildVectorGeometrySliders");
+  const region = SRC.slice(buildAt, SRC.indexOf("document.body.appendChild(spd);", buildAt));
+  const re = /vgSc\("(\w+)",\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*(-?[0-9.]+)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(region))) {
+    SHIPPED_ROW_RANGE[m[1]] = { min: Number(m[2]), max: Number(m[3]), step: Number(m[4]), def: Number(m[5]) };
+  }
+}
+/** The DOM-touching vg text functions, shipped, with a window/document injected. */
+function vgTextFns(win: Record<string, unknown>, doc: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  return new Function("window", "document", "ROW_RANGE", [
+    grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
+    grabVar("VG_READOUT_SUBJECT"), grabScalar("VG_SUBJECT_SHOWN_MIN"),
+    grabVar("VG_ROW_DEC"), grabVar("VG_ROW_DRAG"),
+    grabScalar("VG_FLIP_EPS"),
+    "var VG_ROW_RANGE = ROW_RANGE;",
+    grabFn("vgFx"), grabFn("vgFmtPoint"), grabFn("vgCrossLabelText"), grabFn("vgCrossMagLabelText"),
+    grabFn("vgReadoutLine"), grabFn("vgReadoutSubjectShown"),
+    grabFn("vgSyncRampedRows"), grabFn("vgControlRange"),
+    "return { VG_READOUT_LABEL: VG_READOUT_LABEL, VG_ROW_DEC: VG_ROW_DEC, VG_ROW_RANGE: VG_ROW_RANGE,"
+    + " VG_READOUT_SUBJECT: VG_READOUT_SUBJECT, VG_SUBJECT_SHOWN_MIN: VG_SUBJECT_SHOWN_MIN,"
+    + " vgCrossMagLabelText: vgCrossMagLabelText, vgReadoutLine: vgReadoutLine,"
+    + " vgReadoutSubjectShown: vgReadoutSubjectShown, vgSyncRampedRows: vgSyncRampedRows,"
+    + " vgControlRange: vgControlRange };",
+  ].join("\n"))(win, doc, JSON.parse(JSON.stringify(SHIPPED_ROW_RANGE))) as any;
+}
+/**
+ * The SHIPPED frame driver, published by section 15 (which owns the THREE stub
+ * scene) so sections 17-19 can read the TEXT it writes without a second stub
+ * scene that could drift from it.
+ */
+type RunFrame = (vg: Record<string, unknown>, stateMs?: number,
+  dom?: ReturnType<typeof fakeDom>, win?: Record<string, unknown>, showSliders?: boolean) => unknown;
+const FRAME_HARNESS: { run: RunFrame | null } = { run: null };
+
+/** The SHIPPED apply pass, run against a scene + a real (fake) DOM registry. */
+const APPLY_SRC = grabFn("applyVectorGeometry3DState");
+function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom()) {
+  const win: Record<string, unknown> = {};
+  const T = vgTextFns(win, dom.document);
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  const factory = new Function("sceneObjects", "window", "document", "vgAnimKnobs", "VG_ROW_RANGE", "vgControlRange",
+    APPLY_SRC + "\nreturn applyVectorGeometry3DState;");
+  factory(scene, win, dom.document, E.vgAnimKnobs, T.VG_ROW_RANGE, T.vgControlRange)(stateDef);
+  return { win, dom, T };
+}
 
 let failures = 0;
 function check(label: string, got: unknown, want: unknown, tol: number, unit = ""): boolean {
@@ -442,7 +538,7 @@ console.log("\n=== 5. deriveStateMeta registration — the reveal pin lands past
         // a ramp that ends LONG after the grow-in — the pin must follow it
         STATE_2: { vg: { mode: "products", reveal_ms: 900, animate: [{ knob: "theta_deg", from: 60, to: 20, start_ms: 400, duration_ms: 4600 }] } },
         // a camera schedule that ends after both
-        STATE_3: { vg: { mode: "products", reveal_ms: 900, camera_steps: [{ at_ms: 0, az: 90, el: 70, dist: 10, ease_ms: 0 }, { at_ms: 2800, az: 90, el: 30, dist: 16, ease_ms: 1600 }] } },
+        STATE_3: { vg: { mode: "products", reveal_ms: 900, camera_mode: "steps", camera_steps: [{ at_ms: 0, az: 90, el: 70, dist: 10, ease_ms: 0 }, { at_ms: 2800, az: 90, el: 30, dist: 16, ease_ms: 1600 }] } },
         // explore
         STATE_4: { vg: { mode: "products", controls: ["a_mag", "b_mag", "theta_deg", "b_tilt_deg"] }, show_sliders: true },
       },
@@ -472,6 +568,48 @@ console.log("\n=== 5. deriveStateMeta registration — the reveal pin lands past
   assertTrue(`the un-registered default is exactly DEFAULT_REVEAL_MS = 1500 ms (got ${bare.STATE_X}) — mid-ramp, and the reason the block is mandatory`,
     bare.STATE_X === 1500);
   assertTrue("the registered STATE_2 pin is LATER than the un-registered default", (reveal.STATE_2 ?? 0) > (bare.STATE_X ?? 0));
+
+  // ── D5's MOTION EXPECTATION, which this scenario had no entry for at all.
+  //    Every state resolved to `undefined`, so THE EYE printed "D5 Skipped —
+  //    motion expectation unknown" on all eight and the run still headlined a
+  //    full pass. A GATE THAT IS SKIPPED IS NOT A GATE THAT PASSED. D5 reads
+  //    the DENSE series across the whole state, not the settled reveal pin, so
+  //    a ramped or camera-moved state can be held to actually moving pixels.
+  const motion = deriveMotionExpectations(cfg as any);
+  check("STATE_2 (an animate[] ramp IS the state's motion) declares motion", motion.STATE_2, true, 0);
+  check("STATE_3 (a multi-step camera schedule moves the whole picture) declares motion", motion.STATE_3, true, 0);
+  check("STATE_4 (the teacher's sandbox, user-driven) declares STATIC — the interactive hold pass relaxes its tail", motion.STATE_4, false, 0);
+  assertTrue("STATE_1 (a still guided beat riding only the shared grow-in) is left UNDECLARED on purpose — the sr precedent, so the hold pass classifies it reveal_hold instead of D5 false-failing it for standing still",
+    motion.STATE_1 === undefined);
+  const camOne = {
+    field_3d_config: {
+      scenario_type: "vector_geometry_3d",
+      states: { S: { vg: { mode: "products", camera_mode: "steps", camera_steps: [{ at_ms: 0, az: 90, el: 30, dist: 16, ease_ms: 0 }] } } },
+    },
+  };
+  assertTrue("a SINGLE camera step is a placement, not a move, and does not claim motion",
+    deriveMotionExpectations(camOne as any).S === undefined);
+  // camera_steps WITHOUT camera_mode: "steps" is never READ by the frame
+  // driver, so it is not motion either — the deriver is bound to what the
+  // renderer actually reads, not to the presence of an authored key.
+  const camUnread = {
+    field_3d_config: {
+      scenario_type: "vector_geometry_3d",
+      states: { S: { vg: { mode: "products", camera_steps: [{ at_ms: 0, dist: 10 }, { at_ms: 2800, dist: 16 }] } } },
+    },
+  };
+  assertTrue("camera_steps authored WITHOUT camera_mode:steps claims no motion — the frame driver never reads them",
+    deriveMotionExpectations(camUnread as any).S === undefined);
+
+  // NEGATIVE CONTROL — the shipped pre-fix state of this file: no vg entry, so
+  // every state resolves to undefined and D5 skips. What a weaker control
+  // would have reported: "the concept passed 35/35", "no D5 failures", "hold
+  // expectations are registered" — all true while D5 ran on nothing at all.
+  const noVgEntry = (s: Record<string, unknown>) => (s.sr || s.bonding_scene ? "handled" : undefined);
+  expectFail("a scenario with no deriveMotionExpectations entry declares motion on its ramped state (it declares undefined, and D5 SKIPS)",
+    noVgEntry({ vg: { animate: [{ knob: "theta_deg", from: 60, to: 20 }] } }) !== undefined);
+  assertTrue("...and the SHIPPED deriver does not share that defect (proved on the real function, not on a source grep)",
+    motion.STATE_2 === true);
 }
 
 console.log("\n=== 7b. D-5 — solid_build_frac: the face-by-face BUILD moves the DRAW RANGE, never the geometry ===");
@@ -760,15 +898,8 @@ console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibili
     objs.push({ userData: { elementType: "field_line" }, visible: true });
     return objs;
   }
-  const applySrc = grabFn("applyVectorGeometry3DState");
-  // eslint-disable-next-line @typescript-eslint/no-implied-eval
-  const applyFactory = new Function("sceneObjects", "window", "document", "vgAnimKnobs",
-    applySrc + "\nreturn applyVectorGeometry3DState;");
   function runApply(scene: FakeObj[], stateDef: unknown) {
-    const winStub: Record<string, unknown> = {};
-    const docStub = { getElementById: () => ({ style: {}, value: "", textContent: "", disabled: false }) };
-    applyFactory(scene, winStub, docStub, E.vgAnimKnobs)(stateDef);
-    return { win: winStub };
+    return runApplyPass(scene as unknown as Array<Record<string, unknown>>, stateDef).win;
   }
   const visOf = (s: FakeObj[], t: string) => s.filter((o) => o.userData.elementType === t)[0].visible;
 
@@ -838,9 +969,15 @@ console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibili
   // The readout enum grew with D-5, and a readout key with no label renders
   // NOTHING (vgReadoutLine returns null) — the silent half of scar
   // field3d_slcr_reactance_value_never_rendered.
-  for (const key of ["volume", "base_area", "height"]) {
-    assertTrue(`the D-5 readout key "${key}" has a label in VG_READOUT_LABEL (an unlabelled key renders nothing at all)`,
-      new RegExp("\\b" + key + ":\\s*\"").test(SRC.slice(SRC.indexOf("var VG_READOUT_LABEL"), SRC.indexOf("var VG_READOUT_LABEL") + 700)));
+  // Read from the PARSED table, not from a fixed-length source slice: the
+  // slice version silently stopped covering these three keys the moment a
+  // comment was added above them, which is a gate that quietly narrows.
+  {
+    const T = vgTextFns({}, fakeDom().document);
+    for (const key of ["volume", "base_area", "height"]) {
+      assertTrue(`the D-5 readout key "${key}" has a label in VG_READOUT_LABEL (an unlabelled key renders nothing at all)`,
+        typeof T.VG_READOUT_LABEL[key] === "string" && T.VG_READOUT_LABEL[key].length > 0);
+    }
   }
 }
 
@@ -2457,29 +2594,38 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
       ...INJECT, "THREE", "sceneObjects", "config", "PM_currentState", "time", "stateStartTime",
       "window", "document", "targetSpherical", "spherical", "animating",
       "updateCameraFromSpherical", "vgWriteLinesPlanesFrame", "vgReadoutLine", "vgCamBaseFromState",
-      "updateLabelSpriteText", "vgPlaceTube",
+      "updateLabelSpriteText", "vgPlaceTube", "vgReadoutSubjectShown", "vgSyncRampedRows",
       frameSrc + "\nreturn updateVectorGeometry3DFrame;",
     );
     // stateMs matters: the shared grow-in ease is a closed form of it, so a
     // frame run at ms 0 draws vectors of length zero and every derived piece
     // correctly refuses to exist. 5000 ms is well past any reveal.
-    function runFrame(vg: Record<string, unknown>, stateMs = 5000) {
+    //
+    // The frame is now run against a REAL (fake) DOM registry and the SHIPPED
+    // vgReadoutLine / vgReadoutSubjectShown / vgSyncRampedRows, because
+    // sections 17-19 read the TEXT the frame writes — a stub `getElementById`
+    // returning null is exactly the blindness that let three text surfaces ship
+    // disagreeing with the picture beside them.
+    function runFrame(vg: Record<string, unknown>, stateMs = 5000, dom = fakeDom(), win: Record<string, unknown> = {}, showSliders = false) {
       for (const o of scene) { o.visible = false; }
+      const T = vgTextFns(win, dom.document);
       const fn = frameFactory(
         ...INJECT.map((k) => E[k]), THREE, scene,
-        { states: { STATE_1: { vg } } }, "STATE_1", stateMs / 1000, 0,
-        {}, { getElementById: () => null }, {}, {}, false,
-        () => { /* camera */ }, () => { /* lines/planes writer */ }, () => null,
+        { states: { STATE_1: { vg, show_sliders: showSliders } } }, "STATE_1", stateMs / 1000, 0,
+        win, dom.document, {}, {}, false,
+        () => { /* camera */ }, () => { /* lines/planes writer */ }, T.vgReadoutLine,
         () => ({ az: 0, el: 0, dist: 10 }),
         (sp: Stub, t: string) => { sp._pmText = t; },
         // the REAL vgPlaceTube would need THREE.Vector3 quaternion maths; the
         // segment's geometry is section 14's job, so here it only records that
         // the frame asked for a pose and with what endpoints.
         (m: Stub, p0: number[], p1: number[]) => { m.placed = [p0, p1]; m.visible = true; return true; },
+        T.vgReadoutSubjectShown, T.vgSyncRampedRows,
       );
       fn();
       return scene;
     }
+    FRAME_HARNESS.run = runFrame;
     const labOf = () => scene.filter((o: Stub) => o.userData.tracks === "vg_cross_vector")[0];
     runFrame({ show_cross_vector: true, flip_frac: 0, cross_reveal_frac: 1 });
     assertTrue(`the SHIPPED FRAME writes "a×b" onto the sprite at flip_frac = 0 (got "${labOf()._pmText}")`, labOf()._pmText === "a×b");
@@ -2640,5 +2786,550 @@ console.log("\n=== 16. Δ11 — THE OVERLAY LAYOUT: #vg_sliders and #formula_ove
   assertTrue(`at 1280x720 the top-left readout (bottom ≈ ${readoutBottom}px) leaves room for ${capacity} slider rows, and the tallest single MODE authors ${tallestMode} — so the panel's new edge is genuinely free, not just less crowded`,
     sliderTop(tallestMode) > readoutBottom && capacity >= tallestMode);
 }
+console.log("\n=== 17. A1 — THE READOUT NAMES THE ARROW IT MEASURES (the sibling surface of §15's fix) ===");
+{
+  // bug_class field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_
+  // names. §15 fixed the SPRITE to derive its text from flip_frac and left the
+  // READOUT's VG_READOUT_LABEL.cross_mag a hardcoded "|a×b|" one namespace
+  // away — so on the order-matters state the picture said b×a and the number
+  // beside it said |a×b|. THE DISCRIMINATING QUANTITY IS THE READOUT'S TEXT AT
+  // flip_frac = 1: that a readout EXISTS, that it carries a symbol and a value
+  // in one node, that its VALUE is 6.50 — all true of the broken build.
+  const T = vgTextFns({}, fakeDom().document);
+  assertTrue(`vgCrossMagLabelText(0) reads "${T.vgCrossMagLabelText(0)}"`, T.vgCrossMagLabelText(0) === "|a×b|");
+  assertTrue(`vgCrossMagLabelText(1) reads "${T.vgCrossMagLabelText(1)}" — the name the arrow has at the end of the flip`,
+    T.vgCrossMagLabelText(1) === "|b×a|");
+  assertTrue("the transitional text states the EQUALITY (true at every flip_frac, because a rotation about â preserves length) rather than naming one of the two orders",
+    T.vgCrossMagLabelText(0.5) === "|a×b| = |b×a|");
+  // Bound to the SAME epsilon and therefore to the same endpoints as the
+  // sprite's own name: two surfaces of one arrow that switch at different
+  // fractions would be this defect with a smaller window.
+  for (const f of [0, 0.01, 0.02, 0.5, 0.98, 0.99, 1]) {
+    const sprite = E.vgCrossLabelText(f), readout = T.vgCrossMagLabelText(f);
+    const spriteNames = sprite === "a×b" ? "a×b" : sprite === "b×a" ? "b×a" : null;
+    const readoutNames = readout === "|a×b|" ? "a×b" : readout === "|b×a|" ? "b×a" : null;
+    assertTrue(`flip_frac ${f}: sprite "${sprite}" and readout "${readout}" name the SAME arrow (or both decline to)`,
+      spriteNames === readoutNames);
+  }
+  assertTrue("the VG_READOUT_LABEL table entry is exactly the flip_frac = 0 form, so the table cannot drift from the derived text",
+    T.VG_READOUT_LABEL.cross_mag === T.vgCrossMagLabelText(0));
+
+  // THE WIRING, on the SHIPPED FRAME — the pre-fix defect was a table constant
+  // nothing re-texted, so a correct helper proves nothing on its own.
+  const runFrame = FRAME_HARNESS.run!;
+  const textAt = (flip: number) => {
+    const dom = fakeDom();
+    runFrame({ show_cross_vector: true, cross_reveal_frac: 1, a_mag: 3, b_mag: 2.5, theta_deg: 60,
+      flip_frac: flip, value_readouts: ["cross_mag"], reveal_ms: 0 }, 5000, dom);
+    return dom.get("vg_readout").innerHTML;
+  };
+  const t0 = textAt(0), tMid = textAt(0.5), t1 = textAt(1);
+  assertTrue(`the SHIPPED FRAME prints "${t0.replace(/<[^>]*>/g, "")}" at flip_frac = 0`, t0.includes("|a×b| = 6.50"));
+  assertTrue(`...and re-texts the SAME panel to "${t1.replace(/<[^>]*>/g, "")}" at flip_frac = 1 — the number is unchanged, the NAME is not`,
+    t1.includes("|b×a| = 6.50"));
+  assertTrue(`...and states the equality mid-flip ("${tMid.replace(/<[^>]*>/g, "")}")`, tMid.includes("|a×b| = |b×a| = 6.50"));
+  assertTrue("the row still carries symbol AND value in ONE text node (THE CALCULATOR's DOM harvest)",
+    /id="vg_readout_cross_mag">[^<]*=[^<]*</.test(t1));
+
+  // NEGATIVE CONTROL — the SHIPPED PRE-FIX surface, restated: a constant label.
+  // Weaker controls that would have passed the broken build: "a cross_mag row
+  // is rendered", "its value is |a×b| to 2 dp", "the label is non-empty".
+  const constantLabel = () => "|a×b|";
+  expectFail(`a constant "|a×b|" readout label agrees with the sprite at flip_frac = 1 (sprite says "${E.vgCrossLabelText(1)}", readout says "${constantLabel()}")`,
+    constantLabel() === "|" + E.vgCrossLabelText(1) + "|");
+  assertTrue("...and it is INDISTINGUISHABLE from the fix at flip_frac = 0, which is why seven of the eight states looked right",
+    constantLabel() === T.vgCrossMagLabelText(0));
+  const preFixFrameText = t1.replace("|b×a|", "|a×b|");
+  expectFail("...and the pre-fix PANEL TEXT and the sprite text name the same arrow at flip_frac = 1",
+    preFixFrameText.includes("|" + E.vgCrossLabelText(1) + "|"));
+}
+
+console.log("\n=== 18. A2 — A LIVE SLIDER ROW TRACKS AN animate[] RAMP OF ITS OWN KNOB ===");
+{
+  // Same bug_class. The area state ramps b_mag 2.00 → 2.50 through vg.animate[];
+  // the readout tracked, the parallelogram tracked, and the LIVE ROW for that
+  // knob sat at "|b|: 2.00" with its thumb at t=0. THE DISCRIMINATING QUANTITY
+  // IS THE ROW'S DISPLAYED VALUE AT MID-RAMP — "a b_mag row is visible", "the
+  // row is enabled", "the readout reads 2.42" are all true of the broken build.
+  const runFrame = FRAME_HARNESS.run!;
+  const RAMP = [{ knob: "b_mag", from: 2.0, to: 2.5, start_ms: 4000, duration_ms: 12000 }];
+  const S5 = {
+    a_mag: 3, b_mag: 2, theta_deg: 60, show_cross_vector: true, show_parallelogram: true,
+    cross_reveal_frac: 1, value_readouts: ["b_mag", "cross_mag"], animate: RAMP, controls: ["b_mag"],
+  };
+  const rowAt = (ms: number, win: Record<string, unknown> = {}) => {
+    const dom = fakeDom();
+    runFrame(S5, ms, dom, win, true);
+    return { row: dom.get("vg_b_mag_val").textContent, thumb: dom.get("vg_b_mag_slider").value,
+      readout: dom.get("vg_readout").innerHTML, win };
+  };
+  const geomAt = (ms: number) => E.vgAnimValue(RAMP, "b_mag", ms, 2);
+  for (const ms of [0, 4000, 6000, 10000, 13000, 16000, 20000]) {
+    const r = rowAt(ms), g = geomAt(ms);
+    assertTrue(`t=${ms}ms: the row reads "${r.row}" and the geometry is built from ${g.toFixed(2)} — they agree`,
+      r.row === g.toFixed(2));
+  }
+  // The row and the READOUT are two surfaces of the same number, and the whole
+  // class is surfaces disagreeing — so they are checked against each other too.
+  {
+    const r = rowAt(10000);
+    assertTrue(`mid-ramp the row ("${r.row}") and the |b| readout agree`, r.readout.includes("|b| = " + r.row));
+  }
+  // The thumb is written from the same resolved value (a range input then
+  // quantises it to the row's own step — the resolution the control has).
+  assertTrue(`the thumb is written from the resolved value at mid-ramp (${rowAt(10000).thumb})`,
+    Math.abs(Number(rowAt(10000).thumb) - geomAt(10000)) < 1e-9);
+  assertTrue("at the ramp's END the thumb is exactly the authored destination (2.5), no rounding residue",
+    Number(rowAt(20000).thumb) === 2.5);
+
+  // DRAG-SEIZE SURVIVES. A trusted teacher drag owns the row for the rest of
+  // the state; the write-back must not fight it (that would be a NEW defect —
+  // a control that snaps back under the teacher's finger).
+  {
+    const win: Record<string, unknown> = { PM_vgBMagDragged: true, PM_vgBMag: 4.25 };
+    const dom = fakeDom();
+    dom.get("vg_b_mag_val").textContent = "4.25";
+    runFrame(S5, 10000, dom, win, true);
+    assertTrue(`a dragged row is NOT overwritten by the ramp (still "${dom.get("vg_b_mag_val").textContent}")`,
+      dom.get("vg_b_mag_val").textContent === "4.25");
+    assertTrue("...and the GEOMETRY follows the drag too, so the row and the picture still agree",
+      dom.get("vg_readout").innerHTML.includes("|b| = 4.25"));
+    assertTrue("the frame publishes which rows it is tracking (empty while the teacher owns the only one)",
+      Array.isArray(win.PM_vgRowsTracking) && (win.PM_vgRowsTracking as string[]).indexOf("b_mag") < 0);
+  }
+  // A knob no animate[] entry names is left alone: the apply pass owns it.
+  {
+    const dom = fakeDom();
+    dom.get("vg_a_mag_val").textContent = "SET-BY-APPLY";
+    runFrame(S5, 10000, dom, {}, true);
+    assertTrue("a row whose knob no ramp names is untouched by the write-back",
+      dom.get("vg_a_mag_val").textContent === "SET-BY-APPLY");
+  }
+  // Rule 36 / D3 — the written text is a closed form of state-local ms.
+  {
+    const a = rowAt(9000).row, b = rowAt(9000).row;
+    const fwd = [4000, 7000, 11000, 15000].map((ms) => rowAt(ms).row);
+    const rew = [15000, 11000, 7000, 4000].map((ms) => rowAt(ms).row);
+    assertTrue(`RE-PIN: the same ms twice writes the identical row text ("${a}")`, a === b);
+    assertTrue("REWIND: replaying the ramp backwards reproduces every row text bit for bit",
+      fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+  }
+  // NEGATIVE CONTROL — the SHIPPED PRE-FIX row: written once at state entry by
+  // the apply pass and never again.
+  {
+    const writtenOnce = (2).toFixed(2);
+    expectFail(`a row written only at state entry reads the geometry's value at mid-ramp (row "${writtenOnce}", geometry ${geomAt(10000).toFixed(2)})`,
+      writtenOnce === geomAt(10000).toFixed(2));
+    assertTrue("...and it is INDISTINGUISHABLE from the fix at t=0 and at any state with no ramp — which is why every other state looked right",
+      writtenOnce === geomAt(0).toFixed(2) && writtenOnce === E.vgAnimValue([], "b_mag", 10000, 2).toFixed(2));
+  }
+}
+
+console.log("\n=== 19. A3 — A NUMBER MAY NOT PRECEDE ITS SUBJECT (Rule 32a) ===");
+{
+  // Same bug_class. The triple-product state printed Volume / Base / Height at
+  // t = 0: 2.6 s before c even began to appear and 8.2 s before the solid
+  // finished building. THE DISCRIMINATING QUANTITY IS WHETHER THE ROW IS
+  // PRESENT BEFORE ITS OBJECT'S REVEAL — "the panel renders", "the numbers are
+  // correct", "Volume = Base × Height" are all true of the broken build, at
+  // t = 0, about a body that is not on screen.
+  const runFrame = FRAME_HARNESS.run!;
+  const S7 = {
+    a_mag: 3, b_mag: 2.5, theta_deg: 60, c_mag: 2, c_theta_deg: 40, c_phi_deg: 6,
+    show_c: true, show_parallelepiped: true, c_reveal_frac: 0, solid_build_frac: 0,
+    split_solid_frac: 0, split_gap_k: 1, reveal_ms: 1,
+    value_readouts: ["volume", "base_area", "height"],
+    animate: [
+      { knob: "c_reveal_frac", from: 0, to: 1, start_ms: 2600, duration_ms: 1800 },
+      { knob: "solid_build_frac", from: 0, to: 1, start_ms: 4600, duration_ms: 3600, easing: "linear" },
+      { knob: "split_solid_frac", from: 0, to: 1, start_ms: 9000, duration_ms: 9000 },
+    ],
+  };
+  const panelAt = (ms: number, vg: Record<string, unknown> = S7) => {
+    const dom = fakeDom();
+    runFrame(vg, ms, dom);
+    const el = dom.get("vg_readout");
+    return { html: el.innerHTML, shown: el.style.display };
+  };
+  const cAt = (ms: number) => E.vgAnimValue(S7.animate, "c_reveal_frac", ms, 0);
+  const solidAt = (ms: number) => E.vgAnimValue(S7.animate, "solid_build_frac", ms, 0);
+  for (const ms of [0, 1000, 2600, 3500, 4400, 4600, 6000, 8100]) {
+    const p = panelAt(ms);
+    assertTrue(`t=${ms}ms (c ${cAt(ms).toFixed(2)}, solid ${solidAt(ms).toFixed(2)}): NO Volume/Base/Height row, and the panel is hidden`,
+      !p.html.includes("vg_readout_volume") && !p.html.includes("vg_readout_base_area")
+      && !p.html.includes("vg_readout_height") && p.shown === "none");
+  }
+  for (const ms of [8200, 9000, 13000, 18000]) {
+    const p = panelAt(ms);
+    assertTrue(`t=${ms}ms (solid ${solidAt(ms).toFixed(2)}): all three rows are present once the body they measure is built`,
+      p.html.includes("vg_readout_volume") && p.html.includes("vg_readout_base_area")
+      && p.html.includes("vg_readout_height") && p.shown === "block");
+  }
+  // The gate is on the SUBJECT, not on the clock: an unramped state that simply
+  // shows a built solid prints its three numbers immediately, exactly as before.
+  {
+    const p = panelAt(0, { ...S7, animate: [], c_reveal_frac: 1, solid_build_frac: 1 });
+    assertTrue("a state that authors a fully-built solid still prints all three rows at t=0 (states that predate this gate are untouched)",
+      p.html.includes("vg_readout_volume") && p.html.includes("vg_readout_height"));
+  }
+  // The cross-product tokens ride the same rule through their own knob — the
+  // primary-aha state printed a·(a×b) = 0.00 for five seconds before the a×b
+  // arrow existed to be perpendicular to anything.
+  {
+    const S4 = {
+      a_mag: 3, b_mag: 2, theta_deg: 130, show_cross_vector: true, cross_reveal_frac: 0, reveal_ms: 1,
+      value_readouts: ["a_dot_cross", "b_dot_cross"],
+      animate: [{ knob: "cross_reveal_frac", from: 0, to: 1, start_ms: 5000, duration_ms: 2500 }],
+    };
+    assertTrue("t=0ms: no a·(a×b) row before the a×b arrow is drawn", !panelAt(0, S4).html.includes("vg_readout_a_dot_cross"));
+    assertTrue("t=6000ms: still none while the arrow is only half-grown (its LENGTH is the claim on the area state)",
+      !panelAt(6000, S4).html.includes("vg_readout_a_dot_cross"));
+    assertTrue("t=7500ms: both rows appear the moment the arrow is fully drawn",
+      panelAt(7500, S4).html.includes("vg_readout_a_dot_cross") && panelAt(7500, S4).html.includes("vg_readout_b_dot_cross"));
+  }
+  // SCOPE, stated: a and b ride the shared grow-in and are the scenario itself,
+  // so their tokens are deliberately ungated. Asserted so the decision is
+  // visible rather than inferred from the map's silence.
+  {
+    const p = panelAt(0, { a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "b_mag", "theta_deg"], reveal_ms: 2600 });
+    assertTrue("a/b/θ rows are NOT gated (they are the scenario, not a revealed subject) — an authored decision, checked",
+      p.html.includes("vg_readout_a_mag") && p.html.includes("vg_readout_theta_deg"));
+  }
+  // NEGATIVE CONTROL — the SHIPPED PRE-FIX behaviour: render every authored
+  // token unconditionally. Weaker controls that would have passed it: the
+  // values are right, the panel exists, Volume == Base × Height.
+  {
+    const T = vgTextFns({}, fakeDom().document);
+    const vals = { volume: 9.9512, base_area: 4.2708, height: 2.3301 };
+    const ungated = ["volume", "base_area", "height"].map((k) => T.vgReadoutLine(k, vals)).filter(Boolean);
+    expectFail(`an ungated panel stays silent at t=0 (it prints "${ungated.join(" / ")}" beside an empty scene)`,
+      ungated.length === 0);
+    assertTrue("...and its NUMBERS are perfectly correct — Volume = Base × Height to 4 dp — which is why 475 headless assertions saw nothing wrong",
+      Math.abs(vals.base_area * vals.height - vals.volume) < 1e-3);
+    assertTrue("...and it is INDISTINGUISHABLE from the fix once the solid is built",
+      ungated.length === 3 && panelAt(13000).html.includes("vg_readout_volume"));
+  }
+}
+
+console.log("\n=== 20. B — A GUIDED STATE CAN BOUND ITS OWN CONTROL (vg.control_ranges) ===");
+{
+  // bug_class field3d_vg_slider_range_is_concept_wide_so_a_guided_state_cannot_
+  // bound_its_own_control. vgSc reads config.slider_controls, which is
+  // CONCEPT-WIDE, so a guided state at a FIXED camera inherits the sandbox's
+  // travel. Measured below with the SHIPPED projection at a camera DERIVED from
+  // the shipped framing solver (never a pose fixtured in this file).
+  const T = vgTextFns({}, fakeDom().document);
+  const base = T.VG_ROW_RANGE.b_mag;
+  assertTrue(`the concept-wide b_mag range is read from the shipped builder (${base.min}..${base.max} step ${base.step})`,
+    base && base.min === SHIPPED_ROW_RANGE.b_mag.min && base.max === SHIPPED_ROW_RANGE.b_mag.max);
+
+  // ── THE MEASUREMENT. The state's own claim is that the a×b arrow's LENGTH
+  //    IS THE AREA, so the camera is solved for the authored ramp's end
+  //    (|b| = 2.5) by the renderer's OWN framing solver, and then every detent
+  //    the row can reach is projected through the SHIPPED vgProjectPoint. No
+  //    pose is written down here; the pose is derived from the shipped
+  //    functions and the authored ramp, which is the only way this measurement
+  //    survives the concept moving its camera.
+  const RAMP_END = 2.5;
+  const framed = E.vgBuildVectors({ a_mag: 3, b_mag: RAMP_END, theta_deg: 60, b_tilt_deg: 0 });
+  const camPos = E.vgAutoFramePos(framed.a, framed.b, 2.5) as V3;
+  assertTrue("the camera pose is DERIVED from the shipped framing solver at the ramp's end, not fixtured in this gate",
+    Array.isArray(camPos) && len3(camPos) > 0);
+  function offFrame(bMag: number): boolean {
+    const v = E.vgBuildVectors({ a_mag: 3, b_mag: bMag, theta_deg: 60, b_tilt_deg: 0 });
+    const pts: V3[] = [E.vgCrossVec(v.a, v.b) as V3, ...(E.vgParallelogramVerts(v.a, v.b) as V3[])];
+    for (const p of pts) {
+      const s = E.vgProjectPoint(camPos, TARGET, UP, FOV, ASPECT, p);
+      if (!s || Math.abs(s.sx) > HALF_H || Math.abs(s.sy) > HALF_V) return true;
+    }
+    return false;
+  }
+  const detents = (r: { min: number; max: number; step: number }) => {
+    const out: number[] = [];
+    for (let v = r.min; v <= r.max + 1e-9; v += r.step) out.push(Number(v.toFixed(6)));
+    return out;
+  };
+  const wide = detents(base);
+  const wideOff = wide.filter(offFrame);
+  assertTrue(`the AUTHORED ramp itself is fully on frame (${[2.0, 2.25, 2.5].filter(offFrame).length} of 3 sampled ramp values off) — the design was verified over the ramp`,
+    [2.0, 2.25, 2.5].every((v) => !offFrame(v)));
+  assertTrue(`...but the LIVE ROW is wider than the ramp: ${wideOff.length} of ${wide.length} detents (${((100 * wideOff.length) / wide.length).toFixed(0)}% of travel) leave the frame — the worst-case law over what MOVES, not over what was authored`,
+    wideOff.length > 0);
+  const lastOn = wide.filter((v) => !offFrame(v)).slice(-1)[0];
+  console.log(`        widest on-frame detent |b| = ${lastOn}; first off-frame ${wideOff[0]}`);
+  const bounded = T.vgControlRange("b_mag", {
+    b_mag: 2, control_ranges: { b_mag: { max: lastOn } },
+    animate: [{ knob: "b_mag", from: 2.0, to: 2.5, start_ms: 4000, duration_ms: 12000 }],
+  });
+  assertTrue(`a per-state control_ranges.max of ${lastOn} bounds the row to on-frame travel only (${detents(bounded).filter(offFrame).length} of ${detents(bounded).length} off)`,
+    detents(bounded).every((v) => !offFrame(v)));
+  assertTrue("...and it still contains the whole authored ramp, so the state's own motion is never clipped",
+    bounded.min <= 2.0 && bounded.max >= 2.5 && bounded.widened === false);
+
+  // ── THE RESOLVER. Restore, override each field independently, and the
+  //    widening that refuses to exclude what the state itself produces.
+  const plain = T.vgControlRange("b_mag", { });
+  assertTrue(`a state with NO control_ranges gets the concept-wide range back (${plain.min}..${plain.max}) — a narrowing may never leak forward`,
+    plain.min === base.min && plain.max === base.max && plain.step === base.step);
+  const minOnly = T.vgControlRange("b_mag", { control_ranges: { b_mag: { min: 2 } } });
+  assertTrue(`an override of min alone inherits max and step (${minOnly.min}..${minOnly.max} step ${minOnly.step})`,
+    minOnly.min === 2 && minOnly.max === base.max && minOnly.step === base.step);
+  const widened = T.vgControlRange("b_mag", {
+    b_mag: 2, control_ranges: { b_mag: { min: 2.2, max: 2.4 } },
+    animate: [{ knob: "b_mag", from: 2.0, to: 2.5, start_ms: 0, duration_ms: 100 }],
+  });
+  assertTrue(`a range that would EXCLUDE the state's own ramp is widened to contain it (${widened.min}..${widened.max}) and says so`,
+    widened.min <= 2.0 && widened.max >= 2.5 && widened.widened === true);
+  assertTrue("an unknown knob resolves to null rather than inventing a range", T.vgControlRange("not_a_knob", {}) === null);
+
+  // ── THE WIRING, on the SHIPPED apply pass: the row input's min/max/step are
+  //    actually written, restored, and the widening is published.
+  {
+    const scene: Array<Record<string, unknown>> = [{ userData: { elementType: "vg_vector_a" }, visible: false }];
+    const dom = fakeDom();
+    runApplyPass(scene, { show_sliders: true, vg: { controls: ["b_mag"], b_mag: 2, control_ranges: { b_mag: { max: 3 } } } }, dom);
+    const row = dom.get("vg_b_mag_slider");
+    assertTrue(`the apply pass writes the bounded range onto the row (${row.min}..${row.max} step ${row.step})`,
+      row.max === "3" && row.min === String(base.min) && row.step === String(base.step));
+    assertTrue("...and the row's VALUE is written after its range, so the input cannot sanitise the state's own value away",
+      row.value === "2");
+    const dom2 = fakeDom();
+    const r2 = runApplyPass(scene, { show_sliders: true, vg: { controls: ["b_mag"], b_mag: 4 } }, dom2);
+    assertTrue(`the NEXT state without an override is restored to the concept-wide range (${dom2.get("vg_b_mag_slider").max})`,
+      dom2.get("vg_b_mag_slider").max === String(base.max));
+    assertTrue("no widening is reported when none happened", Array.isArray(r2.win.PM_vgControlRangeWidened)
+      && (r2.win.PM_vgControlRangeWidened as string[]).length === 0);
+    const dom3 = fakeDom();
+    const r3 = runApplyPass(scene, { show_sliders: true, vg: { controls: ["b_mag"], b_mag: 4.5, control_ranges: { b_mag: { max: 3 } } } }, dom3);
+    assertTrue(`a range that would exclude the state's own authored value is widened AND published (${JSON.stringify(r3.win.PM_vgControlRangeWidened)})`,
+      (r3.win.PM_vgControlRangeWidened as string[]).indexOf("b_mag") >= 0 && dom3.get("vg_b_mag_slider").max === "4.5");
+  }
+
+  // NEGATIVE CONTROLS. The first is the shipped pre-fix behaviour; the second
+  // is the tempting alternative fix, which is why it is measured rather than
+  // argued: an auto-framing camera that dollies out as the quad grows CANCELS
+  // the growth on screen, on the state whose claim is that the arrow grows.
+  expectFail(`the CONCEPT-WIDE range keeps every detent on frame (${wideOff.length} of ${wide.length} do not)`,
+    wideOff.length === 0);
+  {
+    const armAt = (bMag: number) => {
+      const v = E.vgBuildVectors({ a_mag: 3, b_mag: bMag, theta_deg: 60, b_tilt_deg: 0 });
+      const axb = E.vgCrossVec(v.a, v.b) as V3;
+      const pos = E.vgAutoFramePos(v.a, v.b, 2.5) as V3;
+      const o = E.vgProjectPoint(pos, TARGET, UP, FOV, ASPECT, [0, 0, 0]);
+      const t = E.vgProjectPoint(pos, TARGET, UP, FOV, ASPECT, axb);
+      return Math.hypot(t.sx - o.sx, t.sy - o.sy);
+    };
+    const growth = armAt(2.5) / armAt(2.0);
+    expectFail(`auto_frame preserves the taught growth: the arrow's SCREEN length grows as |b| goes 2.0 → 2.5 (ratio ${growth.toFixed(4)})`,
+      growth > 1.02);
+    assertTrue("...while the arrow's TRUE length grew 25%, so the auto-framing camera would teach that nothing changed",
+      Math.abs(E.vgLenVec(E.vgCrossVec(E.vgBuildVectors({ a_mag: 3, b_mag: 2.5, theta_deg: 60 }).a, E.vgBuildVectors({ a_mag: 3, b_mag: 2.5, theta_deg: 60 }).b))
+        / E.vgLenVec(E.vgCrossVec(E.vgBuildVectors({ a_mag: 3, b_mag: 2.0, theta_deg: 60 }).a, E.vgBuildVectors({ a_mag: 3, b_mag: 2.0, theta_deg: 60 }).b)) - 1.25) < 1e-9);
+  }
+}
+
+console.log("\n=== 21. C — EVERY position:fixed SURFACE, SWEPT: the panel is placed against a MEASURED set ===");
+{
+  // bug_class field3d_vg_overlay_relocation_moved_the_collision_instead_of_
+  // removing_it. §16 moved #vg_sliders off #formula_overlay's corner and onto
+  // #legend's, having enumerated the destination corner BY HAND ("#vg_readout
+  // is top-anchored, #simPenBar is up at top:10") and asserted that
+  // enumeration exhaustive — the OPEN scar call_site_enumeration_asserted_
+  // exhaustive_without_a_symbol_sweep. #legend is fixed bottom:8/left:8 at the
+  // same z-index and was never named, so a slider track struck through the
+  // state-label card on both slider states.
+  //
+  // So the enumeration is no longer written by hand. Every position:fixed
+  // surface in the renderer — the shell's CSS rules AND every dynamically
+  // created panel — is PARSED, and every one of them must be CLASSIFIED here.
+  // An id this table has never heard of FAILS, which is what stops the next
+  // relocation from repeating this.
+  const RENDERER_FILE = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf-8");
+  type Panel = {
+    id: string; src: "css" | "dynamic"; body: string;
+    top: number | null; bottom: number | null; left: number | null; right: number | null;
+    centeredX: boolean; z: number | null; minW: number; maxW: number; padX: number; padY: number; lineH: number;
+  };
+  const numOf = (body: string, k: string): number | null => {
+    const m = new RegExp("(?:^|[;{\\s])" + k + "\\s*:\\s*(-?[0-9.]+)px").exec(body);
+    return m ? Number(m[1]) : null;
+  };
+  function parsePanel(id: string, body: string, src: "css" | "dynamic"): Panel {
+    const pad = /padding\s*:\s*([0-9.]+)px(?:\s+([0-9.]+)px)?/.exec(body);
+    const font = /font\s*:\s*(?:[a-z0-9]+\s+)*?([0-9.]+)px(?:\s*\/\s*([0-9.]+))?/.exec(body);
+    const fs = font ? Number(font[1]) : 13;
+    const lh = font && font[2] ? Number(font[2]) * fs : fs * 1.4;
+    return {
+      id, src, body,
+      top: numOf(body, "top"), bottom: numOf(body, "bottom"),
+      left: numOf(body, "left"), right: numOf(body, "right"),
+      centeredX: /left\s*:\s*50%/.test(body),
+      z: numOf(body, "z-index") ?? (/z-index\s*:\s*(\d+)/.exec(body) ? Number(/z-index\s*:\s*(\d+)/.exec(body)![1]) : null),
+      minW: numOf(body, "min-width") ?? 0, maxW: numOf(body, "max-width") ?? 0,
+      padX: pad ? Number(pad[2] ?? pad[1]) : 12, padY: pad ? Number(pad[1]) : 10, lineH: lh,
+    };
+  }
+  // ── (i) the shell's <style> block, every rule, brace-matched with ${...}
+  //    interpolations neutralised (they contain braces and silently truncate a
+  //    naive parse — the first sweep written for this section lost #legend
+  //    exactly that way).
+  const panels: Panel[] = [];
+  {
+    const s0 = RENDERER_FILE.indexOf("<style>") + 7;
+    const s1 = RENDERER_FILE.indexOf("</style>");
+    const css = RENDERER_FILE.slice(s0, s1).replace(/\$\{[^}]*\}/g, "X").replace(/\/\*[\s\S]*?\*\//g, "");
+    const re = /([^{}]+)\{([^{}]*)\}/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(css))) {
+      const sel = m[1].trim().replace(/\s+/g, " "), body = m[2].replace(/\s+/g, " ").trim();
+      if (!/position\s*:\s*fixed/.test(body)) continue;
+      panels.push(parsePanel(sel, body, "css"));
+    }
+  }
+  // ── (ii) every dynamically-created fixed panel in the emitted template,
+  //    paired with the id its own variable was given.
+  {
+    const re = /(\w+)\.style\.cssText = "(position:\s*fixed[^"]*)"/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(SRC))) {
+      const v = m[1];
+      const before = SRC.slice(0, m.index);
+      const idm = new RegExp(v + "\\.id = \"([^\"]+)\"", "g");
+      let last: RegExpExecArray | null = null, x: RegExpExecArray | null;
+      while ((x = idm.exec(before))) last = x;
+      panels.push(parsePanel(last ? "#" + last[1] : "(anonymous:" + v + ")", m[2].replace(/\s+/g, " "), "dynamic"));
+    }
+  }
+  assertTrue(`the sweep found the shell CSS rules AND the dynamic panels (${panels.filter((p) => p.src === "css").length} css + ${panels.filter((p) => p.src === "dynamic").length} dynamic)`,
+    panels.filter((p) => p.src === "css").length >= 25 && panels.filter((p) => p.src === "dynamic").length >= 25);
+  assertTrue("every dynamic panel was matched to an id (an anonymous panel cannot be classified, so it must not exist)",
+    panels.every((p) => p.id.indexOf("(anonymous") < 0));
+
+  // ── (iii) CLASSIFICATION. `vg` = this scenario's own. `generic` = the shell
+  //    overlays that exist on EVERY concept and are driven by generic code.
+  //    `suppressed` = a generic overlay this scenario turns off (proved from
+  //    the source below, never asserted). `other` = owned by another scenario
+  //    (its display is written only under that scenario's own code path, so it
+  //    can never appear on a vg concept) or not an overlay at all.
+  const GENERIC = ["#caption", "#formula_overlay", "#sliders", "#equation_panel"];
+  const SUPPRESSED = ["#legend"];
+  const NOT_AN_OVERLAY = ["#mobile-fallback", "#acl_stage"];   // full-viewport layers, not corner panels
+  const OTHER_PREFIX = /^[.#](acl_|nw_|rhr_|palm_|fleming_|lorentz_|nowork_|radius_|helix_|hx_|plates_|cyclotron_|torque_|dipole_|bmf_|fcw_|cap_|swc_|pcf_|pc[A-Z]|em_|gen_|lz_|rad_|cyc_|tq_|dpf_|mcg_|gav_|bm_)/;
+  const classOf = (p: Panel): "vg" | "generic" | "suppressed" | "other" | "unknown" => {
+    const id = p.id;
+    if (/^#vg_/.test(id)) return "vg";
+    if (SUPPRESSED.indexOf(id) >= 0) return "suppressed";
+    if (GENERIC.indexOf(id) >= 0) return "generic";
+    if (NOT_AN_OVERLAY.indexOf(id) >= 0) return "other";
+    // A DYNAMIC panel exists only if its builder ran, and a scenario's builder
+    // runs only from the buildScenario dispatch for its own scenario_type — so
+    // another scenario's dynamic panel is not merely hidden on a vg concept, it
+    // is never created. That is structural, so it needs no per-id list; the vg
+    // half of the same claim is what §11's glue allowlist pins.
+    if (p.src === "dynamic") return "other";
+    // A SHELL CSS rule, by contrast, describes markup that is in the DOM on
+    // EVERY concept, so each one is placed BY HAND — 29 rules is a reviewable
+    // number and a new one fails here until somebody classifies it.
+    if (OTHER_PREFIX.test(id)) return "other";
+    return "unknown";
+  };
+  const unknown = panels.filter((p) => classOf(p) === "unknown").map((p) => p.id);
+  for (const u of unknown.slice(0, 12)) console.log("      UNCLASSIFIED fixed panel: " + u);
+  assertTrue(`every position:fixed surface in the renderer is classified (${panels.length} panels — ${panels.filter((p) => p.src === "css").length} shell rules placed by hand, ${panels.filter((p) => p.src === "dynamic").length} dynamic; ${unknown.length} unclassified) — the enumeration is MECHANICAL, so the next SHELL panel added anywhere fails here until someone places it`,
+    unknown.length === 0);
+  assertTrue("the vg panels are DYNAMIC and therefore only exist on a vg concept — the same structural claim, read from the sweep",
+    panels.filter((p) => classOf(p) === "vg").every((p) => p.src === "dynamic"));
+  assertTrue("this scenario's own panels are found by the sweep (not by being named here)",
+    panels.filter((p) => classOf(p) === "vg").map((p) => p.id).sort().join(",") === "#vg_readout,#vg_sliders");
+
+  // ── (iv) the SUPPRESSION is proved from the source, not assumed: #legend is
+  //    excluded from the collidable set ONLY because updateLegend returns early
+  //    for this scenario_type. If that line ever goes, the pair below fails.
+  const legendSuppressed = /if \(config\.scenario_type === "vector_geometry_3d"\) \{ legendEl\.style\.display = "none"/.test(SRC);
+  assertTrue("#legend is SUPPRESSED for vector_geometry_3d in updateLegend (the collision is removed, not relocated — Rule 24, the same one-line shape as its Phase-0 sibling solid_of_revolution)",
+    legendSuppressed);
+  assertTrue("the sibling precedent this follows is present, so the shape is the fleet's and not this scenario's invention",
+    /if \(config\.scenario_type === "solid_of_revolution"\) \{ legendEl\.style\.display = "none"/.test(SRC));
+
+  // ── (v) THE GEOMETRY, height-free where it can be. Two fixed panels anchored
+  //    to the SAME vertical edge with overlapping horizontal spans WILL touch
+  //    once either grows — that is the #legend/#vg_sliders defect, and it needs
+  //    no height model to state. The one exception is a panel whose content is
+  //    ONE LINE by construction (#caption is the ≤5-word delta cue, Rule 34a):
+  //    its height is computed from its OWN parsed font and padding, so the
+  //    clearance below it is derived rather than assumed.
+  const W = 1280, HEADROOM = 120;
+  const widthOf = (p: Panel) => (p.maxW || p.minW + HEADROOM) + 2 * p.padX;
+  const spanOf = (p: Panel): [number, number] => {
+    const w = widthOf(p);
+    if (p.centeredX) return [W / 2 - w / 2, W / 2 + w / 2];
+    if (p.left !== null) return [p.left, p.left + w];
+    if (p.right !== null) return [W - p.right - w, W - p.right];
+    return [0, W];
+  };
+  const SINGLE_LINE = ["#caption"];              // Rule 34a: the delta cue, one line
+  const heightOf = (p: Panel) => (SINGLE_LINE.indexOf(p.id) >= 0 ? 2 * p.padY + p.lineH : Infinity);
+  const edgeOf = (p: Panel) => (p.top !== null ? "top" : p.bottom !== null ? "bottom" : "none");
+  const offsetOf = (p: Panel) => (p.top !== null ? p.top : p.bottom !== null ? p.bottom : 0);
+  const collides = (p: Panel, q: Panel) => {
+    const [a0, a1] = spanOf(p), [b0, b1] = spanOf(q);
+    if (a1 <= b0 || b1 <= a0) return false;                    // horizontally disjoint
+    const ep = edgeOf(p), eq = edgeOf(q);
+    if (ep === "none" || eq === "none") return false;          // anchored per state
+    if (ep !== eq) return false;                               // opposite edges
+    const [near, far] = offsetOf(p) <= offsetOf(q) ? [p, q] : [q, p];
+    return offsetOf(near) + heightOf(near) > offsetOf(far);    // the near one must END above the far one
+  };
+  const collidable = panels.filter((p) => ["vg", "generic"].indexOf(classOf(p)) >= 0);
+  const vgPanels = collidable.filter((p) => classOf(p) === "vg");
+  let hits = 0;
+  for (const v of vgPanels) {
+    for (const o of collidable) {
+      if (o === v) continue;
+      if (collides(v, o)) { hits++; console.log(`      COLLISION: ${v.id} vs ${o.id}`); }
+    }
+  }
+  assertTrue(`no vg panel collides with ANY other surface that can appear on a vector_geometry_3d concept (${collidable.length} collidable panels swept, ${hits} collisions)`,
+    hits === 0);
+
+  // NEGATIVE CONTROLS. (1) the measured defect itself: put #legend back into
+  // the collidable set and the sweep must report it. THE DISCRIMINATING
+  // QUANTITY IS A RECT INTERSECTION AGAINST THE PARSED CSS — "the panel is
+  // bottom-left", "its z-index is 10", "#formula_overlay is untouched" are all
+  // true of the broken build.
+  {
+    const legend = panels.filter((p) => p.id === "#legend")[0];
+    const sliders = panels.filter((p) => p.id === "#vg_sliders")[0];
+    assertTrue("#legend and #vg_sliders were both parsed out of the shipped source, so the control below has real coordinates",
+      !!legend && !!sliders);
+    const [l0, l1] = spanOf(legend), [s0, s1] = spanOf(sliders);
+    expectFail(`an UNSUPPRESSED #legend (bottom:${legend.bottom}/left:${legend.left}) clears #vg_sliders (bottom:${sliders.bottom}/left:${sliders.left})`,
+      !collides(legend, sliders));
+    console.log(`        measured overlap of the pre-fix pair: ${(Math.min(l1, s1) - Math.max(l0, s0)).toFixed(0)}px of shared width on the SAME bottom edge`);
+    assertTrue("...and they share z-index, so nothing but paint order decided which text won",
+      legend.z === sliders.z);
+  }
+  // (2) the PRE-FIX ENUMERATION — the hand-written one this section replaces.
+  // It named #formula_overlay and #vg_readout and called itself exhaustive.
+  {
+    const BY_HAND = ["#formula_overlay", "#vg_readout"];
+    const sliders = panels.filter((p) => p.id === "#vg_sliders")[0];
+    const missed = panels.filter((p) => ["generic", "suppressed"].indexOf(classOf(p)) >= 0
+      && BY_HAND.indexOf(p.id) < 0 && collides(p, sliders));
+    expectFail(`the hand-written enumeration (${BY_HAND.join(", ")}) covered every surface at the destination corner`,
+      missed.length === 0);
+    console.log(`        the hand enumeration missed: ${missed.map((p) => p.id).join(", ")}`);
+  }
+  // (3) a panel moved BACK into a taken corner must fail, or the sweep is only
+  // agreeing with today's coordinates.
+  {
+    const sliders = panels.filter((p) => p.id === "#vg_sliders")[0];
+    const movedBack: Panel = { ...sliders, left: null, right: 12 };
+    const formula = panels.filter((p) => p.id === "#formula_overlay")[0];
+    expectFail("a #vg_sliders moved back to bottom:12/right:12 clears #formula_overlay", !collides(movedBack, formula));
+  }
+}
+
 console.log(`\n${failures === 0 ? "ALL SECTIONS PASSED" : `${failures} ASSERTION(S) FAILED`}\n`);
 process.exit(failures === 0 ? 0 : 1);
