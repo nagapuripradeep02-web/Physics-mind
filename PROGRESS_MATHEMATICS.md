@@ -49,6 +49,53 @@ skeletons are on master, but no concept JSON exists yet.**
 
 ---
 
+## 📐 SESSION — concept #9 authored on the merged 3D engine, and FIVE platform fixes found by walking it (2026-08-09, master `2c0b24f` → `bb73ee8`; PRs #90/#91/#93/#94/#95 all merged)
+
+**Concept #9 `lines_and_planes_in_space` is AUTHORED, walked twice, and NOT approved.** 9 states,
+`vector_geometry_3d` / `mode:"lines_planes"`. `validate:mathematics` 5/5 PASS · `tsc` 0 · THE EYE
+38/39 with 1 skip (H2, no baseline — correct) and 1 failure that is a known gate false positive.
+**Nothing approved, baselined, or in `PILOT_CONCEPTS`.**
+
+**The headline is not the concept — it is that walking the concept found five PLATFORM defects, and
+that every one of them was invisible to the deterministic gates.**
+
+| PR | fix | why it mattered |
+|---|---|---|
+| **#90** | D5 read `cached.physics_config` | A hand-seeded chemistry/mathematics cache row carries only `epic_l_path` — no states — so `deriveMotionExpectations` returned `{}` and **D5 had never run on ANY chemistry or mathematics concept.** First run of #9 read `39 checks · 39 passed` with **nine skips inside it**. Also explains why registering `vg` during the #7 wave "did not take": the registration was correct and *unreachable* |
+| **#91** | `vg_vector_a`/`vg_vector_b` never hidden in `lines_planes` | Act I's explorer vectors rendered on **all 9 states**; on S6 "a" sat exactly where `d₁`'s label belongs. Visibility is written TWICE (apply pass + per-frame updater) — an apply-only fix would have been undone one frame later. 6 sites, one predicate |
+| **#93** | readouts published before their subject existed | **19 sites across 7 constructs.** STATE_4 printed `n·d = 0.574`/`λ = 2.600`/a meeting point from frame 0 while the PARALLEL line was the only thing on screen. A panel-side fix would have been a **total no-op** (`vgReadoutSubjectShown` passes all 13 tokens through) |
+| **#94** | `d.intersection` → `intersections[]` | Δ4 could not do its job on the only state needing it. Collision resolved by **REFUSAL, not precedence**: the four tokens are names, not addresses, and both lines are labelled `d`, so any winner prints a correct number the reader cannot attach to a line |
+| **#95** | reveal pin blind to `intersections[]` | Migrating the JSON dropped STATE_4's pin **15900 → 10400 ms**, pinning the frozen frame 4.6 s *before* its marker exists. **Nothing would have failed** — the run goes green against the wrong frame, and that frame becomes the baseline |
+
+**Gate growth: `check:vector-geometry-3d` 570/60 → 716 assertions / 85 negative controls.**
+
+**Three defects were each exposed by fixing the one on top of them** — `cross_mag` → unequal screen
+lengths (#7); a/b removal → `d₁` never labelled; `intersections[]` → a parallel direction authored
+pre-normalized and rounded to 6 dp, `d̂·n̂ = 2.756e-07`, **276× the 1e-9 guard**, printing
+`λ = −5,080,022` and a meeting point 4.8 M units away on the state whose lesson is that there is none.
+Every gate was green while that was on screen. Fixed by authoring the exact unnormalized `[1,−0.35,0]`
+(`5.551e-17`). **Recorded as doctrine: after removing an occluding surface, RE-WALK the frames.**
+
+**Two corrections to my own filed rows, retracted from pixels** — I filed a `scene_group`-inert row
+after checking each object for a singular `group` key; the JSON authors `groups` (plural), which is
+what the engine reads, and the selector works. Retained as `FALSE_POSITIVE`, because the inference
+error is the durable lesson: *a check invariant under your likely error is not evidence.*
+
+**Also fixed:** the mathematics catalog declared `definite_integral_as_area` while the shipped,
+baseline-locked concept is `definite_integral_as_accumulated_area` — orphaning #8's only prerequisite
+edge. Same defect the founder fixed one row below on 2026-08-08, applied to the reported row and never
+swept. Swept now: 12 ids, 7 edges, 0 orphans. **CLAUDE.md §6** gained the MATHEMATICS carve-out — it
+named only chemistry, so it actively instructed an author to make five forbidden registrations.
+
+**Scar rows: 18 verified already-seeded (the handoff's §3 was stale), + 14 new/updated this session.**
+
+**Next:** ⚠ the `intersections[]` migration is authored but the concept is UNWALKED by `quality_auditor`
+and has no founder review. Then: STATE_1's ghost-multiplier scar, STATE_6's missing `d₁` label
+(root cause unproven — three discriminating tests are on the row), the `θ (a, b)` slider label naming
+objects no longer on screen, and D5's ink-lens false positive on explore states.
+
+---
+
 ## 🔧 SESSION — the placement round: three engine PRs, two concepts Checkpoint-B APPROVED, and the hand-placement budget declared spent (2026-08-07/08, master + two concept desks)
 
 > The session that stopped paying an engine debt by hand. Both mathematics concepts went FIX → FIX →
