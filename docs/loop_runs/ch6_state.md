@@ -12,22 +12,44 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-## ▶ NEXT SESSION STARTS HERE — concept #3 SHIPPED, THREE PRs OPEN (2026-08-03)
+## ▶ NEXT SESSION STARTS HERE — 5 of 12 SHIPPED and MERGED · next is #6 `potential_energy_definition` (2026-08-09)
 
-**`kinetic_energy_definition` is authored, reviewed, fixed and SHIPPED.** 12 baselines locked
-(first lock) · 23 EN clips voiced, 0 stale · **zero renderer edits to author it** — the Phase-0 bet
-holds a third time. Checkpoint A took the founder's 2-cycle cap exactly; Checkpoint B returned
-`APPROVE`. Review port **8094** (8093 is held by another session's worktree).
+**Concepts #1–#5 are authored, reviewed, baselined, voiced EN and ON MASTER.** Nothing in ch6 is
+awaiting a merge. `potential_energy_definition` (#6, the ΔU = −W_c coupling that #7/#8/#9 all build
+on) has not been started — and the chapter arc already hands off to it: the last narration line of
+`conservative_vs_nonconservative_forces` is *"potential energy, the next concept, starts here."*
 
-| PR | branch | contents | state |
-|---|---|---|---|
-| **#18** | `feat/ch6-nlb-engine-fixes` | 3 `field_3d_renderer.ts` commits on current master | OPEN |
-| **#19** | `feat/ch6-concept-2` | concept #2, stacked on #18 | OPEN |
-| **#21** | `feat/ch6-concept-3` | concept #3 + 2 more platform fixes, stacked on #19 | OPEN |
+| # | concept | state |
+|---|---|---|
+| 1 | `work_done_by_constant_force` | shipped |
+| 2 | `positive_negative_zero_work` | shipped |
+| 3 | `kinetic_energy_definition` | shipped |
+| 4 | `work_energy_theorem` | shipped — **5 states** (S5 the derivation was DELETED 2026-08-09; the sandbox renumbered STATE_6 → STATE_5) |
+| 5 | `conservative_vs_nonconservative_forces` | shipped |
+| **6** | **`potential_energy_definition`** | **← next, not started** |
+| 7–12 | grav PE · spring PE · conservation · friction loss · inst. power · avg power | not started |
 
-**MERGE ORDER: #18 → #19 → #21.** Each collapses to its own content on the next sync.
+**No ch6 concept is in `PILOT_CONCEPTS`** — the whole chapter is built and undeployed. Founder call.
 
-### 🔴 Founder decisions waiting (new this session)
+### What the 2026-08-08/09 founder-review round changed (read before authoring #6)
+- **The checkpoint seam gained a teaching DWELL** (`dwell_ms`, `dwell_from_pass`) and a track-level
+  **`marker: 'point'`** form. A stamped crossing can now HOLD the whole scene so a teacher can read
+  the values. Authoring arithmetic is NOT derived by any tool — `T_k = t_k + Σ prior dwells`,
+  `loop_reset_ms ≥ T_last + D_last + ~500 ms`, and `eye_capture_ms = T_P + D_P/2` is **mandatory**.
+- **A mark earns its place only where the claim is a difference between two places.** The instrument
+  was first applied to all 11 states across #4/#5 and the founder rejected it — *"it looks same thing
+  explained in all the simulations."* #4 keeps points on S4 only; #5 on S1/S2 (one) and S4 (two),
+  none on S3.
+- **A state earns its place by a distinct IDEA, not a distinct set of numbers.** #4's S4 and S5 were
+  the same state with different numbers; S5 was deleted.
+- **THE EYE gained `H4`** — it now FAILS on renderer `[PM_*]` self-diagnostics, which were captured
+  but read by nothing. Switching it on immediately caught two live defects in #5. `visual:approve`
+  now prunes orphan baselines. Both landed on master as PR #100.
+- **A baseline older than the behaviour it depicts cannot detect a change in it.** #5's primary aha
+  rendered the misconception (`W friction = 0.0 J`) for weeks because the approved baseline predated
+  the arming-order fix that caused it. H2 passed the whole time.
+
+### 🔴 Founder decisions waiting (from the 2026-08-03 round — verify each is still live)
 1. **SEAM R changed the fleet's weight-arrow picture and nobody has looked at it with eyes.** Force
    ink now leaves the depth buffer, so every weight arrow on a body resting on a surface draws its
    previously-occluded sub-floor portion — `normal_force`, `friction_force`, `block_on_incline`,
@@ -47,9 +69,27 @@ holds a third time. Checkpoint A took the founder's 2-cycle cap exactly; Checkpo
   `#nlb_formula` as one string. Blind for #4/#7/#8/#9/#10. *A skip is not a pass.*
 - **Make THE EYE write its `checks` block into `manifest.json`** — "27/27" currently has no artifact
   behind it (eye-walker could not reproduce it from the dump; `warnings: []`, no `checks`).
-- **The reflow scar's trigger is corrected but not applied.** The sim iframe is **1052×551**, not
-  1280×720, so two-group states drop a reflow rung on EVERY screen including every baseline. #9
-  authors five-slot groups — 5 × 2 at step 0 will overrun a 551 px iframe badly.
+- **The reflow scar's trigger is corrected but not applied.** ⚠️ **CORRECTED 2026-08-07 — the version
+  below was wrong and was measured, not inferred.** The old text read: "The sim iframe is 1052×551,
+  not 1280×720, so two-group states drop a reflow rung on EVERY screen including every baseline."
+  **The baselines clause is FALSE.** `#sim` is `width:100%;height:100%` inside
+  `#stage{flex:1 1 auto;min-height:0}` — the teacher's iframe is **responsive**, and 1052×551 was one
+  measurement at one window size generalised into an invariant. Measured on the built review site:
+
+  | browser window | sim iframe |
+  |---|---|
+  | 1280×720 | 1052×551 |
+  | 1366×768 | 1138×599 |
+  | 1440×900 | 1212×731 |
+  | 1920×1080 | 1692×911 |
+
+  And `visual_eyes.ts` passes **no** viewport, so THE EYE falls back to `screenshotter.ts`'s default
+  `{1280, 720}` and captures every baseline at the full **720 px** of sim height. The teacher's height
+  therefore **straddles** THE EYE's — 720 is not a bound, it sits between 551 and 911. **No baseline
+  can verify a layout that depends on a reflow rung.** Author panel content to hold across ~550–911 px;
+  never let a cross-state comparison ride on which rung was selected. #9's five-slot groups must be
+  budgeted against that whole range, not against 551. Scar row:
+  `docs/loop_runs/ch6/scar_candidates_viewport_premise.sql` — APPLIED 2026-08-09 as `the_eye_captures_a_fixed_720px_sim_height_while_the_teacher_iframe_is_responsive` (OPEN).
 - **#4 inherits the `W` collision this concept was built to avoid.** `mg` held the line here
   (`NLB_ARROW_DEFAULT_LABELS.weight = "mg"`). #4 authors *both* work bars and weight arrows — that
   is where it actually bites.
