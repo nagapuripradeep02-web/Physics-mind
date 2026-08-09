@@ -154,3 +154,39 @@ INSERT INTO engine_bug_queue (
 ARRAY['conservative_vs_nonconservative_forces','work_energy_theorem']::text[],
 ARRAY[]::text[],
 'ch6 teaching-dwell session (2026-08-08)', 'incident');
+
+-- 9 - the loop-rewind clock defect a founder RECORDING caught (engine, FIXED 4d8fd7e)
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+'nlb_checkpoint_dwell_does_not_refire_after_a_loop_rewind',
+'A monotonic loop rewind restored the clock''s NOW but not its THEN, so a home-armed checkpoint''s teaching dwell fired only on the first cycle',
+'MAJOR', 'peter_parker:field3d_surgeon',
+'loop_reset_ms rewinds a state through nlbResetTrajectory and then puts eng.t_ms back, so the kinematics restart while the master clock stays monotonic. nlbResetTrajectory ALSO zeroes eng._tPrevMs - correct for a genuine RESET_TRAJECTORY, where t_ms goes to 0 with it - and the loop path did not restore it. On the rewind frame the engine believed one 16 ms step spanned [0, t_ms]. That segment anchors every crossing-instant reader, tCross = _tPrevMs + f*(t_ms - _tPrevMs), and the ONE crossing that can land on the rewind frame is a HOME-ARMED checkpoint''s departure: the body was just put back ON its flag, so f is exactly 0, tCross collapsed to the stale 0, until = 0 + dwell_ms landed a whole cycle in the past, and the freshness guard discarded the window. The stamp itself was unaffected (counts and text DO rewind), which pointed diagnosis at the innocent latches. Downstream, the physics the missing hold was meant to absorb kept running: on work_energy_theorem STATE_4 the cart ran into the +6 m track bound, where nlbEnergyClampGuard froze the bars and put "v = 0.00 m/s" beside "K = 62.7 J" on screen - found by the FOUNDER watching a screen recording, invisible to every gate because the frozen pin lives in cycle 1.',
+'A monotonic rewind preserves the PAIR (_tPrevMs, t_ms), never t_ms alone: the frame''s [start, end] segment is one object, and every consumer that interpolates within a frame reads both ends. When adding a field to the rewind cluster, ask whether it is clock-RELATIVE (rides the monotonic restore) or state-relative (must be rewound). Corollary for reviewers: a per-cycle behaviour that works on cycle 1 and not on cycle 2 is a rewind-completeness question before it is a latch question. And a frozen baseline pinned in cycle 1 can never see a cycle-2 defect - the founder''s 30 s recording covered three cycles and found it immediately.',
+'js_eval',
+'On a state authoring loop_reset_ms R and a checkpoint whose s_m equals its body''s initial_position_m with dwell_ms > 0 and dwell_from_pass <= 1: play >= 3R headless recording PM_nlbDwell every frame. Assert a window for that checkpoint opens in EVERY cycle and its in-cycle open offset agrees across cycles 2..N within one frame. Also assert zero console messages containing [PM_NLB_ENERGY_CLAMP].',
+'FIXED',
+ARRAY['work_energy_theorem']::text[],
+ARRAY['src/lib/renderers/field_3d_renderer.ts']::text[],
+'ch6 teaching-dwell session (2026-08-09)', 'incident');
+
+-- 10 - the gate gap the same recording exposed (OPEN probe definition)
+INSERT INTO engine_bug_queue (
+  bug_class, title, severity, owner_cluster, root_cause, prevention_rule,
+  probe_type, probe_logic, status, concepts_affected, fixed_in_files,
+  discovered_in_session, row_type
+) VALUES (
+'eye_renderer_self_diagnostics_are_captured_but_no_gate_fails_on_them',
+'THE EYE records the renderer''s [PM_*] self-diagnostics into diagnostic_warnings and no check id consumes them, so an engine shouting about its own broken state still reports a clean run',
+'MAJOR', 'peter_parker:renderer_primitives',
+'Renderers emit uniquely-prefixed console warnings precisely so a misbehaving state fails LOUDLY - [PM_NLB_ENERGY_CLAMP] is the honesty guard for a geometric clamp being rendered as an energy change. The capture landed (manifest.diagnostic_warnings is populated since PR #52) but no check was wired to it, so the channel is write-only. Measured: all four work_energy_theorem EYE runs of 2026-08-08/09 carry [PM_NLB_ENERGY_CLAMP] on STATE_4 and twice on STATE_5, while every failed check id in those manifests is an H2 stale-baseline diff. The renderer reported a state showing v = 0.00 m/s beside K = 62.7 J for two days and no gate could fail; the defect was found by a founder watching a screen recording.',
+'A diagnostics channel that nothing asserts on is not a gate. Every uniquely-prefixed renderer self-diagnostic gets a check id at the moment the prefix is introduced, and the check FAILS the run unless the prefix is explicitly allow-listed for that concept with a reason. Adding the capture without adding the assertion is half a feature.',
+'js_eval',
+'For each state, read manifest.diagnostic_warnings and fail the run when any entry matches /\[PM_[A-Z0-9_]+\]/ and its prefix is not in the per-concept allow-list. Report state_id and full text on failure; route [PM_NLB_ENERGY_CLAMP] and [PM_NLB_*_SCALE] findings to alex:architect (authored motion plan / scale), not the engine.',
+'OPEN',
+ARRAY['work_energy_theorem']::text[],
+ARRAY['src/scripts/visual_eyes.ts','src/lib/validators/visual']::text[],
+'ch6 teaching-dwell session (2026-08-09)', 'probe_definition');
