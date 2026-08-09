@@ -24,7 +24,7 @@
   },
   "real_world_anchor": {
     "primary": "Pulling a suitcase by its strap. Pull it straight forward and all of the pull moves it; pull at an angle and only part of it does. That 'part of the pull that lies along the travel' is exactly what the dot product measures. Delivered verbatim in STATE_1's narration (26 words) and cashed one state later by the projection segment drawn on a in STATE_2. Universal — a suitcase with a strap exists everywhere, and the claim is about alignment only: it asserts nothing about area, torque or swept regions.",
-    "secondary": "A leaning stack of paper (STATE_7 only). Push the stack sideways and it still holds the same paper: shearing a solid onto its base changes no volume. It is the exact statement of the volume-exact shear the split performs, so the anchor states the theorem the picture proves. Withheld from STATE_1 to STATE_6 so the volume idea is not pre-spoiled."
+    "secondary": "A stack of paper (STATE_7 only). Lean it, then straighten it, and no paper is lost: shearing a solid onto its base changes no volume. Delivered as two short imperatives (s7_4) rather than one participial sentence, so an ESL reader parses it at speaking speed. It is the exact statement of the volume-exact shear the split performs, so the anchor states the theorem the picture proves. Withheld from STATE_1 to STATE_6 so the volume idea is not pre-spoiled."
   },
   "entry_state_map": {
     "foundational": [
@@ -143,7 +143,9 @@
       "the STATE_7 split is a volume-exact shear: Volume, Base and Height do not move by one displayed digit for any split fraction (max drift 3.55e-15); Base 4.27 x Height 2.33 = 9.9491, which clears the 9.945 two-decimal rounding boundary by 0.0041 and so rounds to the displayed Volume 9.95",
       "every products readout is 2 dp and theta_deg is 0 dp, both fixed in the renderer (VG_READOUT_DP / vgReadoutLine) and NOT authorable; no narration or caption quotes a precision the engine does not print",
       "STATE_5 fixes theta at 60 and varies only |b|, so no string may claim the area identity was verified across angles — it is a theorem, stated as one, never an induction from the drawn interval",
-      "the STATE_8 auto-frame camera extrema are PLATEAUS (3757 / 429 / 26 argmins over 266747 poses); the worst case is a value over the swept product, never a named slider corner"
+      "the STATE_8 auto-frame camera extrema are PLATEAUS (3757 / 429 / 26 argmins over 266747 poses); the worst case is a value over the swept product, never a named slider corner",
+      "STATE_8's screen azimuth is NOT authorable and its camera_position field is inert: camera_mode auto_frame recomputes the pose per frame as R·normalize(â + b̂ + n̂), and because a and b are built symmetric about +X in the xz-plane their unit sum is 2cos(θ/2)·x̂ while n̂ = ŷ, so the azimuth is IDENTICALLY 0 for every θ, every |a|, every |b| at b_tilt = 0. The authored [11.25, 6.4952, 0.0] is exactly that computed pose at the state's defaults and is kept only as documentation. The STATE_7 → STATE_8 azimuth handover (60 → 0) is therefore structural, and closing it from the STATE_7 side is measurably worse: over an az sweep at el 30 / dist 12 the a-split↔c screen separation collapses to 5° at az 30 and 15° at az 20 (the recorded collinear-projection scar), and the base's slide at split_gap_k 0.6 falls from 140 px at az 60 to 53 px at az 0 — the state's own lesson made invisible to buy pose continuity",
+      "the scenario has NO b×c arrow element (the renderer's only cross arrow is vg_cross_vector = a×b, drawn from show_cross_vector), so STATE_7's Volume = |a·(b×c)| surface is grounded in NARRATION and in the extracted base face, not in a drawn normal; enabling show_cross_vector there would draw a×b and label it a×b, which is not the base normal the formula names"
     ]
   },
   "aha_moment": {
@@ -180,7 +182,7 @@
             "type": "angle_arc",
             "id": "vg_theta_arc",
             "label": "θ",
-            "note": "great-circle arc between â and b̂; draws in after the sweep settles"
+            "note": "great-circle arc between â and b̂; grows in on the shared reveal WITH a and b, then widens as they separate. It may not be delayed: the renderer anchors the θ sprite on the live bisector at a fixed radius, so the label shows from frame 0 whatever arc_reveal_frac says — a late arc would leave the name standing beside nothing."
           },
           {
             "type": "point",
@@ -266,7 +268,7 @@
       "STATE_3": {
         "title": "Zero at Ninety Degrees, Then Negative",
         "duration": 24,
-        "eye_capture_ms": 11500,
+        "eye_capture_ms": 23000,
         "depth_ring": "core",
         "advance_mode": "manual_click",
         "focal_primitive_id": "vg_proj_seg",
@@ -308,16 +310,16 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Now open the angle. The segment shrinks, and at exactly ninety degrees it is gone: the dot product reads zero.",
+              "text_en": "Now open the angle. The segment shrinks, and at ninety degrees it is gone: the dot product reads zero.",
               "glow": "projection"
             },
             {
               "id": "s3_2",
-              "text_en": "Two arrows, neither of them zero, and their dot product is zero."
+              "text_en": "At ninety degrees the arrows are perpendicular. Neither arrow is zero, but their product is zero."
             },
             {
               "id": "s3_3",
-              "text_en": "Keep opening. The segment returns on the other side of a, and the number goes negative: minus 3.86 at 130 degrees.",
+              "text_en": "Keep opening. The segment returns on the other side of a, and the number goes negative: minus 3.86.",
               "glow": "projection"
             }
           ]
@@ -407,7 +409,7 @@
             "id": "vg_b",
             "label": "b",
             "colour_role": "second direction",
-            "note": "lengthens 2.0 → 2.5; the live b_mag row lets the teacher carry the stretch further"
+            "note": "lengthens 2.0 → 2.5; the live b_mag row lets the teacher carry the stretch further, bounded by vg.control_ranges to 1.00–2.75 — the last detent at which BOTH the a×b tip and its own sprite label render fully inside this state's authored camera (measured NDC: tip 0.862, label ink top 0.950; at |b| = 3.00 the tip is still on frame at 0.966 but the label ink runs to 1.058 and is cut)"
           },
           {
             "type": "vector",
@@ -445,7 +447,7 @@
             },
             {
               "id": "s5_4",
-              "text_en": "The reading runs from 5.20 to 6.50."
+              "text_en": "Watch the reading increase as b grows: length of a, times length of b, times sine theta."
             }
           ]
         }
@@ -549,7 +551,7 @@
             "type": "parallelogram",
             "id": "vg_base_face",
             "label": "the base b and c span",
-            "note": "slides clear IN the base plane, so the extraction cannot corrupt the height; Base = |b×c| = 4.27"
+            "note": "slides clear IN the base plane, so the extraction cannot corrupt the height; Base = |b×c| = 4.27. split_gap_k 0.6 travels 2.36 world units — LESS than the body's widest edge (|b| = 2.5), so it reads as an extraction rather than an ejection, and it leaves only 20% of the base's screen area inside the solid's silhouette (measured at the shipped az 60 / el 30 / dist 12 pose; at k = 0.35 the residual is 54% and 'slides clear' would be false, at k = 1.0 the travel is 3.93 — one full base diagonal)"
           },
           {
             "type": "segment",
@@ -562,21 +564,27 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "A third arrow c arrives, and the three span a box.",
+              "text_en": "A third arrow c appears. The three span a box.",
               "glow": "c"
             },
             {
               "id": "s7_2",
-              "text_en": "The box builds face by face. Its volume reads 9.95.",
+              "text_en": "The box builds face by face. Volume reads 9.95.",
               "glow": "volume"
             },
             {
               "id": "s7_3",
-              "text_en": "Now the box straightens and its base slides clear: base 4.27, height 2.33."
+              "text_en": "The box straightens and its base slides clear: b cross c, area 4.27.",
+              "glow": "base"
             },
             {
               "id": "s7_4",
-              "text_en": "A leaning stack of paper holds the same paper standing upright. Base times height is the volume."
+              "text_en": "Lean a stack of paper, then straighten it. No paper is lost."
+            },
+            {
+              "id": "s7_5",
+              "text_en": "So volume is base times height: 4.27 times 2.33.",
+              "glow": "height"
             }
           ]
         }
@@ -632,7 +640,11 @@
             },
             {
               "id": "s8_2",
-              "text_en": "Change the angle, the two lengths, and the tilt of b, and every reading follows."
+              "text_en": "Change the angle and the two lengths, and every reading follows."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Tilt b around a. The pair turns in space, but no reading changes."
             }
           ]
         }
@@ -956,7 +968,6 @@
           "show_parallelogram": false,
           "show_parallelepiped": false,
           "show_projection": false,
-          "arc_reveal_frac": 0,
           "reveal_ms": 2600,
           "camera_mode": "authored",
           "value_readouts": [
@@ -971,13 +982,6 @@
               "to": 60,
               "start_ms": 3200,
               "duration_ms": 12000
-            },
-            {
-              "knob": "arc_reveal_frac",
-              "from": 0,
-              "to": 1,
-              "start_ms": 18400,
-              "duration_ms": 2000
             }
           ],
           "controls": []
@@ -1036,7 +1040,7 @@
       "STATE_3": {
         "label": "Zero at ninety degrees, then negative",
         "caption": "Number reaches zero, then reverses",
-        "formula_overlay": "a·b = 0 at θ = 90°",
+        "formula_overlay": "a·b = |a| |b| cos θ",
         "visible_elements": [
           "vg_a",
           "vg_b",
@@ -1199,8 +1203,15 @@
           "show_parallelepiped": false,
           "show_projection": false,
           "camera_mode": "authored",
+          "control_ranges": {
+            "b_mag": {
+              "max": 2.75
+            }
+          },
           "value_readouts": [
+            "a_mag",
             "b_mag",
+            "theta_deg",
             "cross_mag"
           ],
           "animate": [
@@ -1304,7 +1315,7 @@
           "c_reveal_frac": 0,
           "solid_build_frac": 0,
           "split_solid_frac": 0,
-          "split_gap_k": 1.0,
+          "split_gap_k": 0.6,
           "reveal_ms": 1,
           "camera_mode": "steps",
           "camera_steps": [
