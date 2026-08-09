@@ -52,6 +52,311 @@ of those measures whether it teaches.**
 
 ---
 
+## 🔍 SESSION — the review round the last session never ran: both concepts through eye_walker + quality_auditor + Checkpoint B, and the discovery that a GO from two frame reads is not a verdict either (2026-08-07, desk `feat/chemistry-periodicity`; one engine fix on `feat/orbital-shapes-ghost-shell-law`)
+
+> **HANDOFF ENTRY.** The previous session ended with both concepts BUILT and gate-clean but with
+> **no eye_walker on the final dumps, no quality_auditor re-pass, and no founder_proxy Checkpoint B
+> ever run.** This session ran all of it. Neither concept is approved. **Both are now blocked on an
+> engine fix round that could not start — the Claude session limit hit mid-dispatch.**
+
+**Bottom line: both concepts went into review green and came out with 17 new `engine_bug_queue`
+rows, one CRITICAL fixed, and TWO `FIX(engine)` verdicts. `atomic_and_ionic_radius` failed its
+quality audit, was fixed, re-passed, and then failed Checkpoint B on three more engine defects that
+only appear when you DRIVE the sim. `ionisation_enthalpy` passed its audit and failed Checkpoint B
+on two. Nothing is baseline-locked; the fleet is still 76.**
+
+### ⏭ NEXT SESSION — start here (session limit resets 18:50 Europe/Berlin 2026-08-07)
+
+1. **Five sequential `field3d-surgeon` dispatches**, ONE `bug_class` each (Amendment 4), all on the
+   SAME renderer file so they cannot run in parallel. In priority order:
+   `trend_curve_marker_label_paints_an_opaque_hole_in_the_series_it_annotates` (dispatched, died on
+   the session limit before touching a file) → `field3d_derived_dial_unclamped_prints_a_value_its_own_physics_forbids`
+   → `field3d_explore_camera_fixed_while_its_own_dials_span_two_orders_of_radius` →
+   `held_before_within_six_percent_has_no_rim_and_zoom_cannot_make_a_ratio_bigger` (a NEW primitive:
+   a labelled radius caliper) → `shared_axis_forced_by_a_model_series_compresses_the_taught_feature_below_stroke_width`.
+   Desk already exists: `/Users/thorotuyashwanthbalu/Desktop/Viditra-os-ghost-shell-law`.
+2. **One `json-author` round on `atomic_and_ionic_radius`** — the highest-value single change in the
+   whole review is ONE JSON line: an uncleared `ghost_species` N³⁻ on STATE_7. Plus the core label
+   (S3), the charge-slider range (S6), the ASCII `Z_eff` in AUTHORED strings, four more rail titles.
+3. **Re-run** THE EYE + `founder:drive` + Checkpoint B (cycle 1 of 2 for both concepts).
+4. `visual:approve` only after Checkpoint B APPROVEs. Then `git-steward` → PR.
+5. **Asmi's professor review** — still the gate no chemistry concept has passed, now TWELVE deep.
+
+**Serve:** `cd /Users/thorotuyashwanthbalu/Desktop/Viditra-chemistry-periodicity && npx serve review-site -l 8084`.
+
+### THE LESSON — a GO from two independent frame reads is not a verdict either
+
+The previous session's lesson was "a green EYE is not a verdict." This session found the next layer
+down. **Both eye_walkers returned GO on dumps a quality_auditor then FAILED**, and the defect they
+missed is the most instructive artefact of the wave:
+
+`atomic_and_ionic_radius` STATE_6 phase B drew the held Cl⁰ as a 3p_z **dumbbell at the lobe-tip
+law** (179.10 pm) beside a live Cl⁻ **sphere at the shell law** (169.20 pm). The HUD and narration
+both say the anion GROWS (159 → 169 pm, +6.1%); the only held comparison on screen **contracted**,
+179 → 169. Each half was drawn correctly. A delta was plainly visible. It just pointed the wrong way,
+and the only way to see that was to re-derive both radii by hand. Phase A had passed **by luck** —
+Na 3s coincides across the two laws to 4.2×10⁻⁴ pm, so a spot-check there would have certified it.
+
+The engine's own comment three lines above the defect promised *"one law, read twice, so the held
+boundary and the live one can never come from two different rules."* True when written; falsified
+later by a display mode that changed the live geometry and did not propagate to the held copy.
+**A guarantee stated in a comment does not survive the next feature unless something enforces it.**
+
+Fixed on `feat/orbital-shapes-ghost-shell-law` (`d699122`, NOT yet merged). The ORDERING was the
+defect: the shell resolution now happens above the ghost block, because a held picture cannot inherit
+a display decision that has not been made yet. Verified in pixels — the live boundary at 152 px with
+the held rim now INSIDE it at 143 px, +6.3% on screen against +6.09% modelled; pre-fix the ghost drew
+at ~161 px, outside the live surface. Regression clean on all three baselined `orbital_shapes`
+concepts, hybrid and mo paths byte-identical, nothing re-baselined.
+
+### The second lesson: nobody had ever DRIVEN these sims
+
+Checkpoint B on `atomic_and_ionic_radius` is the first review that used the controls rather than
+watching the states. THE EYE (39/39), eye_walker (GO) and `founder_drive` ("6 trusted drags, all
+moved") all confirmed the controls RESPOND. **None of them asked whether what they produce is TRUE
+or FRAMED**, and at the ends of their range it is neither:
+
+- **`Z_eff = 19.70` on `Na · Z = 11`.** Screening cannot raise the pull above the nuclear charge —
+  that is the exact claim STATE_3 exists to make, and its own slider refutes it. The drive's own
+  trusted drag released at 17.1 and photographed the HUD saying so, centimetres from a formula
+  surface asserting `= 2.2`. Nothing read the photograph.
+- **`K · Z_eff = 0.15 · r = 11861 pm`** — 14.7× the concept's own declared maximum, on a canvas that
+  floods to a featureless wash. One drag from the default.
+- **Potassium clips off the canvas** on STATE_4 (428 edge pixels) and STATE_9 (8 edge pixels, and it
+  swallows the periodic strip). Potassium is the first element a teacher clicks.
+
+### A ruling overturned by a measurement
+
+Checkpoint A had accepted that a tighter camera would make STATE_6's +6% ion swell legible.
+**It cannot: zoom scales both bodies equally, so it cannot change a RATIO.** The radial profile at
+the held pin falls monotonically (232 / 207 / 184 / 82 / 46) with no step anywhere — the held rim
+sits inside the live surface's own ~20 px edge gradient. The control case, STATE_5 at +26%, *does*
+produce a step. The frame is already tight at 152 px radius and the delta is still 9 px. The fix is
+a **numbered instrument** — a labelled radius caliper, a primitive `orbital_shapes` does not have —
+not a camera move.
+
+### And the gates' own blind spots, now filed
+
+- **Occlusion is RESOLUTION-DEPENDENT.** `ionisation_enthalpy` S7's `2p_z` label is fully legible at
+  THE EYE's 1280×720 and **89% hidden** at the product's 1440×900, because a DOM panel rect and a
+  mesh-anchored sprite scale under different laws. A gate that captures at one size is structurally
+  blind to it.
+- **`founder_drive` photographs only the first beat.** It samples at fixed offsets (1.5 / 2.4 / 4.7 s);
+  S7's schedule steps at 0 / 5.5 / 11 / 16.5 s, so all three shots caught beryllium. Boron, nitrogen
+  and oxygen were **never photographed at product resolution — and both blocking defects live there.**
+  It reported 0 flags on a state whose taught content it never saw.
+- **A probe I filed was itself unusable.** `ghostKind === surface` compares two DISJOINT enums
+  (selection rule vs drawn shape) sharing one token, so it passes in shell mode and is unsatisfiable
+  everywhere else; and its sign test was inverted, since ghost is the BEFORE and prim the AFTER.
+  Both cuts failed the literal wording, including the one the fix proved correct. Repaired in place.
+  Same failure class as the row it belongs to, one level up: **a check written from one example that
+  happens to be satisfiable there.**
+
+### Verdicts
+
+| concept | EYE | eye_walker | quality_auditor | Checkpoint B |
+|---|---|---|---|---|
+| `atomic_and_ionic_radius` | 39/39 | GO | **FAIL** → fixed → **PASS** | **FIX(engine) ×3 + FIX ×2** (cycle 0) |
+| `ionisation_enthalpy` | 35/35 | GO | **PASS** | **FIX(engine) ×2** (cycle 0) |
+
+Checkpoint B on the radius concept: *"a good sim two dispatches from a very good one, and all four
+fixes land before `visual:approve`, while the baselines are still free."* On ionisation: *"S5 is the
+best chemistry state I have seen on this surface"* — blocked only on STATE_7, where the marker label
+paints a **51 px opaque hole** in the measured trace (erasing fluorine outright on the frozen frame
+a teacher parks on) while the cyan model draws unbroken, and where the oxygen dip measures **2.7 px
+against a ~2 px stroke**. On the state whose whole claim is measurement-vs-model, the measurement is
+the broken-looking line.
+
+### Fixes that DID land this session
+
+- `z_eff: "slater"` deleted from radius STATE_3 (it was authored alongside `z_ramp`, which the
+  Phase-0 contract forbids in writing) — the HUD had been stamping `(Slater)` on ramp interpolants
+  for 14.5 s of a 23 s state while the narration said 2.2 in the same frame. Re-verified at 6 pins:
+  values bit-identical, zero stamps. Formula surface restored to the DoD-h form so the state carries
+  honest provenance somewhere.
+- Five Rule-41a narration swaps on ionisation (`wall` / `cliff` / `price` → the canvas's own noun
+  "the jump"), no state gained words. Six rail titles front-loaded across both concepts.
+- The ghost shell-law engine fix (above).
+
+### Files
+- New scar seed scripts (main desk, all applied): `_seed_engine_bug_queue_periodicity_eyewalk_final.ts`
+  (6 rows) · `_..._ghost_shell_law.ts` (1 closed + 2) · `_..._probe_wording.ts` (1 repaired) ·
+  `_..._checkpointB.ts` (6) · `_..._checkpointB_radius.ts` (5 + 1 reopened).
+- Concept JSONs, both skeletons, both chemistry blocks, the Phase-0 doc: **still uncommitted** on
+  `feat/chemistry-periodicity`. The desk was fast-forwarded 46 commits onto
+  `feat/orbital-shapes-ghost-shell-law`; zero overlap with the dirty files.
+
+---
+
+## ⚛ SESSION — Ch.3 Periodicity: BOTH concepts built end-to-end + SEVEN engine builds; the wave that proved a green EYE is not a verdict (2026-08-05 → 08-07, desk `feat/chemistry-periodicity`; engine halves on master)
+
+> **HANDOFF ENTRY — written so the next session can resume cold.** Concept detail →
+> `docs/CHEMISTRY_PHASE0_PERIODICITY.md` (v4) · `docs/atomic_and_ionic_radius_skeleton.md` (v3.1) ·
+> `docs/ionisation_enthalpy_skeleton.md` (v1) · the two `*_chemistry_block.md` files.
+
+**Bottom line: `atomic_and_ionic_radius` (9 states) and `ionisation_enthalpy` (8 states) are BUILT,
+gate-clean and serving on the review site — NOT shipped, NOT baseline-locked, NOT teacher-reviewed.
+Getting there cost SEVEN engine builds (PRs #31 #32 #33 #34 #41 #43 #44, all merged to master under
+Rule 40), three founder-proxy Checkpoint A rounds on one skeleton, and ~49 `engine_bug_queue` rows
+filed across six seed scripts. The chapter was chosen by a NEW founder ranking test: India ×
+international curriculum intersection — both concepts score 6/6 boards, the first wave where that is
+true of every state.**
+
+### ⏭ NEXT SESSION — start here
+
+1. **Founder watches both sims** on the review site (links below). Neither has had a founder pass.
+2. **`founder-proxy` Checkpoint B** on both — never run. Both went straight from fix-round to review
+   site because the founder was asleep and asked for a link by morning.
+3. **`visual:approve`** on both once the founder OKs — **baselines are NOT locked**; the fleet is
+   still 76 concepts in `visual_baselines/`.
+4. **Neither concept is committed.** The desk has uncommitted work: both concept JSONs, both
+   skeletons, both chemistry blocks, and the Phase 0 doc. `git-steward` → PR when sealed.
+5. **Asmi professor review** — still the gate neither concept (nor any chemistry concept) has passed.
+
+**Serve the review site:** `cd /Users/thorotuyashwanthbalu/Desktop/Viditra-chemistry-periodicity &&
+npx serve review-site -l 8084` → `http://localhost:8084/atomic_and_ionic_radius/` and
+`http://localhost:8084/ionisation_enthalpy/`.
+
+### Why this chapter (the ranking test changed)
+
+Founder ruled 2026-08-05 that build order is decided by **how many boards teach it, Indian AND
+international**, scored n/6 across CBSE · JEE/NEET · IGCSE · IB DP · AP · A-level. This **overrode
+the Session C5 ranked list twice** and rejected finishing Chemical Bonding: MO theory is that
+chapter's biggest remaining topic but scores **2/6** (CBSE+JEE only — absent from IB DP and AP).
+Ch.3's two diamonds score **6/6**. Chemical Bonding's remaining tail (resonance 5/6, sp³d 2/6, Lewis
+structures 6/6 but whiteboard-tier) is deliberately left. The C5 list is NOT re-opened — Periodic
+trends sits in it at P2 #11; this wave promoted it and took the chapter around it.
+
+### The seven engine builds (all on master, Rule 40)
+
+| PR | Build | What it added |
+|---|---|---|
+| #31 | 1 | `z_eff` + `z_ramp` — live per-state effective nuclear charge, applied at FRAME time as a 1/Z similarity scale |
+| #32 | 2 | element identity + Slater screening DERIVED (not tabulated) + ion charge + 3s/3p/4s orbitals + `element_steps`/`charge_steps` |
+| #33 | 3 | element strip + trend curve (one DOM overlay) + cited IE table + the `energy` HUD fix |
+| #34 | 4 | element/charge/Z_eff **control rows** + held-species ghost + `electron_count` HUD + overlay gate fix |
+| #41 | 5 | `camera_steps` (closed-form, freeze-safe) + per-orbital Z_eff + core-region surface + ghost `clear` + explore idle spin |
+| #43 | 6 | **live spherical shell surface** (`orbital:'shell'`) — a size concept draws a size |
+| #44 | 7 | legibility: markers that outgrew their object; ghosts with no silhouette |
+
+**`orbital_shapes` can now do something it could not on 08-05:** render an atom whose size is a
+*consequence* of nuclear charge, hold a previous species beside the current one, walk a camera
+mid-state, and let a teacher drive element/charge/Z_eff live — with every number carrying provenance.
+
+### THE LESSON — a green EYE is not a verdict
+
+Both concepts passed **every deterministic check** (39/39 and 35/35, $0.00) and `check-layout-overlap`
+clean. Two independent frame reads plus a quality audit then found **nine defects**, including:
+
+- **A nucleus marker 2.26× LARGER than the shell it marks.** `os_nucleus` was a fixed
+  `SphereGeometry(0.085)` = 17 pm equivalent; potassium's 1s shell is **7.53 pm**. For ~5 s S8 showed
+  a giant pink ball while narration said "four shells". **No camera distance could fix it** — zooming
+  out shrinks both together.
+- **A ghost that was present, correctly scaled, unoccluded — and invisible.** Two readers called the
+  `as:'core'` ghost missing. The surgeon proved it renders at exactly 61.75 pm on every frame, then
+  measured the azimuthal luminance profile: **monotonic, ring prominence 0, no boundary anywhere.**
+  A flat translucent fill nested INSIDE another translucent fill has no edge at any opacity. Fixed
+  with the edge-weighted Fresnel ink the lobes have carried since the p_set scar. Its own line is
+  worth keeping: ***"the mesh is in the scene graph" and "the mesh is visible" are both true of an
+  object nobody can see.***
+- **"All yours" rendered on canvas** — the exact string Rule 41a bans by name.
+- **A delta cue that inverted its own physics sound-off:** "Remove: big. Add: small" sat above a 62 pm
+  dot, the smallest object in the concept.
+
+### Checkpoint A ran THREE rounds on ONE skeleton — and the document was the defect
+
+Rounds: `DESIGN_FIX` (8 P1s) → **`ESCALATE`** (fix-cycle budget exceeded) → `DESIGN_FIX` (4 P1s) →
+patched to v3.1. **Five of the first round's seven P1s were the Phase 0 §Config contract describing
+INTENT rather than merged code.** The architect followed it faithfully and produced an unbuildable
+skeleton. The contract was rewritten **twice** against the apply path and now carries three blocks:
+"What EXISTS", "⛔ DOES NOT EXIST" (with call sites), "⛔ NEW GAPS", plus **§THE MOTION VOCABULARY**.
+
+**The ESCALATE was correct and its blocker was real:** the skeleton's choreography was written in
+tween verbs (*collapses · eases · grows*) on an engine whose only motion primitives are instantaneous
+CUTS, one ramp, and one camera per state. **The engine is RIGHT to cut** — a tween between Li and Be
+draws an atom that does not exist. So the verbs changed and legibility moved to held comparisons,
+durations and live readouts. Every §3 motion cell in both skeletons now **names its engine primitive**.
+
+### Two structural decisions worth carrying forward
+
+1. **`ionisation_enthalpy` is 8 states, not 9.** The architect verified no electron-pairing depiction
+   exists (`spin` is rotation; `populate_steps` clouds are occupancy-independent; the only 2p³→2p⁴
+   correlate is a text string) and executed **Phase 0's own pre-authorised fallback**, merging the
+   oxygen anomaly into S7. Cutting a state you cannot render honestly beats shipping one you cannot.
+2. **The union walk needs a CONTROL column.** `phase0_union_table_asserted_not_walked_state_by_state`
+   recurred a **third** time in a direction the two prior fixes could not cover: a union of RENDER
+   capabilities has no row for a *control*, so it is structurally blind to a missing slider. Phase 0
+   authored "Controls: Z · element · charge" for two explore states, three builds shipped, and no
+   control surface existed. **Walk the explore state FIRST.**
+
+### Numbers: measured, not recalled — one real correction
+
+`chemistry_author` rebuilt the engine's own radial functions in a scratch harness and cross-checked
+with independent bisection. It found a **systematic error the skeleton had carried into two states**:
+potassium's 4s radius was 813.5 pm; the engine gives **808.71** (the wrong figure implied a Z=1 radius
+of 1789.7 against the engine's own 1779.17). Corrected in both skeletons before it reached narration.
+It also killed a narration line asserting "Z_eff barely changes" on a state that authors no `z_eff`
+HUD line — a claim about a quantity the state never shows.
+
+**Load-bearing verified values.** Isoelectronic series (shell law): N³⁻ 148.42 · O²⁻ 109.87 · F⁻ 87.22
+· Na⁺ 61.75 · Mg²⁺ 53.89 · Al³⁺ 47.80 pm. S4 Li→Ne 371.46 → 72.31 pm. K per-shell Z_eff 18.70 / 14.85
+/ 7.75 / 2.20 with radii 7.53 → 808.71 pm. Every IE is CITED (CRC 97th / NIST ASD), stamped
+`(measured)`, and **the engine never computes one** — Slater-hydrogenic energies miss by 1.07× (Li) to
+5.40× (Ne) non-uniformly and get both taught orderings backwards.
+
+### Open items
+
+- **`curriculum_tags`: every international cell still `needs_teacher_verification: true`.** SIXTEEN
+  concepts deep, not one board mapping confirmed by a teacher of that board. Rule 38g blocks all of
+  them from teacher-visible presets. This wave enlarged the gap.
+- **Ionisation S7 accepts a structural ceiling:** oxygen's dumbbell renders at 19% of frame height
+  against a 35% target. A state spanning a sphere and three dumbbells across a 3.4× radius ratio
+  cannot do better without the largest species colliding with the overlay panel. Reported, not hidden.
+- **K's 1s step frames the shell at 13.9%** of frame height (authored `camera.dist: 0.47`) — an
+  authoring choice, routed to `alex:json_author`, not fixed.
+- **A layer build 7 newly revealed has never been content-reviewed:** K's 1s/2s gallery steps now show
+  an axis triad, three axis letters and an orbital name nobody has seen on screen for those steps.
+- Still open engine-side: `OS_MAX_SETS = 3` truncation + single-`sphOrb` · no `'z'` HUD line ·
+  `os_overlay` has no glow key · the annotation z-index/reserve gap · the ASCII `Z_eff` HUD string
+  (behind an approved baseline) · the `element` HUD line duplicating the electron count.
+
+### Process fixes made this session
+
+- **Scar rows are filed by the DISPATCHING session, not the agent.** An audit found the wave had
+  produced ~20 candidate rows and landed **zero** — `ROWS FROM THE PERIODICITY WAVE: 0` against 730.
+  Fixed, then fixed again: the rule covered *surgeons* but not *reviewers*, so a Checkpoint A
+  escalation's own root-cause class went missing and the next review had to re-file it.
+- **CI diagnosis:** `verify` was red on master with 0-step cancelled jobs. Root cause was **exhausted
+  Actions minutes on a private repo**, not code. Founder made the repo public; CI returned. (A first
+  reading blamed the advisory lint step — wrong; it is `continue-on-error` by design.)
+- **`npm run desk:sync` silently skipped the concept desk** while it sat 53 commits behind. Worth a
+  look in `scripts/desk.js`; the same file sets new branches to track `origin/master`, so a bare
+  `git push` from a fresh desk targets master.
+- **The `architect` agent has no `Write` and no `Bash`** — it cannot save its own skeleton or query
+  the scar list. Both skeletons were materialised by hand this session. Fix:
+  `tools: Read, Grep, Glob, Bash, Write, WebSearch, WebFetch` in `.claude/agents/architect.md`
+  (frontmatter is preserved by `sync:agents`).
+
+### Verification (evidence)
+
+`tsc` 0 · `validate:chemistry` **12/12 PASS** · `validate:concepts` **149/149 unchanged** (the
+chemistry isolation contract held throughout) · THE EYE **39/39** and **35/35**, both re-run after the
+build-7 merge · `check-layout-overlap` 0 collisions · regression across all three `orbital_shapes`
+concepts (`atomic_orbitals_s_p_d` 56/56, `hybridisation_sp_sp2_sp3` 50/50, `sigma_pi_bonding` 56/56)
+green on every one of the seven builds, nothing re-baselined · both concepts HTTP 200 on the review
+site.
+
+### Files
+
+- `src/data/concepts/chemistry/atomic_and_ionic_radius.json` · `ionisation_enthalpy.json`
+- `docs/CHEMISTRY_PHASE0_PERIODICITY.md` (v4) · `docs/atomic_and_ionic_radius_skeleton.md` (v3.1) ·
+  `docs/ionisation_enthalpy_skeleton.md` · both `*_chemistry_block.md`
+- Scar seeds (all applied): `src/scripts/_seed_engine_bug_queue_periodicity_{wave,build4,build5,build6,checkpoints,cpa2}.ts`
+- Engine: `src/lib/renderers/field_3d_renderer.ts` (`orbital_shapes` region) ·
+  `src/lib/validators/visual/deriveStateMeta.ts`
+
+---
+
 ## ⚙ SESSION — Phase 0 gated and E1 landed: the `bonding_scene` substrate is on master (2026-08-01, master — engine only, Rule 40)
 
 > Continuation of the Phase-0 session below. founder-proxy Checkpoint A ran two cycles on the two

@@ -47,6 +47,8 @@
  *
  *   npm run check:cartesian-plane
  */
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
 import { PARAMETRIC_RENDERER_CODE } from "../lib/renderers/parametric_renderer";
 
 const SRC = PARAMETRIC_RENDERER_CODE;
@@ -90,17 +92,33 @@ const VARS = [
   // literals, exactly like PM_planeRegistry above.
   "PM_planeInkZones", "PM_planeGridInkZones", "PM_planeCurveExpr",
   "PM_GRID_OVERLAP_TIEBREAK_WEIGHT", "PM_TANGENT_PROBE_EPS", "PM_INK_SEGMENT_SUBDIVISIONS",
+  // E-2 engine round (2026-08-08) — PM_warnIfDualBoundAuthored (in FNS
+  // below) closes over PM_currentState (its warn-once dedup key) and
+  // PM_dualBoundWarned (the dedup map itself); both are simple `var`
+  // globals in the shipped renderer, grabbed here the same way
+  // PM_planeRegistry etc. are.
+  "PM_currentState", "PM_dualBoundWarned",
 ];
 const FNS = [
-  // PM_fmtNum MUST stay ahead of its callers in this list — the harness
-  // evaluates these in order, and PM_formatTickLabel / PM_plotPointResolve now
-  // call it. Omitting it crashed this whole gate with a bare
+  // PM_signGlyph/PM_fmtNum MUST stay ahead of their callers in this list —
+  // the harness evaluates these in order, and PM_formatTickLabel /
+  // PM_plotPointResolve now call PM_fmtNum, which itself now calls
+  // PM_signGlyph (F6 engine round, 2026-08-08 — factored the ASCII->U+2212
+  // substitution out of PM_fmtNum so PM_interpolateFormatNumeric can share
+  // it). Omitting either crashes this whole gate with a bare
   // "ReferenceError: PM_fmtNum is not defined" the moment PR #59 landed
   // (shared U+2212 formatter). Nothing caught it: check:cartesian-plane is NOT
   // in verify.yml, so CI was green on a gate that could not start.
+  "PM_signGlyph",
   "PM_fmtNum",
   "PM_clamp", "PM_gcd", "PM_formatTickLabel", "PM_planeTickValues",
   "PM_planeBuildTransform", "PM_planeResolve",
+  // D3 (2026-08-08) — live `*_expr` range bounds, so a plane can re-zoom.
+  "PM_planeResolveBound",
+  // E-2 (2026-08-08) — the dual-bound-authored trap warning; PM_planeBuildTransform
+  // (already listed above) calls it, so it must be present in this list too
+  // (hoisting makes the LIST ORDER irrelevant, but it must be IN the list).
+  "PM_warnIfDualBoundAuthored",
   // CP-B additions (F8-F12).
   "PM_planeRangesOf", "PM_planeResolveInverse",
   "PM_buildEvalScope", "PM_safeEval",
@@ -135,6 +153,14 @@ const FNS = [
   "PM_registerInkZone", "PM_registerGridInkZone", "PM_registerLineInk",
   "PM_rectOverlapArea", "PM_readoutHardOverlapArea", "PM_readoutGridOverlapArea", "PM_readoutOverlapArea",
   "PM_plotPointCurveTangentPx",
+  // F6 addition (2026-08-08) — the interpolate-path numeric formatter
+  // (pure; depends only on PM_signGlyph, already listed above).
+  // PM_interpolate/PM_liveDragScope themselves are NOT listed here — they
+  // close over PM_config/PM_currentState/PM_sliderValues/PM_choreoValues/
+  // PM_userTouched/PM_physics, mutable globals this shared `E` sandbox
+  // deliberately does not expose; their own sections below build a
+  // DEDICATED sandbox with literal fixtures instead (see runLiveDragScope).
+  "PM_interpolateFormatNumeric",
 ];
 
 // Helvetica advance widths (units/1000) — p5's default face at textSize(12).
@@ -2272,7 +2298,1178 @@ console.log("\n=== 19. plot_point default-offset direction — outward normal to
     Math.abs((tanPlane.toData(shippedTan.p1.x, shippedTan.p1.y).x - tanPlane.toData(shippedTan.p0.x, shippedTan.p0.y).x) - E.PM_TANGENT_PROBE_EPS) < 1e-9);
 }
 
+console.log("\n=== F1a — live-drag scope rebuild: an UNRELATED choreographed variable survives a genuine drag (bug_class pcpl_drag_rebuilds_physics_scope_from_authored_defaults_and_drops_every_other_live_choreography_value, founder_proxy Checkpoint B 2026-08-08) ===");
+{
+  // A DEDICATED sandbox (mirrors the shared `E` pattern) supplying its OWN
+  // literal fixtures for PM_liveDragScope's free variables
+  // (PM_config/PM_currentState/PM_sliderValues/PM_choreoValues/
+  // PM_userTouched) — deliberately NOT added to the shared VARS list,
+  // which would force every OTHER section in this file to reason about a
+  // shared mutable global. grabFn pulls the SHIPPED function bodies
+  // (never a reimplementation) so this section runs the real code.
+  function runLiveDragScope(fixture: {
+    config: unknown; currentState: string;
+    sliderValues: Record<string, number>; choreoValues: Record<string, number>;
+    userTouched: Record<string, boolean>;
+  }): Record<string, number> {
+    const body = [
+      "var PM_config = " + JSON.stringify(fixture.config) + ";",
+      "var PM_currentState = " + JSON.stringify(fixture.currentState) + ";",
+      "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      "var PM_choreoValues = " + JSON.stringify(fixture.choreoValues) + ";",
+      "var PM_userTouched = " + JSON.stringify(fixture.userTouched) + ";",
+      grabFn("PM_stateLiveControlVars"),
+      grabFn("PM_resolveStateVars"),
+      grabFn("PM_liveDragScope"),
+      "return PM_liveDragScope();",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // The exact reported shape: a state authors a plot_point.drag on 'b' AND
+  // a variable_choreography on 'c' (independent variables). By the time
+  // the teacher drags 'b', the choreography has already carried 'c' to its
+  // end value 1 (PM_choreoValues.c = 1); PM_userTouched contains only 'b'
+  // (the variable being seized THIS frame — matches the shipped call
+  // order: PM_userTouched[bind_variable] = true runs BEFORE
+  // PM_liveDragScope()).
+  const cfg = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_5: {
+        scene_composition: [
+          { type: "plot_point", id: "P", plane_id: "plane", x_expr: "b", y_expr: "b*b-c",
+            drag: { bind_variable: "b", axis: "x", min: 0, max: 2 } },
+        ],
+      },
+    },
+  };
+  const fixed = runLiveDragScope({
+    config: cfg, currentState: "STATE_5",
+    sliderValues: { b: 1.5 }, choreoValues: { c: 1 }, userTouched: { b: true },
+  });
+  check("PM_liveDragScope: the CHOREOGRAPHED variable (c) holds its live end value through a drag on an UNRELATED variable", fixed.c, 1, 0);
+  check("PM_liveDragScope: the SEIZED/dragged variable (b) reads the just-set drag value", fixed.b, 1.5, 0);
+
+  // NEGATIVE CONTROL — the PRE-FIX algorithm this dispatch replaced
+  // (PM_resolveStateVars's authored defaults + a blanket PM_sliderValues
+  // overlay, NO PM_choreoValues merge at all), reimplemented independently
+  // here — never against the shipped renderer.
+  function preFixDragScope(fixture: { config: any; currentState: string; sliderValues: Record<string, number> }) {
+    const merged: Record<string, number> = { ...fixture.config.default_variables };
+    for (const k of Object.keys(fixture.sliderValues)) merged[k] = fixture.sliderValues[k];
+    return merged;
+  }
+  const broken = preFixDragScope({ config: cfg, currentState: "STATE_5", sliderValues: { b: 1.5 } });
+  assertTrue("NEGATIVE CONTROL: the pre-fix scope-rebuild resets the choreographed 'c' back to its state-entry DEFAULT (0), not its live value (1)",
+    broken.c === 0);
+  assertTrue("the shipped PM_liveDragScope does NOT share that defect",
+    fixed.c === 1 && fixed.c !== broken.c);
+}
+
+console.log("\n=== F1b — drag-handle LATCH: a claimed handle keeps updating even when a later frame's proximity re-test would fail (bug_class pcpl_drag_handle_re-tests_pointer_proximity_every_frame_so_a_handle_that_drifts_off_its_own_drag_axis_drops_itself) ===");
+{
+  // Reimplements BOTH the pre-fix ('hit && isActive', re-tested every
+  // frame) and the fixed ('mouseIsPressed && isActive', proximity tested
+  // ONLY at the moment of claim) state machines independently here, and
+  // drives an IDENTICAL frame sequence through both: frame 0 grabs the
+  // handle (mouse near px); frames 1+ reproduce the measured symptom — px
+  // jumps away (the F1a scope-corruption teleport, or simply the mouse
+  // drifting off a drag.axis:'x' point's own curve-following y) so a
+  // per-frame proximity re-test would fail — while the mouse keeps
+  // travelling toward the clamp.
+  function simulateDrag(usesLatch: boolean, hitR: number, clampMin: number, clampMax: number,
+    frames: { px: number; mouseX: number; mousePressed: boolean }[]): number {
+    let activeId: string | null = null;
+    let value = clampMin;
+    for (const f of frames) {
+      const hit = f.mousePressed && Math.abs(f.mouseX - f.px) < hitR;
+      if (usesLatch) {
+        const claim = f.mousePressed && activeId === null && hit;
+        if (claim) activeId = "P";
+        if (!f.mousePressed) activeId = null;
+        const isActive = activeId === "P";
+        if (f.mousePressed && isActive) value = Math.max(clampMin, Math.min(clampMax, f.mouseX));
+      } else {
+        if (hit && activeId === null) activeId = "P";
+        if (!f.mousePressed) activeId = null;
+        const isActive = activeId === "P";
+        if (hit && isActive) value = Math.max(clampMin, Math.min(clampMax, f.mouseX));
+      }
+    }
+    return value;
+  }
+
+  const hitR = 22;
+  const frames = [
+    { px: 100, mouseX: 100, mousePressed: true },  // frame 0 — genuine grab
+    { px: 400, mouseX: 130, mousePressed: true },  // px teleports off-curve; mouse keeps moving
+    { px: 400, mouseX: 160, mousePressed: true },
+    { px: 400, mouseX: 190, mousePressed: true },
+    { px: 400, mouseX: 200, mousePressed: true },  // mouse reaches the clamp
+  ];
+  const latched = simulateDrag(true, hitR, 0, 200, frames);
+  const nonLatched = simulateDrag(false, hitR, 0, 200, frames);
+  check("LATCHED state machine: reaches the clamp (200) across all 5 frames despite px teleporting off-curve on frame 1", latched, 200, 0);
+  assertTrue("NEGATIVE CONTROL: the PRE-FIX ('hit && isActive', re-tested every frame) state machine FREEZES at frame 0's value (100) once px teleports away — it never reaches the clamp (measured shape: b froze at 1.947 for 24 further steps while mouseX travelled 608->534)",
+    nonLatched === 100);
+
+  // STATIC REACHABILITY — the shipped drawPlotPoint/drawCanvasSlider
+  // source actually implement the latch shape (mirrors section F5's own
+  // static-reachability technique): the update gate reads
+  // 'mouseIsPressed && isActive' (latched — proximity NOT re-tested), and
+  // the old re-tested 'hit && isActive' gate is gone from both.
+  const plotPointSrc = grabFn("drawPlotPoint");
+  const sliderSrc = grabFn("drawCanvasSlider");
+  assertTrue("drawPlotPoint's update gate is 'mouseIsPressed && isActive' (latched)",
+    plotPointSrc.indexOf("if (mouseIsPressed && isActive) {") >= 0);
+  assertTrue("drawPlotPoint no longer gates the update on the re-tested 'hit && isActive'",
+    plotPointSrc.indexOf("if (hit && isActive) {") === -1);
+  assertTrue("drawCanvasSlider's update gate is ALSO 'mouseIsPressed && isActive' (latched) — the twin call site fixed the same way",
+    sliderSrc.indexOf("if (mouseIsPressed && isActive) {") >= 0);
+  assertTrue("drawCanvasSlider no longer gates the update on the re-tested 'hit && isActive'",
+    sliderSrc.indexOf("if (hit && isActive) {") === -1);
+  assertTrue("drawPlotPoint's claim (not the update) is the ONLY place proximity is tested — guarded by 'PM_activeSliderId == null'",
+    /var claim = mouseIsPressed && PM_activeSliderId == null[\s\S]{0,80}Math\.hypot/.test(plotPointSrc));
+
+  // NEGATIVE CONTROL for the static scanner itself — a deliberately
+  // unfixed (pre-fix-shaped) snippet must be CAUGHT as still re-testing.
+  const unfixedSnippet = "function drawFakeDrag(spec) {\n  var hit = mouseIsPressed && dist < hitR;\n  if (hit && isActive) { doUpdate(); }\n}";
+  assertTrue("NEGATIVE CONTROL: the scanner correctly finds the pre-fix 'hit && isActive' shape in a deliberately unfixed snippet",
+    unfixedSnippet.indexOf("if (hit && isActive) {") >= 0);
+}
+
+console.log("\n=== F2 — riemann_bars' max_bars_drawn bounds COST, never EXTENT (bug_class pcpl_riemann_bars_max_bars_drawn_truncates_the_partition_instead_of_bounding_its_cost, founder_proxy Checkpoint B 2026-08-08) ===");
+{
+  const from = 0, to = 2;
+  const cap = 20;
+  const sweepNs = [50, 500, 5000]; // three values spanning the sweep, per the dispatch's own requirement
+  for (const n of sweepNs) {
+    const computed = E.PM_riemannBarsCompute("x*x", from, to, n, "left", cap, {});
+    const bars = computed.bars as { i: number; xL: number; xR: number }[];
+    assertTrue(`n=${n}, cap=${cap}: at least one bar drawn`, bars.length > 0);
+    const xL0 = bars[0].xL;
+    const xRLast = bars[bars.length - 1].xR;
+    assertTrue(`n=${n}: leftmost drawn bar's xL (${xL0}) <= from + 1% of span`, xL0 <= from + 0.01 * (to - from));
+    assertTrue(`n=${n}: rightmost drawn bar's xR (${xRLast}) >= to - 1% of span`, xRLast >= to - 0.01 * (to - from));
+    // The published SUM is untouched by the cap — still the true full-n sum.
+    const uncappedSum = E.PM_riemannBarsCompute("x*x", from, to, n, "left", undefined, {}).sum;
+    check(`n=${n}: capped sum still equals the uncapped (full-n) sum`, computed.sum, uncappedSum, 1e-9);
+  }
+
+  // NEGATIVE CONTROL — the PRE-FIX selection ("first cap bars only"),
+  // reimplemented independently here (never against the shipped
+  // renderer), reproduces the measured shrinking-extent shape at large n.
+  function preFixSelectFirstN(from2: number, to2: number, n2: number, cap2: number) {
+    const h = (to2 - from2) / n2;
+    const drawn = Math.min(n2, cap2);
+    return { xL0: from2, xRLast: from2 + drawn * h };
+  }
+  const broken = preFixSelectFirstN(from, to, 6494, cap);
+  assertTrue("NEGATIVE CONTROL: the pre-fix 'first cap bars' selection at n=6494 draws only a SHRUNKEN leading slice (xR nowhere near `to`, reproducing the measured n=6494 -> [0,0.12] shape)",
+    broken.xRLast < to - 0.5 * (to - from));
+  const fixedAt6494 = E.PM_riemannBarsCompute("x*x", from, to, 6494, "left", cap, {});
+  const fixedBars = fixedAt6494.bars as { xR: number }[];
+  assertTrue("the shipped PM_riemannBarsCompute does NOT share that defect at the SAME n",
+    fixedBars[fixedBars.length - 1].xR >= to - 0.01 * (to - from));
+}
+
+console.log("\n=== F3-DRAW — riemann_bars draws each SELECTED bar at the width it REPRESENTS, not its true sub-pixel width, so the region does not evaporate above the cap (bug_class pcpl_riemann_bars_cap_preserves_extent_but_draws_true_width_so_the_region_evaporates_as_n_grows, MAJOR, founder_proxy Checkpoint B cycle 2, 2026-08-09) ===");
+{
+  // F2 (above) proved EXTENT survives the cap (the drawn spread still
+  // spans [from,to]). It did not prove COVERAGE: each F2-selected bar was
+  // still drawn at its own TRUE width h=(to-from)/n, which collapses
+  // toward zero as n climbs past the cap — 400 sub-pixel bars painting
+  // nothing between them. "inked fraction" is the founder_proxy's own
+  // pixel metric; the geometry-only proxy available to this headless gate
+  // is DRAWN HORIZONTAL COVERAGE — sum of (xR-xL) across every drawn bar,
+  // over the region's own full width (to-from). It is a faithful proxy
+  // for pixel-inked fraction because every bar spans the FULL vertical
+  // extent under the curve at its own x-slice — horizontal coverage IS
+  // the dominant term the pixel metric responds to (measured: pre-fix
+  // coverage and the founder_proxy's OWN inked-fraction numbers collapse
+  // in lockstep, matching to within a few percent, below).
+  const from3 = 0, to3 = 2, cap400 = 400; // the REAL authored shape (definite_integral_as_accumulated_area STATE_4)
+  function coverageFraction(bars: { xL: number; xR: number }[], domainFrom: number, domainTo: number): number {
+    let covered = 0;
+    for (const b of bars) covered += (b.xR - b.xL);
+    return covered / (domainTo - domainFrom);
+  }
+
+  // NEGATIVE CONTROL FIRST — the PRE-FIX selection (F2's own even-spread
+  // TRUE-width bars), reimplemented independently here, never against the
+  // shipped renderer. Reproduces F2's own selectedIdx linspace exactly so
+  // the comparison isolates ONLY the width choice this dispatch changes.
+  function preFixEvenSpreadTrueWidthBars(domainFrom: number, domainTo: number, n: number, barsDrawnCount: number): { xL: number; xR: number }[] {
+    const h = (domainTo - domainFrom) / n;
+    const selected: number[] = [];
+    if (barsDrawnCount >= 1) selected.push(0);
+    if (barsDrawnCount >= 2) {
+      const lastK = barsDrawnCount - 1;
+      for (let selK = 1; selK < barsDrawnCount; selK++) {
+        const idx = Math.round((selK * (n - 1)) / lastK);
+        if (!selected.includes(idx)) selected.push(idx);
+      }
+    }
+    return selected.map((i) => ({ xL: domainFrom + i * h, xR: domainFrom + i * h + h }));
+  }
+
+  const nAtCap = cap400;             // cap not yet engaged here (barsDrawnCount===n) — both schemes agree
+  const nAt100xCap = 100 * cap400;   // 40000 — deep above the cap, matching the founder_proxy's own n=4870-and-beyond collapse regime
+
+  const brokenAtCap = coverageFraction(preFixEvenSpreadTrueWidthBars(from3, to3, nAtCap, Math.min(cap400, nAtCap)), from3, to3);
+  const brokenAt100xCap = coverageFraction(preFixEvenSpreadTrueWidthBars(from3, to3, nAt100xCap, Math.min(cap400, nAt100xCap)), from3, to3);
+  const brokenRatio = brokenAtCap / brokenAt100xCap;
+  check("NEGATIVE CONTROL: pre-fix coverage at n=cap (400) is ~full (cap not yet engaged)", brokenAtCap, 1.0, 1e-9);
+  check("NEGATIVE CONTROL: pre-fix coverage at n=100*cap (40000) COLLAPSES to cap/n = 0.01 — reproducing the founder_proxy's own measured evaporation (inked 0.992 -> 0.008)", brokenAt100xCap, cap400 / nAt100xCap, 1e-9);
+  assertTrue(`NEGATIVE CONTROL: the pre-fix ratio (coverage@cap / coverage@100*cap = ${brokenRatio.toFixed(2)}) is WAY outside [0.9, 1.1] — the region visibly evaporates`,
+    brokenRatio < 0.9 || brokenRatio > 1.1);
+
+  const fixedAtCap = coverageFraction(E.PM_riemannBarsCompute("x*x", from3, to3, nAtCap, "left", cap400, {}).bars, from3, to3);
+  const fixedAt100xCap = coverageFraction(E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", cap400, {}).bars, from3, to3);
+  const fixedRatio = fixedAtCap / fixedAt100xCap;
+  check("the SHIPPED PM_riemannBarsCompute: coverage at n=cap (400) is full", fixedAtCap, 1.0, 1e-9);
+  check("...and STAYS full at n=100*cap (40000) — 'above the cap the picture stops changing', now actually delivered, not just promised in a comment", fixedAt100xCap, 1.0, 1e-9);
+  assertTrue(`the shipped code's ratio (${fixedRatio.toFixed(4)}) does NOT share the pre-fix defect at the SAME inputs — it does not evaporate`,
+    fixedRatio !== brokenRatio && Math.abs(fixedRatio - brokenRatio) > 50);
+
+  // THE REQUIRED ASSERTION, verbatim — inked fraction (this gate's
+  // coverage-fraction proxy) at n=cap versus n=100*cap must stay within
+  // [0.9, 1.1] for the SHIPPED code, at the REAL authored cap (400).
+  assertTrue(`REQUIRED: shipped coverage ratio at n=cap vs n=100*cap (${fixedRatio.toFixed(4)}) is within [0.9, 1.1]`,
+    fixedRatio >= 0.9 && fixedRatio <= 1.1);
+
+  // Sanity sweep across the founder_proxy's OWN measured n values (274,
+  // 1540, 4870) — every one of them, capped=400, must be full coverage
+  // under the shipped code (the pre-fix values at these SAME n would have
+  // been 400/274 (>1, cap not yet engaged — clamped to n itself), 400/1540
+  // = 0.260, 400/4870 = 0.082 respectively; 0.082 matches the measured
+  // inked 0.008 order of magnitude — the SAME collapse, off only by the
+  // vertical/anti-aliasing terms this horizontal-only proxy does not model).
+  for (const nMeasured of [274, 1540, 4870]) {
+    const cov = coverageFraction(E.PM_riemannBarsCompute("x*x", from3, to3, nMeasured, "left", cap400, {}).bars, from3, to3);
+    check(`shipped coverage at the founder_proxy's own measured n=${nMeasured} is full (1.0)`, cov, 1.0, 1e-9);
+  }
+
+  // Extent (F2's own guarantee) is preserved by the NEW width choice too —
+  // not just coverage. bars[0].xL===from and bars[last].xR===to EXACTLY
+  // (not just within 1%) now, since the representative partition's own
+  // first/last edges land on the domain boundary by direct construction.
+  const fixedBarsAt40000 = E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", cap400, {}).bars as { xL: number; xR: number }[];
+  check("extent still holds under the new width choice: leftmost bar's xL === from, exactly", fixedBarsAt40000[0].xL, from3, 1e-9);
+  check("extent still holds under the new width choice: rightmost bar's xR === to, exactly", fixedBarsAt40000[fixedBarsAt40000.length - 1].xR, to3, 1e-9);
+
+  // The published SUM is untouched — still the true-n sum, at the exact
+  // input the coverage assertions above used.
+  const sumAt40000 = E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", cap400, {}).sum;
+  const uncappedSumAt40000 = E.PM_riemannBarsCompute("x*x", from3, to3, nAt100xCap, "left", undefined, {}).sum;
+  check("the published sum at n=40000/cap=400 is UNTOUCHED by this fix — still the true-n sum", sumAt40000, uncappedSumAt40000, 1e-9);
+
+  // STATIC REACHABILITY — the shipped source actually contains the
+  // representative-partition loop (wired, not merely documented) and no
+  // longer selects bars from the true-n loop when the cap is engaged.
+  const riemannSrc = grabFn("PM_riemannBarsCompute");
+  assertTrue("PM_riemannBarsCompute computes hDraw = (domainTo - domainFrom) / barsDrawnCount for the capped representative partition",
+    riemannSrc.indexOf("var hDraw = (domainTo - domainFrom) / barsDrawnCount;") >= 0);
+  assertTrue("the true-n loop no longer pushes bars when the cap is engaged (capEngaged gate present)",
+    riemannSrc.indexOf("if (ok && !capEngaged)") >= 0);
+  assertTrue("the old sparse selectedIdx linspace is gone from the shipped source",
+    riemannSrc.indexOf("selectedIdx") === -1);
+}
+
+console.log("\n=== RULE-37-GAP-B — PM_animationGate: a primitive due at-or-before state start (appear_at_ms<=0) resolves to full alpha immediately, never a zero-progress fade held at t=0 (founder_proxy Checkpoint B cycle 2, 2026-08-09) ===");
+{
+  // A DEDICATED sandbox (same technique as runOverlay/runApplyChoreography
+  // above) — PM_animationGate closes over the globals PM_simClockMs and
+  // PM_cueOverrides, so supply them as literal fixtures.
+  function runAnimationGate(fixture: {
+    simClockMs: number;
+    cueOverrides?: Record<string, number>;
+    spec: Record<string, unknown>;
+  }): { visible: boolean; alpha: number } {
+    const body = [
+      "var PM_simClockMs = " + JSON.stringify(fixture.simClockMs) + ";",
+      "var PM_cueOverrides = " + JSON.stringify(fixture.cueOverrides ?? {}) + ";",
+      grabFn("PM_animationGate"),
+      "return PM_animationGate(" + JSON.stringify(fixture.spec) + ");",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // REQUIRED ASSERTION, verbatim — appear_at_ms<=0 (a state-opening
+  // primitive) with a live fade-in must resolve to FULL alpha at t=0,
+  // matching the measured defects: STATE_1 (this concept's own opening
+  // state) was entirely blank pre-Play; STATE_4's magnifier inset (its
+  // whole subject) and STATE_8's curve/region/rectangles (all
+  // appear_at_ms:0/animate_in_ms:1200) were absent the same way, because
+  // the clock sits parked at t=0 until Play is pressed (Rule 26) — the OLD
+  // (elapsed-appearAt)/animMs ramp evaluated to exactly 0 progress there,
+  // sustained for as long as the state sat open, not a one-frame flicker.
+  const gateAtZero = runAnimationGate({ simClockMs: 0, spec: { appear_at_ms: 0, animate_in_ms: 1200 } });
+  check("REQUIRED: appear_at_ms<=0 (0) resolves to alpha=1 at t=0 (clock parked, pre-Play)", gateAtZero.alpha, 1, 0);
+  assertTrue("...and visible=true", gateAtZero.visible === true);
+
+  // Negative appear_at_ms (authored before state start, degenerate but
+  // legal input) must resolve the same way.
+  const gateNegative = runAnimationGate({ simClockMs: 0, spec: { appear_at_ms: -50, animate_in_ms: 1200 } });
+  check("appear_at_ms<0 (-50) ALSO resolves to alpha=1 at t=0", gateNegative.alpha, 1, 0);
+
+  // A LATER reveal (appear_at_ms>0 — a genuine mid-state reveal synced to
+  // narration reaching that point) is UNCHANGED: still correctly hidden
+  // before its own due time, and still correctly fades in over animMs once
+  // due — this fix must not blanket-remove the fade-in effect fleet-wide,
+  // only for items due at-or-before state start.
+  const gateLaterBeforeDue = runAnimationGate({ simClockMs: 0, spec: { appear_at_ms: 3000, animate_in_ms: 800 } });
+  check("a LATER reveal (appear_at_ms=3000) is still HIDDEN at t=0 (unaffected by this fix)", gateLaterBeforeDue.alpha, 0, 0);
+  assertTrue("...visible=false", gateLaterBeforeDue.visible === false);
+  const gateLaterMidFade = runAnimationGate({ simClockMs: 3400, spec: { appear_at_ms: 3000, animate_in_ms: 800 } });
+  check("a LATER reveal, once due, still fades in over animMs exactly as before (t=3400, 400/800=50%)", gateLaterMidFade.alpha, 0.5, 1e-9);
+
+  // A due-immediately primitive that ALSO authors a scheduled fade-OUT is
+  // unaffected during its fade-out window — this fix only touches the
+  // fade-IN branch.
+  const gateFadeOutStillWorks = runAnimationGate({
+    simClockMs: 900, spec: { appear_at_ms: 0, animate_in_ms: 1200, disappear_at_ms: 800, fade_out_ms: 400 },
+  });
+  check("a state-opening primitive with an authored fade-OUT still fades out on schedule (t=900, 100/400=25% through the fade-out -> alpha=0.75)",
+    gateFadeOutStillWorks.alpha, 0.75, 1e-9);
+
+  // NEGATIVE CONTROL — the PRE-FIX PM_animationGate (the plain elapsed-vs-
+  // appearAt ramp, no appearAt<=0 special case), reimplemented
+  // independently here, never against the shipped renderer. Reproduces
+  // the measured zero-alpha-at-t=0 defect at the exact input above.
+  function preFixAnimationGate(simClockMs: number, spec: { appear_at_ms?: number; animate_in_ms?: number; disappear_at_ms?: number; fade_out_ms?: number }): { visible: boolean; alpha: number } {
+    const appearAt = typeof spec.appear_at_ms === "number" ? spec.appear_at_ms : 0;
+    const animMs = typeof spec.animate_in_ms === "number" ? spec.animate_in_ms : 0;
+    const disappearAt = typeof spec.disappear_at_ms === "number" ? spec.disappear_at_ms : Infinity;
+    if (appearAt <= 0 && animMs <= 0 && disappearAt === Infinity) return { visible: true, alpha: 1 };
+    const elapsed = simClockMs;
+    if (elapsed < appearAt) return { visible: false, alpha: 0 };
+    if (animMs <= 0) return { visible: true, alpha: 1 };
+    const progress = Math.min(1, Math.max(0, (elapsed - appearAt) / animMs));
+    return { visible: true, alpha: progress };
+  }
+  const brokenAtZero = preFixAnimationGate(0, { appear_at_ms: 0, animate_in_ms: 1200 });
+  assertTrue(`NEGATIVE CONTROL: the pre-fix gate resolves appear_at_ms<=0 to alpha=0 at t=0 (got ${brokenAtZero.alpha}) — reproducing the measured blank-state defect (STATE_1 entirely blank, STATE_4's magnifier absent, STATE_8's curve/region/bars absent)`,
+    brokenAtZero.alpha === 0);
+  assertTrue("the shipped PM_animationGate does NOT share that defect at the SAME input",
+    gateAtZero.alpha === 1 && gateAtZero.alpha !== brokenAtZero.alpha);
+
+  // STATIC REACHABILITY.
+  const animGateSrc = grabFn("PM_animationGate");
+  assertTrue("PM_animationGate contains the appearAt<=0 early-resolve branch",
+    animGateSrc.indexOf("if (appearAt <= 0) return { visible: true, alpha: 1 };") >= 0);
+}
+
+console.log("\n=== F3 — plane children are clipped to their OWN plane's viewport (bug_class pcpl_plane_children_paint_past_their_owning_planes_viewport_when_resolved_from_a_data_point_outside_the_planes_own_range, founder_proxy Checkpoint B 2026-08-08) ===");
+{
+  // Reproduces the measured geometry: STATE_4's plane_inset windowed to
+  // y_range [3,4]; riemann_bars' FIXED baseline sits at data y=0 (outside
+  // that window) — the exact defect the dispatch measured (py 668, off
+  // the 500px canvas).
+  const insetSpec = {
+    id: "plane_inset",
+    viewport: { x: 480, y: 90, w: 220, h: 140 },
+    x_range: { min: 0, max: 2 },
+    y_range: { min: 3, max: 4 },
+  };
+  const insetPlane = E.PM_planeBuildTransform(insetSpec);
+  const baselinePx = insetPlane.toPx(1, 0); // riemann_bars' fixed baseline, data y=0
+  function pointInRect(p: { x: number; y: number }, r: { x: number; y: number; w: number; h: number }) {
+    return p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
+  }
+  assertTrue("the baseline (data y=0) resolved through the inset plane lands OUTSIDE the inset's own viewport rect — the root defect, measured",
+    !pointInRect(baselinePx, insetPlane.viewport));
+  assertTrue("...specifically BELOW the 500px canvas (py > 500), matching the measured 'py 668, off the 500px canvas'",
+    baselinePx.y > 500);
+  const insideProbe = insetPlane.toPx(1, 3.5); // a point genuinely inside the authored y_range [3,4]
+  assertTrue("NEGATIVE CONTROL: a point genuinely INSIDE the plane's own y_range is NOT excluded by the same rect test (the scanner isn't just always-false)",
+    pointInRect(insideProbe, insetPlane.viewport));
+
+  // STATIC — PM_planeClipGeometryBegin/End exist and shape a real canvas
+  // clip (save/rect/clip, paired with restore), and EVERY plane-child
+  // geometry-drawing function calls them exactly once each (balanced
+  // begin/end), not just riemann_bars — the dispatch's explicit "not per
+  // primitive type, every child" requirement.
+  const beginSrc = grabFn("PM_planeClipGeometryBegin");
+  assertTrue("PM_planeClipGeometryBegin saves context state before clipping", beginSrc.indexOf("drawingContext.save()") >= 0);
+  assertTrue("PM_planeClipGeometryBegin clips to the plane's OWN registered viewport rect (x,y,w,h)",
+    beginSrc.indexOf("plane.viewport.x, plane.viewport.y, plane.viewport.w, plane.viewport.h") >= 0);
+  const endSrc = grabFn("PM_planeClipGeometryEnd");
+  assertTrue("PM_planeClipGeometryEnd restores context state (undoing the clip)", endSrc.indexOf("drawingContext.restore()") >= 0);
+
+  const geometryFns = ["drawRegionFill", "drawRiemannBars", "drawFunctionPlot", "drawSecantLine", "drawTangentLine", "drawPlotPoint"];
+  for (const fn of geometryFns) {
+    const src = grabFn(fn);
+    const beginCount = (src.match(/PM_planeClipGeometryBegin\(spec\.plane_id\)/g) || []).length;
+    const endCount = (src.match(/PM_planeClipGeometryEnd\(__pmClip\)/g) || []).length;
+    assertTrue(`${fn} calls PM_planeClipGeometryBegin(spec.plane_id) exactly once`, beginCount === 1);
+    assertTrue(`${fn} calls the MATCHING PM_planeClipGeometryEnd(__pmClip) exactly once (balanced begin/end)`, endCount === 1 && endCount === beginCount);
+  }
+
+  // NEGATIVE CONTROL for the scanner itself — a deliberately-unclipped
+  // (pre-fix-shaped) draw function must be CAUGHT as missing the call.
+  const unclippedSnippet = "function drawFakeGeom(spec) {\n  push();\n  fill(1,2,3);\n  rect(0,0,10,10);\n  pop();\n}";
+  const fakeBeginCount = (unclippedSnippet.match(/PM_planeClipGeometryBegin\(spec\.plane_id\)/g) || []).length;
+  assertTrue("NEGATIVE CONTROL: the scanner correctly reports ZERO clip calls in an unclipped (pre-fix-shaped) draw function", fakeBeginCount === 0);
+}
+
+console.log("\n=== F6 — PM_interpolate numeric substitutions carry the real U+2212 minus + near-zero clamp (bug_class pcpl_interpolate_numeric_substitution_ships_an_ascii_hyphen_where_every_other_readout_ships_u+2212, founder_proxy Checkpoint B 2026-08-08 — recurrence of a class already closed once at the authoring layer on derivative_as_secant_limit) ===");
+{
+  assertTrue("PM_interpolateFormatNumeric(-0.6667) carries U+2212, never ASCII U+002D",
+    E.PM_interpolateFormatNumeric(-0.6667) === "−0.6667" && String(E.PM_interpolateFormatNumeric(-0.6667)).indexOf("-") === -1);
+  assertTrue("PM_interpolateFormatNumeric('-0.6667') — an author's OWN inline .toFixed() STRING — is ALSO normalised",
+    E.PM_interpolateFormatNumeric("-0.6667") === "−0.6667");
+  assertTrue("PM_interpolateFormatNumeric('-0.0000') strips the sign — a negative-zero artifact renders unsigned",
+    E.PM_interpolateFormatNumeric("-0.0000") === "0.0000");
+  assertTrue("PM_interpolateFormatNumeric('-0') strips the sign",
+    E.PM_interpolateFormatNumeric("-0") === "0");
+  assertTrue("PM_interpolateFormatNumeric(1.5) — a positive number is untouched (nothing to normalise)",
+    E.PM_interpolateFormatNumeric(1.5) === "1.5");
+  assertTrue("PM_interpolateFormatNumeric leaves a NON-numeric hyphen alone (only '-' immediately before a digit converts)",
+    E.PM_interpolateFormatNumeric("a-b") === "a-b");
+
+  // NEGATIVE CONTROL — the PRE-FIX behaviour (bare String(result), the
+  // renderer's OWN literal shape before this fix), reimplemented here.
+  function preFixNumeric(value: unknown): string { return String(value); }
+  assertTrue("NEGATIVE CONTROL: the pre-fix String(result) DOES leak an ASCII U+002D hyphen for a negative number",
+    preFixNumeric(-0.6667).indexOf("-") >= 0);
+  assertTrue("NEGATIVE CONTROL: the pre-fix path also reaches the screen as a signed zero ('-0.0000'), never clamped",
+    preFixNumeric((-0.00003).toFixed(4)) === "-0.0000");
+  assertTrue("no U+002D reaches PM_interpolateFormatNumeric's output across a signed sweep of representative authored .toFixed() values",
+    [-0.6667, -1, -12.345, 0, 1, -0.00003].every((v) => String(E.PM_interpolateFormatNumeric(v.toFixed(4))).indexOf("-") === -1));
+  assertTrue("no string matches /-0\\.0+$/ (the ASCII negative-zero pattern) after formatting",
+    !/-0\.0+$/.test(String(E.PM_interpolateFormatNumeric((-0.00003).toFixed(4)))));
+
+  // STATIC REACHABILITY — PM_interpolate actually calls
+  // PM_interpolateFormatNumeric at BOTH substitution sites (the simple-
+  // identifier fast path AND the evaluated-expression path, which is
+  // where an author's own inline .toFixed() lives) — proving the fix is
+  // WIRED, not merely defined-but-unused.
+  const interpSrc = grabFn("PM_interpolate");
+  const callCount = (interpSrc.match(/PM_interpolateFormatNumeric\(/g) || []).length;
+  assertTrue("PM_interpolate calls PM_interpolateFormatNumeric at BOTH substitution sites (fast-path identifier + evaluated expression)", callCount === 2);
+  assertTrue("PM_interpolate's fast path no longer bare-String()s the identifier value", interpSrc.indexOf("String(vars[body])") === -1);
+  assertTrue("PM_interpolate's expression path no longer bare-String()s the evaluated result", interpSrc.indexOf("return String(result);") === -1);
+}
+
+// ── D3 — live `*_expr` plane range bounds (the re-zooming magnifier) ─────────
+{
+  // A magnifier inset over the LAST Riemann bar. Its width must track the bar
+  // width h = (to-from)/n, or the subject shrinks to sub-pixel as n grows and
+  // the inset shows an empty box — which is exactly the defect this replaces.
+  const live = (n: number) => ({ b: 2, n, h: 2 / n });
+  const insetSpec = {
+    id: "plane_inset",
+    viewport: { x: 230, y: 88, w: 230, h: 145 },
+    x_range: { min: 1.75, max: 2.0, min_expr: "b - 3*(b/n)", max_expr: "b" },
+    y_range: { min: 3, max: 4 },
+  };
+
+  const at8 = E.PM_planeBuildTransform(insetSpec, live(8));
+  const at2304 = E.PM_planeBuildTransform(insetSpec, live(2304));
+  assertTrue("D3: a plane with min_expr/max_expr resolves at all (both n values build a transform)",
+    !!at8 && !!at2304);
+
+  // The SUBJECT (one bar, width h) must occupy a constant fraction of the
+  // inset's width at every n — that is the whole point of re-zooming.
+  const fracOf = (plane: any, n: number) => (2 / n) / (plane.xRange.max - plane.xRange.min);
+  const f8 = fracOf(at8, 8), f2304 = fracOf(at2304, 2304);
+  assertTrue(`D3: the bar occupies a CONSTANT fraction of the inset at n=8 and n=2304 (${f8.toFixed(4)} vs ${f2304.toFixed(4)})`,
+    Math.abs(f8 - f2304) < 1e-9);
+  assertTrue("D3: that constant fraction is legibly large (>= 1/4 of the inset width)", f8 >= 0.25);
+
+  // NEGATIVE CONTROL — the PRE-FIX behaviour: a FIXED window over the same
+  // subject. Reimplemented independently, never against the shipped renderer.
+  const fixedWindowFrac = (n: number) => (2 / n) / (2.0 - 1.75);
+  assertTrue(`NEGATIVE CONTROL: a FIXED inset window renders the same bar at ${(fixedWindowFrac(2304) * 100).toFixed(3)}% of its width at n=2304 — sub-pixel, i.e. the empty-box defect`,
+    fixedWindowFrac(2304) < 0.005);
+  assertTrue("NEGATIVE CONTROL: and that fixed window is NOT constant across n (it collapses by >100x from n=8 to n=2304)",
+    fixedWindowFrac(8) / fixedWindowFrac(2304) > 100);
+
+  // Fallback discipline: a broken expression must keep the AUTHORED window,
+  // never produce a degenerate range (a vanished frame reads as a broken sim).
+  const brokenSpec = {
+    id: "p_broken",
+    viewport: { x: 230, y: 88, w: 230, h: 145 },
+    x_range: { min: 1.75, max: 2.0, min_expr: "this_is_not_a_variable * (" },
+    y_range: { min: 3, max: 4 },
+  };
+  const brokenPlane = E.PM_planeBuildTransform(brokenSpec, live(100));
+  assertTrue("D3: an unparseable min_expr falls back to the authored numeric bound (window preserved, not degenerate)",
+    !!brokenPlane && brokenPlane.xRange.min === 1.75 && brokenPlane.xRange.max === 2.0);
+  assertTrue("D3: PM_planeResolveBound returns the numeric bound when no *_expr is authored",
+    E.PM_planeResolveBound({ min: -6.5, max: 6.5 }, "min", {}) === -6.5);
+  assertTrue("NEGATIVE CONTROL: PM_planeResolveBound is not a pass-through — it DOES prefer a valid expr over the numeric bound",
+    E.PM_planeResolveBound({ min: 1.75, min_expr: "b - 3*(b/n)" }, "min", live(8)) === 1.25);
+
+  // Every plane already shipped authors numeric ranges only — prove the
+  // addition is a strict no-op for them.
+  const legacy = E.PM_planeBuildTransform(DEFAULT_PLANE, {});
+  const legacyNoVars = E.PM_planeBuildTransform(DEFAULT_PLANE, undefined);
+  assertTrue("D3: a numeric-only plane is byte-identical with and without a live scope (strict no-op for every shipped concept)",
+    JSON.stringify(legacy.xRange) === JSON.stringify(legacyNoVars.xRange)
+    && JSON.stringify(legacy.yRange) === JSON.stringify(legacyNoVars.yRange));
+}
+
+console.log("\n=== WP-R6 — cross-state live-control inheritance gate: a teacher-set value on the explore state must not leak into a GUIDED state on SET_STATE (bug_class pcpl_teacher_set_live_control_value_leaks_from_explore_state_into_guided_state_on_state_change, founder_proxy Checkpoint B cycle 1, 2026-08-08) ===");
+{
+  // A DEDICATED sandbox (mirrors runLiveDragScope's own pattern above) —
+  // PM_overlayLiveControlValues closes over the global PM_sliderValues, so
+  // supply it as a literal fixture rather than adding it to the shared
+  // VARS list (which would force every OTHER section in this file to
+  // reason about a shared mutable global). grabFn pulls the SHIPPED
+  // function body (never a reimplementation), so this runs the real code.
+  function runOverlay(fixture: {
+    sliderValues: Record<string, number>;
+    vars: Record<string, number>;
+    stateData: { advance_mode?: string } | null;
+    stateSliderVars: Record<string, boolean>;
+    userTouched?: Record<string, boolean>;
+  }): Record<string, number> {
+    const body = [
+      "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      // PM_userTouched (round 3, 2026-08-09) — PM_overlayLiveControlValues
+      // now reads this per-variable seizure flag directly (a closed-over
+      // global in the shipped renderer, same technique as PM_sliderValues
+      // above). Defaults to {} — every ROUND-1 fixture below tests a
+      // CROSS-state scenario, where the flag has always just been wiped.
+      "var PM_userTouched = " + JSON.stringify(fixture.userTouched ?? {}) + ";",
+      grabFn("PM_overlayLiveControlValues"),
+      "return PM_overlayLiveControlValues(" +
+        JSON.stringify(fixture.vars) + ", " +
+        JSON.stringify(fixture.stateData) + ", " +
+        JSON.stringify(fixture.stateSliderVars) + ");",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // The exact reported shape: a teacher dragged the explore state's bound
+  // marker to b=0.2792 (landing in PM_sliderValues.b), then jumped to
+  // STATE_5, a GUIDED state (advance_mode:'manual_click') that ALSO
+  // declares 'b' as a live control (its own plot_point drag). STATE_5's
+  // own resolved vars carry its authored default b=2 before this overlay
+  // runs (matches PM_resolveStateVars' output, not reimplemented here).
+  const guidedVars = { b: 2, c: 1 };
+  const guidedResult = runOverlay({
+    sliderValues: { b: 0.2792 },
+    vars: { ...guidedVars },
+    stateData: { advance_mode: "manual_click" },
+    stateSliderVars: { b: true },
+  });
+  check("GUIDED state (manual_click): b is UNCHANGED at its authored default (2), not the leaked explore value (0.2792) — the measured STATE_5 defect",
+    guidedResult.b, 2, 0);
+
+  // Round 3 (2026-08-09, bug_class
+  // pcpl_guided_state_drag_evaporates_mid_choreography) — the SAME GUIDED
+  // state, but 'b' was dragged WITHIN this same visit (PM_userTouched.b
+  // is true — set by a genuine mouse drag on THIS state's own primitive,
+  // never carried over from a different state, since the flag is wiped on
+  // every real SET_STATE before this function is ever called again). The
+  // per-variable seizure flag is now a SECOND admission path alongside
+  // advance_mode — a value SEIZED IN THIS STATE survives its own state's
+  // unrelated choreography ticks.
+  const guidedTouchedResult = runOverlay({
+    sliderValues: { b: 0.2792 },
+    vars: { ...guidedVars },
+    stateData: { advance_mode: "manual_click" },
+    stateSliderVars: { b: true },
+    userTouched: { b: true },
+  });
+  check("GUIDED state (manual_click) with b SEIZED in this same visit (PM_userTouched.b=true): the drag value (0.2792) DOES apply — this is the fix for the mid-choreography evaporation defect",
+    guidedTouchedResult.b, 0.2792, 1e-9);
+
+  // NEGATIVE CONTROL for the round-3 fix specifically — the round-1-only
+  // gate (advance_mode alone, no per-variable touched admission),
+  // reimplemented independently, does NOT let the seized value through at
+  // this exact input; the shipped function does.
+  function round1OnlyGate(sliderValues: Record<string, number>, vars: Record<string, number>, stateData: { advance_mode?: string } | null, stateSliderVars: Record<string, boolean>) {
+    const merged: Record<string, number> = { ...vars };
+    if (!stateData || stateData.advance_mode !== "interaction_complete") return merged;
+    for (const k of Object.keys(sliderValues)) if (stateSliderVars[k]) merged[k] = sliderValues[k];
+    return merged;
+  }
+  const round1OnlyResult = round1OnlyGate({ b: 0.2792 }, { ...guidedVars }, { advance_mode: "manual_click" }, { b: true });
+  assertTrue("NEGATIVE CONTROL: the round-1-only gate (advance_mode alone) refuses the seized drag value even WITHIN its own state — reproducing the mid-choreography evaporation defect at this exact input",
+    round1OnlyResult.b === 2 && round1OnlyResult.b !== guidedTouchedResult.b);
+
+  // Every advance_mode that is NOT interaction_complete must behave
+  // identically — the gate is an ALLOWLIST of exactly one value, not a
+  // denylist of 'manual_click' alone. Includes the missing-field case
+  // (stateData with no advance_mode at all — build_review_site.ts's own
+  // '?? manual_click' default), which must resolve the same as an explicit
+  // non-interaction_complete mode.
+  for (const stateData of [
+    { advance_mode: "auto_after_tts" },
+    { advance_mode: "auto_after_animation" },
+    { advance_mode: "wait_for_answer" },
+    {}, // advance_mode omitted entirely
+    null, // no state data resolvable at all
+  ]) {
+    const r = runOverlay({
+      sliderValues: { b: 0.2792 },
+      vars: { ...guidedVars },
+      stateData: stateData as { advance_mode?: string } | null,
+      stateSliderVars: { b: true },
+    });
+    assertTrue(`advance_mode=${JSON.stringify(stateData)}: b stays at the authored default (2), no inheritance`, r.b === 2);
+  }
+
+  // PM_overlayLiveControlValues IN ISOLATION: on the explore state
+  // (advance_mode:'interaction_complete') it DOES write PM_sliderValues
+  // into vars for a declared live control — this is what THIS FUNCTION
+  // does, always, given these inputs (it has no notion of "first time" vs
+  // "re-entry", nor of whether the SAME variable is also choreographed).
+  // CAUTION (quality_auditor round 3, 2026-08-09 — the SAME synthetic-
+  // fixture blind spot that hid the second door): this is NOT the same
+  // claim as "the explore state observably inherits a dragged value on
+  // re-entry" — that end-to-end claim is FALSE whenever the SAME variable
+  // is ALSO choreographed (STATE_8's own real shape: 'b' is BOTH
+  // drag-bound AND choreographed, ping_pong, seizable) — see the
+  // WP-R6-REOPENED section below, which composes this function with
+  // PM_applyChoreography's own choreo-merge loop and demonstrates BOTH
+  // outcomes explicitly, with the real variable shapes.
+  const exploreResult = runOverlay({
+    sliderValues: { b: 0.2792 },
+    vars: { b: 2, c: 1 },
+    stateData: { advance_mode: "interaction_complete" },
+    stateSliderVars: { b: true },
+  });
+  check("PM_overlayLiveControlValues alone: on the explore state it writes PM_sliderValues (0.2792) into a declared live control — the function's own isolated contract, NOT a claim about end-to-end re-entry behaviour when the same variable is also choreographed",
+    exploreResult.b, 0.2792, 1e-9);
+
+  // A variable the incoming state does NOT declare as a live control stays
+  // untouched regardless of advance_mode — the pre-existing per-variable
+  // stateSliderVars gate (the STATE_2/theta precedent already documented
+  // at the call site) must survive this change unchanged.
+  const untouchedResult = runOverlay({
+    sliderValues: { b: 0.2792, theta: 32 },
+    vars: { b: 2, theta: 0 },
+    stateData: { advance_mode: "interaction_complete" },
+    stateSliderVars: { b: true }, // theta deliberately NOT declared as a live control here
+  });
+  check("a variable NOT declared as this state's OWN live control is never overlaid, even on the explore state",
+    untouchedResult.theta, 0, 0);
+
+  // NEGATIVE CONTROL — the PRE-FIX algorithm this dispatch replaced (an
+  // UNCONDITIONAL PM_sliderValues overlay for every stateSliderVars match,
+  // no advance_mode gate at all), reimplemented independently here, run at
+  // the SAME inputs as the guided-state case above — never against the
+  // shipped renderer.
+  function preFixOverlay(sliderValues: Record<string, number>, vars: Record<string, number>, stateSliderVars: Record<string, boolean>) {
+    const merged: Record<string, number> = { ...vars };
+    for (const k of Object.keys(sliderValues)) {
+      if (stateSliderVars[k]) merged[k] = sliderValues[k];
+    }
+    return merged;
+  }
+  const broken = preFixOverlay({ b: 0.2792 }, { ...guidedVars }, { b: true });
+  assertTrue("NEGATIVE CONTROL: the pre-fix unconditional overlay DOES leak the explore value (0.2792) into the GUIDED state's b at this exact input, reproducing the measured STATE_5 defect",
+    Math.abs(broken.b - 0.2792) < 1e-9 && broken.b !== 2);
+  assertTrue("the shipped PM_overlayLiveControlValues does NOT share that defect at the SAME input",
+    guidedResult.b === 2 && guidedResult.b !== broken.b);
+
+  // STATIC REACHABILITY — the SET_STATE handler actually calls
+  // PM_overlayLiveControlValues (wired, not merely defined-but-unused) and
+  // no longer contains the old unconditional inline overlay loop.
+  const setStateStart = SRC.indexOf("e.data.type === 'SET_STATE'");
+  const paramUpdateStart = SRC.indexOf("e.data.type === 'PARAM_UPDATE'");
+  assertTrue("SET_STATE handler located ahead of PARAM_UPDATE handler in source (sanity check on the slice below)",
+    setStateStart >= 0 && paramUpdateStart > setStateStart);
+  const setStateSrc = SRC.slice(setStateStart, paramUpdateStart);
+  assertTrue("the SET_STATE handler calls PM_overlayLiveControlValues(vars, newStateData, stateSliderVars)",
+    setStateSrc.indexOf("vars = PM_overlayLiveControlValues(vars, newStateData, stateSliderVars);") >= 0);
+  assertTrue("the SET_STATE handler no longer contains the old unconditional 'for (var svk in PM_sliderValues)' overlay loop",
+    setStateSrc.indexOf("for (var svk in PM_sliderValues)") === -1);
+
+  // The PARAM_UPDATE handler is DELIBERATELY untouched by this fix — it
+  // only ever updates PM_currentState's OWN live control (never a value
+  // inherited across a state transition), so its own unconditional overlay
+  // loop must still be present, unchanged.
+  const paramUpdateSrc = SRC.slice(paramUpdateStart, SRC.indexOf("e.data.type === 'SET_TIME_FREEZE'"));
+  assertTrue("the PARAM_UPDATE handler's own overlay loop is UNCHANGED (still unconditional — it never crosses a state boundary)",
+    paramUpdateSrc.indexOf("for (var usk in PM_sliderValues)") >= 0);
+}
+
+console.log("\n=== WP-R6 REOPENED — the SECOND door: PM_applyChoreography had its OWN independent, un-gated copy of the overlay, reachable only when the guided state ALSO authors variable_choreography (quality_auditor live-drive on the REAL concept, 2026-08-08/09) ===");
+{
+  // ROUND 1's fixture (above) called PM_overlayLiveControlValues directly
+  // and could not have caught this — the defect lived in a DIFFERENT
+  // caller (PM_applyChoreography) that built its OWN vars and called
+  // computePhysics directly, bypassing PM_overlayLiveControlValues's gate
+  // entirely pre-fix. This section drives the REAL binding shape instead:
+  // a plot_point.drag.bind_variable on a GUIDED state that ALSO authors
+  // variable_choreography on a DIFFERENT variable — exactly
+  // definite_integral_as_accumulated_area's STATE_5 (drags 'b', choreographs
+  // 'c') — the shape a synthetic slider-only fixture cannot reproduce
+  // because PM_applyChoreography's rebuild-and-clobber only runs at all
+  // when the CURRENT state authors ANY variable_choreography.
+  //
+  // A DEDICATED sandbox (same technique as runOverlay/runLiveDragScope
+  // above): computePhysics is STUBBED to a transparent echo (this section
+  // tests PM_applyChoreography's OWN vars-building logic, not physics
+  // computation) and captures exactly what vars it was called with —
+  // grabFn pulls every OTHER function's SHIPPED body untouched.
+  function runApplyChoreography(fixture: {
+    config: unknown; currentState: string; simClockMs: number;
+    sliderValues: Record<string, number>; choreoValues: Record<string, number>;
+    userTouched: Record<string, boolean>;
+  }): { capturedVars: Record<string, number> | null; physicsB: number | undefined } {
+    const body = [
+      "var PM_config = " + JSON.stringify(fixture.config) + ";",
+      "var PM_currentState = " + JSON.stringify(fixture.currentState) + ";",
+      "var PM_simClockMs = " + JSON.stringify(fixture.simClockMs) + ";",
+      "var PM_sliderValues = " + JSON.stringify(fixture.sliderValues) + ";",
+      "var PM_choreoValues = " + JSON.stringify(fixture.choreoValues) + ";",
+      "var PM_userTouched = " + JSON.stringify(fixture.userTouched) + ";",
+      "var PM_physics = null;",
+      "var __capturedVars = null;",
+      "function computePhysics(conceptId, vars) { __capturedVars = vars; return { concept_id: conceptId, variables: vars, derived: {}, forces: [] }; }",
+      grabFn("PM_stateLiveControlVars"),
+      grabFn("PM_resolveStateVars"),
+      grabFn("PM_overlayLiveControlValues"),
+      grabFn("PM_choreoBuildSegments"),
+      grabFn("PM_choreoSampleSegments"),
+      grabFn("PM_choreoValue"),
+      grabFn("PM_applyChoreography"),
+      "PM_applyChoreography();",
+      "return { capturedVars: __capturedVars, physicsB: PM_physics && PM_physics.variables ? PM_physics.variables.b : undefined };",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    return new Function(body)();
+  }
+
+  // The exact reported shape: STATE_5 drags 'b' (its own live control) and
+  // choreographs 'c' (an UNRELATED variable). simClockMs:0 with an EMPTY
+  // PM_choreoValues (the per-state wipe PM_resetSimClock performs on every
+  // real state entry) reproduces the measured trigger precisely: prev is
+  // undefined on the very first evaluation, so 'changed' is forced true
+  // regardless of c's own numeric delta — matching the live-drive's own
+  // finding that the clobber fires on literally the first post-entry frame.
+  const state5Cfg = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_5: {
+        advance_mode: "manual_click",
+        variable_choreography: [{ variable: "c", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 }],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+        ],
+      },
+    },
+  };
+  const guidedResult = runApplyChoreography({
+    config: state5Cfg, currentState: "STATE_5", simClockMs: 0,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: {},
+  });
+  check("PM_applyChoreography (GUIDED state, manual_click): b resolves to the AUTHORED default (2), not the leaked drag value (1.0909...) — the measured STATE_5 defect, second door",
+    guidedResult.capturedVars ? guidedResult.capturedVars.b : NaN, 2, 0);
+  check("...and PM_physics.variables.b (what PM_liveExprVars() actually reads) agrees",
+    guidedResult.physicsB ?? NaN, 2, 0);
+
+  // NEGATIVE CONTROL — the PRE-FIX PM_applyChoreography (the unconditional
+  // raw overlay loop it used to run, BEFORE routing through
+  // PM_overlayLiveControlValues), reimplemented independently here, run at
+  // the SAME input as the guided case above — never against the shipped
+  // renderer.
+  function preFixApplyChoreographyVars(sliderValues: Record<string, number>, defaultVariables: Record<string, number>, stateSliderVars: Record<string, boolean>) {
+    const vars: Record<string, number> = { ...defaultVariables };
+    for (const k of Object.keys(sliderValues)) if (stateSliderVars[k]) vars[k] = sliderValues[k];
+    return vars;
+  }
+  const broken = preFixApplyChoreographyVars({ b: 1.0909090909090908 }, { b: 2, c: 0 }, { b: true });
+  assertTrue("NEGATIVE CONTROL: the pre-fix PM_applyChoreography DOES leak the dragged value (1.0909...) into the guided state's b at this exact input, reproducing the measured defect",
+    Math.abs(broken.b - 1.0909090909090908) < 1e-9 && broken.b !== 2);
+  assertTrue("the shipped PM_applyChoreography does NOT share that defect at the SAME input",
+    guidedResult.capturedVars !== null && guidedResult.capturedVars.b === 2 && guidedResult.capturedVars.b !== broken.b);
+
+  // ── Round 3 core regression (2026-08-09, bug_class
+  // pcpl_guided_state_drag_evaporates_mid_choreography) — the EXACT
+  // reported shape: STATE_5 drags 'b' WITHIN this same visit
+  // (PM_userTouched.b=true) while an UNRELATED variable_choreography
+  // entry (c) is still actively ramping. Pre-fix, PM_applyChoreography's
+  // rebuild-and-clobber (triggered by c's step, nothing to do with b)
+  // evaporated the drag back to b's authored default the instant it ran —
+  // but ONLY while c's ramp was still active; once c settled,
+  // PM_applyChoreography stopped rebuilding at all ('if (!changed)
+  // return'), so a drag performed AFTER the ramp happened to already
+  // survive. A value surviving or dying depending on WHEN the teacher
+  // drags is worse than a consistent failure — this is what the
+  // PM_userTouched admission path fixes. ──────────────────────────────
+  const midChoreoDragResult = runApplyChoreography({
+    config: state5Cfg, currentState: "STATE_5", simClockMs: 500, // mid-ramp: c's 0->1/1000ms is still active
+    sliderValues: { b: 1.2 }, choreoValues: {}, userTouched: { b: true },
+  });
+  check("PM_applyChoreography (GUIDED state, manual_click), b DRAGGED within THIS visit (PM_userTouched.b=true) while c's UNRELATED choreography is still ramping: b HOLDS at the dragged value (1.2), not evaporated back to the authored default (2) — the round-3 regression, now fixed",
+    midChoreoDragResult.capturedVars ? midChoreoDragResult.capturedVars.b : NaN, 1.2, 0);
+
+  // NEGATIVE CONTROL — the round-1-only PM_applyChoreography (advance_mode
+  // gate alone, no per-variable PM_userTouched admission), reimplemented
+  // independently, DOES evaporate the seized drag at this exact input.
+  function round1OnlyApplyChoreographyVars(sliderValues: Record<string, number>, defaultVariables: Record<string, number>, stateSliderVars: Record<string, boolean>, isExplore: boolean) {
+    const vars: Record<string, number> = { ...defaultVariables };
+    if (!isExplore) return vars; // round-1 gate: advance_mode only, ignores PM_userTouched entirely
+    for (const k of Object.keys(sliderValues)) if (stateSliderVars[k]) vars[k] = sliderValues[k];
+    return vars;
+  }
+  const round1OnlyMidChoreo = round1OnlyApplyChoreographyVars({ b: 1.2 }, { b: 2, c: 0 }, { b: true }, false);
+  assertTrue("NEGATIVE CONTROL: the round-1-only gate (advance_mode alone) evaporates the seized mid-ramp drag back to the authored default (2) at this exact input, reproducing the round-3 regression",
+    round1OnlyMidChoreo.b === 2 && round1OnlyMidChoreo.b !== midChoreoDragResult.capturedVars?.b);
+
+  // Requirement 2 preservation — the EXPLORE state (interaction_complete)
+  // choreographing a DIFFERENT (non-seizable-in-this-fixture) variable
+  // must STILL inherit b through PM_applyChoreography exactly as before
+  // this fix (the gate is an allowlist that PASSES interaction_complete
+  // through unchanged, not a blanket block). NOTE — this fixture's 'b' is
+  // NOT itself choreographed; see the DISTINGUISHING pair right below for
+  // what changes when it is (the quality_auditor round-3 finding on
+  // check_cartesian_plane's OWN prior blind spot).
+  const state8Cfg = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_8: {
+        advance_mode: "interaction_complete",
+        variable_choreography: [{ variable: "c", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 }],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+        ],
+      },
+    },
+  };
+  const exploreResult = runApplyChoreography({
+    config: state8Cfg, currentState: "STATE_8", simClockMs: 0,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: {},
+  });
+  check("PM_applyChoreography (EXPLORE state, interaction_complete), b NOT itself choreographed: b STILL inherits the teacher-set value (1.0909...) on a fresh/re-entry call — requirement 2 preserved",
+    exploreResult.capturedVars ? exploreResult.capturedVars.b : NaN, 1.0909090909090908, 1e-9);
+
+  // ── DISTINGUISHING PAIR (quality_auditor round 3, 2026-08-09) — the
+  // SAME synthetic-fixture blind spot that hid the second door: the check
+  // above is TRUE for a fixture where 'b' is only drag-bound, but STATE_8's
+  // REAL authored shape ALSO choreographs 'b' itself (ping_pong, seizable —
+  // "the sandbox restarts its own demo"). On a fresh RE-ENTRY to that real
+  // shape, PM_userTouched has JUST been wiped (a real SET_STATE always
+  // clears it before this ever runs again — even re-entering the SAME
+  // state counts, since isNewState is `newState !== PM_currentState` at
+  // the moment of the message), so PM_overlayLiveControlValues's
+  // interaction_complete branch DOES write the dragged PM_sliderValues.b —
+  // but the choreo-merge loop right after it (`if (!PM_userTouched[ck])
+  // vars[ck] = PM_choreoValues[ck]`) then OVERWRITES it, because 'b' is
+  // ALSO a PM_choreoValues key and is not (yet, this visit) touched. Net
+  // effect, MEASURED on the real concept: the choreographed 'b' wins on
+  // re-entry, not the previously-dragged value — arguably the authored
+  // intent (the sandbox restarts its own demo) and DELIBERATELY NOT
+  // changed by this dispatch. 'c' (NOT choreographed in either fixture)
+  // is the control: it DOES inherit, both here and on the real concept. ──
+  const state8CfgBChoreographed = {
+    default_variables: { b: 2, c: 0 },
+    states: {
+      STATE_8: {
+        advance_mode: "interaction_complete",
+        variable_choreography: [
+          { variable: "b", mode: "ping_pong", from: 2, to: 0.6, start_ms: 0, duration_ms: 1000, seizable: true },
+        ],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+          // c_slider — matches the REAL STATE_8's own second live control
+          // (n_slider/c_slider). Without a declared live control for 'c',
+          // it would never be overlaid regardless of the choreography
+          // question this pair exists to test — a DIFFERENT reason
+          // (stateSliderVars.c undefined) that would make the control
+          // assertion below vacuous.
+          { type: "slider", id: "c_slider", variable: "c", min: 0, max: 1, step: 0.1, default: 0 },
+        ],
+      },
+    },
+  };
+  const reentryChoreographedB = runApplyChoreography({
+    config: state8CfgBChoreographed, currentState: "STATE_8", simClockMs: 0, // t=0 of the ping_pong, matching a fresh re-entry
+    sliderValues: { b: 1.0909090909090908, c: 0.7 }, choreoValues: {}, userTouched: {},
+  });
+  check("PM_applyChoreography (EXPLORE state re-entry), b IS ALSO choreographed (ping_pong, seizable): b resolves to the CHOREOGRAPHED value (2, the ping_pong's own t=0 start), NOT the previously-dragged PM_sliderValues (1.0909...) — matches the REAL concept's measured re-entry behaviour exactly; deliberately UNCHANGED by this dispatch",
+    reentryChoreographedB.capturedVars ? reentryChoreographedB.capturedVars.b : NaN, 2, 0);
+  check("...meanwhile 'c' (NOT choreographed) DOES inherit the dragged PM_sliderValues on the SAME re-entry call — the control that proves this is a per-variable distinction, not a blanket explore-state failure",
+    reentryChoreographedB.capturedVars ? reentryChoreographedB.capturedVars.c : NaN, 0.7, 1e-9);
+
+  // A guided state's SEIZED variable (PM_userTouched) is unaffected by this
+  // change — the choreography-MERGE loop (below the overlay this fix
+  // touched, itself untouched) still skips a seized variable's own
+  // choreographed value. Needs a SECOND, unseized choreographed variable
+  // (k) to force 'changed' true (a seized-only choreography correctly
+  // no-ops entirely — see the standalone assertion right after this one).
+  const state5CfgTwoChoreo = {
+    default_variables: { b: 2, c: 0, k: 0 },
+    states: {
+      STATE_5: {
+        advance_mode: "manual_click",
+        variable_choreography: [
+          { variable: "c", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 },
+          { variable: "k", mode: "once", from: 0, to: 1, start_ms: 0, duration_ms: 1000 },
+        ],
+        scene_composition: [
+          { type: "plot_point", id: "bound_marker", plane_id: "plane", x_expr: "b", y_expr: "b",
+            drag: { bind_variable: "b", axis: "x", min: 0.2, max: 2 } },
+        ],
+      },
+    },
+  };
+  const seizedResult = runApplyChoreography({
+    config: state5CfgTwoChoreo, currentState: "STATE_5", simClockMs: 500,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: { c: 0.4 }, userTouched: { c: true },
+  });
+  assertTrue("a SEIZED choreography variable (c, PM_userTouched.c=true) is NOT sourced from PM_choreoValues by the merge loop — c falls back to its authored default (0), not the stale choreo value (0.4) — unrelated to this fix, still correct",
+    seizedResult.capturedVars !== null && seizedResult.capturedVars.c === 0);
+  assertTrue("...while the OTHER (unseized) choreographed variable k DOES advance mid-ramp (0 < k < 1 at simClockMs:500 of a 1000ms once ramp)",
+    seizedResult.capturedVars !== null && seizedResult.capturedVars.k > 0 && seizedResult.capturedVars.k < 1);
+
+  // A seized-ONLY choreography (no other variable to force a rebuild)
+  // correctly no-ops entirely — computePhysics is never even called. This
+  // is pre-existing, correct, and unrelated to this fix; asserted so the
+  // fixture above (which needed the SECOND variable specifically to avoid
+  // this no-op) is itself explained, not just worked around silently.
+  const seizedOnlyResult = runApplyChoreography({
+    config: state5Cfg, currentState: "STATE_5", simClockMs: 0,
+    sliderValues: { b: 1.0909090909090908 }, choreoValues: {}, userTouched: { c: true },
+  });
+  assertTrue("a choreography whose ONLY entry is already seized never triggers a recompute at all (computePhysics not called) — the reason the merge-loop test above needed a second, unseized variable",
+    seizedOnlyResult.capturedVars === null);
+
+  // STATIC REACHABILITY — PM_applyChoreography's source actually calls
+  // PM_overlayLiveControlValues (wired, not merely defined-but-unused) and
+  // no longer contains its own OLD unconditional inline overlay loop.
+  const applyChoreoSrc = grabFn("PM_applyChoreography");
+  assertTrue("PM_applyChoreography calls PM_overlayLiveControlValues(vars, stateData, stateSliderVars)",
+    applyChoreoSrc.indexOf("vars = PM_overlayLiveControlValues(vars, stateData, stateSliderVars);") >= 0);
+  assertTrue("PM_applyChoreography no longer contains its own inline 'for (var sk in PM_sliderValues)' overlay loop",
+    applyChoreoSrc.indexOf("for (var sk in PM_sliderValues)") === -1);
+}
+
+console.log("\n=== E-2 — x_domain precedence unified onto PM_planeResolveBound (expression wins, numeric is the fallback); the dual-authored trap now warns instead of failing silently (founder Checkpoint B cycle 2, 2026-08-08) ===");
+{
+  // The EXACT STATE_4-style input the founder cited: a numeric min:1.75
+  // authored alongside a live min_expr using the definite_integral_as_
+  // accumulated_area concept's own real choreography shape (nlog -> n via
+  // n_expr:"round(pow(10,nlog))", documented in
+  // docs/MATHEMATICS_PHASE0_CARTESIAN_PLANE.md and the concept's own
+  // skeleton doc — NOT read from the concept JSON itself, which is being
+  // authored on a parallel desk and is untouched here). nlog=3.3625 is the
+  // skeleton doc's own S4 pin value, giving n=round(10^3.3625)=2304 — a
+  // doc-grounded, not invented, worked example.
+  const domainSpec = { min: 1.75, min_expr: "b - 2*(b/round(pow(10,nlog)))", max: 2.0 };
+  const vars = { b: 2, nlog: 3.3625 };
+  const nAtFixture = Math.round(Math.pow(10, vars.nlog));
+  assertTrue("fixture sanity: nlog=3.3625 gives n=2304 (matches the skeleton doc's own S4 pin exactly)", nAtFixture === 2304);
+  const minExprValue = vars.b - 2 * (vars.b / nAtFixture); // = 1.998263888...
+
+  // NEGATIVE CONTROL FIRST — the PRE-FIX algorithm this dispatch replaced
+  // (numeric wins over its *_expr sibling), reimplemented independently
+  // here, never against the shipped renderer. This is drawFunctionPlot's
+  // OWN pre-fix ternary, copied verbatim in spirit.
+  function preFixDomainBound(spec: { min?: number; min_expr?: string }, exprVal: number, fallback: number): number {
+    return (typeof spec.min === "number") ? spec.min
+      : (typeof spec.min_expr === "string") ? exprVal
+      : fallback;
+  }
+  const preFixMin = preFixDomainBound(domainSpec, minExprValue, 0);
+  assertTrue("NEGATIVE CONTROL: the pre-fix algorithm resolves domainMin to the NUMERIC (1.75), silently discarding the live min_expr (would resolve to 1.998263...)",
+    preFixMin === 1.75);
+
+  // Connect that wrong domainMin to the ACTUAL measured symptom ("the curve
+  // does not draw at all", not "the expression was ignored"): sample
+  // PM_functionPlotSample (the SHIPPED, unmodified sampler) across the
+  // pre-fix WIDE domain [1.75, 2.0] and count how many of its 240 samples
+  // land inside the plane's OWN re-zoomed visible window. That window is
+  // exactly [minExprValue, 2.0] BY DESIGN — the whole point of x_domain
+  // sharing the plane's min_expr formula is that the curve's sampled
+  // domain is supposed to track the SAME shrinking window the plane's own
+  // x_range shows (the magnifier-inset use case D3 was built for).
+  const visibleMin = minExprValue, visibleMax = 2.0;
+  function countInsideWindow(domainMin: number, domainMax: number, winMin: number, winMax: number): number {
+    const polylines = E.PM_functionPlotSample("x", domainMin, domainMax, 240, { b: vars.b }, undefined) as { x: number; y: number }[][];
+    let count = 0;
+    for (const line of polylines) for (const p of line) if (p.x >= winMin && p.x <= winMax) count++;
+    return count;
+  }
+  const preFixVisibleCount = countInsideWindow(preFixMin, domainSpec.max, visibleMin, visibleMax);
+  check("NEGATIVE CONTROL: under the pre-fix WIDE domain [1.75, 2.0], only 2 of 240 sampled points land inside the plane's re-zoomed visible window [1.998263..., 2.0] — a 2-point sliver is the measured 'curve does not draw at all' symptom, not a smooth curve",
+    preFixVisibleCount, 2, 0);
+  assertTrue("...that is <1% coverage of the visible window (practically invisible, matching the D3 section's own 'sub-pixel' threshold for the twin riemann_bars defect)",
+    preFixVisibleCount / 240 < 0.01);
+
+  // THE FIX — domainMin resolved via PM_planeResolveBound itself (the
+  // SAME shared precedence function drawFunctionPlot now calls; this is
+  // not a reimplementation, it is the actual mechanism unification runs
+  // through).
+  const fixedMin = E.PM_planeResolveBound(domainSpec, "min", vars) as number;
+  check("the SHIPPED PM_planeResolveBound resolves domainMin to the LIVE min_expr value (1.998263...), not the stale numeric (1.75)",
+    fixedMin, minExprValue, 1e-9);
+  assertTrue("the shipped resolution does NOT share the pre-fix defect at the SAME input",
+    Math.abs(fixedMin - preFixMin) > 0.2 && fixedMin !== preFixMin);
+  const fixedVisibleCount = countInsideWindow(fixedMin, domainSpec.max, visibleMin, visibleMax);
+  check("post-fix: ALL 240 sampled points land inside the (now correctly tracked) visible window — a fully legible curve, not a sliver",
+    fixedVisibleCount, 240, 0);
+
+  // Fallback discipline carried over unchanged: no x_domain authored at
+  // all still falls back to the plane's own current xRange (never a
+  // degenerate/empty domain).
+  const noDomainMin = E.PM_planeResolveBound({}, "min", vars);
+  assertTrue("an EMPTY domainSpec resolves to undefined from PM_planeResolveBound itself (the ranges.xRange fallback lives in drawFunctionPlot's own post-check, asserted below via source)",
+    typeof noDomainMin === "undefined");
+
+  // STATIC REACHABILITY — drawFunctionPlot's source actually calls
+  // PM_planeResolveBound for both min and max (wired, not merely defined),
+  // no longer contains the old numeric-first ternary, and falls back to
+  // ranges.xRange when PM_planeResolveBound returns a non-finite/absent
+  // value (the "never a degenerate domain" discipline, preserved).
+  const drawFunctionPlotSrc = grabFn("drawFunctionPlot");
+  assertTrue("drawFunctionPlot resolves domainMin via PM_planeResolveBound(domainSpec, 'min', vars)",
+    drawFunctionPlotSrc.indexOf("PM_planeResolveBound(domainSpec, 'min', vars)") >= 0);
+  assertTrue("drawFunctionPlot resolves domainMax via PM_planeResolveBound(domainSpec, 'max', vars)",
+    drawFunctionPlotSrc.indexOf("PM_planeResolveBound(domainSpec, 'max', vars)") >= 0);
+  assertTrue("drawFunctionPlot no longer contains the old pre-fix numeric-first ternary ('typeof domainSpec.min === ' + \"'number'\" + ')",
+    drawFunctionPlotSrc.indexOf("typeof domainSpec.min === 'number'") === -1);
+  assertTrue("drawFunctionPlot still falls back to ranges.xRange.min when PM_planeResolveBound yields nothing finite (degenerate-domain discipline preserved)",
+    /domainMin = ranges\.xRange\.min/.test(drawFunctionPlotSrc) && /domainMax = ranges\.xRange\.max/.test(drawFunctionPlotSrc));
+
+  // ── The dual-bound-authored WARNING (requirement 3) ──────────────────
+  // A DEDICATED sandbox (mirrors WP-R6's own runOverlay/runLiveDragScope
+  // pattern above) — NOT the shared E object. E's PM_currentState is a
+  // snapshot COPY taken when E was built (new Function(...)() runs once
+  // and returns plain property values); reassigning E.PM_currentState from
+  // outside only changes that copy, never the variable binding
+  // PM_warnIfDualBoundAuthored's own closure actually reads. So the whole
+  // call SEQUENCE below — including the state change partway through — is
+  // baked as literal statements inside ONE generated function body,
+  // exactly like runLiveDragScope's fixture technique, so every
+  // reassignment lands on the SAME closure-scoped PM_currentState the
+  // grabbed function reads. console.warn is the REAL global (monkey-patched
+  // from outside) — a dynamically-created function still reads the shared
+  // global console object at call time, so that part needs no faking.
+  const maxOnlySpec = { min: 1.0, max: 2.0 }; // no *_expr authored at all — no conflict
+  function runDualBoundWarnSequence(): void {
+    const body = [
+      "var PM_dualBoundWarned = {};",
+      "var PM_currentState = 'STATE_4_TEST';",
+      grabFn("PM_warnIfDualBoundAuthored"),
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.min', " + JSON.stringify(domainSpec) + ", 'min');",
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.min', " + JSON.stringify(domainSpec) + ", 'min');", // repeat, SAME state
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.max', " + JSON.stringify(maxOnlySpec) + ", 'max');", // single-authored — no conflict
+      "PM_currentState = 'STATE_9_TEST';", // a genuinely different state
+      "PM_warnIfDualBoundAuthored('curve_probe', 'x_domain.min', " + JSON.stringify(domainSpec) + ", 'min');",
+    ].join("\n");
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    new Function(body)();
+  }
+
+  const originalWarn = console.warn;
+  const warnCalls: string[] = [];
+  console.warn = (...args: unknown[]) => { warnCalls.push(args.map(String).join(" ")); };
+  try {
+    runDualBoundWarnSequence();
+  } finally {
+    console.warn = originalWarn;
+  }
+  assertTrue("PM_warnIfDualBoundAuthored fires exactly ONCE for the FIRST genuinely dual-authored bound on a state, naming the primitive id and the bound",
+    warnCalls.length >= 1 && warnCalls[0].indexOf("curve_probe") >= 0 && warnCalls[0].indexOf("x_domain.min") >= 0);
+  assertTrue("the SAME (state, primitive, bound) does NOT warn a second time on repeat calls — the per-frame call sites (PM_planeBuildTransform runs every plane every frame, drawFunctionPlot runs every function_plot every frame) would otherwise spam the console at 60 Hz",
+    warnCalls.length === 2); // call 1 warns; call 2 (repeat) does not; call 3 (single-authored) does not; call 4 (new state) DOES
+  assertTrue("NEGATIVE CONTROL: a bound authoring ONLY a numeric (no *_expr sibling) never warns — the scanner is not just always-true",
+    warnCalls.filter((w) => w.indexOf("x_domain.max") >= 0).length === 0);
+  assertTrue("a NEW state re-warns for the same primitive/bound (the dedup key is per-state, not per-primitive-forever — a teacher revisiting an ALREADY-warned state does not re-spam, but a genuinely different state is not silently swallowed)",
+    warnCalls.length === 2 && warnCalls[1].indexOf("curve_probe") >= 0 && warnCalls[1].indexOf("x_domain.min") >= 0);
+
+  // STATIC — both call sites (PM_planeBuildTransform for x_range/y_range,
+  // drawFunctionPlot for x_domain) actually invoke the warning, so the
+  // trap is visible fleet-wide through the ONE shared choke point, not
+  // just at the site the founder's own repro happened to hit.
+  const planeBuildSrc = grabFn("PM_planeBuildTransform");
+  for (const label of ["x_range.min", "x_range.max", "y_range.min", "y_range.max"]) {
+    assertTrue(`PM_planeBuildTransform warns for a dual-authored ${label}`,
+      planeBuildSrc.indexOf(`PM_warnIfDualBoundAuthored(spec && spec.id, '${label}'`) >= 0);
+  }
+  assertTrue("drawFunctionPlot warns for a dual-authored x_domain.min",
+    drawFunctionPlotSrc.indexOf("PM_warnIfDualBoundAuthored(spec.id, 'x_domain.min'") >= 0);
+  assertTrue("drawFunctionPlot warns for a dual-authored x_domain.max",
+    drawFunctionPlotSrc.indexOf("PM_warnIfDualBoundAuthored(spec.id, 'x_domain.max'") >= 0);
+
+  // ── Blast-radius sweep (requirement 2) — a PERMANENT regression gate,
+  // not a one-off. SPLIT IN TWO (founder review of PR #76 — composing this
+  // sweep with the mathematics chapter branch, where
+  // definite_integral_as_accumulated_area's own STATE_4 magnifier
+  // legitimately co-authors a numeric x_range/y_range bound alongside its
+  // *_expr sibling — PM_planeResolveBound's D3 precedence for PLANE ranges
+  // is untouched by E-2 and always resolved expr-wins already, so that
+  // co-authoring is intentional, pre-existing, correct design, not a risk
+  // this dispatch introduced) — asserting on the COMBINED set made a legal
+  // plane-range co-authoring red-gate an unrelated branch that composes
+  // this file with that concept. E-2 flipped ONE precedence: x_domain
+  // (drawFunctionPlot). Only x_domain's blast radius is a claim this
+  // dispatch can make and must prove; x_range/y_range dual-authoring is
+  // reported for visibility (it is real, load-bearing, on-purpose data) but
+  // NEVER fails this gate — asserting on it would be asserting a fact E-2
+  // has no bearing on.
+  function walkJsonFiles(dir: string, out: string[]): void {
+    for (const entry of readdirSync(dir)) {
+      const p = path.join(dir, entry);
+      const st = statSync(p);
+      if (st.isDirectory()) walkJsonFiles(p, out);
+      else if (entry.endsWith(".json")) out.push(p);
+    }
+  }
+  type DualBoundHit = { file: string; primitiveId: string; boundLabel: string; rangeObj: Record<string, unknown> };
+  function walkForDualBounds(node: unknown, filePath: string, rangeKeys: string[], hits: DualBoundHit[]): void {
+    if (node === null || typeof node !== "object") return;
+    if (Array.isArray(node)) { for (const item of node) walkForDualBounds(item, filePath, rangeKeys, hits); return; }
+    const obj = node as Record<string, unknown>;
+    for (const rangeKey of rangeKeys) {
+      const rangeObj = obj[rangeKey];
+      if (rangeObj && typeof rangeObj === "object" && !Array.isArray(rangeObj)) {
+        const ro = rangeObj as Record<string, unknown>;
+        for (const bound of ["min", "max"]) {
+          if (typeof ro[bound] !== "undefined" && typeof ro[bound + "_expr"] === "string") {
+            hits.push({ file: filePath, primitiveId: String(obj.id ?? "(no id)"), boundLabel: rangeKey + "." + bound, rangeObj: ro });
+          }
+        }
+      }
+    }
+    for (const k of Object.keys(obj)) walkForDualBounds(obj[k], filePath, rangeKeys, hits);
+  }
+  const conceptFiles: string[] = [];
+  walkJsonFiles(path.join(__dirname, "..", "data", "concepts"), conceptFiles);
+
+  // ASSERTED — x_domain is the ONLY bound E-2 changed the precedence of.
+  const xDomainHits: DualBoundHit[] = [];
+  for (const f of conceptFiles) {
+    let json: unknown;
+    try { json = JSON.parse(readFileSync(f, "utf8")); } catch { continue; }
+    walkForDualBounds(json, f, ["x_domain"], xDomainHits);
+  }
+  console.log(`  [E-2 sweep] scanned ${conceptFiles.length} concept JSON files, found ${xDomainHits.length} dual-authored x_domain (numeric + *_expr on the SAME bound) instance(s)`);
+  for (const h of xDomainHits) console.log(`    CONFLICT: ${h.file} primitive="${h.primitiveId}" bound=${h.boundLabel} rangeObj=${JSON.stringify(h.rangeObj)}`);
+  assertTrue(`blast-radius sweep (x_domain ONLY — the precedence E-2 actually changed): zero shipped concepts author both a numeric x_domain bound and its *_expr sibling (measured: ${xDomainHits.length} across ${conceptFiles.length} files) — the precedence CHANGE (expr now always wins, matching PM_planeResolveBound) is a strict no-op for every shipped concept`,
+    xDomainHits.length === 0);
+
+  // REPORTED ONLY, never asserted — x_range/y_range (the PLANE's own
+  // ranges) already resolved expr-wins before E-2 (D3, unchanged by this
+  // dispatch); a hit here is expected, legal, on-purpose data (the
+  // magnifier-inset pattern), not a regression signal for THIS bug_class.
+  const planeRangeHits: DualBoundHit[] = [];
+  for (const f of conceptFiles) {
+    let json: unknown;
+    try { json = JSON.parse(readFileSync(f, "utf8")); } catch { continue; }
+    walkForDualBounds(json, f, ["x_range", "y_range"], planeRangeHits);
+  }
+  console.log(`  [E-2 sweep, INFO ONLY — plane x_range/y_range precedence was ALREADY expr-wins pre-E-2, D3, unaffected by this dispatch] found ${planeRangeHits.length} dual-authored plane-range instance(s) (legal, on-purpose — e.g. a magnifier-inset re-zoom)`);
+  for (const h of planeRangeHits) console.log(`    (info) ${h.file} primitive="${h.primitiveId}" bound=${h.boundLabel} rangeObj=${JSON.stringify(h.rangeObj)}`);
+}
+
 console.log(failures === 0
-  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D) CHECKS PASS\n"
+  ? "\nALL CARTESIAN-PLANE (CP-A + CP-B + CP-C1 + CP-C2 + CP-D + D3 + E-2) CHECKS PASS\n"
   : `\n*** ${failures} CARTESIAN-PLANE CHECK(S) FAILED ***\n`);
 process.exit(failures === 0 ? 0 : 1);
