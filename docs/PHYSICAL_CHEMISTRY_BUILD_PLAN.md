@@ -64,16 +64,18 @@ speeds"). The ranked list predates that build.
 
 ## 3. THE FULL LIST — 46 simulations in 10 clusters
 
-Tier: 💎 diamond · ⭐ strong. **3D** flags the only ones needing the Three.js surface.
+Tier: 💎 diamond · ⭐ strong. **D** = dimensionality; 🧊 marks the only four needing the Three.js
+surface. **`concept_id`s below are PROPOSALS** — none is registered at any site yet, and chemistry ids
+stay out of the 8 physics registration sites until the chemistry serving path lands (Gate 8b).
 
 ### PC-1 — Gases & kinetic theory · `gas_box` **[LIVE]** · 4 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 1 | Gas laws (Boyle · Charles · ideal gas) | ⭐ | 5/6 ⚠ |
-| 2 | Diffusion / Graham's law | ⭐ | 4/6 ⚠ |
-| 3 | Real gases / van der Waals / compressibility Z | ⭐ | 4/6 ⚠ |
-| 4 | Vapour pressure & boiling | ⭐ | 4/6 ⚠ |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 1 | `gas_laws_boyle_charles` | Gas laws (Boyle · Charles · ideal gas) | 2D | ⭐ | 5/6 ⚠ |
+| 2 | `diffusion_and_grahams_law` | Diffusion / Graham's law | 2D | ⭐ | 4/6 ⚠ |
+| 3 | `real_gases_van_der_waals` | Real gases / van der Waals / compressibility Z | 2D | ⭐ | 4/6 ⚠ |
+| 4 | `vapour_pressure_and_boiling` | Vapour pressure & boiling | 2D | ⭐ | 4/6 ⚠ |
 
 ⚠ = States-of-Matter topics removed from the rationalised NCERT. Strong internationally, weak on CBSE.
 The piston that does real work, the liftable two-species barrier and the P·A/N·T HUD **already exist**,
@@ -81,16 +83,16 @@ so #1 and #2 are close to pure authoring.
 
 ### PC-2 — Thermodynamics & thermochemistry · archetypes L + N **[LIVE]** · 8 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 5 | Internal energy & the first law | ⭐ | 6/6 |
-| 6 | Enthalpy & reaction profiles (exo vs endo) | ⭐ | 6/6 |
-| 7 | Hess's law / energy cycles | ⭐ | 6/6 |
-| 8 | Bond enthalpy | ⭐ | 5/6 |
-| 9 | Calorimetry | ⭐ | 5/6 |
-| 10 | **Entropy** | 💎 | 6/6 |
-| 11 | **Gibbs free energy & spontaneity** | 💎 | 5/6 |
-| 12 | Born–Haber cycle / lattice enthalpy | ⭐ | 4/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 5 | `internal_energy_first_law` | Internal energy & the first law | 2D | ⭐ | 6/6 |
+| 6 | `enthalpy_reaction_profile` | Enthalpy & reaction profiles (exo vs endo) | 2D | ⭐ | 6/6 |
+| 7 | `hess_law_energy_cycles` | Hess's law / energy cycles | 2D | ⭐ | 6/6 |
+| 8 | `bond_enthalpy` | Bond enthalpy | 2D | ⭐ | 5/6 |
+| 9 | `calorimetry` | Calorimetry | 2D | ⭐ | 5/6 |
+| 10 | `entropy_and_dispersal` | **Entropy** | 2D | 💎 | 6/6 |
+| 11 | `gibbs_free_energy_spontaneity` | **Gibbs free energy & spontaneity** | 2D | 💎 | 5/6 |
+| 12 | `born_haber_cycle` | Born–Haber cycle / lattice enthalpy | 2D | ⭐ | 4/6 |
 
 #10 is the cluster's best diamond: entropy is taught as the word "disorder" and understood by almost
 nobody. A particle box makes energy *dispersal* watchable. #11 pays it off — the ΔG sign flipping with
@@ -98,46 +100,46 @@ temperature is genuinely counterintuitive (capability 4).
 
 ### PC-3 — Chemical kinetics · `gas_box` + N **[LIVE]** · 4 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 13 | Arrhenius equation / Eₐ from a plot | ⭐ | 5/6 |
-| 14 | **Catalysis** (homogeneous · heterogeneous · surface adsorption) | 💎 | 6/6 |
-| 15 | Integrated rate laws & half-life | ⭐ | 5/6 |
-| 16 | **Reaction mechanism & the rate-determining step** | 💎 | 5/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 13 | `arrhenius_equation` | Arrhenius equation / Eₐ from a plot | 2D | ⭐ | 5/6 |
+| 14 | `catalysis_and_activation_energy` | **Catalysis** (homogeneous · heterogeneous · surface adsorption) | 2D | 💎 | 6/6 |
+| 15 | `integrated_rate_law_half_life` | Integrated rate laws & half-life | 2D | ⭐ | 5/6 |
+| 16 | `reaction_mechanism_rate_determining_step` | **Reaction mechanism & the rate-determining step** | 2D | 💎 | 5/6 |
 
 ### PC-4 — Chemical equilibrium · `gas.reaction` **[LIVE]** · 2 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 17 | **Kc / Kp and the reaction quotient Q** | 💎 | 6/6 |
-| 18 | Haber process optimisation | ⭐ | 5/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 17 | `equilibrium_constant_kc_kp` | **Kc / Kp and the reaction quotient Q** | 2D | 💎 | 6/6 |
+| 18 | `haber_process_optimisation` | Haber process optimisation | 2D | ⭐ | 5/6 |
 
 The gas box already runs A + B ⇌ AB with a **derived** reverse barrier, so equilibrium shifts emerge
 from the collision sweep rather than being scripted. #17 is nearly free on machinery that exists.
 
 ### PC-5 — Ionic equilibrium, acids & bases · archetype N **[LIVE]** · 6 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 19 | Acids, bases & the pH scale | ⭐ | 6/6 |
-| 20 | **Strong vs weak acids** (Ka, degree of dissociation) | 💎 | 6/6 |
-| 21 | **Titration curves & indicators** | 💎 | 6/6 |
-| 22 | **Buffers & Henderson–Hasselbalch** | 💎 | 5/6 |
-| 23 | Salt hydrolysis | ⭐ | 4/6 |
-| 24 | **Solubility product Ksp & the common-ion effect** | 💎 | 5/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 19 | `acids_bases_and_ph_scale` | Acids, bases & the pH scale | 2D | ⭐ | 6/6 |
+| 20 | `strong_vs_weak_acids` | **Strong vs weak acids** (Ka, degree of dissociation) | 2D | 💎 | 6/6 |
+| 21 | `titration_curve_and_indicators` | **Titration curves & indicators** | 2D | 💎 | 6/6 |
+| 22 | `buffer_solutions` | **Buffers & Henderson–Hasselbalch** | 2D | 💎 | 5/6 |
+| 23 | `salt_hydrolysis` | Salt hydrolysis | 2D | ⭐ | 4/6 |
+| 24 | `solubility_product_and_common_ion` | **Solubility product Ksp & the common-ion effect** | 2D | 💎 | 5/6 |
 
 **The densest diamond cluster in physical chemistry, and all of it is 2D graph work.** #21's
 equivalence-point cliff is the single best 2D chemistry sim available today.
 
 ### PC-6 — Solutions & colligative properties · small `gas_box` extension · 5 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 25 | Dissolution & solubility | ⭐ | 6/6 |
-| 26 | Raoult's law & vapour-pressure lowering | ⭐ | 5/6 |
-| 27 | Boiling-point elevation & freezing-point depression | ⭐ | 5/6 |
-| 28 | **Osmosis & osmotic pressure** | 💎 | 6/6 |
-| 29 | Henry's law | ⭐ | 4/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 25 | `dissolution_and_solubility` | Dissolution & solubility | 2D | ⭐ | 6/6 |
+| 26 | `raoults_law_vapour_pressure` | Raoult's law & vapour-pressure lowering | 2D | ⭐ | 5/6 |
+| 27 | `boiling_elevation_freezing_depression` | Boiling-point elevation & freezing-point depression | 2D | ⭐ | 5/6 |
+| 28 | `osmosis_and_osmotic_pressure` | **Osmosis & osmotic pressure** | 2D | 💎 | 6/6 |
+| 29 | `henrys_law` | Henry's law | 2D | ⭐ | 4/6 |
 
 #28 is the sleeper. It has the exact misconception structure that made `dynamic_equilibrium` work —
 students believe water crosses the membrane one way, when it crosses **both** ways with a net flow.
@@ -145,15 +147,15 @@ Needs one modest addition: a semi-permeable membrane in the particle box.
 
 ### PC-7 — Redox & electrochemistry · **[NEEDS-SCENARIO]** · 7 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 30 | Redox as electron transfer & oxidation states | ⭐ | 6/6 |
-| 31 | **Galvanic cell** (Daniell, salt bridge) | 💎 | 6/6 |
-| 32 | Electrode potential & the electrochemical series | ⭐ | 5/6 |
-| 33 | Nernst equation | ⭐ | 4/6 |
-| 34 | **Electrolysis & Faraday's laws** | 💎 | 6/6 |
-| 35 | Conductance & molar conductivity (Kohlrausch) | ⭐ | 4/6 |
-| 36 | Corrosion, batteries & fuel cells | ⭐ | 5/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 30 | `redox_as_electron_transfer` | Redox as electron transfer & oxidation states | 2D | ⭐ | 6/6 |
+| 31 | `galvanic_cell_daniell` | **Galvanic cell** (Daniell, salt bridge) | 2D | 💎 | 6/6 |
+| 32 | `electrode_potential_series` | Electrode potential & the electrochemical series | 2D | ⭐ | 5/6 |
+| 33 | `nernst_equation` | Nernst equation | 2D | ⭐ | 4/6 |
+| 34 | `electrolysis_and_faradays_laws` | **Electrolysis & Faraday's laws** | 2D | 💎 | 6/6 |
+| 35 | `conductance_and_molar_conductivity` | Conductance & molar conductivity (Kohlrausch) | 2D | ⭐ | 4/6 |
+| 36 | `corrosion_batteries_fuel_cells` | Corrosion, batteries & fuel cells | 2D | ⭐ | 5/6 |
 
 The biggest 2D prize in the subject. #31 shows **two invisible flows at once in opposite directions** —
 electrons through the wire, ions through the solution and salt bridge. `patterns/chemistry.md` marks
@@ -163,22 +165,22 @@ wrong twice** (archetype M shipped as one scenario; archetype P needed a case, n
 
 ### PC-8 — Atomic structure & quantum · L + `orbital_shapes` **[LIVE]** · 4 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 37 | Hydrogen emission spectrum | ⭐ | 5/6 |
-| 38 | **Quantum numbers & electron configuration** (Aufbau · Pauli · Hund) — **3D** | 💎 | 6/6 |
-| 39 | **Rutherford α-scattering** — [NEEDS-SCENARIO] | 💎 | 5/6 |
-| 40 | Photoelectric effect / quantisation of light | ⭐ | 5/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 37 | `hydrogen_emission_spectrum` | Hydrogen emission spectrum | 2D | ⭐ | 5/6 |
+| 38 | `quantum_numbers_electron_configuration` | **Quantum numbers & electron configuration** (Aufbau · Pauli · Hund) | 🧊 **3D** | 💎 | 6/6 |
+| 39 | `rutherford_alpha_scattering` | **Rutherford α-scattering** — [NEEDS-SCENARIO] | 2D *(3D optional)* | 💎 | 5/6 |
+| 40 | `photoelectric_effect_quantisation` | Photoelectric effect / quantisation of light | 2D | ⭐ | 5/6 |
 
 #37 is the cheapest remaining strong concept in all of chemistry — a direct successor to the shipped
 `bohr_model_energy_levels` on machinery already proven.
 
 ### PC-9 — Periodicity · N + `orbital_shapes` · 2 sims (+2 in flight)
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 41 | Electronegativity & electron gain enthalpy | ⭐ | 6/6 |
-| 42 | **Effective nuclear charge & shielding** — **3D** | 💎 | 6/6 |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 41 | `electronegativity_and_electron_gain` | Electronegativity & electron gain enthalpy | 2D | ⭐ | 6/6 |
+| 42 | `effective_nuclear_charge_shielding` | **Effective nuclear charge & shielding** | 🧊 **3D** | 💎 | 6/6 |
 
 #42 is the *mechanism* under the whole chapter — the trend alone is a graph a teacher can draw, but
 why the trend exists is invisible. It is the concept `atomic_and_ionic_radius` and
@@ -186,12 +188,12 @@ why the trend exists is invisible. It is the concept `atomic_and_ionic_radius` a
 
 ### PC-10 — Solid state & surface chemistry · **[NEEDS-SCENARIO]** · 4 sims
 
-| # | Concept | Tier | Curricula |
-|---|---|---|---|
-| 43 | **Unit cells & crystal lattices** — **3D** | 💎 | 3/6 ⚠ |
-| 44 | Packing efficiency & voids — **3D** | ⭐ | 3/6 ⚠ |
-| 45 | Adsorption (physisorption vs chemisorption) | ⭐ | 3/6 ⚠ |
-| 46 | Colloids & the Tyndall effect | ⭐ | 3/6 ⚠ |
+| # | concept_id | Concept | D | Tier | Curricula |
+|---|---|---|---|---|---|
+| 43 | `unit_cells_and_crystal_lattice` | **Unit cells & crystal lattices** | 🧊 **3D** | 💎 | 3/6 ⚠ |
+| 44 | `packing_efficiency_and_voids` | Packing efficiency & voids | 🧊 **3D** | ⭐ | 3/6 ⚠ |
+| 45 | `adsorption_physisorption_chemisorption` | Adsorption (physisorption vs chemisorption) | 2D | ⭐ | 3/6 ⚠ |
+| 46 | `colloids_and_tyndall_effect` | Colloids & the Tyndall effect | 2D | ⭐ | 3/6 ⚠ |
 
 ⚠ Solid State **and** Surface Chemistry were both removed from the rationalised NCERT. International
 value only (A-level · IB) until a syllabus changes. `patterns/chemistry.md` records crystal lattices as
@@ -206,9 +208,27 @@ the one remaining [NEEDS-SCENARIO] half of archetype P.
 | **Unbuilt simulations** | **46** |
 | 💎 diamond | 16 |
 | ⭐ strong | 30 |
-| **Needing 3D** | **4** (#38, #42, #43, #44) — plus #39 optionally |
+| **2D** | **42** |
+| **🧊 3D** | **4** (#38, #42, #43, #44) — plus #39 optionally |
 | Buildable with **zero** engine work | **~38** |
 | Estimated states (7–9 per concept) | ~370 |
+
+### Why exactly four are 3D
+
+| # | concept_id | Why 3D is unavoidable | Engine |
+|---|---|---|---|
+| 38 | `quantum_numbers_electron_configuration` | The orbital *shapes* ARE the content — s spherical, p on three axes, d between them | `orbital_shapes` **[LIVE]** |
+| 42 | `effective_nuclear_charge_shielding` | Inner shells physically screening the nucleus is a spatial fact, not a graph | `orbital_shapes` **[LIVE]** |
+| 43 | `unit_cells_and_crystal_lattice` | A repeating 3D cell is the entire concept | lattice **[NEEDS-SCENARIO]** |
+| 44 | `packing_efficiency_and_voids` | Voids exist *between* spheres in three dimensions | lattice **[NEEDS-SCENARIO]** |
+
+**Two of the four need no new engine at all** — `orbital_shapes` shipped 2026-07-28. Only #43/#44
+need the crystal-lattice scenario, the one remaining `[NEEDS-SCENARIO]` half of archetype P.
+
+**#39 `rutherford_alpha_scattering` is a genuinely open call.** Scattering reads fine in 2D, and
+`patterns/chemistry.md` §K records it as needing a new scenario either way (the existing magnetic
+machinery has no general force integrator, so a 1/r² hyperbolic path is not free in either
+dimensionality). Decide it at design time, not from this table.
 
 ## 5. Engine work required — three modest scenarios, not three big builds
 
