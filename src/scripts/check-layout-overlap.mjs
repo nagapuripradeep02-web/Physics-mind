@@ -21,6 +21,45 @@
 // never looked at. A checker that silently skips states is worse than no checker:
 // it converts an unchecked area into a green tick.
 // (engine_bug_queue: layout_overlap_script_hardcodes_first_five_states, 2026-07-24)
+//
+// PLANE-TRANSFORM + TEMPORAL-WINDOW AWARENESS (founder_proxy Checkpoint B cycle 3,
+// definite_integral_as_accumulated_area, 2026-08-09). Two false-positive causes,
+// both verified live before this fix and both re-verified absent after it:
+//
+// (a) A label/annotation carrying `plane_id` lives inside a `cartesian_plane`
+//     primitive's DATA-space coordinate system (x_range/y_range mapped onto a
+//     pixel viewport — mirrors PM_planeBuildTransform in parametric_renderer.ts).
+//     This script previously read `p.position.x/.y` as PIXEL coordinates
+//     unconditionally, so a data-space position like {x:0.5, y:1.5} was reported
+//     as a box near canvas pixel (0.5, 1.5) — hundreds of pixels from where the
+//     label actually paints. `resolveAnchorEnvelope` below now resolves the
+//     plane's transform (STATIC ranges only — a plane whose x_range/y_range
+//     itself carries a *_expr live re-zoom, e.g. STATE_4's plane_inset magnifier,
+//     is explicitly UNRESOLVABLE by this checker and SKIPPED with a named reason,
+//     never guessed) and maps the label's data-space point(s) through it.
+// (b) A `position_expr`-driven label (the anchor tracks a choreographed variable,
+//     e.g. a reveal bound sweeping 0 -> 2 over several seconds) has no SINGLE
+//     position — it has a whole swept RANGE of positions across the state's
+//     runtime. This script now resolves every identifier in the expr against
+//     the state's `variable_choreography` (a sweep range) or the concept's
+//     declared `physics_engine_config.variables`/`formulas`/`computed_outputs`
+//     (a fixed per-state value, recursively resolved), samples the swept
+//     range, and unions the resulting pixel-space anchor points into one
+//     envelope before building the text box — matching how a human reviewer
+//     verified STATE_7's curve_label/accum_curve_label kept a minimum 76.5px
+//     separation "across the whole beta ramp", not at one instant. An
+//     expression referencing an identifier this script cannot resolve (not a
+//     declared variable, formula, choreographed sweep, or Math builtin) is
+//     SKIPPED with the exact identifier named — never silently treated as
+//     pixel space (the original defect's own direction of error).
+// (c) Two primitives whose authored `appear_at_ms`/`disappear_at_ms` windows
+//     never overlap by more than one rendered frame (~16.7ms) are never
+//     simultaneously on screen, so a spatial collision between them is not a
+//     real collision — it is two different pictures the checker was comparing
+//     as if they were one. `windowsOverlap` below gates every pair on this
+//     before reporting a COLLISION.
+// (engine_bug_queue: pcpl_layout_overlap_checker_measures_data_space_labels_
+// against_pixel_space_boxes_and_ignores_temporal_disjointness, 2026-08-09)
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -60,6 +99,281 @@ const json = JSON.parse(fs.readFileSync(PATH, 'utf8'));
 const CHAR_W_RATIO = 0.55;
 const CHAR_W = 7;   // retained for the force_arrow tip-label estimate below
 
+// ── Live-variable resolution (mirrors PM_buildEvalScope / PM_safeEval /
+// PM_choreoValue's from/to range in parametric_renderer.ts, hand-ported —
+// pure arithmetic, no p5/DOM dependency, safe to duplicate per that file's
+// own "Box model mirrors..." convention already used throughout this script).
+const MATH_SCOPE_KEYS = ['sqrt', 'atan2', 'atan', 'asin', 'acos', 'sin', 'cos', 'tan',
+  'abs', 'min', 'max', 'pow', 'log', 'exp', 'PI', 'E', 'round', 'floor', 'ceil', 'sign'];
+
+function declaredVariables() {
+  return (json.physics_engine_config && json.physics_engine_config.variables) || {};
+}
+
+// formulas + computed_outputs carry the SAME strings (name -> expr vs name ->
+// {formula: expr}) — merge them so either authoring convention resolves.
+function declaredFormulas() {
+  const cfg = json.physics_engine_config || {};
+  const out = Object.assign({}, cfg.formulas || {});
+  const co = cfg.computed_outputs;
+  if (co && typeof co === 'object') {
+    for (const name of Object.keys(co)) {
+      if (!(name in out) && co[name] && typeof co[name].formula === 'string') out[name] = co[name].formula;
+    }
+  }
+  return out;
+}
+
+function exprIdentifiers(expr) {
+  return Array.from(new Set((String(expr).match(/[A-Za-z_]\w*/g) || [])));
+}
+
+// A variable choreographed in THIS state sweeps between from/to (every mode —
+// once/loop/ping_pong — stays within [min(from,to), max(from,to)]), so the
+// full swept RANGE, not a single instant, is what a static layout check needs.
+function sweptRangesForState(state) {
+  const out = new Map();
+  const choreo = state && state.variable_choreography;
+  if (Array.isArray(choreo)) {
+    for (const c of choreo) {
+      if (!c || typeof c.variable !== 'string') continue;
+      const from = typeof c.from === 'number' ? c.from : 0;
+      const to = typeof c.to === 'number' ? c.to : from;
+      const lo = Math.min(from, to), hi = Math.max(from, to);
+      const prev = out.get(c.variable);
+      out.set(c.variable, prev ? { lo: Math.min(prev.lo, lo), hi: Math.max(prev.hi, hi) } : { lo, hi });
+    }
+  }
+  return out;
+}
+
+// A variable NOT choreographed in this state is fixed for the whole state at
+// its declared default, or this state's own variable_overrides value.
+function fixedVarsForState(state) {
+  const vars = declaredVariables();
+  const out = {};
+  for (const name of Object.keys(vars)) {
+    const v = vars[name];
+    out[name] = (v && typeof v.default === 'number') ? v.default : 0;
+  }
+  const overrides = state && state.variable_overrides;
+  if (overrides && typeof overrides === 'object') {
+    for (const k of Object.keys(overrides)) {
+      if (typeof overrides[k] === 'number') out[k] = overrides[k];
+    }
+  }
+  return out;
+}
+
+function safeEvalExpr(expr, scope) {
+  try {
+    const keys = Object.keys(scope);
+    const vals = keys.map((k) => scope[k]);
+    // eslint-disable-next-line no-new-func
+    const fn = new Function(keys.join(','), 'return (' + expr + ');');
+    const r = fn.apply(null, vals);
+    return (typeof r === 'number' && Number.isFinite(r)) ? r : NaN;
+  } catch (e) {
+    return NaN;
+  }
+}
+
+// Iteratively resolves declared formulas (which may reference OTHER formulas,
+// e.g. area_total = exact - 2*area_below) into a fully-numeric scope, given a
+// concrete sample assignment for whichever variable(s) are swept this pass.
+function buildResolvedScope(fixedVars, sweptSample, formulas) {
+  const scope = Object.assign({}, fixedVars, sweptSample);
+  for (const k of MATH_SCOPE_KEYS) if (!(k in scope)) scope[k] = Math[k];
+  const remaining = new Map(Object.entries(formulas));
+  let guard = 0, progressed = true;
+  while (remaining.size > 0 && progressed && guard < 20) {
+    progressed = false; guard += 1;
+    for (const [name, expr] of Array.from(remaining.entries())) {
+      const unresolved = exprIdentifiers(expr).filter((id) => !(id in scope));
+      if (unresolved.length > 0) continue;
+      const val = safeEvalExpr(expr, scope);
+      if (Number.isFinite(val)) { scope[name] = val; remaining.delete(name); progressed = true; }
+    }
+  }
+  return scope;
+}
+
+// Resolves a primitive's position into one or more DATA-space (or, when no
+// plane_id is authored, raw pixel-space — position_expr with no plane paints
+// directly in pixels, same as a literal position) points: a single point for
+// a literal position or a position_expr with no swept identifiers, or a
+// SAMPLED ENVELOPE when the expr references a variable this state
+// choreographs. Never silently guesses: an unresolvable identifier returns
+// {skip: reason} instead of a fabricated point.
+function resolveDataSpacePoints(p, state) {
+  const pe = p.position_expr;
+  if (!pe) {
+    if (!hasPosition(p)) return { skip: 'no position/position_expr authored' };
+    return { points: [{ x: p.position.x, y: p.position.y }] };
+  }
+  const exprX = typeof pe.x === 'string' ? pe.x : null;
+  const exprY = typeof pe.y === 'string' ? pe.y : null;
+  if (!exprX && !exprY) {
+    if (!hasPosition(p)) return { skip: 'position_expr present but neither .x nor .y is a string, and no literal position fallback' };
+    return { points: [{ x: p.position.x, y: p.position.y }] };
+  }
+
+  const allIds = Array.from(new Set([
+    ...(exprX ? exprIdentifiers(exprX) : []),
+    ...(exprY ? exprIdentifiers(exprY) : []),
+  ]));
+
+  const fixedVars = fixedVarsForState(state);
+  const swept = sweptRangesForState(state);
+  const formulas = declaredFormulas();
+  const known = new Set([
+    ...Object.keys(fixedVars), ...Array.from(swept.keys()), ...Object.keys(formulas), ...MATH_SCOPE_KEYS,
+  ]);
+  const unknown = allIds.filter((id) => !known.has(id));
+  if (unknown.length > 0) {
+    return { skip: `position_expr references unresolvable identifier(s): ${unknown.join(', ')} (not a declared variable, formula, choreographed sweep, or Math function)` };
+  }
+
+  // Sample density scales DOWN as the number of jointly-swept identifiers
+  // grows, so the combined grid never explodes — every concept on the fleet
+  // today sweeps at most one identifier per position_expr axis pair.
+  const sweptNames = allIds.filter((id) => swept.has(id));
+  const perVarSamples = sweptNames.length <= 1 ? 13 : (sweptNames.length === 2 ? 7 : 3);
+  let combos = [{}];
+  for (const name of sweptNames) {
+    const r = swept.get(name);
+    const n = perVarSamples;
+    const values = [];
+    for (let i = 0; i < n; i++) values.push(r.lo + (r.hi - r.lo) * (n === 1 ? 0 : i / (n - 1)));
+    const next = [];
+    for (const base of combos) for (const v of values) next.push(Object.assign({}, base, { [name]: v }));
+    combos = next;
+    if (combos.length > 400) break; // safety valve — should never trigger given the caps above
+  }
+
+  const points = [];
+  for (const sample of combos) {
+    const scope = buildResolvedScope(fixedVars, sample, formulas);
+    const x = exprX ? safeEvalExpr(exprX, scope) : (hasPosition(p) ? p.position.x : NaN);
+    const y = exprY ? safeEvalExpr(exprY, scope) : (hasPosition(p) ? p.position.y : NaN);
+    if (Number.isFinite(x) && Number.isFinite(y)) points.push({ x, y });
+  }
+  if (points.length === 0) return { skip: 'position_expr never evaluated to a finite point across the sampled range' };
+  return { points };
+}
+
+// Mirrors PM_planeResolveBound: a range bound may be authored as a numeric
+// min/max OR a min_expr/max_expr string. This checker only ever calls it with
+// scope={} (STATIC ranges) — a plane whose range carries an *_expr is
+// intercepted earlier by planeHasDynamicRange and SKIPPED, never guessed.
+function pmPlaneResolveBound(rangeObj, key) {
+  return rangeObj ? rangeObj[key] : undefined;
+}
+
+// Mirrors PM_planeBuildTransform (parametric_renderer.ts D1) — the pure
+// data<->pixel linear map a `cartesian_plane` primitive registers. No p5/DOM
+// dependency, so it is safe to hand-port here exactly like the rest of this
+// script's box model already mirrors drawLabel/drawAnnotation/drawForceArrow.
+function pmPlaneBuildTransform(spec) {
+  const viewport = (spec && spec.viewport) || { x: 70, y: 78, w: 660, h: 372 };
+  const xRangeRaw = (spec && spec.x_range) || { min: -6.5, max: 6.5 };
+  const yRangeRaw = (spec && spec.y_range) || { min: -4, max: 4 };
+  const xRange = { min: pmPlaneResolveBound(xRangeRaw, 'min'), max: pmPlaneResolveBound(xRangeRaw, 'max') };
+  const yRange = { min: pmPlaneResolveBound(yRangeRaw, 'min'), max: pmPlaneResolveBound(yRangeRaw, 'max') };
+  const dx = xRange.max - xRange.min, dy = yRange.max - yRange.min;
+  if (!(dx > 0) || !(dy > 0)) return null;
+  const equalScale = !!(spec && spec.equal_scale);
+  let scaleX, scaleY, originPxX, originPxY;
+  if (equalScale) {
+    const k = Math.min(viewport.w / dx, viewport.h / dy);
+    const effW = dx * k, effH = dy * k;
+    scaleX = k; scaleY = k;
+    originPxX = viewport.x + (viewport.w - effW) / 2;
+    originPxY = viewport.y + (viewport.h - effH) / 2;
+  } else {
+    scaleX = viewport.w / dx; scaleY = viewport.h / dy;
+    originPxX = viewport.x; originPxY = viewport.y;
+  }
+  return {
+    toPx(x, y) {
+      return { x: originPxX + (x - xRange.min) * scaleX, y: originPxY + (yRange.max - y) * scaleY };
+    },
+  };
+}
+
+function planeHasDynamicRange(spec) {
+  const rx = (spec && spec.x_range) || {};
+  const ry = (spec && spec.y_range) || {};
+  return ['min_expr', 'max_expr'].some((k) => typeof rx[k] === 'string' || typeof ry[k] === 'string');
+}
+
+// Build the map of cartesian_plane primitives registered in THIS state, keyed
+// by their own `id` — the SAME name consuming primitives reference via
+// `plane_id` (mirrors PM_planeRegistry, rebuilt fresh per state/frame).
+function buildPlaneMap(scene) {
+  const map = new Map();
+  for (const p of scene || []) {
+    if (p && p.type === 'cartesian_plane' && typeof p.id === 'string') map.set(p.id, p);
+  }
+  return map;
+}
+
+function envelopeOf(points) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const pt of points) {
+    if (pt.x < x0) x0 = pt.x;
+    if (pt.x > x1) x1 = pt.x;
+    if (pt.y < y0) y0 = pt.y;
+    if (pt.y > y1) y1 = pt.y;
+  }
+  return { x0, y0, x1, y1 };
+}
+
+// The single entry point bboxLabel/bboxAnnotation call: resolves a
+// label/annotation/formula_box primitive's anchor into a PIXEL-space envelope
+// (a single point for a static literal position, a swept range for a
+// choreographed position_expr), transforming through its plane_id's
+// registered transform when one is authored. Returns {envelope} or {skip}.
+function resolveAnchorEnvelope(p, state, planes) {
+  const planeSpec = p.plane_id ? planes.get(p.plane_id) : null;
+  if (p.plane_id && !planeSpec) {
+    return { skip: `plane_id '${p.plane_id}' is not registered by any cartesian_plane primitive in this state` };
+  }
+  if (planeSpec && planeHasDynamicRange(planeSpec)) {
+    return { skip: `plane '${p.plane_id}' has a live re-zoom range (x_range/y_range *_expr) — dynamic viewport not modeled by this checker; verify this label visually` };
+  }
+
+  const raw = resolveDataSpacePoints(p, state);
+  if (raw.skip) return raw;
+
+  if (!planeSpec) return { envelope: envelopeOf(raw.points) }; // no plane: raw points ARE pixel-space already
+
+  const transform = pmPlaneBuildTransform(planeSpec);
+  if (!transform) return { skip: `plane '${p.plane_id}' has a degenerate range (max<=min)` };
+  const pixelPoints = raw.points.map((pt) => transform.toPx(pt.x, pt.y));
+  return { envelope: envelopeOf(pixelPoints) };
+}
+
+// engine_bug_queue: pcpl_layout_overlap_checker_measures_data_space_labels_
+// against_pixel_space_boxes_and_ignores_temporal_disjointness (cause c). Two
+// primitives are never simultaneously on screen if their authored appear/
+// disappear windows do not overlap by more than one rendered frame (~16.7ms
+// at 60fps) — anything at or below that is not a visually perceptible
+// simultaneous presence, only a same-instant authoring convention (e.g. one
+// primitive's disappear_at_ms deliberately equal to the next one's
+// appear_at_ms, a crossfade HANDOFF, not a collision).
+const TEMPORAL_OVERLAP_TOLERANCE_MS = 1000 / 60;
+function activeWindow(p) {
+  const start = typeof p.appear_at_ms === 'number' ? p.appear_at_ms : 0;
+  const end = typeof p.disappear_at_ms === 'number' ? p.disappear_at_ms : Infinity;
+  return { start, end };
+}
+function windowsOverlap(a, b) {
+  const start = Math.max(a.start, b.start);
+  const end = Math.min(a.end, b.end);
+  return (end - start) > TEMPORAL_OVERLAP_TOLERANCE_MS;
+}
+
 // engine_bug_queue: formula_surface_footprint_overlaps_an_authored_curve_end_label
 // found this script measuring the RAW TEMPLATE. A HUD row authored as
 //   "θ = {s.toFixed(2)} rad ({theta.toFixed(0)}°)"
@@ -94,32 +408,41 @@ function hasPosition(p) {
 }
 
 // label: CENTRE-anchored, font_size default 14, lineH = size*1.25 (drawLabel).
-function bboxLabel(p) {
-  if (!hasPosition(p)) return null;
+// `anchorEnv` is the PIXEL-space envelope already resolved by
+// resolveAnchorEnvelope — a single point for a static label, a swept range
+// for a plane_id/position_expr-driven one. The text box is a fixed size that
+// slides with the anchor, so the box's own union across the sweep is the
+// anchor envelope expanded by the half-extent on every side.
+function bboxLabel(p, anchorEnv) {
   const size = p.font_size || 14;
   const ls = textLines(p.text_expr ?? p.text);
   const maxLen = ls.reduce((m, l) => Math.max(m, l.length), 0);
   const w = Math.max(24, maxLen * size * CHAR_W_RATIO);
   const h = ls.length * (size * 1.25);
   return {
-    x0: p.position.x - w / 2, y0: p.position.y - h / 2,
-    x1: p.position.x + w / 2, y1: p.position.y + h / 2,
+    x0: anchorEnv.x0 - w / 2, y0: anchorEnv.y0 - h / 2,
+    x1: anchorEnv.x1 + w / 2, y1: anchorEnv.y1 + h / 2,
   };
 }
 
 // annotation / formula_box: TOP-LEFT-anchored, font_size 12, lineH = size*1.35,
-// callout padding padX=8 / padY=6 (drawAnnotation).
-function bboxAnnotation(p) {
-  if (!hasPosition(p)) return null;
+// callout padding padX=8 / padY=6 (drawAnnotation). formula_box's own text
+// field is authored as `equation` (verified: 76/76 formula_box primitives on
+// the fleet use `equation`, ZERO use `text`/`text_expr`) — reading only
+// `text`/`text_expr` measured every formula_box as a near-empty ~16x28px box
+// regardless of its real equation string, silently under-measuring (a missed
+// TRUE collision, the opposite direction of error from the plane-transform
+// bug this function was already being fixed for).
+function bboxAnnotation(p, anchorEnv) {
   const size = p.font_size || 12;
-  const ls = textLines(p.text ?? p.text_expr);
+  const ls = textLines(p.text ?? p.text_expr ?? p.equation);
   const maxLen = ls.reduce((m, l) => Math.max(m, l.length), 0);
   const padX = 8, padY = 6;
   const w = maxLen * size * CHAR_W_RATIO + padX * 2;
   const h = ls.length * (size * 1.35) + padY * 2;
   return {
-    x0: p.position.x - padX, y0: p.position.y - padY,
-    x1: p.position.x - padX + w, y1: p.position.y - padY + h,
+    x0: anchorEnv.x0 - padX, y0: anchorEnv.y0 - padY,
+    x1: anchorEnv.x1 - padX + w, y1: anchorEnv.y1 - padY + h,
   };
 }
 
@@ -276,6 +599,7 @@ for (const { label: sid, state } of allStates) {
   console.log(`\n=== ${sid}${state && state.title ? ` : ${state.title}` : ''} ===`);
   const scene = state.scene_composition || [];
   const bodies = buildBodyMap(scene);
+  const planes = buildPlaneMap(scene);
   const boxes = [];
   for (const p of scene) {
     let box;
@@ -289,15 +613,23 @@ for (const { label: sid, state } of allStates) {
     // label is CENTRE-anchored at its own font_size; annotation/formula_box are
     // TOP-LEFT-anchored text blocks. Using one model for both was what made the
     // old checker both miss real collisions and invent phantom ones.
-    else if (p.type === 'label') box = bboxLabel(p);
-    else if (p.type === 'annotation' || p.type === 'formula_box') box = bboxAnnotation(p);
+    else if (p.type === 'label' || p.type === 'annotation' || p.type === 'formula_box') {
+      const resolved = resolveAnchorEnvelope(p, state, planes);
+      if (resolved.skip) {
+        console.log(`  ⚠ SKIP ${String(p.id).padEnd(22)} [${String(p.type).padEnd(12)}] ${resolved.skip}`);
+        continue;
+      }
+      box = (p.type === 'label') ? bboxLabel(p, resolved.envelope) : bboxAnnotation(p, resolved.envelope);
+      box.swept = (resolved.envelope.x1 - resolved.envelope.x0 > 0.01) || (resolved.envelope.y1 - resolved.envelope.y0 > 0.01);
+    }
     else continue;
     if (!box) continue;
     // id is optional on a primitive — never assume it is a string.
     box.id = p.id || '(no id)';
     box.type = p.type;
+    box.window = activeWindow(p);
     boxes.push(box);
-    console.log(`  ${String(box.id).padEnd(22)} [${String(p.type).padEnd(12)}] x=${Math.round(box.x0)}..${Math.round(box.x1)} y=${Math.round(box.y0)}..${Math.round(box.y1)}${box.tip ? ` tip=(${Math.round(box.tip.x)}, ${Math.round(box.tip.y)})` : ''}`);
+    console.log(`  ${String(box.id).padEnd(22)} [${String(p.type).padEnd(12)}] x=${Math.round(box.x0)}..${Math.round(box.x1)} y=${Math.round(box.y0)}..${Math.round(box.y1)}${box.tip ? ` tip=(${Math.round(box.tip.x)}, ${Math.round(box.tip.y)})` : ''}${box.swept ? ' [swept: plane_id/position_expr anchor range, not a single point]' : ''}`);
   }
   // Find collisions
   let collisions = 0;
@@ -310,6 +642,10 @@ for (const { label: sid, state } of allStates) {
       // (within 4px) — wires converging at a node, pressure on every wall, an FBD
       // whose forces all act on one body.
       if (a.tail && b.tail && Math.hypot(a.tail.x - b.tail.x, a.tail.y - b.tail.y) < 4) continue;
+      // Temporally disjoint (cause c): the two never share the screen for more
+      // than one rendered frame, so a spatial overlap between them is not a
+      // real collision — see the TEMPORAL_OVERLAP_TOLERANCE_MS header comment.
+      if (!windowsOverlap(a.window, b.window)) continue;
       console.log(`  ⚠ COLLISION: ${a.type}#${a.id} <-> ${b.type}#${b.id} (penetration ${Math.round(pen)}px)`);
       collisions++;
     }

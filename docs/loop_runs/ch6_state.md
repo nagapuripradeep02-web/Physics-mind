@@ -12,7 +12,189 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-## ▶ NEXT SESSION STARTS HERE — concept #2 `positive_negative_zero_work`
+## ▶ NEXT SESSION STARTS HERE — concept #3 SHIPPED, THREE PRs OPEN (2026-08-03)
+
+**`kinetic_energy_definition` is authored, reviewed, fixed and SHIPPED.** 12 baselines locked
+(first lock) · 23 EN clips voiced, 0 stale · **zero renderer edits to author it** — the Phase-0 bet
+holds a third time. Checkpoint A took the founder's 2-cycle cap exactly; Checkpoint B returned
+`APPROVE`. Review port **8094** (8093 is held by another session's worktree).
+
+| PR | branch | contents | state |
+|---|---|---|---|
+| **#18** | `feat/ch6-nlb-engine-fixes` | 3 `field_3d_renderer.ts` commits on current master | OPEN |
+| **#19** | `feat/ch6-concept-2` | concept #2, stacked on #18 | OPEN |
+| **#21** | `feat/ch6-concept-3` | concept #3 + 2 more platform fixes, stacked on #19 | OPEN |
+
+**MERGE ORDER: #18 → #19 → #21.** Each collapses to its own content on the next sync.
+
+### 🔴 Founder decisions waiting (new this session)
+1. **SEAM R changed the fleet's weight-arrow picture and nobody has looked at it with eyes.** Force
+   ink now leaves the depth buffer, so every weight arrow on a body resting on a surface draws its
+   previously-occluded sub-floor portion — `normal_force`, `friction_force`, `block_on_incline`,
+   `rolling_friction`, all shipped. Baselines pass at 0.28–0.85%, but *"within the 2% tolerance is a
+   pixel statement, not a taste statement."* **Should weight ink draw through the floor, or clip at
+   the contact surface?** Frame: `.visual_runs/kinetic_energy_definition/20260802-231127/STATE_3__frozen.png`.
+2. **Rule 40 exposure is now ~475+ lines.** SEAM Q/R + the whole SEAM K/L/M/N energy layer are NOT on
+   master. Land #18/#19/#21 before the next chapter branch opens or the layer gets rebuilt independently.
+3. Carried from last session and still open: the `glow_focal` vs `SET_GLOW` precedence, and whether
+   to darken the slab.
+
+### Before concept #4 (`work_energy_theorem`)
+- **Fix `readoutHarvest.ts` — THE CALCULATOR is structurally blind to the energy panel.** 1 passed /
+  0 failed / **59 SKIPPED**; `readings.json` shows `readings=[]` on five of six states. It matches
+  `symbol = value` inside ONE text node while the panel emits symbol and value as sibling elements.
+  Only STATE_5 harvested anything, and only because a checkpoint stamp writes both into
+  `#nlb_formula` as one string. Blind for #4/#7/#8/#9/#10. *A skip is not a pass.*
+- **Make THE EYE write its `checks` block into `manifest.json`** — "27/27" currently has no artifact
+  behind it (eye-walker could not reproduce it from the dump; `warnings: []`, no `checks`).
+- **The reflow scar's trigger is corrected but not applied.** The sim iframe is **1052×551**, not
+  1280×720, so two-group states drop a reflow rung on EVERY screen including every baseline. #9
+  authors five-slot groups — 5 × 2 at step 0 will overrun a 551 px iframe badly.
+- **#4 inherits the `W` collision this concept was built to avoid.** `mg` held the line here
+  (`NLB_ARROW_DEFAULT_LABELS.weight = "mg"`). #4 authors *both* work bars and weight arrows — that
+  is where it actually bites.
+- **Scar rows are APPLIED** (2026-08-03, after an MCP 502 blocked the first attempt). **18 rows live
+  for this concept: 2 FIXED, 16 OPEN.** The two CRITICALs (`seam_q_backdrop_raycast_ignores_hit_SIGN…`
+  and `nlb_force_arrow_anchored_at_body_centre…`) were applied as **FIXED with `fixed_at`**, not OPEN
+  as the surgeon's file had them — they were genuinely fixed and regression-verified in `8bd84a2`, and
+  filing a closed bug as open sends the next session re-investigating. The existing friction row was
+  **widened** (it was filed as a first-frame transient; it is a recurring phase-locked case).
+- **The arrow-label size fix (E3) is BUILT and HELD, not abandoned.** Its structural half landed
+  byte-identical: `NLB_BODY_LABEL_H` is extracted and consumed at the build site and
+  `NLB_LABEL_MIN_SEP` derives from `NLB_ARROW_LABEL_H` (reproducing 0.30 exactly), so the two
+  constants are now RELATED — the drift to 65% happened because nothing in the file connected them.
+  **Restoring parity is ONE line** (`= NLB_BODY_LABEL_H`) once
+  `nlb_work_bar_track_tops_lose_collinearity_when_a_3d_label_size_changes` closes. Do NOT take it
+  before then: at parity, `work_done_by_constant_force` STATE_5's work-bar tracks lose zero-line
+  collinearity — the contract concept #2 repaired — and the two rendering paths **disagree** about it
+  (THE EYE reproduces 4445 differing px including regions outside the 3D viewport; a review-site probe
+  shows zero panel movement and would have exonerated it wrongly). Also recorded: the "ink ≥ 0.7 ×
+  body label" target cannot be read literally — two body labels at the *identical* 0.40 scale already
+  measure a 0.71 ink ratio, so state the invariant in GLYPH height, not ink height.
+- **Do NOT add a normal arrow to S3** if concept #4 clones it. Post-SEAM-R both arrows would be
+  full-length and both would double (N = mg), making the mass cue *more* ambiguous while importing an
+  untaught `N`. In S3 the arrow is a mass GAUGE, not a free-body diagram.
+
+### The lessons that cost the most this session
+- **A gate reporting 27/27 was reporting on a picture with a force vector at 1.07:1 in it — again.**
+  Third time in three concepts. Every defect that mattered was found by reading pixels.
+- **Two reviewers disagreed and neither was simply wrong.** eye-walker measured S5's friction arrow at
+  1.07:1, quality-auditor at 4.6–6.3:1 and retracted its own "invisible" read. The surgeon adjudicated:
+  eye-walker right about the failure, quality-auditor right about the *frames it sampled* — they never
+  met because `loop_reset_ms = 2100` and 17000 mod 2100 = 200 ms, the same loop phase. **Report a
+  measurement disagreement; do not smooth it.**
+- **A scar row prevented a defect inside the same chapter, one cycle after being written.** Checkpoint
+  A's cycle-0 row said "find a rendered correlate that scales with it (a force arrow, an instrument
+  needle)"; the architect applied exactly that and produced an arrow that doubles to four decimals.
+  First ch6 instance of the ratchet paying.
+- **An agent correcting its own earlier record was the most valuable single output.** founder-proxy
+  retracted its own Checkpoint A viewport claim, which is the only reason the reflow scar now has the
+  right trigger before #9 needs it.
+
+---
+
+## (superseded) concept #2 — SHIPPED, TWO PRs OPEN (2026-08-02, end of day)
+
+**`positive_negative_zero_work` is authored, reviewed, founder-approved, SHIPPED and up as PRs.**
+12 baselines locked · 18 EN clips voiced · 10 scar rows applied · concept #1's baselines re-approved.
+
+| PR | branch | contents | state |
+|---|---|---|---|
+| **#18** | `feat/ch6-nlb-engine-fixes` | the 3 `field_3d_renderer.ts` commits, cherry-picked onto current master | MERGEABLE / CLEAN, CI pass |
+| **#19** | `feat/ch6-concept-2` | the concept + registrations + migration + baselines + audio + docs + scar scripts | MERGEABLE, CI pass, stacked on #18 |
+
+**MERGE #18 FIRST.** Until it lands, every chapter on `newtons_laws_body` renders an invisible
+friction arrow (measured **1.00:1** — an exact 50/50 blend with the slab) and misaligned work-bar
+zero lines. #19's diff collapses to concept-only on its next sync after #18 merges — the same
+stacked shape as #14/#15, and that pattern is proven in this repo (git resolved the cherry-picked
+SHAs with zero conflict markers last time).
+
+**NOT deployed.** `PILOT_CONCEPTS` and `deploy:app` untouched. Deployment needs #18 on master first.
+
+### Founder decisions waiting
+1. **`glow_focal` vs `SET_GLOW` precedence.** An authored state-level focal outranks the
+   per-sentence narration channel for the whole state, so bindings can be 100% authored and 100%
+   inert (12 of 14 were, on this concept). Filed OPEN as
+   `authored_state_glow_focal_silently_voids_every_tts_sentence_glow_in_that_state`. **Deliberately
+   not changed from a chapter branch** — it alters live behaviour on every field_3d concept that
+   authors both, and THE EYE can never catch a regression because it never sends `SET_GLOW`.
+2. **Darken the slab?** The arc core where it crosses the lit slab sits below the 3:1 floor and is
+   carried by a dark casing; clearing 3:1 against a 0.309 backdrop needs rendered luminance > 1.0.
+   Darkening the slab would retire the casing workaround entirely — but the slab is the apparatus
+   and its colour is a taste call. (Two measurements of the residual disagree: 2.82:1 surgeon,
+   2.03:1 eye-walker. Same severity class; the discrepancy is unresolved and recorded.)
+
+### Before concept #3
+- **Route `nlb_friction_vector_first_frame_reveal_tint_bypasses_seam_q_ink_fix`** (OPEN, MODERATE).
+  SEAM Q reached the update path but not the reveal path, so the friction vector renders a pale
+  1.87:1 tint on its first frame. Invisible today ONLY because every state seeds its body at the
+  slab's left edge — geometric, verified, not luck. **A mid-slab home pose reproduces the founder's
+  own complaint for one frame.**
+- **`#nlb_energy` is declared as a ⚙ toggle on all 12 nlb concepts**, including the 10 that never
+  show it (`pmWgIsDynamicPanel` declares an inline panel on sight, not on first visibility). The
+  teacher is offered switches for widgets that do not exist. Recorded in a prevention rule; wants
+  its own `bug_class` and routing.
+- **The lessons that cost the most this session** are in the PROGRESS.md entry — read those before
+  authoring #3. Shortest form: *a skip is not a pass* (THE CALCULATOR's N3 skip WAS the S3 defect);
+  *a deterministic gate reporting 27/27 was reporting on a picture with an invisible force vector
+  in it*; and *the founder found what three review agents did not*.
+
+---
+
+## (superseded) concept #2 — awaiting-review notes
+
+**`positive_negative_zero_work` is authored, reviewed through Checkpoint B, fixed and re-verified.
+It awaits FOUNDER REVIEW. Nothing is shipped** — `visual:approve`, `tts:*`, `PILOT_CONCEPTS` and
+`deploy:*` are all untouched (Rule 17), so the concept has NO `visual_baselines` entry and no audio.
+
+**Review link:** `http://localhost:8097/positive_negative_zero_work/`
+(port 8097, NOT this file's declared 8093 — **8093 is occupied by another session serving a
+different worktree**, and opening it shows a stale unrelated site. If the server is gone:
+`npx --yes http-server "C:\Tutor\physics-mind-ch6-work-energy-power\review-site" -p 8097 -c-1`.)
+
+Branch `feat/ch6-concept-2` off master. Commits: `a306581` bug-queue tooling · `96738d5` skeleton ·
+`5811a67` Checkpoint A · `a1179b2` Checkpoint A cycle 2 · `51fff09` physics block · `f2b8fd3` the
+concept · `d211a4b` auditor fixes · `a590ee0` Checkpoint B authoring fixes · **`dc783bd` the ENGINE
+fix (Rule 40 — land on master SEPARATELY from all concept work)**.
+
+**The 0d bet held a second time: ZERO renderer edits were needed to AUTHOR the concept.** The one
+renderer commit is a *routed Checkpoint-B engine fix*, not concept work — exactly the concept-#1
+shape.
+
+### What the review chain caught that no gate could (carry to #3)
+- **The four work-bar tracks were not collinear.** `align-items:flex-end` + a 3-line caption
+  ("by the / normal / force") pushed that slot's track up **15 px = 28.1 J** on S4's scale — on the
+  state titled "Four bars, one sum", displacing the *always-zero* bar in the POSITIVE direction.
+  Fixed structurally (stretch + column flex, track as first child) so no future caption can
+  re-break it. **The surgeon then found the SHIPPED concept #1 has the same defect on its S5**
+  ("flat pull" 1 line vs "tilted pull" 2 lines) — its two H2 baselines now encode the OLD
+  misalignment and should be re-approved after founder review.
+- **A state-level `glow_focal` silently voids every `tts_sentences[].glow` in that state.**
+  12 of this concept's 14 bindings were inert. The OPEN ratchet
+  `concept_ships_zero_narration_glow_bindings` asserts a RATIO, so it reads 1.0 while every binding
+  is dead. **Precedence change is a FOUNDER DECISION — do not fix from a chapter branch.**
+- **A focal on a RELATION state dims half the relation.** S1/S5's applied arrow measured 2.49:1 and
+  2.45:1 vs 9.74:1 on S4 (which authors no focal). Rule 32e caps the focal at one; it does not
+  require one.
+- **THE CALCULATOR's SKIPs hid a real defect.** S3 painted `F = 0.00 N` on a state with no applied
+  force while its taught `N` had no readout at all — the m-slider beat had no number to move.
+  *A skip is not a pass.*
+- **`scene_composition` annotations are never painted on field_3d.** S6's two discoverables reached
+  nobody, and `q6` examined one of them. Rule 19's "≥3 primitives" was satisfied entirely by
+  objects that are never drawn.
+
+### Do this FIRST next session
+1. **Apply the scar rows** — `scar_candidates_checkpointA.sql` (3) and
+   `scar_candidates_checkpointB.sql` (6) are SQL TEXT, **NOT APPLIED**. The B1 row was already
+   filed FIXED by the surgeon. Applying belongs in the ship chain beside `visual:approve`.
+2. **Founder call on the `glow_focal` vs `SET_GLOW` precedence** (scar row 3, checkpoint B).
+3. **Re-approve `work_done_by_constant_force`'s STATE_5 baselines** after the founder sees the fix.
+4. Ride-alongs before #3: **E-B** (port the force_rig label legibility floor to `newtons_laws_body`
+   — worst label 1.52:1) and **E-C** (⚙ says "Energy" over a panel headed "Work done").
+
+---
+
+## (historical) concept #2 kickoff notes
 
 **Everything from concept #1 is MERGED TO MASTER 2026-08-02.** PR #14 (the Phase-0 engine, seams
 K–N + two routed fixes) → merge `1695a7a`. PR #15 (concept #1, baselines, audio, the scar-apply
