@@ -4349,7 +4349,16 @@ export const FIELD_3D_RENDERER_CODE = `
     });
     renderer.domElement.addEventListener("mouseleave", function() { isDragging = false; objectDragging = false; });
     renderer.domElement.addEventListener("wheel", function(e) {
-        spherical.radius = Math.max(3, Math.min(20, spherical.radius + e.deltaY * 0.01));
+        // E3b F6: the [3, 20] band is the fleet's, and it is EXACTLY preserved for
+        // every camera inside it. A scene framed from outside it (a lattice at the
+        // narrow FOV stands 70-180 units off) had its first wheel tick teleport the
+        // camera to 20 — the block filling the frame, the framing solve discarded —
+        // so the band opens to hold the pose the state is actually framed at, and
+        // the step scales with it so one tick still moves the same fraction.
+        var rHi = Math.max(20, spherical.radius);
+        var rLo = (spherical.radius > 20) ? spherical.radius * 0.25 : 3;
+        var rStep = e.deltaY * 0.01 * Math.max(1, spherical.radius / 20);
+        spherical.radius = Math.max(rLo, Math.min(rHi, spherical.radius + rStep));
         targetSpherical.radius = spherical.radius;
         updateCameraFromSpherical();
         e.preventDefault();
@@ -59487,6 +59496,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //       trend: { show, x_label, y_label, points:[{label,x,y}],
     //                extrapolate_from:[label] },                           // E2
     //       separation, separation_axis, approach_from, approach_at_ms,
+    //                  // E3b S-1: these four drive the leading pair of SITES
+    //                  // (ions / bare atoms / the two leading lattice sites)
+    //                  // exactly as they drive the leading pair of molecular
+    //                  // units — same closed-form mgRamp, same drag-seize on the
+    //                  // separation slider, same engine-owned camera fit for the
+    //                  // OPENING pose. Before E3b they were inert on every ion.
     //       approach_duration_ms, pair_shift_at_ms, pair_shift_duration_ms,
     //       compare_at_ms, compare_duration_ms, compare_species,           // E2
     //                  // E1c-F: the swap is a TRANSITION over compare_duration_ms
@@ -59509,8 +59524,78 @@ export const FIELD_3D_RENDERER_CODE = `
     //       transfer: { at_ms, duration_ms, from, to },                    // E3a
     //                  // from/to are units[].id; both species change size on
     //                  // the LINEAR-pm scale and charge ramps with the radius
-    //       groups / sea / ions / shift,          // PARSED + PASSED THROUGH by
-    //                                             // E1/E2/E3a, owned by E3b
+    //       groups: [{ id, label, at, units?, lattice?, thermal?, field? }],
+    //                  // E3b T-4 (row R): TWO OR MORE independently-placed
+    //                  // sub-scenes in ONE state. A key a group does NOT author
+    //                  // is INHERITED from scene level — the same object, not a
+    //                  // copy — so "the SAME field acts on both" and "one
+    //                  // temperature, two crystals" are true by construction and
+    //                  // a per-group override is possible but never required for
+    //                  // a shared quantity. at places the group; the camera
+    //                  // auto-fit spans the UNION of the groups (never author
+    //                  // camera), and an x-separated pair is framed at az 90 so
+    //                  // the compared axis is not foreshortened (the E4 rule).
+    //                  // ONE label sprite per group, sized to the largest block.
+    //                  // Budget BS_MAX_GROUPS; the site pool is shared.
+    //                  // A grouped state need author NO scene-level units.
+    //       shift: { at_ms, duration_ms, offset_sites, plane },  // E3b L-1
+    //                  // ONE HALF of the lattice slides offset_sites lattice
+    //                  // positions over duration_ms from at_ms. plane is the
+    //                  // CLOSED enum x|y|z naming the split plane's NORMAL axis
+    //                  // (default y, the horizontal mid-plane); the slide
+    //                  // direction is DERIVED as the first axis that is not the
+    //                  // normal, so nothing authors a vector that could point out
+    //                  // of its own plane. The half with a positive coordinate
+    //                  // along the normal is the one that moves. Closed-form
+    //                  // mgRamp of state-local t (D-1); the shift slider shares
+    //                  // the quantity, opens at 0 and tracks the script until a
+    //                  // trusted drag seizes it. offset_sites is measured in the
+    //                  // cell's OWN grid step (a/2 for the cubic cells), so 1.0 is
+    //                  // one full site whatever a_pm is.
+    //                  // THE OUTCOME IS DERIVED (D-2), never authored: the halves
+    //                  // separate only in so far as the slide has put UNSCREENED
+    //                  // like charges face to face. See bscLikeContacts — an ionic
+    //                  // lattice cleaves, a metal holds, and neither JSON says so.
+    //       field, field_axis, field_at_ms, field_duration_ms,   // E3b Q-1 / Q-2
+    //                  // THE FIELD. field is a 0..1 scalar (the Field slider's own
+    //                  // range) and is DESTINATION-valued: field_at_ms starts a
+    //                  // ramp from 0 to field over field_duration_ms (default
+    //                  // BS_FIELD_MS = 1200), so the arrows ARRIVE as the cause and
+    //                  // the carriers respond after BS_FIELD_HOLD_MS (Rule 32a).
+    //                  // field_axis is the CLOSED enum x|y|z (default x); nothing
+    //                  // authors a vector. Under row R the field is authored ONCE
+    //                  // at scene level and both groups read the same object, so
+    //                  // "the SAME field acts on both" is structural.
+    //       ions: { mobile },                       // E3b Q-1 (row Q)
+    //                  // WHICH CARRIER: the ions. A mobile ion migrates along the
+    //                  // field, cations one way and anions the other, both signs
+    //                  // DERIVED from the site's own charge (D-2). An ion is mobile
+    //                  // because its crystal has MELTED (T-2's derived f_melt) or
+    //                  // because ions.mobile says the sample is already a liquid;
+    //                  // everything else jiggles in place and NEVER translates,
+    //                  // which is ionic_bonding S8's negative control and its
+    //                  // pedagogy. The migration is bounded and saturating (a
+    //                  // finite sample between blocking electrodes stops when its
+    //                  // own space charge cancels the field), closed form in
+    //                  // (field, T, site index, state-local t), no accumulator.
+    //       sea: { show },                          // E3b row G
+    //                  // THE OTHER CARRIER: the delocalised electrons. Count is
+    //                  // DERIVED — BS_METALS[metal].valence_e per cation core on
+    //                  // screen, capped at BS_MAX_SEA — and they drift AGAINST the
+    //                  // field because they are negative. Fast directionless motion
+    //                  // carrying a slow net bias, which is the drift_velocity
+    //                  // picture. A picture of what bscSeaScreens already DERIVES,
+    //                  // never an input to it: drawing the sea changes no outcome.
+    //       // E3b T-2: there is NO melt key and there never will be. Melting is
+    //       // DERIVED (D-2) from thermal.T_K against the pair's own mp_K:
+    //       //   f_melt = clamp((T_K - mp_K) / 25, 0, 1)
+    //       // f = 0 holds every ion on its site (jiggle only); f = 1 makes every
+    //       // ion mobile; between, the mobile FRACTION ramps, chosen by SITE
+    //       // INDEX and never randomly. Closed form in (T_K, index, state-local
+    //       // t) with no latch, so a group may OPEN already molten. The knee is
+    //       // at mp_K + 25, so author clear of it (1150 K for NaCl, not 1100).
+    //       // mode 'melt' names the FRAMING; the law is not gated on it, so an
+    //       // explore sandbox melts when the teacher drags T past mp_K.
     //       angle_deg,                              // static bond-angle override
     //       angle_from, angle_at_ms, angle_ramp_ms, // E1c: the SCRIPTED bend.
     //                  // angle_deg is the DESTINATION; the ramp runs angle_from
@@ -59546,6 +59631,12 @@ export const FIELD_3D_RENDERER_CODE = `
     //                  // lone-pair dipole VECTOR wherever BS_LONE_PAIR_D[central]
     //                  // is non-zero (N only, per the ratified convention)
     //       electrons: { show: none|shells|pair_glyph, pair_shift },
+    //                  // E3b S-3: show 'shells' draws ONE RING PER COUNTED SITE
+    //                  // whenever the site layer is on screen, each ring's dot
+    //                  // count derived from that site's own species and formal
+    //                  // charge (Na 1, Cl 7, Na+ 0, Cl- 8 — the octet is the
+    //                  // OUTCOME of the transfer, never authored). Budget:
+    //                  // BS_MAX_SHELL_SITES rings of BS_MAX_SHELL_DOTS.
     //       thermal: { T_K, jiggle_scale,
     //                  T_from, T_at_ms, T_ramp_ms },  // E2b: the SCRIPTED heat
     //                  // beat. T_K is the DESTINATION (and the static value when
@@ -59556,6 +59647,30 @@ export const FIELD_3D_RENDERER_CODE = `
     //       spin_start_ms, spin_rate,               // rad/s about +y, 0 = hold
     //       camera: { az, el, dist },               // overrides the SOLVED camera
     //       show_hud, hud_lines: [...],             // CLOSED enum, BS_HUD_LINES
+    //                  // E3b S-4/S-5: 'separation_pm' prints the LIVE
+    //                  // centre-to-centre distance of the two leading sites
+    //                  // (d = 282 pm) — author it instead of typing a distance
+    //                  // into any caption. 'coordination' prints the derived
+    //                  // pair (coordination = 6 : 6) on a two-sublattice cell
+    //                  // and a single count on a one-sublattice cell.
+    //                  // 'valence' names BOTH participants of a site scene.
+    //                  // E3b L-2: 'like_contacts' prints like contacts: 6 — the
+    //                  // count of like-charge nearest-neighbour contacts the
+    //                  // slide has CREATED and left UNSCREENED. A delta against
+    //                  // the unshifted reference lattice at the same instant, so
+    //                  // a cation-only metal (whose every contact is like-charge
+    //                  // before anything moves) reads 0 and not 8.
+    //                  // E3b T-3: 'melting_point' prints m.p. = 1074 K and
+    //                  // 'lattice_enthalpy' prints ΔH = 788 kJ·mol⁻¹, both
+    //                  // engine-printed from BS_ION_PAIRS for the LIVE pair (so
+    //                  // the explore ion_pair picker changes them) — NEVER typed
+    //                  // into any JSON. Under groups each prints once per group,
+    //                  // prefixed by the group label, in the authored order:
+    //                  // "<label> m.p. = <n> K" / "<label> ΔH = <n> kJ·mol⁻¹".
+    //                  // MEASURED budget (chromium, 1024 px): the panel is a
+    //                  // fixed 220 px box (190 px of content at 7.87 px per
+    //                  // character), so a group label may be at most FIVE
+    //                  // characters beside these two lines.
     //       show_formula, formula,                  // ONE surface, Rule 34b
     //       controls: [{ id, min_ring }] or [id],   // RING-GATED, BS_CONTROL_IDS
     //       static_readouts: [...]                  // same rows, disabled, same pos
@@ -59787,13 +59902,33 @@ export const FIELD_3D_RENDERER_CODE = `
         var f = (sp._pmInkFrac != null) ? sp._pmInkFrac : 1;
         return [(sp.scale.x * f * 0.5 + (padW || 0)) * k, (sp.scale.y * 0.5 + (padH || 0)) * k];
     }
+    // E3b T-4: the screen-space box a FIXED DOM overlay occupies, in exactly the
+    // units bscProj returns (NDC x scaled by aspect, y in [-1,1]). A 3D sprite can
+    // then be scored against the readout panel, which is not a scene object and
+    // which no world-space avoid entry can express. Rule 34d: overlays never
+    // collide — and the HUD is a FIXED box at every viewport width, so this is a
+    // MEASUREMENT of the live element and never an assumption about text length.
+    function bscDomBox(el) {
+        if (!el || el.style.display === "none") return null;
+        if (typeof renderer === "undefined" || !renderer || !renderer.domElement) return null;
+        var r = el.getBoundingClientRect(), c = renderer.domElement.getBoundingClientRect();
+        if (!(c.width > 0) || !(c.height > 0) || !(r.width > 0)) return null;
+        var asp = (camera && camera.aspect) ? camera.aspect : 1;
+        var x0 = ((r.left - c.left) / c.width * 2 - 1) * asp;
+        var x1 = ((r.right - c.left) / c.width * 2 - 1) * asp;
+        var y0 = 1 - (r.top - c.top) / c.height * 2;
+        var y1 = 1 - (r.bottom - c.top) / c.height * 2;
+        return { sp: [(x0 + x1) * 0.5, (y0 + y1) * 0.5],
+                 sh: [Math.abs(x1 - x0) * 0.5, Math.abs(y1 - y0) * 0.5] };
+    }
     // Resolve an avoid list into screen space ONCE — never once per candidate.
     function bscAvoidScreen(avoid) {
         var out = [], i, e, k;
         for (i = 0; i < avoid.length; i++) {
             e = avoid[i];
             if (!e) continue;
-            if (e.length === 3) { out.push({ k: 0, p: bscProj(e[0], e[1], e[2]), r: 0 }); }
+            if (e.sp && e.sh) { out.push({ k: 2, p: e.sp, h: e.sh }); }
+            else if (e.length === 3) { out.push({ k: 0, p: bscProj(e[0], e[1], e[2]), r: 0 }); }
             else if (e.a && e.b) { out.push({ k: 1, a: bscProj(e.a[0], e.a[1], e.a[2]), b: bscProj(e.b[0], e.b[1], e.b[2]) }); }
             else if (e.s) {
                 if (!e.s.visible) continue;
@@ -60041,17 +60176,63 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MODES_E1 = ["dipole_sum", "explore"];
     var BS_MODES_E2 = ["assemble", "approach_link", "network", "compare"];
     var BS_MODES_E3A = ["transfer", "lattice_grow", "coordination"];
-    var BS_MODES_DEFERRED = ["layer_shift", "electron_sea", "drift", "melt"];
-    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A);
+    // E3b T-2 implements ONE of the four deferred modes. The melt LAW itself is
+    // deliberately NOT gated on the mode string (see bscMeltFrac): melting is
+    // DERIVED from T_K against the pair's own mp_K (D-2), so an explore sandbox
+    // whose teacher drags the temperature past 3125 K melts MgO without authoring
+    // a mode. What 'melt' names is the state's ARCHETYPE and its solved camera —
+    // a melting block needs room for the ions to leave their sites, which a
+    // coordination close-up does not have.
+    // E3b L-1 implements a SECOND of the four, on the identical discipline: the
+    // slip law and its outcome are not gated on the mode string either (see
+    // bscShiftAt / bscLikeContacts), so an explore sandbox whose teacher drags the
+    // shift slider shatters a salt crystal and does not shatter a metal without
+    // authoring a mode. What 'layer_shift' names is the state's ARCHETYPE and its
+    // solved camera — the slip direction and the opening direction both have to
+    // sit in the screen plane, which a coordination close-up does not do.
+    // E3b Q-1 implements the REMAINING TWO on the identical discipline, and the
+    // deferred list is now EMPTY — every member of the closed mode enum is read by
+    // shipped code. Neither the drift law nor the sea is gated on the mode string
+    // either (see bscIonDriftOf / bscSeaCfg): a mobile ion migrates whenever a
+    // field acts on it, and a state that authors sea.show draws the electrons its
+    // own charge pattern already implies, so an explore sandbox whose teacher drags
+    // the Field slider conducts without authoring a mode. What 'drift' and
+    // 'electron_sea' name is the state's ARCHETYPE and its solved camera.
+    var BS_MODES_E3B = ["melt", "layer_shift", "drift", "electron_sea"];
+    var BS_MODES_DEFERRED = [];
+    var BS_MODES_IMPL = BS_MODES_E1.concat(BS_MODES_E2).concat(BS_MODES_E3A)
+        .concat(BS_MODES_E3B);
     var BS_MODES = BS_MODES_IMPL.concat(BS_MODES_DEFERRED);
     var BS_CONTROL_IDS = ["species", "molecule", "ligand", "angle", "temperature",
         "count", "separation", "spin", "shift", "field", "valence", "ion_pair", "metal"];
+    // E3b S-4 GROWS this enum by ONE member, separation_pm — the only addition
+    // since E1 froze it, and it is an instrument rather than a fact: ionic S3's
+    // whole taught quantity is a centre-to-centre distance that ramps in and
+    // stops, and with no readout for it the skeleton was forced to hand-type the
+    // settled 282 into an on-canvas delta cue. Rule 33d: an instrument shows the
+    // live numeric reading and tracks the physical change. With this line live,
+    // no authored string in either ionic concept types a separation digit.
     var BS_HUD_LINES = ["links", "links_per_unit", "delta_chi", "mu", "radius_pm",
         "coordination", "lattice_a", "lattice_enthalpy", "melting_point", "drift",
-        "valence", "atomisation", "bp", "like_contacts", "conductivity"];
+        "valence", "atomisation", "bp", "like_contacts", "conductivity",
+        "separation_pm"];
     var BS_HUD_LINES_E1 = ["delta_chi", "mu", "radius_pm", "valence"];
     var BS_HUD_LINES_E2 = ["links", "links_per_unit", "bp"];
     var BS_HUD_LINES_E3A = ["coordination", "lattice_a"];
+    // E3b T-3 adds the two PROPERTY readouts, engine-printed from BS_ION_PAIRS for
+    // the LIVE pair (so the explore ion_pair picker changes them) and never
+    // hand-typed into any JSON. Under row R they print once per group, prefixed by
+    // the group label, in the authored groups[] order.
+    // E3b L-2 adds the D-7 metric. It is an INSTRUMENT over the drawn block, in
+    // the same status as 'links' (which has always counted the links actually on
+    // screen), not a constant of the crystal.
+    // E3b Q-3/Q-4/Q-5 add the three CARRIER readouts. 'conductivity' is derived
+    // from the melt state of each group's own crystal (never from an authored key)
+    // and carries the one ratified endpoint; 'drift' and 'atomisation' are
+    // engine-printed from unratified data and are declared as such beside their
+    // tables above.
+    var BS_HUD_LINES_E3B = ["separation_pm", "melting_point", "lattice_enthalpy",
+        "like_contacts", "conductivity", "drift", "atomisation"];
     var BS_PLACEMENTS = ["free", "lattice"];
     var BS_ELECTRON_SHOW = ["none", "shells", "pair_glyph"];
     // ── E3a (lattice PLACEMENT layer) constants ──────────────────────────────
@@ -60060,7 +60241,188 @@ export const FIELD_3D_RENDERER_CODE = `
     var BS_MAX_SITES = 125;         // rock_salt n=[5,5,5]; a 3x3x3 block is 27
     var BS_MAX_SITE_LABELS = 8;     // D-6: a 27-site lattice never labels 27 sites
     var BS_MAX_NEIGHBOURS = 12;     // hcp/fcc coordination is the pool ceiling
+    // E3b S-3, the D-6 budget for the valence SHELL DOTS, declared rather than
+    // assumed: a ring carries at most eight dots (a full octet, which is the most
+    // any species in BS_VALENCE can reach once its formal charge is applied) and
+    // at most four rings are drawn at once, so a 27-site block asks for 32
+    // spheres and never 216. The molecular one-ring path uses ring 0 only and is
+    // byte-identical to the pre-E3b pool.
+    var BS_MAX_SHELL_DOTS = 8;
+    var BS_MAX_SHELL_SITES = 4;
+    var BS_SHELL_POOL = BS_MAX_SHELL_DOTS * BS_MAX_SHELL_SITES;
+    // the gap between a body's drawn surface and its shell ring, in scene units.
+    // Named because the molecular path and the per-site path must not drift apart.
+    var BS_SHELL_RING_GAP = 0.42;
     var BS_HCP_C_OVER_A = Math.sqrt(8 / 3);   // the IDEAL hcp axial ratio
+    // ── E3b T-2: THE MELT LAW, stated so it cannot be invented per state ──────
+    //   f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / BS_MELT_WIDTH_K, 0, 1)
+    //   SHARP BY DESIGN. Melting is a first-order transition; the 25 K width
+    //   exists only so the beat is legible rather than a one-frame snap. 25 K
+    //   against NaCl's 1074 K is 2.3% — visually smooth, chemically sharp. The
+    //   knee therefore sits at mp_K + 25, and an authored T_K must clear it with
+    //   margin (ionic_bonding S8's molten group is authored at 1150 K, not 1100).
+    //   NEVER widen or narrow this to make an authored number work.
+    var BS_MELT_WIDTH_K = 25;
+    // Between f = 0 and f = 1 the MOBILE FRACTION ramps, and WHICH sites go first
+    // is chosen deterministically by SITE INDEX — never randomly, or a rewind
+    // would photograph a different melt. bscMeltHash is the golden-ratio
+    // low-discrepancy sequence, so the mobile count tracks f closely at every
+    // block size instead of clumping. Each site then eases out of its own site
+    // over BS_MELT_SITE_RAMP of the ramp rather than popping loose in one frame,
+    // and the onsets are compressed into [0, 1 - BS_MELT_SITE_RAMP] so f = 1 means
+    // EVERY ion is fully mobile — the endpoints of the law are exact.
+    var BS_MELT_SITE_RAMP = 0.25;
+    var BS_MELT_PHI = 0.6180339887498949;
+    // The excursion of a fully mobile ion, as a fraction of the lattice's own
+    // nearest-neighbour spacing. 0.85 per axis (so up to 1.47 nn in magnitude) is
+    // enough that ions visibly leave their rows and cross into neighbouring cells
+    // — the lattice ORDER is what has to be seen to go — while staying bounded,
+    // so the camera fit is still a closed-form config solve.
+    var BS_MELT_WANDER = 0.85;
+    // The wander's base angular rates (rad/s). Three mutually incommensurate
+    // rates on the three axes give a bounded, non-repeating-looking path from a
+    // pure closed form; the per-site frequency spread keeps the block from
+    // pulsing in unison.
+    var BS_MELT_W = [0.83, 0.61, 0.97];
+    var BS_MELT_W_SPREAD = 0.37;
+    // ── E3b L-1 / L-2: THE LAYER SLIP AND THE D-7 CONTACT METRIC ─────────────
+    //   plane names the split plane's NORMAL AXIS and is a CLOSED enum. The slide
+    //   DIRECTION is derived (the first axis that is not the normal), so a config
+    //   cannot author a slide that points out of its own plane — the one way this
+    //   mechanism could be authored into nonsense.
+    var BS_SHIFT_PLANES = ["x", "y", "z"];
+    // The default duration_ms. It is 2000 because deriveStateMeta already assumes
+    // 2000 when a state authors shift.at_ms with no duration, and the two files
+    // must agree or the frozen pin lands mid-slide (the E2b/BS_T_RAMP_MS lesson,
+    // same trap, second occurrence).
+    var BS_SHIFT_MS = 2000;
+    // Rule 32a, and the skeleton's own choreography: the slide is the CAUSE and
+    // the halves coming apart is the EFFECT, so the cleave does not begin until
+    // the slide has finished AND been held long enough to read. ionic_bonding S6
+    // authors at_ms 6000 / duration_ms 3000, which puts the slide at 9000, the
+    // hold to 10000 and the halves fully apart at 15000 — the arc the skeleton
+    // describes, produced by the engine rather than authored beat by beat.
+    var BS_SHIFT_HOLD_MS = 1000;
+    var BS_CLEAVE_MS = 5000;
+    // How far the two halves end up apart, as a fraction of the lattice's own
+    // nearest-neighbour spacing, at a fully like-charge interface. A LEGIBILITY
+    // constant, named as such: this engine does not model fracture energy, and
+    // 0.9 nn is simply the gap at which the split reads as a clean cleavage plane
+    // rather than as a rendering glitch (at 0.3 nn the block still looks packed;
+    // past ~1.5 nn the two halves read as two separate crystals). The DECISION it
+    // encodes — whether there is a gap at all — is derived, never authored.
+    var BS_CLEAVE_NN = 0.9;
+    // A nearest-neighbour CONTACT: a pair no further apart than this multiple of
+    // the reference lattice's own nearest-neighbour distance. 1.1 is the D-7
+    // definition verbatim. The yardstick is measured on the UNSHIFTED reference,
+    // so the slide cannot redefine what counts as touching.
+    var BS_LIKE_CUT = 1.1;
+    // ── E3b Q-1 / Q-2 / ROW G: THE FIELD, AND THE TWO CARRIERS UNDER IT ───────
+    //   Row Q (ions) and row G (sea) are TWO DIFFERENT CARRIERS under ONE field,
+    //   and keeping them apart IS the wave's closing lesson: a molten salt conducts
+    //   because its IONS move, a metal conducts because its ELECTRONS move while
+    //   its ions stay on their sites. So the field is a scene-level scalar BOTH
+    //   layers read — which row R then inherits by construction, making ionic S8's
+    //   "the SAME field acts on both samples" structural rather than a claim — and
+    //   the two carrier blocks decide who responds to it.
+    //   field_axis names the field's DIRECTION out of a closed three-member enum,
+    //   so no config can author a vector. Cations go WITH the field, anions
+    //   against it, sea electrons against it (they are negative): every one of
+    //   those signs is DERIVED from the charge already on the carrier (D-2), and
+    //   nothing in any JSON says which way anything goes.
+    var BS_FIELD_AXES = ["x", "y", "z"];
+    // The field's own ramp-in — how long the ARROWS take to arrive. It is the
+    // default field_duration_ms, and deriveStateMeta assumes the same number: the
+    // two files must stay equal or the frozen pin lands mid-beat (the
+    // BS_T_RAMP_MS / BS_SHIFT_MS lesson, third occurrence).
+    var BS_FIELD_MS = 1200;
+    // Rule 32a, and the same shape the slip already uses (BS_SHIFT_HOLD_MS then
+    // BS_CLEAVE_MS): the field is the CAUSE and the carriers moving is the EFFECT,
+    // so nothing drifts until the arrows have arrived AND been held long enough to
+    // read. ionic_bonding S8 authors field_at_ms 6000, which puts the arrows fully
+    // up at 7200, the hold to 8200 and the migration settled at 13200 — the arc
+    // the skeleton describes, produced by the engine rather than beat by beat.
+    var BS_FIELD_HOLD_MS = 1000;
+    var BS_DRIFT_MS = 5000;
+    // HOW FAR A MOBILE ION MIGRATES at field = 1, in units of the lattice's own
+    // nearest-neighbour spacing. BOUNDED AND SATURATING, and that is physics
+    // rather than a rendering compromise: a finite sample between blocking
+    // electrodes migrates only until the space charge it has built up cancels the
+    // applied field, so the ions pile up towards the two ends and stop. It also
+    // keeps the camera fit a config-only solve (see bscFieldExtent), which an
+    // unbounded translation could not.
+    var BS_ION_DRIFT_NN = 1.6;
+    // ── ROW G, the electron sea. bscSeaScreens already DERIVES that the electrons
+    //   are there (it is what makes a metal hold under a slip while a salt
+    //   cleaves); this layer DRAWS them. A picture of that derivation, never an
+    //   input to it — the slip outcome, the contact metric and the melt are all
+    //   bit-for-bit unchanged by whether the sea is drawn.
+    var BS_MAX_SEA = 54;            // the declared pool cap (D-6, same discipline)
+    var BS_SEA_R_FRAC = 0.20;       // electron radius, as a fraction of nn spacing
+    var BS_SEA_SPREAD_NN = 0.85;    // how far it wanders from its host core
+    // FAST, incommensurate, per-index-seeded rates. The sea's own motion is fast
+    // and directionless and its NET drift is slow: that contrast is the entire
+    // content of the shipped physics concept drift_velocity, and the same picture
+    // is what metallic_bonding S4 teaches.
+    var BS_SEA_W = [3.7, 4.3, 5.1];
+    var BS_SEA_W_SPREAD = 0.41;
+    var BS_SEA_DRIFT_NN = 1.30;
+    var BS_FIELD_ARROWS = 3;        // the drawn field arrows (one row, above the block)
+    // LEGIBILITY, MEASURED IN FRAMES rather than assumed. A field arrow spans the
+    // whole block, so it is ten to twenty times longer than a bond-dipole arrow —
+    // and drawn at the shared built girth with the shared 0.30-unit head it
+    // rendered as a bare HAIRLINE with a head too small to see the direction of
+    // (.e3b_drive/mb_sea_t10800.png, first pass). Both therefore scale with the
+    // arrow's OWN length. This is a rendering convention for a schematic field
+    // marker, NOT a Rule-29 magnitude: the arrow's length is the block's width and
+    // has never encoded a quantity, so nothing here can lie about a measurement.
+    var BS_FIELD_HEAD_FRAC = 0.12;  // head length, as a fraction of the arrow length
+    var BS_FIELD_GIRTH_FRAC = 0.22; // girth multiplier per unit of arrow length
+    var BS_FIELD_GIRTH_MIN = 1.6;
+    var BS_FIELD_GIRTH_MAX = 6.0;
+    // ...and the label that names them, sized to the block it sits over for the
+    // same reason a GROUP label is (BS_GROUP_LABEL_FRAC): a fixed world height
+    // renders as a 6 px speck at the distance a lattice is framed from.
+    var BS_FIELD_LABEL_FRAC = 0.16;
+    var BS_FIELD_LABEL_MIN = 0.50;
+    var BS_FIELD_LABEL_MAX = 2.40;
+    // ── Q-3: THE CONDUCTIVITY ENDPOINT THAT COULD BE RATIFIED, AND THE ONE THAT
+    //   COULD NOT. chemistry_author (2026-08-03) ratified molten NaCl at
+    //   3.5 S·cm⁻¹ at 1100 K (Janz-tradition molten-salt compilation; literature
+    //   3.4-3.6 just above the melting point) and FLATLY DECLINED to ratify any
+    //   solid-NaCl endpoint: solid-state ionic conduction there is defect-mediated
+    //   (Schottky-pair migration), thermally activated and heavily purity/doping
+    //   dependent, so quoted values span orders of magnitude and there is no single
+    //   defensible handbook digit. Phase-0's "10^13-fold" ratio therefore cannot
+    //   ship as an asserted number, and NO solid-side S·cm⁻¹ digit is printed
+    //   anywhere on this surface. The gap is taught by CONTRAST instead: the solid
+    //   sample's row says the ions are fixed, the molten sample's row carries the
+    //   ratified value, and ionic S8 has both samples on screen at once, so the
+    //   contrast IS the instrument's own output.
+    //   1100 K is a FIXED REFERENCE-CITATION TEMPERATURE from that compilation and
+    //   is deliberately NOT the live T_K (S8's molten group is authored at 1150 K):
+    //   it names the condition the ratified value was measured at.
+    var BS_MOLTEN_S_CM = 3.5;
+    var BS_MOLTEN_REF_K = 1100;
+    // ── Q-4: THE DRIFT SPEED. **NOT RATIFIED.** The coefficient and the
+    //   linear-in-field scaling are Phase-0's, and this desk's ratification pass
+    //   covered the ionic property table only. It ships VISIBLE AND INERT (the E1
+    //   dipole-table pattern): check:bonding-scene PRINTS it against the literature
+    //   order of magnitude and asserts NO digit until Session B's chemistry_author
+    //   ratifies both the coefficient and the scaling.
+    var BS_DRIFT_V0_MS = 0.0001;
+    // Row R (T-4). Two or more independently-placed sub-scenes in ONE state; the
+    // shared BS_MAX_SITES pool is split across them, so the budget is declared
+    // rather than assumed. Four is ionic S9's two crystals with headroom.
+    var BS_MAX_GROUPS = 4;
+    // The group label's glyph height, as a fraction of the block it names, with a
+    // floor and a ceiling so a two-ion group is not labelled in 6 pt and a
+    // 54-site double block is not labelled across the whole frame. MEASURED in the
+    // browser at 1024x640: at the fixed 0.60 a site label uses, a 3x3x3 group
+    // label rendered as a ~2 px speck at the fitted distance.
+    var BS_GROUP_LABEL_FRAC = 0.18;
+    var BS_GROUP_LABEL_MIN = 0.50;
+    var BS_GROUP_LABEL_MAX = 3.00;
     // D-5, DECIDED ONCE and authored per state via lattice.reveal. Glow is
     // brightness (Rule 29) and brightness cannot defeat occlusion: a rock-salt
     // block is a wall of identical spheres and
@@ -60098,19 +60460,147 @@ export const FIELD_3D_RENDERER_CODE = `
     // radius RATIO is preserved and the linear-in-pm reading survives intact —
     // this is a render convention, not a Rule-29 emphasis knob.
     var BS_COORD_RADIUS_SCALE = 0.35;
-    // Camera auto-fit. The renderer camera is PerspectiveCamera(60, ...), so the
-    // half-height visible at distance d is d*tan(30 deg) = 0.5774*d. Fitting an
-    // extent e therefore needs d >= e/0.5774 = 1.732*e; 1.90 is that with margin.
-    var BS_FIT_MARGIN = 1.90;
+    // ── Camera auto-fit. THE MARGIN WAS DERIVED FROM THE WRONG CONDITION ──────
+    //   The renderer camera is PerspectiveCamera(60, ...), so the half-height
+    //   visible at distance d is d*tan(30 deg) = 0.5774*d, and the ORIGINAL
+    //   derivation read: fitting an extent e needs d >= e/0.5774 = 1.732*e, so
+    //   1.90 is that with margin. That is the FLAT-PLANE condition — it is only
+    //   correct for an object lying in the plane through the origin perpendicular
+    //   to the view axis.
+    //   WHAT bscSiteExtent ACTUALLY RETURNS IS A BOUNDING-SPHERE RADIUS
+    //   (max |at| + that site's own radius), and a SPHERE of radius e is framed
+    //   only when the view cone is TANGENT to it: sin(fov/2) >= e/d, i.e.
+    //   d >= e/sin(30 deg) = 2.000*e. The worst point is not the one straight out
+    //   to the side but the one on the tangent circle, which sits NEARER the
+    //   camera and therefore projects LARGER:
+    //       worst |NDC| = e / (0.5774 * sqrt(d^2 - e^2))
+    //   At the old 1.90 that is 1/(0.5774*1.6155) = 1.071 — i.e. an extent-sized
+    //   object was OFF FRAME by 7% at the corner, by construction, and the
+    //   flat-plane number could never have caught it.
+    //   MEASURED (chromium 1024x640, the shipped projection): a 27-site
+    //   space-filling rock-salt block under BS_CAMERAS.lattice_grow rendered with
+    //   its ink bounding box running to y = 638 of 640 — the corner ions CUT by
+    //   the frame edge (.e3b_drive/ab_RSGROW.png). The same block under
+    //   BS_CAMERAS.explore sat at 0.89 NDC half-height with no thermal jiggle and
+    //   goes over the edge as soon as one is authored.
+    //   WHY IT SURFACED ON A LATTICE AND NOT ON A MOLECULE: for a molecular scene
+    //   the bounding sphere is LOOSE — |at| + BS_BOND_LEN + r bounds a unit whose
+    //   atoms do not actually reach that radius in every direction, so the slack
+    //   absorbed the error. A space-filling lattice's outermost ion sits AT the
+    //   bounding radius, in the corner, in every octant. The margin was measured
+    //   on the loose case and applied to the tight one.
+    //   2.20 = the 2.000 tangency condition plus a 10% border, which reads back as
+    //   a worst |NDC| of 0.884 on that same block. It is a general fix to a general
+    //   derivation error and no concept is special-cased. It moves every fit:true
+    //   camera ~16% further out; NO shipped concept authors bonding_scene today
+    //   (grep -rl bonding_scene src/data -> 0 files), so no baseline moves.
+    var BS_FIT_MARGIN = 2.20;
+    //   ...and the CUT trigger is the tangency condition ITSELF, without the
+    //   border. The two jobs were one number and it was wrong for both: the fit
+    //   asks "where should the camera stand", which wants a border, and the E2d
+    //   cut asks "would the scene actually leave the frame from here", which is
+    //   exactly d < 2*e and nothing more. Sharing the bordered number would cut
+    //   the glide on every state that merely sits INSIDE the comfort border —
+    //   hydrogen_bonding S3 opens at extent 5.31 on a dist-11 camera, i.e. 4%
+    //   clear of clipping at 10.62 and 6% inside the bordered 11.68, and would
+    //   have started snapping instead of gliding for no visible reason (Rule 32d
+    //   says a state change reads as ONE caused move).
+    //   E3b F6: ...and it is the tangency condition AT THE FOV ACTUALLY IN USE,
+    //   so it is now DERIVED (bscCutClip) rather than frozen at the 60 deg value.
+    //   bscCutClip(60) === 2.00 exactly, so every molecular scene is unchanged.
+    var BS_FIT_CLIP = 2.00;
+    // ── E3b F6: THE 60 deg FOV CANNOT RENDER A CRYSTAL LATTICE AS A LATTICE ───
+    //   MEASURED on ionic_bonding's shipped frames (bug_class field3d_60deg_fov_
+    //   offaxis_camera_cannot_render_a_crystal_lattice_as_a_lattice): S5 teaches
+    //   EQUIVALENCE — "Six neighbours, every ion", "the count is the same: six and
+    //   six" — and its six physically identical Cl- at six identical distances
+    //   segmented out of the shipped PNGs at radii
+    //     [41.0, 42.5, 45.2, 62.8, 67.2, 71.2] px  ->  1.738x  (t = 8000 ms)
+    //   i.e. the picture asserted, at 1.74x, that the six neighbours are not the
+    //   same. It is not a config defect and no authored key can reach it: at
+    //   az 35 / el 45 / d 16.2 the six neighbours span z in [12.05, 20.35], and a
+    //   perspective projection draws 1/z. Reveal mode, radius_scale and block size
+    //   all leave that ratio exactly where it is.
+    //   THE FIX IS THE PROJECTION: a lattice is drawn at a NARROW FOV FROM FAR
+    //   AWAY. Apparent size is preserved exactly — every solved distance on this
+    //   path is multiplied by tan(30)/tan(fov/2) (bscCamDistK), so the picture is
+    //   the same size and only the DIVERGENCE shrinks — and the drawn-radius
+    //   spread falls as (d + h)/(d - h) with h the depth half-spread.
+    //   WHY 15 AND NOT 20 OR 30. The widest shipped lattice is ionic S4's 5x5x5
+    //   rock-salt block (h = 19.9 u). Two independent conditions have to hold on
+    //   it and 15 deg is where they MEET: the containment fit puts the camera at
+    //   177.2 u, and the equivalence floor below (ratio <= 1.25) demands 178.9 u.
+    //   A wider FOV frames the block from closer than the equivalence it teaches
+    //   can survive (20 deg -> 1.35x, past the 1.3 the probe asks for); a narrower
+    //   one buys ratio nobody can see and costs depth precision. So the constant
+    //   is the value at which the widest shipped block is BOTH fully framed and
+    //   read as a lattice, not a taste setting.
+    //   SCOPE: lattice placement only, and only where the bonding apply owns the
+    //   camera. Every molecular scene, every free-placement scene and every other
+    //   scenario in the fleet keeps PerspectiveCamera(60, ...) untouched.
+    var BS_LATTICE_FOV_DEG = 15;
+    //   The equivalence a lattice state claims, as a number: the largest : smallest
+    //   drawn radius of one species across the block. 1.25 is the authored target
+    //   and the gate asserts 1.30 — the probe the bug row names — so a state that
+    //   drifts by a fifth of the allowance still fails the gate before a reviewer
+    //   sees it. Enforced as a DISTANCE FLOOR (bscRatioFloorDist), so a future
+    //   block wider than anything shipped today satisfies it by construction
+    //   instead of quietly re-opening this row.
+    var BS_LATTICE_RATIO_MAX = 1.25;
     // The five rock-salt pairs ionic_bonding's explore picker offers — ONE cell
     // covers all of them, which is why that explore state needs no second cell
     // type. a_pm is the conventional cubic edge (X-ray values).
+    // ── E3b T-1: THE ION PROPERTY TABLE (mp_K + lattice_kJ).
+    //   RATIFIED by chemistry_author, 2026-08-03 — all five rows, BOTH columns.
+    //   The two conventions, verbatim from the dispatch spec, because a number
+    //   whose convention is not written beside it is a number nobody can check:
+    //
+    //     mp_K — melting point at standard pressure, congruent melt (solid →
+    //     liquid, same composition, no decomposition). CRC-Handbook-class table;
+    //     every value is a clean whole-°C→K conversion (801/770/845/2852/2613 °C).
+    //     MgO and CaO carry a measurement-precision flag (refractory oxides above
+    //     2800 °C; older sources spread wider) — the values shipped are the modern
+    //     commonly-cited ones. Never narrate them to more significant figures than
+    //     the whole-Kelvin HUD readout.
+    //
+    //     lattice_kJ — lattice DISSOCIATION enthalpy, MX(s) → M⁺(g) + X⁻(g),
+    //     positive, kJ·mol⁻¹, 298 K, Born–Haber-derived (experimental cycle) —
+    //     never Born–Landé/Kapustinskii-calculated. chemistry_author confirmed all
+    //     five rows are internally consistent with a single Born–Haber tradition;
+    //     no calculated value is mixed in. KCl (literature band 701–717) and LiF
+    //     (1030–1036) carry a normal cross-compilation spread flag; the shipped
+    //     digits sit inside both bands.
+    //
+    //   Ratify state: all five rows RATIFIED, both columns. check:bonding-scene
+    //   PRINTS table-vs-literature with the ratify flag (the E1 dipole-table
+    //   pattern) and asserts nothing unratified.
+    //   D-2: mp_K is the ONLY input to the melt outcome (see bscMeltFrac). Nothing
+    //   in any JSON says "this one melts" — the temperature and this column decide.
     var BS_ION_PAIRS = {
-        NaCl: { cation: "Na+", anion: "Cl-", a_pm: 564.0 },
-        KCl:  { cation: "K+",  anion: "Cl-", a_pm: 629.3 },
-        LiF:  { cation: "Li+", anion: "F-",  a_pm: 402.6 },
-        MgO:  { cation: "Mg2+", anion: "O2-", a_pm: 421.2 },
-        CaO:  { cation: "Ca2+", anion: "O2-", a_pm: 481.1 }
+        NaCl: { cation: "Na+", anion: "Cl-", a_pm: 564.0, mp_K: 1074, lattice_kJ: 788 },
+        KCl:  { cation: "K+",  anion: "Cl-", a_pm: 629.3, mp_K: 1043, lattice_kJ: 715 },
+        LiF:  { cation: "Li+", anion: "F-",  a_pm: 402.6, mp_K: 1118, lattice_kJ: 1030 },
+        MgO:  { cation: "Mg2+", anion: "O2-", a_pm: 421.2, mp_K: 3125, lattice_kJ: 3791 },
+        CaO:  { cation: "Ca2+", anion: "O2-", a_pm: 481.1, mp_K: 2886, lattice_kJ: 3401 }
+    };
+    // ── E3b Q-5: THE METAL TABLE. **RATIFY STATE: NOT RATIFIED.**
+    //   Same SHAPE as BS_ION_PAIRS above and the same gate treatment, but the
+    //   opposite ratify state, and the difference is the point: these three digits
+    //   are Phase-0's, and this desk's ratification pass covered the ionic table
+    //   only. They ship VISIBLE AND INERT — check:bonding-scene PRINTS the table
+    //   against literature and ASSERTS NOTHING about a digit — until Session B's
+    //   chemistry_author ratifies the CONVENTION (standard enthalpy of
+    //   atomisation, M(s) → M(g), standard state, 298 K, kJ·mol⁻¹) and the three
+    //   values. This is the E1 dipole-table pattern working exactly as designed.
+    //   WHY ATOMISATION AND NOT MELTING POINT (Phase-0's choice, recorded so the
+    //   next reader does not "fix" it): ΔH_at IS the bond strength of the metallic
+    //   lattice and rises monotonically with the number of free electrons per atom
+    //   (Na 1 → Mg 2 → Al 3), which is metallic_bonding S6/S7's whole argument;
+    //   the melting points do not order that way at all.
+    var BS_METALS = {
+        Na: { valence_e: 1, atomisation_kJ: 107 },
+        Mg: { valence_e: 2, atomisation_kJ: 146 },
+        Al: { valence_e: 3, atomisation_kJ: 326 }
     };
 
     // Per-species radius on a LINEAR-IN-PICOMETRE scale (doc row K / §reuse item 4).
@@ -60255,8 +60745,48 @@ export const FIELD_3D_RENDERER_CODE = `
     // across a full 360 turn, for the four ligand centres AND the four arrow tips
     // AND the central atom, against a 0.12 gate floor. Azimuth is free under a
     // full spin (the spin sweeps it) and is set to the fleet house angle.
+    // ── E3b F2 (2026-08-03): EVERY entry carries fit:true, and the sweep is the
+    //    lesson rather than the one entry that was found broken. Two omissions
+    //    were checked on all eleven rows: (1) a missing auto-fit, and (2) the E4
+    //    rule (cos el * cos az = 0) on any camera whose state argues from a LENGTH
+    //    or a SIZE along a scene axis. Since the fit is now measured against the
+    //    drawn discs rather than a bounding radius (bscFitDist), fit:true costs a
+    //    well-framed camera nothing — it only pushes a camera out when the scene
+    //    it is handed genuinely does not fit — so there is no longer a reason for
+    //    ANY row to omit it. coordination is the one row whose solved distance is
+    //    correct only AFTER its own reveal, and it carries fit_ramp instead of an
+    //    exemption (F3).
+    // ── E3b F5 (2026-08-03): THE SWEEP IS THE LESSON, FOR THE THIRD TIME. The
+    //    same table was swept for a missing fit (F2) and then for a missing
+    //    fit_ramp on the one row that was found broken (F3) — and the row whose
+    //    block GROWS during its own beat was left framed for its destination.
+    //    So every row is swept HERE for the general question, and each answer is
+    //    written down: DOES THIS ROW-S SCENE CHANGE SCALE DURING ITS OWN BEAT,
+    //    and if it does, is the shipped distance the OPENING pose or the LAST one?
+    //    Measured (entry distance vs the distance the opening pose needs, over the
+    //    scenes each row exists to frame):
+    //      dipole_sum 1.00 · explore 1.00 · assemble 1.00 · approach_link 1.00 ·
+    //      compare 1.00 · network 1.00 · electron_sea 1.00 — STATIC SCENES. A
+    //        scene whose reach is the same at t = 0 and at the end has no ramp to
+    //        carry (approach_link-s pull is a SEPARATION and is already carried by
+    //        bscOpeningExtent + the E2d cut, not by a distance ramp).
+    //      transfer 1.00 — the beat changes RADII, not reach, and the floor wins
+    //        at both poses.
+    //      melt 1.05 (ionic S7) / 1.04 (S9) — a 5% drift across the whole beat,
+    //        inside the fit-s own 10% border, i.e. below the threshold at which a
+    //        ramp would be a visible move rather than a fix.
+    //      layer_shift / drift — EXEMPT BECAUSE THE WIDE POSE IS REACHABLE AT
+    //        t = 0: both shipped states expose the matching slider (shift / field),
+    //        so bscShiftExtent / bscFieldExtent measure a pose a teacher can reach
+    //        on the FIRST frame, and a camera that ramped to it would have to move
+    //        when the teacher dragged (the Rule 32d failure those two extents were
+    //        added to prevent). Measured 1.00 on both shipped states; the same two
+    //        rows measure 1.65 / 1.72 on a SCRIPTED-only fixture with no slider,
+    //        which is a latent case, so section 33 measures and declares it rather
+    //        than leaving it to the next set of frames.
+    //      coordination — fit_ramp "reveal" (F3).  lattice_grow — fit_ramp "grow".
     var BS_CAMERAS = {
-        dipole_sum: { az: 35, el: 47, dist: 7.0 },
+        dipole_sum: { az: 35, el: 47, dist: 7.0, fit: true },
         // E2e defect 1: fit:true, for exactly the reason network has it. A SANDBOX
         // may author whatever scene the guided arc taught — hydrogen_bonding S8 is
         // S5's thirty-molecule network with sliders on it — and at dist 7 the
@@ -60267,7 +60797,26 @@ export const FIELD_3D_RENDERER_CODE = `
         // 4.6 — is byte-identical, and a single-unit sandbox is framed by
         // BS_UNIT_CAMERAS through bscSolvedShapeKey anyway.
         explore:    { az: 35, el: 47, dist: 7.0, fit: true },
-        assemble:   { az: 35, el: 47, dist: 7.0 },
+        // ── E3b F2. THE ONE ROW THE E4 TREATMENT SKIPPED, and the frames paid for
+        //    it twice over. assemble is ionic S1: two neutral atoms side by side
+        //    at +-4.5 while the caption counts the outer-shell dots and the state
+        //    after it corrects their SIZES. At az 35 the two units sat at
+        //    different depths, so Cl (99 pm) drew visibly LARGER than Na (186 pm)
+        //    — the exact size inversion S2 exists to correct, asserted by the
+        //    picture against the physics — and at dist 7 with no fit the pair
+        //    reached 8.38 units against a 4.04-unit half-height, so both atoms
+        //    were cut by the frame edge and only three or four of the eight shell
+        //    dots were on screen at all.
+        //    The solve is transfer's, and deliberately IDENTICAL to it: az 90 puts
+        //    the separation axis exactly in the screen plane at any elevation, so
+        //    both atoms sit at depth = dist EXACTLY and the drawn radius ratio IS
+        //    the physical 186:99; el 12 and dist 15 are transfer's measured values,
+        //    so S1 -> S2 is now the same two atoms under the same camera with no
+        //    move at all (Rule 32d — at the click the only visible change is the
+        //    electron crossing). fit:true then guards a state that authors a wider
+        //    pair, and because S1 SPINS (spin_rate 0.15) the fit uses the
+        //    screen-plane radius, which lands it at 16.3 rather than 15.
+        assemble:   { az: 90, el: 12, dist: 15.0, fit: true },
         // E2 re-solved. A linear hydrogen bond is O-H 2.0 units + H...O 3.75
         // units, so two linked waters span ~7.8 units and a 27-unit box spans
         // ~11.5: the E1 placeholder distances framed neither. approach_link
@@ -60307,7 +60856,8 @@ export const FIELD_3D_RENDERER_CODE = `
         //    identically-long O-H bond projections collapses from 2.51x to 1.16x.
         //    az 90 rather than 270 so the donor (units[0], at -x) reads LEFT and
         //    the link points right.
-        approach_link: { az: 90, el: 16, dist: 11.0 },
+        //    E3b F2 sweep: fit:true added. The distance above stays the floor.
+        approach_link: { az: 90, el: 16, dist: 11.0, fit: true },
         // E2b: fit:true, and the distance above is now a FLOOR rather than the
         // answer. dist 17 was solved against "a 27-unit box spans ~11.5" — a loose
         // cubic arrangement the contract records at ~1.07 links/molecule, i.e. a
@@ -60335,7 +60885,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // O radii 13.8 px both (was 11.7 / 16.9, a 1.45x disparity), link /
         // donating-bond 1.875 exactly (was 2.721), min pairwise 59.7 px (was
         // 33.6), |ndc| 0.327 (was 0.418). el 20 and dist 12 are UNCHANGED.
-        compare:    { az: 90, el: 20, dist: 12.0 },
+        //    E3b F2 sweep: fit:true added. The distance above stays the floor.
+        compare:    { az: 90, el: 20, dist: 12.0, fit: true },
         // ── E3a solved cameras (D-4). fit:true adds the auto-fit above, so a
         //    state that authors a bigger block than the canonical 3x3x3 cannot
         //    silently overflow the frame.
@@ -60374,18 +60925,117 @@ export const FIELD_3D_RENDERER_CODE = `
         //    OPEN scar orthographic_separation_metric_underpredicts_perspective_
         //    overlap fires here in the OPPOSITE direction: the cheap metric does
         //    not merely pass a bad camera, it rejects the best one.
-        //    NO fit here, deliberately: the doc's state teaches from INSIDE a
-        //    block, so the wall is allowed to bleed past the frame edge while the
-        //    counted set stays large and separable.
-        transfer:      { az: 90, el: 12, dist: 15.0 },
-        lattice_grow:  { az: 35, el: 26, dist: 20.0, fit: true },
+        //    THE SOLVE IS FOR THE POSE THE REVEAL ARRIVES AT, and the state opens
+        //    3.5 s earlier on the PACKED block: the wall is allowed to bleed past
+        //    the frame edge once the peers have faded and the counted set is what
+        //    the eye is on, but at t = 0 every ion is opaque and the block IS the
+        //    picture. Measured on the shipped frames: worst |NDC| 1.653 at t = 0
+        //    (one sphere filling 60% of the frame under a caption that counts six
+        //    neighbours, and a HUD already printing 6 : 6 over a picture that
+        //    cannot evidence it), then a 68.9% pixel jump between t = 3000 and
+        //    t = 4000 as the reveal snapped the block open under a camera that did
+        //    not move with it — THE EYE D6 failure — and a counted neighbour
+        //    clipped by the bottom edge at t = 4000.
+        //    So: fit:true frames the OPENING pose (the packed block, measured at
+        //    27.7 units, which is also where lattice_grow leaves S4 — the home
+        //    pose is continuous, Rule 32d), and fit_ramp "reveal" pulls the camera
+        //    IN to the solved 16.0 across the SAME ramp that opens the block
+        //    (revF). One caused move, cause first (Rule 32a): the block opens and
+        //    the camera closes on it. Closed form in revF, which is closed form in
+        //    state-local ms, so a freeze pin photographs the same distance.
+        //    E3b F2 sweep: fit:true added. dist 15 stays the floor, and the
+        //    measured fit leaves ionic S2 EXACTLY where it was (its pair does not
+        //    spin and az 90 lays it across the 16:9 width, so the measured fit is
+        //    9.4 and the floor wins) — the well-framed state does not move.
+        transfer:      { az: 90, el: 12, dist: 15.0, fit: true },
+        //    E3b F5 exemption: the transfer beat changes the two ions- RADII (Na
+        //    186 -> 102 pm, Cl 99 -> 181 pm) and not the scene-s reach, and the
+        //    row is a floor-wins row anyway (measured entry 15.00 = the floor at
+        //    both poses), so there is no scale to ramp.
+        // ── E3b F5. THE SIBLING OF THE COORDINATION RAMP, AND THE SECOND
+        //    OMISSION CLASS OF THE SAME SWEEP. F3 fixed the row whose block OPENS
+        //    during its own beat and left the row whose block GROWS during its
+        //    own beat solved for its destination. Measured on ionic S4, the same
+        //    two ions across one click: S3 leaves the pair at camera distance
+        //    11.0 (Cl- 428 px at 1280x720) and S4 opened the SAME pair at the
+        //    fully-grown 5x5x5 solve, 47.78 (Cl- 98 px) — a 4.3x scale collapse
+        //    at the click, held for the 5 s before the growth starts, on the
+        //    state the whole Rule-16a contrast beat rests on (the pair most
+        //    people picture as a molecule of salt). Rule 32d (home pose) and
+        //    Rule 24/34 (the canvas shows the machine) both fail there.
+        //    fit_ramp "grow" frames the OPENING pose (the grow_from seed sites)
+        //    and carries the camera to the grown-block solve across the growth
+        //    window itself — closed form in state-local ms, so a freeze pin
+        //    photographs the same distance (see bscGrowCamW).
+        lattice_grow:  { az: 35, el: 26, dist: 20.0, fit: true, fit_ramp: "grow" },
         //    dist 16, not 14: the runtime smoke showed the two counted neighbours
         //    nearest the camera CLIPPED by the viewport edge at 14 — a counted
         //    element half off-screen is the same defect as one hidden behind
         //    another, and only frames caught it. 16 is the joint solution:
         //    occlusion margin +0.057 NDC, counted-set box 0.80 (floor 0.85),
-        //    min pairwise centre separation 0.250.
-        coordination:  { az: 35, el: 45, dist: 16.0 }
+        //    min pairwise centre separation 0.250. (dist 16 is KEPT below and is
+        //    now read in 60 deg units — bscCamDistK carries it to 70.2 at the
+        //    lattice FOV, which is the SAME PICTURE from further away.)
+        //
+        // ── E3b F6: EL 45 -> EL 26, BECAUSE THE PROJECTION CHANGED UNDER IT.
+        //    Finding (2) above is the reason this row has to move, not a reason to
+        //    keep it: el 45 was solved for the 60 deg projection and its whole
+        //    advantage — "the two sit at different depths and separate cleanly" —
+        //    IS the depth divergence F6 removes. The same metric, run at the
+        //    lattice FOV over a full turn of the block (the teacher can orbit),
+        //    inverts exactly as that comment predicted it would:
+        //      60 deg, d 16.0  — el 45 +0.0574  ·  el 26 -0.2220   (el 45 wins)
+        //      15 deg, d 70.2  — el 45 -0.0984  ·  el 26 +0.0954   (el 26 wins)
+        //    So el 45 does not merely lose its edge at the narrow FOV, it FAILS:
+        //    at some orbit angles a counted neighbour hides behind another, which
+        //    is the scar this row exists to prevent. el 26 measures +0.0954 —
+        //    1.66x the margin the shipped 60 deg build had — and at the shipped
+        //    azimuth it reads occlusion +0.260, min pairwise 0.405 (was 0.250),
+        //    counted-set box 0.742 (floor 0.85), drawn-radius ratio 1.131.
+        //    It is also the lattice family's own elevation (lattice_grow, melt,
+        //    drift and the metal rows are all el 26), so S4 -> S5 -> S6 is now ONE
+        //    elevation across the whole lattice arc and the click changes only the
+        //    thing the state is about (Rule 32d).
+        coordination:  { az: 35, el: 26, dist: 16.0, fit: true, fit_ramp: "reveal" },
+        // ── E3b T-2. What mode 'melt' names is the FRAMING, not the law: the law
+        //    is derived from T_K against the pair's own mp_K and runs whatever the
+        //    mode string says (D-2). A melting block is the widest thing the site
+        //    layer draws — every ion reaches up to 1.47 nearest-neighbour spacings
+        //    off its lattice point — and it is also the one state whose teaching
+        //    is the loss of ROWS, which a near-axial view flattens. So: the
+        //    lattice_grow elevation (26 deg reads the rows as rows) at the
+        //    lattice_grow distance as a FLOOR, with fit:true doing the actual
+        //    work, because bscSiteExtent now carries the melt excursion and a
+        //    two-group melt (ionic S9) is twice as wide again.
+        melt:          { az: 35, el: 26, dist: 20.0, fit: true },
+        // ── E3b L-1. A slip state teaches TWO directions and may foreshorten
+        //    neither: the slide (the derived in-plane axis, +x for the default
+        //    y-normal plane) and the opening (the plane normal, +y). That is the
+        //    E4 rule applied to a lattice — cos(el) * cos(az) = 0 puts the slide
+        //    axis exactly in the screen plane at ANY elevation, so az 90 is
+        //    forced, and el is then spent on the OTHER axis: at el 20 the opening
+        //    direction still projects at cos 20 = 0.94 of its true length, so a
+        //    gap of 0.9 nearest-neighbour spacings reads as 0.85 on screen
+        //    instead of being flattened away. dist 20 is the lattice_grow floor
+        //    with fit:true doing the real work, because bscSiteExtent now carries
+        //    both the slide overhang and the cleave gap (bscShiftExtent).
+        layer_shift:   { az: 90, el: 20, dist: 20.0, fit: true },
+        // ── E3b Q-1. A drift state teaches ONE direction — the field's — and may
+        //    not foreshorten it. The default field axis is +x, and the E4 rule
+        //    (cos el * cos az = 0 puts an axis exactly in the screen plane at any
+        //    elevation) forces az 90; el 26 is the lattice_grow elevation, which
+        //    reads the rows AS rows, so a sample whose rows have dissolved and
+        //    whose ions are marching in two directions is legible as both. dist 20
+        //    is the lattice_grow floor with fit:true doing the real work, because
+        //    bscSiteExtent now carries the migration overhang (bscFieldExtent).
+        drift:         { az: 90, el: 26, dist: 20.0, fit: true },
+        // ── E3b row G. The sea state is a LOOK INSIDE a metal: the cores on their
+        //    sites and the electrons moving between them. Nothing here is a length
+        //    the state argues from, so the E4 constraint does not bind and the
+        //    house azimuth is kept; el 26 again reads the rows as rows so the
+        //    electrons are seen passing BETWEEN cores rather than in front of a
+        //    flat wall.
+        electron_sea:  { az: 35, el: 26, dist: 20.0, fit: true }
     };
     var BS_CAMERA_DEFAULT = { az: 35, el: 28, dist: 7.0 };
 
@@ -60627,7 +61277,32 @@ export const FIELD_3D_RENDERER_CODE = `
         var k = bscSolvedShapeKey(bs, speciesOverride);
         if (k) return BS_UNIT_CAMERAS[k];
         if (bscNetworkScene(bs)) return BS_CAMERAS.network;
-        return BS_CAMERAS[bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        var cam = BS_CAMERAS[bs && bs.mode || "dipole_sum"] || BS_CAMERA_DEFAULT;
+        // ── E3b T-4: A ROW-R STATE COMPARES ITS GROUPS, SO THE AXIS IT SEPARATES
+        //    THEM ON MAY NOT BE FORESHORTENED.
+        //    This is the E4 finding (OPEN scar camera_metric_scored_foreshortening_
+        //    not_pairwise_screen_separation) one row out: with the mode's own az 35
+        //    a pair of groups offset on x sits at two DIFFERENT DEPTHS, so the same
+        //    lattice constant draws larger on the near crystal than on the far one
+        //    and a teacher comparing two blocks is comparing perspective. E4 solved
+        //    it once and the solve is general: cos(el) * cos(az) = 0 puts the
+        //    separation axis exactly in the screen plane at ANY elevation, so az 90
+        //    is forced and the mode's own el / dist / fit are all KEPT — nothing is
+        //    traded. Only for a genuinely x-separated multi-group scene, so every
+        //    single-scene state and every mode camera is bit-for-bit unchanged.
+        var G = bscGroupBlocks(bs);
+        if (G && G.length > 1) {
+            var sx = 0, sy = 0, sz = 0, gi;
+            for (gi = 1; gi < G.length; gi++) {
+                sx = Math.max(sx, Math.abs(G[gi].at[0] - G[0].at[0]));
+                sy = Math.max(sy, Math.abs(G[gi].at[1] - G[0].at[1]));
+                sz = Math.max(sz, Math.abs(G[gi].at[2] - G[0].at[2]));
+            }
+            if (sx > 1e-9 && sx >= sy && sx >= sz) {
+                return { az: 90, el: cam.el, dist: cam.dist, fit: true };
+            }
+        }
+        return cam;
     }
     // ── E1c-H: THE EXPLORE CAMERA FOLLOWS THE PICKED SPECIES.
     //   The solve was resolved once per STATE, so every picker species was framed
@@ -61131,6 +61806,47 @@ export const FIELD_3D_RENDERER_CODE = `
         BS_COORD_CACHE[cell] = n;
         return n;
     }
+    // E3b S-5: the coordination PAIR — rock salt's 6 : 6, the chemistry notation.
+    // BOTH numbers are DERIVED, independently, by the same geometry pass: the
+    // neighbour count of a sublattice-0 site and of a sublattice-1 site, each
+    // counted at the minimum distance from its own centre. Never hard-coded, and
+    // never produced by doubling one count — so MgO / CaO / LiF / KCl read
+    // correctly off this same code and a cell that is genuinely not n:n reads
+    // honestly.
+    //   The pass runs over a block big enough that the site being counted owns
+    //   its WHOLE first shell, which the block a state DRAWS need not be: in a
+    //   3x3x3 rock-salt cube the centre ion has all six neighbours but the
+    //   neighbour itself has five, and printing 6 : 5 would report the crop
+    //   rather than the crystal. Section 32 asserts the drawn focal count against
+    //   the first of these two numbers, so a state whose focal site is NOT
+    //   interior is caught rather than papered over.
+    //   A cell with ONE sublattice (fcc / bcc / hcp — every metal) has no second
+    //   number: it returns null and the readout prints a single count.
+    var BS_COORD_PAIR_CACHE = {};
+    function bscCoordAround(S, c) {
+        var best = 1e9, i, n = 0, d;
+        for (i = 0; i < S.length; i++) {
+            if (S[i] === c) continue;
+            d = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (d < best - 1e-9) best = d;
+        }
+        for (i = 0; i < S.length; i++) {
+            if (S[i] === c) continue;
+            d = bscMag([S[i].at[0] - c.at[0], S[i].at[1] - c.at[1], S[i].at[2] - c.at[2]]);
+            if (Math.abs(d - best) < 1e-6) n++;
+        }
+        return n;
+    }
+    function bscCoordinationPair(cell) {
+        if (BS_COORD_PAIR_CACHE[cell]) return BS_COORD_PAIR_CACHE[cell];
+        var S = bscCellSites(cell, 5, 5, 5), i, other = null;
+        // shell-ordered, so S[0] is the centre and the first sublattice-1 entry is
+        // one of its own nearest neighbours — fully interior in a 5-step block.
+        for (i = 0; i < S.length; i++) if (S[i].sub === 1) { other = S[i]; break; }
+        var out = [bscCoordAround(S, S[0]), other ? bscCoordAround(S, other) : null];
+        BS_COORD_PAIR_CACHE[cell] = out;
+        return out;
+    }
     // Formal charge parsed from the species STRING, so a new ion never needs a
     // table row: Na+ -> +1, Mg2+ -> +2, O2- -> -2, Cl- -> -1, a neutral atom 0.
     // Charge conservation across the transfer beat is asserted on this.
@@ -61145,12 +61861,30 @@ export const FIELD_3D_RENDERER_CODE = `
     // charge NEVER renders as an ASCII trailing plus.
     var BS_SUPDIG = ["\\u2070", "\\u00B9", "\\u00B2", "\\u00B3", "\\u2074",
         "\\u2075", "\\u2076", "\\u2077", "\\u2078", "\\u2079"];
+    // The PARENT ELEMENT symbol of a species: Na+ -> Na, O2- -> O, Na -> Na. ONE
+    // definition, so the label, the colour and the shell-dot count can never
+    // disagree about which element a site actually is.
+    function bscParentEl(sp) {
+        return BS_ION_PARENT[sp] || String(sp == null ? "" : sp).replace(/[0-9+-]+$/, "");
+    }
     function bscSpeciesLabel(sp) {
         var q = bscSpeciesCharge(sp);
         if (q === 0) return String(sp || "");
-        var el = BS_ION_PARENT[sp] || String(sp).replace(/[0-9+-]+$/, "");
+        var el = bscParentEl(sp);
         var mag = Math.abs(q);
         return el + (mag > 1 ? BS_SUPDIG[mag] : "") + (q > 0 ? "\\u207A" : "\\u207B");
+    }
+    // E3b S-3: the OUTER-SHELL ELECTRON COUNT of a species, DERIVED and never a
+    // second table — the neutral atom's count from BS_VALENCE minus the formal
+    // charge parsed off the species string. Na 1 -> Na(+) 0 and Cl 7 -> Cl(-) 8
+    // therefore fall out of the transfer beat itself: the octet is the OUTCOME of
+    // the electron moving, not an authored claim (D-2). Clamped to the eight dots
+    // one ring can carry, which no species in the table reaches from below.
+    function bscValenceOf(sp) {
+        var n = BS_VALENCE[bscParentEl(sp)];
+        if (n == null) return 0;
+        n -= bscSpeciesCharge(sp);
+        return (n < 0) ? 0 : ((n > BS_MAX_SHELL_DOTS) ? BS_MAX_SHELL_DOTS : n);
     }
     // The LINEAR-IN-PM radius (doc row K / §reuse item 4). Ions and lattice sites
     // read this; molecule atoms stay on the legibility-compressed MG_ELEMENTS
@@ -61201,8 +61935,80 @@ export const FIELD_3D_RENDERER_CODE = `
     // neighbours 282 pm apart, and r(Na+) + r(Cl-) = 102 + 181 = 283 pm, so on a
     // shared linear scale the ions TOUCH — which is the whole of ionic S3's
     // "attraction stops at 282". Two scales and that reading is gone.
+    // E3b T-1/T-2: WHICH of the five rock-salt pairs a sublattice pair IS. Matched
+    // on BOTH species, because an anion is shared by two rows (Cl- by NaCl and
+    // KCl, O2- by MgO and CaO) and a match on one would silently give the wrong
+    // melting point. null for every scene that is not one of the five — a bare
+    // Na/Cl transfer close-up has no lattice and therefore no melting point.
+    function bscPairKeyFor(cat, ani) {
+        var k;
+        for (k in BS_ION_PAIRS) {
+            if (!BS_ION_PAIRS.hasOwnProperty(k)) continue;
+            if (BS_ION_PAIRS[k].cation === cat && BS_ION_PAIRS[k].anion === ani) return k;
+        }
+        return null;
+    }
+    // ── E3b T-4: ROW R — TWO OR MORE INDEPENDENTLY-PLACED SUB-SCENES ─────────
+    //   groups: [{ id, label, at, units?, lattice, thermal, field }]
+    //   INHERITANCE IS THE TEACHING, and it is inheritance BY CONSTRUCTION rather
+    //   than by copy-paste: the merged block below starts as the SCENE-level block
+    //   and the group's own keys are written over it, so a key the group does not
+    //   author is the scene's key — the SAME object, not a duplicate of it.
+    //   That is what makes ionic_bonding S8's "the SAME field acts on both" and
+    //   S9's "one temperature, two crystals" true structurally: the field / the
+    //   thermal block is authored ONCE at scene level and both groups read it.
+    //   Per-group override exists (S8 needs one group hot and one cold) but is
+    //   never REQUIRED for a shared quantity, so a copy-paste drift between two
+    //   groups that are meant to share is not expressible.
+    //   id / label / at are the group's own placement metadata and are NOT merged
+    //   into the block; groups itself is dropped, so the merged block is a plain
+    //   single-scene block and every downstream body reads it unchanged.
+    function bscGroupBlocks(bs) {
+        var gs = (bs && bs.groups) || null;
+        if (!gs || !gs.length) return null;
+        var out = [], i, k;
+        for (i = 0; i < gs.length && i < BS_MAX_GROUPS; i++) {
+            var g = gs[i] || {}, m = {};
+            for (k in bs) {
+                if (!bs.hasOwnProperty(k) || k === "groups") continue;
+                m[k] = bs[k];
+            }
+            for (k in g) {
+                if (!g.hasOwnProperty(k) || k === "at" || k === "id" || k === "label") continue;
+                m[k] = g[k];
+            }
+            out.push({
+                id: g.id || ("g" + i), label: g.label || "",
+                at: g.at ? [g.at[0], g.at[1], g.at[2]] : [0, 0, 0], block: m
+            });
+        }
+        return out;
+    }
     function bscSiteList(bs, pairOverride) {
         var out = [], i;
+        // E3b T-4: a grouped state is the concatenation of its groups' OWN site
+        // lists, each built from that group's merged block and translated to that
+        // group's at. Every site carries the block it came from (gbs), so the
+        // position chain below applies THAT group's thermal / separation script
+        // and nothing has to thread a group index through six call sites. The
+        // group offset is baked into at, so the camera fit (bscSiteExtent, which
+        // reads at) spans the UNION of the groups' bounding boxes for free —
+        // never author camera is a fleet-wide rule, so that promise has to hold.
+        var G = bscGroupBlocks(bs);
+        if (G) {
+            var gi, sub, s;
+            for (gi = 0; gi < G.length; gi++) {
+                sub = bscSiteList(G[gi].block, pairOverride);
+                for (i = 0; i < sub.length && out.length < BS_MAX_SITES; i++) {
+                    s = sub[i];
+                    s.at = [s.at[0] + G[gi].at[0], s.at[1] + G[gi].at[1], s.at[2] + G[gi].at[2]];
+                    s.gbs = G[gi].block; s.gat = G[gi].at;
+                    s.grp = gi; s.glabel = G[gi].label; s.gid = G[gi].id;
+                    out.push(s);
+                }
+            }
+            return out;
+        }
         var p2u = bscLinkCfg(bs).pm_per_unit;
         var units = (bs && bs.units) || [];
         var lat = (bs && bs.lattice) || null;
@@ -61216,11 +62022,18 @@ export const FIELD_3D_RENDERER_CODE = `
             var aU = aPm / p2u;
             var n = lat.n || [3, 3, 3];
             var S = bscCellSites(cell, n[0], n[1], n[2]);
+            // E3b T-1/T-2: the pair identity travels WITH the site, resolved from
+            // the two sublattice species — so the explore ion_pair picker (which
+            // rewrites exactly those two) changes the melting point, the lattice
+            // enthalpy and the melt outcome together, with no second lookup that
+            // could disagree with the spheres on screen.
+            var pKey = bscPairKeyFor(spA, spB);
             for (i = 0; i < S.length && out.length < BS_MAX_SITES; i++) {
                 var sp = (S[i].sub === 1) ? spB : spA;
                 out.push({
                     key: S[i].key, sub: S[i].sub, cell: cell, a_pm: aPm, species: sp,
                     q: bscSpeciesCharge(sp), rPm: bscRadiusPm(sp), unit: null,
+                    pair: pKey,
                     at: [S[i].at[0] * aU, S[i].at[1] * aU, S[i].at[2] * aU]
                 });
             }
@@ -61228,13 +62041,18 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // free placement: any unit whose species is an ATOM or an ION (rather
         // than a molecule) is a site. mode transfer is exactly this case.
+        // A free ION PAIR (ionic S3's two ions on a scripted approach) resolves its
+        // row the same way a lattice does; a pair of neutral atoms resolves none,
+        // so a transfer close-up has no melting point and cannot melt.
+        var fKey = bscPairKeyFor((units[0] && units[0].species) || null,
+            (units[1] && units[1].species) || null);
         for (i = 0; i < units.length && out.length < BS_MAX_SITES; i++) {
             var u = units[i];
             if (!u || !bscIsSite(u.species)) continue;
             out.push({
                 key: [i, 0, 0], sub: 0, cell: null, a_pm: 0, species: u.species,
                 q: bscSpeciesCharge(u.species), rPm: bscRadiusPm(u.species),
-                unit: u.id || ("u" + i), uidx: i,
+                unit: u.id || ("u" + i), uidx: i, pair: fKey,
                 at: u.at ? [u.at[0], u.at[1], u.at[2]] : [0, 0, 0]
             });
         }
@@ -61244,12 +62062,67 @@ export const FIELD_3D_RENDERER_CODE = `
     // ROUNDED RAMP, so presence is a closed-form function of t and a rewind
     // reproduces the same block. A latch remembering which sites already exist is
     // exactly the accumulator D-1 forbids.
-    function bscGrowShown(bs, ms, total) {
+    function bscGrowNf(bs, ms, total) {
         var L = (bs && bs.lattice) || {};
         if (L.grow_at_ms == null) return total;
         var from = (L.grow_from != null) ? L.grow_from : Math.min(2, total);
-        return Math.round(mgRamp(ms, L.grow_at_ms,
-            (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000, from, total));
+        return mgRamp(ms, L.grow_at_ms,
+            (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000, from, total);
+    }
+    function bscGrowShown(bs, ms, total) {
+        return Math.round(bscGrowNf(bs, ms, total));
+    }
+    // ── E3b F5: THE CAMERA OF A GROWTH BEAT, AS A WEIGHT PER SITE ─────────────
+    //   A growth state has as many poses as it has sites, and its solved distance
+    //   is the LAST one. The camera therefore tracks the block that is actually on
+    //   screen — but the shown count is an INTEGER, so tracking it exactly would
+    //   snap the camera every time a shell landed (measured on the shipped 5x5x5
+    //   block: a single site step demands up to 9.04 units of distance, i.e. a
+    //   35% scale change inside one frame). So each site's framing DEMAND fades in
+    //   over the BS_GROW_CAM_LEAD_MS that precede its own arrival, and the camera
+    //   distance is the max of the faded demands: continuous in t, monotone, and
+    //   never behind the block.
+    //   Two properties are load-bearing and each is asserted by check:bonding-scene:
+    //     (1) IT NEVER UNDER-FRAMES. A site that already exists carries weight
+    //         EXACTLY 1 (the hard term below), so the ramp is never closer than the
+    //         honest fit for the shown set at any instant.
+    //     (2) IT DOES NOT MOVE BEFORE ITS OWN BEAT. The look-ahead is a ramp of
+    //         (ms + lead), so before grow_at_ms - lead it reads the opening count
+    //         and the faded term is far below the seed pose the state opens on —
+    //         the camera holds its opening distance and moves only once the block
+    //         is about to arrive (measured: still at the opening distance at
+    //         4500 ms of a beat whose growth starts at 5000).
+    //   THE WINDOW IS THE LOOK-AHEAD ITSELF, NOT A SITE COUNT, and that is the
+    //   whole of why (1) holds. The growth ramp is EASED (mgRamp is a smoothstep),
+    //   so the number of sites landing per second is far below the average at both
+    //   ends of the beat; a fade window sized in sites at the AVERAGE rate is
+    //   therefore too WIDE near the ends, and a site arrived while its faded weight
+    //   was still 0.22 — a measured 6.53-unit camera jump inside one frame, the
+    //   snap this fade exists to prevent, reintroduced by an eased ramp. Sizing the
+    //   window as (look-ahead count - current count) makes the weight of an
+    //   arriving site exactly (w + 1) / w > 1 at every rate, by construction.
+    //   The look-ahead ramp is also deliberately NOT clamped at the top: clamping
+    //   it collapses the window to nothing over the last lead-window and snaps the
+    //   final corner shell for the same reason.
+    var BS_GROW_CAM_LEAD_MS = 1000;
+    function bscGrowCamW(bs, ms, total) {
+        var L = (bs && bs.lattice) || {};
+        if (L.grow_at_ms == null) return null;
+        var from = (L.grow_from != null) ? L.grow_from : Math.min(2, total);
+        var dur = (L.grow_duration_ms != null) ? L.grow_duration_ms : 3000;
+        if (!(dur > 0) || !(total > from)) return null;
+        var uL = (ms + BS_GROW_CAM_LEAD_MS - L.grow_at_ms) / dur;
+        var sL = (uL <= 0) ? 0 : ((uL >= 1) ? 1 + (uL - 1) : mgSmooth01(uL));
+        var nNow = bscGrowNf(bs, ms, total);
+        var lAhead = from + (total - from) * sL;
+        return { n: nNow, l: lAhead, w: Math.max(1, lAhead - nNow) };
+    }
+    // site i-s weight in the framing solve at that instant: 1 once it exists, and
+    // a linear fade-in across the look-ahead window before that.
+    function bscGrowCamWeight(gw, si) {
+        if (!gw || !(si >= 0)) return 1;
+        if (si <= gw.n - 0.5) return 1;
+        return bscClamp((gw.l + 0.5 - si) / gw.w, 0, 1);
     }
     // Transfer progress: a closed-form ramp of state-local ms (D-1).
     function bscTransferProg(bs, ms) {
@@ -61272,52 +62145,1093 @@ export const FIELD_3D_RENDERER_CODE = `
             r_pm: SI.rPm + (bscRadiusPm(ionSp) - SI.rPm) * p
         };
     }
-    // Half-extent of the site block in scene units, radii included — what the
-    // camera auto-fit measures against.
-    function bscSiteExtent(bs, pairOverride) {
-        var S = bscSiteList(bs, pairOverride), p2u = bscLinkCfg(bs).pm_per_unit, e = 0, i;
+    // ── E3b S-1 / S-2: THE SITE LAYER'S POSITION CHAIN ───────────────────────
+    //   P-1 and P-2 (founder_proxy Checkpoint A on ionic_bonding, 2026-08-03,
+    //   re-verified in source by the dispatching session): every scripted
+    //   position mechanism on this surface lived on the UNIT layer alone. sitePos
+    //   was the raw authored SI.at plus the spin and never touched the
+    //   sepAt/baseAt/orgAt chain, and bscJiggle had exactly ONE call site — inside
+    //   orgAt. Since bscIsSite switches the unit layer OFF for every ion and bare
+    //   atom, nothing picked up the slack: separation, separation_axis,
+    //   approach_from, approach_at_ms, approach_duration_ms and
+    //   thermal.jiggle_scale were ALL inert on ions and on every lattice. A state
+    //   authoring mode approach_link on two ions was byte-static while
+    //   deriveStateMeta, reading the same authored fields, declared it MOVING —
+    //   a green gate over a dead state.
+    //   The three functions below are the ONE definition of that chain. The frame
+    //   pass calls them for the site layer AND routes its own unit-layer sepAt /
+    //   tempAt closures through them, so the two layers cannot drift apart again;
+    //   check:bonding-scene section 32 calls the SHIPPED bodies rather than a
+    //   transcription of them.
+    //   Closed form in state-local ms, no accumulator, no latch, no replayed
+    //   history (D-1) — so a SET_TIME_FREEZE rewind photographs the same pixels
+    //   BY CONSTRUCTION, not by testing afterwards (Rule 36).
+    //   drag-seize: a trusted drag passes its live value in (null = follow the
+    //   script), which is exactly the discipline the unit layer already obeys for
+    //   the separation and temperature widgets.
+    function bscSepAt(bs, mms, sepDrag) {
+        if (sepDrag != null) return sepDrag;
+        var to = (bs && bs.separation != null) ? bs.separation : 3.0;
+        if (!bs || bs.approach_at_ms == null || bs.approach_from == null) return to;
+        return mgRamp(mms, bs.approach_at_ms,
+            (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400,
+            bs.approach_from, to);
+    }
+    function bscTempAt(bs, mms, tempDrag) {
+        if (tempDrag != null) return tempDrag;
+        var th = (bs && bs.thermal) || {};
+        var to = (th.T_K != null) ? th.T_K : BS_T0_K;
+        if (th.T_from == null || th.T_at_ms == null) return to;
+        return mgRamp(mms, th.T_at_ms,
+            (th.T_ramp_ms != null) ? th.T_ramp_ms : BS_T_RAMP_MS, th.T_from, to);
+    }
+    // A site's world position BEFORE the spin — the spin is a rotation about the
+    // view axis and is applied by the caller, exactly as the unit layer does it.
+    //   ix is the site's index in the shell-ordered list; a FREE-placement site
+    //   also carries the units[] index it came from (uidx). So the jiggle phase is
+    //   derived from an INDEX in both cases and never from a running counter, and
+    //   a growth beat or a count change never re-seeds a site already on screen.
+    //   TWO parts of the unit chain are deliberately NOT taken, and the reasons
+    //   are the point rather than an omission:
+    //     - bscUnitSlot (baseAt's fallback for a unit past units[]) is the COUNT
+    //       slider's row placement. A lattice has no count slider and its sites
+    //       are placed by the cell, so a site with no authored at stays at its
+    //       authored origin.
+    //     - bscThermalScale is the MOLECULAR network's expansion law, keyed on
+    //       BS_VAPOUR. No ion and no bare atom has a row there, so the factor is
+    //       identically 1 for every species this layer draws; routing sites
+    //       through orgAt would instead have applied HCl's expansion to them,
+    //       because molKey falls back to "HCl" whenever no unit is a molecule.
+    //   Split in two on purpose: the EQUILIBRIUM position (where the script puts
+    //   the site) and the DRAWN position (equilibrium plus thermal noise). The
+    //   separation instrument reads the first — see bscSepPmAt.
+    // E3b T-4: a site drawn under row R belongs to a GROUP, and its whole script
+    // is that group's merged block (thermal, separation, lattice, field), not the
+    // scene's. One accessor, so the two bodies below cannot disagree about which
+    // block a site obeys — and for every un-grouped scene it returns bs, so those
+    // scenes are byte-identical by construction.
+    function bscSiteBlock(bs, SI) {
+        return (SI && SI.gbs) ? SI.gbs : bs;
+    }
+    function bscSiteBaseAt(bs, SI, mms, sepDrag) {
+        var gb = bscSiteBlock(bs, SI);
+        if (gb && gb.separation_axis && SI && SI.uidx != null && SI.uidx < 2) {
+            // the authored separation_axis puts the leading PAIR on that axis and
+            // drives it from the (scripted or dragged) separation — the unit
+            // layer's baseAt rule, now true of ions too. Under row R the pair is
+            // placed about its OWN group's origin, not the scene's.
+            var sa = bscNorm(gb.separation_axis);
+            var sv = bscSepAt(gb, mms, sepDrag) * ((SI.uidx === 0) ? -0.5 : 0.5);
+            var go = (SI && SI.gat) ? SI.gat : [0, 0, 0];
+            return [sa[0] * sv + go[0], sa[1] * sv + go[1], sa[2] * sv + go[2]];
+        }
+        return [SI.at[0], SI.at[1], SI.at[2]];
+    }
+    // ── E3b L-1: THE LAYER SLIP ───────────────────────────────────────────────
+    //   shift: { at_ms, duration_ms, offset_sites, plane }. One half of the
+    //   lattice slides offset_sites lattice positions along its own plane.
+    //   THE AUTHORING SURFACE IS DELIBERATELY NARROW. plane names the split
+    //   plane's NORMAL AXIS out of a closed three-member enum, and the slide
+    //   DIRECTION is derived from it (the first axis that is not the normal), so
+    //   there is no way to author a slide that points out of the plane it is
+    //   supposed to lie in — the one nonsense this mechanism could otherwise be
+    //   configured into. The half that MOVES is the half at a positive coordinate
+    //   along that normal, measured about the block's own centre (about the
+    //   GROUP's centre under row R, so two groups each slip about their own
+    //   mid-plane and never about the scene origin).
+    function bscShiftCfg(bs) {
+        var sh = (bs && bs.shift) || {};
+        var pl = (BS_SHIFT_PLANES.indexOf(sh.plane) >= 0) ? sh.plane : "y";
+        var nAx = BS_SHIFT_PLANES.indexOf(pl);
+        return {
+            at_ms: (sh.at_ms != null) ? sh.at_ms : null,
+            dur: (sh.duration_ms != null) ? sh.duration_ms : BS_SHIFT_MS,
+            off: (sh.offset_sites != null) ? sh.offset_sites : 1,
+            nAx: nAx, dAx: (nAx === 0) ? 1 : 0
+        };
+    }
+    // The live slide, in units of ONE SITE. Closed form in state-local ms (D-1),
+    // and a trusted drag passes its value in exactly as the separation and the
+    // temperature already do — the slider's 0..1 IS this quantity, so 1.00 on the
+    // widget is one full site whatever a_pm the crystal has.
+    function bscShiftAt(bs, mms, shiftDrag) {
+        if (shiftDrag != null) return shiftDrag;
+        var sc = bscShiftCfg(bs);
+        if (sc.at_ms == null) return 0;
+        return mgRamp(mms, sc.at_ms, sc.dur, 0, sc.off);
+    }
+    // One site step in scene units, off the site's OWN cell: the cubic cells are
+    // generated on a grid of a/2 (bscCellSites), hcp on a grid of a. A free
+    // placement has no cell and therefore nothing to slip, which is why a state
+    // that authors shift on two loose ions is a no-op rather than a guess.
+    function bscShiftStepU(bs, SI) {
+        if (!SI || !(SI.a_pm > 0)) return 0;
+        var p2u = bscLinkCfg(bscSiteBlock(bs, SI)).pm_per_unit;
+        return SI.a_pm * ((SI.cell === "hcp") ? 1 : 0.5) / p2u;
+    }
+    function bscShiftHalf(SI, nAx) {
+        if (!SI) return 0;
+        var go = (SI.gat) ? SI.gat[nAx] : 0;
+        return (SI.at[nAx] - go > 1e-9) ? 1 : 0;
+    }
+    // The EQUILIBRIUM positions of the drawn sites at slide value sVal — the
+    // placement chain plus the slide, and deliberately WITHOUT the jiggle, the
+    // melt excursion and the cleave. The metric below reads these and nothing
+    // else, for three separate reasons:
+    //   - a readout computed off jiggled positions re-rolls every frame (the E3b
+    //     T-4 finding on the separation instrument: 282 -> 294 -> 298 pm while
+    //     nothing physical changed). A contact count would flicker the same way.
+    //   - the cleave is the CONSEQUENCE of the count, so counting the cleaved
+    //     geometry would make the instrument erase its own reading the moment it
+    //     acted: 6 contacts, halves separate, 0 contacts, halves close.
+    //   - it keeps the whole metric a pure function of (config, ms) with no
+    //     feedback loop, which is what lets a freeze pin reproduce it (D-1).
+    function bscShiftPos(bs, siteList, n, mms, sepDrag, sVal) {
+        var sc = bscShiftCfg(bs), P = [], i;
+        for (i = 0; i < n; i++) {
+            var SI = siteList[i], b = bscSiteBaseAt(bs, SI, mms, sepDrag);
+            var o = [b[0], b[1], b[2]];
+            if (sVal !== 0 && bscShiftHalf(SI, sc.nAx)) {
+                o[sc.dAx] += sVal * bscShiftStepU(bs, SI);
+            }
+            P.push(o);
+        }
+        return P;
+    }
+    // ── E3b L-2: THE D-7 like_contacts METRIC, BUILT TO THE DEFINITION ────────
+    //   like_contacts(t) = like-charge nearest-neighbour contacts CREATED BY THE
+    //   SHIFT (a DELTA against the unshifted reference lattice at the same t) and
+    //   left UNSCREENED (a contact is screened when electron-sea density lies
+    //   between the pair, so in a metal every contact, before and after, is
+    //   screened).
+    //   THE NAIVE VERSION — count same-sign nearest neighbours — is what this is
+    //   defined against, and it is wrong in a way a careless gate cannot see: on
+    //   unshifted rock salt it reads 0, which looks right, but on a cation-only
+    //   bcc metal it reads 8 before anything has moved, and after a slide it
+    //   reads 6, so a naive instrument would announce that slipping a metal
+    //   REMOVES two like-charge contacts. Section 8 asserts exactly that
+    //   disagreement case, because a gate that only checks "the ionic block reads
+    //   6" passes the naive implementation and is worthless.
+    var BS_LIKE_EPS = 1e-9;
+    function bscNnOf(P, n) {
+        var b = 1e9, i, j, d;
+        for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+            d = bscMag([P[j][0] - P[i][0], P[j][1] - P[i][1], P[j][2] - P[i][2]]);
+            if (d < b) b = d;
+        }
+        return (b < 1e9) ? b : 0;
+    }
+    // The NAIVE count, kept as a named body rather than inlined: it is half of
+    // the definition (the metric is a difference of two of these) AND it is the
+    // thing the gate needs in order to prove the disagreement case.
+    function bscLikeCountAt(P, Q, n, cut) {
+        var c = 0, i, j, d;
+        for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+            if (!(Q[i] * Q[j] > 0)) continue;
+            d = bscMag([P[j][0] - P[i][0], P[j][1] - P[i][1], P[j][2] - P[i][2]]);
+            if (d <= cut + BS_LIKE_EPS) c++;
+        }
+        return c;
+    }
+    // IS THERE AN ELECTRON SEA BETWEEN THESE IONS? DERIVED FROM THE CHARGES, and
+    // that is the whole point (D-2). A lattice whose ions are ALL of one sign is
+    // not neutral by itself; the compensating negative charge has to be somewhere,
+    // and in a metal it is the delocalised sea spread between the cores — so every
+    // contact in such a lattice has electron density between the pair and none of
+    // them is unscreened. A lattice carrying both signs is neutral on its own
+    // ions, has no such background, and screens nothing.
+    //   Nothing authored can flip this. There is no mode string here, no sea:{}
+    //   flag consulted, no per-state override: metallic_bonding holds together
+    //   because its lattice is cation-only, and ionic_bonding cleaves because its
+    //   lattice is not, and neither JSON contains a claim about either outcome.
+    //   (Row G's sea LAYER — dispatch 4 — draws the electrons this derivation has
+    //   already concluded are there. It is a picture of this, not an input to it.)
+    function bscSeaScreens(Q, n) {
+        var pos = 0, neg = 0, i;
+        for (i = 0; i < n; i++) {
+            if (Q[i] > 0) pos++; else if (Q[i] < 0) neg++;
+        }
+        return (pos > 0 && neg === 0) || (neg > 0 && pos === 0);
+    }
+    function bscLikeContacts(P, Pref, Q, n) {
+        if (!(n > 1)) return 0;
+        if (bscSeaScreens(Q, n)) return 0;
+        var cut = BS_LIKE_CUT * bscNnOf(Pref, n);
+        if (!(cut > 0)) return 0;
+        // NOT clamped at zero, deliberately. On any lattice that carries both
+        // signs the reference count is 0 (a rock-salt ion has none but unlike
+        // neighbours), so the delta cannot go negative there; leaving it unclamped
+        // means a lattice that somehow lost contacts would say so instead of
+        // silently reading 0.
+        return bscLikeCountAt(P, Q, n, cut) - bscLikeCountAt(Pref, Q, n, cut);
+    }
+    // The same delta restricted to ONE site's own contacts. Published beside the
+    // block-wide number because the Phase-0 note describes the readout two ways
+    // ("contacts created by the shift" and "the count for the focal interface
+    // ion") and they are not the same number: on the shipped 3x3x3 rock-salt block
+    // the interface creates 6 and the focal ion at that interface gains 1. The HUD
+    // prints the block-wide count — the instrument reads the drawn scene, which is
+    // the status 'links' has always had on this surface — and this one is exposed
+    // for the professor pack and the gate.
+    function bscLikeFocalAt(P, Q, n, cut, s) {
+        var c = 0, j, d;
+        for (j = 0; j < n; j++) {
+            if (j === s || !(Q[s] * Q[j] > 0)) continue;
+            d = bscMag([P[j][0] - P[s][0], P[j][1] - P[s][1], P[j][2] - P[s][2]]);
+            if (d <= cut + BS_LIKE_EPS) c++;
+        }
+        return c;
+    }
+    function bscLikeFocal(P, Pref, Q, n, s) {
+        if (!(n > 1) || s < 0 || s >= n) return 0;
+        if (bscSeaScreens(Q, n)) return 0;
+        var cut = BS_LIKE_CUT * bscNnOf(Pref, n);
+        if (!(cut > 0)) return 0;
+        return bscLikeFocalAt(P, Q, n, cut, s) - bscLikeFocalAt(Pref, Q, n, cut, s);
+    }
+    // Contacts that CROSS the split plane — the size of the interface, so the
+    // outcome below is a FRACTION of the plane and not a raw count that grows
+    // with the block (a 5-step block creates 20 like contacts where a 3-step one
+    // creates 6, and both are the same physical situation).
+    //   P is the geometry to count on and cut the yardstick measured on the
+    //   REFERENCE, because the reference lattice is what defines "touching".
+    //   MEASURED, and it changed the answer: normalising against the interface
+    //   BEFORE the slide reads 6/9 on a 3-step block and 20/25 on a 5-step one,
+    //   i.e. the same physics gives 0.67 and 0.80 — the missing contacts are the
+    //   edge column that slid out of the crop, which is a CROP artefact and not a
+    //   property of the crystal. Normalising against the interface AFTER the
+    //   slide asks the question the physics asks — of the contacts still made
+    //   across this plane, how many are now like-charge — and reads 1.00 at every
+    //   block size. On screen that is the difference between a cleavage gap of
+    //   0.6 and 0.9 nearest-neighbour spacings.
+    function bscCrossContacts(P, Pref, siteList, n, nAx) {
+        var cut = BS_LIKE_CUT * bscNnOf(Pref, n), c = 0, i, j, d;
+        for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+            if (bscShiftHalf(siteList[i], nAx) === bscShiftHalf(siteList[j], nAx)) continue;
+            d = bscMag([P[j][0] - P[i][0], P[j][1] - P[i][1], P[j][2] - P[i][2]]);
+            if (d <= cut + BS_LIKE_EPS) c++;
+        }
+        return c;
+    }
+    // THE OUTCOME SOLVE (D-2). Config-only — it asks what the COMPLETED slide
+    // does, at state-local 0, never at the clock — so the camera fit can read it
+    // and a freeze pin cannot change it. frac is the fraction of the interface the
+    // slide turns like-charge and leaves unscreened: 1 would be an interface that
+    // is entirely like-charge afterwards, 0 a metal (or any scene the slide leaves
+    // screened or neutral). It is the ONLY thing that decides whether the halves
+    // come apart.
+    function bscShiftSolve(bs, siteList, n, Q, offOverride) {
+        var sc = bscShiftCfg(bs);
+        var off = (offOverride != null) ? offOverride : sc.off;
+        var Pref = bscShiftPos(bs, siteList, n, 0, null, 0);
+        var Pfull = bscShiftPos(bs, siteList, n, 0, null, off);
+        var nn = bscNnOf(Pref, n);
+        var made = bscLikeContacts(Pfull, Pref, Q, n);
+        var cross = bscCrossContacts(Pfull, Pref, siteList, n, sc.nAx);
+        var cross0 = bscCrossContacts(Pref, Pref, siteList, n, sc.nAx);
+        var frac = (made > 0) ? bscClamp(made / ((cross > 0) ? cross : made), 0, 1) : 0;
+        return { nn: nn, made: made, cross: cross, cross0: cross0, frac: frac };
+    }
+    // WHEN the halves come apart. Rule 32a: the slide is the cause and the split
+    // is the effect, so a scripted slip holds its new registry for BS_SHIFT_HOLD_MS
+    // before anything opens. Under a live drag there is no script to hold, so the
+    // effect tracks the cause continuously — and it starts at HALF a site, which
+    // is where the like ions actually come into registry (below half a site the
+    // original unlike neighbours are still the nearest thing across the plane).
+    function bscCleaveProg(bs, mms, shiftDrag) {
+        var sc = bscShiftCfg(bs);
+        if (shiftDrag != null) {
+            var u = (sc.off > 0) ? (shiftDrag / sc.off) : shiftDrag;
+            return mgSmooth01(bscClamp(u * 2 - 1, 0, 1));
+        }
+        if (sc.at_ms == null) return 0;
+        return mgRamp(mms, sc.at_ms + sc.dur + BS_SHIFT_HOLD_MS, BS_CLEAVE_MS, 0, 1);
+    }
+    // The gap between the two halves, in scene units. Zero at every instant of
+    // every scene whose slide creates no unscreened like contact — which is what
+    // makes metallic_bonding S5 and ionic_bonding S6 the SAME motion with opposite
+    // outcomes and no authored difference between them.
+    function bscCleaveU(bs, sol, mms, shiftDrag) {
+        if (!sol || !(sol.frac > 0) || !(sol.nn > 0)) return 0;
+        var p = bscCleaveProg(bs, mms, shiftDrag);
+        return (p > 0) ? BS_CLEAVE_NN * sol.nn * sol.frac * p : 0;
+    }
+    // A site's total displacement from the slip: the slide (moving half only) plus
+    // half the cleave gap, the two halves opening symmetrically about the plane so
+    // the block keeps its centre and the camera fit stays a symmetric solve.
+    function bscShiftOffsetOf(bs, SI, sol, mms, shiftDrag, sVal) {
+        var sc = bscShiftCfg(bs), o = [0, 0, 0];
+        if (!SI || !(SI.a_pm > 0)) return o;
+        var half = bscShiftHalf(SI, sc.nAx);
+        if (sVal !== 0 && half) o[sc.dAx] += sVal * bscShiftStepU(bs, SI);
+        var g = bscCleaveU(bs, sol, mms, shiftDrag);
+        if (g > 0) o[sc.nAx] += half ? g * 0.5 : -g * 0.5;
+        return o;
+    }
+    // The half-extent the slip adds, for the camera fit. Config-only, exactly as
+    // bscMeltExtent is: it reads the AUTHORED offset and the derived outcome, never
+    // the clock, so the fit is the same number on the first frame and under a pin.
+    //   IT ALSO COVERS A SLIP THE TEACHER CAN REACH BUT NO SCRIPT AUTHORS.
+    //   FOUND IN FRAMES, not by any closed-form assertion: an explore sandbox
+    //   exposing the shift slider authors no shift block, so the fit was solved
+    //   for the packed block — and a teacher dragging the slider to 1.00 slid one
+    //   half a whole site and opened a cleavage gap that ran off the frame,
+    //   because the camera is solved once at state entry from config alone (it
+    //   has to be: a fit that chased the live geometry would move the camera
+    //   whenever the teacher touched a control, Rule 32d). The slider's full
+    //   travel IS one site by definition, so the reachable pose is a config fact
+    //   and the fit can carry it with no clock and no drag history.
+    function bscShiftExtent(bs, siteList) {
+        if (!bs || !siteList || siteList.length < 2) return 0;
+        var reach = bscHasControl(bscControlList(bs.controls), "shift");
+        if (!bs.shift && !reach) return 0;
+        var n = siteList.length, Q = [], i;
+        for (i = 0; i < n; i++) Q.push(siteList[i].q);
+        var sc = bscShiftCfg(bs);
+        var off = bs.shift ? Math.abs(sc.off) : 1;
+        var sol = bscShiftSolve(bs, siteList, n, Q, off);
+        return off * bscShiftStepU(bs, siteList[0]) +
+            BS_CLEAVE_NN * sol.nn * sol.frac * 0.5;
+    }
+    // ── E3b T-2: THE MELT LAW ─────────────────────────────────────────────────
+    //   f_melt(T_K, pair) = clamp((T_K - pair.mp_K) / 25, 0, 1). DERIVED, never
+    //   authored (D-2): nothing in any JSON says "this one melts" — the outcome
+    //   falls out of the state's own temperature against the pair's own mp_K, so
+    //   the SAME authored 1150 K melts NaCl (1074) and leaves MgO (3125) solid,
+    //   which is ionic_bonding S9's entire lesson.
+    function bscMeltFrac(T_K, pair) {
+        if (!pair || pair.mp_K == null || T_K == null) return 0;
+        return bscClamp((T_K - pair.mp_K) / BS_MELT_WIDTH_K, 0, 1);
+    }
+    // WHICH sites go first: the golden-ratio low-discrepancy sequence on the site
+    // INDEX. Deterministic, so a rewind photographs the same melt; low-discrepancy,
+    // so the mobile count tracks f at every block size instead of clumping.
+    function bscMeltHash(ix) {
+        var v = (ix + 1) * BS_MELT_PHI;
+        return v - Math.floor(v);
+    }
+    // How far THIS site has left its own lattice point, in [0,1]. Its onset sits
+    // at hash*(1 - ramp) and it eases out over the ramp, so:
+    //   f = 0  ->  0 for every site (nothing has moved: the solid is a solid)
+    //   f = 1  ->  1 for every site (the block is fully molten)
+    // and it is monotone in f in between, so a rising temperature can only ever
+    // free more ions and never re-freeze one. Closed form in (index, f) — no
+    // latch, no accumulator, no replayed history (D-1), which is exactly what lets
+    // a group OPEN already molten with no memory of having melted.
+    function bscSiteMelt(ix, f) {
+        if (!(f > 0)) return 0;
+        if (f >= 1) return 1;
+        var onset = bscMeltHash(ix) * (1 - BS_MELT_SITE_RAMP);
+        return bscClamp((f - onset) / BS_MELT_SITE_RAMP, 0, 1);
+    }
+    // The mobile ion's path: a bounded three-axis closed form with a per-index
+    // phase AND a per-index frequency spread, so the molten block mixes rather
+    // than pulsing in unison. Bounded by amp on every axis, so the camera fit
+    // stays a config-only solve (see bscMeltExtent).
+    //   SIMPLIFICATION, named rather than hidden: ions pass through one another.
+    //   This is a schematic liquid — the teaching is that the ORDER is gone and
+    //   the carriers are free to move, not a hard-sphere molecular-dynamics run.
+    function bscMeltWander(ix, tSec, amp) {
+        var h = bscMeltHash(ix), h2 = bscMeltHash(ix + 7), h3 = bscMeltHash(ix + 19);
+        var s = 1 + BS_MELT_W_SPREAD * (h - 0.5);
+        return [
+            amp * Math.sin(BS_MELT_W[0] * s * tSec + h * 6.283185307179586),
+            amp * Math.sin(BS_MELT_W[1] * s * tSec + h2 * 6.283185307179586),
+            amp * Math.sin(BS_MELT_W[2] * s * tSec + h3 * 6.283185307179586)
+        ];
+    }
+    // ── E3b F1 (2026-08-03): A MELTING SAMPLE STAYS INSIDE ITS OWN SAMPLE ─────
+    //   The dispatch-2 melt law let a mobile ion wander BS_MELT_WANDER = 0.85
+    //   nearest-neighbour spacings on each of three axes, i.e. up to 8.64 scene
+    //   units from its lattice point for NaCl — for a 3x3x3 block whose own
+    //   half-span is 5.875. A molten sample therefore travelled further than the
+    //   sample is wide: ionic S8 (a solid block beside a molten one at +-9) and S9
+    //   (NaCl melting beside solid MgO) rendered as ONE fused blob with both group
+    //   labels sitting on it, which destroys the negative-control pedagogy those
+    //   two states exist for
+    //   (.visual_runs/ionic_bonding/20260803-071759/STATE_9__dense_t12000.png).
+    //   AND IT IS PHYSICALLY WRONG, not merely a framing problem: a liquid keeps
+    //   its volume. Melting loses long-range ORDER, not containment.
+    //   THE LAW. The mobile ion's wander is applied to its own lattice point and
+    //   the result FOLDED back into the group's own envelope — the group's lattice
+    //   box, grown by BS_MELT_EXPAND. A fold (a triangle reflection) rather than a
+    //   clamp, because a clamp would pin the surface ions flat against the face
+    //   while a reflection is what a particle in a container actually does, and it
+    //   is continuous, so nothing jumps. The ions still cross the sample and mix —
+    //   the order is gone, which IS the teaching — they simply cannot leave it.
+    //   BS_MELT_EXPAND is the fusion volume expansion, named rather than tuned:
+    //   ionic halides expand roughly 17-25% by volume on melting (NaCl about 25%),
+    //   i.e. 1.05-1.08 linear, so 1.08 is the generous end of the real range.
+    //   Closed form in (index, t, config) — no clamp history, no latch, no
+    //   accumulator (D-1) — so a rewind photographs the same molten pose.
+    //   E3b F4 (2026-08-03) EXTENDS THE SAME LAW TO THE FIELD MIGRATION. F1 bounded
+    //   the melt and explicitly left the drift alone, and the drift then had the
+    //   identical defect: at full field a mobile ion translated BS_ION_DRIFT_NN =
+    //   1.6 nearest-neighbour spacings, 9.4 units for NaCl against a sample whose
+    //   own half-span is 5.875, so ionic S8's molten Cl- sublattice was drawn
+    //   INSIDE the solid negative control it exists to be compared with
+    //   (.e3b_drive/F1_after_S8_t13000.png). Electrolysis moves ions TO THE
+    //   ELECTRODES — for a bounded sample, to its own surfaces — so the fix is not
+    //   a cosmetic clamp: piling up at the faces IS the physical outcome, and the
+    //   charge separation it draws is exactly what a conducting melt does.
+    var BS_MELT_EXPAND = 1.08;
+    // Fold x back into [-h, h] by reflection. fold(x) === x for every |x| <= h, so
+    // a solid block and the whole ramp-in of the melt are bit-for-bit untouched.
+    function bscMeltFold(x, h) {
+        if (!(h > 0)) return 0;
+        var p = 4 * h, m = (x + h) % p;
+        if (m < 0) m += p;
+        if (m > 2 * h) m = p - m;
+        return m - h;
+    }
+    // E3b F4: and the MIGRATION crowds against the same wall instead of reflecting
+    // off it. A drifting ion is not bouncing about — it is being driven one way, so
+    // when it reaches the sample's surface it STOPS THERE and the ions behind it
+    // pile up on it. That is the space-charge layer electrolysis builds, and it is
+    // the picture ionic S8 teaches: excess cations at one face, excess anions at
+    // the other.
+    //   The last BS_PILE_NN spacings before the face are a SOFT wall rather than a
+    // hard clamp, for two reasons that are both about the teaching. A hard clamp
+    // would collapse every driven plane onto exactly one coordinate — a flat sheet
+    // where a crowd belongs — and it would stop the ion moving in the field
+    // direction at all, so a molten sample would read as frozen the moment its ions
+    // arrived. The saturating map keeps the planes ORDERED and keeps every ion
+    // moving, just compressed: the crowd is dense at the face and thins inward,
+    // which is what a space-charge layer looks like.
+    //   Algebraic (no transcendental), odd, monotone, C1 at the knee, and the
+    // identity for |x| <= h - s, so nothing inside the sample is touched. Its range
+    // is strictly inside (-h, h), so containment is by construction, not by tuning.
+    var BS_PILE_NN = 0.5;
+    function bscIonPile(x, h, s) {
+        if (!(h > 0)) return 0;
+        if (!(s > 0)) return bscClamp(x, -h, h);
+        if (s > h) s = h;
+        var k = h - s, a = Math.abs(x);
+        if (a <= k) return x;
+        var y = (a - k) / s;
+        return (x < 0 ? -1 : 1) * (k + s * y / (1 + y));
+    }
+    // The half-span of a cell's own generated block, in CELL units, cached on the
+    // (cell, n) key — the generator is the ONE definition of where sites sit, so
+    // the envelope is read off it rather than re-derived from nx/ny/nz (hcp's
+    // odd-layer offsets and its c/a ratio would not survive a re-derivation).
+    var BS_MELT_ENV_CACHE = {};
+    function bscCellHalfSpan(cell, n) {
+        var key = cell + ":" + n[0] + "," + n[1] + "," + n[2];
+        if (BS_MELT_ENV_CACHE[key]) return BS_MELT_ENV_CACHE[key];
+        var S = bscCellSites(cell, n[0], n[1], n[2]), h = [0, 0, 0], i, a;
         for (i = 0; i < S.length; i++) {
-            var d = bscMag(S[i].at) + S[i].rPm / p2u;
+            for (a = 0; a < 3; a++) {
+                if (Math.abs(S[i].at[a]) > h[a]) h[a] = Math.abs(S[i].at[a]);
+            }
+        }
+        BS_MELT_ENV_CACHE[key] = h;
+        return h;
+    }
+    // THIS site's sample envelope: its own group's centre and half-extents. Config
+    // only (the cell, the count and the cubic edge), so the fit that reads it stays
+    // a config-only solve and a freeze pin sees the same box.
+    function bscMeltEnv(bs, SI) {
+        var gb = bscSiteBlock(bs, SI);
+        var c = (SI && SI.gat) ? SI.gat : [0, 0, 0];
+        var lat = (gb && gb.lattice) || null;
+        var p2u = bscLinkCfg(gb).pm_per_unit;
+        var h0 = [0, 0, 0], a, i;
+        if (lat && SI && SI.a_pm > 0) {
+            var cell = (BS_CELLS.indexOf(lat.cell) >= 0) ? lat.cell : "rock_salt";
+            var hs = bscCellHalfSpan(cell, lat.n || [3, 3, 3]), aU = SI.a_pm / p2u;
+            h0 = [hs[0] * aU, hs[1] * aU, hs[2] * aU];
+        } else {
+            // free placement: the group's OWN authored units bound it.
+            var uns = (gb && gb.units) || [];
+            for (i = 0; i < uns.length; i++) {
+                var at = (uns[i] && uns[i].at) || [0, 0, 0];
+                for (a = 0; a < 3; a++) if (Math.abs(at[a]) > h0[a]) h0[a] = Math.abs(at[a]);
+            }
+        }
+        // A sample one plane thin along an axis (or a free pair, which is a LINE)
+        // would otherwise be pinned to that plane and could not melt visibly at
+        // all, so every axis gets at least half a nearest-neighbour spacing of
+        // room. It is the only place the envelope is not purely the lattice box.
+        var floorU = bscSiteNnU(bs, SI) * 0.5, h = [0, 0, 0];
+        for (a = 0; a < 3; a++) {
+            h[a] = h0[a] * BS_MELT_EXPAND;
+            if (h[a] < floorU) h[a] = floorU;
+        }
+        return { c: c, h: h, h0: h0 };
+    }
+    // The nearest-neighbour spacing this site's own cell defines, in scene units —
+    // the length scale the melt excursion is measured in. A free ion pair has no
+    // cell, so its own diameter stands in.
+    function bscSiteNnU(bs, SI) {
+        var p2u = bscLinkCfg(bscSiteBlock(bs, SI)).pm_per_unit;
+        if (SI && SI.a_pm > 0) return SI.a_pm * 0.5 / p2u;
+        return (SI ? SI.rPm : 100) * 2 / p2u;
+    }
+    function bscSiteAt(bs, SI, ix, mms, sepDrag, tempDrag, shiftOff, fieldDrag) {
+        var b = bscSiteBaseAt(bs, SI, mms, sepDrag);
+        // E3b L-1: the slip. Handed IN as a per-site displacement rather than
+        // solved here, because the outcome that decides it is a property of the
+        // WHOLE block (see bscShiftSolve) and re-solving it once per site would
+        // make an O(n^2) pass an O(n^3) one. Absent on every scene that authors no
+        // shift and touches no shift slider, so those are byte-identical.
+        if (shiftOff) b = [b[0] + shiftOff[0], b[1] + shiftOff[1], b[2] + shiftOff[2]];
+        var gb = bscSiteBlock(bs, SI);
+        var th = (gb && gb.thermal) || {};
+        var js = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
+        var pr = (SI && SI.pair) ? BS_ION_PAIRS[SI.pair] : null;
+        // E3b Q-1: ...and a state may DECLARE its ions mobile (ions.mobile) on a
+        // sample that is already a liquid when the state opens and has no heating
+        // beat to show. That is the third way this body can have work to do, so the
+        // early-out has to know about it or a declared-mobile scene with no jiggle
+        // and no pair would return its bare lattice point under a live field.
+        var iob = (gb && gb.ions) || null;
+        var fLive = (iob && iob.mobile === true && bscFieldAt(gb, mms, fieldDrag) > 0);
+        if (!(js > 0) && !pr && !fLive) return b;
+        var T_K = bscTempAt(gb, mms, tempDrag);
+        if (js > 0) {
+            // the same deterministic per-index seeded sines and the same sqrt(T/T0)
+            // amplitude law the unit layer uses, at the temperature of THAT instant.
+            var jg = bscJiggle((SI && SI.uidx != null) ? SI.uidx : ix,
+                mms / 1000, T_K, js);
+            b = [b[0] + jg[0], b[1] + jg[1], b[2] + jg[2]];
+        }
+        // E3b Q-1: ...and under a FIELD a MOBILE ion migrates along it, cations one
+        // way and anions the other. It is exactly [0,0,0] for an immobile ion at
+        // every field and at every instant — which is not a special case to be
+        // tested for afterwards but the negative control ionic_bonding S8 teaches
+        // FROM: the solid's ions jiggle in place and never translate.
+        var dr = bscIonDriftOf(bs, SI, ix, mms, fieldDrag, T_K);
+        // E3b T-2: ...and above the pair's own melting point the ion LEAVES its
+        // site. Below mp_K this term is exactly 0, so every state that does not
+        // heat past a real melting point is byte-identical to E3b S-2.
+        var mi = pr ? bscSiteMelt(ix, bscMeltFrac(T_K, pr)) : 0;
+        if (!dr && !(mi > 0)) return b;
+        var wd = (mi > 0)
+            ? bscMeltWander(ix, mms / 1000, mi * BS_MELT_WANDER * bscSiteNnU(bs, SI)) : null;
+        // E3b F1 + F4: ...and BOTH of those stay INSIDE THIS SAMPLE. One envelope,
+        // one containment law, applied ONCE to the site's own LATTICE point, with
+        // only the NET displacement handed to b — so the jiggle, the separation and
+        // the slip computed above are untouched and never folded twice.
+        //   THE DISORDER FOLDS AND THE MIGRATION PILES, and the difference between
+        // the two is the physics. Thermal disorder has no direction, so it reflects
+        // off the sample wall (bscMeltFold) — the F1 law, unchanged. The field DOES
+        // have a direction, so an ion driven against a face crowds there instead of
+        // bouncing back (bscIonPile) — the space-charge layer, applied AFTER the
+        // disorder because it is the surface the moving ion arrives at.
+        //   Each axis is folded ONCE and piled ONCE, off the site's own LATTICE
+        // point, and only the NET displacement is handed to b — so the jiggle, the
+        // separation and the slip computed above are neither folded nor cancelled.
+        var env = bscMeltEnv(bs, SI);
+        var o0 = (SI && SI.at) ? SI.at : [0, 0, 0];
+        //   THE CROWD IS ONLY AS DEEP AS THE DRIVE THAT MADE IT. The softened band
+        // is the smaller of BS_PILE_NN spacings and the migration's own size on
+        // that axis, which makes the whole term vanish continuously as the field
+        // ramps up (and on the two axes the field does not point along, where the
+        // migration is exactly 0 and the pile is therefore exactly the identity).
+        // Without it the softening would arrive at full depth the instant the field
+        // began, popping the outer ions inward by 1.5 units before a single one had
+        // migrated — a discontinuity in a scene whose whole subject is the motion.
+        var pileU = dr ? BS_PILE_NN * bscSiteNnU(bs, SI) : 0;
+        var out = [b[0], b[1], b[2]], ax, q, p;
+        for (ax = 0; ax < 3; ax++) {
+            q = o0[ax] - env.c[ax];
+            p = wd ? bscMeltFold(q + wd[ax], env.h[ax]) : q;
+            if (dr) {
+                p = bscIonPile(p + dr[ax], env.h[ax],
+                    Math.min(pileU, Math.abs(dr[ax])));
+            }
+            out[ax] = b[ax] + p - q;
+        }
+        return out;
+    }
+    // The half-extent the melt adds, for the camera fit. Config-only: it reads the
+    // PEAK temperature the state's own script reaches (T_from / T_K), never the
+    // clock, so the fit is the same number on the first frame and under a freeze
+    // pin — the same discipline bscPeakThermalScale already follows.
+    function bscMeltExtent(bs, siteList) {
+        var e = 0, i;
+        for (i = 0; i < siteList.length; i++) {
+            var SI = siteList[i], pr = SI.pair ? BS_ION_PAIRS[SI.pair] : null;
+            if (!pr) continue;
+            var gb = bscSiteBlock(bs, SI), th = (gb && gb.thermal) || {};
+            var tPk = (th.T_K != null) ? th.T_K : BS_T0_K;
+            if (th.T_from != null && th.T_from > tPk) tPk = th.T_from;
+            var f = bscMeltFrac(tPk, pr);
+            if (!(f > 0)) continue;
+            // E3b F1: what melting adds to the picture's reach is now the fusion
+            // EXPANSION and nothing else, because the excursion itself is bounded
+            // by the sample envelope. It was 0.85 * sqrt(3) = 1.47 nearest-
+            // neighbour spacings (8.64 units for NaCl, wider than the sample), so
+            // this is the same term measured honestly rather than a new one.
+            var env = bscMeltEnv(bs, SI);
+            var d = f * (bscMag(env.h) - bscMag(env.h0));
             if (d > e) e = d;
+        }
+        return e;
+    }
+    // ── E3b Q-1 / Q-2: THE FIELD, AND WHO MOVES UNDER IT ─────────────────────
+    //   THE FIELD IS DESTINATION-VALUED, like every other scalar cue on this
+    //   surface (the Desk-1 rule, paid for by hydrogen_bonding S1 shipping a static
+    //   state): field names where the ramp ENDS and field_at_ms when it starts,
+    //   so a state authoring field 1 + field_at_ms 6000 opens with NO field and
+    //   reaches full field at 7200. Closed form in state-local ms (D-1), no latch,
+    //   so a freeze pin photographs the same pixels by construction.
+    function bscFieldCfg(bs) {
+        var ax = (bs && BS_FIELD_AXES.indexOf(bs.field_axis) >= 0) ? bs.field_axis : "x";
+        return {
+            to: (bs && bs.field != null) ? bs.field : 0,
+            at_ms: (bs && bs.field_at_ms != null) ? bs.field_at_ms : null,
+            dur: (bs && bs.field_duration_ms != null) ? bs.field_duration_ms : BS_FIELD_MS,
+            ax: BS_FIELD_AXES.indexOf(ax)
+        };
+    }
+    function bscFieldAt(bs, mms, fieldDrag) {
+        if (fieldDrag != null) return fieldDrag;
+        var fc = bscFieldCfg(bs);
+        if (fc.at_ms == null) return fc.to;
+        return mgRamp(mms, fc.at_ms, fc.dur, 0, fc.to);
+    }
+    function bscFieldDir(bs) {
+        var d = [0, 0, 0];
+        d[bscFieldCfg(bs).ax] = 1;
+        return d;
+    }
+    // WHEN the carriers respond. Rule 32a: the arrows are the cause, the carriers
+    // moving is the effect, so the response does not begin until the field has
+    // arrived AND been held long enough to read. Under a live drag there is no
+    // script to hold, so the effect tracks the cause from the state's own opening.
+    function bscDriftProg(bs, mms, fieldDrag) {
+        var fc = bscFieldCfg(bs);
+        var t0 = (fieldDrag != null || fc.at_ms == null) ? 0
+            : (fc.at_ms + fc.dur + BS_FIELD_HOLD_MS);
+        return mgRamp(mms, t0, BS_DRIFT_MS, 0, 1);
+    }
+    //   WHO MOVES, in [0,1]. A site is mobile because its own crystal has MELTED
+    //   (T-2's f_melt, derived from this instant's T_K against the pair's own
+    //   mp_K) or because the state DECLARES it so (ions.mobile — for a sample that
+    //   is already a liquid when the state opens). Everything else returns exactly
+    //   0 and therefore never translates by so much as a float epsilon.
+    //   A CATION-ONLY METAL FALLS OUT OF THIS FOR FREE: a lattice of Na+ alone
+    //   resolves no BS_ION_PAIRS row, so it has no melting point, so f_melt is 0 at
+    //   every temperature and its cores stay on their sites under any field — which
+    //   is exactly right, and is why metallic_bonding must author CATION species
+    //   and not neutral atoms.
+    function bscIonMobile(bs, SI, ix, T_K) {
+        var gb = bscSiteBlock(bs, SI);
+        var io = (gb && gb.ions) || null;
+        if (io && io.mobile === true) return 1;
+        var pr = (SI && SI.pair) ? BS_ION_PAIRS[SI.pair] : null;
+        return pr ? bscSiteMelt(ix, bscMeltFrac(T_K, pr)) : 0;
+    }
+    // The migration itself: sign from the ion's OWN charge (D-2 — no JSON says
+    // which way anything goes), magnitude bounded by BS_ION_DRIFT_NN nearest-
+    // neighbour spacings and saturating over BS_DRIFT_MS. Returns null rather than
+    // a zero vector when nothing applies, so the caller's fast path is untouched
+    // on every scene that has no field.
+    function bscIonDriftOf(bs, SI, ix, mms, fieldDrag, T_K) {
+        if (!SI || !SI.q) return null;
+        var gb = bscSiteBlock(bs, SI);
+        var fv = bscFieldAt(gb, mms, fieldDrag);
+        if (!(fv > 0)) return null;
+        var mob = bscIonMobile(bs, SI, ix, T_K);
+        if (!(mob > 0)) return null;
+        var d = bscFieldDir(gb);
+        var a = ((SI.q > 0) ? 1 : -1) * fv * mob * BS_ION_DRIFT_NN *
+            bscSiteNnU(bs, SI) * bscDriftProg(gb, mms, fieldDrag);
+        return [d[0] * a, d[1] * a, d[2] * a];
+    }
+    // The half-extent the migration adds, for the camera fit. Config-only, exactly
+    // as bscMeltExtent and bscShiftExtent are: it reads the AUTHORED field
+    // destination — and the Field slider's own full reach on a sandbox that exposes
+    // it, the bscShiftExtent lesson (a pose the teacher can reach but no script
+    // authors is still a config fact) — never the clock. So the fit is the same
+    // number on the first frame and under a freeze pin.
+    // E3b F4 LEAVES THIS TERM ALONE, DELIBERATELY, and says why. Since F4 the
+    // migration cannot reach past the sample envelope, so the honest reach is the
+    // fusion allowance bscMeltExtent already reports and this term is now a
+    // CONSERVATIVE CAMERA RESERVE — about 9 units of headroom on a NaCl block for
+    // an excursion the engine no longer makes. Measuring it honestly was tried and
+    // reverted in the same dispatch: it pulls the camera in far enough to expose
+    // two defects that belong to the framing owner and not to the containment law
+    // — the FIELD ARROW ROW is not in bscFitPoints at all (its shafts are cut by
+    // the border at the tighter distance), and bscPlaceLabel scores a group label
+    // against the HUD and the other groups but not against that row, so the labels
+    // land on the arrows once the row moves. Both are measured in section 34(e5).
+    function bscFieldExtent(bs, siteList) {
+        if (!bs || !siteList || !siteList.length) return 0;
+        var reach = bscHasControl(bscControlList(bs.controls), "field");
+        var e = 0, i;
+        for (i = 0; i < siteList.length; i++) {
+            var SI = siteList[i];
+            if (!SI.q) continue;
+            var gb = bscSiteBlock(bs, SI), fc = bscFieldCfg(gb);
+            var fv = reach ? 1 : fc.to;
+            if (!(fv > 0)) continue;
+            var io = (gb && gb.ions) || null;
+            var pr = SI.pair ? BS_ION_PAIRS[SI.pair] : null;
+            var th = (gb && gb.thermal) || {};
+            var tPk = (th.T_K != null) ? th.T_K : BS_T0_K;
+            if (th.T_from != null && th.T_from > tPk) tPk = th.T_from;
+            var mob = (io && io.mobile === true) ? 1 : (pr ? bscMeltFrac(tPk, pr) : 0);
+            if (!(mob > 0)) continue;
+            var d = fv * mob * BS_ION_DRIFT_NN * bscSiteNnU(bs, SI);
+            if (d > e) e = d;
+        }
+        return e;
+    }
+    // ── E3b ROW G: THE ELECTRON SEA ──────────────────────────────────────────
+    //   The COUNT is derived, never authored: valence_e free electrons per cation
+    //   CORE on screen, off BS_METALS for the live metal — so the Metal picker and
+    //   the "free electrons per atom" slider both change the picture, and
+    //   metallic_bonding S6's "more electrons per atom, stronger lattice" is one
+    //   quantity driving both the drawing and the ΔH_at readout beside it.
+    //   Capped at BS_MAX_SEA and the cap is DECLARED (D-6), not assumed.
+    function bscMetalKey(bs, siteList) {
+        var i;
+        for (i = 0; i < (siteList || []).length; i++) {
+            var el = bscParentEl(siteList[i].species);
+            if (BS_METALS[el]) return el;
+        }
+        return null;
+    }
+    function bscSeaCfg(bs, siteList, nShown, valDrag, metalDrag) {
+        var sea = (bs && bs.sea) || null;
+        if (!sea || !sea.show) return null;
+        var mk = metalDrag || bscMetalKey(bs, siteList);
+        var ve = (valDrag != null) ? Math.round(valDrag)
+            : ((mk && BS_METALS[mk]) ? BS_METALS[mk].valence_e : 1);
+        var cores = 0, i;
+        for (i = 0; i < nShown; i++) if (siteList[i].q > 0) cores++;
+        var n = ve * cores;
+        if (n > BS_MAX_SEA) n = BS_MAX_SEA;
+        return { metal: mk, valence_e: ve, cores: cores, n: (n > 0) ? n : 0 };
+    }
+    // An electron's DISPLACEMENT from its host core: a bounded, FAST, three-axis
+    // closed form (so the sea reads as delocalised motion and not as orbits), plus
+    // the SLOW net drift the field puts on it — AGAINST the field, because an
+    // electron is negative, derived the same way every other sign on this surface
+    // is. Fast directionless motion carrying a slow net bias is the whole content
+    // of the shipped physics concept drift_velocity, and this is the same picture.
+    //   SIMPLIFICATION, named rather than hidden: the electrons pass through the
+    //   cores and through one another. This is a schematic sea — the teaching is
+    //   that the electrons belong to the whole block and are free to move, not a
+    //   scattering simulation.
+    function bscSeaAt(bs, e, siteList, nShown, mms, fieldDrag) {
+        if (!(nShown > 0)) return null;
+        var SI = siteList[e % nShown];
+        var nn = bscSiteNnU(bs, SI), tSec = mms / 1000;
+        var g1 = bscMeltHash(e * 3 + 1), g2 = bscMeltHash(e * 3 + 2), g3 = bscMeltHash(e * 3 + 3);
+        var s = 1 + BS_SEA_W_SPREAD * (g1 - 0.5), a = BS_SEA_SPREAD_NN * nn;
+        var o = [
+            a * Math.sin(BS_SEA_W[0] * s * tSec + g1 * 6.283185307179586),
+            a * Math.sin(BS_SEA_W[1] * s * tSec + g2 * 6.283185307179586),
+            a * Math.sin(BS_SEA_W[2] * s * tSec + g3 * 6.283185307179586)
+        ];
+        var fv = bscFieldAt(bs, mms, fieldDrag);
+        if (fv > 0) {
+            var d = bscFieldDir(bs);
+            var k = -fv * BS_SEA_DRIFT_NN * nn * bscDriftProg(bs, mms, fieldDrag);
+            o[0] += d[0] * k; o[1] += d[1] * k; o[2] += d[2] * k;
+        }
+        return o;
+    }
+    // Q-4's readout value. NOT RATIFIED (see BS_DRIFT_V0_MS): linear in the live
+    // field so the instrument tracks the physical change (Rule 33d), and 0 at 0.
+    function bscDriftVms(fv) {
+        return BS_DRIFT_V0_MS * ((fv > 0) ? fv : 0);
+    }
+    // The mantissa of a value already divided by its power of ten. Up to two
+    // decimals, trailing zeros dropped, so field 1.00 prints "1" (the Phase-0
+    // string) and field 0.50 prints "0.5" rather than a spurious "0.50".
+    function bscFmtMant(v) {
+        return String((v >= 1) ? (Math.round(v * 10) / 10) : (Math.round(v * 100) / 100));
+    }
+    // E3b S-4: the LIVE centre-to-centre distance between the two leading sites,
+    // in picometres on the scene's own linear scale. In a free pair those two are
+    // the pair the approach ramp drives; in a lattice the shell-ordered list puts
+    // the centre site first and one of its nearest neighbours second, so the SAME
+    // function reads the nearest-neighbour distance (a/2 = 282 pm for NaCl). ONE
+    // instrument (D-3): the HUD line and the gate read this and nothing else
+    // recomputes it.
+    //   It reads the EQUILIBRIUM positions, not the jiggled ones. MEASURED in the
+    //   browser on a 27-site rock-salt sandbox at jiggle_scale 0.35: the drawn
+    //   distance wanders 282 -> 294 -> 298 pm frame to frame, i.e. the readout
+    //   flickers by 6% of its own value while nothing physical is changing. Rule
+    //   33d asks for an instrument that TRACKS the physical change; a number
+    //   re-rolling every frame is noise, not a needle, and a teacher cannot read
+    //   it aloud. The taught quantity is the spacing the ions settle at — the
+    //   jiggle is thermal noise ABOUT that spacing, and the lattice itself is
+    //   what the line names. On every state without a jiggle the two are the same
+    //   number, so ionic S3's approach ramp is unaffected either way.
+    function bscSepPmAt(bs, siteList, mms, sepDrag) {
+        if (!siteList || siteList.length < 2) return null;
+        var A = bscSiteBaseAt(bs, siteList[0], mms, sepDrag);
+        var B = bscSiteBaseAt(bs, siteList[1], mms, sepDrag);
+        return bscMag([B[0] - A[0], B[1] - A[1], B[2] - A[2]]) * bscLinkCfg(bs).pm_per_unit;
+    }
+    // E3b S-1, second order: the half-extent a separation_axis pair of SITES
+    // reaches at centre-to-centre distance sepVal. bscSiteList returns the
+    // AUTHORED at for a free site, and a separation_axis pair authors both units
+    // at the origin because baseAt places them — so without this term an ion pair
+    // measures as two touching spheres and both the auto-fit and the opening-pose
+    // cut are solved for a scene that is never drawn: the pair would open at
+    // approach_from, off frame, on a surface whose standing authoring rule is
+    // never author camera. The MOLECULAR half of the same case is padded by the
+    // BS_BOND_LEN term the two existing loops carry; the ION half had nothing.
+    // Returns 0 for every scene without a separation_axis SITE pair, so no
+    // molecular scene moves by a pixel.
+    function bscSepSiteExtent(bs, sepVal) {
+        if (!bs || !bs.separation_axis) return 0;
+        var uns = bs.units || [], p2u = bscLinkCfg(bs).pm_per_unit, e = 0, i;
+        for (i = 0; i < uns.length && i < 2; i++) {
+            var spk = uns[i] && uns[i].species;
+            if (!spk || !bscIsSite(spk)) continue;
+            var d = Math.abs(sepVal) * 0.5 + bscRadiusPm(spk) / p2u;
+            if (d > e) e = d;
+        }
+        return e;
+    }
+    // ── E3b F2/F3 (2026-08-03): THE FRAME MUST CONTAIN WHAT IS DRAWN ──────────
+    //   Found by reading ionic_bonding's EYE frames, and invisible to every green
+    //   gate before this one. The auto-fit measured a bounding-SPHERE radius and
+    //   multiplied it by BS_FIT_MARGIN. That is the honest bound for a scene that
+    //   SPINS about the view axis — any point can swing into the vertical, which
+    //   is the tight screen axis — and it is far too conservative for a scene that
+    //   stands still and lies WIDE: the canvas is 16:9, so a horizontal pair has
+    //   1.78x the room the sphere rule gives it. The two measured cases pull in
+    //   OPPOSITE directions, which is why one number could not serve both:
+    //     - assemble (ionic S1) carried NO fit at all: two atoms at +-4.5 with
+    //       r(Na) = 186 pm reach 8.38 units against a visible half-height of
+    //       7*tan30 = 4.04 units, i.e. worst |NDC| 1.837 — BOTH atoms cut by the
+    //       frame edge, and only three or four of the eight shell dots on screen,
+    //       in the one state whose whole instruction is to count them
+    //       (.visual_runs/ionic_bonding/20260803-071759/STATE_1__frozen.png).
+    //     - transfer (ionic S2) frames the SAME two atoms at dist 15 and measures
+    //       0.544 — a clean frame — because it does not spin and az 90 lays the
+    //       pair across the 16:9 width. A sphere-rule fit would have pushed it to
+    //       18.4 and shrunk a good frame by 19% for nothing.
+    //   So the fit is now MEASURED against the drawn discs under the shipped
+    //   projection rather than margined against a radius: for every disc, the
+    //   distance at which it sits inside BS_FIT_BORDER of the frame, and the
+    //   camera stands at the largest of those — never NEARER than the mode's own
+    //   solved distance, which stays a FLOOR, because a solved camera is solved
+    //   for readability and not only for containment.
+    //   Config-only and clock-free, exactly as the scalar extent it replaces: the
+    //   fit is the same number on the first frame and under a freeze pin (D-1).
+    var BS_FIT_FOV_DEG = 60;        // the shipped PerspectiveCamera(60, ...)
+    var BS_FIT_ASPECT = 16 / 9;     // the review player canvas (1280x720)
+    var BS_FIT_BORDER = 0.90;       // a 10% border, the same border BS_FIT_MARGIN carried
+    // ── E3b F6: the FOV a scene is actually drawn at, and what that costs in
+    //   distance. ONE rule, read off the SCENE (placement) rather than off the
+    //   camera row, so the fit, the cut trigger, the ramps and the projection
+    //   itself cannot disagree about which projection is in use.
+    function bscSceneFov(bs) {
+        return (bs && bs.placement === "lattice") ? BS_LATTICE_FOV_DEG : BS_FIT_FOV_DEG;
+    }
+    // The distance multiplier that keeps APPARENT SIZE identical when the FOV
+    // narrows: a solved distance is solved for readability at 60 deg, and the same
+    // picture at fov subtends the same angle from d * tan(30) / tan(fov/2).
+    // Exactly 1 for every non-lattice scene, so nothing else moves by a pixel.
+    function bscCamDistK(bs) {
+        return Math.tan(BS_FIT_FOV_DEG * Math.PI / 360) /
+            Math.tan(bscSceneFov(bs) * Math.PI / 360);
+    }
+    // The E2d cut condition at the FOV in use: a bounding sphere of radius e is
+    // framed only when the view cone is tangent to it, d >= e / sin(fov/2).
+    // bscCutClip(60) === BS_FIT_CLIP === 2.00, so every molecular scene keeps the
+    // exact trigger it had.
+    function bscCutClip(fov) {
+        return 1 / Math.sin((fov || BS_FIT_FOV_DEG) * Math.PI / 360);
+    }
+    // ── E3b F6: THE EQUIVALENCE FLOOR. A lattice state's claim is that its ions
+    //   are the SAME, and a perspective projection draws 1/z, so the claim is only
+    //   as true as the depth spread the camera stands off. h is the depth
+    //   half-spread of the drawn discs under this camera, and the drawn-radius
+    //   ratio of one species across the block is (d + h) / (d - h) — invert it at
+    //   BS_LATTICE_RATIO_MAX and the required distance is a closed form.
+    //   Config-only and clock-free, exactly like the fit it sits beside, so it is
+    //   the same number on the first frame and under a freeze pin.
+    //   0 for every non-lattice scene: a molecule is one unit deep and the claim
+    //   it makes is not equivalence.
+    function bscRatioFloorDist(bs, cam, rs, sepU) {
+        if (!bs || bs.placement !== "lattice") return 0;
+        var P = bscFitPoints(bs, null, rs, sepU);
+        if (!P.length) return 0;
+        var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+        var f = [-Math.cos(elr) * Math.cos(azr), -Math.sin(elr), -Math.cos(elr) * Math.sin(azr)];
+        var h = 0, i;
+        for (i = 0; i < P.length; i++) {
+            var zb = Math.abs(P[i].at[0] * f[0] + P[i].at[1] * f[1] + P[i].at[2] * f[2]);
+            if (zb > h) h = zb;
+        }
+        var R = BS_LATTICE_RATIO_MAX;
+        return h * (R + 1) / (R - 1);
+    }
+    // A scene that turns about the view axis can rotate ANY drawn point into the
+    // vertical, so its bound is the screen-plane RADIUS and not the box. Read from
+    // config the same way the frame updater resolves the turn — an explore sandbox
+    // free-runs under Rule 37, and an exposed spin control is a turn the teacher
+    // can start at any instant — so the fit can never be one beat behind the scene.
+    function bscSceneSpins(bs) {
+        if (!bs) return false;
+        if (bs.spin_rate > 0) return true;
+        if (bscHasControl(bscControlList(bs.controls), "spin")) return true;
+        return (bs.mode || "dipole_sum") === "explore";
+    }
+    // EVERY disc this scenario draws, as { at, r } in scene units. ONE definition:
+    // bscSiteExtent (the scalar the E2d cut reads) is the max |at| + r over this
+    // list, so the framing solve and the cut trigger cannot disagree about what is
+    // actually on screen.
+    //   rs   — the drawn radius scale (the coordination reveal opens the block from
+    //          its packed pose to BS_COORD_RADIUS_SCALE); 1 for every other state.
+    //   sepU — the separation to place a separation_axis pair at; null = the
+    //          state's settled value, which is what the settled extent means.
+    function bscFitPoints(bs, pairOverride, rs, sepU) {
+        var S = bscSiteList(bs, pairOverride), p2u = bscLinkCfg(bs).pm_per_unit;
+        var out = [], i, k;
+        var rSc = (rs != null) ? rs : 1;
+        // The excursions the state's own script can reach. Each is exactly 0 for a
+        // scene that authors none, and each is a per-site reach in every direction,
+        // so it inflates the drawn radius rather than moving a point — term for
+        // term what the scalar extent added, so both numbers are unchanged.
+        // E3b T-2: a block that MELTS reaches past its own lattice points. Since
+        // F1 that reach is BOUNDED BY THE SAMPLE'S OWN ENVELOPE, so what it adds is
+        // the fusion expansion allowance and nothing more.
+        // E3b L-1: a block that SLIPS reaches further by the slide along the plane
+        // and by half the derived cleave gap across it. Exactly 0 for a scene that
+        // authors no shift, and 0 for a slide that opens no unscreened like contact
+        // (a metal slides without opening), so nothing else moves by a pixel.
+        // E3b Q-1: a block whose MOBILE ions migrate under a field reaches further
+        // still. Exactly 0 with no field and 0 for ions locked to their sites, so
+        // the negative-control half of ionic S8 does not move the camera either.
+        // Summed in ONE expression, never accumulated: every term is a pure
+        // function of config and the site list, and the D-1 scan reads this body.
+        var exc = Math.max(0, bscMeltExtent(bs, S)) + Math.max(0, bscShiftExtent(bs, S)) +
+            Math.max(0, bscFieldExtent(bs, S));
+        // si carries the SITE INDEX (E3b F5), so a growth beat can weight a point
+        // by whether the site it belongs to is on screen yet. -1 below marks every
+        // point that is not a site and therefore never fades.
+        for (i = 0; i < S.length; i++) {
+            out.push({ at: S[i].at, r: S[i].rPm / p2u * rSc + exc, si: i });
         }
         // E2b: ...and the MOLECULAR units, which bscSiteList deliberately does not
         // return (it feeds the site MESH pool, and a molecule is drawn by the unit
         // layer instead). Leaving them out made the auto-fit a silent no-op on
         // exactly the scene that needs it most — a thirty-molecule network is the
-        // widest thing this scenario draws. A unit reaches BS_BOND_LEN from its
-        // own origin in every direction, and its outermost atom carries its own
-        // radius, so |at| + BS_BOND_LEN + r bounds it whatever the orient (a
-        // rotation cannot change a magnitude). Pure config, so the fit is still
-        // identical on the first frame and under a freeze pin.
+        // widest thing this scenario draws. A unit reaches BS_BOND_LEN from its own
+        // origin in every direction and its outermost atom carries its own radius,
+        // so |at| + BS_BOND_LEN + r bounds it whatever the orient (a rotation cannot
+        // change a magnitude).
         var uns = (bs && bs.units) || [];
+        // NAMED SIMPLIFICATION (E3b F2): a MOLECULAR separation_axis pair is still
+        // measured from its authored at rather than from the +-sep/2 pose baseAt
+        // draws it in. The two cameras that frame one (approach_link, compare)
+        // carry solved distance floors measured on exactly that settled pose, and
+        // section 33 now MEASURES both — so the fit has nothing to add there,
+        // while placing the pair here would also move the E2d cut trigger, which
+        // reads the same extent and is another dispatch's mechanism. The ION half
+        // IS placed (below), because no floor covers it.
+        var sepAx = (bs && bs.separation_axis) ? bscNorm(bs.separation_axis) : null;
+        var sepV = (sepU != null) ? sepU : ((bs && bs.separation != null) ? bs.separation : 3.0);
         for (i = 0; i < uns.length; i++) {
             var un = uns[i], msp = un && un.species ? MG_MOLECULES[un.species] : null;
             if (!msp) continue;
-            var rMax = (MG_ELEMENTS[msp.central] || MG_ELEMENTS.C).radius, k;
+            var rMax = (MG_ELEMENTS[msp.central] || MG_ELEMENTS.C).radius;
             var ligs = bscLigands(msp);
             for (k = 0; k < ligs.length; k++) {
                 var rl = (MG_ELEMENTS[ligs[k] || msp.ligand] || MG_ELEMENTS.C).radius;
                 if (rl > rMax) rMax = rl;
             }
-            var du = bscMag(un.at || [0, 0, 0]) + BS_BOND_LEN + rMax;
-            if (du > e) e = du;
+            out.push({ at: un.at || [0, 0, 0], r: BS_BOND_LEN + rMax, si: -1 });
+        }
+        // E3b S-1: ...and the settled pose of a separation_axis pair of SITES,
+        // which the site loop cannot see (bscSiteList returns the authored at, and
+        // such a pair authors both units at the origin).
+        if (sepAx) {
+            for (i = 0; i < uns.length && i < 2; i++) {
+                var spk = uns[i] && uns[i].species;
+                if (!spk || !bscIsSite(spk)) continue;
+                var sg2 = (i === 0) ? -0.5 : 0.5;
+                out.push({
+                    at: [sepAx[0] * sepV * sg2, sepAx[1] * sepV * sg2, sepAx[2] * sepV * sg2],
+                    r: bscRadiusPm(spk) / p2u * rSc + exc, si: -1
+                });
+            }
         }
         // E3: ...at the HOTTEST pose the state's own script reaches. A heated
-        // network swells (see BS_VAPOUR): hydrogen_bonding S6 ramps to 600 K,
-        // where the shipped 30-unit cluster is 1.278x its authored size, and the
-        // fit measured against the cold pose would let the outer shell run off all
-        // four edges partway through the beat (worst |NDC| 0.878 -> 1.12). A state
-        // with no scripted ramp scales by exactly 1, so S5 / S7 / S8 and every
-        // pre-E3 scene keep their distance bit-for-bit. Still config-only: the
-        // peak is read off thermal.T_from / thermal.T_K, never off the clock.
-        // (conservative on purpose: the molecules themselves do not grow, only the
-        // spacing does, so scaling the whole half-extent over-frames slightly
-        // rather than under-framing.)
+        // network swells (see BS_VAPOUR): hydrogen_bonding S6 ramps to 600 K, where
+        // the shipped 30-unit cluster is 1.278x its authored size, and a fit
+        // measured against the cold pose would let the outer shell run off all four
+        // edges partway through the beat. A state with no scripted ramp scales by
+        // exactly 1, so every pre-E3 scene keeps its distance bit-for-bit. Still
+        // config-only: the peak is read off thermal.T_from / thermal.T_K, never off
+        // the clock. (Conservative on purpose: the molecules themselves do not
+        // grow, only the spacing does, so this over-frames slightly rather than
+        // under-framing.)
         var fIdx = (bs && bs.focal_unit != null) ? bs.focal_unit : 0;
         var fSp = (bs && bs.units && bs.units[fIdx] && bs.units[fIdx].species) ||
             (bs && bs.units && bs.units[0] && bs.units[0].species) || (bs && bs.species) || null;
         var pk = bscPeakThermalScale(bs, fSp);
-        return (pk > 1) ? e * pk : e;
+        if (pk > 1) {
+            for (i = 0; i < out.length; i++) {
+                out[i] = {
+                    at: [out[i].at[0] * pk, out[i].at[1] * pk, out[i].at[2] * pk],
+                    r: out[i].r * pk, si: out[i].si
+                };
+            }
+        }
+        return out;
+    }
+    // The distance at which every disc above sits INSIDE the frame, measured under
+    // the shipped projection. Distance-independent basis: the camera stands on the
+    // (az, el) ray and looks at the origin, so z = d + dot(p, f) and the condition
+    // (|screen offset| + r) <= z * tan(fov/2) * BORDER inverts to a single number
+    // per point. The largest of them is the answer; the caller keeps the mode's own
+    // solved distance as a floor.
+    //   gw   — the growth weighting (bscGrowCamW) when the row carries fit_ramp
+    //          "grow"; null everywhere else, which is byte-for-byte the pre-F5
+    //          body. It scales each SITE point-s required distance by that site-s
+    //          fade-in weight, so the answer is "where must the camera stand for
+    //          the block that is on screen at ms", not "for the block this state
+    //          ends on".
+    function bscFitDist(bs, cam, rs, sepU, gw) {
+        var P = bscFitPoints(bs, null, rs, sepU);
+        if (!P.length) return 0;
+        var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
+        var f = [-Math.cos(elr) * Math.cos(azr), -Math.sin(elr), -Math.cos(elr) * Math.sin(azr)];
+        var rt = bscNorm([f[1] * 0 - f[2] * 1, f[2] * 0 - f[0] * 0, f[0] * 1 - f[1] * 0]);
+        var up = [rt[1] * f[2] - rt[2] * f[1], rt[2] * f[0] - rt[0] * f[2], rt[0] * f[1] - rt[1] * f[0]];
+        // E3b F6: the FOV the scene is DRAWN at, not the fleet default — a lattice
+        // is drawn at BS_LATTICE_FOV_DEG, and a fit measured at 60 deg would put it
+        // at a fraction of the distance its own projection needs.
+        var tan = Math.tan(bscSceneFov(bs) * Math.PI / 360) * BS_FIT_BORDER;
+        var spin = bscSceneSpins(bs), d = 0, i;
+        for (i = 0; i < P.length; i++) {
+            var p = P[i].at, r = P[i].r;
+            var zb = p[0] * f[0] + p[1] * f[1] + p[2] * f[2];
+            var sx = Math.abs(p[0] * rt[0] + p[1] * rt[1] + p[2] * rt[2]);
+            var sy = Math.abs(p[0] * up[0] + p[1] * up[1] + p[2] * up[2]);
+            if (spin) { var rho = Math.sqrt(sx * sx + sy * sy); sx = rho; sy = rho; }
+            var need = (sy + r) / tan;
+            var needH = (sx + r) / (tan * BS_FIT_ASPECT);
+            if (needH > need) need = needH;
+            need -= zb;
+            if (gw) need *= bscGrowCamWeight(gw, P[i].si);
+            if (need > d) d = need;
+        }
+        return d;
+    }
+    // Half-extent of the site block in scene units, radii included — the scalar the
+    // E2d cut trigger reads. ONE body with the fit above (see bscFitPoints), so a
+    // term added to one is present in the other by construction.
+    function bscSiteExtent(bs, pairOverride) {
+        var P = bscFitPoints(bs, pairOverride, 1, null), e = 0, i;
+        for (i = 0; i < P.length; i++) {
+            var d = bscMag(P[i].at) + P[i].r;
+            if (d > e) e = d;
+        }
+        return e;
     }
     // E2d: the half-extent of the scene AS IT OPENS, at state-local t = 0. It is
     // not the same number as bscSiteExtent: a state that pulls its leading pair on
@@ -61345,6 +63259,14 @@ export const FIELD_3D_RENDERER_CODE = `
             var d0 = Math.abs(sep0) * 0.5 + BS_BOND_LEN + rMax;
             if (d0 > e) e = d0;
         }
+        // E3b S-1, the ION half of the same solve. The loop above carries
+        // "if (!msp) continue;" — it skips every species that is not in
+        // MG_MOLECULES, i.e. every ion — so an ion pair opening at approach_from
+        // was framed for its SETTLED pose and opened off frame. Never author
+        // camera is a standing authoring rule on this surface precisely because
+        // the fit is engine-owned, and that promise has to hold for ions too.
+        var eSep0 = bscSepSiteExtent(bs, sep0);
+        if (eSep0 > e) e = eSep0;
         return e;
     }
 
@@ -61479,9 +63401,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // sites, but the pool is measured across every pair anyway so a future
         // pair with a different cell cannot silently truncate the block.
         var needSites = 0;
+        // E3b row G: the SEA pool is all-or-nothing and sized from whether ANY
+        // state authors one, so every shipped bonding_scene concept — none of
+        // which does — pays ZERO electron meshes and is byte-identical.
+        var needSea = 0;
         for (sKey in (config.states || {})) {
             var sb = (config.states[sKey] || {}).bonding_scene;
             if (!sb) continue;
+            if (sb.sea && sb.sea.show) needSea = BS_MAX_SEA;
             if (sb.units && sb.units.length > need) need = sb.units.length;
             if (sb.count_max > need) need = sb.count_max;
             var nsp = bscSiteList(sb, null).length;
@@ -61497,6 +63424,8 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscUnitPool = nUnits;
         var nSites = Math.min(BS_MAX_SITES, needSites);
         window.PM_bscSitePool = nSites;
+        var nSea = Math.min(BS_MAX_SEA, needSea);
+        window.PM_bscSeaPool = nSea;
 
         var atomGeo = new THREE.SphereGeometry(1, 24, 24);
         var bondGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 14);
@@ -61656,7 +63585,10 @@ export const FIELD_3D_RENDERER_CODE = `
             pd.visible = false;
             addToScene(pd);
         }
-        for (i = 0; i < 8; i++) {
+        // E3b S-3: BS_SHELL_POOL = BS_MAX_SHELL_SITES rings of BS_MAX_SHELL_DOTS,
+        // ring r owning dots [r*BS_MAX_SHELL_DOTS ..). The molecular one-ring path
+        // is ring 0, so the eight dots E1 built keep their ids and their meaning.
+        for (i = 0; i < BS_SHELL_POOL; i++) {
             var sd = new THREE.Mesh(dotGeo.clone(), new THREE.MeshBasicMaterial({
                 color: hexToThreeColor(elecColor), transparent: true, opacity: 0.95,
                 depthTest: false, depthWrite: false
@@ -61714,6 +63646,64 @@ export const FIELD_3D_RENDERER_CODE = `
             sl.userData = { elementType: "bsc_lattice", id: "bsc_site" + u + "_lab", site: u };
             sl.visible = false;
             addToScene(sl);
+        }
+        // ── E3b ROW G: the electron sea. Small spheres on the EXISTING
+        //    bsc_electron element type, so the closed glow enum does not grow: a
+        //    narration sentence about "the electrons" already binds to that focal
+        //    and now brightens these too.
+        var seaGeo = new THREE.SphereGeometry(1, 10, 10);
+        for (u = 0; u < nSea; u++) {
+            var se = new THREE.Mesh(seaGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(elecColor), transparent: true, opacity: 0.96,
+                depthTest: false, depthWrite: false
+            }));
+            se.renderOrder = 998;
+            se.userData = { elementType: "bsc_electron", id: "bsc_sea" + u, slot: u };
+            se.visible = false;
+            addToScene(se);
+        }
+        // ── E3b Q-2: THE FIELD ARROWS. They are the CAUSE (Rule 32a) and they are
+        //    also the only thing on screen that says a field exists at all, so they
+        //    get their own element type and their own glow key rather than riding
+        //    the dipole arrows' — a sentence about the field must be bindable, and
+        //    "arrows" already means the dipole family on this surface.
+        var fieldColor = CO.field || "#80CBC4";
+        for (u = 0; u < BS_FIELD_ARROWS; u++) {
+            var fsh = new THREE.Mesh(shaftGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(fieldColor), transparent: true, opacity: 0.9,
+                depthTest: false, depthWrite: false
+            }));
+            fsh.renderOrder = 994;
+            fsh.userData = { elementType: "bsc_field", id: "bsc_field" + u + "_shaft", slot: u };
+            fsh.visible = false;
+            addToScene(fsh);
+            var fhd = new THREE.Mesh(headGeo.clone(), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor(fieldColor), transparent: true, opacity: 0.9,
+                depthTest: false, depthWrite: false
+            }));
+            fhd.renderOrder = 994;
+            fhd.userData = { elementType: "bsc_field", id: "bsc_field" + u + "_head", slot: u };
+            fhd.visible = false;
+            addToScene(fhd);
+        }
+        // Rule 41: the plainest literal word for what the arrows are. Auto-width
+        // because the label is live text on a surface where every other live label
+        // already has to be (the fixed-sprite truncation scar).
+        var fll = pmCreateAutoLabel("field", fieldColor, 0.52);
+        fll.userData = { elementType: "bsc_field", id: "bsc_field_label" };
+        fll.visible = false;
+        addToScene(fll);
+        // E3b T-4: ONE label per group (row R). pmCreateAutoLabel because a group
+        // label is live text whose width changes with the picked pair (NaCl -> MgO)
+        // and createLabelSprite would clip the wider string. elementType
+        // bsc_lattice, so the closed glow enum does not grow: a group IS its
+        // lattice, and the 'lattice' focal is what a narration sentence about
+        // either crystal already binds to.
+        for (u = 0; u < BS_MAX_GROUPS; u++) {
+            var gl = pmCreateAutoLabel("NaCl", textColor, 0.60);
+            gl.userData = { elementType: "bsc_lattice", id: "bsc_grp" + u + "_lab", group: u };
+            gl.visible = false;
+            addToScene(gl);
         }
         // The coordination rods: the counted set of ionic S5 is the highlighted
         // ion PLUS its six neighbours, and a rod per neighbour is a countable
@@ -62000,6 +63990,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // starting value, not at the panel default.
         window.PM_bscSep = (bs.approach_from != null) ? bs.approach_from
             : ((bs.separation != null) ? bs.separation : 3.0);
+        // E3b L-1, same rule again: a state that SCRIPTS the slip opens its shift
+        // widget at the ramp's OWN starting value. A slip always begins from
+        // registry, so that value is 0 and it is written literally rather than
+        // read from a *_from key that does not exist — the shift cue is
+        // DESTINATION-valued (offset_sites names where the slide ENDS), which is
+        // the standing rule for every scalar cue on this surface.
+        window.PM_bscShift = (bs.shift != null) ? 0 : window.PM_bscShift;
+        // E3b Q-2, the ENTRY half of the same rule for the FIELD. field_at_ms is
+        // DESTINATION-valued (field names where the ramp ends), so a state that
+        // cues the field on opens its widget at 0 and a state that authors a static
+        // field opens at that field. The frame pass then tracks it every frame
+        // until a trusted drag seizes it, joining the two in both directions.
+        window.PM_bscField = (bs.field_at_ms != null) ? 0
+            : ((bs.field != null) ? bs.field : 0);
         var molNow = MG_MOLECULES[window.PM_bscMol];
         // Same rule as separation above (FIXED scar scripted_change_desyncs_the_
         // dom_control_that_shares_it): a state that SCRIPTS the bend opens its
@@ -62049,6 +64053,20 @@ export const FIELD_3D_RENDERER_CODE = `
         seedRng("temperature", window.PM_bscTemp, function (v) { return String(Math.round(v)); });
         seedRng("count", window.PM_bscCount, function (v) { return String(Math.round(v)); });
         seedRng("separation", window.PM_bscSep, function (v) { return Number(v).toFixed(1); });
+        seedRng("field", window.PM_bscField, function (v) { return Number(v).toFixed(2); });
+        seedRng("shift", window.PM_bscShift, function (v) { return Number(v).toFixed(2); });
+        // E3b Q-5: the Metal picker is seeded from the state's OWN cation species,
+        // so a scripted metal lattice and the widget that shares it agree at state
+        // entry — the same entry-half rule the ion_pair picker below already obeys.
+        var mSeed = bscMetalKey(bs, bscSiteList(bs, null));
+        if (mSeed) {
+            window.PM_bscMetal = mSeed; seedSel("metal", mSeed);
+            // the ENTRY half of the same rule: the row opens at the metal's own
+            // free-electron count, never at a panel default that contradicts the
+            // sea already on screen.
+            window.PM_bscValence = BS_METALS[mSeed].valence_e;
+            seedRng("valence", window.PM_bscValence, function (v) { return String(Math.round(v)); });
+        }
 
         var hud = document.getElementById("bsc_hud");
         if (hud) hud.style.display = bs.show_hud ? "block" : "none";
@@ -62071,16 +64089,77 @@ export const FIELD_3D_RENDERER_CODE = `
         // off the live camera, so the countable view is identical on the first
         // frame and under a freeze pin.
         var cam = bs.camera || bscSolvedCamera(bs);
+        // cleared HERE, unconditionally, so a state that authors its own
+        // camera_position can never inherit the previous state's ramp.
+        window.PM_bscCamRamp = null;
+        // ── E3b F6: THE PROJECTION THIS STATE IS DRAWN WITH. Set HERE, once, for
+        //   every bonding_scene state — including back to 60 deg — so a lattice
+        //   state followed by a molecular one cannot inherit the narrow FOV, and
+        //   so the value the fit assumed is the value the renderer uses. Only the
+        //   branch below owns the camera; a state that authors its own
+        //   camera_position is framed by the generic path with a distance in
+        //   60 deg units, so it keeps the 60 deg projection.
+        var bsFov = (bs.camera || !stateDef.camera_position) ? bscSceneFov(bs) : BS_FIT_FOV_DEG;
+        var kFov = (bsFov === BS_FIT_FOV_DEG) ? 1 :
+            Math.tan(BS_FIT_FOV_DEG * Math.PI / 360) / Math.tan(bsFov * Math.PI / 360);
         if (bs.camera || !stateDef.camera_position) {
             var azr = (cam.az || 0) * Math.PI / 180, elr = (cam.el || 0) * Math.PI / 180;
-            var dd = cam.dist || 7;
+            // E3b F6: every solved distance on the narrow-FOV path is scaled by
+            // kFov, so the framing is the SAME PICTURE from further away and only
+            // the perspective divergence changes.
+            var dd = (cam.dist || 7) * kFov;
             // E3a auto-fit: a solved camera is solved for the CANONICAL block, and
             // a state that authors a bigger one would otherwise overflow the frame
             // silently. Derived from config, so it is still identical on the first
             // frame and under a freeze pin.
+            // E3b F2: MEASURED against the drawn discs under the shipped
+            // projection (bscFitDist), not margined against a bounding radius —
+            // the solved distance stays a FLOOR, so a camera solved for
+            // readability is never pulled IN, only pushed out when the scene it is
+            // handed genuinely does not fit.
             if (!bs.camera && cam.fit) {
-                var ext = bscSiteExtent(bs, null);
-                if (ext > 0) dd = Math.max(dd, ext * BS_FIT_MARGIN);
+                var dFit = bscFitDist(bs, cam, 1, null);
+                if (dFit > dd) dd = dFit;
+            }
+            // E3b F6: ...and a lattice stands off far enough that its ions read as
+            // the SAME ions. Inactive on every scene whose containment fit already
+            // satisfies it (measured: every shipped state except ionic S4, which it
+            // moves by 1%), and the guarantee for the block nobody has authored yet.
+            var dEq = bscRatioFloorDist(bs, cam, 1, null);
+            if (dEq > dd) dd = dEq;
+            // E3b F3: ...and a state whose block OPENS during the beat is framed
+            // for the pose it opens IN, then pulls to its solved distance across
+            // that same reveal (see PM_bscCamRamp in the frame updater). The
+            // coordination solve is correct for the ball-and-stick pose the reveal
+            // ARRIVES at, and the state opens 3.5 s earlier on the packed block:
+            // the shipped frames measured worst |NDC| 1.653 at t = 0 (one sphere
+            // filling the frame under a caption that counts six neighbours) and a
+            // 68.9% pixel jump when the reveal finally started.
+            var rampOk = (!bs.camera && !stateDef.camera_position && cam.fit);
+            window.PM_bscCamRamp = (rampOk && cam.fit_ramp === "reveal")
+                ? { on: "reveal", dist: (cam.dist || 7) * kFov, d0: dd } : null;
+            // E3b F5: ...and the growth half of the same rule. The entry distance
+            // becomes the OPENING pose-s own fit (the grow_from seed sites), with
+            // the ion-pair close-up distance as its floor — BS_CAMERAS
+            // .approach_link.dist, deliberately read from that row rather than
+            // copied, because a growth beat opens on exactly the scene that row is
+            // solved for (one ion pair at the nearest-neighbour separation) and the
+            // two numbers may not be allowed to drift apart. That floor is what
+            // makes ionic S3 -> S4 one continuous pose instead of a 4.3x cut.
+            if (rampOk && cam.fit_ramp === "grow") {
+                var gwN = bscSiteList(bs, null).length;
+                var gw0 = bscGrowCamW(bs, 0, gwN);
+                if (gw0) {
+                    // E3b F6: the ion-pair close-up floor is a 60 deg distance, so
+                    // it is scaled onto this state's projection like every other
+                    // floor here — S3 -> S4 stays one continuous pose in APPARENT
+                    // size, which is the only thing that floor was ever about.
+                    var d0g = Math.max(BS_CAMERAS.approach_link.dist * kFov,
+                        bscFitDist(bs, cam, 1, null, gw0));
+                    if (d0g > dd) d0g = dd;
+                    window.PM_bscCamRamp = { on: "grow", dist: dd, d0: d0g, az: cam.az, el: cam.el };
+                    dd = d0g;
+                }
             }
             animateCameraTo([dd * Math.cos(elr) * Math.cos(azr), dd * Math.sin(elr), dd * Math.cos(elr) * Math.sin(azr)]);
             // ── E2d: IT MOVES, EXCEPT WHERE MOVING WOULD DRAW THE SCENE OFF FRAME.
@@ -62102,12 +64181,38 @@ export const FIELD_3D_RENDERER_CODE = `
             //   glides exactly as before, which is every state pair shipped so far
             //   except the two that overflow.
             var ext0 = bscOpeningExtent(bs);
-            if (ext0 > 0 && spherical.radius < ext0 * BS_FIT_MARGIN) {
+            if (ext0 > 0 && spherical.radius < ext0 * bscCutClip(bsFov)) {
                 spherical.radius = targetSpherical.radius;
                 spherical.phi = targetSpherical.phi;
                 spherical.theta = targetSpherical.theta;
                 animating = false;
                 updateCameraFromSpherical();
+            }
+            // ── E3b F6: AND THE PROJECTION ITSELF. Written after the distances so
+            //   the near/far pair is derived from the range this state actually
+            //   travels (entry, ramp start, ramp end) rather than from a guess.
+            //   The 60 deg branch restores the exact values the camera was BUILT
+            //   with (0.1 / 100), so every molecular scene and every other scenario
+            //   in the fleet is byte-identical.
+            if (camera && camera.isPerspectiveCamera) {
+                var rmp6 = window.PM_bscCamRamp;
+                var dLo6 = dd, dHi6 = dd, i6, dv6;
+                if (rmp6) {
+                    for (i6 = 0; i6 < 2; i6++) {
+                        dv6 = i6 ? rmp6.d0 : rmp6.dist;
+                        if (dv6 < dLo6) dLo6 = dv6;
+                        if (dv6 > dHi6) dHi6 = dv6;
+                    }
+                }
+                camera.fov = bsFov;
+                // A narrow FOV puts the scene 3-12x further out, past the far plane
+                // the camera was built with (100) — which renders NOTHING at all.
+                // near is lifted with it for depth precision: the whole scene sits
+                // within its own extent of the target, and dLo * 0.15 is far inside
+                // that on any fitted camera.
+                camera.near = (bsFov === BS_FIT_FOV_DEG) ? 0.1 : Math.max(0.1, dLo6 * 0.15);
+                camera.far = (bsFov === BS_FIT_FOV_DEG) ? 100 : Math.max(100, dHi6 * 2.2);
+                camera.updateProjectionMatrix();
             }
         }
         // E1c-H: publish what the explore re-frame needs, and NOTHING a guided
@@ -62144,7 +64249,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // this apply and the first animate frame can never photograph the PREVIOUS
         // state's arrows, delta labels or electron glyph.
         var transient = ["bsc_res_shaft", "bsc_res_head", "bsc_res_label", "bsc_res_zero",
-            "bsc_lone_label"];
+            "bsc_lone_label", "bsc_field_label"];
+        // E3b Q-2 / row G: the field arrows and the sea are transients of exactly
+        // the same kind — a capture landing between this apply and the first
+        // animate frame must never photograph the PREVIOUS state's field over a
+        // state that has none, which is the whole reason this list exists.
+        for (i = 0; i < BS_FIELD_ARROWS; i++) {
+            transient.push("bsc_field" + i + "_shaft");
+            transient.push("bsc_field" + i + "_head");
+        }
+        for (i = 0; i < (window.PM_bscSeaPool || 0); i++) transient.push("bsc_sea" + i);
         for (i = 0; i < transient.length; i++) { var t = bscFindById(transient[i]); if (t) t.visible = false; }
         for (i = 0; i < MG_MAX_BONDS; i++) {
             var a1 = bscFindById("bsc_arrow_shaft_" + i); if (a1) a1.visible = false;
@@ -62179,7 +64293,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (l3) { l3.visible = false; setObjOpacity(l3, BS_ARROW_OPACITY); }
         }
         for (i = 0; i < MG_MAX_BONDS * 2; i++) { var pd = bscFindById("bsc_pair_" + i); if (pd) pd.visible = false; }
-        for (i = 0; i < 8; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
+        for (i = 0; i < BS_SHELL_POOL; i++) { var sd = bscFindById("bsc_shell_" + i); if (sd) sd.visible = false; }
         for (i = 0; i < (window.PM_bscUnitPool || 1); i++) {
             for (var j = 0; j < BS_MAX_ATOMS; j++) {
                 var dl = bscFindById("bsc_u" + i + "_delta" + j);
@@ -62201,6 +64315,12 @@ export const FIELD_3D_RENDERER_CODE = `
             var smL = bscFindById("bsc_site" + i + "_lab"); if (smL) smL.visible = false;
         }
         for (i = 0; i < BS_MAX_NEIGHBOURS; i++) { var nbm = bscFindById("bsc_nb" + i); if (nbm) nbm.visible = false; }
+        // E3b T-4: the group labels are transients the frame updater owns, so a
+        // capture landing between this apply and the first animate frame can never
+        // photograph the PREVIOUS state's group names over a single-scene state.
+        for (i = 0; i < BS_MAX_GROUPS; i++) {
+            var gml = bscFindById("bsc_grp" + i + "_lab"); if (gml) gml.visible = false;
+        }
         var tem = bscFindById("bsc_transfer_e"); if (tem) tem.visible = false;
     }
 
@@ -62347,15 +64467,13 @@ export const FIELD_3D_RENDERER_CODE = `
         //   the hysteresis: a replay has to reproduce what was actually DRAWN at
         //   that instant, so a sample from mid-ramp must carry mid-ramp heat.
         //   This is exactly why sepAt is a function of mms too.
-        var T_to = (th.T_K != null) ? th.T_K : BS_T0_K;
+        //   E3b S-1: the RAMP itself now lives in the top-level pure bscTempAt, so
+        //   the site layer reads the identical value from the identical body and
+        //   the parity gate can call it. This closure is the drag-seize binding
+        //   and nothing else.
         var tempDragged = bscHasControl(ctrls, "temperature") && window.PM_bscTempDragged;
-        var tempAt = function (mms) {
-            if (tempDragged) return window.PM_bscTemp;
-            if (th.T_from == null || th.T_at_ms == null) return T_to;
-            return mgRamp(mms, th.T_at_ms,
-                (th.T_ramp_ms != null) ? th.T_ramp_ms : BS_T_RAMP_MS,
-                th.T_from, T_to);
-        };
+        var tempDragV = tempDragged ? window.PM_bscTemp : null;
+        var tempAt = function (mms) { return bscTempAt(bs, mms, tempDragV); };
         var T_K = tempAt(ms);
         var nWant = (bscHasControl(ctrls, "count") && window.PM_bscCountDragged)
             ? Math.round(window.PM_bscCount) : Math.max(1, (bs.units || []).length || 1);
@@ -62379,8 +64497,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // this state MOVING), so the fallback stands down and the network is the
         // one S5 taught. A sandbox with no jiggle and no authored spin is
         // untouched, which is every explore state shipped before this change.
+        // ── E3b S-6: THE FALLBACK MAY ONLY STAND DOWN ON A SIGNAL THAT IS LIVE
+        //   FOR THE LAYER ACTUALLY DRAWING THIS STATE.
+        //   thermal.jiggle_scale used to be a UNIT-layer-only signal (P-2:
+        //   bscJiggle had one call site, inside orgAt), so a lattice explore state
+        //   that authored it under the fleet's own no-static-state discipline got
+        //   no jiggle AND no spin — a byte-frozen sandbox that deriveStateMeta,
+        //   reading the same field, reports as MOVING. A Rule-37 breach with a
+        //   green gate over it. E3b S-2 makes the jiggle live on the SITE layer
+        //   too, so the term is now true of both layers; it is NAMED rather than
+        //   inlined so section 32 can assert exactly that property instead of
+        //   re-reading a boolean expression.
+        var jiggleMoves = (th.jiggle_scale > 0);   // LIVE on BOTH layers since S-2
         if (mode === "explore" && !(spinRate > 0) && !window.PM_bscSpinDragged &&
-            !(th.jiggle_scale > 0)) spinRate = 0.14;
+            !jiggleMoves) spinRate = 0.14;
         var spinAt = (bs.spin_start_ms != null) ? bs.spin_start_ms : 0;
         var spin = (spinRate > 0 && ms > spinAt) ? spinRate * (ms - spinAt) / 1000 : 0;
         // E1c-J: the axis apply published for the camera this state is framed by.
@@ -62446,6 +64576,15 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var pool = window.PM_bscUnitPool || 1;
         var nUnits = Math.min(pool, nWant);
+        // ── E3b T-4, FOUND IN FRAMES and by no assertion: a ROW-R state's units
+        //    live in its GROUPS, so its scene block authors none — and the
+        //    molecular pool's floor of one unit then drew a stand-in HCl (molKey
+        //    falls back to "HCl" whenever no unit species is a molecule, the same
+        //    fallback behind P-3) as a phantom green-and-white diatomic hanging
+        //    between the two crystals. A grouped state that authors no scene-level
+        //    units draws no scene-level unit. One that DOES author them keeps them,
+        //    so a group scene may still carry a shared molecular prop.
+        if (bs.groups && bs.groups.length && !(bs.units && bs.units.length)) nUnits = 0;
         var jScale = (th.jiggle_scale != null) ? th.jiggle_scale : 0;
         var showLabels = (bs.show_atom_labels !== false);
         var deltaBudget = BS_MAX_DELTA_LABELS;      // D-6
@@ -62473,15 +64612,31 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscBrokenFrac = bscBrokenFraction(molKey, T_K);
         var unitSpacing = (bs.unit_spacing != null) ? bs.unit_spacing
             : (BS_BOND_LEN + linkCfg.form_pm / linkCfg.pm_per_unit);
+        // E3b S-1: the RAMP lives in the top-level pure bscSepAt so the site layer
+        // reads the identical value from the identical body (and section 32 can
+        // call it). This closure is the drag-seize binding and nothing else.
         var sepDragged = bscHasControl(ctrls, "separation") && window.PM_bscSepDragged;
-        var sepAt = function (mms) {
-            if (sepDragged) return window.PM_bscSep;
-            var to = (bs.separation != null) ? bs.separation : 3.0;
-            if (bs.approach_at_ms == null || bs.approach_from == null) return to;
-            return mgRamp(mms, bs.approach_at_ms,
-                (bs.approach_duration_ms != null) ? bs.approach_duration_ms : 2400,
-                bs.approach_from, to);
-        };
+        var sepDragV = sepDragged ? window.PM_bscSep : null;
+        // E3b L-1: the slip's drag-seize binding, the third quantity on this
+        // surface a script and a slider share (after separation and temperature)
+        // and therefore the third instance of the FIXED scar
+        // scripted_change_desyncs_the_dom_control_that_shares_it. Same discipline
+        // both ways: the widget opens at the ramp's own starting value (0 — a slip
+        // always begins from registry), the frame pass writes the scripted value
+        // back every frame, and a trusted drag takes the quantity over.
+        // E3b Q-1..Q-5, the same drag-seize discipline as every other shared
+        // quantity: a trusted drag passes its live value in, null follows the
+        // script. The Field slider shares the field, the Valence slider and the
+        // Metal picker share the sea's own count and its ΔH_at row.
+        var fieldDragged = bscHasControl(ctrls, "field") && window.PM_bscFieldDragged;
+        var fieldDragV = fieldDragged ? window.PM_bscField : null;
+        var valDragV = (bscHasControl(ctrls, "valence") && window.PM_bscValenceDragged)
+            ? window.PM_bscValence : null;
+        var metalDragV = (bscHasControl(ctrls, "metal") && window.PM_bscMetalDragged &&
+            BS_METALS[window.PM_bscMetal]) ? window.PM_bscMetal : null;
+        var shiftDragged = bscHasControl(ctrls, "shift") && window.PM_bscShiftDragged;
+        var shiftDragV = shiftDragged ? window.PM_bscShift : null;
+        var sepAt = function (mms) { return bscSepAt(bs, mms, sepDragV); };
         var baseAt = function (uu, mms) {
             var ud = (bs.units && bs.units[uu]) ? bs.units[uu] : null;
             // an authored separation_axis puts the leading PAIR on that axis and
@@ -62761,9 +64916,17 @@ export const FIELD_3D_RENDERER_CODE = `
         //    remembered — a growth beat that latched which sites already exist is
         //    exactly the accumulator D-1 forbids, and a SET_TIME_FREEZE rewind
         //    would then photograph an arbitrary block.
-        var pairLive = (bscHasControl(ctrls, "ion_pair") && window.PM_bscIonPairDragged)
+        // E3b T-4: the ion_pair picker owns the pair of a SINGLE-scene state. Under
+        // row R it stands down, because a grouped state's whole point is that its
+        // groups are DIFFERENT crystals (ionic S9 is NaCl beside MgO) and one
+        // picker rewriting both would delete the contrast the state exists to
+        // teach. No shipped state does both — the picker is an explore control and
+        // an explore sandbox is one scene — but the guard makes that structural.
+        var pairLive = (bscHasControl(ctrls, "ion_pair") && window.PM_bscIonPairDragged &&
+            !(bs.groups && bs.groups.length))
             ? (BS_ION_PAIRS[window.PM_bscIonPair] || null) : null;
         var siteList = bscSiteList(bs, pairLive);
+        var grpBlocks = bscGroupBlocks(bs);
         var sitePool = window.PM_bscSitePool || 0;
         var lat = bs.lattice || {};
         var p2uS = linkCfg.pm_per_unit;
@@ -62788,14 +64951,53 @@ export const FIELD_3D_RENDERER_CODE = `
             if (trc.from != null && siteList[i].unit === trc.from) trFrom = i;
             if (trc.to != null && siteList[i].unit === trc.to) trTo = i;
         }
+        // E3b L-2: the per-site SPECIES / CHARGE / RADIUS pass runs first and the
+        // POSITION pass second, because the slip's outcome is a property of the
+        // whole block's charge pattern (bscShiftSolve) and has to be solved with
+        // every charge in hand before a single site is placed. Splitting the old
+        // single loop is the whole of the change: neither half's arithmetic moved.
         var sitePos = [], siteQ = [], siteRU = [], siteSp = [], siteRpm = [], qSum = 0;
         for (i = 0; i < siteList.length; i++) {
-            var SI = siteList[i];
-            var TS = bscTransferSite(SI, (i === trFrom || i === trTo) ? trProg : 0);
-            sitePos.push((spin !== 0) ? bscSpinRot(SI.at, spinAx, spin) : SI.at);
+            var TS = bscTransferSite(siteList[i], (i === trFrom || i === trTo) ? trProg : 0);
             siteQ.push(TS.q); siteRU.push(TS.r_pm / p2uS); siteSp.push(TS.species);
             siteRpm.push(TS.r_pm);
             if (i < nShown) qSum += TS.q;
+        }
+        // ── E3b L-1 / L-2: THE LAYER SLIP AND ITS DERIVED OUTCOME ────────────
+        //   Skipped entirely — not merely zero — on every scene that neither
+        //   authors a shift nor exposes a shift the teacher has touched, so every
+        //   shipped bonding_scene concept keeps its exact previous cost and its
+        //   exact previous pixels.
+        var shiftLive = (bs.shift != null) || shiftDragged;
+        var shiftVal = shiftLive ? bscShiftAt(bs, ms, shiftDragV) : 0;
+        var shiftSol = null, likeNow = null, likeNaive = null, likeFocalN = null;
+        if (shiftLive && nShown > 1) {
+            shiftSol = bscShiftSolve(bs, siteList, nShown, siteQ);
+            // the reference lattice AT THE SAME INSTANT (D-7's delta is against a
+            // reference at t, not against a remembered opening frame — a latch
+            // would be exactly the replayed history D-1 forbids).
+            var shPref = bscShiftPos(bs, siteList, nShown, ms, sepDragV, 0);
+            var shPnow = bscShiftPos(bs, siteList, nShown, ms, sepDragV, shiftVal);
+            var shCut = BS_LIKE_CUT * bscNnOf(shPref, nShown);
+            likeNow = bscLikeContacts(shPnow, shPref, siteQ, nShown);
+            // the SCREENING-BLIND count, published so the disagreement case is
+            // observable from outside the engine (section 8 asserts on it).
+            likeNaive = bscLikeCountAt(shPnow, siteQ, nShown, shCut);
+            likeFocalN = bscLikeFocal(shPnow, shPref, siteQ, nShown,
+                (lat.focal_site != null) ? lat.focal_site : 0);
+        }
+        for (i = 0; i < siteList.length; i++) {
+            var SI = siteList[i];
+            // E3b S-1 / S-2: the scripted position chain, at last. bscSiteAt gives
+            // this site the SAME separation_axis placement, the SAME scripted (or
+            // dragged) separation ramp and the SAME deterministic thermal jiggle
+            // the unit layer has always had; the spin is then applied here exactly
+            // as before. Closed form in ms, so a freeze pin is byte-identical.
+            // E3b L-1 adds the slip displacement, solved above.
+            var sOff = shiftLive
+                ? bscShiftOffsetOf(bs, SI, shiftSol, ms, shiftDragV, shiftVal) : null;
+            var sAt = bscSiteAt(bs, SI, i, ms, sepDragV, tempDragV, sOff, fieldDragV);
+            sitePos.push((spin !== 0) ? bscSpinRot(sAt, spinAx, spin) : sAt);
         }
 
         // COORDINATION. The neighbour set is DERIVED from the geometry — the
@@ -62832,6 +65034,41 @@ export const FIELD_3D_RENDERER_CODE = `
         var rsTarget = (lat.radius_scale != null) ? lat.radius_scale
             : ((mode === "coordination") ? BS_COORD_RADIUS_SCALE : 1);
         var rsNow = 1 + (rsTarget - 1) * revF;
+        // ── E3b F3: THE CAMERA RAMPS WITH THE BLOCK IT FRAMES.
+        //   A solved camera is a config fact and is written ONCE at state entry —
+        //   it has to be, or the fit would chase the live geometry and move the
+        //   camera whenever the teacher touched a control (Rule 32d). But a state
+        //   whose block OPENS during its own beat has TWO poses, and dist 16 is the
+        //   solve for the second one: for the first 3.5 s ionic S5 rendered its
+        //   packed 3x3x3 block under a camera solved for the ball-and-stick pose
+        //   the reveal arrives at. So the entry distance frames the OPENING pose
+        //   (bscFitDist at rs = 1, published as PM_bscCamRamp.d0) and this ramp
+        //   carries it to the solved distance across the SAME revF that opens the
+        //   block. Closed form in revF, so a SET_TIME_FREEZE pin photographs the
+        //   same distance by construction, and the whole thing is exactly 0 work on
+        //   every state whose camera declared no fit_ramp.
+        var camRamp = window.PM_bscCamRamp;
+        var dRamp = null;
+        if (camRamp && camRamp.on === "reveal" && revMode !== "none") {
+            dRamp = camRamp.d0 + (camRamp.dist - camRamp.d0) * bscClamp(revF, 0, 1);
+        } else if (camRamp && camRamp.on === "grow") {
+            // E3b F5: the same rule for the block that GROWS rather than opens.
+            // Re-measured every frame against the site set that is on screen at
+            // ms, faded per site so no shell landing snaps the camera, and clamped
+            // between the opening pose and the solved distance the entry computed.
+            // Reads config and ms ONLY — never a drag value and never the live
+            // camera — so a teacher touching a control cannot move it, and a
+            // SET_TIME_FREEZE pin photographs the same distance by construction.
+            var gwF = bscGrowCamW(bs, ms, siteList.length);
+            if (gwF) {
+                dRamp = bscClamp(bscFitDist(bs, camRamp, 1, null, gwF), camRamp.d0, camRamp.dist);
+            }
+        }
+        if (dRamp != null) {
+            spherical.radius = dRamp;
+            targetSpherical.radius = dRamp;
+            updateCameraFromSpherical();
+        }
         // D-6 label budget: a 27-site block never renders 27 labels. In a
         // coordination state the focal ion and ONE neighbour are named (that is
         // both species) and the RODS carry the count; elsewhere the leading
@@ -62927,9 +65164,260 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_bscSiteCount = nShown;
         window.PM_bscChargeSum = qSum;
         window.PM_bscCoordination = nbIdx.length;
+        // E3b S-4 / S-5: the two derived readouts, published for the professor
+        // pack and for a headless probe, off the SAME bodies the HUD prints from
+        // (D-3: one instrument per quantity, never a second computation).
+        window.PM_bscSepPm = bscSepPmAt(bs, siteList, ms, sepDragV);
+        window.PM_bscCoordPair = (siteList.length && siteList[0].cell)
+            ? bscCoordinationPair(siteList[0].cell) : null;
         window.PM_bscLatticeA = siteList.length ? siteList[0].a_pm : 0;
         window.PM_bscTransfer = trProg;
         window.PM_bscCell = (siteList.length && siteList[0].cell) ? siteList[0].cell : null;
+        // E3b L-1 / L-2: the slip and the D-7 metric, published off the SAME
+        // bodies the picture and the HUD use (D-3). PM_bscLikeNaive is the
+        // screening-blind count the metric is DEFINED AGAINST — it is here so the
+        // disagreement (a cation-only metal reads 8 naive and 0 derived) is
+        // observable from a headless probe and from the gate, not only in prose.
+        window.PM_bscShiftVal = shiftVal;
+        window.PM_bscLikeContacts = likeNow;
+        window.PM_bscLikeNaive = likeNaive;
+        window.PM_bscLikeFocal = likeFocalN;
+        window.PM_bscCleaveU = shiftLive ? bscCleaveU(bs, shiftSol, ms, shiftDragV) : 0;
+        window.PM_bscCleaveFrac = shiftSol ? shiftSol.frac : 0;
+        window.PM_bscSeaScreens = (nShown > 1) ? bscSeaScreens(siteQ, nShown) : false;
+
+        // ── E3b Q-1 / Q-2 / ROW G: THE FIELD AND THE TWO CARRIER LAYERS ──────
+        //   The SCENE-level field is what the arrows draw (row R inherits it, so
+        //   "the SAME field acts on both samples" is one object and one picture);
+        //   a per-group override still biases that group's own ions, because
+        //   bscSiteAt resolves the field off each site's own block.
+        var fieldNow = bscFieldAt(bs, ms, fieldDragV);
+        var metalLive = metalDragV || bscMetalKey(bs, siteList);
+        var seaCfg = bscSeaCfg(bs, siteList, nShown, valDragV, metalDragV);
+        var seaPool = window.PM_bscSeaPool || 0;
+        var seaN = seaCfg ? Math.min(seaCfg.n, seaPool) : 0;
+        // the sea's own sphere radius, off the block's OWN nearest-neighbour
+        // spacing so it is the same fraction of a core at every a_pm.
+        var seaR = (nShown > 0) ? BS_SEA_R_FRAC * bscSiteNnU(bs, siteList[0]) : 0.12;
+        for (i = 0; i < seaPool; i++) {
+            var sem = bscFindById("bsc_sea" + i);
+            if (!sem) continue;
+            var seaOn = i < seaN;
+            sem.visible = seaOn;
+            if (!seaOn) continue;
+            var host = sitePos[i % nShown];
+            var sOffE = bscSeaAt(bs, i, siteList, nShown, ms, fieldDragV);
+            var eP = [host[0] + sOffE[0], host[1] + sOffE[1], host[2] + sOffE[2]];
+            if (spin !== 0) eP = bscSpinRot(eP, spinAx, spin);
+            sem.position.set(eP[0], eP[1], eP[2]);
+            sem.scale.setScalar(seaR);
+        }
+        // THE FIELD ARROWS. One row along the field axis, held clear of the block
+        // on the first axis that is not the field's, so they read as the cause
+        // acting ON the sample rather than as something inside it. Their extent is
+        // measured off the DRAWN sites, so a growing, melting or slipping block
+        // keeps its arrows the right size with nothing authored.
+        var fAx = bscFieldCfg(bs).ax;
+        var offAx = (fAx === 1) ? 0 : 1;
+        var sprAx = 3 - fAx - offAx;
+        var fHalf = 0, fTop = -1e9, fSpr = 0;
+        for (i = 0; i < nShown; i++) {
+            var rr = siteRU[i] * rsNow;
+            if (Math.abs(sitePos[i][fAx]) + rr > fHalf) fHalf = Math.abs(sitePos[i][fAx]) + rr;
+            if (sitePos[i][offAx] + rr > fTop) fTop = sitePos[i][offAx] + rr;
+            if (Math.abs(sitePos[i][sprAx]) > fSpr) fSpr = Math.abs(sitePos[i][sprAx]);
+        }
+        var fOn = (fieldNow > 0) && nShown > 0 && fHalf > 0;
+        var fDirV = bscFieldDir(bs);
+        for (i = 0; i < BS_FIELD_ARROWS; i++) {
+            var fsh2 = bscFindById("bsc_field" + i + "_shaft");
+            var fhd2 = bscFindById("bsc_field" + i + "_head");
+            if (fsh2) fsh2.visible = fOn;
+            if (fhd2) fhd2.visible = fOn;
+            if (!fOn) continue;
+            var fLen = 2 * fHalf * 0.9;
+            var fPart = bscArrowParts(fLen, fLen * BS_FIELD_HEAD_FRAC);
+            var fThick = bscClamp(fLen * BS_FIELD_GIRTH_FRAC,
+                BS_FIELD_GIRTH_MIN, BS_FIELD_GIRTH_MAX);
+            var fBase = [0, 0, 0];
+            fBase[fAx] = -fLen * 0.5;
+            fBase[offAx] = fTop + 0.55 + 0.10 * fHalf;
+            fBase[sprAx] = (BS_FIELD_ARROWS > 1)
+                ? (i - (BS_FIELD_ARROWS - 1) * 0.5) * (2 * fSpr / (BS_FIELD_ARROWS - 1))
+                : 0;
+            var fB = (spin !== 0) ? bscSpinRot(fBase, spinAx, spin) : fBase;
+            var fD = (spin !== 0) ? bscSpinRot(fDirV, spinAx, spin) : fDirV;
+            if (fsh2) {
+                mgOrientStick(fsh2, fD, fPart.shaft, fThick);
+                fsh2.position.set(fB[0], fB[1], fB[2]);
+                setObjOpacity(fsh2, 0.9 * fieldNow);
+            }
+            if (fhd2) {
+                mgOrientStick(fhd2, fD, fPart.head, fThick);
+                fhd2.position.set(fB[0] + fD[0] * fPart.shaft, fB[1] + fD[1] * fPart.shaft,
+                    fB[2] + fD[2] * fPart.shaft);
+                setObjOpacity(fhd2, 0.9 * fieldNow);
+            }
+        }
+        var flm = bscFindById("bsc_field_label");
+        if (flm) {
+            flm.visible = fOn;
+            if (fOn) {
+                var flAnchor = [0, 0, 0];
+                flAnchor[fAx] = -fHalf * 0.9;
+                flAnchor[offAx] = fTop + 0.6 + 0.9 * seaR;
+                flAnchor[sprAx] = -fSpr;
+                if (spin !== 0) flAnchor = bscSpinRot(flAnchor, spinAx, spin);
+                setObjOpacity(flm, fieldNow);
+                var flH = bscClamp(fHalf * BS_FIELD_LABEL_FRAC,
+                    BS_FIELD_LABEL_MIN, BS_FIELD_LABEL_MAX);
+                flm._pmHeightScale = flH;
+                updateLabelSpriteText(flm, "field");
+                flm.scale.set(flH * (flm._pmCanvas.width / flm._pmCanvas.height), flH, 1);
+                bscPlaceLabel(flm, flAnchor, flH * 1.1, [], 0, 0);
+            }
+        }
+        // published off the SAME bodies the picture uses (D-3), for the professor
+        // pack, the gate and a headless probe.
+        window.PM_bscFieldVal = fieldNow;
+        window.PM_bscFieldAxis = BS_FIELD_AXES[fAx];
+        window.PM_bscMetalLive = metalLive;
+        window.PM_bscSeaCount = seaN;
+        window.PM_bscSeaValence = seaCfg ? seaCfg.valence_e : 0;
+        window.PM_bscDriftVms = bscDriftVms(fieldNow);
+        var mobN = 0, mobMax = 0;
+        for (i = 0; i < nShown; i++) {
+            var mv2 = bscIonMobile(bs, siteList[i], i,
+                bscTempAt(bscSiteBlock(bs, siteList[i]), ms, tempDragV));
+            if (mv2 > 0) mobN++;
+            if (mv2 > mobMax) mobMax = mv2;
+        }
+        window.PM_bscIonsMobile = mobN;
+        window.PM_bscIonsMobileMax = mobMax;
+
+        // ── E3b T-3 / T-4: THE LIVE PROPERTY ROWS, one per group in the AUTHORED
+        //    groups[] order (a single-scene state is exactly one row with no
+        //    label). Everything below is DERIVED from the drawn sites: the pair
+        //    identity travels with the site, so the explore picker and the melt
+        //    outcome and these two readouts can never disagree about which crystal
+        //    is on screen (D-3, one instrument per quantity).
+        var grpRows = [], seenGrp = {};
+        for (i = 0; i < nShown; i++) {
+            var gk = (siteList[i].grp != null) ? siteList[i].grp : 0;
+            if (seenGrp[gk]) continue;
+            seenGrp[gk] = 1;
+            var gTh = (bscSiteBlock(bs, siteList[i]) || {}).thermal || {};
+            var gPair = siteList[i].pair ? BS_ION_PAIRS[siteList[i].pair] : null;
+            var gT = bscTempAt(bscSiteBlock(bs, siteList[i]), ms, tempDragV);
+            grpRows.push({
+                grp: gk, label: siteList[i].glabel || "", pairKey: siteList[i].pair || null,
+                pair: gPair, T_K: gT, melt: bscMeltFrac(gT, gPair),
+                jiggle: (gTh.jiggle_scale != null) ? gTh.jiggle_scale : 0,
+                c: [0, 0, 0], n: 0, r: 0
+            });
+        }
+        // each group's drawn centroid + radius, for the label anchor.
+        for (i = 0; i < nShown; i++) {
+            var gr0 = null, gq = (siteList[i].grp != null) ? siteList[i].grp : 0;
+            for (j = 0; j < grpRows.length; j++) if (grpRows[j].grp === gq) gr0 = grpRows[j];
+            if (!gr0) continue;
+            gr0.c[0] += sitePos[i][0]; gr0.c[1] += sitePos[i][1]; gr0.c[2] += sitePos[i][2];
+            gr0.n++;
+        }
+        for (j = 0; j < grpRows.length; j++) {
+            var gR = grpRows[j];
+            if (gR.n > 0) { gR.c[0] /= gR.n; gR.c[1] /= gR.n; gR.c[2] /= gR.n; }
+        }
+        for (i = 0; i < nShown; i++) {
+            var gr1 = null, gq1 = (siteList[i].grp != null) ? siteList[i].grp : 0;
+            for (j = 0; j < grpRows.length; j++) if (grpRows[j].grp === gq1) gr1 = grpRows[j];
+            if (!gr1) continue;
+            var dR = bscMag([sitePos[i][0] - gr1.c[0], sitePos[i][1] - gr1.c[1],
+                sitePos[i][2] - gr1.c[2]]) + siteRU[i] * rsNow;
+            if (dR > gr1.r) gr1.r = dR;
+        }
+        // the mobile FRACTION actually on screen, published for the professor pack
+        // and for a headless probe — the same bodies the picture uses, never a
+        // second computation.
+        var meltMobile = 0, meltFmax = 0;
+        for (i = 0; i < nShown; i++) {
+            var mPair = siteList[i].pair ? BS_ION_PAIRS[siteList[i].pair] : null;
+            if (!mPair) continue;
+            var mF = bscMeltFrac(bscTempAt(bscSiteBlock(bs, siteList[i]), ms, tempDragV), mPair);
+            if (mF > meltFmax) meltFmax = mF;
+            if (bscSiteMelt(i, mF) > 0) meltMobile++;
+        }
+        window.PM_bscMeltFrac = meltFmax;
+        window.PM_bscMeltMobile = meltMobile;
+        window.PM_bscGroups = grpRows.map(function (g) {
+            return { id: g.grp, label: g.label, pair: g.pairKey, T_K: g.T_K, melt: g.melt };
+        });
+        // ── T-4: ONE label per group, placed on the clearest screen direction
+        //    around its own block and scored against the fixed right-anchored HUD
+        //    (bscDomBox measures the live panel, Rule 34d). A single-scene state
+        //    draws none, so nothing on a shipped concept moves by a pixel.
+        var hudBox = bscDomBox(document.getElementById("bsc_hud"));
+        // ONE type size for every group label in a state, solved from the LARGEST
+        // block. FOUND IN FRAMES: sized per block, a molten NaCl group (whose
+        // radius the melt excursion inflates) was labelled in visibly bigger type
+        // than the MgO group beside it — which reads as emphasis in a state whose
+        // whole job is an even-handed comparison, and Rule 29 is explicit that
+        // emphasis is brightness and never size.
+        var gRmax = 0;
+        for (j = 0; j < grpRows.length; j++) if (grpRows[j].r > gRmax) gRmax = grpRows[j].r;
+        var gHs = bscClamp(gRmax * BS_GROUP_LABEL_FRAC, BS_GROUP_LABEL_MIN, BS_GROUP_LABEL_MAX);
+        for (i = 0; i < BS_MAX_GROUPS; i++) {
+            var glm = bscFindById("bsc_grp" + i + "_lab");
+            if (!glm) continue;
+            var gRow = null;
+            for (j = 0; j < grpRows.length; j++) if (grpRows[j].grp === i) gRow = grpRows[j];
+            var gOn = !!grpBlocks && !!gRow && !!gRow.label && gRow.n > 0;
+            glm.visible = gOn;
+            if (!gOn) continue;
+            // MEASURED, not assumed (the E3a site-label finding, one layer out): a
+            // group label built at the site-label height renders as a ~2 px speck,
+            // because a lattice block is framed from tens of scene units away. A
+            // group label is a TITLE for a whole crystal, so it is sized to the
+            // scene's largest block — it therefore reads at whatever distance the
+            // auto-fit solves for, on a two-site pair and on a 54-site double block
+            // alike, and every group in one state is titled at the same size.
+            glm._pmHeightScale = gHs;
+            updateLabelSpriteText(glm, gRow.label);
+            // updateLabelSpriteText only re-derives the scale when the CANVAS width
+            // changes, so the height is applied here as well — otherwise a label
+            // whose text never changes would keep its build-time size forever.
+            glm.scale.set(gHs * (glm._pmCanvas.width / glm._pmCanvas.height), gHs, 1);
+            var gAvoid = [];
+            if (hudBox) gAvoid.push(hudBox);
+            // E3b F4: ...and the FIELD ARROW ROW, which this solver could not see.
+            // It scored a group label against the readout panel and against the
+            // other blocks and against nothing else, so once F4 stopped the molten
+            // ions sprawling across the scene the freed space above the block
+            // scored best and both labels landed ON the arrows (ionic S8). The row
+            // is three segments, and the solver already takes segments.
+            if (fOn) {
+                for (j = 0; j < BS_FIELD_ARROWS; j++) {
+                    var gaA = [0, 0, 0], gaB = [0, 0, 0];
+                    var fLenA = 2 * fHalf * 0.9;
+                    gaA[fAx] = -fLenA * 0.5; gaB[fAx] = fLenA * 0.5;
+                    gaA[offAx] = fTop + 0.55 + 0.10 * fHalf;
+                    gaB[offAx] = gaA[offAx];
+                    gaA[sprAx] = (BS_FIELD_ARROWS > 1)
+                        ? (j - (BS_FIELD_ARROWS - 1) * 0.5) * (2 * fSpr / (BS_FIELD_ARROWS - 1)) : 0;
+                    gaB[sprAx] = gaA[sprAx];
+                    gAvoid.push({ a: (spin !== 0) ? bscSpinRot(gaA, spinAx, spin) : gaA,
+                        b: (spin !== 0) ? bscSpinRot(gaB, spinAx, spin) : gaB });
+                }
+            }
+            // the OTHER groups only: this label's own offset already clears its own
+            // block, and scoring it against itself would push it a second radius out.
+            for (j = 0; j < grpRows.length; j++) {
+                if (grpRows[j] !== gRow && grpRows[j].n > 0) {
+                    gAvoid.push({ p: grpRows[j].c, r: grpRows[j].r });
+                }
+            }
+            bscPlaceLabel(glm, gRow.c, gRow.r + 0.30, gAvoid, 0, 0);
+        }
 
         // ── bond-dipole arrows + the derived resultant (row F).
         //    Arrow length = |bond moment| in debye off the SAME table the readout
@@ -63255,23 +65743,54 @@ export const FIELD_3D_RENDERER_CODE = `
                 pd1[2] * BS_BOND_LEN * f + perp[2] * off + fOrg[2]
             );
         }
+        // ── row N, second half: THE VALENCE SHELL DOTS.
+        //   E3b S-3 (P-3): the count was BS_VALENCE[mol.central] — one ring, at
+        //   the focal MOLECULAR unit's origin, sized off MG_ELEMENTS — and molKey
+        //   falls back to "HCl" whenever no unit species is a molecule. So a scene
+        //   of bare Na and Cl atoms drew ONE dot (BS_VALENCE.H) buried inside the
+        //   sodium sphere while the readout printed "outer electrons = 1". The
+        //   ring belonged to a table the scene was not made of.
+        //   Whenever the SITE layer is on screen the rings belong to the SITES:
+        //   one ring per counted site, its count derived from that site's own
+        //   species and formal charge (bscValenceOf — Na 1, Cl 7, Na(+) 0,
+        //   Cl(-) 8, so the octet is the OUTCOME of the transfer rather than a
+        //   claim), its radius from that site's own DRAWN radius. D-6 budget:
+        //   at most BS_MAX_SHELL_SITES rings of at most BS_MAX_SHELL_DOTS dots.
+        //   D-4 countability is unchanged and now holds per site: every ring is
+        //   still drawn in the CAMERA plane, so every dot is countable from the
+        //   solved view and stays countable across the whole spin window.
+        //   The molecular one-ring path is ring 0 with the same angles, the same
+        //   centre and the same radius it has always had — byte-identical.
         var showShells = (elc.show === "shells");
-        var nval = showShells ? (BS_VALENCE[mol.central] || 0) : 0;
-        for (i = 0; i < 8; i++) {
+        var shellN = [], shellC = [], shellR = [], sIx;
+        if (showShells) {
+            if (nShown > 0) {
+                for (sIx = 0; sIx < nShown && shellN.length < BS_MAX_SHELL_SITES; sIx++) {
+                    shellN.push(bscValenceOf(siteSp[sIx]));
+                    shellC.push(sitePos[sIx]);
+                    shellR.push(siteRU[sIx] * rsNow + BS_SHELL_RING_GAP);
+                }
+            } else {
+                shellN.push(BS_VALENCE[mol.central] || 0);
+                shellC.push(fOrg);
+                shellR.push((MG_ELEMENTS[mol.central] || MG_ELEMENTS.C).radius + BS_SHELL_RING_GAP);
+            }
+            // the camera has settled by capture time, so this is stable under a pin.
+            camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
+        }
+        for (i = 0; i < BS_SHELL_POOL; i++) {
             var sd2 = bscFindById("bsc_shell_" + i);
             if (!sd2) continue;
-            sd2.visible = showShells && i < nval;
+            var sRing = Math.floor(i / BS_MAX_SHELL_DOTS), sSlot = i % BS_MAX_SHELL_DOTS;
+            var nval = (sRing < shellN.length) ? shellN[sRing] : 0;
+            sd2.visible = showShells && sSlot < nval;
             if (!sd2.visible) continue;
-            // the valence ring is drawn in the CAMERA plane so every dot is
-            // countable from the solved view (D-4); the camera has settled by
-            // capture time, so this is stable under a pin.
-            camera.matrixWorld.extractBasis(mgCamR, mgCamU, mgCamF);
-            var ang2 = (i / Math.max(1, nval)) * Math.PI * 2 + Math.PI / 2;
-            var rr = (MG_ELEMENTS[mol.central] || MG_ELEMENTS.C).radius + 0.42;
+            var ang2 = (sSlot / Math.max(1, nval)) * Math.PI * 2 + Math.PI / 2;
+            var cOrg = shellC[sRing], rr = shellR[sRing];
             sd2.position.set(
-                fOrg[0] + (mgCamR.x * Math.cos(ang2) + mgCamU.x * Math.sin(ang2)) * rr,
-                fOrg[1] + (mgCamR.y * Math.cos(ang2) + mgCamU.y * Math.sin(ang2)) * rr,
-                fOrg[2] + (mgCamR.z * Math.cos(ang2) + mgCamU.z * Math.sin(ang2)) * rr
+                cOrg[0] + (mgCamR.x * Math.cos(ang2) + mgCamU.x * Math.sin(ang2)) * rr,
+                cOrg[1] + (mgCamR.y * Math.cos(ang2) + mgCamU.y * Math.sin(ang2)) * rr,
+                cOrg[2] + (mgCamR.z * Math.cos(ang2) + mgCamU.z * Math.sin(ang2)) * rr
             );
         }
 
@@ -63492,9 +66011,132 @@ export const FIELD_3D_RENDERER_CODE = `
                         lines.push("r(" + mol.central + ") = " + (BS_RADIUS_PM[mol.central] != null ? BS_RADIUS_PM[mol.central] : "\\u2014") + " pm");
                     }
                 }
-                else if (w === "coordination") lines.push("neighbours = " + nbIdx.length);
+                else if (w === "coordination") {
+                    // E3b S-5: the chemistry notation, 6 : 6, and BOTH numbers are
+                    // DERIVED — the neighbour count of a cation site and of an
+                    // anion site, counted independently by the same geometry pass
+                    // (bscCoordinationPair). Never hard-coded, never one count
+                    // doubled. The cation is printed first, which is the
+                    // convention; a cell with one sublattice, or a block whose two
+                    // sublattices carry the same species, prints one number; a
+                    // free-placement scene falls back to the DRAWN neighbour set.
+                    var cPair = (siteList.length && siteList[0].cell)
+                        ? bscCoordinationPair(siteList[0].cell) : null;
+                    var spA0 = (nShown > 0) ? siteSp[0] : null, spB0 = null;
+                    for (j = 1; j < nShown; j++) if (siteSp[j] !== spA0) { spB0 = siteSp[j]; break; }
+                    if (cPair && cPair[1] != null && spB0) {
+                        lines.push("coordination = " + ((bscSpeciesCharge(spA0) >= 0)
+                            ? (cPair[0] + " : " + cPair[1]) : (cPair[1] + " : " + cPair[0])));
+                    } else if (cPair) lines.push("coordination = " + cPair[0]);
+                    else lines.push("coordination = " + nbIdx.length);
+                }
                 else if (w === "lattice_a") lines.push("a = " + Math.round(window.PM_bscLatticeA) + " pm");
-                else if (w === "valence") lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                else if (w === "melting_point" || w === "lattice_enthalpy") {
+                    // E3b T-3: engine-printed from BS_ION_PAIRS for the LIVE pair,
+                    // so the S10 ion_pair picker changes them — never hand-typed
+                    // into any JSON. Under row R one line PER GROUP, prefixed by
+                    // the group label, in the authored groups[] order, so ionic S9
+                    // reads NaCl m.p. = 1074 K beside MgO m.p. = 3125 K and the
+                    // contrast is the instrument's own output rather than a claim.
+                    // Rule 34c: real Unicode Delta and middle dot and superscript
+                    // minus-one, on the DOM text path (the sprite and canvas paths
+                    // carry no property numbers at all).
+                    for (j = 0; j < grpRows.length; j++) {
+                        var gp = grpRows[j].pair;
+                        if (!gp) continue;
+                        var pre = grpRows[j].label ? (grpRows[j].label + " ") : "";
+                        if (w === "melting_point") lines.push(pre + "m.p. = " + gp.mp_K + " K");
+                        else lines.push(pre + "\\u0394H = " + gp.lattice_kJ +
+                            " kJ\\u00B7mol\\u207B\\u00B9");
+                    }
+                }
+                else if (w === "conductivity") {
+                    // E3b Q-3. The line is LIVE and STATE-DEPENDENT, and the state
+                    // it reads is the DERIVED melt outcome (T_K against the pair's
+                    // own mp_K) — never an authored key that could disagree with
+                    // the ions on screen. One row per group in the authored order,
+                    // so ionic S8's two samples print their two answers side by
+                    // side and the gap between them IS the contrast on screen.
+                    // NO SOLID-SIDE S·cm⁻¹ DIGIT IS PRINTED, ANYWHERE: that is the
+                    // one number chemistry_author declined to ratify, and the
+                    // engine cannot print what it does not carry. The molten value
+                    // and its (1100 K) reference temperature come from
+                    // BS_MOLTEN_S_CM / BS_MOLTEN_REF_K and are never hand-typed.
+                    for (j = 0; j < grpRows.length; j++) {
+                        var cpre = grpRows[j].label ? (grpRows[j].label + " ") : "";
+                        if (!grpRows[j].pair) { lines.push(cpre + "conductivity: \\u2014"); continue; }
+                        lines.push(cpre + ((grpRows[j].melt > 0)
+                            ? ("conductivity \\u2248 " + BS_MOLTEN_S_CM.toFixed(1) +
+                               " S\\u00B7cm\\u207B\\u00B9 (" + BS_MOLTEN_REF_K + " K)")
+                            : "conductivity: none \\u2014 ions fixed"));
+                    }
+                }
+                else if (w === "drift") {
+                    // E3b Q-4, Session B's readout. Scales with the LIVE field so
+                    // the instrument tracks the physical change (Rule 33d), and
+                    // reads a plain 0 when there is no field to drift under.
+                    // Real Unicode throughout on the DOM path; the subscript is a
+                    // true HTML subscript because 'd' has no Unicode subscript
+                    // codepoint at all and an ASCII underscore may never reach the
+                    // screen (Rule 34c).
+                    var vdN = bscDriftVms(fieldNow);
+                    lines.push("v<sub>d</sub> " + ((vdN > 0)
+                        ? ("\\u2248 " + bscFmtMant(vdN / BS_DRIFT_V0_MS) +
+                           " \\u00D7 10\\u207B\\u2074 m\\u00B7s\\u207B\\u00B9")
+                        : "= 0 m\\u00B7s\\u207B\\u00B9"));
+                }
+                else if (w === "atomisation") {
+                    // E3b Q-5, Session B's readout, engine-printed from BS_METALS
+                    // for the LIVE metal so the Metal picker changes it — never
+                    // hand-typed into any JSON. Same HTML-subscript reasoning as
+                    // the drift row above ('a' and 't' do have Unicode subscripts,
+                    // but a HUD at 13px monospace has no guaranteed glyph for
+                    // either, and one surface should not carry two conventions).
+                    lines.push("\\u0394H<sub>at</sub> = " +
+                        ((metalLive && BS_METALS[metalLive])
+                            ? (BS_METALS[metalLive].atomisation_kJ + " kJ\\u00B7mol\\u207B\\u00B9")
+                            : "\\u2014"));
+                }
+                else if (w === "like_contacts") {
+                    // E3b L-2: the D-7 metric — like-charge nearest-neighbour
+                    // contacts the slide CREATED and left UNSCREENED, a delta
+                    // against the unshifted reference lattice at this same
+                    // instant. The em dash is this surface's existing "no value
+                    // yet" glyph and is what a scene with no slip context shows,
+                    // so the row never claims a count it has not measured.
+                    lines.push("like contacts: " +
+                        ((likeNow == null) ? "\\u2014" : likeNow));
+                }
+                else if (w === "separation_pm") {
+                    // E3b S-4: the LIVE centre-to-centre distance of the two
+                    // leading sites, off the same bscSepPmAt the gate calls (D-3).
+                    // The em dash is this surface's existing "no value yet" glyph.
+                    var dPm = bscSepPmAt(bs, siteList, ms, sepDragV);
+                    lines.push("d = " + ((dPm == null) ? "\\u2014" : Math.round(dPm)) + " pm");
+                }
+                else if (w === "valence") {
+                    // E3b S-3: SITE-AWARE, on the pattern the radius_pm branch
+                    // above already established — when a site layer is on screen
+                    // the outer-electron count is a property of the SITES, not of
+                    // a molecule table the scene is not made of (which resolved to
+                    // HCl and printed "outer electrons = 1" over a sodium atom).
+                    // Both participants are named, because the whole teaching is
+                    // the pair: 1 and 7 before the transfer, 0 and 8 after it.
+                    if (nShown > 0) {
+                        var vIx = [];
+                        if (trFrom >= 0 && trTo >= 0) { vIx.push(trFrom); vIx.push(trTo); }
+                        else {
+                            vIx.push(focalSite);
+                            for (j = 0; j < nShown && vIx.length < 2; j++) {
+                                if (j !== focalSite && siteSp[j] !== siteSp[focalSite]) vIx.push(j);
+                            }
+                        }
+                        for (j = 0; j < vIx.length; j++) {
+                            lines.push(bscSpeciesLabel(siteSp[vIx[j]]) + ": outer electrons = " +
+                                bscValenceOf(siteSp[vIx[j]]));
+                        }
+                    } else lines.push("outer electrons = " + (BS_VALENCE[mol.central] || 0));
+                }
                 // E2b: 'links' stays the INSTANT (S2/S3 count one link forming and
                 // breaking, and an average would smear the exact beat those
                 // states teach); 'links_per_unit' is the time-averaged mean
@@ -63560,6 +66202,44 @@ export const FIELD_3D_RENDERER_CODE = `
             var ssl = document.getElementById("bsc_separation_slider"), svl = document.getElementById("bsc_separation_val");
             if (ssl) ssl.value = String(sepNow);
             if (svl) svl.textContent = Number(sepNow).toFixed(1);
+        }
+        // E3b L-1: the slip's half of the same rule. ionic_bonding S6 slides the
+        // layer on a SCRIPT while exposing the shift slider, which is the third
+        // instance of the FIXED scar scripted_change_desyncs_the_dom_control_that_
+        // shares_it on this surface — the widget would otherwise read 0.00 over a
+        // crystal that has visibly slipped a whole site.
+        if (bscHasControl(ctrls, "shift") && !window.PM_bscShiftDragged) {
+            var hsl = document.getElementById("bsc_shift_slider"), hvl = document.getElementById("bsc_shift_val");
+            if (hsl) hsl.value = String(shiftVal);
+            if (hvl) hvl.textContent = Number(shiftVal).toFixed(2);
+        }
+        // E3b Q-2: the field's half of the same rule. ionic_bonding S10 exposes the
+        // Field slider on a state that also SCRIPTS the field on (field_at_ms), the
+        // fourth instance of the FIXED scar scripted_change_desyncs_the_dom_control_
+        // that_shares_it on this surface — the widget would otherwise read 0.00
+        // over a sample whose ions are visibly marching apart.
+        if (bscHasControl(ctrls, "field") && !window.PM_bscFieldDragged) {
+            var fsl2 = document.getElementById("bsc_field_slider"), fvl2 = document.getElementById("bsc_field_val");
+            if (fsl2) fsl2.value = String(fieldNow);
+            if (fvl2) fvl2.textContent = Number(fieldNow).toFixed(2);
+        }
+        // E3b row G, FOUND IN FRAMES and nowhere else: the Free-electrons-per-atom
+        // row read 1 over a magnesium block whose sea the engine had already drawn
+        // with TWO electrons per core (.e3b_drive/mb_sandbox_t5000.png, first
+        // pass) — the widget and the picture disagreeing about the same quantity,
+        // which is the FIXED scar scripted_change_desyncs_the_dom_control_that_
+        // shares_it in its purest form. The Metal picker is the driver: picking Mg
+        // IS picking two free electrons per atom, so the row tracks it until a
+        // trusted drag seizes it.
+        if (bscHasControl(ctrls, "valence") && !window.PM_bscValenceDragged && seaCfg) {
+            var vsl = document.getElementById("bsc_valence_slider"), vvl = document.getElementById("bsc_valence_val");
+            if (vsl) vsl.value = String(seaCfg.valence_e);
+            if (vvl) vvl.textContent = String(seaCfg.valence_e);
+            window.PM_bscValence = seaCfg.valence_e;
+        }
+        if (bscHasControl(ctrls, "metal") && !window.PM_bscMetalDragged) {
+            var mtl = document.getElementById("bsc_metal_select");
+            if (mtl && metalLive && mtl.value !== metalLive && bscOptionOf(mtl, metalLive)) mtl.value = metalLive;
         }
         if (bscHasControl(ctrls, "temperature") && !window.PM_bscTempDragged) {
             var tsl = document.getElementById("bsc_temperature_slider"), tvl = document.getElementById("bsc_temperature_val");
@@ -63724,6 +66404,11 @@ export const FIELD_3D_RENDERER_CODE = `
         electrons: ["bsc_electron", "bsc_lone"],
         lattice: ["bsc_lattice"],
         layer: ["bsc_layer"],
+        // ── E3b Q-2: the twelfth key. The field arrows are a live scene element
+        //   type a state puts on screen, and a narration sentence about the field
+        //   ("the field pulls the ions apart") had nothing to bind to. Same
+        //   reasoning as E5's trend key, one dispatch later.
+        field: ["bsc_field"],
         neighbours: ["bsc_neighbour"],
         // ── E5: THE CHART IS A SCENE ELEMENT AND HAD NO KEY. The enum was closed
         //   at ten keys, all of them meshes, while bsc_trend — a live element type
