@@ -172,6 +172,71 @@ cycle 1, inside the founder's 2-cycle budget (2026-08-08, `master` @ `dfca9cf`) 
 > proved the invariance rather than merely asserting the convention. **A verification culture only
 > works if the verifier can be the one who is wrong.**
 >
+> ## A30 · THE AUTHORING PASS FOUND THREE ENGINE DEFECTS — and one of them made the sim TEACH A FALSEHOOD
+> `mathematics_author` on #7 found what five surgeon dispatches and two Checkpoint-A gates did not,
+> because it was the first pass to ask *"what does this state actually SAY?"* rather than *"is the
+> geometry right?"*.
+> 1. **⛔ S6 LABELLED `b×a` AS `a×b`.** The cross arrow's sprite was built once with the literal and
+>    never re-texted, while `flip_frac` rotates the drawn vector 180°. At `flip_frac = 1` the arrow
+>    **is** `b×a` (exact to 1.78e-15) wearing the name `a×b` — **in the state whose declared contrast
+>    with S4 is that order matters.** The concept's own lesson, contradicted by its own caption, on a
+>    build that passed 403 assertions.
+> 2. **`products` mode had no projection**, so the dot-product states led with a NUMBER instead of a
+>    picture — the inverse of Rule 33d's usual failure (the number was there; the picture was not).
+> 3. **`#formula_overlay` and `#vg_sliders` shared a corner**, so S5 and S8 silently painted over the
+>    one formula surface (Rule 34d).
+>
+> **The lesson: a gate proves the geometry is right; only an authoring pass asks what the picture
+> CLAIMS.** Every assertion about `a×b` was true — the arrow pointed correctly at every `flip_frac`.
+> Nothing measured the *word* beside it.
+>
+> **The fix chose UNREPRESENTABLE over CORRECT.** Offered an authored `vg.cross_label` or a derived
+> one, the surgeon took derived: *"an authored label is a compile-time constant one authoring slip
+> away from re-shipping this exact defect; deriving the name from the same number that rotates the
+> arrow makes arrow and name incapable of disagreeing."* It also caught what the dispatch missed —
+> the arrow is `a×b` **only** at 0 and `b×a` **only** at 1; between them it is neither, and a midpoint
+> switch would read "a×b" with the arrow **88.2° away**. So it claims an order only within 3.6° of the
+> vector it names, and names the transition elsewhere. 201 samples against drawn geometry, zero
+> contradicted claims.
+>
+> ## ⭐ A31 · BOTH FLEET-SAFETY GATES WERE BROKEN — one RED ON MASTER, the other GREEN BY ACCIDENT
+> Found while verifying A30's third fix, and it is the most consequential engine finding after A20.
+> **`check:solid-of-revolution` was red on master**, reporting `1531 changed, 1531 stray`.
+>
+> **⚠ MY DIAGNOSIS OF IT WAS WRONG, AND MEASURED WRONG BY THE SURGEON.** I said a base-walk was landing
+> on a commit predating `vector_geometry_3d`, so VG's lines read as stray. Neither half held: **there is
+> no base-walk in the SR gate** (that is the VG gate's mechanism — I had the two gates' internals
+> crossed), and the strays were **SR's OWN block** — 1271 deleted-only lines, all its own text, **zero**
+> added-only lines. The real defect: the baseline was `merge-base(HEAD, origin/master)`, which **becomes
+> HEAD the moment the scenario merges**, so **the gate was diffing the file against itself with its own
+> block removed.** Red by construction, forever, from the instant it shipped.
+> **Where I was right is the more valuable half:** the VG gate carries the same defect and is **green
+> only by accident** of where its base lands (a commit on the SR branch, which already carries SR). Had
+> SR merged a day later it would be red by ~1271 lines today. **An accidentally-green gate is the next
+> red one.**
+>
+> **All three mechanisms I proposed were refuted ON MEASUREMENT:** "excise every scenario region since
+> the base" needs a whole-file partition that **does not exist** (only **14 of 48** banner blocks name a
+> `scenario_type`); "resolve the base per-scenario" is necessary but not sufficient; and "invert it —
+> every changed line outside belongs to some other scenario" would **forgive a scenario reaching into a
+> sibling's internals**, destroying the sealed-sibling protection (DF1) the engine cluster relies on.
+>
+> **The shipped answer:** a **derived baseline** (newest ancestor carrying no trace of the scenario)
+> plus **attribution by AUTHORSHIP** — a changed line belongs to whoever's commit wrote it — in **one
+> shared module** (`src/scripts/lib/fleetSafety.ts`), so the next scenario inherits it instead of
+> minting a third copy to rot.
+> > **THE PRINCIPLE, and it is the control that keeps the fix honest: authorship exempts a sibling's
+> > COMMITS, never a sibling's TERRITORY.** Each gate now plants a line inside the other's region and
+> > requires it still be reported. The failure mode of this very fix is an exemption widened until
+> > nothing can fail — the vacuous pass at gate scope — and that control is what detects it.
+>
+> Counts: **SR 217/32 (red) → 231/34 (green)** · **VG 403/44 → 475/50**, no longer green by accident.
+> The controls also surfaced a latent defect — SR appends to the `#sliders` NOT-list but never
+> **declared** that glue site, so it was falling through to exempt. **Four of the surgeon's own controls
+> were disowned across this work and left documented**, including one planted on a line the scenario
+> *created outright*: **nothing can detect an edit to a line with no earlier version to differ from**,
+> so the control could not fail and only appeared to prove the gate blind.
+>
 > **A25 · NEW CONTRACT BUG, FLAGGED NOT FIXED — the authored enum is incomplete for `lines_planes`.**
 > `:408`'s type union lists the **11 `products` tokens only**, but `VG_READOUT_LABEL` labels the **13
 > Δ6 `lines_planes` tokens** and `vgReadoutLine` prints any key a state names. **So a `lines_planes`
