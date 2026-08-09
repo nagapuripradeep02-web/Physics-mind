@@ -773,7 +773,7 @@
             { "s_m": 2.4, "label": "point B", "body_id": "block", "capture": ["W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000 }
           ],
           "work_scale_J": 200,
-          "loop_reset_ms": 12600,
+          "loop_reset_ms": 12250,
           "readouts": ["v"],
           "controls_visible": []
         }
@@ -800,7 +800,7 @@
             { "force": "gravity", "label": "gravity", "body_id": "block" },
             { "force": "friction", "label": "friction", "body_id": "block" }
           ],
-          "work_scale_J": 220,
+          "work_scale_J": 400,
           "glow_focal": "nlb_body_block",
           "readouts": ["v", "f"],
           "controls_visible": ["theta", "mu_s", "mu_k", "v0"],
