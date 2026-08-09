@@ -244,14 +244,14 @@
             "id": "wet_s4_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "a 4 kg cart launches backward at three metres a second against a steady six newton pull, on a frictionless floor — 3.0 m back, then 6.75 m forward",
+            "text": "a 4 kg cart launches backward at three metres a second against a steady six newton pull, on a frictionless floor — 3.0 m back, then forward through A to B and beyond; the launch is SEEN before anything pauses (Rule 32a)",
             "color": "#FFF176"
           },
           {
             "id": "wet_s4_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the net bar dives to −18.0 J exactly as the K bar falls to 0.0 J at the turn (t = 2.0 s), then both climb back — K to 40.5 J beside net at +22.5 J",
+            "text": "the net bar dives to −18.0 J exactly as the K bar falls to 0.0 J at the turn (t = 2.0 s), then both climb back — and the net bar re-crosses ZERO exactly as the cart re-crosses point A, the beat the return pause holds",
             "color": "#FFCA28"
           },
           {
@@ -264,16 +264,16 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "At point A the cart moves backward at three metres a second: kinetic energy eighteen joules.", "text_hi": "Point A पर cart पीछे की ओर तीन metres per second से चलती है: kinetic energy अट्ठारह joules।", "glow": "nlb_body_cart" },
-            { "id": "s4_2", "text_en": "The six newton pull slows it, turns it, then speeds it up.", "text_hi": "छह newton का pull इसे धीमा करता है, मोड़ता है, फिर तेज़ करता है।", "glow": "energy_panel" },
-            { "id": "s4_3", "text_en": "At point B: kinetic energy thirty-six joules, net work plus eighteen.", "text_hi": "Point B पर: kinetic energy छत्तीस joules, net work plus अट्ठारह।", "glow": "energy_panel" },
-            { "id": "s4_4", "text_en": "Thirty-six minus eighteen is eighteen — net work measures the change, not the final energy.", "text_hi": "छत्तीस minus अट्ठारह बराबर अट्ठारह -- net work बदलाव मापता है, आखिरी energy को नहीं।", "glow": "checkpoint_1" }
+            { "id": "s4_1", "text_en": "The cart leaves point A moving backward: eighteen joules already.", "text_hi": "Cart point A से पीछे की ओर चलती है: पहले से ही अट्ठारह joules।", "glow": "nlb_body_cart" },
+            { "id": "s4_2", "text_en": "Back through point A — eighteen joules again — then it pauses at point B: thirty-six.", "text_hi": "Point A से वापस गुज़रते हुए -- फिर से अट्ठारह joules -- फिर point B पर रुकती है: छत्तीस।", "glow": "checkpoint_1" },
+            { "id": "s4_3", "text_en": "Net work reads plus eighteen: thirty-six minus eighteen, the change from the start.", "text_hi": "Net work plus अट्ठारह पढ़ता है: छत्तीस minus अट्ठारह, शुरुआत से बदलाव।", "glow": "checkpoint_2" },
+            { "id": "s4_4", "text_en": "Net work is the change in kinetic energy, not the final energy.", "text_hi": "Net work kinetic energy में बदलाव है, आखिरी energy नहीं।", "glow": "energy_bar_K" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "Net work equals the final half m v squared",
-            "visual_counter": "At the end of the run the K bar reads 40.5 J while the net bar reads +22.5 J — two different nonzero numbers on one screen; the change is 40.5 minus 18.0 equals 22.5, measured from the starting 18.0 J",
+            "visual_counter": "The held point B stamp reads K = 36.0 J beside net = +18.0 J — two different nonzero numbers on one held screen; the change is 36.0 minus the starting 18.0, and the return pause at point A shows the 18.0 J still there mid-trip",
             "one_line_fix": "W_net equals half m v squared minus half m v0 squared, the change, not the final value."
           }
         ]
@@ -449,10 +449,10 @@
       },
       {
         "q_id": "q4_change_not_total",
-        "stem": "A 4 kg cart launched backward at 3 m/s is pulled by a steady 12 N forward force on a frictionless floor. By the time it has turned around and sped back up to 4.8 m/s, moving forward, its kinetic energy is 46.1 J. What is the net work done on the cart over this whole trip?",
+        "stem": "A 4 kg cart launched backward at 3 m/s is pulled by a steady 6 N forward force on a frictionless floor. By the time it has turned around and sped up to 4.24 m/s, moving forward, its kinetic energy is 36.0 J. What is the net work done on the cart over this whole trip?",
         "options": {
-          "A": "+28.1 J",
-          "B": "+46.1 J",
+          "A": "+18.0 J",
+          "B": "+36.0 J",
           "C": "+64.1 J",
           "D": "−18.0 J"
         },
@@ -689,19 +689,19 @@
       },
 
       "STATE_4": {
-        "label": "A 4 kg cart launched left at −3 m/s against a steady +6 N pull, frictionless; the scene halts 2 s at point A (v = −3 m/s, K = 18.0 J), the cart travels 3.0 m left, turns as net dives to −18.0 J, then speeds back up and halts 2 s at point B, 3.0 m right of A (v = +4.24 m/s, K = 36.0 J, net = +18.0 J) — 36.0 − 18.0 = 18.0",
+        "label": "A 4 kg cart launched left at −3 m/s against a steady +6 N pull, frictionless. NO opening freeze (cause first): point A stamps the given (v = −3.00, K = 18.0 J) as the cart launches; it travels 3.0 m left, turns as net dives to −18.0 J, then PAUSES 2 s back at point A on the return (v = +3.00, K = 18.0 J AGAIN, net bar at zero) and 2 s at point B (v = +4.24, K = 36.0, net = +18.0) — 36.0 − 18.0 = 18.0. Scene sits 1 m left of the old pose so later cycles keep a 3.3 m margin from the track end",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Measured from the start",
         "eye_capture_ms": 7800,
         "show_sliders": true,
-        "formula_overlay": "ΔK = ½mv² − ½mv₀²",
+        "formula_overlay": "Wₙₑₜ = ΔK = K − K₀",
         "newtons_laws_body": {
           "mode": "accelerate_applied_force",
           "variable_overrides": { "v0": -3, "m": 4, "F": 6, "mu_k": 0 },
           "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -1.5, "initial_velocity_mps": -3, "applied_force": { "N": 6, "angle_deg": 0 } }
+            { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -2.5, "initial_velocity_mps": -3, "applied_force": { "N": 6, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["applied"] }
@@ -712,8 +712,8 @@
           ],
           "work_scale_J": 40,
           "checkpoints": [
-            { "s_m": -1.5, "label": "point A", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "first", "marker": "point", "dwell_ms": 2000 },
-            { "s_m": 1.5, "label": "point B", "body_id": "cart", "capture": ["v", "K", "W"], "capture_mode": "first", "marker": "point", "dwell_ms": 2000 }
+            { "s_m": -2.5, "label": "point A", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000, "dwell_from_pass": 2 },
+            { "s_m": 0.5, "label": "point B", "body_id": "cart", "capture": ["v", "K", "W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000 }
           ],
           "loop_reset_ms": 9300,
           "readouts": ["v"],
@@ -722,11 +722,11 @@
       },
 
       "STATE_5": {
-        "label": "A 5 kg cart accelerates from 2 m/s under a steady 2 N pull, frictionless; the scene halts 2 s at point A (v = 2 m/s, K = 10.0 J) and 2.5 s at point B, 5.0 m on (v = 2.83 m/s, K = 20.0 J, net = 10.0 J) — K rises by exactly the 10.0 J the pull did",
+        "label": "A 5 kg cart accelerates from 2 m/s under a steady 2 N pull, frictionless. NO opening freeze: point A stamps the given (v = 2.00 m/s, K = 10.0 J) as the cart launches, and the scene halts 2.5 s only at point B, 5.0 m on (v = 2.83 m/s, K = 20.0 J, net = 10.0 J) — K rises by exactly the 10.0 J the pull did",
         "visible_elements": [],
         "camera_position": [0, 2.0, 10],
         "caption": "Derived from F = ma",
-        "eye_capture_ms": 5300,
+        "eye_capture_ms": 3300,
         "show_sliders": true,
         "formula_overlay": "Wₙₑₜ = ma·d = ½mv² − ½mv₀²",
         "newtons_laws_body": {
@@ -746,10 +746,10 @@
           ],
           "work_scale_J": 25,
           "checkpoints": [
-            { "s_m": -5.4, "label": "point A", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "first", "marker": "point", "dwell_ms": 2000 },
-            { "s_m": -0.4, "label": "point B", "body_id": "cart", "capture": ["v", "K", "W"], "capture_mode": "first", "marker": "point", "dwell_ms": 2500 }
+            { "s_m": -5.4, "label": "point A", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "every", "marker": "point" },
+            { "s_m": -0.4, "label": "point B", "body_id": "cart", "capture": ["v", "K", "W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2500 }
           ],
-          "loop_reset_ms": 8300,
+          "loop_reset_ms": 6300,
           "readouts": ["v", "a"],
           "controls_visible": []
         }
