@@ -104,7 +104,7 @@
             "id": "gpe_s1_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "a 3 kg cart is driven up a 30° ramp at a steady 0.8 m/s, starting 0.3 m above the dashed h = 0 line at the ramp's foot",
+            "text": "a 3 kg cart is driven up a 30° ramp at a steady 0.8 m/s, starting 0.3 m above the dashed h = 0 line",
             "color": "#FFF176"
           },
           {
@@ -255,7 +255,7 @@
             "id": "gpe_s4_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the displacement arrow reads d = 1.40 m at the flag, against S1's 2.40 m at the same height, and the stamp is the identical 44.1 J",
+            "text": "the displacement arrow reads d = 1.41 m at the flag, against S1's 2.40 m at the same height, and the stamp is the identical 44.1 J",
             "color": "#FFCA28"
           },
           {
@@ -276,7 +276,7 @@
         "misconception_watch": [
           {
             "belief": "Pushing a load up a LONGER ramp stores more potential energy — you pushed for longer.",
-            "visual_counter": "A steeper ramp reaches the same 1.5 m with d = 1.40 m instead of 2.40 m, and the stamp is the identical 44.1 J.",
+            "visual_counter": "A steeper ramp reaches the same 1.5 m with d = 1.41 m instead of 2.40 m, and the stamp is the identical 44.1 J.",
             "one_line_fix": "Only the height gained sets ΔU — path length does not enter mgΔh."
           }
         ]
@@ -697,7 +697,7 @@
       },
 
       "STATE_4": {
-        "label": "The ramp is rotated to 48.6°; the same 3 kg cart drives up at 0.8 m/s from s = 0.6 m. At s = 2.0 m (the SAME h = 1.5 m as S1's point B) point B stamps U = 44.1 J, with d = 1.40 m on the displacement arrow — against S1/S3's d = 2.40 m at the same height; the loop resets at 3650 ms.",
+        "label": "The ramp is rotated to 48.6°; the same 3 kg cart drives up at 0.8 m/s from s = 0.6 m. At s = 2.0 m (the SAME h = 1.5 m as S1's point B) point B stamps U = 44.1 J, with d = 1.41 m on the displacement arrow — against S1/S3's d = 2.40 m at the same height; the loop resets at 3650 ms.",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Shorter path, same U",
