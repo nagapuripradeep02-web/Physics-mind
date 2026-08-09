@@ -44665,8 +44665,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 eng._po_cycle = cycle;                   // entry / post-rewind: adopt, never fire
             } else if (cycle !== eng._po_cycle) {
                 var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+                // The clock a monotonic rewind preserves is the PAIR
+                // (_tPrevMs, t_ms), never t_ms alone — see the long note at the
+                // identical restore in nlbRunLoopReset. nlbResetTrajectory zeroes
+                // _tPrevMs to pair it with the t_ms = 0 a genuine RESET_TRAJECTORY
+                // wants, so without this line the rewind frame reports a single
+                // 16 ms step as spanning [0, t_ms] to every crossing-instant and
+                // angular-segment reader. No shipped push_off state authors a
+                // checkpoint or a rolling body, so this site is a no-op today and a
+                // latent defect tomorrow; the two rewind paths keep ONE contract.
+                var pKeep = eng._tPrevMs;
                 nlbResetTrajectory();                    // the ONE rewind path
                 eng.t_ms = tKeep;                        // the master clock stays monotonic
+                eng._tPrevMs = pKeep;                    // ...and so does this frame's segment start
                 window.PM_nlbTimeMs = tKeepPub;
                 eng._po_cycle = cycle;                   // AFTER the rewind (which nulls it)
             }
@@ -45261,6 +45272,31 @@ export const FIELD_3D_RENDERER_CODE = `
             return;
         }
         var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+        // Note 11d — the clock this rewind preserves is the PAIR (_tPrevMs, t_ms),
+        // never t_ms alone. nlbResetTrajectory zeroes _tPrevMs to pair it with the
+        // t_ms = 0 a genuine RESET_TRAJECTORY wants; this path then puts t_ms back
+        // and, before this line existed, left _tPrevMs at 0 — so on the rewind frame
+        // the engine believed one 16 ms step spanned [0, 9312].
+        //   Not cosmetic, because that segment is what every crossing-instant reader
+        // anchors on:
+        //     tCross = _tPrevMs + f·(t_ms − _tPrevMs)          (notes 11b / 11d)
+        // and the ONE crossing that can land on the rewind frame is a HOME-ARMED
+        // checkpoint's departure: the body has just been put back ON its flag, so
+        // its step segment STARTS at s_m and f is exactly 0. tCross therefore
+        // collapsed to the stale 0, "until = 0 + dwell_ms" landed a whole cycle in
+        // the past, and the until-beats-now freshness guard threw the window away.
+        // The stamp itself was fine — counts and text DO rewind — so the failure
+        // read as "the dwell only works on the first cycle".
+        //   Measured on work_energy_theorem STATE_4 (loop 9300, point A home-armed
+        // at s0, dwell 2000): cycle 1 held 0-2000 ms, cycles 2+ did not hold at all,
+        // and the 2 s of physics that hold was supposed to absorb instead ran the
+        // cart into the +6 m track bound, where nlbEnergyClampGuard froze the bars —
+        // putting "v = 0.00 m/s" on screen beside "K = 62.7 J" in a founder review.
+        //   nlbRollSeg (SEAM R) anchors an angular segment on the same field, so a
+        // rolling body on a looping state was handed a ~9 s tau on the rewind frame
+        // for its closed form; no shipped looping state rolls, so that one never
+        // reached a teacher, but it is the same missing restore.
+        var pKeep = eng._tPrevMs;
         // Note 11d — carried across the rewind for the SAME reason the clock is:
         // this rewind is not a state entry. The warn latch lives in the reset
         // cluster so a genuine entry / RESET_TRAJECTORY re-arms it, but a looping
@@ -45269,6 +45305,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var wKeep = eng._dwell_loop_warned;
         nlbResetTrajectory();                 // the ONE rewind path
         eng.t_ms = tKeep;                     // the master clock stays monotonic
+        eng._tPrevMs = pKeep;                 // ...and so does this frame's segment start
         window.PM_nlbTimeMs = tKeepPub;
         eng._dwell_loop_warned = wKeep;
         eng._loop_cycle = cycle;              // AFTER the rewind (which nulls it)
