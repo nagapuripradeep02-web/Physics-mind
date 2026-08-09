@@ -1825,6 +1825,27 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #5 — same newtons_laws_body engine +
+    // SEAM K/L/M/N energy layer. A force is conservative when its total work
+    // around any closed path is zero (gravity, a round-trip work bar returning
+    // to a 0.0 J start-line stamp); friction is non-conservative because it
+    // always opposes the motion, so its round-trip work adds two negative legs
+    // instead of cancelling (−125.3 J at the start line, the PRIMARY aha).
+    // First fleet exercise of a checkpoint seeded exactly at the home pose,
+    // now on capture_mode 'every' — under 'first' the stamp froze on the
+    // DEPARTURE reading and displayed friction = 0.0 J, i.e. the very
+    // misconception the concept exists to kill (fixed 2026-08-09). Pure
+    // configuration, zero renderer edits (0d). Alex pipeline, 2026-08-07.
+    conservative_vs_nonconservative_forces: {
+        concept_id: 'conservative_vs_nonconservative_forces',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'conservative_vs_nonconservative_forces',
+            label: 'Conservative vs Non-Conservative Forces — the Round-Trip Test (3D)',
+        },
+    },
+
     // Class 11 Ch.6 Work, Energy and Power #4 — same newtons_laws_body engine,
     // and the FIRST concept in the fleet to author BOTH the SEAM L energy_layer
     // AND SEAM M work_accumulators together (the engine's own panel header

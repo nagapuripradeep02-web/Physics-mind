@@ -1,5 +1,45 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🅰️🅱️ SESSION — Ch.6 #4 + #5 re-taught from POINT A / POINT B with a 2 s hold at each · the SEAM-M **teaching dwell** built · **the primary aha was rendering the misconception it exists to destroy, and no gate could see it** (2026-08-08, `feat/ch6-concept-4` + `feat/ch6-concept-5`)
+
+**Bottom line: a founder review of the two ch6 sims produced two rounds of work — first the MOTION (too fast, too short to read), then the TEACHING OBJECT (a "flag" nobody could explain). Both concepts now teach the way a teacher does on a board: two named points, the values read at each, the change between them — and the scene's physics HOLDS 2 s at each point while the numbers stand still. Four engine commits, two concept commits, zero content compromises. Every defect that mattered was found by reading pixels; every gate was green while two of them sat in the frames.**
+
+### Round 1 — the motion was unreadable (founder: "no time to show what exactly is going on")
+Measured before touching anything: the guided states swept **10–33 %** of their apparatus in **1.0–2.6 s**, repeating **9–14×** per state. #5's S3 was the extreme — a 0.60 m hop on a 12 m ramp, over and back in 1.1 s, 14 times in a 20 s state.
+- **#4 (flat):** forces cut rather than distances stretched, so every headline joule survived — 40.0 J, −40.0 J, ±98.0 J, −18.0 J, "10 J, K rises 10→20". Spans **67–87 %**, motion **3.8–5.0 s**.
+- **#5 (ramp):** θ 30°→25°, launches 4/4/3/5 → 8/8/7/8.5 m/s, home pose UNCHANGED so the start-line latch gained dwell rather than losing it. Spans **32–76 %**, round trips **3.2–4.1 s**.
+- **25° was forced by the arrow-length floor**, not taste: every force arrow must clear 11.46 N (`NLB_ARROW_SCALE` 0.048 × `MIN_LEN` 0.55). At 20° friction would have floored and drawn a lie.
+
+### 🔴 The defect the frames found — the PRIMARY aha taught the misconception
+#5's start-line checkpoint sits exactly at the home pose, so it fires at t = 0; under `capture_mode: 'first'` the stamp froze on the DEPARTURE reading and never updated:
+> `back at the start: W gravity = 0.0 J · W friction = 0.0 J`
+— i.e. it asserted friction's round-trip work is zero, the exact belief the concept exists to destroy. **Pre-existing** (the post-PR-#62 deterministic behaviour; the approved baseline predates that fix and never showed it), and the longer cycle left it on screen for the whole loop. One token (`'every'`) and it reads `point A (pass 2): W gravity = 0.0 J · W friction = −125.3 J`.
+
+### Round 2 — "why are you using a flag there? I don't know why"
+The word was never a design decision: **the engine's own default checkpoint caption is literally `"point " + (c+1)`**. Only the mesh was wrong — a 1.05-unit post with `depthTest:false` drawing through the block standing on it (scar CF-4). Four engine dispatches, one `bug_class` each, all Rule-40 platform commits:
+1. **`dwell_ms` / `dwell_from_pass`** — the scene's physics holds on a **stamped** crossing (`hPhys = 0` at the one dt every integrator branch reads), narration and the clock keep running (Rule 26), mandatory `paused: <label>` badge (Rule 24/34), sandbox + trusted-drag carve-outs (Rule 37), `loop_reset_ms` **deferred** past a live dwell.
+2. **`marker: 'flag' | 'point'`** — track-level dot, `depthTest` true, so the body passes OVER it. Retires CF-4's engine half.
+3. **Per-form caption lane** — the point caption kept the lane sized to clear a post that is not drawn; on a tilted ramp that put it **88 px diagonally** from its own dot. Now **19 px, straight above**, derived from geometry not tuned.
+4. *(the body-vs-caption pass — see the last section)*
+
+### The corrections that mattered — three agents refuted the briefs they were given
+- **The dispatch premise was measurably false.** I wrote "during a dwell physics is frozen so bar and stamp necessarily agree." They do not: the freeze begins one integrator step AFTER the crossing while the stamp is back-interpolated TO it, leaving a bounded **0.94 J** residual (measured −40.6/−99.2 bars vs −41.4/−98.6 stamp). The dwell converts an *unbounded, ever-growing* discrepancy into a *bounded one-step* one — a real improvement, but not the claim I made. Filed OPEN.
+- **The loop-reset guard was in the wrong place**, and warned on correctly-authored states (2 warns in a 9 s run); and its own suppressor was cleared by the rewind it guards (5 warns in 7 s). Both measured, both moved.
+- **The badge separator.** `"paused at " + label` renders **"paused at at the flag"** on half of ch6's real labels. Changed to `"paused: "`.
+
+### Verification
+`tsc` **0** · `check:renderer-syntax` OK after every edit · `validate:concepts` **152 PASS / 0 FAIL** both worktrees · `vitest` **356/356** · THE EYE **H3 clean, ZERO `[PM_NLB_DWELL]` warnings** on all 11 guided states — the dwell arithmetic (`R > last crossing + its dwell + tail`) holds exactly as authored.
+- **Flag byte-identity proven three times**: `kinetic_energy_definition` (baseline-locked AND authors a checkpoint) returned **38/38** with H2 identical *to the digit* — `0.53/0.59/0.63/0.53/0.70/0.62 %` — before and after every engine commit. The two shipped flag concepts are untouched by construction.
+- **THE CALCULATOR: #5 6/6 passed; #4 went 10 → 14 failures, all 4 new ones hand-confirmed FALSE.** The harvester pairs a `K` from one stamp with a `v` from another — one raw capture literally reads `"K = 40.0 J point B: v = 2.00 m/s"`. Filed; SKIP, not FAIL, is the right verdict for an unpairable reading.
+- **H2 is not evidence here and was not treated as such.** #4's S2 stayed UNDER the 2 % tolerance despite a completely new picture (small body, dark frame — the documented blind spot). Every state was confirmed by opening the frame instead.
+
+### The lessons that cost the most
+- **A stale baseline hides a live defect.** #5's approved baseline was captured before PR #62 made the home-pose checkpoint deterministic, so it showed no stamp at all where the shipped sim now showed a false one. The gate compared the new picture against a *picture of a different engine* and reported 3 %.
+- **The authoring arithmetic a feature introduces is part of the feature.** `dwell_ms` shifts every later event on the state clock by the sum of prior dwells; `loop_reset_ms` and `eye_capture_ms` both depend on it and **no tool derives either**, because the crossing instant is emergent from the integrated physics. Filed as an architect-owned row rather than left as tribal knowledge.
+- **Engine request E1 was discharged without building it.** The ask was an authored frozen-pin phase for nlb loop states; the already-shipped `eye_capture_ms` override does it, with zero `deriveStateMeta` change. Read the existing seam before extending one.
+- **NEXT:** founder review of the frames, then re-baseline both (`visual:approve` deliberately NOT run — Rule 17); apply the **8** scar rows; merge engine **PR #74** (`fix/nlb-checkpoint-teaching-points`, cut off current master, verified there) before the next chapter branch opens — both concept branches carry the same four commits cherry-picked and collapse to concept-only diffs once it lands.
+
+---
 ## 🎯 SESSION — Ch.6 #4 + #5 founder review round: the teaching DWELL built, the point instrument DE-TEMPLATED, and a state deleted for having no idea of its own (2026-08-08/09, `feat/ch6-concept-4` + `feat/ch6-concept-5`, engine PR #74)
 
 **Bottom line: the founder watched both sims and the notes were all one note — the picture moves too fast and too little to teach from, and the marks on the track say nothing. Six renderer commits built a teaching DWELL (the scene's physics freezes on a stamped crossing so a teacher can read v, K and the work ledger before the motion resumes) plus a `point` marker form. Then the more valuable half: taking almost all of it back out.**

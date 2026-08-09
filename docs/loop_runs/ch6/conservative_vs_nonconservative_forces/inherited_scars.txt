@@ -1,0 +1,300 @@
+[dotenv@17.3.1] injecting env (13) from .env.local -- tip: ⚙️  enable debug logging with { debug: true }
+
+engine_bug_queue — 50 row(s) for: scenario "newtons_laws_body" (13 concept(s): block_on_incline, connected_bodies, free_body_diagram, friction_force, kinetic_energy_definition, newton_first_law, newton_second_law, newton_third_law, normal_force, positive_negative_zero_work, rolling_friction, tension_force, work_done_by_constant_force) (OPEN/DEFERRED only)
+
+● [DIRECTIVE/OPEN] nlb_checkpoint_s_m_authored_as_displacement_not_track_coordinate  (alex:architect)
+    checkpoints.s_m is an absolute track coordinate; authoring it as displacement stamps the wrong joules
+    concepts: work_done_by_constant_force, positive_negative_zero_work, work_energy_theorem, conservative_vs_nonconservative_forces, average_power
+    DO: Author every checkpoint as arithmetic on the home pose (s_m = initial_position_m + d_target), never as a bare displacement literal; state initial_position_m explicitly in the skeleton home-pose paragraph.
+    PROBE(js_eval): For each state authoring newtons_laws_body.checkpoints: read initial_position_m of the tracked body, compute d = s_m - initial_position_m, and assert the concept claimed stamp value equals F_along * d for the authored applied_force.
+
+● [CRITICAL/OPEN] nlb_frictionless_state_with_an_opposing_applied_force_reverses_and_unwinds_its_own_work_ledger  (alex:architect)
+    A frictionless state whose applied force opposes the motion can never come to rest: it reverses at v=0 and the constant-force ledger climbs back to zero, erasing the sign the state teaches
+    concepts: positive_negative_zero_work, conservative_vs_nonconservative_forces, mechanical_energy_loss_with_friction
+    DO: A guided state whose claim is the SIGN of a constant force's work must be able to END, and must stay ended for every value its own sliders can reach. If the along-component opposes the motion, either the surface supplies static friction able to hold it across the whole slider range (mu_s * N(theta) >= |F cos theta| for every reachable theta - compute the ENVELOPE, not the authored point: for F=25 N on 5 kg the binding value is mu_s = 0.5932 at theta = 149.3 deg, not the 0.457 the authored 120 deg suggests), or the state authors no slider that outlives its loop. Note the envelope is a SYMMETRIC PAIR (theta = 30.68 deg and 149.32 deg both require 0.5932, since N(theta) and |cos theta| are each symmetric about 90 deg), so a one-sided check is not a check. Never state a seized-run consequence for one state by analogy to another whose drive is different: a zero-drive coast arrests forward at the bound, a backward-drive coast reverses.
+    PROBE(js_eval): For each state authoring work_accumulators with a non-empty controls_visible: drive the state, fire ONE trusted slider input to seize the loop, run 20 s. Assert that with the slider value unchanged from its authored value, the sign of every rendered work bar never changes and |W_rendered| never falls below 60 percent of its authored peak. Independently assert the body velocity never changes sign while the authored along-force is nonzero and constant.
+
+● [DIRECTIVE/OPEN] nlb_multibody_lane_gap_is_along_z_so_a_head_on_camera_stacks_the_compared_bodies  (alex:architect)
+    A side-by-side compare authored with a head-on camera draws the two bodies on top of each other
+    concepts: work_done_by_constant_force, positive_negative_zero_work, work_energy_theorem, conservation_of_mechanical_energy
+    DO: A state placing two or more independent bodies in lanes MUST author an off-axis camera AND a release stagger chosen so the projected screen-x extents are disjoint at t=0; the skeleton states the projected screen separation, not merely the world lane gap.
+    PROBE(js_eval): For each state whose bodies length > 1: project each body mesh through the state camera and assert the screen-x extents are disjoint at t=0 and at every 100 ms sample through one loop period.
+
+● [DIRECTIVE/OPEN] field3d_dt_accumulated_motion_invisible_to_eye_timepin  (peter_parker:field3d_surgeon)
+    Motion advanced by per-frame dt accumulation has no history under a cold SET_TIME_FREEZE pin, so THE EYE photographs it as static — the motion is real in play and invisible to the gate
+    concepts: ac_generator, capacitance, rolling_friction, work_done_by_constant_force
+    DO: Any field_3d quantity that drives visible motion, a trace, a readout or a reveal must be a PURE FUNCTION of state-local t — reconstructible at an arbitrary pinned t on a cold load, with no dependence on having played the frames in between. Never advance a visible quantity by accumulating a per-frame delta (x += v*dt), never build a trace by appending to a polyline, and never latch a visible flag only during playback. Where a genuine integral is needed, author its closed form (definite integral of the authored profile); where a genuine accumulator is unavoidable, it must be rebuilt from 0 on any backwards or cold t, on a fixed grid independent of frame dt — the pattern rigid_body_rotation uses for theta. Corollary for reviewers: a frozen frame that looks static is not evidence the sim is static; check whether the quantity is closed-form first.
+    PROBE(js_eval): For the state under test, capture the frame two ways and compare. (1) COLD PIN: fresh load, send SET_STATE then SET_TIME_FREEZE at_ms = T, capture. (2) PLAYED: fresh load, send SET_STATE, let the clock run forward to T on the fixed step, then freeze and capture. Assert the two frames are identical (or within the run-to-run noise floor). Any quantity that differs is dt-accumulated and must be converted to a closed form. Sweep T across the state's reveal beats, not just its end. NOTE 2026-08-03: the focal glow pulse currently fails a strict form of this probe for an unrelated reason (field3d_focal_glow_pulse_phase_reads_absolute_time_so_frozen_h2_jitters) — exclude the glow focal, or fix that row first, so the two classes do not mask each other.
+
+● [MAJOR/OPEN] nlb_work_bar_glow_ids_never_light_behind_the_energy_prefix_gate  (peter_parker:field3d_surgeon)
+    SEAM M declares work_bar_* glow ids but nlbEnergyApplyGlow gates on energy_* prefixes, so the focal lights nothing and dims everything
+    concepts: work_done_by_constant_force, positive_negative_zero_work, work_energy_theorem, mechanical_energy_loss_with_friction
+    DO: A glow id declared in a seam contract ships with a probe that lights it and asserts a pixel-level difference; a declared-but-unreachable id is worse than an absent one because the unmatched focal dims the entire scene.
+    PROBE(js_eval): For each id in the seam contract glow list, SET_GLOW to it on a state that renders the element and assert the element opacity is 1.0 AND at least one declared peer sits at GLOW_DIM_OPACITY. An id where every element stays at 1.0 is this bug.
+
+● [MAJOR/OPEN] nlb_angle_arc_radius_overruns_the_neighbouring_lane_body  (peter_parker:field3d_surgeon)
+    The angle arc is anchored correctly but its world-unit radius lands the arc and its label on the next body
+    concepts: work_done_by_constant_force, positive_negative_zero_work
+    DO: Clamp the arc radius at draw time to the screen distance to the nearest other body, or draw the arc behind bodies with an explicit leader to its owner. An arc overlapping a body it does not belong to is this bug.
+    PROBE(js_eval): For each state authoring angle_arc alongside more than one body: project the arc sampled points and every body bbox; assert no arc sample and no arc label rect falls inside the screen bbox of a body other than angle_arc.body_id.
+
+● [MAJOR/OPEN] nlb_body_label_is_brighten_only_so_static_text_outranks_the_state_focal  (peter_parker:field3d_surgeon)
+    Body labels sit in the solidApparatus brighten-only set, so static mass text is the brightest thing on canvas
+    concepts: work_done_by_constant_force, newton_third_law, connected_bodies, friction_force, normal_force
+    DO: brightenOnly protects OBJECTS, never text. Any *_label elementType is a normal emphasis peer and must dim.
+    PROBE(js_eval): In any nlb state with a glow_focal, assert the material opacity of every nlb_body_label is strictly less than the opacity of the focal element whenever glow is active.
+
+● [MAJOR/OPEN] concept_ships_zero_narration_glow_bindings  (alex:physics_author)
+    A concept can pass every gate with 0 of N tts_sentences carrying a glow, so on-canvas emphasis never moves
+    concepts: work_done_by_constant_force
+    DO: Every tts_sentences entry carries a glow naming exactly one on-canvas element that exists in that state. Zero bindings is an authoring omission, never a design choice; partial bindings name which sentences deliberately carry none and why.
+    PROBE(js_eval): For each concept JSON: count tts_sentences and count those with a truthy glow; assert the ratio is 1.0. For each glow value assert the named id exists among that state scene_composition ids, its field_3d primitives, or the renderer published element ids.
+
+● [MAJOR/OPEN] nlb_displacement_vector_is_single_body_so_a_compare_state_measures_only_one  (peter_parker:field3d_surgeon)
+    newtons_laws_body accepts one displacement_vector, so a two-body compare state can show a measured d for only one body
+    concepts: work_done_by_constant_force, positive_negative_zero_work
+    DO: Any instrument a state uses to VERIFY a claim about N bodies must be authorable N times. When an existing sibling config in the same block already accepts a list keyed by body_id, a new measuring instrument follows that shape.
+    PROBE(js_eval): In a two-body state carrying work_accumulators, author a displacement_vector per body and assert each renders a visible arrow with a distinct label, and that for every body i |W_i - F_i*d_i*cos(theta_i)| is within display precision.
+
+● [DIRECTIVE/OPEN] nlb_motion_archetype_declared_from_a_between_state_delta_or_a_teacher_driven_control  (alex:architect)
+    A state declares a motion archetype naming a between-state difference or a slider the teacher must drag, so its authored beat silently repeats a sibling
+    concepts: positive_negative_zero_work, work_done_by_constant_force, work_energy_theorem
+    DO: A motion archetype names a motion the AUTHORED beat produces with NO teacher input, inside the state, between t=0 and the loop reset. A between-state difference is the DELTA CUE. A live slider is a Rule-31 contextual control and is required, but it never discharges the archetype. If the engine cannot author the transition the idea wants, the state needs a genuinely different motion - not a renamed one, and not an engine extension whose output would contradict the state's own formula surface (a ramping theta accumulates the integral of F cos theta ds, which does not equal F*d*cos theta).
+
+● [MAJOR/OPEN] authored_state_glow_focal_silently_voids_every_tts_sentence_glow_in_that_state  (peter_parker:field3d_surgeon)
+    A state-level glow_focal outranks the per-sentence SET_GLOW channel for the whole state, so narration glow bindings can be 100 percent authored and 100 percent inert
+    concepts: positive_negative_zero_work, work_done_by_constant_force
+    DO: A declared authoring channel must be observable, not merely accepted. Either the per-sentence channel outranks the state default (a static focal is a DEFAULT, a narrated focal is an EVENT), or the precedence is documented at the authoring surface and a probe asserts that any state authoring both is authoring the static one deliberately. Until a founder ruling settles the precedence, treat an authored glow_focal as a declaration that this state opts OUT of narration-driven emphasis. Do NOT change the precedence from a chapter branch: it alters live behaviour on every field_3d concept that authors both, and THE EYE cannot see it because THE EYE never sends SET_GLOW. FOUNDER DECISION PENDING.
+    PROBE(js_eval): For each state with at least one tts_sentences[].glow: drive the state on the built review page, step the clock through each sentence window, and read the effective focal each time. Assert the effective focal equals the sentence's authored glow for every sentence. Report any state where the effective focal is constant across all sentence windows while the authored bindings differ.
+
+● [MAJOR/OPEN] explore_state_discoverables_authored_only_as_unrendered_scene_composition_annotations  (alex:json_author)
+    The explore state's named teaching prompts live only in scene_composition annotations, which field_3d never paints, so the assessment tests a demonstration the sim never proposes
+    concepts: positive_negative_zero_work
+    DO: Every teaching string must live on a path that renders: the state label, formula_overlay, caption, a tts_sentences entry, or a real primitive. scene_composition annotations are design notes on a field_3d concept, never delivery. Before an explore state ships, check its named discoverables against the rendered text paths, and check that every assessment question whose teaches_state is the explore state is answerable from something the sim actually shows. Never discharge this by setting render_annotations on a concept authored for clean mode - it paints every annotation in every state and breaks Rule 34.
+    PROBE(js_eval): For each field_3d concept without render_annotations: collect every scene_composition entry of type annotation, and for each assert its text is substring-covered by that state's label, caption, formula_overlay or any tts_sentences text_en. Report any annotation carrying unique content. Separately assert that the count of RENDERED primitives per state (excluding unrendered annotations) is at least 3, so Rule 19 is measured against what is drawn.
+
+● [MAJOR/OPEN] nlb_friction_vector_first_frame_reveal_tint_bypasses_seam_q_ink_fix  (peter_parker:field3d_surgeon)
+    friction/weight vector ink carries the wrong backdrop regime for whole loop phases, not just the first reveal frame
+    concepts: kinetic_energy_definition, positive_negative_zero_work, work_done_by_constant_force, friction_force, block_on_incline, rolling_friction
+    DO: A vector's transient or first-frame reveal colour must independently clear the same backdrop-relative contrast floor (3:1 graphical, 4.5:1 text) as its settled steady-state colour. Sample and assert at t=0, not only at t>=1s: an ink pass that runs on the update path but not the build/reveal path leaves a one-frame hole that no frozen-frame gate can see, because the frozen pin is never at t=0. When an ink floor is introduced, enumerate every code path that writes that element's colour - build, update, reveal, glow-restore - and assert the floor on all of them, not just the one that produced the reported symptom.
+
+WIDENED 2026-08-03: "enumerate every code path that writes the element colour" was SATISFIED here and the defect still shipped, because there was only ever one path and the fault was in the question that path asked the geometry. Add: when an element colour is chosen from a GEOMETRIC test, the test itself is the code path - probe it across the whole loop period at the state own loop_reset_ms, never only at the reveal frame, and never conclude "transient" from a single sampled instant.
+    PROBE(js_eval): For every newtons_laws_body state rendering a friction arrow: capture the arrow shaft and label pixel colour at t=0 AND at t=1000 ms, resolve each against its LOCAL backdrop (raycast the slab mesh at the element ink anchor; page otherwise), and assert both instants clear 3:1 for the stroke and 4.5:1 for the label. FAIL when the two instants differ in measured contrast class. Independently, temporarily seed a body at initial_position_m = 0 (mid-slab) and assert the t=0 friction arrow still clears the floor - that is the configuration the current fleet geometry masks.
+
+● [DIRECTIVE/OPEN] state_glow_focal_dims_one_half_of_the_relation_the_state_exists_to_teach  (alex:json_author)
+    A state whose claim is the relation between two overlays authors a focal on one of them, dropping the other below the contrast floor and destroying the comparison
+    concepts: positive_negative_zero_work, work_done_by_constant_force, pure_rolling, rolling_on_incline
+    DO: Rule 32e caps the focal count at one; it does NOT require one. Before authoring glow_focal, name the state's claim: if it is a property of a single object, a focal is right; if it is a RELATION between two overlays, author no glow_focal - glowActive stays false, nothing dims, and any per-sentence glow bindings then drive the emphasis in narration order, which is usually what the author already wrote. Verify by measurement, never by eye: sample the taught overlay's stroke-centre contrast in the frozen frame. After ANY restructure that splits, folds or renumbers states, re-run this test over the NEW state list from scratch - a ruling recorded against a state number is not a ruling until it is re-derived against the states that now exist.
+    PROBE(js_eval): For each state authoring a glow_focal, identify the overlays named in that state's formula_overlay, delta cue and tts_sentences. Sample each named overlay's ink in the frozen frame, hue-gated to its authored colour, take the mean relative luminance of the top 8 pixels, and assert contrast versus the local backdrop is at least 3:1 for a graphical object and 4.5:1 for text. FAIL when a named overlay is a dimmed peer and falls under the floor.
+
+● [DIRECTIVE/OPEN] field3d_nlb_arrow_min_length_floor_collapses_small_force_visibility_and_ratio  (alex:physics_author)
+    Force magnitudes under the arrow-length floor render as invisible stubs and destroy any authored length ratio
+    concepts: newton_second_law, rolling_on_incline, pure_rolling
+    DO: Any authored force intended to be SEEN must clear the arrow-length floor with margin (1.5x the floor at the live NLB_ARROW_SCALE - which is 0.048 as of 2026-08-02, NOT the 0.030 this rule originally quoted; read the constant, do not trust this sentence). Where two force magnitudes are compared on the same canvas for their LENGTH ratio, the SMALLER of the pair must clear the floor - otherwise the ratio is unrenderable. Also check the CEILING: if max(F)/min(F) exceeds MAX_LEN/MIN_LEN the pair is unrenderable at ANY mass. Scale masses (and surface.length_m / dwell) to hold the clamp margin at the larger forces, rather than shrinking forces to hold the accelerations down. Applies to idle_auto_sweep and every slider envelope, not just the authored point. A quantity that is not a force (a velocity, a displacement) needs its OWN magnitude-to-length map - never route it through the force map.
+
+● [MAJOR/OPEN] ramp_endpoints_multiply_the_taught_variable_by_a_factor_no_rendered_string_claims  (alex:architect)
+    A param_ramp runs 2 to 8 while the title and delta cue both say twice, and the resulting bar factor duplicates the previous state
+    concepts: kinetic_energy_definition
+    DO: A ramp or compare whose whole job is a PROPORTIONALITY must author endpoints whose ratio equals the ratio its own title and delta cue state, and must produce a rendered factor DIFFERENT from every sibling state that teaches a different power law. Compute both ratios in the skeleton and print them beside the strings.
+    PROBE(js_eval): For every state authoring param_ramp: compute to/from and compare against every numeral in that state title, delta cue and caption; FAIL on mismatch. Separately, for every pair of guided states teaching different power laws of the same output, compute each rendered output ratio and FAIL when the two ratios are equal.
+
+● [MAJOR/OPEN] energy_layer_two_body_groups_stack_vertically_so_a_bar_height_compare_is_not_side_by_side  (alex:architect)
+    A design stakes its PRIMARY aha on comparing two energy bars that the panel renders one above the other in the same colour
+    concepts: kinetic_energy_definition
+    DO: Before staking an aha on a two-group energy compare, read the group layout code (not the comment) and state in the skeleton that the bars stack vertically. Choose bar_max_J for WITHIN-state deflection of the compared pair, and declare the fallback design in the skeleton if the stacked pair does not read - never defer that proof to a post-build finding.
+    PROBE(js_eval): For each state authoring energy_layer.body_ids of length 2: read the computed style of nlb_en_g0 and nlb_en_g1, assert whether they share a horizontal band; measure each fill height in px and assert the SHORTER fill is at least 15 percent of its track.
+
+● [MAJOR/OPEN] taught_variable_has_no_rendered_physical_correlate_so_a_text_label_is_the_only_cause  (alex:architect)
+    A state teaches a quantity whose change is visible only as digits on a billboard, and claims Rule 32a cause-before-effect for it
+    concepts: kinetic_energy_definition, atomic_and_ionic_radius, ionisation_enthalpy
+    DO: When a state teaches a quantity the apparatus cannot show geometrically, find a rendered correlate that scales with it (a force arrow, an instrument needle) or DECLARE in the skeleton that the cause is text-only and argue why that is acceptable. Never assert Rule 32a cause-before-effect for two values written from one variable in one frame.
+    PROBE(js_eval): For each guided state, identify the taught variable from the delta cue; assert at least one non-text rendered element geometry changes monotonically with it across the state beat.
+
+● [MAJOR/OPEN] quantitative_check_state_reuses_the_exact_numbers_and_the_delta_cue_of_the_state_it_verifies  (alex:architect)
+    The numerical verification state stamps the same mass, speeds and joules an earlier qualitative state already showed
+    concepts: kinetic_energy_definition
+    DO: A quantitative verification state must land on values NO earlier state has rendered, and its delta cue must name what only that state shows. Cross-tabulate every rendered numeral against every earlier state before fixing the flag conditions.
+    PROBE(js_eval): For each state whose role is numerical verification: collect every numeral it renders and assert none of the mass/speed/energy triples equals a triple rendered by any earlier state. Separately assert its delta cue shares no content phrase with any earlier delta cue.
+
+● [DIRECTIVE/OPEN] shared_bar_scale_cross_state_guarantee_is_void_when_the_panel_reflow_ladder_drops_a_step  (alex:architect)
+    The energy panel reflow ladder drops two-group states one rung at the SHIPPED iframe height, not only on small screens, so the same joule value draws at two heights across adjacent states
+    concepts: kinetic_energy_definition, work_energy_theorem, conservation_of_mechanical_energy, mechanical_energy_loss_with_friction
+    DO: Never derive a layout threshold from the browser viewport when the renderer runs inside an iframe - measure the iframe. Any design resting on bar height is void across states by construction; anchor the claim on the rendered numeral and the fill FRACTION, which nlbEnPct writes as a percentage and which is therefore invariant under the ladder.
+    PROBE(js_eval): Drive every state at the real iframe height; for each state read the computed height of a .nlb_en_trk element and assert it is identical across all states. Report the height at which any state first differs.
+
+● [MAJOR/OPEN] calculator_dom_harvest_needs_symbol_and_value_in_ONE_text_node_so_the_energy_panel_is_invisible  (peter_parker:visual_validator)
+    THE CALCULATOR harvests zero readings from the newtons_laws_body energy panel because the panel splits symbol and value across sibling elements
+    concepts: kinetic_energy_definition, work_energy_theorem, gravitational_potential_energy, elastic_potential_energy_spring, conservation_of_mechanical_energy, mechanical_energy_loss_with_friction
+    DO: A numeric gate that matches symbol and value inside a single text node cannot see any instrument that renders them as separate elements. When a new rendering surface lands, add a harvest channel for it in the same phase, or the gate silently goes dark on exactly the newest and least-proven instrument. Pair every harvested channel with a negative control: a state known to paint a value must not report zero readings. Never read a high SKIP count as coverage.
+    PROBE(js_eval): For each state authoring energy_layer: assert the harvested reading set is non-empty and contains one entry per authored bar, with symbol and numeric joined from the panel sibling elements. Independently run the harvester against a state known to paint a value and FAIL if readings is empty.
+
+● [MAJOR/OPEN] seam_r_ink_lift_reveals_sub_surface_force_arrows_fleet_wide_and_no_gate_reads_it_as_a_change  (peter_parker:field3d_surgeon)
+    Lifting force ink out of the depth buffer makes every weight arrow on a body resting on a surface draw the sub-floor portion that was previously occluded, across already-shipped concepts, and the only gate that sees it reports a sub-1-percent pixel diff that passes
+    concepts: kinetic_energy_definition, normal_force, friction_force, block_on_incline, rolling_friction
+    DO: A platform change to how any ink is composited must enumerate the shipped concepts whose PICTURE changes, not only whether their baselines stay inside tolerance, and route the enumerated list for founder visual review before the branch merges. A percentage diff under tolerance is evidence that nothing broke, never evidence that nothing changed.
+
+● [MAJOR/OPEN] nlb_work_bar_track_tops_lose_collinearity_when_a_3d_label_size_changes  (peter_parker:field3d_surgeon)
+    A 3D sprite glyph-height constant changes the DOM work-bar panel layout, breaking the zero-line collinearity contract concept #2 repaired
+    concepts: work_done_by_constant_force, positive_negative_zero_work, kinetic_energy_definition, work_energy_theorem
+    DO: A 3D scene constant must never be able to move a DOM overlay layout. When a change to one produces a diff in the other, do not tune the constant until the coupling is located - the coupling is the bug, and any value chosen without it is chosen blind. Two corollaries. (1) When a probe against the built review site and THE EYE disagree about whether a change moved anything, treat BOTH as unproven and reproduce through the path that renders what the founder actually sees before ruling. (2) A structural contract that was repaired once (work-bar track collinearity) needs a standing probe, not a memory: it has now been broken twice by unrelated changes.
+    PROBE(js_eval): For every state authoring work_accumulators: read the client rect top of every nlb_wk track element and assert all tops are equal within 1 px. Run it after any change to a label, sprite or panel constant, through THE EYE path AND the built review-site path, and FAIL if the two paths disagree about the result.
+
+● [DIRECTIVE/OPEN] engine_stash_on_shared_renderer_reverts_concurrent_session_uncommitted_work  (peter_parker:field3d_surgeon)
+    git stash push on a shared engine file silently reverts a concurrent session's uncommitted work, and the resulting stash commit has no clean base to 3-way merge against
+    concepts: rigid_body_rotation, rolling_friction, work_done_by_constant_force
+    DO: NEVER git stash push, git checkout -- or git restore a renderer/engine file to obtain a pre-change baseline. Extract the blob instead: git show <rev>:<path> > <scratchpad>/prechange_<file> and, for a cache-seeded A/B, copy that blob over the working file only for the duration of the seed-plus-capture, then copy the saved working file straight back (never via git). If a reconciliation is nonetheless needed, do NOT merge against the common ancestor: diff the two END STATES directly (git diff <committed-head> <stale-tree>), then classify every DELETION by asking whether the deleted line exists in the COMMON ANCESTOR. A deleted line absent from the ancestor is the other session's work and must be preserved (skip that hunk); a deleted line present in the ancestor is a genuine modification by the incoming change and may be applied. That test is exact, needs no content guessing, and separated 63 preserve-deletions from 19 apply-deletions cleanly here with every hunk homogeneous. Also: a widened CLOSED union resolves as the UNION of both sides' members, never as an overwrite.
+
+● [DIRECTIVE/OPEN] field3d_generic_visible_elements_matcher_blanks_new_scenario_apparatus  (peter_parker:renderer_primitives)
+    Generic visible_elements matcher runs BEFORE the per-scenario apply and silently hides a new scenario's apparatus
+    concepts: free_body_diagram, connected_bodies, block_on_incline
+    DO: A new scenario_type either (a) registers its objects ONLY in its own private id index (never addToScene) so the generic matcher cannot reach them, or (b) forces its apparatus objects visible inside its own applyXState(), which runs later and is authoritative. Assert EXISTENCE + visibility of the apparatus (mesh count > 0 AND visible === true) in the bring-up probe, never just the dynamic elements.
+    PROBE(js_eval): For each top-level scene object whose elementType starts with the scenario prefix, assert obj.visible === true after SET_STATE for every state that is not authored to hide it; fail if a state's visible_elements list is non-empty and the apparatus group went invisible.
+
+● [MAJOR/OPEN] the_eye_passes_a_frame_in_which_one_compared_body_is_hidden_behind_another  (peter_parker:field3d_surgeon)
+    THE EYE returned 27/27 with an empty warnings array on a frame with 49 percent body-on-body occlusion
+    concepts: work_done_by_constant_force
+    DO: Emit a console warning tag (PM_NLB_LANE_OCCLUSION) from the renderer whenever two non-ghost nlb body screen bboxes intersect, and have THE EYE surface it in manifest.warnings like the existing _CLAMP and _SCALE guards.
+    PROBE(js_eval): Assert manifest.warnings contains a PM_NLB_LANE_OCCLUSION entry for any captured frame in which two non-ghost nlb body screen bounding boxes intersect.
+
+● [MAJOR/OPEN] field3d_nlb_body_screen_anchor_lands_under_the_dom_slider_panel  (peter_parker:field3d_surgeon)
+    An nlb body can sit half-behind the #sliders panel, so its billboard is unreadable no matter how the label dodges - the label pass can move the label, never the block
+    concepts: connected_bodies
+    DO: A body whose projected rect intersects a DOM overlay rect must be corrected at the CAMERA/FRAMING level (shift the rig or reserve the zone), not at the label level. Treat a clamped label dodge as evidence the anchor is wrong, not as a fix.
+    PROBE(js_eval): For every state, project each visible nlb body mesh rect and assert it does not intersect any nlbPanelRects() rect; assert each body label rect is fully outside them too.
+
+● [DIRECTIVE/OPEN] nlb_loop_reset_clears_checkpoint_stamp_and_frozen_pin_can_photograph_an_empty_formula  (alex:architect)
+    loop_reset_ms wipes every checkpoint stamp each cycle; the 60%-phase frozen pin can land before the re-crossing
+    concepts: work_done_by_constant_force, positive_negative_zero_work, work_energy_theorem, conservative_vs_nonconservative_forces
+    DO: A state combining loop_reset_ms with checkpoints must author the crossing to occur before 55% of loop_reset_ms, computed against the authored acceleration; the skeleton states this invariant beside the bounding discipline.
+    PROBE(js_eval): For each state authoring both loop_reset_ms (R) and checkpoints: integrate the authored acceleration from initial_position_m and assert time-to-cross(s_m) < 0.55*R. Independently, pin at the contracted instant and assert #nlb_formula contains the stamp label.
+
+● [DIRECTIVE/OPEN] nlb_static_state_authored_on_the_track_bound_fires_a_false_clamp_alarm  (alex:architect)
+    A body authored at initial_position_m = -length_m trips the energy clamp guard every frame it does not move
+    concepts: work_done_by_constant_force, positive_negative_zero_work, work_energy_theorem, conservative_vs_nonconservative_forces, mechanical_energy_loss_with_friction
+    DO: Never author a home pose exactly on a track bound. Inset it by at least the body half-width (0.6 m for a cart) in every state.
+    PROBE(js_eval): For every state authoring newtons_laws_body: assert Math.abs(body.initial_position_m) < surface.length_m - 0.55. Independently, drive 2 s and assert zero console messages beginning [PM_NLB_ENERGY_CLAMP].
+
+● [MODERATE/OPEN] field3d_nlb_body_label_overlaps_the_pulley_mesh  (peter_parker:field3d_surgeon)
+    The hanging body billboard is drawn across the pulley disc instead of clearing it
+    concepts: connected_bodies
+    DO: When a scenario adds a mesh that occupies the band a billboard is anchored into, add that mesh projected bounds to the label obstacle set - do not assume the obstacle set is text plus panels.
+    PROBE(js_eval): Project the pulley mesh bounds and assert no nlb body label rect intersects it in any state.
+
+● [DIRECTIVE/OPEN] field3d_param_ramp_authoring_contract  (peter_parker:field3d_surgeon)
+    A param_ramp state must author its own surface/body value for the ramped param equal to `from`, or state entry visibly jumps before the ramp starts
+    concepts: block_on_incline
+    DO: A monotonic reveal knob and the authored initial pose are two independent sources of truth for the same quantity; the author must keep them equal, or the engine must derive the pose from the ramp. Documented in NEWTONS_LAWS_BODY_ENGINE_SPEC.md section 1.
+    PROBE(js_eval): For every state with newtons_laws_body.param_ramp, assert the authored value of the ramped param (surface.theta_deg for theta; the matching body field otherwise) equals param_ramp.from.
+
+● [MODERATE/OPEN] eye_h2_frozen_frames_of_moving_elements_wobble_sub_perceptually_so_zero_percent_is_not_a_valid_gate  (peter_parker:field3d_surgeon)
+    H2 on a frozen frame containing a moving element wobbles a few hundredths of a percent between identical runs, so "H2 = 0.00%" cannot be used as a regression equality
+    concepts: free_body_diagram, connected_bodies
+    DO: State the no-regression criterion as "H2 PASSES its tolerance AND any non-zero percentage reproduces on the PRE-change renderer or has max channel delta <= 3", not as an equality to 0.00%. When a non-zero H2 appears, settle it with a pre/post pixel diff (bounding box + max channel delta), never by eyeballing the percentage.
+
+● [MODERATE/OPEN] field3d_sprite_label_text_and_ink_box_are_invisible_to_every_dom_probe  (peter_parker:field3d_surgeon)
+    What a 3D sprite label SAYS, and where its ink actually lands on screen, is unreadable by founder_drive's DOM collision probe and by THE EYE's gates — only a canvas-measuring projection probe can assert either
+    concepts: free_body_diagram, block_on_incline, connected_bodies
+    DO: Retain the drawn string on the sprite (sprite._pmText, written by pmCreateAutoLabel and updateLabelSpriteText) and assert label geometry with a projection probe: capture the renderer's own scene + camera by wrapping THREE.Scene / THREE.PerspectiveCamera at the CDN global assignment (r128 ships them as ES classes and assigns render() per instance, so Reflect.construct is required and a prototype hook on render never fires), measure ink width from the sprite's retained canvas via ctx.measureText, build the rect from the camera-right/up billboard axes, and intersect it against the other label rects, the sampled arrow shaft polylines and the DOM overlay rects.
+    PROBE(js_eval): Wrap THREE.Scene/PerspectiveCamera to capture the first instance of each; traverse for the scenario's label elementTypes; for each visible sprite compute ink rect = worldPos +/- right*(scale.x*measureText(text)/canvas.width)/2 +/- up*scale.y/2 projected to screen px; assert pairwise non-intersection plus non-intersection with arrow shaft samples and with getBoundingClientRect of every visible overlay div.
+
+● [MODERATE/OPEN] field3d_integrating_scenario_state_entry_must_rebuild_the_whole_engine_record  (peter_parker:field3d_surgeon)
+    An INTEGRATING field_3d scenario must rebuild its entire engine record on state entry — a per-field patch lets one accumulator make a state depend on which state was visited before it
+    concepts: rolling_friction, work_done_by_constant_force
+    DO: Any field_3d scenario that INTEGRATES (rather than posing from a closed form of state-local t) rebuilds its whole engine record on state entry — a fresh object literal plus fresh per-body records, never a patch of the live one — and every runtime record built at entry that carries history across frames is additionally cleared by the scenario rewind function. Never add a field to the engine literal without also covering it in that rewind function, and never introduce a preserve-across-entry exception without a founder decision: the two paths must stay a superset relation, entry >= rewind.
+    PROBE(js_eval): Drive the scenario in a real browser on a deterministic virtual clock. (1) Fresh load, SET_STATE the target, snapshot every own key of the engine record and of every body, at the pre-tick entry frame and after N fixed frames. (2) On the same page, write junk into every accumulator AND set a marker property on the engine object, then SET_STATE the SAME state: assert the marker is ABSENT (proving a new record) and that both snapshots equal leg 1. (3) Visit two later states, run each for N frames, return to the target: assert both snapshots equal leg 1. (4) Control: a second fresh page straight to the target must equal leg 1. Reference implementation: the U9/E1 probe modelled on src/scripts/_scratch_rf_s5_probe.ts. Known benign exception: window.PM_nlbTimeMs is a publish-only mirror with zero readers outside the renderer and is not zeroed by applyState — exclude it or fix it first.
+
+● [MODERATE/OPEN] nlb_camera_rotated_body_label_bleed_through_slider_panel  (peter_parker:field3d_surgeon)
+    After a teacher rotates the camera in an explore state, an on-table (non-falling) cart can project underneath the semi-transparent slider panel, and its mass number plus identifier bleed through faded and illegible instead of dodging clear
+    concepts: connected_bodies
+    DO: A label dodge must clear the panel in SCREEN space, not along a fixed world axis: pick the slide direction from the projected panel edge normal and size the cap from the measured overlap in pixels, so the dodge stays correct under any camera the teacher can reach. Probe it with the camera rotated, not only at the authored camera.
+    PROBE(js_eval): In an explore state, rotate the camera through a spread of azimuths; at each one project every visible mass/identifier ink rect and assert zero intersection with every visible DOM overlay rect. The authored camera alone is not sufficient coverage for any state that exposes camera drag.
+
+● [MODERATE/OPEN] field3d_energy_group_comment_says_side_by_side_while_the_layout_stacks_vertically  (peter_parker:field3d_surgeon)
+    The in-file comment describing the energy panel two body groups contradicts the layout code that renders them
+    concepts: kinetic_energy_definition, work_energy_theorem, conservation_of_mechanical_energy, mechanical_energy_loss_with_friction
+    DO: A layout described in a comment must match what the layout code emits. When a seam reader function and its comment disagree about geometry, the comment is the defect: correct it in the same commit that is touching the region, and state the orientation explicitly.
+
+● [MODERATE/OPEN] nlb_formula_and_readout_zones_are_fixed_css_and_collide_with_a_tall_hud  (peter_parker:field3d_surgeon)
+    The formula surface and the body HUD are hardcoded CSS zones with no per-state override, so a 5-readout sandbox HUD collides with the formula and bleeds into the slider panel
+    concepts: connected_bodies
+    DO: Overlay zones that can grow with authored content (a per-body readout stack) must be sized or positioned off the ACTUAL rendered height of their neighbours, not hardcoded - or expose a per-state positional override so authoring can resolve a collision without deleting content. Rule 34d.
+    PROBE(js_eval): For every state, getBoundingClientRect() on #nlb_formula, #nlb_readout and the slider panel, and assert no pair of rects intersects.
+
+● [DIRECTIVE/OPEN] rewind_path_assertion_stops_at_the_function_body_and_never_follows_its_calls  (alex:architect)
+    A design asserts that a rewind preserves a quantity by reading only the rewind function, not the functions it calls
+    concepts: kinetic_energy_definition, work_energy_theorem, conservation_of_mechanical_energy
+    DO: An assertion that a rewind, reset or re-entry path preserves a quantity must be traced through EVERY function that path calls, and the skeleton must cite the terminating line of each - the early-return, or the last write. Citing only the entry function body is not a trace.
+    PROBE(js_eval): For each state authoring both param_ramp and loop_reset_ms: drive across at least three loop boundaries and sample the ramped engine field two frames before and after each boundary. Assert monotonic with no discontinuity toward the authored seed.
+
+● [MODERATE/OPEN] field3d_arrow_label_sprite_renders_at_under_half_the_body_label_glyph_height  (peter_parker:field3d_surgeon)
+    Arrow label sprites draw at roughly 6 px glyph height against a 14 px body billboard, so a symbol the term ledger says a state DEFINES is barely legible even though its contrast is fine
+    concepts: kinetic_energy_definition, positive_negative_zero_work, work_done_by_constant_force
+    DO: Arrow, arc and checkpoint label sprites must scale to at least 0.7 of the body-label glyph height in the same frame. Contrast and size are separate legibility axes and a scar row closing one must state explicitly that it does not close the other, or the second will be read as already fixed.
+
+2026-08-03: the 0.7 ink-height target cannot be read literally - the ink bounding box is glyph-set dependent. Measured counter-example in the same fleet: on kinetic_energy_definition STATE_5, flag (18 x 10) and cart = 3 kg (71 x 14) are BOTH body labels at the identical 0.40 scale and already measure a 0.71 ink ratio. So ink >= 0.7 x the nearest body label is in practice equal GLYPH size, and any target above about 0.75 would force annotation labels physically larger than the labels naming the bodies. State the invariant in glyph height, not ink height.
+    PROBE(js_eval): For each visible arrow, arc and checkpoint label sprite, measure the ink bounding box height from the retained sprite canvas and assert it is at least 0.7 times the ink bounding box height of the nearest body label sprite in the same frame; assert independently of any contrast measurement.
+
+● [MODERATE/OPEN] computed_output_divides_by_a_coefficient_whose_default_is_zero_and_evaluates_to_Infinity  (alex:json_author)
+    A computed_outputs formula divides by mu_k, whose declared default is 0, so the gate evaluates it to Infinity on every state
+    concepts: kinetic_energy_definition
+    DO: Every computed_outputs formula must evaluate to a finite number under the declared defaults of its own variables. Before authoring one, substitute the defaults by hand: a division by a coefficient that defaults to zero is not a formula. Delete a computed_output whose quantity the concept deliberately cedes to a later concept.
+    PROBE(js_eval): For every concept: substitute each variable declared default into every computed_outputs and derived formula and assert the result is finite and not NaN. FAIL on Infinity, NaN, or an unresolved symbol.
+
+● [MODERATE/OPEN] nlb_coupled_sandbox_F_slider_exceeds_string_tautness_bound  (peter_parker:field3d_surgeon)
+    The shared F slider can drive a coupled state past a > g, where a real string would go slack - the rigid model keeps solving and reports a magnitude-masked impossible tension
+    concepts: connected_bodies
+    DO: Where a model has a validity bound that authored slider ranges can cross, the engine must either clamp at the bound with an honest visual (rope goes slack) or narrow the exposed range - a teacher-facing sandbox must not be able to reach a state the model cannot represent. Derive the bound analytically over the FULL cross-product of shared slider ranges, not just the concept default values.
+    PROBE(js_eval): For every coupled state exposing F: drive m to its minimum, mu_k to 0, theta to 0 and F to its maximum, then assert |a| < g and the signed tension of every body is >= 0. Fail if either holds false.
+
+● [DIRECTIVE/OPEN] architect_declares_an_engine_limit_without_checking_the_per_concept_override_path  (alex:architect)
+    A skeleton declares an engine value fixed, or declares a scar N/A, without reading the function that actually decides it
+    concepts: work_done_by_constant_force, pure_rolling, rolling_on_incline
+    DO: Before declaring any engine value fixed, read BOTH the config type declaration and the reader function in the renderer, not the seam report alone; a seam report states what was built, the reader states what is authorable. Quote both line numbers in the skeleton. THE INVERTED FORM BINDS EQUALLY: a disposition that declares a scar row N/A must quote the READER that decides it, not the design's own intent - a lane rule discharged on never-two-bodies-in-one-frame is falsified the moment the lane function is read and turns out to count DECLARED bodies.
+
+● [DIRECTIVE/OPEN] nlb_overlay_ink_lift_is_bounded_to_the_families_whose_length_is_a_magnitude  (peter_parker:field3d_surgeon)
+    Only ink families whose LENGTH encodes a magnitude are lifted out of the depth buffer; displacement, arcs and the right-angle marker deliberately stay depth-tested
+    concepts: kinetic_energy_definition
+    DO: Do not widen an ink lift by reflex. Lift a family only when its LENGTH or extent encodes a magnitude that an occluder can silently truncate; a family whose meaning is its position or its angle keeps depth testing, because for those the depth cue is information rather than an obstacle.
+
+● [MODERATE/OPEN] nlb_work_probe_globals_disagree_on_multibody_states  (peter_parker:field3d_surgeon)
+    PM_nlbWork reports one body while PM_nlbWorkApplied reports the sum, so a numeric gate reads a value on no bar
+    concepts: work_done_by_constant_force, positive_negative_zero_work, work_energy_theorem
+    DO: Every probe global on a multi-body scenario must be keyed by body_id; a scalar global on a per-body quantity is this bug.
+    PROBE(js_eval): For each state with work_accumulators length > 1: assert a per-body probe surface exists and each entry equals its rendered bar value; assert no scalar global silently aliases one body or a cross-body sum.
+
+● [MODERATE/OPEN] seam_q_hovering_stroke_within_a_stroke_width_of_the_slab_silhouette_edge_gets_no_casing  (peter_parker:field3d_surgeon)
+    A stroke hovering just above the surface reads 1.67:1 in the few pixels where it abuts the slab silhouette, because every sample there is legitimately page-backed and the straddle casing never fires
+    concepts: kinetic_energy_definition
+    DO: A per-point backdrop test is exact for the point and approximate for the STROKE whenever the stroke hovers within its own width of a silhouette edge. The cheap and safe remedy is to widen the casing trigger rather than to sharpen the classifier: fire the casing whenever a stroke has visible page samples AND any sample occluded by the slab in the same contiguous run, i.e. whenever the stroke crosses the slab silhouette at all. The casing only ever ADDS a dark outline, so a false positive costs pixels and never legibility - but it does move baselines, so it must be measured across the whole newtons_laws_body fleet before it lands, not bolted onto the fix that found it.
+    PROBE(js_eval): For each visible ink stroke whose resolved class is PAGE, project its span to screen space and measure the minimum pixel distance from its drawn footprint to the slab silhouette; where that distance is under the stroke width, sample the drawn pixels on the slab side and FAIL if their median contrast against the local slab luminance is under 3:1 while the casing is hidden.
+
+● [MODERATE/OPEN] energy_bar_track_renders_no_scale_ceiling_so_two_states_draw_one_value_at_two_heights  (peter_parker:field3d_surgeon)
+    The energy panel track shows a fill fraction and a value but never its own maximum, so a state change that alters bar_max_J silently rescales every bar with nothing on screen saying so
+    concepts: kinetic_energy_definition
+    DO: A magnitude meter whose maximum is authorable per state must render that maximum. Where a scale ceiling is not rendered, the concept must be forbidden from varying bar_max_J across states - and since an explore sandbox legitimately needs more headroom than its guided states, the engine owes the label rather than the author owing a single scale.
+    PROBE(js_eval): For every state, read the authored energy_layer.bar_max_J and assert a text node inside the visible track element renders that number; separately assert that any two states rendering the same joule value produce fills within 2 percent of each other, or that both tracks carry a visible and different ceiling numeral.
+
+● [MODERATE/OPEN] nlb_multibody_sandbox_wrap_reanchors_only_the_wrapping_body  (peter_parker:field3d_surgeon)
+    A sandbox wrap clears the displacement anchor of every body and restores it for the wrapping body only
+    concepts: work_done_by_constant_force
+    DO: When a reset path re-zeroes an accumulator for ALL bodies, every surface measuring the same interval must be re-anchored for ALL bodies in the same statement. A per-body restore placed after a fleet-wide clear is correct only while the fleet has one member; write the loop.
+    PROBE(js_eval): Author a sandbox state with two bodies of different accelerations, both carrying displacement_vector and work_accumulators. Drive until the faster wraps, then assert for BOTH bodies that |W_i - F_along_i*d_i| = 0 in the same sample.
+
+● [MODERATE/OPEN] frozen_frame_read_as_dense_series_continuation_on_translating_body  (ambiguous)
+    A __frozen frame is a RE-ENTERED state pinned at maxRevealMs, not the end-of-timeline pose — reading it as the dense series' last sample mints a phantom "body jumped backward" defect on any continuously-translating scenario
+    concepts: free_body_diagram, connected_bodies, block_on_incline
+    DO: When judging a translating-body scenario, compare frozen ONLY against the dense frame at that state's own maxRevealMs (derived in deriveStateMeta), never against dense's last sample. Before opening a "position jumped/wrapped" finding on any integrating scenario, measure the body centroid across the WHOLE dense series: a wrap is a non-monotonic step INSIDE the series. Frame-reading reports must state which capture role (state_panel_a / dense_tNNNNN / frozen) each cited position came from.
+    PROBE(js_eval): Drive THE EYE message order against the real config; assert the dense samples of s are monotonic and equal s0 + v*t within one 16ms step, and assert frozen s == dense s at t = maxRevealMs. Divergence between those two assertions distinguishes a real wrap from the frozen-pin semantic.
+
+● [MODERATE/OPEN] field3d_focal_glow_pulse_phase_reads_absolute_time_so_frozen_h2_jitters  (peter_parker:field3d_surgeon)
+    The focal glow pulse is a function of ABSOLUTE renderer time, so a SET_TIME_FREEZE pin does not make the focal object byte-deterministic — frozen H2 frames jitter with load timing
+    concepts: work_done_by_constant_force, rolling_friction
+    DO: The pulse phase must be a function of STATE-LOCAL time — pass (time - stateStartTime) into glowEmphT at the field_3d call sites, so a SET_TIME_FREEZE pin at a given at_ms yields one and only one p regardless of when the state was entered or how large the emitted renderer is. Until that lands, no field_3d H2 delta below about 0.3 percent on a state whose glow_focal is a solid body may be attributed to a code change without a NEGATIVE CONTROL: two runs of the identical tree, compared to each other. A single pre-change leg is not sufficient evidence, because the pre leg can land on a different pulse phase than the post leg for reasons that have nothing to do with the diff.
+    PROBE(js_eval): Load a field_3d concept whose glow_focal names a body mesh. Send SET_TIME_FREEZE at_ms = 1500, settle, and read the focal mesh material emissiveIntensity and material.color.getHex(). Reload the SAME page, this time burning a variable number of animation frames before sending SET_STATE (or simply pad the emitted renderer with a few hundred comment lines), then pin the SAME at_ms = 1500 and read the same two values. Assert both are identical. Today they are not: emissiveIntensity varies across the full 0.40..0.70 emB band and the colour varies across the 0.10..0.28 white lerp band.
+
+● [DIRECTIVE/OPEN] nlb_frozen_pin_lands_within_one_frame_of_the_beat_the_dod_asserts_it_shows  (alex:architect)
+    A DoD asserts what the frozen frame shows, and the asserted event precedes the pin by less than one frame
+    concepts: positive_negative_zero_work, work_done_by_constant_force, work_energy_theorem, conservation_of_mechanical_energy
+    DO: When a DoD asserts what the frozen frame shows, state the margin in milliseconds between the asserted event and clamp(0.60*R, 150, R-150), and require at least 10 frames (167 ms). Compute the event time from the authored physics at the engine's own step size, not from the continuum solution - the discrete stop lands up to two steps after the analytic one because the rest clamp fires on a sign flip and the frame that fires it still reports the sliding value.
+    PROBE(js_eval): For each loop_reset_ms state whose DoD asserts a discrete event (a stop, an arrow hiding, a crossing): integrate the authored physics at h = 1/60 to the first frame the event actually holds, and assert clamp(0.60*R, 150, R-150) minus that time >= 167 ms. Independently, pin at the contracted instant and assert the asserted element's rendered visibility matches the DoD sentence.
+
