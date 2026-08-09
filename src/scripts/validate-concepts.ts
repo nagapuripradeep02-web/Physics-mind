@@ -21,7 +21,12 @@ import { spawnSync } from 'child_process';
 import { validateConceptJson } from '../schemas/conceptJson';
 import { validatePCPLSubSimStates } from '../lib/pcplPhysicsValidator';
 import { resolveRendererType } from './lib/rendererLookup';
-import { checkConceptChoreography, type ChoreoWarning } from './lib/conceptGates';
+import {
+  checkConceptChoreography,
+  type ChoreoWarning,
+  animateInDeadConfigWarnings,
+  renderScopeCollisionWarnings,
+} from './lib/conceptGates';
 import {
   ANIMATION_TYPES,
   ANIMATE_IN_KINDS,
@@ -156,8 +161,44 @@ function checkConceptBounds(data: unknown): BoundsWarning[] {
 // reports rect-rect overlaps within the same state. Filters out the common
 // "intentional junction overlap" pattern (force_arrows sharing an origin
 // point) so the warning list only surfaces real visual collisions.
+//
+// TEMPORAL-WINDOW + formula_box `equation` field (founder_proxy Checkpoint B
+// cycle 3, 2026-08-09; engine_bug_queue:
+// pcpl_layout_overlap_checker_measures_data_space_labels_against_pixel_space_
+// boxes_and_ignores_temporal_disjointness). This copy DOES NOT get the
+// plane_id/position_expr fix check-layout-overlap.mjs received — this file's
+// scan of `src/data/concepts/*.json` is FLAT/non-recursive by design (the
+// isolation contract, see validate-mathematics.ts's own header) and never
+// reaches `src/data/concepts/mathematics/*.json`, the ONLY namespace that
+// authors plane_id + position_expr on label/annotation primitives (verified:
+// 0 instances anywhere under the flat physics namespace) — so that class
+// cannot occur here. But the OTHER two causes ARE subject-neutral and DO fire
+// on flat physics concepts today: `scalar_vs_vector.json` STATE_3 warned
+// `formula_box#reading_3 <-> formula_box#reading_7` and
+// `annotation#ghost_card <-> annotation#verdict_line` — both pairs are a
+// crossfade HANDOFF (one's disappear_at_ms equals the other's appear_at_ms),
+// never simultaneously on screen. Same fix, same tolerance, as the .mjs
+// sibling.
 // ─────────────────────────────────────────────────────────────────────────────
-type LabelBbox = { id: string; type: string; x0: number; y0: number; x1: number; y1: number; tail?: { x: number; y: number } };
+type LabelBbox = {
+  id: string; type: string; x0: number; y0: number; x1: number; y1: number;
+  tail?: { x: number; y: number }; window: { start: number; end: number };
+};
+
+// engine_bug_queue: pcpl_layout_overlap_checker_measures_data_space_labels_
+// against_pixel_space_boxes_and_ignores_temporal_disjointness (cause c) — see
+// the SAME constant + rationale in check-layout-overlap.mjs's header comment.
+const TEMPORAL_OVERLAP_TOLERANCE_MS = 1000 / 60;
+function activeWindow(p: Record<string, unknown>): { start: number; end: number } {
+  const start = isNum(p.appear_at_ms) ? p.appear_at_ms : 0;
+  const end = isNum(p.disappear_at_ms) ? p.disappear_at_ms : Infinity;
+  return { start, end };
+}
+function windowsOverlap(a: { start: number; end: number }, b: { start: number; end: number }): boolean {
+  const start = Math.max(a.start, b.start);
+  const end = Math.min(a.end, b.end);
+  return (end - start) > TEMPORAL_OVERLAP_TOLERANCE_MS;
+}
 
 const CHAR_W = 7;
 const LINE_H = 17;
@@ -167,7 +208,12 @@ const PAD_Y = 12;
 function annotationBbox(p: Record<string, unknown>): LabelBbox | null {
   const pos = p.position as { x?: unknown; y?: unknown } | undefined;
   if (!pos || !isNum(pos.x) || !isNum(pos.y)) return null;
-  const txt = String(p.text ?? p.text_expr ?? '');
+  // formula_box authors its text under `equation`, never `text`/`text_expr`
+  // (verified: 76/76 formula_box primitives on the fleet use `equation`,
+  // ZERO use `text`/`text_expr`) — reading only the first two measured every
+  // formula_box as a near-empty box regardless of its real equation string,
+  // silently UNDER-measuring (a missed true collision).
+  const txt = String(p.text ?? p.text_expr ?? p.equation ?? '');
   const lines = txt.split('\n');
   const maxLen = lines.reduce((m, l) => Math.max(m, l.length), 0);
   const w = Math.max(60, maxLen * CHAR_W + PAD_X);
@@ -177,6 +223,7 @@ function annotationBbox(p: Record<string, unknown>): LabelBbox | null {
     type: String(p.type ?? 'annotation'),
     x0: pos.x - w / 2, y0: pos.y - h / 2,
     x1: pos.x + w / 2, y1: pos.y + h / 2,
+    window: activeWindow(p),
   };
 }
 
@@ -295,6 +342,7 @@ function arrowBbox(p: Record<string, unknown>, bodies: Map<string, BodyInfo>): L
     x1: Math.max(from.x, x1) + Math.max(labelW, 4),
     y1: Math.max(from.y, y1) + labelH,
     tail: { x: from.x, y: from.y },
+    window: activeWindow(p),
   };
 }
 
@@ -331,6 +379,11 @@ function checkStateOverlaps(stateId: string, state: unknown, pathPrefix: string)
         const dy = a.tail.y - b.tail.y;
         if (Math.hypot(dx, dy) < 4) continue;
       }
+      // Temporally disjoint (cause c, see header comment): the two never
+      // share the screen for more than one rendered frame, so a spatial
+      // overlap between them is not a real collision — it is two different
+      // pictures being compared as if they were one.
+      if (!windowsOverlap(a.window, b.window)) continue;
       warnings.push({
         path: `${pathPrefix}.${stateId}`,
         message: `OVERLAP ${a.type}#${a.id} <-> ${b.type}#${b.id} (label/arrow visual collision)`,
@@ -1388,6 +1441,30 @@ function main(): void {
       categoryFiles.get(cat)!.add(file);
       if (w.fatal) choreoFatalThisFile++;
       else { boundsWarnCount++; boundsWarnFiles.add(file); }
+    }
+
+    // Gate 9b — animate_in_ms dead config on an appear_at_ms<=0 primitive
+    // (peter_parker:pcpl_surgeon, Checkpoint B cycle 3, 2026-08-09). WARN-only.
+    for (const w of animateInDeadConfigWarnings(data, file)) {
+      console.log(`  WARN  ${w}`);
+      const cat = 'animate_in_ms_dead_config';
+      categoryTally.set(cat, (categoryTally.get(cat) ?? 0) + 1);
+      if (!categoryFiles.has(cat)) categoryFiles.set(cat, new Set());
+      categoryFiles.get(cat)!.add(file);
+      boundsWarnCount++; boundsWarnFiles.add(file);
+    }
+
+    // Gate 9c — renderer-output scope name collides with a teacher-control
+    // scope name (riemann_bars sum_var/bars_drawn_var vs slider variable /
+    // plot_point drag.bind_variable) (peter_parker:pcpl_surgeon, Checkpoint B
+    // cycle 3, 2026-08-09). WARN-only — see conceptGates.ts for why.
+    for (const w of renderScopeCollisionWarnings(data, file)) {
+      console.log(`  WARN  ${w}`);
+      const cat = 'render_scope_name_collision';
+      categoryTally.set(cat, (categoryTally.get(cat) ?? 0) + 1);
+      if (!categoryFiles.has(cat)) categoryFiles.set(cat, new Set());
+      categoryFiles.get(cat)!.add(file);
+      boundsWarnCount++; boundsWarnFiles.add(file);
     }
 
     // Collect for the fleet-level registration cross-check (Gate 8b).

@@ -24,8 +24,9 @@
  * pilot_feedback: authenticated insert-own-only, no select).
  */
 
-import { writeFileSync, existsSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { join } from 'path';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 
 // ── Pilot Supabase project (production data; NOT the dev project) ────────────
 
@@ -188,6 +189,22 @@ export const PILOT_CONCEPTS: string[] = [
     // KNOWN nuance (founder-accepted): STATE_4's live trial-X readout shares styling
     // with the final answer — instructive as-is, revisit only if a teacher flags it.
     'meter_bridge',
+
+    // ── MATHEMATICS ──────────────────────────────────────────────────────────
+    // No mathematics concept is in the pilot catalog yet (founder, 2026-08-07:
+    // "don't do the pilot concepts at all, we'll see if we need it later").
+    // derivative_as_secant_limit was added and then removed the same day WITHOUT
+    // ever being deployed — verified against the live site, which returned 404
+    // for it throughout, because a catalog entry only reaches teachers via
+    // build:pilot -> deploy:app and deploy:app was never run.
+    //
+    // The catalog is technically ready for one whenever that changes:
+    // listPilotConceptIds() resolves through the shared subject resolver, so a
+    // namespaced concept is no longer silently dropped here. Two things would
+    // want deciding first: this list has no notion of subject, so a mathematics
+    // concept renders as a bare "Chapter N" beside the named physics chapters;
+    // and no mathematics concept has been through the professor gate
+    // (AUTHORING_PIPELINE ④), which every physics entry above has.
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
@@ -198,7 +215,21 @@ export function isPilotConcept(_root: string, conceptId: string): boolean {
 
 export function listPilotConceptIds(root: string): string[] {
     // Build only pilot concepts that actually have a concept JSON on disk.
-    return PILOT_CONCEPTS.filter((id) => existsSync(join(root, 'src', 'data', 'concepts', `${id}.json`)));
+    //
+    // Resolved through the SHARED subject resolver, not a hardcoded flat path.
+    // The flat `src/data/concepts/<id>.json` test is subject-BLIND: a chemistry
+    // or mathematics concept lives in its own namespace dir, so listing one in
+    // PILOT_CONCEPTS was silently filtered out here — the array grew, the
+    // catalog did not, and nothing errored. A silent drop on the DEPLOYED
+    // catalog is the worst possible failure mode for this list.
+    //
+    // build_review_site.ts's loadConcept() has resolved this way since the
+    // chemistry isolation contract landed, so before this change the builder
+    // and the catalog filter disagreed about where a concept lives. The
+    // resolver checks the flat physics dir FIRST, so physics resolution stays
+    // byte-identical to the old existsSync test.
+    void root; // resolver is repo-root relative, same as every other caller
+    return PILOT_CONCEPTS.filter((id) => resolveConceptJsonPath(id) !== null);
 }
 
 // NCERT Class-12 Physics chapter titles (the concept JSONs' `chapter` field is
