@@ -143,7 +143,7 @@ larger than §6 implied, because the substrate (S1–S4) is bought with it.
 
 ## 4. THE DISPATCH LADDER — the whole subject
 
-Twelve dispatches to `field3d-surgeon`, **ONE `bug_class` each** (Amendment 4; bundles banned), each
+Thirteen dispatches to `field3d-surgeon`, **ONE `bug_class` each** (Amendment 4; bundles banned), each
 with a ~100-call ceiling and a clean handoff note. Every dispatch names the consumer it is proven
 against — no dispatch lands without a concept to test it, exactly as E1/E2/E3 did on `bonding_scene`.
 
@@ -157,15 +157,28 @@ against — no dispatch lands without a concept to test it, exactly as E1/E2/E3 
 | **S4** | `organic_structure_rehybridise` | sp³ ⇄ sp² at a named centre | #11 carbocation stability | O-1 |
 | **B1** | `organic_structure_density` | per-atom density shading + charge gradient along a chain | #8 inductive effect | O-1 |
 | **B2** | `organic_structure_delocalisation` | non-alternating cloud + bond-length instrument | #9 resonance, then #12 aromaticity | O-1 |
-| **C1** | `organic_structure_bond_events` | bond break/form + electron-pair routing + the homo/heterolytic fork | #13 fission | O-2 |
+| **B3** | `organic_structure_solvation` | solvent shell around a centre + the gas-phase ⇄ solution compare | #30 basicity of amines | O-3 |
+| **C1** | `organic_structure_bond_events` | bond break/form + electron-pair routing + the homo/heterolytic fork + **atom migration** (a group moving *with* its pair to an adjacent centre) | #13 fission, then #21 rearrangement | O-2 |
 | **C2** | `organic_structure_concerted` | approach trajectory at a named angle + inversion through a planar TS | #15 SN2 | O-2 |
 | **C3** | `organic_structure_stepwise` | intermediates carried across steps, multi-step sequencing, branching outcomes with populations | #16 SN1 | O-2 |
 | **C4** | `organic_structure_sweep_repeat` | the live competition sweep + repetition-to-a-chain | #19, then #32 | O-2/O-4 |
 
+**Two senses of "blocked" — do not conflate them.** A3's `block_twist` is a rotation that is *costed
+and resisted* (#6 cis/trans: π overlap collapses as you turn, so the twist never completes). #31
+haloarene is an *attack that arrives and fails* — a C-layer approach whose bond-forming step does not
+proceed. Different mechanisms, different layers; #31 rides C2's approach machinery with the bond
+event withheld, and needs no dispatch of its own.
+
 **Rule 40:** every one lands on **master separately and immediately**. Engine files are platform,
 shared by both subjects; none of these rides inside a concept branch.
 
-**Estimated shape:** 12 engine dispatches unlock 32 sims ≈ 250 states. For contrast, `bonding_scene`
+**Ladder audit (2026-08-09).** Every need named in §2 is now owned by exactly one dispatch. The audit
+that produced B3 and C1's migration clause is the alarm rule run at planning time rather than at Wave
+O-3 — which is the whole point of surveying all 32 first. **B3 is the weakest-justified dispatch on
+the ladder: one consumer, one sim.** If the programme needs trimming, #30 is the natural cut (as #7
+is in O-0), and cutting it removes a whole dispatch.
+
+**Estimated shape:** 13 engine dispatches unlock 32 sims ≈ 250 states. For contrast, `bonding_scene`
 spent 4 dispatches on 4 concepts — the ratio improves here precisely because S1–S4 are bought once.
 
 **The alarm rule stands at every wave boundary.** A concept in O-1/O-2/O-3 that forces an *unplanned*
@@ -203,8 +216,8 @@ Correction 4 is the concrete payoff of the founder's instruction to plan all of 
 
 1. **Sequencing: engine-first or wave-by-wave?** The ladder above interleaves — O-0's five dispatches,
    then O-1's three, then O-2's four — so concepts ship continuously and each engine tranche is paid
-   for by sims that follow it immediately. The alternative (all 12 dispatches, then all 32 concepts)
-   front-loads ~12 engine dispatches before a single organic sim exists.
+   for by sims that follow it immediately. The alternative (all 13 dispatches, then all 32 concepts)
+   front-loads all 13 engine dispatches before a single organic sim exists.
    **Recommendation: interleave**, exactly as the ladder is written.
 2. **Concept #7 structural isomerism** stays IN the plan per "cover all organic". It remains the
    borderline-demo case `ORGANIC_BUILD_PLAN.md` §9 Q2 flagged, and it is the only consumer of
