@@ -111,7 +111,15 @@ export const MATHEMATICS_GHOSTS: GhostSeed[] = [
 
     // ── P2 — strong, cheapest available ─────────────────────────────────────
     {
-        concept_id: 'vector_dot_and_cross_product',
+        // Id settled by the founder 2026-08-08 (Phase-0 open decision 8):
+        // 'vector_products_in_space', matching the reviewed skeleton, the engine
+        // desk, the seed script and both survey docs. This row previously read
+        // 'vector_dot_and_cross_product' and was the ONLY place that did — the
+        // Phase-0 §0a collision check scanned src/data/concepts/ FILES and never
+        // swept the catalog, so the divergence survived until an architect
+        // reading this file for prerequisites found it. A concept-id check sweeps
+        // the catalog and the registries, not only the concept files.
+        concept_id: 'vector_products_in_space',
         concept_name: 'Vectors in Space — Dot and Cross Product',
         chapter: 10, section: '10.1', class_level: 12, prerequisites: [],
         why_learn: 'The cross product points out of the plane of the two vectors, and its length is the area of the parallelogram they span. Both facts are three-dimensional, which is precisely where a flat board and a waving hand fail.',
@@ -138,7 +146,7 @@ export const MATHEMATICS_GHOSTS: GhostSeed[] = [
     {
         concept_id: 'lines_and_planes_in_space',
         concept_name: 'Lines and Planes in Space',
-        chapter: 11, section: '11.1', class_level: 12, prerequisites: ['vector_dot_and_cross_product'],
+        chapter: 11, section: '11.1', class_level: 12, prerequisites: ['vector_products_in_space'],
     },
     {
         concept_id: 'sampling_and_central_limit',
