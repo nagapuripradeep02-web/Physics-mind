@@ -42,6 +42,7 @@ import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { FIELD_3D_RENDERER_CODE } from "../lib/renderers/field_3d_renderer";
+import { runFleetSafety, classify, type FleetSafetySpec } from "./lib/fleetSafety";
 import {
   deriveMaxRevealTimeMs,
   deriveHoldExpectations,
@@ -979,111 +980,139 @@ console.log("\n=== 9. deriveStateMeta — the reveal pin, the motion and hold cl
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-console.log("\n=== 10. FLEET SAFETY — every other scenario emits byte-identical output ===");
+console.log("\n=== 10. FLEET SAFETY — SR's blast radius is the enumerated glue, and nothing else ===");
 // ═══════════════════════════════════════════════════════════════════════════
 {
-  const base = execFileSync("git", ["merge-base", "HEAD", "origin/master"], { encoding: "utf8" }).trim();
-  const oldFile = execFileSync("git", ["show", base + ":src/lib/renderers/field_3d_renderer.ts"],
-    { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
-  // FIELD_3D_RENDERER_CODE is the emitted template CONTENTS, not the TS file, so
-  // the comparison is made on the TS source region that carries it — read from
-  // disk for HEAD and from git for the merge base.
-  const marker = "export const FIELD_3D_RENDERER_CODE = ";
-  const bodyOf = (s: string) => {
-    const i = s.indexOf(marker);
-    if (i < 0) throw new Error("FIELD_3D_RENDERER_CODE marker not found");
-    return s.slice(i);
+  // REWRITTEN 2026-08-09 (bug_class engine_gate_fleet_safety_baseline_rots_
+  // the_moment_its_own_scenario_merges). This section was RED ON MASTER from
+  // the hour SR merged, and the cause was not a fleet regression: the
+  // baseline was merge-base(HEAD, origin/master), which on master IS HEAD, so
+  // the baseline already contained SR while the comparison subtracted SR from
+  // the other side. Measured: 1271 of 1271 deleted-only lines were the SR
+  // block's own text; on plain master the added-only count was ZERO, so not
+  // one of those lines belonged to a sibling scenario. A gate that is red by
+  // default trains everyone who runs it to ignore it, and this gate is the
+  // only evidence solid_of_revolution has — THE EYE cannot run on it.
+  //
+  // The baseline is now DERIVED (newest ancestor with no SR at all) and every
+  // difference is ATTRIBUTED BY AUTHORSHIP rather than by time, so a sibling's
+  // work is credited to the sibling instead of being reported here. The
+  // mechanism and the options rejected on measurement are documented once, in
+  // src/scripts/lib/fleetSafety.ts, and shared with check:vector-geometry-3d.
+  const SPEC: FleetSafetySpec = {
+    renderer: "src/lib/renderers/field_3d_renderer.ts",
+    sentinel: "solid_of_revolution",
+    // The scenario's VOCABULARY: its type string plus the `sr` symbol prefix
+    // this file already names everything with. Derived from the naming
+    // convention, not a list of symbols that would need a line per addition.
+    vocabulary: /solid_of_revolution|\bsr[A-Z]|\bsr_[a-z]|SolidOfRevolution/,
+    regionStart: "solid_of_revolution — VOLUME BY INTEGRATION",
+    regionEnd: "    function buildScenario() {",
+    glue: [
+      "solid_of_revolution", "isSolidRev", "buildSolidOfRevolution",
+      "applySolidOfRevolutionState", "updateSolidOfRevolutionFrame",
+      "applySolidOfRevolutionGlow", "srStateDef",
+      // The #sliders NOT-list condition. SR appends `&& !isSolidRev` to it, so
+      // it IS part of SR's declared blast radius and was missing from this
+      // list — an omission with teeth: a glue site this scenario modifies but
+      // does not declare falls through to "somebody else touched it too" and
+      // becomes exempt. Found by running the glue-tamper control against a
+      // baseline old enough that a sibling had also rewritten the line, where
+      // it silently stopped firing.
+      "slidersEl.style.display",
+    ],
+    stripOwn: (l: string) => l
+      .split(' || config.scenario_type === "solid_of_revolution"').join("")
+      .split(" && !isSolidRev").join(""),
+    baseEnv: "SR_FLEET_BASE",
   };
-  const newFile = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf8");
-  // Strip the SR block from the NEW body by its own sentinels, so what remains
-  // must be the old body plus only the enumerated one-line glue chains.
-  const startMark = "    // solid_of_revolution — VOLUME BY INTEGRATION (MATHEMATICS, 2026-08-08).";
-  const newBody = bodyOf(newFile);
-  const iSr = newBody.indexOf(startMark);
-  const iEnd = newBody.indexOf("    function buildScenario() {");
-  const iStart = iSr > 0 ? newBody.lastIndexOf("    // ═══", iSr) : -1;
-  assertTrue("the SR block is delimited and sits immediately before buildScenario()",
-    iSr > 0 && iEnd > iSr && iStart > 0 && iStart < iSr);
-  const stripped = newBody.slice(0, iStart) + newBody.slice(iEnd);
-  const dir = mkdtempSync(join(tmpdir(), "sr-fleet-"));
-  const fa = join(dir, "old.js"), fb = join(dir, "new.js");
-  writeFileSync(fa, bodyOf(oldFile));
-  writeFileSync(fb, stripped);
-  let diffOut = "";
-  try {
-    execFileSync("git", ["diff", "--no-index", "--unified=0", fa, fb], { encoding: "utf8" });
-  } catch (e: unknown) {
-    diffOut = String((e as { stdout?: string }).stdout ?? "");
-  }
-  // Every surviving change must be one of the enumerated shared chains, and the
-  // classification is per HUNK rather than per line, because an allow-list keyed
-  // on keywords passes any comment that happens to mention nothing — which is
-  // how a real edit to a shared line would slip through as "context".
-  //   A MODIFIED line is legal only if the old and new text are IDENTICAL after
-  //   deleting the scenario's own insertions; a PURE INSERTION hunk is legal only
-  //   if it names the scenario. A shared line whose text changed for any other
-  //   reason therefore has no partner and is reported.
-  const ALLOWED = [
-    "solid_of_revolution", "isSolidRev", "buildSolidOfRevolution",
-    "applySolidOfRevolutionState", "updateSolidOfRevolutionFrame",
-    "applySolidOfRevolutionGlow", "srStateDef",
-  ];
-  const strip = (l: string) => l.slice(1)
-    .split(' || config.scenario_type === "solid_of_revolution"').join("")
-    .split(" && !isSolidRev").join("");
-  const hunks: Array<{ add: string[]; del: string[] }> = [];
-  let cur: { add: string[]; del: string[] } | null = null;
-  for (const l of diffOut.split("\n")) {
-    if (l.startsWith("@@")) { cur = { add: [], del: [] }; hunks.push(cur); continue; }
-    if (!cur) continue;
-    if (l.startsWith("+++") || l.startsWith("---")) continue;
-    if (l.startsWith("+")) cur.add.push(l);
-    else if (l.startsWith("-")) cur.del.push(l);
-  }
-  const stray: string[] = [];
-  let changed = 0;
-  for (const h of hunks) {
-    changed += h.add.length + h.del.length;
-    const addPool = h.add.slice();
-    for (const d of h.del) {
-      const i = addPool.findIndex((a) => strip(a) === strip(d));
-      if (i >= 0) addPool.splice(i, 1);
-      else stray.push(d);
+  const R = runFleetSafety(SPEC);
+  if (!R.base) {
+    console.log("  SKIP  no pre-SR ancestor found in the last 60 renderer commits (set SR_FLEET_BASE)");
+  } else {
+    console.log(`        baseline (newest ancestor with NO solid_of_revolution): ${R.base.slice(0, 10)}`);
+    console.log(`        SR region excised: template lines ${R.region[0]}..${R.region[1]} (${R.region[1] - R.region[0]} lines)`);
+    console.log(`        commits since the baseline: ${R.mineCommits.length} SR, ${R.othersCommits.length} other`);
+    assertTrue("the baseline predates SR — it is not HEAD wearing a baseline's name (the defect this section shipped with)",
+      R.base !== execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim());
+    assertTrue("the SR region is delimited and sits immediately before buildScenario()",
+      R.region[0] > 0 && R.region[1] > R.region[0]);
+
+    // ── THE STRUCTURAL HALF. No history: with the region excised, every
+    //    surviving mention of the scenario must be an enumerated glue site.
+    //    This is strictly stronger than the diff on the addition side, which
+    //    could never see an unlisted dispatch that arrived in the SAME commit
+    //    as the region — to a snapshot diff that just looks like "SR landed".
+    for (const s of R.unlistedReach.slice(0, 8)) console.log("      unlisted reach: " + s.trim().slice(0, 120));
+    assertTrue(`SR names itself outside its own region ONLY on enumerated glue lines (${R.unlistedReach.length} unlisted)`,
+      R.unlistedReach.length === 0);
+    assertTrue(`every enumerated glue site is actually present (${R.glueHits.length} hits over ${SPEC.glue.length} chains)`,
+      R.glueHits.length >= SPEC.glue.length);
+    for (const chain of ['case "solid_of_revolution":', "var isSolidRev = config.scenario_type",
+      "buildSolidOfRevolution(config);", "applySolidOfRevolutionState(", "updateSolidOfRevolutionFrame(", "applySolidOfRevolutionGlow("]) {
+      assertTrue(`the "${chain.slice(0, 42)}" dispatch is wired exactly once or twice`,
+        R.stripped.filter((l) => l.includes(chain)).length >= 1);
     }
-    // whatever addition is left must be part of the scenario's own glue
-    const namesScenario = h.add.some((a) => ALLOWED.some((k) => a.includes(k)));
-    if (!namesScenario) for (const a of addPool) stray.push(a);
-  }
-  for (const s of stray.slice(0, 12)) console.log("      stray: " + s.slice(0, 150));
-  assertTrue("no line outside the SR block and the enumerated glue chains changed ("
-    + changed + " changed, " + stray.length + " stray)", stray.length === 0);
-  // NEGATIVE CONTROL — touch a shared line and prove the comparator sees it.
-  {
-    const tampered = stripped.replace("    function addToScene(obj) {", "    function addToScene(obj) { /* tampered */");
-    const fc = join(dir, "tampered.js");
-    writeFileSync(fc, tampered);
-    let d2 = "";
-    try { execFileSync("git", ["diff", "--no-index", "--unified=0", fa, fc], { encoding: "utf8" }); }
-    catch (e: unknown) { d2 = String((e as { stdout?: string }).stdout ?? ""); }
-    const hunks2: Array<{ add: string[]; del: string[] }> = [];
-    let cur2: { add: string[]; del: string[] } | null = null;
-    for (const l of d2.split("\n")) {
-      if (l.startsWith("@@")) { cur2 = { add: [], del: [] }; hunks2.push(cur2); continue; }
-      if (!cur2 || l.startsWith("+++") || l.startsWith("---")) continue;
-      if (l.startsWith("+")) cur2.add.push(l);
-      else if (l.startsWith("-")) cur2.del.push(l);
-    }
-    const stray2: string[] = [];
-    for (const h of hunks2) {
-      const pool = h.add.slice();
-      for (const d of h.del) {
-        const i = pool.findIndex((a) => strip(a) === strip(d));
-        if (i >= 0) pool.splice(i, 1); else stray2.push(d);
-      }
-      if (!h.add.some((a) => ALLOWED.some((k) => a.includes(k)))) for (const a of pool) stray2.push(a);
-    }
-    control("tampering with a SHARED line (addToScene) is reported as a stray change",
-      stray2.length > 0);
+
+    // ── THE HISTORICAL HALF, attributed.
+    const C = classify(SPEC, R);
+    for (const s of C.strayAdded.slice(0, 6)) console.log("      stray ADDED:   " + s.trim().slice(0, 120));
+    for (const s of C.strayRemoved.slice(0, 6)) console.log("      stray REMOVED: " + s.trim().slice(0, 120));
+    console.log(`        ${C.changed} lines differ from the baseline; ${C.exemptOthers} attributed to other scenarios' commits, ${C.exemptNearGlue} inside SR's own dispatch insertions, ${C.exemptPunctuation} structural punctuation`);
+    assertTrue(`no line outside the SR region and the enumerated glue changed (${C.strayAdded.length} added, ${C.strayRemoved.length} removed unexplained)`,
+      C.strayAdded.length === 0 && C.strayRemoved.length === 0);
+
+    // ── NEGATIVE CONTROLS. Three, because the exemption this rewrite adds is
+    //    exactly the kind of widening that can make a gate pass vacuously, and
+    //    the only proof it has not is that the gate still catches a planted
+    //    line in each place the exemption could have swallowed it.
+    const tamperedAt = (find: string, replace: string) =>
+      classify(SPEC, R, R.stripped.map((l) => (l.includes(find) ? l.replace(find, replace) : l)));
+
+    // (1) SHARED SPINE. The classic: a helper every scenario calls.
+    const t1 = tamperedAt("    function addToScene(obj) {", "    function addToScene(obj) { /* tampered */");
+    control("tampering with a SHARED helper (addToScene) is reported",
+      t1.strayAdded.length + t1.strayRemoved.length > 0);
+
+    // (2) A SIBLING SCENARIO'S REGION — the discriminating one for this
+    //     rewrite. Authorship exempts lines a SIBLING'S COMMIT wrote; it must
+    //     NOT exempt a line nobody wrote, merely because it sits inside a
+    //     sibling's region. If this control ever stops firing, the exemption
+    //     has become "everything outside my own block is forgiven", which is
+    //     the vacuous pass at gate scope.
+    const sibling = R.stripped.find((l) => l.includes("function vgBuildVectors(vg) {"))
+      ?? R.stripped.find((l) => l.includes("function buildVectorGeometry3D("));
+    assertTrue("a sibling scenario's region is present in the stripped body, so the control below has something to plant in",
+      !!sibling);
+    const t2 = tamperedAt(sibling!, sibling! + " /* tampered */");
+    control("a planted line inside a SIBLING scenario's region (vector_geometry_3d) is still reported — authorship exempts a sibling's COMMITS, never a sibling's TERRITORY",
+      t2.strayAdded.length + t2.strayRemoved.length > 0);
+
+    // (3) THE GLUE ITSELF, and this control was WRONG when first written —
+    //     left documented rather than quietly retargeted, because it is this
+    //     file's own lesson arriving again. It first planted its tamper on
+    //     `var isSolidRev = ...`, a line SR CREATED OUTRIGHT. Nothing can
+    //     detect an edit to a line that has no earlier version to differ
+    //     from, so the control could not fail, and it appeared to prove the
+    //     gate blind when in fact the question was meaningless. The
+    //     discriminating target is a line SR APPENDED TO — a shared line with
+    //     a pre-SR version — and the detection runs through the REMOVAL side:
+    //     the old text vanishes, and is explained only if the new text MINUS
+    //     SR's own insertion is exactly the old text. Anything else changed
+    //     under cover of the append leaves the old line unexplained.
+    const glueLine = R.stripped.find((l) => l.includes("slidersEl.style.display") && l.includes("isSolidRev"));
+    assertTrue("a shared line SR APPENDED TO (the #sliders NOT-list) exists, so control (3) has a real target rather than a line SR created outright",
+      !!glueLine);
+    const t3 = glueLine ? tamperedAt(glueLine, glueLine + " /* tampered */") : { strayAdded: [], strayRemoved: [] };
+    control("editing a shared line SR appended to, BEYOND SR's own insertion, is reported",
+      t3.strayAdded.length + t3.strayRemoved.length > 0);
+
+    // (4) And the counterpart that proves the exemption is REAL rather than
+    //     decorative: a line a sibling's commit genuinely added is exempt, so
+    //     this gate stays green while the fleet grows around it. Asserted on
+    //     the measured set, not on the absence of failures.
+    assertTrue(`somebody else's commits are actually being attributed (${R.othersAdded.size} added / ${R.othersRemoved.size} removed lines credited elsewhere)`,
+      R.othersCommits.length === 0 || R.othersAdded.size + R.othersRemoved.size > 0);
   }
 }
 

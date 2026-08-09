@@ -393,6 +393,18 @@ export interface Field3DConfig {
             c_mag?: number; c_theta_deg?: number; c_phi_deg?: number;
             show_c?: boolean; show_cross_vector?: boolean; show_angle_arc?: boolean;
             show_parallelogram?: boolean; show_parallelepiped?: boolean;
+            // Δ11 — the PROJECTION of b onto â: the segment from the origin
+            // along â of SIGNED length b·â = |b| cos θ, plus the dashed drop
+            // from b's tip to its foot. It is the PICTURE the dot-product
+            // states were leading with a number instead of (bug_class
+            // field3d_vg_products_mode_cannot_draw_the_projection_segment_so_
+            // the_dot_product_states_lead_numerically): "alignment" is a
+            // length on screen, and the segment REVERSES through the origin
+            // the moment θ passes 90° because the length it draws is signed.
+            // Same flag name as electric_flux / magnetic_flux_loop use in
+            // their own per-state blocks — the fleet word for "draw the
+            // shadow" (Rule 40a: reuse the name, never mint a synonym).
+            show_projection?: boolean;
             // Reveal fractions — each 0..1, each ramp-able through animate[].
             arc_reveal_frac?: number; cross_reveal_frac?: number;
             c_reveal_frac?: number; flip_frac?: number;
@@ -12132,6 +12144,77 @@ export const FIELD_3D_RENDERER_CODE = `
         return { a: a, b: b, c: c, theta_deg: thetaDeg, b_tilt_deg: tiltDeg };
     }
 
+    // ── Δ11 · THE PROJECTION OF b ONTO â — the dot product's PICTURE ────────
+    //   bug_class field3d_vg_products_mode_cannot_draw_the_projection_segment_
+    //   so_the_dot_product_states_lead_numerically. "products" mode shipped
+    //   nine element classes and no projection, so the two states whose whole
+    //   lesson is that a·b measures ALIGNMENT could only lead with a·b's
+    //   number. vg_lp_seg cannot stand in for it: it is hard-gated behind
+    //   mode "lines_planes" and takes LITERAL coordinates, so it cannot track
+    //   |b| cos θ as the sliders move.
+    //
+    //   THE LENGTH IS SIGNED, and that is the whole obtuse beat. foot is
+    //   â * (a·b / |a|) = â * |b| cos θ, so at θ > 90° the dot product is
+    //   negative and the foot lands on the OTHER side of the origin: the
+    //   segment reverses through the origin rather than shortening to zero
+    //   and growing back the way an unsigned |b·â| would. A gate that
+    //   measured the unsigned form would pass everywhere below 90° and be
+    //   blind to exactly the case the state exists to teach.
+    //
+    //   The drop is b's tip -> its foot, perpendicular to a by construction
+    //   (foot is the orthogonal projection), so it needs no separate
+    //   right-angle assertion to be true — it is true or the projection is
+    //   not a projection, which section 14 checks at 1e-12.
+    //
+    //   PURE: plain number arrays in, plain number arrays out, so
+    //   check:vector-geometry-3d pulls it out of the emitted template and
+    //   runs it headless like every other vg helper.
+    function vgProjectionOnto(a, b) {
+        var la = vgLenVec(a);
+        if (!(la > 1e-9)) return null;
+        var ah = [a[0] / la, a[1] / la, a[2] / la];
+        var s = vgDotVec(a, b) / la;                       // = |b| cos θ, SIGNED
+        var foot = [ah[0] * s, ah[1] * s, ah[2] * s];
+        return {
+            unit: ah, length: s, foot: foot,
+            drop: [[b[0], b[1], b[2]], [foot[0], foot[1], foot[2]]]
+        };
+    }
+
+    // ── Δ11 · THE DRAWN CROSS VECTOR'S OWN NAME ─────────────────────────────
+    //   bug_class field3d_vg_cross_arrow_label_is_built_once_so_the_order_
+    //   contrast_state_labels_b_cross_a_as_a_cross_b. The label was built ONCE
+    //   as the literal "a×b" and never re-texted, so the state whose entire
+    //   lesson is that ORDER MATTERS drew b×a and called it a×b — the sim
+    //   contradicting its own claim, in the one state built to make the claim.
+    //
+    //   DERIVED, NOT AUTHORED. An authorable vg.cross_label would be a
+    //   compile-time constant one authoring slip away from re-shipping this
+    //   exact defect (the same shape as scar field3d_capacitor_charge_glyphs_
+    //   single_plate_and_sign_locked_colour: key the visual to the PHYSICAL
+    //   quantity, and prefer a form in which the wrong configuration is
+    //   UNREPRESENTABLE). flip_frac already drives the arrow; deriving the
+    //   name from the same number makes arrow and name incapable of
+    //   disagreeing.
+    //
+    //   THREE-WAY, because the arrow is a×b only at flip_frac 0 and b×a only
+    //   at 1 — in between it is a rotation of a×b about â by π·flip_frac and
+    //   is NEITHER. A midpoint switch would read "a×b" at flip_frac 0.49
+    //   while the arrow stands 88° away from a×b, which is a smaller version
+    //   of the defect being fixed. So the transition carries a statement that
+    //   is true at EVERY value it is shown at — the flip itself, named — and
+    //   the two operand-order claims are made only where they are exact
+    //   (within VG_FLIP_EPS = 0.02, i.e. 3.6° of the endpoint, well inside
+    //   the arrowhead's own angular width).
+    var VG_FLIP_EPS = 0.02;
+    function vgCrossLabelText(flipFrac) {
+        var f = (typeof flipFrac === "number" && isFinite(flipFrac))
+            ? Math.max(0, Math.min(1, flipFrac)) : 0;
+        if (f <= VG_FLIP_EPS) return "a×b";
+        if (f >= 1 - VG_FLIP_EPS) return "b×a";
+        return "a×b \\u2192 b×a";
+    }
+
     // ── F21 · vg.animate[] — per-state parameter ramps ──────────────────────
     //   A PORT of two mechanisms this renderer already ships, not an
     //   invention: param_ramp (nlbRunParamRamp) and idle_auto_sweep
@@ -13231,7 +13314,19 @@ export const FIELD_3D_RENDERER_CODE = `
     // reason).
     function buildVectorGeometrySliders() {
         var spd = document.createElement("div"); spd.id = "vg_sliders";
-        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        // bottom:LEFT, and it is the fix for bug_class field3d_vg_formula_
+        // overlay_and_slider_panel_occupy_the_identical_corner_so_the_formula_
+        // is_painted_over. #formula_overlay is fixed bottom:12px/right:12px at
+        // the SAME z-index, and this panel is appended to <body> later, so at
+        // bottom-right it painted straight over the state's one formula
+        // surface — silently, on exactly the states that show both (Rule 34d:
+        // overlays never collide; Rule 34b: there is only one formula surface
+        // to lose). Left is where the skeleton put it, and the two panels are
+        // now horizontally disjoint, so no panel HEIGHT can bring them back
+        // into contact. The left edge is otherwise clear: #vg_readout is
+        // top-anchored (top:52px) and the review chrome's #simPenBar sits at
+        // top:10px/left:10px, both far above a bottom-anchored panel.
+        spd.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
         var scA = vgSc("a_mag", 1.0, 5.0, 0.25, 3.0, "|a|");
         var scB = vgSc("b_mag", 1.0, 5.0, 0.25, 2.0, "|b|");
         var scTh = vgSc("theta_deg", 20, 160, 1, 60, "θ (a, b)");
@@ -13505,6 +13600,40 @@ export const FIELD_3D_RENDERER_CODE = `
         hsLine.visible = false;
         addToScene(hsLine);
 
+        // 4c. Δ11 — the PROJECTION pair (mode "products"), the dot product's
+        //     picture. Both are TOP-LEVEL meshes handed to addToScene
+        //     individually for the same reason the D-5 pieces are: a child
+        //     mesh never enters sceneObjects and the per-frame updater would
+        //     never match it (scar field3d_child_mesh_never_registered_in_
+        //     sceneobjects_so_updater_never_matches).
+        //
+        //     The SEGMENT is a unit cylinder placed by vgPlaceTube every frame
+        //     (the shipped helper the lines/planes half already uses), so its
+        //     DIRECTION carries the sign of b·â — at θ > 90° it runs from the
+        //     origin the other way along â instead of shrinking to nothing.
+        //     Its colour is the "derived" ROLE, not a fresh hex: this is a
+        //     quantity derived from a and b, and the chapter's colour language
+        //     is a closed role enum a concept may re-point but not extend.
+        var prGeo = new THREE.CylinderGeometry(1, 1, 1, 10, 1, true);
+        var prMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(vgRoleColor("derived")), transparent: true, opacity: 0.95 });
+        var prMesh = new THREE.Mesh(prGeo, prMat);
+        prMesh.userData = { elementType: "vg_proj_seg", id: "vg_proj_seg" };
+        prMesh.visible = false;
+        addToScene(prMesh);
+
+        //     The DROP is dashed (LineDashedMaterial + computeLineDistances,
+        //     the pattern this file already ships for its axis/radius guides):
+        //     dashed says "construction line", solid says "quantity", and the
+        //     drop is the construction that finds the foot, never a length the
+        //     state is teaching.
+        var pdGeo = new THREE.BufferGeometry();
+        pdGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+        var pdMat = new THREE.LineDashedMaterial({ color: hexToThreeColor(vgRoleColor("derived")), transparent: true, opacity: 0.75, dashSize: 0.14, gapSize: 0.1 });
+        var pdLine = new THREE.Line(pdGeo, pdMat);
+        pdLine.userData = { elementType: "vg_proj_drop", id: "vg_proj_drop" };
+        pdLine.visible = false;
+        addToScene(pdLine);
+
         // 5. Labels (tip-anchored each frame).
         var labA = createLabelSprite("a", colA, 0.85);
         labA.userData = { elementType: "vg_label", id: "vp_label_a", tracks: "vg_vector_a" };
@@ -13516,7 +13645,15 @@ export const FIELD_3D_RENDERER_CODE = `
         labC.userData = { elementType: "vg_label", id: "vp_label_c", tracks: "vg_vector_c" };
         labC.visible = false;
         addToScene(labC);
-        var labCross = createLabelSprite("a×b", colCross, 0.85);
+        // Δ11 — pmCreateAutoLabel, NOT createLabelSprite: this sprite is
+        // re-texted every frame from flip_frac (vgCrossLabelText), and the
+        // transition string is wider than the fixed 384px canvas, which a
+        // fixed-width sprite clips on redraw (scar: a fixed-size sprite
+        // truncates longer redraw text — use the auto-width sprite whose
+        // _pmAutoWidth path re-measures and re-fits). The short "a×b" / "b×a"
+        // strings still measure under the 384px floor, so the endpoint frames
+        // are pixel-identical to the fixed-width sprite they replace.
+        var labCross = pmCreateAutoLabel(vgCrossLabelText(0), colCross, 0.85);
         labCross.userData = { elementType: "vg_label", id: "vp_label_cross", tracks: "vg_cross_vector" };
         labCross.visible = false;
         addToScene(labCross);
@@ -13524,6 +13661,16 @@ export const FIELD_3D_RENDERER_CODE = `
         labTheta.userData = { elementType: "vg_label", id: "vp_label_theta", tracks: "vg_angle_arc" };
         labTheta.visible = false;
         addToScene(labTheta);
+        // Δ11 — the projection's name. CONSTANT text, and constant is correct
+        // here for the reason a constant "a×b" was not: |b| cos θ is the
+        // SIGNED quantity the segment draws, so the symbol stays true at every
+        // θ including the obtuse regime, where the drawn arrow's DIRECTION
+        // (not its name) carries the minus sign. Auto-width because "|b| cos θ"
+        // exceeds the fixed sprite canvas.
+        var labProj = pmCreateAutoLabel("|b| cos θ", vgRoleColor("derived"), 0.62);
+        labProj.userData = { elementType: "vg_label", id: "vp_label_projection", tracks: "vg_proj_seg" };
+        labProj.visible = false;
+        addToScene(labProj);
 
         // 6. VG-C · the lines/planes apparatus pool.
         buildVectorGeometryLinesPlanes();
@@ -13912,12 +14059,19 @@ export const FIELD_3D_RENDERER_CODE = `
             // whenever split_solid_frac is still 0 (a time-dependent value
             // this apply pass deliberately does not try to guess).
             else if (ud.elementType === "vg_base_face" || ud.elementType === "vg_height_seg") want = !!d.show_parallelepiped;
+            // Δ11 — the projection pair. The FRAME hides them again whenever
+            // the drawn length collapses (θ = 90°, where b·â is exactly 0 and
+            // a zero-length segment would be a stub, not a picture) — a
+            // time- and slider-dependent condition this apply pass
+            // deliberately does not try to guess, exactly like the D-5 pieces.
+            else if (ud.elementType === "vg_proj_seg" || ud.elementType === "vg_proj_drop") want = !!d.show_projection;
             else if (ud.elementType === "vg_label") {
                 var tr = ud.tracks;
                 if (tr === "vg_vector_a" || tr === "vg_vector_b") want = true;
                 else if (tr === "vg_vector_c") want = !!d.show_c;
                 else if (tr === "vg_cross_vector") want = !!d.show_cross_vector;
                 else if (tr === "vg_angle_arc") want = !!d.show_angle_arc;
+                else if (tr === "vg_proj_seg") want = !!d.show_projection;
             }
             o.visible = want;
         }
@@ -14120,6 +14274,14 @@ export const FIELD_3D_RENDERER_CODE = `
         var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0));
         var pieces = vgSplitPieces(ea, eb, ec, splitFrac, d.split_gap_k);
 
+        // ── Δ11 · the projection of b onto â, computed from the DRAWN a and b
+        //    (ea/eb) rather than the resolved ones, so the foot sits under the
+        //    arrow that is actually on screen at every point of the shared
+        //    grow-in instead of jumping into place when the reveal ends. At
+        //    full reveal ea/eb ARE a/b, so the drawn length is exactly
+        //    |b| cos θ — signed, and section 14 checks the sign.
+        var proj = d.show_projection ? vgProjectionOnto(ea, eb) : null;
+
         // ── The camera (skeleton D-1). "authored" is the default and does
         //    nothing here: applyState's generic camera_position ->
         //    animateCameraTo path already owns it. The other two modes write
@@ -14317,12 +14479,62 @@ export const FIELD_3D_RENDERER_CODE = `
                     o.geometry.computeBoundingSphere();
                     o.visible = true;
                 } else o.visible = false;
+            } else if (ud.elementType === "vg_proj_seg") {
+                // The segment origin -> foot. vgPlaceTube writes the pose AND
+                // the visibility (and refuses a degenerate length), so at
+                // θ = 90° — where b·â is exactly 0 — the segment disappears
+                // rather than leaving a zero-length stub on screen. That is
+                // the picture the number 0.00 is claiming, so the two agree.
+                if (proj && Math.abs(proj.length) > 0.03) vgPlaceTube(o, [0, 0, 0], proj.foot, 0.05);
+                else o.visible = false;
+            } else if (ud.elementType === "vg_proj_drop") {
+                var dropLen = proj ? vgLenVec(vgSub(eb, proj.foot)) : 0;
+                if (proj && dropLen > 0.03) {
+                    var pdArr = o.geometry.attributes.position.array;
+                    pdArr[0] = eb[0]; pdArr[1] = eb[1]; pdArr[2] = eb[2];
+                    pdArr[3] = proj.foot[0]; pdArr[4] = proj.foot[1]; pdArr[5] = proj.foot[2];
+                    o.geometry.attributes.position.needsUpdate = true;
+                    o.geometry.computeBoundingSphere();
+                    // A dashed material re-measures its dash spacing from the
+                    // line distances, which every geometry rewrite invalidates
+                    // — without this the dashes stretch as the drop moves.
+                    if (o.computeLineDistances) o.computeLineDistances();
+                    o.visible = true;
+                } else o.visible = false;
             } else if (ud.elementType === "vg_label") {
-                var tracks = ud.tracks, showLab = false, anchorEnd = null;
+                var tracks = ud.tracks, showLab = false, anchorEnd = null, labPos = null;
                 if (tracks === "vg_vector_a") { showLab = true; anchorEnd = ea; }
                 else if (tracks === "vg_vector_b") { showLab = true; anchorEnd = eb; }
                 else if (tracks === "vg_vector_c") { showLab = !!d.show_c; anchorEnd = ec; }
-                else if (tracks === "vg_cross_vector") { showLab = !!d.show_cross_vector; anchorEnd = eaxb; }
+                else if (tracks === "vg_cross_vector") {
+                    showLab = !!d.show_cross_vector; anchorEnd = eaxb;
+                    // Δ11 — the drawn arrow's OWN NAME, re-texted from the SAME
+                    // flip_frac that rotates it, so the label and the arrow
+                    // cannot disagree (bug_class field3d_vg_cross_arrow_label_
+                    // is_built_once_so_the_order_contrast_state_labels_b_cross_
+                    // a_as_a_cross_b: at flip_frac = 1 the drawn arrow IS b×a
+                    // and was still captioned a×b, in the one state whose
+                    // entire lesson is that the two differ). The _pmText guard
+                    // is the shipped vgLabelAt pattern: a redraw only when the
+                    // string actually changed, so a held pose costs nothing.
+                    var xLabTxt = vgCrossLabelText(flipFrac);
+                    if (o._pmText !== xLabTxt) updateLabelSpriteText(o, xLabTxt);
+                }
+                else if (tracks === "vg_proj_seg") {
+                    // Δ11 — the projection's name rides the MIDPOINT of the
+                    // segment, pushed to the side of the a-axis AWAY from b, so
+                    // it never sits on a's shaft (which the foot lies on by
+                    // construction) nor on the dashed drop.
+                    showLab = !!d.show_projection && !!proj && Math.abs(proj.length) > 0.03;
+                    if (showLab) {
+                        var perpOut = vgNormalize(vgSub(proj.foot, eb));
+                        labPos = [
+                            proj.foot[0] * 0.5 + perpOut[0] * 0.42,
+                            proj.foot[1] * 0.5 + perpOut[1] * 0.42,
+                            proj.foot[2] * 0.5 + perpOut[2] * 0.42
+                        ];
+                    }
+                }
                 else if (tracks === "vg_angle_arc") {
                     showLab = !!d.show_angle_arc;
                     // On the live bisector of a-hat and b-hat, so the theta
@@ -14331,7 +14543,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     var bis = vgNormalize(vgAddVec(vgNormalize(a), vgNormalize(b)));
                     anchorEnd = (vgLenVec(bis) > 1e-6) ? [bis[0] * 0.95, bis[1] * 0.95, bis[2] * 0.95] : null;
                 }
-                if (showLab && anchorEnd && vgLenVec(anchorEnd) > 0.05) {
+                if (showLab && labPos) {
+                    o.position.set(labPos[0], labPos[1], labPos[2]);
+                    o.visible = true;
+                } else if (showLab && anchorEnd && vgLenVec(anchorEnd) > 0.05) {
                     var padVec = vgNormalize(anchorEnd);
                     o.position.set(anchorEnd[0] + padVec[0] * 0.3, anchorEnd[1] + padVec[1] * 0.3, anchorEnd[2] + padVec[2] * 0.3);
                     o.visible = true;
@@ -14359,6 +14574,11 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (ud.elementType === "vg_parallelepiped") applyGlowEmphasis(o, focal("volume"), glowActive, glowT);
             else if (ud.elementType === "vg_base_face") applyGlowEmphasis(o, focal("base"), glowActive, glowT);
             else if (ud.elementType === "vg_height_seg") applyGlowEmphasis(o, focal("height"), glowActive, glowT, true);
+            // Δ11 — the projection pair answers to ONE focal token, because it
+            // is one thing on screen: naming the segment without the drop that
+            // finds it would dim half of the construction the state is
+            // pointing at (Rule 32e — one focal, and it is the whole object).
+            else if (ud.elementType === "vg_proj_seg" || ud.elementType === "vg_proj_drop") applyGlowEmphasis(o, focal("projection"), glowActive, glowT, true);
             // VG-C · the lines/planes pool. The focal is addressed by the
             // AUTHORED object id the pool member currently carries, so a state
             // names "n" or "common_perp" and the mechanism finds whichever slot
