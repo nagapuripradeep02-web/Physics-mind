@@ -184,6 +184,49 @@ function wavDurationMs(buf: Buffer): number {
 // Piping buffers through ffmpeg's stdin/stdout fails on Windows under load
 // ("spawnSync ffmpeg EOF") after hundreds of spawns. File in/out avoids both
 // pipes entirely; retry a few times with a short backoff for transient spawns.
+// Which ffmpeg binary to spawn. A system ffmpeg on PATH wins when present (it is
+// what every prior render used, so nothing changes on a machine that has one);
+// otherwise fall back to the `ffmpeg-static` npm binary, which ships prebuilt and
+// works even when npm install scripts are blocked.
+//
+// Why this exists: the transcode runs AFTER the paid Sarvam call. On a machine
+// without ffmpeg, `generate_tts_audio` billed all 18 clips of
+// definite_integral_as_accumulated_area, then failed every single one on
+// `spawnSync ffmpeg ENOENT` and wrote a manifest of 19 entries with zero audio.
+// Money spent, nothing kept. A missing prerequisite that only surfaces after the
+// invoice is the wrong shape of failure, so the prerequisite now travels with the
+// repo instead of being a thing each machine is assumed to have.
+let ffmpegBin: string | null = null;
+export function resolveFfmpeg(): string {
+  if (ffmpegBin) return ffmpegBin;
+  const sys = spawnSync('ffmpeg', ['-version'], { stdio: 'ignore' });
+  if (sys.status === 0) { ffmpegBin = 'ffmpeg'; return ffmpegBin; }
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const bundled: unknown = require('ffmpeg-static');
+  if (typeof bundled === 'string' && bundled && existsSync(bundled)) {
+    ffmpegBin = bundled;
+    return ffmpegBin;
+  }
+  throw new Error(
+    'No ffmpeg available: none on PATH and ffmpeg-static did not resolve to a binary. ' +
+    'Run `npm i -D ffmpeg-static`, or install ffmpeg. Refusing to call Sarvam — the ' +
+    'transcode runs after the paid call, so proceeding would bill every clip and keep none.',
+  );
+}
+
+// A tiny valid silent WAV, used only by the preflight probe so the transcoder is
+// exercised end-to-end (spawn + encode + non-empty output) at zero API cost.
+export function silentWav(ms: number): Buffer {
+  const bytes = Math.max(1, Math.round((SAMPLE_RATE * 2 * ms) / 1000));
+  const buf = Buffer.alloc(44 + bytes);
+  buf.write('RIFF', 0); buf.writeUInt32LE(36 + bytes, 4); buf.write('WAVE', 8);
+  buf.write('fmt ', 12); buf.writeUInt32LE(16, 16); buf.writeUInt16LE(1, 20);
+  buf.writeUInt16LE(1, 22); buf.writeUInt32LE(SAMPLE_RATE, 24);
+  buf.writeUInt32LE(SAMPLE_RATE * 2, 28); buf.writeUInt16LE(2, 32); buf.writeUInt16LE(16, 34);
+  buf.write('data', 36); buf.writeUInt32LE(bytes, 40);
+  return buf;
+}
+
 let tmpCounter = 0;
 export function wavToMp3(wav: Buffer): Buffer {
   const base = join(tmpdir(), `pmtts_${process.pid}_${tmpCounter++}`);
@@ -194,7 +237,7 @@ export function wavToMp3(wav: Buffer): Buffer {
     writeFileSync(wavPath, wav);
     for (let attempt = 0; attempt < 3; attempt++) {
       const res = spawnSync(
-        'ffmpeg',
+        resolveFfmpeg(),
         ['-hide_banner', '-loglevel', 'error', '-y', '-i', wavPath,
          '-codec:a', 'libmp3lame', '-q:a', '5', mp3Path],
         { maxBuffer: 16 * 1024 * 1024 },
@@ -279,6 +322,17 @@ async function main(): Promise<void> {
   }
   const apiKey = process.env.SARVAM_API_KEY;
   if (!apiKey) throw new Error('SARVAM_API_KEY not set (expected in .env.local)');
+
+  // PREFLIGHT — resolve the transcoder BEFORE the first paid call, and prove it
+  // actually converts rather than merely existing. Sarvam is billed per synthesis
+  // and the transcode runs after it, so a broken toolchain discovered mid-run
+  // costs the whole render and keeps nothing: that is exactly how
+  // definite_integral_as_accumulated_area's 18 clips were billed and lost on a
+  // machine with no ffmpeg. Failing here costs zero.
+  const ffmpegPath = resolveFfmpeg();
+  const probe = wavToMp3(silentWav(120));
+  if (probe.length === 0) throw new Error('ffmpeg produced an empty mp3 on the preflight probe');
+  console.log(`   transcoder: ${ffmpegPath === 'ffmpeg' ? 'system ffmpeg' : 'ffmpeg-static (bundled)'} — preflight ok (${probe.length} B)`);
 
   const sentences = loadSentences(conceptId);
   const audioDir = join(OUT_DIR, conceptId, 'audio');
