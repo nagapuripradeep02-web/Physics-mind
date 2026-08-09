@@ -1,0 +1,27 @@
+{
+  "approved_at": "2026-08-09T16:59:24.903Z",
+  "source_run": "C:\\Tutor\\pm-ch6-c4\\.visual_runs\\work_energy_theorem\\20260809-185000",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}
