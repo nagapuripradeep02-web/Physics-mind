@@ -771,6 +771,45 @@ function computePhysics_derivative_as_secant_limit(vars) {
   };
 }
 
+// definite_integral_as_accumulated_area — THIRD mathematics concept (src/data/
+// concepts/mathematics/), riding the region_fill / riemann_bars / locus_trace
+// accumulation family (docs/skeletons/definite_integral_as_accumulated_area_
+// skeleton.md). f(x) = x^2 - c on [0, b]. Per A6 (skeleton §10f), this
+// function computes ONLY the closed forms the geometry cannot produce itself
+// — 'exact' (the definite integral I(b,c)), 'A_beta' (the accumulation
+// function A(beta,c), STATE_7), 'area_total' and 'area_below' (the unsigned
+// total and the below-axis subtotal, STATE_5, F7) — NEVER a Riemann sum
+// (riemann_bars computes and PUBLISHES its own sum via sum_var, see
+// PM_riemannPublish above; a second implementation here would be the exact
+// "one quantity, two readouts" defect class this fleet's doctrine forbids).
+// TS twin: src/lib/physicsEngine/concepts/definite_integral_as_accumulated_area.ts
+// (scar parametric_computephysics_missing_silent_template_leak — a missing
+// twin fails SILENTLY, every {exact}/{A_beta}/{area_total}/{area_below}
+// resolves to a literal '{...}' string on canvas).
+function computePhysics_definite_integral_as_accumulated_area(vars) {
+  var b    = (vars && typeof vars.b    === 'number' && isFinite(vars.b))    ? vars.b    : 2.0;
+  var c    = (vars && typeof vars.c    === 'number' && isFinite(vars.c))    ? vars.c    : 0;
+  var beta = (vars && typeof vars.beta === 'number' && isFinite(vars.beta)) ? vars.beta : 0;
+  var exact = Math.pow(b, 3) / 3 - c * b;
+  var aBeta = Math.pow(beta, 3) / 3 - c * beta;
+  // area_below (F7): I(min(b, sqrt(c)), c) — the below-axis piece, defined
+  // only where the curve actually crosses the axis inside [0,b] (c>0). The
+  // 0.00005 clamp (engine-bug-queue: hud_prints_negative_zero_on_a_value_
+  // only_instrument) guards the exact-zero-at-c=0 case from a signed-float
+  // '-0.0000' print — the ONLY quantity in this concept that can arrive at
+  // a signed zero.
+  var crossX = Math.min(b, Math.sqrt(c > 0 ? c : 0));
+  var areaBelowRaw = Math.pow(crossX, 3) / 3 - c * crossX;
+  var areaBelow = (Math.abs(areaBelowRaw) < 0.00005) ? 0 : areaBelowRaw;
+  var areaTotal = exact - 2 * areaBelow;
+  return {
+    concept_id: 'definite_integral_as_accumulated_area',
+    variables: { b: b, c: c, beta: beta },
+    derived: { exact: exact, A_beta: aBeta, area_total: areaTotal, area_below: areaBelow },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   var result = null;
   if (conceptId === 'field_forces') result = computePhysics_field_forces(vars);
@@ -800,6 +839,7 @@ function computePhysics(conceptId, vars) {
   else if (conceptId === 'unit_circle_to_sine_wave') result = computePhysics_unit_circle_to_sine_wave(vars);
   else if (conceptId === 'graph_transformations') result = computePhysics_graph_transformations(vars);
   else if (conceptId === 'derivative_as_secant_limit') result = computePhysics_derivative_as_secant_limit(vars);
+  else if (conceptId === 'definite_integral_as_accumulated_area') result = computePhysics_definite_integral_as_accumulated_area(vars);
 
   // WP-F2 echo safety net — structural complement to the hand-listed reads
   // above (hand-listing itself must stay: no concept JSON here authors a
