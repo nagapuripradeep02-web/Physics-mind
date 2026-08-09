@@ -65,6 +65,13 @@
  *      unauthorable by its own type. Binding direction union superset of
  *      table; the reverse is verified and asserted too; plus a third — every
  *      authorable token must actually be COMPUTED somewhere.
+ *  22  THE a/b SCAFFOLDING PAIR IS MODE-GATED — vg_vector_a / vg_vector_b and
+ *      their labels are OFF in mode "lines_planes" and unchanged in mode
+ *      "products". Both the apply pass AND the per-frame writer are exercised,
+ *      because the frame re-asserts visibility every frame and would undo an
+ *      apply-only fix; the negative controls run the SHIPPED source with the
+ *      gate textually removed, so they execute the defect rather than
+ *      paraphrase it.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -118,6 +125,9 @@ const FNS = [
   "vgProjectLineOntoPlane", "vgRevealFrac", "vgGhostFactor", "vgInGroup",
   "vgKnobVal", "vgObjOffset", "vgObjRotate", "vgAddr", "vgList",
   "vgResolveLinesPlanes",
+  // §22 · the one predicate that decides whether the a/b scaffolding pair is
+  // on screen at all, read by BOTH the apply pass and the per-frame writer.
+  "vgShowAB",
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -212,18 +222,27 @@ function vgTextFns(win: Record<string, unknown>, doc: unknown) {
  * scene that could drift from it.
  */
 type RunFrame = (vg: Record<string, unknown>, stateMs?: number,
-  dom?: ReturnType<typeof fakeDom>, win?: Record<string, unknown>, showSliders?: boolean) => unknown;
-const FRAME_HARNESS: { run: RunFrame | null } = { run: null };
+  dom?: ReturnType<typeof fakeDom>, win?: Record<string, unknown>, showSliders?: boolean,
+  srcOverride?: string) => unknown;
+/**
+ * `src` is the SHIPPED updateVectorGeometry3DFrame source, published alongside
+ * the driver so §22 can run a DELIBERATELY BROKEN variant of it (the shipped
+ * text with one gate removed) through the same stub scene. A negative control
+ * that cannot execute the defect it names is a restatement, not a control.
+ */
+const FRAME_HARNESS: { run: RunFrame | null; src: string | null } = { run: null, src: null };
 
 /** The SHIPPED apply pass, run against a scene + a real (fake) DOM registry. */
 const APPLY_SRC = grabFn("applyVectorGeometry3DState");
-function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom()) {
+function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom(),
+  srcOverride?: string) {
   const win: Record<string, unknown> = {};
   const T = vgTextFns(win, dom.document);
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const factory = new Function("sceneObjects", "window", "document", "vgAnimKnobs", "VG_ROW_RANGE", "vgControlRange",
-    APPLY_SRC + "\nreturn applyVectorGeometry3DState;");
-  factory(scene, win, dom.document, E.vgAnimKnobs, T.VG_ROW_RANGE, T.vgControlRange)(stateDef);
+    "vgShowAB",
+    (srcOverride || APPLY_SRC) + "\nreturn applyVectorGeometry3DState;");
+  factory(scene, win, dom.document, E.vgAnimKnobs, T.VG_ROW_RANGE, T.vgControlRange, E.vgShowAB)(stateDef);
   return { win, dom, T };
 }
 
@@ -942,7 +961,10 @@ console.log("\n=== 7e. show_parallelogram / show_parallelepiped — the visibili
   assertTrue("with show_projection unauthored the projection pair stays hidden (every state that predates Δ11 is unchanged)",
     !visOf(sBare, "vg_proj_seg") && !visOf(sBare, "vg_proj_drop"));
   assertTrue("with neither flag authored BOTH stay hidden", !visOf(sBare, "vg_parallelogram") && !visOf(sBare, "vg_parallelepiped"));
-  assertTrue("a and b are ALWAYS shown (they are the scenario)", visOf(sBare, "vg_vector_a") && visOf(sBare, "vg_vector_b"));
+  // a and b are shown on any state that does not declare mode "lines_planes"
+  // — which is every state of Act I, none of which authors `mode` at all.
+  // §22 owns the other side of that gate.
+  assertTrue("a and b are shown on a products-mode state (they are the scenario)", visOf(sBare, "vg_vector_a") && visOf(sBare, "vg_vector_b"));
   assertTrue("a foreign scenario's element is NOT touched by this apply pass",
     sBare.filter((o) => o.userData.elementType === "field_line")[0].visible);
   // A state with no vg block at all must not throw (a renderer that throws
@@ -2581,22 +2603,30 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
       obj("vg_vector_a"), obj("vg_vector_b"), obj("vg_cross_vector"),
       obj("vg_proj_seg"), obj("vg_proj_drop"),
       obj("vg_label", "vg_cross_vector"), obj("vg_label", "vg_proj_seg"),
+      // §22 · the a/b sprites. They are the half of the a/b pair a fix aimed
+      // only at the arrows leaves on screen, so the scene the frame driver is
+      // published with has to contain them.
+      obj("vg_label", "vg_vector_a"), obj("vg_label", "vg_vector_b"),
     ];
     const frameSrc = grabFn("updateVectorGeometry3DFrame");
     const INJECT = [
       "vgAnimValue", "vgBuildVectors", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize",
       "vgAddVec", "vgSub", "vgRotateAbout", "vgParallelogramVerts", "vgSplitPieces",
       "vgSolidFaceCount", "vgProjectionOnto", "vgCrossLabelText", "vgAutoFramePos",
-      "vgCamScheduleAt", "vgResolveLinesPlanes",
+      "vgCamScheduleAt", "vgResolveLinesPlanes", "vgShowAB",
     ];
-    // eslint-disable-next-line @typescript-eslint/no-implied-eval
-    const frameFactory = new Function(
-      ...INJECT, "THREE", "sceneObjects", "config", "PM_currentState", "time", "stateStartTime",
-      "window", "document", "targetSpherical", "spherical", "animating",
-      "updateCameraFromSpherical", "vgWriteLinesPlanesFrame", "vgReadoutLine", "vgCamBaseFromState",
-      "updateLabelSpriteText", "vgPlaceTube", "vgReadoutSubjectShown", "vgSyncRampedRows",
-      frameSrc + "\nreturn updateVectorGeometry3DFrame;",
-    );
+    // The factory is built PER RUN from a source string, so §22 can push the
+    // shipped text through it with one gate deleted and watch the defect come
+    // back — the same driver, the same scene, one changed character run.
+    const makeFrameFactory = (src: string) =>
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
+      new Function(
+        ...INJECT, "THREE", "sceneObjects", "config", "PM_currentState", "time", "stateStartTime",
+        "window", "document", "targetSpherical", "spherical", "animating",
+        "updateCameraFromSpherical", "vgWriteLinesPlanesFrame", "vgReadoutLine", "vgCamBaseFromState",
+        "updateLabelSpriteText", "vgPlaceTube", "vgReadoutSubjectShown", "vgSyncRampedRows",
+        src + "\nreturn updateVectorGeometry3DFrame;",
+      );
     // stateMs matters: the shared grow-in ease is a closed form of it, so a
     // frame run at ms 0 draws vectors of length zero and every derived piece
     // correctly refuses to exist. 5000 ms is well past any reveal.
@@ -2606,10 +2636,11 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
     // sections 17-19 read the TEXT the frame writes — a stub `getElementById`
     // returning null is exactly the blindness that let three text surfaces ship
     // disagreeing with the picture beside them.
-    function runFrame(vg: Record<string, unknown>, stateMs = 5000, dom = fakeDom(), win: Record<string, unknown> = {}, showSliders = false) {
+    function runFrame(vg: Record<string, unknown>, stateMs = 5000, dom = fakeDom(), win: Record<string, unknown> = {}, showSliders = false,
+      srcOverride?: string) {
       for (const o of scene) { o.visible = false; }
       const T = vgTextFns(win, dom.document);
-      const fn = frameFactory(
+      const fn = makeFrameFactory(srcOverride || frameSrc)(
         ...INJECT.map((k) => E[k]), THREE, scene,
         { states: { STATE_1: { vg, show_sliders: showSliders } } }, "STATE_1", stateMs / 1000, 0,
         win, dom.document, {}, {}, false,
@@ -2626,6 +2657,7 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
       return scene;
     }
     FRAME_HARNESS.run = runFrame;
+    FRAME_HARNESS.src = frameSrc;
     const labOf = () => scene.filter((o: Stub) => o.userData.tracks === "vg_cross_vector")[0];
     runFrame({ show_cross_vector: true, flip_frac: 0, cross_reveal_frac: 1 });
     assertTrue(`the SHIPPED FRAME writes "a×b" onto the sprite at flip_frac = 0 (got "${labOf()._pmText}")`, labOf()._pmText === "a×b");
@@ -3328,6 +3360,203 @@ console.log("\n=== 21. C — EVERY position:fixed SURFACE, SWEPT: the panel is p
     const movedBack: Panel = { ...sliders, left: null, right: 12 };
     const formula = panels.filter((p) => p.id === "#formula_overlay")[0];
     expectFail("a #vg_sliders moved back to bottom:12/right:12 clears #formula_overlay", !collides(movedBack, formula));
+  }
+}
+
+console.log("\n=== 22. THE a/b SCAFFOLDING PAIR IS MODE-GATED: gone in \"lines_planes\", untouched in \"products\" ===");
+{
+  // bug_class vg_lines_planes_mode_never_hides_the_dot_cross_scaffolding_
+  // vectors_a_b. vg_vector_a and vg_vector_b were the ONLY two elements on the
+  // visibility switch with no gate — `want = true`, unconditionally — so Act
+  // I's dot/cross explorer vectors rendered at their default magnitudes on all
+  // nine states of a mode:"lines_planes" concept, crossing d1, d2, d1xd2 and
+  // (a2-a1) on the skew-distance state and standing where d1's own label
+  // belongs on the point-to-plane state (Rule 32e: 3-5 co-equal full-bright
+  // elements, so no state had ONE focal).
+  //
+  // The pair is written TWICE — the apply pass at state entry AND the
+  // per-frame writer, which re-asserts visibility from scratch on every frame.
+  // Both are exercised below, separately, because a fix to either one alone is
+  // invisible to a gate that only runs the other.
+  type FakeObj = { userData: { elementType: string; tracks?: string }; visible: boolean };
+  const abScene = (): FakeObj[] => ([
+    { userData: { elementType: "vg_vector_a" }, visible: false },
+    { userData: { elementType: "vg_vector_b" }, visible: false },
+    { userData: { elementType: "vg_vector_c" }, visible: false },
+    { userData: { elementType: "vg_label", tracks: "vg_vector_a" }, visible: false },
+    { userData: { elementType: "vg_label", tracks: "vg_vector_b" }, visible: false },
+    { userData: { elementType: "vg_label", tracks: "vg_vector_c" }, visible: false },
+    // The lines/planes pool, which this apply pass must keep its hands off
+    // entirely (vgWriteLinesPlanesFrame owns it, per frame).
+    { userData: { elementType: "vg_lp_line" }, visible: true },
+    { userData: { elementType: "vg_lp_line_label" }, visible: true },
+  ]);
+  const vis = (s: FakeObj[], t: string) => s.filter((o) => o.userData.elementType === t)[0].visible;
+  const labVis = (s: FakeObj[], tracks: string) => s.filter((o) => o.userData.tracks === tracks)[0].visible;
+  const runApply = (s: FakeObj[], stateDef: unknown, src?: string) =>
+    runApplyPass(s as unknown as Array<Record<string, unknown>>, stateDef, fakeDom(), src);
+
+  // THE STATE UNDER TEST is the real one: STATE_8 of lines_and_planes_in_space
+  // is where the four skew-distance objects and the two scaffolding arrows
+  // shared a screen. Only `mode` decides, so the rest is the minimum a
+  // lines_planes state carries.
+  const LP_STATE = { vg: { mode: "lines_planes", reveal_ms: 0 } };
+  const PRODUCTS_STATE = { vg: { mode: "products", show_parallelogram: true } };
+  const NO_MODE_STATE = { vg: { show_parallelogram: true } };   // every Act I state as authored
+
+  // ── (a) THE APPLY PASS ────────────────────────────────────────────────────
+  const sLP = abScene();
+  runApply(sLP, LP_STATE);
+  assertTrue("apply, mode \"lines_planes\": the a and b ARROWS are not in the visible set",
+    !vis(sLP, "vg_vector_a") && !vis(sLP, "vg_vector_b"));
+  assertTrue("apply, mode \"lines_planes\": their LABELS are not either (an arrow hidden under its own bold \"a\" is not a fix)",
+    !labVis(sLP, "vg_vector_a") && !labVis(sLP, "vg_vector_b"));
+  assertTrue("apply, mode \"lines_planes\": the lines/planes pool is still skipped, not hidden (its own per-frame writer owns it)",
+    vis(sLP, "vg_lp_line") && vis(sLP, "vg_lp_line_label"));
+
+  const sPr = abScene();
+  runApply(sPr, PRODUCTS_STATE);
+  assertTrue("apply, mode \"products\": a and b ARE in the visible set — Act I is untouched",
+    vis(sPr, "vg_vector_a") && vis(sPr, "vg_vector_b"));
+  assertTrue("apply, mode \"products\": and so are their labels",
+    labVis(sPr, "vg_vector_a") && labVis(sPr, "vg_vector_b"));
+  const sNo = abScene();
+  runApply(sNo, NO_MODE_STATE);
+  assertTrue("apply, mode UNAUTHORED (how every shipped Act I state is actually written): a and b are shown — the gate is negative, so no authoring change can turn them off",
+    vis(sNo, "vg_vector_a") && vis(sNo, "vg_vector_b")
+    && labVis(sNo, "vg_vector_a") && labVis(sNo, "vg_vector_b"));
+  assertTrue("...and c still answers to show_c alone in every mode (the gate did not spill onto the neighbouring branch)",
+    !vis(sNo, "vg_vector_c") && !vis(sLP, "vg_vector_c"));
+
+  // ── (b) THE PER-FRAME WRITER — the load-bearing half ──────────────────────
+  //    Run through the SHIPPED frame driver §15 publishes. This is the pass
+  //    that would have quietly undone an apply-only fix on frame 2.
+  type Stub = { userData: { elementType: string; tracks?: string }; visible: boolean };
+  const runFrame = FRAME_HARNESS.run!;
+  const frameVis = (s: Stub[], t: string) => s.filter((o) => o.userData.elementType === t)[0].visible;
+  const frameLab = (s: Stub[], tracks: string) => s.filter((o) => o.userData.tracks === tracks)[0].visible;
+  const fLP = runFrame({ mode: "lines_planes", a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 }, 5000) as Stub[];
+  assertTrue("frame, mode \"lines_planes\": the frame does NOT put the a/b arrows back (an apply-only fix dies here one frame after state entry)",
+    !frameVis(fLP, "vg_vector_a") && !frameVis(fLP, "vg_vector_b"));
+  assertTrue("frame, mode \"lines_planes\": nor their labels",
+    !frameLab(fLP, "vg_vector_a") && !frameLab(fLP, "vg_vector_b"));
+  const fPr = runFrame({ mode: "products", a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 }, 5000) as Stub[];
+  assertTrue("frame, mode \"products\": both arrows are drawn and both labels placed — byte-for-byte the shipped Act I behaviour",
+    frameVis(fPr, "vg_vector_a") && frameVis(fPr, "vg_vector_b")
+    && frameLab(fPr, "vg_vector_a") && frameLab(fPr, "vg_vector_b"));
+  const fNo = runFrame({ a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 }, 5000) as Stub[];
+  assertTrue("frame, mode UNAUTHORED: identical to \"products\" (the default is ON)",
+    frameVis(fNo, "vg_vector_a") && frameVis(fNo, "vg_vector_b"));
+  // The pre-existing zero-length refusal must survive the new gate: in
+  // products mode at reveal ms 0 the drawn vectors have length 0 and the
+  // arrows must still be hidden, or the gate has replaced one condition with
+  // another instead of ANDing them.
+  const fZero = runFrame({ mode: "products", a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 900 }, 0) as Stub[];
+  assertTrue("frame, mode \"products\" at ms 0: the zero-length refusal still holds (the mode gate was ANDed onto it, not swapped for it)",
+    !frameVis(fZero, "vg_vector_a") && !frameVis(fZero, "vg_vector_b"));
+
+  // ── (c) NEGATIVE CONTROLS ─────────────────────────────────────────────────
+  //    Every one is the SHIPPED SOURCE with the gate textually removed, run
+  //    through the SAME harness. A control written as a paraphrase of the fix
+  //    cannot fail; these execute the pre-fix renderer.
+  {
+    // (1) THE PRE-FIX APPLY PASS, restated exactly: `want = true`.
+    const preApply = APPLY_SRC
+      .replace('|| ud.elementType === "vg_vector_b") want = vgShowAB(d);',
+        '|| ud.elementType === "vg_vector_b") want = true;')
+      .replace('if (tr === "vg_vector_a" || tr === "vg_vector_b") want = vgShowAB(d);',
+        'if (tr === "vg_vector_a" || tr === "vg_vector_b") want = true;');
+    assertTrue("the pre-fix APPLY variant differs from the shipped source (a control built by a replacement that matched nothing is not a control)",
+      preApply !== APPLY_SRC && preApply.indexOf("want = true;") > 0);
+    const sPre = abScene();
+    runApply(sPre, LP_STATE, preApply);
+    expectFail("the PRE-FIX apply pass (want = true, ungated) keeps a and b off a lines_planes state",
+      !vis(sPre, "vg_vector_a") && !vis(sPre, "vg_vector_b"));
+    expectFail("...and keeps their labels off it",
+      !labVis(sPre, "vg_vector_a") && !labVis(sPre, "vg_vector_b"));
+    // ...and the SAME pre-fix source is correct in products mode, which is
+    // what made the defect survive: every gate that only ever looked at Act I
+    // agreed with it.
+    const sPreProd = abScene();
+    runApply(sPreProd, PRODUCTS_STATE, preApply);
+    assertTrue("the pre-fix pass is INDISTINGUISHABLE from the fix in \"products\" mode — the reason nine states shipped with it",
+      vis(sPreProd, "vg_vector_a") === vis(sPr, "vg_vector_a")
+      && vis(sPreProd, "vg_vector_b") === vis(sPr, "vg_vector_b"));
+
+    // (2) THE APPLY-ONLY FIX — the shape this dispatch was proposed in, and
+    //     the one the frame silently undoes. The apply pass is the SHIPPED
+    //     (fixed) one; the frame is the shipped source with its gate removed.
+    const preFrame = FRAME_HARNESS.src!
+      .replace("if (vgShowAB(d) && lenA > 0.02)", "if (lenA > 0.02)")
+      .replace("if (vgShowAB(d) && lenB > 0.02)", "if (lenB > 0.02)")
+      .replace('if (tracks === "vg_vector_a") { showLab = vgShowAB(d); anchorEnd = ea; }',
+        'if (tracks === "vg_vector_a") { showLab = true; anchorEnd = ea; }')
+      .replace('else if (tracks === "vg_vector_b") { showLab = vgShowAB(d); anchorEnd = eb; }',
+        'else if (tracks === "vg_vector_b") { showLab = true; anchorEnd = eb; }');
+    assertTrue("the pre-fix FRAME variant differs from the shipped source (again: a replacement that matched nothing proves nothing)",
+      preFrame !== FRAME_HARNESS.src && preFrame.indexOf("if (lenA > 0.02)") > 0);
+    const sApplyOnly = abScene();
+    runApply(sApplyOnly, LP_STATE);                        // the FIXED apply pass: hides them
+    assertTrue("the apply-only build starts the state correctly (a and b hidden at state entry)",
+      !vis(sApplyOnly, "vg_vector_a") && !vis(sApplyOnly, "vg_vector_b"));
+    const fApplyOnly = runFrame({ mode: "lines_planes", a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 },
+      5000, undefined, undefined, false, preFrame) as Stub[];
+    expectFail("an APPLY-ONLY fix survives the very next frame (the frame writer re-asserts visibility from scratch)",
+      !frameVis(fApplyOnly, "vg_vector_a") && !frameVis(fApplyOnly, "vg_vector_b"));
+    expectFail("...and an arrows-only fix leaves the bold \"a\"/\"b\" SPRITES on screen, which is the collision the EYE walk actually reported",
+      !frameLab(fApplyOnly, "vg_vector_a") && !frameLab(fApplyOnly, "vg_vector_b"));
+    // The same broken frame is still right in products mode — so once more,
+    // an Act-I-only gate cannot see this defect.
+    const fPreProd = runFrame({ mode: "products", a_mag: 3, b_mag: 2, theta_deg: 60, reveal_ms: 0 },
+      5000, undefined, undefined, false, preFrame) as Stub[];
+    assertTrue("the pre-fix frame agrees with the fixed frame in \"products\" mode (same arrows, same labels)",
+      frameVis(fPreProd, "vg_vector_a") === frameVis(fPr, "vg_vector_a")
+      && frameLab(fPreProd, "vg_vector_b") === frameLab(fPr, "vg_vector_b"));
+
+    // (3) THE OTHER TEMPTING GATE — a POSITIVE test, `mode === "products"`.
+    //     It reads the same on both concepts as authored today and is wrong
+    //     for exactly one reason: every shipped Act I state omits `mode`
+    //     entirely, so a positive gate blanks Act I's two vectors on a build
+    //     that changed no JSON at all.
+    const positiveGate = (d: Record<string, unknown>) => d.mode === "products";
+    assertTrue("the positive gate agrees with the shipped one wherever mode IS authored (which is why it looks equivalent)",
+      positiveGate({ mode: "products" }) === (E.vgShowAB({ mode: "products" }) as boolean)
+      && positiveGate({ mode: "lines_planes" }) === (E.vgShowAB({ mode: "lines_planes" }) as boolean));
+    expectFail("a `mode === \"products\"` gate keeps a and b on a state that authors no mode (every Act I state as shipped)",
+      positiveGate({ show_parallelogram: true }));
+    assertTrue("the SHIPPED negative gate keeps them on that same state",
+      E.vgShowAB({ show_parallelogram: true }) === true);
+    assertTrue("...and a state with no vg block at all does not throw the predicate (a throw here blanks the scene)",
+      E.vgShowAB(undefined) === true && E.vgShowAB(null) === true);
+  }
+
+  // ── (d) THE AUTHORED CONCEPT, read from disk — the gate is pointed at the
+  //    real states, not at a mode string this file invented.
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let modes: string[] = [];
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      if (cfg) modes = Object.keys(cfg.states).map((k) => (cfg.states[k].vg || {}).mode);
+    } catch { modes = []; }
+    if (modes.length === 0) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the authored-mode check is advisory");
+    } else {
+      assertTrue(`all ${modes.length} authored states of lines_and_planes_in_space declare mode "lines_planes", so the gate covers every one of them`,
+        modes.every((m) => m === "lines_planes"));
+      const sAuthored = abScene();
+      runApply(sAuthored, { vg: { mode: modes[0] } });
+      assertTrue("the AUTHORED mode string, fed to the shipped apply pass, hides the pair (no string this file made up)",
+        !vis(sAuthored, "vg_vector_a") && !vis(sAuthored, "vg_vector_b"));
+    }
   }
 }
 

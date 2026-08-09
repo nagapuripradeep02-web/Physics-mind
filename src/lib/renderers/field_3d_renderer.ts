@@ -14241,6 +14241,30 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_vgPoolOverflow = overflow;
     }
 
+    // The a/b scaffolding pair belongs to mode "products" — they are Act I's
+    // explorer vectors, and NOTHING in mode "lines_planes" is drawn from them
+    // (the lines/planes pool resolves from vg.lines / vg.planes / vg.points,
+    // and the theta_deg knob it shares reaches the picture through
+    // vgObjRotate, never through the a/b arrows). They were the ONLY two
+    // elements on the visibility switch with no gate at all, so every
+    // lines_planes state rendered them at their default magnitudes on top of
+    // its own construction — bug_class vg_lines_planes_mode_never_hides_the_
+    // dot_cross_scaffolding_vectors_a_b: on the skew-distance state the bold
+    // "a" and "b" cross straight through d1, d2, d1xd2 and (a2-a1), and on the
+    // point-to-plane state "a" sits where d1's own label belongs.
+    //
+    // ONE predicate, read by BOTH passes, because the visibility of these two
+    // is written TWICE: once here at state entry and again by
+    // updateVectorGeometry3DFrame on EVERY frame (which is why gating only the
+    // apply pass would have been a no-op one frame later). The test is
+    // negative ("not lines_planes") rather than positive ("is products") so a
+    // state that authors no mode at all — every state of Act I — keeps the
+    // shipped behaviour exactly, and no authoring change can silently turn
+    // Act I's vectors off.
+    function vgShowAB(d) {
+        return (d || {}).mode !== "lines_planes";
+    }
+
     // Authoritative per-state visibility (mirrors applyAcResistorState) +
     // per-state contextual-control panel (Rule 31: controls[] = live row(s),
     // static_readouts[] = disabled row at the SAME position — SLIDER ROWS,
@@ -14261,7 +14285,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // because it also survives anything that hides an object later.
             if (ud.elementType.indexOf("vg_lp_") === 0) continue;
             var want = false;
-            if (ud.elementType === "vg_vector_a" || ud.elementType === "vg_vector_b") want = true;
+            if (ud.elementType === "vg_vector_a" || ud.elementType === "vg_vector_b") want = vgShowAB(d);
             else if (ud.elementType === "vg_vector_c") want = !!d.show_c;
             else if (ud.elementType === "vg_cross_vector") want = !!d.show_cross_vector;
             else if (ud.elementType === "vg_angle_arc") want = !!d.show_angle_arc;
@@ -14280,7 +14304,7 @@ export const FIELD_3D_RENDERER_CODE = `
             else if (ud.elementType === "vg_proj_seg" || ud.elementType === "vg_proj_drop") want = !!d.show_projection;
             else if (ud.elementType === "vg_label") {
                 var tr = ud.tracks;
-                if (tr === "vg_vector_a" || tr === "vg_vector_b") want = true;
+                if (tr === "vg_vector_a" || tr === "vg_vector_b") want = vgShowAB(d);
                 else if (tr === "vg_vector_c") want = !!d.show_c;
                 else if (tr === "vg_cross_vector") want = !!d.show_cross_vector;
                 else if (tr === "vg_angle_arc") want = !!d.show_angle_arc;
@@ -14632,12 +14656,16 @@ export const FIELD_3D_RENDERER_CODE = `
             var o = sceneObjects[i], ud = o.userData;
             if (!ud || !ud.elementType) continue;
             if (ud.elementType === "vg_vector_a") {
+                // vgShowAB — the SAME predicate the apply pass reads. This is
+                // the load-bearing half of the gate: this loop runs every
+                // frame and re-asserts visibility from scratch, so an apply-
+                // only gate would be undone one frame after state entry.
                 var lenA = vgLenVec(ea);
-                if (lenA > 0.02) { o.setDirection(new THREE.Vector3(ea[0], ea[1], ea[2]).normalize()); o.setLength(Math.max(0.05, lenA), 0.24, 0.13); o.visible = true; }
+                if (vgShowAB(d) && lenA > 0.02) { o.setDirection(new THREE.Vector3(ea[0], ea[1], ea[2]).normalize()); o.setLength(Math.max(0.05, lenA), 0.24, 0.13); o.visible = true; }
                 else o.visible = false;
             } else if (ud.elementType === "vg_vector_b") {
                 var lenB = vgLenVec(eb);
-                if (lenB > 0.02) { o.setDirection(new THREE.Vector3(eb[0], eb[1], eb[2]).normalize()); o.setLength(Math.max(0.05, lenB), 0.24, 0.13); o.visible = true; }
+                if (vgShowAB(d) && lenB > 0.02) { o.setDirection(new THREE.Vector3(eb[0], eb[1], eb[2]).normalize()); o.setLength(Math.max(0.05, lenB), 0.24, 0.13); o.visible = true; }
                 else o.visible = false;
             } else if (ud.elementType === "vg_vector_c") {
                 if (d.show_c) {
@@ -14754,8 +14782,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 } else o.visible = false;
             } else if (ud.elementType === "vg_label") {
                 var tracks = ud.tracks, showLab = false, anchorEnd = null, labPos = null;
-                if (tracks === "vg_vector_a") { showLab = true; anchorEnd = ea; }
-                else if (tracks === "vg_vector_b") { showLab = true; anchorEnd = eb; }
+                // The labels ride the same gate as the arrows they name: an
+                // arrow hidden while its bold "a" stays on screen is not a fix,
+                // it is the same collision with the arrow removed.
+                if (tracks === "vg_vector_a") { showLab = vgShowAB(d); anchorEnd = ea; }
+                else if (tracks === "vg_vector_b") { showLab = vgShowAB(d); anchorEnd = eb; }
                 else if (tracks === "vg_vector_c") { showLab = !!d.show_c; anchorEnd = ec; }
                 else if (tracks === "vg_cross_vector") {
                     showLab = !!d.show_cross_vector; anchorEnd = eaxb;
