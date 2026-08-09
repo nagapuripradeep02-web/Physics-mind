@@ -1882,6 +1882,27 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Class 11 Ch.6 Work, Energy and Power #7 — same newtons_laws_body engine.
+    // Near the Earth's surface a body's gravitational potential energy is
+    // U = mgh, measured from a height you CHOOSE to call zero — the choice
+    // moves every U value but never ΔU = mgΔh. One canonical apparatus (a cart
+    // on a ramp, a U bar, a dashed h = 0 line) carries three invariances: same
+    // place gives the same U (round trip), a moved zero shifts every U but
+    // never ΔU (the PRIMARY aha), and a different slope to the same height
+    // gives the same U (path independence). Closes the loop by deriving
+    // U = mgh from potential_energy_definition's ΔU = −W_conservative applied
+    // to gravity. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-10.
+    gravitational_potential_energy: {
+        concept_id: 'gravitational_potential_energy',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gravitational_potential_energy',
+            label: 'Gravitational Potential Energy — U = mgh (3D)',
+        },
+    },
+
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 for the Phase-0d parallel authoring wave, so
     // the five desks never edit this file. Gate 8b hard-FAILs a concept that is

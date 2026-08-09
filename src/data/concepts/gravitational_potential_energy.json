@@ -1,0 +1,786 @@
+{
+  "concept_id": "gravitational_potential_energy",
+  "concept_name": "Gravitational Potential Energy — U = mgh",
+  "chapter": 6,
+  "section": "6.8",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power — table-of-contents scope only ('potential energy of an object at a height' confirmed under Work, Energy and Power), teaching authored from first principles. The atomic concept: near the Earth's surface a body's gravitational potential energy is U = mgh, measured from a height you CHOOSE to call zero — the choice moves every U value but never the difference ΔU = mgΔh, and that difference depends only on the start and end heights, not on the path between them. Does NOT teach the general definition of potential energy or ΔU = −W_conservative (that is potential_energy_definition, consumed as a shipped prerequisite and cited by concept_id only, never by its state numbers), does NOT teach the spring form of potential energy, does NOT convert U to K or track a moving total, does NOT treat friction losses, and does NOT touch the general −GMm/r form (a later chapter; the h << R_Earth caveat is one advanced-ring narration clause, never a formula). Built on the newtons_laws_body field_3d engine with the SEAM K/L/M/N energy layer — the first concept to exercise energy_layer.h_ref_m as a genuine authored CHOICE that moves between two states showing the identical climb (STATE_1 vs STATE_3), and to pair two latched two-clause checkpoint stamps on one instrument to make a subtraction visible on screen (STATE_5). One canonical apparatus — a cart on a ramp, a U bar, and a dashed h = 0 line — carries three independent invariances, one per contrast pair: same place gives the same U (STATE_2, a state-function round trip), a moved zero shifts every U but never ΔU (STATE_3, the PRIMARY aha), and a different slope to the same height gives the same U (STATE_4, path independence). STATE_5 closes the loop by deriving U = mgh from potential_energy_definition's own ΔU = −W_conservative relation, applied to gravity, with two latched endpoint stamps proving the subtraction directly.",
+
+  "prerequisites": [
+    "potential_energy_definition",
+    "conservative_vs_nonconservative_forces",
+    "work_done_by_constant_force"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A bag carried upstairs in any building — by stairs, by ramp, or by elevator. Every student on any syllabus climbs stairs and rides elevators; no country, brand, festival or currency. The stored energy is exactly mgΔh between floors, the route genuinely does not matter, and floor numbering is genuinely a choice — the h = 0 aha lives in the student's own everyday experience.",
+    "secondary": "Water pumped to a rooftop tank. The stored energy is set only by how high the tank sits above the pump — open a tap and the stored energy comes back on its own."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m": { "name": "cart mass", "unit": "kg", "min": 1, "max": 3, "default": 2, "step": 0.5 },
+      "theta_deg": { "name": "incline angle", "unit": "deg", "min": 15, "max": 48.6, "default": 30 },
+      "h_ref_m": { "name": "height of the chosen h = 0 line above the ramp's surface origin (the reference is a CHOICE, not a fact about the body)", "unit": "m", "min": 0, "max": 0.3, "default": 0 },
+      "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "s": { "name": "position along the track, measured from the surface origin", "unit": "m", "derived": "the integrator's own live value on driven/launched states; the slider-held value at rest in the explore" },
+      "d": { "name": "displacement from the state's own initial_position_m", "unit": "m", "derived": "s - initial_position_m" },
+      "h": { "name": "height above the authored h = 0 line", "unit": "m", "derived": "s * sin(radians(theta_deg)) - h_ref_m" },
+      "U": { "name": "gravitational potential energy", "unit": "J", "min": 0, "max": 60, "derived": "m * g * (s * sin(radians(theta_deg)) - h_ref_m)" },
+      "F": { "name": "applied drive force, along the surface, aiding the climb (S1/S3/S4 only — exactly balances mg sin(theta) so a = 0)", "unit": "N", "derived": "m * g * sin(radians(theta_deg))" },
+      "v": { "name": "constant climb speed on the driven states (S1/S3/S4)", "unit": "m/s", "constant": 0.8 },
+      "v0": { "name": "launch speed at the state's own start, signed (S2/S5 only; zero/absent elsewhere)", "unit": "m/s", "min": 0, "max": 3.13, "default": 0 },
+      "a": { "name": "acceleration along the surface (0 on driven states; -g*sin(theta) after launch on S2/S5, frictionless)", "unit": "m/s^2", "derived": "-g * sin(radians(theta_deg))" },
+      "W_gravity": { "name": "running work done BY gravity since the state's own initial_position_m (S5 ledger only)", "unit": "J", "derived": "-m * g * sin(radians(theta_deg)) * (s - initial_position_m)" }
+    },
+    "formulas": {
+      "U": "m * g * (s * sin(radians(theta_deg)) - h_ref_m)",
+      "delta_U": "m * g * (h_end - h_start)  -- documentation only; both h values already net out h_ref_m, so this is reference-independent by construction",
+      "F_drive_balance": "m * g * sin(radians(theta_deg))  -- S1/S3/S4: F is authored equal to this so a = 0 identically",
+      "a_after_launch": "-g * sin(radians(theta_deg))  -- S2/S5: frictionless coast after v0",
+      "return_time_ms": "2000 * v0 / (g * sin(radians(theta_deg)))  -- S2/S5 home-recross wall time",
+      "rise_m": "(v0 * v0) / (2 * g * sin(radians(theta_deg)))  -- S2 peak displacement above the launch s0",
+      "W_gravity": "-m * g * sin(radians(theta_deg)) * (s - initial_position_m)"
+    },
+    "computed_outputs": {
+      "U_J": { "formula": "m * g * (s * sin(radians(theta_deg)) - h_ref_m)" },
+      "gravity_J": { "formula": "-m * g * sin(radians(theta_deg)) * (s - initial_position_m)" }
+    },
+    "constraints": [
+      "U = mgh at every instant, measured from THIS state's own authored h_ref_m -- never from an assumed ground; h_ref_m is a choice, not a physical fact.",
+      "ΔU = mgΔh is invariant under any repositioning of h_ref_m between two states that show the same climb (S1 vs S3): every individual U value shifts, the difference between two heights never does.",
+      "U is a state function: two visits to the same s (hence the same h) stamp the identical U regardless of the path taken between the visits (S2's round trip; S4's steeper path to S1's own height).",
+      "W_gravity = -ΔU_grav for gravity acting alone on the tracked body, for ANY choice of h_ref_m (S5) -- this is the potential_energy_definition relation, specialised to gravity and used to derive U = mgh.",
+      "h must stay >= 0 at every instant of every authored loop, including the +50 ms folded frame, for every state that authors this h_ref_m (the unsigned energy stack cannot render a negative U_grav; a crossing fires a console warning THE EYE's H4 assertion reads as a failure).",
+      "g = 9.8 m/s^2, constant at Earth's surface -- this concept never varies g and never leaves the h << R_Earth regime (the -GMm/r form is a later chapter, named once in advanced-ring narration only, never a formula here)."
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "There is no true zero height — you choose it, and only ΔU is physical.",
+    "visual_confirmation": "The identical climb re-runs with the h = 0 line moved to the start: every U value shifts, yet ΔU stamps the same 29.4 J."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "path_independence": { "start": "STATE_4", "end": "STATE_4" },
+    "relation_to_work": { "start": "STATE_5", "end": "STATE_5" }
+  },
+
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Lifting stores energy: U = mgh",
+        "duration": 24,
+        "focal_primitive_id": "gpe_s1_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Higher up, more energy",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "id": "gpe_s1_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a 3 kg cart is driven up a 30° ramp at a steady 0.8 m/s, starting 0.3 m above the dashed h = 0 line at the ramp's foot",
+            "color": "#FFF176"
+          },
+          {
+            "id": "gpe_s1_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the U bar climbs in step with height: point A stamps 14.7 J at 0.5 m, point B stamps 44.1 J at 1.5 m, and the formula gains a second line, ΔU = mgΔh = 29.4 J",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "gpe_s1_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the displacement arrow d grows live from the release point, reading 2.40 m at point B",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Lifting a bag from the floor to a shelf stores energy in it: the higher the shelf, the more energy stored.", "glow": "energy_bar_U_grav" },
+            { "id": "s1_2", "text_en": "This cart's stored energy grows the same way, from fourteen point seven joules at point A to forty four point one at point B.", "glow": "checkpoint_2" },
+            { "id": "s1_3", "text_en": "The gain equals mass times gravity times the height climbed.", "glow": "displacement_vector" }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Back at the same height, same U",
+        "duration": 22,
+        "focal_primitive_id": "gpe_s2_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "Same height, same energy",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "id": "gpe_s2_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a 2.5 kg cart launches up the same ramp at 3.13 m/s from 1.4 m above the line, coasts to a peak, and falls back",
+            "color": "#FFF176"
+          },
+          {
+            "id": "gpe_s2_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "a home flag stamps 34.3 J the instant the cart departs, and stamps the same 34.3 J again the instant it returns — the place sets the energy, not the trip",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "gpe_s2_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the highest-point marker reads h = 1.90 m at the peak, computed live from the launch speed and the slope",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "A cart is launched up the slope, rises, slows, and falls back to where it started.", "glow": "energy_panel" },
+            { "id": "s2_2", "text_en": "Its stored energy reads thirty four point three joules at launch.", "glow": "checkpoint_1" },
+            { "id": "s2_3", "text_en": "It reads the same thirty four point three joules on return.", "glow": "checkpoint_1" },
+            { "id": "s2_4", "text_en": "The place sets the energy, not the trip.", "glow": "energy_bar_U_grav" }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "The zero line is your choice",
+        "duration": 24,
+        "focal_primitive_id": "gpe_s3_panel",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through",
+        "delta_cue": "New zero, same ΔU",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "zero_reference_choice",
+          "negative_potential_energy",
+          "delta_u_vs_u"
+        ],
+        "scene_composition": [
+          {
+            "id": "gpe_s3_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the identical climb from S1 (m 3 kg, same speed, same two points) with ONE change: the dashed h = 0 line now sits at the cart's own start height",
+            "color": "#FFF176"
+          },
+          {
+            "id": "gpe_s3_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the U bar opens at 0.0 J instead of 8.8 J; point A now stamps 5.9 J and point B stamps 35.3 J — every reading has moved",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "gpe_s3_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the formula's second line still reads ΔU = mgΔh = 29.4 J, unchanged from S1 — only the zero line moved",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The floor you start on could be called zero — the building never changes, only the numbers do.", "glow": "marker_h_ref" },
+            { "id": "s3_2", "text_en": "The concept before this placed its own zero at the ramp's foot.", "glow": "marker_h_ref" },
+            { "id": "s3_3", "text_en": "Here the same climb runs with the line moved to the start.", "glow": "marker_h_ref" },
+            { "id": "s3_4", "text_en": "Every reading changes, yet the gain, twenty nine point four joules, holds.", "glow": "checkpoint_2" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The ground is THE zero — a body at the ground HAS no potential energy, and U is an absolute property of the body.",
+            "visual_counter": "The identical climb re-runs with the zero line moved to the start height — the bar now opens EMPTY and every stamped U changes, yet ΔU stamps the same 29.4 J.",
+            "one_line_fix": "U depends on where you put zero; only ΔU = mgΔh is physical."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "A steeper ramp, the same U",
+        "duration": 22,
+        "focal_primitive_id": "gpe_s4_panel",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Shorter path, same U",
+        "depth_ring": "extended",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "path_independence_gravity",
+          "ramp_vs_vertical_lift_work",
+          "longer_ramp_less_force_same_energy"
+        ],
+        "scene_composition": [
+          {
+            "id": "gpe_s4_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the ramp is rotated to 48.6° — steeper than S1's 30° — and the same 3 kg cart climbs at the same 0.8 m/s to the same 1.5 m height",
+            "color": "#FFF176"
+          },
+          {
+            "id": "gpe_s4_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the displacement arrow reads d = 1.40 m at the flag, against S1's 2.40 m at the same height, and the stamp is the identical 44.1 J",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "gpe_s4_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the applied-force arrow is longer here — more force was needed for the steeper climb, though the stored energy did not change",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Stairs, a ramp, or an elevator to the same floor store the same energy in the bag.", "glow": "displacement_vector" },
+            { "id": "s4_2", "text_en": "This ramp is steeper: the cart travels only one point four metres instead of two point four.", "glow": "displacement_vector" },
+            { "id": "s4_3", "text_en": "It still reaches the same height, and the stamped energy is again forty four point one joules.", "glow": "checkpoint_1" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Pushing a load up a LONGER ramp stores more potential energy — you pushed for longer.",
+            "visual_counter": "A steeper ramp reaches the same 1.5 m with d = 1.40 m instead of 2.40 m, and the stamp is the identical 44.1 J.",
+            "one_line_fix": "Only the height gained sets ΔU — path length does not enter mgΔh."
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "ΔU equals minus the work by gravity",
+        "duration": 26,
+        "focal_primitive_id": "gpe_s5_panel",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "motion_archetype": "cycle-compare",
+        "delta_cue": "Equal change, opposite sign",
+        "depth_ring": "advanced",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "id": "gpe_s5_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "S2's exact launch (2.5 kg, 3.13 m/s) with a second bar added: gravity's signed work ledger",
+            "color": "#FFF176"
+          },
+          {
+            "id": "gpe_s5_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "a start flag latches U = 34.3 J and W gravity = 0.0 J the instant the cart departs; point C latches U = 42.9 J and W gravity = −8.6 J further up the slope",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "gpe_s5_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the formula surface reads ΔU = −W by gravity, with a second line ΔU = mgΔh = 8.6 J — the two stamped changes, 8.6 and −8.6, mirror exactly",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "The last concept counted from a line at the ramp's foot, so its start already read forty nine joules.", "glow": "checkpoint_1" },
+            { "id": "s5_2", "text_en": "Here the start reads thirty four point three.", "glow": "checkpoint_1" },
+            { "id": "s5_3", "text_en": "Neither starting number matters — only the change does:", "glow": "energy_panel" },
+            { "id": "s5_4", "text_en": "gravity's work and the stored energy change equally and oppositely, eight point six joules each way.", "glow": "checkpoint_2" }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "Explore: change mass and angle",
+        "duration": 0,
+        "focal_primitive_id": "gpe_s6_panel",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change mass and angle yourself",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "id": "gpe_s6_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a 2 kg cart rests on the ramp, held by friction, while the angle idles between 30° and 40° and the cart rides the turning ramp",
+            "color": "#FFF176"
+          },
+          {
+            "id": "gpe_s6_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "drag the mass or angle sliders and the U bar re-derives live — U always equals mass times gravity times the height above the line",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "gpe_s6_sliders",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "two live dials: mass m (1–3 kg) and incline angle θ (15°–40°)",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Drag the mass or the angle." },
+            { "id": "s6_2", "text_en": "The ramp turns as the angle changes, and the cart rides with it." },
+            { "id": "s6_3", "text_en": "U always equals mass times gravity times height." }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "suitcase_on_an_airport_ramp",
+      "type": "B",
+      "label": "A Suitcase Pulled Up an Airport Ramp",
+      "physical_world": "A suitcase is pulled up a sloped luggage ramp toward the baggage-claim platform at a steady speed, past two marked points; the same ramp is later measured from the point where the suitcase starts.",
+      "same_physics": "Identical readings: the same U bar and the same two point-stamps, driven by the same U = mgh — moving the zero line moves every reading and never touches the gain between the two points.",
+      "scene_hint": "Same single-body rig, same inclined track — only the cart becomes a suitcase and the ramp becomes a luggage ramp."
+    },
+    {
+      "variant_id": "crate_on_a_loading_dock_ramp",
+      "type": "B",
+      "label": "A Crate Pushed Up a Loading-Dock Ramp",
+      "physical_world": "A crate is pushed up a warehouse loading-dock ramp to a fixed platform height, once on a shallow ramp and once on a steep one.",
+      "same_physics": "Same law, same numbers: the stamped potential energy at the platform height is identical on both ramps, even though the steeper ramp needs less travel distance to reach it.",
+      "scene_hint": "Same rig and physics — the cart is relabelled a crate, the ramp becomes a loading-dock ramp at two different slopes."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can compute U = mgh for a body at a given height above a stated reference; explain that U's LEVEL shifts under a different chosen zero while ΔU between two positions never does; state that U is a state function depending only on height, never on speed or the path taken to reach it; predict that a steeper or shallower path to the same height gives the same U; and derive ΔU directly from the work done by gravity using ΔU = −W_gravity.",
+    "questions": [
+      {
+        "q_id": "q1_u_from_height",
+        "stem": "Compute U for a 2 kg bag placed on a shelf 3 m above the floor you are measuring from (g = 9.8 m/s²).",
+        "options": {
+          "A": "58.8 J",
+          "B": "6.0 J",
+          "C": "29.4 J",
+          "D": "The answer cannot be found without knowing the true ground-level height"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "forgets to multiply by g, computing only m times h instead of mgh",
+          "C": "borrows the one-half factor from kinetic energy's formula and halves mgh, which has no such factor",
+          "D": "mistakes the chosen reference for an incomplete one — height measured above ANY chosen zero is enough; no absolute ground-level height is ever needed"
+        },
+        "tested_idea": "U = mgh from a height measured above a chosen reference — no 'true' zero is needed",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "Compute U for a 4 kg crate placed on a platform 1.5 m above the floor you are measuring from (g = 9.8 m/s²)."
+      },
+      {
+        "q_id": "q2_state_function_round_trip",
+        "stem": "A cart is launched up a frictionless slope and returns to its exact starting height. Compare its potential energy U at departure and at return.",
+        "options": {
+          "A": "U is identical at departure and return — U depends only on height, and both instants are at the same height.",
+          "B": "U at return is less, because the cart used energy fighting gravity on the way up.",
+          "C": "U at return is greater, because gravity did positive work on the way down.",
+          "D": "U cannot be compared without knowing the cart's speed at each instant."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a loss where none exists on a frictionless slope — nothing removes energy from U along the way; U is a pure function of position",
+          "C": "assumes U changes because gravity did work on the most recent leg — U is set by height, not by which force acted most recently",
+          "D": "treats U as dependent on speed — U is a pure function of position only, never of velocity"
+        },
+        "tested_idea": "U is a state function: the same position gives the same U, whatever path or speed brought the body there",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A ball tossed straight up returns to the exact height it was thrown from. Compare its potential energy U at the moment it left the hand and the moment it returns to that height."
+      },
+      {
+        "q_id": "q3_zero_is_a_choice",
+        "stem": "One student says a book's potential energy is 98 J; another says the same book, at the same position, has potential energy 40 J. Both are correct. How is this possible?",
+        "options": {
+          "A": "They measured height from two different chosen zero lines — U's level depends on the reference chosen, but ΔU between any two positions is the same for both.",
+          "B": "One of them made an arithmetic mistake; only one value can be correct for the same book at the same position.",
+          "C": "The book has two different masses in the two measurements.",
+          "D": "Potential energy depends on which student is watching, so both values are simultaneously true."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the belief this state exists to correct — U's level genuinely changes with a chosen reference; no arithmetic error is required for two different, both-correct readings",
+          "C": "invents a change in mass to explain a difference that is fully explained by a different height reference — nothing about the book itself changed",
+          "D": "treats U as observer-dependent in an unphysical sense — the freedom is in the CHOSEN reference height, not in who is looking"
+        },
+        "tested_idea": "U's level shifts with the chosen zero reference; only ΔU is reference-independent",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "One student says a shelf's stored energy is 24.5 J; another says the same shelf, same book, same position, is 9.8 J. Both are right. How?"
+      },
+      {
+        "q_id": "q4_path_independence",
+        "stem": "A crate is raised to the third floor once by a ramp and once by a straight vertical lift. Compare the change in potential energy ΔU for the two routes.",
+        "options": {
+          "A": "ΔU is identical for both routes — it depends only on the height gained, not on the path taken.",
+          "B": "The ramp gives a smaller ΔU, because less force was needed to push it up.",
+          "C": "The lift gives a smaller ΔU, because it took less time.",
+          "D": "ΔU cannot be compared without knowing the exact shape of the ramp."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses the FORCE needed with the ENERGY stored — a gentler ramp needs less force over a longer push, but the stored energy set by height is unchanged",
+          "C": "invents a time-dependence for ΔU that does not exist — ΔU depends only on the height gained, not on how quickly it was gained",
+          "D": "treats path independence as needing a path-specific correction — mgΔh contains no path-length or path-shape term at all"
+        },
+        "tested_idea": "ΔU depends only on the height gained, never on the path taken to gain it (path independence for gravity)",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A trolley is raised to the same height once by a steep ramp and once by a gentle ramp. Compare ΔU for the two routes."
+      },
+      {
+        "q_id": "q5_delta_u_from_work",
+        "stem": "Gravity does −58.8 J of work lifting a crate from one point to another. State the change in the crate's potential energy ΔU between those two points.",
+        "options": {
+          "A": "ΔU = +58.8 J",
+          "B": "ΔU = −58.8 J",
+          "C": "U at the second point equals −58.8 J",
+          "D": "ΔU cannot be found without knowing the reference height"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the minus sign in ΔU = −W by gravity — the change in U is the negative of the work gravity did",
+          "C": "confuses the CHANGE in U with the LEVEL of U at a point — the level needs a reference, the change does not",
+          "D": "the relation ΔU = −W needs no reference height at all — only the LEVEL of U needs one, never the change"
+        },
+        "tested_idea": "ΔU = −W by gravity gives the change directly from the work done, independent of any chosen zero — the relation this state derives U = mgh from",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Gravity does +19.6 J of work on a crate sliding down a ramp. State the change in the crate's potential energy ΔU."
+      },
+      {
+        "q_id": "q6_u_proportional_to_mass",
+        "stem": "A body's height above the chosen reference is fixed. Its mass is doubled. What happens to its potential energy U?",
+        "options": {
+          "A": "U doubles — U is directly proportional to mass at fixed height.",
+          "B": "U stays the same — mass does not affect potential energy.",
+          "C": "U quadruples — mass enters U the same way speed enters kinetic energy.",
+          "D": "U cannot be found without knowing the body's speed."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses potential energy with a quantity like acceleration under gravity, which genuinely is mass-independent — U = mgh has mass as a direct multiplying factor",
+          "C": "borrows the squared dependence from kinetic energy's ½mv² — U depends on mass to the first power only",
+          "D": "treats U as dependent on speed — U is a pure function of position (height) and mass only, never of velocity"
+        },
+        "tested_idea": "U is directly proportional to mass at fixed height — doubling m doubles U, no squared dependence",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A crate's height above the floor is unchanged. Its mass is tripled. What happens to its potential energy U?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_u_from_height"],
+      "STATE_2": ["q2_state_function_round_trip"],
+      "STATE_3": ["q3_zero_is_a_choice"],
+      "STATE_4": ["q4_path_independence"],
+      "STATE_5": ["q5_delta_u_from_work"],
+      "STATE_6": ["q6_u_proportional_to_mass"]
+    },
+    "non_assessed_states": []
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.6 Work, Energy and Power — potential energy of an object at a height, U = mgh",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "full",
+        "syllabus_unit": "Topic 2.3 Work, energy and power — gravitational potential energy near a surface",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 Work, Energy and Power — gravitational potential energy, U = mgh",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — gravitational potential energy, the choice of reference level",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — gravitational potential energy, U = mgh, path independence",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — gravitational potential energy and reference-level freedom",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — gravitational potential energy, U = mgh",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "m": { "min": 1, "max": 3, "step": 0.5, "default": 2, "label": "m" },
+      "theta": { "min": 15, "max": 40, "step": 1, "default": 30, "label": "θ" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A 3 kg cart is driven up a frictionless 30° slope at a constant 0.8 m/s from s = 0.6 m (0.3 m above the h = 0 line); at s = 1.0 m point A stamps U = 14.7 J, at s = 3.0 m point B stamps U = 44.1 J, and at 4400 ms the formula gains a second line, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "Higher up, more energy",
+        "eye_capture_ms": 4800,
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 30, "length_m": 4.5, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 0.6, "initial_velocity_mps": 0.8, "applied_force": { "N": 14.7, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied", "weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "checkpoints": [
+            { "s_m": 1.0, "label": "point A", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
+            { "s_m": 3.0, "label": "point B", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
+          ],
+          "formula_lines": [
+            { "text": "U = mgh" },
+            { "text": "ΔU = mgΔh = 29.4 J", "at_ms": 4400 }
+          ],
+          "loop_reset_ms": 6000,
+          "controls_visible": []
+        }
+      },
+
+      "STATE_2": {
+        "label": "A 2.5 kg cart launches up the frictionless 30° slope at 3.13 m/s from s = 2.8 m (h = 1.4 m); a home-armed flag at s = 2.8 stamps 'start height: U = 34.3 J' on departure and re-stamps 'start height (pass 2): U = 34.3 J' on the return crossing, dwelling 1400 ms; the predicted-stop marker reads 'highest point h = 1.90 m' at the peak; the loop resets at 3178 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "Same height, same energy",
+        "eye_capture_ms": 1978,
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 30, "length_m": 4.5, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 2.5, "color": "#42A5F5", "initial_position_m": 2.8, "initial_velocity_mps": 3.13 }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
+          "height_markers": {
+            "show_h_ref_line": true,
+            "h_ref_label": "h = 0",
+            "predicted_stop": { "label": "highest point", "show_height": true }
+          },
+          "checkpoints": [
+            { "s_m": 2.8, "label": "start height", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "every", "dwell_from_pass": 2, "marker": "point", "dwell_ms": 1400 }
+          ],
+          "loop_reset_ms": 3178,
+          "controls_visible": []
+        }
+      },
+
+      "STATE_3": {
+        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points) with energy_layer.h_ref_m moved to 0.3 m — the cart's own start height. The U bar opens at 0.0 J; point A stamps U = 5.9 J, point B stamps U = 35.3 J; at 4400 ms the formula gains the same second line as S1, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "New zero, same ΔU",
+        "eye_capture_ms": 4800,
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 30, "length_m": 4.5, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 0.6, "initial_velocity_mps": 0.8, "applied_force": { "N": 14.7, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied", "weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0.3, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "checkpoints": [
+            { "s_m": 1.0, "label": "point A", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
+            { "s_m": 3.0, "label": "point B", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
+          ],
+          "formula_lines": [
+            { "text": "U = mgh" },
+            { "text": "ΔU = mgΔh = 29.4 J", "at_ms": 4400 }
+          ],
+          "loop_reset_ms": 6000,
+          "controls_visible": []
+        }
+      },
+
+      "STATE_4": {
+        "label": "The ramp is rotated to 48.6°; the same 3 kg cart drives up at 0.8 m/s from s = 0.6 m. At s = 2.0 m (the SAME h = 1.5 m as S1's point B) point B stamps U = 44.1 J, with d = 1.40 m on the displacement arrow — against S1/S3's d = 2.40 m at the same height; the loop resets at 3650 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "Shorter path, same U",
+        "eye_capture_ms": 2450,
+        "show_sliders": true,
+        "formula_overlay": "U = mgh",
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 48.6, "length_m": 4.5, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 0.6, "initial_velocity_mps": 0.8, "applied_force": { "N": 22.053265447135512, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied", "weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "checkpoints": [
+            { "s_m": 2.0, "label": "point B", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1400 }
+          ],
+          "loop_reset_ms": 3650,
+          "controls_visible": []
+        }
+      },
+
+      "STATE_5": {
+        "label": "S2's exact launch (m = 2.5 kg, s0 = 2.8, v0 = 3.13 m/s) with a gravity work ledger added. A home-armed flag latches 'start (h = 1.40 m): U = 34.3 J · W gravity = 0.0 J' at departure; point C at s = 3.5 m latches 'point C (h = 1.75 m): U = 42.9 J · W gravity = −8.6 J', dwelling 1400 ms; the formula gains a second line, ΔU = mgΔh = 8.6 J, at 600 ms; the loop resets at 2900 ms.",
+        "visible_elements": [],
+        "camera_position": [0, 1.87, 9.1],
+        "caption": "Equal change, opposite sign",
+        "eye_capture_ms": 989,
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "incline_slide",
+          "surface": { "theta_deg": 30, "length_m": 4.5, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 2.5, "color": "#42A5F5", "initial_position_m": 2.8, "initial_velocity_mps": 3.13 }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
+          "work_accumulators": [
+            { "force": "gravity", "label": "gravity", "body_id": "cart" }
+          ],
+          "work_scale_J": 30,
+          "checkpoints": [
+            { "s_m": 2.8, "label": "start (h = 1.40 m)", "body_id": "cart", "capture": ["U_grav", "W"], "capture_mode": "first", "marker": "point" },
+            { "s_m": 3.5, "label": "point C (h = 1.75 m)", "body_id": "cart", "capture": ["U_grav", "W"], "capture_mode": "first", "marker": "point", "dwell_ms": 1400 }
+          ],
+          "formula_lines": [
+            { "text": "ΔU = −W by gravity" },
+            { "text": "ΔU = mgΔh = 8.6 J", "at_ms": 600 }
+          ],
+          "loop_reset_ms": 2900,
+          "controls_visible": []
+        }
+      },
+
+      "STATE_6": {
+        "label": "Sandbox: a 2 kg cart sits at rest at s = 2.4 m (h = 1.2 m), held by static friction (μs = 0.9, μk = 0.8) at every authored angle. The angle idles between 30° and 40°, rotating the ramp with the cart riding it, until the teacher drags m or θ; U reads live from 23.5 J (θ = 30°) to 30.2 J (θ = 40°). U = mgh stands as the formula surface throughout.",
+        "visible_elements": [],
+        "camera_position": [0, 2.3, 10.6],
+        "caption": "Change mass and angle yourself",
+        "show_sliders": true,
+        "formula_overlay": "U = mgh",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 30, "length_m": 4.5 },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 2, "color": "#42A5F5", "initial_position_m": 2.4, "initial_velocity_mps": 0, "mu_s": 0.9, "mu_k": 0.8 }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
+          "idle_auto_sweep": { "param": "theta", "range": [30, 40] },
+          "controls_visible": ["m", "theta"]
+        }
+      }
+    }
+  }
+}

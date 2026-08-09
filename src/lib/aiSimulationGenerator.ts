@@ -2027,6 +2027,8 @@ MECHANICS / MOTION:
   pseudo_forces          — non-inertial frame, pseudo/fictitious force
   friction_laws          — static friction, kinetic friction, μ, f=μN
   work_energy_theorem    — W=F·d, work-energy theorem, net work = ΔKE
+  potential_energy_definition — stored energy by position, ΔU = −W by a conservative force
+  gravitational_potential_energy — U=mgh NEAR EARTH'S SURFACE, chosen h=0 reference, ΔU=mgΔh
   conservation_of_energy — energy conservation, KE+PE=constant
   potential_energy_curves — PE vs displacement graph, equilibrium points
   power_efficiency       — power P=W/t, efficiency η=output/input
@@ -2055,7 +2057,6 @@ MECHANICS / MOTION:
   equilibrium_rigid_body — conditions for equilibrium, ΣF=0, Στ=0
 
 GRAVITATION / FLUIDS:
-  gravitational_potential_energy — GPE near/far from earth, U=-GMm/r
   gravitational_field_inside_outside_shell — g inside hollow shell = 0
   acceleration_due_to_gravity_variation — g variation with height, depth, latitude
   escape_velocity_orbital — escape velocity, orbital velocity, v_e=√(2gR)
@@ -2880,7 +2881,20 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     rolling_without_slipping:       "mechanics_2d",
     // Energy
     conservation_of_energy:         "mechanics_2d",
-    gravitational_potential_energy: "mechanics_2d",
+    // gravitational_potential_energy was here as a RETIRED mechanics_2d entry
+    // (the old Chapter 8 Gravitation -GMm/r far-field concept) — no concept
+    // JSON in data/concepts/, absent from VALID_CONCEPT_IDS and
+    // CONCEPT_PANEL_MAP before this edit, i.e. never a live product concept
+    // (same disposition as the rolling_on_incline precedent above, 2026-08-04).
+    // Removed 2026-08-10 because the Class 11 Ch.6 Work, Energy and Power
+    // build claims the id for a real field_3d concept (U = mgh near the
+    // Earth's surface), and a duplicate key in this literal is a TS1117
+    // error. The legacy physics_constants/gravitational_potential_energy.json
+    // (the -GMm/r content) and the vestigial MECHANICS_SCENARIO_MAP entry
+    // below are DIFFERENT, non-colliding objects and are left alone — flagged
+    // to the founder as a naming collision between the near-surface (Ch.6)
+    // and far-field (Ch.8 Gravitation, not yet built) concepts sharing one
+    // concept_id; the Ch.8 build will need a disambiguated id when it lands.
     // Gravitation
     escape_velocity_orbital:        "mechanics_2d",
     kepler_laws:                    "mechanics_2d",
@@ -3082,6 +3096,11 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // CHANGE-identity (ΔU = −W_conservative). Pure configuration, zero
     // renderer edits (0d). Alex pipeline, 2026-08-10.
     potential_energy_definition:    "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #7 — same newtons_laws_body
+    // engine. U = mgh from a CHOSEN zero: the choice moves every U value but
+    // never ΔU = mgΔh. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-10.
+    gravitational_potential_energy: "field_3d",
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave so the
     // five parallel desks never edit this file (docs/loop_runs/rotmech/).
