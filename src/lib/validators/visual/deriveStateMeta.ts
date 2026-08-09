@@ -287,9 +287,20 @@ export function deriveMotionExpectations(
             // classifies it reveal_hold instead of false-failing it for standing
             // still. The explore sandbox is user-driven → declare static and let
             // the interactive hold classification relax its tail.
+            // A1 (2026-08-10): a beat authoring `torsion.continuous` free-runs the
+            // dihedral forever on the state clock (phi wraps), so it NEVER settles
+            // → DECLARE motion. A SCRIPTED sweep (phi_from → phi_deg over
+            // phi_ramp_ms) is a one-shot that settles and is deliberately left to
+            // the reveal_hold classification, exactly like the camera schedule.
             const orgMotion = state ? asObj(state.organic_structure) : null;
             if (orgMotion) {
+            // The explore test stays FIRST, exactly as it is for spin_rate: the
+            // sandbox is user-driven and its tail is relaxed by the interactive
+            // hold classification, so it is declared static whatever it authors.
                 if (orgMotion.mode === 'explore') { out[stateId] = false; continue; }
+                const orgTor = asObj(orgMotion.torsion);
+                if (orgTor && orgTor.continuous !== undefined && orgTor.continuous !== null
+                    && orgTor.continuous !== false) { out[stateId] = true; continue; }
                 if (typeof orgMotion.spin_rate === 'number' && orgMotion.spin_rate > 0) { out[stateId] = true; continue; }
                 // still beat: fall through to the reveal_hold classification.
             }
@@ -2177,6 +2188,17 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             }
         };
         sweep(orgState as Record<string, unknown>);
+        // A1: the driven dihedral. `torsion.phi_at_ms` + `phi_ramp_ms` are STEMMED
+        // precisely so the generic object sweep above already sees them (the
+        // renderer rejects the bare at_ms/ramp_ms spelling outright). The one case
+        // the sweep cannot see is a ramp authored with NO start time — a sweep from
+        // t = 0 — so it is pushed here rather than pinning at DEFAULT_REVEAL_MS
+        // mid-turn. A `continuous` free-run never settles and contributes nothing:
+        // it is declared as MOTION above instead.
+        const orgTor = asObj(orgState.torsion);
+        if (orgTor && typeof orgTor.phi_ramp_ms === 'number' && typeof orgTor.phi_at_ms !== 'number') {
+            candidates.push(orgTor.phi_ramp_ms + ORG_CUSHION);
+        }
         for (const key of Object.keys(orgState)) {
             const v = (orgState as Record<string, unknown>)[key];
             const child = asObj(v);
