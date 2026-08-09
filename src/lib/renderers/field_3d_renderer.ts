@@ -64580,8 +64580,32 @@ export const FIELD_3D_RENDERER_CODE = `
     //       show_hud, hud_lines: [...],    // CLOSED, ORG_HUD_LINES
     //       show_formula, formula,         // ONE surface, Rule 34b
     //       controls: [{id, min_ring}]|[id],          // RING-GATED, ORG_CONTROL_IDS
-    //       static_readouts: [...]
+    //       static_readouts: [...],
+    //       // ── dispatch S2, the energy instrument ──────────────────────────
+    //       energy: { show, curve,         // ROW KEY into ORG_ENERGY_TABLE (a
+    //                                      // published-value REGISTRY, growable
+    //                                      // by row — never a frozen enum)
+    //                 coordinate,          // CLOSED, ORG_ENERGY_COORDS
+    //                 show_point, show_barrier, label_stationary,
+    //                 reveal_at_ms, reveal_ramp_ms },   // the pin evaluator
+    //                                      // pairs <stem>_at_ms with
+    //                                      // <stem>_ramp_ms inside an OBJECT
+    //       measure: [{ kind,              // CLOSED, ORG_MEASURE_KINDS
+    //                   between: [ids],    // ARITY IS THE N-9 BAN: angle 3,
+    //                                      // distance 2, torsion 4 NAMED atoms,
+    //                                      // so no nearest/closest mode exists
+    //                   label, reference_value_pm, reference_label,
+    //                   at_ms, ramp_ms }]  // an ARRAY LEG: bare at_ms/ramp_ms
     //     }
+    //
+    //   S2 (2026-08-09) BUILDS: U4, the energy instrument, generalised from the
+    //   start — an E(coordinate) curve with a point riding it in sync with the
+    //   molecule, named stationary points rendered from data, the measure family
+    //   (angle | distance | torsion) with a drawn reference standard, and the
+    //   four HUD lines energy / barrier / angle / distance. DECISION 1 IS THE
+    //   HARD FLOOR: every number is a published literature value carrying a
+    //   source or a needs_verification flag that the canvas itself stamps; the
+    //   engine computes no energy at any coordinate.
     //
     //   THE FREEZE (§9E + P2-6, extended by this dispatch to EVERY closed enum):
     //   a CLOSED ENUM is a fixed VOCABULARY — reopening it churns every shipped
@@ -64654,57 +64678,73 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Every member is IMPLEMENTED (a live code path today) or DEFERRED (parsed,
     //   REJECTED LOUDLY, and owned by a named dispatch). The split moves as
     //   dispatches land; the UNION never changes.
-    var ORG_MODES_S1 = ["rotate", "explore"];
+    //   The lists were named _S1 at that dispatch and are named _IMPL from S2:
+    //   IMPLEMENTED is a property of WHAT RUNS TODAY, so a list whose name says
+    //   "S1" while it holds S2's members is the same category error the CRITICAL
+    //   row closed_enum_deferred_split_written_per_wave_not_per_dispatch names.
+    var ORG_MODES_IMPL = ["rotate", "explore"];
     var ORG_MODES_DEFERRED = {
         "pucker": "A2", "lift": "A3", "mirror": "A3", "block_twist": "A3",
         "rewire": "A3", "compare": "A2", "rehybridise": "S4", "shade": "B1",
         "delocalise": "B2", "break": "C1", "form": "C1", "approach": "C2",
         "invert": "C2", "migrate": "C1", "sequence": "C3", "sweep": "C4"
     };
-    var ORG_HUD_LINES_S1 = ["phi", "bond", "pose", "atom_count"];
+    // S2 moves energy/barrier/angle/distance across IN THE SAME CHANGE as the
+    // code that renders them (the HUD block at the foot of the frame pass).
+    var ORG_HUD_LINES_IMPL = ["phi", "bond", "pose", "atom_count",
+        "energy", "barrier", "angle", "distance"];
     var ORG_HUD_LINES_DEFERRED = {
-        "energy": "S2", "barrier": "S2", "angle": "S2", "distance": "S2",
         "overlap": "A3", "residual": "A3", "descriptor": "A3",
         "ae_count": "A2", "population": "A2", "temperature": "A2", "a_value": "A2"
     };
-    var ORG_CONTROL_IDS_S1 = ["view", "spin", "implicit_h"];
+    var ORG_CONTROL_IDS_IMPL = ["view", "spin", "implicit_h"];
     var ORG_CONTROL_IDS_DEFERRED = {
         "phi": "A1", "pucker": "A2", "substituent": "A2", "group": "A2",
         "temperature": "A2", "mirror": "A3", "isomer": "A3", "chain_length": "A3"
     };
-    // N-8's instrument family. Nothing S1 renders, so every member is deferred to
-    // the dispatch that draws it — declared now because the enum freezes here.
-    var ORG_MEASURE_KINDS_S1 = [];
-    var ORG_MEASURE_KINDS_DEFERRED = {
-        "angle": "S2", "distance": "S2", "torsion": "S2",
-        "axis_line": "A2", "plane_disc": "A2"
-    };
+    // N-8's instrument family. S2 builds the three MEASURED kinds — each reads a
+    // value off the BUILT coordinates and publishes it, so a printed number can
+    // never disagree with the geometry it is drawn on (§G-6: ≤ 2 pm, ≤ 0.5°).
+    // axis_line/plane_disc are REFERENCE constructions of the ring, not
+    // measurements, and they belong with the pucker that defines them.
+    var ORG_MEASURE_KINDS_IMPL = ["angle", "distance", "torsion"];
+    var ORG_MEASURE_KINDS_DEFERRED = { "axis_line": "A2", "plane_disc": "A2" };
     // Torsion POSES are pure angle look-ups on the molecule's declared reference
     // dihedral, so all five work on the static substrate today.
     var ORG_POSES = { "eclipsed": 0, "gauche": 60, "staggered": 60, "syn": 0, "anti": 180 };
-    var ORG_POSES_S1 = ["staggered", "eclipsed", "anti", "gauche", "syn"];
+    var ORG_POSES_IMPL = ["staggered", "eclipsed", "anti", "gauche", "syn"];
     var ORG_POSES_DEFERRED = {};
-    var ORG_PUCKER_PATHS_S1 = [];
+    var ORG_PUCKER_PATHS_IMPL = [];
     var ORG_PUCKER_PATHS_DEFERRED = { "chair_flip": "A2" };
     // The two PRIMED members are found by this dispatch's enum walk and are NOT
     // in the drafted contract: the chair-flip walk visits twist-boat at u = 0.36
     // AND at u = 0.64, and half-chair at u = 0.22 AND u = 0.78. A waypoint that
     // resolves to a single u cannot name the return leg, so skeleton §5's
     // seven-leg S5 walk was unauthorable as drafted.
-    var ORG_WAYPOINTS_S1 = [];
+    var ORG_WAYPOINTS_IMPL = [];
     var ORG_WAYPOINTS_DEFERRED = {
         "chair": "A2", "half_chair": "A2", "twist_boat": "A2", "boat": "A2",
         "twist_boat_alt": "A2", "half_chair_alt": "A2", "chair_alt": "A2"
     };
-    var ORG_MIRROR_PLANES_S1 = [];
+    var ORG_MIRROR_PLANES_IMPL = [];
     var ORG_MIRROR_PLANES_DEFERRED = { "xy": "A3", "yz": "A3", "xz": "A3", "screen": "A3" };
-    var ORG_ENERGY_COORDS_S1 = [];
+    // A COORDINATE is implemented when a live POSE drives it — the rider and the
+    // molecule must read ONE number or the instrument lies. 'torsion' has that
+    // driver today (the measured reference dihedral). 'pucker' is RE-OWNED from
+    // S2 to A2: its registry ROW ships here with its published values, but no
+    // pucker pose exists for a rider to ride, and a rider on a still molecule is
+    // exactly the drift this instrument exists to prevent. The UNION is unchanged
+    // — only which dispatch owns the deferral.
+    var ORG_ENERGY_COORDS_IMPL = ["torsion"];
     var ORG_ENERGY_COORDS_DEFERRED = {
-        "torsion": "S2", "pucker": "S2", "reaction": "C2", "species": "B3"
+        "pucker": "A2", "reaction": "C2", "species": "B3"
     };
-    var ORG_STATIONARY_KINDS_S1 = [];
+    // The two CONFORMATIONAL stationary kinds ship with the instrument. The four
+    // REACTION kinds stay declared-and-deferred with their Layer-C owners: no
+    // registry row uses them (a reaction profile needs coordinate:'reaction',
+    // which is C2's), and deleting them would reopen a frozen enum across 32 sims.
+    var ORG_STATIONARY_KINDS_IMPL = ["minimum", "maximum"];
     var ORG_STATIONARY_KINDS_DEFERRED = {
-        "minimum": "S2", "maximum": "S2",
         "reactant": "C2", "ts": "C2", "intermediate": "C3", "product": "C2"
     };
     // FIELD-level deferral. A closed enum is not the only way a state can ask for
@@ -64714,16 +64754,16 @@ export const FIELD_3D_RENDERER_CODE = `
     var ORG_DEFERRED_FIELDS = {
         "torsion.phi_from": "A1", "torsion.at_ms": "A1", "torsion.ramp_ms": "A1",
         "torsion.continuous": "A1",
-        "pucker": "A2", "substituents": "A2", "energy": "S2", "measure": "S2",
+        "pucker": "A2", "substituents": "A2",
         "trace": "A2", "population": "A2", "compare": "A2",
         "mirror": "A3", "block_twist": "A3", "lift": "A3", "rewire": "A3",
         "rehybridise": "S4", "density": "B1", "delocalisation": "B2"
     };
     function orgKeys(o) { var k, a = []; for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) a.push(k); return a; }
-    var ORG_MODES = ORG_MODES_S1.concat(orgKeys(ORG_MODES_DEFERRED));
-    var ORG_HUD_LINES = ORG_HUD_LINES_S1.concat(orgKeys(ORG_HUD_LINES_DEFERRED));
-    var ORG_CONTROL_IDS = ORG_CONTROL_IDS_S1.concat(orgKeys(ORG_CONTROL_IDS_DEFERRED));
-    var ORG_MEASURE_KINDS = ORG_MEASURE_KINDS_S1.concat(orgKeys(ORG_MEASURE_KINDS_DEFERRED));
+    var ORG_MODES = ORG_MODES_IMPL.concat(orgKeys(ORG_MODES_DEFERRED));
+    var ORG_HUD_LINES = ORG_HUD_LINES_IMPL.concat(orgKeys(ORG_HUD_LINES_DEFERRED));
+    var ORG_CONTROL_IDS = ORG_CONTROL_IDS_IMPL.concat(orgKeys(ORG_CONTROL_IDS_DEFERRED));
+    var ORG_MEASURE_KINDS = ORG_MEASURE_KINDS_IMPL.concat(orgKeys(ORG_MEASURE_KINDS_DEFERRED));
 
     // ── THE MOLECULE TABLE (a growable KEY SET, not a frozen enum) ───────────
     //   Geometry is GENERATED from connectivity + hybridisation against
@@ -64750,6 +64790,221 @@ export const FIELD_3D_RENDERER_CODE = `
     // Declared, not built: both need the substituent layer (A3), and authoring
     // one must fail loudly rather than render an empty stage.
     var ORG_MOLECULES_DEFERRED = { "stereocentre": "A3", "isomer_set": "A3" };
+
+    // ── THE ENERGY REGISTRY (dispatch S2) ────────────────────────────────────
+    //   A growable PUBLISHED-VALUE TABLE, one row per curve — deliberately NOT a
+    //   closed enum (the CRITICAL row
+    //   closed_enum_freeze_applied_to_a_growable_table_key_set_...: a curve set is
+    //   DATA, and coordinate:'reaction' alone needs one row per mechanism, twelve
+    //   in Wave O-2). Adding a row binds nothing already shipped.
+    //
+    //   DECISION 1 IS THE HARD FLOOR: the engine never COMPUTES an energy. Every
+    //   number below is a literature value a student is examined on, and every
+    //   row carries either a SOURCE string or needs_verification:true. A row with
+    //   neither is a gate failure, so an unstamped number cannot reach a screen
+    //   without saying so.
+    //
+    //   THE INTERPOLATION IS NAMED AND DOCUMENTED: raised-cosine between
+    //   consecutive published stationary points,
+    //       E(x) = E_i + (E_{i+1} - E_i) * (1 - cos(pi*s)) / 2,  s = (x-x_i)/(x_{i+1}-x_i)
+    //   chosen for two reasons and not for smoothness. (i) dE/dx is exactly zero
+    //   AT every knot, so each published point really is a stationary point of
+    //   the drawn curve rather than a corner the eye reads as one. (ii) On evenly
+    //   spaced alternating knots it is IDENTICALLY the textbook torsional form
+    //   E = (V/2)(1 + cos n phi) — for ethane, knots at 0/60/120... of 12/0 give
+    //   exactly 6(1 + cos 3phi). So the standard curve is reproduced, not
+    //   approximated, and the gate asserts that identity to 1e-9.
+    //
+    //   The stationary KIND vocabulary is the frozen enum; only 'minimum' and
+    //   'maximum' are implemented, and the marker style table below holds exactly
+    //   those two plus a neutral default, so no deferred kind is dispatched on.
+    var ORG_ENERGY_TABLE = {
+        ethane: {
+            coordinate: "torsion", units: "kJ/mol", x_min: 0, x_max: 360,
+            x_label: "\\u03C6 (\\u00B0)", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
+            zero_at: "staggered",
+            // NOT stamped in the chair-flip chemistry block \\u00A7A (that block
+            // verified cyclohexane only). Ships flagged; a chemistry-author pass
+            // stamps it. Value as carried by ORGANIC_PHASE0_CONFORMATION.md
+            // decision 1.
+            source: null, needs_verification: true,
+            stationary: [
+                { x: 0, e: 12, kind: "maximum", label: "eclipsed" },
+                { x: 60, e: 0, kind: "minimum", label: "staggered" },
+                { x: 120, e: 12, kind: "maximum", label: "eclipsed" },
+                { x: 180, e: 0, kind: "minimum", label: "staggered" },
+                { x: 240, e: 12, kind: "maximum", label: "eclipsed" },
+                { x: 300, e: 0, kind: "minimum", label: "staggered" },
+                { x: 360, e: 12, kind: "maximum", label: "eclipsed" }
+            ]
+        },
+        butane: {
+            coordinate: "torsion", units: "kJ/mol", x_min: 0, x_max: 360,
+            x_label: "\\u03C6 (\\u00B0)", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
+            zero_at: "anti",
+            source: null, needs_verification: true,
+            stationary: [
+                { x: 0, e: 19, kind: "maximum", label: "syn" },
+                { x: 60, e: 3.8, kind: "minimum", label: "gauche" },
+                { x: 120, e: 16, kind: "maximum", label: "eclipsed" },
+                { x: 180, e: 0, kind: "minimum", label: "anti" },
+                { x: 240, e: 16, kind: "maximum", label: "eclipsed" },
+                { x: 300, e: 3.8, kind: "minimum", label: "gauche" },
+                { x: 360, e: 19, kind: "maximum", label: "syn" }
+            ]
+        },
+        cyclohexane: {
+            // coordinate 'pucker' is DEFERRED to A2 (no pose drives it yet), but
+            // the ROW is data and ships now, verified, so A2 adds a driver and
+            // not a table. Knot positions in u are skeleton N-2's.
+            coordinate: "pucker", units: "kJ/mol", x_min: 0, x_max: 1,
+            x_label: "flip progress u", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
+            zero_at: "chair",
+            source: "chemistry block \\u00A7A-1: Anet & Bourn, JACS 89 (1967) 760; "
+                + "Squillacote et al., JACS 97 (1975) 3244; Eliel & Wilen (1994) ch.11; McMurry",
+            needs_verification: false,
+            stationary: [
+                { x: 0.00, e: 0, kind: "minimum", label: "chair" },
+                { x: 0.22, e: 45, kind: "maximum", label: "half-chair" },
+                { x: 0.36, e: 23, kind: "minimum", label: "twist-boat" },
+                { x: 0.50, e: 29, kind: "maximum", label: "boat" },
+                { x: 0.64, e: 23, kind: "minimum", label: "twist-boat" },
+                { x: 0.78, e: 45, kind: "maximum", label: "half-chair" },
+                { x: 1.00, e: 0, kind: "minimum", label: "chair" }
+            ]
+        }
+    };
+    var ORG_STATIONARY_STYLE = {
+        minimum: { color: "#81C784", r: 6 },
+        maximum: { color: "#FF8A65", r: 6 }
+    };
+    var ORG_STATIONARY_STYLE_DEFAULT = { color: "#B0BEC5", r: 6 };
+    /** The published value at a coordinate. Pure, closed form, no integrator. */
+    function orgEnergyAt(row, x) {
+        if (!row || !row.stationary || row.stationary.length < 2) return null;
+        var s = row.stationary, i;
+        if (x <= s[0].x) return s[0].e;
+        if (x >= s[s.length - 1].x) return s[s.length - 1].e;
+        for (i = 0; i + 1 < s.length; i++) {
+            if (x >= s[i].x && x <= s[i + 1].x) {
+                var span = s[i + 1].x - s[i].x;
+                if (span <= 0) return s[i].e;
+                var u = (x - s[i].x) / span;
+                // AT a published point, return the PUBLISHED number verbatim. The
+                // raised cosine reaches it to 1 ulp anyway, but 19 + (3.8 - 19)
+                // is 3.8000000000000007 in binary floating point, and a value a
+                // student is examined on must BE the value, not round to it.
+                if (u <= 0) return s[i].e;
+                if (u >= 1) return s[i + 1].e;
+                return s[i].e + (s[i + 1].e - s[i].e) * (1 - Math.cos(Math.PI * u)) / 2;
+            }
+        }
+        return s[s.length - 1].e;
+    }
+    /** Published lo/hi and the barrier = hi - lo, from the TABLE, never sampled. */
+    function orgEnergyRange(row) {
+        if (!row || !row.stationary || !row.stationary.length) return null;
+        var lo = Infinity, hi = -Infinity, i;
+        for (i = 0; i < row.stationary.length; i++) {
+            if (row.stationary[i].e < lo) lo = row.stationary[i].e;
+            if (row.stationary[i].e > hi) hi = row.stationary[i].e;
+        }
+        return { lo: lo, hi: hi, barrier: hi - lo };
+    }
+    /**
+     * THE ONE COORDINATE. The rider and the molecule must read the SAME number:
+     * a rider that drifts from the pose is the only failure this instrument can
+     * have. So the coordinate is MEASURED on the built coordinates (never read
+     * off the authored field), by the same function that publishes PM_orgPhi.
+     */
+    function orgMeasuredPhi(geom, mol) {
+        if (!geom || !mol || !mol.ref_dihedral) return null;
+        var byId = {}, i, r = mol.ref_dihedral;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        if (!byId[r[0]] || !byId[r[1]] || !byId[r[2]] || !byId[r[3]]) return null;
+        return orgDihedral(byId[r[0]].p, byId[r[1]].p, byId[r[2]].p, byId[r[3]].p);
+    }
+    /**
+     * The whole live state of the energy instrument, as ONE pure value. The frame
+     * pass calls this exactly once and feeds the graph, the HUD and the rider
+     * from the same object, so no second call site can disagree with the pose.
+     */
+    function orgEnergyState(os, geom, mol) {
+        var en = os && os.energy;
+        if (!en || !en.show) return null;
+        var row = ORG_ENERGY_TABLE[en.curve];
+        if (!row) return null;
+        var x = null;
+        if ((en.coordinate || row.coordinate) === "torsion") x = orgMeasuredPhi(geom, mol);
+        if (x == null) return null;
+        var rng = orgEnergyRange(row);
+        return {
+            row: row, curve: en.curve, x: x, e: orgEnergyAt(row, x),
+            lo: rng.lo, hi: rng.hi, barrier: rng.barrier,
+            units: row.units, verified: !row.needs_verification
+        };
+    }
+
+    // ── THE MEASUREMENT INSTRUMENT FAMILY (N-8, dispatch S2) ─────────────────
+    //   measure: [{ kind, between: [atom ids], label, reference_value_pm,
+    //               reference_label, at_ms, ramp_ms }]
+    //   Arity is part of the kind: angle 3 ids, distance 2 ids, torsion 4 ids.
+    //   N-9 IS A CONTRACT-WIDE BAN, enforced by that arity: a 'distance' names
+    //   exactly two atoms, so no "nearest / closest / minimum contact" mode is
+    //   AUTHORABLE — on this concept or any of the other 31. The measured methyl
+    //   contact is 270 pm in BOTH chair conformers, so a search-based readout
+    //   would report that the flip changed nothing.
+    //   Every value is READ OFF THE BUILT COORDINATES, so the printed number and
+    //   the drawn line cannot disagree (chemistry block \\u00A7G-6).
+    var ORG_MAX_MEASURES = 6;
+    var ORG_MEASURE_ARITY = { angle: 3, distance: 2, torsion: 4 };
+    var ORG_MEAS_ARC_SEGS = 96;
+    var ORG_MEAS_ARC_R = 0.62;          // scene units, at the vertex atom
+    function orgMeasureValue(geom, m) {
+        if (!m || !m.kind) return null;
+        var ids = m.between || [], byId = {}, i;
+        if (ids.length !== ORG_MEASURE_ARITY[m.kind]) return null;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        for (i = 0; i < ids.length; i++) if (!byId[ids[i]]) return null;
+        var out = { kind: m.kind, ids: ids, pts: [] };
+        for (i = 0; i < ids.length; i++) out.pts.push(byId[ids[i]].p);
+        if (m.kind === "distance") {
+            // Angstrom -> picometre. The block quotes pm everywhere.
+            out.value = orgLen(orgSub(out.pts[1], out.pts[0])) * 100;
+            out.unit = "pm";
+            out.text = (m.label ? m.label + " = " : ids[0] + "\\u00B7\\u00B7\\u00B7" + ids[1] + " = ")
+                + out.value.toFixed(0) + " pm";
+        } else if (m.kind === "angle") {
+            out.value = mgAngleDeg(orgSub(out.pts[0], out.pts[1]), orgSub(out.pts[2], out.pts[1]));
+            out.unit = "deg";
+            out.text = (m.label ? m.label + " = "
+                : ids[0] + "\\u2013" + ids[1] + "\\u2013" + ids[2] + " = ")
+                + out.value.toFixed(1) + "\\u00B0";
+        } else {
+            // SIGNED, in (-180, 180]. The chemistry block quotes ring torsions as
+            // +-54.9, and a 305.1 on that line would read as a different number.
+            var d = orgDihedral(out.pts[0], out.pts[1], out.pts[2], out.pts[3]);
+            out.value = (d > 180) ? d - 360 : d;
+            out.unit = "deg";
+            // NAMED BY ITS CENTRAL BOND, never a bare phi. The HUD's own 'phi'
+            // line publishes the molecule's REFERENCE dihedral; a torsion measure
+            // on a different bond printed as a bare phi would put two different
+            // numbers under one symbol on the same screen.
+            out.text = (m.label ? m.label + " = "
+                : "\\u03C6(" + ids[1] + "\\u2013" + ids[2] + ") = ")
+                + out.value.toFixed(1) + "\\u00B0";
+        }
+        return out;
+    }
+    /** The normalised, gated measure list for a state. */
+    function orgMeasureList(raw) {
+        var out = [], i;
+        for (i = 0; i < (raw || []).length && out.length < ORG_MAX_MEASURES; i++) {
+            var m = raw[i];
+            if (m && m.kind) out.push(m);
+        }
+        return out;
+    }
 
     // ── the loud-rejection channel ───────────────────────────────────────────
     //   deferred_enum_members_must_be_declared_not_merely_unimplemented: a state
@@ -65036,10 +65291,20 @@ export const FIELD_3D_RENDERER_CODE = `
     // two atoms the narration counts are separated by a visible band of
     // background rather than merely not overlapping.
     var ORG_HOME_GAP_FLOOR = 0.12;
-    function orgSolveHome(geom, dist) {
+    function orgSolveHome(liveGeom, dist) {
         if (!window.PM_orgHomeSolve) window.PM_orgHomeSolve = {};
-        var ck = geom.key + "|" + dist;
+        var ck = liveGeom.key + "|" + dist;
         if (window.PM_orgHomeSolve[ck]) return window.PM_orgHomeSolve[ck];
+        // ── S2 DECISION: THE POSE IS PINNED, NOT RE-SOLVED. ──────────────────
+        //   The memo key is (molecule, distance) only, so the solve MUST NOT read
+        //   a pose-dependent geometry: solved off the live coordinate it would be
+        //   whichever state applied first that session — a path-dependent camera,
+        //   and under an energy rider a camera that walks while the coordinate
+        //   sweeps (Rule 32b: only the taught variable moves). So HOME is solved
+        //   ONCE per molecule, on the molecule's REFERENCE pose, and is invariant
+        //   to the energy coordinate by construction. A state that wants a
+        //   different framing authors camera / camera_steps and never reaches here.
+        var geom = orgBuildGeometry(liveGeom.key, orgResolvePhi(ORG_MOLECULES[liveGeom.key], null)) || liveGeom;
         var shown = {}, i, az, el;
         for (i = 0; i < geom.atoms.length; i++) shown[geom.atoms[i].id] = true;
         // THE OBJECTIVE IS NOT "the biggest gap". Elevation buys countability and
@@ -65195,6 +65460,49 @@ export const FIELD_3D_RENDERER_CODE = `
         rim.visible = false;
         addToScene(rim);
 
+        // ── S2: the measurement instrument pool (N-8). Four meshes per slot, all
+        //   registered INDIVIDUALLY in sceneObjects (a child handed to addToScene
+        //   only as part of a parent never matches the updater and sits at
+        //   build-time opacity forever). depthTest:false + a high renderOrder so a
+        //   thin arc reads on top of the ball-and-stick it measures.
+        //   The arc is molecular_geometry's RingGeometry + setDrawRange
+        //   construction, CLONED locally (DF1 — never reach into a sealed
+        //   sibling's mesh, which would share its index cache across scenarios).
+        for (i = 0; i < ORG_MAX_MEASURES; i++) {
+            var mar = new THREE.Mesh(new THREE.RingGeometry(0.93, 1.0, ORG_MEAS_ARC_SEGS, 1), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFD54F"), side: THREE.DoubleSide, transparent: true,
+                opacity: 0.95, depthTest: false, depthWrite: false
+            }));
+            mar.renderOrder = 997;
+            mar.userData = { elementType: "org_meas_arc", id: "org_meas_arc_" + i, slot: i };
+            mar.visible = false;
+            addToScene(mar);
+            var mln = new THREE.Mesh(stickGeo, new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFD54F"), transparent: true, opacity: 0.92,
+                depthTest: false, depthWrite: false
+            }));
+            mln.renderOrder = 997;
+            mln.userData = { elementType: "org_meas_line", id: "org_meas_line_" + i, slot: i };
+            mln.visible = false;
+            addToScene(mln);
+            // The DRAWN STANDARD (measure.reference_value_pm). Without it a pm
+            // number is only comparable to the other pm number on screen; with it
+            // "closer than two hydrogens fit" is carried by the picture, not by
+            // narration (Rule 24 — the sim reads sound-off).
+            var mrf = new THREE.Mesh(stickGeo, new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#90A4AE"), transparent: true, opacity: 0.80,
+                depthTest: false, depthWrite: false
+            }));
+            mrf.renderOrder = 996;
+            mrf.userData = { elementType: "org_meas_ref", id: "org_meas_ref_" + i, slot: i };
+            mrf.visible = false;
+            addToScene(mrf);
+            var mlb = pmCreateAutoLabel("C1\\u2013C2\\u2013C3 = 111.4\\u00B0", "#FFE082", 0.44);
+            mlb.userData = { elementType: "org_meas_label", id: "org_meas_label_" + i, slot: i };
+            mlb.visible = false;
+            addToScene(mlb);
+        }
+
         // DOM surfaces. top:52px clears the review-chrome Full-screen button at
         // BOTH edges (Rule 34d). Rule 39f: an inline position:fixed panel created
         // dynamically is exactly what the generic widget engine auto-discovers, so
@@ -65206,6 +65514,19 @@ export const FIELD_3D_RENDERER_CODE = `
         var ff = document.createElement("div"); ff.id = "org_formula";
         ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
         document.body.appendChild(ff);
+
+        // ── S2: the energy graph. Bottom-left is the ONE zone S1 left free (HUD
+        //   top-right, formula left mid-height, sliders bottom-right), and the
+        //   bsc_trend precedent already owns that corner on the sibling scenario,
+        //   so the two chemistry scenarios put their graph in the same place.
+        //   When it is up the ONE formula surface re-anchors to top:52px (Rule
+        //   34d — 44% of a short viewport lands inside this panel), which is the
+        //   bsc_trend move verbatim. Inline position:fixed = Rule 39f
+        //   auto-discovery, so the teacher toggle comes free.
+        var eg = document.createElement("canvas"); eg.id = "org_graph";
+        eg.width = 700; eg.height = 460;
+        eg.style.cssText = "position:fixed;bottom:12px;left:12px;width:350px;height:230px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(eg);
 
         var db = document.createElement("div"); db.id = "org_deferred";
         db.style.cssText = "position:fixed;top:52px;left:50%;transform:translateX(-50%);background:rgba(120,0,0,0.92);color:#FFEBEE;padding:8px 14px;border-radius:8px;font:12px/1.5 monospace;z-index:20;display:none;max-width:70%;";
@@ -65234,6 +65555,112 @@ export const FIELD_3D_RENDERER_CODE = `
         if (hCk) hCk.addEventListener("change", function (ev) { if (ev && ev.isTrusted) window.PM_orgHDragged = true; window.PM_orgShowH = hCk.checked; });
     }
 
+    /**
+     * S2: the E(coordinate) curve with the rider. 'est' is the ONE object the
+     * frame pass computed from the pose, so the rider's x IS the pose's x — the
+     * only failure this instrument can have is the two drifting apart, and the
+     * single-object contract forecloses it structurally rather than by care.
+     * 'rev' in [0,1] is the closed-form reveal fraction (pure function of
+     * state-local t), so a freeze pin re-draws this panel byte-identically.
+     * Rule 34c: every glyph is real Unicode, in Cambria Math on the labelled text
+     * (a small monospace subscript renders as a merged blob).
+     */
+    function orgDrawGraph(en, est, rev) {
+        var cv = document.getElementById("org_graph");
+        if (!cv || cv.style.display === "none") return;
+        var g = cv.getContext("2d");
+        if (!g || !est) return;
+        var W = cv.width, H = cv.height, i;
+        g.clearRect(0, 0, W, H);
+        var row = est.row, s = row.stationary;
+        var L0 = 92, R0 = W - 26, T0 = 34, B0 = H - 58;
+        var xlo = row.x_min, xhi = row.x_max;
+        // The y range fits THIS row's own envelope with a published-value pad —
+        // a fixed range sized for another curve buries a small lobe
+        // (field3d_ppane_fixed_range_buries_offresonance_negative_lobe).
+        var ylo = est.lo, yhi = est.hi, pad = Math.max(1, (yhi - ylo) * 0.18);
+        ylo -= pad; yhi += pad;
+        var X = function (v) { return L0 + (v - xlo) / (xhi - xlo) * (R0 - L0); };
+        var Y = function (v) { return B0 - (v - ylo) / (yhi - ylo) * (B0 - T0); };
+
+        g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(L0, T0 - 8); g.lineTo(L0, B0); g.lineTo(R0, B0); g.stroke();
+        g.fillStyle = "#B0BEC5";
+        g.font = "21px \\u0027Cambria Math\\u0027,serif";
+        g.textAlign = "center";
+        g.fillText(row.x_label, (L0 + R0) / 2, H - 18);
+        g.save(); g.translate(26, (T0 + B0) / 2); g.rotate(-Math.PI / 2);
+        g.fillText(row.y_label, 0, 0); g.restore();
+        // y ticks at the PUBLISHED levels, so every gridline is a table entry.
+        g.textAlign = "right"; g.font = "19px monospace";
+        var seen = {};
+        for (i = 0; i < s.length; i++) {
+            if (seen[s[i].e]) continue;
+            seen[s[i].e] = true;
+            g.fillStyle = "#78909C";
+            g.fillText(String(s[i].e), L0 - 8, Y(s[i].e) + 6);
+            g.strokeStyle = "rgba(120,144,156,0.20)"; g.lineWidth = 1;
+            g.beginPath(); g.moveTo(L0, Y(s[i].e)); g.lineTo(R0, Y(s[i].e)); g.stroke();
+        }
+        // The curve, drawn left-to-right to the reveal fraction.
+        var N = 240, xEnd = xlo + (xhi - xlo) * mgClamp(rev, 0, 1);
+        g.strokeStyle = "#4FC3F7"; g.lineWidth = 3;
+        g.beginPath();
+        for (i = 0; i <= N; i++) {
+            var xv = xlo + (xEnd - xlo) * i / N, yv = orgEnergyAt(row, xv);
+            if (i === 0) g.moveTo(X(xv), Y(yv)); else g.lineTo(X(xv), Y(yv));
+        }
+        g.stroke();
+        // Named stationary points, rendered FROM THE DATA (kind -> style), each
+        // labelled with the row's own label string. No kind is hardcoded here.
+        if (en.label_stationary !== false) {
+            g.textAlign = "center"; g.font = "19px \\u0027Cambria Math\\u0027,serif";
+            for (i = 0; i < s.length; i++) {
+                if (s[i].x > xEnd + 1e-9) continue;
+                var st = ORG_STATIONARY_STYLE[s[i].kind] || ORG_STATIONARY_STYLE_DEFAULT;
+                g.fillStyle = st.color;
+                g.beginPath(); g.arc(X(s[i].x), Y(s[i].e), st.r, 0, Math.PI * 2); g.fill();
+                // maxima label above their dot, minima below, so a label never
+                // sits on the curve it annotates (a canvas-internal collision is
+                // invisible to a DOM probe).
+                var ly = (s[i].kind === "maximum") ? Y(s[i].e) - 14 : Y(s[i].e) + 26;
+                var lx = mgClamp(X(s[i].x), L0 + 42, R0 - 42);
+                g.fillText(s[i].label, lx, ly);
+            }
+        }
+        // The barrier bracket — the published hi minus the published lo.
+        if (en.show_barrier && rev > 0.98) {
+            var bx = mgClamp(X(xlo + (xhi - xlo) * 0.5) + 96, L0 + 30, R0 - 30);
+            g.strokeStyle = "#FFCA28"; g.lineWidth = 3;
+            g.beginPath(); g.moveTo(bx, Y(est.lo)); g.lineTo(bx, Y(est.hi)); g.stroke();
+            g.beginPath(); g.moveTo(bx - 9, Y(est.lo)); g.lineTo(bx + 9, Y(est.lo));
+            g.moveTo(bx - 9, Y(est.hi)); g.lineTo(bx + 9, Y(est.hi)); g.stroke();
+            g.fillStyle = "#FFE082"; g.font = "20px monospace"; g.textAlign = "left";
+            g.fillText(orgFx(est.barrier) + " kJ\\u00B7mol\\u207B\\u00B9", bx + 13, (Y(est.lo) + Y(est.hi)) / 2 + 6);
+        }
+        // THE RIDER. Its x is est.x, which the frame pass MEASURED on the very
+        // coordinates the molecule is drawn from.
+        if (en.show_point !== false && est.x >= xlo && est.x <= xEnd + 1e-9) {
+            g.strokeStyle = "rgba(255,213,79,0.55)"; g.lineWidth = 2;
+            g.beginPath(); g.moveTo(X(est.x), Y(est.e)); g.lineTo(X(est.x), B0); g.stroke();
+            g.fillStyle = "#FFD54F";
+            g.beginPath(); g.arc(X(est.x), Y(est.e), 9, 0, Math.PI * 2); g.fill();
+        }
+        // The verification stamp. orbital_shapes prints "(measured)" beside an
+        // imported number; an UNVERIFIED row must say so on the canvas, not only
+        // in a report a teacher never reads.
+        g.textAlign = "right"; g.font = "16px monospace";
+        g.fillStyle = est.verified ? "#78909C" : "#FFB74D";
+        g.fillText(est.verified ? "(literature)" : "(literature \\u2014 unverified)", R0, T0 - 14);
+    }
+    /** -0.0 never renders (the pwrFxZero / lcoFx clamp). */
+    function orgFx(v, dp) {
+        var d = (dp == null) ? 1 : dp;
+        var f = Math.pow(10, d);
+        if (Math.abs(v) < 0.5 / f) v = 0;
+        return Number(v).toFixed(d);
+    }
+
     function applyOrganicStructureState(stateDef) {
         var os = stateDef.organic_structure || {}, i;
         window.PM_orgRejects = [];
@@ -65247,7 +65674,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // ── the enum gate. A deferred member or a deferred FIELD fails loudly
         //    here, at apply, and the state renders its rejection instead of a
         //    silent default scene.
-        orgCheckMember("mode", os.mode || "rotate", ORG_MODES_S1, ORG_MODES_DEFERRED);
+        orgCheckMember("mode", os.mode || "rotate", ORG_MODES_IMPL, ORG_MODES_DEFERRED);
         var molKey = os.molecule || "ethane";
         if (!ORG_MOLECULES[molKey]) {
             if (Object.prototype.hasOwnProperty.call(ORG_MOLECULES_DEFERRED, molKey)) orgReject("molecule", molKey, ORG_MOLECULES_DEFERRED[molKey]);
@@ -65255,11 +65682,36 @@ export const FIELD_3D_RENDERER_CODE = `
             molKey = "ethane";
         }
         var want = os.hud_lines || [];
-        for (i = 0; i < want.length; i++) orgCheckMember("hud_lines", want[i], ORG_HUD_LINES_S1, ORG_HUD_LINES_DEFERRED);
+        for (i = 0; i < want.length; i++) orgCheckMember("hud_lines", want[i], ORG_HUD_LINES_IMPL, ORG_HUD_LINES_DEFERRED);
         var ctrls = orgControlList(os.controls), statics = orgControlList(os.static_readouts);
-        for (i = 0; i < ctrls.length; i++) orgCheckMember("controls", ctrls[i].id, ORG_CONTROL_IDS_S1, ORG_CONTROL_IDS_DEFERRED);
-        for (i = 0; i < statics.length; i++) orgCheckMember("controls", statics[i].id, ORG_CONTROL_IDS_S1, ORG_CONTROL_IDS_DEFERRED);
-        if (os.torsion && os.torsion.pose != null) orgCheckMember("torsion.pose", os.torsion.pose, ORG_POSES_S1, ORG_POSES_DEFERRED);
+        for (i = 0; i < ctrls.length; i++) orgCheckMember("controls", ctrls[i].id, ORG_CONTROL_IDS_IMPL, ORG_CONTROL_IDS_DEFERRED);
+        for (i = 0; i < statics.length; i++) orgCheckMember("controls", statics[i].id, ORG_CONTROL_IDS_IMPL, ORG_CONTROL_IDS_DEFERRED);
+        if (os.torsion && os.torsion.pose != null) orgCheckMember("torsion.pose", os.torsion.pose, ORG_POSES_IMPL, ORG_POSES_DEFERRED);
+        // ── S2's enums, gated in the SAME change as the code that renders them.
+        var meas = orgMeasureList(os.measure);
+        for (i = 0; i < meas.length; i++) {
+            orgCheckMember("measure.kind", meas[i].kind, ORG_MEASURE_KINDS_IMPL, ORG_MEASURE_KINDS_DEFERRED);
+            var ar = ORG_MEASURE_ARITY[meas[i].kind];
+            if (ar && (meas[i].between || []).length !== ar) {
+                orgReject("measure.between (kind \\u0027" + meas[i].kind + "\\u0027 names exactly "
+                    + ar + " atoms; no nearest/closest mode exists \\u2014 N-9)",
+                    JSON.stringify(meas[i].between || []), null);
+            }
+        }
+        if (os.energy) {
+            orgCheckMember("energy.coordinate", os.energy.coordinate || "torsion",
+                ORG_ENERGY_COORDS_IMPL, ORG_ENERGY_COORDS_DEFERRED);
+            if (os.energy.curve != null && !ORG_ENERGY_TABLE[os.energy.curve]) {
+                orgReject("energy.curve (NOT a row of the published-value registry)", os.energy.curve, null);
+            }
+            var stn = os.energy.stationary || [];
+            for (i = 0; i < stn.length; i++) {
+                if (stn[i] && stn[i].kind != null) {
+                    orgCheckMember("energy.stationary.kind", stn[i].kind,
+                        ORG_STATIONARY_KINDS_IMPL, ORG_STATIONARY_KINDS_DEFERRED);
+                }
+            }
+        }
         var fk = orgKeys(ORG_DEFERRED_FIELDS);
         for (i = 0; i < fk.length; i++) {
             var path = fk[i].split("."), v = os;
@@ -65274,8 +65726,8 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_orgControlRings = ctrls;
 
         var panel = document.getElementById("org_sliders"), anyRow = false;
-        for (i = 0; i < ORG_CONTROL_IDS_S1.length; i++) {
-            var id = ORG_CONTROL_IDS_S1[i];
+        for (i = 0; i < ORG_CONTROL_IDS_IMPL.length; i++) {
+            var id = ORG_CONTROL_IDS_IMPL[i];
             var live = orgHasControl(ctrls, id), stat = orgHasControl(statics, id);
             var rowEl = document.getElementById("org_" + id + "_row");
             if (rowEl) {
@@ -65298,10 +65750,19 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var hud = document.getElementById("org_hud");
         if (hud) hud.style.display = os.show_hud ? "block" : "none";
+        // S2: the graph owns the bottom-left, so the ONE formula surface (Rule
+        // 34b) re-anchors to the top-left whenever the panel is up rather than
+        // overlapping it on a short viewport (the bsc_trend precedent, Rule 34d).
+        var graphOn = !!(os.energy && os.energy.show && ORG_ENERGY_TABLE[os.energy.curve]
+            && (os.energy.coordinate || ORG_ENERGY_TABLE[os.energy.curve].coordinate) === "torsion");
+        var gcv = document.getElementById("org_graph");
+        if (gcv) gcv.style.display = graphOn ? "block" : "none";
         var ff = document.getElementById("org_formula");
         if (ff) {
             if (os.show_formula && os.formula) { ff.innerHTML = os.formula; ff.style.display = "block"; }
             else { ff.style.display = "none"; }
+            if (graphOn) { ff.style.top = "52px"; ff.style.transform = "none"; }
+            else { ff.style.top = "44%"; ff.style.transform = "translateY(-50%)"; }
         }
         // Draw the first frame NOW so a SET_STATE landing on a pin never
         // photographs the previous state's picture.
@@ -65478,10 +65939,135 @@ export const FIELD_3D_RENDERER_CODE = `
         //    tooling. Isotropic screen units, never NDC.
         var sep = orgMinScreenGap(geom, pose, shown);
         window.PM_orgMinGap = sep.gap;
-        window.PM_orgPhi = (mol.ref_dihedral && byId[mol.ref_dihedral[0]] && byId[mol.ref_dihedral[3]])
-            ? orgDihedral(byId[mol.ref_dihedral[0]].p, byId[mol.ref_dihedral[1]].p, byId[mol.ref_dihedral[2]].p, byId[mol.ref_dihedral[3]].p)
-            : null;
+        // ONE measurement, on the BUILT coordinates, feeding the HUD and (below)
+        // the energy rider. Two call sites of one pure function on one geometry:
+        // the rider cannot drift from the pose.
+        var phiMeasured = orgMeasuredPhi(geom, mol);
+        window.PM_orgPhi = phiMeasured;
         window.PM_orgCam = pose;
+
+        // ── S2: the measurement instruments (N-8). Each value is READ OFF these
+        //   same coordinates, so the printed number and the drawn line agree by
+        //   construction. Reveal is closed form in state-local t.
+        var meas = orgMeasureList(os.measure), mv = [], mSlot = 0;
+        for (i = 0; i < meas.length; i++) {
+            var mSpec = meas[i];
+            if (ORG_MEASURE_ARITY[mSpec.kind] == null) continue;
+            var val = orgMeasureValue(geom, mSpec);
+            if (!val) continue;
+            var rvM = mgRamp(ms, mSpec.at_ms, mSpec.ramp_ms, 0, 1);
+            val.rev = rvM;
+            val.spec = mSpec;
+            mv.push(val);
+            var arcM = orgFindById("org_meas_arc_" + mSlot);
+            var lineM = orgFindById("org_meas_line_" + mSlot);
+            var refM = orgFindById("org_meas_ref_" + mSlot);
+            var labM = orgFindById("org_meas_label_" + mSlot);
+            mSlot++;
+            var live = rvM > 0.001;
+            if (arcM) arcM.visible = false;
+            if (lineM) lineM.visible = false;
+            if (refM) refM.visible = false;
+            if (labM) labM.visible = false;
+            if (!live) continue;
+            var labPos = null;
+            if (mSpec.kind === "distance") {
+                var dA = orgMul(val.pts[0], ORG_U_PER_A), dB = orgMul(val.pts[1], ORG_U_PER_A);
+                var dEnd = orgAdd(dA, orgMul(orgSub(dB, dA), rvM));
+                var dv = orgSub(dEnd, dA), dL = orgLen(dv);
+                if (lineM && dL > 1e-4) {
+                    lineM.visible = true;
+                    lineM.position.set(dA[0], dA[1], dA[2]);
+                    lineM.scale.set(0.62, dL, 0.62);
+                    lineM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / dL, dv[1] / dL, dv[2] / dL));
+                }
+                // The drawn standard, parallel and offset, at the reference
+                // LENGTH in the same scene scale — so the comparison is a picture.
+                if (refM && mSpec.reference_value_pm != null && dL > 1e-4) {
+                    var refL = (mSpec.reference_value_pm / 100) * ORG_U_PER_A * rvM;
+                    var offR = mgNorm(orgCross(orgSub(dB, dA), basis.fwd));
+                    var rA = orgAdd(dA, orgMul(offR, 0.34));
+                    refM.visible = true;
+                    refM.position.set(rA[0], rA[1], rA[2]);
+                    refM.scale.set(0.42, refL, 0.42);
+                    refM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / dL, dv[1] / dL, dv[2] / dL));
+                }
+                labPos = orgAdd(orgMul(orgAdd(dA, dB), 0.5), orgMul(basis.up, 0.46));
+            } else {
+                // angle (3 ids) and torsion (4 ids) both draw an arc at a vertex.
+                // For a torsion the arms are the two substituent directions
+                // PROJECTED perpendicular to the central bond — which is what the
+                // dihedral actually is, and what a Newman view shows.
+                var vtx, u1, u2;
+                if (mSpec.kind === "angle") {
+                    vtx = val.pts[1];
+                    u1 = mgNorm(orgSub(val.pts[0], vtx));
+                    u2 = mgNorm(orgSub(val.pts[2], vtx));
+                } else {
+                    var axT = mgNorm(orgSub(val.pts[2], val.pts[1]));
+                    vtx = orgMul(orgAdd(val.pts[1], val.pts[2]), 0.5);
+                    var r1 = orgSub(val.pts[0], val.pts[1]), r2 = orgSub(val.pts[3], val.pts[2]);
+                    u1 = mgNorm(orgSub(r1, orgMul(axT, mgDot(r1, axT))));
+                    u2 = mgNorm(orgSub(r2, orgMul(axT, mgDot(r2, axT))));
+                }
+                var swept = mgAngleDeg(u1, u2);
+                var nrm = orgCross(u1, u2);
+                if (orgLen(nrm) < 1e-8) nrm = basis.fwd;
+                nrm = mgNorm(nrm);
+                if (arcM) {
+                    arcM.visible = true;
+                    var vAxA = mgNorm(orgCross(nrm, u1));
+                    var mtx = new THREE.Matrix4();
+                    mtx.makeBasis(new THREE.Vector3(u1[0], u1[1], u1[2]),
+                        new THREE.Vector3(vAxA[0], vAxA[1], vAxA[2]),
+                        new THREE.Vector3(nrm[0], nrm[1], nrm[2]));
+                    arcM.quaternion.setFromRotationMatrix(mtx);
+                    var vp = orgMul(vtx, ORG_U_PER_A);
+                    arcM.position.set(vp[0], vp[1], vp[2]);
+                    arcM.scale.setScalar(ORG_MEAS_ARC_R);
+                    var segs = Math.max(1, Math.round(ORG_MEAS_ARC_SEGS * (swept * rvM) / 360));
+                    arcM.geometry.setDrawRange(0, segs * 6);
+                }
+                var msum = orgAdd(u1, u2);
+                var midA = (orgLen(msum) > 0.12) ? mgNorm(msum) : mgNorm(orgCross(nrm, u1));
+                labPos = orgAdd(vtx, orgMul(midA, (ORG_MEAS_ARC_R + 0.62) / ORG_U_PER_A));
+                labPos = orgMul(labPos, ORG_U_PER_A);
+            }
+            // The label carries the MEASURED value, and only once the instrument
+            // it annotates has finished drawing (never a number ahead of its own
+            // evidence). Auto-width: the string grows well past its seed.
+            if (labM && labPos && rvM > 0.55) {
+                labM.visible = true;
+                var txt = val.text;
+                if (mSpec.kind === "distance" && mSpec.reference_value_pm != null) {
+                    txt = txt + "  (" + (mSpec.reference_label || "reference") + " "
+                        + Math.round(mSpec.reference_value_pm) + " pm)";
+                }
+                updateLabelSpriteText(labM, txt);
+                labM.position.set(labPos[0], labPos[1], labPos[2]);
+            }
+        }
+        for (i = mSlot; i < ORG_MAX_MEASURES; i++) {
+            var qa = orgFindById("org_meas_arc_" + i); if (qa) qa.visible = false;
+            var ql = orgFindById("org_meas_line_" + i); if (ql) ql.visible = false;
+            var qr = orgFindById("org_meas_ref_" + i); if (qr) qr.visible = false;
+            var qb = orgFindById("org_meas_label_" + i); if (qb) qb.visible = false;
+        }
+        window.PM_orgMeasures = mv;
+
+        // ── S2: the energy instrument. ONE object, so the rider and the pose read
+        //   the SAME coordinate; est.x is phiMeasured by construction.
+        var en = os.energy || {};
+        var est = orgEnergyState(os, geom, mol);
+        window.PM_orgEnergy = est ? { x: est.x, e: est.e, barrier: est.barrier, curve: est.curve, verified: est.verified } : null;
+        // KEY NAMES ARE A CONTRACT WITH THE PIN EVALUATOR. deriveStateMeta's
+        // generic sweep pairs '<stem>_at_ms' with '<stem>_ramp_ms' inside a NESTED
+        // OBJECT, and a bare 'at_ms' only inside an ARRAY LEG. So the energy block
+        // (an object) uses reveal_at_ms/reveal_ramp_ms and each measure (an array
+        // leg) uses at_ms/ramp_ms. Named the other way round, a reveal would be
+        // invisible to the pin and every frozen frame would photograph a
+        // half-drawn curve. Asserted by the gate, not trusted.
+        if (est) orgDrawGraph(en, est, mgRamp(ms, en.reveal_at_ms, en.reveal_ramp_ms, 0, 1));
 
         // ── value-only HUD (Rule 33d/34b: numbers, never a restated equation).
         var hud = document.getElementById("org_hud");
@@ -65494,15 +66080,48 @@ export const FIELD_3D_RENDERER_CODE = `
                 else if (key === "bond") lines.push("bond = " + (solved.sight ? String(solved.sight).replace("-", "\\u2013") : "\\u2014"));
                 else if (key === "pose") lines.push("pose = " + ((os.torsion && os.torsion.pose) ? os.torsion.pose : (mol.default_pose || "\\u2014")));
                 else if (key === "atom_count") lines.push("C " + nC + " \\u00B7 H " + nH);
+                // ── S2. VALUE-ONLY (Rule 33d / 34b): a number and its unit, never
+                //   the relation that produced it — the relation lives on the ONE
+                //   formula surface. A line whose instrument is absent prints the
+                //   em-dash rather than a stale or invented value, and no line
+                //   pre-spoils a quantity the state did not put on screen.
+                else if (key === "energy") {
+                    lines.push("E = " + ((est == null) ? "\\u2014"
+                        : orgFx(est.e) + " kJ\\u00B7mol\\u207B\\u00B9"));
+                } else if (key === "barrier") {
+                    lines.push("barrier = " + ((est == null) ? "\\u2014"
+                        : orgFx(est.barrier, 0) + " kJ\\u00B7mol\\u207B\\u00B9"));
+                } else if (key === "angle") {
+                    var nAng = 0;
+                    for (j = 0; j < mv.length; j++) {
+                        if (mv[j].kind !== "angle" && mv[j].kind !== "torsion") continue;
+                        if (mv[j].rev <= 0.55) continue;
+                        lines.push(mv[j].text); nAng++;
+                    }
+                    if (!nAng) lines.push("angle = \\u2014");
+                } else if (key === "distance") {
+                    var nDis = 0;
+                    for (j = 0; j < mv.length; j++) {
+                        if (mv[j].kind !== "distance" || mv[j].rev <= 0.55) continue;
+                        lines.push(mv[j].text); nDis++;
+                    }
+                    if (!nDis) lines.push("distance = \\u2014");
+                }
             }
             hud.innerHTML = lines.join("<br>");
         }
     }
 
     /** Rule 29/32e: emphasis is brightness, exactly ONE focal at a time. */
+    //   S2 adds two keys. 'measures' is the instrument family, and 'curve' is the
+    //   energy panel — a live element a state puts on screen, so a narration
+    //   sentence about the curve must be bindable. The bonding_scene E5 lesson:
+    //   a chart with no glow key is unbindable BY CONSTRUCTION.
     var ORG_GLOW_ELS = {
         atoms: ["org_atom"], labels: ["org_atom_label"],
-        bonds: ["org_bond"], rim: ["org_rim"]
+        bonds: ["org_bond"], rim: ["org_rim"],
+        measures: ["org_meas_arc", "org_meas_line", "org_meas_ref", "org_meas_label"],
+        curve: ["org_graph"]
     };
     function applyOrganicStructureGlow(stateDef) {
         var focal = stateDef.glow_focal || null, k, i;
@@ -65511,11 +66130,22 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, k)) continue;
             for (i = 0; i < ORG_GLOW_ELS[k].length; i++) focalTypes[ORG_GLOW_ELS[k][i]] = (focal === k);
         }
-        var any = !!focal && Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, focal);
+        // org_graph is a DOM canvas, not a mesh: arming the mesh pass for it would
+        // dim every atom with nothing in the 3D scene lit (scar #33, the focal
+        // that becomes a total no-op with a dimmed peer set).
+        var any = !!focal && Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, focal) && focal !== "curve";
         for (i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i];
             if (!o.userData || String(o.userData.elementType || "").indexOf("org_") !== 0) continue;
             applyGlowEmphasis(o, !!focalTypes[o.userData.elementType], any, 1, false);
+        }
+        // ...and the panel takes the same emphasis in its own medium: brightness,
+        // never size (Rule 29), written BOTH ways so the focal is released again.
+        var gcv = document.getElementById("org_graph");
+        if (gcv) {
+            var gf = (focal === "curve");
+            gcv.style.filter = gf ? "brightness(1.22)" : "";
+            gcv.style.boxShadow = gf ? "0 0 0 2px rgba(255,241,118,0.85)" : "";
         }
     }
 
