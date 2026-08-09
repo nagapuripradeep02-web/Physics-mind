@@ -428,7 +428,7 @@ Each row names the **knob**, its **units**, and its **schedule fields** (scar `p
 | "implicit-H count" (`:31`) | #1 | **`atom_count`** | **GAP — found by this diff, not by revision 1** |
 | "φ in degrees" (`:32`), "φ" (`:33`) | #2, #3 | `phi` | shipped |
 | which bond the Newman view is down (`:32` "Newman view", `:33` "torsion about C2–C3") | #2, #3, **#4 S2** | **`bond`** | **GAP** — do not re-purpose `pose`, which renders a conformation name (`existing_hud_line_reused_for_a_different_physical_quantity`) |
-| "**E(φ)** in kJ/mol on a live curve" (`:32`), "E(φ) with four minima" (`:33`), "E along it" (`:34`) | #2, #3, #4 | `energy` | shipped |
+| "**E(φ)** in kJ/mol on a live curve" (`:32`), "E(φ) with three minima / four distinct conformations" (`:33`, corrected 2026-08-10 by dispatch A1), "E along it" (`:34`) | #2, #3, #4 | `energy` | shipped |
 | "barrier **12 kJ/mol**" (`:32`), "barrier **45 kJ/mol**" (`:34`) | #2, #4 | `barrier` | shipped |
 | pose names — staggered / anti / gauche (`:32`, `:33`); chair / half-chair / twist-boat / boat (`:34`) | #2, #3, #4 | `pose` | shipped |
 | "pucker coordinate" (`:34`) | #4 | `phi` is wrong here; the coordinate is `u` and it is the graph's x-axis, not a HUD line | no member needed — **decided**, recorded so nobody adds one |

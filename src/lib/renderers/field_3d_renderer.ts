@@ -64564,9 +64564,19 @@ export const FIELD_3D_RENDERER_CODE = `
     //                                      // growable by data row (see the
     //                                      // freeze note below) — NOT an enum
     //       mode,                          // CLOSED, ORG_MODES
-    //       torsion: { about, phi_deg, pose },        // STATIC at S1; the
-    //                                      // scheduled fields (phi_from/at_ms/
-    //                                      // ramp_ms/continuous) are A1
+    //       torsion: { about,              // OPTIONAL; must equal the molecule's
+    //                                      // torsion_bond or it is REJECTED (A1)
+    //                  phi_deg,            // the DESTINATION, in degrees
+    //                  pose,               // CLOSED, ORG_POSES — snaps phi_deg
+    //                  phi_from,           // the sweep's start (A1)
+    //                  phi_at_ms,          // STEMMED, never a bare at_ms: the pin
+    //                  phi_ramp_ms,        // evaluator pairs <stem>_at_ms with
+    //                                      // <stem>_ramp_ms inside an OBJECT and
+    //                                      // reads a bare at_ms only in an ARRAY
+    //                                      // leg. ORG_MISNAMED_FIELDS rejects the
+    //                                      // bare spelling LOUDLY.
+    //                  continuous },       // explore free-run: true (30 deg/s) or
+    //                                      // a number of deg/s; phi wraps forever
     //       show_h: 'none'|'all'|['C1',..],// N-1, per-state H gating (an
     //                                      // occlusion CORRECTNESS control on
     //                                      // an 18-atom skeleton, not a taste)
@@ -64618,6 +64628,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   provably wrong (32 sims need benzene, phenol, a reaction profile per
     //   mechanism, NO2/OMe/CN/phenyl...). The gate asserts CLOSURE AGAINST THE
     //   TABLE for the key sets and IMPLEMENTED-union-DEFERRED for the enums.
+    //
+    //   A1 (2026-08-10) BUILDS: U2, the DRIVEN dihedral — phi as a closed-form
+    //   function of state-local t (orgPhiAt: a scripted mgRamp sweep, a wrapping
+    //   free-run for the explore sandbox, or S1's static pose), the five pose
+    //   targets as exact destinations, and the 'phi' control with the Rule-39b
+    //   drag-seize. It adds NO second coordinate source: orgPhiAt returns a
+    //   scalar, orgBuildGeometry still performs the rotation, and the energy rider
+    //   still MEASURES the built geometry, so the S2 instrument needed no change.
     //
     //   D-1: EVERY position, the camera pose and the spin angle are closed-form
     //   pure functions of state-local t. No integrator anywhere, so a
@@ -64697,9 +64715,11 @@ export const FIELD_3D_RENDERER_CODE = `
         "overlap": "A3", "residual": "A3", "descriptor": "A3",
         "ae_count": "A2", "population": "A2", "temperature": "A2", "a_value": "A2"
     };
-    var ORG_CONTROL_IDS_IMPL = ["view", "spin", "implicit_h"];
+    // A1 moves 'phi' across IN THE SAME CHANGE as the slider row + the drag-seize
+    // that make it live (the per-dispatch DEFERRED discipline).
+    var ORG_CONTROL_IDS_IMPL = ["view", "spin", "implicit_h", "phi"];
     var ORG_CONTROL_IDS_DEFERRED = {
-        "phi": "A1", "pucker": "A2", "substituent": "A2", "group": "A2",
+        "pucker": "A2", "substituent": "A2", "group": "A2",
         "temperature": "A2", "mirror": "A3", "isomer": "A3", "chain_length": "A3"
     };
     // N-8's instrument family. S2 builds the three MEASURED kinds — each reads a
@@ -64752,12 +64772,26 @@ export const FIELD_3D_RENDERER_CODE = `
     // of a block S1 implements statically, and accepting them silently would be
     // the accepted-but-ignored scar one authoring level down.
     var ORG_DEFERRED_FIELDS = {
-        "torsion.phi_from": "A1", "torsion.at_ms": "A1", "torsion.ramp_ms": "A1",
-        "torsion.continuous": "A1",
         "pucker": "A2", "substituents": "A2",
         "trace": "A2", "population": "A2", "compare": "A2",
         "mirror": "A3", "block_twist": "A3", "lift": "A3", "rewire": "A3",
         "rehybridise": "S4", "density": "B1", "delocalisation": "B2"
+    };
+    // ── THE KEY-NAMING TRAP, MADE UNAUTHORABLE (dispatch A1). ────────────────
+    //   deriveStateMeta's pin evaluator pairs '<stem>_at_ms' with
+    //   '<stem>_ramp_ms' inside a nested OBJECT, and honours a BARE 'at_ms' only
+    //   inside an ARRAY LEG ('at_ms'.endsWith('_at_ms') is FALSE). The drafted
+    //   contract wrote the torsion schedule as torsion.{at_ms, ramp_ms} — inside
+    //   an object — so it would have been INVISIBLE to the pin, every state would
+    //   have pinned at DEFAULT_REVEAL_MS = 1500, and every frozen frame would have
+    //   photographed a half-swept molecule. A1 therefore STEMS the keys
+    //   (phi_at_ms / phi_ramp_ms) and rejects the bare spelling LOUDLY, so the
+    //   trap cannot be re-authored by a later concept that copies the old doc.
+    //   Same shape as the S2 energy block's reveal_at_ms / reveal_ramp_ms.
+    var ORG_MISNAMED_FIELDS = {
+        "torsion.at_ms": "torsion.phi_at_ms",
+        "torsion.ramp_ms": "torsion.phi_ramp_ms",
+        "torsion.duration_ms": "torsion.phi_ramp_ms"
     };
     function orgKeys(o) { var k, a = []; for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) a.push(k); return a; }
     var ORG_MODES = ORG_MODES_IMPL.concat(orgKeys(ORG_MODES_DEFERRED));
@@ -64823,11 +64857,15 @@ export const FIELD_3D_RENDERER_CODE = `
             coordinate: "torsion", units: "kJ/mol", x_min: 0, x_max: 360,
             x_label: "\\u03C6 (\\u00B0)", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
             zero_at: "staggered",
-            // NOT stamped in the chair-flip chemistry block \\u00A7A (that block
-            // verified cyclohexane only). Ships flagged; a chemistry-author pass
-            // stamps it. Value as carried by ORGANIC_PHASE0_CONFORMATION.md
-            // decision 1.
-            source: null, needs_verification: true,
+            // STAMPED by the chemistry-author sourcing pass of 2026-08-10 (A1
+            // ledger item a). No numeric change: 12 is kept over 12.1 because the
+            // H/H eclipsing increment is exactly one third of it (3 x 4.0 = 12),
+            // and the same increment set reproduces butane's 16 and 19 exactly.
+            source: "Kemp & Pitzer, JACS 59 (1937) 276 (2750 cal/mol, first determination); "
+                + "Weiss & Leroi, J. Chem. Phys. 48 (1968) 962 (V3 ~1024 cm-1); "
+                + "McMurry / Vollhardt & Schore / Clayden: 12 kJ/mol (2.9 kcal/mol). "
+                + "Band 12.0-12.5; 12 keeps the H/H eclipsing increment at exactly 4.0",
+            needs_verification: false,
             stationary: [
                 { x: 0, e: 12, kind: "maximum", label: "eclipsed" },
                 { x: 60, e: 0, kind: "minimum", label: "staggered" },
@@ -64842,7 +64880,19 @@ export const FIELD_3D_RENDERER_CODE = `
             coordinate: "torsion", units: "kJ/mol", x_min: 0, x_max: 360,
             x_label: "\\u03C6 (\\u00B0)", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
             zero_at: "anti",
-            source: null, needs_verification: true,
+            source: "McMurry, Organic Chemistry: anti 0 / gauche +3.8 (0.9 kcal) / CH3-H eclipsed +16 "
+                + "(3.8 kcal) / syn +19 (4.5 kcal); Eliel & Wilen (1994) eclipsing-strain increments "
+                + "(H/H 4.0, CH3/H 6.0, CH3/CH3 11.0, gauche 3.8) reproduce all four exactly. "
+                + "Syn is a transition state: literature band 19-21 kJ/mol, keep 19",
+            needs_verification: false,
+            // A1 LEDGER ITEM (b). orgEnergyRange returns barrier = hi - lo, which
+            // for butane is 19 — the anti->syn barrier, NOT the interconversion
+            // barrier a textbook quotes for butane (16 from anti, 12.2 from
+            // gauche). Ethane's 12 is unambiguous and takes the default label;
+            // butane's is not, so the row NAMES it and every surface that prints
+            // the number prints that name. Unlabelled, a teacher reads 19 as the
+            // rotation barrier.
+            barrier_label: "syn barrier",
             stationary: [
                 { x: 0, e: 19, kind: "maximum", label: "syn" },
                 { x: 60, e: 3.8, kind: "minimum", label: "gauche" },
@@ -64941,6 +64991,10 @@ export const FIELD_3D_RENDERER_CODE = `
         return {
             row: row, curve: en.curve, x: x, e: orgEnergyAt(row, x),
             lo: rng.lo, hi: rng.hi, barrier: rng.barrier,
+            // A1 ledger (b): hi - lo is not always "the barrier" a textbook
+            // quotes. A row whose span names a SPECIFIC stationary point says so,
+            // and every surface that prints the number prints this label.
+            barrierLabel: row.barrier_label || "barrier",
             units: row.units, verified: !row.needs_verification
         };
     }
@@ -65211,6 +65265,60 @@ export const FIELD_3D_RENDERER_CODE = `
         if (tor.phi_deg != null) return tor.phi_deg;
         if (tor.pose != null) return ORG_POSES[tor.pose];
         return (mol && mol.default_pose != null) ? ORG_POSES[mol.default_pose] : null;
+    }
+    // ── THE DRIVEN DIHEDRAL (U2, dispatch A1) ────────────────────────────────
+    //   S1 built the static torsion as GEOMETRY (orgSetTorsion). A1 adds the only
+    //   thing missing: WHERE phi is at state-local t. It is a scalar clock, not a
+    //   second geometry path — orgPhiAt returns a number, orgBuildGeometry still
+    //   does every rotation, and the rider still MEASURES the result. That is why
+    //   driving phi needed no energy-side change at all
+    //   (energy_instrument_rider_reads_the_authored_coordinate_... stays closed by
+    //   construction: there is still exactly ONE coordinate source, and it is the
+    //   built geometry).
+    //
+    //   D-1 / Rule 36: a PURE function of ms. No accumulator, so pinning
+    //   t = 3000 -> 9000 -> 3000 reproduces the same molecule byte-identically,
+    //   which is the property that puts a MOVING scenario in the snap-to-pin set.
+    //
+    //   THE AUTHORED NUMBERS ARE TAKEN LITERALLY, never shortest-arc: phi_from 0
+    //   -> phi_deg 360 is one full turn (concept #2's whole teaching move), and a
+    //   shortest-arc interpolation would silently render it as no motion at all.
+    //   An author wanting 350 -> 10 the short way forwards writes 350 -> 370.
+    var ORG_PHI_FREE_DEG_S = 30;        // torsion.continuous default: 12 s / turn
+    function orgPhiAt(mol, tor, ms) {
+        var target = orgResolvePhi(mol, tor);
+        if (!tor) return target;
+        // EXPLORE FREE-RUN. Rule 37: the sandbox clock never stops, so phi wraps
+        // forever. Closed form and wrapped into [0, 360) so the value the slider
+        // and the HUD read is the value the IUPAC dihedral reports.
+        if (tor.continuous) {
+            var rate = (typeof tor.continuous === "number") ? tor.continuous : ORG_PHI_FREE_DEG_S;
+            var t0 = Math.max(0, ms - ((tor.phi_at_ms != null) ? tor.phi_at_ms : 0));
+            var a = ((target != null) ? target : 0) + rate * (t0 / 1000);
+            return a - Math.floor(a / 360) * 360;
+        }
+        // A state with no schedule is S1's static pose, unchanged.
+        if (tor.phi_from == null && tor.phi_at_ms == null && tor.phi_ramp_ms == null) return target;
+        // THE SCRIPTED SWEEP. mgRamp is the fleet's one closed-form ramp: it HOLDS
+        // phi_from at t <= phi_at_ms (nothing pre-fires at t = 0) and HOLDS the
+        // destination past phi_at_ms + phi_ramp_ms (it settles, so the authored pin
+        // photographs the settled pose).
+        var to = (target != null) ? target : 0;
+        var from = (tor.phi_from != null) ? tor.phi_from : to;
+        return mgRamp(ms, tor.phi_at_ms, tor.phi_ramp_ms, from, to);
+    }
+    /** Does this torsion block ask for anything at all? (the reject gate's input) */
+    function orgTorsionAsks(tor) {
+        if (!tor) return false;
+        return tor.phi_deg != null || tor.pose != null || tor.phi_from != null
+            || tor.phi_at_ms != null || tor.phi_ramp_ms != null || tor.continuous != null
+            || tor.about != null;
+    }
+    /** Is this torsion block DRIVEN (as opposed to S1's static pose)? */
+    function orgTorsionDriven(tor) {
+        if (!tor) return false;
+        return tor.continuous != null || tor.phi_from != null
+            || tor.phi_at_ms != null || tor.phi_ramp_ms != null;
     }
     /** Is this atom's hydrogen shown in this state? N-1's three shapes. */
     function orgShowH(showH, atom) {
@@ -65540,7 +65648,13 @@ export const FIELD_3D_RENDERER_CODE = `
         sp.innerHTML =
             '<div id="org_view_row" style="display:none"><label>View: <select id="org_view_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="home">Standard</option><option value="sight">Along the bond</option></select></label></div>' +
             '<div id="org_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="org_spin_val">' + def("spin", 0).toFixed(0) + '</span> \\u00B0/s</label><input type="range" id="org_spin_slider" min="' + lim("spin", "min", 0) + '" max="' + lim("spin", "max", 40) + '" step="' + lim("spin", "step", 1) + '" value="' + def("spin", 0) + '" style="width:100%"></div>' +
-            '<div id="org_implicit_h_row" style="display:none;margin-top:6px"><label><input type="checkbox" id="org_implicit_h_check" checked> Show hydrogens</label></div>';
+            '<div id="org_implicit_h_row" style="display:none;margin-top:6px"><label><input type="checkbox" id="org_implicit_h_check" checked> Show hydrogens</label></div>' +
+            // A1: the phi row. Rule 39g conventions verbatim (<prefix>_<name>_row
+            // inside the inline position:fixed panel), so the teacher widget
+            // toggle discovers it FREE and no per-scenario widget code is written.
+            // 0..360 in whole degrees is the full turn the concept teaches; the
+            // range is authorable through slider_controls like every sibling.
+            '<div id="org_phi_row" style="display:none;margin-top:6px"><label>\\u03C6: <span id="org_phi_val">' + def("phi", 60).toFixed(0) + '</span>\\u00B0</label><input type="range" id="org_phi_slider" min="' + lim("phi", "min", 0) + '" max="' + lim("phi", "max", 360) + '" step="' + lim("phi", "step", 1) + '" value="' + def("phi", 60) + '" style="width:100%"></div>';
         document.body.appendChild(sp);
 
         var vSel = document.getElementById("org_view_select");
@@ -65553,6 +65667,17 @@ export const FIELD_3D_RENDERER_CODE = `
         });
         var hCk = document.getElementById("org_implicit_h_check");
         if (hCk) hCk.addEventListener("change", function (ev) { if (ev && ev.isTrusted) window.PM_orgHDragged = true; window.PM_orgShowH = hCk.checked; });
+        // A1 DRAG-SEIZE (Rule 39b, the shipped pattern). A TRUSTED drag seizes phi
+        // for the rest of the state; the frame pass then substitutes this ONE
+        // scalar for the scripted one and every downstream path — geometry, the
+        // measured HUD line, the energy rider — is unchanged. THE EYE never drags,
+        // so a frozen frame always takes the closed-form branch.
+        var pSl = document.getElementById("org_phi_slider");
+        if (pSl) pSl.addEventListener("input", function (ev) {
+            if (ev && ev.isTrusted) window.PM_orgPhiDragged = true;
+            window.PM_orgPhiLive = parseFloat(pSl.value);
+            var pv = document.getElementById("org_phi_val"); if (pv) pv.textContent = Number(pSl.value).toFixed(0);
+        });
     }
 
     /**
@@ -65636,7 +65761,11 @@ export const FIELD_3D_RENDERER_CODE = `
             g.beginPath(); g.moveTo(bx - 9, Y(est.lo)); g.lineTo(bx + 9, Y(est.lo));
             g.moveTo(bx - 9, Y(est.hi)); g.lineTo(bx + 9, Y(est.hi)); g.stroke();
             g.fillStyle = "#FFE082"; g.font = "20px monospace"; g.textAlign = "left";
-            g.fillText(orgFx(est.barrier) + " kJ\\u00B7mol\\u207B\\u00B9", bx + 13, (Y(est.lo) + Y(est.hi)) / 2 + 6);
+            // A1 ledger (b): the bracket carries the row's OWN name for the span it
+            // measures, so the canvas cannot read as the interconversion barrier
+            // on a curve whose hi - lo is a different stationary point.
+            g.fillText(est.barrierLabel + " " + orgFx(est.barrier) + " kJ\\u00B7mol\\u207B\\u00B9",
+                bx + 13, (Y(est.lo) + Y(est.hi)) / 2 + 6);
         }
         // THE RIDER. Its x is est.x, which the frame pass MEASURED on the very
         // coordinates the molecule is drawn from.
@@ -65670,6 +65799,7 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_orgSpinDragged = false;
         window.PM_orgHDragged = false;
         window.PM_orgCamSeized = false;
+        window.PM_orgPhiDragged = false;
 
         // ── the enum gate. A deferred member or a deferred FIELD fails loudly
         //    here, at apply, and the state renders its rejection instead of a
@@ -65687,6 +65817,38 @@ export const FIELD_3D_RENDERER_CODE = `
         for (i = 0; i < ctrls.length; i++) orgCheckMember("controls", ctrls[i].id, ORG_CONTROL_IDS_IMPL, ORG_CONTROL_IDS_DEFERRED);
         for (i = 0; i < statics.length; i++) orgCheckMember("controls", statics[i].id, ORG_CONTROL_IDS_IMPL, ORG_CONTROL_IDS_DEFERRED);
         if (os.torsion && os.torsion.pose != null) orgCheckMember("torsion.pose", os.torsion.pose, ORG_POSES_IMPL, ORG_POSES_DEFERRED);
+        // ── A1's three torsion rejections. Each one closes a path that would
+        //    otherwise be ACCEPTED AND SILENTLY IGNORED, which is the same scar
+        //    one authoring level down as a deferred enum member rendering a
+        //    default scene.
+        if (os.torsion) {
+            var mk = orgKeys(ORG_MISNAMED_FIELDS);
+            for (i = 0; i < mk.length; i++) {
+                var mkey = mk[i].split(".")[1];
+                if (os.torsion[mkey] !== undefined && os.torsion[mkey] !== null) {
+                    orgReject("field \\u0027" + mk[i] + "\\u0027 is INVISIBLE to the frozen-pin evaluator "
+                        + "(a bare at_ms is read only inside an ARRAY leg) \\u2014 write "
+                        + ORG_MISNAMED_FIELDS[mk[i]], mk[i], null);
+                }
+            }
+            // A driven or posed torsion on a molecule with no rotatable reference
+            // bond renders NOTHING. cyclohexane's internal freedom is the pucker
+            // (A2), not a torsion, and methane/ethene have none at all.
+            if (orgTorsionAsks(os.torsion) && !(ORG_MOLECULES[molKey] || {}).torsion_bond) {
+                orgReject("torsion on molecule \\u0027" + molKey + "\\u0027, which declares no torsion_bond "
+                    + "(a ring's internal freedom is the pucker, dispatch A2)", "torsion", null);
+            }
+            // 'about' is the bond the dihedral is driven around. orgSetTorsion is
+            // only sound when that bond IS the reference dihedral's central bond,
+            // so a mismatch is rejected rather than quietly rotating the wrong
+            // side and reporting a number that did not come from it.
+            if (os.torsion.about != null && (ORG_MOLECULES[molKey] || {}).torsion_bond
+                && os.torsion.about !== ORG_MOLECULES[molKey].torsion_bond) {
+                orgReject("torsion.about names \\u0027" + os.torsion.about + "\\u0027 but molecule \\u0027"
+                    + molKey + "\\u0027 rotates about \\u0027" + ORG_MOLECULES[molKey].torsion_bond
+                    + "\\u0027 (the reference dihedral\\u0027s central bond)", "torsion.about", null);
+            }
+        }
         // ── S2's enums, gated in the SAME change as the code that renders them.
         var meas = orgMeasureList(os.measure);
         for (i = 0; i < meas.length; i++) {
@@ -65747,6 +65909,14 @@ export const FIELD_3D_RENDERER_CODE = `
         if (sv) sv.textContent = Number(window.PM_orgSpin).toFixed(0);
         var hCk = document.getElementById("org_implicit_h_check");
         if (hCk) hCk.checked = !!window.PM_orgShowH;
+        // A1: seed phi to the state's OWN value at t = 0 (the scripted start, not
+        // a panel default), DOM-only so the isTrusted seize is not tripped. The
+        // frame pass keeps the handle tracking the sweep until a teacher grabs it.
+        var phi0 = orgPhiAt(ORG_MOLECULES[molKey], os.torsion, 0);
+        window.PM_orgPhiLive = (phi0 != null) ? phi0 : 0;
+        var pSl = document.getElementById("org_phi_slider"), pv = document.getElementById("org_phi_val");
+        if (pSl) pSl.value = String(window.PM_orgPhiLive);
+        if (pv) pv.textContent = Number(window.PM_orgPhiLive).toFixed(0);
 
         var hud = document.getElementById("org_hud");
         if (hud) hud.style.display = os.show_hud ? "block" : "none";
@@ -65775,7 +65945,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var molKey = window.PM_orgMol || os.molecule || "ethane";
         var mol = ORG_MOLECULES[molKey];
         if (!mol) return;
-        var phi = orgResolvePhi(mol, os.torsion);
+        // ── A1: WHERE phi IS AT THIS INSTANT. One scalar, one assignment, then a
+        //    single orgBuildGeometry call below — the drag-seize substitutes the
+        //    SOURCE of this number and nothing else, so there is no second code
+        //    path for a dragged molecule to diverge down.
+        var phi = orgPhiAt(mol, os.torsion, ms);
+        if (window.PM_orgPhiDragged && window.PM_orgPhiLive != null) phi = window.PM_orgPhiLive;
         var geom = orgBuildGeometry(molKey, phi);
         if (!geom) return;
         var i, j, byId = {};
@@ -65945,6 +66120,20 @@ export const FIELD_3D_RENDERER_CODE = `
         var phiMeasured = orgMeasuredPhi(geom, mol);
         window.PM_orgPhi = phiMeasured;
         window.PM_orgCam = pose;
+        // A1: the handle TRACKS the sweep until a teacher seizes it (Rule 39b — a
+        // force-shown row is LIVE, not decorative). It is written from the MEASURED
+        // dihedral, not from the driven scalar, so the number under the handle and
+        // the number in the HUD are ONE number: a 0 -> 540 sweep would otherwise
+        // write 540 into a 0..360 control and pin the handle at its maximum for
+        // the second half of the turn. DOM-only, so no input event fires and the
+        // isTrusted seize is never tripped by the engine itself.
+        if (!window.PM_orgPhiDragged && phiMeasured != null) {
+            window.PM_orgPhiLive = phiMeasured;
+            var pSlF = document.getElementById("org_phi_slider");
+            var pvF = document.getElementById("org_phi_val");
+            if (pSlF) pSlF.value = String(phiMeasured);
+            if (pvF) pvF.textContent = Number(phiMeasured).toFixed(0);
+        }
 
         // ── S2: the measurement instruments (N-8). Each value is READ OFF these
         //   same coordinates, so the printed number and the drawn line agree by
@@ -66089,8 +66278,12 @@ export const FIELD_3D_RENDERER_CODE = `
                     lines.push("E = " + ((est == null) ? "\\u2014"
                         : orgFx(est.e) + " kJ\\u00B7mol\\u207B\\u00B9"));
                 } else if (key === "barrier") {
-                    lines.push("barrier = " + ((est == null) ? "\\u2014"
-                        : orgFx(est.barrier, 0) + " kJ\\u00B7mol\\u207B\\u00B9"));
+                    // A1 ledger (b): the row NAMES its span when hi - lo is not the
+                    // barrier a textbook quotes (butane's 19 is anti->syn, not the
+                    // 16 kJ/mol interconversion barrier).
+                    lines.push(((est == null) ? "barrier" : est.barrierLabel) + " = "
+                        + ((est == null) ? "\\u2014"
+                            : orgFx(est.barrier, 0) + " kJ\\u00B7mol\\u207B\\u00B9"));
                 } else if (key === "angle") {
                     var nAng = 0;
                     for (j = 0; j < mv.length; j++) {
