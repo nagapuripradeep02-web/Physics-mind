@@ -3492,7 +3492,20 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // beat is the LAST of all of them.
         const VG_DEFAULT_GROW_MS = asNum(vg.reveal_ms, 900);
         const VG_GHOST_FADE_MS = 600;
-        const vgTimedLists = ['lines', 'planes', 'points', 'segments', 'angle_arcs', 'vectors'];
+        // `intersections` (PLURAL) is the F14 LIST form; `intersection` (singular) is
+        // the original single-target shape, still authored and still resolved. BOTH
+        // must be scanned or the reveal pin silently drops the whole construct.
+        //
+        // SCAR (2026-08-09): the renderer gained the list form and this evaluator was
+        // not told. Measured on lines_and_planes_in_space STATE_4 with the SAME object
+        // expressed both ways: singular → pin 15900 ms; `intersections[]` → pin 10400 ms.
+        // The intersection reveals at 15000 ms, so the frozen frame would have been
+        // pinned 4.6 s BEFORE its marker exists — and an H2 baseline minted from a
+        // picture the state contradicts a frame later. Same shape as
+        // field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms_predates_
+        // scripted_reveal, one authoring level down: a new timed AUTHORING KEY that the
+        // pin evaluator cannot see is invisible until a baseline is already wrong.
+        const vgTimedLists = ['lines', 'planes', 'points', 'segments', 'angle_arcs', 'vectors', 'intersections'];
         const vgTimedSingles = ['perpendicular', 'common_perpendicular', 'intersection', 'projection'];
         const vgConsiderTimed = (raw: unknown) => {
             const o = asObj(raw);
