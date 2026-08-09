@@ -920,6 +920,31 @@ function PM_animationGate(spec) {
     return { visible: true, alpha: 1 - fadeProgress };
   }
   if (animMs <= 0) return { visible: true, alpha: 1 };
+  // Rule 37 GAP, part (b) (founder_proxy Checkpoint B cycle 2, 2026-08-09) —
+  // a primitive due AT-OR-BEFORE state start (appear_at_ms<=0) is the
+  // state's OWN OPENING PICTURE, not a mid-state reveal. Every rail-opened
+  // state's clock is parked at t=0 until Play is pressed (Rule 26 — hold
+  // the opening frame); against a clock that has not yet started moving,
+  // the old (elapsed-appearAt)/animMs ramp evaluates to EXACT 0 progress —
+  // zero alpha, sustained for as long as the state sits open pre-Play, not
+  // a one-frame flicker. A not-yet-started transition is not the same
+  // thing as a hidden element: STATE_1 (this concept's opening state) was
+  // measured entirely blank before Play; STATE_4's magnifier inset (the
+  // state's whole subject) and STATE_8's curve/region/rectangles (all
+  // appear_at_ms:0/animate_in_ms:1200) were absent the same way. An
+  // element with a LATER appear_at_ms (a genuine mid-state reveal, synced
+  // to narration reaching that point) is UNCHANGED — it still correctly
+  // waits (elapsed<appearAt above) and still fades in over animMs once due
+  // (the branch below, unreached here). Only the appear_at_ms<=0 case — a
+  // transition whose start and the state's own start are the SAME
+  // instant, so "in progress" and "not started" are indistinguishable —
+  // resolves to its COMPLETED appearance immediately, matching Rule 37's
+  // part (a) exemption (parametric_renderer's own SET_STATE handler
+  // already frees the clock for interaction_complete on entry; this
+  // covers the same-instant items even before that clock ever ticks, and
+  // covers every OTHER advance_mode's own frozen opening frame too — the
+  // more general fix, not scoped to interaction_complete alone).
+  if (appearAt <= 0) return { visible: true, alpha: 1 };
   var progress = Math.min(1, Math.max(0, (elapsed - appearAt) / animMs));
   return { visible: true, alpha: progress };
 }
