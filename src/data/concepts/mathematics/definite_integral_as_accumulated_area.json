@@ -280,12 +280,14 @@
             {
               "id": "s1_1",
               "text_en": "The curve is drawn left to right, then the region beneath it fills in completely — y equals x squared. That region has one exact area, not yet measured.",
-              "glow": "region"
+              "glow": "region",
+              "text_hi": "curve बाएं से दाएं खींचा जाता है, फिर उसके नीचे का region पूरी तरह भर जाता है — y equals x squared. उस region का एक exact area है, जो अभी measure नहीं किया गया है।"
             },
             {
               "id": "s1_2",
               "text_en": "A speed graph works this way too: the area under it is the distance the vehicle travelled.",
-              "glow": "region"
+              "glow": "region",
+              "text_hi": "speed graph भी इसी तरह काम करता है: उसके नीचे का area वह distance है जो vehicle ने तय की।"
             }
           ]
         }
@@ -444,12 +446,14 @@
             {
               "id": "s2_1",
               "text_en": "Four rectangles estimate the region's area, each as tall as the curve where it begins.",
-              "glow": "bars"
+              "glow": "bars",
+              "text_hi": "चार rectangles region के area का estimate करते हैं, हर एक उतना ऊंचा जितना curve अपने शुरुआती बिंदु पर है।"
             },
             {
               "id": "s2_2",
               "text_en": "Each rectangle's area is its width times its height, and its height is the curve's value at its left edge — which for the first rectangle is exactly zero.",
-              "glow": "bars"
+              "glow": "bars",
+              "text_hi": "हर rectangle का area उसकी width गुणा height है, और उसकी height curve की value है उसके left edge पर — जो पहले rectangle के लिए exactly zero है।"
             }
           ]
         }
@@ -640,12 +644,14 @@
             {
               "id": "s3_1",
               "text_en": "Watch the rectangles multiply and grow narrower, from just four toward a thousand — pausing at twenty, then again at a hundred.",
-              "glow": "bars"
+              "glow": "bars",
+              "text_hi": "rectangles को बढ़ते और पतले होते देखें, सिर्फ four से एक thousand की ओर — twenty पर रुककर, फिर hundred पर।"
             },
             {
               "id": "s3_2",
               "text_en": "Each time, the estimate climbs closer to one number: the exact total the sum is heading toward, though the sum itself never reaches it.",
-              "glow": "bars"
+              "glow": "bars",
+              "text_hi": "हर बार, estimate एक number के और करीब पहुंचता है: वह exact total जिसकी ओर sum बढ़ रहा है, हालांकि sum खुद कभी उस तक नहीं पहुंचता।"
             }
           ]
         }
@@ -937,22 +943,26 @@
             {
               "id": "s4_1",
               "text_en": "The picture stops moving, but the numbers do not.",
-              "glow": "wedge_inset"
+              "glow": "wedge_inset",
+              "text_hi": "picture हिलना बंद कर देती है, लेकिन numbers नहीं।"
             },
             {
               "id": "s4_2",
               "text_en": "Zoom into the last sliver: even at ten thousand rectangles, it is still there.",
-              "glow": "wedge_inset"
+              "glow": "wedge_inset",
+              "text_hi": "आखिरी sliver में zoom करें: ten thousand rectangles पर भी, यह अब भी वहां है।"
             },
             {
               "id": "s4_3",
               "text_en": "Its exact size is four over n, minus four over three n squared — always positive.",
-              "glow": "wedge_inset"
+              "glow": "wedge_inset",
+              "text_hi": "इसका exact size है four over n, minus four over three n squared — जो हमेशा positive है।"
             },
             {
               "id": "s4_4",
               "text_en": "No count of rectangles ever makes that gap zero.",
-              "glow": "wedge_inset"
+              "glow": "wedge_inset",
+              "text_hi": "rectangles की कोई भी count उस gap को कभी zero नहीं बनाती।"
             }
           ]
         }
@@ -1160,17 +1170,20 @@
             {
               "id": "s5_1",
               "text_en": "Lower the curve: part of it dips below the axis.",
-              "glow": "bars"
+              "glow": "bars",
+              "text_hi": "curve को नीचे करें: इसका एक हिस्सा axis के नीचे चला जाता है।"
             },
             {
               "id": "s5_2",
-              "text_en": "If area only ever added, the total would read 2.0000 — dim, and wrong here.",
-              "glow": "bars"
+              "text_en": "If area only ever added, the total would read 2.0000 — but that is wrong here.",
+              "glow": "bars",
+              "text_hi": "अगर area हमेशा सिर्फ जुड़ता, तो total 2.0000 दिखता — लेकिन यहां यह गलत है।"
             },
             {
               "id": "s5_3",
-              "text_en": "The real total is 0.6667, bright: the below-axis piece, minus 0.6667, subtracted from what is above.",
-              "glow": "bars"
+              "text_en": "The real total is 0.6667: the below-axis piece contributes minus 0.6667, subtracted from the area above.",
+              "glow": "bars",
+              "text_hi": "असली total 0.6667 है: axis के नीचे वाला हिस्सा minus 0.6667 देता है, जो ऊपर के area से subtract होता है।"
             }
           ]
         }
@@ -1390,15 +1403,18 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Three rules sample the same rectangles differently: left sum (left Riemann sum), right sum, and midpoint."
+              "text_en": "Three rules sample the same rectangles differently: left sum (left Riemann sum), right sum, and midpoint.",
+              "text_hi": "तीन rules उन्हीं rectangles को अलग-अलग तरीके से sample करते हैं: left sum (left Riemann sum), right sum, और midpoint।"
             },
             {
               "id": "s6_2",
-              "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, and the exact value lies between them."
+              "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, and the exact value lies between them.",
+              "text_hi": "क्योंकि यह curve लगातार बढ़ता रहता है, left हमेशा सबसे छोटा रहता है और right सबसे बड़ा — तीन अलग-अलग numbers, और exact value इनके बीच में होती है।"
             },
             {
               "id": "s6_3",
-              "text_en": "Add more rectangles: all three readouts draw closer, never landing on exactly the same value."
+              "text_en": "Add more rectangles: all three readouts draw closer, never landing on exactly the same value.",
+              "text_hi": "और rectangles जोड़ें: तीनों readouts और करीब आते हैं, लेकिन कभी exactly एक ही value पर नहीं पहुंचते।"
             }
           ]
         }
@@ -1585,12 +1601,14 @@
             {
               "id": "s7_1",
               "text_en": "Sweep the upper bound rightward: the filled region grows, and its running total is traced as a new curve, A of x — a running record of the area swept so far.",
-              "glow": "accum_head"
+              "glow": "accum_head",
+              "text_hi": "upper bound को दाईं ओर sweep करें: भरा हुआ region बढ़ता है, और इसका running total एक नए curve के रूप में trace होता है, A of x — अब तक sweep हुए area का एक running record।"
             },
             {
               "id": "s7_2",
               "text_en": "By x equals 2, that curve ends at 2.6667 — the same number the rectangles were heading for all along.",
-              "glow": "accum_head"
+              "glow": "accum_head",
+              "text_hi": "x equals 2 तक, वह curve 2.6667 पर खत्म होता है — वही number जिसकी ओर rectangles शुरू से बढ़ रहे थे।"
             }
           ]
         }
