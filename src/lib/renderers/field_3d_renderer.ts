@@ -463,6 +463,19 @@ export interface Field3DConfig {
                 // produced by vgResolveLinesPlanes into lpRes.readouts and
                 // merged into the frame driver's `vals` bag.
                 | 'point_plane_distance' | 'skew_distance'
+                // The GENERIC length of an authored comparison segment, under
+                // its own honest name. It is NOT point_plane_distance: that
+                // token is the SPECIFIC perpendicular distance from a point to
+                // a plane and its label is the word "distance", so a sweeping
+                // non-perpendicular segment borrowing it printed
+                // "distance = 3.110" for the nine seconds a state spent
+                // teaching that only the PERPENDICULAR is the distance
+                // (bug_class vg_segment_length_readout_borrows_the_point_plane_
+                // distance_label). One label, one meaning, for the life of a
+                // concept — and a state may now show both rows at once,
+                // separately labelled ("segment length" while it sweeps,
+                // "distance" when the perpendicular arrives).
+                | 'segment_length'
                 | 'angle_lines_deg' | 'angle_line_plane_deg' | 'angle_line_normal_deg'
                 | 'd_dot_n' | 'n_dot_v'
                 | 'lambda' | 'intersection_point'
@@ -13178,8 +13191,17 @@ export const FIELD_3D_RENDERER_CODE = `
             // Δ2b — the segment's own reveal gates its length; n·v additionally
             // waits for the PLANE it is measured against, because a dot product
             // printed beside a plane that is not there yet names half a picture.
+            // A GENERIC segment publishes the GENERIC token. It may NOT borrow
+            // point_plane_distance, whose label is the bare word "distance":
+            // on the state that exists to break the belief "any segment to the
+            // plane is the distance", the sweeping segment printed
+            // "distance = 3.110" and asserted that belief as fact for nine
+            // seconds (bug_class vg_segment_length_readout_borrows_the_point_
+            // plane_distance_label). point_plane_distance is published by the
+            // F13a perpendicular ALONE, above — so the two rows can now sit
+            // side by side, each naming what it actually measures.
             if (o.readout === "length") {
-                if (vgArrived(sfrac)) out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));
+                if (vgArrived(sfrac)) out.readouts.segment_length = vgLenVec(vgSub(s1, s0));
             } else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
                 if (vgArrived(sfrac) && vgArrived(ctx.planes[o.against].frac)) {
                     out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
@@ -13834,6 +13856,12 @@ export const FIELD_3D_RENDERER_CODE = `
         //    unknown token renders NOTHING rather than an empty row with a
         //    plausible label.
         point_plane_distance: "distance", skew_distance: "shortest distance",
+        // The generic quantity, named generically. "distance" is RESERVED for
+        // the perpendicular distance a point actually has from a plane; an
+        // arbitrary segment says what it is — a segment length. Rule 41: two
+        // plain words, and the difference between them IS the lesson of the
+        // state that shows both.
+        segment_length: "segment length",
         angle_lines_deg: "angle", angle_line_plane_deg: "angle to plane",
         angle_line_normal_deg: "angle to normal",
         d_dot_n: "n·d", n_dot_v: "n·v",
@@ -13871,10 +13899,19 @@ export const FIELD_3D_RENDERER_CODE = `
     // distances and dot products 3 dp, angles 1 dp, coordinates 2 dp, λ 3 dp.
     // The products half keeps its own 2 dp, unchanged.
     var VG_READOUT_DP = {
-        point_plane_distance: 3, skew_distance: 3, d_dot_n: 3, n_dot_v: 3,
+        // segment_length is a DISTANCE and carries the distance precision: the
+        // state that shows it does so BESIDE point_plane_distance, and two
+        // lengths in one panel at two precisions would read as a second
+        // difference between them where there is only one.
+        point_plane_distance: 3, segment_length: 3, skew_distance: 3, d_dot_n: 3, n_dot_v: 3,
         n_norm: 3, cross_norm: 3, numerator_triple_product: 3, lambda: 3,
         angle_lines_deg: 1, angle_line_plane_deg: 1, angle_line_normal_deg: 1
     };
+    // Only the angles carry a unit. Every length token here (including
+    // segment_length) is in SCENE units and is deliberately absent — the same
+    // decision point_plane_distance and skew_distance already record by their
+    // absence, written down so the next token-surface sweep sees it was a
+    // decision and not a miss.
     var VG_READOUT_UNIT = { angle_lines_deg: "°", angle_line_plane_deg: "°", angle_line_normal_deg: "°" };
     // ── A NUMBER MAY NOT PRECEDE ITS SUBJECT (Rule 32a; bug_class
     //    field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_names).

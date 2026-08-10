@@ -72,6 +72,15 @@
  *      apply-only fix; the negative controls run the SHIPPED source with the
  *      gate textually removed, so they execute the defect rather than
  *      paraphrase it.
+ *  24  THE LABEL IS PART OF THE NUMBER — a generic comparison segment
+ *      publishes its OWN token (segment_length, "segment length") and never
+ *      borrows point_plane_distance, whose label is the bare word "distance".
+ *      Read as TEXT off the #vg_readout panel during the WRONG-PICTURE beat,
+ *      because the arithmetic, the reveal gating and the settled frame were
+ *      all correct while the panel asserted the misconception. The control
+ *      restores the one pre-fix assignment and watches "distance = 2.580"
+ *      come back mid-sweep — and shows the second failure the shared token
+ *      hid, the segment silently OVERWRITING the perpendicular's distance.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -1272,7 +1281,8 @@ console.log("\n=== 11c. THE AUTHORED value_readouts UNION == THE SHIPPED VG_READ
   if (unlabelled.length) console.log(`        UNLABELLED: ${unlabelled.join(", ")}`);
 
   check("the two declarations are the SAME closed set", UNION.length, LABELS.length, 0);
-  check("the set is the full 24 (11 products + 13 lines_planes)", LABELS.length, 24, 0);
+  // 25 since segment_length was split out of point_plane_distance (§24).
+  check("the set is the full 25 (11 products + 14 lines_planes)", LABELS.length, 25, 0);
   assertTrue("the union is still CLOSED — never weakened to string[]",
     /value_readouts\?:\s*Array</.test(FILE) && !/value_readouts\?:\s*string\[\]/.test(FILE));
 
@@ -1297,7 +1307,7 @@ console.log("\n=== 11c. THE AUTHORED value_readouts UNION == THE SHIPPED VG_READ
     "a_dot_cross", "b_dot_cross", "triple", "volume", "base_area", "height"];
   const preMissing = LABELS.filter((k) => PRE_A25.indexOf(k) < 0);
   assertTrue(`the binding check FIRES on the pre-A25 union: ${preMissing.length} of ${LABELS.length} keys unauthorable`,
-    preMissing.length === 13);
+    preMissing.length === 14);
   expectFail("the pre-A25 11-token union satisfies union-superset-of-table",
     LABELS.every((k) => PRE_A25.indexOf(k) >= 0));
 
@@ -1736,7 +1746,7 @@ console.log("\n=== 10. D5/F14 — the intersection marker exists ONLY when the i
   // ── (c) Δ6 — the readout token set, closed in BOTH directions ────────────
   {
     const DELTA6 = [
-      "point_plane_distance", "skew_distance", "angle_lines_deg",
+      "point_plane_distance", "segment_length", "skew_distance", "angle_lines_deg",
       "angle_line_plane_deg", "angle_line_normal_deg", "d_dot_n", "n_dot_v",
       "no_meeting_point", "lambda", "intersection_point", "n_norm",
       "cross_norm", "numerator_triple_product",
@@ -3199,8 +3209,8 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
       const T = vgTextFns({}, fakeDom().document);
       expectFail("the F9 panel gate alone would have suppressed n·d before its subject",
         T.vgReadoutSubjectShown("d_dot_n", {}, {}) === false);
-      assertTrue("...it waves through every one of the 13 lines/planes tokens (it can only gate subjects it can name)",
-        ["point_plane_distance", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
+      assertTrue("...it waves through every one of the 14 lines/planes tokens (it can only gate subjects it can name)",
+        ["point_plane_distance", "segment_length", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
           "angle_line_normal_deg", "d_dot_n", "n_dot_v", "no_meeting_point", "lambda",
           "intersection_point", "n_norm", "cross_norm", "numerator_triple_product"]
           .every((t) => T.vgReadoutSubjectShown(t, {}, {}) === true));
@@ -3232,7 +3242,10 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
         },
       },
       {
-        name: "F23 a comparison segment's LENGTH", tokens: ["point_plane_distance"],
+        // §24 — a generic segment publishes the GENERIC token, never the
+        // point-to-plane one. This fixture is also the §19b half of that fix:
+        // if the publish site ever reverts, `tokens` here stops matching.
+        name: "F23 a comparison segment's LENGTH", tokens: ["segment_length"],
         block: {
           mode: "lines_planes", reveal_ms: 0,
           points: [{ id: "q1", position: [1, 1, 1], reveal_at_ms: R }, { id: "q2", position: [-1, 0.2, 0.4], reveal_at_ms: R }],
@@ -3325,7 +3338,7 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
     }
     // The token set the sweep actually exercised IS the Δ6 enum — a site added
     // later with a token no fixture covers is caught by the tripwire below.
-    const DELTA6 = ["point_plane_distance", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
+    const DELTA6 = ["point_plane_distance", "segment_length", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
       "angle_line_normal_deg", "d_dot_n", "n_dot_v", "no_meeting_point", "lambda",
       "intersection_point", "n_norm", "cross_norm", "numerator_triple_product"];
     check("the sweep covers EVERY Δ6 readout token (no token is gated only in principle)",
@@ -3390,15 +3403,15 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
     const at = (ms: number) => E.vgResolveLinesPlanes(block, {}, ms);
     const f1500 = at(1500).segments[0].frac;
     assertTrue(`t=1500ms: the segment is only ${(f1500 * 100).toFixed(0)}% drawn, so its length is NOT published`,
-      f1500 > 0 && f1500 < 1 && at(1500).readouts.point_plane_distance === undefined);
+      f1500 > 0 && f1500 < 1 && at(1500).readouts.segment_length === undefined);
     assertTrue("t=2000ms: the grow completes and the length appears", at(2000).segments[0].frac === 1
-      && Math.abs(at(2000).readouts.point_plane_distance - len3(sub3(qa, qb))) < 1e-12);
+      && Math.abs(at(2000).readouts.segment_length - len3(sub3(qa, qb))) < 1e-12);
     // NEGATIVE CONTROL — a "started" gate, which is the plausible weaker fix.
     const STARTED = buildVgSandbox((name, src) =>
       (name === "vgArrived" ? src.replace(GATE_BODY, "return frac > 0;") : src)) as any;
     assertTrue("the 'started' variant really was planted", STARTED.vgArrived(0.01) === true && E.vgArrived(0.01) === false);
     expectFail(`a 'frac > 0' gate stays silent while the segment is ${(f1500 * 100).toFixed(0)}% drawn`,
-      STARTED.vgResolveLinesPlanes(block, {}, 1500).readouts.point_plane_distance === undefined);
+      STARTED.vgResolveLinesPlanes(block, {}, 1500).readouts.segment_length === undefined);
   }
 
   // ── (d) THE GATE DID NOT COST DETERMINISM (D3 / Rule 36) ─────────────────
@@ -4716,6 +4729,258 @@ console.log("\n=== 23. F14 — THE INTERSECTION IS A LIST: ONE STATE MAY TEACH B
       assertTrue(`...and the scan is not vacuous — ${withIsec.length} of those states author an intersection (${withIsec.map((s) => s.key).join(", ")})`,
         withIsec.length > 0);
     }
+  }
+}
+
+console.log("\n=== 24. THE LABEL IS PART OF THE NUMBER: a generic segment prints \"segment length\", never \"distance\" ===");
+{
+  // bug_class vg_segment_length_readout_borrows_the_point_plane_distance_label
+  // (CRITICAL). The comparison-segments pass mapped a GENERIC authored
+  // `readout: "length"` onto the SPECIFIC token point_plane_distance, whose
+  // VG_READOUT_LABEL is the bare word "distance". On the AHA state of
+  // lines_and_planes_in_space — the state that exists to break "any segment
+  // from the point to the plane is the distance" — the sweeping,
+  // NON-perpendicular segment therefore printed "distance = 3.110" for the
+  // nine seconds before the perpendicular arrived: the panel asserted, as a
+  // measured fact, the exact belief the picture was busy refuting (it is the
+  // verbatim distractor of that concept's own assessment item).
+  //
+  // THE DISCRIMINATING QUANTITY IS THE TEXT ON THE PANEL DURING THE WRONG-
+  // PICTURE BEAT — not the arithmetic (the length was always right), not the
+  // reveal gating (§19b is green on the defect: the number waited correctly
+  // for its segment and then said the wrong word), and not the end state
+  // (at t = 9000+ the perpendicular's own row is correct and a check that
+  // sampled only the settled frame sees nothing wrong). Every one of those
+  // weaker quantities passed while this shipped.
+  //
+  // THE FIX IS A FIRST-CLASS TOKEN: segment_length, label "segment length",
+  // published by the `readout: "length"` branch alone; point_plane_distance
+  // is published by the F13a perpendicular alone. Two rows, two labels, two
+  // meanings — which is what lets one state honestly show both at once.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+  const uIn = nrm(cross3(nh, [0, 0, 1]));            // a unit direction IN the plane
+  const q: V3 = [1.93, 1.19, 0.51];
+  // The closed form, solved outside the renderer (§8's convention): the
+  // perpendicular distance, and the foot the sweep is anchored to.
+  const TRUE_D = Math.abs(dot3(nh, sub3(q, planePoint)));
+  const FOOT: V3 = sub3(q, [nh[0] * dot3(nh, sub3(q, planePoint)), nh[1] * dot3(nh, sub3(q, planePoint)), nh[2] * dot3(nh, sub3(q, planePoint))]);
+
+  // THE FIXTURE — the shape of the AHA state, with the two subjects
+  // deliberately OVERLAPPING at the end (the shipped STATE_3 hides its
+  // segment at 9000 ms, which is precisely why the collision below was never
+  // seen there). The sweep never returns to aux_a = 0, so the two rows must
+  // carry two DIFFERENT numbers wherever both are shown.
+  const SWEEP_END = 1.2;
+  const BLOCK: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 0,
+    value_readouts: ["segment_length", "point_plane_distance"],
+    planes: [{ id: "P1", point: planePoint, normal: planeN, span_u: [1, -0.35, 0], half_extent: 3.0, show_normal: true }],
+    points: [
+      { id: "q", position: q, label: "q", reveal_at_ms: 0 },
+      { id: "foot_sweep", position: FOOT, offset: { along: uIn, zero: 0, knob: "aux_a" }, reveal_at_ms: 0 },
+    ],
+    segments: [{ id: "cmp", from: "q", to: "foot_sweep", readout: "length", reveal_at_ms: 0 }],
+    perpendicular: { id: "perp", from: "q", to: "P1", foot_id: "true_foot", reveal_at_ms: 9000 },
+    animate: [{ knob: "aux_a", from: -2.2, to: SWEEP_END, start_ms: 0, duration_ms: 8000, easing: "linear" }],
+  };
+  /** aux_a at ms, by the SHIPPED ramp evaluator (never a second copy of the easing). */
+  const auxAt = (ms: number) => E.vgAnimValue(BLOCK.animate, "aux_a", ms, 0);
+  /** The segment's true length at ms, closed form: sqrt(d^2 + s^2) for an in-plane slide s. */
+  const segLenAt = (ms: number) => Math.sqrt(TRUE_D * TRUE_D + auxAt(ms) * auxAt(ms));
+
+  const runFrame = FRAME_HARNESS.run!;
+  const panelAt = (ms: number) => {
+    const dom = fakeDom();
+    const win: Record<string, unknown> = {};
+    runFrame(BLOCK, ms, dom, win);
+    const el = dom.get("vg_readout");
+    return { html: el.innerHTML, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+  };
+  /** The text of one row, by token, out of the panel a teacher reads. */
+  const rowText = (html: string, tok: string): string | null => {
+    const m = new RegExp('<div id="vg_readout_' + tok + '">([^<]*)</div>').exec(html);
+    return m ? m[1] : null;
+  };
+  const rowNum = (html: string, tok: string): number | null => {
+    const t = rowText(html, tok);
+    if (t == null) return null;
+    const m = /(-?[0-9]+\.[0-9]+)/.exec(t);
+    return m ? Number(m[1]) : null;
+  };
+
+  // ── (a) THE TOKEN SURFACES, SWEPT ────────────────────────────────────────
+  //   The recorded recurrence mode of this family is a token fixed on ONE
+  //   surface (field3d_vg_type_omits_fields_the_scenario_body_reads): a
+  //   publish site with no label renders nothing, a label with no union entry
+  //   is unauthorable, a union entry with no dp silently changes precision.
+  //   All four are asserted off the SHIPPED source.
+  {
+    const RENDERER_PATH = "src/lib/renderers/field_3d_renderer.ts";
+    const FILE = readFileSync(RENDERER_PATH, "utf-8");
+    assertTrue("segment_length is AUTHORABLE — it is in the value_readouts TS union (the wrapper, above the template)",
+      /value_readouts\?:\s*Array<[\s\S]*?'segment_length'[\s\S]*?>;/.test(FILE));
+    const T = vgTextFns({}, fakeDom().document);
+    assertTrue(`segment_length is LABELLED, and the label names the generic quantity (got "${T.VG_READOUT_LABEL.segment_length}")`,
+      T.VG_READOUT_LABEL.segment_length === "segment length");
+    assertTrue(`...and it is NOT the point-to-plane label (that one is still "${T.VG_READOUT_LABEL.point_plane_distance}", untouched)`,
+      T.VG_READOUT_LABEL.point_plane_distance === "distance"
+      && T.VG_READOUT_LABEL.segment_length !== T.VG_READOUT_LABEL.point_plane_distance
+      && T.VG_READOUT_LABEL.segment_length.indexOf("distance") < 0);
+    // Precision parity with its sibling: the two rows appear TOGETHER, so two
+    // lengths at two precisions would read as a second difference between
+    // them where there is only one.
+    assertTrue("segment_length carries the DISTANCE precision (3 dp, the same as point_plane_distance)",
+      T.vgReadoutLine("segment_length", { segment_length: 1 / 3 }) === "segment length = 0.333"
+      && T.vgReadoutLine("point_plane_distance", { point_plane_distance: 1 / 3 }) === "distance = 0.333");
+    // A length is in SCENE units: no unit suffix, exactly like its sibling.
+    assertTrue("neither length token appends a unit (only the angles do)",
+      /segment length = 0\.333$/.test(T.vgReadoutLine("segment_length", { segment_length: 1 / 3 })));
+    // And the PUBLISH SITE: the "length" branch names the generic token and
+    // no longer names the specific one.
+    const RES = grabFn("vgResolveLinesPlanes");
+    const branch = RES.slice(RES.indexOf('if (o.readout === "length")'), RES.indexOf('} else if (o.readout === "n_dot_v"'));
+    assertTrue("the `readout: \"length\"` branch publishes segment_length", branch.indexOf("out.readouts.segment_length =") >= 0);
+    assertTrue("...and does not mention point_plane_distance at all", branch.indexOf("point_plane_distance") < 0);
+    check("point_plane_distance now has exactly ONE publish site in the whole resolver (the F13a perpendicular)",
+      (RES.match(/out\.readouts\.point_plane_distance =/g) || []).length, 1, 0);
+    check("...and segment_length exactly one (the comparison segment)",
+      (RES.match(/out\.readouts\.segment_length =/g) || []).length, 1, 0);
+  }
+
+  // ── (b) THE WRONG-PICTURE BEAT: what the panel SAYS while the segment sweeps
+  {
+    const p2 = panelAt(2000);
+    assertTrue(`t=2000ms: the segment row is on the panel — "${rowText(p2.html, "segment_length")}"`,
+      rowText(p2.html, "segment_length") !== null);
+    assertTrue("t=2000ms: and NO point_plane_distance row exists (the perpendicular does not arrive until 9000 ms)",
+      rowText(p2.html, "point_plane_distance") === null);
+    // THE CLAIM OF THIS SECTION, stated over the rendered TEXT rather than
+    // over the token: the word "distance" is not on the panel at all while a
+    // non-perpendicular segment is the only thing measured.
+    assertTrue(`t=2000ms: the word "distance" appears NOWHERE on the panel (html: ${JSON.stringify(p2.html)})`,
+      p2.html.indexOf("distance") < 0);
+    check("t=2000ms: the printed segment length is the real length of the drawn segment",
+      rowNum(p2.html, "segment_length"), Number(segLenAt(2000).toFixed(3)), 1e-12);
+    // ...and it is NOT the perpendicular distance: the number itself carries
+    // the lesson, so a fixture where the two coincide would prove nothing.
+    assertTrue(`...and it is strictly LONGER than the true perpendicular distance (${segLenAt(2000).toFixed(3)} > ${TRUE_D.toFixed(3)})`,
+      segLenAt(2000) > TRUE_D + 0.05);
+  }
+
+  // ── (c) THE SEGMENT ROW TRACKS THE SWEEP ─────────────────────────────────
+  //   A row that printed a constant would satisfy (b) and teach nothing.
+  {
+    const a = panelAt(2000), b = panelAt(6000);
+    const na = rowNum(a.html, "segment_length"), nb = rowNum(b.html, "segment_length");
+    assertTrue(`two sampled instants print two DIFFERENT numbers (aux_a ${auxAt(2000).toFixed(3)} -> ${auxAt(6000).toFixed(3)}: ${na} -> ${nb})`,
+      na != null && nb != null && Math.abs(na - nb) > 0.05);
+    // Across the whole sweep the segment is never shorter than the
+    // perpendicular — the geometric fact the state is teaching, asserted on
+    // the RENDERED numbers rather than on the formula.
+    let below = 0, samples = 0;
+    for (let ms = 500; ms <= 8000; ms += 500) {
+      const n = rowNum(panelAt(ms).html, "segment_length");
+      samples++;
+      if (n == null || n < TRUE_D - 1e-9) below++;
+    }
+    check(`over ${samples} sampled instants of the sweep, the printed segment length is NEVER below the true distance`, below, 0, 0);
+  }
+
+  // ── (d) BOTH ROWS AT ONCE, SEPARATELY LABELLED ───────────────────────────
+  //   The payoff the split buys: the comparison and the answer on screen
+  //   together, each saying what it is.
+  {
+    const p10 = panelAt(10000);
+    const segT = rowText(p10.html, "segment_length"), disT = rowText(p10.html, "point_plane_distance");
+    assertTrue(`t=10000ms: BOTH rows are on the panel — "${segT}" and "${disT}"`, segT !== null && disT !== null);
+    assertTrue("...separately labelled (neither label is the other)",
+      segT!.split("=")[0].trim() === "segment length" && disT!.split("=")[0].trim() === "distance");
+    const segN = rowNum(p10.html, "segment_length")!, disN = rowNum(p10.html, "point_plane_distance")!;
+    assertTrue(`...carrying two DIFFERENT numbers (${segN} vs ${disN})`, Math.abs(segN - disN) > 0.05);
+    assertTrue(`...and the PERPENDICULAR is the shorter one (${disN} < ${segN}) — the lesson, read off the panel`, disN < segN);
+    check("the distance row is the closed-form point-to-plane distance, unchanged by this fix", disN, Number(TRUE_D.toFixed(3)), 1e-12);
+    check("the segment row is still the segment's own length", segN, Number(segLenAt(10000).toFixed(3)), 1e-12);
+  }
+
+  // ── (e) THE NEGATIVE CONTROL: the pre-fix mapping, reconstructed ─────────
+  //   The SHIPPED resolver body with exactly ONE assignment rewritten back to
+  //   what shipped. Guarded: if the anchor stops matching this THROWS, because
+  //   a control that silently fails to plant its defect is worse than none.
+  {
+    const FIXED_LINE = "out.readouts.segment_length = vgLenVec(vgSub(s1, s0));";
+    const PRE_LINE = "out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));";
+    const borrowLabel = (name: string, src: string) => {
+      if (name !== "vgResolveLinesPlanes") return src;
+      if (src.indexOf(FIXED_LINE) < 0) {
+        throw new Error(
+          "§24 NEGATIVE CONTROL CANNOT BE BUILT: the comparison-segment publish line no longer matches "
+          + JSON.stringify(FIXED_LINE) + ". Re-anchor it and re-watch the control fail.");
+      }
+      return src.replace(FIXED_LINE, PRE_LINE);
+    };
+    const PRE = buildVgSandbox(borrowLabel) as any;
+    assertTrue("the pre-fix mapping really was planted (the segment publishes point_plane_distance and no segment_length)",
+      PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(2000) }, 2000).readouts.point_plane_distance != null
+      && PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(2000) }, 2000).readouts.segment_length === undefined);
+
+    // The panel, composed from the SHIPPED display path (the same merge +
+    // vgReadoutLine loop the frame driver runs) so the control is measured in
+    // TEXT. Validated first against the real frame driver on the SHIPPED
+    // resolver: if the composition ever drifts from the driver, this fails
+    // before it is used as a stand-in.
+    const T = vgTextFns({}, fakeDom().document);
+    const compose = (readouts: Record<string, unknown>) => {
+      let html = "";
+      for (const k of BLOCK.value_readouts as string[]) {
+        const line = T.vgReadoutLine(k, readouts);
+        if (line != null) html += '<div id="vg_readout_' + k + '">' + line + "</div>";
+      }
+      return html;
+    };
+    for (const ms of [2000, 10000]) {
+      assertTrue(`the composed panel is BYTE-IDENTICAL to the shipped frame driver's at t=${ms}ms (the stand-in is faithful)`,
+        compose(E.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(ms) }, ms).readouts) === panelAt(ms).html);
+    }
+    const preHtml2 = compose(PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(2000) }, 2000).readouts);
+    expectFail(`the pre-fix panel keeps the word "distance" off screen while a non-perpendicular segment sweeps (it renders ${JSON.stringify(preHtml2)})`,
+      preHtml2.indexOf("distance") < 0);
+    expectFail("the pre-fix panel names the sweeping segment for what it is",
+      preHtml2.indexOf("segment length") >= 0);
+
+    // ...and the SECOND failure the shared token hid: with both subjects
+    // arrived, the segment's length OVERWRITES the perpendicular's distance
+    // (the segments pass runs after the F13a pass), so the one surviving row
+    // is labelled "distance" and carries the wrong number entirely.
+    const pre10 = PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(10000) }, 10000).readouts;
+    expectFail(`the pre-fix resolver keeps the TRUE distance when both subjects are on screen (point_plane_distance = ${(pre10.point_plane_distance as number).toFixed(3)}, true ${TRUE_D.toFixed(3)})`,
+      Math.abs((pre10.point_plane_distance as number) - TRUE_D) < 1e-9);
+    assertTrue(`...it is the SEGMENT's length wearing the distance label (${(pre10.point_plane_distance as number).toFixed(3)} == ${segLenAt(10000).toFixed(3)})`,
+      Math.abs((pre10.point_plane_distance as number) - segLenAt(10000)) < 1e-9);
+    const preHtml10 = compose(pre10);
+    check("the pre-fix panel shows only ONE row where the fixed one shows two", (preHtml10.match(/<div /g) || []).length, 1, 0);
+    check("...and the fixed one really does show two", (panelAt(10000).html.match(/<div /g) || []).length, 2, 0);
+
+    // The shipped resolver is untouched on every OTHER token by this change:
+    // a settled frame with the segment removed is bit-identical across the two
+    // builds, so the control isolates the one mapping and nothing else.
+    const noSeg = JSON.parse(JSON.stringify(BLOCK));
+    delete noSeg.segments;
+    assertTrue("with no comparison segment authored, the pre-fix and shipped resolvers agree BIT FOR BIT (the change is exactly one mapping)",
+      JSON.stringify(PRE.vgResolveLinesPlanes(noSeg, { aux_a: 0.4 }, 10000)) === JSON.stringify(E.vgResolveLinesPlanes(noSeg, { aux_a: 0.4 }, 10000)));
+  }
+
+  // ── (f) ACT I CANNOT SEE THIS ────────────────────────────────────────────
+  {
+    const dom = fakeDom();
+    const win: Record<string, unknown> = {};
+    runFrame({ a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+    assertTrue("a products-mode frame never enters the resolver (PM_vgLinesPlanes === null) — vector_products_in_space is untouched",
+      win.PM_vgLinesPlanes === null);
+    assertTrue("...and all four Act I rows still print", ["a_mag", "b_mag", "theta_deg", "a_dot_b"]
+      .every((k) => dom.get("vg_readout").innerHTML.indexOf("vg_readout_" + k) >= 0));
   }
 }
 
