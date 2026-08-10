@@ -65842,7 +65842,18 @@ export const FIELD_3D_RENDERER_CODE = `
         document.body.appendChild(sp);
 
         var vSel = document.getElementById("org_view_select");
-        if (vSel) vSel.addEventListener("change", function (ev) { if (ev && ev.isTrusted) window.PM_orgViewDragged = true; window.PM_orgView = vSel.value; });
+        // A view pick is an EDGE, not a level. PM_orgView is the LATCH (which named
+        // pose the closed form solves for); PM_orgViewPick is the one-shot REQUEST
+        // the next frame consumes and clears, and it is the ONLY thing that clears
+        // the camera seize. Asserting the clear every frame off the latch broke the
+        // control in BOTH directions — see the frame pass for the full note.
+        if (vSel) vSel.addEventListener("change", function (ev) {
+            // "dragged" is the engine-owned reading (see the frame pass); it is
+            // never a teacher pick and never latches.
+            if (vSel.value === "dragged") return;
+            if (ev && ev.isTrusted) { window.PM_orgViewDragged = true; window.PM_orgViewPick = vSel.value; }
+            window.PM_orgView = vSel.value;
+        });
         var sSl = document.getElementById("org_spin_slider");
         if (sSl) sSl.addEventListener("input", function (ev) {
             if (ev && ev.isTrusted) window.PM_orgSpinDragged = true;
@@ -66242,6 +66253,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var banner = document.getElementById("org_deferred");
         if (banner) { banner.style.display = "none"; banner.textContent = ""; }
         window.PM_orgViewDragged = false;
+        window.PM_orgViewPick = null;
         window.PM_orgSpinDragged = false;
         window.PM_orgHDragged = false;
         window.PM_orgCamSeized = false;
@@ -66419,11 +66431,64 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         // The explore sandbox is camera-RECOVERABLE, not camera-solved (skeleton
         // §8 row 9): a trusted orbit seizes the camera for the rest of the state,
-        // and re-picking "Standard" in the view row returns exactly to the solved
-        // HOME pose. THE EYE never drags, so a frozen frame always takes the
-        // closed-form branch and stays byte-identical.
+        // and picking a named view in the view row returns exactly to that solved
+        // pose. THE EYE never drags and never picks, so a frozen frame always takes
+        // the closed-form branch and stays byte-identical.
+        //
+        // ── THE CLEAR IS AN EDGE, CONSUMED ONCE. It used to be asserted every
+        //    frame off the LATCHED selection (if viewLive === "home" then seized
+        //    = false), one line BELOW the drag-set — which broke the control in
+        //    both directions at once:
+        //      (a) "Along the bond" never cleared the seize, so the one option
+        //          named after an axis could never restore that axis: the control
+        //          read "Along the bond" while the molecule sat 40° off it;
+        //      (b) worse, once "Standard" was picked the clear re-ran on EVERY
+        //          later frame and undid the drag-set on the same frame, so the
+        //          camera was pinned to the home pose and ORBITING WAS DEAD for
+        //          the rest of the state — in the sandbox of a concept about the
+        //          Newman projection, the projection became unreachable after the
+        //          teacher's first orbit.
+        //    So the pick is consumed HERE, once, and cleared: the frame it arrives
+        //    on clears the seize (the closed form below then writes the solved pose
+        //    for the latched view), and every frame after it is governed by the
+        //    teacher again — the next drag re-seizes and holds. The latch survives
+        //    only to tell the closed form WHICH pose to solve for; it no longer
+        //    decides who owns the camera.
+        var viewPick = window.PM_orgViewPick || null;
+        window.PM_orgViewPick = null;
+        if (viewPick) window.PM_orgCamSeized = false;
         if (explore && isDragging) window.PM_orgCamSeized = true;
-        if (viewLive === "home") window.PM_orgCamSeized = false;
+        // ── AND THE ROW READS THE VIEW THE CAMERA IS ACTUALLY AT. A select fires
+        //    "change" only when its VALUE changes, so a row still reading "Along
+        //    the bond" while the teacher has orbited 40 degrees off that bond is
+        //    not merely dishonest: re-picking that same option fires NOTHING and
+        //    the edge above never arrives, which would leave the recovery the
+        //    teacher reaches for first doing nothing at all. So while the camera
+        //    is seized the row carries a third, engine-owned reading — the option
+        //    EXISTS only while seized, so it can never itself be a pick that does
+        //    nothing, and picking either named view is then always a real change
+        //    that always recovers.
+        //    THE EYE never drags: seized is false on every frame it captures, the
+        //    option is never created and the row is never written, so a frozen
+        //    frame is untouched by this block.
+        var vRow = document.getElementById("org_view_select");
+        if (vRow) {
+            var seizedNow = !!(explore && window.PM_orgCamSeized);
+            var dOpt = document.getElementById("org_view_dragged_opt");
+            if (seizedNow) {
+                if (!dOpt) {
+                    dOpt = document.createElement("option");
+                    dOpt.id = "org_view_dragged_opt";
+                    dOpt.value = "dragged";
+                    dOpt.textContent = "Turned by hand";
+                    vRow.appendChild(dOpt);
+                }
+                if (vRow.value !== "dragged") vRow.value = "dragged";
+            } else if (dOpt) {
+                if (dOpt.parentNode) dOpt.parentNode.removeChild(dOpt);
+                vRow.value = window.PM_orgView || "home";
+            }
+        }
         if (!(explore && window.PM_orgCamSeized)) {
             targetSpherical.radius = pose.dist;
             targetSpherical.phi = Math.PI / 2 - pose.el * Math.PI / 180;

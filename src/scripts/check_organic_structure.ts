@@ -2611,9 +2611,28 @@ console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the
         material: Record<string, unknown>;
         geometry: { setDrawRange(): void };
     };
+    /** the EDGE-consumed view pick — the surgery target for negative control 3.
+     *  Four lines, verbatim from the shipped frame pass. */
+    const EDGE_PICK = [
+        "        var viewPick = window.PM_orgViewPick || null;",
+        "        window.PM_orgViewPick = null;",
+        "        if (viewPick) window.PM_orgCamSeized = false;",
+        "        if (explore && isDragging) window.PM_orgCamSeized = true;"
+    ].join("\n");
+    /** …restored to the PRE-FIX level latch: the clear asserted every frame off the
+     *  latched selection, one line BELOW the drag-set. */
+    const LEVEL_PICK = [
+        "        var viewPick = window.PM_orgViewPick || null;",
+        "        window.PM_orgViewPick = null;",
+        "        if (explore && isDragging) window.PM_orgCamSeized = true;",
+        "        if (viewLive === \"home\") window.PM_orgCamSeized = false;"
+    ].join("\n");
+
     /** one sandbox: the shipped apply + frame over a recording scene, with the
-     *  orbit controls (isDragging + spherical) exposed the way a mousemove drives them. */
-    const mkSeizeRun = (naive: boolean) => {
+     *  orbit controls (isDragging + spherical) exposed the way a mousemove drives
+     *  them, and the view row driven the way its trusted change listener drives it.
+     *  `latched` restores the pre-fix level latch for the negative control. */
+    const mkSeizeRun = (naive: boolean, latched = false) => {
         const V3 = function (this: Record<string, number>, x?: number, y?: number, z?: number) {
             this.x = x || 0; this.y = y || 0; this.z = z || 0;
         } as unknown as { new(x?: number, y?: number, z?: number): Record<string, number> };
@@ -2657,7 +2676,17 @@ console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the
         }
         const els: Record<string, Record<string, unknown>> = {};
         const el = (id: string) => {
-            if (!els[id]) els[id] = { id, style: { display: "none" }, value: "", textContent: "", checked: false, innerHTML: "", disabled: false, querySelector: () => ({ disabled: false }) };
+            if (!els[id]) els[id] = {
+                id, style: { display: "none" }, value: "", textContent: "", checked: false,
+                innerHTML: "", disabled: false, querySelector: () => ({ disabled: false }),
+                // enough DOM for the view row's engine-owned "Turned by hand"
+                // option: an appended child is reachable by getElementById and
+                // knows how to remove itself, exactly as in a browser.
+                appendChild(this: Record<string, unknown>, c: Record<string, unknown>) {
+                    c.parentNode = { removeChild: (x: Record<string, unknown>) => { delete els[String(x.id)]; } };
+                    if (c.id) els[String(c.id)] = c;
+                }
+            };
             return els[id];
         };
         for (const id of ["org_hud", "org_formula", "org_graph", "org_deferred", "org_sliders",
@@ -2667,15 +2696,21 @@ console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the
         els["org_graph"].width = 700; els["org_graph"].height = 460;
         const CTX = mkCanvasCtx();
         els["org_graph"].getContext = () => CTX;
-        const FRAME = naive ? FRAME_FN.replace(LIVE_READ, "") : FRAME_FN;
+        let FRAME = naive ? FRAME_FN.replace(LIVE_READ, "") : FRAME_FN;
         if (naive && FRAME === FRAME_FN) throw new Error("negative control is dead: the live-pose read was not found in the shipped frame pass");
+        if (latched) {
+            const L = FRAME.replace(EDGE_PICK, LEVEL_PICK);
+            if (L === FRAME) throw new Error("negative control is dead: the edge-consumed view pick was not found in the shipped frame pass");
+            FRAME = L;
+        }
         const CLOCK = { t: 0 };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const RUN: any = new Function([
             "var window = { PM_orgRejects: [] };",
             "var ELS = arguments[0], SCENE = arguments[1], THREE = arguments[2], CLOCK = arguments[3];",
             "var console = { error: function () {} };",
-            "var document = { getElementById: function (id) { return ELS[id] || null; } };",
+            "var document = { getElementById: function (id) { return ELS[id] || null; },",
+            "    createElement: function () { return { id: \"\", value: \"\", textContent: \"\", parentNode: null }; } };",
             "var sceneObjects = SCENE;",
             "var stateStartTime = 0, isDragging = false, animating = false;",
             "var time = 0;",
@@ -2693,6 +2728,11 @@ console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the
             "         dragBy: function (dx) { isDragging = true; spherical.theta -= dx * 0.005;",
             "             targetSpherical.theta = spherical.theta; },",
             "         mouseUp: function () { isDragging = false; },",
+            // the view row's TRUSTED change listener, verbatim: the latch plus the
+            // one-shot pick the next frame consumes.
+            "         pickView: function (v) { ELS.org_view_select.value = v;",
+            "             window.PM_orgViewDragged = true; window.PM_orgViewPick = v;",
+            "             window.PM_orgView = v; },",
             "         sph: function () { return { theta: spherical.theta, phi: spherical.phi, radius: spherical.radius }; },",
             "         W: window };"
         ].join("\n"))(els, scene, stub, CLOCK);
@@ -2909,8 +2949,7 @@ console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the
         }
         E.RUN.mouseUp();
         // the teacher re-picks "Standard" in the view row (the trusted change).
-        (E.RUN.W as Record<string, unknown>).PM_orgViewDragged = true;
-        (E.RUN.W as Record<string, unknown>).PM_orgView = "home";
+        E.RUN.pickView("home");
         E.RUN.frame(EXPLORE());
         const rec = readPicture(E.RUN, E.scene);
         const s = E.RUN.sph() as { theta: number; phi: number; radius: number };
@@ -2922,6 +2961,251 @@ console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the
             "camera returned to az " + home.az + "° el " + home.el + "°");
         ok("[18f] and the recovered picture is a whole molecule with its C–C bond",
             rec.ccBond && rec.backMesh && !rec.rimOn && rec.w === 0);
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // (g) THE VIEW ROW IS AN EDGE, NOT A LATCH.
+    // The CRITICAL row
+    // explore_view_selector_is_level_latched_so_one_option_kills_the_orbit_and_the_other_never_restores_it:
+    // the clear was asserted EVERY FRAME off the latched selection, one line
+    // BELOW the drag-set, so (a) "Along the bond" never cleared the seize and
+    // could never restore the axis it names, and (b) once "Standard" was picked
+    // the clear undid the drag-set on the same frame and ORBITING WAS DEAD for
+    // the rest of the state — the Newman projection unreachable after the
+    // teacher's first orbit, in the sandbox of a concept about that projection.
+    //
+    // founder-proxy's four-step sequence, verbatim. Step 3 is the one that
+    // matters: a value equal to step 2 means the orbit is dead.
+    // ════════════════════════════════════════════════════════════════════════
+    type Sandbox = ReturnType<typeof mkSeizeRun>;
+    const ORBIT_PX = 174;                 // founder-proxy's measured gesture, to the pixel
+    /** a trusted orbit of `px` pixels in 2 px mousemoves, then the mouse released. */
+    const orbit = (S: Sandbox, px = ORBIT_PX) => {
+        for (let d = 0; d < px; d += 2) { S.RUN.dragBy(2); S.RUN.frame(EXPLORE()); }
+        S.RUN.mouseUp(); S.RUN.frame(EXPLORE());
+    };
+    const phiOf = (S: Sandbox) => (S.RUN.W as Record<string, number>).PM_orgPhi;
+    const homePose = (S: Sandbox) => R.orgSolveCamera(
+        { camera: { az: R.ORG_HOME.az, el: R.ORG_HOME.el, dist: 8 } },
+        R.orgBuildGeometry("ethane", phiOf(S)));
+    const sightPose = (S: Sandbox) => R.orgSolveCamera(
+        EXPLORE().organic_structure, R.orgBuildGeometry("ethane", phiOf(S)));
+    /** the whole gesture, in degrees of azimuth: theta -= dx * 0.005 per pixel. */
+    const ORBIT_DEG = -ORBIT_PX * 0.005 * 180 / Math.PI;
+    /** the bond-axis angle is published only while a sight_along view is latched —
+     *  under the standard view there is no bond-axis solve to measure against. */
+    const fmtAng = (a: number | null) => (a == null) ? "n/a (standard view: no bond-axis solve)" : a.toFixed(2) + "°";
+
+    {
+        const G = mkSeizeRun(false);
+        G.CLOCK.t = PIN_MS / 1000;
+        G.RUN.apply(EXPLORE()); G.RUN.frame(EXPLORE());
+        const az0 = readPicture(G.RUN, G.scene).cam.az;
+
+        // ── step 1: trusted-orbit 174 px; seized, and the camera MOVED.
+        orbit(G);
+        const s1 = readPicture(G.RUN, G.scene);
+        ok("[19-1] a trusted " + ORBIT_PX + " px orbit seizes the camera and moves it",
+            s1.seized && Math.abs(s1.cam.az - az0 - ORBIT_DEG) < 1e-9,
+            "az " + az0.toFixed(3) + "° → " + s1.cam.az.toFixed(3) + "° (Δ " + (s1.cam.az - az0).toFixed(3)
+            + "°) at " + s1.ang.toFixed(2) + "° off the bond, seized = " + s1.seized);
+        // …and the row says so. Not cosmetics: a select fires "change" only on a
+        // VALUE change, so a row still reading "Along the bond" would make the
+        // teacher's first recovery gesture — re-picking it — a silent no-op.
+        {
+            const row = G.els["org_view_select"], dOpt = G.els["org_view_dragged_opt"];
+            ok("[19-1] …and the view row reads \"Turned by hand\", not the axis the camera has left",
+                !!dOpt && row.value === "dragged" && dOpt.textContent === "Turned by hand",
+                "row = " + JSON.stringify(row.value) + ", option = "
+                + (dOpt ? JSON.stringify(dOpt.textContent) : "absent"));
+            ok("[19-1] …so picking EITHER named view from here is a real change event, never a same-value no-op",
+                row.value !== "home" && row.value !== "sight");
+        }
+
+        // ── step 2: pick "Standard"; the camera is the solved HOME pose.
+        G.RUN.pickView("home"); G.RUN.frame(EXPLORE());
+        const s2 = readPicture(G.RUN, G.scene), H = homePose(G);
+        ok("[19-2] picking \"Standard\" returns the camera to the solved home pose and clears the seize",
+            !s2.seized && near(s2.cam.az, H.az, 1e-9) && near(s2.cam.el, H.el, 1e-9),
+            "az " + s2.cam.az.toFixed(3) + "° el " + s2.cam.el.toFixed(3) + "° = solved home az "
+            + H.az + "° el " + H.el + "°, seized = " + s2.seized);
+        ok("[19-2] the pick is CONSUMED by the frame that acts on it — nothing is left latched",
+            !(G.RUN.W as Record<string, unknown>).PM_orgViewPick);
+        ok("[19-2] …and the engine-owned option is withdrawn: the row reads \"Standard\"",
+            !G.els["org_view_dragged_opt"] && G.els["org_view_select"].value === "home",
+            "row = " + JSON.stringify(G.els["org_view_select"].value)
+            + ", \"Turned by hand\" present = " + !!G.els["org_view_dragged_opt"]);
+
+        // ── step 3: THE ONE THAT MATTERS. Orbit 174 px AGAIN. A value equal to
+        //    step 2 means the recovery pick killed the orbit for the state.
+        const azPark = s2.cam.az;
+        orbit(G);
+        const s3 = readPicture(G.RUN, G.scene);
+        ok("[19-3] …and the camera is ORBITABLE AGAIN — a second " + ORBIT_PX + " px orbit moves it",
+            s3.seized && Math.abs(s3.cam.az - azPark) > 1e-6,
+            "az " + azPark.toFixed(3) + "° → " + s3.cam.az.toFixed(3) + "°, seized = " + s3.seized);
+        ok("[19-3] …by the WHOLE gesture, not a fraction of it",
+            near(s3.cam.az - azPark, ORBIT_DEG, 1e-9),
+            "Δ " + (s3.cam.az - azPark).toFixed(6) + "° = " + ORBIT_PX + " px × 0.005 rad/px");
+        ok("[19-3] …and the picture follows the camera it is at — the projection has dissolved",
+            s3.w === 0 && s3.ccBond && !s3.rimOn,
+            "w = " + s3.w + ", bond-axis angle " + fmtAng(s3.ang) + ", C–C stick drawn");
+
+        // ── step 4: from that fresh drag, pick "Along the bond".
+        G.RUN.pickView("sight"); G.RUN.frame(EXPLORE());
+        const s4 = readPicture(G.RUN, G.scene), S = sightPose(G);
+        ok("[19-4] picking \"Along the bond\" returns the camera to the solved sight pose — the option can restore the axis it names",
+            !s4.seized && near(s4.cam.az, S.az, 1e-9) && near(s4.cam.el, S.el, 1e-9),
+            "az " + s4.cam.az.toFixed(3) + "° el " + s4.cam.el.toFixed(3) + "° = solved sight az "
+            + S.az.toFixed(3) + "° el " + S.el.toFixed(3) + "°, " + s4.ang.toFixed(6) + "° off C1–C2");
+        ok("[19-4] …and the picture is the full Newman projection again",
+            s4.w === 1 && s4.rimOn && !s4.backMesh && !s4.ccBond,
+            "w = " + s4.w + " · rim on · C2 withheld");
+        ok("[19-4] …and the row reads \"Along the bond\" again, engine-owned option withdrawn",
+            !G.els["org_view_dragged_opt"] && G.els["org_view_select"].value === "sight");
+        // and the sandbox is STILL a sandbox after the sight pick.
+        const azSight = s4.cam.az;
+        orbit(G);
+        const s5 = readPicture(G.RUN, G.scene);
+        ok("[19-4] …and the orbit is alive after the sight pick too",
+            s5.seized && near(s5.cam.az - azSight, ORBIT_DEG, 1e-9),
+            "az " + azSight.toFixed(3) + "° → " + s5.cam.az.toFixed(3) + "°");
+    }
+
+    // ── (h) the (a) half on its own path: orbit, then pick the option the state
+    //    opened on. The fixed build must land back on the axis.
+    {
+        const P = mkSeizeRun(false);
+        P.CLOCK.t = PIN_MS / 1000;
+        P.RUN.apply(EXPLORE()); P.RUN.frame(EXPLORE());
+        orbit(P);
+        P.RUN.pickView("sight"); P.RUN.frame(EXPLORE());
+        const p = readPicture(P.RUN, P.scene), S = sightPose(P);
+        ok("[19h] orbit → \"Along the bond\" (no home pick in between) also lands on the bond axis",
+            !p.seized && near(p.cam.az, S.az, 1e-9) && p.ang < 1e-6 && p.w === 1,
+            "camera " + p.ang.toFixed(9) + "° off C1–C2, w = " + p.w + ", seized = " + p.seized);
+    }
+
+    // ── (i) NEGATIVE CONTROL 3a — the PRE-FIX LEVEL LATCH, restored by surgery on
+    //    the same extracted frame pass, driven by the IDENTICAL four-step gesture.
+    //    It must trip step 3: the orbit is dead for the rest of the state.
+    {
+        const N = mkSeizeRun(false, true);
+        N.CLOCK.t = PIN_MS / 1000;
+        N.RUN.apply(EXPLORE()); N.RUN.frame(EXPLORE());
+        orbit(N);
+        N.RUN.pickView("home"); N.RUN.frame(EXPLORE());
+        const azPark = readPicture(N.RUN, N.scene).cam.az;
+        orbit(N);
+        const n3 = readPicture(N.RUN, N.scene);
+        ok("[neg] the pre-fix LEVEL LATCH reproduces the dead orbit: after \"Standard\", a second "
+            + ORBIT_PX + " px orbit does not move the camera at all",
+            Math.abs(n3.cam.az - azPark) < 1e-12 && !n3.seized,
+            "az stayed " + n3.cam.az.toFixed(3) + "° through " + ORBIT_PX
+            + " px of trusted drag, seized = " + n3.seized);
+        orbit(N, 300);           // founder-proxy's second, longer drag
+        ok("[neg] …and it stays dead for the rest of the state — 300 px more moves nothing",
+            Math.abs(readPicture(N.RUN, N.scene).cam.az - azPark) < 1e-12,
+            "az still " + readPicture(N.RUN, N.scene).cam.az.toFixed(3) + "°");
+    }
+
+    // ── (j) NEGATIVE CONTROL 3b — the OTHER half. The pre-fix latch never cleared
+    //    on "Along the bond", so that option could never restore its own axis.
+    //    (This needs its own gesture: under the pre-fix code the dead orbit of (i)
+    //    MASKS this half, because a camera that was never seized re-solves anyway.)
+    {
+        const M = mkSeizeRun(false, true);
+        M.CLOCK.t = PIN_MS / 1000;
+        M.RUN.apply(EXPLORE()); M.RUN.frame(EXPLORE());
+        orbit(M);
+        M.RUN.pickView("sight"); M.RUN.frame(EXPLORE());
+        const m = readPicture(M.RUN, M.scene), S = sightPose(M);
+        ok("[neg] …and the pre-fix latch never cleared on \"Along the bond\": the control reads the bond axis while the molecule sits off it",
+            m.seized && Math.abs(m.cam.az - S.az) > 1 && m.ang > 1,
+            "picked \"Along the bond\", camera is still " + m.ang.toFixed(2) + "° off C1–C2 (az "
+            + m.cam.az.toFixed(3) + "° vs the solved " + S.az.toFixed(3) + "°), seized = " + m.seized);
+    }
+
+    // ── (k) THE HARD CONSTRAINT, again, for the EDGE. An edge-triggered flag is
+    //    exactly the shape that introduces frame-order dependence, so: a full
+    //    drag+pick session followed by a state re-apply must reproduce the pinned
+    //    frame byte for byte. THE EYE never picks a view (no trusted change), so
+    //    this is stricter than the path a frozen baseline actually takes.
+    {
+        // What a frozen frame IS: every VISIBLE mesh's drawn state, plus every
+        // published number. A mesh hidden in BOTH frames draws nothing — it simply
+        // keeps the transform of the last frame it was visible in (the 7th stick,
+        // from when the orbit dissolved the projection and the C–C bond appeared),
+        // and comparing that would be comparing session history, not pixels.
+        // `snapshot` is left exactly as it is for (e), where no mesh ever changes
+        // visibility and the stricter comparison is free.
+        const drawn = (RUN: { W: Record<string, unknown> }, scene: Mesh[]) => JSON.stringify({
+            meshes: scene.filter(m => m.visible).map(m => [m.userData.id, m.pos, m.sc, m.q, m.renderOrder,
+                (m.material as Record<string, unknown>).opacity, (m.material as Record<string, unknown>).hex, m.text]),
+            pub: [RUN.W.PM_orgNewmanW, RUN.W.PM_orgNewmanAngle, RUN.W.PM_orgCam,
+                RUN.W.PM_orgMinGap, RUN.W.PM_orgPhi, RUN.W.PM_orgCamSeized]
+        });
+        const Z = mkSeizeRun(false);
+        Z.RUN.apply(EXPLORE());
+        Z.CLOCK.t = PIN_MS / 1000; Z.RUN.frame(EXPLORE());
+        const clean = drawn(Z.RUN, Z.scene);
+        ok("[neg] on the undragged path THE EYE captures, the view row is untouched and the engine-owned option is never created",
+            !Z.els["org_view_dragged_opt"] && Z.els["org_view_select"].value === "sight",
+            "row = " + JSON.stringify(Z.els["org_view_select"].value));
+        orbit(Z); Z.RUN.pickView("home"); Z.RUN.frame(EXPLORE());
+        orbit(Z); Z.RUN.pickView("sight"); Z.RUN.frame(EXPLORE());
+        orbit(Z);
+        ok("[neg] the drag+pick session really did move the picture (the comparison below is not vacuous)",
+            drawn(Z.RUN, Z.scene) !== clean);
+        Z.RUN.apply(EXPLORE());                 // the teacher re-clicks the rail card
+        Z.CLOCK.t = PIN_MS / 1000; Z.RUN.frame(EXPLORE());
+        ok("[neg] after a full drag + two view picks, re-applying the state reproduces the pinned frame BYTE-IDENTICALLY",
+            drawn(Z.RUN, Z.scene) === clean,
+            drawn(Z.RUN, Z.scene) === clean
+                ? clean.length + " bytes of drawn scene + published state, reproduced exactly"
+                : "DIVERGED — the pick edge leaked into the pinned frame");
+        ok("[neg] …and apply clears BOTH the seize and any pending pick",
+            !(Z.RUN.W as Record<string, unknown>).PM_orgCamSeized
+            && !(Z.RUN.W as Record<string, unknown>).PM_orgViewPick);
+        // the pick edge is one-shot: re-running the same frame does not re-fire it.
+        Z.RUN.pickView("home");
+        Z.RUN.frame(EXPLORE());
+        const once = drawn(Z.RUN, Z.scene);
+        Z.RUN.frame(EXPLORE()); Z.RUN.frame(EXPLORE());
+        ok("[neg] the pick is idempotent after consumption — repeating the frame changes nothing",
+            drawn(Z.RUN, Z.scene) === once);
+        // …and THE EYE's path: apply writes PM_orgView programmatically (line
+        // "window.PM_orgView = ... ? sight : home") and arms nothing. An unarmed
+        // latch is invisible to the frame pass, whatever value it holds.
+        const W = Z.RUN.W as Record<string, unknown>;
+        W.PM_orgViewDragged = false; W.PM_orgView = "home";
+        Z.RUN.frame(EXPLORE());
+        const unarmed = drawn(Z.RUN, Z.scene);
+        W.PM_orgView = "sight";
+        Z.RUN.frame(EXPLORE());
+        ok("[neg] an UNARMED latch is invisible to the frame pass — only a trusted pick moves the camera",
+            drawn(Z.RUN, Z.scene) === unarmed);
+    }
+
+    // ── (l) the source contract THE EYE's safety rests on: the pick is armed ONLY
+    //    by a trusted change event, and no level-latched clear survives.
+    {
+        ok("[19src] the shipped frame pass consumes the view pick as an EDGE and clears it in place",
+            FRAME_FN.indexOf(EDGE_PICK) >= 0);
+        ok("[19src] …and no clear is asserted off the LATCHED selection any more",
+            !/viewLive[^\n]*PM_orgCamSeized|PM_orgCamSeized[^\n]*viewLive/.test(FRAME_FN),
+            "no viewLive→PM_orgCamSeized line in updateOrganicStructureFrame");
+        // code lines only — the comment above the listener names the symbol too.
+        const code = BUILD_FN.split("\n").filter(l => l.trim().indexOf("//") !== 0).join("\n");
+        const armings = (code.match(/PM_orgViewPick/g) || []).length;
+        ok("[19src] the view row arms the one-shot pick ONLY inside the trusted guard",
+            /if \(ev && ev\.isTrusted\) \{ window\.PM_orgViewDragged = true; window\.PM_orgViewPick = vSel\.value; \}/.test(BUILD_FN)
+            && armings === 1,
+            armings + " mention of PM_orgViewPick in buildOrganicStructure, inside the ev.isTrusted guard");
+        ok("[19src] and apply clears the pending pick, so a state entry can never inherit one",
+            /window\.PM_orgViewPick = null;/.test(APPLY_FN));
+        ok("[19src] a change event carrying the engine-owned reading arms nothing and never latches",
+            /if \(vSel\.value === "dragged"\) return;/.test(BUILD_FN));
     }
 }
 
