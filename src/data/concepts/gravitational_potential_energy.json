@@ -193,36 +193,36 @@
             "id": "gpe_s3_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "the identical climb from S1 (m = 3 kg, same speed, same two points) with ONE change: the dashed h = 0 line now sits level with point B, and it SLIDES there from S1's position as the state opens",
+            "text": "the identical climb from S1 (m = 3 kg, same speed, same two points), run at S1's own zero line — then, with the cart parked at point B, the dashed h = 0 line SLIDES up until it is level with point B",
             "color": "#FFF176"
           },
           {
             "id": "gpe_s3_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the signed U bar opens at −35.3 J, well below its zero baseline, and rises to exactly 0.0 J at point B; point A now stamps −29.4 J — every reading has moved and the ones below the line are negative",
+            "text": "the climb runs first at S1's own zero and stamps the SAME 14.7 J and 44.1 J; then the line slides up and both latched stamps re-derive live to −29.4 J and 0.0 J while the U bar swings down through its zero baseline",
             "color": "#FFCA28"
           },
           {
             "id": "gpe_s3_hud",
             "type": "annotation",
             "position": { "x": 560, "y": 400 },
-            "text": "the formula's second line still reads ΔU = mgΔh = 29.4 J, unchanged from S1 — only the zero line moved",
+            "text": "the formula's second line reads ΔU = mgΔh = 29.4 J before the slide and is still reading it after — the one number on screen that does not move while every other one does",
             "color": "#4DD0E1"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The zero line is your choice. Slide it, and only the numbers slide with it.", "glow": "marker_h_ref" },
-            { "id": "s3_2", "text_en": "Here it sits level with point B, so point B itself now reads 0 J.", "glow": "marker_h_ref" },
-            { "id": "s3_3", "text_en": "Below the line the stored energy is negative. That is allowed.", "glow": "energy_bar_U_grav" },
-            { "id": "s3_4", "text_en": "Every reading changed, yet the gain, 29.4 J, is exactly the same.", "glow": "checkpoint_2" }
+            { "id": "s3_1", "text_en": "The same climb as before, measured from the same zero line: 14.7 J, then 44.1 J.", "glow": "checkpoint_2" },
+            { "id": "s3_2", "text_en": "Now watch the zero line move up until it is level with point B.", "glow": "marker_h_ref" },
+            { "id": "s3_3", "text_en": "Every reading changes. Point A turns negative, and point B reads 0 J.", "glow": "energy_bar_U_grav" },
+            { "id": "s3_4", "text_en": "The gain, 29.4 J, never moved at all.", "glow": "checkpoint_2" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "The ground is THE zero — a body at the ground HAS no potential energy, and U is an absolute property of the body.",
-            "visual_counter": "The identical climb re-runs with the zero line moved to the start height — the bar now opens EMPTY and every stamped U changes, yet ΔU stamps the same 29.4 J.",
+            "visual_counter": "The identical climb re-runs, is stamped at S1's zero, and THEN the zero line slides up to point B while the student watches: both stamped U values change on screen (14.7 to −29.4 J, 44.1 to 0.0 J) and ΔU holds at 29.4 J throughout.",
             "one_line_fix": "U depends on where you put zero; only ΔU = mgΔh is physical."
           }
         ]
@@ -668,11 +668,11 @@
       },
 
       "STATE_3": {
-        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points) with energy_layer.h_ref_m moved to 1.5 m — LEVEL WITH POINT B, so the zero line's move is metres on screen rather than the old 0.3 m that was a few pixels (founder review 2026-08-10: 'state one, state three looks same'). The zero-line slide is deliberately SHORT (h_ref_slide_ms 380). The cart crosses point A at 500 ms (s0 0.6 -> 1.0 at 0.8 m/s), the stamp latches on first crossing, and a slide still in flight at that instant latches a meaningless transient - measured: a 1500 ms slide stamped A at 2.8 J instead of -29.4 J and the first-capture rule then kept it forever. 380 ms clears the crossing with margin. Holding the cart instead (activate_at_ms + visible_before_activation) does NOT work on this body: its applied force exactly balances gravity so a = 0, and the activation re-seed leaves v at 0 - the cart never starts and the state renders fully static while THE EYE still passes 28/28. Requires energy_layer.signed: true — U_grav goes negative here BY DESIGN, which is the concept's own misconception_watch and its negative_potential_energy drill-down. The signed U bar opens at −35.3 J, point A stamps U = −29.4 J, point B stamps U = 0.0 J; at 4400 ms the formula gains the same second line as S1, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
+        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points), run in TWO beats. Beat 1 (0-4200 ms): the reference is S1's own h_ref = 0, so the cart climbs and latches exactly the numbers S1 shows - point A 14.7 J, point B 44.1 J - and the formula gains dU = mgdh = 29.4 J at 4400 ms. Beat 2 (5000-6500 ms): point B's 3400 ms dwell parks the cart while height_markers.h_ref_slide_* eases the line up to energy_layer.h_ref_m = 1.5 m, LEVEL WITH POINT B. Latched U_grav stamps are reference-live (nlbCpText), so both stamps re-derive ON SCREEN as the line moves: 14.7 -> -29.4 J and 44.1 -> 0.0 J, while dU sits still at 29.4 J. The concept is shown, not asserted. This ORDER is the point (founder 2026-08-10). The previous build slid the line in the opening 380 ms purely to beat point A's 500 ms crossing, because a stamp latched mid-slide froze a meaningless transient (2.8 J). Reference-live stamps remove that race, so the slide can take the time it needs and can happen where it teaches. Requires energy_layer.signed: after the slide U is negative down the whole lower ramp, which is this concept's own misconception_watch and its negative_potential_energy drill-down. Checkpoint labels here carry NO baked height, unlike S1/S4 - on this state each point's height CHANGES mid-state, so a baked height would be wrong for half of it; the live h leader carries it instead. The loop resets at 8200 ms.",
         "visible_elements": [],
         "camera_position": [0, 1.15, 5.6],
         "caption": "New zero, same ΔU",
-        "eye_capture_ms": 4800,
+        "eye_capture_ms": 7200,
         "show_sliders": true,
         "newtons_laws_body": {
           "mode": "incline_slide",
@@ -684,17 +684,17 @@
             { "body_id": "cart", "show": ["applied", "weight"] }
           ],
           "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 1.5, "signed": true, "precision": 1 },
-          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true, "h_ref_slide_from_m": 0, "h_ref_slide_ms": 380 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true, "h_ref_slide_from_m": 0, "h_ref_slide_at_ms": 5000, "h_ref_slide_ms": 1500 },
           "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true, "dim": true },
           "checkpoints": [
-            { "s_m": 1.0, "label": "A (h = −1.00 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
-            { "s_m": 3.0, "label": "B (h = 0.00 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
+            { "s_m": 1.0, "label": "point A", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
+            { "s_m": 3.0, "label": "point B", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 3400 }
           ],
           "formula_lines": [
             { "text": "U = mgh" },
             { "text": "ΔU = mgΔh = 29.4 J", "at_ms": 4400 }
           ],
-          "loop_reset_ms": 6000,
+          "loop_reset_ms": 8200,
           "controls_visible": ["h_ref"]
         }
       },

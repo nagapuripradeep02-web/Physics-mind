@@ -2072,6 +2072,12 @@ export interface Field3DConfig {
                 // (Rule 37) — otherwise the animation would fight the teacher.
                 h_ref_slide_from_m?: number;
                 h_ref_slide_ms?: number;           // default NLB_HREF_SLIDE_MS
+                // WHEN the slide starts, on the state-local clock. Default 0.
+                // Author it AFTER the last checkpoint's stamp so the state reads in
+                // the honest order: take the readings at one zero, then move the zero
+                // and watch those same readings change while ΔU does not. Latched
+                // U_grav stamps are reference-live (nlbCpText), so they follow.
+                h_ref_slide_at_ms?: number;
                 // The BRIGHT computed marker. Omit it and only the line is drawn.
                 predicted_stop?: {
                     label?: string;                // default 'highest point'
@@ -47918,7 +47924,18 @@ export const FIELD_3D_RENDERER_CODE = `
         var to = (typeof eng.energy_h_ref_authored_m === "number") ? eng.energy_h_ref_authored_m : 0;
         var dur = (typeof hm.h_ref_slide_ms === "number" && hm.h_ref_slide_ms > 0)
             ? hm.h_ref_slide_ms : NLB_HREF_SLIDE_MS;
-        var p = (eng.t_ms || 0) / dur;
+        // The slide's START instant. Absent ⇒ 0 ⇒ the original behaviour (the line
+        // is already moving as the state opens). Authored, the state can run its
+        // whole climb at the ORIGINAL reference, latch its stamps there, and only
+        // THEN move the line — which is the honest order for this lesson: you see
+        // the readings taken, and then you watch those same readings change because
+        // you moved the zero, with ΔU sitting still through all of it. It also
+        // removes the trap that forced the slide to be fast: a slide racing to
+        // finish before the first crossing was the only way to stop the stamp
+        // latching a mid-animation transient.
+        var at = (typeof hm.h_ref_slide_at_ms === "number" && isFinite(hm.h_ref_slide_at_ms) && hm.h_ref_slide_at_ms > 0)
+            ? hm.h_ref_slide_at_ms : 0;
+        var p = ((eng.t_ms || 0) - at) / dur;
         if (!(p > 0)) p = 0;
         if (p > 1) p = 1;
         var e = p * p * (3 - 2 * p);                       // smoothstep
@@ -51108,10 +51125,11 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         var parts = [];
+        var ugIdx = null;
         for (var i = 0; i < cp.capture.length; i++) {
             var k = cp.capture[i];
             if (k === "K") parts.push("K = " + nlbEnFx(kX, prec));
-            else if (k === "U_grav") parts.push("U = " + nlbEnFx(ugX, prec));
+            else if (k === "U_grav") { ugIdx = parts.length; parts.push("U = " + nlbEnFx(ugX, prec)); }
             else if (k === "U_spring") parts.push("Uₛ = " + nlbEnFx(usX, prec));
             else if (k === "E_total") parts.push("E = " + nlbEnFx(eX, prec));
             else if (k === "v") parts.push("v = " + nlbFx(vX, 2) + " m/s");
@@ -51126,7 +51144,43 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
         var head = cp.label + (cp.mode === "every" && cp._count > 1 ? (" (pass " + cp._count + ")") : "");
+        // ── REFERENCE-LIVE U (founder review 2026-08-10) ─────────────────────
+        //   A stamp is a reading at a PLACE, and U at a place genuinely depends on
+        // where you put zero — that is the whole concept. Frozen as a finished
+        // string, a latched stamp goes stale the moment h_ref moves, and the state
+        // that exists to teach "moving the zero changes every reading" was the one
+        // state whose readings did not change.
+        //   So the reference-INDEPENDENT ingredients are stashed beside the text:
+        // the checkpoint's height above the SURFACE ORIGIN (which no reference can
+        // move), the mass, and the reference in force at the stamp. nlbCpText below
+        // re-derives the U clause from those whenever the live reference has since
+        // moved. Everything else in the stamp stays frozen on purpose — a W ledger
+        // is path-dependent and a v is a fact about one instant; neither re-derives
+        // from a reference and both would be lies if they did.
+        cp._parts = parts.slice();
+        cp._head = head;
+        cp._ugIdx = ugIdx;
+        cp._ugM = b.m;
+        cp._ugPrec = prec;
+        cp._ugRef = (eng.energy_h_ref_m || 0);
+        // Height above the surface origin, recovered from the value just computed so
+        // it cannot drift from it: ug = m·g·(hAbs − ref)  ⇒  hAbs = ug/(m·g) + ref.
+        cp._ugHAbs = (b.m > 0) ? (ugX / (b.m * NLB_G) + cp._ugRef) : null;
         return head + ":  " + nlbStampClauses(parts);
+    }
+    //   The text a latched stamp RENDERS this frame. Byte-identical to the stored
+    //   string unless the energy reference has actually moved since the stamp — so
+    //   every concept in the fleet, none of which changes h_ref mid-state, renders
+    //   exactly what it always did, and no baseline can shift.
+    function nlbCpText(eng, cp) {
+        if (!cp || !cp.text) return "";
+        if (cp._ugIdx == null || cp._ugHAbs == null || !cp._parts) return cp.text;
+        var ref = (eng.energy_h_ref_m || 0);
+        if (Math.abs(ref - cp._ugRef) < 1e-9) return cp.text;
+        var ug = cp._ugM * NLB_G * (cp._ugHAbs - ref);
+        var parts = cp._parts.slice();
+        parts[cp._ugIdx] = "U = " + nlbEnFx(ug, cp._ugPrec);
+        return cp._head + ":  " + nlbStampClauses(parts);
     }
     // ── The CLAUSE-BOUNDARY WRAP (Rule 34b — one surface, and it reads as one) ───
     //   Every element of parts[] is one clause: a symbol, its equals sign, its value
@@ -51192,7 +51246,7 @@ export const FIELD_3D_RENDERER_CODE = `
             if (!cps[i].text) continue;
             // Rule 14: this whole body is ONE template literal, so a newline escape
             // must be doubled or the outer literal eats it and emits a raw break.
-            txt += (txt ? "\\n" : "") + cps[i].text;
+            txt += (txt ? "\\n" : "") + nlbCpText(eng, cps[i]);
         }
         if (ff.textContent !== txt) ff.textContent = txt;
         var want = txt ? "block" : "none";
