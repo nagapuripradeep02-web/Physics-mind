@@ -13318,6 +13318,12 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // ── F23 · the line's shadow in the plane ────────────────────────────
+        //   Δ2c — the projection's two angle numbers are HELD here and settled
+        //   below, after the arc pass, because an authored arc may own the beat
+        //   of the token it names. projAngles is the projection's claim; null
+        //   means it has nothing to say this frame.
+        var projAngles = null;
+        var arcOwned = {};
         var proj = d.projection;
         if (proj && vgInGroup(proj, group)) {
             var pL = ctx.lines[proj.line], pP = ctx.planes[proj.plane];
@@ -13348,8 +13354,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 // a point — because that case reports 90/0, not silence.
                 var ang = vgLinePlaneAngles(pL.dir, pP.n);
                 if (ang && vgArrived(vgRevealFrac(proj, stateMs, growMs))) {
-                    out.readouts.angle_line_normal_deg = ang.to_normal;
-                    out.readouts.angle_line_plane_deg = ang.to_plane;
+                    // Δ2c — bug_class vg_projection_publishes_both_angle_tokens_
+                    // before_either_arc_is_drawn. The claim is RECORDED, not
+                    // published: a state that stages the derivation with its own
+                    // angle arcs (STATE_7: shadow 2000, arc to the normal 9000,
+                    // arc to the plane 13000) had both answers on the HUD from
+                    // 3.35 s — 6.7 s and 11 s before the beats that derive them.
+                    // A readout is gated by the reveal of the thing IT NAMES.
+                    projAngles = ang;
                 }
             }
         }
@@ -13403,11 +13415,29 @@ export const FIELD_3D_RENDERER_CODE = `
                 role: o.role || "neutral", label: o.label || null,
                 readout: o.readout || null
             });
+            // Δ2c — OWNERSHIP, recorded at the push and independent of arrival:
+            // this arc RESOLVED, so from here on the token it names is its beat
+            // to give, and the projection above may not answer for it. Recorded
+            // here and not from the authored list because an arc that cannot be
+            // drawn skips out above (the in-plane arm of a line perpendicular
+            // to the plane has no direction) — that arc owns nothing, and the
+            // projection keeps its 90/0 claim rather than the number vanishing.
+            if (o.readout === "angle_line_normal_deg" || o.readout === "angle_line_plane_deg") arcOwned[o.readout] = true;
             if (aShown) {
                 if (o.readout === "angle_line_normal_deg") out.readouts.angle_line_normal_deg = val;
                 else if (o.readout === "angle_line_plane_deg") out.readouts.angle_line_plane_deg = val;
                 else if (o.readout === "angle_lines_deg") out.readouts.angle_lines_deg = val;
             }
+        }
+
+        // ── Δ2c · the projection settles its two angles ─────────────────────
+        //   Per TOKEN, never all-or-nothing: a state authoring only a projection
+        //   (no arcs at all, or an arc naming the other angle) keeps exactly the
+        //   behaviour it had — the shadow IS the picture of "angle to the plane"
+        //   there, and it is the only construct that can claim these numbers.
+        if (projAngles) {
+            if (!arcOwned.angle_line_normal_deg) out.readouts.angle_line_normal_deg = projAngles.to_normal;
+            if (!arcOwned.angle_line_plane_deg) out.readouts.angle_line_plane_deg = projAngles.to_plane;
         }
 
         // ── F23 · free vectors (the skew formula's two named arrows) ────────

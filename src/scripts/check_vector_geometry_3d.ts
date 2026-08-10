@@ -3447,6 +3447,285 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
   }
 }
 
+console.log("\n=== 19c. Δ2c — ONE CONSTRUCT, TWO TOKENS, TWO BEATS: THE ARC OWNS THE NUMBER IT NAMES ===");
+{
+  // bug_class vg_projection_publishes_both_angle_tokens_before_either_arc_is_
+  // drawn (MAJOR). §19b gated every readout on the reveal of the construct that
+  // COMPUTES it. That is not the same rule as "the reveal of the thing it
+  // NAMES", and the projection is where the two come apart: one construct
+  // yields TWO tokens whose teaching beats are ten seconds apart.
+  //
+  // MEASURED (EYE walk, lines_and_planes_in_space STATE_7): the shadow reveals
+  // at 2000 ms over a 1500 ms grow, so it arrives at ~3350 ms and both angle
+  // rows appeared there — while arc_normal reveals at 9000 (arrives ~10080) and
+  // arc_plane at 13000 (arrives ~14350). Pixel-confirmed at t=11000: the panel
+  // read "angle to plane = 35.0°" with the arc that derives it still two
+  // seconds from its reveal. The state cannot stage a derivation at all if the
+  // answer is on the HUD 11 s before the beat that reaches it.
+  //
+  // THE DISCRIMINATING QUANTITY IS PER-TOKEN, NOT PER-CONSTRUCT: a state with
+  // NO arcs must keep today's behaviour exactly (there the shadow IS the
+  // picture of "angle to the plane", and nothing else can claim the number), so
+  // a fixture that only proves silence would be passed by simply deleting the
+  // publish. Fixture (b) is what makes this section capable of failing in the
+  // other direction, and (c) is what makes it per-TOKEN rather than
+  // all-or-nothing.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+  const uIn = nrm(cross3(nh, [0, 0, 1]));
+  const rotFromNormal = (deg: number): V3 => {
+    const a = deg * Math.PI / 180;
+    return nrm([nh[0] * Math.cos(a) + uIn[0] * Math.sin(a),
+      nh[1] * Math.cos(a) + uIn[1] * Math.sin(a),
+      nh[2] * Math.cos(a) + uIn[2] * Math.sin(a)]);
+  };
+  const dCut = rotFromNormal(55);                                 // 55° to the normal, 35° to the plane
+  const Xpt: V3 = add3(planePoint, [uIn[0] * 0.6, uIn[1] * 0.6, uIn[2] * 0.6]);
+  const cutAnchor: V3 = sub3(Xpt, [dCut[0] * 2.6, dCut[1] * 2.6, dCut[2] * 2.6]);
+
+  const ARC_N = { id: "arc_normal", between: ["Lcut", "P1.normal"], readout: "angle_line_normal_deg", reveal_at_ms: 9000, grow_ms: 1200 };
+  const ARC_P = { id: "arc_plane", between: ["Lcut", "P1"], readout: "angle_line_plane_deg", reveal_at_ms: 13000, grow_ms: 1500 };
+  /** STATE_7's authoring, to the ms: the shadow at 2000/1500, then the arcs. */
+  const s7 = (arcs: unknown[] | null, dir: V3 = dCut): Record<string, unknown> => {
+    const b: Record<string, unknown> = {
+      mode: "lines_planes", reveal_ms: 0,
+      value_readouts: ["angle_line_normal_deg", "angle_line_plane_deg"],
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true }],
+      lines: [{ id: "Lcut", point: cutAnchor, dir, lambda_span: [-3, 3], label: "d" }],
+      projection: { id: "shadow", line: "Lcut", plane: "P1", reveal_at_ms: 2000, grow_ms: 1500 },
+    };
+    if (arcs) b.angle_arcs = arcs;
+    return b;
+  };
+  // The panel a teacher reads, through the SHIPPED frame driver — never the
+  // resolver alone (§19b's founder question: does anything RE-PUBLISH after the
+  // resolver returns?).
+  const panelAt = (block: Record<string, unknown>, ms: number, sceneGroup: string | null = null) => {
+    const dom = fakeDom();
+    // Δ10 — the live group is a WINDOW value (PM_vgSceneGroup), written by the
+    // apply pass and read into LP_KNOBS by the frame driver, so it is seeded
+    // here the way the shipped driver reads it, never as an authored key.
+    const win: Record<string, unknown> = sceneGroup ? { PM_vgSceneGroup: sceneGroup } : {};
+    FRAME_HARNESS.run!(block, ms, dom, win);
+    const el = dom.get("vg_readout");
+    return {
+      html: el.innerHTML, shown: el.style.display,
+      hasN: el.innerHTML.includes("vg_readout_angle_line_normal_deg"),
+      hasP: el.innerHTML.includes("vg_readout_angle_line_plane_deg"),
+      rd: (win.PM_vgLinesPlanes as any).readouts as Record<string, number>,
+    };
+  };
+
+  // ── THE PRE-FIX RESOLVER, RECONSTRUCTED ─────────────────────────────────
+  //   The SHIPPED sandbox with ONE line of vgResolveLinesPlanes replaced: the
+  //   HOLD (projAngles = ang) put back to the two direct publishes it replaced.
+  //   The settle block below the arc pass then finds projAngles null and does
+  //   nothing, so the reconstruction is the shipped pre-fix behaviour exactly —
+  //   publish on the projection's beat, arcs overwrite later. A guarded
+  //   substitution: if the shipped text stops matching, this THROWS rather than
+  //   quietly testing a build with no defect in it.
+  const HOLD_LINE = /\n(\s*)projAngles = ang;\n/;
+  const unhold = (name: string, src: string) => {
+    if (name !== "vgResolveLinesPlanes") return src;
+    if (!HOLD_LINE.test(src)) {
+      throw new Error(
+        "§19c NEGATIVE CONTROL CANNOT BE BUILT: the projection's HOLD line (projAngles = ang;) is no "
+        + "longer in vgResolveLinesPlanes, so this control cannot plant the defect it names. A control "
+        + "that silently fails to plant its defect is worse than no control — update HOLD_LINE and "
+        + "re-watch it fail.");
+    }
+    return src.replace(HOLD_LINE,
+      "\n$1out.readouts.angle_line_normal_deg = ang.to_normal;\n$1out.readouts.angle_line_plane_deg = ang.to_plane;\n");
+  };
+  const PRE7 = buildVgSandbox(unhold) as any;
+  assertTrue("the reconstructed pre-fix resolver really is planted (it publishes both angles the instant the shadow arrives, at t=4000)",
+    (() => {
+      const r = PRE7.vgResolveLinesPlanes(s7([ARC_N, ARC_P]), {}, 4000).readouts;
+      return typeof r.angle_line_normal_deg === "number" && typeof r.angle_line_plane_deg === "number";
+    })());
+
+  // ── (a) THE STAGED STATE — each number waits for ITS OWN arc ─────────────
+  {
+    const block = s7([ARC_N, ARC_P]);
+    // NOT VACUOUS: the shadow really is fully drawn at 4000 ms, so the silence
+    // below is a GATE and not a fixture in which nothing resolved.
+    {
+      const res = E.vgResolveLinesPlanes(block, {}, 4000);
+      const shadow = res.lines.filter((l: any) => l.id === "shadow")[0];
+      assertTrue("t=4000ms: the shadow IS on screen, fully grown (the projection resolved — what is withheld is the NUMBER, not the picture)",
+        !!shadow && shadow.frac === 1);
+      assertTrue("...and neither arc is drawn yet (arc_normal reveals at 9000, arc_plane at 13000)",
+        res.arcs.filter((a: any) => a.frac > 0).length === 0);
+    }
+    for (const ms of [4000, 8000]) {
+      const f = panelAt(block, ms);
+      assertTrue(`t=${ms}ms: the panel prints NEITHER angle row, and is hidden (the answer may not precede the beat that derives it)`,
+        !f.hasN && !f.hasP && f.shown === "none");
+      assertTrue(`t=${ms}ms: nothing re-publishes downstream either — PM_vgLinesPlanes.readouts carries no angle token`,
+        f.rd.angle_line_normal_deg === undefined && f.rd.angle_line_plane_deg === undefined);
+    }
+    // ARRIVED, NOT STARTED — the arc's own ramp, at the SAME threshold §19b
+    // pinned: 9000 + 0.9*1200 = 10080 ms through the ease-out cubic.
+    {
+      const mid = panelAt(block, 10000);
+      assertTrue("t=10000ms: arc_normal is mid-grow, so its number is still withheld (a 'started' gate would print it here)",
+        !mid.hasN && !mid.hasP);
+      const f = panelAt(block, 10500);
+      assertTrue("t=10500ms: arc_normal has arrived and 'angle to normal' appears — ALONE",
+        f.hasN && !f.hasP && f.shown === "block");
+      check("...at the constructed 55.0°", f.rd.angle_line_normal_deg, 55, 1e-9);
+      assertTrue("...and the row a teacher reads carries the label and the value in one node",
+        f.html.includes("angle to normal = 55.0"));
+    }
+    // THE MEASURED FRAME. t=11000 is the dumped EYE frame that read
+    // "angle to plane = 35.0°" with arc_plane 2 s from its reveal.
+    {
+      const f = panelAt(block, 11000);
+      assertTrue("t=11000ms (THE MEASURED FRAME): 'angle to plane' is NOT on the panel — arc_plane is still 2 s from its reveal",
+        !f.hasP && !f.html.includes("angle to plane") && f.hasN);
+    }
+    {
+      const mid = panelAt(block, 14000);
+      assertTrue("t=14000ms: arc_plane is mid-grow (13000 + 0.9*1500 = 14350), so the second number is still withheld",
+        !mid.hasP && mid.hasN);
+      const f = panelAt(block, 15000);
+      assertTrue("t=15000ms: arc_plane has arrived and BOTH rows print", f.hasN && f.hasP && f.shown === "block");
+      check("...'angle to plane' is the constructed 35.0° (the fix delays the value, it does not change it)",
+        f.rd.angle_line_plane_deg, 35, 1e-9);
+      check("...and 'angle to normal' still reads 55.0°", f.rd.angle_line_normal_deg, 55, 1e-9);
+      assertTrue("...and both rows carry label and value", f.html.includes("angle to plane = 35.0") && f.html.includes("angle to normal = 55.0"));
+      check("...the two angles are complementary, which is the state's whole claim",
+        f.rd.angle_line_normal_deg + f.rd.angle_line_plane_deg, 90, 1e-9);
+    }
+    // ── NEGATIVE CONTROL 1 — the SHIPPED PRE-FIX RESOLVER on this very state.
+    {
+      const p4 = PRE7.vgResolveLinesPlanes(block, {}, 4000).readouts;
+      expectFail(`the pre-fix resolver withholds the angles at t=4000 (it publishes angle to normal = ${p4.angle_line_normal_deg.toFixed(1)}° and angle to plane = ${p4.angle_line_plane_deg.toFixed(1)}°, 6.1 s and 10.4 s before the arcs that derive them)`,
+        p4.angle_line_normal_deg === undefined && p4.angle_line_plane_deg === undefined);
+      const p11 = PRE7.vgResolveLinesPlanes(block, {}, 11000).readouts;
+      expectFail("...and at the MEASURED frame t=11000 (it prints angle to plane = 35.0° with arc_plane 2 s away)",
+        p11.angle_line_plane_deg === undefined);
+      // ...and the reconstruction is faithful: once every beat has landed the
+      // two resolvers are IDENTICAL, so the control isolates the hold and
+      // nothing else.
+      assertTrue("the pre-fix and shipped resolvers agree BIT FOR BIT on a settled frame (the control changes one thing)",
+        JSON.stringify(PRE7.vgResolveLinesPlanes(block, {}, 20000)) === JSON.stringify(E.vgResolveLinesPlanes(block, {}, 20000)));
+    }
+    // DETERMINISM (D3 / Rule 36) — the new hold is still a closed form of ms.
+    {
+      const times = [0, 3400, 4000, 8000, 10080, 10500, 14350, 15000, 30000];
+      const fwd = times.map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, {}, t)));
+      const rew = times.slice().reverse().map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, {}, t)));
+      assertTrue("REWIND: the staged state replays backwards BIT FOR BIT (a SET_TIME_FREEZE re-pin is byte-identical)",
+        fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+      const keysAt = (t: number) => Object.keys(E.vgResolveLinesPlanes(block, {}, t).readouts).sort().join(",");
+      assertTrue(`the numbers arrive beat by beat, never both at the shadow (t=4000 "${keysAt(4000)}", t=10500 "${keysAt(10500)}", t=15000 "${keysAt(15000)}")`,
+        keysAt(4000) === "" && keysAt(10500) === "angle_line_normal_deg"
+        && keysAt(15000) === "angle_line_normal_deg,angle_line_plane_deg");
+    }
+  }
+
+  // ── (b) BACK-COMPAT — a projection with NO arc keeps its claim, unchanged ─
+  //   The shadow IS the picture of "angle to the plane" on such a state, and
+  //   nothing else can ever publish these tokens there. This is the half a
+  //   "just delete the publish" fix would fail.
+  {
+    const bare = s7(null);
+    const f4 = panelAt(bare, 4000);
+    assertTrue("t=4000ms, NO arcs authored: BOTH angle rows print on the projection's own beat, exactly as before this fix",
+      f4.hasN && f4.hasP && f4.shown === "block");
+    check("...angle to normal = 55.0°", f4.rd.angle_line_normal_deg, 55, 1e-9);
+    check("...angle to plane = 35.0°", f4.rd.angle_line_plane_deg, 35, 1e-9);
+    // ...and Δ2b is untouched underneath: still nothing before the shadow lands.
+    const f3 = panelAt(bare, 3000);
+    assertTrue("t=3000ms: the shadow is still growing (2000 + 0.9*1500 = 3350), so Δ2b still withholds both — the older gate is intact",
+      !f3.hasN && !f3.hasP);
+    // The pre-fix and shipped builds are INDISTINGUISHABLE on this state, at
+    // every sampled ms — the fix's blast radius is exactly "states that author
+    // an owning arc", proved rather than asserted.
+    const sweep = [0, 1000, 2000, 3000, 3350, 4000, 9000, 12000, 20000];
+    assertTrue("a projection-only state resolves IDENTICALLY pre-fix and post-fix at every sampled ms (the change cannot reach it)",
+      sweep.every((t) => JSON.stringify(PRE7.vgResolveLinesPlanes(bare, {}, t)) === JSON.stringify(E.vgResolveLinesPlanes(bare, {}, t))));
+  }
+
+  // ── (c) PER TOKEN, NOT PER CONSTRUCT ────────────────────────────────────
+  //   One arc, naming ONE of the two tokens: the named one waits for it, the
+  //   UNNAMED one still arrives on the projection's beat. An all-or-nothing
+  //   deferral (defer as soon as any arc exists) passes (a) and (b) and fails
+  //   here, which is the whole reason this fixture exists.
+  {
+    const oneArc = s7([ARC_N]);
+    const f = panelAt(oneArc, 4000);
+    assertTrue("t=4000ms, only arc_normal authored: 'angle to plane' prints (nobody else claims it) while 'angle to normal' waits for its arc",
+      f.hasP && !f.hasN);
+    check("...and the printed one is the projection's own 35.0°", f.rd.angle_line_plane_deg, 35, 1e-9);
+    const g = panelAt(oneArc, 10500);
+    assertTrue("t=10500ms: arc_normal arrives and the second row joins it", g.hasN && g.hasP);
+    // The mirror, so neither token is special-cased by accident.
+    const otherArc = s7([ARC_P]);
+    const h = panelAt(otherArc, 4000);
+    assertTrue("t=4000ms, only arc_plane authored: the MIRROR holds — 'angle to normal' prints, 'angle to plane' waits",
+      h.hasN && !h.hasP);
+    // An arc in ANOTHER scene group owns nothing in this one: it can never
+    // publish here, so deferring to it would DELETE the number, not delay it.
+    const grouped = s7([{ ...ARC_N, groups: ["B"] }]);
+    const gA = panelAt(grouped, 4000, "A");
+    assertTrue("t=4000ms in group A, the only arc lives in group B: both rows print (an arc that can never publish here owns nothing)",
+      gA.hasN && gA.hasP);
+    const gB = panelAt(grouped, 4000, "B");
+    assertTrue("...and in group B the same arc DOES own its token, so 'angle to normal' waits", !gB.hasN && gB.hasP);
+    assertTrue("...and the group seed really reached the resolver (the two groups resolve DIFFERENTLY — a seed the driver ignored would make the pair vacuous)",
+      JSON.stringify(gA.rd) !== JSON.stringify(gB.rd));
+  }
+
+  // ── (d) AN ARC THAT CANNOT BE DRAWN OWNS NOTHING ────────────────────────
+  //   A line PERPENDICULAR to the plane projects to a POINT: the in-plane arm
+  //   of arc_plane has no direction, so that arc skips out of the pass entirely.
+  //   The renderer documents this case as "reports 90/0, not silence" — so
+  //   ownership is recorded where the arc RESOLVES, never from the authored
+  //   list, or this state would lose its number forever.
+  {
+    const perp = s7([ARC_N, ARC_P], nh);
+    const res = E.vgResolveLinesPlanes(perp, {}, 4000);
+    assertTrue("a line perpendicular to the plane draws NO shadow and arc_plane resolves to nothing (0 arcs at any ms)",
+      res.lines.filter((l: any) => l.id === "shadow").length === 0
+      && res.arcs.filter((a: any) => a.id === "arc_plane").length === 0);
+    const f = panelAt(perp, 4000);
+    assertTrue("t=4000ms: 'angle to plane' still prints the 90° the renderer promises, while 'angle to normal' waits for the arc that CAN be drawn",
+      f.hasP && !f.hasN);
+    check("...and it reads 90.0°", f.rd.angle_line_plane_deg, 90, 1e-9);
+    const g = panelAt(perp, 10500);
+    check("t=10500ms: arc_normal arrives with 0.0°, the complement", g.rd.angle_line_normal_deg, 0, 1e-9);
+  }
+
+  // ── (e) SCOPE, PROVED FROM THE SHIPPED SOURCE ───────────────────────────
+  //   Both new locals live inside vgResolveLinesPlanes and nowhere else — a
+  //   second reader would be a second place this rule could be forgotten.
+  {
+    const start = SRC.indexOf("function vgResolveLinesPlanes(");
+    let depth = 0, end = start;
+    for (let j = SRC.indexOf("{", start); j < SRC.length; j++) {
+      if (SRC[j] === "{") depth++;
+      else if (SRC[j] === "}") { depth--; if (depth === 0) { end = j + 1; break; } }
+    }
+    const RES = SRC.slice(start, end);
+    const outside = SRC.slice(0, start) + SRC.slice(end);
+    check("the ownership record is written from exactly ONE site in the resolver", (RES.match(/arcOwned\[/g) || []).length, 1, 0);
+    check("...and read at exactly the two token sites it gates", (RES.match(/!arcOwned\./g) || []).length, 2, 0);
+    check("...and the projection's HOLD is assigned once", (RES.match(/projAngles = ang;/g) || []).length, 1, 0);
+    check("arcOwned exists nowhere outside the resolver", (outside.match(/arcOwned/g) || []).length, 0, 0);
+    check("projAngles exists nowhere outside the resolver", (outside.match(/projAngles/g) || []).length, 0, 0);
+    // Act I cannot regress through this: the resolver is unreachable in
+    // "products" mode, measured through the shipped frame driver.
+    const win: Record<string, unknown> = {};
+    const dom = fakeDom();
+    FRAME_HARNESS.run!({ a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+    assertTrue("a products-mode frame never enters the resolver at all (PM_vgLinesPlanes === null)", win.PM_vgLinesPlanes === null);
+  }
+}
+
 console.log("\n=== 20. B — A GUIDED STATE CAN BOUND ITS OWN CONTROL (vg.control_ranges) ===");
 {
   // bug_class field3d_vg_slider_range_is_concept_wide_so_a_guided_state_cannot_
