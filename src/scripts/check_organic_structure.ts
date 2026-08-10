@@ -2575,6 +2575,356 @@ console.log("\n[17] EVERY PAINTED STRING IS MEASURED AGAINST THE PANEL CLIP RECT
     }
 }
 
+// ═════════════════════════════════════════════════════════════════════════════
+console.log("\n[18] A SEIZED CAMERA IS THE POSE EVERY CONSTRUCTION READS — the explore orbit");
+// The CRITICAL row
+// seized_explore_camera_leaves_every_view_dependent_construction_reading_the_solved_pose:
+// STATE_7 is the sandbox whose caption is "Turn it yourself". A trusted orbit
+// seizes the camera (correct — the teacher owns it) but the frame pass kept
+// measuring the Newman weight, the rim orientation, the label anchors and the
+// screen-gap metric on the CLOSED-FORM sight-along pose it had stopped writing.
+// So at 40° off the bond axis the sim drew a full Newman projection of a view
+// nobody was looking through: a real carbon with three hydrogens on the left, a
+// floating rim with three stubs on the right, and NO C–C bond between them —
+// ethane as two disconnected fragments, in the one state a teacher drives live.
+//
+// This section drives the SHIPPED explore state headlessly, orbits it, and
+// asserts the whole treatment tracks the camera the teacher is actually at.
+// Two negative controls: (1) the pre-fix frame pass, restored by textual
+// surgery on the same extracted function, must REPRODUCE the fragment picture;
+// (2) with no drag, a freeze pin must be byte-identical after a rewind — the
+// determinism THE EYE's frozen baselines stand on.
+{
+    /** the three lines the fix added — the surgery target for the negative control. */
+    const LIVE_READ = [
+        "            pose.az = spherical.theta * 180 / Math.PI;",
+        "            pose.el = 90 - spherical.phi * 180 / Math.PI;",
+        "            pose.dist = spherical.radius;"
+    ].join("\n");
+
+    type Mesh = {
+        userData: Record<string, unknown>; visible: boolean; pos: number[]; sc: number[];
+        q: number[]; renderOrder: number; text: string;
+        position: { set(x: number, y: number, z: number): void };
+        scale: { set(x: number, y: number, z: number): void; setScalar(v: number): void };
+        quaternion: { setFromUnitVectors(a: unknown, b: Record<string, number>): void; setFromRotationMatrix(): void };
+        material: Record<string, unknown>;
+        geometry: { setDrawRange(): void };
+    };
+    /** one sandbox: the shipped apply + frame over a recording scene, with the
+     *  orbit controls (isDragging + spherical) exposed the way a mousemove drives them. */
+    const mkSeizeRun = (naive: boolean) => {
+        const V3 = function (this: Record<string, number>, x?: number, y?: number, z?: number) {
+            this.x = x || 0; this.y = y || 0; this.z = z || 0;
+        } as unknown as { new(x?: number, y?: number, z?: number): Record<string, number> };
+        const stub = {
+            Vector3: V3,
+            Matrix4: function (this: Record<string, unknown>) { this.makeBasis = () => this; },
+            Color: function (this: Record<string, unknown>) { /* stub */ }
+        };
+        const mk = (id: string, t: string): Mesh => {
+            const m: Mesh = {
+                userData: { id, elementType: t }, visible: false,
+                pos: [0, 0, 0], sc: [1, 1, 1], q: [0, 0, 1], renderOrder: 0, text: "",
+                position: { set: (x: number, y: number, z: number) => { m.pos = [x, y, z]; } },
+                scale: {
+                    set: (x: number, y: number, z: number) => { m.sc = [x, y, z]; },
+                    setScalar: (v: number) => { m.sc = [v, v, v]; }
+                },
+                quaternion: {
+                    // the AXIS the mesh was oriented to — the rim's normal, a bond's direction.
+                    setFromUnitVectors: (_a: unknown, b: Record<string, number>) => { m.q = [b.x, b.y, b.z]; },
+                    setFromRotationMatrix: () => { /* stub */ }
+                },
+                material: {
+                    color: { set(v: string) { (m.material as Record<string, unknown>).hex = v; } },
+                    emissive: { set() { /* stub */ } },
+                    opacity: 1, transparent: false, depthTest: true, hex: ""
+                },
+                geometry: { setDrawRange() { /* stub */ } }
+            };
+            return m;
+        };
+        const scene: Mesh[] = [];
+        for (let i = 0; i < 24; i++) { scene.push(mk("org_atom_" + i, "org_atom")); scene.push(mk("org_atom_label_" + i, "org_atom_label")); }
+        for (let i = 0; i < 30; i++) scene.push(mk("org_bond_" + i, "org_bond"));
+        scene.push(mk("org_rim", "org_rim"));
+        for (let i = 0; i < 6; i++) {
+            scene.push(mk("org_meas_arc_" + i, "org_meas_arc"));
+            scene.push(mk("org_meas_line_" + i, "org_meas_line"));
+            scene.push(mk("org_meas_ref_" + i, "org_meas_ref"));
+            scene.push(mk("org_meas_label_" + i, "org_meas_label"));
+        }
+        const els: Record<string, Record<string, unknown>> = {};
+        const el = (id: string) => {
+            if (!els[id]) els[id] = { id, style: { display: "none" }, value: "", textContent: "", checked: false, innerHTML: "", disabled: false, querySelector: () => ({ disabled: false }) };
+            return els[id];
+        };
+        for (const id of ["org_hud", "org_formula", "org_graph", "org_deferred", "org_sliders",
+            "org_view_row", "org_spin_row", "org_implicit_h_row", "org_phi_row",
+            "org_view_select", "org_spin_slider", "org_spin_val", "org_implicit_h_check",
+            "org_phi_slider", "org_phi_val"]) el(id);
+        els["org_graph"].width = 700; els["org_graph"].height = 460;
+        const CTX = mkCanvasCtx();
+        els["org_graph"].getContext = () => CTX;
+        const FRAME = naive ? FRAME_FN.replace(LIVE_READ, "") : FRAME_FN;
+        if (naive && FRAME === FRAME_FN) throw new Error("negative control is dead: the live-pose read was not found in the shipped frame pass");
+        const CLOCK = { t: 0 };
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const RUN: any = new Function([
+            "var window = { PM_orgRejects: [] };",
+            "var ELS = arguments[0], SCENE = arguments[1], THREE = arguments[2], CLOCK = arguments[3];",
+            "var console = { error: function () {} };",
+            "var document = { getElementById: function (id) { return ELS[id] || null; } };",
+            "var sceneObjects = SCENE;",
+            "var stateStartTime = 0, isDragging = false, animating = false;",
+            "var time = 0;",
+            "var targetSpherical = { radius: 0, phi: 0, theta: 0 }, spherical = { radius: 0, phi: 0, theta: 0 };",
+            "function updateCameraFromSpherical() {}",
+            "function hexToThreeColor(h) { return h; }",
+            "function updateLabelSpriteText(s, t) { s.text = t; }",
+            "function applyGlowEmphasis() {}",
+            grabVar("MG_BOND_LEN"), grabVar("MG_AZ0"), grabVar("MG_ELEMENTS"),
+            MG_REGION, grabFn("mgIdealDirs"), ORG_REGION,
+            grabFn("orgFx"), PLACER_REGION, GRAPH_FN, FRAME, APPLY_FN,
+            "return { apply: function (s) { time = CLOCK.t; applyOrganicStructureState(s); },",
+            "         frame: function (s) { time = CLOCK.t; updateOrganicStructureFrame(s); },",
+            // a mousemove, verbatim: theta -= dx * 0.005, target follows, isDragging up.
+            "         dragBy: function (dx) { isDragging = true; spherical.theta -= dx * 0.005;",
+            "             targetSpherical.theta = spherical.theta; },",
+            "         mouseUp: function () { isDragging = false; },",
+            "         sph: function () { return { theta: spherical.theta, phi: spherical.phi, radius: spherical.radius }; },",
+            "         W: window };"
+        ].join("\n"))(els, scene, stub, CLOCK);
+        return { RUN, scene, els, CLOCK };
+    };
+
+    /** STATE_7 of conformations_of_ethane, VERBATIM (the sandbox the row was filed on). */
+    const EXPLORE = () => ({
+        organic_structure: {
+            molecule: "ethane", mode: "explore",
+            torsion: { about: "C1-C2", continuous: 24 },
+            show_h: "all", show_labels: true,
+            camera: { sight_along: "C1-C2", dist: 8, newman: true },
+            energy: {
+                show: true, curve: "ethane", coordinate: "torsion", show_point: true,
+                show_barrier: false, label_stationary: true, reveal_at_ms: 0, reveal_ramp_ms: 600
+            },
+            show_hud: true, hud_lines: ["phi", "energy"],
+            controls: [{ id: "view" }, { id: "phi" }, { id: "implicit_h" }]
+        }
+    });
+    const PIN_MS = 1500;   // the state's own eye_capture_ms — the instant THE EYE pins
+
+    /** the picture, read off the scene the way an eye would: is this a molecule? */
+    const readPicture = (RUN: { W: Record<string, unknown> }, scene: Mesh[]) => {
+        const W = RUN.W as Record<string, number>;
+        const geom = R.orgBuildGeometry("ethane", W.PM_orgPhi);
+        const by: Record<string, { id: string; p: number[] }> = {};
+        for (const a of geom.atoms) by[a.id] = a;
+        const P = (id: string) => R.orgMul(by[id].p, R.ORG_U_PER_A) as number[];
+        const c1 = P("C1"), c2 = P("C2");
+        const near3 = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]) < 1e-6;
+        // the C–C bond: a VISIBLE stick whose two ends are the two carbons.
+        let ccBond = false;
+        for (const m of scene) {
+            if (m.userData.elementType !== "org_bond" || !m.visible) continue;
+            const L = m.sc[1];
+            const A = m.pos, B = [A[0] + m.q[0] * L, A[1] + m.q[1] * L, A[2] + m.q[2] * L];
+            if ((near3(A, c1) && near3(B, c2)) || (near3(A, c2) && near3(B, c1))) ccBond = true;
+        }
+        const rim = scene.find(m => m.userData.id === "org_rim") as Mesh;
+        return {
+            w: W.PM_orgNewmanW, ang: W.PM_orgNewmanAngle,
+            seized: !!(RUN.W as Record<string, unknown>).PM_orgCamSeized,
+            cam: (RUN.W as Record<string, unknown>).PM_orgCam as { az: number; el: number; dist: number },
+            backMesh: !!scene.find(m => m.userData.elementType === "org_atom" && m.visible && m.userData.atomId === "C2"),
+            rimOn: rim.visible, rimAxis: rim.q.slice(), ccBond: ccBond,
+            bonds: scene.filter(m => m.userData.elementType === "org_bond" && m.visible).length
+        };
+    };
+    /** every byte of the drawn scene + every published number, for the pin test. */
+    const snapshot = (RUN: { W: Record<string, unknown> }, scene: Mesh[]) => JSON.stringify({
+        meshes: scene.map(m => [m.userData.id, m.visible, m.pos, m.sc, m.q, m.renderOrder,
+            (m.material as Record<string, unknown>).opacity, (m.material as Record<string, unknown>).hex, m.text]),
+        pub: [RUN.W.PM_orgNewmanW, RUN.W.PM_orgNewmanAngle, RUN.W.PM_orgCam,
+            RUN.W.PM_orgMinGap, RUN.W.PM_orgPhi, RUN.W.PM_orgCamSeized]
+    });
+
+    // ── (a) THE BASELINE. No drag: the state opens ON the axis, fully Newman.
+    const A = mkSeizeRun(false);
+    A.CLOCK.t = PIN_MS / 1000;
+    A.RUN.apply(EXPLORE());
+    A.RUN.frame(EXPLORE());
+    const base = readPicture(A.RUN, A.scene);
+    ok("[18a] undragged, the sandbox opens ON the bond axis — the projection is the projection",
+        base.w === 1 && base.rimOn && !base.backMesh && !base.ccBond && !base.seized,
+        "w = " + base.w + " · angle = " + base.ang.toFixed(3) + "° · rim on · C2 withheld · no C–C stick");
+
+    // ── (b) THE ORBIT. FOUND, not hardcoded: drag until the sight line is 40° off
+    //    the C1–C2 axis, so the probe keeps testing 40° the day the solve moves.
+    let dxTotal = 0, found = -1;
+    for (let k = 0; k < 4000; k++) {
+        A.RUN.dragBy(2);            // a 2 px mousemove, the shipped 0.005 rad/px
+        dxTotal += 2;
+        A.RUN.frame(EXPLORE());
+        const ang = (A.RUN.W as Record<string, number>).PM_orgNewmanAngle;
+        if (ang >= 40) { found = ang; break; }
+    }
+    A.RUN.mouseUp();
+    A.RUN.frame(EXPLORE());
+    const orb = readPicture(A.RUN, A.scene);
+    ok("[18b] a trusted orbit reaches 40° off the bond axis and the camera is SEIZED",
+        found >= 40 && found < 41 && orb.seized,
+        "dragged " + dxTotal + " px → sight line " + found.toFixed(2) + "° off C1–C2, seized = " + orb.seized);
+    ok("[18b] the Newman weight falls to ZERO — the treatment reads the pose the camera is AT",
+        orb.w === 0, "w = " + orb.w + " at " + orb.ang.toFixed(2) + "°");
+    ok("[18b] the rim is WITHDRAWN and the back carbon is a real mesh again",
+        !orb.rimOn && orb.backMesh);
+    ok("[18b] the C–C BOND IS DRAWN — ethane is one molecule, not two floating fragments",
+        orb.ccBond && orb.bonds === 7,
+        orb.bonds + "/7 sticks visible, C1–C2 stick present = " + orb.ccBond);
+    // the published pose IS the live camera, to the last bit.
+    {
+        const s = A.RUN.sph() as { theta: number; phi: number; radius: number };
+        ok("[18b] PM_orgCam publishes the LIVE spherical pose, not the closed form it stopped writing",
+            Math.abs(orb.cam.az - s.theta * 180 / Math.PI) < 1e-9
+            && Math.abs(orb.cam.el - (90 - s.phi * 180 / Math.PI)) < 1e-9
+            && orb.cam.dist === s.radius,
+            "az " + orb.cam.az.toFixed(3) + "° el " + orb.cam.el.toFixed(3) + "° d " + orb.cam.dist);
+    }
+
+    // ── (c) THE WHOLE ORBIT, not just its end: the molecule is never fragments.
+    {
+        const B = mkSeizeRun(false);
+        B.CLOCK.t = PIN_MS / 1000;
+        B.RUN.apply(EXPLORE()); B.RUN.frame(EXPLORE());
+        let monotone = true, whole = true, lastW = 1, midSeen = null as null | ReturnType<typeof readPicture>;
+        let midSph = { theta: 0, phi: 0, radius: 0 };
+        const rows: string[] = [];
+        for (let k = 0; k < 400; k++) {
+            B.RUN.dragBy(2);
+            B.RUN.frame(EXPLORE());
+            const p = readPicture(B.RUN, B.scene);
+            if (p.w > lastW + 1e-12) monotone = false;
+            lastW = p.w;
+            // THE INVARIANT THE DEFECT BROKE: either the two carbons are joined by
+            // a drawn stick, or the rim is up AT FULL WEIGHT and IS the back carbon.
+            if (!(p.ccBond || (p.rimOn && p.w >= R.ORG_NEWMAN_HIDE_W))) whole = false;
+            // the mid-fade sample is captured WITH the camera it was drawn at —
+            // comparing it to the camera the loop ends on would test nothing.
+            if (!midSeen && p.w > 0.02 && p.w < 0.98) { midSeen = p; midSph = B.RUN.sph(); }
+            if (k % 40 === 0) rows.push(p.ang.toFixed(1) + "° w=" + p.w.toFixed(2) + (p.ccBond ? " C–C" : " rim"));
+            if (p.ang > 60) break;
+        }
+        info("the orbit, sampled", rows.join("  |  "));
+        ok("[18c] across the whole orbit the weight only ever FALLS as the sight line leaves the axis",
+            monotone);
+        ok("[18c] and at no point in the orbit is ethane drawn as two disconnected fragments",
+            whole);
+        // the rim, while it still exists, is oriented to the DRAGGED view.
+        ok("[18c] mid-fade the rim is still drawn, so its orientation is testable",
+            !!midSeen, midSeen ? "w = " + midSeen.w.toFixed(3) + " at " + midSeen.ang.toFixed(2) + "°" : "no mid-fade sample");
+        if (midSeen) {
+            const s = midSph;
+            const live = R.orgCamBasis({ az: s.theta * 180 / Math.PI, el: 90 - s.phi * 180 / Math.PI, dist: s.radius });
+            const solved = R.orgSolveCamera(EXPLORE().organic_structure, R.orgBuildGeometry("ethane", (B.RUN.W as Record<string, number>).PM_orgPhi));
+            const closed = R.orgCamBasis(solved);
+            ok("[18c] the rim's normal tracks the DRAGGED view axis",
+                R.mgAngleDeg(midSeen.rimAxis, live.fwd) < 1e-6,
+                "rim normal is " + R.mgAngleDeg(midSeen.rimAxis, live.fwd).toFixed(9) + "° off the live sight line");
+            ok("[18c] …and is measurably OFF the closed-form pose it used to be pinned to",
+                R.mgAngleDeg(midSeen.rimAxis, closed.fwd) > 1,
+                R.mgAngleDeg(midSeen.rimAxis, closed.fwd).toFixed(3) + "° off the sight-along solution");
+        }
+    }
+
+    // ── (d) NEGATIVE CONTROL 1: the PRE-FIX frame pass, restored by surgery on
+    //    the same extracted function. Same orbit, same reader — it must TRIP.
+    {
+        const N = mkSeizeRun(true);
+        N.CLOCK.t = PIN_MS / 1000;
+        N.RUN.apply(EXPLORE()); N.RUN.frame(EXPLORE());
+        // the SAME orbit, in pixels — the pre-fix build cannot report the angle it
+        // is at (that is the defect), so it is driven by the identical mousemoves.
+        for (let px = 0; px < dxTotal; px += 2) { N.RUN.dragBy(2); N.RUN.frame(EXPLORE()); }
+        // measured on the LIVE camera, which is where the eye is — the pre-fix
+        // build cannot tell us the angle itself, so the probe measures it.
+        const s = N.RUN.sph() as { theta: number; phi: number; radius: number };
+        const geom = R.orgBuildGeometry("ethane", (N.RUN.W as Record<string, number>).PM_orgPhi);
+        const by: Record<string, { id: string; p: number[] }> = {};
+        for (const a of geom.atoms) by[a.id] = a;
+        const trueAng = R.orgNewmanAngle({ az: s.theta * 180 / Math.PI, el: 90 - s.phi * 180 / Math.PI, dist: s.radius },
+            by["C1"].p, by["C2"].p);
+        const bad = readPicture(N.RUN, N.scene);
+        ok("[neg] the pre-fix frame pass REPRODUCES the defect: 40° off the axis it still draws the full projection",
+            bad.w === 1 && bad.rimOn && !bad.backMesh && !bad.ccBond && trueAng > 39,
+            "camera is " + trueAng.toFixed(2) + "° off the bond, yet w = " + bad.w
+            + " · rim on · C2 withheld · C–C stick = " + bad.ccBond + " (" + bad.bonds + "/7 sticks)");
+        ok("[neg] …and that is exactly the two-fragment picture the row was filed on",
+            !bad.ccBond && bad.rimOn && bad.bonds === 6,
+            "a carbon with 3 H, a floating rim with 3 stubs, nothing joining them");
+    }
+
+    // ── (e) NEGATIVE CONTROL 2 — THE HARD CONSTRAINT. With NO drag, a freeze pin
+    //    is byte-identical after a rewind. THE EYE never drags, so this is the
+    //    path every frozen baseline takes, and the fix must not have moved it.
+    {
+        const D = mkSeizeRun(false);
+        D.RUN.apply(EXPLORE());
+        D.CLOCK.t = PIN_MS / 1000; D.RUN.frame(EXPLORE());
+        const first = snapshot(D.RUN, D.scene);
+        for (const ms of [4000, 8000, 300, 12000, 0]) { D.CLOCK.t = ms / 1000; D.RUN.frame(EXPLORE()); }
+        D.CLOCK.t = PIN_MS / 1000; D.RUN.frame(EXPLORE());
+        const again = snapshot(D.RUN, D.scene);
+        ok("[neg] undragged, a freeze pin at " + PIN_MS + " ms is BYTE-IDENTICAL after a full rewind",
+            first === again && first.length > 500,
+            first === again ? first.length + " bytes of scene + published state, reproduced exactly"
+                : "DIVERGED — the pinned frame is path dependent");
+        ok("[neg] and the seize flag never armed on the undragged path (the branch THE EYE takes)",
+            !(D.RUN.W as Record<string, unknown>).PM_orgCamSeized);
+        // a SECOND, independently constructed sandbox reproduces the same pin —
+        // so the pinned frame is a function of (state, t) and of nothing else.
+        const D2 = mkSeizeRun(false);
+        D2.RUN.apply(EXPLORE());
+        D2.CLOCK.t = PIN_MS / 1000; D2.RUN.frame(EXPLORE());
+        ok("[neg] a fresh sandbox reproduces the same pinned frame byte for byte (no session history)",
+            snapshot(D2.RUN, D2.scene) === first);
+        // …and the probe CAN see a difference: the dragged frame at the same
+        // instant is a different picture, so byte-equality above is not vacuous.
+        D2.RUN.dragBy(200); D2.RUN.frame(EXPLORE());
+        ok("[neg] the byte comparison is not vacuous — a dragged frame at the same instant differs",
+            snapshot(D2.RUN, D2.scene) !== first);
+    }
+
+    // ── (f) THE ESCAPE still works, and lands on the closed form.
+    {
+        const E = mkSeizeRun(false);
+        E.CLOCK.t = PIN_MS / 1000;
+        E.RUN.apply(EXPLORE());
+        E.RUN.frame(EXPLORE());
+        for (let k = 0; k < 4000; k++) {
+            E.RUN.dragBy(2); E.RUN.frame(EXPLORE());
+            if ((E.RUN.W as Record<string, number>).PM_orgNewmanAngle >= 40) break;
+        }
+        E.RUN.mouseUp();
+        // the teacher re-picks "Standard" in the view row (the trusted change).
+        (E.RUN.W as Record<string, unknown>).PM_orgViewDragged = true;
+        (E.RUN.W as Record<string, unknown>).PM_orgView = "home";
+        E.RUN.frame(EXPLORE());
+        const rec = readPicture(E.RUN, E.scene);
+        const s = E.RUN.sph() as { theta: number; phi: number; radius: number };
+        const home = R.orgSolveCamera({ camera: { az: R.ORG_HOME.az, el: R.ORG_HOME.el, dist: 8 } },
+            R.orgBuildGeometry("ethane", (E.RUN.W as Record<string, number>).PM_orgPhi));
+        ok("[18f] re-picking the standard view CLEARS the seize and re-solves the camera",
+            !rec.seized && Math.abs(s.theta * 180 / Math.PI - home.az) < 1e-9
+            && Math.abs(90 - s.phi * 180 / Math.PI - home.el) < 1e-9,
+            "camera returned to az " + home.az + "° el " + home.el + "°");
+        ok("[18f] and the recovered picture is a whole molecule with its C–C bond",
+            rec.ccBond && rec.backMesh && !rec.rimOn && rec.w === 0);
+    }
+}
+
 console.log("\n" + "=".repeat(72));
 console.log("check:organic-structure — " + pass + " passed, " + fail + " failed");
 if (fail) { console.log("\nFAILURES:"); for (const f of failures) console.log("  - " + f); }
