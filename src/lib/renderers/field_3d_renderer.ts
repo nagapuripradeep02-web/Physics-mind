@@ -46345,6 +46345,43 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(surf);
         nlbRegister(surf); nlbRegister(slab);
 
+        // 1a. THE GHOST SURFACE (ghost_surface) — a second, dim ramp at its own
+        //     angle, built ONCE beside the live one and hidden until a state asks
+        //     for it. Its own group, because its rotation is INDEPENDENT of the live
+        //     theta: that independence is the whole instrument. Every part carries
+        //     ud.ghost, so nlbApplyGlow's first branch forces it into the dim-peer
+        //     channel unconditionally — it can never become the focal and it stays
+        //     visibly a PROP, exactly as height_markers.ghost_marker already does.
+        var gsurf = new THREE.Group();
+        gsurf.userData = { elementType: "nlb_ghost_group", id: "nlb_ghost_group", ghost: true };
+        var gslabMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(NLB_SURFACE_COLOR), emissive: hexToThreeColor(NLB_SURFACE_COLOR),
+            emissiveIntensity: 0.06, shininess: 30, transparent: true, opacity: NLB_GHOST_OPACITY
+        });
+        var gslab = new THREE.Mesh(new THREE.BoxGeometry(1, NLB_SURFACE_THICK, NLB_SURFACE_DEPTH), gslabMat);
+        gslab.position.set(0, -NLB_SURFACE_THICK / 2, 0);
+        gslab.userData = { elementType: "nlb_ghost", id: "nlb_ghost_slab", ghost: true };
+        gsurf.add(gslab);
+        // The ghost's own displacement arrow, a child of the ghost group so the one
+        // rotation lays it along the ghost track — the same contract the live d
+        // arrow has with the live surface group.
+        var gda = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0),
+            1, hexToThreeColor(NLB_DISP_COLOR), NLB_DISP_HEAD, NLB_DISP_HEAD * 0.8);
+        gda.userData = { elementType: "nlb_ghost", id: "ghost_disp", ghost: true };
+        gda.visible = false;
+        gsurf.add(gda); nlbRegister(gda);
+        var gdl = pmCreateAutoLabel("d", NLB_DISP_COLOR, 0.32);
+        gdl.userData = { elementType: "nlb_ghost", id: "ghost_disp_label", bodyId: "ghost_disp", ghost: true };
+        gdl.visible = false;
+        gsurf.add(gdl); nlbRegister(gdl);
+        var grl = pmCreateAutoLabel("", NLB_SURFACE_COLOR, 0.32);
+        grl.userData = { elementType: "nlb_ghost", id: "ghost_ramp_label", bodyId: "ghost_ramp", ghost: true };
+        grl.visible = false;
+        gsurf.add(grl); nlbRegister(grl);
+        gsurf.visible = false;
+        addToScene(gsurf);
+        nlbRegister(gsurf); nlbRegister(gslab);
+
         // 1b. The horizontal reference + angle arc the incline angle is measured
         //     from (world frame, NOT in the rotated group). Both collapse and
         //     hide at theta = 0 — a real zero is hidden, never a stub.
@@ -49046,6 +49083,89 @@ export const FIELD_3D_RENDERER_CODE = `
     //   Shows exactly this state's bars and groups, writes the scale, then fits.
     //   Called from applyNewtonsLawsBodyState AND from the widget-vis path, so it
     //   must be idempotent and must not touch physics.
+    // ── ghost_surface — the second ramp a path-independence state needs ──────
+    //   With ONE ramp on screen, "shorter path, same U" is a claim about a number
+    //   the teacher has to remember from a previous state, and the delta Rule 32c
+    //   demands is nowhere in the frame. This draws the OTHER route beside the live
+    //   one and labels the span it covers between the SAME two heights, so the two
+    //   d values on screen are one climb measured two ways — by construction, not by
+    //   authoring care.
+    //   The span is derived, never authored: the live climb runs from the tracked
+    //   body's own seed s0 to its LAST checkpoint, both converted to heights through
+    //   the LIVE angle, then back to distances along the GHOST angle. So an author
+    //   who moves either endpoint cannot leave a stale ghost number behind.
+    function nlbApplyGhostSurface(nlb, eng) {
+        var g = nlbFindById("nlb_ghost_group");
+        if (!g) return;
+        var gs = nlb && nlb.ghost_surface;
+        var thL = (eng && eng.theta_deg) || 0;
+        var thG = (gs && typeof gs.theta_deg === "number" && isFinite(gs.theta_deg)) ? gs.theta_deg : null;
+        // A ghost at (or within a degree of) the live angle draws no contrast at all
+        // and would render as a smear over the real ramp. Refused, not drawn faintly.
+        var on = !!(gs && thG !== null && Math.abs(thG - thL) >= NLB_GHOST_MIN_DEG &&
+                    Math.abs(Math.sin(thG * Math.PI / 180)) > 1e-6);
+        g.visible = on;
+        var gda = nlbFindById("ghost_disp"), gdl = nlbFindById("ghost_disp_label"), grl = nlbFindById("ghost_ramp_label");
+        if (!on) {
+            if (gda) gda.visible = false;
+            if (gdl) gdl.visible = false;
+            if (grl) grl.visible = false;
+            return;
+        }
+        var halfWorld = Math.max(0.2, (eng.length_m || 0) * NLB_WORLD_PER_M);
+        g.rotation.set(0, 0, thG * Math.PI / 180);
+        // Same rig offset as the live surface, then pushed BACK in depth. Sharing the
+        // live ramp's z made the two slabs interpenetrate into an X through the body
+        // — two ramps arguing rather than one compared against another (measured on
+        // the first ghost frames). Behind, they read as what they are: the route not
+        // taken, standing off the route being driven.
+        var sgp = nlbFindById("nlb_surface_group");
+        g.position.set(sgp ? sgp.position.x : 0, sgp ? sgp.position.y : 0, NLB_GHOST_DEPTH_Z);
+        var gslab = nlbFindById("nlb_ghost_slab");
+        if (gslab) gslab.scale.set(halfWorld * 2, 1, 1);
+        if (grl) {
+            grl.visible = !!gs.label;
+            if (gs.label) {
+                grl.position.set(-halfWorld * 0.62, 0.46, 0);
+                nlbSetBodyLabelText(grl, gs.label);
+            }
+        }
+        // The measured span, in HEIGHTS then back into the ghost's own distances.
+        var b = nlbTrackedBody(eng, null);
+        var cps = eng.checkpoints_cfg;
+        var sEnd = (cps && cps.length) ? cps[cps.length - 1].s_m : null;
+        var showD = (gs.show_displacement !== false);
+        if (!showD || !b || sEnd === null || !isFinite(sEnd)) {
+            if (gda) gda.visible = false;
+            if (gdl) gdl.visible = false;
+            return;
+        }
+        var sinL = Math.sin(thL * Math.PI / 180), sinG = Math.sin(thG * Math.PI / 180);
+        var s0g = ((b.s0 || 0) * sinL) / sinG;
+        var s1g = (sEnd * sinL) / sinG;
+        var dG = s1g - s0g;
+        var vis = Math.abs(dG) >= NLB_DISP_MIN_M;
+        if (gda) gda.visible = vis;
+        if (gdl) gdl.visible = vis;
+        if (!vis) return;
+        var x0 = s0g * NLB_WORLD_PER_M;
+        var lenW = Math.abs(dG) * NLB_WORLD_PER_M;
+        var sgn = (dG < 0) ? -1 : 1;
+        var hd = Math.min(NLB_DISP_HEAD, lenW * 0.4);
+        if (gda) {
+            gda.position.set(x0, NLB_DISP_LANE, 0);
+            gda.setDirection(new THREE.Vector3(sgn, 0, 0));
+            gda.setLength(lenW, hd, hd * 0.8);
+        }
+        if (gdl) {
+            // A FULL label-height below the live d caption. The whole instrument is
+            // the two numbers side by side, so the one thing it must never do is
+            // print them on top of each other (measured on the first ghost frames:
+            // "d = 1.61 m" and "d = 2.40 m" overprinted exactly).
+            gdl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - NLB_DISP_LABEL_DY - NLB_GHOST_LABEL_DY, 0);
+            nlbSetBodyLabelText(gdl, "d = " + nlbFx(Math.abs(dG), 2) + " m");
+        }
+    }
     function nlbApplyEnergyLayer(nlb, eng) {
         var p = document.getElementById("nlb_energy");
         if (!p) return;
@@ -49448,6 +49568,13 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_DWELL_COL = new THREE.Color(NLB_DWELL_INK);
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
+    // The ghost ramp's slab opacity. Low enough to read instantly as "not the
+    // apparatus", high enough that its angle and its labelled span are legible on a
+    // projector — the same judgement height_markers.ghost_marker's dimming makes.
+    var NLB_GHOST_OPACITY = 0.28;
+    var NLB_GHOST_MIN_DEG = 1.0;           // a ghost at the live angle draws no contrast
+    var NLB_GHOST_DEPTH_Z = -0.85;         // world units behind the live ramp, so they never interpenetrate
+    var NLB_GHOST_LABEL_DY = 0.46;         // the ghost d caption clears the live one
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
     // ── The h leader (height_markers.show_h_leader) ─────────────────────────
     //   AMBER, deliberately NOT the level line's blue. The two are the same
@@ -50345,6 +50472,7 @@ export const FIELD_3D_RENDERER_CODE = `
                                            // clearance under the deepest label. (Caught in
                                            // pixels at -0.46: the ΣF arrow and d shared a lane
                                            // and their heads met under the block.)
+    var NLB_DISP_LABEL_DY = 0.62;          // world units below the d shaft — clears the mg caption
     var NLB_DISP_MIN_M = 0.02;             // metres. Below this the body has NOT moved and
                                            // the arrow HIDES — never a stub (the engine's rule)
     var NLB_DISP_HEAD = 0.22;
@@ -50569,7 +50697,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (dl) {
                     // Mid-span, below the shaft: a growing arrow whose label sat at
                     // the tip would walk off the track on a long run.
-                    dl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - 0.30, 0);
+                    //   Dropped from 0.30 to NLB_DISP_LABEL_DY (founder review
+                    // 2026-08-10): the weight arrow hangs from the body straight
+                    // through this lane and its "mg" caption landed ON the d value on
+                    // essentially every frame of every driven state. The two are the
+                    // most-read numbers on the canvas and they were overprinting each
+                    // other (Rule 34d).
+                    dl.position.set(x0 + sgn * lenW * 0.5, NLB_DISP_LANE - NLB_DISP_LABEL_DY, 0);
                     nlbSetArrowLabelText(dl, cfg.label + (cfg.show_value ? (" = " + nlbFx(Math.abs(ds2), 2) + " m") : ""));
                 }
             }
@@ -51719,6 +51853,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // catching the entry frame photographs THIS state's numbers, never the
         // previous state's. Hides itself outright when the state authors no layer.
         nlbApplyEnergyLayer(nlb, eng);
+        // The ghost ramp is a STATIC prop: its angle and its measured span are pure
+        // functions of authored numbers, so it is placed once per state rather than
+        // followed per frame. Nothing reads it back — no physics, no HUD, no capture.
+        nlbApplyGhostSurface(nlb, eng);
         // SEAM M — the 3D instruments: the dashed h = 0 level line at the SAME
         // reference the bars measure U_grav from, the computed predicted-stop marker
         // and its dim ghost, and this state's checkpoint flags. Hides every one of
