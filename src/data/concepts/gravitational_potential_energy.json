@@ -332,7 +332,7 @@
         "advance_mode": "interaction_complete",
         "teaching_method": "exploration_sliders",
         "motion_archetype": "drag-sandbox",
-        "delta_cue": "Change mass and angle yourself",
+        "delta_cue": "Change mass, angle, zero line",
         "depth_ring": "core",
         "has_prebuilt_deep_dive": false,
         "scene_composition": [
@@ -360,7 +360,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Drag the mass or the angle." },
+            { "id": "s6_1", "text_en": "Drag the mass, the angle, or the zero line." },
             { "id": "s6_2", "text_en": "The ramp turns as the angle changes, and the cart rides with it." },
             { "id": "s6_3", "text_en": "U always equals mass times gravity times height." }
           ]
@@ -668,7 +668,7 @@
       },
 
       "STATE_3": {
-        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points) with energy_layer.h_ref_m moved to 1.5 m — LEVEL WITH POINT B, so the zero line's move is metres on screen rather than the old 0.3 m that was a few pixels (founder review 2026-08-10: 'state one, state three looks same'). Requires energy_layer.signed: true — U_grav goes negative here BY DESIGN, which is the concept's own misconception_watch and its negative_potential_energy drill-down. The signed U bar opens at −35.3 J, point A stamps U = −29.4 J, point B stamps U = 0.0 J; at 4400 ms the formula gains the same second line as S1, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
+        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points) with energy_layer.h_ref_m moved to 1.5 m — LEVEL WITH POINT B, so the zero line's move is metres on screen rather than the old 0.3 m that was a few pixels (founder review 2026-08-10: 'state one, state three looks same'). The zero-line slide is deliberately SHORT (h_ref_slide_ms 380). The cart crosses point A at 500 ms (s0 0.6 -> 1.0 at 0.8 m/s), the stamp latches on first crossing, and a slide still in flight at that instant latches a meaningless transient - measured: a 1500 ms slide stamped A at 2.8 J instead of -29.4 J and the first-capture rule then kept it forever. 380 ms clears the crossing with margin. Holding the cart instead (activate_at_ms + visible_before_activation) does NOT work on this body: its applied force exactly balances gravity so a = 0, and the activation re-seed leaves v at 0 - the cart never starts and the state renders fully static while THE EYE still passes 28/28. Requires energy_layer.signed: true — U_grav goes negative here BY DESIGN, which is the concept's own misconception_watch and its negative_potential_energy drill-down. The signed U bar opens at −35.3 J, point A stamps U = −29.4 J, point B stamps U = 0.0 J; at 4400 ms the formula gains the same second line as S1, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
         "visible_elements": [],
         "camera_position": [0, 1.15, 5.6],
         "caption": "New zero, same ΔU",
@@ -684,7 +684,7 @@
             { "body_id": "cart", "show": ["applied", "weight"] }
           ],
           "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 1.5, "signed": true, "precision": 1 },
-          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true, "h_ref_slide_from_m": 0, "h_ref_slide_ms": 1500 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true, "h_ref_slide_from_m": 0, "h_ref_slide_ms": 380 },
           "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true, "dim": true },
           "checkpoints": [
             { "s_m": 1.0, "label": "A (h = −1.00 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
@@ -767,7 +767,7 @@
         "label": "Sandbox: a 3 kg cart (the SAME mass S1–S5 use, so the teacher arrives at a recognizable home pose — Rule 32d) rides the ramp, held by static friction (μs = 0.9, μk = 0.8) at every authored angle. The idle sweep drives the cart's POSITION s between 1.2 m and 3.0 m, never θ: sweeping θ moved the very slider handle the caption tells the teacher to drag (founder review 2026-08-10), and s is the honest motion for U = mgh anyway — the cart climbs and the bar climbs with it. Three live controls: m, θ and the zero line h_ref, which is why this state needs energy_layer.signed (h_ref above the cart sends U negative). At the sweep and slider extremes U spans about −49.7 J to +56.7 J, inside the signed ±60 J track. U = mgh stands as the formula surface throughout; the sweep is cancelled for good by the first trusted drag (Rule 37).",
         "visible_elements": [],
         "camera_position": [0, 1.15, 5.6],
-        "caption": "Change mass and angle yourself",
+        "caption": "Change mass, angle, zero line",
         "show_sliders": true,
         "formula_overlay": "U = mgh",
         "newtons_laws_body": {
