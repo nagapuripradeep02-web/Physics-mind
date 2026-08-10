@@ -81,6 +81,14 @@
  *      restores the one pre-fix assignment and watches "distance = 2.580"
  *      come back mid-sweep — and shows the second failure the shared token
  *      hid, the segment silently OVERWRITING the perpendicular's distance.
+ *  27  A FREE-RUNNING SANDBOX LOOPS — vg.animate_loop_ms. Rule 37 gives an
+ *      interaction_complete state a clock with no end, so ANY finite animate[]
+ *      list expires and the picture stops dead (#9 STATE_9 froze at 72 s).
+ *      Asserts the loop at the row's own probe ms, the stateMs-CONSUMER SWEEP
+ *      (the wrapped clock reaches the animate[] evaluation and nothing else —
+ *      reveals, ghosts, the grow-in ease and camera_steps stay un-wrapped),
+ *      rewind determinism, drag-seize priority, byte-identity for every state
+ *      that authors NO period, and the deriveStateMeta first-cycle decision.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -120,7 +128,7 @@ const FNS = [
   "vgSub", "vgAddVec", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize",
   "vgTranslateVerts", "vgRotateAbout", "vgBuildVectors", "vgParallelogramVerts",
   "vgParallelepipedFaces", "vgProjectPoint", "vgPairwiseScreenSeparationDeg",
-  "vgEase", "vgAnimKnobs", "vgAnimValue", "vgAnimEndMs",
+  "vgEase", "vgAnimKnobs", "vgLoopMs", "vgAnimValue", "vgAnimEndMs",
   "vgCamScheduleAt", "vgCamStepsEndMs", "vgAutoFramePos",
   "vgSplitPieces", "vgSolidFaceCount",
   // Δ11 · the projection of b onto â (the dot product's picture) and the
@@ -2656,6 +2664,10 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
     ];
     const frameSrc = grabFn("updateVectorGeometry3DFrame");
     const INJECT = [
+      // F21b · vgAnimValue calls vgLoopMs, so the loop helper travels with it
+      // into the frame factory (a missing injection would ReferenceError the
+      // whole driver rather than quietly skipping the wrap).
+      "vgLoopMs",
       "vgAnimValue", "vgBuildVectors", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize",
       "vgAddVec", "vgSub", "vgRotateAbout", "vgParallelogramVerts", "vgSplitPieces",
       "vgSolidFaceCount", "vgProjectionOnto", "vgCrossLabelText", "vgAutoFramePos",
@@ -5556,6 +5568,384 @@ console.log("\n=== 26. A NORM IS NOT AN ABSOLUTE VALUE — every bar in the read
         formulas.every((f) => f.indexOf("|d₁×d₂|") < 0));
       assertTrue(`the HUD's n_norm label ("${LABELS.n_norm}") is likewise the form the formula surfaces use`,
         formulas.some((f) => f.indexOf(DBL + "n" + DBL) >= 0) && formulas.every((f) => f.indexOf("|n|") < 0));
+    }
+  }
+}
+
+console.log("\n=== 27. A FREE-RUNNING SANDBOX LOOPS — vg.animate_loop_ms (bug_class vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_freezes) ===");
+{
+  // Rule 37 makes an interaction_complete state's clock free-run forever (the
+  // player deliberately skips SET_TIME_FREEZE there), while vgAnimValue clamps
+  // u = min(1, …) on the last matching window — so ANY finite animate[] list
+  // expires. #9 STATE_9 hand-unrolled a ping-pong as EIGHT alternating windows
+  // ending at 72000 ms and stopped dead at −3.5 from 72 s on, with no way to
+  // restart short of leaving the state. An authored loop that is merely LONG is
+  // a bug with a delay on it.
+  //
+  // THE DISCRIMINATING QUANTITY IS WHETHER THE VALUE IS STILL CHANGING WELL
+  // PAST THE LAST AUTHORED WINDOW. Every weaker quantity is true of the broken
+  // build: the arithmetic is right, the state is deterministic, the reveal
+  // chain is right, D5 sees motion in the first 72 s, and THE EYE's dense
+  // capture never runs long enough to reach the freeze.
+  const LOOP = 18000, HALF = 9000, LO = -3.5, HI = 3.5;
+  const PING: Array<Record<string, unknown>> = [
+    { knob: "aux_a", from: LO, to: HI, start_ms: 0, duration_ms: HALF, easing: "linear" },
+    { knob: "aux_a", from: HI, to: LO, start_ms: HALF, duration_ms: HALF, easing: "linear" },
+  ];
+  /** The period, solved in this file: a linear ping-pong, wrapped by hand. */
+  const pingPong = (ms: number) => {
+    const m = ((ms % LOOP) + LOOP) % LOOP;
+    return m <= HALF ? LO + (HI - LO) * (m / HALF) : HI + (LO - HI) * ((m - HALF) / HALF);
+  };
+  const loopedAt = (ms: number) => E.vgAnimValue(PING, "aux_a", ms, 0, LOOP) as number;
+  const plainAt = (ms: number) => E.vgAnimValue(PING, "aux_a", ms, 0) as number;
+
+  // ── (a) THE SHIPPED HAZARD, PRESERVED FOR GUIDED STATES ───────────────────
+  //   The one-shot-hold semantics are CORRECT where the clock ends, and a state
+  //   that authors no period must keep them byte for byte. This is the row's
+  //   own negative control, phrased as the requirement it protects.
+  check("without animate_loop_ms the last window still HOLDS at its `to` (a guided state is untouched)", plainAt(80000), LO, 0);
+  check("...and at 72000 ms — the exact end of #9 STATE_9's eight-window list", plainAt(72000), LO, 0);
+  assertTrue(`...and it is CONSTANT from the last window onward (${[72000, 80000, 120000, 999999].map(plainAt).join(", ")}) — the shipped freeze, reproduced`,
+    [72000, 80000, 120000, 999999].every((t) => plainAt(t) === LO));
+  expectFail(`the un-looped fixture still MOVES at t=80000 (it returns a constant ${plainAt(80000).toFixed(3)}, which is the bug_class verbatim)`,
+    plainAt(80000) !== plainAt(90000));
+
+  // ── (b) THE LOOP, AT THE ROW'S OWN PROBE MS ───────────────────────────────
+  check("with animate_loop_ms = 18000 the knob at t=80000 equals the knob at 80000 % 18000 = 8000, EXACTLY",
+    loopedAt(80000), plainAt(80000 % LOOP), 0);
+  check("...and that value is the hand-solved ping-pong ordinate, not whatever the engine happened to hold",
+    loopedAt(80000), pingPong(80000), 1e-12);
+  assertTrue(`...and it is CHANGING there, which is the whole claim (v(80000) = ${loopedAt(80000).toFixed(4)}, v(84000) = ${loopedAt(84000).toFixed(4)})`,
+    Math.abs(loopedAt(80000) - loopedAt(84000)) > 0.5);
+  {
+    // The full travel is still reached long after the list "ended" — a loop
+    // that merely wobbled would pass every assertion above.
+    let lo = Infinity, hi = -Infinity;
+    for (let t = 72000; t <= 108000; t += 250) { const v = loopedAt(t); if (v < lo) lo = v; if (v > hi) hi = v; }
+    check("across the two cycles AFTER the last authored window the knob still spans its whole travel", hi - lo, HI - LO, 1e-9);
+  }
+  {
+    // Three cycles, sampled: the looped evaluation at t is the UN-LOOPED
+    // evaluation at t mod the period, at every sampled ms — the definition,
+    // asserted rather than assumed, at integer ms where % is exact.
+    let mismatches = 0, closed = 0, n = 0;
+    for (let t = 0; t <= 3 * LOOP; t += 125) {
+      n++;
+      if (loopedAt(t) !== plainAt(t % LOOP)) mismatches++;
+      if (Math.abs(loopedAt(t) - pingPong(t)) > 1e-12) closed++;
+    }
+    check(`over ${n} sampled ms across three cycles, looped(t) !== unlooped(t mod 18000)`, mismatches, 0, 0);
+    check("...and disagreements with the independently solved ping-pong", closed, 0, 0);
+  }
+  assertTrue("the cycle is CLOSED — v(0) = v(18000) = v(36000) = v(72000), so the seam reads as one continuous sweep, never a jump",
+    loopedAt(0) === LO && loopedAt(LOOP) === LO && loopedAt(2 * LOOP) === LO && loopedAt(4 * LOOP) === LO);
+  assertTrue("a period of 0 / negative / NaN / absent is IGNORED (an author cannot half-declare a loop into a divide-by-zero)",
+    [0, -1, NaN, Infinity, undefined, null, "18000"].every((bad) =>
+      (E.vgAnimValue(PING, "aux_a", 80000, 0, bad as never) as number) === plainAt(80000)));
+  check("vgLoopMs is a plain modulo and is well-behaved on a negative clock (never a negative phase)",
+    E.vgLoopMs(-1000, LOOP), 17000, 0);
+
+  // ── (c) REWIND DETERMINISM (Rule 36 / D3) ─────────────────────────────────
+  //   The wrap is a modulo, not an accumulator, so the same ms visited from the
+  //   future must reproduce bit for bit — the property SET_TIME_FREEZE rests on.
+  {
+    const ms = [0, 1500, 8000, 17999, 18000, 40000, 63500, 80000, 96000, 131000];
+    const forward = ms.map(loopedAt);
+    const rewound = ms.slice().reverse().map(loopedAt).reverse();
+    const again = ms.map(loopedAt);
+    assertTrue(`a rewind through ${ms.length} pins reproduces every value BIT-IDENTICALLY (===, not to a tolerance)`,
+      forward.every((v, i) => Object.is(v, rewound[i]) && Object.is(v, again[i])));
+    assertTrue("...and a pin taken at t and at t + one period draws the identical knob pose (the loop is exactly periodic)",
+      ms.every((t) => Object.is(loopedAt(t), loopedAt(t + LOOP))));
+  }
+
+  // ── (d) THE stateMs-CONSUMER SWEEP, READ OFF THE SHIPPED FRAME ────────────
+  //   The mechanism being right is worth nothing if the frame hands the period
+  //   to the wrong consumers. This is the scope constraint, mechanised: the
+  //   wrapped clock reaches the animate[] evaluation and NOTHING ELSE.
+  {
+    const frameSrc = FRAME_HARNESS.src!;
+    const body = frameSrc.replace(/\/\/[^\n]*/g, "");     // comments carry the symbol names too
+    const callsOf = (re: RegExp) => (body.match(re) || []).length;
+    const animCalls = callsOf(/vgAnimValue\(/g);
+    const loopedCalls = callsOf(/vgAnimValue\([^;]*?animLoopMs\)/g);
+    assertTrue(`the frame declares the period once, from the authored key (var animLoopMs = d.animate_loop_ms)`,
+      /var animLoopMs = d\.animate_loop_ms;/.test(body));
+    check(`EVERY vgAnimValue call in the frame is handed the period (${loopedCalls} of ${animCalls})`, loopedCalls, animCalls, 0);
+    assertTrue(`...and the frame makes a non-trivial number of them (${animCalls}), so the count above is not vacuously equal`, animCalls >= 8);
+    // The consumers that must NOT see it, named one by one and read as text.
+    assertTrue("vgResolveLinesPlanes (the whole per-object reveal / ghost chain) is called with the RAW stateMs",
+      /vgResolveLinesPlanes\(d, LP_KNOBS, stateMs\)/.test(body));
+    assertTrue("vgCamScheduleAt (camera_steps) is called with the RAW stateMs",
+      /vgCamScheduleAt\(d\.camera_steps, stateMs,/.test(body));
+    assertTrue("the shared grow-in ease (growT) is computed from the RAW stateMs",
+      /growT = [^;]*stateMs \/ Math\.max\(1, revealMs\)/.test(body));
+    // ...and nothing else in the frame touches the period at all.
+    check("animLoopMs appears in the frame ONLY as its declaration plus those call arguments",
+      callsOf(/animLoopMs/g), animCalls + 1, 0);
+    // One level down: the wrap itself is reachable from exactly ONE call site
+    // in the entire renderer, which is what makes the scope claim structural
+    // rather than a habit the next edit can break.
+    const srcNoComments = SRC.replace(/\/\/[^\n]*/g, "");
+    check("vgLoopMs is DECLARED once and CALLED from exactly one place in the whole renderer (inside vgAnimValue)",
+      (srcNoComments.match(/vgLoopMs\(/g) || []).length, 2, 0);
+    assertTrue("...and that one call site is inside vgAnimValue's body",
+      /function vgAnimValue\(animate, knob, stateMs, authored, loopMs\) \{[^}]*stateMs = vgLoopMs\(stateMs, loopMs\);/.test(srcNoComments));
+  }
+
+  // ── (e) END TO END: THE KNOB LOOPS, THE REVEAL DOES NOT ───────────────────
+  //   Run through the SHIPPED frame driver on ONE fixture carrying both: a
+  //   segment whose far endpoint rides the looping knob AND whose own
+  //   reveal_at_ms is 2000 ms. At t=20000 the wrapped clock is 2000 — the exact
+  //   instant the reveal STARTS — so if the wrap had been applied one level too
+  //   high the segment would be regrowing from a nub with its readout gone.
+  const REVEAL_AT = 2000, GROW = 600;
+  const loopFixture: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 0,
+    animate_loop_ms: LOOP, animate: PING,
+    value_readouts: ["segment_length"],
+    lines: [{ id: "L1", point: [0, 0, 0], dir: [1, 0, 0], lambda_span: [-4, 4] }],
+    points: [{ id: "Q", position: [0, 2, 0] }],
+    segments: [{
+      id: "S", from: "Q", to: { on: "L1", lambda: { knob: "aux_a" } },
+      readout: "length", reveal_at_ms: REVEAL_AT, grow_ms: GROW,
+    }],
+  };
+  /** |Q − P(λ)| with Q = (0,2,0) and P = (λ,0,0): the length the row prints. */
+  const segLen = (lam: number) => Math.hypot(lam, 2);
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    const frameAt = (vg: Record<string, unknown>, ms: number) => {
+      const dom = fakeDom();
+      const win: Record<string, unknown> = {};
+      runFrame(vg, ms, dom, win);
+      const el = dom.get("vg_readout");
+      return { html: el.innerHTML as string, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+    };
+    const f80 = frameAt(loopFixture, 80000);
+    check("through the SHIPPED FRAME at t=80000 the segment_length row prints the WRAPPED knob's length",
+      f80.lp.readouts.segment_length, segLen(pingPong(80000)), 1e-12);
+    assertTrue(`...and the row is on screen, carrying symbol and value in one node ("${f80.html.replace(/<[^>]*>/g, " ").trim()}")`,
+      f80.shown === "block" && f80.html.includes("vg_readout_segment_length"));
+    const f84 = frameAt(loopFixture, 84000);
+    assertTrue(`...and it is still MOVING 12 s past the last authored window (${f80.lp.readouts.segment_length.toFixed(4)} → ${f84.lp.readouts.segment_length.toFixed(4)})`,
+      Math.abs(f80.lp.readouts.segment_length - f84.lp.readouts.segment_length) > 0.1);
+
+    // THE REVEAL, UN-WRAPPED. t=20000 wraps to 2000, the reveal's own start.
+    const f20 = frameAt(loopFixture, 20000);
+    assertTrue("t=20000 (wrapped 2000, the instant the reveal STARTS): the segment_length row is PRESENT — the reveal did not re-play",
+      f20.shown === "block" && f20.html.includes("vg_readout_segment_length"));
+    const res20 = E.vgResolveLinesPlanes(loopFixture, { aux_a: loopedAt(20000) }, 20000);
+    check("...and the segment's own reveal fraction is exactly 1, not regrown from a nub", res20.segments[0].frac, 1, 0);
+    check("...while its endpoint IS the wrapped knob (the two clocks, in one object)",
+      res20.readouts.segment_length, segLen(pingPong(20000)), 1e-12);
+    // NEGATIVE CONTROL — the same resolver handed the WRAPPED ms, which is what
+    // a wrap applied one level too high would produce.
+    const resWrapped = E.vgResolveLinesPlanes(loopFixture, { aux_a: loopedAt(20000) }, 20000 % LOOP);
+    expectFail(`a reveal chain fed the WRAPPED clock is still fully grown at t=20000 (frac ${resWrapped.segments[0].frac})`,
+      resWrapped.segments[0].frac === 1);
+    expectFail(`...and still publishes its number (segment_length ${resWrapped.readouts.segment_length === undefined ? "absent" : "present"})`,
+      resWrapped.readouts.segment_length !== undefined);
+
+    // NEGATIVE CONTROL — the same fixture with the key REMOVED: the shipped
+    // hazard, driven end to end through the real frame.
+    const noLoop: Record<string, unknown> = { ...loopFixture };
+    delete noLoop.animate_loop_ms;
+    const n80 = frameAt(noLoop, 80000), n84 = frameAt(noLoop, 84000);
+    check("without the key the frame prints the CLAMPED constant at t=80000 (λ = −3.5)", n80.lp.readouts.segment_length, segLen(LO), 1e-12);
+    expectFail(`...and the picture is still moving four seconds later (${n80.lp.readouts.segment_length.toFixed(4)} → ${n84.lp.readouts.segment_length.toFixed(4)})`,
+      n80.lp.readouts.segment_length !== n84.lp.readouts.segment_length);
+  }
+
+  // ── (f) A TEACHER'S DRAG STILL WINS ───────────────────────────────────────
+  //   The loop must not fight a seized knob: the drag branch of the frame's
+  //   knob() funnel runs BEFORE the ramp resolves, and adding a period must not
+  //   have moved it. Read off the arrow the frame actually draws.
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    const bRamp = [
+      { knob: "b_mag", from: 1.0, to: 5.0, start_ms: 0, duration_ms: HALF, easing: "linear" },
+      { knob: "b_mag", from: 5.0, to: 1.0, start_ms: HALF, duration_ms: HALF, easing: "linear" },
+    ];
+    const vg = { animate: bRamp, animate_loop_ms: LOOP, a_mag: 3.0, b_mag: 1.0, theta_deg: 60, reveal_ms: 0 };
+    const lenOfB = (ms: number, win: Record<string, unknown>, showSliders: boolean) => {
+      const scene = runFrame(vg, ms, fakeDom(), win, showSliders) as any[];
+      return scene.filter((o: any) => o.userData.elementType === "vg_vector_b")[0].len as number;
+    };
+    const free80 = lenOfB(80000, {}, true);
+    check("un-dragged, the looped |b| at t=80000 is the wrapped ramp value", free80,
+      E.vgAnimValue(bRamp, "b_mag", 80000, 1.0, LOOP), 1e-12);
+    const seized = { PM_vgBMag: 4.25, PM_vgBMagDragged: true };
+    check("a teacher's drag seizes the row and the LOOPED ramp does not fight it (t=80000)", lenOfB(80000, { ...seized }, true), 4.25, 1e-12);
+    check("...and at t=8000, the same phase one cycle earlier — the seize is not phase-dependent", lenOfB(8000, { ...seized }, true), 4.25, 1e-12);
+    assertTrue("...and the seized value really does differ from what the loop would have drawn (the check discriminates)",
+      Math.abs(free80 - 4.25) > 0.1);
+    // THE EYE never drags, so a frozen frame always takes the closed-form branch.
+    check("with no drag flag the frame is back on the closed form (the deterministic capture path)", lenOfB(80000, {}, true), free80, 0);
+  }
+
+  // ── (g) NO-LOOP STATES ARE BYTE-IDENTICAL PRE/POST ────────────────────────
+  //   The pre-fix vgAnimValue, RECONSTRUCTED from the shipped text (the §19b
+  //   pattern): the 5th parameter and the one wrap line removed, and nothing
+  //   else. Guarded — a drifted anchor is an ERROR, never a quiet pass.
+  {
+    const SIG = "function vgAnimValue(animate, knob, stateMs, authored, loopMs) {";
+    const WRAP = /\n\s*stateMs = vgLoopMs\(stateMs, loopMs\);[^\n]*/;
+    const preFix = (name: string, src: string) => {
+      if (name !== "vgAnimValue") return src;
+      if (src.indexOf(SIG) !== 0 || !WRAP.test(src)) {
+        throw new Error(
+          "§27 NEGATIVE CONTROL CANNOT BE BUILT: vgAnimValue's shipped signature or wrap line no longer "
+          + "matches the text this control removes. A control that silently fails to plant its defect is "
+          + "worse than no control. Re-anchor SIG/WRAP and re-watch it fail.\n  got: " + src.slice(0, 200));
+      }
+      return src.replace(SIG, "function vgAnimValue(animate, knob, stateMs, authored) {").replace(WRAP, "");
+    };
+    const PRE = buildVgSandbox(preFix) as any;
+    assertTrue("the reconstructed pre-fix resolver really is the un-looped one (it ignores a 5th argument entirely)",
+      PRE.vgAnimValue(PING, "aux_a", 80000, 0, LOOP) === LO && E.vgAnimValue(PING, "aux_a", 80000, 0, LOOP) !== LO);
+    // The sweep. Every shape a shipped state authors — a single window, a
+    // multi-segment sweep, a hold gap, duration 0, a knob nothing names — at
+    // every ms, with NO period: pre and post must agree exactly.
+    const SHAPES: Array<{ name: string; anim: Array<Record<string, unknown>>; knob: string; dflt: number }> = [
+      { name: "a single ramp", anim: [{ knob: "theta_deg", from: 20, to: 90, start_ms: 400, duration_ms: 2600 }], knob: "theta_deg", dflt: 60 },
+      {
+        name: "a multi-segment sweep with a hold gap",
+        anim: [{ knob: "theta_deg", from: 20, to: 90, start_ms: 400, duration_ms: 2600 },
+               { knob: "theta_deg", from: 90, to: 130, start_ms: 3400, duration_ms: 2200 }],
+        knob: "theta_deg", dflt: 60,
+      },
+      { name: "a duration_ms 0 cut", anim: [{ knob: "flip_frac", from: 0, to: 1, start_ms: 1200, duration_ms: 0 }], knob: "flip_frac", dflt: 0 },
+      { name: "the ping-pong itself", anim: PING, knob: "aux_a", dflt: 0 },
+      { name: "a knob no entry names", anim: PING, knob: "b_mag", dflt: 2.0 },
+      { name: "an empty list", anim: [], knob: "b_mag", dflt: 2.0 },
+    ];
+    let drift = 0, samples = 0;
+    for (const s of SHAPES) {
+      for (let t = -500; t <= 90000; t += 137) {
+        samples++;
+        const post = E.vgAnimValue(s.anim, s.knob, t, s.dflt);
+        const pre = PRE.vgAnimValue(s.anim, s.knob, t, s.dflt);
+        if (!Object.is(post, pre)) drift++;
+        // ...and an explicitly-absent / zero period is the same thing again.
+        if (!Object.is(E.vgAnimValue(s.anim, s.knob, t, s.dflt, undefined), pre)) drift++;
+        if (!Object.is(E.vgAnimValue(s.anim, s.knob, t, s.dflt, 0), pre)) drift++;
+      }
+    }
+    check(`over ${samples} ms x ${SHAPES.length} authored shapes, values that DIFFER from the pre-fix build`, drift, 0, 0);
+    // ...and the same at the level a state is actually authored: the whole
+    // frame, run on a fixture with no period, before and after.
+    {
+      const runFrame = FRAME_HARNESS.run!;
+      const guided = {
+        mode: "lines_planes", reveal_ms: 0, value_readouts: ["segment_length"],
+        animate: PING,
+        lines: [{ id: "L1", point: [0, 0, 0], dir: [1, 0, 0], lambda_span: [-4, 4] }],
+        points: [{ id: "Q", position: [0, 2, 0] }],
+        segments: [{ id: "S", from: "Q", to: { on: "L1", lambda: { knob: "aux_a" } }, readout: "length" }],
+      };
+      let bad = 0;
+      for (const t of [0, 900, 4500, 9000, 13500, 18000, 30000, 72000, 80000]) {
+        const win: Record<string, unknown> = {};
+        runFrame(guided, t, fakeDom(), win);
+        const got = (win.PM_vgLinesPlanes as any).readouts.segment_length as number;
+        if (Math.abs(got - segLen(E.vgAnimValue(PING, "aux_a", t, 0))) > 1e-12) bad++;
+      }
+      check("a state that authors NO period still draws the one-shot-hold pose at every sampled ms", bad, 0, 0);
+    }
+  }
+
+  // ── (h) deriveStateMeta — FIRST-CYCLE SEMANTICS, ASSERTED ─────────────────
+  //   A looping state has no settled end, so the pin can only mean the end of
+  //   the FIRST cycle. The decision is that the pin derivation reads the
+  //   authored windows UN-WRAPPED — i.e. adding the key moves no pin — and that
+  //   is asserted here rather than left to inspection (the F14 `intersections`
+  //   scar: a new timed authoring key the pin evaluator cannot see is invisible
+  //   until a baseline is already wrong).
+  {
+    const mk = (extra: Record<string, unknown>, showSliders: boolean) => ({
+      field_3d_config: {
+        scenario_type: "vector_geometry_3d",
+        states: { STATE_1: { show_sliders: showSliders, vg: { mode: "products", reveal_ms: 900, animate: PING, ...extra } } },
+      },
+    });
+    const pinOf = (cfg: unknown) => (deriveMaxRevealTimeMs(cfg as never) as Record<string, number>).STATE_1;
+    const pinPlain = pinOf(mk({}, false));
+    const pinLoop = pinOf(mk({ animate_loop_ms: LOOP }, false));
+    check("the reveal pin of a LOOPING guided state equals the pin of the same windows un-looped (first-cycle semantics)", pinLoop, pinPlain, 0);
+    check("...and that number is the last authored window end + the vg cushion (18000 + 300)", pinLoop, LOOP + 300, 0);
+    assertTrue("...which is exactly what vgAnimEndMs reports for the same list — the renderer and the evaluator do not diverge",
+      E.vgAnimEndMs(PING) === LOOP && pinLoop === (E.vgAnimEndMs(PING) as number) + 300);
+    // ...and it is SOUND, because the loop is periodic: the pose at the pin is
+    // the pose at the pin mod the period. A pin is a capture instant, not a
+    // claim that the state has stopped.
+    check("the knob at the derived pin equals the knob at (pin mod period) — the pin photographs a real, reachable pose",
+      loopedAt(pinLoop), plainAt(pinLoop % LOOP), 0);
+
+    // MOTION + HOLD. A looping state moves forever, so it must never be told
+    // its tail may be stuck.
+    const motion = deriveMotionExpectations(mk({ animate_loop_ms: LOOP }, false) as never);
+    assertTrue("a looping state is declared MOTION (D5 runs on it — a gate that is skipped is not a gate that passed)",
+      motion.STATE_1 === true);
+    const holdLoop = deriveHoldExpectations(mk({ animate_loop_ms: LOOP }, false) as never);
+    const holdPlain = deriveHoldExpectations(mk({}, false) as never);
+    assertTrue(`a guided state that never settles is NOT classified reveal_hold (got ${String(holdLoop.STATE_1)}) — D7's stuck tail stays live on the one state whose point is that it never stops`,
+      holdLoop.STATE_1 === undefined);
+    assertTrue(`...while the same state WITHOUT a period still classifies reveal_hold (got ${String(holdPlain.STATE_1)}) — no shipped state moves`,
+      holdPlain.STATE_1 === "reveal_hold");
+    const holdSandbox = deriveHoldExpectations(mk({ animate_loop_ms: LOOP }, true) as never);
+    assertTrue(`the sandbox (show_sliders) stays 'interactive' whatever it idles at (got ${String(holdSandbox.STATE_1)}) — the intended home of the key`,
+      holdSandbox.STATE_1 === "interactive");
+    assertTrue(`...and a sandbox is skipped by the vg pin derivation entirely (both pin at the DEFAULT ${pinOf(mk({ animate_loop_ms: LOOP }, true))} ms), so the loop can never mint a pinned baseline`,
+      pinOf(mk({ animate_loop_ms: LOOP }, true)) === pinOf(mk({}, true))
+      && pinOf(mk({ animate_loop_ms: LOOP }, true)) < pinLoop);
+    // NEGATIVE CONTROL — an evaluator that WRAPPED its own output (the tempting
+    // other answer) would pin at 18300 % 18000 = 300 ms. It is INDISTINGUISHABLE
+    // on the knob, because the loop is periodic — which is exactly why the knob
+    // is the wrong thing to measure the decision by. It is the REVEAL CHAIN that
+    // convicts it: at 300 ms the segment revealed at 2000 ms is not on screen at
+    // all, and the frozen baseline would be minted from an empty picture.
+    const wrappedPin = pinLoop % LOOP;
+    check(`the wrapped pin (${wrappedPin} ms) is indistinguishable from ${pinLoop} ms ON THE KNOB — periodicity, and the reason the knob cannot decide this`,
+      loopedAt(wrappedPin), loopedAt(pinLoop), 0);
+    const fracAt = (ms: number) => (E.vgResolveLinesPlanes(loopFixture, { aux_a: loopedAt(ms) }, ms) as any).segments[0].frac as number;
+    expectFail(`a pin evaluator that wrapped its own output still clears the reveal chain (at ${wrappedPin} ms the segment's frac is ${fracAt(wrappedPin)}, against ${fracAt(pinLoop)} at the un-wrapped pin)`,
+      fracAt(wrappedPin) === 1);
+    check("...while the UN-WRAPPED pin this file derives photographs the fully-revealed segment", fracAt(pinLoop), 1, 0);
+  }
+
+  // ── (i) THE AUTHORING FOLLOW-UP, IF THE CONCEPT IS ON THIS DESK ────────────
+  //   Advisory (the §26(e) pattern): the engine now HAS the mechanism, but #9
+  //   STATE_9 still has to declare a period, and the engine cannot author it.
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let s9: Record<string, any> | null = null;
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      const ids = cfg ? Object.keys(cfg.states) : [];
+      const last = ids.length ? cfg!.states[ids[ids.length - 1]] : null;
+      s9 = last && last.show_sliders === true ? last : null;
+    } catch { s9 = null; }
+    if (!s9) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the S9 authoring follow-up is advisory");
+    } else {
+      const anim = Array.isArray(s9.vg?.animate) ? s9.vg.animate : [];
+      const end = Math.max(0, ...anim.map((r: any) => (r.start_ms || 0) + (r.duration_ms || 0)));
+      assertTrue(`the explore state declares a loop period for its ${anim.length}-window list (last window ends at ${end} ms; authored period ${String(s9.vg?.animate_loop_ms)})`,
+        typeof s9.vg?.animate_loop_ms === "number" && s9.vg.animate_loop_ms > 0);
+      if (typeof s9.vg?.animate_loop_ms === "number") {
+        assertTrue(`...and the period matches the end of the authored window list (${s9.vg.animate_loop_ms} vs ${end}) — a shorter period truncates the sweep, a longer one re-freezes for the difference`,
+          Math.abs(s9.vg.animate_loop_ms - end) < 1e-9);
+      }
     }
   }
 }

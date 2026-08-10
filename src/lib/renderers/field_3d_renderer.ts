@@ -508,6 +508,25 @@ export interface Field3DConfig {
                 start_ms?: number; duration_ms?: number;
                 easing?: 'linear' | 'smoothstep' | 'ease_out_cubic';
             }>;
+            // F21b — the AUTHORED loop period for animate[] above, in
+            // state-local ms (bug_class vg_explore_animate_windows_are_finite_
+            // so_the_free_running_sandbox_freezes). Present and > 0 ⇒ animate[]
+            // is evaluated against `stateMs % animate_loop_ms`; absent ⇒ the
+            // one-shot-hold semantics above, unchanged, on every state already
+            // shipped. Intended for the Rule-37 `interaction_complete` sandbox,
+            // whose clock never ends (the player skips SET_TIME_FREEZE there),
+            // so any finite window list expires and the picture stops dead —
+            // #9 STATE_9 unrolled a ping-pong as eight windows and froze at
+            // 72 s. The period is normally the last window's end_ms, and the
+            // authored windows should form a CLOSED cycle (the value at the
+            // period must equal the value at 0) or the seam reads as a jump.
+            //
+            // SCOPE: the wrap reaches animate[] and NOTHING ELSE. Per-object
+            // reveal_at_ms / hide_at_ms / ghost_at_ms, the shared grow-in ease
+            // and camera_steps all keep reading the un-wrapped state clock, so
+            // a looping sandbox never re-plays a reveal. A teacher's drag still
+            // seizes the row (the drag branch runs before the ramp resolves).
+            animate_loop_ms?: number;
             // F24 — the mid-state camera schedule, adopted verbatim from
             // os.camera_steps: closed-form on state-local ms, so it bypasses
             // the history-dependent lerpSpherical and a SET_TIME_FREEZE pin
@@ -12399,8 +12418,50 @@ export const FIELD_3D_RENDERER_CODE = `
                 "lambda", "lambda_span", "half_extent", "q_height", "line2_offset",
                 "aux_a", "aux_b"];
     }
-    function vgAnimValue(animate, knob, stateMs, authored) {
+    //
+    //   F21b · animate_loop_ms — THE AUTHORED LOOP PERIOD (bug_class
+    //   vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_
+    //   freezes). The semantics above are exactly right for a GUIDED state:
+    //   the clock ends, the pose holds. They are wrong for a Rule-37
+    //   interaction_complete sandbox, whose clock NEVER ends — the player
+    //   deliberately skips SET_TIME_FREEZE there, so any finite window list
+    //   expires and the picture stops dead. #9 STATE_9 hand-unrolled a
+    //   ping-pong as EIGHT alternating windows ending at 72000 ms and froze at
+    //   lambda = -3.5 from 72 s onward, with no way to restart short of
+    //   leaving the state. An authored loop that is merely LONG is a bug with
+    //   a delay on it.
+    //
+    //   The loop is AUTHORED, never automatic: vg.animate_loop_ms declares
+    //   the period, and only when it is present and > 0 is animate[] evaluated
+    //   against stateMs mod the period. Looping every finite list by default
+    //   would silently rewrite the semantics of every guided state already
+    //   shipped (their held end pose would start returning to its "from"), so
+    //   the author says so or nothing changes.
+    //
+    //   SCOPE — and this is the load-bearing half. The wrap lives INSIDE
+    //   vgAnimValue and is reached ONLY through its own loopMs parameter, so
+    //   it is structurally unreachable from vgRevealFrac (reveal_at_ms /
+    //   hide_at_ms), vgGhostFactor (ghost_at_ms), vgCamScheduleAt
+    //   (camera_steps) and the shared grow-in ease — every one of which keeps
+    //   reading the UN-WRAPPED state clock. A looping sandbox therefore loops
+    //   its knobs and NEVER re-plays its reveals: an object revealed at 2000 ms
+    //   is still fully grown at 20000 ms with a 18000 ms period.
+    //
+    //   Rule 36 / D3 unchanged: the wrapped value is still a pure closed form
+    //   of stateMs (a modulo, not an accumulator), so a SET_TIME_FREEZE pin at
+    //   any ms re-draws bit-identically and a rewind reproduces exactly. And
+    //   the drag-seize branch in the frame's knob() funnel sits BEFORE this
+    //   call, so a teacher-dragged row still overrides a looped ramp exactly as
+    //   it overrides an un-looped one.
+    function vgLoopMs(stateMs, loopMs) {
+        if (!(typeof stateMs === "number" && isFinite(stateMs))) return stateMs;
+        if (!(typeof loopMs === "number" && isFinite(loopMs) && loopMs > 0)) return stateMs;
+        var m = stateMs % loopMs;
+        return (m < 0) ? m + loopMs : m;      // pure, no accumulator (Rule 36)
+    }
+    function vgAnimValue(animate, knob, stateMs, authored, loopMs) {
         if (!animate || !animate.length) return authored;
+        stateMs = vgLoopMs(stateMs, loopMs);   // no-op unless the state authored a period
         var v = authored, seen = false;
         for (var i = 0; i < animate.length; i++) {
             var r = animate[i] || {};
@@ -12425,6 +12486,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // number deriveStateMeta needs so a reveal pin lands PAST the last
     // settled beat instead of mid-transition (scar
     // field3d_slcr_reveal_hold_captures_transitional_r_family).
+    //
+    // FIRST-CYCLE SEMANTICS under animate_loop_ms: this deliberately ignores
+    // the loop period and reports the last authored window end. A looping
+    // state has no settled end at all, so "the end" can only mean the end of
+    // the FIRST cycle — and because the loop is exactly periodic, a pin taken
+    // at any ms draws the same knob pose as the same ms taken mod the period.
+    // deriveStateMeta's vg reveal-pin block mirrors this (it reads
+    // start_ms + duration_ms un-wrapped); the two must not diverge.
     function vgAnimEndMs(animate) {
         var end = 0;
         if (!animate) return end;
@@ -14816,6 +14885,13 @@ export const FIELD_3D_RENDERER_CODE = `
         var d = stateDef.vg || {};
         var anim = d.animate || null;
         var stateMs = (time - stateStartTime) * 1000;
+        // F21b · the AUTHORED animate[] loop period. Handed ONLY to
+        // vgAnimValue, which is the whole scope guarantee: the reveal chain
+        // (vgRevealFrac / vgGhostFactor inside vgResolveLinesPlanes), the
+        // shared grow-in ease and the camera schedule below are all called
+        // with the raw stateMs and cannot see it, so a looping sandbox
+        // loops its knobs without ever re-playing a reveal.
+        var animLoopMs = d.animate_loop_ms;
 
         // Knob resolution, in ONE funnel: an F21 ramp drives the authored
         // value, and a TRUSTED teacher drag on that row seizes it for the
@@ -14825,7 +14901,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // takes the closed-form branch and stays deterministic.
         function knob(key, dflt, liveKey, dragKey) {
             if (stateDef.show_sliders && window[dragKey] && window[liveKey] != null) return window[liveKey];
-            return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt));
+            return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt), animLoopMs);
         }
         var aMag = knob("a_mag", 3.0, "PM_vgAMag", "PM_vgAMagDragged");
         var bMag = knob("b_mag", 2.0, "PM_vgBMag", "PM_vgBMagDragged");
@@ -14845,8 +14921,8 @@ export const FIELD_3D_RENDERER_CODE = `
             q_height: knob("q_height", 1.19, "PM_vgQHeight", "PM_vgQHeightDragged"),
             line2_offset: knob("line2_offset", 0.0, "PM_vgLine2Offset", "PM_vgLine2OffsetDragged"),
             theta_deg: thetaDeg,
-            aux_a: vgAnimValue(anim, "aux_a", stateMs, (d.aux_a != null ? d.aux_a : 0)),
-            aux_b: vgAnimValue(anim, "aux_b", stateMs, (d.aux_b != null ? d.aux_b : 0)),
+            aux_a: vgAnimValue(anim, "aux_a", stateMs, (d.aux_a != null ? d.aux_a : 0), animLoopMs),
+            aux_b: vgAnimValue(anim, "aux_b", stateMs, (d.aux_b != null ? d.aux_b : 0), animLoopMs),
             // Δ10 — the frame reads the LIVE global, never the authored
             // per-state value: a picker that updates a global the frame ignores
             // is the recorded field3d_explore_picker_updates_global_but_frame_
@@ -14885,16 +14961,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // grow-in ease, so a state that authors nothing behaves exactly as
         // before; authoring the field (or ramping it through animate[])
         // takes that element off the shared reveal and onto its own beat.
-        var arcFrac = vgAnimValue(anim, "arc_reveal_frac", stateMs, (d.arc_reveal_frac != null ? d.arc_reveal_frac : ease));
-        var crossFrac = vgAnimValue(anim, "cross_reveal_frac", stateMs, (d.cross_reveal_frac != null ? d.cross_reveal_frac : ease));
-        var cFrac = vgAnimValue(anim, "c_reveal_frac", stateMs, (d.c_reveal_frac != null ? d.c_reveal_frac : ease));
+        var arcFrac = vgAnimValue(anim, "arc_reveal_frac", stateMs, (d.arc_reveal_frac != null ? d.arc_reveal_frac : ease), animLoopMs);
+        var crossFrac = vgAnimValue(anim, "cross_reveal_frac", stateMs, (d.cross_reveal_frac != null ? d.cross_reveal_frac : ease), animLoopMs);
+        var cFrac = vgAnimValue(anim, "c_reveal_frac", stateMs, (d.c_reveal_frac != null ? d.c_reveal_frac : ease), animLoopMs);
         // flip_frac turns a x b into b x a by ROTATING it 180 degrees about
         // a-hat (which is perpendicular to a x b, so a half turn maps
         // a x b exactly onto -(a x b) = b x a). A linear interpolation
         // through zero would instead shrink the arrow to nothing and regrow
         // it, which teaches the wrong thing about what reversing the order
         // does.
-        var flipFrac = vgAnimValue(anim, "flip_frac", stateMs, (d.flip_frac != null ? d.flip_frac : 0));
+        var flipFrac = vgAnimValue(anim, "flip_frac", stateMs, (d.flip_frac != null ? d.flip_frac : 0), animLoopMs);
         var crossDrawn = flipFrac ? vgRotateAbout(axb, vgNormalize(a), Math.PI * flipFrac) : axb;
 
         var ea = [a[0] * ease, a[1] * ease, a[2] * ease];
@@ -14909,8 +14985,8 @@ export const FIELD_3D_RENDERER_CODE = `
         //    the drawn vectors and the fraction — recomputed from scratch
         //    every frame, nothing cached, so the frame is a closed form of
         //    state-local ms all the way down (D3).
-        var solidFrac = vgAnimValue(anim, "solid_build_frac", stateMs, (d.solid_build_frac != null ? d.solid_build_frac : 1));
-        var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0));
+        var solidFrac = vgAnimValue(anim, "solid_build_frac", stateMs, (d.solid_build_frac != null ? d.solid_build_frac : 1), animLoopMs);
+        var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0), animLoopMs);
         var pieces = vgSplitPieces(ea, eb, ec, splitFrac, d.split_gap_k);
 
         // ── Δ11 · the projection of b onto â, computed from the DRAWN a and b
