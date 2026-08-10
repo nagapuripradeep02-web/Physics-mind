@@ -183,9 +183,28 @@ export function runFleetSafety(spec: FleetSafetySpec): FleetSafetyResult {
   const mineCommits: string[] = [], othersCommits: string[] = [];
   const othersAdded = new Set<string>(), othersRemoved = new Set<string>();
   const mineAdded = new Set<string>(), mineRemoved = new Set<string>();
+  // A CITATION IS NOT AUTHORSHIP (2026-08-10). The vocabulary test decides
+  // whose commit this is, so it must read only lines that could BE the
+  // scenario's work: (1) a comment-only patch line that happens to cite this
+  // scenario ("// ... vector_geometry_3d mechanism", the organic substrate
+  // crediting a pattern it borrowed) must not claim the whole commit — the
+  // measured failure was 754 of organic's lines strayed as vg's because of
+  // ONE such comment; (2) an enumerated glue site is by definition SHARED
+  // (the union terminator carries this scenario's type string in every
+  // commit that appends a sibling), so touching one proves nothing about
+  // authorship either. Everything the excluded lines actually add is still
+  // diffed — exclusion here only affects whose bag the lines land in.
+  const vocabLine = (l: string) => {
+    if (!l.startsWith("+") && !l.startsWith("-")) return false;
+    if (l.startsWith("+++") || l.startsWith("---")) return false;
+    const body = l.slice(1).trim();
+    if (body.startsWith("//")) return false;              // comment-only: a citation
+    if (spec.glue.some((g) => body.includes(g))) return false; // shared glue site
+    return spec.vocabulary.test(body);
+  };
   for (const c of git(["rev-list", `${base}..HEAD`, "--", R]).split("\n").map((s) => s.trim()).filter(Boolean)) {
     const patch = git(["show", "--unified=0", "--format=", c, "--", R]);
-    const mine = spec.vocabulary.test(patch);
+    const mine = patch.split("\n").some(vocabLine);
     (mine ? mineCommits : othersCommits).push(c);
     const add = mine ? mineAdded : othersAdded, del = mine ? mineRemoved : othersRemoved;
     for (const l of patch.split("\n")) {
