@@ -81,6 +81,42 @@ function grabFn(name: string): string {
     throw new Error("unbalanced braces reading " + name);
 }
 
+/**
+ * A 2D-context stub with a REAL measureText. S3 put every painted string
+ * through orgText, which measures before it places, so a stub without
+ * measureText no longer models the painter at all.
+ *
+ * The advance model is calibrated against Chromium: a monospace face advances
+ * 0.601 em per character (20 px × 0.601 × 21 chars = 252.0 px, the measured
+ * width of "barrier 12.0 kJ·mol⁻¹"), and the 'Cambria Math',serif stack
+ * averages 0.42 em over the strings this scenario paints. The exact constants
+ * are not the point: the assertion is that the painter RESPECTS whatever
+ * measureText returns, so any consistent model exercises the contract.
+ */
+function ctxFontPx(font: string): number {
+    const i = String(font).indexOf("px");
+    if (i < 0) return 12;
+    let j = i;
+    while (j > 0 && "0123456789.".indexOf(String(font).charAt(j - 1)) >= 0) j--;
+    const n = parseFloat(String(font).slice(j, i));
+    return n > 0 ? n : 12;
+}
+function mkCanvasCtx(painted?: string[]) {
+    return {
+        clearRect() { /* stub */ }, beginPath() { /* stub */ }, moveTo() { /* stub */ },
+        lineTo() { /* stub */ }, stroke() { /* stub */ }, fill() { /* stub */ },
+        arc() { /* stub */ }, save() { /* stub */ }, restore() { /* stub */ },
+        translate() { /* stub */ }, rotate() { /* stub */ },
+        fillText(s: string) { if (painted) painted.push(String(s)); },
+        measureText(this: { font: string }, s: string) {
+            const px = ctxFontPx(this.font);
+            const em = String(this.font).indexOf("monospace") >= 0 ? 0.601 : 0.42;
+            return { width: Array.from(String(s)).length * px * em };
+        },
+        strokeStyle: "", fillStyle: "", lineWidth: 0, font: "12px monospace", textAlign: ""
+    };
+}
+
 // ── the sandbox: the shipped mg geometry layer + the whole PURE organic region.
 const ORG_REGION = region("    var ORG_U_PER_A = MG_BOND_LEN / 1.54;", "    function buildOrganicStructure(config) {");
 const MG_REGION = region("    function mgSmooth01(u)", "    function mgDomainKinds(n)");
@@ -90,6 +126,11 @@ const BUILD_FN = grabFn("buildOrganicStructure");
 /** S2's graph painter lives BELOW buildOrganicStructure, so it is outside
  *  ORG_REGION and is pulled in separately for the source scans. */
 const GRAPH_FN = grabFn("orgDrawGraph");
+/** S3's canvas text placer + the DOM formula fitter sit immediately ABOVE
+ *  orgDrawGraph, so they are outside ORG_REGION too. Every harness that draws
+ *  the graph or runs apply needs them. */
+const PLACER_REGION = region("    // ── S3: THE CANVAS TEXT PLACER",
+    "    /**\n     * S2: the E(coordinate) curve with the rider.");
 
 const harness = [
     "var window = { PM_orgRejects: [] };",
@@ -104,6 +145,12 @@ const harness = [
     "return { " + [
         "ORG_U_PER_A", "ORG_CC_A", "ORG_CH_A", "ORG_CCd_A", "ORG_HCH_DEG", "ORG_ATOM_SCALE",
         "ORG_HOME", "ORG_MAX_ATOMS", "ORG_MAX_BONDS", "ORG_NEWMAN_RIM_FRAC",
+        "ORG_NEWMAN_FULL_DEG", "ORG_NEWMAN_OFF_DEG", "ORG_NEWMAN_HIDE_W",
+        "ORG_RO_BACK_BOND", "ORG_RO_RIM", "ORG_RO_BACK_ATOM", "ORG_RO_FRONT_BOND",
+        "ORG_RO_FRONT_ATOM", "ORG_BACK_TINT", "ORG_BACK_TINT_T",
+        "orgNewmanWeight", "orgNewmanAngle", "orgNewmanWeightAt", "orgTintHex",
+        "orgProjXY", "orgLabelAnchor", "orgLabelClearance", "orgAdd", "orgSub",
+        "orgMul", "orgLen",
         "ORG_MODES", "ORG_MODES_IMPL", "ORG_MODES_DEFERRED",
         "ORG_HUD_LINES", "ORG_HUD_LINES_IMPL", "ORG_HUD_LINES_DEFERRED",
         "ORG_CONTROL_IDS", "ORG_CONTROL_IDS_IMPL", "ORG_CONTROL_IDS_DEFERRED",
@@ -1232,7 +1279,7 @@ console.log("\n[12] THE FRAME PASS ACTUALLY RUNS — meshes exist, the HUD paint
         "function applyGlowEmphasis() {}",
         grabVar("MG_BOND_LEN"), grabVar("MG_AZ0"), grabVar("MG_ELEMENTS"),
         MG_REGION, grabFn("mgIdealDirs"), ORG_REGION,
-        grabFn("orgFx"), GRAPH_FN, FRAME_FN,
+        grabFn("orgFx"), PLACER_REGION, GRAPH_FN, FRAME_FN,
         "return { run: function (st) { updateOrganicStructureFrame(st); return { hud: HUD.innerHTML, W: window }; } };"
     ].join("\n");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1517,7 +1564,9 @@ console.log("\n[13] THE DRIVEN DIHEDRAL — φ(t) is closed form, and the rider 
             eEst.barrierLabel === "barrier" && eEst.barrier === 12);
         ok("BOTH surfaces that print the number print the name (the HUD line and the graph bracket)",
             /lines\.push\(\(\(est == null\) \? "barrier" : est\.barrierLabel\)/.test(FRAME_FN) &&
-            /g\.fillText\(est\.barrierLabel \+ " " \+ orgFx\(est\.barrier\)/.test(GRAPH_FN));
+            // S3 moved the bracket caption onto the measured text placer; the
+            // string it composes is unchanged, only who places it.
+            /orgText\(g, est\.barrierLabel \+ " " \+ orgFx\(est\.barrier\)/.test(GRAPH_FN));
         ok("the 16 kJ·mol⁻¹ interconversion barrier is still on screen as a published stationary point",
             R.ORG_ENERGY_TABLE.butane.stationary.some((s: { x: number; e: number; kind: string }) =>
                 s.x === 120 && s.e === 16 && s.kind === "maximum"));
@@ -1636,14 +1685,10 @@ console.log("\n[14] THE DRIVEN FRAME PASS RUNS — apply + frame, end to end, an
     // scan (a canvas-internal string is invisible to every DOM probe there is).
     const painted: string[] = [];
     els["org_graph"].width = 700; els["org_graph"].height = 460;
-    els["org_graph"].getContext = () => ({
-        clearRect() { /* stub */ }, beginPath() { /* stub */ }, moveTo() { /* stub */ },
-        lineTo() { /* stub */ }, stroke() { /* stub */ }, fill() { /* stub */ },
-        arc() { /* stub */ }, save() { /* stub */ }, restore() { /* stub */ },
-        translate() { /* stub */ }, rotate() { /* stub */ },
-        fillText(s: string) { painted.push(String(s)); },
-        strokeStyle: "", fillStyle: "", lineWidth: 0, font: "", textAlign: ""
-    });
+    // ONE context object, so orgText's font writes and its measureText reads
+    // are the same object across a whole draw (S3).
+    const GCTX = mkCanvasCtx(painted);
+    els["org_graph"].getContext = () => GCTX;
     const runHarness = [
         "var window = { PM_orgRejects: [] };",
         "var ELS = arguments[0], SCENE = arguments[1], THREE = arguments[2], CLOCK = arguments[3];",
@@ -1659,7 +1704,7 @@ console.log("\n[14] THE DRIVEN FRAME PASS RUNS — apply + frame, end to end, an
         "function applyGlowEmphasis() {}",
         grabVar("MG_BOND_LEN"), grabVar("MG_AZ0"), grabVar("MG_ELEMENTS"),
         MG_REGION, grabFn("mgIdealDirs"), ORG_REGION,
-        grabFn("orgFx"), GRAPH_FN, FRAME_FN, APPLY_FN,
+        grabFn("orgFx"), PLACER_REGION, GRAPH_FN, FRAME_FN, APPLY_FN,
         "return {",
         "  apply: function (st) { applyOrganicStructureState(st); },",
         "  frame: function (st) { updateOrganicStructureFrame(st); },",
@@ -1834,6 +1879,699 @@ console.log("\n[14] THE DRIVEN FRAME PASS RUNS — apply + frame, end to end, an
             "S_SWEEP → " + String(mo.S_SWEEP) + " · S_STILL → " + String(mo.S_STILL));
         ok("…and the explore sandbox is still user-driven, not perpetual motion (the order is load-bearing)",
             mo.S_EXPLORE === false, "S_EXPLORE → " + String(mo.S_EXPLORE));
+    }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+console.log("\n[15] THE NEWMAN PROJECTION IS COUNTABLE — rasterised, every primitive an occluder");
+// The countability solve of sections 3/6 enumerates ATOM DISCS ONLY, and that is
+// exactly how the CRITICAL row
+// newman_back_atom_disc_clears_the_front_atom_disc_and_is_swallowed_by_the_front_bond_cylinder
+// got past it: at φ → 0 the back-H disc clears every other DISC by +0.198 units
+// and is then painted over by the front C–H CYLINDER, leaving two ~3 px slivers.
+// So this section stops measuring scalars and RASTERISES the scene — atoms,
+// bonds and the rim, each at its rendered screen width — then counts 4-connected
+// components of unoccluded atom pixels. The acceptance criterion is the number of
+// SEPARATELY VISIBLE atom regions at the worst-case pose.
+{
+    const PX = 150;              // pixels per scene unit (the smallest disc ≈ 19 px across)
+    const EXT = 2.4;             // half-extent of the raster, scene units
+    const SIDE = Math.round(2 * EXT * PX);
+    type Prim = {
+        kind: "atom" | "bond" | "rim"; owner: string; order: number;
+        x: number; y: number; r: number;          // atom / rim
+        bx: number; by: number; hw: number;       // bond far end + half width
+        dz: number; dzB: number;                  // camera depth at (x,y) and at (bx,by)
+    };
+    const NEWMAN_CAM = { sight_along: "C1-C2", dist: 8, newman: true };
+
+    /** Build the primitive list for ethane at φ, at the authored Newman camera. */
+    function scene_(phi: number) {
+        const geom = R.orgBuildGeometry("ethane", phi);
+        const pose = R.orgSolveCamera({ camera: NEWMAN_CAM }, geom);
+        const basis = R.orgCamBasis(pose);
+        const w = R.orgNewmanWeight(pose, geom, pose.front, pose.back);
+        const byId: Record<string, { id: string; el: string; p: number[] }> = {};
+        for (const a of geom.atoms) byId[a.id] = a;
+        const back = pose.back as string, front = pose.front as string;
+        const backSet: Record<string, boolean> = { [back]: true };
+        for (const b of geom.bonds) {
+            const o = b.a === back ? b.b : (b.b === back ? b.a : null);
+            if (o && o !== front) backSet[o] = true;
+        }
+        const P = (p: number[]) => {
+            const q = R.orgProjXY(p, pose, basis);
+            return { x: q.x, y: q.y, k: q.k, dz: pose.dist - R.mgDot(p, basis.fwd) };
+        };
+        // the rim radius, re-derived here rather than read out of the renderer
+        let best = 0;
+        for (const b of geom.bonds) {
+            const o = b.a === back ? b.b : (b.b === back ? b.a : null);
+            if (!o || o === front) continue;
+            const ax = R.mgNorm(R.orgSub(byId[front].p, byId[back].p));
+            const rel = R.orgSub(byId[o].p, byId[back].p);
+            const perp = R.orgSub(rel, R.orgMul(ax, R.mgDot(rel, ax)));
+            best = Math.max(best, R.orgLen(perp));
+        }
+        const rimR = best * R.ORG_U_PER_A * R.ORG_NEWMAN_RIM_FRAC;
+        const prims: Prim[] = [];
+        const discs: string[] = [];
+        for (const a of geom.atoms) {
+            if (a.id === back && w >= R.ORG_NEWMAN_HIDE_W) continue;   // the rim owns it
+            const q = P(R.orgMul(a.p, R.ORG_U_PER_A));
+            discs.push(a.id);
+            prims.push({
+                kind: "atom", owner: a.id, x: q.x, y: q.y, r: R.orgAtomRadius(a.el) * q.k,
+                order: backSet[a.id] ? R.ORG_RO_BACK_ATOM : R.ORG_RO_FRONT_ATOM,
+                bx: 0, by: 0, hw: 0, dz: q.dz - R.orgAtomRadius(a.el), dzB: 0
+            });
+        }
+        for (const b of geom.bonds) {
+            const sighted = (b.a === back && b.b === front) || (b.b === back && b.a === front);
+            if (sighted && w >= R.ORG_NEWMAN_HIDE_W) continue;
+            let pa = byId[b.a].p, pb = byId[b.b].p;
+            const bo = !sighted && w > 0 ? (b.a === back ? b.b : (b.b === back ? b.a : null)) : null;
+            if (bo) {
+                const ax = R.mgNorm(R.orgSub(byId[front].p, byId[back].p));
+                const rel = R.orgSub(byId[bo].p, byId[back].p);
+                const perp = R.orgSub(rel, R.orgMul(ax, R.mgDot(rel, ax)));
+                const rp = R.orgAdd(byId[back].p, R.orgMul(perp, (rimR / R.ORG_U_PER_A) / (R.orgLen(perp) || 1)));
+                pa = [0, 1, 2].map(i => byId[back].p[i] + (rp[i] - byId[back].p[i]) * w);
+                pb = byId[bo].p;
+            }
+            const A = P(R.orgMul(pa, R.ORG_U_PER_A)), B = P(R.orgMul(pb, R.ORG_U_PER_A));
+            prims.push({
+                kind: "bond", owner: "", x: A.x, y: A.y, bx: B.x, by: B.y,
+                hw: 0.075 * (A.k + B.k) / 2, r: 0, dz: A.dz, dzB: B.dz,
+                order: (backSet[b.a] && backSet[b.b]) ? R.ORG_RO_BACK_BOND : R.ORG_RO_FRONT_BOND
+            });
+        }
+        if (rimR > 0 && w > 0.001) {
+            const q = P(R.orgMul(byId[back].p, R.ORG_U_PER_A));
+            prims.push({
+                kind: "rim", owner: "", x: q.x, y: q.y, r: rimR * q.k, hw: 0.045 * q.k,
+                order: R.ORG_RO_RIM, bx: 0, by: 0, dz: q.dz, dzB: 0
+            });
+        }
+        return { prims, discs, w, pose, geom };
+    }
+
+    /** Coverage + camera depth of a primitive at an isotropic screen point. */
+    function hit(p: Prim, x: number, y: number): number | null {
+        if (p.kind === "atom") {
+            const d2 = (x - p.x) ** 2 + (y - p.y) ** 2;
+            if (d2 > p.r * p.r) return null;
+            return p.dz;                       // the front surface, near enough
+        }
+        if (p.kind === "rim") {
+            const d = Math.hypot(x - p.x, y - p.y);
+            return Math.abs(d - p.r) <= p.hw ? p.dz : null;
+        }
+        const vx = p.bx - p.x, vy = p.by - p.y, L2 = vx * vx + vy * vy || 1;
+        let t = ((x - p.x) * vx + (y - p.y) * vy) / L2;
+        t = Math.max(0, Math.min(1, t));
+        const cx = p.x + vx * t, cy = p.y + vy * t;
+        if (Math.hypot(x - cx, y - cy) > p.hw) return null;
+        return p.dz + (p.dzB - p.dz) * t;
+    }
+    /** mode 'flat' = paint in renderOrder (depthTest off); 'depth' = z-buffer. */
+    function raster(prims: Prim[], mode: "flat" | "depth") {
+        const owner = new Int32Array(SIDE * SIDE).fill(-1);
+        const zbuf = new Float64Array(SIDE * SIDE).fill(Infinity);
+        const idx = prims.map((_, i) => i);
+        if (mode === "flat") idx.sort((a, b) => prims[a].order - prims[b].order || a - b);
+        for (const pi of idx) {
+            const p = prims[pi];
+            const xs = [p.x - Math.max(p.r + p.hw, p.hw), p.bx - p.hw];
+            const xe = [p.x + Math.max(p.r + p.hw, p.hw), p.bx + p.hw];
+            const ys = [p.y - Math.max(p.r + p.hw, p.hw), p.by - p.hw];
+            const ye = [p.y + Math.max(p.r + p.hw, p.hw), p.by + p.hw];
+            const lo = (v: number[]) => (p.kind === "bond" ? Math.min(...v) : v[0]);
+            const hi = (v: number[]) => (p.kind === "bond" ? Math.max(...v) : v[0]);
+            const i0 = Math.max(0, Math.floor((lo(xs) + EXT) * PX)), i1 = Math.min(SIDE - 1, Math.ceil((hi(xe) + EXT) * PX));
+            const j0 = Math.max(0, Math.floor((lo(ys) + EXT) * PX)), j1 = Math.min(SIDE - 1, Math.ceil((hi(ye) + EXT) * PX));
+            for (let j = j0; j <= j1; j++) {
+                const y = j / PX - EXT;
+                for (let i = i0; i <= i1; i++) {
+                    const x = i / PX - EXT;
+                    const z = hit(p, x, y);
+                    if (z === null) continue;
+                    const c = j * SIDE + i;
+                    if (mode === "depth" && z >= zbuf[c]) continue;
+                    zbuf[c] = z;
+                    owner[c] = pi;
+                }
+            }
+        }
+        return owner;
+    }
+    /** Largest 4-connected run of pixels owned by primitive `pi`. */
+    function largestComponent(owner: Int32Array, pi: number): number {
+        const seen = new Uint8Array(SIDE * SIDE);
+        let best = 0;
+        const stack: number[] = [];
+        for (let c = 0; c < owner.length; c++) {
+            if (owner[c] !== pi || seen[c]) continue;
+            let n = 0; stack.length = 0; stack.push(c); seen[c] = 1;
+            while (stack.length) {
+                const k = stack.pop() as number; n++;
+                const i = k % SIDE, j = (k - i) / SIDE;
+                if (i > 0 && owner[k - 1] === pi && !seen[k - 1]) { seen[k - 1] = 1; stack.push(k - 1); }
+                if (i < SIDE - 1 && owner[k + 1] === pi && !seen[k + 1]) { seen[k + 1] = 1; stack.push(k + 1); }
+                if (j > 0 && owner[k - SIDE] === pi && !seen[k - SIDE]) { seen[k - SIDE] = 1; stack.push(k - SIDE); }
+                if (j < SIDE - 1 && owner[k + SIDE] === pi && !seen[k + SIDE] && !seen[k + SIDE]) { seen[k + SIDE] = 1; stack.push(k + SIDE); }
+            }
+            if (n > best) best = n;
+        }
+        return best;
+    }
+    /** How many atoms survive as ONE region of at least 60% of their own disc. */
+    function countable(phi: number, mode: "flat" | "depth") {
+        const S = scene_(phi);
+        const owner = raster(S.prims, mode);
+        let n = 0; const detail: string[] = [];
+        for (let pi = 0; pi < S.prims.length; pi++) {
+            const p = S.prims[pi];
+            if (p.kind !== "atom") continue;
+            const full = Math.PI * (p.r * PX) ** 2;
+            const got = largestComponent(owner, pi);
+            const frac = full > 0 ? got / full : 0;
+            if (frac >= 0.60) n++;
+            detail.push(p.owner + " " + (100 * frac).toFixed(0) + "%");
+        }
+        return { n, discs: S.discs, detail, w: S.w, prims: S.prims };
+    }
+
+    // ── the worst-case sweep. φ = 0 IS the taught pose of STATE_3.
+    const WORST = [0, 1, 2, 5, 10];
+    let allOk = true; const rows: string[] = [];
+    for (const phi of WORST) {
+        const c = countable(phi, "flat");
+        const good = c.n === c.discs.length;
+        allOk = allOk && good;
+        rows.push("φ=" + phi + "° → " + c.n + "/" + c.discs.length);
+        if (!good) info("φ=" + phi + "° per-atom visible fraction", c.detail.join(" · "));
+    }
+    ok("EVERY atom the projection draws is a separately visible region at the eclipsing poses",
+        allOk, rows.join("  ·  "));
+    {
+        const c = countable(0, "flat");
+        info("φ=0° per-atom unoccluded fraction of its own disc", c.detail.join(" · "));
+        // The withheld carbon is NOT lost: the rim is its representation, and the
+        // HUD's atom_count must still account for it.
+        const geom = R.orgBuildGeometry("ethane", 0);
+        const rim = c.prims.filter(p => p.kind === "rim").length;
+        ok("the ONLY atom not drawn as a disc is the back carbon, and the rim IS drawn for it",
+            c.discs.length === geom.atoms.length - 1 && c.discs.indexOf("C2") < 0 && rim === 1,
+            c.discs.length + " discs + 1 rim = " + geom.atoms.length + " atoms the HUD counts (C 2 · H 6)");
+    }
+    // NEGATIVE CONTROL 1 (the row's own): at φ=60 the same probe returns the full count.
+    {
+        const c = countable(60, "flat");
+        ok("[neg] the staggered control returns the full count through the same probe",
+            c.n === c.discs.length, "φ=60° → " + c.n + "/" + c.discs.length);
+    }
+    // NEGATIVE CONTROL 2 (the stronger one): the SHIPPED-BEFORE depth order — the
+    // same geometry, the same rasteriser, ordinary depth testing — must FAIL at
+    // φ=0. A probe that cannot reproduce the defect it was written for proves
+    // nothing about the fix.
+    {
+        const c = countable(0, "depth");
+        ok("[neg] plain depth testing at φ=0 LOSES the back set — the defect is reproducible",
+            c.n < c.discs.length, "depth-sorted φ=0° → " + c.n + "/" + c.discs.length
+            + "  ·  " + c.detail.join(" · "));
+    }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+console.log("\n[16] THE PROJECTION IS FORMED, NOT SWITCHED — the rim rides the sight line");
+// The CRITICAL row
+// newman_rim_convention_applies_at_state_apply_instead_of_when_the_sight_line_reaches_the_bond_axis:
+// camera.newman was read ONCE, at apply, so STATE_2 opened on ethane with a
+// carbon deleted, a circle floating where it should be and three bond stubs at
+// meaningless angles — and held that for most of a 12.5 s flight whose whole
+// subject is how the projection is formed. This section flies the authored
+// camera and asserts the treatment tracks the SIGHT LINE at every 10% of it.
+{
+    const V3 = function (this: Record<string, number>, x?: number, y?: number, z?: number) {
+        this.x = x || 0; this.y = y || 0; this.z = z || 0;
+    } as unknown as { new(x?: number, y?: number, z?: number): Record<string, unknown> };
+    const stub = {
+        Vector3: V3,
+        Matrix4: function (this: Record<string, unknown>) { this.makeBasis = () => this; },
+        Color: function (this: Record<string, unknown>) { /* stub */ }
+    };
+    const mk = (id: string, t: string) => {
+        const m = {
+            userData: { id, elementType: t } as Record<string, unknown>, visible: false,
+            pos: [0, 0, 0] as number[], renderOrder: 0, text: "",
+            position: { set: (x: number, y: number, z: number) => { m.pos = [x, y, z]; } },
+            scale: { set() { /* stub */ }, setScalar() { /* stub */ } },
+            quaternion: { setFromUnitVectors() { /* stub */ }, setFromRotationMatrix() { /* stub */ } },
+            material: {
+                color: { set(v: string) { (m.material as Record<string, unknown>).hex = v; } },
+                emissive: { set() { /* stub */ } },
+                opacity: 1, transparent: false, depthTest: true, hex: ""
+            } as Record<string, unknown>,
+            geometry: { setDrawRange() { /* stub */ } }
+        };
+        return m;
+    };
+    const scene: Array<ReturnType<typeof mk>> = [];
+    for (let i = 0; i < 24; i++) { scene.push(mk("org_atom_" + i, "org_atom")); scene.push(mk("org_atom_label_" + i, "org_atom_label")); }
+    for (let i = 0; i < 30; i++) scene.push(mk("org_bond_" + i, "org_bond"));
+    scene.push(mk("org_rim", "org_rim"));
+    for (let i = 0; i < 6; i++) {
+        scene.push(mk("org_meas_arc_" + i, "org_meas_arc"));
+        scene.push(mk("org_meas_line_" + i, "org_meas_line"));
+        scene.push(mk("org_meas_ref_" + i, "org_meas_ref"));
+        scene.push(mk("org_meas_label_" + i, "org_meas_label"));
+    }
+    const els: Record<string, Record<string, unknown>> = {};
+    const el = (id: string) => {
+        if (!els[id]) els[id] = { id, style: { display: "none" }, value: "", textContent: "", checked: false, innerHTML: "", disabled: false, querySelector: () => ({ disabled: false }) };
+        return els[id];
+    };
+    for (const id of ["org_hud", "org_formula", "org_graph", "org_deferred", "org_sliders",
+        "org_view_row", "org_spin_row", "org_implicit_h_row", "org_phi_row",
+        "org_view_select", "org_spin_slider", "org_spin_val", "org_implicit_h_check",
+        "org_phi_slider", "org_phi_val"]) el(id);
+    els["org_graph"].width = 700; els["org_graph"].height = 460;
+    const GCTX16 = mkCanvasCtx();
+    els["org_graph"].getContext = () => GCTX16;
+    const CLOCK = { t: 0 };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const RUN: any = new Function([
+        "var window = { PM_orgRejects: [] };",
+        "var ELS = arguments[0], SCENE = arguments[1], THREE = arguments[2], CLOCK = arguments[3];",
+        "var console = { error: function () {} };",
+        "var document = { getElementById: function (id) { return ELS[id] || null; } };",
+        "var sceneObjects = SCENE;",
+        "var stateStartTime = 0, isDragging = false, animating = false;",
+        // a FUNCTION-LOCAL clock: section 14 already defined `time` on the shared
+        // global with an accessor, and redefining it throws.
+        "var time = 0;",
+        "var targetSpherical = { radius: 0, phi: 0, theta: 0 }, spherical = { radius: 0, phi: 0, theta: 0 };",
+        "function updateCameraFromSpherical() {}",
+        "function hexToThreeColor(h) { return h; }",
+        "function updateLabelSpriteText(s, t) { s.text = t; }",
+        "function applyGlowEmphasis() {}",
+        grabVar("MG_BOND_LEN"), grabVar("MG_AZ0"), grabVar("MG_ELEMENTS"),
+        MG_REGION, grabFn("mgIdealDirs"), ORG_REGION,
+        grabFn("orgFx"), PLACER_REGION, GRAPH_FN, FRAME_FN, APPLY_FN,
+        "return { apply: function (s) { time = CLOCK.t; applyOrganicStructureState(s); },",
+        "         frame: function (s) { time = CLOCK.t; updateOrganicStructureFrame(s); }, W: window };"
+    ].join("\n"))(els, scene, stub, CLOCK);
+
+    // STATE_2 of conformations_of_ethane, VERBATIM — the state the row was filed on.
+    const flight = {
+        organic_structure: {
+            molecule: "ethane", mode: "rotate", torsion: { pose: "staggered" },
+            show_h: "all", show_labels: true,
+            camera: { sight_along: "C1-C2", dist: 8, newman: true },
+            camera_steps: [
+                { at_ms: 0, az: 180, el: 6, dist: 9, ease_ms: 0 },
+                { at_ms: 1200, az: 180, el: -35.2644, dist: 8, ease_ms: 12500 }
+            ],
+            show_hud: true, hud_lines: ["bond", "pose", "atom_count"]
+        }
+    };
+    const END_MS = 13700;
+    RUN.apply(flight);
+    const atomOf = (id: string) => scene.find(m => m.userData.elementType === "org_atom"
+        && m.visible && m.userData.atomId === id);
+    const labelOf = (id: string) => scene.find(m => m.userData.elementType === "org_atom_label"
+        && m.visible && m.text === id);
+    const rim = scene.find(m => m.userData.id === "org_rim") as ReturnType<typeof mk>;
+    const rows: string[] = [];
+    let outsideOk = true, insideOk = true, labelOk = true, rimOk = true, samples = 0;
+    for (let s = 0; s <= 10; s++) {
+        const ms = (END_MS * s) / 10;
+        CLOCK.t = ms / 1000;
+        RUN.frame(flight);
+        const W = RUN.W as Record<string, number>;
+        const ang = W.PM_orgNewmanAngle, w = W.PM_orgNewmanW;
+        const backMesh = atomOf("C2"), rimOn = rim.visible;
+        samples++;
+        if (ang > R.ORG_NEWMAN_OFF_DEG) {
+            // OUTSIDE the band: a real two-carbon molecule, no rim at all.
+            if (!backMesh || rimOn) outsideOk = false;
+        }
+        if (ang < R.ORG_NEWMAN_FULL_DEG) {
+            // INSIDE it: the rim is the back carbon and the sphere is withheld.
+            if (backMesh || !rimOn) insideOk = false;
+        }
+        // The back carbon carries a label at EVERY pose — the canvas never prints
+        // "bond = C1–C2" while naming only C1.
+        if (!labelOf("C2") || !labelOf("C1")) labelOk = false;
+        // …and a rim is never drawn while the back carbon is still more than one
+        // atom radius off the projected front-carbon centre.
+        if (rimOn) {
+            const geom = R.orgBuildGeometry("ethane", W.PM_orgPhi);
+            const pose = W.PM_orgCam as unknown as { az: number; el: number; dist: number };
+            const basis = R.orgCamBasis(pose);
+            const by: Record<string, { id: string; el: string; p: number[] }> = {};
+            for (const a of geom.atoms) by[a.id] = a;
+            const p1 = R.orgProjXY(R.orgMul(by["C1"].p, R.ORG_U_PER_A), pose, basis);
+            const p2 = R.orgProjXY(R.orgMul(by["C2"].p, R.ORG_U_PER_A), pose, basis);
+            if (Math.hypot(p1.x - p2.x, p1.y - p2.y) > R.orgAtomRadius("C") * p1.k) rimOk = false;
+        }
+        rows.push(ms.toFixed(0) + "ms " + ang.toFixed(1) + "° w=" + w.toFixed(2)
+            + (backMesh ? " C2✓" : " C2·rim") + (rimOn ? " rim" : ""));
+    }
+    info("the flight, sampled at every 10%", rows.join("  |  "));
+    ok("outside the band the back carbon is a REAL MESH and no rim is drawn (the opening frame is a molecule)",
+        outsideOk && samples === 11);
+    ok("inside the band the rim is drawn and the back sphere is withheld (the projection is the projection)",
+        insideOk);
+    ok("the back carbon is LABELLED at every pose — the HUD names C1–C2 and the canvas names both",
+        labelOk);
+    ok("no frame draws a rim while the two carbons are still more than one atom radius apart on screen",
+        rimOk);
+    // The weight is CONTINUOUS and closed form: sampling the same instant twice
+    // gives the same number, and a mid-flight instant is strictly between.
+    {
+        // FOUND, not hardcoded: the band is solved from the geometry, so a fixed
+        // instant would silently stop testing the fade the day the band moves.
+        let mid = -1, midW = 0;
+        for (let ms = 0; ms <= END_MS; ms += 25) {
+            CLOCK.t = ms / 1000; RUN.frame(flight);
+            const w = (RUN.W as Record<string, number>).PM_orgNewmanW;
+            if (w > 0.02 && w < 0.98) { mid = ms; midW = w; break; }
+        }
+        CLOCK.t = mid / 1000; RUN.frame(flight); const a = (RUN.W as Record<string, number>).PM_orgNewmanW;
+        CLOCK.t = END_MS / 1000; RUN.frame(flight);
+        CLOCK.t = mid / 1000; RUN.frame(flight); const b = (RUN.W as Record<string, number>).PM_orgNewmanW;
+        ok("the weight REWINDS exactly and is a genuine cross-fade, not a switch",
+            mid >= 0 && a === b && a > 0 && a < 1,
+            "the fade is live at " + mid + " ms, w = " + midW.toFixed(4));
+    }
+    // ── THE TWO CARBON IDS, MEASURED. The OPEN row
+    //   hud_line_and_narration_name_scene_atoms_the_canvas_never_labels: the HUD
+    //   prints "bond = C1–C2" over a canvas that named only C1, and named it on
+    //   top of the rim arc. Both anchors are now measured against the arc.
+    {
+        CLOCK.t = END_MS / 1000; RUN.frame(flight);
+        const W = RUN.W as Record<string, number>;
+        const pose = W.PM_orgCam as unknown as { az: number; el: number; dist: number };
+        const basis = R.orgCamBasis(pose);
+        const geom = R.orgBuildGeometry("ethane", W.PM_orgPhi);
+        const by: Record<string, { id: string; el: string; p: number[] }> = {};
+        for (const a of geom.atoms) by[a.id] = a;
+        // the rim, re-derived
+        let best = 0;
+        for (const b of geom.bonds) {
+            const o = b.a === "C2" ? b.b : (b.b === "C2" ? b.a : null);
+            if (!o || o === "C1") continue;
+            const ax = R.mgNorm(R.orgSub(by["C1"].p, by["C2"].p));
+            const rel = R.orgSub(by[o].p, by["C2"].p);
+            best = Math.max(best, R.orgLen(R.orgSub(rel, R.orgMul(ax, R.mgDot(rel, ax)))));
+        }
+        const rimR = best * R.ORG_U_PER_A * R.ORG_NEWMAN_RIM_FRAC;
+        const cRim = R.orgProjXY(R.orgMul(by["C2"].p, R.ORG_U_PER_A), pose, basis);
+        const arc = rimR * cRim.k;
+        const INK = 0.14;              // half the drawn ink of a "C1"/"C2" sprite
+        const at = (id: string) => {
+            const m = scene.find(x => x.userData.elementType === "org_atom_label" && x.visible && x.text === id);
+            const q = R.orgProjXY((m as ReturnType<typeof mk>).pos, pose, basis);
+            return { r: Math.hypot(q.x - cRim.x, q.y - cRim.y), ink: INK * q.k, x: q.x, y: q.y };
+        };
+        const L1 = at("C1"), L2 = at("C2");
+        ok("the FRONT id sits inside the rim, clear of the arc (no white-on-white overprint)",
+            L1.r + L1.ink < arc - 0.05,
+            "C1 ink reaches " + (L1.r + L1.ink).toFixed(3) + " against an arc at " + arc.toFixed(3));
+        ok("the BACK id sits OUTSIDE the rim — the rim is the carbon, and it is named",
+            L2.r - L2.ink > arc + 0.05,
+            "C2 ink starts at " + (L2.r - L2.ink).toFixed(3) + " against an arc at " + arc.toFixed(3));
+        ok("the two ids never overprint each other",
+            Math.hypot(L1.x - L2.x, L1.y - L2.y) > L1.ink + L2.ink,
+            "centres " + Math.hypot(L1.x - L2.x, L1.y - L2.y).toFixed(3) + " apart");
+        // …and the back id was PLACED, not guessed: it clears every drawn disc.
+        const drawn = geom.atoms.filter((a: { id: string }) => a.id !== "C2");
+        const clr = R.orgLabelClearance((scene.find(x => x.userData.elementType === "org_atom_label"
+            && x.visible && x.text === "C2") as ReturnType<typeof mk>).pos, pose, basis, drawn);
+        ok("the back id is placed in the direction with the most clearance, not a fixed corner",
+            clr > 0.10, "clears the nearest drawn disc by " + clr.toFixed(3) + " scene units");
+    }
+
+    // NEGATIVE CONTROL: with no camera_steps the state IS on the axis at t=0, so
+    // the same code must give the full projection on the opening frame.
+    {
+        const pinned = { organic_structure: Object.assign({}, flight.organic_structure, { camera_steps: undefined }) };
+        RUN.apply(pinned); CLOCK.t = 0; RUN.frame(pinned);
+        const W = RUN.W as Record<string, number>;
+        ok("[neg] a state pinned ON the axis is fully Newman on its FIRST frame (the gate is not just 'never rim')",
+            W.PM_orgNewmanW === 1 && rim.visible && !atomOf("C2"),
+            "w = " + W.PM_orgNewmanW + " · angle = " + W.PM_orgNewmanAngle.toFixed(3) + "°");
+    }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+console.log("\n[17] EVERY PAINTED STRING IS MEASURED AGAINST THE PANEL CLIP RECT");
+// The seeded CRITICAL row
+// graph_overlay_annotation_is_painted_without_measuring_it_against_the_panel_clip_rect:
+// the barrier caption was placed at bracket_x + 13 and painted, so on the 700 px
+// backing store it reached x = 744 and STATE_5's one payoff number rendered as
+// "barrier 12.0 kJ·mo". Thirty-two deterministic checks passed on that frame,
+// because no gate here read rendered text EXTENTS.
+//
+// This section implements the seeded probe verbatim: instrument the painter so
+// every fillText is recorded as {text, x, y, width, height}, then assert every
+// box lies inside the clip rect on BOTH axes. The negative control restores the
+// pre-fix placer — same recorder, same checker — and requires it to TRIP, so the
+// containment assertion is demonstrably capable of failing.
+{
+    /** the harness: the real painter over a stub context with a real measureText. */
+    const mkGraphRun = (naive: boolean) => {
+        const els: Record<string, Record<string, unknown>> = {};
+        const el = (id: string) => {
+            if (!els[id]) els[id] = { id, style: { display: "none" } as Record<string, string>, innerHTML: "", value: "", textContent: "" };
+            return els[id];
+        };
+        for (const id of ["org_graph", "org_hud", "org_formula"]) el(id);
+        els["org_graph"].width = 700; els["org_graph"].height = 460;
+        const painted: string[] = [];
+        const GCTX = mkCanvasCtx(painted);
+        els["org_graph"].getContext = () => GCTX;
+        // THE NEGATIVE CONTROL. The pre-fix placer, restored: take the anchor,
+        // paint, never test the box. It records through the SAME orgRecText, so
+        // the containment assertion below is run against identical evidence.
+        const NAIVE = [
+            "function orgText(g, t, x, y, o) {",
+            "  var s = String(t), a = (o && o.align) || 'left';",
+            "  var w = g.measureText(s).width, px = orgFontPx(g.font);",
+            "  if (o && o.rot) { orgRecText(s, x - px * 0.8, y - w / 2, px * 1.02, w); return []; }",
+            "  var lx = orgAnchor(x, w, a);",
+            "  g.textAlign = 'left'; g.fillText(s, lx, y);",
+            "  orgRecText(s, lx, y - px * 0.8, w, px * 1.02); return [];",
+            "}"
+        ].join("\n");
+        const src = [
+            "var window = { innerWidth: 1280, PM_orgRejects: [] };",
+            "var ELS = arguments[0];",
+            "var document = { getElementById: function (id) { return ELS[id] || null; } };",
+            "var sceneObjects = [];",
+            "function hexToThreeColor(h) { return h; }",
+            "function mgClamp(v, a, b) { return Math.min(Math.max(v, a), b); }",
+            grabVar("MG_BOND_LEN"), grabVar("MG_AZ0"), grabVar("MG_ELEMENTS"),
+            MG_REGION, grabFn("mgIdealDirs"), ORG_REGION,
+            grabFn("orgFx"), PLACER_REGION, GRAPH_FN,
+            naive ? NAIVE : "",
+            "function draw(curve, o) {",
+            "  var opt = o || {}, row = ORG_ENERGY_TABLE[curve], r = orgEnergyRange(row);",
+            "  var est = { row: row, x: (opt.x != null) ? opt.x : (row.x_min + row.x_max) / 2,",
+            "    lo: r.lo, hi: r.hi, barrier: r.barrier,",
+            "    barrierLabel: opt.label || row.barrier_label || 'barrier',",
+            "    verified: !row.needs_verification };",
+            "  est.e = orgEnergyAt(row, est.x);",
+            "  ELS['org_graph'].style.display = 'block';",
+            "  orgDrawGraph({ show_barrier: opt.noBarrier !== true, show_point: true,",
+            "    label_stationary: opt.noLabels !== true }, est, (opt.rev != null) ? opt.rev : 1);",
+            "  return { boxes: window.PM_orgTextBoxes, clip: window.PM_orgTextClip };",
+            "}",
+            "return { draw: draw, W: window, T: ORG_ENERGY_TABLE, ticks: orgXTicks,",
+            "  fmt: orgTickFmt, bind: orgBindUnit, fit: orgFitFormula, els: ELS, painted: null };"
+        ].join("\n");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const RUN: any = new Function(src)(els);
+        RUN.painted = painted; RUN.E = els;
+        return RUN;
+    };
+    type Box = { text: string; x: number; y: number; width: number; height: number };
+    type Clip = { x: number; y: number; w: number; h: number };
+    const PADDED = 4;   // ORG_TXT_PAD — the placer's own inner margin
+    const inside = (b: Box, c: Clip) =>
+        b.x >= c.x && b.x + b.width <= c.x + c.w && b.y >= c.y && b.y + b.height <= c.y + c.h;
+    const escapes = (r: { boxes: Box[]; clip: Clip }) => r.boxes.filter(b => !inside(b, r.clip));
+
+    // ── (a) the SOURCE half: no string bypasses the placer. A fix that moved one
+    //   caption would leave every other call site free to reopen the class.
+    ok("the graph painter contains ZERO bare fillText calls — every string goes through orgText",
+        GRAPH_FN.indexOf("g.fillText(") < 0,
+        (GRAPH_FN.match(/orgText\(g,/g) || []).length + " orgText call sites, 0 bare fillText");
+    ok("orgText MEASURES before it places (measureText, not a character-count guess)",
+        PLACER_REGION.indexOf("g.measureText(s).width") >= 0 &&
+        PLACER_REGION.indexOf("orgWrapLines") >= 0 && PLACER_REGION.indexOf("orgRecText") >= 0);
+    ok("the painter publishes the clip rect and the box list the probe reads",
+        /window\.PM_orgTextClip = CLIP;/.test(GRAPH_FN) && /window\.PM_orgTextBoxes = \[\];/.test(GRAPH_FN));
+
+    const RUN = mkGraphRun(false);
+    // ── (b) THE PROBE: every state, every curve, every reveal fraction.
+    const CURVES = ["ethane", "butane", "cyclohexane"];
+    const REVS = [0.0, 0.25, 0.5, 0.99, 1.0];
+    let total = 0, out = 0; const worst: string[] = [];
+    for (const c of CURVES) {
+        const row = RUN.T[c];
+        for (const rev of REVS) {
+            for (const bar of [true, false]) {
+                for (const xf of [0, 0.33, 0.5, 1]) {
+                    const r = RUN.draw(c, { rev, noBarrier: !bar, x: row.x_min + (row.x_max - row.x_min) * xf });
+                    total += r.boxes.length;
+                    for (const b of escapes(r)) { out++; if (worst.length < 4) worst.push(c + " rev=" + rev + " " + JSON.stringify(b.text)); }
+                }
+            }
+        }
+    }
+    ok("EVERY painted box lies inside the panel clip rect, on both axes, over 3 curves × 5 reveals × 2 bracket states × 4 poses",
+        out === 0, total + " boxes measured, " + out + " outside" + (worst.length ? " — " + worst.join(" | ") : ""));
+
+    // ── (c) the exact string the defect amputated.
+    {
+        const r = RUN.draw("ethane", { rev: 1, x: 120 });
+        const cap = (r.boxes as Box[]).filter(b => b.text.indexOf("barrier") === 0)[0];
+        ok("STATE_5's payoff caption is painted COMPLETE — the unit survives to the last glyph",
+            !!cap && cap.text === "barrier 12.0 kJ·mol⁻¹",
+            cap ? JSON.stringify(cap.text) : "not painted");
+        ok("…and its box clears the panel's right border with the placer's own margin",
+            !!cap && cap.x + cap.width <= r.clip.w - PADDED,
+            cap ? "right edge " + (cap.x + cap.width).toFixed(1) + " against a border at " + (r.clip.w - PADDED) : "-");
+        ok("…and it re-anchored to the bracket's OTHER side rather than being dumped at the margin",
+            !!cap && cap.x > PADDED + 1,
+            cap ? "left edge " + cap.x.toFixed(1) : "-");
+    }
+
+    // ── (d) THE NEGATIVE CONTROL. Same probe, pre-fix placer. It must TRIP.
+    {
+        const BAD = mkGraphRun(true);
+        const hist = BAD.draw("ethane", { rev: 1, x: 120 });
+        const histOut = escapes(hist);
+        const histCap = histOut.filter((b: Box) => b.text.indexOf("barrier") === 0)[0];
+        ok("[neg] the PRE-FIX placer, restored, paints the shipped caption OUTSIDE the clip — the trap is real and the checker can fail",
+            histOut.length > 0 && !!histCap,
+            histOut.length + " boxes escape; " + JSON.stringify(histCap ? histCap.text : "-") +
+            " reaches x = " + (histCap ? (histCap.x + histCap.width).toFixed(0) : "-") +
+            " on a 700 px panel (the shipped frame cut it at 700 and rendered \"barrier 12.0 kJ\u00B7mo\")");
+        const LONG = "interconversion barrier through the eclipsed transition state";
+        const badLong = escapes(BAD.draw("ethane", { rev: 1, x: 120, label: LONG }));
+        ok("[neg] a deliberately over-long unit string trips the assertion under the pre-fix placer",
+            badLong.length > 0, badLong.length + " boxes outside the clip");
+        const goodLong = RUN.draw("ethane", { rev: 1, x: 120, label: LONG });
+        ok("…and the SHIPPED placer keeps the same over-long string wholly inside (it shrinks to the stated 15 px floor first)",
+            escapes(goodLong).length === 0 &&
+            (goodLong.boxes as Box[]).some(b => b.text.indexOf(LONG) === 0),
+            "0 of " + goodLong.boxes.length + " boxes outside");
+    }
+
+    // ── (e) below the floor the placer WRAPS deliberately — it never shrinks a
+    //   number unreadable to avoid a wrap (Rule 29).
+    {
+        const HUGE = "the interconversion barrier measured between the staggered minimum and the eclipsed maximum of this rotation";
+        const r = RUN.draw("ethane", { rev: 1, x: 120, label: HUGE });
+        const lines = (r.boxes as Box[]).filter(b => HUGE.indexOf(b.text.split(" ")[0]) === 0 || b.text.indexOf("kJ·mol⁻¹") >= 0);
+        ok("a string too long even at the 15 px floor WRAPS at word boundaries instead of running off",
+            lines.length >= 2 && escapes(r).length === 0,
+            lines.length + " wrapped lines, all inside the clip");
+        ok("…and no wrapped line is shorter than one word or splits a token",
+            lines.every(b => b.text.indexOf("  ") < 0 && b.text.trim() === b.text));
+    }
+
+    // ── (f) the x axis carries numbers, so STATE_6's "Same peak every 120°" is
+    //   substantiated by the axis it is a claim about (Rule 33d).
+    {
+        const t = RUN.ticks(RUN.T.ethane);
+        ok("the φ axis is TICKED — 0…360 lands on exactly 60°, so 'same peak every 120°' is readable off the axis",
+            JSON.stringify(t.values) === JSON.stringify([0, 60, 120, 180, 240, 300, 360]) && t.step === 60,
+            "step " + t.step + "° → " + t.values.join(", "));
+        const cy = RUN.ticks(RUN.T.cyclohexane);
+        ok("the tick step is DERIVED from the row's own span, not hardcoded to degrees (the 0…1 pucker row gets 0.2)",
+            cy.step === 0.2 && cy.values.length === 6 && RUN.fmt(cy.step)(0.6) === "0.6",
+            "step " + cy.step + " → " + cy.values.map((v: number) => RUN.fmt(cy.step)(v)).join(", "));
+        const authored = RUN.ticks({ x_min: 0, x_max: 360, x_ticks: [0, 90, 180, 270, 360] });
+        ok("…and an authored x_ticks list overrides the derivation",
+            JSON.stringify(authored.values) === JSON.stringify([0, 90, 180, 270, 360]));
+        const r = RUN.draw("ethane", { rev: 1, x: 120 });
+        const ticks = (r.boxes as Box[]).filter(b => /^[0-9]+$/.test(b.text) && Number(b.text) % 60 === 0 && b.y > 380);
+        ok("every tick number is painted inside the clip, including the two at the axis ends",
+            ticks.length === 7 && ticks.every(b => inside(b, r.clip)),
+            ticks.length + " tick labels, x from " + ticks[0].x.toFixed(0) + " to " + (ticks[6].x + ticks[6].width).toFixed(0));
+        // the axis band is TWO stacked rows now; a canvas-internal collision is
+        // invisible to every DOM probe, so it is asserted here.
+        const xlab = (r.boxes as Box[]).filter(b => b.text === RUN.T.ethane.x_label)[0];
+        ok("the tick row and the axis label do not overlap (the axis band was re-cut for two rows)",
+            !!xlab && ticks.every(b => b.y + b.height <= xlab.y),
+            xlab ? "ticks end at y = " + (ticks[0].y + ticks[0].height).toFixed(1) + ", the label starts at y = " + xlab.y.toFixed(1) : "-");
+    }
+
+    // ── (g) the pin contract: measuring cannot make the panel non-deterministic.
+    {
+        const a = RUN.draw("ethane", { rev: 1, x: 120 });
+        const aj = JSON.stringify(a.boxes);
+        const b = RUN.draw("ethane", { rev: 1, x: 120 });
+        ok("the placer is PURE — two draws of the same state give byte-identical boxes (the frozen pin is safe)",
+            aj === JSON.stringify(b.boxes), a.boxes.length + " boxes reproduce exactly");
+    }
+
+    // ── (h) the DOM half of the same root cause: the ONE formula surface (Rule
+    //   34b) wrapped at a fixed 250 px max-width and stranded "kJ·mol⁻¹" alone
+    //   on line two, reading as two surfaces.
+    {
+        const F = "E(φ) = 6(1 + cos 3φ) kJ·mol⁻¹";
+        const NB = " ";
+        ok("[neg] the OLD fixed 250 px max-width really did wrap this formula (the trap is real)",
+            Array.from(F).length * 20 * 0.55 > 250,
+            "≈" + Math.round(Array.from(F).length * 20 * 0.55) + " px of text in a 250 px box");
+        ok("the static formula surface no longer carries the fixed max-width, and defaults to one line",
+            BUILD_FN.indexOf("max-width:250px") < 0 && BUILD_FN.indexOf("white-space:nowrap") >= 0);
+        ok("apply writes the UNIT-BOUND string, so no wrap can ever orphan the unit",
+            /ff\.innerHTML = orgBindUnit\(os\.formula\);/.test(APPLY_FN) && /orgFitFormula\(ff\);/.test(APPLY_FN));
+        const bound = RUN.bind(F);
+        ok("orgBindUnit ties the unit to the token before it with a no-break space",
+            bound.indexOf(NB + "kJ·mol⁻¹") >= 0 && bound.indexOf(" kJ·mol⁻¹") < 0 &&
+            bound.replace(NB, " ") === F,
+            JSON.stringify(bound.slice(-14)));
+        ok("…and it leaves a single-token formula and authored markup alone",
+            RUN.bind("E") === "E" && RUN.bind("<b>a b</b>") === "<b>a b</b>");
+        // the fit ladder, driven by a measurable stub: width scales with the
+        // font size the fitter writes, exactly as a real layout would.
+        const ff = RUN.E["org_formula"] as Record<string, unknown>;
+        const st = ff.style as Record<string, string>;
+        ff.innerHTML = bound; st.display = "block";
+        ff.getBoundingClientRect = () => ({ width: Array.from(String(ff.innerHTML)).length * ctxFontPx(st.fontSize || "20px") * 0.55, left: 0 });
+        RUN.W.innerWidth = 1280;
+        let fit = RUN.fit(ff);
+        ok("on a full-width viewport the formula stays on ONE line at its authored size",
+            fit.px === 20 && fit.wrapped === false && st.whiteSpace === "nowrap",
+            "band " + Math.round(fit.band) + " px, text " + Math.round(fit.width) + " px at " + fit.px + " px");
+        // the band is MEASURED off the HUD when it is up, never assumed.
+        const hud = RUN.E["org_hud"] as Record<string, unknown>;
+        (hud.style as Record<string, string>).display = "block";
+        hud.getBoundingClientRect = () => ({ width: 216, left: 1052 });
+        fit = RUN.fit(ff);
+        ok("the free band is MEASURED off the live HUD, so the two overlays cannot collide (Rule 34d)",
+            Math.abs(fit.band - (1052 - 40)) < 0.5, "band = " + Math.round(fit.band) + " px, HUD left edge 1052");
+        (hud.style as Record<string, string>).display = "none";
+        RUN.W.innerWidth = 320;
+        fit = RUN.fit(ff);
+        ok("on a narrow viewport it SHRINKS, and stops at the stated 16 px floor rather than shrinking unreadable",
+            fit.px === 16 && fit.wrapped === false && fit.width <= fit.band,
+            "band " + Math.round(fit.band) + " px → " + fit.px + " px, " + Math.round(fit.width) + " px wide");
+        RUN.W.innerWidth = 220;
+        fit = RUN.fit(ff);
+        ok("only BELOW the floor does it wrap — deliberately, into a measured box, with the unit still bound",
+            fit.px === 16 && fit.wrapped === true && st.whiteSpace === "normal" &&
+            st.maxWidth === Math.round(fit.band) + "px" &&
+            String(ff.innerHTML).indexOf(NB + "kJ·mol⁻¹") >= 0,
+            "wrapped inside " + st.maxWidth + " at the " + fit.px + " px floor");
     }
 }
 
