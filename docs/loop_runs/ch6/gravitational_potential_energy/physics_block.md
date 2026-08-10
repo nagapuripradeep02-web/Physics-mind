@@ -308,7 +308,7 @@ All 30 phrases read as real Class-11 student typing (lowercase, no punctuation d
 | S4 | sin(48.6°) | 0.7501110696304596 | ✓ |
 | S4 | F | 22.053265447135512 → `22.05` | ✓ |
 | S4 | point B U (s=2.0) | 44.106530894271025 → `44.1` | ✓ (matches S1's 44.1) |
-| S4 | d at flag | 1.4 → `1.40 m` | ✓ |
+| S4 | d at flag | 1.4 → renders **`1.41 m`** | ✓ — the dwell freezes one step past the 1.40 crossing (§0B.25); every S4 string claims 1.41. Separation from S5's `h = 1.40 m` rests on the `d =`/`h =` prefix, NOT this digit — see the skeleton cross-tab tripwire |
 | S2/S5 | U₀ (s=2.8) | 34.29999999999999 → `34.3` | ✓ |
 | S2 | return time | 1277.55 ms → `1278` | ✓ |
 | S2 | peak s / h | 3.7997 / 1.8998 → `1.90 m` | ✓ |
