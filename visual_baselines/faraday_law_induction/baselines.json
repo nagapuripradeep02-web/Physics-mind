@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-08-10T12:21:56.307Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\faraday_law_induction\\20260810-131729",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}
