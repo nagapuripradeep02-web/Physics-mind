@@ -26,20 +26,20 @@
   },
 
   "real_world_anchor": {
-    "primary": "A bag carried upstairs in any building — by stairs, by ramp, or by elevator. Every student on any syllabus climbs stairs and rides elevators; no country, brand, festival or currency. The stored energy is exactly mgΔh between floors, the route genuinely does not matter, and floor numbering is genuinely a choice — the h = 0 aha lives in the student's own everyday experience.",
+    "primary": "A loaded cart pushed up a loading ramp — the ramp beside every delivery door, every warehouse and every station platform. Universal apparatus: no country, brand, festival or currency, and it is EXACTLY what the simulation draws, so the spoken anchor and the picture on screen are one object (Rule 25). The stored energy is exactly mgΔh between the two heights, a steeper ramp to the same platform stores the same energy, and where you call the floor is genuinely a choice — the h = 0 aha lives in the student's own everyday experience.",
     "secondary": "Water pumped to a rooftop tank. The stored energy is set only by how high the tank sits above the pump — open a tap and the stored energy comes back on its own."
   },
 
   "physics_engine_config": {
     "variables": {
-      "m": { "name": "cart mass", "unit": "kg", "min": 1, "max": 3, "default": 2, "step": 0.5 },
+      "m": { "name": "cart mass", "unit": "kg", "min": 1, "max": 3, "default": 3, "step": 0.5 },
       "theta_deg": { "name": "incline angle", "unit": "deg", "min": 15, "max": 48.6, "default": 30 },
-      "h_ref_m": { "name": "height of the chosen h = 0 line above the ramp's surface origin (the reference is a CHOICE, not a fact about the body)", "unit": "m", "min": 0, "max": 0.3, "default": 0 },
+      "h_ref_m": { "name": "height of the chosen h = 0 line above the ramp's surface origin (the reference is a CHOICE, not a fact about the body) — a LIVE teacher control on STATE_3 and STATE_6, not merely an authored constant", "unit": "m", "min": -0.5, "max": 2, "default": 0, "step": 0.1 },
       "g": { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
       "s": { "name": "position along the track, measured from the surface origin", "unit": "m", "derived": "the integrator's own live value on driven/launched states; the slider-held value at rest in the explore" },
       "d": { "name": "displacement from the state's own initial_position_m", "unit": "m", "derived": "s - initial_position_m" },
       "h": { "name": "height above the authored h = 0 line", "unit": "m", "derived": "s * sin(radians(theta_deg)) - h_ref_m" },
-      "U": { "name": "gravitational potential energy", "unit": "J", "min": 0, "max": 60, "derived": "m * g * (s * sin(radians(theta_deg)) - h_ref_m)" },
+      "U": { "name": "gravitational potential energy — SIGNED: negative wherever the cart sits below the chosen h = 0 line, which is the whole point of STATE_3", "unit": "J", "min": -60, "max": 60, "derived": "m * g * (s * sin(radians(theta_deg)) - h_ref_m)" },
       "F": { "name": "applied drive force, along the surface, aiding the climb (S1/S3/S4 only — exactly balances mg sin(theta) so a = 0)", "unit": "N", "derived": "m * g * sin(radians(theta_deg))" },
       "v": { "name": "constant climb speed on the driven states (S1/S3/S4)", "unit": "m/s", "constant": 0.8 },
       "v0": { "name": "launch speed at the state's own start, signed (S2/S5 only; zero/absent elsewhere)", "unit": "m/s", "min": 0, "max": 3.13, "default": 0 },
@@ -64,7 +64,7 @@
       "ΔU = mgΔh is invariant under any repositioning of h_ref_m between two states that show the same climb (S1 vs S3): every individual U value shifts, the difference between two heights never does.",
       "U is a state function: two visits to the same s (hence the same h) stamp the identical U regardless of the path taken between the visits (S2's round trip; S4's steeper path to S1's own height).",
       "W_gravity = -ΔU_grav for gravity acting alone on the tracked body, for ANY choice of h_ref_m (S5) -- this is the potential_energy_definition relation, specialised to gravity and used to derive U = mgh.",
-      "h must stay >= 0 at every instant of every authored loop, including the +50 ms folded frame, for every state that authors this h_ref_m (the unsigned energy stack cannot render a negative U_grav; a crossing fires a console warning THE EYE's H4 assertion reads as a failure).",
+      "h may go NEGATIVE, and on STATE_3 it is negative for most of the climb by design (h_ref_m = 1.5 m sits level with point B). Any state whose h can go below its own h = 0 line MUST author energy_layer.signed = true, which draws U_grav on a signed track about a mid-height zero baseline — the same shape the work ledgers use. The unsigned stack still cannot render a negative U_grav, so an unsigned state must keep h >= 0 at every instant of every authored loop including the +50 ms folded frame, or it fires the console warning THE EYE's H4 assertion reads as a failure. Signed states here: STATE_3 (h in [-1.20, 0.00] m) and STATE_6 (h_ref is a live slider). Unsigned states: STATE_1, STATE_2, STATE_4, STATE_5.",
       "g = 9.8 m/s^2, constant at Earth's surface -- this concept never varies g and never leaves the h << R_Earth regime (the -GMm/r form is a later chapter, named once in advanced-ring narration only, never a formula here)."
     ]
   },
@@ -124,8 +124,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Lifting a bag from the floor to a shelf stores energy in it: the higher the shelf, the more energy stored.", "glow": "energy_bar_U_grav" },
-            { "id": "s1_2", "text_en": "This cart's stored energy grows the same way, from fourteen point seven joules at point A to forty four point one at point B.", "glow": "checkpoint_2" },
+            { "id": "s1_1", "text_en": "Pushing this cart up the ramp stores energy in it: the higher it gets, the more it stores.", "glow": "energy_bar_U_grav" },
+            { "id": "s1_2", "text_en": "The stored energy grows from 14.7 J at point A to 44.1 J at point B.", "glow": "checkpoint_2" },
             { "id": "s1_3", "text_en": "The gain equals mass times gravity times the height climbed.", "glow": "displacement_vector" }
           ]
         }
@@ -145,14 +145,14 @@
             "id": "gpe_s2_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "a 2.5 kg cart launches up the same ramp at 3.13 m/s from 1.4 m above the line, coasts to a peak, and falls back",
+            "text": "the same 3 kg cart launches up the same ramp at 3.13 m/s from 1.4 m above the line, coasts to a peak, and falls back",
             "color": "#FFF176"
           },
           {
             "id": "gpe_s2_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "a home flag stamps 34.3 J the instant the cart departs, and stamps the same 34.3 J again the instant it returns — the place sets the energy, not the trip",
+            "text": "a home flag stamps 41.2 J the instant the cart departs, and stamps the same 41.2 J again the instant it returns — the place sets the energy, not the trip",
             "color": "#FFCA28"
           },
           {
@@ -166,8 +166,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s2_1", "text_en": "A cart is launched up the slope, rises, slows, and falls back to where it started.", "glow": "energy_panel" },
-            { "id": "s2_2", "text_en": "Its stored energy reads thirty four point three joules at launch.", "glow": "checkpoint_1" },
-            { "id": "s2_3", "text_en": "It reads the same thirty four point three joules on return.", "glow": "checkpoint_1" },
+            { "id": "s2_2", "text_en": "Its stored energy reads 41.2 J at launch.", "glow": "checkpoint_1" },
+            { "id": "s2_3", "text_en": "It reads the same 41.2 J on return.", "glow": "checkpoint_1" },
             { "id": "s2_4", "text_en": "The place sets the energy, not the trip.", "glow": "energy_bar_U_grav" }
           ]
         }
@@ -193,14 +193,14 @@
             "id": "gpe_s3_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "the identical climb from S1 (m 3 kg, same speed, same two points) with ONE change: the dashed h = 0 line now sits at the cart's own start height",
+            "text": "the identical climb from S1 (m = 3 kg, same speed, same two points) with ONE change: the dashed h = 0 line now sits level with point B, and it SLIDES there from S1's position as the state opens",
             "color": "#FFF176"
           },
           {
             "id": "gpe_s3_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the U bar opens at 0.0 J instead of 8.8 J; point A now stamps 5.9 J and point B stamps 35.3 J — every reading has moved",
+            "text": "the signed U bar opens at −35.3 J, well below its zero baseline, and rises to exactly 0.0 J at point B; point A now stamps −29.4 J — every reading has moved and the ones below the line are negative",
             "color": "#FFCA28"
           },
           {
@@ -213,10 +213,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "The floor you start on could be called zero — the building never changes, only the numbers do.", "glow": "marker_h_ref" },
-            { "id": "s3_2", "text_en": "The concept before this placed its own zero at the ramp's foot.", "glow": "marker_h_ref" },
-            { "id": "s3_3", "text_en": "Here the same climb runs with the line moved to the start.", "glow": "marker_h_ref" },
-            { "id": "s3_4", "text_en": "Every reading changes, yet the gain, twenty nine point four joules, holds.", "glow": "checkpoint_2" }
+            { "id": "s3_1", "text_en": "The zero line is your choice. Slide it, and only the numbers slide with it.", "glow": "marker_h_ref" },
+            { "id": "s3_2", "text_en": "Here it sits level with point B, so point B itself now reads 0 J.", "glow": "marker_h_ref" },
+            { "id": "s3_3", "text_en": "Below the line the stored energy is negative. That is allowed.", "glow": "energy_bar_U_grav" },
+            { "id": "s3_4", "text_en": "Every reading changed, yet the gain, 29.4 J, is exactly the same.", "glow": "checkpoint_2" }
           ]
         },
         "misconception_watch": [
@@ -248,14 +248,14 @@
             "id": "gpe_s4_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "the ramp is rotated to 48.6° — steeper than S1's 30° — and the same 3 kg cart climbs at the same 0.8 m/s to the same 1.5 m height",
+            "text": "the ramp is rotated to 48.6° — steeper than S1's 30° — and the same 3 kg cart climbs at the same 0.8 m/s from the same 0.30 m start to the same 1.5 m height, with the 30° ramp drawn dim beside it",
             "color": "#FFF176"
           },
           {
             "id": "gpe_s4_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "the displacement arrow reads d = 1.41 m at the flag, against S1's 2.40 m at the same height, and the stamp is the identical 44.1 J",
+            "text": "the displacement arrow reads d = 1.60 m at the flag, against the ghost ramp's d = 2.40 m over the identical Δh = 1.20 m, and the stamp is the identical 44.1 J",
             "color": "#FFCA28"
           },
           {
@@ -268,15 +268,15 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Stairs, a ramp, or an elevator to the same floor store the same energy in the bag.", "glow": "displacement_vector" },
-            { "id": "s4_2", "text_en": "This ramp is steeper: the cart travels only one point four metres instead of two point four.", "glow": "displacement_vector" },
-            { "id": "s4_3", "text_en": "It still reaches the same height, and the stamped energy is again forty four point one joules.", "glow": "checkpoint_1" }
+            { "id": "s4_1", "text_en": "Two ramps reach the same platform: the pale one gentle, this one steep.", "glow": "ghost_ramp" },
+            { "id": "s4_2", "text_en": "The steep ramp is a shorter trip: 1.60 m instead of 2.40 m.", "glow": "displacement_vector" },
+            { "id": "s4_3", "text_en": "It reaches the same height, and the stamp is again 44.1 J.", "glow": "checkpoint_1" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "Pushing a load up a LONGER ramp stores more potential energy — you pushed for longer.",
-            "visual_counter": "A steeper ramp reaches the same 1.5 m with d = 1.41 m instead of 2.40 m, and the stamp is the identical 44.1 J.",
+            "visual_counter": "A steeper ramp reaches the same 1.5 m with d = 1.60 m instead of 2.40 m, and the stamp is the identical 44.1 J.",
             "one_line_fix": "Only the height gained sets ΔU — path length does not enter mgΔh."
           }
         ]
@@ -297,30 +297,30 @@
             "id": "gpe_s5_head",
             "type": "annotation",
             "position": { "x": 380, "y": 60 },
-            "text": "S2's exact launch (2.5 kg, 3.13 m/s) with a second bar added: gravity's signed work ledger",
+            "text": "S2's exact launch (3 kg, 3.13 m/s) with a second bar added: gravity's signed work ledger",
             "color": "#FFF176"
           },
           {
             "id": "gpe_s5_panel",
             "type": "annotation",
             "position": { "x": 200, "y": 250 },
-            "text": "a start flag latches U = 34.3 J and W gravity = 0.0 J the instant the cart departs; point C latches U = 42.9 J and W gravity = −8.6 J further up the slope",
+            "text": "a start flag latches U = 41.2 J and W gravity = 0.0 J the instant the cart departs; point C latches U = 51.5 J and W gravity = −10.3 J further up the slope",
             "color": "#FFCA28"
           },
           {
             "id": "gpe_s5_hud",
             "type": "annotation",
             "position": { "x": 560, "y": 400 },
-            "text": "the formula surface reads ΔU = −W by gravity, with a second line ΔU = mgΔh = 8.6 J — the two stamped changes, 8.6 and −8.6, mirror exactly",
+            "text": "the formula surface reads ΔU = −W by gravity, with a second line ΔU = mgΔh = 10.3 J — the two stamped changes, 10.3 and −10.3, mirror exactly",
             "color": "#4DD0E1"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "The last concept counted from a line at the ramp's foot, so its start already read forty nine joules.", "glow": "checkpoint_1" },
-            { "id": "s5_2", "text_en": "Here the start reads thirty four point three.", "glow": "checkpoint_1" },
-            { "id": "s5_3", "text_en": "Neither starting number matters — only the change does:", "glow": "energy_panel" },
-            { "id": "s5_4", "text_en": "gravity's work and the stored energy change equally and oppositely, eight point six joules each way.", "glow": "checkpoint_2" }
+            { "id": "s5_1", "text_en": "The cart starts 1.40 m above the line, reading 41.2 J.", "glow": "checkpoint_1" },
+            { "id": "s5_2", "text_en": "It climbs to 1.75 m, and the reading rises to 51.5 J.", "glow": "checkpoint_2" },
+            { "id": "s5_3", "text_en": "Neither starting number matters. Only the change does.", "glow": "energy_panel" },
+            { "id": "s5_4", "text_en": "Gravity's work and the stored energy change equally and oppositely, 10.3 J each way.", "glow": "work_bar_gravity" }
           ]
         }
       },
@@ -598,14 +598,15 @@
       "field_line": "#FFD54F"
     },
     "slider_controls": {
-      "m": { "min": 1, "max": 3, "step": 0.5, "default": 2, "label": "m" },
-      "theta": { "min": 15, "max": 40, "step": 1, "default": 30, "label": "θ" }
+      "m": { "min": 1, "max": 3, "step": 0.5, "default": 3, "label": "m" },
+      "theta": { "min": 15, "max": 40, "step": 1, "default": 30, "label": "θ" },
+      "h_ref": { "min": -0.5, "max": 2, "step": 0.1, "default": 0, "label": "zero line" }
     },
     "states": {
       "STATE_1": {
         "label": "A 3 kg cart is driven up a frictionless 30° slope at a constant 0.8 m/s from s = 0.6 m (0.3 m above the h = 0 line); at s = 1.0 m point A stamps U = 14.7 J, at s = 3.0 m point B stamps U = 44.1 J, and at 4400 ms the formula gains a second line, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
         "visible_elements": [],
-        "camera_position": [0, 1.87, 9.1],
+        "camera_position": [0, 1.15, 5.6],
         "caption": "Higher up, more energy",
         "eye_capture_ms": 4800,
         "show_sliders": true,
@@ -619,11 +620,11 @@
             { "body_id": "cart", "show": ["applied", "weight"] }
           ],
           "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
-          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
-          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true },
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true, "dim": true },
           "checkpoints": [
-            { "s_m": 1.0, "label": "A (h=0.50 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
-            { "s_m": 3.0, "label": "B (h=1.50 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
+            { "s_m": 1.0, "label": "A (h = 0.50 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
+            { "s_m": 3.0, "label": "B (h = 1.50 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
           ],
           "formula_lines": [
             { "text": "U = mgh" },
@@ -635,9 +636,9 @@
       },
 
       "STATE_2": {
-        "label": "A 2.5 kg cart launches up the frictionless 30° slope at 3.13 m/s from s = 2.8 m (h = 1.4 m); a home-armed flag at s = 2.8 carries TWO stacked checkpoints, named by role so each caption stays true on every pass — 'first visit' latches 'U = 34.3 J' permanently at departure, 'this visit' re-stamps 'U = 34.3 J' on the return crossing (appearing as 'this visit (pass 2)' on the formula surface) and dwells there for 1400 ms — so departure and return are BOTH visible together on the formula surface during the return dwell; the predicted-stop marker reads 'highest point h = 1.90 m' at the peak; the loop resets at 3178 ms.",
+        "label": "The SAME 3 kg cart as S1 (Rule 32d: mass is pinned across S1–S5, only the taught variable changes) launches up the frictionless 30° slope at 3.13 m/s from s = 2.8 m (h = 1.4 m); a home-armed flag at s = 2.8 carries TWO stacked checkpoints, named by role so each caption stays true on every pass — 'first visit' latches 'U = 41.2 J' permanently at departure, 'this visit' re-stamps 'U = 41.2 J' on the return crossing (appearing as 'this visit (pass 2)' on the formula surface) and dwells there for 1400 ms — so departure and return are BOTH visible together on the formula surface during the return dwell; the predicted-stop marker reads 'highest point h = 1.90 m' at the peak (mass-independent: v₀²/2g sin θ), and the peak U = 55.9 J stays under bar_max_J = 60; the loop resets at 3178 ms.",
         "visible_elements": [],
-        "camera_position": [0, 1.87, 9.1],
+        "camera_position": [0, 1.15, 5.6],
         "caption": "Same height, same energy",
         "eye_capture_ms": 1978,
         "show_sliders": true,
@@ -645,7 +646,7 @@
           "mode": "incline_slide",
           "surface": { "theta_deg": 30, "length_m": 4.5, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 2.5, "color": "#42A5F5", "initial_position_m": 2.8, "initial_velocity_mps": 3.13 }
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 2.8, "initial_velocity_mps": 3.13 }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["weight"] }
@@ -654,6 +655,7 @@
           "height_markers": {
             "show_h_ref_line": true,
             "h_ref_label": "h = 0",
+            "show_h_leader": true,
             "predicted_stop": { "label": "highest point", "show_height": true }
           },
           "checkpoints": [
@@ -666,9 +668,9 @@
       },
 
       "STATE_3": {
-        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points) with energy_layer.h_ref_m moved to 0.3 m — the cart's own start height. The U bar opens at 0.0 J; point A stamps U = 5.9 J, point B stamps U = 35.3 J; at 4400 ms the formula gains the same second line as S1, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
+        "label": "The identical S1 climb (m = 3 kg, v = 0.8 m/s, same s = 1.0 / 3.0 points) with energy_layer.h_ref_m moved to 1.5 m — LEVEL WITH POINT B, so the zero line's move is metres on screen rather than the old 0.3 m that was a few pixels (founder review 2026-08-10: 'state one, state three looks same'). Requires energy_layer.signed: true — U_grav goes negative here BY DESIGN, which is the concept's own misconception_watch and its negative_potential_energy drill-down. The signed U bar opens at −35.3 J, point A stamps U = −29.4 J, point B stamps U = 0.0 J; at 4400 ms the formula gains the same second line as S1, ΔU = mgΔh = 29.4 J; the loop resets at 6000 ms.",
         "visible_elements": [],
-        "camera_position": [0, 1.87, 9.1],
+        "camera_position": [0, 1.15, 5.6],
         "caption": "New zero, same ΔU",
         "eye_capture_ms": 4800,
         "show_sliders": true,
@@ -681,26 +683,26 @@
           "arrows": [
             { "body_id": "cart", "show": ["applied", "weight"] }
           ],
-          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0.3, "precision": 1 },
-          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
-          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 1.5, "signed": true, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true, "h_ref_slide_from_m": 0, "h_ref_slide_ms": 1500 },
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true, "dim": true },
           "checkpoints": [
-            { "s_m": 1.0, "label": "A (h=0.20 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
-            { "s_m": 3.0, "label": "B (h=1.20 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
+            { "s_m": 1.0, "label": "A (h = −1.00 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 },
+            { "s_m": 3.0, "label": "B (h = 0.00 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1200 }
           ],
           "formula_lines": [
             { "text": "U = mgh" },
             { "text": "ΔU = mgΔh = 29.4 J", "at_ms": 4400 }
           ],
           "loop_reset_ms": 6000,
-          "controls_visible": []
+          "controls_visible": ["h_ref"]
         }
       },
 
       "STATE_4": {
-        "label": "The ramp is rotated to 48.6°; the same 3 kg cart drives up at 0.8 m/s from s = 0.6 m. At s = 2.0 m (the SAME h = 1.5 m as S1's point B) point B stamps U = 44.1 J, with d = 1.41 m on the displacement arrow — against S1/S3's d = 2.40 m at the same height; the loop resets at 3650 ms.",
+        "label": "The ramp is rotated to 48.6°; the same 3 kg cart drives up at 0.8 m/s from s = 0.4 m. s0 is 0.4, NOT S1's 0.6, deliberately: 0.4·sin 48.6° = 0.30 m, the SAME start height S1 uses, so both ramps climb the identical Δh = 1.20 m and the d comparison is one climb measured two ways rather than two different climbs (founder review 2026-08-10). At s = 2.0 m (the SAME h = 1.5 m as S1's point B) point B stamps U = 44.1 J with d = 1.60 m on the displacement arrow, against the 30° ghost_surface's d = 2.40 m drawn beside it at the same two heights; the loop resets at 3650 ms.",
         "visible_elements": [],
-        "camera_position": [0, 1.87, 9.1],
+        "camera_position": [0, 1.15, 5.6],
         "caption": "Shorter path, same U",
         "eye_capture_ms": 2450,
         "show_sliders": true,
@@ -709,16 +711,17 @@
           "mode": "incline_slide",
           "surface": { "theta_deg": 48.6, "length_m": 4.5, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 0.6, "initial_velocity_mps": 0.8, "applied_force": { "N": 22.053265447135512, "angle_deg": 0 } }
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 0.4, "initial_velocity_mps": 0.8, "applied_force": { "N": 22.053265447135512, "angle_deg": 0 } }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["applied", "weight"] }
           ],
           "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
-          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true },
           "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "ghost_surface": { "theta_deg": 30, "label": "gentle ramp", "show_displacement": true },
           "checkpoints": [
-            { "s_m": 2.0, "label": "B (h=1.50 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1400 }
+            { "s_m": 2.0, "label": "B (h = 1.50 m)", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point", "dwell_ms": 1400 }
           ],
           "loop_reset_ms": 3650,
           "controls_visible": []
@@ -726,9 +729,9 @@
       },
 
       "STATE_5": {
-        "label": "S2's exact launch (m = 2.5 kg, s0 = 2.8, v0 = 3.13 m/s) with a gravity work ledger added. A home-armed flag latches 'start (h = 1.40 m): U = 34.3 J · W gravity = 0.0 J' at departure; point C at s = 3.5 m latches 'point C (h = 1.75 m): U = 42.9 J · W gravity = −8.6 J', dwelling 1400 ms; the formula gains a second line, ΔU = mgΔh = 8.6 J, at 600 ms; the loop resets at 2900 ms.",
+        "label": "S2's exact launch (m = 3 kg — pinned across S1–S5, s0 = 2.8, v0 = 3.13 m/s) with a gravity work ledger added. A home-armed flag latches 'start (h = 1.40 m): U = 41.2 J · W gravity = 0.0 J' at departure; point C at s = 3.5 m latches 'point C (h = 1.75 m): U = 51.5 J · W gravity = −10.3 J', dwelling 1400 ms; the formula gains a second line, ΔU = mgΔh = 10.3 J, at 600 ms; the loop resets at 2900 ms. |W| = 10.3 J stays well inside work_scale_J = 30 and the peak U = 55.9 J inside bar_max_J = 60.",
         "visible_elements": [],
-        "camera_position": [0, 1.87, 9.1],
+        "camera_position": [0, 1.15, 5.6],
         "caption": "Equal change, opposite sign",
         "eye_capture_ms": 989,
         "show_sliders": true,
@@ -736,7 +739,7 @@
           "mode": "incline_slide",
           "surface": { "theta_deg": 30, "length_m": 4.5, "frictionless": true },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 2.5, "color": "#42A5F5", "initial_position_m": 2.8, "initial_velocity_mps": 3.13 }
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 2.8, "initial_velocity_mps": 3.13 }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["weight"] }
@@ -753,7 +756,7 @@
           ],
           "formula_lines": [
             { "text": "ΔU = −W by gravity" },
-            { "text": "ΔU = mgΔh = 8.6 J", "at_ms": 600 }
+            { "text": "ΔU = mgΔh = 10.3 J", "at_ms": 600 }
           ],
           "loop_reset_ms": 2900,
           "controls_visible": []
@@ -761,9 +764,9 @@
       },
 
       "STATE_6": {
-        "label": "Sandbox: a 2 kg cart sits at rest at s = 2.4 m (h = 1.2 m), held by static friction (μs = 0.9, μk = 0.8) at every authored angle. The angle idles between 30° and 40°, rotating the ramp with the cart riding it, until the teacher drags m or θ; U reads live from 23.5 J (θ = 30°) to 30.2 J (θ = 40°). U = mgh stands as the formula surface throughout.",
+        "label": "Sandbox: a 3 kg cart (the SAME mass S1–S5 use, so the teacher arrives at a recognizable home pose — Rule 32d) rides the ramp, held by static friction (μs = 0.9, μk = 0.8) at every authored angle. The idle sweep drives the cart's POSITION s between 1.2 m and 3.0 m, never θ: sweeping θ moved the very slider handle the caption tells the teacher to drag (founder review 2026-08-10), and s is the honest motion for U = mgh anyway — the cart climbs and the bar climbs with it. Three live controls: m, θ and the zero line h_ref, which is why this state needs energy_layer.signed (h_ref above the cart sends U negative). At the sweep and slider extremes U spans about −49.7 J to +56.7 J, inside the signed ±60 J track. U = mgh stands as the formula surface throughout; the sweep is cancelled for good by the first trusted drag (Rule 37).",
         "visible_elements": [],
-        "camera_position": [0, 2.3, 10.6],
+        "camera_position": [0, 1.15, 5.6],
         "caption": "Change mass and angle yourself",
         "show_sliders": true,
         "formula_overlay": "U = mgh",
@@ -771,15 +774,15 @@
           "mode": "sandbox",
           "surface": { "theta_deg": 30, "length_m": 4.5 },
           "bodies": [
-            { "id": "cart", "label": "m", "mass_kg": 2, "color": "#42A5F5", "initial_position_m": 2.4, "initial_velocity_mps": 0, "mu_s": 0.9, "mu_k": 0.8 }
+            { "id": "cart", "label": "m", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": 2.4, "initial_velocity_mps": 0, "mu_s": 0.9, "mu_k": 0.8 }
           ],
           "arrows": [
             { "body_id": "cart", "show": ["weight"] }
           ],
-          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "precision": 1 },
-          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0" },
-          "idle_auto_sweep": { "param": "theta", "range": [30, 40] },
-          "controls_visible": ["m", "theta"]
+          "energy_layer": { "bars": ["U_grav"], "bar_max_J": 60, "h_ref_m": 0, "signed": true, "precision": 1 },
+          "height_markers": { "show_h_ref_line": true, "h_ref_label": "h = 0", "show_h_leader": true },
+          "idle_auto_sweep": { "param": "s", "range": [1.2, 3] },
+          "controls_visible": ["m", "theta", "h_ref"]
         }
       }
     }
