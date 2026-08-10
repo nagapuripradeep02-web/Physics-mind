@@ -8,6 +8,64 @@
 > Concept JSON is complete and gated green; a 60-agent review then found **15 confirmed defects**, none
 > fixed. **PR #96 must NOT merge as-is.**
 >
+> **⚠ SUPERSEDED 2026-08-10 — the fix round below (§0.1) EXECUTED this file's §2 list.** §2a/§2b/§2c
+> are done and committed; four §2c rows became six engine PRs (#108→#114, stacked, unmerged); the
+> queue now reads 8 closes + 1 new FIXED row + 4 annotate-keep-open for this concept. Read §0.1
+> FIRST; the sections below it are the 2026-08-09 record, kept verbatim.
+
+---
+
+## 0.1 SESSION 2026-08-10 — the fix round (read this first)
+
+**On the chapter branch** (`feat/mathematics-lines-and-planes`, commits `5a97b1c → 64690fb → bf72027
+→ d6eb38f` + the fix-round queue commit): §2a seed-guard retrofit + round-2 corrections migration
+(replay-verified against the live queue, write-set parity probe + negative control); §2b both fixes;
+§2c authoring half (S5 counter at 1620 ms — computed against `reveal + 0.9·grow` through the
+ease-out cubic; S2 half_extent-growth seam; four dead tokens swept — S1/S9 `lambda` **plus S2
+`n_norm` and S9 `angle_lines_deg`**; S9 advanced strip; distance = capital **D** everywhere).
+
+**quality_auditor's FIRST-ever pass FAILED the build and was right**: the cross_vec OBJECT had
+survived the token strip (invisible to THE EYE — group B is never captured); STATE_6 opened at
+θ=25° (`vgAnimValue` pre-rolls the ramp's `from` — the authored 69.3846 was dead config; a holding
+window now precedes a 69.3846→115 ramp); two epic mirrors still said `d =`; and the missing d₁
+label was **FRAMING** (camera r=5.0 sat outside `VG_SCENE_RADIUS` 4.5; label point 47.4° off-axis)
+— fixed by authoring (camera → sibling r=13), pixel-verified, `vg_lp_line_label…` CLOSED with the
+root cause proven. eye-walker verified 6/7 fixes from pixels; its two refutations were themselves
+refuted with evidence (the high-θ detachment does not reproduce on the new camera at the exact
+filed control angle 115.0°; STATE_4's "swap" is a 600 ms grow under 1 s sampling plus the
+DELIBERATE disjoint-window gap of §5 — one design-record sentence fixed).
+
+**The engine stack (founder-authorized, Rule 40, ONE bug_class each, sequential+stacked off
+master 63ae197 — gate 712 → 1015 PASS across it):**
+| PR | mechanism | queue row |
+|---|---|---|
+| **#108** | projection defers an angle token its arc owns (ownership at arc RESOLUTION — the perpendicular-line 90/0 promise survives) | `vg_projection_…` CLOSED (its own script rides the PR) |
+| **#109** | `segment_length` token — the borrow is unrepresentable; latent co-arrival overwrite killed | `vg_segment_length_…` CLOSED |
+| **#110** | θ row label DERIVED from what the knob rotates (never a per-mode literal); bare θ where nothing rotates | `vg_theta_deg_…` CLOSED |
+| **#112** | norm bars: the defect was the FONT (serif has no usable U+2016 — both strokes merged at 13px; the string was always correct, `git log -S` proves it); panel fallback → monospace | NEW row `vg_readout_norm_bars_merge_to_one_stroke_in_the_readout_font_stack` filed FIXED |
+| **#113** | authored `animate_loop_ms` (wrap inside `vgAnimValue` — reveals structurally unwrappable; first-cycle pin + D7 refuses `reveal_hold` on a looping state; deriveStateMeta same commit) | `vg_explore_animate_windows_…` OPEN pending S9 authoring |
+| **#114** | authored `group_controls` (flat fallback; picker-path display re-run only; scene_group unpartitionable; inertness counts corrected — A=2, B=4, the filed row had them swapped) | `vg_explore_controls_…` OPEN pending S9 authoring |
+
+**Merge order #108 → #109 → #110 → #112 → #113 → #114 — founder-only. NEVER `--delete-branch`
+until each child retargets (the #92 incident).**
+
+**AFTER the merges, on the chapter desk (blocked until then — the Δ7 scar forbids authoring
+against unmerged mechanisms):**
+1. merge master into the branch; 2. STATE_3 `value_readouts` → `["segment_length",
+"point_plane_distance"]` (else the sweep is silent); 3. STATE_9: collapse the eight λ windows to
+the closed two-window ping-pong + `animate_loop_ms: 18000`, and author `group_controls:
+{ "A": ["lambda","lambda_span","half_extent","q_height"], "B": ["theta_deg","line2_offset"] }` —
+gate §27(i)/§28(h) hard-FAIL on the merged desk until both land (deliberate forcing functions);
+4. re-seed cache → EYE (expect H2 pixel diffs on any state printing `n_norm`/`cross_norm` — the
+#112 glyph fix; re-baseline is a founder decision per Rule 34e) → re-audit.
+
+**Founder-taste items, no rows filed:** the S1→S2 patch-shrink at the seam (auditor F7 — the
+normal is safe, the plane's opening frame is a taste call); STATE_4's near-end-on Lpar (~30 px
+stub); STATE_7's two arcs visually indistinguishable at 55°/35°; Gate-20 warning
+`parallel_form_stem` missing on q3–q7. **Still OPEN with residue:** `vg_offset_animate_…` (a θ
+drag during [0, 8000) detaches the arc — the slide beat's aux ramp is un-seizable; probe must
+sample that window).
+>
 > Companions: `docs/skeletons/lines_and_planes_in_space_skeleton.md` (amended — read its STATUS block
 > FIRST) · `docs/skeletons/lines_and_planes_in_space_mathematics_block.md` ·
 > `docs/MATHEMATICS_VECTOR_PRODUCTS_HANDOFF.md` (Act I, #7 — still banked).
