@@ -1186,7 +1186,7 @@
         "label": "A line meets a plane once, or never",
         "caption": "Crosses, or never touches",
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_arc", "vg_lp_point"],
-        "camera_position": [-12.0240, 4.8699, -0.8408],
+        "camera_position": [-11.603, 5.494, -2.0459],
         "vg": {
           "mode": "lines_planes",
           "reveal_ms": 1,
