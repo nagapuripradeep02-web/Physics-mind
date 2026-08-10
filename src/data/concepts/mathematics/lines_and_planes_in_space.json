@@ -165,6 +165,13 @@
           },
           {
             "type": "point",
+            "id": "a",
+            "label": "a",
+            "colour_role": "neutral ink",
+            "note": "the line's anchor point, drawn and labelled 1.2s BEFORE the line grows out of it — the formula surface names a, so a must be on screen (Rule 25: no untaught term)"
+          },
+          {
+            "type": "point",
             "id": "L1_lambda_marker",
             "label": "λ marker",
             "note": "slides -3.5 to 3.5 along L1; the live coordinate rides with it"
@@ -506,7 +513,7 @@
             "id": "M2",
             "label": "d₂",
             "colour_role": "second direction",
-            "note": "cyan; anchor slides too, then the direction itself rotates 25° to 115°"
+            "note": "cyan; anchor slides too, then the direction itself rotates from the pair's own 69.4° to 115° (the slider reaches down to 25°, but the authored sweep starts where STATE_5 left the pair)"
           },
           {
             "type": "arc",
@@ -537,7 +544,7 @@
             },
             {
               "id": "s6_4",
-              "text_en": "That worked because each line has a direction. A plane has no single direction, only a normal."
+              "text_en": "The angle came from the two directions alone: no point on either line mattered."
             }
           ]
         }
@@ -608,7 +615,7 @@
             },
             {
               "id": "s7_5",
-              "text_en": "A plane gives a normal. Skew lines give none, so the gap comes from two directions."
+              "text_en": "Measure to the normal first, then subtract: that is the angle to the plane."
             }
           ]
         }
@@ -1006,6 +1013,16 @@
               "normal_label": "n",
               "ghost_at_ms": 300,
               "ghost_opacity": 0.25
+            }
+          ],
+          "points": [
+            {
+              "id": "a",
+              "position": [-0.8, 0.6, -0.5],
+              "role": "neutral",
+              "label": "a",
+              "reveal_at_ms": 1200,
+              "grow_ms": 400
             }
           ],
           "lines": [
