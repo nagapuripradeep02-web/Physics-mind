@@ -12,7 +12,80 @@ phase: 0 (chapter opening — Phase-0 doctrine, AUTHORING_PIPELINE.md §0)
 phase0_survey: docs/loop_runs/ch6/phase0_survey.md   (0a DONE — founder-approved 2026-08-01)
 engine_decision: EXTEND `newtons_laws_body` with an ENERGY LAYER. Do NOT build a new scenario_type.
 
-## ▶ NEXT SESSION STARTS HERE — 5 of 12 SHIPPED and MERGED · next is #6 `potential_energy_definition` (2026-08-09)
+## ▶ NEXT SESSION STARTS HERE — #6 and #7 BUILT, both mid-review, one engine fix landed (2026-08-10)
+
+updated: 2026-08-10 · desk branch **`feat/ch6-concept-6`** (both concepts on one branch)
+
+**7 of 12 authored. #1–#5 shipped and on master. #6 `potential_energy_definition` and
+#7 `gravitational_potential_energy` are authored, registered, green on every deterministic gate,
+and NEITHER IS APPROVED.** `visual:approve`, TTS, `PILOT_CONCEPTS` and deploy are all untouched.
+
+| # | concept | state |
+|---|---|---|
+| 1–5 | work · sign · KE · WET · cons-vs-noncons | shipped, on master |
+| **6** | **`potential_energy_definition`** | 4 states · authored · Checkpoint B returned **FIX(engine) BLOCKING** → engine fixed, authoring fixed → **awaiting Checkpoint B re-review** |
+| **7** | **`gravitational_potential_energy`** | 6 states · authored · quality-auditor **FAIL** (text) → fixed → **awaiting re-audit + Checkpoint B (never run)** |
+| 8–12 | spring PE · conservation · friction loss · inst. power · avg power | not started |
+
+**Both needed ZERO renderer edits to author.** The Phase-0 bet has now held seven times.
+
+### 🔴 A SHIPPED concept was repaired by this session's engine fix — founder should know
+
+`conservative_vs_nonconservative_forces` (shipped, baselined, voiced) has an inclined sandbox that
+**never made the round trip its own formula surface asserts**. The `newtons_laws_body` sandbox wrap
+remapped a body bound-to-bound, which is energy-neutral only on a FLAT track; on an incline it
+teleported the body through the whole height of the ramp every lap. Its S5 ran top-to-bottom
+repeatedly while the surface read *"Round trip: W gravity = 0, W friction < 0"*.
+
+Fixed in `3d1b5c7` (renderer only, +76/−4, Rule 40 clean): on a **live-nonzero** θ a bound crossing
+now relaunches at the authored home pose instead of remapping. Verified exactly energy-neutral —
+`(s0, v0)` and `(bound, v_bound)` are two points of one conserved trajectory.
+
+- **θ = 0 untouched, bit for bit:** `work_energy_theorem` 33/33 and
+  `conservative_vs_nonconservative_forces` 33/33, **all 20 H2 comparisons at 0.00%**.
+- **Four inclined sandboxes fleet-wide**, not the two the brief named: also `block_on_incline` S5 and
+  `gravitational_potential_energy` S6 — both held by static friction at their authored defaults, so
+  no baseline could ever have shown it, but both expose sliders that walk a teacher into it.
+- **The gate was gated on LIVE θ, not authored θ** — 8 of 17 sandboxes expose a theta slider and 3 of
+  those are authored flat, so an authored-θ gate would leave a teacher who tilts a flat sandbox
+  looking at the original defect.
+- **`3d1b5c7` needs its own PR to master** (Rule 40). It fixes a shipped concept; it should not wait
+  behind chapter work.
+
+### The defect neither gate could see, and how it was found
+
+Every deterministic gate passed on the first build of BOTH concepts — 155 PASS, tsc 0, EYE 20/20 and
+28/28, `diagnostic_warnings: []`. Neither concept was correct. What the pixel reviewers found:
+
+- **#6's sandbox manufactured 233 J once a second, forever.** A block on a frictionless ramp gaining
+  height AND speed. **`ΔU = −W_gravity` held to the last decimal on both sides** — the ledger origin
+  and the U reference re-anchor in the same frame, so the identity proves nothing across a
+  discontinuity. *Confirm the PICTURE before trusting the identity.*
+- **#6's `v0` slider opened pinned at its own maximum** while the narration said "Relaunch faster"
+  and an assessment question examined it. The sim named an action out loud that it could not perform.
+- **#7 asserted false geometry in five places** — `h_ref_m = 0` is the slab MIDPOINT, not the ramp's
+  foot (`nlbApplySurface` scales the slab about the surface origin).
+- **A rendered overlay collision invisible to the overlay checker** — `check-layout-overlap.mjs`
+  reads `scene_composition`, which field_3d never draws, so the only collision in #7 (the `d` label
+  over `mg`) could not have been seen by the check that returned green.
+- **THE EYE's headline overstates coverage by a third** — "28/28" is 21 executed + 7 skipped counted
+  as passes, and `D5` (the machine half of Rule 31's no-static-state check) ran on NO state of this
+  scenario. Fleet-wide harness gap.
+
+### Before touching #8
+
+1. **Re-review #6** (Checkpoint B cycle 1 of 3) — gate on the wrap seam, `v0` travel, the `s1_3` focal.
+2. **Re-audit #7 and run its Checkpoint B** — it has never run.
+3. **The scale-ceiling row is on its 2nd concept, filed twice, dispatched ZERO times**
+   (`energy_bar_track_renders_no_scale_ceiling…`). Its fix renders a maximum on the energy track,
+   which adds a visible numeral to every energy bar fleet-wide and WILL move shipped baselines —
+   **founder decision, deliberately not dispatched by this session.**
+4. **The coupled/train wrap carries the same defect as `3d1b5c7` fixed.** Not fixed: there is no
+   authored inclined train to verify against, and fixing it blind would be unverifiable. Founder call.
+5. `npm run dev` **cannot run in this desk** — `node_modules` is a worktree junction and Turbopack
+   rejects it. THE EYE is the visual gate for field_3d anyway; `build:review` works.
+
+## (superseded) NEXT SESSION — 5 of 12 SHIPPED and MERGED · next is #6 (2026-08-09)
 
 **Concepts #1–#5 are authored, reviewed, baselined, voiced EN and ON MASTER.** Nothing in ch6 is
 awaiting a merge. `potential_energy_definition` (#6, the ΔU = −W_c coupling that #7/#8/#9 all build
