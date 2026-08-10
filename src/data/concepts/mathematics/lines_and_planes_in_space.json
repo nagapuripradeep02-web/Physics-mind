@@ -983,6 +983,7 @@
         "label": "One number names every point on a line",
         "caption": "One point, one direction",
         "formula_overlay": "r = a + λd",
+        "show_sliders": true,
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_dir", "vp_label_lambda"],
         "camera_position": [0.0, 8.0, 13.8564],
         "vg": {
@@ -1034,6 +1035,7 @@
         "label": "A normal direction fixes a whole plane",
         "caption": "One point, one normal",
         "formula_overlay": "n·(r − a) = 0",
+        "show_sliders": true,
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_line", "vg_lp_seg"],
         "camera_position": [5.8667, 3.5833, -11.0337],
         "vg": {
@@ -1301,6 +1303,7 @@
         "label": "Directions alone fix the angle",
         "caption": "Directions alone give the angle",
         "formula_overlay": "cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)",
+        "show_sliders": true,
         "visible_elements": ["vg_lp_line", "vg_lp_arc"],
         "camera_position": [0.9926, 4.6359, -1.5884],
         "vg": {
@@ -1337,7 +1340,7 @@
           ],
           "animate": [
             { "knob": "aux_a", "from": -1.5, "to": 1.5, "start_ms": 0, "duration_ms": 4000, "easing": "smoothstep" },
-            { "knob": "aux_a", "from": 1.5, "to": -1.5, "start_ms": 4000, "duration_ms": 4000, "easing": "smoothstep" },
+            { "knob": "aux_a", "from": 1.5, "to": 0, "start_ms": 4000, "duration_ms": 4000, "easing": "smoothstep" },
             { "knob": "theta_deg", "from": 25, "to": 115, "start_ms": 8000, "duration_ms": 11000, "easing": "linear" }
           ],
           "value_readouts": ["angle_lines_deg"],
