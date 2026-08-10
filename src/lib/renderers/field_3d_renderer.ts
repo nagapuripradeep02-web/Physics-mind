@@ -64691,6 +64691,70 @@ export const FIELD_3D_RENDERER_CODE = `
     // from the rim outward. The hydrogen POSITIONS are untouched, so the torsion
     // the HUD publishes is still measured on the real geometry.
     var ORG_NEWMAN_RIM_FRAC = 0.55;
+    // ── THE LEGIBILITY MODEL THE CONVENTION WAS MISSING (2026-08-10). Two
+    //   CRITICAL rows, one root cause: the projection was a STATIC SWITCH.
+    //
+    //   (1) WHEN it applies. camera.newman was read once, at apply, so a state
+    //   whose camera FLIES to the bond axis opened on ethane with a carbon
+    //   deleted, a circle floating where it should be and three bond stubs at
+    //   meaningless angles — and held that for most of a 12.5 s flight whose
+    //   whole subject is how the projection is FORMED. The treatment is now a
+    //   CONTINUOUS function of the angle between the sight line and the torsion
+    //   bond axis. Below FULL the two carbon discs have already fused on screen
+    //   (their projected separation 2*d_CC*sin a falls under the two drawn radii
+    //   at a ~ 13.3 deg), so the rim is the only honest picture; above OFF they
+    //   are separately countable and ball-and-stick is. Between them the two
+    //   representations cross-fade. A convention true at one camera pose may
+    //   never be rendered at any other.
+    //   THE BAND IS SOLVED, NOT CHOSEN. The rim may not be drawn while the back
+    //   carbon is still more than ONE ATOM RADIUS off the front carbon's
+    //   projected centre — while it is still recognisably a second atom. Their
+    //   projected separation is d_CC*sin a = 2.0*sin a scene units and a drawn
+    //   carbon radius is 0.46*ORG_ATOM_SCALE = 0.23, so the rim may first appear
+    //   at a = asin(0.115) = 6.6 deg, and OFF is set just inside it. FULL is
+    //   where the two centres are within 0.07 units, i.e. one point on screen.
+    //   A wider band was tried (10/26 deg) and the gate's section-16 clause
+    //   caught it: it ghosted a rim in while the molecule was still plainly two
+    //   carbons three radii apart.
+    var ORG_NEWMAN_FULL_DEG = 2;
+    var ORG_NEWMAN_OFF_DEG = 6.5;
+    //   The weight at which the back atom's sphere is finally withheld and the
+    //   rim alone carries it: the TOP of the fade, never earlier (withheld
+    //   earlier it would vanish while it was still a separable disc).
+    var ORG_NEWMAN_HIDE_W = 0.999;
+    //   (2) WHAT it draws. A Newman projection is a 2-D CONVENTION drawn in a
+    //   3-D scene, and the front C-H cylinder passing over the back H is not
+    //   information — it is an artefact of depth-testing a diagram. Measured at
+    //   the authored camera (dist 8): the back-H disc has projected radius 0.127
+    //   scene units and sits at projected radius 1.127, dead behind the front
+    //   C-H stick (radius 0.075) that runs from the centre out to 1.636. About
+    //   30% of the disc survived, as two ~3 px slivers, so at phi -> 0 the
+    //   hydrogens DISAPPEARED under a caption reading "eclipsed" — the frame
+    //   taught that eclipsing merges atoms, the exact inverse of the
+    //   conservation claim the concept exists to make. The countability solve
+    //   could not see it because it enumerates atom discs only.
+    //   So while the rim is up the scenario paints in PROJECTION ORDER, with
+    //   depth testing off, exactly as the rim and the measurement arcs already
+    //   do. THE ORDER IS A STATED CONVENTION: every stick is painted before
+    //   every ball, so IN THE PROJECTION A BOND MAY NEVER HIDE A COUNTABLE ATOM
+    //   — only another atom may. (Painting back atoms under the front sticks was
+    //   tried first and measured at 9% of the back-H disc surviving at phi = 0;
+    //   the gate's raster says so in section 15.) Depth is still legible: the
+    //   back set is smaller by true perspective, its sticks stop at the rim, and
+    //   it is tinted. Nothing moves and nothing changes size (Rule 29): only the
+    //   paint order changes, and the 0.198-unit radial gap perspective already
+    //   gives between a back disc and its front partner becomes the visible gap
+    //   it always was.
+    var ORG_RO_BACK_BOND = 900, ORG_RO_RIM = 901, ORG_RO_FRONT_BOND = 902;
+    var ORG_RO_BACK_ATOM = 903, ORG_RO_FRONT_ATOM = 904;
+    //   The back set is tinted toward the background while the rim is up. This
+    //   is the "distinguishing back-set colour" of the prevention rule, and it
+    //   is load-bearing rather than decorative: H is #ECEFF1 and the bond stick
+    //   is #CFD8DC, so a back-H disc newly painted OVER a front bond would be
+    //   near-white on near-white and still not countable. Uniform over a whole
+    //   SET and never on one element, so it is a depth convention, not emphasis
+    //   (Rule 29/32e govern brightening ONE focal and forbid size).
+    var ORG_BACK_TINT = "#33414C", ORG_BACK_TINT_T = 0.42;
 
     // ── CLOSED ENUMS. Frozen at S1 over ALL 32 organic sims. ─────────────────
     //   Every member is IMPLEMENTED (a live code path today) or DEFERRED (parsed,
@@ -65502,6 +65566,121 @@ export const FIELD_3D_RENDERER_CODE = `
         return (e ? e.radius : 0.40) * ORG_ATOM_SCALE;
     }
     /**
+     * THE NEWMAN WEIGHT — 1 when the sight line is ON the torsion bond axis, 0
+     * when it is more than ORG_NEWMAN_OFF_DEG off it, smooth between. ONE pure
+     * function of (pose, geometry), called by the frame pass AND by the gate, so
+     * the convention and its probe cannot drift apart. Closed form: no clock, no
+     * state, no memo — a freeze pin reproduces it exactly.
+     */
+    function orgNewmanWeight(pose, geom, frontId, backId) {
+        if (!pose || !geom || !frontId || !backId) return 0;
+        var byId = {}, i;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        if (!byId[frontId] || !byId[backId]) return 0;
+        return orgNewmanWeightAt(orgNewmanAngle(pose, byId[frontId].p, byId[backId].p));
+    }
+    /** Degrees between the sight line and the back->front bond axis. */
+    function orgNewmanAngle(pose, frontP, backP) {
+        return mgAngleDeg(mgNorm(orgSub(frontP, backP)), orgCamBasis(pose).fwd);
+    }
+    function orgNewmanWeightAt(angDeg) {
+        var u = (angDeg - ORG_NEWMAN_FULL_DEG) / (ORG_NEWMAN_OFF_DEG - ORG_NEWMAN_FULL_DEG);
+        return 1 - mgSmooth01(mgClamp(u, 0, 1));
+    }
+    /**
+     * Blend one #rrggbb toward another. Deliberately a STRING blend: the frame
+     * pass already writes material.color exactly once per atom, so the depth
+     * tint costs no second colour channel and no per-frame THREE.Color.
+     */
+    function orgTintHex(hex, toHex, t) {
+        if (!(t > 0)) return hex;
+        var a = parseInt(String(hex).slice(1), 16), b = parseInt(String(toHex).slice(1), 16);
+        var ch = function (sh) {
+            var x = (a >> sh) & 255, y = (b >> sh) & 255;
+            return mgClamp(Math.round(x + (y - x) * t), 0, 255);
+        };
+        return "#" + ("000000" + ((ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16)).slice(-6);
+    }
+    /** Projection-order painting while the rim is up; plain depth otherwise. */
+    function orgFlatOrder(m, flat, order) {
+        if (!m || !m.material) return;
+        m.material.depthTest = !flat;
+        m.renderOrder = flat ? order : 0;
+    }
+    /**
+     * Opacity cross-fade on ONE mesh, RESTORED the frame it stops fading — a
+     * pooled slot must never carry a stale alpha into the next state (the
+     * dim_apparatus_one_way_with_no_restore scar, one level down).
+     */
+    function orgFadeMesh(m, alpha) {
+        if (!m || !m.material) return;
+        if (alpha >= 0.999) {
+            if (m.userData && m.userData.orgFaded) {
+                m.material.transparent = false;
+                m.material.opacity = 1;
+                m.userData.orgFaded = false;
+            }
+            return;
+        }
+        m.material.transparent = true;
+        m.material.opacity = Math.max(0, alpha);
+        if (m.userData) m.userData.orgFaded = true;
+    }
+    /** Isotropic screen projection of a SCENE-unit point (never NDC). */
+    function orgProjXY(p, pose, basis) {
+        var depth = pose.dist - mgDot(p, basis.fwd);
+        var k = (depth > 0.05) ? (pose.dist / depth) : 1;
+        return { x: mgDot(p, basis.right) * k, y: mgDot(p, basis.up) * k, k: k };
+    }
+    /** Clear space between a candidate anchor and every drawn atom disc. */
+    function orgLabelClearance(cand, pose, basis, drawn) {
+        var pc = orgProjXY(cand, pose, basis), m = Infinity, i;
+        for (i = 0; i < drawn.length; i++) {
+            var q = orgProjXY(orgMul(drawn[i].p, ORG_U_PER_A), pose, basis);
+            var dx = pc.x - q.x, dy = pc.y - q.y;
+            var d = Math.sqrt(dx * dx + dy * dy) - orgAtomRadius(drawn[i].el) * q.k;
+            if (d < m) m = d;
+        }
+        return (m === Infinity) ? 0 : m;
+    }
+    /**
+     * WHERE A CARBON'S ID SPRITE SITS. Outside the projection it is the fleet
+     * offset. Inside it the two carbons project to ONE screen point, so the
+     * FRONT id sits inside the rim and the BACK id outside it — in the direction
+     * with the most clearance from every drawn disc, solved over 12 candidates
+     * so a label can never be parked on a bond stub or on the rim arc itself
+     * (the white-on-white collision). The anchor LERPS on the same weight as the
+     * rim, so the back carbon keeps a label at every camera pose: the sim never
+     * prints "bond = C1-C2" over a canvas that names only C1.
+     */
+    function orgLabelAnchor(src, w, isFront, isBack, basis, rimR, pose, drawn) {
+        var base = [src.p[0] * ORG_U_PER_A + basis.right[0] * 0.42,
+                    src.p[1] * ORG_U_PER_A + basis.right[1] * 0.42 + 0.34,
+                    src.p[2] * ORG_U_PER_A + basis.right[2] * 0.42];
+        if (!(w > 0) || !(rimR > 0) || (!isFront && !isBack)) return base;
+        var c = orgMul(src.p, ORG_U_PER_A), target, k;
+        if (isFront) {
+            // INSIDE the rim, clear of the arc. A "C1" sprite carries about 0.13
+            // scene units of ink either side of its anchor, so an anchor 0.31 out
+            // projects to ~0.51 against a rim at ~0.65 — the white-on-white
+            // collision the eye-walker read had the anchor at 0.54 plus its ink.
+            target = orgAdd(c, orgAdd(orgMul(basis.right, 0.20), orgMul(basis.up, 0.24)));
+        } else {
+            var bestD = -Infinity, bestP = null;
+            for (k = 0; k < 12; k++) {
+                var th = k * Math.PI / 6;
+                var dir = orgAdd(orgMul(basis.right, Math.cos(th)), orgMul(basis.up, Math.sin(th)));
+                var cand = orgAdd(c, orgMul(dir, rimR + 0.34));
+                var cl = orgLabelClearance(cand, pose, basis, drawn);
+                if (cl > bestD) { bestD = cl; bestP = cand; }
+            }
+            target = bestP || orgAdd(c, orgMul(basis.up, -(rimR + 0.34)));
+        }
+        return [base[0] + (target[0] - base[0]) * w,
+                base[1] + (target[1] - base[1]) * w,
+                base[2] + (target[2] - base[2]) * w];
+    }
+    /**
      * Memoised mesh lookup. A LOCAL clone of the fleet pattern, deliberately:
      * reaching into a sealed sibling's bscFindById would share bonding_scene's
      * window.PM_bscIdx cache across two scenarios (DF1 sealed-scenario
@@ -65620,7 +65799,12 @@ export const FIELD_3D_RENDERER_CODE = `
         document.body.appendChild(hud);
 
         var ff = document.createElement("div"); ff.id = "org_formula";
-        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:250px;";
+        // max-width is NOT a constant any more: a fixed 250 px wrapped
+        // "E(\\u03C6) = 6(1 + cos 3\\u03C6) kJ\\u00B7mol\\u207B\\u00B9" onto two lines and stranded
+        // the unit alone on the second — one formula surface reading as two
+        // (Rule 34b). orgFitFormula MEASURES the rendered width against the free
+        // band and owns whiteSpace / fontSize / maxWidth from apply onward.
+        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;white-space:nowrap;";
         document.body.appendChild(ff);
 
         // ── S2: the energy graph. Bottom-left is the ONE zone S1 left free (HUD
@@ -65680,6 +65864,239 @@ export const FIELD_3D_RENDERER_CODE = `
         });
     }
 
+    // ── S3: THE CANVAS TEXT PLACER ─────────────────────────────────────────
+    //  Root cause this closes (engine_bug_queue CRITICAL):
+    //  graph_overlay_annotation_is_painted_without_measuring_it_against_the_panel_clip_rect.
+    //  The barrier caption was placed at bracket_x + 13 and painted straight
+    //  out. On the 700 px backing store the string reached x = 744, the canvas
+    //  ends at 700, and the ONE number STATE_5 exists to deliver rendered as
+    //  "barrier 12.0 kJ·mo" — the unit amputated at the panel border.
+    //  Nothing measured it, and 32 deterministic checks passed on that frame
+    //  because no gate reads rendered text extents.
+    //
+    //  So NOTHING in this painter paints text directly any more. Every string —
+    //  axis labels, tick numbers, stationary-point labels, the provenance stamp
+    //  and the barrier caption — goes through orgText, which MEASURES with
+    //  measureText and fits the box inside the panel clip rect BEFORE a pixel is
+    //  drawn. That is deliberately general: a longer molecule name, a wider unit
+    //  or a different curve cannot reopen the class at a site a one-string fix
+    //  happened not to visit.
+    var ORG_TXT_PAD = 4;          // the panel's own inner margin, backing-store px
+    // Rule 29 FLOOR, stated: 15 backing px = 7.5 CSS px at the shipped 2x scale
+    // (700x460 store drawn at 350x230), the smallest a tick number stays
+    // readable at on a projector. orgText shrinks only down to here; below it
+    // WRAPPING takes over, so a number is never shrunk unreadable to avoid a
+    // wrap. Callers whose string must not shrink at all pass minPx = its size.
+    var ORG_TXT_MIN_PX = 15;
+    /** the px size out of a CSS font shorthand, without a regex escape. */
+    function orgFontPx(f) {
+        var s = String(f || ""), i = s.indexOf("px"), j = i, n;
+        if (i < 0) return 12;
+        while (j > 0 && "0123456789.".indexOf(s.charAt(j - 1)) >= 0) j--;
+        n = parseFloat(s.slice(j, i));
+        return (n > 0) ? n : 12;
+    }
+    /** the same shorthand at a different px size. */
+    function orgFontAt(f, px) {
+        var s = String(f || ""), i = s.indexOf("px"), j = i;
+        if (i < 0) return s;
+        while (j > 0 && "0123456789.".indexOf(s.charAt(j - 1)) >= 0) j--;
+        return s.slice(0, j) + String(px) + s.slice(i);
+    }
+    /** greedy word wrap at real measured widths. A single token never splits. */
+    function orgWrapLines(g, s, maxW) {
+        var words = String(s).split(" "), out = [], cur = "", i, t;
+        for (i = 0; i < words.length; i++) {
+            t = cur ? (cur + " " + words[i]) : words[i];
+            if (cur && g.measureText(t).width > maxW) { out.push(cur); cur = words[i]; }
+            else cur = t;
+        }
+        if (cur !== "") out.push(cur);
+        return out.length ? out : [String(s)];
+    }
+    /** the left/top edge an anchor+alignment asks for. */
+    function orgAnchor(a, w, align) {
+        if (align === "center") return a - w / 2;
+        if (align === "right") return a - w;
+        return a;
+    }
+    /** where a single line sits inside a multi-line block of width w. */
+    function orgIntra(w, lw, align) {
+        if (align === "center") return (w - lw) / 2;
+        if (align === "right") return w - lw;
+        return 0;
+    }
+    /** the gate's evidence: one record per PAINTED line, in canvas units. */
+    function orgRecText(t, x, y, w, h) {
+        var b = { text: t, x: x, y: y, width: w, height: h };
+        var arr = window.PM_orgTextBoxes;
+        if (arr && arr.push) arr.push(b);
+        return b;
+    }
+    /**
+     * Measure, then place, then paint. Remedies in order, each one deliberate:
+     *   1. the string fits at its authored anchor            -> paint there
+     *   2. it fits at the OPPOSITE-side anchor (opt.alt)     -> re-anchor
+     *   3. it fits inside the clip somewhere                 -> slide it in
+     *   4. it is wider than the clip: shrink to the floor    -> then WRAP
+     *   5. one unbreakable token wider than the clip         -> clamped, recorded
+     * opt: { clip:{x,y,w,h}, align:'left'|'center'|'right', alt:{x,align},
+     *        rot:-Math.PI/2 for a vertical label, minPx, pad }
+     * Pure: same font + same string + same clip give the same boxes, so a
+     * SET_TIME_FREEZE pin redraws this panel byte-identically.
+     */
+    function orgText(g, txt, x, y, o) {
+        var s = (txt == null) ? "" : String(txt);
+        if (s === "") return [];
+        var opt = o || {}, i;
+        var clip = opt.clip || { x: 0, y: 0, w: 0, h: 0 };
+        var pad = (opt.pad == null) ? ORG_TXT_PAD : opt.pad;
+        var cL = clip.x + pad, cR = clip.x + clip.w - pad;
+        var cT = clip.y + pad, cB = clip.y + clip.h - pad;
+        var font0 = g.font, align0 = g.textAlign;
+        var px = orgFontPx(font0);
+        var minPx = (opt.minPx == null) ? ORG_TXT_MIN_PX : opt.minPx;
+        var rot = opt.rot || 0;                       // 0 or -Math.PI/2
+        // the axis the glyphs advance along: horizontal normally, vertical when
+        // the label is rotated, so the fit test is against the right span.
+        var along = (rot === 0) ? (cR - cL) : (cB - cT);
+        g.textAlign = "left";                         // placement is explicit below
+        var lines = [s], w = g.measureText(s).width;
+        while (w > along && px > minPx) {
+            px -= 1; g.font = orgFontAt(font0, px); w = g.measureText(s).width;
+        }
+        if (w > along) {
+            lines = orgWrapLines(g, s, along);
+            w = 0;
+            for (i = 0; i < lines.length; i++) w = Math.max(w, g.measureText(lines[i]).width);
+        }
+        var asc = px * 0.80, desc = px * 0.22, lineH = px * 1.24;
+        var across = asc + desc + (lines.length - 1) * lineH;
+        var out = [], lw, lx, by;
+        if (rot === 0) {
+            var left = orgAnchor(x, w, opt.align);
+            if ((left < cL || left + w > cR) && opt.alt) {
+                var la = orgAnchor(opt.alt.x, w, opt.alt.align);
+                if (la >= cL && la + w <= cR) left = la;
+            }
+            left = (w >= cR - cL) ? cL : Math.min(Math.max(left, cL), cR - w);
+            var top = y - asc;
+            top = (across >= cB - cT) ? cT : Math.min(Math.max(top, cT), cB - across);
+            for (i = 0; i < lines.length; i++) {
+                lw = g.measureText(lines[i]).width;
+                lx = left + orgIntra(w, lw, opt.align);
+                by = top + asc + i * lineH;
+                g.fillText(lines[i], lx, by);
+                out.push(orgRecText(lines[i], lx, by - asc, lw, asc + desc));
+            }
+        } else {
+            // rotate(-90): the local advance axis maps to world -y and the local
+            // descent axis to world +x, so the block is w tall and 'across' wide.
+            var topR = orgAnchor(y, w, opt.align);
+            topR = (w >= cB - cT) ? cT : Math.min(Math.max(topR, cT), cB - w);
+            var leftR = x - asc;
+            leftR = (across >= cR - cL) ? cL : Math.min(Math.max(leftR, cL), cR - across);
+            for (i = 0; i < lines.length; i++) {
+                lw = g.measureText(lines[i]).width;
+                by = topR + w - orgIntra(w, lw, opt.align);   // this line's bottom
+                lx = leftR + asc + i * lineH;                 // this line's baseline x
+                g.save(); g.translate(lx, by); g.rotate(rot);
+                g.fillText(lines[i], 0, 0);
+                g.restore();
+                out.push(orgRecText(lines[i], lx - asc, by - lw, asc + desc, lw));
+            }
+        }
+        g.font = font0; g.textAlign = align0;
+        return out;
+    }
+    /** a nice tick step: the 1/2/2.5/3/5/6 ladder, so 0..360 lands on 60. */
+    function orgNiceStep(span, target) {
+        if (!(span > 0)) return 1;
+        var raw = span / Math.max(1, target);
+        var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+        var n = raw / mag, c = [1, 2, 2.5, 3, 5, 6, 10], i;
+        for (i = 0; i < c.length; i++) if (n <= c[i] + 1e-9) return c[i] * mag;
+        return 10 * mag;
+    }
+    /** the tick VALUES for a row: authored x_ticks win, else derived from span. */
+    function orgXTicks(row) {
+        var lo = row.x_min, hi = row.x_max, i, v, out = [];
+        if (row.x_ticks && row.x_ticks.length) {
+            for (i = 0; i < row.x_ticks.length; i++) {
+                v = Number(row.x_ticks[i]);
+                if (v >= lo - 1e-9 && v <= hi + 1e-9) out.push(v);
+            }
+            return { values: out, step: (out.length > 1) ? Math.abs(out[1] - out[0]) : 1 };
+        }
+        var step = orgNiceStep(hi - lo, 6), k = Math.ceil((lo - 1e-9) / step);
+        for (i = 0; i < 64; i++) {
+            v = (k + i) * step;
+            if (v > hi + 1e-9) break;
+            out.push(Math.abs(v) < 1e-9 ? 0 : v);
+        }
+        return { values: out, step: step };
+    }
+    /** decimals that suit the step, so 0.2 prints 0.2 and 60 prints 60. */
+    function orgTickFmt(step) {
+        var d = (step >= 1) ? 0 : Math.min(3, Math.ceil(-Math.log(step) / Math.LN10));
+        return function (v) { return Number(v).toFixed(d); };
+    }
+    // ── the DOM half of the same root cause: a text surface placed without
+    //   measuring it against the box it has to live in. The formula surface is
+    //   ONE surface (Rule 34b); a wrap that strands "kJ·mol⁻¹" on a line of its
+    //   own turns it into two. Same discipline as orgText: measure, then place.
+    var ORG_FORMULA_PX = 20;
+    var ORG_FORMULA_MIN_PX = 16;   // Rule 29 floor, stated: a formula a teacher
+    //                                reads from the back of a room. Below it the
+    //                                surface wraps deliberately instead.
+    /**
+     * Bind the unit to the token before it with U+00A0. The last space in a
+     * formula string separates the expression from its unit, so if a wrap ever
+     * does happen the unit travels WITH the expression's tail and can never end
+     * up alone on a line. Authored markup is left untouched.
+     */
+    function orgBindUnit(s) {
+        var t = String(s == null ? "" : s);
+        if (t.indexOf("<") >= 0) return t;
+        var i = t.lastIndexOf(" ");
+        if (i <= 0 || i === t.length - 1) return t;
+        return t.slice(0, i) + "\\u00A0" + t.slice(i + 1);
+    }
+    /**
+     * Fit the ONE formula surface into the free horizontal band. The band's
+     * right edge is MEASURED off the HUD when it is up (never assumed), so the
+     * two overlays cannot collide (Rule 34d). Shrink to ORG_FORMULA_MIN_PX
+     * first; only below the floor does the surface wrap, and orgBindUnit has
+     * already made that wrap safe. Publishes PM_orgFormulaFit for the gate.
+     */
+    function orgFitFormula(ff) {
+        if (!ff || !ff.style || ff.style.display === "none") return null;
+        var vw = (typeof window !== "undefined" && window.innerWidth) ? window.innerWidth : 1280;
+        var right = vw - 12;
+        var hud = document.getElementById("org_hud");
+        if (hud && hud.style && hud.style.display !== "none" && hud.getBoundingClientRect) {
+            var hr = hud.getBoundingClientRect();
+            if (hr && hr.width > 0) right = hr.left;
+        }
+        var band = Math.max(180, right - 16 - 24);   // left inset + a real gap
+        ff.style.whiteSpace = "nowrap";
+        ff.style.maxWidth = "none";
+        var px = ORG_FORMULA_PX;
+        ff.style.fontSize = px + "px";
+        var wOf = function () {
+            var r = ff.getBoundingClientRect ? ff.getBoundingClientRect() : null;
+            return (r && r.width) ? r.width : 0;
+        };
+        var w = wOf();
+        while (w > band && px > ORG_FORMULA_MIN_PX) {
+            px -= 1; ff.style.fontSize = px + "px"; w = wOf();
+        }
+        var wrapped = (w > band);
+        if (wrapped) { ff.style.whiteSpace = "normal"; ff.style.maxWidth = Math.round(band) + "px"; }
+        window.PM_orgFormulaFit = { band: band, px: px, width: w, wrapped: wrapped };
+        return window.PM_orgFormulaFit;
+    }
+
     /**
      * S2: the E(coordinate) curve with the rider. 'est' is the ONE object the
      * frame pass computed from the pose, so the rider's x IS the pose's x — the
@@ -65697,8 +66114,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!g || !est) return;
         var W = cv.width, H = cv.height, i;
         g.clearRect(0, 0, W, H);
+        // THE PANEL CLIP RECT. Every string below is fitted inside it by orgText
+        // before it is painted, and every painted line is published to
+        // PM_orgTextBoxes as {text, x, y, width, height} — the gate's evidence,
+        // because a canvas-internal string is invisible to every DOM probe.
+        var CLIP = { x: 0, y: 0, w: W, h: H };
+        window.PM_orgTextClip = CLIP;
+        window.PM_orgTextBoxes = [];
         var row = est.row, s = row.stationary;
-        var L0 = 92, R0 = W - 26, T0 = 34, B0 = H - 58;
+        // B0 leaves a TWO-line axis band below the plot: the tick numbers, then
+        // the axis label under them (it was one line when there were no ticks).
+        var L0 = 92, R0 = W - 26, T0 = 34, B0 = H - 64;
         var xlo = row.x_min, xhi = row.x_max;
         // The y range fits THIS row's own envelope with a published-value pad —
         // a fixed range sized for another curve buries a small lobe
@@ -65712,20 +66138,33 @@ export const FIELD_3D_RENDERER_CODE = `
         g.beginPath(); g.moveTo(L0, T0 - 8); g.lineTo(L0, B0); g.lineTo(R0, B0); g.stroke();
         g.fillStyle = "#B0BEC5";
         g.font = "21px \\u0027Cambria Math\\u0027,serif";
-        g.textAlign = "center";
-        g.fillText(row.x_label, (L0 + R0) / 2, H - 18);
-        g.save(); g.translate(26, (T0 + B0) / 2); g.rotate(-Math.PI / 2);
-        g.fillText(row.y_label, 0, 0); g.restore();
+        orgText(g, row.x_label, (L0 + R0) / 2, H - 14, { clip: CLIP, align: "center" });
+        orgText(g, row.y_label, 26, (T0 + B0) / 2, { clip: CLIP, align: "center", rot: -Math.PI / 2 });
         // y ticks at the PUBLISHED levels, so every gridline is a table entry.
-        g.textAlign = "right"; g.font = "19px monospace";
+        g.font = "19px monospace";
         var seen = {};
         for (i = 0; i < s.length; i++) {
             if (seen[s[i].e]) continue;
             seen[s[i].e] = true;
             g.fillStyle = "#78909C";
-            g.fillText(String(s[i].e), L0 - 8, Y(s[i].e) + 6);
+            orgText(g, String(s[i].e), L0 - 8, Y(s[i].e) + 6, { clip: CLIP, align: "right" });
             g.strokeStyle = "rgba(120,144,156,0.20)"; g.lineWidth = 1;
             g.beginPath(); g.moveTo(L0, Y(s[i].e)); g.lineTo(R0, Y(s[i].e)); g.stroke();
+        }
+        // x ticks. STATE_6's delta cue is a claim ABOUT the x axis ("Same peak
+        // every 120°") that an unnumbered axis cannot substantiate — Rule 33d,
+        // an instrument shows a reading, not a decoration. The positions are
+        // DERIVED from the row's own span (0..360 lands on 60° exactly, and the
+        // cyclohexane 0..1 pucker row lands on 0.2), so every curve gets them
+        // and an authored row may override with x_ticks.
+        var xt = orgXTicks(row), fmtX = orgTickFmt(xt.step), tvx;
+        g.font = "17px monospace";
+        for (i = 0; i < xt.values.length; i++) {
+            tvx = X(xt.values[i]);
+            g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+            g.beginPath(); g.moveTo(tvx, B0); g.lineTo(tvx, B0 + 6); g.stroke();
+            g.fillStyle = "#78909C";
+            orgText(g, fmtX(xt.values[i]), tvx, B0 + 24, { clip: CLIP, align: "center" });
         }
         // The curve, drawn left-to-right to the reveal fraction.
         var N = 240, xEnd = xlo + (xhi - xlo) * mgClamp(rev, 0, 1);
@@ -65739,7 +66178,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // Named stationary points, rendered FROM THE DATA (kind -> style), each
         // labelled with the row's own label string. No kind is hardcoded here.
         if (en.label_stationary !== false) {
-            g.textAlign = "center"; g.font = "19px \\u0027Cambria Math\\u0027,serif";
+            g.font = "19px \\u0027Cambria Math\\u0027,serif";
             for (i = 0; i < s.length; i++) {
                 if (s[i].x > xEnd + 1e-9) continue;
                 var st = ORG_STATIONARY_STYLE[s[i].kind] || ORG_STATIONARY_STYLE_DEFAULT;
@@ -65747,10 +66186,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 g.beginPath(); g.arc(X(s[i].x), Y(s[i].e), st.r, 0, Math.PI * 2); g.fill();
                 // maxima label above their dot, minima below, so a label never
                 // sits on the curve it annotates (a canvas-internal collision is
-                // invisible to a DOM probe).
+                // invisible to a DOM probe). The old +-42 half-width guess is
+                // gone: orgText measures the ACTUAL label ("half-chair" is wider
+                // than 84 px) and slides it inside the clip.
                 var ly = (s[i].kind === "maximum") ? Y(s[i].e) - 14 : Y(s[i].e) + 26;
-                var lx = mgClamp(X(s[i].x), L0 + 42, R0 - 42);
-                g.fillText(s[i].label, lx, ly);
+                orgText(g, s[i].label, X(s[i].x), ly, { clip: CLIP, align: "center" });
             }
         }
         // The barrier bracket — the published hi minus the published lo.
@@ -65760,12 +66200,17 @@ export const FIELD_3D_RENDERER_CODE = `
             g.beginPath(); g.moveTo(bx, Y(est.lo)); g.lineTo(bx, Y(est.hi)); g.stroke();
             g.beginPath(); g.moveTo(bx - 9, Y(est.lo)); g.lineTo(bx + 9, Y(est.lo));
             g.moveTo(bx - 9, Y(est.hi)); g.lineTo(bx + 9, Y(est.hi)); g.stroke();
-            g.fillStyle = "#FFE082"; g.font = "20px monospace"; g.textAlign = "left";
+            g.fillStyle = "#FFE082"; g.font = "20px monospace";
             // A1 ledger (b): the bracket carries the row's OWN name for the span it
             // measures, so the canvas cannot read as the interconversion barrier
             // on a curve whose hi - lo is a different stationary point.
-            g.fillText(est.barrierLabel + " " + orgFx(est.barrier) + " kJ\\u00B7mol\\u207B\\u00B9",
-                bx + 13, (Y(est.lo) + Y(est.hi)) / 2 + 6);
+            // THE CLIP FIX: this string is the one that lost its unit. It is now
+            // measured first; if it will not fit to the RIGHT of the bracket it
+            // re-anchors to the LEFT of the same bracket (opposite side, still
+            // adjacent to the thing it measures) before any clamping.
+            orgText(g, est.barrierLabel + " " + orgFx(est.barrier) + " kJ\\u00B7mol\\u207B\\u00B9",
+                bx + 13, (Y(est.lo) + Y(est.hi)) / 2 + 6,
+                { clip: CLIP, align: "left", alt: { x: bx - 13, align: "right" } });
         }
         // THE RIDER. Its x is est.x, which the frame pass MEASURED on the very
         // coordinates the molecule is drawn from.
@@ -65778,9 +66223,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // The verification stamp. orbital_shapes prints "(measured)" beside an
         // imported number; an UNVERIFIED row must say so on the canvas, not only
         // in a report a teacher never reads.
-        g.textAlign = "right"; g.font = "16px monospace";
+        g.font = "16px monospace";
         g.fillStyle = est.verified ? "#78909C" : "#FFB74D";
-        g.fillText(est.verified ? "(literature)" : "(literature \\u2014 unverified)", R0, T0 - 14);
+        orgText(g, est.verified ? "(literature)" : "(literature \\u2014 unverified)",
+            R0, T0 - 14, { clip: CLIP, align: "right" });
     }
     /** -0.0 never renders (the pwrFxZero / lcoFx clamp). */
     function orgFx(v, dp) {
@@ -65929,10 +66375,12 @@ export const FIELD_3D_RENDERER_CODE = `
         if (gcv) gcv.style.display = graphOn ? "block" : "none";
         var ff = document.getElementById("org_formula");
         if (ff) {
-            if (os.show_formula && os.formula) { ff.innerHTML = os.formula; ff.style.display = "block"; }
+            if (os.show_formula && os.formula) { ff.innerHTML = orgBindUnit(os.formula); ff.style.display = "block"; }
             else { ff.style.display = "none"; }
             if (graphOn) { ff.style.top = "52px"; ff.style.transform = "none"; }
             else { ff.style.top = "44%"; ff.style.transform = "translateY(-50%)"; }
+            // MEASURE, then place — the DOM half of the clip-rect contract.
+            orgFitFormula(ff);
         }
         // Draw the first frame NOW so a SET_STATE landing on a pin never
         // photographs the previous state's picture.
@@ -65999,20 +66447,64 @@ export const FIELD_3D_RENDERER_CODE = `
         var spinAng = (spinRate ? (Math.max(0, ms - spinFrom) / 1000) * spinRate : 0) * Math.PI / 180;
         if (spinAng) for (i = 0; i < geom.atoms.length; i++) geom.atoms[i].p = orgRotAxis(geom.atoms[i].p, basis.fwd, spinAng);
 
+        // ── THE NEWMAN WEIGHT. ONE continuous number, measured on the pose the
+        //    camera is ACTUALLY at this instant (post-schedule, post-spin), drives
+        //    the whole projection treatment below. Never a boolean read at apply.
+        var nmFront = null, nmBack = null, nmW = 0, nmAng = null;
+        if (os.camera && os.camera.newman && solved.front && solved.back
+            && byId[solved.front] && byId[solved.back]) {
+            nmFront = solved.front; nmBack = solved.back;
+            nmAng = orgNewmanAngle(pose, byId[nmFront].p, byId[nmBack].p);
+            nmW = orgNewmanWeightAt(nmAng);
+        }
+        window.PM_orgNewmanW = nmW;
+        window.PM_orgNewmanAngle = nmAng;
+        var nmFlat = nmW > 0;
+        // THE BACK SET the rim owns: the far carbon and everything bonded to it
+        // except the near carbon. Derived from the built connectivity, so it is
+        // right for every one of the 32 molecules, not just ethane.
+        var backSet = {};
+        if (nmBack) {
+            backSet[nmBack] = true;
+            for (i = 0; i < geom.bonds.length; i++) {
+                var bSet = geom.bonds[i];
+                var othS = (bSet.a === nmBack) ? bSet.b : ((bSet.b === nmBack) ? bSet.a : null);
+                if (othS && othS !== nmFront) backSet[othS] = true;
+            }
+        }
+        // The rim RADIUS is a pure property of the geometry, so it is solved here
+        // (the labels need it too) and only its VISIBILITY rides the weight.
+        var rimR = 0;
+        if (nmBack && byId[nmBack] && byId[nmFront]) {
+            var axN = mgNorm(orgSub(byId[nmFront].p, byId[nmBack].p));
+            var best = 0;
+            for (i = 0; i < geom.bonds.length; i++) {
+                var bb = geom.bonds[i];
+                var other = (bb.a === nmBack) ? bb.b : ((bb.b === nmBack) ? bb.a : null);
+                if (!other || other === nmFront || !byId[other]) continue;
+                var rel = orgSub(byId[other].p, byId[nmBack].p);
+                var perp = orgSub(rel, orgMul(axN, mgDot(rel, axN)));
+                if (orgLen(perp) > best) best = orgLen(perp);
+            }
+            rimR = best * ORG_U_PER_A * ORG_NEWMAN_RIM_FRAC;
+        }
+
         // ── which hydrogens this state shows (N-1). An occlusion correctness
         //    control, not a convenience: 12 H on an 18-atom skeleton hide the very
         //    arc a state is asking the student to read.
         var showH = os.show_h;
         if (window.PM_orgHDragged) showH = window.PM_orgShowH ? "all" : "none";
-        var shown = {}, drawn = [];
+        var shown = {}, drawn = [], discShown = {};
         for (i = 0; i < geom.atoms.length; i++) {
             var a = geom.atoms[i];
             var vis = (a.el !== "H") || orgShowH(showH, a);
-            // Newman: the back atom sits EXACTLY behind the front one by
-            // construction, so its sphere is withheld and the rim carries its bonds.
-            if (solved.back && a.id === solved.back && os.camera && os.camera.newman) vis = false;
             shown[a.id] = vis;
             if (vis) drawn.push(a);
+            // Newman: the back atom sits EXACTLY behind the front one ONLY ONCE
+            // THE SIGHT LINE IS ON THE AXIS, and only then is its sphere withheld
+            // for the rim. Until then it is a real atom of a real molecule. Its
+            // LABEL is never withheld at any pose.
+            discShown[a.id] = vis && !(a.id === nmBack && nmW >= ORG_NEWMAN_HIDE_W);
         }
 
         // ── place the atoms + their id labels.
@@ -66021,23 +66513,31 @@ export const FIELD_3D_RENDERER_CODE = `
             var sph = orgFindById("org_atom_" + i), lab = orgFindById("org_atom_label_" + i);
             var src = (i < drawn.length) ? drawn[i] : null;
             if (sph) {
-                sph.visible = !!src;
+                sph.visible = !!src && !!discShown[src.id];
                 if (src) {
                     var r = orgAtomRadius(src.el);
                     sph.position.set(src.p[0] * ORG_U_PER_A, src.p[1] * ORG_U_PER_A, src.p[2] * ORG_U_PER_A);
                     sph.scale.set(r, r, r);
                     var col = (MG_ELEMENTS[src.el] || MG_ELEMENTS.C).color;
+                    // The back set reads DARKER while the rim is up, so a back
+                    // disc newly painted over a front bond is a separate region
+                    // and not near-white on near-white. Size never changes.
+                    if (nmFlat && backSet[src.id]) col = orgTintHex(col, ORG_BACK_TINT, ORG_BACK_TINT_T * nmW);
                     sph.material.color.set(hexToThreeColor(col));
                     sph.material.emissive.set(hexToThreeColor(col));
                     sph.userData.atomId = src.id;
+                    orgFlatOrder(sph, nmFlat, backSet[src.id] ? ORG_RO_BACK_ATOM : ORG_RO_FRONT_ATOM);
+                    // The far carbon CROSS-FADES into its rim; nothing else fades.
+                    orgFadeMesh(sph, (src.id === nmBack) ? (1 - nmW) : 1);
                 }
             }
             if (lab) {
                 lab.visible = !!src && wantLabels && src.el === "C";
                 if (lab.visible) {
                     updateLabelSpriteText(lab, src.id);
-                    var off = orgMul(basis.right, 0.42);
-                    lab.position.set(src.p[0] * ORG_U_PER_A + off[0], src.p[1] * ORG_U_PER_A + off[1] + 0.34, src.p[2] * ORG_U_PER_A + off[2]);
+                    var lp = orgLabelAnchor(src, nmW, src.id === nmFront, src.id === nmBack,
+                        basis, rimR, pose, drawn);
+                    lab.position.set(lp[0], lp[1], lp[2]);
                 }
             }
         }
@@ -66046,37 +66546,33 @@ export const FIELD_3D_RENDERER_CODE = `
         //    the plane perpendicular to the camera, which is what makes "this bond
         //    cannot turn" legible later (A3) rather than decorative now.
         var slot = 0;
-        var rimR = 0;
-        if (solved.back && os.camera && os.camera.newman && byId[solved.back]) {
-            var axN = mgNorm(orgSub(byId[solved.front].p, byId[solved.back].p));
-            var best = 0;
-            for (i = 0; i < geom.bonds.length; i++) {
-                var bb = geom.bonds[i];
-                var other = (bb.a === solved.back) ? bb.b : ((bb.b === solved.back) ? bb.a : null);
-                if (!other || other === solved.front || !byId[other]) continue;
-                var rel = orgSub(byId[other].p, byId[solved.back].p);
-                var perp = orgSub(rel, orgMul(axN, mgDot(rel, axN)));
-                if (orgLen(perp) > best) best = orgLen(perp);
-            }
-            rimR = best * ORG_U_PER_A * ORG_NEWMAN_RIM_FRAC;
-        }
         for (i = 0; i < geom.bonds.length && slot < ORG_MAX_BONDS; i++) {
             var b = geom.bonds[i];
-            if (!shown[b.a] || !shown[b.b]) {
-                // A bond to a WITHHELD back atom is still drawn — from the rim.
-                if (!(rimR > 0 && ((b.a === solved.back && shown[b.b]) || (b.b === solved.back && shown[b.a])))) continue;
-            }
+            if (!shown[b.a] || !shown[b.b]) continue;
+            // The SIGHTED bond degenerates to a point only once the sight line is
+            // ON the axis. Until then it is the C-C bond of a real molecule and
+            // dropping it is what deleted a carbon from the opening frame.
+            var isSighted = !!(nmBack && ((b.a === nmBack && b.b === nmFront) || (b.b === nmBack && b.a === nmFront)));
+            if (isSighted && nmW >= ORG_NEWMAN_HIDE_W) continue;
             var pa = byId[b.a].p, pb = byId[b.b].p;
-            if (rimR > 0 && (b.a === solved.back || b.b === solved.back)) {
-                var backP = byId[solved.back].p, outId = (b.a === solved.back) ? b.b : b.a;
-                if (outId === solved.front) continue;    // the sighted bond is a point
-                var axR = mgNorm(orgSub(byId[solved.front].p, backP));
-                var relR = orgSub(byId[outId].p, backP);
+            var backEnd = (rimR > 0 && nmW > 0 && !isSighted)
+                ? ((b.a === nmBack) ? b.b : ((b.b === nmBack) ? b.a : null)) : null;
+            if (backEnd) {
+                var backP = byId[nmBack].p;
+                var axR = mgNorm(orgSub(byId[nmFront].p, backP));
+                var relR = orgSub(byId[backEnd].p, backP);
                 var perpR = orgSub(relR, orgMul(axR, mgDot(relR, axR)));
                 var pl = orgLen(perpR) || 1;
-                pa = orgAdd(backP, orgMul(perpR, (rimR / ORG_U_PER_A) / pl));
-                pb = byId[outId].p;
+                var rimP = orgAdd(backP, orgMul(perpR, (rimR / ORG_U_PER_A) / pl));
+                // CROSS-FADE the root, never a jump: the stub GROWS out of the
+                // real atom as the rim forms, so a student watching the flight
+                // sees the projection being made out of the molecule.
+                pa = [backP[0] + (rimP[0] - backP[0]) * nmW,
+                      backP[1] + (rimP[1] - backP[1]) * nmW,
+                      backP[2] + (rimP[2] - backP[2]) * nmW];
+                pb = byId[backEnd].p;
             }
+            var bondBack = !!(nmFlat && backSet[b.a] && backSet[b.b]);
             var reps = (b.order === 2) ? 2 : 1;
             for (j = 0; j < reps && slot < ORG_MAX_BONDS; j++) {
                 var st = orgFindById("org_bond_" + slot);
@@ -66095,24 +66591,30 @@ export const FIELD_3D_RENDERER_CODE = `
                 st.position.set(A[0], A[1], A[2]);
                 st.scale.set(1, L, 1);
                 st.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / L, dv[1] / L, dv[2] / L));
+                orgFlatOrder(st, nmFlat, bondBack ? ORG_RO_BACK_BOND : ORG_RO_FRONT_BOND);
             }
         }
         for (i = slot; i < ORG_MAX_BONDS; i++) { var sx = orgFindById("org_bond_" + i); if (sx) sx.visible = false; }
 
         var rimM = orgFindById("org_rim");
         if (rimM) {
-            rimM.visible = rimR > 0;
+            rimM.visible = rimR > 0 && nmW > 0.001;
             if (rimM.visible) {
-                var bp = byId[solved.back].p;
+                var bp = byId[nmBack].p;
                 rimM.position.set(bp[0] * ORG_U_PER_A, bp[1] * ORG_U_PER_A, bp[2] * ORG_U_PER_A);
                 rimM.scale.set(rimR, rimR, 1);
                 rimM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3(basis.fwd[0], basis.fwd[1], basis.fwd[2]));
+                // The rim fades IN as the ball-and-stick back carbon fades out.
+                rimM.material.opacity = 0.82 * nmW;
+                rimM.renderOrder = ORG_RO_RIM;
             }
         }
 
         // ── the countability metric, published for the gate and for the teacher
-        //    tooling. Isotropic screen units, never NDC.
-        var sep = orgMinScreenGap(geom, pose, shown);
+        //    tooling. Isotropic screen units, never NDC. Measured over the atoms
+        //    actually drawn AS DISCS: a carbon the rim has taken over is not a
+        //    disc, and scoring it would report a zero gap against its own rim.
+        var sep = orgMinScreenGap(geom, pose, discShown);
         window.PM_orgMinGap = sep.gap;
         // ONE measurement, on the BUILT coordinates, feeding the HUD and (below)
         // the energy rider. Two call sites of one pure function on one geometry:
