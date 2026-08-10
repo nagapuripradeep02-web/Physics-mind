@@ -66433,6 +66433,31 @@ export const FIELD_3D_RENDERER_CODE = `
             spherical.theta = targetSpherical.theta;
             animating = false;
             updateCameraFromSpherical();
+        } else {
+            // ── AND ONCE SEIZED, EVERY VIEW-DEPENDENT CONSTRUCTION READS THE POSE
+            //    THE CAMERA IS ACTUALLY AT. The write above is skipped while the
+            //    teacher owns the orbit, so pose still holds the CLOSED FORM the
+            //    engine would have written — the sight-along solution. Feeding that
+            //    stale pose to the Newman weight, the rim orientation, the label
+            //    anchors and the screen-gap metric drew a 40-degrees-off-axis ethane
+            //    as a full Newman projection: a floating rim with three stubs, a
+            //    withheld back carbon and NO C-C bond — two disconnected fragments
+            //    of a molecule that does not exist, in the one state a teacher
+            //    drives in front of a class.
+            //    So the seized branch re-reads the pose from the LIVE spherical
+            //    state — the exact inverse of the three lines above — and everything
+            //    below (basis, spin axis, nmAng/nmW, rim quaternion, label anchors,
+            //    orgMinScreenGap, PM_orgCam) is then measured on the camera the
+            //    teacher is looking through.
+            //    DETERMINISM: this is guarded on the seize flag, never unconditional.
+            //    THE EYE never drags, so window.PM_orgCamSeized is false on every
+            //    frame it captures, the closed-form branch above runs, and a freeze
+            //    pin still photographs the solved pose byte-identically. Recovery is
+            //    unchanged: re-picking "Standard" clears the flag and the very next
+            //    frame takes the closed form again.
+            pose.az = spherical.theta * 180 / Math.PI;
+            pose.el = 90 - spherical.phi * 180 / Math.PI;
+            pose.dist = spherical.radius;
         }
         var basis = orgCamBasis(pose);
 
