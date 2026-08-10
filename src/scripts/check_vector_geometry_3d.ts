@@ -191,6 +191,20 @@ function grabScalar(name: string): string {
   return "var " + name + " = " + m[1] + ";";
 }
 
+/**
+ * The TUBE WIDTHS, in world units, READ OUT OF THE RENDERER — never restated
+ * (§29's whole subject, and the free variable every harness that runs a shipped
+ * vgPlaceTube caller has to be handed). A gate carrying its own copy of these
+ * numbers keeps passing after the renderer changes them.
+ */
+const VG_TUBE_R_SRC = (() => {
+  const m = /var VG_TUBE_R = (\{[^}]*\});/.exec(SRC);
+  if (!m) throw new Error("VG_TUBE_R not found in renderer — §29's anchor drifted; re-point it before trusting this gate");
+  return m[1];
+})();
+// eslint-disable-next-line @typescript-eslint/no-implied-eval
+const SHIPPED_TUBE_R: Record<string, number> = new Function("return " + VG_TUBE_R_SRC)();
+
 // ── THE TEXT-SURFACE HARNESS ────────────────────────────────────────────────
 //   Sections 17-19 are about SURFACES THAT MAKE CLAIMS — a readout label, a
 //   slider row's displayed value, whether a row exists at all — and every one
@@ -2158,6 +2172,7 @@ console.log("\n=== 10c. BRING-UP — the SHIPPED build + writer run against a TH
     [
       ...["vgSub", "vgAddVec", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize", "vgScaleVec", "vgLerpVec"].map((f) => grabFn(f)),
       "var VG_LP_MAX = " + /var VG_LP_MAX = (\{[^}]*\});/.exec(SRC)![1] + ";",
+      "var VG_TUBE_R = " + VG_TUBE_R_SRC + ";",
       "var VG_ROLE_COLOR = " + /var VG_ROLE_COLOR = (\{[\s\S]*?\});/.exec(SRC)![1] + ";",
       "var VG_LP_UPY = null;",
       roleSrc, buildSrc, tubeSrc, labelSrc, writeSrc,
@@ -2709,6 +2724,10 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
         "window", "document", "targetSpherical", "spherical", "animating",
         "updateCameraFromSpherical", "vgWriteLinesPlanesFrame", "vgReadoutLine", "vgCamBaseFromState",
         "updateLabelSpriteText", "vgPlaceTube", "vgReadoutSubjectShown", "vgSyncRampedRows",
+        // The frame's projection-segment site names VG_TUBE_R.proj, so the
+        // width table travels into the driver with it (a missing injection
+        // would ReferenceError the whole frame rather than quietly skipping).
+        "VG_TUBE_R",
         src + "\nreturn updateVectorGeometry3DFrame;",
       );
     // stateMs matters: the shared grow-in ease is a closed form of it, so a
@@ -2734,8 +2753,8 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
         // the REAL vgPlaceTube would need THREE.Vector3 quaternion maths; the
         // segment's geometry is section 14's job, so here it only records that
         // the frame asked for a pose and with what endpoints.
-        (m: Stub, p0: number[], p1: number[]) => { m.placed = [p0, p1]; m.visible = true; return true; },
-        T.vgReadoutSubjectShown, T.vgSyncRampedRows,
+        (m: Stub, p0: number[], p1: number[], r: number) => { m.placed = [p0, p1]; m.placedRadius = r; m.visible = true; return true; },
+        T.vgReadoutSubjectShown, T.vgSyncRampedRows, SHIPPED_TUBE_R,
       );
       fn();
       return scene;
@@ -6400,6 +6419,311 @@ console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOW
         }
       }
     }
+  }
+}
+
+console.log("\n=== 29. A DRAWN LINE IS THICK ENOUGH TO SEE — unit pool geometry, ONE owner of the width, and a PROJECTED-PIXEL FLOOR (bug_class vg_tube_radius_applied_twice_renders_every_line_and_segment_sub_pixel) ===");
+{
+  // Every other section of this file measures WHERE a thing is, WHAT it says,
+  // or WHETHER it is visible === true. Not one of them measures how much INK it
+  // puts on the screen — which is the hole this defect lived in for a whole
+  // chapter under a fully green gate. The lines/planes pool BAKED its radius
+  // into CylinderGeometry(radius, radius, ...) and vgPlaceTube then scaled the
+  // same mesh by the same number again, so the world radius was radius²:
+  // 0.035 -> 0.001225, about a tenth of a pixel at this scenario's cameras.
+  // Right position, right colour, right label, visible === true, and ~4% of the
+  // intended ink — a sparse dotted hairline beside ArrowHelpers that drew solid.
+  //
+  // So this section asserts the two halves that make the number mean what it
+  // says: (a) STRUCTURAL — no geometry the placer scales carries a radius of
+  // its own, and every call site names the ONE width table; and (b) OPTICAL —
+  // the width that survives to the screen clears a pixel floor at the shipped
+  // camera band. The negative control is the pre-fix source itself, textually
+  // reconstructed under a guard, run through the same recording stub.
+
+  // ── THE REGION, anchored. A drifted anchor THROWS: a sweep that silently
+  //    measures an empty string is worse than no sweep.
+  const RSTART = SRC.indexOf("vector_geometry_3d (MATHEMATICS — the GENERIC two-vector");
+  const REND = SRC.indexOf("rhr_force_direction — DIRECTION-ONLY sibling of lorentz_force_uniform_field");
+  if (RSTART < 0 || REND <= RSTART) {
+    throw new Error("§29 could not anchor the vg region in the emitted template — re-point RSTART/REND before trusting this gate");
+  }
+  const REGION = SRC.slice(RSTART, REND);
+
+  // ── (a) STRUCTURAL ────────────────────────────────────────────────────────
+  // (a1) NO cylinder in the whole vg region bakes a radius. Stated over the
+  //      region rather than over the two known pools, so a THIRD tube pool
+  //      added later is covered without editing this gate.
+  {
+    const cyl = [...REGION.matchAll(/new THREE\.CylinderGeometry\(([^)]*)\)/g)]
+      .map((m) => m[1].split(",").map((s) => s.trim()));
+    if (cyl.length < 2) {
+      throw new Error(`§29 found ${cyl.length} CylinderGeometry sites in the vg region (expected the line/seg pool and the projection segment) — the parse drifted`);
+    }
+    const baked = cyl.filter((a) => !(a[0] === "1" && a[1] === "1"));
+    assertTrue(`every CylinderGeometry in the vg region is built at UNIT radius (${cyl.length} sites swept; baked: ${baked.map((a) => a.slice(0, 2).join("/")).join(", ") || "none"})`,
+      baked.length === 0);
+    assertTrue("...and at UNIT height too, so vgPlaceTube owns BOTH dimensions (a baked height is the same defect on the other axis)",
+      cyl.every((a) => a[2] === "1"));
+  }
+
+  // (a2) The pool factory cannot even ACCEPT a radius. This is the half that
+  //      makes the invariant structural rather than remembered: a shape that
+  //      cannot express the wrong configuration needs no one to remember it.
+  {
+    const BUILD = grabFn("buildVectorGeometryLinesPlanes");
+    const sig = /function tube\(([^)]*)\)/.exec(BUILD);
+    if (!sig) throw new Error("§29: buildVectorGeometryLinesPlanes no longer declares `function tube(...)` — re-anchor");
+    const params = sig[1].split(",").map((s) => s.trim());
+    assertTrue(`the pool factory takes NO radius parameter (tube(${params.join(", ")})) — the double application is unrepresentable, not merely unwritten`,
+      !params.some((p) => /^(radius|rad|r|width|w)$/i.test(p)));
+    assertTrue("...and its geometry line is the literal unit cylinder",
+      /var g = new THREE\.CylinderGeometry\(1, 1, 1,/.test(BUILD));
+  }
+
+  // (a3) EVERY vgPlaceTube call site names the ONE width table — no bare
+  //      literal anywhere. A literal at a call site is how the same number came
+  //      to exist in two places in the first place.
+  const CALL_SITES: { key: string; radius: number }[] = [];
+  {
+    const sites: string[] = [];
+    let at = 0;
+    for (;;) {
+      const i = REGION.indexOf("vgPlaceTube(", at);
+      if (i < 0) break;
+      at = i + 12;
+      if (/function\s+$/.test(REGION.slice(Math.max(0, i - 12), i))) continue; // the declaration itself
+      let depth = 0, j = i + 11;
+      for (; j < REGION.length; j++) {
+        if (REGION[j] === "(") depth++;
+        else if (REGION[j] === ")") { depth--; if (depth === 0) break; }
+      }
+      sites.push(REGION.slice(i + 12, j));
+    }
+    if (sites.length === 0) throw new Error("§29 found no vgPlaceTube CALL sites in the vg region — the parse drifted");
+    for (const s of sites) {
+      // top-level split: the endpoint args are array literals, so commas
+      // inside [ ] do not separate arguments.
+      const parts: string[] = []; let d = 0, cur = "";
+      for (const ch of s) {
+        if (ch === "[" || ch === "(") d++;
+        if (ch === "]" || ch === ")") d--;
+        if (ch === "," && d === 0) { parts.push(cur.trim()); cur = ""; } else cur += ch;
+      }
+      parts.push(cur.trim());
+      const last = parts[parts.length - 1];
+      const m = /^VG_TUBE_R\.(\w+)$/.exec(last);
+      assertTrue(`vgPlaceTube(..., ${last}) names the width table, never a literal`, !!m);
+      if (m) {
+        assertTrue(`...and VG_TUBE_R.${m[1]} is a declared width (${SHIPPED_TUBE_R[m[1]]})`, typeof SHIPPED_TUBE_R[m[1]] === "number");
+        CALL_SITES.push({ key: m[1], radius: SHIPPED_TUBE_R[m[1]] });
+      }
+    }
+    assertTrue(`all three drawn-tube call sites are swept (${CALL_SITES.map((c) => c.key + "=" + c.radius).join(", ")})`,
+      CALL_SITES.length === 3 && ["line", "seg", "proj"].every((k) => CALL_SITES.some((c) => c.key === k)));
+    assertTrue("the width table declares exactly the keys the call sites use (no dead width, no missing one)",
+      Object.keys(SHIPPED_TUBE_R).sort().join(",") === [...new Set(CALL_SITES.map((c) => c.key))].sort().join(","));
+  }
+
+  // ── (b) THE RECORDING STUB — the shipped build + writer, with the geometry
+  //       constructor args and every scale.set() RECORDED, so the effective
+  //       world radius is measured rather than read off the source.
+  type Stub = any;
+  function recordingStub() {
+    const scene: Stub[] = [];
+    const vec3 = (x = 0, y = 0, z = 0) => ({
+      x, y, z,
+      normalize() { const l = Math.hypot(this.x, this.y, this.z) || 1; this.x /= l; this.y /= l; this.z /= l; return this; },
+    });
+    const attr = (n: number) => ({ array: new Float32Array(n), needsUpdate: false });
+    function geom(nVerts: number, ctorR: number | null = null) {
+      return {
+        _ctorR: ctorR,
+        attributes: { position: attr(nVerts * 3) },
+        setAttribute() { /* the stub keeps the one it made */ },
+        setIndex() { /* index order is section 12's job */ },
+        setDrawRange() { /* ditto */ },
+        computeBoundingSphere() { /* no-op */ },
+      };
+    }
+    function mesh(g: Stub, m: Stub): Stub {
+      const o: Stub = {
+        geometry: g, material: m, userData: {}, visible: false,
+        position: { set() { /* placement is section 8/9's job */ } },
+        quaternion: { setFromUnitVectors() { /* orientation likewise */ } },
+        scale: { set(x: number, y: number, z: number) { o._scale = [x, y, z]; } },
+        traverse(fn: (n: Stub) => void) { fn(o); },
+      };
+      return o;
+    }
+    const THREE: Stub = {
+      Vector3: function (x: number, y: number, z: number) { return vec3(x, y, z); },
+      Color: function (h: string) { return { h, set(o: Stub) { this.h = o && o.h; }, copy(o: Stub) { this.h = o.h; return this; }, clone() { return { h: this.h, copy: this.copy, clone: this.clone, lerp() { return this; } }; }, lerp() { return this; } }; },
+      // THE ONE STUB THAT MATTERS HERE: it keeps the radius it was built with.
+      CylinderGeometry: function (rTop: number) { return geom(0, rTop); },
+      SphereGeometry: function (r: number) { return geom(0, r); },
+      BufferGeometry: function () { return geom(25); },
+      BufferAttribute: function (a: Float32Array) { return { array: a, needsUpdate: false }; },
+      MeshBasicMaterial: function (o: Stub) { return { color: o.color, opacity: o.opacity != null ? o.opacity : 1, transparent: !!o.transparent, userData: {} }; },
+      LineBasicMaterial: function (o: Stub) { return { color: o.color, opacity: o.opacity != null ? o.opacity : 1, transparent: !!o.transparent, userData: {} }; },
+      Mesh: function (g: Stub, m: Stub) { return mesh(g, m); },
+      Line: function (g: Stub, m: Stub) { return mesh(g, m); },
+      ArrowHelper: function () {
+        const m = mesh(geom(0), { color: { h: "#000" }, opacity: 1, transparent: true, userData: {} });
+        m.setDirection = () => { /* pure sections own direction */ };
+        m.setLength = function (l: number) { (this as Stub)._len = l; };
+        m.setColor = function (c: Stub) { (this as Stub).material.color = c; };
+        return m;
+      },
+    };
+    return { scene, THREE };
+  }
+  /** Build + write one authored scene through a recording stub. `buildSrc` lets the negative control run the PRE-FIX build. */
+  function drawOnce(buildSrc: string) {
+    const { scene, THREE } = recordingStub();
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const factory = new Function(
+      "THREE", "sceneObjects", "addToScene", "hexToThreeColor", "pmCreateAutoLabel",
+      "updateLabelSpriteText", "config", "window",
+      [
+        ...["vgSub", "vgAddVec", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize", "vgScaleVec", "vgLerpVec"].map((f) => grabFn(f)),
+        "var VG_LP_MAX = " + /var VG_LP_MAX = (\{[^}]*\});/.exec(SRC)![1] + ";",
+        "var VG_TUBE_R = " + VG_TUBE_R_SRC + ";",
+        "var VG_ROLE_COLOR = " + /var VG_ROLE_COLOR = (\{[\s\S]*?\});/.exec(SRC)![1] + ";",
+        "var VG_LP_UPY = null;",
+        grabFn("vgRoleColor"), buildSrc, grabFn("vgPlaceTube"), grabFn("vgLabelAt"), grabFn("vgWriteLinesPlanesFrame"),
+        "return { build: buildVectorGeometryLinesPlanes, write: vgWriteLinesPlanesFrame };",
+      ].join("\n"),
+    );
+    const api = factory(
+      THREE, scene, (o: Stub) => scene.push(o), (h: string) => new (THREE.Color as any)(h),
+      () => ({ userData: {}, visible: false, position: { set() { /* label placement */ } }, _pmText: "" }),
+      (sp: Stub, t: string) => { sp._pmText = t; }, { vg: {} }, {},
+    );
+    api.build();
+    api.write(E.vgResolveLinesPlanes({
+      mode: "lines_planes", reveal_ms: 0,
+      lines: [{ id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], lambda_span: [-3.5, 3.5], label: "L₁", role: "dir1" }],
+      planes: [{ id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], half_extent: 3, span_u: [0.94, -0.33, 0], span_v: [0.08, 0.22, -0.97], role: "region" }],
+      points: [{ id: "q", position: [1.93, 1.19, 0.51], label: "q" }],
+      perpendicular: { from: "q", to: "P1" },
+    }, { lambda: 1.0 }, 20000));
+    /** The radius that actually reaches the screen: the geometry's own radius times the placer's scale. */
+    const worldR = (t: string) => {
+      const m = scene.filter((o: Stub) => o.userData.elementType === t && o.visible)[0];
+      if (!m) return null;
+      return { r: (m.geometry._ctorR == null ? 1 : m.geometry._ctorR) * m._scale[0], len: m._scale[1], sx: m._scale[0], sz: m._scale[2] };
+    };
+    return { scene, worldR };
+  }
+
+  const drawn = drawOnce(grabFn("buildVectorGeometryLinesPlanes"));
+  for (const [type, key] of [["vg_lp_line", "line"], ["vg_lp_seg", "seg"]] as const) {
+    const w = drawn.worldR(type);
+    assertTrue(`${type} is DRAWN and its scale was written`, !!w);
+    if (!w) continue;
+    check(`${type}: the radius that reaches the screen is the authored width (not its square)`, w.r, SHIPPED_TUBE_R[key], 1e-12);
+    assertTrue(`${type}: x and z scale agree — the tube is round, not an ellipse (${w.sx} / ${w.sz})`, w.sx === w.sz);
+    assertTrue(`${type}: the y scale is the LENGTH (${w.len.toFixed(3)}), which the width may never touch`, w.len > 0.5);
+  }
+
+  // The projection segment is placed by the FRAME, not the pool writer, so it
+  // is read off the frame harness — the same driver §14 uses, which records the
+  // radius the frame asked for.
+  {
+    const scene = FRAME_HARNESS.run!({ show_parallelogram: false, a_mag: 3, b_mag: 2, theta_deg: 40, show_projection: true }, 9000) as Stub[];
+    const seg = scene.filter((o: Stub) => o.userData.elementType === "vg_proj_seg" && o.visible)[0];
+    if (!seg) {
+      console.log("  SKIP  the projection segment did not draw on this fixture — its width is covered structurally by (a1)/(a3)");
+    } else {
+      check("vg_proj_seg: the FRAME asks for the authored width", seg.placedRadius, SHIPPED_TUBE_R.proj, 1e-12);
+    }
+  }
+
+  // ── (c) THE PROJECTED-PIXEL FLOOR ─────────────────────────────────────────
+  //   The whole point: a world radius is not evidence, a PIXEL is. The renderer
+  //   is PerspectiveCamera(FOV, ...), so at camera distance d the vertical
+  //   half-extent of the view is d*tan(FOV/2) world units, and one world unit
+  //   is (H/2)/(d*HALF_V) pixels. A tube's STROKE is its DIAMETER, 2r.
+  const VIEW_H = 720;                       // THE EYE captures 1280x720 at DPR 1
+  const CAM_BAND = [13, 16];                // the shipped vg camera distances
+  const PX_FLOOR = 2;                       // below this a stroke reads as a dotted hairline
+  const strokePx = (r: number, dist: number) => (2 * r) * ((VIEW_H / 2) / (dist * HALF_V));
+  {
+    // The model itself, checked against a hand-computed value before it is
+    // trusted to judge anything: at d = 13, one world unit is
+    // 360 / (13 * tan30°) = 360 / 7.50555 = 47.9648 px.
+    check("the projection model: pixels per world unit at d = 13, FOV 60, 720p", (VIEW_H / 2) / (13 * HALF_V), 47.9648, 1e-3, "px/unit");
+    for (const { key, radius } of CALL_SITES) {
+      for (const d of CAM_BAND) {
+        const px = strokePx(radius, d);
+        assertTrue(`${key} (r = ${radius}) draws a ${px.toFixed(2)} px stroke at camera distance ${d} — clears the ${PX_FLOOR} px floor`, px >= PX_FLOOR);
+      }
+    }
+  }
+
+  // ── (d) THE NEGATIVE CONTROL — the PRE-FIX source, reconstructed textually
+  //       under a guard and RUN. A control that cannot execute the defect it
+  //       names is a restatement (dispatch mandate).
+  {
+    const shippedBuild = grabFn("buildVectorGeometryLinesPlanes");
+    const edits: [string, string][] = [
+      ["function tube(color, type, idx) {", "function tube(radius, color, type, idx) {"],
+      ["var g = new THREE.CylinderGeometry(1, 1, 1, 10, 1, true);", "var g = new THREE.CylinderGeometry(radius, radius, 1, 10, 1, true);"],
+      ['tube(VG_ROLE_COLOR.dir1, "vg_lp_line", i)', 'tube(0.035, VG_ROLE_COLOR.dir1, "vg_lp_line", i)'],
+      ['tube(VG_ROLE_COLOR.neutral, "vg_lp_seg", i)', 'tube(0.045, VG_ROLE_COLOR.neutral, "vg_lp_seg", i)'],
+    ];
+    let preFix = shippedBuild;
+    for (const [from, to] of edits) {
+      if (preFix.indexOf(from) < 0) {
+        throw new Error(`§29's negative control could not find "${from.slice(0, 48)}..." in the shipped build — the anchor drifted; re-point it rather than letting the control quietly stop reproducing the defect`);
+      }
+      preFix = preFix.split(from).join(to);
+    }
+    const broken = drawOnce(preFix);
+    const bl = broken.worldR("vg_lp_line");
+    assertTrue("the reconstruction RAN (the pre-fix build still draws a line — it was never invisible, only sub-pixel)", !!bl);
+    if (bl) {
+      check("the pre-fix effective radius is the SQUARE of the authored width (the defect, measured)", bl.r, SHIPPED_TUBE_R.line * SHIPPED_TUBE_R.line, 1e-15);
+      expectFail(`the pre-fix pool's radius equals its authored width (got ${bl.r})`, Math.abs(bl.r - SHIPPED_TUBE_R.line) < 1e-12);
+      const px = strokePx(bl.r, CAM_BAND[0]);
+      expectFail(`the pre-fix stroke clears the ${PX_FLOOR} px floor at d = 13 (it draws ${px.toFixed(3)} px — this is the shipped defect)`, px >= PX_FLOOR);
+      assertTrue(`...and the ratio of the two is the authored width itself (${(px / strokePx(SHIPPED_TUBE_R.line, CAM_BAND[0])).toFixed(4)} = ${SHIPPED_TUBE_R.line}) — ~4% of the intended ink`,
+        Math.abs(px / strokePx(SHIPPED_TUBE_R.line, CAM_BAND[0]) - SHIPPED_TUBE_R.line) < 1e-12);
+    }
+    // The floor is not vacuous in the other direction either: it must accept
+    // the shipped widths and reject a genuinely too-thin one.
+    expectFail("a 0.01 world-radius tube would clear the floor at d = 16", strokePx(0.01, 16) >= PX_FLOOR);
+  }
+
+  // ── (e) SCOPE — the fix touched the TUBE path and nothing else. ArrowHelper
+  //       marks (direction arrows, plane normals, free vectors) and THREE.Line
+  //       marks (arcs, the right-angle tick, the dashed drop) are DIFFERENT
+  //       primitives with their own sizing, deliberately out of this gate's
+  //       scope; the assertion is that the width table never reached them.
+  {
+    const lines = REGION.split("\n");
+    const touching = lines.filter((l) => l.indexOf("VG_TUBE_R") >= 0);
+    const nonComment = touching.filter((l) => l.trim().indexOf("//") !== 0);
+    assertTrue(`VG_TUBE_R appears on ${touching.length} lines, of which ${nonComment.length} are code — the declaration plus the three call sites, nothing else`,
+      nonComment.length === 4
+      && nonComment.filter((l) => /var VG_TUBE_R = \{/.test(l)).length === 1
+      && nonComment.filter((l) => l.indexOf("vgPlaceTube(") >= 0).length === 3);
+    assertTrue("no ArrowHelper is sized from the tube width table (arrow heads keep their own literals)",
+      [...REGION.matchAll(/new THREE\.ArrowHelper\(([^;]*?)\)\s*;/g)].every((m) => m[1].indexOf("VG_TUBE_R") < 0));
+    assertTrue(`the region still builds its ${[...REGION.matchAll(/new THREE\.ArrowHelper\(/g)].length} ArrowHelper marks (the fix removed no primitive)`,
+      [...REGION.matchAll(/new THREE\.ArrowHelper\(/g)].length >= 3);
+    assertTrue("the THREE.Line marks are untouched by the width table (a line's width is not a scale)",
+      [...REGION.matchAll(/new THREE\.Line\(([^)]*)\)/g)].every((m) => m[1].indexOf("VG_TUBE_R") < 0));
+    // The point pool is the OTHER scaled primitive in this region, and it was
+    // already correct (unit SphereGeometry scaled by the authored size). It is
+    // asserted here because "unit geometry, one owner of the size" is the class,
+    // not the two tube pools.
+    assertTrue("the point pool is unit SphereGeometry(1, ...) too — same class, already correct, now guarded",
+      /new THREE\.SphereGeometry\(1,/.test(REGION));
+    const pt = drawn.scene.filter((o: Stub) => o.userData.elementType === "vg_lp_point" && o.visible)[0];
+    assertTrue(`a drawn point's world radius is its authored size, applied ONCE (${pt ? (pt.geometry._ctorR * pt._scale[0]).toFixed(4) : "none drawn"})`,
+      !!pt && Math.abs(pt.geometry._ctorR * pt._scale[0] - pt._scale[0]) < 1e-12 && pt._scale[0] > 0.02);
   }
 }
 
