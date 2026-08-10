@@ -315,7 +315,12 @@ export function deriveMotionExpectations(
             //     whole picture even when no knob ramps.
             //   · a state that shows sliders and ramps nothing is the teacher's
             //     sandbox: user-driven, declared STATIC, and the interactive
-            //     hold classification relaxes its tail.
+            //     hold classification relaxes its tail. NOTE the order below:
+            //     a non-empty animate[] is tested BEFORE show_sliders, so a
+            //     sandbox that DOES ramp (the F21b `animate_loop_ms` loop, the
+            //     Rule-37 idle beat) is declared MOTION and D5 runs on it —
+            //     which is the point of the loop, and the reason the key needs
+            //     no branch of its own here.
             //   · anything else (a still guided beat riding only the shared
             //     grow-in ease) is left undefined on purpose, the sr precedent:
             //     the hold pass classifies it reveal_hold rather than D5
@@ -3464,6 +3469,29 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     // classifies it 'interactive' below.
     const vg = asObj(state.vg);
     if (vg && state.show_sliders !== true) {
+        //   FIRST-CYCLE SEMANTICS under vg.animate_loop_ms (F21b, bug_class
+        //   vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_
+        //   freezes). A state that authors a loop period has NO settled end:
+        //   the renderer evaluates animate[] against `stateMs % period`
+        //   forever. This block DELIBERATELY reads the authored windows
+        //   UN-WRAPPED and derives exactly the number it would derive without
+        //   the key — i.e. the end of the FIRST cycle — for two reasons that
+        //   both have to hold:
+        //     · the loop is exactly periodic, so a pin taken at ms P draws the
+        //       same knob pose as P mod the period; there is no "more settled"
+        //       instant to move the pin to, and moving it would only change
+        //       which cycle the identical frame came from;
+        //     · everything else the pin has to clear — the per-object reveal
+        //       chain, the grow-in ease, camera_steps — reads the UN-WRAPPED
+        //       clock in the renderer too (the wrap is scoped to vgAnimValue),
+        //       so the un-wrapped maximum is the only number that clears them.
+        //   The renderer's vgAnimEndMs carries the same note; the two must not
+        //   diverge. In practice a looping state is the Rule-37 sandbox
+        //   (show_sliders: true), which this block already skips entirely —
+        //   but the semantics are stated and asserted (check:vector-geometry-3d
+        //   §27) rather than left to that coincidence, because a NEW timed
+        //   authoring key the pin evaluator cannot see is invisible until a
+        //   baseline is already wrong (the F14 `intersections` scar below).
         const VG_CUSHION = 300; // past the ease-out cubic's settle, into the held pose
         let vgLastMs = asNum(vg.reveal_ms, 900);
         const vgAnim = Array.isArray(vg.animate) ? vg.animate : [];
@@ -4287,9 +4315,24 @@ export function deriveHoldExpectations(
             // as rigid_body_rotation/force_rig above) -> reveal_hold, so D7
             // (stuck tail) / D1p (frozen) permit the settled tail instead of
             // false-failing it.
+            //
+            // F21b · a state authoring `vg.animate_loop_ms` (> 0) NEVER
+            // settles — the renderer evaluates its animate[] against
+            // `stateMs % period` for as long as the state is on screen
+            // (bug_class vg_explore_animate_windows_are_finite_so_the_free_
+            // running_sandbox_freezes). Calling that a reveal_hold would tell
+            // D7 to permit a stuck tail on the one state whose whole point is
+            // that it never stops, so a looping guided state keeps the STRICT
+            // motion gate (undefined — the bar_magnet_as_dipole STATE_2
+            // precedent above: "the payoff IS the repetition"). show_sliders
+            // still wins where both are authored: the teacher's sandbox is
+            // user-driven whatever it idles at, and that is the intended home
+            // of the key.
             const vgHold = asObj(state.vg);
             if (vgHold) {
-                out[stateId] = state.show_sliders === true ? 'interactive' : 'reveal_hold';
+                if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
+                if (asNum(vgHold.animate_loop_ms, 0) > 0) { out[stateId] = undefined; continue; }
+                out[stateId] = 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE
