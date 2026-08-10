@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "concept_id": "conservative_vs_nonconservative_forces",
+    "model": "bulbul:v3",
+    "speaker": "priya",
+    "sample_rate": 22050,
+    "pace": 1,
+    "langs": [
+      "en"
+    ],
+    "sentence_count": 19
+  },
+  "clips": {
+    "s1_1_en": {
+      "id": "s1_1",
+      "lang": "en",
+      "file": "audio/s1_1_en.mp3",
+      "duration_ms": 6741,
+      "chars": 83,
+      "available": true,
+      "text_hash": "88940ed5a05024b28467e36400861a2402b1a3d1"
+    },
+    "s1_2_en": {
+      "id": "s1_2",
+      "lang": "en",
+      "file": "audio/s1_2_en.mp3",
+      "duration_ms": 6827,
+      "chars": 77,
+      "available": true,
+      "text_hash": "a02b823b1c379ee1610aa6fba840550d470f8d59"
+    },
+    "s1_3_en": {
+      "id": "s1_3",
+      "lang": "en",
+      "file": "audio/s1_3_en.mp3",
+      "duration_ms": 5717,
+      "chars": 69,
+      "available": true,
+      "text_hash": "17126cbb3673201ff065a45885be2088a5a080cd"
+    },
+    "s1_4_en": {
+      "id": "s1_4",
+      "lang": "en",
+      "file": "audio/s1_4_en.mp3",
+      "duration_ms": 4864,
+      "chars": 68,
+      "available": true,
+      "text_hash": "eac0074f0f0d9f16a6facb701e2e23646c7ffe97"
+    },
+    "s2_1_en": {
+      "id": "s2_1",
+      "lang": "en",
+      "file": "audio/s2_1_en.mp3",
+      "duration_ms": 3669,
+      "chars": 56,
+      "available": true,
+      "text_hash": "e51b6cad85a5225b88af1566cfea4bc11563a7d2"
+    },
+    "s2_2_en": {
+      "id": "s2_2",
+      "lang": "en",
+      "file": "audio/s2_2_en.mp3",
+      "duration_ms": 5803,
+      "chars": 75,
+      "available": true,
+      "text_hash": "93bf3e6f6c36b6a09723fd176c413096d1ccb26b"
+    },
+    "s2_3_en": {
+      "id": "s2_3",
+      "lang": "en",
+      "file": "audio/s2_3_en.mp3",
+      "duration_ms": 6997,
+      "chars": 96,
+      "available": true,
+      "text_hash": "9a46982a54b54c94c1b29da0ff6fc6da4ca66b10"
+    },
+    "s2_4_en": {
+      "id": "s2_4",
+      "lang": "en",
+      "file": "audio/s2_4_en.mp3",
+      "duration_ms": 7595,
+      "chars": 102,
+      "available": true,
+      "text_hash": "36eeccf6f892ece4a3b6bb92a55b9b83d3e46010"
+    },
+    "s3_1_en": {
+      "id": "s3_1",
+      "lang": "en",
+      "file": "audio/s3_1_en.mp3",
+      "duration_ms": 4011,
+      "chars": 55,
+      "available": true,
+      "text_hash": "de32096c1a3d8bc58a30f8d04444859ebb348029"
+    },
+    "s3_2_en": {
+      "id": "s3_2",
+      "lang": "en",
+      "file": "audio/s3_2_en.mp3",
+      "duration_ms": 5035,
+      "chars": 50,
+      "available": true,
+      "text_hash": "1b91204cc44a1f78ffcadf14d8f0cc151418cd3e"
+    },
+    "s3_3_en": {
+      "id": "s3_3",
+      "lang": "en",
+      "file": "audio/s3_3_en.mp3",
+      "duration_ms": 6229,
+      "chars": 65,
+      "available": true,
+      "text_hash": "956cee55ed5d1a8179545bbd5f8531c46c5aa51f"
+    },
+    "s3_4_en": {
+      "id": "s3_4",
+      "lang": "en",
+      "file": "audio/s3_4_en.mp3",
+      "duration_ms": 7509,
+      "chars": 86,
+      "available": true,
+      "text_hash": "32de4e5be2b2b7da4602de0a321c9c5c7ffd8dbe"
+    },
+    "s4_1_en": {
+      "id": "s4_1",
+      "lang": "en",
+      "file": "audio/s4_1_en.mp3",
+      "duration_ms": 6315,
+      "chars": 100,
+      "available": true,
+      "text_hash": "f23ad81784549163d1c33fab9a31817022de8719"
+    },
+    "s4_2_en": {
+      "id": "s4_2",
+      "lang": "en",
+      "file": "audio/s4_2_en.mp3",
+      "duration_ms": 4437,
+      "chars": 57,
+      "available": true,
+      "text_hash": "ac8b21bd241622bc7599adf15b1739015bfa9402"
+    },
+    "s4_3_en": {
+      "id": "s4_3",
+      "lang": "en",
+      "file": "audio/s4_3_en.mp3",
+      "duration_ms": 5376,
+      "chars": 66,
+      "available": true,
+      "text_hash": "4d5c93dbc94f27d4c586700dc0afe5d7ba0cd827"
+    },
+    "s4_4_en": {
+      "id": "s4_4",
+      "lang": "en",
+      "file": "audio/s4_4_en.mp3",
+      "duration_ms": 6400,
+      "chars": 77,
+      "available": true,
+      "text_hash": "d0357a7812f00bd2d379da3f1b846999c7b33df3"
+    },
+    "s5_1_en": {
+      "id": "s5_1",
+      "lang": "en",
+      "file": "audio/s5_1_en.mp3",
+      "duration_ms": 3755,
+      "chars": 53,
+      "available": true,
+      "text_hash": "7267874bee719215b498d0ff5fddbe5d681feaa9"
+    },
+    "s5_2_en": {
+      "id": "s5_2",
+      "lang": "en",
+      "file": "audio/s5_2_en.mp3",
+      "duration_ms": 5120,
+      "chars": 65,
+      "available": true,
+      "text_hash": "31e4fed6154da4d0e583efe0f98bc0064d69b11a"
+    },
+    "s5_3_en": {
+      "id": "s5_3",
+      "lang": "en",
+      "file": "audio/s5_3_en.mp3",
+      "duration_ms": 6400,
+      "chars": 76,
+      "available": true,
+      "text_hash": "615384f3e130fc5507581557d8163c831c4044cc"
+    }
+  }
+}

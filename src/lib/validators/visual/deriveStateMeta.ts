@@ -279,6 +279,31 @@ export function deriveMotionExpectations(
             // standing still. The explore sandbox is user-driven → declare static
             // and let the interactive hold classification relax its tail (the
             // renderer's idle auto-sweep keeps it moving regardless, Rule 37).
+            // organic_structure (ORGANIC): a beat that authors a non-zero
+            // spin_rate turns the skeleton forever on the state clock (about the
+            // CAMERA VIEW AXIS, N-20) → DECLARE motion so D5/D6 expect ongoing
+            // pixel movement. A still beat (spin off, Rule 32b) is a one-shot
+            // camera schedule that SETTLES: left undefined here so the hold pass
+            // classifies it reveal_hold instead of false-failing it for standing
+            // still. The explore sandbox is user-driven → declare static and let
+            // the interactive hold classification relax its tail.
+            // A1 (2026-08-10): a beat authoring `torsion.continuous` free-runs the
+            // dihedral forever on the state clock (phi wraps), so it NEVER settles
+            // → DECLARE motion. A SCRIPTED sweep (phi_from → phi_deg over
+            // phi_ramp_ms) is a one-shot that settles and is deliberately left to
+            // the reveal_hold classification, exactly like the camera schedule.
+            const orgMotion = state ? asObj(state.organic_structure) : null;
+            if (orgMotion) {
+            // The explore test stays FIRST, exactly as it is for spin_rate: the
+            // sandbox is user-driven and its tail is relaxed by the interactive
+            // hold classification, so it is declared static whatever it authors.
+                if (orgMotion.mode === 'explore') { out[stateId] = false; continue; }
+                const orgTor = asObj(orgMotion.torsion);
+                if (orgTor && orgTor.continuous !== undefined && orgTor.continuous !== null
+                    && orgTor.continuous !== false) { out[stateId] = true; continue; }
+                if (typeof orgMotion.spin_rate === 'number' && orgMotion.spin_rate > 0) { out[stateId] = true; continue; }
+                // still beat: fall through to the reveal_hold classification.
+            }
             const bscMotion = state ? asObj(state.bonding_scene) : null;
             if (bscMotion) {
                 if (bscMotion.mode === 'explore') { out[stateId] = false; continue; }
@@ -315,7 +340,12 @@ export function deriveMotionExpectations(
             //     whole picture even when no knob ramps.
             //   · a state that shows sliders and ramps nothing is the teacher's
             //     sandbox: user-driven, declared STATIC, and the interactive
-            //     hold classification relaxes its tail.
+            //     hold classification relaxes its tail. NOTE the order below:
+            //     a non-empty animate[] is tested BEFORE show_sliders, so a
+            //     sandbox that DOES ramp (the F21b `animate_loop_ms` loop, the
+            //     Rule-37 idle beat) is declared MOTION and D5 runs on it —
+            //     which is the point of the loop, and the reason the key needs
+            //     no branch of its own here.
             //   · anything else (a still guided beat riding only the shared
             //     grow-in ease) is left undefined on purpose, the sr precedent:
             //     the hold pass classifies it reveal_hold rather than D5
@@ -785,6 +815,14 @@ const F3D_REVEAL_KEYS = [
     // E3 the lattice). Listed here so a cached physics_config that flattened
     // field_3d_config.states is still recognised as field_3d, not PCPL.
     'bonding_scene',
+    // organic_structure (ORGANIC CHEMISTRY — Phase-0 S1 engine dispatch,
+    // 2026-08-09): the per-state `organic_structure` block (the generated
+    // multi-atom skeleton / static torsion pose / solved + scheduled camera
+    // including sight-along-a-bond / view-axis spin / value-only HUD; A1 adds
+    // the driven dihedral, A2 the ring pucker, S2 the energy instrument).
+    // Listed here so a cached physics_config that flattened
+    // field_3d_config.states is still recognised as field_3d, not PCPL.
+    'organic_structure',
     // solid_of_revolution (MATHEMATICS — Phase-0 SR-A engine dispatch, 2026-08-08):
     // the per-state `sr` block (ticked frame reveal / curve draw / region fill /
     // log-n ramp; SR-B adds the theta sweep and the disc-stack beats). Listed here
@@ -2114,6 +2152,75 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         // scripted "hide the lone pairs → the shape is what is left" reveal.
         if (typeof mgState.hull_at_ms === 'number') candidates.push(asNum(mgState.hull_at_ms, 0) + 900 + 400);
         if (typeof mgState.hide_lone_at_ms === 'number') candidates.push(asNum(mgState.hide_lone_at_ms, 0) + 900);
+    }
+    // organic_structure (ORGANIC — Phase-0 S1, 2026-08-09). N-19. WITHOUT THIS
+    // BRANCH every state of every organic concept pins at DEFAULT_REVEAL_MS =
+    // 1500 ms — before every payoff in the chair-flip skeleton §5 table — and
+    // mints a self-contradictory baseline that no concept JSON can fix
+    // (field3d_scenario_missing_maxreveal_block_frozen_pin_defaults_1500ms...).
+    // The fleet rule applies: candidates are pushed and the caller returns
+    // Math.max(...candidates); the nlb clamp(0.60*R, 150, R-150) at :3213 is that
+    // branch's LOCAL heuristic and is deliberately NOT copied here.
+    // Candidate sources: the camera schedule's last eased arrival, the spin
+    // spin-up, and a GENERIC sweep of every `*_at_ms` key the block carries
+    // paired with its `*_ramp_ms`/`*_duration_ms` sibling. The generic sweep is
+    // the anti-scar half: a LATER dispatch (A1's driven dihedral, A2's pucker
+    // walk, S2's energy reveal) adds a timed authoring key, and a key this
+    // evaluator cannot see is invisible until a baseline is already wrong.
+    const orgState = asObj(state.organic_structure);
+    if (orgState) {
+        const ORG_CUSHION = 600;
+        const camSteps = Array.isArray(orgState.camera_steps) ? orgState.camera_steps : [];
+        for (const rawStep of camSteps) {
+            const step = asObj(rawStep);
+            if (!step) continue;
+            candidates.push(asNum(step.at_ms, 0) + asNum(step.ease_ms, 900) + ORG_CUSHION);
+        }
+        if (typeof orgState.spin_start_ms === 'number') candidates.push(asNum(orgState.spin_start_ms, 0) + 1200);
+        // The generic timed-key sweep. `<name>_at_ms` pairs with `<name>_ramp_ms`
+        // or `<name>_duration_ms` when either is present, and with a 1500 ms
+        // default when neither is (the fleet's own no-duration assumption).
+        const sweep = (obj: Record<string, unknown>) => {
+            for (const key of Object.keys(obj)) {
+                if (!key.endsWith('_at_ms')) continue;
+                const at = obj[key];
+                if (typeof at !== 'number') continue;
+                const stem = key.slice(0, -('_at_ms'.length));
+                const ramp = obj[stem + '_ramp_ms'];
+                const dur = obj[stem + '_duration_ms'];
+                const span = (typeof ramp === 'number') ? ramp : ((typeof dur === 'number') ? dur : 1500);
+                candidates.push(at + span + ORG_CUSHION);
+            }
+        };
+        sweep(orgState as Record<string, unknown>);
+        // A1: the driven dihedral. `torsion.phi_at_ms` + `phi_ramp_ms` are STEMMED
+        // precisely so the generic object sweep above already sees them (the
+        // renderer rejects the bare at_ms/ramp_ms spelling outright). The one case
+        // the sweep cannot see is a ramp authored with NO start time — a sweep from
+        // t = 0 — so it is pushed here rather than pinning at DEFAULT_REVEAL_MS
+        // mid-turn. A `continuous` free-run never settles and contributes nothing:
+        // it is declared as MOTION above instead.
+        const orgTor = asObj(orgState.torsion);
+        if (orgTor && typeof orgTor.phi_ramp_ms === 'number' && typeof orgTor.phi_at_ms !== 'number') {
+            candidates.push(orgTor.phi_ramp_ms + ORG_CUSHION);
+        }
+        for (const key of Object.keys(orgState)) {
+            const v = (orgState as Record<string, unknown>)[key];
+            const child = asObj(v);
+            if (child) { sweep(child as Record<string, unknown>); continue; }
+            if (!Array.isArray(v)) continue;
+            for (const rawLeg of v) {
+                const leg = asObj(rawLeg);
+                if (!leg) continue;
+                if (typeof leg.at_ms === 'number') {
+                    const span = (typeof leg.ramp_ms === 'number') ? leg.ramp_ms
+                        : ((typeof leg.duration_ms === 'number') ? leg.duration_ms : 0);
+                    const hold = (typeof leg.hold_ms === 'number') ? leg.hold_ms : 0;
+                    candidates.push(leg.at_ms + span + hold + ORG_CUSHION);
+                }
+                sweep(leg as Record<string, unknown>);
+            }
+        }
     }
     // bonding_scene (CHEMISTRY BONDING WAVE — Phase-0 E1, 2026-08-01): the unit
     // may turn perpetually and jiggle forever, but each state's TEACHING beat is a
@@ -3464,6 +3571,29 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     // classifies it 'interactive' below.
     const vg = asObj(state.vg);
     if (vg && state.show_sliders !== true) {
+        //   FIRST-CYCLE SEMANTICS under vg.animate_loop_ms (F21b, bug_class
+        //   vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_
+        //   freezes). A state that authors a loop period has NO settled end:
+        //   the renderer evaluates animate[] against `stateMs % period`
+        //   forever. This block DELIBERATELY reads the authored windows
+        //   UN-WRAPPED and derives exactly the number it would derive without
+        //   the key — i.e. the end of the FIRST cycle — for two reasons that
+        //   both have to hold:
+        //     · the loop is exactly periodic, so a pin taken at ms P draws the
+        //       same knob pose as P mod the period; there is no "more settled"
+        //       instant to move the pin to, and moving it would only change
+        //       which cycle the identical frame came from;
+        //     · everything else the pin has to clear — the per-object reveal
+        //       chain, the grow-in ease, camera_steps — reads the UN-WRAPPED
+        //       clock in the renderer too (the wrap is scoped to vgAnimValue),
+        //       so the un-wrapped maximum is the only number that clears them.
+        //   The renderer's vgAnimEndMs carries the same note; the two must not
+        //   diverge. In practice a looping state is the Rule-37 sandbox
+        //   (show_sliders: true), which this block already skips entirely —
+        //   but the semantics are stated and asserted (check:vector-geometry-3d
+        //   §27) rather than left to that coincidence, because a NEW timed
+        //   authoring key the pin evaluator cannot see is invisible until a
+        //   baseline is already wrong (the F14 `intersections` scar below).
         const VG_CUSHION = 300; // past the ease-out cubic's settle, into the held pose
         let vgLastMs = asNum(vg.reveal_ms, 900);
         const vgAnim = Array.isArray(vg.animate) ? vg.animate : [];
@@ -4190,6 +4320,20 @@ export function deriveHoldExpectations(
                 out[stateId] = (bscHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
                 continue;
             }
+            // organic_structure (ORGANIC): every state exposes at least a
+            // contextual control row (Rule 31 ring-gated `controls`), so the
+            // generic show_sliders catch below would swallow the guided beats
+            // into 'interactive' before they reach it. Classify explicitly
+            // (the molecular_geometry / bonding_scene / orbital_shapes
+            // guided-vs-explore split): the sandbox (mode 'explore', Rule 37
+            // free-run) is user-driven → interactive and is NEVER pinned; every
+            // other mode is a guided beat whose one-shot payoff (pinned in
+            // maxRevealForField3dState) settles to a HOLD → reveal_hold.
+            const orgHold = asObj(state.organic_structure);
+            if (orgHold) {
+                out[stateId] = (orgHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
             const osHold = asObj(state.orbital_shapes);
             if (osHold) {
                 out[stateId] = (osHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
@@ -4287,9 +4431,24 @@ export function deriveHoldExpectations(
             // as rigid_body_rotation/force_rig above) -> reveal_hold, so D7
             // (stuck tail) / D1p (frozen) permit the settled tail instead of
             // false-failing it.
+            //
+            // F21b · a state authoring `vg.animate_loop_ms` (> 0) NEVER
+            // settles — the renderer evaluates its animate[] against
+            // `stateMs % period` for as long as the state is on screen
+            // (bug_class vg_explore_animate_windows_are_finite_so_the_free_
+            // running_sandbox_freezes). Calling that a reveal_hold would tell
+            // D7 to permit a stuck tail on the one state whose whole point is
+            // that it never stops, so a looping guided state keeps the STRICT
+            // motion gate (undefined — the bar_magnet_as_dipole STATE_2
+            // precedent above: "the payoff IS the repetition"). show_sliders
+            // still wins where both are authored: the teacher's sandbox is
+            // user-driven whatever it idles at, and that is the intended home
+            // of the key.
             const vgHold = asObj(state.vg);
             if (vgHold) {
-                out[stateId] = state.show_sliders === true ? 'interactive' : 'reveal_hold';
+                if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
+                if (asNum(vgHold.animate_loop_ms, 0) > 0) { out[stateId] = undefined; continue; }
+                out[stateId] = 'reveal_hold';
                 continue;
             }
             // bar_magnet_as_dipole: S4 (flip) and S7 (r-sweep) are LIVE

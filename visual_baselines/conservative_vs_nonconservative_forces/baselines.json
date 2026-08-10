@@ -1,0 +1,27 @@
+{
+  "approved_at": "2026-08-09T19:01:13.263Z",
+  "source_run": "C:\\Tutor\\pm-ch6-c5\\.visual_runs\\conservative_vs_nonconservative_forces\\20260809-210023",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}

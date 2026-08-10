@@ -102,6 +102,18 @@ export interface Field3DConfig {
         // layer rather than re-deriving VSEPR angles. See docs/CHEMISTRY_PHASE0_
         // BONDING.md and the scenario header comment in the renderer body.
         'bonding_scene' |
+        // organic_structure (ORGANIC CHEMISTRY — Phase 0 dispatch S1, 2026-08-09):
+        // ONE scenario planned to serve all 32 organic simulations as three
+        // capability LAYERS on one substrate (A geometry, B electrons, C
+        // reaction) — never three scenario_types, because fourteen of the 32
+        // need two layers in the SAME state. S1 ships the substrate: a
+        // multi-atom skeleton generated from a molecule TABLE (explicit
+        // connectivity, per-atom identity + labels, drawn bonds, >7 atoms), the
+        // camera solve including sight-along-a-bond, the occlusion discipline,
+        // ONE formula surface, ring-gated controls, a value-only HUD and closed
+        // form in state-local t. See docs/ORGANIC_ENGINE_PLAN.md and the
+        // scenario header comment in the renderer body.
+        'organic_structure' |
         // vector_geometry_3d (MATHEMATICS — the GENERIC two-vector /
         // 3D-geometry scenario, Rule-40 platform dispatch, 2026-08-08).
         // ONE scenario, TWO modes (`vg.mode`), so a single engine purchase
@@ -463,6 +475,19 @@ export interface Field3DConfig {
                 // produced by vgResolveLinesPlanes into lpRes.readouts and
                 // merged into the frame driver's `vals` bag.
                 | 'point_plane_distance' | 'skew_distance'
+                // The GENERIC length of an authored comparison segment, under
+                // its own honest name. It is NOT point_plane_distance: that
+                // token is the SPECIFIC perpendicular distance from a point to
+                // a plane and its label is the word "distance", so a sweeping
+                // non-perpendicular segment borrowing it printed
+                // "distance = 3.110" for the nine seconds a state spent
+                // teaching that only the PERPENDICULAR is the distance
+                // (bug_class vg_segment_length_readout_borrows_the_point_plane_
+                // distance_label). One label, one meaning, for the life of a
+                // concept — and a state may now show both rows at once,
+                // separately labelled ("segment length" while it sweeps,
+                // "distance" when the perpendicular arrives).
+                | 'segment_length'
                 | 'angle_lines_deg' | 'angle_line_plane_deg' | 'angle_line_normal_deg'
                 | 'd_dot_n' | 'n_dot_v'
                 | 'lambda' | 'intersection_point'
@@ -483,6 +508,25 @@ export interface Field3DConfig {
                 start_ms?: number; duration_ms?: number;
                 easing?: 'linear' | 'smoothstep' | 'ease_out_cubic';
             }>;
+            // F21b — the AUTHORED loop period for animate[] above, in
+            // state-local ms (bug_class vg_explore_animate_windows_are_finite_
+            // so_the_free_running_sandbox_freezes). Present and > 0 ⇒ animate[]
+            // is evaluated against `stateMs % animate_loop_ms`; absent ⇒ the
+            // one-shot-hold semantics above, unchanged, on every state already
+            // shipped. Intended for the Rule-37 `interaction_complete` sandbox,
+            // whose clock never ends (the player skips SET_TIME_FREEZE there),
+            // so any finite window list expires and the picture stops dead —
+            // #9 STATE_9 unrolled a ping-pong as eight windows and froze at
+            // 72 s. The period is normally the last window's end_ms, and the
+            // authored windows should form a CLOSED cycle (the value at the
+            // period must equal the value at 0) or the seam reads as a jump.
+            //
+            // SCOPE: the wrap reaches animate[] and NOTHING ELSE. Per-object
+            // reveal_at_ms / hide_at_ms / ghost_at_ms, the shared grow-in ease
+            // and camera_steps all keep reading the un-wrapped state clock, so
+            // a looping sandbox never re-plays a reveal. A teacher's drag still
+            // seizes the row (the drag branch runs before the ramp resolves).
+            animate_loop_ms?: number;
             // F24 — the mid-state camera schedule, adopted verbatim from
             // os.camera_steps: closed-form on state-local ms, so it bypasses
             // the history-dependent lerpSpherical and a SET_TIME_FREEZE pin
@@ -493,6 +537,22 @@ export interface Field3DConfig {
             // "auto_frame" only: R = auto_frame_k * max(|a|,|b|,|a x b|).
             auto_frame_k?: number;
             controls?: string[];          // Rule 31 live rows (explore state)
+            // PER-GROUP live rows, for a state that partitions its scene with
+            // scene_groups (bug_class vg_explore_controls_are_not_group_aware_
+            // so_half_the_sliders_are_inert). `controls` above is ONE FLAT LIST
+            // shown identically in every group, while the Δ10 picker swaps the
+            // OBJECTS underneath it — so on #9 STATE_9 four of the six knob rows
+            // drive nothing in whichever group is selected. Keyed by the
+            // scene_groups key; the flat `controls` stays the fallback for any
+            // group this block does not name (and for every state that omits it,
+            // which is why single-group behaviour is byte-identical). An empty
+            // array is a legal authoring — "this group has no live knob" — and
+            // is resolved by PRESENCE, never truthiness.
+            //
+            // scene_group itself is NOT partitionable: the picker is how a
+            // teacher leaves the group, so its row is governed by the flat
+            // `controls` in every group and never needs listing here.
+            group_controls?: Record<string, string[]>;
             // PER-STATE control bounds, overriding the CONCEPT-WIDE
             // config.slider_controls for this state's rows only (bug_class
             // field3d_vg_slider_range_is_concept_wide_so_a_guided_state_cannot_
@@ -2060,9 +2120,17 @@ export interface Field3DConfig {
             // ── Note 11 — checkpoint flags with capture-on-pass ──────────────────
             //   1..3 authored positions along the track. A flag stands at each; when
             // the tracked body's s CROSSES it, that instant's values stamp into the
-            // state's ONE formula surface (Rule 34b — never a second text overlay)
-            // and the flag brightens. Stamps LATCH and hold to the end of the state
-            // (the end-pose rule) and re-arm on RESET_TRAJECTORY (note 18b).
+            // state's ONE formula surface (Rule 34b — never a second text overlay).
+            // Stamps LATCH and hold to the end of the state (the end-pose rule) and
+            // re-arm on RESET_TRAJECTORY (note 18b).
+            //   THE MARKER ITSELF brightens only while a dwell_ms window is open on
+            // it (note 11h) — never on a bare crossing. A crossing is one frame, so a
+            // brightness that fired there would be gone before an eye could follow it;
+            // the window is the only interval long enough for the signal to mean
+            // anything. Rule 32e is why it is not simply always-on for a fired flag:
+            // three stamped points would all be lit at once and none of them would be
+            // the focal. (This sentence used to claim "the flag brightens" on every
+            // crossing. It never did — the _nlbFired write below had no reader.)
             //   The crossing detector is general on purpose: with capture_mode
             // 'every' a body that comes BACK through the same flag re-stamps and the
             // stamp carries its pass number, which is exactly what a round-trip work
@@ -2075,6 +2143,58 @@ export interface Field3DConfig {
                 // signed value. Default ['K','U_grav'].
                 capture?: Array<'K' | 'U_grav' | 'U_spring' | 'E_total' | 'v' | 's' | 'W'>;
                 capture_mode?: 'first' | 'every';   // default 'first' (latch on pass 1)
+                // ── Note 11d — the TEACHING DWELL ────────────────────────────
+                //   engine_bug_queue nlb_checkpoint_crossing_has_no_teaching_dwell:
+                // a crossing STAMPS in one frame and the body keeps going, so the
+                // stamp the whole state exists to teach is on screen at its own
+                // instant for ~16 ms. dwell_ms holds the WHOLE SCENE's physics
+                // still for this many ms of state-clock time immediately after a
+                // STAMPED crossing (so it respects capture_mode: a 'first' flag
+                // dwells once, an 'every' flag dwells on each stamped pass), then
+                // resumes from exactly where it stopped.
+                //   This is docs/NLB_SPRING_CHOREOGRAPHY_SPEC.md's slow_factor
+                // doctrine at its limit — slow_factor = infinity for a bounded
+                // window — and it carries the same mandatory honesty badge
+                // (#nlb_slowmo reads "paused at <label>"), because a still body
+                // that is not labelled as paused teaches a = 0.
+                //   Narration, reveals and eng.t_ms keep running (Rule 26): only
+                // the integrator's dt is gated, so the phase clock, loop_reset_ms
+                // and every cue stay on one timeline. Frozen-pin baselines are
+                // unaffected — under a pin dt is already 0.
+                //   Sanitised to (0, NLB_DWELL_MAX_MS]. ABSENT ⇒ the scheduler
+                // never runs and the gate latch stays null ⇒ byte-identical.
+                //   AUTHORING: loop_reset_ms must be > the last crossing + its
+                // dwell + a settle tail, or the reset would rewind the scene mid
+                // stamp. The engine DEFERS such a reset to the dwell end and warns
+                // once under NLB_DWELL_WARN_PREFIX.
+                dwell_ms?: number;
+                // Dwell only from this pass onward (1-based, default 1). The use
+                // case is a HOME-ARMED flag (note 11c) whose pass-1 stamp is the
+                // body's departure from the flag it started on: dwelling there
+                // would freeze the state before it has shown anything, so
+                // dwell_from_pass: 2 puts the pause on the RETURN crossing, which
+                // is the one a round-trip work test is actually about.
+                dwell_from_pass?: number;
+                // ── Note 11e — WHAT THE CHECKPOINT LOOKS LIKE ────────────────
+                //   engine_bug_queue nlb_checkpoint_flag_marker_occludes_body_
+                //   at_track_level (founder: "why are you using a flag there?
+                //   Instead of flag, you can use two points, point a, point b").
+                //   'flag' (DEFAULT, exactly the original apparatus): a 1.05-unit
+                // post with a cross-tick at its top, drawn on the overlay lane
+                // (depthTest false, renderOrder 940) so it is never lost inside
+                // busy geometry. Right for a GATE the body passes through; wrong
+                // for a teaching point, because a tall post on the overlay lane
+                // draws straight THROUGH the block that is standing on it.
+                //   'point': a small dot lying ON the track surface at s_m, drawn
+                // with NORMAL depth (depthTest true, default renderOrder) — so
+                // when the body passes over the point, the body HIDES it, which
+                // is the honest picture of a mark painted on the track. The
+                // caption is untouched: it stays on the shared marker lane
+                // (NLB_MK_LABEL_LANE) carrying the same authored string, so the
+                // de-collision pass and the stamp head read identically in both
+                // modes.
+                //   ABSENT ⇒ 'flag' ⇒ byte-identical to every shipped concept.
+                marker?: 'flag' | 'point';
             }>;
             // ══ SEAM N — OFF-AXIS FORCE GEOMETRY (spec note 19) ══════════════════
             //   The two measuring instruments that turn `applied_force {N, angle_deg}`
@@ -12314,8 +12434,50 @@ export const FIELD_3D_RENDERER_CODE = `
                 "lambda", "lambda_span", "half_extent", "q_height", "line2_offset",
                 "aux_a", "aux_b"];
     }
-    function vgAnimValue(animate, knob, stateMs, authored) {
+    //
+    //   F21b · animate_loop_ms — THE AUTHORED LOOP PERIOD (bug_class
+    //   vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_
+    //   freezes). The semantics above are exactly right for a GUIDED state:
+    //   the clock ends, the pose holds. They are wrong for a Rule-37
+    //   interaction_complete sandbox, whose clock NEVER ends — the player
+    //   deliberately skips SET_TIME_FREEZE there, so any finite window list
+    //   expires and the picture stops dead. #9 STATE_9 hand-unrolled a
+    //   ping-pong as EIGHT alternating windows ending at 72000 ms and froze at
+    //   lambda = -3.5 from 72 s onward, with no way to restart short of
+    //   leaving the state. An authored loop that is merely LONG is a bug with
+    //   a delay on it.
+    //
+    //   The loop is AUTHORED, never automatic: vg.animate_loop_ms declares
+    //   the period, and only when it is present and > 0 is animate[] evaluated
+    //   against stateMs mod the period. Looping every finite list by default
+    //   would silently rewrite the semantics of every guided state already
+    //   shipped (their held end pose would start returning to its "from"), so
+    //   the author says so or nothing changes.
+    //
+    //   SCOPE — and this is the load-bearing half. The wrap lives INSIDE
+    //   vgAnimValue and is reached ONLY through its own loopMs parameter, so
+    //   it is structurally unreachable from vgRevealFrac (reveal_at_ms /
+    //   hide_at_ms), vgGhostFactor (ghost_at_ms), vgCamScheduleAt
+    //   (camera_steps) and the shared grow-in ease — every one of which keeps
+    //   reading the UN-WRAPPED state clock. A looping sandbox therefore loops
+    //   its knobs and NEVER re-plays its reveals: an object revealed at 2000 ms
+    //   is still fully grown at 20000 ms with a 18000 ms period.
+    //
+    //   Rule 36 / D3 unchanged: the wrapped value is still a pure closed form
+    //   of stateMs (a modulo, not an accumulator), so a SET_TIME_FREEZE pin at
+    //   any ms re-draws bit-identically and a rewind reproduces exactly. And
+    //   the drag-seize branch in the frame's knob() funnel sits BEFORE this
+    //   call, so a teacher-dragged row still overrides a looped ramp exactly as
+    //   it overrides an un-looped one.
+    function vgLoopMs(stateMs, loopMs) {
+        if (!(typeof stateMs === "number" && isFinite(stateMs))) return stateMs;
+        if (!(typeof loopMs === "number" && isFinite(loopMs) && loopMs > 0)) return stateMs;
+        var m = stateMs % loopMs;
+        return (m < 0) ? m + loopMs : m;      // pure, no accumulator (Rule 36)
+    }
+    function vgAnimValue(animate, knob, stateMs, authored, loopMs) {
         if (!animate || !animate.length) return authored;
+        stateMs = vgLoopMs(stateMs, loopMs);   // no-op unless the state authored a period
         var v = authored, seen = false;
         for (var i = 0; i < animate.length; i++) {
             var r = animate[i] || {};
@@ -12340,6 +12502,14 @@ export const FIELD_3D_RENDERER_CODE = `
     // number deriveStateMeta needs so a reveal pin lands PAST the last
     // settled beat instead of mid-transition (scar
     // field3d_slcr_reveal_hold_captures_transitional_r_family).
+    //
+    // FIRST-CYCLE SEMANTICS under animate_loop_ms: this deliberately ignores
+    // the loop period and reports the last authored window end. A looping
+    // state has no settled end at all, so "the end" can only mean the end of
+    // the FIRST cycle — and because the loop is exactly periodic, a pin taken
+    // at any ms draws the same knob pose as the same ms taken mod the period.
+    // deriveStateMeta's vg reveal-pin block mirrors this (it reads
+    // start_ms + duration_ms un-wrapped); the two must not diverge.
     function vgAnimEndMs(animate) {
         var end = 0;
         if (!animate) return end;
@@ -13118,8 +13288,17 @@ export const FIELD_3D_RENDERER_CODE = `
             // Δ2b — the segment's own reveal gates its length; n·v additionally
             // waits for the PLANE it is measured against, because a dot product
             // printed beside a plane that is not there yet names half a picture.
+            // A GENERIC segment publishes the GENERIC token. It may NOT borrow
+            // point_plane_distance, whose label is the bare word "distance":
+            // on the state that exists to break the belief "any segment to the
+            // plane is the distance", the sweeping segment printed
+            // "distance = 3.110" and asserted that belief as fact for nine
+            // seconds (bug_class vg_segment_length_readout_borrows_the_point_
+            // plane_distance_label). point_plane_distance is published by the
+            // F13a perpendicular ALONE, above — so the two rows can now sit
+            // side by side, each naming what it actually measures.
             if (o.readout === "length") {
-                if (vgArrived(sfrac)) out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));
+                if (vgArrived(sfrac)) out.readouts.segment_length = vgLenVec(vgSub(s1, s0));
             } else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
                 if (vgArrived(sfrac) && vgArrived(ctx.planes[o.against].frac)) {
                     out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
@@ -13258,6 +13437,12 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // ── F23 · the line's shadow in the plane ────────────────────────────
+        //   Δ2c — the projection's two angle numbers are HELD here and settled
+        //   below, after the arc pass, because an authored arc may own the beat
+        //   of the token it names. projAngles is the projection's claim; null
+        //   means it has nothing to say this frame.
+        var projAngles = null;
+        var arcOwned = {};
         var proj = d.projection;
         if (proj && vgInGroup(proj, group)) {
             var pL = ctx.lines[proj.line], pP = ctx.planes[proj.plane];
@@ -13288,8 +13473,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 // a point — because that case reports 90/0, not silence.
                 var ang = vgLinePlaneAngles(pL.dir, pP.n);
                 if (ang && vgArrived(vgRevealFrac(proj, stateMs, growMs))) {
-                    out.readouts.angle_line_normal_deg = ang.to_normal;
-                    out.readouts.angle_line_plane_deg = ang.to_plane;
+                    // Δ2c — bug_class vg_projection_publishes_both_angle_tokens_
+                    // before_either_arc_is_drawn. The claim is RECORDED, not
+                    // published: a state that stages the derivation with its own
+                    // angle arcs (STATE_7: shadow 2000, arc to the normal 9000,
+                    // arc to the plane 13000) had both answers on the HUD from
+                    // 3.35 s — 6.7 s and 11 s before the beats that derive them.
+                    // A readout is gated by the reveal of the thing IT NAMES.
+                    projAngles = ang;
                 }
             }
         }
@@ -13343,11 +13534,29 @@ export const FIELD_3D_RENDERER_CODE = `
                 role: o.role || "neutral", label: o.label || null,
                 readout: o.readout || null
             });
+            // Δ2c — OWNERSHIP, recorded at the push and independent of arrival:
+            // this arc RESOLVED, so from here on the token it names is its beat
+            // to give, and the projection above may not answer for it. Recorded
+            // here and not from the authored list because an arc that cannot be
+            // drawn skips out above (the in-plane arm of a line perpendicular
+            // to the plane has no direction) — that arc owns nothing, and the
+            // projection keeps its 90/0 claim rather than the number vanishing.
+            if (o.readout === "angle_line_normal_deg" || o.readout === "angle_line_plane_deg") arcOwned[o.readout] = true;
             if (aShown) {
                 if (o.readout === "angle_line_normal_deg") out.readouts.angle_line_normal_deg = val;
                 else if (o.readout === "angle_line_plane_deg") out.readouts.angle_line_plane_deg = val;
                 else if (o.readout === "angle_lines_deg") out.readouts.angle_lines_deg = val;
             }
+        }
+
+        // ── Δ2c · the projection settles its two angles ─────────────────────
+        //   Per TOKEN, never all-or-nothing: a state authoring only a projection
+        //   (no arcs at all, or an arc naming the other angle) keeps exactly the
+        //   behaviour it had — the shadow IS the picture of "angle to the plane"
+        //   there, and it is the only construct that can claim these numbers.
+        if (projAngles) {
+            if (!arcOwned.angle_line_normal_deg) out.readouts.angle_line_normal_deg = projAngles.to_normal;
+            if (!arcOwned.angle_line_plane_deg) out.readouts.angle_line_plane_deg = projAngles.to_plane;
         }
 
         // ── F23 · free vectors (the skew formula's two named arrows) ────────
@@ -13492,6 +13701,78 @@ export const FIELD_3D_RENDERER_CODE = `
         half_extent: "PM_vgHalfExtentDragged", q_height: "PM_vgQHeightDragged", line2_offset: "PM_vgLine2OffsetDragged"
     };
     var VG_ROW_RANGE = {};
+    // The label each row is BORN with (config.slider_controls[key].label, or the
+    // vgSc fallback), captured at build time for exactly the reason VG_ROW_RANGE
+    // is: a per-state override of a row's label is only safe if the row can be
+    // RESTORED on the next state that does not override it.
+    var VG_ROW_LABEL = {};
+
+    // ── A CONTROL LABEL NAMES WHAT THE CONTROL ACTUALLY DRIVES ──────────────
+    //   bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_
+    //   in_every_mode. The panel is built ONCE, before any state is applied, so
+    //   every label baked into it is a compile-time string — and "θ (a, b)" is
+    //   a compile-time string describing RUNTIME-SELECTED geometry, the same
+    //   class as the cross_mag hardcoded-literal readout label. In mode
+    //   "lines_planes" the theta_deg knob reaches the picture through
+    //   vgObjRotate (it turns whichever line/plane binds it), a and b are not
+    //   drawn at all (vgShowAB), and the row still read "θ (a, b)" on the one
+    //   state whose entire lesson is the angle between d₁ and d₂.
+    //
+    //   The label is therefore DERIVED FROM THE AUTHORED OBJECTS, not from a
+    //   second hardcoded per-mode string: the rotated object is the one whose
+    //   rotate block binds knob "theta_deg", the reference is the first other
+    //   labelled object in the SAME scene group, and the row reads
+    //   "θ (<reference>, <rotated>)" — the pair a teacher sees, in the order the
+    //   state's own formula names them. A per-mode literal ("θ (d₁, d₂)") would
+    //   only move the defect one mode deeper: the next lines_planes concept
+    //   labelling its lines ℓ and m would be lied to by the identical mechanism.
+    //
+    //   NOTHING IS EVER INVENTED. If no labelled rotated/reference pair can be
+    //   resolved in the current group — an unlabelled line, or a group in which
+    //   theta turns nothing at all — the row falls back to a bare "θ", which
+    //   names no object; it NEVER falls back to the products pair.
+    //
+    //   The test is NEGATIVE ("is lines_planes"), like vgShowAB's: a state that
+    //   authors no mode — every state of Act I — returns null here and keeps the
+    //   built label byte for byte, so no authoring change can silently rename
+    //   the products row.
+    //
+    //   The group is read from the LIVE global (the picker writes it), never
+    //   from the authored per-state value — scar field3d_explore_picker_updates_
+    //   global_but_frame_reads_authored_state_value — which is why the group
+    //   <select>'s own change handler re-runs this write.
+    function vgThetaRowLabel(d, group) {
+        d = d || {};
+        if (d.mode !== "lines_planes") return null;
+        var rotLab = null, refLab = null, pools = [vgList(d.lines), vgList(d.planes)];
+        for (var pi = 0; pi < pools.length; pi++) {
+            for (var i = 0; i < pools[pi].length; i++) {
+                var o = pools[pi][i] || {};
+                if (!vgInGroup(o, group)) continue;
+                var lab = (typeof o.label === "string" && o.label !== "") ? o.label : null;
+                var r = o.rotate || null;
+                var turns = !!(r && r.about && r.about.length === 3 && r.knob === "theta_deg");
+                if (turns) { if (rotLab === null) rotLab = lab; }
+                else if (refLab === null && lab) refLab = lab;
+            }
+        }
+        if (!rotLab || !refLab || rotLab === refLab) return "θ";
+        return "θ (" + refLab + ", " + rotLab + ")";
+    }
+    // EVERY row is visited on every state — a row this state does not override
+    // is written back to the label it was BORN with, so a mode-derived label can
+    // never leak forward into the next state (the same restore-every-row
+    // doctrine the per-state control RANGES already run on).
+    function vgWriteRowLabels(d) {
+        var group = (typeof window.PM_vgSceneGroup === "string" && window.PM_vgSceneGroup !== "")
+            ? window.PM_vgSceneGroup : null;
+        for (var k in VG_ROW_LABEL) {
+            if (!Object.prototype.hasOwnProperty.call(VG_ROW_LABEL, k)) continue;
+            var txt = (k === "theta_deg") ? (vgThetaRowLabel(d, group) || VG_ROW_LABEL[k]) : VG_ROW_LABEL[k];
+            var el = document.getElementById("vg_" + k + "_lab");
+            if (el) el.textContent = txt;
+        }
+    }
 
     // ── A SLIDER ROW MUST TRACK A RAMP OF ITS OWN KNOB ──────────────────────
     //   bug_class field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_
@@ -13635,7 +13916,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // The CONCEPT-WIDE range this row is born with, kept so a per-state
             // vg.control_ranges override can be resolved against it AND undone.
             VG_ROW_RANGE[prefix] = { min: sc.min, max: sc.max, step: sc.step, def: sc.def };
-            return '<div id="vg_' + prefix + '_row" style="margin-top:6px"><label>' + sc.label + ': <span id="vg_' + prefix + '_val">' + sc.def.toFixed(dec) + '</span>' + unit + '</label>' +
+            // The label text lives in its OWN span so the apply pass has a stable
+            // handle to rewrite it per state (vgWriteRowLabels) without touching
+            // the row id the Rule 39g widget engine discovers on (div[id$="_row"])
+            // or the value node vgSyncRampedRows writes. The rendered TEXT is
+            // unchanged by the wrapper — "θ (a, b): 60°" reads identically, and
+            // pmWgRowLabel's label.textContent cut at ":" is unaffected.
+            VG_ROW_LABEL[prefix] = sc.label;
+            return '<div id="vg_' + prefix + '_row" style="margin-top:6px"><label><span id="vg_' + prefix + '_lab">' + sc.label + '</span>: <span id="vg_' + prefix + '_val">' + sc.def.toFixed(dec) + '</span>' + unit + '</label>' +
                 '<input type="range" id="vg_' + prefix + '_slider" min="' + sc.min + '" max="' + sc.max + '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%"></div>';
         }
         // Δ10 · the scene_group selector. It is a SELECT, not a slider, because
@@ -13704,6 +13992,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var gsel = document.getElementById("vg_scene_group_select");
         if (gsel) gsel.addEventListener("change", function () {
             window.PM_vgSceneGroup = gsel.value;
+            // The group switch changes WHICH objects a shared knob drives, so
+            // BOTH row surfaces are re-derived here — and ONLY those two passes
+            // run (Rule 39c): the full apply would re-seed every knob and clear
+            // every drag-seize flag, throwing away a drag the teacher just made.
+            //
+            // Order: which rows are ON SCREEN first, then what those rows are
+            // CALLED — the labels are written for the rows a teacher can see.
+            var sd = (config.states && config.states[PM_currentState]) || {};
+            var sdvg = sd.vg || {};
+            vgApplyControlRows(sdvg, sd.show_sliders);
+            vgWriteRowLabels(sdvg);
             try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "vector_geometry_explorer"), param: "scene_group", value: gsel.value }, "*"); } catch (e) {}
         });
     }
@@ -13744,6 +14043,12 @@ export const FIELD_3D_RENDERER_CODE = `
         //    unknown token renders NOTHING rather than an empty row with a
         //    plausible label.
         point_plane_distance: "distance", skew_distance: "shortest distance",
+        // The generic quantity, named generically. "distance" is RESERVED for
+        // the perpendicular distance a point actually has from a plane; an
+        // arbitrary segment says what it is — a segment length. Rule 41: two
+        // plain words, and the difference between them IS the lesson of the
+        // state that shows both.
+        segment_length: "segment length",
         angle_lines_deg: "angle", angle_line_plane_deg: "angle to plane",
         angle_line_normal_deg: "angle to normal",
         d_dot_n: "n·d", n_dot_v: "n·v",
@@ -13765,7 +14070,28 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function buildVectorGeometryReadout() {
         var rd = document.createElement("div"); rd.id = "vg_readout";
-        rd.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:8px 12px;border-radius:8px;font:13px/1.7 'Cambria Math',Georgia,serif;z-index:10;min-width:150px;display:none;";
+        // ── THE NORM BARS MUST SURVIVE THE FONT (bug_class vg_hud_readout_
+        //    prints_single_bars_for_a_vector_norm_beside_a_double_bar_formula_
+        //    surface). The label strings ARE the right characters — n_norm and
+        //    cross_norm carry U+2016 DOUBLE VERTICAL LINE, byte-identical to the
+        //    concept's own formula_overlay strings. The defect was purely a
+        //    GLYPH one: the old terminal generic was "serif", and neither
+        //    Georgia nor the serif default ships U+2016 at a usable width —
+        //    measured in the same headless Chromium THE EYE runs:
+        //      13px 'Cambria Math',Georgia,serif  →  ‖ advance 3.65px
+        //      13px monospace                     →  ‖ advance 7.80px
+        //      13px … ,serif                      →  | advance 4.875px
+        //    so at 13px the two strokes of ‖ merged into ONE 2px stroke and the
+        //    panel printed what read as |d₁×d₂| — an ABSOLUTE VALUE — directly
+        //    above a formula surface writing ‖d₁×d₂‖ for the same quantity.
+        //    Terminating the stack in "monospace" (the exact family
+        //    #formula_overlay itself uses) moves ONLY that character: every
+        //    other glyph these rows print measures identically under both
+        //    stacks (d 7.46 · × 8.36 · · 3.63 · − 8.36 · ₁ 6.50 · θ 7.23 ·
+        //    λ 6.34 · ° 5.45), because Georgia already supplies them. Do not
+        //    "simplify" this back to serif; a norm that renders as a single bar
+        //    is a different quantity.
+        rd.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:8px 12px;border-radius:8px;font:13px/1.7 'Cambria Math',Georgia,monospace;z-index:10;min-width:150px;display:none;";
         document.body.appendChild(rd);
     }
     // Format one readout line. The clamp kills a "-0.00" at a right angle
@@ -13781,10 +14107,19 @@ export const FIELD_3D_RENDERER_CODE = `
     // distances and dot products 3 dp, angles 1 dp, coordinates 2 dp, λ 3 dp.
     // The products half keeps its own 2 dp, unchanged.
     var VG_READOUT_DP = {
-        point_plane_distance: 3, skew_distance: 3, d_dot_n: 3, n_dot_v: 3,
+        // segment_length is a DISTANCE and carries the distance precision: the
+        // state that shows it does so BESIDE point_plane_distance, and two
+        // lengths in one panel at two precisions would read as a second
+        // difference between them where there is only one.
+        point_plane_distance: 3, segment_length: 3, skew_distance: 3, d_dot_n: 3, n_dot_v: 3,
         n_norm: 3, cross_norm: 3, numerator_triple_product: 3, lambda: 3,
         angle_lines_deg: 1, angle_line_plane_deg: 1, angle_line_normal_deg: 1
     };
+    // Only the angles carry a unit. Every length token here (including
+    // segment_length) is in SCENE units and is deliberately absent — the same
+    // decision point_plane_distance and skew_distance already record by their
+    // absence, written down so the next token-surface sweep sees it was a
+    // decision and not a miss.
     var VG_READOUT_UNIT = { angle_lines_deg: "°", angle_line_plane_deg: "°", angle_line_normal_deg: "°" };
     // ── A NUMBER MAY NOT PRECEDE ITS SUBJECT (Rule 32a; bug_class
     //    field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_names).
@@ -14471,7 +14806,6 @@ export const FIELD_3D_RENDERER_CODE = `
         // authored group rather than whatever the teacher last chose.
         var groups = d.scene_groups || null;
         var gsel2 = document.getElementById("vg_scene_group_select");
-        var grpRow = document.getElementById("vg_scene_group_row");
         if (groups && groups.length) {
             window.PM_vgSceneGroup = (typeof d.scene_group === "string" && d.scene_group !== "") ? d.scene_group : groups[0].key;
             if (gsel2) {
@@ -14485,7 +14819,9 @@ export const FIELD_3D_RENDERER_CODE = `
         } else {
             window.PM_vgSceneGroup = (typeof d.scene_group === "string" && d.scene_group !== "") ? d.scene_group : null;
         }
-        if (grpRow) grpRow.style.display = (groups && groups.length && (d.controls || []).indexOf("scene_group") !== -1) ? "block" : "none";
+        // (the picker ROW's own visibility is written by vgApplyControlRows at
+        // the tail of this pass, with the rest of the panel — one place decides
+        // which rows are on screen, and the group picker re-runs exactly it.)
 
         // Report any animate[] knob outside the closed enum, rather than
         // silently doing nothing with it (the shipped hazard is a valid
@@ -14534,24 +14870,109 @@ export const FIELD_3D_RENDERER_CODE = `
         syncS("vg_q_height_slider", window.PM_vgQHeight, 2);
         syncS("vg_line2_offset_slider", window.PM_vgLine2Offset, 2);
 
-        var controls = d.controls || [];
+        // Row LABELS, after the scene-group seed above (the derivation is
+        // group-scoped) and before the rows are shown: every row is written back
+        // to its built label, and the one row whose label names the objects it
+        // drives (theta_deg) is derived from THIS state's authored geometry.
+        vgWriteRowLabels(d);
+
+        // WHICH ROWS ARE ON SCREEN is decided in ONE place — the pass the scene
+        // -group picker re-runs on its own (and re-runs ALONE: Rule 39c).
+        vgApplyControlRows(d, stateDef.show_sliders);
+
+        var rdEl = document.getElementById("vg_readout");
+        if (rdEl) rdEl.style.display = (d.value_readouts && d.value_readouts.length) ? "block" : "none";
+    }
+
+    // ── THE CONTROL SET IS PARTITIONED WITH THE SCENE ───────────────────────
+    //   bug_class vg_explore_controls_are_not_group_aware_so_half_the_sliders_
+    //   are_inert. d.controls is ONE FLAT LIST, and Δ10's scene_group picker
+    //   swaps the OBJECTS underneath it — so the same rows are offered in every
+    //   group and only the ones whose objects that group contains do anything.
+    //   Measured on #9 STATE_9: in group A ("line + plane") theta_deg and
+    //   line2_offset drive M2, a group-B line that is not on screen; in group B
+    //   ("skew pair") lambda, lambda_span, half_extent and q_height all drive
+    //   group-A objects — including lambda, the state's headline control. A dead
+    //   control in a teacher sandbox reads as a broken product.
+    //
+    //   vg.group_controls: { "<groupKey>": ["knob", ...] } declares the LIVE
+    //   rows per group; the flat d.controls stays the fallback for a state that
+    //   omits the block, for a group the block does not name, and for no group
+    //   at all — so every single-group state behaves exactly as it does today.
+    //   The lookup is by PRESENCE, never truthiness: an authored EMPTY list is a
+    //   group with no live knob and must yield no rows, which a truthiness test
+    //   would silently turn back into the full flat list (recorded scar
+    //   optional_config_field_with_a_legal_zero_value_is_resolved_by_truthiness).
+    //
+    //   scene_group ITSELF is deliberately not partitionable: the picker is how
+    //   a teacher LEAVES a group, so a group that hid it would be a trap. Its
+    //   row is read from the flat d.controls in every group, and a
+    //   group_controls list naming it changes nothing either way.
+    //
+    //   static_readouts (the fleet's greyed-row convention) stays flat: a greyed
+    //   row displays a value, it is not a control that fails to move anything,
+    //   so it is outside this bug_class. No shipped vg state authors one.
+    function vgEffectiveControls(d, group) {
+        d = d || {};
+        var flat = d.controls || [];
+        var gc = d.group_controls;
+        if (!gc || group == null || group === "") return flat;
+        var list = gc[group];
+        return (Object.prototype.toString.call(list) === "[object Array]") ? list : flat;
+    }
+    // The ROW-VISIBILITY pass, extracted out of applyVectorGeometry3DState so
+    // the picker can re-run THIS AND NOTHING ELSE. Rule 39c in the scenario's
+    // own terms: re-running the full apply on a group switch would re-seed every
+    // knob from the authored value and CLEAR every drag-seize flag, so a teacher
+    // who dragged λ and then changed view would silently lose the drag.
+    //
+    // It writes display / disabled / opacity and NOTHING else. In particular it
+    // never touches min/max/step/value: the per-state control RANGES are per
+    // STATE, not per group, so the apply pass sets them once (restoring every
+    // row it does not override) and a group switch can neither skip nor corrupt
+    // that restore.
+    //
+    // style.display, exactly like the code it replaces — never !important — so
+    // the ⚙ widget engine's .pmWgHide/.pmWgShow classes keep beating this write
+    // (Rule 39f). The row ids are unchanged (vg_<knob>_row), so widget discovery
+    // is unchanged: every vg row lives inside a dynamically-created
+    // position:fixed panel, and pmWgSweep declares rows of such a panel whether
+    // or not they are currently visible — a row this pass hides in one group is
+    // still in the teacher's ⚙ list, and cannot go stale across a switch.
+    //
+    // The group is read from the LIVE global, never from the authored per-state
+    // value, on the same rule vgWriteRowLabels follows (scar field3d_explore_
+    // picker_updates_global_but_frame_reads_authored_state_value).
+    function vgApplyControlRows(d, showSliders) {
+        d = d || {};
+        var group = (typeof window.PM_vgSceneGroup === "string" && window.PM_vgSceneGroup !== "")
+            ? window.PM_vgSceneGroup : null;
+        var controls = vgEffectiveControls(d, group);
         var statics = d.static_readouts || [];
+        var groups = d.scene_groups || null;
         var rowIds = { a_mag: "vg_a_mag_row", b_mag: "vg_b_mag_row", theta_deg: "vg_theta_deg_row", b_tilt_deg: "vg_b_tilt_deg_row", c_mag: "vg_c_mag_row", c_theta_deg: "vg_c_theta_deg_row", c_phi_deg: "vg_c_phi_deg_row", lambda: "vg_lambda_row", lambda_span: "vg_lambda_span_row", half_extent: "vg_half_extent_row", q_height: "vg_q_height_row", line2_offset: "vg_line2_offset_row" };
         var sliderIds = { a_mag: "vg_a_mag_slider", b_mag: "vg_b_mag_slider", theta_deg: "vg_theta_deg_slider", b_tilt_deg: "vg_b_tilt_deg_slider", c_mag: "vg_c_mag_slider", c_theta_deg: "vg_c_theta_deg_slider", c_phi_deg: "vg_c_phi_deg_slider", lambda: "vg_lambda_slider", lambda_span: "vg_lambda_span_slider", half_extent: "vg_half_extent_slider", q_height: "vg_q_height_slider", line2_offset: "vg_line2_offset_slider" };
-        var anyRow = (controls.indexOf("scene_group") !== -1 && groups && groups.length) ? true : false;
+        var grpOn = (((d.controls || []).indexOf("scene_group") !== -1) && groups && groups.length) ? true : false;
+        var grpRow = document.getElementById("vg_scene_group_row");
+        if (grpRow) grpRow.style.display = grpOn ? "block" : "none";
+        var anyRow = grpOn, shown = [];
         for (var key in rowIds) {
             var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
             var rowEl = document.getElementById(rowIds[key]);
             if (rowEl) rowEl.style.display = relevant ? "block" : "none";
-            if (relevant) anyRow = true;
+            if (relevant) { anyRow = true; shown.push(key); }
             var isLive = controls.indexOf(key) !== -1;
             var slEl = document.getElementById(sliderIds[key]);
             if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
         }
         var panelEl = document.getElementById("vg_sliders");
-        if (panelEl) panelEl.style.display = (stateDef.show_sliders && anyRow) ? "block" : "none";
-        var rdEl = document.getElementById("vg_readout");
-        if (rdEl) rdEl.style.display = (d.value_readouts && d.value_readouts.length) ? "block" : "none";
+        if (panelEl) panelEl.style.display = (showSliders && anyRow) ? "block" : "none";
+        // Published, on the PM_vgControlRangeWidened precedent: the rows a
+        // teacher can actually reach in the LIVE group, where a probe can read
+        // them rather than infer them from the authored list.
+        window.PM_vgRowsShown = shown;
+        window.PM_vgRowsGroup = group;
+        return shown;
     }
 
     // Per-frame driver. EVERYTHING here is a CLOSED FORM of state-local ms
@@ -14565,6 +14986,13 @@ export const FIELD_3D_RENDERER_CODE = `
         var d = stateDef.vg || {};
         var anim = d.animate || null;
         var stateMs = (time - stateStartTime) * 1000;
+        // F21b · the AUTHORED animate[] loop period. Handed ONLY to
+        // vgAnimValue, which is the whole scope guarantee: the reveal chain
+        // (vgRevealFrac / vgGhostFactor inside vgResolveLinesPlanes), the
+        // shared grow-in ease and the camera schedule below are all called
+        // with the raw stateMs and cannot see it, so a looping sandbox
+        // loops its knobs without ever re-playing a reveal.
+        var animLoopMs = d.animate_loop_ms;
 
         // Knob resolution, in ONE funnel: an F21 ramp drives the authored
         // value, and a TRUSTED teacher drag on that row seizes it for the
@@ -14574,7 +15002,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // takes the closed-form branch and stays deterministic.
         function knob(key, dflt, liveKey, dragKey) {
             if (stateDef.show_sliders && window[dragKey] && window[liveKey] != null) return window[liveKey];
-            return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt));
+            return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt), animLoopMs);
         }
         var aMag = knob("a_mag", 3.0, "PM_vgAMag", "PM_vgAMagDragged");
         var bMag = knob("b_mag", 2.0, "PM_vgBMag", "PM_vgBMagDragged");
@@ -14594,8 +15022,8 @@ export const FIELD_3D_RENDERER_CODE = `
             q_height: knob("q_height", 1.19, "PM_vgQHeight", "PM_vgQHeightDragged"),
             line2_offset: knob("line2_offset", 0.0, "PM_vgLine2Offset", "PM_vgLine2OffsetDragged"),
             theta_deg: thetaDeg,
-            aux_a: vgAnimValue(anim, "aux_a", stateMs, (d.aux_a != null ? d.aux_a : 0)),
-            aux_b: vgAnimValue(anim, "aux_b", stateMs, (d.aux_b != null ? d.aux_b : 0)),
+            aux_a: vgAnimValue(anim, "aux_a", stateMs, (d.aux_a != null ? d.aux_a : 0), animLoopMs),
+            aux_b: vgAnimValue(anim, "aux_b", stateMs, (d.aux_b != null ? d.aux_b : 0), animLoopMs),
             // Δ10 — the frame reads the LIVE global, never the authored
             // per-state value: a picker that updates a global the frame ignores
             // is the recorded field3d_explore_picker_updates_global_but_frame_
@@ -14634,16 +15062,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // grow-in ease, so a state that authors nothing behaves exactly as
         // before; authoring the field (or ramping it through animate[])
         // takes that element off the shared reveal and onto its own beat.
-        var arcFrac = vgAnimValue(anim, "arc_reveal_frac", stateMs, (d.arc_reveal_frac != null ? d.arc_reveal_frac : ease));
-        var crossFrac = vgAnimValue(anim, "cross_reveal_frac", stateMs, (d.cross_reveal_frac != null ? d.cross_reveal_frac : ease));
-        var cFrac = vgAnimValue(anim, "c_reveal_frac", stateMs, (d.c_reveal_frac != null ? d.c_reveal_frac : ease));
+        var arcFrac = vgAnimValue(anim, "arc_reveal_frac", stateMs, (d.arc_reveal_frac != null ? d.arc_reveal_frac : ease), animLoopMs);
+        var crossFrac = vgAnimValue(anim, "cross_reveal_frac", stateMs, (d.cross_reveal_frac != null ? d.cross_reveal_frac : ease), animLoopMs);
+        var cFrac = vgAnimValue(anim, "c_reveal_frac", stateMs, (d.c_reveal_frac != null ? d.c_reveal_frac : ease), animLoopMs);
         // flip_frac turns a x b into b x a by ROTATING it 180 degrees about
         // a-hat (which is perpendicular to a x b, so a half turn maps
         // a x b exactly onto -(a x b) = b x a). A linear interpolation
         // through zero would instead shrink the arrow to nothing and regrow
         // it, which teaches the wrong thing about what reversing the order
         // does.
-        var flipFrac = vgAnimValue(anim, "flip_frac", stateMs, (d.flip_frac != null ? d.flip_frac : 0));
+        var flipFrac = vgAnimValue(anim, "flip_frac", stateMs, (d.flip_frac != null ? d.flip_frac : 0), animLoopMs);
         var crossDrawn = flipFrac ? vgRotateAbout(axb, vgNormalize(a), Math.PI * flipFrac) : axb;
 
         var ea = [a[0] * ease, a[1] * ease, a[2] * ease];
@@ -14658,8 +15086,8 @@ export const FIELD_3D_RENDERER_CODE = `
         //    the drawn vectors and the fraction — recomputed from scratch
         //    every frame, nothing cached, so the frame is a closed form of
         //    state-local ms all the way down (D3).
-        var solidFrac = vgAnimValue(anim, "solid_build_frac", stateMs, (d.solid_build_frac != null ? d.solid_build_frac : 1));
-        var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0));
+        var solidFrac = vgAnimValue(anim, "solid_build_frac", stateMs, (d.solid_build_frac != null ? d.solid_build_frac : 1), animLoopMs);
+        var splitFrac = vgAnimValue(anim, "split_solid_frac", stateMs, (d.split_solid_frac != null ? d.split_solid_frac : 0), animLoopMs);
         var pieces = vgSplitPieces(ea, eb, ec, splitFrac, d.split_gap_k);
 
         // ── Δ11 · the projection of b onto â, computed from the DRAWN a and b
@@ -46665,6 +47093,13 @@ export const FIELD_3D_RENDERER_CODE = `
         // structurally cannot reach. Churn-guarded inside, so this costs a string
         // compare per frame and cannot move a frozen pixel.
         nlbEnergyApplyGlow(focal);
+        // Note 11h — the teaching dwell's own highlight, LAST. It has to be last for
+        // the same reason SEAM Q does: applyGlowEmphasis restores each material's
+        // cached authored colour every frame, so a brighten written before it is
+        // reverted one frame later. It is also why the pass can never corrupt the
+        // cache — _glowBaseCol is captured by the loop ABOVE, from the authored
+        // colour, before this ever writes.
+        nlbDwellEmphasis(focal, glowActive, glowP);
     }
 
     // ══ SEAM Q — the per-frame ink pass ════════════════════════════════════
@@ -46917,6 +47352,104 @@ export const FIELD_3D_RENDERER_CODE = `
             if (cls === 1) nlbInkWriteStroke(o, hex, op, writeOp, kls === NLB_INK_BOTH || focalLift);
             else nlbInkWriteSprite(o, hex, op, writeOp);
         });
+    }
+    // ══ Note 11h — THE DWELL HIGHLIGHT ══════════════════════════════════════
+    //   Which marker, if any, the open dwell window belongs to. Null unless a
+    //   window is genuinely open THIS frame, so the whole pass below is a pure
+    //   function of the current frame's engine state (Rule 36): the gate in
+    //   updateNewtonsLawsBodyFrame clears the window on the resume frame and
+    //   nlbSpringPhysReset clears it on every rewind, both BEFORE this runs.
+    function nlbDwellOwnerId(eng) {
+        return (eng && eng._dwell_until_ms != null && eng._dwell_cp_idx != null)
+            ? ("checkpoint_" + (eng._dwell_cp_idx + 1)) : null;
+    }
+    //   WHY THIS PASS OWNS A RESTORE AT ALL, i.e. why it is not simply "write the
+    //   lift while lit and let the glow pass take the object back". applyGlowEmphasis
+    //   restores a material's colour on three of its four branches — but NOT on the
+    //   one that matters here: a peer under an ACTIVE glow gets its opacity written
+    //   and its colour left exactly as it was found. So on any state that authors a
+    //   glow_focal elsewhere, a lift written and then abandoned would persist for the
+    //   rest of the state. The pass therefore hands back what it took, in the same
+    //   frame the window closes, to the value THIS frame's glow state asks for.
+    //   The one bit of memory is per-material (_nlbDwellLit) and names only what has
+    //   to be cleaned up — never what to draw. The DRAWN result is decided entirely
+    //   by the owner id, so a pin inside a window and a pin outside one each
+    //   reproduce byte for byte, and a rewind from inside to outside restores in the
+    //   frame it lands on, before that frame renders.
+    //   BYTE-IDENTITY when no dwell is authored: nlbDwellLitAny starts false and can
+    //   only be set by a lit frame, so a concept with no dwell_ms takes the early
+    //   return and executes zero reads and zero writes — flag concepts, dwell-less
+    //   point states, marker_true and marker_ghost included (the two prediction
+    //   markers are not in this loop at all).
+    var nlbDwellLitAny = false;
+    function nlbDwellEmphasis(focal, glowActive, glowP) {
+        var own = nlbDwellOwnerId(window.PM_nlbEngine);
+        if (!own && !nlbDwellLitAny) return;
+        var colT = 0.10 + 0.18 * glowP;   // the same lerp applyGlowEmphasis's focal branch uses
+        var anyLit = false;
+        for (var c = 0; c < NLB_CP_MAX; c++) {
+            var id = "checkpoint_" + (c + 1);
+            var lit = (own === id);
+            if (lit) anyLit = true;
+            // A checkpoint that IS the state's glow focal has to be handed back to the
+            // focal branch's own value, not to the bare palette entry, or the frame the
+            // window closes would read as the focal switching off (the flicker the
+            // dispatch names). With glow_focal pointing at this same marker the lit
+            // write and the focal write differ only in magnitude, so the transition is
+            // one step of brightness in each direction and nothing blinks.
+            var isFocal = !!focal && (focal === id);
+            var g = nlbFindById(id), l = nlbFindById(id + "_label");
+            // The MARKER. Whole group on purpose: the dot in 'point' form, the post and
+            // tick in 'flag' form. Lighting whichever one is drawn costs one branch less
+            // than asking which form is up, and the hidden children are free.
+            if (g) {
+                g.traverse(function (n) {
+                    if (!n.material) return;
+                    var ms = Array.isArray(n.material) ? n.material : [n.material];
+                    for (var i = 0; i < ms.length; i++) {
+                        var m = ms[i];
+                        if (!m.userData) m.userData = {};
+                        if (lit) {
+                            if (m.color) m.color.copy(NLB_DWELL_COL);
+                            // Full opacity too, or a dwell on a non-focal checkpoint would
+                            // be brightened and dimmed to GLOW_DIM_OPACITY in the same
+                            // frame. No restore needed on the way out: applyGlowEmphasis
+                            // writes opacity on every branch, every frame.
+                            m.transparent = true; m.opacity = 1.0;
+                            m.userData._nlbDwellLit = true;
+                        } else if (m.userData._nlbDwellLit) {
+                            m.userData._nlbDwellLit = false;
+                            if (m.color && m.userData._glowBaseCol) {
+                                m.color.copy(m.userData._glowBaseCol);
+                                if (isFocal && glowActive) m.color.lerp(GLOW_WHITE, colT);
+                            }
+                        }
+                    }
+                });
+            }
+            // The CAPTION — the half that survives the parked body (note 11g's lane
+            // keeps it clear, and a label sprite is depthTest:false). Its ink is BAKED
+            // into a canvas texture, so a material tint cannot brighten it: the
+            // material stays white by nlbInkWriteSprite's own argument (a tint would
+            // multiply onto the dark halo as well as the glyph), and the lift is a
+            // redraw. Churn-guarded on the drawn hex, so the texture is rebuilt exactly
+            // twice per window — once when it opens, once when it closes — and never
+            // per frame.
+            if (l) {
+                var want = lit ? NLB_DWELL_INK : (l._nlbDwellLit ? NLB_CP_COLOR : null);
+                if (want && l._pmColor !== want) {
+                    l._pmColor = want;
+                    if (l._pmText != null) updateLabelSpriteText(l, l._pmText);
+                }
+                if (lit) {
+                    if (l.material) { l.material.transparent = true; l.material.opacity = 1.0; }
+                    l._nlbDwellLit = true;
+                } else if (l._nlbDwellLit) {
+                    l._nlbDwellLit = false;
+                }
+            }
+        }
+        nlbDwellLitAny = anyLit;
     }
     // Name used by the spec's animate() call site (SEAM B) — one alias so the
     // two seams cannot disagree about the function name.
@@ -47696,8 +48229,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 eng._po_cycle = cycle;                   // entry / post-rewind: adopt, never fire
             } else if (cycle !== eng._po_cycle) {
                 var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+                // The clock a monotonic rewind preserves is the PAIR
+                // (_tPrevMs, t_ms), never t_ms alone — see the long note at the
+                // identical restore in nlbRunLoopReset. nlbResetTrajectory zeroes
+                // _tPrevMs to pair it with the t_ms = 0 a genuine RESET_TRAJECTORY
+                // wants, so without this line the rewind frame reports a single
+                // 16 ms step as spanning [0, t_ms] to every crossing-instant and
+                // angular-segment reader. No shipped push_off state authors a
+                // checkpoint or a rolling body, so this site is a no-op today and a
+                // latent defect tomorrow; the two rewind paths keep ONE contract.
+                var pKeep = eng._tPrevMs;
                 nlbResetTrajectory();                    // the ONE rewind path
                 eng.t_ms = tKeep;                        // the master clock stays monotonic
+                eng._tPrevMs = pKeep;                    // ...and so does this frame's segment start
                 window.PM_nlbTimeMs = tKeepPub;
                 eng._po_cycle = cycle;                   // AFTER the rewind (which nulls it)
             }
@@ -47865,15 +48409,36 @@ export const FIELD_3D_RENDERER_CODE = `
     //   #nlb_formula mid-right, #nlb_sliders bottom-right, #caption top-centre,
     //   #legend bottom-left), at top:52px so it clears the review-chrome
     //   "Full screen" button exactly as the HUD does (Rule 34d).
+    //   Note 11d reuses this ONE badge for the checkpoint dwell, and takes
+    //   PRECEDENCE over the slow-motion text when both are somehow live: a fully
+    //   stopped scene is the stronger claim, and "slow motion ×4" over a body that
+    //   is not moving at all would be the false one. Wording is deliberately the
+    //   plainest available (Rule 41) and names the flag, so the badge says WHY the
+    //   picture is still — the same honesty argument that made the slow badge
+    //   mandatory: an unlabelled still body teaches a = 0.
     function nlbUpdateSlowBadge(eng) {
         var el = document.getElementById("nlb_slowmo");
         if (!el) return;
-        var on = !!(eng && eng.slow_active);
+        var dwell = !!(eng && eng._dwell_until_ms != null);
+        var on = dwell || !!(eng && eng.slow_active);
         var want = on ? "block" : "none";
         if (el.style.display !== want) el.style.display = want;
         if (!on) return;
-        var f = eng.spring_slow_factor;
-        var txt = "slow motion ×" + String(Math.round(f * 10) / 10);
+        var txt;
+        if (dwell) {
+            // A COLON, not "paused at " + label. Checkpoint labels are authored as
+            // phrases that already carry their own preposition — ch6 ships "at the
+            // flag", "back at the start", "the same spot", "flag A" — so the
+            // preposition form renders "paused at at the flag" and "paused at back
+            // at the start" on half of them (measured on the concept that asked for
+            // this feature). The colon reads correctly against every one of those,
+            // and matches the punctuation the STAMP itself already uses for the
+            // same label (nlbCpStampText composes label + ": " + values). Rule 41.
+            var lb = eng._dwell_label || "";
+            txt = lb ? ("paused: " + lb) : "paused";
+        } else {
+            txt = "slow motion ×" + String(Math.round(eng.spring_slow_factor * 10) / 10);
+        }
         if (el.textContent !== txt) el.textContent = txt;
     }
 
@@ -48161,6 +48726,16 @@ export const FIELD_3D_RENDERER_CODE = `
         eng.spring_force_N = 0;
         eng.slow_active = false;             // 18e — and the slow window / badge
         eng.spring_slow_factor = 1;
+        // Note 11d — the checkpoint dwell is a latched WINDOW on the state clock,
+        // so it belongs in exactly this cluster. A rewind puts t_ms back to 0 while
+        // an open window's end time is in the future, which would freeze the whole
+        // scene from the first frame of the new cycle; the warn latch clears with
+        // it so a re-entry can report a genuinely re-made authoring mistake.
+        eng._dwell_until_ms = null;
+        eng._dwell_label = "";
+        eng._dwell_cp_idx = null;            // note 11h — the highlight's owner, rewound with it
+        eng._dwell_loop_warned = false;
+        window.PM_nlbDwell = null;
         eng.E_t0 = null;                     // 18d — re-captured on the next frame
         eng.energy_held = false;
         eng.energy_snapshot = null;
@@ -48235,10 +48810,68 @@ export const FIELD_3D_RENDERER_CODE = `
         var cycle = Math.floor((eng.t_ms || 0) / R);
         if (eng._loop_cycle == null) { eng._loop_cycle = cycle; return; }  // adopt, never fire
         if (cycle === eng._loop_cycle) return;
+        // Note 11d — a dwell OUTRANKS the loop clock. An un-deferred reset would
+        // rewind the scene while its checkpoint stamp is still on screen, which is
+        // precisely the flash-past failure the dwell exists to prevent — and the
+        // teacher would see the state restart mid-sentence. So we return without
+        // touching eng._loop_cycle: the cycle counter is still behind, so the very
+        // first post-dwell frame reaches the rewind below and it fires exactly
+        // once, late rather than never.
+        //   Sited AFTER the cycle test, not before it, and the difference is not
+        // cosmetic: ahead of the test this branch is reached on EVERY frame of
+        // EVERY dwell, so a perfectly well-authored state (loop 6000 ms, dwell
+        // 204-1004 ms) warns about a reset that was never due — measured, twice in
+        // one 9 s headless run, before this line was moved.
+        //   A reset that IS due mid-dwell is a genuine authoring error (R too short
+        // for the choreography it has to contain), so it warns — once per state
+        // entry, the same latch discipline the energy-clamp and scale warns use, so
+        // THE EYE's repeated RESET drive cannot multiply one mistake into a wall of
+        // console noise.
+        if (eng._dwell_until_ms != null && eng.t_ms <= eng._dwell_until_ms) {
+            if (!eng._dwell_loop_warned) {
+                eng._dwell_loop_warned = true;
+                console.warn(NLB_DWELL_WARN_PREFIX + " loop_reset_ms fired mid-dwell — DEFERRED to " +
+                    "the dwell end; author R > last crossing + its dwell + settle tail.");
+            }
+            return;
+        }
         var tKeep = eng.t_ms, tKeepPub = window.PM_nlbTimeMs;
+        // Note 11d — the clock this rewind preserves is the PAIR (_tPrevMs, t_ms),
+        // never t_ms alone. nlbResetTrajectory zeroes _tPrevMs to pair it with the
+        // t_ms = 0 a genuine RESET_TRAJECTORY wants; this path then puts t_ms back
+        // and, before this line existed, left _tPrevMs at 0 — so on the rewind frame
+        // the engine believed one 16 ms step spanned [0, 9312].
+        //   Not cosmetic, because that segment is what every crossing-instant reader
+        // anchors on:
+        //     tCross = _tPrevMs + f·(t_ms − _tPrevMs)          (notes 11b / 11d)
+        // and the ONE crossing that can land on the rewind frame is a HOME-ARMED
+        // checkpoint's departure: the body has just been put back ON its flag, so
+        // its step segment STARTS at s_m and f is exactly 0. tCross therefore
+        // collapsed to the stale 0, "until = 0 + dwell_ms" landed a whole cycle in
+        // the past, and the until-beats-now freshness guard threw the window away.
+        // The stamp itself was fine — counts and text DO rewind — so the failure
+        // read as "the dwell only works on the first cycle".
+        //   Measured on work_energy_theorem STATE_4 (loop 9300, point A home-armed
+        // at s0, dwell 2000): cycle 1 held 0-2000 ms, cycles 2+ did not hold at all,
+        // and the 2 s of physics that hold was supposed to absorb instead ran the
+        // cart into the +6 m track bound, where nlbEnergyClampGuard froze the bars —
+        // putting "v = 0.00 m/s" on screen beside "K = 62.7 J" in a founder review.
+        //   nlbRollSeg (SEAM R) anchors an angular segment on the same field, so a
+        // rolling body on a looping state was handed a ~9 s tau on the rewind frame
+        // for its closed form; no shipped looping state rolls, so that one never
+        // reached a teacher, but it is the same missing restore.
+        var pKeep = eng._tPrevMs;
+        // Note 11d — carried across the rewind for the SAME reason the clock is:
+        // this rewind is not a state entry. The warn latch lives in the reset
+        // cluster so a genuine entry / RESET_TRAJECTORY re-arms it, but a looping
+        // state would otherwise clear its own suppressor every cycle and report one
+        // authoring mistake once per lap (measured: 5 warns in a 7 s headless run).
+        var wKeep = eng._dwell_loop_warned;
         nlbResetTrajectory();                 // the ONE rewind path
         eng.t_ms = tKeep;                     // the master clock stays monotonic
+        eng._tPrevMs = pKeep;                 // ...and so does this frame's segment start
         window.PM_nlbTimeMs = tKeepPub;
+        eng._dwell_loop_warned = wKeep;
         eng._loop_cycle = cycle;              // AFTER the rewind (which nulls it)
     }
 
@@ -48827,16 +49460,85 @@ export const FIELD_3D_RENDERER_CODE = `
     var NLB_MK_GHOST_COLOR = "#90A4AE";
     var NLB_MK_HREF_COLOR = "#4FC3F7";
     var NLB_CP_COLOR = "#CE93D8";
-    var NLB_CP_MAX = 3;                    // checkpoint flags built once
+    var NLB_CP_MAX = 3;                    // checkpoint markers built once
+    // Note 11e — the TRACK-LEVEL checkpoint dot ('point' mode). Small enough to
+    // read as a painted mark rather than an object (the post is 1.05 units tall;
+    // this is a fifteenth of that), and lifted a hair off the slab so it never
+    // z-fights the surface it is drawn on.
+    var NLB_CP_DOT_R = 0.07;
+    var NLB_CP_DOT_Y = 0.05;
+    var NLB_CP_LABEL_H = 0.30;             // the checkpoint caption's sprite height
+    // Note 11d — the teaching dwell. A ceiling, not a default: five seconds is
+    // already longer than any single delta-cue beat (Rule 31's 25-55 word budget
+    // is 10-20 s for a whole STATE), and an unbounded dwell would let one
+    // mis-typed number stop a state dead with no way to tell it from a hang.
+    var NLB_DWELL_MAX_MS = 5000;
+    var NLB_DWELL_WARN_PREFIX = "[PM_NLB_DWELL]";
+    // ── Note 11h — the dwell has to SIGNAL AT THE POINT ──────────────────────
+    //   engine_bug_queue: nlb_point_marker_gives_no_signal_while_the_scene_is_
+    //   paused_on_it (MAJOR). Note 11d stops the scene AT a point, and note 11e
+    //   turned that point into a small painted dot — but nothing at the place
+    //   being read says it is the place being read. The two things that DO say
+    //   it are both far away from it: the honesty badge is pinned top-left
+    //   (nlbUpdateSlowBadge, the one free corner) and the stamp is on the
+    //   right-hand formula surface. Measured on
+    //   conservative_vs_nonconservative_forces STATE_4: the frozen frame holds
+    //   for 2.4 s with the dot at #CE93D8, i.e. the identical ink it carries on
+    //   every other frame of the state and the identical ink its idle sibling
+    //   carries in the same frame. The founder watched it and the eye is never
+    //   pulled to the point being read.
+    //   WHY THE DOT ALONE CANNOT CARRY IT. Note 11e's dot keeps depthTest TRUE
+    //   on purpose (a mark painted on the track must be hidden by the block
+    //   standing on it, or the picture claims the mark floats in front). A dwell
+    //   is scheduled ON a crossing, so the body is PARKED ON the dot for exactly
+    //   the frames the window is open: lighting only the dot would be invisible
+    //   precisely when it matters. So the highlight reaches the CAPTION too —
+    //   which note 11g's lane keeps clear of the parked body, and which is a
+    //   depthTest:false sprite that wins every pixel it covers.
+    //   Rule 29: BRIGHTNESS ONLY. No scale, no bulge, no size move of any kind.
+    //   0.45 toward white, and the number is not taste: applyGlowEmphasis's own
+    //   focal lerp tops out at colT 0.28, so anything at or below that is
+    //   indistinguishable from "this element is the state's glow focal", which
+    //   is a different claim. 0.45 clears that ceiling while staying in-hue
+    //   (a lift scales every channel gap by (1 - t), which leaves the HSL hue
+    //   fixed — the ink-lens note's own argument), so the point still reads as
+    //   the checkpoint colour and not as a new object.
+    var NLB_DWELL_LIFT = 0.45;
+    // #CE93D8 -> #e4c4ea. Computed ONCE from the palette entry and the lift, so
+    // the dot and the caption can never be lifted to two different levels and no
+    // literal has to be re-derived by hand if the palette moves.
+    var NLB_DWELL_INK = nlbInkEmphasis(NLB_CP_COLOR, false, NLB_DWELL_LIFT);
+    var NLB_DWELL_COL = new THREE.Color(NLB_DWELL_INK);
     var NLB_WK_MAX = 4;                    // concurrent work ledgers built once
     var NLB_MK_RENDER_ORDER = 940;         // scar rule: overlays draw OVER busy geometry
     var NLB_HREF_DASHES = 26;              // dash count across the drawn level line
-    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane EVERY
-                                               // marker caption is placed on (nlbMkPlace).
-                                               // Named because nlbStackMarkerLabels has to
-                                               // return a lifted caption to exactly this
-                                               // value every frame, and two copies of the
-                                               // literal would drift apart.
+    var NLB_MK_LABEL_LANE = NLB_MK_H + 0.30;   // surface-local y — the home lane every
+                                               // FLAG-form marker caption is placed on
+                                               // (nlbMkPlace). Named because
+                                               // nlbStackMarkerLabels has to return a lifted
+                                               // caption to exactly this value every frame,
+                                               // and two copies of the literal would drift
+                                               // apart.
+    // ── Note 11f — the POINT form needs its OWN, much shorter home lane ───────
+    //   engine_bug_queue: nlb_point_marker_caption_keeps_the_post_lane_so_it_
+    //   floats_away_from_the_dot_it_names (MAJOR).
+    //   NLB_MK_LABEL_LANE is 1.35 surface-local units because it has to clear the
+    //   TIP of a 1.05-unit post. In 'point' form that post is not drawn, so the
+    //   caption keeps a clearance it is no longer clearing anything with — and
+    //   because the lane runs along the SURFACE NORMAL, on a tilted track the
+    //   displacement is up-AND-ACROSS, not straight up. Measured on
+    //   conservative_vs_nonconservative_forces STATE_4 (theta = 25 deg, two points
+    //   3.0 m apart): caption "point B" centred at (676, 240) px, its dot at
+    //   (712, 322) px — ~90 px away, diagonally up-slope, with nothing drawn in
+    //   between. Both captions formed their own floating row above the ramp and the
+    //   pairing had to be inferred from left-to-right order, which is the one thing
+    //   naming two points A and B exists to make unnecessary.
+    //   So the lane is derived from what a track-level mark actually has to clear:
+    //   the TOP of the dot, plus the caption's own ink half-height, plus the same
+    //   inter-label gap the two stack passes already use. Nothing tuned by hand —
+    //   change the dot radius or the caption size and this follows.
+    var NLB_CP_LABEL_LANE = NLB_CP_DOT_Y + NLB_CP_DOT_R +
+                            NLB_CP_LABEL_H / 2 + NLB_BODY_LABEL_GAP;   // = 0.35
     // Marker captions that share the lane, in the FIXED order the stack pass walks:
     // the two prediction instruments hold the lane, the authored checkpoints lift
     // around them. marker_h_ref is deliberately absent — it is NOT on this lane
@@ -48957,7 +49659,7 @@ export const FIELD_3D_RENDERER_CODE = `
     //   level at every incline angle. The two markers live in the SURFACE group so
     //   the one theta rotation stands them upright on the track with no branch
     //   anywhere — the same trick the pulley bracket uses.
-    function nlbMkMakeMarker(id, colorHex, isGhost) {
+    function nlbMkMakeMarker(id, colorHex, isGhost, withDot) {
         var grp = new THREE.Group();
         var mat = function () {
             return new THREE.MeshBasicMaterial({
@@ -48973,12 +49675,61 @@ export const FIELD_3D_RENDERER_CODE = `
         tick.position.set(0, NLB_MK_H, 0);
         tick.renderOrder = NLB_MK_RENDER_ORDER;
         grp.add(tick);
+        // ── Note 11e — the track-level DOT, built only for checkpoints ────────
+        //   A third child, hidden at build time, so the DEFAULT marker is the
+        //   post + tick exactly as before and a state that authors nothing
+        //   renders the identical pixels. Only nlbApplyMarkers ever swaps which
+        //   of the two forms is visible.
+        //   Deliberately NOT on the overlay lane: depthTest stays TRUE and the
+        //   renderOrder stays at the default, which is the entire fix. The post
+        //   above must punch through busy geometry to be findable at all; a mark
+        //   painted on the track must NOT — the body passing over it has to hide
+        //   it, or the picture claims the mark is floating in front of the block.
+        var dot = null;
+        if (withDot) {
+            dot = new THREE.Mesh(
+                new THREE.SphereGeometry(NLB_CP_DOT_R, 12, 10),
+                new THREE.MeshBasicMaterial({
+                    color: hexToThreeColor(colorHex), transparent: true,
+                    opacity: isGhost ? 0.45 : 0.95
+                }));
+            dot.position.set(0, NLB_CP_DOT_Y, 0);
+            dot.visible = false;
+            grp.add(dot);
+        }
         // elementType is the FAMILY, id is the GLOW TARGET: nlbApplyGlow matches
         // ud.id === focal, so a state focals a marker by writing marker_true,
-        // marker_ghost or checkpoint_1 — never a mesh name.
-        grp.userData = { elementType: "nlb_marker", id: id, ghost: !!isGhost };
+        // marker_ghost or checkpoint_1 — never a mesh name. The three part
+        // handles ride along on the SAME userData so the display swap (and any
+        // later pass that wants the fired marker's own material — the
+        // _nlbFired write in nlbRunCheckpoints has no reader yet) can reach a
+        // part without walking children by index.
+        grp.userData = {
+            elementType: "nlb_marker", id: id, ghost: !!isGhost,
+            _nlbPost: post, _nlbTick: tick, _nlbDot: dot
+        };
         grp.visible = false;
         return grp;
+    }
+    // Note 11e — the ONE place the authored marker field is resolved. Two call
+    // sites need the answer (the display swap in nlbApplyMarkers and the
+    // sanitised copy on checkpoint_state that the PM_ mirror publishes), and a
+    // second copy of the string compare is exactly how a default drifts.
+    function nlbCpForm(ce) {
+        return (ce && ce.marker === "point") ? "point" : "flag";
+    }
+    // Note 11e — which FORM of the marker is on screen. One funnel, called from
+    // the checkpoint loop in nlbApplyMarkers only: the two prediction markers
+    // have no dot and never call it, so they cannot be reshaped by a typo.
+    function nlbMkForm(id, asPoint) {
+        var g = nlbFindById(id);
+        if (!g || !g.userData) return;
+        var ud = g.userData;
+        if (!ud._nlbDot) return;                  // no dot built ⇒ flag is the only form
+        var pt = !!asPoint;
+        if (ud._nlbPost) ud._nlbPost.visible = !pt;
+        if (ud._nlbTick) ud._nlbTick.visible = !pt;
+        ud._nlbDot.visible = pt;
     }
     function nlbBuildMarkers(surf, world) {
         // The dashed LEVEL line. Built as explicit dash segments rather than a
@@ -49028,9 +49779,13 @@ export const FIELD_3D_RENDERER_CODE = `
         surf.add(mkGL); nlbRegister(mkGL);
 
         for (var c = 0; c < NLB_CP_MAX; c++) {
-            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false);
+            // withDot: ONLY the checkpoints carry the note-11e track dot. The two
+            // prediction markers above are readings of a COMPUTED place ("highest
+            // point", "expected stop") that must stay findable over the block, so
+            // they keep the overlay post and are not offered the alternative.
+            var cp = nlbMkMakeMarker("checkpoint_" + (c + 1), NLB_CP_COLOR, false, true);
             surf.add(cp); nlbRegister(cp);
-            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, 0.30);
+            var cpL = pmCreateAutoLabel("point " + (c + 1), NLB_CP_COLOR, NLB_CP_LABEL_H);
             cpL.userData = {
                 elementType: "nlb_marker_label", id: "checkpoint_" + (c + 1) + "_label",
                 bodyId: "checkpoint_" + (c + 1)
@@ -49039,13 +49794,25 @@ export const FIELD_3D_RENDERER_CODE = `
             surf.add(cpL); nlbRegister(cpL);
         }
     }
+    // Note 11f — the HOME LANE of one marker's caption, resolved from the form that
+    // is actually DRAWN (the dot's own visibility), never from the authored field.
+    // Same discipline as nlbMkMeshProbe: a caption's height has to follow the mesh
+    // on screen, so a marker that asked for a dot and got a post must keep the post
+    // lane. Pure read of the current scene — no memory, no clock, so the two callers
+    // (placement and the per-frame stack reset) can never disagree and a
+    // SET_TIME_FREEZE pin reproduces it byte for byte (Rule 36).
+    function nlbMkLane(id) {
+        var g = nlbFindById(id);
+        var ud = g ? (g.userData || {}) : {};
+        return (ud._nlbDot && ud._nlbDot.visible) ? NLB_CP_LABEL_LANE : NLB_MK_LABEL_LANE;
+    }
     // Place a marker group + its label at a track coordinate, in SURFACE-local
     // units. One funnel, so a marker and its caption can never separate.
     function nlbMkPlace(id, s_m) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
         var x = s_m * NLB_WORLD_PER_M;
         if (g) g.position.set(x, 0, 0);
-        if (l) l.position.set(x, NLB_MK_LABEL_LANE, 0);
+        if (l) l.position.set(x, nlbMkLane(id), 0);
     }
     function nlbMkShow(id, on) {
         var g = nlbFindById(id), l = nlbFindById(id + "_label");
@@ -49055,6 +49822,84 @@ export const FIELD_3D_RENDERER_CODE = `
     function nlbMkLabel(id, txt) {
         var l = nlbFindById(id + "_label");
         if (l) nlbSetBodyLabelText(l, txt);      // the same churn-guarded setter the body billboards use
+    }
+    // ── Note 11g — the POINT caption's OTHER obstacle: the body standing on it ──
+    //   engine_bug_queue: nlb_point_marker_caption_renders_over_the_body_parked_
+    //   on_that_point (MAJOR).
+    //   Note 11f pulled the point caption down to 0.35 surface-local so it sits on
+    //   the dot it names. That is right while the track is clear — and wrong at
+    //   exactly the one instant the frame is REVIEWED. A checkpoint is a place a body
+    //   crosses, note 11d's teaching dwell FREEZES the scene on that crossing, and
+    //   every concept authors its eye_capture_ms inside that freeze. So "the body is
+    //   standing on the point" is not an occasional frame: it is the guaranteed state
+    //   of every frozen baseline of every dwell state, i.e. the single frame the
+    //   founder reviews and H2 locks. Measured on work_energy_theorem STATE_1: the
+    //   caption "point B" drawn in #CE93D8 over the cart's #42A5F5 face with the
+    //   applied-force arrow crossing the glyphs; and on
+    //   conservative_vs_nonconservative_forces STATE_4, where "point A" (block parked)
+    //   and "point B" (clear track) sit in the SAME frame — one unreadable, one clean.
+    //   The remedy is the one the lane already has: the caption LIFTS, along the
+    //   surface normal, out of the way of ink it overlaps. All that was missing is the
+    //   ink — a marker caption's obstacle set held other captions and nothing else, so
+    //   a whole cart could stand in it unnoticed. This is the obstacle set:
+    //     * the body MESH — measured off its own geometry box (never Box3.setFromObject,
+    //       which would swallow the billboard parented to it and double-count), so a
+    //       cart, a wheel carrier and a wall slab each contribute their true footprint;
+    //     * the body BILLBOARD — because clearing only the mesh lands the caption at
+    //       ~0.77 surface-local, which is precisely where the mass label lives (0.80),
+    //       i.e. it would trade a caption-over-a-block for two overprinted strings.
+    //   Both are read off the DRAWN scene through the id registry (the same discipline
+    //   nlbMkLane and nlbMkMeshProbe follow), not off nlb.bodies: a body's authored
+    //   presence is not its presence on screen.
+    //   Extents are taken in CAMERA axes in world units — the identical basis the
+    //   caption-vs-caption test already uses — so there is ONE projection story on this
+    //   lane, not two. Pure function of the current pose, the current camera and the
+    //   measured ink: no memory, no hysteresis, no clock, so a SET_TIME_FREEZE pin
+    //   reproduces the same lane byte for byte and a rewind carries nothing (Rule 36).
+    function nlbMkBodyObstacles(right, up) {
+        var out = [], c = new THREE.Vector3();
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            var t = (o && o.userData) ? o.userData.elementType : null;
+            if (t !== "nlb_body" && t !== "nlb_body_label") continue;
+            // Invisible up the WHOLE chain (a hidden pool group draws none of its
+            // children) — the nlbApparatusRightPx test, for the same reason.
+            if (!nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            var minR = Infinity, maxR = -Infinity, minU = Infinity, maxU = -Infinity;
+            if (o.isSprite) {
+                var sc = new THREE.Vector3().setFromMatrixPosition(o.matrixWorld);
+                var shw = nlbInkHalfW(o), shh = nlbInkHalfH(o);
+                var cr = sc.dot(right), cu = sc.dot(up);
+                minR = cr - shw; maxR = cr + shw; minU = cu - shh; maxU = cu + shh;
+            } else {
+                var geo = o.geometry;
+                if (!geo) continue;
+                if (!geo.boundingBox) geo.computeBoundingBox();
+                var bb = geo.boundingBox;
+                if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+                for (var k = 0; k < 8; k++) {
+                    c.set((k & 1) ? bb.max.x : bb.min.x,
+                          (k & 2) ? bb.max.y : bb.min.y,
+                          (k & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                    var dr = c.dot(right), du = c.dot(up);
+                    if (dr < minR) minR = dr;
+                    if (dr > maxR) maxR = dr;
+                    if (du < minU) minU = du;
+                    if (du > maxU) maxU = du;
+                }
+            }
+            if (!isFinite(minR) || !isFinite(minU)) continue;
+            // camera-axis centre, expressed as a world point: right and up are
+            // orthonormal, so this vector's dot with each axis IS the centre on that
+            // axis, which is all the separation test reads.
+            out.push({
+                p: new THREE.Vector3().addScaledVector(right, (minR + maxR) / 2)
+                                      .addScaledVector(up, (minU + maxU) / 2),
+                hw: (maxR - minR) / 2, hh: (maxU - minU) / 2
+            });
+        }
+        return out;
     }
     // Rule 34d for the MARKER lane — the half nlbStackBodyLabels never covered.
     //   nlbDodgeBodyLabels walks nlb.bodies, so a marker caption has never been in
@@ -49094,10 +49939,19 @@ export const FIELD_3D_RENDERER_CODE = `
             right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
             up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
         }
+        // Note 11g — built on FIRST use, so a state with no point-form caption walks
+        // the id registry exactly zero times and renders the pixels it always did.
+        var bodyObs = null;
         for (var i = 0; i < NLB_MK_LANE_IDS.length; i++) {
             var l = nlbFindById(NLB_MK_LANE_IDS[i] + "_label");
             if (!l) continue;
-            l.position.y = NLB_MK_LABEL_LANE;          // home lane FIRST, every frame
+            // Note 11f — the home lane is now PER MARKER (a track-level dot's caption
+            // sits ~0.35 above the slab, a post's at 1.35). Still read fresh from the
+            // drawn form every frame, so the reset stays memoryless.
+            var home = nlbMkLane(NLB_MK_LANE_IDS[i]);
+            l.position.y = home;                       // home lane FIRST, every frame
+            l._nlbMkLift = 0;                          // ... and so does the published lift
+            l._nlbMkBodyLift = 0;
             if (!haveCam || !l.visible || !l.parent) continue;
             l.parent.updateWorldMatrix(true, false);
             var liftDir = new THREE.Vector3(0, 1, 0).transformDirection(l.parent.matrixWorld).normalize();
@@ -49120,8 +49974,95 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (want > lift) lift = want;
                 }
             }
+            // ── Note 11g — and now the apparatus. POINT FORM ONLY ────────────────
+            //   The gate is the DRAWN form, not the authored field: a flag caption
+            //   already stands at the tip of a 1.05-unit post, clear of every cart in
+            //   the fleet, so admitting it here could only move pixels that are
+            //   correct today. This keeps marker_true / marker_ghost / every 'flag'
+            //   checkpoint byte-identical by construction.
+            //   Same separation test, same ease band as the caption pass above, so a
+            //   caption approached by a moving body rises smoothly into its lift and
+            //   settles back out of it — never the 40-px jump a hard threshold gives,
+            //   which a student would read as physics (Rule 32b).
+            //   CAPPED at the flag lane. Note 11f's whole finding was a caption
+            //   floating ~90 px from the dot it names with nothing drawn in between,
+            //   and an uncapped measured lift would re-create exactly that for a tall
+            //   body (the wall slab is 1.76 units). The flag lane is the file's own
+            //   answer to "how high clears a body-height object", so a point caption
+            //   is never lifted past where a post caption would already have been —
+            //   and under the cap the ink is a continuous column (dot, block, mass
+            //   label, caption), which reads as a stack rather than a float.
+            //   The dot itself is hidden under the body in exactly this case: that is
+            //   correct and accepted — the mark is where the body IS, and the stamp
+            //   and badge carry the point's name too.
+            var bodyLift = 0;
+            if (home === NLB_CP_LABEL_LANE && upDot > 0.15) {
+                if (!bodyObs) bodyObs = nlbMkBodyObstacles(right, up);
+                var capLift = NLB_MK_LABEL_LANE - home;
+                if (capLift < 0) capLift = 0;
+                // ── how much of a REAL collision there is, right now ─────────────
+                //   Sharing a screen column is not a collision. The lift runs along
+                //   the SURFACE NORMAL, which on a tilted track is up-AND-ACROSS, so
+                //   an obstacle can sit high in the caption's column while the caption
+                //   is nowhere near it — and demanding to be above it then throws the
+                //   caption clean off its own dot. That is note 11f's defect re-made
+                //   from the other side: measured at theta = 45 deg, "point A" was
+                //   flung 88 px up-slope-LEFT of the mark it names to clear a mass
+                //   billboard 1.0 units ABOVE it and 0.16 to the side, with nothing
+                //   drawn in between.
+                //   So the lift is scaled by how strongly the apparatus ACTUALLY
+                //   overlaps the caption's ink at its home lane, measured on BOTH
+                //   screen axes over the same ease band. Full ink overlap (a body
+                //   standing on the point — the whole reason this pass exists) gives
+                //   exactly 1 and leaves the clearance untouched; a body merely
+                //   passing overhead scales it away. The AMOUNT still comes from the
+                //   stack below, so the two questions stay separate: "is there
+                //   something here" and "how far above it do I have to be".
+                var trig = 0;
+                for (var b = 0; b < bodyObs.length; b++) {
+                    var ob = bodyObs[b];
+                    var db = p.clone().sub(ob.p);
+                    var gapB = Math.abs(db.dot(right)) - (hw + ob.hw + NLB_BODY_LABEL_GAP);
+                    if (gapB >= NLB_LABEL_EASE) continue;
+                    var kb = (gapB <= 0) ? 1 : (1 - gapB / NLB_LABEL_EASE);
+                    // the vertical half of the same measurement — eased over the same
+                    // band, so the collision strength is continuous in the body's pose
+                    // on both axes and can only ever reach zero smoothly.
+                    var gapU = Math.abs(db.dot(up)) - (hh + ob.hh);
+                    var kvv = (gapU <= 0) ? 1 : (gapU >= NLB_LABEL_EASE ? 0 : (1 - gapU / NLB_LABEL_EASE));
+                    if (kb * kvv > trig) trig = kb * kvv;
+                    // The ease scales the WHOLE lift, not just the clearance margin —
+                    // the one place this test cannot copy the caption pass above.
+                    // Two captions share a lane, so there d.dot(up) is ~0 and easing
+                    // the margin alone reaches zero on its own. A body does NOT share
+                    // the lane: on a rising track it sits ABOVE the caption, d.dot(up)
+                    // goes negative, and that term — which no ease touches — GROWS as
+                    // the body climbs away. Measured before this line was written: the
+                    // caption stayed pinned at the cap for 2.4 m of travel after the
+                    // body had passed, then fell 1.01 units (107 px) in ONE 16 ms frame
+                    // the moment the ease band expired and the obstacle was dropped
+                    // outright. Scaling the whole lift makes the two branches MEET at
+                    // zero — a caption eased out is a caption skipped — so the lane is
+                    // continuous in the body's position by construction (Rule 32b: no
+                    // motion a student could read as physics).
+                    var wantB = kb * ((hh + ob.hh + NLB_BODY_LABEL_GAP) - db.dot(up)) / upDot;
+                    if (wantB > bodyLift) bodyLift = wantB;
+                }
+                // CAPPED at the flag lane. Note 11f's finding was a caption
+                // floating ~90 px from the dot it names with nothing drawn between, and
+                // an uncapped measured lift re-creates exactly that for a tall body (the
+                // wall slab is 1.76 units). The flag lane is this file's own answer to
+                // "how high clears a body-height object", so the point form is never
+                // lifted past where the post form would already have stood — no worse
+                // than a flag caption in the same geometry, by construction.
+                if (bodyLift > capLift) bodyLift = capLift;
+                bodyLift *= trig;
+                if (bodyLift > lift) lift = bodyLift;
+            }
+            l._nlbMkLift = lift;
+            l._nlbMkBodyLift = bodyLift;
             if (lift > 0) {
-                l.position.y = NLB_MK_LABEL_LANE + lift;
+                l.position.y = home + lift;
                 p.addScaledVector(liftDir, lift);
             }
             placed.push({ p: p, hw: hw, hh: hh });
@@ -49146,6 +50087,55 @@ export const FIELD_3D_RENDERER_CODE = `
             var c = l.parent.localToWorld(l.position.clone());
             var r = nlbSpriteRectPx(l, c, right, up);
             out.push({ id: id, text: l._nlbLblTxt || "",
+                       x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1,
+                       // Note 11f/11g — the lane this caption RESOLVED to on this
+                       // frame, its home lane, and how much of the lift the apparatus
+                       // dodge asked for. A rect alone cannot tell "cleared the body"
+                       // from "never met one", and the lift is the only number that
+                       // distinguishes them.
+                       lane: l.position.y, home_lane: nlbMkLane(id),
+                       lift: l._nlbMkLift || 0, body_lift: l._nlbMkBodyLift || 0 });
+        }
+        return out;
+    }
+    // Note 11g — the apparatus ink the lane above dodges, in the SAME screen px the
+    // caption rects are quoted in. Published because the claim a gate has to make is
+    // "no point caption's ink intersects a body's ink", and half of that is otherwise
+    // unreachable: the meshes live inside this closure and no reader of the concept
+    // JSON can predict where a moving block lands on screen. Read-only, no pixels.
+    function nlbMkBodyRectsPx() {
+        if (typeof camera === "undefined" || !camera) return [];
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var out = [], c = new THREE.Vector3();
+        for (var i = 0; i < nlbIndex.length; i++) {
+            var o = nlbIndex[i];
+            var t = (o && o.userData) ? o.userData.elementType : null;
+            if (t !== "nlb_body" && t !== "nlb_body_label") continue;
+            if (!nlbVisibleUp(o)) continue;
+            o.updateWorldMatrix(true, false);
+            var r = null;
+            if (o.isSprite) {
+                r = nlbSpriteRectPx(o, new THREE.Vector3().setFromMatrixPosition(o.matrixWorld),
+                                    right, up);
+            } else {
+                var geo = o.geometry;
+                if (!geo) continue;
+                if (!geo.boundingBox) geo.computeBoundingBox();
+                var bb = geo.boundingBox;
+                if (!bb || !isFinite(bb.min.x) || !isFinite(bb.max.x)) continue;
+                var xs = [], ys = [];
+                for (var k = 0; k < 8; k++) {
+                    c.set((k & 1) ? bb.max.x : bb.min.x,
+                          (k & 2) ? bb.max.y : bb.min.y,
+                          (k & 4) ? bb.max.z : bb.min.z).applyMatrix4(o.matrixWorld);
+                    var q = nlbProjPx(c);
+                    xs.push(q.x); ys.push(q.y);
+                }
+                r = { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+                      y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+            }
+            out.push({ id: o.userData.id, kind: t,
                        x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1 });
         }
         return out;
@@ -49167,6 +50157,16 @@ export const FIELD_3D_RENDERER_CODE = `
             var id = "checkpoint_" + (c + 1);
             var e = cps ? cps[c] : null;
             if (!e) { nlbMkShow(id, false); continue; }
+            // Note 11e — the FORM, resolved per state and before the show so a
+            // marker is never visible for a frame in the form the state did not
+            // ask for. Anything other than the exact string 'point' is the flag,
+            // which is what makes an absent field byte-identical.
+            // Note 11f — and before the PLACE, because nlbMkPlace now reads the
+            // drawn form to pick the caption's home lane. (nlbStackMarkerLabels
+            // re-reads it every frame regardless, so this only removes a one-frame
+            // stale lane on the entry frame — but a funnel that is right only
+            // because a later pass repairs it is not a funnel.)
+            nlbMkForm(id, nlbCpForm(e) === "point");
             nlbMkPlace(id, e.s_m);
             nlbMkLabel(id, e.label || ("point " + (c + 1)));
             nlbMkShow(id, true);
@@ -49183,7 +50183,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var cps = eng.checkpoint_state || [];
         var cpOut = [];
         for (var i = 0; i < cps.length; i++) {
-            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count, text: cps[i].text });
+            cpOut.push({ s_m: cps[i].s_m, body_id: cps[i].body_id, count: cps[i]._count,
+                         text: cps[i].text, marker: cps[i].marker });
         }
         window.PM_nlbMarkers = {
             h_ref_m: eng.energy_h_ref_m || 0,
@@ -49197,6 +50198,8 @@ export const FIELD_3D_RENDERER_CODE = `
             checkpoints: cpOut,
             // The marker lane's screen footprint — see nlbMarkerLabelRects.
             label_rects: nlbMarkerLabelRects(),
+            // The apparatus ink that lane dodges — see nlbMkBodyRectsPx (note 11g).
+            body_rects: nlbMkBodyRectsPx(),
             // The RENDERED state of each instrument, read straight off the Three
             // object. The computed number above and the drawn object below are two
             // different claims and both have to be checkable — a marker at the right
@@ -49211,9 +50214,31 @@ export const FIELD_3D_RENDERER_CODE = `
         var out = {};
         for (var i = 0; i < ids.length; i++) {
             var o = nlbFindById(ids[i]), l = nlbFindById(ids[i] + "_label");
+            // note 11e — the FORM is reported as drawn (read off the meshes),
+            // not as authored: a marker that asked for a dot and got a post is
+            // exactly the presence-is-not-correctness failure this probe exists
+            // to catch, so the authored field is never the thing quoted.
+            var ud = o ? (o.userData || {}) : {};
+            // note 11h — the DRAWN ink of the marker and of its caption. Same
+            // presence-is-not-correctness argument as the two visibility flags above:
+            // the dwell highlight is a colour and nothing else, so a colour nothing can
+            // read is a claim nothing can check. Both are read off the object that
+            // actually renders — the marker's own material and the sprite's retained
+            // draw colour — never off the palette constant the highlight is derived from.
+            var mkm = (ud._nlbDot && ud._nlbDot.visible) ? ud._nlbDot
+                    : (ud._nlbPost || ud._nlbDot || null);
             out[ids[i]] = o
                 ? { visible: !!o.visible, x: o.position.x, y: o.position.y, sx: o.scale.x,
-                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null }
+                    label: l ? (l._nlbLblTxt || "") : null, labelVisible: l ? !!l.visible : null,
+                    postVisible: ud._nlbPost ? !!ud._nlbPost.visible : null,
+                    dotVisible: ud._nlbDot ? !!ud._nlbDot.visible : null,
+                    dotY: ud._nlbDot ? ud._nlbDot.position.y : null,
+                    markerHex: (mkm && mkm.material && mkm.material.color)
+                        ? ("#" + mkm.material.color.getHexString()) : null,
+                    markerOpacity: (mkm && mkm.material) ? mkm.material.opacity : null,
+                    labelInk: l ? (l._pmColor || null) : null,
+                    dwellLit: !!(mkm && mkm.material && mkm.material.userData &&
+                                 mkm.material.userData._nlbDwellLit) }
                 : null;
         }
         return out;
@@ -49785,6 +50810,43 @@ export const FIELD_3D_RENDERER_CODE = `
             if (cp.mode === "first" && cp._count > 1) continue;
             cp.text = nlbCpStampText(eng, cp, b, snap);
             changed = true;
+            // ── Note 11d — SCHEDULE the teaching dwell ────────────────────────
+            //   Deliberately sited AFTER the stamp line and INSIDE the same
+            //   branch: the 'first' early-return above has already sent every
+            //   unstamped re-crossing away, so a dwell can only ever be attached
+            //   to a stamp that is actually on screen. No dwell without a stamp,
+            //   and no stamp-mode rule to keep in sync in two places.
+            //   The window is anchored on the CROSSING INSTANT (note 11b's own
+            //   fraction), not on this frame's end, so the pause is the same
+            //   length of physics whether the browser folded 1 or 3 steps into
+            //   this frame — the Rule 36 requirement that made note 11b exist.
+            //   Carved out of a sandbox (Rule 37: the explore state never stops)
+            //   and of a seized scene (a teacher dragging owns the clock).
+            if (cp.dwell_ms > 0 && cp._count >= cp.dwell_from_pass && eng.mode !== "sandbox"
+                && !window.PM_nlbSweepSeized && !window.PM_nlbBodyDragged) {
+                var fD = nlbCpFrac(cp, b);
+                var tCross = eng._tPrevMs + (fD != null ? fD : 1) * (eng.t_ms - eng._tPrevMs);
+                var until = tCross + cp.dwell_ms;
+                // max(), not overwrite: when ONE step carries the body through two
+                // flags, the longer explanation wins and BOTH stamps are readable
+                // under a single freeze. A plain assignment would let the second
+                // (possibly shorter) dwell truncate the first. The until-beats-now
+                // guard below drops a window that has already expired within
+                // the frame that opened it, so no gate can latch on dead time.
+                if (until > eng.t_ms && (eng._dwell_until_ms == null || until > eng._dwell_until_ms)) {
+                    eng._dwell_until_ms = until;
+                    eng._dwell_label = cp.label;
+                    // Note 11h — WHO the window belongs to, latched with the window
+                    // itself. The label alone cannot answer it: two checkpoints may
+                    // legitimately carry the same authored string (a there-and-back
+                    // state naming both crossings "the same spot"), and the
+                    // highlight has to light the ONE marker the body is standing
+                    // on, not both. Written in the same branch and under the same
+                    // max() rule as the two lines above, so the owner is always the
+                    // checkpoint whose window is the one actually open.
+                    eng._dwell_cp_idx = i;
+                }
+            }
             var g = nlbFindById("checkpoint_" + (i + 1));
             if (g) g.userData._nlbFired = true;
         }
@@ -50316,6 +51378,21 @@ export const FIELD_3D_RENDERER_CODE = `
                     body_id: ce.body_id || "",
                     capture: (ce.capture && ce.capture.length) ? ce.capture : ["K", "U_grav"],
                     mode: (ce.capture_mode === "every") ? "every" : "first",
+                    // note 11d — the teaching dwell, sanitised HERE (where every
+                    // other checkpoint default is resolved) so the per-frame
+                    // scheduler is a straight number compare and can never see a
+                    // string, a negative or an unbounded value. Absent / invalid
+                    // ⇒ 0 ⇒ the scheduler's first test fails and the whole
+                    // feature is inert, byte for byte.
+                    dwell_ms: (typeof ce.dwell_ms === "number" && isFinite(ce.dwell_ms) && ce.dwell_ms > 0)
+                        ? Math.min(ce.dwell_ms, NLB_DWELL_MAX_MS) : 0,
+                    dwell_from_pass: (typeof ce.dwell_from_pass === "number" && isFinite(ce.dwell_from_pass)
+                        && ce.dwell_from_pass >= 1) ? Math.floor(ce.dwell_from_pass) : 1,
+                    // note 11e — the resolved marker FORM, sanitised here with
+                    // every other checkpoint default. Carried so the PM_ mirror
+                    // reports what was asked for next to what was drawn; the
+                    // display swap resolves through the same nlbCpForm.
+                    marker: nlbCpForm(ce),
                     // note 11c: both latches are (re)written by nlbCpArm() below,
                     // once eng.bodies exists and every body_id has been resolved.
                     _side: null, _home: false, _count: 0, text: ""
@@ -51594,6 +52671,59 @@ export const FIELD_3D_RENDERER_CODE = `
         //   eng.slow_active is false in every state with no spring_action, in a
         //   sandbox, and once a teacher seizes => hPhys === h, bit for bit.
         var hPhys = eng.slow_active ? (h / eng.spring_slow_factor) : h;
+        // ── Note 11d — the CHECKPOINT DWELL gate ────────────────────────────────
+        //   The same dt multiplier the slow-motion badge above documents, taken to
+        //   its limit: a bounded window in which the factor is infinite. Sited HERE,
+        //   on the ONE dt every integrator branch reads, rather than on the
+        //   per-body nlbLatchedNow branch, for two reasons that are not stylistic:
+        //     • that branch ZEROES b.v (it models a mechanical latch), which would
+        //       blank the very velocity the stamp is teaching and resume the body
+        //       from rest — the pause would rewrite the physics it exists to show;
+        //     • it is per-body, so on a coupled/pulley state (Branch B) holding one
+        //       body while its partner ran would stretch an inextensible string.
+        //   A WHOLE-SCENE dt of zero has neither problem: every body's s and v are
+        //   simply rewritten to the values they already hold.
+        //   Rule 36, in full:
+        //     • hPhys is only ever MULTIPLIED (never divided) downstream, so exact
+        //       0 is safe and is what we use — an epsilon would creep the pose and
+        //       break the held frame's byte-stability;
+        //     • the resume frame integrates ONLY its post-window fraction, so N
+        //       folded micro-steps still cover exactly the same physics as N
+        //       separate frames (without this line a 3-step frame and three 1-step
+        //       frames disagree by up to one h). This is phsComputeFreeze's
+        //       piecewise-affine idiom applied to a single window;
+        //     • eng.t_ms is untouched — the phase clock, narration, reveals and
+        //       cues all keep running (Rule 26). We stop the physics, not the state.
+        //   Rule 37: a trusted sweep or body drag CANCELS an open window outright —
+        //   a teacher who grabs the block gets it immediately, never after a pause.
+        //   Note 11h: the OWNER index is cleared on both exits, beside the two
+        //   fields it was latched with. It is what nlbDwellEmphasis reads to decide
+        //   which marker is lit, so a stale index would leave one point brightened
+        //   after its window closed — the residue the highlight's own restore pass
+        //   exists to prevent, handed back one level up.
+        if (eng._dwell_until_ms != null) {
+            if (window.PM_nlbSweepSeized || window.PM_nlbBodyDragged) {
+                eng._dwell_until_ms = null; eng._dwell_label = ""; eng._dwell_cp_idx = null;
+            } else if (eng.t_ms <= eng._dwell_until_ms) {
+                hPhys = 0;                                    // wholly inside the window
+            } else {
+                var rawMs = eng.t_ms - eng._tPrevMs;          // resume frame: the active tail only
+                if (rawMs > 0) hPhys *= (eng.t_ms - Math.max(eng._tPrevMs, eng._dwell_until_ms)) / rawMs;
+                eng._dwell_until_ms = null; eng._dwell_label = ""; eng._dwell_cp_idx = null;
+            }
+        }
+        // DERIVED mirror for the probes (and for THE EYE's own diagnostics); nothing
+        // in the engine ever reads it back.
+        window.PM_nlbDwell = (eng._dwell_until_ms != null)
+            ? { active: true, until_ms: eng._dwell_until_ms, label: eng._dwell_label || "",
+                // Note 11h — the OWNER, published beside the window it belongs to.
+                // The label is not an identifier (two checkpoints may share one), so
+                // without this a probe cannot tell WHICH point the highlight lit and
+                // the one thing worth asserting about the fix is unassertable.
+                cp_idx: (eng._dwell_cp_idx != null) ? eng._dwell_cp_idx : null,
+                marker_id: (eng._dwell_cp_idx != null)
+                    ? ("checkpoint_" + (eng._dwell_cp_idx + 1)) : null }
+            : null;
         // SEAM K read point: the dt the integrator actually took this frame, in
         // SECONDS. The energy layer needs it for the ripple correction, and a probe
         // needs it to tell a slowed frame from a real-time one.
@@ -63764,6 +64894,2402 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── organic_structure (ONE scenario for ALL 32 ORGANIC simulations) ──────
+    //   NEW scenario, Phase-0 dispatch S1 (2026-08-09). Spec:
+    //   docs/ORGANIC_ENGINE_PLAN.md (the all-32 union + the three-LAYER
+    //   architecture), docs/ORGANIC_PHASE0_CONFORMATION.md (the O-0 contract
+    //   at :110-167), docs/concepts/chemistry/cyclohexane_chair_flip_skeleton.md
+    //   (the hardest consumer; §9 buy list N-1..N-20, §9E enum ledger).
+    //
+    //   S1 BUILDS THE SUBSTRATE ONLY: S1 (a multi-atom skeleton from a molecule
+    //   TABLE with explicit connectivity, per-atom identity + labels, drawn
+    //   bonds, >7 atoms) and S3 (the camera solve including sight-along-a-bond,
+    //   the occlusion discipline, ONE formula surface, ring-gated controls, a
+    //   value-only HUD, closed form in state-local t). The driven dihedral (A1),
+    //   the ring pucker + a/e tagging (A2), the stereo ops (A3), the energy
+    //   instrument (S2), rehybridisation (S4) and every Layer-B/C capability are
+    //   DECLARED here and REJECTED LOUDLY at apply — never silently defaulted.
+    //
+    //   NAMING: the prefix is ORG_/org, NOT the OS_/os of the spec documents —
+    //   OS_ is already 380 identifiers of orbital_shapes in this file, and a
+    //   second OS_MOLECULES would have collided silently.
+    //
+    //   PER-STATE CONFIG (the frozen contract; json-author targets this):
+    //     state.organic_structure = {
+    //       molecule,                      // TABLE KEY into ORG_MOLECULES,
+    //                                      // growable by data row (see the
+    //                                      // freeze note below) — NOT an enum
+    //       mode,                          // CLOSED, ORG_MODES
+    //       torsion: { about,              // OPTIONAL; must equal the molecule's
+    //                                      // torsion_bond or it is REJECTED (A1)
+    //                  phi_deg,            // the DESTINATION, in degrees
+    //                  pose,               // CLOSED, ORG_POSES — snaps phi_deg
+    //                  phi_from,           // the sweep's start (A1)
+    //                  phi_at_ms,          // STEMMED, never a bare at_ms: the pin
+    //                  phi_ramp_ms,        // evaluator pairs <stem>_at_ms with
+    //                                      // <stem>_ramp_ms inside an OBJECT and
+    //                                      // reads a bare at_ms only in an ARRAY
+    //                                      // leg. ORG_MISNAMED_FIELDS rejects the
+    //                                      // bare spelling LOUDLY.
+    //                  continuous },       // explore free-run: true (30 deg/s) or
+    //                                      // a number of deg/s; phi wraps forever
+    //       show_h: 'none'|'all'|['C1',..],// N-1, per-state H gating (an
+    //                                      // occlusion CORRECTNESS control on
+    //                                      // an 18-atom skeleton, not a taste)
+    //       show_labels,                   // per-atom id sprites
+    //       camera: { az, el, dist } | { sight_along: '<bond id>', dist, newman },
+    //       camera_steps: [{at_ms, az, el, dist, ease_ms}],   // the THIRD verbatim
+    //                                      // adoption of the orbital_shapes /
+    //                                      // vector_geometry_3d mechanism
+    //       spin_start_ms, spin_rate,      // deg/s about the CAMERA VIEW AXIS
+    //                                      // (N-20; commit 075d5aa's class)
+    //       show_hud, hud_lines: [...],    // CLOSED, ORG_HUD_LINES
+    //       show_formula, formula,         // ONE surface, Rule 34b
+    //       controls: [{id, min_ring}]|[id],          // RING-GATED, ORG_CONTROL_IDS
+    //       static_readouts: [...],
+    //       // ── dispatch S2, the energy instrument ──────────────────────────
+    //       energy: { show, curve,         // ROW KEY into ORG_ENERGY_TABLE (a
+    //                                      // published-value REGISTRY, growable
+    //                                      // by row — never a frozen enum)
+    //                 coordinate,          // CLOSED, ORG_ENERGY_COORDS
+    //                 show_point, show_barrier, label_stationary,
+    //                 reveal_at_ms, reveal_ramp_ms },   // the pin evaluator
+    //                                      // pairs <stem>_at_ms with
+    //                                      // <stem>_ramp_ms inside an OBJECT
+    //       measure: [{ kind,              // CLOSED, ORG_MEASURE_KINDS
+    //                   between: [ids],    // ARITY IS THE N-9 BAN: angle 3,
+    //                                      // distance 2, torsion 4 NAMED atoms,
+    //                                      // so no nearest/closest mode exists
+    //                   label, reference_value_pm, reference_label,
+    //                   at_ms, ramp_ms }]  // an ARRAY LEG: bare at_ms/ramp_ms
+    //     }
+    //
+    //   S2 (2026-08-09) BUILDS: U4, the energy instrument, generalised from the
+    //   start — an E(coordinate) curve with a point riding it in sync with the
+    //   molecule, named stationary points rendered from data, the measure family
+    //   (angle | distance | torsion) with a drawn reference standard, and the
+    //   four HUD lines energy / barrier / angle / distance. DECISION 1 IS THE
+    //   HARD FLOOR: every number is a published literature value carrying a
+    //   source or a needs_verification flag that the canvas itself stamps; the
+    //   engine computes no energy at any coordinate.
+    //
+    //   THE FREEZE (§9E + P2-6, extended by this dispatch to EVERY closed enum):
+    //   a CLOSED ENUM is a fixed VOCABULARY — reopening it churns every shipped
+    //   concept, so it is closed over all 32 sims and each member is either
+    //   IMPLEMENTED or DEFERRED-with-a-named-owner. A TABLE KEY SET
+    //   (ORG_MOLECULES, the energy-curve registry, the substituent-group
+    //   registry) is NOT an enum: a new key is a new DATA ROW with a
+    //   chemistry-author-verified geometry or literature value, and adding one
+    //   binds nothing already shipped. Freezing those three at their O-0 size is
+    //   provably wrong (32 sims need benzene, phenol, a reaction profile per
+    //   mechanism, NO2/OMe/CN/phenyl...). The gate asserts CLOSURE AGAINST THE
+    //   TABLE for the key sets and IMPLEMENTED-union-DEFERRED for the enums.
+    //
+    //   A1 (2026-08-10) BUILDS: U2, the DRIVEN dihedral — phi as a closed-form
+    //   function of state-local t (orgPhiAt: a scripted mgRamp sweep, a wrapping
+    //   free-run for the explore sandbox, or S1's static pose), the five pose
+    //   targets as exact destinations, and the 'phi' control with the Rule-39b
+    //   drag-seize. It adds NO second coordinate source: orgPhiAt returns a
+    //   scalar, orgBuildGeometry still performs the rotation, and the energy rider
+    //   still MEASURES the built geometry, so the S2 instrument needed no change.
+    //
+    //   D-1: EVERY position, the camera pose and the spin angle are closed-form
+    //   pure functions of state-local t. No integrator anywhere, so a
+    //   SET_TIME_FREEZE pin reproduces byte-identical pixels and this scenario
+    //   joins the accumulator-free snap-to-pin set.
+    //   Rule 29: the ONLY things that change size are real magnitudes — bond
+    //   lengths (C-C 154 pm, C-H 109 pm, C=C 134 pm) and atomic radii. Emphasis
+    //   is brightness (applyGlowEmphasis), never size.
+    //   REUSE (docs §reuse, not re-derived here): mgIdealDirs(4) IS the
+    //   tetrahedron every sp3 centre is completed against; mgIdealDirs(3) is
+    //   every sp2 centre; MG_BOND_LEN is the ONE bond-length scale (a third copy
+    //   is forbidden, so ORG_U_PER_A is DERIVED from it); mgRamp/mgSmooth01/
+    //   mgNorm/mgDot/mgAngleDeg are the shared closed-form kit; the ring-gated
+    //   control list is bonding_scene's shape, cloned locally (never refactored
+    //   into a sealed sibling).
+
+    // Scene units per angstrom. DERIVED from MG_BOND_LEN so a C-C bond draws at
+    // exactly the fleet's one bond length and C-H draws SHORTER in the true
+    // ratio (Rule 29 — a real magnitude). Never a third bond-length constant.
+    var ORG_U_PER_A = MG_BOND_LEN / 1.54;
+    var ORG_CC_A = 1.54, ORG_CH_A = 1.09, ORG_CCd_A = 1.34;
+    // H-C-H on a CH2 centre, from the skeleton §10 parameterisation. A CH3 is an
+    // EXACT mgIdealDirs(4) tetrahedron and takes no constant.
+    var ORG_HCH_DEG = 107.5;
+    // Ball-and-stick display scale on the MG_ELEMENTS radii. NOT a second radius
+    // table and NOT emphasis: the VSEPR radii are solved for a 5-atom centre, and
+    // at 18 atoms the closest projected pair (0.570 A at the solved HOME camera)
+    // is narrower than C+H = 0.76 units of drawn disc, so every atom would fuse
+    // with its neighbour and nothing the narration counts would be countable.
+    // Uniform, so every relative size is preserved. Solved in the gate.
+    var ORG_ATOM_SCALE = 0.50;
+    var ORG_MAX_ATOMS = 24;         // cyclohexane 18; head-room for substituents
+    var ORG_MAX_BONDS = 30;         // cyclohexane 18; ethene draws 2 per double
+    // The solved HOME pose. RE-SOLVED IN THIS DISPATCH in the real perspective
+    // camera at the real atom disc radii, which is what the skeleton §8 asked for
+    // and could not do offline. The design-time estimate (az 254, el 10-12,
+    // ORTHOGRAPHIC, centres only) does NOT survive: at el 11 the 18-atom
+    // cyclohexane skeleton's closest projected DISC pair overlaps by 0.145 scene
+    // units, i.e. two atoms the narration counts fuse into one blob. Swept az
+    // 0..358 x el 0..30 at 1 deg on all eighteen atoms, both acceptance criteria
+    // together (disc gap > 0 AND at least one C-C-H arc within 4.0 deg of its
+    // 109.5 label): the window is el 14..26 at the authored azimuth, 12 deg wide
+    // rather than the 2 deg the orthographic solve predicted. el 18 sits
+    // mid-window: disc gap +0.263 units, best C-C-H projected error 1.96 deg,
+    // shortest projected arm 1.30 units. Reported by check:organic-structure.
+    var ORG_HOME = { az: 254, el: 18, dist: 11.5 };
+    var ORG_CAM_EASE_MS = 900;
+    // The Newman rim convention (contract decision 4). Sighting down a bond puts
+    // the back carbon EXACTLY behind the front one, which is the definition of
+    // the view and also the exact condition under which its three bonds cannot be
+    // read. The conventional fix ships in the ENGINE, not per concept: the back
+    // atom's sphere is withheld, a rim circle is drawn, and its bonds are drawn
+    // from the rim outward. The hydrogen POSITIONS are untouched, so the torsion
+    // the HUD publishes is still measured on the real geometry.
+    var ORG_NEWMAN_RIM_FRAC = 0.55;
+    // ── THE LEGIBILITY MODEL THE CONVENTION WAS MISSING (2026-08-10). Two
+    //   CRITICAL rows, one root cause: the projection was a STATIC SWITCH.
+    //
+    //   (1) WHEN it applies. camera.newman was read once, at apply, so a state
+    //   whose camera FLIES to the bond axis opened on ethane with a carbon
+    //   deleted, a circle floating where it should be and three bond stubs at
+    //   meaningless angles — and held that for most of a 12.5 s flight whose
+    //   whole subject is how the projection is FORMED. The treatment is now a
+    //   CONTINUOUS function of the angle between the sight line and the torsion
+    //   bond axis. Below FULL the two carbon discs have already fused on screen
+    //   (their projected separation 2*d_CC*sin a falls under the two drawn radii
+    //   at a ~ 13.3 deg), so the rim is the only honest picture; above OFF they
+    //   are separately countable and ball-and-stick is. Between them the two
+    //   representations cross-fade. A convention true at one camera pose may
+    //   never be rendered at any other.
+    //   THE BAND IS SOLVED, NOT CHOSEN. The rim may not be drawn while the back
+    //   carbon is still more than ONE ATOM RADIUS off the front carbon's
+    //   projected centre — while it is still recognisably a second atom. Their
+    //   projected separation is d_CC*sin a = 2.0*sin a scene units and a drawn
+    //   carbon radius is 0.46*ORG_ATOM_SCALE = 0.23, so the rim may first appear
+    //   at a = asin(0.115) = 6.6 deg, and OFF is set just inside it. FULL is
+    //   where the two centres are within 0.07 units, i.e. one point on screen.
+    //   A wider band was tried (10/26 deg) and the gate's section-16 clause
+    //   caught it: it ghosted a rim in while the molecule was still plainly two
+    //   carbons three radii apart.
+    var ORG_NEWMAN_FULL_DEG = 2;
+    var ORG_NEWMAN_OFF_DEG = 6.5;
+    //   The weight at which the back atom's sphere is finally withheld and the
+    //   rim alone carries it: the TOP of the fade, never earlier (withheld
+    //   earlier it would vanish while it was still a separable disc).
+    var ORG_NEWMAN_HIDE_W = 0.999;
+    //   (2) WHAT it draws. A Newman projection is a 2-D CONVENTION drawn in a
+    //   3-D scene, and the front C-H cylinder passing over the back H is not
+    //   information — it is an artefact of depth-testing a diagram. Measured at
+    //   the authored camera (dist 8): the back-H disc has projected radius 0.127
+    //   scene units and sits at projected radius 1.127, dead behind the front
+    //   C-H stick (radius 0.075) that runs from the centre out to 1.636. About
+    //   30% of the disc survived, as two ~3 px slivers, so at phi -> 0 the
+    //   hydrogens DISAPPEARED under a caption reading "eclipsed" — the frame
+    //   taught that eclipsing merges atoms, the exact inverse of the
+    //   conservation claim the concept exists to make. The countability solve
+    //   could not see it because it enumerates atom discs only.
+    //   So while the rim is up the scenario paints in PROJECTION ORDER, with
+    //   depth testing off, exactly as the rim and the measurement arcs already
+    //   do. THE ORDER IS A STATED CONVENTION: every stick is painted before
+    //   every ball, so IN THE PROJECTION A BOND MAY NEVER HIDE A COUNTABLE ATOM
+    //   — only another atom may. (Painting back atoms under the front sticks was
+    //   tried first and measured at 9% of the back-H disc surviving at phi = 0;
+    //   the gate's raster says so in section 15.) Depth is still legible: the
+    //   back set is smaller by true perspective, its sticks stop at the rim, and
+    //   it is tinted. Nothing moves and nothing changes size (Rule 29): only the
+    //   paint order changes, and the 0.198-unit radial gap perspective already
+    //   gives between a back disc and its front partner becomes the visible gap
+    //   it always was.
+    var ORG_RO_BACK_BOND = 900, ORG_RO_RIM = 901, ORG_RO_FRONT_BOND = 902;
+    var ORG_RO_BACK_ATOM = 903, ORG_RO_FRONT_ATOM = 904;
+    //   The back set is tinted toward the background while the rim is up. This
+    //   is the "distinguishing back-set colour" of the prevention rule, and it
+    //   is load-bearing rather than decorative: H is #ECEFF1 and the bond stick
+    //   is #CFD8DC, so a back-H disc newly painted OVER a front bond would be
+    //   near-white on near-white and still not countable. Uniform over a whole
+    //   SET and never on one element, so it is a depth convention, not emphasis
+    //   (Rule 29/32e govern brightening ONE focal and forbid size).
+    var ORG_BACK_TINT = "#33414C", ORG_BACK_TINT_T = 0.42;
+
+    // ── CLOSED ENUMS. Frozen at S1 over ALL 32 organic sims. ─────────────────
+    //   Every member is IMPLEMENTED (a live code path today) or DEFERRED (parsed,
+    //   REJECTED LOUDLY, and owned by a named dispatch). The split moves as
+    //   dispatches land; the UNION never changes.
+    //   The lists were named _S1 at that dispatch and are named _IMPL from S2:
+    //   IMPLEMENTED is a property of WHAT RUNS TODAY, so a list whose name says
+    //   "S1" while it holds S2's members is the same category error the CRITICAL
+    //   row closed_enum_deferred_split_written_per_wave_not_per_dispatch names.
+    var ORG_MODES_IMPL = ["rotate", "explore"];
+    var ORG_MODES_DEFERRED = {
+        "pucker": "A2", "lift": "A3", "mirror": "A3", "block_twist": "A3",
+        "rewire": "A3", "compare": "A2", "rehybridise": "S4", "shade": "B1",
+        "delocalise": "B2", "break": "C1", "form": "C1", "approach": "C2",
+        "invert": "C2", "migrate": "C1", "sequence": "C3", "sweep": "C4"
+    };
+    // S2 moves energy/barrier/angle/distance across IN THE SAME CHANGE as the
+    // code that renders them (the HUD block at the foot of the frame pass).
+    var ORG_HUD_LINES_IMPL = ["phi", "bond", "pose", "atom_count",
+        "energy", "barrier", "angle", "distance"];
+    var ORG_HUD_LINES_DEFERRED = {
+        "overlap": "A3", "residual": "A3", "descriptor": "A3",
+        "ae_count": "A2", "population": "A2", "temperature": "A2", "a_value": "A2"
+    };
+    // A1 moves 'phi' across IN THE SAME CHANGE as the slider row + the drag-seize
+    // that make it live (the per-dispatch DEFERRED discipline).
+    var ORG_CONTROL_IDS_IMPL = ["view", "spin", "implicit_h", "phi"];
+    var ORG_CONTROL_IDS_DEFERRED = {
+        "pucker": "A2", "substituent": "A2", "group": "A2",
+        "temperature": "A2", "mirror": "A3", "isomer": "A3", "chain_length": "A3"
+    };
+    // N-8's instrument family. S2 builds the three MEASURED kinds — each reads a
+    // value off the BUILT coordinates and publishes it, so a printed number can
+    // never disagree with the geometry it is drawn on (§G-6: ≤ 2 pm, ≤ 0.5°).
+    // axis_line/plane_disc are REFERENCE constructions of the ring, not
+    // measurements, and they belong with the pucker that defines them.
+    var ORG_MEASURE_KINDS_IMPL = ["angle", "distance", "torsion"];
+    var ORG_MEASURE_KINDS_DEFERRED = { "axis_line": "A2", "plane_disc": "A2" };
+    // Torsion POSES are pure angle look-ups on the molecule's declared reference
+    // dihedral, so all five work on the static substrate today.
+    var ORG_POSES = { "eclipsed": 0, "gauche": 60, "staggered": 60, "syn": 0, "anti": 180 };
+    var ORG_POSES_IMPL = ["staggered", "eclipsed", "anti", "gauche", "syn"];
+    var ORG_POSES_DEFERRED = {};
+    var ORG_PUCKER_PATHS_IMPL = [];
+    var ORG_PUCKER_PATHS_DEFERRED = { "chair_flip": "A2" };
+    // The two PRIMED members are found by this dispatch's enum walk and are NOT
+    // in the drafted contract: the chair-flip walk visits twist-boat at u = 0.36
+    // AND at u = 0.64, and half-chair at u = 0.22 AND u = 0.78. A waypoint that
+    // resolves to a single u cannot name the return leg, so skeleton §5's
+    // seven-leg S5 walk was unauthorable as drafted.
+    var ORG_WAYPOINTS_IMPL = [];
+    var ORG_WAYPOINTS_DEFERRED = {
+        "chair": "A2", "half_chair": "A2", "twist_boat": "A2", "boat": "A2",
+        "twist_boat_alt": "A2", "half_chair_alt": "A2", "chair_alt": "A2"
+    };
+    var ORG_MIRROR_PLANES_IMPL = [];
+    var ORG_MIRROR_PLANES_DEFERRED = { "xy": "A3", "yz": "A3", "xz": "A3", "screen": "A3" };
+    // A COORDINATE is implemented when a live POSE drives it — the rider and the
+    // molecule must read ONE number or the instrument lies. 'torsion' has that
+    // driver today (the measured reference dihedral). 'pucker' is RE-OWNED from
+    // S2 to A2: its registry ROW ships here with its published values, but no
+    // pucker pose exists for a rider to ride, and a rider on a still molecule is
+    // exactly the drift this instrument exists to prevent. The UNION is unchanged
+    // — only which dispatch owns the deferral.
+    var ORG_ENERGY_COORDS_IMPL = ["torsion"];
+    var ORG_ENERGY_COORDS_DEFERRED = {
+        "pucker": "A2", "reaction": "C2", "species": "B3"
+    };
+    // The two CONFORMATIONAL stationary kinds ship with the instrument. The four
+    // REACTION kinds stay declared-and-deferred with their Layer-C owners: no
+    // registry row uses them (a reaction profile needs coordinate:'reaction',
+    // which is C2's), and deleting them would reopen a frozen enum across 32 sims.
+    var ORG_STATIONARY_KINDS_IMPL = ["minimum", "maximum"];
+    var ORG_STATIONARY_KINDS_DEFERRED = {
+        "reactant": "C2", "ts": "C2", "intermediate": "C3", "product": "C2"
+    };
+    // FIELD-level deferral. A closed enum is not the only way a state can ask for
+    // something that does not exist: the scheduled torsion fields are the A1 half
+    // of a block S1 implements statically, and accepting them silently would be
+    // the accepted-but-ignored scar one authoring level down.
+    var ORG_DEFERRED_FIELDS = {
+        "pucker": "A2", "substituents": "A2",
+        "trace": "A2", "population": "A2", "compare": "A2",
+        "mirror": "A3", "block_twist": "A3", "lift": "A3", "rewire": "A3",
+        "rehybridise": "S4", "density": "B1", "delocalisation": "B2"
+    };
+    // ── THE KEY-NAMING TRAP, MADE UNAUTHORABLE (dispatch A1). ────────────────
+    //   deriveStateMeta's pin evaluator pairs '<stem>_at_ms' with
+    //   '<stem>_ramp_ms' inside a nested OBJECT, and honours a BARE 'at_ms' only
+    //   inside an ARRAY LEG ('at_ms'.endsWith('_at_ms') is FALSE). The drafted
+    //   contract wrote the torsion schedule as torsion.{at_ms, ramp_ms} — inside
+    //   an object — so it would have been INVISIBLE to the pin, every state would
+    //   have pinned at DEFAULT_REVEAL_MS = 1500, and every frozen frame would have
+    //   photographed a half-swept molecule. A1 therefore STEMS the keys
+    //   (phi_at_ms / phi_ramp_ms) and rejects the bare spelling LOUDLY, so the
+    //   trap cannot be re-authored by a later concept that copies the old doc.
+    //   Same shape as the S2 energy block's reveal_at_ms / reveal_ramp_ms.
+    var ORG_MISNAMED_FIELDS = {
+        "torsion.at_ms": "torsion.phi_at_ms",
+        "torsion.ramp_ms": "torsion.phi_ramp_ms",
+        "torsion.duration_ms": "torsion.phi_ramp_ms"
+    };
+    function orgKeys(o) { var k, a = []; for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) a.push(k); return a; }
+    var ORG_MODES = ORG_MODES_IMPL.concat(orgKeys(ORG_MODES_DEFERRED));
+    var ORG_HUD_LINES = ORG_HUD_LINES_IMPL.concat(orgKeys(ORG_HUD_LINES_DEFERRED));
+    var ORG_CONTROL_IDS = ORG_CONTROL_IDS_IMPL.concat(orgKeys(ORG_CONTROL_IDS_DEFERRED));
+    var ORG_MEASURE_KINDS = ORG_MEASURE_KINDS_IMPL.concat(orgKeys(ORG_MEASURE_KINDS_DEFERRED));
+
+    // ── THE MOLECULE TABLE (a growable KEY SET, not a frozen enum) ───────────
+    //   Geometry is GENERATED from connectivity + hybridisation against
+    //   mgIdealDirs, never hand-tabled coordinates: a coordinate table is the
+    //   second geometry source the reuse contract exists to prevent, and it does
+    //   not scale to 32 sims. ring_param is the skeleton §10 chair
+    //   parameterisation (ring radius and pucker solved for C-C = 1.540 A and
+    //   C-C-C = 111.4 deg), the ONE place a published ring geometry is imported.
+    var ORG_MOLECULES = {
+        methane:     { formula: "CH\\u2084", carbons: 1, kind: "chain" },
+        ethane:      { formula: "C\\u2082H\\u2086", carbons: 2, kind: "chain",
+                       torsion_bond: "C1-C2", ref_dihedral: ["C1H1", "C1", "C2", "C2H1"],
+                       default_pose: "staggered" },
+        propane:     { formula: "C\\u2083H\\u2088", carbons: 3, kind: "chain",
+                       torsion_bond: "C1-C2", ref_dihedral: ["C1H1", "C1", "C2", "C3"] },
+        butane:      { formula: "C\\u2084H\\u2081\\u2080", carbons: 4, kind: "chain",
+                       torsion_bond: "C2-C3", ref_dihedral: ["C1", "C2", "C3", "C4"],
+                       default_pose: "anti" },
+        ethene:      { formula: "C\\u2082H\\u2084", carbons: 2, kind: "sp2_pair" },
+        cyclohexane: { formula: "C\\u2086H\\u2081\\u2082", carbons: 6, kind: "ring",
+                       ring_param: { radius_a: 1.4690, half_h_a: 0.2311 },
+                       ref_dihedral: ["C1", "C2", "C3", "C4"] }
+    };
+    // Declared, not built: both need the substituent layer (A3), and authoring
+    // one must fail loudly rather than render an empty stage.
+    var ORG_MOLECULES_DEFERRED = { "stereocentre": "A3", "isomer_set": "A3" };
+
+    // ── THE ENERGY REGISTRY (dispatch S2) ────────────────────────────────────
+    //   A growable PUBLISHED-VALUE TABLE, one row per curve — deliberately NOT a
+    //   closed enum (the CRITICAL row
+    //   closed_enum_freeze_applied_to_a_growable_table_key_set_...: a curve set is
+    //   DATA, and coordinate:'reaction' alone needs one row per mechanism, twelve
+    //   in Wave O-2). Adding a row binds nothing already shipped.
+    //
+    //   DECISION 1 IS THE HARD FLOOR: the engine never COMPUTES an energy. Every
+    //   number below is a literature value a student is examined on, and every
+    //   row carries either a SOURCE string or needs_verification:true. A row with
+    //   neither is a gate failure, so an unstamped number cannot reach a screen
+    //   without saying so.
+    //
+    //   THE INTERPOLATION IS NAMED AND DOCUMENTED: raised-cosine between
+    //   consecutive published stationary points,
+    //       E(x) = E_i + (E_{i+1} - E_i) * (1 - cos(pi*s)) / 2,  s = (x-x_i)/(x_{i+1}-x_i)
+    //   chosen for two reasons and not for smoothness. (i) dE/dx is exactly zero
+    //   AT every knot, so each published point really is a stationary point of
+    //   the drawn curve rather than a corner the eye reads as one. (ii) On evenly
+    //   spaced alternating knots it is IDENTICALLY the textbook torsional form
+    //   E = (V/2)(1 + cos n phi) — for ethane, knots at 0/60/120... of 12/0 give
+    //   exactly 6(1 + cos 3phi). So the standard curve is reproduced, not
+    //   approximated, and the gate asserts that identity to 1e-9.
+    //
+    //   The stationary KIND vocabulary is the frozen enum; only 'minimum' and
+    //   'maximum' are implemented, and the marker style table below holds exactly
+    //   those two plus a neutral default, so no deferred kind is dispatched on.
+    var ORG_ENERGY_TABLE = {
+        ethane: {
+            coordinate: "torsion", units: "kJ/mol", x_min: 0, x_max: 360,
+            x_label: "\\u03C6 (\\u00B0)", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
+            zero_at: "staggered",
+            // STAMPED by the chemistry-author sourcing pass of 2026-08-10 (A1
+            // ledger item a). No numeric change: 12 is kept over 12.1 because the
+            // H/H eclipsing increment is exactly one third of it (3 x 4.0 = 12),
+            // and the same increment set reproduces butane's 16 and 19 exactly.
+            source: "Kemp & Pitzer, JACS 59 (1937) 276 (2750 cal/mol, first determination); "
+                + "Weiss & Leroi, J. Chem. Phys. 48 (1968) 962 (V3 ~1024 cm-1); "
+                + "McMurry / Vollhardt & Schore / Clayden: 12 kJ/mol (2.9 kcal/mol). "
+                + "Band 12.0-12.5; 12 keeps the H/H eclipsing increment at exactly 4.0",
+            needs_verification: false,
+            stationary: [
+                { x: 0, e: 12, kind: "maximum", label: "eclipsed" },
+                { x: 60, e: 0, kind: "minimum", label: "staggered" },
+                { x: 120, e: 12, kind: "maximum", label: "eclipsed" },
+                { x: 180, e: 0, kind: "minimum", label: "staggered" },
+                { x: 240, e: 12, kind: "maximum", label: "eclipsed" },
+                { x: 300, e: 0, kind: "minimum", label: "staggered" },
+                { x: 360, e: 12, kind: "maximum", label: "eclipsed" }
+            ]
+        },
+        butane: {
+            coordinate: "torsion", units: "kJ/mol", x_min: 0, x_max: 360,
+            x_label: "\\u03C6 (\\u00B0)", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
+            zero_at: "anti",
+            source: "McMurry, Organic Chemistry: anti 0 / gauche +3.8 (0.9 kcal) / CH3-H eclipsed +16 "
+                + "(3.8 kcal) / syn +19 (4.5 kcal); Eliel & Wilen (1994) eclipsing-strain increments "
+                + "(H/H 4.0, CH3/H 6.0, CH3/CH3 11.0, gauche 3.8) reproduce all four exactly. "
+                + "Syn is a transition state: literature band 19-21 kJ/mol, keep 19",
+            needs_verification: false,
+            // A1 LEDGER ITEM (b). orgEnergyRange returns barrier = hi - lo, which
+            // for butane is 19 — the anti->syn barrier, NOT the interconversion
+            // barrier a textbook quotes for butane (16 from anti, 12.2 from
+            // gauche). Ethane's 12 is unambiguous and takes the default label;
+            // butane's is not, so the row NAMES it and every surface that prints
+            // the number prints that name. Unlabelled, a teacher reads 19 as the
+            // rotation barrier.
+            barrier_label: "syn barrier",
+            stationary: [
+                { x: 0, e: 19, kind: "maximum", label: "syn" },
+                { x: 60, e: 3.8, kind: "minimum", label: "gauche" },
+                { x: 120, e: 16, kind: "maximum", label: "eclipsed" },
+                { x: 180, e: 0, kind: "minimum", label: "anti" },
+                { x: 240, e: 16, kind: "maximum", label: "eclipsed" },
+                { x: 300, e: 3.8, kind: "minimum", label: "gauche" },
+                { x: 360, e: 19, kind: "maximum", label: "syn" }
+            ]
+        },
+        cyclohexane: {
+            // coordinate 'pucker' is DEFERRED to A2 (no pose drives it yet), but
+            // the ROW is data and ships now, verified, so A2 adds a driver and
+            // not a table. Knot positions in u are skeleton N-2's.
+            coordinate: "pucker", units: "kJ/mol", x_min: 0, x_max: 1,
+            x_label: "flip progress u", y_label: "E (kJ\\u00B7mol\\u207B\\u00B9)",
+            zero_at: "chair",
+            source: "chemistry block \\u00A7A-1: Anet & Bourn, JACS 89 (1967) 760; "
+                + "Squillacote et al., JACS 97 (1975) 3244; Eliel & Wilen (1994) ch.11; McMurry",
+            needs_verification: false,
+            stationary: [
+                { x: 0.00, e: 0, kind: "minimum", label: "chair" },
+                { x: 0.22, e: 45, kind: "maximum", label: "half-chair" },
+                { x: 0.36, e: 23, kind: "minimum", label: "twist-boat" },
+                { x: 0.50, e: 29, kind: "maximum", label: "boat" },
+                { x: 0.64, e: 23, kind: "minimum", label: "twist-boat" },
+                { x: 0.78, e: 45, kind: "maximum", label: "half-chair" },
+                { x: 1.00, e: 0, kind: "minimum", label: "chair" }
+            ]
+        }
+    };
+    var ORG_STATIONARY_STYLE = {
+        minimum: { color: "#81C784", r: 6 },
+        maximum: { color: "#FF8A65", r: 6 }
+    };
+    var ORG_STATIONARY_STYLE_DEFAULT = { color: "#B0BEC5", r: 6 };
+    /** The published value at a coordinate. Pure, closed form, no integrator. */
+    function orgEnergyAt(row, x) {
+        if (!row || !row.stationary || row.stationary.length < 2) return null;
+        var s = row.stationary, i;
+        if (x <= s[0].x) return s[0].e;
+        if (x >= s[s.length - 1].x) return s[s.length - 1].e;
+        for (i = 0; i + 1 < s.length; i++) {
+            if (x >= s[i].x && x <= s[i + 1].x) {
+                var span = s[i + 1].x - s[i].x;
+                if (span <= 0) return s[i].e;
+                var u = (x - s[i].x) / span;
+                // AT a published point, return the PUBLISHED number verbatim. The
+                // raised cosine reaches it to 1 ulp anyway, but 19 + (3.8 - 19)
+                // is 3.8000000000000007 in binary floating point, and a value a
+                // student is examined on must BE the value, not round to it.
+                if (u <= 0) return s[i].e;
+                if (u >= 1) return s[i + 1].e;
+                return s[i].e + (s[i + 1].e - s[i].e) * (1 - Math.cos(Math.PI * u)) / 2;
+            }
+        }
+        return s[s.length - 1].e;
+    }
+    /** Published lo/hi and the barrier = hi - lo, from the TABLE, never sampled. */
+    function orgEnergyRange(row) {
+        if (!row || !row.stationary || !row.stationary.length) return null;
+        var lo = Infinity, hi = -Infinity, i;
+        for (i = 0; i < row.stationary.length; i++) {
+            if (row.stationary[i].e < lo) lo = row.stationary[i].e;
+            if (row.stationary[i].e > hi) hi = row.stationary[i].e;
+        }
+        return { lo: lo, hi: hi, barrier: hi - lo };
+    }
+    /**
+     * THE ONE COORDINATE. The rider and the molecule must read the SAME number:
+     * a rider that drifts from the pose is the only failure this instrument can
+     * have. So the coordinate is MEASURED on the built coordinates (never read
+     * off the authored field), by the same function that publishes PM_orgPhi.
+     */
+    function orgMeasuredPhi(geom, mol) {
+        if (!geom || !mol || !mol.ref_dihedral) return null;
+        var byId = {}, i, r = mol.ref_dihedral;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        if (!byId[r[0]] || !byId[r[1]] || !byId[r[2]] || !byId[r[3]]) return null;
+        return orgDihedral(byId[r[0]].p, byId[r[1]].p, byId[r[2]].p, byId[r[3]].p);
+    }
+    /**
+     * The whole live state of the energy instrument, as ONE pure value. The frame
+     * pass calls this exactly once and feeds the graph, the HUD and the rider
+     * from the same object, so no second call site can disagree with the pose.
+     */
+    function orgEnergyState(os, geom, mol) {
+        var en = os && os.energy;
+        if (!en || !en.show) return null;
+        var row = ORG_ENERGY_TABLE[en.curve];
+        if (!row) return null;
+        var x = null;
+        if ((en.coordinate || row.coordinate) === "torsion") x = orgMeasuredPhi(geom, mol);
+        if (x == null) return null;
+        var rng = orgEnergyRange(row);
+        return {
+            row: row, curve: en.curve, x: x, e: orgEnergyAt(row, x),
+            lo: rng.lo, hi: rng.hi, barrier: rng.barrier,
+            // A1 ledger (b): hi - lo is not always "the barrier" a textbook
+            // quotes. A row whose span names a SPECIFIC stationary point says so,
+            // and every surface that prints the number prints this label.
+            barrierLabel: row.barrier_label || "barrier",
+            units: row.units, verified: !row.needs_verification
+        };
+    }
+
+    // ── THE MEASUREMENT INSTRUMENT FAMILY (N-8, dispatch S2) ─────────────────
+    //   measure: [{ kind, between: [atom ids], label, reference_value_pm,
+    //               reference_label, at_ms, ramp_ms }]
+    //   Arity is part of the kind: angle 3 ids, distance 2 ids, torsion 4 ids.
+    //   N-9 IS A CONTRACT-WIDE BAN, enforced by that arity: a 'distance' names
+    //   exactly two atoms, so no "nearest / closest / minimum contact" mode is
+    //   AUTHORABLE — on this concept or any of the other 31. The measured methyl
+    //   contact is 270 pm in BOTH chair conformers, so a search-based readout
+    //   would report that the flip changed nothing.
+    //   Every value is READ OFF THE BUILT COORDINATES, so the printed number and
+    //   the drawn line cannot disagree (chemistry block \\u00A7G-6).
+    var ORG_MAX_MEASURES = 6;
+    var ORG_MEASURE_ARITY = { angle: 3, distance: 2, torsion: 4 };
+    var ORG_MEAS_ARC_SEGS = 96;
+    var ORG_MEAS_ARC_R = 0.62;          // scene units, at the vertex atom
+    function orgMeasureValue(geom, m) {
+        if (!m || !m.kind) return null;
+        var ids = m.between || [], byId = {}, i;
+        if (ids.length !== ORG_MEASURE_ARITY[m.kind]) return null;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        for (i = 0; i < ids.length; i++) if (!byId[ids[i]]) return null;
+        var out = { kind: m.kind, ids: ids, pts: [] };
+        for (i = 0; i < ids.length; i++) out.pts.push(byId[ids[i]].p);
+        if (m.kind === "distance") {
+            // Angstrom -> picometre. The block quotes pm everywhere.
+            out.value = orgLen(orgSub(out.pts[1], out.pts[0])) * 100;
+            out.unit = "pm";
+            out.text = (m.label ? m.label + " = " : ids[0] + "\\u00B7\\u00B7\\u00B7" + ids[1] + " = ")
+                + out.value.toFixed(0) + " pm";
+        } else if (m.kind === "angle") {
+            out.value = mgAngleDeg(orgSub(out.pts[0], out.pts[1]), orgSub(out.pts[2], out.pts[1]));
+            out.unit = "deg";
+            out.text = (m.label ? m.label + " = "
+                : ids[0] + "\\u2013" + ids[1] + "\\u2013" + ids[2] + " = ")
+                + out.value.toFixed(1) + "\\u00B0";
+        } else {
+            // SIGNED, in (-180, 180]. The chemistry block quotes ring torsions as
+            // +-54.9, and a 305.1 on that line would read as a different number.
+            var d = orgDihedral(out.pts[0], out.pts[1], out.pts[2], out.pts[3]);
+            out.value = (d > 180) ? d - 360 : d;
+            out.unit = "deg";
+            // NAMED BY ITS CENTRAL BOND, never a bare phi. The HUD's own 'phi'
+            // line publishes the molecule's REFERENCE dihedral; a torsion measure
+            // on a different bond printed as a bare phi would put two different
+            // numbers under one symbol on the same screen.
+            out.text = (m.label ? m.label + " = "
+                : "\\u03C6(" + ids[1] + "\\u2013" + ids[2] + ") = ")
+                + out.value.toFixed(1) + "\\u00B0";
+        }
+        return out;
+    }
+    /** The normalised, gated measure list for a state. */
+    function orgMeasureList(raw) {
+        var out = [], i;
+        for (i = 0; i < (raw || []).length && out.length < ORG_MAX_MEASURES; i++) {
+            var m = raw[i];
+            if (m && m.kind) out.push(m);
+        }
+        return out;
+    }
+
+    // ── the loud-rejection channel ───────────────────────────────────────────
+    //   deferred_enum_members_must_be_declared_not_merely_unimplemented: a state
+    //   that authors a deferred member must FAIL VISIBLY at apply, never silently
+    //   render a default scene. The banner is on-canvas (a teacher sees it), the
+    //   console line is machine-readable, and the hit list is what the gate reads.
+    function orgReject(kind, member, owner) {
+        if (!window.PM_orgRejects) window.PM_orgRejects = [];
+        var msg = "organic_structure: " + kind + " \\u0027" + member + "\\u0027 is DECLARED but NOT IMPLEMENTED"
+            + (owner ? " (owner: dispatch " + owner + ")" : "");
+        window.PM_orgRejects.push({ kind: kind, member: member, owner: owner || null });
+        if (console && console.error) console.error(msg);
+        var b = document.getElementById("org_deferred");
+        if (b) { b.textContent = msg; b.style.display = "block"; }
+        return false;
+    }
+    function orgCheckMember(kind, member, implList, defMap) {
+        if (member == null) return true;
+        var i;
+        for (i = 0; i < implList.length; i++) if (implList[i] === member) return true;
+        if (Object.prototype.hasOwnProperty.call(defMap, member)) return orgReject(kind, member, defMap[member]);
+        return orgReject(kind + " (UNKNOWN member — not in the frozen enum)", member, null);
+    }
+
+    // ── geometry kit ─────────────────────────────────────────────────────────
+    function orgCross(a, b) {
+        return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    }
+    function orgAdd(a, b) { return [a[0] + b[0], a[1] + b[1], a[2] + b[2]]; }
+    function orgSub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+    function orgMul(a, s) { return [a[0] * s, a[1] * s, a[2] * s]; }
+    function orgLen(a) { return Math.sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]); }
+    // Rodrigues. The ONE rotation in this scenario: the static torsion, the
+    // view-axis spin and the frame construction all route through it, so there is
+    // exactly one place a rotation convention can be wrong.
+    function orgRotAxis(v, axis, ang) {
+        var k = mgNorm(axis), c = Math.cos(ang), s = Math.sin(ang);
+        var kv = orgCross(k, v), kd = mgDot(k, v);
+        return [v[0] * c + kv[0] * s + k[0] * kd * (1 - c),
+                v[1] * c + kv[1] * s + k[1] * kd * (1 - c),
+                v[2] * c + kv[2] * s + k[2] * kd * (1 - c)];
+    }
+    // The three remaining sp3 directions at a centre whose FIRST bond points
+    // along u. mgIdealDirs(4) is the exact tetrahedron (already verified, never
+    // re-derived): rotate its apex onto u, then spin the tripod by phase.
+    function orgTetraSlots(u, phaseDeg) {
+        var T = mgIdealDirs(4), up = [0, 1, 0], un = mgNorm(u), i, out = [];
+        var ax = orgCross(up, un), axl = orgLen(ax), ang = Math.acos(mgClamp(mgDot(up, un), -1, 1));
+        if (axl < 1e-9) { ax = [1, 0, 0]; ang = (mgDot(up, un) > 0) ? 0 : Math.PI; }
+        for (i = 1; i < 4; i++) {
+            var d = orgRotAxis(T[i], ax, ang);
+            if (phaseDeg) d = orgRotAxis(d, un, phaseDeg * Math.PI / 180);
+            out.push(mgNorm(d));
+        }
+        return out;
+    }
+    // The two remaining sp3 directions at a centre that already has TWO bonds.
+    // Closed form: the outward bisector, opened to ORG_HCH_DEG about the normal.
+    function orgCompleteTwo(e0, e1, hchDeg) {
+        var b = mgNorm([-(e0[0] + e1[0]), -(e0[1] + e1[1]), -(e0[2] + e1[2])]);
+        var n = orgCross(e0, e1);
+        if (orgLen(n) < 1e-9) n = [0, 1, 0];
+        n = mgNorm(n);
+        var h = (hchDeg * Math.PI / 180) / 2, c = Math.cos(h), s = Math.sin(h);
+        return [mgNorm([b[0] * c + n[0] * s, b[1] * c + n[1] * s, b[2] * c + n[2] * s]),
+                mgNorm([b[0] * c - n[0] * s, b[1] * c - n[1] * s, b[2] * c - n[2] * s])];
+    }
+    // The IUPAC dihedral A-B-C-D, in degrees, 0..360, measured on the BUILT
+    // coordinates. The HUD publishes THIS, never the authored number — decision 3
+    // (the claim must never rest on the projection, and never on the author).
+    function orgDihedral(pa, pb, pc, pd) {
+        var b1 = orgSub(pb, pa), b2 = orgSub(pc, pb), b3 = orgSub(pd, pc);
+        var n1 = orgCross(b1, b2), n2 = orgCross(b2, b3), m = orgCross(n1, mgNorm(b2));
+        var x = mgDot(n1, n2), y = mgDot(m, n2);
+        var a = Math.atan2(y, x) * 180 / Math.PI;
+        return (a < 0) ? a + 360 : a;
+    }
+    /**
+     * Build a molecule's ATOM + BOND lists from the table. Angstroms, centroid
+     * at the origin. Pure: same key + same phi in, same coordinates out, so a
+     * frozen pin re-derives byte-identically.
+     */
+    function orgBuildGeometry(molKey, phiDeg) {
+        var m = ORG_MOLECULES[molKey];
+        if (!m) return null;
+        var atoms = [], bonds = [], i, j;
+        var addAtom = function (id, el, p) { atoms.push({ id: id, el: el, p: p }); };
+        var addBond = function (a, b, order) { bonds.push({ id: a + "-" + b, a: a, b: b, order: order || 1 }); };
+        var carbonDirs = [];        // heavy-neighbour directions per carbon
+        if (m.kind === "ring") {
+            // Skeleton §10: carbons at azimuth 60k, alternating +/- half_h in y.
+            var R = m.ring_param.radius_a, hh = m.ring_param.half_h_a;
+            for (i = 0; i < m.carbons; i++) {
+                var az = i * Math.PI / 3;
+                addAtom("C" + (i + 1), "C", [R * Math.cos(az), (i % 2 === 0 ? hh : -hh), R * Math.sin(az)]);
+            }
+            for (i = 0; i < m.carbons; i++) addBond("C" + (i + 1), "C" + ((i + 1) % m.carbons + 1), 1);
+        } else if (m.kind === "sp2_pair") {
+            // Both centres trigonal planar (mgIdealDirs(3)), sharing the C=C axis.
+            addAtom("C1", "C", [-ORG_CCd_A / 2, 0, 0]);
+            addAtom("C2", "C", [ORG_CCd_A / 2, 0, 0]);
+            addBond("C1", "C2", 2);
+        } else {
+            // Alkane zig-zag in the xy plane at the exact tetrahedral angle, so
+            // the C-C-C angle is mgIdealDirs(4)'s, not a second constant.
+            var half = mgAngleDeg(mgIdealDirs(4)[1], mgIdealDirs(4)[2]) / 2 * Math.PI / 180;
+            var dx = ORG_CC_A * Math.sin(half), dy = ORG_CC_A * Math.cos(half);
+            for (i = 0; i < m.carbons; i++) addAtom("C" + (i + 1), "C", [i * dx, (i % 2 === 0 ? 0 : dy), 0]);
+            for (i = 0; i + 1 < m.carbons; i++) addBond("C" + (i + 1), "C" + (i + 2), 1);
+        }
+        // Heavy-neighbour direction lists, then hydrogen completion.
+        var find = function (id) { for (var k = 0; k < atoms.length; k++) if (atoms[k].id === id) return atoms[k]; return null; };
+        var nC = m.carbons;
+        for (i = 0; i < nC; i++) {
+            var cid = "C" + (i + 1), ca = find(cid), dirs = [];
+            for (j = 0; j < bonds.length; j++) {
+                if (bonds[j].a === cid) dirs.push(mgNorm(orgSub(find(bonds[j].b).p, ca.p)));
+                else if (bonds[j].b === cid) dirs.push(mgNorm(orgSub(find(bonds[j].a).p, ca.p)));
+            }
+            carbonDirs.push(dirs);
+            var hDirs = [];
+            if (m.kind === "sp2_pair") {
+                // sp2: the two remaining trigonal directions, coplanar with the
+                // C=C axis. mgIdealDirs(3) rotated so slot 0 lies on that axis.
+                var T3 = mgIdealDirs(3), u3 = dirs[0], up3 = [0, 1, 0];
+                var ax3 = orgCross(up3, u3), l3 = orgLen(ax3);
+                var an3 = Math.acos(mgClamp(mgDot(up3, u3), -1, 1));
+                if (l3 < 1e-9) { ax3 = [1, 0, 0]; an3 = (mgDot(up3, u3) > 0) ? 0 : Math.PI; }
+                hDirs = [mgNorm(orgRotAxis(T3[1], ax3, an3)), mgNorm(orgRotAxis(T3[2], ax3, an3))];
+                // put the H in the molecular plane (z = 0), which is what makes a
+                // cis/trans claim readable at all
+                for (j = 0; j < hDirs.length; j++) hDirs[j] = mgNorm([hDirs[j][0], hDirs[j][1], 0]);
+            } else if (dirs.length === 1) {
+                hDirs = orgTetraSlots(dirs[0], 0);
+            } else if (dirs.length === 2) {
+                hDirs = orgCompleteTwo(dirs[0], dirs[1], ORG_HCH_DEG);
+            } else if (dirs.length === 0) {
+                var T4 = mgIdealDirs(4);
+                hDirs = [T4[0], T4[1], T4[2], T4[3]];
+            } else {
+                hDirs = [mgNorm([-(dirs[0][0] + dirs[1][0] + dirs[2][0]), -(dirs[0][1] + dirs[1][1] + dirs[2][1]), -(dirs[0][2] + dirs[1][2] + dirs[2][2])])];
+            }
+            for (j = 0; j < hDirs.length; j++) {
+                var hid = cid + "H" + (j + 1);
+                addAtom(hid, "H", orgAdd(ca.p, orgMul(hDirs[j], ORG_CH_A)));
+                addBond(cid, hid, 1);
+            }
+        }
+        var geom = { key: molKey, atoms: atoms, bonds: bonds, formula: m.formula, def: m };
+        if (m.torsion_bond && phiDeg != null) orgSetTorsion(geom, m.torsion_bond, phiDeg);
+        // N-4: the scenario places ITSELF around the origin — there is no
+        // authorable camera target (the OPEN scar
+        // field3d_scenario_renders_offcentre_because_camera_target_is_not_authorable
+        // names exactly that as the wrong fix).
+        var cen = [0, 0, 0];
+        for (i = 0; i < atoms.length; i++) { cen[0] += atoms[i].p[0]; cen[1] += atoms[i].p[1]; cen[2] += atoms[i].p[2]; }
+        cen = orgMul(cen, 1 / Math.max(1, atoms.length));
+        for (i = 0; i < atoms.length; i++) atoms[i].p = orgSub(atoms[i].p, cen);
+        return geom;
+    }
+    /** Atoms reachable from the FROM end without crossing the from-stop bond. */
+    function orgSideOf(geom, from, stop) {
+        var seen = {}, stack = [from], out = [];
+        seen[from] = true; seen[stop] = true;
+        while (stack.length) {
+            var cur = stack.pop(); out.push(cur);
+            for (var i = 0; i < geom.bonds.length; i++) {
+                var b = geom.bonds[i], nx = null;
+                if (b.a === cur) nx = b.b; else if (b.b === cur) nx = b.a;
+                if (nx && !seen[nx]) { seen[nx] = true; stack.push(nx); }
+            }
+        }
+        return out;
+    }
+    /**
+     * STATIC torsion: rotate the far side of bondId about the bond axis until
+     * the molecule's reference dihedral reads phiDeg. A1 owns driving phi from t;
+     * S1 owns only the geometry operation, because a static pose IS geometry.
+     */
+    function orgSetTorsion(geom, bondId, phiDeg) {
+        var parts = bondId.split("-"), aId = parts[0], bId = parts[1];
+        var byId = {}, i;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        if (!byId[aId] || !byId[bId]) return;
+        var ref = geom.def.ref_dihedral;
+        if (!ref || !byId[ref[0]] || !byId[ref[3]]) return;
+        var cur = orgDihedral(byId[ref[0]].p, byId[ref[1]].p, byId[ref[2]].p, byId[ref[3]].p);
+        // MEASURED sign: rotating the far side by +delta about the a->b axis
+        // DECREASES the IUPAC dihedral, so the correction is (cur - target). The
+        // gate asserts the achieved phi on the BUILT coordinates, never the
+        // authored number, which is what caught the sign.
+        var d = (cur - phiDeg) * Math.PI / 180;
+        var axis = mgNorm(orgSub(byId[bId].p, byId[aId].p)), org = byId[aId].p;
+        var side = orgSideOf(geom, bId, aId), s = {};
+        for (i = 0; i < side.length; i++) s[side[i]] = true;
+        for (i = 0; i < geom.atoms.length; i++) {
+            if (!s[geom.atoms[i].id] || geom.atoms[i].id === bId) continue;
+            geom.atoms[i].p = orgAdd(org, orgRotAxis(orgSub(geom.atoms[i].p, org), axis, d));
+        }
+    }
+    /** The resolved static phi for a state: explicit degrees beat a pose name. */
+    function orgResolvePhi(mol, tor) {
+        if (!tor) return (mol && mol.default_pose != null) ? ORG_POSES[mol.default_pose] : null;
+        if (tor.phi_deg != null) return tor.phi_deg;
+        if (tor.pose != null) return ORG_POSES[tor.pose];
+        return (mol && mol.default_pose != null) ? ORG_POSES[mol.default_pose] : null;
+    }
+    // ── THE DRIVEN DIHEDRAL (U2, dispatch A1) ────────────────────────────────
+    //   S1 built the static torsion as GEOMETRY (orgSetTorsion). A1 adds the only
+    //   thing missing: WHERE phi is at state-local t. It is a scalar clock, not a
+    //   second geometry path — orgPhiAt returns a number, orgBuildGeometry still
+    //   does every rotation, and the rider still MEASURES the result. That is why
+    //   driving phi needed no energy-side change at all
+    //   (energy_instrument_rider_reads_the_authored_coordinate_... stays closed by
+    //   construction: there is still exactly ONE coordinate source, and it is the
+    //   built geometry).
+    //
+    //   D-1 / Rule 36: a PURE function of ms. No accumulator, so pinning
+    //   t = 3000 -> 9000 -> 3000 reproduces the same molecule byte-identically,
+    //   which is the property that puts a MOVING scenario in the snap-to-pin set.
+    //
+    //   THE AUTHORED NUMBERS ARE TAKEN LITERALLY, never shortest-arc: phi_from 0
+    //   -> phi_deg 360 is one full turn (concept #2's whole teaching move), and a
+    //   shortest-arc interpolation would silently render it as no motion at all.
+    //   An author wanting 350 -> 10 the short way forwards writes 350 -> 370.
+    var ORG_PHI_FREE_DEG_S = 30;        // torsion.continuous default: 12 s / turn
+    function orgPhiAt(mol, tor, ms) {
+        var target = orgResolvePhi(mol, tor);
+        if (!tor) return target;
+        // EXPLORE FREE-RUN. Rule 37: the sandbox clock never stops, so phi wraps
+        // forever. Closed form and wrapped into [0, 360) so the value the slider
+        // and the HUD read is the value the IUPAC dihedral reports.
+        if (tor.continuous) {
+            var rate = (typeof tor.continuous === "number") ? tor.continuous : ORG_PHI_FREE_DEG_S;
+            var t0 = Math.max(0, ms - ((tor.phi_at_ms != null) ? tor.phi_at_ms : 0));
+            var a = ((target != null) ? target : 0) + rate * (t0 / 1000);
+            return a - Math.floor(a / 360) * 360;
+        }
+        // A state with no schedule is S1's static pose, unchanged.
+        if (tor.phi_from == null && tor.phi_at_ms == null && tor.phi_ramp_ms == null) return target;
+        // THE SCRIPTED SWEEP. mgRamp is the fleet's one closed-form ramp: it HOLDS
+        // phi_from at t <= phi_at_ms (nothing pre-fires at t = 0) and HOLDS the
+        // destination past phi_at_ms + phi_ramp_ms (it settles, so the authored pin
+        // photographs the settled pose).
+        var to = (target != null) ? target : 0;
+        var from = (tor.phi_from != null) ? tor.phi_from : to;
+        return mgRamp(ms, tor.phi_at_ms, tor.phi_ramp_ms, from, to);
+    }
+    /** Does this torsion block ask for anything at all? (the reject gate's input) */
+    function orgTorsionAsks(tor) {
+        if (!tor) return false;
+        return tor.phi_deg != null || tor.pose != null || tor.phi_from != null
+            || tor.phi_at_ms != null || tor.phi_ramp_ms != null || tor.continuous != null
+            || tor.about != null;
+    }
+    /** Is this torsion block DRIVEN (as opposed to S1's static pose)? */
+    function orgTorsionDriven(tor) {
+        if (!tor) return false;
+        return tor.continuous != null || tor.phi_from != null
+            || tor.phi_at_ms != null || tor.phi_ramp_ms != null;
+    }
+    /** Is this atom's hydrogen shown in this state? N-1's three shapes. */
+    function orgShowH(showH, atom) {
+        if (showH === "none") return false;
+        if (showH == null || showH === "all") return true;
+        if (Object.prototype.toString.call(showH) === "[object Array]") {
+            var owner = atom.id.split("H")[0];
+            for (var i = 0; i < showH.length; i++) if (showH[i] === owner) return true;
+            return false;
+        }
+        return true;
+    }
+    /** Ring-gated control list — bonding_scene's normalisation, cloned locally. */
+    function orgControlList(raw) {
+        var out = [], i;
+        for (i = 0; i < (raw || []).length; i++) {
+            var c = raw[i];
+            if (typeof c === "string") out.push({ id: c, min_ring: "core" });
+            else if (c && c.id) out.push({ id: c.id, min_ring: c.min_ring || "core" });
+        }
+        return out;
+    }
+    function orgHasControl(list, id) {
+        for (var i = 0; i < list.length; i++) if (list[i].id === id) return true;
+        return false;
+    }
+    /**
+     * The SOLVED camera pose for a state, in (az, el, dist) degrees + units —
+     * N-5's contract decision, chosen because camera_steps already speaks it.
+     * sight_along is a SOLVED CONSTRAINT (decision 3), not taste: the camera is
+     * placed exactly on the named bond's axis, so the projected torsion IS the
+     * true torsion. Closed form and history-free.
+     */
+    function orgSolveCamera(os, geom) {
+        var cam = os.camera || {};
+        if (cam.sight_along && geom) {
+            var parts = String(cam.sight_along).split("-"), byId = {}, i;
+            for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+            if (byId[parts[0]] && byId[parts[1]]) {
+                // FRONT atom toward the camera: the axis runs back->front.
+                var ax = mgNorm(orgSub(byId[parts[0]].p, byId[parts[1]].p));
+                var d = (cam.dist != null) ? cam.dist : ORG_HOME.dist;
+                var v = orgMul(ax, d * ORG_U_PER_A / ORG_U_PER_A);
+                return {
+                    az: Math.atan2(v[2], v[0]) * 180 / Math.PI,
+                    el: Math.asin(mgClamp(v[1] / (orgLen(v) || 1), -1, 1)) * 180 / Math.PI,
+                    dist: d, sight: cam.sight_along, front: parts[0], back: parts[1]
+                };
+            }
+        }
+        var dd = (cam.dist != null) ? cam.dist : ORG_HOME.dist;
+        if (cam.az == null && cam.el == null && geom) {
+            var home = orgSolveHome(geom, dd);
+            return { az: home.az, el: home.el, dist: dd, sight: null, front: null, back: null };
+        }
+        return {
+            az: (cam.az != null) ? cam.az : ORG_HOME.az,
+            el: (cam.el != null) ? cam.el : ORG_HOME.el,
+            dist: dd, sight: null, front: null, back: null
+        };
+    }
+    /**
+     * THE HOME CAMERA IS SOLVED PER MOLECULE, not chosen (skeleton §8 / contract
+     * decision 4 — occlusion is a gate, not an aesthetic). A single authored pose
+     * cannot serve an 8-atom ethane and an 18-atom cyclohexane: the pose that
+     * makes the ring countable overlaps two of ethane's hydrogens. So the default
+     * pose is SWEPT here, over a band around the authored azimuth and elevation,
+     * and the pose maximising the minimum pairwise screen DISC gap wins. Pure and
+     * memoised per molecule + distance, so it is identical on the first frame and
+     * under a freeze pin, and a state that authors its own camera never reaches
+     * this at all.
+     */
+    var ORG_HOME_AZ_SPAN = 12;      // +/- degrees around the authored azimuth
+    var ORG_HOME_EL_LO = 8;
+    var ORG_HOME_EL_HI = 42;
+    // The countability floor, in scene units of clear space between two drawn
+    // atom discs. 0.12 is 80% of a drawn hydrogen radius at ORG_ATOM_SCALE, so
+    // two atoms the narration counts are separated by a visible band of
+    // background rather than merely not overlapping.
+    var ORG_HOME_GAP_FLOOR = 0.12;
+    function orgSolveHome(liveGeom, dist) {
+        if (!window.PM_orgHomeSolve) window.PM_orgHomeSolve = {};
+        var ck = liveGeom.key + "|" + dist;
+        if (window.PM_orgHomeSolve[ck]) return window.PM_orgHomeSolve[ck];
+        // ── S2 DECISION: THE POSE IS PINNED, NOT RE-SOLVED. ──────────────────
+        //   The memo key is (molecule, distance) only, so the solve MUST NOT read
+        //   a pose-dependent geometry: solved off the live coordinate it would be
+        //   whichever state applied first that session — a path-dependent camera,
+        //   and under an energy rider a camera that walks while the coordinate
+        //   sweeps (Rule 32b: only the taught variable moves). So HOME is solved
+        //   ONCE per molecule, on the molecule's REFERENCE pose, and is invariant
+        //   to the energy coordinate by construction. A state that wants a
+        //   different framing authors camera / camera_steps and never reaches here.
+        var geom = orgBuildGeometry(liveGeom.key, orgResolvePhi(ORG_MOLECULES[liveGeom.key], null)) || liveGeom;
+        var shown = {}, i, az, el;
+        for (i = 0; i < geom.atoms.length; i++) shown[geom.atoms[i].id] = true;
+        // THE OBJECTIVE IS NOT "the biggest gap". Elevation buys countability and
+        // SPENDS angle fidelity monotonically — the projected C-C-H arc drifts
+        // ~0.20 deg per degree of elevation — so a pure gap maximiser climbs to
+        // the band edge and quietly breaks the OTHER acceptance criterion (it
+        // did: el 39 gave a 0.43 gap and a 6.55 deg arc error, past the 4.0 deg
+        // floor). The solve therefore takes the LOWEST elevation that clears a
+        // countability FLOOR, and only falls back to argmax if nothing clears it.
+        var best = null, floorHit = null;
+        for (el = ORG_HOME_EL_LO; el <= ORG_HOME_EL_HI; el += 1) {
+            var rowBest = null;
+            for (az = ORG_HOME.az - ORG_HOME_AZ_SPAN; az <= ORG_HOME.az + ORG_HOME_AZ_SPAN; az += 2) {
+                var pose = { az: az, el: el, dist: dist };
+                var g = orgMinScreenGap(geom, pose, shown).gap;
+                if (!rowBest || g > rowBest.gap) rowBest = { az: az, el: el, gap: g };
+                if (!best || g > best.gap) best = { az: az, el: el, gap: g };
+            }
+            if (!floorHit && rowBest && rowBest.gap >= ORG_HOME_GAP_FLOOR) floorHit = rowBest;
+        }
+        if (floorHit) best = floorHit;
+        if (!best) best = { az: ORG_HOME.az, el: ORG_HOME.el, gap: 0 };
+        window.PM_orgHomeSolve[ck] = best;
+        return best;
+    }
+    /** Camera schedule — the THIRD verbatim adoption, same fields, same semantics. */
+    function orgCamScheduleAt(steps, ms, base) {
+        if (!steps || !steps.length) return null;
+        var poses = [], ts = [], prev = base, i;
+        for (i = 0; i < steps.length; i++) {
+            var st = steps[i] || {};
+            prev = {
+                az: (st.az != null) ? st.az : prev.az,
+                el: (st.el != null) ? st.el : prev.el,
+                dist: (st.dist != null) ? st.dist : prev.dist,
+                ease: (st.ease_ms != null) ? Math.max(0, st.ease_ms) : ORG_CAM_EASE_MS
+            };
+            poses.push(prev);
+            ts.push((st.at_ms != null) ? st.at_ms : 0);
+        }
+        var k = -1;
+        for (i = 0; i < steps.length; i++) if (ms >= ts[i]) k = i;
+        if (k < 0) return { az: base.az, el: base.el, dist: base.dist, moving: false };
+        var to = poses[k], fr = (k === 0) ? base : poses[k - 1];
+        var u = (to.ease > 0) ? mgClamp((ms - ts[k]) / to.ease, 0, 1) : 1;
+        u = mgSmooth01(u);
+        return { az: fr.az + (to.az - fr.az) * u, el: fr.el + (to.el - fr.el) * u,
+                 dist: fr.dist + (to.dist - fr.dist) * u, moving: u < 1 };
+    }
+    /** Camera basis for a pose: forward (origin->camera), right and up. */
+    function orgCamBasis(pose) {
+        var azr = pose.az * Math.PI / 180, elr = pose.el * Math.PI / 180;
+        var f = [Math.cos(elr) * Math.cos(azr), Math.sin(elr), Math.cos(elr) * Math.sin(azr)];
+        var r = mgNorm(orgCross([0, 1, 0], f));
+        if (!isFinite(r[0])) r = [1, 0, 0];
+        return { fwd: f, right: r, up: mgNorm(orgCross(f, r)) };
+    }
+    /**
+     * COUNTABILITY (skeleton §8, the acceptance criterion). Minimum pairwise
+     * screen separation between rendered atom DISCS, measured in ISOTROPIC screen
+     * units (camX/camZ, camY/camZ) and never in NDC — dividing x by the aspect
+     * ratio shears every measured direction by 1.78x at 16:9. Returns the gap in
+     * scene units at the molecule plane, i.e. centre distance MINUS the two drawn
+     * radii, so a positive number means the discs are separately countable.
+     */
+    function orgMinScreenGap(geom, pose, shown) {
+        var b = orgCamBasis(pose), pts = [], i, j;
+        for (i = 0; i < geom.atoms.length; i++) {
+            var a = geom.atoms[i];
+            if (shown && !shown[a.id]) continue;
+            var p = orgMul(a.p, ORG_U_PER_A);
+            var depth = pose.dist - mgDot(p, b.fwd);
+            var k = (depth > 0.05) ? (pose.dist / depth) : 1;   // perspective, isotropic
+            pts.push({ x: mgDot(p, b.right) * k, y: mgDot(p, b.up) * k,
+                       r: orgAtomRadius(a.el) * k });
+        }
+        var best = Infinity, worst = null;
+        for (i = 0; i < pts.length; i++) for (j = i + 1; j < pts.length; j++) {
+            var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+            var g = Math.sqrt(dx * dx + dy * dy) - pts[i].r - pts[j].r;
+            if (g < best) { best = g; worst = [i, j]; }
+        }
+        return { gap: (best === Infinity ? 0 : best), pair: worst, n: pts.length };
+    }
+    function orgAtomRadius(el) {
+        var e = MG_ELEMENTS[el];
+        return (e ? e.radius : 0.40) * ORG_ATOM_SCALE;
+    }
+    /**
+     * THE NEWMAN WEIGHT — 1 when the sight line is ON the torsion bond axis, 0
+     * when it is more than ORG_NEWMAN_OFF_DEG off it, smooth between. ONE pure
+     * function of (pose, geometry), called by the frame pass AND by the gate, so
+     * the convention and its probe cannot drift apart. Closed form: no clock, no
+     * state, no memo — a freeze pin reproduces it exactly.
+     */
+    function orgNewmanWeight(pose, geom, frontId, backId) {
+        if (!pose || !geom || !frontId || !backId) return 0;
+        var byId = {}, i;
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+        if (!byId[frontId] || !byId[backId]) return 0;
+        return orgNewmanWeightAt(orgNewmanAngle(pose, byId[frontId].p, byId[backId].p));
+    }
+    /** Degrees between the sight line and the back->front bond axis. */
+    function orgNewmanAngle(pose, frontP, backP) {
+        return mgAngleDeg(mgNorm(orgSub(frontP, backP)), orgCamBasis(pose).fwd);
+    }
+    function orgNewmanWeightAt(angDeg) {
+        var u = (angDeg - ORG_NEWMAN_FULL_DEG) / (ORG_NEWMAN_OFF_DEG - ORG_NEWMAN_FULL_DEG);
+        return 1 - mgSmooth01(mgClamp(u, 0, 1));
+    }
+    /**
+     * Blend one #rrggbb toward another. Deliberately a STRING blend: the frame
+     * pass already writes material.color exactly once per atom, so the depth
+     * tint costs no second colour channel and no per-frame THREE.Color.
+     */
+    function orgTintHex(hex, toHex, t) {
+        if (!(t > 0)) return hex;
+        var a = parseInt(String(hex).slice(1), 16), b = parseInt(String(toHex).slice(1), 16);
+        var ch = function (sh) {
+            var x = (a >> sh) & 255, y = (b >> sh) & 255;
+            return mgClamp(Math.round(x + (y - x) * t), 0, 255);
+        };
+        return "#" + ("000000" + ((ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16)).slice(-6);
+    }
+    /** Projection-order painting while the rim is up; plain depth otherwise. */
+    function orgFlatOrder(m, flat, order) {
+        if (!m || !m.material) return;
+        m.material.depthTest = !flat;
+        m.renderOrder = flat ? order : 0;
+    }
+    /**
+     * Opacity cross-fade on ONE mesh, RESTORED the frame it stops fading — a
+     * pooled slot must never carry a stale alpha into the next state (the
+     * dim_apparatus_one_way_with_no_restore scar, one level down).
+     */
+    function orgFadeMesh(m, alpha) {
+        if (!m || !m.material) return;
+        if (alpha >= 0.999) {
+            if (m.userData && m.userData.orgFaded) {
+                m.material.transparent = false;
+                m.material.opacity = 1;
+                m.userData.orgFaded = false;
+            }
+            return;
+        }
+        m.material.transparent = true;
+        m.material.opacity = Math.max(0, alpha);
+        if (m.userData) m.userData.orgFaded = true;
+    }
+    /** Isotropic screen projection of a SCENE-unit point (never NDC). */
+    function orgProjXY(p, pose, basis) {
+        var depth = pose.dist - mgDot(p, basis.fwd);
+        var k = (depth > 0.05) ? (pose.dist / depth) : 1;
+        return { x: mgDot(p, basis.right) * k, y: mgDot(p, basis.up) * k, k: k };
+    }
+    /** Clear space between a candidate anchor and every drawn atom disc. */
+    function orgLabelClearance(cand, pose, basis, drawn) {
+        var pc = orgProjXY(cand, pose, basis), m = Infinity, i;
+        for (i = 0; i < drawn.length; i++) {
+            var q = orgProjXY(orgMul(drawn[i].p, ORG_U_PER_A), pose, basis);
+            var dx = pc.x - q.x, dy = pc.y - q.y;
+            var d = Math.sqrt(dx * dx + dy * dy) - orgAtomRadius(drawn[i].el) * q.k;
+            if (d < m) m = d;
+        }
+        return (m === Infinity) ? 0 : m;
+    }
+    /**
+     * WHERE A CARBON'S ID SPRITE SITS. Outside the projection it is the fleet
+     * offset. Inside it the two carbons project to ONE screen point, so the
+     * FRONT id sits inside the rim and the BACK id outside it — in the direction
+     * with the most clearance from every drawn disc, solved over 12 candidates
+     * so a label can never be parked on a bond stub or on the rim arc itself
+     * (the white-on-white collision). The anchor LERPS on the same weight as the
+     * rim, so the back carbon keeps a label at every camera pose: the sim never
+     * prints "bond = C1-C2" over a canvas that names only C1.
+     */
+    function orgLabelAnchor(src, w, isFront, isBack, basis, rimR, pose, drawn) {
+        var base = [src.p[0] * ORG_U_PER_A + basis.right[0] * 0.42,
+                    src.p[1] * ORG_U_PER_A + basis.right[1] * 0.42 + 0.34,
+                    src.p[2] * ORG_U_PER_A + basis.right[2] * 0.42];
+        if (!(w > 0) || !(rimR > 0) || (!isFront && !isBack)) return base;
+        var c = orgMul(src.p, ORG_U_PER_A), target, k;
+        if (isFront) {
+            // INSIDE the rim, clear of the arc. A "C1" sprite carries about 0.13
+            // scene units of ink either side of its anchor, so an anchor 0.31 out
+            // projects to ~0.51 against a rim at ~0.65 — the white-on-white
+            // collision the eye-walker read had the anchor at 0.54 plus its ink.
+            target = orgAdd(c, orgAdd(orgMul(basis.right, 0.20), orgMul(basis.up, 0.24)));
+        } else {
+            var bestD = -Infinity, bestP = null;
+            for (k = 0; k < 12; k++) {
+                var th = k * Math.PI / 6;
+                var dir = orgAdd(orgMul(basis.right, Math.cos(th)), orgMul(basis.up, Math.sin(th)));
+                var cand = orgAdd(c, orgMul(dir, rimR + 0.34));
+                var cl = orgLabelClearance(cand, pose, basis, drawn);
+                if (cl > bestD) { bestD = cl; bestP = cand; }
+            }
+            target = bestP || orgAdd(c, orgMul(basis.up, -(rimR + 0.34)));
+        }
+        return [base[0] + (target[0] - base[0]) * w,
+                base[1] + (target[1] - base[1]) * w,
+                base[2] + (target[2] - base[2]) * w];
+    }
+    /**
+     * Memoised mesh lookup. A LOCAL clone of the fleet pattern, deliberately:
+     * reaching into a sealed sibling's bscFindById would share bonding_scene's
+     * window.PM_bscIdx cache across two scenarios (DF1 sealed-scenario
+     * protection — a clone-sibling touches sealed blocks only through the shared
+     * one-line dispatch chains).
+     */
+    function orgFindById(id) {
+        if (!window.PM_orgIdx) window.PM_orgIdx = {};
+        var hit = window.PM_orgIdx[id];
+        if (hit) return hit;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) {
+                window.PM_orgIdx[id] = sceneObjects[i];
+                return sceneObjects[i];
+            }
+        }
+        return null;
+    }
+
+    function buildOrganicStructure(config) {
+        var CO = config.colors || {};
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var bondColor = CO.bond || "#CFD8DC";
+        var i;
+        window.PM_orgRejects = [];
+
+        // Pooled meshes, repositioned per frame from the closed-form geometry —
+        // the fleet pattern. Every child is registered in sceneObjects
+        // INDIVIDUALLY (the field3d_child_mesh_never_registered scar: addToScene
+        // registers only the object handed to it, so a child never matched by the
+        // updater sits at build-time opacity forever).
+        for (i = 0; i < ORG_MAX_ATOMS; i++) {
+            var at = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 18), new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#90A4AE"),
+                emissiveIntensity: 0.26, shininess: 62
+            }));
+            at.userData = { elementType: "org_atom", id: "org_atom_" + i, slot: i };
+            at.visible = false;
+            addToScene(at);
+            var lb = pmCreateAutoLabel("C1", textColor, 0.40);
+            lb.userData = { elementType: "org_atom_label", id: "org_atom_label_" + i, slot: i };
+            lb.visible = false;
+            addToScene(lb);
+        }
+        var stickGeo = new THREE.CylinderGeometry(0.075, 0.075, 1, 12);
+        stickGeo.translate(0, 0.5, 0);      // origin at the base: scale y = length
+        for (i = 0; i < ORG_MAX_BONDS; i++) {
+            var bd = new THREE.Mesh(stickGeo, new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(bondColor), emissive: hexToThreeColor(bondColor),
+                emissiveIntensity: 0.16, shininess: 40
+            }));
+            bd.userData = { elementType: "org_bond", id: "org_bond_" + i, slot: i };
+            bd.visible = false;
+            addToScene(bd);
+        }
+        // The Newman rim (decision 4). One ring, hidden unless a state sights
+        // down a bond and asks for the convention.
+        var rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.045, 10, 72), new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(bondColor), transparent: true, opacity: 0.82,
+            depthTest: false
+        }));
+        rim.renderOrder = 996;
+        rim.userData = { elementType: "org_rim", id: "org_rim" };
+        rim.visible = false;
+        addToScene(rim);
+
+        // ── S2: the measurement instrument pool (N-8). Four meshes per slot, all
+        //   registered INDIVIDUALLY in sceneObjects (a child handed to addToScene
+        //   only as part of a parent never matches the updater and sits at
+        //   build-time opacity forever). depthTest:false + a high renderOrder so a
+        //   thin arc reads on top of the ball-and-stick it measures.
+        //   The arc is molecular_geometry's RingGeometry + setDrawRange
+        //   construction, CLONED locally (DF1 — never reach into a sealed
+        //   sibling's mesh, which would share its index cache across scenarios).
+        for (i = 0; i < ORG_MAX_MEASURES; i++) {
+            var mar = new THREE.Mesh(new THREE.RingGeometry(0.93, 1.0, ORG_MEAS_ARC_SEGS, 1), new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFD54F"), side: THREE.DoubleSide, transparent: true,
+                opacity: 0.95, depthTest: false, depthWrite: false
+            }));
+            mar.renderOrder = 997;
+            mar.userData = { elementType: "org_meas_arc", id: "org_meas_arc_" + i, slot: i };
+            mar.visible = false;
+            addToScene(mar);
+            var mln = new THREE.Mesh(stickGeo, new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#FFD54F"), transparent: true, opacity: 0.92,
+                depthTest: false, depthWrite: false
+            }));
+            mln.renderOrder = 997;
+            mln.userData = { elementType: "org_meas_line", id: "org_meas_line_" + i, slot: i };
+            mln.visible = false;
+            addToScene(mln);
+            // The DRAWN STANDARD (measure.reference_value_pm). Without it a pm
+            // number is only comparable to the other pm number on screen; with it
+            // "closer than two hydrogens fit" is carried by the picture, not by
+            // narration (Rule 24 — the sim reads sound-off).
+            var mrf = new THREE.Mesh(stickGeo, new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#90A4AE"), transparent: true, opacity: 0.80,
+                depthTest: false, depthWrite: false
+            }));
+            mrf.renderOrder = 996;
+            mrf.userData = { elementType: "org_meas_ref", id: "org_meas_ref_" + i, slot: i };
+            mrf.visible = false;
+            addToScene(mrf);
+            var mlb = pmCreateAutoLabel("C1\\u2013C2\\u2013C3 = 111.4\\u00B0", "#FFE082", 0.44);
+            mlb.userData = { elementType: "org_meas_label", id: "org_meas_label_" + i, slot: i };
+            mlb.visible = false;
+            addToScene(mlb);
+        }
+
+        // DOM surfaces. top:52px clears the review-chrome Full-screen button at
+        // BOTH edges (Rule 34d). Rule 39f: an inline position:fixed panel created
+        // dynamically is exactly what the generic widget engine auto-discovers, so
+        // the teacher toggle comes free and no per-scenario widget code is written.
+        var hud = document.createElement("div"); hud.id = "org_hud";
+        hud.style.cssText = "position:fixed;top:52px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:186px;display:none;";
+        document.body.appendChild(hud);
+
+        var ff = document.createElement("div"); ff.id = "org_formula";
+        // max-width is NOT a constant any more: a fixed 250 px wrapped
+        // "E(\\u03C6) = 6(1 + cos 3\\u03C6) kJ\\u00B7mol\\u207B\\u00B9" onto two lines and stranded
+        // the unit alone on the second — one formula surface reading as two
+        // (Rule 34b). orgFitFormula MEASURES the rendered width against the free
+        // band and owns whiteSpace / fontSize / maxWidth from apply onward.
+        ff.style.cssText = "position:fixed;top:44%;left:16px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 \\u0027Cambria Math\\u0027,serif;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;white-space:nowrap;";
+        document.body.appendChild(ff);
+
+        // ── S2: the energy graph. Bottom-left is the ONE zone S1 left free (HUD
+        //   top-right, formula left mid-height, sliders bottom-right), and the
+        //   bsc_trend precedent already owns that corner on the sibling scenario,
+        //   so the two chemistry scenarios put their graph in the same place.
+        //   When it is up the ONE formula surface re-anchors to top:52px (Rule
+        //   34d — 44% of a short viewport lands inside this panel), which is the
+        //   bsc_trend move verbatim. Inline position:fixed = Rule 39f
+        //   auto-discovery, so the teacher toggle comes free.
+        var eg = document.createElement("canvas"); eg.id = "org_graph";
+        eg.width = 700; eg.height = 460;
+        eg.style.cssText = "position:fixed;bottom:12px;left:12px;width:350px;height:230px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(eg);
+
+        var db = document.createElement("div"); db.id = "org_deferred";
+        db.style.cssText = "position:fixed;top:52px;left:50%;transform:translateX(-50%);background:rgba(120,0,0,0.92);color:#FFEBEE;padding:8px 14px;border-radius:8px;font:12px/1.5 monospace;z-index:20;display:none;max-width:70%;";
+        document.body.appendChild(db);
+
+        var SC = config.slider_controls || {};
+        var lim = function (k, w, d) { return (SC[k] && SC[k][w] != null) ? Number(SC[k][w]) : d; };
+        var def = function (k, d) { return (SC[k] && SC[k]["default"] != null) ? Number(SC[k]["default"]) : d; };
+        var sp = document.createElement("div"); sp.id = "org_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:224px;display:none;";
+        sp.innerHTML =
+            '<div id="org_view_row" style="display:none"><label>View: <select id="org_view_select" style="width:100%;margin-top:3px;background:#263238;color:#ECEFF1;border:1px solid #455A64;border-radius:4px;padding:3px;font:12px monospace"><option value="home">Standard</option><option value="sight">Along the bond</option></select></label></div>' +
+            '<div id="org_spin_row" style="display:none;margin-top:6px"><label>Turn speed: <span id="org_spin_val">' + def("spin", 0).toFixed(0) + '</span> \\u00B0/s</label><input type="range" id="org_spin_slider" min="' + lim("spin", "min", 0) + '" max="' + lim("spin", "max", 40) + '" step="' + lim("spin", "step", 1) + '" value="' + def("spin", 0) + '" style="width:100%"></div>' +
+            '<div id="org_implicit_h_row" style="display:none;margin-top:6px"><label><input type="checkbox" id="org_implicit_h_check" checked> Show hydrogens</label></div>' +
+            // A1: the phi row. Rule 39g conventions verbatim (<prefix>_<name>_row
+            // inside the inline position:fixed panel), so the teacher widget
+            // toggle discovers it FREE and no per-scenario widget code is written.
+            // 0..360 in whole degrees is the full turn the concept teaches; the
+            // range is authorable through slider_controls like every sibling.
+            '<div id="org_phi_row" style="display:none;margin-top:6px"><label>\\u03C6: <span id="org_phi_val">' + def("phi", 60).toFixed(0) + '</span>\\u00B0</label><input type="range" id="org_phi_slider" min="' + lim("phi", "min", 0) + '" max="' + lim("phi", "max", 360) + '" step="' + lim("phi", "step", 1) + '" value="' + def("phi", 60) + '" style="width:100%"></div>';
+        document.body.appendChild(sp);
+
+        var vSel = document.getElementById("org_view_select");
+        // A view pick is an EDGE, not a level. PM_orgView is the LATCH (which named
+        // pose the closed form solves for); PM_orgViewPick is the one-shot REQUEST
+        // the next frame consumes and clears, and it is the ONLY thing that clears
+        // the camera seize. Asserting the clear every frame off the latch broke the
+        // control in BOTH directions — see the frame pass for the full note.
+        if (vSel) vSel.addEventListener("change", function (ev) {
+            // "dragged" is the engine-owned reading (see the frame pass); it is
+            // never a teacher pick and never latches.
+            if (vSel.value === "dragged") return;
+            if (ev && ev.isTrusted) { window.PM_orgViewDragged = true; window.PM_orgViewPick = vSel.value; }
+            window.PM_orgView = vSel.value;
+        });
+        var sSl = document.getElementById("org_spin_slider");
+        if (sSl) sSl.addEventListener("input", function (ev) {
+            if (ev && ev.isTrusted) window.PM_orgSpinDragged = true;
+            window.PM_orgSpin = parseFloat(sSl.value);
+            var sv = document.getElementById("org_spin_val"); if (sv) sv.textContent = Number(sSl.value).toFixed(0);
+        });
+        var hCk = document.getElementById("org_implicit_h_check");
+        if (hCk) hCk.addEventListener("change", function (ev) { if (ev && ev.isTrusted) window.PM_orgHDragged = true; window.PM_orgShowH = hCk.checked; });
+        // A1 DRAG-SEIZE (Rule 39b, the shipped pattern). A TRUSTED drag seizes phi
+        // for the rest of the state; the frame pass then substitutes this ONE
+        // scalar for the scripted one and every downstream path — geometry, the
+        // measured HUD line, the energy rider — is unchanged. THE EYE never drags,
+        // so a frozen frame always takes the closed-form branch.
+        var pSl = document.getElementById("org_phi_slider");
+        if (pSl) pSl.addEventListener("input", function (ev) {
+            if (ev && ev.isTrusted) window.PM_orgPhiDragged = true;
+            window.PM_orgPhiLive = parseFloat(pSl.value);
+            var pv = document.getElementById("org_phi_val"); if (pv) pv.textContent = Number(pSl.value).toFixed(0);
+        });
+    }
+
+    // ── S3: THE CANVAS TEXT PLACER ─────────────────────────────────────────
+    //  Root cause this closes (engine_bug_queue CRITICAL):
+    //  graph_overlay_annotation_is_painted_without_measuring_it_against_the_panel_clip_rect.
+    //  The barrier caption was placed at bracket_x + 13 and painted straight
+    //  out. On the 700 px backing store the string reached x = 744, the canvas
+    //  ends at 700, and the ONE number STATE_5 exists to deliver rendered as
+    //  "barrier 12.0 kJ·mo" — the unit amputated at the panel border.
+    //  Nothing measured it, and 32 deterministic checks passed on that frame
+    //  because no gate reads rendered text extents.
+    //
+    //  So NOTHING in this painter paints text directly any more. Every string —
+    //  axis labels, tick numbers, stationary-point labels, the provenance stamp
+    //  and the barrier caption — goes through orgText, which MEASURES with
+    //  measureText and fits the box inside the panel clip rect BEFORE a pixel is
+    //  drawn. That is deliberately general: a longer molecule name, a wider unit
+    //  or a different curve cannot reopen the class at a site a one-string fix
+    //  happened not to visit.
+    var ORG_TXT_PAD = 4;          // the panel's own inner margin, backing-store px
+    // Rule 29 FLOOR, stated: 15 backing px = 7.5 CSS px at the shipped 2x scale
+    // (700x460 store drawn at 350x230), the smallest a tick number stays
+    // readable at on a projector. orgText shrinks only down to here; below it
+    // WRAPPING takes over, so a number is never shrunk unreadable to avoid a
+    // wrap. Callers whose string must not shrink at all pass minPx = its size.
+    var ORG_TXT_MIN_PX = 15;
+    /** the px size out of a CSS font shorthand, without a regex escape. */
+    function orgFontPx(f) {
+        var s = String(f || ""), i = s.indexOf("px"), j = i, n;
+        if (i < 0) return 12;
+        while (j > 0 && "0123456789.".indexOf(s.charAt(j - 1)) >= 0) j--;
+        n = parseFloat(s.slice(j, i));
+        return (n > 0) ? n : 12;
+    }
+    /** the same shorthand at a different px size. */
+    function orgFontAt(f, px) {
+        var s = String(f || ""), i = s.indexOf("px"), j = i;
+        if (i < 0) return s;
+        while (j > 0 && "0123456789.".indexOf(s.charAt(j - 1)) >= 0) j--;
+        return s.slice(0, j) + String(px) + s.slice(i);
+    }
+    /** greedy word wrap at real measured widths. A single token never splits. */
+    function orgWrapLines(g, s, maxW) {
+        var words = String(s).split(" "), out = [], cur = "", i, t;
+        for (i = 0; i < words.length; i++) {
+            t = cur ? (cur + " " + words[i]) : words[i];
+            if (cur && g.measureText(t).width > maxW) { out.push(cur); cur = words[i]; }
+            else cur = t;
+        }
+        if (cur !== "") out.push(cur);
+        return out.length ? out : [String(s)];
+    }
+    /** the left/top edge an anchor+alignment asks for. */
+    function orgAnchor(a, w, align) {
+        if (align === "center") return a - w / 2;
+        if (align === "right") return a - w;
+        return a;
+    }
+    /** where a single line sits inside a multi-line block of width w. */
+    function orgIntra(w, lw, align) {
+        if (align === "center") return (w - lw) / 2;
+        if (align === "right") return w - lw;
+        return 0;
+    }
+    /** the gate's evidence: one record per PAINTED line, in canvas units. */
+    function orgRecText(t, x, y, w, h) {
+        var b = { text: t, x: x, y: y, width: w, height: h };
+        var arr = window.PM_orgTextBoxes;
+        if (arr && arr.push) arr.push(b);
+        return b;
+    }
+    /**
+     * Measure, then place, then paint. Remedies in order, each one deliberate:
+     *   1. the string fits at its authored anchor            -> paint there
+     *   2. it fits at the OPPOSITE-side anchor (opt.alt)     -> re-anchor
+     *   3. it fits inside the clip somewhere                 -> slide it in
+     *   4. it is wider than the clip: shrink to the floor    -> then WRAP
+     *   5. one unbreakable token wider than the clip         -> clamped, recorded
+     * opt: { clip:{x,y,w,h}, align:'left'|'center'|'right', alt:{x,align},
+     *        rot:-Math.PI/2 for a vertical label, minPx, pad }
+     * Pure: same font + same string + same clip give the same boxes, so a
+     * SET_TIME_FREEZE pin redraws this panel byte-identically.
+     */
+    function orgText(g, txt, x, y, o) {
+        var s = (txt == null) ? "" : String(txt);
+        if (s === "") return [];
+        var opt = o || {}, i;
+        var clip = opt.clip || { x: 0, y: 0, w: 0, h: 0 };
+        var pad = (opt.pad == null) ? ORG_TXT_PAD : opt.pad;
+        var cL = clip.x + pad, cR = clip.x + clip.w - pad;
+        var cT = clip.y + pad, cB = clip.y + clip.h - pad;
+        var font0 = g.font, align0 = g.textAlign;
+        var px = orgFontPx(font0);
+        var minPx = (opt.minPx == null) ? ORG_TXT_MIN_PX : opt.minPx;
+        var rot = opt.rot || 0;                       // 0 or -Math.PI/2
+        // the axis the glyphs advance along: horizontal normally, vertical when
+        // the label is rotated, so the fit test is against the right span.
+        var along = (rot === 0) ? (cR - cL) : (cB - cT);
+        g.textAlign = "left";                         // placement is explicit below
+        var lines = [s], w = g.measureText(s).width;
+        while (w > along && px > minPx) {
+            px -= 1; g.font = orgFontAt(font0, px); w = g.measureText(s).width;
+        }
+        if (w > along) {
+            lines = orgWrapLines(g, s, along);
+            w = 0;
+            for (i = 0; i < lines.length; i++) w = Math.max(w, g.measureText(lines[i]).width);
+        }
+        var asc = px * 0.80, desc = px * 0.22, lineH = px * 1.24;
+        var across = asc + desc + (lines.length - 1) * lineH;
+        var out = [], lw, lx, by;
+        if (rot === 0) {
+            var left = orgAnchor(x, w, opt.align);
+            if ((left < cL || left + w > cR) && opt.alt) {
+                var la = orgAnchor(opt.alt.x, w, opt.alt.align);
+                if (la >= cL && la + w <= cR) left = la;
+            }
+            left = (w >= cR - cL) ? cL : Math.min(Math.max(left, cL), cR - w);
+            var top = y - asc;
+            top = (across >= cB - cT) ? cT : Math.min(Math.max(top, cT), cB - across);
+            for (i = 0; i < lines.length; i++) {
+                lw = g.measureText(lines[i]).width;
+                lx = left + orgIntra(w, lw, opt.align);
+                by = top + asc + i * lineH;
+                g.fillText(lines[i], lx, by);
+                out.push(orgRecText(lines[i], lx, by - asc, lw, asc + desc));
+            }
+        } else {
+            // rotate(-90): the local advance axis maps to world -y and the local
+            // descent axis to world +x, so the block is w tall and 'across' wide.
+            var topR = orgAnchor(y, w, opt.align);
+            topR = (w >= cB - cT) ? cT : Math.min(Math.max(topR, cT), cB - w);
+            var leftR = x - asc;
+            leftR = (across >= cR - cL) ? cL : Math.min(Math.max(leftR, cL), cR - across);
+            for (i = 0; i < lines.length; i++) {
+                lw = g.measureText(lines[i]).width;
+                by = topR + w - orgIntra(w, lw, opt.align);   // this line's bottom
+                lx = leftR + asc + i * lineH;                 // this line's baseline x
+                g.save(); g.translate(lx, by); g.rotate(rot);
+                g.fillText(lines[i], 0, 0);
+                g.restore();
+                out.push(orgRecText(lines[i], lx - asc, by - lw, asc + desc, lw));
+            }
+        }
+        g.font = font0; g.textAlign = align0;
+        return out;
+    }
+    /** a nice tick step: the 1/2/2.5/3/5/6 ladder, so 0..360 lands on 60. */
+    function orgNiceStep(span, target) {
+        if (!(span > 0)) return 1;
+        var raw = span / Math.max(1, target);
+        var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+        var n = raw / mag, c = [1, 2, 2.5, 3, 5, 6, 10], i;
+        for (i = 0; i < c.length; i++) if (n <= c[i] + 1e-9) return c[i] * mag;
+        return 10 * mag;
+    }
+    /** the tick VALUES for a row: authored x_ticks win, else derived from span. */
+    function orgXTicks(row) {
+        var lo = row.x_min, hi = row.x_max, i, v, out = [];
+        if (row.x_ticks && row.x_ticks.length) {
+            for (i = 0; i < row.x_ticks.length; i++) {
+                v = Number(row.x_ticks[i]);
+                if (v >= lo - 1e-9 && v <= hi + 1e-9) out.push(v);
+            }
+            return { values: out, step: (out.length > 1) ? Math.abs(out[1] - out[0]) : 1 };
+        }
+        var step = orgNiceStep(hi - lo, 6), k = Math.ceil((lo - 1e-9) / step);
+        for (i = 0; i < 64; i++) {
+            v = (k + i) * step;
+            if (v > hi + 1e-9) break;
+            out.push(Math.abs(v) < 1e-9 ? 0 : v);
+        }
+        return { values: out, step: step };
+    }
+    /** decimals that suit the step, so 0.2 prints 0.2 and 60 prints 60. */
+    function orgTickFmt(step) {
+        var d = (step >= 1) ? 0 : Math.min(3, Math.ceil(-Math.log(step) / Math.LN10));
+        return function (v) { return Number(v).toFixed(d); };
+    }
+    // ── the DOM half of the same root cause: a text surface placed without
+    //   measuring it against the box it has to live in. The formula surface is
+    //   ONE surface (Rule 34b); a wrap that strands "kJ·mol⁻¹" on a line of its
+    //   own turns it into two. Same discipline as orgText: measure, then place.
+    var ORG_FORMULA_PX = 20;
+    var ORG_FORMULA_MIN_PX = 16;   // Rule 29 floor, stated: a formula a teacher
+    //                                reads from the back of a room. Below it the
+    //                                surface wraps deliberately instead.
+    /**
+     * Bind the unit to the token before it with U+00A0. The last space in a
+     * formula string separates the expression from its unit, so if a wrap ever
+     * does happen the unit travels WITH the expression's tail and can never end
+     * up alone on a line. Authored markup is left untouched.
+     */
+    function orgBindUnit(s) {
+        var t = String(s == null ? "" : s);
+        if (t.indexOf("<") >= 0) return t;
+        var i = t.lastIndexOf(" ");
+        if (i <= 0 || i === t.length - 1) return t;
+        return t.slice(0, i) + "\\u00A0" + t.slice(i + 1);
+    }
+    /**
+     * Fit the ONE formula surface into the free horizontal band. The band's
+     * right edge is MEASURED off the HUD when it is up (never assumed), so the
+     * two overlays cannot collide (Rule 34d). Shrink to ORG_FORMULA_MIN_PX
+     * first; only below the floor does the surface wrap, and orgBindUnit has
+     * already made that wrap safe. Publishes PM_orgFormulaFit for the gate.
+     */
+    function orgFitFormula(ff) {
+        if (!ff || !ff.style || ff.style.display === "none") return null;
+        var vw = (typeof window !== "undefined" && window.innerWidth) ? window.innerWidth : 1280;
+        var right = vw - 12;
+        var hud = document.getElementById("org_hud");
+        if (hud && hud.style && hud.style.display !== "none" && hud.getBoundingClientRect) {
+            var hr = hud.getBoundingClientRect();
+            if (hr && hr.width > 0) right = hr.left;
+        }
+        var band = Math.max(180, right - 16 - 24);   // left inset + a real gap
+        ff.style.whiteSpace = "nowrap";
+        ff.style.maxWidth = "none";
+        var px = ORG_FORMULA_PX;
+        ff.style.fontSize = px + "px";
+        var wOf = function () {
+            var r = ff.getBoundingClientRect ? ff.getBoundingClientRect() : null;
+            return (r && r.width) ? r.width : 0;
+        };
+        var w = wOf();
+        while (w > band && px > ORG_FORMULA_MIN_PX) {
+            px -= 1; ff.style.fontSize = px + "px"; w = wOf();
+        }
+        var wrapped = (w > band);
+        if (wrapped) { ff.style.whiteSpace = "normal"; ff.style.maxWidth = Math.round(band) + "px"; }
+        window.PM_orgFormulaFit = { band: band, px: px, width: w, wrapped: wrapped };
+        return window.PM_orgFormulaFit;
+    }
+
+    /**
+     * S2: the E(coordinate) curve with the rider. 'est' is the ONE object the
+     * frame pass computed from the pose, so the rider's x IS the pose's x — the
+     * only failure this instrument can have is the two drifting apart, and the
+     * single-object contract forecloses it structurally rather than by care.
+     * 'rev' in [0,1] is the closed-form reveal fraction (pure function of
+     * state-local t), so a freeze pin re-draws this panel byte-identically.
+     * Rule 34c: every glyph is real Unicode, in Cambria Math on the labelled text
+     * (a small monospace subscript renders as a merged blob).
+     */
+    function orgDrawGraph(en, est, rev) {
+        var cv = document.getElementById("org_graph");
+        if (!cv || cv.style.display === "none") return;
+        var g = cv.getContext("2d");
+        if (!g || !est) return;
+        var W = cv.width, H = cv.height, i;
+        g.clearRect(0, 0, W, H);
+        // THE PANEL CLIP RECT. Every string below is fitted inside it by orgText
+        // before it is painted, and every painted line is published to
+        // PM_orgTextBoxes as {text, x, y, width, height} — the gate's evidence,
+        // because a canvas-internal string is invisible to every DOM probe.
+        var CLIP = { x: 0, y: 0, w: W, h: H };
+        window.PM_orgTextClip = CLIP;
+        window.PM_orgTextBoxes = [];
+        var row = est.row, s = row.stationary;
+        // B0 leaves a TWO-line axis band below the plot: the tick numbers, then
+        // the axis label under them (it was one line when there were no ticks).
+        var L0 = 92, R0 = W - 26, T0 = 34, B0 = H - 64;
+        var xlo = row.x_min, xhi = row.x_max;
+        // The y range fits THIS row's own envelope with a published-value pad —
+        // a fixed range sized for another curve buries a small lobe
+        // (field3d_ppane_fixed_range_buries_offresonance_negative_lobe).
+        var ylo = est.lo, yhi = est.hi, pad = Math.max(1, (yhi - ylo) * 0.18);
+        ylo -= pad; yhi += pad;
+        var X = function (v) { return L0 + (v - xlo) / (xhi - xlo) * (R0 - L0); };
+        var Y = function (v) { return B0 - (v - ylo) / (yhi - ylo) * (B0 - T0); };
+
+        g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(L0, T0 - 8); g.lineTo(L0, B0); g.lineTo(R0, B0); g.stroke();
+        g.fillStyle = "#B0BEC5";
+        g.font = "21px \\u0027Cambria Math\\u0027,serif";
+        orgText(g, row.x_label, (L0 + R0) / 2, H - 14, { clip: CLIP, align: "center" });
+        orgText(g, row.y_label, 26, (T0 + B0) / 2, { clip: CLIP, align: "center", rot: -Math.PI / 2 });
+        // y ticks at the PUBLISHED levels, so every gridline is a table entry.
+        g.font = "19px monospace";
+        var seen = {};
+        for (i = 0; i < s.length; i++) {
+            if (seen[s[i].e]) continue;
+            seen[s[i].e] = true;
+            g.fillStyle = "#78909C";
+            orgText(g, String(s[i].e), L0 - 8, Y(s[i].e) + 6, { clip: CLIP, align: "right" });
+            g.strokeStyle = "rgba(120,144,156,0.20)"; g.lineWidth = 1;
+            g.beginPath(); g.moveTo(L0, Y(s[i].e)); g.lineTo(R0, Y(s[i].e)); g.stroke();
+        }
+        // x ticks. STATE_6's delta cue is a claim ABOUT the x axis ("Same peak
+        // every 120°") that an unnumbered axis cannot substantiate — Rule 33d,
+        // an instrument shows a reading, not a decoration. The positions are
+        // DERIVED from the row's own span (0..360 lands on 60° exactly, and the
+        // cyclohexane 0..1 pucker row lands on 0.2), so every curve gets them
+        // and an authored row may override with x_ticks.
+        var xt = orgXTicks(row), fmtX = orgTickFmt(xt.step), tvx;
+        g.font = "17px monospace";
+        for (i = 0; i < xt.values.length; i++) {
+            tvx = X(xt.values[i]);
+            g.strokeStyle = "#546E7A"; g.lineWidth = 2;
+            g.beginPath(); g.moveTo(tvx, B0); g.lineTo(tvx, B0 + 6); g.stroke();
+            g.fillStyle = "#78909C";
+            orgText(g, fmtX(xt.values[i]), tvx, B0 + 24, { clip: CLIP, align: "center" });
+        }
+        // The curve, drawn left-to-right to the reveal fraction.
+        var N = 240, xEnd = xlo + (xhi - xlo) * mgClamp(rev, 0, 1);
+        g.strokeStyle = "#4FC3F7"; g.lineWidth = 3;
+        g.beginPath();
+        for (i = 0; i <= N; i++) {
+            var xv = xlo + (xEnd - xlo) * i / N, yv = orgEnergyAt(row, xv);
+            if (i === 0) g.moveTo(X(xv), Y(yv)); else g.lineTo(X(xv), Y(yv));
+        }
+        g.stroke();
+        // Named stationary points, rendered FROM THE DATA (kind -> style), each
+        // labelled with the row's own label string. No kind is hardcoded here.
+        if (en.label_stationary !== false) {
+            g.font = "19px \\u0027Cambria Math\\u0027,serif";
+            for (i = 0; i < s.length; i++) {
+                if (s[i].x > xEnd + 1e-9) continue;
+                var st = ORG_STATIONARY_STYLE[s[i].kind] || ORG_STATIONARY_STYLE_DEFAULT;
+                g.fillStyle = st.color;
+                g.beginPath(); g.arc(X(s[i].x), Y(s[i].e), st.r, 0, Math.PI * 2); g.fill();
+                // maxima label above their dot, minima below, so a label never
+                // sits on the curve it annotates (a canvas-internal collision is
+                // invisible to a DOM probe). The old +-42 half-width guess is
+                // gone: orgText measures the ACTUAL label ("half-chair" is wider
+                // than 84 px) and slides it inside the clip.
+                var ly = (s[i].kind === "maximum") ? Y(s[i].e) - 14 : Y(s[i].e) + 26;
+                orgText(g, s[i].label, X(s[i].x), ly, { clip: CLIP, align: "center" });
+            }
+        }
+        // The barrier bracket — the published hi minus the published lo.
+        if (en.show_barrier && rev > 0.98) {
+            var bx = mgClamp(X(xlo + (xhi - xlo) * 0.5) + 96, L0 + 30, R0 - 30);
+            g.strokeStyle = "#FFCA28"; g.lineWidth = 3;
+            g.beginPath(); g.moveTo(bx, Y(est.lo)); g.lineTo(bx, Y(est.hi)); g.stroke();
+            g.beginPath(); g.moveTo(bx - 9, Y(est.lo)); g.lineTo(bx + 9, Y(est.lo));
+            g.moveTo(bx - 9, Y(est.hi)); g.lineTo(bx + 9, Y(est.hi)); g.stroke();
+            g.fillStyle = "#FFE082"; g.font = "20px monospace";
+            // A1 ledger (b): the bracket carries the row's OWN name for the span it
+            // measures, so the canvas cannot read as the interconversion barrier
+            // on a curve whose hi - lo is a different stationary point.
+            // THE CLIP FIX: this string is the one that lost its unit. It is now
+            // measured first; if it will not fit to the RIGHT of the bracket it
+            // re-anchors to the LEFT of the same bracket (opposite side, still
+            // adjacent to the thing it measures) before any clamping.
+            orgText(g, est.barrierLabel + " " + orgFx(est.barrier) + " kJ\\u00B7mol\\u207B\\u00B9",
+                bx + 13, (Y(est.lo) + Y(est.hi)) / 2 + 6,
+                { clip: CLIP, align: "left", alt: { x: bx - 13, align: "right" } });
+        }
+        // THE RIDER. Its x is est.x, which the frame pass MEASURED on the very
+        // coordinates the molecule is drawn from.
+        if (en.show_point !== false && est.x >= xlo && est.x <= xEnd + 1e-9) {
+            g.strokeStyle = "rgba(255,213,79,0.55)"; g.lineWidth = 2;
+            g.beginPath(); g.moveTo(X(est.x), Y(est.e)); g.lineTo(X(est.x), B0); g.stroke();
+            g.fillStyle = "#FFD54F";
+            g.beginPath(); g.arc(X(est.x), Y(est.e), 9, 0, Math.PI * 2); g.fill();
+        }
+        // The verification stamp. orbital_shapes prints "(measured)" beside an
+        // imported number; an UNVERIFIED row must say so on the canvas, not only
+        // in a report a teacher never reads.
+        g.font = "16px monospace";
+        g.fillStyle = est.verified ? "#78909C" : "#FFB74D";
+        orgText(g, est.verified ? "(literature)" : "(literature \\u2014 unverified)",
+            R0, T0 - 14, { clip: CLIP, align: "right" });
+    }
+    /** -0.0 never renders (the pwrFxZero / lcoFx clamp). */
+    function orgFx(v, dp) {
+        var d = (dp == null) ? 1 : dp;
+        var f = Math.pow(10, d);
+        if (Math.abs(v) < 0.5 / f) v = 0;
+        return Number(v).toFixed(d);
+    }
+
+    function applyOrganicStructureState(stateDef) {
+        var os = stateDef.organic_structure || {}, i;
+        window.PM_orgRejects = [];
+        var banner = document.getElementById("org_deferred");
+        if (banner) { banner.style.display = "none"; banner.textContent = ""; }
+        window.PM_orgViewDragged = false;
+        window.PM_orgViewPick = null;
+        window.PM_orgSpinDragged = false;
+        window.PM_orgHDragged = false;
+        window.PM_orgCamSeized = false;
+        window.PM_orgPhiDragged = false;
+
+        // ── the enum gate. A deferred member or a deferred FIELD fails loudly
+        //    here, at apply, and the state renders its rejection instead of a
+        //    silent default scene.
+        orgCheckMember("mode", os.mode || "rotate", ORG_MODES_IMPL, ORG_MODES_DEFERRED);
+        var molKey = os.molecule || "ethane";
+        if (!ORG_MOLECULES[molKey]) {
+            if (Object.prototype.hasOwnProperty.call(ORG_MOLECULES_DEFERRED, molKey)) orgReject("molecule", molKey, ORG_MOLECULES_DEFERRED[molKey]);
+            else orgReject("molecule (NOT in ORG_MOLECULES)", molKey, null);
+            molKey = "ethane";
+        }
+        var want = os.hud_lines || [];
+        for (i = 0; i < want.length; i++) orgCheckMember("hud_lines", want[i], ORG_HUD_LINES_IMPL, ORG_HUD_LINES_DEFERRED);
+        var ctrls = orgControlList(os.controls), statics = orgControlList(os.static_readouts);
+        for (i = 0; i < ctrls.length; i++) orgCheckMember("controls", ctrls[i].id, ORG_CONTROL_IDS_IMPL, ORG_CONTROL_IDS_DEFERRED);
+        for (i = 0; i < statics.length; i++) orgCheckMember("controls", statics[i].id, ORG_CONTROL_IDS_IMPL, ORG_CONTROL_IDS_DEFERRED);
+        if (os.torsion && os.torsion.pose != null) orgCheckMember("torsion.pose", os.torsion.pose, ORG_POSES_IMPL, ORG_POSES_DEFERRED);
+        // ── A1's three torsion rejections. Each one closes a path that would
+        //    otherwise be ACCEPTED AND SILENTLY IGNORED, which is the same scar
+        //    one authoring level down as a deferred enum member rendering a
+        //    default scene.
+        if (os.torsion) {
+            var mk = orgKeys(ORG_MISNAMED_FIELDS);
+            for (i = 0; i < mk.length; i++) {
+                var mkey = mk[i].split(".")[1];
+                if (os.torsion[mkey] !== undefined && os.torsion[mkey] !== null) {
+                    orgReject("field \\u0027" + mk[i] + "\\u0027 is INVISIBLE to the frozen-pin evaluator "
+                        + "(a bare at_ms is read only inside an ARRAY leg) \\u2014 write "
+                        + ORG_MISNAMED_FIELDS[mk[i]], mk[i], null);
+                }
+            }
+            // A driven or posed torsion on a molecule with no rotatable reference
+            // bond renders NOTHING. cyclohexane's internal freedom is the pucker
+            // (A2), not a torsion, and methane/ethene have none at all.
+            if (orgTorsionAsks(os.torsion) && !(ORG_MOLECULES[molKey] || {}).torsion_bond) {
+                orgReject("torsion on molecule \\u0027" + molKey + "\\u0027, which declares no torsion_bond "
+                    + "(a ring's internal freedom is the pucker, dispatch A2)", "torsion", null);
+            }
+            // 'about' is the bond the dihedral is driven around. orgSetTorsion is
+            // only sound when that bond IS the reference dihedral's central bond,
+            // so a mismatch is rejected rather than quietly rotating the wrong
+            // side and reporting a number that did not come from it.
+            if (os.torsion.about != null && (ORG_MOLECULES[molKey] || {}).torsion_bond
+                && os.torsion.about !== ORG_MOLECULES[molKey].torsion_bond) {
+                orgReject("torsion.about names \\u0027" + os.torsion.about + "\\u0027 but molecule \\u0027"
+                    + molKey + "\\u0027 rotates about \\u0027" + ORG_MOLECULES[molKey].torsion_bond
+                    + "\\u0027 (the reference dihedral\\u0027s central bond)", "torsion.about", null);
+            }
+        }
+        // ── S2's enums, gated in the SAME change as the code that renders them.
+        var meas = orgMeasureList(os.measure);
+        for (i = 0; i < meas.length; i++) {
+            orgCheckMember("measure.kind", meas[i].kind, ORG_MEASURE_KINDS_IMPL, ORG_MEASURE_KINDS_DEFERRED);
+            var ar = ORG_MEASURE_ARITY[meas[i].kind];
+            if (ar && (meas[i].between || []).length !== ar) {
+                orgReject("measure.between (kind \\u0027" + meas[i].kind + "\\u0027 names exactly "
+                    + ar + " atoms; no nearest/closest mode exists \\u2014 N-9)",
+                    JSON.stringify(meas[i].between || []), null);
+            }
+        }
+        if (os.energy) {
+            orgCheckMember("energy.coordinate", os.energy.coordinate || "torsion",
+                ORG_ENERGY_COORDS_IMPL, ORG_ENERGY_COORDS_DEFERRED);
+            if (os.energy.curve != null && !ORG_ENERGY_TABLE[os.energy.curve]) {
+                orgReject("energy.curve (NOT a row of the published-value registry)", os.energy.curve, null);
+            }
+            var stn = os.energy.stationary || [];
+            for (i = 0; i < stn.length; i++) {
+                if (stn[i] && stn[i].kind != null) {
+                    orgCheckMember("energy.stationary.kind", stn[i].kind,
+                        ORG_STATIONARY_KINDS_IMPL, ORG_STATIONARY_KINDS_DEFERRED);
+                }
+            }
+        }
+        var fk = orgKeys(ORG_DEFERRED_FIELDS);
+        for (i = 0; i < fk.length; i++) {
+            var path = fk[i].split("."), v = os;
+            for (var d = 0; d < path.length && v != null; d++) v = v[path[d]];
+            if (v !== undefined && v !== null) orgReject("field", fk[i], ORG_DEFERRED_FIELDS[fk[i]]);
+        }
+
+        window.PM_orgMol = molKey;
+        window.PM_orgView = (os.camera && os.camera.sight_along) ? "sight" : "home";
+        window.PM_orgSpin = (os.spin_rate != null) ? os.spin_rate : 0;
+        window.PM_orgShowH = (os.show_h !== "none");
+        window.PM_orgControlRings = ctrls;
+
+        var panel = document.getElementById("org_sliders"), anyRow = false;
+        for (i = 0; i < ORG_CONTROL_IDS_IMPL.length; i++) {
+            var id = ORG_CONTROL_IDS_IMPL[i];
+            var live = orgHasControl(ctrls, id), stat = orgHasControl(statics, id);
+            var rowEl = document.getElementById("org_" + id + "_row");
+            if (rowEl) {
+                rowEl.style.display = (live || stat) ? "block" : "none";
+                var inp = rowEl.querySelector("input,select");
+                if (inp) inp.disabled = (!live && stat);
+            }
+            if (live || stat) anyRow = true;
+        }
+        if (panel) panel.style.display = (anyRow && stateDef.show_sliders !== false) ? "block" : "none";
+        // Re-seed each widget to the state's authored preset, DOM-only (no input
+        // event), so the isTrusted drag-seize listeners are not tripped.
+        var vSel = document.getElementById("org_view_select");
+        if (vSel) vSel.value = window.PM_orgView;
+        var sSl = document.getElementById("org_spin_slider"), sv = document.getElementById("org_spin_val");
+        if (sSl) sSl.value = String(window.PM_orgSpin);
+        if (sv) sv.textContent = Number(window.PM_orgSpin).toFixed(0);
+        var hCk = document.getElementById("org_implicit_h_check");
+        if (hCk) hCk.checked = !!window.PM_orgShowH;
+        // A1: seed phi to the state's OWN value at t = 0 (the scripted start, not
+        // a panel default), DOM-only so the isTrusted seize is not tripped. The
+        // frame pass keeps the handle tracking the sweep until a teacher grabs it.
+        var phi0 = orgPhiAt(ORG_MOLECULES[molKey], os.torsion, 0);
+        window.PM_orgPhiLive = (phi0 != null) ? phi0 : 0;
+        var pSl = document.getElementById("org_phi_slider"), pv = document.getElementById("org_phi_val");
+        if (pSl) pSl.value = String(window.PM_orgPhiLive);
+        if (pv) pv.textContent = Number(window.PM_orgPhiLive).toFixed(0);
+
+        var hud = document.getElementById("org_hud");
+        if (hud) hud.style.display = os.show_hud ? "block" : "none";
+        // S2: the graph owns the bottom-left, so the ONE formula surface (Rule
+        // 34b) re-anchors to the top-left whenever the panel is up rather than
+        // overlapping it on a short viewport (the bsc_trend precedent, Rule 34d).
+        var graphOn = !!(os.energy && os.energy.show && ORG_ENERGY_TABLE[os.energy.curve]
+            && (os.energy.coordinate || ORG_ENERGY_TABLE[os.energy.curve].coordinate) === "torsion");
+        var gcv = document.getElementById("org_graph");
+        if (gcv) gcv.style.display = graphOn ? "block" : "none";
+        var ff = document.getElementById("org_formula");
+        if (ff) {
+            if (os.show_formula && os.formula) { ff.innerHTML = orgBindUnit(os.formula); ff.style.display = "block"; }
+            else { ff.style.display = "none"; }
+            if (graphOn) { ff.style.top = "52px"; ff.style.transform = "none"; }
+            else { ff.style.top = "44%"; ff.style.transform = "translateY(-50%)"; }
+            // MEASURE, then place — the DOM half of the clip-rect contract.
+            orgFitFormula(ff);
+        }
+        // Draw the first frame NOW so a SET_STATE landing on a pin never
+        // photographs the previous state's picture.
+        updateOrganicStructureFrame(stateDef);
+    }
+
+    function updateOrganicStructureFrame(stateDef) {
+        var os = stateDef.organic_structure || {};
+        var ms = (time - stateStartTime) * 1000;
+        var molKey = window.PM_orgMol || os.molecule || "ethane";
+        var mol = ORG_MOLECULES[molKey];
+        if (!mol) return;
+        // ── A1: WHERE phi IS AT THIS INSTANT. One scalar, one assignment, then a
+        //    single orgBuildGeometry call below — the drag-seize substitutes the
+        //    SOURCE of this number and nothing else, so there is no second code
+        //    path for a dragged molecule to diverge down.
+        var phi = orgPhiAt(mol, os.torsion, ms);
+        if (window.PM_orgPhiDragged && window.PM_orgPhiLive != null) phi = window.PM_orgPhiLive;
+        var geom = orgBuildGeometry(molKey, phi);
+        if (!geom) return;
+        var i, j, byId = {};
+        for (i = 0; i < geom.atoms.length; i++) byId[geom.atoms[i].id] = geom.atoms[i];
+
+        // ── the camera. Closed form: the schedule (if any) over the solved base
+        //    pose, written DIRECTLY to the spherical pose so a freeze pin
+        //    reproduces it exactly instead of catching a history-dependent glide.
+        var explore = (os.mode === "explore");
+        var viewLive = (window.PM_orgViewDragged && window.PM_orgView) ? window.PM_orgView : null;
+        var camOs = os;
+        if (viewLive === "home" && os.camera && os.camera.sight_along) camOs = { camera: { az: ORG_HOME.az, el: ORG_HOME.el, dist: (os.camera.dist != null) ? os.camera.dist : ORG_HOME.dist } };
+        var solved = orgSolveCamera(camOs, geom);
+        var pose = { az: solved.az, el: solved.el, dist: solved.dist };
+        if (os.camera_steps && os.camera_steps.length) {
+            var sch = orgCamScheduleAt(os.camera_steps, ms, pose);
+            if (sch) { pose.az = sch.az; pose.el = sch.el; pose.dist = sch.dist; }
+        }
+        // The explore sandbox is camera-RECOVERABLE, not camera-solved (skeleton
+        // §8 row 9): a trusted orbit seizes the camera for the rest of the state,
+        // and picking a named view in the view row returns exactly to that solved
+        // pose. THE EYE never drags and never picks, so a frozen frame always takes
+        // the closed-form branch and stays byte-identical.
+        //
+        // ── THE CLEAR IS AN EDGE, CONSUMED ONCE. It used to be asserted every
+        //    frame off the LATCHED selection (if viewLive === "home" then seized
+        //    = false), one line BELOW the drag-set — which broke the control in
+        //    both directions at once:
+        //      (a) "Along the bond" never cleared the seize, so the one option
+        //          named after an axis could never restore that axis: the control
+        //          read "Along the bond" while the molecule sat 40° off it;
+        //      (b) worse, once "Standard" was picked the clear re-ran on EVERY
+        //          later frame and undid the drag-set on the same frame, so the
+        //          camera was pinned to the home pose and ORBITING WAS DEAD for
+        //          the rest of the state — in the sandbox of a concept about the
+        //          Newman projection, the projection became unreachable after the
+        //          teacher's first orbit.
+        //    So the pick is consumed HERE, once, and cleared: the frame it arrives
+        //    on clears the seize (the closed form below then writes the solved pose
+        //    for the latched view), and every frame after it is governed by the
+        //    teacher again — the next drag re-seizes and holds. The latch survives
+        //    only to tell the closed form WHICH pose to solve for; it no longer
+        //    decides who owns the camera.
+        var viewPick = window.PM_orgViewPick || null;
+        window.PM_orgViewPick = null;
+        if (viewPick) window.PM_orgCamSeized = false;
+        if (explore && isDragging) window.PM_orgCamSeized = true;
+        // ── AND THE ROW READS THE VIEW THE CAMERA IS ACTUALLY AT. A select fires
+        //    "change" only when its VALUE changes, so a row still reading "Along
+        //    the bond" while the teacher has orbited 40 degrees off that bond is
+        //    not merely dishonest: re-picking that same option fires NOTHING and
+        //    the edge above never arrives, which would leave the recovery the
+        //    teacher reaches for first doing nothing at all. So while the camera
+        //    is seized the row carries a third, engine-owned reading — the option
+        //    EXISTS only while seized, so it can never itself be a pick that does
+        //    nothing, and picking either named view is then always a real change
+        //    that always recovers.
+        //    THE EYE never drags: seized is false on every frame it captures, the
+        //    option is never created and the row is never written, so a frozen
+        //    frame is untouched by this block.
+        var vRow = document.getElementById("org_view_select");
+        if (vRow) {
+            var seizedNow = !!(explore && window.PM_orgCamSeized);
+            var dOpt = document.getElementById("org_view_dragged_opt");
+            if (seizedNow) {
+                if (!dOpt) {
+                    dOpt = document.createElement("option");
+                    dOpt.id = "org_view_dragged_opt";
+                    dOpt.value = "dragged";
+                    dOpt.textContent = "Turned by hand";
+                    vRow.appendChild(dOpt);
+                }
+                if (vRow.value !== "dragged") vRow.value = "dragged";
+            } else if (dOpt) {
+                if (dOpt.parentNode) dOpt.parentNode.removeChild(dOpt);
+                vRow.value = window.PM_orgView || "home";
+            }
+        }
+        if (!(explore && window.PM_orgCamSeized)) {
+            targetSpherical.radius = pose.dist;
+            targetSpherical.phi = Math.PI / 2 - pose.el * Math.PI / 180;
+            targetSpherical.theta = pose.az * Math.PI / 180;
+            spherical.radius = targetSpherical.radius;
+            spherical.phi = targetSpherical.phi;
+            spherical.theta = targetSpherical.theta;
+            animating = false;
+            updateCameraFromSpherical();
+        } else {
+            // ── AND ONCE SEIZED, EVERY VIEW-DEPENDENT CONSTRUCTION READS THE POSE
+            //    THE CAMERA IS ACTUALLY AT. The write above is skipped while the
+            //    teacher owns the orbit, so pose still holds the CLOSED FORM the
+            //    engine would have written — the sight-along solution. Feeding that
+            //    stale pose to the Newman weight, the rim orientation, the label
+            //    anchors and the screen-gap metric drew a 40-degrees-off-axis ethane
+            //    as a full Newman projection: a floating rim with three stubs, a
+            //    withheld back carbon and NO C-C bond — two disconnected fragments
+            //    of a molecule that does not exist, in the one state a teacher
+            //    drives in front of a class.
+            //    So the seized branch re-reads the pose from the LIVE spherical
+            //    state — the exact inverse of the three lines above — and everything
+            //    below (basis, spin axis, nmAng/nmW, rim quaternion, label anchors,
+            //    orgMinScreenGap, PM_orgCam) is then measured on the camera the
+            //    teacher is looking through.
+            //    DETERMINISM: this is guarded on the seize flag, never unconditional.
+            //    THE EYE never drags, so window.PM_orgCamSeized is false on every
+            //    frame it captures, the closed-form branch above runs, and a freeze
+            //    pin still photographs the solved pose byte-identically. Recovery is
+            //    unchanged: re-picking "Standard" clears the flag and the very next
+            //    frame takes the closed form again.
+            pose.az = spherical.theta * 180 / Math.PI;
+            pose.el = 90 - spherical.phi * 180 / Math.PI;
+            pose.dist = spherical.radius;
+        }
+        var basis = orgCamBasis(pose);
+
+        // ── N-20: the spin is about the CAMERA VIEW AXIS, never a world axis.
+        //    The solved elevation window at HOME is ~2 deg wide (skeleton §10), so
+        //    a world +y spin walks the molecule out of the only pose where the
+        //    count is countable within a second. Commit 075d5aa fixed exactly this
+        //    class on bonding_scene. Closed form in state-local t.
+        var spinRate = (window.PM_orgSpinDragged && window.PM_orgSpin != null) ? window.PM_orgSpin
+            : ((os.spin_rate != null) ? os.spin_rate : 0);
+        var spinFrom = (os.spin_start_ms != null) ? os.spin_start_ms : 0;
+        var spinAng = (spinRate ? (Math.max(0, ms - spinFrom) / 1000) * spinRate : 0) * Math.PI / 180;
+        if (spinAng) for (i = 0; i < geom.atoms.length; i++) geom.atoms[i].p = orgRotAxis(geom.atoms[i].p, basis.fwd, spinAng);
+
+        // ── THE NEWMAN WEIGHT. ONE continuous number, measured on the pose the
+        //    camera is ACTUALLY at this instant (post-schedule, post-spin), drives
+        //    the whole projection treatment below. Never a boolean read at apply.
+        var nmFront = null, nmBack = null, nmW = 0, nmAng = null;
+        if (os.camera && os.camera.newman && solved.front && solved.back
+            && byId[solved.front] && byId[solved.back]) {
+            nmFront = solved.front; nmBack = solved.back;
+            nmAng = orgNewmanAngle(pose, byId[nmFront].p, byId[nmBack].p);
+            nmW = orgNewmanWeightAt(nmAng);
+        }
+        window.PM_orgNewmanW = nmW;
+        window.PM_orgNewmanAngle = nmAng;
+        var nmFlat = nmW > 0;
+        // THE BACK SET the rim owns: the far carbon and everything bonded to it
+        // except the near carbon. Derived from the built connectivity, so it is
+        // right for every one of the 32 molecules, not just ethane.
+        var backSet = {};
+        if (nmBack) {
+            backSet[nmBack] = true;
+            for (i = 0; i < geom.bonds.length; i++) {
+                var bSet = geom.bonds[i];
+                var othS = (bSet.a === nmBack) ? bSet.b : ((bSet.b === nmBack) ? bSet.a : null);
+                if (othS && othS !== nmFront) backSet[othS] = true;
+            }
+        }
+        // The rim RADIUS is a pure property of the geometry, so it is solved here
+        // (the labels need it too) and only its VISIBILITY rides the weight.
+        var rimR = 0;
+        if (nmBack && byId[nmBack] && byId[nmFront]) {
+            var axN = mgNorm(orgSub(byId[nmFront].p, byId[nmBack].p));
+            var best = 0;
+            for (i = 0; i < geom.bonds.length; i++) {
+                var bb = geom.bonds[i];
+                var other = (bb.a === nmBack) ? bb.b : ((bb.b === nmBack) ? bb.a : null);
+                if (!other || other === nmFront || !byId[other]) continue;
+                var rel = orgSub(byId[other].p, byId[nmBack].p);
+                var perp = orgSub(rel, orgMul(axN, mgDot(rel, axN)));
+                if (orgLen(perp) > best) best = orgLen(perp);
+            }
+            rimR = best * ORG_U_PER_A * ORG_NEWMAN_RIM_FRAC;
+        }
+
+        // ── which hydrogens this state shows (N-1). An occlusion correctness
+        //    control, not a convenience: 12 H on an 18-atom skeleton hide the very
+        //    arc a state is asking the student to read.
+        var showH = os.show_h;
+        if (window.PM_orgHDragged) showH = window.PM_orgShowH ? "all" : "none";
+        var shown = {}, drawn = [], discShown = {};
+        for (i = 0; i < geom.atoms.length; i++) {
+            var a = geom.atoms[i];
+            var vis = (a.el !== "H") || orgShowH(showH, a);
+            shown[a.id] = vis;
+            if (vis) drawn.push(a);
+            // Newman: the back atom sits EXACTLY behind the front one ONLY ONCE
+            // THE SIGHT LINE IS ON THE AXIS, and only then is its sphere withheld
+            // for the rim. Until then it is a real atom of a real molecule. Its
+            // LABEL is never withheld at any pose.
+            discShown[a.id] = vis && !(a.id === nmBack && nmW >= ORG_NEWMAN_HIDE_W);
+        }
+
+        // ── place the atoms + their id labels.
+        var wantLabels = !!os.show_labels;
+        for (i = 0; i < ORG_MAX_ATOMS; i++) {
+            var sph = orgFindById("org_atom_" + i), lab = orgFindById("org_atom_label_" + i);
+            var src = (i < drawn.length) ? drawn[i] : null;
+            if (sph) {
+                sph.visible = !!src && !!discShown[src.id];
+                if (src) {
+                    var r = orgAtomRadius(src.el);
+                    sph.position.set(src.p[0] * ORG_U_PER_A, src.p[1] * ORG_U_PER_A, src.p[2] * ORG_U_PER_A);
+                    sph.scale.set(r, r, r);
+                    var col = (MG_ELEMENTS[src.el] || MG_ELEMENTS.C).color;
+                    // The back set reads DARKER while the rim is up, so a back
+                    // disc newly painted over a front bond is a separate region
+                    // and not near-white on near-white. Size never changes.
+                    if (nmFlat && backSet[src.id]) col = orgTintHex(col, ORG_BACK_TINT, ORG_BACK_TINT_T * nmW);
+                    sph.material.color.set(hexToThreeColor(col));
+                    sph.material.emissive.set(hexToThreeColor(col));
+                    sph.userData.atomId = src.id;
+                    orgFlatOrder(sph, nmFlat, backSet[src.id] ? ORG_RO_BACK_ATOM : ORG_RO_FRONT_ATOM);
+                    // The far carbon CROSS-FADES into its rim; nothing else fades.
+                    orgFadeMesh(sph, (src.id === nmBack) ? (1 - nmW) : 1);
+                }
+            }
+            if (lab) {
+                lab.visible = !!src && wantLabels && src.el === "C";
+                if (lab.visible) {
+                    updateLabelSpriteText(lab, src.id);
+                    var lp = orgLabelAnchor(src, nmW, src.id === nmFront, src.id === nmBack,
+                        basis, rimR, pose, drawn);
+                    lab.position.set(lp[0], lp[1], lp[2]);
+                }
+            }
+        }
+
+        // ── place the bonds. A double bond draws as TWO parallel sticks offset in
+        //    the plane perpendicular to the camera, which is what makes "this bond
+        //    cannot turn" legible later (A3) rather than decorative now.
+        var slot = 0;
+        for (i = 0; i < geom.bonds.length && slot < ORG_MAX_BONDS; i++) {
+            var b = geom.bonds[i];
+            if (!shown[b.a] || !shown[b.b]) continue;
+            // The SIGHTED bond degenerates to a point only once the sight line is
+            // ON the axis. Until then it is the C-C bond of a real molecule and
+            // dropping it is what deleted a carbon from the opening frame.
+            var isSighted = !!(nmBack && ((b.a === nmBack && b.b === nmFront) || (b.b === nmBack && b.a === nmFront)));
+            if (isSighted && nmW >= ORG_NEWMAN_HIDE_W) continue;
+            var pa = byId[b.a].p, pb = byId[b.b].p;
+            var backEnd = (rimR > 0 && nmW > 0 && !isSighted)
+                ? ((b.a === nmBack) ? b.b : ((b.b === nmBack) ? b.a : null)) : null;
+            if (backEnd) {
+                var backP = byId[nmBack].p;
+                var axR = mgNorm(orgSub(byId[nmFront].p, backP));
+                var relR = orgSub(byId[backEnd].p, backP);
+                var perpR = orgSub(relR, orgMul(axR, mgDot(relR, axR)));
+                var pl = orgLen(perpR) || 1;
+                var rimP = orgAdd(backP, orgMul(perpR, (rimR / ORG_U_PER_A) / pl));
+                // CROSS-FADE the root, never a jump: the stub GROWS out of the
+                // real atom as the rim forms, so a student watching the flight
+                // sees the projection being made out of the molecule.
+                pa = [backP[0] + (rimP[0] - backP[0]) * nmW,
+                      backP[1] + (rimP[1] - backP[1]) * nmW,
+                      backP[2] + (rimP[2] - backP[2]) * nmW];
+                pb = byId[backEnd].p;
+            }
+            var bondBack = !!(nmFlat && backSet[b.a] && backSet[b.b]);
+            var reps = (b.order === 2) ? 2 : 1;
+            for (j = 0; j < reps && slot < ORG_MAX_BONDS; j++) {
+                var st = orgFindById("org_bond_" + slot);
+                slot++;
+                if (!st) continue;
+                var A = orgMul(pa, ORG_U_PER_A), B = orgMul(pb, ORG_U_PER_A);
+                if (reps === 2) {
+                    var axD = mgNorm(orgSub(B, A));
+                    var offD = mgNorm(orgCross(axD, basis.fwd));
+                    var s2 = (j === 0 ? 0.11 : -0.11);
+                    A = orgAdd(A, orgMul(offD, s2)); B = orgAdd(B, orgMul(offD, s2));
+                }
+                var dv = orgSub(B, A), L = orgLen(dv);
+                st.visible = L > 1e-4;
+                if (!st.visible) continue;
+                st.position.set(A[0], A[1], A[2]);
+                st.scale.set(1, L, 1);
+                st.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / L, dv[1] / L, dv[2] / L));
+                orgFlatOrder(st, nmFlat, bondBack ? ORG_RO_BACK_BOND : ORG_RO_FRONT_BOND);
+            }
+        }
+        for (i = slot; i < ORG_MAX_BONDS; i++) { var sx = orgFindById("org_bond_" + i); if (sx) sx.visible = false; }
+
+        var rimM = orgFindById("org_rim");
+        if (rimM) {
+            rimM.visible = rimR > 0 && nmW > 0.001;
+            if (rimM.visible) {
+                var bp = byId[nmBack].p;
+                rimM.position.set(bp[0] * ORG_U_PER_A, bp[1] * ORG_U_PER_A, bp[2] * ORG_U_PER_A);
+                rimM.scale.set(rimR, rimR, 1);
+                rimM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3(basis.fwd[0], basis.fwd[1], basis.fwd[2]));
+                // The rim fades IN as the ball-and-stick back carbon fades out.
+                rimM.material.opacity = 0.82 * nmW;
+                rimM.renderOrder = ORG_RO_RIM;
+            }
+        }
+
+        // ── the countability metric, published for the gate and for the teacher
+        //    tooling. Isotropic screen units, never NDC. Measured over the atoms
+        //    actually drawn AS DISCS: a carbon the rim has taken over is not a
+        //    disc, and scoring it would report a zero gap against its own rim.
+        var sep = orgMinScreenGap(geom, pose, discShown);
+        window.PM_orgMinGap = sep.gap;
+        // ONE measurement, on the BUILT coordinates, feeding the HUD and (below)
+        // the energy rider. Two call sites of one pure function on one geometry:
+        // the rider cannot drift from the pose.
+        var phiMeasured = orgMeasuredPhi(geom, mol);
+        window.PM_orgPhi = phiMeasured;
+        window.PM_orgCam = pose;
+        // A1: the handle TRACKS the sweep until a teacher seizes it (Rule 39b — a
+        // force-shown row is LIVE, not decorative). It is written from the MEASURED
+        // dihedral, not from the driven scalar, so the number under the handle and
+        // the number in the HUD are ONE number: a 0 -> 540 sweep would otherwise
+        // write 540 into a 0..360 control and pin the handle at its maximum for
+        // the second half of the turn. DOM-only, so no input event fires and the
+        // isTrusted seize is never tripped by the engine itself.
+        if (!window.PM_orgPhiDragged && phiMeasured != null) {
+            window.PM_orgPhiLive = phiMeasured;
+            var pSlF = document.getElementById("org_phi_slider");
+            var pvF = document.getElementById("org_phi_val");
+            if (pSlF) pSlF.value = String(phiMeasured);
+            if (pvF) pvF.textContent = Number(phiMeasured).toFixed(0);
+        }
+
+        // ── S2: the measurement instruments (N-8). Each value is READ OFF these
+        //   same coordinates, so the printed number and the drawn line agree by
+        //   construction. Reveal is closed form in state-local t.
+        var meas = orgMeasureList(os.measure), mv = [], mSlot = 0;
+        for (i = 0; i < meas.length; i++) {
+            var mSpec = meas[i];
+            if (ORG_MEASURE_ARITY[mSpec.kind] == null) continue;
+            var val = orgMeasureValue(geom, mSpec);
+            if (!val) continue;
+            var rvM = mgRamp(ms, mSpec.at_ms, mSpec.ramp_ms, 0, 1);
+            val.rev = rvM;
+            val.spec = mSpec;
+            mv.push(val);
+            var arcM = orgFindById("org_meas_arc_" + mSlot);
+            var lineM = orgFindById("org_meas_line_" + mSlot);
+            var refM = orgFindById("org_meas_ref_" + mSlot);
+            var labM = orgFindById("org_meas_label_" + mSlot);
+            mSlot++;
+            var live = rvM > 0.001;
+            if (arcM) arcM.visible = false;
+            if (lineM) lineM.visible = false;
+            if (refM) refM.visible = false;
+            if (labM) labM.visible = false;
+            if (!live) continue;
+            var labPos = null;
+            if (mSpec.kind === "distance") {
+                var dA = orgMul(val.pts[0], ORG_U_PER_A), dB = orgMul(val.pts[1], ORG_U_PER_A);
+                var dEnd = orgAdd(dA, orgMul(orgSub(dB, dA), rvM));
+                var dv = orgSub(dEnd, dA), dL = orgLen(dv);
+                if (lineM && dL > 1e-4) {
+                    lineM.visible = true;
+                    lineM.position.set(dA[0], dA[1], dA[2]);
+                    lineM.scale.set(0.62, dL, 0.62);
+                    lineM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / dL, dv[1] / dL, dv[2] / dL));
+                }
+                // The drawn standard, parallel and offset, at the reference
+                // LENGTH in the same scene scale — so the comparison is a picture.
+                if (refM && mSpec.reference_value_pm != null && dL > 1e-4) {
+                    var refL = (mSpec.reference_value_pm / 100) * ORG_U_PER_A * rvM;
+                    var offR = mgNorm(orgCross(orgSub(dB, dA), basis.fwd));
+                    var rA = orgAdd(dA, orgMul(offR, 0.34));
+                    refM.visible = true;
+                    refM.position.set(rA[0], rA[1], rA[2]);
+                    refM.scale.set(0.42, refL, 0.42);
+                    refM.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(dv[0] / dL, dv[1] / dL, dv[2] / dL));
+                }
+                labPos = orgAdd(orgMul(orgAdd(dA, dB), 0.5), orgMul(basis.up, 0.46));
+            } else {
+                // angle (3 ids) and torsion (4 ids) both draw an arc at a vertex.
+                // For a torsion the arms are the two substituent directions
+                // PROJECTED perpendicular to the central bond — which is what the
+                // dihedral actually is, and what a Newman view shows.
+                var vtx, u1, u2;
+                if (mSpec.kind === "angle") {
+                    vtx = val.pts[1];
+                    u1 = mgNorm(orgSub(val.pts[0], vtx));
+                    u2 = mgNorm(orgSub(val.pts[2], vtx));
+                } else {
+                    var axT = mgNorm(orgSub(val.pts[2], val.pts[1]));
+                    vtx = orgMul(orgAdd(val.pts[1], val.pts[2]), 0.5);
+                    var r1 = orgSub(val.pts[0], val.pts[1]), r2 = orgSub(val.pts[3], val.pts[2]);
+                    u1 = mgNorm(orgSub(r1, orgMul(axT, mgDot(r1, axT))));
+                    u2 = mgNorm(orgSub(r2, orgMul(axT, mgDot(r2, axT))));
+                }
+                var swept = mgAngleDeg(u1, u2);
+                var nrm = orgCross(u1, u2);
+                if (orgLen(nrm) < 1e-8) nrm = basis.fwd;
+                nrm = mgNorm(nrm);
+                if (arcM) {
+                    arcM.visible = true;
+                    var vAxA = mgNorm(orgCross(nrm, u1));
+                    var mtx = new THREE.Matrix4();
+                    mtx.makeBasis(new THREE.Vector3(u1[0], u1[1], u1[2]),
+                        new THREE.Vector3(vAxA[0], vAxA[1], vAxA[2]),
+                        new THREE.Vector3(nrm[0], nrm[1], nrm[2]));
+                    arcM.quaternion.setFromRotationMatrix(mtx);
+                    var vp = orgMul(vtx, ORG_U_PER_A);
+                    arcM.position.set(vp[0], vp[1], vp[2]);
+                    arcM.scale.setScalar(ORG_MEAS_ARC_R);
+                    var segs = Math.max(1, Math.round(ORG_MEAS_ARC_SEGS * (swept * rvM) / 360));
+                    arcM.geometry.setDrawRange(0, segs * 6);
+                }
+                var msum = orgAdd(u1, u2);
+                var midA = (orgLen(msum) > 0.12) ? mgNorm(msum) : mgNorm(orgCross(nrm, u1));
+                labPos = orgAdd(vtx, orgMul(midA, (ORG_MEAS_ARC_R + 0.62) / ORG_U_PER_A));
+                labPos = orgMul(labPos, ORG_U_PER_A);
+            }
+            // The label carries the MEASURED value, and only once the instrument
+            // it annotates has finished drawing (never a number ahead of its own
+            // evidence). Auto-width: the string grows well past its seed.
+            if (labM && labPos && rvM > 0.55) {
+                labM.visible = true;
+                var txt = val.text;
+                if (mSpec.kind === "distance" && mSpec.reference_value_pm != null) {
+                    txt = txt + "  (" + (mSpec.reference_label || "reference") + " "
+                        + Math.round(mSpec.reference_value_pm) + " pm)";
+                }
+                updateLabelSpriteText(labM, txt);
+                labM.position.set(labPos[0], labPos[1], labPos[2]);
+            }
+        }
+        for (i = mSlot; i < ORG_MAX_MEASURES; i++) {
+            var qa = orgFindById("org_meas_arc_" + i); if (qa) qa.visible = false;
+            var ql = orgFindById("org_meas_line_" + i); if (ql) ql.visible = false;
+            var qr = orgFindById("org_meas_ref_" + i); if (qr) qr.visible = false;
+            var qb = orgFindById("org_meas_label_" + i); if (qb) qb.visible = false;
+        }
+        window.PM_orgMeasures = mv;
+
+        // ── S2: the energy instrument. ONE object, so the rider and the pose read
+        //   the SAME coordinate; est.x is phiMeasured by construction.
+        var en = os.energy || {};
+        var est = orgEnergyState(os, geom, mol);
+        window.PM_orgEnergy = est ? { x: est.x, e: est.e, barrier: est.barrier, curve: est.curve, verified: est.verified } : null;
+        // KEY NAMES ARE A CONTRACT WITH THE PIN EVALUATOR. deriveStateMeta's
+        // generic sweep pairs '<stem>_at_ms' with '<stem>_ramp_ms' inside a NESTED
+        // OBJECT, and a bare 'at_ms' only inside an ARRAY LEG. So the energy block
+        // (an object) uses reveal_at_ms/reveal_ramp_ms and each measure (an array
+        // leg) uses at_ms/ramp_ms. Named the other way round, a reveal would be
+        // invisible to the pin and every frozen frame would photograph a
+        // half-drawn curve. Asserted by the gate, not trusted.
+        if (est) orgDrawGraph(en, est, mgRamp(ms, en.reveal_at_ms, en.reveal_ramp_ms, 0, 1));
+
+        // ── value-only HUD (Rule 33d/34b: numbers, never a restated equation).
+        var hud = document.getElementById("org_hud");
+        if (hud && hud.style.display !== "none") {
+            var lines = [], w = os.hud_lines || ["pose"], nC = 0, nH = 0;
+            for (i = 0; i < geom.atoms.length; i++) { if (geom.atoms[i].el === "C") nC++; else nH++; }
+            for (i = 0; i < w.length; i++) {
+                var key = w[i];
+                if (key === "phi") lines.push("\\u03C6 = " + ((window.PM_orgPhi == null) ? "\\u2014" : window.PM_orgPhi.toFixed(1)) + "\\u00B0");
+                else if (key === "bond") lines.push("bond = " + (solved.sight ? String(solved.sight).replace("-", "\\u2013") : "\\u2014"));
+                else if (key === "pose") lines.push("pose = " + ((os.torsion && os.torsion.pose) ? os.torsion.pose : (mol.default_pose || "\\u2014")));
+                else if (key === "atom_count") lines.push("C " + nC + " \\u00B7 H " + nH);
+                // ── S2. VALUE-ONLY (Rule 33d / 34b): a number and its unit, never
+                //   the relation that produced it — the relation lives on the ONE
+                //   formula surface. A line whose instrument is absent prints the
+                //   em-dash rather than a stale or invented value, and no line
+                //   pre-spoils a quantity the state did not put on screen.
+                else if (key === "energy") {
+                    lines.push("E = " + ((est == null) ? "\\u2014"
+                        : orgFx(est.e) + " kJ\\u00B7mol\\u207B\\u00B9"));
+                } else if (key === "barrier") {
+                    // A1 ledger (b): the row NAMES its span when hi - lo is not the
+                    // barrier a textbook quotes (butane's 19 is anti->syn, not the
+                    // 16 kJ/mol interconversion barrier).
+                    lines.push(((est == null) ? "barrier" : est.barrierLabel) + " = "
+                        + ((est == null) ? "\\u2014"
+                            : orgFx(est.barrier, 0) + " kJ\\u00B7mol\\u207B\\u00B9"));
+                } else if (key === "angle") {
+                    var nAng = 0;
+                    for (j = 0; j < mv.length; j++) {
+                        if (mv[j].kind !== "angle" && mv[j].kind !== "torsion") continue;
+                        if (mv[j].rev <= 0.55) continue;
+                        lines.push(mv[j].text); nAng++;
+                    }
+                    if (!nAng) lines.push("angle = \\u2014");
+                } else if (key === "distance") {
+                    var nDis = 0;
+                    for (j = 0; j < mv.length; j++) {
+                        if (mv[j].kind !== "distance" || mv[j].rev <= 0.55) continue;
+                        lines.push(mv[j].text); nDis++;
+                    }
+                    if (!nDis) lines.push("distance = \\u2014");
+                }
+            }
+            hud.innerHTML = lines.join("<br>");
+        }
+    }
+
+    /** Rule 29/32e: emphasis is brightness, exactly ONE focal at a time. */
+    //   S2 adds two keys. 'measures' is the instrument family, and 'curve' is the
+    //   energy panel — a live element a state puts on screen, so a narration
+    //   sentence about the curve must be bindable. The bonding_scene E5 lesson:
+    //   a chart with no glow key is unbindable BY CONSTRUCTION.
+    var ORG_GLOW_ELS = {
+        atoms: ["org_atom"], labels: ["org_atom_label"],
+        bonds: ["org_bond"], rim: ["org_rim"],
+        measures: ["org_meas_arc", "org_meas_line", "org_meas_ref", "org_meas_label"],
+        curve: ["org_graph"]
+    };
+    function applyOrganicStructureGlow(stateDef) {
+        var focal = stateDef.glow_focal || null, k, i;
+        var focalTypes = {};
+        for (k in ORG_GLOW_ELS) {
+            if (!Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, k)) continue;
+            for (i = 0; i < ORG_GLOW_ELS[k].length; i++) focalTypes[ORG_GLOW_ELS[k][i]] = (focal === k);
+        }
+        // org_graph is a DOM canvas, not a mesh: arming the mesh pass for it would
+        // dim every atom with nothing in the 3D scene lit (scar #33, the focal
+        // that becomes a total no-op with a dimmed peer set).
+        var any = !!focal && Object.prototype.hasOwnProperty.call(ORG_GLOW_ELS, focal) && focal !== "curve";
+        for (i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (!o.userData || String(o.userData.elementType || "").indexOf("org_") !== 0) continue;
+            applyGlowEmphasis(o, !!focalTypes[o.userData.elementType], any, 1, false);
+        }
+        // ...and the panel takes the same emphasis in its own medium: brightness,
+        // never size (Rule 29), written BOTH ways so the focal is released again.
+        var gcv = document.getElementById("org_graph");
+        if (gcv) {
+            var gf = (focal === "curve");
+            gcv.style.filter = gf ? "brightness(1.22)" : "";
+            gcv.style.boxShadow = gf ? "0 0 0 2px rgba(255,241,118,0.85)" : "";
+        }
+    }
+
     // ── orbital_shapes (an orbital is a 3D region of PROBABILITY, not a path) ─
     //   NEW scenario (2026-07-28 engine ask, skeleton §E). The P2 orbital-lobe
     //   render surface for chemistry: a whiteboard cannot draw a p_z dumbbell
@@ -71519,6 +75045,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildBondingScene(config);
                 break;
 
+            case "organic_structure":
+                buildOrganicStructure(config);
+                break;
+
             case "orbital_shapes":
                 buildOrbitalShapes(config);
                 break;
@@ -72586,6 +76116,17 @@ export const FIELD_3D_RENDERER_CODE = `
             applyBondingSceneState(stateDef);
         }
 
+        // organic_structure (ORGANIC — Phase-0 S1) — authoritative per-state
+        // seeding: the frozen-enum gate (a deferred member or field is REJECTED
+        // LOUDLY here, never silently defaulted), the molecule preset, the H
+        // visibility, the ring-gated contextual control rows (Rule 31), the HUD +
+        // ONE formula surface, and the SOLVED camera. The first frame is drawn at
+        // the end of the apply so a SET_STATE landing on a pin never photographs
+        // the previous state's picture.
+        if (config.scenario_type === "organic_structure") {
+            applyOrganicStructureState(stateDef);
+        }
+
         // dipole_potential (electric_potential_dipole, V = k p cosθ/r²) —
         // authoritative per-state visibility (charges/p always on; probe / r-lines /
         // θ-arc / two-term + collapse callouts / equatorial disc + E arrow / curve
@@ -72894,6 +76435,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // through with its straight-wire-current defaults (THE-EYE "#sliders
         // exclusion chain" -- every dedicated panel excludes itself here).
         var isBondScene = config.scenario_type === "bonding_scene";
+        // organic_structure owns its OWN #org_sliders panel (view / spin /
+        // implicit_h today; the ring-gated list grows per dispatch) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" -- every dedicated panel excludes itself here).
+        var isOrganic = config.scenario_type === "organic_structure";
         // solid_of_revolution owns its OWN #sr_sliders panel (a/b/r/n rows) -- must
         // be excluded here or the generic #sliders panel bleeds through (THE-EYE
         // "#sliders exclusion chain" -- every dedicated panel excludes itself here).
@@ -72917,7 +76463,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isSolidRev && !isKt && !isVecGeom) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator && !isMfl && !isCap && !isDc && !isEmw && !isAcResistor && !isAcInductor && !isAcCapacitor && !isAcPhasor && !isAcSeriesLcr && !isAcPower && !isLco && !isTfr && !isNlb && !isFrig && !isRbr && !isOrbShapes && !isBondScene && !isOrganic && !isSolidRev && !isKt && !isVecGeom) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -73104,7 +76650,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (formulaEl && (config.scenario_type === "organic_structure" || config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator" || config.scenario_type === "capacitance" || config.scenario_type === "newtons_laws_body" || config.scenario_type === "force_rig" || config.scenario_type === "ac_resistor" || config.scenario_type === "ac_inductor" || config.scenario_type === "ac_capacitor" || config.scenario_type === "ac_phasor" || config.scenario_type === "ac_series_lcr" || config.scenario_type === "ac_power" || config.scenario_type === "lc_oscillation" || config.scenario_type === "transformer" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula / #nlb_formula / #cap_formula+#cap_derivation / #acr_formula+#acr_derivation / #acl_formula+#acl_derivation / #acc_formula+#acc_derivation / #phs_formula / #lco_formula / #kt_formula) — the generic bottom-right #formula_overlay (monospace) is a duplicate echo (Rule 34b/c/d); lco owns the top-right Cambria #lco_formula surface
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
@@ -73629,6 +77175,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // and a "point charge / drag to rotate" legend would be both wrong and
         // clutter (Rule 34).
         if (config.scenario_type === "bonding_scene") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // organic_structure is a silent visual too (Rule 24): the skeleton + atom
+        // labels + the value-only HUD + the ONE formula surface carry everything,
+        // and a "point charge / drag to rotate" legend would be both wrong and
+        // clutter (Rule 34).
+        if (config.scenario_type === "organic_structure") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // em_wave_propagation is a silent visual (Rule 24): the antenna + axis +
         // green E-train / blue B-train + receiver dual gauge + motes + the ONE
         // formula surface carry everything — suppress the generic point-charge
@@ -76186,7 +79737,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
+        if (freezeAtTime !== null && (config.scenario_type === "organic_structure" || config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field" || config.scenario_type === "capacitance" || config.scenario_type === "displacement_current" || config.scenario_type === "em_wave_propagation" || config.scenario_type === "molecular_geometry" || config.scenario_type === "orbital_shapes" || config.scenario_type === "bonding_scene" || config.scenario_type === "solid_of_revolution" || config.scenario_type === "kinematics_1d_track" || config.scenario_type === "rigid_body_rotation")) {
             // molecular_geometry joins the snap set for the same reason: every beat
             // (assemble grow, flat→tetrahedral relax, domain spread, lone-pair
             // squeeze, geometry swap) AND the slow turn are closed-form functions
@@ -76282,6 +79833,16 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "bonding_scene") {
             var bscStateDef = config.states[PM_currentState];
             if (bscStateDef) { updateBondingSceneFrame(bscStateDef); applyBondingSceneGlow(bscStateDef); }
+        }
+
+        // organic_structure (ORGANIC) — the skeleton layer: the generated atom +
+        // bond geometry, the static torsion pose, the solved / scheduled camera,
+        // the view-axis spin (N-20) and the value-only HUD. Accumulator-free:
+        // every value INCLUDING the camera pose and the spin angle is a pure fn
+        // of state-local t (Rule 26/36 — byte-stable under a SET_TIME_FREEZE pin).
+        if (config.scenario_type === "organic_structure") {
+            var orgStateDef = config.states[PM_currentState];
+            if (orgStateDef) { updateOrganicStructureFrame(orgStateDef); applyOrganicStructureGlow(orgStateDef); }
         }
 
         // molecular_geometry (VSEPR) — the assemble / flat-relax / domain-spread /

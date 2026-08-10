@@ -72,6 +72,23 @@
  *      apply-only fix; the negative controls run the SHIPPED source with the
  *      gate textually removed, so they execute the defect rather than
  *      paraphrase it.
+ *  24  THE LABEL IS PART OF THE NUMBER — a generic comparison segment
+ *      publishes its OWN token (segment_length, "segment length") and never
+ *      borrows point_plane_distance, whose label is the bare word "distance".
+ *      Read as TEXT off the #vg_readout panel during the WRONG-PICTURE beat,
+ *      because the arithmetic, the reveal gating and the settled frame were
+ *      all correct while the panel asserted the misconception. The control
+ *      restores the one pre-fix assignment and watches "distance = 2.580"
+ *      come back mid-sweep — and shows the second failure the shared token
+ *      hid, the segment silently OVERWRITING the perpendicular's distance.
+ *  27  A FREE-RUNNING SANDBOX LOOPS — vg.animate_loop_ms. Rule 37 gives an
+ *      interaction_complete state a clock with no end, so ANY finite animate[]
+ *      list expires and the picture stops dead (#9 STATE_9 froze at 72 s).
+ *      Asserts the loop at the row's own probe ms, the stateMs-CONSUMER SWEEP
+ *      (the wrapped clock reaches the animate[] evaluation and nothing else —
+ *      reveals, ghosts, the grow-in ease and camera_steps stay un-wrapped),
+ *      rewind determinism, drag-seize priority, byte-identity for every state
+ *      that authors NO period, and the deriveStateMeta first-cycle decision.
  *  13  the CAMERA, under THE WORST-CASE LAW: scored PAIRWISE over every
  *      rendered pair, in PERSPECTIVE, at FOV 60 against a declared
  *      reference aspect, at the worst case over EVERY live slider — with
@@ -111,7 +128,7 @@ const FNS = [
   "vgSub", "vgAddVec", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize",
   "vgTranslateVerts", "vgRotateAbout", "vgBuildVectors", "vgParallelogramVerts",
   "vgParallelepipedFaces", "vgProjectPoint", "vgPairwiseScreenSeparationDeg",
-  "vgEase", "vgAnimKnobs", "vgAnimValue", "vgAnimEndMs",
+  "vgEase", "vgAnimKnobs", "vgLoopMs", "vgAnimValue", "vgAnimEndMs",
   "vgCamScheduleAt", "vgCamStepsEndMs", "vgAutoFramePos",
   "vgSplitPieces", "vgSolidFaceCount",
   // Δ11 · the projection of b onto â (the dot product's picture) and the
@@ -202,33 +219,61 @@ function fakeDom() {
 // rather than restated here — a gate carrying its own copy of the numbers
 // passes forever after the renderer changes them.
 const SHIPPED_ROW_RANGE: Record<string, { min: number; max: number; step: number; def: number }> = {};
+// ...and the LABEL each row is born with, read from the SAME call sites for the
+// same reason (§25 measures the rewritten label against the built one, so a gate
+// holding its own copy of "θ (a, b)" would keep passing after the renderer
+// changed it).
+const SHIPPED_ROW_LABEL: Record<string, string> = {};
 {
   const buildAt = SRC.indexOf("function buildVectorGeometrySliders");
   const region = SRC.slice(buildAt, SRC.indexOf("document.body.appendChild(spd);", buildAt));
-  const re = /vgSc\("(\w+)",\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*(-?[0-9.]+)/g;
+  const re = /vgSc\("(\w+)",\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*(-?[0-9.]+),\s*"([^"]*)"\)/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(region))) {
     SHIPPED_ROW_RANGE[m[1]] = { min: Number(m[2]), max: Number(m[3]), step: Number(m[4]), def: Number(m[5]) };
+    SHIPPED_ROW_LABEL[m[1]] = m[6];
   }
 }
-/** The DOM-touching vg text functions, shipped, with a window/document injected. */
-function vgTextFns(win: Record<string, unknown>, doc: unknown) {
+/**
+ * The DOM-touching vg text functions, shipped, with a window/document injected.
+ *
+ * `labelSrcOverride` replaces exactly the `var VG_READOUT_LABEL = {...};` source
+ * and nothing else, so §26's negative control can run the SHIPPED vgReadoutLine
+ * over a deliberately-broken label table (the mutate-one-body precedent of
+ * buildVgSandbox). It is never used by any positive assertion.
+ */
+function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?: string,
+  rowPassSrc?: string) {
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
-  return new Function("window", "document", "ROW_RANGE", [
-    grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
+  return new Function("window", "document", "ROW_RANGE", "ROW_LABEL", [
+    labelSrcOverride || grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
     grabVar("VG_READOUT_SUBJECT"), grabScalar("VG_SUBJECT_SHOWN_MIN"),
     grabVar("VG_ROW_DEC"), grabVar("VG_ROW_DRAG"),
     grabScalar("VG_FLIP_EPS"),
     "var VG_ROW_RANGE = ROW_RANGE;",
+    // §25 · the row-label pair. vgWriteRowLabels is the DOM writer both the
+    // apply pass and the scene-group picker call, so it is pulled out WITH a
+    // document exactly like vgSyncRampedRows.
+    "var VG_ROW_LABEL = ROW_LABEL;",
+    grabFn("vgList"), grabFn("vgInGroup"),
+    grabFn("vgThetaRowLabel"), grabFn("vgWriteRowLabels"),
+    // §28 · the ROW-VISIBILITY pass, the one place that decides which rows are
+    // on screen. Pulled out WITH a document for the same reason the label
+    // writer is: the apply pass AND the scene-group picker both call it, and
+    // the discriminating quantity is the DOM a teacher would see.
+    grabFn("vgEffectiveControls"), rowPassSrc || grabFn("vgApplyControlRows"),
     grabFn("vgFx"), grabFn("vgFmtPoint"), grabFn("vgCrossLabelText"), grabFn("vgCrossMagLabelText"),
     grabFn("vgReadoutLine"), grabFn("vgReadoutSubjectShown"),
     grabFn("vgSyncRampedRows"), grabFn("vgControlRange"),
     "return { VG_READOUT_LABEL: VG_READOUT_LABEL, VG_ROW_DEC: VG_ROW_DEC, VG_ROW_RANGE: VG_ROW_RANGE,"
+    + " vgEffectiveControls: vgEffectiveControls, vgApplyControlRows: vgApplyControlRows,"
+    + " VG_ROW_LABEL: VG_ROW_LABEL, vgThetaRowLabel: vgThetaRowLabel, vgWriteRowLabels: vgWriteRowLabels,"
     + " VG_READOUT_SUBJECT: VG_READOUT_SUBJECT, VG_SUBJECT_SHOWN_MIN: VG_SUBJECT_SHOWN_MIN,"
     + " vgCrossMagLabelText: vgCrossMagLabelText, vgReadoutLine: vgReadoutLine,"
     + " vgReadoutSubjectShown: vgReadoutSubjectShown, vgSyncRampedRows: vgSyncRampedRows,"
     + " vgControlRange: vgControlRange };",
-  ].join("\n"))(win, doc, JSON.parse(JSON.stringify(SHIPPED_ROW_RANGE))) as any;
+  ].join("\n"))(win, doc, JSON.parse(JSON.stringify(SHIPPED_ROW_RANGE)),
+    JSON.parse(JSON.stringify(SHIPPED_ROW_LABEL))) as any;
 }
 /**
  * The SHIPPED frame driver, published by section 15 (which owns the THREE stub
@@ -248,15 +293,35 @@ const FRAME_HARNESS: { run: RunFrame | null; src: string | null } = { run: null,
 
 /** The SHIPPED apply pass, run against a scene + a real (fake) DOM registry. */
 const APPLY_SRC = grabFn("applyVectorGeometry3DState");
+/** The SHIPPED row pass — the ONE place that decides which slider rows show. */
+const ROW_PASS_SRC = grabFn("vgApplyControlRows");
+/**
+ * The knob keys of the shipped row table, read out of that pass rather than
+ * restated (a gate carrying its own copy of the row list keeps passing after
+ * the renderer grows a knob). Guarded: a drifted table THROWS here rather than
+ * silently measuring nothing.
+ */
+const ROW_ID_KEYS: string[] = (() => {
+  const m = /var rowIds = \{([^}]*)\}/.exec(ROW_PASS_SRC);
+  if (!m) throw new Error("vgApplyControlRows no longer declares `var rowIds = {...}` — re-anchor the row table.");
+  return m[1].split(",").map((s) => s.split(":")[0].trim()).filter(Boolean);
+})();
+/**
+ * `rowPassSrc` replaces exactly the `vgApplyControlRows` body and nothing else,
+ * so §28's negative control can run the SHIPPED apply pass over the PRE-FIX
+ * (flat, group-blind) row pass — the mutate-one-body precedent of
+ * buildVgSandbox and of §25's label control.
+ */
 function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom(),
-  srcOverride?: string) {
+  srcOverride?: string, rowPassSrc?: string) {
   const win: Record<string, unknown> = {};
-  const T = vgTextFns(win, dom.document);
+  const T = vgTextFns(win, dom.document, undefined, rowPassSrc);
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const factory = new Function("sceneObjects", "window", "document", "vgAnimKnobs", "VG_ROW_RANGE", "vgControlRange",
-    "vgShowAB",
+    "vgShowAB", "vgWriteRowLabels", "vgApplyControlRows",
     (srcOverride || APPLY_SRC) + "\nreturn applyVectorGeometry3DState;");
-  factory(scene, win, dom.document, E.vgAnimKnobs, T.VG_ROW_RANGE, T.vgControlRange, E.vgShowAB)(stateDef);
+  factory(scene, win, dom.document, E.vgAnimKnobs, T.VG_ROW_RANGE, T.vgControlRange, E.vgShowAB,
+    T.vgWriteRowLabels, T.vgApplyControlRows)(stateDef);
   return { win, dom, T };
 }
 
@@ -1272,7 +1337,8 @@ console.log("\n=== 11c. THE AUTHORED value_readouts UNION == THE SHIPPED VG_READ
   if (unlabelled.length) console.log(`        UNLABELLED: ${unlabelled.join(", ")}`);
 
   check("the two declarations are the SAME closed set", UNION.length, LABELS.length, 0);
-  check("the set is the full 24 (11 products + 13 lines_planes)", LABELS.length, 24, 0);
+  // 25 since segment_length was split out of point_plane_distance (§24).
+  check("the set is the full 25 (11 products + 14 lines_planes)", LABELS.length, 25, 0);
   assertTrue("the union is still CLOSED — never weakened to string[]",
     /value_readouts\?:\s*Array</.test(FILE) && !/value_readouts\?:\s*string\[\]/.test(FILE));
 
@@ -1297,7 +1363,7 @@ console.log("\n=== 11c. THE AUTHORED value_readouts UNION == THE SHIPPED VG_READ
     "a_dot_cross", "b_dot_cross", "triple", "volume", "base_area", "height"];
   const preMissing = LABELS.filter((k) => PRE_A25.indexOf(k) < 0);
   assertTrue(`the binding check FIRES on the pre-A25 union: ${preMissing.length} of ${LABELS.length} keys unauthorable`,
-    preMissing.length === 13);
+    preMissing.length === 14);
   expectFail("the pre-A25 11-token union satisfies union-superset-of-table",
     LABELS.every((k) => PRE_A25.indexOf(k) >= 0));
 
@@ -1736,7 +1802,7 @@ console.log("\n=== 10. D5/F14 — the intersection marker exists ONLY when the i
   // ── (c) Δ6 — the readout token set, closed in BOTH directions ────────────
   {
     const DELTA6 = [
-      "point_plane_distance", "skew_distance", "angle_lines_deg",
+      "point_plane_distance", "segment_length", "skew_distance", "angle_lines_deg",
       "angle_line_plane_deg", "angle_line_normal_deg", "d_dot_n", "n_dot_v",
       "no_meeting_point", "lambda", "intersection_point", "n_norm",
       "cross_norm", "numerator_triple_product",
@@ -2624,6 +2690,10 @@ console.log("\n=== 15. Δ11 — THE DRAWN CROSS VECTOR'S NAME: the label agrees 
     ];
     const frameSrc = grabFn("updateVectorGeometry3DFrame");
     const INJECT = [
+      // F21b · vgAnimValue calls vgLoopMs, so the loop helper travels with it
+      // into the frame factory (a missing injection would ReferenceError the
+      // whole driver rather than quietly skipping the wrap).
+      "vgLoopMs",
       "vgAnimValue", "vgBuildVectors", "vgCrossVec", "vgDotVec", "vgLenVec", "vgNormalize",
       "vgAddVec", "vgSub", "vgRotateAbout", "vgParallelogramVerts", "vgSplitPieces",
       "vgSolidFaceCount", "vgProjectionOnto", "vgCrossLabelText", "vgAutoFramePos",
@@ -2809,12 +2879,12 @@ console.log("\n=== 16. Δ11 — THE OVERLAY LAYOUT: #vg_sliders and #formula_ove
   // The left edge the panel moved ONTO must be clear too — moving a collision
   // rather than removing it is the same bug one panel over. #vg_readout is the
   // only other left-edge panel, and it is top-anchored.
-  // The row ids are read from the SHIPPED apply pass (scoped to the vg region:
+  // The row ids are read from the SHIPPED row pass (scoped to the vg region:
   // several scenarios declare a `rowIds` map, and the first one in the file is
-  // not this one).
-  const applyAt = SRC.indexOf("function applyVectorGeometry3DState");
-  const rowIdKeys = /var rowIds = \{([^}]*)\}/.exec(SRC.slice(applyAt))![1]
-    .split(",").map((s) => s.split(":")[0].trim()).filter(Boolean);
+  // not this one). §28 extracted that map out of applyVectorGeometry3DState and
+  // into vgApplyControlRows, which the apply pass AND the group picker both
+  // call — so the anchor is that function, and it is the same table.
+  const rowIdKeys = ROW_ID_KEYS;
   // A state authors ONE mode, so the tallest realistic panel is the tallest
   // MODE, plus the scene_group select. Both lists are asserted to be subsets
   // of the shipped map, so they cannot quietly rot away from it.
@@ -3199,8 +3269,8 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
       const T = vgTextFns({}, fakeDom().document);
       expectFail("the F9 panel gate alone would have suppressed n·d before its subject",
         T.vgReadoutSubjectShown("d_dot_n", {}, {}) === false);
-      assertTrue("...it waves through every one of the 13 lines/planes tokens (it can only gate subjects it can name)",
-        ["point_plane_distance", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
+      assertTrue("...it waves through every one of the 14 lines/planes tokens (it can only gate subjects it can name)",
+        ["point_plane_distance", "segment_length", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
           "angle_line_normal_deg", "d_dot_n", "n_dot_v", "no_meeting_point", "lambda",
           "intersection_point", "n_norm", "cross_norm", "numerator_triple_product"]
           .every((t) => T.vgReadoutSubjectShown(t, {}, {}) === true));
@@ -3232,7 +3302,10 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
         },
       },
       {
-        name: "F23 a comparison segment's LENGTH", tokens: ["point_plane_distance"],
+        // §24 — a generic segment publishes the GENERIC token, never the
+        // point-to-plane one. This fixture is also the §19b half of that fix:
+        // if the publish site ever reverts, `tokens` here stops matching.
+        name: "F23 a comparison segment's LENGTH", tokens: ["segment_length"],
         block: {
           mode: "lines_planes", reveal_ms: 0,
           points: [{ id: "q1", position: [1, 1, 1], reveal_at_ms: R }, { id: "q2", position: [-1, 0.2, 0.4], reveal_at_ms: R }],
@@ -3325,7 +3398,7 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
     }
     // The token set the sweep actually exercised IS the Δ6 enum — a site added
     // later with a token no fixture covers is caught by the tripwire below.
-    const DELTA6 = ["point_plane_distance", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
+    const DELTA6 = ["point_plane_distance", "segment_length", "skew_distance", "angle_lines_deg", "angle_line_plane_deg",
       "angle_line_normal_deg", "d_dot_n", "n_dot_v", "no_meeting_point", "lambda",
       "intersection_point", "n_norm", "cross_norm", "numerator_triple_product"];
     check("the sweep covers EVERY Δ6 readout token (no token is gated only in principle)",
@@ -3390,15 +3463,15 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
     const at = (ms: number) => E.vgResolveLinesPlanes(block, {}, ms);
     const f1500 = at(1500).segments[0].frac;
     assertTrue(`t=1500ms: the segment is only ${(f1500 * 100).toFixed(0)}% drawn, so its length is NOT published`,
-      f1500 > 0 && f1500 < 1 && at(1500).readouts.point_plane_distance === undefined);
+      f1500 > 0 && f1500 < 1 && at(1500).readouts.segment_length === undefined);
     assertTrue("t=2000ms: the grow completes and the length appears", at(2000).segments[0].frac === 1
-      && Math.abs(at(2000).readouts.point_plane_distance - len3(sub3(qa, qb))) < 1e-12);
+      && Math.abs(at(2000).readouts.segment_length - len3(sub3(qa, qb))) < 1e-12);
     // NEGATIVE CONTROL — a "started" gate, which is the plausible weaker fix.
     const STARTED = buildVgSandbox((name, src) =>
       (name === "vgArrived" ? src.replace(GATE_BODY, "return frac > 0;") : src)) as any;
     assertTrue("the 'started' variant really was planted", STARTED.vgArrived(0.01) === true && E.vgArrived(0.01) === false);
     expectFail(`a 'frac > 0' gate stays silent while the segment is ${(f1500 * 100).toFixed(0)}% drawn`,
-      STARTED.vgResolveLinesPlanes(block, {}, 1500).readouts.point_plane_distance === undefined);
+      STARTED.vgResolveLinesPlanes(block, {}, 1500).readouts.segment_length === undefined);
   }
 
   // ── (d) THE GATE DID NOT COST DETERMINISM (D3 / Rule 36) ─────────────────
@@ -3444,6 +3517,285 @@ console.log("\n=== 19b. Δ2b — A NUMBER MAY NOT PRECEDE ITS SUBJECT, AT THE RE
     assertTrue("a products-mode frame never enters the resolver at all (PM_vgLinesPlanes === null)", win.PM_vgLinesPlanes === null);
     assertTrue("...and its own panel is untouched by this fix — all four Act I rows still print",
       ["a_mag", "b_mag", "theta_deg", "a_dot_b"].every((k) => dom.get("vg_readout").innerHTML.includes("vg_readout_" + k)));
+  }
+}
+
+console.log("\n=== 19c. Δ2c — ONE CONSTRUCT, TWO TOKENS, TWO BEATS: THE ARC OWNS THE NUMBER IT NAMES ===");
+{
+  // bug_class vg_projection_publishes_both_angle_tokens_before_either_arc_is_
+  // drawn (MAJOR). §19b gated every readout on the reveal of the construct that
+  // COMPUTES it. That is not the same rule as "the reveal of the thing it
+  // NAMES", and the projection is where the two come apart: one construct
+  // yields TWO tokens whose teaching beats are ten seconds apart.
+  //
+  // MEASURED (EYE walk, lines_and_planes_in_space STATE_7): the shadow reveals
+  // at 2000 ms over a 1500 ms grow, so it arrives at ~3350 ms and both angle
+  // rows appeared there — while arc_normal reveals at 9000 (arrives ~10080) and
+  // arc_plane at 13000 (arrives ~14350). Pixel-confirmed at t=11000: the panel
+  // read "angle to plane = 35.0°" with the arc that derives it still two
+  // seconds from its reveal. The state cannot stage a derivation at all if the
+  // answer is on the HUD 11 s before the beat that reaches it.
+  //
+  // THE DISCRIMINATING QUANTITY IS PER-TOKEN, NOT PER-CONSTRUCT: a state with
+  // NO arcs must keep today's behaviour exactly (there the shadow IS the
+  // picture of "angle to the plane", and nothing else can claim the number), so
+  // a fixture that only proves silence would be passed by simply deleting the
+  // publish. Fixture (b) is what makes this section capable of failing in the
+  // other direction, and (c) is what makes it per-TOKEN rather than
+  // all-or-nothing.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+  const uIn = nrm(cross3(nh, [0, 0, 1]));
+  const rotFromNormal = (deg: number): V3 => {
+    const a = deg * Math.PI / 180;
+    return nrm([nh[0] * Math.cos(a) + uIn[0] * Math.sin(a),
+      nh[1] * Math.cos(a) + uIn[1] * Math.sin(a),
+      nh[2] * Math.cos(a) + uIn[2] * Math.sin(a)]);
+  };
+  const dCut = rotFromNormal(55);                                 // 55° to the normal, 35° to the plane
+  const Xpt: V3 = add3(planePoint, [uIn[0] * 0.6, uIn[1] * 0.6, uIn[2] * 0.6]);
+  const cutAnchor: V3 = sub3(Xpt, [dCut[0] * 2.6, dCut[1] * 2.6, dCut[2] * 2.6]);
+
+  const ARC_N = { id: "arc_normal", between: ["Lcut", "P1.normal"], readout: "angle_line_normal_deg", reveal_at_ms: 9000, grow_ms: 1200 };
+  const ARC_P = { id: "arc_plane", between: ["Lcut", "P1"], readout: "angle_line_plane_deg", reveal_at_ms: 13000, grow_ms: 1500 };
+  /** STATE_7's authoring, to the ms: the shadow at 2000/1500, then the arcs. */
+  const s7 = (arcs: unknown[] | null, dir: V3 = dCut): Record<string, unknown> => {
+    const b: Record<string, unknown> = {
+      mode: "lines_planes", reveal_ms: 0,
+      value_readouts: ["angle_line_normal_deg", "angle_line_plane_deg"],
+      planes: [{ id: "P1", point: planePoint, normal: planeN, half_extent: 3.0, show_normal: true }],
+      lines: [{ id: "Lcut", point: cutAnchor, dir, lambda_span: [-3, 3], label: "d" }],
+      projection: { id: "shadow", line: "Lcut", plane: "P1", reveal_at_ms: 2000, grow_ms: 1500 },
+    };
+    if (arcs) b.angle_arcs = arcs;
+    return b;
+  };
+  // The panel a teacher reads, through the SHIPPED frame driver — never the
+  // resolver alone (§19b's founder question: does anything RE-PUBLISH after the
+  // resolver returns?).
+  const panelAt = (block: Record<string, unknown>, ms: number, sceneGroup: string | null = null) => {
+    const dom = fakeDom();
+    // Δ10 — the live group is a WINDOW value (PM_vgSceneGroup), written by the
+    // apply pass and read into LP_KNOBS by the frame driver, so it is seeded
+    // here the way the shipped driver reads it, never as an authored key.
+    const win: Record<string, unknown> = sceneGroup ? { PM_vgSceneGroup: sceneGroup } : {};
+    FRAME_HARNESS.run!(block, ms, dom, win);
+    const el = dom.get("vg_readout");
+    return {
+      html: el.innerHTML, shown: el.style.display,
+      hasN: el.innerHTML.includes("vg_readout_angle_line_normal_deg"),
+      hasP: el.innerHTML.includes("vg_readout_angle_line_plane_deg"),
+      rd: (win.PM_vgLinesPlanes as any).readouts as Record<string, number>,
+    };
+  };
+
+  // ── THE PRE-FIX RESOLVER, RECONSTRUCTED ─────────────────────────────────
+  //   The SHIPPED sandbox with ONE line of vgResolveLinesPlanes replaced: the
+  //   HOLD (projAngles = ang) put back to the two direct publishes it replaced.
+  //   The settle block below the arc pass then finds projAngles null and does
+  //   nothing, so the reconstruction is the shipped pre-fix behaviour exactly —
+  //   publish on the projection's beat, arcs overwrite later. A guarded
+  //   substitution: if the shipped text stops matching, this THROWS rather than
+  //   quietly testing a build with no defect in it.
+  const HOLD_LINE = /\n(\s*)projAngles = ang;\n/;
+  const unhold = (name: string, src: string) => {
+    if (name !== "vgResolveLinesPlanes") return src;
+    if (!HOLD_LINE.test(src)) {
+      throw new Error(
+        "§19c NEGATIVE CONTROL CANNOT BE BUILT: the projection's HOLD line (projAngles = ang;) is no "
+        + "longer in vgResolveLinesPlanes, so this control cannot plant the defect it names. A control "
+        + "that silently fails to plant its defect is worse than no control — update HOLD_LINE and "
+        + "re-watch it fail.");
+    }
+    return src.replace(HOLD_LINE,
+      "\n$1out.readouts.angle_line_normal_deg = ang.to_normal;\n$1out.readouts.angle_line_plane_deg = ang.to_plane;\n");
+  };
+  const PRE7 = buildVgSandbox(unhold) as any;
+  assertTrue("the reconstructed pre-fix resolver really is planted (it publishes both angles the instant the shadow arrives, at t=4000)",
+    (() => {
+      const r = PRE7.vgResolveLinesPlanes(s7([ARC_N, ARC_P]), {}, 4000).readouts;
+      return typeof r.angle_line_normal_deg === "number" && typeof r.angle_line_plane_deg === "number";
+    })());
+
+  // ── (a) THE STAGED STATE — each number waits for ITS OWN arc ─────────────
+  {
+    const block = s7([ARC_N, ARC_P]);
+    // NOT VACUOUS: the shadow really is fully drawn at 4000 ms, so the silence
+    // below is a GATE and not a fixture in which nothing resolved.
+    {
+      const res = E.vgResolveLinesPlanes(block, {}, 4000);
+      const shadow = res.lines.filter((l: any) => l.id === "shadow")[0];
+      assertTrue("t=4000ms: the shadow IS on screen, fully grown (the projection resolved — what is withheld is the NUMBER, not the picture)",
+        !!shadow && shadow.frac === 1);
+      assertTrue("...and neither arc is drawn yet (arc_normal reveals at 9000, arc_plane at 13000)",
+        res.arcs.filter((a: any) => a.frac > 0).length === 0);
+    }
+    for (const ms of [4000, 8000]) {
+      const f = panelAt(block, ms);
+      assertTrue(`t=${ms}ms: the panel prints NEITHER angle row, and is hidden (the answer may not precede the beat that derives it)`,
+        !f.hasN && !f.hasP && f.shown === "none");
+      assertTrue(`t=${ms}ms: nothing re-publishes downstream either — PM_vgLinesPlanes.readouts carries no angle token`,
+        f.rd.angle_line_normal_deg === undefined && f.rd.angle_line_plane_deg === undefined);
+    }
+    // ARRIVED, NOT STARTED — the arc's own ramp, at the SAME threshold §19b
+    // pinned: 9000 + 0.9*1200 = 10080 ms through the ease-out cubic.
+    {
+      const mid = panelAt(block, 10000);
+      assertTrue("t=10000ms: arc_normal is mid-grow, so its number is still withheld (a 'started' gate would print it here)",
+        !mid.hasN && !mid.hasP);
+      const f = panelAt(block, 10500);
+      assertTrue("t=10500ms: arc_normal has arrived and 'angle to normal' appears — ALONE",
+        f.hasN && !f.hasP && f.shown === "block");
+      check("...at the constructed 55.0°", f.rd.angle_line_normal_deg, 55, 1e-9);
+      assertTrue("...and the row a teacher reads carries the label and the value in one node",
+        f.html.includes("angle to normal = 55.0"));
+    }
+    // THE MEASURED FRAME. t=11000 is the dumped EYE frame that read
+    // "angle to plane = 35.0°" with arc_plane 2 s from its reveal.
+    {
+      const f = panelAt(block, 11000);
+      assertTrue("t=11000ms (THE MEASURED FRAME): 'angle to plane' is NOT on the panel — arc_plane is still 2 s from its reveal",
+        !f.hasP && !f.html.includes("angle to plane") && f.hasN);
+    }
+    {
+      const mid = panelAt(block, 14000);
+      assertTrue("t=14000ms: arc_plane is mid-grow (13000 + 0.9*1500 = 14350), so the second number is still withheld",
+        !mid.hasP && mid.hasN);
+      const f = panelAt(block, 15000);
+      assertTrue("t=15000ms: arc_plane has arrived and BOTH rows print", f.hasN && f.hasP && f.shown === "block");
+      check("...'angle to plane' is the constructed 35.0° (the fix delays the value, it does not change it)",
+        f.rd.angle_line_plane_deg, 35, 1e-9);
+      check("...and 'angle to normal' still reads 55.0°", f.rd.angle_line_normal_deg, 55, 1e-9);
+      assertTrue("...and both rows carry label and value", f.html.includes("angle to plane = 35.0") && f.html.includes("angle to normal = 55.0"));
+      check("...the two angles are complementary, which is the state's whole claim",
+        f.rd.angle_line_normal_deg + f.rd.angle_line_plane_deg, 90, 1e-9);
+    }
+    // ── NEGATIVE CONTROL 1 — the SHIPPED PRE-FIX RESOLVER on this very state.
+    {
+      const p4 = PRE7.vgResolveLinesPlanes(block, {}, 4000).readouts;
+      expectFail(`the pre-fix resolver withholds the angles at t=4000 (it publishes angle to normal = ${p4.angle_line_normal_deg.toFixed(1)}° and angle to plane = ${p4.angle_line_plane_deg.toFixed(1)}°, 6.1 s and 10.4 s before the arcs that derive them)`,
+        p4.angle_line_normal_deg === undefined && p4.angle_line_plane_deg === undefined);
+      const p11 = PRE7.vgResolveLinesPlanes(block, {}, 11000).readouts;
+      expectFail("...and at the MEASURED frame t=11000 (it prints angle to plane = 35.0° with arc_plane 2 s away)",
+        p11.angle_line_plane_deg === undefined);
+      // ...and the reconstruction is faithful: once every beat has landed the
+      // two resolvers are IDENTICAL, so the control isolates the hold and
+      // nothing else.
+      assertTrue("the pre-fix and shipped resolvers agree BIT FOR BIT on a settled frame (the control changes one thing)",
+        JSON.stringify(PRE7.vgResolveLinesPlanes(block, {}, 20000)) === JSON.stringify(E.vgResolveLinesPlanes(block, {}, 20000)));
+    }
+    // DETERMINISM (D3 / Rule 36) — the new hold is still a closed form of ms.
+    {
+      const times = [0, 3400, 4000, 8000, 10080, 10500, 14350, 15000, 30000];
+      const fwd = times.map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, {}, t)));
+      const rew = times.slice().reverse().map((t) => JSON.stringify(E.vgResolveLinesPlanes(block, {}, t)));
+      assertTrue("REWIND: the staged state replays backwards BIT FOR BIT (a SET_TIME_FREEZE re-pin is byte-identical)",
+        fwd.every((x, i) => x === rew[rew.length - 1 - i]));
+      const keysAt = (t: number) => Object.keys(E.vgResolveLinesPlanes(block, {}, t).readouts).sort().join(",");
+      assertTrue(`the numbers arrive beat by beat, never both at the shadow (t=4000 "${keysAt(4000)}", t=10500 "${keysAt(10500)}", t=15000 "${keysAt(15000)}")`,
+        keysAt(4000) === "" && keysAt(10500) === "angle_line_normal_deg"
+        && keysAt(15000) === "angle_line_normal_deg,angle_line_plane_deg");
+    }
+  }
+
+  // ── (b) BACK-COMPAT — a projection with NO arc keeps its claim, unchanged ─
+  //   The shadow IS the picture of "angle to the plane" on such a state, and
+  //   nothing else can ever publish these tokens there. This is the half a
+  //   "just delete the publish" fix would fail.
+  {
+    const bare = s7(null);
+    const f4 = panelAt(bare, 4000);
+    assertTrue("t=4000ms, NO arcs authored: BOTH angle rows print on the projection's own beat, exactly as before this fix",
+      f4.hasN && f4.hasP && f4.shown === "block");
+    check("...angle to normal = 55.0°", f4.rd.angle_line_normal_deg, 55, 1e-9);
+    check("...angle to plane = 35.0°", f4.rd.angle_line_plane_deg, 35, 1e-9);
+    // ...and Δ2b is untouched underneath: still nothing before the shadow lands.
+    const f3 = panelAt(bare, 3000);
+    assertTrue("t=3000ms: the shadow is still growing (2000 + 0.9*1500 = 3350), so Δ2b still withholds both — the older gate is intact",
+      !f3.hasN && !f3.hasP);
+    // The pre-fix and shipped builds are INDISTINGUISHABLE on this state, at
+    // every sampled ms — the fix's blast radius is exactly "states that author
+    // an owning arc", proved rather than asserted.
+    const sweep = [0, 1000, 2000, 3000, 3350, 4000, 9000, 12000, 20000];
+    assertTrue("a projection-only state resolves IDENTICALLY pre-fix and post-fix at every sampled ms (the change cannot reach it)",
+      sweep.every((t) => JSON.stringify(PRE7.vgResolveLinesPlanes(bare, {}, t)) === JSON.stringify(E.vgResolveLinesPlanes(bare, {}, t))));
+  }
+
+  // ── (c) PER TOKEN, NOT PER CONSTRUCT ────────────────────────────────────
+  //   One arc, naming ONE of the two tokens: the named one waits for it, the
+  //   UNNAMED one still arrives on the projection's beat. An all-or-nothing
+  //   deferral (defer as soon as any arc exists) passes (a) and (b) and fails
+  //   here, which is the whole reason this fixture exists.
+  {
+    const oneArc = s7([ARC_N]);
+    const f = panelAt(oneArc, 4000);
+    assertTrue("t=4000ms, only arc_normal authored: 'angle to plane' prints (nobody else claims it) while 'angle to normal' waits for its arc",
+      f.hasP && !f.hasN);
+    check("...and the printed one is the projection's own 35.0°", f.rd.angle_line_plane_deg, 35, 1e-9);
+    const g = panelAt(oneArc, 10500);
+    assertTrue("t=10500ms: arc_normal arrives and the second row joins it", g.hasN && g.hasP);
+    // The mirror, so neither token is special-cased by accident.
+    const otherArc = s7([ARC_P]);
+    const h = panelAt(otherArc, 4000);
+    assertTrue("t=4000ms, only arc_plane authored: the MIRROR holds — 'angle to normal' prints, 'angle to plane' waits",
+      h.hasN && !h.hasP);
+    // An arc in ANOTHER scene group owns nothing in this one: it can never
+    // publish here, so deferring to it would DELETE the number, not delay it.
+    const grouped = s7([{ ...ARC_N, groups: ["B"] }]);
+    const gA = panelAt(grouped, 4000, "A");
+    assertTrue("t=4000ms in group A, the only arc lives in group B: both rows print (an arc that can never publish here owns nothing)",
+      gA.hasN && gA.hasP);
+    const gB = panelAt(grouped, 4000, "B");
+    assertTrue("...and in group B the same arc DOES own its token, so 'angle to normal' waits", !gB.hasN && gB.hasP);
+    assertTrue("...and the group seed really reached the resolver (the two groups resolve DIFFERENTLY — a seed the driver ignored would make the pair vacuous)",
+      JSON.stringify(gA.rd) !== JSON.stringify(gB.rd));
+  }
+
+  // ── (d) AN ARC THAT CANNOT BE DRAWN OWNS NOTHING ────────────────────────
+  //   A line PERPENDICULAR to the plane projects to a POINT: the in-plane arm
+  //   of arc_plane has no direction, so that arc skips out of the pass entirely.
+  //   The renderer documents this case as "reports 90/0, not silence" — so
+  //   ownership is recorded where the arc RESOLVES, never from the authored
+  //   list, or this state would lose its number forever.
+  {
+    const perp = s7([ARC_N, ARC_P], nh);
+    const res = E.vgResolveLinesPlanes(perp, {}, 4000);
+    assertTrue("a line perpendicular to the plane draws NO shadow and arc_plane resolves to nothing (0 arcs at any ms)",
+      res.lines.filter((l: any) => l.id === "shadow").length === 0
+      && res.arcs.filter((a: any) => a.id === "arc_plane").length === 0);
+    const f = panelAt(perp, 4000);
+    assertTrue("t=4000ms: 'angle to plane' still prints the 90° the renderer promises, while 'angle to normal' waits for the arc that CAN be drawn",
+      f.hasP && !f.hasN);
+    check("...and it reads 90.0°", f.rd.angle_line_plane_deg, 90, 1e-9);
+    const g = panelAt(perp, 10500);
+    check("t=10500ms: arc_normal arrives with 0.0°, the complement", g.rd.angle_line_normal_deg, 0, 1e-9);
+  }
+
+  // ── (e) SCOPE, PROVED FROM THE SHIPPED SOURCE ───────────────────────────
+  //   Both new locals live inside vgResolveLinesPlanes and nowhere else — a
+  //   second reader would be a second place this rule could be forgotten.
+  {
+    const start = SRC.indexOf("function vgResolveLinesPlanes(");
+    let depth = 0, end = start;
+    for (let j = SRC.indexOf("{", start); j < SRC.length; j++) {
+      if (SRC[j] === "{") depth++;
+      else if (SRC[j] === "}") { depth--; if (depth === 0) { end = j + 1; break; } }
+    }
+    const RES = SRC.slice(start, end);
+    const outside = SRC.slice(0, start) + SRC.slice(end);
+    check("the ownership record is written from exactly ONE site in the resolver", (RES.match(/arcOwned\[/g) || []).length, 1, 0);
+    check("...and read at exactly the two token sites it gates", (RES.match(/!arcOwned\./g) || []).length, 2, 0);
+    check("...and the projection's HOLD is assigned once", (RES.match(/projAngles = ang;/g) || []).length, 1, 0);
+    check("arcOwned exists nowhere outside the resolver", (outside.match(/arcOwned/g) || []).length, 0, 0);
+    check("projAngles exists nowhere outside the resolver", (outside.match(/projAngles/g) || []).length, 0, 0);
+    // Act I cannot regress through this: the resolver is unreachable in
+    // "products" mode, measured through the shipped frame driver.
+    const win: Record<string, unknown> = {};
+    const dom = fakeDom();
+    FRAME_HARNESS.run!({ a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+    assertTrue("a products-mode frame never enters the resolver at all (PM_vgLinesPlanes === null)", win.PM_vgLinesPlanes === null);
   }
 }
 
@@ -4436,6 +4788,1617 @@ console.log("\n=== 23. F14 — THE INTERSECTION IS A LIST: ONE STATE MAY TEACH B
         bad, 0, 0);
       assertTrue(`...and the scan is not vacuous — ${withIsec.length} of those states author an intersection (${withIsec.map((s) => s.key).join(", ")})`,
         withIsec.length > 0);
+    }
+  }
+}
+
+console.log("\n=== 24. THE LABEL IS PART OF THE NUMBER: a generic segment prints \"segment length\", never \"distance\" ===");
+{
+  // bug_class vg_segment_length_readout_borrows_the_point_plane_distance_label
+  // (CRITICAL). The comparison-segments pass mapped a GENERIC authored
+  // `readout: "length"` onto the SPECIFIC token point_plane_distance, whose
+  // VG_READOUT_LABEL is the bare word "distance". On the AHA state of
+  // lines_and_planes_in_space — the state that exists to break "any segment
+  // from the point to the plane is the distance" — the sweeping,
+  // NON-perpendicular segment therefore printed "distance = 3.110" for the
+  // nine seconds before the perpendicular arrived: the panel asserted, as a
+  // measured fact, the exact belief the picture was busy refuting (it is the
+  // verbatim distractor of that concept's own assessment item).
+  //
+  // THE DISCRIMINATING QUANTITY IS THE TEXT ON THE PANEL DURING THE WRONG-
+  // PICTURE BEAT — not the arithmetic (the length was always right), not the
+  // reveal gating (§19b is green on the defect: the number waited correctly
+  // for its segment and then said the wrong word), and not the end state
+  // (at t = 9000+ the perpendicular's own row is correct and a check that
+  // sampled only the settled frame sees nothing wrong). Every one of those
+  // weaker quantities passed while this shipped.
+  //
+  // THE FIX IS A FIRST-CLASS TOKEN: segment_length, label "segment length",
+  // published by the `readout: "length"` branch alone; point_plane_distance
+  // is published by the F13a perpendicular alone. Two rows, two labels, two
+  // meanings — which is what lets one state honestly show both at once.
+  const nrm = (v: V3): V3 => { const l = len3(v); return [v[0] / l, v[1] / l, v[2] / l]; };
+  const planePoint: V3 = [0, -0.4, 0];
+  const planeN: V3 = [0.35, 1, 0.25];
+  const nh = nrm(planeN);
+  const uIn = nrm(cross3(nh, [0, 0, 1]));            // a unit direction IN the plane
+  const q: V3 = [1.93, 1.19, 0.51];
+  // The closed form, solved outside the renderer (§8's convention): the
+  // perpendicular distance, and the foot the sweep is anchored to.
+  const TRUE_D = Math.abs(dot3(nh, sub3(q, planePoint)));
+  const FOOT: V3 = sub3(q, [nh[0] * dot3(nh, sub3(q, planePoint)), nh[1] * dot3(nh, sub3(q, planePoint)), nh[2] * dot3(nh, sub3(q, planePoint))]);
+
+  // THE FIXTURE — the shape of the AHA state, with the two subjects
+  // deliberately OVERLAPPING at the end (the shipped STATE_3 hides its
+  // segment at 9000 ms, which is precisely why the collision below was never
+  // seen there). The sweep never returns to aux_a = 0, so the two rows must
+  // carry two DIFFERENT numbers wherever both are shown.
+  const SWEEP_END = 1.2;
+  const BLOCK: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 0,
+    value_readouts: ["segment_length", "point_plane_distance"],
+    planes: [{ id: "P1", point: planePoint, normal: planeN, span_u: [1, -0.35, 0], half_extent: 3.0, show_normal: true }],
+    points: [
+      { id: "q", position: q, label: "q", reveal_at_ms: 0 },
+      { id: "foot_sweep", position: FOOT, offset: { along: uIn, zero: 0, knob: "aux_a" }, reveal_at_ms: 0 },
+    ],
+    segments: [{ id: "cmp", from: "q", to: "foot_sweep", readout: "length", reveal_at_ms: 0 }],
+    perpendicular: { id: "perp", from: "q", to: "P1", foot_id: "true_foot", reveal_at_ms: 9000 },
+    animate: [{ knob: "aux_a", from: -2.2, to: SWEEP_END, start_ms: 0, duration_ms: 8000, easing: "linear" }],
+  };
+  /** aux_a at ms, by the SHIPPED ramp evaluator (never a second copy of the easing). */
+  const auxAt = (ms: number) => E.vgAnimValue(BLOCK.animate, "aux_a", ms, 0);
+  /** The segment's true length at ms, closed form: sqrt(d^2 + s^2) for an in-plane slide s. */
+  const segLenAt = (ms: number) => Math.sqrt(TRUE_D * TRUE_D + auxAt(ms) * auxAt(ms));
+
+  const runFrame = FRAME_HARNESS.run!;
+  const panelAt = (ms: number) => {
+    const dom = fakeDom();
+    const win: Record<string, unknown> = {};
+    runFrame(BLOCK, ms, dom, win);
+    const el = dom.get("vg_readout");
+    return { html: el.innerHTML, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+  };
+  /** The text of one row, by token, out of the panel a teacher reads. */
+  const rowText = (html: string, tok: string): string | null => {
+    const m = new RegExp('<div id="vg_readout_' + tok + '">([^<]*)</div>').exec(html);
+    return m ? m[1] : null;
+  };
+  const rowNum = (html: string, tok: string): number | null => {
+    const t = rowText(html, tok);
+    if (t == null) return null;
+    const m = /(-?[0-9]+\.[0-9]+)/.exec(t);
+    return m ? Number(m[1]) : null;
+  };
+
+  // ── (a) THE TOKEN SURFACES, SWEPT ────────────────────────────────────────
+  //   The recorded recurrence mode of this family is a token fixed on ONE
+  //   surface (field3d_vg_type_omits_fields_the_scenario_body_reads): a
+  //   publish site with no label renders nothing, a label with no union entry
+  //   is unauthorable, a union entry with no dp silently changes precision.
+  //   All four are asserted off the SHIPPED source.
+  {
+    const RENDERER_PATH = "src/lib/renderers/field_3d_renderer.ts";
+    const FILE = readFileSync(RENDERER_PATH, "utf-8");
+    assertTrue("segment_length is AUTHORABLE — it is in the value_readouts TS union (the wrapper, above the template)",
+      /value_readouts\?:\s*Array<[\s\S]*?'segment_length'[\s\S]*?>;/.test(FILE));
+    const T = vgTextFns({}, fakeDom().document);
+    assertTrue(`segment_length is LABELLED, and the label names the generic quantity (got "${T.VG_READOUT_LABEL.segment_length}")`,
+      T.VG_READOUT_LABEL.segment_length === "segment length");
+    assertTrue(`...and it is NOT the point-to-plane label (that one is still "${T.VG_READOUT_LABEL.point_plane_distance}", untouched)`,
+      T.VG_READOUT_LABEL.point_plane_distance === "distance"
+      && T.VG_READOUT_LABEL.segment_length !== T.VG_READOUT_LABEL.point_plane_distance
+      && T.VG_READOUT_LABEL.segment_length.indexOf("distance") < 0);
+    // Precision parity with its sibling: the two rows appear TOGETHER, so two
+    // lengths at two precisions would read as a second difference between
+    // them where there is only one.
+    assertTrue("segment_length carries the DISTANCE precision (3 dp, the same as point_plane_distance)",
+      T.vgReadoutLine("segment_length", { segment_length: 1 / 3 }) === "segment length = 0.333"
+      && T.vgReadoutLine("point_plane_distance", { point_plane_distance: 1 / 3 }) === "distance = 0.333");
+    // A length is in SCENE units: no unit suffix, exactly like its sibling.
+    assertTrue("neither length token appends a unit (only the angles do)",
+      /segment length = 0\.333$/.test(T.vgReadoutLine("segment_length", { segment_length: 1 / 3 })));
+    // And the PUBLISH SITE: the "length" branch names the generic token and
+    // no longer names the specific one.
+    const RES = grabFn("vgResolveLinesPlanes");
+    const branch = RES.slice(RES.indexOf('if (o.readout === "length")'), RES.indexOf('} else if (o.readout === "n_dot_v"'));
+    assertTrue("the `readout: \"length\"` branch publishes segment_length", branch.indexOf("out.readouts.segment_length =") >= 0);
+    assertTrue("...and does not mention point_plane_distance at all", branch.indexOf("point_plane_distance") < 0);
+    check("point_plane_distance now has exactly ONE publish site in the whole resolver (the F13a perpendicular)",
+      (RES.match(/out\.readouts\.point_plane_distance =/g) || []).length, 1, 0);
+    check("...and segment_length exactly one (the comparison segment)",
+      (RES.match(/out\.readouts\.segment_length =/g) || []).length, 1, 0);
+  }
+
+  // ── (b) THE WRONG-PICTURE BEAT: what the panel SAYS while the segment sweeps
+  {
+    const p2 = panelAt(2000);
+    assertTrue(`t=2000ms: the segment row is on the panel — "${rowText(p2.html, "segment_length")}"`,
+      rowText(p2.html, "segment_length") !== null);
+    assertTrue("t=2000ms: and NO point_plane_distance row exists (the perpendicular does not arrive until 9000 ms)",
+      rowText(p2.html, "point_plane_distance") === null);
+    // THE CLAIM OF THIS SECTION, stated over the rendered TEXT rather than
+    // over the token: the word "distance" is not on the panel at all while a
+    // non-perpendicular segment is the only thing measured.
+    assertTrue(`t=2000ms: the word "distance" appears NOWHERE on the panel (html: ${JSON.stringify(p2.html)})`,
+      p2.html.indexOf("distance") < 0);
+    check("t=2000ms: the printed segment length is the real length of the drawn segment",
+      rowNum(p2.html, "segment_length"), Number(segLenAt(2000).toFixed(3)), 1e-12);
+    // ...and it is NOT the perpendicular distance: the number itself carries
+    // the lesson, so a fixture where the two coincide would prove nothing.
+    assertTrue(`...and it is strictly LONGER than the true perpendicular distance (${segLenAt(2000).toFixed(3)} > ${TRUE_D.toFixed(3)})`,
+      segLenAt(2000) > TRUE_D + 0.05);
+  }
+
+  // ── (c) THE SEGMENT ROW TRACKS THE SWEEP ─────────────────────────────────
+  //   A row that printed a constant would satisfy (b) and teach nothing.
+  {
+    const a = panelAt(2000), b = panelAt(6000);
+    const na = rowNum(a.html, "segment_length"), nb = rowNum(b.html, "segment_length");
+    assertTrue(`two sampled instants print two DIFFERENT numbers (aux_a ${auxAt(2000).toFixed(3)} -> ${auxAt(6000).toFixed(3)}: ${na} -> ${nb})`,
+      na != null && nb != null && Math.abs(na - nb) > 0.05);
+    // Across the whole sweep the segment is never shorter than the
+    // perpendicular — the geometric fact the state is teaching, asserted on
+    // the RENDERED numbers rather than on the formula.
+    let below = 0, samples = 0;
+    for (let ms = 500; ms <= 8000; ms += 500) {
+      const n = rowNum(panelAt(ms).html, "segment_length");
+      samples++;
+      if (n == null || n < TRUE_D - 1e-9) below++;
+    }
+    check(`over ${samples} sampled instants of the sweep, the printed segment length is NEVER below the true distance`, below, 0, 0);
+  }
+
+  // ── (d) BOTH ROWS AT ONCE, SEPARATELY LABELLED ───────────────────────────
+  //   The payoff the split buys: the comparison and the answer on screen
+  //   together, each saying what it is.
+  {
+    const p10 = panelAt(10000);
+    const segT = rowText(p10.html, "segment_length"), disT = rowText(p10.html, "point_plane_distance");
+    assertTrue(`t=10000ms: BOTH rows are on the panel — "${segT}" and "${disT}"`, segT !== null && disT !== null);
+    assertTrue("...separately labelled (neither label is the other)",
+      segT!.split("=")[0].trim() === "segment length" && disT!.split("=")[0].trim() === "distance");
+    const segN = rowNum(p10.html, "segment_length")!, disN = rowNum(p10.html, "point_plane_distance")!;
+    assertTrue(`...carrying two DIFFERENT numbers (${segN} vs ${disN})`, Math.abs(segN - disN) > 0.05);
+    assertTrue(`...and the PERPENDICULAR is the shorter one (${disN} < ${segN}) — the lesson, read off the panel`, disN < segN);
+    check("the distance row is the closed-form point-to-plane distance, unchanged by this fix", disN, Number(TRUE_D.toFixed(3)), 1e-12);
+    check("the segment row is still the segment's own length", segN, Number(segLenAt(10000).toFixed(3)), 1e-12);
+  }
+
+  // ── (e) THE NEGATIVE CONTROL: the pre-fix mapping, reconstructed ─────────
+  //   The SHIPPED resolver body with exactly ONE assignment rewritten back to
+  //   what shipped. Guarded: if the anchor stops matching this THROWS, because
+  //   a control that silently fails to plant its defect is worse than none.
+  {
+    const FIXED_LINE = "out.readouts.segment_length = vgLenVec(vgSub(s1, s0));";
+    const PRE_LINE = "out.readouts.point_plane_distance = vgLenVec(vgSub(s1, s0));";
+    const borrowLabel = (name: string, src: string) => {
+      if (name !== "vgResolveLinesPlanes") return src;
+      if (src.indexOf(FIXED_LINE) < 0) {
+        throw new Error(
+          "§24 NEGATIVE CONTROL CANNOT BE BUILT: the comparison-segment publish line no longer matches "
+          + JSON.stringify(FIXED_LINE) + ". Re-anchor it and re-watch the control fail.");
+      }
+      return src.replace(FIXED_LINE, PRE_LINE);
+    };
+    const PRE = buildVgSandbox(borrowLabel) as any;
+    assertTrue("the pre-fix mapping really was planted (the segment publishes point_plane_distance and no segment_length)",
+      PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(2000) }, 2000).readouts.point_plane_distance != null
+      && PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(2000) }, 2000).readouts.segment_length === undefined);
+
+    // The panel, composed from the SHIPPED display path (the same merge +
+    // vgReadoutLine loop the frame driver runs) so the control is measured in
+    // TEXT. Validated first against the real frame driver on the SHIPPED
+    // resolver: if the composition ever drifts from the driver, this fails
+    // before it is used as a stand-in.
+    const T = vgTextFns({}, fakeDom().document);
+    const compose = (readouts: Record<string, unknown>) => {
+      let html = "";
+      for (const k of BLOCK.value_readouts as string[]) {
+        const line = T.vgReadoutLine(k, readouts);
+        if (line != null) html += '<div id="vg_readout_' + k + '">' + line + "</div>";
+      }
+      return html;
+    };
+    for (const ms of [2000, 10000]) {
+      assertTrue(`the composed panel is BYTE-IDENTICAL to the shipped frame driver's at t=${ms}ms (the stand-in is faithful)`,
+        compose(E.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(ms) }, ms).readouts) === panelAt(ms).html);
+    }
+    const preHtml2 = compose(PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(2000) }, 2000).readouts);
+    expectFail(`the pre-fix panel keeps the word "distance" off screen while a non-perpendicular segment sweeps (it renders ${JSON.stringify(preHtml2)})`,
+      preHtml2.indexOf("distance") < 0);
+    expectFail("the pre-fix panel names the sweeping segment for what it is",
+      preHtml2.indexOf("segment length") >= 0);
+
+    // ...and the SECOND failure the shared token hid: with both subjects
+    // arrived, the segment's length OVERWRITES the perpendicular's distance
+    // (the segments pass runs after the F13a pass), so the one surviving row
+    // is labelled "distance" and carries the wrong number entirely.
+    const pre10 = PRE.vgResolveLinesPlanes(BLOCK, { aux_a: auxAt(10000) }, 10000).readouts;
+    expectFail(`the pre-fix resolver keeps the TRUE distance when both subjects are on screen (point_plane_distance = ${(pre10.point_plane_distance as number).toFixed(3)}, true ${TRUE_D.toFixed(3)})`,
+      Math.abs((pre10.point_plane_distance as number) - TRUE_D) < 1e-9);
+    assertTrue(`...it is the SEGMENT's length wearing the distance label (${(pre10.point_plane_distance as number).toFixed(3)} == ${segLenAt(10000).toFixed(3)})`,
+      Math.abs((pre10.point_plane_distance as number) - segLenAt(10000)) < 1e-9);
+    const preHtml10 = compose(pre10);
+    check("the pre-fix panel shows only ONE row where the fixed one shows two", (preHtml10.match(/<div /g) || []).length, 1, 0);
+    check("...and the fixed one really does show two", (panelAt(10000).html.match(/<div /g) || []).length, 2, 0);
+
+    // The shipped resolver is untouched on every OTHER token by this change:
+    // a settled frame with the segment removed is bit-identical across the two
+    // builds, so the control isolates the one mapping and nothing else.
+    const noSeg = JSON.parse(JSON.stringify(BLOCK));
+    delete noSeg.segments;
+    assertTrue("with no comparison segment authored, the pre-fix and shipped resolvers agree BIT FOR BIT (the change is exactly one mapping)",
+      JSON.stringify(PRE.vgResolveLinesPlanes(noSeg, { aux_a: 0.4 }, 10000)) === JSON.stringify(E.vgResolveLinesPlanes(noSeg, { aux_a: 0.4 }, 10000)));
+  }
+
+  // ── (f) ACT I CANNOT SEE THIS ────────────────────────────────────────────
+  {
+    const dom = fakeDom();
+    const win: Record<string, unknown> = {};
+    runFrame({ a_mag: 3, b_mag: 2, theta_deg: 60, value_readouts: ["a_mag", "b_mag", "theta_deg", "a_dot_b"] }, 9000, dom, win);
+    assertTrue("a products-mode frame never enters the resolver (PM_vgLinesPlanes === null) — vector_products_in_space is untouched",
+      win.PM_vgLinesPlanes === null);
+    assertTrue("...and all four Act I rows still print", ["a_mag", "b_mag", "theta_deg", "a_dot_b"]
+      .every((k) => dom.get("vg_readout").innerHTML.indexOf("vg_readout_" + k) >= 0));
+  }
+}
+
+console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control label is not a compile-time string (bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_in_every_mode) ===");
+{
+  // The panel is built ONCE, before any state is applied, so every label baked
+  // into it describes geometry the renderer has not yet selected. "θ (a, b)"
+  // shipped on EVERY mode: in mode "lines_planes" the knob turns whichever line
+  // binds it, a and b are not drawn at all (§22 / vgShowAB), and #9 STATE_6 —
+  // whose entire lesson is the angle between d₁ and d₂, and whose ONLY control
+  // is this row — read "θ (a, b): 69°".
+  //
+  // Measured in TEXT, through the SHIPPED apply pass and the SHIPPED writer
+  // (runApplyPass injects the same vgWriteRowLabels the scene-group picker
+  // calls), never over the code that produces it.
+  const THETA_LAB = "vg_theta_deg_lab";
+  const BUILT = SHIPPED_ROW_LABEL.theta_deg;
+
+  // (a) THE BUILT MARKUP — the handle exists, and the row id the Rule 39g
+  //     widget engine discovers on (div[id$="_row"]) is untouched.
+  {
+    const buildAt = SRC.indexOf("function buildVectorGeometrySliders");
+    const tmpl = /return '<div id="vg_' \+ prefix \+ '_row"[^\n]*\n[^\n]*/.exec(SRC.slice(buildAt));
+    assertTrue("the row template still opens with the id the widget engine discovers on (vg_<knob>_row)", tmpl !== null);
+    const T0 = tmpl![0];
+    assertTrue(`...and the label text now lives in its own span (vg_<knob>_lab) — the handle the apply pass rewrites: ${JSON.stringify(T0.slice(0, 130))}`,
+      T0.indexOf(`<span id="vg_' + prefix + '_lab">' + sc.label + '</span>`) >= 0);
+    assertTrue("...with the value node and the ': ' separator unchanged, so the RENDERED text is byte-identical to the pre-fix row",
+      T0.indexOf(`'</span>: <span id="vg_' + prefix + '_val">'`) >= 0);
+    const buildRegion = SRC.slice(buildAt, SRC.indexOf("document.body.appendChild(spd);", buildAt));
+    assertTrue("...and the built label is captured per row (VG_ROW_LABEL), on the VG_ROW_RANGE precedent",
+      buildRegion.indexOf("VG_ROW_LABEL[prefix] = sc.label;") >= 0);
+    // Every slider-bound row of the panel has a captured label — a row missing
+    // from the table could never be restored.
+    const rowIdKeys = ROW_ID_KEYS;
+    assertTrue(`every one of the ${rowIdKeys.length} slider rows has a captured built label (${rowIdKeys.filter((k) => SHIPPED_ROW_LABEL[k] === undefined).join(",") || "none missing"})`,
+      rowIdKeys.every((k) => typeof SHIPPED_ROW_LABEL[k] === "string" && SHIPPED_ROW_LABEL[k] !== ""));
+    check("the shipped products label is still the one the pre-fix row was born with", BUILT, "θ (a, b)", 0);
+  }
+
+  // The two fixtures. The lines_planes one is #9 STATE_6's shape: M2 is the
+  // line whose rotate block binds theta_deg, M1 is the reference it is measured
+  // against, and both carry the labels the state's formula names.
+  const M2_ROT = { about: [0.287668, -0.838664, -0.462482], zero: 69.3846, knob: "theta_deg" };
+  const LP_STATE = {
+    show_sliders: true,
+    vg: {
+      mode: "lines_planes", controls: ["theta_deg"], theta_deg: 69.3846,
+      lines: [
+        { id: "M1", role: "dir1", label: "d₁", point: [0, 0, 0], dir: [1, 0, 0] },
+        { id: "M2", role: "dir2", label: "d₂", point: [0, 1.2, 0], dir: [0.3, 0.2, 0.9], rotate: M2_ROT },
+      ],
+    },
+  };
+  const PROD_STATE = {
+    show_sliders: true,
+    vg: { a_mag: 3.0, b_mag: 2.0, theta_deg: 60, controls: ["a_mag", "b_mag", "theta_deg"] },
+  };
+  const labOf = (dom: ReturnType<typeof fakeDom>) => dom.get(THETA_LAB).textContent;
+  /** Seed the DOM the way buildVectorGeometrySliders does, then apply. */
+  const applyOn = (stateDef: unknown, dom = fakeDom(), srcOverride?: string) => {
+    for (const k of Object.keys(SHIPPED_ROW_LABEL)) dom.get("vg_" + k + "_lab").textContent = SHIPPED_ROW_LABEL[k];
+    return runApplyPass([], stateDef, dom, srcOverride);
+  };
+
+  // (b) THE LINES_PLANES STATE — the row names the two lines, and nothing else.
+  {
+    const dom = fakeDom();
+    applyOn(LP_STATE, dom);
+    const txt = labOf(dom);
+    assertTrue(`a lines_planes state whose knob rotates M2 against M1 labels the row from the AUTHORED lines — "${txt}"`,
+      txt === "θ (d₁, d₂)");
+    assertTrue("...it names d₁ and d₂", txt.indexOf("d₁") >= 0 && txt.indexOf("d₂") >= 0);
+    assertTrue("...and the products pair is GONE from the row a teacher reads", txt.indexOf("(a, b)") < 0);
+    // Reachability: the label is on a row that is actually on screen. A correct
+    // label on a hidden row would pass a text check and teach nobody.
+    assertTrue("the θ row is displayed and the panel is open on this state (the label is REACHABLE)",
+      dom.get("vg_theta_deg_row").style.display === "block" && dom.get("vg_sliders").style.display === "block");
+    // Order: reference first, rotated second — the order the state's own
+    // formula and readout (angle_lines_deg, "d₁ and d₂") name them in.
+    assertTrue("the reference line is named FIRST and the rotated line second", txt === "θ (" + "d₁" + ", " + "d₂" + ")");
+    // No OTHER row was renamed by the pass.
+    const others = Object.keys(SHIPPED_ROW_LABEL).filter((k) => k !== "theta_deg");
+    assertTrue(`the other ${others.length} rows still carry the labels they were built with`,
+      others.every((k) => dom.get("vg_" + k + "_lab").textContent === SHIPPED_ROW_LABEL[k]));
+  }
+
+  // (c) THE PRODUCTS STATE — byte-identical to what shipped. The test is
+  //     NEGATIVE ("is lines_planes"), so every Act I state (which authors no
+  //     mode at all) is untouched by construction.
+  {
+    const dom = fakeDom();
+    applyOn(PROD_STATE, dom);
+    assertTrue(`a mode-omitted state keeps the built label BYTE FOR BYTE — "${labOf(dom)}"`, labOf(dom) === BUILT);
+    const T = vgTextFns({}, fakeDom().document);
+    assertTrue("vgThetaRowLabel returns null (\"the built label stands\") for a products state, never a second string",
+      T.vgThetaRowLabel(PROD_STATE.vg, null) === null);
+    assertTrue("...and also for a state that authors NO vg block at all", T.vgThetaRowLabel({}, null) === null);
+    // vector_products_in_space authors mode "products" EXPLICITLY on every
+    // state (the dispatch believed Act I omitted it). The predicate is negative
+    // — "is lines_planes" — so both authorings are byte-identical here, and
+    // this fixture is what keeps that true if the enum ever grows a third mode.
+    const dom2 = fakeDom();
+    applyOn({ show_sliders: true, vg: { mode: "products", controls: ["theta_deg"], theta_deg: 60 } }, dom2);
+    assertTrue(`an EXPLICIT mode "products" state keeps the built label too — "${labOf(dom2)}"`, labOf(dom2) === BUILT);
+  }
+
+  // (d) THE ROUND TRIP — a derived label may never leak into the next state
+  //     (the restore-every-row doctrine the per-state RANGES already run on).
+  {
+    const dom = fakeDom();
+    applyOn(LP_STATE, dom);
+    assertTrue(`entry to the lines_planes state derives the label ("${labOf(dom)}")`, labOf(dom) === "θ (d₁, d₂)");
+    runApplyPass([], PROD_STATE, dom);
+    assertTrue(`...and the next mode-omitted state RESTORES it ("${labOf(dom)}")`, labOf(dom) === BUILT);
+    runApplyPass([], LP_STATE, dom);
+    assertTrue("...and back again, with no residue in either direction", labOf(dom) === "θ (d₁, d₂)");
+  }
+
+  // (e) THE GROUP SWITCH — #9 STATE_9's shape. theta turns nothing in group A,
+  //     so the row names NOTHING there rather than naming group B's lines; the
+  //     picker's own re-write (the shipped vgWriteRowLabels the change handler
+  //     calls) brings the pair back when group B is selected.
+  {
+    const GROUPED = {
+      show_sliders: true,
+      vg: {
+        mode: "lines_planes", controls: ["scene_group", "theta_deg"], theta_deg: 69.3846,
+        scene_groups: [{ key: "A", label: "one line" }, { key: "B", label: "two lines" }],
+        // `groups`, the key vgInGroup actually reads (and the key #9 STATE_9
+        // authors) — a fixture written against `group` would silently place
+        // every line in every group and prove nothing.
+        lines: [
+          { id: "L1", role: "dir1", label: "d", point: [0, 0, 0], dir: [1, 0, 0], groups: ["A"] },
+          { id: "M1", role: "dir1", label: "d₁", point: [0, 0, 0], dir: [1, 0, 0], groups: ["B"] },
+          { id: "M2", role: "dir2", label: "d₂", point: [0, 1.2, 0], dir: [0.3, 0.2, 0.9], rotate: M2_ROT, groups: ["B"] },
+        ],
+      },
+    };
+    const dom = fakeDom();
+    const r = applyOn(GROUPED, dom);
+    check("the state opens on the first authored group", r.win.PM_vgSceneGroup as string, "A", 0);
+    assertTrue(`group A turns no line with this knob, so the row names NO object — "${labOf(dom)}"`, labOf(dom) === "θ");
+    assertTrue("...and in particular does not name group B's lines, which are not on screen",
+      labOf(dom).indexOf("d₁") < 0 && labOf(dom).indexOf("d₂") < 0 && labOf(dom).indexOf("(a, b)") < 0);
+    // The picker: write the live global and re-run the SHIPPED writer, exactly
+    // as the <select>'s change handler does.
+    r.win.PM_vgSceneGroup = "B";
+    r.T.vgWriteRowLabels(GROUPED.vg);
+    assertTrue(`switching to group B re-derives the pair that group actually shows — "${labOf(dom)}"`,
+      labOf(dom) === "θ (d₁, d₂)");
+    r.win.PM_vgSceneGroup = "A";
+    r.T.vgWriteRowLabels(GROUPED.vg);
+    assertTrue("...and switching back drops them again (the label follows the picker, not the entry)", labOf(dom) === "θ");
+    // The handler really does call the writer — a mechanism that exists but is
+    // never called is the recorded discharge-against-a-mechanism-that-was-
+    // never-built failure in miniature.
+    const at = SRC.indexOf('gsel.addEventListener("change"');
+    const HANDLER = at > 0 ? SRC.slice(at, at + 1600) : "";
+    assertTrue("the scene-group change handler calls vgWriteRowLabels (the label is not a state-entry-only write)",
+      at > 0 && HANDLER.indexOf("vgWriteRowLabels(") >= 0);
+  }
+
+  // (f) NOTHING IS EVER INVENTED — every un-derivable case falls back to a bare
+  //     "θ", which names no object at all, and NEVER to the products pair.
+  {
+    const T = vgTextFns({}, fakeDom().document);
+    const lp = (lines: unknown[]) => T.vgThetaRowLabel({ mode: "lines_planes", lines }, null);
+    const cases: Array<[string, string]> = [
+      ["the rotated line carries no label", lp([{ id: "M1", label: "d₁" }, { id: "M2", rotate: M2_ROT }])],
+      ["the rotated line is the ONLY object (no reference to measure against)", lp([{ id: "M2", label: "d₂", rotate: M2_ROT }])],
+      ["nothing in the scene binds theta_deg at all", lp([{ id: "M1", label: "d₁" }, { id: "M2", label: "d₂" }])],
+      ["the rotate block binds a DIFFERENT knob", lp([{ id: "M1", label: "d₁" },
+        { id: "M2", label: "d₂", rotate: { about: [0, 1, 0], knob: "line2_offset" } }])],
+      ["the rotate block has no axis (vgObjRotate would return the direction unturned)",
+        lp([{ id: "M1", label: "d₁" }, { id: "M2", label: "d₂", rotate: { knob: "theta_deg" } }])],
+      ["the state authors no lines at all", lp([])],
+    ];
+    for (const [why, got] of cases) {
+      assertTrue(`fallback names no object when ${why} — got "${got}"`,
+        got === "θ" && got.indexOf("a") < 0 && got.indexOf("b") < 0 && got.indexOf("d") < 0);
+    }
+    // A plane may bind the knob too (vgObjRotate turns a plane's normal on the
+    // same code path), and then it is named on the same rule.
+    assertTrue("a PLANE whose normal binds the knob is named like a line",
+      T.vgThetaRowLabel({
+        mode: "lines_planes",
+        lines: [{ id: "L", label: "d" }],
+        planes: [{ id: "P", label: "n", normal: [0, 1, 0], rotate: M2_ROT }],
+      }, null) === "θ (d, n)");
+  }
+
+  // (g) THE NEGATIVE CONTROL — the pre-fix behaviour, reconstructed from the
+  //     SHIPPED apply pass with exactly ONE line removed (the write that did
+  //     not exist before this fix). Guarded: if the anchor drifts this THROWS,
+  //     because a control that silently fails to plant its defect is worse than
+  //     no control at all.
+  {
+    const CALL = "vgWriteRowLabels(d);";
+    if (APPLY_SRC.indexOf(CALL) < 0) {
+      throw new Error("§25 NEGATIVE CONTROL CANNOT BE BUILT: applyVectorGeometry3DState no longer contains "
+        + JSON.stringify(CALL) + ". Re-anchor it and re-watch the control fail.");
+    }
+    const PRE_SRC = APPLY_SRC.replace(CALL, "/* pre-fix: the label was written ONCE, at build time */");
+    assertTrue("the pre-fix apply pass really was planted (it contains no label write, and differs from the shipped one)",
+      PRE_SRC.indexOf("vgWriteRowLabels(") < 0 && PRE_SRC !== APPLY_SRC);
+    const dom = fakeDom();
+    applyOn(LP_STATE, dom, PRE_SRC);
+    expectFail(`the pre-fix row names the objects the knob turns on a lines_planes state (it renders "${labOf(dom)}")`,
+      labOf(dom) === "θ (d₁, d₂)");
+    expectFail(`the pre-fix row keeps the products pair off a state that draws neither a nor b (it renders "${labOf(dom)}")`,
+      labOf(dom).indexOf("(a, b)") < 0);
+    assertTrue(`...it is exactly the shipped-today defect: the built products label, verbatim, on a lines_planes state ("${labOf(dom)}")`,
+      labOf(dom) === BUILT);
+    // ...and the pre-fix pass is otherwise IDENTICAL: the products fixture is
+    // bit-identical across the two builds, so the control isolates one write.
+    const dPre = fakeDom(), dNow = fakeDom();
+    applyOn(PROD_STATE, dPre, PRE_SRC);
+    applyOn(PROD_STATE, dNow);
+    const dump = (d: ReturnType<typeof fakeDom>) => JSON.stringify([...d.els.entries()].sort((x, y) => (x[0] < y[0] ? -1 : 1)));
+    assertTrue("on a products state the pre-fix and fixed apply passes agree BIT FOR BIT over the whole DOM (the change is exactly one write)",
+      dump(dPre) === dump(dNow));
+  }
+
+  // (h) THE ⚙ PANEL still reads the row correctly — the label span is nested
+  //     INSIDE <label>, and pmWgRowLabel cuts label.textContent at ":", so the
+  //     teacher-facing widget name is unchanged in shape and now carries the
+  //     honest object names (Rule 39f: discovery must survive this edit).
+  {
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval
+    const W = new Function([
+      grabVar("PM_WG_WORDS"), grabFn("pmWgWord"), grabFn("pmWgRowLabel"),
+      "return pmWgRowLabel;",
+    ].join("\n"))() as (el: unknown) => string;
+    const rowEl = (text: string) => ({
+      id: "vg_theta_deg_row", getAttribute: () => null,
+      querySelector: (sel: string) => (sel === "label" ? { textContent: text } : null),
+    });
+    check("the ⚙ entry derived from the lines_planes row", W(rowEl("θ (d₁, d₂): 69°")), "θ (d₁, d₂) slider", 0);
+    check("...and from the products row, unchanged", W(rowEl("θ (a, b): 60°")), "θ (a, b) slider", 0);
+  }
+
+  // (i) THE SWEEP — every OTHER row label that names a products object, and the
+  //     reason each is not reachable from mode "lines_planes" today. This is a
+  //     LEDGER, not a fix (one bug_class per change): the theta row was the only
+  //     one #9 could reach, because a row is only reachable through a state's
+  //     controls[]/static_readouts[], and the lines_planes states author only
+  //     the VG-C knobs plus theta_deg.
+  {
+    // A row "names an object" when a, b or c appears as a STANDALONE token
+    // ("|a|", "b tilt", "θ c") — never as a letter inside a word, which is how
+    // the first draft of this sweep convicted "patch size".
+    const namesObject = (s: string) => /(^|[^A-Za-z])[abc]([^A-Za-z]|$)/.test(s);
+    const NAMES_AN_OBJECT = Object.keys(SHIPPED_ROW_LABEL).filter((k) => namesObject(SHIPPED_ROW_LABEL[k]));
+    assertTrue(`the object-naming rows are exactly the products set + theta (${NAMES_AN_OBJECT.join(", ")})`,
+      JSON.stringify(NAMES_AN_OBJECT.slice().sort())
+      === JSON.stringify(["a_mag", "b_mag", "b_tilt_deg", "c_mag", "c_phi_deg", "c_theta_deg", "theta_deg"].sort()));
+    // The VG-C rows name a quantity, never an object — nothing to derive.
+    const LP_ROWS = ["lambda", "lambda_span", "half_extent", "q_height", "line2_offset"];
+    assertTrue(`the lines_planes rows name quantities, not objects (${LP_ROWS.map((k) => SHIPPED_ROW_LABEL[k]).join(" / ")})`,
+      LP_ROWS.every((k) => !namesObject(SHIPPED_ROW_LABEL[k])));
+    // ...and theta_deg is the ONE row of the object-naming set that is mode-
+    // derived. If a future lines_planes state authors b_tilt_deg or c_mag in
+    // its controls, THIS is the assertion that will need extending — recorded
+    // here so the next surgeon finds it by failing, not by remembering.
+    const T = vgTextFns({}, fakeDom().document);
+    const derived = Object.keys(SHIPPED_ROW_LABEL).filter((k) => {
+      const dom2 = fakeDom();
+      for (const kk of Object.keys(SHIPPED_ROW_LABEL)) dom2.get("vg_" + kk + "_lab").textContent = SHIPPED_ROW_LABEL[kk];
+      const T2 = vgTextFns({}, dom2.document);
+      T2.vgWriteRowLabels(LP_STATE.vg);
+      return dom2.get("vg_" + k + "_lab").textContent !== SHIPPED_ROW_LABEL[k];
+    });
+    assertTrue(`exactly ONE row is mode-derived today, and it is theta_deg (${derived.join(", ") || "none"})`,
+      JSON.stringify(derived) === JSON.stringify(["theta_deg"]));
+    // ...and the fix did NOT simply add a second per-mode literal: over the
+    // renderer's CODE (comment lines excluded — this fix's own rationale names
+    // both strings in prose), "θ (a, b)" appears exactly once, at the vgSc call
+    // site it was born at, and no lines_planes pair is hardcoded anywhere.
+    const CODE = SRC.split("\n").filter((l) => !/^\s*\/\//.test(l)).join("\n");
+    assertTrue(`the products pair is a build-time DEFAULT and appears exactly once in code (${(CODE.match(/θ \(a, b\)/g) || []).length}x)`,
+      (CODE.match(/θ \(a, b\)/g) || []).length === 1 && T.VG_ROW_LABEL.theta_deg === BUILT);
+    assertTrue("no lines_planes label pair is hardcoded anywhere — the names come from the authored objects",
+      (CODE.match(/θ \(d/g) || []).length === 0 && (CODE.match(/d₁, d₂/g) || []).length === 0);
+  }
+}
+
+console.log("\n=== 26. A NORM IS NOT AN ABSOLUTE VALUE — every bar in the readout table, and the FONT that has to draw it (bug_class vg_hud_readout_prints_single_bars_for_a_vector_norm_beside_a_double_bar_formula_surface) ===");
+{
+  // #9 STATE_8 printed what a teacher reads as "|d₁×d₂| = 0.936" one panel above
+  // a formula surface writing "D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖" — one quantity,
+  // two written forms, on one screen. The label STRING was never the defect
+  // (n_norm and cross_norm have carried U+2016 since the VG-C build); the
+  // #vg_readout font stack was, and this section holds BOTH halves: the strings
+  // stay right, and the stack that renders them stays one that can.
+  const DBL = "‖";           // ‖ DOUBLE VERTICAL LINE — a NORM
+  const SGL = "|";                // | VERTICAL LINE — an ABSOLUTE VALUE (scalar)
+  const countOf = (s: string, ch: string) => s.split(ch).length - 1;
+  const T = vgTextFns({}, fakeDom().document);
+  const LABELS: Record<string, string> = T.VG_READOUT_LABEL;
+  const KEYS = Object.keys(LABELS).sort();
+
+  // ── (a) THE ROW A TEACHER READS, through the SHIPPED vgReadoutLine ─────────
+  {
+    const row = T.vgReadoutLine("cross_norm", { cross_norm: 0.936482 });
+    check("the cross_norm row, rendered by the shipped formatter", row, DBL + "d₁×d₂" + DBL + " = 0.936", 0);
+    check("...it carries TWO double-bar delimiters (a norm, opened and closed)", countOf(row, DBL), 2, 0);
+    check("...and NOT ONE single bar anywhere in the row (that would be an absolute value)", countOf(row, SGL), 0, 0);
+    assertTrue("...in particular no single bar is adjacent to the vector name it would wrap",
+      !/\|\s*d/.test(row) && !/d[₁₂]\s*\|/.test(row));
+    const nrow = T.vgReadoutLine("n_norm", { n_norm: 1.08911 });
+    check("the n_norm row, the sibling surface of the same defect", nrow, DBL + "n" + DBL + " = 1.089", 0);
+    check("...two double bars", countOf(nrow, DBL), 2, 0);
+    check("...zero single bars", countOf(nrow, SGL), 0, 0);
+  }
+
+  // ── (b) THE WHOLE TABLE, CLASSIFIED — a single bar may wrap a SCALAR only ──
+  //   Bars are not decoration: |x| is the absolute value of a NUMBER, ‖v‖ is the
+  //   length of a VECTOR. The classifier reads what is INSIDE a delimiter pair:
+  //     · anywhere  → a dot product, i.e. a SCALAR  → single bars are correct
+  //     × anywhere  → a cross product, i.e. a VECTOR → double bars required
+  //     a bare (possibly subscripted) vector name    → a VECTOR
+  //     anything else → UNKNOWN, and the gate FAILS until a surgeon classifies
+  //                     it here. That is the mechanism that catches the NEXT
+  //                     token, not this one.
+  const VECTOR_NAMES = ["a", "b", "c", "d", "n", "v", "u", "m", "r"];
+  const classify = (inner: string): "scalar" | "vector" | "unknown" => {
+    const s = inner.trim();
+    if (s.indexOf("·") >= 0) return "scalar";
+    if (s.indexOf("×") >= 0) return "vector";
+    const bare = s.replace(/[()\s]/g, "").replace(/[₀₁₂₃]/g, "");
+    if (VECTOR_NAMES.indexOf(bare) >= 0) return "vector";
+    return "unknown";
+  };
+  /** Every |…| group and every ‖…‖ group of a label, with its classification. */
+  const groupsOf = (label: string) => {
+    const out: Array<{ kind: "single" | "double"; inner: string; cls: string }> = [];
+    for (const m of label.matchAll(new RegExp(DBL + "([^" + DBL + "]*)" + DBL, "g"))) {
+      out.push({ kind: "double", inner: m[1], cls: classify(m[1]) });
+    }
+    // Single-bar groups are read off the label with every double-bar group
+    // removed first, so ‖ never contributes a phantom | pair.
+    const stripped = label.split(DBL).join(" ");
+    for (const m of stripped.matchAll(/\|([^| ]*)\|/g)) {
+      out.push({ kind: "single", inner: m[1], cls: classify(m[1]) });
+    }
+    return out;
+  };
+  {
+    // The two halves of the table. They are written out (not derived) because
+    // the CONVENTION differs between them and that difference is a decision:
+    //  · the lines/planes half (#9 lines_and_planes_in_space) writes ‖v‖ for a
+    //    norm on every surface it has — S6 ‖d₁‖‖d₂‖, S7 ‖d‖‖n‖, S3/S8 ⁄ ‖n‖,
+    //    ⁄ ‖d₁×d₂‖ — so its readout rows must too;
+    //  · the products half (vector_products_in_space) writes |a|, |b|, |a×b| on
+    //    every surface IT has (its own formula_overlay strings read
+    //    "a·b = |a| |b| cos θ" and "|a×b| = |a| |b| sin θ"), the school
+    //    magnitude notation, and is INTERNALLY consistent. Rewriting those three
+    //    to ‖ here would plant this very bug_class in the other concept, so they
+    //    are an AUDITED ALLOWLIST, byte-locked below rather than "fixed".
+    const PRODUCTS_KEYS = ["a_mag", "b_mag", "theta_deg", "a_dot_b", "cross_mag",
+      "a_dot_cross", "b_dot_cross", "triple", "volume", "base_area", "height"];
+    const LINES_PLANES_KEYS = ["point_plane_distance", "skew_distance", "segment_length",
+      "angle_lines_deg", "angle_line_plane_deg", "angle_line_normal_deg",
+      "d_dot_n", "n_dot_v", "lambda", "intersection_point",
+      "n_norm", "cross_norm", "numerator_triple_product", "no_meeting_point"];
+    assertTrue(`every one of the ${KEYS.length} shipped tokens is assigned to exactly one half (a NEW token fails here until it is classified)`,
+      JSON.stringify(PRODUCTS_KEYS.concat(LINES_PLANES_KEYS).sort()) === JSON.stringify(KEYS)
+      && PRODUCTS_KEYS.every((k) => LINES_PLANES_KEYS.indexOf(k) < 0));
+
+    // Nothing anywhere in the table may carry an unbalanced or unclassifiable
+    // delimiter — the invariant that makes the two half-rules meaningful.
+    for (const k of KEYS) {
+      const lab = LABELS[k];
+      assertTrue(`"${k}" = "${lab}": its bars are balanced (${countOf(lab, SGL)} single, ${countOf(lab, DBL)} double)`,
+        countOf(lab, SGL) % 2 === 0 && countOf(lab, DBL) % 2 === 0);
+      for (const g of groupsOf(lab)) {
+        assertTrue(`"${k}": the ${g.kind}-bar group "${g.inner}" is classifiable as a scalar or a vector (got ${g.cls})`,
+          g.cls !== "unknown");
+      }
+    }
+
+    // THE LINES/PLANES HALF — a single bar may never wrap a vector, and a
+    // double bar may never wrap a scalar.
+    const SINGLE_BAR_VECTORS: string[] = [];
+    for (const k of LINES_PLANES_KEYS) {
+      for (const g of groupsOf(LABELS[k])) {
+        if (g.kind === "single" && g.cls === "vector") SINGLE_BAR_VECTORS.push(`${k} → "${LABELS[k]}"`);
+        if (g.kind === "double") {
+          assertTrue(`"${k}": the norm bars of "${LABELS[k]}" wrap a VECTOR ("${g.inner}"), never a scalar`, g.cls === "vector");
+        }
+      }
+    }
+    assertTrue(`NO lines/planes token wraps a vector in single bars (${SINGLE_BAR_VECTORS.join("; ") || "none — the whole half agrees with its formula surfaces"})`,
+      SINGLE_BAR_VECTORS.length === 0);
+    // ...and the two tokens that actually name a norm do use the double bar.
+    for (const k of ["n_norm", "cross_norm"]) {
+      assertTrue(`"${k}" = "${LABELS[k]}" is delimited by U+2016, twice, with no U+007C`,
+        countOf(LABELS[k], DBL) === 2 && countOf(LABELS[k], SGL) === 0);
+    }
+
+    // THE PRODUCTS HALF — the audited allowlist, byte-locked. Its labels are
+    // CORRECT AS THEY STAND (single bars, matching its own concept's formula
+    // surfaces); this assertion exists so that changing one is a decision taken
+    // with both concepts in view, never a sweep.
+    const ALLOWLIST: Record<string, string> = { a_mag: "|a|", b_mag: "|b|", cross_mag: "|a×b|" };
+    for (const k of Object.keys(ALLOWLIST)) {
+      check(`products-half magnitude label "${k}" is byte-identical to the audited allowlist entry`, LABELS[k], ALLOWLIST[k], 0);
+    }
+    const barBearing = PRODUCTS_KEYS.filter((k) => countOf(LABELS[k], SGL) > 0 || countOf(LABELS[k], DBL) > 0);
+    assertTrue(`...and they are the ONLY bar-bearing tokens of that half (${barBearing.join(", ")})`,
+      JSON.stringify(barBearing.sort()) === JSON.stringify(Object.keys(ALLOWLIST).sort()));
+    assertTrue("no products-half token uses U+2016 (mixing conventions inside ONE concept is this same bug_class, mirrored)",
+      PRODUCTS_KEYS.every((k) => countOf(LABELS[k], DBL) === 0));
+    // The DERIVED products label (vgCrossMagLabelText, §15/§17) obeys the same
+    // allowlist at every flip_frac — a table lock that skipped the text actually
+    // rendered on a flipped state would prove nothing.
+    for (const f of [0, 0.5, 1]) {
+      const txt = T.vgCrossMagLabelText(f);
+      assertTrue(`the derived cross-magnitude label at flip_frac ${f} keeps the products convention — "${txt}"`,
+        countOf(txt, DBL) === 0 && countOf(txt, SGL) % 2 === 0 && countOf(txt, SGL) > 0);
+    }
+  }
+
+  // ── (c) THE ROOT CAUSE — the stack that has to DRAW U+2016 at 13px ─────────
+  //   Measured in the same headless Chromium THE EYE drives (canvas
+  //   measureText, deviceScaleFactor 1):
+  //       13px 'Cambria Math',Georgia,serif      ‖ advance 3.65px  → merges
+  //       13px 'Cambria Math',Georgia,monospace  ‖ advance 7.80px  → two strokes
+  //   Neither Georgia nor the serif default ships a usable U+2016, so the two
+  //   strokes fell inside one 2px stem and the row read as an absolute value.
+  //   Node cannot measure a glyph, so what is asserted here is the INVARIANT
+  //   that produced the measurement: the panel's font stack terminates in the
+  //   same generic family #formula_overlay itself uses, so both surfaces resolve
+  //   the norm bar through the same font.
+  const READOUT_CSS = (() => {
+    const at = SRC.indexOf("rd.id = \"vg_readout\"");
+    if (at < 0) throw new Error("§26 CANNOT BE BUILT: the #vg_readout builder no longer assigns rd.id");
+    const m = /rd\.style\.cssText = "([^"]*)";/.exec(SRC.slice(at, at + 4000));
+    if (!m) throw new Error("§26 CANNOT BE BUILT: the #vg_readout cssText is no longer a single literal");
+    return m[1];
+  })();
+  const familiesOf = (css: string) => {
+    const f = /font:([^;]*);/.exec(css);
+    if (!f) throw new Error("§26 CANNOT BE BUILT: no font shorthand in " + JSON.stringify(css));
+    return f[1].trim().replace(/^[0-9.]+px(\/[0-9.]+)?\s*/, "").split(",")
+      .map((s) => s.trim().replace(/^'|'$/g, ""));
+  };
+  {
+    const fams = familiesOf(READOUT_CSS);
+    assertTrue(`#vg_readout resolves its last-resort family to monospace, which draws U+2016 as two strokes (${fams.join(" | ")})`,
+      fams[fams.length - 1] === "monospace");
+    assertTrue("...and no longer falls back to serif, whose U+2016 is 3.65px wide at 13px and merges",
+      fams.indexOf("serif") < 0);
+    assertTrue("...with the panel's size, position and every other declaration untouched (this fix moved ONE family)",
+      READOUT_CSS.indexOf("font:13px/1.7 ") >= 0 && READOUT_CSS.indexOf("top:52px") >= 0
+      && READOUT_CSS.indexOf("left:12px") >= 0 && READOUT_CSS.indexOf("min-width:150px") >= 0);
+    // The other surface of the same screen: #formula_overlay, whose ‖ THE EYE
+    // shows rendering correctly. Read from the wrapper's CSS (it lives in the
+    // HTML shell, not in FIELD_3D_RENDERER_CODE).
+    const FILE = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf-8");
+    const at = FILE.indexOf("#formula_overlay {");
+    assertTrue("the formula surface's own CSS block is still findable in the shell", at > 0);
+    const block = FILE.slice(at, FILE.indexOf("}", at));
+    const ffam = /font:\s*[0-9.]+px(\/[0-9.]+)?\s*([^;]*);/.exec(block);
+    assertTrue(`...and the two surfaces of one screen resolve the norm bar through the SAME generic family (formula: ${ffam ? ffam[2] : "?"})`,
+      ffam !== null && ffam[2].trim() === "monospace");
+  }
+
+  // ── (d) NEGATIVE CONTROLS — both defects, planted and executed ─────────────
+  //   (d1) THE LABEL. The pre-fix label was already correct, so the control is
+  //   the counterfactual the eye-walk believed it was seeing: the SHIPPED table
+  //   source with exactly ONE entry rewritten to single bars, fed to the SHIPPED
+  //   vgReadoutLine. Guarded — if the anchor drifts this THROWS rather than
+  //   quietly planting nothing.
+  {
+    const TABLE_SRC = grabVar("VG_READOUT_LABEL");
+    const ANCHOR = "cross_norm: \"" + DBL + "d₁×d₂" + DBL + "\"";
+    if (TABLE_SRC.indexOf(ANCHOR) < 0) {
+      throw new Error("§26 NEGATIVE CONTROL CANNOT BE BUILT: VG_READOUT_LABEL no longer contains "
+        + JSON.stringify(ANCHOR) + ". Re-anchor it and re-watch the control fail.");
+    }
+    const BROKEN_SRC = TABLE_SRC.replace(ANCHOR, "cross_norm: \"|d₁×d₂|\"");
+    assertTrue("the single-bar table really was planted (it differs from the shipped one, in exactly the cross_norm entry)",
+      BROKEN_SRC !== TABLE_SRC && BROKEN_SRC.indexOf("|d₁×d₂|") >= 0);
+    const B = vgTextFns({}, fakeDom().document, BROKEN_SRC);
+    const brow = B.vgReadoutLine("cross_norm", { cross_norm: 0.936482 });
+    expectFail(`the single-bar row carries two norm delimiters (it renders "${brow}")`, countOf(brow, DBL) === 2);
+    expectFail(`the single-bar row is free of absolute-value bars (it renders "${brow}")`, countOf(brow, SGL) === 0);
+    // ...and the table-wide sweep of (b) convicts it too — the invariant, not
+    // just the one hand-written row assertion, is what catches a future token.
+    const bad = groupsOf(B.VG_READOUT_LABEL.cross_norm)
+      .filter((g) => g.kind === "single" && g.cls === "vector");
+    expectFail(`the table sweep finds no vector wrapped in single bars (it finds ${bad.length}: "${B.VG_READOUT_LABEL.cross_norm}")`,
+      bad.length === 0);
+    // The rest of the table is untouched, so the control isolates one entry.
+    assertTrue("every OTHER token of the broken build is byte-identical to the shipped one (the control plants exactly one defect)",
+      KEYS.filter((k) => k !== "cross_norm").every((k) => B.VG_READOUT_LABEL[k] === LABELS[k]));
+  }
+  //   (d2) THE FONT — the genuine pre-fix source, reconstructed by putting the
+  //   terminal generic back to serif. Guarded on the same rule.
+  {
+    const ANCHOR = "Georgia,monospace";
+    if (READOUT_CSS.indexOf(ANCHOR) < 0) {
+      throw new Error("§26 NEGATIVE CONTROL CANNOT BE BUILT: the #vg_readout font stack no longer contains "
+        + JSON.stringify(ANCHOR) + ". Re-anchor it and re-watch the control fail.");
+    }
+    const PRE_CSS = READOUT_CSS.replace(ANCHOR, "Georgia,serif");
+    const fams = familiesOf(PRE_CSS);
+    assertTrue(`the pre-fix stack really was planted (${fams.join(" | ")})`, PRE_CSS !== READOUT_CSS);
+    expectFail("the pre-fix panel resolves its last-resort family to monospace", fams[fams.length - 1] === "monospace");
+    expectFail("the pre-fix panel avoids the serif fallback whose U+2016 merges at 13px", fams.indexOf("serif") < 0);
+    // ...and it is otherwise identical: the fix is one family, not a re-style.
+    assertTrue("the pre-fix and shipped panels agree on every other declaration (size, position, colour, z-index)",
+      PRE_CSS.replace("Georgia,serif", "") === READOUT_CSS.replace(ANCHOR, ""));
+  }
+
+  // ── (e) THE OTHER SCREEN THIS ROW SHARES — the authored formula surfaces ───
+  //   The HUD label is measured against the CONCEPT's own strings, so "one
+  //   quantity, one written form" is checked across surfaces and not just
+  //   inside the table. Advisory if the concept is not on this desk (§22(d)).
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let formulas: string[] = [];
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      if (cfg) {
+        formulas = Object.keys(cfg.states)
+          .map((k) => String(cfg.states[k].formula_overlay || "")).filter(Boolean);
+      }
+    } catch { formulas = []; }
+    if (formulas.length === 0) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the cross-surface binding is advisory");
+    } else {
+      const withNorm = formulas.filter((f) => f.indexOf(DBL) >= 0);
+      assertTrue(`${withNorm.length} of the ${formulas.length} authored formula surfaces write a norm, and every one of them uses U+2016`,
+        withNorm.length > 0);
+      const crossNormFormulas = formulas.filter((f) => f.indexOf(DBL + "d₁×d₂" + DBL) >= 0);
+      assertTrue(`the HUD's cross_norm label appears BYTE-IDENTICALLY inside ${crossNormFormulas.length} authored formula surface(s) — one quantity, one written form`,
+        crossNormFormulas.length > 0 && LABELS.cross_norm === DBL + "d₁×d₂" + DBL);
+      assertTrue("...and no authored formula surface writes that same cross product in single bars",
+        formulas.every((f) => f.indexOf("|d₁×d₂|") < 0));
+      assertTrue(`the HUD's n_norm label ("${LABELS.n_norm}") is likewise the form the formula surfaces use`,
+        formulas.some((f) => f.indexOf(DBL + "n" + DBL) >= 0) && formulas.every((f) => f.indexOf("|n|") < 0));
+    }
+  }
+}
+
+console.log("\n=== 27. A FREE-RUNNING SANDBOX LOOPS — vg.animate_loop_ms (bug_class vg_explore_animate_windows_are_finite_so_the_free_running_sandbox_freezes) ===");
+{
+  // Rule 37 makes an interaction_complete state's clock free-run forever (the
+  // player deliberately skips SET_TIME_FREEZE there), while vgAnimValue clamps
+  // u = min(1, …) on the last matching window — so ANY finite animate[] list
+  // expires. #9 STATE_9 hand-unrolled a ping-pong as EIGHT alternating windows
+  // ending at 72000 ms and stopped dead at −3.5 from 72 s on, with no way to
+  // restart short of leaving the state. An authored loop that is merely LONG is
+  // a bug with a delay on it.
+  //
+  // THE DISCRIMINATING QUANTITY IS WHETHER THE VALUE IS STILL CHANGING WELL
+  // PAST THE LAST AUTHORED WINDOW. Every weaker quantity is true of the broken
+  // build: the arithmetic is right, the state is deterministic, the reveal
+  // chain is right, D5 sees motion in the first 72 s, and THE EYE's dense
+  // capture never runs long enough to reach the freeze.
+  const LOOP = 18000, HALF = 9000, LO = -3.5, HI = 3.5;
+  const PING: Array<Record<string, unknown>> = [
+    { knob: "aux_a", from: LO, to: HI, start_ms: 0, duration_ms: HALF, easing: "linear" },
+    { knob: "aux_a", from: HI, to: LO, start_ms: HALF, duration_ms: HALF, easing: "linear" },
+  ];
+  /** The period, solved in this file: a linear ping-pong, wrapped by hand. */
+  const pingPong = (ms: number) => {
+    const m = ((ms % LOOP) + LOOP) % LOOP;
+    return m <= HALF ? LO + (HI - LO) * (m / HALF) : HI + (LO - HI) * ((m - HALF) / HALF);
+  };
+  const loopedAt = (ms: number) => E.vgAnimValue(PING, "aux_a", ms, 0, LOOP) as number;
+  const plainAt = (ms: number) => E.vgAnimValue(PING, "aux_a", ms, 0) as number;
+
+  // ── (a) THE SHIPPED HAZARD, PRESERVED FOR GUIDED STATES ───────────────────
+  //   The one-shot-hold semantics are CORRECT where the clock ends, and a state
+  //   that authors no period must keep them byte for byte. This is the row's
+  //   own negative control, phrased as the requirement it protects.
+  check("without animate_loop_ms the last window still HOLDS at its `to` (a guided state is untouched)", plainAt(80000), LO, 0);
+  check("...and at 72000 ms — the exact end of #9 STATE_9's eight-window list", plainAt(72000), LO, 0);
+  assertTrue(`...and it is CONSTANT from the last window onward (${[72000, 80000, 120000, 999999].map(plainAt).join(", ")}) — the shipped freeze, reproduced`,
+    [72000, 80000, 120000, 999999].every((t) => plainAt(t) === LO));
+  expectFail(`the un-looped fixture still MOVES at t=80000 (it returns a constant ${plainAt(80000).toFixed(3)}, which is the bug_class verbatim)`,
+    plainAt(80000) !== plainAt(90000));
+
+  // ── (b) THE LOOP, AT THE ROW'S OWN PROBE MS ───────────────────────────────
+  check("with animate_loop_ms = 18000 the knob at t=80000 equals the knob at 80000 % 18000 = 8000, EXACTLY",
+    loopedAt(80000), plainAt(80000 % LOOP), 0);
+  check("...and that value is the hand-solved ping-pong ordinate, not whatever the engine happened to hold",
+    loopedAt(80000), pingPong(80000), 1e-12);
+  assertTrue(`...and it is CHANGING there, which is the whole claim (v(80000) = ${loopedAt(80000).toFixed(4)}, v(84000) = ${loopedAt(84000).toFixed(4)})`,
+    Math.abs(loopedAt(80000) - loopedAt(84000)) > 0.5);
+  {
+    // The full travel is still reached long after the list "ended" — a loop
+    // that merely wobbled would pass every assertion above.
+    let lo = Infinity, hi = -Infinity;
+    for (let t = 72000; t <= 108000; t += 250) { const v = loopedAt(t); if (v < lo) lo = v; if (v > hi) hi = v; }
+    check("across the two cycles AFTER the last authored window the knob still spans its whole travel", hi - lo, HI - LO, 1e-9);
+  }
+  {
+    // Three cycles, sampled: the looped evaluation at t is the UN-LOOPED
+    // evaluation at t mod the period, at every sampled ms — the definition,
+    // asserted rather than assumed, at integer ms where % is exact.
+    let mismatches = 0, closed = 0, n = 0;
+    for (let t = 0; t <= 3 * LOOP; t += 125) {
+      n++;
+      if (loopedAt(t) !== plainAt(t % LOOP)) mismatches++;
+      if (Math.abs(loopedAt(t) - pingPong(t)) > 1e-12) closed++;
+    }
+    check(`over ${n} sampled ms across three cycles, looped(t) !== unlooped(t mod 18000)`, mismatches, 0, 0);
+    check("...and disagreements with the independently solved ping-pong", closed, 0, 0);
+  }
+  assertTrue("the cycle is CLOSED — v(0) = v(18000) = v(36000) = v(72000), so the seam reads as one continuous sweep, never a jump",
+    loopedAt(0) === LO && loopedAt(LOOP) === LO && loopedAt(2 * LOOP) === LO && loopedAt(4 * LOOP) === LO);
+  assertTrue("a period of 0 / negative / NaN / absent is IGNORED (an author cannot half-declare a loop into a divide-by-zero)",
+    [0, -1, NaN, Infinity, undefined, null, "18000"].every((bad) =>
+      (E.vgAnimValue(PING, "aux_a", 80000, 0, bad as never) as number) === plainAt(80000)));
+  check("vgLoopMs is a plain modulo and is well-behaved on a negative clock (never a negative phase)",
+    E.vgLoopMs(-1000, LOOP), 17000, 0);
+
+  // ── (c) REWIND DETERMINISM (Rule 36 / D3) ─────────────────────────────────
+  //   The wrap is a modulo, not an accumulator, so the same ms visited from the
+  //   future must reproduce bit for bit — the property SET_TIME_FREEZE rests on.
+  {
+    const ms = [0, 1500, 8000, 17999, 18000, 40000, 63500, 80000, 96000, 131000];
+    const forward = ms.map(loopedAt);
+    const rewound = ms.slice().reverse().map(loopedAt).reverse();
+    const again = ms.map(loopedAt);
+    assertTrue(`a rewind through ${ms.length} pins reproduces every value BIT-IDENTICALLY (===, not to a tolerance)`,
+      forward.every((v, i) => Object.is(v, rewound[i]) && Object.is(v, again[i])));
+    assertTrue("...and a pin taken at t and at t + one period draws the identical knob pose (the loop is exactly periodic)",
+      ms.every((t) => Object.is(loopedAt(t), loopedAt(t + LOOP))));
+  }
+
+  // ── (d) THE stateMs-CONSUMER SWEEP, READ OFF THE SHIPPED FRAME ────────────
+  //   The mechanism being right is worth nothing if the frame hands the period
+  //   to the wrong consumers. This is the scope constraint, mechanised: the
+  //   wrapped clock reaches the animate[] evaluation and NOTHING ELSE.
+  {
+    const frameSrc = FRAME_HARNESS.src!;
+    const body = frameSrc.replace(/\/\/[^\n]*/g, "");     // comments carry the symbol names too
+    const callsOf = (re: RegExp) => (body.match(re) || []).length;
+    const animCalls = callsOf(/vgAnimValue\(/g);
+    const loopedCalls = callsOf(/vgAnimValue\([^;]*?animLoopMs\)/g);
+    assertTrue(`the frame declares the period once, from the authored key (var animLoopMs = d.animate_loop_ms)`,
+      /var animLoopMs = d\.animate_loop_ms;/.test(body));
+    check(`EVERY vgAnimValue call in the frame is handed the period (${loopedCalls} of ${animCalls})`, loopedCalls, animCalls, 0);
+    assertTrue(`...and the frame makes a non-trivial number of them (${animCalls}), so the count above is not vacuously equal`, animCalls >= 8);
+    // The consumers that must NOT see it, named one by one and read as text.
+    assertTrue("vgResolveLinesPlanes (the whole per-object reveal / ghost chain) is called with the RAW stateMs",
+      /vgResolveLinesPlanes\(d, LP_KNOBS, stateMs\)/.test(body));
+    assertTrue("vgCamScheduleAt (camera_steps) is called with the RAW stateMs",
+      /vgCamScheduleAt\(d\.camera_steps, stateMs,/.test(body));
+    assertTrue("the shared grow-in ease (growT) is computed from the RAW stateMs",
+      /growT = [^;]*stateMs \/ Math\.max\(1, revealMs\)/.test(body));
+    // ...and nothing else in the frame touches the period at all.
+    check("animLoopMs appears in the frame ONLY as its declaration plus those call arguments",
+      callsOf(/animLoopMs/g), animCalls + 1, 0);
+    // One level down: the wrap itself is reachable from exactly ONE call site
+    // in the entire renderer, which is what makes the scope claim structural
+    // rather than a habit the next edit can break.
+    const srcNoComments = SRC.replace(/\/\/[^\n]*/g, "");
+    check("vgLoopMs is DECLARED once and CALLED from exactly one place in the whole renderer (inside vgAnimValue)",
+      (srcNoComments.match(/vgLoopMs\(/g) || []).length, 2, 0);
+    assertTrue("...and that one call site is inside vgAnimValue's body",
+      /function vgAnimValue\(animate, knob, stateMs, authored, loopMs\) \{[^}]*stateMs = vgLoopMs\(stateMs, loopMs\);/.test(srcNoComments));
+  }
+
+  // ── (e) END TO END: THE KNOB LOOPS, THE REVEAL DOES NOT ───────────────────
+  //   Run through the SHIPPED frame driver on ONE fixture carrying both: a
+  //   segment whose far endpoint rides the looping knob AND whose own
+  //   reveal_at_ms is 2000 ms. At t=20000 the wrapped clock is 2000 — the exact
+  //   instant the reveal STARTS — so if the wrap had been applied one level too
+  //   high the segment would be regrowing from a nub with its readout gone.
+  const REVEAL_AT = 2000, GROW = 600;
+  const loopFixture: Record<string, unknown> = {
+    mode: "lines_planes", reveal_ms: 0,
+    animate_loop_ms: LOOP, animate: PING,
+    value_readouts: ["segment_length"],
+    lines: [{ id: "L1", point: [0, 0, 0], dir: [1, 0, 0], lambda_span: [-4, 4] }],
+    points: [{ id: "Q", position: [0, 2, 0] }],
+    segments: [{
+      id: "S", from: "Q", to: { on: "L1", lambda: { knob: "aux_a" } },
+      readout: "length", reveal_at_ms: REVEAL_AT, grow_ms: GROW,
+    }],
+  };
+  /** |Q − P(λ)| with Q = (0,2,0) and P = (λ,0,0): the length the row prints. */
+  const segLen = (lam: number) => Math.hypot(lam, 2);
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    const frameAt = (vg: Record<string, unknown>, ms: number) => {
+      const dom = fakeDom();
+      const win: Record<string, unknown> = {};
+      runFrame(vg, ms, dom, win);
+      const el = dom.get("vg_readout");
+      return { html: el.innerHTML as string, shown: el.style.display, lp: win.PM_vgLinesPlanes as any };
+    };
+    const f80 = frameAt(loopFixture, 80000);
+    check("through the SHIPPED FRAME at t=80000 the segment_length row prints the WRAPPED knob's length",
+      f80.lp.readouts.segment_length, segLen(pingPong(80000)), 1e-12);
+    assertTrue(`...and the row is on screen, carrying symbol and value in one node ("${f80.html.replace(/<[^>]*>/g, " ").trim()}")`,
+      f80.shown === "block" && f80.html.includes("vg_readout_segment_length"));
+    const f84 = frameAt(loopFixture, 84000);
+    assertTrue(`...and it is still MOVING 12 s past the last authored window (${f80.lp.readouts.segment_length.toFixed(4)} → ${f84.lp.readouts.segment_length.toFixed(4)})`,
+      Math.abs(f80.lp.readouts.segment_length - f84.lp.readouts.segment_length) > 0.1);
+
+    // THE REVEAL, UN-WRAPPED. t=20000 wraps to 2000, the reveal's own start.
+    const f20 = frameAt(loopFixture, 20000);
+    assertTrue("t=20000 (wrapped 2000, the instant the reveal STARTS): the segment_length row is PRESENT — the reveal did not re-play",
+      f20.shown === "block" && f20.html.includes("vg_readout_segment_length"));
+    const res20 = E.vgResolveLinesPlanes(loopFixture, { aux_a: loopedAt(20000) }, 20000);
+    check("...and the segment's own reveal fraction is exactly 1, not regrown from a nub", res20.segments[0].frac, 1, 0);
+    check("...while its endpoint IS the wrapped knob (the two clocks, in one object)",
+      res20.readouts.segment_length, segLen(pingPong(20000)), 1e-12);
+    // NEGATIVE CONTROL — the same resolver handed the WRAPPED ms, which is what
+    // a wrap applied one level too high would produce.
+    const resWrapped = E.vgResolveLinesPlanes(loopFixture, { aux_a: loopedAt(20000) }, 20000 % LOOP);
+    expectFail(`a reveal chain fed the WRAPPED clock is still fully grown at t=20000 (frac ${resWrapped.segments[0].frac})`,
+      resWrapped.segments[0].frac === 1);
+    expectFail(`...and still publishes its number (segment_length ${resWrapped.readouts.segment_length === undefined ? "absent" : "present"})`,
+      resWrapped.readouts.segment_length !== undefined);
+
+    // NEGATIVE CONTROL — the same fixture with the key REMOVED: the shipped
+    // hazard, driven end to end through the real frame.
+    const noLoop: Record<string, unknown> = { ...loopFixture };
+    delete noLoop.animate_loop_ms;
+    const n80 = frameAt(noLoop, 80000), n84 = frameAt(noLoop, 84000);
+    check("without the key the frame prints the CLAMPED constant at t=80000 (λ = −3.5)", n80.lp.readouts.segment_length, segLen(LO), 1e-12);
+    expectFail(`...and the picture is still moving four seconds later (${n80.lp.readouts.segment_length.toFixed(4)} → ${n84.lp.readouts.segment_length.toFixed(4)})`,
+      n80.lp.readouts.segment_length !== n84.lp.readouts.segment_length);
+  }
+
+  // ── (f) A TEACHER'S DRAG STILL WINS ───────────────────────────────────────
+  //   The loop must not fight a seized knob: the drag branch of the frame's
+  //   knob() funnel runs BEFORE the ramp resolves, and adding a period must not
+  //   have moved it. Read off the arrow the frame actually draws.
+  {
+    const runFrame = FRAME_HARNESS.run!;
+    const bRamp = [
+      { knob: "b_mag", from: 1.0, to: 5.0, start_ms: 0, duration_ms: HALF, easing: "linear" },
+      { knob: "b_mag", from: 5.0, to: 1.0, start_ms: HALF, duration_ms: HALF, easing: "linear" },
+    ];
+    const vg = { animate: bRamp, animate_loop_ms: LOOP, a_mag: 3.0, b_mag: 1.0, theta_deg: 60, reveal_ms: 0 };
+    const lenOfB = (ms: number, win: Record<string, unknown>, showSliders: boolean) => {
+      const scene = runFrame(vg, ms, fakeDom(), win, showSliders) as any[];
+      return scene.filter((o: any) => o.userData.elementType === "vg_vector_b")[0].len as number;
+    };
+    const free80 = lenOfB(80000, {}, true);
+    check("un-dragged, the looped |b| at t=80000 is the wrapped ramp value", free80,
+      E.vgAnimValue(bRamp, "b_mag", 80000, 1.0, LOOP), 1e-12);
+    const seized = { PM_vgBMag: 4.25, PM_vgBMagDragged: true };
+    check("a teacher's drag seizes the row and the LOOPED ramp does not fight it (t=80000)", lenOfB(80000, { ...seized }, true), 4.25, 1e-12);
+    check("...and at t=8000, the same phase one cycle earlier — the seize is not phase-dependent", lenOfB(8000, { ...seized }, true), 4.25, 1e-12);
+    assertTrue("...and the seized value really does differ from what the loop would have drawn (the check discriminates)",
+      Math.abs(free80 - 4.25) > 0.1);
+    // THE EYE never drags, so a frozen frame always takes the closed-form branch.
+    check("with no drag flag the frame is back on the closed form (the deterministic capture path)", lenOfB(80000, {}, true), free80, 0);
+  }
+
+  // ── (g) NO-LOOP STATES ARE BYTE-IDENTICAL PRE/POST ────────────────────────
+  //   The pre-fix vgAnimValue, RECONSTRUCTED from the shipped text (the §19b
+  //   pattern): the 5th parameter and the one wrap line removed, and nothing
+  //   else. Guarded — a drifted anchor is an ERROR, never a quiet pass.
+  {
+    const SIG = "function vgAnimValue(animate, knob, stateMs, authored, loopMs) {";
+    const WRAP = /\n\s*stateMs = vgLoopMs\(stateMs, loopMs\);[^\n]*/;
+    const preFix = (name: string, src: string) => {
+      if (name !== "vgAnimValue") return src;
+      if (src.indexOf(SIG) !== 0 || !WRAP.test(src)) {
+        throw new Error(
+          "§27 NEGATIVE CONTROL CANNOT BE BUILT: vgAnimValue's shipped signature or wrap line no longer "
+          + "matches the text this control removes. A control that silently fails to plant its defect is "
+          + "worse than no control. Re-anchor SIG/WRAP and re-watch it fail.\n  got: " + src.slice(0, 200));
+      }
+      return src.replace(SIG, "function vgAnimValue(animate, knob, stateMs, authored) {").replace(WRAP, "");
+    };
+    const PRE = buildVgSandbox(preFix) as any;
+    assertTrue("the reconstructed pre-fix resolver really is the un-looped one (it ignores a 5th argument entirely)",
+      PRE.vgAnimValue(PING, "aux_a", 80000, 0, LOOP) === LO && E.vgAnimValue(PING, "aux_a", 80000, 0, LOOP) !== LO);
+    // The sweep. Every shape a shipped state authors — a single window, a
+    // multi-segment sweep, a hold gap, duration 0, a knob nothing names — at
+    // every ms, with NO period: pre and post must agree exactly.
+    const SHAPES: Array<{ name: string; anim: Array<Record<string, unknown>>; knob: string; dflt: number }> = [
+      { name: "a single ramp", anim: [{ knob: "theta_deg", from: 20, to: 90, start_ms: 400, duration_ms: 2600 }], knob: "theta_deg", dflt: 60 },
+      {
+        name: "a multi-segment sweep with a hold gap",
+        anim: [{ knob: "theta_deg", from: 20, to: 90, start_ms: 400, duration_ms: 2600 },
+               { knob: "theta_deg", from: 90, to: 130, start_ms: 3400, duration_ms: 2200 }],
+        knob: "theta_deg", dflt: 60,
+      },
+      { name: "a duration_ms 0 cut", anim: [{ knob: "flip_frac", from: 0, to: 1, start_ms: 1200, duration_ms: 0 }], knob: "flip_frac", dflt: 0 },
+      { name: "the ping-pong itself", anim: PING, knob: "aux_a", dflt: 0 },
+      { name: "a knob no entry names", anim: PING, knob: "b_mag", dflt: 2.0 },
+      { name: "an empty list", anim: [], knob: "b_mag", dflt: 2.0 },
+    ];
+    let drift = 0, samples = 0;
+    for (const s of SHAPES) {
+      for (let t = -500; t <= 90000; t += 137) {
+        samples++;
+        const post = E.vgAnimValue(s.anim, s.knob, t, s.dflt);
+        const pre = PRE.vgAnimValue(s.anim, s.knob, t, s.dflt);
+        if (!Object.is(post, pre)) drift++;
+        // ...and an explicitly-absent / zero period is the same thing again.
+        if (!Object.is(E.vgAnimValue(s.anim, s.knob, t, s.dflt, undefined), pre)) drift++;
+        if (!Object.is(E.vgAnimValue(s.anim, s.knob, t, s.dflt, 0), pre)) drift++;
+      }
+    }
+    check(`over ${samples} ms x ${SHAPES.length} authored shapes, values that DIFFER from the pre-fix build`, drift, 0, 0);
+    // ...and the same at the level a state is actually authored: the whole
+    // frame, run on a fixture with no period, before and after.
+    {
+      const runFrame = FRAME_HARNESS.run!;
+      const guided = {
+        mode: "lines_planes", reveal_ms: 0, value_readouts: ["segment_length"],
+        animate: PING,
+        lines: [{ id: "L1", point: [0, 0, 0], dir: [1, 0, 0], lambda_span: [-4, 4] }],
+        points: [{ id: "Q", position: [0, 2, 0] }],
+        segments: [{ id: "S", from: "Q", to: { on: "L1", lambda: { knob: "aux_a" } }, readout: "length" }],
+      };
+      let bad = 0;
+      for (const t of [0, 900, 4500, 9000, 13500, 18000, 30000, 72000, 80000]) {
+        const win: Record<string, unknown> = {};
+        runFrame(guided, t, fakeDom(), win);
+        const got = (win.PM_vgLinesPlanes as any).readouts.segment_length as number;
+        if (Math.abs(got - segLen(E.vgAnimValue(PING, "aux_a", t, 0))) > 1e-12) bad++;
+      }
+      check("a state that authors NO period still draws the one-shot-hold pose at every sampled ms", bad, 0, 0);
+    }
+  }
+
+  // ── (h) deriveStateMeta — FIRST-CYCLE SEMANTICS, ASSERTED ─────────────────
+  //   A looping state has no settled end, so the pin can only mean the end of
+  //   the FIRST cycle. The decision is that the pin derivation reads the
+  //   authored windows UN-WRAPPED — i.e. adding the key moves no pin — and that
+  //   is asserted here rather than left to inspection (the F14 `intersections`
+  //   scar: a new timed authoring key the pin evaluator cannot see is invisible
+  //   until a baseline is already wrong).
+  {
+    const mk = (extra: Record<string, unknown>, showSliders: boolean) => ({
+      field_3d_config: {
+        scenario_type: "vector_geometry_3d",
+        states: { STATE_1: { show_sliders: showSliders, vg: { mode: "products", reveal_ms: 900, animate: PING, ...extra } } },
+      },
+    });
+    const pinOf = (cfg: unknown) => (deriveMaxRevealTimeMs(cfg as never) as Record<string, number>).STATE_1;
+    const pinPlain = pinOf(mk({}, false));
+    const pinLoop = pinOf(mk({ animate_loop_ms: LOOP }, false));
+    check("the reveal pin of a LOOPING guided state equals the pin of the same windows un-looped (first-cycle semantics)", pinLoop, pinPlain, 0);
+    check("...and that number is the last authored window end + the vg cushion (18000 + 300)", pinLoop, LOOP + 300, 0);
+    assertTrue("...which is exactly what vgAnimEndMs reports for the same list — the renderer and the evaluator do not diverge",
+      E.vgAnimEndMs(PING) === LOOP && pinLoop === (E.vgAnimEndMs(PING) as number) + 300);
+    // ...and it is SOUND, because the loop is periodic: the pose at the pin is
+    // the pose at the pin mod the period. A pin is a capture instant, not a
+    // claim that the state has stopped.
+    check("the knob at the derived pin equals the knob at (pin mod period) — the pin photographs a real, reachable pose",
+      loopedAt(pinLoop), plainAt(pinLoop % LOOP), 0);
+
+    // MOTION + HOLD. A looping state moves forever, so it must never be told
+    // its tail may be stuck.
+    const motion = deriveMotionExpectations(mk({ animate_loop_ms: LOOP }, false) as never);
+    assertTrue("a looping state is declared MOTION (D5 runs on it — a gate that is skipped is not a gate that passed)",
+      motion.STATE_1 === true);
+    const holdLoop = deriveHoldExpectations(mk({ animate_loop_ms: LOOP }, false) as never);
+    const holdPlain = deriveHoldExpectations(mk({}, false) as never);
+    assertTrue(`a guided state that never settles is NOT classified reveal_hold (got ${String(holdLoop.STATE_1)}) — D7's stuck tail stays live on the one state whose point is that it never stops`,
+      holdLoop.STATE_1 === undefined);
+    assertTrue(`...while the same state WITHOUT a period still classifies reveal_hold (got ${String(holdPlain.STATE_1)}) — no shipped state moves`,
+      holdPlain.STATE_1 === "reveal_hold");
+    const holdSandbox = deriveHoldExpectations(mk({ animate_loop_ms: LOOP }, true) as never);
+    assertTrue(`the sandbox (show_sliders) stays 'interactive' whatever it idles at (got ${String(holdSandbox.STATE_1)}) — the intended home of the key`,
+      holdSandbox.STATE_1 === "interactive");
+    assertTrue(`...and a sandbox is skipped by the vg pin derivation entirely (both pin at the DEFAULT ${pinOf(mk({ animate_loop_ms: LOOP }, true))} ms), so the loop can never mint a pinned baseline`,
+      pinOf(mk({ animate_loop_ms: LOOP }, true)) === pinOf(mk({}, true))
+      && pinOf(mk({ animate_loop_ms: LOOP }, true)) < pinLoop);
+    // NEGATIVE CONTROL — an evaluator that WRAPPED its own output (the tempting
+    // other answer) would pin at 18300 % 18000 = 300 ms. It is INDISTINGUISHABLE
+    // on the knob, because the loop is periodic — which is exactly why the knob
+    // is the wrong thing to measure the decision by. It is the REVEAL CHAIN that
+    // convicts it: at 300 ms the segment revealed at 2000 ms is not on screen at
+    // all, and the frozen baseline would be minted from an empty picture.
+    const wrappedPin = pinLoop % LOOP;
+    check(`the wrapped pin (${wrappedPin} ms) is indistinguishable from ${pinLoop} ms ON THE KNOB — periodicity, and the reason the knob cannot decide this`,
+      loopedAt(wrappedPin), loopedAt(pinLoop), 0);
+    const fracAt = (ms: number) => (E.vgResolveLinesPlanes(loopFixture, { aux_a: loopedAt(ms) }, ms) as any).segments[0].frac as number;
+    expectFail(`a pin evaluator that wrapped its own output still clears the reveal chain (at ${wrappedPin} ms the segment's frac is ${fracAt(wrappedPin)}, against ${fracAt(pinLoop)} at the un-wrapped pin)`,
+      fracAt(wrappedPin) === 1);
+    check("...while the UN-WRAPPED pin this file derives photographs the fully-revealed segment", fracAt(pinLoop), 1, 0);
+  }
+
+  // ── (i) THE AUTHORING FOLLOW-UP, IF THE CONCEPT IS ON THIS DESK ────────────
+  //   Advisory (the §26(e) pattern): the engine now HAS the mechanism, but #9
+  //   STATE_9 still has to declare a period, and the engine cannot author it.
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let s9: Record<string, any> | null = null;
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      const ids = cfg ? Object.keys(cfg.states) : [];
+      const last = ids.length ? cfg!.states[ids[ids.length - 1]] : null;
+      s9 = last && last.show_sliders === true ? last : null;
+    } catch { s9 = null; }
+    if (!s9) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the S9 authoring follow-up is advisory");
+    } else {
+      const anim = Array.isArray(s9.vg?.animate) ? s9.vg.animate : [];
+      const end = Math.max(0, ...anim.map((r: any) => (r.start_ms || 0) + (r.duration_ms || 0)));
+      assertTrue(`the explore state declares a loop period for its ${anim.length}-window list (last window ends at ${end} ms; authored period ${String(s9.vg?.animate_loop_ms)})`,
+        typeof s9.vg?.animate_loop_ms === "number" && s9.vg.animate_loop_ms > 0);
+      if (typeof s9.vg?.animate_loop_ms === "number") {
+        assertTrue(`...and the period matches the end of the authored window list (${s9.vg.animate_loop_ms} vs ${end}) — a shorter period truncates the sweep, a longer one re-freezes for the difference`,
+          Math.abs(s9.vg.animate_loop_ms - end) < 1e-9);
+      }
+    }
+  }
+}
+
+console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOWN IN — vg.group_controls (bug_class vg_explore_controls_are_not_group_aware_so_half_the_sliders_are_inert) ===");
+{
+  // d.controls is ONE FLAT LIST and the Δ10 picker swaps the OBJECTS underneath
+  // it, so #9 STATE_9 offers the same six knob rows in both groups and about
+  // half of them drive nothing in whichever group is selected. This section
+  // measures INERTNESS at the SHIPPED RESOLVER (a knob is dead in a group when
+  // sweeping it end to end changes no resolved object and no readout) and
+  // measures VISIBILITY at the SHIPPED ROW PASS — never at the authored list,
+  // which is the thing under test.
+  const clone = <T,>(o: T): T => JSON.parse(JSON.stringify(o));
+
+  // ── THE FIXTURE — #9 STATE_9's vg block, transcribed. Its FIDELITY to the
+  //    shipped concept is itself asserted in (h) whenever the JSON is on this
+  //    desk, so a fixture that drifts from the sim it models is caught rather
+  //    than believed.
+  const S9_VG: Record<string, any> = {
+    mode: "lines_planes", reveal_ms: 1,
+    scene_groups: [{ key: "A", label: "line + plane" }, { key: "B", label: "skew pair" }],
+    scene_group: "A",
+    lambda: 0.0, lambda_span: 4.0, half_extent: 3.0, q_height: 1.19,
+    theta_deg: 69.3846, line2_offset: 0.0,
+    lines: [
+      { id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], role: "dir1", label: "d",
+        groups: ["A"], bind_lambda_span: true, show_lambda_marker: true, lambda: { knob: "lambda" }, reveal_at_ms: 0 },
+      { id: "M1", point: [-1.2, -0.9, 0.6], dir: [1, 0.15, 0.35], role: "dir1", label: "d₁",
+        groups: ["B"], reveal_at_ms: 0 },
+      { id: "M2", point: [0.479887, -1.725775, -0.749677], dir: [0.15, -0.5, 1], role: "dir2", label: "d₂",
+        groups: ["B"],
+        offset: { along: [0.132973, -0.443242, 0.886484], zero: 0, knob: "line2_offset" },
+        rotate: { about: [0.287668, -0.838664, -0.462482], zero: 69.3846, knob: "theta_deg" },
+        reveal_at_ms: 0 },
+    ],
+    planes: [
+      { id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], span_u: [1, -0.35, 0], half_extent: 3.0,
+        bind_half_extent: true, role: "region", show_normal: true, normal_label: "n", groups: ["A"], reveal_at_ms: 0 },
+    ],
+    points: [
+      { id: "q", position: [1.93, 1.19, 0.51], role: "neutral", label: "q", groups: ["A"],
+        offset: { along: [0, 1, 0], zero: 1.19, knob: "q_height" }, reveal_at_ms: 0 },
+    ],
+    perpendicular: { id: "perp", from: "q", to: "P1", foot_id: "foot", role: "derived",
+      show_right_angle: true, groups: ["A"], reveal_at_ms: 0 },
+    common_perpendicular: { id: "common_perp", between: ["M1", "M2"], role: "derived", groups: ["B"], reveal_at_ms: 0 },
+    value_readouts: ["point_plane_distance", "n_norm", "skew_distance"],
+    controls: ["scene_group", "lambda", "lambda_span", "half_extent", "q_height", "theta_deg", "line2_offset"],
+    control_ranges: { half_extent: { min: 1.5, max: 4.5 }, lambda_span: { min: 2.5, max: 5.0 }, theta_deg: { min: 25, max: 115 } },
+  };
+  // THE PARTITION this fix makes authorable — the exact block the follow-up
+  // asks #9 STATE_9 to add. scene_group is deliberately absent from both lists:
+  // the picker is how a teacher LEAVES a group and is governed by the flat
+  // controls in every group.
+  const GROUP_CONTROLS: Record<string, string[]> = {
+    A: ["lambda", "lambda_span", "half_extent", "q_height"],
+    B: ["theta_deg", "line2_offset"],
+  };
+  const KNOBS = ["lambda", "lambda_span", "half_extent", "q_height", "theta_deg", "line2_offset"];
+  // THE INERTNESS MATRIX, stated up front from the fixture's own geometry:
+  // group A holds L1 (λ marker + bound span), P1 (bound half-extent) and q
+  // (height offset); group B holds M1 and M2 (M2 alone carries the theta_deg
+  // rotate and the line2_offset translate).
+  const EXPECT_LIVE: Record<string, string[]> = {
+    A: ["lambda", "lambda_span", "half_extent", "q_height"],
+    B: ["theta_deg", "line2_offset"],
+  };
+
+  const stateOf = (vg: Record<string, any>) => ({ show_sliders: true, vg });
+  const withGroups = () => { const v = clone(S9_VG); v.group_controls = clone(GROUP_CONTROLS); return v; };
+  /** Seed the DOM the way buildVectorGeometrySliders does, then apply. */
+  const applyOn = (stateDef: unknown, dom = fakeDom(), rowPassSrc?: string) => {
+    for (const k of Object.keys(SHIPPED_ROW_LABEL)) dom.get("vg_" + k + "_lab").textContent = SHIPPED_ROW_LABEL[k];
+    return runApplyPass([], stateDef, dom, undefined, rowPassSrc);
+  };
+  /** The rows a teacher can actually see, read off the DOM the pass wrote. */
+  const shownRows = (dom: ReturnType<typeof fakeDom>) =>
+    KNOBS.filter((k) => dom.get("vg_" + k + "_row").style.display === "block");
+  const liveRows = (dom: ReturnType<typeof fakeDom>) =>
+    KNOBS.filter((k) => dom.get("vg_" + k + "_row").style.display === "block"
+      && dom.get("vg_" + k + "_slider").disabled === false);
+
+  // ── THE PROBE the bug row asks for: resolve the SHIPPED resolver across the
+  //    knob's own row travel and see whether ANY resolved object or readout
+  //    moves. Five samples, not two: a knob whose end points happen to agree
+  //    (a marker that leaves the drawn span at both ends) would read as dead
+  //    on a two-point test and is not.
+  const baseK = (vg: Record<string, any>, group: string) => {
+    const K: Record<string, unknown> = { scene_group: group };
+    for (const k of KNOBS) K[k] = typeof vg[k] === "number" ? vg[k] : SHIPPED_ROW_RANGE[k].def;
+    return K;
+  };
+  const T0 = vgTextFns({}, fakeDom().document);
+  const MS = 5000;                     // reveal_ms 1 + reveal_at_ms 0 ⇒ every frac is 1
+  const sweepFrames = (vg: Record<string, any>, group: string, knob: string) => {
+    const r = T0.vgControlRange(knob, vg) as { min: number; max: number };
+    const out: string[] = [];
+    for (let i = 0; i <= 4; i++) {
+      const K = baseK(vg, group);
+      K[knob] = r.min + (r.max - r.min) * (i / 4);
+      out.push(JSON.stringify(E.vgResolveLinesPlanes(vg, K, MS)));
+    }
+    return out;
+  };
+  const movesSomething = (vg: Record<string, any>, group: string, knob: string) =>
+    sweepFrames(vg, group, knob).some((f, i, a) => i > 0 && f !== a[0]);
+
+  // (a) THE SURFACE — vgEffectiveControls, and the fallbacks that keep every
+  //     state shipped today byte-identical.
+  {
+    const T = vgTextFns({}, fakeDom().document);
+    const flat = S9_VG.controls as string[];
+    assertTrue("a state with NO group_controls resolves to the flat controls, in every group",
+      JSON.stringify(T.vgEffectiveControls(S9_VG, "A")) === JSON.stringify(flat)
+      && JSON.stringify(T.vgEffectiveControls(S9_VG, "B")) === JSON.stringify(flat));
+    const g = withGroups();
+    assertTrue(`group A resolves to its OWN list (${GROUP_CONTROLS.A.join(", ")})`,
+      JSON.stringify(T.vgEffectiveControls(g, "A")) === JSON.stringify(GROUP_CONTROLS.A));
+    assertTrue(`group B resolves to its OWN list (${GROUP_CONTROLS.B.join(", ")})`,
+      JSON.stringify(T.vgEffectiveControls(g, "B")) === JSON.stringify(GROUP_CONTROLS.B));
+    assertTrue("a group the block does not name falls back to the flat list (never to nothing)",
+      JSON.stringify(T.vgEffectiveControls(g, "C")) === JSON.stringify(flat));
+    assertTrue("no group at all (a single-group state) falls back to the flat list",
+      JSON.stringify(T.vgEffectiveControls(g, null)) === JSON.stringify(flat)
+      && JSON.stringify(T.vgEffectiveControls(g, "")) === JSON.stringify(flat));
+    // The legal-zero-value scar, in list form: an EMPTY authored list is "this
+    // group has no live knob" and must survive, where truthiness would restore
+    // the full flat list — the loudest possible version of the defect.
+    const empty = withGroups(); empty.group_controls.B = [];
+    assertTrue("an authored EMPTY list yields NO rows — resolved by presence, never truthiness",
+      JSON.stringify(T.vgEffectiveControls(empty, "B")) === "[]");
+    const notArray = withGroups(); notArray.group_controls.B = "theta_deg" as unknown as string[];
+    assertTrue("a malformed (non-array) entry falls back to the flat list rather than iterating a string",
+      JSON.stringify(T.vgEffectiveControls(notArray, "B")) === JSON.stringify(flat));
+    // The type-omission scar: a field the body reads is DECLARED in the block
+    // type in the same change that reads it.
+    const FILE = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf-8");
+    assertTrue("group_controls is declared in the vg block's TypeScript type (a field that runs but cannot be declared is undiscoverable)",
+      /group_controls\?:\s*Record<string,\s*string\[\]>;/.test(FILE));
+  }
+
+  // (b) ROW VISIBILITY, THROUGH THE SHIPPED APPLY PASS — each group shows
+  //     exactly its own rows, plus the picker.
+  {
+    const dom = fakeDom();
+    const r = applyOn(stateOf(withGroups()), dom);
+    check("the state opens on its authored group", r.win.PM_vgSceneGroup as string, "A", 0);
+    assertTrue(`group A shows exactly its own knob rows (${shownRows(dom).join(", ")})`,
+      JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
+    assertTrue("...all of them LIVE (enabled), none greyed",
+      JSON.stringify(liveRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
+    assertTrue("...and the view picker is on screen in group A (it is how a teacher leaves the group)",
+      dom.get("vg_scene_group_row").style.display === "block");
+    assertTrue("...the panel itself is open", dom.get("vg_sliders").style.display === "block");
+    assertTrue(`...and the four rows group B owns are HIDDEN (${KNOBS.filter((k) => shownRows(dom).indexOf(k) < 0).join(", ")})`,
+      EXPECT_LIVE.B.every((k) => dom.get("vg_" + k + "_row").style.display === "none"));
+    assertTrue("the pass publishes the rows a teacher can reach in the live group (PM_vgRowsShown)",
+      JSON.stringify(r.win.PM_vgRowsShown) === JSON.stringify(EXPECT_LIVE.A)
+      && r.win.PM_vgRowsGroup === "A");
+    // Entering the SAME state authored on group B opens on B's rows.
+    const domB = fakeDom();
+    const vgB = withGroups(); vgB.scene_group = "B";
+    applyOn(stateOf(vgB), domB);
+    assertTrue(`a state authored on group B opens on B's rows (${shownRows(domB).join(", ")})`,
+      JSON.stringify(shownRows(domB)) === JSON.stringify(EXPECT_LIVE.B));
+    assertTrue("...and the picker is on screen there too — the picker is never partitioned away",
+      domB.get("vg_scene_group_row").style.display === "block");
+  }
+
+  // (c) THE PICKER PATH — A → B → A through the two passes the shipped change
+  //     handler runs, and NOTHING ELSE (Rule 39c). The apply pass is proven not
+  //     to have re-fired by three of its OWN side effects surviving untouched.
+  {
+    const dom = fakeDom();
+    const vg = withGroups();
+    const r = applyOn(stateOf(vg), dom);
+    // The ranges the apply pass installed (per STATE, not per group).
+    const rangeDump = () => JSON.stringify(KNOBS.map((k) => {
+      const el = dom.get("vg_" + k + "_slider");
+      return [k, el.min, el.max, el.step];
+    }));
+    const RANGES_AT_ENTRY = rangeDump();
+    assertTrue(`the per-state control_ranges are installed at entry (theta 25..115, half_extent 1.5..4.5, lambda_span 2.5..5) — ${RANGES_AT_ENTRY.slice(0, 80)}…`,
+      dom.get("vg_theta_deg_slider").min === "25" && dom.get("vg_theta_deg_slider").max === "115"
+      && dom.get("vg_half_extent_slider").min === "1.5" && dom.get("vg_lambda_span_slider").max === "5");
+    // A TEACHER'S DRAG, and two apply-only sentinels.
+    r.win.PM_vgLambdaDragged = true;
+    r.win.PM_vgLambda = 2.75;
+    r.win.PM_vgControlRangeWidened = "SENTINEL";
+    dom.get("vg_scene_group_select").innerHTML = "SENTINEL";
+    dom.get("vg_lambda_val").textContent = "SENTINEL";
+    /** Exactly what the shipped <select> change handler does, in its order. */
+    const pick = (g: string) => {
+      r.win.PM_vgSceneGroup = g;
+      r.T.vgApplyControlRows(vg, true);
+      r.T.vgWriteRowLabels(vg);
+    };
+    pick("B");
+    assertTrue(`switching to group B shows exactly B's rows (${shownRows(dom).join(", ")})`,
+      JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.B));
+    assertTrue(`...and hides A's four (${EXPECT_LIVE.A.join(", ")})`,
+      EXPECT_LIVE.A.every((k) => dom.get("vg_" + k + "_row").style.display === "none"));
+    assertTrue("...the picker row stays on screen (a group that hid it would be a trap)",
+      dom.get("vg_scene_group_row").style.display === "block");
+    assertTrue("...and the θ row is re-labelled for the lines group B actually shows (the two passes compose)",
+      dom.get("vg_theta_deg_lab").textContent === "θ (d₁, d₂)");
+    pick("A");
+    assertTrue(`switching back restores A's rows exactly (${shownRows(dom).join(", ")})`,
+      JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
+    assertTrue("...and the θ label drops the pair again (it names nothing group A turns)",
+      dom.get("vg_theta_deg_lab").textContent === "θ");
+    // THE APPLY PASS DID NOT RE-RUN — the three side effects only it produces.
+    assertTrue("the group switch did NOT re-run the apply pass: the teacher's drag-seize flag survives (Rule 39c)",
+      r.win.PM_vgLambdaDragged === true && r.win.PM_vgLambda === 2.75);
+    assertTrue("...the apply-only publication survives untouched (PM_vgControlRangeWidened still the sentinel)",
+      r.win.PM_vgControlRangeWidened === "SENTINEL");
+    assertTrue("...the <select>'s option list was not rebuilt, and no slider VALUE was re-seeded",
+      dom.get("vg_scene_group_select").innerHTML === "SENTINEL"
+      && dom.get("vg_lambda_val").textContent === "SENTINEL");
+    // ...and the RANGES are per STATE, not per group: two switches neither skip
+    // nor corrupt the restore the apply pass performed.
+    assertTrue("the per-state ranges are byte-identical after A → B → A (the row pass writes display/disabled/opacity and nothing else)",
+      rangeDump() === RANGES_AT_ENTRY);
+    // A knob seized in A, hidden in B, still seized when its row comes back —
+    // the seize semantics are UNCHANGED by this pass, which touches no global
+    // the frame's knob() funnel reads.
+    assertTrue("a knob seized in group A is still seized after the round trip, at the value the teacher left it",
+      r.win.PM_vgLambdaDragged === true && r.win.PM_vgLambda === 2.75);
+    // The seize globals, READ OUT OF THE SHIPPED VG_ROW_DRAG table rather than
+    // restated (a gate holding its own copy passes forever after a knob is added).
+    const SEIZE_GLOBALS = (grabVar("VG_ROW_DRAG").match(/"(PM_vg\w+Dragged)"/g) || []).map((s) => s.replace(/"/g, ""));
+    assertTrue(`the row pass names NO drag-seize global (${SEIZE_GLOBALS.length} checked) — it cannot change seize semantics`,
+      SEIZE_GLOBALS.every((g) => ROW_PASS_SRC.indexOf(g) < 0));
+    // The HANDLER really calls it (a mechanism that exists but is never called
+    // is the recorded discharge-against-a-mechanism-never-built failure).
+    const at = SRC.indexOf('gsel.addEventListener("change"');
+    const HANDLER = at > 0 ? SRC.slice(at, at + 1600) : "";
+    assertTrue("the scene-group change handler calls vgApplyControlRows...",
+      at > 0 && HANDLER.indexOf("vgApplyControlRows(") >= 0);
+    assertTrue("...BEFORE vgWriteRowLabels (which rows are on screen, then what those rows are called)",
+      HANDLER.indexOf("vgApplyControlRows(") < HANDLER.indexOf("vgWriteRowLabels("));
+    assertTrue("...and does NOT call the full apply pass from the picker",
+      HANDLER.indexOf("applyVectorGeometry3DState") < 0 && HANDLER.indexOf("applyState(") < 0);
+  }
+
+  // (d) THE ROW'S OWN PROBE — for each group, every VISIBLE row moves something,
+  //     and every HIDDEN row is one that would have moved nothing.
+  {
+    for (const g of ["A", "B"]) {
+      const dom = fakeDom();
+      const vg = withGroups();
+      const st = clone(vg); st.scene_group = g;
+      applyOn(stateOf(st), dom);
+      const shown = shownRows(dom);
+      const hidden = KNOBS.filter((k) => shown.indexOf(k) < 0);
+      const deadShown = shown.filter((k) => !movesSomething(vg, g, k));
+      const liveHidden = hidden.filter((k) => movesSomething(vg, g, k));
+      assertTrue(`group ${g}: every VISIBLE row moves a resolved object or readout (${shown.join(", ")}) — dead: ${deadShown.join(", ") || "none"}`,
+        deadShown.length === 0);
+      assertTrue(`group ${g}: every HIDDEN row is genuinely inert here (${hidden.join(", ")}) — wrongly hidden: ${liveHidden.join(", ") || "none"}`,
+        liveHidden.length === 0);
+      assertTrue(`group ${g}: the partition is EXACTLY the live set the geometry implies (${EXPECT_LIVE[g].join(", ")})`,
+        JSON.stringify(shown) === JSON.stringify(EXPECT_LIVE[g]));
+    }
+    // The two groups partition the knob set with no overlap and no orphan: a
+    // knob live in NEITHER group would be authored into the sandbox and reach
+    // nothing at all.
+    const union = EXPECT_LIVE.A.concat(EXPECT_LIVE.B).sort();
+    assertTrue(`the two lists partition all ${KNOBS.length} knob rows exactly once (${union.join(", ")})`,
+      JSON.stringify(union) === JSON.stringify(KNOBS.slice().sort())
+      && EXPECT_LIVE.A.every((k) => EXPECT_LIVE.B.indexOf(k) < 0));
+    // ...and the authored group_controls the follow-up asks for is a SUBSET of
+    // the flat controls: partitioning may never smuggle in a knob the state
+    // never authored (whose range the apply pass would not have set).
+    const flat = S9_VG.controls as string[];
+    assertTrue("every knob named in group_controls is also in the flat controls (partition, never addition)",
+      Object.keys(GROUP_CONTROLS).every((g) => GROUP_CONTROLS[g].every((k) => flat.indexOf(k) >= 0)));
+  }
+
+  // (e) FALLBACK BYTE-IDENTITY — with no group_controls authored, the fixed row
+  //     pass and the PRE-FIX (flat, group-blind) one agree over the WHOLE DOM.
+  //     Guarded textual reconstruction: if the anchor drifts this THROWS, because
+  //     a control that silently fails to plant its defect is worse than none.
+  const ANCHOR = "var controls = vgEffectiveControls(d, group);";
+  if (ROW_PASS_SRC.indexOf(ANCHOR) < 0) {
+    throw new Error("§28 NEGATIVE CONTROL CANNOT BE BUILT: vgApplyControlRows no longer contains "
+      + JSON.stringify(ANCHOR) + ". Re-anchor it and re-watch the control fail.");
+  }
+  const PRE_ROW_SRC = ROW_PASS_SRC.replace(ANCHOR, "var controls = d.controls || [];   /* pre-fix: ONE flat list in every group */");
+  {
+    assertTrue("the pre-fix row pass really was planted (it never consults the group's own list, and differs from the shipped one)",
+      PRE_ROW_SRC.indexOf("vgEffectiveControls(") < 0 && PRE_ROW_SRC !== ROW_PASS_SRC);
+    const dump = (d: ReturnType<typeof fakeDom>) => JSON.stringify([...d.els.entries()].sort((x, y) => (x[0] < y[0] ? -1 : 1)));
+    const FIXTURES: Array<[string, unknown]> = [
+      ["the two-group state with NO group_controls authored", stateOf(clone(S9_VG))],
+      ["a single-group lines_planes state", stateOf({ mode: "lines_planes", controls: ["lambda", "theta_deg"], lambda: 0, theta_deg: 60,
+        lines: [{ id: "M1", role: "dir1", label: "d₁", point: [0, 0, 0], dir: [1, 0, 0] }] })],
+      ["a products state (Act I, no mode authored at all)", stateOf({ a_mag: 3, b_mag: 2, theta_deg: 60, controls: ["a_mag", "b_mag", "theta_deg"] })],
+      ["a state with NO controls at all (the panel stays shut)", { show_sliders: false, vg: { mode: "lines_planes" } }],
+      ["a state with a greyed static_readouts row", stateOf({ mode: "lines_planes", controls: ["lambda"], static_readouts: ["lambda_span"], lambda: 0 })],
+    ];
+    for (const [why, st] of FIXTURES) {
+      const dPre = fakeDom(), dNow = fakeDom();
+      applyOn(st, dPre, PRE_ROW_SRC);
+      applyOn(st, dNow);
+      assertTrue(`fallback is byte-identical over the whole DOM: ${why}`, dump(dPre) === dump(dNow));
+    }
+    // ...and byte-identical THROUGH the picker too, on a state with no
+    // group_controls: switching group changes labels and nothing else.
+    const dPre = fakeDom(), dNow = fakeDom();
+    const vgFlat = clone(S9_VG);
+    const rPre = applyOn(stateOf(vgFlat), dPre, PRE_ROW_SRC);
+    const rNow = applyOn(stateOf(vgFlat), dNow);
+    for (const g of ["B", "A"]) {
+      rPre.win.PM_vgSceneGroup = g; rPre.T.vgApplyControlRows(vgFlat, true); rPre.T.vgWriteRowLabels(vgFlat);
+      rNow.win.PM_vgSceneGroup = g; rNow.T.vgApplyControlRows(vgFlat, true); rNow.T.vgWriteRowLabels(vgFlat);
+    }
+    assertTrue("...and byte-identical after a full A → B → A picker round trip on a state with no group_controls",
+      dump(dPre) === dump(dNow));
+  }
+
+  // (f) THE NEGATIVE CONTROL — the SHIPPED FLAT behaviour on the two-group
+  //     fixture fails the row's own probe. This is the filed measurement,
+  //     re-measured here rather than quoted.
+  {
+    const inert: Record<string, string[]> = {};
+    for (const g of ["A", "B"]) {
+      const dom = fakeDom();
+      const st = clone(S9_VG); st.scene_group = g;         // NO group_controls
+      applyOn(stateOf(st), dom, PRE_ROW_SRC);
+      const shown = shownRows(dom);
+      assertTrue(`pre-fix, group ${g} offers ALL ${shown.length} knob rows regardless of what is on screen`,
+        JSON.stringify(shown.slice().sort()) === JSON.stringify(KNOBS.slice().sort()));
+      inert[g] = shown.filter((k) => !movesSomething(S9_VG, g, k));
+      expectFail(`pre-fix, every visible row in group ${g} moves something (${inert[g].length} of ${shown.length} are inert: ${inert[g].join(", ")})`,
+        inert[g].length === 0);
+    }
+    // The measured matrix, stated as a number so it cannot rot into a claim:
+    // 6 of the 12 (group, row) pairs the flat list offers are dead.
+    const total = inert.A.length + inert.B.length;
+    check("pre-fix, dead (group, row) pairs across the two groups", total, 6, 0);
+    assertTrue(`...split 2 in group A (${inert.A.join(", ")}) and 4 in group B (${inert.B.join(", ")}) — the queue row's "4 of 6 in group A" is the group-B count`,
+      inert.A.length === 2 && inert.B.length === 4
+      && JSON.stringify(inert.A) === JSON.stringify(["theta_deg", "line2_offset"]));
+    // ...and the FIXED pass on the same fixture has none.
+    const fixedInert: string[] = [];
+    for (const g of ["A", "B"]) {
+      const dom = fakeDom();
+      const st = withGroups(); st.scene_group = g;
+      applyOn(stateOf(st), dom);
+      for (const k of shownRows(dom)) if (!movesSomething(st, g, k)) fixedInert.push(g + "/" + k);
+    }
+    assertTrue(`...while the fixed pass leaves ZERO dead rows in either group (${fixedInert.join(", ") || "none"})`,
+      fixedInert.length === 0);
+  }
+
+  // (g) THE ⚙ WIDGET ENGINE (Rule 39f) — discovery and overrides both survive.
+  {
+    assertTrue("the row ids the widget engine discovers on are unchanged (vg_<knob>_row, one per knob row)",
+      ROW_ID_KEYS.length === 12 && KNOBS.every((k) => ROW_ID_KEYS.indexOf(k) >= 0)
+      && ROW_PASS_SRC.indexOf('vg_lambda_row') >= 0);
+    assertTrue("the row pass writes style.display — never !important — so .pmWgHide/.pmWgShow keep beating it",
+      ROW_PASS_SRC.indexOf("style.display =") >= 0 && ROW_PASS_SRC.indexOf("!important") < 0
+      && ROW_PASS_SRC.indexOf("setProperty") < 0 && ROW_PASS_SRC.indexOf("classList") < 0);
+    // A row this pass hides in one group is STILL declared to the chrome: the
+    // panel is a dynamically-created position:fixed panel, and pmWgSweep
+    // declares the rows of such a panel whether or not they are visible. So the
+    // ⚙ list cannot go stale across a group switch (there is nothing to
+    // re-declare), and nothing caches a per-group row list.
+    const SWEEP = grabFn("pmWgSweep");
+    assertTrue("pmWgSweep declares a row of a DYNAMIC panel without requiring it to be visible (so a group-hidden row is still in the ⚙ list)",
+      /else if \(cands\[i\]\.isRow\)/.test(SWEEP) && SWEEP.indexOf("pmWgIsDynamicPanel(p)") >= 0);
+    assertTrue("...and a declared widget is never re-declared or dropped (PM_wgDeclared is append-only), so no ⚙ state is cached per group",
+      SWEEP.indexOf("if (PM_wgDeclared[el.id]) continue;") >= 0
+      && grabFn("pmWgApply").indexOf("delete PM_wgDeclared") < 0);
+    const panelStyle = SRC.slice(SRC.indexOf("spd.style.cssText"), SRC.indexOf("spd.style.cssText") + 200);
+    assertTrue("the vg panel is the dynamic position:fixed kind that discovery rides (Rule 39g)",
+      panelStyle.indexOf("position:fixed") >= 0);
+  }
+
+  // (h) FIXTURE FIDELITY + THE AUTHORING FOLLOW-UP, if the concept is on this
+  //     desk. Advisory (the §27(i) pattern): the engine now HAS the mechanism,
+  //     but #9 STATE_9 still has to author the partition, and the engine cannot
+  //     author it.
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let s9: Record<string, any> | null = null;
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      const ids = cfg ? Object.keys(cfg.states) : [];
+      const last = ids.length ? cfg!.states[ids[ids.length - 1]] : null;
+      s9 = last && last.show_sliders === true && last.vg && last.vg.scene_groups ? last : null;
+    } catch { s9 = null; }
+    if (!s9) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the S9 partition follow-up is advisory");
+    } else {
+      // FIDELITY: the transcribed fixture still models the shipped state.
+      const sig = (vg: Record<string, any>) => JSON.stringify({
+        groups: (vg.scene_groups || []).map((g: any) => g.key),
+        controls: vg.controls,
+        lines: (vg.lines || []).map((l: any) => [l.id, l.groups, l.bind_lambda_span === true,
+          l.show_lambda_marker === true, l.offset ? l.offset.knob : null, l.rotate ? l.rotate.knob : null]),
+        planes: (vg.planes || []).map((p: any) => [p.id, p.groups, p.bind_half_extent === true]),
+        points: (vg.points || []).map((p: any) => [p.id, p.groups, p.offset ? p.offset.knob : null]),
+      });
+      assertTrue("the §28 fixture still mirrors the shipped STATE_9 (groups, controls, and every knob binding)",
+        sig(s9.vg) === sig(S9_VG));
+      const gc = s9.vg.group_controls;
+      assertTrue(`STATE_9 authors group_controls, partitioning its ${(s9.vg.controls || []).length - 1} knob rows across ${(s9.vg.scene_groups || []).length} groups (authored: ${JSON.stringify(gc) || "none"})`,
+        !!gc && typeof gc === "object");
+      if (gc && typeof gc === "object") {
+        for (const g of (s9.vg.scene_groups || []).map((x: any) => x.key)) {
+          const listed: string[] = Array.isArray(gc[g]) ? gc[g] : [];
+          const dead = listed.filter((k) => KNOBS.indexOf(k) >= 0 && !movesSomething(s9!.vg, g, k));
+          const missed = KNOBS.filter((k) => listed.indexOf(k) < 0 && movesSomething(s9!.vg, g, k));
+          assertTrue(`...group ${g}: every authored row is live there (${listed.join(", ")}) — dead: ${dead.join(", ") || "none"}`, dead.length === 0);
+          assertTrue(`...group ${g}: no LIVE knob is left out of the sandbox (${missed.join(", ") || "none missed"})`, missed.length === 0);
+        }
+      }
     }
   }
 }
