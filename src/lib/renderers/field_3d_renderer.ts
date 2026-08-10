@@ -43568,6 +43568,60 @@ export const FIELD_3D_RENDERER_CODE = `
         var sv = nlbSgn(v0);
         return (sv !== 0 && dirIn !== 0 && sv !== dirIn) ? -1 : 1;
     }
+    // ── SEAM J (U14) — WHICH wrap an INCLINED sandbox is allowed to use ────────
+    //   The bound-to-bound remap is energy-neutral for exactly one reason: on a
+    // FLAT track every point of the run is at the same height, so carrying the
+    // body from one end to the other changes nothing a bar or a ledger can see.
+    // Tilt the track and that stops being true. The remap then moves the body
+    // through the WHOLE height of the ramp in a single frame — and because the
+    // wrap re-zeroes the ledgers and re-captures the energy baseline in that same
+    // frame (nlbEnergyOnWrap), nothing on screen reports the jump. The identity
+    // dU = -W_gravity still holds to the last decimal on BOTH sides of it, so no
+    // arithmetic check can catch this; the PICTURE is what breaks.
+    //   Measured on potential_energy_definition STATE_4 (theta 30, length 6,
+    // s0 -3.6, v0 8, mu 0): the block leaves by the LOW bound at t = 3.54 s and
+    // is placed at the HIGH one, so U leaps 1.96 -> 235.3 J — 233 J, 42% of the
+    // 560 J bar — while the block is still descending, and it repeats every
+    // 1.11 s because a frictionless ramp damps nothing. A block on a frictionless
+    // ramp gaining 6 m of height AND speed, forever.
+    //   So on a slope the wrap RELAUNCHES instead: the body returns to its own
+    // authored home pose (s0, v0) rather than to the opposite bound. That is the
+    // loop_reset_ms idiom the guided states on this apparatus already use (Rule
+    // 32d's home pose, and the restart a teacher has already watched three times
+    // by the time they reach the sandbox), and it re-anchors POSITION AND
+    // VELOCITY TOGETHER, so the ledgers zero against the same pose they were
+    // authored against. On a frictionless ramp it is EXACTLY energy-neutral:
+    // (s0, v0) and (bound, v_bound) are two points of ONE conserved trajectory,
+    // so total mechanical energy is continuous across the relaunch where the
+    // remap violated it by 233 J. With friction it is openly a restart, which is
+    // the honest reading of a dissipative demo that has to keep running.
+    //   theta is read LIVE (nlbFrameThetaDeg), never from the authored JSON, so a
+    // teacher who tilts a flat sandbox with the theta slider gets the wrap that
+    // matches the track actually on screen. THE EYE drives no sliders, so every
+    // baseline still sees its authored theta: every flat sandbox — all 13 of
+    // them, four of which are baseline-locked Ch.6 concepts — takes the remap
+    // branch unchanged, bit for bit. Rule 36: a position remap and a constant,
+    // no dt and no accumulator, exactly as the branch it sits beside.
+    function nlbWrapIsRelaunch() {
+        return Math.abs(nlbFrameThetaDeg()) > 1e-9;
+    }
+    // The relaunch target — and the ONE case that has to fall back to the remap.
+    //   A home pose sitting ON a bound (or outside it) cannot be relaunched to: a
+    // body re-seeded there with the slope pulling it straight back out would
+    // leave again on the very next step, so the wrap would fire every frame and
+    // the sandbox would stand still while its ledgers re-zeroed underneath it —
+    // strictly worse than the remap it replaced. The margin therefore demands
+    // real room to run before the relaunch is used at all. No authored sandbox is
+    // anywhere near it: the two inclined states that actually reach a bound both
+    // seed 2.4 m inside a 12 m track. This is a guard against a future authoring
+    // mistake, not a live branch.
+    var NLB_WRAP_HOME_MARGIN_M = 0.05;
+    function nlbWrapHomeS(b, bd) {
+        var h = (b && typeof b.s0 === "number" && isFinite(b.s0)) ? b.s0 : 0;
+        if (!(h > bd.lo + NLB_WRAP_HOME_MARGIN_M)) return null;
+        if (!(h < bd.hi - NLB_WRAP_HOME_MARGIN_M)) return null;
+        return h;
+    }
     // U12 — the sandbox wrap re-seeds omega alongside v, and re-anchors the segment
     // so the new lap is identical to the last one (SEAM J's own argument for
     // re-seeding v, applied to the quantity it forgot).
@@ -52754,10 +52808,28 @@ export const FIELD_3D_RENDERER_CODE = `
                         // re-seed forgot to ask.
                         var wDir = (s1 > bd.hi) ? 1 : ((s1 < bd.lo) ? -1 : 0);
                         if (wDir !== 0) {
-                            s1 -= wDir * span;
-                            var wMr = nlbWrapSeedMirror(b.v0, wDir);
-                            v1 = wMr * ((b.v0 != null) ? b.v0 : 0);
-                            nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b, wMr);
+                            // U14 — on a SLOPE the remap below manufactures the whole
+                            // height of the ramp in one frame, so an inclined sandbox
+                            // RELAUNCHES at its authored home pose instead. See
+                            // nlbWrapIsRelaunch for why no arithmetic check catches
+                            // the remap and why theta is read live.
+                            //   The mirror is ABSENT on this branch for exactly the
+                            // reason it is absent from the race restart
+                            // (nlbRollWrapSeed's header): the body is re-anchored at
+                            // its authored s0 rather than at a bound, so the authored
+                            // launch is already aimed correctly by construction and
+                            // there is no bound to point it away from.
+                            var wHome = nlbWrapIsRelaunch() ? nlbWrapHomeS(b, bd) : null;
+                            if (wHome != null) {
+                                s1 = wHome;
+                                v1 = (typeof b.v0 === "number" && isFinite(b.v0)) ? b.v0 : 0;
+                                nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b);
+                            } else {
+                                s1 -= wDir * span;
+                                var wMr = nlbWrapSeedMirror(b.v0, wDir);
+                                v1 = wMr * ((b.v0 != null) ? b.v0 : 0);
+                                nlbEnergyOnWrap(eng); b._dsp0 = s1; nlbRollWrapSeed(eng, b, wMr);
+                            }
                         }
                     }
                     b.a = a; b.v = v1; b.s = s1;
