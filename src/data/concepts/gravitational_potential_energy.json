@@ -635,7 +635,7 @@
       },
 
       "STATE_2": {
-        "label": "A 2.5 kg cart launches up the frictionless 30° slope at 3.13 m/s from s = 2.8 m (h = 1.4 m); a home-armed flag at s = 2.8 carries TWO stacked checkpoints — one latches 'start height: U = 34.3 J' permanently at departure, the other re-stamps 'start height (pass 2): U = 34.3 J' on the return crossing and dwells there for 1400 ms — so departure and return are BOTH visible together on the formula surface during the return dwell; the predicted-stop marker reads 'highest point h = 1.90 m' at the peak; the loop resets at 3178 ms.",
+        "label": "A 2.5 kg cart launches up the frictionless 30° slope at 3.13 m/s from s = 2.8 m (h = 1.4 m); a home-armed flag at s = 2.8 carries TWO stacked checkpoints, named by role so each caption stays true on every pass — 'first visit' latches 'U = 34.3 J' permanently at departure, 'this visit' re-stamps 'U = 34.3 J' on the return crossing (appearing as 'this visit (pass 2)' on the formula surface) and dwells there for 1400 ms — so departure and return are BOTH visible together on the formula surface during the return dwell; the predicted-stop marker reads 'highest point h = 1.90 m' at the peak; the loop resets at 3178 ms.",
         "visible_elements": [],
         "camera_position": [0, 1.87, 9.1],
         "caption": "Same height, same energy",
@@ -657,8 +657,8 @@
             "predicted_stop": { "label": "highest point", "show_height": true }
           },
           "checkpoints": [
-            { "s_m": 2.8, "label": "start height", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point" },
-            { "s_m": 2.8, "label": "start height", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "every", "dwell_from_pass": 2, "marker": "point", "dwell_ms": 1400 }
+            { "s_m": 2.8, "label": "first visit", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "first", "marker": "point" },
+            { "s_m": 2.8, "label": "this visit", "body_id": "cart", "capture": ["U_grav"], "capture_mode": "every", "dwell_from_pass": 2, "marker": "point", "dwell_ms": 1400 }
           ],
           "loop_reset_ms": 3178,
           "controls_visible": []
