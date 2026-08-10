@@ -525,6 +525,22 @@ export interface Field3DConfig {
             // "auto_frame" only: R = auto_frame_k * max(|a|,|b|,|a x b|).
             auto_frame_k?: number;
             controls?: string[];          // Rule 31 live rows (explore state)
+            // PER-GROUP live rows, for a state that partitions its scene with
+            // scene_groups (bug_class vg_explore_controls_are_not_group_aware_
+            // so_half_the_sliders_are_inert). `controls` above is ONE FLAT LIST
+            // shown identically in every group, while the Δ10 picker swaps the
+            // OBJECTS underneath it — so on #9 STATE_9 four of the six knob rows
+            // drive nothing in whichever group is selected. Keyed by the
+            // scene_groups key; the flat `controls` stays the fallback for any
+            // group this block does not name (and for every state that omits it,
+            // which is why single-group behaviour is byte-identical). An empty
+            // array is a legal authoring — "this group has no live knob" — and
+            // is resolved by PRESENCE, never truthiness.
+            //
+            // scene_group itself is NOT partitionable: the picker is how a
+            // teacher leaves the group, so its row is governed by the flat
+            // `controls` in every group and never needs listing here.
+            group_controls?: Record<string, string[]>;
             // PER-STATE control bounds, overriding the CONCEPT-WIDE
             // config.slider_controls for this state's rows only (bug_class
             // field3d_vg_slider_range_is_concept_wide_so_a_guided_state_cannot_
@@ -13964,12 +13980,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var gsel = document.getElementById("vg_scene_group_select");
         if (gsel) gsel.addEventListener("change", function () {
             window.PM_vgSceneGroup = gsel.value;
-            // The group switch changes WHICH objects a shared knob drives, so the
-            // rows that name their objects are re-derived here too — a label that
-            // only updated at state entry would name the previous group's lines
-            // for the rest of the state.
+            // The group switch changes WHICH objects a shared knob drives, so
+            // BOTH row surfaces are re-derived here — and ONLY those two passes
+            // run (Rule 39c): the full apply would re-seed every knob and clear
+            // every drag-seize flag, throwing away a drag the teacher just made.
+            //
+            // Order: which rows are ON SCREEN first, then what those rows are
+            // CALLED — the labels are written for the rows a teacher can see.
             var sd = (config.states && config.states[PM_currentState]) || {};
-            vgWriteRowLabels(sd.vg || {});
+            var sdvg = sd.vg || {};
+            vgApplyControlRows(sdvg, sd.show_sliders);
+            vgWriteRowLabels(sdvg);
             try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "vector_geometry_explorer"), param: "scene_group", value: gsel.value }, "*"); } catch (e) {}
         });
     }
@@ -14773,7 +14794,6 @@ export const FIELD_3D_RENDERER_CODE = `
         // authored group rather than whatever the teacher last chose.
         var groups = d.scene_groups || null;
         var gsel2 = document.getElementById("vg_scene_group_select");
-        var grpRow = document.getElementById("vg_scene_group_row");
         if (groups && groups.length) {
             window.PM_vgSceneGroup = (typeof d.scene_group === "string" && d.scene_group !== "") ? d.scene_group : groups[0].key;
             if (gsel2) {
@@ -14787,7 +14807,9 @@ export const FIELD_3D_RENDERER_CODE = `
         } else {
             window.PM_vgSceneGroup = (typeof d.scene_group === "string" && d.scene_group !== "") ? d.scene_group : null;
         }
-        if (grpRow) grpRow.style.display = (groups && groups.length && (d.controls || []).indexOf("scene_group") !== -1) ? "block" : "none";
+        // (the picker ROW's own visibility is written by vgApplyControlRows at
+        // the tail of this pass, with the rest of the panel — one place decides
+        // which rows are on screen, and the group picker re-runs exactly it.)
 
         // Report any animate[] knob outside the closed enum, rather than
         // silently doing nothing with it (the shipped hazard is a valid
@@ -14842,24 +14864,103 @@ export const FIELD_3D_RENDERER_CODE = `
         // drives (theta_deg) is derived from THIS state's authored geometry.
         vgWriteRowLabels(d);
 
-        var controls = d.controls || [];
+        // WHICH ROWS ARE ON SCREEN is decided in ONE place — the pass the scene
+        // -group picker re-runs on its own (and re-runs ALONE: Rule 39c).
+        vgApplyControlRows(d, stateDef.show_sliders);
+
+        var rdEl = document.getElementById("vg_readout");
+        if (rdEl) rdEl.style.display = (d.value_readouts && d.value_readouts.length) ? "block" : "none";
+    }
+
+    // ── THE CONTROL SET IS PARTITIONED WITH THE SCENE ───────────────────────
+    //   bug_class vg_explore_controls_are_not_group_aware_so_half_the_sliders_
+    //   are_inert. d.controls is ONE FLAT LIST, and Δ10's scene_group picker
+    //   swaps the OBJECTS underneath it — so the same rows are offered in every
+    //   group and only the ones whose objects that group contains do anything.
+    //   Measured on #9 STATE_9: in group A ("line + plane") theta_deg and
+    //   line2_offset drive M2, a group-B line that is not on screen; in group B
+    //   ("skew pair") lambda, lambda_span, half_extent and q_height all drive
+    //   group-A objects — including lambda, the state's headline control. A dead
+    //   control in a teacher sandbox reads as a broken product.
+    //
+    //   vg.group_controls: { "<groupKey>": ["knob", ...] } declares the LIVE
+    //   rows per group; the flat d.controls stays the fallback for a state that
+    //   omits the block, for a group the block does not name, and for no group
+    //   at all — so every single-group state behaves exactly as it does today.
+    //   The lookup is by PRESENCE, never truthiness: an authored EMPTY list is a
+    //   group with no live knob and must yield no rows, which a truthiness test
+    //   would silently turn back into the full flat list (recorded scar
+    //   optional_config_field_with_a_legal_zero_value_is_resolved_by_truthiness).
+    //
+    //   scene_group ITSELF is deliberately not partitionable: the picker is how
+    //   a teacher LEAVES a group, so a group that hid it would be a trap. Its
+    //   row is read from the flat d.controls in every group, and a
+    //   group_controls list naming it changes nothing either way.
+    //
+    //   static_readouts (the fleet's greyed-row convention) stays flat: a greyed
+    //   row displays a value, it is not a control that fails to move anything,
+    //   so it is outside this bug_class. No shipped vg state authors one.
+    function vgEffectiveControls(d, group) {
+        d = d || {};
+        var flat = d.controls || [];
+        var gc = d.group_controls;
+        if (!gc || group == null || group === "") return flat;
+        var list = gc[group];
+        return (Object.prototype.toString.call(list) === "[object Array]") ? list : flat;
+    }
+    // The ROW-VISIBILITY pass, extracted out of applyVectorGeometry3DState so
+    // the picker can re-run THIS AND NOTHING ELSE. Rule 39c in the scenario's
+    // own terms: re-running the full apply on a group switch would re-seed every
+    // knob from the authored value and CLEAR every drag-seize flag, so a teacher
+    // who dragged λ and then changed view would silently lose the drag.
+    //
+    // It writes display / disabled / opacity and NOTHING else. In particular it
+    // never touches min/max/step/value: the per-state control RANGES are per
+    // STATE, not per group, so the apply pass sets them once (restoring every
+    // row it does not override) and a group switch can neither skip nor corrupt
+    // that restore.
+    //
+    // style.display, exactly like the code it replaces — never !important — so
+    // the ⚙ widget engine's .pmWgHide/.pmWgShow classes keep beating this write
+    // (Rule 39f). The row ids are unchanged (vg_<knob>_row), so widget discovery
+    // is unchanged: every vg row lives inside a dynamically-created
+    // position:fixed panel, and pmWgSweep declares rows of such a panel whether
+    // or not they are currently visible — a row this pass hides in one group is
+    // still in the teacher's ⚙ list, and cannot go stale across a switch.
+    //
+    // The group is read from the LIVE global, never from the authored per-state
+    // value, on the same rule vgWriteRowLabels follows (scar field3d_explore_
+    // picker_updates_global_but_frame_reads_authored_state_value).
+    function vgApplyControlRows(d, showSliders) {
+        d = d || {};
+        var group = (typeof window.PM_vgSceneGroup === "string" && window.PM_vgSceneGroup !== "")
+            ? window.PM_vgSceneGroup : null;
+        var controls = vgEffectiveControls(d, group);
         var statics = d.static_readouts || [];
+        var groups = d.scene_groups || null;
         var rowIds = { a_mag: "vg_a_mag_row", b_mag: "vg_b_mag_row", theta_deg: "vg_theta_deg_row", b_tilt_deg: "vg_b_tilt_deg_row", c_mag: "vg_c_mag_row", c_theta_deg: "vg_c_theta_deg_row", c_phi_deg: "vg_c_phi_deg_row", lambda: "vg_lambda_row", lambda_span: "vg_lambda_span_row", half_extent: "vg_half_extent_row", q_height: "vg_q_height_row", line2_offset: "vg_line2_offset_row" };
         var sliderIds = { a_mag: "vg_a_mag_slider", b_mag: "vg_b_mag_slider", theta_deg: "vg_theta_deg_slider", b_tilt_deg: "vg_b_tilt_deg_slider", c_mag: "vg_c_mag_slider", c_theta_deg: "vg_c_theta_deg_slider", c_phi_deg: "vg_c_phi_deg_slider", lambda: "vg_lambda_slider", lambda_span: "vg_lambda_span_slider", half_extent: "vg_half_extent_slider", q_height: "vg_q_height_slider", line2_offset: "vg_line2_offset_slider" };
-        var anyRow = (controls.indexOf("scene_group") !== -1 && groups && groups.length) ? true : false;
+        var grpOn = (((d.controls || []).indexOf("scene_group") !== -1) && groups && groups.length) ? true : false;
+        var grpRow = document.getElementById("vg_scene_group_row");
+        if (grpRow) grpRow.style.display = grpOn ? "block" : "none";
+        var anyRow = grpOn, shown = [];
         for (var key in rowIds) {
             var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
             var rowEl = document.getElementById(rowIds[key]);
             if (rowEl) rowEl.style.display = relevant ? "block" : "none";
-            if (relevant) anyRow = true;
+            if (relevant) { anyRow = true; shown.push(key); }
             var isLive = controls.indexOf(key) !== -1;
             var slEl = document.getElementById(sliderIds[key]);
             if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
         }
         var panelEl = document.getElementById("vg_sliders");
-        if (panelEl) panelEl.style.display = (stateDef.show_sliders && anyRow) ? "block" : "none";
-        var rdEl = document.getElementById("vg_readout");
-        if (rdEl) rdEl.style.display = (d.value_readouts && d.value_readouts.length) ? "block" : "none";
+        if (panelEl) panelEl.style.display = (showSliders && anyRow) ? "block" : "none";
+        // Published, on the PM_vgControlRangeWidened precedent: the rows a
+        // teacher can actually reach in the LIVE group, where a probe can read
+        // them rather than infer them from the authored list.
+        window.PM_vgRowsShown = shown;
+        window.PM_vgRowsGroup = group;
+        return shown;
     }
 
     // Per-frame driver. EVERYTHING here is a CLOSED FORM of state-local ms
