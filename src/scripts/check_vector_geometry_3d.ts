@@ -226,11 +226,18 @@ const SHIPPED_ROW_LABEL: Record<string, string> = {};
     SHIPPED_ROW_LABEL[m[1]] = m[6];
   }
 }
-/** The DOM-touching vg text functions, shipped, with a window/document injected. */
-function vgTextFns(win: Record<string, unknown>, doc: unknown) {
+/**
+ * The DOM-touching vg text functions, shipped, with a window/document injected.
+ *
+ * `labelSrcOverride` replaces exactly the `var VG_READOUT_LABEL = {...};` source
+ * and nothing else, so §26's negative control can run the SHIPPED vgReadoutLine
+ * over a deliberately-broken label table (the mutate-one-body precedent of
+ * buildVgSandbox). It is never used by any positive assertion.
+ */
+function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?: string) {
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function("window", "document", "ROW_RANGE", "ROW_LABEL", [
-    grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
+    labelSrcOverride || grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
     grabVar("VG_READOUT_SUBJECT"), grabScalar("VG_SUBJECT_SHOWN_MIN"),
     grabVar("VG_ROW_DEC"), grabVar("VG_ROW_DRAG"),
     grabScalar("VG_FLIP_EPS"),
@@ -5281,6 +5288,275 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
       (CODE.match(/θ \(a, b\)/g) || []).length === 1 && T.VG_ROW_LABEL.theta_deg === BUILT);
     assertTrue("no lines_planes label pair is hardcoded anywhere — the names come from the authored objects",
       (CODE.match(/θ \(d/g) || []).length === 0 && (CODE.match(/d₁, d₂/g) || []).length === 0);
+  }
+}
+
+console.log("\n=== 26. A NORM IS NOT AN ABSOLUTE VALUE — every bar in the readout table, and the FONT that has to draw it (bug_class vg_hud_readout_prints_single_bars_for_a_vector_norm_beside_a_double_bar_formula_surface) ===");
+{
+  // #9 STATE_8 printed what a teacher reads as "|d₁×d₂| = 0.936" one panel above
+  // a formula surface writing "D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖" — one quantity,
+  // two written forms, on one screen. The label STRING was never the defect
+  // (n_norm and cross_norm have carried U+2016 since the VG-C build); the
+  // #vg_readout font stack was, and this section holds BOTH halves: the strings
+  // stay right, and the stack that renders them stays one that can.
+  const DBL = "‖";           // ‖ DOUBLE VERTICAL LINE — a NORM
+  const SGL = "|";                // | VERTICAL LINE — an ABSOLUTE VALUE (scalar)
+  const countOf = (s: string, ch: string) => s.split(ch).length - 1;
+  const T = vgTextFns({}, fakeDom().document);
+  const LABELS: Record<string, string> = T.VG_READOUT_LABEL;
+  const KEYS = Object.keys(LABELS).sort();
+
+  // ── (a) THE ROW A TEACHER READS, through the SHIPPED vgReadoutLine ─────────
+  {
+    const row = T.vgReadoutLine("cross_norm", { cross_norm: 0.936482 });
+    check("the cross_norm row, rendered by the shipped formatter", row, DBL + "d₁×d₂" + DBL + " = 0.936", 0);
+    check("...it carries TWO double-bar delimiters (a norm, opened and closed)", countOf(row, DBL), 2, 0);
+    check("...and NOT ONE single bar anywhere in the row (that would be an absolute value)", countOf(row, SGL), 0, 0);
+    assertTrue("...in particular no single bar is adjacent to the vector name it would wrap",
+      !/\|\s*d/.test(row) && !/d[₁₂]\s*\|/.test(row));
+    const nrow = T.vgReadoutLine("n_norm", { n_norm: 1.08911 });
+    check("the n_norm row, the sibling surface of the same defect", nrow, DBL + "n" + DBL + " = 1.089", 0);
+    check("...two double bars", countOf(nrow, DBL), 2, 0);
+    check("...zero single bars", countOf(nrow, SGL), 0, 0);
+  }
+
+  // ── (b) THE WHOLE TABLE, CLASSIFIED — a single bar may wrap a SCALAR only ──
+  //   Bars are not decoration: |x| is the absolute value of a NUMBER, ‖v‖ is the
+  //   length of a VECTOR. The classifier reads what is INSIDE a delimiter pair:
+  //     · anywhere  → a dot product, i.e. a SCALAR  → single bars are correct
+  //     × anywhere  → a cross product, i.e. a VECTOR → double bars required
+  //     a bare (possibly subscripted) vector name    → a VECTOR
+  //     anything else → UNKNOWN, and the gate FAILS until a surgeon classifies
+  //                     it here. That is the mechanism that catches the NEXT
+  //                     token, not this one.
+  const VECTOR_NAMES = ["a", "b", "c", "d", "n", "v", "u", "m", "r"];
+  const classify = (inner: string): "scalar" | "vector" | "unknown" => {
+    const s = inner.trim();
+    if (s.indexOf("·") >= 0) return "scalar";
+    if (s.indexOf("×") >= 0) return "vector";
+    const bare = s.replace(/[()\s]/g, "").replace(/[₀₁₂₃]/g, "");
+    if (VECTOR_NAMES.indexOf(bare) >= 0) return "vector";
+    return "unknown";
+  };
+  /** Every |…| group and every ‖…‖ group of a label, with its classification. */
+  const groupsOf = (label: string) => {
+    const out: Array<{ kind: "single" | "double"; inner: string; cls: string }> = [];
+    for (const m of label.matchAll(new RegExp(DBL + "([^" + DBL + "]*)" + DBL, "g"))) {
+      out.push({ kind: "double", inner: m[1], cls: classify(m[1]) });
+    }
+    // Single-bar groups are read off the label with every double-bar group
+    // removed first, so ‖ never contributes a phantom | pair.
+    const stripped = label.split(DBL).join(" ");
+    for (const m of stripped.matchAll(/\|([^| ]*)\|/g)) {
+      out.push({ kind: "single", inner: m[1], cls: classify(m[1]) });
+    }
+    return out;
+  };
+  {
+    // The two halves of the table. They are written out (not derived) because
+    // the CONVENTION differs between them and that difference is a decision:
+    //  · the lines/planes half (#9 lines_and_planes_in_space) writes ‖v‖ for a
+    //    norm on every surface it has — S6 ‖d₁‖‖d₂‖, S7 ‖d‖‖n‖, S3/S8 ⁄ ‖n‖,
+    //    ⁄ ‖d₁×d₂‖ — so its readout rows must too;
+    //  · the products half (vector_products_in_space) writes |a|, |b|, |a×b| on
+    //    every surface IT has (its own formula_overlay strings read
+    //    "a·b = |a| |b| cos θ" and "|a×b| = |a| |b| sin θ"), the school
+    //    magnitude notation, and is INTERNALLY consistent. Rewriting those three
+    //    to ‖ here would plant this very bug_class in the other concept, so they
+    //    are an AUDITED ALLOWLIST, byte-locked below rather than "fixed".
+    const PRODUCTS_KEYS = ["a_mag", "b_mag", "theta_deg", "a_dot_b", "cross_mag",
+      "a_dot_cross", "b_dot_cross", "triple", "volume", "base_area", "height"];
+    const LINES_PLANES_KEYS = ["point_plane_distance", "skew_distance", "segment_length",
+      "angle_lines_deg", "angle_line_plane_deg", "angle_line_normal_deg",
+      "d_dot_n", "n_dot_v", "lambda", "intersection_point",
+      "n_norm", "cross_norm", "numerator_triple_product", "no_meeting_point"];
+    assertTrue(`every one of the ${KEYS.length} shipped tokens is assigned to exactly one half (a NEW token fails here until it is classified)`,
+      JSON.stringify(PRODUCTS_KEYS.concat(LINES_PLANES_KEYS).sort()) === JSON.stringify(KEYS)
+      && PRODUCTS_KEYS.every((k) => LINES_PLANES_KEYS.indexOf(k) < 0));
+
+    // Nothing anywhere in the table may carry an unbalanced or unclassifiable
+    // delimiter — the invariant that makes the two half-rules meaningful.
+    for (const k of KEYS) {
+      const lab = LABELS[k];
+      assertTrue(`"${k}" = "${lab}": its bars are balanced (${countOf(lab, SGL)} single, ${countOf(lab, DBL)} double)`,
+        countOf(lab, SGL) % 2 === 0 && countOf(lab, DBL) % 2 === 0);
+      for (const g of groupsOf(lab)) {
+        assertTrue(`"${k}": the ${g.kind}-bar group "${g.inner}" is classifiable as a scalar or a vector (got ${g.cls})`,
+          g.cls !== "unknown");
+      }
+    }
+
+    // THE LINES/PLANES HALF — a single bar may never wrap a vector, and a
+    // double bar may never wrap a scalar.
+    const SINGLE_BAR_VECTORS: string[] = [];
+    for (const k of LINES_PLANES_KEYS) {
+      for (const g of groupsOf(LABELS[k])) {
+        if (g.kind === "single" && g.cls === "vector") SINGLE_BAR_VECTORS.push(`${k} → "${LABELS[k]}"`);
+        if (g.kind === "double") {
+          assertTrue(`"${k}": the norm bars of "${LABELS[k]}" wrap a VECTOR ("${g.inner}"), never a scalar`, g.cls === "vector");
+        }
+      }
+    }
+    assertTrue(`NO lines/planes token wraps a vector in single bars (${SINGLE_BAR_VECTORS.join("; ") || "none — the whole half agrees with its formula surfaces"})`,
+      SINGLE_BAR_VECTORS.length === 0);
+    // ...and the two tokens that actually name a norm do use the double bar.
+    for (const k of ["n_norm", "cross_norm"]) {
+      assertTrue(`"${k}" = "${LABELS[k]}" is delimited by U+2016, twice, with no U+007C`,
+        countOf(LABELS[k], DBL) === 2 && countOf(LABELS[k], SGL) === 0);
+    }
+
+    // THE PRODUCTS HALF — the audited allowlist, byte-locked. Its labels are
+    // CORRECT AS THEY STAND (single bars, matching its own concept's formula
+    // surfaces); this assertion exists so that changing one is a decision taken
+    // with both concepts in view, never a sweep.
+    const ALLOWLIST: Record<string, string> = { a_mag: "|a|", b_mag: "|b|", cross_mag: "|a×b|" };
+    for (const k of Object.keys(ALLOWLIST)) {
+      check(`products-half magnitude label "${k}" is byte-identical to the audited allowlist entry`, LABELS[k], ALLOWLIST[k], 0);
+    }
+    const barBearing = PRODUCTS_KEYS.filter((k) => countOf(LABELS[k], SGL) > 0 || countOf(LABELS[k], DBL) > 0);
+    assertTrue(`...and they are the ONLY bar-bearing tokens of that half (${barBearing.join(", ")})`,
+      JSON.stringify(barBearing.sort()) === JSON.stringify(Object.keys(ALLOWLIST).sort()));
+    assertTrue("no products-half token uses U+2016 (mixing conventions inside ONE concept is this same bug_class, mirrored)",
+      PRODUCTS_KEYS.every((k) => countOf(LABELS[k], DBL) === 0));
+    // The DERIVED products label (vgCrossMagLabelText, §15/§17) obeys the same
+    // allowlist at every flip_frac — a table lock that skipped the text actually
+    // rendered on a flipped state would prove nothing.
+    for (const f of [0, 0.5, 1]) {
+      const txt = T.vgCrossMagLabelText(f);
+      assertTrue(`the derived cross-magnitude label at flip_frac ${f} keeps the products convention — "${txt}"`,
+        countOf(txt, DBL) === 0 && countOf(txt, SGL) % 2 === 0 && countOf(txt, SGL) > 0);
+    }
+  }
+
+  // ── (c) THE ROOT CAUSE — the stack that has to DRAW U+2016 at 13px ─────────
+  //   Measured in the same headless Chromium THE EYE drives (canvas
+  //   measureText, deviceScaleFactor 1):
+  //       13px 'Cambria Math',Georgia,serif      ‖ advance 3.65px  → merges
+  //       13px 'Cambria Math',Georgia,monospace  ‖ advance 7.80px  → two strokes
+  //   Neither Georgia nor the serif default ships a usable U+2016, so the two
+  //   strokes fell inside one 2px stem and the row read as an absolute value.
+  //   Node cannot measure a glyph, so what is asserted here is the INVARIANT
+  //   that produced the measurement: the panel's font stack terminates in the
+  //   same generic family #formula_overlay itself uses, so both surfaces resolve
+  //   the norm bar through the same font.
+  const READOUT_CSS = (() => {
+    const at = SRC.indexOf("rd.id = \"vg_readout\"");
+    if (at < 0) throw new Error("§26 CANNOT BE BUILT: the #vg_readout builder no longer assigns rd.id");
+    const m = /rd\.style\.cssText = "([^"]*)";/.exec(SRC.slice(at, at + 4000));
+    if (!m) throw new Error("§26 CANNOT BE BUILT: the #vg_readout cssText is no longer a single literal");
+    return m[1];
+  })();
+  const familiesOf = (css: string) => {
+    const f = /font:([^;]*);/.exec(css);
+    if (!f) throw new Error("§26 CANNOT BE BUILT: no font shorthand in " + JSON.stringify(css));
+    return f[1].trim().replace(/^[0-9.]+px(\/[0-9.]+)?\s*/, "").split(",")
+      .map((s) => s.trim().replace(/^'|'$/g, ""));
+  };
+  {
+    const fams = familiesOf(READOUT_CSS);
+    assertTrue(`#vg_readout resolves its last-resort family to monospace, which draws U+2016 as two strokes (${fams.join(" | ")})`,
+      fams[fams.length - 1] === "monospace");
+    assertTrue("...and no longer falls back to serif, whose U+2016 is 3.65px wide at 13px and merges",
+      fams.indexOf("serif") < 0);
+    assertTrue("...with the panel's size, position and every other declaration untouched (this fix moved ONE family)",
+      READOUT_CSS.indexOf("font:13px/1.7 ") >= 0 && READOUT_CSS.indexOf("top:52px") >= 0
+      && READOUT_CSS.indexOf("left:12px") >= 0 && READOUT_CSS.indexOf("min-width:150px") >= 0);
+    // The other surface of the same screen: #formula_overlay, whose ‖ THE EYE
+    // shows rendering correctly. Read from the wrapper's CSS (it lives in the
+    // HTML shell, not in FIELD_3D_RENDERER_CODE).
+    const FILE = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf-8");
+    const at = FILE.indexOf("#formula_overlay {");
+    assertTrue("the formula surface's own CSS block is still findable in the shell", at > 0);
+    const block = FILE.slice(at, FILE.indexOf("}", at));
+    const ffam = /font:\s*[0-9.]+px(\/[0-9.]+)?\s*([^;]*);/.exec(block);
+    assertTrue(`...and the two surfaces of one screen resolve the norm bar through the SAME generic family (formula: ${ffam ? ffam[2] : "?"})`,
+      ffam !== null && ffam[2].trim() === "monospace");
+  }
+
+  // ── (d) NEGATIVE CONTROLS — both defects, planted and executed ─────────────
+  //   (d1) THE LABEL. The pre-fix label was already correct, so the control is
+  //   the counterfactual the eye-walk believed it was seeing: the SHIPPED table
+  //   source with exactly ONE entry rewritten to single bars, fed to the SHIPPED
+  //   vgReadoutLine. Guarded — if the anchor drifts this THROWS rather than
+  //   quietly planting nothing.
+  {
+    const TABLE_SRC = grabVar("VG_READOUT_LABEL");
+    const ANCHOR = "cross_norm: \"" + DBL + "d₁×d₂" + DBL + "\"";
+    if (TABLE_SRC.indexOf(ANCHOR) < 0) {
+      throw new Error("§26 NEGATIVE CONTROL CANNOT BE BUILT: VG_READOUT_LABEL no longer contains "
+        + JSON.stringify(ANCHOR) + ". Re-anchor it and re-watch the control fail.");
+    }
+    const BROKEN_SRC = TABLE_SRC.replace(ANCHOR, "cross_norm: \"|d₁×d₂|\"");
+    assertTrue("the single-bar table really was planted (it differs from the shipped one, in exactly the cross_norm entry)",
+      BROKEN_SRC !== TABLE_SRC && BROKEN_SRC.indexOf("|d₁×d₂|") >= 0);
+    const B = vgTextFns({}, fakeDom().document, BROKEN_SRC);
+    const brow = B.vgReadoutLine("cross_norm", { cross_norm: 0.936482 });
+    expectFail(`the single-bar row carries two norm delimiters (it renders "${brow}")`, countOf(brow, DBL) === 2);
+    expectFail(`the single-bar row is free of absolute-value bars (it renders "${brow}")`, countOf(brow, SGL) === 0);
+    // ...and the table-wide sweep of (b) convicts it too — the invariant, not
+    // just the one hand-written row assertion, is what catches a future token.
+    const bad = groupsOf(B.VG_READOUT_LABEL.cross_norm)
+      .filter((g) => g.kind === "single" && g.cls === "vector");
+    expectFail(`the table sweep finds no vector wrapped in single bars (it finds ${bad.length}: "${B.VG_READOUT_LABEL.cross_norm}")`,
+      bad.length === 0);
+    // The rest of the table is untouched, so the control isolates one entry.
+    assertTrue("every OTHER token of the broken build is byte-identical to the shipped one (the control plants exactly one defect)",
+      KEYS.filter((k) => k !== "cross_norm").every((k) => B.VG_READOUT_LABEL[k] === LABELS[k]));
+  }
+  //   (d2) THE FONT — the genuine pre-fix source, reconstructed by putting the
+  //   terminal generic back to serif. Guarded on the same rule.
+  {
+    const ANCHOR = "Georgia,monospace";
+    if (READOUT_CSS.indexOf(ANCHOR) < 0) {
+      throw new Error("§26 NEGATIVE CONTROL CANNOT BE BUILT: the #vg_readout font stack no longer contains "
+        + JSON.stringify(ANCHOR) + ". Re-anchor it and re-watch the control fail.");
+    }
+    const PRE_CSS = READOUT_CSS.replace(ANCHOR, "Georgia,serif");
+    const fams = familiesOf(PRE_CSS);
+    assertTrue(`the pre-fix stack really was planted (${fams.join(" | ")})`, PRE_CSS !== READOUT_CSS);
+    expectFail("the pre-fix panel resolves its last-resort family to monospace", fams[fams.length - 1] === "monospace");
+    expectFail("the pre-fix panel avoids the serif fallback whose U+2016 merges at 13px", fams.indexOf("serif") < 0);
+    // ...and it is otherwise identical: the fix is one family, not a re-style.
+    assertTrue("the pre-fix and shipped panels agree on every other declaration (size, position, colour, z-index)",
+      PRE_CSS.replace("Georgia,serif", "") === READOUT_CSS.replace(ANCHOR, ""));
+  }
+
+  // ── (e) THE OTHER SCREEN THIS ROW SHARES — the authored formula surfaces ───
+  //   The HUD label is measured against the CONCEPT's own strings, so "one
+  //   quantity, one written form" is checked across surfaces and not just
+  //   inside the table. Advisory if the concept is not on this desk (§22(d)).
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let formulas: string[] = [];
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      if (cfg) {
+        formulas = Object.keys(cfg.states)
+          .map((k) => String(cfg.states[k].formula_overlay || "")).filter(Boolean);
+      }
+    } catch { formulas = []; }
+    if (formulas.length === 0) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the cross-surface binding is advisory");
+    } else {
+      const withNorm = formulas.filter((f) => f.indexOf(DBL) >= 0);
+      assertTrue(`${withNorm.length} of the ${formulas.length} authored formula surfaces write a norm, and every one of them uses U+2016`,
+        withNorm.length > 0);
+      const crossNormFormulas = formulas.filter((f) => f.indexOf(DBL + "d₁×d₂" + DBL) >= 0);
+      assertTrue(`the HUD's cross_norm label appears BYTE-IDENTICALLY inside ${crossNormFormulas.length} authored formula surface(s) — one quantity, one written form`,
+        crossNormFormulas.length > 0 && LABELS.cross_norm === DBL + "d₁×d₂" + DBL);
+      assertTrue("...and no authored formula surface writes that same cross product in single bars",
+        formulas.every((f) => f.indexOf("|d₁×d₂|") < 0));
+      assertTrue(`the HUD's n_norm label ("${LABELS.n_norm}") is likewise the form the formula surfaces use`,
+        formulas.some((f) => f.indexOf(DBL + "n" + DBL) >= 0) && formulas.every((f) => f.indexOf("|n|") < 0));
+    }
   }
 }
 

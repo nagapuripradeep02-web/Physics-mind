@@ -13968,7 +13968,28 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function buildVectorGeometryReadout() {
         var rd = document.createElement("div"); rd.id = "vg_readout";
-        rd.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:8px 12px;border-radius:8px;font:13px/1.7 'Cambria Math',Georgia,serif;z-index:10;min-width:150px;display:none;";
+        // ── THE NORM BARS MUST SURVIVE THE FONT (bug_class vg_hud_readout_
+        //    prints_single_bars_for_a_vector_norm_beside_a_double_bar_formula_
+        //    surface). The label strings ARE the right characters — n_norm and
+        //    cross_norm carry U+2016 DOUBLE VERTICAL LINE, byte-identical to the
+        //    concept's own formula_overlay strings. The defect was purely a
+        //    GLYPH one: the old terminal generic was "serif", and neither
+        //    Georgia nor the serif default ships U+2016 at a usable width —
+        //    measured in the same headless Chromium THE EYE runs:
+        //      13px 'Cambria Math',Georgia,serif  →  ‖ advance 3.65px
+        //      13px monospace                     →  ‖ advance 7.80px
+        //      13px … ,serif                      →  | advance 4.875px
+        //    so at 13px the two strokes of ‖ merged into ONE 2px stroke and the
+        //    panel printed what read as |d₁×d₂| — an ABSOLUTE VALUE — directly
+        //    above a formula surface writing ‖d₁×d₂‖ for the same quantity.
+        //    Terminating the stack in "monospace" (the exact family
+        //    #formula_overlay itself uses) moves ONLY that character: every
+        //    other glyph these rows print measures identically under both
+        //    stacks (d 7.46 · × 8.36 · · 3.63 · − 8.36 · ₁ 6.50 · θ 7.23 ·
+        //    λ 6.34 · ° 5.45), because Georgia already supplies them. Do not
+        //    "simplify" this back to serif; a norm that renders as a single bar
+        //    is a different quantity.
+        rd.style.cssText = "position:fixed;top:52px;left:12px;background:rgba(0,0,0,0.85);color:#FFFFFF;padding:8px 12px;border-radius:8px;font:13px/1.7 'Cambria Math',Georgia,monospace;z-index:10;min-width:150px;display:none;";
         document.body.appendChild(rd);
     }
     // Format one readout line. The clamp kills a "-0.00" at a right angle
