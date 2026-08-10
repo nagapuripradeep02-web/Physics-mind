@@ -311,7 +311,7 @@
           {
             "type": "formula",
             "id": "s3_formula",
-            "label": "d = |n·(q−a)| ⁄ ‖n‖",
+            "label": "D = |n·(q−a)| ⁄ ‖n‖",
             "note": "writes in after the perpendicular locks"
           }
         ],
@@ -382,7 +382,7 @@
             "id": "X",
             "label": "X",
             "colour_role": "derived object",
-            "note": "green; snaps on at the meeting point once Lcut is on screen"
+            "note": "green; snaps on at the meeting point at the 15s intersection beat — DELIBERATELY 5s after Lcut's 9.5s arrival, because the two intersections' readout windows must stay disjoint (the engine refuses co-arrived intersections rather than picking a winner); narration carries the gap"
           }
         ],
         "teacher_script": {
@@ -659,7 +659,7 @@
           {
             "type": "formula",
             "id": "s8_formula",
-            "label": "d = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖",
+            "label": "D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖",
             "note": "writes in after the overlay coincides"
           }
         ],
@@ -1304,7 +1304,7 @@
         "formula_overlay": "cos θ = |d₁·d₂| ⁄ (‖d₁‖‖d₂‖)",
         "show_sliders": true,
         "visible_elements": ["vg_lp_line", "vg_lp_arc"],
-        "camera_position": [0.9926, 4.6359, -1.5884],
+        "camera_position": [2.58076, 12.05334, -4.12984],
         "vg": {
           "mode": "lines_planes",
           "reveal_ms": 1,
@@ -1340,7 +1340,8 @@
           "animate": [
             { "knob": "aux_a", "from": -1.5, "to": 1.5, "start_ms": 0, "duration_ms": 4000, "easing": "smoothstep" },
             { "knob": "aux_a", "from": 1.5, "to": 0, "start_ms": 4000, "duration_ms": 4000, "easing": "smoothstep" },
-            { "knob": "theta_deg", "from": 25, "to": 115, "start_ms": 8000, "duration_ms": 11000, "easing": "linear" }
+            { "knob": "theta_deg", "from": 69.3846, "to": 69.3846, "start_ms": 0, "duration_ms": 8000, "easing": "linear" },
+            { "knob": "theta_deg", "from": 69.3846, "to": 115, "start_ms": 8000, "duration_ms": 11000, "easing": "linear" }
           ],
           "value_readouts": ["angle_lines_deg"],
           "controls": ["theta_deg"],
@@ -1581,19 +1582,6 @@
             "groups": ["B"],
             "reveal_at_ms": 0
           },
-          "vectors": [
-            {
-              "id": "cross_vec",
-              "role": "derived",
-              "origin": [0, 0, 0],
-              "derive": "cross",
-              "of": ["M1", "M2"],
-              "scale": 1,
-              "label": "d₁×d₂",
-              "groups": ["B"],
-              "reveal_at_ms": 0
-            }
-          ],
           "value_readouts": ["point_plane_distance", "n_norm", "skew_distance"],
           "controls": ["scene_group", "lambda", "lambda_span", "half_extent", "q_height", "theta_deg", "line2_offset"],
           "control_ranges": {
