@@ -155,9 +155,9 @@ Identical apparatus and motion to S1 — same body, same `v`, same checkpoint `s
 | t-window | What animates | Driven by | Live control(s) |
 |---|---|---|---|
 | 0 ms | Ramp rotated to 48.6° (home pose change from S1's 30°) | `theta_deg = 48.6` | none |
-| 0–3650 ms (loops) | Cart translates at constant `v = 0.8 m/s` from `s = 0.6`; `displacement_vector` grows to `d = 1.40 m` at the flag | `s(t) = 0.6 + 0.8·t` | none |
+| 0–3650 ms (loops) | Cart translates at constant `v = 0.8 m/s` from `s = 0.6`; `displacement_vector` grows to exactly 1.40 m of displacement at the flag — but RENDERS `d = 1.41 m` at the dwell pin, see the frozen-pin row below | `s(t) = 0.6 + 0.8·t` | none |
 | 1750–3150 ms | Point B stamp: `point B:  U = 44.1 J` (identical numeral to S1's point B — the declared teaching identity) | checkpoint `s = 2.0` | none |
-| eye_capture_ms 2450 | Frozen pin: `d = 1.40 m` on screen beside the same 44.1 J stamp S1 rendered at `d = 2.40 m` | — | — |
+| eye_capture_ms 2450 | Frozen pin: `d = 1.41 m` on screen (the dwell freezes one integrator step past the 1.40 crossing, §0B.25) beside the same 44.1 J stamp S1 rendered at `d = 2.40 m` | — | — |
 
 `formula: "U = mgh"` — **`formula` only, no `formula_lines`** (S4 is not part of the ΔU-invariant contrast pair; per C-1 the two mechanisms are never mixed on one state).
 
@@ -287,7 +287,7 @@ All 30 phrases read as real Class-11 student typing (lowercase, no punctuation d
 
 8. **P3-4 marker spacing.** S5's two checkpoint flags sit 0.7 m apart in world space (`s = 2.8` and `s = 3.5`), not the 2.0 m the FIXED near-collision row's "easy case" disposition assumed. `nlbStackMarkerLabels` is relied on to de-collide the two captions (now longer, with the C-6 height suffixes) — measure both captions at the S5 pin under P7, don't assume clearance.
 
-9. **Eye-walker reading notes (P3-5/P3-6), carried for the record, not physics-block duties to close:** at S5's pin the cart is frozen standing on the point-C marker, so the position dot may be occluded by the body (depth-tested by design) while the label sprite will not be — an occluded dot is not a missing marker. S1/S4's `d = 2.40 m` / `d = 1.40 m` are exact only inside their dwell windows; a scrubbed tail frame showing a grown value is not a contradiction.
+9. **Eye-walker reading notes (P3-5/P3-6), carried for the record, not physics-block duties to close:** at S5's pin the cart is frozen standing on the point-C marker, so the position dot may be occluded by the body (depth-tested by design) while the label sprite will not be — an occluded dot is not a missing marker. S1's `d = 2.40 m` and S4's `d = 1.41 m` are the in-dwell renders (S4's carries the one-step dwell-freeze residual over its exact 1.40 m crossing) and are exact only inside their dwell windows; a scrubbed tail frame showing a grown value is not a contradiction.
 
 10. **No `radians()`/angle conversion needed anywhere else** — `F`, `a`, `W_gravity` all route through the same `sin(radians(theta_deg))` term computed once by the engine; nothing in this concept exposes a raw radian value to a student.
 
