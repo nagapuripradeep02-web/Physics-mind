@@ -13604,6 +13604,78 @@ export const FIELD_3D_RENDERER_CODE = `
         half_extent: "PM_vgHalfExtentDragged", q_height: "PM_vgQHeightDragged", line2_offset: "PM_vgLine2OffsetDragged"
     };
     var VG_ROW_RANGE = {};
+    // The label each row is BORN with (config.slider_controls[key].label, or the
+    // vgSc fallback), captured at build time for exactly the reason VG_ROW_RANGE
+    // is: a per-state override of a row's label is only safe if the row can be
+    // RESTORED on the next state that does not override it.
+    var VG_ROW_LABEL = {};
+
+    // ── A CONTROL LABEL NAMES WHAT THE CONTROL ACTUALLY DRIVES ──────────────
+    //   bug_class vg_theta_deg_slider_row_is_labelled_for_products_mode_objects_
+    //   in_every_mode. The panel is built ONCE, before any state is applied, so
+    //   every label baked into it is a compile-time string — and "θ (a, b)" is
+    //   a compile-time string describing RUNTIME-SELECTED geometry, the same
+    //   class as the cross_mag hardcoded-literal readout label. In mode
+    //   "lines_planes" the theta_deg knob reaches the picture through
+    //   vgObjRotate (it turns whichever line/plane binds it), a and b are not
+    //   drawn at all (vgShowAB), and the row still read "θ (a, b)" on the one
+    //   state whose entire lesson is the angle between d₁ and d₂.
+    //
+    //   The label is therefore DERIVED FROM THE AUTHORED OBJECTS, not from a
+    //   second hardcoded per-mode string: the rotated object is the one whose
+    //   rotate block binds knob "theta_deg", the reference is the first other
+    //   labelled object in the SAME scene group, and the row reads
+    //   "θ (<reference>, <rotated>)" — the pair a teacher sees, in the order the
+    //   state's own formula names them. A per-mode literal ("θ (d₁, d₂)") would
+    //   only move the defect one mode deeper: the next lines_planes concept
+    //   labelling its lines ℓ and m would be lied to by the identical mechanism.
+    //
+    //   NOTHING IS EVER INVENTED. If no labelled rotated/reference pair can be
+    //   resolved in the current group — an unlabelled line, or a group in which
+    //   theta turns nothing at all — the row falls back to a bare "θ", which
+    //   names no object; it NEVER falls back to the products pair.
+    //
+    //   The test is NEGATIVE ("is lines_planes"), like vgShowAB's: a state that
+    //   authors no mode — every state of Act I — returns null here and keeps the
+    //   built label byte for byte, so no authoring change can silently rename
+    //   the products row.
+    //
+    //   The group is read from the LIVE global (the picker writes it), never
+    //   from the authored per-state value — scar field3d_explore_picker_updates_
+    //   global_but_frame_reads_authored_state_value — which is why the group
+    //   <select>'s own change handler re-runs this write.
+    function vgThetaRowLabel(d, group) {
+        d = d || {};
+        if (d.mode !== "lines_planes") return null;
+        var rotLab = null, refLab = null, pools = [vgList(d.lines), vgList(d.planes)];
+        for (var pi = 0; pi < pools.length; pi++) {
+            for (var i = 0; i < pools[pi].length; i++) {
+                var o = pools[pi][i] || {};
+                if (!vgInGroup(o, group)) continue;
+                var lab = (typeof o.label === "string" && o.label !== "") ? o.label : null;
+                var r = o.rotate || null;
+                var turns = !!(r && r.about && r.about.length === 3 && r.knob === "theta_deg");
+                if (turns) { if (rotLab === null) rotLab = lab; }
+                else if (refLab === null && lab) refLab = lab;
+            }
+        }
+        if (!rotLab || !refLab || rotLab === refLab) return "θ";
+        return "θ (" + refLab + ", " + rotLab + ")";
+    }
+    // EVERY row is visited on every state — a row this state does not override
+    // is written back to the label it was BORN with, so a mode-derived label can
+    // never leak forward into the next state (the same restore-every-row
+    // doctrine the per-state control RANGES already run on).
+    function vgWriteRowLabels(d) {
+        var group = (typeof window.PM_vgSceneGroup === "string" && window.PM_vgSceneGroup !== "")
+            ? window.PM_vgSceneGroup : null;
+        for (var k in VG_ROW_LABEL) {
+            if (!Object.prototype.hasOwnProperty.call(VG_ROW_LABEL, k)) continue;
+            var txt = (k === "theta_deg") ? (vgThetaRowLabel(d, group) || VG_ROW_LABEL[k]) : VG_ROW_LABEL[k];
+            var el = document.getElementById("vg_" + k + "_lab");
+            if (el) el.textContent = txt;
+        }
+    }
 
     // ── A SLIDER ROW MUST TRACK A RAMP OF ITS OWN KNOB ──────────────────────
     //   bug_class field3d_vg_a_value_surface_can_disagree_with_the_geometry_it_
@@ -13747,7 +13819,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // The CONCEPT-WIDE range this row is born with, kept so a per-state
             // vg.control_ranges override can be resolved against it AND undone.
             VG_ROW_RANGE[prefix] = { min: sc.min, max: sc.max, step: sc.step, def: sc.def };
-            return '<div id="vg_' + prefix + '_row" style="margin-top:6px"><label>' + sc.label + ': <span id="vg_' + prefix + '_val">' + sc.def.toFixed(dec) + '</span>' + unit + '</label>' +
+            // The label text lives in its OWN span so the apply pass has a stable
+            // handle to rewrite it per state (vgWriteRowLabels) without touching
+            // the row id the Rule 39g widget engine discovers on (div[id$="_row"])
+            // or the value node vgSyncRampedRows writes. The rendered TEXT is
+            // unchanged by the wrapper — "θ (a, b): 60°" reads identically, and
+            // pmWgRowLabel's label.textContent cut at ":" is unaffected.
+            VG_ROW_LABEL[prefix] = sc.label;
+            return '<div id="vg_' + prefix + '_row" style="margin-top:6px"><label><span id="vg_' + prefix + '_lab">' + sc.label + '</span>: <span id="vg_' + prefix + '_val">' + sc.def.toFixed(dec) + '</span>' + unit + '</label>' +
                 '<input type="range" id="vg_' + prefix + '_slider" min="' + sc.min + '" max="' + sc.max + '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%"></div>';
         }
         // Δ10 · the scene_group selector. It is a SELECT, not a slider, because
@@ -13816,6 +13895,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var gsel = document.getElementById("vg_scene_group_select");
         if (gsel) gsel.addEventListener("change", function () {
             window.PM_vgSceneGroup = gsel.value;
+            // The group switch changes WHICH objects a shared knob drives, so the
+            // rows that name their objects are re-derived here too — a label that
+            // only updated at state entry would name the previous group's lines
+            // for the rest of the state.
+            var sd = (config.states && config.states[PM_currentState]) || {};
+            vgWriteRowLabels(sd.vg || {});
             try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "vector_geometry_explorer"), param: "scene_group", value: gsel.value }, "*"); } catch (e) {}
         });
     }
@@ -14660,6 +14745,12 @@ export const FIELD_3D_RENDERER_CODE = `
         syncS("vg_half_extent_slider", window.PM_vgHalfExtent, 2);
         syncS("vg_q_height_slider", window.PM_vgQHeight, 2);
         syncS("vg_line2_offset_slider", window.PM_vgLine2Offset, 2);
+
+        // Row LABELS, after the scene-group seed above (the derivation is
+        // group-scoped) and before the rows are shown: every row is written back
+        // to its built label, and the one row whose label names the objects it
+        // drives (theta_deg) is derived from THIS state's authored geometry.
+        vgWriteRowLabels(d);
 
         var controls = d.controls || [];
         var statics = d.static_readouts || [];
