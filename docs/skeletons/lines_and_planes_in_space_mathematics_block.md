@@ -677,6 +677,24 @@ afterward (S6's narration, S8's title). No other board-divergent term appears (t
 **Interval notation:** never rendered on canvas (matches skeleton §10i-5's N/A — no 2D graph, no axis
 notation) — nothing to declare.
 
+**AMENDMENT 2026-08-10 (the §2c re-authoring after the xhigh review) — two corrections to this section:**
+
+1. **The distance is `D` (capital), never `d`** — resolving
+   `vg_one_symbol_carries_two_meanings_across_states_of_one_concept`: the ladder above quoted
+   `d = |n·(q−a)|/‖n‖` (S3) and `d = |(a2−a1)·(d1×d2)|/‖d1×d2‖` (S8) while `d`/`d₁`/`d₂` are the
+   concept's line DIRECTIONS from S1 onward — one symbol, two meanings, in the same S8 expression.
+   The shipped formula surfaces now read `D = |n·(q − a)| ⁄ ‖n‖` and `D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖`,
+   and `physics_engine_config.formulas` records the same choice. Lowercase `d` is reserved
+   concept-wide for directions; capital `D` is the distance (both S3's point–plane and S8's skew).
+2. **The S9 group-B paragraph above is REFUTED and superseded** — the xhigh review confirmed
+   (`vg_explore_state_surfaces_advanced_ring_content_under_a_reduced_preset`) that under
+   `core_only`/`no_advanced` the hidden S8 leaves S9's group-B `d₁×d₂` arrow + `cross_norm` +
+   `numerator_triple_product` rows introduced by NO surviving state — "manipulation of an
+   already-taught relation" fails exactly when the teaching state is hidden. S9 now surfaces
+   CORE-ring content only (Rule 38b as written): `cross_vec` and both advanced tokens (and the
+   never-published `lambda`/`angle_lines_deg` tokens) are removed from S9; its readouts are
+   `point_plane_distance` / `n_norm` / `skew_distance`.
+
 **Cut-coherence, re-verified against the ACTUAL animate/value_readouts sets authored above (not only
 the design intent):**
 - **Cut 1 (hide S8):** no surviving state's `value_readouts` or `angle_arcs`/`vectors` list names

@@ -109,11 +109,11 @@
     "formulas": {
       "line": "r = a + lambda * d_hat",
       "plane": "n_hat . (r - a) = 0",
-      "point_plane_distance": "d = |n_hat . (q - a)| / |n|",
+      "point_plane_distance": "D = |n_hat . (q - a)| / |n| (capital D: the distance; lowercase d is reserved concept-wide for line directions)",
       "line_plane_meet": "lambda = n . (a_plane - a_line) / (n . d), undefined (no meeting point) when n . d = 0",
       "angle_between_lines": "cos(theta) = |d1 . d2| / (|d1| |d2|)",
       "angle_line_plane": "sin(theta_to_plane) = |d . n| / (|d| |n|), theta_to_normal = 90 - theta_to_plane",
-      "skew_distance": "d = |(a2 - a1) . (d1 x d2)| / |d1 x d2|"
+      "skew_distance": "D = |(a2 - a1) . (d1 x d2)| / |d1 x d2| (capital D: the distance; lowercase d1/d2 are the two directions)"
     },
     "constraints": [
       "every relation this concept draws is defined everywhere it is drawn: a line has no excluded lambda, a plane has no excluded point, and the point-plane distance is defined for every q not on the plane -- the only real exclusion is the DEGENERATE case a line-plane meet or a common-perpendicular direction fails to exist, and both are DETECTED (an inequality test on a dot/cross product of unit vectors, epsilon 1e-9) rather than divided-by-zero",
@@ -173,7 +173,7 @@
             "type": "readout",
             "id": "lambda_hud",
             "label": "λ = ...",
-            "note": "live numeric row, top-right"
+            "note": "the live λ number is the slider row's value readout (bottom-left panel, show_sliders on), tracking the animate ramp frame by frame — NOT a top-right HUD row: the HUD lambda token publishes only from an intersection, which this state does not author"
           }
         ],
         "teacher_script": {
@@ -621,7 +621,7 @@
         "teaching_method": "derivation_first_principles",
         "advance_mode": "manual_click",
         "focal_primitive_id": "cross_vec",
-        "formula_overlay": "d = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖",
+        "formula_overlay": "D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖",
         "scene_composition": [
           {
             "type": "line",
@@ -1024,7 +1024,7 @@
           "animate": [
             { "knob": "lambda", "from": -3.5, "to": 3.5, "start_ms": 4000, "duration_ms": 13000, "easing": "linear" }
           ],
-          "value_readouts": ["lambda"],
+          "value_readouts": [],
           "controls": ["lambda"],
           "control_ranges": {
             "lambda": { "min": -3.5, "max": 3.5 }
@@ -1052,9 +1052,7 @@
               "bind_half_extent": true,
               "role": "region",
               "show_normal": true,
-              "normal_label": "n",
-              "reveal_at_ms": 0,
-              "grow_ms": 4000
+              "normal_label": "n"
             }
           ],
           "lines": [
@@ -1089,17 +1087,18 @@
             }
           ],
           "animate": [
+            { "knob": "half_extent", "from": 0.4, "to": 3.0, "start_ms": 0, "duration_ms": 4000, "easing": "smoothstep" },
             { "knob": "aux_a", "from": 0, "to": 1, "start_ms": 6500, "duration_ms": 4000, "easing": "smoothstep" },
             { "knob": "aux_b", "from": 0, "to": 1, "start_ms": 11200, "duration_ms": 2800, "easing": "smoothstep" }
           ],
-          "value_readouts": ["n_norm", "n_dot_v"],
+          "value_readouts": ["n_dot_v"],
           "controls": ["half_extent"]
         }
       },
       "STATE_3": {
         "label": "The perpendicular is the shortest segment",
         "caption": "The perpendicular is shortest",
-        "formula_overlay": "d = |n·(q − a)| ⁄ ‖n‖",
+        "formula_overlay": "D = |n·(q − a)| ⁄ ‖n‖",
         "visible_elements": ["vg_lp_plane", "vg_lp_normal", "vg_lp_point", "vg_lp_seg"],
         "camera_position": [6.9495, 8.6987, -6.7110],
         "vg": {
@@ -1292,8 +1291,8 @@
             "id": "common_perp",
             "between": ["M1", "M2"],
             "role": "derived",
-            "reveal_at_ms": 3800,
-            "grow_ms": 2200
+            "reveal_at_ms": 0,
+            "grow_ms": 1800
           },
           "value_readouts": ["skew_distance"],
           "controls": []
@@ -1418,7 +1417,7 @@
       "STATE_8": {
         "label": "The gap runs along d₁ × d₂",
         "caption": "Gap direction: d₁ × d₂",
-        "formula_overlay": "d = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖",
+        "formula_overlay": "D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖",
         "visible_elements": ["vg_lp_line", "vg_lp_seg", "vg_lp_vec"],
         "camera_position": [5.7285, 10.7775, -4.4756],
         "vg": {
@@ -1595,7 +1594,7 @@
               "reveal_at_ms": 0
             }
           ],
-          "value_readouts": ["lambda", "point_plane_distance", "n_norm", "skew_distance", "angle_lines_deg", "cross_norm", "numerator_triple_product"],
+          "value_readouts": ["point_plane_distance", "n_norm", "skew_distance"],
           "controls": ["scene_group", "lambda", "lambda_span", "half_extent", "q_height", "theta_deg", "line2_offset"],
           "control_ranges": {
             "half_extent": { "min": 1.5, "max": 4.5 },
