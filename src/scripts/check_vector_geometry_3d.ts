@@ -242,7 +242,8 @@ const SHIPPED_ROW_LABEL: Record<string, string> = {};
  * over a deliberately-broken label table (the mutate-one-body precedent of
  * buildVgSandbox). It is never used by any positive assertion.
  */
-function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?: string) {
+function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?: string,
+  rowPassSrc?: string) {
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function("window", "document", "ROW_RANGE", "ROW_LABEL", [
     labelSrcOverride || grabVar("VG_READOUT_LABEL"), grabVar("VG_READOUT_DP"), grabVar("VG_READOUT_UNIT"),
@@ -256,10 +257,16 @@ function vgTextFns(win: Record<string, unknown>, doc: unknown, labelSrcOverride?
     "var VG_ROW_LABEL = ROW_LABEL;",
     grabFn("vgList"), grabFn("vgInGroup"),
     grabFn("vgThetaRowLabel"), grabFn("vgWriteRowLabels"),
+    // §28 · the ROW-VISIBILITY pass, the one place that decides which rows are
+    // on screen. Pulled out WITH a document for the same reason the label
+    // writer is: the apply pass AND the scene-group picker both call it, and
+    // the discriminating quantity is the DOM a teacher would see.
+    grabFn("vgEffectiveControls"), rowPassSrc || grabFn("vgApplyControlRows"),
     grabFn("vgFx"), grabFn("vgFmtPoint"), grabFn("vgCrossLabelText"), grabFn("vgCrossMagLabelText"),
     grabFn("vgReadoutLine"), grabFn("vgReadoutSubjectShown"),
     grabFn("vgSyncRampedRows"), grabFn("vgControlRange"),
     "return { VG_READOUT_LABEL: VG_READOUT_LABEL, VG_ROW_DEC: VG_ROW_DEC, VG_ROW_RANGE: VG_ROW_RANGE,"
+    + " vgEffectiveControls: vgEffectiveControls, vgApplyControlRows: vgApplyControlRows,"
     + " VG_ROW_LABEL: VG_ROW_LABEL, vgThetaRowLabel: vgThetaRowLabel, vgWriteRowLabels: vgWriteRowLabels,"
     + " VG_READOUT_SUBJECT: VG_READOUT_SUBJECT, VG_SUBJECT_SHOWN_MIN: VG_SUBJECT_SHOWN_MIN,"
     + " vgCrossMagLabelText: vgCrossMagLabelText, vgReadoutLine: vgReadoutLine,"
@@ -286,16 +293,35 @@ const FRAME_HARNESS: { run: RunFrame | null; src: string | null } = { run: null,
 
 /** The SHIPPED apply pass, run against a scene + a real (fake) DOM registry. */
 const APPLY_SRC = grabFn("applyVectorGeometry3DState");
+/** The SHIPPED row pass — the ONE place that decides which slider rows show. */
+const ROW_PASS_SRC = grabFn("vgApplyControlRows");
+/**
+ * The knob keys of the shipped row table, read out of that pass rather than
+ * restated (a gate carrying its own copy of the row list keeps passing after
+ * the renderer grows a knob). Guarded: a drifted table THROWS here rather than
+ * silently measuring nothing.
+ */
+const ROW_ID_KEYS: string[] = (() => {
+  const m = /var rowIds = \{([^}]*)\}/.exec(ROW_PASS_SRC);
+  if (!m) throw new Error("vgApplyControlRows no longer declares `var rowIds = {...}` — re-anchor the row table.");
+  return m[1].split(",").map((s) => s.split(":")[0].trim()).filter(Boolean);
+})();
+/**
+ * `rowPassSrc` replaces exactly the `vgApplyControlRows` body and nothing else,
+ * so §28's negative control can run the SHIPPED apply pass over the PRE-FIX
+ * (flat, group-blind) row pass — the mutate-one-body precedent of
+ * buildVgSandbox and of §25's label control.
+ */
 function runApplyPass(scene: Array<Record<string, unknown>>, stateDef: unknown, dom = fakeDom(),
-  srcOverride?: string) {
+  srcOverride?: string, rowPassSrc?: string) {
   const win: Record<string, unknown> = {};
-  const T = vgTextFns(win, dom.document);
+  const T = vgTextFns(win, dom.document, undefined, rowPassSrc);
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const factory = new Function("sceneObjects", "window", "document", "vgAnimKnobs", "VG_ROW_RANGE", "vgControlRange",
-    "vgShowAB", "vgWriteRowLabels",
+    "vgShowAB", "vgWriteRowLabels", "vgApplyControlRows",
     (srcOverride || APPLY_SRC) + "\nreturn applyVectorGeometry3DState;");
   factory(scene, win, dom.document, E.vgAnimKnobs, T.VG_ROW_RANGE, T.vgControlRange, E.vgShowAB,
-    T.vgWriteRowLabels)(stateDef);
+    T.vgWriteRowLabels, T.vgApplyControlRows)(stateDef);
   return { win, dom, T };
 }
 
@@ -2853,12 +2879,12 @@ console.log("\n=== 16. Δ11 — THE OVERLAY LAYOUT: #vg_sliders and #formula_ove
   // The left edge the panel moved ONTO must be clear too — moving a collision
   // rather than removing it is the same bug one panel over. #vg_readout is the
   // only other left-edge panel, and it is top-anchored.
-  // The row ids are read from the SHIPPED apply pass (scoped to the vg region:
+  // The row ids are read from the SHIPPED row pass (scoped to the vg region:
   // several scenarios declare a `rowIds` map, and the first one in the file is
-  // not this one).
-  const applyAt = SRC.indexOf("function applyVectorGeometry3DState");
-  const rowIdKeys = /var rowIds = \{([^}]*)\}/.exec(SRC.slice(applyAt))![1]
-    .split(",").map((s) => s.split(":")[0].trim()).filter(Boolean);
+  // not this one). §28 extracted that map out of applyVectorGeometry3DState and
+  // into vgApplyControlRows, which the apply pass AND the group picker both
+  // call — so the anchor is that function, and it is the same table.
+  const rowIdKeys = ROW_ID_KEYS;
   // A state authors ONE mode, so the tallest realistic panel is the tallest
   // MODE, plus the scene_group select. Both lists are asserted to be subsets
   // of the shipped map, so they cannot quietly rot away from it.
@@ -5049,9 +5075,7 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
       buildRegion.indexOf("VG_ROW_LABEL[prefix] = sc.label;") >= 0);
     // Every slider-bound row of the panel has a captured label — a row missing
     // from the table could never be restored.
-    const applyAt = SRC.indexOf("function applyVectorGeometry3DState");
-    const rowIdKeys = /var rowIds = \{([^}]*)\}/.exec(SRC.slice(applyAt))![1]
-      .split(",").map((s) => s.split(":")[0].trim()).filter(Boolean);
+    const rowIdKeys = ROW_ID_KEYS;
     assertTrue(`every one of the ${rowIdKeys.length} slider rows has a captured built label (${rowIdKeys.filter((k) => SHIPPED_ROW_LABEL[k] === undefined).join(",") || "none missing"})`,
       rowIdKeys.every((k) => typeof SHIPPED_ROW_LABEL[k] === "string" && SHIPPED_ROW_LABEL[k] !== ""));
     check("the shipped products label is still the one the pre-fix row was born with", BUILT, "θ (a, b)", 0);
@@ -5175,8 +5199,9 @@ console.log("\n=== 25. THE θ ROW NAMES WHAT IT ACTUALLY TURNS — a control lab
     // never called is the recorded discharge-against-a-mechanism-that-was-
     // never-built failure in miniature.
     const at = SRC.indexOf('gsel.addEventListener("change"');
+    const HANDLER = at > 0 ? SRC.slice(at, at + 1600) : "";
     assertTrue("the scene-group change handler calls vgWriteRowLabels (the label is not a state-entry-only write)",
-      at > 0 && SRC.slice(at, at + 700).indexOf("vgWriteRowLabels(") >= 0);
+      at > 0 && HANDLER.indexOf("vgWriteRowLabels(") >= 0);
   }
 
   // (f) NOTHING IS EVER INVENTED — every un-derivable case falls back to a bare
@@ -5945,6 +5970,434 @@ console.log("\n=== 27. A FREE-RUNNING SANDBOX LOOPS — vg.animate_loop_ms (bug_
       if (typeof s9.vg?.animate_loop_ms === "number") {
         assertTrue(`...and the period matches the end of the authored window list (${s9.vg.animate_loop_ms} vs ${end}) — a shorter period truncates the sweep, a longer one re-freezes for the difference`,
           Math.abs(s9.vg.animate_loop_ms - end) < 1e-9);
+      }
+    }
+  }
+}
+
+console.log("\n=== 28. EVERY VISIBLE ROW MOVES SOMETHING IN THE GROUP IT IS SHOWN IN — vg.group_controls (bug_class vg_explore_controls_are_not_group_aware_so_half_the_sliders_are_inert) ===");
+{
+  // d.controls is ONE FLAT LIST and the Δ10 picker swaps the OBJECTS underneath
+  // it, so #9 STATE_9 offers the same six knob rows in both groups and about
+  // half of them drive nothing in whichever group is selected. This section
+  // measures INERTNESS at the SHIPPED RESOLVER (a knob is dead in a group when
+  // sweeping it end to end changes no resolved object and no readout) and
+  // measures VISIBILITY at the SHIPPED ROW PASS — never at the authored list,
+  // which is the thing under test.
+  const clone = <T,>(o: T): T => JSON.parse(JSON.stringify(o));
+
+  // ── THE FIXTURE — #9 STATE_9's vg block, transcribed. Its FIDELITY to the
+  //    shipped concept is itself asserted in (h) whenever the JSON is on this
+  //    desk, so a fixture that drifts from the sim it models is caught rather
+  //    than believed.
+  const S9_VG: Record<string, any> = {
+    mode: "lines_planes", reveal_ms: 1,
+    scene_groups: [{ key: "A", label: "line + plane" }, { key: "B", label: "skew pair" }],
+    scene_group: "A",
+    lambda: 0.0, lambda_span: 4.0, half_extent: 3.0, q_height: 1.19,
+    theta_deg: 69.3846, line2_offset: 0.0,
+    lines: [
+      { id: "L1", point: [-0.8, 0.6, -0.5], dir: [1, 0.35, 0.6], role: "dir1", label: "d",
+        groups: ["A"], bind_lambda_span: true, show_lambda_marker: true, lambda: { knob: "lambda" }, reveal_at_ms: 0 },
+      { id: "M1", point: [-1.2, -0.9, 0.6], dir: [1, 0.15, 0.35], role: "dir1", label: "d₁",
+        groups: ["B"], reveal_at_ms: 0 },
+      { id: "M2", point: [0.479887, -1.725775, -0.749677], dir: [0.15, -0.5, 1], role: "dir2", label: "d₂",
+        groups: ["B"],
+        offset: { along: [0.132973, -0.443242, 0.886484], zero: 0, knob: "line2_offset" },
+        rotate: { about: [0.287668, -0.838664, -0.462482], zero: 69.3846, knob: "theta_deg" },
+        reveal_at_ms: 0 },
+    ],
+    planes: [
+      { id: "P1", point: [0, -0.4, 0], normal: [0.35, 1, 0.25], span_u: [1, -0.35, 0], half_extent: 3.0,
+        bind_half_extent: true, role: "region", show_normal: true, normal_label: "n", groups: ["A"], reveal_at_ms: 0 },
+    ],
+    points: [
+      { id: "q", position: [1.93, 1.19, 0.51], role: "neutral", label: "q", groups: ["A"],
+        offset: { along: [0, 1, 0], zero: 1.19, knob: "q_height" }, reveal_at_ms: 0 },
+    ],
+    perpendicular: { id: "perp", from: "q", to: "P1", foot_id: "foot", role: "derived",
+      show_right_angle: true, groups: ["A"], reveal_at_ms: 0 },
+    common_perpendicular: { id: "common_perp", between: ["M1", "M2"], role: "derived", groups: ["B"], reveal_at_ms: 0 },
+    value_readouts: ["point_plane_distance", "n_norm", "skew_distance"],
+    controls: ["scene_group", "lambda", "lambda_span", "half_extent", "q_height", "theta_deg", "line2_offset"],
+    control_ranges: { half_extent: { min: 1.5, max: 4.5 }, lambda_span: { min: 2.5, max: 5.0 }, theta_deg: { min: 25, max: 115 } },
+  };
+  // THE PARTITION this fix makes authorable — the exact block the follow-up
+  // asks #9 STATE_9 to add. scene_group is deliberately absent from both lists:
+  // the picker is how a teacher LEAVES a group and is governed by the flat
+  // controls in every group.
+  const GROUP_CONTROLS: Record<string, string[]> = {
+    A: ["lambda", "lambda_span", "half_extent", "q_height"],
+    B: ["theta_deg", "line2_offset"],
+  };
+  const KNOBS = ["lambda", "lambda_span", "half_extent", "q_height", "theta_deg", "line2_offset"];
+  // THE INERTNESS MATRIX, stated up front from the fixture's own geometry:
+  // group A holds L1 (λ marker + bound span), P1 (bound half-extent) and q
+  // (height offset); group B holds M1 and M2 (M2 alone carries the theta_deg
+  // rotate and the line2_offset translate).
+  const EXPECT_LIVE: Record<string, string[]> = {
+    A: ["lambda", "lambda_span", "half_extent", "q_height"],
+    B: ["theta_deg", "line2_offset"],
+  };
+
+  const stateOf = (vg: Record<string, any>) => ({ show_sliders: true, vg });
+  const withGroups = () => { const v = clone(S9_VG); v.group_controls = clone(GROUP_CONTROLS); return v; };
+  /** Seed the DOM the way buildVectorGeometrySliders does, then apply. */
+  const applyOn = (stateDef: unknown, dom = fakeDom(), rowPassSrc?: string) => {
+    for (const k of Object.keys(SHIPPED_ROW_LABEL)) dom.get("vg_" + k + "_lab").textContent = SHIPPED_ROW_LABEL[k];
+    return runApplyPass([], stateDef, dom, undefined, rowPassSrc);
+  };
+  /** The rows a teacher can actually see, read off the DOM the pass wrote. */
+  const shownRows = (dom: ReturnType<typeof fakeDom>) =>
+    KNOBS.filter((k) => dom.get("vg_" + k + "_row").style.display === "block");
+  const liveRows = (dom: ReturnType<typeof fakeDom>) =>
+    KNOBS.filter((k) => dom.get("vg_" + k + "_row").style.display === "block"
+      && dom.get("vg_" + k + "_slider").disabled === false);
+
+  // ── THE PROBE the bug row asks for: resolve the SHIPPED resolver across the
+  //    knob's own row travel and see whether ANY resolved object or readout
+  //    moves. Five samples, not two: a knob whose end points happen to agree
+  //    (a marker that leaves the drawn span at both ends) would read as dead
+  //    on a two-point test and is not.
+  const baseK = (vg: Record<string, any>, group: string) => {
+    const K: Record<string, unknown> = { scene_group: group };
+    for (const k of KNOBS) K[k] = typeof vg[k] === "number" ? vg[k] : SHIPPED_ROW_RANGE[k].def;
+    return K;
+  };
+  const T0 = vgTextFns({}, fakeDom().document);
+  const MS = 5000;                     // reveal_ms 1 + reveal_at_ms 0 ⇒ every frac is 1
+  const sweepFrames = (vg: Record<string, any>, group: string, knob: string) => {
+    const r = T0.vgControlRange(knob, vg) as { min: number; max: number };
+    const out: string[] = [];
+    for (let i = 0; i <= 4; i++) {
+      const K = baseK(vg, group);
+      K[knob] = r.min + (r.max - r.min) * (i / 4);
+      out.push(JSON.stringify(E.vgResolveLinesPlanes(vg, K, MS)));
+    }
+    return out;
+  };
+  const movesSomething = (vg: Record<string, any>, group: string, knob: string) =>
+    sweepFrames(vg, group, knob).some((f, i, a) => i > 0 && f !== a[0]);
+
+  // (a) THE SURFACE — vgEffectiveControls, and the fallbacks that keep every
+  //     state shipped today byte-identical.
+  {
+    const T = vgTextFns({}, fakeDom().document);
+    const flat = S9_VG.controls as string[];
+    assertTrue("a state with NO group_controls resolves to the flat controls, in every group",
+      JSON.stringify(T.vgEffectiveControls(S9_VG, "A")) === JSON.stringify(flat)
+      && JSON.stringify(T.vgEffectiveControls(S9_VG, "B")) === JSON.stringify(flat));
+    const g = withGroups();
+    assertTrue(`group A resolves to its OWN list (${GROUP_CONTROLS.A.join(", ")})`,
+      JSON.stringify(T.vgEffectiveControls(g, "A")) === JSON.stringify(GROUP_CONTROLS.A));
+    assertTrue(`group B resolves to its OWN list (${GROUP_CONTROLS.B.join(", ")})`,
+      JSON.stringify(T.vgEffectiveControls(g, "B")) === JSON.stringify(GROUP_CONTROLS.B));
+    assertTrue("a group the block does not name falls back to the flat list (never to nothing)",
+      JSON.stringify(T.vgEffectiveControls(g, "C")) === JSON.stringify(flat));
+    assertTrue("no group at all (a single-group state) falls back to the flat list",
+      JSON.stringify(T.vgEffectiveControls(g, null)) === JSON.stringify(flat)
+      && JSON.stringify(T.vgEffectiveControls(g, "")) === JSON.stringify(flat));
+    // The legal-zero-value scar, in list form: an EMPTY authored list is "this
+    // group has no live knob" and must survive, where truthiness would restore
+    // the full flat list — the loudest possible version of the defect.
+    const empty = withGroups(); empty.group_controls.B = [];
+    assertTrue("an authored EMPTY list yields NO rows — resolved by presence, never truthiness",
+      JSON.stringify(T.vgEffectiveControls(empty, "B")) === "[]");
+    const notArray = withGroups(); notArray.group_controls.B = "theta_deg" as unknown as string[];
+    assertTrue("a malformed (non-array) entry falls back to the flat list rather than iterating a string",
+      JSON.stringify(T.vgEffectiveControls(notArray, "B")) === JSON.stringify(flat));
+    // The type-omission scar: a field the body reads is DECLARED in the block
+    // type in the same change that reads it.
+    const FILE = readFileSync("src/lib/renderers/field_3d_renderer.ts", "utf-8");
+    assertTrue("group_controls is declared in the vg block's TypeScript type (a field that runs but cannot be declared is undiscoverable)",
+      /group_controls\?:\s*Record<string,\s*string\[\]>;/.test(FILE));
+  }
+
+  // (b) ROW VISIBILITY, THROUGH THE SHIPPED APPLY PASS — each group shows
+  //     exactly its own rows, plus the picker.
+  {
+    const dom = fakeDom();
+    const r = applyOn(stateOf(withGroups()), dom);
+    check("the state opens on its authored group", r.win.PM_vgSceneGroup as string, "A", 0);
+    assertTrue(`group A shows exactly its own knob rows (${shownRows(dom).join(", ")})`,
+      JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
+    assertTrue("...all of them LIVE (enabled), none greyed",
+      JSON.stringify(liveRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
+    assertTrue("...and the view picker is on screen in group A (it is how a teacher leaves the group)",
+      dom.get("vg_scene_group_row").style.display === "block");
+    assertTrue("...the panel itself is open", dom.get("vg_sliders").style.display === "block");
+    assertTrue(`...and the four rows group B owns are HIDDEN (${KNOBS.filter((k) => shownRows(dom).indexOf(k) < 0).join(", ")})`,
+      EXPECT_LIVE.B.every((k) => dom.get("vg_" + k + "_row").style.display === "none"));
+    assertTrue("the pass publishes the rows a teacher can reach in the live group (PM_vgRowsShown)",
+      JSON.stringify(r.win.PM_vgRowsShown) === JSON.stringify(EXPECT_LIVE.A)
+      && r.win.PM_vgRowsGroup === "A");
+    // Entering the SAME state authored on group B opens on B's rows.
+    const domB = fakeDom();
+    const vgB = withGroups(); vgB.scene_group = "B";
+    applyOn(stateOf(vgB), domB);
+    assertTrue(`a state authored on group B opens on B's rows (${shownRows(domB).join(", ")})`,
+      JSON.stringify(shownRows(domB)) === JSON.stringify(EXPECT_LIVE.B));
+    assertTrue("...and the picker is on screen there too — the picker is never partitioned away",
+      domB.get("vg_scene_group_row").style.display === "block");
+  }
+
+  // (c) THE PICKER PATH — A → B → A through the two passes the shipped change
+  //     handler runs, and NOTHING ELSE (Rule 39c). The apply pass is proven not
+  //     to have re-fired by three of its OWN side effects surviving untouched.
+  {
+    const dom = fakeDom();
+    const vg = withGroups();
+    const r = applyOn(stateOf(vg), dom);
+    // The ranges the apply pass installed (per STATE, not per group).
+    const rangeDump = () => JSON.stringify(KNOBS.map((k) => {
+      const el = dom.get("vg_" + k + "_slider");
+      return [k, el.min, el.max, el.step];
+    }));
+    const RANGES_AT_ENTRY = rangeDump();
+    assertTrue(`the per-state control_ranges are installed at entry (theta 25..115, half_extent 1.5..4.5, lambda_span 2.5..5) — ${RANGES_AT_ENTRY.slice(0, 80)}…`,
+      dom.get("vg_theta_deg_slider").min === "25" && dom.get("vg_theta_deg_slider").max === "115"
+      && dom.get("vg_half_extent_slider").min === "1.5" && dom.get("vg_lambda_span_slider").max === "5");
+    // A TEACHER'S DRAG, and two apply-only sentinels.
+    r.win.PM_vgLambdaDragged = true;
+    r.win.PM_vgLambda = 2.75;
+    r.win.PM_vgControlRangeWidened = "SENTINEL";
+    dom.get("vg_scene_group_select").innerHTML = "SENTINEL";
+    dom.get("vg_lambda_val").textContent = "SENTINEL";
+    /** Exactly what the shipped <select> change handler does, in its order. */
+    const pick = (g: string) => {
+      r.win.PM_vgSceneGroup = g;
+      r.T.vgApplyControlRows(vg, true);
+      r.T.vgWriteRowLabels(vg);
+    };
+    pick("B");
+    assertTrue(`switching to group B shows exactly B's rows (${shownRows(dom).join(", ")})`,
+      JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.B));
+    assertTrue(`...and hides A's four (${EXPECT_LIVE.A.join(", ")})`,
+      EXPECT_LIVE.A.every((k) => dom.get("vg_" + k + "_row").style.display === "none"));
+    assertTrue("...the picker row stays on screen (a group that hid it would be a trap)",
+      dom.get("vg_scene_group_row").style.display === "block");
+    assertTrue("...and the θ row is re-labelled for the lines group B actually shows (the two passes compose)",
+      dom.get("vg_theta_deg_lab").textContent === "θ (d₁, d₂)");
+    pick("A");
+    assertTrue(`switching back restores A's rows exactly (${shownRows(dom).join(", ")})`,
+      JSON.stringify(shownRows(dom)) === JSON.stringify(EXPECT_LIVE.A));
+    assertTrue("...and the θ label drops the pair again (it names nothing group A turns)",
+      dom.get("vg_theta_deg_lab").textContent === "θ");
+    // THE APPLY PASS DID NOT RE-RUN — the three side effects only it produces.
+    assertTrue("the group switch did NOT re-run the apply pass: the teacher's drag-seize flag survives (Rule 39c)",
+      r.win.PM_vgLambdaDragged === true && r.win.PM_vgLambda === 2.75);
+    assertTrue("...the apply-only publication survives untouched (PM_vgControlRangeWidened still the sentinel)",
+      r.win.PM_vgControlRangeWidened === "SENTINEL");
+    assertTrue("...the <select>'s option list was not rebuilt, and no slider VALUE was re-seeded",
+      dom.get("vg_scene_group_select").innerHTML === "SENTINEL"
+      && dom.get("vg_lambda_val").textContent === "SENTINEL");
+    // ...and the RANGES are per STATE, not per group: two switches neither skip
+    // nor corrupt the restore the apply pass performed.
+    assertTrue("the per-state ranges are byte-identical after A → B → A (the row pass writes display/disabled/opacity and nothing else)",
+      rangeDump() === RANGES_AT_ENTRY);
+    // A knob seized in A, hidden in B, still seized when its row comes back —
+    // the seize semantics are UNCHANGED by this pass, which touches no global
+    // the frame's knob() funnel reads.
+    assertTrue("a knob seized in group A is still seized after the round trip, at the value the teacher left it",
+      r.win.PM_vgLambdaDragged === true && r.win.PM_vgLambda === 2.75);
+    // The seize globals, READ OUT OF THE SHIPPED VG_ROW_DRAG table rather than
+    // restated (a gate holding its own copy passes forever after a knob is added).
+    const SEIZE_GLOBALS = (grabVar("VG_ROW_DRAG").match(/"(PM_vg\w+Dragged)"/g) || []).map((s) => s.replace(/"/g, ""));
+    assertTrue(`the row pass names NO drag-seize global (${SEIZE_GLOBALS.length} checked) — it cannot change seize semantics`,
+      SEIZE_GLOBALS.every((g) => ROW_PASS_SRC.indexOf(g) < 0));
+    // The HANDLER really calls it (a mechanism that exists but is never called
+    // is the recorded discharge-against-a-mechanism-never-built failure).
+    const at = SRC.indexOf('gsel.addEventListener("change"');
+    const HANDLER = at > 0 ? SRC.slice(at, at + 1600) : "";
+    assertTrue("the scene-group change handler calls vgApplyControlRows...",
+      at > 0 && HANDLER.indexOf("vgApplyControlRows(") >= 0);
+    assertTrue("...BEFORE vgWriteRowLabels (which rows are on screen, then what those rows are called)",
+      HANDLER.indexOf("vgApplyControlRows(") < HANDLER.indexOf("vgWriteRowLabels("));
+    assertTrue("...and does NOT call the full apply pass from the picker",
+      HANDLER.indexOf("applyVectorGeometry3DState") < 0 && HANDLER.indexOf("applyState(") < 0);
+  }
+
+  // (d) THE ROW'S OWN PROBE — for each group, every VISIBLE row moves something,
+  //     and every HIDDEN row is one that would have moved nothing.
+  {
+    for (const g of ["A", "B"]) {
+      const dom = fakeDom();
+      const vg = withGroups();
+      const st = clone(vg); st.scene_group = g;
+      applyOn(stateOf(st), dom);
+      const shown = shownRows(dom);
+      const hidden = KNOBS.filter((k) => shown.indexOf(k) < 0);
+      const deadShown = shown.filter((k) => !movesSomething(vg, g, k));
+      const liveHidden = hidden.filter((k) => movesSomething(vg, g, k));
+      assertTrue(`group ${g}: every VISIBLE row moves a resolved object or readout (${shown.join(", ")}) — dead: ${deadShown.join(", ") || "none"}`,
+        deadShown.length === 0);
+      assertTrue(`group ${g}: every HIDDEN row is genuinely inert here (${hidden.join(", ")}) — wrongly hidden: ${liveHidden.join(", ") || "none"}`,
+        liveHidden.length === 0);
+      assertTrue(`group ${g}: the partition is EXACTLY the live set the geometry implies (${EXPECT_LIVE[g].join(", ")})`,
+        JSON.stringify(shown) === JSON.stringify(EXPECT_LIVE[g]));
+    }
+    // The two groups partition the knob set with no overlap and no orphan: a
+    // knob live in NEITHER group would be authored into the sandbox and reach
+    // nothing at all.
+    const union = EXPECT_LIVE.A.concat(EXPECT_LIVE.B).sort();
+    assertTrue(`the two lists partition all ${KNOBS.length} knob rows exactly once (${union.join(", ")})`,
+      JSON.stringify(union) === JSON.stringify(KNOBS.slice().sort())
+      && EXPECT_LIVE.A.every((k) => EXPECT_LIVE.B.indexOf(k) < 0));
+    // ...and the authored group_controls the follow-up asks for is a SUBSET of
+    // the flat controls: partitioning may never smuggle in a knob the state
+    // never authored (whose range the apply pass would not have set).
+    const flat = S9_VG.controls as string[];
+    assertTrue("every knob named in group_controls is also in the flat controls (partition, never addition)",
+      Object.keys(GROUP_CONTROLS).every((g) => GROUP_CONTROLS[g].every((k) => flat.indexOf(k) >= 0)));
+  }
+
+  // (e) FALLBACK BYTE-IDENTITY — with no group_controls authored, the fixed row
+  //     pass and the PRE-FIX (flat, group-blind) one agree over the WHOLE DOM.
+  //     Guarded textual reconstruction: if the anchor drifts this THROWS, because
+  //     a control that silently fails to plant its defect is worse than none.
+  const ANCHOR = "var controls = vgEffectiveControls(d, group);";
+  if (ROW_PASS_SRC.indexOf(ANCHOR) < 0) {
+    throw new Error("§28 NEGATIVE CONTROL CANNOT BE BUILT: vgApplyControlRows no longer contains "
+      + JSON.stringify(ANCHOR) + ". Re-anchor it and re-watch the control fail.");
+  }
+  const PRE_ROW_SRC = ROW_PASS_SRC.replace(ANCHOR, "var controls = d.controls || [];   /* pre-fix: ONE flat list in every group */");
+  {
+    assertTrue("the pre-fix row pass really was planted (it never consults the group's own list, and differs from the shipped one)",
+      PRE_ROW_SRC.indexOf("vgEffectiveControls(") < 0 && PRE_ROW_SRC !== ROW_PASS_SRC);
+    const dump = (d: ReturnType<typeof fakeDom>) => JSON.stringify([...d.els.entries()].sort((x, y) => (x[0] < y[0] ? -1 : 1)));
+    const FIXTURES: Array<[string, unknown]> = [
+      ["the two-group state with NO group_controls authored", stateOf(clone(S9_VG))],
+      ["a single-group lines_planes state", stateOf({ mode: "lines_planes", controls: ["lambda", "theta_deg"], lambda: 0, theta_deg: 60,
+        lines: [{ id: "M1", role: "dir1", label: "d₁", point: [0, 0, 0], dir: [1, 0, 0] }] })],
+      ["a products state (Act I, no mode authored at all)", stateOf({ a_mag: 3, b_mag: 2, theta_deg: 60, controls: ["a_mag", "b_mag", "theta_deg"] })],
+      ["a state with NO controls at all (the panel stays shut)", { show_sliders: false, vg: { mode: "lines_planes" } }],
+      ["a state with a greyed static_readouts row", stateOf({ mode: "lines_planes", controls: ["lambda"], static_readouts: ["lambda_span"], lambda: 0 })],
+    ];
+    for (const [why, st] of FIXTURES) {
+      const dPre = fakeDom(), dNow = fakeDom();
+      applyOn(st, dPre, PRE_ROW_SRC);
+      applyOn(st, dNow);
+      assertTrue(`fallback is byte-identical over the whole DOM: ${why}`, dump(dPre) === dump(dNow));
+    }
+    // ...and byte-identical THROUGH the picker too, on a state with no
+    // group_controls: switching group changes labels and nothing else.
+    const dPre = fakeDom(), dNow = fakeDom();
+    const vgFlat = clone(S9_VG);
+    const rPre = applyOn(stateOf(vgFlat), dPre, PRE_ROW_SRC);
+    const rNow = applyOn(stateOf(vgFlat), dNow);
+    for (const g of ["B", "A"]) {
+      rPre.win.PM_vgSceneGroup = g; rPre.T.vgApplyControlRows(vgFlat, true); rPre.T.vgWriteRowLabels(vgFlat);
+      rNow.win.PM_vgSceneGroup = g; rNow.T.vgApplyControlRows(vgFlat, true); rNow.T.vgWriteRowLabels(vgFlat);
+    }
+    assertTrue("...and byte-identical after a full A → B → A picker round trip on a state with no group_controls",
+      dump(dPre) === dump(dNow));
+  }
+
+  // (f) THE NEGATIVE CONTROL — the SHIPPED FLAT behaviour on the two-group
+  //     fixture fails the row's own probe. This is the filed measurement,
+  //     re-measured here rather than quoted.
+  {
+    const inert: Record<string, string[]> = {};
+    for (const g of ["A", "B"]) {
+      const dom = fakeDom();
+      const st = clone(S9_VG); st.scene_group = g;         // NO group_controls
+      applyOn(stateOf(st), dom, PRE_ROW_SRC);
+      const shown = shownRows(dom);
+      assertTrue(`pre-fix, group ${g} offers ALL ${shown.length} knob rows regardless of what is on screen`,
+        JSON.stringify(shown.slice().sort()) === JSON.stringify(KNOBS.slice().sort()));
+      inert[g] = shown.filter((k) => !movesSomething(S9_VG, g, k));
+      expectFail(`pre-fix, every visible row in group ${g} moves something (${inert[g].length} of ${shown.length} are inert: ${inert[g].join(", ")})`,
+        inert[g].length === 0);
+    }
+    // The measured matrix, stated as a number so it cannot rot into a claim:
+    // 6 of the 12 (group, row) pairs the flat list offers are dead.
+    const total = inert.A.length + inert.B.length;
+    check("pre-fix, dead (group, row) pairs across the two groups", total, 6, 0);
+    assertTrue(`...split 2 in group A (${inert.A.join(", ")}) and 4 in group B (${inert.B.join(", ")}) — the queue row's "4 of 6 in group A" is the group-B count`,
+      inert.A.length === 2 && inert.B.length === 4
+      && JSON.stringify(inert.A) === JSON.stringify(["theta_deg", "line2_offset"]));
+    // ...and the FIXED pass on the same fixture has none.
+    const fixedInert: string[] = [];
+    for (const g of ["A", "B"]) {
+      const dom = fakeDom();
+      const st = withGroups(); st.scene_group = g;
+      applyOn(stateOf(st), dom);
+      for (const k of shownRows(dom)) if (!movesSomething(st, g, k)) fixedInert.push(g + "/" + k);
+    }
+    assertTrue(`...while the fixed pass leaves ZERO dead rows in either group (${fixedInert.join(", ") || "none"})`,
+      fixedInert.length === 0);
+  }
+
+  // (g) THE ⚙ WIDGET ENGINE (Rule 39f) — discovery and overrides both survive.
+  {
+    assertTrue("the row ids the widget engine discovers on are unchanged (vg_<knob>_row, one per knob row)",
+      ROW_ID_KEYS.length === 12 && KNOBS.every((k) => ROW_ID_KEYS.indexOf(k) >= 0)
+      && ROW_PASS_SRC.indexOf('vg_lambda_row') >= 0);
+    assertTrue("the row pass writes style.display — never !important — so .pmWgHide/.pmWgShow keep beating it",
+      ROW_PASS_SRC.indexOf("style.display =") >= 0 && ROW_PASS_SRC.indexOf("!important") < 0
+      && ROW_PASS_SRC.indexOf("setProperty") < 0 && ROW_PASS_SRC.indexOf("classList") < 0);
+    // A row this pass hides in one group is STILL declared to the chrome: the
+    // panel is a dynamically-created position:fixed panel, and pmWgSweep
+    // declares the rows of such a panel whether or not they are visible. So the
+    // ⚙ list cannot go stale across a group switch (there is nothing to
+    // re-declare), and nothing caches a per-group row list.
+    const SWEEP = grabFn("pmWgSweep");
+    assertTrue("pmWgSweep declares a row of a DYNAMIC panel without requiring it to be visible (so a group-hidden row is still in the ⚙ list)",
+      /else if \(cands\[i\]\.isRow\)/.test(SWEEP) && SWEEP.indexOf("pmWgIsDynamicPanel(p)") >= 0);
+    assertTrue("...and a declared widget is never re-declared or dropped (PM_wgDeclared is append-only), so no ⚙ state is cached per group",
+      SWEEP.indexOf("if (PM_wgDeclared[el.id]) continue;") >= 0
+      && grabFn("pmWgApply").indexOf("delete PM_wgDeclared") < 0);
+    const panelStyle = SRC.slice(SRC.indexOf("spd.style.cssText"), SRC.indexOf("spd.style.cssText") + 200);
+    assertTrue("the vg panel is the dynamic position:fixed kind that discovery rides (Rule 39g)",
+      panelStyle.indexOf("position:fixed") >= 0);
+  }
+
+  // (h) FIXTURE FIDELITY + THE AUTHORING FOLLOW-UP, if the concept is on this
+  //     desk. Advisory (the §27(i) pattern): the engine now HAS the mechanism,
+  //     but #9 STATE_9 still has to author the partition, and the engine cannot
+  //     author it.
+  {
+    const CONCEPT = "src/data/concepts/mathematics/lines_and_planes_in_space.json";
+    let s9: Record<string, any> | null = null;
+    try {
+      const j = JSON.parse(readFileSync(CONCEPT, "utf-8"));
+      const findCfg = (o: unknown): Record<string, any> | null => {
+        if (!o || typeof o !== "object") return null;
+        const r = o as Record<string, any>;
+        if (r.states && r.scenario_type === "vector_geometry_3d") return r;
+        for (const k of Object.keys(r)) { const f = findCfg(r[k]); if (f) return f; }
+        return null;
+      };
+      const cfg = findCfg(j);
+      const ids = cfg ? Object.keys(cfg.states) : [];
+      const last = ids.length ? cfg!.states[ids[ids.length - 1]] : null;
+      s9 = last && last.show_sliders === true && last.vg && last.vg.scene_groups ? last : null;
+    } catch { s9 = null; }
+    if (!s9) {
+      console.log("  SKIP  lines_and_planes_in_space.json not on this desk — the S9 partition follow-up is advisory");
+    } else {
+      // FIDELITY: the transcribed fixture still models the shipped state.
+      const sig = (vg: Record<string, any>) => JSON.stringify({
+        groups: (vg.scene_groups || []).map((g: any) => g.key),
+        controls: vg.controls,
+        lines: (vg.lines || []).map((l: any) => [l.id, l.groups, l.bind_lambda_span === true,
+          l.show_lambda_marker === true, l.offset ? l.offset.knob : null, l.rotate ? l.rotate.knob : null]),
+        planes: (vg.planes || []).map((p: any) => [p.id, p.groups, p.bind_half_extent === true]),
+        points: (vg.points || []).map((p: any) => [p.id, p.groups, p.offset ? p.offset.knob : null]),
+      });
+      assertTrue("the §28 fixture still mirrors the shipped STATE_9 (groups, controls, and every knob binding)",
+        sig(s9.vg) === sig(S9_VG));
+      const gc = s9.vg.group_controls;
+      assertTrue(`STATE_9 authors group_controls, partitioning its ${(s9.vg.controls || []).length - 1} knob rows across ${(s9.vg.scene_groups || []).length} groups (authored: ${JSON.stringify(gc) || "none"})`,
+        !!gc && typeof gc === "object");
+      if (gc && typeof gc === "object") {
+        for (const g of (s9.vg.scene_groups || []).map((x: any) => x.key)) {
+          const listed: string[] = Array.isArray(gc[g]) ? gc[g] : [];
+          const dead = listed.filter((k) => KNOBS.indexOf(k) >= 0 && !movesSomething(s9!.vg, g, k));
+          const missed = KNOBS.filter((k) => listed.indexOf(k) < 0 && movesSomething(s9!.vg, g, k));
+          assertTrue(`...group ${g}: every authored row is live there (${listed.join(", ")}) — dead: ${dead.join(", ") || "none"}`, dead.length === 0);
+          assertTrue(`...group ${g}: no LIVE knob is left out of the sandbox (${missed.join(", ") || "none missed"})`, missed.length === 0);
+        }
       }
     }
   }
