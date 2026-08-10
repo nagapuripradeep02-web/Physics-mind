@@ -9,9 +9,14 @@
 > fixed. **PR #96 must NOT merge as-is.**
 >
 > **⚠ SUPERSEDED 2026-08-10 — the fix round below (§0.1) EXECUTED this file's §2 list.** §2a/§2b/§2c
-> are done and committed; four §2c rows became six engine PRs (#108→#114, stacked, unmerged); the
-> queue now reads 8 closes + 1 new FIXED row + 4 annotate-keep-open for this concept. Read §0.1
-> FIRST; the sections below it are the 2026-08-09 record, kept verbatim.
+> are done and committed; four §2c rows became six engine PRs (#108→#114) which are now **MERGED to
+> master**, their authoring follow-ups landed, and a re-audit round closed two further defects. The
+> queue reads **13 OPEN for this concept, down from 26**. Read §0.1 FIRST; the sections below it are
+> the 2026-08-09 record, kept verbatim.
+>
+> Companions: `docs/skeletons/lines_and_planes_in_space_skeleton.md` (amended — read its STATUS block
+> FIRST) · `docs/skeletons/lines_and_planes_in_space_mathematics_block.md` ·
+> `docs/MATHEMATICS_VECTOR_PRODUCTS_HANDOFF.md` (Act I, #7 — still banked).
 
 ---
 
@@ -46,18 +51,31 @@ master 63ae197 — gate 712 → 1015 PASS across it):**
 | **#113** | authored `animate_loop_ms` (wrap inside `vgAnimValue` — reveals structurally unwrappable; first-cycle pin + D7 refuses `reveal_hold` on a looping state; deriveStateMeta same commit) | `vg_explore_animate_windows_…` OPEN pending S9 authoring |
 | **#114** | authored `group_controls` (flat fallback; picker-path display re-run only; scene_group unpartitionable; inertness counts corrected — A=2, B=4, the filed row had them swapped) | `vg_explore_controls_…` OPEN pending S9 authoring |
 
-**Merge order #108 → #109 → #110 → #112 → #113 → #114 — founder-only. NEVER `--delete-branch`
-until each child retargets (the #92 incident).**
+**ALL SIX MERGED** in that order (founder-run, each child retargeted to master before its merge so
+no base was ever deleted under an open child — the #92 incident). Branches deleted after.
 
-**AFTER the merges, on the chapter desk (blocked until then — the Δ7 scar forbids authoring
-against unmerged mechanisms):**
-1. merge master into the branch; 2. STATE_3 `value_readouts` → `["segment_length",
-"point_plane_distance"]` (else the sweep is silent); 3. STATE_9: collapse the eight λ windows to
-the closed two-window ping-pong + `animate_loop_ms: 18000`, and author `group_controls:
-{ "A": ["lambda","lambda_span","half_extent","q_height"], "B": ["theta_deg","line2_offset"] }` —
-gate §27(i)/§28(h) hard-FAIL on the merged desk until both land (deliberate forcing functions);
-4. re-seed cache → EYE (expect H2 pixel diffs on any state printing `n_norm`/`cross_norm` — the
-#112 glyph fix; re-baseline is a founder decision per Rule 34e) → re-audit.
+**The merge-gated authoring follow-ups then LANDED** (they were blocked until the merges — the Δ7
+scar forbids authoring against an unmerged mechanism): STATE_3 `value_readouts` gained
+`segment_length`; STATE_9 collapsed to the closed two-window ping-pong + `animate_loop_ms: 18000`
+and authored `group_controls { A: [lambda, lambda_span, half_extent, q_height], B: [theta_deg,
+line2_offset] }`. Gate §27(i)/§28(h) — deliberate forcing functions that hard-FAILED until then —
+now PASS. **Re-baseline note still live:** #112 changed the norm-bar glyph, so any state printing
+`‖n‖`/`‖d₁×d₂‖` differs from a pre-#112 baseline BY DESIGN (Rule 34e, founder decision).
+
+**RE-AUDIT ROUND (same day, after the merges).** quality_auditor re-ran: every prior fix HELD
+(F1/F3/F4/F5 + all three follow-ups verified from pixels; S3's label flips `segment length` → `distance`
+on the SAME number, so the relabel is honest; S9's loop proved BYTE-IDENTICAL t=1000 ≡ t=19000). It then
+FAILED the build on two defects **both** audits had missed, now fixed (`f808dfe`): the anchor **`a`** was
+named on three formula surfaces and labelled in no state — STATE_1 now draws it, revealed before the line
+grows out of it — and **both ring cuts ended on a promise of a state their preset hides** (the skeleton's
+per-preset remedy is UNAUTHORABLE: `presets` carry only `hidden_states`), now cut-safe in one sentence
+each. Both filed as new FIXED rows with prevention rules. A stale STATE_6 note (25°→115°) corrected in the
+JSON and the skeleton. eye-walker's 4th walk: CLEAN, 0 new findings; its one refutation (S6 apex at θ=115°)
+was itself refuted by measurement — apex-to-arm distance is **0.000000 at every sampled instant**, since
+each `offset.along` is parallel to its own `dir`; the row is scope-corrected, not reopened.
+
+**Queue now: 13 OPEN for this concept** (from 26). Nothing left OPEN is a defect this concept introduced —
+they are engine/gate classes it reproduces, the two documented residues, and one scope-corrected row.
 
 **Founder-taste items, no rows filed:** the S1→S2 patch-shrink at the seam (auditor F7 — the
 normal is safe, the plane's opening frame is a taste call); STATE_4's near-end-on Lpar (~30 px
@@ -65,10 +83,6 @@ stub); STATE_7's two arcs visually indistinguishable at 55°/35°; Gate-20 warni
 `parallel_form_stem` missing on q3–q7. **Still OPEN with residue:** `vg_offset_animate_…` (a θ
 drag during [0, 8000) detaches the arc — the slide beat's aux ramp is un-seizable; probe must
 sample that window).
->
-> Companions: `docs/skeletons/lines_and_planes_in_space_skeleton.md` (amended — read its STATUS block
-> FIRST) · `docs/skeletons/lines_and_planes_in_space_mathematics_block.md` ·
-> `docs/MATHEMATICS_VECTOR_PRODUCTS_HANDOFF.md` (Act I, #7 — still banked).
 
 ---
 
