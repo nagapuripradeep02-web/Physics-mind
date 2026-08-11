@@ -14284,7 +14284,9 @@ export const FIELD_3D_RENDERER_CODE = `
         //     never match it (scar field3d_child_mesh_never_registered_in_
         //     sceneobjects_so_updater_never_matches).
         //
-        //     The SEGMENT is a unit cylinder placed by vgPlaceTube every frame
+        //     The SEGMENT is a unit cylinder — unit RADIUS as well as unit
+        //     height, so vgPlaceTube's VG_TUBE_R.proj is the whole width —
+        //     placed by vgPlaceTube every frame
         //     (the shipped helper the lines/planes half already uses), so its
         //     DIRECTION carries the sign of b·â — at θ > 90° it runs from the
         //     origin the other way along â instead of shrinking to nothing.
@@ -14376,6 +14378,20 @@ export const FIELD_3D_RENDERER_CODE = `
     //   defect (field3d_scenario_declares_bead_element_but_never_builds_the_
     //   meshes) seen from the other side.
     var VG_LP_MAX = { line: 4, plane: 2, point: 6, seg: 5, arc: 2, vec: 2 };
+    // The tube WIDTHS, in world units — the ONE place a stroke width is
+    // written, and the invariant that makes the number mean what it says:
+    // every tube geometry is built at UNIT radius and vgPlaceTube alone
+    // applies the width, through mesh.scale. A pool that BAKES its radius into
+    // the geometry and is then scaled by the same number again draws at
+    // radius² — 0.035 becomes 0.0012 world units, about 0.1 px at this
+    // scenario's shipped cameras (R 13-16, fov 60), i.e. a sparse dotted
+    // hairline at ~4% of the intended ink while every ArrowHelper beside it
+    // stays solid (bug_class vg_tube_radius_applied_twice_renders_every_line_
+    // and_segment_sub_pixel). tube() therefore takes NO radius at all, so the
+    // double application is unrepresentable rather than merely remembered, and
+    // check:vector-geometry-3d §29 asserts both halves (unit geometry, and a
+    // projected stroke ≥ 2 px at the reference camera).
+    var VG_TUBE_R = { line: 0.035, seg: 0.045, proj: 0.05 };
     var VG_ROLE_COLOR = {
         dir1: "#F5A623", dir2: "#3FC8E4", third: "#E15FA8",
         derived: "#5BD97A", region: "#8B6FE8", neutral: "#D8DEE9"
@@ -14391,8 +14407,13 @@ export const FIELD_3D_RENDERER_CODE = `
     }
     function buildVectorGeometryLinesPlanes() {
         var i;
-        function tube(radius, color, type, idx) {
-            var g = new THREE.CylinderGeometry(radius, radius, 1, 10, 1, true);
+        // UNIT radius, unit height: the pose AND both dimensions are written
+        // by vgPlaceTube (see VG_TUBE_R). Taking no radius parameter is the
+        // point — a baked radius that vgPlaceTube then scales again is the
+        // radius² hairline, and a shape that cannot express the wrong
+        // configuration is stronger than a comment asking for the right one.
+        function tube(color, type, idx) {
+            var g = new THREE.CylinderGeometry(1, 1, 1, 10, 1, true);
             var m = new THREE.MeshBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.95 });
             var mesh = new THREE.Mesh(g, m);
             mesh.userData = { elementType: type, id: type + "_" + idx, slot: idx };
@@ -14410,8 +14431,8 @@ export const FIELD_3D_RENDERER_CODE = `
             addToScene(s);
             return s;
         }
-        for (i = 0; i < VG_LP_MAX.line; i++) { tube(0.035, VG_ROLE_COLOR.dir1, "vg_lp_line", i); label("vg_lp_line_label", i); }
-        for (i = 0; i < VG_LP_MAX.seg; i++) { tube(0.045, VG_ROLE_COLOR.neutral, "vg_lp_seg", i); label("vg_lp_seg_label", i); }
+        for (i = 0; i < VG_LP_MAX.line; i++) { tube(VG_ROLE_COLOR.dir1, "vg_lp_line", i); label("vg_lp_line_label", i); }
+        for (i = 0; i < VG_LP_MAX.seg; i++) { tube(VG_ROLE_COLOR.neutral, "vg_lp_seg", i); label("vg_lp_seg_label", i); }
         for (i = 0; i < VG_LP_MAX.point; i++) {
             var pg = new THREE.SphereGeometry(1, 16, 12);
             var pm = new THREE.MeshBasicMaterial({ color: hexToThreeColor(VG_ROLE_COLOR.neutral), transparent: true, opacity: 1 });
@@ -14467,9 +14488,12 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(rline);
     }
 
-    // Place a unit-height cylinder (its axis along +Y) as the segment p0 -> p1.
-    // This is GEOMETRY, not emphasis: Rule 29 forbids scaling an object to make
-    // it stand out, not scaling a primitive to the length it is meant to be.
+    // Place a UNIT cylinder (unit radius, unit height, axis along +Y) as the
+    // segment p0 -> p1 at the world radius its caller names. This is GEOMETRY, not
+    // emphasis: Rule 29 forbids scaling an object to make it stand out, not
+    // scaling a primitive to the size it is meant to be. The caller's mesh MUST
+    // come from a unit-radius pool — this function OWNS the width, and a
+    // geometry that already carries one gets it applied twice (VG_TUBE_R).
     var VG_LP_UPY = null;
     function vgPlaceTube(mesh, p0, p1, radius) {
         var dx = p1[0] - p0[0], dy = p1[1] - p0[1], dz = p1[2] - p0[2];
@@ -14527,7 +14551,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var L = res.lines[li], m = lp[li];
             if (!m) continue;
             stamp(m, L.id); stamp(llab[li], L.id); stamp(ldir[li], L.id);
-            if (L.frac <= 0 || !vgPlaceTube(m, L.p0, L.p1, 0.035)) { m.visible = false; if (llab[li]) llab[li].visible = false; if (ldir[li]) ldir[li].visible = false; continue; }
+            if (L.frac <= 0 || !vgPlaceTube(m, L.p0, L.p1, VG_TUBE_R.line)) { m.visible = false; if (llab[li]) llab[li].visible = false; if (ldir[li]) ldir[li].visible = false; continue; }
             m.material.color.set(hexToThreeColor(vgRoleColor(L.role)));
             setOpacity(m, 0.95 * L.ghost);
             if (llab[li]) vgLabelAt(llab[li], L.label, L.p1, L.dir, 0.28);
@@ -14602,7 +14626,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var S = res.segments[si], smh = sp[si];
             if (!smh) continue;
             stamp(smh, S.id); stamp(sl[si], S.id);
-            if (S.frac <= 0 || !vgPlaceTube(smh, S.p0, S.p1, 0.045)) { smh.visible = false; if (sl[si]) sl[si].visible = false; continue; }
+            if (S.frac <= 0 || !vgPlaceTube(smh, S.p0, S.p1, VG_TUBE_R.seg)) { smh.visible = false; if (sl[si]) sl[si].visible = false; continue; }
             smh.material.color.set(hexToThreeColor(vgRoleColor(S.role)));
             setOpacity(smh, 0.95 * S.ghost);
             if (sl[si]) vgLabelAt(sl[si], S.label, vgLerpVec(S.p0, S.p1, 0.5), vgNormalize(vgCrossVec(vgSub(S.p1, S.p0), [0, 1, 0])), 0.26);
@@ -15326,7 +15350,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // θ = 90° — where b·â is exactly 0 — the segment disappears
                 // rather than leaving a zero-length stub on screen. That is
                 // the picture the number 0.00 is claiming, so the two agree.
-                if (proj && Math.abs(proj.length) > 0.03) vgPlaceTube(o, [0, 0, 0], proj.foot, 0.05);
+                if (proj && Math.abs(proj.length) > 0.03) vgPlaceTube(o, [0, 0, 0], proj.foot, VG_TUBE_R.proj);
                 else o.visible = false;
             } else if (ud.elementType === "vg_proj_drop") {
                 var dropLen = proj ? vgLenVec(vgSub(eb, proj.foot)) : 0;
