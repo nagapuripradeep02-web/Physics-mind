@@ -132,7 +132,10 @@ async function main(): Promise<void> {
         panelAHtml: cached.sim_html,
         panelBHtml: isMulti ? (cached.secondary_sim_html as string) : undefined,
         stateIds,
-        dense: dense ? { intervalMs: 1000, durationMsByState: deriveStateDurationsMs(cached.physics_config) } : undefined,
+        // intervalMs deliberately NOT set — see DENSE_DEFAULT_INTERVAL_MS in
+        // screenshotter.ts: the cadence must stay incommensurate with sim drive
+        // periods, so it has exactly one definition.
+        dense: dense ? { durationMsByState: deriveStateDurationsMs(cached.physics_config) } : undefined,
         ttsMathByState,
         // Sim-time-aware primary capture — pin+poll PM_simTimeMs to each state's
         // all-reveals-complete time so late reveals are photographed.
