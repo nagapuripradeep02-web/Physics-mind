@@ -925,7 +925,22 @@ async function composeSideBySide(left: Buffer, right: Buffer): Promise<Buffer> {
 
 const KEYFRAME_OFFSETS_MS = [0, 2500, 5000, 7500, 10000];
 
-const DENSE_DEFAULT_INTERVAL_MS = 1000;
+// 700ms, NOT a round 1000ms, and the oddness is the whole point: the interval
+// must stay INCOMMENSURATE with the drive periods sims actually animate at.
+// At 1000ms a state driven at f_demo=0.5Hz advances exactly 180° per sample, so
+// every frame catches sin(ωt) at the same phase — bead displacement
+// (disp = amp*sin θ) reads exactly 0.000 and opacity exactly 0.450 in EVERY
+// frame. Measured 2026-08-10 across Ch.7: adjacent dense frames byte-identical
+// (max channel delta 0/255) on states whose beads were provably moving — the
+// frozen frame, pinned at a non-integer 4700ms, differed by 190/255 over 750px.
+// f_demo=0.25Hz aliases the same way for sin(2ωt)/sin²/cos² power and energy
+// terms. That produced BOTH false D5 failures (4 states) and false passes (a
+// state "passing" on a phasor fan flipping 0°↔180°) across 44 states / 6
+// concepts. 700ms advances 126°/sample at 0.5Hz — a 7-sample phase cycle — and
+// its finer spacing also stops short cue windows (a 1s freeze hold) falling
+// between samples. Any replacement must satisfy: (interval_ms * f_hz * 360)
+// mod 180 != 0 for every f a sim drives at.
+const DENSE_DEFAULT_INTERVAL_MS = 700;
 const DENSE_DEFAULT_DURATION_MS = 10000;
 const DENSE_MIN_DURATION_MS = 3000;
 // 60s / 61 frames: follow the declared state duration (Rule-31 guided states
@@ -935,7 +950,12 @@ const DENSE_MIN_DURATION_MS = 3000;
 // deriveStateMeta DURATION_MAX_MS (the 30s clamp hid every narration tail past
 // 30s from the gate); previously raised from 15000/15 on 2026-06-10.
 const DENSE_MAX_DURATION_MS = 60000;
-const DENSE_DEFAULT_MAX_FRAMES = 61;
+// Must track DENSE_DEFAULT_INTERVAL_MS: frameCount = min(maxFrames,
+// floor(duration/interval)+1), so this cap — not the duration — is what
+// actually bounds coverage. 60000/700+1 = 86.7, hence 87. Left at the old 61 it
+// would silently clip every state at 42s and re-open the long-narration-tail
+// blind spot the 2026-07-03 raise closed.
+const DENSE_DEFAULT_MAX_FRAMES = 87;
 
 /**
  * Capture a dense frame series for the CURRENT state (caller has already
