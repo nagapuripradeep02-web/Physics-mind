@@ -263,7 +263,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Coil out, plates in — watch the current arrow sweep clean across, from ninety behind to ninety ahead.", "glow": "i_phasor", "scenario_cue": "flip_start" },
+            { "id": "s5_1", "text_en": "Coil out, plates in — watch the current arrow sweep all the way across, from ninety behind to ninety ahead.", "glow": "i_phasor", "scenario_cue": "flip_start" },
             { "id": "s5_2", "text_en": "Same right angle, just the mirror side — the capacitor's current now leads instead of lags.", "glow": "angle_arc" },
             { "id": "s5_3", "text_en": "Everything else holds still — only that one angle flipped.", "glow": "i_phasor" }
           ]
@@ -326,7 +326,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "It's all yours — drag peak voltage, frequency, and pick the element; watch the angle hold rock steady while everything else responds live.", "glow": "formula" }
+            { "id": "s8_1", "text_en": "Try the controls — drag peak voltage, frequency, and pick the element; watch the angle stay fixed while everything else changes live.", "glow": "formula" }
           ]
         }
       }
@@ -717,7 +717,7 @@
         "label": "Explore — the whole phasor machine, live",
         "visible_elements": ["phs_apparatus", "phs_disc", "phs_v_arrow", "phs_i_arrow", "phs_angle_arc", "phs_projection"],
         "camera_position": [1.0, 1.2, 9.0],
-        "caption": "All yours",
+        "caption": "Try the controls",
         "show_sliders": true,
         "formula_overlay": "φ = ∠(v, i)",
         "ac_phasor": {
