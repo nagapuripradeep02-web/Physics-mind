@@ -419,12 +419,22 @@ picture: heat the box, every dashed link fails, and **not one O–H stick ever y
 | 4 | core | It needs a strongly negative atom — swap O for S and no link forms | `species-swap` | "Sulfur is not negative enough" | species | δ from Δχ 1.24 → 0.38 |
 | 5 | core | Thirty molecules: links form and break everywhere at once | `network-flicker` | "Links keep re-forming" | count | **≈3.5 links per molecule** |
 | 6 | core | **Heat it.** Links fail one by one; every O–H survives | `heat-the-network` | "Heat breaks links only" | temperature | links vs T_K |
-| 7 | core | The anomaly you can now explain | `trend-break` | "Water breaks the trend" | — | H₂S 213 · H₂Se 232 · H₂Te 271 K, trend → ~180; H₂O **373** |
+| 7 | core | The anomaly you can now explain | `trend-break` | "Water boils far higher" ¹ | — | H₂S 213 · H₂Se 232 · H₂Te 271 K, trend → ~180; H₂O **373** |
 | 8 | core | Explore | `interaction_complete` | — | species · count · temperature (all core) | live link count |
 
 S4's number now *drives* the pixels (D-2). S5's readout is **links per molecule**, not a raw count —
 it is the number that explains S7. S7 plots the trend (row O) rather than listing four values: the
 anomaly is the ~190 K gap between water and its own family's line.
+
+¹ **S7's delta cue AMENDED by founder decision, 2026-08-02** (Desk 1, `hydrogen_bonding` Checkpoint A
+cycle 1, finding F5): **"Water breaks the trend" → "Water boils far higher".** *Break* is this
+concept's load-bearing LITERAL verb — S3 "Weak link breaks first", S6 "Heat breaks links only", and
+the narration "not one O–H bond breaks" — so using it figuratively at the PRIMARY aha asks an ESL
+Class-11 student to switch senses at the hardest moment (Rule 41a). The replacement is 4 words
+(≤5, Rule 32c), literal, and states the RESULT rather than naming a graph the student has not yet
+been shown. The archetype stays `trend-break` (internal label, never reader-facing). The desk
+reported this rather than editing it — a defect found in a FIXED delta cue is escalated, never
+changed unilaterally — and the founder ruled.
 **All eight states are `core` (promoted at Checkpoint A cycle 2).** S6–S7 were `extended`, which put
 **the boiling-point anomaly — this concept's literal whiteboard-test justification in the 0a table —
 outside the core-only preset**, i.e. outside IGCSE, the youngest grade and the one this wave exists

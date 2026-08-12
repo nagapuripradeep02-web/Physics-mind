@@ -50,6 +50,7 @@
     "desk:close": "node scripts/desk.js close",
     "sync:agents": "node scripts/sync-agents.js",
     "check:agents": "node scripts/sync-agents.js --check",
+    "check:autopush-hook": "bash scripts/check-autopush-hook.sh",
     "test": "vitest run",
     "build:pilot": "npx tsx src/scripts/build_review_site.ts --pilot",
     "grant:paid": "npx tsx --env-file=.env.local src/scripts/grant_paid.ts",
@@ -57,7 +58,11 @@
     "check:hybrid-orbitals": "npx tsx src/scripts/check_hybrid_orbitals.ts",
     "check:sigma-pi": "npx tsx src/scripts/check_sigma_pi.ts",
     "check:bonding-scene": "npx tsx src/scripts/check_bonding_scene.ts",
-    "check:cartesian-plane": "npx tsx src/scripts/check_cartesian_plane.ts"
+    "check:organic-structure": "npx tsx src/scripts/check_organic_structure.ts",
+    "check:cartesian-plane": "npx tsx src/scripts/check_cartesian_plane.ts",
+    "check:review-site-timeline": "npx tsx src/scripts/check_review_site_timeline.ts",
+    "check:solid-of-revolution": "npx tsx src/scripts/check_solid_of_revolution.ts",
+    "check:vector-geometry-3d": "npx tsx src/scripts/check_vector_geometry_3d.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
@@ -100,6 +105,7 @@
     "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "ffmpeg-static": "^5.3.0",
     "music-metadata": "^11.13.0",
     "p5": "1.9.4",
     "tailwindcss": "^4",

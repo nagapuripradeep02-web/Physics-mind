@@ -106,28 +106,71 @@ A rotating radius on a circle, its projection carried horizontally to trace a si
   lesson, and a board can only show two or three frozen positions.
 - **Reference target:** ranked-list P1 #4 — the recommended first mathematics concept.
 
-### D — 3D vectors and their products **[LIVE — reuse, verified 2026-08-04]**
+### D — 3D vectors and their products **[NEEDS-SCENARIO — `vector_geometry_3d`]**
 Two vectors in space, the angle between them, the cross product perpendicular to their plane, the
 parallelogram whose area it measures.
-- **Maps to:** `field_3d`. The machinery is already there for magnetism — 193 occurrences of
-  `crossProduct` / `PlaneGeometry` / `ArrowHelper` in `field_3d_renderer.ts`. Rule 40a sweep found
-  0 hits for `vectorTriad`, so nothing is being built twice, but **run the sweep again before adding
-  any mechanism** — the reuse is the point.
+- **⚠ RE-TIERED 2026-08-08 from `[LIVE — reuse, verified 2026-08-04]`.** That tag meant *somebody read
+  the renderer and saw vector-looking symbols in it* — **not** that a concept had ever been built on
+  it, and it is what scheduled this concept into a tier headed *"the cheapest available (no new
+  engine)"*. Measured against `field_3d_renderer.ts` @ `dfca9cf`: **60 distinct hard-coded
+  `scenario_type` names and not one generic two-vector scenario a JSON author can target**;
+  `parallelogram` **0**; `parallelepiped` **0**. **And the old reuse number was a composite of unlike
+  symbols:** the "193 occurrences of `crossProduct` / `PlaneGeometry` / `ArrowHelper`" is
+  `ArrowHelper` **205** + `PlaneGeometry` **10** + `crossProduct` **0** — *there is no symbol called
+  `crossProduct` in the file.* The archetype's arrow-drawing is genuinely reusable; its **wiring is
+  not**. Full survey: `docs/MATHEMATICS_PHASE0_VECTORS_3D.md`.
+- **Maps to:** `field_3d`, via a NEW `scenario_type` (`vector_geometry_3d`, `mode: "products"`),
+  planned as dispatches VG-A/VG-B. Not buildable until it lands on master.
+- **Free already, do not rebuild:** per-state `camera_position` with eased transition
+  (`applyState:67195`, ungated), `ArrowHelper`, `applyGlowEmphasis`, `show_sliders`/`visible_controls`,
+  the Rule-39f ⚙ widget auto-discovery.
 - **Serves:** dot & cross product, vector projection, the scalar triple product as a volume.
+- **The camera is the real cost, and it is solved — carry it, do not re-derive it.** No fixed pose
+  works: `b` goes screen-collinear with `a×b` at exactly θ ≡ camera azimuth (mod 180°), and an
+  exhaustive az × el search found **zero** feasible fixed poses. See the invariant under E.
 
-### E — Lines and planes in space **[LIVE — reuse]**
+### E — Lines and planes in space **[NEEDS-SCENARIO — shares D's purchase]**
 A line through a point in a direction; a plane by point + normal; their intersection, the angle
 between them, the shortest distance between skew lines.
-- **Maps to:** `field_3d`, same machinery as D. Camera work is the real cost — a solved home pose per
-  state, per the hybridisation lesson (an unsolved camera foreshortened an sp³ lobe to *exactly*
-  0.000 under a caption counting four).
+- **⚠ RE-TIERED 2026-08-08 from `[LIVE — reuse]`,** same reason as D — proven by code-reading, never
+  wired end to end.
+- **Maps to:** the SAME new scenario as D (`vector_geometry_3d`, `mode: "lines_planes"`, dispatch
+  VG-C). **A plane patch *is* the parallelogram quad translated, and the common perpendicular of two
+  skew lines *is* `d₁ × d₂`** — which is why D and E are one engine purchase and must be surveyed
+  together.
+- **⚠ THE SKEW TRAP — an E-specific screen failure, and it has no in-plane remedy.** **Two skew lines
+  ALWAYS project to intersecting lines.** Projection preserves non-intersection no better than it
+  preserves perpendicularity, so the state whose entire lesson is *"these lines do not meet"* draws
+  them meeting, at a pixel where the 3D lines are far apart.
+- **THE SCREEN-TRUTH INVARIANT (governs D and E both, and any future 3D archetype):** *projection
+  preserves neither angle, nor collinearity, nor intersection.* Therefore (1) the camera is scored
+  **PAIRWISE** over every rendered pair, never per-object — a per-object foreshortening margin passes
+  **vacuously** on the real `b`/`a×b` collinearity; (2) the camera azimuth (mod 180°) stays outside
+  every angle range the state sweeps, and away from 0°/180°; (3) **every geometric claim —
+  perpendicular, parallel, zero, equal, non-intersecting — carries a NUMERIC readout computed in 3D**,
+  so the claim never rests on pixels. Related OPEN scar:
+  `camera_metric_scored_foreshortening_not_pairwise_screen_separation`.
 - **Curriculum note (Rule 38f):** strong CBSE/JEE/IB-HL, **absent from AP and IGCSE**. Build it
   deliberately for that audience, never by momentum.
 
-### F — Sweep a region into a solid **[NEEDS-SCENARIO]**
+### F — Sweep a region into a solid **[NEEDS-SCENARIO — a SEPARATE purchase from D/E]**
 A plane region rotated about an axis, the solid sweeping out; disc and shell decomposition.
-- **Maps to:** `field_3d` with a new lathe/revolution scenario. `LatheGeometry` is standard Three.js,
-  so this is a case, not a file — but it is unbuilt and must not be scheduled before it lands.
+- **Maps to:** `field_3d` with a new revolution scenario. **`LatheGeometry` is NOT needed** — a disc
+  stack is `CylinderGeometry`, of which the renderer already has 106 uses.
+- **⚠ Measured OUT of D/E's purchase 2026-08-08, on two blockers, not on preference**
+  (`MATHEMATICS_PHASE0_VECTORS_3D.md` §ledger 1):
+  **(1) `field_3d` has ZERO expression evaluation** — no `safeEval`, no `*_expr`, no `new Function`;
+  all 60 scenarios compute geometry from numeric parameters in hard-coded JS. A solid of revolution
+  rotates an **authored** `y = f(x)`, so it needs either a **closed profile enum** (`line`,
+  `parabola`, `sqrt`, `sin`, `reciprocal`, `circle_arc` with numeric coefficients — the
+  `MG_MOLECULES` table pattern, cheap, and it covers every board's exercises) or a fleet-wide
+  evaluator (a Rule-40 platform change across all 60 scenarios).
+  **(2) It needs a ticked 2D coordinate frame beside the solid** so the region and the solid read
+  together under Rule 33 — and that is **`cartesian_plane` on `parametric_renderer.ts`**, just bought
+  across four dispatches. Rebuilding it inside `field_3d` is the exact duplicate Rule 40a exists to
+  catch.
+- Its overlap with D/E is the scenario shell only (5 of ~11 needs). **Schedule it as its own small
+  Phase 0**, never as a rider on D/E.
 
 ### G — Many trials at once **[NEEDS-SCENARIO]**
 A population of outcomes generated and binned live: a 1000-cell grid filling by category, a histogram

@@ -493,6 +493,67 @@ declared **now** so that if they are built later it is a scheduled decision, not
    and #3 use no `angle_arc` inside a plane — and the marginal cost when #11 is scheduled is a small
    additive wiring into the existing `PM_planeResolve` funnel, same shape as CP-A's four opt-ins.
    Founder-ruled 2026-08-06: record, do not build.
+8. **`drawVector`'s embedded label has no offset control** (found by `derivative_as_secant_limit`
+   Checkpoint B, 2026-08-07). A vector's label centres on the segment's exact pixel midpoint, which
+   is what forced S2's `run` label below the x-axis. A content fix exists (vacate the neighbouring
+   readout's offset), so this was recorded rather than bought. Recommended by founder_proxy as a
+   ledger entry, not a purchase.
+9. **`formula_box` cannot render a two-level operator** (`lim_{h→0}`, `Σ`, `∫` with bounds).
+   `drawFormulaBox` is single-baseline, and there is **no Unicode subscript arrow**, so
+   `lim` + subscript `h` + `→` + subscript `0` renders the arrow at main level between two
+   subscripts — three type sizes on one operator, invisible at 1× and obvious at 4×.
+   `derivative_as_secant_limit` works around it with an explicit `lim (x₀ + h/2) as h → 0`, which
+   reads correctly. **Not excluded permanently:** three of the four next ranked concepts
+   (`definite_integral_as_area`, `differential_equation_slope_fields`, any limits concept) need the
+   real glyph, so this is a scheduled purchase, not a decline.
+
+---
+
+### <a id="engine-rounds"></a>Engine rounds AFTER CP-A…CP-D — what the first two concepts actually cost
+
+Phase 0's alarm rule says a later concept forcing an engine edit means Phase 0 under-generalized.
+Three rounds landed on 2026-08-07/08 while building concepts #1 and #2. **None was a scope miss in the
+primitive family** — the compute layer was right. All three were in the *placement* layer, which CP-A…CP-D
+proved only at the compute level (§0c shipped "compute-layer proven only — no p5 draw code has executed").
+Recording them here so the next build treats placement as a first-class engine surface rather than an
+authoring chore.
+
+| round | PR | what it fixed |
+|---|---|---|
+| readout placement | **#46** | `secant_line`/`tangent_line` gained `readout.offset` parity with `plot_point` (no schema change — `scene_composition` primitives are an open `z.record`); a fixed 13px perpendicular default replaced by displacement along the line normal by the label's own **support function** using measured `textWidth()`, so clearance is a geometric guarantee at every slope rather than a constant that works at some angles |
+| observable + collision-aware | **#59** | `window.__pmDebug.readouts` exposes each readout's **final resolved** placement; the collision resolver wired at all three call sites (was `plot_point` only); obstacle set widened to gridline bands, sampled curve polylines, chord/tangent segments (24-subdivided — a single bbox around a frame-extended diagonal would blanket the viewport), marker dots and **sibling readouts' resolved boxes**; `PM_fmtNum` emits U+2212 (Rule 34c) |
+| candidate set | **#64** | the collision predicate no longer saturates on gridline ink, and a detected collision is answered by an ordered, fully-tested candidate walk with a least-overlap fallback instead of a single **blind full mirror** |
+
+**The lesson worth carrying, stated as a rule for the next engine build.** #59 widened the *obstacle
+set* without widening the *candidate set*. That converts a silent overlap into a detected-but-unavoidable
+one, which **looks identical on screen** — the concept still ships struck. Detection and escape are two
+capabilities and must be verified separately; a round that widens obstacles re-runs the placement sweep
+and asserts ZERO foreign ink, never merely that the predicate fired.
+
+**Why authoring paid for this three times.** Before #59 there was no way to *read* what the renderer
+actually drew: the old resolver mirrored an authored offset silently, so three shipped `_design_note`s
+described placements that never rendered, and each of three fix cycles moved a label and exposed a new
+collision. The durable fix was **observability first**, not better constants. Both concepts then had
+their hand-tuned offsets deleted (11 of 12, and 8 of 9) once the engine could place them.
+
+**One offset survives, and it is an open engine defect rather than a preference.**
+`graph_transformations` STATE_7 keeps its authored offset because `PM_planeCurveExpr`
+(`parametric_renderer.ts:3231`) is a **per-plane singleton** and a ghost-styled curve registers only if
+nothing has yet — so with two ghost curves `parent_ghost` wins and the tangent probe derives its slope
+from the *parent* while the point rides the *transform* curve (measured: 336px² mid-sweep vs 0px²
+elsewhere). Filed as
+`ghost_styled_curve_never_registers_so_the_tangent_default_probes_a_different_curve_than_the_point_rides`.
+**Delete that offset when the row closes** — otherwise it becomes a mystery constant nobody dares touch.
+
+**Still open on this engine** (all ride-along, none blocking, all founder-owned):
+plane gridlines draw **above** every canvas text overlay (73px pitch vs an 87px readout box — no
+placement can avoid it; needs a scrim or a text-above-grid pass, **never** a placement remedy) ·
+plane tick labels draw **before** curves (Pass 0.25 vs 0.3), so any curve crossing the axis buries the
+numbers — *this is why authors reached for `label` primitives to build an axis scale at all*, and it
+needs a founder re-baseline sweep · `label` primitives still have **zero** ink-collision awareness
+(readouts only) · the slider caption still emits an ASCII hyphen beside U+2212 on the same canvas ·
+the schema requires a non-empty `focal_primitive_id`, so an `interaction_complete` sandbox cannot
+reach the renderer's existing no-dim path.
 
 ---
 

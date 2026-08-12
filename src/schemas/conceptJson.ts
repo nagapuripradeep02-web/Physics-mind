@@ -74,7 +74,18 @@ const variableChoreographySchema = z.object({
 // CLAUDE.md rule 15: advance_mode must be specified per state. Never global.
 // Phase A (2026-04-19) tightening:
 //   - scene_composition: required, >= 3 primitives (rule 19)
-//   - focal_primitive_id: required, non-empty (Section 6)
+//   - focal_primitive_id: non-empty WHEN PRESENT, but OPTIONAL since 2026-08-09.
+//     It was required, which made "this state has no single focal" unauthorable:
+//     PM_focalEmphasis (parametric_renderer.ts ~:1016) means "no focal" only for a
+//     FALSY focalId, and no string is both Zod-valid (min(1)) and JS-falsy. Authors
+//     hit this and reached for a sentinel id instead; a truthy-but-unmatched id
+//     falls through to the dim branch and drops EVERY primitive to 0.6 with nothing
+//     glowing. definite_integral STATE_6 shipped exactly that ("__relation_no_single
+//     _focal__", 13/13 primitives dimmed) because three sampling rules are genuinely
+//     co-equal there, and an explore sandbox has no focal either. Omitting the key
+//     now yields undefined -> falsy -> NONE, the behaviour the renderer already had.
+//     Purely additive: all 976 states in the fleet author it today and still validate.
+//     Rule 32e is a CEILING of one focal, not a floor of one.
 // v2.2 additions (2026-05-04, optional for legacy v2.0 retrofit window):
 //   - misconception_watch: array of inline pre-emptive corrections
 // Curriculum-flex proof-run addition (2026-07-21, capacitance pilot,
@@ -88,7 +99,7 @@ const variableChoreographySchema = z.object({
 const stateSchema = z.object({
   title: z.string(),
   duration: z.number().optional(),
-  focal_primitive_id: z.string().min(1),
+  focal_primitive_id: z.string().min(1).optional(),
   advance_mode: z.enum([
     'auto_after_tts',
     'manual_click',

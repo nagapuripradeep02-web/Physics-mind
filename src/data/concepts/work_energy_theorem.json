@@ -1,0 +1,710 @@
+{
+  "concept_id": "work_energy_theorem",
+  "concept_name": "The Work–Energy Theorem — Wₙₑₜ = ΔK",
+  "chapter": 6,
+  "section": "6.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power, §6.2 Notions of work and kinetic energy: the work-energy theorem — table-of-contents scope only, teaching authored from first principles. The atomic concept: the NET work done on a body equals the change in its kinetic energy, W_net = ΔK = ½mv² − ½mv₀², and only that. Does NOT cover what work is or W = F·d·cos θ (work_done_by_constant_force); the sign taxonomy of work or net work as a signed sum (positive_negative_zero_work — assumed, not re-taught); what kinetic energy is (kinetic_energy_definition); whether a force's work depends on the path (conservative_vs_nonconservative_forces); potential energy of any kind; or where removed kinetic energy goes — heat, sound, the micro story (mechanical_energy_loss_with_friction) — or power. Boundary with kinetic_energy_definition enforced mechanically: this is the first concept in the fleet to author work bars and the K bar TOGETHER in one panel — every state authors both a non-empty energy_layer.bars (exactly [K]) and at least one work_accumulators entry, which is what makes the engine's own panel header read 'Energy and work bars' — kinetic_energy_definition said 'Energy bars', work_done_by_constant_force and positive_negative_zero_work said 'Work done'. Built on the newtons_laws_body field_3d engine with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md). S4 teaches from labelled points A and B (marker 'point', the SEAM-M teaching dwell): the scene's physics HOLDS 1.5-2 s on a stamped crossing so a teacher can read v, K and the work ledger before the motion resumes. S1-S3 deliberately carry their claims on the live bars alone — their truths are continuous (an equality at every frame, a decay that ends in a real stop, a constant), and a freeze would only sample what the bars already prove — so the point instrument appears exactly where the claim is a difference between two places (founder directive 2026-08-09).",
+
+  "prerequisites": [
+    "work_done_by_constant_force",
+    "positive_negative_zero_work",
+    "kinetic_energy_definition"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "Braking a moving vehicle. To stop, the brakes and the road must do negative net work exactly equal to the vehicle's kinetic energy — every joule of half m v squared must be matched by a joule of negative net work before the speed reaches zero. Twice the speed means four times the kinetic energy, so four times the net work to remove.",
+    "secondary": "Catching a ball. Your hands must do negative net work equal to the ball's kinetic energy. Moving your hands backward while catching spreads the same joules over a longer distance, so the force on your hands is smaller — same work, longer distance, smaller force."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m":    { "name": "cart mass", "unit": "kg", "min": 2, "max": 6, "default": 4, "step": 1 },
+      "F":    { "name": "applied pull, magnitude", "unit": "N", "min": 0, "max": 30, "default": 20, "step": 5 },
+      "v0":   { "name": "launch speed at the state's own start (signed)", "unit": "m/s", "min": 0, "max": 4, "default": 0, "step": 1 },
+      "v":    { "name": "speed", "unit": "m/s", "min": -5, "max": 5, "default": 0 },
+      "g":    { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "mu_k": { "name": "coefficient of kinetic friction (S2 fixed 0.1020408163 so f = 5.0 N exactly, S3 fixed 0.25; S5 the ONE live friction dial, FIX CYCLE 2)", "unit": "", "min": 0.2, "max": 0.5, "step": 0.1, "default": 0.3 },
+      "mu_s": { "name": "coefficient of static friction (always equal to that state's mu_k -- S2 0.102, S3 0.25, S5 0.3 -- never a live slider in this concept, FIX CYCLE 2 decision, see section 14)", "unit": "", "min": 0, "max": 1, "default": 0.3 },
+      "d":    { "name": "displacement from the state's own initial_position_m", "unit": "m", "min": 0, "max": 12, "default": 0 },
+      "K":    { "name": "kinetic energy", "unit": "J", "min": 0, "max": 340, "derived": "0.5 * m * v * v" }
+    },
+    "computed_outputs": {
+      "K_J":        { "formula": "0.5 * m * v * v" },
+      "net_J":      { "formula": "0.5 * m * v * v - 0.5 * m * v0 * v0" },
+      "pull_J":     { "formula": "F * d" },
+      "friction_J": { "formula": "-1 * mu_k * m * g * d" }
+    },
+    "formulas": {
+      "the_theorem":             "W_net = delta K = half m v^2 minus half m v0^2 -- the ONE idea this concept teaches (every state)",
+      "derivation_chain":        "W_net = m a d, and v^2 = v0^2 + 2 a d, therefore W_net = half m v^2 minus half m v0^2 -- the identity underlying the theorem",
+      "pull_work_constant_force":"W_pull = F d -- valid whenever F is a constant force; work is path-independent for a constant force, it depends only on net displacement (S4)",
+      "friction_work":           "W_friction = -mu_k * m * g * d -- valid because the cart never reverses direction while friction acts anywhere in this concept (S2, S3, S5), so d equals the distance actually slid",
+      "s3_exact_balance":        "F = mu_k * m * g = 0.25 * 5 * 9.8 = 12.25 N exactly, so a = 0 identically, so W_net = 0 identically (S3)"
+    },
+    "constraints": [
+      "W_net = delta K = half m v^2 minus half m v0^2 at every instant, in every state of this concept -- this is the theorem itself, not a special case",
+      "when exactly one force acts on the body, that force's own work equals the net work exactly (S1, S2, S4 -- each authors ONLY a net accumulator for this reason)",
+      "for a CONSTANT force, W = F times the net displacement, regardless of the path taken to get there (S4 -- work is path-independent for a constant force)",
+      "kinetic friction's work is never positive while the body slides, and holds at its last value once the body is at rest (S2, S3, S5)",
+      "kinetic energy K = half m v^2 is never negative; the net-work bar CAN be negative -- K and W_net are different kinds of quantity read on different instruments",
+      "g = 9.8 m/s^2 (constant, NLB_G); every surface in this concept is flat, so no angle enters any formula and gravity does identically zero work throughout",
+      "every guided run stays strictly inside the +/-6 m track, so the geometric bound clamp -- which would freeze the energy bars and raise PM_NLB_ENERGY_CLAMP -- is unreachable: the furthest any cart travels is S4's run-on past point B to s = +3.95 m, and S2 is the only state that comes to rest, doing so at s = +2.76 m"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "The work meter and the energy meter are the same meter, reading the same number.",
+    "visual_confirmation": "A crate pulled from rest by a steady 5 N force over 8.0 m: the net-work bar and the K bar always read the same number, frame by frame, reaching exactly 40.0 J by the loop end."
+  },
+
+  "entry_state_map": {
+    "foundational":       { "start": "STATE_1", "end": "STATE_3" },
+    "changing_direction": { "start": "STATE_4", "end": "STATE_4" }
+  },
+
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Net work equals the kinetic energy gained",
+        "duration": 24,
+        "focal_primitive_id": "wet_s1_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Two bars, one number",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "wet_s1_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a five newton pull acts on this crate, the only horizontal force, from rest on a frictionless floor — it covers 8.0 m in 4.0 s",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wet_s1_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the combined panel at the left edge shows the net-work bar and the K bar climbing together, both landing on exactly 40.0 J",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "wet_s1_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD's v row climbs from 0.00 to 4.00 m/s, and the formula surface reads Wₙₑₜ = ΔK",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A five newton pull is the only force here, so its work is the net work.", "text_hi": "यहाँ पाँच newton का pull ही अकेला force है, इसलिए इसका work ही net work है।", "glow": "nlb_arrow_cart_applied" },
+            { "id": "s1_2", "text_en": "The work bar climbs as the pull acts over distance, force times metres.", "text_hi": "Work bar उतना ही चढ़ता है जितनी दूरी तक pull काम करता है, force गुणा metres।", "glow": "energy_panel" },
+            { "id": "s1_3", "text_en": "The K bar reads the crate kinetic energy, the energy a moving body has.", "text_hi": "K bar crate की kinetic energy दिखाता है, वह energy जो एक चलती हुई body के पास होती है।", "glow": "energy_bar_K" },
+            { "id": "s1_4", "text_en": "Both bars always match, reaching forty joules each cycle.", "text_hi": "दोनों bars हमेशा बराबर रहते हैं, हर cycle में चालीस joules तक पहुँचते हैं।", "glow": "energy_panel" }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Negative net work removes kinetic energy",
+        "duration": 21,
+        "focal_primitive_id": "wet_s2_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "decay-to-rest",
+        "delta_cue": "Negative net work: K falls",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "id": "wet_s2_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the crate is already moving at four metres per second onto a rough floor, with no pull — only friction acts",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wet_s2_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the net bar dives below the zero line to −40.0 J as the K bar falls from 40.0 J to exactly 0.0 J",
+            "color": "#EF5350"
+          },
+          {
+            "id": "wet_s2_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the friction arrow vanishes once the crate stops, and the HUD's v row holds at 0.00 m/s",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The crate is already moving at four metres per second, and only friction acts.", "text_hi": "Crate पहले से ही चार metres per second की speed से चल रही है, और सिर्फ़ friction काम कर रही है।", "glow": "nlb_arrow_cart_friction" },
+            { "id": "s2_2", "text_en": "Friction points against the motion, so its work counts negative.", "text_hi": "Friction motion के खिलाफ point करती है, इसलिए इसका work negative गिना जाता है।", "glow": "energy_panel" },
+            { "id": "s2_3", "text_en": "The net bar dives below zero as the K bar falls toward zero.", "text_hi": "Net bar zero से नीचे गिरता है जैसे K bar भी zero की तरफ़ गिरता है।", "glow": "energy_bar_K" },
+            { "id": "s2_4", "text_en": "It stops: net holds at minus forty joules, kinetic energy zero.", "text_hi": "यह रुक जाती है: net minus चालीस joules पर रुकता है, kinetic energy zero।", "glow": "energy_panel" }
+          ]
+        }
+      },
+
+      "STATE_3": {
+        "title": "Only the net work changes kinetic energy",
+        "duration": 22,
+        "focal_primitive_id": "wet_s3_panel",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "Net zero: K constant",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "applied_work_vs_net_work",
+          "pulling_but_speed_constant",
+          "zero_net_work_while_moving"
+        ],
+        "scene_composition": [
+          {
+            "id": "wet_s3_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the pull and kinetic friction are authored exactly equal, 12.25 N each, so the crate coasts at a constant 2.0 m/s across 8.0 m",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wet_s3_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "three work bars run at once: the pull bar climbs to +98.0 J, the friction bar dives to −98.0 J, and the net bar sits parked on the zero line",
+            "color": "#FFD54F"
+          },
+          {
+            "id": "wet_s3_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the K bar holds flat at 10.0 J the whole loop while the d arrow grows, and the HUD's F and f rows both read 12.25 N",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The pull and friction are equal, twelve point two five newtons, and the crate coasts.", "text_hi": "Pull और friction बराबर हैं, बारह point two five newtons, और crate coast करती है।", "glow": "nlb_arrow_cart_applied" },
+            { "id": "s3_2", "text_en": "The pull bar climbs steadily, reaching ninety-eight joules by the loop's end.", "text_hi": "Pull का bar अट्ठानवे joules तक, हर loop के अंत में, लगातार चढ़ता है।", "glow": "energy_panel" },
+            { "id": "s3_3", "text_en": "Friction bar dives just as far, so the two always cancel to zero.", "text_hi": "Friction का bar भी उतना ही गिरता है, तो दोनों हमेशा cancel होकर zero बनाते हैं।", "glow": "energy_panel" },
+            { "id": "s3_4", "text_en": "Only the net counts: the K bar holds flat at ten joules.", "text_hi": "सिर्फ़ net गिनती में आता है: K bar दस joules पर flat रहता है।", "glow": "energy_bar_K" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The work done by the force you apply becomes kinetic energy",
+            "visual_counter": "The pull bar climbs to +98.0 J — the number the belief tracks — while the K bar holds 10.0 J without moving and the net bar sits on its zero line",
+            "one_line_fix": "Only the net work changes kinetic energy — add the works with their signs first."
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Change measured from the starting energy",
+        "duration": 24,
+        "focal_primitive_id": "wet_s4_panel",
+        "advance_mode": "manual_click",
+        "motion_archetype": "read-pair-hold",
+        "delta_cue": "Measured from the start",
+        "depth_ring": "extended",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "forgot_initial_kinetic_energy"
+        ],
+        "scene_composition": [
+          {
+            "id": "wet_s4_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "a 4 kg cart already moving forward at three metres a second through point A, pulled by a steady three newton force on a frictionless floor — 6.00 m from A to B, then 1.95 m of run-on before the loop resets",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wet_s4_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the net bar starts at 0.0 J at point A and climbs to +18.0 J at point B, while the K bar starts at 18.0 J (NOT zero) and climbs to 36.0 J — the two bars are never equal, which is the whole claim: net work is the DIFFERENCE, not the final reading",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "wet_s4_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD's v row climbs from 3.00 to 4.24 as the pull acts, and the formula surface reads ΔK = ½mv² − ½mv₀²",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The cart is already moving at point A: three metres a second, eighteen joules.", "text_hi": "Cart point A पर पहले से चल रही है: तीन metres per second, अट्ठारह joules।", "glow": "checkpoint_1" },
+            { "id": "s4_2", "text_en": "A three newton pull now acts along the six metres to point B.", "text_hi": "तीन newton का pull अब point B तक के छह metres पर काम करता है।", "glow": "nlb_arrow_cart_applied" },
+            { "id": "s4_3", "text_en": "At point B: four point two four metres a second, thirty-six joules.", "text_hi": "Point B पर: four point two four metres per second, छत्तीस joules।", "glow": "checkpoint_2" },
+            { "id": "s4_4", "text_en": "Net work reads eighteen — thirty-six minus eighteen, the change, not the final energy.", "text_hi": "Net work अट्ठारह पढ़ता है -- छत्तीस minus अट्ठारह, बदलाव, आखिरी energy नहीं।", "glow": "energy_bar_K" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Net work equals the final half m v squared",
+            "visual_counter": "The held point A stamp reads K = 18.0 J with net = 0.0 J, and the held point B stamp reads K = 36.0 J beside net = +18.0 J — on both held screens the two numbers differ, and 36.0 minus the starting 18.0 is exactly the 18.0 the net bar shows",
+            "one_line_fix": "W_net equals half m v squared minus half m v0 squared, the change, not the final value."
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "Explore: force, mass, speed and friction",
+        "duration": 0,
+        "focal_primitive_id": "wet_s5_panel",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change force, mass, speed, friction",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "wet_s5_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "three live sliders — force, mass and starting speed — drive the cart on a rough floor",
+            "color": "#FFF176"
+          },
+          {
+            "id": "wet_s5_panel",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the pull, friction and net work bars and the K meter re-derive every frame as the sliders move",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "wet_s5_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "dragging the crate repositions it and stops it — the honest way to park it and read K fresh",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Change the force, the mass, the starting speed, and the friction.", "text_hi": "Force, mass, starting speed, और friction बदलिए।", "glow": "nlb_body_cart" },
+            { "id": "s5_2", "text_en": "The energy scale is bigger here, because the numbers reach higher.", "text_hi": "यहाँ energy का scale बड़ा है, क्योंकि numbers ज़्यादा बड़े होते हैं।", "glow": "energy_panel" },
+            { "id": "s5_3", "text_en": "Watch the work bars and the K bar together.", "text_hi": "Work bars और K bar को साथ देखिए।", "glow": "energy_panel" },
+            { "id": "s5_4", "text_en": "The net bar always matches the change in K.", "text_hi": "Net bar हमेशा K में बदलाव से मिलता है।", "glow": "energy_bar_K" }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "delivery_cart_in_a_warehouse",
+      "type": "B",
+      "label": "A Delivery Cart Rolling Across a Warehouse Floor",
+      "physical_world": "A delivery cart is pulled from rest across a level warehouse floor. A second cart launched at speed slides to a stop under the floor's own friction, and a third is pulled at exactly the speed friction would otherwise remove.",
+      "same_physics": "Identical readings: the same net-work bar and K meter, the same lockstep climb from a steady pull, the same fall to exactly zero under friction alone, and the same net-zero hold when a pull exactly balances friction.",
+      "scene_hint": "Same single-body rig, same flat floor — only the labelled object changes from a cart to a delivery cart."
+    },
+    {
+      "variant_id": "hockey_puck_on_a_rink",
+      "type": "B",
+      "label": "A Hockey Puck Launched Across a Rink",
+      "physical_world": "A hockey puck is struck and slides across the ice under a steady push; a second puck launched with no push slides to a stop under the ice's own friction; a third turns around against a steady push and speeds back up.",
+      "same_physics": "Same theorem, same numbers: the puck's net-work bar and its K meter always read the same joules, signed the same way, through every turn.",
+      "scene_hint": "Same rig and physics — the cart is relabelled a puck, the floor becomes the rink."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state the work-energy theorem W_net = delta K = half m v squared minus half m v0 squared; compute the net work or the change in kinetic energy given the other; explain why the work done by one force is not automatically the net work when other forces also act; explain why a nonzero individual force's work can leave kinetic energy unchanged when it sums to zero with another force's work; correctly measure the change in kinetic energy from the STARTING value rather than treating net work as the final kinetic energy alone.",
+    "questions": [
+      {
+        "q_id": "q1_net_work_fills_k",
+        "stem": "A 5 kg crate starts from rest and a steady 10 N pull acts on it as the ONLY force, on a frictionless floor. After the crate has moved 4 m, what is the net work done on it, and what is its kinetic energy at that instant?",
+        "options": {
+          "A": "40.0 J net work; K = 40.0 J",
+          "B": "20.0 J net work; K = 40.0 J",
+          "C": "40.0 J net work; K = 20.0 J",
+          "D": "10.0 J net work; K = 40.0 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "halves F times d for no physical reason — an arithmetic slip, not a conceptual one, but a common one",
+          "C": "computes K by dropping the one-half factor (uses m v squared instead of half m v squared)",
+          "D": "confuses the force's own magnitude (10 N) with the work it does, ignoring the distance moved entirely"
+        },
+        "tested_idea": "the theorem itself, positive case: W_net = F*d and K = half m v^2 agree exactly",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A 4 kg block starts from rest and a steady 8 N force pushes it across a frictionless floor for 5 m. Find the net work done and the block's kinetic energy at that point."
+      },
+      {
+        "q_id": "q2_negative_net_removes_k",
+        "stem": "A 5 kg crate slides at 4 m/s onto a rough floor (mu = 0.4) with no applied force, and friction alone brings it to rest. What is the net work done by friction while the crate slides to a stop, and what is the crate's kinetic energy at the moment it stops?",
+        "options": {
+          "A": "−40.0 J; K = 0.0 J",
+          "B": "+40.0 J; K = 0.0 J",
+          "C": "−40.0 J; K = 40.0 J",
+          "D": "0 J; K = 0.0 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the sign, forgetting that a force opposing the motion does negative work even though it is a real, positive-magnitude force",
+          "C": "confuses the ORIGINAL kinetic energy with the CURRENT one, as if a body that once had speed keeps that energy after stopping",
+          "D": "believes work requires an applied push — misses that friction is itself a force doing (negative) work on the sliding body"
+        },
+        "tested_idea": "the theorem is signed: a force opposing the motion does negative net work, and K falls to exactly zero at rest",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A 2 kg puck slides at 6 m/s onto a rough patch (mu = 0.3) with no applied force and slides to a stop. Find the net work done by friction and the puck's final kinetic energy."
+      },
+      {
+        "q_id": "q3_only_net_counts",
+        "stem": "A 5 kg crate coasts at a constant 2.5 m/s while a 19.6 N pull exactly balances 19.6 N of kinetic friction. After the crate has travelled 5 m, what is the NET work done on it, and how has its kinetic energy changed?",
+        "options": {
+          "A": "Net work = 0 J; kinetic energy is unchanged",
+          "B": "Net work = 98.0 J (the pull's own work); kinetic energy increased by 98.0 J",
+          "C": "Net work = −98.0 J (friction's own work); kinetic energy decreased by 98.0 J",
+          "D": "Net work = 196.0 J (both forces added as sizes); kinetic energy increased sharply"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the concept's headline misconception: mistakes ONE force's own work (the pull's) for the NET work on the body",
+          "C": "mistakes the OTHER single force's work (friction's) for the net work, with the same underlying error as B",
+          "D": "adds the magnitudes of two opposing forces' work instead of summing them with their signs"
+        },
+        "tested_idea": "only the NET work changes kinetic energy; a force can do large real work while the net — and therefore K — does not move",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A 4 kg crate coasts at a constant 3 m/s while an 11.76 N pull exactly balances 11.76 N of kinetic friction over 6 m. What is the net work done, and how does the kinetic energy change?"
+      },
+      {
+        "q_id": "q4_change_not_total",
+        "stem": "A 4 kg cart is already moving at 3 m/s when a steady 3 N force begins to pull it forward on a frictionless floor. After 6 m its speed is 4.24 m/s and its kinetic energy is 36.0 J. What is the net work done on the cart over those 6 m?",
+        "options": {
+          "A": "+18.0 J",
+          "B": "+36.0 J",
+          "C": "+64.1 J",
+          "D": "−18.0 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the exact planted misconception: reports the FINAL kinetic energy itself as the net work, dropping the starting kinetic energy entirely",
+          "C": "adds the final and starting kinetic energies instead of subtracting them",
+          "D": "stops at the turn-around instant's net-work reading instead of continuing to the end of the described trip"
+        },
+        "tested_idea": "net work is the CHANGE in kinetic energy measured from the START, not the final kinetic energy alone, even when the starting kinetic energy is nonzero",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A 2 kg cart is already moving at 2 m/s when a steady 6 N force begins to pull it forward on a frictionless floor. After 2 m its speed is 4 m/s and its kinetic energy is 16.0 J. Find the net work done over those 2 m."
+      },
+      {
+        "q_id": "q5_pull_work_equals_delta_k",
+        "stem": "For the same 4 kg cart moving from point A to point B (6 m under the steady 3 N pull), compute the pull's own work using W = F·d, and compare it to the change in kinetic energy K_B − K_A. Do the two numbers agree?",
+        "options": {
+          "A": "Yes — both equal 18.0 J, because the pull is the only force acting, so its own work IS the net work",
+          "B": "No — F·d gives 18.0 J but K_B − K_A is 36.0 J, since the FINAL kinetic energy is what should be compared",
+          "C": "No — F·d gives 3.0 J, using the 1 m gap between the two dwell points instead of the full 6 m",
+          "D": "Yes, but only by coincidence — W = F·d does not generally equal the change in kinetic energy"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "compares the pull's work to the FINAL kinetic energy instead of the CHANGE — the same q4 trap, reached a different way",
+          "C": "uses the wrong displacement, mistaking a small on-screen distance for the actual 6 m travelled from A to B",
+          "D": "doubts the theorem's own generality — misses that W = Fd = ΔK is not a coincidence, it follows directly from F = ma and v² = v0² + 2ad"
+        },
+        "tested_idea": "the constant-force work formula W = F·d is not a separate fact from the theorem — for a single constant force it equals ΔK exactly",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A 3 kg cart pulled by a steady 4 N force moves 5 m on a frictionless floor. Compute the pull's work via F·d and check it against the cart's change in kinetic energy."
+      },
+      {
+        "q_id": "q6_sandbox_rest_case",
+        "stem": "In the sandbox, you set the pull below the force needed to overcome friction, so the crate stays at rest the whole time. Using the theorem W_net = delta K, what must the net work on the crate be, and why?",
+        "options": {
+          "A": "0 J, because the kinetic energy never changes from zero",
+          "B": "0 J, because no force is acting on the crate",
+          "C": "A large negative value, because friction is holding the crate back",
+          "D": "It cannot be determined without knowing the exact forces"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "denies that any force acts at all — the pull and static friction both act, they simply sum to zero",
+          "C": "mistakes ONE force's (friction's) work for the net work, the same error class as q3's headline misconception",
+          "D": "misses the theorem's own power: the net work is determined directly from the change in kinetic energy, with no need to know the individual forces at all"
+        },
+        "tested_idea": "the theorem transfers to any configuration, including one at rest: zero change in kinetic energy means exactly zero net work, regardless of how many individual forces are acting",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "In a similar sandbox, a small pull never overcomes static friction and a crate stays at rest for the whole run. What is the net work done on the crate?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_net_work_fills_k"],
+      "STATE_2": ["q2_negative_net_removes_k"],
+      "STATE_3": ["q3_only_net_counts"],
+      "STATE_4": ["q4_change_not_total", "q5_pull_work_equals_delta_k"],
+      "STATE_5": ["q6_sandbox_rest_case"]
+    },
+    "non_assessed_states": []
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.6 Work, Energy and Power — §6.2 Notions of work and kinetic energy: the work-energy theorem",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "full",
+        "syllabus_unit": "Topic 2.3 Work, energy and power — the work-energy theorem",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 Work, Energy and Power — the work-energy theorem, net work equals the change in kinetic energy",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — the work-energy theorem",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — the work-energy theorem, W_net = ΔK",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — the work-energy theorem, including measuring net work as a change from a nonzero starting kinetic energy",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — the work-energy theorem",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "F":    { "min": 0, "max": 30, "step": 5, "default": 20, "label": "F" },
+      "m":    { "min": 2, "max": 6, "step": 1, "default": 4, "label": "m" },
+      "v0":   { "min": 0, "max": 4, "step": 1, "default": 0, "label": "v₀" },
+      "mu_k": { "min": 0.2, "max": 0.5, "step": 0.1, "default": 0.3, "label": "μₖ" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A 5 kg cart accelerates from rest under a steady 5 N pull on a frictionless floor, covering 8.0 m in 4.0 s; the net-work bar and the K bar climb together, both landing on exactly 40.0 J — the equality holds at every frame, so nothing pauses here",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Two bars, one number",
+        "show_sliders": true,
+        "formula_overlay": "Wₙₑₜ = ΔK",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": 0, "m": 5, "F": 5, "mu_k": 0 },
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 5, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied"] }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 110, "precision": 1 },
+          "work_accumulators": [
+            { "force": "net", "label": "net", "body_id": "cart" }
+          ],
+          "work_scale_J": 55,
+          "loop_reset_ms": 4000,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_2": {
+        "label": "A 5 kg cart launched at 4 m/s onto a rough floor (f = 5.0 N) with no pull; it coasts exactly 8.0 m over 4.0 s while the net bar dives to −40.0 J and the K bar falls to exactly 0.0 J, then stands at rest for 1.3 s — the stop itself is the held beat, no marks needed",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Negative net work: K falls",
+        "eye_capture_ms": 4650,
+        "show_sliders": true,
+        "formula_overlay": "Wₙₑₜ = ΔK",
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "variable_overrides": { "v0": 4, "m": 5, "mu_k": 0.1 },
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4, "mu_s": 0.1, "mu_k": 0.1 }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["friction"] }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 110, "precision": 1 },
+          "work_accumulators": [
+            { "force": "net", "label": "net", "body_id": "cart" }
+          ],
+          "work_scale_J": 55,
+          "loop_reset_ms": 5300,
+          "readouts": ["f", "v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_3": {
+        "label": "A 5 kg cart coasts at a constant 2.0 m/s over 8.0 m in 4.0 s while a 12.25 N pull exactly balances 12.25 N of kinetic friction; the pull bar climbs to +98.0 J and the friction bar dives to −98.0 J while the net bar and the K bar (10.0 J) hold still — a flat bar says ALWAYS, so nothing pauses here",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Net zero: K constant",
+        "show_sliders": true,
+        "formula_overlay": "Wₙₑₜ = 0, ΔK = 0",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": 2, "m": 5, "F": 12.25, "mu_k": 0.25 },
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2, "mu_s": 0.25, "mu_k": 0.25, "applied_force": { "N": 12.25, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied", "friction"] }
+          ],
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "energy_layer": { "bars": ["K"], "bar_max_J": 55, "precision": 1 },
+          "work_accumulators": [
+            { "force": "applied", "label": "pull", "body_id": "cart" },
+            { "force": "friction", "label": "friction", "body_id": "cart" },
+            { "force": "net", "label": "net", "body_id": "cart" }
+          ],
+          "work_scale_J": 110,
+          "loop_reset_ms": 4000,
+          "readouts": ["v", "F_applied", "f"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_4": {
+        "label": "A 4 kg cart ALREADY MOVING at 3 m/s forward through point A under a steady 3 N pull, frictionless. It holds 1.5 s at point A to read the given (v = 3.00 m/s, K = 18.0 J, net = 0.0 J), accelerates 6.00 m to point B, and holds 2.0 s there (v = 4.24 m/s, K = 36.0 J, net = +18.0 J) — 36.0 − 18.0 = 18.0. The backward launch was REMOVED on founder directive: it was never load-bearing for the claim, only for motion variety, and its cost was a confusing reversal in a straightforward theorem state. What IS load-bearing is that K₀ ≠ 0 — with a cart starting from rest the misconception (net work = final K) accidentally gives the right answer and the state collapses into STATE_1",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Measured from the start",
+        "eye_capture_ms": 4150,
+        "show_sliders": true,
+        "formula_overlay": "Wₙₑₜ = ΔK = K − K₀",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "variable_overrides": { "v0": 3, "m": 4, "F": 3, "mu_k": 0 },
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -4.0, "initial_velocity_mps": 3, "applied_force": { "N": 3, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied"] }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 55, "precision": 1 },
+          "work_accumulators": [
+            { "force": "net", "label": "net", "body_id": "cart" }
+          ],
+          "work_scale_J": 40,
+          "checkpoints": [
+            { "s_m": -4.0, "label": "point A", "body_id": "cart", "capture": ["v", "K"], "capture_mode": "every", "marker": "point", "dwell_ms": 1500 },
+            { "s_m": 2.0, "label": "point B", "body_id": "cart", "capture": ["v", "K", "W"], "capture_mode": "every", "marker": "point", "dwell_ms": 2000 }
+          ],
+          "loop_reset_ms": 5600,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_5": {
+        "label": "Sandbox: force, mass and starting speed sliders drive the cart on a rough floor (μ = 0.3); the work bars (pull, friction, net) and the K meter track every choice live",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Change force, mass, speed, friction",
+        "show_sliders": true,
+        "formula_overlay": "Wₙₑₜ = ΔK",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "variable_overrides": { "v0": 0, "m": 4, "F": 20, "mu_k": 0.3 },
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "cart", "label": "m", "mass_kg": 4, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.3, "mu_k": 0.3, "applied_force": { "N": 20, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "cart", "show": ["applied", "friction"] }
+          ],
+          "displacement_vector": { "body_id": "cart", "label": "d", "show_value": true },
+          "energy_layer": { "bars": ["K"], "bar_max_J": 400, "precision": 1 },
+          "work_accumulators": [
+            { "force": "applied", "label": "pull", "body_id": "cart" },
+            { "force": "friction", "label": "friction", "body_id": "cart" },
+            { "force": "net", "label": "net", "body_id": "cart" }
+          ],
+          "work_scale_J": 400,
+          "readouts": ["F_applied", "f", "v"],
+          "controls_visible": ["F", "m", "v0", "mu_k"],
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}

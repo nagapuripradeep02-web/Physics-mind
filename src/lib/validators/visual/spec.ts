@@ -56,7 +56,7 @@ export type VisualCheckId =
     // Category G — Panel B practical understanding
     | 'G1' | 'G2' | 'G3' | 'G4' | 'G5' | 'G6'
     // Category H — Authoring hygiene (pixelGate / regressionGate)
-    | 'H1' | 'H2' | 'H3'
+    | 'H1' | 'H2' | 'H3' | 'H4'
     // Category I — TTS–visual semantic sync
     | 'I1' | 'I2';
 
@@ -418,6 +418,12 @@ export const VISUAL_CHECKS: Record<VisualCheckId, VisualCheckSpec> = {
     H3: {
         id: 'H3', category: 'H', name: 'Render console errors',
         passCriterion: 'The page (wrapper + sim iframes) emitted zero console.error output and zero uncaught exceptions during capture. Catches render crashes, dead-slider handler throws, and CDN-load failures at the root instead of via downstream pixel symptoms. Collected by page.on(console/pageerror) in screenshotter.ts, attributed to the state being driven.',
+        bugClass: 'RENDER_CONSOLE_ERROR',
+        validationMethod: 'dom',
+    },
+    H4: {
+        id: 'H4', category: 'H', name: 'Renderer self-diagnostics',
+        passCriterion: 'Zero unallow-listed [PM_*] renderer self-diagnostics during capture. Renderers emit uniquely-prefixed console.warn output precisely so a misbehaving state fails LOUDLY — [PM_NLB_ENERGY_CLAMP] means a body hit a track bound and the energy bars are FROZEN at their last pre-clamp values; [PM_NLB_ENERGY_SCALE] means a work ledger overflowed its authored work_scale_J and the bar has stopped being readable as a magnitude. Captured into diagnostic_warnings since the PR-#52 capture fix; this check is the consumer that makes the channel a gate rather than a log.',
         bugClass: 'RENDER_CONSOLE_ERROR',
         validationMethod: 'dom',
     },
