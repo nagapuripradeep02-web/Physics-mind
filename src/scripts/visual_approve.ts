@@ -18,7 +18,7 @@
 
 // MUST be the first import.
 import '@/lib/loadEnvLocal';
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import {
@@ -94,6 +94,25 @@ async function main(): Promise<void> {
         }
     }
 
+    // PRUNE — this step OWNS the baseline directory, so it must own the whole
+    // directory: write the current set AND delete anything no longer in it.
+    // Without this, deleting a state leaves its approved PNGs behind forever;
+    // the manifest stops referencing them so H2 never compares them and NOTHING
+    // FAILS, and git carries pixels of a state the product does not have.
+    // (work_energy_theorem 6→5 states left STATE_6.png + STATE_6__frozen.png;
+    // found by hand, 2026-08-09.) The failure is invisible in exactly the case
+    // that creates it, which is why the delete pass has to be automatic.
+    const expected = new Set<string>(['baselines.json']);
+    for (const stateId of Object.keys(states)) {
+        expected.add(`${stateId}.png`);
+        if (states[stateId].compare_frozen) expected.add(`${stateId}__frozen.png`);
+    }
+    const orphans = readdirSync(baselineDir).filter(f => !expected.has(f));
+    for (const f of orphans) {
+        rmSync(join(baselineDir, f), { force: true });
+        console.log(`   ✂ removed ${f} — no longer a state of this concept`);
+    }
+
     const manifest: BaselineManifest = {
         approved_at: new Date().toISOString(),
         source_run: runDir,
@@ -104,7 +123,7 @@ async function main(): Promise<void> {
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
     console.log(`\n   Manifest: ${manifestPath}`);
-    console.log(`\n✅ ${statePngs.length} baselines approved. Remember: git add visual_baselines/${conceptId}\n`);
+    console.log(`\n✅ ${statePngs.length} baselines approved${orphans.length > 0 ? `, ${orphans.length} orphan(s) pruned` : ''}. Remember: git add visual_baselines/${conceptId}\n`);
 }
 
 main().catch(err => {

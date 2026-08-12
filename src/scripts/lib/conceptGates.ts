@@ -39,6 +39,18 @@ export interface Primitive {
     duration_ms?: number;
     delay_sec?: number;
     duration_sec?: number;
+    // riemann_bars publish fields (drawRiemannBars, parametric_renderer.ts) —
+    // write into the frame-scoped PM_riemannPublish map, the SAME expression
+    // scope PM_sliderValues writes teacher-control values into. See
+    // renderScopeCollisionWarnings below.
+    sum_var?: string;
+    bars_drawn_var?: string;
+    // slider / plot_point control fields — the scope KEY a teacher drag
+    // writes to (PM_sliderValues[spec.variable] / PM_sliderValues[spec.drag.
+    // bind_variable]), not spec.label (display text only, never read back
+    // into the expression scope).
+    variable?: string;
+    drag?: { bind_variable?: string };
 }
 
 export interface StateShape {
@@ -98,6 +110,102 @@ export function indicatorBindingErrors(data: unknown, file: string): string[] {
         }
     }
     return errors;
+}
+
+// ── Warn: animate_in_ms is silently dead config on an appear_at_ms<=0
+// primitive (engine_bug_queue: pcpl_animate_in_ms_is_silently_dead_config_on_
+// an_appear_at_ms_zero_primitive, founder_proxy Checkpoint B cycle 3 on
+// definite_integral_as_accumulated_area, 2026-08-09). PM_animationGate's own
+// opening-picture early return (Rule 37 GAP part b, added the SAME round to
+// fix a real blank-on-entry defect and must NOT be reverted) resolves ANY
+// primitive with appear_at_ms<=0 — the field defaults to 0 when absent — to
+// { visible:true, alpha:1 } BEFORE the (elapsed-appearAt)/animMs ramp is ever
+// reached. Correct rendering behaviour; but it means animate_in_ms authored
+// alongside such a primitive is schema-legal and renderer-inert: the fade
+// never plays, for as long as appear_at_ms stays <=0. An author reading the
+// JSON sees a duration that looks like it will run and will reasonably tune
+// it. WARN-only, deliberately NOT a hard fail — this is authoring hygiene
+// (a number that does nothing), not a rendering defect, and several already-
+// shipped/baseline-locked concepts carry it today (measured below).
+export function animateInDeadConfigWarnings(data: unknown, file: string): string[] {
+    const warnings: string[] = [];
+    for (const [stateId, state] of Object.entries(statesOf(data))) {
+        for (const p of state.scene_composition ?? []) {
+            if (!p || typeof p !== 'object') continue;
+            const animMs = p.animate_in_ms;
+            if (typeof animMs !== 'number' || animMs <= 0) continue;
+            const appearAt = typeof p.appear_at_ms === 'number' ? p.appear_at_ms : 0;
+            if (appearAt > 0) continue;
+            const label = p.id ?? p.type ?? '(unlabelled)';
+            const appearDesc = p.appear_at_ms == null ? 'appear_at_ms absent (defaults to 0)' : `appear_at_ms=${p.appear_at_ms}`;
+            warnings.push(
+                `${file} ${stateId}: primitive#${label} declares animate_in_ms=${animMs} with ` +
+                `${appearDesc} — PM_animationGate's opening-picture early return ` +
+                `(appear_at_ms<=0) resolves this to alpha=1 immediately; the fade never plays. ` +
+                `Either delete animate_in_ms or move appear_at_ms > 0.`,
+            );
+        }
+    }
+    return warnings;
+}
+
+// ── Warn: a renderer-published scope name collides with a teacher-control
+// scope name (engine_bug_queue:
+// pcpl_renderer_output_variable_shares_its_name_with_a_teacher_control_in_
+// another_state, founder_proxy Checkpoint B cycle 3, 2026-08-09).
+// riemann_bars.sum_var / riemann_bars.bars_drawn_var (drawRiemannBars,
+// parametric_renderer.ts) publish into PM_riemannPublish, a frame-scoped map
+// merged LAST into the SAME expression scope PM_sliderValues writes teacher
+// slider/plot_point-drag values into (PM_liveExprVars / PM_liveVarsWithDerived).
+// Nothing stops an author from naming a renderer OUTPUT the same as a teacher
+// CONTROL used in a different state of the same concept — provenance then
+// rests on naming discipline alone, and the guided-state overlay gate that
+// currently protects every existing case (a state never both publishes AND
+// controls the same name) is a runtime accident, not a structural guarantee.
+// WARN-only, not a hard fail: renaming the colliding name lives in the
+// CONCEPT JSON, which this gate cannot fix for the author — a hard fail here
+// would break an already-approved, baseline-locked concept
+// (definite_integral_as_accumulated_area ships bars_drawn_var:'n' in
+// STATE_3/STATE_6 against STATE_8's slider variable:'n' today — verified live
+// as latent, never simultaneously active — see the engine_bug_queue row).
+// STATE_4 of the same concept models the safe spelling (bars_drawn_var:
+// 'n_drawn').
+export function renderScopeCollisionWarnings(data: unknown, file: string): string[] {
+    // name -> ["STATE_x scene_composition[id] (field)", ...]
+    const outputs = new Map<string, string[]>();
+    const controls = new Map<string, string[]>();
+    const record = (map: Map<string, string[]>, name: unknown, where: string) => {
+        if (typeof name !== 'string' || name.length === 0) return;
+        const list = map.get(name) ?? [];
+        list.push(where);
+        map.set(name, list);
+    };
+
+    for (const [stateId, state] of Object.entries(statesOf(data))) {
+        for (const p of state.scene_composition ?? []) {
+            if (!p || typeof p !== 'object') continue;
+            const label = p.id ?? p.type ?? '(unlabelled)';
+            record(outputs, p.sum_var, `${stateId}#${label}(sum_var)`);
+            record(outputs, p.bars_drawn_var, `${stateId}#${label}(bars_drawn_var)`);
+            if (p.type === 'slider') record(controls, p.variable, `${stateId}#${label}(slider.variable)`);
+            if (p.type === 'plot_point') {
+                record(controls, p.drag?.bind_variable, `${stateId}#${label}(plot_point.drag.bind_variable)`);
+            }
+        }
+    }
+
+    const warnings: string[] = [];
+    for (const [name, outWhere] of outputs) {
+        const ctrlWhere = controls.get(name);
+        if (!ctrlWhere) continue;
+        warnings.push(
+            `${file}: renderer-output scope name '${name}' (${outWhere.join(', ')}) collides with a ` +
+            `teacher-control scope name '${name}' (${ctrlWhere.join(', ')}) — both write PM_riemannPublish/` +
+            `PM_sliderValues['${name}'] into the SAME expression scope. Rename one (e.g. an 'out_' or ` +
+            `'_drawn' suffix on the renderer output, matching this concept's own STATE_4 convention).`,
+        );
+    }
+    return warnings;
 }
 
 // Choreography end = max over every timing field on the state's primitives

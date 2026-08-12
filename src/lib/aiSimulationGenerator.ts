@@ -2845,7 +2845,15 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     uniform_circular_motion:        "field_3d",   // RETROFIT 2026-08-01 — force_rig Branch B (whirl): T = m omega^2 r on a flat orbit, cut-the-string tangent departure (no outward force), then the conical pendulum's cos theta = g/(omega^2 L) and its omega_min existence boundary (was mechanics_2d)
     laws_of_motion_friction:        "mechanics_2d",
     laws_of_motion_atwood:          "mechanics_2d",
-    work_energy_theorem:            "mechanics_2d",
+    // work_energy_theorem was here as a RETIRED mechanics_2d entry — no
+    // concept JSON, absent from VALID_CONCEPT_IDS and CONCEPT_PANEL_MAP,
+    // i.e. never a live product concept. Removed 2026-08-05 because the
+    // Class 11 Ch.6 work-energy build claims the id for a real field_3d
+    // concept (#4), and a duplicate key in this literal is a TS1117 error.
+    // The live entry is registered below, in the Ch.6 Work, Energy and
+    // Power cluster. The vestigial MECHANICS_SCENARIO_MAP entry
+    // (work_energy_theorem: "work_energy") is a DIFFERENT object and is
+    // left alone (mirrors the rolling_on_incline precedent, 2026-08-04).
     conservation_of_momentum:       "mechanics_2d",
     simple_pendulum:                "mechanics_2d",
     spring_mass_system:             "mechanics_2d",
@@ -3031,6 +3039,43 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // the along-motion component. Pure configuration, zero renderer edits
     // (0d). Alex pipeline, 2026-08-01.
     work_done_by_constant_force:    "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #2 — same newtons_laws_body +
+    // SEAM K/L/M/N energy layer, opening the F_ang regime #1 ceded (0…180°
+    // vs #1's 0…85°). The work done by a force carries a SIGN, set by the
+    // angle between the force and the displacement: positive along the
+    // motion, zero at 90° (the normal force, acting the whole way and doing
+    // nothing), negative against the motion (friction), and net work is the
+    // signed sum. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-02.
+    positive_negative_zero_work:    "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #3 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author the SEAM L energy_layer (the
+    // K bar). Kinetic energy K = ½mv²: proportional to the mass, proportional
+    // to the SQUARE of the speed, never negative, and exactly zero at rest.
+    // Authors ZERO work_accumulators — the mechanically-greppable boundary with
+    // work_energy_theorem (#4). Pure configuration, zero renderer edits (0d).
+    // Alex pipeline, 2026-08-02.
+    kinetic_energy_definition:      "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #5 — same newtons_laws_body engine,
+    // exercising the round-trip checkpoint latch (a flag seeded exactly at the
+    // home pose adopts side without firing, then fires once on the return
+    // crossing) alongside 'every' pass-1/pass-2 interior stamps. A force is
+    // conservative when its total work around any closed path is zero
+    // (gravity); friction is non-conservative because it always opposes the
+    // motion, so a round trip adds its losses instead of cancelling them.
+    // Pure configuration, zero renderer edits (0d). Alex pipeline, 2026-08-07.
+    conservative_vs_nonconservative_forces: "field_3d",
+    // Class 11 Ch.6 Work, Energy and Power #4 — same newtons_laws_body
+    // engine, and the FIRST concept in the fleet to author BOTH the SEAM L
+    // energy_layer AND SEAM M work_accumulators together — the engine's own
+    // panel header reads "Energy and work bars" (kinetic_energy_definition
+    // said "Energy bars"; #1/#2 said "Work done"). The net work done on a
+    // body equals the change in its kinetic energy, W_net = ΔK = ½mv² −
+    // ½mv₀². Pure configuration, zero renderer edits (0d). NOTE: this id
+    // collides with a legacy, never-registered mechanics_2d entry of the
+    // same name — that dead entry was removed above (2026-08-05, mirrors
+    // the rolling_on_incline precedent). Alex pipeline, 2026-08-05.
+    work_energy_theorem:            "field_3d",
     // ── Class 11 Ch.7 Systems of Particles & Rotational Motion (rotmech) ──
     // PRE-REGISTERED 2026-08-04 ahead of the Phase-0d authoring wave so the
     // five parallel desks never edit this file (docs/loop_runs/rotmech/).

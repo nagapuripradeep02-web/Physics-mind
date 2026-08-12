@@ -449,6 +449,7 @@ function setup() {
 
   rebuildScene();
   buildOverlayUI();
+  gasKinBuildNewRunButton();   // piece G (GAS_BOX_KINETICS_INSTRUMENT_SPEC.md §5b) — no-op outside gasMode()
   applyStateVisuals();
 
   window.PM_simTimeMs = 0;
@@ -531,9 +532,28 @@ function rebuildFieldArrows() {
 
 // ─── Home pose + state entry (Rule 32d: same seed every state) ──────────────
 function resetToHomePose() {
-  rebuildScene();
+  // Zero the clock BEFORE rebuildScene(), not after (fixed 2026-08-08 —
+  // engine_bug_queue gas_kinetics_phantom_samples). rebuildScene() -> gasInit()
+  // runs a 55-tick settle that calls gasSampleStats() -> gasSampleKinetics(),
+  // which stamps every sample with the CURRENT PM_simTimeMs. Zeroing the clock
+  // only after rebuildScene() returned meant those 55 samples carried the
+  // PREVIOUS state's stale clock value (whatever ms the teacher had reached
+  // before advancing) with fwd:0/rev:0 — phantom zero-rate points scattered at
+  // an arbitrary timestamp in the NEW state's own [0, window] fit range,
+  // corrupting gasKinFitWindow's least-squares slope. Measured on
+  // rate_law_and_order S2: the displayed ratio read x1.24 / x2.75 / x0.03 for
+  // previous-state dwell times of 1000 / 3500 / 4500 ms alone, with the state's
+  // own physics unchanged. gasTargetT()'s clock-ramped T_from branch already
+  // worked around this exact hazard by reading st.T_from directly instead of
+  // calling through the clock (see the comment in gasInit); the new kinetics
+  // buffer had no such guard. Reordering fixes it at the root for every future
+  // consumer, not just this one: gasSampleComposition's frame%6 subsampler and
+  // gasActivationE's cue-ramp branch are the only other PM_simTimeMs reads
+  // reachable during the settle, and both degrade to their safe t=0 default
+  // (no special-cased "mid-ramp" value) rather than to a wrong one.
   PM_simTimeMs = 0;
   window.PM_simTimeMs = 0;
+  rebuildScene();
   cueFiredAt = {};
   userTouched = {};             // each state re-runs its deterministic auto-sweep (THE EYE reproducibility)
   heatAccumulator = 0;
@@ -597,7 +617,15 @@ var PF_WG_FLAGS = [
   { key: 'gas_k_ratio', flag: 'show_k_ratio', label: 'Equilibrium constant K' },
   // collision-theory layer (2026-07-29)
   { key: 'gas_arrhenius', flag: 'show_arrhenius_plot', label: 'Arrhenius plot' },
-  { key: 'gas_profile', flag: 'show_reaction_profile', label: 'Energy hill' }
+  { key: 'gas_profile', flag: 'show_reaction_profile', label: 'Energy hill' },
+  // kinetics instrument (2026-08-07 — GAS_BOX_KINETICS_INSTRUMENT_SPEC.md §3;
+  // key names/labels for the first three are spec-literal, not surgeon-chosen)
+  { key: 'gas_kinetics_plot', flag: 'show_kinetics_plot', label: 'Kinetics plot' },
+  { key: 'gas_rate_constant', flag: 'show_rate_constant', label: 'Rate constant' },
+  { key: 'gas_counts_only', flag: 'show_species_counts_only', label: 'Particle counts' },
+  // Not named by the spec (piece G has no declared widget key) — added for
+  // Rule 39f house convention (every new overlay gets a ⚙ toggle).
+  { key: 'gas_kinetics_new_run', flag: 'show_kinetics_new_run', label: 'New run button' }
 ];
 function pfWgVis(key, stateWants) {
   var o = pfWidgetVis[key];
@@ -862,6 +890,16 @@ function fmtSliderValue(id) {
   var defs = sliderDefs();
   var d = (defs && defs[id]) ? defs[id] : {};
   var v = sliderVal(id);
+  // FIX C (2026-08-09, Rule 41 / engine_bug_queue gas_kinetics_ms_slider_
+  // shown_to_teacher): a slider authored in milliseconds is an authoring-side
+  // convenience (kinetics_mark_bind's t_lo/t_span read window position/half-
+  // width in ms, matching kinetics_marks' own t0_ms/t1_ms fields) -- the
+  // teacher must never see a bare "15000 ms" beside a graph axis and
+  // narration that both speak seconds (rate_of_reaction's Window position /
+  // Window half-width rows). Display-only: v itself (userParams[sid], what
+  // gasKinEffectiveMarks / sliderVal() read) stays in ms unconverted -- only
+  // the printed text switches to seconds.
+  if (d.unit === 'ms') return (v / 1000).toFixed(1) + ' s';
   var u = d.unit ? (' ' + d.unit) : '';
   return (Math.round(v * 100) / 100) + u;
 }
@@ -3437,6 +3475,35 @@ var gasArrPts = [];          // { invT, lnf } — one measured point per window
 var gasArrWinC = 0, gasArrWinS = 0, gasArrWinT = 0, gasArrWinN = 0;
 var gasArrAxis = null;       // { x0, x1, y0, y1 } solved once at state entry, so points move against a FIXED frame
 
+// KINETICS ACCUMULATOR (2026-08-07 — docs/GAS_BOX_KINETICS_INSTRUMENT_SPEC.md,
+// owner peter_parker:renderer_primitives). A SEPARATE buffer from gasConcTrace/
+// gasArrPts — neither is touched (ADD ONLY). Every mode and readout this
+// instrument draws (plot modes A/B, readouts D/E, piece F's marks) reads ONE
+// buffer, sampled in the PHYSICS step and keyed on PM_simTimeMs (never wall
+// frames — Rule 36), so SET_TIME_FREEZE re-simulation reproduces every point.
+var gasKinBuf = [];          // { t, counts:{spId:n,...}, fwd, rev } — one raw sample per tick; fwd/rev are the CUMULATIVE totals (gasRxFwdTotal/gasRxRevTotal), so a windowed least-squares slope of this is a rate regardless of any mid-state re-seed
+var gasKinBPts = [];         // { x, y } — mode B's windowed (quantity, rate) points, the gasArrPts pattern (§0 precedent)
+var gasKinBWinN = 0, gasKinBWinFwd0 = 0, gasKinBWinRev0 = 0, gasKinBWinT0 = 0;  // mode B's in-progress window accumulator
+var gasKinAxis = null;       // solved ONCE at state entry (§4.2), never rescaled: { mode:'A'|'B', x0,x1,y0,y1 }
+var gasKinReseedFired = false;  // one-shot guard for the authored kinetics_reseed_cue (mirrors gasInjFired)
+var gasKinPrevRunRate = null;   // piece G: the previous run's fitted rate, kept on screen after a manual re-seed
+var gasKinPrevRunArea = null;   // 2026-08-07 concentration-basis add-on: the mean live box area (gasBoxArea()) THAT RUN was fitted under, captured once at re-seed time — never re-read live, or a re-seed that also moves the piston would silently re-scale the OLD run's rate by the NEW area
+
+// REPEAT-RUN AVERAGING (2026-08-08 — engine_bug_queue gas_kinetics_single_run_
+// indistinguishable_ratio, opt-in via kinetics_repeat_runs). A single run's
+// window is Poisson-limited at the event counts this box can hold: measured
+// 10 seeds, rate_law_and_order S2's x2 ratio (doubling [A]) spanned 1.12-4.78,
+// indistinguishable from x1 at ANY single seed. The next rung a real chemist
+// takes is not a longer or reshaped instrument — it is repeating the
+// experiment and averaging (Poisson spread falls ~1/sqrt(R)). See
+// gasKinRepeatArm's header for the mechanism. gasKinRepeat is the ONE active
+// sequence (the 'open' and 'cue' slots run strictly one after another in
+// every authored use, never concurrently); gasKinRepeatDone remembers each
+// slot's finished mean so the 'open' slot's result survives the 'cue' slot
+// later overwriting gasKinRepeat itself.
+var gasKinRepeat = null;        // { slot, seriesSel, winMs, charge, R, done, ok, sum, areaSum, startedAt } | null
+var gasKinRepeatDone = { open: null, cue: null };   // slot -> { meanRate, meanArea, R } once its sequence finishes
+
 // ─── REACTION LAYER (A + B \\u21CC AB) — 2026-07-28 ──────────────────────────
 // Turns the box into a reacting mixture so equilibrium can be WATCHED rather
 // than asserted: two particles that meet hard enough stick together, a dimer
@@ -3489,7 +3556,17 @@ var gasHeatQ = 0;            // energy owed TO the gas (+) or BY it (-), px/tick
 var gasCountsBySp = [];      // live population per species index
 var gasConcTrace = [];       // rolling composition history for the concentration graph
 var gasRxSpA = -1, gasRxSpB = -1, gasRxSpAB = -1;
+// FIX B (2026-08-09, engine_bug_queue gas_kinetics_coincident_dash_
+// illegible_at_1x): the ONE dash pattern shared by every "second series
+// coincides with an earlier one, dash it so it can be read through" draw path
+// -- drawGasConcGraph (the shipped concentration graph, dynamic_equilibrium /
+// le_chateliers_principle) and drawGasKinModeA (the new kinetics plot). The
+// old [6,4] measured as a ~2px alternation, sub-pixel and unreadable at 1x on
+// a projector (only resolved under ~12x crop). Lengthened so a 50px run of
+// rendered line shows >=3 distinguishable same-colour segments of >=4px each.
+var GAS_COINCIDENT_DASH = [11, 7];
 var gasNPrev = -1;           // last N target seen (reaction mode: N is a delta control)
+var gasSpTapPrev = {};       // per-species reagent tap (nA/nB): last TARGET seen, keyed by species index — gasNPrev's per-species twin
 var gasInjFired = false;     // authored injection cue: one-shot per state entry
 var gasKWin = [];            // rolling window of the instantaneous K ratio
 var gasKMean = 0;            // what the K chip actually prints (windowed mean)
@@ -3497,7 +3574,12 @@ var gasRxRateMax = 1;        // per-state high-water rate — the bars' stable f
 
 function gasMode() { return !!(config && config.scenario_type === 'gas_box'); }
 function gasCfg() { return (config && config.gas) ? config.gas : {}; }
-function gasHasGraphPane() { return gasCfg().layout === 'with_graph'; }
+// gasHasGraphPane() (the layout:'with_graph' accessor) was DELETED 2026-08-07
+// (GAS_BOX_KINETICS_INSTRUMENT_SPEC.md §0 "also fix in passing"): it was dead
+// code — declared, never called — and the box has owned the full canvas since
+// the histogram became an inset (see gasBoxRFull() below). A defined-but-
+// uncalled accessor is a removed feature with a surviving name; deleting it
+// matches the type comment fix on gas.layout below.
 
 // ─── Box geometry (constant across states — Rule 32d home-pose continuity) ──
 function gasPad() { var b = gasCfg().box; return (b && typeof b.pad === 'number') ? b.pad : 44; }
@@ -3844,6 +3926,9 @@ function gasInit() {
   gasRxQueue = []; gasRxNew = []; gasHeatQ = 0; gasConcTrace = []; gasCountsBySp = [];
   gasKWin = []; gasKMean = 0;
   gasArrPts = []; gasArrWinC = 0; gasArrWinS = 0; gasArrWinT = 0; gasArrWinN = 0; gasArrAxis = null;
+  gasKinBuf = []; gasKinBPts = []; gasKinBWinN = 0; gasKinBWinFwd0 = 0; gasKinBWinRev0 = 0; gasKinBWinT0 = 0;
+  gasKinAxis = null; gasKinReseedFired = false; gasKinPrevRunRate = null; gasKinPrevRunArea = null;
+  gasKinRepeat = null; gasKinRepeatDone = { open: null, cue: null };
   gasSpecies = gasSpeciesList();
   gasRxResolveSpecies();
   var st = curState() || {};
@@ -3863,10 +3948,15 @@ function gasInit() {
   // the target and opens already hot, so the CAUSE is never seen and only the
   // effect (the shift) is left to watch — Rule 32a inverted on what is usually
   // the most important state in an equilibrium lesson.
-  // Read from the authored field DIRECTLY, never from gasTargetT(): gasInit
-  // runs inside rebuildScene(), which resetToHomePose() calls BEFORE it zeroes
-  // PM_simTimeMs, so the clock-ramped branch of gasTargetT() would be sampled
-  // at the PREVIOUS state's time here and open the box mid-ramp.
+  // Read from the authored field DIRECTLY, never from gasTargetT(): historically
+  // gasInit ran inside rebuildScene(), which resetToHomePose() called BEFORE
+  // zeroing PM_simTimeMs, so the clock-ramped branch of gasTargetT() would have
+  // sampled the PREVIOUS state's stale clock here and opened the box mid-ramp.
+  // resetToHomePose() now zeroes PM_simTimeMs before calling rebuildScene()
+  // (2026-08-08 fix — engine_bug_queue gas_kinetics_phantom_samples), so
+  // gasTargetT()'s ramp branch would read PM_simTimeMs=0 here too and already
+  // resolve to st.T_from — this direct read is kept anyway as the
+  // belt-and-braces form (independent of clock-zero ordering ever regressing).
   gasTempK = (typeof stP.T_from === 'number')
     ? constrain(stP.T_from, 1, 20000)
     : gasTargetT();
@@ -3947,8 +4037,29 @@ function gasInit() {
   gasRxFwdWin = []; gasRxRevWin = []; gasRxFwdRate = 0; gasRxRevRate = 0;
   gasRxRateMax = 1;
   gasNPrev = gasCount();
+  gasSpTapPrev = {};   // GAP 3: each state re-runs its deterministic opening — a fresh state must not carry a prior state's tap delta
   for (var pi = 0; pi < particles.length; pi++) particles[pi].rx = 0;
   gasSampleComposition();
+
+  // Repeat-run averaging, 'open' slot (kinetics_repeat_runs — see the header
+  // comment above gasKinRepeat's declaration). Targets the FIRST authored
+  // mark with no at_cue (piece F's own convention: an un-cued mark reads the
+  // state's own opening composition). Needs no initial reseed — this gasInit
+  // call already just placed a fresh random draw, so cycle 1 IS the first
+  // clean sample; PM_simTimeMs is guaranteed 0 here (resetToHomePose zeroes
+  // the clock before rebuildScene() -> gasInit(), fixed 2026-08-08), so
+  // "start now" and "start at t=0" are the same instant.
+  if (gasRxOn() && typeof st.kinetics_repeat_runs === 'number' && st.kinetics_repeat_runs > 1
+      && st.kinetics_marks && st.kinetics_marks.length) {
+    var openMark = null, omi;
+    for (omi = 0; omi < st.kinetics_marks.length; omi++) {
+      if (!st.kinetics_marks[omi].at_cue) { openMark = st.kinetics_marks[omi]; break; }
+    }
+    if (openMark) {
+      gasKinRepeatArm('open', 0, max(1, openMark.t1_ms - openMark.t0_ms),
+        openMark.series || gasSpecies[gasRxSpA].id, null, st.kinetics_repeat_runs, false);
+    }
+  }
 }
 
 // A finite random sample carries a small net momentum — left alone the whole
@@ -4048,8 +4159,43 @@ function stepGas(state) {
     // never dismantles a bonded pair to hit a number (the atom-inventory scar).
     else if (dn < 0) gasRxRemove(-dn);
   }
+  // Piece F (GAS_BOX_KINETICS_INSTRUMENT_SPEC.md §1/§4): a cue-driven mid-state
+  // re-seed — "two fresh runs, initial rates compared", the initial-rate method
+  // as chemistry actually performs it. One-shot per state entry, mirroring
+  // inject_cue exactly. gasKinReseed() never touches PM_simTimeMs or gasKinBuf,
+  // so kinetics_marks authored for run 2 (state-relative ms, after the cue)
+  // keep reading the same continuous buffer as run 1.
+  if (!gasKinReseedFired && state.kinetics_reseed_cue && cueFiredAt[state.kinetics_reseed_cue] !== undefined) {
+    gasKinReseedFired = true;
+    // kinetics_repeat_runs (2026-08-08, opt-in): the 'cue' slot's repeat
+    // sequence, sized off the SAME [t0_ms,t1_ms] span the author picked for
+    // the single-run mark, so adding this field to an existing state changes
+    // only how many times the measurement runs, never its window shape.
+    // Absent (or <=1), the exact single-shot reseed below is unchanged.
+    // Guarded on !gasKinRepeat: if the cue fires WHILE the 'open' slot's own
+    // repeat sequence is still mid-flight (the cue authored too early for the
+    // chosen R — R*winMs of 'open' measurement must elapse before this cue's
+    // at_ms), arming 'cue' would clobber the single gasKinRepeat slot and
+    // silently abandon 'open' with no result. Falling back to a plain
+    // single-shot reseed here is a visible authoring-timing bug (the ratio
+    // read will look like R=1 for this run) rather than a silent lost
+    // measurement — the correct fix is moving the cue's at_ms out past
+    // R*winMs, not a more clever concurrency scheme for two sequences that
+    // are supposed to be sequential by construction.
+    if (typeof state.kinetics_repeat_runs === 'number' && state.kinetics_repeat_runs > 1 && !gasKinRepeat) {
+      var cueMark = gasKinFindMarkByCue(state, state.kinetics_reseed_cue);
+      var cueWinMs = cueMark ? max(1, cueMark.t1_ms - cueMark.t0_ms)
+        : ((typeof state.kinetics_window_ms === 'number') ? state.kinetics_window_ms : 5000);
+      var cueSeries = (cueMark && cueMark.series) || state.kinetics_rate_series || 'fwd';
+      gasKinRepeatArm('cue', PM_simTimeMs, cueWinMs, cueSeries, state.kinetics_reseed_charge, state.kinetics_repeat_runs, true);
+    } else {
+      gasKinReseed(state.kinetics_reseed_charge);
+    }
+  }
+  gasKinRepeatStep();   // no-op unless an 'open' or 'cue' repeat sequence is active
 
   gasSyncCount();
+  gasSyncSpeciesTaps();          // GAP 3: per-species nA/nB reagent taps (independent of the bulk N path above)
   gasApplyHeat();                // reaction heat into the gas...
   gasThermostat(state);          // ...then the bath takes it back, unless adiabatic
   gasMovePiston();
@@ -4222,6 +4368,64 @@ function gasRxRemove(n) {
     }
     particles.splice(found, 1);
     removed++;
+    if (particles.length <= 2) break;
+  }
+}
+
+// GAP 3 (2026-08-07): per-species reagent taps — nA/nB drive ONE reactant's
+// population live, the SAME "a drag must change the gas NOW" delta-control
+// contract gasSyncCount() already runs for the bulk N slider (see its header
+// above), scoped to a single species so nA and nB act independently without
+// fighting gasSyncCount's own N path (rate_law_and_order declares no N
+// slider at all) or each other. The slider id is derived from the species id
+// ('n' + id), so 'A'/'B' produce exactly the authored 'nA'/'nB' widgets
+// without a second hardcoded name mapping to drift out of sync.
+function gasSpeciesTapSliderId(spIdx) {
+  return (spIdx >= 0 && gasSpecies[spIdx]) ? ('n' + gasSpecies[spIdx].id) : null;
+}
+function gasSpeciesTapSeized(spIdx) {
+  var sid = gasSpeciesTapSliderId(spIdx);
+  return !!(sid && hasSlider(sid) && userTouched[sid]);
+}
+function gasSpeciesTapVal(spIdx) {
+  return max(0, Math.round(sliderVal(gasSpeciesTapSliderId(spIdx))));
+}
+function gasSyncSpeciesTaps() {
+  if (!gasRxOn()) return;   // nA/nB name the two REACTANTS; meaningless without a resolved reaction
+  gasSyncSpeciesTap(gasRxSpA);
+  gasSyncSpeciesTap(gasRxSpB);
+}
+function gasSyncSpeciesTap(spIdx) {
+  if (spIdx < 0) return;
+  if (!gasSpeciesTapSeized(spIdx)) { gasSpTapPrev[spIdx] = -1; return; }   // unseized: the authored charge owns it untouched (Gap 3's 2nd assertion)
+  var want = gasSpeciesTapVal(spIdx);
+  // The FIRST seized tick's "prev" must be the species' ACTUAL live population
+  // (the reaction has been running since state entry, so the count has
+  // drifted from whatever it opened at), never a stale -1 sentinel — reading
+  // -1 here (gasNPrev's own "adopt without a jump" idiom) would silently
+  // memorize the target as already-reached and eat the entire first drag with
+  // no particles added, because gasSpTapPrev is reset to -1 on EVERY unseized
+  // tick above (unlike gasNPrev, which is set once at gasInit and never
+  // reset while unseized).
+  var prev = (gasSpTapPrev[spIdx] !== undefined && gasSpTapPrev[spIdx] >= 0) ? gasSpTapPrev[spIdx] : gasSpeciesLiveCount(spIdx);
+  gasSpTapPrev[spIdx] = want;
+  if (want === prev) return;
+  var delta = want - prev;
+  if (delta > 0) { gasAddParticles(particles.length, delta, gasSpecies[spIdx].id); return; }
+  gasRemoveOneSpecies(spIdx, -delta);
+}
+function gasSpeciesLiveCount(spIdx) {
+  var n = 0;
+  for (var i = 0; i < particles.length; i++) if (particles[i].sp === spIdx) n++;
+  return n;
+}
+// The per-species mirror of gasRxRemove's alternating A/B removal above — a
+// single reagent tap must deplete ONLY its own species, never the other
+// reactant (gasRxRemove's own precedent: never dismantle the product either).
+function gasRemoveOneSpecies(spIdx, n) {
+  var removed = 0;
+  for (var i = particles.length - 1; i >= 0 && removed < n; i--) {
+    if (particles[i].sp === spIdx) { particles.splice(i, 1); removed++; }
     if (particles.length <= 2) break;
   }
 }
@@ -4732,6 +4936,8 @@ function gasSampleStats() {
     for (var ki = 0; ki < gasKWin.length; ki++) ks += gasKWin[ki];
     gasKMean = gasKWin.length ? (ks / gasKWin.length) : 0;
   }
+
+  gasSampleKinetics();
 }
 
 // spIdx null = every particle; otherwise one species (the histogram's markers
@@ -5089,7 +5295,7 @@ function drawGasConcGraph(state) {
     // so drawn solid the second curve hides the first completely and a plot
     // promising three series shows two. Dashing the B curve lets the A curve
     // read through it wherever they coincide, without moving either value.
-    if (series[s].key === 'b' && drawingContext && drawingContext.setLineDash) drawingContext.setLineDash([6, 4]);
+    if (series[s].key === 'b' && drawingContext && drawingContext.setLineDash) drawingContext.setLineDash(GAS_COINCIDENT_DASH);
     beginShape();
     for (i = 0; i < gasConcTrace.length; i++) {
       var v = gasConcTrace[i][series[s].key];
@@ -5581,6 +5787,779 @@ function drawGasHistogram(state) {
   text('speed \\u2192', gx + gw, gy + gh + 30);
 }
 
+// ─── Kinetics instrument (2026-08-07) ──────────────────────────────────────
+// docs/GAS_BOX_KINETICS_INSTRUMENT_SPEC.md — the merged, binding spec that
+// resolved founder_proxy finding P-1 (two skeletons specifying one shared
+// engine mechanism two incompatible ways). Owner: peter_parker:renderer_
+// primitives. Builds: plot mode A (count_vs_time), plot mode B
+// (rate_vs_quantity), readout D (counts-only), readout E (rate-constant,
+// deliberately NOT drawGasKRatio — see that function's own header), piece F
+// (cue-driven re-seed + kept-chip comparison) and piece G (the teacher
+// "New run" control). Readout C (a rate-ratio chip pinned to an earlier
+// value) is WITHDRAWN per the spec — not built.
+//
+// ADD ONLY (§0 hard constraint): drawGasConcGraph / gasConcTrace /
+// show_concentration_graph are not read, called-into, or refactored by
+// anything below. This section extracts the PATTERN the Arrhenius instrument
+// established (a separate accumulator, an axis solved once, a least-squares
+// fit) — never the code.
+
+// A sample's value for a given series selector: a species id reads the raw
+// count; 'fwd'/'rev'/'net' read the CUMULATIVE event totals, so a windowed
+// least-squares slope of them is a rate — and, being cumulative, is immune to
+// any mid-state re-seed (piece F) touching particle positions but not these
+// running totals.
+function gasKinValueFor(entry, seriesSel) {
+  if (seriesSel === 'fwd') return entry.fwd;
+  if (seriesSel === 'rev') return entry.rev;
+  if (seriesSel === 'net') return entry.fwd - entry.rev;
+  return entry.counts[seriesSel] || 0;
+}
+
+// Sampled once per physics tick (gasSampleStats' own precedent — Rule 36:
+// keyed on PM_simTimeMs / the fixed step, never on wall frames or frameCount).
+// Gated off entirely unless THIS state actually authors a kinetics field, so
+// every existing gas_box concept (none of which authors any) pays nothing.
+function gasSampleKinetics() {
+  if (!gasRxOn()) return;
+  var st = curState();
+  if (!st) return;
+  var usesKin = st.show_kinetics_plot || st.show_rate_constant || (st.kinetics_marks && st.kinetics_marks.length);
+  if (!usesKin) return;
+
+  var counts = {}, i;
+  for (i = 0; i < gasSpecies.length; i++) counts[gasSpecies[i].id] = gasCountsBySp[i] || 0;
+  // area: the LIVE box area (gasBoxArea()) at THIS tick, carried per-sample so a
+  // fit window that straddles a piston stroke (or a mark fit entirely before/
+  // after one) can be converted to concentration basis using the area that was
+  // actually in effect over its own span, never a single render-time re-read.
+  gasKinBuf.push({ t: PM_simTimeMs, counts: counts, fwd: gasRxFwdTotal, rev: gasRxRevTotal, area: gasBoxArea() });
+  // Bounded to the widest span any mode on this state could need, with margin
+  // — never a small hard cap, or a window authored late in a long state would
+  // find its own data already evicted.
+  var spanMs = (typeof st.kinetics_span_ms === 'number') ? st.kinetics_span_ms : 30000;
+  var keepFrom = PM_simTimeMs - max(spanMs, 40000) - 3000;
+  while (gasKinBuf.length && gasKinBuf[0].t < keepFrom) gasKinBuf.shift();
+
+  // Mode B: a windowed (rate, quantity) point every kinetics_window_ms — the
+  // SAME structure as gasArrPts (§0's own cited precedent), so a state DRAWS
+  // the rate-law relationship instead of asserting it.
+  if ((st.kinetics_mode || 'count_vs_time') === 'rate_vs_quantity') {
+    var winMs = (typeof st.kinetics_window_ms === 'number') ? st.kinetics_window_ms : 5000;
+    if (gasKinBWinN === 0) { gasKinBWinFwd0 = gasRxFwdTotal; gasKinBWinRev0 = gasRxRevTotal; gasKinBWinT0 = PM_simTimeMs; }
+    gasKinBWinN++;
+    if ((PM_simTimeMs - gasKinBWinT0) >= winMs) {
+      var dFwd = gasRxFwdTotal - gasKinBWinFwd0, dRev = gasRxRevTotal - gasKinBWinRev0;
+      var secs = max((PM_simTimeMs - gasKinBWinT0) / 1000, 1e-6);
+      var series = st.kinetics_rate_series || 'fwd';
+      var rate = (series === 'rev') ? (dRev / secs) : (series === 'net') ? ((dFwd - dRev) / secs) : (dFwd / secs);
+      var src = st.kinetics_x_source || 'reactant_product';
+      var nA = gasCountsBySp[gasRxSpA] || 0, nB = gasCountsBySp[gasRxSpB] || 0, nAB = gasCountsBySp[gasRxSpAB] || 0;
+      var qty = (src === 'product_count') ? nAB : (nA * nB);
+      gasKinBPts.push({ x: qty, y: rate });
+      while (gasKinBPts.length > 60) gasKinBPts.shift();
+      gasKinBWinN = 0;
+    }
+  }
+}
+
+// §4.4: least squares over gasKinBuf samples within [t0,t1] — NEVER two-point
+// endpoint subtraction. Integer counts make endpoint subtraction garbage (the
+// same reasoning gasArrhFit's header states); this is the one fit function
+// mode A's window/tangent tool, readout E's k, and piece F's kept-chip
+// comparison all share, so a future reader cannot "simplify" one of them back
+// to endpoints without touching this comment.
+function gasKinFitWindow(seriesSel, t0, t1) {
+  var pts = [], i, e, areaSum = 0;
+  for (i = 0; i < gasKinBuf.length; i++) {
+    e = gasKinBuf[i];
+    if (e.t >= t0 && e.t <= t1) { pts.push({ t: e.t, v: gasKinValueFor(e, seriesSel) }); areaSum += (e.area || 0); }
+  }
+  var n = pts.length;
+  if (n < 2) return null;
+  var mx = 0, my = 0;
+  for (i = 0; i < n; i++) { mx += pts[i].t; my += pts[i].v; }
+  mx /= n; my /= n;
+  var sxy = 0, sxx = 0, dx, dy;
+  for (i = 0; i < n; i++) { dx = pts[i].t - mx; dy = pts[i].v - my; sxy += dx * dy; sxx += dx * dx; }
+  if (sxx <= 0) return null;
+  var slopePerMs = sxy / sxx;
+  var intercept = my - slopePerMs * mx;
+  return {
+    slopePerMs: slopePerMs,
+    n: n,
+    rateDiscsPerSec: slopePerMs * 1000,     // §4.5: discs/s, never a bare /s
+    // 2026-08-07: mean of the per-sample LIVE box area (gasBoxArea(), read at
+    // push time) over this exact window — the basis this fit's own span was
+    // measured under, not whatever the box measures NOW.
+    areaMean: n > 0 ? (areaSum / n) : 1,
+    valAt: function (t) { return intercept + slopePerMs * t; }
+  };
+}
+
+// 2026-08-07 (docs/GAS_BOX_KINETICS_INSTRUMENT_SPEC.md addendum — event-rate vs
+// concentration-rate). Total 2D hard-disc A-B collision rate goes as
+// N_A*N_B/Area (an EVENT-COUNT rate); the textbook rate law's d[A]/dt is a
+// CONCENTRATION rate, N_A*N_B/Area^2 -- one extra factor of Area, because
+// [A] = N_A/Area already carries the first. gasKinFitWindow's rateDiscsPerSec
+// is the former (a fitted dN/dt, count basis) — correct for every fixed-volume
+// state ever authored (the area is a constant that cancels out of any ratio
+// taken within that state, so 'count' stays the untouched default). Only a
+// state whose OWN beat changes the box volume (rate_law_and_order S4's piston
+// stroke, S11's live V slider) needs the concentration reading, so this is a
+// per-state opt-in, never a global switch.
+function gasKinRateBasis(state) {
+  return (state && state.kinetics_rate_basis === 'concentration') ? 'concentration' : 'count';
+}
+// Divides by the FIT'S OWN areaMean (see gasKinFitWindow above), never a
+// fresh gasBoxArea() re-read at display time — two marks either side of a
+// mid-state piston stroke must each convert against the area they were
+// actually measured under, or the ratio silently cancels back to count basis.
+function gasKinDisplayRate(fit, basis) {
+  if (!fit) return 0;
+  if (basis === 'concentration') return fit.rateDiscsPerSec / max(fit.areaMean || 1, 1e-9);
+  return fit.rateDiscsPerSec;
+}
+// Concentration-basis magnitudes are tiny (discs / px^2 / s) and carry no
+// discs/s meaning — printed with an explicit exponent and a unit that says
+// so, rather than borrowing the count-basis 'discs/s' label §4.5 reserves.
+function gasKinFormatRate(v, basis) {
+  return (basis === 'concentration') ? v.toExponential(2) : v.toFixed(2);
+}
+function gasKinRateUnit(basis) {
+  return (basis === 'concentration') ? 'discs/s/px²' : 'discs/s';
+}
+
+// GAP 1 (2026-08-07 — kinetics instrument review): the rate is DEFINED as
+// rate = −Δ[reactant]/Δt = +Δ[product]/Δt (the same
+// definition rate_of_reaction S3/S6 teaches on-canvas), never the raw fitted
+// slope — a consumed (falling) series has a negative raw slope by
+// construction, so printing it unsigned inverts the exact lesson S3 exists to
+// fix. The sign is resolved from the series' STOICHIOMETRIC ROLE, read off
+// the SAME gasRxSpA/gasRxSpB/gasRxSpAB the reaction engine already resolved
+// at setup — never an authorable flip a JSON could get backwards, so a
+// consumed series and a produced series can never disagree about the sign of
+// the SAME physical rate (S6's mirror-tangent claim). Event-total series
+// ('fwd'/'rev'/'net') are cumulative counts and already non-negative by
+// construction, so they pass through unsigned.
+function gasKinSeriesSign(seriesSel) {
+  if (seriesSel === 'fwd' || seriesSel === 'rev' || seriesSel === 'net') return 1;
+  if (!gasRxOn()) return 1;
+  var idx = gasSpIdxById(seriesSel);
+  if (idx < 0) return 1;
+  if (idx === gasRxSpAB) return 1;                       // product: rate = +d[P]/dt
+  if (idx === gasRxSpA || idx === gasRxSpB) return -1;    // reactant: rate = -d[R]/dt
+  return 1;
+}
+
+// Mode B's origin-constrained fit (§4.4: "a least-squares fit constrained
+// through the origin"). No reactant, no rate — the fit is not allowed to
+// disagree with that by carrying an intercept.
+function gasKinFitOrigin() {
+  var n = gasKinBPts.length, i, sxy = 0, sxx = 0;
+  if (n < 2) return null;
+  for (i = 0; i < n; i++) { sxy += gasKinBPts[i].x * gasKinBPts[i].y; sxx += gasKinBPts[i].x * gasKinBPts[i].x; }
+  if (sxx <= 0) return null;
+  return { slope: sxy / sxx, n: n };
+}
+
+// §4.2: solved ONCE at state entry, never rescaled — a slope read off a
+// rescaling axis lies (the same reasoning gasArrhAxis's header states).
+function gasKinAxisSolve(state) {
+  if (gasKinAxis) return gasKinAxis;
+  var mode = state.kinetics_mode || 'count_vs_time';
+  if (mode === 'rate_vs_quantity') {
+    var xMax;
+    if (typeof state.kinetics_x_max === 'number') xMax = state.kinetics_x_max;
+    else {
+      // §3 gives kinetics_x_max no stated default — this concept picks the
+      // largest value the chosen quantity can plausibly reach from the
+      // opening composition, with headroom, so points move against a fixed
+      // frame rather than clipping. A documented decision, not a spec value.
+      var nA0 = gasCountsBySp[gasRxSpA] || 0, nB0 = gasCountsBySp[gasRxSpB] || 0;
+      var src = state.kinetics_x_source || 'reactant_product';
+      xMax = (src === 'product_count') ? max(nA0, nB0, 1) : max(nA0 * nB0, 1);
+      xMax *= 1.15;
+    }
+    // §3 gives mode B NO dedicated y-axis (rate) field at all — another
+    // documented decision: reuse kinetics_y_max for it when authored;
+    // otherwise take a ONE-TIME estimate from the already-settled state-entry
+    // rate (gasInit's 55-tick relax loop already called gasSampleStats — the
+    // same lazy-solve-once pattern gasArrhAxis uses), never re-read after this.
+    var yMax = (typeof state.kinetics_y_max === 'number') ? state.kinetics_y_max
+      : max(gasRxFwdRate, gasRxRevRate, 0.5) * 1.6;
+    gasKinAxis = { mode: 'B', x0: 0, x1: xMax, y0: 0, y1: max(yMax, 1e-6) };
+  } else {
+    var spanMs = (typeof state.kinetics_span_ms === 'number') ? state.kinetics_span_ms : 30000;
+    var yMax2 = (typeof state.kinetics_y_max === 'number') ? state.kinetics_y_max
+      : max(gasCountsBySp[gasRxSpA] || 0, gasCountsBySp[gasRxSpB] || 0, gasCountsBySp[gasRxSpAB] || 0, 1);
+    gasKinAxis = { mode: 'A', x0: 0, x1: spanMs, y0: 0, y1: max(yMax2, 1) };
+  }
+  return gasKinAxis;
+}
+
+// §2: ONE fixed home corner per CONCEPT (config level), for every state — no
+// side-flipping between states (Rule 32d). An absent/invalid corner is a
+// decision this spec explicitly refuses to hand to the renderer (P-1's whole
+// cause), so it warns loudly rather than guessing silently.
+function gasKinHomeCorner() {
+  var h = gasCfg().kinetics_home;
+  if (h === 'tl' || h === 'tr' || h === 'bl' || h === 'br') return h;
+  if (window.console) console.warn('[gas_box] gas.kinetics_home missing/invalid (' + h + ') \\u2014 a fixed corner must be authored; defaulting to tr');
+  return 'tr';
+}
+function gasKinPanelRect(gw, gh) {
+  var corner = gasKinHomeCorner();
+  var left = corner === 'tl' || corner === 'bl';
+  var top = corner === 'tl' || corner === 'tr';
+  var gx = left ? (gasBoxL() + 22) : (gasBoxRFull() - gw - 22);
+  var gy = top ? (gasBoxT() + 22) : (gasBoxB() - gh - 46);
+  // Slider dodge, MEASURED (the #pm-sliders precedent at :5396-5404) — not
+  // assumed. Standing scar inset_relocation_fix_not_extended_to_a_later_inset:
+  // with a THIRD inset now possible, "opposite the other one" is not a
+  // position, so this resolves against the panel's actual rectangle.
+  var slEl = document.getElementById('pm-sliders');
+  if (top && slEl && slEl.style.display !== 'none' && slEl.offsetHeight) {
+    var slBottom = (slEl.offsetTop || 0) + slEl.offsetHeight + 16;
+    if (slBottom > gy) gy = slBottom;
+  }
+  return { gx: gx, gy: gy };
+}
+
+function drawGasKineticsPanel(state) {
+  if (!gasRxOn()) return;
+  var gw = floor((gasBoxRFull() - gasBoxL()) * 0.40), gh = floor((gasBoxB() - gasBoxT()) * 0.50);
+  if (gw < 90) return;
+  var home = gasKinPanelRect(gw, gh);
+  var gx = home.gx, gy = home.gy;
+  var dim = dimFor('kinetics_plot');
+
+  // Opaque backing (drawGasArrhenius' own rationale, §2: a mostly-empty plot
+  // lets drifting discs read as dirt through a translucent panel). Extra
+  // bottom margin over the Arrhenius inset's own +46, to hold piece F's
+  // stacked mark-chip rows.
+  noStroke(); fill(8, 10, 22, 255);
+  rect(gx - 10, gy - 10, gw + 20, gh + 74, 6);
+  noFill(); strokeHex('#334155', 0.9 * dim); strokeWeight(1);
+  rect(gx - 10, gy - 10, gw + 20, gh + 74, 6);
+
+  var mode = state.kinetics_mode || 'count_vs_time';
+  if (mode === 'rate_vs_quantity') drawGasKinModeB(state, gx, gy, gw, gh, dim);
+  else drawGasKinModeA(state, gx, gy, gw, gh, dim);
+}
+
+function drawGasKinModeA(state, gx, gy, gw, gh, dim) {
+  var ax = gasKinAxisSolve(state);
+  var seriesIds = (state.kinetics_series && state.kinetics_series.length) ? state.kinetics_series
+    : [gasSpecies[gasRxSpA].id, gasSpecies[gasRxSpB].id, gasSpecies[gasRxSpAB].id];
+  var px = function (t) { return gx + constrain(t / max(ax.x1, 1e-9), 0, 1) * gw; };
+  var py = function (v) { return gy + gh - constrain(v / max(ax.y1, 1e-9), 0, 1) * gh; };
+
+  strokeHex('#475569', 0.9 * dim); strokeWeight(1);
+  line(gx, gy, gx, gy + gh); line(gx, gy + gh, gx + gw, gy + gh);
+
+  var i, s, sIdx, dashed, e;
+  for (s = 0; s < seriesIds.length; s++) {
+    sIdx = gasSpIdxById(seriesIds[s]);
+    var col = (sIdx >= 0) ? gasSpecies[sIdx].color : '#94A3B8';
+    // FIX B (2026-08-09, engine_bug_queue gas_kinetics_wrong_series_dashed):
+    // was "s > 0" — "any series after the first" — which dashes the PRODUCT
+    // series too whenever kinetics_series is the default [A,B,AB] order. The
+    // product never coincides with anything (it rises while the reactants
+    // fall), so it read as the single most visibly dashed curve on screen
+    // while the genuinely-coincident B-over-A dash went unseen — confirmed
+    // against rendered rate_of_reaction S2 frames, and flagged (as believed-
+    // cosmetic) in that concept's own dashed_series_caveat. Dash ONLY the
+    // series that IS the second reactant (gasRxSpB) — the same convention
+    // drawGasConcGraph already uses (key === 'b', an identity check, never an
+    // index check) — and never the product, matching S2's own narration
+    // ("blue and pink ... one dashed to tell them apart").
+    dashed = gasRxOn() && sIdx === gasRxSpB;
+    noFill(); strokeHex(col, 0.95 * dim); strokeWeight(2);
+    if (dashed && drawingContext && drawingContext.setLineDash) drawingContext.setLineDash(GAS_COINCIDENT_DASH);
+    beginShape();
+    for (i = 0; i < gasKinBuf.length; i++) {
+      e = gasKinBuf[i];
+      if (e.t > ax.x1) break;
+      vertex(px(e.t), py(gasKinValueFor(e, seriesIds[s])));
+    }
+    endShape();
+    if (dashed && drawingContext && drawingContext.setLineDash) drawingContext.setLineDash([]);
+  }
+
+  noStroke(); textSize(9); textAlign(LEFT, TOP);
+  var lx = gx + 2;
+  for (s = 0; s < seriesIds.length; s++) {
+    sIdx = gasSpIdxById(seriesIds[s]);
+    var lab = (sIdx >= 0) ? (gasSpecies[sIdx].label || gasSpecies[sIdx].id) : seriesIds[s];
+    var lc = (sIdx >= 0) ? gasSpecies[sIdx].color : '#94A3B8';
+    fillHex(lc, 0.95 * dim); text(lab, lx, gy - 16); lx += 26;
+  }
+  fillHex('#94A3B8', 0.8 * dim); textAlign(RIGHT, TOP);
+  text(String(Math.round(ax.y1)), gx + gw - 2, gy - 16);
+  textAlign(LEFT, TOP);
+  noStroke(); fillHex('#CBD5E1', 0.85 * dim); textSize(10);
+  text('count', gx, gy - 4);
+  textAlign(RIGHT, TOP);
+  text(Math.round(ax.x1 / 1000) + ' s \\u2192', gx + gw, gy + gh + 4);
+  textAlign(LEFT, TOP);
+
+  drawGasKinMarks(state, gx, gy, gw, gh, dim, px, py);
+}
+
+function drawGasKinModeB(state, gx, gy, gw, gh, dim) {
+  var ax = gasKinAxisSolve(state);
+  var px = function (v) { return gx + constrain(v / max(ax.x1, 1e-9), 0, 1) * gw; };
+  var py = function (v) { return gy + gh - constrain(v / max(ax.y1, 1e-9), 0, 1) * gh; };
+
+  strokeHex('#475569', 0.9 * dim); strokeWeight(1);
+  line(gx, gy, gx, gy + gh); line(gx, gy + gh, gx + gw, gy + gh);
+
+  // the fitted line first, so measured points sit on top of it (the
+  // gasArrhFit convention — a point that misses is visibly a miss)
+  var fit = gasKinFitOrigin();
+  if (fit) {
+    strokeHex('#FBBF24', 0.85 * dim); strokeWeight(2);
+    line(px(0), py(0), px(ax.x1), py(constrain(fit.slope * ax.x1, ax.y0, ax.y1)));
+  }
+  noStroke(); fillHex('#7DD3FC', 0.95 * dim);
+  for (var i = 0; i < gasKinBPts.length; i++) circle(px(gasKinBPts[i].x), py(gasKinBPts[i].y), 5);
+
+  var src = state.kinetics_x_source || 'reactant_product';
+  fillHex('#CBD5E1', 0.85 * dim); textAlign(LEFT, TOP); textSize(10); noStroke();
+  text('rate (discs/s)', gx + 2, gy - 4);
+  textAlign(RIGHT, TOP);
+  text((src === 'product_count' ? '[AB] \\u2192' : '[A]\\u00D7[B] \\u2192'), gx + gw, gy + gh + 4);
+  textAlign(LEFT, TOP); textSize(12);
+  fillHex(fit ? '#FBBF24' : '#64748B', 0.95 * dim);
+  text(fit ? ('slope k = ' + fit.slope.toFixed(5)) : 'measuring\\u2026', gx + 2, gy + gh + 20);
+}
+
+// kinetics_mark_bind seizes the LAST mark's window once the teacher drags a
+// bound slider — the established drag-seize pattern (§4.6); rung 3 (no
+// slider touched) resolves to the AUTHORED mark, never live state.
+//
+// GAP 2 (2026-08-07): a TRUE centre-pinned symmetric resize, not the earlier
+// "position moves the left edge, span moves the right edge off a fixed
+// corner" — {span} changes the HALF-WIDTH about the window's CENTRE, {position}
+// moves the CENTRE keeping the width. The old semantics broke S5's own thesis
+// ("pin the centre, shrink the window, watch the number hold steady"):
+// dragging t_span alone used to slide the centre along with the right edge,
+// so the fitted number moved for a reason the state never shows. The
+// authored centre/half-width are derived from the mark's own literal
+// t0_ms/t1_ms, so an UNSEIZED slider reproduces the exact authored window —
+// every existing shipped baseline (none of which drags these sliders under
+// THE EYE) is byte-identical.
+function gasKinEffectiveMarks(state) {
+  var marks = (state.kinetics_marks && state.kinetics_marks.length) ? state.kinetics_marks.slice() : [];
+  if (!marks.length) return marks;
+  var bind = state.kinetics_mark_bind;
+  if (bind) {
+    var last = marks[marks.length - 1];
+    var centre0 = (last.t0_ms + last.t1_ms) / 2;
+    var half0 = (last.t1_ms - last.t0_ms) / 2;
+    var centre = (bind.position && hasSlider(bind.position) && userTouched[bind.position]) ? sliderVal(bind.position) : centre0;
+    var half = (bind.span && hasSlider(bind.span) && userTouched[bind.span]) ? sliderVal(bind.span) : half0;
+    marks[marks.length - 1] = {
+      t0_ms: centre - half, t1_ms: centre + half, series: last.series, at_cue: last.at_cue, keep: last.keep,
+      as_tangent: last.as_tangent, converge_from: last.converge_from, converge_ms: last.converge_ms
+    };
+  }
+  return marks;
+}
+
+// Piece F's window/tangent tool + the "kept initial-rate chip" comparison.
+// Marks are drawn in authored order; the FIRST mark authored with keep:true
+// becomes the ×1.00 reference every later mark is printed as a ratio against
+// — which is exactly "run 1's fitted rate persists ... run 2 reads as a ratio
+// to it" (§1 piece F), without inventing a second bookkeeping mechanism: the
+// re-seed hook (gasKinReseed) never clears gasKinBuf, so a mark authored for
+// "after the cue" reads the SAME continuous buffer as the run-1 mark before it.
+function drawGasKinMarks(state, gx, gy, gw, gh, dim, px, py) {
+  var marks = gasKinEffectiveMarks(state);
+  var mdim = dimFor('kinetics_mark');
+  var chipY = gy + gh + 18, i, refRate = null;
+  // 2026-08-07: resolved ONCE per draw so the kept ×1.00 reference and every
+  // later mark's live ratio are computed on the SAME basis (a ratio mixing
+  // bases is meaningless) — see gasKinRateBasis's header for why.
+  var basis = gasKinRateBasis(state);
+  var rateUnit = gasKinRateUnit(basis);
+
+  for (i = 0; i < marks.length; i++) {
+    var m = marks[i];
+    if (m.at_cue && cueFiredAt[m.at_cue] === undefined) continue;   // Rule 32a: not revealed yet
+    var t0 = m.t0_ms, t1 = m.t1_ms;
+    if (!m.keep && PM_simTimeMs < t0) continue;                     // a non-kept mark that hasn't started stays off
+    var seriesSel = m.series || gasSpecies[gasRxSpA].id;
+    // kinetics_repeat_runs (2026-08-08, opt-in): this mark's slot ('open' =
+    // no at_cue, 'cue' = the post-reseed mark) may be governed by an R-cycle
+    // repeat-run sequence instead of a single window fit — see gasKinRepeat's
+    // header. rep is null for every mark on every state that doesn't author
+    // kinetics_repeat_runs, which is every existing shipped mark.
+    var slot = m.at_cue ? 'cue' : 'open';
+    var rep = gasKinRepeatInfo(slot);
+
+    // converge_from (fixed 2026-08-08 — engine_bug_queue
+    // gas_kinetics_converge_cosmetic_only_false): it is NOT cosmetic-only.
+    // dt0/dt1 must be resolved BEFORE the fit, and the fit must READ them —
+    // gasKinFitWindow only ever has samples up to "now" (gasKinBuf cannot
+    // hold future ticks), so fitting the literal authored [t0,t1] while
+    // PM_simTimeMs is still inside that span silently fits [t0, now] instead
+    // — a window whose LEFT edge is frozen at t0 and whose RIGHT edge grows
+    // one noisy point at a time. That is a different, less stable regression
+    // than the one that gets drawn (and than the one the teacher-drag path
+    // actually computes), which is why the printed number visibly swings
+    // (measured 20.03 -> 23.52 -> 16.61 on rate_of_reaction S5) instead of
+    // settling: the animation drawn on screen and the number's own math were
+    // never the same window. Resolving dt0/dt1 first and fitting THEM —
+    // exactly the shape gasKinEffectiveMarks's drag path already resolves
+    // t0/t1 to before calling this same gasKinFitWindow — makes the printed
+    // number and the drawn window the same measurement, centre-pinned, so it
+    // tracks the wide-then-narrow window's own progressive settle instead of
+    // an unrelated left-anchored growth artifact. Absent converge_from,
+    // dt0/dt1 === t0/t1 and every existing non-converging mark (S3/S4/S6)
+    // is byte-identical.
+    var dt0 = t0, dt1 = t1;
+    if (m.converge_from && typeof m.converge_ms === 'number' && m.converge_ms > 0) {
+      var cf = constrain((PM_simTimeMs - t0) / m.converge_ms, 0, 1);
+      dt0 = m.converge_from.t0_ms + (t0 - m.converge_from.t0_ms) * cf;
+      dt1 = m.converge_from.t1_ms + (t1 - m.converge_from.t1_ms) * cf;
+    }
+    // rep governs this slot: a FINISHED sequence (rep.meanRate defined)
+    // synthesizes a fit-shaped {rateDiscsPerSec, areaMean} so every reader
+    // below (gasKinDisplayRate, the ratio/refRate bookkeeping) needs no
+    // branching; an IN-PROGRESS sequence (rep truthy, .meanRate undefined)
+    // has no rate yet, so fit stays null and the mark prints its progress
+    // instead of falling silent — a repeat mark must never disappear
+    // mid-sequence the way a plain "still filling" mark briefly does.
+    //
+    // FIX A (2026-08-09, engine_bug_queue gas_kinetics_window_underfilled_
+    // prints_and_chord_extrapolates): gasKinBuf only ever holds real ticks up
+    // to "now" (PM_simTimeMs) — it cannot contain a future sample. Fitting the
+    // literal [dt0,dt1] while dt1 is still ahead of the last real sample (true
+    // for EVERY mark early in its own window, and true for a converge_from
+    // mark across most of its slide, whose algebraic dt1 tracks the WIDE
+    // endpoint well past the playhead until the slide nearly finishes) used to
+    // silently regress over whatever partial slice of samples happened to
+    // exist — a real least-squares fit, but not the window the state promised,
+    // and printed as if it were (measured 31.37 against an honest wide-window
+    // 15.45 at the same instant, rate_of_reaction S5). The line drawn from
+    // fit.valAt(dt0) to fit.valAt(dt1) then extrapolates that same
+    // under-conditioned model past the last real sample into blank canvas.
+    // Fix: only ever fit/draw/print once the window has CLOSED — real data has
+    // reached dt1 itself (lastSampleT >= dt1). Until then dt1 cannot be inside
+    // the sampled range by construction, so there is nothing honest to draw or
+    // print; the chip stays visible in "measuring…" (the same honest fallback
+    // this file already uses for a closed-but-sparse window) instead of either
+    // going silent or asserting a premature number.
+    var lastSampleT = gasKinBuf.length ? gasKinBuf[gasKinBuf.length - 1].t : -Infinity;
+    var windowFilled = lastSampleT >= dt1 - 1e-6;
+    var fit;
+    if (rep) {
+      fit = (rep.meanRate !== undefined) ? { rateDiscsPerSec: rep.meanRate, areaMean: rep.meanArea } : null;
+    } else {
+      // A repeat-governed mark (rep truthy) skips this gate entirely — see above.
+      fit = windowFilled ? gasKinFitWindow(seriesSel, dt0, dt1) : null;
+    }
+
+    strokeHex('#F87171', 0.95 * mdim); strokeWeight(2);
+    // No chord/tangent is drawn for a repeat-governed mark: R independent
+    // fresh-seeded runs have no single continuous curve to trace — drawing
+    // one anyway (over whichever cycle happened to be running) would assert
+    // a trajectory that never actually occurred. The mean is reported as a
+    // number only (below), same as every other value-only readout in this box.
+    if (fit && !rep) {
+      if (m.as_tangent) {
+        var mid = (dt0 + dt1) / 2, half = max((dt1 - dt0) / 2, 1);
+        line(px(mid - half), py(fit.valAt(mid - half)), px(mid + half), py(fit.valAt(mid + half)));
+      } else {
+        line(px(dt0), py(fit.valAt(dt0)), px(dt1), py(fit.valAt(dt1)));
+      }
+    }
+
+    noStroke(); fillHex('#F87171', 0.95 * mdim); textAlign(LEFT, TOP); textSize(10);
+    // dispRate: fit.rateDiscsPerSec converted per gasKinRateBasis — 'count'
+    // (default) leaves it untouched (byte-identical to every shipped baseline);
+    // 'concentration' divides by THIS FIT'S OWN areaMean (gasKinDisplayRate),
+    // never the box's current live area, so a mark fit before a piston stroke
+    // isn't re-scaled by the area after it.
+    // GAP 1: dispRate is the DEFINED rate (sign resolved by stoichiometric
+    // role, gasKinSeriesSign above), never the raw fitted slope — a consumed
+    // series and a produced series read the SAME sign here by construction.
+    var dispRate = fit ? (gasKinDisplayRate(fit, basis) * gasKinSeriesSign(seriesSel)) : 0;
+    var rateTxt;
+    if (rep && !fit) rateTxt = 'measuring (run ' + (rep.done + 1) + '/' + rep.R + ')\\u2026';
+    else if (fit) rateTxt = gasKinFormatRate(dispRate, basis) + ' ' + rateUnit + (rep ? (' \\u00B7 mean of ' + rep.R) : '');
+    else rateTxt = 'measuring\\u2026';
+    var ratioTxt = '';
+    if (fit && refRate !== null && Math.abs(refRate) > 1e-9) ratioTxt = '  (\\u00D7' + (dispRate / refRate).toFixed(2) + ')';
+    else if (fit && refRate === null && m.keep) ratioTxt = '  (\\u00D71.00)';
+    text(rateTxt + ratioTxt, gx + 2, chipY);
+    chipY += 12;
+    if (fit && m.keep && refRate === null) refRate = dispRate;
+  }
+
+  // The static, AUTHORED reference chip (§1 piece F) — visually distinct
+  // (dashed rule, muted colour) from the live/measured chips above.
+  if (typeof state.kinetics_reference_chip === 'string' && state.kinetics_reference_chip) {
+    if (drawingContext && drawingContext.setLineDash) drawingContext.setLineDash([2, 3]);
+    strokeHex('#64748B', 0.7 * mdim); strokeWeight(1);
+    line(gx, chipY + 2, gx + 70, chipY + 2);
+    if (drawingContext && drawingContext.setLineDash) drawingContext.setLineDash([]);
+    noStroke(); fillHex('#94A3B8', 0.9 * mdim); textAlign(LEFT, TOP); textSize(10);
+    text(state.kinetics_reference_chip, gx + 2, chipY + 5);
+  }
+
+  // Piece G's kept chip (a manual re-seed, if one has happened this state) —
+  // drawn on the panel too so it reads beside the live marks, not just beside
+  // the New Run button.
+  if (gasKinPrevRunRate !== null) {
+    noStroke(); fillHex('#7DD3FC', 0.9 * mdim); textAlign(LEFT, TOP); textSize(10);
+    // Converted against the area gasKinReseed captured AT THAT RUN (piece G's
+    // own areaMean, not the box's current area) — a teacher who reruns at a
+    // new V (S11) must see the OLD run's rate under the OLD volume.
+    var prevDisp = (basis === 'concentration') ? (gasKinPrevRunRate / max(gasKinPrevRunArea || 1, 1e-9)) : gasKinPrevRunRate;
+    text('previous run: ' + gasKinFormatRate(prevDisp, basis) + ' ' + rateUnit, gx + 2, chipY + 14);
+  }
+}
+
+// Readout D (§1): counts, no fwd/rev bars — the word "rate" must not appear
+// before it is taught (Rule 25). Deliberately a NEW, smaller chip rather than
+// a stripped call into drawGasReaction, which prints "fwd"/"rev" labels.
+function drawGasCountsOnly(state) {
+  if (!gasRxOn()) return;
+  var dim = dimFor('species_counts');
+  var w = 172, h = 28, y = gasHudTop();
+  var x = gasBoxL();
+  if (pfWgVis('gas_pressure', state.show_pressure)) x += 142;
+  if (pfWgVis('gas_thermo', state.show_gas_thermometer)) x += 126;
+  if (pfWgVis('gas_law', state.show_gas_law)) x += 206;
+  if (x + w > gasBoxRFull()) x = max(gasBoxL(), gasBoxRFull() - w);
+  gasChip(x, y, w, h);
+
+  var sA = gasSpecies[gasRxSpA], sB = gasSpecies[gasRxSpB], sAB = gasSpecies[gasRxSpAB];
+  var nA = gasCountsBySp[gasRxSpA] || 0, nB = gasCountsBySp[gasRxSpB] || 0, nAB = gasCountsBySp[gasRxSpAB] || 0;
+  textAlign(LEFT, TOP); textSize(11); noStroke();
+  var cx = x + 8;
+  fillHex(sA.color, dim); text((sA.label || sA.id) + ' ' + nA, cx, y + 8); cx += 52;
+  fillHex(sB.color, dim); text((sB.label || sB.id) + ' ' + nB, cx, y + 8); cx += 52;
+  fillHex(gasRxColor(), dim); text((sAB.label || 'AB') + ' ' + nAB, cx, y + 8);
+}
+
+// Readout E (§1): live k = rate ÷ (A×B), value-only. Deliberately NOT
+// drawGasKRatio (:5043 in the spec's evidence table) — that function computes
+// the EQUILIBRIUM constant K = nAB/(nA·nB), a different quantity: measured
+// over an irreversible run-down it climbs 380× under a caption reading
+// "rate falls, k holds". This reads the fitted event rate from gasKinBuf
+// (§4.1's one shared buffer), never the legacy gasRxFwdRate/gasRxRevRate
+// globals directly, so readout E and mode A/B's marks always agree.
+function drawGasRateConstant(state) {
+  if (!gasRxOn() || gasRxSpA < 0 || gasRxSpB < 0) return;
+  var dim = dimFor('rate_constant');
+  var w = 150, h = 28, y = gasHudTop();
+  var x = gasBoxL();
+  if (pfWgVis('gas_pressure', state.show_pressure)) x += 142;
+  if (pfWgVis('gas_thermo', state.show_gas_thermometer)) x += 126;
+  if (pfWgVis('gas_law', state.show_gas_law)) x += 206;
+  if (pfWgVis('gas_reaction', state.show_reaction_readout)) x += 276;
+  if (pfWgVis('gas_k_ratio', state.show_k_ratio)) x += 158;
+  if (pfWgVis('gas_counts_only', state.show_species_counts_only)) x += 180;
+  if (x + w > gasBoxRFull()) x = max(gasBoxL(), gasBoxRFull() - w);
+  gasChip(x, y, w, h);
+
+  var series = state.kinetics_rate_series || 'fwd';
+  var winMs = (typeof state.kinetics_window_ms === 'number') ? state.kinetics_window_ms : 5000;
+  var fit = gasKinFitWindow(series, max(0, PM_simTimeMs - winMs), PM_simTimeMs);
+  var nA = gasCountsBySp[gasRxSpA] || 0, nB = gasCountsBySp[gasRxSpB] || 0;
+  var k = (fit && nA > 0 && nB > 0) ? (fit.rateDiscsPerSec / (nA * nB)) : 0;
+  fillHex('#A7F3D0', dim); textAlign(LEFT, TOP); textSize(12); noStroke();
+  text(k > 0 ? ('k = ' + k.toFixed(5)) : 'k = \\u2014', x + 8, y + 8);
+}
+
+// A shallow copy of an authored species_counts map — GAP 3's slider override
+// must never mutate the original (it is a live reference into the parsed
+// concept JSON; mutating it in place would leak the teacher's drag into every
+// later re-entry of this state, which authored config must never do).
+function gasKinCopyCounts(counts) {
+  var out = {}, k;
+  if (counts) { for (k in counts) { if (counts.hasOwnProperty(k)) out[k] = counts[k]; } }
+  return out;
+}
+
+// Piece F/G's shared re-seed hook. Rebuilds the particle array at a fresh authored
+// (or, absent a charge, the state's own opening) composition WITHOUT touching
+// PM_simTimeMs, cueFiredAt, or gasKinBuf/gasKinBPts — a re-seed is a mid-state
+// event on the SAME clock, not a new state entry, so state-relative
+// kinetics_marks authored for "after the cue" keep meaning what they say.
+// Pattern extracted from gasInit's opening-pose block (species placement,
+// zero drift, rescale to T, relax-settle) — gasInit itself is untouched.
+function gasKinReseed(charge) {
+  var ch = charge || {};
+  var st = curState() || {};
+
+  // Pin the OUTGOING run's rate before wiping anything, over its trailing
+  // kinetics_window_ms — the SAME fitted read readout E prints, so the kept
+  // chip and the live chip never disagree about what "the rate" means.
+  var series = st.kinetics_rate_series || 'fwd';
+  var winMs = (typeof st.kinetics_window_ms === 'number') ? st.kinetics_window_ms : 5000;
+  var outFit = gasKinFitWindow(series, max(0, PM_simTimeMs - winMs), PM_simTimeMs);
+  // GAP 1: signed the same way the live mark chips are (gasKinSeriesSign) —
+  // the kept "previous run" chip and the live chip must never disagree about
+  // what "the rate" means, including its sign.
+  if (outFit) { gasKinPrevRunRate = outFit.rateDiscsPerSec * gasKinSeriesSign(series); gasKinPrevRunArea = outFit.areaMean; }
+
+  var counts = ch.species_counts || st.species_counts || null;
+  // GAP 3 (2026-08-07): a seized nA/nB reagent tap OUTRANKS both the cue's
+  // authored reseed charge and the state's own species_counts — "New run"
+  // must replay the composition the sliders are CURRENTLY showing
+  // (rate_law_and_order S11's "run your own experiment"), never silently
+  // revert to the fixed home-pose charge. Falls back through the SAME
+  // drag-seize ladder the live in-state tap already answers
+  // (gasSpeciesTapSeized), so the two mechanisms can never disagree about
+  // which composition is "current."
+  if (gasRxOn() && (gasSpeciesTapSeized(gasRxSpA) || gasSpeciesTapSeized(gasRxSpB))) {
+    counts = gasKinCopyCounts(counts);
+    if (gasSpeciesTapSeized(gasRxSpA)) counts[gasSpecies[gasRxSpA].id] = gasSpeciesTapVal(gasRxSpA);
+    if (gasSpeciesTapSeized(gasRxSpB)) counts[gasSpecies[gasRxSpB].id] = gasSpeciesTapVal(gasRxSpB);
+  }
+  var pistonTo = (typeof ch.piston_frac === 'number') ? ch.piston_frac : gasTargetPistonF();
+  gasPistonF = constrain(pistonTo, 0.2, 1);
+  gasPistonVx = 0;
+
+  var total = gasCount(), si;
+  var specN = [], declared = 0, undecl = 0;
+  for (si = 0; si < gasSpecies.length; si++) {
+    var stC = (counts && typeof counts[gasSpecies[si].id] === 'number') ? counts[gasSpecies[si].id] : null;
+    if (stC !== null) { specN[si] = max(0, Math.round(stC)); declared += specN[si]; }
+    else if (typeof gasSpecies[si].count === 'number') { specN[si] = gasSpecies[si].count; declared += specN[si]; }
+    else { specN[si] = -1; undecl++; }
+  }
+  for (si = 0; si < gasSpecies.length; si++) {
+    if (specN[si] < 0) specN[si] = max(0, Math.round((total - declared) / max(undecl, 1)));
+  }
+
+  particles = [];
+  var L = gasBoxL(), R = gasBoxR(), T = gasBoxT(), B = gasBoxB();
+  for (si = 0; si < gasSpecies.length; si++) gasPlaceSpecies(si, specN[si], L, R, T, B, -1);
+  if (gasRxOn()) gasRxSeedDimers();
+  gasZeroDrift();
+  gasRescaleToT(gasTempK);
+
+  // Relax the placement grid before anyone sees it — the exact settle gasInit
+  // runs, so a re-seed reads as clean as a fresh state opening (Rule 32d)
+  // rather than a jittered lattice flash.
+  for (var s = 0; s < 55; s++) { gasIntegrate(st); gasCollide(st); }
+  gasFlashes = [];
+  gasRxQueue = []; gasRxNew = [];
+  for (var pi = 0; pi < particles.length; pi++) particles[pi].rx = 0;
+  // GAP 3: a fresh run is already levelled to the (possibly slider-seized)
+  // composition above — reset the tap trackers so the NEXT live drag measures
+  // its delta from these new levels, instead of replaying the pre-reseed delta
+  // on top of them.
+  gasSpTapPrev = {};
+}
+
+// ─── Repeat-run averaging (2026-08-08, opt-in — kinetics_repeat_runs) ──────
+// See the header above gasKinRepeat's declaration for WHY: a single window's
+// event count cannot separate x1 from x2 on this box, at any window shape.
+// The fix a real chemist reaches for is repeating the measurement, never
+// reshaping the instrument.
+//
+// Arms a slot ('open' | 'cue') to run R back-to-back cycles of length winMs,
+// each on a FRESH random arrangement (physRand is never reset between
+// gasKinReseed calls — "fresh" comes for free from the SAME mechanism piece
+// F/G already use to re-seed), and reports the MEAN across cycles once R
+// complete — never a single cycle's own noisy read. doInitialReseed is false
+// for the 'open' slot (gasInit's own placement already IS cycle 1's fresh
+// draw — reseeding again would throw away a perfectly good sample) and true
+// for the 'cue' slot (the box is still running the PRE-cue composition when
+// the cue fires; cycle 1 needs its own fresh charge exactly like today's
+// single-shot gasKinReseed call does).
+function gasKinRepeatArm(slot, startMs, winMs, seriesSel, charge, R, doInitialReseed) {
+  if (doInitialReseed) gasKinReseed(charge);
+  gasKinRepeat = {
+    slot: slot, seriesSel: seriesSel, winMs: max(1, winMs), charge: charge,
+    R: max(2, Math.round(R)), done: 0, ok: 0, sum: 0, areaSum: 0, startedAt: startMs
+  };
+}
+
+// Advances the active sequence by AT MOST one cycle-close per tick (called
+// every tick from stepGas — a plain null check on every other tick). A cycle
+// that closes with too few samples (fit === null: a genuinely empty window,
+// e.g. reactants ran out) still counts toward R so a single bad cycle can
+// never stall the sequence forever; it is honestly excluded from the sum
+// (under-counted, never fabricated as a zero rate) via the separate 'ok'
+// tally that the final mean actually divides by.
+function gasKinRepeatStep() {
+  var rp = gasKinRepeat;
+  if (!rp) return;
+  if (PM_simTimeMs - rp.startedAt < rp.winMs) return;
+  var fit = gasKinFitWindow(rp.seriesSel, rp.startedAt, PM_simTimeMs);
+  if (fit) { rp.sum += fit.rateDiscsPerSec; rp.areaSum += (fit.areaMean || 1); rp.ok++; }
+  rp.done++;
+  if (rp.done >= rp.R) {
+    gasKinRepeatDone[rp.slot] = {
+      meanRate: rp.sum / max(rp.ok, 1),
+      meanArea: rp.areaSum / max(rp.ok, 1),
+      R: rp.done, ok: rp.ok
+    };
+    gasKinRepeat = null;
+  } else {
+    gasKinReseed(rp.charge);
+    rp.startedAt = PM_simTimeMs;
+  }
+}
+
+// The mark this cue's post-reseed measurement belongs to (piece F's own
+// convention: exactly one kinetics_marks entry carries at_cue === the fired
+// cue id). Used only to size the 'cue' slot's per-cycle window off the SAME
+// t0_ms/t1_ms span the author already picked for the single-run version, so
+// authoring kinetics_repeat_runs on an existing mark changes nothing about
+// its window shape — only how many times it is measured.
+function gasKinFindMarkByCue(state, cueId) {
+  var marks = state.kinetics_marks, i;
+  if (!marks) return null;
+  for (i = 0; i < marks.length; i++) if (marks[i].at_cue === cueId) return marks[i];
+  return null;
+}
+
+// Read-side lookup for drawGasKinMarks: a finished sequence (has .meanRate)
+// beats an in-progress one for the SAME slot, and an in-progress one is
+// returned only while it is actually the live gasKinRepeat (so a slot with
+// no kinetics_repeat_runs authored at all returns null and the caller takes
+// its ordinary single-window-fit path, byte-identical to every existing mark).
+function gasKinRepeatInfo(slot) {
+  if (gasKinRepeatDone[slot]) return gasKinRepeatDone[slot];
+  if (gasKinRepeat && gasKinRepeat.slot === slot) return gasKinRepeat;
+  return null;
+}
+
+// Piece G (§5b): the teacher "New run" DOM control. Required because the
+// explore state's reaction is irreversible and runs down, then sits still
+// under live sliders that change nothing visible. Built once here (mirrors
+// buildOverlayUI's #pm-caption/#pm-formula pattern); shown/hidden per state
+// in draw()'s gas branch via pfWgVis('gas_kinetics_new_run', ...). No-op
+// outside gasMode() so no other particle_field scenario gets a stray button.
+function gasKinBuildNewRunButton() {
+  if (!gasMode() || document.getElementById('pm-kin-newrun')) return;
+  var btn = document.createElement('div');
+  btn.id = 'pm-kin-newrun';
+  btn.textContent = 'New run \\u21BB';
+  btn.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:14px;' +
+    'background:rgba(15,23,42,0.85);color:#FDE68A;padding:7px 16px;border-radius:20px;' +
+    'font:600 12px system-ui,sans-serif;z-index:25;display:none;cursor:pointer;' +
+    'border:1px solid rgba(253,230,138,0.5);user-select:none;';
+  btn.addEventListener('click', function () {
+    var st = curState();
+    // Guarded against an in-progress repeat-run sequence (kinetics_repeat_runs):
+    // a manual reseed mid-sequence would both corrupt the average in progress
+    // (an extra, unaccounted-for reseed) and stomp gasKinPrevRunRate with a
+    // single raw cycle read moments before the real mean overwrites it anyway.
+    if (st && !gasKinRepeat) gasKinReseed(st.kinetics_reseed_charge);
+  });
+  document.body.appendChild(btn);
+}
+
 // ─── Draw loop (render only — physics advanced separately) ──────────────────
 // Frame-rate-independent stepping (2026-07-11). p5's frameRate(60) is only a
 // TARGET — on displays it can't hit exactly (or a 120 Hz device that rounds to
@@ -5642,13 +6621,35 @@ function draw() {
     if (pfWgVis('gas_thermo', state.show_gas_thermometer)) drawGasThermometer(state);
     if (pfWgVis('gas_counters', state.show_collision_counter)) drawGasCounters(state);
     if (pfWgVis('gas_law', state.show_gas_law)) drawGasLaw();
-    if (pfWgVis('gas_histogram', state.show_speed_histogram)) drawGasHistogram(state);
-    if (pfWgVis('gas_arrhenius', state.show_arrhenius_plot)) drawGasArrhenius(state);
+    // Kinetics instrument (2026-08-07, GAS_BOX_KINETICS_INSTRUMENT_SPEC.md §2):
+    // at most ONE inset is lit in a guided state — the kinetics plot, the
+    // histogram, the Arrhenius plot and the legacy concentration graph may not
+    // co-occur. Enforced HERE, in the renderer: authoring two draws the
+    // kinetics plot and warns once, rather than silently z-ordering them. Every
+    // existing shipped state authors none of the new fields, so pmKinWant is
+    // always false for them and this block is behaviourally a no-op there.
+    var pmKinWant = pfWgVis('gas_kinetics_plot', state.show_kinetics_plot);
+    var pmHistWant = pfWgVis('gas_histogram', state.show_speed_histogram);
+    var pmArrWant = pfWgVis('gas_arrhenius', state.show_arrhenius_plot);
+    var pmConcWant = pfWgVis('gas_conc_graph', state.show_concentration_graph);
+    if (pmKinWant && (pmHistWant || pmArrWant || pmConcWant) && window.console) {
+      console.warn('[gas_box] kinetics plot co-authored with another inset (histogram ' + pmHistWant + ', arrhenius ' + pmArrWant + ', conc_graph ' + pmConcWant + ') \\u2014 drawing the kinetics plot only');
+    }
+    if (pmKinWant) drawGasKineticsPanel(state);
+    else {
+      if (pmHistWant) drawGasHistogram(state);
+      if (pmArrWant) drawGasArrhenius(state);
+    }
     if (pfWgVis('gas_profile', state.show_reaction_profile)) drawGasProfile(state);
     if (pfWgVis('gas_reaction', state.show_reaction_readout)) drawGasReaction(state);
     if (pfWgVis('gas_k_ratio', state.show_k_ratio)) drawGasKRatio(state);
-    if (pfWgVis('gas_conc_graph', state.show_concentration_graph)) drawGasConcGraph(state);
+    if (pfWgVis('gas_counts_only', state.show_species_counts_only)) drawGasCountsOnly(state);
+    if (pfWgVis('gas_rate_constant', state.show_rate_constant)) drawGasRateConstant(state);
+    if (!pmKinWant && pmConcWant) drawGasConcGraph(state);
     if (pfWgVis('gas_ledger', state.show_energy_ledger)) drawGasLedger(state);
+    // Piece G (§5b): the teacher "New run" DOM control, built once in setup().
+    var pmNrBtn = document.getElementById('pm-kin-newrun');
+    if (pmNrBtn) pmNrBtn.style.display = pfWgVis('gas_kinetics_new_run', !!state.show_kinetics_new_run) ? 'block' : 'none';
     pop();
     drawLabel(state);
     var gFrm = document.getElementById('pm-formula');
@@ -6869,6 +7870,42 @@ export interface ParticleFieldStateConfig {
     show_gas_law?: boolean;          // P·A / N·T readout — constant on screen, the engine's own proof
     show_trails?: boolean;           // per-particle trails (the mean-free-path / random-walk story)
     adiabatic?: boolean;             // let piston work heat/cool the gas and show it (bicycle-pump story). Default false = isothermal, so compression is a pure Boyle beat
+    // ─── kinetics instrument (2026-08-07 — docs/GAS_BOX_KINETICS_INSTRUMENT_SPEC.md;
+    // owner peter_parker:renderer_primitives). Every field opt-in. Mirrors the
+    // spec's §3 authorable surface 1:1 EXCEPT where noted "surgeon decision" —
+    // the spec was deliberately silent there and left the name to the build.
+    // Readout C (a rate-ratio chip) is WITHDRAWN — do not author show_rate_ratio
+    // or rate_ratio_mark_cue; they are not read by the renderer.
+    show_kinetics_plot?: boolean;          // draw the kinetics panel this state
+    kinetics_mode?: 'count_vs_time' | 'rate_vs_quantity';   // default 'count_vs_time'
+    kinetics_span_ms?: number;             // mode A: x-axis span, fixed at state entry (default 30000)
+    kinetics_y_max?: number;               // fixed full-scale: mode A's count axis (default: the largest initial count among gasKinAxisSolve's plotted/reactant species); ALSO mode B's rate axis when authored (surgeon decision — §3 gives mode B no dedicated y field)
+    kinetics_x_max?: number;               // mode B: fixed x full-scale, solved once at state entry (default: 1.15× the opening A×B or A/B count — surgeon decision, §3 states no default)
+    kinetics_series?: string[];            // mode A: species ids to plot (default: reactants + product)
+    kinetics_rate_series?: 'fwd' | 'rev' | 'net';           // mode B y-source AND readout E's numerator (default 'fwd')
+    kinetics_x_source?: 'reactant_product' | 'product_count';  // mode B x-source (A×B, or AB) — default 'reactant_product'
+    kinetics_window_ms?: number;           // event-rate averaging window (default 5000 — matched to the existing reaction readout's window, §4.4b)
+    kinetics_rate_basis?: 'count' | 'concentration';  // 2026-08-07 (peter_parker:renderer_primitives, chemistry_author WHY): default 'count' — the fitted rate stays a raw event-count dN/dt (discs/s), correct for every fixed-volume state (the box area is a constant that cancels out of any ratio, so this default is byte-identical on every existing baseline). Author 'concentration' ONLY on a state whose own beat changes the box volume (a piston stroke, or a live V slider) — it divides the fitted rate by the box area IT WAS MEASURED UNDER (2D hard-disc total collision rate ~ N_A*N_B/Area is an event-count rate; the textbook rate law's d[A]/dt ~ N_A*N_B/Area^2 carries one more factor of Area, since [A]=N_A/Area). Affects piece F's mark ratio chips and piece G's "previous run" kept chip ONLY — readout E's live k chip and mode B's rate_vs_quantity panel are untouched (out of scope; a concentration-basis k is a different quantity with different units, not this option's job).
+    kinetics_marks?: Array<{
+        t0_ms: number; t1_ms: number;        // window edges in state-relative ms
+        series?: string;                     // a species id (count curve), or 'fwd'|'rev'|'net' (cumulative-event curve) — surgeon decision: the spec's `series` field is documented as "species curve" only; the fwd/rev/net sentinel values are how piece F's "series selectable forward/reverse/net" requirement is actually implemented, reusing this field rather than inventing a second one
+        at_cue?: string;                     // reveal on a narration cue (Rule 32a cause-first)
+        keep?: boolean;                      // leave this chip on screen when the next mark lands; the FIRST kept mark in the array becomes the ×1.00 reference every later mark is ratioed against (piece F)
+        as_tangent?: boolean;                // draw as a tangent segment at the window's midpoint rather than a chord
+        converge_from?: { t0_ms: number; t1_ms: number };  // animates the window edges inward from this wider range toward [t0_ms,t1_ms], centre-pinned — the FIT is re-run on the animated window at every step (fixed 2026-08-08; it read as cosmetic-only before, but was not: gasKinFitWindow has no future samples to fit, so a fit pinned to the literal final [t0_ms,t1_ms] before it fully elapses silently fit a left-anchored growing window instead and visibly swung)
+        converge_ms?: number;                // duration of that convergence
+    }>;
+    kinetics_mark_bind?: { position?: string; span?: string };  // slider ids that seize the LAST mark's window via a centre-pinned symmetric resize (GAP 2, 2026-08-07): {span} sets the HALF-WIDTH about the window's centre, {position} sets the CENTRE keeping the width — e.g. t_lo (position/centre) / t_span (span/half-width)
+    show_rate_constant?: boolean;          // readout E: live k = rate ÷ (A×B), value-only — deliberately NOT drawGasKRatio's K (a different, equilibrium, quantity)
+    show_species_counts_only?: boolean;    // readout D: counts, no fwd/rev rate bars (Rule 25 — "rate" must not appear before it is taught)
+    kinetics_reseed_cue?: string;          // piece F: cue id that re-seeds the box mid-state with kinetics_reseed_charge (surgeon-named field — §3's block for piece F names no fields; this is the decision)
+    kinetics_reseed_charge?: {             // the fresh charge for the re-seeded run; each run's counts sum to that run's own N (§1)
+        species_counts?: Record<string, number>;
+        piston_frac?: number;
+    };
+    kinetics_reference_chip?: string;      // a static labelled reference chip (e.g. "fresh box ×2.0"), visually distinct from the live/measured mark chips (§1 piece F)
+    show_kinetics_new_run?: boolean;       // piece G: draw the teacher "New run" control (re-seeds at current slider values via kinetics_reseed_charge if authored, else the state's own opening composition); REQUIRED on rate_law_and_order's explore state (§5b)
+    kinetics_repeat_runs?: number;         // 2026-08-08 (peter_parker:renderer_primitives — repeat-run averaging, opt-in): R >= 2. Governs BOTH piece-F slots — the 'open' mark (the first kinetics_marks entry with no at_cue, armed at state entry) and, if kinetics_reseed_cue is also authored, the 'cue' mark (armed when the cue fires) — each becomes R back-to-back cycles of the SAME [t0_ms,t1_ms] window length, every cycle on a freshly re-randomized seed (gasKinReseed's own re-randomization; physRand is never reset between calls), and the mark reports the MEAN across cycles instead of one noisy window's own read. WHY: measured 10 seeds, rate_law_and_order S2's x2 ratio (doubling [A]) spanned 1.12-4.78 at R=1 — a single window's event count cannot separate x1 from x2 on this box at ANY window shape; repeating the experiment and averaging (Poisson spread falls ~1/sqrt(R)) is the rung a real chemist takes next, not a differently-shaped instrument. No chord/tangent line is drawn for a repeat-governed mark (R independent runs have no single curve to trace); the chip instead shows "measuring (run k/R)…" while collecting and "<rate> · mean of R" once done. Costs real narrated time: a repeat mark needs R*(t1_ms-t0_ms) before it settles, so author eye_capture_ms/duration/the OTHER mark's at_ms accordingly — this field does not auto-extend the state's own timeline. Omit (or 1) = today's exact single-run behaviour, byte-identical on every existing mark; piece G's manual "New run" button is unaffected (still single-shot) except that it refuses to fire while a repeat sequence it did not start is in progress. CAVEAT measured against this same box (10-seed AND 20-seed independent batches, headless harness, both S2/x2 and S5/null): R=1 and R=3 do NOT separate x2 from x1 (their spreads overlap heavily at both R). R=5 looked separated on one 10-seed batch (1.38-2.69 vs 0.71-1.29) but did NOT hold up on an independent 20-seed batch (1.21-2.79 vs 0.66-1.65 — overlapping) — a false positive from sample size, not a reliable margin. R=10 (20 seeds) DID separate cleanly (1.64-2.32 vs 0.68-1.34). Do not author kinetics_repeat_runs at 3-5 expecting a reliably distinguishable x2 vs x1 read on THIS box's event-count regime (~6-10 reaction events per window) — budget for R>=10 (10*winMs of narrated time per slot) or accept that the chip will occasionally read ambiguous at lower R.
     [key: string]: unknown;
 }
 
@@ -6903,7 +7940,19 @@ export interface ParticleFieldAuthoredConfig {
         count?: number;                  // total particles (a state's N, or the N slider, overrides)
         species?: Array<{ id: string; mass: number; radius: number; color: string; label?: string; count?: number }>;
         box?: { pad?: number };
-        layout?: 'full' | 'with_graph';  // 'with_graph' reserves the right pane for the speed histogram
+        // LEGACY, effectively a no-op (fixed 2026-08-07 — see gasHasGraphPane's
+        // deletion note in the renderer body). The box has owned the full canvas
+        // since the histogram became an inset drawn OVER the tank; nothing reads
+        // this value to reserve a pane. Kept only so an already-authored
+        // 'with_graph' string does not become a type error.
+        layout?: 'full' | 'with_graph';
+        // Kinetics instrument (2026-08-07 — GAS_BOX_KINETICS_INSTRUMENT_SPEC.md §2).
+        // ONE fixed corner for the WHOLE concept, authored once here (never per
+        // state — Rule 32d). An absent value or 'auto' is NOT resolved silently:
+        // the renderer console.warns and falls back to 'tr'. 'auto' is kept in the
+        // type only because an earlier draft of the spec used it; author an
+        // explicit corner.
+        kinetics_home?: 'auto' | 'tl' | 'tr' | 'bl' | 'br';
         temperature_K?: number;
         speed_scale?: number;            // px/tick per component at T=1, m=1 (visual pacing)
         activation_energy_kT?: number;   // PREFERRED: Eₐ as a multiple of the mean particle energy at ea_ref_T (~2–4 = a real barrier)
