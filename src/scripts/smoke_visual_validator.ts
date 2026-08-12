@@ -37,11 +37,12 @@ import { runVisionGate } from '@/lib/validators/visual/visionGate';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
 import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
 import { deriveStateIds } from '@/lib/validators/visual/deriveStateIds';
-import { deriveStateDurationsMs, deriveMotionExpectations, deriveMaxRevealTimeMs, deriveHoldExpectations } from '@/lib/validators/visual/deriveStateMeta';
+import { deriveStateDurationsMs, deriveMotionExpectations, deriveMaxRevealTimeMs, deriveHoldExpectations, describeScenario } from '@/lib/validators/visual/deriveStateMeta';
 import { dumpCaptureToDisk } from '@/lib/validators/visual/frameDump';
 import { extractTtsVisualBindings, buildTtsMathByState } from '@/lib/validators/visual/ttsBindings';
 import type { VisionGateContext } from '@/lib/validators/visual/visionGate';
 import type { CheckResult } from '@/lib/validators/visual/spec';
+import { tally, skipBreakdown, motionGateBlackout } from '@/lib/validators/visual/skipReport';
 import { loadCachedSim, loadConceptJson, fail } from './lib/loadCachedSim';
 
 /** Build {STATE_N: focal_primitive_id} from the concept JSON's epic_l_path. */
@@ -70,7 +71,8 @@ function printAllResults(results: CheckResult[]): void {
         const failures = rows.filter(r => !r.passed).length;
         console.log(`\n  Category ${cat} — ${rows.length} checks, ${failures} failed:`);
         for (const r of rows) {
-            const sym = r.passed ? '✓' : '✗';
+            // ⊘ = never ran (skipReport.ts) — never render a skip as a tick.
+            const sym = r.skipped === true ? '⊘' : r.passed ? '✓' : '✗';
             // Failures print FULL evidence (surface-everything); passes a readable slice.
             const evidence = r.passed && r.evidence.length > 140 ? `${r.evidence.slice(0, 140)}…` : r.evidence;
             console.log(`    ${sym} [${r.check_id}] ${r.state_id}: ${evidence}`);
@@ -97,7 +99,6 @@ async function main(): Promise<void> {
 
     const isMulti = cached.sim_type === 'multi_panel' && !!cached.secondary_sim_html;
     const panelCount = isMulti ? 2 : 1;
-    const expectsMotion = deriveMotionExpectations(cached.physics_config);
 
     // Category I bindings come from the RAW concept JSON (glow / math_show are
     // not in the cached teacher_script). Absent file or no bindings → Category
@@ -109,6 +110,17 @@ async function main(): Promise<void> {
     const revealSource = conceptJson ?? cached.physics_config;
     const maxRevealMsByState = deriveMaxRevealTimeMs(revealSource);
     const holdExpectations = deriveHoldExpectations(revealSource);
+    // SAME SOURCE as the reveal/hold derivations above, and for the same measured
+    // reason (2026-08-09 scar, engine_bug_queue: eye_gate_skipped_for_an_
+    // unregistered_scenario_is_counted_as_a_pass). This read `cached.physics_config`
+    // alone until 2026-08-12 — while visual_eyes.ts was fixed on 2026-08-09, this
+    // PAID escalation path was not, so on any hand-seeded concept (chemistry /
+    // mathematics / parametric physics, whose seeded physics_config carries only
+    // epic_l_path — no field_3d_config, no states) resolveField3dStates() returned
+    // null, every expectation was `undefined`, and D5 skipped every state while the
+    // run reported a clean pass. The escalation you pay for must not be blinder
+    // than the free gate it escalates from.
+    const expectsMotion = deriveMotionExpectations(revealSource);
     const ttsBindings = conceptJson ? extractTtsVisualBindings(conceptJson) : {};
     const boundStates = Object.keys(ttsBindings).length;
     // Per-state math_show replay sequence — drives SET_MATH during capture so
@@ -187,7 +199,7 @@ async function main(): Promise<void> {
     console.log('\n🎯 Running deterministic gates (pixel D1p/H1' + (dense ? '/D5/D6/D7' : '') + ' + regression H2, no API)...');
     const [pixelResult, regressionResult] = await Promise.all([
         runPixelGate({ conceptId, capture, panelCount, expectsMotion, holdExpectations: dense ? holdExpectations : undefined }),
-        runRegressionGate({ conceptId, capture }),
+        runRegressionGate({ conceptId, capture, expectsMotion }),
     ]);
     console.log(`   ✅ Deterministic gates finished ($0)`);
     console.log(`   DOM template-leak findings: ${capture.template_leak_dom_findings.length}`);
@@ -201,14 +213,17 @@ async function main(): Promise<void> {
         .filter(r => !r.passed);
     const valid = visionResult.valid && deterministicFailures.length === 0;
 
-    const totalChecks = allChecks.length;
-    const passed = allChecks.filter(r => r.passed).length;
-    const failed = totalChecks - passed;
+    // Skips counted apart from passes — see skipReport.ts for why a skip
+    // reported as a pass is a measured defect, not a cosmetic one.
+    const t = tally(allChecks);
+    const totalChecks = t.total;
+    const failed = t.failed;
 
     console.log('\n📊 Results');
     console.log('  ──────────────────────────────────────────────────────────────');
     console.log(`  Total checks:  ${totalChecks}`);
-    console.log(`  Passed:        ${passed}`);
+    console.log(`  Ran + passed:  ${t.passed}`);
+    console.log(`  SKIPPED:       ${t.skipped}${t.skipped > 0 ? '  ← never executed; not evidence' : ''}`);
     console.log(`  Failed:        ${failed}`);
     console.log(`  Cost:          $${visionResult.cost_usd.toFixed(4)}`);
     console.log(`  Total time:    ${Date.now() - overallStart}ms`);
@@ -236,7 +251,18 @@ async function main(): Promise<void> {
         for (const f of dump.files) console.log(f);
     }
 
-    console.log(failed === 0 ? '\n✅ All checks passed.\n' : `\n❌ ${failed} check(s) failed — every one is listed above.\n`);
+    const breakdown = skipBreakdown(allChecks);
+    if (breakdown.length > 0) {
+        console.log(`\n⊘ GATE COVERAGE — ${t.skipped} check(s) never executed (a skip is NOT evidence):`);
+        for (const line of breakdown) console.log(line);
+    }
+    const blackout = motionGateBlackout(allChecks, describeScenario(revealSource));
+    if (blackout) console.log(`\n${blackout}`);
+    console.log(failed === 0
+        ? (t.skipped > 0
+            ? `\n⚠️  No failures — but ${t.skipped} check(s) NEVER RAN (listed above). Not the same as all-passed.\n`
+            : '\n✅ All checks passed.\n')
+        : `\n❌ ${failed} check(s) failed — every one is listed above.\n`);
     process.exit(valid ? 0 : 1);
 }
 
