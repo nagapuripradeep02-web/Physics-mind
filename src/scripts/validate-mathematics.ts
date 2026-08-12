@@ -23,6 +23,13 @@
  *   4. Indicator position binding — HARD FAIL.
  *   5. Duplicate JSON keys — HARD FAIL.
  *   6. Narration must not outrun choreography (Rule 31a inversion) — WARN-only.
+ *   7. animate_in_ms dead config on an appear_at_ms<=0 primitive
+ *      (peter_parker:pcpl_surgeon, Checkpoint B cycle 3, 2026-08-09) — WARN-only.
+ *   8. Renderer-output scope name (riemann_bars sum_var/bars_drawn_var)
+ *      colliding with a teacher-control scope name (slider variable /
+ *      plot_point drag.bind_variable) (peter_parker:pcpl_surgeon, Checkpoint B
+ *      cycle 3, 2026-08-09) — WARN-only (a hard fail would need a concept-JSON
+ *      rename this validator cannot make).
  *
  * MATHEMATICS-SPECIFIC GATES ARE DELIBERATELY ABSENT and must stay absent until a
  * real defect seeds one. House discipline: a gate is EARNED by a scar, never
@@ -49,6 +56,8 @@ import {
     duplicateKeyErrors,
     narrationChoreographyWarnings,
     checkConceptChoreography,
+    animateInDeadConfigWarnings,
+    renderScopeCollisionWarnings,
 } from './lib/conceptGates';
 
 const MATH_DIR = join(process.cwd(), 'src', 'data', 'concepts', 'mathematics');
@@ -102,6 +111,8 @@ function main(): void {
         allWarnings.push(...wordBudgetWarnings(parsed, file));
         allWarnings.push(...narrationChoreographyWarnings(parsed, file));
         allWarnings.push(...choreo.filter((c) => !c.fatal).map((c) => `${file}: ${c.path}: ${c.message}`));
+        allWarnings.push(...animateInDeadConfigWarnings(parsed, file));
+        allWarnings.push(...renderScopeCollisionWarnings(parsed, file));
     }
 
     if (allWarnings.length > 0) {

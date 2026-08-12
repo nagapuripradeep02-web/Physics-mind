@@ -1,0 +1,732 @@
+{
+  "concept_id": "kinetic_energy_definition",
+  "concept_name": "Kinetic Energy — K = ½mv²",
+  "chapter": 6,
+  "section": "6.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power, §6.4 Kinetic energy (Eq. 6.7) — table-of-contents scope only, teaching authored from first principles. The atomic concept: a moving body has kinetic energy K = ½mv², measured in joules — proportional to its mass, proportional to the SQUARE of its speed, and never negative. Doubling the speed multiplies the reading by four while doubling the mass only doubles it; reversing the direction of motion leaves the reading unchanged, because squaring the speed removes the sign; and the reading falls to exactly zero when and only when the body is at rest. Does NOT cover what CHANGES kinetic energy (the work-energy theorem, work_energy_theorem), where the energy goes when friction stops a body, potential energy of any kind, conservation, or power. Boundary with work_energy_theorem enforced mechanically: this concept authors not a single force-ledger block anywhere in its field_3d_config, and no reader-facing string contains the word 'work' or a bare symbol W, so the engine's own energy panel self-names 'Energy bars'. Built on the newtons_laws_body field_3d engine with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md) — the first concept in the fleet to author an energy_layer. Pure configuration, zero renderer edits (0d).",
+
+  "prerequisites": [
+    "newton_second_law",
+    "friction_force"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "A vehicle at speed. Drive at twice the speed and the vehicle has four times the kinetic energy — which is why speed matters far more than it feels like it should.",
+    "secondary": "A hammer driving a nail. Swing the hammer twice as fast and it drives the nail much deeper in one blow, because it has four times the kinetic energy when it lands."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "m":    { "name": "cart mass", "unit": "kg", "min": 1, "max": 6, "default": 5 },
+      "v0":   { "name": "launch speed", "unit": "m/s", "min": -5, "max": 5, "default": 4 },
+      "v":    { "name": "speed", "unit": "m/s", "min": 0, "max": 5, "default": 4, "derived": "the integrator's own live value; no slider anywhere in this concept writes v directly" },
+      "g":    { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "mu_s": { "name": "coefficient of static friction (STATE_5 only)", "unit": "", "min": 0, "max": 1, "default": 0 },
+      "mu_k": { "name": "coefficient of kinetic friction (STATE_5 only)", "unit": "", "min": 0, "max": 1, "default": 0 },
+      "K":    { "name": "kinetic energy", "unit": "J", "min": 0, "max": 75, "derived": "0.5 * m * v * v" },
+      "w":    { "name": "weight", "unit": "N", "derived": "m * g" }
+    },
+    "computed_outputs": {
+      "K_J":                      { "formula": "0.5 * m * v * v" },
+      "K_ratio_speed_doubled":    { "formula": "4" },
+      "K_ratio_mass_doubled":     { "formula": "2" },
+      "stopping_distance_at_mu_k":{ "formula": "(v0 * v0) / (2 * mu_k * g)" },
+      "explore_max_K":            { "formula": "0.5 * 6 * 5 * 5" }
+    },
+    "formulas": {
+      "K":                            "0.5 * m * v * v",
+      "weight":                       "m * g",
+      "bar_fill_fraction":            "K / bar_max_J",
+      "friction_deceleration":        "mu_k * g",
+      "distance_to_reach_speed":      "(v0 * v0 - v * v) / (2 * mu_k * g)",
+      "time_to_reach_speed":          "(v0 - v) / (mu_k * g)",
+      "checkpoint_track_coordinate":  "initial_position_m + (v0 * v0 - v_target * v_target) / (2 * mu_k * g)",
+      "weight_arrow_world_length":    "min(2.80, max(0.55, m * g * 0.048))"
+    },
+    "constraints": [
+      "K = 0.5*m*v^2 is never negative: m > 0 and v^2 >= 0 for every real v",
+      "K = 0 if and only if v = 0",
+      "K is a scalar: it has size but no direction, and K(+v) = K(-v)",
+      "at fixed m, doubling v multiplies K by 4; at fixed v, doubling m multiplies K by 2",
+      "the friction deceleration a = mu_k * g does not depend on the mass",
+      "g = 9.8 m/s^2 (the engine constant NLB_G); every surface in this concept is flat, so there is no gravitational potential energy anywhere and no angle enters any formula"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Double the speed and the meter reads four times as much.",
+    "visual_confirmation": "Two identical 5 kg carts, one at 2 m/s and one at 4 m/s, read 10.0 J and 40.0 J on the two K meters — a near-empty track against a near-full one."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "direction":    { "start": "STATE_4", "end": "STATE_4" },
+    "quantitative": { "start": "STATE_5", "end": "STATE_5" }
+  },
+
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "A moving cart has kinetic energy",
+        "duration": 16,
+        "focal_primitive_id": "ked_s1_meter",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Moving cart, K above zero",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "ked_s1_cart",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the cart crosses the whole floor at a steady 4 m/s, and the HUD row beside it reads v = 4.00 m/s",
+            "color": "#FFF176"
+          },
+          {
+            "id": "ked_s1_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the K meter at the left edge holds at 40.0 J, near the top of its track",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "ked_s1_billboard",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the billboard above the cart reads cart = 5 kg",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This cart moves at a steady speed, v, of four metres per second.", "text_hi": "यह cart एक steady speed v से चल रही है, चार metres per second।", "glow": "nlb_body_cart_a" },
+            { "id": "s1_2", "text_en": "The meter on the left reads its kinetic energy, K, in joules.", "text_hi": "बाईं ओर का meter इसकी kinetic energy K दिखाता है, joules में।", "glow": "energy_panel" },
+            { "id": "s1_3", "text_en": "It reads forty joules.", "text_hi": "अभी यह चालीस joules पढ़ रहा है।", "glow": "energy_bar_K" },
+            { "id": "s1_4", "text_en": "Any moving body has kinetic energy.", "text_hi": "कोई भी चलती हुई body में kinetic energy होती है।", "glow": "nlb_body_cart_a" }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Twice the speed, four times the energy",
+        "duration": 20,
+        "focal_primitive_id": "ked_s2_meters",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "race-compare (declared contrast pair with STATE_4)",
+        "delta_cue": "Double speed, four times K",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_v_squared",
+          "double_speed_quadruple_energy",
+          "speed_vs_momentum_scaling"
+        ],
+        "scene_composition": [
+          {
+            "id": "ked_s2_carts",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "two identical 5 kg carts run in their own lanes, the fast one pulling further ahead every second",
+            "color": "#FFF176"
+          },
+          {
+            "id": "ked_s2_meters",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "two K meters at the left edge, each captioned with its own cart: slow cart 10.0 J, fast cart 40.0 J — a short stub and a nearly full track",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "ked_s2_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD shows a v row for each cart, 4.00 m/s and 2.00 m/s",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Both carts have the same mass, five kilograms, and the fast cart moves at twice the speed of the slow cart.", "text_hi": "दोनों carts का mass एक ही है, पाँच kilograms, और fast cart की speed slow cart से दोगुनी है।", "glow": "nlb_body_cart_b" },
+            { "id": "s2_2", "text_en": "You might expect twice the kinetic energy.", "text_hi": "आप शायद दोगुनी kinetic energy की उम्मीद करेंगे।", "glow": "energy_panel" },
+            { "id": "s2_3", "text_en": "Read the two meters: ten joules and forty joules.", "text_hi": "दोनों meters पढ़िए: दस joules और चालीस joules।", "glow": "energy_bar_K" },
+            { "id": "s2_4", "text_en": "Four times, because the speed is squared.", "text_hi": "चार गुना, क्योंकि speed का square होता है।", "glow": "energy_bar_K" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "kinetic energy is proportional to speed",
+            "visual_counter": "two carts of the same 5 kg mass, one at 2 m/s and one at 4 m/s, released together; their meters read 10.0 J and 40.0 J — four times the reading, not twice, and nearly the full track against a stub",
+            "one_line_fix": "the speed is squared, so doubling the speed multiplies the kinetic energy by four"
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "Twice the mass, twice the energy",
+        "duration": 23,
+        "focal_primitive_id": "ked_s3_meter",
+        "advance_mode": "manual_click",
+        "motion_archetype": "ramp-and-track",
+        "delta_cue": "Double mass, double K",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "ked_s3_arrow",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the yellow mg arrow under the cart doubles in length as the mass climbs from 2 kg to 4 kg on the billboard",
+            "color": "#FFD54F"
+          },
+          {
+            "id": "ked_s3_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the K meter climbs from 16.0 J to 32.0 J while the mass doubles — a doubling, where the speed state showed a quadrupling",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "ked_s3_hud",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the HUD's v row holds at 4.00 m/s the whole way, and the formula surface reads K = ½mv²",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Only the mass changes here: two kilograms climbing to four, with the yellow weight arrow doubling too.", "text_hi": "यहाँ सिर्फ mass बदल रहा है: दो kilograms से चार तक, और yellow weight arrow भी दोगुना हो जाता है।", "glow": "nlb_arrow_cart_a_weight" },
+            { "id": "s3_2", "text_en": "The speed never changes.", "text_hi": "Speed कभी नहीं बदलती।", "glow": "nlb_body_cart_a" },
+            { "id": "s3_3", "text_en": "Kinetic energy is one half times mass times speed squared, so the meter doubles, sixteen to thirty-two joules.", "text_hi": "Kinetic energy आधा गुना mass गुना speed का square है, इसलिए meter दोगुना हो जाता है — सोलह से बत्तीस joules।", "glow": "energy_bar_K" },
+            { "id": "s3_4", "text_en": "Doubling the speed gave four times; doubling the mass gives two.", "text_hi": "Speed दोगुनी करने पर चार गुना मिला; mass दोगुना करने पर दो गुना मिलता है।", "glow": "energy_bar_K" }
+          ]
+        }
+      },
+
+      "STATE_4": {
+        "title": "Kinetic energy is never negative",
+        "duration": 20,
+        "focal_primitive_id": "ked_s4_meters",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "race-compare (declared contrast pair with STATE_2)",
+        "delta_cue": "Backward: the same K",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "negative_velocity_positive_energy",
+          "energy_is_a_scalar",
+          "kinetic_energy_cannot_be_negative"
+        ],
+        "scene_composition": [
+          {
+            "id": "ked_s4_carts",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "two identical 5 kg carts slide apart at 3 m/s, one to the left and one to the right",
+            "color": "#FFF176"
+          },
+          {
+            "id": "ked_s4_meters",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "two K meters at the left edge read the same number, 22.5 J and 22.5 J, each filling half its track",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "ked_s4_formula",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the formula surface reads K = ½m(−v)² = ½mv², and one HUD v row is negative",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "These two carts have the same mass and the same speed, three metres per second, but they move in opposite directions.", "text_hi": "इन दोनों carts का mass और speed एक ही है, तीन metres per second, लेकिन ये उल्टी directions में चल रही हैं।", "glow": "nlb_body_cart_a" },
+            { "id": "s4_2", "text_en": "One velocity is negative.", "text_hi": "एक velocity negative है।", "glow": "nlb_body_cart_a" },
+            { "id": "s4_3", "text_en": "Both meters read twenty-two point five joules.", "text_hi": "दोनों meters साढ़े बाईस joules पढ़ रहे हैं।", "glow": "energy_bar_K" },
+            { "id": "s4_4", "text_en": "Squaring the speed removes the sign, so kinetic energy is never negative.", "text_hi": "Speed का square करने से sign हट जाता है, इसलिए kinetic energy कभी negative नहीं होती।", "glow": "energy_bar_K" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "reversing the direction of motion reverses the sign of the kinetic energy",
+            "visual_counter": "two identical carts at the same 3 m/s in opposite directions; both meters read exactly 22.5 J",
+            "one_line_fix": "squaring the speed removes the sign, so kinetic energy is never negative"
+          }
+        ]
+      },
+
+      "STATE_5": {
+        "title": "Kinetic energy falls to zero",
+        "duration": 23,
+        "focal_primitive_id": "ked_s5_stamp",
+        "advance_mode": "manual_click",
+        "motion_archetype": "flow-along-path",
+        "delta_cue": "K falls to zero",
+        "depth_ring": "extended",
+        "scene_composition": [
+          {
+            "id": "ked_s5_friction",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "the friction arrow points back against the cart's motion on the rough floor, and the HUD carries an f row in newtons",
+            "color": "#FFF176"
+          },
+          {
+            "id": "ked_s5_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the K meter falls continuously from 37.5 J and settles on exactly 0.0 J once the cart is at rest",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "ked_s5_stamp",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the flag stamps v = 4.00 m/s · K = 24.0 J beneath K = ½mv² on the formula surface, and the stamp holds",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "This floor is rough, so the cart slows down steadily.", "text_hi": "यह floor rough है, इसलिए cart धीरे-धीरे slow down होती है।", "glow": "nlb_arrow_cart_a_friction" },
+            { "id": "s5_2", "text_en": "Watch the meter fall as the speed falls.", "text_hi": "Speed गिरने के साथ meter को गिरते हुए देखिए।", "glow": "energy_bar_K" },
+            { "id": "s5_3", "text_en": "At the flag the cart is moving at four metres per second and the meter reads twenty-four joules, one half times three times sixteen.", "text_hi": "Flag पर cart चार metres per second से चल रही है और meter चौबीस joules पढ़ता है — आधा गुना तीन गुना सोलह।", "glow": "checkpoint_1" },
+            { "id": "s5_4", "text_en": "The cart stops, and the meter reads zero.", "text_hi": "Cart रुक जाती है, और meter शून्य पढ़ता है।", "glow": "energy_bar_K" }
+          ]
+        }
+      },
+
+      "STATE_6": {
+        "title": "Explore: change speed and mass",
+        "duration": 0,
+        "focal_primitive_id": "ked_s6_meter",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change speed and mass",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "ked_s6_sliders",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "two live slider rows: speed v₀ from −5 to 5 m/s, and mass m from 1 to 6 kg",
+            "color": "#FFF176"
+          },
+          {
+            "id": "ked_s6_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the K meter runs live on an 80 J scale, reading 40.0 J at the opening 5 kg and 4 m/s",
+            "color": "#FFCA28"
+          },
+          {
+            "id": "ked_s6_cart",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "the cart runs and wraps forever; set the speed to zero and the meter reads 0.0 J",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Change the speed and the mass.", "text_hi": "Speed और mass बदलिए।", "glow": "nlb_body_cart_a" },
+            { "id": "s6_2", "text_en": "Watch the meter.", "text_hi": "Meter देखिए।", "glow": "energy_bar_K" },
+            { "id": "s6_3", "text_en": "Set the speed to zero and the kinetic energy is zero.", "text_hi": "Speed को zero कीजिए और kinetic energy zero हो जाती है।", "glow": "energy_bar_K" }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "luggage_trolley_in_a_corridor",
+      "type": "B",
+      "label": "A Luggage Trolley Rolling Along a Level Corridor",
+      "physical_world": "A luggage trolley rolls along a smooth level corridor. A second, identical trolley rolls beside it at twice the speed, and a loaded trolley rolls at the same speed as an empty one.",
+      "same_physics": "Identical readings: the same K = ½mv² meter, four times the reading for twice the speed, twice the reading for twice the mass, and exactly zero once a trolley stops.",
+      "scene_hint": "Same flat track and same one- or two-body rig — only the labelled object changes from a cart to a trolley."
+    },
+    {
+      "variant_id": "puck_sliding_on_ice",
+      "type": "B",
+      "label": "A Puck Sliding Across Ice",
+      "physical_world": "A puck slides across smooth ice at a steady speed, a second puck slides the other way at the same speed, and a third slides onto a rough patch and comes to rest.",
+      "same_physics": "Same scalar reading with no direction and no sign: both pucks read the same joules whichever way they travel, and the reading falls to exactly zero when the rough patch brings one to rest.",
+      "scene_hint": "Same rig, same flat surface — the cart is relabelled a puck and the rough state's floor is the rough patch."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state that a moving body has kinetic energy K = ½mv² measured in joules; predict that doubling the speed multiplies the kinetic energy by four while doubling the mass only doubles it; compute K for given m and v; explain why kinetic energy is a scalar that can never be negative whatever the direction of motion; and say that kinetic energy is exactly zero when and only when the body is at rest.",
+    "questions": [
+      {
+        "q_id": "q1_ke_of_a_moving_body",
+        "stem": "A 5 kg cart moves at a steady 4 m/s on a level floor. What is its kinetic energy?",
+        "options": {
+          "A": "40 J",
+          "B": "20 J",
+          "C": "10 J",
+          "D": "80 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses mv/2 — halves the mass times the speed instead of squaring the speed",
+          "C": "computes mv/2 with the one half applied twice, so the speed is never squared at all",
+          "D": "uses mv² and forgets the one half"
+        },
+        "tested_idea": "a moving body has a measurable kinetic energy in joules, K = ½mv²",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A 2 kg trolley rolls at a steady 3 m/s along a level corridor. What is its kinetic energy?"
+      },
+      {
+        "q_id": "q2_double_the_speed",
+        "stem": "Two carts have the same mass. One moves twice as fast as the other. The ratio of their kinetic energies, fast to slow, is",
+        "options": {
+          "A": "2 : 1",
+          "B": "4 : 1",
+          "C": "1 : 2",
+          "D": "8 : 1"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "the concept's headline misconception — treats kinetic energy as proportional to speed, the way momentum is",
+          "C": "inverts the ratio, giving the faster cart the smaller energy",
+          "D": "cubes the speed ratio instead of squaring it"
+        },
+        "tested_idea": "kinetic energy goes as the SQUARE of the speed, so doubling the speed multiplies it by four",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Two pucks of equal mass slide across ice, one at 3 m/s and one at 6 m/s. What is the ratio of their kinetic energies, faster to slower?"
+      },
+      {
+        "q_id": "q3_double_the_mass",
+        "stem": "A cart moving at a fixed 4 m/s has its mass doubled from 2 kg to 4 kg. Its kinetic energy",
+        "options": {
+          "A": "stays the same",
+          "B": "doubles",
+          "C": "becomes four times as large",
+          "D": "becomes half as large"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "thinks kinetic energy depends only on the speed",
+          "C": "carries the squaring rule across from the speed to the mass — the exact confusion this state exists to break",
+          "D": "inverts the proportionality, treating a heavier body as harder to give energy to"
+        },
+        "tested_idea": "kinetic energy is proportional to the mass, so doubling the mass only doubles it",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A trolley rolling at a fixed 3 m/s has its load increased so its mass doubles from 5 kg to 10 kg. What happens to its kinetic energy?"
+      },
+      {
+        "q_id": "q4_negative_velocity",
+        "stem": "A 5 kg cart moves at 3 m/s to the LEFT, so its velocity is −3 m/s. Its kinetic energy is",
+        "options": {
+          "A": "−22.5 J",
+          "B": "22.5 J",
+          "C": "0 J",
+          "D": "−7.5 J"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "carries the sign of the velocity into the energy — the exact belief this state confronts",
+          "C": "thinks a negative velocity means the body has no kinetic energy",
+          "D": "applies the sign and drops the square"
+        },
+        "tested_idea": "kinetic energy is a scalar with no sign: squaring the speed removes the direction",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A 2 kg puck slides across ice at 4 m/s in the negative direction, so its velocity is −4 m/s. What is its kinetic energy?"
+      },
+      {
+        "q_id": "q5_falls_to_zero",
+        "stem": "A 3 kg cart is launched at 5 m/s across a rough floor and slides to a stop. At the instant it is moving at 4 m/s, and at the instant it has stopped, its kinetic energy readings are",
+        "options": {
+          "A": "30.0 J then 0.0 J",
+          "B": "24.0 J then 0.0 J",
+          "C": "24.0 J then 6.0 J",
+          "D": "37.5 J then 24.0 J"
+        },
+        "correct": "B",
+        "distractor_misconceptions": {
+          "A": "mis-substitutes into ½mv², multiplying by the launch speed instead of squaring the current speed",
+          "C": "believes a stopped body keeps some kinetic energy",
+          "D": "reads the launch value as the flag value, shifting every reading one step"
+        },
+        "tested_idea": "kinetic energy tracks the body's own current speed and is exactly zero at rest",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A 4 kg trolley is pushed off at 3 m/s and rolls to a stop on a rough floor. What are its kinetic energy readings at the instant it is moving at 2 m/s and at the instant it has stopped?"
+      },
+      {
+        "q_id": "q6_zero_kinetic_energy",
+        "stem": "On the explore screen the speed slider is set to zero while the mass slider stays at 5 kg. The meter reads",
+        "options": {
+          "A": "5.0 J",
+          "B": "2.5 J",
+          "C": "0.0 J",
+          "D": "it depends on the mass"
+        },
+        "correct": "C",
+        "distractor_misconceptions": {
+          "A": "reads the mass number as the energy number",
+          "B": "applies the one half to the mass alone and ignores the speed",
+          "D": "thinks a heavy body at rest still holds kinetic energy"
+        },
+        "tested_idea": "kinetic energy is zero when and only when the speed is zero, whatever the mass",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "In the same sandbox the mass slider is raised to 6 kg while the speed slider stays at zero. What does the kinetic energy meter read?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_ke_of_a_moving_body"],
+      "STATE_2": ["q2_double_the_speed"],
+      "STATE_3": ["q3_double_the_mass"],
+      "STATE_4": ["q4_negative_velocity"],
+      "STATE_5": ["q5_falls_to_zero"],
+      "STATE_6": ["q6_zero_kinetic_energy"]
+    },
+    "non_assessed_states": []
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.6 Work, Energy and Power — §6.4 Kinetic energy (Eq. 6.7)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "full",
+        "syllabus_unit": "Topic 2.3 Work, energy and power — kinetic energy Eₖ = ½mv²",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 Work, Energy and Power — kinetic energy and its dependence on mass and speed",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — kinetic energy Eₖ = ½mv²",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — kinetic energy, K = ½mv²",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — kinetic energy as a scalar, dependence on m and v²",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — kinetic energy K = ½mv²",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "v0": { "min": -5, "max": 5, "step": 0.5, "default": 4, "label": "v₀" },
+      "m":  { "min": 1, "max": 6, "step": 0.5, "default": 5, "label": "m" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "One 5 kg cart coasts across the whole floor at a steady 4 m/s; the K meter at the left edge holds at 40.0 J",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Moving cart, K above zero",
+        "show_sliders": true,
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart_a", "label": "cart", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4 }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 45, "precision": 1 },
+          "loop_reset_ms": 2400,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_2": {
+        "label": "Two identical 5 kg carts run in their own lanes: the slow cart at 2 m/s reads 10.0 J and the fast cart at 4 m/s reads 40.0 J",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 9],
+        "caption": "Double speed, four times K",
+        "show_sliders": true,
+        "formula_overlay": "K ∝ v²",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart_b", "label": "fast cart", "mass_kg": 5, "color": "#EF5350", "initial_position_m": -3.4, "initial_velocity_mps": 4 },
+            { "id": "cart_a", "label": "slow cart", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 2 }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 45, "precision": 1, "body_ids": ["cart_a", "cart_b"] },
+          "loop_reset_ms": 2000,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_3": {
+        "label": "One cart holds a steady 4 m/s while its mass climbs from 2 kg to 4 kg; the mg arrow doubles and the K meter climbs 16.0 J to 32.0 J",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Double mass, double K",
+        "show_sliders": true,
+        "formula_overlay": "K = ½mv²",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart_a", "label": "cart", "mass_kg": 2, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4 }
+          ],
+          "arrows": [
+            { "body_id": "cart_a", "show": ["weight"] }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 45, "precision": 1 },
+          "param_ramp": { "param": "m", "from": 2, "to": 4, "end_ms": 7200 },
+          "loop_reset_ms": 2400,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_4": {
+        "label": "Two identical 5 kg carts slide apart at 3 m/s, one left and one right; both K meters read exactly 22.5 J",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 9],
+        "caption": "Backward: the same K",
+        "show_sliders": true,
+        "formula_overlay": "K = ½m(−v)² = ½mv²",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart_b", "label": "right cart", "mass_kg": 5, "color": "#EF5350", "initial_position_m": 1.2, "initial_velocity_mps": 3 },
+            { "id": "cart_a", "label": "left cart", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -1.2, "initial_velocity_mps": -3 }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 45, "precision": 1, "body_ids": ["cart_a", "cart_b"] },
+          "loop_reset_ms": 1300,
+          "readouts": ["v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_5": {
+        "label": "A 3 kg cart launched at 5 m/s onto a rough floor (μ = 0.5) slides to rest; the K meter falls from 37.5 J, stamps 24.0 J at the flag, and settles on 0.0 J",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "K falls to zero",
+        "show_sliders": true,
+        "formula_overlay": "K = ½mv²",
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "cart_a", "label": "cart", "mass_kg": 3, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 5, "mu_s": 0.5, "mu_k": 0.5 }
+          ],
+          "arrows": [
+            { "body_id": "cart_a", "show": ["friction"] }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 45, "precision": 1 },
+          "checkpoints": [
+            { "s_m": -4.481633, "label": "flag", "body_id": "cart_a", "capture": ["v", "K"], "capture_mode": "first" }
+          ],
+          "loop_reset_ms": 2100,
+          "readouts": ["f", "v"],
+          "controls_visible": []
+        }
+      },
+
+      "STATE_6": {
+        "label": "Sandbox: the speed and mass sliders drive the cart and the K meter live on an 80 J scale, opening at 5 kg and 4 m/s for 40.0 J",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 9],
+        "caption": "Change speed and mass",
+        "show_sliders": true,
+        "formula_overlay": "K = ½mv²",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "cart_a", "label": "cart", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 4 }
+          ],
+          "energy_layer": { "bars": ["K"], "bar_max_J": 80, "precision": 1 },
+          "readouts": ["v"],
+          "controls_visible": ["v0", "m"],
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}

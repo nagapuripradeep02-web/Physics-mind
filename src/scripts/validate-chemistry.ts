@@ -35,6 +35,8 @@ import {
     indicatorBindingErrors,
     duplicateKeyErrors,
     narrationChoreographyWarnings,
+    animateInDeadConfigWarnings,
+    renderScopeCollisionWarnings,
 } from './lib/conceptGates';
 
 const CHEM_DIR = join(process.cwd(), 'src', 'data', 'concepts', 'chemistry');
@@ -127,6 +129,14 @@ function main(): void {
 
         allWarnings.push(...wordBudgetWarnings(parsed, file));
         allWarnings.push(...narrationChoreographyWarnings(parsed, file));
+        // peter_parker:pcpl_surgeon, Checkpoint B cycle 3 ride-alongs
+        // (2026-08-09) — subject-neutral (PCPL primitive fields), and
+        // measured live: bohr_model_energy_levels + law_of_conservation_of_
+        // mass (panel_a: 'parametric') both carry appear_at_ms<=0 primitives
+        // declaring a now-inert animate_in_ms. WARN-only, same as every
+        // other gate in this list.
+        allWarnings.push(...animateInDeadConfigWarnings(parsed, file));
+        allWarnings.push(...renderScopeCollisionWarnings(parsed, file));
     }
 
     if (allWarnings.length > 0) {

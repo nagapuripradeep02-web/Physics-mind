@@ -1,0 +1,773 @@
+{
+  "concept_id": "positive_negative_zero_work",
+  "concept_name": "Positive, Negative and Zero Work — the Sign of W = F·d·cos θ",
+  "chapter": 6,
+  "section": "6.3",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.6 Work, Energy and Power, §6.3 Work — table-of-contents scope only, teaching authored from first principles. The atomic concept: the work done by a force on a moving body carries a SIGN, and the angle between the force and the displacement decides it — theta < 90 degrees gives positive work (the force helps the motion), theta = 90 degrees gives zero work (a force can act the whole way and do nothing; the normal force is the canonical case), theta > 90 degrees gives negative work (the force opposes the motion; friction is the canonical case) — and the net work is the signed sum over every force acting. Whether the body speeds up or slows down tracks the NET work only, used strictly as an on-screen observable via the v readout, never stated as a rule. Does NOT cover kinetic energy as a quantity (kinetic_energy_definition), the work-energy theorem (work_energy_theorem), power, or the definition/joule/cos-theta resolution for 0 degrees <= theta < 90 degrees (owned by work_done_by_constant_force, assumed as prerequisite). Built on the newtons_laws_body field_3d engine extended with the SEAM K/L/M/N energy layer (docs/loop_runs/ch6_state.md), pure configuration, zero renderer edits (0d).",
+
+  "prerequisites": [
+    "work_done_by_constant_force",
+    "friction_force",
+    "normal_force",
+    "newton_second_law"
+  ],
+
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "newtons_laws_body"
+    ]
+  },
+
+  "real_world_anchor": {
+    "primary": "Carrying a bag across a level floor. Your hand pulls the bag upward the whole way, and the bag moves horizontally: the force and the motion are at right angles, so the hand's upward force does exactly zero work on the bag, no matter how far you walk or how heavy the bag is.",
+    "secondary": "Braking on a bicycle. The brake's friction force points backward while the bicycle still rolls forward — that force does negative work, and the bicycle slows."
+  },
+
+  "physics_engine_config": {
+    "variables": {
+      "F":     { "name": "applied force magnitude", "unit": "N", "min": 0, "max": 60, "default": 20 },
+      "F_ang": { "name": "pull angle above the floor", "unit": "deg", "min": 0, "max": 180, "default": 0 },
+      "m":     { "name": "crate mass", "unit": "kg", "min": 0.5, "max": 10, "default": 5 },
+      "g":     { "name": "gravitational acceleration", "unit": "m/s^2", "constant": 9.8 },
+      "mu_s":  { "name": "coefficient of static friction (S2/S4/S5/S6)", "unit": "", "min": 0, "max": 1, "default": 0 },
+      "mu_k":  { "name": "coefficient of kinetic friction (S2/S4/S5/S6, authored equal to mu_s)", "unit": "", "min": 0, "max": 1, "default": 0 },
+      "v0":    { "name": "state-authored initial launch speed (S2: 6, S3: 3, S5: 8; all other states start at rest)", "unit": "m/s", "min": 0, "max": 10, "default": 0 }
+    },
+    "computed_outputs": {
+      "N":         { "formula": "m*g - F*sin(radians(F_ang))" },
+      "F_along":   { "formula": "F*cos(radians(F_ang))" },
+      "f_k":       { "formula": "mu_k*(m*g - F*sin(radians(F_ang)))" },
+      "maxStat":   { "formula": "mu_s*(m*g - F*sin(radians(F_ang)))" },
+      "a_driven":  { "formula": "(F*cos(radians(F_ang)) - mu_k*(m*g - F*sin(radians(F_ang))))/m" },
+      "W_applied": { "formula": "F*d*cos(radians(F_ang))" },
+      "W_friction":{ "formula": "-mu_k*(m*g - F*sin(radians(F_ang)))*d" },
+      "W_normal":  { "formula": "0" },
+      "W_net":     { "formula": "(F*cos(radians(F_ang)) - mu_k*(m*g - F*sin(radians(F_ang))))*d" }
+    },
+    "formulas": {
+      "sign_positive":           "W = F·d·cos θ > 0 for 0° <= θ < 90° -- the force helps the motion (S1)",
+      "sign_negative_friction":  "W = f·d·cos 180° = -f·d -- kinetic friction's work is always negative while sliding (S2)",
+      "sign_zero_perpendicular": "W = N·d·cos 90° = 0 -- a force at right angles to the displacement does zero work (S3)",
+      "net_work_sum":            "W_net = W1 + W2 + W3 -- net work is the signed sum of every force's work (S4)",
+      "sign_general_angle":      "W = F·d·cos θ -- one formula spans all three sign regimes; the sign lives in cos θ (S5/S6)",
+      "normal_reaction":         "N = m·g - F·sin θ -- valid for θ in [0deg,180deg]; the pull's vertical component changes the floor's normal reaction",
+      "max_static":              "maxStat = mu_s·N -- the ceiling static friction can supply before breakaway"
+    },
+    "constraints": [
+      "W = F*d*cos(theta) for every force at every instant -- the sign comes from theta, never from the size of F",
+      "N = m*g - F*sin(theta) stays >= 0 for every authored angle 0..180deg; the minimum reached anywhere in this concept is 24.0 N at theta=90deg with F=25N, so the crate never lifts off",
+      "a force at exactly 90deg to the displacement does zero work, however far the body travels or however heavy it is",
+      "kinetic friction always points opposite to the direction of sliding, so its work is negative whenever the body is actually moving",
+      "static friction holds a body at rest only while the along-motion drive stays at or below mu_s*N; past that limit the body breaks away",
+      "net work on a body is the signed sum of the work done by every individual force acting on it"
+    ]
+  },
+
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "The work meter that only ever climbed can dive below zero.",
+    "visual_confirmation": "The friction bar dives below the zero line to −90.0 J as the speed readout falls to zero."
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_4" },
+    "angle_rule":   { "start": "STATE_5", "end": "STATE_5" }
+  },
+
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Positive work: force along motion",
+        "duration": 22,
+        "focal_primitive_id": "pnzw_s1_meter",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Bar up: positive work",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "pnzw_s1_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A steady 20 N pull moves the crate along the floor from rest",
+            "color": "#FFF176"
+          },
+          {
+            "id": "pnzw_s1_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the work bar climbs above the zero line, +20.0 J for every metre moved — positive work, reading +160.0 J at the loop's end",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "pnzw_s1_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like pulling a suitcase forward by its handle, in the direction it rolls",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A steady twenty newton pull acts on the crate from rest, along the floor.", "glow": "nlb_arrow_crate_applied" },
+            { "id": "s1_2", "text_en": "The pull is the only horizontal force acting, and the crate speeds up.", "glow": "nlb_body_crate" },
+            { "id": "s1_3", "text_en": "The work bar climbs above the zero line — positive work, because the force points along the motion.", "glow": "displacement_vector" }
+          ]
+        }
+      },
+
+      "STATE_2": {
+        "title": "Negative work: force against motion",
+        "duration": 28,
+        "focal_primitive_id": "pnzw_s2_meter",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "decay-to-rest (declared contrast pair with STATE_5)",
+        "delta_cue": "Bar down: negative work",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "how_work_can_be_negative",
+          "friction_always_opposes_sliding",
+          "slowing_down_and_negative_work"
+        ],
+        "scene_composition": [
+          {
+            "id": "pnzw_s2_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "The same crate now slides with no pull — only friction acts against its motion",
+            "color": "#FFF176"
+          },
+          {
+            "id": "pnzw_s2_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the friction bar dives below the zero line to −90.0 J as the crate slows to a stop",
+            "color": "#EF5350"
+          },
+          {
+            "id": "pnzw_s2_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a bicycle's brakes: the friction force points backward while the bicycle still rolls forward",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The crate slides at six metres per second with no pull; only friction acts, pointing backward against its motion.", "glow": "nlb_arrow_crate_friction" },
+            { "id": "s2_2", "text_en": "The bar dives below the zero line as the crate slows to a stop: negative work.", "glow": "displacement_vector" },
+            { "id": "s2_3", "text_en": "At rest the friction arrow vanishes, but the bar still holds at minus ninety joules; the work is still counted.", "glow": "nlb_arrow_crate_friction" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "work can only accumulate upward; friction merely slows, contributing no work",
+            "visual_counter": "the friction arrow points backward while the crate still moves forward; the friction bar dives below the zero line to −90.0 J as the speed readout falls to zero",
+            "one_line_fix": "a force pointing against the motion does negative work — the joules are real and carry a minus sign"
+          }
+        ]
+      },
+
+      "STATE_3": {
+        "title": "Zero work: force at right angles",
+        "duration": 24,
+        "focal_primitive_id": "pnzw_s3_meter",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "motion_archetype": "null-result-hold",
+        "delta_cue": "Bar stays at zero",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_ninety_degrees_means_zero",
+          "force_without_work",
+          "carrying_a_bag_zero_work"
+        ],
+        "scene_composition": [
+          {
+            "id": "pnzw_s3_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "The crate coasts while the floor's normal force pushes straight up, at right angles to the motion",
+            "color": "#FFF176"
+          },
+          {
+            "id": "pnzw_s3_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the normal-force bar stays parked exactly on the zero line, however far the crate travels",
+            "color": "#B0BEC5"
+          },
+          {
+            "id": "pnzw_s3_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like carrying a bag: your hand's upward force does zero work while you walk forward",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The crate coasts at three metres per second while the normal force pushes up, at ninety degrees to the motion.", "glow": "angle_arc" },
+            { "id": "s3_2", "text_en": "The work bar never leaves the zero line, however far the crate travels.", "glow": "displacement_vector" },
+            { "id": "s3_3", "text_en": "A heavier crate makes the normal force taller, but the bar still reads zero.", "glow": "nlb_arrow_crate_normal" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "acting force → joules appear",
+            "visual_counter": "the normal-force arrow pushes up for the whole run, the arc reads 90°, d grows past 4 m — and the normal-force bar sits parked exactly on the zero line",
+            "one_line_fix": "a force at right angles to the motion does zero work, however long it acts"
+          }
+        ]
+      },
+
+      "STATE_4": {
+        "title": "Net work is the signed sum",
+        "duration": 28,
+        "focal_primitive_id": "pnzw_s4_meter",
+        "advance_mode": "manual_click",
+        "motion_archetype": "ledger-split",
+        "delta_cue": "Four bars, one sum",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "pnzw_s4_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "The pull, friction, and the normal force all act on the same moving crate at once",
+            "color": "#FFF176"
+          },
+          {
+            "id": "pnzw_s4_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "four bars track four signed accounts — the net bar is their signed sum, +15.6 J at the pin",
+            "color": "#FFD54F"
+          },
+          {
+            "id": "pnzw_s4_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like totalling the pushes and drags on a moving cart — some add, some subtract",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The pull, friction, and the normal force act on the same moving crate; each keeps its own signed account.", "glow": "nlb_body_crate" },
+            { "id": "s4_2", "text_en": "The pull's bar climbs green, friction's bar dives red, and the normal force's bar stays parked on zero.", "glow": "nlb_arrow_crate_friction" },
+            { "id": "s4_3", "text_en": "The fourth bar is the net, the signed sum of the other three, and the crate speeds up." }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "The angle decides the sign",
+        "duration": 27,
+        "focal_primitive_id": "pnzw_s5_meter",
+        "advance_mode": "manual_click",
+        "motion_archetype": "decay-to-rest (declared contrast pair with STATE_2)",
+        "delta_cue": "The angle sets the sign",
+        "depth_ring": "extended",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "sign_of_cos_theta",
+          "negative_work_vs_negative_force",
+          "ninety_degrees_the_dividing_line"
+        ],
+        "scene_composition": [
+          {
+            "id": "pnzw_s5_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "A 25 N pull now leans back at 120 degrees to the floor",
+            "color": "#FFF176"
+          },
+          {
+            "id": "pnzw_s5_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "the bar dives to −66.1 J even though the HUD still reads a positive 25 N pull",
+            "color": "#EF5350"
+          },
+          {
+            "id": "pnzw_s5_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "like tugging a sled's rope backward and upward instead of forward — the same pull, a different sign",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "A twenty-five newton pull leans back at a hundred and twenty degrees.", "glow": "angle_arc" },
+            { "id": "s5_2", "text_en": "The bar dives below zero while the HUD reads a positive twenty-five newtons; the angle decides the sign.", "glow": "nlb_arrow_crate_applied" },
+            { "id": "s5_3", "text_en": "The rough floor's friction also does negative work here (we count only the pull's), and the crate comes to rest and stays there.", "glow": "nlb_arrow_crate_friction" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "the minus sign belongs to the force",
+            "visual_counter": "the HUD reads the full pull F = 25 N — positive — the entire time; only the arc past 90° sends the bar below zero, and dragging θ back under 90° while the crate still slides turns the same 25 N pull's bar green",
+            "one_line_fix": "the sign of work comes from the angle between the force and the motion, not from the force's own size"
+          }
+        ]
+      },
+
+      "STATE_6": {
+        "title": "Explore: change force, angle, mass",
+        "duration": 0,
+        "focal_primitive_id": "pnzw_s6_meter",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Change anything",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "id": "pnzw_s6_head",
+            "type": "annotation",
+            "position": { "x": 380, "y": 60 },
+            "text": "Change the force, the angle, or the mass, and drag the crate freely",
+            "color": "#FFF176"
+          },
+          {
+            "id": "pnzw_s6_meter",
+            "type": "annotation",
+            "position": { "x": 200, "y": 250 },
+            "text": "Set the force below μₛN and the crate holds still — every bar parks, because nothing moved",
+            "color": "#66BB6A"
+          },
+          {
+            "id": "pnzw_s6_anchor",
+            "type": "annotation",
+            "position": { "x": 560, "y": 400 },
+            "text": "At ninety degrees the pull's bar freezes while the friction bar keeps diving — kinetic friction still slows a moving crate",
+            "color": "#4DD0E1"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Change the force, the angle, or the mass, and drag the crate freely." },
+            { "id": "s6_2", "text_en": "Set the force below the maximum static friction and the crate holds still, so every bar parks at zero, because nothing moved.", "glow": "nlb_body_crate" },
+            { "id": "s6_3", "text_en": "At ninety degrees the pull's bar freezes while the friction bar keeps diving, because friction still slows a moving crate.", "glow": "nlb_arrow_crate_friction" }
+          ]
+        }
+      }
+    }
+  },
+
+  "regeneration_variants": [
+    {
+      "variant_id": "suitcase_on_rough_pavement",
+      "type": "B",
+      "label": "Dragging a Suitcase Across Rough Pavement",
+      "physical_world": "A suitcase is dragged across a rough sidewalk. A pull moves it forward for a while, then the pull is released and the pavement's friction alone brings it to a stop.",
+      "same_physics": "Identical sign taxonomy: the pull does positive work while it acts, the pavement's friction does negative work the entire time the case slides, and the sum of every force's work is the net work.",
+      "scene_hint": "Same single-body rig, same flat surface — only the labeled object changes from a crate to a suitcase."
+    },
+    {
+      "variant_id": "loaded_cart_on_level_aisle",
+      "type": "B",
+      "label": "Pushing a Loaded Cart Across a Level Store Aisle",
+      "physical_world": "A loaded cart is pushed across a level aisle. The floor's normal force supports the cart's weight the entire way, and a rough patch of floor briefly adds friction.",
+      "same_physics": "Same zero-and-negative-work story: the floor's normal force acts the whole way and does exactly zero work, while a floor patch's friction does negative work whenever it opposes the roll.",
+      "scene_hint": "Same rig and physics — the crate is relabeled a cart, the pull becomes the push."
+    }
+  ],
+
+  "assessment": {
+    "mastery_definition": "A student who has mastered this concept can state the sign of the work done by a force from the angle between the force and the displacement alone; explain why a force perpendicular to the motion does zero work however long it acts, using the carried-bag case; explain why kinetic friction's work is always negative while a body slides, and why the force reading itself stays positive even when the work is negative; compute work at an obtuse angle numerically; and sum the signed work of several forces into a correct net work, including the constant-velocity net-zero case.",
+    "questions": [
+      {
+        "q_id": "q1_sign_convention",
+        "stem": "A horizontal 25 N force pulls a crate 3 m across a frictionless floor, in the same direction the crate moves. What is the sign of the work done by this force?",
+        "options": {
+          "A": "Positive — force and displacement point the same way",
+          "B": "Negative — the force causes the crate to start moving from rest",
+          "C": "Zero — the crate starts from rest, so no work has been done yet",
+          "D": "It cannot be determined without knowing the crate's mass"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a rule that starting a body from rest makes the force's work negative — confuses cause-of-motion with the sign of work",
+          "C": "confuses the body's initial rest state with a zero reading, ignoring that positive work accumulates from any nonzero force times displacement",
+          "D": "mass-relevance misconception — work done by a force does not depend on the mass being moved"
+        },
+        "tested_idea": "theta < 90 degrees gives positive work -- the sign convention",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A 15 N horizontal force drags a suitcase 2 m across a smooth floor, force and motion in the same direction. What is the sign of the work done?"
+      },
+      {
+        "q_id": "q2_friction_negative_joules",
+        "stem": "A crate slides across a rough floor with no applied push, slowing down as a constant 15 N kinetic friction force acts on it. What is the work done by friction while the crate travels 4 m?",
+        "options": {
+          "A": "-60 J",
+          "B": "+60 J -- friction is what stops the crate, so it does positive work",
+          "C": "0 J -- friction only slows things down, it does not do work",
+          "D": "-4 J"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "attaches a positive sign to friction because it 'accomplishes' stopping the crate, instead of reading the sign from the angle between friction and the motion",
+          "C": "friction merely slows, contributing no work -- the exact planted belief this state confronts",
+          "D": "confuses the distance travelled with the work done -- unit-blind arithmetic"
+        },
+        "tested_idea": "negative work from a force opposing the motion; friction's joules are real and negative",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A bicycle's brakes apply a constant 40 N backward friction force while the bike rolls 2.5 m forward before stopping. What is the work done by the brake friction?"
+      },
+      {
+        "q_id": "q3_zero_perpendicular_bag",
+        "stem": "You carry a bag straight up with your hand while walking 12 m across a level floor. Your hand's upward force on the bag stays constant the whole way. How much work does your hand's upward force do on the bag?",
+        "options": {
+          "A": "Exactly 0 J, however far you walk",
+          "B": "A positive value that grows with the distance walked",
+          "C": "A positive value equal to the force times your walking speed",
+          "D": "A negative value, because your arm gets tired"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "acting force implies accumulating joules -- the planted belief, transferred to the carried-bag case",
+          "C": "confuses work with power by multiplying force with speed instead of displacement along the force",
+          "D": "confuses the carrier's own fatigue with the physics work done on the bag"
+        },
+        "tested_idea": "a force at right angles to the motion does zero work, however long it acts (perpendicular case; carried-bag anchor)",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A crate coasts at constant speed across a frictionless floor while the floor's normal force pushes straight up on it the entire time. How much work does the normal force do?"
+      },
+      {
+        "q_id": "q4_net_work_signed_sum",
+        "stem": "A crate is pulled at a steady 20 N along a rough floor and moves at CONSTANT velocity the whole time, because friction exactly balances the pull. What is the net work done on the crate over any distance it travels?",
+        "options": {
+          "A": "Exactly 0 J -- the pull's positive work and friction's negative work cancel",
+          "B": "A large positive value, because the pull is still doing work",
+          "C": "A large negative value, because friction is always larger than the pull",
+          "D": "It depends on the crate's mass"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "ignores that friction's negative work is equal in size to the pull's positive work",
+          "C": "assumes friction always dominates the sum rather than exactly cancelling it here",
+          "D": "invents a mass-dependence for net work that does not exist when both forces are given directly"
+        },
+        "tested_idea": "net work is the signed sum of every force's work, including the constant-velocity net-zero case",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A crate on a rough floor is pulled by a force doing +22 J of work while friction does exactly -22 J of work over the same distance. What is the net work done on the crate?"
+      },
+      {
+        "q_id": "q5_obtuse_angle_computed",
+        "stem": "A 30 N pull acts at 150 degrees to a crate's forward displacement of 4 m (cos 150 degrees is about -0.87). What is the work done by the pull?",
+        "options": {
+          "A": "About -104 J",
+          "B": "About +104 J",
+          "C": "About -60 J",
+          "D": "0 J, because the angle is obtuse"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "correctly finds the magnitude but drops the negative sign the obtuse angle requires",
+          "C": "uses sin 150 degrees instead of cos 150 degrees",
+          "D": "confuses the 90 degree zero-work case with any obtuse angle, assuming every angle past 90 degrees also gives zero"
+        },
+        "tested_idea": "sign from cos theta for an obtuse angle, computed numerically",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A 40 N force acts at 130 degrees to a body's 5 m displacement (cos 130 degrees is about -0.64). Find the work done by the force."
+      },
+      {
+        "q_id": "q6_sandbox_class_transfer",
+        "stem": "In the sandbox, you set the pull's force below μₛN so the crate never starts moving. What is the work done by EVERY force acting on the crate, including static friction?",
+        "options": {
+          "A": "Zero for every force -- nothing has displaced",
+          "B": "Positive for the pull, negative for friction, because both forces are still acting",
+          "C": "The pull does positive work equal to the force's own magnitude",
+          "D": "Friction does negative work because it opposes the pull"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "acting force implies joules, transferred to the new static-friction configuration",
+          "C": "confuses force magnitude with work directly, ignoring that displacement is zero",
+          "D": "same planted belief as B, applied specifically to the static friction force"
+        },
+        "tested_idea": "transfer the zero-displacement / zero-work rule to a new configuration in the open sandbox",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "In a similar sandbox, a small force acts on a crate but never overcomes static friction. How much work does the applied force do?"
+      }
+    ]
+  },
+
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["q1_sign_convention"],
+      "STATE_2": ["q2_friction_negative_joules"],
+      "STATE_3": ["q3_zero_perpendicular_bag"],
+      "STATE_4": ["q4_net_work_signed_sum"],
+      "STATE_5": ["q5_obtuse_angle_computed"],
+      "STATE_6": ["q6_sandbox_class_transfer"]
+    },
+    "non_assessed_states": []
+  },
+
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT (India) — Class 11 Physics",
+        "coverage": "full",
+        "syllabus_unit": "Ch.6 Work, Energy and Power — §6.3 Work (sign of work: positive, negative, zero)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "IB Diploma Programme Physics",
+        "coverage": "full",
+        "syllabus_unit": "Topic 2.3 Work, energy and power — sign of work done by a force",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1 (College Board)",
+        "coverage": "full",
+        "syllabus_unit": "Unit 3 Work, Energy and Power — sign of work (positive, negative, zero)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-Level Physics (AQA/OCR/Edexcel)",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — sign of W = Fd cos θ",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main/Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — sign of work, net work as a signed sum",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "full",
+        "syllabus_unit": "Work, Energy and Power — positive, negative and zero work",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+
+  "field_3d_config": {
+    "scenario_type": "newtons_laws_body",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#000000",
+      "color_negative": "#000000",
+      "opacity": 0,
+      "arrow_spacing": 0
+    },
+    "explorer_id": "newtons_laws_body_explorer",
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFD54F"
+    },
+    "slider_controls": {
+      "F": { "min": 0, "max": 60, "step": 5, "default": 20, "label": "F" },
+      "F_ang": { "min": 0, "max": 180, "step": 5, "default": 0, "label": "θ" },
+      "m": { "min": 0.5, "max": 10, "step": 0.5, "default": 5, "label": "m" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A steady 20 N pull at 0° moves the crate from rest; the work bar climbs above the zero line, reading +160.0 J at the loop's end",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Bar up: positive work",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d·cos θ > 0  (θ < 90°)",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "applied_force": { "N": 20, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 180,
+          "loop_reset_ms": 2000,
+          "readouts": ["F_applied", "v"],
+          "controls_visible": []
+        }
+      },
+      "STATE_2": {
+        "label": "The crate launches at 6 m/s with no pull; kinetic friction (μ=0.4) decelerates it to a stop, and the friction bar dives to −90.0 J and holds",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Bar down: negative work",
+        "show_sliders": true,
+        "formula_overlay": "W = f·d·cos 180° = −f·d",
+        "newtons_laws_body": {
+          "mode": "coast_with_friction",
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 6, "mu_s": 0.4, "mu_k": 0.4 }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["friction"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "friction", "to": "displacement", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "friction", "label": "by friction", "body_id": "crate" }
+          ],
+          "work_scale_J": 180,
+          "loop_reset_ms": 3000,
+          "readouts": ["f", "v"],
+          "controls_visible": []
+        }
+      },
+      "STATE_3": {
+        "label": "The crate coasts at a constant 3 m/s on a frictionless floor; the normal force pushes up the whole way and its bar stays parked at 0.0 J",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Bar stays at zero",
+        "show_sliders": true,
+        "formula_overlay": "W = N·d·cos 90° = 0",
+        "newtons_laws_body": {
+          "mode": "coast_no_force",
+          "surface": { "theta_deg": 0, "length_m": 6, "frictionless": true },
+          "bodies": [
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 3 }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["normal"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "normal", "to": "displacement", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "normal", "label": "by the normal force", "body_id": "crate" }
+          ],
+          "work_scale_J": 180,
+          "loop_reset_ms": 2400,
+          "readouts": ["N", "v"],
+          "controls_visible": ["m"]
+        }
+      },
+      "STATE_4": {
+        "label": "A 30 N pull on a rough floor (μ=0.4) breaks the crate away immediately; four bars track the pull, friction, normal force and their net sum",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Four bars, one sum",
+        "show_sliders": true,
+        "formula_overlay": "Wₙₑₜ = W₁ + W₂ + W₃",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.4, "mu_k": 0.4, "applied_force": { "N": 30, "angle_deg": 0 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied", "friction", "normal"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" },
+            { "force": "friction", "label": "by friction", "body_id": "crate" },
+            { "force": "normal", "label": "by the normal force", "body_id": "crate" },
+            { "force": "net", "label": "net — the sum", "body_id": "crate" }
+          ],
+          "work_scale_J": 180,
+          "loop_reset_ms": 2000,
+          "readouts": ["F_applied", "v"],
+          "controls_visible": []
+        }
+      },
+      "STATE_5": {
+        "label": "A 25 N pull at 120° decelerates the crate (launched at 8 m/s, μ=0.65) to a permanent stop; the pull's bar dives to −66.1 J while the HUD holds at 25 N",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "The angle sets the sign",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d·cos θ",
+        "newtons_laws_body": {
+          "mode": "accelerate_applied_force",
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 8, "mu_s": 0.65, "mu_k": 0.65, "applied_force": { "N": 25, "angle_deg": 120 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied", "friction"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "displacement", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" }
+          ],
+          "work_scale_J": 315,
+          "loop_reset_ms": 2600,
+          "readouts": ["F_applied", "f", "v"],
+          "controls_visible": ["F_ang"]
+        }
+      },
+      "STATE_6": {
+        "label": "Sandbox: drag the crate and the F, θ, and m sliders freely on a rough floor (μ=0.3) — all four bars, d, and the arc update live",
+        "visible_elements": [],
+        "camera_position": [0, 2.0, 10],
+        "caption": "Change anything",
+        "show_sliders": true,
+        "formula_overlay": "W = F·d·cos θ",
+        "newtons_laws_body": {
+          "mode": "sandbox",
+          "surface": { "theta_deg": 0, "length_m": 6 },
+          "bodies": [
+            { "id": "crate", "label": "m", "mass_kg": 5, "color": "#42A5F5", "initial_position_m": -5.4, "initial_velocity_mps": 0, "mu_s": 0.3, "mu_k": 0.3, "applied_force": { "N": 25, "angle_deg": 60 } }
+          ],
+          "arrows": [
+            { "body_id": "crate", "show": ["applied", "friction", "normal"] }
+          ],
+          "displacement_vector": { "body_id": "crate", "label": "d", "show_value": true },
+          "angle_arc": { "from": "applied", "to": "displacement", "body_id": "crate", "label": "θ", "show_value": true, "radius": 0.85 },
+          "work_accumulators": [
+            { "force": "applied", "label": "by the pull", "body_id": "crate" },
+            { "force": "friction", "label": "by friction", "body_id": "crate" },
+            { "force": "normal", "label": "by the normal force", "body_id": "crate" },
+            { "force": "net", "label": "net — the sum", "body_id": "crate" }
+          ],
+          "work_scale_J": 792,
+          "readouts": ["F_applied", "N", "f", "v"],
+          "controls_visible": ["F", "F_ang", "m"],
+          "trusted_drag_seizes": true
+        }
+      }
+    }
+  }
+}

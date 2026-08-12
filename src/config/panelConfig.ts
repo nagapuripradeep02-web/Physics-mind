@@ -1096,20 +1096,14 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
-    work_energy_theorem: {
-        concept_id: 'work_energy_theorem',
-        layout: 'dual_horizontal',
-        primary: {
-            renderer: 'mechanics_2d',
-            config_key: 'work_energy_theorem_sim',
-            label: 'Forces & Motion',
-        },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'work_energy_theorem_graph',
-            label: 'Work & Energy Bars',
-        },
-    },
+    // work_energy_theorem was here as a RETIRED dual_horizontal mechanics_2d
+    // entry — no concept JSON, absent from VALID_CONCEPT_IDS, i.e. never a
+    // live product concept. Removed 2026-08-05 because the Class 11 Ch.6
+    // work-energy build claims the id for a real field_3d concept (#4), and
+    // a duplicate key in this literal is a TS1117 error. The live entry is
+    // registered below, in the Ch.6 Work, Energy and Power cluster
+    // (mirrors the rolling_on_incline precedent, 2026-08-04, in
+    // src/lib/aiSimulationGenerator.ts).
 
     conservation_of_momentum: {
         concept_id: 'conservation_of_momentum',
@@ -1797,6 +1791,74 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'work_done_by_constant_force',
             label: 'Work Done by a Constant Force — W = F·d·cos θ (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #2 — same newtons_laws_body engine
+    // + SEAM K/L/M/N energy layer, opening the F_ang regime #1 ceded
+    // (0…180° vs #1's 0…85°). Positive, negative and zero work; net work as
+    // a signed sum. Pure configuration, zero renderer edits (0d). Alex
+    // pipeline, 2026-08-02.
+    positive_negative_zero_work: {
+        concept_id: 'positive_negative_zero_work',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'positive_negative_zero_work',
+            label: 'Positive, Negative and Zero Work — the Sign of W = F·d·cos θ (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #3 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author the SEAM L energy_layer
+    // (the K bar). Kinetic energy K = ½mv²: proportional to mass,
+    // proportional to the SQUARE of the speed, never negative, exactly zero at
+    // rest. Zero work_accumulators anywhere — the #3/#4 boundary invariant.
+    // Pure configuration, zero renderer edits (0d). Alex pipeline, 2026-08-02.
+    kinetic_energy_definition: {
+        concept_id: 'kinetic_energy_definition',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'kinetic_energy_definition',
+            label: 'Kinetic Energy — K = ½mv² (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #5 — same newtons_laws_body engine +
+    // SEAM K/L/M/N energy layer. A force is conservative when its total work
+    // around any closed path is zero (gravity, a round-trip work bar returning
+    // to a 0.0 J start-line stamp); friction is non-conservative because it
+    // always opposes the motion, so its round-trip work adds two negative legs
+    // instead of cancelling (−125.3 J at the start line, the PRIMARY aha).
+    // First fleet exercise of a checkpoint seeded exactly at the home pose,
+    // now on capture_mode 'every' — under 'first' the stamp froze on the
+    // DEPARTURE reading and displayed friction = 0.0 J, i.e. the very
+    // misconception the concept exists to kill (fixed 2026-08-09). Pure
+    // configuration, zero renderer edits (0d). Alex pipeline, 2026-08-07.
+    conservative_vs_nonconservative_forces: {
+        concept_id: 'conservative_vs_nonconservative_forces',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'conservative_vs_nonconservative_forces',
+            label: 'Conservative vs Non-Conservative Forces — the Round-Trip Test (3D)',
+        },
+    },
+
+    // Class 11 Ch.6 Work, Energy and Power #4 — same newtons_laws_body engine,
+    // and the FIRST concept in the fleet to author BOTH the SEAM L energy_layer
+    // AND SEAM M work_accumulators together (the engine's own panel header
+    // reads "Energy and work bars"). The net work done on a body equals the
+    // change in its kinetic energy, W_net = ΔK = ½mv² − ½mv₀². Pure
+    // configuration, zero renderer edits (0d). Alex pipeline, 2026-08-05.
+    work_energy_theorem: {
+        concept_id: 'work_energy_theorem',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'work_energy_theorem',
+            label: 'The Work–Energy Theorem — Wₙₑₜ = ΔK (3D)',
         },
     },
 
