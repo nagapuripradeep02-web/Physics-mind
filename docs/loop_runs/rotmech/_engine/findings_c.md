@@ -1245,3 +1245,56 @@ call — not a defect, a consequence of the fix that was asked for.**
 the edit, so the finding is robust to the pin move and Desk E can verify at either instant.
 
 No DB write, no engine dispatch (guardrail 6), no `visual:approve`.
+
+---
+## PASS 20 — **F-C9 VERIFIED on `angular_momentum`. The reversed L vector is a vector again.**
+
+Filed 2026-08-13 by Desk C as **F-C9's named verifier** (Desk E's canaries do not exercise rbr, so
+the fix was LANDED but not VERIFIED on a real rbr config). Containment checked directly rather than
+from the brief: `f003025` **is** an ancestor of `origin/master` (PR #42, merged 2026-08-07).
+Re-run on the real config per Desk E's ask; the rig needs no DB and no seed of its own — it reads
+the desk's own scoped seed.
+
+### Method — the PASS 18 standing correction, applied
+
+**Absolute ink at the pose pointing AWAY from the camera, plus a ratio against the favourable pose.**
+Never a bare change-count: that is exactly why F-C9 stayed hidden for a whole cycle while E7 passed
+at 1579 px on the *favourable* pose and the S4 criterion ("flip changes ≥ 300 px") passed at 5518 px
+**because the arrow vanished**. Ink measured by hide-and-diff on the `rbr_l_arrow` group, so no
+colour is assumed; "shaft ink" = ink on rows narrower than 60 % of the widest row (the head).
+
+### Result — all four floors met at every post-flip instant
+
+| pin | ink (was 589) | ratio vs up (was 48.9 %) | bbox height (was 21) | shaft ink (was 53) |
+|---|---|---|---|---|
+| @13000 | **1083** ≥700 ✓ | **81.7 %** ≥60 ✓ | **60** ≥55 ✓ | **554** ≥200 ✓ |
+| @16000 | **1024** ✓ | **77.2 %** ✓ | **60** ✓ | **457** ✓ |
+| @18000 | **1016** ✓ | **76.6 %** ✓ | **60** ✓ | **449** ✓ |
+
+**Shaft ink 53 → 554 = 10.5×.** Desk E measured 51 → 545 = 10.7× on its own rig. Two independent
+measurements, different concept, different harness, agreeing to ~2 %. Desk E's ratio 48.2 % → 84.1 %
+against this desk's 48.9 % → 81.7 %; the residual (18.3 % here, 16 % there) is the same perspective
+term Desk E proved three ways — the vector runs along the axle, so its far end sits at greater camera
+depth and projects shorter. Consistent with the E7 criterion-2 amendment already on the record.
+
+**Up-pose non-regression:** S1 1206 → **1326**, S4 pre-flip 1243 → **1223**, S5 1160 → **1273**.
+No pose lost ink. The up-pose numbers moved by up to +10 % and bbox height 68 → 72; that is drift
+from 422 commits of master (this desk was 422 behind), **not** from F-C9, and it is an increase in
+every case. Recorded so a later reader does not read it as a regression.
+
+### Also confirmed this session
+
+- **E6 has NOT landed** — verified in source, not assumed: `rbrCutTime(1)` still evaluates
+  `at_ms + (0 × Infinity)` → `NaN` for a one-shot restart, and because `tMs < NaN` is false the
+  count returns 1 from t = 0. The `isFinite` guard at `:56310` fixes only the *count* path, not the
+  time arithmetic at `:56300`. **`STATE_3.restart.every_ms: 99000` therefore stays.**
+- **E9 has NOT landed** — no per-state camera authoring exists for rbr. `rigid_body_rotation` stays
+  parked; json-author not started.
+- Dead-scene check redone at **pixel** level (md5 is unsound on this harness — PASS 17 §4): zero
+  identical adjacent pairs across all 5 states, adjacent diffs 0.089 %…0.936 %.
+- Zero `[PM_RBR_TOKEN]` warnings and zero console errors.
+- **`[H2]` Skipped — no approved baseline.** This concept still carries **no A/B regression signal at
+  all**. Every verdict rests on the frames' own merits plus the geometry probe. Stated rather than
+  left as silence.
+
+No DB write, no engine dispatch (guardrail 6), no `visual:approve`.
