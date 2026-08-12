@@ -315,6 +315,64 @@ at build time. Recommended method for the cross-desk sweep: for any item that IS
 source paragraph against its §8 line for dropped clauses — consumers, second maps, group tokens,
 origin fields. Two of this desk's four gaps were sub-clauses of rows that already looked covered.
 
+---
+
+## 2026-08-13 — resumed; K6 decision brief written (docs-only)
+
+**Merged `origin/master` by hand — 424 behind, zero conflicts.** Triad green:
+`check:renderer-syntax` OK on all three renderers, `tsc --noEmit` **0**, `validate:concepts`
+**153 PASS / 0 FAIL**. No file under `src/` differs from master.
+
+**Still blocked on E10.** E4 + E5 did not unblock this desk; the `ENGINE_LANDING_NOTICE` §7
+paragraph that said so was corrected under founder ruling 3. `json-author` stays shut.
+
+### Two Desk-D asks landed upstream while this desk was paused
+
+- **Ruling 4 CORRECTED on this desk's evidence** (`da71f64`): Desk E re-verified both halves —
+  `rbrSc` returns no `unit` key so the row builder's `sp.unit` is pinned to " N·m", and
+  `rbrApplyParam`'s `tau_applied` branch writes the value **raw, no scale**. *"A RELABEL IS NOT
+  COMPLIANCE."* E10 must deliver a real α row with correct unit and scale, or the control stays
+  τ-labelled and honest. The unit-override gap is now its own engine item.
+- **The E8 ask was granted** — E8's own row now names `tau_eq_i_alpha` S8 as a second consumer,
+  where its dispatch will actually see it. PASS 4 §D closes.
+
+Also confirmed: the cross-desk sweep ran (§G, **13 candidates across all four desks** — the escape
+was never Desk-D-specific), and all four PASS-5 gaps are filed there as rows 1–4. **GAP 1 is row 1**,
+HIGH, owned jointly by Desks C and D. Tracked, not re-filed.
+
+### The job: `rotational_kinematics/K6_decision_brief.md`
+
+Written for the founder, under two pages, plain language. The situation it puts on the record: the
+concept was designed with 9 states; S8 needs a small graph panel; the design ruled in writing that
+without the panel S8 is dropped; the panel never entered the build list — **not rejected, never
+entered** — so the state is already gone and the concept stands at 8 states with nothing recording
+that a choice was made.
+
+Both options given with consequences:
+- **A — build the panel.** 9 states, the derivative-as-slope picture returns, panel is reusable
+  across all six turntable concepts. Costs a new engine row on a queue already 10 long with 13
+  candidates behind it, competes directly with the motor wheel that **11 of 17 states** need, and
+  **reopens Checkpoint A** because the state count and the advanced ring both change.
+- **B — ratify 8 states.** Costs the slope picture and the only advanced-ring state. Cheaper than it
+  sounds for three checkable reasons: the concept's own JEE-backwards trace resolves fully without
+  S8; the 8-state cut is *identical* to the "hide advanced" preset already shipped to simpler
+  syllabi; and an empty advanced ring is already normal (`friction_force`,
+  `equilibrium_of_particles`). Real losers are the calculus-based boards (AP Physics C, IB HL) —
+  CBSE / NEET / JEE Main unaffected.
+
+**Recommendation: B, with a named revisit** — ratify 8 now and put the panel back as a candidate for
+the chapter's next engine wave. Not on the merits of the state, but on queue position: this concept
+cannot be built at all until the motor wheel lands, and the panel is chapter-wide, so building it
+later costs the same and serves more.
+
+### Recorded for `json-author` (in `rotmech_d_state.md`, a new pre-loaded block)
+
+`slider_controls` overrides at step 0.01 for **both** `tau_applied` and `tau_brake` (E5's 0.05 grid
+misses 1.53 — k = 70.60 and 30.60; 0.60 is fine; the override path is proven on the shipped fleet) ·
+**D8's downgrade clause is VOID** since E1's `formula_lines` is richer than the minimum delegated, so
+`tau_eq_i_alpha` S7's term-by-term assembly is authorable as designed · the state count stays under
+founder decision until K6 is ruled · ruling 4's correction.
+
 ### Notes for whoever picks this desk up
 
 - Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND

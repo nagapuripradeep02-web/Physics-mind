@@ -1,6 +1,6 @@
 # rotmech desk D — loop state
 
-updated: 2026-08-07
+updated: 2026-08-13
 desk: `feat/rotmech-d` · `C:\Tutor\physics-mind-rotmech-d`
 cut from: `4b289d4` (the Phase-0d pre-registration commit)
 review_port: **8113**
@@ -13,6 +13,42 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 |---|---|---|
 | 2 | `rotational_kinematics` | **BLOCKED on E10** (+ C-1 for the v = ωr arrow, + K5 unfiled — see below). α and θ now print (E5). |
 | 2 | `tau_eq_i_alpha` | **BLOCKED on E10.** α is producible (E4) and prints (E5); the drive still has no rendered actuator. |
+
+## ⚠ PRE-LOADED FOR `json-author` — read this BEFORE writing either JSON (2026-08-13)
+
+Four carry-forwards. Each is silent if missed: the JSON validates, seeds, renders and passes THE EYE
+with the defect in place.
+
+1. **`slider_controls` overrides at step 0.01 for BOTH `tau_applied` and `tau_brake`.** E5 shipped
+   both at **step 0.05**, which **cannot reach 1.53 N·m** — this concept's own taught value
+   (τ = I·α = 3.06 × 0.50). Checked: `tau_applied` k = 70.60, `tau_brake` k = 30.60, neither on the
+   grid; 0.60 is fine (k = 52). Without the overrides the S8 sandbox stops at 1.50 and the
+   drive-vs-brake static hold sits 0.02 N·m off balance. **The override path is live and proven** —
+   the shipped fleet already authors undeclared `slider_controls` keys (`ac_generator` → `omega`,
+   `N`), and `rbrSc()` reads `min/max/step/default/dp/label` from it.
+2. **D8's downgrade clause is VOID — do not apply it.** It said S7's term-by-term formula assembly
+   would "downgrade to a sentence-synced whole-formula reveal". E1 landed
+   **`formula_lines: [{ text, at_ms? }]`**, richer than the minimum D8 delegated, so
+   `tau_eq_i_alpha` **S7's assembly is authorable exactly as designed.** (Do not author
+   `formula_at_ms` — that name belongs to the `pef` scenario and means something else. A state
+   authoring both `formula` and `formula_lines` renders only the lines; drop the string.)
+3. **`rotational_kinematics` state count is UNDER FOUNDER DECISION** — 8 or 9, see
+   `rotational_kinematics/K6_decision_brief.md`. **Do not author either count until it is ruled.**
+   The 8-state form is what exists today, by omission rather than by decision.
+4. **Ruling 4 was CORRECTED on this desk's evidence** (Desk E, master `da71f64`): a relabelled
+   `tau_applied` is **not** compliance. E10 must deliver a real α row with correct unit *and* scale,
+   or the control stays τ-labelled and honest. The unit-override gap is now its own engine item.
+
+## TRACKING (not ours to file — do not re-raise)
+
+- **GAP 1 · `rbr_v_arrows` family-addressable `glow_focal` group token** is **row 1 of Desk E's
+  cross-desk sweep** (§G, HIGH, owners **C *and* D** — filed independently by Desk C's
+  `rigid_body_rotation` C1/C9(b) and this desk's K4 P2-9). Highest value in the sweep and needed by
+  Desk C too. **Filed. Track only.**
+- **PASS 4 §D closed:** Desk E granted the E8 ask — E8's own row now names `tau_eq_i_alpha` S8 as a
+  second consumer.
+- The other three PASS-5 gaps sit in §G as rows 2 (`time_ticks`), 3 (graph panel) and 4 (tangential
+  force arrows). All filed. None ours to re-raise.
 
 ## PASS 5 — exhaustive self-audit of both item lists (2026-08-07)
 
