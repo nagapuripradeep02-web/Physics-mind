@@ -52585,23 +52585,41 @@ export const FIELD_3D_RENDERER_CODE = `
     //   state does not happen to name, and a new apparatus type that is not
     //   re-asserted here renders nothing at all (engine_bug_queue
     //   field3d_generic_visible_elements_matcher_blanks_new_scenario_apparatus).
-    function nlbApplyActivationVisibility(eng) {
-        if (!eng) return;
-        var gated = false;
+    //   Is ANY body of this state time-gated? Split out of the pass below because
+    //   the overlay half runs from a different point in the frame and must take the
+    //   identical early-out: a state authoring no activation and no retirement is
+    //   byte-identical to the pre-U10 engine on both halves or on neither.
+    function nlbActivationGated(eng) {
+        if (!eng || !eng.order) return false;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
-            if (b && (nlbActivateMs(b) > 0 || nlbRetireMs(eng, b) < Infinity)) { gated = true; break; }
+            if (b && (nlbActivateMs(b) > 0 || nlbRetireMs(eng, b) < Infinity)) return true;
         }
-        if (!gated) return;                    // no activation authored: today's path
+        return false;
+    }
+    function nlbApplyActivationVisibility(eng) {
+        if (!eng) return;
+        if (!nlbActivationGated(eng)) return;  // no activation authored: today's path
         nlbEach(function (o, ud) {
             if (!ud || !ud.bodyId) return;
-            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label"
-                && ud.elementType !== "nlb_arrow" && ud.elementType !== "nlb_arrow_label"
-                && ud.elementType !== "nlb_comp" && ud.elementType !== "nlb_comp_label"
-                && ud.elementType !== "nlb_right_angle") return;
+            // The MESH and its LABEL only. These two are owned outright by the state
+            // entry pass (nothing else writes their visibility per frame), so this
+            // gate can and MUST be authoritative in BOTH directions over them:
+            //   o.visible = nlbBodyShown(...)
+            // A one-way "hide when not shown" is a LATCH — it fires on every frame a
+            // pending body is pending and never restores it at its own activation
+            // instant, so in a single_lane state (the only shape where a body can
+            // also RETIRE) the first body latches off at the handover, the second
+            // never comes back, and the track renders empty for the rest of the
+            // state at EVERY instant including a rewind to one the body was live at.
+            // Written as an assignment rather than a conditional so the flag is a
+            // PURE FUNCTION of state-local t: a pin, a rewind and a replay all
+            // reproduce it exactly, with nothing latched across frames (Rule 36, and
+            // engine_bug_queue hysteretic_state_cannot_be_latched_under_a_time_pin).
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
             var bb = eng.bodies[ud.bodyId];
-            if (!bb) return;
-            if (!nlbBodyShown(eng, bb, eng.t_ms)) o.visible = false;
+            if (!bb) return;                   // not a body of THIS state — the entry pass owns it
+            o.visible = nlbBodyShown(eng, bb, eng.t_ms);
         });
         // The HUD rows follow the body, or a retired phase leaves its readouts on
         // screen making a claim about a body that is no longer there.
@@ -52616,6 +52634,33 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             if (!shown) { b2._skidFrom = null; b2._skidTo = null; }   // the trail clears at retirement
         }
+    }
+    // U10 — the OVERLAY half of the same gate, and the reason it is a SEPARATE pass.
+    //   The arrow / component / right-angle pools are owned by nlbDriveArrows, which
+    //   re-shows them from each body's physics record every frame with no activation
+    //   test of its own. nlbApplyActivationVisibility runs from nlbUpdateRolling,
+    //   which is called BEFORE nlbDriveArrows in the frame, so a veto written there
+    //   is overwritten by the draw pass a few lines later and a retired body keeps a
+    //   live, moving force arrow hanging over an empty track — the exact defect the
+    //   field was bought to prevent. This half therefore runs immediately AFTER the
+    //   draw pass.
+    //   It is a VETO ONLY and never re-shows anything: WHICH arrows a shown body
+    //   draws is the draw pass's decision (authored arrows[].show, the component
+    //   pair, the right-angle marker), not this gate's, and re-showing a pooled
+    //   object here would resurrect an arrow no state ever asked for. Still a pure
+    //   function of state-local t — it reads nothing but eng.t_ms and the authored
+    //   instants, and latches nothing across frames.
+    function nlbVetoRetiredBodyOverlays(eng) {
+        if (!eng || !nlbActivationGated(eng)) return;
+        nlbEach(function (o, ud) {
+            if (!ud || !ud.bodyId || !o.visible) return;
+            if (ud.elementType !== "nlb_arrow" && ud.elementType !== "nlb_arrow_label"
+                && ud.elementType !== "nlb_comp" && ud.elementType !== "nlb_comp_label"
+                && ud.elementType !== "nlb_right_angle") return;
+            var bb = eng.bodies[ud.bodyId];
+            if (!bb) return;
+            if (!nlbBodyShown(eng, bb, eng.t_ms)) o.visible = false;
+        });
     }
     function updateNewtonsLawsBodyFrame(dt) {
         var eng = window.PM_nlbEngine;
@@ -53260,6 +53305,12 @@ export const FIELD_3D_RENDERER_CODE = `
             // every body (a ghost or an unlisted body gets its arrows hidden here),
             // so there is no second animate() branch and no clock code (Rule 36).
             nlbDriveArrows(eng);
+            // SEAM R (U10) — the overlay half of the activation gate, and it has to
+            // be HERE: the pass above re-shows every arrow from the physics record
+            // with no activation test, so this veto is the only point in the frame
+            // at which a retired or pending body's arrows can actually be taken off
+            // the screen. No-op (one early-out) in any state authoring no activation.
+            nlbVetoRetiredBodyOverlays(eng);
             // SEAM D — same contract: presentation AFTER the writeback. With no
             // pulley this hides both segments (an uncoupled state has no string).
             nlbFitRopes();
