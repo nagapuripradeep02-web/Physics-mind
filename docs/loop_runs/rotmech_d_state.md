@@ -1,6 +1,41 @@
 # rotmech desk D — loop state
 
-updated: 2026-08-13
+updated: 2026-08-14
+
+## ⚡ K6 RULED (Option B) — json-author OPEN on both concepts (2026-08-14)
+
+All three follow-ups executed (see the brief). **The honest capability wall, re-verified in the
+synced tree before dispatch** — these rows are still UNBUILT, and each named state's payload waits
+on them (author forward-compatible config per design; it is an inert no-op today):
+
+| Unbuilt row | `rotational_kinematics` states | `tau_eq_i_alpha` states |
+|---|---|---|
+| K3 — base ray + swept θ arc (in C-1) | S1 (start line + arc) | — |
+| K5 — `time_ticks` (§G row 2) | S2, S7 | — |
+| C-1 — `point_markers[]` + v = ωr arrows | S6, explore's arrows | — |
+| GAP 1 — `rbr_v_arrows` group focal (§G row 1) | S6 | — |
+| E6 — `restart.runs[]` per-run overrides | — | S5 (run B re-pose) |
+| GAP 4 / D7 — per-particle force arrows | — | S7 (ledger arrows) |
+| E8 — live-drag rendered agent | — | S8 (drag-driven actuator show/hide) |
+
+**Consequence: both JSONs are authored now, but NEITHER concept may be sealed** — no
+quality-auditor final PASS, no eye-walker final verdict, no Checkpoint B — until its column above
+is empty. This gate exists because an authored `time_ticks`/`point_markers`/`runs` key is an inert
+SILENT no-op (only readout/mark/control tokens warn, per E5).
+
+## Merge-gate checklist — the label de-collision PR (when the engine desk reports back)
+
+Three checks before merging, none optional:
+1. **Class, not instance:** the fix is rbr-scoped de-collision, not just the S5 offset — and it did
+   **not** touch `createLabelSprite` unconditionally (that moves pixels in ~40 baseline-locked
+   concepts).
+2. **The live-value trap:** it says explicitly what it did with the drum cylinder/stripe sites —
+   repointed, or deliberately-constant-with-reason.
+3. **Its verification measured both labels separately at the ENGAGED pose in DENSE frames** — the
+   frozen-only read is how this bug survived two filings.
+
+Then: merge its PR → Desk A syncs → CoAM Checkpoint B convenes (the chapter's first shot at a
+founder-proxy APPROVE).
 desk: `feat/rotmech-d` · `C:\Tutor\physics-mind-rotmech-d`
 cut from: `4b289d4` (the Phase-0d pre-registration commit)
 review_port: **8113**
@@ -43,9 +78,11 @@ with the defect in place.
    `tau_eq_i_alpha` **S7's assembly is authorable exactly as designed.** (Do not author
    `formula_at_ms` — that name belongs to the `pef` scenario and means something else. A state
    authoring both `formula` and `formula_lines` renders only the lines; drop the string.)
-3. **`rotational_kinematics` state count is UNDER FOUNDER DECISION** — 8 or 9, see
-   `rotational_kinematics/K6_decision_brief.md`. **Do not author either count until it is ruled.**
-   The 8-state form is what exists today, by omission rather than by decision.
+3. **K6 RULED — Option B (founder, 2026-08-14): `rotational_kinematics` ships 8 STATES.** Design
+   S8 dropped (named revisit when the graph panel is built chapter-wide); design S9 → **STATE_8**;
+   `entry_state_map.calculus_graphs` removed; advanced ring empty (38a confirmed); advanced-ring
+   curriculum-tag claims dropped, AP-C/IB-HL cells marked `revisit_when: graph_panel_lands`. Full
+   record: `rotational_kinematics/K6_decision_brief.md`.
 4. **Ruling 4 was CORRECTED on this desk's evidence** (Desk E, master `da71f64`): a relabelled
    `tau_applied` is **not** compliance. E10 must deliver a real α row with correct unit *and* scale,
    or the control stays τ-labelled and honest. The unit-override gap is now its own engine item.

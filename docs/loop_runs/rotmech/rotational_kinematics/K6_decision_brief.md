@@ -110,3 +110,34 @@ design review reopens for this concept.
 
 **One line either way is enough.** Until then the concept sits at 8 states by accident rather than
 by choice, which is the only part of this that is actually wrong.
+
+---
+
+# ✅ RULED — Option B, 2026-08-14 (founder)
+
+**The 8-state form is RATIFIED, with a named revisit: S8 returns as designed if/when the θ(t)/ω(t)
+graph panel is built chapter-wide.** The design (skeleton S8 row + physics block timeline) is
+written and does not expire. Desk D concurred with B.
+
+## The three follow-ups — EXECUTED 2026-08-14
+
+1. **State count recorded as 8.** `rotational_kinematics` ships design states S1–S7 + the explore
+   state; the design's S9 becomes **STATE_8** in the concept JSON. Design S8 (*"ω is the slope of
+   the θ graph"*) is dropped entirely — no fallback authored, per P1-8's own deletion of the Δθ/Δt
+   fallback. `entry_state_map.calculus_graphs` is **removed**. The `no_calculus` and `full` presets
+   coincide. Recorded here, in `rotmech_d_state.md` (the json-author pre-load block), and binding
+   on `json-author`.
+2. **Curriculum-tag rider (i-3) executed.** With the advanced ring empty, **every advanced-ring
+   curriculum-tag claim is dropped**: JEE Main becomes core+extended (was core+extended+advanced);
+   the AP Physics C and IB DP HL cells lose their advanced claim and are recorded
+   **`revisit_when: graph_panel_lands`**. Unchanged: CBSE/NCERT covered+verified; NEET
+   core+extended; IB DP / A-level / AP Physics 1 cells keep `needs_teacher_verification: true`
+   (Rule 38g — claims, not facts).
+3. **Rule 38a coherence with the empty advanced ring — CONFIRMED.** The DoD (i-1) walk already
+   covers this exact case and was re-read against the ruling: the 8-state lesson is *identical* to
+   the "hide advanced" preset cut (S1–S7 + explore, coherent; no surviving state references d/dt or
+   the graph); 38a holds **vacuously** for the empty advanced ring (an empty set is trivially
+   contiguous — the Checkpoint A cycle 2 ruling, precedented by `friction_force` and
+   `equilibrium_of_particles`); extended (S7) is the last ring before explore, contiguous.
+
+**Consequence: `json-author` is OPEN on both Desk-D concepts as of this ruling.**
