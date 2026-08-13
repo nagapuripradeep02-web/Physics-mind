@@ -9,19 +9,14 @@
 >
 > Consequence to hold in mind while building: S3/S4/S5 therefore share the same decay from the same
 > start, which is exactly what makes them the same 3D picture with the HUD carrying the whole delta
-> (Rule 32d). They also share a local full-stop — **[rev 4, F1: 30600 ms at the founder-ruled
-> τ = 0.15 N·m; the 11475 ms this banner originally cited was the τ = 0.40 figure]** — which now
-> lies beyond every guided state's REAL (narration-derived) timeline, so no pin or dwell can reach
-> it (`physics_block.md` §3 re-derives).
+> (Rule 32d). They also share a local full-stop at **11475 ms** — every pin and duration stays below
+> it with margin (`physics_block.md` §3).
 
-> **Status:** Phase-0b design artifact, **REVISION 4** — quality-auditor **F1** (BLOCKING, routed
-> `alex:architect`) applied on the founder-ruled parameter change **`tau_brake` 0.40 → 0.15 N·m on
-> S2–S5**; every dependent value re-derived. Arc, state count, archetypes, controls and every
-> deliberate absence are UNCHANGED from revision 3. Design only; the physics-block numeric ledger is
-> `alex:physics_author`'s to re-derive against this revision (named list in the rev-4 change block).
-> Revision 1 is preserved at `skeleton_rev1.md`; revision 2 at `skeleton_rev2.md`; revision 3 at
-> `skeleton_rev3.md`.
-> **Author:** `alex:architect`, 2026-08-07 (rev 2 same day; rev 3 2026-08-13; rev 4 2026-08-14). **Engine:** `rigid_body_rotation` (rbr),
+> **Status:** Phase-0b design artifact, **REVISION 3** — founder-proxy `DESIGN_FIX` cycle 2 of 2
+> applied. **There is no cycle 3** — this revision hands off to `alex:physics_author`. Design only;
+> no physics-block content — that is `alex:physics_author`. Revision 1 is preserved at
+> `skeleton_rev1.md`; revision 2 at `skeleton_rev2.md`.
+> **Author:** `alex:architect`, 2026-08-07 (rev 2 same day; rev 3 2026-08-13). **Engine:** `rigid_body_rotation` (rbr),
 > `src/lib/renderers/field_3d_renderer.ts`, region opens `:50190`. **Already built.**
 > **Apparatus:** `APPARATUS_CONTRACT.md` §1 verbatim, zero deviation — `r = 0.80 m · ω₀ = +1.50 rad/s ·
 > m = 2.0 kg · I_frame 0.50 · rod_half 1.00 · drum 0.55 · r ∈ [0.15, 0.90]`.
@@ -55,46 +50,6 @@
 | **F-6** | The no-tick decision STANDS, but its stated reason no longer leans on B-1/A-17, which is FIXED on this worktree (`rbrClampTickLabels`); the reason is now the form argument. |
 | **A-34 + grid cap** | Two S6-only ride-along engine gaps DECLARED in a new subsection under the A-32 block: A-34 (pad touches at τ = 0 while nothing slows) and the new `RBR_GRID_MAX` 320 s θ/W freeze on the τ→0 path. S6 is NOT redesigned around any of them (endorsed). |
 
-**Changed in revision 4 (quality-auditor F1, BLOCKING — the founder ruled the parameter; nothing
-else was touched):**
-
-| Fix | What changed |
-|---|---|
-| **F1 — the defect** | The review player derives a state's timeline from NARRATION length, not the authored `duration`: `timelineTotal = Math.max(narrationEnd, duration*1000)` (`build_review_site.ts:1153`, re-verified this session). **`duration` is a FLOOR, not a cap — lowering it cannot shorten a state; never propose it as a fix.** Measured live: S3 24.7 s · S4 23.3 s · S5 23.8 s against the old τ = 0.40 full stop at 11.475 s — each spent ~50% of its on-screen life holding `τ = 0.00 · α = 0.00 · KE = 0.00 · W = −3.45 · θ = 8.62` while narration and the on-canvas claim said the torque meter reads −0.40. Worst: S4 (the PRIMARY aha, "falls by the same amount, beat for beat") held `KE = 0.00` beside `W = −3.45` against the established `KE₀ = 3.44` for ~11 s — a Gate-8 regression of the OPEN `teach_visual_must_match_narration` directive. |
-| **The fix (founder-ruled)** | **`tau_brake_Nm: 0.40 → 0.15 N·m` on S2/S3/S4/S5.** S1 stays 0 (no brake); **S6 stays 0.05** (its own sandbox default, t_stop 91.8 s — NOT affected). 0.15 = 3 × 0.05 — on the slider grid (`:56586`), teacher-reproducible. Re-derived set: α = −0.0490 → prints **−0.05** · t_stop = **30.60 s** · θ_stop = **22.95 rad** (board) · W_stop = **−3.4425 J** and KE₀ = **3.4425 J** (both τ-INDEPENDENT — unchanged) · half-speed (ω = 0.75) at **15.30 s after engage**, KE there 0.8606 J (unchanged — kinematic in ω) · S5's printed check `3.06 × 0.05 = 0.153 → 0.15` still reads. The 30.60 s stop exceeds every measured guided timeline, so no guided state reaches the rest clamp at all; every held end-frame now demonstrates the mirror claim (proof table under §3 Pin-margin). |
-| **A-21 relation** | The overshoot ratios (2.47× / 2.59× / 2.38×) sit inside A-21's own measured 2.0–2.7× band — **already filed and dispositioned; do not re-file.** A-21 alone is pacing; it became BLOCKING here only because this concept has a finite physics horizon. Standing discipline: **every timing in this skeleton is designed against the REAL narration-derived timeline (~23–26 s measured), never the authored `duration`.** |
-| **F2 (ride-along, `alex:json_author`)** | `field_3d_config.states.STATE_5.label` = `"Deriving W equals Delta KE"` — ASCII `Delta` where the same state renders `Δ(½Iω²)` correctly three lines away (Rule 34c). Change to **`"Deriving W = ΔKE"`** at build. Recorded here so it is not lost; a json_author task, not a design change. |
-
-**What `alex:physics_author` must re-derive in `physics_block.md` (each named so none can be missed;
-nothing else in that block moves — the RESEED ruling and all four banner constraints stand):**
-
-1. §1 `variables.tau_brake` guided value and §2 `variable_overrides` rows S2–S5: `tau_brake: 0.40`
-   → **`0.15`** (S1 stays 0; S6 stays 0.05).
-2. §0 verification rows that depended on τ: α (−0.1307 → **−0.0490**, prints −0.05) · t_stop
-   (11.475 → **30.60 s**) · chip-match instant (state-local ≈ **16 100 ms** = ~800 ms travel +
-   15 300 ms decay — the decay interval ALONE is 15 300 ms; do not drop the engage offset) · the S5
-   `I × α` check (3.06 × 0.05 = 0.153 → prints **0.15**).
-3. §1 ground-truth table: the "S3/S4/S5 entry" column (α −0.05, τ −0.15) and the full-stop column →
-   t = 30.60 s, θ 22.95 (board), W −3.44 (board). Rendered stop values must be RE-PROBED, not
-   scaled: `ASSUMPTION — probe-before-authoring`: the ~0.012 rad grid bias predicts rendered
-   θ ≈ 22.96 and a W excess of 0.15 × 0.012 ≈ 0.002 J — BELOW the dp-2 quantum, so the stop likely
-   prints −3.44 at τ = 0.15. Measure it; the frame stays banned and unreachable regardless.
-4. §3 S2: chip match 6539 → **≈ 16 100 ms**; the "S2 may safely run to or past its own local full
-   stop (12275 ms)" note is OBSOLETE — S2's local stop moves to ≈ 31 400 ms and is no longer
-   reached (held end frame at the ~26.1 s measured timeline: ω ≈ 0.26, KE ≈ 0.10, bar ≈ 2.7%,
-   chips latched).
-5. §3 pin recommendations for S3/S4/S5 re-issued against the REAL ~23–26 s timelines (the
-   "≤ 10 500 ms" S3 cap and every "< 11475 ms" bound, incl. §6 item 10, are obsolete — the binding
-   facts are now the held END frames, F1 proof table in this skeleton). Every `readout_at_ms`,
-   phase window and reveal instant re-checked against the real timeline, never `duration`.
-6. §4 narration, S3: the spoken torque → **"minus zero point one five newton metres"** (spelled out
-   per the founder ruling; **F-4 unchanged and binding** — the SIGNED displayed value with the
-   minus named). The banner's own "minus zero point four zero" example updates with it. No other
-   spoken number changes (0.75 · 0.86 · 3.06 · 1.50 · 3.44 are all τ-independent).
-7. §6 items 2 and 10: the rest-clamp margin discipline restated at **30 600 ms**; DoD (j)'s probe
-   gains item (4b) — drive S3/S4/S5 to their real timeline ends and assert `ω > 0` and
-   `KE₀ − KE = |W|` within one display quantum.
-
 ---
 
 ## ⚠ DESK A VERIFICATION NOTE — read before judging A-28
@@ -126,9 +81,7 @@ below.** Filed for Desk E as **A-28 (revised)** in `findings_a.md`.
 
 Two corrections from founder-proxy, both material to authoring:
 
-- **Scope is not a corner case.** Measured at revision 3's authored **τ = 0.40** *(rev 4: the
-  guided value is now 0.15, below the ≈ 0.21 excess threshold — the measurement stands as history,
-  and the never-pin invariant stands regardless)*, the stop
+- **Scope is not a corner case.** Measured at this skeleton's own authored **τ = 0.40**, the stop
   prints `W = −3.45` against `ΔKE = 3.44` (excess exactly `0.40 × 0.0120`). `KE₀ = 3.4425` sits
   0.0025 below the dp-2 rounding boundary, so the excess appears for **every τ above ≈ 0.21 N·m —
   36 of the 40 reachable slider settings**, not only at high torque. Desk A's "narrow" correctly
@@ -258,24 +211,17 @@ in §10(i-1).
 ```
 I  = 0.50 + 2(2.0)(0.80²) = 3.06 kg·m²      (constant in every state)
 ω₀ = 1.50 rad/s  →  KE₀ = ½(3.06)(1.50²) = 3.4425 J  → HUD prints 3.44
-τ_brake = 0.15 N·m on S2–S5 (founder-ruled, rev 4 / F1)
-   →  α = −0.0490 rad/s² → prints −0.05  ;  t_stop = 30.60 s (beyond every guided timeline)
-   →  θ_stop = 22.95 rad (board)  ;  W_stop = −3.4425 J (τ-INDEPENDENT — unchanged)
-half speed: ω = 0.75 exactly at 15.30 s after engage, KE = 0.860625 → prints 0.86 (¼ of 3.44)
+τ_brake = 0.40 N·m  →  α = −0.1307 rad/s² → prints −0.13 ;  t_stop = 11.48 s
+half speed: ω = 0.75 exactly, KE = 0.860625 → prints 0.86 (a quarter of 3.44)
 S6 entry:  τ = 0.05 N·m → α = −0.0163 (prints −0.02) ; t_stop ≈ 92 s ;
            at t = 30 s: θ ≈ 37.6 rad, W ≈ −1.88 J, KE ≈ 1.56 J
 ```
 
-**`τ_brake = 0.15 N·m` is founder-ruled (F1, rev 4) and grid-legal.** The `tau_brake` slider is
-`step 0.05, min 0, max 2.0` (`RBR_SLIDER_SPEC` `:50877`; re-verified `:56586` this session), and
-0.15 = 3 × 0.05 sits on the grid — the guided value stays exactly teacher-reproducible. The
-requirement the old 0.40 was chosen for — every guided state stays clear of the rest clamp, where
-`tau` prints `0.00` and contradicts any narration about a torque still acting — was evaluated
-against the authored `duration` and FAILED against the real narration-derived timelines (F1:
-`duration` is a floor, `build_review_site.ts:1153`; measured S3 24.7 s / S4 23.3 s / S5 23.8 s vs
-the old 11.475 s stop). At 0.15 the stop moves to **30.60 s**, beyond every measured guided
-timeline: no guided state reaches the clamp at all, and every held end-frame demonstrates the
-concept's own mirror claim (proof table under Pin-margin discipline).
+**`τ_brake = 0.40 N·m` is forced, not taste.** The `tau_brake` slider is `step 0.05, min 0, max 2.0`
+(`RBR_SLIDER_SPEC` `:50877`), so only multiples of 0.05 are reachable by a teacher — a guided value
+the explore slider cannot reproduce would fork the lesson. 0.40 also keeps every guided state clear
+of the rest clamp at 11.48 s, where `tau` prints `0.00` and would contradict any narration about a
+torque still acting.
 
 > **Every figure in §3 and §4 remains `ASSUMPTION — probe-before-authoring` except A-28's, which Desk
 > A has now measured.** `physics_author`'s first obligation is DoD (j).
@@ -286,8 +232,8 @@ concept's own mirror claim (proof table under Pin-margin discipline).
 |---|---|
 | `W = τ × θ` | **AUTHORABLE, and stronger than "measured".** `_th` and `_w` accumulate from the **same** `wk`, so the identity holds **by construction** at every torque and every instant; Desk A's `‖W‖ − ‖τθ‖ ≤ 0.008` is the dp-2 rounding of an exact relation. **S3 is built on it and cannot drift.** |
 | `ΔKE = ΔW` over an interval | **AUTHORABLE within one display quantum** (Desk A, measured). Not the 40 ms window the architect's re-implementation predicted. |
-| `KE₀ + W = KE` **at the full stop** | **OFF BY ONE QUANTUM on 36 of 40 reachable torques** (every τ ≳ 0.21 — measured at the old 0.40; **the rev-4 guided τ = 0.15 sits BELOW the threshold**, predicted excess 0.15 × 0.012 ≈ 0.002 J, under the dp-2 quantum — `ASSUMPTION — probe-before-authoring`). Moot for the guided arc regardless: the τ = 0.15 stop (30.60 s) lies beyond every guided timeline. **Never pin S4 at the full stop** — kept as defense-in-depth and for S6, whose slider reaches all 40 settings. |
-| stopping angle at the full stop | Measured at the old τ = 0.40: **renders 8.62 rad**, board 8.61 — the same θ bias. At the rev-4 τ = 0.15 the board stop is **22.95 rad** (rendered ≈ 22.96 under the same ~0.012 rad bias — `ASSUMPTION — probe-before-authoring`), and it occurs inside no guided state's timeline. **Never spoken** (DoD (l)). |
+| `KE₀ + W = KE` **at the full stop** | **OFF BY ONE QUANTUM on 36 of 40 reachable torques** (every τ ≳ 0.21, including the authored 0.40) — prints `W = −3.45` against `ΔKE = 3.44`. **Never pin S4 at the full stop.** |
+| stopping angle at the full stop | **RENDERS 8.62 rad**, board answer 8.61 — the same θ bias. **Never spoken** (DoD (l)). |
 
 ### Coined archetypes (two, each justified once)
 
@@ -311,10 +257,10 @@ returning and mirroring the counter; S5 = the equation assembling beside the sam
 | S | Teaches (one idea) | Archetype | Authored beat (cause → effect) | Delta cue (≤5 words = on-canvas caption) | Live controls | Words | Ring |
 |---|---|---|---|---|---|---|---|
 | **S1** | A body that turns has kinetic energy, even though it goes nowhere | `reveal-build` | **The motion is the wheel itself:** already turning at ω = 1.50 (home pose, no torque, pad parked off), with the `r` line on from frame 0 breaking the 2-fold symmetry so ~4.2 s per revolution is plainly visible all state. On that turning machine the instrument stack **assembles**: rows appear one at a time via `readout_at_ms`, each only after the sentence defining it — I → ω → KE. **No `ke_bar` in this state** (§2: it cannot be staged and would sit static). The KE row's arrival, printing 3.44 J on a wheel whose centre never moves, IS the beat. | **"Spinning stores energy"** | none | 30–45 | core |
-| **S2** | The energy goes as the **square** of the speed | `translate-through` | CAUSE FIRST: the pad translates in (`pad_travel_ms` ≈ 800) and touches at t = 800 ms, alone, nothing else altering. After a readable beat the EFFECT: the spin slows and **the bar — appearing here for the first time — collapses far faster than the speed does**. Two chips revealed early and held: `omega` chip 0.75 "½ of 1.50"; `KE` chip 0.86 "¼ of 3.44". Live readouts walk down onto them (match ≈ 16 100 ms state-local — ≈ 800 ms travel + 15 300 ms decay; ~62% through S2's measured ~26 s real timeline, so the square-law payoff lands mid-state — rev 4). **The chips carry the numbers; the pin need not land on the match.** | **"Brake on: energy drops fast"** | none | 40–55 | core |
+| **S2** | The energy goes as the **square** of the speed | `translate-through` | CAUSE FIRST: the pad translates in (`pad_travel_ms` ≈ 800) and touches at t = 800 ms, alone, nothing else altering. After a readable beat the EFFECT: the spin slows and **the bar — appearing here for the first time — collapses far faster than the speed does**. Two chips revealed early and held: `omega` chip 0.75 "½ of 1.50"; `KE` chip 0.86 "¼ of 3.44". Live readouts walk down onto them (match ≈ 6537 ms). **The chips carry the numbers; the pin need not land on the match.** | **"Brake on: energy drops fast"** | none | 40–55 | core |
 | **S3** | Work = torque × angle, and the sign says which way the energy went | `accumulate-through-turn` | Opens from S2's end pose — **pad already in contact**, so the brake engages at t = 0 and **θ is exactly the angle turned while the torque acted**. **Energy instruments off screen entirely — no KE row, no bar (DoD (k) INVARIANT):** readouts are θ, τ, W only (`RBR_RO_META` order — DoD (b) row-order line). The rod sweeps (the `r` line breaks 2-fold symmetry so turns are countable) while θ and W climb together, W negative from its first nonzero value. Narration names the *operation*, never a fragile figure. | **"Count the angle turned"** | none | 35–50 | core |
 | **S4** | **THE AHA.** That work is the energy the wheel lost | `mirror-fall` | Same machine, same brake, same run. The energy meter and bar **return** beside the still-running work counter. As W grows more negative the bar falls by the same amount, beat for beat. **Quantitative is now permitted** (A-28 revised) provided the claim is not pinned on the full-stop frame. | **"Energy falls as work grows"** | none | 35–50 | core |
-| **S5** | Where W = Δ(½Iω²) comes from | `equation-build` | The single formula surface assembles line by line (`formula_lines[].at_ms` — runtime-verified on this desk, findings_a §1) beside **the same decay at the same rate as S3 and S4** — the rbr surface has **no playback-rate lever**, and the only alternative (a smaller τ) would contradict this state's own `I × α = τ` check. The new motion is the assembly **plus the α row landing exactly on the `τ = Iα` line**. Readouts I, ω, KE, α, τ, W (the six-row set of §4, stated identically there — F-1) — so the derivation's first step is checkable on two rendered rows: I × α = 3.06 × 0.05 = 0.153 → matches the τ row's magnitude **0.15** at display precision, and τ prints −0.15; the closing `Δ(½Iω²)` line points at the live `KE` row. Calculus notation permitted here and **only** here (Rule 38c). | **"Build the rule"** | none | 40–55 | advanced |
+| **S5** | Where W = Δ(½Iω²) comes from | `equation-build` | The single formula surface assembles line by line (`formula_lines[].at_ms` — runtime-verified on this desk, findings_a §1) beside **the same decay at the same rate as S3 and S4** — the rbr surface has **no playback-rate lever**, and the only alternative (a smaller τ) would contradict this state's own `I × α = τ` check. The new motion is the assembly **plus the α row landing exactly on the `τ = Iα` line**. Readouts I, ω, KE, α, τ, W (the six-row set of §4, stated identically there — F-1) — so the derivation's first step is checkable on two rendered rows: I × α = 3.06 × 0.13 → prints 0.40, and τ prints −0.40; the closing `Δ(½Iω²)` line points at the live `KE` row. Calculus notation permitted here and **only** here (Rule 38c). | **"Build the rule"** | none | 40–55 | advanced |
 | **S6** | Sandbox | `drag-sandbox` | `mode: 'sandbox'`, free-running (Rule 37). Entry authors **`tau_brake_Nm: 0.05`**, `engage_at_ms: 0`, so the pad is **rendered and in contact at entry** — the design-side workaround for **A-2** — and the decay lasts ≈ 92 s (W ≈ −1.9 J at 30 s), so the sandbox is alive long after a teacher has finished talking. **Blocked on A-32** until the anchor fix lands; A-34 and the `RBR_GRID_MAX` 320 s cap are declared ride-alongs (subsection above), not design inputs. `ω₀` re-anchors the run and re-zeroes W, which is correct for a work ledger and is stated in the DoD. | **"Try it yourself"** | **ALL, ring-gated:** `tau_brake` *(core)* · `omega0` *(core)* | 0 / open | *(explore)* |
 
 **Archetype audit:** reveal-build · translate-through · accumulate-through-turn · mirror-fall ·
@@ -394,34 +340,13 @@ negative throughout. Caption = delta cue only; HUD value-only; new DOM panels cl
 | S | Beat completes | Pin must land | Why |
 |---|---|---|---|
 | S1 | ≈ 4.0 s | ≥ 4.8 s | held pose |
-| S2 | chip match ≈ 16.1 s (state-local) | anywhere ≥ 3.0 s | **the chips carry the numbers** — and the match itself now lands inside the state's real ~26 s timeline |
+| S2 | chip match ≈ 6.54 s | anywhere ≥ 3.0 s | **the chips carry the numbers** |
 | S3 | — | **inside the measured `W = τθ` window** | identity must hold at the pinned instant |
 | S4 | bar visibly fallen ≈ 5.0 s | ≥ 5.0 s, **and NOT at the full stop** | A-28 revised |
 | S5 | assembly ≈ 5.0 s, replay ≈ 8.0 s | ≥ 6.0 s | the last line must be on screen |
 | S6 | — | n/a (Rule 37 free-run) | |
 
 THE EYE must read **dense** frames across S2's decay and S3's window, never the frozen frame alone.
-
-### F1 held end-frame proof (rev 4) — the real-timeline discipline
-
-`duration` is a FLOOR, not a cap (`timelineTotal = Math.max(narrationEnd, duration*1000)`,
-`build_review_site.ts:1153`): a state lives as long as its narration, so every timing above is
-designed against the REAL narration-derived timeline, never the authored `duration`. At the
-measured timelines and the ruled τ = 0.15, the held end-frames now DEMONSTRATE the concept's own
-claim instead of contradicting it (closed-form re-derivation, this session; re-measure after any
-narration edit — the exact figures drift with word count, but the properties `ω > 0` and
-mirror-holds do not while every timeline stays under 30.6 s):
-
-| State | Real timeline (measured) | held ω | held KE | held θ | held W | `KE₀ − KE` vs \|W\| (as printed) |
-|---|---|---|---|---|---|---|
-| S3 | 24.7 s | 0.289 | 0.13 J | 22.10 | −3.31 J | 3.31 = 3.31 ✓ mirror holds |
-| S4 (PRIMARY aha) | 23.3 s | 0.358 | 0.20 J | 21.64 | −3.25 J | 3.25 = 3.25 ✓ mirror holds |
-| S5 | 23.8 s | 0.333 | 0.17 J | 21.82 | −3.27 J | 3.27 = 3.27 ✓ mirror holds |
-
-S2 (engage ≈ 800 ms, measured timeline ≈ 26.1 s): held ω ≈ 0.26, KE ≈ 0.10, bar ≈ 2.7% — the wheel
-is still visibly turning at every guided state's held frame. S4's held frame goes from a
-self-contradiction (`KE = 0.00` beside `W = −3.45`) to a live demonstration of `W = ΔKE`. DoD (j)'s
-probe carries the matching assertion (item 4b).
 
 ---
 
@@ -438,9 +363,9 @@ probe carries the matching assertion (item 4b).
 |---|---|---|---|---|
 | S1 | `I`, `ω`, `KE` (staged) | **none** | — | **3.06** → `I` · **1.50** → `ω` · **3.44** → `KE` row |
 | S2 | `I`, `ω`, `KE` | `ke_bar.max_j: 3.80` (**first appearance**) | `omega` 0.75 "½ of 1.50" · `KE` 0.86 "¼ of 3.44" | **1.50 / 3.44** live at entry · **0.75** ω chip + live ω · **0.86** KE chip + live KE. "Half" and "quarter" are carried by the **chip labels**, so the comparison is on screen too |
-| S3 | `theta`, `tau`, `W` | **no — INVARIANT, DoD (k)** | — | **−0.15 N·m** → `τ` — the DISPLAYED value: `rbrTauOf` returns `-sgn*brake`, so the instrument prints **−0.15** with a true U+2212 (the slider magnitude is 0.15, founder-ruled rev 4; F-4 unchanged and binding). **θ and W are named as meters, never quoted** — "multiply the torque meter by the angle meter and you get the work counter" |
+| S3 | `theta`, `tau`, `W` | **no — INVARIANT, DoD (k)** | — | **−0.40 N·m** → `τ` — the DISPLAYED value: `rbrTauOf` returns `-sgn*brake`, so the instrument prints **−0.40** with a true U+2212 (the slider magnitude is 0.40; F-4). **θ and W are named as meters, never quoted** — "multiply the torque meter by the angle meter and you get the work counter" |
 | S4 | `KE`, `theta`, `W` | **`ke_bar.max_j: 3.80`** — pinned explicitly, a deliberate copy of S2's (Rule 32d: the mirror-fall comparison is the same picture as the square-law one; KE₀ = 3.4425 < 3.80, no saturation) | *(optional post-A-28 chip)* | the mirrored motion of two live instruments carries the claim; any number spoken must come off `KE` or `W` at a **non-full-stop** instant |
-| S5 | `I`, `ω`, `KE`, `alpha`, `tau`, `W` | no | — | **3.06** → `I` · **−0.05** → `α` · **−0.15** → `τ`; the step `I × α = τ` is checkable on the rendered numbers (3.06 × 0.05 = 0.153 → 0.15 at display precision), and the closing `Δ(½Iω²)` line points at the live `KE` row |
+| S5 | `I`, `ω`, `KE`, `alpha`, `tau`, `W` | no | — | **3.06** → `I` · **−0.13** → `α` · **−0.40** → `τ`; the step `I × α = τ` is checkable on the rendered numbers, and the closing `Δ(½Iω²)` line points at the live `KE` row |
 | S6 | `I`, `ω`, `KE`, `theta`, `tau`, `W` | **`ke_bar.max_j: 14.0`** — see the note below | — | none (0 authored words) |
 
 **`ke_bar.max_j` per bar-carrying state — every value pinned, none inferred (F-2, option (a)).**
@@ -612,9 +537,7 @@ renderer** (clone `_scratch_rbr_a28_probe.ts`'s harness) that: (1) pins S3 acros
 asserts the **rendered strings** satisfy `|W| = τ × θ`; (2) pins S2 at the match instant ± 200 ms
 and asserts rendered `ω` and `KE` read 0.75 and 0.86 against their chips; (3) asserts `I × α` rounds
 to `τ` on S5's rendered strings; (4) asserts S4's chosen pin instant is **not** at the full stop and that `ΔKE` and `ΔW` agree there
-within one quantum; (4b — rev 4) drives each of S3/S4/S5 to its REAL narration-derived timeline end
-and asserts the held frame shows `ω > 0` and `KE₀ − KE = |W|` within one display quantum (the F1
-proof table); (5) asserts **S1 renders no KE bar** and that every state's rows render in
+within one quantum; (5) asserts **S1 renders no KE bar** and that every state's rows render in
 `RBR_RO_META` declaration order (F-3); (6) asserts **S3 renders no KE row and no bar** (invariant (k)); (7) asserts S6 is
 still turning at t = 60 s at the authored τ = 0.05; (8) reads the console and asserts **zero**
 `[PM_RBR_TOKEN]` warnings across all six states. **Any disagreement is the probe winning, not the
@@ -626,7 +549,7 @@ skeleton.**
 |---|---|
 | **S3 carries NO energy instrument** — no `KE` row, no `ke_bar`, no KE chip, no KE in its caption or formula surface | This is what makes S4 a new picture at all. Add a KE row to S3 and **`mirror-fall` collapses into `accumulate-through-turn`** — S4 becomes S3 with a bar, both ledgers are on screen together *before* the aha, **the PRIMARY aha evaporates**, and *every automated gate still passes* (six archetypes still declared, six distinct captions, ≥3 primitives, word budget met). Nothing but this line stands between the design and that outcome. Binds `physics_author`, `json_author`, and any future `retrofit_surgeon` delta. |
 | **S1 authors no `ke_bar`** | A bar in S1 is static at 90.5% from frame 0 (engine: unconditional fill), contradicting the staged ledger and making `reveal-build` a false label. |
-| **No state is pinned at the full stop** | A-28: the printed ledger is off by one quantum there on 36 of 40 torques (rev 4: the guided τ = 0.15 is among the 4 clean settings and its 30.6 s stop lies beyond every guided timeline — the invariant is kept as defense-in-depth and for S6's full slider range). |
+| **No state is pinned at the full stop** | A-28: the printed ledger is off by one quantum there on 36 of 40 torques. |
 | **No `restart` block anywhere** | `rbrGridWalk` zeroes `_w` when the anchor changes — a restart wipes the work ledger mid-lesson. |
 | **I is constant in every state** | W = ΔKE stops being exact, and E5's `τ = Iα` trap opens. |
 
@@ -662,15 +585,15 @@ line on screen as that clause is spoken). `torque` → **S3** (patched as the pa
 work is force times distance; turning work is torque times angle — a bridge, not a repeat.
 
 **JEE-backwards trace — re-done on the DoD (l) basis.** *"A flywheel of I = 3.06 kg·m² turns at
-1.50 rad/s. A brake applies a constant opposing torque of 0.15 N·m. Find (i) its rotational kinetic
+1.50 rad/s. A brake applies a constant opposing torque of 0.40 N·m. Find (i) its rotational kinetic
 energy, (ii) the work done by the brake in bringing it to rest, (iii) the angle turned before
 stopping."*
 
 | Part | Value | Status | Where it comes from |
 |---|---|---|---|
 | (i) | **3.44 J** | **DISPLAYED** | **S1**, the `KE` readout row (and again on S2's bar). The one value in this question the arc puts on screen. |
-| (ii) | −3.44 J (τ-independent — unchanged by rev 4) | **COMPUTED-BY-THE-STUDENT — never spoken** | The full-stop frame is banned as a pin (invariant (k)) and now occurs inside no guided state's timeline at all (30.60 s > every measured timeline), so this value has **no authorable instrument anywhere in the arc** (at τ = 0.15 the bias excess ≈ 0.002 J is under the quantum, so the stop would likely print −3.44 — `ASSUMPTION — probe-before-authoring`; an unreachable frame either way). What S4 supplies is the **rule** `W = ΔKE`, taught with both instruments live and mirroring at non-full-stop instants; the student applies it to the whole run. `physics_author` must not voice "−3.44 joules" in any state. |
-| (iii) | θ = 22.95 rad | **COMPUTED-BY-THE-STUDENT — never spoken** | The 30.60 s stop lies beyond S3's real ~24.7 s timeline, so the θ row tops out ≈ 22.10 on screen and never reaches 22.95; the rendered stop value (≈ 22.96 under the ~0.012 rad grid bias — `ASSUMPTION — probe-before-authoring`) occurs in no guided state. What S3 supplies is the **operation** — τ, θ and W live and satisfying `W = τθ` by construction — plus the route `θ = |W|/τ`. The number is the student's. |
+| (ii) | −3.44 J | **COMPUTED-BY-THE-STUDENT — never spoken** | The full-stop frame is banned as a pin (invariant (k)) and the engine prints **−3.45** there, so this value has **no authorable instrument anywhere in the arc**. What S4 supplies is the **rule** `W = ΔKE`, taught with both instruments live and mirroring at non-full-stop instants; the student applies it to the whole run. `physics_author` must not voice "−3.44 joules" in any state. |
+| (iii) | θ = 8.61 rad | **COMPUTED-BY-THE-STUDENT — never spoken** | S3's dwell ends well before the 11.48 s stop, so the θ row never reaches 8.61 on screen; and the engine renders **8.62** at the stop (the same θ bias as A-28). What S3 supplies is the **operation** — τ, θ and W live and satisfying `W = τθ` by construction — plus the route `θ = |W|/τ`. The number is the student's. |
 
 **Coverage verdict on that basis: complete, and honestly so.** The question needs one value and two
 rules. The arc **displays** the value (S1) and **displays both rules operating** (S3: `W = τθ` with
@@ -747,7 +670,5 @@ seven sites. **`chapter`/`section` numbering across the eight Ch.7 concepts is s
 
 ---
 
-*Handoff: quality-auditor F1 applied on the founder-ruled τ = 0.15 (revision 4). →
-`alex:physics_author`, who re-derives the physics-block ledger per the rev-4 named list, then runs
-DoD (j) including the new (4b) end-frame assertion. `alex:json_author` additionally carries F2 (the
-S5 label's ASCII `Delta` → `"Deriving W = ΔKE"`).*
+*Handoff: Checkpoint A cycle 2 `DESIGN_FIX` applied (revision 3 — **no cycle 3 exists**). →
+`alex:physics_author`, whose first obligation is DoD (j).*
