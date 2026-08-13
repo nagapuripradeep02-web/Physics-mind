@@ -1262,7 +1262,11 @@ export interface Field3DConfig {
                 release_at_ms?: number;         // pad release instant; omit = never releases
                 engage_cue?: string;            // scenario_cue name -> cueTriggerMs
                 release_cue?: string;
-                pad_travel_ms?: number;         // how long the pad takes to translate in
+                // How long an ACTUATOR takes to translate park -> contact. It is
+                // SINGULAR and TOP-LEVEL, so it cannot address sources[]; an
+                // entry there carries its own `travel_ms` and falls back to
+                // this value, which falls back to 1200 ms (E10).
+                pad_travel_ms?: number;
                 // A CONSTANT tau_ext (concept 7's alpha = tau/I). SIGNED as of
                 // E4: positive spins the body up, negative spins it up the
                 // other way, and it may carry L through zero. Zero authored
@@ -1285,6 +1289,13 @@ export interface Field3DConfig {
                     release_at_ms?: number;     // omit = never releases
                     engage_cue?: string;        // scenario_cue name -> cueTriggerMs
                     release_cue?: string;
+                    // E10 — PER-ENTRY actuator travel. The FIRST brake entry
+                    // owns the brake pad and the FIRST drive entry owns the
+                    // drive roller; each translates in over its own travel_ms
+                    // and finishes exactly AT its engage instant, so the cause
+                    // moves before the effect (Rule 32a). Absent = the
+                    // top-level pad_travel_ms, then 1200 ms.
+                    travel_ms?: number;
                 }>;
                 torsion_k_Nm_per_rad?: number;  // DECLARED (concept 14)
             };
@@ -1322,6 +1333,13 @@ export interface Field3DConfig {
             // and never as an uncaused torque.
             repin_cue?: { blank_ms?: number };
             show_pull_arrows?: boolean;
+            // E10 — the rim FORCE vector on the drive actuator. The actuator
+            // itself follows the torque SOURCE (a drive that acts has an agent,
+            // always); this overlay is the QUANTITATIVE layer on top of it and
+            // defaults OFF like every other rbr overlay, so a concept taught
+            // before torque exists (rotational_kinematics, Rule 25) can show a
+            // motor driving the turntable with no force vector beside it.
+            show_drive_force?: boolean;
             show_l_arrow?: boolean;
             show_r_line?: boolean;
             show_drum_line?: boolean;
@@ -56080,6 +56098,126 @@ export const FIELD_3D_RENDERER_CODE = `
     var RBR_PULL_SHAFT_R = RBR_ROD_R * RBR_SEP_RADIUS_RATIO;          // 0.080
     var RBR_L_HEAD_LEN = 0.24, RBR_PULL_HEAD_LEN = 0.20;
 
+    // ── E10 · THE DRIVE ACTUATOR (rotmech 0c-5) ────────────────────────────
+    //   bug_class rbr_drive_torque_has_no_rendered_actuator. A BRAKE has had a
+    //   rendered agent since 0c-1 (Addendum B: an arm carrying a pad that
+    //   travels in and physically touches the drum). A DRIVE had none:
+    //   eng.padEngageMs is assigned only inside the brake branch, so a drive set
+    //   its windows, the pad never travelled, and no drive mesh existed at all.
+    //   A torque that spins the turntable with nothing visibly doing it is a
+    //   rendered lie (Rule 24 / §10(d)) and it loses the Rule-32a cause beat.
+    //
+    //   FORM — a motor ROLLER, not a second pad. A drive and a brake can act at
+    //   the same instant (the E4 tug), so they must never be confusable, and the
+    //   separation is carried on FOUR independent channels rather than one:
+    //   SHAPE (cylinder vs box), COLOUR (green vs red), AZIMUTH (45 degrees
+    //   apart, so neither ever occludes the other), and the tangential force
+    //   vector, which only the drive carries. The roller also carries its own
+    //   rotation mark, for exactly the reason the drum carries rbr_drum_marker:
+    //   a smooth cylinder turning about its own axis is indistinguishable from a
+    //   still one, and a dead prop pressed against a spinning drum reads as
+    //   apparatus that is not doing the driving.
+    //
+    //   AZIMUTH — SOLVED, not picked. Two things have to read at once and they
+    //   pull in OPPOSITE directions, because they are perpendicular in the
+    //   horizontal plane: the actuator TRAVELS along its radial (Rule 32a — the
+    //   cause has to visibly arrive) and the rim force it applies is TANGENTIAL.
+    //   With the camera at (phi 1.16, theta PI/4) the in-plane fraction of each,
+    //   measured against the real view vector rather than assumed:
+    //       az   0 deg : travel 0.761   force 0.761   <- the BRAKE's own azimuth
+    //       az  45 deg : travel 0.399   force 1.000
+    //       az  60 deg : travel 0.465   force 0.971
+    //       az  90 deg : travel 0.761   force 0.761
+    //       az 120 deg : travel 0.971   force 0.465
+    //   PI/4 puts the force exactly on the camera's screen-RIGHT axis — and it
+    //   costs 47% of the travel, which is the beat this whole bug_class is
+    //   about. The four balanced azimuths are 0 / PI/2 / PI / 3PI/2, all at
+    //   0.761 on both. Of those:
+    //     0        is the BRAKE's.
+    //     PI/2     and 3PI/2 are the ROD's own home pose — theta0 defaults to 0,
+    //              so the rod lies along +-x and a body spinning up FROM REST
+    //              (the exact state class a drive exists for) leaves a mass
+    //              sitting over the actuator for the whole pre-engage beat.
+    //              Caught on the real frames, not reasoned about: the "drive"
+    //              label rendered on top of the +x mass sphere.
+    //     3PI/2    additionally collides with the grip hand at (-0.95, 0.30, 0).
+    //   PI is therefore the only balanced azimuth that is clear of both, and it
+    //   is also 180 degrees from the brake, so a drive and a brake acting
+    //   together can never occlude each other. Taken.
+    //   It sits on the FAR side of the drum, which is fine and was checked on
+    //   the frames rather than assumed: the camera is 23.5 degrees ABOVE the
+    //   plane, so the far rim projects above the near one (the R_drum torus's
+    //   own far arc is fully visible), and the actuator is at radius 1.21+,
+    //   outside the drum's 0.99 silhouette.
+    //   Both SIGNS of the force project identically, so the two poses are
+    //   equivalent BY CONSTRUCTION rather than by luck — the F-C9 standing rule
+    //   (a vector dies at its unfavourable pose) answered at build time instead
+    //   of discovered after acceptance. And a tangent line to a circle never
+    //   re-enters it, so this vector can never be swallowed by the drum it acts
+    //   on, which is the other half of the F-C9 failure.
+    var RBR_DRIVE_AZ = Math.PI;            // radians — SOLVED above, not picked
+    var RBR_DRIVE_WHEEL_R = 0.22;          // world — roller radius
+    var RBR_DRIVE_WHEEL_H = 0.20;          // world — matches the drum's own 0.20
+    // park = contact + this, for BOTH actuators. It is the brake pad's own
+    // travel distance, lifted out of the pad block unchanged.
+    var RBR_ACT_TRAVEL = 1.05;
+    var RBR_DRIVE_COLOR = "#7CB342";       // roller body (a solid, brighten-only)
+    // The vector + its label. Vivid spring green, chosen AFTER looking at the
+    // frames: the first pick (#B2FF59) rendered as a pale yellow that a teacher
+    // could mistake for the mass spheres (#FFCA28) and the drum marker
+    // (#FFF176), which are the two things the vector sweeps past. Measured
+    // contrast against the drum it is read over is 3.23:1, clearing the E7 floor
+    // of 3:1. The drive family is GREEN and the brake family is RED, so the two
+    // actuators are separable by colour alone at a glance.
+    var RBR_DRIVE_VEC_COLOR = "#00E676";
+    var RBR_DRIVE_MARK_COLOR = "#F1F8E9";  // the roller's rotation mark
+    var RBR_DRIVE_ARM_COLOR = "#78909C";   // the SAME grey the brake arm carries
+    // The vector rides ABOVE both solids it sits between: the drum top and the
+    // roller top are both at +0.10 world, and the shaft radius is 0.080, so
+    // 0.26 leaves the vector's lowest ink at 0.18 — clear of both by 0.08 world
+    // at every length. Placed by arithmetic, not by eye, for the same reason the
+    // E7 separability ratios are.
+    var RBR_DRIVE_FORCE_Y = 0.26;
+    var RBR_DRIVE_SHAFT_R = RBR_PULL_SHAFT_R;   // same WEIGHT as the pull arrow
+    var RBR_DRIVE_HEAD_LEN = RBR_PULL_HEAD_LEN;
+    // ── The rim-force magnitude -> length map. Its OWN, and that was decided on
+    //   a MEASUREMENT, not on preference. rbrArrowLen was tried first, because
+    //   both quantities are forces in newtons and the E7 ruling only forbids
+    //   sharing across INCOMMENSURABLE units. It fails here, and the failure is
+    //   the OPEN row field3d_nlb_arrow_min_length_floor_collapses_small_force_
+    //   visibility_and_ratio in its stated direction:
+    //     rbrArrowLen is sized for the PULL band (3.60 - 19.35 N guided). The rim
+    //     force is F = |tau| / R_drum, so the tau_applied slider's whole +-2.00
+    //     N.m reach is 0 - 3.64 N — BELOW that band. Measured on real frames:
+    //     tau 0.60 drew 329 px and tau 1.50 drew 360 px, a 9% spread across a
+    //     2.5x change in torque, because everything under 2.29 N is pinned to
+    //     RBR_ARROW_MIN_LEN. Length would have stopped meaning magnitude across
+    //     the entire authored band.
+    //   Same SHAPE as its two siblings (true zero, exactly linear through a knee
+    //   placed above the whole guided band, asymptotic above it with a
+    //   continuous first derivative) and no minimum-length floor at all — the
+    //   floor is what collapsed the ratio, and the L map already showed that a
+    //   true-zero map does not need one.
+    //   The SCALE is sized so the vector reads at its own beat rather than at a
+    //   paper number: only 0.761 of its length survives projection at this
+    //   camera (see RBR_DRIVE_AZ), so 0.24 world/N drew ~63 screen px at
+    //   tau = 1.50 — legible but thin against a 127 px drum radius. At 0.34 the
+    //   same beat draws ~90 px, i.e. a rim force about as long as the radius it
+    //   acts at, which is also what makes tau = F x R readable as a picture.
+    //   Consequences, checked numerically at R_drum = 0.55 m:
+    //     tau 0.60 -> F 1.09 -> 0.371 ; tau 1.50 -> F 2.73 -> 0.927 (ratio
+    //     2.5000 against a true 2.5000, zero intercept) ; tau 2.00, the slider
+    //     corner -> F 3.64 -> 1.236, which still fits its own frame.
+    //   An alpha-scaled control (RBR_CTL_SCALE.i_alpha) can push tau to I*alpha
+    //   with I up to 8.6, i.e. F past 30 N, so the knee sits above the guided
+    //   band and the asymptote catches the sandbox corners without clipping.
+    var RBR_DRIVE_F_SCALE = 0.34;          // world units per newton, below the knee
+    var RBR_DRIVE_F_EPS = 0.02;            // below this, NOTHING is drawn
+    var RBR_DRIVE_F_KNEE = 5.0;            // N — above the 3.64 N slider corner
+    var RBR_DRIVE_F_KNEE_LEN = RBR_DRIVE_F_SCALE * RBR_DRIVE_F_KNEE;      // 1.70
+    var RBR_DRIVE_F_MAX_LEN = 2.30;        // the asymptote — approached, never clipped
+    var RBR_DRIVE_F_SOFT = (RBR_DRIVE_F_MAX_LEN - RBR_DRIVE_F_KNEE_LEN) / RBR_DRIVE_F_SCALE;
+
     // ── E7 · the BOUNDED / ASYMPTOTIC **L** map — separate from the pull map ──
     //   The two magnitude->length maps stay SEPARATE on purpose: one eats
     //   newtons, the other kg m^2/s. Separability of a vector from its
@@ -56169,6 +56307,39 @@ export const FIELD_3D_RENDERER_CODE = `
         if (A <= RBR_L_KNEE) return RBR_L_ARROW_SCALE * A;
         return RBR_L_KNEE_LEN + (RBR_L_MAX_LEN - RBR_L_KNEE_LEN)
             * (1 - Math.exp(-(A - RBR_L_KNEE) / RBR_L_SOFT));
+    }
+    // E10 — the rim-force map. See the RBR_DRIVE_F_* block for why it is its own
+    // and not rbrArrowLen. Same shape as rbrLArrowLen, no floor.
+    function rbrDriveArrowLen(fN) {
+        var F = (typeof fN === "number" && isFinite(fN)) ? Math.abs(fN) : 0;
+        if (F < RBR_DRIVE_F_EPS) return 0;
+        if (F <= RBR_DRIVE_F_KNEE) return RBR_DRIVE_F_SCALE * F;
+        return RBR_DRIVE_F_KNEE_LEN + (RBR_DRIVE_F_MAX_LEN - RBR_DRIVE_F_KNEE_LEN)
+            * (1 - Math.exp(-(F - RBR_DRIVE_F_KNEE) / RBR_DRIVE_F_SOFT));
+    }
+    // ── E10 · ONE actuator travel mechanism, TWO consumers ─────────────────
+    //   park -> contact -> park was written INLINE inside the brake pad's frame
+    //   block and was therefore reachable by exactly one mesh, which is half of
+    //   why a drive had no agent. Lifted here VERBATIM — the same three branches
+    //   in the same order with the same guards, so the pad's motion is operand
+    //   for operand what it was — and the drive roller now runs the SAME
+    //   function off its OWN window.
+    //   It returns a DISTANCE along the actuator's own approach axis: the caller
+    //   owns the axis (the pad approaches along +z, the roller along its radial)
+    //   and this owns the timing. Pure function of state-local tMs (Rule 36), so
+    //   a SET_TIME_FREEZE pin holds it and a rewind reproduces it exactly.
+    function rbrActuatorAt(tMs, onMs, offMs, travelMs, contact, park) {
+        var e = (onMs == null) ? Infinity : onMs;
+        var rel = (offMs == null) ? Infinity : offMs;
+        if (tMs >= e && tMs < rel) return contact;
+        if (tMs < e && tMs > e - travelMs && travelMs > 0) {
+            return park + (contact - park) * ((tMs - (e - travelMs)) / travelMs);
+        }
+        if (tMs >= rel && isFinite(rel) && travelMs > 0) {
+            var u2 = Math.min(1, (tMs - rel) / travelMs);
+            return contact + (park - contact) * u2;
+        }
+        return park;
     }
     function rbrMakeLabel(text, hex, h) {
         var lbl = pmCreateAutoLabel(text, hex, h == null ? 0.30 : h);
@@ -56404,6 +56575,18 @@ export const FIELD_3D_RENDERER_CODE = `
             else rbrSumDrive += rbrSrcTau(s, tMs);
             if (s.ctl && rbrCtlLive(s.ctl.scale)) rbrSumVaries = true;
         }
+    }
+    // E10 — the FIRST drive source's torque at ONE instant, resolved through
+    // exactly the function the integrator resolves it with (rbrSrcTau), so an
+    // alpha-scaled control's rim force is the length of the torque the body is
+    // actually running at rather than of the number the dial happens to show.
+    function rbrDriveTauAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng || !eng.sources) return 0;
+        for (var i = 0; i < eng.sources.length; i++) {
+            if (eng.sources[i].kind !== "brake") return rbrSrcTau(eng.sources[i], tMs);
+        }
+        return 0;
     }
     // Restart bookkeeping. A restart is the ONLY way spin direction changes —
     // nothing is ever eased through zero (skeleton F4, deleted deliberately).
@@ -57539,6 +57722,55 @@ export const FIELD_3D_RENDERER_CODE = `
         padLbl.visible = false;
         root.add(padLbl); rbrRegister(padLbl);
 
+        // E10 — the DRIVE actuator, the brake's mirror image: an arm carrying a
+        // motor ROLLER that travels in along the RBR_DRIVE_AZ radial and meets
+        // the drum at R_drum, with the rim force it applies drawn tangentially
+        // at the contact. Built ONCE from the union of every state and only
+        // shown/hidden + re-posed (Rule 32d), exactly like the brake trio above.
+        // Everything lives in the ROOT group, never in the SPIN group: the
+        // actuator is fixed in the LAB frame and the body turns under it.
+        var drvArm = new THREE.Mesh(
+            new THREE.BoxGeometry(0.10, 0.10, 1.5),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRIVE_ARM_COLOR), emissive: hexToThreeColor(RBR_DRIVE_ARM_COLOR), emissiveIntensity: 0.10, shininess: 30 }));
+        drvArm.rotation.y = RBR_DRIVE_AZ;      // the box's long axis is +z, so
+                                               // one y-rotation lays it along
+                                               // the actuator's radial line
+        drvArm.userData = { elementType: "rbr_drive_arm", id: "rbr_drive_arm" };
+        drvArm.visible = false;
+        root.add(drvArm); rbrRegister(drvArm);
+        var drvWheel = new THREE.Mesh(
+            new THREE.CylinderGeometry(RBR_DRIVE_WHEEL_R, RBR_DRIVE_WHEEL_R, RBR_DRIVE_WHEEL_H, 28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRIVE_COLOR), emissive: hexToThreeColor(RBR_DRIVE_COLOR), emissiveIntensity: 0.30, shininess: 50 }));
+        drvWheel.userData = { elementType: "rbr_drive_wheel", id: "rbr_drive_wheel" };
+        drvWheel.visible = false;
+        root.add(drvWheel); rbrRegister(drvWheel);
+        // The roller's own rotation mark. It is a CHILD of the roller, so it
+        // inherits the roller's pose and its spin with no second update path
+        // that could disagree — and it is REGISTERED as well, so the visibility
+        // pass and the glow pass both reach it (the scar
+        // field3d_child_mesh_never_registered_in_sceneobjects_so_updater_never_
+        // matches is about the child that is reachable by neither).
+        var drvMark = new THREE.Mesh(
+            new THREE.BoxGeometry(RBR_DRIVE_WHEEL_R * 1.9, 0.02, 0.05),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRIVE_MARK_COLOR), emissive: hexToThreeColor(RBR_DRIVE_MARK_COLOR), emissiveIntensity: 0.42, shininess: 60 }));
+        drvMark.position.set(0, RBR_DRIVE_WHEEL_H / 2 + 0.011, 0);
+        drvMark.userData = { elementType: "rbr_drive_mark", id: "rbr_drive_mark" };
+        drvWheel.add(drvMark); rbrRegister(drvMark);
+        var drvLbl = rbrMakeLabel("drive", RBR_DRIVE_VEC_COLOR, 0.28);
+        drvLbl.userData = { elementType: "rbr_drive_label", id: "rbr_drive_label" };
+        drvLbl.visible = false;
+        root.add(drvLbl); rbrRegister(drvLbl);
+        // The rim FORCE. A THICK vector (rbrMakeThickVector), never an
+        // ArrowHelper — the E7 separability rule applies to every new rbr vector
+        // by construction and not only to the two it repaired. Built at zero
+        // length: the first frame writes the real magnitude.
+        var drvForce = rbrMakeThickVector([1, 0, 0], RBR_DRIVE_VEC_COLOR, 0,
+            RBR_DRIVE_SHAFT_R, RBR_DRIVE_HEAD_LEN);
+        drvForce.userData.elementType = "rbr_drive_force";
+        drvForce.userData.id = "rbr_drive_force";
+        drvForce.visible = false;
+        root.add(drvForce); rbrRegister(drvForce);
+
         // Grip-rule hand. The SAME articulated model + per-frame FK curl the
         // solenoid / wire hands use (buildArticulatedHandParts + rhrFingerJoints)
         // — but this one must TRACK the spin sign, which the existing hands
@@ -57629,6 +57861,13 @@ export const FIELD_3D_RENDERER_CODE = `
             brakeOnMs: null, brakeOffMs: Infinity,
             padTravelMs: rbrNum(et.pad_travel_ms, 1200),
             padEngageMs: null, padReleaseMs: Infinity,
+            // E10 — the DRIVE actuator's own window, the exact mirror of the
+            // three pad fields above. Deliberately NOT eng.driveOnMs: that field
+            // is re-pointed by a live tau_applied drag and by a restart, and an
+            // actuator whose travel re-anchored mid-state would stop being a
+            // pure function of state-local t (Rule 36 / the rewind guarantee).
+            driveTau: 0, driveEngageMs: null, driveReleaseMs: Infinity,
+            driveTravelMs: rbrNum(et.pad_travel_ms, 1200),
             restart: null,
             blankMs: rbrNum((rb.repin_cue || {}).blank_ms, RBR_DEF_BLANK_MS),
             ramp: null, sweep: null,
@@ -57683,16 +57922,32 @@ export const FIELD_3D_RENDERER_CODE = `
                 var onS = cueTriggerMs(so.engage_cue || "", rbrNum(so.engage_at_ms, 0));
                 var offS = (typeof so.release_at_ms === "number" || so.release_cue)
                     ? cueTriggerMs(so.release_cue || "", rbrNum(so.release_at_ms, Infinity)) : Infinity;
+                // E10 — PER-ENTRY actuator travel. external_torque.pad_travel_ms
+                // is singular and top-level and therefore cannot address a list,
+                // which is the concrete reason the drive could not simply reuse
+                // the pad path. Absent falls back to that top-level value (and
+                // then to the engine default), so an entry that authors nothing
+                // resolves to exactly the number the pad already used.
+                var trvS = rbrNum(so.travel_ms, eng.padTravelMs);
                 eng.sources.push({
                     id: (typeof so.id === "string" && so.id.length) ? so.id : (kind + "_" + si),
-                    kind: kind, tau: tv, onMs: onS, offMs: offS
+                    kind: kind, tau: tv, onMs: onS, offMs: offS, travelMs: trvS
                 });
                 // The FIRST brake entry also drives the pad actuator and the
                 // tau_brake slider, which have no notion of a list.
                 if (kind === "brake" && !(eng.tau > 0)) {
                     eng.tau = Math.abs(tv);
                     eng.padEngageMs = onS; eng.padReleaseMs = offS;
+                    eng.padTravelMs = trvS;
                     eng.brakeOnMs = onS; eng.brakeOffMs = offS;
+                }
+                // ...and the FIRST drive entry drives the roller actuator. The
+                // test is on the bound torque, never on driveEngageMs, because
+                // an engage instant of 0 is legitimate and is not "unbound".
+                if (kind !== "brake" && !(Math.abs(eng.driveTau) > 0)) {
+                    eng.driveTau = tv;
+                    eng.driveEngageMs = onS; eng.driveReleaseMs = offS;
+                    eng.driveTravelMs = trvS;
                 }
             }
         } else if (src === "brake") {
@@ -57703,7 +57958,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
                 eng.brakeOnMs = eng.padEngageMs;
                 eng.brakeOffMs = eng.padReleaseMs;
-                eng.sources.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
+                eng.sources.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs, travelMs: eng.padTravelMs });
             }
         } else if (src === "applied_torque") {
             // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I on the
@@ -57716,12 +57971,18 @@ export const FIELD_3D_RENDERER_CODE = `
             // must not show a drive's magnitude.
             var atq = rbrNum(et.applied_torque_Nm, 0);
             if (Math.abs(atq) > 0) {
+                // The two cueTriggerMs calls are HOISTED (same arguments, same
+                // order, same pure function) only so the roller can bind to the
+                // same instants the source does — E10.
+                var atOn = cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0));
+                var atOff = (typeof et.release_at_ms === "number" || et.release_cue)
+                    ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
                 eng.sources.push({
                     id: "applied_torque", kind: "drive", tau: atq,
-                    onMs: cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0)),
-                    offMs: (typeof et.release_at_ms === "number" || et.release_cue)
-                        ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity
+                    onMs: atOn, offMs: atOff, travelMs: eng.padTravelMs
                 });
+                eng.driveTau = atq;
+                eng.driveEngageMs = atOn; eng.driveReleaseMs = atOff;
             }
         }
         // Mirror the FIRST drive into the tau_applied slider's own fields, the
@@ -57800,7 +58061,10 @@ export const FIELD_3D_RENDERER_CODE = `
         "rbr_drum_line", "rbr_drum_line_label", "rbr_rod", "rbr_mass",
         "rbr_pull_arrow", "rbr_pull_label", "rbr_r_line", "rbr_r_label",
         "rbr_l_arrow", "rbr_l_label", "rbr_brake_arm", "rbr_brake_pad",
-        "rbr_brake_label", "rbr_grip_hand"
+        "rbr_brake_label", "rbr_grip_hand",
+        // E10 — the drive actuator's five meshes.
+        "rbr_drive_arm", "rbr_drive_wheel", "rbr_drive_mark",
+        "rbr_drive_label", "rbr_drive_force"
     ];
     function rbrApplyVisibility(rb) {
         var vis = rb.visible_elements || [];
@@ -57821,7 +58085,13 @@ export const FIELD_3D_RENDERER_CODE = `
             rbr_l_arrow: rb.show_l_arrow, rbr_l_label: rb.show_l_arrow,
             rbr_r_line: rb.show_r_line, rbr_r_label: rb.show_r_line,
             rbr_drum_line: rb.show_drum_line, rbr_drum_line_label: rb.show_drum_line,
-            rbr_grip_hand: rb.show_grip_hand
+            rbr_grip_hand: rb.show_grip_hand,
+            // E10 — the rim force VECTOR is an ordinary overlay and takes the
+            // ordinary overlay path (default OFF, or named in visible_elements).
+            // It is AND-ed with the actuator's own presence below: a force
+            // vector standing at a rim no actuator is touching is the same
+            // rendered lie the missing actuator was, pointing the other way.
+            rbr_drive_force: rb.show_drive_force
         };
         rbrEach(function (o, ud) {
             var et = ud.elementType;
@@ -57841,6 +58111,31 @@ export const FIELD_3D_RENDERER_CODE = `
         if (pd) pd.visible = padOn;
         if (ar) ar.visible = padOn;
         if (pl) pl.visible = padOn;
+        // E10 — the DRIVE actuator follows the torque SOURCE for exactly the
+        // reason the pad does. It is read off eng.sources, which
+        // applyRigidBodyRotationState has already resolved from THIS state's own
+        // authoring one line earlier: the three drive surfaces (sources[], the
+        // legacy applied_torque_Nm, and neither) collapse into one list there,
+        // so this is one test instead of three.
+        //   It is NOT a live read. A tau_applied DRAG does not re-run this pass,
+        // which is the same gap the brake half carries
+        // (rbr_live_param_drag_has_no_rendered_agent) — deliberately left where
+        // it is rather than half-fixed on one actuator here.
+        var engV = window.PM_rbrEngine;
+        var driveOn = false;
+        if (engV && engV.sources) {
+            for (var dvi = 0; dvi < engV.sources.length; dvi++) {
+                if (engV.sources[dvi].kind !== "brake" && rbrSrcOn(engV.sources[dvi])) { driveOn = true; break; }
+            }
+        }
+        var dwh = rbrFindById("rbr_drive_wheel"), dmk = rbrFindById("rbr_drive_mark");
+        var dar = rbrFindById("rbr_drive_arm"), dlb = rbrFindById("rbr_drive_label");
+        var dfc = rbrFindById("rbr_drive_force");
+        if (dwh) dwh.visible = driveOn;
+        if (dmk) dmk.visible = driveOn;
+        if (dar) dar.visible = driveOn;
+        if (dlb) dlb.visible = driveOn;
+        if (dfc) dfc.visible = (dfc.visible === true) && driveOn;
         // E7 — freeze the STATE's answer. The per-frame pass may AND a label off
         // when its vector has zero length, and must never be able to turn one
         // back ON that the state hid. Recorded last, after every branch above.
@@ -57953,20 +58248,59 @@ export const FIELD_3D_RENDERER_CODE = `
         var padLbl = rbrFindById("rbr_brake_label");
         if (pad && pad.visible) {
             var contactZ = eng.drumR * W + 0.09;
-            var parkZ = contactZ + 1.05;
-            var z = parkZ;
-            var eMs = (eng.padEngageMs == null) ? Infinity : eng.padEngageMs;
-            var relMs = eng.padReleaseMs;
-            if (tMs >= eMs && tMs < relMs) z = contactZ;
-            else if (tMs < eMs && tMs > eMs - eng.padTravelMs && eng.padTravelMs > 0) {
-                z = parkZ + (contactZ - parkZ) * ((tMs - (eMs - eng.padTravelMs)) / eng.padTravelMs);
-            } else if (tMs >= relMs && isFinite(relMs) && eng.padTravelMs > 0) {
-                var u2 = Math.min(1, (tMs - relMs) / eng.padTravelMs);
-                z = contactZ + (parkZ - contactZ) * u2;
-            }
+            var parkZ = contactZ + RBR_ACT_TRAVEL;
+            // E10 — the travel is now the SHARED rbrActuatorAt, lifted out of
+            // this block unchanged so the drive roller can run the same one.
+            var z = rbrActuatorAt(tMs, eng.padEngageMs, eng.padReleaseMs, eng.padTravelMs, contactZ, parkZ);
             pad.position.set(0, 0, z);
             if (arm) arm.position.set(0, 0, z + 0.83);
             if (padLbl) padLbl.position.set(0, 0.40, z + 0.20);
+        }
+
+        // E10 — the DRIVE actuator. SAME travel mechanism as the pad above, on
+        // its OWN window, along its OWN radial axis: the torque that spins the
+        // body up now has a visible agent that arrives BEFORE it acts (Rule 32a).
+        var drvUx = Math.sin(RBR_DRIVE_AZ), drvUz = Math.cos(RBR_DRIVE_AZ);
+        var rimR = eng.drumR * W;
+        var drvW = rbrFindById("rbr_drive_wheel");
+        if (drvW && drvW.visible) {
+            var contactR = rimR + RBR_DRIVE_WHEEL_R;
+            var parkR = contactR + RBR_ACT_TRAVEL;
+            var dR = rbrActuatorAt(tMs, eng.driveEngageMs, eng.driveReleaseMs, eng.driveTravelMs, contactR, parkR);
+            drvW.position.set(drvUx * dR, 0, drvUz * dR);
+            // Rolling contact: the roller's rim keeps pace with the drum's, so it
+            // turns the OPPOSITE way at R_drum / r_roller times the rate. theta is
+            // a closed form of state-local t, so this is one too and a rewind
+            // reproduces it exactly. SIMPLIFICATION, stated: the roller keeps
+            // turning while parked, which reads as a motor left running rather
+            // than as contact — the alternative is a latched angle, and a latch
+            // cannot be rewound (hysteretic_state_cannot_be_latched_under_a_time_pin).
+            drvW.rotation.y = -theta * (rimR / RBR_DRIVE_WHEEL_R);
+            var drvA = rbrFindById("rbr_drive_arm");
+            if (drvA) drvA.position.set(drvUx * (dR + 0.83), 0, drvUz * (dR + 0.83));
+            var drvL = rbrFindById("rbr_drive_label");
+            if (drvL) drvL.position.set(drvUx * (dR + 0.20), 0.40, drvUz * (dR + 0.20));
+        }
+        // The rim FORCE. Tangential at the drum rim, magnitude |tau| / R_drum on
+        // its OWN newton map (rbrDriveArrowLen — see RBR_DRIVE_F_*), drawn ONLY
+        // while the roller is in contact.
+        var drvF = rbrFindById("rbr_drive_force");
+        if (drvF) {
+            var dTau = rbrDriveTauAt(tMs);
+            var dLen = rbrDriveArrowLen((eng.drumR > 0) ? Math.abs(dTau) / eng.drumR : 0);
+            var dSgn = (dTau < 0) ? -1 : 1;
+            var dOn = (eng.driveEngageMs != null) && tMs >= eng.driveEngageMs && tMs < eng.driveReleaseMs;
+            drvF.position.set(drvUx * rimR, RBR_DRIVE_FORCE_Y, drvUz * rimR);
+            // The tangent to a +theta rotation at azimuth a is (cos a, 0, -sin a)
+            // — the sense the drum's own marker travels — so a POSITIVE torque
+            // pushes the rim the way it makes the body turn, and a negative one
+            // reverses it. Read straight off spin.rotation.y, not assumed.
+            rbrSetVectorDir(drvF, [dSgn * drvUz, 0, -dSgn * drvUx]);
+            rbrSetVectorLength(drvF, dLen);
+            // _visWant is the STATE's own answer (recorded by rbrApplyVisibility),
+            // so this AND-gate can only ever hide — never resurrect an overlay
+            // the state switched off.
+            drvF.visible = (drvF.userData._visWant !== false) && dOn && dLen > 0;
         }
 
         // Grip-rule hand: thumb along +L. The flip is a 180-degree rotation
@@ -58014,7 +58348,13 @@ export const FIELD_3D_RENDERER_CODE = `
                          ud.elementType === "rbr_brake_arm" || ud.elementType === "rbr_grip_hand" ||
                          ud.elementType === "rbr_drum_line_label" || ud.elementType === "rbr_r_label" ||
                          ud.elementType === "rbr_l_label" || ud.elementType === "rbr_brake_label" ||
-                         ud.elementType === "rbr_pull_label");
+                         ud.elementType === "rbr_pull_label" ||
+                         // E10 — the drive actuator is physical apparatus, so it
+                         // joins the brighten-only carve-out exactly as the pad
+                         // and arm do. rbr_drive_force is a VECTOR and is
+                         // deliberately absent: an overlay dims like the L arrow.
+                         ud.elementType === "rbr_drive_wheel" || ud.elementType === "rbr_drive_arm" ||
+                         ud.elementType === "rbr_drive_mark" || ud.elementType === "rbr_drive_label");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
         });
     }
