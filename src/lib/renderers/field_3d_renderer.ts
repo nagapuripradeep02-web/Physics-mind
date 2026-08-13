@@ -56395,7 +56395,23 @@ export const FIELD_3D_RENDERER_CODE = `
     function rbrMakeLabel(text, hex, h) {
         var lbl = pmCreateAutoLabel(text, hex, h == null ? 0.30 : h);
         lbl._rbrText = text;
+        // A-13 — the HOME lane, i.e. the position the physics wants this label
+        // at, kept SEPARATE from the position it is drawn at. Stored on the
+        // sprite and not in userData because every rbr label REPLACES its
+        // userData object one line after this call.
+        lbl._rbrHome = new THREE.Vector3();
+        lbl._rbrLift = 0;
         return lbl;
+    }
+    // Write a label's home lane. Every rbr label position write goes through
+    // here — the de-collision pass below reads _rbrHome and never its own
+    // output, which is what makes the nudge a pure function of the pose rather
+    // than an accumulator (hysteretic_state_cannot_be_latched_under_a_time_pin).
+    function rbrLblHome(lbl, x, y, z) {
+        if (!lbl) return;
+        if (!lbl._rbrHome) lbl._rbrHome = new THREE.Vector3();
+        lbl._rbrHome.set(x, y, z);
+        lbl.position.set(x, y, z);
     }
     // Recolour a retained rbr label in place (the sign channel — see
     // rbrSetVectorColor). pmCreateAutoLabel keeps its canvas + ctx and
@@ -56405,6 +56421,260 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!lbl || lbl._pmColor === hex) return;
         lbl._pmColor = hex;
         updateLabelSpriteText(lbl, lbl._pmText != null ? lbl._pmText : (lbl._rbrText || ""));
+    }
+
+    // ══ A-13 · world-anchored label de-collision, rbr-LOCAL ════════════════
+    //   bug_class world_anchored_sprite_labels_overlap_their_own_geometry_and_
+    //   each_other. Every rbr caption is a camera-facing sprite pinned to a
+    //   WORLD anchor, so where two of them land on screen is a fact about the
+    //   camera, not about the anchors — and nothing in the scenario asked. The
+    //   blocking instance is deterministic rather than incidental: with the pad
+    //   engaged, the brake caption sits at z + 0.20 and the drum caption at
+    //   R_drum*W + 0.34, i.e. exactly (0, 0.02, 0.05) apart, for the WHOLE of
+    //   S5's engage window. Two more show in the pixels: "pull" over "L", and
+    //   both "pull" and "R_drum" over the geometry they name.
+    //
+    //   SCOPE. This is NOT a change to createLabelSprite / pmCreateAutoLabel.
+    //   ~40 baseline-locked concepts draw sprites through those, and an
+    //   unconditional auto-nudge would move pixels in every one of them for a
+    //   defect that belongs to this scenario's anchor layout. The pass reads
+    //   the rbr id registry, is called from the rbr frame update, and is
+    //   reachable from nowhere else — the absent path is byte-identical by
+    //   construction because there is no path.
+    //
+    //   MECHANISM LIFTED, NOT INVENTED (Rule 40a). The marker-caption lane in
+    //   the newtons_laws_body scenario already solves this exact problem —
+    //   eased lift along the camera up axis, obstacles as {p, hw, hh} in world
+    //   units resolved along the camera basis, higher-priority captions keeping
+    //   their lane. That code is SEALED (other scenario, other bug_class) and is
+    //   deliberately NOT refactored to be shared; only its two READ-ONLY
+    //   geometry helpers (nlbInkHalfW / nlbInkHalfH / nlbSpriteRectPx) are
+    //   called, and they hold no nlb state.
+    //
+    //   NO HYSTERESIS, NO THRESHOLD. The skeleton asked for a hysteretic
+    //   de-collision; hysteresis is latched state and cannot be rewound
+    //   (hysteretic_state_cannot_be_latched_under_a_time_pin), so the pop it
+    //   was meant to prevent (field3d_hard_threshold_label_decollision_pops_
+    //   when_the_pair_separates) is prevented the other way: the lift is a
+    //   CONTINUOUS function of the separation, easing to exactly 0 over
+    //   RBR_LBL_EASE. A pair drifting apart never jumps, and a rewind
+    //   reproduces the frame because the lift depends only on the pose.
+    //
+    //   WORLD UNITS ALONG THE CAMERA BASIS, not pixels. The apparatus spans
+    //   ~4 units at a camera distance of 9.6, so the depth spread is small, and
+    //   a world-unit lane is INDEPENDENT of viewport size — THE EYE renders
+    //   1280x720 while the teacher's iframe reflows, and a px-quantised lane
+    //   would place labels differently in the two.
+    var RBR_LBL_GAP = 0.06;          // world units of clear space demanded around ink
+    var RBR_LBL_EASE = 0.34;         // the screen-horizontal band a lift eases in over
+    var RBR_LBL_MAX_LIFT = 0.85;     // safety cap — a caption is never flung off its
+    //                                  referent. It is NOT meant to bind: a binding cap
+    //                                  moves two colliding captions TOGETHER and leaves
+    //                                  them colliding, which is exactly what the first
+    //                                  build of this pass did. Measured asks are <= 0.40.
+    var RBR_LBL_RING_SAMPLES = 24;
+    // Priority. EARLIER keeps its home lane; LATER yields and climbs.
+    //   THE LAB-FRAME CAPTIONS COME FIRST, and that ordering is the fix for a
+    // measured defect, not a preference. With the rotating captions ahead of
+    // them, the r caption swept past R_drum once a revolution and pushed it — a
+    // lab-frame reference caption rising and falling on the body's rotation, i.e.
+    // motion a student reads as physics (Rule 32b), and at t = 3500 ms it drove
+    // R_drum into the safety cap so the brake caption could no longer clear it.
+    // Ordered this way the lab-frame captions have static lanes and the captions
+    // that ride the turning body are the ones that yield, which is also the case
+    // the pixels caught ("pull" overprinting "L").
+    var RBR_LBL_LANE_IDS = [
+        "rbr_drum_line_label", "rbr_brake_label", "rbr_l_label",
+        "rbr_drive_label", "rbr_r_label", "rbr_pull_label"
+    ];
+    // The SOLID referents a caption must not be drawn over. Compact objects
+    // only: the drum itself is a metre-wide disc and demanding clearance from
+    // it would fling every caption off the apparatus.
+    var RBR_LBL_OBSTACLE_IDS = ["rbr_mass_a", "rbr_mass_b", "rbr_brake_pad", "rbr_drive_wheel"];
+    function rbrLabelObstacles() {
+        var out = [], i, o, g, bs, sc, rad, v;
+        var sp = rbrFindById("rbr_spin");
+        for (i = 0; i < RBR_LBL_OBSTACLE_IDS.length; i++) {
+            o = rbrFindById(RBR_LBL_OBSTACLE_IDS[i]);
+            if (!o || !o.visible || !o.parent) continue;
+            o.updateWorldMatrix(true, false);
+            g = o.geometry;
+            if (!g) continue;
+            if (!g.boundingSphere) g.computeBoundingSphere();
+            bs = g.boundingSphere;
+            if (!bs || !isFinite(bs.radius)) continue;
+            sc = o.getWorldScale(new THREE.Vector3());
+            rad = bs.radius * Math.max(Math.abs(sc.x), Math.max(Math.abs(sc.y), Math.abs(sc.z)));
+            v = bs.center.clone().applyMatrix4(o.matrixWorld);
+            out.push({ p: v, hw: rad, hh: rad, spin: (o.parent === sp) });
+        }
+        // The drum reference RING is a thin circle, not a disc, so it is
+        // modelled as samples around its own arc and never as one bounding box.
+        // A box would ask R_drum to clear the WHOLE ellipse — a lift of a whole
+        // radius, to get off a 0.022-thick line.
+        var ring = rbrFindById("rbr_drum_line");
+        if (ring && ring.visible && ring.parent) {
+            ring.updateWorldMatrix(true, false);
+            var rr = (ring.userData && ring.userData._rbrDrawnR) || (RBR_DEF_DRUM_R * RBR_WORLD_PER_M);
+            for (i = 0; i < RBR_LBL_RING_SAMPLES; i++) {
+                var a = 2 * Math.PI * i / RBR_LBL_RING_SAMPLES;
+                v = new THREE.Vector3(rr * Math.cos(a), rr * Math.sin(a), 0).applyMatrix4(ring.matrixWorld);
+                out.push({ p: v, hw: 0.030, hh: 0.030, spin: false });
+            }
+        }
+        return out;
+    }
+    // The largest upward move this ink asks for against one obstacle list.
+    // Factored out because the pass has to run it TWICE per caption — see
+    // rbrDecollideLabels for why one combined list gives the wrong answer.
+    function rbrLabelAsk(p, hw, hh, list, right, up, inSpin) {
+        var lift = 0;
+        for (var q = 0; q < list.length; q++) {
+            var ob = list[q];
+            // A caption dodges only the solids it shares a ROTATING FRAME with.
+            // The masses turn under the lab-frame captions, so admitting them
+            // there would make R_drum rise and fall twice a revolution — motion
+            // a student reads as physics (Rule 32b) — for a mass that crosses
+            // the caption for a fraction of a second. Within one frame the dodge
+            // is static, which is the only kind worth having. STATED
+            // SIMPLIFICATION: a mass sweeping past a lab-frame caption is not
+            // dodged.
+            if (ob.spin != null && ob.spin !== inSpin) continue;
+            var d = p.clone().sub(ob.p);
+            // How far this ink is from clearing the obstacle along the
+            // screen-horizontal. Sharing a screen column is the collision;
+            // being merely nearby is not.
+            var gapR = Math.abs(d.dot(right)) - (hw + ob.hw + RBR_LBL_GAP);
+            if (gapR >= RBR_LBL_EASE) continue;
+            var kH = (gapR <= 0) ? 1 : (1 - gapR / RBR_LBL_EASE);
+            var sep = hh + ob.hh + RBR_LBL_GAP;    // the clear separation asked for
+            var du = d.dot(up);
+            var need = sep - du;                   // the upward move that gives it
+            if (need <= 0) continue;               // already clear ABOVE: asks nothing
+            // NEVER JUMP OVER something the caption sits well below. Measured on
+            // the first build of this pass without this term: the far arc of the
+            // drum ring projects ABOVE the R_drum caption and shares its screen
+            // column, so an up-only rule demanded a lift of a whole ring radius,
+            // both captions hit the cap, moved together, and stayed overlapped —
+            // the defect intact and now 0.95 units off its referent.
+            //   The decay runs over a NARROW band at the very end of the overlap
+            // rather than over the whole of it. Measured on the second build,
+            // easing across the whole range: a caption 0.23 below an obstacle
+            // asked for 0.58 and was granted 0.19, so the pair moved together and
+            // stayed overlapped. Inside the overlap the resolution has to be
+            // FULL; only the last sliver before the inks part is eased, which is
+            // all continuity needs.
+            var kV = 1;
+            if (du < 0) {
+                var over = du + sep;               // 0 exactly as the inks part
+                if (over <= 0) continue;
+                var band = sep * 0.4;
+                if (over < band) kV = over / band;
+            }
+            var want = need * kH * kV;
+            if (want > lift) lift = want;
+        }
+        return lift;
+    }
+    function rbrDecollideLabels() {
+        if (typeof camera === "undefined" || !camera) return;
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var obs = rbrLabelObstacles();
+        var spinGrp = rbrFindById("rbr_spin");
+        var peers = [];
+        for (var i = 0; i < RBR_LBL_LANE_IDS.length; i++) {
+            var l = rbrFindById(RBR_LBL_LANE_IDS[i]);
+            if (!l || !l.visible || !l.parent || !l._rbrHome) continue;
+            // ALWAYS from home. Reading l.position here would feed last frame's
+            // lift back in and make the lane an accumulator.
+            l.position.copy(l._rbrHome);
+            l.parent.updateWorldMatrix(true, false);
+            var p = l.parent.localToWorld(l._rbrHome.clone());
+            var hw = nlbInkHalfW(l), hh = nlbInkHalfH(l);
+            // TWO SUB-PASSES, and the order is the whole point. Measured with one
+            // combined list: two captions 0.02 apart were each lifted ~0.31 by the
+            // SAME pad and mass obstacles, and because the peer test ran from the
+            // HOME position it saw them 0.34 apart and asked for nothing — so the
+            // pair moved together and stayed overlapped, three builds running. The
+            // apparatus is dodged FIRST, and the peer test then runs from where
+            // that dodge actually put the caption.
+            var inSpin = (l.parent === spinGrp);
+            var lift = rbrLabelAsk(p, hw, hh, obs, right, up, inSpin);
+            lift += rbrLabelAsk(p.clone().addScaledVector(up, lift), hw, hh, peers, right, up, inSpin);
+            if (lift > RBR_LBL_MAX_LIFT) lift = RBR_LBL_MAX_LIFT;
+            if (lift > 0) {
+                p.addScaledVector(up, lift);
+                l.position.copy(l.parent.worldToLocal(p.clone()));
+            }
+            l._rbrLift = lift;
+            // A placed caption becomes a peer obstacle for every LOWER-priority
+            // one, so the resolution is one deterministic sweep, never an
+            // iteration to a fixed point that a pin could land part-way through.
+            peers.push({ p: p, hw: hw, hh: hh, spin: null });
+        }
+    }
+    // The projected ink rect of every VISIBLE rbr caption, in screen px, plus the
+    // lift the lane resolved to. Published because "no two captions overprint"
+    // is a SCREEN fact about billboards whose width is a live function of their
+    // text, and the sprites live inside this closure — no reader of the concept
+    // JSON can derive it. Read-only, no pixels.
+    function rbrLabelRectsPx() {
+        if (typeof camera === "undefined" || !camera) return [];
+        var right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var out = [];
+        for (var i = 0; i < RBR_LBL_LANE_IDS.length; i++) {
+            var l = rbrFindById(RBR_LBL_LANE_IDS[i]);
+            if (!l || !l.visible || !l.parent) continue;
+            l.parent.updateWorldMatrix(true, false);
+            var c = l.parent.localToWorld(l.position.clone());
+            var r = nlbSpriteRectPx(l, c, right, up);
+            out.push({ id: RBR_LBL_LANE_IDS[i], text: l._rbrText || "",
+                       x0: r.x0, x1: r.x1, y0: r.y0, y1: r.y1,
+                       lift: l._rbrLift || 0 });
+        }
+        return out;
+    }
+    window.__PM_rbrLabelRects = rbrLabelRectsPx;
+
+    // ══ A-13 (second half) · brake_drum_radius_m now moves the DRAWN drum ═══
+    //   Found while fixing the caption collision, in the same two lines. Five
+    //   drawn parts of the drum were built at the CONSTANT RBR_DEF_DRUM_R and
+    //   never re-resolved, while three consumers read the LIVE eng.drumR — the
+    //   pad's contact z, and (added by E10) the drive roller's rim placement and
+    //   its rim force |tau|/R. So a concept authoring anything other than 0.55
+    //   got a pad engaging, and a roller pressing, at a radius where no drum was
+    //   drawn. Invisible on conservation_of_angular_momentum only because its
+    //   authored value equals the default.
+    //   Same shape as the SEAM-G radius_m pair in ENGINE_LANDING_NOTICE §2:
+    //   authored, accepted by every gate, silently does nothing.
+    //
+    //   Build keeps the constant — that IS the default, and rbrNum falls back to
+    //   it. This runs on STATE APPLY, which is where a per-state apparatus value
+    //   arrives; it is not per-frame (nothing here is a function of t) and it is
+    //   idempotent, so a re-apply at the same radius rebuilds nothing.
+    function rbrSetDrumRadius(rM) {
+        var W = RBR_WORLD_PER_M;
+        var Rw = rM * W;
+        var k = (RBR_DEF_DRUM_R > 0) ? (rM / RBR_DEF_DRUM_R) : 1;
+        // The cylinder and the stripe SCALE exactly: a cylinder's radius is its
+        // x/z scale, and the stripe is a box whose length and centre offset are
+        // both linear in R. Neither needs a rebuild.
+        var drum = rbrFindById("rbr_drum");
+        if (drum) drum.scale.set(k, 1, k);
+        var stripe = rbrFindById("rbr_drum_marker");
+        if (stripe) { stripe.scale.set(k, 1, 1); stripe.position.set(Rw * 0.46, 0.11, 0); }
+        // The ring is REBUILT rather than scaled: scaling a torus in its own
+        // plane scales the TUBE too, so the reference line would thicken with
+        // the radius and stop being the same line at two radii.
+        var line = rbrFindById("rbr_drum_line");
+        if (line && line.userData._rbrDrawnR !== Rw) {
+            line.geometry.dispose();
+            line.geometry = new THREE.TorusGeometry(Rw, 0.022, 8, 64);
+            line.userData._rbrDrawnR = Rw;
+        }
+        rbrLblHome(rbrFindById("rbr_drum_line_label"), 0, 0.42, Rw + 0.34);
     }
 
     // ── E7 · rbrMakeThickVector — a vector with a REAL shaft ───────────────
@@ -57615,10 +57885,13 @@ export const FIELD_3D_RENDERER_CODE = `
             new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRUMLINE_COLOR), emissive: hexToThreeColor(RBR_DRUMLINE_COLOR), emissiveIntensity: 0.40, shininess: 50, transparent: true, opacity: 1 }));
         drumLine.rotation.x = -Math.PI / 2;
         drumLine.position.set(0, 0.115, 0);
-        drumLine.userData = { elementType: "rbr_drum_line", id: "rbr_drum_line" };
+        // _rbrDrawnR is the radius the ring is CURRENTLY drawn at. The build
+        // draws the default; rbrSetDrumRadius re-resolves it on every state
+        // apply, and this stamp is what makes that idempotent.
+        drumLine.userData = { elementType: "rbr_drum_line", id: "rbr_drum_line", _rbrDrawnR: RBR_DEF_DRUM_R * W };
         root.add(drumLine); rbrRegister(drumLine);
         var drumLbl = rbrMakeLabel("R_drum", RBR_DRUMLINE_COLOR, 0.30);
-        drumLbl.position.set(0, 0.42, RBR_DEF_DRUM_R * W + 0.34);
+        rbrLblHome(drumLbl, 0, 0.42, RBR_DEF_DRUM_R * W + 0.34);
         drumLbl.userData = { elementType: "rbr_drum_line_label", id: "rbr_drum_line_label" };
         root.add(drumLbl); rbrRegister(drumLbl);
 
@@ -57700,7 +57973,11 @@ export const FIELD_3D_RENDERER_CODE = `
         //
         //   The cause is the DRUM's projected silhouette, not the anchor (the
         //   anchor is already sign-mirrored, y = sign*0.22, and is correct).
-        //   The drum is an opaque cylinder of radius RBR_DEF_DRUM_R*W = 0.99
+        //   The drum is an opaque cylinder of radius drumR*W, 0.99 at the
+        //   DEFAULT drumR of 0.55 m (the numbers below are quoted at that
+        //   default; rbrSetDrumRadius makes the drawn radius follow an authored
+        //   brake_drum_radius_m, so a concept authoring another value scales
+        //   this clearance with it),
         //   and half-thickness 0.10; the camera sits at phi 1.16, i.e. 23.5
         //   degrees ABOVE the rotation plane. A sightline to an on-axis point
         //   at height y < 0 clears the drum's lower rim only below
@@ -58079,6 +58356,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // apparatus.
         eng.tauApplied = rbrCtlFrom(rbrSc("tau_applied").scale, eng.tauApplied, 0);
 
+        // A-13 second half — re-resolve the DRAWN drum from the authored
+        // brake_drum_radius_m before anything reads the apparatus. Before this
+        // line the pad and the drive roller tracked the live value while every
+        // drawn part of the drum stayed at the constant.
+        rbrSetDrumRadius(eng.drumR);
+
         rbrApplyVisibility(rb);
         rbrToggleSliderRows(rb);
         for (var i = 0; i < rbrRowsBuilt.length; i++) {
@@ -58243,7 +58526,7 @@ export const FIELD_3D_RENDERER_CODE = `
             rLine.position.set(r * W / 2, rodY, 0);
         }
         var rLbl = rbrFindById("rbr_r_label");
-        if (rLbl) rLbl.position.set(r * W / 2, rodY + 0.30, 0);
+        if (rLbl) rbrLblHome(rLbl, r * W / 2, rodY + 0.30, 0);
 
         // Pull arrows (F5). ALWAYS along -r-hat: they lengthen pulling in and
         // SHORTEN easing out, and never reverse to point outward — an outward
@@ -58260,7 +58543,7 @@ export const FIELD_3D_RENDERER_CODE = `
         });
         var pLbl = rbrFindById("rbr_pull_label");
         if (pLbl) {
-            pLbl.position.set(r * W + aLen * 0.5, rodY + 0.34, 0);
+            rbrLblHome(pLbl, r * W + aLen * 0.5, rodY + 0.34, 0);
             // A "pull" caption with no arrow under it is the same rendered lie
             // the arrow stub was. _visWant is the state's OWN answer, recorded
             // by rbrApplyVisibility, so this AND-gate can only ever hide.
@@ -58280,7 +58563,7 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         var lLbl = rbrFindById("rbr_l_label");
         if (lLbl) {
-            lLbl.position.set(0.34, sign * (0.22 + lLen + 0.20), 0);
+            rbrLblHome(lLbl, 0.34, sign * (0.22 + lLen + 0.20), 0);
             // E7 — the sign COLOUR channel, now with a second consumer. It had
             // exactly one before (lArrow.setColor), and that one recoloured a
             // shaft nothing could see, so the amber/blue pair a teacher is meant
@@ -58305,7 +58588,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var z = rbrActuatorAt(tMs, eng.padEngageMs, eng.padReleaseMs, eng.padTravelMs, contactZ, parkZ);
             pad.position.set(0, 0, z);
             if (arm) arm.position.set(0, 0, z + 0.83);
-            if (padLbl) padLbl.position.set(0, 0.40, z + 0.20);
+            if (padLbl) rbrLblHome(padLbl, 0, 0.40, z + 0.20);
         }
 
         // E10 — the DRIVE actuator. SAME travel mechanism as the pad above, on
@@ -58330,7 +58613,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var drvA = rbrFindById("rbr_drive_arm");
             if (drvA) drvA.position.set(drvUx * (dR + 0.83), 0, drvUz * (dR + 0.83));
             var drvL = rbrFindById("rbr_drive_label");
-            if (drvL) drvL.position.set(drvUx * (dR + 0.20), 0.40, drvUz * (dR + 0.20));
+            if (drvL) rbrLblHome(drvL, drvUx * (dR + 0.20), 0.40, drvUz * (dR + 0.20));
         }
         // The rim FORCE. Tangential at the drum rim, magnitude |tau| / R_drum on
         // its OWN newton map (rbrDriveArrowLen — see RBR_DRIVE_F_*), drawn ONLY
@@ -58373,6 +58656,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
         }
+
+        // A-13 — LAST, after every home lane above has been written for this
+        // pose, and reading nothing but those homes plus the camera. Runs on the
+        // same frame path a SET_TIME_FREEZE pin drives, so a pinned rewind
+        // reproduces the lane exactly.
+        rbrDecollideLabels();
 
         rbrWriteReadouts(rb, tMs);
         // The timed formula surface rides the SAME derived tMs as the readouts,
