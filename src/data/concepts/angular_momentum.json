@@ -402,7 +402,7 @@
         "stem": "A turntable has moment of inertia I = 3.06 kg·m² and spins at angular speed ω = 1.50 rad/s. What is its angular momentum L?",
         "options": {
           "A": "4.59 kg·m²/s",
-          "B": "1.53 kg·m²/s",
+          "B": "2.04 kg·m²/s",
           "C": "3.06 kg·m²/s",
           "D": "4.59 kg·m/s"
         },
@@ -740,6 +740,7 @@
         "visible_elements": [],
         "caption": "L points along the axis",
         "show_sliders": true,
+        "eye_capture_ms": 13000,
         "rigid_body_rotation": {
           "mode": "fixed_axis",
           "apparatus": {

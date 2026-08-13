@@ -1298,3 +1298,73 @@ every case. Recorded so a later reader does not read it as a regression.
   left as silence.
 
 No DB write, no engine dispatch (guardrail 6), no `visual:approve`.
+
+---
+## PASS 21 — **The frozen pin was landing on the arrow's DIMMEST instant. Two "conflicting" measurements were both right.**
+
+Filed 2026-08-13 by Desk C. eye-walker's cycle-2 re-walk found something this desk's method
+**structurally could not see**, and the reconciliation is the reusable part.
+
+### The apparent conflict
+
+Across STATE_4's `phases[]` p3→p4 boundary at 15500 ms, measuring the same object at the same
+instants:
+
+| method | @13000 | @16000 | reading |
+|---|---|---|---|
+| this desk — hide-and-diff pixel count | 1083 px | 1024 px | **flat** |
+| eye-walker — colour-threshold count | 1266 px | 635 px | **halved** |
+
+Neither was wrong. **They measure different quantities.** Hide-and-diff counts every pixel the arrow
+*occupies* — the occlusion question, which is what F-C9 is about. A colour-threshold count counts
+*bright arrow-coloured* pixels — the salience question. Dimming pushes pixels below the colour
+threshold without changing occupancy at all.
+
+### The decisive measurement — luminance over the hide-and-diff mask
+
+Isolating the arrow exactly (hide it, re-shoot, diff) and measuring luminance **over that mask**
+gives both numbers at once:
+
+| t | phase | ink (occupancy) | mean luminance | px brighter than 200 |
+|---|---|---|---|---|
+| 12500–15400 | p3 · `rbr_l_arrow` focal | 1033–1119 | **250–253** | **1031–1115** |
+| 16000–18000 | p4 · `rbr_mass` focal | 1006–1015 | **141** | **0** |
+
+Occupancy flat; **mean luminance 252 → 141 and every pixel above luminance 200 gone.** Rule 29 dims
+non-focal peers and p4 hands the focal to `rbr_mass`, so the frozen pin at 16000 was photographing
+the state's headline vector at its **least visible instant of the whole down-phase** — the single
+resting frame a founder skimming PNGs sees. The arrow's own `emissiveIntensity` stays high
+(1.33–1.54), so the dimming is the peer-dim path, not an emissive change.
+
+**This desk's earlier characterisation was wrong and is corrected here.** PASS 20 reasoned from
+occupancy alone and concluded the pin move cost "emphasis, not visibility". With salience measured,
+the cost is visibility.
+
+### Resolution — the founder's standing ruling, applied
+
+*Move the gate, not the pedagogy.* Authored `eye_capture_ms: 13000` on STATE_4 — at the **state**
+level of `field_3d_config.states`, per the extractor (`visual_eyes.ts:217-234`), which is the same
+level as `caption`/`label` and NOT inside the `rigid_body_rotation` block. Precedent: five chemistry
+concepts.
+
+Verified: THE EYE reports `Eye capture: authored eye_capture_ms on 1 state(s) — STATE_4=13000ms`,
+reveal map `STATE_4=13000ms`, and the frozen frame matches dense t13000 at **mean absolute difference
+0.018** against 0.3–0.6 for every other instant. The p4 mass beat at 15500 is **untouched** — it is
+the right beat for s4_4 and quality-auditor independently endorsed it at Gate 15.
+
+### Two instrument failures recorded, because both nearly produced false statements
+
+1. **A warm-hue colour scan does not isolate this arrow.** Its bbox spanned 669×387 — it was
+   counting the drum, the HUD, labels and the amber `L` sprite alongside the arrow. It reported
+   *no* dimming (meanLum ~210–221 flat) and would have been used to contradict eye-walker's correct
+   finding. Hide-and-diff isolates the object by construction; a colour predicate does not.
+2. **`pixelmatch(..., {threshold: 0.1})` returning 0 does NOT mean "identical".** The threshold is
+   perceptual: it reported 0 differing pixels for two frames whose raw pixel md5s differ. For frame
+   *identity*, hash the decoded pixel buffer or compute mean absolute difference — not a thresholded
+   diff count. (Note this is the *inverse* of PASS 17 §4: there, md5 of the PNG **file** was unsound
+   because IDAT compression is nondeterministic. md5 of the decoded **pixel buffer** is sound. The
+   distinction is the encoder, and it is easy to conflate.)
+
+Both are the same failure mode as PASS 18 and PASS 19: the convenient instrument fails **open**.
+
+No DB write, no engine dispatch (guardrail 6), no `visual:approve`.
