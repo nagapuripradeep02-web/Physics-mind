@@ -629,6 +629,53 @@ silently skips, and `R_drum` also fails Rule 41 as a non-word. **Not re-filed �
 Two independent derivations raise confidence that the sprite path needs a standing sweep rule, not
 a one-off string fix.
 
+### ⚠ MECHANISM PINNED TO SOURCE + SEVERITY ESCALATED — Checkpoint B retry, 2026-08-13 (post master merge)
+
+A-13 was filed twice from PIXELS. This pass pins it to **two source lines**, so the fix is now a
+known one-offset change rather than a general de-collision build. quality-auditor reported it as a
+new finding `rbr_brake_label_collides_with_the_drum_line_label_at_the_contact_pose`; **it is not
+new — it is this row.** Do not mint a second `bug_class`. Line numbers below are post-merge and
+supersede A-13's original `:50397` (the region moved ~6.8k lines).
+
+| Site | Line | Position |
+|---|---|---|
+| `R_drum` label | **`:57222`** | `drumLbl.position.set(0, 0.42, RBR_DEF_DRUM_R * W + 0.34)` |
+| pad contact | **`:57782`** | `contactZ = eng.drumR * W + 0.09` |
+| `brake` label | **`:57796`** | `padLbl.position.set(0, 0.40, z + 0.20)`, and the engaged branch pins `z = contactZ` |
+
+Engaged ⇒ Δ = **(0, 0.02, 0.05)** between two camera-facing sprites 0.30 and 0.28 tall. The overlap
+is **deterministic and unavoidable**, not orbit-angle-dependent, and it lasts the entire
+`engage_at_ms 1500 → release_at_ms 4000` window — the whole of S5's taught beat. Verified in source
+this session, independently of the agent that reported it.
+
+**Severity MODERATE → BLOCKING for `conservation_of_angular_momentum`**, on three grounds:
+S5 is **core ring**, so it survives every preset cut including `core_only`; the skeleton's own scar
+audit re-dispositioned `teach_distinct_reference_lines_for_two_radii` from N/A to **BINDING** on the
+requirement that `r` and the rim render as two distinctly-labelled lines — and the rim label is
+destroyed exactly when the rim is the taught object; and the concept sits on the OPEN
+`teach_visual_must_match_narration` row, where `s5_1` names the agent ("A brake pad presses onto the
+turntable's rim") while the label naming it is unreadable. **Authoring-side is clean — no field
+controls either sprite's position, so this must NOT route to `alex:json_author`.**
+
+### 🔎 NEW, same two lines — the drum ring and its label are pinned to the CONSTANT while the pad tracks the LIVE value
+
+Found while verifying the above; **not previously filed anywhere.** The ring's torus is built at
+`RBR_DEF_DRUM_R * W` (`:57215`) and its label at `RBR_DEF_DRUM_R * W + 0.34` (`:57222`) — both the
+hardcoded `0.55` (`:55937`) — and neither is ever rescaled. But the pad's `contactZ` reads the LIVE
+`eng.drumR`, which resolves as `rbrNum(ap.brake_drum_radius_m, RBR_DEF_DRUM_R)` (`:57453`).
+
+So **`brake_drum_radius_m` moves the pad but not the drawn ring or its label.** A concept authoring
+anything other than 0.55 gets a pad engaging at a radius where no ring is drawn — the braked radius
+asserted in one place and drawn in another. It is invisible on `conservation_of_angular_momentum`
+only because the authored value (`0.55`, four states) happens to equal the default.
+
+**This is the chapter's signature class again** — something authored, accepted by every gate, that
+silently does nothing — and it is the exact shape of the SEAM-G `radius_m` pair in
+`ENGINE_LANDING_NOTICE.md` §2: *"no-ops on master … but they change what happens the moment you
+do."* Whoever fixes the collision is already in these lines; fixing the offset without repointing
+the ring and label at `eng.drumR` leaves the trap armed for the next concept. **Owner:
+`peter_parker:field3d_surgeon`, same dispatch.**
+
 ## A-14 · Two OPEN scars give contradictory instructions on narration glow
 
 `concept_ships_zero_narration_glow_bindings` (MAJOR/OPEN, `alex:physics_author`) wants

@@ -625,6 +625,100 @@ Checkpoint B is fixed or ride-along.
 
 ---
 
+## 2026-08-13 · Master merged (422) · CoAM Checkpoint B **still not convened** · rwe rev 3 → physics_author
+
+### Session-start order followed; the E4/E5 standing-assignment trigger has FIRED
+
+`origin/master` merged **by hand** (desk:sync skips the current checkout — third recording of this).
+422 commits, **zero conflicts**. Then rebuild → re-seed → EYE, in that order, per the rule this desk
+paid for. Verify chain: `check:renderer-syntax` OK ×3 · `tsc` **0** · validate **154 PASS / 0 FAIL**
+(was 150; master added 4 concepts).
+
+**Provenance proven, not assumed** — `rbrMakeThickVector` ×6 and `pmClampLabelX` ×4 in the served
+bundle, and the served bytes diffed **byte-equal** to the fresh on-disk build.
+
+> ### ⚠ A NEW INSTANCE OF THE STALE-BUNDLE TRAP, caught before it cost anything
+> Port **8080 was already listening — from a DIFFERENT worktree**, returning **404** for this
+> concept. Pointing quality-auditor at the conventional `serve:review` port would have reproduced
+> last session's five lost probes exactly. Served this desk on **8091** and verified the bytes.
+> **Check the port's OWNER, not just that something answers.** `curl` the concept path and grep a
+> post-merge marker; a 404 or a missing marker means another desk owns the port.
+
+**E4/E5 ARE ON MASTER.** `RBR_RO_META` now implements `theta · alpha · tau · W` beside the original
+six. The standing assignment's trigger condition is met and its item-1 warning is discharged: the
+new rows exist. E7 (`RBR_AXLE_COLOR #1F2A30`, `RBR_ROD_COLOR #26333A`, separation ratios) and F-C9
+(`renderOrder 998`) both verified present in source.
+
+### CoAM — Checkpoint B **NOT CONVENED**. Precondition unmet, second cycle running.
+
+THE EYE **36/36**, 0 warnings. Two ways that number lies were checked: `[D5]` genuinely ran on all
+8 states (1.11%–4.11%), and **H2 was `Skipped — no approved baseline`**. Note the precision:
+E7's "your baselines will move" does **not** apply here — this concept has **no baseline at all**,
+so nothing moved and nothing was suppressed. Do not report a clean H2 as evidence of anything.
+
+**eye-walker CLEAN — the three blockers are discharged on pixels**, measured as absolute ink at the
+unfavourable pose plus a ratio (never a bare delta), per the chapter standing rule:
+- **A-11 / E-1** (S6's L arrow entirely absent) → **FIXED**: 3867px (53.7%) → 5040px (70.0%) in a
+  fixed box below the disc, cone head + label legible through the frozen pin.
+- **A-12 / E-2** (S2's pull arrows camouflaged at the PRIMARY-aha beat) → **FIXED**: ~60–90 pt G/B
+  channel gap vs the rod, and ink **holds or grows** at the small-r least-favourable pose
+  (2722 → 3043 → 4363 px) instead of collapsing.
+- **B-1** (S4 tick caption clipped at x=0) → **FIXED**: renders at canvas x≈22 at every timestamp.
+Zero candidate scar rows.
+
+**quality-auditor FAIL — held on ONE finding, and it is `alex`-clean.** Gates 0–20 otherwise pass:
+tsc 0 · validator PASS · Rule 31 control rows measured live and matching skeleton §3 · word budget
+41/55/55/54/44/44/53/0 · 0 layout collisions · **zero `[PM_RBR_TOKEN]` warnings, zero console
+errors** · every spoken number confirmed on its instrument at its instant · ring cut simulated
+(`core_only` leaves no dangling reference) · anchors universal. **The JSON needs no edit.**
+
+> **The FAIL is A-13, NOT a new bug_class.** quality-auditor reported it as
+> `rbr_brake_label_collides_with_the_drum_line_label_at_the_contact_pose`. **A-13 already covers it**
+> (filed 2026-08-04, scope-widened 2026-08-05). Appended to A-13; a second row was NOT minted.
+> What this pass genuinely added: the mechanism is now **pinned to source** (`:57222` vs
+> `:57782`/`:57796`, Δ = (0, 0.02, 0.05), deterministic through the whole engage window), so the fix
+> is a one-offset change rather than a general de-collision build; and severity is escalated
+> **MODERATE → BLOCKING** because S5 is core-ring and the rim label dies exactly when the rim is the
+> taught object.
+
+**NEW, found while verifying A-13 — filed under A-13, same two lines.** The drum ring
+(`:57215`) and its label (`:57222`) are pinned to the CONSTANT `RBR_DEF_DRUM_R` and never rescaled,
+while the pad's `contactZ` reads the LIVE `eng.drumR` (`:57453`). **`brake_drum_radius_m` moves the
+pad but not the drawn ring** — invisible here only because all four states author `0.55`, which IS
+the default. Same class as the SEAM-G `radius_m` pair in the landing notice: a no-op on master that
+arms the moment someone authors a different value.
+
+### `rotational_work_energy` — Checkpoint A cycle 2 = **`DESIGN_FIX`** → rev 3 → `physics_author`
+
+Not the formality it was expected to be. **A-32 is re-verified STILL LIVE** (`:56526`) and
+**blocks S6 at Checkpoint B**; guided S1–S5 depend on nothing unlanded. Three blocking findings, all
+§3/§4, none touching the arc — F-1 (S5's readout set stated **three incompatible ways**; §3's list
+omits `KE`, so its authored `hold_glow:["W","KE"]` was a **silent no-op**), F-2 (`ke_bar.max_j`
+pinned only for S2; carrying 3.80 to S6 pegs the bar for **15 of 31** reachable ω₀ settings), F-3
+(readout row order unpinned — a Rule-32d break on the HUD in a design where S3/S4/S5 are
+deliberately the same 3D picture *so the HUD carries the delta*). Plus F-4 (S3's τ prints **−0.40**,
+not 0.40 → `physics_author`), F-5, F-6.
+
+**All applied as rev 3 and verified by this desk, cell by cell** — founder-proxy declared there is
+no cycle 3 and defined the gate as "the dispatching session verifies the edit by reading three
+rows." F-2 chose option **(a)** `max_j 14.0` (guided states keep 3.80, so the S2/S4 mirror-fall
+picture is untouched). Row order confirmed monotone in `RBR_RO_META` declaration order in all six
+states. Rev 2 preserved at `skeleton_rev2.md` — a `diff` initially showed all 613 lines differing;
+that was **CRLF from `git show`**, not drift (delta = exactly 613 bytes). Handed to
+`alex:physics_author`. **json_author deliberately NOT reached.**
+
+Both standing rules survived review intact and were carried into every dispatch: **a value that is
+only computable is not coverage**, and **DoD (k) — no KE row on S3** (founder-proxy called it "the
+sharpest single decision on this desk").
+
+### Still blocking the CoAM seal
+
+**A-13 only** — now BLOCKING, mechanism pinned to two source lines, owner
+`peter_parker:field3d_surgeon`. **E8 still has not landed** (S8's live `tau_brake` drag has no
+rendered agent). Nothing sealed; no `visual:approve`, no TTS, `PILOT_CONCEPTS` untouched.
+
+---
+
 ## STANDING ASSIGNMENT — Desk A is Desk E's rbr verification partner for E4/E5
 
 **Assigned 2026-08-05.** E4 and E5 are **signed torque** and **the θ / α readout rows**.
@@ -665,13 +759,30 @@ founder-proxy's `E-4` is the S4 tick-caption overflow. They are unrelated.** Alw
 
 ### Next
 
-**STOP. Still no Checkpoint B on `conservation_of_angular_momentum`.** A-18 is cleared, but
+> # ⛔ EVERYTHING BELOW IS SUPERSEDED — read the newest dated section instead
+>
+> **Superseded 2026-08-13.** This block described the state on 2026-08-06 and every claim in it is
+> now false: A-11/E-1 and A-12/E-2 are **FIXED** (E7 + F-C9, confirmed on pixels), and
+> `rotational_work_energy` is **UNBLOCKED** — E5 landed and `RBR_RO_META` implements `theta`,
+> `alpha`, `tau` and `W`.
+>
+> **This desk's structural trap, twice now:** the file ends with a STANDING ASSIGNMENT block whose
+> "Next" text is not re-dated when a dated section is appended, so **tailing this file yields stale
+> orders.** The authoritative status is always the **newest dated `## 2026-…` section** and its
+> "Still blocking" line. Before acting on anything here, check containment directly:
+> `git merge-base --is-ancestor <sha> origin/master`.
+>
+> **Current status (2026-08-13):** CoAM Checkpoint B still not convened — precondition unmet,
+> quality-auditor FAIL held on **A-13** (label collision, now BLOCKING, `peter_parker:field3d_surgeon`).
+> `rotational_work_energy` is at rev 3 with `alex:physics_author`.
+
+~~**STOP. Still no Checkpoint B on `conservation_of_angular_momentum`.** A-18 is cleared, but
 **A-11/E-1** (S6's invisible L arrow — S6's entire claim) and **A-12/E-2** (S2's camouflaged pull
 arrows at the PRIMARY-aha cause beat) remain blocking and unfixed; eye-walker re-confirmed both
 unchanged under this run, and confirmed neither is caused by the `formula_lines` port. In S6's
 frozen frame the L arrow is **entirely absent** — the axle runs unbroken and not even the cone head
-shows. founder-proxy re-reviews once E-1 lands.
+shows. founder-proxy re-reviews once E-1 lands.~~
 
-Wave 2 (`rotational_work_energy`) stays **BLOCKED on 0c-3** — it needs a `W = τ·θ` accumulator
+~~Wave 2 (`rotational_work_energy`) stays **BLOCKED on 0c-3** — it needs a `W = τ·θ` accumulator
 and a `θ` readout, and `RBR_RO_META` implements neither. Do not start it until 0c-3 merges and
-this desk syncs.
+this desk syncs.~~

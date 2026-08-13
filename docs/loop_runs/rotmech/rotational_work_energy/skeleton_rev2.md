@@ -1,10 +1,9 @@
 # Skeleton — `rotational_work_energy` (rotmech · Class 11 Ch.7 · Phase-0b design, Desk A)
 
-> **Status:** Phase-0b design artifact, **REVISION 3** — founder-proxy `DESIGN_FIX` cycle 2 of 2
-> applied. **There is no cycle 3** — this revision hands off to `alex:physics_author`. Design only;
-> no physics-block content — that is `alex:physics_author`. Revision 1 is preserved at
-> `skeleton_rev1.md`; revision 2 at `skeleton_rev2.md`.
-> **Author:** `alex:architect`, 2026-08-07 (rev 2 same day; rev 3 2026-08-13). **Engine:** `rigid_body_rotation` (rbr),
+> **Status:** Phase-0b design artifact, **REVISION 2** — founder-proxy `DESIGN_FIX` cycle 1 of 2
+> applied. Awaiting **Checkpoint A cycle 2**. Design only; no physics-block content — that is
+> `alex:physics_author`. Revision 1 is preserved at `skeleton_rev1.md`.
+> **Author:** `alex:architect`, 2026-08-07 (rev 2 same day). **Engine:** `rigid_body_rotation` (rbr),
 > `src/lib/renderers/field_3d_renderer.ts`, region opens `:50190`. **Already built.**
 > **Apparatus:** `APPARATUS_CONTRACT.md` §1 verbatim, zero deviation — `r = 0.80 m · ω₀ = +1.50 rad/s ·
 > m = 2.0 kg · I_frame 0.50 · rod_half 1.00 · drum 0.55 · r ∈ [0.15, 0.90]`.
@@ -25,18 +24,6 @@
 | **A-28** | Scope widened (36 of 40 reachable settings) **and** foundation strengthened (`W ≡ τθ` by construction). Now Checkpoint C sealing condition **E-B**. |
 | **A-32** | Recorded as a **known CRITICAL blocker on S6 only**; S6 is *not* redesigned around it. |
 | **DoD (d)** | One counterfactual positive-work clause permitted in S5; one-sidedness declared in `coverage_map`; post-E10 positive-work state recorded as a retrofit candidate. |
-
-**Changed in revision 3 (Checkpoint A cycle 2 `DESIGN_FIX` — nothing else was touched):**
-
-| Fix | What changed |
-|---|---|
-| **F-1** | S5's readout set is stated ONE way everywhere: the six rows `I, ω, KE, α, τ, W` (§4's set). §3's control cell and the S4→S5 transition row now match §4 — and the transition is corrected on its own terms: §4 drops `τ` at S4, so S5 re-adds **four** rows (`I`, `ω`, `α`, `τ`), not three. S5's `hold_glow: ["W","KE"]` now resolves against a live `KE` row instead of silently no-opping. |
-| **F-2** | `ke_bar.max_j` pinned explicitly per bar-carrying state: S2 **3.80** · S4 **3.80** (deliberate copy, Rule 32d) · S6 **14.0** — option **(a)**, reasoning in the note under §4. |
-| **F-3** | Readout row ORDER pinned: `readouts[]` is authored in `RBR_RO_META` declaration order in every state (new DoD line under (b)); §4's S3/S4/S5 cells and §3's mentions re-ordered. S6 was already correct. |
-| **F-4** | §4's S3 cell now states the DISPLAYED torque value as **−0.40 N·m** (true U+2212; `rbrTauOf` returns `-sgn*brake`). The narration-side fix is `alex:physics_author`'s, not this document's. |
-| **F-5** | S4's delta cue "Energy meter mirrors work" → **"Energy falls as work grows"** (Rule 41a — literal). The internal archetype name `mirror-fall` is not reader-facing and stays. |
-| **F-6** | The no-tick decision STANDS, but its stated reason no longer leans on B-1/A-17, which is FIXED on this worktree (`rbrClampTickLabels`); the reason is now the form argument. |
-| **A-34 + grid cap** | Two S6-only ride-along engine gaps DECLARED in a new subsection under the A-32 block: A-34 (pad touches at τ = 0 while nothing slows) and the new `RBR_GRID_MAX` 320 s θ/W freeze on the τ→0 path. S6 is NOT redesigned around any of them (endorsed). |
 
 ---
 
@@ -98,22 +85,7 @@ teacher drag.** Root cause: `rbrApplyParam` sets an *event* anchor to keep L con
 alone is blocked.** S6 is deliberately **not** redesigned around it — founder-proxy ruled both
 workarounds (dropping `tau_brake`, or dropping the `W` row) strictly worse than the fix. S6 ships as
 designed once A-32 lands; it is named here so no downstream agent authors narration or an
-`assessment` item that a drag would falsify. (Re-verified still live at `field_3d_renderer.ts:56526`
-at Checkpoint A cycle 2.)
-
-### Ride-along engine gaps on S6 — declared so nothing downstream depends on them (NOT blocking; S6 is NOT redesigned around them)
-
-- **A-34 (ride-along).** S6's `tau_brake` slider reaches 0, but `rbrApplyVisibility` computes pad
-  visibility at **state entry only**, while the travel block parks the pad at `contactZ` for all
-  `tMs >= engage_at_ms`. A teacher who drags τ to 0 therefore watches the pad **touching a wheel
-  that does not slow** — a rendered agent asserting a cause that is not acting (Rule 24). Declared
-  so that no narration and no `assessment` item depends on the pad-contact picture at τ = 0.
-- **NEW — `rbr_theta_and_work_freeze_at_the_grid_cap_while_the_body_keeps_turning` (MODERATE,
-  ride-along, `peter_parker:field3d_surgeon`).** `rbrGridWalk` clamps to `RBR_GRID_MAX` = 20000
-  steps × 16 ms = **320 s**. S6 is Rule-37 free-running, and with τ dragged to 0 the wheel spins
-  forever — so past 5 min 20 s the `θ` row stops counting while the rod visibly turns, and `W`
-  freezes with it. S6's authored τ = 0.05 stops at 91.8 s, comfortably inside the cap; the exposure
-  is the τ→0 path only.
+`assessment` item that a drag would falsify.
 
 **A methodological note kept deliberately, because it cost a measurement:** Desk A's first probe
 baselined `KE₀` at t = 200 ms and compared it against `W` accumulated from t = 0. By 200 ms the
@@ -164,7 +136,7 @@ the concept off E5's "`tau` equals `I·α` only while I is constant" trap.
 | `show_l_arrow: false` everywhere | L is not taught here — so this concept never touches **A-25** (lampshade arrowhead), **A-11**, or **A-16** (dead sign-colour channel) |
 | `show_drum_line: false` everywhere | the drum sprite is the ASCII `R_drum` with **no value** (**A-10 / A-27**) — nothing here reads a number off a drawn line |
 | `show_pull_arrows`, `show_grip_hand: false` | nothing radial, nothing directional is taught |
-| **no `reference_marks` with `form: 'tick'`, anywhere** | chips are the right form for value-only readout rows, which have **no scale to hang a tick on** — the decision stands on that form argument. (The original justification — B-1 / A-17, a KE-bar tick caption clipping off-canvas at x = 0 — is **FIXED on this worktree**: `rbrClampTickLabels`, `field_3d_renderer.ts:56999-57022`, bug_class `graph_marker_label_clipped`. A closed scar no longer carries the ban) |
+| **no `reference_marks` with `form: 'tick'`, anywhere** | **B-1 / A-17** — a KE-bar tick caption clips off-canvas at x = 0. Chips on readouts are used instead |
 | **no `restart` block, anywhere** | `W` re-zeroes at a run anchor, so a restart would wipe the work ledger under the teacher — and **A-26** would make the restart read as an uncaused torque |
 | no `tau_applied` (drive torque), anywhere | **E10 is open: a drive torque has no rendered actuator** (`eng.padEngageMs` is assigned only in the `brake` branch, `:51689`/`:51696`; no drive mesh in the element list `:51789`) |
 | **no `ke_bar` in S1** | the bar is written unconditionally from state entry whenever `ke_bar.max_j > 0` (`:51349-51355`) and is **not** gated by `readout_at_ms` (which reaches only `rbr_ro_<token>` rows). S1 authors no torque, so a bar there would sit **static at 90.5% from frame 0** — un-stageable, and a contradiction of the term-introduction ledger. The bar first appears in **S2**, the first state where it moves |
@@ -246,10 +218,10 @@ returning and mirroring the counter; S5 = the equation assembling beside the sam
 |---|---|---|---|---|---|---|---|
 | **S1** | A body that turns has kinetic energy, even though it goes nowhere | `reveal-build` | **The motion is the wheel itself:** already turning at ω = 1.50 (home pose, no torque, pad parked off), with the `r` line on from frame 0 breaking the 2-fold symmetry so ~4.2 s per revolution is plainly visible all state. On that turning machine the instrument stack **assembles**: rows appear one at a time via `readout_at_ms`, each only after the sentence defining it — I → ω → KE. **No `ke_bar` in this state** (§2: it cannot be staged and would sit static). The KE row's arrival, printing 3.44 J on a wheel whose centre never moves, IS the beat. | **"Spinning stores energy"** | none | 30–45 | core |
 | **S2** | The energy goes as the **square** of the speed | `translate-through` | CAUSE FIRST: the pad translates in (`pad_travel_ms` ≈ 800) and touches at t = 800 ms, alone, nothing else altering. After a readable beat the EFFECT: the spin slows and **the bar — appearing here for the first time — collapses far faster than the speed does**. Two chips revealed early and held: `omega` chip 0.75 "½ of 1.50"; `KE` chip 0.86 "¼ of 3.44". Live readouts walk down onto them (match ≈ 6537 ms). **The chips carry the numbers; the pin need not land on the match.** | **"Brake on: energy drops fast"** | none | 40–55 | core |
-| **S3** | Work = torque × angle, and the sign says which way the energy went | `accumulate-through-turn` | Opens from S2's end pose — **pad already in contact**, so the brake engages at t = 0 and **θ is exactly the angle turned while the torque acted**. **Energy instruments off screen entirely — no KE row, no bar (DoD (k) INVARIANT):** readouts are θ, τ, W only (`RBR_RO_META` order — DoD (b) row-order line). The rod sweeps (the `r` line breaks 2-fold symmetry so turns are countable) while θ and W climb together, W negative from its first nonzero value. Narration names the *operation*, never a fragile figure. | **"Count the angle turned"** | none | 35–50 | core |
-| **S4** | **THE AHA.** That work is the energy the wheel lost | `mirror-fall` | Same machine, same brake, same run. The energy meter and bar **return** beside the still-running work counter. As W grows more negative the bar falls by the same amount, beat for beat. **Quantitative is now permitted** (A-28 revised) provided the claim is not pinned on the full-stop frame. | **"Energy falls as work grows"** | none | 35–50 | core |
-| **S5** | Where W = Δ(½Iω²) comes from | `equation-build` | The single formula surface assembles line by line (`formula_lines[].at_ms` — runtime-verified on this desk, findings_a §1) beside **the same decay at the same rate as S3 and S4** — the rbr surface has **no playback-rate lever**, and the only alternative (a smaller τ) would contradict this state's own `I × α = τ` check. The new motion is the assembly **plus the α row landing exactly on the `τ = Iα` line**. Readouts I, ω, KE, α, τ, W (the six-row set of §4, stated identically there — F-1) — so the derivation's first step is checkable on two rendered rows: I × α = 3.06 × 0.13 → prints 0.40, and τ prints −0.40; the closing `Δ(½Iω²)` line points at the live `KE` row. Calculus notation permitted here and **only** here (Rule 38c). | **"Build the rule"** | none | 40–55 | advanced |
-| **S6** | Sandbox | `drag-sandbox` | `mode: 'sandbox'`, free-running (Rule 37). Entry authors **`tau_brake_Nm: 0.05`**, `engage_at_ms: 0`, so the pad is **rendered and in contact at entry** — the design-side workaround for **A-2** — and the decay lasts ≈ 92 s (W ≈ −1.9 J at 30 s), so the sandbox is alive long after a teacher has finished talking. **Blocked on A-32** until the anchor fix lands; A-34 and the `RBR_GRID_MAX` 320 s cap are declared ride-alongs (subsection above), not design inputs. `ω₀` re-anchors the run and re-zeroes W, which is correct for a work ledger and is stated in the DoD. | **"Try it yourself"** | **ALL, ring-gated:** `tau_brake` *(core)* · `omega0` *(core)* | 0 / open | *(explore)* |
+| **S3** | Work = torque × angle, and the sign says which way the energy went | `accumulate-through-turn` | Opens from S2's end pose — **pad already in contact**, so the brake engages at t = 0 and **θ is exactly the angle turned while the torque acted**. **Energy instruments off screen entirely — no KE row, no bar (DoD (k) INVARIANT):** readouts are τ, θ, W only. The rod sweeps (the `r` line breaks 2-fold symmetry so turns are countable) while θ and W climb together, W negative from its first nonzero value. Narration names the *operation*, never a fragile figure. | **"Count the angle turned"** | none | 35–50 | core |
+| **S4** | **THE AHA.** That work is the energy the wheel lost | `mirror-fall` | Same machine, same brake, same run. The energy meter and bar **return** beside the still-running work counter. As W grows more negative the bar falls by the same amount, beat for beat. **Quantitative is now permitted** (A-28 revised) provided the claim is not pinned on the full-stop frame. | **"Energy meter mirrors work"** | none | 35–50 | core |
+| **S5** | Where W = Δ(½Iω²) comes from | `equation-build` | The single formula surface assembles line by line (`formula_lines[].at_ms` — runtime-verified on this desk, findings_a §1) beside **the same decay at the same rate as S3 and S4** — the rbr surface has **no playback-rate lever**, and the only alternative (a smaller τ) would contradict this state's own `I × α = τ` check. The new motion is the assembly **plus the α row landing exactly on the `τ = Iα` line**. Readouts I, ω, α, τ, W — so the derivation's first step is checkable on two rendered rows: I × α = 3.06 × 0.13 → prints 0.40, and τ prints −0.40. Calculus notation permitted here and **only** here (Rule 38c). | **"Build the rule"** | none | 40–55 | advanced |
+| **S6** | Sandbox | `drag-sandbox` | `mode: 'sandbox'`, free-running (Rule 37). Entry authors **`tau_brake_Nm: 0.05`**, `engage_at_ms: 0`, so the pad is **rendered and in contact at entry** — the design-side workaround for **A-2** — and the decay lasts ≈ 92 s (W ≈ −1.9 J at 30 s), so the sandbox is alive long after a teacher has finished talking. **Blocked on A-32** until the anchor fix lands. `ω₀` re-anchors the run and re-zeroes W, which is correct for a work ledger and is stated in the DoD. | **"Try it yourself"** | **ALL, ring-gated:** `tau_brake` *(core)* · `omega0` *(core)* | 0 / open | *(explore)* |
 
 **Archetype audit:** reveal-build · translate-through · accumulate-through-turn · mirror-fall ·
 equation-build · drag-sandbox. Six states, six archetypes, no repeat, no static state ✓.
@@ -263,9 +235,9 @@ not what a teacher sees at the click, so the on-screen delta is declared per tra
 | Click | What visibly changes on screen |
 |---|---|
 | S1 → S2 | the **pad travels in** (the only 3D motion in the concept) · the **KE bar appears** and starts collapsing · two chips appear on the `ω` and `KE` rows |
-| S2 → S3 | the **KE row and the bar disappear**, both chips with them · **three new rows appear**: `θ`, `τ`, `W` (declaration order) · formula surface → `W = τθ` |
+| S2 → S3 | the **KE row and the bar disappear**, both chips with them · **three new rows appear**: `τ`, `θ`, `W` · formula surface → `W = τθ` |
 | S3 → S4 | the **`τ` row drops**; the **`KE` row and bar return** · from that instant the bar falls while `W` grows — the mirror IS the picture · formula surface → `W = ΔKE` |
-| S4 → S5 | **four rows appear** — `I`, `ω`, `α`, `τ` (α for the first time; τ returns, having dropped at S4) — the `θ` row drops, and the KE bar goes (S5 authors no bar) while the `KE` row stays · the formula surface switches to **staged assembly**, one line at a time |
+| S4 → S5 | **three rows appear** — `I`, `ω`, `α` (α for the first time) — and the `θ` row drops · the formula surface switches to **staged assembly**, one line at a time |
 | S5 → S6 | the **slider panel appears** (two rows) · all six readouts on at once · the run restarts slow (τ = 0.05) and does not stop |
 
 ### Rule 32 legibility plan
@@ -351,24 +323,10 @@ THE EYE must read **dense** frames across S2's decay and S3's window, never the 
 |---|---|---|---|---|
 | S1 | `I`, `ω`, `KE` (staged) | **none** | — | **3.06** → `I` · **1.50** → `ω` · **3.44** → `KE` row |
 | S2 | `I`, `ω`, `KE` | `ke_bar.max_j: 3.80` (**first appearance**) | `omega` 0.75 "½ of 1.50" · `KE` 0.86 "¼ of 3.44" | **1.50 / 3.44** live at entry · **0.75** ω chip + live ω · **0.86** KE chip + live KE. "Half" and "quarter" are carried by the **chip labels**, so the comparison is on screen too |
-| S3 | `theta`, `tau`, `W` | **no — INVARIANT, DoD (k)** | — | **−0.40 N·m** → `τ` — the DISPLAYED value: `rbrTauOf` returns `-sgn*brake`, so the instrument prints **−0.40** with a true U+2212 (the slider magnitude is 0.40; F-4). **θ and W are named as meters, never quoted** — "multiply the torque meter by the angle meter and you get the work counter" |
-| S4 | `KE`, `theta`, `W` | **`ke_bar.max_j: 3.80`** — pinned explicitly, a deliberate copy of S2's (Rule 32d: the mirror-fall comparison is the same picture as the square-law one; KE₀ = 3.4425 < 3.80, no saturation) | *(optional post-A-28 chip)* | the mirrored motion of two live instruments carries the claim; any number spoken must come off `KE` or `W` at a **non-full-stop** instant |
-| S5 | `I`, `ω`, `KE`, `alpha`, `tau`, `W` | no | — | **3.06** → `I` · **−0.13** → `α` · **−0.40** → `τ`; the step `I × α = τ` is checkable on the rendered numbers, and the closing `Δ(½Iω²)` line points at the live `KE` row |
-| S6 | `I`, `ω`, `KE`, `theta`, `tau`, `W` | **`ke_bar.max_j: 14.0`** — see the note below | — | none (0 authored words) |
-
-**`ke_bar.max_j` per bar-carrying state — every value pinned, none inferred (F-2, option (a)).**
-`rbrRebuildKeBar` builds no bar unless `max_j > 0`, so the value is not defaultable: S2 **3.80** ·
-S4 **3.80** (the deliberate copy above) · S6 **14.0**. The S6 number is option **(a)** of the two
-Checkpoint-A choices, for this reason: `omega0`'s reachable band is 0–3.0 step 0.1, so sandbox KE
-reaches ½ · 3.06 · 3.0² = **13.77 J**; carrying 3.80 into S6 would peg the clamped fill
-(`min(100, (KE/maxJ)·100)`) at 100% for every ω ≥ 1.576 rad/s — **15 of the 31 reachable ω₀
-settings** — and at the authored τ = 0.05 a run from ω₀ = 3.0 would sit pegged for **87 s** before
-the bar first moves: a dead headline instrument in the explore state. At 14.0 the bar never pegs;
-the home pose reads 24.6% instead of 90.6%, which is the honest picture of a dial whose top is what
-the sliders can actually reach. Option (b) — capping `slider_controls.omega0.max` at 2.0 with
-`max_j: 6.5` — was rejected because it repairs a mis-calibrated instrument by SHRINKING the
-sandbox's teaching range (a dial cap whose reason no teacher can see), when the bar's own scale is
-the thing at fault. The guided states keep 3.80, so the S2/S4 mirror-fall picture is untouched.
+| S3 | `tau`, `theta`, `W` | **no — INVARIANT, DoD (k)** | — | **0.40** → `τ` (prints −0.40). **θ and W are named as meters, never quoted** — "multiply the torque meter by the angle meter and you get the work counter" |
+| S4 | `theta`, `W`, `KE` | yes | *(optional post-A-28 chip)* | the mirrored motion of two live instruments carries the claim; any number spoken must come off `KE` or `W` at a **non-full-stop** instant |
+| S5 | `I`, `ω`, `alpha`, `tau`, `W`, `KE` | no | — | **3.06** → `I` · **−0.13** → `α` · **−0.40** → `τ`; the step `I × α = τ` is checkable on the rendered numbers |
+| S6 | `I`, `ω`, `KE`, `theta`, `tau`, `W` | yes | — | none (0 authored words) |
 
 **Hard prohibition, carried into the DoD.** `m` (2.0 kg), `r` (0.80 m) and the drum radius (0.55 m)
 have **no value instrument anywhere in this engine** — `RBR_RO_META` (`:51107`) has no `m` row and
@@ -465,13 +423,6 @@ place, festival, brand, currency or name anywhere; no region-dependent constants
 the sibling's ledger claimed `r` first printed at S2 while the JSON showed S1 (its ✎2 correction).
 This design authors the definition where the print is, rather than the reverse.
 
-**Readout row order (F-3):** `readouts[]` is authored in **`RBR_RO_META` declaration order**
-(`I · ω · L · KE · dL/dt · F · θ · α · τ · W`) **in every state** — rows render in authoring order
-(`rbrRebuildReadout` and `rbrWriteReadouts` both walk `rb.readouts`), so a row that changes its
-position in the panel between states is a Rule-32d break, in the very run (S3/S4/S5) designed to be
-the same 3D picture so the HUD carries the whole delta. §4's cells are written in this order; S6
-already was.
-
 **(c) Right-hand-rule plan: N/A with reason.** Scalars on a fixed axis; **no axial vector is drawn**
 (`show_l_arrow: false`, `show_grip_hand: false`). The replacement convention: W is negative
 throughout the guided arc, the minus is on the digits (true U+2212), and S3 names what it means.
@@ -525,8 +476,8 @@ renderer** (clone `_scratch_rbr_a28_probe.ts`'s harness) that: (1) pins S3 acros
 asserts the **rendered strings** satisfy `|W| = τ × θ`; (2) pins S2 at the match instant ± 200 ms
 and asserts rendered `ω` and `KE` read 0.75 and 0.86 against their chips; (3) asserts `I × α` rounds
 to `τ` on S5's rendered strings; (4) asserts S4's chosen pin instant is **not** at the full stop and that `ΔKE` and `ΔW` agree there
-within one quantum; (5) asserts **S1 renders no KE bar** and that every state's rows render in
-`RBR_RO_META` declaration order (F-3); (6) asserts **S3 renders no KE row and no bar** (invariant (k)); (7) asserts S6 is
+within one quantum; (5) asserts **S1 renders no KE bar** and that all three S1 rows appear in the
+authored order; (6) asserts **S3 renders no KE row and no bar** (invariant (k)); (7) asserts S6 is
 still turning at t = 60 s at the authored τ = 0.05; (8) reads the console and asserts **zero**
 `[PM_RBR_TOKEN]` warnings across all six states. **Any disagreement is the probe winning, not the
 skeleton.**
@@ -658,5 +609,5 @@ seven sites. **`chapter`/`section` numbering across the eight Ch.7 concepts is s
 
 ---
 
-*Handoff: Checkpoint A cycle 2 `DESIGN_FIX` applied (revision 3 — **no cycle 3 exists**). →
-`alex:physics_author`, whose first obligation is DoD (j).*
+*Handoff: → founder-proxy **Checkpoint A**. On `DESIGN_OK` → `alex:physics_author`, whose first
+obligation is DoD (j).*
