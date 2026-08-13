@@ -1262,7 +1262,11 @@ export interface Field3DConfig {
                 release_at_ms?: number;         // pad release instant; omit = never releases
                 engage_cue?: string;            // scenario_cue name -> cueTriggerMs
                 release_cue?: string;
-                pad_travel_ms?: number;         // how long the pad takes to translate in
+                // How long an ACTUATOR takes to translate park -> contact. It is
+                // SINGULAR and TOP-LEVEL, so it cannot address sources[]; an
+                // entry there carries its own `travel_ms` and falls back to
+                // this value, which falls back to 1200 ms (E10).
+                pad_travel_ms?: number;
                 // A CONSTANT tau_ext (concept 7's alpha = tau/I). SIGNED as of
                 // E4: positive spins the body up, negative spins it up the
                 // other way, and it may carry L through zero. Zero authored
@@ -1285,6 +1289,13 @@ export interface Field3DConfig {
                     release_at_ms?: number;     // omit = never releases
                     engage_cue?: string;        // scenario_cue name -> cueTriggerMs
                     release_cue?: string;
+                    // E10 — PER-ENTRY actuator travel. The FIRST brake entry
+                    // owns the brake pad and the FIRST drive entry owns the
+                    // drive roller; each translates in over its own travel_ms
+                    // and finishes exactly AT its engage instant, so the cause
+                    // moves before the effect (Rule 32a). Absent = the
+                    // top-level pad_travel_ms, then 1200 ms.
+                    travel_ms?: number;
                 }>;
                 torsion_k_Nm_per_rad?: number;  // DECLARED (concept 14)
             };
@@ -1322,6 +1333,13 @@ export interface Field3DConfig {
             // and never as an uncaused torque.
             repin_cue?: { blank_ms?: number };
             show_pull_arrows?: boolean;
+            // E10 — the rim FORCE vector on the drive actuator. The actuator
+            // itself follows the torque SOURCE (a drive that acts has an agent,
+            // always); this overlay is the QUANTITATIVE layer on top of it and
+            // defaults OFF like every other rbr overlay, so a concept taught
+            // before torque exists (rotational_kinematics, Rule 25) can show a
+            // motor driving the turntable with no force vector beside it.
+            show_drive_force?: boolean;
             show_l_arrow?: boolean;
             show_r_line?: boolean;
             show_drum_line?: boolean;
@@ -2572,7 +2590,11 @@ export interface Field3DConfig {
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
         I?: { min: number; max: number; step: number; default: number; label: string };
-        r?: { min: number; max: number; step: number; default: number; label: string };
+        //   `unit` / `scale` are the rigid_body_rotation CONTROL-SURFACE
+        //   overrides (0c-4) and are read by rbrSc only. They are optional
+        //   additions to a shared key, so they are inert for every other
+        //   resolver — none of which reads either field.
+        r?: { min: number; max: number; step: number; default: number; label: string; unit?: string; scale?: number | string };
         // ── Lorentz-force sliders (Diamond #2) ───────────────────────────
         q_sign?: { default: 1 | -1; label: string };
         v?: { min: number; max: number; step?: number; default: number; label: string };
@@ -2617,10 +2639,26 @@ export interface Field3DConfig {
         // rescale. m and v are the numerator (wider circle); q_mag and B are the
         // denominator (tighter circle). v and B reuse the keys above; m and q_mag
         // are radius-specific.
-        m?: { min: number; max: number; step?: number; default: number; label: string };
+        m?: { min: number; max: number; step?: number; default: number; label: string; unit?: string; scale?: number | string };
         q_mag?: { min: number; max: number; step?: number; default: number; label: string };
         // magnetic_flux_loop — loop area A (m²). B and theta_deg above are reused.
         A?: { min: number; max: number; step?: number; default: number; label: string };
+        // ── rigid_body_rotation control tokens (rbrSc / RBR_SLIDER_SPEC) ──
+        //   Every field is OPTIONAL: rbrSc falls back to the spec row per field,
+        //   so a concept overrides only what it means to change and everything
+        //   else is byte-identical to the built-in row.
+        //   `unit` is the printed unit of the ROW; `scale` is how that row's
+        //   authored value resolves into the engine quantity it drives (a finite
+        //   non-zero number = a constant factor; a string = a member of
+        //   RBR_CTL_SCALE, e.g. 'i_alpha' for alpha -> tau = I*alpha with I read
+        //   LIVE). They ship together on purpose: a unit with no scale prints a
+        //   correctly-labelled wrong number, a scale with no unit prints a
+        //   correctly-scaled number under a wrong unit. Only `tau_applied`
+        //   resolves a scale today; authored elsewhere it warns.
+        omega0?: { min?: number; max?: number; step?: number; default?: number; label?: string; unit?: string; scale?: number | string };
+        tau_brake?: { min?: number; max?: number; step?: number; default?: number; label?: string; unit?: string; scale?: number | string };
+        tau_applied?: { min?: number; max?: number; step?: number; default?: number; label?: string; unit?: string; scale?: number | string };
+        spin_dir?: { label?: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -52547,23 +52585,41 @@ export const FIELD_3D_RENDERER_CODE = `
     //   state does not happen to name, and a new apparatus type that is not
     //   re-asserted here renders nothing at all (engine_bug_queue
     //   field3d_generic_visible_elements_matcher_blanks_new_scenario_apparatus).
-    function nlbApplyActivationVisibility(eng) {
-        if (!eng) return;
-        var gated = false;
+    //   Is ANY body of this state time-gated? Split out of the pass below because
+    //   the overlay half runs from a different point in the frame and must take the
+    //   identical early-out: a state authoring no activation and no retirement is
+    //   byte-identical to the pre-U10 engine on both halves or on neither.
+    function nlbActivationGated(eng) {
+        if (!eng || !eng.order) return false;
         for (var i = 0; i < eng.order.length; i++) {
             var b = eng.bodies[eng.order[i]];
-            if (b && (nlbActivateMs(b) > 0 || nlbRetireMs(eng, b) < Infinity)) { gated = true; break; }
+            if (b && (nlbActivateMs(b) > 0 || nlbRetireMs(eng, b) < Infinity)) return true;
         }
-        if (!gated) return;                    // no activation authored: today's path
+        return false;
+    }
+    function nlbApplyActivationVisibility(eng) {
+        if (!eng) return;
+        if (!nlbActivationGated(eng)) return;  // no activation authored: today's path
         nlbEach(function (o, ud) {
             if (!ud || !ud.bodyId) return;
-            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label"
-                && ud.elementType !== "nlb_arrow" && ud.elementType !== "nlb_arrow_label"
-                && ud.elementType !== "nlb_comp" && ud.elementType !== "nlb_comp_label"
-                && ud.elementType !== "nlb_right_angle") return;
+            // The MESH and its LABEL only. These two are owned outright by the state
+            // entry pass (nothing else writes their visibility per frame), so this
+            // gate can and MUST be authoritative in BOTH directions over them:
+            //   o.visible = nlbBodyShown(...)
+            // A one-way "hide when not shown" is a LATCH — it fires on every frame a
+            // pending body is pending and never restores it at its own activation
+            // instant, so in a single_lane state (the only shape where a body can
+            // also RETIRE) the first body latches off at the handover, the second
+            // never comes back, and the track renders empty for the rest of the
+            // state at EVERY instant including a rewind to one the body was live at.
+            // Written as an assignment rather than a conditional so the flag is a
+            // PURE FUNCTION of state-local t: a pin, a rewind and a replay all
+            // reproduce it exactly, with nothing latched across frames (Rule 36, and
+            // engine_bug_queue hysteretic_state_cannot_be_latched_under_a_time_pin).
+            if (ud.elementType !== "nlb_body" && ud.elementType !== "nlb_body_label") return;
             var bb = eng.bodies[ud.bodyId];
-            if (!bb) return;
-            if (!nlbBodyShown(eng, bb, eng.t_ms)) o.visible = false;
+            if (!bb) return;                   // not a body of THIS state — the entry pass owns it
+            o.visible = nlbBodyShown(eng, bb, eng.t_ms);
         });
         // The HUD rows follow the body, or a retired phase leaves its readouts on
         // screen making a claim about a body that is no longer there.
@@ -52578,6 +52634,33 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             if (!shown) { b2._skidFrom = null; b2._skidTo = null; }   // the trail clears at retirement
         }
+    }
+    // U10 — the OVERLAY half of the same gate, and the reason it is a SEPARATE pass.
+    //   The arrow / component / right-angle pools are owned by nlbDriveArrows, which
+    //   re-shows them from each body's physics record every frame with no activation
+    //   test of its own. nlbApplyActivationVisibility runs from nlbUpdateRolling,
+    //   which is called BEFORE nlbDriveArrows in the frame, so a veto written there
+    //   is overwritten by the draw pass a few lines later and a retired body keeps a
+    //   live, moving force arrow hanging over an empty track — the exact defect the
+    //   field was bought to prevent. This half therefore runs immediately AFTER the
+    //   draw pass.
+    //   It is a VETO ONLY and never re-shows anything: WHICH arrows a shown body
+    //   draws is the draw pass's decision (authored arrows[].show, the component
+    //   pair, the right-angle marker), not this gate's, and re-showing a pooled
+    //   object here would resurrect an arrow no state ever asked for. Still a pure
+    //   function of state-local t — it reads nothing but eng.t_ms and the authored
+    //   instants, and latches nothing across frames.
+    function nlbVetoRetiredBodyOverlays(eng) {
+        if (!eng || !nlbActivationGated(eng)) return;
+        nlbEach(function (o, ud) {
+            if (!ud || !ud.bodyId || !o.visible) return;
+            if (ud.elementType !== "nlb_arrow" && ud.elementType !== "nlb_arrow_label"
+                && ud.elementType !== "nlb_comp" && ud.elementType !== "nlb_comp_label"
+                && ud.elementType !== "nlb_right_angle") return;
+            var bb = eng.bodies[ud.bodyId];
+            if (!bb) return;
+            if (!nlbBodyShown(eng, bb, eng.t_ms)) o.visible = false;
+        });
     }
     function updateNewtonsLawsBodyFrame(dt) {
         var eng = window.PM_nlbEngine;
@@ -53222,6 +53305,12 @@ export const FIELD_3D_RENDERER_CODE = `
             // every body (a ghost or an unlisted body gets its arrows hidden here),
             // so there is no second animate() branch and no clock code (Rule 36).
             nlbDriveArrows(eng);
+            // SEAM R (U10) — the overlay half of the activation gate, and it has to
+            // be HERE: the pass above re-shows every arrow from the physics record
+            // with no activation test, so this veto is the only point in the frame
+            // at which a retired or pending body's arrows can actually be taken off
+            // the screen. No-op (one early-out) in any state authoring no activation.
+            nlbVetoRetiredBodyOverlays(eng);
             // SEAM D — same contract: presentation AFTER the writeback. With no
             // pulley this hides both segments (an uncoupled state has no string).
             nlbFitRopes();
@@ -56060,6 +56149,126 @@ export const FIELD_3D_RENDERER_CODE = `
     var RBR_PULL_SHAFT_R = RBR_ROD_R * RBR_SEP_RADIUS_RATIO;          // 0.080
     var RBR_L_HEAD_LEN = 0.24, RBR_PULL_HEAD_LEN = 0.20;
 
+    // ── E10 · THE DRIVE ACTUATOR (rotmech 0c-5) ────────────────────────────
+    //   bug_class rbr_drive_torque_has_no_rendered_actuator. A BRAKE has had a
+    //   rendered agent since 0c-1 (Addendum B: an arm carrying a pad that
+    //   travels in and physically touches the drum). A DRIVE had none:
+    //   eng.padEngageMs is assigned only inside the brake branch, so a drive set
+    //   its windows, the pad never travelled, and no drive mesh existed at all.
+    //   A torque that spins the turntable with nothing visibly doing it is a
+    //   rendered lie (Rule 24 / §10(d)) and it loses the Rule-32a cause beat.
+    //
+    //   FORM — a motor ROLLER, not a second pad. A drive and a brake can act at
+    //   the same instant (the E4 tug), so they must never be confusable, and the
+    //   separation is carried on FOUR independent channels rather than one:
+    //   SHAPE (cylinder vs box), COLOUR (green vs red), AZIMUTH (45 degrees
+    //   apart, so neither ever occludes the other), and the tangential force
+    //   vector, which only the drive carries. The roller also carries its own
+    //   rotation mark, for exactly the reason the drum carries rbr_drum_marker:
+    //   a smooth cylinder turning about its own axis is indistinguishable from a
+    //   still one, and a dead prop pressed against a spinning drum reads as
+    //   apparatus that is not doing the driving.
+    //
+    //   AZIMUTH — SOLVED, not picked. Two things have to read at once and they
+    //   pull in OPPOSITE directions, because they are perpendicular in the
+    //   horizontal plane: the actuator TRAVELS along its radial (Rule 32a — the
+    //   cause has to visibly arrive) and the rim force it applies is TANGENTIAL.
+    //   With the camera at (phi 1.16, theta PI/4) the in-plane fraction of each,
+    //   measured against the real view vector rather than assumed:
+    //       az   0 deg : travel 0.761   force 0.761   <- the BRAKE's own azimuth
+    //       az  45 deg : travel 0.399   force 1.000
+    //       az  60 deg : travel 0.465   force 0.971
+    //       az  90 deg : travel 0.761   force 0.761
+    //       az 120 deg : travel 0.971   force 0.465
+    //   PI/4 puts the force exactly on the camera's screen-RIGHT axis — and it
+    //   costs 47% of the travel, which is the beat this whole bug_class is
+    //   about. The four balanced azimuths are 0 / PI/2 / PI / 3PI/2, all at
+    //   0.761 on both. Of those:
+    //     0        is the BRAKE's.
+    //     PI/2     and 3PI/2 are the ROD's own home pose — theta0 defaults to 0,
+    //              so the rod lies along +-x and a body spinning up FROM REST
+    //              (the exact state class a drive exists for) leaves a mass
+    //              sitting over the actuator for the whole pre-engage beat.
+    //              Caught on the real frames, not reasoned about: the "drive"
+    //              label rendered on top of the +x mass sphere.
+    //     3PI/2    additionally collides with the grip hand at (-0.95, 0.30, 0).
+    //   PI is therefore the only balanced azimuth that is clear of both, and it
+    //   is also 180 degrees from the brake, so a drive and a brake acting
+    //   together can never occlude each other. Taken.
+    //   It sits on the FAR side of the drum, which is fine and was checked on
+    //   the frames rather than assumed: the camera is 23.5 degrees ABOVE the
+    //   plane, so the far rim projects above the near one (the R_drum torus's
+    //   own far arc is fully visible), and the actuator is at radius 1.21+,
+    //   outside the drum's 0.99 silhouette.
+    //   Both SIGNS of the force project identically, so the two poses are
+    //   equivalent BY CONSTRUCTION rather than by luck — the F-C9 standing rule
+    //   (a vector dies at its unfavourable pose) answered at build time instead
+    //   of discovered after acceptance. And a tangent line to a circle never
+    //   re-enters it, so this vector can never be swallowed by the drum it acts
+    //   on, which is the other half of the F-C9 failure.
+    var RBR_DRIVE_AZ = Math.PI;            // radians — SOLVED above, not picked
+    var RBR_DRIVE_WHEEL_R = 0.22;          // world — roller radius
+    var RBR_DRIVE_WHEEL_H = 0.20;          // world — matches the drum's own 0.20
+    // park = contact + this, for BOTH actuators. It is the brake pad's own
+    // travel distance, lifted out of the pad block unchanged.
+    var RBR_ACT_TRAVEL = 1.05;
+    var RBR_DRIVE_COLOR = "#7CB342";       // roller body (a solid, brighten-only)
+    // The vector + its label. Vivid spring green, chosen AFTER looking at the
+    // frames: the first pick (#B2FF59) rendered as a pale yellow that a teacher
+    // could mistake for the mass spheres (#FFCA28) and the drum marker
+    // (#FFF176), which are the two things the vector sweeps past. Measured
+    // contrast against the drum it is read over is 3.23:1, clearing the E7 floor
+    // of 3:1. The drive family is GREEN and the brake family is RED, so the two
+    // actuators are separable by colour alone at a glance.
+    var RBR_DRIVE_VEC_COLOR = "#00E676";
+    var RBR_DRIVE_MARK_COLOR = "#F1F8E9";  // the roller's rotation mark
+    var RBR_DRIVE_ARM_COLOR = "#78909C";   // the SAME grey the brake arm carries
+    // The vector rides ABOVE both solids it sits between: the drum top and the
+    // roller top are both at +0.10 world, and the shaft radius is 0.080, so
+    // 0.26 leaves the vector's lowest ink at 0.18 — clear of both by 0.08 world
+    // at every length. Placed by arithmetic, not by eye, for the same reason the
+    // E7 separability ratios are.
+    var RBR_DRIVE_FORCE_Y = 0.26;
+    var RBR_DRIVE_SHAFT_R = RBR_PULL_SHAFT_R;   // same WEIGHT as the pull arrow
+    var RBR_DRIVE_HEAD_LEN = RBR_PULL_HEAD_LEN;
+    // ── The rim-force magnitude -> length map. Its OWN, and that was decided on
+    //   a MEASUREMENT, not on preference. rbrArrowLen was tried first, because
+    //   both quantities are forces in newtons and the E7 ruling only forbids
+    //   sharing across INCOMMENSURABLE units. It fails here, and the failure is
+    //   the OPEN row field3d_nlb_arrow_min_length_floor_collapses_small_force_
+    //   visibility_and_ratio in its stated direction:
+    //     rbrArrowLen is sized for the PULL band (3.60 - 19.35 N guided). The rim
+    //     force is F = |tau| / R_drum, so the tau_applied slider's whole +-2.00
+    //     N.m reach is 0 - 3.64 N — BELOW that band. Measured on real frames:
+    //     tau 0.60 drew 329 px and tau 1.50 drew 360 px, a 9% spread across a
+    //     2.5x change in torque, because everything under 2.29 N is pinned to
+    //     RBR_ARROW_MIN_LEN. Length would have stopped meaning magnitude across
+    //     the entire authored band.
+    //   Same SHAPE as its two siblings (true zero, exactly linear through a knee
+    //   placed above the whole guided band, asymptotic above it with a
+    //   continuous first derivative) and no minimum-length floor at all — the
+    //   floor is what collapsed the ratio, and the L map already showed that a
+    //   true-zero map does not need one.
+    //   The SCALE is sized so the vector reads at its own beat rather than at a
+    //   paper number: only 0.761 of its length survives projection at this
+    //   camera (see RBR_DRIVE_AZ), so 0.24 world/N drew ~63 screen px at
+    //   tau = 1.50 — legible but thin against a 127 px drum radius. At 0.34 the
+    //   same beat draws ~90 px, i.e. a rim force about as long as the radius it
+    //   acts at, which is also what makes tau = F x R readable as a picture.
+    //   Consequences, checked numerically at R_drum = 0.55 m:
+    //     tau 0.60 -> F 1.09 -> 0.371 ; tau 1.50 -> F 2.73 -> 0.927 (ratio
+    //     2.5000 against a true 2.5000, zero intercept) ; tau 2.00, the slider
+    //     corner -> F 3.64 -> 1.236, which still fits its own frame.
+    //   An alpha-scaled control (RBR_CTL_SCALE.i_alpha) can push tau to I*alpha
+    //   with I up to 8.6, i.e. F past 30 N, so the knee sits above the guided
+    //   band and the asymptote catches the sandbox corners without clipping.
+    var RBR_DRIVE_F_SCALE = 0.34;          // world units per newton, below the knee
+    var RBR_DRIVE_F_EPS = 0.02;            // below this, NOTHING is drawn
+    var RBR_DRIVE_F_KNEE = 5.0;            // N — above the 3.64 N slider corner
+    var RBR_DRIVE_F_KNEE_LEN = RBR_DRIVE_F_SCALE * RBR_DRIVE_F_KNEE;      // 1.70
+    var RBR_DRIVE_F_MAX_LEN = 2.30;        // the asymptote — approached, never clipped
+    var RBR_DRIVE_F_SOFT = (RBR_DRIVE_F_MAX_LEN - RBR_DRIVE_F_KNEE_LEN) / RBR_DRIVE_F_SCALE;
+
     // ── E7 · the BOUNDED / ASYMPTOTIC **L** map — separate from the pull map ──
     //   The two magnitude->length maps stay SEPARATE on purpose: one eats
     //   newtons, the other kg m^2/s. Separability of a vector from its
@@ -56149,6 +56358,39 @@ export const FIELD_3D_RENDERER_CODE = `
         if (A <= RBR_L_KNEE) return RBR_L_ARROW_SCALE * A;
         return RBR_L_KNEE_LEN + (RBR_L_MAX_LEN - RBR_L_KNEE_LEN)
             * (1 - Math.exp(-(A - RBR_L_KNEE) / RBR_L_SOFT));
+    }
+    // E10 — the rim-force map. See the RBR_DRIVE_F_* block for why it is its own
+    // and not rbrArrowLen. Same shape as rbrLArrowLen, no floor.
+    function rbrDriveArrowLen(fN) {
+        var F = (typeof fN === "number" && isFinite(fN)) ? Math.abs(fN) : 0;
+        if (F < RBR_DRIVE_F_EPS) return 0;
+        if (F <= RBR_DRIVE_F_KNEE) return RBR_DRIVE_F_SCALE * F;
+        return RBR_DRIVE_F_KNEE_LEN + (RBR_DRIVE_F_MAX_LEN - RBR_DRIVE_F_KNEE_LEN)
+            * (1 - Math.exp(-(F - RBR_DRIVE_F_KNEE) / RBR_DRIVE_F_SOFT));
+    }
+    // ── E10 · ONE actuator travel mechanism, TWO consumers ─────────────────
+    //   park -> contact -> park was written INLINE inside the brake pad's frame
+    //   block and was therefore reachable by exactly one mesh, which is half of
+    //   why a drive had no agent. Lifted here VERBATIM — the same three branches
+    //   in the same order with the same guards, so the pad's motion is operand
+    //   for operand what it was — and the drive roller now runs the SAME
+    //   function off its OWN window.
+    //   It returns a DISTANCE along the actuator's own approach axis: the caller
+    //   owns the axis (the pad approaches along +z, the roller along its radial)
+    //   and this owns the timing. Pure function of state-local tMs (Rule 36), so
+    //   a SET_TIME_FREEZE pin holds it and a rewind reproduces it exactly.
+    function rbrActuatorAt(tMs, onMs, offMs, travelMs, contact, park) {
+        var e = (onMs == null) ? Infinity : onMs;
+        var rel = (offMs == null) ? Infinity : offMs;
+        if (tMs >= e && tMs < rel) return contact;
+        if (tMs < e && tMs > e - travelMs && travelMs > 0) {
+            return park + (contact - park) * ((tMs - (e - travelMs)) / travelMs);
+        }
+        if (tMs >= rel && isFinite(rel) && travelMs > 0) {
+            var u2 = Math.min(1, (tMs - rel) / travelMs);
+            return contact + (park - contact) * u2;
+        }
+        return park;
     }
     function rbrMakeLabel(text, hex, h) {
         var lbl = pmCreateAutoLabel(text, hex, h == null ? 0.30 : h);
@@ -56290,6 +56532,113 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!eng) return RBR_DEF_I_FRAME;
         return rbrIOf(rbrRAt(tMs), eng.m);
     }
+    // ── THE CONTROL-SURFACE RESOLUTION (0c-4) ──────────────────────────────
+    //   A control may express a quantity that is NOT the engine's own. The
+    //   readout side already had the idea — RBR_RO_META.theta carries a scale
+    //   and rbrRoFx is the single point that applies it — and this is the SAME
+    //   DECLARATION SHAPE on the control side, deliberately: one declared key,
+    //   one place that applies it, so there is never a second convention for
+    //   "authored units are not engine units".
+    //
+    //   THE SEMANTICS ARE NOT THE SAME, and blurring them would be the defect.
+    //   A readout scale is a DISPLAY conversion and is a constant. A control
+    //   scale is a PHYSICAL RESOLUTION: alpha authored, tau = I*alpha resolved
+    //   internally, with I read LIVE. So the registry members are FUNCTIONS OF
+    //   THE INSTANT, and the one place that applies them is the instant the
+    //   INTEGRATOR CONSUMES the torque (rbrSrcTau, below) — never the instant
+    //   the row was built and never the instant the teacher let go of the dial.
+    //   That is what makes tau = I*alpha hold AS the apparatus changes: rbrIAt
+    //   is a closed form of state-local t that already carries the r ramp, the
+    //   idle sweep, a seized drag, mass count and m.
+    //
+    //   A numeric scale is the constant-factor form (an authored milli-newton-
+    //   metre dial, say). It is NOT live, so it never costs the sub-walk below.
+    //   A unit override with no scale RE-LABELS ONLY — the two halves ship
+    //   together precisely because either alone prints a lie.
+    var RBR_CTL_SCALE = {
+        // authored alpha (rad/s^2)  ->  engine tau (N.m),  tau = I(t) * alpha
+        i_alpha: {
+            live: true,
+            to:   function (v, tMs) { return v * rbrIAt(tMs); },
+            from: function (v, tMs) { var I = rbrIAt(tMs); return (I > 0) ? v / I : 0; }
+        }
+    };
+    function rbrCtlEntry(sc) { return (typeof sc === "string") ? (RBR_CTL_SCALE[sc] || null) : null; }
+    // AUTHORED -> ENGINE. An absent scale returns the value itself, so every
+    // call site is the identity it was before this existed, double for double.
+    function rbrCtlTo(sc, v, tMs) {
+        if (typeof sc === "number") return v * sc;
+        var e = rbrCtlEntry(sc);
+        return e ? e.to(v, tMs) : v;
+    }
+    // ENGINE -> AUTHORED, the display direction (what the row must show when the
+    // engine, not the teacher, is the one holding the value).
+    function rbrCtlFrom(sc, v, tMs) {
+        if (typeof sc === "number") return (sc !== 0) ? v / sc : v;
+        var e = rbrCtlEntry(sc);
+        return e ? e.from(v, tMs) : v;
+    }
+    // Does the resolution move WITHIN a segment? Only a live resolver does, and
+    // only a live resolver makes rbrLAt take its grid sub-walk.
+    function rbrCtlLive(sc) { var e = rbrCtlEntry(sc); return !!(e && e.live); }
+    // Presence is typeof, never truthiness: a scale of 0 is meaningless (it
+    // would resolve every authored value to no torque at all) and is rejected
+    // rather than accepted as "absent by accident".
+    function rbrCtlScale(o, fallback) {
+        var fb = (fallback == null) ? null : fallback;
+        if (typeof o === "number") return (isFinite(o) && o !== 0) ? o : fb;
+        if (typeof o === "string") {
+            if (RBR_CTL_SCALE[o]) return o;
+            rbrWarnUnknownScale(o);
+            return fb;
+        }
+        return fb;
+    }
+    // The control -> source binding. NULL unless the concept authored a scale,
+    // so "absent" is not merely equivalent to the pre-0c-4 behaviour: no ctl
+    // object is ever created and every read below takes its original branch.
+    function rbrCtlBind(token, raw) {
+        var sc = rbrSc(token).scale;
+        return (sc == null) ? null : { scale: sc, raw: raw };
+    }
+    // A source's torque AT ONE INSTANT. A plain source returns its stored tau —
+    // operand for operand what every read site did before this function existed.
+    // A source carrying a control binding is RESOLVED HERE, so its driving
+    // inputs are read live and can never be the ones frozen in at build time.
+    function rbrSrcTau(s, tMs) { return s.ctl ? rbrCtlTo(s.ctl.scale, s.ctl.raw, tMs) : s.tau; }
+    // Does the source carry a torque at all? For a ctl source the AUTHORED value
+    // decides and no instant has to be picked: I is strictly positive, so
+    // alpha != 0 <=> tau != 0 at every instant.
+    function rbrSrcOn(s) { return s.ctl ? (Math.abs(s.ctl.raw) > 0) : (Math.abs(s.tau) > 0); }
+    // The engaged drive/brake sums at ONE instant, written into scratch vars
+    // rather than a fresh object per call (the grid sub-walk below can enter
+    // this thousands of times per evaluation). Operand for operand the inline
+    // loop it replaces: same iteration order, same guards, same additions, so
+    // the sums are bit-equal for every source that carries a stored tau.
+    var rbrSumDrive = 0, rbrSumBrake = 0, rbrSumVaries = false;
+    function rbrEngagedSum(src, tMs) {
+        rbrSumDrive = 0; rbrSumBrake = 0; rbrSumVaries = false;
+        for (var i = 0; i < src.length; i++) {
+            var s = src[i];
+            if (s.onMs == null || !rbrSrcOn(s)) continue;
+            if (!(tMs >= s.onMs && tMs < s.offMs)) continue;
+            if (s.kind === "brake") rbrSumBrake += Math.abs(rbrSrcTau(s, tMs));
+            else rbrSumDrive += rbrSrcTau(s, tMs);
+            if (s.ctl && rbrCtlLive(s.ctl.scale)) rbrSumVaries = true;
+        }
+    }
+    // E10 — the FIRST drive source's torque at ONE instant, resolved through
+    // exactly the function the integrator resolves it with (rbrSrcTau), so an
+    // alpha-scaled control's rim force is the length of the torque the body is
+    // actually running at rather than of the number the dial happens to show.
+    function rbrDriveTauAt(tMs) {
+        var eng = window.PM_rbrEngine;
+        if (!eng || !eng.sources) return 0;
+        for (var i = 0; i < eng.sources.length; i++) {
+            if (eng.sources[i].kind !== "brake") return rbrSrcTau(eng.sources[i], tMs);
+        }
+        return 0;
+    }
     // Restart bookkeeping. A restart is the ONLY way spin direction changes —
     // nothing is ever eased through zero (skeleton F4, deleted deliberately).
     // cut time = when the readouts BLANK; effective time = cut + blank, when the
@@ -56386,25 +56735,38 @@ export const FIELD_3D_RENDERER_CODE = `
         var bps = [], i, s;
         for (i = 0; i < src.length; i++) {
             s = src[i];
-            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+            if (s.onMs == null || !rbrSrcOn(s)) continue;
             if (s.onMs > a.t0 && s.onMs < tMs) bps.push(s.onMs);
             if (s.offMs > a.t0 && s.offMs < tMs) bps.push(s.offMs);
         }
         bps.sort(function (x, y) { return x - y; });
-        var L = a.L0 + 0, lo = a.t0, b, hi, mid, drive, brake;
+        var L = a.L0 + 0, lo = a.t0, b, hi, mid, sl, sh, guard;
         for (b = 0; b <= bps.length; b++) {
             hi = (b < bps.length) ? bps[b] : tMs;
             if (!(hi > lo)) continue;
             mid = lo + (hi - lo) / 2;
-            drive = 0; brake = 0;
-            for (i = 0; i < src.length; i++) {
-                s = src[i];
-                if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
-                if (!(mid >= s.onMs && mid < s.offMs)) continue;
-                if (s.kind === "brake") brake += Math.abs(s.tau);
-                else drive += s.tau;
+            rbrEngagedSum(src, mid);
+            if (!rbrSumVaries) {
+                L = rbrLStep(L, rbrSumDrive, rbrSumBrake, (hi - lo) / 1000);
+            } else {
+                // A LIVE-RESOLVED source's torque moves INSIDE the segment (I
+                // walks under a ramp or a sweep), so one midpoint would hold
+                // tau at one I for the whole span and rbrTauOf — which reads
+                // the exact instant — would print a torque the L beside it was
+                // never integrated at. The segment is therefore walked on the
+                // SAME fixed grid theta already uses, so both agree and the
+                // whole thing stays a pure function of tMs: nothing is carried
+                // between calls, so a rewind still reproduces the value exactly.
+                // Unreachable — and byte-identical — for a source whose torque
+                // is a stored constant, which is every source in the fleet.
+                sl = lo; guard = 0;
+                while (sl < hi && guard < RBR_GRID_MAX) {
+                    sh = sl + RBR_GRID_MS; if (sh > hi) sh = hi;
+                    rbrEngagedSum(src, sl + (sh - sl) / 2);
+                    L = rbrLStep(L, rbrSumDrive, rbrSumBrake, (sh - sl) / 1000);
+                    sl = sh; guard++;
+                }
             }
-            L = rbrLStep(L, drive, brake, (hi - lo) / 1000);
             lo = hi;
         }
         return L;
@@ -56456,14 +56818,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function rbrTauOf(L, tMs) {
         var eng = window.PM_rbrEngine;
         if (!eng) return 0;
-        var src = eng.sources || [], drive = 0, brake = 0, i, s;
-        for (i = 0; i < src.length; i++) {
-            s = src[i];
-            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
-            if (!(tMs >= s.onMs && tMs < s.offMs)) continue;
-            if (s.kind === "brake") brake += Math.abs(s.tau);
-            else drive += s.tau;
-        }
+        // The SAME engaged sum rbrLAt's walk takes, at the exact instant asked
+        // for — so a live-resolved torque prints the value the integrator ran at
+        // (rbrLAt sub-walks the same grid for exactly that reason).
+        rbrEngagedSum(eng.sources || [], tMs);
+        var drive = rbrSumDrive, brake = rbrSumBrake;
         if (L === 0) {
             if (!(Math.abs(drive) > brake)) return 0;                  // static hold
             return drive - (drive < 0 ? -1 : 1) * brake;               // breakaway
@@ -56607,7 +56966,17 @@ export const FIELD_3D_RENDERER_CODE = `
         return {
             min: rbrNum(o.min, sp.min), max: rbrNum(o.max, sp.max), step: rbrNum(o.step, sp.step),
             def: rbrNum(o.default, sp.def), dp: dp,
-            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph
+            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph,
+            // The UNIT resolves EXACTLY the way the label above already did —
+            // authored string wins, spec value otherwise. Before this it was
+            // pinned in the spec and unreachable, so a control could be given a
+            // new glyph but never a truthful unit to go with it, and the only
+            // reachable "fix" was a relabel that printed a lie (alpha over N.m).
+            unit: (typeof o.unit === "string" && o.unit.length) ? o.unit : sp.unit,
+            // The other half of the same mechanism (see RBR_CTL_SCALE): what
+            // resolves this control's authored value into the engine quantity
+            // it drives. Null unless authored.
+            scale: rbrCtlScale(o.scale, sp.scale)
         };
     }
     // RING-GATED controls (E5), the bonding_scene shape reused verbatim
@@ -56651,6 +57020,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var html = "";
         for (var i = 0; i < rbrRowsBuilt.length; i++) {
             var tok = rbrRowsBuilt[i], sp = RBR_SLIDER_SPEC[tok], sc = rbrSc(tok);
+            // Loud, not silent (the E5 rule): only the DRIVE control resolves a
+            // scale today, so a scale authored on any other token would do
+            // exactly nothing and read as accepted.
+            if (tok !== "tau_applied" && sc.scale != null) rbrWarnUnscalableControl(tok);
             html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">';
             if (sp.kind === "button") {
                 html += '<button id="' + sp.button + '" style="width:100%;padding:4px 6px;border-radius:5px;border:1px solid #607D8B;background:#263238;color:inherit;font:inherit;cursor:pointer" disabled>Reverse spin</button>';
@@ -56661,7 +57034,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // built row for a negative default (Rule 34c). Every pre-E5
                     // default is non-negative, where the two agree character for
                     // character, so no built row changes.
-                    '<span id="' + sp.val + '">' + rbrFx(sc.def, sc.dp) + '</span>' + sp.unit + '</label>' +
+                    '<span id="' + sp.val + '">' + rbrFx(sc.def, sc.dp) + '</span>' + sc.unit + '</label>' +
                     '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                     '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled>';
             }
@@ -56689,7 +57062,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // For a lone authored brake this is exactly the old two lines.
         var ss = eng.sources || [];
         for (var si = 0; si < ss.length; si++) {
-            ss[si].onMs = (Math.abs(ss[si].tau) > 0) ? eng.evAnchorT : null;
+            ss[si].onMs = rbrSrcOn(ss[si]) ? eng.evAnchorT : null;
             ss[si].offMs = Infinity;
         }
         eng.brakeOnMs = (eng.tau > 0) ? eng.evAnchorT : null;
@@ -56717,14 +57090,23 @@ export const FIELD_3D_RENDERER_CODE = `
     // (creating one if the state authored none) and never touches a brake.
     function rbrSetDriveSource(eng) {
         var ss = eng.sources || (eng.sources = []);
+        // THE ONE PLACE THE CONTROL BINDS TO THE INTEGRATOR. eng.tauApplied is
+        // the CONTROL's own quantity — the engine's tau only when no scale is
+        // authored, which is every concept today, and then ctl is null and both
+        // lines below are the two they replace, double for double. With a scale
+        // authored the source carries the binding rather than a number, so the
+        // resolution happens where the torque is CONSUMED (rbrSrcTau) and I is
+        // never captured here.
+        var ctl = rbrCtlBind("tau_applied", eng.tauApplied);
+        var tv = rbrCtlTo(ctl ? ctl.scale : null, eng.tauApplied, eng.t_ms);
         for (var i = 0; i < ss.length; i++) {
             if (ss[i].kind !== "brake") {
-                ss[i].tau = eng.tauApplied; ss[i].onMs = eng.driveOnMs; ss[i].offMs = Infinity;
+                ss[i].tau = tv; ss[i].ctl = ctl; ss[i].onMs = eng.driveOnMs; ss[i].offMs = Infinity;
                 return;
             }
         }
         if (Math.abs(eng.tauApplied) > 0 && ss.length < RBR_MAX_SOURCES) {
-            ss.push({ id: "applied_torque", kind: "drive", tau: eng.tauApplied, onMs: eng.driveOnMs, offMs: Infinity });
+            ss.push({ id: "applied_torque", kind: "drive", tau: tv, ctl: ctl, onMs: eng.driveOnMs, offMs: Infinity });
         }
     }
     function rbrApplyParam(token, value) {
@@ -56897,6 +57279,23 @@ export const FIELD_3D_RENDERER_CODE = `
             Math.round(w) + "px, wider than the whole KE-bar panel (" + Math.round(box) +
             "px) — it is left-aligned to the panel edge so its head stays readable, but its " +
             "tail still overflows. Shorten the label; the clamp cannot fix an over-wide string.");
+    }
+    function rbrKnownScales() {
+        var out = [];
+        for (var k in RBR_CTL_SCALE) out.push(k);
+        return out.join(", ");
+    }
+    function rbrWarnUnknownScale(sc) {
+        rbrTokenWarnOnce("sc:" + sc, "a slider_controls entry names scale '" + sc +
+            "', which has no RBR_CTL_SCALE resolver — the control's value reaches the engine " +
+            "UNCONVERTED, under whatever unit the row prints. Known scales: " + rbrKnownScales() +
+            " (or a finite non-zero number for a constant factor).");
+    }
+    function rbrWarnUnscalableControl(tok) {
+        rbrTokenWarnOnce("scbind:" + tok, "slider_controls." + tok + " authors a scale, but only " +
+            "'tau_applied' resolves one — this control's value reaches the engine unconverted " +
+            "while its row prints the authored unit, which is exactly the mislabelled-control " +
+            "shape the scale exists to prevent.");
     }
     function rbrWarnUnknownControl(tok) {
         rbrTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
@@ -57374,6 +57773,55 @@ export const FIELD_3D_RENDERER_CODE = `
         padLbl.visible = false;
         root.add(padLbl); rbrRegister(padLbl);
 
+        // E10 — the DRIVE actuator, the brake's mirror image: an arm carrying a
+        // motor ROLLER that travels in along the RBR_DRIVE_AZ radial and meets
+        // the drum at R_drum, with the rim force it applies drawn tangentially
+        // at the contact. Built ONCE from the union of every state and only
+        // shown/hidden + re-posed (Rule 32d), exactly like the brake trio above.
+        // Everything lives in the ROOT group, never in the SPIN group: the
+        // actuator is fixed in the LAB frame and the body turns under it.
+        var drvArm = new THREE.Mesh(
+            new THREE.BoxGeometry(0.10, 0.10, 1.5),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRIVE_ARM_COLOR), emissive: hexToThreeColor(RBR_DRIVE_ARM_COLOR), emissiveIntensity: 0.10, shininess: 30 }));
+        drvArm.rotation.y = RBR_DRIVE_AZ;      // the box's long axis is +z, so
+                                               // one y-rotation lays it along
+                                               // the actuator's radial line
+        drvArm.userData = { elementType: "rbr_drive_arm", id: "rbr_drive_arm" };
+        drvArm.visible = false;
+        root.add(drvArm); rbrRegister(drvArm);
+        var drvWheel = new THREE.Mesh(
+            new THREE.CylinderGeometry(RBR_DRIVE_WHEEL_R, RBR_DRIVE_WHEEL_R, RBR_DRIVE_WHEEL_H, 28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRIVE_COLOR), emissive: hexToThreeColor(RBR_DRIVE_COLOR), emissiveIntensity: 0.30, shininess: 50 }));
+        drvWheel.userData = { elementType: "rbr_drive_wheel", id: "rbr_drive_wheel" };
+        drvWheel.visible = false;
+        root.add(drvWheel); rbrRegister(drvWheel);
+        // The roller's own rotation mark. It is a CHILD of the roller, so it
+        // inherits the roller's pose and its spin with no second update path
+        // that could disagree — and it is REGISTERED as well, so the visibility
+        // pass and the glow pass both reach it (the scar
+        // field3d_child_mesh_never_registered_in_sceneobjects_so_updater_never_
+        // matches is about the child that is reachable by neither).
+        var drvMark = new THREE.Mesh(
+            new THREE.BoxGeometry(RBR_DRIVE_WHEEL_R * 1.9, 0.02, 0.05),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(RBR_DRIVE_MARK_COLOR), emissive: hexToThreeColor(RBR_DRIVE_MARK_COLOR), emissiveIntensity: 0.42, shininess: 60 }));
+        drvMark.position.set(0, RBR_DRIVE_WHEEL_H / 2 + 0.011, 0);
+        drvMark.userData = { elementType: "rbr_drive_mark", id: "rbr_drive_mark" };
+        drvWheel.add(drvMark); rbrRegister(drvMark);
+        var drvLbl = rbrMakeLabel("drive", RBR_DRIVE_VEC_COLOR, 0.28);
+        drvLbl.userData = { elementType: "rbr_drive_label", id: "rbr_drive_label" };
+        drvLbl.visible = false;
+        root.add(drvLbl); rbrRegister(drvLbl);
+        // The rim FORCE. A THICK vector (rbrMakeThickVector), never an
+        // ArrowHelper — the E7 separability rule applies to every new rbr vector
+        // by construction and not only to the two it repaired. Built at zero
+        // length: the first frame writes the real magnitude.
+        var drvForce = rbrMakeThickVector([1, 0, 0], RBR_DRIVE_VEC_COLOR, 0,
+            RBR_DRIVE_SHAFT_R, RBR_DRIVE_HEAD_LEN);
+        drvForce.userData.elementType = "rbr_drive_force";
+        drvForce.userData.id = "rbr_drive_force";
+        drvForce.visible = false;
+        root.add(drvForce); rbrRegister(drvForce);
+
         // Grip-rule hand. The SAME articulated model + per-frame FK curl the
         // solenoid / wire hands use (buildArticulatedHandParts + rhrFingerJoints)
         // — but this one must TRACK the spin sign, which the existing hands
@@ -57464,6 +57912,13 @@ export const FIELD_3D_RENDERER_CODE = `
             brakeOnMs: null, brakeOffMs: Infinity,
             padTravelMs: rbrNum(et.pad_travel_ms, 1200),
             padEngageMs: null, padReleaseMs: Infinity,
+            // E10 — the DRIVE actuator's own window, the exact mirror of the
+            // three pad fields above. Deliberately NOT eng.driveOnMs: that field
+            // is re-pointed by a live tau_applied drag and by a restart, and an
+            // actuator whose travel re-anchored mid-state would stop being a
+            // pure function of state-local t (Rule 36 / the rewind guarantee).
+            driveTau: 0, driveEngageMs: null, driveReleaseMs: Infinity,
+            driveTravelMs: rbrNum(et.pad_travel_ms, 1200),
             restart: null,
             blankMs: rbrNum((rb.repin_cue || {}).blank_ms, RBR_DEF_BLANK_MS),
             ramp: null, sweep: null,
@@ -57518,16 +57973,32 @@ export const FIELD_3D_RENDERER_CODE = `
                 var onS = cueTriggerMs(so.engage_cue || "", rbrNum(so.engage_at_ms, 0));
                 var offS = (typeof so.release_at_ms === "number" || so.release_cue)
                     ? cueTriggerMs(so.release_cue || "", rbrNum(so.release_at_ms, Infinity)) : Infinity;
+                // E10 — PER-ENTRY actuator travel. external_torque.pad_travel_ms
+                // is singular and top-level and therefore cannot address a list,
+                // which is the concrete reason the drive could not simply reuse
+                // the pad path. Absent falls back to that top-level value (and
+                // then to the engine default), so an entry that authors nothing
+                // resolves to exactly the number the pad already used.
+                var trvS = rbrNum(so.travel_ms, eng.padTravelMs);
                 eng.sources.push({
                     id: (typeof so.id === "string" && so.id.length) ? so.id : (kind + "_" + si),
-                    kind: kind, tau: tv, onMs: onS, offMs: offS
+                    kind: kind, tau: tv, onMs: onS, offMs: offS, travelMs: trvS
                 });
                 // The FIRST brake entry also drives the pad actuator and the
                 // tau_brake slider, which have no notion of a list.
                 if (kind === "brake" && !(eng.tau > 0)) {
                     eng.tau = Math.abs(tv);
                     eng.padEngageMs = onS; eng.padReleaseMs = offS;
+                    eng.padTravelMs = trvS;
                     eng.brakeOnMs = onS; eng.brakeOffMs = offS;
+                }
+                // ...and the FIRST drive entry drives the roller actuator. The
+                // test is on the bound torque, never on driveEngageMs, because
+                // an engage instant of 0 is legitimate and is not "unbound".
+                if (kind !== "brake" && !(Math.abs(eng.driveTau) > 0)) {
+                    eng.driveTau = tv;
+                    eng.driveEngageMs = onS; eng.driveReleaseMs = offS;
+                    eng.driveTravelMs = trvS;
                 }
             }
         } else if (src === "brake") {
@@ -57538,7 +58009,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
                 eng.brakeOnMs = eng.padEngageMs;
                 eng.brakeOffMs = eng.padReleaseMs;
-                eng.sources.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs });
+                eng.sources.push({ id: "brake", kind: "brake", tau: eng.tau, onMs: eng.brakeOnMs, offMs: eng.brakeOffMs, travelMs: eng.padTravelMs });
             }
         } else if (src === "applied_torque") {
             // A CONSTANT tau_ext with no pad: concept 7's alpha = tau/I on the
@@ -57551,12 +58022,18 @@ export const FIELD_3D_RENDERER_CODE = `
             // must not show a drive's magnitude.
             var atq = rbrNum(et.applied_torque_Nm, 0);
             if (Math.abs(atq) > 0) {
+                // The two cueTriggerMs calls are HOISTED (same arguments, same
+                // order, same pure function) only so the roller can bind to the
+                // same instants the source does — E10.
+                var atOn = cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0));
+                var atOff = (typeof et.release_at_ms === "number" || et.release_cue)
+                    ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity;
                 eng.sources.push({
                     id: "applied_torque", kind: "drive", tau: atq,
-                    onMs: cueTriggerMs(et.engage_cue || "", rbrNum(et.engage_at_ms, 0)),
-                    offMs: (typeof et.release_at_ms === "number" || et.release_cue)
-                        ? cueTriggerMs(et.release_cue || "", rbrNum(et.release_at_ms, Infinity)) : Infinity
+                    onMs: atOn, offMs: atOff, travelMs: eng.padTravelMs
                 });
+                eng.driveTau = atq;
+                eng.driveEngageMs = atOn; eng.driveReleaseMs = atOff;
             }
         }
         // Mirror the FIRST drive into the tau_applied slider's own fields, the
@@ -57593,6 +58070,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // guided state's L is initialised; everything after is the closed form.
         eng.L0 = rbrIOf(rbrRAt(0), eng.m) * eng.omega0 * eng.spinSign;
         rbrThetaReset();
+        // The tau_applied ROW shows the CONTROL's own quantity, and the mirror
+        // above read the SOURCE, which carries the authored physics in N.m. With
+        // no scale authored those are the same quantity and this line assigns
+        // the value back to itself, double for double. It sits AFTER
+        // window.PM_rbrEngine = eng deliberately: a live resolver reads I off
+        // the engine and here would otherwise read the PREVIOUS state's
+        // apparatus.
+        eng.tauApplied = rbrCtlFrom(rbrSc("tau_applied").scale, eng.tauApplied, 0);
 
         rbrApplyVisibility(rb);
         rbrToggleSliderRows(rb);
@@ -57627,7 +58112,10 @@ export const FIELD_3D_RENDERER_CODE = `
         "rbr_drum_line", "rbr_drum_line_label", "rbr_rod", "rbr_mass",
         "rbr_pull_arrow", "rbr_pull_label", "rbr_r_line", "rbr_r_label",
         "rbr_l_arrow", "rbr_l_label", "rbr_brake_arm", "rbr_brake_pad",
-        "rbr_brake_label", "rbr_grip_hand"
+        "rbr_brake_label", "rbr_grip_hand",
+        // E10 — the drive actuator's five meshes.
+        "rbr_drive_arm", "rbr_drive_wheel", "rbr_drive_mark",
+        "rbr_drive_label", "rbr_drive_force"
     ];
     function rbrApplyVisibility(rb) {
         var vis = rb.visible_elements || [];
@@ -57648,7 +58136,13 @@ export const FIELD_3D_RENDERER_CODE = `
             rbr_l_arrow: rb.show_l_arrow, rbr_l_label: rb.show_l_arrow,
             rbr_r_line: rb.show_r_line, rbr_r_label: rb.show_r_line,
             rbr_drum_line: rb.show_drum_line, rbr_drum_line_label: rb.show_drum_line,
-            rbr_grip_hand: rb.show_grip_hand
+            rbr_grip_hand: rb.show_grip_hand,
+            // E10 — the rim force VECTOR is an ordinary overlay and takes the
+            // ordinary overlay path (default OFF, or named in visible_elements).
+            // It is AND-ed with the actuator's own presence below: a force
+            // vector standing at a rim no actuator is touching is the same
+            // rendered lie the missing actuator was, pointing the other way.
+            rbr_drive_force: rb.show_drive_force
         };
         rbrEach(function (o, ud) {
             var et = ud.elementType;
@@ -57668,6 +58162,31 @@ export const FIELD_3D_RENDERER_CODE = `
         if (pd) pd.visible = padOn;
         if (ar) ar.visible = padOn;
         if (pl) pl.visible = padOn;
+        // E10 — the DRIVE actuator follows the torque SOURCE for exactly the
+        // reason the pad does. It is read off eng.sources, which
+        // applyRigidBodyRotationState has already resolved from THIS state's own
+        // authoring one line earlier: the three drive surfaces (sources[], the
+        // legacy applied_torque_Nm, and neither) collapse into one list there,
+        // so this is one test instead of three.
+        //   It is NOT a live read. A tau_applied DRAG does not re-run this pass,
+        // which is the same gap the brake half carries
+        // (rbr_live_param_drag_has_no_rendered_agent) — deliberately left where
+        // it is rather than half-fixed on one actuator here.
+        var engV = window.PM_rbrEngine;
+        var driveOn = false;
+        if (engV && engV.sources) {
+            for (var dvi = 0; dvi < engV.sources.length; dvi++) {
+                if (engV.sources[dvi].kind !== "brake" && rbrSrcOn(engV.sources[dvi])) { driveOn = true; break; }
+            }
+        }
+        var dwh = rbrFindById("rbr_drive_wheel"), dmk = rbrFindById("rbr_drive_mark");
+        var dar = rbrFindById("rbr_drive_arm"), dlb = rbrFindById("rbr_drive_label");
+        var dfc = rbrFindById("rbr_drive_force");
+        if (dwh) dwh.visible = driveOn;
+        if (dmk) dmk.visible = driveOn;
+        if (dar) dar.visible = driveOn;
+        if (dlb) dlb.visible = driveOn;
+        if (dfc) dfc.visible = (dfc.visible === true) && driveOn;
         // E7 — freeze the STATE's answer. The per-frame pass may AND a label off
         // when its vector has zero length, and must never be able to turn one
         // back ON that the state hid. Recorded last, after every branch above.
@@ -57780,20 +58299,59 @@ export const FIELD_3D_RENDERER_CODE = `
         var padLbl = rbrFindById("rbr_brake_label");
         if (pad && pad.visible) {
             var contactZ = eng.drumR * W + 0.09;
-            var parkZ = contactZ + 1.05;
-            var z = parkZ;
-            var eMs = (eng.padEngageMs == null) ? Infinity : eng.padEngageMs;
-            var relMs = eng.padReleaseMs;
-            if (tMs >= eMs && tMs < relMs) z = contactZ;
-            else if (tMs < eMs && tMs > eMs - eng.padTravelMs && eng.padTravelMs > 0) {
-                z = parkZ + (contactZ - parkZ) * ((tMs - (eMs - eng.padTravelMs)) / eng.padTravelMs);
-            } else if (tMs >= relMs && isFinite(relMs) && eng.padTravelMs > 0) {
-                var u2 = Math.min(1, (tMs - relMs) / eng.padTravelMs);
-                z = contactZ + (parkZ - contactZ) * u2;
-            }
+            var parkZ = contactZ + RBR_ACT_TRAVEL;
+            // E10 — the travel is now the SHARED rbrActuatorAt, lifted out of
+            // this block unchanged so the drive roller can run the same one.
+            var z = rbrActuatorAt(tMs, eng.padEngageMs, eng.padReleaseMs, eng.padTravelMs, contactZ, parkZ);
             pad.position.set(0, 0, z);
             if (arm) arm.position.set(0, 0, z + 0.83);
             if (padLbl) padLbl.position.set(0, 0.40, z + 0.20);
+        }
+
+        // E10 — the DRIVE actuator. SAME travel mechanism as the pad above, on
+        // its OWN window, along its OWN radial axis: the torque that spins the
+        // body up now has a visible agent that arrives BEFORE it acts (Rule 32a).
+        var drvUx = Math.sin(RBR_DRIVE_AZ), drvUz = Math.cos(RBR_DRIVE_AZ);
+        var rimR = eng.drumR * W;
+        var drvW = rbrFindById("rbr_drive_wheel");
+        if (drvW && drvW.visible) {
+            var contactR = rimR + RBR_DRIVE_WHEEL_R;
+            var parkR = contactR + RBR_ACT_TRAVEL;
+            var dR = rbrActuatorAt(tMs, eng.driveEngageMs, eng.driveReleaseMs, eng.driveTravelMs, contactR, parkR);
+            drvW.position.set(drvUx * dR, 0, drvUz * dR);
+            // Rolling contact: the roller's rim keeps pace with the drum's, so it
+            // turns the OPPOSITE way at R_drum / r_roller times the rate. theta is
+            // a closed form of state-local t, so this is one too and a rewind
+            // reproduces it exactly. SIMPLIFICATION, stated: the roller keeps
+            // turning while parked, which reads as a motor left running rather
+            // than as contact — the alternative is a latched angle, and a latch
+            // cannot be rewound (hysteretic_state_cannot_be_latched_under_a_time_pin).
+            drvW.rotation.y = -theta * (rimR / RBR_DRIVE_WHEEL_R);
+            var drvA = rbrFindById("rbr_drive_arm");
+            if (drvA) drvA.position.set(drvUx * (dR + 0.83), 0, drvUz * (dR + 0.83));
+            var drvL = rbrFindById("rbr_drive_label");
+            if (drvL) drvL.position.set(drvUx * (dR + 0.20), 0.40, drvUz * (dR + 0.20));
+        }
+        // The rim FORCE. Tangential at the drum rim, magnitude |tau| / R_drum on
+        // its OWN newton map (rbrDriveArrowLen — see RBR_DRIVE_F_*), drawn ONLY
+        // while the roller is in contact.
+        var drvF = rbrFindById("rbr_drive_force");
+        if (drvF) {
+            var dTau = rbrDriveTauAt(tMs);
+            var dLen = rbrDriveArrowLen((eng.drumR > 0) ? Math.abs(dTau) / eng.drumR : 0);
+            var dSgn = (dTau < 0) ? -1 : 1;
+            var dOn = (eng.driveEngageMs != null) && tMs >= eng.driveEngageMs && tMs < eng.driveReleaseMs;
+            drvF.position.set(drvUx * rimR, RBR_DRIVE_FORCE_Y, drvUz * rimR);
+            // The tangent to a +theta rotation at azimuth a is (cos a, 0, -sin a)
+            // — the sense the drum's own marker travels — so a POSITIVE torque
+            // pushes the rim the way it makes the body turn, and a negative one
+            // reverses it. Read straight off spin.rotation.y, not assumed.
+            rbrSetVectorDir(drvF, [dSgn * drvUz, 0, -dSgn * drvUx]);
+            rbrSetVectorLength(drvF, dLen);
+            // _visWant is the STATE's own answer (recorded by rbrApplyVisibility),
+            // so this AND-gate can only ever hide — never resurrect an overlay
+            // the state switched off.
+            drvF.visible = (drvF.userData._visWant !== false) && dOn && dLen > 0;
         }
 
         // Grip-rule hand: thumb along +L. The flip is a 180-degree rotation
@@ -57841,7 +58399,13 @@ export const FIELD_3D_RENDERER_CODE = `
                          ud.elementType === "rbr_brake_arm" || ud.elementType === "rbr_grip_hand" ||
                          ud.elementType === "rbr_drum_line_label" || ud.elementType === "rbr_r_label" ||
                          ud.elementType === "rbr_l_label" || ud.elementType === "rbr_brake_label" ||
-                         ud.elementType === "rbr_pull_label");
+                         ud.elementType === "rbr_pull_label" ||
+                         // E10 — the drive actuator is physical apparatus, so it
+                         // joins the brighten-only carve-out exactly as the pad
+                         // and arm do. rbr_drive_force is a VECTOR and is
+                         // deliberately absent: an overlay dims like the L arrow.
+                         ud.elementType === "rbr_drive_wheel" || ud.elementType === "rbr_drive_arm" ||
+                         ud.elementType === "rbr_drive_mark" || ud.elementType === "rbr_drive_label");
             applyGlowEmphasis(o, isFocal, glowActive, glowP, solid);
         });
     }
