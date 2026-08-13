@@ -2572,7 +2572,11 @@ export interface Field3DConfig {
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
         I?: { min: number; max: number; step: number; default: number; label: string };
-        r?: { min: number; max: number; step: number; default: number; label: string };
+        //   `unit` / `scale` are the rigid_body_rotation CONTROL-SURFACE
+        //   overrides (0c-4) and are read by rbrSc only. They are optional
+        //   additions to a shared key, so they are inert for every other
+        //   resolver — none of which reads either field.
+        r?: { min: number; max: number; step: number; default: number; label: string; unit?: string; scale?: number | string };
         // ── Lorentz-force sliders (Diamond #2) ───────────────────────────
         q_sign?: { default: 1 | -1; label: string };
         v?: { min: number; max: number; step?: number; default: number; label: string };
@@ -2617,10 +2621,26 @@ export interface Field3DConfig {
         // rescale. m and v are the numerator (wider circle); q_mag and B are the
         // denominator (tighter circle). v and B reuse the keys above; m and q_mag
         // are radius-specific.
-        m?: { min: number; max: number; step?: number; default: number; label: string };
+        m?: { min: number; max: number; step?: number; default: number; label: string; unit?: string; scale?: number | string };
         q_mag?: { min: number; max: number; step?: number; default: number; label: string };
         // magnetic_flux_loop — loop area A (m²). B and theta_deg above are reused.
         A?: { min: number; max: number; step?: number; default: number; label: string };
+        // ── rigid_body_rotation control tokens (rbrSc / RBR_SLIDER_SPEC) ──
+        //   Every field is OPTIONAL: rbrSc falls back to the spec row per field,
+        //   so a concept overrides only what it means to change and everything
+        //   else is byte-identical to the built-in row.
+        //   `unit` is the printed unit of the ROW; `scale` is how that row's
+        //   authored value resolves into the engine quantity it drives (a finite
+        //   non-zero number = a constant factor; a string = a member of
+        //   RBR_CTL_SCALE, e.g. 'i_alpha' for alpha -> tau = I*alpha with I read
+        //   LIVE). They ship together on purpose: a unit with no scale prints a
+        //   correctly-labelled wrong number, a scale with no unit prints a
+        //   correctly-scaled number under a wrong unit. Only `tau_applied`
+        //   resolves a scale today; authored elsewhere it warns.
+        omega0?: { min?: number; max?: number; step?: number; default?: number; label?: string; unit?: string; scale?: number | string };
+        tau_brake?: { min?: number; max?: number; step?: number; default?: number; label?: string; unit?: string; scale?: number | string };
+        tau_applied?: { min?: number; max?: number; step?: number; default?: number; label?: string; unit?: string; scale?: number | string };
+        spin_dir?: { label?: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -56290,6 +56310,101 @@ export const FIELD_3D_RENDERER_CODE = `
         if (!eng) return RBR_DEF_I_FRAME;
         return rbrIOf(rbrRAt(tMs), eng.m);
     }
+    // ── THE CONTROL-SURFACE RESOLUTION (0c-4) ──────────────────────────────
+    //   A control may express a quantity that is NOT the engine's own. The
+    //   readout side already had the idea — RBR_RO_META.theta carries a scale
+    //   and rbrRoFx is the single point that applies it — and this is the SAME
+    //   DECLARATION SHAPE on the control side, deliberately: one declared key,
+    //   one place that applies it, so there is never a second convention for
+    //   "authored units are not engine units".
+    //
+    //   THE SEMANTICS ARE NOT THE SAME, and blurring them would be the defect.
+    //   A readout scale is a DISPLAY conversion and is a constant. A control
+    //   scale is a PHYSICAL RESOLUTION: alpha authored, tau = I*alpha resolved
+    //   internally, with I read LIVE. So the registry members are FUNCTIONS OF
+    //   THE INSTANT, and the one place that applies them is the instant the
+    //   INTEGRATOR CONSUMES the torque (rbrSrcTau, below) — never the instant
+    //   the row was built and never the instant the teacher let go of the dial.
+    //   That is what makes tau = I*alpha hold AS the apparatus changes: rbrIAt
+    //   is a closed form of state-local t that already carries the r ramp, the
+    //   idle sweep, a seized drag, mass count and m.
+    //
+    //   A numeric scale is the constant-factor form (an authored milli-newton-
+    //   metre dial, say). It is NOT live, so it never costs the sub-walk below.
+    //   A unit override with no scale RE-LABELS ONLY — the two halves ship
+    //   together precisely because either alone prints a lie.
+    var RBR_CTL_SCALE = {
+        // authored alpha (rad/s^2)  ->  engine tau (N.m),  tau = I(t) * alpha
+        i_alpha: {
+            live: true,
+            to:   function (v, tMs) { return v * rbrIAt(tMs); },
+            from: function (v, tMs) { var I = rbrIAt(tMs); return (I > 0) ? v / I : 0; }
+        }
+    };
+    function rbrCtlEntry(sc) { return (typeof sc === "string") ? (RBR_CTL_SCALE[sc] || null) : null; }
+    // AUTHORED -> ENGINE. An absent scale returns the value itself, so every
+    // call site is the identity it was before this existed, double for double.
+    function rbrCtlTo(sc, v, tMs) {
+        if (typeof sc === "number") return v * sc;
+        var e = rbrCtlEntry(sc);
+        return e ? e.to(v, tMs) : v;
+    }
+    // ENGINE -> AUTHORED, the display direction (what the row must show when the
+    // engine, not the teacher, is the one holding the value).
+    function rbrCtlFrom(sc, v, tMs) {
+        if (typeof sc === "number") return (sc !== 0) ? v / sc : v;
+        var e = rbrCtlEntry(sc);
+        return e ? e.from(v, tMs) : v;
+    }
+    // Does the resolution move WITHIN a segment? Only a live resolver does, and
+    // only a live resolver makes rbrLAt take its grid sub-walk.
+    function rbrCtlLive(sc) { var e = rbrCtlEntry(sc); return !!(e && e.live); }
+    // Presence is typeof, never truthiness: a scale of 0 is meaningless (it
+    // would resolve every authored value to no torque at all) and is rejected
+    // rather than accepted as "absent by accident".
+    function rbrCtlScale(o, fallback) {
+        var fb = (fallback == null) ? null : fallback;
+        if (typeof o === "number") return (isFinite(o) && o !== 0) ? o : fb;
+        if (typeof o === "string") {
+            if (RBR_CTL_SCALE[o]) return o;
+            rbrWarnUnknownScale(o);
+            return fb;
+        }
+        return fb;
+    }
+    // The control -> source binding. NULL unless the concept authored a scale,
+    // so "absent" is not merely equivalent to the pre-0c-4 behaviour: no ctl
+    // object is ever created and every read below takes its original branch.
+    function rbrCtlBind(token, raw) {
+        var sc = rbrSc(token).scale;
+        return (sc == null) ? null : { scale: sc, raw: raw };
+    }
+    // A source's torque AT ONE INSTANT. A plain source returns its stored tau —
+    // operand for operand what every read site did before this function existed.
+    // A source carrying a control binding is RESOLVED HERE, so its driving
+    // inputs are read live and can never be the ones frozen in at build time.
+    function rbrSrcTau(s, tMs) { return s.ctl ? rbrCtlTo(s.ctl.scale, s.ctl.raw, tMs) : s.tau; }
+    // Does the source carry a torque at all? For a ctl source the AUTHORED value
+    // decides and no instant has to be picked: I is strictly positive, so
+    // alpha != 0 <=> tau != 0 at every instant.
+    function rbrSrcOn(s) { return s.ctl ? (Math.abs(s.ctl.raw) > 0) : (Math.abs(s.tau) > 0); }
+    // The engaged drive/brake sums at ONE instant, written into scratch vars
+    // rather than a fresh object per call (the grid sub-walk below can enter
+    // this thousands of times per evaluation). Operand for operand the inline
+    // loop it replaces: same iteration order, same guards, same additions, so
+    // the sums are bit-equal for every source that carries a stored tau.
+    var rbrSumDrive = 0, rbrSumBrake = 0, rbrSumVaries = false;
+    function rbrEngagedSum(src, tMs) {
+        rbrSumDrive = 0; rbrSumBrake = 0; rbrSumVaries = false;
+        for (var i = 0; i < src.length; i++) {
+            var s = src[i];
+            if (s.onMs == null || !rbrSrcOn(s)) continue;
+            if (!(tMs >= s.onMs && tMs < s.offMs)) continue;
+            if (s.kind === "brake") rbrSumBrake += Math.abs(rbrSrcTau(s, tMs));
+            else rbrSumDrive += rbrSrcTau(s, tMs);
+            if (s.ctl && rbrCtlLive(s.ctl.scale)) rbrSumVaries = true;
+        }
+    }
     // Restart bookkeeping. A restart is the ONLY way spin direction changes —
     // nothing is ever eased through zero (skeleton F4, deleted deliberately).
     // cut time = when the readouts BLANK; effective time = cut + blank, when the
@@ -56386,25 +56501,38 @@ export const FIELD_3D_RENDERER_CODE = `
         var bps = [], i, s;
         for (i = 0; i < src.length; i++) {
             s = src[i];
-            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
+            if (s.onMs == null || !rbrSrcOn(s)) continue;
             if (s.onMs > a.t0 && s.onMs < tMs) bps.push(s.onMs);
             if (s.offMs > a.t0 && s.offMs < tMs) bps.push(s.offMs);
         }
         bps.sort(function (x, y) { return x - y; });
-        var L = a.L0 + 0, lo = a.t0, b, hi, mid, drive, brake;
+        var L = a.L0 + 0, lo = a.t0, b, hi, mid, sl, sh, guard;
         for (b = 0; b <= bps.length; b++) {
             hi = (b < bps.length) ? bps[b] : tMs;
             if (!(hi > lo)) continue;
             mid = lo + (hi - lo) / 2;
-            drive = 0; brake = 0;
-            for (i = 0; i < src.length; i++) {
-                s = src[i];
-                if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
-                if (!(mid >= s.onMs && mid < s.offMs)) continue;
-                if (s.kind === "brake") brake += Math.abs(s.tau);
-                else drive += s.tau;
+            rbrEngagedSum(src, mid);
+            if (!rbrSumVaries) {
+                L = rbrLStep(L, rbrSumDrive, rbrSumBrake, (hi - lo) / 1000);
+            } else {
+                // A LIVE-RESOLVED source's torque moves INSIDE the segment (I
+                // walks under a ramp or a sweep), so one midpoint would hold
+                // tau at one I for the whole span and rbrTauOf — which reads
+                // the exact instant — would print a torque the L beside it was
+                // never integrated at. The segment is therefore walked on the
+                // SAME fixed grid theta already uses, so both agree and the
+                // whole thing stays a pure function of tMs: nothing is carried
+                // between calls, so a rewind still reproduces the value exactly.
+                // Unreachable — and byte-identical — for a source whose torque
+                // is a stored constant, which is every source in the fleet.
+                sl = lo; guard = 0;
+                while (sl < hi && guard < RBR_GRID_MAX) {
+                    sh = sl + RBR_GRID_MS; if (sh > hi) sh = hi;
+                    rbrEngagedSum(src, sl + (sh - sl) / 2);
+                    L = rbrLStep(L, rbrSumDrive, rbrSumBrake, (sh - sl) / 1000);
+                    sl = sh; guard++;
+                }
             }
-            L = rbrLStep(L, drive, brake, (hi - lo) / 1000);
             lo = hi;
         }
         return L;
@@ -56456,14 +56584,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function rbrTauOf(L, tMs) {
         var eng = window.PM_rbrEngine;
         if (!eng) return 0;
-        var src = eng.sources || [], drive = 0, brake = 0, i, s;
-        for (i = 0; i < src.length; i++) {
-            s = src[i];
-            if (s.onMs == null || !(Math.abs(s.tau) > 0)) continue;
-            if (!(tMs >= s.onMs && tMs < s.offMs)) continue;
-            if (s.kind === "brake") brake += Math.abs(s.tau);
-            else drive += s.tau;
-        }
+        // The SAME engaged sum rbrLAt's walk takes, at the exact instant asked
+        // for — so a live-resolved torque prints the value the integrator ran at
+        // (rbrLAt sub-walks the same grid for exactly that reason).
+        rbrEngagedSum(eng.sources || [], tMs);
+        var drive = rbrSumDrive, brake = rbrSumBrake;
         if (L === 0) {
             if (!(Math.abs(drive) > brake)) return 0;                  // static hold
             return drive - (drive < 0 ? -1 : 1) * brake;               // breakaway
@@ -56607,7 +56732,17 @@ export const FIELD_3D_RENDERER_CODE = `
         return {
             min: rbrNum(o.min, sp.min), max: rbrNum(o.max, sp.max), step: rbrNum(o.step, sp.step),
             def: rbrNum(o.default, sp.def), dp: dp,
-            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph
+            label: (typeof o.label === "string" && o.label.length) ? o.label : sp.glyph,
+            // The UNIT resolves EXACTLY the way the label above already did —
+            // authored string wins, spec value otherwise. Before this it was
+            // pinned in the spec and unreachable, so a control could be given a
+            // new glyph but never a truthful unit to go with it, and the only
+            // reachable "fix" was a relabel that printed a lie (alpha over N.m).
+            unit: (typeof o.unit === "string" && o.unit.length) ? o.unit : sp.unit,
+            // The other half of the same mechanism (see RBR_CTL_SCALE): what
+            // resolves this control's authored value into the engine quantity
+            // it drives. Null unless authored.
+            scale: rbrCtlScale(o.scale, sp.scale)
         };
     }
     // RING-GATED controls (E5), the bonding_scene shape reused verbatim
@@ -56651,6 +56786,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var html = "";
         for (var i = 0; i < rbrRowsBuilt.length; i++) {
             var tok = rbrRowsBuilt[i], sp = RBR_SLIDER_SPEC[tok], sc = rbrSc(tok);
+            // Loud, not silent (the E5 rule): only the DRIVE control resolves a
+            // scale today, so a scale authored on any other token would do
+            // exactly nothing and read as accepted.
+            if (tok !== "tau_applied" && sc.scale != null) rbrWarnUnscalableControl(tok);
             html += '<div id="' + sp.row + '" style="visibility:hidden;' + (i ? "margin-top:6px" : "") + '">';
             if (sp.kind === "button") {
                 html += '<button id="' + sp.button + '" style="width:100%;padding:4px 6px;border-radius:5px;border:1px solid #607D8B;background:#263238;color:inherit;font:inherit;cursor:pointer" disabled>Reverse spin</button>';
@@ -56661,7 +56800,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // built row for a negative default (Rule 34c). Every pre-E5
                     // default is non-negative, where the two agree character for
                     // character, so no built row changes.
-                    '<span id="' + sp.val + '">' + rbrFx(sc.def, sc.dp) + '</span>' + sp.unit + '</label>' +
+                    '<span id="' + sp.val + '">' + rbrFx(sc.def, sc.dp) + '</span>' + sc.unit + '</label>' +
                     '<input type="range" id="' + sp.slider + '" min="' + sc.min + '" max="' + sc.max +
                     '" step="' + sc.step + '" value="' + sc.def + '" style="width:100%" disabled>';
             }
@@ -56689,7 +56828,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // For a lone authored brake this is exactly the old two lines.
         var ss = eng.sources || [];
         for (var si = 0; si < ss.length; si++) {
-            ss[si].onMs = (Math.abs(ss[si].tau) > 0) ? eng.evAnchorT : null;
+            ss[si].onMs = rbrSrcOn(ss[si]) ? eng.evAnchorT : null;
             ss[si].offMs = Infinity;
         }
         eng.brakeOnMs = (eng.tau > 0) ? eng.evAnchorT : null;
@@ -56717,14 +56856,23 @@ export const FIELD_3D_RENDERER_CODE = `
     // (creating one if the state authored none) and never touches a brake.
     function rbrSetDriveSource(eng) {
         var ss = eng.sources || (eng.sources = []);
+        // THE ONE PLACE THE CONTROL BINDS TO THE INTEGRATOR. eng.tauApplied is
+        // the CONTROL's own quantity — the engine's tau only when no scale is
+        // authored, which is every concept today, and then ctl is null and both
+        // lines below are the two they replace, double for double. With a scale
+        // authored the source carries the binding rather than a number, so the
+        // resolution happens where the torque is CONSUMED (rbrSrcTau) and I is
+        // never captured here.
+        var ctl = rbrCtlBind("tau_applied", eng.tauApplied);
+        var tv = rbrCtlTo(ctl ? ctl.scale : null, eng.tauApplied, eng.t_ms);
         for (var i = 0; i < ss.length; i++) {
             if (ss[i].kind !== "brake") {
-                ss[i].tau = eng.tauApplied; ss[i].onMs = eng.driveOnMs; ss[i].offMs = Infinity;
+                ss[i].tau = tv; ss[i].ctl = ctl; ss[i].onMs = eng.driveOnMs; ss[i].offMs = Infinity;
                 return;
             }
         }
         if (Math.abs(eng.tauApplied) > 0 && ss.length < RBR_MAX_SOURCES) {
-            ss.push({ id: "applied_torque", kind: "drive", tau: eng.tauApplied, onMs: eng.driveOnMs, offMs: Infinity });
+            ss.push({ id: "applied_torque", kind: "drive", tau: tv, ctl: ctl, onMs: eng.driveOnMs, offMs: Infinity });
         }
     }
     function rbrApplyParam(token, value) {
@@ -56897,6 +57045,23 @@ export const FIELD_3D_RENDERER_CODE = `
             Math.round(w) + "px, wider than the whole KE-bar panel (" + Math.round(box) +
             "px) — it is left-aligned to the panel edge so its head stays readable, but its " +
             "tail still overflows. Shorten the label; the clamp cannot fix an over-wide string.");
+    }
+    function rbrKnownScales() {
+        var out = [];
+        for (var k in RBR_CTL_SCALE) out.push(k);
+        return out.join(", ");
+    }
+    function rbrWarnUnknownScale(sc) {
+        rbrTokenWarnOnce("sc:" + sc, "a slider_controls entry names scale '" + sc +
+            "', which has no RBR_CTL_SCALE resolver — the control's value reaches the engine " +
+            "UNCONVERTED, under whatever unit the row prints. Known scales: " + rbrKnownScales() +
+            " (or a finite non-zero number for a constant factor).");
+    }
+    function rbrWarnUnscalableControl(tok) {
+        rbrTokenWarnOnce("scbind:" + tok, "slider_controls." + tok + " authors a scale, but only " +
+            "'tau_applied' resolves one — this control's value reaches the engine unconverted " +
+            "while its row prints the authored unit, which is exactly the mislabelled-control " +
+            "shape the scale exists to prevent.");
     }
     function rbrWarnUnknownControl(tok) {
         rbrTokenWarnOnce("cv:" + tok, "controls_visible names '" + tok +
@@ -57593,6 +57758,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // guided state's L is initialised; everything after is the closed form.
         eng.L0 = rbrIOf(rbrRAt(0), eng.m) * eng.omega0 * eng.spinSign;
         rbrThetaReset();
+        // The tau_applied ROW shows the CONTROL's own quantity, and the mirror
+        // above read the SOURCE, which carries the authored physics in N.m. With
+        // no scale authored those are the same quantity and this line assigns
+        // the value back to itself, double for double. It sits AFTER
+        // window.PM_rbrEngine = eng deliberately: a live resolver reads I off
+        // the engine and here would otherwise read the PREVIOUS state's
+        // apparatus.
+        eng.tauApplied = rbrCtlFrom(rbrSc("tau_applied").scale, eng.tauApplied, 0);
 
         rbrApplyVisibility(rb);
         rbrToggleSliderRows(rb);
