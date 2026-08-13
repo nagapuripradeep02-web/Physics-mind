@@ -1,5 +1,17 @@
 # Skeleton — `rotational_work_energy` (rotmech · Class 11 Ch.7 · Phase-0b design, Desk A)
 
+> ## ⚖️ FOUNDER RULING 2026-08-14 — **RESEED**, not continue. Binding on `json_author`.
+>
+> **Each guided state reseeds ω₀ = +1.50 rad/s fresh. No state inherits the prior state's decayed ω.**
+> This ratifies `alex:physics_author`'s own reading (`physics_block.md` §2), so the physics block
+> **stands as written — no rework**. Author every state's entry ω from the apparatus contract value,
+> never from where the previous state's ramp ended.
+>
+> Consequence to hold in mind while building: S3/S4/S5 therefore share the same decay from the same
+> start, which is exactly what makes them the same 3D picture with the HUD carrying the whole delta
+> (Rule 32d). They also share a local full-stop at **11475 ms** — every pin and duration stays below
+> it with margin (`physics_block.md` §3).
+
 > **Status:** Phase-0b design artifact, **REVISION 3** — founder-proxy `DESIGN_FIX` cycle 2 of 2
 > applied. **There is no cycle 3** — this revision hands off to `alex:physics_author`. Design only;
 > no physics-block content — that is `alex:physics_author`. Revision 1 is preserved at

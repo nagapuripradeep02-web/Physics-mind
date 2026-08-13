@@ -676,6 +676,30 @@ do."* Whoever fixes the collision is already in these lines; fixing the offset w
 the ring and label at `eng.drumR` leaves the trap armed for the next concept. **Owner:
 `peter_parker:field3d_surgeon`, same dispatch.**
 
+### 📈 BLAST RADIUS IS TWO CONCEPTS, NOT ONE — recurs on `rotational_work_energy`, 2026-08-14
+
+Found independently by **both** `eye-walker` and `quality-auditor` on the new concept's first build,
+neither having been told the other's reading. **Not a new `bug_class` — this row, widened again.**
+
+`rotational_work_energy` authors **no `R_drum` label at all**, so the original brake-vs-R_drum pair
+cannot occur here. What recurs is the half of A-13's already-widened scope that says *"a label can
+overprint both its OWN geometry and a peer label"*:
+
+| Where | Collision |
+|---|---|
+| S2, S3, S4, S5, S6 frozen | `brake` label overprints its own red pad mesh — **every state that shows the pad** |
+| S2/S3/S4 `dense_t01000` | an **orbiting yellow point-mass** swings onto the `brake` glyphs; the word reads as "bra_ke" or is fully obscured |
+| `player_end_STATE_4` | the `r` label overprints the yellow mass sphere |
+
+**Two things this adds to the row.** (1) The occluder is no longer only a static peer label or the
+label's own mesh — it is a **moving body whose screen position depends on rotation phase**, so any
+fix must check clearance against the masses' *current* projected position, not a fixed offset
+computed once. (2) It lands on **S4, the PRIMARY-aha state**, on a second concept.
+
+Severity stays MAJOR; owner unchanged (`peter_parker:field3d_surgeon`). Recorded so the in-flight
+A-13 dispatch sizes its fix against **two** concepts and a phase-dependent occluder — a
+one-off offset tuned only to CoAM's S5 window will not clear this.
+
 ## A-14 · Two OPEN scars give contradictory instructions on narration glow
 
 `concept_ships_zero_narration_glow_bindings` (MAJOR/OPEN, `alex:physics_author`) wants
@@ -1010,6 +1034,52 @@ claim is true.
 Every `readout_at_ms`, `param_ramp` and `formula_lines.at_ms` value in this concept was chosen
 against the physics_block model. **Founder decision needed:** re-time the narration to the player,
 or accept the hold. Not a Desk E item; not fixable on a chapter branch.
+
+### ⚠ THE "ADVISORY" DISPOSITION IS NO LONGER SAFE — A-21 became BLOCKING on `rotational_work_energy`, 2026-08-14
+
+A-21 was filed MEDIUM/ADVISORY and *"explicitly NOT raised to blocking"* — correct on
+`conservation_of_angular_momentum`, where the overrun is only pacing: that concept's states have no
+finite physics horizon to outrun, so a long tail costs patience, not truth.
+
+**On `rotational_work_energy` the same mechanism crosses a physics boundary and becomes a
+correctness defect.** Measured live this session, and the ratios sit squarely inside A-21's own
+2.0–2.7× band:
+
+| state | authored `duration` | actual timeline | ratio | physics full stop |
+|---|---|---|---|---|
+| S3 | 10 s | **24.7 s** | 2.47× | **11.475 s** |
+| S4 | 9 s | **23.3 s** | 2.59× | 11.475 s |
+| S5 | 10 s | **23.8 s** | 2.38× | 11.475 s |
+
+`t_stop = Iω₀/τ = (3.06 × 1.50)/0.40 = 11.475 s`, re-derived independently. So each state spends
+**~50% of its on-screen life past its own full stop**, holding `τ = 0.00 · α = 0.00 · KE = 0.00 ·
+W = −3.45 · θ = 8.62` while its narration and its on-canvas claim say the torque meter reads −0.40.
+**S4 is the PRIMARY-aha state**: it ends holding `KE = 0.00` beside `W = −3.45` against an
+established `KE₀ = 3.44` — the state whose whole claim is *"falls by the same amount, beat for
+beat"* holds two amounts that are not the same. That is a Gate-8 regression of the OPEN
+`teach_visual_must_match_narration` directive, not a pacing complaint.
+
+**One mechanism correction, which strengthens rather than weakens the finding.** quality-auditor
+reported `duration` as *"inert — drives nothing"*. It is not inert; it is a **FLOOR, not a cap**:
+`timelineTotal = Math.max(narrationEnd, duration*1000)` (`build_review_site.ts:1153`), added
+deliberately at founder_proxy Checkpoint B cycle 2 (2026-08-09) so narration finishing early can
+never truncate authored motion (Rule 31: *"motion may outrun narration, never the reverse"*). The
+code comment states it outright: *"a state whose narration alone already runs longer than its
+authored duration keeps that longer narration timeline."* **So `duration` can only LENGTHEN a
+state, never shorten one** — `json_author` genuinely had no lever, and lowering `duration` is not a
+fix. The levers are narration length or the physics parameter.
+
+**Compounding cause worth naming:** the founder's (correct) spell-out ruling costs ~3 words per
+spoken number, and `estSentenceMs` derives the timeline from CHARACTER COUNT — so spelling numbers
+out mechanically lengthens the timeline. A ruling taken for TTS/subtitle correctness silently
+extends every state's dwell. **Any concept with a finite physics horizon is exposed to this.**
+
+**Standing consequence:** A-21's severity is **concept-dependent, not global**. Before accepting the
+advisory disposition, ask: *does this concept's physics reach a terminal state (a full stop, a
+release, a settle) inside the narration timeline?* If yes, A-21 is BLOCKING for that concept and the
+authored parameter must be re-derived against the REAL ~2.0–2.7× timeline, never the authored
+`duration`. Re-dispositioning A-21 fleet-wide is an **office matter** (`build_review_site.ts` is a
+Rule-40 platform file).
 
 ## A-19 · THE EYE's D7 passes a wholly static scene BY CONSTRUCTION — OFFICE/platform item, not Desk E
 

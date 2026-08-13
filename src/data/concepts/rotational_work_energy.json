@@ -1,0 +1,870 @@
+{
+  "concept_id": "rotational_work_energy",
+  "concept_name": "Rotational Work and Energy",
+  "chapter": 9,
+  "section": "9.8",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 11 Physics Ch.7 System of Particles and Rotational Motion §7.9 (rotational kinetic energy; work done by a torque) — table-of-contents scope only, teaching authored from first principles; no example, derivation order or figure imported from any textbook (DC Pandey check: chapter table of contents only). The atomic concept: a constant torque acting through an angle does work on a rotating body, W = τθ, and that work equals the change in the body's rotational kinetic energy, KE = ½Iω² — the rotational work-energy theorem. Does NOT cover what torque is (torque), how I is computed (moment_of_inertia), how a torque produces angular acceleration (tau_eq_i_alpha), angular momentum (angular_momentum), or the kinetic-energy split in rolling motion (pure_rolling, rolling_on_incline). Built on the rigid_body_rotation field_3d engine (0c-1, docs/loop_runs/rotmech/), pure configuration, zero renderer edits.",
+  "prerequisites": [
+    "work_done_by_constant_force"
+  ],
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["rigid_body_rotation"]
+  },
+  "real_world_anchor": {
+    "primary": "A bicycle wheel spun by hand, then slowed by squeezing its brake — the exact system rendered.",
+    "secondary": "A potter's wheel slowed by a hand pressed to its rim, the hand growing warm as the wheel slows."
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 22
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "The brake's work on the wheel exactly equals the kinetic energy it loses.",
+    "visual_confirmation": "The energy meter and its bar fall while the work counter grows more negative, beat for beat, the same amount each time."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I_frame": {
+        "name": "Fixed apparatus inertia (bare turntable, no masses)",
+        "unit": "kg·m^2",
+        "constant": 0.50
+      },
+      "m": {
+        "name": "Mass of each of the two symmetric sliding masses on the rod — apparatus-fixed in this concept, no slider anywhere",
+        "unit": "kg",
+        "constant": 2.0
+      },
+      "r": {
+        "name": "Distance of each mass from the axle — apparatus-fixed in this concept, no slider anywhere (moment-of-inertia dependence belongs to moment_of_inertia, not this concept)",
+        "unit": "m",
+        "constant": 0.80
+      },
+      "I": {
+        "name": "Total moment of inertia of the turntable plus two masses — CONSTANT in every state of this concept (no param_ramp on r, no m/r slider anywhere)",
+        "unit": "kg·m^2",
+        "derived": "I_frame + 2*m*r^2"
+      },
+      "omega0": {
+        "name": "Angular speed the wheel is spinning at when a state's clock begins (the seed value) — every guided state reseeds this value fresh",
+        "unit": "rad/s",
+        "min": 0,
+        "max": 3.0,
+        "default": 1.5,
+        "step": 0.1
+      },
+      "omega": {
+        "name": "Live angular speed — the engine's own derived quantity; documented here as the closed form the decay follows while the brake is engaged and the wheel has not yet stopped",
+        "unit": "rad/s",
+        "derived": "omega0 - (tau_brake/I)*t"
+      },
+      "tau_brake": {
+        "name": "Magnitude of the constant frictional brake torque opposing the spin — the guided value is 0.40 (forced by the 0.05-step slider grid, not taste)",
+        "unit": "N·m",
+        "min": 0,
+        "max": 2.0,
+        "default": 0.40,
+        "step": 0.05
+      },
+      "tau": {
+        "name": "Net RESOLVED torque the wheel actually feels — reads exactly 0 once the wheel is at rest (rest clamp), never the authored schedule value",
+        "unit": "N·m",
+        "derived": "omega > 0 ? -tau_brake : 0"
+      },
+      "alpha": {
+        "name": "Angular acceleration — the engine's own per-step finite difference of omega; equals the closed form below everywhere except the rest-clamp/engage edges (I is constant here, so no dI/dt term ever enters)",
+        "unit": "rad/s^2",
+        "derived": "omega > 0 ? -tau_brake / I : 0"
+      },
+      "theta": {
+        "name": "Angle turned since the torque began acting in THIS state's own local clock (time-integrated)",
+        "unit": "rad",
+        "derived": "omega0*t - 0.5*(tau_brake/I)*t^2"
+      },
+      "KE": {
+        "name": "Rotational kinetic energy — time-varying whenever the brake is engaged; equals 0.5*I*omega0^2 only at/near a state's own t=0",
+        "unit": "J",
+        "derived": "0.5*I*omega^2"
+      },
+      "W": {
+        "name": "Signed work done on the wheel by the torque since THIS state's own run anchor (re-zeroes at every state entry — correct per-state ledger behaviour, not a bug)",
+        "unit": "J",
+        "derived": "tau*theta"
+      }
+    },
+    "computed_outputs": {
+      "I": { "formula": "I_frame + 2*m*r^2" },
+      "alpha": { "formula": "-tau_brake / (I_frame + 2*m*r^2)" },
+      "tau": { "formula": "-tau_brake" }
+    },
+    "formulas": {
+      "moment_of_inertia": "I = I_frame + 2*m*r^2 — CONSTANT throughout this concept: no state authors a param_ramp on r, and neither r nor m is ever exposed as a slider. I = 3.06 kg·m^2 in every single state, STATE_1 through STATE_6.",
+      "angular_decay_under_constant_torque": "While the brake is engaged and the wheel has not yet stopped: omega(t) = omega0 - (tau_brake/I)*t and theta(t) = omega0*t - 0.5*(tau_brake/I)*t^2, t measured from the instant the brake engages in that state's own local clock. The rest clamp holds omega = theta_dot = 0 for all t >= t_stop = omega0*I/tau_brake.",
+      "net_torque_and_alpha": "tau (the PRINTED row) = -tau_brake while omega>0, else exactly 0 (rest clamp) — the net torque the integrator is actually running, never the authored schedule value. alpha (the PRINTED row) is the engine's own per-step finite difference of omega; away from the t=0/engage/rest-clamp edges it equals the analytic -tau_brake/I exactly, because I is constant everywhere in this concept.",
+      "rotational_kinetic_energy": "KE = 0.5*I*omega^2 = L^2/(2I) (numerically identical forms; this concept never displays L).",
+      "work_torque_times_angle": "W = tau*theta, identically BY CONSTRUCTION inside the engine's own integrator (theta and W accumulate from the same grid-walk operand) — this identity never drifts at any pinned instant, for any reachable tau_brake.",
+      "work_energy_theorem": "For constant I: W = delta(KE) = KE - KE0 over the SAME interval (the work-energy theorem for rotation) — holds to within one display quantum (<= 0.01 J), except at the exact full-stop frame, where a shared grid-quantization theta bias pushes the printed W one quantum past the printed delta-KE. No state is ever pinned at the full stop."
+    },
+    "constraints": [
+      "I = I_frame + 2*m*r^2 = 3.06 kg·m^2 at every instant in every state — r and m never change (no slider, no ramp, anywhere in this concept).",
+      "tau (printed) is the RESOLVED net torque, not the authored schedule value: it reads exactly 0.00 once omega = 0 (rest clamp), and -tau_brake at every instant before that.",
+      "alpha (printed) is a finite difference of omega, not tau/I evaluated: stays correct at the rest clamp and at every engage edge; equals -tau_brake/I exactly away from those edges, because I is constant here.",
+      "W is IDENTICALLY tau*theta by construction (never merely approximate) — checkable at any pinned instant, in every state that shows theta, tau and W together.",
+      "W = delta(KE) over the same interval to within one display quantum, except at the exact full-stop frame — no state is ever pinned there.",
+      "W is the SIGNED work integral and re-zeroes at every state's own run anchor (a fresh state entry is a fresh anchor) — never narrated as one continuous run across states.",
+      "tau_brake is reachable only in 0.05 N·m steps over [0, 2.0]; omega0 only in 0.1 rad/s steps over [0, 3.0] — a guided value outside these grids can never be reproduced by a teacher's slider.",
+      "m, r and the drum radius have NO on-screen instrument anywhere in this concept and must never be spoken or quoted, in any state, in any language."
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "grinding_wheel_brake",
+      "type": "B",
+      "label": "A grinding wheel slowed by pressing a tool against its rim",
+      "physical_world": "A grinding wheel in a workshop is slowed by pressing a cutting tool against its spinning rim.",
+      "same_physics": "The same constant opposing torque does negative work equal to the kinetic energy lost — identical W = τθ and W = ΔKE relations.",
+      "scene_hint": "Same turntable rig — the brake pad is relabelled as the tool pressed against the wheel; the physics is unchanged."
+    },
+    {
+      "variant_id": "fan_blade_coasting",
+      "type": "B",
+      "label": "A ceiling fan blade slowing after the switch is turned off",
+      "physical_world": "A ceiling fan blade coasts to a stop under air resistance and bearing friction after its switch is turned off.",
+      "same_physics": "The same opposing torque removes kinetic energy from the spinning blade at the rate W = τθ, matching the lost ½Iω².",
+      "scene_hint": "Same rig, same physics — the wheel and brake pad are relabelled as a fan blade and its resisting drag."
+    }
+  ],
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_4" },
+    "derivation": { "start": "STATE_5", "end": "STATE_5" }
+  },
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 11 Physics Ch.7 System of Particles and Rotational Motion — rotational kinetic energy and work done by a torque",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Main",
+        "coverage": "full",
+        "syllabus_unit": "Mechanics — Rotational Motion — Work and Energy for Rotation",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE Advanced",
+        "coverage": "full",
+        "syllabus_unit": "Mechanics — Rotational Motion — Rotational Work-Energy Theorem",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "NEET",
+        "coverage": "partial",
+        "syllabus_unit": "Physics — Rotational Motion — Rotational Kinetic Energy",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Physics",
+        "coverage": "partial",
+        "syllabus_unit": "IB DP Physics — Rotational dynamics — work and energy",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Physics",
+        "coverage": "partial",
+        "syllabus_unit": "A-level Physics — Rotational motion — work done by a torque",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics 1",
+        "coverage": "full",
+        "syllabus_unit": "AP Physics 1 — Torque and Rotational Motion — Rotational Kinetic Energy",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Physics C: Mechanics",
+        "coverage": "full",
+        "syllabus_unit": "AP Physics C: Mechanics — Rotational Motion — Work-Energy Theorem for Rotation",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  },
+  "assessment": {
+    "mastery_definition": "A student masters this concept if they can state that a spinning body has kinetic energy even when it does not travel, predict how rotational kinetic energy falls as the square of angular speed, compute the work done by a constant torque as W = τθ, explain what a negative sign on that work means, and state that the work done by a torque on a rotating body equals the change in its rotational kinetic energy.",
+    "questions": [
+      {
+        "q_id": "rwe_q1",
+        "stem": "A flywheel spins steadily on a fixed axle, and its centre stays in exactly the same place the whole time. Does the flywheel have kinetic energy?",
+        "options": {
+          "A": "Yes — every part of the spinning flywheel is moving, so it has rotational kinetic energy, KE = ½Iω²",
+          "B": "No — kinetic energy requires the object's centre to move through space",
+          "C": "Only once the flywheel starts slowing down",
+          "D": "Only if an external force is acting on it right now"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses kinetic energy with translational motion of the centre of mass, missing that every point on a spinning body is still moving.",
+          "C": "Assumes kinetic energy appears only when something changes, rather than whenever mass is actually in motion.",
+          "D": "Confuses the condition for a CHANGE in kinetic energy (a net torque) with the condition for kinetic energy to exist at all (motion)."
+        },
+        "tested_idea": "rotational_ke_without_translation",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A ceiling fan spins steadily with its centre bolted in place. Does the fan have kinetic energy while it spins?"
+      },
+      {
+        "q_id": "rwe_q2",
+        "stem": "A brake cuts a wheel's angular speed exactly in half, from ω to ω/2. What happens to its rotational kinetic energy?",
+        "options": {
+          "A": "It falls to one quarter of its original value",
+          "B": "It falls to half its original value, matching the drop in speed",
+          "C": "It stays the same, since only the speed changed, not the mass distribution",
+          "D": "It falls to one eighth of its original value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes kinetic energy scales linearly with speed, the same mistake as assuming K = mv instead of K = ½mv² for straight-line motion.",
+          "C": "Assumes kinetic energy depends only on how the mass is arranged (I), missing that KE = ½Iω² also depends on speed.",
+          "D": "Confuses squaring the speed ratio (ω² → (ω/2)² = ω²/4) with cubing it."
+        },
+        "tested_idea": "ke_proportional_to_omega_squared",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A spinning turntable's speed is cut to exactly a third of its original value. By what factor does its rotational kinetic energy fall?"
+      },
+      {
+        "q_id": "rwe_q3",
+        "stem": "A constant torque of 5.0 N·m acts on a wheel while it turns through an angle of 3.0 radians. How much work does the torque do on the wheel?",
+        "options": {
+          "A": "15 J",
+          "B": "8.0 J",
+          "C": "1.7 J",
+          "D": "The answer cannot be found without knowing how long the torque acted"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Adds torque and angle instead of multiplying them.",
+          "C": "Divides torque by angle instead of multiplying them.",
+          "D": "Believes work needs a time duration, confusing work (force or torque acting through a distance or angle) with power (work per unit time)."
+        },
+        "tested_idea": "work_equals_torque_times_angle",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A torque of 2.0 N·m acts on a rotating shaft while it turns through 4.0 radians. How much work does the torque do?"
+      },
+      {
+        "q_id": "rwe_q4",
+        "stem": "A brake applies a torque that opposes a spinning wheel, and the wheel is slowing down. The work done by the brake's torque is negative. What does that negative sign mean?",
+        "options": {
+          "A": "The brake is removing energy from the wheel",
+          "B": "No work is actually being done, since the wheel is losing speed rather than gaining it",
+          "C": "The brake's torque is pointed the wrong way and should be reversed",
+          "D": "The same amount of work was done, just measured in the opposite direction"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Assumes work requires a gain in speed, missing that a torque doing negative work is still doing real work — it is removing energy.",
+          "C": "Misreads the sign of the work as an error in the torque's direction, rather than a report of energy leaving the body.",
+          "D": "Treats the sign as a measurement convention rather than the direction of energy flow."
+        },
+        "tested_idea": "negative_work_sign_meaning",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A hand presses on a spinning bicycle wheel's rim, and the wheel slows down. The hand's torque does negative work on the wheel. What does that tell you?"
+      },
+      {
+        "q_id": "rwe_q5",
+        "stem": "As a torque does negative work on a spinning wheel, what happens to the wheel's rotational kinetic energy?",
+        "options": {
+          "A": "It falls by exactly the amount of work done",
+          "B": "It stays the same, as long as no external force acts on the wheel's centre",
+          "C": "It falls, but by an amount unrelated to the work done",
+          "D": "It only changes if the wheel is also moving through space"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the condition for kinetic energy to change (work done by a torque) with a condition about forces on the centre of mass.",
+          "C": "Misses the rotational work-energy theorem entirely — the work done IS the change in kinetic energy, not merely correlated with it.",
+          "D": "Confuses rotational kinetic energy with translational kinetic energy, assuming energy can only change if the body travels somewhere."
+        },
+        "tested_idea": "work_energy_theorem_rotation",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A torque does 12 J of negative work on a spinning disc as it slows down. By how much does the disc's rotational kinetic energy change?"
+      },
+      {
+        "q_id": "rwe_q6",
+        "stem": "For a rotating body, torque τ equals Iα, and angle relates to angular speed by dθ = ω dt. Carrying W = ∫τ dθ through with these two relations gives which result?",
+        "options": {
+          "A": "W = Δ(½Iω²), the change in rotational kinetic energy",
+          "B": "W = Iα², a term with no direct physical meaning here",
+          "C": "W = Iω, the angular momentum of the body",
+          "D": "W = ½Iα², an angular-acceleration-only term"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Substitutes τ = Iα incorrectly, squaring α instead of carrying the integral through to completion.",
+          "C": "Confuses the work integral's result with the definition of angular momentum, a different quantity entirely.",
+          "D": "Drops the ω dt substitution partway through, leaving a term built only from α."
+        },
+        "tested_idea": "derivation_of_work_energy_theorem",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Starting from W = ∫τ dθ, substitute τ = Iα and dθ = ω dt, then integrate. What single expression does the work simplify to?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["rwe_q1"],
+      "STATE_2": ["rwe_q2"],
+      "STATE_3": ["rwe_q3", "rwe_q4"],
+      "STATE_4": ["rwe_q5"],
+      "STATE_5": ["rwe_q6"]
+    },
+    "non_assessed_states": ["STATE_6"]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Spinning wheel stores energy",
+        "duration": 8,
+        "focal_primitive_id": "rbr_s1_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "reveal-build",
+        "delta_cue": "Spinning stores energy",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s1_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The wheel spins steadily — nothing external acts on it yet",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s1_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "I, omega and KE build in one at a time: I = 3.06, omega = 1.50, KE = 3.44 joules",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s1_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "the wheel's centre never moves, yet every part of it is moving",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Two masses set this rod's moment of inertia, I: three point zero six kilogram metre squared." },
+            { "id": "s1_2", "text_en": "It turns at one point five zero radians per second, angular speed omega, though its centre never moves." },
+            { "id": "s1_3", "text_en": "The kinetic energy meter reads three point four four joules — nothing travels, yet the energy is real." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Kinetic energy means going somewhere — this wheel stays in one place, so it has none.",
+            "visual_counter": "The wheel's centre never moves, every part of it still traces a circle at real speed, and the meter reads 3.44 J the whole time.",
+            "one_line_fix": "Every part of a spinning body is moving, so a turning body has kinetic energy — for rotation it is one half I omega squared."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Half the speed, quarter the energy",
+        "duration": 12,
+        "focal_primitive_id": "rbr_s2_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "translate-through",
+        "delta_cue": "Brake on: energy drops fast",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s2_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The brake pad travels in and presses onto the wheel's rim",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s2_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Speed falls from 1.50 toward 0.75 rad/s while energy falls from 3.44 toward 0.86 joules — a quarter left",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s2_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a bicycle wheel slowed by squeezing its brake",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Like a bicycle wheel slowed by squeezing its brake, the pad presses onto this wheel's rim." },
+            { "id": "s2_2", "text_en": "The energy bar empties far faster than the speed drops." },
+            { "id": "s2_3", "text_en": "Speed omega falls toward half, zero point seven five radians per second; kinetic energy falls to a quarter, zero point eight six joules." },
+            { "id": "s2_4", "text_en": "Energy depends on speed squared." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Take away half the speed and you take away half the energy.",
+            "visual_counter": "The chips are placed first — ½ of 1.50 on the speed row, ¼ of 3.44 on the energy row — then the live readouts walk down onto them, and the bar is three quarters empty when the speed has only halved.",
+            "one_line_fix": "The energy depends on the speed squared, so halving the speed leaves only a quarter of the energy."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Work is torque times angle",
+        "duration": 10,
+        "focal_primitive_id": "rbr_s3_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "accumulate-through-turn",
+        "delta_cue": "Count the angle turned",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_angle_not_time",
+          "negative_work_sign",
+          "torque_times_angle_is_joules"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s3_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The brake keeps acting — its turning effect is the torque tau",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s3_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Angle theta and work W climb together while the torque meter holds at −0.40 N·m",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s3_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "the minus sign says the brake is taking energy out of the wheel",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "The brake still presses on the wheel's rim — its turning effect, torque tau, keeps the wheel slowing." },
+            { "id": "s3_2", "text_en": "Two counters run together: angle theta, and work W — torque times angle." },
+            { "id": "s3_3", "text_en": "The torque meter reads minus zero point four zero newton metres: the minus sign means the brake removes energy from the wheel." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The wheel is slowing down, so nothing is doing work — work only happens when something speeds up.",
+            "visual_counter": "The work counter keeps climbing the whole state, and every value it shows carries a minus sign.",
+            "one_line_fix": "The brake is doing work on the wheel; the minus sign says that work is removing energy, not adding it."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The work is the energy lost",
+        "duration": 9,
+        "focal_primitive_id": "rbr_s4_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "mirror-fall",
+        "delta_cue": "Energy falls as work grows",
+        "depth_ring": "core",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "where_does_the_lost_energy_go",
+          "rotational_work_energy_theorem",
+          "energy_falls_faster_than_speed"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s4_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The energy meter and the bar return beside the still-running work counter",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s4_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "As work grows more negative the energy bar falls by the same amount, beat for beat",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s4_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "like a potter's wheel slowed by a hand pressed to its rim — the brake's work is the wheel's lost energy",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The energy meter and the bar return, beside the work counter that never stopped running." },
+            { "id": "s4_2", "text_en": "As the work counter grows more negative, the energy bar falls by the same amount — like a potter's wheel slowed by a hand pressed to its rim." },
+            { "id": "s4_3", "text_en": "The brake's work is exactly the wheel's lost energy." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Where the rule comes from",
+        "duration": 10,
+        "focal_primitive_id": "rbr_s5_focal",
+        "advance_mode": "manual_click",
+        "motion_archetype": "equation-build",
+        "delta_cue": "Build the rule",
+        "depth_ring": "advanced",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s5_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "The rule is built line by line beside the same decaying spin",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s5_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "I times alpha checks against the live torque row; the closing line points at the live KE row",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s5_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "a torque that speeds the wheel up instead would do positive work",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "This rule comes from adding up work as the wheel turns." },
+            { "id": "s5_2", "text_en": "Torque equals I times alpha — check it against the live rows." },
+            { "id": "s5_3", "text_en": "Carrying the turn through gives one half I omega squared — the rotational work-energy rule." },
+            { "id": "s5_4", "text_en": "A torque that speeds the wheel up instead does positive work and adds energy." }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Try it yourself",
+        "focal_primitive_id": "rbr_s6_focal",
+        "advance_mode": "interaction_complete",
+        "motion_archetype": "drag-sandbox",
+        "delta_cue": "Try it yourself",
+        "depth_ring": "core",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rbr_s6_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Every relevant control is live — the brake torque and the seed speed",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s6_focal",
+            "position": { "x": 200, "y": 250 },
+            "text": "Drag the brake torque and watch theta, tau and W respond live on the same wheel",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "rbr_s6_anchor",
+            "position": { "x": 560, "y": 400 },
+            "text": "a fresh seed speed starts a fresh work count, exactly as a work ledger should",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "rigid_body_rotation",
+    "explorer_id": "rigid_body_rotation_explorer",
+    "slider_controls": {
+      "tau_brake": { "min": 0, "max": 2.0, "step": 0.05, "default": 0.05, "label": "τ" },
+      "omega0": { "min": 0, "max": 3.0, "step": 0.1, "default": 1.5, "label": "ω₀" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Steady spin — kinetic energy without travel",
+        "caption": "Spinning stores energy",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": false,
+        "show_r_line": true,
+        "show_drum_line": false,
+        "show_pull_arrows": false,
+        "show_grip_hand": false,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": false,
+          "show_r_line": true,
+          "show_drum_line": false,
+          "show_pull_arrows": false,
+          "show_grip_hand": false,
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0 },
+          "readouts": ["I", "omega", "KE"],
+          "readout_at_ms": { "I": 1700, "omega": 3200, "KE": 3900 },
+          "hold_glow": ["KE"],
+          "formula": "KE = ½Iω²",
+          "phases": [
+            { "id": "rod_glow", "at_ms": 0, "until_ms": 3900, "glow_focal": "rbr_rod" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Brake engages — the square law",
+        "caption": "Brake on: energy drops fast",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": false,
+        "show_r_line": true,
+        "show_drum_line": false,
+        "show_pull_arrows": false,
+        "show_grip_hand": false,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": false,
+          "show_r_line": true,
+          "show_drum_line": false,
+          "show_pull_arrows": false,
+          "show_grip_hand": false,
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 800, "pad_travel_ms": 800 },
+          "readouts": ["I", "omega", "KE"],
+          "ke_bar": { "max_j": 3.80 },
+          "reference_marks": [
+            { "id": "omega_half", "surface": "omega", "form": "chip", "value": 0.75, "label": "½ of 1.50", "at_ms": 0, "match_tolerance": 0.01 },
+            { "id": "ke_quarter", "surface": "KE", "form": "chip", "value": 0.860625, "label": "¼ of 3.44", "at_ms": 0, "match_tolerance": 0.01 }
+          ],
+          "hold_glow": ["omega", "KE"],
+          "formula": "KE ∝ ω²",
+          "phases": [
+            { "id": "cause", "at_ms": 0, "until_ms": 800, "glow_focal": "rbr_brake_pad" },
+            { "id": "effect", "at_ms": 800, "until_ms": 12000, "glow_focal": "rbr_drum" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Torque acts through an angle",
+        "caption": "Count the angle turned",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": false,
+        "show_r_line": true,
+        "show_drum_line": false,
+        "show_pull_arrows": false,
+        "show_grip_hand": false,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": false,
+          "show_r_line": true,
+          "show_drum_line": false,
+          "show_pull_arrows": false,
+          "show_grip_hand": false,
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 0 },
+          "theta0_rad": 0,
+          "readouts": ["theta", "tau", "W"],
+          "readout_at_ms": { "tau": 600, "theta": 2500, "W": 2500 },
+          "hold_glow": ["W"],
+          "formula": "W = τθ",
+          "glow_focal": "rbr_r_line"
+        }
+      },
+      "STATE_4": {
+        "label": "The energy lost is the work done",
+        "caption": "Energy falls as work grows",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": false,
+        "show_r_line": true,
+        "show_drum_line": false,
+        "show_pull_arrows": false,
+        "show_grip_hand": false,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": false,
+          "show_r_line": true,
+          "show_drum_line": false,
+          "show_pull_arrows": false,
+          "show_grip_hand": false,
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 0 },
+          "theta0_rad": 0,
+          "readouts": ["KE", "theta", "W"],
+          "ke_bar": { "max_j": 3.80 },
+          "hold_glow": ["KE", "W"],
+          "formula": "W = ΔKE",
+          "glow_focal": "rbr_brake_pad"
+        }
+      },
+      "STATE_5": {
+        "label": "Deriving W equals Delta KE",
+        "caption": "Build the rule",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": false,
+        "show_r_line": true,
+        "show_drum_line": false,
+        "show_pull_arrows": false,
+        "show_grip_hand": false,
+        "rigid_body_rotation": {
+          "mode": "fixed_axis",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": false,
+          "show_r_line": true,
+          "show_drum_line": false,
+          "show_pull_arrows": false,
+          "show_grip_hand": false,
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 0 },
+          "theta0_rad": 0,
+          "readouts": ["I", "omega", "KE", "alpha", "tau", "W"],
+          "readout_at_ms": { "alpha": 1500, "tau": 1500, "W": 3500 },
+          "hold_glow": ["W", "KE"],
+          "formula_lines": [
+            { "text": "W = ∫τ dθ", "at_ms": 0 },
+            { "text": "τ = Iα,  dθ = ω dt", "at_ms": 1500 },
+            { "text": "W = ∫Iω dω = Δ(½Iω²)", "at_ms": 3500 }
+          ],
+          "glow_focal": "rbr_rod"
+        }
+      },
+      "STATE_6": {
+        "label": "Full turntable — brake torque and seed speed live",
+        "caption": "Try it yourself",
+        "camera_position": [2.74, 3.87, 2.74],
+        "show_sliders": true,
+        "show_l_arrow": false,
+        "show_r_line": true,
+        "show_drum_line": false,
+        "show_pull_arrows": false,
+        "show_grip_hand": false,
+        "rigid_body_rotation": {
+          "mode": "sandbox",
+          "apparatus": {
+            "body_shape": "turntable_rod",
+            "i_frame_kgm2": 0.50,
+            "rod_half_length_m": 1.00,
+            "brake_drum_radius_m": 0.55,
+            "rod_height_above_pad_m": 0.25,
+            "r_min_m": 0.15,
+            "r_max_m": 0.90
+          },
+          "masses": { "count": 2, "mass_kg": 2.0, "r_m": 0.80 },
+          "omega0_rad_s": 1.50,
+          "spin_sign": 1,
+          "show_l_arrow": false,
+          "show_r_line": true,
+          "show_drum_line": false,
+          "show_pull_arrows": false,
+          "show_grip_hand": false,
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.05, "engage_at_ms": 0 },
+          "theta0_rad": 0,
+          "readouts": ["I", "omega", "KE", "theta", "tau", "W"],
+          "ke_bar": { "max_j": 14.0 },
+          "formula": "W = τθ",
+          "controls_visible": [
+            { "id": "tau_brake", "min_ring": "core" },
+            { "id": "omega0", "min_ring": "core" }
+          ]
+        }
+      }
+    }
+  }
+}

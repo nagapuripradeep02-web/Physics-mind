@@ -719,6 +719,115 @@ rendered agent). Nothing sealed; no `visual:approve`, no TTS, `PILOT_CONCEPTS` u
 
 ---
 
+## 2026-08-14 · `rotational_work_energy` BUILT (json_author) · EYE 28/28 · quality-auditor **FAIL** on a physics-vs-timeline contradiction
+
+### Founder ruling applied: RESEED
+
+Each guided state reseeds ω₀ = +1.50 fresh; no state inherits the prior state's decayed ω. Ratifies
+physics_author's own §2 reading, so **the physics block stood as written — no rework.** Ruling
+recorded in the headers of BOTH `skeleton.md` and `physics_block.md` so `json_author` could not miss
+it, with the four easy-to-lose constraints folded into the same banner.
+
+### json_author — GREEN, and verified independently rather than taken on report
+
+`tsc` **0** · `validate:concepts` **155 PASS / 0 FAIL** (fleet moved 154→155, so nothing was
+silently skipped). Verified in the built artifact by this desk: **0 digits across 18 narration
+sentences** · S1 has **no `ke_bar`** · **S3 carries `θ, τ, W` — no KE row, no bar** (DoD (k) intact)
+· `max_j` 3.8 / 3.8 / 14.0 · `readouts[]` **monotone in `RBR_RO_META` order with zero unknown
+tokens** (which is why the console came back clean) · every `glow_focal` token a real
+`RBR_ELEMENT_TYPES` member. All 8 registration sites confirmed, **`PCPL_CONCEPTS` correctly ABSENT**
+(sites 2/3/4/8 were pre-registered 2026-08-04 by the wave, verified live, not assumed).
+
+Created `src/scripts/_seed_rotational_work_energy_cache.ts` from the CoAM template — **carrying
+`field_3d_config` into `physics_config`**, without which `[D5]` abstains and an rbr concept greens
+out on a dead scene (`ENGINE_LANDING_NOTICE` §4 trap 2).
+
+### THE EYE — 28/28, and it is a TRUE pass
+
+`[D5]` genuinely armed on all 6 states (1.12 / 4.73 / 1.18 / 1.26 / 1.47 / 1.16 %). 0 warnings.
+H2 skipped — no baseline, correct for a first build.
+
+### eye-walker — core teaching CONFIRMED on pixels
+
+**S4's `mirror-fall` PRIMARY aha is legible**: KE 3.44 → 1.46 → 0.16 J falls in lockstep as
+W 0.00 → −1.98 → −3.29 J, monotonic, same frames. S6 free-runs (θ 0.60 → 14.27 rad, Rule 37). S3's
+deliberately-absent energy instrument reads as designed.
+
+> **One eye-walker finding DOWNGRADED with evidence — not a defect.** It flagged "two simultaneous
+> bright focals" on S2/S4/S5 as a possible Rule-32e break. It conflated two mechanisms:
+> **`hold_glow` is a HUD-row ARRAY** — authored `["omega","KE"]` / `["KE","W"]` in the skeleton's own
+> glow table ("the two mirrored rows") and reviewed by founder-proxy twice without a 32e objection —
+> while **`glow_focal` is the SCENE focal**, which the renderer's own type annotates *"exactly ONE
+> scene focal (Rule 32e)"*. The JSON authors exactly one scene focal per instant (S3 `rbr_r_line`,
+> S4 `rbr_brake_pad`, S5 `rbr_rod`), matching the skeleton. To its credit eye-walker flagged this as
+> ambiguous rather than deciding it.
+
+### quality-auditor — **FAIL**. F1 is real, blocking, and is A-21 crossing a physics boundary.
+
+Every mechanical gate passes: tsc 0 · validator PASS with zero warnings · Rule 15/19/23 · word
+budget 52/54/53/52/52 all inside 25–55 · delta cues ≤5 words · **0 console errors, 0
+`[PM_RBR_TOKEN]` warnings** · ring cut simulated (hiding S5 leaves zero `∫`, zero `α` on any
+surviving surface) · every rendered minus a true U+2212 · physics exact at every instant sampled
+below the stop (τθ = −0.40 × 4.66 → HUD −1.86 ✓; ΔKE −2.3425 → W −2.34 ✓).
+
+**F1 · BLOCKING · `alex:architect` — S3/S4/S5 outrun their own full stop and hold a
+self-contradicting frame.** Timeline 24.7 / 23.3 / 23.8 s against a physics stop at
+`t_stop = Iω₀/τ = (3.06 × 1.50)/0.40 = 11.475 s` (re-derived here). Each spends ~50% of its life
+past the stop holding `τ = 0.00 · α = 0.00 · KE = 0.00 · W = −3.45 · θ = 8.62` while its narration
+and on-canvas claim say the torque meter reads −0.40. **S4 — the PRIMARY aha — ends holding
+`KE = 0.00` beside `W = −3.45` against an established `KE₀ = 3.44`**: the state whose claim is "falls
+by the same amount, beat for beat" holds two amounts that are not the same. Gate-8 regression of the
+OPEN `teach_visual_must_match_narration` directive.
+
+**This is A-21, already filed and dispositioned ADVISORY — and that disposition is now unsafe.** The
+ratios (2.47× / 2.59× / 2.38×) sit inside A-21's own measured 2.0–2.7× band. A-21 is only pacing on
+a concept with no finite physics horizon; here it crosses one. Appended to A-21 with the standing
+test: *does this concept's physics reach a terminal state inside the narration timeline?* If yes,
+A-21 is BLOCKING for that concept. Re-dispositioning fleet-wide is an OFFICE matter
+(`build_review_site.ts` is Rule-40 platform).
+
+> **Mechanism correction that STRENGTHENS the finding.** quality-auditor called `duration`
+> *"inert — drives nothing"*. It is not inert; it is a **FLOOR, not a cap** —
+> `timelineTotal = Math.max(narrationEnd, duration*1000)` (`build_review_site.ts:1153`), added
+> deliberately at founder_proxy Checkpoint B cycle 2 so narration finishing early can never truncate
+> authored motion (Rule 31). **So `duration` can only LENGTHEN a state, never shorten one** —
+> `json_author` genuinely had no lever, and lowering `duration` is not a fix.
+>
+> **Compounding cause, named because it traces to a founder ruling:** spell-out costs ~3 words per
+> spoken number and `estSentenceMs` derives the timeline from CHARACTER COUNT, so the (correct)
+> spell-out ruling mechanically lengthens every state's dwell. Any concept with a finite physics
+> horizon is exposed.
+
+**The lever, arithmetic checked here:** `τ_brake 0.40 → 0.15` gives `t_stop 30.6 s`, clear of the
+~24 s timeline, still on the 0.05 grid, and S5's rendered check still reads (`α` prints 0.05,
+`I × α = 3.06 × 0.05 → 0.15`). **The choice is the architect's** and must be re-derived against the
+REAL ~24 s timeline, never the authored `duration`.
+
+**F2 · MINOR · `alex:json_author`** — `STATE_5.label` = `"Deriving W equals Delta KE"`; `Delta` is
+ASCII where the same state renders `Δ(½Iω²)` correctly three lines away (Rule 34c). The only
+ASCII-math hit in the file. Ride it along on the F1 rebuild.
+
+**F3 · A-13 recurring on a SECOND concept** — corroborated independently by both agents. Appended to
+A-13, no new `bug_class`. Two things it adds: the occluder is now a **moving mass whose screen
+position depends on rotation phase** (so a fixed offset will not clear it), and it lands on the
+PRIMARY-aha state. **The in-flight A-13 dispatch must size against two concepts, not one.**
+
+### Judgment calls adjudicated
+Word bands (52–54 vs the skeleton's narrower targets) **ACCEPTED** — inside Rule 31's global 25–55,
+which is what Gate 3f tests; the skeleton's bands predate the spell-out ruling. "one point five
+**zero**" vs the sibling's "oh" — **not a finding**; the fleet is already mixed and "zero" is better
+under Rule 41c. `chapter 9 / section 9.8` — **no collision** across all 155 JSONs (sibling is 9.9),
+though `source_book` says Ch.7 §7.9 in the same file — the unpinned A-4 convention, an office item.
+
+### Still blocking
+- **`rotational_work_energy`:** **F1** (`alex:architect`, re-derive τ_brake against the real
+  timeline) + F2 riding along. **A-32** still blocks S6 independently.
+- **CoAM:** **A-13** only, engine-owned, in flight.
+- **Both Checkpoint Bs deliberately NOT convened** — held per founder instruction; no merge signal
+  arrived this session. Nothing sealed; no `visual:approve`, no TTS, `PILOT_CONCEPTS` untouched.
+
+---
+
 ## STANDING ASSIGNMENT — Desk A is Desk E's rbr verification partner for E4/E5
 
 **Assigned 2026-08-05.** E4 and E5 are **signed torque** and **the θ / α readout rows**.

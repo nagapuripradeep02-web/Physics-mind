@@ -1,5 +1,31 @@
 # PHYSICS BLOCK — `rotational_work_energy` (rotmech · Class 11 Ch.7 · Phase-0b, Desk A)
 
+> ## ⚖️ FOUNDER RULING 2026-08-14 — §2's reseed reading is **RATIFIED**. This block stands AS WRITTEN.
+>
+> §2 flagged reseed-vs-continue as physics_author's own interpretation and asked for a ruling.
+> **The founder ruled RESEED:** each guided state reseeds ω₀ = +1.50 rad/s fresh; no state inherits
+> the prior state's decayed ω. **No rework — `json_author` builds this block as it stands.**
+>
+> ### Four constraints that are easy to lose in the handoff. All binding.
+>
+> 1. **Numbers in narration are SPELLED OUT** — "minus zero point four zero", never "−0.40". The
+>    digits rule in §4 was struck (see the correction banner there): it rested on a bug class that
+>    exists nowhere in this repo, and the shipped sibling concept is 6-of-6 spelled, 0 digits.
+>    **F-4 is unaffected and still binding** — S3 speaks the SIGNED torque, with the minus named.
+>    On canvas the value stays symbolic/numeric with a true U+2212 (Rule 24); only the SPOKEN form
+>    spells out.
+> 2. **A value that is only COMPUTABLE is not coverage.** Anything absent from the skeleton's §4
+>    instrument table is computed-not-spoken. The engine prints **−3.45** and **8.62** (16 ms grid
+>    bias) — never −3.44 / 8.61, and S3's dwell never reaches 8.61.
+> 3. **DoD (k): NO KE row in S3.** Adding one collapses `mirror-fall` into `accumulate-through-turn`
+>    and evaporates the PRIMARY aha — and every automated gate still passes if you do it.
+> 4. **The two removed beats stay removed.** S1's "bar fills to 3.44 J" (the KE bar writes
+>    unconditionally from state entry, so it cannot be staged — the bar first appears in S2) and
+>    S5's "slower replay" (no playback-rate lever exists on the rbr surface).
+>
+> **`W` and `θ` readout rows exist on master (E5) — author them.** The engine warns
+> `[PM_RBR_TOKEN]` once per unknown token per state, so a **clean console is part of the gate**.
+
 > Produced by `alex:physics_author` against **skeleton REVISION 3** (`skeleton.md`), after founder-proxy
 > Checkpoint A returned `DESIGN_FIX` cycle 1 -> all findings applied -> cycle 2 (F-1..F-6 + the A-34/grid-cap
 > declaration) -> hand-off, **no cycle 3**. Per the task brief, states/archetypes/arc are treated as
