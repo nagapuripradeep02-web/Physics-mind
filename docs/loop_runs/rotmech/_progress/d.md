@@ -373,6 +373,35 @@ misses 1.53 — k = 70.60 and 30.60; 0.60 is fine; the override path is proven o
 `tau_eq_i_alpha` S7's term-by-term assembly is authorable as designed · the state count stays under
 founder decision until K6 is ruled · ruling 4's correction.
 
+---
+
+## 2026-08-13 (second session) — E10 verified as Desk E's partner. CONFIRMED, 23/23.
+
+Ancestry-checked both PRs on master (`24373b2` E10, `99ce132` unit-override), merged clean
+(678-line renderer delta + 38-line deriveStateMeta delta, zero conflicts), triad green: renderer-
+syntax OK ×3, tsc 0, validate **153 PASS / 0 FAIL**.
+
+**Verification was measured, not trusted:** wrote `probe_e10.js` (scratchpad) — extracts the
+emitted functions by name from `field_3d_renderer.ts` and executes them. 23 PASS / 0 FAIL across
+four sections: (A) `rbrActuatorAt` — parked/translating-strictly-before-engage/contact/retract, all
+boundaries exact; (B) `rbrDriveArrowLen` — true zero at 0.01 N, ratio 2.500000 exact, zero
+intercept, no clip at the slider corner; (C) the α scale — τ = 1.836 at I 3.06, worst
+|τ − I(t)·α| = 0.0e+0 under the commit's own I-ramp, `rbrSrcTau` ignores the stored τ and resolves
+the binding per instant; (D) the built row — label α, unit " rad/s²", step 0.01, range ±0.60
+through the real `rbrSc`, azimuth π. Static claims verified at their landed lines: five drive
+meshes in ROOT, `RBR_ELEMENT_TYPES` +5, one shared travel fn with two call sites, per-entry
+`travel_ms` fallback chain, pin widened to `max(2000, travel+500)` with old pins unchanged to the
+millisecond, D5 deliberately not declaring motion from actuator travel (documented, correct for our
+states).
+
+**PASS 6 filed in `findings_d.md`. Verdict: CONFIRMED.** Honest limit stated there: no rbr concept
+JSON exists on this desk, so this is emitted-code + static — the pixel half arrives with the first
+EYE run once `json-author` opens.
+
+**Desk status: E10 was the last engine blocker and it is gone.** Both concepts now wait on exactly
+one thing — **the K6 founder ruling** (8 vs 9 states, brief already on the founder's desk).
+`json-author` stays closed until it lands.
+
 ### Notes for whoever picks this desk up
 
 - Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND

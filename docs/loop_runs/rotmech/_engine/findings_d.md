@@ -956,3 +956,81 @@ tokens, origin fields. On this desk that method found **4 gaps in 20 items**, tw
 
 **Nothing in this pass is a scope demand.** GAP 3 needs no build at all — it needs a decision
 recorded (`rotational_kinematics` ships 8 states) so it is not discovered at seal.
+
+---
+
+## PASS 6 — E10 + unit-override VERIFIED as Desk E's partner. CONFIRMED, 23/23 measured.
+
+**Filed 2026-08-13.** E10 (`24373b2`) and the unit-override capability (`99ce132`) confirmed on
+master by ancestry check, merged into this desk (zero conflicts), triad green (renderer-syntax OK
+×3 · tsc 0 · validate **153 PASS / 0 FAIL**).
+
+**Method — measured, not trusted.** A Node probe (`probe_e10.js`, scratchpad) extracts the EMITTED
+functions from `field_3d_renderer.ts` by name — `rbrActuatorAt`, `rbrDriveArrowLen`,
+`RBR_CTL_SCALE`, `rbrCtlTo`, `rbrSrcTau`, `rbrCtlScale`, `rbrSc` — and executes them against stubs,
+asserting on returned values. **23 PASS / 0 FAIL.** Static claims were verified at their landed
+lines, not from comments.
+
+### A · The actuator is a REAL rendered mesh, and the Rule-32a cause beat is measurable
+
+- **Five real meshes**, built in the ROOT group (never `spin`): `rbr_drive_arm` (box, the brake
+  arm's grey), `rbr_drive_wheel` (cylinder, green — the brake pad is a red box), `rbr_drive_mark`
+  (rotation stripe), `rbr_drive_label`, `rbr_drive_force` (`:57789–57821`). All five registered in
+  `RBR_ELEMENT_TYPES` (`:58117`), the overlay flags map (`rbr_drive_force: rb.show_drive_force`,
+  `:58145`), and the brighten-only carve-out (`:58405–58408` — the force VECTOR is deliberately not
+  in it).
+- **Cause beat, executed:** `rbrActuatorAt` (`:56382`) — parked until `engage − travel`,
+  translating **strictly before** the engage instant (monotonic, probe-verified at 4 interior
+  points), contact exactly during `[on, off)`, retraction over the same travel after release,
+  never-releases holds contact, no-window stays parked. The cause visibly moves before the effect
+  begins, by construction.
+- **One travel mechanism, two consumers, verbatim:** the pad's inline travel block was lifted into
+  `rbrActuatorAt` and BOTH actuators call it (`:58305` pad, `:58320` drive).
+- **Per-entry travel landed as ruled:** `sources[].travel_ms` → top-level `pad_travel_ms` → 1200 ms
+  default (`:57982`, `:58001`) — the exact fallback chain E10's row demanded.
+- **Azimuth π, solved not picked** (`:56209`): clear of the brake (az 0) *and* the rod's home pose
+  (π/2, 3π/2) — the from-rest state class a drive exists for would otherwise park a mass over the
+  actuator.
+- **Rim force: own map, honest zero** (`rbrDriveArrowLen`, `:56364`): probe measured L(0.01 N) = 0
+  (true zero, no floor), ratio τ 1.50 : 0.60 = **2.500000 exact** with zero intercept, the 2.0 N·m
+  slider corner still linear (no clip), 30 N under the asymptote. This kills the failure it
+  replaces (9% spread across a 2.5× change on the shared map).
+- **`deriveStateMeta` co-edit verified** (`:3480–3505`): pin = `release + max(2000, travel + 500)`,
+  travel resolved by the same per-entry chain; at the 1200 default the widened candidate (1700)
+  loses to the 2000 floor, so **every previously authored state keeps its pin to the millisecond**.
+  And the D5 motion branch **deliberately does not** declare motion from actuator travel
+  (`:637–648`) — documented, correct: guided states author `torque_Nm` directly, so D5 coverage of
+  our states is unaffected.
+
+### B · The α control is real — glyph, unit AND scale. A relabel is no longer the only reachable state.
+
+- **Unit override reaches the DOM:** `rbrSc` now resolves `unit` exactly as `label` (`:56975`), and
+  the rbr row builder consumes **`sc.unit`** (`:57037`). Probe: with
+  `slider_controls.tau_applied = { label: "α", unit: " rad/s²", scale: "i_alpha", step: 0.01,
+  min: −0.60, max: 0.60 }` the built row resolves label **α**, unit **" rad/s²"**, step **0.01**,
+  range ±0.60 — the exact shape `rotational_kinematics` S9 needs.
+- **The scale is a physical resolution, not a display conversion:** `RBR_CTL_SCALE.i_alpha.to =
+  v · rbrIAt(t)` with **I read live**. Probe: α = 0.60 → τ = 1.836 at I = 3.06; under the commit's
+  own I-ramp band (0.86 → 3.598), worst |τ − I(t)·α| = **0.0e+0** across 101 instants.
+- **Resolution happens where the torque is CONSUMED:** `rbrSrcTau` (`:56608`) resolves
+  `ctl.raw` through the scale per instant and **ignores the stored τ** (probe: stored 999, returns
+  1.53) — so L integrates the printed torque, never a captured midpoint.
+- **The live-drag path stores the control's own quantity:** `rbrApplyParam("tau_applied")` writes
+  `eng.tauApplied = value` RAW; `rbrSetDriveSource` attaches the **binding** (`ctl`), commented as
+  "THE ONE PLACE THE CONTROL BINDS TO THE INTEGRATOR… I is never captured here." That is ruling 4's
+  corrected form, mechanically.
+- **Absent = identity, wrong = loud:** absent scale returns the value double-for-double; a numeric
+  scale is a constant factor; an unknown scale name returns identity (not NaN) and warns.
+
+### C · Verdict and the honest limit
+
+**E10 + `rbr_slider_unit_is_unoverridable`: CONFIRMED by Desk D as verification partner.** Every
+row-level claim in both commit bodies that this desk could execute was executed and matched;
+every structural claim was found at its stated site.
+
+**The honest limit:** this desk still has **no rbr concept JSON and no seedable rbr consumer**, so
+this verification is emitted-code execution + static evidence, **not pixels**. The pixel half —
+actuator visible in real frames, cause beat in THE EYE's dense capture — lands automatically with
+this desk's first `visual:eyes` run the moment `json-author` opens. Blocked now on exactly one
+thing: **the K6 founder ruling** (state count 8 vs 9). E10 was the last engine blocker and it is
+gone.

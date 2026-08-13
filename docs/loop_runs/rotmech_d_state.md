@@ -11,8 +11,19 @@ engine_surface: `rigid_body_rotation` (rbr) — the 0c-1 frozen contract at `fie
 
 | Wave | Concept | Status |
 |---|---|---|
-| 2 | `rotational_kinematics` | **BLOCKED on E10** (+ C-1 for the v = ωr arrow, + K5 unfiled — see below). α and θ now print (E5). |
-| 2 | `tau_eq_i_alpha` | **BLOCKED on E10.** α is producible (E4) and prints (E5); the drive still has no rendered actuator. |
+| 2 | `rotational_kinematics` | **BLOCKED on the K6 FOUNDER RULING ONLY** (state count 8 vs 9 — `rotational_kinematics/K6_decision_brief.md`). E10 landed + verified; C-1 (v = ωr arrows) and K5 (`time_ticks`) still unbuilt — S2/S6/S7 consume them. |
+| 2 | `tau_eq_i_alpha` | **ENGINE-UNBLOCKED.** E4 + E5 + E10 all landed; E10 verified by this desk (PASS 6, 23/23). Held with its sibling pending the K6 ruling, per the office's json-author gate. |
+
+## E10 VERIFIED — the last engine blocker is gone (2026-08-13)
+
+E10 (`24373b2`) + the unit-override (`99ce132`) confirmed on master by ancestry, merged clean,
+triad green (153 PASS / 0 FAIL). **PASS 6 filed: CONFIRMED, 23/23 measured** — a Node probe
+executed the emitted `rbrActuatorAt` / `rbrDriveArrowLen` / `RBR_CTL_SCALE` / `rbrSrcTau` / `rbrSc`
+against stubs. The actuator is five real meshes with the cause beat translating strictly before
+engage; the rim-force map has a true zero and an exact 2.500 ratio; the α control resolves glyph,
+unit AND scale, with τ = I(t)·α exact under a ramping I and resolution at the point of consumption.
+Honest limit: emitted-code + static, **not pixels** — the pixel half lands with this desk's first
+EYE run once `json-author` opens. **`json-author` stays closed until the founder rules K6.**
 
 ## ⚠ PRE-LOADED FOR `json-author` — read this BEFORE writing either JSON (2026-08-13)
 
