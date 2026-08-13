@@ -1146,6 +1146,84 @@ under B-2.
 
 ---
 
+## 🔍 POST-B-5 RE-WALK — SURVIVAL REPORT, `pure_rolling` half (2026-08-13)
+
+Run `20260813-233552`, 36/36, eye-walked in full. (`rolling_on_incline`'s walk lands separately.)
+
+### B-5 — CONFIRMED FIXED, and S3 now TEACHES its claim
+The main session's two-direction ink verification stands, and the walk adds the story-level
+verdict: red locked wheel appears **at state entry** (the old hide-on-entry gone), decelerates
+1.97 → 0.02 m/s leaving a visible skid trail at `f_k = 1.96 N`; at the handover the green rolling
+wheel takes the lane with `contact = 0.00`, **no mark**. Colour-coding + per-body labels make
+ownership unambiguous. One residual soft spot, not filed as a bug: dense sampling is 1000 ms and
+the handover sits at 1500, so no frame captures the literal transition instant — D6's pixel-delta
+across that gap is 0.10–0.15% (no teleport), but only a real-time watch can confirm it isn't a
+hard cut. **Founder should watch the S3 handover once at review time.**
+
+### Survival list (this concept)
+
+| finding | verdict on this run's pixels |
+|---|---|
+| **N3** (apparatus 1–3% of canvas) | **SURVIVES, all 8 states** — wheel ~90×50 px in 1280×720 |
+| **B-19** (2πR bracket) | **SURVIVES** — legible only at ~5× zoom |
+| **B-13-class** (label collisions) | **SURVIVES AND WORSENS** — S2 (the PRIMARY aha, `aha_moment.state_id = STATE_2`) still a 2-label stack; S4/S5/S6/S8 now a **3-label stack** at ~7 px line spacing. S6 carries the `v+Rω=2v / v−Rω=0` relation, so both aha-critical states are hit. Luminance sampling shows NO dimming (~130–155 across labels) — pure layout collision, which cleanly separates B-13 from N1. *(Walker attributed "PRIMARY aha" to S6; the JSON designates S2 — corrected here, the severity claim survives either way.)* |
+| **B-12** (friction subscript) | **LARGELY RESOLVED** — locked wheel now switches `f_k`(sliding) → `f_s`(stopped) correctly. One low-confidence remainder: the rolling wheel reads `f_k = 0.00 N` its whole run where `f_s` would be the honest subscript for a never-slipping body. Flag, not a re-file. |
+| **N1** (glow dimming) | **NOT REPRODUCED this run — inconclusive, not cleared.** No measurable label dimming in the sampled frames. The 1000 ms cadence can miss a brief window; treat as "not reproduced", never "fixed", until the registration defect is confirmed addressed engine-side. |
+| new findings | **none** |
+
+**Consequence for the queue:** with B-5 closed, the label-collision/legibility cluster (N3 → B-13
++ B-19) is now THE blocking cluster for `pure_rolling`'s seal — and it sits on both aha-critical
+states. That is Brief 3's decision (camera rule), reinforcing option A + C there.
+
+---
+
+## 🔍 POST-B-5 RE-WALK — SURVIVAL REPORT, `rolling_on_incline` half (2026-08-13)
+
+Run `20260813-233854`, 36/36, eye-walked in full. Numeric physics VERIFIED throughout: S2
+`v = Rω` to 0.01; S5 energy split exact (7.00/2.80 J and 4.90/4.90 J, both totalling mgh = 9.8 J);
+S6 release `4.14 → 1.38 N`, exactly ÷3 = (1+k)/k for a disc; S7 regime switch `f_s 2.07 → f_k
+0.44 N`; S8 velocity ordering sphere > disc > hollow > ring.
+
+### B-5 — CONFIRMED on this concept too, both directions
+S3 dense frames: t=0/1000 the locked block alone renders, dragging its skid trail, while the
+rolling disc reads **zero pixels**; t=2000/3000 the block and its label are entirely gone and the
+disc rolls markless with `contact = 0.00`. The state teaches its claim. **B-5 now verified on both
+of its consumer concepts — fully CLOSED.**
+
+### 🔴 B-20 (NEW, CRITICAL, `peter_parker:field3d_surgeon`) — `finish_line.stamp:"order"` renders "TIE" text instead of rank
+
+S1 authors `stamp:"order"` for the four-shape race and S5 for the sphere/ring pair; **both print
+stacked, overlapping "TIE" glyphs at the finish line** (3× on S1, 2× on S5), while S4 — the only
+state that legitimately authors `stamp:"tie"` — is indistinguishable from them. **Verified in the
+main session by 3× crop, not taken on report**: at S1's finish the glyphs read T-I-E repeated,
+diagonally stacked, illegible. S1's entire teaching claim is *"they finish in the same order every
+time"* — the stamp asserts the opposite. Continuity note: this desk flagged "TIE-like stamps in
+S1, which belong to S4" during the E11 verification on 2026-08-06 — that observation is this
+defect, now confirmed. The authored JSON is correct; the engine's `stamp:"order"` path falls back
+to literal TIE text. Prevention rule per the walk: render the ordinal rank per body regardless of
+arrival-gap, and stagger colliding stamps.
+
+### Survival list (this concept)
+
+| finding | verdict |
+|---|---|
+| **B-12** (friction subscript) | **RECURS, sharpened** — the generic HUD panel hardcodes `f_k` regardless of regime (S3 rolling disc, S6 held+rolling, S7 pre-slip), while the **per-arrow labels are correct** (`f_s` authored and rendered). Correct only when genuinely kinetic (S7 post-slip 0.44 N). So: `pure_rolling`'s locked-wheel switch works, but the panel path is still regime-blind. Stays with the surgeon; the walk's prevention rule (select subscript from the live regime, mirroring the arrow logic) is right. |
+| **B-6** (`I_cm` ASCII) | **Present as expected on S6's formula surface.** The walk filed it as "NEW/MODERATE → json_author" — **it is NOT new and must not be re-filed**: it is open B-6, blocked on the Brief-1 ruling (Unicode has no subscript c; recommendation: keep `I_cm`). The walk's proposed row is superseded by that brief. |
+| **N3-class** (camera) | **SURVIVES** — S1/S4/S5 race framing packs bodies+labels into ~150–200 px, the proximate cause of the stamp illegibility and the S4 staging read. Feeds Brief 3, option A. |
+| **B-21 (NEW, MODERATE, `peter_parker:field3d_surgeon`)** | Post-release/post-slip friction labels render dark-maroon on grey incline — near-camouflaged, and colliding with the θ label on S6. Contrast floor ≥4.5:1 per the walk's rule. |
+| **B-22 (NEW, AMBIGUOUS — founder judgment, deliberately unrouted)** | S4, the PRIMARY aha: centroid tracking proves a TRUE tie (y-gap fixed at ~21 px, zero divergence), but the fixed lane offset + radius disparity makes the frame READ as "the big sphere is ahead" — the exact belief the state exists to confront. Physics correct, staging misleading. Options at review: reduce lane_gap, equalise start alignment marker, or accept. Not resolved here. |
+| new-vs-known | The walk's other proposed rows map onto existing findings (camera → N3, subscript → B-12) — no double-filing. |
+
+### Consequence for the seal path
+
+`rolling_on_incline` is blocked on **B-20** (its S1 payoff renders the opposite of its claim),
+**B-12** (HUD), **B-21**, and the N3 camera decision — plus B-22's founder call on the aha staging.
+`pure_rolling` is blocked on the N3 → B-13/B-19 cluster only. **Every remaining blocker on both
+concepts is now engine- or architect-owned, or a founder ruling. Desk B's authoring queue is
+EMPTY.**
+
+---
+
 ## 📋 DECISION BRIEFS FOR THE FOUNDER — B-6 · B-17/N8 · N3 (2026-08-13)
 
 Three rulings requested. Each is one decision; the desk's recommendation is first in each list.

@@ -689,3 +689,31 @@ engine-side label-separation floor as complement, never per-state patches.
 
 ### Awaiting: two eye-walker reports (full 8-state re-walk each, survival list for N1/N3/B-12/
 B-13/B-19). Checkpoint B still HELD — no seal, no visual:approve.
+
+### Re-walk complete — both halves filed (2026-08-13)
+
+**B-5 fully CLOSED**: verified both directions on BOTH consumer concepts (pure_rolling S3 ink
+counts + crops in the main session; rolling_on_incline S3 by the walk — block alone with skid
+trail pre-1500, disc alone markless after). Both S3s now teach their claims.
+
+**pure_rolling survival:** N3 + B-19 + B-13 survive (collision now a 3-label stack on S4/S5/S6/S8,
+2-label on S2 the PRIMARY aha; luminance flat so it is pure layout, not dimming). N1 NOT
+reproduced this run — inconclusive, not cleared. B-12 largely resolved on the locked wheel. No new
+findings. (Walker mis-attributed the PRIMARY aha to S6; JSON says S2 — corrected in the report.)
+
+**rolling_on_incline survival + new:**
+- **B-20 NEW CRITICAL** — `finish_line.stamp:"order"` renders stacked "TIE" glyphs (S1 ×3, S5 ×2);
+  S1's whole claim is the fixed ORDER. Verified by 3× crop in the main session. Closes the loop on
+  this desk's 2026-08-06 flag ("TIE-like stamps in S1"). Engine-owned; authored JSON is correct.
+- **B-12 recurs, sharpened**: the generic HUD panel hardcodes f_k regardless of regime while the
+  per-arrow labels are correct — panel path is regime-blind.
+- **B-21 NEW MODERATE** — dark-maroon friction labels near-camouflaged on the grey incline.
+- **B-22 NEW AMBIGUOUS** — S4 (PRIMARY aha) is a physics-true tie (centroid gap fixed ~21 px) that
+  READS as one sphere ahead due to the lane offset. Founder judgment, deliberately unrouted.
+- The walk's `I_cm` "new" row is open B-6 (Brief 1) — not re-filed. Camera rows fold into N3
+  (Brief 3).
+- Numeric physics verified exact across S2/S5/S6/S7/S8.
+
+**Queue state: Desk B's authoring queue is EMPTY.** Every remaining blocker is engine-owned
+(B-20, B-12, B-21, B-13/B-10/B-11/N1), architect-owned (N3 → B-19), or a founder ruling
+(B-6, B-17/N8, B-22, and the N3 camera-rule decision per Brief 3). Checkpoint B HELD.
