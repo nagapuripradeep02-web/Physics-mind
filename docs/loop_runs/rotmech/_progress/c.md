@@ -179,3 +179,48 @@
   for the up vector, ratio 48.9 %. Robust across pins (589 @13000, 610 @16000, 595 @16000 post-edit), so
   Desk E can verify at either instant. Dead-scene re-check redone at PIXEL level per the standing
   correction — zero identical adjacent pairs across all 5 states.
+
+- 2026-08-13 · **Synced 422 behind (brief implied fewer — trust the repo).** The merge was blocked by
+  766 untracked files master had since started tracking; each verified byte-identical before removal,
+  **zero differed**, and the merge restored all of them tracked. That check mattered: the set included
+  rendered Sarvam `tts_audio` mp3s, which Rule 30h says have no free restore. Triad green after:
+  renderer-syntax OK · tsc 0 · validate:concepts **154 PASS / 0 FAIL**.
+- 2026-08-13 · **F-C9 VERIFIED** (PASS 20). Away-pose ink 589 → **1083**, ratio 48.9 % → **81.7 %**,
+  shaft ink 53 → **554 (10.5×**, vs Desk E's 10.7× on its own rig — two rigs, two concepts, ~2 %
+  apart), bbox height 21 → 60. Up-pose lost no ink. E6 and E9 confirmed NOT landed **from source**:
+  `rbrCutTime(1)` still yields `at_ms + (0 × Infinity)` = NaN, so `every_ms: 99000` stays;
+  no per-state camera exists, so `rigid_body_rotation` stays parked.
+- 2026-08-13 · **Checkpoint B cycle 2 → `FIX(engine)`, BLOCKING. NOT approved. F-C10.**
+  `rbr_l_arrow` and `rbr_pull_arrow` are missing from the rbr brighten-only `solid` carve-out, so the
+  peer-dim pass renders the taught vector at **40 % alpha for ~62 % of guided runtime**. Confirmed on
+  three channels: source (the list omits them while it CONTAINS `rbr_l_label`), scene state (arrow
+  opacity exactly **0.40** at every non-focal instant while label and axle stay 1.00; STATE_5, which
+  authors no focal, reads 1.00 — the control), and pixels (meanLum 118–142 peer vs 238–249 focal,
+  **zero** px above luminance 200 at every peer instant; sign channel R−B +73 → +13 with green
+  becoming max). Worst instance is **S2, core ring** — the arrow is glass for the entire brake shrink
+  that is the state's only motion. Routed `peter_parker:field3d_surgeon` via Desk E; **not dispatched**
+  (guardrail 6).
+- 2026-08-13 · **The miss I own.** PASS 21 measured this exact collapse (252 → 141) and mis-attributed
+  it to "Rule 29 dims non-focal peers = correct by doctrine". It is not correct for a solid mesh, and
+  the carve-out comment four lines above the code I was reading says so. **Every acceptance number this
+  desk produced across cycles 0–2, including the F-C9 verification, was sampled while the arrow was the
+  FOCAL** — true, but evidence about focal instants only. **Standing correction superseding PASS 18:
+  measure at the worst instant across BOTH axes — worst pose AND worst glow phase — each paired with a
+  ratio against the favourable case.**
+- 2026-08-13 · **`eye_capture_ms: 13000` stays only until the engine fix lands** (founder-proxy P2-A).
+  Accepted: the default pin and the player's timeline-end freeze land in the same window by
+  construction, so the default frozen frame is the one a teacher rests on. Moving the gate photographed
+  the arrow at its most favourable instant and hid the defect from the pipeline. "Move the gate, not the
+  pedagogy" was applied to a misdiagnosed cause — the frame was ugly because the sim is.
+- 2026-08-13 · quality-auditor **FAIL → F1 fixed**: `q1` option B was `1.53` under a rationale yielding
+  `2.04`, and `1.53` is not derivable from the stem at all (it is STATE_2's braked value on a STATE_1
+  question). Changed to **2.04**. F2 (three ⚙ widgets labelled with internal tokens, one a button
+  labelled "slider") is engine-side, scenario-level, ride-along — reported, not dispatched.
+- 2026-08-13 · **P3-A landed** (unsequenced): `skeleton_rev5.md` R9 item 4 withdrawn — it called
+  `field_3d_config.states.<S>.label` "dev-facing" and asked to append an authoring note to it, but
+  `label` is **rendered on canvas** (`field_3d_renderer.ts:77228`). Applying it would have printed an
+  authoring note on the sim. Corrected so the four remaining rotmech concepts do not inherit it.
+  **P2-A and P2-B deliberately NOT done — both sequenced after the engine fix.** P2-B especially:
+  `rbr_l_arrow` is never the focal in STATE_3, so enabling it now would render it glass for 100 % of
+  the concept's aha state.
+- 2026-08-13 · **This is fix cycle 2. Cycle 3 is the last before ESCALATE.**

@@ -1368,3 +1368,118 @@ the right beat for s4_4 and quality-auditor independently endorsed it at Gate 15
 Both are the same failure mode as PASS 18 and PASS 19: the convenient instrument fails **open**.
 
 No DB write, no engine dispatch (guardrail 6), no `visual:approve`.
+
+---
+## PASS 22 — **F-C10 · CRITICAL · the L vector renders at 40 % alpha whenever it is not the glow focal. Confirmed on three channels. My PASS 21 stopped one step short of this.**
+
+Filed 2026-08-13 by Desk C after founder-proxy returned `FIX(engine)` **blocking** at Checkpoint B
+fix cycle 2. **Verified independently before relaying, on three channels.**
+
+### The defect
+
+`applyRigidBodyRotationGlow`'s peer-dim pass takes a `solid` (brighten-only) carve-out list
+(`field_3d_renderer.ts:57838-57843`). It contains 13 element types — including **`rbr_l_label`**,
+the italic "L" sprite, and `rbr_pull_label`. It does **not** contain **`rbr_l_arrow`** or
+**`rbr_pull_arrow`**.
+
+The rule it violates is stated four lines above it, in the engine's own words (`:57833`):
+
+> *BRIGHTEN-ONLY for the solid apparatus … the dim branch drops opacity to 0.40, right for an
+> OVERLAY and wrong for a physical OBJECT (a 40% turntable renders as glass).*
+
+**E7 moved the arrow across exactly that boundary** — from a zero-width `THREE.Line` overlay to a
+mesh cylinder + cone — and did not move it into the carve-out. So the label stays opaque while the
+vector it names goes to glass, and the axle is drawn through the vector again. That is the FIXED
+scar `field3d_arrowhelper_shaft_invisible_when_collinear_with_apparatus_line` recurring in a **third
+mode**: not collinearity (E7), not silhouette (F-C9), but runtime alpha.
+
+### Three-channel confirmation
+
+**1 · Source.** `rbr_l_arrow` and `rbr_pull_arrow` absent from the `solid` predicate;
+`GLOW_DIM_OPACITY = 0.4` at `:3767`; `applyGlowEmphasis(o, isFocal, glowActive, glowP, solid)`
+takes `solid` as its `brightenOnly` argument.
+
+**2 · Scene state — unambiguous, read from live material objects, not inferred from pixels:**
+
+| instant | arrow opacity | `rbr_l_label` | `rbr_axle` | meanLum | px > lum 200 |
+|---|---|---|---|---|---|
+| S1 @5000 peer (drum_marker focal) | **0.40** | 1.00 | 1.00 | 118.4 | **0** |
+| S1 @20000 **focal** | 1.00 | 1.00 | 1.00 | 238.1 | 1279 |
+| S2 @5000 peer (brake_pad focal) | **0.40** | 1.00 | 1.00 | 124.8 | **0** |
+| S2 @16000 **focal** | 1.00 | 1.00 | 1.00 | 242.0 | 780 |
+| S4 @13000 **focal** (down) | 1.00 | 1.00 | 1.00 | 249.2 | 1068 |
+| S4 @17000 peer (mass focal, down) | **0.40** | 1.00 | 1.00 | 141.5 | **0** |
+| **S5 @1500 — no `glow_focal` authored at all** | **1.00** | 1.00 | 1.00 | 224.3 | 1250 |
+
+**S5 is the clean control.** It authors no focal, so `glowActive` is false, nothing dims, and the
+arrow is opaque for the whole state. That is what proves the glass rendering elsewhere is the dim
+path and not a material property.
+
+**3 · Sign channel destroyed at peer instants.** Rule: *"direction and COLOUR from its sign, so a
+teacher reads the sign before reading the number"* (`:57757`). S4 down-pose mean RGB is
+**(254,254,182), R−B = +73** while focal — unmistakably amber. At the peer instant it composites to
+**(137,144,124), R−B = +13**, with **green now the max channel**. The amber/cyan pair a teacher is
+meant to read the sign from is gone in the pose where the sign is the entire lesson.
+
+**Worst instance is S2, and it is core ring.** S2's claim is "L falls in proportion to ω" and its
+whole visual is the arrow shrinking as the brake bites, 0–12.6 s. The arrow is glass for that entire
+shrink and turns opaque only after it ends. The state's one motion happens on a see-through object.
+
+### What I got wrong, stated plainly
+
+**PASS 21 measured this collapse and mis-attributed it.** I recorded mean luminance 252 → 141 and
+every pixel above 200 disappearing across the p3→p4 boundary, correctly traced it to the peer-dim
+path — and then called it *"Rule 29 dims non-focal peers"*, i.e. correct by doctrine. It is not
+correct for a solid mesh, and the carve-out list four lines above the code I was reading says so.
+
+Both PASS 18 and PASS 21 are the same error at different depths: **I corrected my acceptance
+measurements for POSE (measure the arrow pointing away from camera) and never corrected them for
+GLOW PHASE.** Every acceptance number this desk produced in cycles 0, 1 and 2 — including the F-C9
+verification in PASS 20 — was sampled while the arrow was the focal. Those numbers are true and they
+proved nothing about the other 62 % of the concept's guided runtime.
+
+**Standing correction, superseding the PASS 18 rule:** measure at the worst instant across **both**
+axes — worst POSE (pointing away from camera) **and** worst GLOW PHASE (while a non-focal peer) —
+and pair each with a ratio against the favourable case. A measurement taken at a focal instant is
+evidence about focal instants only.
+
+### Consequence for the `eye_capture_ms` I authored in PASS 21
+
+founder-proxy's ruling: keep it only until the engine fix lands, then remove it (its P2-A). The
+reasoning is correct and I accept it — the default pin (`maxRevealMsByState`) and the player's
+timeline-end freeze (Rule 26) land in the same late window **by construction**, so the default
+frozen frame is the one a teacher actually rests on. Moving the gate to 13000 photographed the arrow
+at its single most favourable instant and removed the only automated frame that would have shown a
+reviewer this defect. The principle *"move the gate, not the pedagogy"* was applied to a
+misdiagnosed cause: the 16000 frame was not an unlucky gate, it was an accurate picture of a broken
+sim. **The failure was diagnostic, not procedural.**
+
+### Routing — NOT dispatched from this desk (guardrail 6)
+
+**Owner `peter_parker:field3d_surgeon` via Desk E. BLOCKING.** Fix shape: add `rbr_l_arrow` and
+`rbr_pull_arrow` to the `solid` predicate — both are mesh cylinders + cones since E7, i.e. physical
+objects by the comment's own test. Scenario-local; Rule 40 says land it on master separately.
+Acceptance criteria are in founder-proxy's §7 and are written to be unsatisfiable at a focal
+instant. **Amend the existing arrowhelper scar (upsert on `bug_class`) — do not mint a new class for
+the recurrence**; a separate NEW class is warranted only for the mesh-conversion/carve-out omission
+itself.
+
+Riding along, same owner: **F2** — `rbr_kebar` → "Kebar", `rbr_repin` → "Repin",
+`rbr_spin_dir_row` → "Spin dir slider" (it is a *button*, `:56601`). Three `data-wg-label`
+attributes. Scenario-level, so it reaches every rotmech concept.
+
+**Deliberately NOT routed:** whether `GLOW_DIM_OPACITY = 0.4` should dim luminance rather than alpha
+for all solid meshes fleet-wide. That is a policy change across ~40 baselined concepts and is the
+founder's call, not a chapter loop's. founder-proxy reached the same conclusion independently.
+
+### Not done here, and why
+
+**P2-A** (remove `eye_capture_ms`) and **P2-B** (STATE_3 `show_l_arrow: true`) are both **sequenced
+after** the engine fix and are deliberately left undone. P2-B especially: `rbr_l_arrow` is never the
+focal in STATE_3 (phases are brake_pad → mass → drum_marker), so switching it on before the
+carve-out lands would render it glass for **100 %** of the state — the exact defect, newly
+introduced, in the concept's aha state. **P3-A is done** (unsequenced): `skeleton_rev5.md` R9 item 4
+withdrawn, with the reason and a general rule recorded so the four remaining rotmech concepts do not
+inherit it.
+
+No DB write, no engine dispatch, no `visual:approve`.

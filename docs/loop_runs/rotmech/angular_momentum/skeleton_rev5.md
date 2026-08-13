@@ -132,8 +132,21 @@ APPEND
 3. `epic_l_path.states.STATE_5.scene_composition` annotation `am_s5_head` `text`:
    `"Change the mass, the spin speed, or the spin direction freely"`
    → `"Change the mass or the spin speed freely"`
-4. `field_3d_config.states.STATE_5.label` (dev-facing record): append
-   `"; spin_dir excluded (S4-only — Rule 38b)"` to the existing exclusion clause.
+4. ~~`field_3d_config.states.STATE_5.label` (dev-facing record): append
+   `"; spin_dir excluded (S4-only — Rule 38b)"` to the existing exclusion clause.~~
+   **WITHDRAWN 2026-08-13 — the premise is false and json_author was right to ignore it.**
+   `field_3d_config.states.<S>.label` is **NOT** a dev-facing record: it is **rendered on canvas**
+   as the bold first line of the bottom-left legend — `field_3d_renderer.ts:77228`,
+   `lines.push("<b>" + (stateDef.label || PM_currentState) + "</b>")` — and is visible in all five
+   frozen frames. Applying this item would have printed an authoring note on the simulation.
+   Raised by quality-auditor and confirmed independently by founder-proxy at Checkpoint B cycle 2;
+   verified in source here. **The exclusion is already correctly recorded** by S5's
+   `controls_visible: ["m","omega0"]` omitting `spin_dir` — no prose note is needed anywhere.
+   Corrected here so the four remaining rotmech concepts do not inherit it (owner `alex:architect`,
+   founder-proxy P3-A).
+   **General rule for this chapter:** on `field_3d`, the reader-facing strings at the
+   `field_3d_config.states.<S>` level are `label` and `caption` — both rendered. Only fields inside
+   the scenario block (here `rigid_body_rotation`) are configuration.
 
 DO NOT TOUCH: `STATE_4.rigid_body_rotation.controls_visible: ["spin_dir"]`; the physics block's
 spin-direction variable entry; STATE_5's rendered `caption: "Try it yourself"`; `am_s5_detail` /
