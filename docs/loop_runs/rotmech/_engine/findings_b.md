@@ -1146,6 +1146,63 @@ under B-2.
 
 ---
 
+## 📋 DECISION BRIEFS FOR THE FOUNDER — B-6 · B-17/N8 · N3 (2026-08-13)
+
+Three rulings requested. Each is one decision; the desk's recommendation is first in each list.
+
+### Brief 1 — B-6: `I_cm` vs Rule 34c (Unicode has no subscript c)
+
+**The question:** S6 renders the formula `f·R = I_cm·α`. Rule 34c mandates Unicode math on canvas,
+but the Unicode subscript block is ₐ ₑ ₕ ᵢ ⱼ ₖ ₗ ₘ ₙ ₒ ₚ ᵣ ₛ ₜ ᵤ ᵥ ₓ — **no c**. U+1D9C (ᶜ) is a
+modifier letter that renders as a superscript. 34c literally cannot be satisfied.
+
+| option | cost |
+|---|---|
+| **(A) RECOMMENDED — keep `I_cm`; amend 34c with a documented no-glyph exception** ("where Unicode provides no subscript glyph, standard physics ASCII is the correct spelling") | Zero content cost. `I_cm` is the standard physics notation every textbook uses; the exception is a one-line doctrine note that future concepts (`v_cm`, `a_cm` — the same c!) will need anyway. Ch.7+ is full of centre-of-mass subscripts, so this recurs immediately. |
+| (B) `Icm` (no separator) | Reads as a three-letter variable; non-standard; ambiguous at 14 px. |
+| (C) bare `I` + "about the centre of mass" in narration | Loses precision exactly where it matters — a rolling body has DIFFERENT moments about contact vs centre, and I_contact = I_cm + mR² is the next concept's whole point. A bare `I` plants the ambiguity Ch.7 exists to remove. |
+
+**One-line ruling suffices: "A" closes B-6 with no file edit; "B" or "C" is a one-string edit.**
+
+### Brief 2 — B-17 + N8: the explore state's advanced-ring controls, and the preset layer that does not exist
+
+**The question:** `pure_rolling` S8 exposes `v₀/R/ω₀/μ_k`; `ω₀/μ_k` are first taught in S7
+[advanced]. `rolling_on_incline` S8 exposes `θ/μ_s` first taught in S6/S7 [advanced]. Your prior
+ruling — "keep the controls; hide those rows in the reduced presets (38h)" — is half-applied: the
+controls are kept, but **the hiding cannot be done because no preset layer exists**: no `presets`
+field in the schema, zero concepts author one, no code reads `depth_ring`, and the scar row
+`unit_circle_checkpoint_a` forbids assuming a hiding mechanism ("a ring cut is discharged by RING
+ASSIGNMENT, never by a field"). N8 (S8's narration names the same advanced concepts) is subsumed —
+a dial you may show is a dial you may name.
+
+| option | cost |
+|---|---|
+| **(A) RECOMMENDED — accept as-is; record that the ruling's second half becomes actionable when a preset layer lands** | Zero cost today: nothing reduces anything, so nothing is incoherent. When presets land, S8's rows AND its narration both become preset-aware in one pass. This desk's ledger already tracks it as a dependency. |
+| (B) commission the preset layer now (schema field + consumer + 38h semantics) | A platform feature on master — new scope, new owner, and it blocks nothing this chapter ships. |
+| (C) re-ring S6/S7 down to extended so every explore control maps to a surviving ring | This is the state redesign your ruling excluded, and it inflates the reduced presets' teaching load — the derivation states ARE advanced. |
+
+**A closes B-17 and N8 together with a doctrine note; B opens a platform work item; C reopens two
+sealed-design skeletons.**
+
+### Brief 3 — N3: the framed-extent camera rule (parent of B-13, B-19, and the open close_camera row)
+
+**The question:** the architect camera plan sets framed extent = full run + one body diameter
+(4.0–6.4 m) for a 0.5 m body, so the wheel is 15–30 px in a 1280×720 frame. Four findings are
+symptoms of this one rule: B-13 (point-label collisions, INCLUDING the PRIMARY aha state S2),
+B-19 (the 2πR bracket at ~10–14 px), the open `close_camera_framed_extent…` row, and half of N7's
+residue (S5's direction arrows are ~50 px stubs). **Fixing any symptom individually papers over
+the rule in one place and leaves the other three.**
+
+| option | cost |
+|---|---|
+| **(A) RECOMMENDED — architect amends the camera rule to budget GLYPH HEIGHT, not just body framing** ("when a state's payoff is an overlay — bracket/labels/marks — the camera table must verify each glyph ≥ a minimum px height at the authored distance"), then ONE re-framing pass over both concepts against the new rule | One architect dispatch + one authoring pass + one re-walk. Fixes all four symptoms coherently, and every future nlb concept inherits the rule. The engine already exposes `camera_target_m` — no engine work. |
+| (B) per-state camera patches on S1/S2/S4/S5/S6 now | Cheaper today; leaves the rule wrong, so `rolling_on_incline` and every future chapter re-derives the same defect. Explicitly what this desk has refused four times. |
+| (C) engine-side label-separation + glyph-size floor (field3d_surgeon) | The durable *complement* to A (it fixes label COLLISION at any camera) — but alone it cannot make a 15 px wheel readable. Worth doing WITH A, not instead of it. |
+
+**Recommendation is A, with C as its engine-side complement. B is the trap.**
+
+---
+
 ## 📒 FINDING LEDGER — read this first (2026-08-07)
 
 Every finding this desk has raised, with owner. **Authoring-side is now CLOSED except two doctrine

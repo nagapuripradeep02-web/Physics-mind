@@ -657,3 +657,35 @@ adjacent comparison sound, never across runs. Dead-scene findings stand, no re-d
 ### Verify
 tsc 0 · validate:concepts 151 PASS / 0 FAIL · both concepts PASS. The gate caught nothing this
 time because the previous session's lesson held: run the gate after every edit, not at the end.
+
+---
+
+## 2026-08-13 — B-5 verified on pixels; owed re-walk running; decision briefs filed
+
+**Sync:** `9e77023` (B-5, PR #121) confirmed ON_MASTER by merge-base; merged 430 commits by hand,
+zero conflicts. Triad: renderer syntax OK · tsc 0 · validate **155** PASS / 0 FAIL (fleet grew).
+Both desk fixes intact. Re-seeded both concepts (`sim_html` → ~5.04 M chars, new renderer under
+test); THE EYE 36/36 on both.
+
+### B-5 PARTNER VERIFICATION — verified in BOTH directions, from dense frames
+Per the known limitation (the reveal pin cannot photograph the first half of a single_lane state),
+verified from dense frames, ink-pixel counts + crops on `pure_rolling` S3:
+- **Positive:** real ink at every timestamp — 556/581 px during the locked window [0,1500),
+  297–346 px during the roll window, vs the S1 single-body control at 418–455 px. Previously a
+  bare plank at every frame.
+- **Negative:** during the locked window the RED "locked wheel" renders with its skid mark and the
+  green roll body reads ZERO ink; after 1500 the GREEN "rolling wheel" renders and the red is gone.
+  One body per window, exactly as authored. The ink drop at the handover (581→297) is the
+  single-occupancy signature — double occupancy would read ~double.
+**B-5 CLOSED as verified on this desk's own concept.** The eye-walkers are extending this to
+`rolling_on_incline` S3 and judging whether both S3s now TEACH their claims.
+
+### Decision briefs filed (findings_b.md top) — B-6 · B-17/N8 · N3
+Each one decision, desk recommendation first: B-6 → keep `I_cm`, amend 34c with a no-glyph
+exception (v_cm/a_cm recur immediately); B-17/N8 → accept as-is, both halves become preset-aware
+in one pass when a preset layer lands; N3 → amend the CAMERA RULE to budget glyph height (one
+architect dispatch + one pass fixes B-13 + B-19 + the close_camera row + N7's residue), with the
+engine-side label-separation floor as complement, never per-state patches.
+
+### Awaiting: two eye-walker reports (full 8-state re-walk each, survival list for N1/N3/B-12/
+B-13/B-19). Checkpoint B still HELD — no seal, no visual:approve.
