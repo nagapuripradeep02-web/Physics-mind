@@ -16,7 +16,8 @@ on them (author forward-compatible config per design; it is an inert no-op today
 | GAP 1 — `rbr_v_arrows` group focal (§G row 1) | S6 | — |
 | E6 — `restart.runs[]` per-run overrides | — | S5 (run B re-pose) |
 | GAP 4 / D7 — per-particle force arrows | — | S7 (ledger arrows) |
-| E8 — live-drag rendered agent | — | S8 (drag-driven actuator show/hide) |
+| E8 — live-drag rendered agent | STATE_8 (α-drag moves physics, actuator static) | S8 (drag-driven actuator show/hide) |
+| PASS-7 #2 — wheel travel tracks first source only | — | S5 run B (wheel parked while torque re-engages) |
 
 **Consequence: both JSONs are authored now, but NEITHER concept may be sealed** — no
 quality-auditor final PASS, no eye-walker final verdict, no Checkpoint B — until its column above

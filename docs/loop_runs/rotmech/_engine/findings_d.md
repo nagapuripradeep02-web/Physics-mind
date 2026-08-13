@@ -1034,3 +1034,37 @@ actuator visible in real frames, cause beat in THE EYE's dense capture — lands
 this desk's first `visual:eyes` run the moment `json-author` opens. Blocked now on exactly one
 thing: **the K6 founder ruling** (state count 8 vs 9). E10 was the last engine blocker and it is
 gone.
+
+---
+
+## PASS 7 — three engine findings surfaced by json-authoring both concepts (2026-08-14)
+
+K6 ruled Option B; both concept JSONs are authored (155 PASS / 0 FAIL fleet-wide, tsc 0). The two
+`json-author` runs verified their authoring paths against the landed code and surfaced three engine
+findings. All three are **E8-family** (visibility/travel decided once at state-apply, never from
+live engine state). Filed for Desk E; none blocks authoring, all three block SEALING (they are rows
+in the desk's do-not-seal gate).
+
+1. **`padOn` reads ONLY the legacy scalar — a brake authored via `sources[]` leaves the pad mesh
+   permanently invisible despite correct physics.** `rbrApplyVisibility`'s brake-pad check reads
+   `external_torque.tau_brake_Nm` directly off the state config and never consults the resolved
+   `eng.sources` list. `tau_eq_i_alpha` S6 sidesteps it by authoring the legacy `source: "brake"`
+   form — recorded so the NEXT rbr concept that authors a brake inside `sources[]` does not ship an
+   invisible pad. (The drive half does not have this defect: `driveOn` reads the resolved list.)
+2. **The drive wheel's travel animation tracks only the FIRST source window.**
+   `eng.driveEngageMs/driveReleaseMs` are set once at state-apply from the first drive entry, so in
+   `tau_eq_i_alpha` S5 (two drive windows via `sources[]`) the integrator correctly re-engages
+   torque for run B while the wheel stays parked from ~3.7 s on — physics right, cause beat absent
+   for the second window. Closes together with E6 (`restart.runs[]`) since run B's re-pose is also
+   waiting on it.
+3. **E8 reaches `rotational_kinematics` STATE_8 too, not only the τ concepts' sandboxes.** A live
+   α-drag moves the physics (`rbrSetDriveSource`) but the actuator meshes neither travel nor
+   show/hide (travel rides the authored window only — E10's own Rule-36 decision, correct for
+   guided states, incomplete for sandboxes). Both explore states in both Desk-D concepts wait on
+   E8's live half.
+
+Forward-compatible keys authored and inert today, per the do-not-seal table: `time_ticks` (S2/S7),
+`point_markers[]` + `rbr_v_arrows` (S6/S8), the `theta_arc` glow token (S1) in
+`rotational_kinematics`; `restart.runs[]` (S5) in `tau_eq_i_alpha`. D7's arrows have **no declared
+extension point at all**, so nothing forward-compatible was authorable for S7 — the one design
+payload with no config presence.

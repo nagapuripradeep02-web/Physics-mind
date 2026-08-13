@@ -402,6 +402,45 @@ EYE run once `json-author` opens.
 one thing — **the K6 founder ruling** (8 vs 9 states, brief already on the founder's desk).
 `json-author` stays closed until it lands.
 
+---
+
+## 2026-08-14 — K6 ruled (Option B) · follow-ups executed · BOTH CONCEPT JSONS AUTHORED
+
+**K6: founder ruled Option B** — 8 states ratified, named revisit when the graph panel is built
+chapter-wide. Desk D concurred. Three follow-ups executed and recorded in the brief: count = 8
+(design S9 → STATE_8, `calculus_graphs` removed), curriculum-tag rider run (advanced claims
+dropped; AP-C/IB-HL `revisit_when: graph_panel_lands`), 38a coherence confirmed. Also answered the
+office's reseed-vs-continue question for Desk A's `rotational_work_energy`: **ratify reseed** —
+Rule 25d reorder safety + the engine's single-frame re-pose semantics + the tau P1-7
+continuity-by-number pattern for deliberate carry-overs.
+
+**json-author OPENED and COMPLETED on both concepts** (two parallel dispatches, disjoint files,
+registration pre-registered and untouched):
+
+- `src/data/concepts/rotational_kinematics.json` — 8 states per the ruling, readouts
+  θ/ω/α (never τ), the α control as `slider_controls.tau_applied` with
+  `{label α, unit rad/s², scale i_alpha, step 0.01, ±0.60}` (ruling 4's corrected form), torque
+  words in ZERO reader-facing strings (verified by walk — all hits internal config), forward-
+  compatible K3/K5/C-1 keys authored inert.
+- `src/data/concepts/tau_eq_i_alpha.json` — 8 states, readouts I/ω/α/τ, both slider overrides at
+  step 0.01 (the 1.53 grid fix), S6 brake via the legacy scalar form (see PASS 7 #1), S5 via
+  `sources[]` + forward-compatible `restart.runs[]`, S7 `formula_lines` assembly (D8-void
+  honoured), S6 = `τ = Iα` and S8 = `τ_net = Iα` exactly per P3-4's reservation.
+- Both cluster migrations authored (INSERT-only, not applied).
+- **Verification: tsc 0 · `validate:concepts` 155 PASS / 0 FAIL** (153 fleet + 2 new, zero
+  warnings on both new files). Spot-checks by the orchestrating session: state counts, no
+  `calculus_graphs`, α-control shape, readout token sets, prerequisites naming the two unbuilt ids
+  (founder-accepted, Rule 23 advisory), P3-4 formula split.
+
+**PASS 7 filed** — three E8-family engine findings from the authoring runs (padOn reads only the
+legacy scalar → a `sources[]` brake ships an invisible pad; wheel travel tracks the first source
+window only → S5 run B parked; E8 confirmed reaching rk STATE_8). Do-not-seal table extended.
+
+**NEITHER concept may seal until its do-not-seal column is empty** (`rotmech_d_state.md`): rk waits
+on K3/K5/C-1/GAP1 + E8; τ=Iα waits on E6-runs/D7/E8 + PASS-7 #2. Next desk actions when rows land:
+`cache:clear:scoped` → seed (seed script MUST write `field_3d_config` — trap 2) → `visual:eyes` on
+port 8113 → eye-walker ∥ quality-auditor → founder-proxy Checkpoint B.
+
 ### Notes for whoever picks this desk up
 
 - Desk E's worktree is `C:\Tutor\physics-mind-rotmech-0c3`. `findings_d.md` is committed AND
