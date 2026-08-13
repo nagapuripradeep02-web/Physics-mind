@@ -1177,6 +1177,116 @@ states. That is Brief 3's decision (camera rule), reinforcing option A + C there
 
 ---
 
+## ⚖️ FOUNDER RULINGS RECORDED — B-6 CLOSED · B-17 CLOSED · N8 CLOSED (2026-08-14)
+
+### RULING 1 — B-6: ACCEPTED (option A). `I_cm` stays. **B-6 CLOSED.**
+
+Rule 34c admits a documented no-glyph exception where Unicode provides no subscript. Nothing to
+edit in either concept. Per instruction, CLAUDE_RULES.md is NOT edited by this desk — the
+amendment text is drafted below for the founder to apply verbatim:
+
+> **Draft 34c amendment (for CLAUDE_RULES.md, founder-applied):**
+> *34c-x (no-glyph exception — B-6 ruling, 2026-08-14): Unicode's subscript block
+> (ₐ ₑ ₕ ᵢ ⱼ ₖ ₗ ₘ ₙ ₒ ₚ ᵣ ₛ ₜ ᵤ ᵥ ₓ) has no glyph for some letters — there is no subscript c,
+> and U+1D9C is a modifier letter that renders superscript. Where a required subscript has no
+> Unicode glyph, standard physics ASCII (e.g. `I_cm`, `v_cm`, `a_cm`) IS the correct on-canvas
+> spelling and is not a 34c violation. Do not substitute a bare symbol (loses the centre-of-mass
+> distinction that `I_contact = I_cm + mR²` depends on), do not concatenate (`Icm` reads as a
+> three-letter variable), and do not invent glyphs. The exception applies per-glyph, not
+> per-formula: subscripts that DO exist (ₖ, ₛ, ₜ …) remain mandatory.*
+
+### RULING 2 — B-17: OPTION 2, codified as a DERIVATION RULE. **B-17 CLOSED · N8 CLOSED (subsumed).**
+
+The explore state keeps ALL dials under the full lesson (Rule 31 intact). A reduced preset hides a
+dial from the PRESET, never from the state, by derivation — **no new schema fields authored; the
+preset layer derives this when built (Rule 38h):**
+
+> **The derivation rule:** a control is hidden under a reduced preset when its FIRST TEACHING
+> APPEARANCE — the first state whose `controls_visible` exposes it — falls in a state that preset
+> hides. A control never exposed by any guided state (explore-only) hides under EVERY reduced
+> preset.
+
+**Per-concept mapping tables, derived from the concept JSONs as they stand** (rings:
+`pure_rolling` core S1–S3 / ext S4–S6 / adv S7; `rolling_on_incline` core S1–S4 / ext S5 /
+adv S6–S7; the two reduced presets hide adv, and adv+ext, respectively):
+
+| `pure_rolling` control | first exposure | full lesson | core+ext preset | core-only preset |
+|---|---|---|---|---|
+| `R` | S1 [core] | ✓ | ✓ | ✓ |
+| `v0` | S7 [advanced] | ✓ | **hidden** | **hidden** |
+| `omega0` | explore-only | ✓ | **hidden** | **hidden** |
+| `mu_k` | explore-only | ✓ | **hidden** | **hidden** |
+
+| `rolling_on_incline` control | first exposure | full lesson | core+ext preset | core-only preset |
+|---|---|---|---|---|
+| `m2` | S4 [core] | ✓ | ✓ | ✓ |
+| `R2` | S4 [core] | ✓ | ✓ | ✓ |
+| `theta` | S6 [advanced] | ✓ | **hidden** | **hidden** |
+| `mu_s` | S7 [advanced] | ✓ | **hidden** | **hidden** |
+| `m` | explore-only | ✓ | **hidden** | **hidden** |
+| `R` | explore-only | ✓ | **hidden** | **hidden** |
+
+**N8 closed as subsumed, exactly as proposed:** S8's narration names only dials the ruling keeps in
+the state; when the preset layer lands, the narration becomes preset-aware in the same derivation
+pass. **N3 is NOT yet ruled** — B-13, B-19 and `close_camera_framed_extent…` stay open under it;
+no per-state camera patches.
+
+### Caption fix — ALREADY DONE, verified on disk
+The requested `rolling_on_incline` S2 fix (`"v equals R omega"` → `"v = Rω"`) landed 2026-08-06 in
+`0eed746` (B-16), in both `caption` and `delta_cue`. Zero occurrences of the old string remain.
+
+---
+
+## 📦 ROUTED-ENGINE-FINDINGS LEDGER — checked against CURRENT master source (2026-08-14)
+
+Per the routing-gap concern (these were routed before the 0c4 desk existed): each checked by
+source read / `git log -S` / behavioural probe against `origin/master` — **none by assumption.**
+
+| finding | status on master | evidence | bug_class for the queue |
+|---|---|---|---|
+| B-5 | ✅ **LANDED + desk-verified** (9e77023) | both concepts, both directions, on pixels | — |
+| **N1** | ❌ **UNLANDED** | the pooled-roll-layer design is unchanged — *"Deliberately NOT nlbRegister()'d"* still at `:52277`, children still created unregistered via `nlbRollObj`. (Eye-walk could not reproduce the dimming this run — inconclusive, but the structural precondition is intact.) | `nlb_glow_focal_naming_pooled_roll_layer_child_matches_nothing_and_dims_entire_overlay` |
+| **B-10** | ❌ **UNLANDED** | `nlbApplyBodyRadius` on master is byte-identical to the filed version: re-scale + re-lift only, **no mark/bracket re-space** | `nlb_radius_write_destroys_revolution_marks_and_bracket_instead_of_respacing` |
+| **B-11** | ❌ **UNLANDED — re-proven behaviourally today** | `_probe_pin.ts` against the current renderer: clock rewinds 3424 → 1500 exactly, formula lines authored at 2300/2600 **remain visible** | `set_time_freeze_rewinds_clock_but_dom_reveals_do_not_retract_frozen_frame_is_hybrid` |
+| **B-12** | ⚠️ **PARTIALLY LANDED** | the locked-body switch works (`f_k` sliding → `f_s` stopped, verified on pixels 2026-08-13); but the panel is still regime-blind for ROLLING bodies (ROI S3/S6/S7 print `f_k` where `f_s` is true), and `NLB_READOUT_LABELS` has no regime-aware selection | `readout_hud_friction_subscript_hardcoded_kinetic_ignores_rolling_regime` |
+| **N7-engine** | ❌ **UNLANDED** | `nlbFx(Math.abs(pv), 2)` still at master `:52570` — S5's top/bottom both read `1.00 m/s`, direction carried only by ~50 px stubs | `nlb_point_arrow_labels_print_absolute_value_losing_direction_contrast` |
+| B-20 (new 2026-08-13) | ❌ **UNLANDED** (expected — filed yesterday; sanity-checked: no stamp commit since) | verified by 3× crop | `finish_line_stamp_order_mode_renders_tie_text_instead_of_rank` |
+| B-21 (new 2026-08-13) | ❌ **UNLANDED** | filed yesterday | `friction_arrow_label_dark_maroon_fails_contrast_on_grey_incline` |
+
+**For the engine queue after A-13/F-C10:** N1, B-10, B-11, B-12(remainder), N7-engine, B-20, B-21.
+Suggested order by teaching damage: **B-20** (a state's payoff asserts the opposite of its claim) →
+**B-12** (wrong physics label on three states) → **B-10** (the S1 dial breaks its own state) →
+**B-11** (every hand-seeded H2 frame is a hybrid) → **N1** → **B-21** → **N7-engine**.
+
+---
+
+## 🎯 CHECKPOINT-B BLOCKER LIST — item by item (2026-08-14)
+
+**Desk B's authoring queue is EMPTY.** What stands between each concept and convening
+Checkpoint B:
+
+### `pure_rolling`
+| # | blocker | tag |
+|---|---|---|
+| 1 | **N3** camera rule (parent) → **B-13** label collisions on BOTH aha-critical states (S2 PRIMARY, S6) + **B-19** illegible 2πR bracket | **architect** (rule) + **engine** (label-separation floor, the Brief-3 complement) |
+| 2 | **B-10** — S1's only dial destroys the marks it exists to re-space | **engine** |
+| 3 | **B-11** — frozen frames are hybrids; also gates authoring `eye_capture_ms` and any honest H2 baseline | **engine/platform** |
+| 4 | **N1** — glow plan inert (13/15 windows); inconclusive on pixels but structurally unfixed | **engine** |
+| 5 | **B-12 remainder** — rolling-body `f_k` mislabel | **engine** |
+
+### `rolling_on_incline` (all of the above where shared, plus)
+| # | blocker | tag |
+|---|---|---|
+| 6 | **B-20** — S1/S5 finish stamps print "TIE" where the ORDER is the claim | **engine** |
+| 7 | **B-21** — friction labels camouflaged on the incline | **engine** |
+| 8 | **B-22** — S4 (PRIMARY aha) physics-true tie READS as a lead | **ruling** (founder judgment at review) |
+| 9 | **N3** again — the race framing is the proximate cause of the stamp illegibility | **architect** |
+
+**No remaining item is authoring-owned.** When items 1–7 land: re-seed → full EYE + walks → author
+`eye_capture_ms` per state (unblocked once B-11 lands) → convene Checkpoint B with founder-proxy.
+
+---
+
 ## 🔍 POST-B-5 RE-WALK — SURVIVAL REPORT, `rolling_on_incline` half (2026-08-13)
 
 Run `20260813-233854`, 36/36, eye-walked in full. Numeric physics VERIFIED throughout: S2

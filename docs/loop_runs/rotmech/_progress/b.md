@@ -717,3 +717,29 @@ findings. (Walker mis-attributed the PRIMARY aha to S6; JSON says S2 — correct
 **Queue state: Desk B's authoring queue is EMPTY.** Every remaining blocker is engine-owned
 (B-20, B-12, B-21, B-13/B-10/B-11/N1), architect-owned (N3 → B-19), or a founder ruling
 (B-6, B-17/N8, B-22, and the N3 camera-rule decision per Brief 3). Checkpoint B HELD.
+
+---
+
+## 2026-08-14 — both rulings recorded; B-6/B-17/N8 CLOSED; ledger checked against master
+
+**Ruling 1 (B-6):** accepted — `I_cm` stays; 34c gains a documented no-glyph exception. Amendment
+text DRAFTED in findings_b for the founder to apply (this desk did not touch CLAUDE_RULES.md).
+**Ruling 2 (B-17):** option 2 codified as a DERIVATION RULE — a control hides under a reduced
+preset when its first `controls_visible` exposure falls in a hidden state; explore-only controls
+hide under every reduced preset. NO new schema fields; per-concept mapping tables recorded
+(pure_rolling: R always / v0+omega0+mu_k hidden under both cuts; ROI: m2+R2 always /
+theta+mu_s+m+R hidden under both). **N8 closed as subsumed.** N3 still unruled — B-13/B-19/
+close_camera stay open under it.
+
+**Caption fix:** already done (B-16, `0eed746`, 2026-08-06) — verified on disk, zero occurrences
+of the old string. No edit made.
+
+**Ledger vs CURRENT master (source/git log -S/behavioural probe, never assumption):** B-5 landed +
+verified. **UNLANDED: N1** (pool design unchanged, `:52277`), **B-10** (`nlbApplyBodyRadius`
+byte-identical — no re-space), **B-11** (re-proven behaviourally TODAY: rewind 3424→1500, lines at
+2300/2600 stay visible), **N7-engine** (`Math.abs(pv)` at `:52570`), **B-20/B-21** (filed
+yesterday). **B-12 PARTIAL** — locked-body switch works, rolling-regime panel still blind.
+bug_class strings + suggested order handed to the engine queue in findings_b.
+
+**Checkpoint-B blocker list filed, item by item, each tagged engine/architect/ruling. Zero items
+are authoring-owned.**
