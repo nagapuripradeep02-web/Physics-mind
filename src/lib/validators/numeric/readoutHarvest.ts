@@ -146,28 +146,63 @@ export const HARVEST_READ = `(function () {
   // ── channel A: DIRECT text nodes of every visible element ─────────────────
   // Direct-only (not innerText) so a container never duplicates its children and
   // per-value spans such as #pm-ro-r stay individually addressable.
+  function pmDirectText(el) {
+    if (!el) return '';
+    var t = '';
+    for (var q = 0; q < el.childNodes.length; q++) {
+      var nn = el.childNodes[q];
+      if (nn.nodeType === 3) t += nn.nodeValue;
+    }
+    return t.replace(/\\s+/g, ' ').trim();
+  }
+  function pmVisible(el) {
+    if (!el) return false;
+    var s = window.getComputedStyle(el);
+    if (s.display === 'none' || s.visibility === 'hidden') return false;
+    if (parseFloat(s.opacity || '1') === 0) return false;
+    var b = el.getBoundingClientRect();
+    return b.width > 0 && b.height > 0;
+  }
   try {
     var els = document.querySelectorAll('body *');
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
       if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') continue;
-      var st = window.getComputedStyle(el);
-      if (st.display === 'none' || st.visibility === 'hidden') continue;
-      if (parseFloat(st.opacity || '1') === 0) continue;
-      var r = el.getBoundingClientRect();
-      if (!(r.width > 0 && r.height > 0)) continue;   // also catches display:none ancestors
-      var direct = '';
-      for (var k = 0; k < el.childNodes.length; k++) {
-        var n = el.childNodes[k];
-        if (n.nodeType === 3) direct += n.nodeValue;
-      }
-      direct = direct.replace(/\\s+/g, ' ').trim();
+      if (!pmVisible(el)) continue;                   // also catches display:none ancestors
+      var direct = pmDirectText(el);
       if (!direct) continue;
       var where = el.id ? ('#' + el.id) : el.tagName.toLowerCase();
       if (!el.id && el.className && typeof el.className === 'string' && el.className.trim()) {
         where += '.' + el.className.trim().split(/\\s+/).join('.');
       }
       out.dom.push({ where: where, text: direct });
+
+      // ── channel B: a symbol and its value living in SIBLING elements ───────
+      // The energy panel emits <div class="nlb_en_sym">K</div> immediately
+      // before <div class="nlb_en_val">12.5 J</div>. Neither node alone holds a
+      // reading — the symbol carries no number and the value carries no symbol —
+      // so channel A is structurally BLIND to every panel built that way (the
+      // whole SEAM L energy layer, and any future split-cell readout). Compose
+      // the adjacent pair into the chip form ("K 12.5 J") that CHIP_RE already
+      // understands, rather than teaching the parser a second shape.
+      // Deliberately additive: neither node parses to a reading on its own, so
+      // this can only ADD readings, never double-count an existing one.
+      // \\u2212 alongside [-+] in both tests: the value cell of a work ledger
+      // renders "\\u22128.4 J", and an ASCII-only class reads that as a SYMBOL,
+      // so the pair is never composed and the reading vanishes silently.
+      var bare = direct.length <= 12
+              && direct.indexOf('=') < 0
+              && !/\\s/.test(direct)
+              && !/^[-+\\u2212]?[0-9.]/.test(direct);
+      if (bare) {
+        var sib = el.nextElementSibling;
+        if (sib && pmVisible(sib)) {
+          var sdirect = pmDirectText(sib);
+          if (/^[-+\\u2212]?[0-9]/.test(sdirect)) {
+            out.dom.push({ where: where + '+next', text: direct + ' ' + sdirect });
+          }
+        }
+      }
     }
   } catch (e) { out.err = 'dom: ' + String(e && e.message || e); }
 
@@ -195,10 +230,25 @@ export const HARVEST_READ = `(function () {
 
 /** Latin + Greek + subscripts + the few glyphs that appear inside symbols. */
 const SYM_CHARS = 'A-Za-z0-9_\\u00B5\\u0370-\\u03FF\\u1D00-\\u1D7F\\u2080-\\u209F\\u2100-\\u214F\\u03A9\\u2126';
-const NUMBER_RE = new RegExp('^([+-]?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)');
+/**
+ * The leading sign of a DISPLAYED number. U+2212 (real minus) sits beside the
+ * ASCII pair because Rule 34c requires every on-canvas minus to be the real one,
+ * so a renderer's own numeral formatter emits it — an ASCII-only `[+-]` here
+ * silently drops every negative reading on the floor and blinds the gate to the
+ * exact values (dissipated work, net work) a concept is most likely to get wrong.
+ * The exponent sign stays ASCII: no formatter composes an exponent by hand.
+ */
+const SIGN_CLASS = '[-+\\u2212]';
+const NUM_BODY = SIGN_CLASS + '?\\d+(?:\\.\\d+)?(?:[eE][-+]?\\d+)?';
+const NUMBER_RE = new RegExp('^(' + NUM_BODY + ')');
 const SYMBOL_TAIL_RE = new RegExp('([' + SYM_CHARS + ']+(?:\\s*/\\s*[' + SYM_CHARS + ']+)?)\\s*$');
 /** "N 100", "B 0.50 T" — the space-separated chip form used by acg_readout. */
-const CHIP_RE = new RegExp('^([' + SYM_CHARS + ']{1,12})\\s+([+-]?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)\\s*(.*)$');
+const CHIP_RE = new RegExp('^([' + SYM_CHARS + ']{1,12})\\s+(' + NUM_BODY + ')\\s*(.*)$');
+
+/** `Number()` does not know U+2212 — it returns NaN, which `admissible` drops. */
+function numOf(numText: string): number {
+    return Number(numText.replace(/−/g, '-'));
+}
 
 function decimalsOf(numText: string): number {
     const mantissa = numText.split(/[eE]/)[0];
@@ -245,7 +295,7 @@ function parseChunk(text: string, source: ReadingSource, where: string): Reading
             const unitZone = (nextEq < 0 ? rest : rest.slice(0, nextEq).replace(SYMBOL_TAIL_RE, '')).trim();
             out.push({
                 symbol: sym[1].replace(/\s+/g, ''),
-                value: Number(num[1]),
+                value: numOf(num[1]),
                 unit: unitZone,
                 unitToken: unitZone.split(/\s+/)[0] ?? '',
                 decimals: decimalsOf(num[1]),
@@ -262,7 +312,7 @@ function parseChunk(text: string, source: ReadingSource, where: string): Reading
         const unit = chip[3].trim();
         return [{
             symbol: chip[1],
-            value: Number(chip[2]),
+            value: numOf(chip[2]),
             unit,
             unitToken: unit.split(/\s+/)[0] ?? '',
             decimals: decimalsOf(chip[2]),

@@ -27,8 +27,8 @@
  */
 import '@/lib/loadEnvLocal';
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { assembleParametricHtml, type ParametricConfig } from '@/lib/renderers/parametric_renderer';
+import { resolveConceptJsonPath } from '@/scripts/lib/resolveConceptJson';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
 // The 13-concept WP-F2 regen scope minus scalar_vs_vector (already re-seeded
@@ -78,8 +78,18 @@ function extractTtsText(item: unknown): string {
 }
 
 function loadConceptJson(conceptId: string): ConceptJson {
-    const path = join(process.cwd(), 'src', 'data', 'concepts', `${conceptId}.json`);
-    return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
+    // Resolve through the SHARED resolver, never a hardcoded flat path: a
+    // subject namespace (src/data/concepts/mathematics/, .../chemistry/) is
+    // invisible to a flat join, which silently ENOENTs a whole subject out of
+    // this tool (scar: subject_namespace_concepts_are_invisible_to_flat_scanning_tools).
+    const resolved = resolveConceptJsonPath(conceptId);
+    if (!resolved) {
+        throw new Error(
+            `concept JSON not found for "${conceptId}" in any subject namespace ` +
+            `(searched src/data/concepts/ and its subject subdirectories)`,
+        );
+    }
+    return JSON.parse(readFileSync(resolved.path, 'utf-8')) as ConceptJson;
 }
 
 function defaultVarsFromConfig(json: ConceptJson): Record<string, number> {

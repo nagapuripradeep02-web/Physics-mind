@@ -24,8 +24,9 @@
  * pilot_feedback: authenticated insert-own-only, no select).
  */
 
-import { writeFileSync, existsSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { join } from 'path';
+import { resolveConceptJsonPath } from './lib/resolveConceptJson';
 
 // ── Pilot Supabase project (production data; NOT the dev project) ────────────
 
@@ -188,6 +189,57 @@ export const PILOT_CONCEPTS: string[] = [
     // KNOWN nuance (founder-accepted): STATE_4's live trial-X readout shares styling
     // with the final answer — instructive as-is, revisit only if a teacher flags it.
     'meter_bridge',
+
+    // ── CLASS 11 MECHANICS — the pilot's first non-electromagnetism content ───
+    // Added 2026-08-10 on founder instruction ("laws of motion and work power
+    // energy, till conservative or non conservative force").
+    //
+    // Every id below is baseline-locked AND was founder-approved on visuals at
+    // lock time (the commit messages say so: "founder visual review", "the four
+    // founder-approved Laws of Motion sims", "founder approval 2026-08-09").
+    // All 15 end on an `interaction_complete` explore state (Rule 31).
+    //
+    // ⚠ NOT through the professor gate. Every electromagnetism entry above has
+    // been through AUTHORING_PIPELINE ④ (Asmi review); NONE of these has. That
+    // is a deliberate founder call, not an oversight — pull any id here if a
+    // teacher review flags it.
+
+    // Ch.8 — Laws of Motion (NCERT §5 content; the concept JSONs number it 8).
+    // Ordered by authored section: 8.2 → 8.9.
+    'newton_first_law',
+    'free_body_diagram',
+    'normal_force',
+    'connected_bodies',
+    'newton_second_law',
+    'tension_force',
+    'block_on_incline',
+    'newton_third_law',
+    'friction_force',
+    'rolling_friction',
+
+    // Ch.6 — Work, Energy & Power, through conservative_vs_nonconservative_forces
+    // (the chapter's last authored concept; §6.2 → §6.6).
+    'work_energy_theorem',
+    'work_done_by_constant_force',
+    'positive_negative_zero_work',
+    'kinetic_energy_definition',
+    'conservative_vs_nonconservative_forces',
+
+    // ── MATHEMATICS ──────────────────────────────────────────────────────────
+    // No mathematics concept is in the pilot catalog yet (founder, 2026-08-07:
+    // "don't do the pilot concepts at all, we'll see if we need it later").
+    // derivative_as_secant_limit was added and then removed the same day WITHOUT
+    // ever being deployed — verified against the live site, which returned 404
+    // for it throughout, because a catalog entry only reaches teachers via
+    // build:pilot -> deploy:app and deploy:app was never run.
+    //
+    // The catalog is technically ready for one whenever that changes:
+    // listPilotConceptIds() resolves through the shared subject resolver, so a
+    // namespaced concept is no longer silently dropped here. Two things would
+    // want deciding first: this list has no notion of subject, so a mathematics
+    // concept renders as a bare "Chapter N" beside the named physics chapters;
+    // and no mathematics concept has been through the professor gate
+    // (AUTHORING_PIPELINE ④), which every physics entry above has.
 ];
 
 const PILOT_SET = new Set(PILOT_CONCEPTS);
@@ -198,7 +250,21 @@ export function isPilotConcept(_root: string, conceptId: string): boolean {
 
 export function listPilotConceptIds(root: string): string[] {
     // Build only pilot concepts that actually have a concept JSON on disk.
-    return PILOT_CONCEPTS.filter((id) => existsSync(join(root, 'src', 'data', 'concepts', `${id}.json`)));
+    //
+    // Resolved through the SHARED subject resolver, not a hardcoded flat path.
+    // The flat `src/data/concepts/<id>.json` test is subject-BLIND: a chemistry
+    // or mathematics concept lives in its own namespace dir, so listing one in
+    // PILOT_CONCEPTS was silently filtered out here — the array grew, the
+    // catalog did not, and nothing errored. A silent drop on the DEPLOYED
+    // catalog is the worst possible failure mode for this list.
+    //
+    // build_review_site.ts's loadConcept() has resolved this way since the
+    // chemistry isolation contract landed, so before this change the builder
+    // and the catalog filter disagreed about where a concept lives. The
+    // resolver checks the flat physics dir FIRST, so physics resolution stays
+    // byte-identical to the old existsSync test.
+    void root; // resolver is repo-root relative, same as every other caller
+    return PILOT_CONCEPTS.filter((id) => resolveConceptJsonPath(id) !== null);
 }
 
 // NCERT Class-12 Physics chapter titles (the concept JSONs' `chapter` field is
@@ -215,10 +281,40 @@ export const CLASS12_CHAPTER_NAMES: Record<number, string> = {
     8: 'Electromagnetic Waves',
 };
 
+// Class-11 chapter titles for the DEPLOYED mechanics set only.
+//
+// ⚠ Do NOT swap this for src/lib/conceptCatalog.ts's CHAPTER_NAMES. That map is
+// a different numbering scheme and disagrees with what the Class-11 concept
+// JSONs actually declare — it would mislabel every chapter we ship:
+//
+//   chapter | concept JSONs declare      | conceptCatalog CHAPTER_NAMES says
+//   --------|----------------------------|----------------------------------
+//      6    | Work, Energy & Power       | 'Kinematics'          ← wrong
+//      8    | Laws of Motion             | 'Laws of Motion'      ← agrees
+//      1    | Vectors                    | 'Basic Mathematics'   ← wrong
+//      2    | Motion in a Straight Line  | 'Measurements & Errors' ← wrong
+//
+// Only 6 and 8 are listed here because only those two chapters are deployed.
+// Anything else falls through to a bare "Chapter N" rather than a confident
+// wrong name. Reconciling the Class-11 numbering across the concept JSONs is a
+// separate, larger job — see the mismatch table above before starting it.
+export const CLASS11_CHAPTER_NAMES: Record<number, string> = {
+    6: 'Work, Energy & Power',
+    8: 'Laws of Motion',
+};
+
 export function chapterTitle(chapter: number | undefined, classLevel: number | undefined): string {
     if (typeof chapter !== 'number') return 'Other';
-    const name = classLevel === 12 ? CLASS12_CHAPTER_NAMES[chapter] : undefined;
-    return name ? `Chapter ${chapter} — ${name}` : `Chapter ${chapter}`;
+    const name = classLevel === 12
+        ? CLASS12_CHAPTER_NAMES[chapter]
+        : classLevel === 11
+            ? CLASS11_CHAPTER_NAMES[chapter]
+            : undefined;
+    // Class 11 and 12 both have a chapter 6, so a bare "Chapter 6" would collide
+    // with "Chapter 6 — Electromagnetic Induction" in the grouped catalog.
+    // Qualify by class whenever we are not naming a Class-12 chapter.
+    if (name) return classLevel === 12 ? `Chapter ${chapter} — ${name}` : `Class 11 · ${name}`;
+    return classLevel === 12 ? `Chapter ${chapter}` : `Class ${classLevel ?? '?'} · Chapter ${chapter}`;
 }
 
 // ── Root asset emission ──────────────────────────────────────────────────────

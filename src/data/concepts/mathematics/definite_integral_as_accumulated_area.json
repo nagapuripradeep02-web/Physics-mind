@@ -1,0 +1,2062 @@
+{
+  "concept_id": "definite_integral_as_accumulated_area",
+  "concept_name": "The Definite Integral as Accumulated Area",
+  "chapter": 7,
+  "section": "Integrals",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "is_spine": true,
+  "source_book": "NCERT Mathematics Class 12, Chapter 7 'Integrals' — chapter-index scope reference only; teaching, examples and phrasing authored from first principles. NCERT Exemplar consulted for misconception beliefs only. IB DP Analysis and Approaches guide (SL/HL), AP Calculus AB/BC CED, Cambridge IGCSE Additional Mathematics 0606 syllabus (limit-of-a-sum absence noted) and A-level Pure Mathematics specifications consulted for COVERAGE SCOPE only (curriculum_tags). HC Verma and DC Pandey are physics-only sources and were not consulted. Third mathematics concept through the pipeline, and the chapter's most demanding concept — the sole driver of the cartesian_plane engine's region_fill / riemann_bars / locus_trace accumulation family (docs/skeletons/definite_integral_as_accumulated_area_skeleton.md).",
+  "prerequisites": [],
+  "concept_tier": "complex",
+  "cognitive_limits": {
+    "max_primitives_per_state": 40,
+    "max_labels_per_state": 20,
+    "max_words_per_tts_sentence": 30
+  },
+  "renderer_pair": {
+    "panel_a": "parametric",
+    "panel_b": "none"
+  },
+  "available_renderer_scenarios": {
+    "parametric": [
+      "cartesian_plane_riemann_accumulation"
+    ]
+  },
+  "real_world_anchor": {
+    "primary": "A speed graph works this way too: the area under it is the distance the vehicle travelled."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "sign": [
+      "STATE_5"
+    ],
+    "method": [
+      "STATE_6"
+    ],
+    "accumulation": [
+      "STATE_7"
+    ],
+    "exploration": [
+      "STATE_8"
+    ]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "b": {
+        "name": "interval upper bound",
+        "unit": "dimensionless",
+        "min": 0.2,
+        "max": 2,
+        "default": 2
+      },
+      "c": {
+        "name": "vertical lowering parameter",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 1,
+        "default": 0
+      },
+      "nlog": {
+        "name": "log10(n) - choreography convenience, never rendered, never a slider",
+        "unit": "dimensionless",
+        "min": 0.60206,
+        "max": 4,
+        "default": 0.60206
+      },
+      "n": {
+        "name": "number of rectangles - derived from nlog in every guided state (round(pow(10,nlog))); an independent teacher slider only in STATE_8 (min 4, max 200, step 4)",
+        "unit": "dimensionless",
+        "min": 4,
+        "max": 10000,
+        "default": 4
+      },
+      "beta": {
+        "name": "STATE_7 accumulation sweep parameter - phi law: never a slider, never drag-bound",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 2,
+        "default": 0
+      },
+      "xdraw": {
+        "name": "STATE_1-only curve draw-in reveal bound",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 2,
+        "default": 0
+      },
+      "fillx": {
+        "name": "STATE_1-only region fill-in reveal bound",
+        "unit": "dimensionless",
+        "min": 0,
+        "max": 2,
+        "default": 0
+      }
+    },
+    "formulas": {
+      "f_at": "x*x - c",
+      "exact": "pow(b,3)/3 - c*b",
+      "gap_closed": "(pow(b,3)*(3*n - 1)) / (6*n*n)",
+      "A_beta": "pow(beta,3)/3 - c*beta",
+      "area_below": "pow(min(b, sqrt(c)), 3)/3 - c*min(b, sqrt(c))",
+      "area_total": "exact - 2*area_below"
+    },
+    "computed_outputs": {
+      "exact": {
+        "formula": "pow(b,3)/3 - c*b"
+      },
+      "A_beta": {
+        "formula": "pow(beta,3)/3 - c*beta"
+      },
+      "area_below": {
+        "formula": "pow(min(b, sqrt(c)), 3)/3 - c*min(b, sqrt(c))"
+      },
+      "area_total": {
+        "formula": "exact - 2*area_below"
+      }
+    },
+    "derived_fields_declared": [
+      "exact",
+      "A_beta",
+      "area_total",
+      "area_below"
+    ],
+    "constraints": [
+      "f(x) = x^2 - c is a polynomial: defined and continuous for EVERY real x, on every value of c the sim ever reaches (c in [0,1]) -- there is no excluded point anywhere in the function's own domain",
+      "the DRAWN interval is x in [0, b] with b in [0.2, 2.0], authored as function_plot.x_domain = {min:0, max_expr:'b'} in every state except STATE_1's reveal window (max_expr:'min(xdraw, b)', handing off to 'b' with no discontinuity since xdraw's ceiling equals b's own static value at STATE_1's default 2.0)",
+      "gap(n) = b^3(3n-1)/(6n^2) is EXACT, strictly positive for every integer n >= 1, and is INDEPENDENT of c -- at STATE_4's fixed b=2, c=0 this is 4/n - 4/(3n^2), the founder-ratified F2 surface",
+      "canvas pixels = 220 x data units on x, 62 x data units on y, origin at px (180, 357) on the MAIN plane, FIXED throughout -- the STATE_4 inset is a SEPARATE plane_id ('plane_inset') whose transform RE-ZOOMS every frame from the live window (viewport 230x145 px over a window 2h wide by 5bh tall, h = b/round(pow(10,nlog))): at b=2 this is roughly 115n/b (~57.5n) px/x-unit and 7.25n px/y-unit, e.g. 5,750 / 725 at n=100 climbing past 490,000 / 61,900 by n=8536 -- NOT a fixed constant, and the two live factors are never mixed in one expression",
+      "'left <= integral <= right' (STATE_6's formula surface) is TRUE only because f is increasing on the drawn interval at STATE_6's fixed c=0 -- the one-surface-per-state rule (34b) cannot carry that hypothesis on canvas, so STATE_6's narration states it in words",
+      "max_bars_drawn is a PER-PRIMITIVE opt-in field, not a global engine cap -- authored ONLY on STATE_4 (value 400, with the 'rectangles drawn: {n_drawn} of {n}' disclosure); STATE_3 and STATE_6 author NO max_bars_drawn, so their riemann_bars draw the true n with no silent truncation",
+      "AMENDED, not authored: the skeleton's Gate-0 symbol-table row 'interval ends | a, b (axis marks) | label + plane_id | S1 | S1-S8' over-specifies a lower bound that is never a named quantity in this build -- the interval is always [0, b] with the lower end authored as the LITERAL 0 (from_expr:'0' on every region_fill/riemann_bars/function_plot in every state), never a variable, slider, or drag target called 'a'; physics_engine_config.variables has no 'a' key and no state ever varies, drags, or highlights a lower interval end. A dedicated axis-pin label for a constant zero would mark a non-quantity and add a 9th label to states that are already at their primitive budget (S4 alone carries 17). The row is satisfied for its ONE real quantity: 'b', the interval's one variable bound, which IS pin-marked wherever it is actually variable -- the draggable bound_marker (S5, S8) and the STATE_4 inset's own zoom-linked corner (the sliver sits exactly at x = b). Read this row as 'b, pin-marked where it is variable' with 'a' struck, not as an unmet S1 obligation"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "The Region Under the Curve",
+        "duration": 20,
+        "eye_capture_ms": 18300,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "region",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Region under the curve",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "min(xdraw, b)"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "min(fillx, b)",
+            "color": "#22D3EE"
+          },
+          {
+            "type": "label",
+            "id": "edge_readout_draw",
+            "text_expr": "x = {xdraw.toFixed(2)}",
+            "position": {
+              "x": 0.5,
+              "y": 1.5
+            },
+            "position_expr": {
+              "x": "xdraw",
+              "y": "xdraw*xdraw - c + 0.25"
+            },
+            "plane_id": "plane",
+            "font_size": 12,
+            "color": "#F1F5F9",
+            "appear_at_ms": 1200,
+            "disappear_at_ms": 9000,
+            "fade_out_ms": 300
+          },
+          {
+            "type": "label",
+            "id": "edge_readout_fill",
+            "text_expr": "x = {fillx.toFixed(2)}",
+            "position": {
+              "x": 1.5,
+              "y": 2.5
+            },
+            "position_expr": {
+              "x": "fillx",
+              "y": "fillx*fillx - c + 0.25"
+            },
+            "plane_id": "plane",
+            "font_size": 12,
+            "color": "#F1F5F9",
+            "appear_at_ms": 9000,
+            "animate_in_ms": 300
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "y = x²",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "xdraw",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 1200,
+            "duration_ms": 7800
+          },
+          {
+            "variable": "fillx",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 9000,
+            "duration_ms": 9000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "The curve is drawn left to right, then the region beneath it fills in completely — y equals x squared. That region has one exact area, not yet measured.",
+              "glow": "region",
+              "text_hi": "curve बाएं से दाएं खींचा जाता है, फिर उसके नीचे का region पूरी तरह भर जाता है — y equals x squared. उस region का एक exact area है, जो अभी measure नहीं किया गया है।"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "A speed graph works this way too: the area under it is the distance the vehicle travelled.",
+              "glow": "region",
+              "text_hi": "speed graph भी इसी तरह काम करता है: उसके नीचे का area वह distance है जो vehicle ने तय की।"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Four Rectangles Estimate It",
+        "duration": 24,
+        "eye_capture_ms": 18500,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "bars",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Four left rectangles",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "curve_label",
+            "text": "y = x²",
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
+            "plane_id": "plane",
+            "font_size": 13,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "color": "#22D3EE",
+            "opacity": 0.25
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "4",
+            "mode": "left",
+            "color": "#22D3EE",
+            "sum_var": "S_n",
+            "show_partition": true,
+            "appear_at_ms": 1200,
+            "reveal_stagger_ms": 4500,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "n_chip",
+            "text": "n = 4",
+            "position": {
+              "x": 350,
+              "y": 110
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "h_chip",
+            "text": "h = 0.5000",
+            "position": {
+              "x": 350,
+              "y": 142
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "Sn_chip",
+            "text_expr": "Sₙ = {S_n.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 174
+            },
+            "font_size": 13,
+            "color": "#A78BFA",
+            "appear_at_ms": 18000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "Sₙ = Σ f(xᵢ)·h",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Four rectangles estimate the region's area, each as tall as the curve where it begins.",
+              "glow": "bars",
+              "text_hi": "चार rectangles region के area का estimate करते हैं, हर एक उतना ऊंचा जितना curve अपने शुरुआती बिंदु पर है।"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Each rectangle's area is its width times its height, and its height is the curve's value at its left edge — which for the first rectangle is exactly zero.",
+              "glow": "bars",
+              "text_hi": "हर rectangle का area उसकी width गुणा height है, और उसकी height curve की value है उसके left edge पर — जो पहले rectangle के लिए exactly zero है।"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "More Rectangles, Closer Sum",
+        "duration": 24,
+        "eye_capture_ms": 20500,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_thinner_rectangles_are_closer",
+          "does_the_sum_have_a_ceiling",
+          "rectangles_vs_the_smooth_region"
+        ],
+        "focal_primitive_id": "bars",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "More rectangles, closer",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "curve_label",
+            "text": "y = x²",
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
+            "plane_id": "plane",
+            "font_size": 13,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "color": "#22D3EE",
+            "opacity": 0.25
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "round(pow(10,nlog))",
+            "mode": "left",
+            "color": "#22D3EE",
+            "sum_var": "S_n",
+            "bars_drawn_var": "n"
+          },
+          {
+            "type": "label",
+            "id": "n_chip",
+            "text_expr": "n = {n}",
+            "position": {
+              "x": 350,
+              "y": 110
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "Sn_chip",
+            "text_expr": "Sₙ = {S_n.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 142
+            },
+            "font_size": 13,
+            "color": "#A78BFA"
+          },
+          {
+            "type": "label",
+            "id": "exact_chip",
+            "text_expr": "exact = {exact.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 174
+            },
+            "font_size": 13,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "gap_chip",
+            "text_expr": "gap = {(exact - S_n).toFixed(6)}",
+            "position": {
+              "x": 350,
+              "y": 206
+            },
+            "font_size": 13,
+            "color": "#F472B6"
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "Sₙ → exact",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "nlog",
+            "mode": "once",
+            "from": 0.60206,
+            "to": 3,
+            "start_ms": 1000,
+            "duration_ms": 15000,
+            "holds": [
+              {
+                "at_value": 1.301,
+                "hold_ms": 2000
+              },
+              {
+                "at_value": 2,
+                "hold_ms": 2000
+              }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Watch the rectangles multiply and grow narrower, from just four toward a thousand — pausing at twenty, then again at a hundred.",
+              "glow": "bars",
+              "text_hi": "rectangles को बढ़ते और पतले होते देखें, सिर्फ four से एक thousand की ओर — twenty पर रुककर, फिर hundred पर।"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Each time, the estimate climbs closer to one number: the exact total the sum is heading toward, though the sum itself never reaches it.",
+              "glow": "bars",
+              "text_hi": "हर बार, estimate एक number के और करीब पहुंचता है: वह exact total जिसकी ओर sum बढ़ रहा है, हालांकि sum खुद कभी उस तक नहीं पहुंचता।"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The Gap Shrinks, Never Zero",
+        "duration": 24,
+        "eye_capture_ms": 20000,
+        "depth_ring": "core",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "approaching_is_not_reaching",
+          "what_a_limit_means_here",
+          "why_define_it_as_a_limit"
+        ],
+        "focal_primitive_id": "wedge_inset",
+        "misconception_watch": [
+          {
+            "belief": "Adding up rectangles is only ever an approximation, so the exact area is a fiction",
+            "visual_counter": "the picture stops moving at ten thousand rectangles but the gap number does not reach zero; its exact value, four over n minus four over three n squared, stays positive at every n",
+            "one_line_fix": "No count of rectangles reaches it — the integral is the number they head for."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Gap shrinks like 4/n",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "curve_label",
+            "text": "y = x²",
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b + 0.2",
+              "y": "b*b - c + 0.15"
+            },
+            "plane_id": "plane",
+            "font_size": 13,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "round(pow(10,nlog))",
+            "mode": "left",
+            "color": "#22D3EE",
+            "sum_var": "S_n",
+            "bars_drawn_var": "n_drawn",
+            "max_bars_drawn": 400
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane_inset",
+            "viewport": {
+              "x": 230,
+              "y": 88,
+              "w": 230,
+              "h": 145
+            },
+            "x_range": {
+              "min_expr": "b - 2*(b/round(pow(10,nlog)))",
+              "max_expr": "b"
+            },
+            "y_range": {
+              "min_expr": "b*b - c - 4.5*b*(b/round(pow(10,nlog)))",
+              "max_expr": "b*b - c + 0.5*b*(b/round(pow(10,nlog)))"
+            },
+            "equal_scale": false,
+            "x_tick": 0.25,
+            "y_tick": 0.5,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 2,
+            "gridlines": false,
+            "color": "#94A3B8",
+            "grid_color": "#1E293B",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "function_plot",
+            "id": "curve_inset",
+            "plane_id": "plane_inset",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min_expr": "b - 2*(b/round(pow(10,nlog)))",
+              "max_expr": "b"
+            },
+            "samples": 60,
+            "stroke_weight": 2,
+            "color": "#38BDF8",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "region_fill",
+            "id": "wedge_inset",
+            "plane_id": "plane_inset",
+            "y_expr": "x*x - c",
+            "from_expr": "b - b/round(pow(10,nlog))",
+            "to_expr": "b",
+            "color": "#F472B6",
+            "opacity": 0.9,
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "riemann_bars",
+            "id": "sliver_inset",
+            "plane_id": "plane_inset",
+            "y_expr": "x*x - c",
+            "from_expr": "b - b/round(pow(10,nlog))",
+            "to_expr": "b",
+            "n_expr": "1",
+            "mode": "left",
+            "color": "#334155",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "plot_point",
+            "id": "source_marker",
+            "plane_id": "plane",
+            "x_expr": "b",
+            "y_expr": "b*b - c",
+            "size": 8,
+            "color": "#94A3B8",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "vector",
+            "id": "zoomlink_1",
+            "from_expr": "{x: 180 + (b - 2*(b/round(pow(10,nlog))))*220, y: 357 - (b*b - c - 4.5*b*(b/round(pow(10,nlog))))*62}",
+            "to": {
+              "x": 460,
+              "y": 233
+            },
+            "style": "line",
+            "color": "#64748B",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "label",
+            "id": "n_chip",
+            "text_expr": "n = {round(pow(10,nlog))}",
+            "position": {
+              "x": 260,
+              "y": 250
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "gap_chip",
+            "text_expr": "gap = {((pow(b,3)*(3*round(pow(10,nlog)) - 1)) / (6*round(pow(10,nlog))*round(pow(10,nlog)))).toFixed(6)}",
+            "position": {
+              "x": 260,
+              "y": 282
+            },
+            "font_size": 13,
+            "color": "#F472B6"
+          },
+          {
+            "type": "label",
+            "id": "rectangles_drawn_chip",
+            "text_expr": "rectangles drawn: {n_drawn} of {round(pow(10,nlog))}",
+            "position": {
+              "x": 260,
+              "y": 314
+            },
+            "font_size": 13,
+            "color": "#CBD5E1",
+            "appear_at_ms": 6000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "window_chip",
+            "text_expr": "window width {(2*b/round(pow(10,nlog))).toFixed(4)}",
+            "position": {
+              "x": 690,
+              "y": 250
+            },
+            "font_size": 13,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "gap = 4/n − 4/(3n²)",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "label",
+            "id": "integral_chip",
+            "text_expr": "∫₀²x²dx = {exact.toFixed(4)}",
+            "position": {
+              "x": 690,
+              "y": 130
+            },
+            "font_size": 13,
+            "color": "#A78BFA"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "nlog",
+            "mode": "once",
+            "from": 2,
+            "to": 4,
+            "start_ms": 1500,
+            "duration_ms": 16000,
+            "holds": [
+              {
+                "at_value": 3,
+                "hold_ms": 2000
+              }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "The picture stops moving, but the numbers do not.",
+              "glow": "wedge_inset",
+              "text_hi": "picture हिलना बंद कर देती है, लेकिन numbers नहीं।"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Zoom into the last sliver: even at ten thousand rectangles, it is still there.",
+              "glow": "wedge_inset",
+              "text_hi": "आखिरी sliver में zoom करें: ten thousand rectangles पर भी, यह अब भी वहां है।"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Its exact size is four over n, minus four over three n squared — always positive.",
+              "glow": "wedge_inset",
+              "text_hi": "इसका exact size है four over n, minus four over three n squared — जो हमेशा positive है।"
+            },
+            {
+              "id": "s4_4",
+              "text_en": "No count of rectangles ever makes that gap zero.",
+              "glow": "wedge_inset",
+              "text_hi": "rectangles की कोई भी count उस gap को कभी zero नहीं बनाती।"
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Below the Axis Counts Negative",
+        "duration": 24,
+        "eye_capture_ms": 16500,
+        "depth_ring": "core",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "negative_area_meaning",
+          "signed_vs_total_area",
+          "where_the_sign_flips"
+        ],
+        "focal_primitive_id": "bars",
+        "misconception_watch": [
+          {
+            "belief": "Area is a size, so it is always positive; an integral cannot be negative",
+            "visual_counter": "the dim chip reads total area = 2.0000 first, then the bright true total reads the integral = 0.6667, with the below-axis rectangles drawn downward and their subtotal minus 0.6667",
+            "one_line_fix": "Below the axis, the rectangle's height is negative — it subtracts."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Below the axis, negative",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "signed": true,
+            "color": "#22D3EE",
+            "color_positive": "#22D3EE",
+            "color_negative": "#F87171",
+            "opacity": 0.5
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "4",
+            "mode": "left",
+            "signed": true,
+            "color": "#22D3EE",
+            "color_positive": "#22D3EE",
+            "color_negative": "#F87171",
+            "opacity": 0.5
+          },
+          {
+            "type": "plot_point",
+            "id": "bound_marker",
+            "plane_id": "plane",
+            "x_expr": "b",
+            "y_expr": "b*b - c",
+            "size": 14,
+            "drag": {
+              "bind_variable": "b",
+              "axis": "x",
+              "min": 0.2,
+              "max": 2
+            }
+          },
+          {
+            "type": "label",
+            "id": "c_chip",
+            "text_expr": "c = {c.toFixed(1)}",
+            "position": {
+              "x": 350,
+              "y": 110
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "b_chip",
+            "text_expr": "b = {b.toFixed(2)}",
+            "position": {
+              "x": 350,
+              "y": 142
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "total_area_chip",
+            "text_expr": "total area = {area_total.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 174
+            },
+            "font_size": 13,
+            "color": "#94A3B8",
+            "appear_at_ms": 14000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "integral_chip",
+            "text_expr": "∫ = {exact.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 206
+            },
+            "font_size": 13,
+            "color": "#A78BFA",
+            "appear_at_ms": 16000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "below_axis_chip",
+            "text_expr": "below axis = {(abs(area_below) < 0.00005 ? 0 : area_below).toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 238
+            },
+            "font_size": 13,
+            "color": "#F87171",
+            "appear_at_ms": 16000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "f(x) = x² − c",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "c",
+            "mode": "once",
+            "from": 0,
+            "to": 1,
+            "start_ms": 2000,
+            "duration_ms": 12000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Lower the curve: part of it dips below the axis.",
+              "glow": "bars",
+              "text_hi": "curve को नीचे करें: इसका एक हिस्सा axis के नीचे चला जाता है।"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "If area only ever added, the total would read 2.0000 — but that is wrong here.",
+              "glow": "bars",
+              "text_hi": "अगर area हमेशा सिर्फ जुड़ता, तो total 2.0000 दिखता — लेकिन यहां यह गलत है।"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The real total is 0.6667: the below-axis piece contributes minus 0.6667, subtracted from the area above.",
+              "glow": "bars",
+              "text_hi": "असली total 0.6667 है: axis के नीचे वाला हिस्सा minus 0.6667 देता है, जो ऊपर के area से subtract होता है।"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Three Rules, One Limit",
+        "duration": 24,
+        "eye_capture_ms": 20500,
+        "depth_ring": "extended",
+        "advance_mode": "manual_click",
+        "misconception_watch": [
+          {
+            "belief": "Left rectangles and right rectangles give different answers, so one of them must be the wrong method",
+            "visual_counter": "at n equal to 8 all three sums appear together — 2.1875, 2.65625, 3.1875 — all correct, all different; as n grows the three readouts draw closer without ever landing on the same value",
+            "one_line_fix": "The sampling rule changes every finite sum and not the limit."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Three sampling rules",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "curve_label",
+            "text": "y = x²",
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b + 0.2",
+              "y": "b*b - c + 0.15"
+            },
+            "plane_id": "plane",
+            "font_size": 13,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "color": "#22D3EE",
+            "opacity": 0.18
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars_left",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "round(pow(10,nlog))",
+            "mode": "left",
+            "render": "outline",
+            "color": "#38BDF8",
+            "sum_var": "S_left",
+            "bars_drawn_var": "n",
+            "appear_at_ms": 0,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars_right",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "round(pow(10,nlog))",
+            "mode": "right",
+            "render": "outline",
+            "color": "#F59E0B",
+            "sum_var": "S_right",
+            "appear_at_ms": 2000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars_mid",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "round(pow(10,nlog))",
+            "mode": "midpoint",
+            "render": "filled",
+            "opacity": 0.35,
+            "color": "#22D3EE",
+            "sum_var": "S_mid",
+            "appear_at_ms": 4000,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "n_chip",
+            "text_expr": "n = {n}",
+            "position": {
+              "x": 350,
+              "y": 110
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "readout_left",
+            "text_expr": "left sum (left Riemann sum) = {S_left.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 142
+            },
+            "font_size": 13,
+            "color": "#38BDF8",
+            "appear_at_ms": 300,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "readout_right",
+            "text_expr": "right sum = {S_right.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 174
+            },
+            "font_size": 13,
+            "color": "#F59E0B",
+            "appear_at_ms": 2300,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "label",
+            "id": "readout_mid",
+            "text_expr": "midpoint sum = {S_mid.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 206
+            },
+            "font_size": 13,
+            "color": "#22D3EE",
+            "appear_at_ms": 4300,
+            "animate_in_ms": 400
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "left ≤ ∫ ≤ right",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "nlog",
+            "mode": "once",
+            "from": 0.903,
+            "to": 2.7,
+            "start_ms": 6000,
+            "duration_ms": 14000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Three rules sample the same rectangles differently: left sum (left Riemann sum), right sum, and midpoint.",
+              "text_hi": "तीन rules उन्हीं rectangles को अलग-अलग तरीके से sample करते हैं: left sum (left Riemann sum), right sum, और midpoint।"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Because this curve keeps rising, left stays smallest and right stays largest — three different numbers, and the exact value lies between them.",
+              "text_hi": "क्योंकि यह curve लगातार बढ़ता रहता है, left हमेशा सबसे छोटा रहता है और right सबसे बड़ा — तीन अलग-अलग numbers, और exact value इनके बीच में होती है।"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Add more rectangles: all three readouts draw closer, never landing on exactly the same value.",
+              "text_hi": "और rectangles जोड़ें: तीनों readouts और करीब आते हैं, लेकिन कभी exactly एक ही value पर नहीं पहुंचते।"
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "The Area So Far Is a Function",
+        "duration": 24,
+        "eye_capture_ms": 20400,
+        "depth_ring": "advanced",
+        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "accum_head",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Area so far, plotted",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max_expr": "b"
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "label",
+            "id": "curve_label",
+            "text": "y = x²",
+            "position": {
+              "x": 2,
+              "y": 4
+            },
+            "position_expr": {
+              "x": "b",
+              "y": "b*b - c + 0.15"
+            },
+            "plane_id": "plane",
+            "font_size": 13,
+            "color": "#38BDF8"
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "beta",
+            "color": "#22D3EE"
+          },
+          {
+            "type": "locus_trace",
+            "id": "accum_trace",
+            "plane_id": "plane",
+            "x_expr": "beta",
+            "y_expr": "A_beta",
+            "start_ms": 2000,
+            "end_ms": 20000,
+            "sample_ms": 80,
+            "color": "#8B5CF6",
+            "stroke_weight": 3
+          },
+          {
+            "type": "plot_point",
+            "id": "accum_head",
+            "plane_id": "plane",
+            "x_expr": "beta",
+            "y_expr": "A_beta",
+            "size": 14,
+            "color": "#8B5CF6"
+          },
+          {
+            "type": "label",
+            "id": "accum_curve_label",
+            "text": "A(x)",
+            "position": {
+              "x": 1.5,
+              "y": 2.9
+            },
+            "position_expr": {
+              "x": "beta",
+              "y": "A_beta + 0.25"
+            },
+            "plane_id": "plane",
+            "font_size": 13,
+            "color": "#8B5CF6"
+          },
+          {
+            "type": "label",
+            "id": "beta_chip",
+            "text_expr": "β = {beta.toFixed(2)}",
+            "position": {
+              "x": 350,
+              "y": 110
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "Abeta_chip",
+            "text_expr": "A(β) = {A_beta.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 142
+            },
+            "font_size": 13,
+            "color": "#A78BFA"
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "A(x) = x³/3",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "beta",
+            "mode": "once",
+            "from": 0,
+            "to": 2,
+            "start_ms": 2000,
+            "duration_ms": 18000
+          }
+        ],
+        "focal_sequence": [
+          {
+            "highlight_primitive_id": "curve",
+            "duration_ms": 2000
+          },
+          {
+            "highlight_primitive_id": "accum_head",
+            "duration_ms": 22000
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Sweep the upper bound rightward: the filled region grows, and its running total is traced as a new curve, A of x — a running record of the area swept so far.",
+              "glow": "accum_head",
+              "text_hi": "upper bound को दाईं ओर sweep करें: भरा हुआ region बढ़ता है, और इसका running total एक नए curve के रूप में trace होता है, A of x — अब तक sweep हुए area का एक running record।"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "By x equals 2, that curve ends at 2.6667 — the same number the rectangles were heading for all along.",
+              "glow": "accum_head",
+              "text_hi": "x equals 2 तक, वह curve 2.6667 पर खत्म होता है — वही number जिसकी ओर rectangles शुरू से बढ़ रहे थे।"
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Explore: Drag the Bound",
+        "duration": 0,
+        "depth_ring": "core",
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "delta_cue",
+            "text": "Drag the upper bound",
+            "position": {
+              "x": 40,
+              "y": 55
+            },
+            "style": "callout",
+            "color": "#F1F5F9"
+          },
+          {
+            "type": "cartesian_plane",
+            "id": "plane",
+            "viewport": {
+              "x": 70,
+              "y": 78,
+              "w": 660,
+              "h": 372
+            },
+            "x_range": {
+              "min": -0.5,
+              "max": 2.5
+            },
+            "y_range": {
+              "min": -1.5,
+              "max": 4.5
+            },
+            "equal_scale": false,
+            "x_tick": 0.5,
+            "y_tick": 1,
+            "x_tick_labels": "number",
+            "y_tick_labels": "number",
+            "tick_decimals": 1,
+            "gridlines": false,
+            "x_label": "x",
+            "y_label": "y",
+            "color": "#64748B",
+            "grid_color": "#1E293B"
+          },
+          {
+            "type": "function_plot",
+            "id": "curve",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "x_domain": {
+              "min": 0,
+              "max": 2
+            },
+            "samples": 240,
+            "stroke_weight": 3,
+            "color": "#38BDF8",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "region_fill",
+            "id": "region",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "signed": true,
+            "color": "#22D3EE",
+            "color_positive": "#22D3EE",
+            "color_negative": "#F87171",
+            "opacity": 0.5,
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "riemann_bars",
+            "id": "bars",
+            "plane_id": "plane",
+            "y_expr": "x*x - c",
+            "from_expr": "0",
+            "to_expr": "b",
+            "n_expr": "n",
+            "mode": "left",
+            "signed": true,
+            "color": "#22D3EE",
+            "color_positive": "#22D3EE",
+            "color_negative": "#F87171",
+            "opacity": 0.5,
+            "sum_var": "S_n",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1200
+          },
+          {
+            "type": "plot_point",
+            "id": "bound_marker",
+            "plane_id": "plane",
+            "x_expr": "b",
+            "y_expr": "b*b - c",
+            "size": 14,
+            "drag": {
+              "bind_variable": "b",
+              "axis": "x",
+              "min": 0.2,
+              "max": 2
+            }
+          },
+          {
+            "type": "slider",
+            "id": "n_slider",
+            "variable": "n",
+            "min": 4,
+            "max": 200,
+            "step": 4,
+            "default": 4,
+            "label": "n",
+            "position": "bottom"
+          },
+          {
+            "type": "slider",
+            "id": "c_slider",
+            "variable": "c",
+            "min": 0,
+            "max": 1,
+            "step": 0.1,
+            "default": 0,
+            "label": "c",
+            "position": "bottom"
+          },
+          {
+            "type": "label",
+            "id": "n_chip",
+            "text_expr": "n = {n.toFixed(0)}",
+            "position": {
+              "x": 350,
+              "y": 110
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "Sn_chip",
+            "text_expr": "Sₙ = {S_n.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 142
+            },
+            "font_size": 13,
+            "color": "#A78BFA"
+          },
+          {
+            "type": "label",
+            "id": "integral_chip",
+            "text_expr": "∫ = {exact.toFixed(4)}",
+            "position": {
+              "x": 350,
+              "y": 174
+            },
+            "font_size": 13,
+            "color": "#94A3B8"
+          },
+          {
+            "type": "label",
+            "id": "b_chip",
+            "text_expr": "b = {b.toFixed(2)}",
+            "position": {
+              "x": 350,
+              "y": 206
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "label",
+            "id": "c_chip",
+            "text_expr": "c = {c.toFixed(1)}",
+            "position": {
+              "x": 350,
+              "y": 238
+            },
+            "font_size": 13,
+            "color": "#CBD5E1"
+          },
+          {
+            "type": "formula_box",
+            "id": "fs",
+            "equation": "∫₀ᵇ (x² − c) dx",
+            "position": {
+              "x": 500,
+              "y": 62
+            },
+            "border_color": "#3B82F6"
+          }
+        ],
+        "variable_choreography": [
+          {
+            "variable": "b",
+            "mode": "ping_pong",
+            "from": 2,
+            "to": 0.6,
+            "start_ms": 2500,
+            "duration_ms": 9000,
+            "seizable": true
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": ""
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "A pile of rectangles becomes the exact area — you can watch it happen.",
+    "visual_confirmation": "the estimate Sₙ climbs from 1.7500 toward 2.6667 as the rectangle count grows from 4 to 1000"
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "cubic_accumulation",
+      "type": "type_b_different_world_same_physics",
+      "label": "Same idea, a cubic curve",
+      "physical_world": "the curve f(x) = x³ instead of x² − c",
+      "same_physics": "rectangles still converge to one exact total as n grows, the gap still shrinks toward zero without reaching it, and the running accumulation is still a new function of the stopping point — only the closed forms change (the exact total becomes b⁴/4, the accumulation function becomes x⁴/4)",
+      "scene_hint": "swap every function_plot / region_fill / riemann_bars y_expr from 'x*x - c' to 'x*x*x', and recompute the exact/gap/accumulation closed forms from the cubic's own antiderivative"
+    },
+    {
+      "variant_id": "rainfall_accumulation",
+      "type": "type_b_different_world_same_physics",
+      "label": "Total rainfall from a rate graph",
+      "physical_world": "a rainfall-rate-against-time graph instead of y = x² − c",
+      "same_physics": "the area under a rate graph is still the accumulated total — rectangles built from the rate at each moment still converge to the exact total rainfall as the time-slices get thinner",
+      "scene_hint": "relabel the axes 'time' and 'rainfall rate'; keep the same curve shape so every taught number stays unchanged"
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can estimate a definite integral with a small number of rectangles, explain why refining the partition makes the sum settle on one exact number rather than reaching it at any finite n, state the closed-form size of the left-sum gap and why it is never exactly zero, determine the sign of a definite integral when the curve dips below the axis and distinguish it from the total unsigned area, explain why left, right and midpoint sums differ at every finite n but converge to the same limit, and evaluate a simple accumulation function at a given point.",
+    "questions": [
+      {
+        "q_id": "q1",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "stem": "Estimate ∫₀¹ x² dx with 2 left rectangles.",
+        "options": {
+          "A": "0.125",
+          "B": "0.625",
+          "C": "0.3125",
+          "D": "0.375"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "computes the right sum instead of the specified left sum",
+          "C": "samples at each interval's midpoint instead of its left edge",
+          "D": "averages the left and right sums (the trapezium rule) instead of using the left sum alone"
+        },
+        "tested_idea": "the left Riemann sum samples the height at each subinterval's left edge, not its right edge, midpoint, or an average of both",
+        "parallel_form_stem": "Estimate ∫₀² x² dx with 2 left rectangles."
+      },
+      {
+        "q_id": "q2",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "stem": "As n grows with the interval fixed, the sum Sₙ …",
+        "options": {
+          "A": "settles on one number",
+          "B": "keeps growing without bound",
+          "C": "oscillates between two values forever",
+          "D": "reaches the exact value at some finite n and then stays exactly there"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes more rectangles always means an ever-larger sum, rather than a sum converging to a fixed total",
+          "C": "invents oscillation with no basis in a steadily refining left-sum sequence for an increasing function",
+          "D": "treats approaching a limit as eventually arriving at it exactly — the 'approaching is not reaching' misconception"
+        },
+        "tested_idea": "as n grows without bound, the sequence of Riemann sums converges to one fixed number, the exact integral, without ever exactly reaching it at any finite n",
+        "parallel_form_stem": "For a different increasing curve on a fixed interval, as n grows, does the left sum ever exceed the exact integral?"
+      },
+      {
+        "q_id": "q3",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "stem": "The left-sum gap on [0,2] behaves like 4/n; at n = 200 it is about …",
+        "options": {
+          "A": "0.02",
+          "B": "0",
+          "C": "0.2",
+          "D": "2"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes a large enough n makes the gap reach exactly zero — the exact belief this state confronts",
+          "C": "misplaces the decimal point by a factor of ten",
+          "D": "misplaces the decimal point by a factor of one hundred"
+        },
+        "tested_idea": "the gap shrinks toward zero but is strictly positive at every finite n — never exactly zero",
+        "parallel_form_stem": "The same gap formula at n = 500 is about …"
+      },
+      {
+        "q_id": "q4",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "stem": "Is ∫₀² (x² − 2) dx positive, negative, or zero?",
+        "options": {
+          "A": "negative",
+          "B": "positive — area is always positive",
+          "C": "zero",
+          "D": "undefined"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the integral as an area, which is always positive, instead of a signed total that can be negative",
+          "C": "assumes the positive and negative parts must cancel exactly for any curve, not just a symmetric one",
+          "D": "mistakes a negative result for an undefined one — the integrand is a polynomial, defined everywhere"
+        },
+        "tested_idea": "when a curve dips below the axis, the definite integral subtracts that piece — the signed total can be negative",
+        "parallel_form_stem": "Is ∫₀¹ (x² − 1) dx positive, negative, or zero?"
+      },
+      {
+        "q_id": "q5",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "stem": "For an increasing function, which of left, right or midpoint gives the largest sum?",
+        "options": {
+          "A": "right sum",
+          "B": "left sum",
+          "C": "midpoint sum",
+          "D": "they are all equal"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps which edge over-estimates and which under-estimates for an increasing function",
+          "C": "assumes the midpoint sum, not the right sum, gives the largest estimate for an increasing function",
+          "D": "believes the three sampling rules must agree at every finite n instead of only in the limit"
+        },
+        "tested_idea": "for an increasing function, the right sum over-estimates, the left sum under-estimates, and the midpoint sum sits between them, at every finite n",
+        "parallel_form_stem": "For a decreasing function, which of left, right or midpoint gives the smallest sum?"
+      },
+      {
+        "q_id": "q6",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "stem": "If A(x) is the area from 0 to x under y = x², what is A(3)?",
+        "options": {
+          "A": "9",
+          "B": "27",
+          "C": "3",
+          "D": "18"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "computes 3³ (27) and forgets to divide by 3",
+          "C": "reports the upper bound itself instead of evaluating the accumulation function there",
+          "D": "computes 3³/3 incorrectly instead of dividing 27 by 3"
+        },
+        "tested_idea": "the accumulation function A(x) = x³/3 is evaluated by substituting the given x — A(3) = 27/3 = 9",
+        "parallel_form_stem": "If A(x) is the area from 0 to x under y = x², what is A(2)?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "q1"
+      ],
+      "STATE_3": [
+        "q2"
+      ],
+      "STATE_4": [
+        "q3"
+      ],
+      "STATE_5": [
+        "q4"
+      ],
+      "STATE_6": [
+        "q5"
+      ],
+      "STATE_7": [
+        "q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_8"
+    ]
+  },
+  "curriculum_tags": {
+    "entries": [
+      {
+        "curriculum": "CBSE/NCERT",
+        "coverage": "full",
+        "syllabus_unit": "Class 12 Mathematics, Chapter 7 'Integrals' (the definite integral as the limit of a sum of rectangle areas; geometric interpretation as area under a curve; sign convention for area below the axis)",
+        "verified": true,
+        "needs_teacher_verification": false
+      },
+      {
+        "curriculum": "ICSE/ISC",
+        "coverage": "full",
+        "syllabus_unit": "Class 12 Mathematics — Integral Calculus (definite integrals as the limit of a sum; area under a curve, including the trapezium rule)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "JEE (Main + Advanced)",
+        "coverage": "full",
+        "syllabus_unit": "Definite Integrals — the definite integral as the limit of a sum, area under simple curves, sign of the integral",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "IB DP Mathematics: Analysis and Approaches SL",
+        "coverage": "full",
+        "syllabus_unit": "Topic 5 — Calculus (the definite integral as area between a curve and the x-axis; areas below the x-axis are negative)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "AP Calculus AB/BC",
+        "coverage": "full",
+        "syllabus_unit": "Unit 6 — Integration and Accumulation of Change (Riemann sums, the definite integral as a limit, accumulation functions)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "Cambridge IGCSE Additional Mathematics (0606)",
+        "coverage": "partial",
+        "syllabus_unit": "Integration (area under a curve is examined; the limit-of-a-sum definition itself is not examined)",
+        "verified": false,
+        "needs_teacher_verification": true
+      },
+      {
+        "curriculum": "A-level Pure Mathematics",
+        "coverage": "full",
+        "syllabus_unit": "Integration — the definite integral as a limit of a sum, area under a graph, the trapezium rule as a numerical approximation",
+        "verified": false,
+        "needs_teacher_verification": true
+      }
+    ]
+  }
+}
