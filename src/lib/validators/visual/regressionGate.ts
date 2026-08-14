@@ -32,6 +32,17 @@ export interface RunRegressionGateInput {
     capture: CaptureResult;
     /** Override the baseline root (tests). Default: <cwd>/visual_baselines */
     baselineRoot?: string;
+    /**
+     * Per-state declared-motion map (deriveMotionExpectations), used ONLY to make a
+     * live-compare FAILURE self-diagnosing. `compare: true` on a state whose motion
+     * expectation is `undefined` was set on a guess (visual_approve), so an
+     * unpinnable animated state gets a baseline that can never reproduce — the exact
+     * shape of the electric_potential_point_charge 2.90% failure (2026-08-11), whose
+     * root cause took a session to find. When the map is supplied, that diagnosis is
+     * printed WITH the failure instead of being re-derived by hand. Optional; absent
+     * → identical output to before.
+     */
+    expectsMotion?: Record<string, boolean | undefined>;
 }
 
 export interface RegressionGateResult {
@@ -76,7 +87,7 @@ export async function runRegressionGate(input: RunRegressionGateInput): Promise<
         // No approved baselines for this concept — every state skips. One
         // summary row keeps the output honest without spamming per-state.
         results.push(mkH2('ALL_STATES', true,
-            `Skipped — no approved baseline at ${baselineDir} (run npm run visual:approve -- ${input.conceptId} to create one).`));
+            `Skipped — no approved baseline at ${baselineDir} (run npm run visual:approve -- ${input.conceptId} to create one).`, true));
         return { check_results: results, cost_usd: 0, duration_ms: Date.now() - start };
     }
 
@@ -88,12 +99,27 @@ export async function runRegressionGate(input: RunRegressionGateInput): Promise<
 
         // ── Live panel-A compare ─────────────────────────────────────────
         if (!stateMeta || !existsSync(baselinePath)) {
-            results.push(mkH2(sc.state_id, true, `Skipped — no approved baseline for ${sc.state_id}.`));
+            results.push(mkH2(sc.state_id, true, `Skipped — no approved baseline for ${sc.state_id}.`, true));
         } else if (stateMeta.compare === false) {
             results.push(mkH2(sc.state_id, true,
-                `Skipped — ${sc.state_id} excluded from auto-compare (compare:false, typically an animated state). Baseline kept for human reference.`));
+                `Skipped — ${sc.state_id} excluded from auto-compare (compare:false, typically an animated state). Baseline kept for human reference.`, true));
         } else {
-            results.push(await compareAgainstBaseline(sc.state_id, sc.panel_a_png_b64, baselinePath, tolerance));
+            // The hint fires only on FAILURE, and only when this state's motion was
+            // never declared — see RunRegressionGateInput.expectsMotion.
+            const guessedCompare = stateMeta.compare === true
+                && input.expectsMotion !== undefined
+                && input.expectsMotion[sc.state_id] === undefined;
+            results.push(await compareAgainstBaseline(
+                sc.state_id, sc.panel_a_png_b64, baselinePath, tolerance,
+                guessedCompare
+                    ? ` ROOT-CAUSE CANDIDATE: this state's motion expectation is UNKNOWN (its scenario is `
+                      + `unregistered in deriveMotionExpectations), so compare:true was set on a GUESS that the state `
+                      + `is still — and D5 never verified otherwise. If the state animates in a way SET_TIME_FREEZE `
+                      + `cannot pin, this baseline can never reproduce and re-approving will not help. Check the `
+                      + `frozen-frame diff for this state first: 0.00% there + drift here means the live baseline is `
+                      + `the problem, not the renderer. See npm run check:motion-registry.`
+                    : undefined,
+            ));
         }
 
         // ── Frozen-frame compare (runs even when live compare is false —
@@ -104,9 +130,9 @@ export async function runRegressionGate(input: RunRegressionGateInput): Promise<
             const frozenBaselinePath = join(baselineDir, `${frozenId}.png`);
             if (!sc.frozen_png_b64) {
                 results.push(mkH2(frozenId, true,
-                    `Skipped — manifest expects a frozen compare but this capture has no frozen frame (run with frozenFrame enabled, e.g. npm run visual:eyes).`));
+                    `Skipped — manifest expects a frozen compare but this capture has no frozen frame (run with frozenFrame enabled, e.g. npm run visual:eyes).`, true));
             } else if (!existsSync(frozenBaselinePath)) {
-                results.push(mkH2(frozenId, true, `Skipped — no approved frozen baseline for ${sc.state_id}.`));
+                results.push(mkH2(frozenId, true, `Skipped — no approved frozen baseline for ${sc.state_id}.`, true));
             } else {
                 results.push(await compareAgainstBaseline(frozenId, sc.frozen_png_b64, frozenBaselinePath, tolerance));
             }
@@ -119,6 +145,7 @@ export async function runRegressionGate(input: RunRegressionGateInput): Promise<
 /** Normalize both sides to width 640 and pixelmatch against the baseline file. */
 async function compareAgainstBaseline(
     checkScope: string, currentB64: string, baselinePath: string, tolerance: number,
+    failureHint?: string,
 ): Promise<CheckResult> {
     try {
         const current = await normalizeRgba(Buffer.from(currentB64, 'base64'));
@@ -133,10 +160,10 @@ async function compareAgainstBaseline(
         const passed = ratio <= tolerance;
         return mkH2(checkScope, passed, passed
             ? `OK — ${(ratio * 100).toFixed(2)}% pixels differ vs approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%).`
-            : `Visual regression: ${(ratio * 100).toFixed(2)}% of pixels differ vs the approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%). A renderer or JSON change altered this approved state — review before shipping, or re-approve via npm run visual:approve if the change is intentional.`);
+            : `Visual regression: ${(ratio * 100).toFixed(2)}% of pixels differ vs the approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%). A renderer or JSON change altered this approved state — review before shipping, or re-approve via npm run visual:approve if the change is intentional.${failureHint ?? ''}`);
     } catch (err) {
         return mkH2(checkScope, true,
-            `Skipped — baseline compare failed: ${err instanceof Error ? err.message : String(err)}`);
+            `Skipped — baseline compare failed: ${err instanceof Error ? err.message : String(err)}`, true);
     }
 }
 
@@ -172,7 +199,7 @@ async function normalizeRgba(png: Buffer): Promise<RgbaImage> {
     };
 }
 
-function mkH2(stateId: string, passed: boolean, evidence: string): CheckResult {
+function mkH2(stateId: string, passed: boolean, evidence: string, skipped = false): CheckResult {
     const spec = VISUAL_CHECKS.H2;
     return {
         check_id: 'H2',
@@ -181,5 +208,6 @@ function mkH2(stateId: string, passed: boolean, evidence: string): CheckResult {
         passed,
         evidence,
         bug_class: spec.bugClass,
+        ...(skipped ? { skipped: true } : {}),
     };
 }
