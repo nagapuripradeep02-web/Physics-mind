@@ -216,7 +216,9 @@ async function main(): Promise<void> {
     if (blackout) console.log(`\n${blackout}`);
     console.log(verdictLine(t, '✅ Deterministic gates clean. Now Read the frames — the eye is the gate the machine cannot replace.\n'));
 
-    process.exit(t.failed === 0 ? 0 : 1);
+    // Exit 3 = motion-gate blackout: no failure, but D5 never ran on any state
+    // (unregistered scenario). Machine consumers must not read that as green.
+    process.exit(t.failed > 0 ? 1 : blackout ? 3 : 0);
 }
 
 main().catch(err => {

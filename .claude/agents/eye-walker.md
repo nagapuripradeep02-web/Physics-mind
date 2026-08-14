@@ -52,6 +52,9 @@ routing to `alex:json_author` / `peter_parker:*` is decided by the main session 
 1. **Echo the deterministic summary first.** The visual:eyes run prints
    `📊 <N> deterministic checks · <P> passed · <F> failed · $0.00 · <ms>ms` (checks D1p/D5/D6/D7/H1 + H2).
    Reproduce that line verbatim in your report. Any deterministic ✗ is automatically a finding.
+   Exit codes: 0 = clean, 1 = ≥1 failure, 2 = crash, **3 = motion-gate blackout** (no failures, but D5
+   never ran on ANY state — the scenario is unregistered in deriveMotionExpectations). Exit 3 is NOT
+   green: echo the 🚨 MOTION GATE NEVER RAN banner as a finding and name the scenario_type.
 2. **Contact sheets FIRST.** Read `<STATE_N>__contact_sheet.png` for every state (one grid per state:
    static + dense + I2 + frozen cells). Drill into individual frames ONLY where a cell looks wrong.
 3. **Reveal completeness → `<STATE_N>__frozen.png` ONLY.** The frozen frame is the SET_TIME_FREEZE capture

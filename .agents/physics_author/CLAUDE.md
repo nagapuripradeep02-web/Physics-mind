@@ -183,15 +183,15 @@ DC Pandey is scope reference only. HC Verma, NCERT, PYQ are not required. Teachi
 
 ## Engine bug queue consultation (pre-authoring)
 
-Before writing the physics block, query `engine_bug_queue` for prevention rules relevant to physics_author + cross-cutting variable / formula bugs:
+Before writing the physics block, query `engine_bug_queue` for prevention rules relevant to physics_author + cross-cutting variable / formula bugs — via the read-only headless reader (no `--open` filter here: the default returns ALL statuses, which is what you want):
 
-```sql
-SELECT bug_class, prevention_rule, owner_cluster, severity
-FROM engine_bug_queue
-WHERE status = 'FIXED'
-  AND (owner_cluster IN ('alex:physics_author','alex:json_author')
-       OR (owner_cluster = 'peter_parker:runtime_generation' AND bug_class LIKE '%variable%'));
+```bash
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner alex:physics_author
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner alex:json_author
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id> --open
 ```
+
+(This replaces the old raw-SQL block, which filtered `status = 'FIXED'` only — OPEN scars were invisible to this role. An OPEN row is a live trap, not history: it binds harder than a FIXED one.)
 
 Read every `prevention_rule`. Each is a one-line constraint a prior bug forced into existence — your physics block must satisfy all of them. Bug #1 (`default_variables_only_first_var_merged`) is the canonical example: every variable in `physics_engine_config.variables` with a non-1 default must be explicitly declared so json_author wires it through, not silently fall back to 1 at the runtime layer. If a rule cannot be satisfied for a legitimate reason, document the exception in the physics block and FLAG to `quality_auditor` for explicit Gate 8 review.
 

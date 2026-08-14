@@ -125,6 +125,19 @@ function allConceptIds(): string[] {
 function main(): void {
     const args = process.argv.slice(2).filter(a => a.trim().length > 0);
     const all = args.includes('--all');
+    // --budget <N> consumes BOTH tokens — the bare number would otherwise fall
+    // through to `named` below and be audited as a concept id.
+    let budget: number | null = null;
+    const budgetIdx = args.indexOf('--budget');
+    if (budgetIdx !== -1) {
+        const v = Number(args[budgetIdx + 1]);
+        if (!Number.isFinite(v) || v < 0) {
+            console.error('--budget requires a non-negative number, e.g. --budget 344');
+            process.exit(2);
+        }
+        budget = v;
+        args.splice(budgetIdx, 2);
+    }
     const named = args.filter(a => !a.startsWith('--'));
     const ids = named.length > 0 ? named : all ? allConceptIds() : baselineLockedIds();
 
@@ -195,6 +208,18 @@ function main(): void {
         `  states               ${totalStates} total · ${totalUnknown} unknown (${totalStates ? ((100 * totalUnknown) / totalStates).toFixed(1) : '0'}%) — D5 skips these\n` +
         `  baseline risk         ${liveRisk.length} concept(s) live-comparing an unknown state\n`,
     );
+
+    if (budget !== null) {
+        if (totalUnknown > budget) {
+            console.error(
+                `❌ MOTION-REGISTRY RATCHET — ${totalUnknown} unknown state(s) exceeds the budget of ${budget} ` +
+                `(+${totalUnknown - budget}). A scenario shipped without registering in deriveMotionExpectations. ` +
+                `Register it (deriveStateMeta.ts) — or, only as a conscious decision, raise the budget in verify.yml.`,
+            );
+            process.exit(1);
+        }
+        console.log(`  ratchet               ${totalUnknown} unknown ≤ budget ${budget} ✓\n`);
+    }
 }
 
 main();

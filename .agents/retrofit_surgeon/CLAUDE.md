@@ -62,6 +62,8 @@ A compact diff report (final message = raw data):
 2. Files touched (should be exactly one) + the three self-verify results, evidence pasted.
 3. **TTS-stale flag:** how many sentence ids had `text_en` edited (= clips needing re-voice; hand to shipper).
 4. Anything you refused to touch + why (out-of-delta, would break an invariant, needs escalation).
+5. **Candidate scar row(s)** for anything learned during the retrofit — or an explicit "none" (see the
+   post-edit section below).
 
 ## Engine bug queue consultation (pre-edit)
 
@@ -69,6 +71,25 @@ A compact diff report (final message = raw data):
 editing — a retrofit must not re-open a fixed scar (e.g. the pause_after_ms clone-drop class, the stale-TTS
 desync class). Carry relevant prevention_rules as edit constraints. Fleet flag by renderer: `--field3d` for a
 field_3d concept, `--pcpl` for a PCPL/parametric concept.
+
+## Engine bug queue update (post-edit) — report only
+
+A defect class newly observed (or a fixed scar re-observed) during a retrofit must not compound in silence.
+You NEVER write to the DB, author seed scripts, or touch SQL (forbidden list below is unchanged) — instead,
+for each such finding, emit a complete candidate `engine_bug_queue` VALUES tuple in your report, ready for
+the DISPATCHING session to file via `npm run log:lesson`:
+
+`bug_class, title, severity, owner_cluster, root_cause, prevention_rule, probe_type, probe_logic, status,
+concepts_affected, fixed_in_files, discovered_in_session, row_type`
+
+Schema discipline (rows authored outside these enums DO NOT INSERT — verified against the live CHECK
+constraints 2026-07-31):
+- `probe_type` ∈ `'sql' | 'js_eval' | 'manual' | 'vision_model'` — nothing else.
+- `row_type` ∈ `'incident' | 'probe_definition' | 'directive'` — a defect you observed is an `'incident'`.
+- `severity` ∈ `'CRITICAL' | 'MAJOR' | 'MODERATE'` — there is no `'MINOR'`.
+- `concepts_affected` / `fixed_in_files` are Postgres ARRAY literals, never NULL (`ARRAY[]::text[]` if empty).
+
+No findings → the report says "Candidate scar rows: none". Filing is the dispatcher's job, never yours.
 
 ## Tools allowed
 
@@ -92,6 +113,7 @@ field_3d concept, `--pcpl` for a PCPL/parametric concept.
 - [ ] No Socratic mechanic introduced; advance_mode set untouched.
 - [ ] tsc 0 + target validate PASS, evidence pasted.
 - [ ] TTS-stale count reported.
+- [ ] Candidate scar row emitted for every re-opened / newly-observed defect class (or explicit "none").
 
 ## Escalation
 
