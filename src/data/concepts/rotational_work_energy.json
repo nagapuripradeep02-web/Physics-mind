@@ -67,11 +67,11 @@
         "derived": "omega0 - (tau_brake/I)*t"
       },
       "tau_brake": {
-        "name": "Magnitude of the constant frictional brake torque opposing the spin — the guided value is 0.40 (forced by the 0.05-step slider grid, not taste)",
+        "name": "Magnitude of the constant frictional brake torque opposing the spin — the guided value is 0.15 (founder-ruled, rev 4/F1: keeps the local full stop at 30.60 s, beyond every guided state's real narration-derived timeline, so no guided state ever holds a false rest-clamp frame)",
         "unit": "N·m",
         "min": 0,
         "max": 2.0,
-        "default": 0.40,
+        "default": 0.15,
         "step": 0.05
       },
       "tau": {
@@ -463,7 +463,7 @@
             "type": "annotation",
             "id": "rbr_s3_focal",
             "position": { "x": 200, "y": 250 },
-            "text": "Angle theta and work W climb together while the torque meter holds at −0.40 N·m",
+            "text": "Angle theta and work W climb together while the torque meter holds at −0.15 N·m",
             "color": "#4DD0E1"
           },
           {
@@ -478,7 +478,7 @@
           "tts_sentences": [
             { "id": "s3_1", "text_en": "The brake still presses on the wheel's rim — its turning effect, torque tau, keeps the wheel slowing." },
             { "id": "s3_2", "text_en": "Two counters run together: angle theta, and work W — torque times angle." },
-            { "id": "s3_3", "text_en": "The torque meter reads minus zero point four zero newton metres: the minus sign means the brake removes energy from the wheel." }
+            { "id": "s3_3", "text_en": "The torque meter reads minus zero point one five newton metres, meaning the brake is removing energy from the wheel." }
           ]
         },
         "misconception_watch": [
@@ -692,7 +692,7 @@
           "show_drum_line": false,
           "show_pull_arrows": false,
           "show_grip_hand": false,
-          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 800, "pad_travel_ms": 800 },
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.15, "engage_at_ms": 800, "pad_travel_ms": 800 },
           "readouts": ["I", "omega", "KE"],
           "ke_bar": { "max_j": 3.80 },
           "reference_marks": [
@@ -703,7 +703,7 @@
           "formula": "KE ∝ ω²",
           "phases": [
             { "id": "cause", "at_ms": 0, "until_ms": 800, "glow_focal": "rbr_brake_pad" },
-            { "id": "effect", "at_ms": 800, "until_ms": 12000, "glow_focal": "rbr_drum" }
+            { "id": "effect", "at_ms": 800, "until_ms": null, "glow_focal": "rbr_drum" }
           ]
         }
       },
@@ -736,7 +736,7 @@
           "show_drum_line": false,
           "show_pull_arrows": false,
           "show_grip_hand": false,
-          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 0 },
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.15, "engage_at_ms": 0 },
           "theta0_rad": 0,
           "readouts": ["theta", "tau", "W"],
           "readout_at_ms": { "tau": 600, "theta": 2500, "W": 2500 },
@@ -774,7 +774,7 @@
           "show_drum_line": false,
           "show_pull_arrows": false,
           "show_grip_hand": false,
-          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 0 },
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.15, "engage_at_ms": 0 },
           "theta0_rad": 0,
           "readouts": ["KE", "theta", "W"],
           "ke_bar": { "max_j": 3.80 },
@@ -784,7 +784,7 @@
         }
       },
       "STATE_5": {
-        "label": "Deriving W equals Delta KE",
+        "label": "Deriving W = ΔKE",
         "caption": "Build the rule",
         "camera_position": [2.74, 3.87, 2.74],
         "show_sliders": true,
@@ -812,7 +812,7 @@
           "show_drum_line": false,
           "show_pull_arrows": false,
           "show_grip_hand": false,
-          "external_torque": { "source": "brake", "tau_brake_Nm": 0.40, "engage_at_ms": 0 },
+          "external_torque": { "source": "brake", "tau_brake_Nm": 0.15, "engage_at_ms": 0 },
           "theta0_rad": 0,
           "readouts": ["I", "omega", "KE", "alpha", "tau", "W"],
           "readout_at_ms": { "alpha": 1500, "tau": 1500, "W": 3500 },
