@@ -1,5 +1,35 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚀 SESSION — **full-pipeline audit, then Tier 1 shipped: Pause actually stops the current, and three gates now refuse to lie** (2026-08-14, PRs #124 + #125)
+
+**Bottom line: a four-track audit found the scar loop healthy on the write side and mandatory on the read side (the architect IS required to read `engine_bug_queue` before designing, and can since the 2026-08-02 Bash grant) — but with real holes, of which the load-bearing three are: physics-number correctness has no routinely-running gate, the motion gate's blackout still exited 0, and nothing sweeps or disciplines baselines between sessions. Tier 1 closed the mechanical half and fixed the product bug. The freeze-guard fix is proven by a before/after probe with a control; the baseline flake is NOT fully fixed, and its second cause is now measured rather than guessed.**
+
+### (1) The freeze guard — 8 sites, not 4 (PR #124, `[owner: peter_parker:field3d_surgeon]`)
+- The routed OPEN row named four accumulators; sweeping the file properly found **eight**. Beyond `straight_wire_current` + `parallel_currents_force`: `updateGalvanometerAmmeterVoltmeterFrame`, `updateBarMagnetAsDipoleFrame`, and two in `updateGaussLawMagnetismFrame` — all written `x = x + 0.016 * __pmSteps` rather than `+=`, which is why the original grep missed them.
+- Fixed with the two idioms already in the file: a hoisted `var swDt = heldAtPin ? 0 : dtStep;` for the in-scope sites, and a threaded `dt` parameter for the four sibling updaters (`heldAtPin ? 0 : dtStep` at the single call site of each) — the `updatePeExternalFieldFrame` precedent, whose comment records that referencing `heldAtPin` from a sibling function throws.
+- **Proven before/after with a control, not by a pass count.** A freeze-determinism probe pins the clock and screenshots twice 4 s apart: on the UNFIXED renderer the frames DIFFER (`f593bd76…` vs `ddbc2fa4…`); on the FIXED renderer they are BYTE-IDENTICAL (`bd9044375e443e9b` twice); the current-OFF control state is byte-identical on both — so the probe detects the current animation, not noise. `PM_simTimeMs` read 3000.0 in every case: the clock was never the variable.
+- **Product consequence, teacher-visible:** Pause now stops the beads, field arrows and tracers in five scenarios (Rule 26b). A teacher reporting "the current stops when I pause now" is reporting the fix.
+
+### (2) The baseline flake is NOT fixed — the second cause, measured
+- Two full EYE runs after the fix still differ: STATE_2 **2.46%**, STATE_6 2.01%, STATE_7 1.19%, STATE_4 1.05%, STATE_5 0.90%. STATE_1 and STATE_3 are **exactly 0.00%** (STATE_1 was 2.03% run-vs-run on 08-12/13, so the guard removed part of the noise).
+- **Root cause found by experiment:** a pinned frame is a function of **how long the PREVIOUS state was displayed**. Pinning STATE_2 at its 4200 ms reveal-complete time while varying only the dwell on STATE_1: dwell 500 ms → hash `99933c548df8b27f`, dwell 3000 ms → `8a72c06cac87f674`, dwell 500 ms again → `99933c548df8b27f` **exactly**. Same dwell is perfectly reproducible; different dwell is not. Phase accumulators are seeded lazily at object creation, never re-seeded on state entry, and `RESET_TRAJECTORY` does not clear them — so the frame encodes wall-clock history, and THE EYE's per-state dwell is wall-clock dependent.
+- Filed OPEN: `animation_phase_carries_across_set_state_so_a_pinned_frame_depends_on_the_previous_states_wall_dwell` (MAJOR, 6 concepts). **Do NOT re-approve `magnetic_field_concept_B` until it lands — the new baseline would be as arbitrary as the old one.**
+- Also filed OPEN: `gm_surface_spin_uses_a_hardcoded_per_frame_delta_so_the_pin_never_stops_it` (MAJOR) — `gauss_law_magnetism`'s `PM_gmSpin += 0.014` has no dt term at all (Rule 36); the surgeon flagged it as out of scope under Amendment 4 and the probe confirmed STATE_4 still moves under the pin.
+
+### (3) Six harness gates (PR #125)
+- **THE EYE exits 3 on a motion blackout** — an all-skip run previously exited 0, machine-indistinguishable from green. Failures stay 1, crashes 2; `eye_walker` + `field3d_surgeon` specs document it.
+- **`check:motion-registry --budget N`** + a BLOCKING `verify.yml` step at the measured census (344). Verified both ways: 344 → exit 0, 300 → exit 1. The flag consumes both tokens, since a bare number would otherwise be parsed as a concept id.
+- **`build:pilot` pre-deploy gate** — every `PILOT_CONCEPTS` id must have an approved `baselines.json` AND resolve to a concept JSON. Verified both ways: green path builds 68; with one baseline temporarily renamed it halts before building any sim, naming the id. Also corrected a stale comment claiming baseline-lock auto-detection the code never did.
+- **`friction_static_kinetic` → `CONCEPT_RENDERER_MAP`** — the only `PCPL_CONCEPTS` member missing from it, so `resolveRendererType()` fell through to the substring loop / `particle_field` default instead of `mechanics_2d`.
+- **Spec contracts:** physics_author and json_author consultations filtered `status='FIXED'` only — OPEN traps were invisible to pipeline positions 2 and 3; both now call the headless reader with `--open`. `retrofit_surgeon` gains a report-only post-edit scar-filing contract (no Write/SQL rights, so it emits the candidate tuple for the dispatcher to file).
+- The cherry-pick of `64839da` rides PR #125, so the EYE-honesty work reaches master instead of waiting on a chapter branch (Rule 40).
+
+### Not done / deliberately not done
+- **No baseline re-approved, no tolerance touched** — and now there is a measured reason not to (see 2).
+- **The 41 unregistered scenarios are still unregistered.** The ratchet stops the number rising; burning it down is per-scenario judgement work.
+- **The two new rows are not fixed** — each is a distinct `bug_class` needing its own dispatch and acceptance.
+- **Tier 2 untouched:** THE CALCULATOR is still advisory (physics-number correctness has no routinely-running gate — the largest remaining hole), no fleet EYE sweep exists, and `field_3d_config` — the layer that actually renders — is still schema-unvalidated.
+
 ## 🚀 SESSION — the last two unbaselined catalog concepts locked, then **Class-11 mechanics opened in the deployed catalog (53 → 68)** (2026-08-10, `master` + PR #116)
 ## 🚀 SESSION — **The motion gate has never run on 41 of 96 concepts; `magnetic_field_concept_B` has no reproducible baseline** (2026-08-12/13, branch `fix/ch7-chapter-end-verification`)
 
