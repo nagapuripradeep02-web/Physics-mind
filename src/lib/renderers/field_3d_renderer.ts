@@ -10838,7 +10838,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // Per-frame: flow dots, orbiting B1 arrows, and the force/B1 vectors driven
     // by the two current directions. F2_x = -dir1*dir2, F1_x = +dir1*dir2
     // (parallel -> attract, antiparallel -> repel). Reads sandbox sliders live.
-    function updateParallelCurrentsForceFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep): heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent dot/orbit accumulators below hold their phase.
+    function updateParallelCurrentsForceFrame(dt) {
         var stateDef = config.states[PM_currentState];
         if (!stateDef) return;
         var ex = stateDef.extras || {};
@@ -10869,7 +10873,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (!o.visible) continue;
                 var ddir = (ud.wire === 1) ? dir1 : dir2;
                 if (ud.dotPhase == null) ud.dotPhase = (ud.dotIndex || 0) / (ud.dotCount || 6);
-                ud.dotPhase += 0.016 * __pmSteps * dotSpeed;
+                ud.dotPhase += dt * dotSpeed;
                 var loopT = ud.dotPhase % 1;
                 o.position.x = (ud.wire === 1) ? x1 : x2;
                 o.position.y = ddir > 0 ? (-2.5 + loopT * 5) : (2.5 - loopT * 5);
@@ -10881,7 +10885,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (current up). The orbit flows in DECREASING angle and the arrowhead
                 // points along B (downstream). dir1 flips the whole sense for current down.
                 var rotSign = dir1;
-                ud.swPhase += 0.016 * __pmSteps * orbitRate * (-rotSign);
+                ud.swPhase += dt * orbitRate * (-rotSign);
                 var ang = (ud.flowAngleOffset || 0) + ud.swPhase;
                 o.position.set((ud.flowCenterX || x1) + ud.flowRadius * Math.cos(ang), ud.flowHeight, ud.flowRadius * Math.sin(ang));
                 var tx = Math.sin(ang) * rotSign, tz = -Math.cos(ang) * rotSign;
@@ -19031,7 +19035,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // Per-frame motion — PURE function of the state clock (deterministic, Rule 26):
     // the always-on current-dot stream (speed ∝ I) + the per-state scripted beats
     // (assemble G+S→ammeter, assemble G+R→voltmeter, swap-warning pulse).
-    function updateGalvanometerAmmeterVoltmeterFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep) — heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent dot stream below holds its position.
+    function updateGalvanometerAmmeterVoltmeterFrame(dt) {
         if (config.scenario_type !== "galvanometer_to_ammeter_voltmeter") return;
         var sd = config.states[PM_currentState] || {};
         var ex = sd.extras || {};
@@ -19047,7 +19055,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var pts = gavPathCache[dd.userData.path] || gavPathCache.solo;
             // the tiny coil current creeps; the vm-branch trickle creeps too.
             var sp = speed * ((dd.userData.path === "coil" || dd.userData.path === "vmbranch") ? 0.35 : 1.0);
-            dd.userData.t = (dd.userData.t + sp * 0.016 * __pmSteps);
+            dd.userData.t = (dd.userData.t + sp * dt);
             var xy = gavLerpPath(pts, dd.userData.t);
             dd.position.set(xy[0], xy[1], 0);
         }
@@ -19438,7 +19446,11 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     var bmInteracted = false;
-    function updateBarMagnetAsDipoleFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep) — heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent tracer stream below holds its position.
+    function updateBarMagnetAsDipoleFrame(dt) {
         if (config.scenario_type !== "bar_magnet_as_dipole") return;
         var sd = config.states[PM_currentState] || {};
         var ex = sd.extras || {};
@@ -19448,7 +19460,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var d = 0; d < bmTracers.length; d++) {
                 var tr = bmTracers[d]; if (!tr.visible) continue;
                 var path = bmArchPaths[tr.userData.arch % bmArchPaths.length];
-                tr.userData.t = (tr.userData.t + 0.18 * 0.016 * __pmSteps);
+                tr.userData.t = (tr.userData.t + 0.18 * dt);
                 var xy = gavLerpPath(path, tr.userData.t);
                 tr.position.set(xy[0], xy[1], 0.05);
             }
@@ -24677,7 +24689,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // Per-frame gauss_law_magnetism update — closed-loop tracer stream + the S4
     // surface morph + the S6 sandbox drag + the Φ_B = 0 readout. Pure function of
     // the state clock (Rule 26).
-    function updateGaussLawMagnetismFrame() {
+    // dt is the freeze-determinism guard, precomputed by the animate loop as
+    // (heldAtPin ? 0 : dtStep) — heldAtPin is local to animate's scope, so
+    // referencing it here would throw ReferenceError. Under a time pin dt is 0
+    // and the path-dependent tracer/internal-dot streams below hold their positions.
+    function updateGaussLawMagnetismFrame(dt) {
         if (config.scenario_type !== "gauss_law_magnetism") return;
         var stateDef = config.states[PM_currentState]; if (!stateDef) return;
         var gm = stateDef.gm || {};
@@ -24741,7 +24757,7 @@ export const FIELD_3D_RENDERER_CODE = `
             for (var d = 0; d < gmTracers.length; d++) {
                 var tr = gmTracers[d]; if (!tr.visible) continue;
                 var path = gmLoopPaths[tr.userData.loop % gmLoopPaths.length];
-                tr.userData.t = tr.userData.t + 0.18 * 0.016 * __pmSteps;
+                tr.userData.t = tr.userData.t + 0.18 * dt;
                 var xyz = gmLerpPath3(path, tr.userData.t);
                 tr.position.set(xyz[0], xyz[1], xyz[2]);
             }
@@ -24749,7 +24765,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // 2b. The internal-return dot traces the front internal tube (S→N).
         var intT = gmFindById("gm_internal"), intD = gmFindById("gm_internal_dot");
         if (intT && intD && intD.visible && intT.userData.loopPath) {
-            intD.userData.t = intD.userData.t + 0.18 * 0.016 * __pmSteps;
+            intD.userData.t = intD.userData.t + 0.18 * dt;
             var lp = gmLerpPath3(intT.userData.loopPath, intD.userData.t);
             intD.position.set(lp[0], lp[1], lp[2]);
         }
@@ -80663,7 +80679,7 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Parallel currents force — flow dots, orbiting B1 arrows, force vectors.
         if (config.scenario_type === "parallel_currents_force") {
-            updateParallelCurrentsForceFrame();
+            updateParallelCurrentsForceFrame(heldAtPin ? 0 : dtStep);
             updatePcfRhrHandFrame();   // STATE_3 right-hand: slow I→B→F curl + highlight
         }
 
@@ -80816,14 +80832,14 @@ export const FIELD_3D_RENDERER_CODE = `
         // galvanometer_to_ammeter_voltmeter — continuous current-dot stream +
         // assemble / swap beats (pure fn of the state clock, Rule 26) + TTS glow.
         if (config.scenario_type === "galvanometer_to_ammeter_voltmeter") {
-            updateGalvanometerAmmeterVoltmeterFrame();
+            updateGalvanometerAmmeterVoltmeterFrame(heldAtPin ? 0 : dtStep);
             applyGalvanometerAmmeterVoltmeterGlow();
         }
 
         // bar_magnet_as_dipole — field-tracer stream + loop trace / break / probe
         // r-sweep beats (pure fn of the state clock, Rule 26) + TTS glow.
         if (config.scenario_type === "bar_magnet_as_dipole") {
-            updateBarMagnetAsDipoleFrame();
+            updateBarMagnetAsDipoleFrame(heldAtPin ? 0 : dtStep);
             applyBarMagnetAsDipoleGlow();
         }
 
@@ -80852,7 +80868,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // gauss_law_magnetism — closed-loop tracer stream + S4 surface morph +
         // S6 sandbox drag + Φ_B = 0 readout (state clock, Rule 26) + TTS glow.
         if (config.scenario_type === "gauss_law_magnetism") {
-            updateGaussLawMagnetismFrame();
+            updateGaussLawMagnetismFrame(heldAtPin ? 0 : dtStep);
             applyGaussLawMagnetismGlow();
         }
 
@@ -81859,6 +81875,11 @@ export const FIELD_3D_RENDERER_CODE = `
             var curDirSign = stateDef.current_direction_indicator === "down" ? -1 :
                              stateDef.current_direction_indicator === "up" ? 1 : 0;
             var dotSpeed = 0.55; // wire-units per second along the 5-unit visible span
+            // The freeze-determinism guard (mirrors the solenoid's cfDt): under a
+            // time pin __pmSteps is FORCED to 1, so dtStep never reaches 0 and the
+            // path-dependent orbit/dot accumulators below would keep advancing
+            // through SET_TIME_FREEZE (teacher Pause). swDt is 0 while pinned.
+            var swDt = heldAtPin ? 0 : dtStep;
 
             // ── switch_toggle (magnetic_field_concept_B STATE_1/STATE_3) ──────
             //   The wire current i(t) is i_before on state entry; at close_at_ms /
@@ -82080,7 +82101,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // rotating field," just no longer a perfectly rigid one (deterministic,
                         // no randomness, no new state — Rule 26).
                         var swRateScale = 1 + 0.02 * (swRingIdx - 2.5) + 0.012 * (swHeightIdx - 1);
-                        swUd.swPhase += dtStep * effRotRate * rotDirSign * swRateScale;
+                        swUd.swPhase += swDt * effRotRate * rotDirSign * swRateScale;
                         var swStagger = ((swHeightIdx * 6 + swRingIdx) / 18) * Math.PI * 2;
                         var ang = (swUd.flowAngleOffset || 0) + swUd.swPhase + swStagger;
                         swObj.position.set(
@@ -82114,7 +82135,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // Flow speed scales with the live current (dots crawl as the
                         // switch ramps the current down, freeze as it hits 0).
                         if (swUd.dotPhase == null) swUd.dotPhase = phase;
-                        swUd.dotPhase += dtStep * dotSpeed * iScale;
+                        swUd.dotPhase += swDt * dotSpeed * iScale;
                         var loopT = swUd.dotPhase % 1;
                         // Up-flow: y goes -2.5 → +2.5; Down-flow: y goes +2.5 → -2.5
                         swObj.position.x = wireScenarioOffsetX; // ride with the panel split
