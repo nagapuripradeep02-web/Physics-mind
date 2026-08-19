@@ -101,6 +101,9 @@ __pycache__/
 # Static review-site build artifact (build:review) — not tracked
 review-site/
 
+# Quick Learn chat/interaction logs (quicklearn_chat_server.ts) — local only
+.quicklearn_logs/
+
 # Local Netlify folder
 .netlify
 review-site-archive/
@@ -115,3 +118,10 @@ nul
 /.scratch_nlb_seams/
 /.scratch_nlb_mass/
 /.scratch_nlb_wall/
+
+# Quick Learn generated output — regenerable, never tracked:
+#   ql-deploy/site/   <- node ql-deploy/prepare_site.mjs (from review-site/)
+#   website/learn/    <- npm run build:quicklearn:public
+ql-deploy/site/
+ql-deploy/.wrangler/
+website/learn/
