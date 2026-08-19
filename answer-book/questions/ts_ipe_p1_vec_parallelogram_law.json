@@ -1,0 +1,413 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_parallelogram_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State the parallelogram law of vectors. Derive an expression for the magnitude and direction of the resultant vector.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement of the law",
+      "marks": 2
+    },
+    {
+      "label": "Labelled figure",
+      "marks": 1
+    },
+    {
+      "label": "Magnitude derivation",
+      "marks": 3
+    },
+    {
+      "label": "Direction derivation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Question appears in the TSBIE Basic Learning Material 2021-22 (Unit 4) and the Sri Chaitanya IPE Fastrack. The 8-mark split and exact IPE appearance years are claims until a Telangana IPE teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Motion in a Plane · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "State the law",
+        "marks": 2,
+        "mark_note": "Statement",
+        "margin_note": "Write the whole statement. The two marks are for the words alone.",
+        "lines": [
+          {
+            "text": "Statement:",
+            "style": "heading"
+          },
+          "If two vectors acting at a point are represented",
+          "in magnitude and direction by the two adjacent",
+          "sides of a parallelogram drawn from that point,",
+          "then their resultant is represented in magnitude",
+          "and direction by the diagonal of the parallelogram",
+          "drawn from the same point."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Draw the figure",
+        "marks": 1,
+        "mark_note": "Figure",
+        "margin_note": "Label every point: O, A, B, C, D. Mark the angles θ and α and the sides P, Q, R. One mark is for a complete, labelled figure.",
+        "figure": {
+          "id": "fig_parallelogram",
+          "width": 470,
+          "height": 320,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "oa",
+              "d": "M 70 250 L 289 251",
+              "ms": 600
+            },
+            {
+              "type": "stroke",
+              "id": "oa_head",
+              "d": "M 279 245 L 289 251 L 279 257",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 50,
+              "y": 268,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 283,
+              "y": 272,
+              "text": "A",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 168,
+              "y": 280,
+              "text": "P",
+              "em": true,
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "ob",
+              "d": "M 70 250 L 145 144",
+              "ms": 520
+            },
+            {
+              "type": "stroke",
+              "id": "ob_head",
+              "d": "M 136 151 L 145 144 L 147 155",
+              "ms": 120
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 126,
+              "y": 132,
+              "text": "B",
+              "ms": 200
+            },
+            {
+              "type": "label",
+              "id": "lbl_q",
+              "x": 84,
+              "y": 190,
+              "text": "Q",
+              "em": true,
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "arc_theta",
+              "d": "M 112 250 A 42 42 0 0 0 95 216",
+              "ms": 320
+            },
+            {
+              "type": "label",
+              "id": "lbl_theta",
+              "x": 118,
+              "y": 234,
+              "text": "θ",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "bc",
+              "d": "M 145 144 L 365 145",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "ac",
+              "d": "M 289 251 L 365 145",
+              "ms": 520,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 371,
+              "y": 138,
+              "text": "C",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "oc",
+              "d": "M 70 250 L 364 145",
+              "ms": 700,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "oc_head",
+              "d": "M 352 147 L 364 145 L 357 155",
+              "ms": 120,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_r",
+              "x": 210,
+              "y": 178,
+              "text": "R",
+              "em": true,
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "arc_alpha",
+              "d": "M 148 250 A 78 78 0 0 0 141 222",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_alpha",
+              "x": 154,
+              "y": 242,
+              "text": "α",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "ad",
+              "d": "M 289 251 L 366 251",
+              "ms": 360,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_d",
+              "x": 373,
+              "y": 272,
+              "text": "D",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "cd",
+              "d": "M 365 145 L 365 250",
+              "ms": 420,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "rt_angle",
+              "d": "M 353 250 L 353 238 L 365 238",
+              "ms": 180,
+              "pen": "pencil"
+            },
+            {
+              "type": "label",
+              "id": "lbl_qsin",
+              "x": 374,
+              "y": 204,
+              "text": "Q sin θ",
+              "sm": true,
+              "ms": 220
+            },
+            {
+              "type": "label",
+              "id": "lbl_qcos",
+              "x": 302,
+              "y": 278,
+              "text": "Q cos θ",
+              "sm": true,
+              "ms": 220
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_construction",
+        "kind": "text",
+        "label": "Construction",
+        "marks": 1,
+        "mark_note": "Construction",
+        "margin_note": "Name every point you drew. The examiner matches these names against the figure.",
+        "lines": [
+          {
+            "text": "Construction:",
+            "style": "heading"
+          },
+          "Let OA = P and OB = Q act at the point O,",
+          "with ∠AOB = θ.",
+          "Complete the parallelogram OACB.",
+          "Join OC. The diagonal OC = R is the resultant.",
+          "Draw CD ⊥ to OA extended, meeting it at D.",
+          "Let ∠AOC = α."
+        ]
+      },
+      {
+        "id": "s4_legs",
+        "kind": "equation",
+        "label": "Find AD and CD",
+        "marks": 1,
+        "mark_note": "Triangle CAD",
+        "margin_note": "AC is parallel to OB, so the angle at A equals θ. Both legs come from this one triangle.",
+        "lines": [
+          "In the right triangle CAD:",
+          {
+            "text": "∠CAD = θ   (AC is parallel to OB)",
+            "style": "eq"
+          },
+          {
+            "text": "AD = Q cos θ",
+            "style": "eq"
+          },
+          {
+            "text": "CD = Q sin θ",
+            "style": "eq"
+          },
+          {
+            "text": "∴ OD = OA + AD = P + Q cos θ",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s5_pythagoras",
+        "kind": "equation",
+        "label": "Apply Pythagoras",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "margin_note": "Show the expansion and the sin²θ + cos²θ = 1 step. Skipping it loses the mark.",
+        "lines": [
+          "In the right triangle ODC:",
+          {
+            "text": "OC² = OD² + CD²",
+            "style": "eq"
+          },
+          {
+            "text": "R² = (P + Q cos θ)² + (Q sin θ)²",
+            "style": "eq"
+          },
+          {
+            "text": "R² = P² + 2PQ cos θ + Q²cos²θ + Q²sin²θ",
+            "style": "eq"
+          },
+          {
+            "text": "R² = P² + Q² + 2PQ cos θ  (∵ sin²θ + cos²θ = 1)",
+            "style": "eq"
+          },
+          {
+            "text": "R = √(P² + Q² + 2PQ cos θ)",
+            "style": "boxed"
+          }
+        ]
+      },
+      {
+        "id": "s6_direction",
+        "kind": "equation",
+        "label": "Direction of R",
+        "marks": 1,
+        "mark_note": "tan α",
+        "margin_note": "Use the same right triangle ODC. Say which side is opposite and which is adjacent to α.",
+        "lines": [
+          "Direction: in the right triangle ODC,",
+          {
+            "text": "tan α = CD / OD",
+            "style": "eq"
+          },
+          {
+            "text": "tan α = Q sin θ / (P + Q cos θ)",
+            "style": "eq"
+          }
+        ]
+      },
+      {
+        "id": "s7_alpha",
+        "kind": "boxed_final",
+        "label": "Final answer for α",
+        "marks": 1,
+        "mark_note": "Direction",
+        "margin_note": "Box both final answers. The examiner finds them in one glance.",
+        "lines": [
+          "The angle α gives the direction of R with P.",
+          {
+            "text": "∴ α = tan⁻¹ [ Q sin θ / (P + Q cos θ) ]",
+            "style": "boxed"
+          }
+        ]
+      },
+      {
+        "id": "s8_special_cases",
+        "kind": "text",
+        "label": "Special cases (extra)",
+        "marks": 0,
+        "margin_note": "Not asked. Write it only if time is left.",
+        "lines": [
+          {
+            "text": "Special cases:",
+            "style": "heading"
+          },
+          {
+            "text": "θ = 0°  → R = P + Q  (maximum)",
+            "style": "indent"
+          },
+          {
+            "text": "θ = 90° → R = √(P² + Q²)",
+            "style": "indent"
+          },
+          {
+            "text": "θ = 180° → R = P − Q  (minimum)",
+            "style": "indent"
+          }
+        ]
+      }
+    ]
+  }
+}

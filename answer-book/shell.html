@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+  Answer Book — Telangana IPE board-exam answer-writing guide.
+  BUILT FILE: do not edit answer-book/dist/index.html by hand.
+  Source: answer-book/shell.html + notebook.css + notebook.js + questions/*.json
+  Build:  npm run build:answers
+  Harvested from public/board-mvp.html (tracked reference): typing loop (L591-623),
+  ruled-paper gradients (L137-139), accumulator CSS (L79-87), print block (L718-726).
+-->
+<!--__BUILT_AT__-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Answer Book — Physics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">📘</span>
+    <span class="brand-name">Answer Book</span>
+    <span class="brand-sub" id="boardLabel"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="btn btn-ghost" id="btnRestart" type="button">Restart</button>
+    <button class="btn btn-ghost" id="btnPrint" type="button">Print</button>
+  </div>
+</header>
+
+<section class="question-card" id="questionCard">
+  <div class="question-meta" id="questionMeta"></div>
+  <div class="question-text" id="questionText"></div>
+</section>
+
+<main class="layout">
+
+  <aside class="rail">
+    <div class="card">
+      <div class="card-title">Answer plan</div>
+      <div class="step-list" id="stepList"></div>
+    </div>
+
+    <div class="card accumulator">
+      <div class="acc-value"><span id="accValue">0</span><span class="acc-total" id="accTotal">/8</span></div>
+      <div class="acc-label">marks for what is written so far</div>
+      <div class="acc-bar"><div class="acc-fill" id="accFill"></div></div>
+    </div>
+
+    <div class="card" id="marginNoteCard" hidden>
+      <div class="card-title">How to earn it</div>
+      <div class="margin-note" id="marginNote"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mark split</div>
+      <div class="mark-split" id="markSplit"></div>
+    </div>
+
+    <div class="card verify-note" id="verifyNote" hidden></div>
+
+    <!-- AI assistant seam: slot only, no content, no fetch (see docs/patterns/answer_book.md) -->
+    <aside id="pm-assistant-slot" hidden></aside>
+  </aside>
+
+  <section class="notebook-col" id="notebookCol">
+    <div class="notebook" id="notebook"></div>
+    <button class="btn btn-next" id="btnNext" type="button">Start writing</button>
+  </section>
+
+</main>
+
+<script>
+/*__DATA__*/
+</script>
+<script>
+/*__JS__*/
+</script>
+</body>
+</html>
