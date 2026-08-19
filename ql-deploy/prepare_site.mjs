@@ -17,7 +17,7 @@
  *
  * Usage: node ql-deploy/prepare_site.mjs   (from the repo root)
  */
-import { mkdirSync, readFileSync, writeFileSync, cpSync, rmSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync, cpSync, rmSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const ROOT = process.cwd();
@@ -85,6 +85,17 @@ if (html.indexOf('</body>') < 0) throw new Error('no </body> in built page');
 html = html.replace('</body>', WRAPPER);
 
 writeFileSync(join(OUT, 'quicklearn', CONCEPT, 'index.html'), html, 'utf-8');
+
+// 3b. pre-rendered voice clips (build_quicklearn's static Sarvam mp3s) — the
+// page's first TTS rung. Absent dir = builder ran without a Sarvam key; the
+// page then falls back to the live /api/tts rung, so this copy is optional.
+const clipsSrc = join(SRC, 'quicklearn', CONCEPT, 'clips');
+if (existsSync(clipsSrc)) {
+  cpSync(clipsSrc, join(OUT, 'quicklearn', CONCEPT, 'clips'), { recursive: true });
+  console.log('copied voice clips/');
+} else {
+  console.log('no voice clips/ in the build (page will use live TTS rungs)');
+}
 
 // 4. root redirect (keeps any ?code=... on the way through)
 writeFileSync(join(OUT, 'index.html'), [

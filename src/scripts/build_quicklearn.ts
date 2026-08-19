@@ -31,6 +31,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, cpSync } from 'fs';
+import { createHash } from 'crypto';
 import { join } from 'path';
 import { z } from 'zod';
 
@@ -535,6 +536,216 @@ function buildQlConfig(concept: ConceptJson, mission: MissionFile, chatServer: s
 // template interpolation (repo discipline for generated JS). All authored text
 // reaches the DOM via textContent, never innerHTML.
 
+// ── Spoken-text transform — ONE definition, two consumers ───────────────────
+// Physics text is full of symbols a speech engine reads badly or skips
+// ("V = IR" became "vee equals eye arr"; "Ω" and "×10⁵" were dropped
+// entirely). This function rewrites text into its spoken form. It is REAL
+// module code (single backslashes — the template-literal escape trap that
+// deleted every letter "s" from the narration cannot reach it) and is
+// serialized into the page via qlSpeakable.toString(), so the build-time
+// clip enumerator and the browser apply the IDENTICAL transform. That
+// identity is what makes a pre-rendered clip's key match at runtime.
+function qlSpeakable(text: string): string {
+      var t = ' ' + String(text) + ' ';
+      // Units and symbols first (longest patterns before their substrings).
+      t = t.replace(/×\s*10\^?([⁰¹²³⁴⁵⁶⁷⁸⁹0-9]+)/g, ' times ten to the power $1 ');
+      t = t.replace(/([0-9])\s*Ω/g, '$1 ohms').replace(/Ω/g, ' ohms ');
+      t = t.replace(/([0-9])\s*°/g, '$1 degrees').replace(/°/g, ' degrees ');
+      t = t.replace(/\bmT\b/g, ' millitesla ').replace(/\bfN\b/g, ' femtonewtons ');
+      // A letter straight after a number is a UNIT, not a symbol ("6 V" is
+      // "six volts", not "six voltage V"). Runs before the symbol expansion.
+      t = t.replace(/([0-9])\s*V\b/g, '$1 volts').replace(/([0-9])\s*A\b/g, '$1 amperes');
+      t = t.replace(/([0-9])\s*T\b/g, '$1 tesla').replace(/([0-9])\s*N\b/g, '$1 newtons');
+      t = t.replace(/\bm\/s\b/g, ' metres per second ').replace(/\bV\/R\b/g, ' V by R ');
+      t = t.replace(/\|v\|/g, ' v ');
+      t = t.replace(/\bsin\b/g, ' sine ').replace(/\bcos\b/g, ' cosine ').replace(/\btan\b/g, ' tangent ');
+      t = t.replace(/θ/g, ' theta ').replace(/μ/g, ' mu ').replace(/Φ/g, ' phi ').replace(/π/g, ' pi ');
+      t = t.replace(/⊥/g, ' perpendicular to ').replace(/∝/g, ' is proportional to ');
+      t = t.replace(/×/g, ' cross ').replace(/·/g, ' times ').replace(/÷/g, ' divided by ');
+      t = t.replace(/\s=\s/g, ' equals ');
+      // Bare single-letter physics symbols → spoken names (same doctrine as
+      // Rule 30's narration rule for the teacher product).
+      // "I" is the one symbol that is also a pronoun — "Hi! I am Vidi" was
+      // spoken "Hi! current I am Vidi". Skip the expansion when the next word
+      // is a common first-person verb (tutor voice); physics uses ("the
+      // current I", "I equals V by R") never pair I with these verbs.
+      t = t.replace(/\bV\b/g, ' voltage V ').replace(/\bI\b(?!\s+(?:am|was|will|can|could|have|had|would|should|need|saw|see|think|do|did|hope|want|know|mean|guess|wish|like|love)\b)/g, ' current I ').replace(/\bR\b/g, ' resistance R ');
+      t = t.replace(/\bB\b/g, ' magnetic field B ').replace(/\bF\b/g, ' force F ').replace(/\bq\b/g, ' charge q ');
+      // NO bare-A rule: "A" is the article ("A coil is…" was spoken "amperes
+      // coil is…") and in induction lessons the AREA symbol (Φ = B·A cosθ).
+      // Real ampere readings are number-adjacent ("0.32 A") and already
+      // handled above; a lone "A" reads correctly as the letter.
+      // Superscript digits left over anywhere else.
+      t = t.replace(/⁰/g, ' zero ').replace(/¹/g, ' one ').replace(/²/g, ' squared ').replace(/³/g, ' cubed ')
+           .replace(/⁴/g, ' four ').replace(/⁵/g, ' five ').replace(/⁶/g, ' six ')
+           .replace(/⁷/g, ' seven ').replace(/⁸/g, ' eight ').replace(/⁹/g, ' nine ')
+           .replace(/⁻/g, ' minus ');
+      // Formula bodies stay compact (Rule 30b) — "qvB" survives the expansions
+      // above (no word boundary inside it) and is only spaced out here, so it
+      // reads "q v B", not "charge q velocity v magnetic field B".
+      t = t.replace(/\bqvB\b/g, ' q v B ');
+      // Squeeze runs of spaces BEFORE the collapse rules below — the expansions
+      // above pad with spaces, and "field  magnetic field B" would not match.
+      t = t.replace(/\s+/g, ' ');
+      // Expanding a bare symbol can duplicate a word the sentence already had
+      // ("the field magnetic field B") — collapse those.
+      t = t.replace(/\bfield magnetic field B\b/gi, 'magnetic field B');
+      t = t.replace(/\bforce force F\b/gi, 'force F');
+      t = t.replace(/\bvoltage voltage V\b/gi, 'voltage V');
+      t = t.replace(/\bcurrent current I\b/gi, 'current I');
+      t = t.replace(/\bresistance resistance R\b/gi, 'resistance R');
+      t = t.replace(/\bcharge charge q\b/gi, 'charge q');
+      t = t.replace(/\bspeed v\b/gi, 'speed v');
+      // Decorative characters the engine either spells out or chokes on.
+      t = t.replace(/[✓✗≡*_#•⊕⊗]/g, ' ');
+      t = t.replace(/[—–]/g, ', ');
+      return t.replace(/\s+/g, ' ').replace(/ ,/g, ',').replace(/,\s*,/g, ',').trim();
+}
+
+// Scripted lines the CLIENT composes itself (not present in the config
+// object). Single-sourced: interpolated into the template AND enumerated for
+// clip pre-rendering — a string written twice would silently miss its clip.
+const SPOKEN = {
+    hintPrefix: 'Hint: ',
+    celebrationDefault: 'Well done! You completed this step.',
+    sliderMissing: 'The slider for this step could not be found. Watch the simulation, then press Continue.',
+    replayDefault: 'Watch this part again. Ask me if anything is unclear.',
+    exploreLine: 'Both sliders are yours now. Make the current large, then small. Watch the graph follow you \u2014 and ask me anything you wonder about.',
+};
+
+// ── Voice clips — pre-render every scripted line at build time ───────────────
+// The student review that drove this: the gap while speech is produced makes
+// the lesson boring. Everything Vidi says on the guided path is static text
+// known here, so it is synthesized ONCE (Sarvam bulbul:v3 priya — the same
+// voice as the live /api/tts path) and shipped as small mp3 assets the page
+// plays instantly. Only free-form DeepSeek answers remain on the live path.
+// Cache: tts_audio/quicklearn/<concept>/ is COMMITTED (same doctrine as
+// tts_audio/ — Rule 30h: every Sarvam render is real spend; the manifest is
+// the only cache, rebuilds must not re-bill).
+
+function collectSpokenLines(ql: QlConfigWithVoice): string[] {
+    const raw: string[] = [];
+    const push = (s: unknown) => { if (typeof s === 'string' && s.trim()) raw.push(s); };
+    for (const w of ql.tutor?.welcome ?? []) push(w);
+    for (const m of ql.missions ?? []) {
+        push(m.instruction);
+        if (m.hint) push(SPOKEN.hintPrefix + m.hint);
+    }
+    for (const c of Object.values(ql.tutor?.celebrations ?? {})) push(c);
+    for (const d of Object.values(ql.diagnosis ?? {})) push(d.replay_prompt);
+    push(SPOKEN.celebrationDefault);
+    push(SPOKEN.sliderMissing);
+    push(SPOKEN.replayDefault);
+    push(SPOKEN.exploreLine);
+    // Transform + dedupe. slice(0,800) mirrors Voice.say's queue cap so the
+    // key the browser looks up is byte-identical to the one stored here.
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const r of raw) {
+        const t = qlSpeakable(r).slice(0, 800);
+        if (t && !seen.has(t)) { seen.add(t); out.push(t); }
+    }
+    return out;
+}
+
+interface QlConfigWithVoice {
+    tutor?: { welcome?: string[]; celebrations?: Record<string, string> };
+    missions?: { instruction: string; hint?: string }[];
+    diagnosis?: Record<string, { replay_prompt: string }>;
+    voice_clips?: Record<string, string>;
+}
+
+interface ClipManifestEntry { text: string; chars: number; bytes: number }
+
+function readSarvamKey(root: string): string | undefined {
+    if (process.env.SARVAM_API_KEY) return process.env.SARVAM_API_KEY;
+    // build:quicklearn runs without --env-file (unlike tts:generate), so read
+    // .env.local directly rather than adding a script-arg failure mode.
+    const envPath = join(root, '.env.local');
+    if (!existsSync(envPath)) return undefined;
+    const m = /^SARVAM_API_KEY=(.+)$/m.exec(readFileSync(envPath, 'utf-8'));
+    return m ? m[1].trim() : undefined;
+}
+
+async function ensureVoiceClips(
+    ql: QlConfigWithVoice, root: string, conceptId: string,
+): Promise<{ map: Record<string, string>; cacheDir: string }> {
+    const lines = collectSpokenLines(ql);
+    const cacheDir = join(root, 'tts_audio', 'quicklearn', conceptId);
+    const manifestPath = join(cacheDir, 'manifest.json');
+    let manifest: Record<string, ClipManifestEntry> = {};
+    if (existsSync(manifestPath)) {
+        try { manifest = JSON.parse(readFileSync(manifestPath, 'utf-8')); } catch { manifest = {}; }
+    }
+    const key = readSarvamKey(root);
+    const map: Record<string, string> = {};
+    let synthesized = 0, reused = 0, failed = 0;
+    for (const text of lines) {
+        // Voice params are part of the key: a model/speaker/codec change must
+        // miss the cache, never serve the old voice under the new name.
+        const hash = createHash('sha256')
+            .update('ql1|en-IN|priya|bulbul:v3|mp3|22050|' + text)
+            .digest('hex').slice(0, 16);
+        const mp3Path = join(cacheDir, hash + '.mp3');
+        if (existsSync(mp3Path) && manifest[hash]?.text === text) {
+            map[text] = 'clips/' + hash + '.mp3';
+            reused++;
+            continue;
+        }
+        if (!key) continue;   // no key: warn below, page falls back exactly as today
+        try {
+            // output_audio_codec is the param Sarvam REST actually honours —
+            // probed 2026-08-19: audio_format is silently ignored (always WAV);
+            // output_audio_codec:'mp3' returns real mpeg frames at ~1/3 the bytes.
+            const res = await fetch('https://api.sarvam.ai/text-to-speech', {
+                method: 'POST',
+                headers: { 'api-subscription-key': key, 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text,
+                    target_language_code: 'en-IN',
+                    model: 'bulbul:v3',
+                    speaker: 'priya',
+                    pace: 1.0,
+                    speech_sample_rate: 22050,
+                    output_audio_codec: 'mp3',
+                }),
+            });
+            if (!res.ok) throw new Error('sarvam ' + res.status + ': ' + (await res.text()).slice(0, 120));
+            const out = (await res.json()) as { audios?: string[] };
+            const b64 = out.audios?.[0];
+            if (!b64) throw new Error('sarvam returned empty audios');
+            const buf = Buffer.from(b64, 'base64');
+            // Never cache a mislabelled clip: mp3 starts with an ID3 tag or an
+            // mpeg frame sync — a RIFF head here means the codec param regressed.
+            if (buf[0] === 0x52 && buf[1] === 0x49) throw new Error('sarvam returned WAV despite output_audio_codec=mp3');
+            mkdirSync(cacheDir, { recursive: true });
+            writeFileSync(mp3Path, buf);
+            manifest[hash] = { text, chars: text.length, bytes: buf.length };
+            // Manifest written after EVERY clip so an interrupted run keeps
+            // what it paid for (same crash-safety shape as generate_tts_audio).
+            writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+            map[text] = 'clips/' + hash + '.mp3';
+            synthesized++;
+        } catch (e) {
+            failed++;
+            console.warn('  voice clip FAILED (page will fall back live for this line): ' + (e instanceof Error ? e.message : e));
+        }
+    }
+    if (!key && lines.length > 0 && reused < lines.length) {
+        console.warn('  SARVAM_API_KEY not found (.env.local) — ' + (lines.length - reused) + ' scripted lines have no pre-rendered clip; the page falls back to live TTS/browser voice as before.');
+    }
+    console.log('  voice clips: ' + reused + ' cached, ' + synthesized + ' synthesized' + (failed ? ', ' + failed + ' FAILED' : '') + ' (' + lines.length + ' scripted lines)');
+    return { map, cacheDir };
+}
+
+function copyVoiceClips(map: Record<string, string>, cacheDir: string, outDir: string): void {
+    const files = [...new Set(Object.values(map))].map((rel) => rel.replace('clips/', ''));
+    if (files.length === 0) return;
+    const clipsOut = join(outDir, 'clips');
+    mkdirSync(clipsOut, { recursive: true });
+    for (const f of files) copyFileSync(join(cacheDir, f), join(clipsOut, f));
+}
+
 function renderPage(ql: object, title: string): string {
     const qlJson = JSON.stringify(ql).replace(/</g, '\\u003c');
     return `<!doctype html>
@@ -734,7 +945,11 @@ function renderPage(ql: object, title: string): string {
     }
   };
 
-  // ── Voice — browser speech in both directions, at zero cost ───────────────
+  // The ONE spoken-text transform, serialized from the module-level function
+  // (see qlSpeakable in the builder) — never edit the emitted copy.
+  var qlSpeakable = ${qlSpeakable.toString()};
+
+  // ── Voice — three rungs: pre-rendered clip → live Sarvam → browser TTS ────
   // Deliberately different from the teacher player's rule (engine_bug_queue:
   // narration_cancel_speak_race_browser_tts — VERIFIED lesson narration must be
   // pre-rendered Sarvam clips). A live AI answer cannot be pre-rendered, so
@@ -784,6 +999,16 @@ function renderPage(ql: object, title: string): string {
       document.addEventListener('pointerdown', prime, true);
       document.addEventListener('keydown', prime, true);
       Voice.renderBtn();
+      // Warm the opening clips (welcome + mission 1) so the lesson's first
+      // words play with zero fetch wait.
+      try {
+        var warm = (QL.tutor.welcome || []).slice();
+        if (QL.missions && QL.missions.length) warm.push(QL.missions[0].instruction);
+        for (var wi = 0; wi < warm.length; wi++) {
+          var wUrl = (QL.voice_clips || {})[qlSpeakable(warm[wi]).slice(0, 800)];
+          if (wUrl) { var wa = new Audio(); wa.preload = 'auto'; wa.src = wUrl; }
+        }
+      } catch (e) {}
     },
     renderBtn: function () {
       var b = $('voiceBtn');
@@ -798,70 +1023,11 @@ function renderPage(ql: object, title: string): string {
       Voice.renderBtn();
       Actions.event('voice_toggle', { on: Voice.enabled });
     },
-    // Physics text is full of symbols a speech engine reads badly or skips
-    // ("V = IR" became "vee equals eye arr"; "Ω" and "×10⁵" were dropped
-    // entirely). Spoken form is rewritten here; the on-screen bubble keeps the
-    // real symbols (Rule 24 — the visual stays symbolic).
-    // NOTE ON ESCAPES (repo Rule 14): this whole page is emitted from a JS
-    // template literal, so a single backslash is EATEN — "\\s" here is what
-    // reaches the browser as "\s". Writing "\s" silently produced /s+/ and
-    // deleted every letter "s" from the spoken text. Always double them.
-    _speakable: function (text) {
-      var t = ' ' + String(text) + ' ';
-      // Units and symbols first (longest patterns before their substrings).
-      t = t.replace(/×\\s*10\\^?([⁰¹²³⁴⁵⁶⁷⁸⁹0-9]+)/g, ' times ten to the power $1 ');
-      t = t.replace(/([0-9])\\s*Ω/g, '$1 ohms').replace(/Ω/g, ' ohms ');
-      t = t.replace(/([0-9])\\s*°/g, '$1 degrees').replace(/°/g, ' degrees ');
-      t = t.replace(/\\bmT\\b/g, ' millitesla ').replace(/\\bfN\\b/g, ' femtonewtons ');
-      // A letter straight after a number is a UNIT, not a symbol ("6 V" is
-      // "six volts", not "six voltage V"). Runs before the symbol expansion.
-      t = t.replace(/([0-9])\\s*V\\b/g, '$1 volts').replace(/([0-9])\\s*A\\b/g, '$1 amperes');
-      t = t.replace(/([0-9])\\s*T\\b/g, '$1 tesla').replace(/([0-9])\\s*N\\b/g, '$1 newtons');
-      t = t.replace(/\\bm\\/s\\b/g, ' metres per second ').replace(/\\bV\\/R\\b/g, ' V by R ');
-      t = t.replace(/\\|v\\|/g, ' v ');
-      t = t.replace(/\\bsin\\b/g, ' sine ').replace(/\\bcos\\b/g, ' cosine ').replace(/\\btan\\b/g, ' tangent ');
-      t = t.replace(/θ/g, ' theta ').replace(/μ/g, ' mu ').replace(/Φ/g, ' phi ').replace(/π/g, ' pi ');
-      t = t.replace(/⊥/g, ' perpendicular to ').replace(/∝/g, ' is proportional to ');
-      t = t.replace(/×/g, ' cross ').replace(/·/g, ' times ').replace(/÷/g, ' divided by ');
-      t = t.replace(/\\s=\\s/g, ' equals ');
-      // Bare single-letter physics symbols → spoken names (same doctrine as
-      // Rule 30's narration rule for the teacher product).
-      // "I" is the one symbol that is also a pronoun — "Hi! I am Vidi" was
-      // spoken "Hi! current I am Vidi". Skip the expansion when the next word
-      // is a common first-person verb (tutor voice); physics uses ("the
-      // current I", "I equals V by R") never pair I with these verbs.
-      t = t.replace(/\\bV\\b/g, ' voltage V ').replace(/\\bI\\b(?!\\s+(?:am|was|will|can|could|have|had|would|should|need|saw|see|think|do|did|hope|want|know|mean|guess|wish|like|love)\\b)/g, ' current I ').replace(/\\bR\\b/g, ' resistance R ');
-      t = t.replace(/\\bB\\b/g, ' magnetic field B ').replace(/\\bF\\b/g, ' force F ').replace(/\\bq\\b/g, ' charge q ');
-      // NO bare-A rule: "A" is the article ("A coil is…" was spoken "amperes
-      // coil is…") and in induction lessons the AREA symbol (Φ = B·A cosθ).
-      // Real ampere readings are number-adjacent ("0.32 A") and already
-      // handled above; a lone "A" reads correctly as the letter.
-      // Superscript digits left over anywhere else.
-      t = t.replace(/⁰/g, ' zero ').replace(/¹/g, ' one ').replace(/²/g, ' squared ').replace(/³/g, ' cubed ')
-           .replace(/⁴/g, ' four ').replace(/⁵/g, ' five ').replace(/⁶/g, ' six ')
-           .replace(/⁷/g, ' seven ').replace(/⁸/g, ' eight ').replace(/⁹/g, ' nine ')
-           .replace(/⁻/g, ' minus ');
-      // Formula bodies stay compact (Rule 30b) — "qvB" survives the expansions
-      // above (no word boundary inside it) and is only spaced out here, so it
-      // reads "q v B", not "charge q velocity v magnetic field B".
-      t = t.replace(/\\bqvB\\b/g, ' q v B ');
-      // Squeeze runs of spaces BEFORE the collapse rules below — the expansions
-      // above pad with spaces, and "field  magnetic field B" would not match.
-      t = t.replace(/\\s+/g, ' ');
-      // Expanding a bare symbol can duplicate a word the sentence already had
-      // ("the field magnetic field B") — collapse those.
-      t = t.replace(/\\bfield magnetic field B\\b/gi, 'magnetic field B');
-      t = t.replace(/\\bforce force F\\b/gi, 'force F');
-      t = t.replace(/\\bvoltage voltage V\\b/gi, 'voltage V');
-      t = t.replace(/\\bcurrent current I\\b/gi, 'current I');
-      t = t.replace(/\\bresistance resistance R\\b/gi, 'resistance R');
-      t = t.replace(/\\bcharge charge q\\b/gi, 'charge q');
-      t = t.replace(/\\bspeed v\\b/gi, 'speed v');
-      // Decorative characters the engine either spells out or chokes on.
-      t = t.replace(/[✓✗≡*_#•⊕⊗]/g, ' ');
-      t = t.replace(/[—–]/g, ', ');
-      return t.replace(/\\s+/g, ' ').replace(/ ,/g, ',').replace(/,\\s*,/g, ',').trim();
-    },
+    // Spoken-form rewrite lives in qlSpeakable (emitted above from the ONE
+    // module-level definition the build-time clip enumerator also uses —
+    // identical transform = identical clip keys). The on-screen bubble keeps
+    // the real symbols (Rule 24 — the visual stays symbolic).
+    _speakable: function (text) { return qlSpeakable(text); },
     say: function (text) {
       if (!Voice.ttsOk || !Voice.enabled || !text) return;
       var t = Voice._speakable(text);
@@ -914,24 +1080,42 @@ function renderPage(ql: object, title: string): string {
         fell = true;
         Voice._speakUtter(text, done);
       }
-      try {
-        fetch((QL.chat_server || '') + '/api/tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: text, session_id: SID })
-        }).then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (j) {
-            if (settled) return;
-            if (!j || !j.audio_b64) { fallback(); return; }
-            var a = new Audio('data:audio/wav;base64,' + j.audio_b64);
-            Voice.audioEl = a;
-            a.onended = done;
-            a.onerror = fallback;
-            var p = a.play();
-            if (p && p.catch) p.catch(fallback);
-          })
-          .catch(fallback);
-      } catch (e) { fallback(); }
+      function tryApi() {
+        if (settled) return;
+        try {
+          fetch((QL.chat_server || '') + '/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text, session_id: SID })
+          }).then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (j) {
+              if (settled) return;
+              if (!j || !j.audio_b64) { fallback(); return; }
+              var a = new Audio('data:audio/' + (j.format === 'mp3' ? 'mpeg' : 'wav') + ';base64,' + j.audio_b64);
+              Voice.audioEl = a;
+              a.onended = done;
+              a.onerror = fallback;
+              var p = a.play();
+              if (p && p.catch) p.catch(fallback);
+            })
+            .catch(fallback);
+        } catch (e) { fallback(); }
+      }
+      // FIRST rung: a pre-rendered clip (build-time Sarvam mp3, static asset).
+      // Every scripted lesson line plays instantly, on every deploy variant —
+      // including local + website/learn, which have no /api/tts at all. A
+      // missing or failing clip falls through to the live rungs unchanged.
+      var clipUrl = (QL.voice_clips || {})[text];
+      if (clipUrl) {
+        var c = new Audio(clipUrl);
+        Voice.audioEl = c;
+        c.onended = done;
+        c.onerror = tryApi;
+        var pc = c.play();
+        if (pc && pc.catch) pc.catch(tryApi);
+      } else {
+        tryApi();
+      }
     },
     // Browser-TTS fallback for one queue item — chunked at sentence ends
     // (~160 chars) because Chrome can silently drop long utterances mid-way.
@@ -1337,7 +1521,7 @@ function renderPage(ql: object, title: string): string {
         }, m.min_watch_ms || 6000);
       } else if (m.hint) {
         Missions.hintTimer = setTimeout(function () {
-          Chat.say('Hint: ' + m.hint);
+          Chat.say(${JSON.stringify(SPOKEN.hintPrefix)} + m.hint);
           Missions.hintShown = true;
         }, m.hint_after_ms || 20000);
       }
@@ -1380,13 +1564,13 @@ function renderPage(ql: object, title: string): string {
       Missions.done = true;
       clearTimeout(Missions.hintTimer);
       var m = QL.missions[Missions.idx];
-      Chat.say((QL.tutor.celebrations && QL.tutor.celebrations[m.id]) || 'Well done! You completed this step.');
+      Chat.say((QL.tutor.celebrations && QL.tutor.celebrations[m.id]) || ${JSON.stringify(SPOKEN.celebrationDefault)});
       $('mBtn').disabled = false;
       Actions.event('mission_done', { id: m.id, ms: Date.now() - Missions.startedAt, hint_shown: Missions.hintShown });
     },
     // Slider missing (engine drift or a broken build) — never strand the student.
     degrade: function () {
-      Chat.say('The slider for this step could not be found. Watch the simulation, then press Continue.');
+      Chat.say(${JSON.stringify(SPOKEN.sliderMissing)});
       $('mBtn').disabled = false;
     },
     simError: function (msg) {
@@ -1496,7 +1680,7 @@ function renderPage(ql: object, title: string): string {
       $('mProgress').textContent = '';
       $('mBtn').classList.add('hidden');
       Chat.meta('Look again');
-      Chat.say(d.replay_prompt || 'Watch this part again. Ask me if anything is unclear.');
+      Chat.say(d.replay_prompt || ${JSON.stringify(SPOKEN.replayDefault)});
       var back = $('mBack');
       back.classList.remove('hidden');
       back.onclick = function () { back.classList.add('hidden'); Quiz.render(); };
@@ -1797,7 +1981,7 @@ function renderPage(ql: object, title: string): string {
       $('mProgress').textContent = '';
       $('mBtn').classList.add('hidden');
       Chat.meta('Free play');
-      Chat.say('Both sliders are yours now. Make the current large, then small. Watch the graph follow you \\u2014 and ask me anything you wonder about.');
+      Chat.say(${JSON.stringify(SPOKEN.exploreLine)});
       var back = $('mBack');
       back.classList.remove('hidden');
       back.textContent = 'Back to my result';
@@ -1845,7 +2029,7 @@ function assertNoEatenEscapes(html: string): void {
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-function main(): void {
+async function main(): Promise<void> {
     const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
     const isPublic = process.argv.includes('--public');
     const conceptId = args[0] || 'ohms_law';
@@ -1884,8 +2068,11 @@ function main(): void {
         // Local build: the page sits beside the built sims and reuses
         // review-site/vendor/ through sim.html's own relative path.
         const ql = buildQlConfig(conceptRaw, mission, chatServer, '../../' + conceptId + '/sim.html', stage);
+        const clips = await ensureVoiceClips(ql as QlConfigWithVoice, root, conceptId);
+        (ql as QlConfigWithVoice).voice_clips = clips.map;
         const outDir = join(root, 'review-site', 'quicklearn', conceptId);
         mkdirSync(outDir, { recursive: true });
+        copyVoiceClips(clips.map, clips.cacheDir, outDir);
         const outPath = join(outDir, 'index.html');
         const pageHtml = renderPage(ql, mission.title);
         assertNoEatenEscapes(pageHtml);
@@ -1935,6 +2122,9 @@ function main(): void {
     writeFileSync(join(outDir, 'sim.html'), simHtml, 'utf-8');
 
     const ql = buildQlConfig(conceptRaw, mission, chatServer, './sim.html', stage);
+    const pubClips = await ensureVoiceClips(ql as QlConfigWithVoice, root, conceptId);
+    (ql as QlConfigWithVoice).voice_clips = pubClips.map;
+    copyVoiceClips(pubClips.map, pubClips.cacheDir, outDir);
     const publicHtml = renderPage(ql, mission.title);
     assertNoEatenEscapes(publicHtml);
     writeFileSync(join(outDir, 'index.html'), publicHtml, 'utf-8');
@@ -1950,4 +2140,4 @@ function main(): void {
     console.log('  Then publish the site:  npm run deploy:cf-site');
 }
 
-main();
+main().catch((e) => { console.error(e); process.exit(1); });

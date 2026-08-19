@@ -218,9 +218,11 @@ async function handleTts(body, env, ctx) {
   const rateN = await kvCount(env, 'tr:' + sid + ':' + minute, 120);
   if (rateN > TTS_RATE_PER_MINUTE) return json(429, { error: 'rate' });
 
-  const hash = await sha256Hex('v1|en-IN|priya|' + text);
+  // Prefix v2: the codec is part of the key, so a stale v1 WAV entry can
+  // never be served under the mp3 mime (old entries just stop being hit).
+  const hash = await sha256Hex('v2|en-IN|priya|mp3|' + text);
   const cached = await env.TUTOR_KV.get('tts:' + hash);
-  if (cached) return json(200, { audio_b64: cached, format: 'wav', cached: true });
+  if (cached) return json(200, { audio_b64: cached, format: 'mp3', cached: true });
 
   const newN = await kvCount(env, 'tts_new:' + utcDate(), 2 * 24 * 3600);
   if (newN > TTS_NEW_DAILY_CAP) return json(429, { error: 'daily tts cap' });
@@ -235,16 +237,23 @@ async function handleTts(body, env, ctx) {
       speaker: 'priya',
       pace: 1.0,
       speech_sample_rate: 22050,
-      audio_format: 'wav',
+      // output_audio_codec is the param Sarvam REST actually honours — probed
+      // 2026-08-19: audio_format was silently ignored (the old 'wav' here was
+      // a no-op); output_audio_codec:'mp3' returns real mpeg frames at ~1/3
+      // the bytes, which was most of the student's download wait on mobile.
+      output_audio_codec: 'mp3',
     }),
   });
   if (!res.ok) return json(502, { error: 'tts upstream ' + res.status });
   const out = await res.json();
   const b64 = out && out.audios && out.audios[0];
   if (!b64) return json(502, { error: 'tts empty' });
+  // Never cache a mislabelled clip: base64 mp3 never starts with 'UklGR'
+  // (RIFF) — if Sarvam regresses the codec param, fail loud, not poison KV.
+  if (b64.slice(0, 5) === 'UklGR') return json(502, { error: 'tts codec regressed to wav' });
   // Permanent cache — the whole point: one Sarvam bill per unique line, ever.
   ctx.waitUntil(env.TUTOR_KV.put('tts:' + hash, b64));
-  return json(200, { audio_b64: b64, format: 'wav', cached: false });
+  return json(200, { audio_b64: b64, format: 'mp3', cached: false });
 }
 
 async function handleChat(body, env, ctx) {
