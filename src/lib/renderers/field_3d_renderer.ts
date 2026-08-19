@@ -3901,6 +3901,122 @@ export const FIELD_3D_RENDERER_CODE = `
         return out;
     }
 
+    // ── Focus Overlay host (2026-08-19) ─────────────────────────────────────
+    //   The review-site player draws narration-synced focus cues (spotlight /
+    //   ring / pointer / underline) on ITS OWN overlay above the sim iframe
+    //   and polls this same-origin host per frame for a target screen rect.
+    //   Pull-only and pixel-free: nothing here renders, listens, or schedules,
+    //   so THE EYE (which never loads the player shell) sees zero change.
+    //   Contract: resolve(token) -> {x, y, w, h} in iframe-viewport CSS px,
+    //   or null when the token does not resolve to a visible thing right now.
+    //   A miss MUST stay null — the player hides the cue and records it on
+    //   PM_focusMisses; a guessed rect would point students at nothing.
+    var pmFocusScrA = new THREE.Vector3(), pmFocusScrB = new THREE.Vector3(), pmFocusScrC = new THREE.Vector3();
+    function pmFocusDomRect(token) {
+        var el = document.getElementById(token);
+        if (!el) return null;
+        var r = el.getBoundingClientRect();
+        if (!(r.width > 0 && r.height > 0)) return null;  // display:none collapses to 0x0
+        var cs = window.getComputedStyle(el);
+        if (cs.visibility === "hidden" || cs.display === "none") return null;
+        return { x: r.left, y: r.top, w: r.width, h: r.height };
+    }
+    function pmFocusFindObject(token) {
+        var ids = resolveGlowAliases([token]);
+        var anyMatch = null;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var so = sceneObjects[i], su = so && so.userData;
+            if (!su) continue;
+            if (ids.indexOf(su.id) < 0 && ids.indexOf(su.elementType) < 0) continue;
+            if (so.visible !== false) return so;
+            if (!anyMatch) anyMatch = so;
+        }
+        return anyMatch;
+    }
+    function pmFocusProjPx(v) {
+        var p = v.clone().project(camera);
+        if (p.z > 1) return null;  // behind the camera / beyond the far plane
+        return { x: (p.x + 1) / 2 * window.innerWidth, y: (1 - p.y) / 2 * window.innerHeight };
+    }
+    // Sprites are camera-facing billboards: the world quad spans the camera
+    // basis vectors scaled by sprite.scale (same math as nlbSpriteRectPx, but
+    // self-contained so it never depends on that scenario's preconditions).
+    function pmFocusSpriteRect(so, centre) {
+        var hw = so.scale.x * ((so._pmInkFrac != null) ? so._pmInkFrac : 1) / 2;
+        var hh = so.scale.y / 2;
+        var right = pmFocusScrA.setFromMatrixColumn(camera.matrixWorld, 0);
+        var up = pmFocusScrB.setFromMatrixColumn(camera.matrixWorld, 1);
+        var xs = [], ys = [];
+        for (var sx = -1; sx <= 1; sx += 2) {
+            for (var sy = -1; sy <= 1; sy += 2) {
+                var q = pmFocusProjPx(centre.clone().addScaledVector(right, sx * hw).addScaledVector(up, sy * hh));
+                if (!q) return null;
+                xs.push(q.x); ys.push(q.y);
+            }
+        }
+        var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+        var y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+        return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+    }
+    // World bounding radius WITHOUT Box3.setFromObject (per-frame cost on
+    // tablets): a mesh uses its cached geometry bounding sphere; a group scans
+    // ONE level of children. A modest estimate is fine — the player clamps.
+    function pmFocusWorldRadius(so, centre) {
+        var g = so.geometry;
+        if (g) {
+            if (!g.boundingSphere) g.computeBoundingSphere();
+            if (g.boundingSphere) {
+                var ws = so.getWorldScale(pmFocusScrB);
+                var m = Math.max(Math.abs(ws.x), Math.abs(ws.y), Math.abs(ws.z));
+                return g.boundingSphere.radius * (m || 1);
+            }
+        }
+        var best = 0, kids = so.children || [];
+        for (var i = 0; i < kids.length && i < 32; i++) {
+            var ch = kids[i];
+            if (!ch || ch.visible === false) continue;
+            var d = ch.getWorldPosition(pmFocusScrA).distanceTo(centre);
+            var cg = ch.geometry;
+            if (cg) {
+                if (!cg.boundingSphere) cg.computeBoundingSphere();
+                if (cg.boundingSphere) {
+                    var cs2 = ch.getWorldScale(pmFocusScrB);
+                    d += cg.boundingSphere.radius * Math.max(Math.abs(cs2.x), Math.abs(cs2.y), Math.abs(cs2.z));
+                }
+            }
+            if (d > best) best = d;
+        }
+        return best > 0 ? best : 0.5;
+    }
+    window.PM_FOCUS_HOST = {
+        resolve: function (token) {
+            try {
+                if (typeof token !== "string" || !token) return null;
+                var dom = pmFocusDomRect(token);
+                if (dom) return dom;
+                if (!camera || !window.THREE) return null;
+                var so = pmFocusFindObject(token);
+                if (!so) return null;
+                var centre = so.getWorldPosition(pmFocusScrC);
+                if (so.isSprite) return pmFocusSpriteRect(so, centre);
+                var wr = pmFocusWorldRadius(so, centre);
+                var q = pmFocusProjPx(centre);
+                if (!q) return null;
+                // px per world unit at this depth — self-contained (never the
+                // bsc scratch basis, which only that scenario refreshes).
+                var vv = pmFocusScrA.copy(centre).applyMatrix4(camera.matrixWorldInverse);
+                var depth = -vv.z;
+                if (depth < 0.05) depth = 0.05;
+                var k = (window.innerHeight / 2) / (depth * Math.tan((camera.fov || 60) * Math.PI / 360));
+                var r = wr * k;
+                var maxR = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+                if (r < 14) r = 14;
+                if (r > maxR) r = maxR;
+                return { x: q.x - r, y: q.y - r, w: 2 * r, h: 2 * r };
+            } catch (e) { return null; }
+        }
+    };
+
     // Diamond #2 — when a sentence wants the proton to stop translating along
     // its trajectory (so the F arrow is readable mid-narration), the renderer
     // captures the local trajectory time at the freeze moment and re-uses it
