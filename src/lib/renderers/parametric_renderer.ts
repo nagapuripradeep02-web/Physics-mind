@@ -6288,6 +6288,59 @@ function windowResized() {
   PM_fitCanvas();
 }
 
+// ── Focus Overlay host (2026-08-19) ─────────────────────────────────────────
+//   The review-site player draws narration-synced focus cues on ITS OWN
+//   overlay above the sim iframe and polls this same-origin host per frame.
+//   Pull-only and pixel-free — THE EYE never loads the player, so baselines
+//   are untouched. Contract: resolve(token) -> {x, y, w, h} in iframe-viewport
+//   CSS px, or null. CRITICAL: the token is gated against the registries and
+//   the scene BEFORE calling PM_resolvePrimitiveCenter — that helper falls
+//   back to the scene center {380,250} on a miss, which would silently point
+//   every bad token at mid-canvas. A miss must stay null.
+window.PM_FOCUS_HOST = {
+  resolve: function (token) {
+    try {
+      if (typeof token !== 'string' || !token) return null;
+      var cx = null, cy = null, w = 96, h = 48;
+      if (typeof PM_bodyRegistry !== 'undefined' && PM_bodyRegistry[token]) {
+        var b = PM_bodyRegistry[token];
+        cx = b.x + (b.w || 0) / 2; cy = b.y + (b.h || 0) / 2;
+        w = Math.max(20, b.w || 0); h = Math.max(20, b.h || 0);
+      } else if (typeof PM_surfaceRegistry !== 'undefined' && PM_surfaceRegistry[token]) {
+        var sf = PM_surfaceRegistry[token];
+        var rad = (sf.orientation === 'horizontal') ? 0
+                : (sf.orientation === 'vertical') ? Math.PI / 2
+                : (sf.angle_deg || 0) * Math.PI / 180;
+        w = Math.max(14, Math.abs(Math.cos(rad)) * sf.length);
+        h = Math.max(14, Math.abs(Math.sin(rad)) * sf.length);
+        var c0 = (typeof PM_resolvePrimitiveCenter === 'function') ? PM_resolvePrimitiveCenter(token) : null;
+        if (!c0) return null;
+        cx = c0.x; cy = c0.y;
+      } else {
+        // Scene gate: the token must name a REAL primitive in the current scene.
+        var scene = (typeof PM_currentScene !== 'undefined' && PM_currentScene) ? PM_currentScene : null;
+        var found = false;
+        if (scene && scene.length) {
+          for (var i = 0; i < scene.length; i++) {
+            if (scene[i] && scene[i].id === token) { found = true; break; }
+          }
+        }
+        if (!found || typeof PM_resolvePrimitiveCenter !== 'function') return null;
+        var c1 = PM_resolvePrimitiveCenter(token);
+        cx = c1.x; cy = c1.y;
+      }
+      // Canvas(760x500) -> viewport: the canvas box is CSS scale-to-fit and
+      // letterboxed (PM_fitCanvas); the player never needs to know.
+      var cv = document.querySelector('canvas');
+      if (!cv) return null;
+      var r = cv.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) return null;
+      var sx = r.width / 760, sy = r.height / 500;
+      return { x: r.left + (cx - w / 2) * sx, y: r.top + (cy - h / 2) * sy, w: w * sx, h: h * sy };
+    } catch (e) { return null; }
+  }
+};
+
 function setup() {
   createCanvas(760, 500);
   PM_fitCanvas();
