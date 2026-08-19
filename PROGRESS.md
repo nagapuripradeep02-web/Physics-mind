@@ -29,11 +29,11 @@ Founder's question: of ~20 lakh TS/AP intermediate students, maybe 0.5% genuinel
 ### Not done / deliberately not done
 - **No Exam Notebook code exists.** The demo page and the one-chapter vertical slice are OFFERED, not started — §9/§10 of the strategy doc carry the ladder and the 5 open founder decisions.
 - **Nothing deployed.** `wrangler deploy` (activates mp3 live) and `deploy:cf-site` stay founder-gated (Rule 17); the ear-walk of both lessons needs ears, not a static check.
-- **Strategy threads still unfiled in `docs/DISCUSSIONS.md` + the Obsidian vault** — this doc is the source for both.
+- ~~Strategy threads unfiled~~ — **FILED this session**: `docs/DISCUSSIONS.md` **Session 88** (the full strategic entry, commit `e04553a`) and the Obsidian vault (`wiki/projects/physicsmind.md` 2026-08-19 section + `wiki/me/decisions.md` crammers-not-learners row + `index.md` + `log.md` outbound-sync entry; local commit only, never pushed — the vault is personal).
 - Rule 20 (board mode SUSPENDED) has no carve-out for a student exam-answer surface; flagged as a doctrine decision, not assumed.
 
 ### NEXT
-(1) Founder ear-walk + deploy the two latency fixes; re-demo to the SAME student — her remaining wait is only free-form questions. (2) Rule the 5 open decisions in the strategy doc §10 — chiefly: demo page yes/no, and IPE question-layer vs a 4th concept. (3) File the strategy into `DISCUSSIONS.md` + the vault. (4) Re-aim the drip test across segments (2 crammers / 2 average / 1 aspirant) — that answers the 0.5% question with numbers. (5) Older, unchanged: the `TeacherPlayer.tsx:302+322` cancel/speak scar, and the desk's `website/` divergence from the office's uncommitted marketing edits before any `deploy:cf-site`.
+(1) Founder ear-walk + deploy the two latency fixes; re-demo to the SAME student — her remaining wait is only free-form questions. (2) Rule the 5 open decisions in the strategy doc §10 — chiefly: demo page yes/no, and IPE question-layer vs a 4th concept. (3) ~~File the strategy~~ DONE (DISCUSSIONS Session 88 + vault). (4) Re-aim the drip test across segments (2 crammers / 2 average / 1 aspirant) — that answers the 0.5% question with numbers. (5) Older, unchanged: the `TeacherPlayer.tsx:302+322` cancel/speak scar, and the desk's `website/` divergence from the office's uncommitted marketing edits before any `deploy:cf-site`.
 
 ---
 
