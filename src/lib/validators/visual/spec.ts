@@ -58,7 +58,7 @@ export type VisualCheckId =
     // Category H — Authoring hygiene (pixelGate / regressionGate)
     | 'H1' | 'H2' | 'H3' | 'H4'
     // Category I — TTS–visual semantic sync
-    | 'I1' | 'I2';
+    | 'I1' | 'I2' | 'I3';
 
 // ─── Bug-class taxonomy (mirrors engine_bug_queue migration) ──────────────────
 
@@ -118,7 +118,8 @@ export type BugClass =
     | 'RENDER_CONSOLE_ERROR'
     // Category I — TTS–visual semantic sync
     | 'TTS_GLOW_TARGET_MISSING'
-    | 'TTS_MATH_NOT_RENDERED';
+    | 'TTS_MATH_NOT_RENDERED'
+    | 'TTS_FOCUS_TARGET_MISSING';
 
 // ─── Check spec ───────────────────────────────────────────────────────────────
 
@@ -440,6 +441,11 @@ export const VISUAL_CHECKS: Record<VisualCheckId, VisualCheckSpec> = {
         id: 'I2', category: 'I', name: 'Declared math is rendered',
         passCriterion: 'Every math_show expression declared by a tts_sentence in this state is visibly rendered somewhere on screen. Vacuous pass when no sentence declares math_show.',
         bugClass: 'TTS_MATH_NOT_RENDERED',
+    },
+    I3: {
+        id: 'I3', category: 'I', name: 'Focus target present on screen',
+        passCriterion: 'Every tts_sentence focus binding in this state names a target that corresponds to a visible, identifiable element in the rendered state (the Focus Overlay is drawn by the PLAYER, so the cue itself is never in the capture — judge only that the TARGET element exists on screen for the overlay to point at). Vacuous pass when no sentence declares focus.',
+        bugClass: 'TTS_FOCUS_TARGET_MISSING',
     },
 };
 

@@ -15,7 +15,14 @@ Third in the pipeline. Converts architect skeleton + physics block into a full c
 > thing (from the architect's delta column; STATE_1 = the setup/hook) — label-style, Rule 24-safe;
 > per-state configs keep the SAME apparatus from a recognizable home pose (no teleport-rebuild; camera
 > moves only to frame the new thing); glow choreography never overlaps — exactly ONE glow focal at any
-> instant (32e). **Legacy-only:** `pause_after_ms` carrying applies
+> instant (32e). **Focus Overlay (2026-08-19):** a sentence MAY carry
+> `focus: { target, cue: spotlight|ring|pointer|underline }` — the player draws a narration-synced
+> pointing cue at the target. Explicit-only (no fallback to `focal_primitive_id`), ONE per sentence,
+> `target` = a REAL built id (field_3d sceneObjects userData id / DOM overlay id; PCPL
+> scene_composition id; particle_field semantic key) — never the `*_label` glow vocabulary; verify
+> each target with `PM_FOCUS_HOST.resolve(id)` in the sim console (null = it points at nothing).
+> A sentence carrying both `glow` and `focus` must name the SAME target (one focal budget, 32e).
+> **Legacy-only:** `pause_after_ms` carrying applies
 > when retrofitting a pre-Rule-31 Socratic concept (the electric_flux clone gotcha) — never author new ones.
 
 ## Role
@@ -332,7 +339,7 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 - [ ] Re-entry orientation check — first 5s of each state shows relevant context; no delayed first reveal (`reveal_at_ms > 2000`) leaves a bare object during the orientation window.
 - [ ] For RHR/FBD/gesture states: gesture-mirror primitive present (`field_3d_config…right_hand.animate_curl:true` for field_3d) OR escalation note attached (`peter_parker:renderer_primitives` bug filed).
 - [ ] (legacy retrofit only — Rule 31 forbids pauses on new concepts) field_3d concepts: every physics-block `pause_after_ms` carried forward into the JSON (the Diamond #4 dropped-pause regression check).
-- [ ] **Rule 32 legibility (new concepts):** every guided state's caption opens with the ≤5-word delta cue; per-state word count on `text_en` ∈ 25–55 (explore exempt); same apparatus/home pose across state configs (no teleport-rebuild); no overlapping glow windows — one focal at a time.
+- [ ] **Rule 32 legibility (new concepts):** every guided state's caption opens with the ≤5-word delta cue; per-state word count on `text_en` ∈ 25–55 (explore exempt); same apparatus/home pose across state configs (no teleport-rebuild); no overlapping glow windows — one focal at a time; every `focus.target` is a real built id (`PM_FOCUS_HOST.resolve(id)` non-null; glow+focus on one sentence name the SAME target).
 - [ ] **Rule 33 macro↔micro (2026-07-12; when the taught variable is macroscopic):** macro band + micro band both present with an explicit zoom-link; each state's micro view tells its OWN story with a real number (collision count, carriers, meter reading); instruments show a live numeric reading + tracking needle.
 - [ ] **Rule 34 canvas budget (2026-07-12):** ONE math-serif Unicode formula surface per state; HUD value-only; on-canvas top caption = the ≤5-word delta cue only (prose in the subtitle strip below); overlays collision-free (HUD clears the Full-screen button); Unicode sweep covers all THREE text paths — DOM overlays + canvas `ctx.fillText` graph text + sprite/p5 labels.
 - [ ] **Rule 38 curriculum-flex (2026-07-21):** `depth_ring` authored on every state + `curriculum_tags` block present, both exactly per the skeleton; NO unverified curriculum cell marked verified (`needs_teacher_verification: true` everywhere except verified CBSE/NCERT); the explore state's formula surface uses core-ring symbols only (38b).
