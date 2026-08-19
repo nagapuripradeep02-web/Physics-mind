@@ -742,7 +742,10 @@ ${pilotHeadTags(1)}
      pen ink (z-4, a transient cue outranks a standing annotation), below the
      watermark (z-6) and all chrome (z-9+). Cue motion is WALL-CLOCK CSS only,
      never the sim clock, so cues stay alive on a frozen/pinned frame. */
-  #focusOverlay { position:absolute; inset:0; z-index:5; pointer-events:none; }
+  /* SVG is a REPLACED element: inset:0 alone does NOT stretch it (it sits at its
+     300x150 intrinsic default and clips every cue invisible — same trap as the
+     pen canvas, see the #simOverlay resize note). Explicit 100% is required. */
+  #focusOverlay { position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:none; }
   #pmFxDim { fill:rgba(0,0,0,0.55); opacity:0; transition:opacity .28s ease; }
   #pmFxDim.fxOn { opacity:1; }
   #pmFxRing { fill:none; stroke:#FFC64D; stroke-width:3;

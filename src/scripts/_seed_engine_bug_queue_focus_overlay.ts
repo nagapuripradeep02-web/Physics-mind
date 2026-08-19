@@ -63,6 +63,23 @@ interface Row {
 
 const rows: Row[] = [
   {
+    bug_class: 'review_player_focus_overlay_svg_replaced_element_sizing_clips_all_cues',
+    title: 'Focus Overlay SVG sat at its 300x150 replaced-element intrinsic default — every cue painted outside it and was clipped invisible',
+    severity: 'MAJOR',
+    owner_cluster: 'peter_parker:visual_validator',
+    root_cause:
+      'The #focusOverlay <svg> was styled position:absolute; inset:0 — but <svg> is a REPLACED element, so inset alone does not stretch it: it keeps its 300x150 intrinsic default (offset by auto-margin resolution), and every cue drawn at real stage coordinates (e.g. ring x=760) fell outside the viewport and was clipped. The engine, bindings, and PM_FOCUS_HOST all worked — resolve() returned correct rects, PM_focusMisses stayed 0 — so nothing failed loudly; the founder’s screen recording (2026-08-19 13:32) was the detector. The IDENTICAL trap was already documented in the same file for the pen canvas ("a <canvas> is a replaced element: CSS inset:0 does NOT stretch it", #simOverlay resize note) and was not applied to the new sibling element.',
+    prevention_rule:
+      'Any full-stage replaced element (canvas, svg, img, iframe) added to #stage needs explicit width:100%/height:100% (or scripted sizing), never inset:0 alone — and a new overlay layer is verified by a RENDERED-PIXEL check (screenshot or getBoundingClientRect of the layer at load: width must equal the stage, not 300), not by engine state alone. A cue engine whose misses counter is 0 while nothing is visible on screen is exactly this class.',
+    probe_type: 'js_eval',
+    probe_logic:
+      'document.getElementById("focusOverlay").getBoundingClientRect().width must equal #stage’s clientWidth (not 300) at page load; then focusSet("far_coil","ring") must produce a visible ring inside the viewport.',
+    status: 'FIXED',
+    concepts_affected: ['faraday_law_induction'],
+    fixed_in_files: ['src/scripts/build_review_site.ts'],
+    row_type: 'incident',
+  },
+  {
     bug_class: 'field3d_faraday_glow_tokens_never_resolve_to_built_ids',
     title: 'faraday_law_induction: all 18 authored glow tokens were *_label names matching no built id — the entire narration glow track was inert',
     severity: 'MAJOR',
@@ -148,7 +165,7 @@ async function main(): Promise<void> {
   }));
   const { error } = await supabaseAdmin.from('engine_bug_queue').upsert(payload, { onConflict: 'bug_class' });
   if (error) { console.error(`✗ upsert failed: ${error.message}`); process.exit(1); }
-  console.log(`✓ ${rows.length} row(s) upserted (1 FIXED, 2 OPEN)`);
+  console.log(`✓ ${rows.length} row(s) upserted (2 FIXED, 2 OPEN)`);
 }
 
 main().catch((err) => { console.error('💥 seed failed:', err instanceof Error ? err.stack : err); process.exit(1); });
