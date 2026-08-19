@@ -17,6 +17,28 @@ const ttsSentenceSchema = z.object({
   // English). When present, the review-site player can speak/caption HI/TE.
   text_hi: z.string().optional(),
   text_te: z.string().optional(),
+  // Focus Overlay (2026-08-19): narration-synced pointing cue, drawn by the
+  // review-site player above the sim (never a postMessage). target must be a
+  // REAL built id (field_3d sceneObjects userData id / DOM overlay id; PCPL
+  // scene_composition id; particle_field semantic key). cue defaults to
+  // 'ring' in the player. Explicit-only — no fallback to focal_primitive_id.
+  focus: z
+    .object({
+      target: z.string().min(1),
+      cue: z.enum(['spotlight', 'ring', 'pointer', 'underline']).optional(),
+    })
+    .optional(),
+  // ── Legacy per-sentence binding fields, typed 2026-08-19 (they were always
+  //    authored — glow on 1347 sentences — but never declared; the non-strict
+  //    object accepted them silently). Permissive unions match fleet reality.
+  glow: z.union([z.string(), z.array(z.string()), z.null()]).optional(),
+  math_show: z.string().nullable().optional(),
+  math_persist: z.boolean().optional(),
+  hand_phase: z.enum(['v', 'b', 'f']).nullable().optional(),
+  freeze_proton: z.boolean().optional(),
+  scenario_cue: z.string().nullable().optional(),
+  pause_after_ms: z.number().optional(),
+  highlight_primitive_id: z.string().nullable().optional(),
 });
 
 // ── Teacher Script per state ────────────────────────────────────────
