@@ -1002,6 +1002,38 @@ function resolveField3dScenarioType(config: Record<string, unknown> | null): str
 }
 
 /**
+ * Human-readable "<family> / <scenario_type>" for a concept config — the label a
+ * report needs when it has to NAME the scenario whose motion classification is
+ * missing (engine_bug_queue prevention rule on
+ * eye_manifest_counts_skipped_checks_as_passed…: "a scenario_type the motion
+ * classifier cannot resolve raises an explicit UNCLASSIFIED warning NAMING the
+ * scenario"). Reads the same two shapes the resolvers above accept.
+ */
+export function describeScenario(config: Record<string, unknown> | null): string {
+    if (!config) return '(no config)';
+    const f3d = asObj(config.field_3d_config);
+    if (f3d || typeof config.scenario_type === 'string') {
+        return `field_3d / ${resolveField3dScenarioType(config) ?? '(no scenario_type)'}`;
+    }
+    const pf = asObj(config.particle_field_config);
+    if (pf) return `particle_field / ${typeof pf.topology === 'string' ? `topology:${pf.topology}` : '(no topology)'}`;
+    const pcpl = asObj(config.parametric_config);
+    if (pcpl) return `parametric / ${typeof pcpl.scenario_type === 'string' ? pcpl.scenario_type : '(no scenario_type)'}`;
+    // PCPL / mechanics_2d concepts carry NO renderer config block at all — their
+    // scenes live in epic_l_path.states + scene_composition, and the renderer is
+    // named only by renderer_pair.panel_a. Report that label and nothing more:
+    // "mechanics_2d" there does NOT mean mechanics_2d_renderer.ts runs (PCPL_CONCEPTS
+    // in aiSimulationGenerator overrides it — CLAUDE.md §1 naming trap), and this
+    // file's PCPL motion branches key off STATE SHAPE (variable_choreography,
+    // scene animation types), never off this string. Claiming a family here would
+    // be a guess; naming the label is a fact.
+    const rp = asObj(config.renderer_pair);
+    const panelA = rp && typeof rp.panel_a === 'string' ? rp.panel_a : null;
+    if (panelA) return `2d / renderer_pair:${panelA}`;
+    return '(unresolved renderer family)';
+}
+
+/**
  * particle_field (2D p5 diamonds — drift_velocity class): resolve the per-state
  * map from the authored `particle_field_config.states` (present in the concept
  * JSON and in the seeded physics_config). Returns null for other renderers.

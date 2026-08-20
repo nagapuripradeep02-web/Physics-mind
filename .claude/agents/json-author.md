@@ -315,14 +315,15 @@ DC Pandey = scope only. Teaching method, example problems, anchors, phrasing = f
 
 ## Engine bug queue consultation (pre-authoring)
 
-Before writing the JSON, query `engine_bug_queue` for prevention rules relevant to json_author + cross-cutting JSON-authoring bugs:
+Before writing the JSON, query `engine_bug_queue` for prevention rules relevant to json_author + cross-cutting JSON-authoring bugs — via the read-only headless reader (no `--open` filter on the owner query: the default returns ALL statuses, which is what you want):
 
-```sql
-SELECT bug_class, prevention_rule, owner_cluster, severity
-FROM engine_bug_queue
-WHERE status = 'FIXED'
-  AND (owner_cluster = 'alex:json_author' OR cardinality(concepts_affected) >= 5);
+```bash
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner alex:json_author
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept_id> --open
+npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --field3d --open   # or --pcpl for a PCPL/parametric concept
 ```
+
+(This replaces the old raw-SQL block, which filtered `status = 'FIXED'` only — OPEN scars were invisible to this role; its `cardinality(concepts_affected) >= 5` cross-cutting filter is covered by the fleet-flag calls. An OPEN row is a live trap, not history: it binds harder than a FIXED one.)
 
 Read every `prevention_rule`. Each is a one-line constraint a prior bug forced into existence — your JSON must satisfy all of them. Examples from session 35:
 - **Bug #13** (block penetrates floor): every `body` primitive in a state with a `surface` primitive must declare `attach_to_surface: "<surface_id>"`.
