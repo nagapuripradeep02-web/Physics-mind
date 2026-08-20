@@ -157,18 +157,35 @@ close the class**; and STATE_4's `d` and `n` labels overlapped into one glyph cl
 apart, Rule 34d), fixed by nudging the camera az −6° / el +3° at the same R=13 for +65 % computed
 separation.
 
-**Two bookkeeping gaps this creates** — neither is filed: **no scar row exists for the tube-radius
-defect** (PR #118 carried only the renderer + the gate), and **the pass-3 audit's three findings have
-no queue rows at all** (the last seed script is the re-audit's, 16:10). For a session whose §2a lesson
-was *a correction living only in a database is not in the record*, a fix living only in a commit
-message is the same failure one rung down.
+**Two bookkeeping gaps this created** — PR #118 carried only the renderer + the gate, and the pass-3
+audit's three findings had no queue rows at all (the last seed script was the re-audit's, 16:10). For a
+session whose §2a lesson was *a correction living only in a database is not in the record*, a fix living
+only in a commit message is the same failure one rung down.
+
+> **CLOSED 2026-08-20 — four rows filed + one annotation**, via
+> `src/scripts/_seed_engine_bug_queue_lines_and_planes_pass3.ts` and its committed migration, under the
+> same §2a guards (marker-gated, order-independent, never a downgrade; replay-verified 5/5 skip):
+> **`field3d_pooled_geometry_bakes_a_dimension_the_placer_multiplies_again_…`** (CRITICAL/FIXED — the
+> mechanism, and the standing note that pre-fix pixel evidence is void);
+> **`no_gate_asserts_a_drawn_object_is_thick_enough_to_see_…`** (MAJOR/**OPEN** — §29 closes it for ONE
+> scenario; THE EYE has no fleet-wide equivalent);
+> **`a_fix_round_closes_the_reported_instances_of_a_restated_value_and_never_sweeps_…`** (MODERATE/FIXED
+> — the sweep was run to prove it: 10 surviving hits, all legitimate slider-floor / camera-fidelity
+> references, **zero** rotation-start claims);
+> **`label_separation_is_a_function_of_the_authored_camera_and_no_gate_recomputes_it_…`**
+> (MODERATE/**OPEN** — the +65 % separation is computed, never pixel-verified, and a camera value is not
+> a mechanism). Plus a marker-gated annotation on `skeleton_cites_two_contradictory_values_…` recording
+> that the class recurred under a closed row. **Queue: 13 → 15 OPEN for this concept**, by design — the
+> two new OPEN rows are gaps that were previously unrecorded, not new breakage.
 
 ### ⏭ NEXT — in order
 
 1. **Re-run THE EYE on all 9 states against the post-#118 branch**, and re-walk. Every legibility,
    occlusion and collision observation before it is void; the concept has no baselines to compare
    against, so this is a fresh capture, not a diff.
-2. **File the missing rows** — the tube-radius class and the pass-3 findings.
+2. ~~File the missing rows~~ — **DONE 2026-08-20** (see the CLOSED note above). What remains from them
+   is the work the two OPEN rows name: a fleet-wide minimum-ink check, and a real label-separation gate
+   so STATE_4's camera nudge stops being provisional.
 3. **Founder review / Checkpoint B** — never run on this concept. PR **#96 must not merge** before it.
 4. **Re-baseline is a deliberate approval, not a diff surprise:** #112 changed the norm-bar glyph and
    #118 changed every stroke width, so any state printing `‖n‖` / `‖d₁×d₂‖` or drawing a line differs
