@@ -43,6 +43,13 @@
 <main class="layout">
 
   <aside class="rail">
+    <!-- Cut switch: the same question answered at two lengths. Hidden by the
+         engine when the question declares fewer than two cuts. -->
+    <div class="card cut-card" id="cutCard">
+      <div class="card-title">How much to write</div>
+      <div class="cut-switch" id="cutSwitch" role="group" aria-label="Answer length"></div>
+    </div>
+
     <div class="card">
       <div class="card-title">Answer plan</div>
       <div class="step-list" id="stepList"></div>

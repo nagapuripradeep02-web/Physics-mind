@@ -116,5 +116,19 @@ for (const q of questions) {
     for (const s of q.answer.steps) {
         console.log(`    ${String(s.marks).padStart(2)}M  ${s.id}  (${s.kind})`);
     }
+    // Print every cut. A reduced cut that silently lost a step, or whose split
+    // stopped adding up, is invisible in the full-answer line above.
+    if (q.cuts?.length) {
+        for (const c of q.cuts) {
+            const ids = Object.keys(c.steps);
+            const omitted = q.answer.steps.filter((s) => !ids.includes(s.id)).map((s) => s.id);
+            const flag = c.needs_teacher_verification ? '  ⚠ split unverified' : '';
+            console.log(
+                `    cut "${c.key}"  [${c.qtype} ${c.marks_total}M]  ${ids.length}/${q.answer.steps.length} steps` +
+                `  ~${c.expected_time_min}min${flag}`
+            );
+            if (omitted.length) console.log(`         omits: ${omitted.join(', ')}`);
+        }
+    }
 }
 console.log(`\nNext: npm run serve:answers → http://localhost:8100  (or open ${outPath} directly)`);

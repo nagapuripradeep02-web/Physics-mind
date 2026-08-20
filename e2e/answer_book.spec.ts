@@ -242,6 +242,116 @@ test('the paper section and marks agree across header, chip and mark split', asy
     expect(r.header).toContain(r.qtype === 'LAQ' ? 'Section C' : 'Section B');
 });
 
+// ── cuts: the same question at two lengths ──────────────────────────────────
+// The chrome used to be append-only, so a second render stacked duplicates and
+// the step pills kept click handlers closed over the previous step set. These
+// tests exist to keep that from coming back.
+
+test('switching cut changes the answer, the marks and the header together', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+
+    const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
+    test.skip(cuts.length < 2, 'question declares a single cut');
+
+    const read = () => page.evaluate(() => ({
+        state: (window as any).PM_ANSWER.getState(),
+        pills: document.querySelectorAll('#stepList .step-pill').length,
+        split: document.querySelectorAll('#markSplit .split-row').length,
+        chips: document.querySelectorAll('#questionMeta .chip').length,
+        accTotal: document.getElementById('accTotal')!.textContent,
+        header: [...document.querySelectorAll('.page-header-block .line')]
+            .map((e) => e.textContent).join(' | '),
+    }));
+
+    const first = await read();
+    expect(first.state.cutKey).toBe(cuts[0].key);
+    expect(first.pills).toBe(first.state.stepIds.length);
+    expect(first.accTotal).toBe('/' + cuts[0].marks_total);
+    expect(first.header).toContain(`${cuts[0].marks_total} marks`);
+
+    await page.click('#cutSwitch .cut-btn:nth-child(2)');
+    await page.waitForTimeout(300);
+    const second = await read();
+
+    // the shorter cut really is shorter, and every readout followed it
+    expect(second.state.cutKey).toBe(cuts[1].key);
+    expect(second.state.marksTotal).toBe(cuts[1].marks_total);
+    expect(second.state.stepIds.length).toBeLessThan(first.state.stepIds.length);
+    expect(second.pills).toBe(second.state.stepIds.length);
+    expect(second.accTotal).toBe('/' + cuts[1].marks_total);
+    expect(second.header).toContain(`${cuts[1].marks_total} marks`);
+    expect(second.header).not.toContain(`${cuts[0].marks_total} marks`);
+
+    // chrome CLEARS rather than appends — the old bug stacked these
+    expect(second.chips).toBe(first.chips);
+    expect(second.split).toBe(cuts[1].marks_total === 4 ? 4 : second.split);
+
+    // and the reduced cut still totals exactly its own marks
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await page.waitForTimeout(400);
+    const done = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(done.marksEarned).toBe(cuts[1].marks_total);
+
+    // switching back restores the full answer without duplicating anything
+    await page.click('#cutSwitch .cut-btn:nth-child(1)');
+    await page.waitForTimeout(300);
+    const back = await read();
+    expect(back.pills).toBe(first.pills);
+    expect(back.split).toBe(first.split);
+    expect(back.chips).toBe(first.chips);
+    expect(back.header).toBe(first.header);
+});
+
+test('a step pill jumps to the right step after a cut switch', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
+    test.skip(cuts.length < 2, 'question declares a single cut');
+
+    await page.click('#cutSwitch .cut-btn:nth-child(2)');
+    await page.waitForTimeout(300);
+
+    // the LAST pill of the reduced cut — under the old append-only list its
+    // handler still carried an index from the full step set
+    const ids = await page.evaluate(() => (window as any).PM_ANSWER.getState().stepIds);
+    await page.click('#stepList .step-pill:last-child');
+    await page.waitForTimeout(500);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+    await page.waitForTimeout(400);
+
+    const st = await page.evaluate(() => (window as any).PM_ANSWER.getState());
+    expect(st.stepId).toBe(ids[ids.length - 1]);
+});
+
+test('no written line wraps past its own height, in either cut', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const cuts = await page.evaluate(() => (window as any).PM_ANSWER.listCuts());
+
+    // A too-long authored equation silently wraps and strands a fragment on the
+    // next rule. Measured, not guessed at with a character budget: compare each
+    // line's rendered height against the single-line height of its own siblings.
+    for (let i = 0; i < cuts.length; i++) {
+        await page.evaluate((k) => (window as any).PM_ANSWER.setCut(k), cuts[i].key);
+        await page.waitForTimeout(250);
+        await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+        await page.waitForTimeout(500);
+
+        const wrapped = await page.evaluate(() => {
+            const bad: string[] = [];
+            document.querySelectorAll('.step-block .line').forEach((el) => {
+                const e = el as HTMLElement;
+                const lh = parseFloat(getComputedStyle(e).lineHeight || '0');
+                if (!lh || !e.textContent) return;
+                if (e.getBoundingClientRect().height > lh * 1.6) bad.push(e.textContent.trim());
+            });
+            return bad;
+        });
+        expect(wrapped, `cut "${cuts[i].key}" has wrapped line(s)`).toEqual([]);
+    }
+});
+
 test('the modes and the rail teaching cards are gone', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');
@@ -255,7 +365,7 @@ test('the modes and the rail teaching cards are gone', async ({ page }) => {
     expect(r.modeCard).toBe(false);
     expect(r.why).toBe(false);
     expect(r.mistakes).toBe(false);
-    expect(r.railTitles).toEqual(['Answer plan', 'How to earn it', 'Mark split']);
+    expect(r.railTitles).toEqual(['How much to write', 'Answer plan', 'How to earn it', 'Mark split']);
     expect(r.testEntryInTopBar).toBe(true);   // the entry lives top-right now
 });
 

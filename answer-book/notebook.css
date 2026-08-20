@@ -100,6 +100,20 @@ body {
   text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 10px;
 }
 
+/* Cut switch — the same question at two lengths. Two equal segments, because
+   neither length is the "real" one: which is right depends on the paper. */
+.cut-switch { display: flex; gap: 6px; }
+.cut-btn {
+  flex: 1 1 0; min-width: 0;
+  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+  padding: 9px 6px; border-radius: 9px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-dim);
+}
+.cut-btn:hover { border-color: var(--accent); color: var(--accent); }
+.cut-btn.on {
+  background: var(--ink); border-color: var(--ink); color: #fff;
+}
+
 .step-list { display: flex; flex-direction: column; gap: 4px; }
 .step-pill {
   display: flex; align-items: center; gap: 8px;

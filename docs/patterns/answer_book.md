@@ -252,22 +252,52 @@ while every other check passed. Fixed globally with `[hidden] { display: none !i
 near the top of the stylesheet. Caught by e2e, not by eye; any future component with an
 explicit `display` needs the same care.
 
-## Deferred: SAQ/VSAQ variants
+## Cuts: the same question at two lengths (built 2026-08-20, founder decision)
 
-Not built, for two reasons. **The mark splits would be invented** — no real IPE paper has been
-seen showing this asked at 4 marks, and the 8-mark split already ships
-`needs_teacher_verification: true`. And it is the only Tier-1 item that changes the *visible
-step set*, which breaks eight things: the `#stepList` pills are built append-only and read
-positionally (with stale captured indices in their click handlers), `marksTotal` is captured
-once at L28 and written once to `#accTotal`, `#markSplit` and the marks chip are append-only,
-`page_header` has "· 8 marks" as literal text, `fitNotebook()` never re-runs after
-`renderUpTo`, and the schema's mark-sum gate validates only the full set.
+Was deferred; now built. The founder's call: build the LAQ **and** offer the SAQ beside it, so a
+student can see *how much to write* for each. The eight append-only breakages listed here were
+real and all five enabling changes landed.
 
-The enabling refactor: extract `renderStepList()` / `renderMarkSplit()` / `renderMeta()` out of
-the append-only `renderChrome` so each clears first; make every marks readout read a live
-`marksTotal`; derive the header text; call `fitNotebook()` at the end of `renderUpTo`; add a
-paired root total + superRefine. Then author the cuts — **only once a real IPE teacher confirms
-them.**
+**Model.** A cut is a *view over the one authored step list*, never a second copy of the answer.
+`question.cuts[]` — each cut carries its own `qtype`, `marks_total`, `paper_section`,
+`expected_time_min`, `mark_split`, and a `steps` map of `step_id -> { marks, label?, lines?,
+mark_note? }`. **A step id absent from that map is omitted from the cut.** `cuts[0]` is the
+default and the schema forces it to restate the root header, so a consumer that knows nothing
+about cuts (the graders, `PM_ANSWER`) still reads the truth. A question with no `cuts` is
+wrapped in a synthesised single cut, so every existing question works untouched.
+
+**Coherence is the author's job** — the Rule 38a test applied here: with the omitted steps
+hidden, no surviving line may refer to something only an omitted step introduced. On the
+parallelogram SAQ, dropping `s3_construction`/`s4_legs`/`s6_direction` meant the magnitude and
+direction steps had to re-state θ, α, OACB, CD and OD in their own `lines` override. Nothing
+enforces this; the schema only checks marks and membership.
+
+**What the refactor changed.** `renderChrome` split into `renderMeta()` / `renderMarkSplit()` /
+`renderStepList()` / `renderCutSwitch()`, each clearing first (append-only was why a second
+render stacked duplicate chips, split rows and pills, and why pill click handlers kept indices
+from the previous step set). `steps` and `marksTotal` are derived from the active cut instead of
+captured once. `page_header` is DERIVED (`pageHeaderLines()`), never literal — a hardcoded
+"· 8 marks" cannot follow a switch. `fitNotebook()` runs at the end of every `renderUpTo`.
+Schema gains per-cut mark-sum, split-sum, membership and diagram-override checks plus the paired
+root/`cuts[0]` equality check. Switching cut **restarts** the answer — it is a different answer,
+not a filter.
+
+**Photo and mic are default-cut only.** Both grade server-side against the question's full step
+list (the endpoints take a `question_id` and know nothing about cuts), so on a reduced cut they
+would mark a student down for omitting steps that cut deliberately drops. The panel says so.
+The self-check has no such problem — it scores in the browser from the steps on screen — so it
+works on every cut. Make the graders cut-aware before lifting this.
+
+**Both splits are still claims.** `needs_teacher_verification` is now per cut, and the rail note
+follows whichever cut is on screen. For the parallelogram: the 8-mark split comes from the TSBIE
+Basic Learning Material, the 4-mark one from the Sri Chaitanya Fastrack — which lists the
+question as SHORT ANSWER 1 of Unit 4 and has **no LONG ANSWER section in the chapter at all**.
+The sources disagree, which is exactly why the student can switch. *Which steps a 4-mark answer
+may omit is invented and needs a Telangana IPE teacher.*
+
+**A line-wrap test now exists** (`no written line wraps past its own height, in either cut`). It
+measures rendered height against computed line-height rather than guessing a character budget,
+and it caught three over-packed lines in the first SAQ draft that no other gate saw.
 
 ---
 

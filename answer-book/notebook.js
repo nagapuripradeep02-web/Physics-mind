@@ -24,8 +24,59 @@
 
   var question = (window.PM_QUESTIONS || [])[0];
   if (!question) { document.body.textContent = 'No question data in this build.'; return; }
-  var steps = question.answer.steps;
-  var marksTotal = question.marks_total;
+
+  // ═══ cuts — the same answer at two lengths ═══════════════════════════════
+  // A cut SELECTS from the one authored step list; it never holds a second copy
+  // of the answer. `steps` and `marksTotal` are therefore derived, never captured
+  // once — the whole reason the chrome below had to stop being append-only.
+  //
+  // With no `cuts` in the data the synthesised single cut reproduces the old
+  // behaviour exactly, so every existing question keeps working untouched.
+
+  var cuts = question.cuts && question.cuts.length ? question.cuts : [{
+    key: 'full', label: 'Full answer', qtype: question.qtype,
+    marks_total: question.marks_total, paper_section: question.paper_section,
+    expected_time_min: question.expected_time_min, mark_split: question.mark_split,
+    steps: question.answer.steps.reduce(function (acc, s) {
+      acc[s.id] = { marks: s.marks }; return acc;
+    }, {}),
+    needs_teacher_verification:
+      !!(question.verification && question.verification.needs_teacher_verification)
+  }];
+
+  var cutIndex = 0;
+  var cut, steps, marksTotal;
+
+  /** Project the authored steps through the active cut. Authored ORDER always wins. */
+  function applyCut(i) {
+    cutIndex = i;
+    cut = cuts[i];
+    steps = question.answer.steps
+      .filter(function (s) { return Object.prototype.hasOwnProperty.call(cut.steps, s.id); })
+      .map(function (s) {
+        var o = cut.steps[s.id];
+        var merged = {};
+        for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) merged[k] = s[k];
+        merged.marks = o.marks;
+        if (o.label) merged.label = o.label;
+        if (o.lines) merged.lines = o.lines;
+        // A 0-mark step gets no red tick, so it must carry no mark note.
+        if (o.mark_note) merged.mark_note = o.mark_note;
+        if (merged.marks === 0) delete merged.mark_note;
+        return merged;
+      });
+    marksTotal = cut.marks_total;
+  }
+  applyCut(0);
+
+  var QTYPE_WORD = { LAQ: 'Long Answer Question', SAQ: 'Short Answer Question',
+                     VSAQ: 'Very Short Answer Question' };
+
+  /** Derived, never literal: a hardcoded "· 8 marks" cannot follow a cut switch. */
+  function pageHeaderLines() {
+    return [cut.paper_section + ' — ' + (QTYPE_WORD[cut.qtype] || 'Answer'),
+            question.chapter + ' · ' + marksTotal + ' marks'];
+  }
 
   // ── state ─────────────────────────────────────────────────────────────────
   var stepIndex = -1;             // last fully revealed step
@@ -44,16 +95,20 @@
 
   // ═══ chrome ════════════════════════════════════════════════════════════════
 
-  function renderChrome() {
-    $('boardLabel').textContent = question.board_label;
+  // Each renderer CLEARS first and reads the active cut. They used to be one
+  // append-only function, which is why switching cuts was impossible: a second
+  // call stacked a duplicate set of chips, split rows and step pills, and the
+  // pill click handlers still closed over indices from the previous step set.
 
+  function renderMeta() {
     var meta = $('questionMeta');
+    meta.innerHTML = '';
     var chips = [
       question.class_label,
       question.subject.charAt(0).toUpperCase() + question.subject.slice(1),
       'Unit ' + question.unit.number + ' · ' + question.unit.name,
-      question.paper_section + ' · ' + question.qtype,
-      'about ' + question.expected_time_min + ' minutes'
+      cut.paper_section + ' · ' + cut.qtype,
+      'about ' + cut.expected_time_min + ' minutes'
     ];
     chips.forEach(function (c) {
       var el = document.createElement('span');
@@ -63,14 +118,16 @@
     });
     var marksChip = document.createElement('span');
     marksChip.className = 'chip chip-marks';
-    marksChip.textContent = question.marks_total + ' marks';
+    marksChip.textContent = marksTotal + ' marks';
     meta.appendChild(marksChip);
 
-    $('questionText').textContent = 'Q. ' + question.question_text;
     $('accTotal').textContent = '/' + marksTotal;
+  }
 
+  function renderMarkSplit() {
     var split = $('markSplit');
-    question.mark_split.forEach(function (row) {
+    split.innerHTML = '';
+    cut.mark_split.forEach(function (row) {
       var el = document.createElement('div');
       el.className = 'split-row';
       var label = document.createElement('span');
@@ -82,14 +139,21 @@
       split.appendChild(el);
     });
 
-    if (question.verification && question.verification.needs_teacher_verification) {
-      var vn = $('verifyNote');
-      vn.hidden = false;
+    // The claim flag is per CUT: a verified 8-mark split says nothing about an
+    // invented 4-mark one, so the note must follow whichever is on screen.
+    var vn = $('verifyNote');
+    var unverified = cut.needs_teacher_verification ||
+      (question.verification && question.verification.needs_teacher_verification);
+    vn.hidden = !unverified;
+    if (unverified) {
       vn.textContent = 'Mark split not yet confirmed by a board teacher. ' +
         'The physics and the method are checked; the exact split is a claim.';
     }
+  }
 
+  function renderStepList() {
     var list = $('stepList');
+    list.innerHTML = '';
     steps.forEach(function (s, i) {
       var pill = document.createElement('div');
       pill.className = 'step-pill';
@@ -105,6 +169,42 @@
       pill.addEventListener('click', function () { goToIndex(i); });
       list.appendChild(pill);
     });
+  }
+
+  function renderCutSwitch() {
+    var row = $('cutSwitch');
+    row.innerHTML = '';
+    // Hide the whole CARD, not just the row — an empty card would leave its
+    // "How much to write" title floating above nothing.
+    if (cuts.length < 2) { $('cutCard').hidden = true; return; }
+    $('cutCard').hidden = false;
+    cuts.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cut-btn' + (i === cutIndex ? ' on' : '');
+      b.setAttribute('aria-pressed', i === cutIndex ? 'true' : 'false');
+      b.textContent = c.label;
+      b.addEventListener('click', function () { switchCut(i); });
+      row.appendChild(b);
+    });
+  }
+
+  function renderChrome() {
+    $('boardLabel').textContent = question.board_label;
+    $('questionText').textContent = 'Q. ' + question.question_text;
+    renderCutSwitch();
+    renderMeta();
+    renderMarkSplit();
+    renderStepList();
+  }
+
+  /** Switching cut restarts the answer: it is a different answer, not a filter. */
+  function switchCut(i) {
+    if (i === cutIndex) return;
+    applyCut(i);
+    renderChrome();
+    renderUpTo(-1, false);
+    initTestPaths();          // photo/mic are only honest on the default cut
   }
 
   function updateChrome() {
@@ -168,7 +268,7 @@
   function writePageHeader() {
     var block = document.createElement('div');
     block.className = 'page-header-block';
-    question.answer.page_header.forEach(function (t) {
+    pageHeaderLines().forEach(function (t) {
       var el = document.createElement('div');
       el.className = 'line';
       el.textContent = t;
@@ -565,6 +665,10 @@
       placeTotalBlock();
     }
     updateChrome();
+    // The page geometry is fixed but its HEIGHT is not: a cut with fewer steps
+    // makes a shorter notebook, and without this the mobile scale compensation
+    // keeps the previous cut's margin and leaves a gap under the Next button.
+    fitNotebook();
     if (animateLast && targetIndex < steps.length) advance();
   }
 
@@ -1125,6 +1229,40 @@
     }, 'self');
   }
 
+  /**
+   * Which checking paths this cut may offer. Re-runs on every cut switch.
+   *
+   * Photo and mic grade SERVER-side against the question's FULL step list — the
+   * endpoints take a question_id and know nothing about cuts. Offering them on a
+   * reduced cut would mark a student down for omitting steps that cut deliberately
+   * drops. So they appear on the DEFAULT cut only, until the graders are cut-aware.
+   * The self-check has no such problem: it scores in the browser from the steps
+   * actually on screen, so it works on every cut.
+   */
+  function initTestPaths() {
+    var isDefaultCut = cutIndex === 0;
+    var server = question.recall_available && isDefaultCut;
+
+    var any = false;
+    if (PHOTO_ENDPOINT && server) { any = true; $('btnPhoto').hidden = false; }
+    else $('btnPhoto').hidden = true;
+
+    if (RECALL_ENDPOINT && server) { any = true; $('btnMic').hidden = false; }
+    else $('btnMic').hidden = true;
+
+    // Always offered — needs no endpoint, and is why this panel has no empty state.
+    $('btnSelf').hidden = false;
+
+    var reduced = !isDefaultCut && (PHOTO_ENDPOINT || RECALL_ENDPOINT) && question.recall_available;
+    $('testIntro').textContent = any
+      ? 'Write this answer on paper, then tick it yourself, upload it, or say the steps aloud.'
+      : reduced
+        ? 'Write this answer on paper, then tick off what you wrote. Photo and voice checking read the full ' +
+          cuts[0].marks_total + '-mark answer, so they are off for this shorter one.'
+        : 'Write this answer on paper, then tick off what you wrote.';
+    $('testNone').hidden = true;
+  }
+
   function initTest() {
     $('btnTest').addEventListener('click', openTest);
     $('btnCloseTest').addEventListener('click', closeTest);
@@ -1135,32 +1273,19 @@
       if (e.key === 'Escape' && !$('testOverlay').hidden) closeTest();
     });
 
-    var any = false;
-    if (PHOTO_ENDPOINT && question.recall_available) {
-      any = true;
-      $('btnPhoto').hidden = false;
-      $('btnPhoto').addEventListener('click', function () { $('photoInput').click(); });
-      $('photoInput').addEventListener('change', function () {
-        if (this.files && this.files[0]) sendPhoto(this.files[0]);
-        this.value = '';
-      });
-    }
-    if (RECALL_ENDPOINT && question.recall_available) {
-      any = true;
-      $('btnMic').hidden = false;
-      $('btnMic').addEventListener('click', function () {
-        if (rec.active) stopRecording(); else startRecording();
-      });
-    }
-    // The self-check needs no endpoint, so it is always offered and is the
-    // reason this panel no longer has an empty state.
-    $('btnSelf').hidden = false;
+    // Listeners bind ONCE; visibility is what initTestPaths() re-decides. Binding
+    // inside the re-runnable part would stack a duplicate handler per cut switch.
     $('btnSelf').addEventListener('click', startSelfCheck);
+    $('btnPhoto').addEventListener('click', function () { $('photoInput').click(); });
+    $('photoInput').addEventListener('change', function () {
+      if (this.files && this.files[0]) sendPhoto(this.files[0]);
+      this.value = '';
+    });
+    $('btnMic').addEventListener('click', function () {
+      if (rec.active) stopRecording(); else startRecording();
+    });
 
-    $('testIntro').textContent = any
-      ? 'Write this answer on paper, then tick it yourself, upload it, or say the steps aloud.'
-      : 'Write this answer on paper, then tick off what you wrote.';
-    $('testNone').hidden = true;
+    initTestPaths();
   }
 
 
@@ -1175,8 +1300,26 @@
         stepId: stepIndex >= 0 ? steps[stepIndex].id : null,
         marksEarned: marksEarned,
         marksTotal: marksTotal,
-        pageCount: pageBodies.length
+        pageCount: pageBodies.length,
+        // Which length is on screen. Anything reading marksTotal needs this to
+        // know what it is a total OF.
+        cutKey: cut.key,
+        cutIndex: cutIndex,
+        stepIds: steps.map(function (s) { return s.id; })
       };
+    },
+    /** The cuts this question offers, for a caller that wants to switch. */
+    listCuts: function () {
+      return cuts.map(function (c, i) {
+        return { key: c.key, label: c.label, qtype: c.qtype,
+                 marks_total: c.marks_total, active: i === cutIndex };
+      });
+    },
+    setCut: function (key) {
+      for (var i = 0; i < cuts.length; i++) {
+        if (cuts[i].key === key) { switchCut(i); return true; }
+      }
+      return false;
     },
     goToStep: function (stepId) {
       for (var i = 0; i < steps.length; i++) {

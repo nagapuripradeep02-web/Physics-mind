@@ -134,6 +134,49 @@ const stepSchema = z
         }
     });
 
+// ── cuts: the same question answered at two lengths ──────────────────────────
+//
+// The SAME derivation is asked at 8 marks (Section C) and at 4 (Section B), and a
+// student needs to see HOW MUCH to write for each. A cut is therefore a view over
+// the one authored step list, never a second copy of the answer: it selects which
+// steps appear, re-marks them, and may substitute a shorter `lines` for a step
+// that has to absorb an omitted neighbour.
+//
+// A step id absent from `steps` is OMITTED from that cut. That makes coherence the
+// author's job (the Rule 38a test, applied here): with the omitted steps hidden,
+// no surviving line may refer to something only an omitted step introduced.
+
+const cutStepSchema = z
+    .object({
+        marks: z.number().int().nonnegative(),
+        mark_note: z.string().optional(),
+        /** Override the rail label when the shorter step covers more ground. */
+        label: z.string().min(1).optional(),
+        /** Override the written lines. Omit to reuse the full-cut lines verbatim. */
+        lines: z.array(lineSchema).optional(),
+    })
+    .superRefine((cs, ctx) => {
+        if (cs.marks === 0 && cs.mark_note) {
+            ctx.addIssue({ code: 'custom', message: 'mark_note is set but marks is 0 — an unmarked step gets no red mark' });
+        }
+    });
+
+const cutSchema = z.object({
+    key: z.string().regex(/^[a-z0-9_]+$/),
+    /** Toggle button text, e.g. "8-mark answer". Rule 41: literal, not clever. */
+    label: z.string().min(1),
+    qtype: z.enum(['VSAQ', 'SAQ', 'LAQ']),
+    marks_total: z.number().int().positive(),
+    paper_section: z.string().min(1),
+    expected_time_min: z.number().int().positive(),
+    mark_split: z.array(z.object({ label: z.string().min(1), marks: z.number().int().positive() })),
+    /** step_id -> override. A step id NOT present here does not appear in this cut. */
+    steps: z.record(z.string(), cutStepSchema),
+    /** Same claim discipline as the question's: an invented split must say so. */
+    needs_teacher_verification: z.boolean(),
+    note: z.string().optional(),
+});
+
 // ── question header ──────────────────────────────────────────────────────────
 
 export const answerBookQuestionSchema = z
@@ -167,6 +210,13 @@ export const answerBookQuestionSchema = z
 
         /** What the student is asked to say aloud in the recall check. Required when steps carry `recall`. */
         recall_prompt: z.string().min(1).optional(),
+
+        /**
+         * Optional: the same answer offered at more than one length. cuts[0] is the
+         * DEFAULT and must restate the root header exactly, so a consumer that knows
+         * nothing about cuts (the grader, PM_ANSWER) still reads the truth.
+         */
+        cuts: z.array(cutSchema).min(2).optional(),
 
         answer: z.object({
             /** Written at the top of page 1, e.g. ["Q. 21", "Addition of Vectors — 8 marks"]. */
@@ -207,6 +257,72 @@ export const answerBookQuestionSchema = z
         }
         if (withRecall > 0 && !q.recall_prompt) {
             ctx.addIssue({ code: 'custom', message: 'steps carry a recall rubric, so recall_prompt is required' });
+        }
+
+        // ── cuts ─────────────────────────────────────────────────────────────
+        if (q.cuts) {
+            const stepById = new Map(q.answer.steps.map((s) => [s.id, s]));
+            const keys = q.cuts.map((c) => c.key);
+            const dupKeys = keys.filter((k, i) => keys.indexOf(k) !== i);
+            if (dupKeys.length) {
+                ctx.addIssue({ code: 'custom', message: `duplicate cut keys: ${[...new Set(dupKeys)].join(', ')}` });
+            }
+
+            // cuts[0] IS the root. Without this the chip, the header and the grader
+            // can disagree with the cut the student is looking at.
+            const d = q.cuts[0];
+            const rootMismatch: string[] = [];
+            if (d.qtype !== q.qtype) rootMismatch.push(`qtype ${d.qtype} vs ${q.qtype}`);
+            if (d.marks_total !== q.marks_total) rootMismatch.push(`marks_total ${d.marks_total} vs ${q.marks_total}`);
+            if (d.paper_section !== q.paper_section) rootMismatch.push(`paper_section "${d.paper_section}" vs "${q.paper_section}"`);
+            if (d.expected_time_min !== q.expected_time_min) rootMismatch.push(`expected_time_min ${d.expected_time_min} vs ${q.expected_time_min}`);
+            if (rootMismatch.length) {
+                ctx.addIssue({
+                    code: 'custom',
+                    message: `cuts[0] ("${d.key}") is the default and must restate the root header — ${rootMismatch.join('; ')}`,
+                });
+            }
+
+            for (const cut of q.cuts) {
+                const ids = Object.keys(cut.steps);
+                if (!ids.length) {
+                    ctx.addIssue({ code: 'custom', message: `cut "${cut.key}": no steps — a cut must show something` });
+                    continue;
+                }
+                for (const id of ids) {
+                    const base = stepById.get(id);
+                    if (!base) {
+                        ctx.addIssue({ code: 'custom', message: `cut "${cut.key}": step "${id}" does not exist in answer.steps` });
+                        continue;
+                    }
+                    // A figure is authored once, in the step; a cut may not retype it.
+                    if (base.kind === 'diagram' && cut.steps[id].lines) {
+                        ctx.addIssue({
+                            code: 'custom',
+                            message: `cut "${cut.key}": step "${id}" is a diagram — override its figure in the step, not with lines[]`,
+                        });
+                    }
+                }
+                const cutSum = ids.reduce((acc, id) => acc + cut.steps[id].marks, 0);
+                if (cutSum !== cut.marks_total) {
+                    ctx.addIssue({
+                        code: 'custom',
+                        message: `cut "${cut.key}": sum(steps[].marks) = ${cutSum} but marks_total = ${cut.marks_total}`,
+                    });
+                }
+                const cutSplit = cut.mark_split.reduce((acc, r) => acc + r.marks, 0);
+                if (cutSplit !== cut.marks_total) {
+                    ctx.addIssue({
+                        code: 'custom',
+                        message: `cut "${cut.key}": sum(mark_split[].marks) = ${cutSplit} but marks_total = ${cut.marks_total}`,
+                    });
+                }
+                // Order is the authored order, always (Rule 25d): a cut hides, never reorders.
+                const order = q.answer.steps.map((s) => s.id).filter((id) => ids.includes(id));
+                if (order.length !== ids.length) {
+                    ctx.addIssue({ code: 'custom', message: `cut "${cut.key}": step id list disagrees with answer.steps` });
+                }
+            }
         }
     });
 
