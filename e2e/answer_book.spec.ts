@@ -129,11 +129,13 @@ test('the answer still reaches 8/8 with the recall feature present', async ({ pa
     expect(r.pageCount).toBeGreaterThanOrEqual(2);
 });
 
-// ── Test yourself (top-right entry, photo + mic) ─────────────────────────────
+// ── Test yourself (top-right entry: self-check, photo, mic) ──────────────────
 // The offline guarantee is the one that regresses silently: with no API base the
-// page must offer neither path and make zero network calls.
+// two SERVER paths must stay absent and the page must make zero network calls.
+// The self-check needs no server, so it is always offered — which is why there
+// is no longer an empty state to show.
 
-test('with no checking API the page offers neither photo nor mic', async ({ page }) => {
+test('with no checking API the page offers the self-check but neither photo nor mic', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');
     await page.click('#btnTest');
@@ -141,15 +143,64 @@ test('with no checking API the page offers neither photo nor mic', async ({ page
     const r = await page.evaluate(() => ({
         apiBase: (window as any).PM_API_BASE,
         overlayOpen: !document.getElementById('testOverlay')!.hidden,
+        selfHidden: document.getElementById('btnSelf')!.hidden,
         photoHidden: document.getElementById('btnPhoto')!.hidden,
         micHidden: document.getElementById('btnMic')!.hidden,
         noticeShown: !document.getElementById('testNone')!.hidden,
     }));
     expect(r.apiBase).toBe('');
-    expect(r.overlayOpen).toBe(true);        // the entry still opens...
-    expect(r.photoHidden).toBe(true);        // ...but offers nothing that needs a server
+    expect(r.overlayOpen).toBe(true);
+    expect(r.selfHidden).toBe(false);        // always available — costs nothing
+    expect(r.photoHidden).toBe(true);        // the server paths stay absent
     expect(r.micHidden).toBe(true);
-    expect(r.noticeShown).toBe(true);        // and says so plainly
+    expect(r.noticeShown).toBe(false);       // no dead end left to announce
+});
+
+test('the test panel carries no clock', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    await page.click('#btnTest');
+    await page.waitForTimeout(1500);         // long enough for a 1 s tick to have fired
+
+    const r = await page.evaluate(() => ({
+        timerEl: document.getElementById('assessTimer') !== null,
+        clockText: /\d:\d\d/.test(document.getElementById('testChoose')!.textContent || ''),
+        examMention: (document.getElementById('testChoose')!.textContent || '')
+            .includes('minutes in the exam'),
+    }));
+    expect(r.timerEl).toBe(false);
+    expect(r.clockText).toBe(false);
+    expect(r.examMention).toBe(false);
+});
+
+test('the self-check scores from authored marks with no network', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (req) => {
+        const u = req.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    await page.click('#btnTest');
+    await page.click('#btnSelf');
+
+    // every row starts unticked: this path makes no claim about the page
+    const start = await page.evaluate(() => ({
+        rows: document.querySelectorAll('#recallResult .confirm-row').length,
+        ticked: document.querySelectorAll('#recallResult input:checked').length,
+        score: document.querySelector('#recallResult .recall-score')!.textContent,
+    }));
+    expect(start.rows).toBeGreaterThan(0);
+    expect(start.ticked).toBe(0);
+    expect(start.score).toContain('0 out of 8');
+
+    // ticking the 2-mark statement step must move the score by exactly 2
+    await page.click('#recallResult .confirm-row');
+    const after = await page.evaluate(
+        () => document.querySelector('#recallResult .recall-score')!.textContent);
+    expect(after).toContain('2 out of 8');
+
+    expect(external).toEqual([]);            // scored entirely in the browser
 });
 
 test('the modes and the rail teaching cards are gone', async ({ page }) => {

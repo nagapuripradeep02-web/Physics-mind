@@ -601,23 +601,18 @@
   window.addEventListener('resize', fitNotebook);
 
   // ═══ test yourself (overlay) ═════════════════════════════════════════════
-  // Two ways to be checked: a photo/PDF of what the student wrote, or saying the
-  // steps aloud. Both converge on renderCheck(). Each path appears only when its
-  // endpoint is configured; with neither, the page stays the offline answer book.
+  // Three ways to be checked, all converging on renderCheck(): tick it yourself,
+  // a photo/PDF of what the student wrote, or saying the steps aloud. The photo
+  // and mic paths appear only when their endpoint is configured; the self-check
+  // needs no server, so this panel always offers something that works.
+  //
+  // NO CLOCK HERE (founder, 2026-08-20). The student writes on paper FIRST and
+  // opens this panel afterwards, so a stopwatch started on open measures time
+  // spent in a dialog, not time spent on the answer. The exam expectation is
+  // stated once, calmly, in the header chip (see the chips block above).
 
-  var assess = { startedAt: 0, timer: null };
-
-  function fmtClock(ms) {
-    var sec = Math.floor(ms / 1000);
-    return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
-  }
   /** 5.5 stays 5.5; 6.0 shows as 6. */
   function fmtMarks(n) { return Number.isInteger(n) ? String(n) : n.toFixed(1); }
-
-  function stopAssessTimer() {
-    if (assess.timer) clearInterval(assess.timer);
-    assess.timer = null;
-  }
 
   function openTest() {
     $('testOverlay').hidden = false;
@@ -626,19 +621,9 @@
     $('recallResult').innerHTML = '';
     $('btnPhoto').classList.remove('busy');
     $('btnMic').classList.remove('busy');
-    assess.startedAt = Date.now();
-    stopAssessTimer();
-    var target = question.expected_time_min;
-    function tick() {
-      $('assessTimer').innerHTML = fmtClock(Date.now() - assess.startedAt) +
-        '<span class="target">about ' + target + ' minutes in the exam</span>';
-    }
-    tick();
-    assess.timer = setInterval(tick, 1000);
   }
 
   function closeTest() {
-    stopAssessTimer();
     if (rec.active) stopRecording();
     $('testOverlay').hidden = true;
   }
@@ -900,9 +885,13 @@
       return;
     }
 
-    var confirmMode = source === 'photo';
-    // For a photo, only what the student confirms counts. Start from the model's
-    // proposal so the common case is one tap, but every mark is the student's.
+    // 'photo' and 'self' both end in a tick-list where only ticks count. They
+    // differ in ONE thing: whether a machine read the page. In 'photo' the ticks
+    // start from the model's proposal (one tap in the common case) and a row can
+    // honestly say what was seen. In 'self' nothing was read, so every row starts
+    // unticked and no row may claim anything about the page.
+    var confirmMode = source === 'photo' || source === 'self';
+    var readMode = source === 'photo';
     var confirmed = {};
     res.steps.forEach(function (s) { confirmed[s.step_id] = s.bucket === 'covered'; });
 
@@ -914,8 +903,10 @@
 
     var head = el('div', 'recall-score', '');
     box.appendChild(head);
+    // In readMode the lead line below already says "tick what you wrote", so the
+    // caveat only has to carry the RULE. Saying both in full reads as nagging.
     box.appendChild(el('p', 'recall-caveat', confirmMode
-      ? 'Tick what you actually wrote. Only what you tick is counted.'
+      ? 'Only what you tick is counted.'
       : 'This is an estimate from what you said out loud. In the exam the marks come from what you write on the paper.'));
 
     function refresh() {
@@ -936,7 +927,9 @@
     }
 
     if (confirmMode) {
-      box.appendChild(el('div', 'recall-lead', 'We read your page. Tick what you wrote.'));
+      box.appendChild(el('div', 'recall-lead', readMode
+        ? 'We read your page. Tick what you wrote.'
+        : 'Look at your page and tick what you wrote.'));
       var list = el('div', 'recall-group');
       res.steps.forEach(function (s) {
         var row = el('label', 'confirm-row');
@@ -953,7 +946,7 @@
         txt.appendChild(el('span', 'confirm-label', s.label));
         if (s.marks > 0) txt.appendChild(el('span', 'confirm-marks', marksLabel(s.marks)));
         if (s.evidence) txt.appendChild(el('span', 'confirm-found', 'We saw: ' + s.evidence));
-        else if (s.bucket !== 'covered') {
+        else if (readMode && s.bucket !== 'covered') {
           txt.appendChild(el('span', 'confirm-found', 'We did not find this on the page.'));
         }
         row.appendChild(cb);
@@ -1087,7 +1080,6 @@
       showRecallMessage('That file is too large. Try a photo instead of a scan, or a smaller PDF.');
       return;
     }
-    stopAssessTimer();
     $('btnPhoto').classList.add('busy');
     $('testChoose').hidden = true;
     showRecallMessage('Reading your page...');
@@ -1110,6 +1102,27 @@
       .catch(function () {
         showRecallMessage('Could not reach the checker. Your answer book still works, and nothing has been marked wrong.');
       });
+  }
+
+  // ═══ self-check (no server) ══════════════════════════════════════════════
+  // The scoring in renderCheck was ALREADY client-side — it sums authored marks
+  // over the ticked steps (see total()). Only the PROPOSAL of which steps are
+  // present ever needed a model. Drop the proposal and the same tick-list is a
+  // complete, honest check that costs nothing and runs with no key, no billing
+  // and no network — so the emailable single-file copy always offers a way to
+  // be checked, not just a notice saying checking is off.
+  //
+  // Every step starts UNTICKED on purpose: this path makes no claim about the
+  // page, so it must not pre-award a mark the student did not earn.
+
+  function startSelfCheck() {
+    renderCheck({
+      outcome: 'checked',
+      marks_total: marksTotal,
+      steps: steps.map(function (s) {
+        return { step_id: s.id, label: s.label, marks: s.marks, bucket: 'missed' };
+      })
+    }, 'self');
   }
 
   function initTest() {
@@ -1139,10 +1152,15 @@
         if (rec.active) stopRecording(); else startRecording();
       });
     }
+    // The self-check needs no endpoint, so it is always offered and is the
+    // reason this panel no longer has an empty state.
+    $('btnSelf').hidden = false;
+    $('btnSelf').addEventListener('click', startSelfCheck);
+
     $('testIntro').textContent = any
-      ? 'Write this answer on paper and upload it, or say the steps aloud.'
-      : '';
-    $('testNone').hidden = any;
+      ? 'Write this answer on paper, then tick it yourself, upload it, or say the steps aloud.'
+      : 'Write this answer on paper, then tick off what you wrote.';
+    $('testNone').hidden = true;
   }
 
 

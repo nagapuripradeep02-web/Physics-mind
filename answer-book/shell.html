@@ -79,9 +79,10 @@
 
 </main>
 
-<!-- Test-yourself overlay. Two ways to be checked: a photo/PDF of what you wrote,
-     or say it aloud. Each path appears only when its endpoint is configured, so with
-     none the page is exactly the offline answer book it has always been. -->
+<!-- Test-yourself overlay. Three ways to be checked: tick it yourself, a photo/PDF
+     of what you wrote, or say it aloud. The photo and mic paths appear only when
+     their endpoint is configured; the self-check needs no server, so this panel
+     always offers a way to be checked. NO CLOCK — see notebook.js openTest(). -->
 <div class="overlay" id="testOverlay" hidden>
   <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="testTitle">
     <div class="overlay-head">
@@ -92,8 +93,12 @@
     <div class="overlay-body" id="testBody">
       <div id="testChoose">
         <p class="assess-intro" id="testIntro"></p>
-        <div class="assess-timer" id="assessTimer"></div>
         <div class="choice-row">
+          <button class="choice" id="btnSelf" type="button" hidden>
+            <span class="choice-icon">&#9998;</span>
+            <span class="choice-label">Tick it myself</span>
+            <span class="choice-sub">Mark your own page</span>
+          </button>
           <button class="choice" id="btnPhoto" type="button" hidden>
             <span class="choice-icon">&#128247;</span>
             <span class="choice-label">Photo or PDF</span>
