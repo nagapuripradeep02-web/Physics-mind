@@ -395,6 +395,45 @@ test('construction lines survive an instant placement, in every question', async
     }
 });
 
+test('no two figure labels overlap, in any question', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('.page');
+    const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
+
+    // Figures are hand-placed by coordinate, so two labels colliding is the most
+    // likely defect as more are authored — and it is invisible to every other
+    // gate, which only ever checks that elements EXIST.
+    for (let q = 0; q < count; q++) {
+        await page.evaluate((i) => {
+            const sel = document.getElementById('qPick') as HTMLSelectElement | null;
+            if (sel) { sel.value = String(i); sel.dispatchEvent(new Event('change')); }
+        }, q);
+        await page.waitForTimeout(250);
+        await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+        await page.waitForTimeout(500);
+
+        const clashes = await page.evaluate(() => {
+            const bad: string[] = [];
+            document.querySelectorAll('.step-block svg').forEach((svg) => {
+                const t = [...svg.querySelectorAll('text')]
+                    .map((e) => ({ s: e.textContent || '', r: e.getBoundingClientRect() }))
+                    .filter((e) => e.r.width > 0);
+                for (let i = 0; i < t.length; i++) {
+                    for (let j = i + 1; j < t.length; j++) {
+                        const a = t[i].r, c = t[j].r;
+                        if (a.left < c.right && c.left < a.right && a.top < c.bottom && c.top < a.bottom) {
+                            bad.push(`"${t[i].s}" overlaps "${t[j].s}"`);
+                        }
+                    }
+                }
+            });
+            return bad;
+        });
+        const id = await page.evaluate(() => (window as any).PM_ANSWER.question.question_id);
+        expect(clashes, `${id} figure labels collide`).toEqual([]);
+    }
+});
+
 test('the PM_ANSWER seam follows a question switch', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('.page');
