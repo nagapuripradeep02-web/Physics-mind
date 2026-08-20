@@ -64,6 +64,8 @@ New: `answer-book/{README.md,shell.html,notebook.css,notebook.js,questions/ts_ip
 
 ---
 
+
+## 🚀 SESSION — the last two unbaselined catalog concepts locked, then **Class-11 mechanics opened in the deployed catalog (53 → 68)** (2026-08-10, `master` + PR #116)
 ## 🎓 SESSION — **Quick Learn voice latency FIXED, and the exam-first strategy that reframes the product** (2026-08-19, desk `C:\Tutor\physics-mind-quick-learn`, branch `feat/quick-learn`, commits `347db1a` + `b5911b4` + this)
 
 **Bottom line: a real student review — "I understand the concept, but it's really boring, the speech gap is too long" — drove both halves of this session. (1) The latency was ENGINEERED away: every scripted line is now a pre-rendered Sarvam mp3 that plays instantly, and the live path returns mp3 instead of WAV. The probe found the live path had been sending an IGNORED codec param all along. (2) The "boring" half opened the strategy question — do intermediate students in TS/AP actually want simulations? — and the answer reframes the product: serve the CRAMMING moment, smuggle the understanding inside it. Full design in `docs/QUICK_LEARN_EXAM_STRATEGY.md`. Also: the entire Quick Learn desk was UNCOMMITTED and unbacked-up at session start; it is now committed and pushed.**

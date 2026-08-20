@@ -1,0 +1,541 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Answer Book — notebook.css
+   Two halves: CHROME (header, question card, rail) and PAGE (the notebook).
+   PAGE INVARIANT: every vertical metric on the page is a multiple of
+   --rule (32px). Break that and text drifts off the rules by page 2.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --rule: 32px;              /* one ruled line */
+  --page-w: 820px;
+  --page-h: 1160px;          /* 64 top + 32×32 body + 72 bottom ≈ A4 ratio */
+  --pad-top: 64px;
+  --pad-right: 100px;        /* examiner's red-pen gutter */
+  --pad-bottom: 72px;
+  --pad-left: 96px;          /* red margin line sits at 96px */
+  --rule-offset: 64px;       /* tuned so the Kalam baseline sits ON the rule */
+  --ink: #1A2F6B;            /* student's blue pen */
+  --red: #C62828;            /* examiner's red pen */
+  --pencil: #7D8CA8;         /* construction-line pencil */
+  --paper: #FDFBF4;
+  --chrome-bg: #F1F3F7;
+  --chrome-card: #FFFFFF;
+  --chrome-ink: #22283A;
+  --chrome-dim: #6A7186;
+  --chrome-line: #E2E6EE;
+  --accent: #2A5DB0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Any display: rule beats the `hidden` attribute's UA display:none. The mic button
+   is display:flex, so without this it stayed visible with no endpoint configured —
+   caught by e2e, not by eye. */
+[hidden] { display: none !important; }
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--chrome-bg);
+  color: var(--chrome-ink);
+  min-height: 100vh;
+}
+
+/* ── chrome: top bar ───────────────────────────────────────────────────── */
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 22px;
+  background: var(--chrome-card);
+  border-bottom: 1px solid var(--chrome-line);
+  position: sticky; top: 0; z-index: 20;
+}
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand-mark { font-size: 18px; }
+.brand-name { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.brand-sub { font-size: 12.5px; color: var(--chrome-dim); }
+.topbar-actions { display: flex; gap: 8px; }
+
+.btn {
+  font: inherit; font-size: 13.5px; font-weight: 600;
+  padding: 8px 14px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card);
+  color: var(--chrome-ink);
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-ghost { background: transparent; }
+
+/* ── chrome: question card ─────────────────────────────────────────────── */
+
+.question-card {
+  max-width: 1220px; margin: 18px auto 0; padding: 16px 20px;
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 12px;
+}
+.question-meta {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+  font-size: 12px; font-weight: 600; color: var(--chrome-dim);
+}
+.question-meta .chip {
+  padding: 3px 9px; border-radius: 999px; background: var(--chrome-bg);
+  border: 1px solid var(--chrome-line);
+}
+.question-meta .chip-marks { background: #FDECEC; border-color: #F2C4C4; color: var(--red); }
+.question-text { font-size: 16.5px; font-weight: 600; line-height: 1.45; }
+
+/* ── chrome: layout + rail ─────────────────────────────────────────────── */
+
+.layout {
+  display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px;
+  max-width: 1220px; margin: 18px auto 60px; padding: 0 16px;
+  align-items: start;
+}
+.rail { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 66px; }
+
+.card {
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 12px; padding: 14px 16px;
+}
+.card-title {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 10px;
+}
+
+.step-list { display: flex; flex-direction: column; gap: 4px; }
+.step-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 9px; border-radius: 8px; font-size: 13px; cursor: pointer;
+  border: 1px solid transparent; color: var(--chrome-dim);
+}
+.step-pill:hover { background: var(--chrome-bg); }
+.step-pill.done { color: var(--chrome-ink); }
+.step-pill.current { border-color: var(--accent); background: #EEF3FC; color: var(--chrome-ink); font-weight: 600; }
+.step-pill .pill-marks {
+  margin-left: auto; font-size: 11.5px; font-weight: 700; color: var(--red);
+  white-space: nowrap;
+}
+.step-pill .pill-marks.zero { color: var(--chrome-dim); font-weight: 500; }
+.step-pill .pill-state { width: 14px; text-align: center; font-size: 11px; }
+
+/* accumulator (harvested shape: board-mvp.html L79-87) */
+.accumulator { text-align: center; }
+.acc-value { font-size: 34px; font-weight: 700; color: var(--red); line-height: 1.1; }
+.acc-total { font-size: 19px; color: var(--chrome-dim); font-weight: 600; }
+.acc-label { font-size: 12px; color: var(--chrome-dim); margin: 4px 0 10px; }
+.acc-bar { height: 8px; border-radius: 999px; background: var(--chrome-bg); overflow: hidden; }
+.acc-fill {
+  height: 100%; width: 0%; border-radius: 999px; background: var(--red);
+  transition: width 400ms ease;
+}
+
+.margin-note { font-size: 13.5px; line-height: 1.5; color: var(--chrome-ink); }
+
+.mark-split { display: flex; flex-direction: column; gap: 6px; }
+.mark-split .split-row {
+  display: flex; justify-content: space-between; gap: 10px; font-size: 13px;
+}
+.mark-split .split-row .split-m { font-weight: 700; color: var(--red); white-space: nowrap; }
+
+.verify-note { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); }
+
+/* ── catalog (the landing view) ──────────────────────────────────────────
+   Anatomy borrowed from the Viditra teacher catalog (narrow column, chapter
+   sections with count pills, cards with a trailing arrow, border-tint hover,
+   999px chip language) — but in THIS product's light paper palette. The one
+   deliberate signature: every card carries a thin red left rule, the
+   examiner's margin line from the notebook. */
+
+.catalog { max-width: 780px; margin: 0 auto; padding: 30px 20px 60px; }
+
+.cat-hero h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.015em; }
+.cat-sub { font-size: 13.5px; color: var(--chrome-dim); margin-top: 5px; }
+
+.cat-filters { margin: 20px 0 6px; }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cat-chips + .cat-chips { margin-top: 8px; }
+.cat-chip {
+  font: 600 12.5px Inter, system-ui, sans-serif; cursor: pointer;
+  padding: 6px 13px; border-radius: 999px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-dim);
+}
+.cat-chip .ct { font-weight: 500; opacity: 0.75; margin-left: 3px; }
+.cat-chip:hover { border-color: var(--accent); color: var(--accent); }
+.cat-chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.cat-chip.on .ct { opacity: 0.85; }
+
+.cat-search {
+  width: 100%; margin-top: 12px;
+  font: inherit; font-size: 14px; color: var(--chrome-ink);
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 10px; padding: 10px 13px;
+}
+.cat-search:focus { outline: none; border-color: var(--accent); }
+
+.cat-section h2 {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 700; margin: 26px 0 12px;
+}
+.cat-count {
+  font-size: 11px; font-weight: 600; color: var(--chrome-dim);
+  border: 1px solid var(--chrome-line); border-radius: 999px; padding: 2px 9px;
+}
+
+.cat-subhead {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--chrome-dim); margin: 18px 0 10px;
+}
+
+.cat-card {
+  position: relative; display: flex; align-items: center; gap: 12px;
+  padding: 13px 16px 13px 27px; margin-bottom: 10px;
+  background: var(--chrome-card); border: 1px solid var(--chrome-line);
+  border-radius: 13px; text-decoration: none; color: inherit;
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+/* the examiner's margin line */
+.cat-card::before {
+  content: ""; position: absolute; left: 13px; top: 12px; bottom: 12px;
+  width: 2px; border-radius: 1px; background: rgba(198, 40, 40, 0.5);
+}
+.cat-card:hover { border-color: rgba(42, 93, 176, 0.45); background: #FBFCFE; }
+.cat-card:hover .cc-arrow { color: var(--accent); transform: translateX(3px); }
+
+.cc-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.cc-top { display: flex; align-items: baseline; gap: 9px; }
+.cc-ref {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--chrome-dim);
+}
+.cc-stars { font-size: 12px; letter-spacing: 2px; color: var(--red); }
+.cc-text {
+  font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--chrome-ink);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.cc-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.cc-chip {
+  font-size: 11px; font-weight: 600; color: var(--chrome-dim);
+  border: 1px solid var(--chrome-line); border-radius: 999px; padding: 2px 9px;
+}
+.cc-chip.marks { background: #FDECEC; border-color: #F2C4C4; color: var(--red); }
+.cc-arrow { color: var(--chrome-dim); font-size: 18px; transition: color 0.16s ease, transform 0.16s ease; }
+
+/* Planned but not written yet: present so the chapter keeps its true shape,
+   quiet so it never reads as clickable. */
+.cat-card.soon { border-style: dashed; background: transparent; cursor: default; }
+.cat-card.soon::before { opacity: 0.35; }
+.cat-card.soon .cc-text { color: var(--chrome-dim); font-weight: 500; }
+.cat-card.soon:hover { border-color: var(--chrome-line); background: transparent; }
+
+.cat-none { text-align: center; color: var(--chrome-dim); font-size: 13.5px; margin: 34px 0; }
+
+/* ── test-yourself entry + overlay ─────────────────────────────────────── */
+
+.btn-test { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-test:hover { background: #24418f; color: #fff; border-color: #24418f; }
+
+.overlay {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(20, 26, 42, 0.55);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 16px; overflow-y: auto;
+}
+.overlay-card {
+  width: 100%; max-width: 520px;
+  background: var(--chrome-card); border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(20, 26, 42, 0.32);
+  padding: 20px 22px 22px;
+}
+.overlay-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.overlay-head h2 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.overlay-close {
+  font: inherit; font-size: 26px; line-height: 1; cursor: pointer;
+  background: none; border: none; color: var(--chrome-dim); padding: 0 4px;
+}
+.overlay-close:hover { color: var(--chrome-ink); }
+
+/* Wraps because there are now THREE choices: at 390px the card's inner width
+   cannot hold three 130px tiles, and a fixed row would push scrollWidth past
+   the viewport (the failure e2e "mobile viewport scales without horizontal
+   scroll" catches). Wrapping degrades to 2 + 1, then 1 per row. */
+.choice-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; }
+.choice {
+  flex: 1 1 130px; max-width: 240px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font: inherit; cursor: pointer; text-align: center;
+  padding: 16px 10px; border-radius: 12px;
+  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-ink);
+}
+.choice:hover { border-color: var(--accent); background: #F7FAFF; }
+.choice.busy { opacity: 0.55; cursor: default; }
+.choice-icon { font-size: 24px; line-height: 1.2; }
+.choice-label { font-weight: 700; font-size: 14px; }
+.choice-sub { font-size: 11.5px; color: var(--chrome-dim); }
+.assess-none { font-size: 12.5px; line-height: 1.55; color: var(--chrome-dim); margin-top: 12px; }
+
+/* ── photo confirm list ────────────────────────────────────────────────── */
+
+.confirm-row {
+  display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+  padding: 9px 0; border-top: 1px solid var(--chrome-line);
+}
+.confirm-row input { margin-top: 3px; width: 16px; height: 16px; cursor: pointer; flex: none; }
+.confirm-text { display: flex; flex-direction: column; gap: 2px; }
+.confirm-label { font-weight: 600; font-size: 13.5px; color: var(--chrome-dim); }
+.confirm-row.on .confirm-label { color: var(--chrome-ink); }
+.confirm-marks { font-size: 12px; color: var(--chrome-dim); }
+.confirm-row.on .confirm-marks { color: #1B7F3B; font-weight: 700; }
+.confirm-found { font-size: 12px; color: var(--chrome-dim); font-style: italic; }
+
+/* ── assess panel (test-myself) ────────────────────────────────────────── */
+
+/* No .assess-timer rule: this panel deliberately carries no clock (founder,
+   2026-08-20). The exam expectation lives in the header chip instead. */
+.assess-intro { font-size: 13px; line-height: 1.5; color: var(--chrome-dim); margin-bottom: 10px; }
+.btn-assess {
+  width: 100%; background: var(--ink); color: #fff; border: none;
+  padding: 11px; border-radius: 10px; font-size: 14px; margin-top: 10px;
+}
+.btn-assess:hover { background: #24418f; color: #fff; }
+.assess-card .btn-mic { margin-top: 8px; }
+
+.self-score { margin-top: 4px; }
+.ss-progress { font-size: 11.5px; color: var(--chrome-dim); margin-bottom: 8px; }
+.ss-step-label { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+.ss-marks { font-size: 12px; color: var(--chrome-dim); margin-bottom: 8px; }
+.ss-model {
+  font-size: 13px; line-height: 1.55; padding: 9px 10px; border-radius: 8px;
+  background: var(--chrome-bg); border: 1px solid var(--chrome-line); margin-bottom: 10px;
+}
+.ss-ask { font-size: 12.5px; color: var(--chrome-ink); margin-bottom: 7px; font-weight: 600; }
+.ss-buttons { display: flex; flex-direction: column; gap: 5px; }
+.ss-buttons .btn { width: 100%; padding: 8px; font-size: 13px; }
+.ss-buttons .btn.got { border-color: #1B7F3B; color: #1B7F3B; }
+.ss-buttons .btn.partly { border-color: #B4770B; color: #B4770B; }
+.ss-buttons .btn.missed { border-color: var(--red); color: var(--red); }
+
+.ss-total { font-size: 21px; font-weight: 700; color: var(--red); line-height: 1.25; }
+.ss-time { font-size: 12.5px; color: var(--chrome-dim); margin-top: 6px; line-height: 1.5; }
+.ss-redo { margin-top: 12px; }
+.ss-redo h4 {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--chrome-dim); margin-bottom: 7px;
+}
+.ss-redo .recall-item { cursor: pointer; }
+
+/* ── spoken-recall check ───────────────────────────────────────────────── */
+
+.recall-intro { font-size: 13px; line-height: 1.5; color: var(--chrome-dim); margin-bottom: 10px; }
+
+.btn-mic {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px;
+  background: var(--ink); color: #fff; border: none; padding: 12px; border-radius: 10px;
+  font-size: 14.5px;
+}
+.btn-mic:hover { background: #24418f; color: #fff; }
+.btn-mic:disabled { opacity: 0.5; cursor: default; }
+.btn-mic.recording { background: var(--red); }
+.btn-mic.recording:hover { background: #a91d1d; }
+.mic-dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+.btn-mic.recording .mic-dot { animation: micPulse 1s ease-in-out infinite; }
+@keyframes micPulse { 50% { opacity: 0.25; transform: scale(0.8); } }
+
+.recall-timer {
+  text-align: center; font-size: 12.5px; color: var(--chrome-dim);
+  margin-top: 8px; font-variant-numeric: tabular-nums;
+}
+
+.recall-result { margin-top: 14px; font-size: 13.5px; }
+.recall-score { font-size: 21px; font-weight: 700; color: var(--red); line-height: 1.25; }
+.recall-caveat { font-size: 11.5px; line-height: 1.5; color: var(--chrome-dim); margin-top: 6px; }
+.recall-lead { font-size: 12.5px; color: var(--chrome-ink); margin-bottom: 6px; font-weight: 600; }
+
+.recall-transcript {
+  margin-top: 12px; padding: 10px; border-radius: 8px;
+  background: var(--chrome-bg); border: 1px solid var(--chrome-line);
+  font-size: 13px; line-height: 1.6; max-height: 190px; overflow-y: auto;
+}
+.recall-transcript mark { background: #D6F0DC; color: inherit; border-radius: 3px; padding: 0 2px; }
+
+.recall-group { margin-top: 14px; }
+.recall-group h4 {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--chrome-dim); margin-bottom: 7px;
+}
+.recall-item {
+  padding: 8px 0; border-top: 1px solid var(--chrome-line);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.recall-item .ri-head { display: flex; gap: 7px; align-items: baseline; }
+.recall-item .ri-mark { font-weight: 700; }
+.recall-item.covered .ri-mark { color: #1B7F3B; }
+.recall-item.missed .ri-mark { color: var(--red); }
+.recall-item.unsure .ri-mark { color: var(--chrome-dim); }
+.recall-item .ri-label { font-weight: 600; }
+.recall-item .ri-marks { margin-left: auto; font-size: 12px; color: var(--chrome-dim); white-space: nowrap; }
+.recall-item .ri-said { font-size: 12.5px; color: var(--chrome-dim); font-style: italic; }
+.recall-item .ri-what { font-size: 12.5px; color: var(--chrome-ink); }
+.recall-item .ri-hint { font-size: 12px; color: var(--chrome-dim); }
+.recall-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.recall-actions .btn { padding: 5px 10px; font-size: 12px; }
+
+.recall-note {
+  margin-top: 12px; font-size: 12px; line-height: 1.5; color: var(--chrome-dim);
+}
+.recall-empty { font-size: 13.5px; line-height: 1.6; }
+
+@media print { .overlay, .btn-test { display: none !important; } }
+
+#pm-assistant-slot {
+  /* AI assistant seam: reserved, empty. Width/position ready for a future panel. */
+  display: block; min-height: 0;
+}
+
+/* ── notebook column ───────────────────────────────────────────────────── */
+
+.notebook-col { display: flex; flex-direction: column; align-items: center; gap: 16px; min-width: 0; }
+.notebook { display: flex; flex-direction: column; gap: 26px; transform-origin: top center; }
+
+.btn-next {
+  position: sticky; bottom: 18px; z-index: 10;
+  background: var(--ink); color: #fff; border: none;
+  font-size: 15px; padding: 13px 26px; border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(26, 47, 107, 0.35);
+}
+.btn-next:hover { background: #24418f; color: #fff; }
+.btn-next:disabled { opacity: 0.45; cursor: default; }
+
+/* ── the page (every vertical metric = n × --rule) ─────────────────────── */
+
+.page {
+  position: relative;
+  width: var(--page-w); height: var(--page-h);
+  padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+  background:
+    /* red margin line (board-mvp recipe) */
+    linear-gradient(to right, transparent 0 95px, rgba(200, 60, 60, 0.45) 95px 97px, transparent 97px),
+    /* ruled lines */
+    repeating-linear-gradient(to bottom, transparent 0 31px, #C9D6E4 31px 32px);
+  background-color: var(--paper);
+  background-position: 0 0, 0 var(--rule-offset);
+  box-shadow: 0 2px 6px rgba(30, 40, 60, 0.14), 0 14px 34px rgba(30, 40, 60, 0.10);
+  border-radius: 3px;
+  cursor: pointer;
+}
+/* 32 rules exactly. NO overflow:hidden — the examiner's red marks live in the
+   right-padding gutter, outside this box; clipping is the placement
+   algorithm's job, not CSS's. */
+.page-body { height: 1024px; position: relative; }
+.page-no {
+  position: absolute; bottom: 26px; left: 0; right: 0;
+  text-align: center; font-size: 12px; color: var(--chrome-dim);
+}
+
+/* handwriting */
+.line {
+  font-family: Kalam, cursive;
+  font-size: 26px; line-height: var(--rule);
+  color: var(--ink);
+  white-space: pre-wrap; word-break: break-word;
+  min-height: var(--rule);
+}
+.line.heading { font-weight: 700; text-decoration: underline; text-underline-offset: 5px; }
+.line.indent { padding-left: 40px; }
+.line.eq { padding-left: 56px; }
+.line.boxed { padding-left: 56px; }
+.line.boxed .boxed-inner {
+  display: inline-block;
+  border: 2.25px solid var(--ink); border-radius: 6px;
+  padding: 0 14px;
+}
+
+.page-header-block { margin-bottom: var(--rule); }
+.page-header-block .line { font-weight: 700; }
+
+.step-block { position: relative; margin-bottom: var(--rule); }
+
+/* typing cursor (board-mvp L591-623 harvest) */
+.cursor {
+  display: inline-block; width: 2px; height: 0.9em;
+  background: var(--ink); vertical-align: text-bottom;
+  animation: blink 0.85s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* figure */
+.figure-wrap { position: relative; }
+.figure-wrap svg { display: block; overflow: visible; }
+.figure-wrap svg text {
+  font-family: Kalam, cursive; font-size: 22px; fill: var(--ink);
+}
+.figure-wrap svg text.em { font-weight: 700; font-size: 25px; }
+.figure-wrap svg text.sm { font-size: 17px; }
+
+/* examiner's red marks — absolutely positioned into the right gutter */
+.red-mark {
+  position: absolute; top: 0; right: calc(-1 * var(--pad-right) + 12px);
+  width: 76px; text-align: center;
+  font-family: Kalam, cursive; color: var(--red);
+  pointer-events: none;
+}
+.red-mark svg { display: block; margin: 0 auto; }
+.red-mark .red-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border: 2.25px solid var(--red); border-radius: 50%;
+  font-size: 19px; font-weight: 700; margin-top: 2px;
+  opacity: 0; transform: scale(0.6);
+}
+.red-mark.shown .red-num { animation: pop 300ms ease forwards; }
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0.6); }
+  70% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.total-block {
+  font-family: Kalam, cursive; font-size: 27px; font-weight: 700;
+  color: var(--red); line-height: var(--rule);
+  padding-left: 56px;
+}
+.total-block .total-underline {
+  display: inline-block; border-bottom: 2.25px solid var(--red); padding: 0 6px;
+}
+
+/* ── responsive: scale, never reflow (pagination must not change) ──────── */
+
+/* Three buttons do not fit a phone top bar. Keep the Test-myself entry — it is the
+   point of the screen — and let the two utilities wrap under it. */
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; gap: 8px; row-gap: 10px; }
+  .topbar-actions { width: 100%; justify-content: flex-end; }
+  .btn { padding: 7px 11px; font-size: 13px; }
+}
+
+@media (max-width: 1020px) {
+  .layout { grid-template-columns: 1fr; }
+  .rail { position: static; order: 2; }
+  .notebook-col { order: 1; }
+}
+
+/* ── print: the notebook alone, one page per sheet ─────────────────────── */
+
+@media print {
+  @page { size: A4; margin: 0; }
+  body { background: #fff; }
+  .topbar, .rail, .btn-next, .question-card, .catalog { display: none !important; }
+  .layout { display: block; margin: 0; padding: 0; max-width: none; }
+  .notebook { transform: none !important; gap: 0; }
+  .page {
+    box-shadow: none; border-radius: 0; margin: 0;
+    break-after: page; page-break-after: always;
+    /* A4 at 96dpi is 793.7×1122.5px; the page is 820×1160 — without this
+       zoom, every sheet spills ~38px onto a phantom extra sheet. */
+    zoom: 0.96;
+  }
+  .cursor { display: none; }
+}
+
+/* ── reduced motion ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-fill { transition: none; }
+  .cursor { animation: none; }
+}

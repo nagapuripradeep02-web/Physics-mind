@@ -115,3 +115,6 @@ nul
 /.scratch_nlb_seams/
 /.scratch_nlb_mass/
 /.scratch_nlb_wall/
+
+# Answer-book build artifact (build:answers) — not tracked
+/answer-book/dist/

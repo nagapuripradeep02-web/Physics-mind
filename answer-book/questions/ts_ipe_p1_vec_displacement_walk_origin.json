@@ -1,0 +1,365 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_displacement_walk_origin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "O is a point on the ground chosen as origin. A body first suffers a displacement of 10√2 m north-east, next 10 m north and finally 10√2 m north-west. How far is it from the origin?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Resolving the displacements",
+      "marks": 2
+    },
+    {
+      "label": "Adding the components",
+      "marks": 1
+    },
+    {
+      "label": "The distance from O",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), SHORT ANSWER 9 of Unit 4, unstarred. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Plane · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_resolve",
+        "kind": "equation",
+        "label": "Resolve each displacement",
+        "marks": 2,
+        "mark_note": "Components",
+        "lines": [
+          "Take east as x and north as y.",
+          "North-east and north-west are at 45°,",
+          "and 10√2 cos 45° = 10√2 / √2 = 10. So:",
+          {
+            "text": "s₁ = 10 i + 10 j   (north-east)",
+            "style": "eq"
+          },
+          {
+            "text": "s₂ = 10 j          (north)",
+            "style": "eq"
+          },
+          {
+            "text": "s₃ = −10 i + 10 j  (north-west)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Two marks sit on these three lines. The only work is 10√2 × (1/√2) = 10 — show it once.",
+        "why": "Directions like north-east cannot be added as words. Turning each leg into i and j components turns the walk into simple addition.",
+        "common_mistakes": [
+          "Writing 10√2 for a component instead of 10.",
+          "Giving north-west a positive x component."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each displacement is resolved: 10i+10j, 10j, and −10i+10j.",
+          "accept": [
+            "resolve each displacement into components",
+            "ten root two at forty five gives ten and ten",
+            "north west lo minus ten i plus ten j",
+            "east x axis north y axis teeskunta"
+          ],
+          "reject": [
+            "the resultant is thirty metres",
+            "draw the walk"
+          ],
+          "heard_as": [
+            "ten i plus ten j",
+            "components",
+            "forty five degrees"
+          ]
+        }
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Sketch (extra)",
+        "marks": 0,
+        "figure": {
+          "id": "fig_walk",
+          "width": 470,
+          "height": 300,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis_n",
+              "d": "M 200 280 L 200 60",
+              "ms": 420,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "label",
+              "id": "lbl_n",
+              "x": 186,
+              "y": 42,
+              "text": "N",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "axis_e",
+              "d": "M 110 270 L 330 270",
+              "ms": 380,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "label",
+              "id": "lbl_e",
+              "x": 338,
+              "y": 276,
+              "text": "E",
+              "ms": 180
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 182,
+              "y": 290,
+              "text": "O",
+              "ms": 200
+            },
+            {
+              "type": "stroke",
+              "id": "s1",
+              "d": "M 200 270 L 260 210",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "s1_head",
+              "d": "M 252 214 L 260 210 L 256 219",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_s1",
+              "x": 246,
+              "y": 254,
+              "text": "10√2 m",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 268,
+              "y": 214,
+              "text": "A",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "s2",
+              "d": "M 260 210 L 260 150",
+              "ms": 420
+            },
+            {
+              "type": "stroke",
+              "id": "s2_head",
+              "d": "M 254 160 L 260 150 L 266 160",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_s2",
+              "x": 286,
+              "y": 184,
+              "text": "10 m",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 268,
+              "y": 142,
+              "text": "B",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "s3",
+              "d": "M 260 150 L 200 90",
+              "ms": 480
+            },
+            {
+              "type": "stroke",
+              "id": "s3_head",
+              "d": "M 208 94 L 200 90 L 204 99",
+              "ms": 110
+            },
+            {
+              "type": "label",
+              "id": "lbl_s3",
+              "x": 112,
+              "y": 112,
+              "text": "10√2 m",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_c",
+              "x": 208,
+              "y": 82,
+              "text": "C",
+              "ms": 180
+            },
+            {
+              "type": "stroke",
+              "id": "res",
+              "d": "M 200 270 L 200 96",
+              "ms": 600,
+              "w": 3
+            },
+            {
+              "type": "stroke",
+              "id": "res_head",
+              "d": "M 194 106 L 200 96 L 206 106",
+              "ms": 120,
+              "w": 3
+            },
+            {
+              "type": "label",
+              "id": "lbl_res",
+              "x": 146,
+              "y": 196,
+              "text": "30 m",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "margin_note": "Not marked. Drawn to scale (1 m = 6 px): the two 45° legs cancel east-west, which the picture makes obvious.",
+        "why": "The walk bends twice, and the algebra hides the symmetry. The picture shows the north-east and north-west legs cancelling sideways, leaving a straight run north.",
+        "common_mistakes": [
+          "Drawing north-west heading down-left — it goes up-left."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a sketch of the walk is drawn. Naming it is full credit.",
+          "accept": [
+            "I draw the path",
+            "sketch of the three displacements",
+            "diagram geestha",
+            "then the figure"
+          ],
+          "reject": [
+            "the answer is thirty metres north"
+          ],
+          "heard_as": [
+            "figure",
+            "diagram",
+            "sketch",
+            "path"
+          ]
+        }
+      },
+      {
+        "id": "s3_add",
+        "kind": "equation",
+        "label": "Add the components",
+        "marks": 1,
+        "mark_note": "Sum",
+        "lines": [
+          {
+            "text": "s = s₁ + s₂ + s₃",
+            "style": "eq"
+          },
+          {
+            "text": "s = (10 − 10) i + (10 + 10 + 10) j",
+            "style": "eq"
+          },
+          {
+            "text": "s = 30 j",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Group the i parts and the j parts separately. The i parts cancel to zero — say so.",
+        "why": "The two diagonal legs pull east and west by the same amount, so only the northward parts survive the addition.",
+        "common_mistakes": [
+          "Adding the magnitudes 10√2 + 10 + 10√2 as if the walk were a straight line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the i parts cancel and the j parts add to 30j.",
+          "accept": [
+            "the x components cancel",
+            "ten plus ten plus ten is thirty j",
+            "sum is thirty j",
+            "i components cancel ayipothayi"
+          ],
+          "reject": [
+            "each leg is ten i plus ten j"
+          ],
+          "heard_as": [
+            "thirty j",
+            "cancel",
+            "add the components"
+          ]
+        }
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Distance from O",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "The displacement is along j alone,",
+          "which is due north.",
+          {
+            "text": "s = 30 m, due north of O",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Give the direction with the distance. \"30 m\" alone is an incomplete answer to \"how far from the origin\".",
+        "why": "A displacement is a vector, so the answer carries a direction — and here the direction is the whole story: the body ends straight north of where it began.",
+        "common_mistakes": [
+          "Leaving out \"due north\"."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the body is 30 m due north of the origin.",
+          "accept": [
+            "thirty metres due north",
+            "thirty metres from the origin towards north",
+            "muppai meters north lo untundi"
+          ],
+          "reject": [
+            "the components cancel"
+          ],
+          "heard_as": [
+            "thirty metres",
+            "30 m",
+            "due north"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+<!doctype html>
+<!--
+  Answer Book — Telangana IPE board-exam answer-writing guide.
+  BUILT FILE: do not edit answer-book/dist/index.html by hand.
+  Source: answer-book/shell.html + notebook.css + notebook.js + questions/*.json
+  Build:  npm run build:answers
+  Harvested from public/board-mvp.html (tracked reference): typing loop (L591-623),
+  ruled-paper gradients (L137-139), accumulator CSS (L79-87), print block (L718-726).
+-->
+<!--__BUILT_AT__-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Answer Book — Physics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">📘</span>
+    <span class="brand-name">Answer Book</span>
+    <span class="brand-sub" id="boardLabel"></span>
+  </div>
+  <div class="topbar-actions">
+    <a class="btn btn-ghost btn-back" id="btnCatalog" href="#/" hidden>&#8592; All questions</a>
+    <button class="btn btn-ghost nb-only" id="btnRestart" type="button" hidden>Restart</button>
+    <button class="btn btn-ghost nb-only" id="btnPrint" type="button" hidden>Print</button>
+    <button class="btn btn-test nb-only" id="btnTest" type="button" hidden>Test myself</button>
+  </div>
+</header>
+
+<!-- ═══ CATALOG VIEW — the landing page ═════════════════════════════════════
+     One self-contained file, so the catalog is a VIEW, not a second page.
+     Hash routes: #/ = this view · #/q/<id> (+ /<cutKey>) = the notebook.
+     Anatomy echoes the Viditra teacher catalog (narrow column, chapter
+     sections with count pills, title+arrow cards, border-tint hover) but in
+     the Answer Book's own light paper palette. -->
+<main class="catalog" id="catalogView" hidden>
+  <div class="cat-hero">
+    <h1>Question Bank</h1>
+    <p class="cat-sub" id="catSub"></p>
+  </div>
+
+  <div class="cat-filters">
+    <div class="cat-chips" id="qtypeChips" role="group" aria-label="Question type"></div>
+    <div class="cat-chips" id="unitChips" role="group" aria-label="Chapter" hidden></div>
+    <input type="search" class="cat-search" id="catSearch"
+           placeholder="Search questions&hellip; (e.g. parallelogram, projectile, 45)">
+  </div>
+
+  <div id="catSections"></div>
+  <p class="cat-none" id="catNone" hidden>No questions match. Clear the search or the filter.</p>
+</main>
+
+<!-- ═══ NOTEBOOK VIEW ═══════════════════════════════════════════════════════ -->
+<div id="notebookView" hidden>
+
+<section class="question-card" id="questionCard">
+  <div class="question-meta" id="questionMeta"></div>
+  <div class="question-text" id="questionText"></div>
+</section>
+
+<main class="layout">
+
+  <aside class="rail">
+    <!-- NO length switch here (founder, 2026-08-20 catalog review): one catalog
+         card = one question at one length, so by the time a student is on this
+         page the length is already chosen. The cut MECHANISM survives in the
+         data + router (#/q/<id>/<cutKey>); only the in-page switcher is gone. -->
+
+    <div class="card">
+      <div class="card-title">Answer plan</div>
+      <div class="step-list" id="stepList"></div>
+    </div>
+
+    <div class="card accumulator" id="accCard">
+      <div class="acc-value"><span id="accValue">0</span><span class="acc-total" id="accTotal">/8</span></div>
+      <div class="acc-label">marks for what is written so far</div>
+      <div class="acc-bar"><div class="acc-fill" id="accFill"></div></div>
+    </div>
+
+    <div class="card" id="marginNoteCard" hidden>
+      <div class="card-title">How to earn it</div>
+      <div class="margin-note" id="marginNote"></div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-title">Mark split</div>
+      <div class="mark-split" id="markSplit"></div>
+    </div>
+
+    <div class="card verify-note" id="verifyNote" hidden></div>
+
+
+    <!-- AI assistant seam: slot only, no content, no fetch (see docs/patterns/answer_book.md) -->
+    <aside id="pm-assistant-slot" hidden></aside>
+  </aside>
+
+  <section class="notebook-col" id="notebookCol">
+    <div class="notebook" id="notebook"></div>
+    <button class="btn btn-next" id="btnNext" type="button">Start writing</button>
+  </section>
+
+</main>
+
+</div><!-- /#notebookView -->
+
+<!-- Test-yourself overlay. Three ways to be checked: tick it yourself, a photo/PDF
+     of what you wrote, or say it aloud. The photo and mic paths appear only when
+     their endpoint is configured; the self-check needs no server, so this panel
+     always offers a way to be checked. NO CLOCK — see notebook.js openTest(). -->
+<div class="overlay" id="testOverlay" hidden>
+  <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="testTitle">
+    <div class="overlay-head">
+      <h2 id="testTitle">Test yourself</h2>
+      <button class="overlay-close" id="btnCloseTest" type="button" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="overlay-body" id="testBody">
+      <div id="testChoose">
+        <p class="assess-intro" id="testIntro"></p>
+        <div class="choice-row">
+          <button class="choice" id="btnSelf" type="button" hidden>
+            <span class="choice-icon">&#9998;</span>
+            <span class="choice-label">Tick it myself</span>
+            <span class="choice-sub">Mark your own page</span>
+          </button>
+          <button class="choice" id="btnPhoto" type="button" hidden>
+            <span class="choice-icon">&#128247;</span>
+            <span class="choice-label">Photo or PDF</span>
+            <span class="choice-sub">Upload what you wrote</span>
+          </button>
+          <button class="choice" id="btnMic" type="button" hidden>
+            <span class="choice-icon">&#127908;</span>
+            <span class="choice-label" id="micLabel">Speak it</span>
+            <span class="choice-sub">Say the steps aloud</span>
+          </button>
+        </div>
+        <input type="file" id="photoInput" accept="image/*,application/pdf" hidden>
+        <p class="assess-none" id="testNone" hidden>
+          Checking is not switched on in this copy. You can still write the answer on paper
+          and compare it with the page.
+        </p>
+      </div>
+
+      <div class="recall-timer" id="recallTimer" hidden></div>
+      <div class="recall-result" id="recallResult" hidden></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/*__DATA__*/
+</script>
+<script>
+/*__JS__*/
+</script>
+</body>
+</html>
