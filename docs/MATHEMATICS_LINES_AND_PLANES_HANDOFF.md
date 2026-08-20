@@ -86,6 +86,75 @@ sample that window).
 
 ---
 
+## 0.05 RESUME 2026-08-20 — the CP-B dispatch, paste-and-go
+
+**Start the session IN `physics-mind/`, not in the `Viditra` parent** — a parent-folder session loads
+**zero** project agents, so `founder-proxy` / `quality-auditor` / `eye-walker` silently fall back to
+general-purpose. That is what blocked CP-B on 2026-08-20.
+
+```bash
+cd /Users/karthikyerragadda/Desktop/Viditra/Physics-mind
+git fetch origin && git checkout feat/mathematics-lines-and-planes && git pull
+npm run build:review -- lines_and_planes_in_space
+npx --yes http-server review-site -p 8087 -c-1 &     # CP-B reads the served page
+```
+
+**Run the three dispatches IN THIS ORDER.** B's entry condition is *"after quality_auditor PASS +
+eye_walker's verdict table + the founder_drive dump"*, and as of 2026-08-20 the first two are stale:
+`quality_auditor`'s last verdict was **FAIL** (pass-3 audit; findings fixed by #118 + `fab6235`, never
+re-run to PASS), and `eye_walker`'s 4th-walk CLEAN verdict **predates #118**, so it certifies hairline
+pixels. The drive dump is current and is the only one of the three already in place.
+
+### ① `quality-auditor`
+> Audit `lines_and_planes_in_space` (mathematics, 9 states, `vector_geometry_3d` / `mode:"lines_planes"`).
+> Branch `feat/mathematics-lines-and-planes`. This is a re-audit: your previous pass FAILED the build on
+> three findings, all since fixed — the tube-radius defect became engine PR #118 (merged), and the stale
+> S6 pacing cell plus STATE_4's d/n label collision landed in `fab6235`. Verify those held, then audit the
+> four defects fixed on 2026-08-20 by the post-#118 walk and their two sweeps: STATE_3's hand-off
+> (`perp` now `reveal_at_ms: 8950` + `grow_ms: 0` against `cmp`'s `hide_at_ms: 9000`), STATE_2's `v`
+> label and its matching hand-off at 11150, STATE_7's stepped arc radii (0.62 / 0.95), and five corrected
+> skeleton pacing rows. Concept JSON: `src/data/concepts/mathematics/lines_and_planes_in_space.json`.
+> Skeleton: `docs/skeletons/lines_and_planes_in_space_skeleton.md`. Mathematics block:
+> `docs/skeletons/lines_and_planes_in_space_mathematics_block.md`. Query the live `engine_bug_queue`
+> (14 OPEN for this concept). Verdict: PASS / FAIL with routed findings.
+
+### ② `eye-walker`
+> Walk `lines_and_planes_in_space` and return your verdict table. Run dir:
+> `.visual_runs/lines_and_planes_in_space/20260820-183954/` (post-#118, 40 checks · 39 passed · 1 skip
+> · 1 failure). **The single failure is STATE_9 D5 and it is a known false positive** — a direct
+> pixelmatch of its 21 dense frames reads 332–374 changed px on every adjacent pair, bbox marching
+> x[482→744] and back in a palindrome about t=9000; the row is
+> `visual_eyes_d5_ink_relative_lens_is_diluted_by_static_chrome_on_explore_states`. **The skip is H2, no
+> baseline, and is correct — this concept has never been baselined.** Every pre-#118 pixel observation on
+> this branch is VOID (a tube's radius was applied twice, so every line drew at ~4 % of intended ink), so
+> judge only from this run dir and do not carry forward any earlier walk's findings.
+
+### ③ `founder-proxy` — **CHECKPOINT B, fix cycle 0**
+> Checkpoint **B**, `concept_id: lines_and_planes_in_space`, **fix cycle 0** (first B review).
+> Review page: `http://localhost:8087/lines_and_planes_in_space/` (served).
+> Concept JSON: `src/data/concepts/mathematics/lines_and_planes_in_space.json`
+> Architect skeleton: `docs/skeletons/lines_and_planes_in_space_skeleton.md`
+> Mathematics block: `docs/skeletons/lines_and_planes_in_space_mathematics_block.md`
+> `eye_walker` report: *(from dispatch ② above)*
+> THE EYE run dir: `.visual_runs/lines_and_planes_in_space/20260820-183954/`
+> founder_drive dump: `.founder_runs/lines_and_planes_in_space/2026-08-20T16-57-52-257Z/`
+> (9 states · 27 shots · **11 drags, all moved, none reverted** · 0 collisions · 0 flags · 0 console errors)
+> Scar input: query the live `engine_bug_queue` — **14 OPEN** for this concept, and read the FIXED rows as
+> the ratchet. Note two rows carry deliberate scope corrections you should not re-report:
+> `vg_explore_state_is_a_still_picture_…` is discharged for this concept and narrowed to
+> `vector_products_in_space`, and `vg_lp_angle_arc_apex_…` is scope-corrected away from STATE_6.
+> **Context you need for Pass 1:** the 2026-08-09 xhigh review's 15 defects are all cleared; the
+> 2026-08-20 walk found and fixed four more. Nothing here is baselined, nothing is in `PILOT_CONCEPTS`,
+> and **PR #96 must not merge** before your verdict.
+
+**Known-open going in, so they are not surprises:** S8's `d₁×d₂` / `a₂−a₁` labels sit at an **8 px** box
+gap against a 12 px floor — the remedy is analysed on its row and is *not* a camera nudge (S8's pose is
+S5's easing target; the whole nudge budget buys ~2 px). Δ1, Δ7 and Δ9 are absent from renderer and gate.
+A fleet-wide minimum-ink check and a real label-separation gate are both still unbuilt. All three need a
+Rule-40 engine dispatch, i.e. a founder call, not an authoring fix.
+
+---
+
 ## 0. FIRST COMMAND ON RESUME
 
 ```bash
