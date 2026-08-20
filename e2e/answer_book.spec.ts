@@ -330,7 +330,7 @@ test('switching cut changes the answer, the marks and the header together', asyn
     expect(first.accTotal).toBe('/' + cuts![0].marks_total);
     expect(first.header).toContain(`${cuts![0].marks_total} marks`);
 
-    await page.click('#cutSwitch .cut-btn:nth-child(2)');
+    await page.evaluate((k) => (window as any).PM_ANSWER.setCut(k), cuts![1].key);
     await page.waitForTimeout(300);
     const second = await read();
 
@@ -354,7 +354,7 @@ test('switching cut changes the answer, the marks and the header together', asyn
     expect(done.marksEarned).toBe(cuts![1].marks_total);
 
     // switching back restores the full answer without duplicating anything
-    await page.click('#cutSwitch .cut-btn:nth-child(1)');
+    await page.evaluate((k) => (window as any).PM_ANSWER.setCut(k), cuts![0].key);
     await page.waitForTimeout(300);
     const back = await read();
     expect(back.pills).toBe(first.pills);
@@ -368,7 +368,10 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
     const cuts = await selectMultiCutQuestion(page);
     test.skip(cuts === null, 'no question in this build declares more than one cut');
 
-    await page.click('#cutSwitch .cut-btn:nth-child(2)');
+    await page.evaluate(() => {
+        const pm = (window as any).PM_ANSWER;
+        pm.setCut(pm.listCuts()[1].key);
+    });
     await page.waitForTimeout(300);
 
     // the LAST pill of the reduced cut — under the old append-only list its
@@ -615,7 +618,7 @@ test('the catalog is the landing view and shows the full inventory', async ({ pa
     expect(r.sub).toContain(r.ready + ' answers ready');
 });
 
-test('qtype filter chips match on section AND authored cuts, with true counts', async ({ page }) => {
+test('qtype filter chips match on the section alone, with true counts', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
@@ -624,14 +627,8 @@ test('qtype filter chips match on section AND authored cuts, with true counts', 
         await page.waitForTimeout(200);
         return page.evaluate((t) => {
             const w = window as any;
-            const qById: Record<string, any> = {};
-            (w.PM_QUESTIONS as any[]).forEach((q) => { qById[q.question_id] = q; });
-            const match = (e: any) => {
-                if (t === 'ALL') return true;
-                if (e.section === t) return true;
-                const q = e.question_id ? qById[e.question_id] : null;
-                return q ? (q.cuts ?? [{ qtype: q.qtype }]).some((c: any) => c.qtype === t) : false;
-            };
+            // ONE CARD = ONE LENGTH: an entry belongs to exactly its section
+            const match = (e: any) => t === 'ALL' || e.section === t;
             const want = (w.PM_UNITS as any[])
                 .reduce((a: number, u: any) => a + u.questions.filter(match).length, 0);
             const chip = document.querySelector('#qtypeChips .cat-chip[data-qtype="' + t + '"]')!;
@@ -652,39 +649,61 @@ test('qtype filter chips match on section AND authored cuts, with true counts', 
     }
 });
 
-test('opening from an active qtype filter lands on a cut of that qtype', async ({ page }) => {
+test('an LAQ card opens the 8-mark answer, an SAQ card the 4-mark one', async ({ page }) => {
     await page.goto(URL);
     await page.waitForSelector('#catalogView:not([hidden])');
 
-    // Find a question that is NOT qtype-LAQ in its book section but offers an
-    // LAQ cut — the case the resolution logic exists for.
-    const target = await page.evaluate(() => {
+    // Both sections must exist authored for this to mean anything.
+    const have = await page.evaluate(() => {
         const w = window as any;
-        for (const u of w.PM_UNITS as any[]) {
-            for (const e of u.questions) {
-                if (!e.question_id || e.section === 'LAQ') continue;
-                const q = (w.PM_QUESTIONS as any[]).find((x) => x.question_id === e.question_id);
-                if ((q.cuts ?? []).some((c: any) => c.qtype === 'LAQ')) return e.question_id;
-            }
-        }
-        return null;
+        const entries = (w.PM_UNITS as any[]).flatMap((u: any) => u.questions);
+        return {
+            laq: entries.some((e: any) => e.section === 'LAQ' && e.question_id),
+            saq: entries.some((e: any) => e.section === 'SAQ' && e.question_id),
+        };
     });
-    test.skip(target === null, 'no LAQ-cut question in this build');
+    test.skip(!have.laq || !have.saq, 'need an authored LAQ and SAQ');
 
     await page.click('#qtypeChips .cat-chip[data-qtype="LAQ"]');
     await page.waitForTimeout(200);
-    await page.click('a.cat-card[href*="' + target + '"]');
+    await page.click('a.cat-card');
     await page.waitForSelector('.page');
     await page.waitForTimeout(300);
+    const laq = await page.evaluate(() => ({
+        qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
+        total: (window as any).PM_ANSWER.getState().marksTotal,
+    }));
+    expect(laq.qtype).toBe('LAQ');
+    expect(laq.total).toBe(8);
 
-    const r = await page.evaluate(() => {
-        const w = window as any;
-        const cut = w.PM_ANSWER.listCuts().find((c: any) => c.active);
-        return { qtype: cut.qtype, hash: location.hash, id: w.PM_ANSWER.question.question_id };
-    });
-    expect(r.id).toBe(target);
-    expect(r.qtype).toBe('LAQ');
-    expect(r.hash).toContain(target as string);
+    await page.click('#btnCatalog');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.click('#qtypeChips .cat-chip[data-qtype="SAQ"]');
+    await page.waitForTimeout(200);
+    await page.click('a.cat-card');
+    await page.waitForSelector('.page');
+    await page.waitForTimeout(300);
+    const saq = await page.evaluate(() => ({
+        qtype: (window as any).PM_ANSWER.listCuts().find((c: any) => c.active).qtype,
+        total: (window as any).PM_ANSWER.getState().marksTotal,
+    }));
+    expect(saq.qtype).toBe('SAQ');
+    expect(saq.total).toBe(4);
+});
+
+test('the notebook offers no length switch — the catalog choice is final', async ({ page }) => {
+    // The in-page "How much to write" switcher was the confusion the one-length
+    // model removed. It must not come back; the cut mechanism lives on only in
+    // the data, the router and the PM_ANSWER seam.
+    await openFirst(page);
+    const r = await page.evaluate(() => ({
+        switcher: document.getElementById('cutSwitch') !== null,
+        card: document.getElementById('cutCard') !== null,
+        railTitles: [...document.querySelectorAll('.rail .card-title')].map((e) => e.textContent),
+    }));
+    expect(r.switcher).toBe(false);
+    expect(r.card).toBe(false);
+    expect(r.railTitles).not.toContain('How much to write');
 });
 
 test('deep link boots into the notebook and Back returns to the catalog', async ({ page }) => {

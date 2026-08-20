@@ -100,33 +100,6 @@ body {
   text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 10px;
 }
 
-/* Question picker — a select, not pills: a full unit is 18 questions and the
-   rail cannot hold 18 buttons. Text is truncated by the select itself. */
-.q-pick {
-  width: 100%; font: inherit; font-size: 13px; color: var(--chrome-ink);
-  background: var(--chrome-card); border: 1px solid var(--chrome-line);
-  border-radius: 9px; padding: 8px 9px; cursor: pointer;
-}
-.q-pick:hover { border-color: var(--accent); }
-
-/* Cut switch — the same question at more than one length. Two equal segments,
-   because neither length is the "real" one: which is right depends on the paper.
-   THREE or more get `.stack`: side by side they would be ~85px wide inside a
-   300px rail and every label would wrap to three lines. */
-.cut-switch { display: flex; gap: 6px; }
-.cut-switch.stack { flex-direction: column; align-items: stretch; gap: 6px; }
-.cut-switch.stack .cut-btn { text-align: left; padding: 9px 11px; }
-.cut-btn {
-  flex: 1 1 0; min-width: 0;
-  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
-  padding: 9px 6px; border-radius: 9px;
-  border: 1px solid var(--chrome-line); background: var(--chrome-card); color: var(--chrome-dim);
-}
-.cut-btn:hover { border-color: var(--accent); color: var(--accent); }
-.cut-btn.on {
-  background: var(--ink); border-color: var(--ink); color: #fff;
-}
-
 .step-list { display: flex; flex-direction: column; gap: 4px; }
 .step-pill {
   display: flex; align-items: center; gap: 8px;
@@ -204,6 +177,11 @@ body {
 .cat-count {
   font-size: 11px; font-weight: 600; color: var(--chrome-dim);
   border: 1px solid var(--chrome-line); border-radius: 999px; padding: 2px 9px;
+}
+
+.cat-subhead {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--chrome-dim); margin: 18px 0 10px;
 }
 
 .cat-card {

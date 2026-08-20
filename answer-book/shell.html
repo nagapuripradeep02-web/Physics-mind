@@ -70,12 +70,10 @@
 <main class="layout">
 
   <aside class="rail">
-    <!-- Cut switch: the same question answered at two lengths. Hidden by the
-         engine when the question declares fewer than two cuts. -->
-    <div class="card cut-card" id="cutCard">
-      <div class="card-title">How much to write</div>
-      <div class="cut-switch" id="cutSwitch" role="group" aria-label="Answer length"></div>
-    </div>
+    <!-- NO length switch here (founder, 2026-08-20 catalog review): one catalog
+         card = one question at one length, so by the time a student is on this
+         page the length is already chosen. The cut MECHANISM survives in the
+         data + router (#/q/<id>/<cutKey>); only the in-page switcher is gone. -->
 
     <div class="card">
       <div class="card-title">Answer plan</div>

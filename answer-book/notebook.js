@@ -183,31 +183,11 @@
     });
   }
 
-  function renderCutSwitch() {
-    var row = $('cutSwitch');
-    row.innerHTML = '';
-    // Hide the whole CARD, not just the row — an empty card would leave its
-    // "How much to write" title floating above nothing.
-    if (cuts.length < 2) { $('cutCard').hidden = true; return; }
-    $('cutCard').hidden = false;
-    row.className = 'cut-switch' + (cuts.length > 2 ? ' stack' : '');
-    cuts.forEach(function (c, i) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'cut-btn' + (i === cutIndex ? ' on' : '');
-      b.setAttribute('aria-pressed', i === cutIndex ? 'true' : 'false');
-      b.textContent = c.label;
-      b.addEventListener('click', function () { switchCut(i); });
-      row.appendChild(b);
-    });
-  }
-
   function renderChrome() {
     $('boardLabel').textContent = question.board_label;
     // The wording follows the cut: the paper asks for the trajectory AND the
     // results at 8 marks, and only the results at 4.
     $('questionText').textContent = 'Q. ' + (cut.question_text || question.question_text);
-    renderCutSwitch();
     renderMeta();
     renderMarkSplit();
     renderStepList();
@@ -265,41 +245,21 @@
     for (var i = 0; i < only.length; i++) only[i].hidden = !nb;
   }
 
-  /** The qtypes an entry can be practised AT: its book section, plus every cut
-      of its authored question. The projectile counts under LAQ and SAQ both. */
-  function entryQtypes(e) {
-    var s = {};
-    s[e.section] = true;
-    if (e.question_id !== undefined && qIndexById[e.question_id] !== undefined) {
-      var q = questions[qIndexById[e.question_id]];
-      (q.cuts && q.cuts.length ? q.cuts : [{ qtype: q.qtype }]).forEach(function (c) {
-        s[c.qtype] = true;
-      });
-    }
-    return s;
-  }
-
-  /** Which cut a card should open. The book entry's own cut wins when it fits
-      the active filter; otherwise the first cut of the filtered qtype. */
-  function resolveCutKey(e) {
+  /** ONE CARD = ONE QUESTION AT ONE LENGTH (founder, 2026-08-20 review). An
+      entry belongs to exactly its book section — no unions, no filter-dependent
+      cut resolution. The LAQ forms are their own manifest entries, so a student
+      filtering SAQ never sees an 8-mark chip and vice versa. */
+  function entryCut(e) {
     if (e.question_id === undefined) return null;
     var q = questions[qIndexById[e.question_id]];
     var qcuts = q.cuts || [];
-    var cutOf = function (key) {
-      for (var i = 0; i < qcuts.length; i++) if (qcuts[i].key === key) return qcuts[i];
-      return null;
-    };
-    if (e.cut && (catFilter.qtype === 'ALL' || (cutOf(e.cut) || {}).qtype === catFilter.qtype)) {
-      return e.cut;
-    }
-    if (catFilter.qtype !== 'ALL') {
-      for (var j = 0; j < qcuts.length; j++) if (qcuts[j].qtype === catFilter.qtype) return qcuts[j].key;
-    }
-    return e.cut || null;
+    for (var i = 0; i < qcuts.length; i++) if (qcuts[i].key === e.cut) return qcuts[i];
+    return { key: null, qtype: q.qtype, marks_total: q.marks_total,
+             expected_time_min: q.expected_time_min };
   }
 
   function entryMatches(e, unitName) {
-    if (catFilter.qtype !== 'ALL' && !entryQtypes(e)[catFilter.qtype]) return false;
+    if (catFilter.qtype !== 'ALL' && e.section !== catFilter.qtype) return false;
     if (catFilter.search) {
       var blob = (e.section + ' ' + e.section + e.number + ' ' + e.section + ' ' + e.number +
                   ' ' + e.text + ' ' + unitName).toLowerCase();
@@ -322,7 +282,7 @@
     ['ALL', 'LAQ', 'SAQ', 'VSAQ'].forEach(function (t) {
       var n = t === 'ALL'
         ? allEntries.length
-        : allEntries.filter(function (e) { return entryQtypes(e)[t]; }).length;
+        : allEntries.filter(function (e) { return e.section === t; }).length;
       if (t !== 'ALL' && n === 0) return;
       var b = document.createElement('button');
       b.type = 'button';
@@ -359,74 +319,84 @@
       h.appendChild(pill);
       sec.appendChild(h);
 
-      visible.forEach(function (e) {
-        var authored = e.question_id !== undefined;
-        var card = document.createElement(authored ? 'a' : 'div');
-        card.className = 'cat-card' + (authored ? '' : ' soon');
-        if (authored) {
-          var ck = resolveCutKey(e);
-          card.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
-            (ck ? '/' + encodeURIComponent(ck) : ''));
-        }
-        var main = document.createElement('div');
-        main.className = 'cc-main';
+      // Sub-group by exam section, in paper-marks order. A crammer thinks in
+      // sections; interleaving LAQ cards among the book's SAQ numbering would
+      // re-create the confusion the one-length model exists to remove.
+      var SECTIONS = [
+        { key: 'LAQ', label: 'Long Answer Questions · 8 marks' },
+        { key: 'SAQ', label: 'Short Answer Questions · 4 marks' },
+        { key: 'VSAQ', label: 'Very Short Answer Questions · 2 marks' }
+      ];
+      SECTIONS.forEach(function (sg) {
+        var group = visible.filter(function (e) { return e.section === sg.key; });
+        if (!group.length) return;
 
-        var top = document.createElement('div');
-        top.className = 'cc-top';
-        var ref = document.createElement('span');
-        ref.className = 'cc-ref';
-        ref.textContent = e.section + ' ' + e.number;
-        top.appendChild(ref);
-        if (e.stars > 0) {
-          var st = document.createElement('span');
-          st.className = 'cc-stars';
-          st.textContent = new Array(e.stars + 1).join('★');
-          top.appendChild(st);
-        }
-        main.appendChild(top);
+        var sh = document.createElement('h3');
+        sh.className = 'cat-subhead';
+        sh.textContent = sg.label;
+        sec.appendChild(sh);
 
-        var txt = document.createElement('div');
-        txt.className = 'cc-text';
-        txt.textContent = e.text;
-        main.appendChild(txt);
+        group.forEach(function (e) {
+          var authored = e.question_id !== undefined;
+          var card = document.createElement(authored ? 'a' : 'div');
+          card.className = 'cat-card' + (authored ? '' : ' soon');
+          var ec = entryCut(e);
+          if (authored) {
+            card.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
+              (ec.key ? '/' + encodeURIComponent(ec.key) : ''));
+          }
+          var main = document.createElement('div');
+          main.className = 'cc-main';
 
-        var badges = document.createElement('div');
-        badges.className = 'cc-badges';
-        if (authored) {
-          var q = questions[qIndexById[e.question_id]];
-          var qcuts = q.cuts && q.cuts.length ? q.cuts : [{ qtype: q.qtype, marks_total: q.marks_total }];
-          qcuts.forEach(function (c) {
-            var chip = document.createElement('span');
-            chip.className = 'cc-chip marks';
-            chip.textContent = c.qtype + ' · ' + c.marks_total + 'M';
-            badges.appendChild(chip);
-          });
-          // The time follows the cut THIS CARD OPENS (same resolution as the
-          // href), not the root question — a card mapped to the 4-mark cut
-          // must not advertise the 8-mark answer's fifteen minutes.
-          var openKey = resolveCutKey(e);
-          var openCut = null;
-          for (var oc = 0; oc < qcuts.length; oc++) if (qcuts[oc].key === openKey) openCut = qcuts[oc];
-          var tm = document.createElement('span');
-          tm.className = 'cc-chip';
-          tm.textContent = '~' + ((openCut && openCut.expected_time_min) || q.expected_time_min) + ' min';
-          badges.appendChild(tm);
-        } else {
-          var soon = document.createElement('span');
-          soon.className = 'cc-chip';
-          soon.textContent = 'Not written yet';
-          badges.appendChild(soon);
-        }
-        main.appendChild(badges);
-        card.appendChild(main);
+          var top = document.createElement('div');
+          top.className = 'cc-top';
+          var ref = document.createElement('span');
+          ref.className = 'cc-ref';
+          ref.textContent = e.section + ' ' + e.number;
+          top.appendChild(ref);
+          if (e.stars > 0) {
+            var st = document.createElement('span');
+            st.className = 'cc-stars';
+            st.textContent = new Array(e.stars + 1).join('★');
+            top.appendChild(st);
+          }
+          main.appendChild(top);
 
-        if (authored) {
-          var arrow = document.createElement('span');
-          arrow.className = 'cc-arrow';
-          arrow.textContent = '→';
-          card.appendChild(arrow);
-        }
-        sec.appendChild(card);
+          var txt = document.createElement('div');
+          txt.className = 'cc-text';
+          txt.textContent = e.text;
+          main.appendChild(txt);
+
+          // ONE length per card: the marks of the answer this card opens, and
+          // that answer's time. Never a second length.
+          var badges = document.createElement('div');
+          badges.className = 'cc-badges';
+          if (authored) {
+            var mk = document.createElement('span');
+            mk.className = 'cc-chip marks';
+            mk.textContent = ec.marks_total + ' marks';
+            badges.appendChild(mk);
+            var tm = document.createElement('span');
+            tm.className = 'cc-chip';
+            tm.textContent = '~' + ec.expected_time_min + ' min';
+            badges.appendChild(tm);
+          } else {
+            var soon = document.createElement('span');
+            soon.className = 'cc-chip';
+            soon.textContent = 'Not written yet';
+            badges.appendChild(soon);
+          }
+          main.appendChild(badges);
+          card.appendChild(main);
+
+          if (authored) {
+            var arrow = document.createElement('span');
+            arrow.className = 'cc-arrow';
+            arrow.textContent = '→';
+            card.appendChild(arrow);
+          }
+          sec.appendChild(card);
+        });
       });
       sections.appendChild(sec);
     });

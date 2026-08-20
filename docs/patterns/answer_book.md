@@ -377,13 +377,19 @@ missing from the manifest would be invisible in the catalog; a manifest pointer 
 be a dead card. Both exit 1 naming the offender — the PILOT_CONCEPTS silent-drop lesson applied
 here before it could happen.
 
-## Filters
+## Filters — ONE CARD = ONE QUESTION AT ONE LENGTH (founder review, same day)
 
-The qtype chips match on the UNION of an entry's book section and its authored cuts' qtypes — the
-projectile counts under LAQ and SAQ both. Counts on the chips are static per build (an inventory,
-not a moving target). Opening a card resolves WHICH cut: the entry's own `cut` wins when it fits
-the active filter, else the first cut of the filtered qtype — and the time chip follows the same
-resolution, so a card mapped to the 4-mark cut never advertises the 8-mark answer's minutes.
+The first shipped version matched filters on the UNION of an entry's section and its cuts'
+qtypes, and cards wore chips for every length. The founder's review killed it in one screenshot:
+a card labelled "SAQ 2" carrying an "LAQ · 8M" chip under an LAQ filter is three contradictions
+at once, and the in-notebook "How much to write" switch was a fourth. The model now: **an entry
+belongs to exactly its section**, the 8-mark forms are their own LAQ manifest entries (`laq1`,
+`laq2` — the book has no LAQ section for Unit 4; these are the TSBIE Section-C forms), every SAQ
+entry pins its 4-mark cut, each card shows ONE marks chip and that answer's time, sections render
+as sub-groups (LAQ → SAQ → VSAQ, paper-marks order), and **the in-notebook length switch is
+GONE** — by the time a student is on the page the length is already chosen. The cut mechanism
+survives only in the data, the `#/q/<id>/<cutKey>` router, and `PM_ANSWER.setCut` (a locked test:
+"the notebook offers no length switch").
 
 ## Design language
 
