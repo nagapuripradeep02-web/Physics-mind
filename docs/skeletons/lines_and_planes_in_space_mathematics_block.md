@@ -220,9 +220,9 @@ number a teacher reads comes from `vg.value_readouts` tokens resolved inside the
 |---|---|---|---|---|
 | Line `r = a + λd̂` (S1, S4–S9) | `λ ∈ ℝ` — no exclusion (a line has no undefined point) | every point on the line | `λ ∈ [−3.5, 3.5]` guided (S1); the line's DRAWN geometry is clipped to the bounding sphere `‖p‖ ≤ R` (default `R = 4.5`, `VG_SCENE_RADIUS`, `field_3d_renderer.ts:12606`) whenever no `lambda_span` is bound — the marker itself is HIDDEN, never clamped, once `λ` leaves the drawn span (`:12977`: *"a lambda past the drawn end is not clamped back onto the line"*) | a line missing the bounding sphere entirely (`vgSphereClipSpan` discriminant `≤ 0`) is drawn as **nothing** — `vgLineEnds` returns `null` (`:12638,12653`) rather than a degenerate stub. No line in this concept's authored scene misses the sphere (checked: every anchor lies within `R=4.5`, guaranteeing a non-empty clip) |
 | Plane `n̂·(r − a) = 0` (S2–S4, S7, S9) | `r ∈ ℝ³` — no exclusion | the whole plane; `n ≠ 0` is a HARD precondition (`vgPlaneBasis` returns `null` and the plane draws nothing if `‖n‖ < 0.5`, `:12682`) | patch clipped to `half_extent ∈ [1.5, 4.5]` (a finite parallelogram, never the infinite plane) | an authored `half_extent` outside its slider range is silently accepted by the resolver (it only reads `d.half_extent`/the `half_extent` knob as a number) but the SLIDER that exposes it clamps at its own bounds — see §3 |
-| Point-to-plane distance `d = \|n̂·(q−a)\|` (S3) | defined for every `q ∈ ℝ³`, every valid plane | `d ≥ 0` always (the `Math.abs` in `vgFootOnPlane`, `:12727`) — **never negative, never signed on screen** | `q` ranges via `q_height ∈ [0, 3]` | `d = 0` exactly when `q` lies IN the plane (foot = q); this concept never authors that case (`q_height`'s default 1.19 keeps `q` off the plane at every rendered frame — checked: distance 2.198 at default) |
+| Point-to-plane distance `D = \|n̂·(q−a)\|` (S3) | defined for every `q ∈ ℝ³`, every valid plane | `D ≥ 0` always (the `Math.abs` in `vgFootOnPlane`, `:12727`) — **never negative, never signed on screen** | `q` ranges via `q_height ∈ [0, 3]` | `D = 0` exactly when `q` lies IN the plane (foot = q); this concept never authors that case (`q_height`'s default 1.19 keeps `q` off the plane at every rendered frame — checked: distance 2.198 at default) |
 | Line-plane meeting (S4, S9) | defined for every `(line, plane)` pair | **two cases, exhaustive, mutually exclusive**: `d̂·n̂ ≠ 0` (unique point) or `d̂·n̂ = 0` (no point, ever) — there is no third case (a line cannot meet a plane at 2+ points unless it LIES in the plane, which is `d̂·n̂=0` AND the anchor already on the plane — S4 authors `Lpar` off the plane, so this concept never renders the degenerate "line-in-plane" sub-case) | `λ` of the meeting point, when it exists, is unbounded in principle but must fall inside the line's OWN drawn span or the marker silently does not appear (`:12977`, same guard as above) — checked for `Lcut`: `λ=2.600` is well inside its own sphere-clip span | the epsilon that decides which case: `VG_MEET_EPS = 1e-9` on `\|d̂·n̂\|` (`:12605, :12778`) — see 2c |
-| Skew-line shortest distance (S5, S8, S9) | defined for every `(line1, line2)` pair | `d ≥ 0`; **exists as a unique PERPENDICULAR SEGMENT only when `d1̂ × d2̂ ≠ 0`** (i.e. the two directions are not parallel) — the parallel/coincident case still has a well-defined DISTANCE (`\|w × d̂1\|`) but no unique common-perpendicular DIRECTION, and the engine returns `exists:false, dir:null` for it (`vgCommonPerp`, `:12746–12751`) | this concept's authored skew pair (M1/d1, M2/d2) has `‖d1×d2‖ = 0.936` (verified below) — always non-degenerate on screen; the drill-down cluster `parallel_lines_break_the_formula` (§7) is exactly the case this concept NEVER renders as a live state, only discusses | epsilon `crn < 1e-9` (`:12743`) — same order of magnitude as the line-plane epsilon, deliberately (both guard a cross/dot product of UNIT vectors, so both live on the same natural scale) |
+| Skew-line shortest distance (S5, S8, S9) | defined for every `(line1, line2)` pair | `D ≥ 0`; **exists as a unique PERPENDICULAR SEGMENT only when `d1̂ × d2̂ ≠ 0`** (i.e. the two directions are not parallel) — the parallel/coincident case still has a well-defined DISTANCE (`\|w × d̂1\|`) but no unique common-perpendicular DIRECTION, and the engine returns `exists:false, dir:null` for it (`vgCommonPerp`, `:12746–12751`) | this concept's authored skew pair (M1/d1, M2/d2) has `‖d1×d2‖ = 0.936` (verified below) — always non-degenerate on screen; the drill-down cluster `parallel_lines_break_the_formula` (§7) is exactly the case this concept NEVER renders as a live state, only discusses | epsilon `crn < 1e-9` (`:12743`) — same order of magnitude as the line-plane epsilon, deliberately (both guard a cross/dot product of UNIT vectors, so both live on the same natural scale) |
 | Angle between two lines (S6, S9) | `θ ∈ [0°, 180°]`, undirected, over the FULL range (`vgAngleDeg`, `:12620–12625`) — **deliberately not folded to the acute [0°,90°] convention**, because S6's readout must track a continuous rotation through 90° without doubling back | `d̂1·d̂2 ∈ [−1, 1]` always (Cauchy–Schwarz, both unit) | `θ ∈ [25°, 115°]` is the ONLY interval the camera fidelity was measured over (§14 P2-2: `worst |screen−true| = 0.88°`, S6 pose; `3.70°`, S9-B pose) — **outside `[25°,115°]` the arc's on-screen accuracy is UNMEASURED**, see 2b | `θ=0°`/`180°` (coincident/anti-parallel directions) never arise on this concept's swept range |
 | Angle line-to-plane (S7) | `θ_normal, θ_plane ∈ [0°, 90°]` each, **`θ_normal + θ_plane = 90°` by construction** (`vgLinePlaneAngles`, `:12788–12793`: `to_plane = 90 − to_normal`, a subtraction, never a second measurement) | `\|d̂·n̂\| ∈ [0,1]` | S7 renders exactly one static configuration (`Lcut`, `35.00°`/`55.00°`) — no sweep | the identity `35+55=90` holds by CONSTRUCTION for every line/plane pair this resolver is ever given, not only for `Lcut` — it is not a fact special to this concept's numbers |
 
@@ -273,8 +273,10 @@ number a teacher reads comes from `vg.value_readouts` tokens resolved inside the
 > function's inputs — this is true by CONSTRUCTION of the readout, not by a geometric argument that could
 > have exceptions. **The claim is universally true and needs no scope check** — the only thing this
 > ledger must confirm is that S6's choreography (anchors sliding while the arc holds) actually EXERCISES
-> that independence rather than merely asserting it, which §4's S6 timeline does (both anchors slide
-> 0–8000 ms while `theta_deg`'s knob, and therefore the arc, is untouched — 32b compliant).
+> that independence rather than merely asserting it, which §4's S6 timeline does — **corrected
+> 2026-08-20 (see §4 STATE_6's constraint note): only `M1`'s anchor slides; `M2`'s anchor stays
+> fixed at its authored point through phase 1** — while `theta_deg`'s knob, and therefore the arc,
+> is untouched — 32b compliant.
 
 ### 2c. Degeneracy epsilon — the exact scar this concept's own §11 flags, discharged
 
@@ -305,7 +307,7 @@ angle_line_normal_deg:1}` (`:13654–13658`); coordinates print via `vgFmtPoint`
 different precision. `vgFx` clamps `|v| < 0.5×10⁻ᵈᵉᶜ → 0` before formatting (`:13646–13649`) — a
 negative-zero guard already in place for the one place it could bite this concept (`n·d = 0.000` on the
 parallel line, `S4`; already exactly at the epsilon-guarded case). **Formula surfaces carry the exact
-symbolic form** (`d=|n̂·(q−a)|/‖n‖`, not a decimal) per Rule 34b/38c — see §5.
+symbolic form** (`D=|n̂·(q−a)|/‖n‖`, not a decimal) per Rule 34b/38c — see §5.
 
 ### 2e. Numeric verification results — every derived number in the skeleton re-run, disagreements reported
 
@@ -520,8 +522,8 @@ hidden (`hide_at_ms:9000` added to `cmp` above) — the "segment turns green and
 DIFFERENT objects handing off, not one object changing colour (roles are static per object, confirmed
 `§1`), matching Δ2's reveal-chain design exactly.
 **`value_readouts:["point_plane_distance"]`. `controls:[]`** (no live slider on this state — the sweep is
-choreography-only, matching the skeleton's control table). Formula surface `d = |n̂·(q−a)| / ‖n‖` writes
-at 11000–12500 ms (after the lock, per Rule 34b/38c "after its graphical story has played").
+choreography-only, matching the skeleton's control table). Formula surface `D = |n̂·(q−a)| / ‖n‖` is
+present from state entry (no timed reveal exists on the vg formula surface; engine request Δ11 filed).
 **Checked:** `s=−2.2→3.1086`, `s=0→2.1983`, `s=+1.6→2.7201` (§2e) — all three MATCH the skeleton to
 the stated precision.
 
@@ -570,13 +572,30 @@ the angle readout IS the subject) · words 38–46.
 **Objects:** `M1`, `M2` re-drawn from one shared origin (`point:[0,0,0]` on a display-only copy — the
 DoD's own note that this is a re-drawing, not the same objects, is preserved). `angle_arcs:[{id:"arc1",
 between:["M1","M2"], readout:"angle_lines_deg"}]`.
-**Two-phase choreography:** phase 1 (0–8000 ms) both anchors slide via `offset` on an `aux_a`-driven
-knob while `M1`/`M2`'s `dir` fields are UNTOUCHED — arc holds at `69.4°` (Rule 32b: only the anchor
-moves, the taught quantity — direction — does not). Phase 2 (8000–19000 ms): `M2.rotate = {about:
-[0.2877,-0.8387,-0.4625] /* n̂c, the authored literal cross-product axis, verified below */, zero:
-69.3846, knob:"theta_deg"}`, `animate:[{knob:"theta_deg", from:25, to:115, start_ms:8000,
-duration_ms:11000, easing:"linear"}]`. **`vg.control_ranges:{theta_deg:{min:25,max:115}}`** (§3 — stays
-inside the camera-verified sweep). `controls:["theta_deg"]`.
+**Two-phase choreography, CORRECTED 2026-08-20 — only `M1`'s anchor slides, `M2` does not:** phase 1
+`M1`'s anchor slides via `offset` on an `aux_a`-driven knob (`M1` never rotates anywhere in this
+concept, so it can never detach from the arc's apex); `M2` authors NO offset field at all and stays
+fixed at its authored anchor point for the whole state — `M1`/`M2`'s `dir` fields are UNTOUCHED through
+phase 1 — arc holds at `69.4°` (Rule 32b: only the anchor moves, the taught quantity — direction — does
+not). Phase 2: `M2.rotate = {about: [0.2877,-0.8387,-0.4625] /* n̂c, the authored literal cross-product
+axis, verified below */, zero: 69.3846, knob:"theta_deg"}`, `animate:[{knob:"theta_deg", from:25,
+to:115, start_ms:<phase-2 start>, duration_ms:<phase-2 span>, easing:"linear"}]` (the exact ms split
+between phase 1 and phase 2 is the skeleton's own §12 FIX ROUND table, a `→JSON` directive owned by
+`json_author` — untouched by this desk; only WHICH object slides is this desk's correction).
+**`vg.control_ranges:{theta_deg:{min:25,max:115}}`** (§3 — stays inside the camera-verified sweep).
+`controls:["theta_deg"]`.
+**Why (closes the residue on the OPEN MAJOR scar `vg_offset_animate_ends_off_zero_so_a_rotated_line_
+leaves_its_shared_arc_apex` for this state):** `vgObjOffset` translates an anchor by a FIXED WORLD
+VECTOR that does not rotate with `dir` (`field_3d_renderer.ts:13079`); `vgObjRotate` rotates only `dir`
+(`:13085`) — the two are independent, and `theta_deg` is a LIVE teacher slider with no timed
+control-reveal to block an early drag. The original two-anchors-slide design put an offset on `M2` —
+the object `theta_deg` rotates — so a drag at any point before `aux_a` returns to zero would carry
+`M2`'s arm off the shared apex by up to ~1.05–1.07 world units (measured at the slider bounds θ=25°/
+115°, the row's own filed negative control). Restricting the slide to `M1` (which never rotates)
+removes the failure mode structurally rather than narrowing its window: `M2`'s arm now passes through
+the shared apex at EVERY sampled `theta_deg`, for the full state, drag or no drag. Pedagogically
+unchanged — translating a line along its own direction while that direction holds is still phase 1's
+entire lesson; one line demonstrating it is sufficient.
 **Checked, numerically (not just argued):** rotating `d̂2` about `n̂c=normalize(d̂1×d̂2)` by
 `φ=(theta_deg−69.3846°)` reproduces `angle(d̂1, d̂2_rotated) = theta_deg` EXACTLY at every sampled value
 — `25.0000°→25.0000°`, `90.0000°→90.0000°`, `115.0000°→115.0000°` (python3, Rodrigues rotation,
@@ -652,7 +671,7 @@ a FLAG below rather than assumed away.
 **Core + extended (S1–S7, S9): algebraic and geometric forms only, verified line by line:**
 `r = a + λd` (S1) — algebraic, vector-plus-scalar-multiple, no operator beyond `+`/scalar multiply.
 `n·(r−a)=0` (S2) — a dot product, introduced ON canvas the same state it is first used (S2's own
-one-beat `n̂·v` demonstration), never assumed. `d = |n·(q−a)|/‖n‖` (S3) — dot product + modulus + norm,
+one-beat `n̂·v` demonstration), never assumed. `D = |n·(q−a)|/‖n‖` (S3) — dot product + modulus + norm,
 all already-established by S2. `λ = n·(a_P−a)/(n·d)` (S4, if surfaced — the skeleton's DoD table lists
 it in the identity-check column, not necessarily on the rendered formula overlay; if `json_author`
 promotes it to a formula surface it stays algebraic). `cos θ = |d1·d2|/(‖d1‖‖d2‖)` (S6), `sin θ =
@@ -662,7 +681,7 @@ product" anywhere** — verified against §4's object list above: `S8` is the FI
 `cross_vec`/`a2_minus_a1`, and `S8` is the sole advanced-ring state, contiguous, immediately before the
 explore state (Rule 38a) — matches the skeleton's own ring assignment exactly.
 
-**Advanced-only (S8): `d = |(a2−a1)·(d1×d2)| / ‖d1×d2‖`.** Cross product notation, a scalar triple
+**Advanced-only (S8): `D = |(a2−a1)·(d1×d2)| / ‖d1×d2‖`.** Cross product notation, a scalar triple
 product read as a numerator — correctly gated to the advanced ring, verified: no `value_readouts` token
 naming `cross_norm`/`numerator_triple_product` appears in any state's `value_readouts` list except S8's
 and S9's group-B row (S9 is core-ring BY CONTENT but only because its group-B controls surface objects
@@ -681,7 +700,7 @@ notation) — nothing to declare.
 
 1. **The distance is `D` (capital), never `d`** — resolving
    `vg_one_symbol_carries_two_meanings_across_states_of_one_concept`: the ladder above quoted
-   `d = |n·(q−a)|/‖n‖` (S3) and `d = |(a2−a1)·(d1×d2)|/‖d1×d2‖` (S8) while `d`/`d₁`/`d₂` are the
+   `D = |n·(q−a)|/‖n‖` (S3) and `D = |(a2−a1)·(d1×d2)|/‖d1×d2‖` (S8) while `d`/`d₁`/`d₂` are the
    concept's line DIRECTIONS from S1 onward — one symbol, two meanings, in the same S8 expression.
    The shipped formula surfaces now read `D = |n·(q − a)| ⁄ ‖n‖` and `D = |(a₂−a₁)·(d₁×d₂)| ⁄ ‖d₁×d₂‖`,
    and `physics_engine_config.formulas` records the same choice. Lowercase `d` is reserved
@@ -779,7 +798,8 @@ the design intent):**
   "S1's entry camera_position is [0.0, 8.0, 13.8564] (R=16, az=90 deg, el=30 deg) -- Act I's own STATE_5 literal, verbatim -- not the skeleton's assumed R=9; camera_steps eases IN to R=13, not out",
   "half_extent's engine-shipped slider ceiling is 3.0 (vgSc at field_3d_renderer.ts:13502); reaching this concept's own declared domain ceiling of 4.5 on S9 REQUIRES an authored vg.control_ranges override -- absent that override, S9's own camera solve (which assumed a sweep up to 4.5) is not actually reachable by a teacher",
   "theta_deg's on-screen angle-arc fidelity was measured ONLY over [25,115] degrees (skeleton P2-2: worst error 0.88/3.70 deg over that exact sweep) -- outside that interval the arc's accuracy is unmeasured, so S6 and S9's group-B row both narrow theta_deg via vg.control_ranges to [25,115], never left at the engine's wider shared default [20,160]",
-  "the two-segment dot-product-intro recipe on S2 relies on BOTH segments reading n.v = 0 for every value of their own knob whenever their lerp endpoints are both in-plane addresses -- verified this holds unconditionally (not just at the intended t), which is what keeps the resolver's per-frame unconditional readout recomputation from ever printing a wrong number during either segment's off-window idle state"
+  "the two-segment dot-product-intro recipe on S2 relies on BOTH segments reading n.v = 0 for every value of their own knob whenever their lerp endpoints are both in-plane addresses -- verified this holds unconditionally (not just at the intended t), which is what keeps the resolver's per-frame unconditional readout recomputation from ever printing a wrong number during either segment's off-window idle state",
+  "STATE_6 phase 1 slides ONLY M1's anchor (M1 never rotates anywhere in this concept); M2 authors no offset field and stays fixed at its anchor until phase 2's theta_deg rotation -- vgObjOffset translates by a fixed world vector independent of vgObjRotate (field_3d_renderer.ts:13079/13085), so any offset authored on the object theta_deg rotates live (no timed control-reveal exists to block an early drag) would let a teacher's drag carry that object's arm off the shared arc apex by up to 1.07 world units -- the vg_offset_animate_ends_off_zero_so_a_rotated_line_leaves_its_shared_arc_apex row's own negative control; unreachable on this concept now that M2 never carries an offset"
 ]
 ```
 
@@ -982,4 +1002,88 @@ imported. HC Verma and DC Pandey not consulted — physics-only sources, forbidd
 8. **The catalog prerequisite discrepancy the skeleton already flagged (its FLAG 1) is unresolved and
    out of this role's authoring scope** — `mathematicsCatalog.ts:139`'s `vector_dot_and_cross_product`
    vs the wave's actual Act I id `vector_products_in_space`. Carried forward, not re-argued.
+9. **The S9 explore state's `line2_offset` knob (group B) carries the SAME exposure the STATE_6 fix
+   just closed, and is OUT OF SCOPE for this fix round.** `line2_offset` is authored to "slide the skew
+   line M2's anchor along d2-hat" (§1 engine_config), and S9's group-B controls also expose `theta_deg`
+   live, on the same object `M2`, with no per-window gating (S9 is a free sandbox by design — every
+   control is live at once). A teacher who drags `line2_offset` off zero and then drags `theta_deg`
+   reproduces STATE_6's now-fixed failure mode inside the explore state. This was NOT in this round's
+   routed scope (the filed scar's negative control names only STATE_6) and this desk has not re-designed
+   S9 to match — flagged for the next fix round or for `founder_proxy`, not silently carried as safe.
 
+
+
+---
+
+## FIX ROUND 2026-08-20 — pass-4 `quality_auditor` F3/F6 + architect F2-routed items (this desk's four)
+
+Routed via the architect's Pass-1 pass after a pass-4 `quality_auditor` FAIL. Four items; all four
+closed on this desk. `alex:json_author` applies §"final narration" below verbatim to `text_en` on the
+named sentence ids — this desk does not touch the concept JSON (out of tool scope).
+
+**1 · F3 — lowercase-`d`-as-DISTANCE sweep, closed and RE-VERIFIED with a whole-document regex pass.**
+Architect's regex (`(^|[^a-zA-Z₁₂_\\])d *= *(\\)?\|` plus `\bd ≥ 0|\bd = 0\b`), run against this
+file's full text:
+- **Before:** 11 lines matched (223, 225, 306, 308, 350, 359, 523, 655, 665, 684, 839).
+- Of those, **4 are legitimate `n·d`/`n.d` dot-product mentions** (306, 350, 359, 839) — the scar's own
+  exclusion list names `n·d`/`d·n` explicitly; these were left untouched (the dot product between a
+  normal and a direction is not the distance the scar is about, and correctly stays lowercase `d`).
+- **7 lines carried true distance-as-lowercase-`d` instances (10 individual occurrences: 223 ×3, 225 ×1,
+  308 ×1, 523 ×1, 655 ×1, 665 ×1, 684 ×2)** — every one fixed to capital `D` (223's row, 225's cell,
+  308's Rule-34b symbolic-form parenthetical, 523–524's S3 formula-surface sentence — which also had a
+  factual correction, see below — 655/665's notation-ladder body text, and 684's amendment-paragraph
+  quotation, preserving its `d`/`d₁`/`d₂` direction references unchanged as directed).
+- **523–524 carried a second, independent defect beyond capitalisation**: the sentence claimed the S3
+  formula surface "writes at 11000–12500 ms", but the vg formula surface has **no timed-reveal field**
+  (Δ11, confirmed nowhere in the `vg` type or resolver) — corrected to state it is present from state
+  entry, per the architect's exact replacement text.
+- **After:** re-running the identical regex over the edited file returns 4 hits — all 4 are the same
+  legitimate `n·d`/`n.d` mentions, verified by string-matching each hit line against `n·d`/`n.d`/`d·n`/
+  `d.n`. **True-positive count: 0.** The scar `a_fix_round_closes_the_reported_instances_of_a_restated_
+  value_and_never_sweeps_the_document_for_the_rest` is satisfied — every instance was found by a
+  document-wide regex sweep, not only the seven lines the routing message named, and the seven named
+  lines matched the sweep's own output exactly.
+
+**2 · F6 — two Rule 41a idioms, replaced with literal wording; STATE_3/STATE_4 stay inside the 25–55
+Rule-31 word budget.** Final text below. `s3_3`'s replacement is the auditor's own suggested literal
+form, applied verbatim. `s4_3`'s replacement uses "crosses" — the exact plain verb the state's own
+delta-cue caption already uses ("Crosses, or never touches"), so the narration now uses the SAME word
+the on-canvas caption does rather than introducing a second word for the same event.
+
+**3 · STATE_7 — sentences 4+5 merged into one, per the architect's exact directive**, folding the
+standalone "always add to ninety" claim into the subtract-from-ninety sentence rather than dropping it.
+
+**4 · STATE_6 `s6_2` — one word, "each" → "one", to match the geometry `mathematics_author` re-authored
+this session** (§4 STATE_6, §2b, §7 above): only `M1`'s anchor slides in phase 1; `M2` never carries an
+offset, so a live `theta_deg` drag can never carry it off the shared arc apex (closes the OPEN MAJOR
+scar's residue on this state — see the "Why" paragraph in §4 STATE_6 and the new §7 constraint bullet).
+The document's own §2b claim and §4 choreography text are updated in the same pass so the ledger and the
+narration agree — a restated sentence with a stale ledger row behind it is exactly the failure mode F3
+exists to catch, so this desk did not leave one standing.
+
+### Final narration — `text_en`, ready for `json_author` to paste verbatim
+
+| id | Final `text_en` | Words | State total |
+|---|---|---|---|
+| `s3_3` | "It reaches its smallest value at the perpendicular, and locks." | 10 | STATE_3: 54 (unchanged — `s3_3` is a 1-for-1 word-count swap) |
+| `s4_3` | "A second line arrives, heading differently. It crosses, and a marker appears." | 12 | STATE_4: 54 (was 55) |
+| `s7_1` | "This line splits: one part flat in the plane, one along the normal." | 13 | STATE_7: 47 (was 53; sentences 4+5 merged into one `s7_4`, `s7_5` retired) |
+| `s7_2` | "The angle to the normal is fifty-five degrees." | 8 | — |
+| `s7_3` | "The angle to the plane is the rest: thirty-five degrees." | 10 | — |
+| `s7_4` | "Measure to the normal first, then subtract from ninety: that is the angle to the plane." | 16 | — |
+| `s6_2` | "Slide one line along itself: the angle does not change." | 10 | STATE_6: 51 (unchanged — 1-for-1 word-count swap) |
+
+`s3_1`, `s3_2`, `s3_4`, `s4_1`, `s4_2`, `s4_4`, `s6_1`, `s6_3`, `s6_4` are unchanged — not reproduced
+here to avoid `json_author` overwriting a correct sentence with a byte-identical "fix". STATE_7's `s7_5`
+id is RETIRED (its content is folded into the rewritten `s7_4`); `json_author` should remove the
+`s7_5` object from `tts_sentences` rather than leave an orphaned duplicate.
+
+### Founder-call note
+
+Item 4 (STATE_6) was routed as "one word" but the underlying geometry decision (M1 slides / M2 does
+not) was already made by the routing message, not by this desk — this desk's own judgment call was to
+ALSO correct §2b's claim text and §4's choreography paragraph to match (rather than leaving the ledger
+describing "both anchors slide" beside a narration line that now says one line does), and to flag
+(not fix) the identical exposure sitting unaddressed in S9's `line2_offset`/`theta_deg` pair — a
+founder/`quality_auditor` scoping decision, not an authoring one, since S9's own control-visibility
+design is out of this round's routed scope.

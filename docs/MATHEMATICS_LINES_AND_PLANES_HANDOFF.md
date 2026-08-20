@@ -14,6 +14,11 @@
 > queue reads **13 OPEN for this concept, down from 26**. Read §0.1 FIRST; the sections below it are
 > the 2026-08-09 record, kept verbatim.
 >
+> **⚠ SUPERSEDED AGAIN 2026-08-20 (evening) — read §0.03 FIRST.** CP-B round 1 ran: two audits
+> (pass 4 FAIL, pass 5 FAIL on one finding), a full architect → mathematics-author → json-author fix
+> round, and a second carrier fix for STATE_6. `founder_proxy` was **never dispatched** — §0.05's
+> dispatch ③ is still the next action, with the corrections in §0.03d.
+>
 > Companions: `docs/skeletons/lines_and_planes_in_space_skeleton.md` (amended — read its STATUS block
 > FIRST) · `docs/skeletons/lines_and_planes_in_space_mathematics_block.md` ·
 > `docs/MATHEMATICS_VECTOR_PRODUCTS_HANDOFF.md` (Act I, #7 — still banked).
@@ -83,6 +88,84 @@ stub); STATE_7's two arcs visually indistinguishable at 55°/35°; Gate-20 warni
 `parallel_form_stem` missing on q3–q7. **Still OPEN with residue:** `vg_offset_animate_…` (a θ
 drag during [0, 8000) detaches the arc — the slide beat's aux ramp is un-seizable; probe must
 sample that window).
+
+---
+
+## 0.03 SESSION 2026-08-20 (evening) — CP-B ROUND 1: the audit fix round. READ THIS FIRST.
+
+**What happened:** the §0.05 CP-B dispatch could not run as written. Its dispatch ③ (`founder_proxy`
+Checkpoint B) has an entry condition — *"after quality_auditor PASS + eye_walker + the drive dump"* —
+and `quality_auditor`'s standing verdict was **FAIL**. Dispatches ① and ② were run; ① FAILed again on
+new findings; a full fix round followed. **`founder_proxy` was never dispatched this session.** The
+CP-B dispatch text in §0.05 is still valid and still the next action — with the corrections in §0.03d.
+
+### 0.03a — the two audits
+
+| pass | verdict | findings |
+|---|---|---|
+| 4 (re-audit of the stale FAIL) | **FAIL** → `alex:architect [reason: pass-1]` | F1 MAJOR (S6 zero-pixel beat + S9 inert slider), F2 MAJOR (motion floor on 6/8), F3–F5 MODERATE (record integrity), F6 MODERATE (Rule 41 idioms), F7/F8 report-only |
+| 5 (post-fix-round) | **FAIL** → same route | **7 of 8 closed with machine evidence**; F1a alone survived — the *replacement* carrier was also invisible |
+
+The three prior findings (#118 tube radius, S6 pacing cell, S4 d/n collision) all **held**.
+
+### 0.03b — what was fixed, and the one that took two attempts
+
+**S6's slide beat, twice wrong for two different reasons — the round's real lesson.**
+1. *Original:* `offset.along` authored **exactly parallel** to `dir` (|dot| = 1.000000) on a
+   scene-clipped line. Provably invariant: endpoints are `anchor + d·(−b±s)`, `b = anchor·d`;
+   translating `anchor → anchor + t·d` leaves the discriminant unchanged. **0–3 px/s.**
+2. *First fix (`show_dir_arrow`)* — the architect's declared carrier, flagged
+   `ASSUMPTION — probe-before-authoring`. Falsified: `THREE.ArrowHelper` draws **collinear with and in
+   the same colour as** its tube (`field_3d_renderer.ts:14559-14566`). **52–99 px/s** — an order of
+   magnitude *under* THE EYE's own D5 floor. The assumption flag was right to be there.
+3. *Shipped:* `lambda_span: [-4.5, 4.5]` (= `VG_SCENE_RADIUS`, so the rest pose is pixel-identical —
+   Rule 32d home pose kept) + a neutral point `a1` riding M1's anchor on the same knob (STATE_3's
+   `foot_sweep` pattern). **261–560 px/s.** Verified run `20260820-211735`.
+
+**Also closed:** S9's `line2_offset` now moves M2 along `n̂c = normalize(d₁×d₂)` so `skew_distance`
+tracks live (1.800 → 0.800 → 0.000 → 3.500, **trusted-event** drive); the **OPEN MAJOR apex scar**
+(M2 now carries no offset — rotate only; full θ×aux_a sweep reads **0.0000 wu**); five durations
+re-timed with three genuinely missing beats added (S4 arrival slide, S7 `normal_part`, S8 staged
+reveals); the lowercase-`d`-as-distance sweep across three files; two Rule 41 idioms.
+
+### 0.03c — the four things no gate could see
+
+Each was found by a hand pixel-diff or a trusted-input drive, never by THE EYE (39/40 on **every**
+capture this round — the 1 is always the known `STATE_9:D5` false positive):
+
+1. **S6's taught beat was invisible inside a passing state** — D5 scores a whole state, and the later
+   rotation (1700–2100 px/s) lifted the average past the floor. Twice.
+2. **A synthetic-event slider drive reports the authored static** — `quality_auditor`'s first S9 drive
+   read `1.800` at *every* value including ±2.5. vg sliders need `ev.isTrusted`. **Any drive dump built
+   on synthetic events is evidence about nothing.**
+3. **A number preceded the vector it names by 11–13 s** (S8) — created *by* the F2 re-timing.
+4. **The eye-walker's θ=115° apex claim was wrong** — `vgAnimValue` holds a knob at its final value, so
+   `aux_a` sat at 0 through the rotation; a pixel fit put the crossing at (639.5, 359.5) ±0.05 px
+   throughout. The scar is real but fires **only under a teacher θ-drag during the slide** — which THE
+   EYE never performs and the drive dump never reached.
+
+### 0.03d — corrections to §0.05's dispatch text, apply before re-using it
+
+- **Run dir** is now the latest under `.visual_runs/lines_and_planes_in_space/` (`20260820-211735` or
+  later) — **not** `20260820-183954`, and the drive dump `2026-08-20T16-57-52-257Z` is **pre-fix**:
+  its 11 drags never touched `theta_deg` or `line2_offset`. Re-run `founder_drive` before CP-B.
+- **Do not repeat** §0.05's "two deliberate scope corrections" line for the apex row: it is now
+  **FIXED**. The row to *not* re-report at S6 remains `vg_lp_angle_arc_apex_…`, which is confirmed
+  live at **S7** (both arcs anchored at Lcut's anchor, ~250 px from the normal they measure to).
+- **Two new founder calls to pre-explain** so CP-B doesn't spend a cycle routing them: **Δ11** (vg
+  `#formula_overlay` has no timed reveal → the PRIMARY-aha formula is on screen from frame 0) and
+  **Δ12** (F13b publishes all three readouts on the common perpendicular's arrival → `cross_norm`
+  leads `cross_vec` by 4 s under the shipped interim). Both `[owner: peter_parker:field3d_surgeon]`,
+  both Rule 40 platform files, neither dispatched.
+- **S6 ships at camera R 13**, not the §5 R-5 solve — a ±4.5 line overflows the frame at R 5 and the
+  endpoint carrier leaves the screen. The ≈6° arc-fidelity residual is accepted, readout authoritative.
+
+### 0.03e — bookkeeping
+
+Scar script: `src/scripts/_seed_engine_bug_queue_lines_and_planes_cpb_round1.ts` (5 new OPEN rows —
+all engine/tooling founder calls; 2 new rows filed already FIXED; 1 existing MAJOR closed; 4
+annotations). Files touched this round: the concept JSON, the skeleton, the mathematics block.
+**Nothing baselined, nothing in `PILOT_CONCEPTS`, PR #96 still must not merge.**
 
 ---
 
