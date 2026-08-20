@@ -1,0 +1,184 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_conservative_vs_nonconservative",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Distinguish between conservative and non-conservative forces with one example each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Conservative",
+      "marks": 2
+    },
+    {
+      "label": "Non-conservative",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 SHORT ANSWER. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed, so appearances[] stays empty. The TSBIE Basic Learning Material has no SAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conservative",
+        "kind": "text",
+        "label": "Conservative forces",
+        "marks": 2,
+        "mark_note": "Conservative",
+        "lines": [
+          {
+            "text": "Conservative forces:",
+            "style": "heading"
+          },
+          "1. The work done around a closed path",
+          {
+            "text": "is zero.",
+            "style": "indent"
+          },
+          "2. The work done is independent of the",
+          {
+            "text": "path — it depends only on the end",
+            "style": "indent"
+          },
+          {
+            "text": "points.",
+            "style": "indent"
+          },
+          "3. Examples: gravitational force, the",
+          {
+            "text": "elastic force of a spring.",
+            "style": "indent"
+          }
+        ],
+        "margin_note": "Number the points and put the example last. A \"distinguish\" question is marked point by point.",
+        "why": "Both properties are the same fact twice: if the work back is exactly minus the work out, going round a loop must give zero.",
+        "common_mistakes": [
+          "Writing prose instead of numbered points, so the matching pairs cannot be seen."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a conservative force the work in a closed path is zero and is path-independent, e.g. gravity.",
+          "accept": [
+            "work in a closed path is zero",
+            "work is independent of the path",
+            "gravitational force is an example",
+            "closed path lo work zero"
+          ],
+          "reject": [
+            "friction is an example"
+          ],
+          "heard_as": [
+            "closed path",
+            "independent of path",
+            "gravitational"
+          ]
+        }
+      },
+      {
+        "id": "s2_nonconservative",
+        "kind": "boxed_final",
+        "label": "Non-conservative forces",
+        "marks": 2,
+        "mark_note": "Non-conservative",
+        "lines": [
+          {
+            "text": "Non-conservative forces:",
+            "style": "heading"
+          },
+          "1. The work done around a closed path",
+          {
+            "text": "is NOT zero.",
+            "style": "indent"
+          },
+          "2. The work done depends on the path",
+          {
+            "text": "taken.",
+            "style": "indent"
+          },
+          {
+            "text": "3. Examples: friction, viscous force.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Answer point 1 against point 1 and point 2 against point 2 — the same order as the column beside it.",
+        "why": "Friction always opposes the motion, so it takes energy on the way out AND on the way back. A longer path costs more, which is exactly what path-dependent means.",
+        "common_mistakes": [
+          "Giving a different number of points on the two sides, so nothing lines up."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a non-conservative force the closed-path work is not zero and depends on the path, e.g. friction.",
+          "accept": [
+            "work in a closed path is not zero",
+            "work depends on the path",
+            "friction is an example",
+            "friction path meeda depend avutundi"
+          ],
+          "reject": [
+            "work in a closed path is zero"
+          ],
+          "heard_as": [
+            "not zero",
+            "depends on the path",
+            "friction"
+          ]
+        }
+      },
+      {
+        "id": "s3_note",
+        "kind": "text",
+        "label": "The energy difference",
+        "marks": 0,
+        "lines": [
+          "A conservative force stores energy that",
+          "can be recovered, so a potential energy",
+          "can be defined for it. A non-conservative",
+          "force dissipates energy as heat, so no",
+          "potential energy exists for it."
+        ],
+        "margin_note": "Unmarked, but it is the reason behind both columns. Write it if there is room.",
+        "why": "This is the useful half of the distinction: it tells you when you are allowed to use mgh or ½kx² at all.",
+        "common_mistakes": [
+          "Claiming friction has a potential energy."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a potential energy can be defined for a conservative force but not for a non-conservative one.",
+          "accept": [
+            "potential energy can be defined only for conservative forces",
+            "friction dissipates energy as heat",
+            "conservative force ki potential energy untundi"
+          ],
+          "reject": [
+            "friction is an example"
+          ],
+          "heard_as": [
+            "potential energy",
+            "heat",
+            "recovered"
+          ]
+        }
+      }
+    ]
+  }
+}

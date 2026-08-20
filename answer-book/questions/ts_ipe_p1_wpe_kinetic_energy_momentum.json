@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_kinetic_energy_momentum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the relation between the kinetic energy and momentum of a body.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The substitution",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), Unit 6 VERY SHORT ANSWER. The 1+1 mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for this question, so appearances[] stays empty. The TSBIE Basic Learning Material has no VSAQ section for this unit, so the Fastrack is the only source for it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Work Power Energy · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "The substitution",
+        "marks": 1,
+        "mark_note": "Working",
+        "lines": [
+          {
+            "text": "KE = ½mv²   and   p = mv",
+            "style": "eq"
+          },
+          "From the second, v = p/m. Putting that",
+          "into the first,",
+          {
+            "text": "KE = ½m(p/m)²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Show the substitution. The relation is worth little without the line that produces it.",
+        "why": "Both quantities are built from m and v, so either one can be written in terms of the other. This is only algebra.",
+        "common_mistakes": [
+          "Writing the final relation with no working, which earns half the marks."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v = p/m is substituted into KE = ½mv².",
+          "accept": [
+            "KE is half m v squared and p is m v",
+            "substitute v equals p by m",
+            "v ni p by m ga rasi substitute cheyyali"
+          ],
+          "reject": [
+            "KE equals p squared by two m"
+          ],
+          "heard_as": [
+            "half m v squared",
+            "p by m",
+            "substitute"
+          ]
+        }
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          "Simplifying,",
+          {
+            "text": "KE = p² / 2m    (or  p = √(2m · KE) )",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Give the rearranged form too. Questions ask for it in both directions.",
+        "why": "At the same momentum a lighter body carries MORE kinetic energy — which is why a bullet, not the rifle, does the damage.",
+        "common_mistakes": [
+          "Writing KE = p²/m, dropping the 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That KE = p²/2m.",
+          "accept": [
+            "KE equals p squared by two m",
+            "p equals root of two m KE",
+            "p square by 2m"
+          ],
+          "reject": [
+            "substitute v equals p by m"
+          ],
+          "heard_as": [
+            "p squared by two m",
+            "p square",
+            "root"
+          ]
+        }
+      }
+    ]
+  }
+}
