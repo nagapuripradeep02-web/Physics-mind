@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_vec_forces_3_5_60",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula and substitution",
+      "marks": 1
+    },
+    {
+      "label": "The value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), VERY SHORT ANSWER 3 of Unit 4. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Formula and substitution",
+        "marks": 1,
+        "mark_note": "Substitution",
+        "lines": [
+          {
+            "text": "R = √(P² + Q² + 2PQ cos θ)",
+            "style": "eq"
+          },
+          {
+            "text": "R = √(3² + 5² + 2×3×5 cos 60°)",
+            "style": "eq"
+          },
+          {
+            "text": "R = √(9 + 25 + 30 × ½)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Quote the parallelogram-law result, then substitute in one visible line.",
+        "why": "The whole question is one substitution into the parallelogram law — the working line is where the mark sits.",
+        "common_mistakes": [
+          "Using cos 60° = √3/2 instead of ½."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P=3, Q=5, θ=60° go into R = √(P²+Q²+2PQ cos θ).",
+          "accept": [
+            "substitute three five and sixty",
+            "root of nine plus twenty five plus fifteen",
+            "formula lo pedatha"
+          ],
+          "reject": [
+            "the answer is seven units"
+          ],
+          "heard_as": [
+            "three",
+            "five",
+            "sixty degrees",
+            "cos sixty"
+          ]
+        }
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          {
+            "text": "R = √(9 + 25 + 15) = √49",
+            "style": "eq"
+          },
+          {
+            "text": "R = 7 units",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Box the number with its unit word — \"7 units\", not bare 7.",
+        "why": "49 under the root is the reward for the correct cos 60° — a clean perfect square is the sign the substitution went right.",
+        "common_mistakes": [
+          "Adding 3 + 5 = 8 as if the forces were parallel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the resultant is √49 = 7 units.",
+          "accept": [
+            "root forty nine is seven",
+            "seven units",
+            "edu units vasthundi"
+          ],
+          "reject": [
+            "substitute into the formula"
+          ],
+          "heard_as": [
+            "seven",
+            "root forty nine",
+            "7"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -79,84 +79,96 @@
           "section": "SAQ",
           "number": 7,
           "stars": 0,
-          "text": "Two balls are projected from the same point in directions 30° and 60° with respect to the horizontal. What is the ratio of their initial velocities if they (a) attain the same height (b) have the same range?"
+          "text": "Two balls are projected from the same point in directions 30° and 60° with respect to the horizontal. What is the ratio of their initial velocities if they (a) attain the same height (b) have the same range?",
+          "question_id": "ts_ipe_p1_mp_two_balls_30_60"
         },
         {
           "ref": "saq8",
           "section": "SAQ",
           "number": 8,
           "stars": 0,
-          "text": "Explain the terms average velocity and instantaneous velocity. When are they equal?"
+          "text": "Explain the terms average velocity and instantaneous velocity. When are they equal?",
+          "question_id": "ts_ipe_p1_mp_average_instantaneous_velocity"
         },
         {
           "ref": "saq9",
           "section": "SAQ",
           "number": 9,
           "stars": 0,
-          "text": "O is a point on the ground chosen as origin. A body first suffers a displacement of 10√2 m north-east, next 10 m north and finally 10√2 m north-west. How far is it from the origin?"
+          "text": "O is a point on the ground chosen as origin. A body first suffers a displacement of 10√2 m north-east, next 10 m north and finally 10√2 m north-west. How far is it from the origin?",
+          "question_id": "ts_ipe_p1_vec_displacement_walk_origin"
         },
         {
           "ref": "vsaq1",
           "section": "VSAQ",
           "number": 1,
           "stars": 3,
-          "text": "The vertical component of a vector is equal to its horizontal component. What is the angle made by the vector with the x-axis?"
+          "text": "The vertical component of a vector is equal to its horizontal component. What is the angle made by the vector with the x-axis?",
+          "question_id": "ts_ipe_p1_vec_equal_components_angle"
         },
         {
           "ref": "vsaq2",
           "section": "VSAQ",
           "number": 2,
           "stars": 0,
-          "text": "A vector V makes an angle with the horizontal. The vector is rotated through an angle α. Does this rotation change the vector V?"
+          "text": "A vector V makes an angle with the horizontal. The vector is rotated through an angle α. Does this rotation change the vector V?",
+          "question_id": "ts_ipe_p1_vec_rotated_vector"
         },
         {
           "ref": "vsaq3",
           "section": "VSAQ",
           "number": 3,
           "stars": 3,
-          "text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?"
+          "text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?",
+          "question_id": "ts_ipe_p1_vec_forces_3_5_60"
         },
         {
           "ref": "vsaq4",
           "section": "VSAQ",
           "number": 4,
           "stars": 3,
-          "text": "A = i + j. What is the angle between the vector and the x-axis?"
+          "text": "A = i + j. What is the angle between the vector and the x-axis?",
+          "question_id": "ts_ipe_p1_vec_i_plus_j_angle"
         },
         {
           "ref": "vsaq5",
           "section": "VSAQ",
           "number": 5,
           "stars": 2,
-          "text": "If P = 2i + 4j + 14k and Q = 4i + 4j + 10k, find the magnitude of P + Q."
+          "text": "If P = 2i + 4j + 14k and Q = 4i + 4j + 10k, find the magnitude of P + Q.",
+          "question_id": "ts_ipe_p1_vec_p_plus_q_magnitude"
         },
         {
           "ref": "vsaq6",
           "section": "VSAQ",
           "number": 6,
           "stars": 1,
-          "text": "Can a vector of magnitude zero have non-zero components?"
+          "text": "Can a vector of magnitude zero have non-zero components?",
+          "question_id": "ts_ipe_p1_vec_zero_magnitude_components"
         },
         {
           "ref": "vsaq7",
           "section": "VSAQ",
           "number": 7,
           "stars": 3,
-          "text": "What is the acceleration of a projectile at the top of its trajectory?"
+          "text": "What is the acceleration of a projectile at the top of its trajectory?",
+          "question_id": "ts_ipe_p1_mp_projectile_top_acceleration"
         },
         {
           "ref": "vsaq8",
           "section": "VSAQ",
           "number": 8,
           "stars": 0,
-          "text": "When two right-angled vectors of magnitude 7 units and 24 units combine, what is the magnitude of their resultant?"
+          "text": "When two right-angled vectors of magnitude 7 units and 24 units combine, what is the magnitude of their resultant?",
+          "question_id": "ts_ipe_p1_vec_right_angle_7_24"
         },
         {
           "ref": "vsaq9",
           "section": "VSAQ",
           "number": 9,
           "stars": 0,
-          "text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?"
+          "text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?",
+          "question_id": "ts_ipe_p1_mp_walk_avg_velocity_speed"
         }
       ]
     }

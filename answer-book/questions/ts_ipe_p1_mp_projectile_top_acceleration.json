@@ -1,0 +1,114 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_mp_projectile_top_acceleration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Motion in a Plane"
+  },
+  "chapter": "Motion in a Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the acceleration of a projectile at the top of its trajectory?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The answer",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sri Chaitanya IPE Junior Fastrack (Rev. May 2024), VERY SHORT ANSWER 7 of Unit 4. The mark split is invented and needs a Telangana IPE teacher; no exam appearance years are printed for Unit 4, so appearances[] stays empty."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Motion in a Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_answer",
+        "kind": "boxed_final",
+        "label": "The answer",
+        "marks": 1,
+        "mark_note": "Answer",
+        "lines": [
+          "At the top of the path,",
+          {
+            "text": "a = g, directed vertically downward",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Give the direction with the value — \"g\" alone is half an answer.",
+        "why": "Gravity is the only force on a projectile, at the top exactly as everywhere else on the path.",
+        "common_mistakes": [
+          "Answering zero because the vertical VELOCITY is zero there."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the acceleration is g, directed vertically downward.",
+          "accept": [
+            "g downwards",
+            "acceleration due to gravity downward",
+            "g down direction lo"
+          ],
+          "reject": [
+            "the vertical velocity is zero"
+          ],
+          "heard_as": [
+            "g",
+            "gravity",
+            "downward"
+          ]
+        }
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "The vertical VELOCITY is zero at the",
+          "top, but gravity acts throughout the",
+          "flight — the acceleration never changes."
+        ],
+        "margin_note": "Name the trap out loud: velocity zero does not mean acceleration zero.",
+        "why": "The top is special for the velocity, not for the force. Nothing switches off at the peak — that is why the path bends back down.",
+        "common_mistakes": [
+          "Confusing the zero vertical velocity with zero acceleration."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the vertical velocity is zero at the top but gravity still acts.",
+          "accept": [
+            "velocity is zero but not acceleration",
+            "gravity acts throughout",
+            "velocity zero kani g untundi"
+          ],
+          "reject": [
+            "g downwards"
+          ],
+          "heard_as": [
+            "velocity zero",
+            "still acts",
+            "throughout"
+          ]
+        }
+      }
+    ]
+  }
+}
