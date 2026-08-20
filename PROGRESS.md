@@ -1,5 +1,43 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Answer Book: **UNIT 4 COMPLETE (20/20) + the catalog + MERGED TO MASTER** (2026-08-20, desk `physics-mind-ipe-answerbook`, `feat/ipe-answerbook`, PR #128 MERGED `81dd853`)
+
+**Bottom line: the Answer Book went from one prototype question to a finished product surface in one day, and it is ON MASTER. Unit 4 "Motion in a Plane" is complete — 2 LAQ + 9 SAQ + 9 VSAQ, every card openable — behind a Viditra-style catalog with VSAQ/SAQ/LAQ filters, search, and ONE CARD = ONE QUESTION AT ONE LENGTH (the founder's review killed the multi-length cards in one screenshot). Ten commits; every one verified before push; three defects were caught by gates built the same day.**
+
+### The founder's three UX rulings (each reshaped the product)
+- **No clock in Test yourself.** The stopwatch measured time-in-a-dialog, not time-on-the-answer (the student writes on paper FIRST). Removed; the exam expectation lives in the header chip. A "Tick it myself" self-check was added — scoring was ALREADY client-side (sum of authored marks over ticks), only the photo/mic PROPOSAL ever needed a server — so the emailable file now checks a student with no key, no billing, no network.
+- **Follow the book, then both.** The Fastrack lists parallelogram as SHORT ANSWER 1 (the chapter has NO Long Answer section), so the LAQ/8 prototype was first reclassified SAQ/4, then — founder: "build LAQ and let them switch" — the **cuts** mechanism landed: one authored step list served at several lengths (`cuts[]`: per-cut marks/labels/lines/margin_note/why, schema-enforced sums, cut question_text). Coherence rule: with omitted steps hidden, no surviving line may reference what only they introduced.
+- **One card = one length.** The catalog first shipped with union filters and multi-chip cards ("SAQ 2" wearing "LAQ · 8M" under an LAQ filter = three contradictions). Rebuilt: an entry belongs to exactly its section, the 8-mark forms are their own LAQ manifest entries, each card shows ONE marks chip, sections render as sub-groups (LAQ→SAQ→VSAQ), and **the in-notebook length switch is DELETED** (locked by a test). Cuts survive only in data + router + `PM_ANSWER.setCut`.
+
+### The catalog (landing view, one self-contained file still)
+Hash routes `#/` · `#/q/<id>` · `#/q/<id>/<cutKey>`; back/forward work from file://; `← All questions` returns. **`answer-book/units.json`** is the inventory manifest — the book's 18 questions + our 2 LAQ forms, star ranks, texts, and `question_id`+`cut` mappings; unauthored entries render as dimmed "Not written yet" cards. **Drift is a build failure BOTH directions** (authored-but-unlisted / listed-but-unresolvable), negative-controlled — the PILOT_CONCEPTS silent-drop lesson applied preemptively. Build prints per-unit coverage. Viditra catalog anatomy (narrow column, count pills, title+arrow cards, border-tint hover) in the Answer Book's light paper palette; every card carries a thin red left rule — the examiner's margin line.
+
+### Questions authored this session (16 of the 17 files)
+- **Projectile LAQ/8** (defn · figure · resolve · trajectory 2M · T · H · R · notes-0M; 28-element figure, apex COMPUTED via the Bezier t=0.5 rule; the apex velocity arrow answers VSAQ ★★★7 by picture) + SAQ cuts for ★★★2 and ★★★4 — the parabola cut needed ZERO line overrides, proof the steps are authored right.
+- **Definitions SAQ ★★★3** (unit/null/position; 3-D position-vector figure). **At-45° SAQ ★★5** — figure drawn TO SCALE so H measures exactly R/4. **|a+b|=|a−b| SAQ ★★6** — figure carries the real reason (equal diagonals ⇒ rectangle); diagonal-midpoint label placement computed.
+- **SAQ 7–9 + all nine VSAQs** (√3:1 & 1:1 · avg/inst velocity · the 30-m walk with a to-scale figure · nine 2-mark two-steppers incl. the g-at-the-top trap and the 6 km/h market walk). Physics hand-checked (√49, √676, √625, 50-min round trip). Every step: margin_note + why + common_mistakes + full recall rubric with Telugu code-mix.
+
+### Defects found by the session's own gates (the moat working same-day)
+1. **Construction lines were invisible on PRINT** — pencil strokes reveal via a clip rect built zero-sized; the instant path (revealAll / rail jump / print) never armed+finished the figure. The printed answer was losing CD, all four projectile dashes, the whole 3-D box. Fixed + gated + negative-controlled.
+2. **`k̂` cannot render in Kalam** — no precomposed k-circumflex exists in Unicode; combining mark measured with nonzero advance = fallback serif k mid-handwriting. Axis unit vectors are plain i, j, k; Â keeps its hat (U+00C2 precomposed).
+3. **`PM_ANSWER.question` was stale after a question switch** (captured value on a frozen object) → getter. **Two cut tests silently SKIPPED** when a one-cut question sorted to [0] — the skip-is-not-a-pass lesson, applied to our own suite; they now SEEK a multi-cut question.
+4. **The label-overlap gate** (built for ★★6) caught three real collisions in the SAQ-9 walk figure the same day. **The line-wrap gate** caught three over-packed lines in the first SAQ cut draft.
+5. First catalog screenshot caught rail text contradicting a cut's marks ("the two marks…" beside 1M) → per-cut margin_note/why overrides.
+
+### Merge (founder-ordered)
+`origin/master` merged INTO the branch first (GitHub's CONFLICTING flag was stale — clean merge; the Tier-1 platform work #123–#125 came in alongside). Full chain on the merged tree BEFORE push: renderer-syntax ×3 · tsc 0 · validate:concepts 153/0 · vitest 386/386 · smoke:answers 24/24 · motion-ratchet 344 ≤ 344 ✓ · CI verify ×2 green → **PR #128 MERGED to master `81dd853`**. Desk left OPEN deliberately: the founder continues Unit-next in this same desk/branch.
+
+### Files
+`answer-book/`: `units.json` (NEW manifest) · 16 new/edited `questions/*.json` · `notebook.js` (+catalog/router/cuts engine, −question select, −cut switch) · `notebook.css` · `shell.html` · `README.md`. Platform: `src/schemas/answerBook.ts` (cuts + overrides) · `src/scripts/build_answer_book.ts` (manifest gate + coverage report). Tests: `e2e/answer_book.spec.ts` → **24 tests** (catalog, filters, deep-link, no-switch lock, construction-line, label-overlap, line-wrap, seam). Docs: `docs/patterns/answer_book.md` (cuts · catalog · one-length model).
+
+### NEXT (the founder starts a NEW UNIT next session, SAME desk + branch)
+1. **Pick the unit** from the Fastrack contents (Physics pp.4–46; e.g. Unit 5 Laws of Motion pp.12–14 — VSAQ ×10 + SAQ ×~6 already photographed in session context) and read its pages from `C:\Users\PRADEEEP\Downloads\891334617-...Fastrack.pdf`.
+2. **The per-unit recipe is now mechanical:** add a `units.json` unit block (sections/numbers/stars/texts from the book; LAQ forms as own entries where TSBIE Section-C asks them) → author question JSONs to the bar (margin_note/why/common_mistakes/recall per step; figures with computed placements; lines ≤ ~45 chars) → map `question_id`(+`cut`) into the manifest → `npm run build:answers` (drift gate + coverage) → `npm run smoke:answers` (24 gates sweep every question) → tsc/validate → commit/push. The chapter filter chips appear automatically at 2 units.
+3. **Standing blockers (unchanged, founder calls):** Google billing (free tier exhausted) + hosting for photo/mic; the Telangana-teacher verification pass over every invented mark split; cost swap (Web Speech + DeepSeek) if the voice path goes wide.
+4. Branch is merged and 0-ahead; next session's commits open a NEW PR from this same branch when ready.
+
+---
+
 ## 📘 SESSION — a NEW student-facing track: the **IPE Answer Book** (2026-08-19/20, `feat/ipe-answerbook`, PR #128)
 
 **Bottom line: four source PDFs analysed, then a new product track built from scratch — a Telangana IPE board-exam answer-writing guide where the model answer writes itself on ruled notebook paper with marks per step, the figure draws itself stroke by stroke, and the student is checked by photo or by voice. No simulations, no runtime LLM in the notebook itself. 21 files, 5 commits, PR #128. The most valuable outputs were the things that only failed when tested for real: every grading call was silently dying on a truncated JSON, a "plain absence" was being reported as "we are not sure", and a CSS `display:` rule was quietly defeating the offline guarantee on screen while the code was correct.**
