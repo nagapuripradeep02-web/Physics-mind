@@ -53,8 +53,8 @@ export async function POST(req: Request) {
     const fail = (status: number, error: string) => Response.json({ error }, { status, headers: CORS });
 
     try {
-        if (!sarvamConfigured()) return fail(503, 'stt_unconfigured');
-
+        // Validate the request BEFORE the config check: a client bug must not be
+        // reported as "stt_unconfigured", which tells the client to hide the mic.
         let form: FormData;
         try {
             form = await req.formData();
@@ -86,6 +86,9 @@ export async function POST(req: Request) {
         if (audio.size > MAX_AUDIO_BYTES) {
             return Response.json({ error: 'recording is too long' }, { status: 413, headers: CORS });
         }
+
+        // Input is well-formed; now the config gate. 503 tells the client to hide the mic.
+        if (!sarvamConfigured()) return fail(503, 'stt_unconfigured');
 
         // ── speech to text ───────────────────────────────────────────────────
         let stt;

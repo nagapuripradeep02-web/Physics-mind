@@ -88,6 +88,20 @@ npm run serve:answers                          # http://localhost:8100 — the m
 Needs `SARVAM_API_KEY` in `.env.local` (already provisioned). Without it the endpoint returns
 `503 stt_unconfigured` and the client hides the mic rather than showing a broken button.
 
+**Two setup constraints found the hard way:**
+1. `npm run dev` **does not start inside a `desk:new` worktree** — Turbopack rejects the
+   `node_modules` junction ("Symlink [project]/node_modules is invalid"). Run the endpoint from
+   the main checkout, or do a real `npm install` in the desk.
+2. A worktree has no `.env.local`. Hard-link rather than copy, so the secret is never
+   duplicated and never goes stale:
+   `cmd /c mklink /H .env.local C:\Tutor\physics-mind\.env.local` (`.env*` is gitignored).
+
+**Tuning the rubric for a new question:** `npm run probe:recall -- <question_id>` runs four
+canned transcripts (full · partial · thin · odd-wording) against the real model for a few paise
+and prints the buckets. The grader's guards are unit-tested with canned responses; this probe is
+the only way to check that the authored rubric makes the real model generous enough — and
+honest enough. Run it after authoring `recall` blocks and after any prompt edit.
+
 **Authoring the rubric for a new question:** every step gets a `recall` block, or none do
 (the build enforces all-or-none — a partial rubric would report an ungraded step as missed):
 

@@ -60,8 +60,18 @@ student spoke.
               speech-to-text has damaged the span you are relying on, or when a
               span could belong to a neighbouring step.
 - 0.0 to 0.2  you are guessing.
-Use the low band freely. A confident wrong "you missed this" is the worst
-outcome of this whole feature. When in doubt, be unsure - never accuse.
+
+A CLEAR ABSENCE IS A CONFIDENT JUDGEMENT, NOT AN UNCERTAIN ONE.
+If the transcript plainly contains nothing about a step - the student stopped
+early, or never reached it, or said something else instead - then covered is
+false and confidence is HIGH (0.9). You are certain about what you read.
+Low confidence on a not-covered step means something different: it means you
+found words that MIGHT be that step but you cannot tell. Reserve the low band
+for that real ambiguity.
+
+A confident wrong "you missed this" is the worst outcome of this feature, so
+when a span is genuinely ambiguous, be unsure. But do not call a plain absence
+ambiguous - that is not caution, it is a wrong answer of a different kind.
 
 WHAT YOU MUST NEVER DO
 - NEVER add up marks. NEVER output a total, a score, a percentage, a grade, or

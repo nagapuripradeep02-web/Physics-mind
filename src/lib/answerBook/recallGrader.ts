@@ -222,7 +222,12 @@ export async function gradeRecall(
                     prompt: p,
                     schema: recallCheckSchema,
                     temperature: 0,
-                    maxOutputTokens: 900,
+                    // gemini-2.5-flash is a THINKING model: reasoning tokens are drawn from
+                    // the same output budget. At 900 with thinking on, the JSON was truncated
+                    // and every call died as AI_NoObjectGeneratedError. This is a matching
+                    // task, not a reasoning one — thinking off, budget generous.
+                    maxOutputTokens: 3000,
+                    providerOptions: { google: { thinkingConfig: { thinkingBudget: 0 } } },
                 });
                 return o as RecallCheck;
             });
